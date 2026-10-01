@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KPC — About</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#071b2a;color:#eef5f7;line-height:1.6}
+a{text-decoration:none;color:inherit}.nav{position:sticky;top:0;z-index:10;background:#061522ee;backdrop-filter:blur(8px);border-bottom:1px solid #2c4b58}
+.navin{max-width:1150px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px}.logo{font-weight:900;letter-spacing:2px;font-size:22px}.logo span{color:#65b86e}
+nav{display:flex;flex-wrap:wrap;gap:14px;font-size:14px}nav a{color:#cbd9de}nav a:hover{color:#8bd3ff}
+.hero{min-height:430px;display:flex;align-items:center;background:linear-gradient(90deg,#061725ee,#0b2534aa),url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=85") center/cover}
+.hero-inner{max-width:1150px;width:100%;margin:auto;padding:70px 20px}.eyebrow{color:#72c77b;font-weight:800;letter-spacing:3px}.hero h1{font-size:clamp(44px,8vw,82px);margin:8px 0;color:white;line-height:.95}.hero p{font-size:20px;max-width:700px;color:#dce9ed}
+.section{max-width:1100px;margin:auto;padding:65px 20px}.section h2{font-size:36px;margin:0 0 12px}.lead{color:#b8cbd2;max-width:800px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:20px;margin-top:30px}.card{background:#102d3b;border:1px solid #31515e;border-radius:18px;padding:28px;box-shadow:0 10px 25px #0003}.icon{font-size:34px}.card h3{margin:8px 0;font-size:23px}.card p{color:#b9cbd1}
+.story{margin-top:40px;background:linear-gradient(135deg,#173c4c,#0d2634);border:1px solid #315968;border-radius:22px;padding:35px}.story p{color:#c5d4d9}
+.quote{margin-top:30px;padding:28px;border-left:4px solid #68b86f;background:#0d2634;font-size:24px;font-weight:800}
+.btn{display:inline-block;margin-top:18px;padding:12px 18px;border-radius:10px;background:#68b86f;color:#061522;font-weight:800}
+footer{text-align:center;padding:35px 20px;border-top:1px solid #284652;color:#8fa6ae;font-size:14px}
+@media(max-width:700px){.navin{align-items:flex-start;flex-direction:column}.hero{min-height:390px}.hero-inner{padding:55px 20px}.hero p{font-size:17px}nav{gap:10px}}
+</style>
+
+<style>
+:root{
+  --navy:#071a2b; --green:#2f6f4e; --gold:#d7ad45; --cream:#f4f1e8;
+  --ink:#102131; --muted:#5d6b73; --white:#fff;
+}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.site-header{background:rgba(7,26,43,.97);color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 4px 18px rgba(0,0,0,.18)}
+.site-nav{max-width:1180px;margin:auto;padding:14px 20px;display:flex;align-items:center;gap:22px}
+.brand{font-weight:900;letter-spacing:.08em;line-height:1.05;margin-right:auto}.brand small{display:block;font-size:.62rem;letter-spacing:.16em;color:#c9d4da;margin-top:5px}
+.site-nav a{color:#fff;text-decoration:none;font-weight:750;font-size:.92rem}.site-nav a:hover{color:var(--gold)}
+.about-hero{min-height:430px;display:grid;place-items:center;text-align:center;color:#fff;padding:45px 20px;background:linear-gradient(180deg,rgba(4,18,30,.25),rgba(4,18,30,.78)),url('https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1800&q=85') center/cover}
+.about-hero h1{font-size:clamp(2.8rem,7vw,5.8rem);margin:0;text-shadow:0 3px 16px #000;font-weight:950;letter-spacing:.03em}.about-hero p{font-size:1.15rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.wrap{max-width:1120px;margin:auto;padding:55px 20px}
+.intro{background:#fff;border-radius:24px;padding:34px;box-shadow:0 10px 30px rgba(7,26,43,.10);margin-top:-70px;position:relative}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:25px}.card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 25px rgba(7,26,43,.10);border:1px solid #e2e5e1}.card .pic{height:155px;background-size:cover;background-position:center}.card .body{padding:20px}.card h3{margin:0 0 8px}.tag{display:inline-block;color:#fff;background:var(--green);padding:6px 10px;border-radius:999px;font-size:.75rem;font-weight:800;letter-spacing:.05em}
+.quote{margin:45px 0;padding:38px;text-align:center;border-radius:24px;background:linear-gradient(135deg,var(--navy),#17455a);color:#fff}.quote strong{color:var(--gold);font-size:1.5rem}
+.actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:25px}.btn{padding:13px 20px;border-radius:999px;text-decoration:none;font-weight:850;background:var(--green);color:#fff}.btn.alt{background:var(--gold);color:var(--navy)}
+footer{background:var(--navy);color:#d9e0e4;text-align:center;padding:28px 20px}
+@media(max-width:800px){.site-nav{overflow-x:auto;white-space:nowrap}.cards{grid-template-columns:1fr 1fr}.intro{margin-top:-40px}}
+@media(max-width:520px){.cards{grid-template-columns:1fr}.about-hero{min-height:350px}}
+</style>
+
+</head>
+<body>
+<header class="nav"><div class="navin">
+<a class="logo" href="index.html">KPC <span>•</span> KENTUCKY PORTABLE CLUB</a>
+<nav>
+<a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a>
+</nav>
+</div></header>
+
+<section class="hero"><div class="hero-inner">
+<div class="eyebrow">KPC • EST. 2026</div>
+<h1>ABOUT KPC</h1>
+<p>Kentucky Portable Club is about getting outside, getting on the air, exploring new places, and building a community around portable amateur radio and adventure.</p>
+</div></section>
+
+<section class="section">
+<h2>Who We Are</h2>
+<p class="lead">KPC — Kentucky Portable Club — was established in 2026 for people who enjoy taking amateur radio beyond the shack and into the outdoors.</p>
+
+<div class="story">
+<p>We believe portable radio is better when it's part of an adventure. A park, campground, lake, trail, or weekend around the campfire can become the setting for making contacts, learning new skills, and spending time with good people.</p>
+<p>KPC brings together portable operators, campers, explorers, and anyone interested in enjoying amateur radio outdoors. You don't have to have the biggest station or the most expensive equipment. The goal is to get outside, set up, operate, explore, and have a good time.</p>
+</div>
+
+<div class="grid">
+<div class="card"><div class="icon">📻</div><h3>Portable Ham Radio</h3><p>Take amateur radio into the field and learn practical portable operating skills.</p></div>
+<div class="card"><div class="icon">🏕️</div><h3>Camping</h3><p>Combine camping and radio with weekend trips, campouts, and outdoor gatherings.</p></div>
+<div class="card"><div class="icon">🗺️</div><h3>Adventure</h3><p>Discover Kentucky parks, public lands, new operating locations, and places worth exploring.</p></div>
+<div class="card"><div class="icon">🤝</div><h3>Community</h3><p>Share knowledge, help new operators, make contacts, and enjoy fellowship around the campfire.</p></div>
+</div>
+
+<div class="quote">“Get Outside. Get On The Air.”</div>
+
+<a class="btn" href="join.html">Join KPC</a>
+<a class="btn" href="campout.html">See the Campout</a>
+</section>
+
+<footer>KPC — Kentucky Portable Club • Est. 2026<br>Portable Ham Radio • Camping • Adventure • Community</footer>
+</body>
+</html>
