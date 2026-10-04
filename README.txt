@@ -1,1 +1,1 @@
-Updated KPC Contact page: removed QR-code references and the redundant OPEN KPC LINKS button. All other contact content and design remain unchanged.
+Events page rebuilt using the uploaded homepage as the navbar master. The navbar HTML and responsive navbar CSS were copied from the homepage; Events content and page-specific styling were otherwise preserved.
