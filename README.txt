@@ -1,26 +1,18 @@
-KPC CONTACT CARD - CORRECTED FOR CURRENT GITHUB SETUP
+KPC EVENTS - CORRECTED
 
-Your GitHub repository is:
-KPC-Links
+Replace the existing events.html with this events.html.
+Keep KPC-logo.png and KPC-2027-Campout.ics in the same GitHub repository root.
 
-The Contact Card file is in the ROOT of that repository.
+Fixes:
+- Navbar now matches the KPC homepage design system.
+- Transparent KPC logo is used; no white logo square.
+- Mobile hamburger navigation is included.
+- "Send Me Event Notifications" email option restored.
+- Google Calendar option restored.
+- Download .ICS calendar option restored.
+- Existing 2027 Campout details retained.
 
-Therefore:
-- Home -> index.html
-- About -> about.html
-- Campout -> campout.html
-- Events -> events.html
-- Parks -> parks.html
-- Resources -> resources.html
-- Join KPC -> join.html
-- Contact -> contact.html
-
-Do NOT use ../ paths.
-
-Direct Contact Card URL:
-https://kentuckyportableclub.github.io/KPC-Links/contact-card.html
-
-Home URL:
-https://kentuckyportableclub.github.io/KPC-Links/index.html
-
-The QR code can continue to point directly to the Contact Card URL.
+Files:
+events.html
+KPC-logo.png
+KPC-2027-Campout.ics
