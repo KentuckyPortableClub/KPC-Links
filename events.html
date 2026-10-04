@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events | Kentucky Portable Club</title>
+<meta name="description" content="KPC events, the 2027 Campout, event notifications, and calendar tools.">
+<style>
+:root{
+  --black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;
+  --cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;
+  --green:#1d5a3a;--green-dark:#0d2419;--line:#d9cfbd;--max:1200px;--nav-height:78px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+a{text-decoration:none;color:inherit}
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:var(--nav-height);margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.brand{display:flex;align-items:center;flex:0 0 auto}
+.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}
+.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s ease}
+.nav-links a:hover,.nav-links a[aria-current=page]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+
+.hero{position:relative;min-height:clamp(520px,70vh,700px);display:flex;align-items:flex-end;overflow:hidden;background:
+linear-gradient(90deg,rgba(0,0,0,.90),rgba(0,0,0,.56) 48%,rgba(0,0,0,.18)),
+radial-gradient(circle at 78% 28%,rgba(29,90,58,.75),transparent 35%),
+linear-gradient(135deg,#080808 0%,#12291d 58%,#1a1710 100%)}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 30%,rgba(213,166,58,.16),transparent 34%);pointer-events:none}
+.hero-inner{position:relative;z-index:2;width:min(var(--max),100%);margin:auto;padding:90px 24px 72px;color:#fff}
+.hero-logo{width:min(150px,38vw);margin-bottom:22px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}
+.eyebrow{margin:0 0 12px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}
+.hero h1{max-width:900px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(44px,6vw,72px);line-height:1.02;letter-spacing:-1.5px}
+.hero h1 span{color:var(--gold-light)}
+.hero-copy{max-width:700px;margin:20px 0 0;color:#eee9dd;font-size:clamp(16px,2vw,20px)}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:1px;background:var(--gold);color:#0b0b0b;border:1px solid var(--gold);transition:.2s}
+.btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn.alt{background:transparent;color:#fff;border-color:rgba(255,255,255,.65)}
+.btn.alt:hover{background:rgba(255,255,255,.08)}
+
+.info-strip{width:min(1100px,calc(100% - 48px));margin:-42px auto 0;position:relative;z-index:3;background:#fff;border-top:5px solid var(--gold);display:grid;grid-template-columns:repeat(3,1fr);box-shadow:0 14px 35px rgba(0,0,0,.12)}
+.info{padding:26px 30px;border-right:1px solid #e3e3e3}
+.info:last-child{border-right:0}
+.label{color:var(--green);font-size:12px;font-weight:900;letter-spacing:3px}
+.info strong{display:block;font:700 23px/1.2 Georgia,serif;margin-top:7px}
+
+.section{padding:82px 24px}
+.section-inner{width:min(var(--max),100%);margin:auto}
+.section-heading{text-align:center;margin-bottom:42px}
+.kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:4px}
+.section h2{margin:7px 0 12px;color:var(--black);font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,4vw,48px);line-height:1.08}
+.section-heading p{max-width:760px;margin:0 auto;color:var(--muted);font-size:17px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:#fff;padding:30px;border-top:4px solid var(--gold);box-shadow:0 10px 25px rgba(0,0,0,.07)}
+.card .icon{font-size:30px;margin-bottom:10px}
+.card h3{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:27px}
+.card p{margin:0;color:#4f504b}
+
+.feature{background:var(--green-dark);color:#fff;border-top:1px solid rgba(213,166,58,.45);border-bottom:1px solid rgba(213,166,58,.45)}
+.feature-inner{width:min(var(--max),100%);margin:auto;padding:82px 24px}
+.feature-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:stretch}
+.feature-copy{padding:12px 0}
+.feature .kicker{color:var(--gold-light)}
+.feature h2{color:#fff;font-family:Georgia,serif;font-size:clamp(38px,5vw,58px);line-height:1.03;margin:8px 0 18px}
+.feature p{color:#dfe7df;font-size:18px}
+.date{font:700 30px Georgia,serif;color:var(--gold-light);margin:22px 0 4px}
+.location{font-weight:800;font-size:20px}
+.status{background:#f8f4e9;color:var(--ink);border-left:5px solid var(--gold);padding:22px 24px;margin-top:24px}
+.status strong{display:block;font:700 23px Georgia,serif;margin-bottom:5px}
+.tools{display:grid;gap:18px}
+.tool{background:#f8f4e9;color:var(--ink);padding:28px;border-top:5px solid var(--gold);box-shadow:0 12px 28px rgba(0,0,0,.18)}
+.tool h3{font:700 27px Georgia,serif;margin:0 0 9px}
+.tool p{color:#555b55;font-size:15px;margin:0 0 18px}
+.tool .btn{margin-right:8px;margin-bottom:8px}
+.reservation{background:var(--gold);color:#0b0b0b}
+.reservation:hover{background:var(--gold-light)}
+
+.calendar{background:#fffaf0;border-top:1px solid #d9cfbd}
+.calendar-box{width:min(1000px,100%);margin:0 auto;background:#fff;padding:30px;border-top:4px solid var(--green);box-shadow:0 10px 25px rgba(0,0,0,.06)}
+.event-row{display:grid;grid-template-columns:190px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+.event-row:last-child{border-bottom:0}
+.event-date{font-weight:900;color:var(--green);letter-spacing:1px}
+.event-title{font:700 25px Georgia,serif;margin-bottom:5px}
+.event-note{color:#5d665f}
+.calendar-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+
+.cta{background:var(--cream-2);text-align:center;padding:76px 24px}
+.cta h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}
+.cta p{margin:10px 0 24px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:2px}
+footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;border-top:1px solid #292929;font-size:13px}
+footer strong{color:var(--gold-light)}
+
+@media(max-width:1000px){
+ .nav-links a{padding-inline:7px;font-size:12px}
+ .cards{grid-template-columns:1fr 1fr}
+ .feature-grid{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+ :root{--nav-height:70px}
+ .nav-inner{min-height:70px;padding:8px 18px}
+ .brand img{width:52px;height:52px}
+ .menu-toggle{display:block}
+ .nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45);box-shadow:0 15px 25px rgba(0,0,0,.22)}
+ .nav-links.open{display:flex}
+ .nav-links a{padding:13px 5px;border-bottom:1px solid #292929}
+ .nav-links a:last-child{border-bottom:0}
+ .hero{min-height:600px}
+ .hero-inner{padding:70px 20px 55px}
+ .hero-logo{width:125px}
+ .info-strip{width:100%;margin:0;grid-template-columns:1fr}
+ .info{border-right:0;border-bottom:1px solid #e3e3e3}
+ .info:last-child{border-bottom:0}
+ .section,.feature-inner{padding:68px 20px}
+ .cards{grid-template-columns:1fr}
+ .event-row{grid-template-columns:1fr;gap:5px}
+}
+@media(max-width:520px){
+ .hero h1{font-size:42px}
+ .hero-copy{font-size:16px}
+ .card h3{font-size:25px}
+}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"></a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button>
+    <nav class="nav-links" id="main-navigation" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="campout.html">Campout</a>
+      <a href="events.html" aria-current="page">Events</a>
+      <a href="parks.html">Parks</a>
+      <a href="resources.html">Resources</a>
+      <a href="join.html">Join KPC</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-inner">
+    <img class="hero-logo" src="KPC-logo.png" alt="Kentucky Portable Club">
+    <p class="eyebrow">KPC 2027 • KENTUCKY ADVENTURE</p>
+    <h1>EVENTS <span>BUILT FOR THE ADVENTURE.</span></h1>
+    <p class="hero-copy">Connect. Learn. Operate. Explore. The KPC events calendar brings portable radio, camping, fellowship, and Kentucky adventure together.</p>
+    <div class="buttons">
+      <a class="btn" href="#campout">VIEW CAMPOUT →</a>
+      <a class="btn alt" href="#calendar">SEE 2027 EVENTS ↓</a>
+    </div>
+  </div>
+</section>
+
+<div class="info-strip">
+  <div class="info"><div class="label">FEATURED EVENT</div><strong>KPC 2027 Campout</strong></div>
+  <div class="info"><div class="label">DATES</div><strong>September 24–26, 2027</strong></div>
+  <div class="info"><div class="label">LOCATION</div><strong>Taylorsville Lake State Park</strong></div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div class="kicker">2027 KPC EVENTS</div>
+      <h2>Planned Events & Activities</h2>
+      <p>The 2027 calendar is being built as events are finalized. The KPC Campout is confirmed, while additional activities and operating events will be posted here as plans are ready.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><div class="icon">📻</div><h3>On-The-Air Events</h3><p>Portable operating, POTA activations, and club radio activities will be added as dates and details are confirmed.</p></article>
+      <article class="card"><div class="icon">🏕️</div><h3>Camping & Adventure</h3><p>Get outside with KPC for camping, exploring Kentucky parks, and spending time with other portable-radio operators.</p></article>
+      <article class="card"><div class="icon">🤝</div><h3>Fellowship</h3><p>Meet other operators, share ideas, learn from one another, and enjoy the community that makes KPC special.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="feature" id="campout">
+  <div class="feature-inner">
+    <div class="feature-grid">
+      <div class="feature-copy">
+        <div class="kicker">FEATURED • KPC 2027</div>
+        <h2>2027 KPC Campout</h2>
+        <p>The annual KPC Campout is set for a weekend of camping, portable radio, fellowship, and Kentucky adventure at Taylorsville Lake State Park.</p>
+        <div class="date">September 24–26, 2027</div>
+        <div class="location">Taylorsville Lake State Park</div>
+        <p>US-1271 • More campground, activity, and gathering details will be announced as plans are finalized.</p>
+        <div class="status"><strong>Planning Status</strong>More details are coming soon. No event schedule is being assumed until KPC finalizes it.</div>
+      </div>
+
+      <div class="tools">
+        <div class="tool">
+          <div class="kicker">🔔 GET EVENT NOTIFICATIONS</div>
+          <h3>Be Notified When KPC Adds Events</h3>
+          <p>Click below to open your email program with a ready-to-send request asking KPC to add you to the event notification list.</p>
+          <a class="btn" href="mailto:kentuckyportableclub@gmail.com?subject=KPC%20Event%20Notifications&amp;body=Please%20add%20me%20to%20the%20KPC%20event%20notification%20list.%0A%0AName%3A%20%0AEmail%3A%20">REQUEST EVENT NOTIFICATIONS →</a>
+        </div>
+
+        <div class="tool">
+          <div class="kicker">📅 ADD TO CALENDAR</div>
+          <h3>Save The 2027 Campout</h3>
+          <p>Add the confirmed Campout dates to your calendar. You can use Google Calendar or download the standard calendar file for Apple Calendar, Outlook, and other calendar apps.</p>
+          <div class="calendar-actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=KPC%202027%20Campout&amp;dates=20270924T150000/20270926T120000&amp;details=Kentucky%20Portable%20Club%202027%20Campout.%20More%20activity%20and%20gathering%20details%20will%20be%20announced%20as%20plans%20are%20finalized.&amp;location=Taylorsville%20Lake%20State%20Park%2C%20US-1271%2C%20Kentucky">ADD TO GOOGLE CALENDAR ↗</a>
+            <a class="btn alt" href="KPC-2027-Campout.ics" download>DOWNLOAD .ICS ↓</a>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="kicker">PLAN YOUR STAY</div>
+          <h3>Taylorsville Lake State Park</h3>
+          <p>When you're ready to plan your campsite, use the official Kentucky State Parks campground reservation system.</p>
+          <a class="btn reservation" target="_blank" rel="noopener" href="https://kentuckystateparks.reserveamerica.com/camping/taylorsville-lake-state-park/r/campgroundDetails.do?contractCode=KY&amp;parkId=91825">RESERVE A CAMPSITE ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section calendar" id="calendar">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div class="kicker">CALENDAR</div>
+      <h2>2027 KPC Event Calendar</h2>
+      <p>Confirmed dates appear here first. Additional KPC events will be added as plans are finalized.</p>
+    </div>
+    <div class="calendar-box">
+      <div class="event-row">
+        <div class="event-date">SEP 24–26, 2027</div>
+        <div>
+          <div class="event-title">KPC 2027 Campout</div>
+          <div class="event-note">Taylorsville Lake State Park • US-1271 • More details to be announced.</div>
+          <div class="calendar-actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=KPC%202027%20Campout&amp;dates=20270924T150000/20270926T120000&amp;details=Kentucky%20Portable%20Club%202027%20Campout.%20More%20activity%20and%20gathering%20details%20will%20be%20announced%20as%20plans%20are%20finalized.&amp;location=Taylorsville%20Lake%20State%20Park%2C%20US-1271%2C%20Kentucky">ADD TO CALENDAR →</a>
+            <a class="btn alt" href="KPC-2027-Campout.ics" download>DOWNLOAD .ICS ↓</a>
+          </div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date">2027</div>
+        <div><div class="event-title">Additional KPC Events</div><div class="event-note">Coming as dates and plans are finalized.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Get Outside. Get On The Air.</h2>
+  <p>KENTUCKY PORTABLE CLUB • EST. 2026</p>
+  <div class="buttons" style="justify-content:center">
+    <a class="btn" href="campout.html">CAMPOUT DETAILS →</a>
+    <a class="btn alt" href="parks.html">EXPLORE KENTUCKY →</a>
+    <a class="btn alt" href="join.html">JOIN KPC →</a>
+  </div>
+</section>
+</main>
+
+<footer><strong>KPC — Kentucky Portable Club</strong> • Est. 2026<br>Get Outside. Get On The Air.</footer>
+
+<script>
+const toggle=document.querySelector('.menu-toggle');
+const nav=document.querySelector('.nav-links');
+toggle.addEventListener('click',()=>{
+  const open=nav.classList.toggle('open');
+  toggle.setAttribute('aria-expanded',String(open));
+});
+nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+  nav.classList.remove('open');
+  toggle.setAttribute('aria-expanded','false');
+}));
+</script>
+</body>
+</html>
