@@ -1,18 +1,14 @@
-KPC EVENTS - CORRECTED
+KPC CAMPOUT PAGE - RESOURCES LINK ADDED
 
-Replace the existing events.html with this events.html.
-Keep KPC-logo.png and KPC-2027-Campout.ics in the same GitHub repository root.
+This version is based on the supplied Campout page.
 
-Fixes:
-- Navbar now matches the KPC homepage design system.
-- Transparent KPC logo is used; no white logo square.
-- Mobile hamburger navigation is included.
-- "Send Me Event Notifications" email option restored.
-- Google Calendar option restored.
-- Download .ICS calendar option restored.
-- Existing 2027 Campout details retained.
+Added:
+- Campout Guides & Flyer section
+- Direct link to resources.html#campout-resources
+- View/open resources buttons
+- Same KPC navbar, logo, colors, typography, and responsive layout
 
-Files:
-events.html
-KPC-logo.png
-KPC-2027-Campout.ics
+Put campout.html and KPC-logo.png in the GitHub repository root.
+
+The Resources page should use the matching anchor:
+resources.html#campout-resources
