@@ -1,1 +1,1 @@
-Events page rebuilt using the uploaded homepage as the navbar master. The navbar HTML and responsive navbar CSS were copied from the homepage; Events content and page-specific styling were otherwise preserved.
+Final KPC Events navbar alignment fix. The Events page now uses the homepage's --max:1200px navbar container value, which matches the homepage's exact horizontal positioning. All Events content is preserved.
