@@ -412,6 +412,24 @@ body{background:#f5f0e4;color:#1b1b1b}
 .resources-footer-cta a{color:#070707;background:#d5a63a;text-decoration:none;font-weight:900;padding:11px 16px;border-radius:6px}
 @media(max-width:950px){.resource-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.resources-hero{padding:64px 20px}.resources-main{padding:42px 18px 56px}.resource-grid{grid-template-columns:1fr}.resources-footer-cta .tag{margin-right:0;width:100%}}
+
+.campout-docs{background:#0d2419;color:#fff;border-top:4px solid #d5a63a;padding:46px 0 52px;margin:0 -0px}
+.campout-docs-inner{max-width:1120px;margin:auto;padding:0 24px}
+.campout-docs .eyebrow{color:#f0c96b;letter-spacing:3px;font-weight:800;font-size:13px}
+.campout-docs h2{font:700 34px Georgia,serif;margin:7px 0 10px;color:#f5f0e4}
+.campout-docs-intro{max-width:780px;color:#e9eee9;margin:0 0 25px}
+.campout-doc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.campout-doc-card{background:#f5f0e4;color:#171717;border-top:4px solid #d5a63a;border-radius:10px;padding:22px;display:flex;flex-direction:column;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.campout-doc-card .doc-icon{font-size:30px;margin-bottom:8px}
+.campout-doc-card h3{font:700 23px Georgia,serif;margin:0 0 8px}
+.campout-doc-card p{font-size:15px;color:#555;line-height:1.55;flex:1;margin:0 0 18px}
+.doc-actions{display:flex;gap:9px;flex-wrap:wrap}
+.doc-actions a{display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:6px;font-size:12px;font-weight:900;letter-spacing:.4px}
+.doc-view{background:#1d5a3a;color:#fff}.doc-view:hover{background:#15452c}
+.doc-download{background:#d5a63a;color:#070707}.doc-download:hover{background:#f0c96b}
+@media(max-width:950px){.campout-doc-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.campout-docs-inner{padding:0 18px}.campout-docs{padding:38px 0 44px}}
+
 </style>
 </head>
 <body>
@@ -425,6 +443,33 @@ body{background:#f5f0e4;color:#1b1b1b}
   </div>
 </header>
 <section class="resources-hero"><div class="hero-inner"><div class="eyebrow">TOOLS • INFORMATION • ADVENTURE</div><h1>RESOURCES</h1><p>Whether you're brand new to amateur radio or already packing a portable station, these resources are here to make the next trip easier.</p></div></section>
+<section class="campout-docs" id="campout-guides">
+  <div class="campout-docs-inner">
+    <div class="eyebrow">KPC 2027 • CAMPOUT RESOURCES</div>
+    <h2>Campout Guides &amp; Event Flyer</h2>
+    <p class="campout-docs-intro">Start here for the three official KPC 2027 campout documents. View any guide in your browser or download the PDF to keep it on your phone, tablet, or computer.</p>
+    <div class="campout-doc-grid">
+      <article class="campout-doc-card">
+        <div class="doc-icon">🏕️</div>
+        <h3>Kentucky Adventure Guide</h3>
+        <p>A practical guide for planning the campout and discovering Kentucky, including parks, attractions, lodging, local adventures, and trip ideas.</p>
+        <div class="doc-actions"><a class="doc-view" href="KPC-2027-Kentucky-Adventure-Guide.pdf" target="_blank" rel="noopener">VIEW IN BROWSER ↗</a><a class="doc-download" href="KPC-2027-Kentucky-Adventure-Guide.pdf" download>DOWNLOAD PDF ↓</a></div>
+      </article>
+      <article class="campout-doc-card">
+        <div class="doc-icon">🌲</div>
+        <h3>Kentucky Local Guide</h3>
+        <p>Built for Kentucky residents, with campout information plus nearby lodging, food, parks, attractions, and things to do around Taylorsville.</p>
+        <div class="doc-actions"><a class="doc-view" href="KPC-2027-Kentucky-Local-Guide.pdf" target="_blank" rel="noopener">VIEW IN BROWSER ↗</a><a class="doc-download" href="KPC-2027-Kentucky-Local-Guide.pdf" download>DOWNLOAD PDF ↓</a></div>
+      </article>
+      <article class="campout-doc-card">
+        <div class="doc-icon">📄</div>
+        <h3>KPC 2027 Campout Flyer</h3>
+        <p>The downloadable event flyer for the 2nd Annual Kentucky POTA Campout — September 24–26, 2027 at Taylorsville Lake State Park.</p>
+        <div class="doc-actions"><a class="doc-view" href="KPC-2027-Campout-Flyer.pdf" target="_blank" rel="noopener">VIEW IN BROWSER ↗</a><a class="doc-download" href="KPC-2027-Campout-Flyer.pdf" download>DOWNLOAD FLYER ↓</a></div>
+      </article>
+    </div>
+  </div>
+</section>
 <main class="resources-main">
 <section class="intro"><div class="eyebrow">PLAN • LEARN • GET OUTSIDE</div><h2>Everything You Need for the Next KPC Adventure</h2><p>Find licensing information, learning resources, repeater directories, Kentucky parks, POTA information, and camping resources—all in one place.</p></section>
 
