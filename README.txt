@@ -1,14 +1,11 @@
-KPC CAMPOUT PAGE - RESOURCES LINK ADDED
+KPC CAMPOUT - GUIDES MOVED NEAR HERO
 
-This version is based on the supplied Campout page.
+The Campout Guides & Flyer section is now immediately after the hero/date strip,
+before the main Campout details, so visitors see it early.
 
-Added:
-- Campout Guides & Flyer section
-- Direct link to resources.html#campout-resources
-- View/open resources buttons
-- Same KPC navbar, logo, colors, typography, and responsive layout
-
-Put campout.html and KPC-logo.png in the GitHub repository root.
-
-The Resources page should use the matching anchor:
+It links to:
 resources.html#campout-resources
+
+Files:
+- campout.html
+- KPC-logo.png
