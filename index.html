@@ -97,21 +97,28 @@ button{font:inherit}
 /* HERO */
 .hero{
   position:relative;
-  min-height:clamp(590px,76vh,780px);
+  min-height:clamp(600px,78vh,790px);
   display:flex;
-  align-items:flex-end;
+  align-items:center;
   overflow:hidden;
   background:
-    linear-gradient(90deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.52) 45%,rgba(0,0,0,.12) 100%),
-    linear-gradient(180deg,rgba(0,0,0,.05) 35%,rgba(0,0,0,.78) 100%),
-    url("https://photos.thedyrt.com/photo/522473/media/birmingham-ferry-smith-bay-lbl_a0c322d8-2e73-4399-86c8-2e3f7a360af4.jpg?auto=webp&crop=16%3A9%2Csmart&width=1900")
-    center/cover no-repeat;
+    radial-gradient(circle at 76% 24%,rgba(213,166,58,.24),transparent 23%),
+    linear-gradient(135deg,#07130d 0%,#0f2f20 45%,#070707 100%);
+  color:#fff;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:auto -10% -35% 35%;
+  height:75%;
+  background:radial-gradient(ellipse,rgba(213,166,58,.22),transparent 60%);
+  transform:rotate(-10deg);
 }
 .hero::after{
   content:"";
   position:absolute;
   inset:0;
-  background:radial-gradient(circle at 80% 30%,rgba(213,166,58,.16),transparent 34%);
+  background:linear-gradient(90deg,rgba(7,7,7,.08),rgba(7,7,7,.2) 55%,rgba(7,7,7,.58));
   pointer-events:none;
 }
 .hero-inner{
@@ -119,11 +126,11 @@ button{font:inherit}
   z-index:2;
   width:min(var(--max),100%);
   margin:auto;
-  padding:90px 24px 72px;
+  padding:90px 24px;
   color:#fff;
 }
 .hero-logo{
-  width:min(210px,42vw);
+  width:min(175px,42vw);
   margin-bottom:22px;
   filter:drop-shadow(0 10px 20px rgba(0,0,0,.45));
 }
