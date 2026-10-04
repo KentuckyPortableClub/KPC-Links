@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resources | Kentucky Portable Club</title>
+<style>
+:root{
+  --black:#070707;
+  --black-2:#111111;
+  --gold:#d5a63a;
+  --gold-light:#f0c96b;
+  --cream:#f5f0e4;
+  --cream-2:#ebe3d1;
+  --ink:#171717;
+  --muted:#68635a;
+  --green:#1d5a3a;
+  --green-2:#2d7a4e;
+  --nav-height:78px;
+  --max:1200px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--ink);
+  background:var(--cream);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.55;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+
+.site-nav{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(7,7,7,.97);
+  border-bottom:1px solid rgba(213,166,58,.55);
+  box-shadow:0 4px 20px rgba(0,0,0,.18);
+}
+.nav-inner{
+  width:min(var(--max),100%);
+  min-height:var(--nav-height);
+  margin:auto;
+  padding:10px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  flex:0 0 auto;
+}
+.brand img{
+  width:58px;
+  height:58px;
+  object-fit:contain;
+  border-radius:50%;
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:5px;
+}
+.nav-links a{
+  color:#fff;
+  padding:11px 10px;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.7px;
+  border-bottom:2px solid transparent;
+  transition:.2s ease;
+}
+.nav-links a:hover,
+.nav-links a[aria-current="page"]{
+  color:var(--gold-light);
+  border-bottom-color:var(--gold);
+}
+.menu-toggle{
+  display:none;
+  width:44px;
+  height:44px;
+  border:1px solid rgba(213,166,58,.55);
+  border-radius:8px;
+  background:var(--black-2);
+  color:#fff;
+  cursor:pointer;
+  font-size:22px;
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  min-height:clamp(590px,76vh,780px);
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.52) 45%,rgba(0,0,0,.12) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.05) 35%,rgba(0,0,0,.78) 100%),
+    url("KPC-logo.png")
+    center/cover no-repeat;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 80% 30%,rgba(213,166,58,.16),transparent 34%);
+  pointer-events:none;
+}
+.hero-inner{
+  position:relative;
+  z-index:2;
+  width:min(var(--max),100%);
+  margin:auto;
+  padding:90px 24px 72px;
+  color:#fff;
+}
+.hero-logo{
+  width:min(230px,48vw);
+  margin-bottom:22px;
+  filter:drop-shadow(0 10px 20px rgba(0,0,0,.45));
+}
+.eyebrow{
+  margin:0 0 12px;
+  color:var(--gold-light);
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:4px;
+}
+.hero h1{
+  max-width:800px;
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(38px,6vw,72px);
+  line-height:1.02;
+  letter-spacing:-1.5px;
+}
+.hero h1 span{color:var(--gold-light)}
+.hero-copy{
+  max-width:650px;
+  margin:20px 0 0;
+  color:#eee9dd;
+  font-size:clamp(16px,2vw,20px);
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:30px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  padding:12px 20px;
+  border-radius:7px;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:1px;
+  transition:transform .2s ease,background .2s ease,border-color .2s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--gold);color:#0b0b0b}
+.btn-primary:hover{background:var(--gold-light)}
+.btn-secondary{
+  color:#fff;
+  border:1px solid rgba(255,255,255,.65);
+  background:rgba(0,0,0,.35);
+}
+.btn-secondary:hover{border-color:var(--gold-light);color:var(--gold-light)}
+
+/* SHARED */
+.section{
+  padding:82px 24px;
+}
+.section-inner{
+  width:min(var(--max),100%);
+  margin:auto;
+}
+.section-heading{text-align:center;margin-bottom:42px}
+.kicker{
+  color:var(--green);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:4px;
+}
+.section h2{
+  margin:7px 0 12px;
+  color:var(--black);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(32px,4vw,48px);
+  line-height:1.08;
+}
+.section-heading p{
+  max-width:700px;
+  margin:0 auto;
+  color:var(--muted);
+  font-size:17px;
+}
+
+/* INTRO */
+.intro{
+  background:var(--cream);
+  border-bottom:1px solid #d9cfbd;
+}
+.intro-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:60px;
+  align-items:center;
+}
+.intro-copy .kicker{margin-bottom:8px}
+.intro-copy h2{margin:0 0 18px}
+.intro-copy p{color:var(--muted);font-size:18px;margin:0 0 20px}
+.signature{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:25px;
+  color:var(--green);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+.signature::before{
+  content:"";
+  width:45px;
+  height:2px;
+  background:var(--gold);
+}
+.intro-badge{
+  padding:16px;
+  border:1px solid var(--gold);
+  background:var(--black);
+  box-shadow:12px 12px 0 var(--gold);
+}
+.intro-badge img{
+  width:100%;
+  max-width:430px;
+  margin:auto;
+}
+
+/* FEATURE CARDS */
+.features{background:#fffaf0}
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.card{
+  position:relative;
+  min-height:350px;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  border-radius:8px;
+  color:#fff;
+  background-position:center;
+  background-size:cover;
+  box-shadow:0 12px 28px rgba(0,0,0,.14);
+}
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.02) 25%,rgba(0,0,0,.88) 100%);
+}
+.card:nth-child(1){background-image:url("KPC-logo.png")}
+.card:nth-child(2){background-image:url("KPC-logo.png")}
+.card:nth-child(3){background-image:url("KPC-logo.png")}
+.card:nth-child(4){background-image:url("KPC-logo.png")}
+.card-content{position:relative;z-index:2;padding:22px}
+.card h3{
+  margin:0 0 9px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:25px;
+  line-height:1.1;
+}
+.card p{margin:0 0 17px;color:#f1eee6;font-size:14px}
+.card .btn{min-height:40px;padding:9px 14px;background:var(--gold);color:#0b0b0b}
+
+/* CONNECT */
+.connect{
+  background:var(--black);
+  color:#fff;
+  border-top:1px solid rgba(213,166,58,.45);
+  border-bottom:1px solid rgba(213,166,58,.45);
+}
+.connect .section-heading h2{color:#fff}
+.connect .section-heading p{color:#bcb8ae}
+.connect .kicker{color:var(--gold-light)}
+.link-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.link-btn{
+  display:flex;
+  min-height:56px;
+  align-items:center;
+  justify-content:center;
+  padding:12px 15px;
+  border:1px solid #383838;
+  border-radius:7px;
+  background:#151515;
+  color:#fff;
+  font-weight:900;
+  font-size:13px;
+  letter-spacing:.6px;
+  transition:.2s ease;
+}
+.link-btn:hover{
+  border-color:var(--gold);
+  color:var(--gold-light);
+  transform:translateY(-1px);
+}
+
+/* FINAL CTA */
+.final{
+  padding:76px 24px;
+  text-align:center;
+  background:var(--cream-2);
+}
+.final h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}
+.final p{margin:10px 0 24px;color:var(--muted);letter-spacing:2px;font-size:13px;font-weight:800}
+
+footer{
+  padding:28px 24px;
+  text-align:center;
+  background:#050505;
+  color:#9b978e;
+  border-top:1px solid #292929;
+  font-size:13px;
+}
+footer strong{color:var(--gold-light)}
+
+@media(max-width:1000px){
+  .nav-links{gap:0}
+  .nav-links a{padding-inline:7px;font-size:12px}
+  .card-grid{grid-template-columns:repeat(2,1fr)}
+  .intro-grid{gap:38px}
+}
+@media(max-width:760px){
+  :root{--nav-height:70px}
+  .nav-inner{min-height:70px;padding:8px 18px}
+  .brand img{width:52px;height:52px}
+  .menu-toggle{display:block}
+  .nav-links{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+    padding:10px 18px 16px;
+    background:rgba(7,7,7,.99);
+    border-bottom:1px solid rgba(213,166,58,.45);
+    box-shadow:0 15px 25px rgba(0,0,0,.22);
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:13px 5px;border-bottom:1px solid #292929}
+  .nav-links a:last-child{border-bottom:0}
+  .hero{min-height:650px}
+  .hero-inner{padding:70px 20px 55px}
+  .hero-logo{width:165px}
+  .intro-grid{grid-template-columns:1fr}
+  .intro-badge{max-width:480px;margin:auto}
+  .section{padding:68px 20px}
+  .link-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .card-grid{grid-template-columns:1fr}
+  .card{min-height:310px}
+  .hero h1{font-size:40px}
+  .hero-copy{font-size:16px}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .btn{width:100%}
+  .intro-copy p{font-size:16px}
+}
+
+/* Resources page — same KPC homepage design system */
+body{background:#f5f0e4;color:#1b1b1b}
+.resources-hero{background:linear-gradient(120deg,rgba(7,7,7,.92),rgba(29,90,58,.78)),linear-gradient(135deg,#070707,#1d5a3a);padding:88px 24px 82px;border-bottom:4px solid #d5a63a}
+.resources-hero .hero-inner{max-width:1120px;margin:auto}
+.resources-hero .eyebrow{color:#f0c96b;letter-spacing:3px;font-weight:800;font-size:13px}
+.resources-hero h1{font-family:Georgia,serif;font-size:clamp(42px,6vw,70px);line-height:1;margin:12px 0;color:#f5f0e4}
+.resources-hero p{max-width:760px;color:#f5f0e4;font-size:18px;line-height:1.65;margin:0}
+.resources-main{max-width:1120px;margin:auto;padding:54px 24px 70px}
+.resources-main .intro{max-width:800px;margin:0 auto 42px;text-align:center}
+.resources-main .intro .eyebrow{color:#1d5a3a;letter-spacing:3px;font-weight:800}
+.resources-main .intro h2{font:700 32px Georgia,serif;color:#070707;margin:8px 0 12px}
+.resources-main .intro p{color:#4b4b4b;line-height:1.65}
+.resource-section{margin-top:42px}
+.resource-section h2{font:700 30px Georgia,serif;color:#070707;margin:0 0 18px;padding-bottom:10px;border-bottom:2px solid #d5a63a}
+.resource-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.resource-card{background:#fff;border:1px solid #ddd3bf;border-top:4px solid #1d5a3a;border-radius:12px;padding:22px;box-shadow:0 8px 24px rgba(7,7,7,.08);display:flex;flex-direction:column;min-height:250px}
+.resource-card h3{font:700 22px Georgia,serif;color:#070707;margin:8px 0 10px}
+.resource-card p{color:#555;line-height:1.55;font-size:15px;flex:1;margin:0 0 18px}
+.resource-card .icon{font-size:30px}
+.resource-card .btn{display:inline-block;background:#1d5a3a;color:#fff;text-decoration:none;font-weight:800;padding:11px 14px;border-radius:6px;text-align:center}
+.resource-card .btn:hover{background:#15452c}
+.resources-footer-cta{margin-top:48px;background:#070707;border:1px solid #292929;border-radius:14px;padding:28px;color:#f5f0e4;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.resources-footer-cta .tag{font:700 26px Georgia,serif;margin-right:auto}
+.resources-footer-cta a{color:#070707;background:#d5a63a;text-decoration:none;font-weight:900;padding:11px 16px;border-radius:6px}
+@media(max-width:950px){.resource-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.resources-hero{padding:64px 20px}.resources-main{padding:42px 18px 56px}.resource-grid{grid-template-columns:1fr}.resources-footer-cta .tag{margin-right:0;width:100%}}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"></a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button>
+    <nav class="nav-links" id="main-navigation" aria-label="Main navigation">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="resources.html" aria-current="page">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<section class="resources-hero"><div class="hero-inner"><div class="eyebrow">TOOLS • INFORMATION • ADVENTURE</div><h1>RESOURCES</h1><p>Whether you're brand new to amateur radio or already packing a portable station, these resources are here to make the next trip easier.</p></div></section>
+<main class="resources-main">
+<section class="intro"><div class="eyebrow">PLAN • LEARN • GET OUTSIDE</div><h2>Everything You Need for the Next KPC Adventure</h2><p>Find licensing information, learning resources, repeater directories, Kentucky parks, POTA information, and camping resources—all in one place.</p></section>
+
+<section class="resource-section"><h2>🎓 Amateur Radio Basics</h2><section class="resource-grid">
+<article class="resource-card"><div class="icon">🎓</div><h3>Get Licensed</h3><p>Learn about Technician, General, and Extra licensing, study resources, practice exams, and finding an exam session.</p><a class="btn" href="https://www.arrl.org/getting-licensed" target="_blank">ARRL LICENSING →</a></article>
+<article class="resource-card"><div class="icon">📚</div><h3>New Ham Resources</h3><p>ARRL's collection of beginner information, operating references, repeater information, and ways to get active.</p><a class="btn blue" href="https://www.arrl.org/new-ham-resources" target="_blank">NEW HAM RESOURCES →</a></article>
+<article class="resource-card"><div class="icon">🧑‍🏫</div><h3>Learn &amp; Train</h3><p>Online amateur-radio courses and educational material for new and experienced operators.</p><a class="btn orange" href="https://learn.arrl.org/" target="_blank">ARRL LEARNING CENTER →</a></article>
+<article class="resource-card"><div class="icon">📡</div><h3>Find Repeaters</h3><p>Look up repeaters while traveling or planning a portable trip.</p><a class="btn red" href="https://www.repeaterbook.com/" target="_blank">REPEATERBOOK →</a></article>
+</section></section>
+
+<section class="resource-section"><h2>🏕️ Portable &amp; POTA</h2><section class="resource-grid">
+<article class="resource-card"><div class="icon">🌲</div><h3>POTA Park List</h3><p>Find parks and other designated locations for Parks on the Air activities.</p><a class="btn blue" href="https://next.pota.app/parklist" target="_blank">OPEN POTA PARK LIST →</a></article>
+<article class="resource-card"><div class="icon">🏞️</div><h3>Kentucky Parks</h3><p>Find Kentucky State Parks, campground reservations, and natural areas for future KPC adventures.</p><a class="btn orange" href="parks.html">EXPLORE KENTUCKY PARKS →</a></article>
+<article class="resource-card"><div class="icon">🔥</div><h3>KPC Campout</h3><p>Follow the KYPOTA Campout page for future dates, locations, registration, and event information.</p><a class="btn blue" href="campout.html">KYPOTA CAMPOUT →</a></article>
+</section></section>
+
+
+
+<div class="resources-footer-cta"><div class="tag">Get Outside. Get On The Air.</div><a href="parks.html">Explore Kentucky Parks →</a><a href="join.html">Join KPC →</a></div>
+</main>
+<script>
+const toggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.nav-links');
+
+toggle.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', String(open));
+});
+
+nav.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  });
+});
+</script>
+</body>
+</html>
