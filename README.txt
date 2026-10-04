@@ -1,1 +1,1 @@
-KPC Events page with navbar matched to the current KPC homepage navbar. Only the navbar framework/styles were adjusted; Events page content was preserved.
+Updated KPC Contact page: removed QR-code references and the redundant OPEN KPC LINKS button. All other contact content and design remain unchanged.
