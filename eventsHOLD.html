@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About KPC — Kentucky Portable Club</title>
+<meta name="description" content="Learn about the Kentucky Portable Club and its mission to grow portable amateur radio through outdoor adventure and community.">
+<style>
+:root{
+  --black:#070707;--black-2:#111111;--gold:#d5a63a;--gold-light:#f0c96b;
+  --cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;
+  --green:#1d5a3a;--green-2:#2d7a4e;--nav-height:78px;--max:1200px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:var(--nav-height);margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.brand{display:flex;align-items:center;flex:0 0 auto}
+.brand img{width:58px;height:58px;object-fit:contain}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}
+.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s ease}
+.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:
+linear-gradient(90deg,rgba(0,0,0,.9),rgba(0,0,0,.56) 55%,rgba(0,0,0,.18)),
+linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.68)),
+radial-gradient(circle at 78% 30%,rgba(213,166,58,.22),transparent 30%),
+linear-gradient(135deg,#17251f,#33483a 55%,#111);
+}
+.hero-inner{position:relative;z-index:2;width:min(var(--max),100%);margin:auto;padding:90px 24px 72px;color:#fff}
+.eyebrow{margin:0 0 12px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}
+.hero h1{max-width:780px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(42px,6vw,72px);line-height:1.02;letter-spacing:-1.5px}
+.hero h1 span{color:var(--gold-light)}
+.hero-copy{max-width:690px;margin:22px 0 0;color:#eee9dd;font-size:clamp(16px,2vw,20px)}
+.section{padding:82px 24px}
+.section-inner{width:min(var(--max),100%);margin:auto}
+.section-heading{text-align:center;margin-bottom:42px}
+.kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:4px}
+.section h2{margin:7px 0 12px;color:var(--black);font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,4vw,48px);line-height:1.08}
+.section-heading p{max-width:720px;margin:0 auto;color:var(--muted);font-size:17px}
+.intro{background:var(--cream);border-bottom:1px solid #d9cfbd}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:#fff;border:1px solid #ddd4c3;border-radius:12px;padding:28px 22px;box-shadow:0 10px 25px rgba(30,25,15,.06)}
+.card .num{color:var(--gold);font-weight:900;font-size:12px;letter-spacing:2px}
+.card h3{margin:10px 0 9px;font-family:Georgia,"Times New Roman",serif;font-size:23px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.feature{background:#101512;color:#fff}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.feature-card{padding:38px;border:1px solid rgba(213,166,58,.32);border-radius:12px;background:linear-gradient(145deg,#16221b,#0b0f0d)}
+.feature-card .kicker{color:var(--gold-light)}
+.feature-card h2{color:#fff;font-size:clamp(28px,3.5vw,42px)}
+.feature-card p{color:#d8d6ce;font-size:16px}
+.founders{background:var(--cream-2)}
+.founder-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.founder{background:#fff;border:1px solid #d7cdbb;border-radius:12px;padding:26px;text-align:center}
+.founder strong{display:block;font-family:Georgia,"Times New Roman",serif;font-size:21px}
+.call{margin-top:5px;color:var(--green);font-weight:900;letter-spacing:1px}
+.qrz{margin:18px 0;color:var(--muted);font-weight:800}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;border-radius:7px;background:var(--gold);color:#0b0b0b;font-size:13px;font-weight:900;letter-spacing:1px;transition:transform .2s ease,background .2s ease}
+.btn:hover{transform:translateY(-2px);background:var(--gold-light)}
+.footer{padding:38px 24px;background:#070707;color:#fff;display:flex;justify-content:space-between;gap:24px;align-items:center}
+.footer .tag{color:var(--gold-light);margin-top:5px;font-family:Georgia,serif}
+.footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+.footer-actions a{padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px}
+
+.events{background:var(--cream-2)}
+.event-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.event-card{background:#fff;border:1px solid #d7cdbb;border-radius:12px;padding:26px 22px;box-shadow:0 10px 25px rgba(30,25,15,.06)}
+.event-season{color:var(--green);font-size:11px;font-weight:900;letter-spacing:2px}
+.event-card h3{margin:9px 0 8px;font-family:Georgia,"Times New Roman",serif;font-size:22px}
+.event-card p{margin:0;color:var(--muted);font-size:14px}
+.event-note{margin-top:18px;padding:18px 20px;border-left:4px solid var(--gold);background:#fff;border-radius:8px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.event-note strong{font-size:12px;letter-spacing:1.5px;color:var(--green)}
+.event-note span{color:var(--muted);font-size:14px}
+.contest-section .feature-card{height:100%;display:flex;flex-direction:column;align-items:flex-start}
+.contest-section .feature-card .btn{margin-top:auto}
+.archive-card{background:#fff;border:1px solid #d7cdbb;border-radius:12px;padding:30px;box-shadow:0 10px 25px rgba(30,25,15,.06)}
+.archive-year{color:var(--green);font-size:12px;font-weight:900;letter-spacing:3px}
+.archive-card h3{margin:9px 0;font-family:Georgia,"Times New Roman",serif;font-size:27px}
+.archive-card p{margin:0;color:var(--muted)}
+.event-idea .section-inner{max-width:900px}
+.event-idea .feature-card{text-align:center}
+.event-idea .feature-card .btn{margin-top:8px}
+
+@media(max-width:900px){
+  .nav-links{display:none;position:absolute;left:0;right:0;top:78px;background:#070707;padding:10px 20px 18px;flex-direction:column;align-items:stretch;border-bottom:1px solid rgba(213,166,58,.4)}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:13px 8px}
+  .menu-toggle{display:block}
+  .cards,.founder-grid{grid-template-columns:repeat(2,1fr)}
+  .feature-grid{grid-template-columns:1fr}
+  .event-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .nav-inner{padding:10px 16px}
+  .brand img{width:52px;height:52px}
+  .hero-inner{padding:66px 18px}
+  .section{padding:62px 18px}
+  .cards,.founder-grid,.event-grid{grid-template-columns:1fr}
+  .footer{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../home/index.html" aria-label="Kentucky Portable Club home"><img src="KPC-logo.png" alt="Kentucky Portable Club logo"></a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="../home/index.html">Home</a>
+      <a href="../about/about.html" aria-current="page">About</a>
+      <a href="../campout/campout.html">Campout</a>
+      <a href="../events/events.html">Events</a>
+      <a href="../parks/parks.html">Parks</a>
+      <a href="../resources/resources.html">Resources</a>
+      <a href="../join/join.html">Join KPC</a>
+      <a href="../contact/contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">KENTUCKY PORTABLE CLUB</p>
+    <h1>WHO <span>WE ARE</span></h1>
+    <p class="hero-copy">We combine amateur radio, outdoor adventure, and Kentucky's incredible public lands to build a welcoming portable-radio community.</p>
+  </div>
+</section>
+
+<section class="section intro">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div class="kicker">THE KPC MISSION</div>
+      <h2>Radio. Adventure. Community.</h2>
+      <p>Everything on this page uses the same typography, spacing, colors, navigation, and responsive behavior established on the redesigned homepage.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><div class="num">01</div><h3>Outdoor Adventure</h3><p>We combine amateur radio with camping, hiking, and exploring Kentucky's parks, lakes, forests, trails, and public lands.</p></article>
+      <article class="card"><div class="num">02</div><h3>Portable Operations</h3><p>We promote POTA, SOTA, field day operations, and all forms of portable amateur radio. Take your radio outside and discover what's possible.</p></article>
+      <article class="card"><div class="num">03</div><h3>Kentucky's Beauty</h3><p>We showcase Kentucky's state parks, wildlife management areas, lakes, rivers, caves, waterfalls, and scenic locations through amateur radio activations.</p></article>
+      <article class="card"><div class="num">04</div><h3>Community</h3><p>We bring people together — locally and from across the region — to share knowledge, make new friends, and enjoy the outdoors while operating from amazing Kentucky locations.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section feature">
+  <div class="section-inner feature-grid">
+    <article class="feature-card">
+      <div class="kicker">OUR PURPOSE</div>
+      <h2>Promoting Kentucky</h2>
+      <p>KPC is committed to highlighting and promoting Kentucky's state parks, forests, lakes, trails, caves, waterfalls, and natural beauty. Through portable radio operations, exploration, and online content, we help showcase the incredible locations our state has to offer.</p>
+    </article>
+    <article class="feature-card">
+      <div class="kicker">OUR FUTURE</div>
+      <h2>Growing Portable Operations</h2>
+      <p>We want to get more people involved in portable amateur radio by making it approachable, fun, and rewarding. Whether you're new to the hobby or a seasoned operator, KPC encourages everyone to take their radio outside and experience the thrill of operating from Kentucky's great outdoors.</p>
+    </article>
+  </div>
+</section>
+
+
+<section class="section events">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div class="kicker">SUPPORT YOUR PARKS</div>
+      <h2>2027 POTA Activity Weekends</h2>
+      <p>Seasonal POTA activity weekends are a great reason to get outside, activate a park, make contacts, and have fun on the air.</p>
+    </div>
+    <div class="event-grid">
+      <article class="event-card">
+        <div class="event-season">WINTER</div>
+        <h3>January 16–17, 2027</h3>
+        <p>Third full weekend of January — Saturday &amp; Sunday UTC.</p>
+      </article>
+      <article class="event-card">
+        <div class="event-season">SPRING</div>
+        <h3>April 17–18, 2027</h3>
+        <p>Third full weekend of April — Saturday &amp; Sunday UTC.</p>
+      </article>
+      <article class="event-card">
+        <div class="event-season">SUMMER</div>
+        <h3>July 17–18, 2027</h3>
+        <p>Third full weekend of July — Saturday &amp; Sunday UTC.</p>
+      </article>
+      <article class="event-card">
+        <div class="event-season">AUTUMN</div>
+        <h3>October 16–17, 2027</h3>
+        <p>Third full weekend of October — Saturday &amp; Sunday UTC.</p>
+      </article>
+    </div>
+    <div class="event-note">
+      <strong>ACTIVATE • HUNT • EXPLORE</strong>
+      <span>The main purpose is to get out in the parks and have as much fun as possible.</span>
+    </div>
+  </div>
+</section>
+
+<section class="section feature contest-section">
+  <div class="section-inner feature-grid">
+    <article class="feature-card">
+      <div class="kicker">RADIO CONTESTS</div>
+      <h2>See What's Happening On The Air</h2>
+      <p>Want to know what contests are active this week? KPC does not duplicate a contest calendar — we point you to the current schedule so the information stays up to date.</p>
+      <a class="btn" href="https://www.contestcalendar.com/weeklycont.php" target="_blank" rel="noopener">VIEW CONTEST CALENDAR →</a>
+    </article>
+    <article class="feature-card">
+      <div class="kicker">BE READY</div>
+      <h2>What To Bring</h2>
+      <p><strong>RADIO • ANTENNA • POWER • LOGGING • WATER • WEATHER GEAR • SAFETY GEAR</strong></p>
+      <p>Need help preparing? Visit the KPC Resources page for portable operating guides and checklists.</p>
+      <a class="btn" href="../resources/resources.html">VIEW RESOURCES →</a>
+    </article>
+  </div>
+</section>
+
+<section class="section intro">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div class="kicker">KPC EVENT ARCHIVE</div>
+      <h2>Past Events</h2>
+      <p>This section is ready to grow as KPC builds its history of campouts, outings, activations, and special events.</p>
+    </div>
+    <div class="archive-card">
+      <div class="archive-year">2026</div>
+      <h3>KPC Event Archive</h3>
+      <p>Event recaps, photos, locations, and highlights will be added here as KPC events take place.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section feature event-idea">
+  <div class="section-inner">
+    <div class="feature-card">
+      <div class="kicker">GET INVOLVED</div>
+      <h2>Have An Event Idea?</h2>
+      <p>Know a Kentucky park, trail, campground, or public-land destination that would make a great KPC outing? Have an activation or campout idea? Let us know.</p>
+      <a class="btn" href="../contact/contact.html">CONTACT KPC →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section founders">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div class="kicker">THE FOUNDERS</div>
+      <h2>KPC Founding Members</h2>
+      <p>The founding team behind the Kentucky Portable Club.</p>
+    </div>
+    <div class="founder-grid">
+      <article class="founder"><strong>Brandon White</strong><div class="call">KZ4CP</div><div class="qrz">◉ QRZ</div><a class="btn" href="https://www.qrz.com/db/KZ4CP" target="_blank" rel="noopener">VIEW QRZ →</a></article>
+      <article class="founder"><strong>Aaron Stevens</strong><div class="call">KQ4HZK</div><div class="qrz">◉ QRZ</div><a class="btn" href="https://www.qrz.com/db/KQ4HZK" target="_blank" rel="noopener">VIEW QRZ →</a></article>
+      <article class="founder"><strong>Brent Wells</strong><div class="call">N4BDW</div><div class="qrz">◉ QRZ</div><a class="btn" href="https://www.qrz.com/db/N4BDW" target="_blank" rel="noopener">VIEW QRZ →</a></article>
+      <article class="founder"><strong>Zach Rozar</strong><div class="call">K4ZSR</div><div class="qrz">◉ QRZ</div><a class="btn" href="https://www.qrz.com/db/K4ZSR" target="_blank" rel="noopener">VIEW QRZ →</a></article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div>
+    <div style="font-size:12px;letter-spacing:2px">KENTUCKY PORTABLE CLUB</div>
+    <div class="tag">Get Outside. Get On The Air.</div>
+  </div>
+  <div class="footer-actions">
+    <a href="../parks/parks.html">EXPLORE KENTUCKY →</a>
+    <a href="../events/events.html">VIEW EVENTS →</a>
+    <a href="../join/join.html">JOIN KPC →</a>
+  </div>
+</footer>
+
+<script>
+const toggle=document.querySelector('.menu-toggle');
+const nav=document.querySelector('.nav-links');
+toggle.addEventListener('click',()=>{
+  const open=nav.classList.toggle('open');
+  toggle.setAttribute('aria-expanded',open);
+});
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+</script>
+</body>
+</html>
