@@ -65,6 +65,19 @@ linear-gradient(135deg,#17251f,#33483a 55%,#111);
 .footer .tag{color:var(--gold-light);margin-top:5px;font-family:Georgia,serif}
 .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
 .footer-actions a{padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px}
+
+.founder-docs{margin-top:58px}
+.doc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.doc-card{display:block;background:#fff;border:1px solid #d7cdbb;border-radius:12px;padding:28px 26px;box-shadow:0 10px 25px rgba(30,25,15,.06);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.doc-card:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 14px 30px rgba(30,25,15,.10)}
+.doc-label{display:inline-block;color:var(--green);font-size:11px;font-weight:900;letter-spacing:2px;margin-bottom:8px}
+.doc-card h3{margin:0 0 9px;font-family:Georgia,"Times New Roman",serif;font-size:24px;color:var(--black)}
+.doc-card p{margin:0 0 18px;color:var(--muted);font-size:15px}
+.doc-card strong{color:#111;font-size:12px;letter-spacing:1px}
+.feature .section-heading{margin-bottom:32px}
+.feature .cards{grid-template-columns:repeat(5,1fr)}
+
+
 @media(max-width:900px){
   .nav-links{display:none;position:absolute;left:0;right:0;top:78px;background:#070707;padding:10px 20px 18px;flex-direction:column;align-items:stretch;border-bottom:1px solid rgba(213,166,58,.4)}
   .nav-links.open{display:flex}
@@ -72,13 +85,15 @@ linear-gradient(135deg,#17251f,#33483a 55%,#111);
   .menu-toggle{display:block}
   .cards,.founder-grid{grid-template-columns:repeat(2,1fr)}
   .feature-grid{grid-template-columns:1fr}
+  .feature .cards{grid-template-columns:repeat(2,1fr)}
+  .doc-grid{grid-template-columns:1fr}
 }
 @media(max-width:600px){
   .nav-inner{padding:10px 16px}
   .brand img{width:52px;height:52px}
   .hero-inner{padding:66px 18px}
   .section{padding:62px 18px}
-  .cards,.founder-grid{grid-template-columns:1fr}
+  .cards,.founder-grid,.feature .cards{grid-template-columns:1fr}
   .footer{flex-direction:column;align-items:flex-start}
 }
 </style>
@@ -115,13 +130,13 @@ linear-gradient(135deg,#17251f,#33483a 55%,#111);
     <div class="section-heading">
       <div class="kicker">THE KPC MISSION</div>
       <h2>Radio. Adventure. Community.</h2>
-      <p>Everything on this page uses the same typography, spacing, colors, navigation, and responsive behavior established on the redesigned homepage.</p>
+      <p>KPC exists to make portable amateur radio easier to discover, easier to enjoy, and more connected to the places we love. We believe a radio does not have to stay in the shack — some of the best operating happens outside.</p>
     </div>
     <div class="cards">
-      <article class="card"><div class="num">01</div><h3>Outdoor Adventure</h3><p>We combine amateur radio with camping, hiking, and exploring Kentucky's parks, lakes, forests, trails, and public lands.</p></article>
-      <article class="card"><div class="num">02</div><h3>Portable Operations</h3><p>We promote POTA, SOTA, field day operations, and all forms of portable amateur radio. Take your radio outside and discover what's possible.</p></article>
-      <article class="card"><div class="num">03</div><h3>Kentucky's Beauty</h3><p>We showcase Kentucky's state parks, wildlife management areas, lakes, rivers, caves, waterfalls, and scenic locations through amateur radio activations.</p></article>
-      <article class="card"><div class="num">04</div><h3>Community</h3><p>We bring people together — locally and from across the region — to share knowledge, make new friends, and enjoy the outdoors while operating from amazing Kentucky locations.</p></article>
+      <article class="card"><div class="num">01</div><h3>Outdoor Adventure</h3><p>We combine amateur radio with camping, hiking, exploring, and discovering Kentucky's parks, lakes, forests, trails, wildlife areas, and other public lands.</p></article>
+      <article class="card"><div class="num">02</div><h3>Portable Operations</h3><p>We promote POTA, SOTA, field operations, park activations, and other forms of portable amateur radio. Whether you carry a full station or a simple setup, the goal is to get outside and operate.</p></article>
+      <article class="card"><div class="num">03</div><h3>Kentucky's Beauty</h3><p>We use amateur radio as a way to explore and showcase Kentucky — from state parks and forests to rivers, lakes, caves, waterfalls, trails, and lesser-known places worth discovering.</p></article>
+      <article class="card"><div class="num">04</div><h3>Community</h3><p>We bring operators together to share knowledge, equipment ideas, locations, operating techniques, safety practices, and good stories while making new friends along the way.</p></article>
     </div>
   </div>
 </section>
@@ -130,14 +145,65 @@ linear-gradient(135deg,#17251f,#33483a 55%,#111);
   <div class="section-inner feature-grid">
     <article class="feature-card">
       <div class="kicker">OUR PURPOSE</div>
-      <h2>Promoting Kentucky</h2>
-      <p>KPC is committed to highlighting and promoting Kentucky's state parks, forests, lakes, trails, caves, waterfalls, and natural beauty. Through portable radio operations, exploration, and online content, we help showcase the incredible locations our state has to offer.</p>
+      <h2>More Than Just Radio</h2>
+      <p>KPC is about the experience that happens around the radio. A portable activation can turn into a hike, a camping trip, a sunrise, a new park discovery, or a day spent learning something you did not know before.</p>
+      <p>We want to encourage operators to explore responsibly, respect public lands, practice good operating habits, and enjoy the outdoors while making contacts from some of Kentucky's most interesting locations.</p>
     </article>
     <article class="feature-card">
       <div class="kicker">OUR FUTURE</div>
       <h2>Growing Portable Operations</h2>
-      <p>We want to get more people involved in portable amateur radio by making it approachable, fun, and rewarding. Whether you're new to the hobby or a seasoned operator, KPC encourages everyone to take their radio outside and experience the thrill of operating from Kentucky's great outdoors.</p>
+      <p>We want to make portable amateur radio approachable for everyone. New operators should be able to find practical information without feeling overwhelmed, while experienced operators should have useful resources, new places to explore, and opportunities to help others.</p>
+      <p>KPC will continue building guides, field resources, events, destination ideas, and club activities that help turn “I should try portable” into “Let's go operate.”</p>
     </article>
+  </div>
+</section>
+
+<section class="section intro">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div class="kicker">WHAT KPC IS ABOUT</div>
+      <h2>Get Outside. Get On The Air.</h2>
+      <p>Our focus is simple: take the hobby outdoors, make it welcoming, and help operators get more out of every trip.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><div class="num">01</div><h3>Learn</h3><p>Share practical information about antennas, power, radios, logging, propagation, setup, and operating techniques that work in the field.</p></article>
+      <article class="card"><div class="num">02</div><h3>Explore</h3><p>Find parks, forests, trails, wildlife areas, public lands, and other destinations that make great portable-radio adventures.</p></article>
+      <article class="card"><div class="num">03</div><h3>Operate</h3><p>Put the equipment to work. Make contacts, activate parks, experiment with your station, and learn what works for you.</p></article>
+      <article class="card"><div class="num">04</div><h3>Share</h3><p>Help the next operator. Share what you learned, what you packed, what worked, and what you would do differently next time.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section intro">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div class="kicker">WHO KPC IS FOR</div>
+      <h2>There Is A Place For You Here</h2>
+      <p>You do not need a perfect station, years of experience, or a long list of activations to be part of KPC.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><div class="num">01</div><h3>New Operators</h3><p>Learn the basics, ask questions, build confidence, and discover how approachable portable amateur radio can be.</p></article>
+      <article class="card"><div class="num">02</div><h3>Experienced Hams</h3><p>Bring your knowledge, field-tested equipment ideas, operating experience, and the lessons you've picked up along the way.</p></article>
+      <article class="card"><div class="num">03</div><h3>Portable Operators</h3><p>If POTA, SOTA, field operations, antennas, batteries, logging, and finding new activation locations are your thing, you're in the right place.</p></article>
+      <article class="card"><div class="num">04</div><h3>Outdoor Enthusiasts</h3><p>You can start with the outdoors. If you enjoy Kentucky's parks, trails, forests, lakes, and public lands, KPC gives you another reason to explore them.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section feature">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div class="kicker" style="color:var(--gold-light)">THE KPC WAY</div>
+      <h2 style="color:#fff">Learn. Pack. Explore. Operate. Share.</h2>
+      <p style="color:#d8d6ce">Portable radio is more than making contacts. It is the whole experience of getting ready, getting outside, operating, and bringing what you learned back to the community.</p>
+    </div>
+    <div class="cards">
+      <article class="feature-card"><div class="kicker">01</div><h2>Learn</h2><p>Learn your equipment, understand the basics, and pick up practical field knowledge from other operators.</p></article>
+      <article class="feature-card"><div class="kicker">02</div><h2>Pack</h2><p>Build a station that fits the trip. Radio, antenna, power, logging, safety gear, and the things that make the day easier.</p></article>
+      <article class="feature-card"><div class="kicker">03</div><h2>Explore</h2><p>Choose somewhere worth going. Kentucky has plenty of places to discover before the first contact is ever made.</p></article>
+      <article class="feature-card"><div class="kicker">04</div><h2>Operate</h2><p>Set up, get on the air, make contacts, experiment, and enjoy the challenge of working portable.</p></article>
+      <article class="feature-card"><div class="kicker">05</div><h2>Share</h2><p>Tell someone what worked, what failed, and what you learned. Every field experience can help the next operator.</p></article>
+    </div>
   </div>
 </section>
 
@@ -146,7 +212,7 @@ linear-gradient(135deg,#17251f,#33483a 55%,#111);
     <div class="section-heading">
       <div class="kicker">THE FOUNDERS</div>
       <h2>KPC Founding Members</h2>
-      <p>The founding team behind the Kentucky Portable Club.</p>
+      <p>The people who helped establish the Kentucky Portable Club and set its direction from the beginning.</p>
     </div>
     <div class="founder-grid">
       <article class="founder"><strong>Brandon White</strong><div class="call">KZ4CP</div><div class="qrz">◉ QRZ</div><a class="btn" href="https://www.qrz.com/db/KZ4CP" target="_blank" rel="noopener">VIEW QRZ →</a></article>
@@ -154,9 +220,61 @@ linear-gradient(135deg,#17251f,#33483a 55%,#111);
       <article class="founder"><strong>Brent Wells</strong><div class="call">N4BDW</div><div class="qrz">◉ QRZ</div><a class="btn" href="https://www.qrz.com/db/N4BDW" target="_blank" rel="noopener">VIEW QRZ →</a></article>
       <article class="founder"><strong>Zach Rozar</strong><div class="call">K4ZSR</div><div class="qrz">◉ QRZ</div><a class="btn" href="https://www.qrz.com/db/K4ZSR" target="_blank" rel="noopener">VIEW QRZ →</a></article>
     </div>
+
+    <div class="founder-docs">
+      <div class="section-heading">
+        <div class="kicker">FROM THE FOUNDERS</div>
+        <h2>Lessons, Tips &amp; Experience</h2>
+        <p>These sections will grow as the founders document what they have learned, what they recommend, and what they wish they knew when they started operating portable.</p>
+      </div>
+      <div class="doc-grid">
+        <a class="doc-card" href="KPC_Founders_Lessons_Learned_COMING_SOON.pdf" target="_blank" rel="noopener">
+          <span class="doc-label">COMING SOON</span>
+          <h3>Founders' Lessons Learned</h3>
+          <p>Practical lessons from getting out in the field, setting up, operating, traveling, and learning what works.</p>
+          <strong>OPEN PDF →</strong>
+        </a>
+        <a class="doc-card" href="KPC_Founding_Fathers_Tips_COMING_SOON.pdf" target="_blank" rel="noopener">
+          <span class="doc-label">COMING SOON</span>
+          <h3>Founding Fathers' Tips</h3>
+          <p>Tips, recommendations, field wisdom, and the little things that can make a portable operation go smoother.</p>
+          <strong>OPEN PDF →</strong>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section feature">
+  <div class="section-inner feature-grid">
+    <article class="feature-card">
+      <div class="kicker">OUR VALUES</div>
+      <h2>Respect The Hobby. Respect The Land.</h2>
+      <p>Good portable operation starts with good stewardship. We encourage safe, responsible use of public lands, respect for other visitors, awareness of local rules and restrictions, and leaving every location as we found it — or better.</p>
+    </article>
+    <article class="feature-card">
+      <div class="kicker">THE KPC SPIRIT</div>
+      <h2>Bring What You Know. Learn Something New.</h2>
+      <p>You do not have to be an expert to participate. KPC is built around operators helping operators. Bring your experience, your questions, your favorite setup, or simply your curiosity. There is always something new to learn in the field.</p>
+    </article>
   </div>
 </section>
 </main>
+
+<section class="section intro" style="text-align:center">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div class="kicker">READY TO GET OUTSIDE?</div>
+      <h2>Get Outside. Get On The Air.</h2>
+      <p>Explore Kentucky, bring your radio, and find your next portable adventure with KPC.</p>
+    </div>
+    <div class="footer-actions" style="justify-content:center">
+      <a class="btn" href="parks.html">EXPLORE KENTUCKY →</a>
+      <a class="btn" href="events.html">VIEW EVENTS →</a>
+      <a class="btn" href="join.html">JOIN KPC →</a>
+    </div>
+  </div>
+</section>
 
 <footer class="footer">
   <div>

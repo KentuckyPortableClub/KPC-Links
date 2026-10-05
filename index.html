@@ -349,10 +349,27 @@ footer{
 }
 footer strong{color:var(--gold-light)}
 
+
+.what-is .section-heading .btn{margin-top:22px}
+.pillar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}
+.pillar{background:#fff;border:1px solid #ddd4c3;border-radius:10px;padding:26px 22px;box-shadow:0 10px 25px rgba(30,25,15,.06)}
+.pillar span{display:block;color:var(--green);font-size:11px;font-weight:900;letter-spacing:2px}
+.pillar h3{margin:9px 0 7px;font-family:Georgia,"Times New Roman",serif;font-size:22px}
+.pillar p{margin:0;color:var(--muted);font-size:14px}
+.next-adventure{background:var(--cream-2)}
+.adventure-box{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:42px;border:1px solid #d7cdbb;border-radius:12px;background:#fff;box-shadow:0 10px 25px rgba(30,25,15,.06)}
+.adventure-box h2{margin:7px 0 10px;color:var(--black);font-family:Georgia,"Times New Roman",serif;font-size:clamp(30px,4vw,44px);line-height:1.08}
+.adventure-box p{max-width:650px;margin:0;color:var(--muted);font-size:17px}
+.happening{background:#fffaf0}
+.final-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.final .btn-secondary{color:#111;border:1px solid #777;background:transparent}
+.final .btn-secondary:hover{border-color:var(--green);color:var(--green)}
+
 @media(max-width:1000px){
   .nav-links{gap:0}
   .nav-links a{padding-inline:7px;font-size:12px}
   .card-grid{grid-template-columns:repeat(2,1fr)}
+  .pillar-grid{grid-template-columns:repeat(2,1fr)}
   .intro-grid{gap:38px}
 }
 @media(max-width:760px){
@@ -383,9 +400,10 @@ footer strong{color:var(--gold-light)}
   .intro-badge{max-width:480px;margin:auto}
   .section{padding:68px 20px}
   .link-grid{grid-template-columns:1fr}
+  .adventure-box{flex-direction:column;align-items:flex-start}
 }
 @media(max-width:520px){
-  .card-grid{grid-template-columns:1fr}
+  .card-grid,.pillar-grid{grid-template-columns:1fr}
   .card{min-height:310px}
   .hero h1{font-size:40px}
   .hero-copy{font-size:16px}
@@ -450,6 +468,23 @@ footer strong{color:var(--gold-light)}
   </div>
 </section>
 
+<section class="section intro what-is">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div class="kicker">WHAT IS KPC?</div>
+      <h2>More Than Amateur Radio</h2>
+      <p>Kentucky Portable Club brings amateur radio and outdoor adventure together. We explore Kentucky, operate from parks and public lands, learn portable-radio skills, and build a community around getting outside and getting on the air.</p>
+      <a class="btn btn-primary" href="about.html">LEARN ABOUT KPC →</a>
+    </div>
+    <div class="pillar-grid">
+      <article class="pillar"><span>RADIO</span><h3>Take It Outside</h3><p>Portable amateur radio belongs beyond the shack.</p></article>
+      <article class="pillar"><span>ADVENTURE</span><h3>Discover Kentucky</h3><p>Find parks, forests, trails, lakes, and public lands worth exploring.</p></article>
+      <article class="pillar"><span>COMMUNITY</span><h3>Operate Together</h3><p>Learn, share, help others, and enjoy the hobby with fellow operators.</p></article>
+      <article class="pillar"><span>PORTABLE</span><h3>Go Where You Go</h3><p>Build a station that fits the trip and gets you on the air.</p></article>
+    </div>
+  </div>
+</section>
+
 <section class="section features">
   <div class="section-inner">
     <div class="section-heading">
@@ -494,6 +529,30 @@ footer strong{color:var(--gold-light)}
   </div>
 </section>
 
+<section class="section next-adventure">
+  <div class="section-inner">
+    <div class="adventure-box">
+      <div>
+        <div class="kicker">YOUR NEXT ADVENTURE</div>
+        <h2>Where Will You Operate Next?</h2>
+        <p>Kentucky is full of places to explore. Find a destination, pack your station, and make your next activation an adventure.</p>
+      </div>
+      <a class="btn btn-primary" href="parks.html">EXPLORE KENTUCKY →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section happening">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div class="kicker">WHAT'S HAPPENING</div>
+      <h2>Stay In The Loop</h2>
+      <p>See upcoming KPC campouts, outings, activations, Support Your Parks weekends, and other club activities.</p>
+      <a class="btn btn-primary" href="events.html">VIEW KPC EVENTS →</a>
+    </div>
+  </div>
+</section>
+
 <section class="section connect">
   <div class="section-inner">
     <div class="section-heading">
@@ -515,8 +574,11 @@ footer strong{color:var(--gold-light)}
 
 <section class="final">
   <h2>Ready To Get Outside?</h2>
-  <p>KENTUCKY PORTABLE CLUB • EST. 2026</p>
-  <a class="btn btn-primary" href="campout.html">START EXPLORING</a>
+  <p>Whether you're new to amateur radio or already an experienced portable operator, there's a place for you at KPC.</p>
+  <div class="final-actions">
+    <a class="btn btn-primary" href="join.html">JOIN KPC →</a>
+    <a class="btn btn-secondary" href="parks.html">EXPLORE KENTUCKY →</a>
+  </div>
 </section>
 
 </main>

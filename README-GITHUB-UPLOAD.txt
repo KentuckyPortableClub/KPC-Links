@@ -1,24 +1,24 @@
-KPC WEBSITE RESTORE PACKAGE
+KPC GitHub Root Clean Package
 
-UPLOAD THE CONTENTS OF THIS FOLDER TO THE ROOT OF YOUR GITHUB REPOSITORY.
+This package is designed for the current GitHub Pages configuration:
+main branch -> /(root)
 
-IMPORTANT:
-- index.html in this folder is the REAL KPC HOMEPAGE.
-- KPC-Links/index.html is ONLY the QR/contact-card redirect.
-- Do NOT rename KPC-Links/index.html to the repository root index.html.
+Public pages:
+- index.html
+- about.html
+- campout.html (Under Construction)
+- events.html (Under Construction)
+- parks.html
+- resources.html
+- join.html
+- contact.html
 
-Your root should contain:
-index.html
-about.html
-campout.html
-events.html
-parks.html
-resources.html
-join.html
-contact.html
-KPC-logo.png
-KPC-2027-Campout.ics
-park-image-1.jpeg ... park-image-5.jpeg
-KPC-Links/
+Club review pages:
+- campoutHOLD.html
+- eventsHOLD.html
 
-The existing QR code pointing to /KPC-Links/ will open the contact card.
+All internal site links use root-level filenames. The Campout documents use one
+canonical underscore-naming set to avoid duplicate files.
+
+Upload the CONTENTS of this package to the repository root, replacing the
+current website files. Do not upload the ZIP itself as the website.
