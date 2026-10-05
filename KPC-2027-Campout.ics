@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kentucky Portable Club//KPC Events//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:kpc-2027-campout@kentuckyportableclub.github.io
+DTSTAMP:20261004T000000Z
+DTSTART;VALUE=DATE:20270924
+DTEND;VALUE=DATE:20270927
+SUMMARY:KPC 2027 Campout
+LOCATION:Taylorsville Lake State Park, Kentucky
+DESCRIPTION:Kentucky Portable Club 2027 Campout. More details to be announced.
+END:VEVENT
+END:VCALENDAR
