@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KPC Field Weather</title>
+<style>
+:root{--black:#070807;--green:#183a27;--green2:#28563a;--gold:#f4c542;--cream:#f4f0e4;--muted:#b9b4a7;--line:rgba(244,197,66,.24)}
+*{box-sizing:border-box} body{margin:0;background:var(--black);color:var(--cream);font-family:Arial,Helvetica,sans-serif}
+a{color:var(--gold)} .wrap{max-width:1050px;margin:auto;padding:24px}
+nav{position:sticky;top:0;z-index:10;background:rgba(7,8,7,.96);border-bottom:1px solid var(--line);padding:12px 24px}
+nav a{margin-right:18px;text-decoration:none;font-weight:700;font-size:.9rem}
+.hero{background:linear-gradient(135deg,#070807 0%,#102419 55%,#1d4b31 100%);padding:55px 24px 42px;border-bottom:1px solid var(--line)}
+.hero h1{margin:0 0 8px;font-size:clamp(2rem,6vw,3.5rem)} .hero p{max-width:780px;color:#d7d2c5;line-height:1.6}
+.panel{background:linear-gradient(180deg,#101511,#0c100d);border:1px solid var(--line);border-radius:18px;padding:22px;margin:24px 0}
+.search-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;color:var(--muted);font-size:.85rem;margin-bottom:6px}
+input{width:100%;padding:13px 14px;border-radius:10px;border:1px solid #425047;background:#080b09;color:var(--cream);font-size:1rem}
+button{margin-top:12px;padding:12px 16px;border:0;border-radius:10px;background:var(--gold);color:#111;font-weight:800;cursor:pointer}
+button.secondary{background:#244a32;color:var(--cream);border:1px solid #4b6d57}
+.status{margin-top:12px;color:var(--muted);min-height:20px}
+.results{display:grid;gap:12px;margin-top:16px}.result{padding:14px;border:1px solid rgba(244,197,66,.18);border-radius:12px;background:#0b100d;cursor:pointer}.result:hover{border-color:var(--gold)}
+.weather{display:none}.weather.active{display:block}
+.current{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:15px 0}.metric{padding:14px;border-radius:12px;background:#121a15;border:1px solid rgba(244,197,66,.14)}.metric b{display:block;font-size:1.15rem;margin-top:5px}
+.forecast{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.day{padding:13px;border-radius:12px;background:#121a15;border:1px solid rgba(244,197,66,.14)}.day strong{display:block;margin-bottom:7px}.small{font-size:.82rem;color:var(--muted);line-height:1.45}
+.note{font-size:.83rem;color:var(--muted);line-height:1.5}
+@media(max-width:760px){.search-grid,.current,.forecast{grid-template-columns:1fr}.wrap{padding:16px}.hero{padding:42px 16px 30px}}
+</style>
+</head>
+<body>
+<nav><a href="resources.html">← KPC Resources</a><a href="index.html">KPC Home</a></nav>
+<header class="hero"><div class="wrap">
+<h1>Field Weather</h1>
+<p>Search by <b>Kentucky POTA park name</b>, <b>POTA park number</b>, or <b>town / ZIP code</b>. Select a result and KPC will pull a current forecast for that location.</p>
+</div></header>
+
+<main class="wrap">
+<section class="panel">
+<h2>Find a field location</h2>
+<div class="search-grid">
+<div><label for="park">POTA park name or number</label><input id="park" placeholder="Example: Mammoth Cave or US-0050"></div>
+<div><label for="town">Town, city, or ZIP code</label><input id="town" placeholder="Example: Cave City, KY or 42127"></div>
+</div>
+<button id="searchBtn">SEARCH WEATHER</button>
+<button class="secondary" id="clearBtn">CLEAR</button>
+<div id="status" class="status"></div>
+<div id="results" class="results"></div>
+</section>
+
+<section id="weather" class="panel weather">
+<h2 id="placeName">Forecast</h2>
+<div id="placeMeta" class="small"></div>
+<div class="current" id="current"></div>
+<h3>5-Day Field Outlook</h3>
+<div class="forecast" id="forecast"></div>
+<p class="note">Forecast data: National Weather Service when available for U.S. coordinates. Location search uses Open-Meteo geocoding only to turn a town/ZIP into coordinates. Always verify official park conditions, closures, permits, lightning, wind, and local hazards before setting up a portable station.</p>
+</section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+let kyParks = null;
+
+async function loadKYParks(){
+  if(kyParks) return kyParks;
+  const r = await fetch('https://api.pota.app/location/parks/US-KY');
+  if(!r.ok) throw new Error('POTA park list could not be loaded.');
+  kyParks = await r.json();
+  return kyParks;
+}
+
+function normParkRef(v){
+  v=v.trim().toUpperCase().replace(/\s+/g,'');
+  if(/^\\d+$/.test(v)) return 'US-'+v.padStart(4,'0');
+  if(/^US-\\d+$/.test(v)) return v;
+  return v;
+}
+
+async function searchParks(q){
+  const parks=await loadKYParks();
+  const term=q.trim().toLowerCase();
+  const ref=normParkRef(q);
+  return parks.filter(p=>{
+    const name=(p.name||'').toLowerCase();
+    const reference=(p.reference||'').toUpperCase();
+    return reference===ref || name.includes(term) || reference.includes(term);
+  }).slice(0,10);
+}
+
+async function searchTown(q){
+  const url='https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(q)+'&count=8&language=en&format=json&countryCode=US';
+  const r=await fetch(url); if(!r.ok) throw new Error('Town search failed.');
+  const d=await r.json();
+  return (d.results||[]).map(x=>({name:x.name, admin1:x.admin1||'', country:x.country||'United States', latitude:x.latitude, longitude:x.longitude, timezone:x.timezone||''}));
+}
+
+function showResults(items, kind){
+  $('results').innerHTML='';
+  if(!items.length){$('status').textContent='No matches found.';return;}
+  $('status').textContent='Select a location:';
+  items.forEach(item=>{
+    const el=document.createElement('div'); el.className='result';
+    if(kind==='park'){
+      el.innerHTML='<b>'+escapeHtml(item.name||'Park')+'</b><div class="small">'+escapeHtml(item.reference||'')+'</div>';
+      el.onclick=()=>loadWeather(item.latitude,item.longitude,(item.name||'Park')+' — '+(item.reference||''),'POTA park');
+    }else{
+      el.innerHTML='<b>'+escapeHtml(item.name)+'</b><div class="small">'+escapeHtml(item.admin1)+' • '+escapeHtml(item.country)+'</div>';
+      el.onclick=()=>loadWeather(item.latitude,item.longitude,item.name+', '+item.admin1,'Town / ZIP');
+    }
+    $('results').appendChild(el);
+  });
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+async function loadWeather(lat,lon,label,kind){
+  $('status').textContent='Loading forecast…';
+  $('weather').classList.remove('active');
+  try{
+    const point=await fetch('https://api.weather.gov/points/'+lat+','+lon,{headers:{'Accept':'application/geo+json','User-Agent':'KPC-Field-Weather/1.0 (kentuckyportableclub.github.io)'}});
+    if(!point.ok) throw new Error('NWS does not provide a forecast for this coordinate.');
+    const p=await point.json();
+    const fc=await fetch(p.properties.forecast,{headers:{'Accept':'application/geo+json','User-Agent':'KPC-Field-Weather/1.0 (kentuckyportableclub.github.io)'}});
+    if(!fc.ok) throw new Error('Forecast unavailable.');
+    const data=await fc.json();
+    const periods=data.properties.periods||[];
+    $('placeName').textContent=label;
+    $('placeMeta').textContent=kind+' • '+Number(lat).toFixed(4)+', '+Number(lon).toFixed(4)+' • '+(p.properties.relativeLocation?.properties?.city||'');
+    const now=periods[0];
+    $('current').innerHTML=[
+      ['NOW',now?.name||'—'],['TEMP',now?.temperature!=null?now.temperature+'°'+(now.temperatureUnit||'F'):'—'],
+      ['WIND',now?.windSpeed||'—'],['CONDITIONS',now?.shortForecast||'—']
+    ].map(x=>'<div class="metric"><span class="small">'+x[0]+'</span><b>'+escapeHtml(x[1])+'</b></div>').join('');
+    const seen=new Set(); const days=[];
+    for(const x of periods){
+      const key=x.startTime.slice(0,10);
+      if(!seen.has(key)){seen.add(key);days.push(x); if(days.length===5)break;}
+    }
+    $('forecast').innerHTML=days.map(x=>'<div class="day"><strong>'+escapeHtml(x.name)+'</strong><div>'+escapeHtml(x.shortForecast||'')+'</div><div class="small" style="margin-top:7px">Temp: '+escapeHtml(String(x.temperature??'—'))+'°'+escapeHtml(x.temperatureUnit||'F')+'<br>Wind: '+escapeHtml(x.windSpeed||'—')+' '+escapeHtml(x.windDirection||'')+'</div></div>').join('');
+    $('weather').classList.add('active'); $('status').textContent='';
+  }catch(e){$('status').textContent=e.message+' Try a nearby town/ZIP or use the official NWS link below.';}
+}
+
+$('searchBtn').onclick=async()=>{
+  $('results').innerHTML=''; $('weather').classList.remove('active');
+  const park=$('park').value.trim(), town=$('town').value.trim();
+  if(!park && !town){$('status').textContent='Enter a park name/number or a town/ZIP.';return;}
+  try{
+    if(park){
+      $('status').textContent='Searching Kentucky POTA parks…';
+      const matches=await searchParks(park);
+      showResults(matches,'park');
+    }else{
+      $('status').textContent='Searching locations…';
+      const matches=await searchTown(town);
+      showResults(matches,'town');
+    }
+  }catch(e){$('status').textContent=e.message;}
+};
+$('clearBtn').onclick=()=>{ $('park').value=''; $('town').value=''; $('results').innerHTML=''; $('status').textContent=''; $('weather').classList.remove('active'); };
+</script>
+</body>
+</html>
