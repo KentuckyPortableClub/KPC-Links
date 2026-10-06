@@ -439,17 +439,15 @@ body{background:#f5f0e4;color:#1b1b1b}
 @media(max-width:950px){.campout-doc-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.campout-doc-grid{grid-template-columns:1fr}}
 
-
-.signup-note{max-width:780px;margin:0 auto 34px;color:#5f5a51;font-size:17px;text-align:center}.signup-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.signup-card{background:#fff;border:1px solid rgba(23,23,23,.08);padding:31px;box-shadow:0 12px 30px rgba(0,0,0,.06);position:relative;border-radius:10px}.signup-card:before{content:"";display:block;width:38px;height:4px;background:var(--gold);margin-bottom:20px}.signup-card h3{font:700 25px Georgia,serif;margin:0 0 10px;color:var(--ink)}.signup-card p{margin:0 0 18px;color:#625e57}.signup-card .status{display:inline-block;margin-bottom:14px;color:var(--green);font-size:12px;font-weight:900;letter-spacing:2px}.signup-card .button{display:inline-block;padding:12px 18px;margin:0;border-radius:999px;background:var(--gold);color:#10140f;font-weight:900}.signup-card .button.disabled{background:#ddd6c8;color:#69645b;cursor:default;pointer-events:none}@media(max-width:820px){.signup-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header class="site-nav">
   <div class="nav-inner">
-    <a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"></a>
+    <a class="brand" href="../home/index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"></a>
     <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button>
     <nav class="nav-links" id="main-navigation" aria-label="Main navigation">
-      <a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="resources.html" aria-current="page">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a>
+      <a href="../home/index.html">Home</a><a href="../about/about.html">About</a><a href="../campout/campout.html">Campout</a><a href="../events/events.html">Events</a><a href="../parks/parks.html">Parks</a><a href="../resources/resources.html" aria-current="page">Resources</a><a href="../join/join.html">Join KPC</a><a href="../contact/contact.html">Contact</a>
     </nav>
   </div>
 </header>
@@ -469,15 +467,15 @@ body{background:#f5f0e4;color:#1b1b1b}
     <div class="campout-doc-grid">
       <article class="campout-doc-card">
         <div class="doc-icon">🏕️</div>
-        <h3>Kentucky Adventure Guide</h3>
-        <p>Our main Kentucky adventure guide with parks, forests, attractions, lodging, local adventures, and trip ideas.</p>
+        <h3>KPC 2027 Kentucky Adventure Guide — Guest Guide</h3>
+        <p>The KPC 2027 campout guide for guests, with Kentucky parks, forests, attractions, lodging, local adventures, and trip ideas.</p>
         <div class="doc-actions"><a class="doc-view" href="KPC_2027_Kentucky_Adventure_Guide.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC_2027_Kentucky_Adventure_Guide.pdf" download>DOWNLOAD ↓</a></div>
       </article>
 
       <article class="campout-doc-card">
         <div class="doc-icon">📍</div>
-        <h3>Kentucky Local Guide</h3>
-        <p>A local-focused guide for the Taylorsville area, including nearby lodging, food, parks, attractions, and things to do.</p>
+        <h3>KPC 2027 Kentucky Local Guide — Kentucky Resident Guide</h3>
+        <p>The KPC 2027 campout guide for Kentucky residents, focused on the Taylorsville area, nearby lodging, food, parks, attractions, and things to do.</p>
         <div class="doc-actions"><a class="doc-view" href="KPC_2027_Kentucky_Local_Guide.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC_2027_Kentucky_Local_Guide.pdf" download>DOWNLOAD ↓</a></div>
       </article>
 
@@ -525,15 +523,6 @@ body{background:#f5f0e4;color:#1b1b1b}
   <p>Find radio resources, POTA tools, Kentucky parks and trails, public lands, forests, nature preserves, weather, space weather, and field-safety references in one place.</p>
 </section>
 
-
-<section class="resource-section">
-  <h2>🌦️ Weather &amp; Space Weather</h2>
-  <section class="resource-grid">
-    <article class="resource-card"><div class="icon">🌦️</div><h3>KPC Field Weather Search</h3><p>Search Kentucky POTA parks by park name or POTA number, or search by town, city, or ZIP code to pull a current field forecast.</p><a class="btn" href="kpc-weather.html">OPEN WEATHER SEARCH →</a></article>
-    <article class="resource-card"><div class="icon">☀️</div><h3>KPC Space Weather</h3><p>Check solar and geomagnetic conditions that can affect HF radio propagation, including NOAA space-weather products and alerts.</p><a class="btn" href="kpc-space-weather.html">OPEN KPC SPACE WEATHER →</a><p class="small"><a href="https://www.swpc.noaa.gov/" target="_blank" rel="noopener">Official NOAA Space Weather ↗</a></p></article>
-    <article class="resource-card"><div class="icon">📡</div><h3>Solar Minimum Reference</h3><p>KPC's radio-focused guide covering antenna efficiency and portable operating considerations during solar-minimum conditions.</p><a class="btn" href="KPC_Antenna_Efficiency_Solar_Minimum_261005_091927.pdf" target="_blank" rel="noopener">OPEN SOLAR PDF →</a></article>
-  </section>
-</section>
 <section class="resource-section">
   <h2>🎓 Amateur Radio</h2>
   <section class="resource-grid">
@@ -555,8 +544,8 @@ body{background:#f5f0e4;color:#1b1b1b}
   <section class="resource-grid">
     <article class="resource-card"><div class="icon">🌲</div><h3>Parks on the Air</h3><p>Find POTA parks and other designated locations for portable activations and hunting.</p><a class="btn" href="https://pota.app/" target="_blank" rel="noopener">VISIT POTA →</a></article>
     <article class="resource-card"><div class="icon">🗺️</div><h3>POTA Park List</h3><p>Search the current POTA park directory.</p><a class="btn" href="https://next.pota.app/parklist" target="_blank" rel="noopener">OPEN PARK LIST →</a></article>
-    <article class="resource-card"><div class="icon">🏞️</div><h3>KPC Parks</h3><p>Open the KPC parks page for Kentucky locations and planning information.</p><a class="btn" href="parks.html">EXPLORE KPC PARKS →</a></article>
-    <article class="resource-card"><div class="icon">🔥</div><h3>KPC Campout</h3><p>Campout dates, location, registration, and event information.</p><a class="btn" href="campout.html">KYPOTA CAMPOUT →</a></article>
+    <article class="resource-card"><div class="icon">🏞️</div><h3>KPC Parks</h3><p>Open the KPC parks page for Kentucky locations and planning information.</p><a class="btn" href="../parks/parks.html">EXPLORE KPC PARKS →</a></article>
+    <article class="resource-card"><div class="icon">🔥</div><h3>KPC Campout</h3><p>Campout dates, location, registration, and event information.</p><a class="btn" href="../campout/campout.html">KYPOTA CAMPOUT →</a></article>
   </section>
 </section>
 
@@ -575,11 +564,11 @@ body{background:#f5f0e4;color:#1b1b1b}
   <h2>🌲 National Parks, Forests &amp; Federal Lands</h2>
   <section class="resource-grid">
     <article class="resource-card"><div class="icon">🏞️</div><h3>Kentucky National Parks</h3><p>Official National Park Service gateway for Kentucky parks, maps, alerts, and current conditions.</p><a class="btn" href="https://www.nps.gov/state/ky/index.htm" target="_blank" rel="noopener">NPS KENTUCKY →</a></article>
-    <article class="resource-card"><div class="icon">🌳</div><h3>Daniel Boone National Forest</h3><p>Eastern Kentucky forest lands with hundreds of miles of trails and numerous recreation sites.</p><a class="btn" href="https://www.fs.usda.gov/r08/danielboone" target="_blank" rel="noopener">DANIEL BOONE NF →</a></article>
-    <article class="resource-card"><div class="icon">🌲</div><h3>George Washington &amp; Jefferson National Forests</h3><p>Official Forest Service recreation information for the forest represented in the KPC POTA resource.</p><a class="btn" href="https://www.fs.usda.gov/r08/gwj" target="_blank" rel="noopener">GWJ NATIONAL FORESTS →</a></article>
-    <article class="resource-card"><div class="icon">🛶</div><h3>Land Between the Lakes</h3><p>National recreation area between Kentucky Lake and Lake Barkley with camping, trails, water, and wildlife.</p><a class="btn" href="https://www.landbetweenthelakes.us/" target="_blank" rel="noopener">LAND BETWEEN THE LAKES →</a></article>
+    <article class="resource-card"><div class="icon">🌳</div><h3>Daniel Boone National Forest</h3><p>Eastern Kentucky forest lands with hundreds of miles of trails and numerous recreation sites.</p><a class="btn" href="https://www.fs.usda.gov/recarea/dbnf/recarea/?recid=39612" target="_blank" rel="noopener">DANIEL BOONE NF →</a></article>
+    <article class="resource-card"><div class="icon">🌲</div><h3>George Washington &amp; Jefferson National Forests</h3><p>Official Forest Service recreation information for the forest represented in the KPC POTA resource.</p><a class="btn" href="https://www.fs.usda.gov/activity/gwj/recreation/ohv" target="_blank" rel="noopener">GWJ NATIONAL FORESTS →</a></article>
+    <article class="resource-card"><div class="icon">🛶</div><h3>Land Between the Lakes</h3><p>National recreation area between Kentucky Lake and Lake Barkley with camping, trails, water, and wildlife.</p><a class="btn" href="https://www.landbetweenthelakes.com/" target="_blank" rel="noopener">LAND BETWEEN THE LAKES →</a></article>
     <article class="resource-card"><div class="icon">🏛️</div><h3>Fort Donelson</h3><p>Official National Park Service information, maps, alerts, and current conditions.</p><a class="btn" href="https://www.nps.gov/fodo/" target="_blank" rel="noopener">FORT DONELSON →</a></article>
-    <article class="resource-card"><div class="icon">🏛️</div><h3>Fort Heiman</h3><p>National Park Service information for the Fort Heiman unit represented in the KPC POTA directory.</p><a class="btn" href="https://www.nps.gov/places/fort-heiman.htm" target="_blank" rel="noopener">FORT HEIMAN →</a></article>
+    <article class="resource-card"><div class="icon">🏛️</div><h3>Fort Heiman</h3><p>National Park Service information for the Fort Heiman unit represented in the KPC POTA directory.</p><a class="btn" href="https://www.nps.gov/fodo/learn/historyculture/fort-heiman.htm" target="_blank" rel="noopener">FORT HEIMAN →</a></article>
     <article class="resource-card"><div class="icon">🦅</div><h3>Clarks River NWR</h3><p>Official refuge information, maps, public-use rules, and current visitor information.</p><a class="btn" href="https://www.fws.gov/refuge/clarks-river" target="_blank" rel="noopener">CLARKS RIVER NWR →</a></article>
     <article class="resource-card"><div class="icon">🦆</div><h3>Reelfoot NWR</h3><p>Official refuge information, public-use regulations, access information, and visitor resources.</p><a class="btn" href="https://www.fws.gov/refuge/reelfoot" target="_blank" rel="noopener">REELFOOT NWR →</a></article>
   </section>
@@ -603,7 +592,7 @@ body{background:#f5f0e4;color:#1b1b1b}
   </section>
 </section>
 
-<div class="resources-footer-cta"><div class="tag">Get Outside. Get On The Air.</div><a href="parks.html">Explore Kentucky Parks →</a><a href="join.html">Join KPC →</a></div>
+<div class="resources-footer-cta"><div class="tag">Get Outside. Get On The Air.</div><a href="../parks/parks.html">Explore Kentucky Parks →</a><a href="../join/join.html">Join KPC →</a></div>
 </main>
 <script>
 const toggle = document.querySelector('.menu-toggle');
