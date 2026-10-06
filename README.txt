@@ -1,1 +1,0 @@
-Final KPC Events navbar alignment fix. The Events page now uses the homepage's --max:1200px navbar container value, which matches the homepage's exact horizontal positioning. All Events content is preserved.
