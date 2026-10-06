@@ -66,14 +66,21 @@ linear-gradient(135deg,#17251f,#33483a 55%,#111);
 .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
 .footer-actions a{padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px}
 
-.founder-docs{margin-top:58px}
-.doc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.doc-card{display:block;background:#fff;border:1px solid #d7cdbb;border-radius:12px;padding:28px 26px;box-shadow:0 10px 25px rgba(30,25,15,.06);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
-.doc-card:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 14px 30px rgba(30,25,15,.10)}
-.doc-label{display:inline-block;color:var(--green);font-size:11px;font-weight:900;letter-spacing:2px;margin-bottom:8px}
-.doc-card h3{margin:0 0 9px;font-family:Georgia,"Times New Roman",serif;font-size:24px;color:var(--black)}
-.doc-card p{margin:0 0 18px;color:var(--muted);font-size:15px}
-.doc-card strong{color:#111;font-size:12px;letter-spacing:1px}
+.founder-showcase{margin-top:58px}
+.founder-group-photo{width:100%;max-height:620px;object-fit:cover;border-radius:12px;border:1px solid #d7cdbb;box-shadow:0 10px 25px rgba(30,25,15,.08)}
+.founder-profile-heading{margin:46px auto 30px}
+.founder-profile-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-items:start}
+.founder-profile{display:block;text-align:center;color:inherit}.founder-profile-link{display:block;text-align:center;color:inherit}
+.founder-profile img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:12px;border:1px solid #d7cdbb;box-shadow:0 10px 25px rgba(30,25,15,.06);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.founder-profile-link:hover img{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 14px 30px rgba(30,25,15,.10)}
+.founder-profile strong{display:block;margin-top:15px;font-family:Georgia,"Times New Roman",serif;font-size:21px}
+.founder-profile span{display:block;margin-top:4px;color:var(--green);font-weight:900;letter-spacing:1px}
+.founder-profile b{display:inline-block;margin-top:14px;color:#111;background:var(--gold);padding:11px 14px;border-radius:7px;font-size:11px;letter-spacing:.8px}
+.founder-profile.coming-soon{cursor:default}
+.founder-profile.coming-soon:hover img{transform:none;border-color:#d7cdbb;box-shadow:0 10px 25px rgba(30,25,15,.06)}
+.founder-profile.coming-soon b{background:#ddd4c3;color:#68635a}
+.founder-qrz{display:block!important;margin-top:10px!important;color:var(--muted)!important;font-size:11px!important;font-weight:900!important;letter-spacing:.8px!important}
+.founder-qrz a{color:inherit!important}
 .feature .section-heading{margin-bottom:32px}
 .feature .cards{grid-template-columns:repeat(5,1fr)}
 
@@ -84,9 +91,9 @@ linear-gradient(135deg,#17251f,#33483a 55%,#111);
   .nav-links a{padding:13px 8px}
   .menu-toggle{display:block}
   .cards,.founder-grid{grid-template-columns:repeat(2,1fr)}
+  .founder-profile-grid{grid-template-columns:repeat(2,1fr)}
   .feature-grid{grid-template-columns:1fr}
   .feature .cards{grid-template-columns:repeat(2,1fr)}
-  .doc-grid{grid-template-columns:1fr}
 }
 @media(max-width:600px){
   .nav-inner{padding:10px 16px}
@@ -94,6 +101,7 @@ linear-gradient(135deg,#17251f,#33483a 55%,#111);
   .hero-inner{padding:66px 18px}
   .section{padding:62px 18px}
   .cards,.founder-grid,.feature .cards{grid-template-columns:1fr}
+  .founder-profile-grid{grid-template-columns:1fr 1fr}
   .footer{flex-direction:column;align-items:flex-start}
 }
 </style>
@@ -214,32 +222,46 @@ linear-gradient(135deg,#17251f,#33483a 55%,#111);
       <h2>KPC Founding Members</h2>
       <p>The people who helped establish the Kentucky Portable Club and set its direction from the beginning.</p>
     </div>
-    <div class="founder-grid">
-      <article class="founder"><strong>Brandon White</strong><div class="call">KZ4CP</div><div class="qrz">◉ QRZ</div><a class="btn" href="https://www.qrz.com/db/KZ4CP" target="_blank" rel="noopener">VIEW QRZ →</a></article>
-      <article class="founder"><strong>Aaron Stevens</strong><div class="call">KQ4HZK</div><div class="qrz">◉ QRZ</div><a class="btn" href="https://www.qrz.com/db/KQ4HZK" target="_blank" rel="noopener">VIEW QRZ →</a></article>
-      <article class="founder"><strong>Brent Wells</strong><div class="call">N4BDW</div><div class="qrz">◉ QRZ</div><a class="btn" href="https://www.qrz.com/db/N4BDW" target="_blank" rel="noopener">VIEW QRZ →</a></article>
-      <article class="founder"><strong>Zach Rozar</strong><div class="call">K4ZSR</div><div class="qrz">◉ QRZ</div><a class="btn" href="https://www.qrz.com/db/K4ZSR" target="_blank" rel="noopener">VIEW QRZ →</a></article>
-    </div>
-
-    <div class="founder-docs">
-      <div class="section-heading">
-        <div class="kicker">FROM THE FOUNDERS</div>
-        <h2>Lessons, Tips &amp; Experience</h2>
-        <p>These sections will grow as the founders document what they have learned, what they recommend, and what they wish they knew when they started operating portable.</p>
+    <div class="founder-showcase">
+      <img class="founder-group-photo" src="KPC_Founders_Group.png" alt="">
+      <div class="section-heading founder-profile-heading">
+        <div class="kicker">MEET THE FOUNDERS</div>
+        <h2>The People Behind KPC</h2>
+        <p>Get to know the founders, their favorite things, and the experiences that helped shape Kentucky Portable Club.</p>
       </div>
-      <div class="doc-grid">
-        <a class="doc-card" href="KPC_Founders_Lessons_Learned_COMING_SOON.pdf" target="_blank" rel="noopener">
-          <span class="doc-label">COMING SOON</span>
-          <h3>Founders' Lessons Learned</h3>
-          <p>Practical lessons from getting out in the field, setting up, operating, traveling, and learning what works.</p>
-          <strong>OPEN PDF →</strong>
-        </a>
-        <a class="doc-card" href="KPC_Founding_Fathers_Tips_COMING_SOON.pdf" target="_blank" rel="noopener">
-          <span class="doc-label">COMING SOON</span>
-          <h3>Founding Fathers' Tips</h3>
-          <p>Tips, recommendations, field wisdom, and the little things that can make a portable operation go smoother.</p>
-          <strong>OPEN PDF →</strong>
-        </a>
+      <div class="founder-profile-grid">
+        <div class="founder-profile">
+          <a href="KPC_Meet_the_Founders_Brandon_White_KZ4CP_Final_Readable.pdf" target="_blank" rel="noopener">
+            <img src="KPC_Brandon_KZ4CP_Cropped.jpg" alt="Brandon White, KZ4CP">
+            <strong>Brandon White</strong>
+            <span>KZ4CP</span>
+            <b>VIEW FULL PROFILE →</b>
+          </a>
+          <span class="founder-qrz"><a href="https://www.qrz.com/db/KZ4CP" target="_blank" rel="noopener">VIEW QRZ →</a></span>
+        </div>
+        <div class="founder-profile">
+          <a href="KPC_Meet_the_Founders_Brent_Wells_Revised.pdf" target="_blank" rel="noopener">
+            <img src="KPC_Brent_N4BDW.jpg" alt="Brent Wells, N4BDW">
+            <strong>Brent Wells</strong>
+            <span>N4BDW</span>
+            <b>VIEW FULL PROFILE →</b>
+          </a>
+          <span class="founder-qrz"><a href="https://www.qrz.com/db/N4BDW" target="_blank" rel="noopener">VIEW QRZ →</a></span>
+        </div>
+        <div class="founder-profile coming-soon">
+          <img src="KPC_Aaron_KQ4HZK.jpg" alt="Aaron Stevens, KQ4HZK">
+          <strong>Aaron Stevens</strong>
+          <span>KQ4HZK</span>
+          <b>COMING SOON</b>
+          <span class="founder-qrz"><a href="https://www.qrz.com/db/KQ4HZK" target="_blank" rel="noopener">VIEW QRZ →</a></span>
+        </div>
+        <div class="founder-profile coming-soon">
+          <img src="KPC_Zach_K4ZSR.jpg" alt="Zach Rozar, K4ZSR">
+          <strong>Zach Rozar</strong>
+          <span>K4ZSR</span>
+          <b>COMING SOON</b>
+          <span class="founder-qrz"><a href="https://www.qrz.com/db/K4ZSR" target="_blank" rel="noopener">VIEW QRZ →</a></span>
+        </div>
       </div>
     </div>
   </div>
