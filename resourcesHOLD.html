@@ -406,8 +406,9 @@ footer strong{color:var(--gold-light)}
 
 /* Resources page — same KPC homepage design system */
 body{background:#f5f0e4;color:#1b1b1b}
-.resources-hero{background:linear-gradient(120deg,rgba(7,7,7,.92),rgba(29,90,58,.78)),linear-gradient(135deg,#070707,#1d5a3a);padding:88px 24px 82px;border-bottom:4px solid #d5a63a}
+.resources-hero{position:relative;min-height:500px;background:linear-gradient(90deg,rgba(7,7,7,.86) 0%,rgba(7,7,7,.52) 45%,rgba(7,7,7,.12) 100%),linear-gradient(180deg,rgba(0,0,0,.05) 35%,rgba(0,0,0,.78) 100%),url("resources.png") center/cover no-repeat;padding:88px 24px 82px;border-bottom:4px solid #d5a63a}
 .resources-hero .hero-inner{max-width:1120px;margin:auto}
+.hero-logo{width:min(360px,78vw);filter:drop-shadow(0 22px 35px rgba(0,0,0,.45))}
 .resources-hero .eyebrow{color:#f0c96b;letter-spacing:3px;font-weight:800;font-size:13px}
 .resources-hero h1{font-family:Georgia,serif;font-size:clamp(42px,6vw,70px);line-height:1;margin:12px 0;color:#f5f0e4}
 .resources-hero p{max-width:760px;color:#f5f0e4;font-size:18px;line-height:1.65;margin:0}
@@ -437,7 +438,7 @@ body{background:#f5f0e4;color:#1b1b1b}
 .campout-docs h2{font:700 34px Georgia,serif;margin:7px 0 10px;color:#f5f0e4}
 .campout-docs-intro{max-width:780px;color:#e9eee9;margin:0 0 25px}
 .campout-doc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.campout-resource-heading{font:700 30px Georgia,serif;color:#f5f0e4;margin:34px 0 18px;padding-bottom:10px;border-bottom:2px solid #d5a63a}
+.campout-resource-heading{font:700 30px Georgia,serif;color:#000;margin:34px 0 18px;padding-bottom:10px;border-bottom:2px solid #d5a63a}
 .campout-doc-card{background:#f5f0e4;color:#171717;border-top:4px solid #d5a63a;border-radius:10px;padding:22px;display:flex;flex-direction:column;box-shadow:0 10px 24px rgba(0,0,0,.18)}
 .campout-doc-card .doc-icon{font-size:30px;margin-bottom:8px}
 .campout-doc-card h3{font:700 23px Georgia,serif;margin:0 0 8px}
@@ -464,6 +465,8 @@ body{background:#f5f0e4;color:#1b1b1b}
 .campout-resource-box .campout-resource-label{margin:0 0 18px;color:#1d5a3a;font-size:13px;font-weight:900;letter-spacing:2.5px}
 .campout-resource-box .campout-doc-grid{margin:0}
 @media(max-width:380px){.brand-text small{display:none}}
+@media(min-width:901px){.resources-hero .hero-logo{position:absolute;left:-400px;top:calc(50% - 22px);transform:translateY(-50%)}}
+@media(max-width:900px){.resources-hero .hero-logo{display:block;width:min(290px,58vw);margin:0 auto 26px;position:static;transform:none}}
 </style>
 </head>
 <body>
@@ -478,6 +481,7 @@ body{background:#f5f0e4;color:#1b1b1b}
 </header>
 <section class="resources-hero">
   <div class="hero-inner">
+    <img class="hero-logo" src="KPC-logo.png" alt="Kentucky Portable Club logo">
     <div class="eyebrow">TOOLS • INFORMATION • ADVENTURE</div>
     <h1>RESOURCES</h1>
     <p>Guides, radio resources, Kentucky outdoor links, field safety, weather, and space-weather tools for the next KPC adventure.</p>
