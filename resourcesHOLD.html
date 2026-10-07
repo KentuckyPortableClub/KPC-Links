@@ -1,678 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Resources | Kentucky Portable Club</title>
-<meta name="description" content="Kentucky Portable Club resources: amateur radio, POTA, Kentucky parks, field guides, weather, space weather, and portable operating tools.">
+<meta name="description" content="Kentucky Portable Club resources page.">
 <style>
-:root{
-  --black:#070707;
-  --black-2:#111111;
-  --gold:#d5a63a;
-  --gold-light:#f0c96b;
-  --cream:#f5f0e4;
-  --cream-2:#ebe3d1;
-  --ink:#171717;
-  --muted:#68635a;
-  --green:#1d5a3a;
-  --green-2:#2d7a4e;
-  --nav-height:78px;
-  --max:1200px;
-}
+:root{--black:#070707;--black-2:#111111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--green:#1d5a3a;--muted:#68635a;--max:1200px}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;
-  color:var(--ink);
-  background:var(--cream);
-  font-family:Arial,Helvetica,sans-serif;
-  line-height:1.55;
-}
-img{max-width:100%;display:block}
+body{margin:0;background:var(--cream);color:#171717;font-family:Arial,Helvetica,sans-serif;line-height:1.55}
 a{text-decoration:none;color:inherit}
-button{font:inherit}
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:78px;margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.brand{display:flex;align-items:center;flex:0 0 auto;gap:12px}
+.brand img{width:64px;height:64px;object-fit:contain}
+.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}
+.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}
+.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s ease}
+.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+.hero{min-height:500px;padding:80px 24px;display:flex;align-items:center;justify-content:center;text-align:center;background:url("resources.png") center/cover no-repeat;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(213,166,58,.12),transparent 42%);pointer-events:none}
+.card{position:relative;z-index:1;width:min(850px,100%);padding:60px 45px;background:rgba(7,7,7,.84);border:1px solid rgba(213,166,58,.55);border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.3);color:#fff}
+.kicker{margin-bottom:14px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}
+h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(38px,6vw,68px);line-height:1.05;color:#d2b276}
+.card p{max-width:680px;margin:24px auto 30px;color:#eee9dd;font-size:18px}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;margin:5px;border-radius:7px;background:var(--gold);color:#0b0b0b;font-size:13px;font-weight:900;letter-spacing:1px}
+.button.alt{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}
+footer{padding:38px 24px;background:#070707;color:#fff;text-align:center}
+footer .tag{color:var(--gold-light);margin-top:5px;font-family:Georgia,serif}
+@media(max-width:900px){
+.nav-links{display:none;position:absolute;left:0;right:0;top:78px;background:#070707;padding:10px 20px 18px;flex-direction:column;align-items:stretch;border-bottom:1px solid rgba(213,166,58,.4)}
+.nav-links.open{display:flex}
+.nav-links a{padding:13px 8px}
+.menu-toggle{display:block}
+.hero{min-height:500px;padding:50px 18px}
+.card{padding:48px 24px}
+}
+@media(max-width:600px){
+.hero{background:url("resources-mobile.png") center/cover no-repeat}
 
-.site-nav{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(7,7,7,.97);
-  border-bottom:1px solid rgba(213,166,58,.55);
-  box-shadow:0 4px 20px rgba(0,0,0,.18);
+.nav-inner{padding:10px 16px}
+.brand img{width:52px;height:52px}
+.brand-text{font-size:15px}
+.card p{font-size:16px}
 }
-.nav-inner{
-  width:min(var(--max),100%);
-  min-height:var(--nav-height);
-  margin:auto;
-  padding:10px 24px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:28px;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  flex:0 0 auto;
-  gap:12px;
-}
-.brand img{
-  width:64px;
-  height:64px;
-  object-fit:contain;
-}
-.brand-text{
-  color:#fff;
-  font-family:Georgia,"Times New Roman",serif;
-  font-weight:700;
-  font-size:18px;
-  line-height:1.1;
-}
-.brand-text small{
-  display:block;
-  margin-top:4px;
-  color:var(--gold-light);
-  font-family:Arial,Helvetica,sans-serif;
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:3px;
-}
-.nav-links{
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  gap:5px;
-}
-.nav-links a{
-  color:#fff;
-  padding:11px 10px;
-  font-size:13px;
-  font-weight:800;
-  letter-spacing:.7px;
-  border-bottom:2px solid transparent;
-  transition:.2s ease;
-}
-.nav-links a:hover,
-.nav-links a[aria-current="page"]{
-  color:var(--gold-light);
-  border-bottom-color:var(--gold);
-}
-.menu-toggle{
-  display:none;
-  width:44px;
-  height:44px;
-  border:1px solid rgba(213,166,58,.55);
-  border-radius:8px;
-  background:var(--black-2);
-  color:#fff;
-  cursor:pointer;
-  font-size:22px;
-}
-
-/* HERO */
-.hero{
-  position:relative;
-  min-height:clamp(590px,76vh,780px);
-  display:flex;
-  align-items:flex-end;
-  overflow:hidden;
-  background:
-    linear-gradient(90deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.52) 45%,rgba(0,0,0,.12) 100%),
-    linear-gradient(180deg,rgba(0,0,0,.05) 35%,rgba(0,0,0,.78) 100%),
-    url("resources.png")
-    center/cover no-repeat;
-}
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at 80% 30%,rgba(213,166,58,.16),transparent 34%);
-  pointer-events:none;
-}
-.hero-inner{
-  position:relative;
-  z-index:2;
-  width:min(var(--max),100%);
-  margin:auto;
-  padding:90px 24px 72px;
-  color:#fff;
-}
-.hero-logo{
-  width:min(230px,48vw);
-  margin-bottom:22px;
-  filter:drop-shadow(0 10px 20px rgba(0,0,0,.45));
-}
-.eyebrow{
-  margin:0 0 12px;
-  color:var(--gold-light);
-  font-size:13px;
-  font-weight:900;
-  letter-spacing:4px;
-}
-.hero h1{
-  max-width:800px;
-  margin:0;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(38px,6vw,72px);
-  line-height:1.02;
-  letter-spacing:-1.5px;
-}
-.hero h1 span{color:var(--gold-light)}
-.hero-copy{
-  max-width:650px;
-  margin:20px 0 0;
-  color:#eee9dd;
-  font-size:clamp(16px,2vw,20px);
-}
-.hero-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:30px;
-}
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:48px;
-  padding:12px 20px;
-  border-radius:7px;
-  font-size:13px;
-  font-weight:900;
-  letter-spacing:1px;
-  transition:transform .2s ease,background .2s ease,border-color .2s ease;
-}
-.btn:hover{transform:translateY(-2px)}
-.btn-primary{background:var(--gold);color:#0b0b0b}
-.btn-primary:hover{background:var(--gold-light)}
-.btn-secondary{
-  color:#fff;
-  border:1px solid rgba(255,255,255,.65);
-  background:rgba(0,0,0,.35);
-}
-.btn-secondary:hover{border-color:var(--gold-light);color:var(--gold-light)}
-
-/* SHARED */
-.section{
-  padding:82px 24px;
-}
-.section-inner{
-  width:min(var(--max),100%);
-  margin:auto;
-}
-.section-heading{text-align:center;margin-bottom:42px}
-.kicker{
-  color:var(--green);
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:4px;
-}
-.section h2{
-  margin:7px 0 12px;
-  color:var(--black);
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(32px,4vw,48px);
-  line-height:1.08;
-}
-.section-heading p{
-  max-width:700px;
-  margin:0 auto;
-  color:var(--muted);
-  font-size:17px;
-}
-
-/* INTRO */
-.intro{
-  background:var(--cream);
-  border-bottom:1px solid #d9cfbd;
-}
-.intro-grid{
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:60px;
-  align-items:center;
-}
-.intro-copy .kicker{margin-bottom:8px}
-.intro-copy h2{margin:0 0 18px}
-.intro-copy p{color:var(--muted);font-size:18px;margin:0 0 20px}
-.signature{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-top:25px;
-  color:var(--green);
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:2px;
-}
-.signature::before{
-  content:"";
-  width:45px;
-  height:2px;
-  background:var(--gold);
-}
-.intro-badge{
-  padding:16px;
-  border:1px solid var(--gold);
-  background:var(--black);
-  box-shadow:12px 12px 0 var(--gold);
-}
-.intro-badge img{
-  width:100%;
-  max-width:430px;
-  margin:auto;
-}
-
-/* FEATURE CARDS */
-.features{background:#fffaf0}
-.card-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-}
-.card{
-  position:relative;
-  min-height:350px;
-  display:flex;
-  align-items:flex-end;
-  overflow:hidden;
-  border-radius:8px;
-  color:#fff;
-  background-position:center;
-  background-size:cover;
-  box-shadow:0 12px 28px rgba(0,0,0,.14);
-}
-.card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.02) 25%,rgba(0,0,0,.88) 100%);
-}
-.card:nth-child(1){background-image:url("KPC-logo.png")}
-.card:nth-child(2){background-image:url("KPC-logo.png")}
-.card:nth-child(3){background-image:url("KPC-logo.png")}
-.card:nth-child(4){background-image:url("KPC-logo.png")}
-.card-content{position:relative;z-index:2;padding:22px}
-.card h3{
-  margin:0 0 9px;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:25px;
-  line-height:1.1;
-}
-.card p{margin:0 0 17px;color:#f1eee6;font-size:14px}
-.card .btn{min-height:40px;padding:9px 14px;background:var(--gold);color:#0b0b0b}
-
-/* CONNECT */
-.connect{
-  background:var(--black);
-  color:#fff;
-  border-top:1px solid rgba(213,166,58,.45);
-  border-bottom:1px solid rgba(213,166,58,.45);
-}
-.connect .section-heading h2{color:#fff}
-.connect .section-heading p{color:#bcb8ae}
-.connect .kicker{color:var(--gold-light)}
-.link-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-.link-btn{
-  display:flex;
-  min-height:56px;
-  align-items:center;
-  justify-content:center;
-  padding:12px 15px;
-  border:1px solid #383838;
-  border-radius:7px;
-  background:#151515;
-  color:#fff;
-  font-weight:900;
-  font-size:13px;
-  letter-spacing:.6px;
-  transition:.2s ease;
-}
-.link-btn:hover{
-  border-color:var(--gold);
-  color:var(--gold-light);
-  transform:translateY(-1px);
-}
-
-/* FINAL CTA */
-.final{
-  padding:76px 24px;
-  text-align:center;
-  background:var(--cream-2);
-}
-.final h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}
-.final p{margin:10px 0 24px;color:var(--muted);letter-spacing:2px;font-size:13px;font-weight:800}
-
-footer{
-  padding:28px 24px;
-  text-align:center;
-  background:#050505;
-  color:#9b978e;
-  border-top:1px solid #292929;
-  font-size:13px;
-}
-footer strong{color:var(--gold-light)}
-
-@media(max-width:1000px){
-  .nav-links{gap:0}
-  .nav-links a{padding-inline:7px;font-size:12px}
-  .card-grid{grid-template-columns:repeat(2,1fr)}
-  .intro-grid{gap:38px}
-}
-@media(max-width:760px){
-  :root{--nav-height:70px}
-  .nav-inner{min-height:70px;padding:8px 18px}
-  .brand img{width:56px;height:56px}
-  .brand-text{font-size:15px}
-  .menu-toggle{display:block}
-  .nav-links{
-    position:absolute;
-    top:100%;
-    left:0;
-    right:0;
-    display:none;
-    flex-direction:column;
-    align-items:stretch;
-    padding:10px 18px 16px;
-    background:rgba(7,7,7,.99);
-    border-bottom:1px solid rgba(213,166,58,.45);
-    box-shadow:0 15px 25px rgba(0,0,0,.22);
-  }
-  .nav-links.open{display:flex}
-  .nav-links a{padding:13px 5px;border-bottom:1px solid #292929}
-  .nav-links a:last-child{border-bottom:0}
-  .hero{min-height:650px}
-  .hero-inner{padding:70px 20px 55px}
-  .hero-logo{width:165px}
-  .intro-grid{grid-template-columns:1fr}
-  .intro-badge{max-width:480px;margin:auto}
-  .section{padding:68px 20px}
-  .link-grid{grid-template-columns:1fr}
-}
-@media(max-width:520px){
-  .card-grid{grid-template-columns:1fr}
-  .card{min-height:310px}
-  .hero h1{font-size:40px}
-  .hero-copy{font-size:16px}
-  .hero-actions{flex-direction:column;align-items:stretch}
-  .btn{width:100%}
-  .intro-copy p{font-size:16px}
-}
-
-/* Resources page — same KPC homepage design system */
-body{background:#f5f0e4;color:#1b1b1b}
-.resources-hero{background:linear-gradient(120deg,rgba(7,7,7,.78),rgba(29,90,58,.52)),url("resources.png") center/cover no-repeat;padding:88px 24px 82px;border-bottom:4px solid #d5a63a}
-.resources-hero .hero-inner{max-width:1120px;margin:auto}
-.resources-hero .eyebrow{color:#f0c96b;letter-spacing:3px;font-weight:800;font-size:13px}
-.resources-hero h1{font-family:Georgia,serif;font-size:clamp(42px,6vw,70px);line-height:1;margin:12px 0;color:#f5f0e4}
-.resources-hero p{max-width:760px;color:#f5f0e4;font-size:18px;line-height:1.65;margin:0}
-.resources-main{max-width:1120px;margin:auto;padding:54px 24px 70px}
-.resources-main .intro{max-width:800px;margin:0 auto 42px;text-align:center}
-.resources-main .intro .eyebrow{color:#1d5a3a;letter-spacing:3px;font-weight:800}
-.resources-main .intro h2{font:700 32px Georgia,serif;color:#070707;margin:8px 0 12px}
-.resources-main .intro p{color:#4b4b4b;line-height:1.65}
-.resource-section{margin-top:42px}
-.resource-section h2{font:700 30px Georgia,serif;color:#070707;margin:0 0 18px;padding-bottom:10px;border-bottom:2px solid #d5a63a}
-.resource-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.resource-card{background:#fff;border:1px solid #ddd3bf;border-top:4px solid #1d5a3a;border-radius:12px;padding:22px;box-shadow:0 8px 24px rgba(7,7,7,.08);display:flex;flex-direction:column;min-height:250px}
-.resource-card h3{font:700 22px Georgia,serif;color:#070707;margin:8px 0 10px}
-.resource-card p{color:#555;line-height:1.55;font-size:15px;flex:1;margin:0 0 18px}
-.resource-card .icon{font-size:30px}
-.resource-card .btn{display:inline-block;background:#1d5a3a;color:#fff;text-decoration:none;font-weight:800;padding:11px 14px;border-radius:6px;text-align:center}
-.resource-card .btn:hover{background:#15452c}
-.resources-footer-cta{margin-top:48px;background:#070707;border:1px solid #292929;border-radius:14px;padding:28px;color:#f5f0e4;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-.resources-footer-cta .tag{font:700 26px Georgia,serif;margin-right:auto}
-.resources-footer-cta a{color:#070707;background:#d5a63a;text-decoration:none;font-weight:900;padding:11px 16px;border-radius:6px}
-@media(max-width:950px){.resource-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.resources-hero{padding:64px 20px;background:linear-gradient(120deg,rgba(7,7,7,.78),rgba(29,90,58,.52)),url("resources-mobile.png") center/cover no-repeat;}.resources-main{padding:42px 18px 56px}.resource-grid{grid-template-columns:1fr}.resources-footer-cta .tag{margin-right:0;width:100%}}
-
-.campout-docs{background:#0d2419;color:#fff;border-top:4px solid #d5a63a;padding:46px 0 52px;margin:0 -0px}
-.campout-docs-inner{max-width:1120px;margin:auto;padding:0 24px}
-.campout-docs .eyebrow{color:#f0c96b;letter-spacing:3px;font-weight:800;font-size:13px}
-.campout-docs h2{font:700 34px Georgia,serif;margin:7px 0 10px;color:#f5f0e4}
-.campout-docs-intro{max-width:780px;color:#e9eee9;margin:0 0 25px}
-.campout-doc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.campout-resource-heading{font:700 30px Georgia,serif;color:#070707;margin:34px 0 18px;padding-bottom:10px;border-bottom:2px solid #d5a63a}
-.campout-doc-card{background:#f5f0e4;color:#171717;border-top:4px solid #d5a63a;border-radius:10px;padding:22px;display:flex;flex-direction:column;box-shadow:0 10px 24px rgba(0,0,0,.18)}
-.campout-doc-card .doc-icon{font-size:30px;margin-bottom:8px}
-.campout-doc-card h3{font:700 23px Georgia,serif;margin:0 0 8px}
-.campout-doc-card p{font-size:15px;color:#555;line-height:1.55;flex:1;margin:0 0 18px}
-.doc-actions{display:flex;gap:9px;flex-wrap:wrap}
-.doc-actions a{display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:6px;font-size:12px;font-weight:900;letter-spacing:.4px}
-.doc-view{background:#1d5a3a;color:#fff}.doc-view:hover{background:#15452c}
-.doc-download{background:#d5a63a;color:#070707}.doc-download:hover{background:#f0c96b}
-@media(max-width:950px){.campout-doc-grid{grid-template-columns:1fr}}
-@media(max-width:600px){.campout-docs-inner{padding:0 18px}.campout-docs{padding:38px 0 44px}}
-
-
-/* Expanded KPC resource library */
-.resource-card .btn{margin-top:auto}
-.resource-card .btn:hover{color:#fff}
-.campout-doc-grid{grid-template-columns:repeat(3,1fr)}
-.campout-doc-card{min-height:285px}
-@media(max-width:950px){.campout-doc-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.campout-doc-grid{grid-template-columns:1fr}}
-
-
-/* KPC 2027 Campout resource grouping */
-.campout-resource-box{margin-bottom:42px;padding:26px;border:1px solid #d5a63a;border-top:5px solid #1d5a3a;border-radius:12px;background:#fffaf0;box-shadow:0 8px 24px rgba(7,7,7,.08)}
-.campout-resource-box .campout-resource-label{margin:0 0 18px;color:#1d5a3a;font-size:13px;font-weight:900;letter-spacing:2.5px}
-.campout-resource-box .campout-doc-grid{margin:0}
 @media(max-width:380px){.brand-text small{display:none}}
 </style>
 </head>
 <body>
 <header class="site-nav">
-  <div class="nav-inner">
-    <a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a>
-    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button>
-    <nav class="nav-links" id="main-navigation" aria-label="Main navigation">
-      <a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="resources.html" aria-current="page">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a>
-    </nav>
-  </div>
+<div class="nav-inner">
+<a class="brand" href="index.html" aria-label="KPC Home">
+<img src="KPC-logo.png" alt="KPC — Kentucky Portable Club">
+<span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+</a>
+<button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+<nav class="nav-links" aria-label="Primary navigation">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="campout.html" >Campout</a>
+<a href="events.html" >Events</a>
+<a href="parks.html">Parks</a>
+<a href="resources.html" aria-current='page'>Resources</a>
+<a href="join.html">Join KPC</a>
+<a href="contact.html">Contact</a>
+</nav>
+</div>
 </header>
-<section class="resources-hero">
-  <div class="hero-inner">
-    <div class="eyebrow">TOOLS • INFORMATION • ADVENTURE</div>
-    <h1>RESOURCES</h1>
-    <p>Guides, radio resources, Kentucky outdoor links, field safety, weather, and space-weather tools for the next KPC adventure.</p>
-  </div>
+
+<main>
+<section class="hero">
+<div class="card">
+<div class="kicker">KPC RESOURCES</div>
+<h1>RESOURCES PAGE UNDER CONSTRUCTION</h1>
+<p>We're working on the KPC Resources page now. Check back soon for the full collection of portable operating resources, tools, and information.</p>
+<a class="button" href="index.html">BACK TO KPC HOME</a>
+<a class="button alt" href="contact.html">CONTACT KPC</a>
+</div>
 </section>
-<section class="campout-docs" id="kpc-guides">
-  <div class="campout-docs-inner">
-    <div class="eyebrow">KPC GUIDES • DOWNLOADS • FIELD TOOLS</div>
-    <h2>KPC Guides &amp; Downloads</h2>
-    <p class="campout-docs-intro">Start with the KPC guides, then keep the field references you need on your phone, tablet, or computer. View a PDF in your browser or download it for offline use.</p>
-
-    <div class="campout-resource-box">
-      <p class="campout-resource-label">🏕️ KPC 2027 CAMPOUT RESOURCES</p>
-    <div class="campout-doc-grid">
-      <article class="campout-doc-card">
-        <div class="doc-icon">🏕️</div>
-        <h3>Kentucky Adventure Guide</h3>
-        <p>Our main Kentucky adventure guide with parks, forests, attractions, lodging, local adventures, and trip ideas.</p>
-        <div class="doc-actions"><a class="doc-view" href="KPC-2027-Kentucky-Adventure-Guide.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC-2027-Kentucky-Adventure-Guide.pdf" download>DOWNLOAD ↓</a></div>
-      </article>
-
-      <article class="campout-doc-card">
-        <div class="doc-icon">📍</div>
-        <h3>Kentucky Local Guide</h3>
-        <p>A local-focused guide for the Taylorsville area, including nearby lodging, food, parks, attractions, and things to do.</p>
-        <div class="doc-actions"><a class="doc-view" href="KPC-2027-Kentucky-Local-Guide.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC-2027-Kentucky-Local-Guide.pdf" download>DOWNLOAD ↓</a></div>
-      </article>
-
-      <article class="campout-doc-card">
-        <div class="doc-icon">📄</div>
-        <h3>KPC 2027 Campout Flyer</h3>
-        <p>The official flyer for the 2027 KYPOTA Campout at Taylorsville Lake State Park.</p>
-        <div class="doc-actions"><a class="doc-view" href="KPC-2027-Campout-Flyer.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC-2027-Campout-Flyer.pdf" download>DOWNLOAD ↓</a></div>
-      </article>
-    </div>
-    </div>
-
-    <h2 class="campout-resource-heading">🏞️ Kentucky Parks: Numerical and Alphabetical PDFs</h2>
-    <div class="campout-doc-grid">
-      <article class="campout-doc-card">
-        <div class="doc-icon">🌲</div>
-        <h3>Kentucky Parks Resource — Numerical Order</h3>
-        <p>The KPC Kentucky POTA directory with park numbers, locations, maps, camping information, and field notes.</p>
-        <div class="doc-actions"><a class="doc-view" href="KPC_Kentucky_POTA_Resource_Numerical_v2_261005_092033.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC_Kentucky_POTA_Resource_Numerical_v2_261005_092033.pdf" download>DOWNLOAD ↓</a></div>
-      </article>
-      <article class="campout-doc-card">
-        <div class="doc-icon">🔤</div>
-        <h3>Kentucky Parks Resource — Alphabetical Order</h3>
-        <p>The alphabetical version of the KPC Kentucky POTA field directory for quick place-name lookup.</p>
-        <div class="doc-actions"><a class="doc-view" href="KPC_Kentucky_POTA_Resource_Alphabetical_v2_261005_092105.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC_Kentucky_POTA_Resource_Alphabetical_v2_261005_092105.pdf" download>DOWNLOAD ↓</a></div>
-      </article>
-    </div>
-
-    <h2 class="campout-resource-heading">🌦️ Weather: Field Weather Search, Space Weather</h2>
-    <div class="campout-doc-grid">
-      <article class="campout-doc-card">
-        <div class="doc-icon">🌦️</div>
-        <h3>KPC Field Weather Search</h3>
-        <p>Search by Kentucky POTA park name, POTA park number, town, or ZIP and check the current field forecast before heading out.</p>
-        <div class="doc-actions"><a class="doc-view" href="kpc-weather.html">OPEN WEATHER SEARCH →</a><a class="doc-download" href="https://radar.weather.gov/" target="_blank" rel="noopener">NWS RADAR →</a></div>
-      </article>
-      <article class="campout-doc-card">
-        <div class="doc-icon">☀️</div>
-        <h3>KPC Space Weather</h3>
-        <p>Official NOAA space-weather conditions, forecasts, radio-blackout information, solar activity, and alerts for radio operators.</p>
-        <div class="doc-actions"><a class="doc-view" href="kpc-space-weather.html">OPEN SPACE WEATHER →</a></div>
-      </article>
-    </div>
-
-    <h2 class="campout-resource-heading">📚 Field Guides: Checklist, Safety Guide, Beginner's Guide, Antenna Efficiency</h2>
-    <div class="campout-doc-grid">
-      <article class="campout-doc-card">
-        <div class="doc-icon">🎒</div>
-        <h3>Portable Operating &amp; Camping Checklist</h3>
-        <p>Radio, power, antennas, logging, tools, weather, shelter, food, clothing, safety, and camp-site checklists.</p>
-        <div class="doc-actions"><a class="doc-view" href="KPC_Portable_Operating_and_Camping_Checklists_PRIN_261005_091747.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC_Portable_Operating_and_Camping_Checklists_PRIN_261005_091747.pdf" download>DOWNLOAD ↓</a></div>
-      </article>
-      <article class="campout-doc-card">
-        <div class="doc-icon">🛡️</div>
-        <h3>Portable Operations Safety Guide</h3>
-        <p>Site selection, antennas, weather, snakes, plants, ticks, emergencies, hunting-season awareness, and field safety.</p>
-        <div class="doc-actions"><a class="doc-view" href="KPC_Portable_Operations_Safety_Guide_PLANT_IMAGES__261005_091849.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC_Portable_Operations_Safety_Guide_PLANT_IMAGES__261005_091849.pdf" download>DOWNLOAD ↓</a></div>
-      </article>
-      <article class="campout-doc-card">
-        <div class="doc-icon">📻</div>
-        <h3>Beginner's Guide to Portable Operations</h3>
-        <p>A KPC field guide for getting started with portable amateur-radio operations.</p>
-        <div class="doc-actions"><a class="doc-view" href="KPC_Beginners_Guide_to_Portable_Operations_261005_092000.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC_Beginners_Guide_to_Portable_Operations_261005_092000.pdf" download>DOWNLOAD ↓</a></div>
-      </article>
-      <article class="campout-doc-card">
-        <div class="doc-icon">📡</div>
-        <h3>Antenna Efficiency &amp; Solar Minimum</h3>
-        <p>KPC's radio-focused reference for portable antenna performance and operating during solar-minimum conditions.</p>
-        <div class="doc-actions"><a class="doc-view" href="KPC_Antenna_Efficiency_Solar_Minimum_261005_091927.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC_Antenna_Efficiency_Solar_Minimum_261005_091927.pdf" download>DOWNLOAD ↓</a></div>
-      </article>
-    </div>
-  </div>
-</section>
-<main class="resources-main">
-<section class="intro">
-  <div class="eyebrow">PLAN • LEARN • GET OUTSIDE</div>
-  <h2>Everything You Need for the Next KPC Adventure</h2>
-  <p>Find radio resources, POTA tools, Kentucky parks and trails, public lands, forests, nature preserves, weather, space weather, and field-safety references in one place.</p>
-</section>
-
-<section class="resource-section">
-  <h2>🎓 Amateur Radio</h2>
-  <section class="resource-grid">
-    <article class="resource-card"><div class="icon">🎓</div><h3>Get Licensed</h3><p>Technician, General, and Extra licensing information, study resources, practice exams, and exam-session information.</p><a class="btn" href="https://www.arrl.org/getting-licensed" target="_blank" rel="noopener">ARRL LICENSING →</a></article>
-    <article class="resource-card"><div class="icon">📚</div><h3>New Ham Resources</h3><p>Beginner information and practical references for getting active after earning your license.</p><a class="btn" href="https://www.arrl.org/new-ham-resources" target="_blank" rel="noopener">NEW HAM RESOURCES →</a></article>
-    <article class="resource-card"><div class="icon">🧑‍🏫</div><h3>Learn &amp; Train</h3><p>Online amateur-radio courses and educational material for new and experienced operators.</p><a class="btn" href="https://learn.arrl.org/" target="_blank" rel="noopener">ARRL LEARNING CENTER →</a></article>
-    <article class="resource-card"><div class="icon">📡</div><h3>Find Repeaters</h3><p>Look up repeaters while traveling or planning a portable trip.</p><a class="btn" href="https://www.repeaterbook.com/" target="_blank" rel="noopener">REPEATERBOOK →</a></article>
-    <article class="resource-card"><div class="icon">🗺️</div><h3>ARRL Operating Resources</h3><p>Frequency charts, band plans, propagation, net directory, mobile/portable operating, grid locator, and more.</p><a class="btn" href="https://www.arrl.org/operating-resources" target="_blank" rel="noopener">OPERATING RESOURCES →</a></article>
-    <article class="resource-card"><div class="icon">📊</div><h3>ARRL Band Plan</h3><p>Quick reference for voluntary band-plan divisions and operating modes.</p><a class="btn" href="https://www.arrl.org/band-plan" target="_blank" rel="noopener">OPEN BAND PLAN →</a></article>
-    <article class="resource-card"><div class="icon">🔎</div><h3>QRZ</h3><p>Callsign lookup and a broad collection of amateur-radio operating resources.</p><a class="btn" href="https://www.qrz.com/" target="_blank" rel="noopener">VISIT QRZ →</a></article>
-    <article class="resource-card"><div class="icon">📶</div><h3>PSK Reporter</h3><p>See where digital-mode signals are being heard around the world.</p><a class="btn" href="https://pskreporter.info/" target="_blank" rel="noopener">OPEN PSK REPORTER →</a></article>
-    <article class="resource-card"><div class="icon">📍</div><h3>APRS.fi</h3><p>Explore APRS stations, positions, tracks, and activity.</p><a class="btn" href="https://aprs.fi/" target="_blank" rel="noopener">OPEN APRS.FI →</a></article>
-    <article class="resource-card"><div class="icon">🏆</div><h3>Logbook of The World</h3><p>ARRL's electronic QSO confirmation system for amateur-radio contacts.</p><a class="btn" href="https://lotw.arrl.org/" target="_blank" rel="noopener">OPEN LOTW →</a></article>
-  </section>
-</section>
-
-<section class="resource-section">
-  <h2>🏕️ Portable &amp; POTA</h2>
-  <section class="resource-grid">
-    <article class="resource-card"><div class="icon">🌲</div><h3>Parks on the Air</h3><p>Find POTA parks and other designated locations for portable activations and hunting.</p><a class="btn" href="https://pota.app/" target="_blank" rel="noopener">VISIT POTA →</a></article>
-    <article class="resource-card"><div class="icon">🗺️</div><h3>POTA Park List</h3><p>Search the current POTA park directory.</p><a class="btn" href="https://next.pota.app/parklist" target="_blank" rel="noopener">OPEN PARK LIST →</a></article>
-    <article class="resource-card"><div class="icon">📡</div><h3>Portable Antennas</h3><p>A great DIY resource for building and experimenting with antennas for portable radio operations.</p><a class="btn" href="https://portable-antennas.com/" target="_blank" rel="noopener">OPEN PORTABLE ANTENNAS →</a></article>
-    <article class="resource-card"><div class="icon">🏞️</div><h3>KPC Parks</h3><p>Open the KPC parks page for Kentucky locations and planning information.</p><a class="btn" href="parks.html">EXPLORE KPC PARKS →</a></article>
-    <article class="resource-card"><div class="icon">🔥</div><h3>KPC Campout</h3><p>Campout dates, location, group camping, and signup information.</p><a class="btn" href="campout.html">KYPOTA CAMPOUT →</a></article>
-  </section>
-</section>
-
-<section class="resource-section">
-  
-<h2>🏞️ Kentucky Parks &amp; Trails</h2>
-  <section class="resource-grid">
-    <article class="resource-card"><div class="icon">🏕️</div><h3>Kentucky State Parks</h3><p>Find parks, campgrounds, lodging, recreation, and park information from the official Kentucky State Parks site.</p><a class="btn" href="https://parks.ky.gov/" target="_blank" rel="noopener">STATE PARKS →</a></article>
-    <article class="resource-card"><div class="icon">🥾</div><h3>Kentucky Trails</h3><p>Official State Parks trail information covering hiking, biking, and horse trails.</p><a class="btn" href="https://parks.ky.gov/things-to-do/trails" target="_blank" rel="noopener">EXPLORE TRAILS →</a></article>
-    <article class="resource-card"><div class="icon">🧭</div><h3>Find a Park</h3><p>Search Kentucky State Parks by location and destination.</p><a class="btn" href="https://parks.ky.gov/parks/find-a-park" target="_blank" rel="noopener">PARK FINDER →</a></article>
-    <article class="resource-card"><div class="icon">📋</div><h3>Trail Guidelines</h3><p>Review trail rules, access expectations, and Leave No Trace guidance before heading out.</p><a class="btn" href="https://parks.ky.gov/info/things-to-know/trail-guidelines" target="_blank" rel="noopener">TRAIL GUIDELINES →</a></article>
-  </section>
-</section>
-
-<section class="resource-section">
-  <h2>🌲 National Parks, Forests &amp; Federal Lands</h2>
-  <section class="resource-grid">
-    <article class="resource-card"><div class="icon">🏞️</div><h3>Kentucky National Parks</h3><p>Official National Park Service gateway for Kentucky parks, maps, alerts, and current conditions.</p><a class="btn" href="https://www.nps.gov/state/ky/index.htm" target="_blank" rel="noopener">NPS KENTUCKY →</a></article>
-    <article class="resource-card"><div class="icon">🌳</div><h3>Daniel Boone National Forest</h3><p>Eastern Kentucky forest lands with hundreds of miles of trails and numerous recreation sites.</p><a class="btn" href="https://www.fs.usda.gov/recarea/dbnf/recarea/?recid=39612" target="_blank" rel="noopener">DANIEL BOONE NF →</a></article>
-    <article class="resource-card"><div class="icon">🌲</div><h3>George Washington &amp; Jefferson National Forests</h3><p>Official Forest Service recreation information for the forest represented in the KPC POTA resource.</p><a class="btn" href="https://www.fs.usda.gov/activity/gwj/recreation/ohv" target="_blank" rel="noopener">GWJ NATIONAL FORESTS →</a></article>
-    <article class="resource-card"><div class="icon">🛶</div><h3>Land Between the Lakes</h3><p>National recreation area between Kentucky Lake and Lake Barkley with camping, trails, water, and wildlife.</p><a class="btn" href="https://www.landbetweenthelakes.com/" target="_blank" rel="noopener">LAND BETWEEN THE LAKES →</a></article>
-    <article class="resource-card"><div class="icon">🏛️</div><h3>Fort Donelson</h3><p>Official National Park Service information, maps, alerts, and current conditions.</p><a class="btn" href="https://www.nps.gov/fodo/" target="_blank" rel="noopener">FORT DONELSON →</a></article>
-    <article class="resource-card"><div class="icon">🏛️</div><h3>Fort Heiman</h3><p>National Park Service information for the Fort Heiman unit represented in the KPC POTA directory.</p><a class="btn" href="https://www.nps.gov/fodo/learn/historyculture/fort-heiman.htm" target="_blank" rel="noopener">FORT HEIMAN →</a></article>
-    <article class="resource-card"><div class="icon">🦅</div><h3>Clarks River NWR</h3><p>Official refuge information, maps, public-use rules, and current visitor information.</p><a class="btn" href="https://www.fws.gov/refuge/clarks-river" target="_blank" rel="noopener">CLARKS RIVER NWR →</a></article>
-    <article class="resource-card"><div class="icon">🦆</div><h3>Reelfoot NWR</h3><p>Official refuge information, public-use regulations, access information, and visitor resources.</p><a class="btn" href="https://www.fws.gov/refuge/reelfoot" target="_blank" rel="noopener">REELFOOT NWR →</a></article>
-  </section>
-</section>
-
-<section class="resource-section">
-  <h2>🌿 State Forests &amp; Nature Preserves</h2>
-  <section class="resource-grid">
-    <article class="resource-card"><div class="icon">🌲</div><h3>Kentucky State Forests</h3><p>Official Kentucky directory for state forests and forest recreation information.</p><a class="btn" href="https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/default.aspx" target="_blank" rel="noopener">STATE FORESTS →</a></article>
-    <article class="resource-card"><div class="icon">🌱</div><h3>Natural Areas &amp; Nature Preserves</h3><p>Search Kentucky nature preserves, wild rivers, heritage lands, access status, and recreation information.</p><a class="btn" href="https://eec.ky.gov/Nature-Preserves/Locations/Pages/default.aspx" target="_blank" rel="noopener">NATURAL AREAS →</a></article>
-    <article class="resource-card"><div class="icon">🧭</div><h3>State Forests in the KPC POTA Resource</h3><p>Use the KPC POTA Field Resource for individual POTA park numbers, maps, and field notes.</p><a class="btn" href="KPC_Kentucky_POTA_Resource_Alphabetical_v2_261005_092105.pdf" target="_blank" rel="noopener">OPEN KPC POTA PDF →</a></article>
-    <article class="resource-card"><div class="icon">🌊</div><h3>Kentucky Wild Rivers</h3><p>Official Kentucky information about designated Wild Rivers, their natural character, protection, and recreation opportunities.</p><a class="btn" href="https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/wild-rivers/Pages/default.aspx" target="_blank" rel="noopener">WILD RIVERS →</a></article>
-  </section>
-</section>
-
-<section class="resource-section">
-  <h2>🦌 Wildlife Areas, WMAs &amp; Field Safety</h2>
-  <section class="resource-grid">
-    <article class="resource-card"><div class="icon">🗺️</div><h3>Public Lands &amp; WMA Search</h3><p>Official Kentucky Fish &amp; Wildlife search for WMAs and public lands, including area-specific information.</p><a class="btn" href="https://fw.ky.gov/hunt/pages/public-land-hunting.aspx" target="_blank" rel="noopener">PUBLIC LANDS →</a></article>
-    <article class="resource-card"><div class="icon">📅</div><h3>Hunting &amp; Fishing Seasons</h3><p>Check current season dates before visiting WMAs and other public lands.</p><a class="btn" href="https://fw.ky.gov/Hunt/Pages/ky-hunting-fishing-seasons-planner.aspx" target="_blank" rel="noopener">SEASON PLANNER →</a></article>
-    <article class="resource-card"><div class="icon">📘</div><h3>Hunting &amp; Trapping Guides</h3><p>Official regulations and public-land guides that can affect portable operating plans.</p><a class="btn" href="https://fw.ky.gov/Hunt/Pages/Guides.aspx" target="_blank" rel="noopener">OPEN GUIDES →</a></article>
-    <article class="resource-card"><div class="icon">🛡️</div><h3>KPC Safety Guide</h3><p>Use the KPC Portable Operations Safety Guide for antenna, weather, wildlife, plant, tick, and hunting-season field safety.</p><a class="btn" href="KPC_Portable_Operations_Safety_Guide_PLANT_IMAGES__261005_091849.pdf" target="_blank" rel="noopener">OPEN SAFETY PDF →</a></article>
-  </section>
-</section>
-
-<div class="resources-footer-cta"><div class="tag">Get Outside. Get On The Air.</div><a href="parks.html">Explore Kentucky Parks →</a><a href="join.html">Join KPC →</a></div>
 </main>
-<footer>KPC — Kentucky Portable Club • Est. 2026.</footer>
+
+<footer>
+<strong>KENTUCKY PORTABLE CLUB</strong>
+<div class="tag">Get Outside. Get On The Air.</div>
+</footer>
+
 <script>
-const toggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.nav-links');
-
-toggle.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
-  toggle.setAttribute('aria-expanded', String(open));
+const toggle=document.querySelector('.menu-toggle');
+const nav=document.querySelector('.nav-links');
+toggle.addEventListener('click',()=>{
+const open=nav.classList.toggle('open');
+toggle.setAttribute('aria-expanded',String(open));
 });
-
-nav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-  });
-});
+nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+nav.classList.remove('open');
+toggle.setAttribute('aria-expanded','false');
+}));
 </script>
 </body>
 </html>
