@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Resources | Kentucky Portable Club</title>
+<meta name="description" content="Kentucky Portable Club resources: amateur radio, POTA, Kentucky parks, field guides, weather, space weather, and portable operating tools.">
 <style>
 :root{
   --black:#070707;
@@ -54,12 +55,28 @@ button{font:inherit}
   display:flex;
   align-items:center;
   flex:0 0 auto;
+  gap:12px;
 }
 .brand img{
-  width:58px;
-  height:58px;
+  width:64px;
+  height:64px;
   object-fit:contain;
-  border-radius:50%;
+}
+.brand-text{
+  color:#fff;
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:700;
+  font-size:18px;
+  line-height:1.1;
+}
+.brand-text small{
+  display:block;
+  margin-top:4px;
+  color:var(--gold-light);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:3px;
 }
 .nav-links{
   display:flex;
@@ -105,7 +122,7 @@ button{font:inherit}
     linear-gradient(180deg,rgba(0,0,0,.05) 35%,rgba(0,0,0,.78) 100%),
     url("KPC-logo.png")
     center/cover no-repeat;
-}
+;background-image:url("resources.png");background-size:cover;background-position:center}
 .hero::after{
   content:"";
   position:absolute;
@@ -350,7 +367,8 @@ footer strong{color:var(--gold-light)}
 @media(max-width:760px){
   :root{--nav-height:70px}
   .nav-inner{min-height:70px;padding:8px 18px}
-  .brand img{width:52px;height:52px}
+  .brand img{width:56px;height:56px}
+  .brand-text{font-size:15px}
   .menu-toggle{display:block}
   .nav-links{
     position:absolute;
@@ -419,6 +437,7 @@ body{background:#f5f0e4;color:#1b1b1b}
 .campout-docs h2{font:700 34px Georgia,serif;margin:7px 0 10px;color:#f5f0e4}
 .campout-docs-intro{max-width:780px;color:#e9eee9;margin:0 0 25px}
 .campout-doc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.campout-resource-heading{font:700 30px Georgia,serif;color:#f5f0e4;margin:34px 0 18px;padding-bottom:10px;border-bottom:2px solid #d5a63a}
 .campout-doc-card{background:#f5f0e4;color:#171717;border-top:4px solid #d5a63a;border-radius:10px;padding:22px;display:flex;flex-direction:column;box-shadow:0 10px 24px rgba(0,0,0,.18)}
 .campout-doc-card .doc-icon{font-size:30px;margin-bottom:8px}
 .campout-doc-card h3{font:700 23px Georgia,serif;margin:0 0 8px}
@@ -444,12 +463,13 @@ body{background:#f5f0e4;color:#1b1b1b}
 .campout-resource-box{margin-bottom:42px;padding:26px;border:1px solid #d5a63a;border-top:5px solid #1d5a3a;border-radius:12px;background:#fffaf0;box-shadow:0 8px 24px rgba(7,7,7,.08)}
 .campout-resource-box .campout-resource-label{margin:0 0 18px;color:#1d5a3a;font-size:13px;font-weight:900;letter-spacing:2.5px}
 .campout-resource-box .campout-doc-grid{margin:0}
+@media(max-width:380px){.brand-text small{display:none}}
 </style>
 </head>
 <body>
 <header class="site-nav">
   <div class="nav-inner">
-    <a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"></a>
+    <a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a>
     <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button>
     <nav class="nav-links" id="main-navigation" aria-label="Main navigation">
       <a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="resources.html" aria-current="page">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a>
@@ -489,65 +509,64 @@ body{background:#f5f0e4;color:#1b1b1b}
       <article class="campout-doc-card">
         <div class="doc-icon">📄</div>
         <h3>KPC 2027 Campout Flyer</h3>
-        <p>The official flyer for the 2nd Annual Kentucky POTA Campout at Taylorsville Lake State Park.</p>
+        <p>The official flyer for the 2027 KYPOTA Campout at Taylorsville Lake State Park.</p>
         <div class="doc-actions"><a class="doc-view" href="KPC-2027-Campout-Flyer.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC-2027-Campout-Flyer.pdf" download>DOWNLOAD ↓</a></div>
       </article>
 
-    <p class="campout-resource-label">Kentucky Parks Guides</p>
-
-    </div>
+    <h2 class="campout-resource-heading">🏞️ Kentucky Parks: Numerical and Alphabetical PDFs</h2>
+    <div class="campout-doc-grid">
       <article class="campout-doc-card">
         <div class="doc-icon">🌲</div>
         <h3>Kentucky Parks Resource — Numerical Order</h3>
         <p>The KPC Kentucky POTA directory with park numbers, locations, maps, camping information, and field notes.</p>
         <div class="doc-actions"><a class="doc-view" href="KPC_Kentucky_POTA_Resource_Numerical_v2_261005_092033.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC_Kentucky_POTA_Resource_Numerical_v2_261005_092033.pdf" download>DOWNLOAD ↓</a></div>
       </article>
-
-      <article class="campout-doc-card">
-        <div class="doc-icon">🌦️</div>
-        <h3>KPC Field Weather Search</h3>
-        <p>Search by Kentucky POTA park name, POTA park number, town, or ZIP and check the current field forecast before heading out.</p>
-        <div class="doc-actions"><a class="doc-view" href="kpc-weather.html">OPEN WEATHER SEARCH →</a><a class="doc-download" href="https://radar.weather.gov/" target="_blank" rel="noopener">NWS RADAR →</a></div>
-      </article>
-
-      <article class="campout-doc-card">
-        <div class="doc-icon">☀️</div>
-        <h3>KPC Space Weather</h3>
-        <p>Official NOAA space-weather conditions, forecasts, radio-blackout information, solar activity, and alerts for radio operators.</p>
-        <div class="doc-actions"><a class="doc-view" href="kpc-space-weather.html">OPEN SPACE WEATHER →</a></div>
-      </article>
-
-
       <article class="campout-doc-card">
         <div class="doc-icon">🔤</div>
         <h3>Kentucky Parks Resource — Alphabetical Order</h3>
         <p>The alphabetical version of the KPC Kentucky POTA field directory for quick place-name lookup.</p>
         <div class="doc-actions"><a class="doc-view" href="KPC_Kentucky_POTA_Resource_Alphabetical_v2_261005_092105.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC_Kentucky_POTA_Resource_Alphabetical_v2_261005_092105.pdf" download>DOWNLOAD ↓</a></div>
       </article>
+    </div>
 
+    <h2 class="campout-resource-heading">🌦️ Weather: Field Weather Search, Space Weather</h2>
+    <div class="campout-doc-grid">
+      <article class="campout-doc-card">
+        <div class="doc-icon">🌦️</div>
+        <h3>KPC Field Weather Search</h3>
+        <p>Search by Kentucky POTA park name, POTA park number, town, or ZIP and check the current field forecast before heading out.</p>
+        <div class="doc-actions"><a class="doc-view" href="kpc-weather.html">OPEN WEATHER SEARCH →</a><a class="doc-download" href="https://radar.weather.gov/" target="_blank" rel="noopener">NWS RADAR →</a></div>
+      </article>
+      <article class="campout-doc-card">
+        <div class="doc-icon">☀️</div>
+        <h3>KPC Space Weather</h3>
+        <p>Official NOAA space-weather conditions, forecasts, radio-blackout information, solar activity, and alerts for radio operators.</p>
+        <div class="doc-actions"><a class="doc-view" href="kpc-space-weather.html">OPEN SPACE WEATHER →</a></div>
+      </article>
+    </div>
+
+    <h2 class="campout-resource-heading">📚 Field Guides: Checklist, Safety Guide, Beginner's Guide, Antenna Efficiency</h2>
+    <div class="campout-doc-grid">
       <article class="campout-doc-card">
         <div class="doc-icon">🎒</div>
         <h3>Portable Operating &amp; Camping Checklist</h3>
         <p>Radio, power, antennas, logging, tools, weather, shelter, food, clothing, safety, and camp-site checklists.</p>
         <div class="doc-actions"><a class="doc-view" href="KPC_Portable_Operating_and_Camping_Checklists_PRIN_261005_091747.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC_Portable_Operating_and_Camping_Checklists_PRIN_261005_091747.pdf" download>DOWNLOAD ↓</a></div>
       </article>
-
       <article class="campout-doc-card">
         <div class="doc-icon">🛡️</div>
         <h3>Portable Operations Safety Guide</h3>
         <p>Site selection, antennas, weather, snakes, plants, ticks, emergencies, hunting-season awareness, and field safety.</p>
         <div class="doc-actions"><a class="doc-view" href="KPC_Portable_Operations_Safety_Guide_PLANT_IMAGES__261005_091849.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC_Portable_Operations_Safety_Guide_PLANT_IMAGES__261005_091849.pdf" download>DOWNLOAD ↓</a></div>
       </article>
-
       <article class="campout-doc-card">
         <div class="doc-icon">📻</div>
         <h3>Beginner's Guide to Portable Operations</h3>
         <p>A KPC field guide for getting started with portable amateur-radio operations.</p>
         <div class="doc-actions"><a class="doc-view" href="KPC_Beginners_Guide_to_Portable_Operations_261005_092000.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC_Beginners_Guide_to_Portable_Operations_261005_092000.pdf" download>DOWNLOAD ↓</a></div>
       </article>
-
       <article class="campout-doc-card">
-        <div class="doc-icon">☀️</div>
+        <div class="doc-icon">📡</div>
         <h3>Antenna Efficiency &amp; Solar Minimum</h3>
         <p>KPC's radio-focused reference for portable antenna performance and operating during solar-minimum conditions.</p>
         <div class="doc-actions"><a class="doc-view" href="KPC_Antenna_Efficiency_Solar_Minimum_261005_091927.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="doc-download" href="KPC_Antenna_Efficiency_Solar_Minimum_261005_091927.pdf" download>DOWNLOAD ↓</a></div>
@@ -570,7 +589,7 @@ body{background:#f5f0e4;color:#1b1b1b}
     <article class="resource-card"><div class="icon">🧑‍🏫</div><h3>Learn &amp; Train</h3><p>Online amateur-radio courses and educational material for new and experienced operators.</p><a class="btn" href="https://learn.arrl.org/" target="_blank" rel="noopener">ARRL LEARNING CENTER →</a></article>
     <article class="resource-card"><div class="icon">📡</div><h3>Find Repeaters</h3><p>Look up repeaters while traveling or planning a portable trip.</p><a class="btn" href="https://www.repeaterbook.com/" target="_blank" rel="noopener">REPEATERBOOK →</a></article>
     <article class="resource-card"><div class="icon">🗺️</div><h3>ARRL Operating Resources</h3><p>Frequency charts, band plans, propagation, net directory, mobile/portable operating, grid locator, and more.</p><a class="btn" href="https://www.arrl.org/operating-resources" target="_blank" rel="noopener">OPERATING RESOURCES →</a></article>
-    <article class="resource-card"><div class="icon">📻</div><h3>ARRL Band Plan</h3><p>Quick reference for voluntary band-plan divisions and operating modes.</p><a class="btn" href="https://www.arrl.org/band-plan" target="_blank" rel="noopener">OPEN BAND PLAN →</a></article>
+    <article class="resource-card"><div class="icon">📊</div><h3>ARRL Band Plan</h3><p>Quick reference for voluntary band-plan divisions and operating modes.</p><a class="btn" href="https://www.arrl.org/band-plan" target="_blank" rel="noopener">OPEN BAND PLAN →</a></article>
     <article class="resource-card"><div class="icon">🔎</div><h3>QRZ</h3><p>Callsign lookup and a broad collection of amateur-radio operating resources.</p><a class="btn" href="https://www.qrz.com/" target="_blank" rel="noopener">VISIT QRZ →</a></article>
     <article class="resource-card"><div class="icon">📶</div><h3>PSK Reporter</h3><p>See where digital-mode signals are being heard around the world.</p><a class="btn" href="https://pskreporter.info/" target="_blank" rel="noopener">OPEN PSK REPORTER →</a></article>
     <article class="resource-card"><div class="icon">📍</div><h3>APRS.fi</h3><p>Explore APRS stations, positions, tracks, and activity.</p><a class="btn" href="https://aprs.fi/" target="_blank" rel="noopener">OPEN APRS.FI →</a></article>
@@ -585,7 +604,7 @@ body{background:#f5f0e4;color:#1b1b1b}
     <article class="resource-card"><div class="icon">🗺️</div><h3>POTA Park List</h3><p>Search the current POTA park directory.</p><a class="btn" href="https://next.pota.app/parklist" target="_blank" rel="noopener">OPEN PARK LIST →</a></article>
     <article class="resource-card"><div class="icon">📡</div><h3>Portable Antennas</h3><p>A great DIY resource for building and experimenting with antennas for portable radio operations.</p><a class="btn" href="https://portable-antennas.com/" target="_blank" rel="noopener">OPEN PORTABLE ANTENNAS →</a></article>
     <article class="resource-card"><div class="icon">🏞️</div><h3>KPC Parks</h3><p>Open the KPC parks page for Kentucky locations and planning information.</p><a class="btn" href="parks.html">EXPLORE KPC PARKS →</a></article>
-    <article class="resource-card"><div class="icon">🔥</div><h3>KPC Campout</h3><p>Campout dates, location, registration, and event information.</p><a class="btn" href="campout.html">KYPOTA CAMPOUT →</a></article>
+    <article class="resource-card"><div class="icon">🔥</div><h3>KPC Campout</h3><p>Campout dates, location, group camping, and signup information.</p><a class="btn" href="campout.html">KYPOTA CAMPOUT →</a></article>
   </section>
 </section>
 
@@ -635,6 +654,7 @@ body{background:#f5f0e4;color:#1b1b1b}
 
 <div class="resources-footer-cta"><div class="tag">Get Outside. Get On The Air.</div><a href="parks.html">Explore Kentucky Parks →</a><a href="join.html">Join KPC →</a></div>
 </main>
+<footer>KPC — Kentucky Portable Club • Est. 2026.</footer>
 <script>
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav-links');
