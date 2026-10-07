@@ -56,7 +56,10 @@ button{font:inherit}
   display:flex;
   align-items:center;
   flex:0 0 auto;
+  gap:12px;
 }
+.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}
+.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
 .brand img{
   width:58px;
   height:58px;
@@ -97,13 +100,12 @@ button{font:inherit}
 /* HERO */
 .hero{
   position:relative;
-  min-height:clamp(600px,78vh,790px);
+  min-height:500px;
   display:flex;
   align-items:center;
   overflow:hidden;
   background:
-    radial-gradient(circle at 76% 24%,rgba(213,166,58,.24),transparent 23%),
-    linear-gradient(135deg,#07130d 0%,#0f2f20 45%,#070707 100%);
+    url("index.png") center/cover no-repeat;
   color:#fff;
 }
 .hero::before{
@@ -130,7 +132,7 @@ button{font:inherit}
   color:#fff;
 }
 .hero-logo{
-  width:min(175px,42vw);
+  width:min(360px,78vw);
   margin-bottom:22px;
   filter:drop-shadow(0 10px 20px rgba(0,0,0,.45));
 }
@@ -393,9 +395,7 @@ footer strong{color:var(--gold-light)}
   .nav-links.open{display:flex}
   .nav-links a{padding:13px 5px;border-bottom:1px solid #292929}
   .nav-links a:last-child{border-bottom:0}
-  .hero{min-height:650px}
   .hero-inner{padding:70px 20px 55px}
-  .hero-logo{width:165px}
   .intro-grid{grid-template-columns:1fr}
   .intro-badge{max-width:480px;margin:auto}
   .section{padding:68px 20px}
@@ -411,6 +411,10 @@ footer strong{color:var(--gold-light)}
   .btn{width:100%}
   .intro-copy p{font-size:16px}
 }
+@media(min-width:901px){.hero-logo{position:absolute;left:-400px;top:calc(50% - 22px);transform:translateY(-50%);margin-bottom:0}}
+@media(max-width:900px){.hero-logo{display:block;position:static;transform:none;width:min(290px,58vw);margin:0 auto 26px}}
+@media(max-width:600px){.hero{min-height:500px;background:url("index-mobile.png") center/cover no-repeat}.hero-logo{width:min(250px,64vw)}.brand-text{font-size:15px}}
+@media(max-width:380px){.brand-text{font-size:13px}.brand-text small{font-size:9px;letter-spacing:1.5px}}
 </style>
 </head>
 
@@ -419,7 +423,7 @@ footer strong{color:var(--gold-light)}
 <header class="site-nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="KPC Home">
-      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
     </a>
 
     <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">

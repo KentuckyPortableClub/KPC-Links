@@ -1,102 +1,508 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Resources | Kentucky Portable Club</title>
-<meta name="description" content="Kentucky Portable Club resources page.">
+<meta name="description" content="Kentucky Portable Club resources: amateur radio, POTA, Kentucky parks, field guides, weather, space weather, and portable operating tools.">
 <style>
-:root{--black:#070707;--black-2:#111111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--green:#1d5a3a;--muted:#68635a;--max:1200px}
+:root{
+  --black:#070707;
+  --black-2:#111111;
+  --gold:#d5a63a;
+  --gold-light:#f0c96b;
+  --cream:#f5f0e4;
+  --cream-2:#ebe3d1;
+  --ink:#171717;
+  --muted:#68635a;
+  --green:#1d5a3a;
+  --green-2:#2d7a4e;
+  --nav-height:78px;
+  --max:1200px;
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--cream);color:#171717;font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+body{
+  margin:0;
+  color:var(--ink);
+  background:var(--cream);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.55;
+}
+img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
-.site-nav{position:sticky;top:0;z-index:1000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
-.nav-inner{width:min(var(--max),100%);min-height:78px;margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}
-.brand{display:flex;align-items:center;flex:0 0 auto;gap:12px}
-.brand img{width:64px;height:64px;object-fit:contain}
-.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}
-.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
-.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}
-.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s ease}
-.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--gold-light);border-bottom-color:var(--gold)}
-.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
-.hero{min-height:620px;padding:80px 24px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(120deg,#070707 0%,#101813 48%,#173e2b 100%);position:relative;overflow:hidden}
-.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(213,166,58,.12),transparent 42%);pointer-events:none}
-.card{position:relative;z-index:1;width:min(850px,100%);padding:60px 45px;background:rgba(7,7,7,.84);border:1px solid rgba(213,166,58,.55);border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.3);color:#fff}
-.kicker{margin-bottom:14px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}
-h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(38px,6vw,68px);line-height:1.05;color:#d2b276}
-.card p{max-width:680px;margin:24px auto 30px;color:#eee9dd;font-size:18px}
-.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;margin:5px;border-radius:7px;background:var(--gold);color:#0b0b0b;font-size:13px;font-weight:900;letter-spacing:1px}
-.button.alt{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}
-footer{padding:38px 24px;background:#070707;color:#fff;text-align:center}
-footer .tag{color:var(--gold-light);margin-top:5px;font-family:Georgia,serif}
-@media(max-width:900px){
-.nav-links{display:none;position:absolute;left:0;right:0;top:78px;background:#070707;padding:10px 20px 18px;flex-direction:column;align-items:stretch;border-bottom:1px solid rgba(213,166,58,.4)}
-.nav-links.open{display:flex}
-.nav-links a{padding:13px 8px}
-.menu-toggle{display:block}
-.hero{min-height:560px;padding:50px 18px}
-.card{padding:48px 24px}
+button{font:inherit}
+
+.site-nav{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(7,7,7,.97);
+  border-bottom:1px solid rgba(213,166,58,.55);
+  box-shadow:0 4px 20px rgba(0,0,0,.18);
 }
-@media(max-width:600px){
-.nav-inner{padding:10px 16px}
-.brand img{width:52px;height:52px}
-.brand-text{font-size:15px}
-.card p{font-size:16px}
+.nav-inner{
+  width:min(var(--max),100%);
+  min-height:var(--nav-height);
+  margin:auto;
+  padding:10px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
 }
+.brand{
+  display:flex;
+  align-items:center;
+  flex:0 0 auto;
+  gap:12px;
+}
+.brand img{
+  width:64px;
+  height:64px;
+  object-fit:contain;
+}
+.brand-text{
+  color:#fff;
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:700;
+  font-size:18px;
+  line-height:1.1;
+}
+.brand-text small{
+  display:block;
+  margin-top:4px;
+  color:var(--gold-light);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:3px;
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:5px;
+}
+.nav-links a{
+  color:#fff;
+  padding:11px 10px;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.7px;
+  border-bottom:2px solid transparent;
+  transition:.2s ease;
+}
+.nav-links a:hover,
+.nav-links a[aria-current="page"]{
+  color:var(--gold-light);
+  border-bottom-color:var(--gold);
+}
+.menu-toggle{
+  display:none;
+  width:44px;
+  height:44px;
+  border:1px solid rgba(213,166,58,.55);
+  border-radius:8px;
+  background:var(--black-2);
+  color:#fff;
+  cursor:pointer;
+  font-size:22px;
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  min-height:clamp(590px,76vh,780px);
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.52) 45%,rgba(0,0,0,.12) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.05) 35%,rgba(0,0,0,.78) 100%),
+    url("resources.png")
+    center/cover no-repeat;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 80% 30%,rgba(213,166,58,.16),transparent 34%);
+  pointer-events:none;
+}
+.hero-inner{
+  position:relative;
+  z-index:2;
+  width:min(var(--max),100%);
+  margin:auto;
+  padding:90px 24px 72px;
+  color:#fff;
+}
+.hero-logo{
+  width:min(230px,48vw);
+  margin-bottom:22px;
+  filter:drop-shadow(0 10px 20px rgba(0,0,0,.45));
+}
+.eyebrow{
+  margin:0 0 12px;
+  color:var(--gold-light);
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:4px;
+}
+.hero h1{
+  max-width:800px;
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(38px,6vw,72px);
+  line-height:1.02;
+  letter-spacing:-1.5px;
+}
+.hero h1 span{color:var(--gold-light)}
+.hero-copy{
+  max-width:650px;
+  margin:20px 0 0;
+  color:#eee9dd;
+  font-size:clamp(16px,2vw,20px);
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:30px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  padding:12px 20px;
+  border-radius:7px;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:1px;
+  transition:transform .2s ease,background .2s ease,border-color .2s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--gold);color:#0b0b0b}
+.btn-primary:hover{background:var(--gold-light)}
+.btn-secondary{
+  color:#fff;
+  border:1px solid rgba(255,255,255,.65);
+  background:rgba(0,0,0,.35);
+}
+.btn-secondary:hover{border-color:var(--gold-light);color:var(--gold-light)}
+
+/* SHARED */
+.section{
+  padding:82px 24px;
+}
+.section-inner{
+  width:min(var(--max),100%);
+  margin:auto;
+}
+.section-heading{text-align:center;margin-bottom:42px}
+.kicker{
+  color:var(--green);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:4px;
+}
+.section h2{
+  margin:7px 0 12px;
+  color:var(--black);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(32px,4vw,48px);
+  line-height:1.08;
+}
+.section-heading p{
+  max-width:700px;
+  margin:0 auto;
+  color:var(--muted);
+  font-size:17px;
+}
+
+/* INTRO */
+.intro{
+  background:var(--cream);
+  border-bottom:1px solid #d9cfbd;
+}
+.intro-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:60px;
+  align-items:center;
+}
+.intro-copy .kicker{margin-bottom:8px}
+.intro-copy h2{margin:0 0 18px}
+.intro-copy p{color:var(--muted);font-size:18px;margin:0 0 20px}
+.signature{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:25px;
+  color:var(--green);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+.signature::before{
+  content:"";
+  width:45px;
+  height:2px;
+  background:var(--gold);
+}
+.intro-badge{
+  padding:16px;
+  border:1px solid var(--gold);
+  background:var(--black);
+  box-shadow:12px 12px 0 var(--gold);
+}
+.intro-badge img{
+  width:100%;
+  max-width:430px;
+  margin:auto;
+}
+
+/* FEATURE CARDS */
+.features{background:#fffaf0}
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.card{
+  position:relative;
+  min-height:350px;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  border-radius:8px;
+  color:#fff;
+  background-position:center;
+  background-size:cover;
+  box-shadow:0 12px 28px rgba(0,0,0,.14);
+}
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.02) 25%,rgba(0,0,0,.88) 100%);
+}
+.card:nth-child(1){background-image:url("KPC-logo.png")}
+.card:nth-child(2){background-image:url("KPC-logo.png")}
+.card:nth-child(3){background-image:url("KPC-logo.png")}
+.card:nth-child(4){background-image:url("KPC-logo.png")}
+.card-content{position:relative;z-index:2;padding:22px}
+.card h3{
+  margin:0 0 9px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:25px;
+  line-height:1.1;
+}
+.card p{margin:0 0 17px;color:#f1eee6;font-size:14px}
+.card .btn{min-height:40px;padding:9px 14px;background:var(--gold);color:#0b0b0b}
+
+/* CONNECT */
+.connect{
+  background:var(--black);
+  color:#fff;
+  border-top:1px solid rgba(213,166,58,.45);
+  border-bottom:1px solid rgba(213,166,58,.45);
+}
+.connect .section-heading h2{color:#fff}
+.connect .section-heading p{color:#bcb8ae}
+.connect .kicker{color:var(--gold-light)}
+.link-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.link-btn{
+  display:flex;
+  min-height:56px;
+  align-items:center;
+  justify-content:center;
+  padding:12px 15px;
+  border:1px solid #383838;
+  border-radius:7px;
+  background:#151515;
+  color:#fff;
+  font-weight:900;
+  font-size:13px;
+  letter-spacing:.6px;
+  transition:.2s ease;
+}
+.link-btn:hover{
+  border-color:var(--gold);
+  color:var(--gold-light);
+  transform:translateY(-1px);
+}
+
+/* FINAL CTA */
+.final{
+  padding:76px 24px;
+  text-align:center;
+  background:var(--cream-2);
+}
+.final h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}
+.final p{margin:10px 0 24px;color:var(--muted);letter-spacing:2px;font-size:13px;font-weight:800}
+
+footer{
+  padding:28px 24px;
+  text-align:center;
+  background:#050505;
+  color:#9b978e;
+  border-top:1px solid #292929;
+  font-size:13px;
+}
+footer strong{color:var(--gold-light)}
+
+@media(max-width:1000px){
+  .nav-links{gap:0}
+  .nav-links a{padding-inline:7px;font-size:12px}
+  .card-grid{grid-template-columns:repeat(2,1fr)}
+  .intro-grid{gap:38px}
+}
+@media(max-width:760px){
+  :root{--nav-height:70px}
+  .nav-inner{min-height:70px;padding:8px 18px}
+  .brand img{width:56px;height:56px}
+  .brand-text{font-size:15px}
+  .menu-toggle{display:block}
+  .nav-links{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+    padding:10px 18px 16px;
+    background:rgba(7,7,7,.99);
+    border-bottom:1px solid rgba(213,166,58,.45);
+    box-shadow:0 15px 25px rgba(0,0,0,.22);
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:13px 5px;border-bottom:1px solid #292929}
+  .nav-links a:last-child{border-bottom:0}
+  .hero{min-height:650px}
+  .hero-inner{padding:70px 20px 55px}
+  .hero-logo{width:165px}
+  .intro-grid{grid-template-columns:1fr}
+  .intro-badge{max-width:480px;margin:auto}
+  .section{padding:68px 20px}
+  .link-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .card-grid{grid-template-columns:1fr}
+  .card{min-height:310px}
+  .hero h1{font-size:40px}
+  .hero-copy{font-size:16px}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .btn{width:100%}
+  .intro-copy p{font-size:16px}
+}
+
+/* Resources page — same KPC homepage design system */
+body{background:#f5f0e4;color:#1b1b1b}
+.resources-hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:linear-gradient(120deg,rgba(7,7,7,.78),rgba(29,90,58,.52)),url("resources.png") center/cover no-repeat;padding:88px 24px 82px;border-bottom:4px solid #d5a63a}
+.resources-hero .hero-inner{position:relative;z-index:2;width:min(var(--max),100%);max-width:1120px;margin:auto}
+.resources-hero .hero-logo{width:min(360px,78vw);filter:drop-shadow(0 22px 35px rgba(0,0,0,.45))}
+.resources-hero .eyebrow{color:#f0c96b;letter-spacing:3px;font-weight:800;font-size:13px}
+.resources-hero h1{font-family:Georgia,serif;font-size:clamp(42px,6vw,70px);line-height:1;margin:12px 0;color:#f5f0e4}
+.resources-hero p{max-width:760px;color:#f5f0e4;font-size:18px;line-height:1.65;margin:0}
+.resources-main{max-width:1120px;margin:auto;padding:54px 24px 70px}
+.resources-main .intro{max-width:800px;margin:0 auto 42px;text-align:center}
+.resources-main .intro .eyebrow{color:#1d5a3a;letter-spacing:3px;font-weight:800}
+.resources-main .intro h2{font:700 32px Georgia,serif;color:#070707;margin:8px 0 12px}
+.resources-main .intro p{color:#4b4b4b;line-height:1.65}
+.resource-section{margin-top:42px}
+.resource-section h2{font:700 30px Georgia,serif;color:#070707;margin:0 0 18px;padding-bottom:10px;border-bottom:2px solid #d5a63a}
+.resource-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.resource-card{background:#fff;border:1px solid #ddd3bf;border-top:4px solid #1d5a3a;border-radius:12px;padding:22px;box-shadow:0 8px 24px rgba(7,7,7,.08);display:flex;flex-direction:column;min-height:250px}
+.resource-card h3{font:700 22px Georgia,serif;color:#070707;margin:8px 0 10px}
+.resource-card p{color:#555;line-height:1.55;font-size:15px;flex:1;margin:0 0 18px}
+.resource-card .icon{font-size:30px}
+.resource-card .btn{display:inline-block;background:#1d5a3a;color:#fff;text-decoration:none;font-weight:800;padding:11px 14px;border-radius:6px;text-align:center}
+.resource-card .btn:hover{background:#15452c}
+.resources-footer-cta{margin-top:48px;background:#070707;border:1px solid #292929;border-radius:14px;padding:28px;color:#f5f0e4;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.resources-footer-cta .tag{font:700 26px Georgia,serif;margin-right:auto}
+.resources-footer-cta a{color:#070707;background:#d5a63a;text-decoration:none;font-weight:900;padding:11px 16px;border-radius:6px}
+@media(min-width:901px){.resources-hero .hero-logo{position:absolute;left:-400px;top:calc(50% - 22px);transform:translateY(-50%);justify-self:auto}}
+@media(max-width:950px){.resource-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.resources-hero .hero-logo{display:block;width:min(290px,58vw);margin-left:auto;margin-right:auto}}
+@media(max-width:600px){.resources-hero{min-height:500px;padding:64px 20px;background:linear-gradient(120deg,rgba(7,7,7,.78),rgba(29,90,58,.52)),url("resources-mobile.png") center/cover no-repeat;}.resources-hero .hero-logo{width:min(250px,64vw)}.resources-main{padding:42px 18px 56px}.resource-grid{grid-template-columns:1fr}.resources-footer-cta .tag{margin-right:0;width:100%}}
+
+.campout-docs{background:#0d2419;color:#fff;border-top:4px solid #d5a63a;padding:46px 0 52px;margin:0 -0px}
+.campout-docs-inner{max-width:1120px;margin:auto;padding:0 24px}
+.campout-docs .eyebrow{color:#f0c96b;letter-spacing:3px;font-weight:800;font-size:13px}
+.campout-docs h2{font:700 34px Georgia,serif;margin:7px 0 10px;color:#f5f0e4}
+.campout-docs-intro{max-width:780px;color:#e9eee9;margin:0 0 25px}
+.campout-doc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.campout-resource-heading{font:700 30px Georgia,serif;color:#070707;margin:34px 0 18px;padding-bottom:10px;border-bottom:2px solid #d5a63a}
+.campout-doc-card{background:#f5f0e4;color:#171717;border-top:4px solid #d5a63a;border-radius:10px;padding:22px;display:flex;flex-direction:column;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.campout-doc-card .doc-icon{font-size:30px;margin-bottom:8px}
+.campout-doc-card h3{font:700 23px Georgia,serif;margin:0 0 8px}
+.campout-doc-card p{font-size:15px;color:#555;line-height:1.55;flex:1;margin:0 0 18px}
+.doc-actions{display:flex;gap:9px;flex-wrap:wrap}
+.doc-actions a{display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:6px;font-size:12px;font-weight:900;letter-spacing:.4px}
+.doc-view{background:#1d5a3a;color:#fff}.doc-view:hover{background:#15452c}
+.doc-download{background:#d5a63a;color:#070707}.doc-download:hover{background:#f0c96b}
+@media(max-width:950px){.campout-doc-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.campout-docs-inner{padding:0 18px}.campout-docs{padding:38px 0 44px}}
+
+
+/* Expanded KPC resource library */
+.resource-card .btn{margin-top:auto}
+.resource-card .btn:hover{color:#fff}
+.campout-doc-grid{grid-template-columns:repeat(3,1fr)}
+.campout-doc-card{min-height:285px}
+@media(max-width:950px){.campout-doc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.campout-doc-grid{grid-template-columns:1fr}}
+
+
+/* KPC 2027 Campout resource grouping */
+.campout-resource-box{margin-bottom:42px;padding:26px;border:1px solid #d5a63a;border-top:5px solid #1d5a3a;border-radius:12px;background:#fffaf0;box-shadow:0 8px 24px rgba(7,7,7,.08)}
+.campout-resource-box .campout-resource-label{margin:0 0 18px;color:#1d5a3a;font-size:13px;font-weight:900;letter-spacing:2.5px}
+.campout-resource-box .campout-doc-grid{margin:0}
 @media(max-width:380px){.brand-text small{display:none}}
 </style>
 </head>
 <body>
 <header class="site-nav">
-<div class="nav-inner">
-<a class="brand" href="index.html" aria-label="KPC Home">
-<img src="KPC-logo.png" alt="KPC — Kentucky Portable Club">
-<span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
-</a>
-<button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
-<nav class="nav-links" aria-label="Primary navigation">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="campout.html" >Campout</a>
-<a href="events.html" >Events</a>
-<a href="parks.html">Parks</a>
-<a href="resources.html" aria-current='page'>Resources</a>
-<a href="join.html">Join KPC</a>
-<a href="contact.html">Contact</a>
-</nav>
-</div>
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button>
+    <nav class="nav-links" id="main-navigation" aria-label="Main navigation">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="resources.html" aria-current="page">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a>
+    </nav>
+  </div>
 </header>
-
-<main>
-<section class="hero">
-<div class="card">
-<div class="kicker">KPC RESOURCES</div>
-<h1>RESOURCES PAGE UNDER CONSTRUCTION</h1>
-<p>We're working on the KPC Resources page now. Check back soon for the full collection of portable operating resources, tools, and information.</p>
-<a class="button" href="index.html">BACK TO KPC HOME</a>
-<a class="button alt" href="contact.html">CONTACT KPC</a>
-</div>
+<section class="resources-hero">
+  <div class="hero-inner">
+    <img class="hero-logo" src="KPC-logo.png" alt="Kentucky Portable Club">
+    <div class="eyebrow">KENTUCKY PORTABLE CLUB • RESOURCES</div>
+    <h1>RESOURCES COMING SOON</h1>
+    <p>We are finalizing our resources and information. New guides and updates will be posted here soon.</p>
+  </div>
 </section>
-</main>
-
-<footer>
-<strong>KENTUCKY PORTABLE CLUB</strong>
-<div class="tag">Get Outside. Get On The Air.</div>
-</footer>
-
+<footer>KPC — Kentucky Portable Club • Est. 2026.</footer>
 <script>
-const toggle=document.querySelector('.menu-toggle');
-const nav=document.querySelector('.nav-links');
-toggle.addEventListener('click',()=>{
-const open=nav.classList.toggle('open');
-toggle.setAttribute('aria-expanded',String(open));
+const toggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.nav-links');
+
+toggle.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', String(open));
 });
-nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
-nav.classList.remove('open');
-toggle.setAttribute('aria-expanded','false');
-}));
+
+nav.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  });
+});
 </script>
 </body>
 </html>
