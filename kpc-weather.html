@@ -53,6 +53,7 @@ button.secondary{background:#244a32;color:var(--cream);border:1px solid #4b6d57}
 <div class="current" id="current"></div>
 <h3>5-Day Field Outlook</h3>
 <div class="forecast" id="forecast"></div>
+<button class="secondary" id="radarBtn" type="button">VIEW NWS RADAR FOR THIS LOCATION ↗</button>
 <p class="note">Forecast data: National Weather Service when available for U.S. coordinates. Location search uses Open-Meteo geocoding only to turn a town/ZIP into coordinates. Always verify official park conditions, closures, permits, lightning, wind, and local hazards before setting up a portable station.</p>
 </section>
 </main>
@@ -136,6 +137,7 @@ async function loadWeather(lat,lon,label,kind){
       if(!seen.has(key)){seen.add(key);days.push(x); if(days.length===5)break;}
     }
     $('forecast').innerHTML=days.map(x=>'<div class="day"><strong>'+escapeHtml(x.name)+'</strong><div>'+escapeHtml(x.shortForecast||'')+'</div><div class="small" style="margin-top:7px">Temp: '+escapeHtml(String(x.temperature??'—'))+'°'+escapeHtml(x.temperatureUnit||'F')+'<br>Wind: '+escapeHtml(x.windSpeed||'—')+' '+escapeHtml(x.windDirection||'')+'</div></div>').join('');
+    $('radarBtn').onclick=()=>window.open('https://radar.weather.gov/location?lat='+encodeURIComponent(lat)+'&lon='+encodeURIComponent(lon),'_blank');
     $('weather').classList.add('active'); $('status').textContent='';
   }catch(e){$('status').textContent=e.message+' Try a nearby town/ZIP or use the official NWS link below.';}
 }
