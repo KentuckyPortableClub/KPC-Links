@@ -26,6 +26,9 @@
 @media(max-width:600px){.hero{min-height:500px;background:url("events-mobile.png") center/cover no-repeat}.hero-mark{width:min(250px,64vw)}}
 
 @media (max-width: 760px){.kpc26-preview-grid{grid-template-columns:1fr !important}.kpc26-preview-grid img{max-height:520px;object-fit:cover}.kpc26-preview-grid .btn{width:100%;box-sizing:border-box;text-align:center}}
+
+/* Bottom-third hero shading — desktop and mobile */
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(to bottom,transparent 0%,transparent 66.666%,rgba(0,0,0,.70) 100%);}
 </style></head><body><header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html" aria-current="page">Events</a><a href="parks.html">Parks</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a></nav></div></header><main>
 <section class="hero">
 <div class="hero-inner">
