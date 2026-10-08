@@ -111,6 +111,9 @@ img{max-width:100%;display:block}
   .footer{flex-direction:column;align-items:flex-start}
 }
 @media(max-width:380px){.brand-text small{display:none}}
+
+/* Bottom-third hero shading — desktop and mobile */
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(to bottom,transparent 0%,transparent 66.666%,rgba(0,0,0,.70) 100%);}
 </style>
 </head>
 <body>
