@@ -26,11 +26,7 @@ img{max-width:100%;display:block}
 .nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s ease}
 .nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--gold-light);border-bottom-color:var(--gold)}
 .menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
-.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:
-linear-gradient(90deg,rgba(0,0,0,.9),rgba(0,0,0,.56) 55%,rgba(0,0,0,.18)),
-linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.68)),
-radial-gradient(circle at 78% 30%,rgba(213,166,58,.22),transparent 30%),
-url("about.png") center/cover no-repeat;
+.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:url("about.png") center/cover no-repeat;
 }
 .hero-inner{position:relative;z-index:2;width:min(var(--max),100%);margin:auto;padding:90px 24px 72px;color:#fff}
 .hero-logo{width:min(360px,78vw);height:auto;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}
@@ -103,7 +99,7 @@ url("about.png") center/cover no-repeat;
   .feature .cards{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:600px){
-  .hero{min-height:500px;background:linear-gradient(90deg,rgba(0,0,0,.9),rgba(0,0,0,.56) 55%,rgba(0,0,0,.18)),linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.68)),url("about-mobile.png") center/cover no-repeat}
+  .hero{min-height:500px;background:url("about-mobile.png") center/cover no-repeat}
   .hero-logo{width:min(250px,64vw)}
   .nav-inner{padding:10px 16px}
   .brand img{width:52px;height:52px}
