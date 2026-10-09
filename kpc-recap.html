@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Monthly Recap | KPC</title>
+<meta name="description" content="KPC members' Kentucky POTA activity by month.">
+<meta name="robots" content="noindex,nofollow">
+<script src="kpc-members.js"></script>
+<link rel="stylesheet" href="kpc-tools.css">
+<script src="kpc-tools.js"></script>
+</head>
+<body>
+<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html" aria-current="page">Parks</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a></nav></div></header>
+<main>
+<section class="tool-head"><div class="wrap">
+<p class="eyebrow">KPC MONTHLY RECAP</p>
+<h1>KPC <span>ACTIVITY</span></h1>
+<p class="sub">What KPC members activated in Kentucky each month — new parks, first-ever activations, QSO totals — plus the busiest Kentucky parks statewide.</p>
+</div></section>
+<nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="members.html">Members Home</a><a href="kpc-tracker.html">Park Tracker</a><a href="kpc-recap.html" aria-current=page>Monthly Recap</a><a href="kpc-spots.html">On The Air</a><a href="parks.html">← Parks</a></div></nav>
+<section class="section"><div class="wrap">
+<div class="panel"><div class="controls">
+<label class="field" style="flex:1 1 200px">MONTH<select id="mon"></select></label>
+<button class="btn alt" id="refresh" style="align-self:flex-end">REFRESH POTA DATA</button>
+</div>
+<div class="progress" id="prog"><div class="bar"><i style="width:0"></i></div><small></small></div></div>
+<div id="out" style="margin-top:22px"></div>
+<div class="note">Built from POTA's public activation records for the 186 Kentucky parks in the KPC guide, so activations outside Kentucky aren't counted. "New park" means the member's first-ever activation of that park; "First ever" means nobody had activated the park before. A valid activation is 10+ QSOs. Edit the member list in kpc-tools.js.</div>
+</div></section>
+<script>
+const $=id=>document.getElementById(id);let D,H;
+const now=new Date();for(let i=0;i<24;i++){const d=new Date(now.getFullYear(),now.getMonth()-i,1);$('mon').add(new Option(d.toLocaleDateString([],{month:'long',year:'numeric'}),`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}`))}
+const q=new URLSearchParams(location.search).get('m');if(q)$('mon').value=q;
+async function go(force){D=await KPC.data();try{H=(await KPC.history(KPC.progressUI($('prog')),force)).hist}catch(e){$('prog').querySelector('small').textContent='Could not reach POTA right now — try again in a minute.';return}render()}
+function render(){const m=$('mon').value,P=new Map(D.parks.map(p=>[p.c,p]));history.replaceState(null,'','?m='+m);
+ const acts=[];for(const[ref,a]of Object.entries(H)){const sorted=[...a].sort((x,y)=>x[1].localeCompare(y[1]));
+  sorted.forEach((x,i)=>{if(x[1].slice(0,6)!==m)return;const c=KPC.base(x[0]);
+   const prevMine=sorted.slice(0,i).some(y=>KPC.base(y[0])===c&&KPC.ok(y[2])),prevAny=sorted.slice(0,i).some(y=>KPC.ok(y[2]));
+   acts.push({ref,call:x[0],c,date:x[1],q:x[2],ok:KPC.ok(x[2]),newMine:KPC.ok(x[2])&&!prevMine,first:KPC.ok(x[2])&&!prevAny})})}
+ const mine=acts.filter(a=>KPC.MEMBERS.includes(a.c)).sort((a,b)=>b.date.localeCompare(a.date));
+ const okA=acts.filter(a=>a.ok),label=$('mon').selectedOptions[0].text;
+ const byPark={};okA.forEach(a=>byPark[a.ref]=(byPark[a.ref]||0)+1);const busy=Object.entries(byPark).sort((a,b)=>b[1]-a[1]).slice(0,8);
+ const byCall={};okA.forEach(a=>{byCall[a.c]=byCall[a.c]||{n:0,parks:new Set()};byCall[a.c].n++;byCall[a.c].parks.add(a.ref)});
+ const topCalls=Object.entries(byCall).sort((a,b)=>b[1].parks.size-a[1].parks.size||b[1].n-a[1].n).slice(0,10);
+ const mOk=mine.filter(a=>a.ok);
+ const card=m=>{const a=mine.filter(x=>x.c===m),g=a.filter(x=>x.ok);return`<div class="panel" style="border-left:5px solid ${g.length?'var(--gold)':'#d8cfbf'}"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><a class="ref" style="font:700 22px Georgia,serif;color:var(--black)" href="kpc-tracker.html?call=${m}">${m}</a><span class="muted" style="font-size:12px;font-weight:900;letter-spacing:1px">${g.length} ACTIVATION${g.length===1?'':'S'} • ${a.reduce((s,x)=>s+x.q,0)} QSOS</span></div>${a.length?`<div style="margin-top:8px">${a.map(x=>{const p=P.get(x.ref);return`<div style="padding:8px 0;border-top:1px solid #eee5d3;font-size:14px"><a class="ref" href="${KPC.links.pota(x.ref)}" target="_blank" rel="noopener">${x.ref}</a> ${KPC.esc(p?p.n:'')}<br><span class="muted" style="font-size:12px">${KPC.fmtDate(x.date)} • ${x.q} QSOs</span> ${x.first?'<span class="tag g">FIRST EVER</span>':''}${x.newMine?'<span class="tag gr">NEW PARK</span>':''}${!x.ok?'<span class="tag">UNDER 10 QSOS</span>':''}</div>`}).join('')}</div>`:'<p class="muted" style="margin:8px 0 0;font-size:14px">No Kentucky activations this month.</p>'}</div>`};
+ $('out').innerHTML=`<div class="stats"><div class="stat"><b>${mOk.length}</b><span>KPC ACTIVATIONS</span></div><div class="stat"><b>${new Set(mOk.map(a=>a.ref)).size}</b><span>KY PARKS BY KPC</span></div><div class="stat"><b>${mine.reduce((s,a)=>s+a.q,0).toLocaleString()}</b><span>KPC QSOS</span></div><div class="stat"><b>${mOk.filter(a=>a.newMine).length}</b><span>NEW PARKS FOR MEMBERS</span></div></div>
+ <div class="sec-head" style="margin-top:30px"><div><div class="kicker">${KPC.esc(label.toUpperCase())}</div><h2>KPC Members</h2></div></div>
+ <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px">${KPC.MEMBERS.map(card).join('')}</div>
+ <div class="grid2" style="margin-top:30px"><div><div class="sec-head"><div><div class="kicker">ALL OPERATORS</div><h2>Busiest KY Parks</h2></div></div>
+ ${busy.length?`<div class="tablewrap"><table class="list"><thead><tr><th>PARK</th><th>ACTS</th></tr></thead><tbody>${busy.map(([r,n])=>`<tr><td><a class="ref" href="${KPC.links.pota(r)}" target="_blank" rel="noopener">${r}</a> ${KPC.esc((P.get(r)||{}).n||'')}</td><td><b>${n}</b></td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">No Kentucky activations recorded for this month yet.</div>'}</div>
+ <div><div class="sec-head"><div><div class="kicker">ALL OPERATORS</div><h2>Top KY Activators</h2></div></div>
+ ${topCalls.length?`<div class="tablewrap"><table class="list"><thead><tr><th>CALL</th><th>PARKS</th><th>ACTS</th></tr></thead><tbody>${topCalls.map(([c,v])=>`<tr><td><a class="ref" href="${KPC.links.qrz(c)}" target="_blank" rel="noopener">${c}</a> ${KPC.MEMBERS.includes(c)?'<span class="tag k">KPC</span>':''}</td><td><b>${v.parks.size}</b></td><td>${v.n}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">—</div>'}
+ ${okA.filter(a=>a.first).length?`<div class="panel" style="margin-top:14px"><b>First-ever activations this month</b><br>${okA.filter(a=>a.first).map(a=>`<a class="ref" href="${KPC.links.pota(a.ref)}" target="_blank" rel="noopener">${a.ref}</a> by ${KPC.esc(a.call)}`).join(' • ')}</div>`:''}</div></div>`}
+$('mon').onchange=()=>H&&render();$('refresh').onclick=()=>go(true);go();
+</script>
+
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="members.html">MEMBERS HOME →</a><a href="parks.html">EXPLORE KENTUCKY →</a></div></footer>
+</body></html>

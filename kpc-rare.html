@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Rarely Activated Parks | KPC</title>
+<meta name="description" content="Kentucky POTA parks colored by how often they have been activated.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="kpc-tools.css">
+<script src="kpc-tools.js"></script>
+</head>
+<body>
+<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html" aria-current="page">Parks</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a></nav></div></header>
+<main>
+<section class="tool-head"><div class="wrap">
+<p class="eyebrow">KPC TARGET MAP</p>
+<h1>RARELY <span>ACTIVATED</span></h1>
+<p class="sub">Every Kentucky POTA park colored by how often it has been activated. Red dots are parks nobody has activated yet — hunters will be waiting.</p>
+</div></section>
+<nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-rare.html" aria-current=page>Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="parks.html">← Parks</a></div></nav>
+<section class="section"><div class="wrap">
+<div class="progress" id="prog"><div class="bar"><i style="width:0"></i></div><small></small></div>
+<div class="stats" id="stats" style="margin-top:14px"></div>
+<div class="grid2" style="margin-top:20px">
+<div><div class="map" id="map" style="height:520px"></div>
+<div class="legend"><span><i style="background:#b5452b"></i>Never activated</span><span><i style="background:#e08a2c"></i>1–5</span><span><i style="background:#d5a63a"></i>6–20</span><span><i style="background:#7fb069"></i>21–75</span><span><i style="background:#1d5a3a"></i>76+</span></div></div>
+<div>
+<div class="controls" style="margin-bottom:10px">
+<div class="chips" id="flt"><button class="chip" aria-pressed="true" data-f="25">BOTTOM 25</button><button class="chip" aria-pressed="false" data-f="0">NEVER</button><button class="chip" aria-pressed="false" data-f="all">ALL PARKS</button></div>
+<label class="field" style="flex:1 1 160px">REGION<select id="reg"><option value="">All Kentucky</option></select></label>
+</div>
+<div class="tablewrap" style="max-height:470px"><table class="list"><thead><tr><th>PARK</th><th>ACTS</th><th class="hide-m">QSOS</th><th>LAST</th></tr></thead><tbody id="tbody"></tbody></table></div>
+</div></div>
+<div class="note">Activations count POTA's public records with 10+ QSOs. "Last" is the most recent activation of any kind. Some parks are rare for a reason — limited access, private land around them, or seasonal closures — so check the KPC guide and the official map before you go. Data is saved in your browser for 12 hours. <button class="btn sm alt" id="refresh" style="margin-left:6px">REFRESH NOW</button></div>
+</div></section>
+<script>
+const $=id=>document.getElementById(id);let D,H,map,layer,f='25',reg='';
+const col=n=>n===0?'#b5452b':n<=5?'#e08a2c':n<=20?'#d5a63a':n<=75?'#7fb069':'#1d5a3a';
+async function go(force){D=await KPC.data();
+ Object.values(D.regions).filter((v,i,a)=>a.indexOf(v)===i).sort().forEach(r=>{if(![...$('reg').options].some(o=>o.value===r))$('reg').add(new Option(r,r))});
+ try{H=(await KPC.history(KPC.progressUI($('prog')),force)).hist}catch(e){$('prog').querySelector('small').textContent='Could not reach POTA right now — try again in a minute.';return}
+ D.parks.forEach(p=>{const a=H[p.c]||[];p.acts=a.filter(x=>KPC.ok(x[2])).length;p.q=a.reduce((s,x)=>s+x[2],0);p.last=a.map(x=>x[1]).sort().pop()||'';p.reg=D.regions[p.co.split('/')[0].trim().toUpperCase()]||''});
+ const never=D.parks.filter(p=>p.acts===0).length,u5=D.parks.filter(p=>p.acts<=5).length,tot=D.parks.reduce((s,p)=>s+p.acts,0);
+ $('stats').innerHTML=`<div class="stat"><b>${never}</b><span>NEVER ACTIVATED</span></div><div class="stat"><b>${u5}</b><span>5 OR FEWER</span></div><div class="stat"><b>${D.parks.length}</b><span>KY PARKS</span></div><div class="stat"><b>${tot.toLocaleString()}</b><span>TOTAL KY ACTIVATIONS</span></div>`;
+ draw()}
+async function draw(){if(!map){map=KPC.leafletMap('map');await KPC.countyLayer(map)}
+ if(layer)layer.remove();layer=L.layerGroup().addTo(map);
+ let P=D.parks.filter(p=>!reg||p.reg===reg).sort((a,b)=>a.acts-b.acts||a.q-b.q);
+ const show=f==='all'?P:f==='0'?P.filter(p=>p.acts===0):P.slice(0,25);
+ P.forEach(p=>L.circleMarker([p.la,p.lo],{radius:show.includes(p)?8:4,weight:1,color:'#222',fillColor:col(p.acts),fillOpacity:show.includes(p)?.95:.45})
+  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> • ${KPC.esc(KPC.cty(p.co))}<br><b>${p.acts}</b> activations • ${p.q} QSOs<br>Last: ${p.last?KPC.fmtDate(p.last):'never'}<br><a href="${KPC.links.dir(p.la,p.lo)}" target="_blank" rel="noopener">Directions</a>${p.off?` • <a href="${p.off}" target="_blank" rel="noopener">Official map</a>`:''}`).addTo(layer));
+ $('tbody').innerHTML=show.map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> ${p.acts===0?'<span class="tag r">NEVER</span>':''}<br>${KPC.esc(p.n)}<br><span class="muted" style="font-size:12px">${KPC.esc(KPC.cty(p.co))} • ${KPC.esc(p.t)}</span></td><td><b>${p.acts}</b></td><td class="hide-m">${p.q}</td><td style="font-size:12px">${p.last?KPC.fmtDate(p.last):'—'}</td></tr>`).join('')||'<tr><td colspan="4" class="muted">No parks match.</td></tr>'}
+$('flt').onclick=e=>{const b=e.target.closest('button');if(!b)return;f=b.dataset.f;[...$('flt').children].forEach(x=>x.setAttribute('aria-pressed',x===b));draw()};
+$('reg').onchange=e=>{reg=e.target.value;draw()};$('refresh').onclick=()=>go(true);
+go();
+</script>
+
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="resources.html">RESOURCES →</a><a href="join.html">JOIN KPC →</a></div></footer>
+</body></html>

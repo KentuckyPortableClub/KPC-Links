@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Park Checker | KPC</title>
+<meta name="description" content="Check which Kentucky POTA parks any callsign has activated and download the list as CSV.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="kpc-tools.css">
+<script src="kpc-tools.js"></script>
+</head>
+<body>
+<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html" aria-current="page">Parks</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a></nav></div></header>
+<main>
+<section class="tool-head"><div class="wrap">
+<p class="eyebrow">KPC PARK CHECKER</p>
+<h1>KENTUCKY <span>PARK CHECKER</span></h1>
+<p class="sub">Enter any callsign to see which of Kentucky's POTA parks it has activated and which are still needed — then download the list as a spreadsheet (CSV).</p>
+</div></section>
+<nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html" aria-current=page>Park Checker</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="parks.html">← Parks</a></div></nav>
+<section class="section"><div class="wrap">
+<div class="panel">
+<form class="controls" id="f" autocomplete="off">
+<label class="field" style="flex:1 1 220px">CALLSIGN<input id="call" placeholder="Your callsign" autocapitalize="characters" spellcheck="false"></label>
+<button class="btn" type="submit" style="align-self:flex-end">CHECK PARKS</button>
+</form>
+<div class="progress" id="prog"><div class="bar"><i style="width:0"></i></div><small></small></div>
+</div>
+
+<div id="result" style="display:none;margin-top:22px">
+<div class="stats" id="stats"></div>
+<div style="margin-top:14px"><div class="bar"><i id="pbar" style="width:0"></i></div><small class="muted" id="pbarLbl"></small></div>
+<div class="controls" style="margin-top:16px">
+<button class="btn" id="csvAll" type="button">DOWNLOAD ALL PARKS (CSV) ↓</button>
+<button class="btn alt" id="csvDone" type="button">ACTIVATED ONLY ↓</button>
+<button class="btn alt" id="csvNeed" type="button">STILL NEEDED ONLY ↓</button>
+</div>
+<div class="grid2" style="margin-top:20px">
+<div><div class="map" id="map"></div>
+<div class="legend"><span><i style="background:#1d5a3a"></i>Activated</span><span><i style="background:#d5a63a"></i>Tried (under 10 QSOs)</span><span><i style="background:#fff"></i>Still needed</span></div></div>
+<div>
+<div class="chips" id="tabs" style="margin-bottom:10px"><button class="chip" aria-pressed="true" data-t="done">ACTIVATED</button><button class="chip" aria-pressed="false" data-t="need">STILL NEEDED</button></div>
+<div class="tablewrap" style="max-height:420px"><table class="list"><thead><tr><th>PARK</th><th>COUNTY</th><th id="col3">FIRST</th><th id="col4">ACTS</th></tr></thead><tbody id="tbody"></tbody></table></div>
+</div></div>
+</div>
+<div class="note">Uses POTA's public activation records for the 186 Kentucky parks in the KPC guide. A park counts as activated with 10 or more QSOs in one activation. Nothing you type is saved or shared — the callsign is only used to filter POTA's public data in your browser. POTA doesn't publish hunter logs, so this checks activations only.</div>
+</div></section>
+<script>
+const $=id=>document.getElementById(id);
+let H=null,D=null,map=null,layer=null,cur=null,S={},tab='done';
+$('f').onsubmit=e=>{e.preventDefault();run($('call').value)};
+async function load(){if(H)return H;D=await KPC.data();try{H=(await KPC.history(KPC.progressUI($('prog')))).hist}catch(e){$('prog').querySelector('small').textContent='Could not reach POTA right now — try again in a minute.';throw e}return H}
+function statsFor(call){const c=KPC.base(call),res={};
+ for(const p of D.parks){const a=(H[p.c]||[]).filter(x=>KPC.base(x[0])===c);const good=a.filter(x=>KPC.ok(x[2]));
+  if(a.length){const ds=a.map(x=>x[1]).sort();res[p.c]={n:good.length,tries:a.length,q:a.reduce((s,x)=>s+x[2],0),first:ds[0],last:ds[ds.length-1],ok:good.length>0}}}
+ return res}
+async function run(call){call=KPC.base(call);if(!call)return;cur=call;
+ await load();S=statsFor(call);const P=D.parks,doneP=P.filter(p=>S[p.c]&&S[p.c].ok);
+ const counties=new Set(doneP.map(p=>p.co)),acts=Object.values(S).reduce((s,x)=>s+x.n,0),q=Object.values(S).reduce((s,x)=>s+x.q,0);
+ $('result').style.display='block';
+ $('stats').innerHTML=`<div class="stat"><b>${doneP.length}</b><span>OF ${P.length} KY PARKS</span></div><div class="stat"><b>${P.length-doneP.length}</b><span>STILL NEEDED</span></div><div class="stat"><b>${acts}</b><span>KY ACTIVATIONS</span></div><div class="stat"><b>${q.toLocaleString()}</b><span>KY QSOS</span></div>`;
+ $('pbar').style.width=(100*doneP.length/P.length)+'%';$('pbarLbl').textContent=`${call}: ${Math.round(100*doneP.length/P.length)}% of Kentucky parks activated • ${counties.size} counties`;
+ drawMap();drawTable()}
+async function drawMap(){if(!map){map=KPC.leafletMap('map');await KPC.countyLayer(map)}
+ if(layer)layer.remove();layer=L.layerGroup().addTo(map);
+ D.parks.forEach(p=>{const s=S[p.c],done=s&&s.ok;
+  L.circleMarker([p.la,p.lo],{radius:done?7:5,weight:1.2,color:'#173a28',fillColor:done?'#1d5a3a':s?'#d5a63a':'#ffffff',fillOpacity:.95})
+  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> • ${KPC.esc(KPC.cty(p.co))}<br>${done?`Activated ${s.n}× • ${s.q} QSOs • first ${KPC.fmtDate(s.first)}`:s?`${s.tries} attempt(s), under 10 QSOs`:'Not activated yet'}`).addTo(layer)})}
+function drawTable(){const P=D.parks;let rows;
+ if(tab==='done'){$('col3').textContent='FIRST';$('col4').textContent='ACTS';
+  rows=P.filter(p=>S[p.c]&&S[p.c].ok).sort((a,b)=>S[a.c].first.localeCompare(S[b.c].first)).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}</td><td>${KPC.esc(p.co)}</td><td>${KPC.fmtDate(S[p.c].first)}</td><td>${S[p.c].n}</td></tr>`)}
+ else{$('col3').textContent='TYPE';$('col4').textContent='';
+  rows=P.filter(p=>!(S[p.c]&&S[p.c].ok)).sort((a,b)=>a.co.localeCompare(b.co)).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}${S[p.c]?' <span class="tag">TRIED</span>':''}</td><td>${KPC.esc(p.co)}</td><td>${KPC.esc(p.t)}</td><td></td></tr>`)}
+ $('tbody').innerHTML=rows.join('')||`<tr><td colspan="4" class="muted">${tab==='done'?'No Kentucky activations found for this callsign yet.':'Every Kentucky park activated — legend!'}</td></tr>`}
+$('tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;tab=b.dataset.t;[...$('tabs').children].forEach(x=>x.setAttribute('aria-pressed',x===b));if(cur)drawTable()};
+function csv(which){if(!cur)return;const q=v=>`"${String(v??'').replace(/"/g,'""')}"`,d=x=>x?`${x.slice(0,4)}-${x.slice(4,6)}-${x.slice(6,8)}`:'';
+ const rows=D.parks.filter(p=>{const ok=S[p.c]&&S[p.c].ok;return which==='all'||(which==='done'?ok:!ok)}).map(p=>{const s=S[p.c];
+  return[p.c,p.n,p.co,p.t,s&&s.ok?'Activated':s?'Tried (under 10 QSOs)':'Not yet',s?s.n:0,s?s.q:0,s?d(s.first):'',s?d(s.last):'',p.la,p.lo,KPC.links.pota(p.c)].map(q).join(',')});
+ const head=['Reference','Park','County','Type','Status','Activations','QSOs','First','Last','Latitude','Longitude','POTA link'].map(q).join(',');
+ const blob=new Blob(['﻿'+head+'\r\n'+rows.join('\r\n')],{type:'text/csv'}),a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);a.download=`${cur}_Kentucky_POTA_${which==='all'?'all':which==='done'?'activated':'needed'}_${new Date().toISOString().slice(0,10)}.csv`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+$('csvAll').onclick=()=>csv('all');$('csvDone').onclick=()=>csv('done');$('csvNeed').onclick=()=>csv('need');
+</script>
+
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="resources.html">RESOURCES →</a><a href="join.html">JOIN KPC →</a></div></footer>
+</body></html>

@@ -65,6 +65,14 @@ footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;bord
 .live-head{padding:40px 20px 32px}.section{padding:34px 16px}.stat{min-width:0;flex:1 1 40%}
 .spot{grid-template-columns:1fr auto;gap:10px 14px;padding:14px 16px 14px 20px}.park{grid-column:1/-1}.freq{text-align:right}.when{grid-column:1/-1}.member{flex-direction:column;align-items:flex-start;gap:4px}}
 @media(max-width:420px){.member .call{font-size:17px}.brand-text small{display:none}}
+
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}}
 </style>
 </head>
 <body>
@@ -97,7 +105,7 @@ footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;bord
 <div class="note">Spots come from the POTA spotting network (<a href="https://pota.app/#/" target="_blank" rel="noopener" style="color:var(--green);font-weight:800">pota.app</a>) and expire after about 30 minutes without a new spot. Times are in your local time. Tap a callsign for QRZ or a park reference for its POTA page.</div>
 </div></section>
 </main>
-<footer><strong>KPC — Kentucky Portable Club</strong> • Est. 2026<br>Get Outside. Get On The Air.</footer>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="kpc-space-weather.html">RADIO CONDITIONS →</a><a href="join.html">JOIN KPC →</a></div></footer>
 
 <script>
 const MEMBERS=['KZ4CP','N4BDW','KQ4HZK','K4ZSR'];   // add club calls here
