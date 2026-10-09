@@ -9,9 +9,9 @@
  const sources={
   tears:{name:'Trail of Tears (NPS)',url:'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/TRTE_NHT/FeatureServer/0/query',info:'https://www.nps.gov/trte/planyourvisit/maps.htm',color:'#ef8a98',kind:'line'},
   lewis:{name:'Lewis & Clark (NPS)',url:'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Lewis_and_Clark_National_Historic_Trail_Congressionally_Designated_Route/FeatureServer/0/query',info:'https://www.nps.gov/lecl/planyourvisit/maps.htm',color:'#5bd5ec',kind:'line'},
-  pine:{name:'Pine Mountain Trail (Open)',url:rec+'1/query',info:'https://parks.ky.gov/parks/find-a-park/pine-mountain-state-scenic-trail-7826',color:'#ffc36b',kind:'line'},
-  dawkins:{name:'Dawkins Line Rail Trail',url:rec+'3/query',info:'https://parks.ky.gov/parks/find-a-park/dawkins-line-rail-trail-7831',color:'#c7a5ff',kind:'line',filter:/dawkins/i},
-  sheltowee:{name:'Sheltowee Trace (candidate segments)',url:rec+'11/query',info:'https://www.fs.usda.gov/dbnf',color:'#6cdb97',kind:'line',filter:/sheltowee/i},
+  pine:{name:'Pine Mountain State Scenic Trail',file:'ky-pine-mountain.geojson',url:rec+'1/query',info:'https://parks.ky.gov/parks/find-a-park/pine-mountain-state-scenic-trail-7826',color:'#ffc36b',kind:'line'},
+  dawkins:{name:'Dawkins Line Rail Trail',file:'ky-dawkins.geojson',url:rec+'3/query',info:'https://parks.ky.gov/parks/find-a-park/dawkins-line-rail-trail-7831',color:'#c7a5ff',kind:'line',filter:/dawkins/i},
+  sheltowee:{name:'Sheltowee Trace',file:'ky-sheltowee.geojson',url:rec+'11/query',info:'https://www.fs.usda.gov/dbnf',color:'#6cdb97',kind:'line',filter:/sheltowee/i},
   stateparks:{name:'Kentucky State Park Trails',url:parks+'9/query',info:'https://parks.ky.gov/',color:'#e2c76b',kind:'line'},
   trailheads:{name:'Kentucky State Park Trailheads',url:parks+'0/query',info:'https://parks.ky.gov/',color:'#f5b45d',kind:'point'},
   camping:{name:'Kentucky State Park Campgrounds',url:parks+'6/query',info:'https://parks.ky.gov/',color:'#a5de9b',kind:'point'}
@@ -43,6 +43,8 @@
  let guide=null;const guideReady=fetch('kpc-ky-data.json').then(r=>r.ok?r.json():null).then(j=>{if(j)guide=new Map(j.parks.map(p=>[p.c,p]))}).catch(()=>{});
  const potaPts=()=>(typeof data!=='undefined'&&Array.isArray(data))?data.filter(d=>d[0]==='POTA'&&Number.isFinite(d[3])&&Number.isFinite(d[4])):[];
  const norm=s=>String(s||'').toLowerCase().replace(/wildlife management area|state nature preserve|state natural area|state resort park|state historic site|state park|national forest|wma|snp|sna|the |[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+
+ const ALIAS={"Big South Fork National River and Recreation Area": ["US-0686"], "Bad Branch Wild River": ["US-10112"], "Big South Fork Wild River": ["US-10107"], "Cumberland River Wild River": ["US-10103"], "Green River Wild River": ["US-10105"], "Rock Creek Wild River": ["US-10111"], "Red River Wild River": ["US-10104"], "Rockcastle River Wild River": ["US-10106"], "Little South Fork Wild River": ["US-7962"]};
  /* POTA refs that belong to a boundary: reference point inside it, or a close name match */
  function matchPota(f){const g=f.geometry,b=f._bb||(f._bb=bbox(g)),nm=norm(getName(f)),out=new Map();
   for(const d of potaPts()){const[lat,lon]=[d[3],d[4]];
@@ -50,6 +52,7 @@
    const inBox=lon>=b[0]-.02&&lon<=b[2]+.02&&lat>=b[1]-.02&&lat<=b[3]+.02&&inside(lat,lon,g);
    if(inBox)out.set(d[1],{d,why:nmOk?'name match, reference point inside':'reference point inside'});
    else if(nm.length>4&&lon>=b[0]-.5&&lon<=b[2]+.5&&lat>=b[1]-.5&&lat<=b[3]+.5){const dn=norm(d[2]);if(dn&&!out.has(d[1])){const sh=dn.length<nm.length?dn:nm,lg=dn.length<nm.length?nm:dn;if(dn===nm||(sh.length>6&&lg.startsWith(sh)&&sh.length/lg.length>=.7))out.set(d[1],{d,why:'name match'})}}}
+  for(const r of (ALIAS[getName(f)]||[])){if(!out.has(r)){const d=potaPts().find(x=>x[1]===r);if(d)out.set(r,{d,why:'name match (KPC guide link)'})}}
   const v=[...out.values()],isN=x=>x.why.startsWith('name');return v.filter(isN).concat(v.filter(x=>!isN(x)))}
  function refLinks(m){const more=m.length>6?m.length-6:0;m=m.slice(0,6);return m.map(({d,why})=>{const gp=guide&&guide.get(d[1]);return `<div style="margin-top:6px"><a href="https://pota.app/#/park/${encodeURIComponent(d[1])}" target="_blank" rel="noopener">${safe(d[1])}</a> ${safe(d[2])} <span style="color:#68635a;font-size:12px">(${why})</span>${gp&&gp.off?`<br><a href="${safe(gp.off)}" target="_blank" rel="noopener">Official map ↗</a>`:''}${gp&&gp.web&&gp.web!==gp.off?` · <a href="${safe(gp.web)}" target="_blank" rel="noopener">Website ↗</a>`:''}</div>`}).join('')+(more?`<div style="margin-top:6px;font-size:12px">…and ${more} more POTA references inside this boundary.</div>`:'')}
  function boundaryPopup(f,s){const nm=getName(f)||s.name,m=matchPota(f);
@@ -93,32 +96,47 @@
  /* ---------- trail drawing ---------- */
  async function query(s,bb){const p=new URLSearchParams({where:'1=1',geometry:bb,geometryType:'esriGeometryEnvelope',inSR:'4326',spatialRel:'esriSpatialRelIntersects',outFields:'*',returnGeometry:'true',outSR:'4326',f:'json'});
   const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),16000);try{const res=await fetch(s.url+'?'+p.toString(),{signal:ctrl.signal});if(!res.ok)throw Error('HTTP '+res.status);const j=await res.json();if(j.error)throw Error(j.error.message||'GIS service error');return j}finally{clearTimeout(timer)}}
- function popup(name,s){return `<strong>${safe(name||s.name)}</strong><br>Official government GIS layer; check source date, current access and agency maps.<br><a href="${s.info}" target="_blank" rel="noopener noreferrer">Official agency information ↗</a><br><b>Trail proximity only — not a POTA 2-fer.</b>`}
- function label(shape,name,s){const title=name||s.name;shape.bindTooltip(safe(title),{sticky:true,direction:'top',opacity:1,className:'kpc-gis-tooltip'});shape.bindPopup(popup(name,s));return shape}
+ const TREF={sheltowee:'US-11181',pine:'US-10102',dawkins:'US-1253'};
+ function popup(name,s,P){if(s.file){const k=Object.keys(sources).find(x=>sources[x]===s),ref=TREF[k];P=P||{};return `<strong>${safe(name||s.name)}</strong>${P.PLACE?`<br><span style="font-size:13px">${safe(P.PLACE)}</span>`:''}<br>POTA: <a href="https://pota.app/#/park/${ref}" target="_blank" rel="noopener">${ref}</a> ${safe(s.name)}<br><a href="${safe(P.URL||s.info)}" target="_blank" rel="noopener">Official trail info ↗</a><div style="margin-top:6px;font-size:12px">Official state GIS line. Possible 2-fers along this trail are listed under the trail checkboxes — confirm both boundaries on the official maps.</div>`}
+  return `<strong>${safe(name||s.name)}</strong><br>Official government GIS layer; check source date, current access and agency maps.<br><a href="${s.info}" target="_blank" rel="noopener noreferrer">Official agency information ↗</a><br><b>Trail proximity only — not a POTA 2-fer.</b>`}
+ function label(shape,name,s,P){const title=name||s.name;shape.bindTooltip(safe(title),{sticky:true,direction:'top',opacity:1,className:'kpc-gis-tooltip'});shape.bindPopup(popup(name,s,P));return shape}
  function matching(f,s){return !s.filter||s.filter.test(getName(f))}
  function draw(j,s){const layer=L.layerGroup(),lines=[];let n=0;for(const f of j.features||[]){if(!matching(f,s))continue;const g=f.geometry||{},name=getName(f);
    if(s.kind==='line'){for(const pts of flatten(g)){if(pts.length<2)continue;const ll=pts.map(c=>[c[1],c[0]]);
      const vis=L.polyline(ll,{color:s.color,weight:coarse?6:5,opacity:.95,interactive:false});
-     const hit=label(L.polyline(ll,{color:s.color,weight:coarse?24:16,opacity:0,interactive:true}),name,s); /* wide invisible tap target */
+     const hit=label(L.polyline(ll,{color:s.color,weight:coarse?24:16,opacity:0,interactive:true}),name,s,f.properties||f.attributes); /* wide invisible tap target */
      hit.on('mouseover',()=>vis.setStyle({weight:8}));hit.on('mouseout',()=>vis.setStyle({weight:coarse?6:5}));
      vis.addTo(layer);hit.addTo(layer);lines.push(pts);n++}}
    else if(s.kind==='point'){const pt=g.x!==undefined?[g.y,g.x]:g.type==='Point'?[g.coordinates[1],g.coordinates[0]]:null;if(pt){label(L.circleMarker(pt,{radius:coarse?9:7,color:'#111',weight:2,fillColor:s.color,fillOpacity:.95}),name,s).addTo(layer);n++}}}
   return{layer,lines,n}}
  function candidates(){const host=$('gis-candidates');if(!host)return;host.replaceChildren();const keys=Object.keys(routes).filter(k=>sources[k].kind==='line'&&$('gis-'+k)?.checked);if(!keys.length){return}
+  for(const k of keys){const tp=trailParks&&trailParks[{sheltowee:'sheltowee',pine:'pine-mountain',dawkins:'dawkins'}[k]];if(!tp)continue;
+   const h=document.createElement('p');h.innerHTML=`<b>${safe(tp.name)} (${safe(tp.ref)}) passes through these official boundaries:</b>`;host.append(h);
+   for(const r of tp.parks){if(r.boundary===tp.name)continue;const p=document.createElement('p');p.style.margin='3px 0 3px 10px';
+    p.innerHTML=`${r.refs.length?r.refs.map(x=>`<a href="https://pota.app/#/park/${encodeURIComponent(x)}" target="_blank" rel="noopener">${safe(x)}</a>`).join(', ')+' — ':''}${safe(r.boundary)} <span style="opacity:.75">(${safe(r.layer)}, about ${r.miles} mi of trail inside)</span>${r.refs.length?' · <b>possible 2-fer</b>':' · no POTA reference'}`;host.append(p)}
+   const n=document.createElement('p');n.style.fontSize='.8rem';n.textContent='Measured from official state GIS lines. A possible 2-fer means standing on the trail inside both boundaries — confirm both on the official maps before counting it.';host.append(n)}
+  if(keys.every(k=>sources[k].file&&fileTrail[k]))return;
   const ds=potaPts();if(!ds.length){host.textContent='Activation reference database not ready.';return}
   const b=map.getBounds(),results=[];
   for(const d of ds){if(!b.contains([d[3],d[4]]))continue;for(const k of keys){let best=Infinity;for(const pts of routes[k]){if(pts.length<2)continue;best=Math.min(best,segDistKm(d[3],d[4],pts))}if(best<=2)results.push({d,k,best})}}
   results.sort((a,b)=>a.best-b.best);const header=document.createElement('p');header.textContent=`${results.length} POTA-to-trail proximity matches (within 2 km). None verified; a route crossing a park does not itself qualify as two POTA references.`;host.append(header);
   for(const r of results.slice(0,70)){const p=document.createElement('p'),a=document.createElement('a');a.href='https://pota.app/#/park/'+encodeURIComponent(r.d[1]);a.target='_blank';a.rel='noopener noreferrer';a.textContent=r.d[1]+' — '+r.d[2];p.append(a,document.createTextNode(` · ${r.best.toFixed(2)} km from ${sources[r.k].name} · Proximity only; not a POTA 2-fer. Verify boundaries, access and rules.`));host.append(p)}}
  let busy=false,again=false;
+ const fileTrail={};let trailParks=null;
+ async function bundled(k){const s=sources[k];if(fileTrail[k])return fileTrail[k];try{const r=await fetch(s.file,{cache:'force-cache'});if(!r.ok)throw 0;const j=await r.json();if(!Array.isArray(j.features))throw 0;
+   if(!trailParks){try{const t=await fetch('ky-trail-parks.json');trailParks=t.ok?await t.json():{}}catch(_){trailParks={}}}
+   const render=draw(j,s);fileTrail[k]=render;return render}catch(_){return null}}
  async function load(){if(typeof map==='undefined'||!map){$('gis-status').textContent='Map unavailable.';return}
   const active=Object.keys(sources).filter(k=>$('gis-'+k)?.checked);for(const k of Object.keys(overlays)){if(!active.includes(k)){map.removeLayer(overlays[k]);delete overlays[k];delete routes[k]}}
   if(!active.length){$('gis-status').textContent='Choose a trail layer — trails load automatically for the area on the map.';candidates();return}
-  if(map.getZoom()<8){$('gis-status').textContent='Zoom in a little more (level 8+) and the selected trails will load automatically.';return}
+  const reportsB=[];for(const k of active.filter(k=>sources[k].file)){const r=await bundled(k);if(r){if(!map.hasLayer(r.layer))r.layer.addTo(map);overlays[k]=r.layer;routes[k]=r.lines;reportsB.push(`${sources[k].name}: full trail`)}}
+  const liveKeys=active.filter(k=>!(sources[k].file&&fileTrail[k]));
+  if(!liveKeys.length){$('gis-status').textContent=reportsB.join(' | ')+' · Official state GIS lines — verify on the agency map.';candidates();return}
+  if(map.getZoom()<8){$('gis-status').textContent=(reportsB.length?reportsB.join(' | ')+' · ':'')+'Zoom in a little more (level 8+) to load the other selected trails.';candidates();return}
   if(busy){again=true;return}busy=true;const b=map.getBounds(),bb=[b.getWest(),b.getSouth(),b.getEast(),b.getNorth()].join(',');const reports=[];
-  try{for(const k of active){const s=sources[k];$('gis-status').textContent='Loading '+s.name+'…';try{const j=await query(s,bb),render=draw(j,s);if(overlays[k])map.removeLayer(overlays[k]);render.layer.addTo(map);overlays[k]=render.layer;routes[k]=render.lines;reports.push(`${s.name}: ${render.n}${j.exceededTransferLimit?' (partial; zoom in)':''}`)}catch(e){reports.push(`${s.name}: unavailable (${e.message})`)}}}
+  try{for(const k of liveKeys){const s=sources[k];$('gis-status').textContent='Loading '+s.name+'…';try{const j=await query(s,bb),render=draw(j,s);if(overlays[k])map.removeLayer(overlays[k]);render.layer.addTo(map);overlays[k]=render.layer;routes[k]=render.lines;reports.push(`${s.name}: ${render.n}${j.exceededTransferLimit?' (partial; zoom in)':''}`)}catch(e){reports.push(`${s.name}: unavailable (${e.message})`)}}}
   finally{busy=false}
-  $('gis-status').textContent=reports.join(' | ')+' · Updates as you move the map. Government GIS may change; verify before travel.';candidates();if(again){again=false;load()}}
+  $('gis-status').textContent=reportsB.concat(reports).join(' | ')+' · Updates as you move the map. Government GIS may change; verify before travel.';candidates();if(again){again=false;load()}}
  let deb;const auto=()=>{clearTimeout(deb);deb=setTimeout(load,650)};
  if(typeof map!=='undefined'&&map){map.on('moveend',()=>{if(Object.keys(sources).some(k=>$('gis-'+k)?.checked))auto()})}
  Object.keys(sources).forEach(k=>$('gis-'+k)?.addEventListener('change',auto));
