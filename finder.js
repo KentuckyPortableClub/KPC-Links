@@ -21,8 +21,8 @@ if(window.L){
   tileNotice.setAttribute('aria-live','polite');
   tileNotice.style.cssText='font-size:13px;color:#f0c96b;margin:7px 0';
   document.getElementById('map').insertAdjacentElement('afterend',tileNotice);
-  const baseTiles=L.tileLayer('https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
-    attribution:'&copy; OpenStreetMap contributors &copy; CARTO',
+  const baseTiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'&copy; OpenStreetMap contributors',
     maxZoom:19, tileSize:256, zoomOffset:0, updateWhenIdle:true
   });
   let tileErrors=0;
