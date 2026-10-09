@@ -1,0 +1,45 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kentucky Portable Club//KPC Events//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:kpc-syp-20270116@kentuckyportableclub.github.io
+DTSTAMP:20261009T120000Z
+DTSTART;VALUE=DATE:20270116
+DTEND;VALUE=DATE:20270118
+SUMMARY:POTA Support Your Parks Weekend (January 2027)
+DESCRIPTION:Parks on the Air Support Your Parks weekend. Get out and acti
+ vate a Kentucky park! Details: https://kentuckyportableclub.github.io/KPC
+ -Links/events.html
+END:VEVENT
+BEGIN:VEVENT
+UID:kpc-syp-20270417@kentuckyportableclub.github.io
+DTSTAMP:20261009T120000Z
+DTSTART;VALUE=DATE:20270417
+DTEND;VALUE=DATE:20270419
+SUMMARY:POTA Support Your Parks Weekend (April 2027)
+DESCRIPTION:Parks on the Air Support Your Parks weekend. Get out and acti
+ vate a Kentucky park! Details: https://kentuckyportableclub.github.io/KPC
+ -Links/events.html
+END:VEVENT
+BEGIN:VEVENT
+UID:kpc-syp-20270717@kentuckyportableclub.github.io
+DTSTAMP:20261009T120000Z
+DTSTART;VALUE=DATE:20270717
+DTEND;VALUE=DATE:20270719
+SUMMARY:POTA Support Your Parks Weekend (July 2027)
+DESCRIPTION:Parks on the Air Support Your Parks weekend. Get out and acti
+ vate a Kentucky park! Details: https://kentuckyportableclub.github.io/KPC
+ -Links/events.html
+END:VEVENT
+BEGIN:VEVENT
+UID:kpc-syp-20271016@kentuckyportableclub.github.io
+DTSTAMP:20261009T120000Z
+DTSTART;VALUE=DATE:20271016
+DTEND;VALUE=DATE:20271018
+SUMMARY:POTA Support Your Parks Weekend (October 2027)
+DESCRIPTION:Parks on the Air Support Your Parks weekend. Get out and acti
+ vate a Kentucky park! Details: https://kentuckyportableclub.github.io/KPC
+ -Links/events.html
+END:VEVENT
+END:VCALENDAR
