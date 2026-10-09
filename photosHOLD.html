@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>News &amp; Field Tips | KPC</title>
+<title>Photos | KPC</title>
 <!-- KPC icons & share preview -->
 <link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
 <meta property="og:site_name" content="Kentucky Portable Club">
 <meta property="og:type" content="website">
-<meta property="og:title" content="News &amp; Field Tips | KPC">
-<meta property="og:description" content="Kentucky Portable Club news, activation reports and field tips — coming soon. Read the KPC guides available now.">
-<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/news.html">
+<meta property="og:title" content="Photos | KPC">
+<meta property="og:description" content="Photos from Kentucky Portable Club campouts, POTA activations and get-togethers.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/photos.html">
 <meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /KPC icons -->
-<meta name="description" content="Kentucky Portable Club news, activation reports and field tips — coming soon. Read the KPC guides available now.">
+<meta name="description" content="Photos from Kentucky Portable Club campouts, POTA activations and get-togethers.">
 <style>
 :root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
@@ -104,19 +104,34 @@ body.field .page-jump-nav{display:none!important}
 
 </style>
 <style>
-.hero{min-height:420px;background:linear-gradient(90deg,rgba(7,7,7,.86) 0%,rgba(7,7,7,.58) 42%,rgba(7,7,7,.12) 72%,rgba(7,7,7,0) 100%),url("news.jpg") center 60%/cover no-repeat #070707}
-@media(max-width:760px){.hero{background:linear-gradient(180deg,rgba(7,7,7,.3) 0%,rgba(7,7,7,.66) 40%,rgba(7,7,7,.78) 75%,rgba(7,7,7,.45) 100%),url("news-mobile.jpg") center 70%/cover no-repeat #070707}}
-.nw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.nw-card{position:relative;display:flex;flex-direction:column;padding:28px;background:#fff;border-left:5px solid var(--gold);box-shadow:0 10px 24px rgba(0,0,0,.07)}
-.dark .nw-card{background:#141414;color:#fff;border-left-color:var(--gold)}
-.nw-tag{align-self:flex-start;padding:4px 10px;border-radius:999px;background:var(--green);color:#fff;font-size:10px;font-weight:900;letter-spacing:1.5px}
-.nw-tag.soon{background:#e9dfc8;color:#5b5446}.dark .nw-tag.soon{background:#2a2a2a;color:#e5c87b}
-.nw-card h3{margin:12px 0 8px;font-family:Georgia,"Times New Roman",serif;font-size:24px;line-height:1.15}
-.nw-card p{margin:0 0 16px;color:var(--muted);font-size:15px;flex:1}.dark .nw-card p{color:#bcb8ae}
-.nw-card a.go{color:var(--green);font-weight:900;font-size:12px;letter-spacing:1px}.dark .nw-card a.go{color:var(--gold-light)}
-.nw-card .muted{font-size:12px;font-weight:900;letter-spacing:1px;color:#8a8478}
-.nw-share{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px}
-@media(max-width:900px){.nw-grid{grid-template-columns:1fr}}
+.hero{min-height:420px;background:linear-gradient(90deg,rgba(7,7,7,.84) 0%,rgba(7,7,7,.55) 42%,rgba(7,7,7,.1) 70%,rgba(7,7,7,0) 100%),url("photos.jpg") center/cover no-repeat #070707}
+@media(max-width:760px){.hero{background:linear-gradient(180deg,rgba(7,7,7,.3) 0%,rgba(7,7,7,.68) 40%,rgba(7,7,7,.78) 75%,rgba(7,7,7,.45) 100%),url("photos-mobile.jpg") center/cover no-repeat #070707}}
+.ph-albums{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ph-album{display:block;background:#fff;box-shadow:0 10px 24px rgba(0,0,0,.08);border-radius:8px;overflow:hidden;cursor:pointer;border:0;padding:0;text-align:left;font:inherit;color:inherit;transition:.2s}
+.ph-album:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.14)}
+.ph-album img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#ddd}
+.ph-album div{padding:16px 18px 18px}.ph-album span{font-size:11px;font-weight:900;letter-spacing:2px;color:var(--green)}
+.ph-album h3{margin:6px 0 4px;font-family:Georgia,serif;font-size:22px}.ph-album p{margin:0;color:var(--muted);font-size:14px}
+.ph-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.ph-head h2{margin:4px 0;font-family:Georgia,serif;font-size:clamp(28px,4vw,40px)}.ph-head p{margin:0;color:var(--muted);max-width:640px}
+.ph-head .btns{display:flex;gap:10px;flex-wrap:wrap}.ph-head .btn{margin:0}
+.ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.ph-grid button{position:relative;display:block;padding:0;border:0;border-radius:6px;overflow:hidden;cursor:zoom-in;background:#d8cfbf;aspect-ratio:1}
+.ph-grid img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.ph-grid button:hover img{transform:scale(1.04)}
+.ph-grid button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.ph-note{margin-top:18px;font-size:14px;color:var(--muted)}
+.lb{position:fixed;inset:0;z-index:5000;background:rgba(5,5,5,.96);display:none;flex-direction:column;color:#fff;touch-action:pan-y}
+.lb.open{display:flex}
+.lb-top{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;font:700 14px Arial,sans-serif;color:#cfcabf}
+.lb-top button,.lb-nav{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;width:46px;height:46px;font-size:22px;cursor:pointer;display:grid;place-items:center}
+.lb-stage{flex:1;position:relative;display:flex;align-items:center;justify-content:center;min-height:0;padding:0 64px}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none;border-radius:4px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%)}.lb-prev{left:10px}.lb-next{right:10px}
+.lb-cap{min-height:52px;padding:12px 18px 18px;text-align:center;font:15px/1.4 Arial,sans-serif;color:#eee9dd}
+.lb-load{position:absolute;inset:0;display:grid;place-items:center;color:#9b978e;font:13px Arial;pointer-events:none}
+@media(max-width:900px){.ph-albums{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.ph-albums{grid-template-columns:1fr}.ph-grid{grid-template-columns:repeat(3,1fr);gap:4px}.ph-grid button{border-radius:3px}.lb-stage{padding:0}.lb-nav{display:none}}
 </style>
 <style id="kpc-nav-fit">
 /* KPC shared navbar fit: 10 links. Compact on mid-size screens, menu button below 1180px. */
@@ -128,20 +143,53 @@ body.field .page-jump-nav{display:none!important}
 <header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="toolbox.html">Tool Box</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="members.html">Members</a><a href="contact.html">Contact</a></nav></div></header>
 
 <main>
-<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB</p><h1>NEWS &amp;<br><span>FIELD TIPS</span></h1><p class="hero-copy">Club news, activation reports and practical tips from Kentucky portable operators. We’re just getting started — here’s what’s coming.</p></div></section>
-<nav class="page-jump-nav" aria-label="Quick page links"><a href="#news">CLUB NEWS</a><a href="#reports">ACTIVATION REPORTS</a><a href="#tips">FIELD TIPS</a><a href="#read-now">READ NOW</a><a href="#share">SHARE YOURS</a></nav>
-<section class="section features" id="news"><div class="section-inner"><div class="section-heading"><div class="kicker">CLUB NEWS</div><h2>What’s New With KPC</h2><p>Announcements, campout updates and club happenings will be posted here.</p></div><div class="nw-grid"><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Club Announcements</h3><p>News from the club — new members, new tools, new events and anything worth knowing.</p><span class="muted">COMING SOON</span></article><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Campout Updates</h3><p>Plans, signups and reminders for the 2027 KYPOTA Campout at Taylorsville Lake.</p><span class="muted">COMING SOON</span></article><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Park Of The Month</h3><p>A Kentucky park the club is putting on the air, with tips for activating it.</p><span class="muted">COMING SOON</span></article></div></div></section>
-<section class="section dark" id="reports"><div class="section-inner"><div class="section-heading"><div class="kicker">ACTIVATION REPORTS</div><h2>From The Field</h2><p>Short write-ups from KPC operators: where they went, what worked and what they’d do differently.</p></div><div class="nw-grid"><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Activation Reports</h3><p>Park, gear, bands, contacts and photos from real Kentucky activations.</p><span class="muted">COMING SOON</span></article><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Rare Park Runs</h3><p>Trips to the Kentucky parks that hunters need most.</p><span class="muted">COMING SOON</span></article><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Support Your Parks Recaps</h3><p>How KPC did on each Support Your Parks weekend.</p><span class="muted">COMING SOON</span></article></div></div></section>
-<section class="section features" id="tips"><div class="section-inner"><div class="section-heading"><div class="kicker">FIELD TIPS</div><h2>Learn From The Founders</h2><p>Field-tested advice for portable radio, POTA and camping in Kentucky.</p></div><div class="nw-grid"><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Founders’ Lessons Learned</h3><p>What the KPC founders learned the hard way during the club’s early field operations.</p><span class="muted">COMING SOON</span></article><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Founding Fathers’ Tips</h3><p>Short, field-tested tips from the KPC founding group.</p><span class="muted">COMING SOON</span></article><article class="nw-card"><span class="nw-tag">AVAILABLE NOW</span><h3>Founders’ Favorite Apps &amp; Tools</h3><p>The apps and tools the founders actually use for radio, POTA, mapping and the outdoors.</p><a class="go" href="KPC_Founders_Favorites_Apps_and_Tools.pdf">OPEN PDF →</a></article></div></div></section>
-<section class="section dark" id="read-now"><div class="section-inner"><div class="section-heading"><div class="kicker">READ NOW</div><h2>Already Posted</h2><p>Guides you can read today.</p></div><div class="nw-grid"><article class="nw-card"><span class="nw-tag">KPC GUIDE</span><h3>New To POTA? Start Here</h3><p>Your first POTA hunt and your first activation in Kentucky, step by step.</p><a class="go" href="kpc-new-to-pota.html">READ THE GUIDE →</a></article><article class="nw-card"><span class="nw-tag">KPC GUIDE</span><h3>Rules You Should Know</h3><p>The FCC, POTA and Kentucky land-manager rules to know before you go.</p><a class="go" href="kpc-rules-you-should-know.html">READ THE RULES →</a></article><article class="nw-card"><span class="nw-tag">KPC TOOLS</span><h3>Kentucky Tool Box</h3><p>Park finder, live spots, band conditions, trip planner and field calculators.</p><a class="go" href="toolbox.html">OPEN TOOL BOX →</a></article></div></div></section>
-<section class="section warning" id="share"><div class="section-inner"><div class="warning-box"><h3>Have A Story Or A Tip?</h3><p>Did an activation, tried new gear, or learned something the hard way? Send it to KPC — a few sentences and a photo is plenty. We may feature it here when News &amp; Field Tips launches.</p><div class="btn-row"><a class="btn" href="contact.html">CONTACT KPC →</a><a class="btn" href="mailto:kentuckyportableclub@gmail.com?subject=KPC%20News%20%26%20Tips">EMAIL YOUR STORY →</a></div></div></div></section>
-<section class="final"><h2>Get Outside. Get On The Air.</h2><p>KENTUCKY PORTABLE CLUB • EST. 2026</p><a class="btn" href="toolbox.html">OPEN THE KY TOOL BOX →</a></section>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB</p><h1>FROM<br><span>THE FIELD</span></h1><p class="hero-copy">Photos from KPC campouts, activations and get-togethers. Tap any photo to see it full size.</p></div></section>
+<nav class="page-jump-nav" aria-label="Quick page links"><a href="#albums">ALBUMS</a><a href="#album">PHOTOS</a><a href="#share">SHARE YOURS</a></nav>
+<section class="section features" id="albums"><div class="section-inner"><div class="section-heading"><div class="kicker">PHOTO ALBUMS</div><h2>KPC Photo Albums</h2><p>Newest first. More albums are added after each event.</p></div><div class="ph-albums" id="phAlbums"><p>Loading albums…</p></div></div></section>
+<section class="section" id="album" style="background:var(--cream)"><div class="section-inner"><div class="ph-head"><div><div class="kicker" id="phKicker"></div><h2 id="phTitle">Photos</h2><p id="phText"></p></div><div class="btns" id="phBtns"></div></div><div class="ph-grid" id="phGrid"></div><p class="ph-note">Photos are shared by KPC members. If you’re in a photo and would like it removed, <a href="contact.html" style="color:var(--green);font-weight:800">contact KPC</a> and we’ll take it down.</p></div></section>
+<section class="section warning" id="share"><div class="section-inner"><div class="warning-box"><h3>Got Photos From A KPC Event?</h3><p>Send them in — activations, campouts, gear setups, sunsets over the antenna. Phone photos are perfect. Please only send photos of people who are OK with being on the website.</p><div class="btn-row"><a class="btn" href="mailto:kentuckyportableclub@gmail.com?subject=KPC%20Photos">EMAIL YOUR PHOTOS →</a><a class="btn" href="contact.html">CONTACT KPC →</a></div></div></div></section>
+<section class="final"><h2>Get Outside. Get On The Air.</h2><p>KENTUCKY PORTABLE CLUB • EST. 2026</p><a class="btn" href="events.html">SEE KPC EVENTS →</a></section>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer"><div class="lb-top"><span id="lbCount"></span><button type="button" id="lbClose" aria-label="Close">✕</button></div><div class="lb-stage" id="lbStage"><div class="lb-load" id="lbLoad">Loading…</div><img id="lbImg" alt=""><button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">‹</button><button type="button" class="lb-nav lb-next" id="lbNext" aria-label="Next photo">›</button></div><div class="lb-cap" id="lbCap"></div></div>
 </main>
-<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="toolbox.html">TOOL BOX →</a><a href="join.html">JOIN KPC →</a></div></footer>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="events.html">VIEW EVENTS →</a><a href="news.html">NEWS &amp; TIPS →</a><a href="join.html">JOIN KPC →</a></div></footer>
 <script>
 const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav-links');
 toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open))});
 nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false')}));
 
+</script>
+<script>
+(function(){
+const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let D=null,A=null,i=0,lastFocus=null;
+const src=(a,p,t)=>`photos/${a.id}/${t?'t':''}${p.f}`;
+function showAlbum(id,scroll){A=D.albums.find(a=>a.id===id)||D.albums[0];
+ $('phKicker').textContent=[A.date,A.place].filter(Boolean).join(' • ').toUpperCase();$('phTitle').textContent=A.title;$('phText').textContent=A.text||'';
+ $('phBtns').innerHTML=`<button class="btn" type="button" id="phPlay">VIEW ALL ${A.photos.length} PHOTOS →</button>`+(A.pdf?`<a class="btn" style="background:transparent;border:1px solid #777;color:#171717" href="${esc(A.pdf)}" target="_blank" rel="noopener">PHOTO ARCHIVE PDF ↗</a>`:'');
+ $('phPlay').onclick=()=>open(0);
+ $('phGrid').innerHTML=A.photos.map((p,k)=>`<button type="button" data-k="${k}" aria-label="Open photo ${k+1}${p.cap?': '+esc(p.cap):''}"><img src="${src(A,p,1)}" alt="${esc(p.cap||A.title+' photo '+(k+1))}" loading="lazy" decoding="async" width="420" height="420"></button>`).join('');
+ [...document.querySelectorAll('.ph-album')].forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.id===A.id)));
+ try{history.replaceState(null,'','#'+A.id)}catch(_){}
+ if(scroll)$('album').scrollIntoView({behavior:'smooth'})}
+$('phGrid').addEventListener('click',e=>{const b=e.target.closest('button[data-k]');if(b)open(+b.dataset.k)});
+function draw(){const p=A.photos[i];$('lbCount').textContent=`${A.title} • ${i+1} of ${A.photos.length}`;$('lbCap').textContent=p.cap||'';
+ const img=$('lbImg');$('lbLoad').style.display='grid';img.style.opacity=.25;img.src=src(A,p,1);
+ const full=new Image();full.onload=()=>{if(A.photos[i]===p){img.src=full.src;img.style.opacity=1;$('lbLoad').style.display='none'}};full.src=src(A,p);
+ img.alt=p.cap||`${A.title} photo ${i+1}`;
+ [i+1,i-1].forEach(k=>{const q=A.photos[(k+A.photos.length)%A.photos.length];if(q){const x=new Image();x.src=src(A,q)}})}
+function open(k){lastFocus=document.activeElement;i=k;$('lb').classList.add('open');document.body.style.overflow='hidden';draw();$('lbClose').focus()}
+function close(){$('lb').classList.remove('open');document.body.style.overflow='';if(lastFocus)lastFocus.focus()}
+const go=d=>{i=(i+d+A.photos.length)%A.photos.length;draw()};
+$('lbClose').onclick=close;$('lbPrev').onclick=()=>go(-1);$('lbNext').onclick=()=>go(1);
+$('lbStage').addEventListener('click',e=>{if(e.target.id==='lbStage')close()});
+document.addEventListener('keydown',e=>{if(!$('lb').classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowRight')go(1);else if(e.key==='ArrowLeft')go(-1);else if(e.key==='Tab'){e.preventDefault();$('lbClose').focus()}});
+let sx=null,sy=null;$('lbStage').addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+$('lbStage').addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))go(dx<0?1:-1);else if(dy>90)close();sx=null},{passive:true});
+fetch('kpc-photos.json').then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{D=d;
+ $('phAlbums').innerHTML=D.albums.map(a=>`<button type="button" class="ph-album" data-id="${esc(a.id)}"><img src="photos/${esc(a.id)}/t${esc(a.cover||a.photos[0].f)}" alt="" loading="lazy"><div><span>${esc([a.date,a.place].filter(Boolean).join(' • ').toUpperCase())}</span><h3>${esc(a.title)}</h3><p>${a.photos.length} photos</p></div></button>`).join('');
+ $('phAlbums').addEventListener('click',e=>{const b=e.target.closest('.ph-album');if(b)showAlbum(b.dataset.id,true)});
+ const h=location.hash.slice(1);showAlbum(D.albums.some(a=>a.id===h)?h:D.albums[0].id,false);
+}).catch(()=>{$('phAlbums').innerHTML='<p>Photos could not load right now. Please try again later.</p>'});
+})();
 </script>
 </body></html>
