@@ -39,6 +39,7 @@
 <label class="field" style="flex:1 1 320px">PARK (NAME OR US-####)<input id="q" list="parks" placeholder="Taylorsville Lake or US-1271"><datalist id="parks"></datalist></label>
 <label class="field" style="flex:0 1 160px">YOUR CALLSIGN (OPTIONAL)<input id="call" autocapitalize="characters" spellcheck="false"></label>
 <button class="btn" type="submit" style="align-self:flex-end">MAKE SHEET</button>
+<button class="btn alt" type="button" id="clearSheet" style="align-self:flex-end">✕ CLEAR</button>
 </form>
 <div class="controls" style="margin-top:12px;align-items:center">
 <label style="display:flex;gap:8px;align-items:center;font-weight:700"><input type="checkbox" id="withLog" checked> Include a log sheet (page 2)</label>
@@ -116,6 +117,7 @@ function make(){const p=find($('q').value);if(!p){$('msg').textContent='Park not
  <div class="ps-foot"><span>Heavy line after #10 = valid activation. Upload your log to pota.app → My Log Uploads.</span><span>${p.c} • ${esc(p.n)}</span></div></div>`;
  $('sheet').innerHTML=page1+($('withLog').checked?page2:'');
  qr($('qr1'),off);qr($('qr2'),potaU);qr($('qr3'),dirU);$('printBtn').disabled=false}
+$('clearSheet').onclick=()=>{cur=null;$('q').value='';$('sheet').innerHTML='';$('printBtn').disabled=true;$('msg').textContent='';try{history.replaceState(null,'',location.pathname)}catch(e){}$('q').focus()};
 $('f').onsubmit=e=>{e.preventDefault();make()};$('withLog').onchange=()=>cur&&make();$('printBtn').onclick=()=>window.print();
 init();
 </script>

@@ -89,3 +89,5 @@ html{scroll-behavior:smooth}
 
 .entry .meta a{color:#f0c96b;text-decoration:underline;text-underline-offset:2px}
 #map .kpc-pop .lk{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:6px}#map .kpc-pop .lk a{font-weight:700}
+
+.kynotice{margin:16px 0 0;padding:12px 16px;border:1px solid #98783b;border-left:5px solid #d5a63a;background:#1c1b16;color:#f0e6c8;font-size:14px;line-height:1.5}.kynotice strong{color:#f0c96b}.kynotice button{margin:6px 0 0 6px;padding:7px 13px;font-size:13px;white-space:nowrap}
