@@ -28,3 +28,13 @@
 #map .leaflet-tile,#map .leaflet-marker-icon,#map .leaflet-marker-shadow{max-width:none!important;max-height:none!important}
 #map .leaflet-tile{position:absolute;width:256px;height:256px}
 @media(max-width:850px){.content>.mapwrap{min-width:0}}
+
+/* Restore Leaflet's pane stacking after the map overflow containment fix. */
+#map .leaflet-map-pane{z-index:auto}
+#map .leaflet-tile-pane{z-index:200}
+#map .leaflet-overlay-pane{z-index:400}
+#map .leaflet-shadow-pane{z-index:500}
+#map .leaflet-marker-pane{z-index:600}
+#map .leaflet-tooltip-pane{z-index:650}
+#map .leaflet-popup-pane{z-index:700}
+#map .kpc-map-pin{background:transparent!important;border:0!important;overflow:visible!important}
