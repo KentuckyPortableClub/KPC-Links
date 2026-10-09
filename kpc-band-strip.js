@@ -12,6 +12,7 @@ const css=document.createElement('style');css.textContent=`
 .kbs{background:#0d2419;border-bottom:1px solid rgba(213,166,58,.45);color:#fff;font-family:Arial,Helvetica,sans-serif}
 .kbs-in{width:min(1200px,100%);margin:auto;padding:12px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .kbs-t{font-size:12px;font-weight:900;letter-spacing:3px;color:#f0c96b;white-space:nowrap}
+.kbs-t small{display:block;margin-top:5px;font-size:11px;font-weight:400;letter-spacing:.2px;color:#cfdad2;white-space:normal;max-width:210px;line-height:1.35}
 .kbs-bands{display:flex;gap:6px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;padding:2px 0}.kbs-bands::-webkit-scrollbar{display:none}
 .kbs-b{flex:0 0 auto;min-width:62px;text-align:center;border:1px solid rgba(255,255,255,.22);border-radius:8px;padding:5px 8px 6px;background:rgba(255,255,255,.04)}
 .kbs-b b{display:block;font-size:13px;line-height:1.2}.kbs-b span{display:block;font-size:11px;color:#cfdad2}
@@ -20,10 +21,10 @@ const css=document.createElement('style');css.textContent=`
 .kbs-x{font-size:13px;color:#e9eee9}.kbs-x b{color:#fff}
 .kbs-a{color:#f0c96b;font-weight:800;font-size:12px;letter-spacing:.6px;text-decoration:none;border:1px solid #80632e;border-radius:6px;padding:8px 11px;white-space:nowrap}
 .kbs-a:hover{background:#3c321a}
-@media(max-width:640px){.kbs-in{padding:10px 16px}.kbs-t{width:100%}.kbs-a{width:100%;text-align:center}}`;
+@media(max-width:640px){.kbs-in{padding:10px 16px}.kbs-t{width:100%}.kbs-t small{max-width:none}.kbs-a{width:100%;text-align:center}}`;
 document.head.appendChild(css);
 mount.className='kbs';mount.setAttribute('aria-label','Current band conditions');
-mount.innerHTML='<div class="kbs-in"><span class="kbs-t">BAND CONDITIONS NOW</span><div class="kbs-bands" id="kbs-bands"><span class="kbs-x">Checking real signal reports…</span></div><span class="kbs-x" id="kbs-x"></span><a class="kbs-a" href="kpc-space-weather.html#band-activity">FULL BAND MAP →</a></div>';
+mount.innerHTML='<div class="kbs-in"><span class="kbs-t">BAND CONDITIONS NOW<small>Signal reports heard in the last hour, to or from Kentucky (WSPR). Bigger number = busier band.</small></span><div class="kbs-bands" id="kbs-bands"><span class="kbs-x">Checking real signal reports…</span></div><span class="kbs-x" id="kbs-x"></span><a class="kbs-a" href="kpc-space-weather.html#band-activity">FULL BAND MAP →</a></div>';
 const jget=async(u,ms)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||15000);try{const r=await fetch(u,{signal:c.signal});if(!r.ok)throw Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(t)}};
 async function load(){
  let c=null;try{c=JSON.parse(localStorage.getItem(CK)||'null')}catch(e){}
@@ -43,7 +44,7 @@ function draw(d){
  const max=Math.max(1,...Object.values(m));
  const sorted=BANDS.map(b=>[b,m[b[0]]||0]).sort((a,b)=>b[1]-a[1]);const hot=new Set(sorted.filter(s=>s[1]>0).slice(0,2).map(s=>s[0][0]));
  box.innerHTML=BANDS.map(([code,lab])=>{const c=m[code]||0;return `<div class="kbs-b${hot.has(code)?' hot':''}" title="${c} signal reports to or from Kentucky in the last hour"><b>${lab}</b><span>${c?c.toLocaleString():'quiet'}</span><div class="kbs-bar"><i style="width:${Math.max(c?6:0,Math.round(c/max*100))}%;background:${COL[code]}"></i></div></div>`}).join('');
- const bits=[];if(Number.isFinite(d.sfi))bits.push('SFI <b>'+Math.round(d.sfi)+'</b>');if(Number.isFinite(d.kp))bits.push('Kp <b>'+d.kp.toFixed(d.kp%1?1:0)+'</b>');
- x.innerHTML=bits.join(' · ');x.title='Last hour of WSPR reports to or from Kentucky, plus NOAA solar flux and Kp'}
+ const bits=[];if(Number.isFinite(d.sfi))bits.push('Solar flux (SFI) <b>'+Math.round(d.sfi)+'</b>');if(Number.isFinite(d.kp))bits.push('Kp <b>'+d.kp.toFixed(d.kp%1?1:0)+'</b> (0-9, lower is calmer)');
+ x.innerHTML=bits.join(' · ');x.title='SFI = solar flux index, Kp = geomagnetic activity (NOAA). Higher SFI and lower Kp usually mean better HF conditions.'}
 load().then(draw).catch(()=>draw({rows:null}));
 })();
