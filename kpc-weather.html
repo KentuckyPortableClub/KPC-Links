@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KPC Field Weather</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta name="description" content="Kentucky Portable Club — portable ham radio, camping, Parks on the Air and outdoor adventure in Kentucky. Get outside. Get on the air.">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KPC Field Weather">
+<meta property="og:description" content="Kentucky Portable Club — portable ham radio, camping, Parks on the Air and outdoor adventure in Kentucky. Get outside. Get on the air.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-weather.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
 <style>
 :root{--black:#070807;--green:#183a27;--green2:#28563a;--gold:#f4c542;--cream:#f4f0e4;--muted:#b9b4a7;--line:rgba(244,197,66,.24)}
 *{box-sizing:border-box} body{margin:0;background:var(--black);color:var(--cream);font-family:Arial,Helvetica,sans-serif}
@@ -28,7 +42,28 @@ button.secondary{background:#244a32;color:var(--cream);border:1px solid #4b6d57}
 </style>
 </head>
 <body>
-<nav><a href="resources.html">← KPC Resources</a><a href="index.html">KPC Home</a></nav>
+<style id="kpc-sitebar-css">
+.ksb{position:sticky;top:0;z-index:2000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18);font-family:Arial,Helvetica,sans-serif}
+.ksb *{box-sizing:border-box}
+.ksb-in{position:relative;max-width:1200px;min-height:78px;margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.ksb a{text-decoration:none}
+.ksb-brand{display:flex;align-items:center;gap:12px;flex:0 0 auto;color:#fff}
+.ksb-brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}
+.ksb-brand span{color:#fff;font:700 18px/1.1 Georgia,"Times New Roman",serif}
+.ksb-brand small{display:block;margin-top:4px;color:#f0c96b;font:900 11px Arial,Helvetica,sans-serif;letter-spacing:3px}
+.ksb-links{display:flex;align-items:center;justify-content:flex-end;gap:5px;margin:0;padding:0;background:none}
+.ksb-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s}
+.ksb-links a:hover,.ksb-links a[aria-current=page]{color:#f0c96b;border-bottom-color:#d5a63a}
+.ksb-tog{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:#111;color:#fff;cursor:pointer;font-size:22px;line-height:1;padding:0}
+@media(min-width:1181px) and (max-width:1320px){.ksb-links a{padding-left:7px;padding-right:7px;font-size:12px;letter-spacing:.4px}.ksb-in{gap:16px}}
+@media(max-width:1180px){.ksb-tog{display:block}.ksb-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45);box-shadow:0 15px 25px rgba(0,0,0,.22);max-height:calc(100vh - 80px);overflow-y:auto}.ksb-links.open{display:flex}.ksb-links a{padding:13px 8px;font-size:14px;border-bottom:1px solid #292929}.ksb-links a:last-child{border-bottom:0}}
+@media(max-width:760px){.ksb-in{min-height:70px;padding:8px 18px}.ksb-brand img{width:52px;height:52px}.ksb-brand span{font-size:15px}}
+.ksb nav.ksb-links{position:static;top:auto;z-index:auto;border-bottom:0;padding:0;background:none}.ksb nav.ksb-links a{margin-right:0}
+@media(max-width:1180px){.ksb nav.ksb-links{position:absolute;top:100%;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45)}}
+</style>
+<div class="ksb" role="banner"><div class="ksb-in"><a class="ksb-brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span>Kentucky Portable Club<small>Est. 2026</small></span></a><button class="ksb-tog" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="ksb-links">☰</button><nav class="ksb-links" id="ksb-links" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="toolbox.html" aria-current="page">Tool Box</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="members.html">Members</a><a href="contact.html">Contact</a></nav></div></div>
+<script>(function(){const t=document.querySelector('.ksb-tog'),n=document.getElementById('ksb-links');t.addEventListener('click',()=>{const o=n.classList.toggle('open');t.setAttribute('aria-expanded',String(o))});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');t.setAttribute('aria-expanded','false')}))})();</script>
+
 <header class="hero"><div class="wrap">
 <h1>Field Weather</h1>
 <p>Search by <b>Kentucky POTA park name</b>, <b>POTA park number</b>, or <b>town / ZIP code</b>. Select a result and KPC will pull a current forecast for that location.</p>

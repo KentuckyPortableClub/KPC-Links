@@ -3,13 +3,48 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>KPC POTA Spotter | Kentucky Portable Club</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KPC POTA Spotter | Kentucky Portable Club">
+<meta property="og:description" content="Kentucky Portable Club POTA operator spotter and Discord alerts.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-spot-discord.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
 <meta name="description" content="Kentucky Portable Club POTA operator spotter and Discord alerts.">
 <style>
 :root{--gold:#d5a63a;--green:#1d5a3a;--cream:#f5f0e4;--black:#070707}*{box-sizing:border-box}body{margin:0;background:var(--cream);color:#161616;font:16px/1.6 Arial,sans-serif}a{color:inherit}header{background:#070707;border-bottom:2px solid var(--gold);padding:14px 22px;color:white}.nav{max-width:1120px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:13px;text-decoration:none;font-weight:800}.brand img{width:58px;height:58px;object-fit:contain}.links{display:flex;gap:18px;flex-wrap:wrap}.links a{text-decoration:none;font-size:13px;font-weight:bold}.links a:hover{color:var(--gold)}.hero{background:linear-gradient(125deg,#07140e,#153c27 70%,#070707);color:white;padding:84px 22px 74px;text-align:center;border-bottom:5px solid var(--gold)}.eyebrow{color:#f0c96b;font-size:12px;font-weight:900;letter-spacing:3px}.hero h1{font:700 clamp(39px,6vw,68px) Georgia,serif;margin:13px 0}.hero h1 span{color:#f0c96b}.hero p{max-width:680px;margin:0 auto;color:#e5e3da}.wrap{max-width:1120px;margin:0 auto;padding:52px 22px 70px}h2{font:700 31px Georgia,serif;margin:0 0 18px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:#fff;border:1px solid #ddd3bf;border-top:4px solid var(--green);border-radius:10px;padding:22px;box-shadow:0 8px 20px #0000000b}.call{font:700 25px Georgia,serif}.tag{display:block;color:#555;font-size:13px;margin-top:5px}.section{margin-bottom:44px}.info{background:#fffaf0;border:1px solid #ded0ae;border-left:5px solid var(--gold);border-radius:8px;padding:22px;margin-top:25px}.button{display:inline-block;background:var(--green);color:white;text-decoration:none;border-radius:6px;padding:12px 19px;font-size:13px;font-weight:900;letter-spacing:.5px}.button:hover{background:#123f28}.steps{padding-left:22px}.steps li{margin:10px 0}code{background:#e9e2d2;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}footer{text-align:center;background:#070707;color:#ddd;padding:26px}@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.grid{grid-template-columns:1fr}.hero{padding:65px 20px}.links{gap:12px}}
 </style>
 </head>
 <body>
-<header><nav class="nav"><a class="brand" href="index.html"><img src="KPC-logo.png" alt="KPC logo"><span>Kentucky Portable Club</span></a><div class="links"><a href="index.html">HOME</a><a href="parks.html">PARKS</a><a href="resources.html">RESOURCES</a><a href="join.html">JOIN KPC</a></div></nav></header>
+<style id="kpc-sitebar-css">
+.ksb{position:sticky;top:0;z-index:2000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18);font-family:Arial,Helvetica,sans-serif}
+.ksb *{box-sizing:border-box}
+.ksb-in{position:relative;max-width:1200px;min-height:78px;margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.ksb a{text-decoration:none}
+.ksb-brand{display:flex;align-items:center;gap:12px;flex:0 0 auto;color:#fff}
+.ksb-brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}
+.ksb-brand span{color:#fff;font:700 18px/1.1 Georgia,"Times New Roman",serif}
+.ksb-brand small{display:block;margin-top:4px;color:#f0c96b;font:900 11px Arial,Helvetica,sans-serif;letter-spacing:3px}
+.ksb-links{display:flex;align-items:center;justify-content:flex-end;gap:5px;margin:0;padding:0;background:none}
+.ksb-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s}
+.ksb-links a:hover,.ksb-links a[aria-current=page]{color:#f0c96b;border-bottom-color:#d5a63a}
+.ksb-tog{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:#111;color:#fff;cursor:pointer;font-size:22px;line-height:1;padding:0}
+@media(min-width:1181px) and (max-width:1320px){.ksb-links a{padding-left:7px;padding-right:7px;font-size:12px;letter-spacing:.4px}.ksb-in{gap:16px}}
+@media(max-width:1180px){.ksb-tog{display:block}.ksb-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45);box-shadow:0 15px 25px rgba(0,0,0,.22);max-height:calc(100vh - 80px);overflow-y:auto}.ksb-links.open{display:flex}.ksb-links a{padding:13px 8px;font-size:14px;border-bottom:1px solid #292929}.ksb-links a:last-child{border-bottom:0}}
+@media(max-width:760px){.ksb-in{min-height:70px;padding:8px 18px}.ksb-brand img{width:52px;height:52px}.ksb-brand span{font-size:15px}}
+.ksb nav.ksb-links{position:static;top:auto;z-index:auto;border-bottom:0;padding:0;background:none}.ksb nav.ksb-links a{margin-right:0}
+@media(max-width:1180px){.ksb nav.ksb-links{position:absolute;top:100%;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45)}}
+</style>
+<div class="ksb" role="banner"><div class="ksb-in"><a class="ksb-brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span>Kentucky Portable Club<small>Est. 2026</small></span></a><button class="ksb-tog" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="ksb-links">☰</button><nav class="ksb-links" id="ksb-links" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="toolbox.html" aria-current="page">Tool Box</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="members.html">Members</a><a href="contact.html">Contact</a></nav></div></div>
+<script>(function(){const t=document.querySelector('.ksb-tog'),n=document.getElementById('ksb-links');t.addEventListener('click',()=>{const o=n.classList.toggle('open');t.setAttribute('aria-expanded',String(o))});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');t.setAttribute('aria-expanded','false')}))})();</script>
+
+
 <section class="hero"><div class="eyebrow">KENTUCKY PORTABLE CLUB • ON THE AIR</div><h1>KPC <span>POTA SPOTTER</span></h1><p>Automatic Discord alerts when one of our monitored operators is spotted on Parks on the Air.</p></section>
 <main class="wrap"><section class="section"><h2>Monitored KPC Operators</h2><div class="grid"><div class="card"><div class="call">KZ4CP</div><span class="tag">POTA spot alerts</span></div><div class="card"><div class="call">N4BDW</div><span class="tag">POTA spot alerts</span></div><div class="card"><div class="call">KQ4HZK</div><span class="tag">POTA spot alerts</span></div><div class="card"><div class="call">K4ZSR</div><span class="tag">POTA spot alerts</span></div></div><div class="info"><strong>How it works:</strong> A scheduled GitHub Actions workflow checks the POTA live spot feed about every five minutes. When a new spot for one of these callsigns appears, it posts the callsign, park, frequency, and mode in your Discord channel. The webpage does not need to stay open.</div></section>
 <section class="section"><h2>Find Live POTA Spots</h2><p>Open the official POTA spots page to see the latest activity and search for these operators.</p><a class="button" href="https://pota.app/#/spots" target="_blank" rel="noopener">OPEN POTA LIVE SPOTS →</a></section>

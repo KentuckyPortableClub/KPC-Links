@@ -4,6 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KPC — Kentucky Portable Club</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KPC — Kentucky Portable Club">
+<meta property="og:description" content="Kentucky Portable Club — portable ham radio, camping, adventure and community.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
 <meta name="description" content="Kentucky Portable Club — portable ham radio, camping, adventure and community.">
 
 <style>
@@ -261,8 +274,8 @@ button{font:inherit}
 .features{background:#fffaf0}
 .card-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
+  grid-template-columns:repeat(5,1fr);
+  gap:16px;
 }
 .card{
   position:relative;
@@ -282,10 +295,11 @@ button{font:inherit}
   inset:0;
   background:linear-gradient(180deg,rgba(0,0,0,.02) 25%,rgba(0,0,0,.88) 100%);
 }
-.card:nth-child(1){background-image:url("https://kywaterfalls.com/media/waterfalls/Cumberland_Falls_photo_1.jpg")}
-.card:nth-child(2){background-image:url("https://assets.simpleviewinc.com/simpleview/image/upload/c_fit/crm/kentucky/fb12aef043586150d120957447895457_slidernatbridge9hike_e3a81ad8-c016-790a-368775f4ebe8d194.jpg")}
-.card:nth-child(3){background-image:url("https://photos.thedyrt.com/photo/522473/media/birmingham-ferry-smith-bay-lbl_a0c322d8-2e73-4399-86c8-2e3f7a360af4.jpg?auto=webp&crop=1%3A1%2Csmart&width=1200")}
-.card:nth-child(4){background-image:url("https://static1.squarespace.com/static/53614375e4b0eea56c08cbd0/5366497be4b05c2e83754de1/57030af3356fb075150ef28d/1647526569521/Cumberland%2BFalls%2BPt%2B1%2BThumbnail%2Bw%2Bwatermark.jpg?format=1500w")}
+.card:nth-child(1){background-image:url("kpc-card-campout.jpg");background-position:center 30%}
+.card:nth-child(2){background-image:url("kpc-card-parks.jpg");background-position:center 30%}
+.card:nth-child(3){background-image:url("kpc-card-events.jpg");background-position:center 30%}
+.card:nth-child(4){background-image:url("kpc-card-resources.jpg");background-position:center 30%}
+.card:nth-child(5){background-image:url("kpc-card-toolbox.jpg");background-position:center 30%}
 .card-content{position:relative;z-index:2;padding:22px}
 .card h3{
   margin:0 0 9px;
@@ -367,10 +381,12 @@ footer strong{color:var(--gold-light)}
 .final .btn-secondary{color:#111;border:1px solid #777;background:transparent}
 .final .btn-secondary:hover{border-color:var(--green);color:var(--green)}
 
+@media(max-width:1180px) and (min-width:1001px){.card-grid{grid-template-columns:repeat(3,1fr)}.card-grid .card:nth-child(n+4){min-height:280px}}
 @media(max-width:1000px){
   .nav-links{gap:0}
   .nav-links a{padding-inline:7px;font-size:12px}
   .card-grid{grid-template-columns:repeat(2,1fr)}
+  .card-grid .card:last-child{grid-column:1/-1;min-height:260px}
   .pillar-grid{grid-template-columns:repeat(2,1fr)}
   .intro-grid{gap:38px}
 }
@@ -431,6 +447,46 @@ footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-
 body.field .page-jump-nav{display:none!important}
 
 </style>
+<style id="kpc-nav-fit">
+/* KPC shared navbar fit: 10 links. Compact on mid-size screens, menu button below 1180px. */
+@media(min-width:1181px) and (max-width:1320px){.site-nav .nav-links a{padding-left:7px;padding-right:7px;font-size:12px;letter-spacing:.4px}.site-nav .nav-inner{gap:16px}}
+@media(max-width:1180px){.site-nav .nav-inner{position:relative}.site-nav .menu-toggle{display:block!important}.site-nav .nav-links{display:none!important;position:absolute!important;top:100%!important;left:0!important;right:0!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:10px 18px 16px!important;background:rgba(7,7,7,.99)!important;border-bottom:1px solid rgba(213,166,58,.45)!important;box-shadow:0 15px 25px rgba(0,0,0,.22);max-height:calc(100vh - 80px);overflow-y:auto}.site-nav .nav-links.open{display:flex!important}.site-nav .nav-links a{padding:13px 8px!important;font-size:14px!important;border-bottom:1px solid #292929}.site-nav .nav-links a:last-child{border-bottom:0}}
+</style>
+<style>
+.onair{background:#0d2419;border-bottom:1px solid rgba(213,166,58,.45);color:#fff}
+.onair-inner{width:min(var(--max),100%);margin:auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.onair-title{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:3px;color:var(--gold-light);white-space:nowrap}
+.onair .dot{width:10px;height:10px;border-radius:50%;background:#3ecf6e;animation:pulse 1.8s infinite}
+.onair .dot.off{background:#8a8a8a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.6)}70%{box-shadow:0 0 0 9px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.onair-count{font-size:14px;color:#e9eee9}.onair-count b{color:#fff}
+.onair-list{display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}.onair-list::-webkit-scrollbar{display:none}
+.onair-chip{flex:0 0 auto;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;white-space:nowrap}
+.onair-chip b{color:var(--gold-light)}.onair-chip.club{border-color:var(--gold);background:rgba(213,166,58,.14)}
+.onair .btn{background:var(--gold);color:#0b0b0b;border-radius:7px;font-weight:900;letter-spacing:1px;display:inline-flex;align-items:center}
+.onair .btn{margin:0;min-height:38px;padding:8px 14px;font-size:11px;white-space:nowrap}
+@media(max-width:760px){.onair-inner{padding:12px 18px;gap:8px 10px}.onair-title{order:1}.onair .btn{order:2;margin-left:auto}.onair-count{order:3;flex-basis:100%}.onair-list{order:4;flex-basis:100%}}
+
+.learn{background:var(--cream)}
+.learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.learn-card{display:flex;flex-direction:column;padding:26px;background:#fff;border-left:5px solid var(--gold);box-shadow:0 10px 24px rgba(0,0,0,.07);transition:.2s}
+.learn-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.12)}
+.learn-card span{color:var(--green);font-size:11px;font-weight:900;letter-spacing:2.5px}
+.learn-card h3{margin:8px 0 8px;font-family:Georgia,"Times New Roman",serif;font-size:24px;line-height:1.15}
+.learn-card p{margin:0 0 16px;color:var(--muted);font-size:15px;flex:1}
+.learn-card b{color:var(--green);font-size:12px;letter-spacing:1px}
+@media(max-width:900px){.learn-grid{grid-template-columns:1fr}}
+/* intro photo (club) */
+.intro-badge img.club-photo{max-width:100%;display:block;aspect-ratio:16/10;object-fit:cover}
+</style>
+<style id="kpc-hero-shade">
+/* KPC: darker shade behind header text so it reads on bright photos */
+.hero{position:relative}.hero .hero-inner{position:relative;z-index:3}
+.kpc-hero-shade{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(5,5,5,.82) 0%,rgba(5,5,5,.6) 40%,rgba(5,5,5,.2) 72%,rgba(5,5,5,0) 100%)}
+.kpc-hero-shade.center{background:radial-gradient(ellipse 62% 72% at 50% 52%,rgba(5,5,5,.72),rgba(5,5,5,.38) 72%,rgba(5,5,5,.2))}
+@media(max-width:900px){.kpc-hero-shade,.kpc-hero-shade.center{background:linear-gradient(180deg,rgba(5,5,5,.2) 0%,rgba(5,5,5,.55) 38%,rgba(5,5,5,.74) 100%)}}
+.hero h1,.hero .hero-copy,.hero .eyebrow,.hero-inner p{text-shadow:0 2px 14px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.6)}
+</style>
 </head>
 
 <body>
@@ -450,9 +506,9 @@ body.field .page-jump-nav{display:none!important}
       <a href="about.html">About</a>
       <a href="campout.html">Campout</a>
       <a href="events.html">Events</a>
-      <a href="parks.html">Parks</a>
+      <a href="parks.html">Parks</a><a href="toolbox.html">Tool Box</a>
       <a href="resources.html">Resources</a>
-      <a href="join.html">Join KPC</a>
+      <a href="join.html">Join KPC</a><a href="members.html">Members</a>
       <a href="contact.html">Contact</a>
     </nav>
   </div>
@@ -461,6 +517,7 @@ body.field .page-jump-nav{display:none!important}
 <main>
 
 <section class="hero">
+  <div class="kpc-hero-shade" aria-hidden="true"></div>
   <div class="hero-inner">
     <img class="hero-logo" src="KPC-logo.png" alt="Kentucky Portable Club">
     <p class="eyebrow">KENTUCKY • OUTDOORS • RADIO</p>
@@ -472,7 +529,13 @@ body.field .page-jump-nav{display:none!important}
     </div>
   </div>
 </section>
-<nav class="page-jump-nav" aria-label="Quick page links"><a href="#about-kpc">ABOUT KPC</a><a href="#discover">DISCOVER</a><a href="#adventure">ADVENTURE</a><a href="#happening">EVENTS</a><a href="#connect">CONNECT</a></nav>
+<nav class="page-jump-nav" aria-label="Quick page links"><a href="#about-kpc">ABOUT KPC</a><a href="#discover">DISCOVER</a><a href="#learn">START HERE</a><a href="#adventure">ADVENTURE</a><a href="#happening">EVENTS</a><a href="#connect">CONNECT</a></nav>
+<section class="onair" aria-label="POTA spots on the air now"><div class="onair-inner">
+<span class="onair-title"><span class="dot off" id="oaDot"></span>ON THE AIR NOW</span>
+<span class="onair-count" id="oaCount">Checking POTA spots…</span>
+<div class="onair-list" id="oaList"></div>
+<a class="btn" href="kpc-spots.html">SEE ALL SPOTS →</a>
+</div></section>
 
 <section class="section intro">
   <div class="section-inner intro-grid">
@@ -483,7 +546,7 @@ body.field .page-jump-nav{display:none!important}
       <div class="signature">EST. 2026</div>
     </div>
     <div class="intro-badge">
-      <img src="KPC-logo.png" alt="KPC logo">
+      <img class="club-photo" src="KPC26-Group-Photo-web.jpg" alt="KPC members and friends at the 2026 Kentucky POTA campout" loading="lazy">
     </div>
   </div>
 </section>
@@ -545,6 +608,28 @@ body.field .page-jump-nav{display:none!important}
           <span class="btn">VIEW RESOURCES</span>
         </div>
       </a>
+      <a class="card" href="toolbox.html">
+        <div class="card-content">
+          <h3>KY TOOL BOX</h3>
+          <p>Park finder, live spots, band conditions and field calculators.</p>
+          <span class="btn">OPEN TOOL BOX</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section learn" id="learn">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div class="kicker">NEW TO PORTABLE?</div>
+      <h2>Start Here</h2>
+      <p>Short KPC guides to get you from your first hunt to your first activation — plus club news and field tips as we add them.</p>
+    </div>
+    <div class="learn-grid">
+      <a class="learn-card" href="kpc-new-to-pota.html"><span>KPC GUIDE</span><h3>New To POTA? Start Here</h3><p>Your first POTA hunt and your first activation in Kentucky, step by step.</p><b>READ THE GUIDE →</b></a>
+      <a class="learn-card" href="kpc-rules-you-should-know.html"><span>KPC GUIDE</span><h3>Rules You Should Know</h3><p>The FCC, POTA and Kentucky land-manager rules to know before you go.</p><b>READ THE RULES →</b></a>
+      <a class="learn-card" href="news.html"><span>COMING SOON</span><h3>News &amp; Field Tips</h3><p>Club news, activation reports and portable tips from KPC members.</p><b>SEE WHAT'S COMING →</b></a>
     </div>
   </div>
 </section>
@@ -620,6 +705,28 @@ nav.querySelectorAll('a').forEach(link => {
     toggle.setAttribute('aria-expanded', 'false');
   });
 });
+
+// On The Air Now bar: live Kentucky POTA spots + KPC members
+(function(){
+const MEMBERS=['KZ4CP','N4BDW','KQ4HZK','K4ZSR'];
+const base=c=>String(c||'').toUpperCase().split('/').reduce((a,b)=>b.length>a.length?b:a,'');
+const ky=s=>String(s.locationDesc||'').split(',').some(x=>x.trim()==='US-KY');
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const mhz=f=>{const n=parseFloat(f);return isNaN(n)?esc(f):(n/1000).toFixed(3)};
+const tm=s=>new Date(String(s.spotTime).endsWith('Z')?s.spotTime:s.spotTime+'Z');
+async function load(){
+ try{const r=await fetch('https://api.pota.app/spot/activator',{cache:'no-store'});if(!r.ok)throw 0;const all=await r.json();
+  const club=all.filter(s=>MEMBERS.includes(base(s.activator)));
+  const kyS=all.filter(ky);
+  const show=[...club,...kyS.filter(s=>!club.includes(s))].sort((a,b)=>(MEMBERS.includes(base(b.activator))-MEMBERS.includes(base(a.activator)))||(tm(b)-tm(a)));
+  const parks=new Set(kyS.map(s=>s.reference)).size, members=new Set(club.map(s=>base(s.activator))).size;
+  document.getElementById('oaDot').classList.toggle('off',!show.length);
+  document.getElementById('oaCount').innerHTML=parks||members?`<b>${parks}</b> KY park${parks===1?'':'s'} on the air${members?` • <b>${members}</b> KPC member${members===1?'':'s'}`:''}`:'No Kentucky parks spotted right now';
+  document.getElementById('oaList').innerHTML=show.slice(0,6).map(s=>`<span class="onair-chip${MEMBERS.includes(base(s.activator))?' club':''}"><b>${esc(s.activator)}</b> ${esc(s.reference)} • ${mhz(s.frequency)} ${esc(s.mode)}</span>`).join('');
+ }catch(e){document.getElementById('oaCount').textContent='Live spots on the KPC spots page';}
+}
+load();setInterval(load,60000);
+})();
 </script>
 
 </body>

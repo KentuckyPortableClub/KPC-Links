@@ -2,23 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Members Only | KPC</title>
+<title>News &amp; Field Tips | KPC</title>
 <!-- KPC icons & share preview -->
 <link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
-<meta name="description" content="Kentucky Portable Club — portable ham radio, camping, Parks on the Air and outdoor adventure in Kentucky. Get outside. Get on the air.">
 <meta property="og:site_name" content="Kentucky Portable Club">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Members Only | KPC">
-<meta property="og:description" content="Kentucky Portable Club — portable ham radio, camping, Parks on the Air and outdoor adventure in Kentucky. Get outside. Get on the air.">
-<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/members.html">
+<meta property="og:title" content="News &amp; Field Tips | KPC">
+<meta property="og:description" content="Kentucky Portable Club news, activation reports and field tips — coming soon. Read the KPC guides available now.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/news.html">
 <meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /KPC icons -->
-<meta name="robots" content="noindex,nofollow">
-<script src="kpc-members.js"></script>
+<meta name="description" content="Kentucky Portable Club news, activation reports and field tips — coming soon. Read the KPC guides available now.">
 <style>
 :root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
@@ -76,6 +74,20 @@ section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
 .warning-box .btn-row .btn{font-size:11px;min-height:40px}
 @media(max-width:760px){.jump{top:70px}.trail-grid{grid-template-columns:1fr}.btn-row{flex-direction:column}.btn-row .btn{width:100%}}
 .dark .kicker,.dark .card-num{color:var(--gold-light)}
+/* On The Air Now bar */
+.onair{background:#0d2419;border-bottom:1px solid rgba(213,166,58,.45);color:#fff}
+.onair-inner{width:min(var(--max),100%);margin:auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.onair-title{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:3px;color:var(--gold-light);white-space:nowrap}
+.onair .dot{width:10px;height:10px;border-radius:50%;background:#3ecf6e;animation:pulse 1.8s infinite}
+.onair .dot.off{background:#8a8a8a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.6)}70%{box-shadow:0 0 0 9px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.onair-count{font-size:14px;color:#e9eee9}.onair-count b{color:#fff}
+.onair-list{display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}.onair-list::-webkit-scrollbar{display:none}
+.onair-chip{flex:0 0 auto;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;white-space:nowrap}
+.onair-chip b{color:var(--gold-light)}.onair-chip.club{border-color:var(--gold);background:rgba(213,166,58,.14)}
+.onair .btn{margin:0;min-height:38px;padding:8px 14px;font-size:11px;white-space:nowrap}
+@media(max-width:760px){.onair-inner{padding:12px 18px;gap:8px 10px}.onair-title{order:1}.onair .btn{order:2;margin-left:auto}.onair-count{order:3;flex-basis:100%}.onair-list{order:4;flex-basis:100%}}
+
 /* KPC shared About-style footer and below-hero page links */
 .page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
 .page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
@@ -90,14 +102,21 @@ footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-
 @media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
 body.field .page-jump-nav{display:none!important}
 
-
-.hero{background:linear-gradient(120deg,rgba(7,7,7,.8),rgba(29,90,58,.5)),var(--black) url("parks.png") center/cover no-repeat}
-@media(max-width:760px){.hero{background:linear-gradient(120deg,rgba(7,7,7,.8),rgba(29,90,58,.5)),url("parks-mobile.png") center/cover no-repeat}}
-.roster{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.mem{padding:22px;background:#151515;border:1px solid #363636;border-top:4px solid var(--gold);text-align:center}
-.mem b{display:block;font:700 26px Georgia,serif;color:#fff}.mem a{display:inline-block;margin-top:8px;color:var(--gold-light);font-size:12px;font-weight:900;letter-spacing:1px}
-.logout{background:none;border:1px solid #c9ad6b;color:var(--ink);border-radius:7px;padding:9px 14px;font-weight:900;font-size:11px;letter-spacing:1px;cursor:pointer}
-@media(max-width:900px){.roster{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+<style>
+.hero{min-height:420px;background:linear-gradient(90deg,rgba(7,7,7,.86) 0%,rgba(7,7,7,.6) 55%,rgba(7,7,7,.25) 100%),url("KPC26-Group-Photo-web.jpg") center 45%/cover no-repeat #070707}
+@media(max-width:760px){.hero{background:linear-gradient(180deg,rgba(7,7,7,.35),rgba(7,7,7,.8)),url("KPC26-Group-Photo-web.jpg") center/cover no-repeat #070707}}
+.nw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.nw-card{position:relative;display:flex;flex-direction:column;padding:28px;background:#fff;border-left:5px solid var(--gold);box-shadow:0 10px 24px rgba(0,0,0,.07)}
+.dark .nw-card{background:#141414;color:#fff;border-left-color:var(--gold)}
+.nw-tag{align-self:flex-start;padding:4px 10px;border-radius:999px;background:var(--green);color:#fff;font-size:10px;font-weight:900;letter-spacing:1.5px}
+.nw-tag.soon{background:#e9dfc8;color:#5b5446}.dark .nw-tag.soon{background:#2a2a2a;color:#e5c87b}
+.nw-card h3{margin:12px 0 8px;font-family:Georgia,"Times New Roman",serif;font-size:24px;line-height:1.15}
+.nw-card p{margin:0 0 16px;color:var(--muted);font-size:15px;flex:1}.dark .nw-card p{color:#bcb8ae}
+.nw-card a.go{color:var(--green);font-weight:900;font-size:12px;letter-spacing:1px}.dark .nw-card a.go{color:var(--gold-light)}
+.nw-card .muted{font-size:12px;font-weight:900;letter-spacing:1px;color:#8a8478}
+.nw-share{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+@media(max-width:900px){.nw-grid{grid-template-columns:1fr}}
 </style>
 <style id="kpc-nav-fit">
 /* KPC shared navbar fit: 10 links. Compact on mid-size screens, menu button below 1180px. */
@@ -106,35 +125,19 @@ body.field .page-jump-nav{display:none!important}
 </style>
 </head>
 <body>
-<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="toolbox.html">Tool Box</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="members.html" aria-current="page">Members</a><a href="contact.html">Contact</a></nav></div></header>
+<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="toolbox.html">Tool Box</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="members.html">Members</a><a href="contact.html">Contact</a></nav></div></header>
 
 <main>
-<section class="hero"><div class="hero-inner"><img class="hero-logo" src="KPC-logo.png" alt="Kentucky Portable Club"><p class="eyebrow">KENTUCKY PORTABLE CLUB • MEMBERS</p><h1>MEMBERS<br><span>ONLY</span></h1><p class="hero-copy">Club tools for KPC members — track your Kentucky parks, see where you rank, and look back at what the club put on the air each month.</p></div></section>
-<nav class="page-jump-nav" aria-label="Quick page links"><a href="#welcome">WELCOME</a><a href="#tools">MEMBER TOOLS</a><a href="kpc-club.html">CLUB ROOM</a><a href="#roster">ROSTER</a><a href="#public">PUBLIC TOOLS</a></nav>
-
-<section class="section intro" id="welcome"><div class="section-inner intro-grid"><div class="intro-copy"><div class="kicker">WELCOME BACK</div><h2>Your Club. Your Parks. Your Logbook.</h2><p>Everything here is built from POTA's public activation records for the 186 Kentucky parks in the KPC guide. Pick a tool below, tap your callsign, and see how the club is doing.</p></div><div class="intro-panel"><div class="mark">KPC MEMBER TOOLS</div><h3>Activate.<br>Climb The Board.<br>Repeat.</h3><div class="line"></div><p>A park counts as activated with 10 or more QSOs in one activation.</p></div></div></section>
-
-<section class="section dark" id="tools"><div class="section-inner"><div class="section-heading"><div class="kicker">MEMBER TOOLS</div><h2>Track It. Rank It. Recap It.</h2><p>Club-only tools and challenges for KPC members.</p></div><div class="card-grid">
-<a class="card" href="kpc-tracker.html"><div class="card-top"><div class="card-num">01 • PARK TRACKER</div><h3>Kentucky Park Tracker</h3><p>Tap your callsign to see every Kentucky park you have activated on a map, what is still needed, your progress — plus the KPC leaderboard. Load your own hunter file to add hunted parks.</p></div><span class="btn">OPEN PARK TRACKER →</span></a>
-<a class="card" href="kpc-recap.html"><div class="card-top"><div class="card-num">02 • MONTHLY RECAP</div><h3>KPC Monthly Recap</h3><p>What every member activated in Kentucky each month — new parks, first-ever activations and QSO totals — plus the busiest parks statewide.</p></div><span class="btn">OPEN MONTHLY RECAP →</span></a>
-<a class="card" href="kpc-club.html#stats"><div class="card-top"><div class="card-num">03 • CLUB ROOM</div><h3>Club Stats &amp; Badges</h3><p>Club totals, a map of every park KPC has activated, the club’s favorite parks — and milestone badges for every member.</p></div><span class="btn">OPEN CLUB ROOM →</span></a>
-<a class="card" href="kpc-club.html#counties"><div class="card-top"><div class="card-num">04 • CHALLENGES</div><h3>County Challenge &amp; Park Of The Month</h3><p>How many of Kentucky’s 120 counties has each member activated? Plus one rare park a month — first member there takes the crown.</p></div><span class="btn">SEE THE CHALLENGES →</span></a>
-</div></div></section>
-
-<section class="section features" id="roster"><div class="section-inner"><div class="section-heading"><div class="kicker">KPC ROSTER</div><h2>Club Members</h2><p>Tap a callsign to open that member's Kentucky park tracker.</p></div>
-<div class="roster"><div class="mem"><b>KZ4CP</b><a href="kpc-tracker.html?call=KZ4CP">PARK TRACKER →</a><br><a href="https://www.qrz.com/db/KZ4CP" target="_blank" rel="noopener">QRZ ↗</a></div><div class="mem"><b>N4BDW</b><a href="kpc-tracker.html?call=N4BDW">PARK TRACKER →</a><br><a href="https://www.qrz.com/db/N4BDW" target="_blank" rel="noopener">QRZ ↗</a></div><div class="mem"><b>KQ4HZK</b><a href="kpc-tracker.html?call=KQ4HZK">PARK TRACKER →</a><br><a href="https://www.qrz.com/db/KQ4HZK" target="_blank" rel="noopener">QRZ ↗</a></div><div class="mem"><b>K4ZSR</b><a href="kpc-tracker.html?call=K4ZSR">PARK TRACKER →</a><br><a href="https://www.qrz.com/db/K4ZSR" target="_blank" rel="noopener">QRZ ↗</a></div></div>
-</div></section>
-
-<section class="section features" id="public" style="background:var(--cream-2)"><div class="section-inner"><div class="section-heading"><div class="kicker">ALSO FOR EVERYONE</div><h2>Public KPC Tools</h2><p>These are on the Parks page for anyone to use.</p></div><div class="card-grid">
-<a class="card" href="kpc-spots.html"><div class="card-top"><div class="card-num">ON THE AIR</div><h3>Live POTA Spots</h3><p>Kentucky parks on the air right now, with KPC members flagged.</p></div><span class="btn">OPEN SPOTS →</span></a>
-<a class="card" href="kpc-checker.html"><div class="card-top"><div class="card-num">PARK CHECKER</div><h3>Kentucky Park Checker</h3><p>Check any callsign and download a CSV of done and still-needed parks.</p></div><span class="btn">OPEN CHECKER →</span></a>
-<a class="card" href="kpc-planner.html"><div class="card-top"><div class="card-num">TRIP PLANNER</div><h3>Plan A Radio Trip</h3><p>POTA, SOTA and KFF in range of any town, with a multi-stop route.</p></div><span class="btn">OPEN PLANNER →</span></a>
-<a class="card" href="kpc-rare.html"><div class="card-top"><div class="card-num">TARGET MAP</div><h3>Rarely Activated Parks</h3><p>Find the Kentucky parks hunters are waiting for.</p></div><span class="btn">OPEN RARE PARKS →</span></a>
-</div></div></section>
-
-<section class="final"><h2>Get Outside. Get On The Air.</h2><p>KENTUCKY PORTABLE CLUB • MEMBERS</p><button class="logout" onclick="kpcLogout()">LOG OUT ON THIS DEVICE</button></section>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB</p><h1>NEWS &amp;<br><span>FIELD TIPS</span></h1><p class="hero-copy">Club news, activation reports and practical tips from Kentucky portable operators. We’re just getting started — here’s what’s coming.</p></div></section>
+<nav class="page-jump-nav" aria-label="Quick page links"><a href="#news">CLUB NEWS</a><a href="#reports">ACTIVATION REPORTS</a><a href="#tips">FIELD TIPS</a><a href="#read-now">READ NOW</a><a href="#share">SHARE YOURS</a></nav>
+<section class="section features" id="news"><div class="section-inner"><div class="section-heading"><div class="kicker">CLUB NEWS</div><h2>What’s New With KPC</h2><p>Announcements, campout updates and club happenings will be posted here.</p></div><div class="nw-grid"><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Club Announcements</h3><p>News from the club — new members, new tools, new events and anything worth knowing.</p><span class="muted">COMING SOON</span></article><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Campout Updates</h3><p>Plans, signups and reminders for the 2027 KYPOTA Campout at Taylorsville Lake.</p><span class="muted">COMING SOON</span></article><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Park Of The Month</h3><p>A Kentucky park the club is putting on the air, with tips for activating it.</p><span class="muted">COMING SOON</span></article></div></div></section>
+<section class="section dark" id="reports"><div class="section-inner"><div class="section-heading"><div class="kicker">ACTIVATION REPORTS</div><h2>From The Field</h2><p>Short write-ups from KPC operators: where they went, what worked and what they’d do differently.</p></div><div class="nw-grid"><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Activation Reports</h3><p>Park, gear, bands, contacts and photos from real Kentucky activations.</p><span class="muted">COMING SOON</span></article><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Rare Park Runs</h3><p>Trips to the Kentucky parks that hunters need most.</p><span class="muted">COMING SOON</span></article><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Support Your Parks Recaps</h3><p>How KPC did on each Support Your Parks weekend.</p><span class="muted">COMING SOON</span></article></div></div></section>
+<section class="section features" id="tips"><div class="section-inner"><div class="section-heading"><div class="kicker">FIELD TIPS</div><h2>Learn From The Founders</h2><p>Field-tested advice for portable radio, POTA and camping in Kentucky.</p></div><div class="nw-grid"><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Founders’ Lessons Learned</h3><p>What the KPC founders learned the hard way during the club’s early field operations.</p><span class="muted">COMING SOON</span></article><article class="nw-card"><span class="nw-tag soon">COMING SOON</span><h3>Founding Fathers’ Tips</h3><p>Short, field-tested tips from the KPC founding group.</p><span class="muted">COMING SOON</span></article><article class="nw-card"><span class="nw-tag">AVAILABLE NOW</span><h3>Founders’ Favorite Apps &amp; Tools</h3><p>The apps and tools the founders actually use for radio, POTA, mapping and the outdoors.</p><a class="go" href="KPC_Founders_Favorites_Apps_and_Tools.pdf">OPEN PDF →</a></article></div></div></section>
+<section class="section dark" id="read-now"><div class="section-inner"><div class="section-heading"><div class="kicker">READ NOW</div><h2>Already Posted</h2><p>Guides you can read today.</p></div><div class="nw-grid"><article class="nw-card"><span class="nw-tag">KPC GUIDE</span><h3>New To POTA? Start Here</h3><p>Your first POTA hunt and your first activation in Kentucky, step by step.</p><a class="go" href="kpc-new-to-pota.html">READ THE GUIDE →</a></article><article class="nw-card"><span class="nw-tag">KPC GUIDE</span><h3>Rules You Should Know</h3><p>The FCC, POTA and Kentucky land-manager rules to know before you go.</p><a class="go" href="kpc-rules-you-should-know.html">READ THE RULES →</a></article><article class="nw-card"><span class="nw-tag">KPC TOOLS</span><h3>Kentucky Tool Box</h3><p>Park finder, live spots, band conditions, trip planner and field calculators.</p><a class="go" href="toolbox.html">OPEN TOOL BOX →</a></article></div></div></section>
+<section class="section warning" id="share"><div class="section-inner"><div class="warning-box"><h3>Have A Story Or A Tip?</h3><p>Did an activation, tried new gear, or learned something the hard way? Send it to KPC — a few sentences and a photo is plenty. We may feature it here when News &amp; Field Tips launches.</p><div class="btn-row"><a class="btn" href="contact.html">CONTACT KPC →</a><a class="btn" href="mailto:kentuckyportableclub@gmail.com?subject=KPC%20News%20%26%20Tips">EMAIL YOUR STORY →</a></div></div></div></section>
+<section class="final"><h2>Get Outside. Get On The Air.</h2><p>KENTUCKY PORTABLE CLUB • EST. 2026</p><a class="btn" href="toolbox.html">OPEN THE KY TOOL BOX →</a></section>
 </main>
-<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="kpc-club.html">CLUB ROOM →</a><a href="kpc-tracker.html">PARK TRACKER →</a><a href="kpc-recap.html">MONTHLY RECAP →</a><a href="parks.html">EXPLORE KENTUCKY →</a></div></footer>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="toolbox.html">TOOL BOX →</a><a href="join.html">JOIN KPC →</a></div></footer>
 <script>
 const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav-links');
 toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open))});
