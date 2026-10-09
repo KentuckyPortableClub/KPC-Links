@@ -31,7 +31,7 @@
 <section class="tool-head"><div class="wrap">
 <p class="eyebrow">KPC FIELD TOOL</p>
 <h1>ANTENNA <span>CALCULATOR</span></h1>
-<p class="sub">Starting wire lengths for portable dipoles, end-fed half-waves and quarter-wave verticals — plus how much signal your coax eats before it reaches the antenna.</p>
+<p class="sub">Starting wire lengths for portable dipoles, linked dipoles, end-fed half-waves and quarter-wave verticals, whip settings for 17-ft and 25-ft telescoping verticals, plus how much signal your coax eats before it reaches the antenna.</p>
 </div></section>
 <nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html">Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html" aria-current=page>Antenna</a><a href="parks.html">← Parks</a></div></nav>
 <section class="section"><div class="wrap">
@@ -40,9 +40,30 @@
 <div class="controls">
 <label class="field" style="flex:0 1 200px">FREQUENCY (MHz)<input id="f" type="number" min="1" max="60" step="0.001" value="14.2"></label>
 <label class="field" style="flex:0 1 160px">SHOW<select id="units"><option value="both">Feet &amp; meters</option><option value="ft">Feet</option><option value="m">Meters</option></select></label>
+<label class="field" style="flex:1 1 240px">WIRE ADJUSTMENT (DIPOLES)<select id="adj"><option value="1">None — classic formula</option><option value="0.96">Inverted-V (about −4%)</option><option value="0.98">Insulated wire (about −2%)</option><option value="0.94">Inverted-V + insulated (about −6%)</option></select></label>
 </div>
 </div>
 <div class="stats" id="cards" style="margin-top:20px"></div>
+<p class="muted" id="adjnote" style="font-size:13px;margin:8px 0 0"></p>
+<div class="grid2" style="margin-top:20px">
+<div class="panel"><b class="an-h">Telescoping whip (quarter-wave vertical)</b>
+<div class="stats" id="whip"></div>
+<p class="muted" style="font-size:13px;margin:10px 0 0" id="whipnote"></p>
+<p style="margin:10px 0 0;font-size:14px"><a href="kpc-whips.html"><b>Read: 17-Foot vs. 25-Foot Whips →</b></a></p></div>
+<div class="panel"><b class="an-h">Learn the antennas</b>
+<p class="muted" style="font-size:15px;margin:6px 0 10px">Short field guides that go with these numbers:</p>
+<p style="margin:6px 0;font-size:15px"><a href="kpc-which-antenna.html"><b>Which antenna is right for me?</b></a> <span class="muted">(beginner)</span></p>
+<p style="margin:6px 0;font-size:15px"><a href="kpc-first-dipole.html"><b>Build your first dipole</b></a> <span class="muted">(beginner)</span></p>
+<p style="margin:6px 0;font-size:15px"><a href="kpc-linked-dipole.html"><b>Linked dipoles</b></a> <span class="muted">(intermediate)</span></p>
+<p style="margin:6px 0;font-size:15px"><a href="kpc-swr-basics.html"><b>SWR basics &amp; fixing high SWR</b></a></p>
+<p style="margin:6px 0;font-size:15px"><a href="kpc-antenna-safety.html"><b>Antenna safety &amp; park manners</b></a></p>
+<p style="margin:10px 0 0;font-size:14px"><a href="antennas.html"><b>All antenna guides →</b></a></p></div>
+</div>
+<div class="panel" style="margin-top:20px"><b class="an-h">Linked dipole planner</b>
+<p class="muted" style="font-size:15px;margin:6px 0 10px">Tap the bands your linked dipole should cover (it uses the wire adjustment above). Highest band is built and tuned first.</p>
+<div class="chips" id="lbands" style="margin-bottom:12px"></div>
+<div id="lout"></div>
+<p class="muted" style="font-size:13px;margin:10px 0 0">Measure each leg from the center insulator to the <b>middle of the link</b>, and add a few inches at every link and end for connector loops and trimming. Set both legs alike. Start long and trim while watching SWR.</p></div>
 <div class="grid2" style="margin-top:20px">
 <div class="panel"><b class="an-h">Coax loss</b>
 <div class="controls">
@@ -64,7 +85,7 @@
 <style>.an-h{display:block;font:700 19px Georgia,serif;margin-bottom:10px}.stat small{display:block;font-size:13px;color:#cfcabf;margin-top:4px;font-weight:400}</style>
 <script>
 const $=id=>document.getElementById(id);
-const BANDS=[['160m',1.9],['80m',3.75],['60m',5.357],['40m',7.15],['30m',10.12],['20m',14.2],['17m',18.12],['15m',21.25],['12m',24.94],['10m',28.4],['6m',50.15]];
+const BANDS=[['160m',1.9],['80m',3.6],['60m',5.357],['40m',7.2],['30m',10.125],['20m',14.2],['17m',18.1],['15m',21.2],['12m',24.9],['10m',28.5],['6m',50.1]];
 const COAX={'RG-174':[1.9,3.3,6.6,8.9],'RG-58':[0.4,1.4,3.3,4.9],'RG-8X':[0.3,1.0,2.5,3.7],'RG-213':[0.2,0.6,1.6,2.2],'LMR-400':[0.1,0.4,0.9,1.3]}; /* dB per 100 ft at 1, 10, 50, 100 MHz */
 const FQ=[1,10,50,100];
 const RW=[29,35.5,41,58,71,84,107,119];
@@ -77,14 +98,29 @@ const Ls=ft=>{const u=$('units').value,m=(ft*0.3048).toFixed(2)+' m';return u===
 function mark(){const f=parseFloat($('f').value);[...$('bands').children].forEach(x=>x.setAttribute('aria-pressed',Math.abs(parseFloat(x.dataset.f)-f)<0.001))}
 function lossPer100(t,f){const v=COAX[t];if(f<=FQ[0])return v[0];for(let i=1;i<FQ.length;i++)if(f<=FQ[i]){const a=Math.log(FQ[i-1]),b=Math.log(FQ[i]),x=(Math.log(f)-a)/(b-a);return Math.exp(Math.log(v[i-1])+x*(Math.log(v[i])-Math.log(v[i-1])))}return v[3]}
 function calc(){const f=parseFloat($('f').value);if(!(f>0)){return}
- const half=468/f,q=234/f,wl=984/f;
- $('cards').innerHTML=`<div class="stat"><b>${Ls(half)}</b><span>HALF-WAVE DIPOLE • TOTAL</span></div><div class="stat"><b>${Ls(q)}</b><span>EACH DIPOLE LEG</span></div><div class="stat"><b>${Ls(half)}</b><span>END-FED HALF-WAVE WIRE</span></div><div class="stat"><b>${Ls(q)}</b><span>¼-WAVE VERTICAL &amp; EACH RADIAL</span></div>`;
+ const adj=parseFloat($('adj').value)||1,half=468/f*adj,dl=234/f*adj,q=234/f,wl=984/f;
+ $('cards').innerHTML=`<div class="stat"><b>${Ls(half)}</b><span>HALF-WAVE DIPOLE • TOTAL</span></div><div class="stat"><b>${Ls(dl)}</b><span>EACH DIPOLE LEG</span></div><div class="stat"><b>${Ls(468/f)}</b><span>END-FED HALF-WAVE WIRE</span></div><div class="stat"><b>${Ls(q)}</b><span>¼-WAVE VERTICAL &amp; EACH RADIAL</span></div>`;
+ $('adjnote').textContent=adj===1?'':`Dipole lengths include the ${Math.round((1-adj)*100)}% wire adjustment. End-fed and vertical figures use the classic formula. Always cut long and trim.`;
+ whip(q);linked();
  const t=$('coax').value,len=Math.max(0,parseFloat($('len').value)||0),pw=Math.max(0,parseFloat($('pw').value)||0),db=lossPer100(t,f)*len/100,frac=Math.pow(10,-db/10);
  $('loss').innerHTML=`<div class="stats"><div class="stat"><b>${db.toFixed(2)} dB</b><span>${t} • ${len} FT @ ${f} MHZ</span></div><div class="stat"><b>${Math.round(frac*100)}%</b><span>POWER REACHING ANTENNA</span></div><div class="stat"><b>${(pw*frac).toFixed(1)} W</b><span>OF YOUR ${pw} W</span></div></div>`;
  $('rw').innerHTML=RW.map(x=>`<span class="chip">${L(x)}</span>`).join('');
  $('tbl').innerHTML=BANDS.map(([b,fr])=>`<tr${Math.abs(fr-f)<0.001?' style="background:#fff7df"':''}><td><b>${b}</b></td><td>${fr} MHz</td><td>${L(468/fr)}</td><td>${L(234/fr)}</td><td>${L(468/fr)}</td><td>${L(234/fr)}</td></tr>`).join('');
 }
-$('f').addEventListener('input',()=>{mark();calc()});['units','coax','len','pw'].forEach(i=>$(i).addEventListener('input',calc));calc();
+function whip(q){const w=(n)=>q<=n?`<div class="stat"><b>${Ls(q)}</b><span>${n}-FT WHIP: EXTEND TO</span></div>`:`<div class="stat"><b>Needs loading</b><span>${n}-FT WHIP TOO SHORT</span></div>`;
+ $('whip').innerHTML=w(17)+w(25);
+ $('whipnote').textContent=q>25?`A quarter-wave here is ${fmtFt(q)}, longer than either whip. Use a loading coil, a matching arrangement or another antenna.`:`Lay out radials too. Thick telescoping sections usually tune a few percent shorter than this, so start here and trim to the analyzer.`}
+const LSEL=new Set([7.2,14.2,28.5]);
+$('lbands').innerHTML=BANDS.filter(x=>x[1]>=3&&x[1]<=30).map(([b,f])=>`<button class="chip" type="button" data-f="${f}" aria-pressed="${LSEL.has(f)}">${b}</button>`).join('');
+$('lbands').onclick=e=>{const b=e.target.closest('button');if(!b)return;const f=parseFloat(b.dataset.f);LSEL.has(f)?LSEL.delete(f):LSEL.add(f);b.setAttribute('aria-pressed',LSEL.has(f));linked()};
+function linked(){const adj=parseFloat($('adj').value)||1,fs=[...LSEL].sort((a,b)=>b-a);
+ if(!fs.length){$('lout').innerHTML='<p class="muted">Pick at least one band.</p>';return}
+ let prev=0,rows='',seq='Center';
+ fs.forEach((fr,i)=>{const band=BANDS.find(x=>x[1]===fr)[0],cum=234/fr*adj,add=cum-prev;
+  rows+=`<tr><td><b>${band}</b></td><td>${L(cum)}</td><td>${i?'+ ':''}${L(add)}</td><td>${L(cum*2)}</td></tr>`;
+  seq+=` → <b>${fmtFt(cum)}</b>`+(i<fs.length-1?' → link':' → end');prev=cum});
+ $('lout').innerHTML=`<div class="tablewrap"><table class="list"><thead><tr><th>BAND</th><th>EACH LEG, CENTER TO ${'LINK / END'}</th><th>WIRE FOR THIS SECTION</th><th>TIP TO TIP (LINKS CLOSED)</th></tr></thead><tbody>${rows}</tbody></table></div><p style="margin:12px 0 0;font-size:15px"><b>Each leg:</b> ${seq}</p><p class="muted" style="font-size:13px;margin:6px 0 0">For the highest band open every link; for each lower band close the links up to its section. The last row is the full length with every link closed.</p>`}
+$('f').addEventListener('input',()=>{mark();calc()});['units','coax','len','pw','adj'].forEach(i=>$(i).addEventListener('input',calc));calc();
 </script>
 
 </main>
