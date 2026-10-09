@@ -20,24 +20,10 @@
 .trailnotice{border-left:4px solid #d5a63a;background:rgba(213,166,58,.09);padding:12px 15px;margin:16px 0;line-height:1.55;border-radius:4px}
 .trailnotice strong{color:#d5a63a}
 
-/* Keep Leaflet map tiles and overlays confined to the map viewport. */
 .content > .mapwrap{min-width:0;max-width:100%;overflow:hidden}
-#map{position:relative;display:block;width:100%;max-width:100%;overflow:hidden;isolation:isolate;contain:layout paint}
-#map .leaflet-container{overflow:hidden}
-#map .leaflet-pane,#map .leaflet-map-pane,#map .leaflet-tile-pane,#map .leaflet-overlay-pane{position:absolute;left:0;top:0}
-#map .leaflet-tile,#map .leaflet-marker-icon,#map .leaflet-marker-shadow{max-width:none!important;max-height:none!important}
-#map .leaflet-tile{position:absolute;width:256px;height:256px}
-@media(max-width:850px){.content>.mapwrap{min-width:0}}
-
-/* Restore Leaflet's pane stacking after the map overflow containment fix. */
-#map .leaflet-map-pane{z-index:auto}
-#map .leaflet-tile-pane{z-index:200}
-#map .leaflet-overlay-pane{z-index:400}
-#map .leaflet-shadow-pane{z-index:500}
-#map .leaflet-marker-pane{z-index:600}
-#map .leaflet-tooltip-pane{z-index:650}
-#map .leaflet-popup-pane{z-index:700}
+#map{width:100%;max-width:100%;overflow:hidden}
 #map .kpc-map-pin{background:transparent!important;border:0!important;overflow:visible!important}
+@media(max-width:850px){.content>.mapwrap{min-width:0}}
 
 /* Finder jump navigation, map pin legend, and KPC footer */
 html{scroll-behavior:smooth}
@@ -81,10 +67,6 @@ html{scroll-behavior:smooth}
 #map .leaflet-popup-content strong,#map .leaflet-popup-content div{color:#171717!important}
 #map .leaflet-popup-content a{color:#16603e!important}
 
-/* KPC map repair: Leaflet must control its own pane positions and transforms. */
-#map{contain:none!important;isolation:auto!important}
-#map .leaflet-map-pane{z-index: auto}
-#map .leaflet-pane{position:absolute}
-#map .leaflet-tooltip-pane{z-index:1100!important;pointer-events:none}
+/* Leave Leaflet pane positions and transforms to Leaflet itself. */
 #map .leaflet-tooltip.kpc-gis-tooltip{background:#fffaf0!important;color:#171717!important;border:2px solid #d5a63a!important;border-radius:7px!important;box-shadow:0 3px 12px #0008!important;padding:6px 10px!important;font-size:14px!important;font-weight:750!important;opacity:1!important;white-space:normal!important;max-width:260px}
 #map .leaflet-tooltip.kpc-gis-tooltip:before{border-top-color:#d5a63a!important}
