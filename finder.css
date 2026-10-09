@@ -9,7 +9,7 @@
 /* Kentucky Portable Club brand treatment */
 :root{color-scheme:dark;background:#080808;color:#f5f0e4}body{background:#090909;color:#f5f0e4}header{background:linear-gradient(125deg,#070707,#202018);border-bottom:2px solid #d5a63a}.masthead{display:flex;align-items:center;gap:30px}.masthead>div{min-width:0}.clublogo{width:clamp(110px,18vw,210px);height:auto;display:block;filter:drop-shadow(0 8px 20px #0008)}h1,.panel h2,.results h2{font-family:Georgia,'Times New Roman',serif}.panel,.results,.mapwrap{background:#151515;border-color:#514124}.resultshead,.entry,.saveditem{border-color:#493d2b}.primary,.routebtn{background:#d5a63a;color:#090909}.secondary,.tiny{background:#29261e;border:1px solid #80632e;color:#f0c96b}.tag.sota{background:#234b36}.tag.wwff{background:#294d35;color:#d9f3d8}.credit,.eyebrow,#count,.links a,a{color:#f0c96b}input:not([type=checkbox]),select{background:#090909;border-color:#816936}.meta,.footnote,footer{color:#c9c5bc}button:hover,.routebtn:hover{filter:brightness(1.12)}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #f0c96b;outline-offset:2px}@media(max-width:650px){.masthead{flex-direction:column;text-align:center;gap:10px}.clublogo{width:155px}.masthead header p{margin:auto}header{padding:24px 0}.masthead .eyebrow{letter-spacing:.12em}}
 
-.tag.wwff{background:#dbe6ff;color:#1b3977}
+.tag.wwff{background:#f1dcff;color:#5b1f7e}
 
 .crossref{margin-top:10px;padding:9px 11px;border-left:3px solid #d5a63a;background:#252016;color:#f0d99c;font-size:12px;line-height:1.5}.panel strong{color:#f0c96b}
 
@@ -36,7 +36,7 @@ html{scroll-behavior:smooth}
 .map-legend-items{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
 .map-legend-items span{display:inline-flex;align-items:center;gap:7px}
 .legend-dot{display:inline-block;flex:none;width:16px;height:16px;border:2px solid #fff;border-radius:50%;box-shadow:0 1px 5px #0009}
-.legend-pota{background:#d5a63a}.legend-sota{background:#168454}.legend-wwff{background:#477bea}
+.legend-pota{background:#d5a63a}.legend-sota{background:#168454}.legend-wwff{background:#b04ae8}
 .finder-footer{margin-top:28px;padding:30px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:#070707;border-top:1px solid #80632e;border-radius:10px 10px 0 0}
 .finder-footer-kicker{font-size:12px;font-weight:850;letter-spacing:2px;color:#f5f0e4}
 .finder-footer-tag{margin-top:7px;font:20px Georgia,'Times New Roman',serif;color:#f0c96b}
@@ -76,3 +76,11 @@ html{scroll-behavior:smooth}
 #map .leaflet-tile{box-sizing:content-box!important;max-width:none!important;max-height:none!important}
 #map .leaflet-marker-icon,#map .leaflet-marker-shadow{max-width:none!important;max-height:none!important}
 #map .leaflet-tooltip-pane{z-index:1100!important;pointer-events:none}
+
+/* compact map popups (one small card, never a second banner) */
+#map .leaflet-popup-content{font-size:14px!important;line-height:1.45!important;margin:10px 14px!important;min-width:0!important}
+#map .leaflet-popup-content-wrapper{min-width:0!important}
+#map .kpc-pop strong{display:block;font-size:15px;margin-bottom:3px}
+#map .kpc-pop .r{display:block;font-size:13px;margin:1px 0}
+#map .kpc-pop .r i{font-style:normal;color:#6a5b3a!important;font-weight:700}
+#map .kpc-pop .src{display:block;margin-top:6px;font-size:12px;color:#5b5648!important}
