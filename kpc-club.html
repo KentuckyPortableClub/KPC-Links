@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Club Room | KPC</title>
+<meta name="description" content="KPC members-only club stats, Kentucky County Challenge, Park of the Month and badges.">
+<meta name="robots" content="noindex,nofollow">
+<script src="kpc-members.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="kpc-tools.css">
+<script src="kpc-tools.js"></script>
+</head>
+<body>
+<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html" aria-current="page">Parks</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a></nav></div></header>
+<main>
+<section class="tool-head"><div class="wrap">
+<p class="eyebrow">KPC MEMBERS • CLUB ROOM</p>
+<h1>KPC <span>CLUB ROOM</span></h1>
+<p class="sub">Club stats, the Kentucky County Challenge, Park of the Month and member badges — all built from POTA's public activation records.</p>
+</div></section>
+<nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="members.html">Members Home</a><a href="kpc-club.html" aria-current=page>Club Room</a><a href="kpc-tracker.html">Park Tracker</a><a href="kpc-recap.html">Monthly Recap</a><a href="kpc-spots.html">On The Air</a><a href="parks.html">← Parks</a></div></nav>
+<section class="section"><div class="wrap">
+<div class="panel"><div class="controls">
+<div class="chips" style="flex:1 1 auto"><a class="chip" href="#stats">CLUB STATS</a><a class="chip" href="#counties">COUNTY CHALLENGE</a><a class="chip" href="#potm">PARK OF THE MONTH</a><a class="chip" href="#badges">BADGES</a></div>
+<button class="btn alt sm" id="refresh" type="button">REFRESH POTA DATA</button>
+</div>
+<div class="progress" id="prog"><div class="bar"><i style="width:0"></i></div><small></small></div></div>
+</div></section>
+
+<section class="section" id="stats" style="padding-top:0"><div class="wrap">
+<div class="sec-head"><div><div class="kicker">KENTUCKY PORTABLE CLUB</div><h2>Club Stats</h2></div></div>
+<div class="stats" id="clubStats"><div class="empty">Loading club stats…</div></div>
+<div class="grid2" style="margin-top:22px">
+<div><div class="map" id="clubMap"></div>
+<div class="legend"><span><i style="background:#d5a63a"></i>1 member</span><span><i style="background:#1d5a3a"></i>2+ members</span><span><i style="background:#fff"></i>Not yet</span></div></div>
+<div>
+<div class="panel"><b style="font-family:Georgia,serif;font-size:19px">Club activations — last 12 months</b><div id="months" class="cr-months"></div></div>
+<div class="tablewrap" style="margin-top:16px;max-height:300px"><table class="list"><thead><tr><th>CLUB FAVORITE PARKS</th><th>ACTS</th><th>MEMBERS</th></tr></thead><tbody id="topParks"></tbody></table></div>
+</div></div>
+</div></section>
+
+<section class="section" id="counties" style="padding-top:0"><div class="wrap">
+<div class="sec-head"><div><div class="kicker">120 COUNTIES</div><h2>Kentucky County Challenge</h2></div></div>
+<div class="chips" id="cMembers" style="margin-bottom:14px"></div>
+<div class="stats" id="cStats"></div>
+<div class="grid2" style="margin-top:18px">
+<div><div class="map" id="cMap"></div>
+<div class="legend"><span><i style="background:#d5a63a"></i>Activated</span><span><i style="background:#e7eee8"></i>Has a POTA park — still needed</span><span><i style="background:#fff"></i>No POTA park point</span></div></div>
+<div><div class="tablewrap" style="max-height:470px"><table class="list"><thead><tr><th>STILL NEEDED</th><th>PARKS TO TRY</th></tr></thead><tbody id="cNeed"></tbody></table></div></div>
+</div>
+<div class="note">A county counts when a member has a valid activation (10+ QSOs) at a park whose POTA reference point is in that county. Big parks that cross county lines count for the county their reference point is in.</div>
+</div></section>
+
+<section class="section" id="potm" style="padding-top:0"><div class="wrap">
+<div class="sec-head"><div><div class="kicker">MONTHLY CHALLENGE</div><h2>Park Of The Month</h2></div></div>
+<div id="potmCard"><div class="empty">Loading…</div></div>
+<div class="tablewrap" style="margin-top:16px"><table class="list"><thead><tr><th>MONTH</th><th>PARK</th><th>FIRST KPC ACTIVATOR</th></tr></thead><tbody id="potmPast"></tbody></table></div>
+<div class="note">Picked automatically each month from Kentucky's least-activated parks. The first KPC member to make a valid activation there that month takes the crown. To choose the park yourself, add it to PICKS at the top of the Club Room script.</div>
+</div></section>
+
+<section class="section" id="badges" style="padding-top:0"><div class="wrap">
+<div class="sec-head"><div><div class="kicker">MILESTONES</div><h2>Member Badges</h2></div></div>
+<div class="cr-badges" id="badgeGrid"><div class="empty">Loading…</div></div>
+<div class="note">Badges are earned automatically from Kentucky POTA activations in the KPC guide's 186 parks. Gold badges are earned; grey ones show what's next.</div>
+</div></section>
+
+<style>
+.cr-months{display:grid;grid-template-columns:repeat(12,1fr);gap:6px;align-items:end;height:170px;margin-top:14px}
+.cr-months .m{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-size:11px;color:var(--muted,#68635a)}
+.cr-months .m i{display:block;width:100%;background:#d5a63a;border-radius:4px 4px 0 0;min-height:2px}
+.cr-months .m b{font-size:12px;color:#171717;margin-bottom:3px}
+.cr-potm{display:grid;grid-template-columns:1.2fr .8fr;gap:0;background:#070707;color:#fff;border:1px solid #d5a63a;box-shadow:10px 10px 0 #d5a63a}
+.cr-potm .l{padding:30px}.cr-potm .r{padding:30px;background:#151515;border-left:1px solid #363636}
+.cr-potm .k{color:#f0c96b;font-size:12px;font-weight:900;letter-spacing:3px}
+.cr-potm h3{margin:8px 0 6px;font:700 clamp(26px,3.4vw,38px)/1.1 Georgia,serif;color:#fff}
+.cr-potm p{margin:0 0 6px;color:#cfcabf}.cr-potm .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.cr-potm .crown{font:700 26px Georgia,serif;color:#f0c96b;margin:8px 0}
+.cr-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.cr-mem{background:#fff;border:1px solid #d8cfbf;padding:22px;box-shadow:0 8px 20px rgba(0,0,0,.05)}
+.cr-mem h3{margin:0 0 4px;font:700 26px Georgia,serif}.cr-mem .sub{color:#68635a;font-size:13px;margin-bottom:14px}
+.cr-bl{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
+.bdg{text-align:center;padding:12px 6px;border-radius:10px;border:1px solid #e3dccb;background:#f4f1ea;color:#9a958a}
+.bdg .ic{font-size:26px;filter:grayscale(1);opacity:.45}.bdg b{display:block;font-size:12px;letter-spacing:.5px;margin-top:4px}.bdg small{display:block;font-size:11px;margin-top:2px}
+.bdg.on{background:#070707;border-color:#d5a63a;color:#fff}.bdg.on .ic{filter:none;opacity:1}.bdg.on b{color:#f0c96b}.bdg.on small{color:#cfcabf}
+@media(max-width:900px){.cr-potm{grid-template-columns:1fr}.cr-potm .r{border-left:0;border-top:1px solid #363636}.cr-badges{grid-template-columns:1fr}}
+</style>
+<script>
+/* ---- Park of the Month: choose a park yourself by adding 'YYYYMM':'US-####' (otherwise it is picked automatically) ---- */
+const PICKS={};
+const $=id=>document.getElementById(id);
+let D,H,C,PC={},cMap,cLayer,cSel='CLUB',clubMap,clubLayer;
+const ok=KPC.ok,base=KPC.base,M=KPC.MEMBERS,esc=KPC.esc;
+const ym=d=>`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}`;
+async function go(force){
+ D=await KPC.data();C=await KPC.counties();
+ try{H=(await KPC.history(KPC.progressUI($('prog')),force)).hist}catch(e){$('prog').querySelector('small').textContent='Could not reach POTA right now — try again in a minute.';return}
+ for(const p of D.parks){if(!(p.c in PC))PC[p.c]=await KPC.countyOf(p.la,p.lo)}
+ build()}
+/* every member activation, sorted by date */
+function acts(){const out=[];for(const[ref,a]of Object.entries(H)){const s=[...a].sort((x,y)=>x[1].localeCompare(y[1]));let prevOk=0;
+ s.forEach(x=>{const c=base(x[0]),v=ok(x[2]);out.push({ref,c,date:x[1],q:x[2],ok:v,prior:prevOk});if(v)prevOk++})}
+ return out.sort((a,b)=>a.date.localeCompare(b.date))}
+let A,P;
+function build(){A=acts();P=new Map(D.parks.map(p=>[p.c,p]));stats();countyChips();counties();potm();badges()}
+/* ---------- CLUB STATS ---------- */
+async function stats(){
+ const mine=A.filter(a=>M.includes(a.c)&&a.ok);
+ const parks=new Map();mine.forEach(a=>{if(!parks.has(a.ref))parks.set(a.ref,new Set());parks.get(a.ref).add(a.c)});
+ const cnt=new Set([...parks.keys()].map(r=>PC[r]).filter(Boolean));
+ const firsts=mine.filter(a=>a.prior===0).length;
+ const yr=new Date();yr.setFullYear(yr.getFullYear()-1);const yrs=`${yr.getFullYear()}${String(yr.getMonth()+1).padStart(2,'0')}${String(yr.getDate()).padStart(2,'0')}`;
+ const active=new Set(mine.filter(a=>a.date>=yrs).map(a=>a.c));
+ $('clubStats').innerHTML=[[mine.length,'KY ACTIVATIONS'],[mine.reduce((s,a)=>s+a.q,0).toLocaleString(),'KY QSOS'],[`${parks.size}<small style="font-size:16px"> / ${D.parks.length}</small>`,'KY PARKS ACTIVATED'],[`${cnt.size}<small style="font-size:16px"> / 120</small>`,'KY COUNTIES'],[firsts,'FIRST-EVER ACTIVATIONS'],[`${active.size} / ${M.length}`,'MEMBERS ACTIVE THIS YEAR']].map(([b,s])=>`<div class="stat"><b>${b}</b><span>${s}</span></div>`).join('');
+ const now=new Date(),ms=[];for(let i=11;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth()-i,1);ms.push([ym(d),d.toLocaleDateString([],{month:'short'})])}
+ const by={};mine.forEach(a=>{const k=a.date.slice(0,6);by[k]=(by[k]||0)+1});const mx=Math.max(1,...ms.map(([k])=>by[k]||0));
+ $('months').innerHTML=ms.map(([k,l])=>`<div class="m" title="${by[k]||0} activations"><b>${by[k]||''}</b><i style="height:${Math.max(2,140*(by[k]||0)/mx)}px"></i>${l}</div>`).join('');
+ const top=[...parks.entries()].map(([r,s])=>[r,s,mine.filter(a=>a.ref===r).length]).sort((a,b)=>b[2]-a[2]).slice(0,8);
+ $('topParks').innerHTML=top.map(([r,s,n])=>`<tr><td><a class="ref" href="${KPC.links.pota(r)}" target="_blank" rel="noopener">${r}</a><br>${esc(P.get(r).n)}</td><td>${n}</td><td>${[...s].join(', ')}</td></tr>`).join('')||'<tr><td colspan="3" class="muted">No club activations yet.</td></tr>';
+ if(!clubMap){clubMap=KPC.leafletMap('clubMap');await KPC.countyLayer(clubMap)}
+ if(clubLayer)clubLayer.remove();const g=clubLayer=L.layerGroup().addTo(clubMap);
+ D.parks.forEach(p=>{const s=parks.get(p.c),n=s?s.size:0;
+  L.circleMarker([p.la,p.lo],{radius:n?7:4.5,weight:1.1,color:'#173a28',fillColor:n>1?'#1d5a3a':n?'#d5a63a':'#ffffff',fillOpacity:.95})
+  .bindPopup(`<b>${esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${n?'Activated by '+[...s].join(', '):'No KPC activation yet'}`).addTo(g)})}
+/* ---------- COUNTY CHALLENGE ---------- */
+function countyChips(){$('cMembers').innerHTML=['CLUB',...M].map(m=>`<button class="chip" type="button" aria-pressed="${m===cSel}" data-m="${m}">${m==='CLUB'?'WHOLE CLUB':m}</button>`).join('');
+ $('cMembers').onclick=e=>{const b=e.target.closest('button');if(!b)return;cSel=b.dataset.m;[...$('cMembers').children].forEach(x=>x.setAttribute('aria-pressed',x===b));counties()}}
+function countiesFor(m){const s=new Set();A.forEach(a=>{if(a.ok&&(m==='CLUB'?M.includes(a.c):a.c===m)&&PC[a.ref])s.add(PC[a.ref])});return s}
+async function counties(){
+ const done=countiesFor(cSel),withPark=new Set(Object.values(PC).filter(Boolean));
+ const lb=M.map(m=>[m,countiesFor(m).size]).sort((a,b)=>b[1]-a[1]);
+ $('cStats').innerHTML=`<div class="stat"><b>${done.size}<small style="font-size:16px"> / 120</small></b><span>${cSel==='CLUB'?'CLUB':cSel} COUNTIES</span></div><div class="stat"><b>${[...withPark].filter(c=>!done.has(c)).length}</b><span>NEEDED WITH A POTA PARK</span></div><div class="stat"><b>${lb[0][0]}</b><span>COUNTY LEADER • ${lb[0][1]}</span></div><div class="stat"><b>${Math.round(100*done.size/120)}%</b><span>OF KENTUCKY</span></div>`;
+ if(!cMap){cMap=KPC.leafletMap('cMap')}
+ if(cLayer)cLayer.remove();cLayer=L.layerGroup().addTo(cMap);
+ C.forEach(c=>{const d=done.has(c.n),hp=withPark.has(c.n);
+  c.r.forEach(r=>L.polygon(r.map(([x,y])=>[y,x]),{color:'#1d5a3a',weight:.8,fillColor:d?'#d5a63a':hp?'#e7eee8':'#ffffff',fillOpacity:d?.85:.7})
+  .bindPopup(`<b>${esc(c.n)} County</b><br>${d?'Activated ✓':hp?'Still needed — has POTA parks':'No POTA park reference point'}`).addTo(cLayer))});
+ const need=[...withPark].filter(c=>!done.has(c)).sort();
+ $('cNeed').innerHTML=need.map(c=>{const ps=D.parks.filter(p=>PC[p.c]===c);return`<tr><td><b>${esc(c)}</b></td><td>${ps.map(p=>`<a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> ${esc(p.n)}`).join('<br>')}</td></tr>`}).join('')||'<tr><td colspan="2">Every county with a POTA park is done — amazing!</td></tr>'}
+/* ---------- PARK OF THE MONTH ---------- */
+function pickFor(k){if(PICKS[k])return PICKS[k];
+ const before=k+'01',cnt={};D.parks.forEach(p=>cnt[p.c]=0);A.forEach(a=>{if(a.ok&&a.date<before&&a.ref in cnt)cnt[a.ref]++});
+ const pool=D.parks.filter(p=>!/trail|river/i.test(p.t+' '+p.n)).sort((a,b)=>cnt[a.c]-cnt[b.c]||a.c.localeCompare(b.c)).slice(0,12);
+ const n=+k.slice(0,4)*12+ +k.slice(4,6);return pool[n%pool.length].c}
+function winner(k,ref){const w=A.find(a=>a.ref===ref&&a.ok&&a.date.slice(0,6)===k&&M.includes(a.c));return w||null}
+function potm(){const now=new Date(),k=ym(now),ref=pickFor(k),p=P.get(ref),w=winner(k,ref);
+ const total=A.filter(a=>a.ref===ref&&a.ok).length,last=A.filter(a=>a.ref===ref&&a.ok).pop();
+ $('potmCard').innerHTML=`<div class="cr-potm"><div class="l"><div class="k">${now.toLocaleDateString([],{month:'long',year:'numeric'}).toUpperCase()} • PARK OF THE MONTH</div><h3>${esc(p.n)}</h3><p><a class="ref" style="color:#f0c96b" href="${KPC.links.pota(ref)}" target="_blank" rel="noopener">${ref}</a> • ${esc(KPC.cty(p.co))} • ${esc(p.t)}</p><p>${total?`Only ${total} valid activation${total===1?'':'s'} ever — last on ${KPC.fmtDate(last.date)}.`:'Never activated — be the first!'}</p>
+ <div class="btns"><a class="btn sm" href="${KPC.links.dir(p.la,p.lo)}" target="_blank" rel="noopener">DIRECTIONS ↗</a>${p.off?`<a class="btn sm alt" href="${p.off}" target="_blank" rel="noopener">OFFICIAL MAP ↗</a>`:''}<a class="btn sm alt" href="kpc-lookup.html?q=${ref}">GRID &amp; COUNTY →</a></div></div>
+ <div class="r"><div class="k">THE CROWN</div>${w?`<div class="crown">👑 ${esc(w.c)}</div><p>First KPC activation this month — ${KPC.fmtDate(w.date)}, ${w.q} QSOs.</p>`:`<div class="crown">Up for grabs</div><p>No KPC member has activated it yet this month. First valid activation takes the crown.</p>`}</div></div>`;
+ const rows=[];for(let i=1;i<=6;i++){const d=new Date(now.getFullYear(),now.getMonth()-i,1),kk=ym(d),r=pickFor(kk),ww=winner(kk,r);
+  rows.push(`<tr><td>${d.toLocaleDateString([],{month:'short',year:'numeric'})}</td><td><a class="ref" href="${KPC.links.pota(r)}" target="_blank" rel="noopener">${r}</a> ${esc(P.get(r).n)}</td><td>${ww?'👑 '+esc(ww.c):'<span class="muted">Not claimed</span>'}</td></tr>`)}
+ $('potmPast').innerHTML=rows.join('')}
+/* ---------- BADGES ---------- */
+const BADGES=[
+ ['🎙️','First Activation','1 Kentucky park',s=>s.parks>=1,s=>`${Math.min(s.parks,1)}/1`],
+ ['🥾','Park Hopper','10 Kentucky parks',s=>s.parks>=10,s=>`${Math.min(s.parks,10)}/10`],
+ ['🌲','Quarter Century','25 Kentucky parks',s=>s.parks>=25,s=>`${Math.min(s.parks,25)}/25`],
+ ['🏞️','Half Century','50 Kentucky parks',s=>s.parks>=50,s=>`${Math.min(s.parks,50)}/50`],
+ ['🏆','Century','100 Kentucky parks',s=>s.parks>=100,s=>`${Math.min(s.parks,100)}/100`],
+ ['🗺️','County Collector','10 counties',s=>s.cty>=10,s=>`${Math.min(s.cty,10)}/10`],
+ ['🧭','County Explorer','25 counties',s=>s.cty>=25,s=>`${Math.min(s.cty,25)}/25`],
+ ['🐎','Commonwealth Rider','50 counties',s=>s.cty>=50,s=>`${Math.min(s.cty,50)}/50`],
+ ['🔥','Trailblazer','First-ever activation of a park',s=>s.first>0,s=>s.first?`${s.first} park${s.first>1?'s':''}`:'0'],
+ ['💎','Rare Air','Park with under 5 activations',s=>s.rare>0,s=>s.rare?`${s.rare}`:'0'],
+ ['✌️','2-Fer','Two linked parks, same day',s=>s.two>0,s=>s.two?`${s.two}`:'0'],
+ ['📣','Pileup','50+ QSOs in one activation',s=>s.max>=50,s=>`best ${s.max}`],
+ ['👑','Park of the Month','Win a monthly crown',s=>s.crowns>0,s=>s.crowns?`${s.crowns}×`:'0'],
+ ['📅','Four Seasons','Activate in every season',s=>s.seasons>=4,s=>`${s.seasons}/4`]];
+function statsFor(m){const mine=A.filter(a=>a.c===m&&a.ok),parks=new Set(mine.map(a=>a.ref)),cty=new Set([...parks].map(r=>PC[r]).filter(Boolean));
+ const byDay={};mine.forEach(a=>{(byDay[a.date]=byDay[a.date]||new Set()).add(a.ref)});
+ let two=0;Object.values(byDay).forEach(set=>{const r=[...set];for(let i=0;i<r.length;i++)for(let j=i+1;j<r.length;j++){const p=P.get(r[i]);if(p&&p.tf&&p.tf.includes(r[j]))two++}});
+ const now=new Date();let crowns=0;for(let i=0;i<=12;i++){const kk=ym(new Date(now.getFullYear(),now.getMonth()-i,1)),w=winner(kk,pickFor(kk));if(w&&w.c===m)crowns++}
+ const seasons=new Set(mine.map(a=>{const mo=+a.date.slice(4,6);return mo<3||mo===12?'w':mo<6?'sp':mo<9?'su':'f'}));
+ return{n:mine.length,parks:parks.size,cty:cty.size,first:mine.filter(a=>a.prior===0).length,rare:new Set(mine.filter(a=>a.prior<5).map(a=>a.ref)).size,two,max:Math.max(0,...A.filter(a=>a.c===m).map(a=>a.q)),crowns,seasons:seasons.size}}
+function badges(){$('badgeGrid').innerHTML=M.map(m=>{const s=statsFor(m),won=BADGES.filter(b=>b[3](s)).length;
+ return`<div class="cr-mem"><h3>${m}</h3><div class="sub">${won} of ${BADGES.length} badges • ${s.parks} parks • ${s.cty} counties • ${s.n} activations</div><div class="cr-bl">${BADGES.map(([ic,t,d,f,pr])=>`<div class="bdg${f(s)?' on':''}" title="${esc(d)}"><div class="ic">${ic}</div><b>${t}</b><small>${f(s)?esc(d):pr(s)}</small></div>`).join('')}</div></div>`}).join('')}
+$('refresh').onclick=()=>go(true);go();
+</script>
+
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="members.html">MEMBERS HOME →</a><a href="parks.html">EXPLORE KENTUCKY →</a></div></footer>
+</body></html>

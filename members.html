@@ -91,13 +91,15 @@ body.field .page-jump-nav{display:none!important}
 
 <main>
 <section class="hero"><div class="hero-inner"><img class="hero-logo" src="KPC-logo.png" alt="Kentucky Portable Club"><p class="eyebrow">KENTUCKY PORTABLE CLUB • MEMBERS</p><h1>MEMBERS<br><span>ONLY</span></h1><p class="hero-copy">Club tools for KPC members — track your Kentucky parks, see where you rank, and look back at what the club put on the air each month.</p></div></section>
-<nav class="page-jump-nav" aria-label="Quick page links"><a href="#welcome">WELCOME</a><a href="#tools">MEMBER TOOLS</a><a href="#roster">ROSTER</a><a href="#public">PUBLIC TOOLS</a></nav>
+<nav class="page-jump-nav" aria-label="Quick page links"><a href="#welcome">WELCOME</a><a href="#tools">MEMBER TOOLS</a><a href="kpc-club.html">CLUB ROOM</a><a href="#roster">ROSTER</a><a href="#public">PUBLIC TOOLS</a></nav>
 
 <section class="section intro" id="welcome"><div class="section-inner intro-grid"><div class="intro-copy"><div class="kicker">WELCOME BACK</div><h2>Your Club. Your Parks. Your Logbook.</h2><p>Everything here is built from POTA's public activation records for the 186 Kentucky parks in the KPC guide. Pick a tool below, tap your callsign, and see how the club is doing.</p></div><div class="intro-panel"><div class="mark">KPC MEMBER TOOLS</div><h3>Activate.<br>Climb The Board.<br>Repeat.</h3><div class="line"></div><p>A park counts as activated with 10 or more QSOs in one activation.</p></div></div></section>
 
-<section class="section dark" id="tools"><div class="section-inner"><div class="section-heading"><div class="kicker">MEMBER TOOLS</div><h2>Track It. Rank It. Recap It.</h2><p>Club-only tools for KPC members.</p></div><div class="card-grid">
+<section class="section dark" id="tools"><div class="section-inner"><div class="section-heading"><div class="kicker">MEMBER TOOLS</div><h2>Track It. Rank It. Recap It.</h2><p>Club-only tools and challenges for KPC members.</p></div><div class="card-grid">
 <a class="card" href="kpc-tracker.html"><div class="card-top"><div class="card-num">01 • PARK TRACKER</div><h3>Kentucky Park Tracker</h3><p>Tap your callsign to see every Kentucky park you have activated on a map, what is still needed, your progress — plus the KPC leaderboard. Load your own hunter file to add hunted parks.</p></div><span class="btn">OPEN PARK TRACKER →</span></a>
 <a class="card" href="kpc-recap.html"><div class="card-top"><div class="card-num">02 • MONTHLY RECAP</div><h3>KPC Monthly Recap</h3><p>What every member activated in Kentucky each month — new parks, first-ever activations and QSO totals — plus the busiest parks statewide.</p></div><span class="btn">OPEN MONTHLY RECAP →</span></a>
+<a class="card" href="kpc-club.html#stats"><div class="card-top"><div class="card-num">03 • CLUB ROOM</div><h3>Club Stats &amp; Badges</h3><p>Club totals, a map of every park KPC has activated, the club’s favorite parks — and milestone badges for every member.</p></div><span class="btn">OPEN CLUB ROOM →</span></a>
+<a class="card" href="kpc-club.html#counties"><div class="card-top"><div class="card-num">04 • CHALLENGES</div><h3>County Challenge &amp; Park Of The Month</h3><p>How many of Kentucky’s 120 counties has each member activated? Plus one rare park a month — first member there takes the crown.</p></div><span class="btn">SEE THE CHALLENGES →</span></a>
 </div></div></section>
 
 <section class="section features" id="roster"><div class="section-inner"><div class="section-heading"><div class="kicker">KPC ROSTER</div><h2>Club Members</h2><p>Tap a callsign to open that member's Kentucky park tracker.</p></div>
@@ -113,7 +115,7 @@ body.field .page-jump-nav{display:none!important}
 
 <section class="final"><h2>Get Outside. Get On The Air.</h2><p>KENTUCKY PORTABLE CLUB • MEMBERS</p><button class="logout" onclick="kpcLogout()">LOG OUT ON THIS DEVICE</button></section>
 </main>
-<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="kpc-tracker.html">PARK TRACKER →</a><a href="kpc-recap.html">MONTHLY RECAP →</a><a href="parks.html">EXPLORE KENTUCKY →</a></div></footer>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="kpc-club.html">CLUB ROOM →</a><a href="kpc-tracker.html">PARK TRACKER →</a><a href="kpc-recap.html">MONTHLY RECAP →</a><a href="parks.html">EXPLORE KENTUCKY →</a></div></footer>
 <script>
 const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav-links');
 toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open))});
