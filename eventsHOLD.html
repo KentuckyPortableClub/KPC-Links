@@ -72,7 +72,7 @@ body.field .page-jump-nav{display:none!important}
 </div>
 </section>
 <section class="date-strip"><div class="date-item"><span class="label">2027 CAMPOUT</span><strong>September 24–26, 2027</strong></div><div class="date-item"><span class="label">SUPPORT YOUR PARKS</span><strong>Jan 16–17 • Apr 17–18<br>Jul 17–18 • Oct 16–17, 2027</strong></div><div class="date-item"><span class="label">STATUS</span><strong>More activities will be added</strong><a href="contact.html" style="display:block;margin-top:8px;color:var(--green);font-weight:800">Have an event idea? Contact KPC</a></div></section>
-<nav class="page-jump-nav" aria-label="Quick page links"><a href="#events-calendar">EVENTS CALENDAR</a><a href="#support-your-parks">SUPPORT YOUR PARKS</a><a href="#campout-details">CAMPOUT</a><a href="#contests">CONTESTS</a><a href="#archive">ARCHIVE</a><a href="photos.html">PHOTOS</a></nav>
+<nav class="page-jump-nav" aria-label="Quick page links"><a href="#events-calendar">EVENTS CALENDAR</a><a href="#support-your-parks">SUPPORT YOUR PARKS</a><a href="#ky-radio-calendar">KY RADIO CALENDAR</a><a href="#campout-details">CAMPOUT</a><a href="#contests">CONTESTS</a><a href="#archive">ARCHIVE</a><a href="photos.html">PHOTOS</a></nav>
 <section class="section" id="events-calendar"><div class="section-inner"><p class="eyebrow-dark">2027 KYPOTA CAMPOUT</p><h2>Planned Events &amp; Activities</h2><p class="lead">We're building the 2027 KPC calendar as plans are finalized. Watch this page for campouts, park activities, meetups, on-the-air events, and other KPC activities.</p>
 <div class="cards">
 <article class="card"><h3>More Events Coming</h3><p>More KPC events, meetups, park activations, on-the-air activities, and other club activities will be added as plans are finalized.</p></article>
@@ -87,6 +87,74 @@ body.field .page-jump-nav{display:none!important}
 </div>
 <p style="margin-top:22px"><a class="syp-btn alt" href="KPC_2027_Support_Your_Parks.ics" download>ADD ALL FOUR — APPLE / OUTLOOK (.ICS) ↓</a> <a class="syp-btn alt" href="toolbox.html">PICK A PARK IN THE KY TOOL BOX →</a></p>
 </div></section>
+
+<section class="section dark" id="ky-radio-calendar"><div class="section-inner"><p class="eyebrow">KENTUCKY RADIO CALENDAR</p><h2>Contests, Hamfests &amp; On-The-Air Events</h2><p class="lead">Kentucky ham radio happenings worth knowing about — KPC events plus contests and hamfests run by other clubs. Past events drop off on their own. Dates come from each organizer; always confirm on their site before you go.</p>
+<div class="krc-filters" role="group" aria-label="Filter events"><button type="button" class="krc-f" data-f="all" aria-pressed="true">ALL</button><button type="button" class="krc-f" data-f="KPC" aria-pressed="false">KPC</button><button type="button" class="krc-f" data-f="POTA" aria-pressed="false">POTA</button><button type="button" class="krc-f" data-f="CONTEST" aria-pressed="false">CONTESTS</button><button type="button" class="krc-f" data-f="HAMFEST" aria-pressed="false">HAMFESTS</button></div>
+<div class="krc-list" id="krcList"></div>
+<p class="krc-note">Not a KPC event? It’s listed here as a service to Kentucky hams — KPC isn’t the organizer. Know of a Kentucky hamfest, net or on-air event we missed? <a href="contact.html">Tell us →</a></p>
+</div></section>
+<style>
+.krc-filters{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 18px}
+.krc-f{padding:9px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;font:900 12px Arial,sans-serif;letter-spacing:1.5px;cursor:pointer}
+.krc-f[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#111}
+.krc-list{display:grid;gap:12px}
+.krc-ev{display:grid;grid-template-columns:86px 1fr auto;gap:18px;align-items:center;padding:16px 18px;background:#141414;border:1px solid rgba(255,255,255,.1);border-left:5px solid var(--gold);border-radius:8px;color:#fff}
+.krc-ev.kpc{border-left-color:#3ecf6e}.krc-ev.tba{opacity:.85}
+.krc-date{text-align:center;background:#0b0b0b;border:1px solid rgba(213,166,58,.4);border-radius:8px;padding:8px 4px;line-height:1.05}
+.krc-date b{display:block;font:700 30px Georgia,serif;color:var(--gold-light)}.krc-date span{display:block;font:900 11px Arial,sans-serif;letter-spacing:2px;color:#cfcabf}
+.krc-date small{display:block;font:700 10px Arial,sans-serif;color:#9b978e;margin-top:3px;letter-spacing:1px}
+.krc-ev h3{margin:0 0 4px;font:700 21px/1.2 Georgia,serif;color:#fff}
+.krc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}.krc-tag{font:900 10px Arial,sans-serif;letter-spacing:1.5px;padding:3px 8px;border-radius:999px;background:#2a2a2a;color:#e5c87b}.krc-tag.KPC{background:#1d5a3a;color:#fff}
+.krc-ev p{margin:0;color:#cfcabf;font-size:14px;line-height:1.45}
+.krc-acts{display:flex;flex-direction:column;gap:6px;min-width:150px}
+.krc-acts a,.krc-acts button{display:block;text-align:center;padding:8px 12px;border-radius:7px;font:900 11px Arial,sans-serif;letter-spacing:1px;text-decoration:none;cursor:pointer;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff}
+.krc-acts a.main{background:var(--gold);border-color:var(--gold);color:#111}
+.krc-note{margin-top:20px;color:#bcb8ae;font-size:14px}.krc-note a{color:var(--gold-light);font-weight:800}
+@media(max-width:760px){.krc-ev{grid-template-columns:70px 1fr;gap:12px}.krc-acts{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}.krc-acts a,.krc-acts button{flex:1 1 140px}.krc-date b{font-size:24px}}
+</style>
+<script>
+(function(){
+/* ===== KENTUCKY RADIO CALENDAR — edit this list to add or change events =====
+   start/end: 'YYYY-MM-DD' (all-day) • time: optional text • tba: true when the next date isn't announced yet (put the usual timing in 'when')
+   Past events (end date before today) hide automatically. */
+const EVENTS=[
+ {name:'Kentucky Mountains ARC Hamfest',tags:['HAMFEST'],start:'2026-10-31',where:'VFW Post 7387, 1700 N. Main St., Hazard, KY',by:'Kentucky Mountains Amateur Radio Club (KMARC)',url:'https://www.arrl.org/hamfests/kentucky-mountains-amateur-radio-club-hamfest'},
+ {name:'POTA Support Your Parks Weekend',tags:['POTA'],start:'2027-01-16',end:'2027-01-17',where:'Any Kentucky park — get out and activate!',by:'Parks on the Air',url:'https://pota.app/'},
+ {name:'Cave City Hamfest',tags:['HAMFEST'],start:'2027-03-06',where:'Cave City Convention Center, Cave City, KY',by:'Mammoth Cave Amateur Radio Club',url:'https://www.ky4x.org/hamfest',url2:'https://www.arrl.org/hamfests/cave-city-hamfest-17'},
+ {name:'Elizabethtown Hamfest',tags:['HAMFEST'],tba:true,when:'Usually early April (2026: Sat., April 4)',where:'Elizabethtown, KY',by:'Stubblefield Repeater Club',url:'https://stubblefieldrepeaterclub.org/'},
+ {name:'POTA Support Your Parks Weekend',tags:['POTA'],start:'2027-04-17',end:'2027-04-18',where:'Any Kentucky park',by:'Parks on the Air',url:'https://pota.app/'},
+ {name:'Dayton Hamvention',tags:['HAMFEST'],start:'2027-05-21',end:'2027-05-23',where:'Greene County Fairgrounds & Expo Center, Xenia, OH — the biggest hamfest in the country',by:'Dayton Amateur Radio Association',url:'https://hamvention.org/'},
+ {name:'Kentucky QSO Party',tags:['CONTEST'],start:'2027-06-05',time:'Planned 9 AM–9 PM Eastern (13–01 UTC) — rules are a draft, times may change',where:'On the air — Kentucky stations send RS(T) + county',by:'Kentucky QSO Party committee',url:'https://kyqsoparty.org/rules/'},
+ {name:'POTA Support Your Parks Weekend',tags:['POTA'],start:'2027-07-17',end:'2027-07-18',where:'Any Kentucky park',by:'Parks on the Air',url:'https://pota.app/'},
+ {name:'KYPOTA — Kentucky State Parks on the Air',tags:['CONTEST','POTA'],tba:true,when:'Usually a Saturday in August (2026: Sat., Aug. 8, 1400–2200 UTC)',where:'Operate from Kentucky state parks & national sites',by:'Murray State University Amateur Radio Club (K4MSU)',url:'https://k4msu.com/kypota/'},
+ {name:'Greater Louisville Hamfest',tags:['HAMFEST'],tba:true,when:'Usually mid-September (2026: Sat., Sept. 12)',where:'Paroquet Springs Conference Centre, Shepherdsville, KY',by:'Greater Louisville Hamfest',url:'https://louisvillehamfest.wixsite.com/louisvillehamfest'},
+ {name:'Richmond Kentucky Hamfest',tags:['HAMFEST'],tba:true,when:'Usually September (2026: Sat., Sept. 19)',where:'Madison County Fairgrounds, Richmond, KY',by:'Central Kentucky Amateur Radio Society',url:'http://www.ckars.org'},
+ {name:'KPC 2027 KYPOTA Campout',tags:['KPC'],start:'2027-09-24',end:'2027-09-26',time:'2 PM Eastern Friday – 1 PM Eastern Sunday',where:'Taylorsville Lake State Park (US-1271)',by:'Kentucky Portable Club',url:'campout.html',local:true},
+ {name:'Paintsville KY4ARC Hamfest',tags:['HAMFEST'],tba:true,when:'Usually late September (2025: Sat., Sept. 27)',where:'Paintsville Recreation Center, Paintsville, KY',by:'KY4ARC',url:'http://ky4arc.com'},
+ {name:'POTA Support Your Parks Weekend',tags:['POTA'],start:'2027-10-16',end:'2027-10-17',where:'Any Kentucky park',by:'Parks on the Air',url:'https://pota.app/'}
+];
+const M=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'],D=['SUN','MON','TUE','WED','THU','FRI','SAT'];
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pd=s=>{const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
+const ymd=d=>`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
+const nextDay=s=>{const d=pd(s);d.setDate(d.getDate()+1);return ymd(d)};
+const today=new Date();today.setHours(0,0,0,0);
+// TBA events sort by their usual month
+const sortKey=e=>e.tba?(()=>{const mm=M.findIndex(m=>e.when.toUpperCase().includes(m.slice(0,3)));const y=today.getFullYear()+(mm>=0&&mm<today.getMonth()?1:0);return new Date(y,Math.max(0,mm),15)})():pd(e.start);
+const list=EVENTS.filter(e=>e.tba||pd(e.end||e.start)>=today).sort((a,b)=>sortKey(a)-sortKey(b));
+function gcal(e){const d=`${ymd(pd(e.start))}/${nextDay(e.end||e.start)}`;return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(e.name)+'&dates='+d+'&location='+encodeURIComponent(e.where)+'&details='+encodeURIComponent((e.time?e.time+'\n':'')+'Organizer: '+e.by+'\n'+(e.local?location.href.replace(/[^/]*$/,'')+e.url:e.url)+'\nListed on the Kentucky Portable Club events page.')}
+function ics(e){const f=s=>String(s).replace(/[\;,]/g,m=>'\\'+m).replace(/\n/g,'\\n');const fold=l=>{let o='';while(l.length>74){o+=l.slice(0,74)+'\r\n ';l=l.slice(74)}return o+l};
+ const L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Kentucky Portable Club//KY Radio Calendar//EN','BEGIN:VEVENT','UID:'+ymd(pd(e.start))+'-'+e.name.replace(/\W+/g,'').toLowerCase()+'@kentuckyportableclub.github.io','DTSTAMP:'+new Date().toISOString().replace(/[-:]|\.\d{3}/g,''),'DTSTART;VALUE=DATE:'+ymd(pd(e.start)),'DTEND;VALUE=DATE:'+nextDay(e.end||e.start),'SUMMARY:'+f(e.name),'LOCATION:'+f(e.where),'DESCRIPTION:'+f((e.time?e.time+'\n':'')+'Organizer: '+e.by+'\n'+e.url),'END:VEVENT','END:VCALENDAR'];
+ return L.map(fold).join('\r\n')}
+function dateBox(e){if(e.tba){const mm=M.find(m=>e.when.toUpperCase().includes(m.slice(0,3)));return `<div class="krc-date"><span>${mm||''}</span><b>TBA</b><small>DATE SOON</small></div>`}
+ const s=pd(e.start),en=e.end?pd(e.end):null;return `<div class="krc-date"><span>${M[s.getMonth()]}</span><b>${s.getDate()}${en&&en.getMonth()===s.getMonth()?'–'+en.getDate():''}</b><small>${D[s.getDay()]} ${s.getFullYear()}</small></div>`}
+function draw(f){const el=document.getElementById('krcList');const show=list.filter(e=>f==='all'||e.tags.includes(f));
+ el.innerHTML=show.length?show.map((e,i)=>`<article class="krc-ev${e.tags.includes('KPC')?' kpc':''}${e.tba?' tba':''}">${dateBox(e)}<div><div class="krc-tags">${e.tags.map(t=>`<span class="krc-tag ${t}">${t==='KPC'?'KPC':t}</span>`).join('')}${e.tags.includes('KPC')?'':'<span class="krc-tag">NOT A KPC EVENT</span>'}</div><h3>${esc(e.name)}</h3><p>${e.tba?'<b style="color:#f0c96b">'+esc(e.when)+'</b><br>':''}${e.time?esc(e.time)+'<br>':''}${esc(e.where)}<br><span style="color:#9b978e">${esc(e.by)}</span></p></div><div class="krc-acts"><a class="main" href="${esc(e.url)}"${e.local?'':' target="_blank" rel="noopener"'}>${e.local?'DETAILS →':'WEBSITE ↗'}</a>${e.url2?`<a href="${esc(e.url2)}" target="_blank" rel="noopener">ARRL LISTING ↗</a>`:''}${e.tba?'':`<a href="${gcal(e)}" target="_blank" rel="noopener">GOOGLE CALENDAR ↗</a><button type="button" data-ics="${EVENTS.indexOf(e)}">APPLE / OUTLOOK ↓</button>`}</div></article>`).join(''):'<p style="color:#bcb8ae">Nothing coming up in this category right now.</p>'}
+document.querySelector('.krc-filters').addEventListener('click',ev=>{const b=ev.target.closest('.krc-f');if(!b)return;document.querySelectorAll('.krc-f').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));draw(b.dataset.f)});
+document.getElementById('krcList').addEventListener('click',ev=>{const b=ev.target.closest('[data-ics]');if(!b)return;const e=EVENTS[+b.dataset.ics];const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics(e)],{type:'text/calendar'}));a.download=e.name.replace(/[^A-Za-z0-9]+/g,'_')+'.ics';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)});
+draw('all');
+})();
+</script>
 
 <section class="section dark" id="campout-details"><div class="section-inner"><div class="feature-panel" style="max-width:780px;margin:0 auto"><p class="eyebrow">2027 KYPOTA CAMPOUT</p><h2>September 24–26, 2027</h2><p class="lead">The 2027 KYPOTA Campout will be held in the group camping area at Taylorsville Lake State Park. Details and signups are on the Campout page.</p></div></div></section>
 
