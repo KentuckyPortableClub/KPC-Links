@@ -130,14 +130,17 @@ document.querySelectorAll(".trailsearch").forEach(button=>button.addEventListene
   if(r.acts===0&&!r.last)parts.push('Not activated yet - be the first!');
   else{parts.push('Activated '+r.acts.toLocaleString()+' time'+(r.acts===1?'':'s'));if(r.last)parts.push('last '+fmt(r.last)+(r.by?' by '+r.by:''));if(Number.isFinite(r.qsos)&&r.qsos>0)parts.push(r.qsos.toLocaleString()+' contacts logged')}
   box.textContent=parts.join(' · ')}
+ const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){io.unobserve(e.target);e.target.__go&&e.target.__go()}}),{rootMargin:'200px'}):null;
+ let busy=0;const q=[];const pump=()=>{while(busy<3&&q.length){const f=q.shift();busy++;f().finally(()=>{busy--;pump()})}};
  function add(card){
   if(card.dataset.act)return;const tag=card.querySelector('.tag.pota');if(!tag)return;
   const m=tag.textContent.match(/US-\d+|[A-Z]{1,2}-\d{3,5}/);if(!m)return;card.dataset.act='1';
-  const ref=m[0],wrap=document.createElement('div');wrap.className='meta kpc-act';
-  const b=document.createElement('button');b.type='button';b.className='secondary';b.textContent='Show POTA activity';
-  const out=document.createElement('span');out.style.marginLeft='8px';
-  b.onclick=async()=>{b.disabled=true;out.textContent='Loading...';try{show(out,await load(ref));b.remove()}catch(e){out.textContent='Could not load activity (offline or POTA is not answering). Try again later.';b.disabled=false;b.textContent='Try again'}};
-  wrap.append(b,out);card.append(wrap)}
+  const ref=m[0],wrap=document.createElement('div');wrap.className='meta kpc-act';wrap.style.cssText='margin-top:8px;padding:8px 10px;border-left:3px solid #d5a63a;background:rgba(213,166,58,.08)';
+  const out=document.createElement('span');out.textContent='POTA activity: loading...';
+  const b=document.createElement('button');b.type='button';b.className='secondary';b.textContent='Try again';b.style.cssText='display:none;margin-left:8px;padding:6px 10px;font-size:12px';
+  const run=()=>new Promise(res=>{q.push(()=>load(ref).then(x=>{show(out,x);out.textContent='POTA activity: '+out.textContent}).catch(()=>{out.textContent='POTA activity could not load (offline or POTA not answering).';b.style.display='inline-block'}).finally(res));pump()});
+  b.onclick=()=>{out.textContent='POTA activity: loading...';b.style.display='none';run()};wrap.append(out,b);card.append(wrap);card.__go=run;
+  if(io)io.observe(card);else card.__go()}
  const scan=()=>items.querySelectorAll('article.entry').forEach(add);
  new MutationObserver(scan).observe(items,{childList:true});scan();
 })();

@@ -3,7 +3,7 @@
    Every other page on the site goes straight to the network as normal.
    Strategy: network first (so the site always updates when you have signal),
    fall back to the saved copy when there is no signal. */
-const APP = 'kpc-finder-v1';
+const APP = 'kpc-finder-v2';
 const TILES = 'kpc-tiles-v1';
 const MAX_TILES = 2500; // about 40–60 MB of map tiles at most
 const SAME = /\/(finder\.html|finder\.css|finder\.js|gis-overlays\.js|kpc-offline\.js|locations\.json|official-[a-z0-9-]+\.json|wwff-unmapped\.json|kpc-ky-data\.json|ky-trail-parks\.json|ky-[a-z-]+\.geojson|KPC-logo\.png|kpc-icon-(?:32|180)\.png)$/;

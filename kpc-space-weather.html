@@ -270,5 +270,5 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&S.loadedA
 const menuToggle=document.querySelector('.menu-toggle'),nav=document.querySelector('#main-navigation');menuToggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuToggle.setAttribute('aria-expanded',open?'true':'false');menuToggle.textContent=open?'✕':'☰'});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰'}));
 </script>
 <script src="kpc-fold.js" defer></script>
-</body>
+<script src="kpc-search.js" defer></script></body>
 </html>

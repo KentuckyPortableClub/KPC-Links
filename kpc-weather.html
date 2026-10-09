@@ -204,5 +204,5 @@ $('clearBtn').onclick=()=>{ $('park').value=''; $('town').value=''; $('results')
   const ref=(q.get('ref')||'').slice(0,20),nm=(q.get('name')||'Park').slice(0,120);if(ref)$('park').value=ref;
   loadWeather(la,lo,nm+(ref?' — '+ref:''),'POTA park').then(()=>{const e=$('weather');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})})}}catch(_){}})();
 </script>
-</body>
+<script src="kpc-search.js" defer></script></body>
 </html>

@@ -377,5 +377,5 @@ function apply(){secs.forEach(s=>s._set&&s._set(!mq.matches))}apply();mq.addEven
 function openTo(id){const t=id&&document.getElementById(id),s=t&&t.closest('[data-fold]');if(s&&s._set&&s.classList.contains('kpc-folded')){s._set(true);requestAnimationFrame(()=>t.scrollIntoView())}}
 window.addEventListener('hashchange',()=>openTo(location.hash.slice(1)));openTo(location.hash.slice(1));
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a)openTo(a.getAttribute('href').slice(1))})})();</script>
-</body>
+<script src="kpc-search.js" defer></script></body>
 </html>
