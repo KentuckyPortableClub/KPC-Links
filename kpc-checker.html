@@ -83,7 +83,7 @@ async function drawMap(){if(!map){map=KPC.leafletMap('map');await KPC.countyLaye
  if(layer)layer.remove();layer=L.layerGroup().addTo(map);
  D.parks.forEach(p=>{const s=S[p.c],done=s&&s.ok;
   L.circleMarker([p.la,p.lo],{radius:done?7:5,weight:1.2,color:'#173a28',fillColor:done?'#1d5a3a':s?'#d5a63a':'#ffffff',fillOpacity:.95})
-  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> • ${KPC.esc(KPC.cty(p.co))}<br>${done?`Activated ${s.n}× • ${s.q} QSOs • first ${KPC.fmtDate(s.first)}`:s?`${s.tries} attempt(s), under 10 QSOs`:'Not activated yet'}`).addTo(layer)})}
+  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> • ${KPC.esc(KPC.cty(p.co))}<br>${done?`Activated ${s.n}× • ${s.q} QSOs • first ${KPC.fmtDate(s.first)}`:s?`${s.tries} attempt(s), under 10 QSOs`:'Not activated yet'}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See boundary &amp; trails in Finder →</a>`).addTo(layer)})}
 function drawTable(){const P=D.parks;let rows;
  if(tab==='done'){$('col3').textContent='FIRST';$('col4').textContent='ACTS';
   rows=P.filter(p=>S[p.c]&&S[p.c].ok).sort((a,b)=>S[a.c].first.localeCompare(S[b.c].first)).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}</td><td>${KPC.esc(p.co)}</td><td>${KPC.fmtDate(S[p.c].first)}</td><td>${S[p.c].n}</td></tr>`)}
@@ -101,5 +101,5 @@ $('csvAll').onclick=()=>csv('all');$('csvDone').onclick=()=>csv('done');$('csvNe
 </script>
 
 </main>
-<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="resources.html">RESOURCES →</a><a href="join.html">JOIN KPC →</a></div></footer>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="resources.html">RESOURCES →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
 </body></html>

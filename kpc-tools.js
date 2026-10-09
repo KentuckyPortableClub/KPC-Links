@@ -41,7 +41,14 @@ function progressUI(el){return(d,n,cached)=>{el.classList.add('on');el.querySele
 function navToggle(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav-links');if(!t)return;
  t.addEventListener('click',()=>{const o=n.classList.toggle('open');t.setAttribute('aria-expanded',String(o))})}
 function leafletMap(id){const m=L.map(id,{scrollWheelZoom:false}).setView([37.75,-85.7],7);
- L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'© OpenStreetMap contributors'}).addTo(m);return m}
+ const st=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'© OpenStreetMap contributors'});
+ const base={'Street':st};
+ try{base['Terrain']=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors'});
+  base['Satellite']=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
+  let want='Street';try{want=localStorage.getItem('kpcBaseMap')||'Street'}catch(e){}
+  (base[want]||st).addTo(m);L.control.layers(base,null,{position:'topright',collapsed:true}).addTo(m);
+  m.on('baselayerchange',e=>{try{localStorage.setItem('kpcBaseMap',e.name)}catch(x){}})}catch(e){st.addTo(m)}
+ return m}
 async function countyLayer(m){const C=await counties();const g=L.layerGroup();
  C.forEach(c=>c.r.forEach(r=>L.polygon(r.map(([x,y])=>[y,x]),{color:'#1d5a3a',weight:.7,opacity:.55,fill:false,interactive:false}).addTo(g)));g.addTo(m);return g}
 const links={pota:r=>`https://pota.app/#/park/${r}`,sota:r=>`https://sotl.as/summits/${r}`,kff:r=>`https://logsearch.wwff.co/directory/${r}`,
