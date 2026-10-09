@@ -35,6 +35,21 @@
 @media(max-width:900px){.hero-mark{display:block;position:static;transform:none;width:min(290px,58vw);margin:0 auto 26px}.hero-inner{padding:72px 20px 95px}}
 @media(max-width:600px){.hero{min-height:500px;background-image:url("campout-mobile.png");background-size:cover;background-position:center;background-repeat:no-repeat}.hero-mark{width:min(250px,64vw)}}
 @media(max-width:380px){.brand-text small{display:none}}
+
+/* KPC shared About-style footer and below-hero page links */
+.page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+.page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
+.page-jump-nav a:hover,.page-jump-nav a:focus-visible{background:#3c321a;border-color:#d6b96c;color:#fff}
+section[id]{scroll-margin-top:100px}
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
+body.field .page-jump-nav{display:none!important}
+
 </style>
 </head>
 <body>
@@ -55,13 +70,85 @@
 <section class="hero">
   <div class="hero-inner">
     <img class="hero-mark" src="KPC-logo.png" alt="Kentucky Portable Club">
-    <p class="eyebrow">2027 KYPOTA CAMPOUT • KENTUCKY PORTABLE CLUB</p>
-<h1>CAMPOUT PLANS <span>COMING SOON.</span></h1>
-<p class="hero-copy">We are finalizing plans for the KYPOTA Campout. Event information and updates will be posted here soon.</p>
+    <p class="eyebrow">2027 KYPOTA Campout • KENTUCKY ADVENTURE</p>
+    <h1>COME FOR THE <span>CAMPOUT.</span></h1>
+    <p class="hero-copy">Join the Kentucky Portable Club for a weekend of camping, portable radio, fellowship, and Kentucky adventure at Taylorsville Lake State Park.</p>
+    <div class="hero-actions"><a class="btn btn-primary" href="#campout-resources">CAMPOUT INFORMATION ↓</a><a class="btn btn-secondary" href="https://groups.io/g/KyPOTAcampout/" target="_blank" rel="noopener">CAMPOUT GROUPS.IO ↗</a></div>
   </div>
 </section>
+
+<section class="date-strip" aria-label="Campout date and location">
+  <div class="date-item"><span class="label">DATES</span><strong>September 24–26, 2027</strong></div>
+  <div class="date-item"><span class="label">LOCATION</span><strong>Taylorsville Lake State Park</strong></div>
+  <div class="date-item"><span class="label">CURRENT STATUS</span><strong>More details coming soon</strong></div>
+</section>
+<nav class="page-jump-nav" aria-label="Quick page links"><a href="#campout-resources">RESOURCES</a><a href="#location">LOCATION</a><a href="#whats-coming">ACTIVITIES</a><a href="#details">DETAILS</a></nav>
+
+
+<section class="section resources-callout" id="campout-resources">
+  <div class="section-inner">
+    <p class="eyebrow-dark">2027 CAMPOUT INFORMATION</p>
+    <h2>Start Here</h2>
+    <p class="lead">The official 2027 KYPOTA Campout guides and event flyer are the best place to start planning your weekend.</p>
+    <div class="cards">
+      <article class="card">
+        <h3>Kentucky Adventure Guide</h3>
+        <p>Parks, forests, attractions, lodging, and trip ideas for campout guests.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="KPC_2027_Kentucky_Adventure_Guide.pdf" target="_blank" rel="noopener">VIEW ADVENTURE GUIDE →</a><a class="btn btn-secondary-dark" href="KPC_2027_Kentucky_Adventure_Guide.pdf" download>DOWNLOAD ↓</a></div>
+      </article>
+      <article class="card">
+        <h3>Kentucky Local Guide</h3>
+        <p>Taylorsville-area lodging, food, parks, and things to do.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="KPC_2027_Kentucky_Local_Guide.pdf" target="_blank" rel="noopener">VIEW LOCAL GUIDE →</a><a class="btn btn-secondary-dark" href="KPC_2027_Kentucky_Local_Guide.pdf" download>DOWNLOAD ↓</a></div>
+      </article>
+      <article class="card">
+        <h3>2027 Campout Flyer</h3>
+        <p>A quick-reference flyer with the key 2027 campout information.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="KPC_2027_KYPOTA_Campout_Flyer.pdf" target="_blank" rel="noopener">VIEW FLYER →</a><a class="btn btn-secondary-dark" href="KPC_2027_KYPOTA_Campout_Flyer.pdf" download>DOWNLOAD ↓</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section location" id="location"><div class="section-inner location-grid">
+  <div><p class="eyebrow">2027 KYPOTA Campout DESTINATION</p><h2>Taylorsville Lake State Park</h2><p class="lead">The 2027 KYPOTA Campout will be held at Taylorsville Lake State Park. Additional campground information will be shared when it is ready.</p></div>
+  <div class="location-card"><div class="pin">⌖</div><h3>Taylorsville Lake State Park</h3><p class="address">US-1271</p><p>September 24–26, 2027</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+<a class="btn btn-primary" href="https://kentuckystateparks.reserveamerica.com/camping/taylorsville-lake-state-park/r/campgroundDetails.do?contractCode=KY&amp;parkId=91825" target="_blank" rel="noopener">RESERVE A CAMPSITE ↗</a>
+<a class="btn btn-primary" href="https://kentuckystateparks.reserveamerica.com/camping/map_of_taylorsville-lake-state-park/r/campgroundMap.do?page=map&search=site&contractCode=KY&parkId=91825" target="_blank" rel="noopener">VIEW CAMPGROUND MAP ↗</a>
+</div></div>
+</div></section>
+
+<section class="section" id="whats-coming">
+  <div class="section-inner">
+    <p class="eyebrow-dark">THE ADVENTURE IS MORE THAN THE CAMPOUT</p>
+    <h2>What's Coming to 2027 KYPOTA Campout</h2>
+    <p class="lead">The official schedule will be released at a later date as activities, times and details are finalized.</p>
+    <div class="cards">
+      <article class="card"><h3>MEET &amp; GREET</h3><p>Meet fellow campers, make new friends and put faces to the callsigns and people you’ve connected with along the way.</p></article>
+      <article class="card"><h3>FOX HUNT</h3><p>Put your radio-direction-finding skills to the test as you track down the hidden signal and enjoy some friendly competition.</p></article>
+      <article class="card"><h3>POTA ACTIVATIONS</h3><p>Get on the air from Taylorsville Lake, make contacts, hunt activations and share the excitement of Parks on the Air.</p></article>
+      <article class="card"><h3>FELLOWSHIP</h3><p>Relax around camp, swap stories, compare gear, talk radios and enjoy time with friends from Kentucky and beyond.</p></article>
+      <article class="card"><h3>COMMUNITY MEAL</h3><p>A special opportunity for everyone to gather around the table for good food, conversation and fellowship.</p></article>
+      <article class="card"><h3>GROUP PHOTOS</h3><p>We’ll gather together for group photos and memories of the people who make KPC what it is.</p></article>
+      <article class="card"><h3>CHALLENGES &amp; GAMES</h3><p>Expect fun challenges, games and a little friendly competition. You may leave with some serious bragging rights!</p></article>
+      <article class="card"><h3>SPECIAL ACTIVITIES &amp; SCHEDULE</h3><p>We’re working on additional activities and surprises to make the weekend special. The official schedule will be announced as details are finalized.</p></article>
+    </div>
+  </div>
+</section>
+<section class="section" id="details"><div class="section-inner">
+  <p class="eyebrow-dark">2027 DATES SET</p><h2>2027 KYPOTA Campout</h2>
+  <p class="lead">Mark your calendar for September 24–26, 2027. The 2027 KYPOTA Campout is headed to Taylorsville Lake State Park for a weekend built around getting outside, getting on the air, and spending time with the KPC community.</p>
+  <div class="cards">
+    <article class="card"><h3>Get Outside</h3><p>Camp, explore, relax, and enjoy a Kentucky state park setting with fellow KPC members.</p></article>
+    <article class="card"><h3>Get On The Air</h3><p>Bring your portable station and enjoy amateur radio from the outdoors. Activation details will be announced later.</p></article>
+    <article class="card"><h3>Fellowship</h3><p>Meet other operators, swap stories, share knowledge, and enjoy the weekend together.</p></article>
+  </div>
+</div></section>
+
+
+<section class="section cta"><div class="section-inner"><p class="eyebrow-dark">STAY CONNECTED</p><h2>More Is Coming.</h2><p class="lead">The date and destination are set. Updates will be posted as plans are finalized.</p><a class="btn btn-primary" style="margin-top:22px" href="contact.html">CONTACT KPC →</a><a class="btn btn-secondary-dark" style="margin-top:22px;margin-left:10px" href="https://groups.io/g/KyPOTAcampout" target="_blank" rel="noopener">CAMPOUT GROUPS.IO ↗</a></div></section>
 </main>
 
-<footer class="footer"><div><div style="font-size:12px;letter-spacing:2px">KENTUCKY PORTABLE CLUB</div><div style="font-size:12px;margin-top:4px;color:var(--gold-light)">KPC — Kentucky Portable Club • Est. 2026.</div><div class="tag">Get Outside. Get On The Air.</div></div><div class="links"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="contact.html">CONTACT KPC →</a></div></footer>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="events.html">VIEW EVENTS →</a><a href="parks.html">EXPLORE KENTUCKY →</a><a href="contact.html">CONTACT KPC →</a></div></footer>
 <script>const toggle=document.querySelector('.menu-toggle'),links=document.querySelector('.nav-links');toggle.addEventListener('click',()=>{const open=links.classList.toggle('open');toggle.setAttribute('aria-expanded',open);toggle.setAttribute('aria-label',open?'Close menu':'Open menu');});</script>
 </body></html>

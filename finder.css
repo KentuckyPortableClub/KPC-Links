@@ -70,3 +70,7 @@ html{scroll-behavior:smooth}
 #map .leaflet-popup-close-button{color:#171717!important;font-size:22px!important}
 #map .kpc-user-location{background:transparent;border:0}
 #map .kpc-user-location span{display:block;width:20px;height:20px;border-radius:50%;background:#1378ff;border:3px solid white;box-shadow:0 0 0 5px #1378ff55,0 2px 8px #0008}
+
+/* High-visibility GPS location dot */
+#map .kpc-user-location{background:transparent!important;border:0!important;overflow:visible!important;z-index:1000!important}
+#map .kpc-user-location span{display:block;width:20px;height:20px;border-radius:50%;background:#147bff;border:3px solid #fff;box-shadow:0 0 0 7px rgba(20,123,255,.23),0 2px 9px #0009}
