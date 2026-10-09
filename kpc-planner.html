@@ -88,7 +88,7 @@ function run(){ALL=ALL||items();const R=+$('rad').value;
  $('where').innerHTML=`From <b>${KPC.esc(origin[2])}</b> within ${R} miles: <b>${c.pota}</b> POTA parks • <b>${c.sota}</b> summits • <b>${c.kff}</b> KFF-only references`;
  layer.clearLayers();L.circle([origin[0],origin[1]],{radius:R*1609.34,color:'#d5a63a',weight:1.5,fillOpacity:.05}).addTo(layer);
  L.circleMarker([origin[0],origin[1]],{radius:7,color:'#000',fillColor:'#000',fillOpacity:1}).bindPopup('Start: '+KPC.esc(origin[2])).addTo(layer);
- res.forEach(x=>L.circleMarker([x.la,x.lo],{radius:x.multi?8:6,weight:1.2,color:'#222',fillColor:x.multi?ICON.multi:ICON[x.k],fillOpacity:.95}).bindPopup(`<b>${KPC.esc(x.n)}</b><br>${x.ref} • ${x.d.toFixed(1)} mi<br><a href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">Directions</a>`).addTo(layer));
+ res.forEach(x=>L.circleMarker([x.la,x.lo],{radius:x.multi?8:6,weight:1.2,color:'#222',fillColor:x.multi?ICON.multi:ICON[x.k],fillOpacity:.95}).bindPopup(`<b>${KPC.esc(x.n)}</b><br>${x.ref} • ${x.d.toFixed(1)} mi<br><a href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">Directions</a><br><a href="finder.html?q=${x.ref}" style="font-weight:700">See boundary &amp; trails in Finder →</a>`).addTo(layer));
  map.fitBounds(L.latLng(origin[0],origin[1]).toBounds(R*1609.34*2.1));
  $('list').innerHTML=res.length?res.map((x,i)=>`<div class="item ${x.k}"><input type="checkbox" data-i="${i}" ${sel.some(s=>s.ref===x.ref)?'checked':''} aria-label="Add ${KPC.esc(x.ref)} to route">
  <div><span class="ref">${x.ref}</span> <span class="tag">${x.k.toUpperCase()}</span><h3>${KPC.esc(x.n)}</h3><div class="meta">${KPC.esc(KPC.cty(x.co))}${x.meta?' • '+x.meta:''}${x.dn?` • parking: ${KPC.esc(x.dn)}`:''}</div>${x.tags.length?`<div>${x.tags.join('')}</div>`:''}
@@ -103,5 +103,5 @@ $('route').onclick=()=>{if(!sel.length||!origin)return;const s=[...sel].sort((a,
 </script>
 
 </main>
-<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="resources.html">RESOURCES →</a><a href="join.html">JOIN KPC →</a></div></footer>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="resources.html">RESOURCES →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
 </body></html>
