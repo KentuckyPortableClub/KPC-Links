@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Grid & County Lookup | KPC</title>
+<meta name="description" content="Grid square, Kentucky county and nearest parks for your location or any reference.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="kpc-tools.css">
+<script src="kpc-tools.js"></script>
+</head>
+<body>
+<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html" aria-current="page">Parks</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a></nav></div></header>
+<main>
+<section class="tool-head"><div class="wrap">
+<p class="eyebrow">KPC FIELD LOOKUP</p>
+<h1>GRID &amp; <span>COUNTY</span></h1>
+<p class="sub">Get the grid square, Kentucky county and region for where you're standing — or for any park, summit or town — plus the nearest parks, summits and KFF references.</p>
+</div></section>
+<nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html" aria-current=page>Grid & County</a><a href="parks.html">← Parks</a></div></nav>
+<section class="section"><div class="wrap">
+<div class="panel">
+<div class="controls">
+<button class="btn" id="gps" type="button" style="flex:0 0 auto">📍 USE MY LOCATION</button>
+<label class="field" style="flex:2 1 260px">OR ENTER A REFERENCE, TOWN, OR LAT, LON<input id="q" list="dl" placeholder="US-1271 • W4K/EC-001 • KFF-1271 • Hazard • 38.03, -85.33" spellcheck="false"><datalist id="dl"></datalist></label>
+<button class="btn alt" id="go" type="button" style="align-self:flex-end">LOOK UP</button>
+</div>
+<p class="muted" id="msg" style="margin:10px 0 0;font-size:14px"></p>
+</div>
+<div id="out" style="display:none;margin-top:20px">
+<div class="stats" id="stats"></div>
+<div class="grid2" style="margin-top:20px">
+<div><div class="map" id="map" style="height:420px"></div></div>
+<div id="near"></div>
+</div>
+<div class="note">The county comes from Kentucky county boundaries (simplified) and is reliable except within a few hundred feet of a county line — check the official map if you are right on a line. Grid squares are 6-character Maidenhead locators. Parks are measured to the park's POTA point, so a big park can be closer than it looks.</div>
+</div>
+</div></section>
+<script>
+const $=id=>document.getElementById(id);let D,map,layer;
+(async()=>{D=await KPC.data();$('dl').innerHTML=[...D.parks.map(p=>`<option value="${p.c}">${KPC.esc(p.n)}</option>`),...D.summits.map(s=>`<option value="${s.c}">${KPC.esc(s.n)}</option>`),...D.towns.map(t=>`<option value="${t.n}">`)].join('');
+ const q=new URLSearchParams(location.search).get('q');if(q){$('q').value=q;find()}})();
+$('gps').onclick=()=>{if(!navigator.geolocation){$('msg').textContent='Location is not available in this browser.';return}$('msg').textContent='Finding your location…';
+ navigator.geolocation.getCurrentPosition(p=>show(p.coords.latitude,p.coords.longitude,'Your location',`±${Math.round(p.coords.accuracy*3.281)} ft`),()=>$('msg').textContent='Could not get your location — allow location access, or type a place instead.',{enableHighAccuracy:true,timeout:15000})};
+$('go').onclick=find;$('q').addEventListener('keydown',e=>{if(e.key==='Enter')find()});
+function find(){const v=$('q').value.trim(),u=v.toUpperCase();if(!v)return;
+ const m=v.match(/^\s*(-?\d+(?:\.\d+)?)\s*[, ]\s*(-?\d+(?:\.\d+)?)\s*$/);if(m)return show(+m[1],+m[2],'Coordinates');
+ const p=D.parks.find(x=>x.c===u);if(p)return show(p.la,p.lo,`${p.c} ${p.n}`,'POTA reference point');
+ const s=D.summits.find(x=>x.c===u);if(s)return show(s.la,s.lo,`${s.c} ${s.n}`,'SOTA summit');
+ const k=D.kff.find(x=>x.c===u);if(k)return show(k.la,k.lo,`${k.c} ${k.n}`,'KFF reference point');
+ const t=D.towns.find(x=>x.n.toUpperCase()===u);if(t)return show(t.la,t.lo,t.n,'Town center');
+ const pn=D.parks.find(x=>x.n.toUpperCase().includes(u));if(pn)return show(pn.la,pn.lo,`${pn.c} ${pn.n}`,'POTA reference point');
+ $('msg').textContent='Not found. Try a park number like US-1271, a summit like W4K/EC-001, a Kentucky town, or "lat, lon".'}
+async function show(la,lo,label,note){$('msg').textContent='';$('out').style.display='block';
+ const g=KPC.grid(la,lo),c=await KPC.countyOf(la,lo),reg=c?D.regions[c.toUpperCase()]||'':'';
+ $('stats').innerHTML=`<div class="stat"><b>${g}</b><span>GRID SQUARE</span></div><div class="stat"><b style="font-size:24px">${c?KPC.esc(c):'Outside KY'}</b><span>${c?'KENTUCKY COUNTY':'NO KY COUNTY'}</span></div><div class="stat"><b style="font-size:20px">${reg?KPC.esc(reg):'—'}</b><span>KPC REGION</span></div><div class="stat"><b style="font-size:18px">${la.toFixed(5)}, ${lo.toFixed(5)}</b><span>${KPC.esc(label).toUpperCase()}${note?' • '+KPC.esc(note).toUpperCase():''}</span></div>`;
+ const near=(arr,n)=>arr.map(x=>({...x,d:KPC.miles(la,lo,x.la,x.lo)})).sort((a,b)=>a.d-b.d).slice(0,n);
+ const NP=near(D.parks,6),NS=near(D.summits,3),NK=near(D.kff,3),NT=near(D.towns,3);
+ const row=(r,n,d,u)=>`<tr><td><a class="ref" href="${u}" target="_blank" rel="noopener">${r}</a><br>${KPC.esc(n)}</td><td style="white-space:nowrap"><b>${d.toFixed(1)}</b> mi</td></tr>`;
+ $('near').innerHTML=`<div class="panel" style="padding:0"><table class="list"><thead><tr><th>NEAREST POTA PARKS</th><th>DIST</th></tr></thead><tbody>${NP.map(x=>row(x.c,x.n,x.d,KPC.links.pota(x.c))).join('')}</tbody>
+ <thead><tr><th>NEAREST SOTA SUMMITS</th><th></th></tr></thead><tbody>${NS.map(x=>row(x.c,x.n,x.d,KPC.links.sota(x.c))).join('')}</tbody>
+ <thead><tr><th>NEAREST KFF</th><th></th></tr></thead><tbody>${NK.map(x=>row(x.c,x.n,x.d,KPC.links.kff(x.c))).join('')}</tbody>
+ <thead><tr><th>NEAREST TOWNS</th><th></th></tr></thead><tbody>${NT.map(x=>`<tr><td>${KPC.esc(x.n)}</td><td><b>${x.d.toFixed(1)}</b> mi</td></tr>`).join('')}</tbody></table></div>
+ <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="copy">COPY GRID &amp; COUNTY</button><a class="btn sm alt" href="${KPC.links.gmap(la,lo)}" target="_blank" rel="noopener">GOOGLE MAPS</a><a class="btn sm alt" href="${KPC.links.wx(la,lo)}" target="_blank" rel="noopener">WEATHER</a></div>`;
+ $('copy').onclick=()=>{const t=`${g} • ${c?c+' County, KY':'outside KY'}`;navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>{$('copy').textContent='COPIED ✓'})};
+ if(!map){map=KPC.leafletMap('map');await KPC.countyLayer(map)}if(layer)layer.remove();layer=L.layerGroup().addTo(map);
+ L.circleMarker([la,lo],{radius:9,color:'#000',fillColor:'#d5a63a',fillOpacity:1}).bindPopup(`<b>${KPC.esc(label)}</b><br>${g}${c?' • '+KPC.esc(c)+' County':''}`).addTo(layer).openPopup();
+ NP.forEach(x=>L.circleMarker([x.la,x.lo],{radius:6,color:'#222',fillColor:'#1d5a3a',fillOpacity:.9}).bindPopup(`<b>${KPC.esc(x.n)}</b><br>${x.c} • ${x.d.toFixed(1)} mi`).addTo(layer));
+ NS.forEach(x=>L.circleMarker([x.la,x.lo],{radius:6,color:'#222',fillColor:'#b5452b',fillOpacity:.9}).bindPopup(`<b>${KPC.esc(x.n)}</b><br>${x.c} • ${x.d.toFixed(1)} mi`).addTo(layer));
+ map.setView([la,lo],10);history.replaceState(null,'','?q='+encodeURIComponent(label.split(' ')[0].match(/^(US|KFF|W4K)/)?label.split(' ')[0]:`${la.toFixed(5)},${lo.toFixed(5)}`))}
+</script>
+
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="resources.html">RESOURCES →</a><a href="join.html">JOIN KPC →</a></div></footer>
+</body></html>
