@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>KPC Data Source Test</title>
+<style>
+body{margin:0;background:#f5f0e4;color:#171717;font:16px/1.5 Arial,sans-serif;padding:18px}
+h1{font:700 26px Georgia,serif;margin:0 0 6px}p{margin:6px 0 14px;color:#555}
+button{min-height:46px;padding:10px 18px;border:0;border-radius:7px;background:#d5a63a;font-weight:900;letter-spacing:1px;cursor:pointer;margin:0 8px 8px 0}
+.t{background:#fff;border:1px solid #d8cfbf;border-left:6px solid #cbbf9f;padding:10px 14px;margin:10px 0}
+.t.ok{border-left-color:#1d5a3a}.t.bad{border-left-color:#b5452b}
+.t b{display:block}.t small{display:block;color:#555;word-break:break-all}.t pre{margin:6px 0 0;white-space:pre-wrap;word-break:break-all;font-size:12px;max-height:150px;overflow:auto;background:#f7f2e6;padding:6px}
+</style></head><body>
+<h1>KPC Data Source Test</h1>
+<p>Tap RUN TESTS. It checks whether each ham-radio data source can be read directly by a web page. Then tap COPY RESULTS and paste them to Claude. Takes about 30 seconds. Nothing is sent anywhere except to these public data sites.</p>
+<button id="run">RUN TESTS</button><button id="copy" style="background:#fff;border:1px solid #d5a63a">COPY RESULTS</button>
+<div id="out"></div>
+<script>
+const KY="(tx_loc LIKE 'EM5%' OR tx_loc LIKE 'EM6%' OR tx_loc LIKE 'EM7%' OR tx_loc LIKE 'EM8%' OR rx_loc LIKE 'EM5%' OR rx_loc LIKE 'EM6%' OR rx_loc LIKE 'EM7%' OR rx_loc LIKE 'EM8%')";
+const q=s=>'https://db1.wspr.live/?query='+encodeURIComponent(s);
+const TESTS=[
+['WSPR.live: spot counts by band, last 30 min (worldwide)',q("SELECT band,count(*) AS c FROM wspr.rx WHERE time > now() - INTERVAL 30 MINUTE GROUP BY band ORDER BY band FORMAT JSON")],
+['WSPR.live: Kentucky-area (EM5-EM8) counts by band, last 60 min',q("SELECT band,count(*) AS c FROM wspr.rx WHERE time > now() - INTERVAL 60 MINUTE AND "+KY+" GROUP BY band ORDER BY band FORMAT JSON")],
+['WSPR.live: 3 sample rows with all columns',q("SELECT time,band,tx_sign,tx_loc,rx_sign,rx_loc,frequency,snr,distance FROM wspr.rx WHERE time > now() - INTERVAL 20 MINUTE AND "+KY+" LIMIT 3 FORMAT JSON")],
+['Spothole: spots (v1 path)','https://spothole.app/api/v1/spots?limit=5'],
+['Spothole: spots (v2 path)','https://spothole.app/api/v2/spots?limit=5'],
+['Spothole: spots (v3 path)','https://spothole.app/api/v3/spots?limit=5'],
+['Spothole: API docs page','https://spothole.app/apidocs'],
+['Spothole: OpenAPI file','https://spothole.app/apidocs/openapi.yml'],
+['PSKReporter: receptions of N4KPC','https://retrieve.pskreporter.info/query?senderCallsign=N4KPC&flowStartSeconds=-3600'],
+['NOAA: planetary K-index','https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json'],
+['NOAA: solar flux (10 cm)','https://services.swpc.noaa.gov/products/summary/10cm-flux.json'],
+['POTA: activator spots (for comparison)','https://api.pota.app/spot/activator']];
+const out=document.getElementById('out');let LOG=[];
+async function one([name,url]){const d=document.createElement('div');d.className='t';d.innerHTML='<b></b><small></small><pre></pre>';d.querySelector('b').textContent=name+': testing…';d.querySelector('small').textContent=url;out.appendChild(d);
+ const t0=performance.now();let rec={name,url};
+ try{const c=new AbortController();const to=setTimeout(()=>c.abort(),20000);const r=await fetch(url,{signal:c.signal});clearTimeout(to);const txt=await r.text();const ms=Math.round(performance.now()-t0);
+  rec.status=r.status;rec.ms=ms;rec.bytes=txt.length;rec.type=r.headers.get('content-type');rec.sample=txt.slice(0,600);
+  d.className='t '+(r.ok?'ok':'bad');d.querySelector('b').textContent=(r.ok?'WORKS ':'HTTP '+r.status+' ')+'• '+name+' • '+ms+' ms • '+txt.length+' bytes';d.querySelector('pre').textContent=txt.slice(0,300)}
+ catch(e){rec.error=String(e&&e.message||e);d.className='t bad';d.querySelector('b').textContent='BLOCKED OR FAILED • '+name;d.querySelector('pre').textContent=rec.error+' (usually means the site does not allow browser access, or is unreachable)'}
+ LOG.push(rec)}
+document.getElementById('run').onclick=async()=>{out.innerHTML='';LOG=[];for(const t of TESTS)await one(t)};
+document.getElementById('copy').onclick=async e=>{const txt='KPC source test '+new Date().toISOString()+'\nUA: '+navigator.userAgent+'\n\n'+LOG.map(r=>`## ${r.name}\nURL: ${r.url}\n`+(r.error?`RESULT: FAILED: ${r.error}`:`RESULT: HTTP ${r.status} ${r.type||''} ${r.ms}ms ${r.bytes} bytes\nSAMPLE: ${r.sample}`)).join('\n\n');
+ try{await navigator.clipboard.writeText(txt);e.target.textContent='COPIED ✓'}catch(x){window.prompt('Copy this:',txt)}};
+</script></body></html>
