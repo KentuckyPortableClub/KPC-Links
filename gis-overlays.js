@@ -1,4 +1,4 @@
-/* KPC official GIS overlays. A mapped trail near a reference is only a POSSIBLE 2-fer. */
+/* KPC official GIS overlays. A mapped trail near a reference does not establish a POTA 2-fer. */
 'use strict';
 (()=>{
  const rec='https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Recreational_Trails_WGS84WM/MapServer/';
@@ -20,18 +20,18 @@
  function getName(f){const p=f.attributes||f.properties||{};return p.trl_Name||p.TRL_NAME||p.NAME||p.Name||p.name||p.ParkName||p.PARK_NAME||p.PARK||p.FACILITY||p.SiteName||p.DESCRIPTION||''}
  function matching(f,s){return !s.filter||s.filter.test(getName(f))}
  function distance(lat,lon,pts){let best=Infinity;const sx=111.195*Math.cos(lat*Math.PI/180),sy=111.195;for(let i=1;i<pts.length;i++){const a=pts[i-1],b=pts[i],dx=(b[0]-a[0])*sx,dy=(b[1]-a[1])*sy,x=(lon-a[0])*sx,y=(lat-a[1])*sy,t=Math.max(0,Math.min(1,(x*dx+y*dy)/((dx*dx+dy*dy)||1)));best=Math.min(best,Math.hypot(x-t*dx,y-t*dy))}return best}
- function candidates(){const host=$('gis-candidates');host.replaceChildren();const keys=Object.keys(routes).filter(k=>sources[k].kind==='line'&&$('gis-'+k)?.checked);if(!keys.length){host.textContent='Select a route layer to look for possible 2-fers.';return}
+ function candidates(){const host=$('gis-candidates');host.replaceChildren();const keys=Object.keys(routes).filter(k=>sources[k].kind==='line'&&$('gis-'+k)?.checked);if(!keys.length){host.textContent='Select a route layer to check nearby POTA references.';return}
   if(typeof data==='undefined'||!Array.isArray(data)){host.textContent='Activation reference database not ready.';return}
   const bounds=map.getBounds(),results=[];
   for(const d of data){if(d[0]!=='POTA'||!Number.isFinite(d[3])||!Number.isFinite(d[4])||!bounds.contains([d[3],d[4]]))continue;
    for(const k of keys){let best=Infinity;for(const pts of routes[k]){if(pts.length<2)continue;best=Math.min(best,distance(d[3],d[4],pts))}if(best<=2)results.push({d,k,best})}
   }
-  results.sort((a,b)=>a.best-b.best);const header=document.createElement('p');header.textContent=`${results.length} POSSIBLE 2-fer coordinate matches (within 2 km). None verified; a route crossing a park does not itself qualify as two POTA references.`;host.append(header);
-  for(const r of results.slice(0,70)){const p=document.createElement('p'),a=document.createElement('a');a.href='https://pota.app/#/park/'+encodeURIComponent(r.d[1]);a.target='_blank';a.rel='noopener noreferrer';a.textContent=r.d[1]+' — '+r.d[2];p.append(a,document.createTextNode(` · ${r.best.toFixed(2)} km from ${sources[r.k].name} · Possible 2-fer — independently verify boundaries, reference designations, access and rules.`));host.append(p)}
+  results.sort((a,b)=>a.best-b.best);const header=document.createElement('p');header.textContent=`${results.length} POTA-to-trail proximity matches (within 2 km). None verified; a route crossing a park does not itself qualify as two POTA references.`;host.append(header);
+  for(const r of results.slice(0,70)){const p=document.createElement('p'),a=document.createElement('a');a.href='https://pota.app/#/park/'+encodeURIComponent(r.d[1]);a.target='_blank';a.rel='noopener noreferrer';a.textContent=r.d[1]+' — '+r.d[2];p.append(a,document.createTextNode(` · ${r.best.toFixed(2)} km from ${sources[r.k].name} · Proximity only; not a POTA 2-fer. Verify boundaries, access and rules.`));host.append(p)}
  }
  async function query(s,bbox){const p=new URLSearchParams({where:'1=1',geometry:bbox,geometryType:'esriGeometryEnvelope',inSR:'4326',spatialRel:'esriSpatialRelIntersects',outFields:'*',returnGeometry:'true',outSR:'4326',f:'json'});
   const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),16000);try{const res=await fetch(s.url+'?'+p.toString(),{signal:ctrl.signal});if(!res.ok)throw Error('HTTP '+res.status);const j=await res.json();if(j.error)throw Error(j.error.message||'GIS service error');return j}finally{clearTimeout(timer)}}
- function popup(name,s){return `<strong>${safe(name||s.name)}</strong><br>Official government GIS layer; check source date, current access and agency maps.<br><a href="${s.info}" target="_blank" rel="noopener noreferrer">Official agency information ↗</a><br><b>Possible 2-fer only — independently verify.</b>`}
+ function popup(name,s){return `<strong>${safe(name||s.name)}</strong><br>Official government GIS layer; check source date, current access and agency maps.<br><a href="${s.info}" target="_blank" rel="noopener noreferrer">Official agency information ↗</a><br><b>Trail proximity only — not a POTA 2-fer.</b>`}
  function draw(j,s){const layer=L.layerGroup(),lines=[];let n=0;for(const f of j.features||[]){if(!matching(f,s))continue;const g=f.geometry||{},name=getName(f);if(s.kind==='line'){for(const pts of flatten(g)){if(pts.length<2)continue;L.polyline(pts.map(c=>[c[1],c[0]]),{color:s.color,weight:4,opacity:.9}).bindPopup(popup(name,s)).addTo(layer);lines.push(pts);n++}}
    else if(s.kind==='point'){const pt=g.x!==undefined?[g.y,g.x]:g.type==='Point'?[g.coordinates[1],g.coordinates[0]]:null;if(pt){L.circleMarker(pt,{radius:5,color:s.color,weight:2,fillOpacity:.7}).bindPopup(popup(name,s)).addTo(layer);n++}}
    else if(s.kind==='polygon'){const rings=g.rings||((g.type==='Polygon')?g.coordinates:[]);for(const ring of rings){L.polygon(ring.map(c=>[c[1],c[0]]),{color:s.color,weight:2,fillOpacity:.06}).bindPopup(popup(name,s)).addTo(layer);n++}}
