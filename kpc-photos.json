@@ -1,5 +1,5 @@
 {
- "_how_to_add": "Add a new album to the TOP of the albums list. Put photos in photos/<album-id>/ as 01.jpg, 02.jpg... with thumbnails t01.jpg, t02.jpg... (Claude can make these for you). 'cap' is an optional caption.",
+ "_how_to_add": "Add a new album to the TOP of the albums list. Name its photos <album-id>-01.jpg, <album-id>-02.jpg... with thumbnails <album-id>-t01.jpg... in the main folder (Claude can make these for you). 'cap' is an optional caption. (The first album, kpc26, uses plain names 01.jpg / t01.jpg — that's what 'prefix': '' means.)",
  "albums": [
   {
    "id": "kpc26",
@@ -207,7 +207,8 @@
      "w": 1400,
      "h": 1050
     }
-   ]
+   ],
+   "prefix": ""
   }
  ]
 }
