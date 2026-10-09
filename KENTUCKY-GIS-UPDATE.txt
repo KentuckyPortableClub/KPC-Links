@@ -1,0 +1,19 @@
+KPC Kentucky GIS update — October 8, 2026
+
+Added selectable live government GIS layers:
+- Pine Mountain Trail (Open), Kentucky recreational trails layer 1
+- Dawkins Line candidate named features, Kentucky Rails to Trails layer 3
+- Sheltowee Trace candidate named features, Kentucky Federal Hiking Trails layer 11
+- Kentucky State Park trails, state park trailheads, campgrounds, and boundaries
+- Existing NPS Trail of Tears and Lewis & Clark layers retained
+
+The GIS request is made by each visitor's browser when they click Load routes in map view, at zoom 8+.
+The Kentucky GIS services are not mirrored in this ZIP. This environment could not connect to the GIS servers to download geometry, so live browser behavior and the feature-name matches have NOT been verified.
+
+Every candidate is labeled POSSIBLE 2-fer; a trail line near a POTA coordinate does not establish a second POTA reference, or simultaneous POTA/SOTA/WWFF eligibility. Park boundaries from state GIS are contextual, not necessarily POTA-designated activation boundaries.
+
+Official sources:
+https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Recreational_Trails_WGS84WM/MapServer
+https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer
+https://www.nps.gov/trte/planyourvisit/maps.htm
+https://www.nps.gov/lecl/planyourvisit/maps.htm
