@@ -38,3 +38,25 @@
 #map .leaflet-tooltip-pane{z-index:650}
 #map .leaflet-popup-pane{z-index:700}
 #map .kpc-map-pin{background:transparent!important;border:0!important;overflow:visible!important}
+
+/* Finder jump navigation, map pin legend, and KPC footer */
+html{scroll-behavior:smooth}
+#finder-search,#trailfinder,#finder-planner,#finder-tools,#finder-map,#finder-results{scroll-margin-top:18px}
+.finder-jump{display:flex;gap:10px;flex-wrap:wrap;padding:17px 0 2px}
+.finder-jump a{display:inline-flex;align-items:center;justify-content:center;padding:11px 15px;border:1px solid #98783b;border-radius:7px;background:#1c1b16;color:#f0c96b;font-size:12px;font-weight:850;letter-spacing:.45px;text-decoration:none}
+.finder-jump a:hover,.finder-jump a:focus-visible{background:#d5a63a;color:#090909}
+.map-legend{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 14px;margin-bottom:10px;border:1px solid #80632e;border-radius:8px;background:#211e17;color:#f5f0e4;font-size:13px}
+.map-legend strong{color:#f0c96b}
+.map-legend-items{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.map-legend-items span{display:inline-flex;align-items:center;gap:7px}
+.legend-dot{display:inline-block;flex:none;width:16px;height:16px;border:2px solid #fff;border-radius:50%;box-shadow:0 1px 5px #0009}
+.legend-pota{background:#d5a63a}.legend-sota{background:#168454}.legend-wwff{background:#477bea}
+.finder-footer{margin-top:28px;padding:30px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:#070707;border-top:1px solid #80632e;border-radius:10px 10px 0 0}
+.finder-footer-kicker{font-size:12px;font-weight:850;letter-spacing:2px;color:#f5f0e4}
+.finder-footer-tag{margin-top:7px;font:20px Georgia,'Times New Roman',serif;color:#f0c96b}
+.finder-footer-info p{margin:9px 0 0;color:#c9c5bc;font-size:12px}
+.finder-footer-actions{display:flex;flex-wrap:wrap;gap:9px;justify-content:flex-end}
+.finder-footer-actions a{padding:11px 13px;border:1px solid #6c6251;border-radius:6px;color:#f5f0e4;font-size:11px;font-weight:850;letter-spacing:.5px;text-decoration:none}
+.finder-footer-actions a:hover{border-color:#d5a63a;color:#f0c96b}
+.finder-source{background:#070707;border-top:1px solid #292929;padding:16px 24px 22px;border-radius:0 0 10px 10px}
+@media(max-width:760px){.finder-footer{flex-direction:column;align-items:flex-start}.finder-footer-actions{justify-content:flex-start}.finder-jump a{flex:1 1 140px}.map-legend{align-items:flex-start;flex-direction:column}}
