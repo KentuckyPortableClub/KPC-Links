@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Printable Park Sheet | KPC</title>
+<meta name="description" content="A one-page printable sheet for any Kentucky POTA park, with QR codes and an optional log sheet.">
+<link rel="stylesheet" href="kpc-tools.css">
+<script src="kpc-tools.js"></script>
+</head>
+<body>
+<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html" aria-current="page">Parks</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a></nav></div></header>
+<main>
+<section class="tool-head no-print"><div class="wrap">
+<p class="eyebrow">KPC FIELD TOOL</p>
+<h1>PRINTABLE <span>PARK SHEET</span></h1>
+<p class="sub">Pick any Kentucky POTA park and print a one-page field sheet — QR codes to the official map, POTA page and directions, plus GPS, grid, parking points and possible 2-fers. Add a log sheet on the back.</p>
+</div></section>
+<div class="no-print"><nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html" aria-current=page>Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html">Antenna</a><a href="parks.html">← Parks</a></div></nav></div>
+<section class="section no-print" style="padding-bottom:0"><div class="wrap">
+<div class="panel"><form class="controls" id="f" autocomplete="off">
+<label class="field" style="flex:1 1 320px">PARK (NAME OR US-####)<input id="q" list="parks" placeholder="Taylorsville Lake or US-1271"><datalist id="parks"></datalist></label>
+<label class="field" style="flex:0 1 160px">YOUR CALLSIGN (OPTIONAL)<input id="call" autocapitalize="characters" spellcheck="false"></label>
+<button class="btn" type="submit" style="align-self:flex-end">MAKE SHEET</button>
+</form>
+<div class="controls" style="margin-top:12px;align-items:center">
+<label style="display:flex;gap:8px;align-items:center;font-weight:700"><input type="checkbox" id="withLog" checked> Include a log sheet (page 2)</label>
+<button class="btn alt" type="button" id="printBtn" disabled style="margin-left:auto">🖨 PRINT / SAVE AS PDF</button>
+</div>
+<p class="muted" id="msg" style="font-size:14px;margin:8px 0 0"></p></div>
+</div></section>
+
+<section class="section" style="padding-top:20px"><div class="wrap"><div id="sheet"></div></div></section>
+
+<style>
+@media screen and (max-width:700px){.ps-page{padding:18px 14px;overflow-x:auto}}
+.ps-page{background:#fff;color:#111;border:1px solid #d8cfbf;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:34px 38px;max-width:850px;margin:0 auto 26px;font-family:Arial,Helvetica,sans-serif}
+.ps-top{display:flex;align-items:center;gap:14px;border-bottom:3px solid #d5a63a;padding-bottom:12px}
+.ps-top img{width:58px;height:58px;border-radius:50%}
+.ps-k{font-size:11px;font-weight:900;letter-spacing:2.5px;color:#1d5a3a}
+.ps-name{font:700 28px/1.1 Georgia,serif;margin:3px 0}
+.ps-sub{font-size:14px;color:#444}
+.ps-ref{margin-left:auto;text-align:right}.ps-ref b{display:block;font:700 26px Georgia,serif}.ps-ref span{font-size:12px;color:#555}
+.ps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.ps-box{border:1px solid #d8cfbf;border-left:4px solid #d5a63a;padding:8px 10px}
+.ps-box small{display:block;font-size:10px;font-weight:900;letter-spacing:1.5px;color:#666}.ps-box b{font-size:15px}
+.ps-qr{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:6px 0 14px}
+.ps-q{text-align:center;border:1px solid #e3dccb;padding:10px}.ps-q .qr{display:flex;justify-content:center;min-height:120px;align-items:center}.ps-q .qr img,.ps-q .qr canvas{width:120px;height:120px}
+.ps-q b{display:block;margin-top:6px;font-size:13px}.ps-q span{display:block;font-size:10px;color:#666;word-break:break-all}
+.ps-h{font:700 16px Georgia,serif;margin:14px 0 6px;border-bottom:1px solid #e3dccb;padding-bottom:3px}
+.ps-list{margin:0;padding-left:18px;font-size:13px;line-height:1.5}
+.ps-warn{margin-top:14px;padding:9px 12px;border:2px solid #111;font-size:12px;line-height:1.45}
+.ps-foot{margin-top:12px;font-size:10px;color:#666;display:flex;justify-content:space-between;gap:10px}
+.ps-log{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+.ps-log th,.ps-log td{border:1px solid #999;padding:0 5px;height:24px;text-align:left}.ps-log th{background:#eee;font-size:10px;letter-spacing:.8px;height:22px}
+.ps-log tr.ten td{border-bottom:3px solid #111}
+.ps-fields{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;font-size:12px}
+.ps-fields div{border-bottom:1px solid #999;padding:14px 2px 2px}.ps-fields small{display:block;font-size:9px;font-weight:900;letter-spacing:1.4px;color:#666}
+@media(max-width:700px){.ps-page{padding:20px 16px}.ps-grid{grid-template-columns:repeat(2,1fr)}.ps-qr{grid-template-columns:1fr 1fr}.ps-fields{grid-template-columns:1fr 1fr}.ps-top{flex-wrap:wrap}.ps-ref{margin-left:0;text-align:left}}
+@media print{body footer.kpc-about-footer,body footer{display:none!important}
+ @page{size:letter;margin:0.45in}
+ body{background:#fff!important}
+ .no-print,.site-nav,footer,.toolnav,.section.no-print{display:none!important}
+ .section{padding:0!important}.wrap{width:auto!important;max-width:none!important;padding:0!important}
+ .ps-page{border:0;box-shadow:none;padding:0;margin:0;max-width:none;page-break-after:always;break-after:page}
+ .ps-page:last-child{page-break-after:auto;break-after:auto}
+ .ps-grid{grid-template-columns:repeat(4,1fr)}.ps-qr{grid-template-columns:repeat(3,1fr)}.ps-fields{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);let D,T,cur=null;
+const esc=KPC.esc;
+async function init(){D=await KPC.data();try{T=await fetch('kpc-ky-towns.json').then(r=>r.json())}catch(e){T=[]}
+ $('parks').innerHTML=D.parks.map(p=>`<option value="${p.c} ${esc(p.n)}">`).join('');
+ const q=new URLSearchParams(location.search);if(q.get('call'))$('call').value=q.get('call');if(q.get('ref')){$('q').value=q.get('ref');make()}}
+function find(v){v=String(v||'').trim();const m=v.match(/US-\d{4,5}/i);if(m){const r=m[0].toUpperCase();return D.parks.find(p=>p.c===r)}
+ const l=v.toLowerCase();return D.parks.find(p=>p.n.toLowerCase()===l)||D.parks.find(p=>p.n.toLowerCase().includes(l))}
+const dir=(a,b,c,d)=>{const y=Math.sin((d-b)*Math.PI/180)*Math.cos(c*Math.PI/180),x=Math.cos(a*Math.PI/180)*Math.sin(c*Math.PI/180)-Math.sin(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.cos((d-b)*Math.PI/180);const br=(Math.atan2(y,x)*180/Math.PI+360)%360;return['N','NE','E','SE','S','SW','W','NW'][Math.round(br/45)%8]};
+function qr(el,url){el.innerHTML='';if(window.QRCode){try{new QRCode(el,{text:url,width:240,height:240,correctLevel:QRCode.CorrectLevel.M});return}catch(e){}}el.innerHTML='<span style="font-size:11px">QR code needs an internet connection — the link is printed below.</span>'}
+function short(u){return String(u).replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'').slice(0,60)}
+function make(){const p=find($('q').value);if(!p){$('msg').textContent='Park not found — pick one from the list or type a US-#### number.';return}
+ cur=p;$('msg').textContent='';history.replaceState(null,'','?ref='+p.c+($('call').value?'&call='+encodeURIComponent($('call').value.toUpperCase()):''));
+ const grid=KPC.grid(p.la,p.lo),towns=T.map(t=>[t[0],KPC.miles(t[1],t[2],p.la,p.lo),dir(t[1],t[2],p.la,p.lo)]).sort((a,b)=>a[1]-b[1]).slice(0,2);
+ const off=p.off||p.web,potaU=`https://pota.app/#/park/${p.c}`,dirU=`https://www.google.com/maps/dir/?api=1&destination=${p.la},${p.lo}`;
+ const isWMA=/wildlife|wma|hunting|forest/i.test(p.n+' '+p.t),ap=(p.ap||[]).slice(0,8),call=($('call').value||'').toUpperCase();
+ const page1=`<div class="ps-page"><div class="ps-top"><img src="KPC-logo.png" alt=""><div><div class="ps-k">KENTUCKY PORTABLE CLUB • PARK SHEET</div><div class="ps-name">${esc(p.n)}</div><div class="ps-sub">${esc(KPC.cty(p.co))} • ${esc(p.t)}</div></div><div class="ps-ref"><b>${p.c}</b><span>POTA reference</span></div></div>
+ <div class="ps-grid"><div class="ps-box"><small>GPS (POTA POINT)</small><b>${p.la.toFixed(5)}, ${p.lo.toFixed(5)}</b></div><div class="ps-box"><small>GRID SQUARE</small><b>${grid}</b></div><div class="ps-box"><small>COUNTY</small><b>${esc(p.co)}</b></div><div class="ps-box"><small>NEAREST TOWNS</small><b>${towns.map(t=>`${t[1].toFixed(0)} mi ${t[2]} of ${esc(t[0])}`).join('<br>')}</b></div></div>
+ <div class="ps-qr"><div class="ps-q"><div class="qr" id="qr1"></div><b>OFFICIAL MAP / SITE</b><span>${esc(short(off))}</span></div><div class="ps-q"><div class="qr" id="qr2"></div><b>POTA PARK PAGE</b><span>${esc(short(potaU))}</span></div><div class="ps-q"><div class="qr" id="qr3"></div><b>DIRECTIONS</b><span>Google Maps to the POTA point</span></div></div>
+ ${ap.length?`<div class="ps-h">Official parking &amp; access points</div><ul class="ps-list">${ap.map(a=>`<li>${a[0].toFixed(5)}, ${a[1].toFixed(5)} — ${esc(a[2])}</li>`).join('')}</ul>`:`<div class="ps-h">Parking &amp; access</div><p style="font-size:13px;margin:0">${p.acc?`${p.acc} access points for this park are in the KPC POTA map file (KML/GPX) on the Parks page.`:'Check the official map for parking and access.'}</p>`}
+ <div class="ps-h">Also here — possible extras</div><ul class="ps-list">${(p.tf&&p.tf.length?[`Possible 2-fer: ${p.tf.map(esc).join(', ')} — stand inside both boundaries.`]:[]).concat(p.kff&&p.kff.length?[`WWFF: ${p.kff.map(esc).join(', ')}`]:[]).concat(p.sota&&p.sota.length?[`SOTA summits inside: ${p.sota.map(esc).join(', ')}`]:[]).map(x=>`<li>${x}</li>`).join('')||'<li>No 2-fers, KFF or SOTA references listed for this park.</li>'}</ul>
+ <div class="ps-h">Before you go</div><ul class="ps-list"><li>Confirm the boundary on the official map — you and your gear must be inside it, on public land.</li><li>10 contacts in one UTC day makes a valid activation. Log times in UTC.</li>${isWMA?'<li><b>Hunting land:</b> check season dates and wear blaze orange during gun seasons.</li>':''}<li>Check weather, closures and posted rules. Tell someone where you are going.</li></ul>
+ <div class="ps-warn"><b>Notes:</b> ______________________________________________________________________________<br><br>_______________________________________________________________________________________</div>
+ <div class="ps-foot"><span>KPC Park Sheet • kentuckyportableclub.github.io/KPC-Links • printed ${new Date().toLocaleDateString()}</span><span>Planning aid only — always check the official map and current rules.</span></div></div>`;
+ const rows=Array.from({length:28},(_,i)=>`<tr class="${i===9?'ten':''}"><td style="width:28px">${i+1}</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>`).join('');
+ const page2=`<div class="ps-page"><div class="ps-top"><img src="KPC-logo.png" alt=""><div><div class="ps-k">KENTUCKY PORTABLE CLUB • ACTIVATION LOG</div><div class="ps-name">${esc(p.n)}</div></div><div class="ps-ref"><b>${p.c}</b><span>Grid ${grid}</span></div></div>
+ <div class="ps-fields"><div><small>STATION CALLSIGN</small>${esc(call)}</div><div><small>OPERATOR</small></div><div><small>DATE (UTC)</small></div><div><small>RIG / POWER / ANTENNA</small></div></div>
+ <table class="ps-log"><thead><tr><th>#</th><th>TIME UTC</th><th>CALLSIGN</th><th>BAND / FREQ</th><th>MODE</th><th>SENT</th><th>RCVD</th><th>STATE / PARK</th><th>NOTES</th></tr></thead><tbody>${rows}</tbody></table>
+ <div class="ps-foot"><span>Heavy line after #10 = valid activation. Upload your log to pota.app → My Log Uploads.</span><span>${p.c} • ${esc(p.n)}</span></div></div>`;
+ $('sheet').innerHTML=page1+($('withLog').checked?page2:'');
+ qr($('qr1'),off);qr($('qr2'),potaU);qr($('qr3'),dirU);$('printBtn').disabled=false}
+$('f').onsubmit=e=>{e.preventDefault();make()};$('withLog').onchange=()=>cur&&make();$('printBtn').onclick=()=>window.print();
+init();
+</script>
+
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="resources.html">RESOURCES →</a><a href="join.html">JOIN KPC →</a></div></footer>
+</body></html>

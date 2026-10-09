@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Antenna Calculator | KPC</title>
+<meta name="description" content="Wire lengths for portable dipoles, end-fed half-waves and verticals, plus coax loss.">
+<link rel="stylesheet" href="kpc-tools.css">
+<script src="kpc-tools.js"></script>
+</head>
+<body>
+<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html" aria-current="page">Parks</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a></nav></div></header>
+<main>
+<section class="tool-head"><div class="wrap">
+<p class="eyebrow">KPC FIELD TOOL</p>
+<h1>ANTENNA <span>CALCULATOR</span></h1>
+<p class="sub">Starting wire lengths for portable dipoles, end-fed half-waves and quarter-wave verticals — plus how much signal your coax eats before it reaches the antenna.</p>
+</div></section>
+<nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html">Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html" aria-current=page>Antenna</a><a href="parks.html">← Parks</a></div></nav>
+<section class="section"><div class="wrap">
+<div class="panel">
+<div class="chips" id="bands" style="margin-bottom:12px"></div>
+<div class="controls">
+<label class="field" style="flex:0 1 200px">FREQUENCY (MHz)<input id="f" type="number" min="1" max="60" step="0.001" value="14.2"></label>
+<label class="field" style="flex:0 1 160px">SHOW<select id="units"><option value="both">Feet &amp; meters</option><option value="ft">Feet</option><option value="m">Meters</option></select></label>
+</div>
+</div>
+<div class="stats" id="cards" style="margin-top:20px"></div>
+<div class="grid2" style="margin-top:20px">
+<div class="panel"><b class="an-h">Coax loss</b>
+<div class="controls">
+<label class="field" style="flex:1 1 150px">COAX<select id="coax"></select></label>
+<label class="field" style="flex:0 1 120px">LENGTH (FT)<input id="len" type="number" min="0" step="1" value="25"></label>
+<label class="field" style="flex:0 1 120px">POWER (W)<input id="pw" type="number" min="0" step="1" value="20"></label>
+</div>
+<div id="loss" style="margin-top:14px"></div>
+<p class="muted" style="font-size:13px;margin:10px 0 0">Matched-line loss from typical published figures (approximate). High SWR on the coax adds more loss.</p></div>
+<div class="panel"><b class="an-h">Random wire (9:1 unun)</b>
+<p class="muted" style="font-size:15px;margin:6px 0 10px">Non-resonant end-fed wires used with a 9:1 unun and a tuner. These commonly published lengths avoid a half-wave on the popular bands — good starting points, not guarantees:</p>
+<div class="chips" id="rw"></div>
+<p class="muted" style="font-size:13px;margin:10px 0 0">Run a counterpoise (17–25 ft is common) and use a tuner. Your height, ground and layout change what works best.</p></div>
+</div>
+<div class="sec-head" style="margin-top:34px"><div><div class="kicker">QUICK REFERENCE</div><h2>All Bands At A Glance</h2></div></div>
+<div class="tablewrap"><table class="list"><thead><tr><th>BAND</th><th>FREQ</th><th>DIPOLE TOTAL</th><th>EACH DIPOLE LEG</th><th>EFHW WIRE</th><th>¼-WAVE VERTICAL</th></tr></thead><tbody id="tbl"></tbody></table></div>
+<div class="note">Lengths use the classic formulas — half-wave 468 ÷ MHz feet, quarter-wave 234 ÷ MHz feet — which already allow for typical wire end effects. Real antennas vary with wire, insulation, height and nearby objects, so <b>cut a little long and trim</b> while checking SWR. End-fed half-waves usually need a 49:1 (or 64:1) transformer. Transmit only within your license privileges.</div>
+</div></section>
+<style>.an-h{display:block;font:700 19px Georgia,serif;margin-bottom:10px}.stat small{display:block;font-size:13px;color:#cfcabf;margin-top:4px;font-weight:400}</style>
+<script>
+const $=id=>document.getElementById(id);
+const BANDS=[['160m',1.9],['80m',3.75],['60m',5.357],['40m',7.15],['30m',10.12],['20m',14.2],['17m',18.12],['15m',21.25],['12m',24.94],['10m',28.4],['6m',50.15]];
+const COAX={'RG-174':[1.9,3.3,6.6,8.9],'RG-58':[0.4,1.4,3.3,4.9],'RG-8X':[0.3,1.0,2.5,3.7],'RG-213':[0.2,0.6,1.6,2.2],'LMR-400':[0.1,0.4,0.9,1.3]}; /* dB per 100 ft at 1, 10, 50, 100 MHz */
+const FQ=[1,10,50,100];
+const RW=[29,35.5,41,58,71,84,107,119];
+$('bands').innerHTML=BANDS.map(([b,f])=>`<button class="chip" type="button" data-f="${f}" aria-pressed="${f===14.2}">${b}</button>`).join('');
+$('bands').onclick=e=>{const b=e.target.closest('button');if(!b)return;$('f').value=b.dataset.f;mark();calc()};
+$('coax').innerHTML=Object.keys(COAX).map(k=>`<option${k==='RG-8X'?' selected':''}>${k}</option>`).join('');
+const fmtFt=ft=>{const f=Math.floor(ft),i=Math.round((ft-f)*12);return i===12?`${f+1}′ 0″`:`${f}′ ${i}″`};
+const L=ft=>{const u=$('units').value,m=(ft*0.3048).toFixed(2)+' m';return u==='ft'?fmtFt(ft):u==='m'?m:`${fmtFt(ft)} <span class="muted">(${m})</span>`};
+const Ls=ft=>{const u=$('units').value,m=(ft*0.3048).toFixed(2)+' m';return u==='ft'?fmtFt(ft):u==='m'?m:`${fmtFt(ft)}<small>${m}</small>`};
+function mark(){const f=parseFloat($('f').value);[...$('bands').children].forEach(x=>x.setAttribute('aria-pressed',Math.abs(parseFloat(x.dataset.f)-f)<0.001))}
+function lossPer100(t,f){const v=COAX[t];if(f<=FQ[0])return v[0];for(let i=1;i<FQ.length;i++)if(f<=FQ[i]){const a=Math.log(FQ[i-1]),b=Math.log(FQ[i]),x=(Math.log(f)-a)/(b-a);return Math.exp(Math.log(v[i-1])+x*(Math.log(v[i])-Math.log(v[i-1])))}return v[3]}
+function calc(){const f=parseFloat($('f').value);if(!(f>0)){return}
+ const half=468/f,q=234/f,wl=984/f;
+ $('cards').innerHTML=`<div class="stat"><b>${Ls(half)}</b><span>HALF-WAVE DIPOLE • TOTAL</span></div><div class="stat"><b>${Ls(q)}</b><span>EACH DIPOLE LEG</span></div><div class="stat"><b>${Ls(half)}</b><span>END-FED HALF-WAVE WIRE</span></div><div class="stat"><b>${Ls(q)}</b><span>¼-WAVE VERTICAL &amp; EACH RADIAL</span></div>`;
+ const t=$('coax').value,len=Math.max(0,parseFloat($('len').value)||0),pw=Math.max(0,parseFloat($('pw').value)||0),db=lossPer100(t,f)*len/100,frac=Math.pow(10,-db/10);
+ $('loss').innerHTML=`<div class="stats"><div class="stat"><b>${db.toFixed(2)} dB</b><span>${t} • ${len} FT @ ${f} MHZ</span></div><div class="stat"><b>${Math.round(frac*100)}%</b><span>POWER REACHING ANTENNA</span></div><div class="stat"><b>${(pw*frac).toFixed(1)} W</b><span>OF YOUR ${pw} W</span></div></div>`;
+ $('rw').innerHTML=RW.map(x=>`<span class="chip">${L(x)}</span>`).join('');
+ $('tbl').innerHTML=BANDS.map(([b,fr])=>`<tr${Math.abs(fr-f)<0.001?' style="background:#fff7df"':''}><td><b>${b}</b></td><td>${fr} MHz</td><td>${L(468/fr)}</td><td>${L(234/fr)}</td><td>${L(468/fr)}</td><td>${L(234/fr)}</td></tr>`).join('');
+}
+$('f').addEventListener('input',()=>{mark();calc()});['units','coax','len','pw'].forEach(i=>$(i).addEventListener('input',calc));calc();
+</script>
+
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="resources.html">RESOURCES →</a><a href="join.html">JOIN KPC →</a></div></footer>
+</body></html>
