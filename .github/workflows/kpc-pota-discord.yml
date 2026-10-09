@@ -1,4 +1,9 @@
 name: KPC POTA Discord Spotter
+# Checks the POTA spot feed every 5 minutes (GitHub's fastest schedule) and posts to Discord
+# when a KPC operator is on the air.
+#  - One alert when an operator first shows up at a park.
+#  - One more alert only if they change band or mode (re-spots on the same band are ignored).
+#  - Looks back 60 minutes, so late or skipped GitHub runs don't miss anyone.
 on:
   schedule:
     - cron: '*/5 * * * *'
@@ -22,65 +27,102 @@ jobs:
           python3 - <<'PY'
           import datetime as dt, json, os, pathlib, re, urllib.request
           from urllib.error import HTTPError
-          calls = {'KZ4CP', 'N4BDW', 'KQ4HZK', 'K4ZSR'}
+
+          CALLS = {'KZ4CP', 'N4BDW', 'KQ4HZK', 'K4ZSR'}   # KPC operators to watch
+          LOOKBACK_MIN = 60                              # how far back a spot can be and still alert
+          KEEP_DAYS = 2                                  # how long sent alerts are remembered
+
           webhook = os.getenv('DISCORD_WEBHOOK_URL', '').strip()
-          if not webhook.startswith('https://discord.com/api/webhooks/') and not webhook.startswith('https://discordapp.com/api/webhooks/'):
+          if not webhook.startswith(('https://discord.com/api/webhooks/', 'https://discordapp.com/api/webhooks/')):
               raise SystemExit('Add the KPC_DISCORD_WEBHOOK GitHub Actions secret first.')
-          req = urllib.request.Request('https://api.pota.app/spot/activator', headers={'User-Agent': 'KPC-POTA-Discord-Spotter/1.0', 'Accept': 'application/json'})
+
+          req = urllib.request.Request('https://api.pota.app/spot/activator',
+                                       headers={'User-Agent': 'KPC-POTA-Discord-Spotter/2.0', 'Accept': 'application/json'})
           with urllib.request.urlopen(req, timeout=25) as response:
               feed = json.load(response)
           spots = feed if isinstance(feed, list) else feed.get('spots', [])
           if not isinstance(spots, list):
               raise SystemExit('Unexpected POTA feed format; no state changed.')
+
           path = pathlib.Path('.github/kpc-pota-spot-state.json')
           try:
               state = json.loads(path.read_text())
           except (FileNotFoundError, ValueError):
               state = {}
           now = dt.datetime.now(dt.timezone.utc)
-          cutoff = now - dt.timedelta(days=2)
-          state = {k:v for k,v in state.items() if isinstance(v,str) and v >= cutoff.isoformat()}
+          cutoff = (now - dt.timedelta(days=KEEP_DAYS)).isoformat()
+          # keep only recent v2 entries (old v1 entries are dropped)
+          state = {k: v for k, v in state.items() if k.startswith(('act|', 'bm|')) and isinstance(v, str) and v >= cutoff}
+
+          def base(call):
+              parts = re.sub(r'[^A-Z0-9/]', '', str(call or '').upper()).split('/')
+              return max(parts, key=len) if parts else ''
+
+          BANDS = [(1800, 2000, '160m'), (3500, 4000, '80m'), (5330, 5410, '60m'), (7000, 7300, '40m'), (10100, 10150, '30m'),
+                   (14000, 14350, '20m'), (18068, 18168, '17m'), (21000, 21450, '15m'), (24890, 24990, '12m'), (28000, 29700, '10m'),
+                   (50000, 54000, '6m'), (144000, 148000, '2m'), (420000, 450000, '70cm')]
+          def band(khz):
+              try:
+                  f = float(khz)
+              except (TypeError, ValueError):
+                  return '?'
+              for lo, hi, name in BANDS:
+                  if lo <= f <= hi:
+                      return name
+              return f'{f/1000:g} MHz'
+
+          def post(title, description, color):
+              payload = json.dumps({'username': 'KPC POTA Spotter',
+                                    'embeds': [{'title': title, 'description': description, 'color': color}],
+                                    'allowed_mentions': {'parse': []}}).encode()
+              r = urllib.request.Request(webhook, data=payload, method='POST',
+                                         headers={'Content-Type': 'application/json', 'User-Agent': 'KPC-POTA-Discord-Spotter/2.0'})
+              try:
+                  with urllib.request.urlopen(r, timeout=20) as resp:
+                      resp.read()
+              except HTTPError as error:
+                  raise SystemExit(f'Discord returned HTTP {error.code}; spot state not saved for failed post.')
+
           posted = 0
-          def normalized(call):
-              return re.sub(r'[^A-Z0-9/]', '', str(call or '').upper()).split('/')[0]
-          for spot in sorted(spots, key=lambda s: str(s.get('spotTime', ''))):
-              if not isinstance(spot, dict):
+          for spot in sorted((s for s in spots if isinstance(s, dict)), key=lambda s: str(s.get('spotTime', ''))):
+              call_raw = str(spot.get('activator', '')).upper().strip()
+              call = base(call_raw)
+              if call not in CALLS:
                   continue
-              call = str(spot.get('activator','')).upper().strip()
-              if call not in calls and normalized(call) not in calls:
-                  continue
-              raw_time = str(spot.get('spotTime', '')).replace('Z','+00:00')
+              raw_time = str(spot.get('spotTime', '')).replace('Z', '+00:00')
               try:
                   when = dt.datetime.fromisoformat(raw_time)
-                  if when.tzinfo is None: when = when.replace(tzinfo=dt.timezone.utc)
+                  if when.tzinfo is None:
+                      when = when.replace(tzinfo=dt.timezone.utc)
               except ValueError:
                   continue
-              # Only send newly reported spots, not the whole live feed at initial setup.
-              if not (now - dt.timedelta(minutes=16) <= when <= now + dt.timedelta(minutes=2)):
+              if not (now - dt.timedelta(minutes=LOOKBACK_MIN) <= when <= now + dt.timedelta(minutes=5)):
                   continue
               park = str(spot.get('reference') or 'Unknown')[:35]
               freq = str(spot.get('frequency') or '')[:24]
-              mode = str(spot.get('mode') or 'Unknown')[:24]
-              sid = str(spot.get('spotId') or '')
-              # A new spot ID is a new alert; reruns of the same ID are suppressed.
-              key = f'{call}|{park}|{sid or raw_time + freq + mode}'
-              if key in state: continue
+              mode = (str(spot.get('mode') or '').upper() or '?')[:24]
+              b = band(freq)
+              day = when.strftime('%Y-%m-%d')
+              act_key = f'act|{call}|{park}|{day}'
+              bm_key = f'bm|{call}|{park}|{day}|{b}|{mode}'
+              if act_key in state and bm_key in state:
+                  continue
               try:
-                  mhz = f'{float(freq)/1000:g} MHz' if freq else 'Unknown'
+                  mhz = f'{float(freq)/1000:.3f} MHz'
               except ValueError:
                   mhz = freq or 'Unknown'
               name = str(spot.get('name') or spot.get('parkName') or '')[:90]
-              description = f'**{call}** spotted on POTA!\n**Park:** {park}'
-              if name: description += f' — {name}'
-              description += f'\n**Frequency:** {mhz}\n**Mode:** {mode}\n[See POTA spots](https://pota.app/#/spots)'
-              payload = json.dumps({'username':'KPC POTA Spotter','embeds':[{'title':'📻 KPC Operator On the Air','description':description,'color':13936186}],'allowed_mentions':{'parse':[]}}).encode()
-              post = urllib.request.Request(webhook, data=payload, headers={'Content-Type':'application/json','User-Agent':'KPC-POTA-Discord-Spotter/1.0'}, method='POST')
-              try:
-                  with urllib.request.urlopen(post, timeout=20) as response: response.read()
-              except HTTPError as error:
-                  raise SystemExit(f'Discord returned HTTP {error.code}; spot state not saved for failed post.')
-              state[key] = now.isoformat()
+              loc = str(spot.get('locationDesc') or '')[:40]
+              park_line = f'**Park:** [{park}](https://pota.app/#/park/{park.split(",")[0]})' + (f' — {name}' if name else '') + (f' ({loc})' if loc else '')
+              details = f'{park_line}\n**Frequency:** {mhz} ({b})\n**Mode:** {mode}\n[See POTA spots](https://pota.app/#/spots)'
+              if act_key not in state:
+                  post('📻 KPC Operator On the Air', f'**{call_raw}** is activating!\n{details}', 13936186)
+              else:
+                  post('🔁 Band / Mode Change', f'**{call_raw}** moved to **{b} {mode}**\n{details}', 4565071)
+              state[act_key] = state.get(act_key) or now.isoformat()
+              state[bm_key] = now.isoformat()
               posted += 1
+
           path.parent.mkdir(parents=True, exist_ok=True)
           path.write_text(json.dumps(state, indent=2, sort_keys=True) + '\n')
           print(f'Checked {len(spots)} spots, posted {posted} alerts.')
@@ -92,5 +134,7 @@ jobs:
           git add .github/kpc-pota-spot-state.json
           if ! git diff --cached --quiet; then
             git commit -m 'Update KPC POTA spot notification state'
-            git push
+            # if you uploaded files while this was running, catch up first so the push isn't rejected
+            git pull --rebase --autostash || true
+            git push || echo 'Push skipped; state will be saved on the next run.'
           fi
