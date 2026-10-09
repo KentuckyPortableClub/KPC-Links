@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Kentucky Portable Club" xmlns="http://www.topografix.com/GPX/1/1">
+<metadata><name>KPC Kentucky SOTA (W4K) Summits</name></metadata>
+<wpt lat="36.9142" lon="-82.8938"><name>W4K/EC-001 Black Mountain</name><desc>Black Mountain
+Harlan County • Region EC • 1,262 m / 4,140 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-001</desc><link href="https://sotl.as/summits/W4K/EC-001"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="36.8507" lon="-83.0768"><name>W4K/EC-002 Little Black Mountain</name><desc>Little Black Mountain
+Harlan County • Region EC • 1,116 m / 3,661 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-002</desc><link href="https://sotl.as/summits/W4K/EC-002"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="36.8633" lon="-83.0371"><name>W4K/EC-003 Unnamed summit (3660)</name><desc>Unnamed summit (3660)
+Harlan County • Region EC • 1,116 m / 3,661 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-003</desc><link href="https://sotl.as/summits/W4K/EC-003"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="36.8279" lon="-83.1076"><name>W4K/EC-004 Dominion Benchmark</name><desc>Dominion Benchmark
+Harlan County • Region EC • 1,116 m / 3,661 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-004</desc><link href="https://sotl.as/summits/W4K/EC-004"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="36.8226" lon="-83.1487"><name>W4K/EC-005 Little Black Lookout</name><desc>Little Black Lookout
+Harlan County • Region EC • 1,042 m / 3,419 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-005</desc><link href="https://sotl.as/summits/W4K/EC-005"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="36.7345" lon="-83.3834"><name>W4K/EC-006 Chunklick Benchmark</name><desc>Chunklick Benchmark
+Harlan County • Region EC • 1,039 m / 3,409 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-006</desc><link href="https://sotl.as/summits/W4K/EC-006"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="36.8959" lon="-83.1609"><name>W4K/EC-007 Unnamed summit (3380A)</name><desc>Unnamed summit (3380A)
+Harlan County • Region EC • 1,030 m / 3,379 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-007</desc><link href="https://sotl.as/summits/W4K/EC-007"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="36.8208" lon="-83.217"><name>W4K/EC-008 Unnamed summit (3380B)</name><desc>Unnamed summit (3380B)
+Harlan County • Region EC • 1,030 m / 3,379 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-008</desc><link href="https://sotl.as/summits/W4K/EC-008"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="36.8366" lon="-83.2569"><name>W4K/EC-009 Unnamed summit (3380C)</name><desc>Unnamed summit (3380C)
+Harlan County • Region EC • 1,030 m / 3,379 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-009</desc><link href="https://sotl.as/summits/W4K/EC-009"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="36.8832" lon="-83.2216"><name>W4K/EC-010 Unnamed summit (3355)</name><desc>Unnamed summit (3355)
+Harlan County • Region EC • 1,023 m / 3,356 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-010
+POTA / KFF WITHIN 3 MI  KFF-6865 Kentenia 2.4 mi  •  US-4688 Kentenia State Forest 2.9 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-010"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="36.8002" lon="-83.3766"><name>W4K/EC-011 Fox Knob</name><desc>Fox Knob
+Harlan County • Region EC • 1,018 m / 3,340 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-011</desc><link href="https://sotl.as/summits/W4K/EC-011"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="36.9211" lon="-83.1233"><name>W4K/EC-012 Unnamed summit (3340A)</name><desc>Unnamed summit (3340A)
+Harlan County • Region EC • 1,018 m / 3,340 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-012</desc><link href="https://sotl.as/summits/W4K/EC-012"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="36.9273" lon="-83.111"><name>W4K/EC-013 Unnamed summit (3340B)</name><desc>Unnamed summit (3340B)
+Harlan County • Region EC • 1,018 m / 3,340 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-013
+POTA / KFF WITHIN 3 MI  KFF-6879 E. Lucy Braun 2.6 mi  •  US-7968 E. Lucy Braun State Nature Preserve 2.6 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-013"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="37.1126" lon="-82.7318"><name>W4K/EC-014 Pine Mountain</name><desc>Pine Mountain
+Letcher County • Region EC • 1,006 m / 3,301 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-014
+POTA / KFF WITHIN 3 MI  KFF-6295 Jefferson (KY) 1.8 mi  •  US-10139 Jefferson National Forest Wildlife Management Area 1.8 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-014"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="36.7746" lon="-83.3011"><name>W4K/EC-015 Grays Ridge</name><desc>Grays Ridge
+Harlan County • Region EC • 981 m / 3,219 ft • 10 points
+SOTLAS: https://sotl.as/summits/W4K/EC-015</desc><link href="https://sotl.as/summits/W4K/EC-015"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 10 pts</type></wpt>
+<wpt lat="36.6616" lon="-83.802"><name>W4K/EC-016 Unnamed summit (3070)</name><desc>Unnamed summit (3070)
+Bell County • Region EC • 936 m / 3,071 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-016
+POTA / KFF WITHIN 3 MI  KFF-6866 Kentucky Ridge 1.6 mi  •  US-4689 Kentucky Ridge State Forest 1.7 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-016"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="36.7481" lon="-83.3209"><name>W4K/EC-017 Double Spur</name><desc>Double Spur
+Harlan County • Region EC • 930 m / 3,051 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-017</desc><link href="https://sotl.as/summits/W4K/EC-017"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="36.7422" lon="-83.5234"><name>W4K/EC-019 Unnamed summit (2961)</name><desc>Unnamed summit (2961)
+Bell County • Region EC • 903 m / 2,963 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-019</desc><link href="https://sotl.as/summits/W4K/EC-019"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="36.95" lon="-83.1602"><name>W4K/EC-020 Unnamed summit (2940)</name><desc>Unnamed summit (2940)
+Harlan County • Region EC • 896 m / 2,940 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-020
+POTA / KFF WITHIN 3 MI  KFF-6883 James E Bickford 1.2 mi  •  KFF-6879 E. Lucy Braun 3.0 mi  •  US-7968 E. Lucy Braun State Nature Preserve 3.0 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-020"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="37.285" lon="-82.5246"><name>W4K/EC-021 Flatwoods</name><desc>Flatwoods
+Pike County • Region EC • 872 m / 2,861 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-021</desc><link href="https://sotl.as/summits/W4K/EC-021"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="36.6894" lon="-83.7831"><name>W4K/EC-022 Unnamed summit (2710)</name><desc>Unnamed summit (2710)
+Bell County • Region EC • 826 m / 2,710 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-022
+POTA / KFF WITHIN 3 MI  KFF-6866 Kentucky Ridge 1.4 mi  •  US-4689 Kentucky Ridge State Forest 2.2 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-022"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="36.9779" lon="-83.1474"><name>W4K/EC-023 Unnamed summit (2660)</name><desc>Unnamed summit (2660)
+Letcher County • Region EC • 811 m / 2,661 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-023
+POTA / KFF WITHIN 3 MI  KFF-6879 E. Lucy Braun 2.3 mi  •  US-7968 E. Lucy Braun State Nature Preserve 2.3 mi  •  KFF-6883 James E Bickford 2.8 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-023"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="36.8915" lon="-83.4497"><name>W4K/EC-024 Peters Knob</name><desc>Peters Knob
+Harlan County • Region EC • 799 m / 2,621 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-024</desc><link href="https://sotl.as/summits/W4K/EC-024"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="36.9188" lon="-83.3165"><name>W4K/EC-025 Unnamed summit (2556)</name><desc>Unnamed summit (2556)
+Harlan County • Region EC • 779 m / 2,556 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-025</desc><link href="https://sotl.as/summits/W4K/EC-025"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="36.9534" lon="-83.2112"><name>W4K/EC-026 Unnamed summit (2540)</name><desc>Unnamed summit (2540)
+Harlan County • Region EC • 774 m / 2,539 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-026
+POTA / KFF WITHIN 3 MI  KFF-6883 James E Bickford 1.6 mi  •  US-4688 Kentenia State Forest 2.0 mi  •  KFF-6865 Kentenia 2.5 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-026"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="37.5013" lon="-82.2275"><name>W4K/EC-027 Dicks Knob</name><desc>Dicks Knob
+Pike County • Region EC • 762 m / 2,500 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-027</desc><link href="https://sotl.as/summits/W4K/EC-027"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="37.2344" lon="-82.5849"><name>W4K/EC-028 Unnamed summit (2500)</name><desc>Unnamed summit (2500)
+Pike County • Region EC • 762 m / 2,500 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-028</desc><link href="https://sotl.as/summits/W4K/EC-028"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="37.4216" lon="-82.1634"><name>W4K/EC-029 Hylton Knob</name><desc>Hylton Knob
+Pike County • Region EC • 761 m / 2,497 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-029</desc><link href="https://sotl.as/summits/W4K/EC-029"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="36.7041" lon="-83.7144"><name>W4K/EC-030 Unnamed summit (2452)</name><desc>Unnamed summit (2452)
+Bell County • Region EC • 747 m / 2,451 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-030
+POTA / KFF WITHIN 3 MI  US-1288 Pine Mountain State Park 3.0 mi  •  KFF-1288 Pine Mountain 3.0 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-030"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="37.5086" lon="-82.206"><name>W4K/EC-031 Unnamed summit (2420)</name><desc>Unnamed summit (2420)
+Pike County • Region EC • 738 m / 2,421 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-031</desc><link href="https://sotl.as/summits/W4K/EC-031"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="36.7665" lon="-83.2207"><name>W4K/EC-032 Cranks Ridge</name><desc>Cranks Ridge
+Harlan County • Region EC • 738 m / 2,421 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-032
+POTA / KFF WITHIN 3 MI  KFF-3804 Cranks Creek 1.5 mi  •  US-3804 Cranks Creek Wildlife Management Area 1.5 mi  •  KFF-6871 Martin's Fork 2.9 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-032"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="36.7122" lon="-83.48"><name>W4K/EC-197 Unnamed summit (2950)</name><desc>Unnamed summit (2950)
+Harlan County • Region EC • 899 m / 2,949 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-197
+POTA / KFF WITHIN 3 MI  US-10164 Shillalah Creek Wildlife Management Area 2.1 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-197"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="37.0301" lon="-83.0478"><name>W4K/EC-198 Unnamed summit (2500)</name><desc>Unnamed summit (2500)
+Letcher County • Region EC • 762 m / 2,500 ft • 8 points
+SOTLAS: https://sotl.as/summits/W4K/EC-198</desc><link href="https://sotl.as/summits/W4K/EC-198"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 8 pts</type></wpt>
+<wpt lat="37.4547" lon="-82.1108"><name>W4K/EC-033 High Knob</name><desc>High Knob
+Pike County • Region EC • 725 m / 2,379 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-033</desc><link href="https://sotl.as/summits/W4K/EC-033"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.27" lon="-82.4746"><name>W4K/EC-034 Unnamed summit (2380A)</name><desc>Unnamed summit (2380A)
+Pike County • Region EC • 725 m / 2,379 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-034
+POTA / KFF WITHIN 3 MI  US-10102 Pine Mountain State Trail 2.3 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-034"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.3354" lon="-82.5109"><name>W4K/EC-035 Unnamed summit (2380B)</name><desc>Unnamed summit (2380B)
+Pike County • Region EC • 725 m / 2,379 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-035</desc><link href="https://sotl.as/summits/W4K/EC-035"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.2637" lon="-82.7779"><name>W4K/EC-037 Unnamed summit (2340A)</name><desc>Unnamed summit (2340A)
+Letcher County • Region EC • 713 m / 2,339 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-037</desc><link href="https://sotl.as/summits/W4K/EC-037"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.3013" lon="-82.4557"><name>W4K/EC-038 Unnamed summit (2340B)</name><desc>Unnamed summit (2340B)
+Pike County • Region EC • 713 m / 2,339 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-038</desc><link href="https://sotl.as/summits/W4K/EC-038"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.2895" lon="-82.6354"><name>W4K/EC-039 Unnamed summit (2340C)</name><desc>Unnamed summit (2340C)
+Pike County • Region EC • 713 m / 2,339 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-039</desc><link href="https://sotl.as/summits/W4K/EC-039"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.2937" lon="-82.7011"><name>W4K/EC-040 Floyd County HP</name><desc>Floyd County HP
+Floyd County • Region EC • 713 m / 2,339 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-040</desc><link href="https://sotl.as/summits/W4K/EC-040"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.0361" lon="-82.9533"><name>W4K/EC-041 Unnamed summit (2325)</name><desc>Unnamed summit (2325)
+Letcher County • Region EC • 709 m / 2,326 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-041
+POTA / KFF WITHIN 3 MI  KFF-3814 Hensley-Pine Mountain 2.3 mi  •  US-3814 Hensley-Pine Mountain Wildlife Management Area 2.3 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-041"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.7182" lon="-83.8651"><name>W4K/EC-042 Knox County HP</name><desc>Knox County HP
+Knox County • Region EC • 708 m / 2,323 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-042</desc><link href="https://sotl.as/summits/W4K/EC-042"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.7477" lon="-83.7405"><name>W4K/EC-043 Unnamed summit (2300A)</name><desc>Unnamed summit (2300A)
+Bell County • Region EC • 701 m / 2,300 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-043
+POTA / KFF WITHIN 3 MI  US-1288 Pine Mountain State Park 1.6 mi  •  KFF-1288 Pine Mountain 1.6 mi  •  US-10141 Kentucky Ridge Wildlife Management Area 2.4 mi  •  KFF-7370 Kentucky Ridge 2.8 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-043"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.6811" lon="-83.5728"><name>W4K/EC-044 Hances Ridge</name><desc>Hances Ridge
+Bell County • Region EC • 701 m / 2,300 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-044</desc><link href="https://sotl.as/summits/W4K/EC-044"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.325" lon="-82.6643"><name>W4K/EC-045 Unnamed summit (2300B)</name><desc>Unnamed summit (2300B)
+Pike County • Region EC • 701 m / 2,300 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-045</desc><link href="https://sotl.as/summits/W4K/EC-045"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.0353" lon="-83.1858"><name>W4K/EC-046 Unnamed summit (2300C)</name><desc>Unnamed summit (2300C)
+Perry County • Region EC • 701 m / 2,300 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-046</desc><link href="https://sotl.as/summits/W4K/EC-046"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.2083" lon="-82.7357"><name>W4K/EC-047 Unnamed summit (2300D)</name><desc>Unnamed summit (2300D)
+Letcher County • Region EC • 701 m / 2,300 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-047</desc><link href="https://sotl.as/summits/W4K/EC-047"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.7155" lon="-83.682"><name>W4K/EC-048 Flag Top</name><desc>Flag Top
+Bell County • Region EC • 700 m / 2,297 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-048
+POTA / KFF WITHIN 3 MI  US-1288 Pine Mountain State Park 2.8 mi  •  KFF-1288 Pine Mountain 2.8 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-048"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.1706" lon="-82.816"><name>W4K/EC-049 Unnamed summit (2260A)</name><desc>Unnamed summit (2260A)
+Letcher County • Region EC • 689 m / 2,260 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-049</desc><link href="https://sotl.as/summits/W4K/EC-049"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.2924" lon="-82.5594"><name>W4K/EC-050 Unnamed summit (2260B)</name><desc>Unnamed summit (2260B)
+Pike County • Region EC • 689 m / 2,260 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-050</desc><link href="https://sotl.as/summits/W4K/EC-050"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.2184" lon="-82.7743"><name>W4K/EC-052 Unnamed summit (2260D)</name><desc>Unnamed summit (2260D)
+Letcher County • Region EC • 689 m / 2,260 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-052</desc><link href="https://sotl.as/summits/W4K/EC-052"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.4189" lon="-82.2259"><name>W4K/EC-053 Turkey Benchmark</name><desc>Turkey Benchmark
+Pike County • Region EC • 686 m / 2,251 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-053</desc><link href="https://sotl.as/summits/W4K/EC-053"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.9592" lon="-83.5849"><name>W4K/EC-054 Clay County HP</name><desc>Clay County HP
+Clay County • Region EC • 681 m / 2,234 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-054</desc><link href="https://sotl.as/summits/W4K/EC-054"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.4657" lon="-82.3654"><name>W4K/EC-055 Unnamed summit (2220A)</name><desc>Unnamed summit (2220A)
+Pike County • Region EC • 677 m / 2,221 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-055
+POTA / KFF WITHIN 3 MI  US-1255 Fishtrap Lake Wildlife Management Area 2.3 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-055"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.8548" lon="-83.6827"><name>W4K/EC-056 Unnamed summit (2220B)</name><desc>Unnamed summit (2220B)
+Knox County • Region EC • 677 m / 2,221 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-056</desc><link href="https://sotl.as/summits/W4K/EC-056"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.657" lon="-83.9907"><name>W4K/EC-057 Bear Wallow Mountain</name><desc>Bear Wallow Mountain
+Whitley County • Region EC • 667 m / 2,188 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-057</desc><link href="https://sotl.as/summits/W4K/EC-057"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.9544" lon="-83.6091"><name>W4K/EC-058 Point Gap 2 Benchmark</name><desc>Point Gap 2 Benchmark
+Clay County • Region EC • 667 m / 2,188 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-058</desc><link href="https://sotl.as/summits/W4K/EC-058"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.7812" lon="-83.7085"><name>W4K/EC-059 Unnamed summit (2187)</name><desc>Unnamed summit (2187)
+Bell County • Region EC • 667 m / 2,188 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-059
+POTA / KFF WITHIN 3 MI  KFF-1288 Pine Mountain 2.4 mi  •  US-1288 Pine Mountain State Park 2.4 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-059"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.8121" lon="-83.7335"><name>W4K/EC-060 Fourmile Benchmark</name><desc>Fourmile Benchmark
+Knox County • Region EC • 664 m / 2,178 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-060</desc><link href="https://sotl.as/summits/W4K/EC-060"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.1584" lon="-83.0529"><name>W4K/EC-061 Dixon Knob</name><desc>Dixon Knob
+Perry County • Region EC • 664 m / 2,178 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-061</desc><link href="https://sotl.as/summits/W4K/EC-061"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.1039" lon="-83.1445"><name>W4K/EC-062 Brasher Benchmark</name><desc>Brasher Benchmark
+Perry County • Region EC • 664 m / 2,178 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-062</desc><link href="https://sotl.as/summits/W4K/EC-062"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.3568" lon="-82.5342"><name>W4K/EC-063 Unnamed summit (2180)</name><desc>Unnamed summit (2180)
+Pike County • Region EC • 664 m / 2,178 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-063</desc><link href="https://sotl.as/summits/W4K/EC-063"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.0922" lon="-82.8729"><name>W4K/EC-064 Unnamed summit (2175)</name><desc>Unnamed summit (2175)
+Letcher County • Region EC • 663 m / 2,175 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-064</desc><link href="https://sotl.as/summits/W4K/EC-064"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.6452" lon="-84.2101"><name>W4K/EC-065 Unnamed summit (2170)</name><desc>Unnamed summit (2170)
+Whitley County • Region EC • 661 m / 2,169 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-065</desc><link href="https://sotl.as/summits/W4K/EC-065"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.6549" lon="-84.306"><name>W4K/EC-066 Ryans Creek Mountain</name><desc>Ryans Creek Mountain
+McCreary County • Region EC • 660 m / 2,165 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-066</desc><link href="https://sotl.as/summits/W4K/EC-066"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.6481" lon="-83.6905"><name>W4K/EC-067 Dark Ridge</name><desc>Dark Ridge
+Bell County • Region EC • 659 m / 2,162 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-067</desc><link href="https://sotl.as/summits/W4K/EC-067"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.8055" lon="-83.6637"><name>W4K/EC-068 Unnamed summit (2156)</name><desc>Unnamed summit (2156)
+Bell County • Region EC • 657 m / 2,156 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-068</desc><link href="https://sotl.as/summits/W4K/EC-068"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.4005" lon="-82.6728"><name>W4K/EC-069 Signal Knob</name><desc>Signal Knob
+Floyd County • Region EC • 652 m / 2,139 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-069</desc><link href="https://sotl.as/summits/W4K/EC-069"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.0513" lon="-82.973"><name>W4K/EC-070 Unnamed summit (2140A)</name><desc>Unnamed summit (2140A)
+Letcher County • Region EC • 652 m / 2,139 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-070</desc><link href="https://sotl.as/summits/W4K/EC-070"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.4499" lon="-82.2775"><name>W4K/EC-071 Unnamed summit (2140B)</name><desc>Unnamed summit (2140B)
+Pike County • Region EC • 652 m / 2,139 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-071</desc><link href="https://sotl.as/summits/W4K/EC-071"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.4733" lon="-82.3776"><name>W4K/EC-072 Unnamed summit (2140C)</name><desc>Unnamed summit (2140C)
+Pike County • Region EC • 652 m / 2,139 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-072</desc><link href="https://sotl.as/summits/W4K/EC-072"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.6939" lon="-83.6757"><name>W4K/EC-073 Rocky Face</name><desc>Rocky Face
+Bell County • Region EC • 649 m / 2,129 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-073</desc><link href="https://sotl.as/summits/W4K/EC-073"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.6166" lon="-84.3362"><name>W4K/EC-074 Stephens Knob</name><desc>Stephens Knob
+McCreary County • Region EC • 648 m / 2,126 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-074</desc><link href="https://sotl.as/summits/W4K/EC-074"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.1685" lon="-82.8878"><name>W4K/EC-075 Unnamed summit (2100A)</name><desc>Unnamed summit (2100A)
+Letcher County • Region EC • 640 m / 2,100 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-075</desc><link href="https://sotl.as/summits/W4K/EC-075"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.2059" lon="-82.9091"><name>W4K/EC-077 Unnamed summit (2100C)</name><desc>Unnamed summit (2100C)
+Letcher County • Region EC • 640 m / 2,100 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-077</desc><link href="https://sotl.as/summits/W4K/EC-077"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.4006" lon="-82.6117"><name>W4K/EC-078 Unnamed summit (2100D)</name><desc>Unnamed summit (2100D)
+Pike County • Region EC • 640 m / 2,100 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-078</desc><link href="https://sotl.as/summits/W4K/EC-078"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="37.4821" lon="-82.2405"><name>W4K/EC-199 Unnamed summit (2380)</name><desc>Unnamed summit (2380)
+Pike County • Region EC • 725 m / 2,379 ft • 6 points
+SOTLAS: https://sotl.as/summits/W4K/EC-199</desc><link href="https://sotl.as/summits/W4K/EC-199"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 6 pts</type></wpt>
+<wpt lat="36.7433" lon="-83.8292"><name>W4K/EC-079 Unnamed summit (2090)</name><desc>Unnamed summit (2090)
+Knox County • Region EC • 637 m / 2,090 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-079</desc><link href="https://sotl.as/summits/W4K/EC-079"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.4988" lon="-82.113"><name>W4K/EC-080 Unnamed summit (2082)</name><desc>Unnamed summit (2082)
+Pike County • Region EC • 635 m / 2,083 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-080</desc><link href="https://sotl.as/summits/W4K/EC-080"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.3715" lon="-82.3194"><name>W4K/EC-081 Unnamed summit (2068)</name><desc>Unnamed summit (2068)
+Pike County • Region EC • 630 m / 2,067 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-081</desc><link href="https://sotl.as/summits/W4K/EC-081"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.4611" lon="-82.4322"><name>W4K/EC-082 Unnamed summit (2065)</name><desc>Unnamed summit (2065)
+Pike County • Region EC • 629 m / 2,064 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-082
+POTA / KFF WITHIN 3 MI  KFF-1255 Fishtrap Lake 1.6 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-082"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.2768" lon="-83.016"><name>W4K/EC-084 Unnamed summit (2060B)</name><desc>Unnamed summit (2060B)
+Knott County • Region EC • 628 m / 2,060 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-084</desc><link href="https://sotl.as/summits/W4K/EC-084"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.1342" lon="-82.8793"><name>W4K/EC-085 Unnamed summit (2060C)</name><desc>Unnamed summit (2060C)
+Letcher County • Region EC • 628 m / 2,060 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-085</desc><link href="https://sotl.as/summits/W4K/EC-085"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.3417" lon="-82.5726"><name>W4K/EC-086 Unnamed summit (2060D)</name><desc>Unnamed summit (2060D)
+Pike County • Region EC • 628 m / 2,060 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-086</desc><link href="https://sotl.as/summits/W4K/EC-086"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.5373" lon="-82.2102"><name>W4K/EC-087 Unnamed summit (2060E)</name><desc>Unnamed summit (2060E)
+Pike County • Region EC • 628 m / 2,060 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-087</desc><link href="https://sotl.as/summits/W4K/EC-087"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.0837" lon="-83.0915"><name>W4K/EC-088 Unnamed summit (2060F)</name><desc>Unnamed summit (2060F)
+Perry County • Region EC • 628 m / 2,060 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-088</desc><link href="https://sotl.as/summits/W4K/EC-088"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.5179" lon="-82.1164"><name>W4K/EC-089 Unnamed summit (2060G)</name><desc>Unnamed summit (2060G)
+Pike County • Region EC • 628 m / 2,060 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-089</desc><link href="https://sotl.as/summits/W4K/EC-089"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.1271" lon="-82.9019"><name>W4K/EC-090 Unnamed summit (2041)</name><desc>Unnamed summit (2041)
+Letcher County • Region EC • 622 m / 2,041 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-090</desc><link href="https://sotl.as/summits/W4K/EC-090"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="36.7653" lon="-83.7524"><name>W4K/EC-091 Unnamed summit (2030)</name><desc>Unnamed summit (2030)
+Bell County • Region EC • 619 m / 2,031 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-091
+POTA / KFF WITHIN 3 MI  US-10141 Kentucky Ridge Wildlife Management Area 1.1 mi  •  KFF-7370 Kentucky Ridge 1.6 mi  •  US-1288 Pine Mountain State Park 2.5 mi  •  KFF-1288 Pine Mountain 2.5 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-091"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.5995" lon="-82.1907"><name>W4K/EC-092 Unnamed summit (2020A)</name><desc>Unnamed summit (2020A)
+Pike County • Region EC • 616 m / 2,021 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-092</desc><link href="https://sotl.as/summits/W4K/EC-092"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.1913" lon="-82.8601"><name>W4K/EC-093 Unnamed summit (2020B)</name><desc>Unnamed summit (2020B)
+Letcher County • Region EC • 616 m / 2,021 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-093</desc><link href="https://sotl.as/summits/W4K/EC-093"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.5575" lon="-82.1703"><name>W4K/EC-094 Unnamed summit (2020C)</name><desc>Unnamed summit (2020C)
+Pike County • Region EC • 616 m / 2,021 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-094</desc><link href="https://sotl.as/summits/W4K/EC-094"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.583" lon="-82.2057"><name>W4K/EC-095 Blackberry Mountain</name><desc>Blackberry Mountain
+Pike County • Region EC • 616 m / 2,021 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-095</desc><link href="https://sotl.as/summits/W4K/EC-095"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.3136" lon="-82.7519"><name>W4K/EC-096 Unnamed summit (2020D)</name><desc>Unnamed summit (2020D)
+Knott County • Region EC • 616 m / 2,021 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-096</desc><link href="https://sotl.as/summits/W4K/EC-096"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.1683" lon="-82.8716"><name>W4K/EC-097 Unnamed summit (2020E)</name><desc>Unnamed summit (2020E)
+Letcher County • Region EC • 616 m / 2,021 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-097</desc><link href="https://sotl.as/summits/W4K/EC-097"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="36.6607" lon="-84.088"><name>W4K/EC-098 Patterson Mountain</name><desc>Patterson Mountain
+Whitley County • Region EC • 613 m / 2,011 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-098</desc><link href="https://sotl.as/summits/W4K/EC-098"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="36.7528" lon="-83.2355"><name>W4K/EC-099 Unnamed summit (2008)</name><desc>Unnamed summit (2008)
+Harlan County • Region EC • 612 m / 2,008 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-099
+POTA / KFF WITHIN 3 MI  KFF-6871 Martin's Fork 1.7 mi  •  KFF-3804 Cranks Creek 2.2 mi  •  US-3804 Cranks Creek Wildlife Management Area 2.2 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-099"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.3184" lon="-82.9094"><name>W4K/EC-100 Unnamed summit (1980A)</name><desc>Unnamed summit (1980A)
+Knott County • Region EC • 604 m / 1,982 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-100</desc><link href="https://sotl.as/summits/W4K/EC-100"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.5961" lon="-82.3607"><name>W4K/EC-101 Canada Knob</name><desc>Canada Knob
+Pike County • Region EC • 604 m / 1,982 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-101</desc><link href="https://sotl.as/summits/W4K/EC-101"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.1123" lon="-83.2374"><name>W4K/EC-102 Unnamed summit (1980B)</name><desc>Unnamed summit (1980B)
+Leslie County • Region EC • 604 m / 1,982 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-102</desc><link href="https://sotl.as/summits/W4K/EC-102"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.312" lon="-82.8973"><name>W4K/EC-103 Unnamed summit (1980C)</name><desc>Unnamed summit (1980C)
+Knott County • Region EC • 604 m / 1,982 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-103</desc><link href="https://sotl.as/summits/W4K/EC-103"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="36.688" lon="-83.9432"><name>W4K/EC-104 Lawson Mountain</name><desc>Lawson Mountain
+Whitley County • Region EC • 594 m / 1,949 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-104</desc><link href="https://sotl.as/summits/W4K/EC-104"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.6271" lon="-82.3194"><name>W4K/EC-105 Unnamed summit (1940A)</name><desc>Unnamed summit (1940A)
+Pike County • Region EC • 591 m / 1,939 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-105</desc><link href="https://sotl.as/summits/W4K/EC-105"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.5692" lon="-82.3899"><name>W4K/EC-106 Unnamed summit (1940B)</name><desc>Unnamed summit (1940B)
+Pike County • Region EC • 591 m / 1,939 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-106</desc><link href="https://sotl.as/summits/W4K/EC-106"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.2685" lon="-82.933"><name>W4K/EC-107 Unnamed summit (1940C)</name><desc>Unnamed summit (1940C)
+Knott County • Region EC • 591 m / 1,939 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-107</desc><link href="https://sotl.as/summits/W4K/EC-107"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.6437" lon="-82.2359"><name>W4K/EC-108 Unnamed summit (1940D)</name><desc>Unnamed summit (1940D)
+Pike County • Region EC • 591 m / 1,939 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-108</desc><link href="https://sotl.as/summits/W4K/EC-108"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="36.7941" lon="-83.814"><name>W4K/EC-109 Unnamed summit (1930)</name><desc>Unnamed summit (1930)
+Knox County • Region EC • 588 m / 1,929 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-109
+POTA / KFF WITHIN 3 MI  KFF-7370 Kentucky Ridge 2.4 mi  •  US-10141 Kentucky Ridge Wildlife Management Area 2.8 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-109"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.2518" lon="-82.8976"><name>W4K/EC-110 Unnamed summit (1903)</name><desc>Unnamed summit (1903)
+Knott County • Region EC • 580 m / 1,903 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-110</desc><link href="https://sotl.as/summits/W4K/EC-110"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.3718" lon="-82.7271"><name>W4K/EC-111 Unnamed summit (1900A)</name><desc>Unnamed summit (1900A)
+Floyd County • Region EC • 579 m / 1,900 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-111</desc><link href="https://sotl.as/summits/W4K/EC-111"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.0813" lon="-83.4201"><name>W4K/EC-112 Unnamed summit (1900B)</name><desc>Unnamed summit (1900B)
+Leslie County • Region EC • 579 m / 1,900 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-112</desc><link href="https://sotl.as/summits/W4K/EC-112"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.4844" lon="-82.457"><name>W4K/EC-113 Stratton Knob</name><desc>Stratton Knob
+Pike County • Region EC • 579 m / 1,900 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-113</desc><link href="https://sotl.as/summits/W4K/EC-113"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="36.8643" lon="-83.7657"><name>W4K/EC-114 Unnamed summit (1890)</name><desc>Unnamed summit (1890)
+Knox County • Region EC • 576 m / 1,890 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-114</desc><link href="https://sotl.as/summits/W4K/EC-114"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.4673" lon="-82.4724"><name>W4K/EC-115 Unnamed summit (1878)</name><desc>Unnamed summit (1878)
+Pike County • Region EC • 572 m / 1,877 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-115</desc><link href="https://sotl.as/summits/W4K/EC-115"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="36.8497" lon="-84.0931"><name>W4K/EC-116 Bald Knob</name><desc>Bald Knob
+Whitley County • Region EC • 570 m / 1,870 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-116</desc><link href="https://sotl.as/summits/W4K/EC-116"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.4357" lon="-82.7475"><name>W4K/EC-117 Unnamed summit (1860A)</name><desc>Unnamed summit (1860A)
+Floyd County • Region EC • 567 m / 1,860 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-117</desc><link href="https://sotl.as/summits/W4K/EC-117"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.4595" lon="-82.7097"><name>W4K/EC-118 McDowell Benchmark</name><desc>McDowell Benchmark
+Floyd County • Region EC • 567 m / 1,860 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-118</desc><link href="https://sotl.as/summits/W4K/EC-118"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.2795" lon="-82.9095"><name>W4K/EC-119 Unnamed summit (1860B)</name><desc>Unnamed summit (1860B)
+Knott County • Region EC • 567 m / 1,860 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-119</desc><link href="https://sotl.as/summits/W4K/EC-119"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.3935" lon="-82.9008"><name>W4K/EC-120 Unnamed summit (1860C)</name><desc>Unnamed summit (1860C)
+Knott County • Region EC • 567 m / 1,860 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-120</desc><link href="https://sotl.as/summits/W4K/EC-120"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.609" lon="-82.2966"><name>W4K/EC-121 Unnamed summit (1860D)</name><desc>Unnamed summit (1860D)
+Pike County • Region EC • 567 m / 1,860 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-121</desc><link href="https://sotl.as/summits/W4K/EC-121"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="36.7893" lon="-83.8856"><name>W4K/EC-122 Unnamed summit (1850A)</name><desc>Unnamed summit (1850A)
+Knox County • Region EC • 564 m / 1,850 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-122</desc><link href="https://sotl.as/summits/W4K/EC-122"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.2016" lon="-83.1169"><name>W4K/EC-123 Unnamed summit (1850B)</name><desc>Unnamed summit (1850B)
+Perry County • Region EC • 564 m / 1,850 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-123</desc><link href="https://sotl.as/summits/W4K/EC-123"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.3177" lon="-83.1843"><name>W4K/EC-124 Lost Mountain</name><desc>Lost Mountain
+Perry County • Region EC • 563 m / 1,847 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-124</desc><link href="https://sotl.as/summits/W4K/EC-124"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="36.902" lon="-83.714"><name>W4K/EC-125 Unnamed summit (1843)</name><desc>Unnamed summit (1843)
+Knox County • Region EC • 562 m / 1,844 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-125</desc><link href="https://sotl.as/summits/W4K/EC-125"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.533" lon="-82.4948"><name>W4K/EC-126 Joes Knob Benchmark</name><desc>Joes Knob Benchmark
+Pike County • Region EC • 558 m / 1,831 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-126</desc><link href="https://sotl.as/summits/W4K/EC-126"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="36.6817" lon="-84.2958"><name>W4K/EC-127 Peak Mountain</name><desc>Peak Mountain
+Whitley County • Region EC • 558 m / 1,831 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-127</desc><link href="https://sotl.as/summits/W4K/EC-127"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="36.6754" lon="-83.918"><name>W4K/EC-128 Little Round Mountain</name><desc>Little Round Mountain
+Whitley County • Region EC • 557 m / 1,827 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-128</desc><link href="https://sotl.as/summits/W4K/EC-128"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.6536" lon="-82.324"><name>W4K/EC-129 Unnamed summit (1820A)</name><desc>Unnamed summit (1820A)
+Pike County • Region EC • 555 m / 1,821 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-129</desc><link href="https://sotl.as/summits/W4K/EC-129"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.4192" lon="-82.5336"><name>W4K/EC-130 Unnamed summit (1820B)</name><desc>Unnamed summit (1820B)
+Pike County • Region EC • 555 m / 1,821 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-130</desc><link href="https://sotl.as/summits/W4K/EC-130"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.4136" lon="-82.2725"><name>W4K/EC-131 Unnamed summit (1820C)</name><desc>Unnamed summit (1820C)
+Pike County • Region EC • 555 m / 1,821 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-131</desc><link href="https://sotl.as/summits/W4K/EC-131"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.3989" lon="-82.5086"><name>W4K/EC-132 Unnamed summit (1820D)</name><desc>Unnamed summit (1820D)
+Pike County • Region EC • 555 m / 1,821 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-132</desc><link href="https://sotl.as/summits/W4K/EC-132"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="36.7712" lon="-84.1074"><name>W4K/EC-133 Wood Mountain</name><desc>Wood Mountain
+Whitley County • Region EC • 552 m / 1,811 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-133</desc><link href="https://sotl.as/summits/W4K/EC-133"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="37.1717" lon="-83.1284"><name>W4K/EC-201 Unnamed summit (1980)</name><desc>Unnamed summit (1980)
+Perry County • Region EC • 603 m / 1,978 ft • 4 points
+SOTLAS: https://sotl.as/summits/W4K/EC-201</desc><link href="https://sotl.as/summits/W4K/EC-201"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 4 pts</type></wpt>
+<wpt lat="36.8004" lon="-84.096"><name>W4K/EC-134 Chestnut Oak Mountain</name><desc>Chestnut Oak Mountain
+Whitley County • Region EC • 546 m / 1,791 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-134</desc><link href="https://sotl.as/summits/W4K/EC-134"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.5125" lon="-82.7013"><name>W4K/EC-135 Unnamed summit (1780A)</name><desc>Unnamed summit (1780A)
+Floyd County • Region EC • 543 m / 1,781 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-135</desc><link href="https://sotl.as/summits/W4K/EC-135"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.4572" lon="-82.5905"><name>W4K/EC-136 Unnamed summit (1780B)</name><desc>Unnamed summit (1780B)
+Floyd County • Region EC • 543 m / 1,781 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-136</desc><link href="https://sotl.as/summits/W4K/EC-136"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.6125" lon="-82.2575"><name>W4K/EC-137 Unnamed summit (1780C)</name><desc>Unnamed summit (1780C)
+Pike County • Region EC • 543 m / 1,781 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-137</desc><link href="https://sotl.as/summits/W4K/EC-137"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.4235" lon="-82.2951"><name>W4K/EC-138 Unnamed summit (1780D)</name><desc>Unnamed summit (1780D)
+Pike County • Region EC • 543 m / 1,781 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-138</desc><link href="https://sotl.as/summits/W4K/EC-138"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.4606" lon="-82.4854"><name>W4K/EC-139 Unnamed summit (1775)</name><desc>Unnamed summit (1775)
+Pike County • Region EC • 541 m / 1,775 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-139</desc><link href="https://sotl.as/summits/W4K/EC-139"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.0467" lon="-83.8774"><name>W4K/EC-140 Laurel County HP</name><desc>Laurel County HP
+Knox County • Region EC • 539 m / 1,768 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-140</desc><link href="https://sotl.as/summits/W4K/EC-140"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.7513" lon="-83.9427"><name>W4K/EC-141 Unnamed summit (1770)</name><desc>Unnamed summit (1770)
+Knox County • Region EC • 539 m / 1,768 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-141</desc><link href="https://sotl.as/summits/W4K/EC-141"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.5583" lon="-82.5395"><name>W4K/EC-142 Unnamed summit (1750A)</name><desc>Unnamed summit (1750A)
+Pike County • Region EC • 533 m / 1,749 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-142</desc><link href="https://sotl.as/summits/W4K/EC-142"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.8262" lon="-84.0566"><name>W4K/EC-143 Unnamed summit (1750B)</name><desc>Unnamed summit (1750B)
+Whitley County • Region EC • 533 m / 1,749 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-143</desc><link href="https://sotl.as/summits/W4K/EC-143"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.5352" lon="-82.5469"><name>W4K/EC-144 Unnamed summit (1749)</name><desc>Unnamed summit (1749)
+Pike County • Region EC • 533 m / 1,749 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-144</desc><link href="https://sotl.as/summits/W4K/EC-144"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.4658" lon="-82.7234"><name>W4K/EC-145 Unnamed summit (1740A)</name><desc>Unnamed summit (1740A)
+Floyd County • Region EC • 530 m / 1,739 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-145</desc><link href="https://sotl.as/summits/W4K/EC-145"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.5725" lon="-82.5862"><name>W4K/EC-146 Unnamed summit (1740B)</name><desc>Unnamed summit (1740B)
+Pike County • Region EC • 530 m / 1,739 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-146</desc><link href="https://sotl.as/summits/W4K/EC-146"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.5168" lon="-82.0675"><name>W4K/EC-147 Unnamed summit (1740C)</name><desc>Unnamed summit (1740C)
+Pike County • Region EC • 530 m / 1,739 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-147</desc><link href="https://sotl.as/summits/W4K/EC-147"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.9149" lon="-84.0064"><name>W4K/EC-148 Unnamed summit (1710A)</name><desc>Unnamed summit (1710A)
+Knox County • Region EC • 521 m / 1,709 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-148</desc><link href="https://sotl.as/summits/W4K/EC-148"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.9099" lon="-84.1042"><name>W4K/EC-149 Unnamed summit (1710B)</name><desc>Unnamed summit (1710B)
+Whitley County • Region EC • 521 m / 1,709 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-149</desc><link href="https://sotl.as/summits/W4K/EC-149"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.8812" lon="-84.0157"><name>W4K/EC-150 Unnamed summit (1710C)</name><desc>Unnamed summit (1710C)
+Knox County • Region EC • 521 m / 1,709 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-150</desc><link href="https://sotl.as/summits/W4K/EC-150"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.5671" lon="-82.5151"><name>W4K/EC-151 Unnamed summit (1700A)</name><desc>Unnamed summit (1700A)
+Pike County • Region EC • 518 m / 1,699 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-151</desc><link href="https://sotl.as/summits/W4K/EC-151"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.7096" lon="-82.3278"><name>W4K/EC-152 Border Benchmark</name><desc>Border Benchmark
+Pike County • Region EC • 518 m / 1,699 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-152</desc><link href="https://sotl.as/summits/W4K/EC-152"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.657" lon="-82.4263"><name>W4K/EC-153 Unnamed summit (1700B)</name><desc>Unnamed summit (1700B)
+Pike County • Region EC • 518 m / 1,699 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-153</desc><link href="https://sotl.as/summits/W4K/EC-153"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.4752" lon="-82.7698"><name>W4K/EC-154 Unnamed summit (1700C)</name><desc>Unnamed summit (1700C)
+Floyd County • Region EC • 518 m / 1,699 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-154</desc><link href="https://sotl.as/summits/W4K/EC-154"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.1545" lon="-83.691"><name>W4K/EC-155 Hector Benchmark</name><desc>Hector Benchmark
+Clay County • Region EC • 518 m / 1,699 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-155
+POTA / KFF WITHIN 3 MI  US-3799 Burchell-Beech Wildlife Management Area 1.3 mi  •  KFF-3799 Burchell-Beech 1.3 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-155"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.9882" lon="-83.9481"><name>W4K/EC-156 Kirby Mountain</name><desc>Kirby Mountain
+Laurel County • Region EC • 518 m / 1,699 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-156</desc><link href="https://sotl.as/summits/W4K/EC-156"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.9056" lon="-84.0274"><name>W4K/EC-157 Unnamed summit (1690A)</name><desc>Unnamed summit (1690A)
+Knox County • Region EC • 515 m / 1,690 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-157</desc><link href="https://sotl.as/summits/W4K/EC-157"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.8988" lon="-83.8078"><name>W4K/EC-158 Unnamed summit (1690B)</name><desc>Unnamed summit (1690B)
+Knox County • Region EC • 515 m / 1,690 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-158</desc><link href="https://sotl.as/summits/W4K/EC-158"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.928" lon="-83.9503"><name>W4K/EC-159 Unnamed summit (1690C)</name><desc>Unnamed summit (1690C)
+Knox County • Region EC • 515 m / 1,690 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-159</desc><link href="https://sotl.as/summits/W4K/EC-159"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.8552" lon="-84.0656"><name>W4K/EC-160 Unnamed summit (1690D)</name><desc>Unnamed summit (1690D)
+Whitley County • Region EC • 515 m / 1,690 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-160</desc><link href="https://sotl.as/summits/W4K/EC-160"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.1312" lon="-83.8906"><name>W4K/EC-161 Cutoff Mountain</name><desc>Cutoff Mountain
+Clay County • Region EC • 514 m / 1,686 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-161</desc><link href="https://sotl.as/summits/W4K/EC-161"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.5552" lon="-82.6621"><name>W4K/EC-162 Unnamed summit (1660A)</name><desc>Unnamed summit (1660A)
+Floyd County • Region EC • 506 m / 1,660 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-162</desc><link href="https://sotl.as/summits/W4K/EC-162"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.6516" lon="-82.2928"><name>W4K/EC-163 Unnamed summit (1660B)</name><desc>Unnamed summit (1660B)
+Pike County • Region EC • 506 m / 1,660 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-163</desc><link href="https://sotl.as/summits/W4K/EC-163"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.4973" lon="-82.7117"><name>W4K/EC-164 Unnamed summit (1660C)</name><desc>Unnamed summit (1660C)
+Floyd County • Region EC • 506 m / 1,660 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-164</desc><link href="https://sotl.as/summits/W4K/EC-164"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.8517" lon="-83.8393"><name>W4K/EC-165 Unnamed summit (1650A)</name><desc>Unnamed summit (1650A)
+Knox County • Region EC • 503 m / 1,650 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-165</desc><link href="https://sotl.as/summits/W4K/EC-165"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.0695" lon="-83.8384"><name>W4K/EC-166 Unnamed summit (1650B)</name><desc>Unnamed summit (1650B)
+Clay County • Region EC • 503 m / 1,650 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-166</desc><link href="https://sotl.as/summits/W4K/EC-166"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.9427" lon="-83.8863"><name>W4K/EC-167 Unnamed summit (1630A)</name><desc>Unnamed summit (1630A)
+Knox County • Region EC • 497 m / 1,631 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-167</desc><link href="https://sotl.as/summits/W4K/EC-167"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.9355" lon="-83.9095"><name>W4K/EC-168 Unnamed summit (1630B)</name><desc>Unnamed summit (1630B)
+Knox County • Region EC • 497 m / 1,631 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-168</desc><link href="https://sotl.as/summits/W4K/EC-168"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.5543" lon="-82.8133"><name>W4K/EC-169 Unnamed summit (1620A)</name><desc>Unnamed summit (1620A)
+Floyd County • Region EC • 494 m / 1,621 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-169</desc><link href="https://sotl.as/summits/W4K/EC-169"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.4944" lon="-82.6752"><name>W4K/EC-170 Unnamed summit (1620B)</name><desc>Unnamed summit (1620B)
+Floyd County • Region EC • 494 m / 1,621 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-170</desc><link href="https://sotl.as/summits/W4K/EC-170"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.885" lon="-83.8673"><name>W4K/EC-171 Unnamed summit (1610)</name><desc>Unnamed summit (1610)
+Knox County • Region EC • 491 m / 1,611 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-171</desc><link href="https://sotl.as/summits/W4K/EC-171"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.5049" lon="-82.5768"><name>W4K/EC-172 Unnamed summit (1582)</name><desc>Unnamed summit (1582)
+Pike County • Region EC • 482 m / 1,581 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-172</desc><link href="https://sotl.as/summits/W4K/EC-172"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.492" lon="-82.5198"><name>W4K/EC-173 Duty Knob</name><desc>Duty Knob
+Pike County • Region EC • 482 m / 1,581 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-173</desc><link href="https://sotl.as/summits/W4K/EC-173"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.5813" lon="-82.8206"><name>W4K/EC-174 Unnamed summit (1580)</name><desc>Unnamed summit (1580)
+Floyd County • Region EC • 482 m / 1,581 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-174</desc><link href="https://sotl.as/summits/W4K/EC-174"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.1881" lon="-83.7287"><name>W4K/EC-175 Unnamed summit (1561)</name><desc>Unnamed summit (1561)
+Clay County • Region EC • 476 m / 1,562 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-175
+POTA / KFF WITHIN 3 MI  KFF-3799 Burchell-Beech 1.8 mi  •  US-3799 Burchell-Beech Wildlife Management Area 1.8 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-175"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.7051" lon="-82.7501"><name>W4K/EC-176 Unnamed summit (1540A)</name><desc>Unnamed summit (1540A)
+Floyd County • Region EC • 469 m / 1,539 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-176
+POTA / KFF WITHIN 3 MI  US-1281 Jenny Wiley State Park 1.5 mi  •  KFF-1281 Jenny Wiley 1.6 mi  •  US-4687 Dewey Lake Wildlife Management Area 2.4 mi  •  KFF-7272 Dewey Lake 2.4 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-176"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.4663" lon="-82.5504"><name>W4K/EC-177 Unnamed summit (1540B)</name><desc>Unnamed summit (1540B)
+Pike County • Region EC • 469 m / 1,539 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-177</desc><link href="https://sotl.as/summits/W4K/EC-177"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.7172" lon="-82.5797"><name>W4K/EC-178 Unnamed summit (1540C)</name><desc>Unnamed summit (1540C)
+Martin County • Region EC • 469 m / 1,539 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-178</desc><link href="https://sotl.as/summits/W4K/EC-178"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.6154" lon="-82.7006"><name>W4K/EC-179 Unnamed summit (1540D)</name><desc>Unnamed summit (1540D)
+Floyd County • Region EC • 469 m / 1,539 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-179</desc><link href="https://sotl.as/summits/W4K/EC-179"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.2874" lon="-83.4424"><name>W4K/EC-180 Unnamed summit (1529)</name><desc>Unnamed summit (1529)
+Leslie County • Region EC • 466 m / 1,529 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-180
+POTA / KFF WITHIN 3 MI  KFF-1275 Buckhorn Lake 1.3 mi  •  US-1275 Buckhorn Lake State Park 1.3 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-180"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.7832" lon="-82.9202"><name>W4K/EC-181 Stuffley Knob</name><desc>Stuffley Knob
+Johnson County • Region EC • 460 m / 1,509 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-181</desc><link href="https://sotl.as/summits/W4K/EC-181"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.6886" lon="-82.9045"><name>W4K/EC-182 Unnamed summit (1500)</name><desc>Unnamed summit (1500)
+Floyd County • Region EC • 457 m / 1,499 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-182</desc><link href="https://sotl.as/summits/W4K/EC-182"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.3674" lon="-82.5736"><name>W4K/EC-200 Unnamed summit (1780)</name><desc>Unnamed summit (1780)
+Pike County • Region EC • 542 m / 1,778 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-200</desc><link href="https://sotl.as/summits/W4K/EC-200"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.0768" lon="-83.7139"><name>W4K/EC-202 Unnamed summit (1620)</name><desc>Unnamed summit (1620)
+Clay County • Region EC • 493 m / 1,617 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/EC-202</desc><link href="https://sotl.as/summits/W4K/EC-202"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.5274" lon="-84.2511"><name>W4K/KA-001 Madison County High Point</name><desc>Madison County High Point
+Madison County • Region KA • 509 m / 1,670 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/KA-001</desc><link href="https://sotl.as/summits/W4K/KA-001"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.5637" lon="-84.233"><name>W4K/KA-002 Indian Fort Mountain</name><desc>Indian Fort Mountain
+Madison County • Region KA • 473 m / 1,552 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/KA-002</desc><link href="https://sotl.as/summits/W4K/KA-002"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.6266" lon="-84.0668"><name>W4K/KA-003 Zion Mountain</name><desc>Zion Mountain
+Estill County • Region KA • 461 m / 1,512 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/KA-003</desc><link href="https://sotl.as/summits/W4K/KA-003"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.6136" lon="-84.1289"><name>W4K/KA-014 Wolf Gap Mountain</name><desc>Wolf Gap Mountain
+Madison County • Region KA • 470 m / 1,542 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/KA-014</desc><link href="https://sotl.as/summits/W4K/KA-014"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.1534" lon="-84.8453"><name>W4K/PR-001 Green River Knob</name><desc>Green River Knob
+Casey County • Region PR • 545 m / 1,788 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/PR-001</desc><link href="https://sotl.as/summits/W4K/PR-001"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.7201" lon="-85.1061"><name>W4K/PR-002 Sewell Mountain</name><desc>Sewell Mountain
+Clinton County • Region PR • 539 m / 1,768 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/PR-002</desc><link href="https://sotl.as/summits/W4K/PR-002"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.7753" lon="-85.0708"><name>W4K/PR-003 Short Mountain</name><desc>Short Mountain
+Clinton County • Region PR • 497 m / 1,631 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/PR-003</desc><link href="https://sotl.as/summits/W4K/PR-003"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="36.8448" lon="-84.7739"><name>W4K/PR-004 Elk Ridge</name><desc>Elk Ridge
+Wayne County • Region PR • 466 m / 1,529 ft • 2 points
+SOTLAS: https://sotl.as/summits/W4K/PR-004</desc><link href="https://sotl.as/summits/W4K/PR-004"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 2 pts</type></wpt>
+<wpt lat="37.6517" lon="-82.7217"><name>W4K/EC-183 Unnamed summit (1460)</name><desc>Unnamed summit (1460)
+Floyd County • Region EC • 445 m / 1,460 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/EC-183
+POTA / KFF WITHIN 3 MI  KFF-1281 Jenny Wiley 2.9 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-183"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.9114" lon="-83.9357"><name>W4K/EC-184 Pilot Knob</name><desc>Pilot Knob
+Powell County • Region EC • 442 m / 1,450 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/EC-184
+POTA / KFF WITHIN 3 MI  KFF-6886 Pilot Knob 0.5 mi  •  US-7963 Pilot Knob State Nature Preserve 0.5 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-184"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="38.1379" lon="-83.4766"><name>W4K/EC-185 Limestone Knob</name><desc>Limestone Knob
+Rowan County • Region EC • 437 m / 1,434 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/EC-185</desc><link href="https://sotl.as/summits/W4K/EC-185"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.7291" lon="-82.8181"><name>W4K/EC-186 Unnamed summit (1420)</name><desc>Unnamed summit (1420)
+Floyd County • Region EC • 433 m / 1,421 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/EC-186</desc><link href="https://sotl.as/summits/W4K/EC-186"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.7961" lon="-82.8012"><name>W4K/EC-187 Unnamed summit (1380A)</name><desc>Unnamed summit (1380A)
+Johnson County • Region EC • 421 m / 1,381 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/EC-187</desc><link href="https://sotl.as/summits/W4K/EC-187"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.7461" lon="-82.8428"><name>W4K/EC-188 Unnamed summit (1380B)</name><desc>Unnamed summit (1380B)
+Johnson County • Region EC • 421 m / 1,381 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/EC-188</desc><link href="https://sotl.as/summits/W4K/EC-188"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.6454" lon="-82.752"><name>W4K/EC-189 Unnamed summit (1380C)</name><desc>Unnamed summit (1380C)
+Floyd County • Region EC • 421 m / 1,381 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/EC-189</desc><link href="https://sotl.as/summits/W4K/EC-189"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.7314" lon="-82.7457"><name>W4K/EC-190 Unnamed summit (1355)</name><desc>Unnamed summit (1355)
+Floyd County • Region EC • 413 m / 1,355 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/EC-190
+POTA / KFF WITHIN 3 MI  US-4687 Dewey Lake Wildlife Management Area 1.0 mi  •  KFF-7272 Dewey Lake 1.0 mi  •  US-1281 Jenny Wiley State Park 2.7 mi  •  KFF-1281 Jenny Wiley 2.9 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-190"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.7875" lon="-82.819"><name>W4K/EC-191 Unnamed summit (1340)</name><desc>Unnamed summit (1340)
+Johnson County • Region EC • 408 m / 1,339 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/EC-191</desc><link href="https://sotl.as/summits/W4K/EC-191"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.7564" lon="-82.7913"><name>W4K/EC-192 Unnamed summit (1283)</name><desc>Unnamed summit (1283)
+Johnson County • Region EC • 391 m / 1,283 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/EC-192</desc><link href="https://sotl.as/summits/W4K/EC-192"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.4007" lon="-82.5274"><name>W4K/EC-193 Unnamed summit (1260)</name><desc>Unnamed summit (1260)
+Pike County • Region EC • 384 m / 1,260 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/EC-193</desc><link href="https://sotl.as/summits/W4K/EC-193"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.7475" lon="-82.7532"><name>W4K/EC-194 Unnamed summit (1250)</name><desc>Unnamed summit (1250)
+Floyd County • Region EC • 381 m / 1,250 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/EC-194
+POTA / KFF WITHIN 3 MI  US-4687 Dewey Lake Wildlife Management Area 1.5 mi  •  KFF-7272 Dewey Lake 1.5 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/EC-194"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.4761" lon="-82.5349"><name>W4K/EC-195 Unnamed summit (1220)</name><desc>Unnamed summit (1220)
+Pike County • Region EC • 372 m / 1,220 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/EC-195</desc><link href="https://sotl.as/summits/W4K/EC-195"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.8008" lon="-82.7862"><name>W4K/EC-196 Unnamed summit (1197)</name><desc>Unnamed summit (1197)
+Johnson County • Region EC • 365 m / 1,198 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/EC-196</desc><link href="https://sotl.as/summits/W4K/EC-196"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.6065" lon="-84.2291"><name>W4K/KA-004 Joe Lick Knob</name><desc>Joe Lick Knob
+Madison County • Region KA • 452 m / 1,483 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/KA-004
+POTA / KFF WITHIN 3 MI  US-3825 Miller Welch Wildlife Management Area 2.5 mi  •  KFF-3825 Miller Welch 2.5 mi  (to the park’s reference point — check boundaries)</desc><link href="https://sotl.as/summits/W4K/KA-004"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.7486" lon="-83.9636"><name>W4K/KA-005 Low Knob</name><desc>Low Knob
+Estill County • Region KA • 442 m / 1,450 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/KA-005</desc><link href="https://sotl.as/summits/W4K/KA-005"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.6031" lon="-84.1014"><name>W4K/KA-006 Unnamed summit (1450)</name><desc>Unnamed summit (1450)
+Estill County • Region KA • 442 m / 1,450 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/KA-006</desc><link href="https://sotl.as/summits/W4K/KA-006"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.7861" lon="-83.989"><name>W4K/KA-007 Sugarloaf Mountain</name><desc>Sugarloaf Mountain
+Estill County • Region KA • 440 m / 1,444 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/KA-007</desc><link href="https://sotl.as/summits/W4K/KA-007"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.6492" lon="-84.0652"><name>W4K/KA-008 Big Round Mountain</name><desc>Big Round Mountain
+Estill County • Region KA • 433 m / 1,421 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/KA-008</desc><link href="https://sotl.as/summits/W4K/KA-008"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.5639" lon="-84.199"><name>W4K/KA-009 Pilot Knob</name><desc>Pilot Knob
+Madison County • Region KA • 430 m / 1,411 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/KA-009</desc><link href="https://sotl.as/summits/W4K/KA-009"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.6102" lon="-84.1124"><name>W4K/KA-010 Unnamed summit (1410)</name><desc>Unnamed summit (1410)
+Estill County • Region KA • 430 m / 1,411 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/KA-010</desc><link href="https://sotl.as/summits/W4K/KA-010"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.5932" lon="-84.1258"><name>W4K/KA-011 Unnamed summit (1383)</name><desc>Unnamed summit (1383)
+Madison County • Region KA • 422 m / 1,385 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/KA-011</desc><link href="https://sotl.as/summits/W4K/KA-011"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.5812" lon="-84.1034"><name>W4K/KA-012 Unnamed summit (1370)</name><desc>Unnamed summit (1370)
+Madison County • Region KA • 418 m / 1,371 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/KA-012</desc><link href="https://sotl.as/summits/W4K/KA-012"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="37.9215" lon="-85.7869"><name>W4K/KA-013 Dawson Knob</name><desc>Dawson Knob
+Bullitt County • Region KA • 302 m / 991 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/KA-013</desc><link href="https://sotl.as/summits/W4K/KA-013"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+<wpt lat="36.8078" lon="-84.8978"><name>W4K/PR-005 Furnace Mountain</name><desc>Furnace Mountain
+Wayne County • Region PR • 454 m / 1,490 ft • 1 point
+SOTLAS: https://sotl.as/summits/W4K/PR-005</desc><link href="https://sotl.as/summits/W4K/PR-005"><text>SOTLAS</text></link><sym>Summit</sym><type>SOTA 1 pts</type></wpt>
+</gpx>
