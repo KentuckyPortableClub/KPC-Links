@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>On The Air Now | KPC</title>
+<meta name="description" content="Live POTA spots for Kentucky parks and Kentucky Portable Club members.">
+<style>
+:root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--live:#3ecf6e;--max:1200px;--nav-height:78px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:var(--nav-height);margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s}.nav-links a:hover,.nav-links a[aria-current=page]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+
+/* live header */
+.live-head{background:var(--black);color:#fff;border-bottom:1px solid rgba(213,166,58,.45);padding:54px 24px 40px;position:relative;overflow:hidden}
+.live-head:before{content:"";position:absolute;width:520px;height:520px;right:-160px;top:-200px;border:1px solid rgba(213,166,58,.3);border-radius:50%;box-shadow:0 0 0 55px rgba(213,166,58,.03)}
+.wrap{width:min(var(--max),100%);margin:auto;position:relative}
+.eyebrow{display:flex;align-items:center;gap:10px;margin:0 0 10px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 rgba(62,207,110,.7);animation:pulse 1.8s infinite}
+.dot.off{background:#8a8a8a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.6)}70%{box-shadow:0 0 0 10px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.live-head h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(38px,5.5vw,64px);line-height:1.02;letter-spacing:-1.2px}.live-head h1 span{color:var(--gold-light)}
+.live-head p.sub{max-width:720px;margin:14px 0 0;color:#d9d4c8;font-size:17px}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.stat{min-width:150px;padding:14px 18px;background:#151515;border:1px solid #363636;border-left:4px solid var(--gold)}
+.stat b{display:block;font:700 30px/1 Georgia,serif;color:#fff}.stat span{font-size:11px;font-weight:900;letter-spacing:2px;color:#bcb8ae}
+.status{margin-top:16px;font-size:13px;color:#bcb8ae}.status button{margin-left:8px;padding:6px 12px;border:1px solid var(--gold);background:transparent;color:var(--gold-light);border-radius:6px;font-weight:900;font-size:11px;letter-spacing:1px;cursor:pointer}
+.demo{display:none;margin-top:14px;padding:8px 12px;background:var(--gold);color:#0b0b0b;font-weight:900;font-size:12px;letter-spacing:1px;border-radius:5px;width:max-content;max-width:100%}
+
+/* sections */
+.section{padding:44px 24px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--gold)}
+.kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:4px}
+.sec-head h2{margin:4px 0 0;font:700 clamp(26px,3.4vw,36px)/1.1 Georgia,serif;color:var(--black)}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{padding:8px 14px;border:1px solid #cbbf9f;border-radius:999px;background:#fff;color:var(--ink);font-size:12px;font-weight:900;letter-spacing:1px;cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--black);border-color:var(--black);color:var(--gold-light)}
+
+/* member roster */
+.roster{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.member{padding:14px 16px;background:#fff;border:1px solid #d8cfbf;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.member .call{font:700 20px Georgia,serif;letter-spacing:.5px}
+.member .st{font-size:11px;font-weight:900;letter-spacing:1.5px;color:var(--muted);display:flex;align-items:center;gap:7px;white-space:nowrap}
+.member.on{background:var(--black);border-color:var(--gold);color:#fff}.member.on .st{color:var(--live)}
+
+/* spot cards */
+.spots{display:grid;gap:12px}
+.spot{display:grid;grid-template-columns:150px 120px 1fr 130px;gap:18px;align-items:center;padding:16px 20px;background:#fff;border:1px solid #d8cfbf;position:relative;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+.spot:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--green)}
+.spot.club{background:#fffaf0;border-color:var(--gold)}.spot.club:before{background:var(--gold)}
+.spot .who a{font:700 22px Georgia,serif;color:var(--black)}.spot .who a:hover{color:var(--green)}
+.badge{display:inline-block;margin-top:4px;padding:3px 8px;border-radius:4px;background:var(--black);color:var(--gold-light);font-size:10px;font-weight:900;letter-spacing:1.5px}
+.freq b{display:block;font:700 22px/1 Georgia,serif;color:var(--green)}.freq span{display:inline-block;margin-top:6px;padding:2px 8px;border:1px solid #cbbf9f;border-radius:4px;font-size:11px;font-weight:900;letter-spacing:1px}
+.park a.ref{font-size:12px;font-weight:900;letter-spacing:1.5px;color:var(--green)}.park a.ref:hover{text-decoration:underline}
+.park .pn{display:block;font:700 17px/1.25 Georgia,serif;margin-top:2px}
+.park .cm{display:block;margin-top:4px;color:var(--muted);font-size:13px}
+.when{text-align:right;font-size:12px;color:var(--muted)}.when b{display:block;font-size:15px;color:var(--ink)}
+.empty{padding:28px;text-align:center;background:#fff;border:1px dashed #cbbf9f;color:var(--muted)}
+.note{margin-top:30px;padding:18px 22px;background:#fff;border-left:5px solid var(--gold);color:var(--muted);font-size:14px}
+footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;border-top:1px solid #292929;font-size:13px}footer strong{color:var(--gold-light)}
+
+@media(max-width:1000px){.roster{grid-template-columns:repeat(2,minmax(0,1fr))}.spot{grid-template-columns:130px 110px 1fr}.when{grid-column:1/-1;text-align:left;display:flex;gap:10px;align-items:baseline}.when b{display:inline}}
+@media(max-width:760px){:root{--nav-height:70px}.nav-inner{min-height:70px;padding:8px 18px}.brand img{width:52px;height:52px}.menu-toggle{display:block}.nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45)}.nav-links.open{display:flex}.nav-links a{padding:13px 5px;border-bottom:1px solid #292929}.nav-links a:last-child{border-bottom:0}
+.live-head{padding:40px 20px 32px}.section{padding:34px 16px}.stat{min-width:0;flex:1 1 40%}
+.spot{grid-template-columns:1fr auto;gap:10px 14px;padding:14px 16px 14px 20px}.park{grid-column:1/-1}.freq{text-align:right}.when{grid-column:1/-1}.member{flex-direction:column;align-items:flex-start;gap:4px}}
+@media(max-width:420px){.member .call{font-size:17px}.brand-text small{display:none}}
+</style>
+</head>
+<body>
+<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html" aria-current="page">Parks</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="contact.html">Contact</a></nav></div></header>
+
+<main>
+<section class="live-head"><div class="wrap">
+<p class="eyebrow"><span class="dot" id="dot"></span>LIVE POTA SPOTS</p>
+<h1>ON THE AIR <span>NOW</span></h1>
+<p class="sub">Kentucky parks being activated right now, plus any KPC member on the air anywhere. Updates every minute from POTA.</p>
+<div class="stats">
+<div class="stat"><b id="nKy">–</b><span>KY ACTIVATIONS</span></div>
+<div class="stat"><b id="nParks">–</b><span>KY PARKS ON AIR</span></div>
+<div class="stat"><b id="nClub">–</b><span>KPC MEMBERS ON AIR</span></div>
+</div>
+<div class="status" id="status">Loading spots…</div>
+<div class="demo" id="demo">DEMO DATA — SAMPLE SPOTS FOR PREVIEW ONLY</div>
+</div></section>
+
+<section class="section"><div class="wrap">
+<div class="sec-head"><div><div class="kicker">KENTUCKY PORTABLE CLUB</div><h2>KPC Members</h2></div></div>
+<div class="roster" id="roster"></div>
+<div class="spots" id="clubSpots"></div>
+</div></section>
+
+<section class="section" style="padding-top:10px"><div class="wrap">
+<div class="sec-head"><div><div class="kicker">US-KY</div><h2>Kentucky Parks On The Air</h2></div>
+<div class="filters" id="filters" role="group" aria-label="Filter by mode"><button aria-pressed="true" data-m="ALL">ALL</button><button aria-pressed="false" data-m="CW">CW</button><button aria-pressed="false" data-m="SSB">SSB</button><button aria-pressed="false" data-m="DATA">DATA</button></div></div>
+<div class="spots" id="kySpots"></div>
+<div class="note">Spots come from the POTA spotting network (<a href="https://pota.app/#/" target="_blank" rel="noopener" style="color:var(--green);font-weight:800">pota.app</a>) and expire after about 30 minutes without a new spot. Times are in your local time. Tap a callsign for QRZ or a park reference for its POTA page.</div>
+</div></section>
+</main>
+<footer><strong>KPC — Kentucky Portable Club</strong> • Est. 2026<br>Get Outside. Get On The Air.</footer>
+
+<script>
+const MEMBERS=['KZ4CP','N4BDW','KQ4HZK','K4ZSR'];   // add club calls here
+const API='https://api.pota.app/spot/activator';
+const DEMO=new URLSearchParams(location.search).has('demo');
+let spots=[],mode='ALL';
+const $=id=>document.getElementById(id);
+const base=c=>{const p=String(c||'').toUpperCase().split('/');return p.reduce((a,b)=>b.length>a.length?b:a,'')};
+const isClub=s=>MEMBERS.includes(base(s.activator));
+const isKY=s=>String(s.locationDesc||'').split(',').some(x=>x.trim()==='US-KY');
+const modeGroup=m=>{m=String(m||'').toUpperCase();if(m==='CW')return'CW';if(['SSB','USB','LSB','AM','FM','PHONE'].includes(m))return'SSB';return'DATA'};
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const mhz=f=>{const n=parseFloat(f);return isNaN(n)?esc(f):(n/1000).toFixed(3)};
+const t=s=>new Date(String(s.spotTime).endsWith('Z')?s.spotTime:s.spotTime+'Z');
+function ago(d){const m=Math.max(0,Math.round((Date.now()-d)/60000));return m<1?'just now':m<60?m+' min ago':Math.floor(m/60)+' hr '+(m%60)+' min ago'}
+function card(s){
+ const d=t(s),club=isClub(s);
+ return `<article class="spot${club?' club':''}">
+ <div class="who"><a href="https://www.qrz.com/db/${encodeURIComponent(base(s.activator))}" target="_blank" rel="noopener">${esc(s.activator)}</a>${club?'<br><span class="badge">KPC MEMBER</span>':''}</div>
+ <div class="freq"><b>${mhz(s.frequency)}</b><span>${esc(s.mode||'—')}</span></div>
+ <div class="park"><a class="ref" href="https://pota.app/#/park/${encodeURIComponent(s.reference)}" target="_blank" rel="noopener">${esc(s.reference)} • ${esc(s.locationDesc)}</a><span class="pn">${esc(s.name||s.parkName||'')}</span>${s.comments?`<span class="cm">“${esc(s.comments)}” — ${esc(s.spotter)}</span>`:''}</div>
+ <div class="when"><b>${d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}</b>${ago(d)}</div></article>`}
+function render(){
+ const ky=spots.filter(isKY).sort((a,b)=>t(b)-t(a));
+ const club=spots.filter(isClub).sort((a,b)=>t(b)-t(a));
+ const onAir=new Set(club.map(s=>base(s.activator)));
+ $('nKy').textContent=ky.length;$('nParks').textContent=new Set(ky.map(s=>s.reference)).size;$('nClub').textContent=onAir.size;
+ $('roster').innerHTML=MEMBERS.map(m=>`<div class="member${onAir.has(m)?' on':''}"><span class="call">${m}</span><span class="st">${onAir.has(m)?'<span class="dot"></span>ON AIR':'NOT SPOTTED'}</span></div>`).join('');
+ $('clubSpots').innerHTML=club.map(card).join('');
+ const kf=ky.filter(s=>mode==='ALL'||modeGroup(s.mode)===mode);
+ $('kySpots').innerHTML=kf.length?kf.map(card).join(''):`<div class="empty">No Kentucky parks ${mode==='ALL'?'':mode+' '}spotted right now. Check back soon — or go activate one!</div>`;
+}
+async function load(){
+ if(DEMO){spots=demoData();$('demo').style.display='block';$('status').textContent='Preview mode';render();return}
+ try{const r=await fetch(API,{cache:'no-store'});if(!r.ok)throw 0;spots=await r.json();
+  $('dot').classList.remove('off');$('status').innerHTML=`Updated ${new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})} • refreshes every 60 s <button onclick="load()">REFRESH NOW</button>`;render()}
+ catch(e){$('dot').classList.add('off');$('status').innerHTML=`Couldn’t reach POTA right now — retrying. <button onclick="load()">TRY AGAIN</button>`;if(!spots.length)render()}
+}
+$('filters').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;mode=b.dataset.m;[...$('filters').children].forEach(x=>x.setAttribute('aria-pressed',x===b));render()});
+const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav-links');
+toggle.addEventListener('click',()=>{const o=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(o))});
+function demoData(){const n=Date.now(),iso=m=>new Date(n-m*60000).toISOString().slice(0,19);
+ return[{activator:'KZ4CP',frequency:'14062',mode:'CW',reference:'US-1271',locationDesc:'US-KY',name:'Taylorsville Lake State Park',spotTime:iso(3),spotter:'W4ABC',comments:'5NN KY'},
+ {activator:'K4ZSR/P',frequency:'7185',mode:'SSB',reference:'US-4484',locationDesc:'US-KY',name:'Daniel Boone National Forest',spotTime:iso(9),spotter:'N8XYZ',comments:'59 in OH'},
+ {activator:'N0DEM',frequency:'14074',mode:'FT8',reference:'US-1277',locationDesc:'US-KY',name:'Cumberland Falls State Park',spotTime:iso(14),spotter:'RBN',comments:''},
+ {activator:'W9DEMO',frequency:'10110',mode:'CW',reference:'US-0686',locationDesc:'US-KY,US-TN',name:'Big South Fork National River & Recreation Area',spotTime:iso(22),spotter:'K9AAA',comments:'QRP 5w'}]}
+load();setInterval(load,60000);setInterval(()=>spots.length&&render(),30000);
+</script>
+</body></html>

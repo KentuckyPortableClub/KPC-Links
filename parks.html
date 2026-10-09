@@ -60,6 +60,19 @@ section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
 .warning-box .btn-row .btn{font-size:11px;min-height:40px}
 @media(max-width:760px){.jump{top:70px}.trail-grid{grid-template-columns:1fr}.btn-row{flex-direction:column}.btn-row .btn{width:100%}}
 .dark .kicker,.dark .card-num{color:var(--gold-light)}
+/* On The Air Now bar */
+.onair{background:#0d2419;border-bottom:1px solid rgba(213,166,58,.45);color:#fff}
+.onair-inner{width:min(var(--max),100%);margin:auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.onair-title{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:3px;color:var(--gold-light);white-space:nowrap}
+.onair .dot{width:10px;height:10px;border-radius:50%;background:#3ecf6e;animation:pulse 1.8s infinite}
+.onair .dot.off{background:#8a8a8a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.6)}70%{box-shadow:0 0 0 9px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.onair-count{font-size:14px;color:#e9eee9}.onair-count b{color:#fff}
+.onair-list{display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}.onair-list::-webkit-scrollbar{display:none}
+.onair-chip{flex:0 0 auto;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;white-space:nowrap}
+.onair-chip b{color:var(--gold-light)}.onair-chip.club{border-color:var(--gold);background:rgba(213,166,58,.14)}
+.onair .btn{margin:0;min-height:38px;padding:8px 14px;font-size:11px;white-space:nowrap}
+@media(max-width:760px){.onair-inner{padding:12px 18px;gap:8px 10px}.onair-title{order:1}.onair .btn{order:2;margin-left:auto}.onair-count{order:3;flex-basis:100%}.onair-list{order:4;flex-basis:100%}}
 </style>
 </head>
 <body>
@@ -67,7 +80,13 @@ section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
 
 <main>
 <section class="hero"><div class="hero-inner"><img class="hero-logo" src="KPC-logo.png" alt="Kentucky Portable Club"><p class="eyebrow">KENTUCKY • OUTDOORS • RADIO</p><h1>KENTUCKY<br><span>PARKS</span></h1><p class="hero-copy">Explore. Camp. Operate. Repeat. Find the places worth packing the radio for — then use the official maps, park resources, trails, forests, protected lands, and KPC POTA guides to plan the outing.</p></div></section>
-<nav class="jump" aria-label="Page sections"><div class="jump-inner"><a href="#guides">KPC Guides</a><a href="#tools">Tools</a><a href="#state">State Lands</a><a href="#federal">Federal Lands</a><a href="#trails">Trails</a><a href="#kentucky-wild-river-maps">Wild Rivers</a><a href="#before-you-go">Before You Go</a></div></nav>
+<section class="onair" aria-label="POTA spots on the air now"><div class="onair-inner">
+<span class="onair-title"><span class="dot off" id="oaDot"></span>ON THE AIR NOW</span>
+<span class="onair-count" id="oaCount">Checking POTA spots…</span>
+<div class="onair-list" id="oaList"></div>
+<a class="btn" href="kpc-spots.html">SEE ALL SPOTS →</a>
+</div></section>
+<nav class="jump" aria-label="Page sections"><div class="jump-inner"><a href="kpc-spots.html">On The Air</a><a href="#guides">KPC Guides</a><a href="#tools">Tools</a><a href="#state">State Lands</a><a href="#federal">Federal Lands</a><a href="#trails">Trails</a><a href="#kentucky-wild-river-maps">Wild Rivers</a><a href="#before-you-go">Before You Go</a></div></nav>
 
 <section class="section intro"><div class="section-inner intro-grid"><div class="intro-copy"><div class="kicker">EXPLORE KENTUCKY</div><h2>Places Worth Packing The Radio For</h2><p>KPC's Parks page brings the official Kentucky and federal outdoor resources together with KPC's own POTA field guides, so you can find a destination, check the rules, plan the route, and look for a portable operating opportunity.</p></div><div class="intro-panel"><div class="mark">KPC PARKS GUIDE</div><h3>Find A Place.<br>Make A Plan.</h3><div class="line"></div><p>Start with the official land manager, then use the KPC POTA resources to find the radio opportunity.</p></div></div></section>
 
@@ -77,7 +96,7 @@ section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
 <article class="card pota-card"><div class="card-top"><div class="card-num">03 • KPC TARGET LIST</div><h3>Top 25 Low-Activity Targets</h3><p>October 2026 KPC reference snapshot ranking Kentucky POTA locations by lowest accumulated QSOs and lowest accumulated activations.</p></div><div class="pdf-actions"><a class="btn" href="KPC_Top_25_Lowest_QSO_and_Activations_October_2026_261005_084249.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="btn alt" href="KPC_Top_25_Lowest_QSO_and_Activations_October_2026_261005_084249.pdf" download>DOWNLOAD ↓</a></div></article>
 <article class="card pota-card"><div class="card-top"><div class="card-num">04 • KPC SOTA RESOURCE</div><h3>KPC Kentucky SOTA Field Resource</h3><p>Explore all 216 Kentucky W4K SOTA summits by region and county, with summit information, maps, and nearby POTA/WWFF references.</p></div><div class="pdf-actions"><a class="btn" href="KPC_Kentucky_SOTA_W4K_Resource.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="btn alt" href="KPC_Kentucky_SOTA_W4K_Resource.pdf" download>DOWNLOAD ↓</a></div></article>
 <article class="card pota-card"><div class="card-top"><div class="card-num">05 • KPC WWFF RESOURCE</div><h3>KPC Kentucky WWFF/KFF Field Resource</h3><p>Explore Kentucky WWFF/KFF protected-area references for wildlife and nature-based portable radio activations.</p></div><div class="pdf-actions"><a class="btn" href="KPC_Kentucky_WWFF_KFF_Resource.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="btn alt" href="KPC_Kentucky_WWFF_KFF_Resource.pdf" download>DOWNLOAD ↓</a></div></article>
-<article class="card pota-card files-card"><div class="card-top"><div class="card-num">06 • KPC MAP FILES</div><h3>Kentucky Map Files — KML &amp; GPX</h3><p>Every POTA park, KFF reference and W4K summit as map pins, plus official parking, trailhead, entrance and boat-ramp access points. KML opens in Google Earth and Google My Maps; GPX loads into GPS units and offline map apps.</p>
+<article class="card pota-card files-card"><div class="card-top"><div class="card-num">06 • KPC MAP FILES</div><h3>Kentucky Map Files — KML &amp; GPX</h3><p>Every POTA park, KFF reference and W4K summit as map pins, plus official parking, trailhead, entrance and fishing-access points. KML opens in Google Earth and Google My Maps; GPX loads into GPS units and offline map apps.</p>
 <div class="file-group"><div class="card-num">POTA PARKS</div><div class="pdf-actions"><a class="btn" href="KPC_Kentucky_POTA_Parks.kml" download>KML ↓</a><a class="btn alt" href="KPC_Kentucky_POTA_Parks.gpx" download>GPX ↓</a></div></div>
 <div class="file-group"><div class="card-num">WWFF / KFF</div><div class="pdf-actions"><a class="btn" href="KPC_Kentucky_KFF_References.kml" download>KML ↓</a><a class="btn alt" href="KPC_Kentucky_KFF_References.gpx" download>GPX ↓</a></div></div>
 <div class="file-group"><div class="card-num">SOTA W4K SUMMITS</div><div class="pdf-actions"><a class="btn" href="KPC_Kentucky_SOTA_W4K_Summits.kml" download>KML ↓</a><a class="btn alt" href="KPC_Kentucky_SOTA_W4K_Summits.gpx" download>GPX ↓</a></div></div></article>
@@ -144,5 +163,27 @@ section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
 const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav-links');
 toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open))});
 nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false')}));
+
+// On The Air Now bar: live Kentucky POTA spots + KPC members
+(function(){
+const MEMBERS=['KZ4CP','N4BDW','KQ4HZK','K4ZSR'];
+const base=c=>String(c||'').toUpperCase().split('/').reduce((a,b)=>b.length>a.length?b:a,'');
+const ky=s=>String(s.locationDesc||'').split(',').some(x=>x.trim()==='US-KY');
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const mhz=f=>{const n=parseFloat(f);return isNaN(n)?esc(f):(n/1000).toFixed(3)};
+const tm=s=>new Date(String(s.spotTime).endsWith('Z')?s.spotTime:s.spotTime+'Z');
+async function load(){
+ try{const r=await fetch('https://api.pota.app/spot/activator',{cache:'no-store'});if(!r.ok)throw 0;const all=await r.json();
+  const club=all.filter(s=>MEMBERS.includes(base(s.activator)));
+  const kyS=all.filter(ky);
+  const show=[...club,...kyS.filter(s=>!club.includes(s))].sort((a,b)=>(MEMBERS.includes(base(b.activator))-MEMBERS.includes(base(a.activator)))||(tm(b)-tm(a)));
+  const parks=new Set(kyS.map(s=>s.reference)).size, members=new Set(club.map(s=>base(s.activator))).size;
+  document.getElementById('oaDot').classList.toggle('off',!show.length);
+  document.getElementById('oaCount').innerHTML=parks||members?`<b>${parks}</b> KY park${parks===1?'':'s'} on the air${members?` • <b>${members}</b> KPC member${members===1?'':'s'}`:''}`:'No Kentucky parks spotted right now';
+  document.getElementById('oaList').innerHTML=show.slice(0,6).map(s=>`<span class="onair-chip${MEMBERS.includes(base(s.activator))?' club':''}"><b>${esc(s.activator)}</b> ${esc(s.reference)} • ${mhz(s.frequency)} ${esc(s.mode)}</span>`).join('');
+ }catch(e){document.getElementById('oaCount').textContent='Live spots on the KPC spots page';}
+}
+load();setInterval(load,60000);
+})();
 </script>
 </body></html>
