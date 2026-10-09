@@ -1,30 +1,30 @@
 POTA reference,Park,Type,Boundary status,Own boundary,Also inside
-US-0019,Cumberland Gap National Historical Park,National / NPS,No official boundary in these layers,,
-US-0050,Mammoth Cave National Park,National Park,No official boundary in these layers,,
+US-0019,Cumberland Gap National Historical Park,National / NPS,Own official boundary,Cumberland Gap National Historical Park (National Park Service),
+US-0050,Mammoth Cave National Park,National Park,Own official boundary,Mammoth Cave National Park (National Park Service),
 US-0295,Clarks River National Wildlife Refuge,National / NPS,Own official boundary,Clarks River National Wildlife Refuge (WMAs & Public Hunting Areas),
 US-0538,Reelfoot National Wildlife Refuge,National / NPS,Own official boundary,Reelfoot National Wildlife Refuge (WMAs & Public Hunting Areas),
-US-0686,Big South Fork National Recreation Area,National Recreation Area,No official boundary in these layers,,
-US-0703,Fort Donelson National Battlefield,National / NPS,No official boundary in these layers,,
-US-0724,Abraham Lincoln Birthplace National Historic Site,National / NPS,No official boundary in these layers,,
-US-10098,Green River National Wildlife Refuge,National / NPS,No official boundary in these layers,,
-US-10099,Wolf Creek National Fish Hatchery,Fish Hatchery,No official boundary in these layers,,
-US-10102,Pine Mountain State Trail,Trail,POTA point inside another boundary,,Pine Mountain State Scenic Trail (State Parks)
-US-10103,The Cumberland River Wilderness Area,River / Wilderness,No official boundary in these layers,,
-US-10104,Red River National Wild and Scenic River,National / NPS,POTA point inside another boundary,,Daniel Boone National Forest (Daniel Boone National Forest)
-US-10105,The Green National Wild and Scenic River,National / NPS,POTA point inside another boundary,,Green River Wild River (Wild River Corridors)
-US-10106,The Rockcastle National Wild and Scenic River,National / NPS,POTA point inside another boundary,,Daniel Boone National Forest (Daniel Boone National Forest)
-US-10107,Big South Fork National Wild and Scenic River,National / NPS,POTA point inside another boundary,,Big South Fork National River and Recreation Area (WMAs & Public Hunting Areas); Daniel Boone National Forest (Daniel Boone National Forest)
-US-10111,Rock Creek National Wild and Scenic River,National / NPS,POTA point inside another boundary,,Daniel Boone National Forest (Daniel Boone National Forest); Rock Creek Wild River (Wild River Corridors)
-US-10112,Bad Branch National Wild and Scenic River,National / NPS,No official boundary in these layers,,
+US-0686,Big South Fork National Recreation Area,National Recreation Area,Own official boundary,Big South Fork National River and Recreation Area (WMAs & Public Hunting Areas); Big South Fork National River and Recreation Area (National Park Service),
+US-0703,Fort Donelson National Battlefield,National / NPS,Own official boundary,Fort Donelson National Battlefield (National Park Service),
+US-0724,Abraham Lincoln Birthplace National Historic Site,National / NPS,Own official boundary,Abraham Lincoln Birthplace National Historical Park (National Park Service),
+US-10098,Green River National Wildlife Refuge,National / NPS,No official boundary on this map,,
+US-10099,Wolf Creek National Fish Hatchery,Fish Hatchery,No official boundary on this map,,
+US-10102,Pine Mountain State Trail,Trail,Trail (shown as a line),Pine Mountain State Scenic Trail (State Parks),
+US-10103,The Cumberland River Wilderness Area,River / Wilderness,Own official boundary,Cumberland River Wild River (Wild River Corridors),
+US-10104,Red River National Wild and Scenic River,National / NPS,Own official boundary,Red River Wild River (Wild River Corridors),Daniel Boone National Forest (Daniel Boone National Forest)
+US-10105,The Green National Wild and Scenic River,National / NPS,Own official boundary,Green River Wild River (Wild River Corridors),Mammoth Cave National Park (National Park Service)
+US-10106,The Rockcastle National Wild and Scenic River,National / NPS,Own official boundary,Rockcastle River Wild River (Wild River Corridors),Daniel Boone National Forest (Daniel Boone National Forest)
+US-10107,Big South Fork National Wild and Scenic River,National / NPS,Own official boundary,Big South Fork Wild River (Wild River Corridors),Big South Fork National River and Recreation Area (WMAs & Public Hunting Areas); Daniel Boone National Forest (Daniel Boone National Forest); Big South Fork National River and Recreation Area (National Park Service)
+US-10111,Rock Creek National Wild and Scenic River,National / NPS,Own official boundary,Rock Creek Wild River (Wild River Corridors),Daniel Boone National Forest (Daniel Boone National Forest)
+US-10112,Bad Branch National Wild and Scenic River,National / NPS,Own official boundary,Bad Branch Wild River (Wild River Corridors),
 US-10121,Cane Creek Wildlife Management Area,WMA,Own official boundary,Cane Creek WMA (WMAs & Public Hunting Areas),Daniel Boone National Forest (Daniel Boone National Forest)
-US-10124,Clay Wildlife Management Area,WMA,POTA point inside another boundary,,Clay WMA (WMAs & Public Hunting Areas)
+US-10124,Clay Wildlife Management Area,WMA,Own official boundary,Clay WMA (WMAs & Public Hunting Areas),
 US-10128,Ferguson Creek Wildlife Management Area,WMA,Own official boundary,Ferguson Creek WMA (WMAs & Public Hunting Areas),
 US-10131,Gabbard Branch Wildlife Management Area,WMA,Own official boundary,Gabbard Branch WMA (WMAs & Public Hunting Areas),
 US-10137,Harris-Dickerson Wildlife Management Area,WMA,Own official boundary,Harris-Dickerson WMA (WMAs & Public Hunting Areas),
 US-10138,Hoskins Wildlife Management Area,WMA,Own official boundary,Hoskins WMA (WMAs & Public Hunting Areas),Daniel Boone National Forest (Daniel Boone National Forest)
 US-10139,Jefferson National Forest Wildlife Management Area,WMA,Own official boundary,Jefferson National Forest (WMAs & Public Hunting Areas),
 US-10140,Kentucky Lake Wildlife Management Area,WMA,Own official boundary,Kentucky Lake WMA (WMAs & Public Hunting Areas),
-US-10141,Kentucky Ridge Wildlife Management Area,WMA,No official boundary in these layers,,
+US-10141,Kentucky Ridge Wildlife Management Area,WMA,Own official boundary,Kentucky Ridge Forest WMA (WMAs & Public Hunting Areas),
 US-10145,Meadow Creek Wildlife Management Area,WMA,Own official boundary,Meadow Creek WMA (WMAs & Public Hunting Areas),
 US-10146,Mill Creek Wildlife Management Area,WMA,Own official boundary,Mill Creek WMA (WMAs & Public Hunting Areas),Daniel Boone National Forest (Daniel Boone National Forest)
 US-10148,Mud Camp Creek Wildlife Management Area,WMA,Own official boundary,Mud Camp Creek WMA (WMAs & Public Hunting Areas),
@@ -42,26 +42,26 @@ US-10167,Simon Kenton Wildlife Management Area,WMA,Own official boundary,Simon K
 US-10168,Sunny Brook Wildlife Management Area,WMA,Own official boundary,Sunny Brook WMA (WMAs & Public Hunting Areas),Daniel Boone National Forest (Daniel Boone National Forest)
 US-10170,Twin Knobs Campground Wildlife Management Area,WMA,Own official boundary,Twin Knobs Campground (WMAs & Public Hunting Areas),Daniel Boone National Forest (Daniel Boone National Forest)
 US-10171,Zilpo Campground Wildlife Management Area,WMA,Own official boundary,Zilpo Campground (WMAs & Public Hunting Areas),Pioneer Weapons WMA (WMAs & Public Hunting Areas); Daniel Boone National Forest (Daniel Boone National Forest)
-US-10172,Salato Wildlife Refuge,Other,No official boundary in these layers,,
-US-10173,Kentucky Horse Park,State Facility,No official boundary in these layers,,
-US-11181,Sheltowee Trace National Recreation Trail,Trail,POTA point inside another boundary,,Daniel Boone National Forest (Daniel Boone National Forest)
-US-11274,Horse Mill Branch Wildlife Management Area,WMA,POTA point inside another boundary,,Horsemill Branch WMA (WMAs & Public Hunting Areas)
-US-12079,Little Sextons Creek Wildlife Management Area,WMA,POTA point inside another boundary,,Little Sexton Creek WMA (WMAs & Public Hunting Areas)
+US-10172,Salato Wildlife Refuge,Other,No official boundary on this map,,
+US-10173,Kentucky Horse Park,State Facility,No official boundary on this map,,
+US-11181,Sheltowee Trace National Recreation Trail,Trail,Trail (shown as a line),,Daniel Boone National Forest (Daniel Boone National Forest)
+US-11274,Horse Mill Branch Wildlife Management Area,WMA,Own official boundary,Horsemill Branch WMA (WMAs & Public Hunting Areas),
+US-12079,Little Sextons Creek Wildlife Management Area,WMA,Own official boundary,Little Sexton Creek WMA (WMAs & Public Hunting Areas),
 US-12083,University of the Cumberlands Wildlife Management Area,WMA,Own official boundary,University of the Cumberlands WMA (WMAs & Public Hunting Areas),Daniel Boone National Forest (Daniel Boone National Forest)
 US-1251,Carr Creek State Park,State Park,Own official boundary,Carr Creek State Park (State Parks),
 US-1252,Columbus Belmont State Park,State Park,Own official boundary,Columbus-Belmont State Park (State Parks),
-US-1253,Dawkins Line Rail Trail State Park,Trail,Own official boundary,Dawkins Line Rail Trail (State Parks),
+US-1253,Dawkins Line Rail Trail State Park,Trail,Trail (shown as a line),Dawkins Line Rail Trail (State Parks),
 US-1254,E.P. 'Tom' Sawyer State Park,State Park,Own official boundary,E.P. Tom Sawyer State Park (State Parks),
 US-1255,Fishtrap Lake Wildlife Management Area,WMA,Own official boundary,Fishtrap Lake WMA (WMAs & Public Hunting Areas),
 US-1256,Fort Boonesborough State Park,State Park,Own official boundary,Fort Boonesborough State Park (State Parks),
-US-1257,General Burnside State Park,State Park,POTA point inside another boundary,,General Burnside Island State Park (State Parks)
+US-1257,General Burnside State Park,State Park,Own official boundary,General Burnside Island State Park (State Parks),
 US-1258,Grayson Lake State Park,State Park,Own official boundary,Grayson Lake State Park (State Parks); Grayson Lake WMA (WMAs & Public Hunting Areas),
 US-1259,Green River Lake State Park,State Park,Own official boundary,Green River Lake State Park (State Parks); Green River Lake WMA (WMAs & Public Hunting Areas); Green River Lake State Park (WMAs & Public Hunting Areas),
 US-1260,John James Audubon State Park,State Park,Own official boundary,John James Audubon State Park (State Parks); John James Audubon State Park State Nature Preserve (State Nature Preserves),
 US-1261,Kincaid Lake State Park,State Park,Own official boundary,Kincaid Lake State Park (State Parks); Kincaid Lake State Park (WMAs & Public Hunting Areas),
 US-1262,Kingdom Come State Park,State Park,Own official boundary,Kingdom Come State Park (State Parks); Kingdom Come State Park State Nature Preserve (State Nature Preserves),
 US-1263,Lake Malone State Park,State Park,Own official boundary,Lake Malone State Park (State Parks),
-US-1264,Levi Jackson Wilderness Road State Park,State Park,No official boundary in these layers,,
+US-1264,Levi Jackson Wilderness Road State Park,State Park,No official boundary on this map,,
 US-1265,Lincoln Homestead State Park,State Park,Own official boundary,Lincoln Homestead State Park (State Parks),
 US-1266,Mineral Mounds State Park,State Park,Own official boundary,Mineral Mound State Park (State Parks),
 US-1267,My Old Kentucky Home State Park,State Park,Own official boundary,My Old Kentucky Home State Park (State Parks),
@@ -73,10 +73,10 @@ US-1272,Yatesville Lake State Park,State Park,Own official boundary,Yatesville L
 US-1273,Barren River Lake State Park,State Park,Own official boundary,Barren River Lake State Resort Park (State Parks); Barren River Lake WMA (WMAs & Public Hunting Areas),
 US-1274,Blue Licks Battlefield State Park,State Park,Own official boundary,Blue Licks Battlefield State Resort Park (State Parks),
 US-1275,Buckhorn Lake State Park,State Park,Own official boundary,Buckhorn Lake State Resort Park (State Parks); Buckhorn Lake WMA (WMAs & Public Hunting Areas),Daniel Boone National Forest (Daniel Boone National Forest)
-US-12752,Green River State Natural Area,Nature Preserve,POTA point inside another boundary,,Green River State Natural Area (Rush Island Bottoms) (State Natural Areas)
+US-12752,Green River State Natural Area,Nature Preserve,Own official boundary,Green River State Natural Area (Davis Bend) (State Natural Areas); Green River State Natural Area (Rush Island Bottoms) (State Natural Areas),
 US-1276,Carter Caves State Park,State Park,Own official boundary,Carter Caves State Resort Park (State Parks),
 US-1277,Cumberland Falls State Park,State Park,Own official boundary,Cumberland Falls State Resort Park (State Parks); Cumberland Falls State Park State Nature Preserve (State Nature Preserves),Daniel Boone National Forest (Daniel Boone National Forest)
-US-1278,Dale Hollow State Park,State Park,POTA point inside another boundary,,Dale Hollow Lake State Resort Park (State Parks); Dale Hollow Lake State Resort Park  (WMAs & Public Hunting Areas)
+US-1278,Dale Hollow State Park,State Park,Own official boundary,Dale Hollow Lake State Resort Park (State Parks),Dale Hollow Lake State Resort Park  (WMAs & Public Hunting Areas)
 US-1279,General Butler State Park,State Park,Own official boundary,General Butler State Resort Park (State Parks),
 US-1280,Greenbo Lake State Park,State Park,Own official boundary,Greenbo Lake State Resort Park (State Parks); Greenbo Lake State Resort Park (WMAs & Public Hunting Areas),
 US-1281,Jenny Wiley State Park,State Park,Own official boundary,Jenny Wiley State Resort Park (State Parks); Jenny Wiley State Resort Park (WMAs & Public Hunting Areas),
@@ -98,22 +98,22 @@ US-3783,Jefferson Davis State Historic Site,Other,Own official boundary,Jefferso
 US-3784,Old Mulkey Meetinghouse State Historic Site,Other,Own official boundary,Old Mulkey Meetinghouse State Historic Site (State Parks),
 US-3785,Perryville Battlefield State Historic Site,Other,Own official boundary,Perryville Battlefield State Historic Site (State Parks),
 US-3786,Waveland State Historic Site,Other,Own official boundary,Waveland State Historic Site (State Parks),
-US-3787,White Hall State Historic Site,Other,No official boundary in these layers,,
+US-3787,White Hall State Historic Site,Other,No official boundary on this map,,
 US-3788,Wickliffe Mounds State Historic Site,Other,Own official boundary,Wickliffe Mounds State Historic Site (State Parks),
-US-3789,William Whitley House State Historic Site,Other,No official boundary in these layers,,
-US-3790,Fort Heiman National Battlefield,National / NPS,No official boundary in these layers,,
-US-3791,Trail of Tears National Historic Trail,National / NPS,No official boundary in these layers,,
+US-3789,William Whitley House State Historic Site,Other,No official boundary on this map,,
+US-3790,Fort Heiman National Battlefield,National / NPS,Own official boundary,Fort Donelson National Battlefield (National Park Service),
+US-3791,Trail of Tears National Historic Trail,National / NPS,Trail (shown as a line),,
 US-3792,Land Between the Lakes National Recreation Area,National Recreation Area,Own official boundary,Land Between The Lakes National Recreation Area (WMAs & Public Hunting Areas),
 US-3793,Ballard Wildlife Management Area,WMA,Own official boundary,Ballard WMA (WMAs & Public Hunting Areas),
 US-3794,Beaver Creek Wildlife Management Area,WMA,Own official boundary,Beaver Creek WMA (WMAs & Public Hunting Areas),Daniel Boone National Forest (Daniel Boone National Forest)
 US-3795,Beechy Creek Wildlife Management Area,WMA,Own official boundary,Beechy Creek WMA (WMAs & Public Hunting Areas),
-US-3796,Big Rivers Wildlife Management Area,WMA,POTA point inside another boundary,,Big Rivers WMA and State Forest (WMAs & Public Hunting Areas)
+US-3796,Big Rivers Wildlife Management Area,WMA,Own official boundary,Big Rivers WMA and State Forest (WMAs & Public Hunting Areas),
 US-3797,Boatwright Wildlife Management Area,WMA,Own official boundary,Boatwright WMA (WMAs & Public Hunting Areas),
 US-3798,Buck Creek Wildlife Management Area,WMA,Own official boundary,Buck Creek WMA (WMAs & Public Hunting Areas),
 US-3799,Burchell-Beech Wildlife Management Area,WMA,Own official boundary,Burchell-Beech Creek WMA (WMAs & Public Hunting Areas),Daniel Boone National Forest (Daniel Boone National Forest)
 US-3800,Cedar Creek Lake Wildlife Management Area,WMA,Own official boundary,Cedar Creek Lake WMA (WMAs & Public Hunting Areas),
-US-3801,Clifty Wilderness Area,River / Wilderness,POTA point inside another boundary,,Daniel Boone National Forest (Daniel Boone National Forest); Red River Wild River (Wild River Corridors)
-US-3802,Clyde E Buckley Sanctuary,Sanctuary,No official boundary in these layers,,
+US-3801,Clifty Wilderness Area,River / Wilderness,Inside another boundary,,Daniel Boone National Forest (Daniel Boone National Forest); Red River Wild River (Wild River Corridors)
+US-3802,Clyde E Buckley Sanctuary,Sanctuary,No official boundary on this map,,
 US-3803,Coil Estate Wildlife Management Area,WMA,Own official boundary,Coil Estate WMA (WMAs & Public Hunting Areas),
 US-3804,Cranks Creek Wildlife Management Area,WMA,Own official boundary,Cranks Creek WMA (WMAs & Public Hunting Areas),
 US-3805,Curtis Gates Lloyd Wildlife Management Area,WMA,Own official boundary,Curtis Gates Lloyd WMA (WMAs & Public Hunting Areas),
@@ -135,8 +135,8 @@ US-3820,Kentucky River Wildlife Management Area,WMA,Own official boundary,Kentuc
 US-3821,L. B. Davison Wildlife Management Area,WMA,Own official boundary,L. B. Davison WMA (WMAs & Public Hunting Areas),
 US-3822,Lee K. Nelson Wildlife Management Area,WMA,Own official boundary,Lee K. Nelson WMA (WMAs & Public Hunting Areas),
 US-3823,Livingston County Wildlife Management Area,WMA,Own official boundary,Livingston County WMA and State Natural Area (WMAs & Public Hunting Areas),Livingston County Wildlife Management Area and State Nature Preserve (Newman's Bluff SNP) (State Nature Preserves)
-US-3824,Marion County Wildlife Management Area,WMA,POTA point inside another boundary,,Marion County WMA and State Forest (WMAs & Public Hunting Areas)
-US-3825,Miller Welch Wildlife Management Area,WMA,POTA point inside another boundary,,Miller Welch-Central Kentucky WMA (WMAs & Public Hunting Areas)
+US-3824,Marion County Wildlife Management Area,WMA,Own official boundary,Marion County WMA and State Forest (WMAs & Public Hunting Areas),
+US-3825,Miller Welch Wildlife Management Area,WMA,Own official boundary,Miller Welch-Central Kentucky WMA (WMAs & Public Hunting Areas),
 US-3826,Mullins Wildlife Management Area,WMA,Own official boundary,Mullins WMA (WMAs & Public Hunting Areas),
 US-3827,Obion Creek Wildlife Management Area,WMA,Own official boundary,Obion Creek WMA (WMAs & Public Hunting Areas),
 US-3828,Peabody Wildlife Management Area,WMA,Own official boundary,Peabody WMA (WMAs & Public Hunting Areas),
@@ -153,35 +153,35 @@ US-3838,Winford Wildlife Management Area,WMA,Own official boundary,Winford WMA (
 US-3839,Yatesville Lake Wildlife Management Area,WMA,Own official boundary,Yatesville Lake State Park (State Parks); Yatesville Lake WMA (WMAs & Public Hunting Areas),
 US-3840,Yellowbank Wildlife Management Area,WMA,Own official boundary,Yellowbank WMA (WMAs & Public Hunting Areas),
 US-4484,Daniel Boone National Forest,National Forest,Own official boundary,Daniel Boone National Forest (Daniel Boone National Forest),Mill Creek WMA (WMAs & Public Hunting Areas)
-US-4526,George Washington & Jefferson National Forest,National Forest,No official boundary in these layers,,
-US-4572,Lewis and Clark National Historic Trail,National / NPS,No official boundary in these layers,,
+US-4526,George Washington & Jefferson National Forest,National Forest,Own official boundary,Jefferson National Forest (WMAs & Public Hunting Areas),
+US-4572,Lewis and Clark National Historic Trail,National / NPS,Trail (shown as a line),,
 US-4687,Dewey Lake Wildlife Management Area,WMA,Own official boundary,Dewey Lake WMA (WMAs & Public Hunting Areas),
 US-4688,Kentenia State Forest,State Forest,Own official boundary,Kentenia State Forest (WMAs & Public Hunting Areas),
 US-4689,Kentucky Ridge State Forest,State Forest,Own official boundary,Kentucky Ridge State Forest (WMAs & Public Hunting Areas),
 US-4690,Knobs State Forest,State Forest,Own official boundary,Knobs State Forest and WMA (WMAs & Public Hunting Areas); Knobs State Forest (WMAs & Public Hunting Areas),
 US-4692,Pennyrile State Forest,State Forest,Own official boundary,Pennyrile State Forest (WMAs & Public Hunting Areas),Pennyrile Forest State Resort Park (State Parks)
 US-4693,Tygarts State Forest,State Forest,Own official boundary,Tygarts State Forest (WMAs & Public Hunting Areas),
-US-7708,Mill Springs Battlefield National Monument,National / NPS,No official boundary in these layers,,
+US-7708,Mill Springs Battlefield National Monument,National / NPS,Own official boundary,Mill Springs Battlefield National Monument (National Park Service),
 US-7890,Isaac Shelby Cemetery State Historic Site,Other,Own official boundary,Isaac Shelby Cemetery State Historic Site (State Parks),
-US-7950,Camp Nelson National Monument,National / NPS,No official boundary in these layers,,
+US-7950,Camp Nelson National Monument,National / NPS,Own official boundary,Camp Nelson National Monument (National Park Service),
 US-7951,Green River State Forest,State Forest,Own official boundary,Green River State Forest (WMAs & Public Hunting Areas),
 US-7952,Marrowbone State Forest,State Forest,Own official boundary,Marrowbone State Forest and WMA (WMAs & Public Hunting Areas),
 US-7953,Metropolis Lake State Nature Preserve,Nature Preserve,Own official boundary,Metropolis Lake State Nature Preserve (State Nature Preserves),
 US-7954,Blackacre State Nature Preserve,Nature Preserve,Own official boundary,Blackacre State Nature Preserve (State Nature Preserves),
 US-7955,Six Mile Island State Nature Preserve,Nature Preserve,Own official boundary,Six Mile Island State Nature Preserve (State Nature Preserves),
 US-7956,Beargrass Creek State Nature Preserve,Nature Preserve,Own official boundary,Beargrass Creek State Nature Preserve (State Nature Preserves),
-US-7957,Hall-Hill/Vernon-Douglas State Nature Preserve,Nature Preserve,POTA point inside another boundary,,Vernon-Douglas State Nature Preserve (State Nature Preserves)
-US-7958,Kentucky River Palisades/Tom Dorman State Nature Preserve,Nature Preserve,No official boundary in these layers,,
+US-7957,Hall-Hill/Vernon-Douglas State Nature Preserve,Nature Preserve,Own official boundary,Vernon-Douglas State Nature Preserve (State Nature Preserves),
+US-7958,Kentucky River Palisades/Tom Dorman State Nature Preserve,Nature Preserve,Own official boundary,Tom Dorman State Nature Preserve (State Nature Preserves),
 US-7959,Quiet Trails State Nature Preserve,Nature Preserve,Own official boundary,Quiet Trails State Nature Preserve (State Nature Preserves),
 US-7960,Crooked Creek State Nature Preserve,Nature Preserve,Own official boundary,Crooked Creek State Nature Preserve (State Nature Preserves),
 US-7961,Jesse Stuart State Nature Preserve,Nature Preserve,Own official boundary,Jesse Stuart State Nature Preserve (State Nature Preserves),
-US-7962,Little South Fork State Natural Area,Nature Preserve,POTA point inside another boundary,,Daniel Boone National Forest (Daniel Boone National Forest)
+US-7962,Little South Fork State Natural Area,Nature Preserve,Own official boundary,Little South Fork Wild River (Wild River Corridors),Daniel Boone National Forest (Daniel Boone National Forest)
 US-7963,Pilot Knob State Nature Preserve,Nature Preserve,Own official boundary,Pilot Knob State Nature Preserve (State Nature Preserves),
-US-7964,William H. Martin State Natural Area,Nature Preserve,POTA point inside another boundary,,Daniel Boone National Forest (Daniel Boone National Forest)
+US-7964,William H. Martin State Natural Area,Nature Preserve,Own official boundary,Dr. William H. Martin State Natural Area (State Natural Areas),Daniel Boone National Forest (Daniel Boone National Forest)
 US-7965,Brigadoon State Nature Preserve,Nature Preserve,Own official boundary,Brigadoon State Nature Preserve (State Nature Preserves),
 US-7966,Bad Branch State Nature Preserve,Nature Preserve,Own official boundary,Bad Branch State Nature Preserve (State Nature Preserves),
 US-7967,Blanton Forest State Nature Preserve,Nature Preserve,Own official boundary,Blanton Forest State Nature Preserve (State Nature Preserves),
 US-7968,E. Lucy Braun State Nature Preserve,Nature Preserve,Own official boundary,E. Lucy Braun State Park State Nature Preserve (State Nature Preserves),
 US-7970,Sinking Creek State Natural Area,Nature Preserve,Own official boundary,Sinking Creek State Natural Area (State Natural Areas),Daniel Boone National Forest (Daniel Boone National Forest)
-US-8144,Otter Creek State Recreation Area,Recreation Area,POTA point inside another boundary,,Otter Creek Outdoor Recreation Area (WMAs & Public Hunting Areas)
+US-8144,Otter Creek State Recreation Area,Recreation Area,Own official boundary,Otter Creek Outdoor Recreation Area (WMAs & Public Hunting Areas),
 US-9756,Decker Wildlife Management Area,WMA,Own official boundary,Decker WMA (WMAs & Public Hunting Areas),
