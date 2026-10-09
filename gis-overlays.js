@@ -14,7 +14,11 @@
   sheltowee:{name:'Sheltowee Trace',file:'ky-sheltowee.geojson',url:rec+'11/query',info:'https://www.fs.usda.gov/dbnf',color:'#6cdb97',kind:'line',filter:/sheltowee/i},
   stateparks:{name:'Kentucky State Park Trails',url:parks+'9/query',info:'https://parks.ky.gov/',color:'#e2c76b',kind:'line'},
   trailheads:{name:'Kentucky State Park Trailheads',url:parks+'0/query',info:'https://parks.ky.gov/',color:'#f5b45d',kind:'point'},
-  camping:{name:'Kentucky State Park Campgrounds',url:parks+'6/query',info:'https://parks.ky.gov/',color:'#a5de9b',kind:'point'}
+  camping:{name:'Kentucky State Park Campgrounds',url:parks+'6/query',info:'https://parks.ky.gov/',color:'#a5de9b',kind:'point'},
+  campsites:{name:'State Park Campsites',url:parks+'1/query',info:'https://parks.ky.gov/',color:'#7fd3c4',kind:'point',minZoom:13},
+  lodges:{name:'State Park Lodges',url:parks+'2/query',info:'https://parks.ky.gov/',color:'#ff9f7a',kind:'point'},
+  cottages:{name:'State Park Cottages',url:parks+'3/query',info:'https://parks.ky.gov/',color:'#f2a6c8',kind:'point',minZoom:11},
+  infosites:{name:'Park Offices & Info',url:parks+'4/query',info:'https://parks.ky.gov/',color:'#f4f1e8',kind:'point'}
  };
  /* ---------- OFFICIAL BOUNDARIES (bundled .geojson first, live state server as fallback) ---------- */
  const live=(svc,id)=>`${KY}${svc}/MapServer/${id}/query?where=1%3D1&outFields=*&outSR=4326&geometryPrecision=5&f=geojson`;
@@ -104,13 +108,17 @@
  const FIELDS={
   camping:{t:['facilityNa'],rows:[['Amp','Electric'],['WaterHookup','Water hookup'],['SewerHookup','Sewer hookup'],['Pets','Pets'],['Waterfront','Waterfront']],link:['link','Campground details / reservations']},
   trailheads:{t:['NAME','TRAIL_NAME'],rows:[['TRAIL_NAME','Trail'],['PARKING','Parking'],['RESTROOMS','Restrooms'],['SHELTER','Shelter'],['PICNIC','Picnic area'],['DESCRIPTN','About']],link:['PHOTOLINK','Photo']},
+  campsites:{t:['PARK_NAME'],rows:[['CAMPSITE_NO','Site'],['SITE_TYPE','Type'],['ELECTRIC','Electric'],['WATER','Water'],['SEWER','Sewer'],['PAD_SURFACE','Pad'],['SITE_ACCESS','Access'],['ADA_ACCESS','ADA'],['WATERFRONT','Waterfront'],['COMMENT','Note']],link:['PHT_1_HYPE','Site photo']},
+  lodges:{t:['LODGE_NAME','PARK_NAME'],rows:[['PARK_NAME','Park'],['RESTAURANT_NAME','Restaurant'],['NUM_ROOMS','Rooms']],link:['Web_link','Lodge website']},
+  cottages:{t:['PARK_NAME'],rows:[['UNIT','Cottage'],['BL_NAME','Building'],['USE_DESCR','Type'],['COMMENT','Note']],link:['PHT_1_HYPE','Photo']},
+  infosites:{t:['BL_NAME','PARK_NAME'],rows:[['PARK_NAME','Park'],['PHONE_NUMB','Phone'],['COMMENT','Note']],link:['','']},
   stateparks:{t:['PUBLIC_NAME','TRAIL_NAME'],rows:[['TRAIL_MILE','Length'],['RATING','Difficulty'],['SURFACE','Surface'],['_USES','Open to'],['DOGS','Dogs'],['BLAZE','Blaze'],['DESCRIPTN','About']],link:['HYPERLINK','Trail information']}};
  const yn=v=>{const t=String(v).trim();return /^y(es)?$/i.test(t)?'Yes':/^n(o)?$/i.test(t)?'No':t};
  function fieldVal(P,f){if(f==='_USES'){const u=[['HIKING','hiking'],['BIKING','biking'],['HORSE','horses'],['ATV','ATVs'],['MOTORCYCLE','motorcycles']].filter(([k])=>/^y/i.test(String(P[k]||''))).map(x=>x[1]);return u.join(', ')}
   let v=P[f];if(v==null)return '';v=String(v).trim();if(!v||/^(0|<null>|null|n\/a|unknown|none)$/i.test(v))return '';if(f==='TRAIL_MILE'){const n=Number(v);return n>0?(n<10?n.toFixed(1):Math.round(n))+' mi':''}return yn(v)}
  function knownPopup(k,s,P){const F=FIELDS[k];P=P||{};let title='';for(const f of F.t){const v=fieldVal(P,f);if(v){title=v;break}}
-  let rows='';for(const[f,lab] of F.rows){const v=fieldVal(P,f);if(!v||v===title||v.length>140)continue;rows+=`<span class="r"><i>${safe(lab)}:</i> ${safe(v)}</span>`}
-  const lk=fieldVal(P,F.link[0]),url=/^https?:\/\//i.test(lk)?lk:'';
+  let rows='',nr=0;for(const[f,lab] of F.rows){if(nr>=8)break;const v=fieldVal(P,f);if(!v||v===title||v.length>140)continue;const tel=lab==='Phone'&&/\d{3}.*\d{4}/.test(v)?`<a href="tel:${safe(v.replace(/[^\d+]/g,''))}">${safe(v)}</a>`:safe(v);rows+=`<span class="r"><i>${safe(lab)}:</i> ${tel}</span>`;nr++}
+  const lk=F.link[0]?fieldVal(P,F.link[0]):'',url=/^https?:\/\//i.test(lk)?lk:'';
   return `<div class="kpc-pop"><strong>${safe(title||s.name)}</strong>${rows}${url?`<a href="${safe(url)}" target="_blank" rel="noopener noreferrer">${safe(F.link[1])} ↗</a>`:''}<span class="src">${safe(s.name)} (official state GIS)${s.kind==='line'?' · not a POTA 2-fer':''}. Verify before you go.</span>${url?'':`<a href="${s.info}" target="_blank" rel="noopener noreferrer">Kentucky State Parks ↗</a>`}</div>`}
  function popup(name,s,P){const kk=Object.keys(sources).find(x=>sources[x]===s);if(kk&&FIELDS[kk])return knownPopup(kk,s,P);if(s.file){const k=Object.keys(sources).find(x=>sources[x]===s),ref=TREF[k];P=P||{};return `<strong>${safe(name||s.name)}</strong>${P.PLACE?`<br><span style="font-size:13px">${safe(P.PLACE)}</span>`:''}<br>POTA: <a href="https://pota.app/#/park/${ref}" target="_blank" rel="noopener">${ref}</a> ${safe(s.name)}<br><a href="${safe(P.URL||s.info)}" target="_blank" rel="noopener">Official trail info ↗</a><div style="margin-top:6px;font-size:12px">Official state GIS line. Possible 2-fers along this trail are listed under the trail checkboxes — confirm both boundaries on the official maps.</div>`}
   return `<div class="kpc-pop"><strong>${safe(name||s.name)}</strong>${featureRows(P,name)}<span class="src">${safe(s.name)} (official state GIS)${s.kind==='line'?' · trail line only, not a POTA 2-fer':''}. Verify current access before you go.</span><a href="${s.info}" target="_blank" rel="noopener noreferrer">Official agency information ↗</a></div>`}
@@ -154,7 +162,7 @@
   if(!liveKeys.length){$('gis-status').textContent=reportsB.join(' | ')+' · Official state GIS lines — verify on the agency map.';candidates();return}
   if(map.getZoom()<8){$('gis-status').textContent=(reportsB.length?reportsB.join(' | ')+' · ':'')+'Zoom in a little more (level 8+) to load the other selected trails.';candidates();return}
   if(busy){again=true;return}busy=true;const b=map.getBounds(),bb=[b.getWest(),b.getSouth(),b.getEast(),b.getNorth()].join(',');const reports=[];
-  try{for(const k of liveKeys){const s=sources[k];$('gis-status').textContent='Loading '+s.name+'…';try{const j=await query(s,bb),render=draw(j,s);if(overlays[k])map.removeLayer(overlays[k]);render.layer.addTo(map);overlays[k]=render.layer;routes[k]=render.lines;reports.push(`${s.name}: ${render.n}${j.exceededTransferLimit?' (partial; zoom in)':''}`)}catch(e){reports.push(`${s.name}: unavailable (${e.message})`)}}}
+  try{for(const k of liveKeys){const s=sources[k];if(s.minZoom&&map.getZoom()<s.minZoom){if(overlays[k]){map.removeLayer(overlays[k]);delete overlays[k]}reports.push(`${s.name}: zoom in closer (level ${s.minZoom}+)`);continue}$('gis-status').textContent='Loading '+s.name+'…';try{const j=await query(s,bb),render=draw(j,s);if(overlays[k])map.removeLayer(overlays[k]);render.layer.addTo(map);overlays[k]=render.layer;routes[k]=render.lines;reports.push(`${s.name}: ${render.n}${j.exceededTransferLimit?' (partial; zoom in)':''}`)}catch(e){reports.push(`${s.name}: unavailable (${e.message})`)}}}
   finally{busy=false}
   $('gis-status').textContent=reportsB.concat(reports).join(' | ')+' · Updates as you move the map. Government GIS may change; verify before travel.';candidates();if(again){again=false;load()}}
  let deb;const auto=()=>{clearTimeout(deb);deb=setTimeout(load,650)};

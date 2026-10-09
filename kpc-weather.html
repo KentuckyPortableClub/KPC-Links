@@ -198,6 +198,11 @@ $('searchBtn').onclick=async()=>{
   }catch(e){$('status').textContent=e.message;}
 };
 $('clearBtn').onclick=()=>{ $('park').value=''; $('town').value=''; $('results').innerHTML=''; $('status').textContent=''; $('weather').classList.remove('active'); };
+/* KPC: opened from the Activation Finder with ?lat=&lon=&name=&ref= */
+(()=>{try{const q=new URLSearchParams(location.search),la=Number(q.get('lat')),lo=Number(q.get('lon'));
+ if(q.has('lat')&&q.has('lon')&&Number.isFinite(la)&&Number.isFinite(lo)&&Math.abs(la)<=90&&Math.abs(lo)<=180){
+  const ref=(q.get('ref')||'').slice(0,20),nm=(q.get('name')||'Park').slice(0,120);if(ref)$('park').value=ref;
+  loadWeather(la,lo,nm+(ref?' — '+ref:''),'POTA park').then(()=>{const e=$('weather');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})})}}catch(_){}})();
 </script>
 </body>
 </html>
