@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Build Your First Dipole Antenna | KPC</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Build Your First Dipole Antenna | KPC">
+<meta property="og:description" content="A beginner’s guide to building a single-band wire dipole for portable ham radio: lengths, parts, a 20-meter build and setup layouts.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-first-dipole.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
+<meta name="description" content="A beginner’s guide to building a single-band wire dipole for portable ham radio: lengths, parts, a 20-meter build and setup layouts.">
+<style>
+:root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:var(--nav-height);margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s}.nav-links a:hover,.nav-links a[aria-current=page]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:var(--black) url("parks.png") center/cover no-repeat;color:#fff;border-bottom:1px solid rgba(213,166,58,.45)}
+.hero:before{content:"";position:absolute;width:620px;height:620px;right:-170px;top:-180px;border:1px solid rgba(213,166,58,.35);border-radius:50%;box-shadow:0 0 0 55px rgba(213,166,58,.035),0 0 0 110px rgba(213,166,58,.025)}
+.hero:after{content:none}
+.hero-inner{position:relative;z-index:2;width:min(var(--max),100%);margin:auto;padding:90px 24px 84px}.hero-logo{width:min(360px,78vw);margin-bottom:24px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}.eyebrow{margin:0 0 12px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}.hero h1{max-width:800px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,6.2vw,76px);line-height:1.02;letter-spacing:-1.8px}.hero h1 span{color:var(--gold-light)}.hero-copy{max-width:720px;margin:22px 0 0;color:#eee9dd;font-size:clamp(16px,2vw,20px)}
+.section{padding:82px 24px}.section-inner{width:min(var(--max),100%);margin:auto}.section-heading{text-align:center;margin-bottom:42px}.kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:4px}.section h2{margin:7px 0 12px;color:var(--black);font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,4vw,48px);line-height:1.08}.section-heading p{max-width:760px;margin:0 auto;color:var(--muted);font-size:17px}
+.intro{background:var(--cream);border-bottom:1px solid #d9cfbd}.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}.intro-copy h2{margin:7px 0 18px}.intro-copy p{color:var(--muted);font-size:18px;margin:0}.intro-panel{padding:34px;background:var(--black);border:1px solid var(--gold);box-shadow:12px 12px 0 var(--gold);color:#fff;position:relative;overflow:hidden}.intro-panel:after{content:"";position:absolute;width:230px;height:230px;right:-90px;top:-90px;border:1px solid rgba(213,166,58,.45);border-radius:50%}.intro-panel .mark{position:relative;z-index:1;color:var(--gold-light);font-size:12px;font-weight:900;letter-spacing:3px}.intro-panel h3{position:relative;z-index:1;margin:10px 0 10px;font:700 30px/1.1 Georgia,serif}.intro-panel p{position:relative;z-index:1;margin:0;color:#c9c5bc}.intro-panel .line{position:relative;z-index:1;width:70px;height:3px;background:var(--gold);margin:20px 0}
+.features{background:#fffaf0}.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.card{min-height:285px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid #d8cfbf;background:#fff;color:var(--ink);box-shadow:0 12px 28px rgba(0,0,0,.07);transition:.2s;position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;width:6px;height:100%;background:var(--gold)}.card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.12);border-color:var(--gold)}.card-top{position:relative;z-index:1}.card-num{color:var(--green);font-size:12px;font-weight:900;letter-spacing:3px}.card h3{margin:8px 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:28px;line-height:1.1}.card p{margin:0;color:var(--muted);font-size:15px;max-width:520px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:1px;background:var(--gold);color:#0b0b0b;transition:.2s;align-self:flex-start;margin-top:24px}.btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.dark{background:var(--black);color:#fff;border-top:1px solid rgba(213,166,58,.45);border-bottom:1px solid rgba(213,166,58,.45)}.dark .section-heading p{color:#bcb8ae}.dark h2{color:#fff}.dark .card{background:#151515;border-color:#363636;color:#fff}.dark .card p{color:#bcb8ae}.dark .card h3{color:#fff}.dark .card:before{background:var(--gold)}
+.map-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.map-box{padding:30px;border:1px solid #363636;background:#151515}.map-box h3{margin:8px 0 10px;color:#fff;font:700 25px/1.1 Georgia,serif}.map-box p{margin:0;color:#bcb8ae}.map-box .btn{margin-top:22px}
+.pota-card{min-height:310px}
+.pdf-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pdf-actions .btn{margin-top:0}.pdf-actions .alt{background:#fff;border:1px solid var(--gold);color:#171717}
+.warning{background:var(--cream-2);border-top:1px solid #d1c6b3}.warning-box{border-left:6px solid var(--gold);background:#fff;padding:30px;box-shadow:0 10px 24px rgba(0,0,0,.06)}.warning-box h3{margin:0 0 10px;font:700 28px/1.1 Georgia,serif}.warning-box p{margin:0;color:var(--muted)}
+.final{padding:76px 24px;text-align:center;background:var(--cream-2)}.final h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}.final p{margin:10px 0 24px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:2px}
+footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;border-top:1px solid #292929;font-size:13px}footer strong{color:var(--gold-light)}
+@media(min-width:901px){.hero-logo{position:absolute;left:-400px;top:calc(50% - 22px);transform:translateY(-50%);justify-self:auto;margin-bottom:0}}
+@media(max-width:1000px){.nav-links a{padding-inline:7px;font-size:12px}.intro-grid{gap:38px}}
+@media(max-width:900px){.hero-logo{display:block;width:min(290px,58vw);margin-left:auto;margin-right:auto}}
+@media(max-width:760px){:root{--nav-height:70px}.nav-inner{min-height:70px;padding:8px 18px}.brand img{width:52px;height:52px}.menu-toggle{display:block}.nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45);box-shadow:0 15px 25px rgba(0,0,0,.22)}.nav-links.open{display:flex}.nav-links a{padding:13px 5px;border-bottom:1px solid #292929}.nav-links a:last-child{border-bottom:0}.hero{min-height:500px;background:url("parks-mobile.png") center/cover no-repeat}.hero-inner{padding:70px 20px 55px}.hero-logo{width:min(290px,58vw)}.section{padding:68px 20px}.intro-grid,.map-grid{grid-template-columns:1fr}.intro-panel{max-width:520px;margin:auto}.card-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-logo{width:min(250px,64vw)}}
+@media(max-width:520px){.hero h1{font-size:42px}.hero-copy{font-size:16px}.card{min-height:300px}.card h3{font-size:25px}.pdf-actions{flex-direction:column}.pdf-actions .btn{width:100%}}
+@media(max-width:380px){.brand-text small{display:none}}
+
+/* Added official trail and Wild River resource sections */
+.resource-note{background:#fff7df;border-left:5px solid var(--gold);padding:18px 22px;margin:0 0 28px;color:#332c1f}
+.resource-note p{margin:0}.resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.resource-item{padding:26px;border:1px solid #d8cfbf;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.045)}
+.resource-item h3{font:700 25px/1.18 Georgia,serif;margin:8px 0 12px}.resource-item p{color:#5f5a51;margin:0 0 12px}
+.resource-item .meta{font-size:12px;font-weight:900;letter-spacing:1.4px;color:var(--green)}
+.resource-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.resource-actions .btn{margin:0;font-size:11px;min-height:40px}
+.resource-actions .secondary{background:#f8f4eb;border:1px solid #c9ad6b}
+.river-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:25px 0}
+.river-list article{padding:18px 20px;background:#fff;border:1px solid #d8cfbf}.river-list strong{display:block;font:700 20px Georgia,serif}.river-list span{display:block;margin-top:7px;color:#5f5a51;font-size:14px}
+@media(max-width:760px){.resource-grid,.river-list{grid-template-columns:1fr}}
+/* Quick jump links, trail cards, map files */
+.jump{background:var(--black);border-bottom:1px solid rgba(213,166,58,.45);position:sticky;top:var(--nav-height);z-index:900}
+.jump-inner{width:min(var(--max),100%);margin:auto;padding:10px 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.jump-inner::-webkit-scrollbar{display:none}
+.jump a{flex:0 0 auto;padding:8px 14px;border:1px solid #3a3a3a;border-radius:999px;color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;transition:.2s}
+.jump a:hover{border-color:var(--gold);color:var(--gold-light)}
+section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn-row .btn{margin-top:0}
+.trail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.trail-grid .resource-item:last-child:nth-child(odd){grid-column:1/-1}
+.twofer{margin:14px 0 0;padding:12px 14px;background:#fff7df;border-left:4px solid var(--gold);font-size:14px;color:#332c1f}
+.twofer b{color:var(--green);letter-spacing:1px;font-size:12px}
+.files-card .pdf-actions .btn{min-width:0}
+.file-group{margin-top:16px}.file-group .card-num{margin-bottom:8px}
+.warning-box .btn-row .btn{font-size:11px;min-height:40px}
+@media(max-width:760px){.jump{top:70px}.trail-grid{grid-template-columns:1fr}.btn-row{flex-direction:column}.btn-row .btn{width:100%}}
+.dark .kicker,.dark .card-num{color:var(--gold-light)}
+/* KPC shared About-style footer and below-hero page links */
+.page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+.page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
+.page-jump-nav a:hover,.page-jump-nav a:focus-visible{background:#3c321a;border-color:#d6b96c;color:#fff}
+section[id]{scroll-margin-top:100px}
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
+body.field .page-jump-nav{display:none!important}
+
+
+.hero{background:linear-gradient(120deg,rgba(7,7,7,.82),rgba(29,90,58,.55)),var(--black) url("parks.png") center/cover no-repeat}
+@media(max-width:760px){.hero{background:linear-gradient(120deg,rgba(7,7,7,.82),rgba(29,90,58,.55)),url("parks-mobile.png") center/cover no-repeat}}
+.steps{display:grid;gap:18px;counter-reset:s}
+.step{display:grid;grid-template-columns:76px 1fr;gap:22px;padding:28px;background:#fff;border:1px solid #d8cfbf;box-shadow:0 10px 24px rgba(0,0,0,.05);position:relative}
+.step:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--gold)}
+.num{width:64px;height:64px;border-radius:50%;background:var(--black);color:var(--gold-light);display:flex;align-items:center;justify-content:center;font:700 28px Georgia,serif;border:2px solid var(--gold)}
+.step h3{margin:2px 0 8px;font:700 26px/1.15 Georgia,serif}.step p{margin:0 0 10px;color:var(--muted)}.step p:last-child{margin-bottom:0}
+.step ul{margin:6px 0 12px;padding-left:20px;color:var(--muted)}.step li{margin:4px 0}
+.tip{margin-top:12px;padding:12px 16px;background:#fff7df;border-left:4px solid var(--gold);font-size:15px;color:#332c1f}
+.tip b{color:var(--green);font-size:12px;letter-spacing:1.5px}
+.script{margin:12px 0;padding:16px 18px;background:var(--black);color:#f5f0e4;border-left:4px solid var(--gold);font:15px/1.6 "Courier New",monospace}
+.script b{color:var(--gold-light)}
+.step .btn{margin-top:8px;margin-right:8px;min-height:40px;font-size:11px}
+.two{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.box{padding:30px;background:#151515;border:1px solid #363636;border-top:4px solid var(--gold);color:#fff}
+.box h3{margin:6px 0 10px;font:700 28px Georgia,serif;color:#fff}.box p,.box li{color:#cfcabf}.box ul{padding-left:20px;margin:10px 0 0}.box li{margin:6px 0}
+.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.rule{padding:20px 22px;background:#fff;border:1px solid #d8cfbf;border-left:5px solid var(--green)}
+.rule b{display:block;font:700 19px Georgia,serif;margin-bottom:4px}.rule span{color:var(--muted);font-size:15px}
+.rule.no{border-left-color:#b5452b}
+.faq details{background:#fff;border:1px solid #d8cfbf;margin-bottom:12px;padding:0 22px}
+.faq summary{cursor:pointer;padding:18px 0;font:700 20px Georgia,serif;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}.faq summary:after{content:"+";color:var(--gold);font-size:26px;line-height:1}
+.faq details[open] summary:after{content:"–"}.faq details p{margin:0 0 18px;color:var(--muted)}
+.utc{width:100%;border-collapse:collapse;margin:12px 0 4px;font-size:15px;background:#fff}
+.utc th,.utc td{padding:9px 12px;border:1px solid #e3dccb;text-align:left}.utc th{background:var(--black);color:var(--gold-light);font-size:12px;letter-spacing:1px}
+.byline{margin-top:18px;color:var(--gold-light);font-size:13px;font-weight:800;letter-spacing:2px}
+@media(max-width:760px){.step{grid-template-columns:1fr;gap:12px;padding:22px}.num{width:52px;height:52px;font-size:22px}.two,.rules{grid-template-columns:1fr}}
+</style>
+<style id="kpc-nav-fit">
+/* KPC shared navbar fit: 10 links. Compact on mid-size screens, menu button below 1180px. */
+@media(min-width:1181px) and (max-width:1320px){.site-nav .nav-links a{padding-left:7px;padding-right:7px;font-size:12px;letter-spacing:.4px}.site-nav .nav-inner{gap:16px}}
+@media(max-width:1180px){.site-nav .nav-inner{position:relative}.site-nav .menu-toggle{display:block!important}.site-nav .nav-links{display:none!important;position:absolute!important;top:100%!important;left:0!important;right:0!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:10px 18px 16px!important;background:rgba(7,7,7,.99)!important;border-bottom:1px solid rgba(213,166,58,.45)!important;box-shadow:0 15px 25px rgba(0,0,0,.22);max-height:calc(100vh - 80px);overflow-y:auto}.site-nav .nav-links.open{display:flex!important}.site-nav .nav-links a{padding:13px 8px!important;font-size:14px!important;border-bottom:1px solid #292929}.site-nav .nav-links a:last-child{border-bottom:0}}
+</style>
+<style id="kpc-antenna-css">
+.hero{background:linear-gradient(120deg,rgba(7,7,7,.84),rgba(29,90,58,.5)),var(--black) url("toolbox.jpg") center/cover no-repeat}
+@media(max-width:760px){.hero{background:linear-gradient(120deg,rgba(7,7,7,.84),rgba(29,90,58,.5)),var(--black) url("toolbox-mobile.jpg") center/cover no-repeat}}
+.lvl{display:inline-block;padding:4px 11px;border-radius:99px;font:900 11px Arial,sans-serif;letter-spacing:1.5px;vertical-align:middle}
+.lvl.b{background:#1d5a3a;color:#fff}.lvl.i{background:#d5a63a;color:#111}.lvl.a{background:#8a2b1b;color:#fff}.lvl.s{background:#555;color:#fff}
+.hero .lvl{margin-bottom:14px}
+.art{max-width:860px;margin:0 auto}
+.art h2{font:700 clamp(26px,4vw,34px)/1.15 Georgia,serif;margin:38px 0 12px}.art h2:first-child{margin-top:0}
+.art h3{font:700 22px Georgia,serif;margin:26px 0 8px}
+.art p{margin:0 0 14px;font-size:18px;line-height:1.65;color:#2d2a24}
+.art ul,.art ol{margin:6px 0 16px;padding-left:24px;font-size:18px;line-height:1.6;color:#2d2a24}.art li{margin:6px 0}
+.art .lead{font-size:20px;color:#2d2a24}
+.art table{width:100%;border-collapse:collapse;margin:14px 0 6px;font-size:16px;background:#fff}
+.art th,.art td{padding:10px 12px;border:1px solid #e3dccb;text-align:left;vertical-align:top}
+.art th{background:var(--black);color:var(--gold-light);font-size:12px;letter-spacing:1px}
+.art tr.hl td{background:#fff7df;font-weight:700}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.fig{margin:20px 0;padding:16px;background:#fff;border:1px solid #d8cfbf;box-shadow:0 8px 20px rgba(0,0,0,.05)}
+.fig svg{display:block;width:100%;height:auto}
+.fig figcaption{margin-top:10px;font-size:14px;color:var(--muted);text-align:center}
+.figrow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}
+.figrow .fig{margin:0}
+@media(max-width:760px){.figrow{grid-template-columns:1fr}.art p,.art ul,.art ol{font-size:17px}.art .lead{font-size:18px}}
+.callout{margin:18px 0;padding:16px 18px;background:#fff7df;border-left:5px solid var(--gold);font-size:17px;line-height:1.55;color:#332c1f}
+.callout b.t{display:block;color:var(--green);font-size:12px;letter-spacing:1.5px;margin-bottom:4px}
+.callout.warn{background:#3a1610;color:#fff;border-left-color:#e8734a}.callout.warn b.t{color:#ffb59a}
+.reminder{margin:30px 0 8px;padding:20px 22px;background:var(--black);color:#f5f0e4;border-left:5px solid var(--gold)}
+.reminder b{color:var(--gold-light)}.reminder p{color:#f5f0e4;margin:0;font-size:17px}
+.signoff{font-style:italic;color:var(--green);font-weight:700;margin-top:18px}
+.pick{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:14px 0 20px}
+.pick div{padding:16px 18px;background:#fff;border:1px solid #d8cfbf;border-left:5px solid var(--green)}
+.pick b{display:block;font:700 19px Georgia,serif;margin-bottom:4px}.pick span{font-size:16px;color:var(--muted);line-height:1.5}
+@media(max-width:760px){.pick{grid-template-columns:1fr}}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 6px}
+.lvlkey{margin-top:16px!important;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:0 0 6px;font-size:15px;color:var(--muted)}
+.card .lvl{margin-left:8px;padding:3px 9px;font-size:10px}
+</style>
+</head>
+<body>
+<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="toolbox.html">Tool Box</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="members.html">Members</a><a href="contact.html">Contact</a></nav></div></header>
+
+<main>
+<section class="hero"><div class="hero-inner"><img class="hero-logo" src="KPC-logo.png" alt="Kentucky Portable Club"><span class="lvl b">BEGINNER</span><p class="eyebrow">DIY PORTABLE ANTENNAS</p><h1>BUILD YOUR<br><span>FIRST DIPOLE</span></h1><p class="hero-copy">A simple wire antenna you can build in an afternoon and use at your next park.</p><p class="byline">KPC AMATEUR RADIO FIELD GUIDE</p></div></section>
+<nav class="page-jump-nav" aria-label="Quick page links"><a href="#what">WHAT IT IS</a><a href="#length">LENGTHS</a><a href="#parts">PARTS &amp; BUILD</a><a href="#install">SETUP</a><a href="#mistakes">MISTAKES</a></nav>
+<section class="section " id="what"><div class="section-inner art"><p class="lead">One of the most rewarding projects in amateur radio is building an antenna you can take into the field and use to make contacts. A homemade dipole is lightweight, cheap and easy to build with basic tools, and it teaches you how antenna length, frequency and installation affect performance.</p>
+<h2>1. What a Half-Wave Dipole Is</h2>
+<p>A dipole is two wires reaching out in opposite directions from a center feedpoint. The coax center conductor feeds one side and the shield feeds the other.</p>
+<p>A half-wave dipole is about one-half wavelength tip to tip, so each leg is about <b>one-quarter wavelength</b>.</p>
+<figure class="fig"><svg viewBox="0 0 360 165" role="img" aria-label="Half-wave dipole: two quarter-wave wires fed in the center by coax" xmlns="http://www.w3.org/2000/svg" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#3b362c"><line x1="8" y1="150" x2="352" y2="150" stroke="#8a7a55" stroke-width="3"/>
+<line x1="22" y1="150" x2="22" y2="52" stroke="#6b6355" stroke-width="4"/><line x1="338" y1="150" x2="338" y2="52" stroke="#6b6355" stroke-width="4"/>
+<path d="M22 54 H165 M195 54 H338" stroke="#1d5a3a" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect x="165" y="48" width="30" height="13" rx="3" fill="#b8892a"/>
+<path d="M180 61 V150" stroke="#2b2b2b" stroke-width="2"/>
+<g stroke="#3b362c" stroke-width="1.2" fill="none"><path d="M22 30 H178 M182 30 H338"/><path d="M22 25 V35 M180 25 V35 M338 25 V35"/></g>
+<text x="100" y="21" text-anchor="middle">¼ wavelength</text><text x="260" y="21" text-anchor="middle">¼ wavelength</text>
+<text x="192" y="102">coax to radio</text><text x="180" y="78" text-anchor="middle" font-size="11">center insulator</text></svg><figcaption>A center-fed half-wave dipole (not to scale).</figcaption></figure></div></section><section class="section " id="length"><div class="section-inner art"><h2>2. Calculating Wire Length</h2>
+<p><b>Total length in feet = 468 ÷ Frequency in MHz</b></p>
+<p><b>Each leg in feet = 234 ÷ Frequency in MHz</b></p>
+<p>These give approximate starting dimensions for a typical wire dipole.</p>
+<div class="tw"><table><thead><tr><th>BAND</th><th>FREQUENCY</th><th>TOTAL LENGTH</th><th>EACH LEG</th></tr></thead><tbody><tr><td><b>80m</b></td><td>3.600 MHz</td><td>130 ft</td><td>65.0 ft</td></tr><tr><td><b>60m</b></td><td>5.357 MHz</td><td>87.4 ft</td><td>43.7 ft</td></tr><tr><td><b>40m</b></td><td>7.200 MHz</td><td>65.0 ft</td><td>32.5 ft</td></tr><tr><td><b>30m</b></td><td>10.125 MHz</td><td>46.2 ft</td><td>23.1 ft</td></tr><tr class=hl><td><b>20m</b></td><td>14.200 MHz</td><td>33.0 ft</td><td>16.5 ft</td></tr><tr><td><b>17m</b></td><td>18.100 MHz</td><td>25.9 ft</td><td>12.9 ft</td></tr><tr><td><b>15m</b></td><td>21.200 MHz</td><td>22.1 ft</td><td>11.0 ft</td></tr><tr><td><b>12m</b></td><td>24.900 MHz</td><td>18.8 ft</td><td>9.4 ft</td></tr><tr><td><b>10m</b></td><td>28.500 MHz</td><td>16.4 ft</td><td>8.2 ft</td></tr><tr><td><b>6m</b></td><td>50.100 MHz</td><td>9.3 ft</td><td>4.7 ft</td></tr></tbody></table></div>
+<p style="font-size:15px;color:var(--muted)">Beginner tip: 20 meters (highlighted) through 10 meters are the easiest portable dipoles. 80 and 60 meters are very long for a park setup.</p>
+<p><b>About 60 meters:</b> it isn’t a full band like the others. In the U.S. it’s a narrow allocation near 5.3–5.4 MHz with its own rules, so check the current band plan before you transmit. The chart uses 5.357 MHz, a common operating frequency.</p>
+<p>Cut a little extra for tuning and connections, and verify with an antenna analyzer. Two things change the numbers in the real world:</p>
+<ul><li><b>Insulated wire</b> usually resonates a bit lower than bare wire, so you’ll trim a little.</li><li><b>An inverted-V</b> typically ends up a few percent shorter than a flat dipole, often around 3–5%.</li></ul>
+<div class="cta"><a class="btn" href="kpc-antenna.html">OPEN THE KPC ANTENNA CALCULATOR →</a></div></div></section><section class="section features" id="parts"><div class="section-inner art"><h2>3. Materials Needed</h2>
+<ul><li>Insulated stranded copper antenna wire, commonly 14–18 AWG</li><li>Center insulator or dipole feedpoint connector</li><li>Two end insulators</li><li>50-ohm coaxial feedline</li><li>A coax connector that fits your radio</li><li>Rope or paracord for supports</li><li>Wire cutters, tape measure and basic hand tools</li><li>Antenna analyzer or SWR meter</li><li>Optional: 1:1 current balun or common-mode choke</li></ul>
+<p>Flexible stranded wire is easier to roll up, carry and deploy than solid wire. A 1:1 current balun or choke at the feedpoint helps keep RF from flowing on the outside of the coax shield.</p>
+<h2 id="build">4. Build a Simple 20-Meter Dipole</h2>
+<p>Let’s build one for the 20-meter band, near 14.200 MHz. 468 ÷ 14.200 is about 33 feet total, so each leg is about <b>16 feet 6 inches</b>.</p>
+<ol><li>Cut two pieces of antenna wire a little longer than 16 ft 6 in.</li><li>Attach one end of each wire to the center insulator.</li><li>Connect one wire to the coax center conductor and the other to the shield connection.</li><li>Secure the connections and add strain relief.</li><li>Attach an end insulator to the outer end of each wire.</li><li>Tie support ropes to the end insulators.</li><li>Raise the antenna to where you’ll operate it.</li><li>Check it with an analyzer before making final adjustments.</li></ol>
+<div class="callout"><b class="t">START LONG</b>It’s much easier to shorten a wire than to add length after cutting it too short.</div></div></section><section class="section " id="install"><div class="section-inner art"><h2>5. Installing Your Dipole</h2>
+<p>A dipole doesn’t have to be perfectly horizontal to work. Portable operators commonly use three layouts:</p>
+<div class="figrow">
+<div><figure class="fig"><svg viewBox="0 0 230 165" role="img" aria-label="Horizontal dipole strung between two trees" xmlns="http://www.w3.org/2000/svg" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#3b362c"><line x1="6" y1="150" x2="224" y2="150" stroke="#8a7a55" stroke-width="3"/><rect x="24" y="56" width="8" height="94" fill="#6b5a3a"/><circle cx="28" cy="48" r="22" fill="#2f6b49" opacity=".85"/><rect x="198" y="56" width="8" height="94" fill="#6b5a3a"/><circle cx="202" cy="48" r="22" fill="#2f6b49" opacity=".85"/>
+<path d="M28 58 Q115 74 202 58" stroke="#1d5a3a" stroke-width="3" fill="none"/>
+<rect x="107" y="66" width="16" height="9" rx="2" fill="#b8892a"/><path d="M115 75 V150" stroke="#2b2b2b" stroke-width="2"/>
+<text x="115" y="22" text-anchor="middle">between two supports</text></svg><figcaption><b>Horizontal.</b> Supported at both ends with the feedpoint in the middle. Good broadside radiation.</figcaption></figure></div>
+<div><figure class="fig"><svg viewBox="0 0 230 165" role="img" aria-label="Inverted-V dipole hung from one mast with legs sloping down" xmlns="http://www.w3.org/2000/svg" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#3b362c"><line x1="6" y1="150" x2="224" y2="150" stroke="#8a7a55" stroke-width="3"/>
+<line x1="115" y1="150" x2="115" y2="38" stroke="#6b6355" stroke-width="4"/>
+<path d="M115 42 L28 132 M115 42 L202 132" stroke="#1d5a3a" stroke-width="3" fill="none"/>
+<path d="M28 132 L22 150 M202 132 L208 150" stroke="#8a7a55" stroke-width="2" stroke-dasharray="3 3"/>
+<rect x="106" y="38" width="18" height="9" rx="2" fill="#b8892a"/>
+<text x="115" y="22" text-anchor="middle">one tall support</text></svg><figcaption><b>Inverted-V.</b> Center on a mast or tree, legs sloping down. Often the easiest for POTA, and it needs only one tall support.</figcaption></figure></div>
+<div><figure class="fig"><svg viewBox="0 0 230 165" role="img" aria-label="Sloper dipole running from a high tree down to a low stake" xmlns="http://www.w3.org/2000/svg" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#3b362c"><line x1="6" y1="150" x2="224" y2="150" stroke="#8a7a55" stroke-width="3"/><rect x="32" y="48" width="8" height="102" fill="#6b5a3a"/><circle cx="36" cy="40" r="22" fill="#2f6b49" opacity=".85"/>
+<path d="M44 54 L196 138" stroke="#1d5a3a" stroke-width="3" fill="none"/>
+<path d="M196 138 L200 150" stroke="#8a7a55" stroke-width="2" stroke-dasharray="3 3"/>
+<rect x="44" y="48" width="14" height="9" rx="2" fill="#b8892a"/><path d="M48 57 V150" stroke="#2b2b2b" stroke-width="2" opacity=".0"/>
+<text x="150" y="22" text-anchor="middle">high on one end</text></svg><figcaption><b>Sloper.</b> One end high and one low. Handy when trees make a horizontal setup hard. Pattern and impedance differ.</figcaption></figure></div></div>
+<p>Keep wire ends well above where people walk or touch them.</p>
+<h2>6. Does Antenna Height Matter?</h2>
+<p>Yes. Height above ground changes the radiation pattern and the feedpoint impedance. A fairly low horizontal dipole sends more signal at high angles, which can suit shorter-range contacts on the lower HF bands. As height grows relative to wavelength, the pattern favors lower takeoff angles.</p>
+<p>For portable work, height usually depends on the trees, mast, safety and setup time. A modestly elevated dipole can still make plenty of contacts, and tuning it at about its operating height gives the most accurate result.</p>
+<h2>7. Do You Need a Tuner?</h2>
+<p>A properly built single-band dipole can often run without one. But feedpoint impedance shifts with height, wire layout and surroundings, so a tuner may still help. Also, low SWR at the radio doesn’t prove the antenna is radiating well, especially if the feedline is lossy. More in <a href="kpc-swr-basics.html"><b>SWR Basics</b></a>.</p></div></section><section class="section features" id="mistakes"><div class="section-inner art"><h2>8. Common Dipole Mistakes</h2>
+<div class="rules">
+<div class="rule no"><b>✕ Cutting too short</b><span>Always begin slightly long and trim gradually.</span></div>
+<div class="rule no"><b>✕ Tuning too close to the ground</b><span>Tune at about the height you’ll use.</span></div>
+<div class="rule no"><b>✕ Unequal legs</b><span>Keep both legs equal on a center-fed dipole unless you design it otherwise.</span></div>
+<div class="rule no"><b>✕ Poor connections</b><span>Loose or corroded connectors cause jumpy SWR readings.</span></div>
+<div class="rule no"><b>✕ No strain relief</b><span>Don’t let the wire’s pull hang on electrical joints.</span></div>
+<div class="rule no"><b>✕ Ignoring common-mode current</b><span>A 1:1 current balun or choke keeps the coax from becoming part of the antenna.</span></div></div>
+<div class="callout warn"><b class="t">BEFORE YOU RAISE ANYTHING</b>Never put wires, masts or ropes near overhead power lines. Read <a href="kpc-antenna-safety.html" style="color:#ffd9c9"><b>Antenna Safety &amp; Park Manners</b></a> first.</div>
+<h2>Final Thoughts</h2>
+<p>Building a dipole is one of the best ways to learn practical antenna basics. It’s inexpensive, reliable and capable of excellent performance. Ready for more than one band? Try a <a href="kpc-linked-dipole.html"><b>linked dipole</b></a>.</p>
+<div class="reminder"><p><b>KPC FIELD REMINDER:</b> Antenna formulas give starting points, not guaranteed measurements. Wire type, height, nearby objects and the final configuration all affect tuning. Measure, adjust and verify.</p></div><p class="signoff">73 from KPC — Build It, Test It, Get Outside, and Get on the Air!</p></div></section>
+<section class="section dark" id="more"><div class="section-inner"><div class="section-heading"><div class="kicker">KEEP GOING</div><h2>More From The Antenna Shelf</h2></div><div class="card-grid"><a class="card" href="kpc-linked-dipole.html"><div class="card-top"><div class="card-num">MULTIBAND<span class="lvl i">INTERMEDIATE</span></div><h3>Linked Dipoles</h3><p>One wire antenna, several bands — open and close the links.</p></div><span class="btn">READ IT →</span></a><a class="card" href="kpc-antenna-safety.html"><div class="card-top"><div class="card-num">STAY SAFE<span class="lvl b">BEGINNER</span></div><h3>Antenna Safety & Park Manners</h3><p>Power lines, lightning, RF and being a good guest.</p></div><span class="btn">READ IT →</span></a><a class="card" href="kpc-which-antenna.html"><div class="card-top"><div class="card-num">WHICH ANTENNA<span class="lvl b">BEGINNER</span></div><h3>Which Antenna Is Right For Me?</h3><p>Dipole, inverted-V, end-fed, vertical or random wire — pick yours.</p></div><span class="btn">READ IT →</span></a><a class="card" href="kpc-antenna.html"><div class="card-top"><div class="card-num">KPC TOOL</div><h3>Antenna Calculator</h3><p>Wire lengths, linked-dipole sections, whip lengths and coax loss.</p></div><span class="btn">OPEN CALCULATOR →</span></a></div><div class="btn-row" style="justify-content:center;margin-top:18px"><a class="btn" href="antennas.html">ALL ANTENNA GUIDES →</a></div></div></section>
+<section class="final"><h2>Get Outside. Get On The Air.</h2><p>KENTUCKY PORTABLE CLUB</p><a class="btn" href="antennas.html">ALL ANTENNA GUIDES →</a></section>
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="resources.html">RESOURCES →</a><a href="join.html">JOIN KPC →</a></div></footer>
+<script>
+const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav-links');
+toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open))});
+nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false')}));
+
+</script>
+</body></html>
