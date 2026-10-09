@@ -70,3 +70,19 @@ footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
 footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
 footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
 @media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}}
+
+/* header art for tool pages */
+.tool-head.th-fort{background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.62) 52%,rgba(7,7,7,.3) 100%),#070707 url("hdr-fort.jpg") center/cover no-repeat}
+.tool-head.th-gear,.tool-head.th-mem{background:linear-gradient(120deg,rgba(7,7,7,.9),rgba(7,7,7,.7)),#070707 url("toolbox.jpg") center/cover no-repeat}
+.tool-head.has-badge .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px}
+.tool-head .th-text{flex:1 1 auto;min-width:0}
+.th-badge{flex:0 0 auto;display:block;height:auto;box-shadow:0 10px 28px rgba(0,0,0,.55)}
+.th-badge.sign{width:min(300px,34%);border-radius:10px;transform:rotate(2deg)}
+.th-badge.group{width:min(320px,34%);border-radius:10px;transform:rotate(-1.5deg)}
+.th-badge.barrel{width:170px;height:170px;border-radius:50%;border:3px solid #d5a63a;object-fit:cover}
+@media(max-width:760px){
+.tool-head.th-fort{background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.62) 60%,rgba(7,7,7,.4) 100%),#070707 url("hdr-fort-mobile.jpg") center/cover no-repeat}
+.tool-head.th-gear,.tool-head.th-mem{background:linear-gradient(120deg,rgba(7,7,7,.9),rgba(7,7,7,.7)),#070707 url("toolbox-mobile.jpg") center/cover no-repeat}
+.tool-head.has-badge .wrap{display:block}
+.th-badge{margin:16px 0 0}.th-badge.sign{width:62%;max-width:240px}.th-badge.group{width:70%;max-width:260px}.th-badge.barrel{width:120px;height:120px}}
+@media print{.tool-head{display:none!important}}
