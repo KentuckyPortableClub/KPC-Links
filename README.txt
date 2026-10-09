@@ -28,4 +28,4 @@ OCTOBER 2026 ADDITION — OFFICIAL MAPS / ACCESS
 - No geospatial polygon overlap or live boundary validation is performed.
 - This is a limited pilot, not complete nationwide coverage.
 
-OFFICIAL EVIDENCE REVIEW (2026-10-08): official-2fer-evidence.json and official-2fer-review.csv contain five reviewed government-source trail/park connections. These are NOT confirmed multi-program activation overlaps. Every 2-fer display is labeled POSSIBLE. The reference point for Lewis & Clark in this dataset is outside Kentucky.
+OFFICIAL EVIDENCE REVIEW (2026-10-08): official-2fer-evidence.json and official-2fer-review.csv contain five reviewed government-source trail/park connections. These are NOT confirmed multi-program activation overlaps. POTA-to-WWFF cross-references and trail proximity are not labeled as 2-fers. The reference point for Lewis & Clark in this dataset is outside Kentucky.
