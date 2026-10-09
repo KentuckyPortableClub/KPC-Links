@@ -73,6 +73,21 @@ section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
 .onair-chip b{color:var(--gold-light)}.onair-chip.club{border-color:var(--gold);background:rgba(213,166,58,.14)}
 .onair .btn{margin:0;min-height:38px;padding:8px 14px;font-size:11px;white-space:nowrap}
 @media(max-width:760px){.onair-inner{padding:12px 18px;gap:8px 10px}.onair-title{order:1}.onair .btn{order:2;margin-left:auto}.onair-count{order:3;flex-basis:100%}.onair-list{order:4;flex-basis:100%}}
+
+/* KPC shared About-style footer and below-hero page links */
+.page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+.page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
+.page-jump-nav a:hover,.page-jump-nav a:focus-visible{background:#3c321a;border-color:#d6b96c;color:#fff}
+section[id]{scroll-margin-top:100px}
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
+body.field .page-jump-nav{display:none!important}
+
 </style>
 </head>
 <body>
@@ -80,6 +95,7 @@ section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
 
 <main>
 <section class="hero"><div class="hero-inner"><img class="hero-logo" src="KPC-logo.png" alt="Kentucky Portable Club"><p class="eyebrow">KENTUCKY • OUTDOORS • RADIO</p><h1>KENTUCKY<br><span>PARKS</span></h1><p class="hero-copy">Explore. Camp. Operate. Repeat. Find the places worth packing the radio for — then use the official maps, park resources, trails, forests, protected lands, and KPC POTA guides to plan the outing.</p></div></section>
+<nav class="page-jump-nav" aria-label="Quick page links"><a href="#explore-parks">EXPLORE</a><a href="#guides">FIELD GUIDES</a><a href="#tools">MAPS &amp; TOOLS</a><a href="#state">STATE PARKS</a><a href="#federal">FEDERAL LANDS</a><a href="#trails">TRAILS</a></nav>
 <section class="onair" aria-label="POTA spots on the air now"><div class="onair-inner">
 <span class="onair-title"><span class="dot off" id="oaDot"></span>ON THE AIR NOW</span>
 <span class="onair-count" id="oaCount">Checking POTA spots…</span>
@@ -88,7 +104,7 @@ section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
 </div></section>
 <nav class="jump" aria-label="Page sections"><div class="jump-inner"><a href="kpc-spots.html">On The Air</a><a href="#guides">KPC Guides</a><a href="#tools">Tools</a><a href="#state">State Lands</a><a href="#federal">Federal Lands</a><a href="#trails">Trails</a><a href="#kentucky-wild-river-maps">Wild Rivers</a><a href="#before-you-go">Before You Go</a></div></nav>
 
-<section class="section intro"><div class="section-inner intro-grid"><div class="intro-copy"><div class="kicker">EXPLORE KENTUCKY</div><h2>Places Worth Packing The Radio For</h2><p>KPC's Parks page brings the official Kentucky and federal outdoor resources together with KPC's own POTA field guides, so you can find a destination, check the rules, plan the route, and look for a portable operating opportunity.</p></div><div class="intro-panel"><div class="mark">KPC PARKS GUIDE</div><h3>Find A Place.<br>Make A Plan.</h3><div class="line"></div><p>Start with the official land manager, then use the KPC POTA resources to find the radio opportunity.</p></div></div></section>
+<section class="section intro" id="explore-parks"><div class="section-inner intro-grid"><div class="intro-copy"><div class="kicker">EXPLORE KENTUCKY</div><h2>Places Worth Packing The Radio For</h2><p>KPC's Parks page brings the official Kentucky and federal outdoor resources together with KPC's own POTA field guides, so you can find a destination, check the rules, plan the route, and look for a portable operating opportunity.</p></div><div class="intro-panel"><div class="mark">KPC PARKS GUIDE</div><h3>Find A Place.<br>Make A Plan.</h3><div class="line"></div><p>Start with the official land manager, then use the KPC POTA resources to find the radio opportunity.</p></div></div></section>
 
 <section class="section dark" id="guides"><div class="section-inner"><div class="section-heading"><div class="kicker">KPC FIELD RESOURCES</div><h2>Pick A Park. Find The Activation.</h2><p>Explore KPC field guides for Kentucky POTA parks, SOTA summits, and WWFF/KFF protected areas to plan your next portable activation.</p></div><div class="card-grid">
 <article class="card pota-card"><div class="card-top"><div class="card-num">01 • POTA DIRECTORY</div><h3>Kentucky POTA Resource — Alphabetical</h3><p>Alphabetical Kentucky POTA field resource with park/area information, GPS/map information, camping and utilities, and field notes.</p></div><div class="pdf-actions"><a class="btn" href="KPC_Kentucky_POTA_Resource_Alphabetical_v2_261005_092105.pdf" target="_blank" rel="noopener">OPEN PDF ↗</a><a class="btn alt" href="KPC_Kentucky_POTA_Resource_Alphabetical_v2_261005_092105.pdf" download>DOWNLOAD ↓</a></div></article>
@@ -158,7 +174,7 @@ section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
 
 <section class="final"><h2>Ready To Explore Kentucky?</h2><p>KENTUCKY PORTABLE CLUB • EST. 2026</p><a class="btn" href="index.html">← BACK TO KPC HOME</a></section>
 </main>
-<footer><strong>KPC — Kentucky Portable Club</strong> • Est. 2026<br>Get Outside. Get On The Air.</footer>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="resources.html">RESOURCES →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a></div></footer>
 <script>
 const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav-links');
 toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open))});

@@ -114,6 +114,21 @@ img{max-width:100%;display:block}
 
 /* Bottom-third hero shading — desktop and mobile */
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(to bottom,transparent 0%,transparent 66.666%,rgba(0,0,0,.70) 100%);}
+
+/* KPC shared About-style footer and below-hero page links */
+.page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+.page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
+.page-jump-nav a:hover,.page-jump-nav a:focus-visible{background:#3c321a;border-color:#d6b96c;color:#fff}
+section[id]{scroll-margin-top:100px}
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
+body.field .page-jump-nav{display:none!important}
+
 </style>
 </head>
 <body>
@@ -143,8 +158,9 @@ img{max-width:100%;display:block}
     <p class="hero-copy">We combine amateur radio, outdoor adventure, and Kentucky's incredible public lands to build a welcoming portable-radio community.</p>
   </div>
 </section>
+<nav class="page-jump-nav" aria-label="Quick page links"><a href="#mission">OUR MISSION</a><a href="#purpose">OUR PURPOSE</a><a href="#who">WHO WE ARE FOR</a><a href="#founders">FOUNDERS</a><a href="#values">OUR VALUES</a></nav>
 
-<section class="section intro">
+<section class="section intro" id="mission">
   <div class="section-inner">
     <div class="section-heading">
       <div class="kicker">THE KPC MISSION</div>
@@ -160,7 +176,7 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<section class="section feature">
+<section class="section feature" id="purpose">
   <div class="section-inner feature-grid">
     <article class="feature-card">
       <div class="kicker">OUR PURPOSE</div>
@@ -193,7 +209,7 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<section class="section intro">
+<section class="section intro" id="who">
   <div class="section-inner">
     <div class="section-heading">
       <div class="kicker">WHO KPC IS FOR</div>
@@ -226,7 +242,7 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<section class="section founders">
+<section class="section founders" id="founders">
   <div class="section-inner">
     <div class="section-heading">
       <div class="kicker">THE FOUNDERS</div>
@@ -278,7 +294,7 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<section class="section feature">
+<section class="section feature" id="values">
   <div class="section-inner feature-grid">
     <article class="feature-card">
       <div class="kicker">OUR VALUES</div>
@@ -309,17 +325,7 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<footer class="footer">
-  <div>
-    <div style="font-size:12px;letter-spacing:2px">KENTUCKY PORTABLE CLUB</div>
-    <div class="tag">Get Outside. Get On The Air.</div>
-  </div>
-  <div class="footer-actions">
-    <a href="parks.html">EXPLORE KENTUCKY →</a>
-    <a href="events.html">VIEW EVENTS →</a>
-    <a href="join.html">JOIN KPC →</a>
-  </div>
-</footer>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a></div></footer>
 
 <script>
 const toggle=document.querySelector('.menu-toggle');
