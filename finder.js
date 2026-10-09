@@ -23,7 +23,7 @@ if(window.L){
   document.getElementById('map').insertAdjacentElement('afterend',tileNotice);
   const baseTiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
     attribution:'&copy; OpenStreetMap contributors',
-    maxZoom:19, tileSize:256, zoomOffset:0, updateWhenIdle:true
+    maxZoom:19, tileSize:256, zoomOffset:0, updateWhenIdle:true, crossOrigin:true
   });
   let tileErrors=0;
   baseTiles.on('tileerror',()=>{
