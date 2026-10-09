@@ -12,12 +12,13 @@
   stateparks:{name:'Kentucky State Park Trails',url:parks+'9/query',info:'https://parks.ky.gov/',color:'#e2c76b',kind:'line'},
   trailheads:{name:'Kentucky State Park Trailheads',url:parks+'0/query',info:'https://parks.ky.gov/',color:'#f5b45d',kind:'point'},
   camping:{name:'Kentucky State Park Campgrounds',url:parks+'6/query',info:'https://parks.ky.gov/',color:'#a5de9b',kind:'point'},
-  boundaries:{name:'Kentucky State Park Boundaries',url:parks+'8/query',info:'https://parks.ky.gov/',color:'#81b9e7',kind:'polygon'}
+  boundaries:{name:'Kentucky State Park Boundaries',url:parks+'8/query',info:'https://parks.ky.gov/',color:'#36b86a',kind:'polygon'}
  };
  const $=id=>document.getElementById(id), overlays={}, routes={};
  const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  function flatten(g){if(g.paths)return g.paths;if(g.type==='LineString')return[g.coordinates];if(g.type==='MultiLineString')return g.coordinates;return []}
- function getName(f){const p=f.attributes||f.properties||{};return p.trl_Name||p.TRL_NAME||p.NAME||p.Name||p.name||p.ParkName||p.PARK_NAME||p.PARK||p.FACILITY||p.SiteName||p.DESCRIPTION||''}
+ function getName(f){const p=f.attributes||f.properties||{};const keys=['trl_Name','TRAIL_NAME','TRAILNAME','TRAIL','ROUTE_NAME','PARK_NAME','PARKNAME','PARK_NM','PARK','FACILITY','FACILITY_NAME','SITE_NAME','NAME','SiteName','DESCRIPTION'];for(const key of keys){const found=Object.keys(p).find(k=>k.toLowerCase()===key.toLowerCase());if(found&&p[found]!=null&&String(p[found]).trim())return String(p[found]).trim()}return ''}
+ function label(shape,name,s){const title=name||s.name;shape.bindTooltip(safe(title),{sticky:true,direction:'top',opacity:.98,className:'kpc-gis-tooltip'});shape.bindPopup(popup(name,s));return shape} 
  function matching(f,s){return !s.filter||s.filter.test(getName(f))}
  function distance(lat,lon,pts){let best=Infinity;const sx=111.195*Math.cos(lat*Math.PI/180),sy=111.195;for(let i=1;i<pts.length;i++){const a=pts[i-1],b=pts[i],dx=(b[0]-a[0])*sx,dy=(b[1]-a[1])*sy,x=(lon-a[0])*sx,y=(lat-a[1])*sy,t=Math.max(0,Math.min(1,(x*dx+y*dy)/((dx*dx+dy*dy)||1)));best=Math.min(best,Math.hypot(x-t*dx,y-t*dy))}return best}
  function candidates(){const host=$('gis-candidates');host.replaceChildren();const keys=Object.keys(routes).filter(k=>sources[k].kind==='line'&&$('gis-'+k)?.checked);if(!keys.length){host.textContent='Select a route layer to check nearby POTA references.';return}
@@ -32,15 +33,15 @@
  async function query(s,bbox){const p=new URLSearchParams({where:'1=1',geometry:bbox,geometryType:'esriGeometryEnvelope',inSR:'4326',spatialRel:'esriSpatialRelIntersects',outFields:'*',returnGeometry:'true',outSR:'4326',f:'json'});
   const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),16000);try{const res=await fetch(s.url+'?'+p.toString(),{signal:ctrl.signal});if(!res.ok)throw Error('HTTP '+res.status);const j=await res.json();if(j.error)throw Error(j.error.message||'GIS service error');return j}finally{clearTimeout(timer)}}
  function popup(name,s){return `<strong>${safe(name||s.name)}</strong><br>Official government GIS layer; check source date, current access and agency maps.<br><a href="${s.info}" target="_blank" rel="noopener noreferrer">Official agency information ↗</a><br><b>Trail proximity only — not a POTA 2-fer.</b>`}
- function draw(j,s){const layer=L.layerGroup(),lines=[];let n=0;for(const f of j.features||[]){if(!matching(f,s))continue;const g=f.geometry||{},name=getName(f);if(s.kind==='line'){for(const pts of flatten(g)){if(pts.length<2)continue;L.polyline(pts.map(c=>[c[1],c[0]]),{color:s.color,weight:4,opacity:.9}).bindPopup(popup(name,s)).addTo(layer);lines.push(pts);n++}}
-   else if(s.kind==='point'){const pt=g.x!==undefined?[g.y,g.x]:g.type==='Point'?[g.coordinates[1],g.coordinates[0]]:null;if(pt){L.circleMarker(pt,{radius:5,color:s.color,weight:2,fillOpacity:.7}).bindPopup(popup(name,s)).addTo(layer);n++}}
-   else if(s.kind==='polygon'){const rings=g.rings||((g.type==='Polygon')?g.coordinates:[]);for(const ring of rings){L.polygon(ring.map(c=>[c[1],c[0]]),{color:s.color,weight:2,fillOpacity:.06}).bindPopup(popup(name,s)).addTo(layer);n++}}
+ function draw(j,s){const layer=L.layerGroup(),lines=[];let n=0;for(const f of j.features||[]){if(!matching(f,s))continue;const g=f.geometry||{},name=getName(f);if(s.kind==='line'){for(const pts of flatten(g)){if(pts.length<2)continue;label(L.polyline(pts.map(c=>[c[1],c[0]]),{color:s.color,weight:5,opacity:.95,interactive:true}),name,s).addTo(layer);lines.push(pts);n++}}
+   else if(s.kind==='point'){const pt=g.x!==undefined?[g.y,g.x]:g.type==='Point'?[g.coordinates[1],g.coordinates[0]]:null;if(pt){label(L.circleMarker(pt,{radius:6,color:s.color,weight:2,fillOpacity:.8}),name,s).addTo(layer);n++}}
+   else if(s.kind==='polygon'){const rings=g.rings||((g.type==='Polygon')?g.coordinates:[]);for(const ring of rings){label(L.polygon(ring.map(c=>[c[1],c[0]]),{color:s.color,weight:4,opacity:1,fillColor:s.color,fillOpacity:.16,interactive:true}),name,s).addTo(layer);n++}}
   }return{layer,lines,n}}
  async function load(){if(typeof map==='undefined'||!map){$('gis-status').textContent='Map unavailable.';return}if(map.getZoom()<8){$('gis-status').textContent='Zoom to level 8 or higher, then try again.';return}
   const active=Object.keys(sources).filter(k=>$('gis-'+k)?.checked);for(const k of Object.keys(overlays)){if(!active.includes(k)){map.removeLayer(overlays[k]);delete overlays[k];delete routes[k]}}
   if(!active.length){$('gis-status').textContent='Choose one or more GIS layers.';candidates();return}
   $('gis-load').disabled=true;const b=map.getBounds(),bb=[b.getWest(),b.getSouth(),b.getEast(),b.getNorth()].join(',');const reports=[];
-  try{for(const k of active){const s=sources[k];$('gis-status').textContent='Loading '+s.name+'…';try{const j=await query(s,bb),render=draw(j,s);if(overlays[k])map.removeLayer(overlays[k]);render.layer.addTo(map);overlays[k]=render.layer;routes[k]=render.lines;reports.push(`${s.name}: ${render.n}${j.exceededTransferLimit?' (partial; zoom in)':''}`)}catch(e){reports.push(`${s.name}: unavailable (${e.message})`)}}}finally{$('gis-load').disabled=false}
+  try{for(const k of active){const s=sources[k];$('gis-status').textContent='Loading '+s.name+'…';try{const j=await query(s,bb),render=draw(j,s);if(overlays[k])map.removeLayer(overlays[k]);render.layer.addTo(map);overlays[k]=render.layer;routes[k]=render.lines;reports.push(`${s.name}: ${render.n}${j.exceededTransferLimit?' (partial; zoom in)':''}${k==='boundaries'&&!render.n?' (no boundaries returned in this map view)':''}`)}catch(e){reports.push(`${s.name}: unavailable (${e.message})`)}}}finally{$('gis-load').disabled=false}
   $('gis-status').textContent=reports.join(' | ')+' · Government GIS may change; verify before travel.';candidates()
  }
  $('gis-load')?.addEventListener('click',load);
