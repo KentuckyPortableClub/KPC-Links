@@ -41,6 +41,7 @@
 <div class="controls">
 <label class="field" style="flex:2 1 220px">START FROM (KENTUCKY TOWN)<input id="town" list="towns" placeholder="Taylorsville, Lexington, Hazard…"><datalist id="towns"></datalist></label>
 <button class="btn alt" id="gps" type="button" style="align-self:flex-end">📍 USE MY LOCATION</button>
+<button class="btn alt" id="newSearch" type="button" style="align-self:flex-end">✕ CLEAR SEARCH</button>
 <label class="field" style="flex:1 1 160px">WITHIN <span id="rLbl">40 MILES</span><input type="range" id="rad" min="10" max="150" step="5" value="40" style="min-height:44px;padding:0"></label>
 </div>
 <div class="controls" style="margin-top:12px">
@@ -52,16 +53,16 @@
 <div><div class="map" id="map" style="height:540px"></div>
 <div class="legend"><span><i style="background:#1d5a3a"></i>POTA park</span><span><i style="background:#b5452b"></i>SOTA summit</span><span><i style="background:#2b5f8a"></i>KFF only</span><span><i style="background:#d5a63a"></i>Possible 2-fer / multi-program</span></div></div>
 <div>
-<div class="panel dark" style="margin-bottom:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span style="flex:1;font-size:14px"><b id="selN" style="color:var(--gold-light)">0</b> stops selected for your route</span><button class="btn sm" id="route" disabled>OPEN ROUTE IN GOOGLE MAPS →</button><button class="btn sm alt" id="clear">CLEAR</button></div>
+<div class="panel dark" style="margin-bottom:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span style="flex:1;font-size:14px"><b id="selN" style="color:var(--gold-light)">0</b> stops selected for your route</span><button class="btn sm" id="route" disabled>OPEN ROUTE IN GOOGLE MAPS →</button><button class="btn sm alt" id="clear">CLEAR STOPS</button></div>
 <div class="card-list" id="list" style="max-height:470px;overflow:auto"><div class="empty">Results show here.</div></div>
 </div></div>
 <div class="note">Distances are straight-line miles from your starting point — actual drive time depends on roads. Directions go to an official parking or access point when the KPC guide has one, otherwise to the park's POTA point. Google Maps allows up to 9 stops per route. Always check the official map, access and hunting seasons before you go.</div>
 </div></section>
 <script>
-const $=id=>document.getElementById(id);let D,map,layer,origin=null,on={pota:1,sota:1,kff:1,two:0},sel=[];
+const $=id=>document.getElementById(id);let D,map,layer,V0,origin=null,on={pota:1,sota:1,kff:1,two:0},sel=[];
 const ICON={pota:'#1d5a3a',sota:'#b5452b',kff:'#2b5f8a',multi:'#d5a63a'};
 (async()=>{D=await KPC.data();$('towns').innerHTML=D.towns.map(t=>`<option value="${t.n}">`).join('');
- map=KPC.leafletMap('map');KPC.countyLayer(map);layer=L.layerGroup().addTo(map);
+ map=KPC.leafletMap('map');KPC.countyLayer(map);layer=L.layerGroup().addTo(map);V0=[map.getCenter(),map.getZoom()];
  const q=new URLSearchParams(location.search);if(q.get('town')){$('town').value=q.get('town');pickTown()}})();
 function pickTown(){const t=D.towns.find(t=>t.n.toLowerCase()===$('town').value.trim().toLowerCase());if(!t)return;origin=[t.la,t.lo,t.n];run()}
 $('town').addEventListener('change',pickTown);$('town').addEventListener('keydown',e=>{if(e.key==='Enter')pickTown()});
@@ -95,6 +96,7 @@ function run(){ALL=ALL||items();const R=+$('rad').value;
  <div class="dist">${x.d.toFixed(1)}<small>MILES</small></div></div>`).join(''):'<div class="empty">Nothing in range — try a bigger distance.</div>';
  $('list').querySelectorAll('input[type=checkbox]').forEach(cb=>cb.onchange=()=>{const x=res[+cb.dataset.i];if(cb.checked){if(sel.length>=9){cb.checked=false;alert('Google Maps allows up to 9 stops.');return}sel.push(x)}else sel=sel.filter(s=>s.ref!==x.ref);upd()})}
 function upd(){$('selN').textContent=sel.length;$('route').disabled=!sel.length}
+$('newSearch').onclick=()=>{origin=null;sel=[];upd();$('town').value='';$('rad').value=40;$('rLbl').textContent='40 MILES';on={pota:1,sota:1,kff:1,two:0};$('prog_').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',!!on[b.dataset.k]));if(layer)layer.clearLayers();if(map&&V0)map.setView(V0[0],V0[1]);$('where').textContent='Choose a town or use your location to start.';$('list').innerHTML='<div class="empty">Results show here.</div>';try{history.replaceState(null,'',location.pathname)}catch(e){}$('town').focus()};
 $('clear').onclick=()=>{sel=[];upd();if(origin)run()};
 $('route').onclick=()=>{if(!sel.length||!origin)return;const s=[...sel].sort((a,b)=>a.d-b.d),last=s.pop();
  const u=`https://www.google.com/maps/dir/?api=1&origin=${origin[0]},${origin[1]}&destination=${last.dest[0]},${last.dest[1]}${s.length?'&waypoints='+s.map(x=>x.dest.join(',')).join('%7C'):''}`;window.open(u,'_blank','noopener')};

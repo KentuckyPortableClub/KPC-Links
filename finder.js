@@ -98,3 +98,6 @@ function restoreSearch(){const q=new URLSearchParams(location.search);const radi
 
 // Trail guide town shortcuts; actual route GIS not included in this package.
 document.querySelectorAll(".trailsearch").forEach(button=>button.addEventListener("click",()=>{ $("place").value=button.dataset.town;town();document.querySelector(".resultshead").scrollIntoView({behavior:"smooth",block:"start"});}));
+
+/* KPC: out-of-state visitors can jump to Kentucky */
+(function(){const b=document.getElementById('ky-jump');if(!b)return;b.addEventListener('click',()=>{center=[37.84,-85.7];$('place').value='';$('radius').value='200';render();if(map&&window.L)map.setView([37.8,-85.7],7,{animate:false});status.textContent='Showing locations within 200 miles of central Kentucky. Use GPS or search to change it.'})})();
