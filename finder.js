@@ -12,38 +12,28 @@ const key=d=>d[0]+':'+d[1];function persist(){try{localStorage.setItem(savedKey,
 function toggleSaved(kind,d){const k=key(d),a=saved[kind];const i=a.indexOf(k);if(i<0){a.push(k)}else{a.splice(i,1)}persist();render()}
 function drawSaved(){for(const kind of ['favorites','trip']){const el=$(kind==='favorites'?'favorites':'tripstops');el.replaceChildren();const entries=saved[kind].map(k=>data.find(d=>key(d)===k)).filter(Boolean);$(kind==='favorites'?'favcount':'tripcount').textContent=entries.length;for(const d of entries){const r=node('div','saveditem');r.append(node('span','',d[0]+' '+d[1]+' · '+d[2]));const b=node('button','tiny','Remove');b.type='button';b.addEventListener('click',()=>toggleSaved(kind,d));r.append(b);el.append(r)}if(!entries.length)el.append(node('p','meta','No saved locations yet.'))}const route=$('triproute'),stops=saved.trip.map(k=>data.find(d=>key(d)===k)).filter(Boolean).slice(0,10);if(stops.length){const points=stops.map(d=>d[3]+','+d[4]);route.href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(points.at(-1))+(points.length>1?'&waypoints='+encodeURIComponent(points.slice(0,-1).join('|')):'');route.hidden=false;route.textContent='Open '+stops.length+' trip stop'+(stops.length===1?'':'s')+' in Google Maps'}else route.hidden=true}
 $('clearplan').addEventListener('click',()=>{saved.trip=[];persist();render()});
-// Prefer a single OSM tile hostname (avoids subdomain DNS failures). If tiles fail,
-// switch to an independent provider rather than leaving broken tile placeholders.
+// Use one consistent map tile layer. Do not switch providers during zoom or pan.
+// Failed tiles can be retried by reloading the page without disturbing map markers.
 if(window.L){
-  map=L.map('map').setView([39,-97],4);
-  const tileSources=[
-    {url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',attribution:'&copy; OpenStreetMap contributors',maxZoom:19},
-    {url:'https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',attribution:'&copy; OpenStreetMap contributors &copy; CARTO',maxZoom:19},
-    {url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',attribution:'Tiles &copy; Esri',maxZoom:19}
-  ];
-  let tileIndex=0,baseTiles=null,failedTiles=0,loadedTiles=0;
+  map=L.map('map',{zoomAnimation:true,markerZoomAnimation:true}).setView([39,-97],4);
   const tileNotice=document.createElement('p');
-  tileNotice.setAttribute('role','status');tileNotice.setAttribute('aria-live','polite');
+  tileNotice.setAttribute('role','status');
+  tileNotice.setAttribute('aria-live','polite');
   tileNotice.style.cssText='font-size:13px;color:#f0c96b;margin:7px 0';
   document.getElementById('map').insertAdjacentElement('afterend',tileNotice);
-  function useTileSource(index){
-    if(baseTiles)map.removeLayer(baseTiles);
-    tileIndex=index;failedTiles=0;loadedTiles=0;
-    const source=tileSources[index];
-    baseTiles=L.tileLayer(source.url,{attribution:source.attribution,maxZoom:source.maxZoom,crossOrigin:true});
-    baseTiles.on('tileload',()=>{loadedTiles++;if(loadedTiles>=2)tileNotice.textContent=''});
-    baseTiles.on('tileerror',()=>{
-      failedTiles++;
-      if(failedTiles>=3&&loadedTiles===0){
-        if(tileIndex+1<tileSources.length){tileNotice.textContent='Map tiles unavailable; trying another map provider…';useTileSource(tileIndex+1)}
-        else tileNotice.textContent='Map tiles could not load. Check your connection or content blocker; park search and directions links still work.';
-      }
-    });
-    baseTiles.addTo(map);
-  }
-  useTileSource(0);
+  const baseTiles=L.tileLayer('https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+    attribution:'&copy; OpenStreetMap contributors &copy; CARTO',
+    maxZoom:19, tileSize:256, zoomOffset:0, updateWhenIdle:true
+  });
+  let tileErrors=0;
+  baseTiles.on('tileerror',()=>{
+    tileErrors++;
+    if(tileErrors>=3)tileNotice.textContent='Some map tiles did not load. Check your internet connection or content blocker, then refresh the page.';
+  });
+  baseTiles.on('load',()=>{tileErrors=0;tileNotice.textContent='';});
+  baseTiles.addTo(map);
   layer=L.layerGroup().addTo(map);
-  window.addEventListener('load',()=>map.invalidateSize());
+  window.addEventListener('load',()=>map.invalidateSize({animate:false}));
 }else{status.textContent='Map library could not load; search results can still work.'}
 const rad=n=>n*Math.PI/180;
 function miles(a,b,c,d){const dl=rad(c-a),dn=rad(d-b),h=Math.sin(dl/2)**2+Math.cos(rad(a))*Math.cos(rad(c))*Math.sin(dn/2)**2;return 3958.7613*2*Math.asin(Math.min(1,Math.sqrt(h)))}
