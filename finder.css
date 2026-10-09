@@ -60,3 +60,13 @@ html{scroll-behavior:smooth}
 .finder-footer-actions a:hover{border-color:#d5a63a;color:#f0c96b}
 .finder-source{background:#070707;border-top:1px solid #292929;padding:16px 24px 22px;border-radius:0 0 10px 10px}
 @media(max-width:760px){.finder-footer{flex-direction:column;align-items:flex-start}.finder-footer-actions{justify-content:flex-start}.finder-jump a{flex:1 1 140px}.map-legend{align-items:flex-start;flex-direction:column}}
+
+/* Legible Leaflet park details popups */
+#map .leaflet-popup-content-wrapper{background:#fffaf0!important;color:#171717!important;border:2px solid #d5a63a;border-radius:10px;box-shadow:0 8px 24px #0006}
+#map .leaflet-popup-content{color:#171717!important;font-size:15px;line-height:1.55;min-width:175px;overflow-wrap:anywhere}
+#map .leaflet-popup-content strong,#map .leaflet-popup-content div{color:#171717!important}
+#map .leaflet-popup-content a{color:#155b3b!important;text-decoration:underline;font-weight:800}
+#map .leaflet-popup-tip{background:#fffaf0!important}
+#map .leaflet-popup-close-button{color:#171717!important;font-size:22px!important}
+#map .kpc-user-location{background:transparent;border:0}
+#map .kpc-user-location span{display:block;width:20px;height:20px;border-radius:50%;background:#1378ff;border:3px solid white;box-shadow:0 0 0 5px #1378ff55,0 2px 8px #0008}
