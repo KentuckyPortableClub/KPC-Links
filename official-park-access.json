@@ -1,0 +1,45 @@
+{
+  "US-1253": {
+    "trailheads": [
+      {
+        "name": "Jenny\u2019s Creek",
+        "lat": 37.7849,
+        "lon": -82.83633
+      },
+      {
+        "name": "Swamp Branch",
+        "lat": 37.73781,
+        "lon": -82.9066
+      },
+      {
+        "name": "Royalton",
+        "lat": 37.6762,
+        "lon": -83.02173
+      },
+      {
+        "name": "Jane Beshear",
+        "lat": 37.68063,
+        "lon": -83.03163
+      }
+    ],
+    "access_url": "https://parks.ky.gov/explore/dawkins-line-rail-trail-7831",
+    "note": "Kentucky State Parks currently posts trail access advisories. Check before visiting."
+  },
+  "US-1277": {
+    "camping_url": "https://parks.ky.gov/parks/find-a-park/cumberland-falls-state-resort-park-7786",
+    "access_url": "https://parks.ky.gov/parks/find-a-park/cumberland-falls-state-resort-park-7786",
+    "note": "Official park page; confirm campsite availability and trail access."
+  },
+  "US-1286": {
+    "access_url": "https://parks.ky.gov/explore/natural-bridge-state-resort-park-7796",
+    "note": "Official park page; check trails and current access."
+  },
+  "US-3791": {
+    "access_url": "https://www.nps.gov/trte/planyourvisit/places-to-go-in-kentucky.htm",
+    "note": "Historic route includes private property; trail designation does not imply public access."
+  },
+  "US-4572": {
+    "access_url": "https://www.nps.gov/lecl/planyourvisit/maps.htm",
+    "note": "Historic route is not necessarily a walkable trail."
+  }
+}

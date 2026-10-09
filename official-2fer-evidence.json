@@ -1,0 +1,42 @@
+{
+  "US-1253": {
+    "status": "Official park/trail identity documented; 2-fer not verified",
+    "evidence": "Kentucky State Parks identifies Dawkins Line Rail Trail, its trailheads, and access advisories.",
+    "source": "https://parks.ky.gov/explore/dawkins-line-rail-trail-7831",
+    "map": "https://parks.ky.gov/explore/dawkins-line-rail-trail-7831",
+    "map_label": "Kentucky State Parks trail maps and access",
+    "caution": "Trail access advisory; avoid affected Breathitt County section. No second activation program established."
+  },
+  "US-1277": {
+    "status": "Official park/trail connection documented; 2-fer not verified",
+    "evidence": "Kentucky State Parks identifies Moonbow Trail #1 as a section of Sheltowee Trace and publishes a park Trails Map.",
+    "source": "https://parks.ky.gov/parks/find-a-park/cumberland-falls-state-resort-park-7786",
+    "map": "https://parks.ky.gov/parks/find-a-park/cumberland-falls-state-resort-park-7786",
+    "map_label": "Kentucky State Parks trail map",
+    "caution": "Trail crossing is not proof of a second POTA, SOTA or WWFF eligible boundary."
+  },
+  "US-1286": {
+    "status": "Official park trail resources documented; 2-fer not verified",
+    "evidence": "Kentucky State Parks publishes Natural Bridge State Resort Park visitor and trail information.",
+    "source": "https://parks.ky.gov/explore/natural-bridge-state-resort-park-7796",
+    "map": "https://parks.ky.gov/explore/natural-bridge-state-resort-park-7796",
+    "map_label": "Kentucky State Parks trails and access",
+    "caution": "Do not assume nearby Sheltowee Trace or forest land creates a second qualifying reference."
+  },
+  "US-3791": {
+    "status": "Official NPS historic route maps documented; 2-fer not verified",
+    "evidence": "NPS publishes Kentucky Trail of Tears visitor sites and route maps, but warns that the route crosses private and public lands.",
+    "source": "https://www.nps.gov/trte/planyourvisit/maps.htm",
+    "map": "https://www.nps.gov/trte/planyourvisit/maps.htm",
+    "map_label": "NPS historic route maps",
+    "caution": "Historic route is not a continuous public hiking trail; park/site eligibility must be checked individually."
+  },
+  "US-4572": {
+    "status": "Official NPS historic route maps documented; 2-fer not verified",
+    "evidence": "NPS publishes a trail atlas and Kentucky visitor resources for Lewis & Clark National Historic Trail.",
+    "source": "https://www.nps.gov/lecl/planyourvisit/maps.htm",
+    "map": "https://www.nps.gov/lecl/planyourvisit/maps.htm",
+    "map_label": "NPS historic route maps and atlas",
+    "caution": "The POTA point in this dataset is outside Kentucky; do not treat it as a Kentucky activation location or proof of access."
+  }
+}

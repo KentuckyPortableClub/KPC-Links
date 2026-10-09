@@ -1,0 +1,440 @@
+{
+  "US-1253": {
+    "url": "https://parks.ky.gov/explore/dawkins-line-rail-trail-7831",
+    "label": "Kentucky State Parks trail map and trailhead access",
+    "type": "official park or trail resource",
+    "note": "Source page may contain multiple maps; confirm the applicable trail and POTA boundary.",
+    "source_agency": "Kentucky State Parks",
+    "reviewed": "2026-10-08"
+  },
+  "US-3791": {
+    "url": "https://www.nps.gov/trte/planyourvisit/maps.htm",
+    "label": "National Park Service historic trail map",
+    "type": "official park or trail resource",
+    "note": "Source page may contain multiple maps; confirm the applicable trail and POTA boundary.",
+    "source_agency": "National Park Service",
+    "reviewed": "2026-10-08"
+  },
+  "US-4572": {
+    "url": "https://www.nps.gov/lecl/planyourvisit/maps.htm",
+    "label": "National Park Service historic trail map",
+    "type": "official park or trail resource",
+    "note": "Source page may contain multiple maps; confirm the applicable trail and POTA boundary.",
+    "source_agency": "National Park Service",
+    "reviewed": "2026-10-08"
+  },
+  "US-11181": {
+    "url": "https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5427184.pdf",
+    "label": "US Forest Service trail overview map",
+    "type": "official park or trail resource",
+    "note": "Source page may contain multiple maps; confirm the applicable trail and POTA boundary.",
+    "source_agency": "US Forest Service",
+    "reviewed": "2026-10-08"
+  },
+  "US-4238": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4239": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4556": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4557": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4558": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4559": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4560": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4561": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4562": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4563": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4564": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4566": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4567": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4568": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4569": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4571": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4573": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4574": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4575": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4576": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4577": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4578": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4579": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4580": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4581": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-4582": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-5788": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-5804": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-5993": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-6043": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-8617": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-8618": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9757": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9877": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9878": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9879": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9881": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9898": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9901": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9904": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9905": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9906": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9907": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9908": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9909": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9910": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9920": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9922": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9923": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9925": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-9984": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-10009": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-10258": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-10507": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-10508": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-10714": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-11001": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-11122": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-11123": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-11167": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-11904": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-11953": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-12096": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-13170": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-13594": {
+    "url": "https://www.nps.gov/subjects/nationaltrailssystem/maps.htm",
+    "label": "NPS national trails map directory",
+    "type": "official directory (not park-specific)",
+    "note": "Find the individual trail map; coverage is not guaranteed."
+  },
+  "US-1277": {
+    "url": "https://parks.ky.gov/parks/find-a-park/cumberland-falls-state-resort-park-7786",
+    "label": "Kentucky State Parks park and trail information",
+    "type": "official park or trail resource",
+    "note": "Source page may contain multiple maps; confirm the applicable trail and POTA boundary.",
+    "source_agency": "Kentucky State Parks",
+    "reviewed": "2026-10-08"
+  },
+  "US-1286": {
+    "url": "https://parks.ky.gov/explore/natural-bridge-state-resort-park-7796",
+    "label": "Kentucky State Parks park and hiking information",
+    "type": "official park or trail resource",
+    "note": "Source page may contain multiple maps; confirm the applicable trail and POTA boundary.",
+    "source_agency": "Kentucky State Parks",
+    "reviewed": "2026-10-08"
+  }
+}
