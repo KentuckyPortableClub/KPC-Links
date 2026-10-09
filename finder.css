@@ -70,3 +70,9 @@ html{scroll-behavior:smooth}
 /* Leave Leaflet pane positions and transforms to Leaflet itself. */
 #map .leaflet-tooltip.kpc-gis-tooltip{background:#fffaf0!important;color:#171717!important;border:2px solid #d5a63a!important;border-radius:7px!important;box-shadow:0 3px 12px #0008!important;padding:6px 10px!important;font-size:14px!important;font-weight:750!important;opacity:1!important;white-space:normal!important;max-width:260px}
 #map .leaflet-tooltip.kpc-gis-tooltip:before{border-top-color:#d5a63a!important}
+
+/* Map repair: Leaflet controls all tile, pane, marker and transform geometry. */
+#map.leaflet-container{overflow:hidden}
+#map .leaflet-tile{box-sizing:content-box!important;max-width:none!important;max-height:none!important}
+#map .leaflet-marker-icon,#map .leaflet-marker-shadow{max-width:none!important;max-height:none!important}
+#map .leaflet-tooltip-pane{z-index:1100!important;pointer-events:none}
