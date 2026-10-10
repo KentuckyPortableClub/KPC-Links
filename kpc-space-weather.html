@@ -65,7 +65,7 @@ body.field .page-jump-nav{display:none!important}
 .hero{background:radial-gradient(circle at 76% 24%,rgba(213,166,58,.24),transparent 23%),linear-gradient(135deg,rgba(7,19,13,.9) 0%,rgba(15,47,32,.7) 45%,rgba(7,7,7,.78) 100%),#07130d url("hdr-river.jpg") center/cover no-repeat}
 @media(max-width:760px){.hero{background:radial-gradient(circle at 76% 24%,rgba(213,166,58,.24),transparent 23%),linear-gradient(135deg,rgba(7,19,13,.9) 0%,rgba(15,47,32,.7) 45%,rgba(7,7,7,.78) 100%),#07130d url("hdr-river-mobile.jpg") center/cover no-repeat}}
 </style>
-<link rel="stylesheet" href="kpc-nav.css?v=20261010b">
+<link rel="stylesheet" href="kpc-nav.css?v=20261010c">
 </head>
 <body>
 <header class="site-nav">
@@ -77,11 +77,11 @@ body.field .page-jump-nav{display:none!important}
     <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
     <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
       <a href="index.html">Home</a>
-<a href="campout.html">Campout</a>
-<a href="parks.html">Parks</a>
-<a href="events.html">Events</a>
-<a href="photos.html">Photos</a>
-<a href="find.html" class="nav-search-icon">🔍</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
       <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
       <div class="nav-more" id="kpcNavMore">
         <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
@@ -89,14 +89,14 @@ body.field .page-jump-nav{display:none!important}
           <div class="nav-drop-section">
             <div class="nav-drop-label">Parks &amp; Activations</div>
             <a href="find.html" role="menuitem"><span class="ni">&#128506;</span>Find a Park</a>
-            <a href="parks.html" role="menuitem"><span class="ni">&#128196;</span>Parks List</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
             <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
           </div>
           <div class="nav-drop-section">
             <div class="nav-drop-label">Field Reference</div>
             <a href="kpc-frequency-guide.html" role="menuitem"><span class="ni">&#128225;</span>Frequency Guide</a>
-            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128214;</span>Band Conditions</a>
-            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127767;</span>Weather</a>
+            <a href="kpc-space-weather.html" role="menuitem" aria-current="page"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
             <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
             <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
           </div>
@@ -156,7 +156,7 @@ body.field .page-jump-nav{display:none!important}
 <div class="quick"><div class="tip"><strong>Portable tip: don't stop at one band.</strong><p>If 20m is quiet, check 17m, 15m, 30m or 40m. Space weather changes the odds; it does not replace listening.</p></div><div class="tip"><strong>Portable tip: work the greyline.</strong><p>The half hour around your sunrise and sunset (shown at the top) is often the best DX window on 40m, 80m and 160m.</p></div></div></div></section>
 <section class="section dark" id="band-activity"><div class="section-inner"><div class="section-heading"><div class="kicker">LIVE CONDITIONS</div><h2>Which Bands Are Active?</h2><p>Real signal reports around Kentucky, the day/night gray line and the latest solar numbers, so you can pick a band before you leave the truck.</p></div><div id="kpc-bands"></div></div></section>
 <link rel="stylesheet" href="kpc-band-maps.css">
-<script src="kpc-band-maps.js" defer></script>
+<script src="kpc-band-maps.js?v=20261010c" defer></script>
 
 <section data-fold class="section" style="padding-top:0" id="geomagnetic"><div class="section-inner"><p class="eyebrow-dark">Kp HISTORY &amp; FORECAST</p><h2>Geomagnetic Activity</h2><p class="lead">The last twelve 3-hour Kp readings, then what NOAA predicts. Green is quiet, gold is active, red is storm level.</p><div class="aurora" id="auroraNote" hidden></div><div class="bar-chart" id="kpChart"><div class="loading">Loading Kp history…</div></div><div class="two"><div class="panel"><h3>How To Read Kp</h3><div class="list"><div class="list-item"><strong>Kp 0–2 • Quiet</strong><span>The calm baseline for HF. Band openings still depend on solar flux, time of day and your station.</span></div><div class="list-item"><strong>Kp 3–4 • Unsettled / Active</strong><span>Paths get more variable, with more fading (QSB). Try more than one band before deciding it is dead.</span></div><div class="list-item"><strong>Kp 5–9 • Storm (G1–G5)</strong><span>Expect weak, fluttery signals, especially on northern and polar paths. Regional 40m contacts often still work.</span></div></div></div><div class="panel"><h3>Next 24 Hours</h3><p>NOAA's predicted Kp by 3-hour period. Guidance, not a guarantee.</p><div class="forecast-grid" id="forecast"><div class="loading">Loading forecast…</div></div><div class="peaks" id="peaks"></div></div></div></div></section>
 
@@ -315,7 +315,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&S.loadedA
 
 </script>
 <script src="kpc-fold.js" defer></script>
-<script src="kpc-search.js?v=20261010b" defer></script><script>
+<script src="kpc-search.js?v=20261010c" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

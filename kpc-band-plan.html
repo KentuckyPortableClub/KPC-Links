@@ -18,7 +18,7 @@
 <!-- /KPC icons -->
 <meta name="description" content="US amateur band plan by license class: which CW, digital and phone portions Technician, General and Extra operators can use, with popular activity frequencies.">
 <link rel="stylesheet" href="kpc-tools.css">
-<script src="kpc-tools.js?v=20261010b"></script>
+<script src="kpc-tools.js?v=20261010c"></script>
 <style>
 .bp-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.bp-ctl .lbl{font-size:12px;font-weight:900;letter-spacing:1.5px;color:var(--muted)}
 .bp-leg{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:13px}.bp-leg span{display:inline-flex;align-items:center;gap:6px}.bp-leg i{width:18px;height:12px;border-radius:3px;display:inline-block}
@@ -34,7 +34,8 @@
 .bp-pop{margin-top:12px;padding:10px 12px;background:#f7f2e4;border:1px solid #e3d9bd;font-size:13px}.bp-pop b{color:#1d5a3a}
 .bp-special{margin-top:16px;background:#fff8e6;border:1px solid #e3d9bd;border-left:5px solid #b5452b;padding:14px 18px;font-size:14px}
 @media(max-width:560px){.bp-row{grid-template-columns:84px 1fr}.bp-row b{font-size:10px;letter-spacing:.3px}.bp-scale{margin-left:94px}.bp-band{padding:14px}.bp-seg{font-size:9px;letter-spacing:0}}
-</style><link rel="stylesheet" href="kpc-nav.css?v=20261010b">
+footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px}footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}footer.kpc-about-footer .footer-actions a:hover{border-color:#e5c87b;color:#e5c87b}@media(max-width:600px){footer.kpc-about-footer{flex-direction:column;align-items:flex-start}}
+</style><link rel="stylesheet" href="kpc-nav.css?v=20261010c">
 </head>
 <body>
 <header class="site-nav">
@@ -46,11 +47,11 @@
     <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
     <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
       <a href="index.html">Home</a>
-<a href="campout.html">Campout</a>
-<a href="parks.html">Parks</a>
-<a href="events.html">Events</a>
-<a href="photos.html">Photos</a>
-<a href="find.html" class="nav-search-icon">🔍</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
       <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
       <div class="nav-more" id="kpcNavMore">
         <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
@@ -58,14 +59,14 @@
           <div class="nav-drop-section">
             <div class="nav-drop-label">Parks &amp; Activations</div>
             <a href="find.html" role="menuitem"><span class="ni">&#128506;</span>Find a Park</a>
-            <a href="parks.html" role="menuitem"><span class="ni">&#128196;</span>Parks List</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
             <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
           </div>
           <div class="nav-drop-section">
             <div class="nav-drop-label">Field Reference</div>
             <a href="kpc-frequency-guide.html" role="menuitem"><span class="ni">&#128225;</span>Frequency Guide</a>
-            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128214;</span>Band Conditions</a>
-            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127767;</span>Weather</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
             <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
             <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
           </div>
@@ -135,7 +136,7 @@ let s0='all';try{s0=localStorage.getItem('kpcBandPlanClass')||'all'}catch(e){}if
 </script>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
-<script src="kpc-search.js?v=20261010b" defer></script><script>
+<script src="kpc-search.js?v=20261010c" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

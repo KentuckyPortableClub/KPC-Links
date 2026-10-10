@@ -18,8 +18,8 @@
 <!-- /KPC icons -->
 <meta name="description" content="Wire lengths for portable dipoles, end-fed half-waves and verticals, plus coax loss.">
 <link rel="stylesheet" href="kpc-tools.css">
-<script src="kpc-tools.js?v=20261010b"></script>
-<link rel="stylesheet" href="kpc-nav.css?v=20261010b">
+<script src="kpc-tools.js?v=20261010c"></script>
+<link rel="stylesheet" href="kpc-nav.css?v=20261010c">
 </head>
 <body>
 <header class="site-nav">
@@ -31,11 +31,11 @@
     <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
     <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
       <a href="index.html">Home</a>
-<a href="campout.html">Campout</a>
-<a href="parks.html">Parks</a>
-<a href="events.html">Events</a>
-<a href="photos.html">Photos</a>
-<a href="find.html" class="nav-search-icon">🔍</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
       <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
       <div class="nav-more" id="kpcNavMore">
         <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
@@ -43,15 +43,15 @@
           <div class="nav-drop-section">
             <div class="nav-drop-label">Parks &amp; Activations</div>
             <a href="find.html" role="menuitem"><span class="ni">&#128506;</span>Find a Park</a>
-            <a href="parks.html" role="menuitem"><span class="ni">&#128196;</span>Parks List</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
             <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
           </div>
           <div class="nav-drop-section">
             <div class="nav-drop-label">Field Reference</div>
             <a href="kpc-frequency-guide.html" role="menuitem"><span class="ni">&#128225;</span>Frequency Guide</a>
-            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128214;</span>Band Conditions</a>
-            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127767;</span>Weather</a>
-            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
+            <a href="kpc-antenna.html" role="menuitem" aria-current="page"><span class="ni">&#128251;</span>Antenna Guide</a>
             <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
           </div>
           <div class="nav-drop-section">
@@ -127,7 +127,8 @@
 <div class="tablewrap"><table class="list"><thead><tr><th>BAND</th><th>FREQ</th><th>DIPOLE TOTAL</th><th>EACH DIPOLE LEG</th><th>EFHW WIRE</th><th>¼-WAVE VERTICAL</th></tr></thead><tbody id="tbl"></tbody></table></div>
 <div class="note">Lengths use the classic formulas — half-wave 468 ÷ MHz feet, quarter-wave 234 ÷ MHz feet — which already allow for typical wire end effects. Real antennas vary with wire, insulation, height and nearby objects, so <b>cut a little long and trim</b> while checking SWR. End-fed half-waves usually need a 49:1 (or 64:1) transformer. Transmit only within your license privileges.</div>
 </div></section>
-<style>.an-h{display:block;font:700 19px Georgia,serif;margin-bottom:10px}.stat small{display:block;font-size:13px;color:#cfcabf;margin-top:4px;font-weight:400}</style>
+<style>.an-h{display:block;font:700 19px Georgia,serif;margin-bottom:10px}.stat small{display:block;font-size:13px;color:#cfcabf;margin-top:4px;font-weight:400}footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px}footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}footer.kpc-about-footer .footer-actions a:hover{border-color:#e5c87b;color:#e5c87b}@media(max-width:600px){footer.kpc-about-footer{flex-direction:column;align-items:flex-start}}
+</style>
 <script>
 const $=id=>document.getElementById(id);
 const BANDS=[['160m',1.9],['80m',3.6],['60m',5.357],['40m',7.2],['30m',10.125],['20m',14.2],['17m',18.1],['15m',21.2],['12m',24.9],['10m',28.5],['6m',50.1]];
@@ -170,7 +171,7 @@ $('f').addEventListener('input',()=>{mark();calc()});['units','coax','len','pw',
 
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
-<script src="kpc-search.js?v=20261010b" defer></script><script>
+<script src="kpc-search.js?v=20261010c" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

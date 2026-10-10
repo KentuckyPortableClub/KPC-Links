@@ -54,11 +54,15 @@ const ago=t=>{const m=Math.round((Date.now()-t)/60000);return m<1?'just now':m<6
 const R=Math.PI/180;
 function sunPos(d){const jd=d.getTime()/864e5+2440587.5,n=jd-2451545.0;const L=(280.460+0.9856474*n)%360,g=((357.528+0.9856003*n)%360)*R;const lam=(L+1.915*Math.sin(g)+0.020*Math.sin(2*g))*R,eps=(23.439-0.0000004*n)*R;const dec=Math.asin(Math.sin(eps)*Math.sin(lam)),ra=Math.atan2(Math.cos(eps)*Math.sin(lam),Math.cos(lam));const gmst=((280.46061837+360.98564736629*n)%360+360)%360;let sl=((ra/R-gmst)%360+540)%360-180;return{dec,lon:sl,lat:dec/R,ra,gmst}}
 function sunAlt(lat,lon,s){const H=((s.gmst+lon)*R)-s.ra;return Math.asin(Math.sin(lat*R)*Math.sin(s.dec)+Math.cos(lat*R)*Math.cos(s.dec)*Math.cos(H))/R}
-function nightPoly(s,h){const pts=[];let darkN=s.lat<h;/* alt at north pole = declination */const darkS=-s.lat<h;
- for(let lon=-180;lon<=180;lon+=2){let prev=sunAlt(-90,lon,s)-h,cross=null;for(let lat=-89;lat<=90;lat+=1){const f=sunAlt(lat,lon,s)-h;if((prev<0)!==(f<0)){cross=lat-1+(-prev)/(f-prev);break}prev=f}
-  pts.push([cross===null?(darkN?90:-90):cross,lon])}
- const out=pts.slice();if(darkN&&!darkS){out.push([90,180],[90,-180])}else if(darkS&&!darkN){out.push([-90,180],[-90,-180])}else if(darkN&&darkS){return[[ -90,-180],[-90,180],[90,180],[90,-180]]}
- return out}
+function nightPoly(s,h){/* night = everything where the sun is below h degrees: a circle of radius (90+h) around the anti-sun point */
+ const r=(90+h)*R,la=-s.dec,lo=(s.lon+180)*R,ring=[];let prev=null,off=0;
+ for(let d=0;d<=360;d+=2){const th=d*R,lat=Math.asin(Math.sin(la)*Math.cos(r)+Math.cos(la)*Math.sin(r)*Math.cos(th));
+  let lon=(lo+Math.atan2(Math.sin(th)*Math.sin(r)*Math.cos(la),Math.cos(r)-Math.sin(la)*Math.sin(lat)))/R;
+  if(prev!==null){while(lon+off-prev>180)off-=360;while(lon+off-prev<-180)off+=360}lon+=off;prev=lon;ring.push([lat/R,lon])}
+ const span=ring[ring.length-1][1]-ring[0][1];
+ if(Math.abs(span)>300){/* the night circle wraps around a pole: close it through that pole */
+  const pole=s.dec<h*R?90:-90;ring.push([pole,ring[ring.length-1][1]],[pole,ring[0][1]])}
+ return[-360,0,360].map(k=>ring.map(([a,b])=>[a,b+k]))}
 function sunStatus(){const s=sunPos(new Date()),a=sunAlt(KY.lat,KY.lon,s);let t,sub;if(a>6){t='DAYLIGHT';sub='Sun '+a.toFixed(0)+'° above the horizon. Higher bands (20m to 10m) usually do best.'}else if(a>=-6){t='GRAY LINE';sub='Sunrise or sunset around Kentucky. Often good for long-distance contacts.'}else{t='NIGHT';sub='Sun '+Math.abs(a).toFixed(0)+'° below the horizon. Lower bands (80m to 30m) usually do best.'}return{t,sub}}
 
 /* ---------- data ---------- */
@@ -107,7 +111,7 @@ function paintMap(){if(!window.L)return;const el=$('#kb-map');
   L.circleMarker([KY.lat,KY.lon],{radius:8,color:'#000',weight:2,fillColor:'#d5a63a',fillOpacity:1}).addTo(map).bindTooltip('Kentucky',{permanent:false});}
  paintNight();paintPaths()}
 function paintNight(){if(!map)return;night.clearLayers();const s=sunPos(new Date());
- [[0,.22],[-6,.16],[-12,.16]].forEach(([h,o])=>{try{L.polygon(nightPoly(s,h),{stroke:false,fillColor:'#0a0a2a',fillOpacity:o,interactive:false}).addTo(night)}catch(e){}});
+ [[0,.22],[-6,.16],[-12,.16]].forEach(([h,o])=>{try{nightPoly(s,h).forEach(rg=>L.polygon(rg,{stroke:false,fillColor:'#0a0a2a',fillOpacity:o,interactive:false}).addTo(night))}catch(e){}});
  L.marker([s.lat,s.lon],{icon:L.divIcon({className:'kb-sun',html:'☀',iconSize:[26,26],iconAnchor:[13,13]}),interactive:false,keyboard:false}).addTo(night)}
 function paintPaths(){if(!map)return;layers.clearLayers();let n=0,tot=0;
  const add=(rows,kind)=>{(rows||[]).forEach(r=>{const code=Number(r.band);if(sel.size&&!sel.has(code))return;const p=g4c(r.loc);if(!p)return;const c=Number(r.c);tot+=c;n++;
