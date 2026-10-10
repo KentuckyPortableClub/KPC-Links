@@ -24,6 +24,7 @@
 .hero{background:linear-gradient(rgba(7,20,14,.82),rgba(7,7,7,.74)),#07130d url("hdr-river.jpg") center/cover no-repeat}
 @media(max-width:760px){.hero{background:linear-gradient(rgba(7,20,14,.82),rgba(7,7,7,.74)),#07130d url("hdr-river-mobile.jpg") center/cover no-repeat}}
 </style>
+<link rel="stylesheet" href="kpc-nav.css?v=20261010c">
 </head>
 <body>
 <style id="kpc-sitebar-css">
@@ -45,8 +46,56 @@
 .ksb nav.ksb-links{position:static;top:auto;z-index:auto;border-bottom:0;padding:0;background:none}.ksb nav.ksb-links a{margin-right:0}
 @media(max-width:1180px){.ksb nav.ksb-links{position:absolute;top:100%;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45)}}
 </style>
-<div class="ksb" role="banner"><div class="ksb-in"><a class="ksb-brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span>Kentucky Portable Club<small>Est. 2026</small></span></a><button class="ksb-tog" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="ksb-links">☰</button><nav class="ksb-links" id="ksb-links" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="toolbox.html" aria-current="page">Tool Box</a><a href="kpc-live.html" class="nav-live"><i></i>Live</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="members.html">Members</a><a href="contact.html">Contact</a></nav></div></div>
-<script>(function(){const t=document.querySelector('.ksb-tog'),n=document.getElementById('ksb-links');t.addEventListener('click',()=>{const o=n.classList.toggle('open');t.setAttribute('aria-expanded',String(o))});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');t.setAttribute('aria-expanded','false')}))})();</script>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="find.html" role="menuitem"><span class="ni">&#128506;</span>Find a Park</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-frequency-guide.html" role="menuitem"><span class="ni">&#128225;</span>Frequency Guide</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
 
 
 <section class="hero"><div class="eyebrow">KENTUCKY PORTABLE CLUB • ON THE AIR</div><h1>KPC <span>POTA SPOTTER</span></h1><p>Automatic Discord alerts when one of our monitored operators is spotted on Parks on the Air.</p></section>
@@ -54,4 +103,12 @@
 <section class="section"><h2>Find Live POTA Spots</h2><p>Open the official POTA spots page to see the latest activity and search for these operators.</p><a class="button" href="https://pota.app/#/spots" target="_blank" rel="noopener">OPEN POTA LIVE SPOTS →</a></section>
 <section class="section"><h2>Administrator Setup</h2><p>One-time GitHub and Discord setup is required before automatic notifications begin.</p><ol class="steps"><li>In your Discord channel, open <strong>Edit Channel → Integrations → Webhooks → New Webhook</strong> and copy the webhook URL. Keep it private.</li><li>On GitHub, open your website repository's <strong>Settings → Secrets and variables → Actions → New repository secret</strong>.</li><li>Name the secret <code>KPC_DISCORD_WEBHOOK</code> and paste the webhook URL as its value.</li><li>Upload <code>kpc-spots.html</code> to the repository root and <code>kpc-pota-discord.yml</code> into <code>.github/workflows/</code>.</li><li>In GitHub <strong>Settings → Actions → General</strong>, set workflow permissions to <strong>Read and write permissions</strong> so the bot can remember spots already sent.</li><li>Open <strong>Actions → KPC POTA Discord Spotter → Run workflow</strong> to test. No Discord message is sent unless a monitored operator has a recent spot.</li></ol><p><strong>Note:</strong> GitHub's scheduled runs can be delayed; notifications are not guaranteed to arrive at the exact five-minute mark.</p></section></main>
 <footer>KPC — Kentucky Portable Club • Est. 2026<div style="text-align:center;padding:8px 0 14px"><a href="find.html" style="color:inherit;font-weight:700">FIND IT →</a></div></footer>
-<script src="kpc-search.js" defer></script></body></html>
+<script src="kpc-search.js?v=20261010c" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body></html>
