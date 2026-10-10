@@ -16,6 +16,21 @@ $('clearplan').addEventListener('click',()=>{saved.trip=[];persist();render()});
 // Failed tiles can be retried by reloading the page without disturbing map markers.
 if(window.L){
   map=L.map('map',{zoomAnimation:true,markerZoomAnimation:true}).setView([39,-97],4);
+  (function mapSize(){const el=document.getElementById('map'),wrap=el.parentElement;
+   const bar=document.createElement('div');bar.className='mapbar';
+   bar.innerHTML='<span class="mapbar-l">MAP SIZE</span><button type="button" data-s="s" class="secondary tiny">Small</button><button type="button" data-s="m" class="secondary tiny">Medium</button><button type="button" data-s="t" class="secondary tiny">Tall</button><button type="button" data-s="f" class="primary tiny mapfs">⛶ Full screen</button><button type="button" class="secondary tiny maplay" hidden>☰ Layers</button><button type="button" class="primary tiny mapx" hidden>✕ Close map</button>';
+   el.insertAdjacentElement('beforebegin',bar);
+   const H={s:'280px',m:'',t:'78vh'};let cur='m';try{cur=localStorage.getItem('kpcMapSize')||'m'}catch(e){}if(cur==='f')cur='m';
+   const fx=()=>setTimeout(()=>map.invalidateSize(),60);
+   function set(k){if(k==='f')return full(true);cur=k;try{localStorage.setItem('kpcMapSize',k)}catch(e){}el.style.height=H[k]||'';bar.querySelectorAll('[data-s]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.s===k)));fx()}
+   function sizeFull(){if(wrap.classList.contains('kpc-mapfull')){el.style.height=Math.max(200,(window.innerHeight||document.documentElement.clientHeight)-bar.offsetHeight-26)+'px'}else el.style.height=H[cur]||''}
+   window.addEventListener('resize',()=>{if(wrap.classList.contains('kpc-mapfull')){sizeFull();map.invalidateSize()}});
+   function full(on){wrap.classList.toggle('kpc-mapfull',on);document.documentElement.classList.toggle('kpc-nofs-scroll',on);bar.querySelector('.mapx').hidden=!on;bar.querySelector('.maplay').hidden=!on;if(!on){const g=wrap.querySelector('.gis-controls');g&&g.classList.remove('open')}bar.querySelector('.mapfs').hidden=on;sizeFull();
+    if(on){try{history.pushState({kpcfs:1},'')}catch(e){}}fx()}
+   bar.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.classList.contains('maplay')){const g=wrap.querySelector('.gis-controls');g&&g.classList.toggle('open')}else if(b.classList.contains('mapx')){if(history.state&&history.state.kpcfs){history.back()}else full(false)}else set(b.dataset.s)});
+   window.addEventListener('keydown',e=>{if(e.key==='Escape'&&wrap.classList.contains('kpc-mapfull'))full(false)});
+   window.addEventListener('popstate',()=>{if(wrap.classList.contains('kpc-mapfull'))full(false)});
+   set(cur);})();
   const tileNotice=document.createElement('p');
   tileNotice.setAttribute('role','status');
   tileNotice.setAttribute('aria-live','polite');

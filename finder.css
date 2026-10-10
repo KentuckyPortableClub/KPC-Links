@@ -91,3 +91,11 @@ html{scroll-behavior:smooth}
 #map .kpc-pop .lk{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:6px}#map .kpc-pop .lk a{font-weight:700}
 
 .kynotice{margin:16px 0 0;padding:12px 16px;border:1px solid #98783b;border-left:5px solid #d5a63a;background:#1c1b16;color:#f0e6c8;font-size:14px;line-height:1.5}.kynotice strong{color:#f0c96b}.kynotice button{margin:6px 0 0 6px;padding:7px 13px;font-size:13px;white-space:nowrap}
+
+.mapbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 10px}.mapbar-l{font-size:11px;font-weight:800;letter-spacing:.14em;color:#c9c5bc;margin-right:2px}.mapbar button{padding:8px 12px;font-size:13px}.mapbar [aria-pressed=true]{background:#d5a63a;color:#090909}.mapbar .mapx{margin-left:auto}
+.mapwrap.kpc-mapfull{position:fixed;inset:0;z-index:2147483000;border-radius:0;padding:8px;display:flex;flex-direction:column;background:#0b0b0b;max-width:none!important;overflow:hidden}
+.mapwrap.kpc-mapfull #map{min-height:0}.mapwrap.kpc-mapfull .map-legend,.mapwrap.kpc-mapfull .footnote,.mapwrap.kpc-mapfull [role=status]{display:none}
+.kpc-nofs-scroll,.kpc-nofs-scroll body{overflow:hidden}
+@media(max-width:850px){.mapbar-l{display:none}.mapbar button{flex:1 1 auto}.mapbar .mapx{margin-left:0;flex:1 1 100%}}
+.mapwrap.kpc-mapfull .gis-controls{display:none;position:absolute;z-index:1100;top:58px;left:12px;max-width:min(380px,calc(100% - 24px));max-height:calc(100% - 80px);overflow:auto;margin:0;box-shadow:0 8px 28px #000a}.mapwrap.kpc-mapfull .gis-controls.open{display:block}
+.mapwrap.kpc-mapfull .kynotice,.mapwrap.kpc-mapfull .gis-missing,.mapwrap.kpc-mapfull .gis-note,.mapwrap.kpc-mapfull .gis-notice{display:none}.kpc-nofs-scroll .kss-float{display:none!important}.mapwrap.kpc-mapfull .gis-controls{max-height:min(420px,calc(100% - 80px))}
