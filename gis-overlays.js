@@ -182,5 +182,7 @@
  Object.keys(bounds).forEach(k=>$('gis-'+k)?.addEventListener('change',()=>toggleBoundary(k)));
  $('gis-load')?.addEventListener('click',load);
  $('gis-inside-btn')?.addEventListener('click',insideCheck);
+ /* layers pre-checked in the HTML: draw them once the map exists */
+ setTimeout(()=>{Object.keys(bounds).forEach(k=>{if($('gis-'+k)?.checked)toggleBoundary(k)});if(Object.keys(sources).some(k=>$('gis-'+k)?.checked))load()},300);
  window.kpcGIS={bounds,getBoundary,inside,matchPota}; /* exposed for testing */
 })();

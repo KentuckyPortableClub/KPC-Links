@@ -156,3 +156,27 @@ path.kpc-bnd{filter:drop-shadow(0 0 1.2px rgba(0,0,0,.95)) drop-shadow(0 0 1px r
 #map .kpc-popcard .saveactions button{background:#fff;color:#171717;border:1px solid #b8933f;padding:5px 9px;border-radius:7px;font-size:12px}
 #map .kpc-popcard .popgo{display:block;width:100%;margin-top:10px;background:#d5a63a;color:#111;border:0;border-radius:8px;padding:9px;font-weight:800;font-size:14px;cursor:pointer}
 #map .kpc-popcard .pophint{font-size:11px;color:#5b5648!important;margin-top:6px;text-align:center}
+/* v-h layout: map + nearby side by side on desktop */
+.mapgrid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:16px}
+.mapgrid>section{margin:0}
+.resultssec .listnote{margin:8px 2px 10px;font-size:12px;color:#a3b3a9}
+.resultssec .resultshead{padding:4px 2px 10px}
+.resultssec #items{max-height:none;overflow:visible}
+@media(min-width:1000px){
+ .mapgrid{grid-template-columns:minmax(0,1fr) 380px;align-items:stretch}
+ .resultssec{display:flex;flex-direction:column;height:0;min-height:100%;overflow:hidden}
+ .resultssec #items{flex:1 1 auto;min-height:0;max-height:none;overflow:auto;position:relative}
+}
+.mapwrap.kpc-mapfull{margin:0!important}
+.mapwrap.kpc-mapfull #gis-inside-btn,.mapwrap.kpc-mapfull #gis-inside,.mapwrap.kpc-mapfull #gis-candidates{display:none}
+.mapwrap.kpc-mapfull .gis-controls{background:#13241e;border:1px solid #d5a63a;border-radius:12px;padding:6px 10px}
+.mapwrap.kpc-mapfull .gis-controls .layerdrop{margin:6px 0}
+.mapwrap.kpc-mapfull .gis-controls .gis-note{display:block}
+.mapwrap.kpc-mapfull .gis-controls{max-height:calc(100% - 140px)!important}
+.mapwrap.kpc-mapfull .mapbar [data-s]{display:none}
+@media(max-width:600px){.layerdrop .drophint{display:none}}
+
+/* fullscreen: flex-fill, ignore normal map height */
+.mapwrap.kpc-mapfull{height:100vh;height:100dvh}
+.mapwrap.kpc-mapfull #map,#finder-map.kpc-mapfull #map{flex:1 1 auto!important;height:auto!important;min-height:0!important;margin-top:6px;border-radius:8px}
+.mapwrap.kpc-mapfull #gis-bstatus,.mapwrap.kpc-mapfull #gis-status,.mapwrap.kpc-mapfull .footnote,.mapwrap.kpc-mapfull .map-legend{display:none}
