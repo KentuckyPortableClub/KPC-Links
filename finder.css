@@ -181,3 +181,7 @@ path.kpc-bnd{filter:drop-shadow(0 0 1.2px rgba(0,0,0,.95)) drop-shadow(0 0 1px r
 .mapwrap.kpc-mapfull{height:100vh;height:100dvh}
 .mapwrap.kpc-mapfull #map,#finder-map.kpc-mapfull #map{flex:1 1 auto!important;height:auto!important;min-height:0!important;margin-top:6px;border-radius:8px}
 .mapwrap.kpc-mapfull #gis-bstatus,.mapwrap.kpc-mapfull #gis-status,.mapwrap.kpc-mapfull .footnote,.mapwrap.kpc-mapfull .map-legend{display:none}
+
+/* Also-in and possible 2-fer lines on cards (v20261010d) */
+.entry .alsoin{margin-top:6px}.entry .alsoin b{color:#f0c96b}
+.entry .twofer{margin:8px 0 2px;padding:7px 10px;border-left:4px solid #3ecf6e;background:rgba(62,207,110,.1);border-radius:6px;font-size:13px;color:#e9f3ec}.entry .twofer b{color:#7ee2a0}
