@@ -19,6 +19,7 @@
 .hero{background:linear-gradient(rgba(7,7,7,.8),rgba(7,19,13,.72)),#07130d url("hdr-river.jpg") center/cover no-repeat}
 @media(max-width:760px){.hero{background:linear-gradient(rgba(7,7,7,.8),rgba(7,19,13,.72)),#07130d url("hdr-river-mobile.jpg") center/cover no-repeat}}
 </style>
+<link rel="stylesheet" href="kpc-nav.css">
 </head><body>
 <style id="kpc-sitebar-css">
 .ksb{position:sticky;top:0;z-index:2000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18);font-family:Arial,Helvetica,sans-serif}
@@ -39,7 +40,55 @@
 .ksb nav.ksb-links{position:static;top:auto;z-index:auto;border-bottom:0;padding:0;background:none}.ksb nav.ksb-links a{margin-right:0}
 @media(max-width:1180px){.ksb nav.ksb-links{position:absolute;top:100%;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45)}}
 </style>
-<div class="ksb" role="banner"><div class="ksb-in"><a class="ksb-brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span>Kentucky Portable Club<small>Est. 2026</small></span></a><button class="ksb-tog" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="ksb-links">☰</button><nav class="ksb-links" id="ksb-links" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="toolbox.html" aria-current="page">Tool Box</a><a href="kpc-live.html" class="nav-live"><i></i>Live</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="members.html">Members</a><a href="contact.html">Contact</a></nav></div></div>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+<a href="campout.html">Campout</a>
+<a href="events.html">Events</a>
+<a href="photos.html">Photos</a>
+<a href="find.html" class="nav-search-icon">🔍</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="find.html" role="menuitem"><span class="ni">&#128506;</span>Find a Park</a>
+            <a href="parks.html" role="menuitem"><span class="ni">&#128196;</span>Parks List</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-frequency-guide.html" role="menuitem"><span class="ni">&#128225;</span>Frequency Guide</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128214;</span>Band Conditions</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127767;</span>Weather</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
 <script>(function(){const t=document.querySelector('.ksb-tog'),n=document.getElementById('ksb-links');t.addEventListener('click',()=>{const o=n.classList.toggle('open');t.setAttribute('aria-expanded',String(o))});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');t.setAttribute('aria-expanded','false')}))})();</script>
 
 
@@ -61,4 +110,12 @@
 </div>
 <h2 class="section-title">Common Activity Frequencies</h2><p class="sub">Based on the supplied “Considerate Operator’s Frequency Guide.” Frequencies are in MHz and represent traditional activity centers or ranges, not reserved channels. The list is not exhaustive.</p><label for="search"><strong>Find a frequency, band or mode</strong></label><div><input class="filter" id="search" type="search" placeholder="Try SSTV, 14.230, QRP, digital…" autocomplete="off"></div><div class="table-wrap"><table id="freqTable"><thead><tr><th scope="col">Frequency (MHz)</th><th scope="col">Mode / Activity</th></tr></thead><tbody>
 <tr><td>1.810</td><td>CW QRP activity</td></tr><tr><td>1.910</td><td>SSB QRP activity</td></tr><tr><td>3.560</td><td>CW QRP activity</td></tr><tr><td>3.590</td><td>RTTY / Data DX</td></tr><tr><td>3.845</td><td>SSTV</td></tr><tr><td>3.885</td><td>AM activity</td></tr><tr><td>3.985</td><td>QRP SSB activity</td></tr><tr><td>7.030</td><td>CW QRP activity</td></tr><tr><td>7.040</td><td>RTTY / Data DX</td></tr><tr><td>7.171</td><td>SSTV</td></tr><tr><td>7.173</td><td>Digital SSTV (D-SSTV)</td></tr><tr><td>7.285</td><td>QRP SSB activity</td></tr><tr><td>7.290</td><td>AM activity</td></tr><tr><td>14.060</td><td>CW QRP activity</td></tr><tr><td>14.100</td><td>IBP / NCDXF beacons</td></tr><tr><td>14.230</td><td>SSTV</td></tr><tr><td>14.233</td><td>Digital SSTV (D-SSTV)</td></tr><tr><td>14.236</td><td>Digital voice activity</td></tr><tr><td>14.285</td><td>QRP SSB activity</td></tr><tr><td>14.286</td><td>AM activity</td></tr><tr><td>18.110</td><td>IBP / NCDXF beacons</td></tr><tr><td>18.1625</td><td>Digital voice activity</td></tr><tr><td>21.060</td><td>CW QRP activity</td></tr><tr><td>21.150</td><td>IBP / NCDXF beacons</td></tr><tr><td>21.340</td><td>SSTV</td></tr><tr><td>21.385</td><td>QRP SSB activity</td></tr><tr><td>24.930</td><td>IBP / NCDXF beacons</td></tr><tr><td>28.060</td><td>CW QRP activity</td></tr><tr><td>28.200</td><td>IBP / NCDXF beacons</td></tr><tr><td>28.385</td><td>QRP SSB activity</td></tr><tr><td>28.680</td><td>SSTV</td></tr><tr><td>29.600</td><td>FM simplex activity</td></tr>
-</tbody></table></div><p id="count" class="muted" aria-live="polite"></p><div class="notice" style="margin-top:28px"><strong>Source &amp; updates</strong><p>Band edges and activity examples are adapted from the two reference charts provided for this page. Regulations and allocations can change. Use the <a href="https://www.arrl.org/band-plan" target="_blank" rel="noopener" style="text-decoration:underline;font-weight:700">ARRL band-plan page</a> and current FCC Part 97 rules as your authoritative operating references.</p></div></main><footer class="footer"><strong>KPC — Kentucky Portable Club</strong><br>Get Outside. Get On The Air.<div style="text-align:center;padding:8px 0 14px"><a href="find.html" style="color:inherit;font-weight:700">FIND IT →</a></div></footer><script>const search=document.getElementById('search'),rows=[...document.querySelectorAll('#freqTable tbody tr')],count=document.getElementById('count');function filter(){const q=search.value.trim().toLowerCase();let n=0;for(const row of rows){const visible=row.textContent.toLowerCase().includes(q);row.hidden=!visible;if(visible)n++}count.textContent=`Showing ${n} of ${rows.length} activity frequencies.`}search.addEventListener('input',filter);filter();</script><script src="kpc-search.js" defer></script></body></html>
+</tbody></table></div><p id="count" class="muted" aria-live="polite"></p><div class="notice" style="margin-top:28px"><strong>Source &amp; updates</strong><p>Band edges and activity examples are adapted from the two reference charts provided for this page. Regulations and allocations can change. Use the <a href="https://www.arrl.org/band-plan" target="_blank" rel="noopener" style="text-decoration:underline;font-weight:700">ARRL band-plan page</a> and current FCC Part 97 rules as your authoritative operating references.</p></div></main><footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer><script>const search=document.getElementById('search'),rows=[...document.querySelectorAll('#freqTable tbody tr')],count=document.getElementById('count');function filter(){const q=search.value.trim().toLowerCase();let n=0;for(const row of rows){const visible=row.textContent.toLowerCase().includes(q);row.hidden=!visible;if(visible)n++}count.textContent=`Showing ${n} of ${rows.length} activity frequencies.`}search.addEventListener('input',filter);filter();</script><script src="kpc-search.js" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body></html>

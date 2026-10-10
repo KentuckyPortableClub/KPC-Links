@@ -157,21 +157,55 @@ body.field .page-jump-nav{display:none!important}
 @media(max-width:900px){.kpc-hero-shade,.kpc-hero-shade.center{background:linear-gradient(180deg,rgba(5,5,5,.2) 0%,rgba(5,5,5,.55) 38%,rgba(5,5,5,.74) 100%)}}
 .hero h1,.hero .hero-copy,.hero .eyebrow,.hero-inner p{text-shadow:0 2px 14px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.6)}
 </style>
+<link rel="stylesheet" href="kpc-nav.css">
 </head>
 <body>
 <header class="site-nav">
   <div class="nav-inner">
-    <a class="brand" href="index.html" aria-label="Kentucky Portable Club home"><img src="KPC-logo.png" alt="Kentucky Portable Club logo"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a>
-    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
-    <nav class="nav-links" aria-label="Primary navigation">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
       <a href="index.html">Home</a>
-      <a href="about.html" aria-current="page">About</a>
-      <a href="campout.html">Campout</a>
-      <a href="events.html">Events</a>
-      <a href="parks.html">Parks</a><a href="toolbox.html">Tool Box</a><a href="kpc-live.html" class="nav-live"><i></i>Live</a>
-      <a href="resources.html">Resources</a>
-      <a href="join.html">Join KPC</a><a href="members.html">Members</a>
-      <a href="contact.html">Contact</a>
+<a href="campout.html">Campout</a>
+<a href="events.html">Events</a>
+<a href="photos.html">Photos</a>
+<a href="find.html" class="nav-search-icon">🔍</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="find.html" role="menuitem"><span class="ni">&#128506;</span>Find a Park</a>
+            <a href="parks.html" role="menuitem"><span class="ni">&#128196;</span>Parks List</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-frequency-guide.html" role="menuitem"><span class="ni">&#128225;</span>Frequency Guide</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128214;</span>Band Conditions</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127767;</span>Weather</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
@@ -359,15 +393,7 @@ body.field .page-jump-nav{display:none!important}
 
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
 
-<script>
-const toggle=document.querySelector('.menu-toggle');
-const nav=document.querySelector('.nav-links');
-toggle.addEventListener('click',()=>{
-  const open=nav.classList.toggle('open');
-  toggle.setAttribute('aria-expanded',open);
-});
-document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
-</script>
+
 <style id="kpc-fold-css">.kpc-fold-btn{display:none}@media(max-width:760px){.kpc-fold-btn{display:inline-flex;align-items:center;gap:6px;margin-top:16px;padding:10px 18px;border:1px solid var(--gold,#d5a63a);border-radius:999px;background:transparent;color:inherit;font:900 12px Arial,Helvetica,sans-serif;letter-spacing:1.5px;cursor:pointer}.kpc-folded>.section-inner>*:not(.section-heading){display:none!important}.kpc-folded{padding-bottom:40px!important}}</style>
 <script id="kpc-fold-js">/* KPC: on phones, long sections start folded with a SHOW MORE button */
 (function(){const mq=matchMedia('(max-width:760px)'),secs=[...document.querySelectorAll('[data-fold]')];
@@ -377,5 +403,13 @@ function apply(){secs.forEach(s=>s._set&&s._set(!mq.matches))}apply();mq.addEven
 function openTo(id){const t=id&&document.getElementById(id),s=t&&t.closest('[data-fold]');if(s&&s._set&&s.classList.contains('kpc-folded')){s._set(true);requestAnimationFrame(()=>t.scrollIntoView())}}
 window.addEventListener('hashchange',()=>openTo(location.hash.slice(1)));openTo(location.hash.slice(1));
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a)openTo(a.getAttribute('href').slice(1))})})();</script>
-<script src="kpc-search.js" defer></script></body>
+<script src="kpc-search.js" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body>
 </html>

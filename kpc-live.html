@@ -57,9 +57,58 @@
 #band-activity{padding:44px 24px}
 @media(max-width:900px){.lv-grid{grid-template-columns:1fr}.lv-best{margin-left:0;max-width:none}.lv-status .lv-w{gap:16px 22px}}
 @media(max-width:640px){.lv-hero{padding:26px 16px 20px}.lv-w{padding:0 16px}.lv-spots .lv-w{flex-wrap:wrap}.lv-spots .lv-chips{order:3;flex-basis:100%}#lv-map{height:400px}.lv-scrub{margin-left:0;width:100%}.lv-scrub input{flex:1}.lv-card{padding:16px}.wx{grid-template-columns:repeat(2,1fr)}}
-</style></head>
+</style><link rel="stylesheet" href="kpc-nav.css">
+</head>
 <body>
-<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="toolbox.html">Tool Box</a><a href="kpc-live.html" class="nav-live" aria-current="page"><i></i>Live</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="members.html">Members</a><a href="contact.html">Contact</a></nav></div></header>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+<a href="campout.html">Campout</a>
+<a href="events.html">Events</a>
+<a href="photos.html">Photos</a>
+<a href="find.html" class="nav-search-icon">🔍</a>
+      <a href="kpc-live.html" class="nav-live" aria-current="page"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="find.html" role="menuitem"><span class="ni">&#128506;</span>Find a Park</a>
+            <a href="parks.html" role="menuitem"><span class="ni">&#128196;</span>Parks List</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-frequency-guide.html" role="menuitem"><span class="ni">&#128225;</span>Frequency Guide</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128214;</span>Band Conditions</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127767;</span>Weather</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
 <main>
 <section class="lv-hero"><div class="lv-w"><div class="k">KENTUCKY &bull; RIGHT NOW</div><h1>HAPPENING <span>NOW</span></h1><p>Bands, spots, space weather, field weather, radar and lightning for Kentucky, all in one place. Check it before you leave the house.</p><div class="lv-stamp"><span class="lv-dot"></span> Updated <span id="lv-stamp">--</span> &middot; refreshes about every 5 minutes</div></div></section>
 <section class="lv-status" aria-label="Status"><div class="lv-w"><span class="lv-pill">STATUS</span><div class="lv-st" id="lv-sun"><b>--</b></div><div class="lv-st" id="lv-sfi"><b>SFI --</b></div><div class="lv-st" id="lv-kp"><b>Kp --</b></div><div class="lv-st" id="lv-parks"><b>-- parks</b></div><div class="lv-best" id="lv-best">Checking conditions...</div></div></section>
@@ -79,5 +128,13 @@
 <section class="section dark" id="band-activity"><div class="section-inner"><div class="section-heading"><div class="kicker">SIGNAL MAP</div><h2>Where Kentucky Is Being Heard</h2><p>Real signal reports from the last two hours, the day/night gray line, and a table of busy bands.</p></div><div id="kpc-bands"></div></div></section>
 <div class="lv-w"><div class="lv-go" style="padding-top:28px"><a href="finder.html">FIND A PARK &rarr;</a><a href="kpc-planner.html">PLAN A TRIP &rarr;</a><a href="kpc-band-plan.html">BAND PLAN &rarr;</a><a href="kpc-park-sheet.html">PRINT A PARK SHEET &rarr;</a><a href="kpc-space-weather.html">FULL RADIO CONDITIONS &rarr;</a></div></div>
 </main>
-<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="resources.html">RESOURCES →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
-<script src="kpc-search.js" defer></script><script src="kpc-band-strip.js" defer></script><script src="kpc-band-maps.js" defer></script><script src="kpc-live.js" defer></script><script src="kpc-search.js" defer></script></body></html>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
+<script src="kpc-search.js" defer></script><script src="kpc-band-strip.js" defer></script><script src="kpc-band-maps.js" defer></script><script src="kpc-live.js" defer></script><script src="kpc-search.js" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body></html>
