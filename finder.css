@@ -105,3 +105,42 @@ path.kpc-bnd{filter:drop-shadow(0 0 1.2px rgba(0,0,0,.95)) drop-shadow(0 0 1px r
 .selcard{margin:0;padding:12px;border-bottom:2px solid #d5a63a;background:#1a1a12}.selcard[hidden]{display:none}.selhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:#f0c96b}.entry.sel{outline:2px solid #d5a63a;outline-offset:-2px}
 @media(min-width:851px){#items{max-height:78vh;overflow:auto}}
 @media(max-width:850px){.content>.mapwrap{order:-1}}
+.layerdrop{margin:14px 0 0;border:1px solid #31463c;border-radius:10px;background:#0f1b17;overflow:hidden}
+.layerdrop>summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:800;color:#f0c96b;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.layerdrop>summary::-webkit-details-marker{display:none}
+.layerdrop>summary::after{content:"▾";font-size:13px;color:#f0c96b;transition:transform .2s;margin-left:auto}
+.layerdrop[open]>summary::after{transform:rotate(180deg)}
+.layerdrop>summary .drophint{font-size:11px;font-weight:600;letter-spacing:.3px;color:#a3b3a9;text-transform:uppercase}
+.layerdrop>.gis-group{border-top:1px solid #31463c;padding:14px 16px;margin:0;background:#13241e}
+.layerdrop>.gis-group>strong{display:none}
+.layerdrop .gis-row{display:flex;flex-wrap:wrap;gap:8px 14px}
+.layerdrop .gis-cb{display:inline-flex;align-items:center;gap:7px;padding:5px 2px;cursor:pointer;color:#f2f5ed;font-size:14px}
+.layerdrop .gis-cb i{width:14px;height:14px;border-radius:3px;display:inline-block;flex:0 0 14px}
+.layerdrop .gis-note{margin:10px 0 0;color:#a3b3a9;font-size:12px}
+.layerdrop .gis-btn{margin-top:10px}
+
+#finder-map{padding:12px}
+#finder-map #map{width:100%;height:min(72vh,620px);min-height:360px;border-radius:12px;overflow:hidden;margin-top:8px}
+#finder-map .map-legend{padding:4px 2px 10px}
+#finder-map .footnote,#finder-map .gis-note{color:#a3b3a9;font-size:12px;margin:10px 0 0}
+#finder-map .gis-btn-big{margin-top:12px;width:100%;padding:12px;font-weight:800}
+#finder-map .gis-inside{margin-top:10px;font-size:14px}
+
+.selcardsec{padding:14px}
+.selcardsec #selcard{margin:0}
+.selcardsec #selhint{margin:4px 2px 0;color:#a3b3a9}
+.selcardsec #selcard:not([hidden])+ #selhint{display:none}
+.selcard{border:2px solid #d5a63a;border-radius:12px;background:#1a1a12;padding:14px}
+.selhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;color:#f0c96b;font-weight:800}
+.entry.sel{outline:2px solid #d5a63a;outline-offset:-2px}
+
+.resultssec{padding:14px}
+.resultssec #items{max-height:60vh;overflow:auto}
+
+@media(min-width:851px){
+ .resultssec{padding:16px}
+ .resultssec #items{max-height:70vh}
+}
+
+#finder-about .panel-notice{background:transparent;border:0;padding:0}
+#finder-about .gis-missing summary{cursor:pointer;color:#f0c96b;font-weight:700;padding:6px 0}
