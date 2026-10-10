@@ -44,7 +44,7 @@ async function noaaBasic(){try{const [k,f]=await Promise.all([jget('https://serv
 /* ---------- POTA spots bar ---------- */
 const mhz=f=>{const n=parseFloat(f);return isNaN(n)?esc(f):(n/1000).toFixed(3)};
 const tm=s=>new Date(String(s.spotTime).endsWith('Z')?s.spotTime:s.spotTime+'Z');
-async function spots(){try{const all=await jget('https://api.pota.app/spot/activator');
+async function spots(){try{const all=await jget('https://api.pota.app/spot/activator');allSpots=all;drawSpotPins();
   const club=all.filter(s=>MEMBERS.includes(base(s.activator)));const ky=all.filter(s=>String(s.locationDesc||'').split(',').some(x=>x.trim()==='US-KY'));
   const show=[...club,...ky.filter(s=>!club.includes(s))].sort((a,b)=>(MEMBERS.includes(base(b.activator))-MEMBERS.includes(base(a.activator)))||(tm(b)-tm(a)));
   parksN=new Set(ky.map(s=>s.reference)).size;membersN=new Set(club.map(s=>base(s.activator))).size;
@@ -65,14 +65,14 @@ function alertsUI(list,where){const box=$('lv-alerts');
  const g={};list.forEach(f=>{const p=f.properties||{};g[p.event]=(g[p.event]||0)+1});const ev=Object.entries(g).sort((a,b)=>(/Warning/.test(b[0])-/Warning/.test(a[0]))||b[1]-a[1]);
  const sev=ev.some(e=>/Warning/.test(e[0]));box.className='alert'+(sev?' sev':'');
  box.innerHTML='<b>&#9888; Active NWS alerts'+(where?' for '+esc(where):'')+':</b> '+ev.slice(0,6).map(e=>esc(e[0])+(e[1]>1&&!where?' ('+e[1]+')':'')).join(', ')+'. <a href="https://alerts.weather.gov/search?area=KY" target="_blank" rel="noopener">See details &rarr;</a>'}
-async function alerts(){try{const j=await jget('https://api.weather.gov/alerts/active?area=KY');alertsUI(j.features||[])}catch(e){alertsUI(null)}}
+async function alerts(){try{const j=await jget('https://api.weather.gov/alerts/active?area=KY');warnData=j.features||[];drawWarnings();alertsUI(j.features||[])}catch(e){alertsUI(null)}}
 function useLocation(){const b=$('lv-loc');if(!navigator.geolocation){b.textContent='LOCATION NOT AVAILABLE';return}b.textContent='LOCATING...';
  navigator.geolocation.getCurrentPosition(async p=>{const la=p.coords.latitude,lo=p.coords.longitude;b.textContent='\u{1F4CD} UPDATE MY LOCATION';
   try{const j=await jget('https://api.open-meteo.com/v1/forecast?latitude='+la+'&longitude='+lo+Q);youCard=wxCard('YOUR LOCATION',j.current).replace('class="w"','class="w you"');weather();
    try{const a=await jget('https://api.weather.gov/alerts/active?point='+la.toFixed(4)+','+lo.toFixed(4));alertsUI(a.features||[],'your location')}catch(e){}}catch(e){b.textContent='COULD NOT GET WEATHER'}},()=>{b.textContent='LOCATION BLOCKED'},{timeout:12000,maximumAge:300000})}
 
 /* ---------- radar + lightning map ---------- */
-let map,cityLayer,radarFrames=[],cur,lightning,counties,loopTimer=null,playing=false,idx=0,framesBuilt=false;
+let warnLayer,spotLayer,windLayer,stateLayer,warnData=[],allSpots=[],spotAll=false,windOn=false,map,cityLayer,radarFrames=[],cur,lightning,counties,loopTimer=null,playing=false,idx=0,framesBuilt=false;
 const RTILE=m=>'https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913'+(m?'-m'+String(m).padStart(2,'0')+'m':'')+'/{z}/{x}/{y}.png';
 const OFFS=[50,45,40,35,30,25,20,15,10,5,0];
 function frameLabel(off){const d=new Date(Math.floor(Date.now()/300000)*300000-off*60000);return d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}
@@ -89,6 +89,14 @@ function initMap(){if(typeof L==='undefined'||typeof KPC==='undefined'||!$('lv-m
  lightning.on('tileerror',()=>{if(++le===3)$('lv-lnote').textContent='The lightning layer did not load. It may be down for a moment.'});
  lightning.on('load',()=>{le=0;$('lv-lnote').textContent=''});
  cityLayer=L.layerGroup().addTo(map);radarCities();
+ [['warnp',410],['kyp',420],['windp',630],['spotp',640]].forEach(p=>{map.createPane(p[0]);map.getPane(p[0]).style.zIndex=p[1]});
+ warnLayer=L.layerGroup().addTo(map);spotLayer=L.layerGroup().addTo(map);windLayer=L.layerGroup();stateLayer=L.layerGroup().addTo(map);
+ drawWarnings();drawSpotPins();loadStates();
+ $('lv-c-warn').onclick=()=>{toggle('lv-c-warn')?warnLayer.addTo(map):map.removeLayer(warnLayer)};
+ $('lv-c-spots').onclick=()=>{toggle('lv-c-spots')?spotLayer.addTo(map):map.removeLayer(spotLayer)};
+ $('lv-c-all').onclick=()=>{spotAll=toggle('lv-c-all');drawSpotPins();if(spotAll)map.setView([39.5,-90],4)};
+ $('lv-c-wind').onclick=()=>{windOn=toggle('lv-c-wind');$('lv-wdleg').style.display=windOn?'':'none';if(windOn){windLayer.addTo(map);loadWind()}else map.removeLayer(windLayer)};
+ $('lv-c-ky').onclick=()=>{toggle('lv-c-ky')?stateLayer.addTo(map):map.removeLayer(stateLayer)};
  KPC.countyLayer(map).then(g=>{counties=g;map.removeLayer(g);setChip('lv-c-counties',false)}).catch(()=>{});
  $('lv-slider').addEventListener('input',()=>{buildFrames();stop();show(Number($('lv-slider').value))});
  $('lv-play').onclick=()=>playing?stop():play();
@@ -96,6 +104,32 @@ function initMap(){if(typeof L==='undefined'||typeof KPC==='undefined'||!$('lv-m
  $('lv-c-light').onclick=()=>{toggle('lv-c-light')?lightning.addTo(map):map.removeLayer(lightning)};
  $('lv-c-counties').onclick=()=>{const on=toggle('lv-c-counties');if(counties)on?counties.addTo(map):map.removeLayer(counties)};
  setTimeout(()=>map.invalidateSize(),300)}
+
+/* ---------- extra map layers ---------- */
+const WCOL=e=>/Tornado/.test(e)?'#d7191c':/Severe Thunderstorm/.test(e)?'#f28c00':/Flash Flood/.test(e)?'#0a7d3b':/Flood/.test(e)?'#2e9e5b':/Winter|Ice|Snow|Freez/.test(e)?'#5a7bd8':'#b8860b';
+function drawWarnings(){if(!warnLayer)return;warnLayer.clearLayers();let n=0;
+ warnData.forEach(f=>{const g=f.geometry;if(!g)return;const p=f.properties||{};if(!/Warning|Watch/.test(p.event||''))return;const col=WCOL(p.event||'');n++;
+  L.geoJSON(g,{pane:'warnp',style:{color:col,weight:3,fillColor:col,fillOpacity:.24}}).bindPopup('<b>'+esc(p.event)+'</b><br>'+esc(p.headline||'')+'<br><small>'+esc(p.areaDesc||'')+'</small><br><a href="https://alerts.weather.gov/search?area=KY" target="_blank" rel="noopener">NWS details</a>').addTo(warnLayer)});
+ $('lv-wnote').textContent=n?n+' warning area'+(n>1?'s':'')+' shaded on the map':'No storm-based warning areas right now'}
+function drawSpotPins(){if(!spotLayer)return;spotLayer.clearLayers();let n=0,m=0;
+ allSpots.forEach(s=>{const la=Number(s.latitude),lo=Number(s.longitude);if(!isFinite(la)||!isFinite(lo)||(!la&&!lo))return;
+  const ky=String(s.locationDesc||'').split(',').some(x=>x.trim()==='US-KY'),mem=MEMBERS.includes(base(s.activator));if(!spotAll&&!ky&&!mem)return;n++;if(mem)m++;
+  L.circleMarker([la,lo],{radius:mem?10:7,color:mem?'#171717':'#fff',weight:2.5,fillColor:mem?'#f0c030':'#2fa84f',fillOpacity:1,pane:'spotp'})
+   .bindPopup('<b>'+esc(s.name||s.parkName||s.reference)+'</b> ('+esc(s.reference)+')<br><b>'+esc(s.activator)+'</b> &middot; '+mhz(s.frequency)+' MHz '+esc(s.mode)+(s.comments?'<br><small>'+esc(s.comments)+'</small>':'')+'<br><a href="https://pota.app/#/park/'+encodeURIComponent(s.reference)+'" target="_blank" rel="noopener">POTA park page</a>').addTo(spotLayer)});
+ $('lv-snote').textContent=n?n+' park'+(n>1?'s':'')+' on the air'+(spotAll?' (all US)':' in Kentucky')+(m?', '+m+' KPC':'')+' (gold = KPC member)':'No parks on the air '+(spotAll?'':'in Kentucky ')+'right now'}
+const WCOLS=v=>v<5?'#6f9fd8':v<10?'#2fa86a':v<15?'#c99a00':v<25?'#f07d1e':'#d7191c';
+const CMP=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+async function loadWind(){if(!map||!windLayer)return;const la=['36.60','37.40','38.20','39.00'],xs=['-89.00','-87.70','-86.40','-85.10','-83.80','-82.50'],A=[],B=[];la.forEach(y=>xs.forEach(x=>{A.push(y);B.push(x)}));
+ try{const j=await jget('https://api.open-meteo.com/v1/forecast?latitude='+A.join(',')+'&longitude='+B.join(',')+'&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph');const a=Array.isArray(j)?j:[j];windLayer.clearLayers();
+  a.forEach((x,i)=>{const c=x.current;if(!c)return;const sp=Math.round(c.wind_speed_10m),dir=c.wind_direction_10m,g=Math.round(c.wind_gusts_10m),rot=(dir+180)%360;
+   L.marker([+A[i],+B[i]],{pane:'windp',icon:L.divIcon({className:'',iconSize:[0,0],html:'<div class="wd" style="color:'+WCOLS(sp)+'"><svg width="30" height="30" viewBox="-15 -15 30 30" style="transform:rotate('+rot+'deg)"><path d="M0,-13 L7,7 L0,3 L-7,7 Z" fill="currentColor" stroke="#fff" stroke-width="1.6"/></svg><span>'+sp+'</span></div>'})})
+    .bindTooltip(sp+' mph from the '+CMP[Math.round(dir/22.5)%16]+(g>sp?', gusts '+g:''),{direction:'top'}).addTo(windLayer)});$('lv-wdnote').textContent='Wind now: arrows point the way the wind blows, number = mph'}catch(e){$('lv-wdnote').textContent='Wind data could not load right now.'}}
+async function loadStates(){try{const u='https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized_Boundaries/FeatureServer/0/query?where=1%3D1&geometry=-92.5%2C35.5%2C-80.5%2C40.2&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=STATE_NAME&outSR=4326&geometryPrecision=3&f=geojson';
+  const j=await jget(u,20000);stateLayer.clearLayers();
+  (j.features||[]).forEach(f=>{const nm=(f.properties||{}).STATE_NAME;
+   if(nm==='Kentucky'){L.geoJSON(f,{pane:'kyp',interactive:false,style:{color:'#fff',weight:8,opacity:.9,fill:false}}).addTo(stateLayer);L.geoJSON(f,{pane:'kyp',interactive:false,style:{color:'#111',weight:3.5,opacity:1,fill:false}}).addTo(stateLayer)}
+   else{const g=L.geoJSON(f,{pane:'kyp',interactive:false,style:{color:'#333',weight:1.6,opacity:.85,dashArray:'5 5',fill:false}}).addTo(stateLayer);const b=g.getBounds(),c=b.getCenter(),la=Math.min(39.6,Math.max(35.9,c.lat)),lo=Math.min(-82,Math.max(-91.2,c.lng));
+    L.marker([la,lo],{pane:'kyp',interactive:false,icon:L.divIcon({className:'',iconSize:[0,0],html:'<div class="stl">'+esc(nm)+'</div>'})}).addTo(stateLayer)}})}catch(e){}}
 const frames=()=>framesBuilt?radarFrames:[cur];
 function toggle(id){const b=$(id),on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);return on}
 function setChip(id,on){$(id).setAttribute('aria-pressed',on)}
@@ -108,7 +142,7 @@ function stop(){playing=false;clearInterval(loopTimer);$('lv-play').innerHTML='&
 function openSignalMap(){const t=setInterval(()=>{const d=document.getElementById('kb-det');if(d){clearInterval(t);if(!d.open)d.open=true}},300);setTimeout(()=>clearInterval(t),15000)}
 function init(){renderStatus();noaaBasic();spots();weather();alerts();initMap();openSignalMap();
  $('lv-loc').onclick=useLocation;
- setInterval(spots,60000);setInterval(()=>{noaaBasic();weather();alerts();renderStatus()},300000);
+ setInterval(spots,60000);setInterval(()=>{noaaBasic();weather();alerts();renderStatus();if(windOn)loadWind()},300000);
  setInterval(()=>{renderStatus();stamp()},60000);stamp();
  setInterval(()=>{if(cur&&!playing){cur.setUrl(RTILE(0)+'?t='+Math.floor(Date.now()/300000))}},300000)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
