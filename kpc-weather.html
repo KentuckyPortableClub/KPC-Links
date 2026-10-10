@@ -45,7 +45,7 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
 .hero{background:linear-gradient(120deg,rgba(7,19,13,.9),rgba(16,36,25,.68)),#07130d url("hdr-river.jpg") center/cover no-repeat}
 @media(max-width:760px){.hero{background:linear-gradient(120deg,rgba(7,19,13,.9),rgba(16,36,25,.68)),#07130d url("hdr-river-mobile.jpg") center/cover no-repeat}}
 </style>
-<link rel="stylesheet" href="kpc-nav.css">
+<link rel="stylesheet" href="kpc-nav.css?v=20261010b">
 </head>
 <body>
 <style id="kpc-sitebar-css">
@@ -77,6 +77,7 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
     <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
       <a href="index.html">Home</a>
 <a href="campout.html">Campout</a>
+<a href="parks.html">Parks</a>
 <a href="events.html">Events</a>
 <a href="photos.html">Photos</a>
 <a href="find.html" class="nav-search-icon">🔍</a>
@@ -116,7 +117,6 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
     </nav>
   </div>
 </header>
-<script>(function(){const t=document.querySelector('.ksb-tog'),n=document.getElementById('ksb-links');t.addEventListener('click',()=>{const o=n.classList.toggle('open');t.setAttribute('aria-expanded',String(o))});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');t.setAttribute('aria-expanded','false')}))})();</script>
 
 <header class="hero"><div class="wrap">
 <h1>Field Weather</h1>
@@ -254,7 +254,7 @@ $('clearBtn').onclick=()=>{ $('park').value=''; $('town').value=''; $('results')
   const ref=(q.get('ref')||'').slice(0,20),nm=(q.get('name')||'Park').slice(0,120);if(ref)$('park').value=ref;
   loadWeather(la,lo,nm+(ref?' — '+ref:''),'POTA park').then(()=>{const e=$('weather');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})})}}catch(_){}})();
 </script>
-<script src="kpc-search.js" defer></script><script>
+<script src="kpc-search.js?v=20261010b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

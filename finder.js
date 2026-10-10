@@ -196,3 +196,10 @@ document.querySelectorAll(".trailsearch").forEach(button=>button.addEventListene
   box.style.display='block'};
  inp.addEventListener('input',show);inp.addEventListener('keydown',e=>{if(e.key==='Escape')box.style.display='none'});
 })();
+
+/* Jump links: land the section just under the sticky navbar, and re-aim if the page grows while scrolling (v20261010a) */
+document.addEventListener('click',e=>{const a=e.target.closest('.finder-jump a[href^="#"]');if(!a||e.ctrlKey||e.metaKey||e.shiftKey)return;const t=document.querySelector(a.getAttribute('href'));if(!t)return;e.preventDefault();
+ const y=()=>Math.max(0,Math.round(t.getBoundingClientRect().top+scrollY-hdrOff()-12));let tries=0,timer=0;
+ const settle=()=>{clearTimeout(timer);timer=setTimeout(()=>{const d=y();if(Math.abs(d-scrollY)>6&&tries++<4)scrollTo({top:d,behavior:Math.abs(d-scrollY)>1500?'auto':'smooth'}),settle();else removeEventListener('scroll',settle)},180)};
+ addEventListener('scroll',settle,{passive:true});scrollTo({top:y(),behavior:'smooth'});settle();
+ try{history.replaceState(null,'',a.getAttribute('href'))}catch(_){}});

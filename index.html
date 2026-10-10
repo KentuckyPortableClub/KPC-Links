@@ -447,11 +447,7 @@ footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-
 body.field .page-jump-nav{display:none!important}
 
 </style>
-<style id="kpc-nav-fit">
-/* KPC shared navbar fit: 10 links. Compact on mid-size screens, menu button below 1180px. */
-@media(min-width:1181px) and (max-width:1320px){.site-nav .nav-links a{padding-left:7px;padding-right:7px;font-size:12px;letter-spacing:.4px}.site-nav .nav-inner{gap:16px}}
-@media(max-width:1180px){.site-nav .nav-inner{position:relative}.site-nav .menu-toggle{display:block!important}.site-nav .nav-links{display:none!important;position:absolute!important;top:100%!important;left:0!important;right:0!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:10px 18px 16px!important;background:rgba(7,7,7,.99)!important;border-bottom:1px solid rgba(213,166,58,.45)!important;box-shadow:0 15px 25px rgba(0,0,0,.22);max-height:calc(100vh - 80px);overflow-y:auto}.site-nav .nav-links.open{display:flex!important}.site-nav .nav-links a{padding:13px 8px!important;font-size:14px!important;border-bottom:1px solid #292929}.site-nav .nav-links a:last-child{border-bottom:0}}
-</style>
+<style>
 .learn{background:var(--cream)}
 .learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .learn-card{display:flex;flex-direction:column;padding:26px;background:#fff;border-left:5px solid var(--gold);box-shadow:0 10px 24px rgba(0,0,0,.07);transition:.2s}
@@ -473,7 +469,7 @@ body.field .page-jump-nav{display:none!important}
 .hero h1,.hero .hero-copy,.hero .eyebrow,.hero-inner p{text-shadow:0 2px 14px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.6)}
 </style>
 <style>.field-photos{background:#fffaf0}.fp-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.fp-grid a{display:block;border-radius:6px;overflow:hidden;aspect-ratio:1;background:#ddd}.fp-grid img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}.fp-grid a:hover img{transform:scale(1.05)}@media(max-width:900px){.fp-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:520px){.fp-grid{gap:6px}}</style>
-<link rel="stylesheet" href="kpc-nav.css">
+<link rel="stylesheet" href="kpc-nav.css?v=20261010b">
 </head>
 
 <body>
@@ -488,6 +484,7 @@ body.field .page-jump-nav{display:none!important}
     <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
       <a href="index.html" aria-current="page">Home</a>
 <a href="campout.html">Campout</a>
+<a href="parks.html">Parks</a>
 <a href="events.html">Events</a>
 <a href="photos.html">Photos</a>
 <a href="find.html" class="nav-search-icon">🔍</a>
@@ -713,7 +710,7 @@ body.field .page-jump-nav{display:none!important}
 
 
 <script src="kpc-fold.js" defer></script>
-<script src="kpc-search.js" defer></script><script>
+<script src="kpc-search.js?v=20261010b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

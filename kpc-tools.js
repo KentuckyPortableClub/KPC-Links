@@ -38,7 +38,7 @@ async function history(onProgress,force){
 function progressUI(el){return(d,n,cached)=>{el.classList.add('on');el.querySelector('i').style.width=(100*d/n)+'%';
  el.querySelector('small').textContent=cached?`Loaded saved POTA data from ${new Date(cached).toLocaleString([],{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})} • refreshes every ${CACHE_HOURS} hours`:`Loading POTA activation history… ${d} of ${n} Kentucky parks`;
  if(d>=n&&cached)setTimeout(()=>{},0)}}
-function navToggle(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav-links');if(!t)return;
+function navToggle(){const t=document.querySelector('.menu-toggle'),n=document.querySelector('.nav-links');if(!t||document.getElementById('kpcNavMore'))return;
  t.addEventListener('click',()=>{const o=n.classList.toggle('open');t.setAttribute('aria-expanded',String(o))})}
 function leafletMap(id){const m=L.map(id,{scrollWheelZoom:false}).setView([37.75,-85.7],7);
  const st=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'© OpenStreetMap contributors'});

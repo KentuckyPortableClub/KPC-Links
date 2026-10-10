@@ -61,16 +61,11 @@ footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-
 body.field .page-jump-nav{display:none!important}
 
 </style>
-<style id="kpc-nav-fit">
-/* KPC shared navbar fit: 10 links. Compact on mid-size screens, menu button below 1180px. */
-@media(min-width:1181px) and (max-width:1320px){.site-nav .nav-links a{padding-left:7px;padding-right:7px;font-size:12px;letter-spacing:.4px}.site-nav .nav-inner{gap:16px}}
-@media(max-width:1180px){.site-nav .nav-inner{position:relative}.site-nav .menu-toggle{display:block!important}.site-nav .nav-links{display:none!important;position:absolute!important;top:100%!important;left:0!important;right:0!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:10px 18px 16px!important;background:rgba(7,7,7,.99)!important;border-bottom:1px solid rgba(213,166,58,.45)!important;box-shadow:0 15px 25px rgba(0,0,0,.22);max-height:calc(100vh - 80px);overflow-y:auto}.site-nav .nav-links.open{display:flex!important}.site-nav .nav-links a{padding:13px 8px!important;font-size:14px!important;border-bottom:1px solid #292929}.site-nav .nav-links a:last-child{border-bottom:0}}
-</style>
 <style id="kpc-hero-art">
 .hero{background:radial-gradient(circle at 76% 24%,rgba(213,166,58,.24),transparent 23%),linear-gradient(135deg,rgba(7,19,13,.9) 0%,rgba(15,47,32,.7) 45%,rgba(7,7,7,.78) 100%),#07130d url("hdr-river.jpg") center/cover no-repeat}
 @media(max-width:760px){.hero{background:radial-gradient(circle at 76% 24%,rgba(213,166,58,.24),transparent 23%),linear-gradient(135deg,rgba(7,19,13,.9) 0%,rgba(15,47,32,.7) 45%,rgba(7,7,7,.78) 100%),#07130d url("hdr-river-mobile.jpg") center/cover no-repeat}}
 </style>
-<link rel="stylesheet" href="kpc-nav.css">
+<link rel="stylesheet" href="kpc-nav.css?v=20261010b">
 </head>
 <body>
 <header class="site-nav">
@@ -83,6 +78,7 @@ body.field .page-jump-nav{display:none!important}
     <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
       <a href="index.html">Home</a>
 <a href="campout.html">Campout</a>
+<a href="parks.html">Parks</a>
 <a href="events.html">Events</a>
 <a href="photos.html">Photos</a>
 <a href="find.html" class="nav-search-icon">🔍</a>
@@ -316,10 +312,10 @@ tick();setInterval(tick,1000);renderSun();renderBands();init();
 setInterval(()=>{if(!document.hidden)init()},5*60*1000);
 setInterval(()=>{renderSun();renderCall(renderBands())},60*1000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&S.loadedAt&&Date.now()-S.loadedAt>5*6e4)init()});
-const menuToggle=document.querySelector('.menu-toggle'),nav=document.querySelector('#main-navigation');menuToggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuToggle.setAttribute('aria-expanded',open?'true':'false');menuToggle.textContent=open?'✕':'☰'});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰'}));
+
 </script>
 <script src="kpc-fold.js" defer></script>
-<script src="kpc-search.js" defer></script><script>
+<script src="kpc-search.js?v=20261010b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
