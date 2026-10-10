@@ -144,3 +144,15 @@ path.kpc-bnd{filter:drop-shadow(0 0 1.2px rgba(0,0,0,.95)) drop-shadow(0 0 1px r
 
 #finder-about .panel-notice{background:transparent;border:0;padding:0}
 #finder-about .gis-missing summary{cursor:pointer;color:#f0c96b;font-weight:700;padding:6px 0}
+/* in-map popup card */
+#map .kpc-popcard-wrap .leaflet-popup-content{margin:10px 12px!important}
+#map .kpc-popcard .entry{border:0!important;padding:0!important;margin:0!important;background:transparent!important;outline:0!important}
+#map .kpc-popcard .entry h3{color:#171717!important;font-size:16px;margin:6px 0 4px}
+#map .kpc-popcard .entry .meta,#map .kpc-popcard .entry .crossref{color:#2a2a2a!important;font-size:13px;background:transparent!important;border:0;padding:0;margin:4px 0}
+#map .kpc-popcard .tag{color:#171717!important;background:#f0d58f!important;font-size:11px;padding:2px 7px;border-radius:5px}
+#map .kpc-popcard .links{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:6px}
+#map .kpc-popcard .links a{font-size:13px}
+#map .kpc-popcard .saveactions{margin-top:8px;display:flex;gap:6px}
+#map .kpc-popcard .saveactions button{background:#fff;color:#171717;border:1px solid #b8933f;padding:5px 9px;border-radius:7px;font-size:12px}
+#map .kpc-popcard .popgo{display:block;width:100%;margin-top:10px;background:#d5a63a;color:#111;border:0;border-radius:8px;padding:9px;font-weight:800;font-size:14px;cursor:pointer}
+#map .kpc-popcard .pophint{font-size:11px;color:#5b5648!important;margin-top:6px;text-align:center}

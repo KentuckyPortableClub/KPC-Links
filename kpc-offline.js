@@ -45,8 +45,9 @@
 <p class="meta"><b>Map tip:</b> before you go, open the map and zoom in around the park you’re heading to. Map areas you look at while online are kept for offline use (the whole map can’t be downloaded). Town search, live POTA spots and live GIS layers still need a signal.</p>
 <div class="toolbuttons"><button id="kpcOffSave" type="button">Save for offline (about 10 MB)</button><button id="kpcOffClear" class="secondary" type="button">Remove offline copy</button></div>
 <div class="kpc-off-bar" id="kpcOffBar"><i></i></div><p class="meta" id="kpcOffStatus" aria-live="polite"></p>`;
+  const below = document.querySelector('#finder-results') || document.querySelector('#finder-map');
   const anchor = document.querySelector('#finder-search') || document.querySelector('main');
-  if (anchor && anchor.id === 'finder-search') anchor.insertAdjacentElement('beforebegin', panel); else if (anchor) anchor.prepend(panel);
+  if (below) below.insertAdjacentElement('afterend', panel); else if (anchor && anchor.id === 'finder-search') anchor.insertAdjacentElement('beforebegin', panel); else if (anchor) anchor.prepend(panel);
   const jump = document.querySelector('.finder-jump');
   if (jump && !jump.querySelector('a[href="#finder-offline"]')) { const a = document.createElement('a'); a.href = '#finder-offline'; a.textContent = 'Offline'; jump.appendChild(a); }
 
