@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>KPC Radar, Lightning & Weather Feed Test</title>
+<style>
+body{margin:0;background:#f5f0e4;color:#171717;font:16px/1.5 Arial,sans-serif;padding:18px}
+h1{font:700 26px Georgia,serif;margin:0 0 6px}h2{font:700 18px Georgia,serif;margin:22px 0 4px}p{margin:6px 0 14px;color:#555}
+button{min-height:46px;padding:10px 18px;border:0;border-radius:7px;background:#d5a63a;font-weight:900;letter-spacing:1px;cursor:pointer;margin:0 8px 8px 0}
+.t{background:#fff;border:1px solid #d8cfbf;border-left:6px solid #cbbf9f;padding:10px 14px;margin:10px 0}
+.t.ok{border-left-color:#1d5a3a}.t.bad{border-left-color:#b5452b}
+.t b{display:block}.t small{display:block;color:#555;word-break:break-all}.t pre{margin:6px 0 0;white-space:pre-wrap;word-break:break-all;font-size:12px;max-height:150px;overflow:auto;background:#f7f2e6;padding:6px}
+.t img{display:block;margin-top:8px;max-width:256px;border:1px solid #999;background:#8aa}
+</style></head><body>
+<h1>KPC Radar, Lightning &amp; Weather Feed Test</h1>
+<p>Open this page from the live site in your normal browser (not the preview window). Tap RUN TESTS, wait about 30 seconds, then tap COPY RESULTS and paste them to Claude. Nothing is sent anywhere except to these public data sources.</p>
+<button id="run">RUN TESTS</button><button id="copy" style="background:#fff;border:1px solid #d5a63a">COPY RESULTS</button>
+<div id="out"></div>
+<script>
+const out=document.getElementById('out');const LOG=[];
+const KY=[38.25,-85.76];
+function tile(z,lat,lon){const n=2**z;return{x:Math.floor((lon+180)/360*n),y:Math.floor((1-Math.log(Math.tan(lat*Math.PI/180)+1/Math.cos(lat*Math.PI/180))/Math.PI)/2*n)}}
+const T6=tile(6,37.8,-85.7),T7=tile(7,37.8,-85.7);
+function row(group,name,url){const d=document.createElement('div');d.className='t';d.innerHTML='<b></b><small></small><pre></pre>';d.querySelector('b').textContent=name;d.querySelector('small').textContent=url||'';d.querySelector('pre').style.display='none';
+ const h=out.querySelector('[data-g="'+group+'"]');(h||out).appendChild(d);return d}
+function done(d,ok,msg,name,extra){d.classList.add(ok?'ok':'bad');d.querySelector('b').textContent=(ok?'PASS - ':'FAIL - ')+name;const p=d.querySelector('pre');if(msg){p.style.display='block';p.textContent=msg}LOG.push((ok?'PASS':'FAIL')+' | '+name+' | '+(msg||'').replace(/\s+/g,' ').slice(0,220))}
+async function fetchTest(group,name,url,check){const d=row(group,name,url);try{const c=new AbortController(),t=setTimeout(()=>c.abort(),20000);const r=await fetch(url,{signal:c.signal});clearTimeout(t);const txt=await r.text();if(!r.ok)return done(d,false,'HTTP '+r.status+' '+txt.slice(0,160),name);const res=check?check(txt):{ok:true,msg:txt.slice(0,200)};done(d,res.ok,res.msg,name)}catch(e){done(d,false,'Blocked or failed: '+e.message,name)}}
+function imgTest(group,name,url){return new Promise(res=>{const d=row(group,name,url);const im=new Image();const t=setTimeout(()=>{done(d,false,'Timed out after 20 s',name);res()},20000);im.onload=()=>{clearTimeout(t);d.appendChild(im);done(d,true,'Image loaded '+im.naturalWidth+'x'+im.naturalHeight,name);res()};im.onerror=()=>{clearTimeout(t);done(d,false,'Image failed to load (blocked, wrong address, or no data)',name);res()};im.src=url})}
+function section(t){const h=document.createElement('h2');h.textContent=t;out.appendChild(h);const g=document.createElement('div');g.dataset.g=t;out.appendChild(g)}
+function wsTest(name,url,msg){return new Promise(res=>{const g='LIGHTNING';const d=row(g,name,url);let n=0,first='';let ws;try{ws=new WebSocket(url)}catch(e){done(d,false,'Could not create connection: '+e.message,name);return res()}
+ const t=setTimeout(()=>{try{ws.close()}catch(e){}done(d,n>0,n?'Received '+n+' messages. First (first 120 chars): '+first:'Connected but no data in 12 s',name);res()},12000);
+ ws.onopen=()=>{if(msg)ws.send(msg)};ws.onmessage=e=>{if(!n)first=String(e.data).slice(0,120);n++};ws.onerror=()=>{clearTimeout(t);done(d,false,'Connection blocked or refused',name);res()};ws.onclose=ev=>{if(!n){clearTimeout(t);done(d,false,'Closed before data (code '+ev.code+')',name);res()}}})}
+document.getElementById('run').onclick=async()=>{out.innerHTML='';LOG.length=0;
+ LOG.push('Browser: '+navigator.userAgent.slice(0,120));
+ section('RADAR');
+ const mesoUrl=`https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/6/${T6.x}/${T6.y}.png`;
+ await imgTest('RADAR','Iowa Mesonet NEXRAD radar tile (current)',mesoUrl);
+ await imgTest('RADAR','Iowa Mesonet NEXRAD radar tile, 30 min ago (for a loop)',`https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m30m/6/${T6.x}/${T6.y}.png`);
+ await fetchTest('RADAR','RainViewer radar frame list','https://api.rainviewer.com/public/weather-maps.json',t=>{const j=JSON.parse(t);const f=(j.radar&&j.radar.past||[]);window.__rv={host:j.host,path:f.length?f[f.length-1].path:null};return{ok:f.length>0,msg:'Frames: '+f.length+', host '+j.host}});
+ if(window.__rv&&window.__rv.path)await imgTest('RADAR','RainViewer radar tile',`${window.__rv.host}${window.__rv.path}/256/${6}/${T6.x}/${T6.y}/2/1_1.png`);
+ await imgTest('RADAR','NOAA/NWS radar map image (opengeo WMS, Kentucky area)','https://opengeo.ncep.noaa.gov/geoserver/conus/conus_bref_qcd/ows?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=conus_bref_qcd&STYLES=&FORMAT=image/png&TRANSPARENT=true&SRS=EPSG:3857&BBOX=-10200000,4200000,-9000000,4900000&WIDTH=512&HEIGHT=300');
+ section('LIGHTNING');
+ await wsTest('Blitzortung live strikes (websocket)','wss://ws1.blitzortung.org/',JSON.stringify({a:111}));
+ await wsTest('Blitzortung live strikes, second server','wss://ws7.blitzortung.org/',JSON.stringify({a:111}));
+ await fetchTest('LIGHTNING','NOAA nowCOAST map layers (look for lightning)','https://nowcoast.noaa.gov/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities',t=>{const m=[...new Set((t.match(/<Name>[^<]*(?:ightning|GLM|strike)[^<]*<\/Name>/gi)||[]).map(x=>x.replace(/<\/?Name>/g,'')))];return{ok:m.length>0,msg:m.length?'Lightning layers: '+m.slice(0,10).join(', '):'Loaded ('+t.length+' bytes) but no lightning layer names found'}});
+ await fetchTest('LIGHTNING','NWS alerts for Kentucky (thunderstorm warnings live here)','https://api.weather.gov/alerts/active?area=KY',t=>{const j=JSON.parse(t);const ev=(j.features||[]).map(f=>f.properties.event);return{ok:true,msg:'Active alerts: '+ev.length+(ev.length?' ('+[...new Set(ev)].slice(0,6).join(', ')+')':'')}});
+ section('WEATHER');
+ await fetchTest('WEATHER','NWS point lookup (Louisville)','https://api.weather.gov/points/38.25,-85.76',t=>{const j=JSON.parse(t);return{ok:!!j.properties,msg:'Office '+(j.properties&&j.properties.gridId)+', observation stations at '+(j.properties&&j.properties.observationStations)}});
+ await fetchTest('WEATHER','NWS latest observation, Louisville airport (KSDF)','https://api.weather.gov/stations/KSDF/observations/latest',t=>{const j=JSON.parse(t).properties;return{ok:!!j,msg:j.textDescription+', '+(j.temperature&&j.temperature.value!=null?Math.round(j.temperature.value*9/5+32)+' F':'no temp')}});
+ await fetchTest('WEATHER','Open-Meteo current weather (Louisville)','https://api.open-meteo.com/v1/forecast?latitude=38.25&longitude=-85.76&current=temperature_2m,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph',t=>{const j=JSON.parse(t).current;return{ok:!!j,msg:j?j.temperature_2m+' F, wind '+j.wind_speed_10m+' mph':'no data'}});
+ await fetchTest('WEATHER','Open-Meteo 4 Kentucky cities in one call','https://api.open-meteo.com/v1/forecast?latitude=38.25,36.99,37.25,37.08&longitude=-85.76,-86.44,-83.19,-88.60&current=temperature_2m,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph',t=>{const j=JSON.parse(t);return{ok:Array.isArray(j)&&j.length===4,msg:Array.isArray(j)?j.map(x=>Math.round(x.current.temperature_2m)+'F').join(', '):'unexpected format'}});
+ const done2=document.createElement('p');done2.innerHTML='<b>All done.</b> Tap COPY RESULTS.';out.appendChild(done2)};
+document.getElementById('copy').onclick=async()=>{const txt=LOG.join('\n');try{await navigator.clipboard.writeText(txt);alert('Copied. Paste it to Claude.')}catch(e){const ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='width:100%;height:240px';out.appendChild(ta);ta.select()}};
+</script></body></html>
