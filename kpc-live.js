@@ -72,11 +72,11 @@ function useLocation(){const b=$('lv-loc');if(!navigator.geolocation){b.textCont
    try{const a=await jget('https://api.weather.gov/alerts/active?point='+la.toFixed(4)+','+lo.toFixed(4));alertsUI(a.features||[],'your location')}catch(e){}}catch(e){b.textContent='COULD NOT GET WEATHER'}},()=>{b.textContent='LOCATION BLOCKED'},{timeout:12000,maximumAge:300000})}
 
 /* ---------- radar + lightning map ---------- */
-let map,labels,cityLayer,radarFrames=[],cur,lightning,counties,loopTimer=null,playing=false,idx=0,framesBuilt=false;
+let labelsOn=true,map,labels,cityLayer,radarFrames=[],cur,lightning,counties,loopTimer=null,playing=false,idx=0,framesBuilt=false;
 const RTILE=m=>'https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913'+(m?'-m'+String(m).padStart(2,'0')+'m':'')+'/{z}/{x}/{y}.png';
 const OFFS=[50,45,40,35,30,25,20,15,10,5,0];
 function frameLabel(off){const d=new Date(Math.floor(Date.now()/300000)*300000-off*60000);return d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}
-function radarCities(){if(!cityLayer)return;cityLayer.clearLayers();CITIES.forEach(c=>{const t=cityTemps[c.n];L.marker([c.la,c.lo],{icon:L.divIcon({className:'',html:`<div class="cm"><i></i><span>${esc(c.n)}${t!=null?' '+t+'&deg;':''}</span></div>`,iconSize:[0,0]}),interactive:false}).addTo(cityLayer)})}
+function radarCities(){if(!cityLayer)return;cityLayer.clearLayers();CITIES.forEach(c=>{const t=cityTemps[c.n];L.marker([c.la,c.lo],{icon:L.divIcon({className:'',html:labelsOn?(t!=null?`<div class="cm t"><span>${t}&deg;</span></div>`:''):`<div class="cm"><i></i><span>${esc(c.n)}${t!=null?' '+t+'&deg;':''}</span></div>`,iconSize:[0,0]}),interactive:false}).addTo(cityLayer)})}
 function initMap(){if(typeof L==='undefined'||typeof KPC==='undefined'||!$('lv-map'))return;
  let svb=null;try{svb=localStorage.getItem('kpcBaseMap');localStorage.setItem('kpcBaseMap',localStorage.getItem('lvBase')||'Street')}catch(e){}
  map=KPC.leafletMap('lv-map');try{if(svb===null)localStorage.removeItem('kpcBaseMap');else localStorage.setItem('kpcBaseMap',svb)}catch(e){}
@@ -95,7 +95,7 @@ function initMap(){if(typeof L==='undefined'||typeof KPC==='undefined'||!$('lv-m
  $('lv-play').onclick=()=>playing?stop():play();
  $('lv-c-radar').onclick=()=>{const on=toggle('lv-c-radar');frames().forEach(l=>on?l.addTo(map):map.removeLayer(l));if(on){show(idx)}};
  $('lv-c-light').onclick=()=>{toggle('lv-c-light')?lightning.addTo(map):map.removeLayer(lightning)};
- $('lv-c-labels').onclick=()=>{toggle('lv-c-labels')?labels.addTo(map):map.removeLayer(labels)};
+ $('lv-c-labels').onclick=()=>{labelsOn=toggle('lv-c-labels');labelsOn?labels.addTo(map):map.removeLayer(labels);radarCities()};
  $('lv-c-counties').onclick=()=>{const on=toggle('lv-c-counties');if(counties)on?counties.addTo(map):map.removeLayer(counties)};
  setTimeout(()=>map.invalidateSize(),300)}
 const frames=()=>framesBuilt?radarFrames:[cur];
