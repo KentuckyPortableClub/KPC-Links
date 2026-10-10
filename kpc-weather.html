@@ -39,11 +39,13 @@ button.secondary{background:#244a32;color:var(--cream);border:1px solid #4b6d57}
 .forecast{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.day{padding:13px;border-radius:12px;background:#121a15;border:1px solid rgba(244,197,66,.14)}.day strong{display:block;margin-bottom:7px}.small{font-size:.82rem;color:var(--muted);line-height:1.45}
 .note{font-size:.83rem;color:var(--muted);line-height:1.5}
 @media(max-width:760px){.search-grid,.current,.forecast{grid-template-columns:1fr}.wrap{padding:16px}.hero{padding:42px 16px 30px}}
+footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px}footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}footer.kpc-about-footer .footer-actions a:hover{border-color:#e5c87b;color:#e5c87b}@media(max-width:600px){footer.kpc-about-footer{flex-direction:column;align-items:flex-start}}
 </style>
 <style id="kpc-hero-art">
 .hero{background:linear-gradient(120deg,rgba(7,19,13,.9),rgba(16,36,25,.68)),#07130d url("hdr-river.jpg") center/cover no-repeat}
 @media(max-width:760px){.hero{background:linear-gradient(120deg,rgba(7,19,13,.9),rgba(16,36,25,.68)),#07130d url("hdr-river-mobile.jpg") center/cover no-repeat}}
 </style>
+<link rel="stylesheet" href="kpc-nav.css">
 </head>
 <body>
 <style id="kpc-sitebar-css">
@@ -65,7 +67,55 @@ button.secondary{background:#244a32;color:var(--cream);border:1px solid #4b6d57}
 .ksb nav.ksb-links{position:static;top:auto;z-index:auto;border-bottom:0;padding:0;background:none}.ksb nav.ksb-links a{margin-right:0}
 @media(max-width:1180px){.ksb nav.ksb-links{position:absolute;top:100%;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45)}}
 </style>
-<div class="ksb" role="banner"><div class="ksb-in"><a class="ksb-brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span>Kentucky Portable Club<small>Est. 2026</small></span></a><button class="ksb-tog" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="ksb-links">☰</button><nav class="ksb-links" id="ksb-links" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="toolbox.html" aria-current="page">Tool Box</a><a href="kpc-live.html" class="nav-live"><i></i>Live</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="members.html">Members</a><a href="contact.html">Contact</a></nav></div></div>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+<a href="campout.html">Campout</a>
+<a href="events.html">Events</a>
+<a href="photos.html">Photos</a>
+<a href="find.html" class="nav-search-icon">🔍</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="find.html" role="menuitem"><span class="ni">&#128506;</span>Find a Park</a>
+            <a href="parks.html" role="menuitem"><span class="ni">&#128196;</span>Parks List</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-frequency-guide.html" role="menuitem"><span class="ni">&#128225;</span>Frequency Guide</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128214;</span>Band Conditions</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127767;</span>Weather</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
 <script>(function(){const t=document.querySelector('.ksb-tog'),n=document.getElementById('ksb-links');t.addEventListener('click',()=>{const o=n.classList.toggle('open');t.setAttribute('aria-expanded',String(o))});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');t.setAttribute('aria-expanded','false')}))})();</script>
 
 <header class="hero"><div class="wrap">
@@ -204,5 +254,13 @@ $('clearBtn').onclick=()=>{ $('park').value=''; $('town').value=''; $('results')
   const ref=(q.get('ref')||'').slice(0,20),nm=(q.get('name')||'Park').slice(0,120);if(ref)$('park').value=ref;
   loadWeather(la,lo,nm+(ref?' — '+ref:''),'POTA park').then(()=>{const e=$('weather');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})})}}catch(_){}})();
 </script>
-<script src="kpc-search.js" defer></script></body>
+<script src="kpc-search.js" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body>
 </html>
