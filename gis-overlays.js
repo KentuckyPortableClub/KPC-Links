@@ -67,7 +67,7 @@
   try{const r=await fetch(s.file,{cache:'force-cache'});if(r.ok)j=await r.json()}catch(_){}
   if(!j||!Array.isArray(j.features)){src='live from state GIS';const ctrl=new AbortController(),t=setTimeout(()=>ctrl.abort(),25000);try{const r=await fetch(s.live,{signal:ctrl.signal});if(!r.ok)throw Error('HTTP '+r.status);j=await r.json();if(j.error)throw Error(j.error.message||'GIS error')}finally{clearTimeout(t)}}
   j.features=(j.features||[]).filter(f=>f.geometry&&ringsOf(f.geometry).length);j._src=src;bData[k]=j;return j}
- function drawBoundary(k,j){const s=bounds[k];const has=f=>(f._pota!==undefined?f._pota:(f._pota=matchPota(f).length>0));const st=f=>has(f)?{color:s.color,weight:coarse?3.5:3,opacity:1,fillColor:s.color,fillOpacity:.2,dashArray:null}:{color:s.color,weight:coarse?2.5:2,opacity:.9,fillColor:s.color,fillOpacity:.06,dashArray:'6 6'};
+ function drawBoundary(k,j){const s=bounds[k];const has=f=>(f._pota!==undefined?f._pota:(f._pota=matchPota(f).length>0));const st=f=>has(f)?{color:s.color,weight:coarse?4.5:4,opacity:1,fillColor:s.color,fillOpacity:.3,dashArray:null,className:'kpc-bnd'}:{color:s.color,weight:coarse?3:2.5,opacity:1,fillColor:s.color,fillOpacity:.1,dashArray:'6 6',className:'kpc-bnd'};
  const lay=L.geoJSON(j,{style:st,
    onEachFeature:(f,l)=>{if(!coarse)l.bindTooltip(safe(getName(f)||s.name),{sticky:true,direction:'top',opacity:1,className:'kpc-gis-tooltip'});l.bindPopup(()=>boundaryPopup(f,s),{maxWidth:280});l.on('popupopen',()=>{try{l.closeTooltip()}catch(_){}});l.on('mouseover',function(){this.setStyle({fillOpacity:.34,weight:4.5})});l.on('mouseout',function(){this.setStyle(st(f))})}});return lay}
  async function toggleBoundary(k){const on=$('gis-'+k)?.checked;
