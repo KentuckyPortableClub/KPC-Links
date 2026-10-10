@@ -101,3 +101,7 @@ html{scroll-behavior:smooth}
 .mapwrap.kpc-mapfull .kynotice,.mapwrap.kpc-mapfull .gis-missing,.mapwrap.kpc-mapfull .gis-note,.mapwrap.kpc-mapfull .gis-notice{display:none}.kpc-nofs-scroll .kss-float{display:none!important}.mapwrap.kpc-mapfull .gis-controls{max-height:min(420px,calc(100% - 80px))}
 .kpc-sat path.kpc-bnd{stroke:#ffee00!important;stroke-width:4px!important;stroke-opacity:1!important;filter:drop-shadow(0 0 2px #000)}.kpc-sat path.kpc-bnd[stroke-dasharray]{stroke-width:3px!important}
 path.kpc-bnd{filter:drop-shadow(0 0 1.2px rgba(0,0,0,.95)) drop-shadow(0 0 1px rgba(0,0,0,.8))}
+
+.selcard{margin:0;padding:12px;border-bottom:2px solid #d5a63a;background:#1a1a12}.selcard[hidden]{display:none}.selhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:#f0c96b}.entry.sel{outline:2px solid #d5a63a;outline-offset:-2px}
+@media(min-width:851px){#items{max-height:78vh;overflow:auto}}
+@media(max-width:850px){.content>.mapwrap{order:-1}}
