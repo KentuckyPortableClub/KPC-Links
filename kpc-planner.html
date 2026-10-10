@@ -21,7 +21,54 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <link rel="stylesheet" href="kpc-tools.css">
 <script src="kpc-tools.js?v=20261010c"></script>
-<link rel="stylesheet" href="kpc-nav.css?v=20261010c">
+<style id="pl-css">
+.pl-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.pl-bar .btn{width:auto}
+.pl-bar .btn[aria-pressed=true]{background:#151515;color:#f0c96b}
+.pl-hint{flex:1 1 260px;font-size:13px;color:var(--muted)}
+.pl-mapwrap{position:relative}
+.pl-mapwrap .map{height:min(72vh,640px)}
+.pl-banner{display:none;position:absolute;left:50%;top:10px;transform:translateX(-50%);z-index:1200;background:#151515;color:#fff;border:1px solid #d5a63a;border-radius:999px;padding:8px 8px 8px 16px;font-size:13px;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.35);white-space:nowrap}
+.pl-banner button{margin-left:8px;border:0;border-radius:999px;padding:6px 12px;background:#d5a63a;color:#111;font-weight:900;cursor:pointer}
+.pl-adding .pl-banner{display:block}
+.pl-adding .leaflet-container,.pl-adding .leaflet-interactive{cursor:crosshair!important}
+.pl-full{position:fixed!important;inset:0;z-index:4000;background:#111}
+.pl-full .map{height:100%!important;height:100dvh!important;border:0}
+html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
+.pl-ctl a{font-size:17px;line-height:30px!important;text-decoration:none}
+.pl-ctl a.on{background:#d5a63a!important;color:#111}
+.pl-lyr{background:#fff;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.35);font:13px/1.35 Arial,Helvetica,sans-serif;max-width:250px}
+.pl-lyrbtn{border:0;background:#fff;border-radius:8px;padding:8px 11px;font-weight:900;font-size:12px;letter-spacing:.5px;cursor:pointer;width:100%;text-align:left}
+.pl-lyrbox{padding:2px 11px 10px;max-height:min(60vh,420px);overflow:auto}
+.pl-lyrbox label{display:flex;align-items:center;gap:7px;padding:4px 0;cursor:pointer}
+.pl-lyrbox i{display:inline-block;width:14px;height:10px;border-radius:2px;flex:0 0 auto}
+.pl-lyrh{font-size:11px;font-weight:900;letter-spacing:.5px;color:#555;margin:8px 0 2px}
+.pl-pin{background:none;border:0}
+.pl-pin span{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#1d5a3a;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.5)}
+.pl-pin b{transform:rotate(45deg);color:#fff;font:900 13px/1 Arial,Helvetica,sans-serif}
+.pl-pin.spot span{background:#d5a63a}.pl-pin.spot b{color:#111}
+.pl-pop{font:13px/1.4 Arial,Helvetica,sans-serif}
+.pl-f{display:block;font-size:11px;font-weight:900;letter-spacing:.5px;color:#555;margin-bottom:8px}
+.pl-f input{display:block;width:100%;box-sizing:border-box;margin-top:3px;padding:8px 9px;border:1px solid #bbb;border-radius:6px;font:15px Arial}
+.pl-where{margin:6px 0;padding:8px 10px;background:#f6f2e7;border-radius:6px}
+.pw-in{color:#1d5a3a;margin:2px 0}.pw-out{color:#8a3a1a;margin:2px 0}.pw-note{font-size:12px;color:#7a5a12;margin:2px 0 4px}.pw-muted{font-size:11px;color:#777;margin-top:4px}
+.pl-ll{font-size:11px;color:#777}
+.pl-pacts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.pl-pacts .btn{width:auto}
+.pl-trip{margin-bottom:12px}
+.pl-thead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;letter-spacing:1px;font-size:13px}.pl-thead span{color:#f0c96b;font-weight:900}
+.pl-list{list-style:none;margin:10px 0;padding:0;display:grid;gap:6px}
+.pl-list li{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;background:#1f1f1f;border:1px solid #333;border-radius:8px;padding:8px 10px}
+.pl-list li.pl-empty{display:block;color:#cfc9bb;font-size:13px;background:none;border:1px dashed #444}
+.pl-num{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#1d5a3a;color:#fff;font-weight:900;font-size:13px}.pl-num.spot{background:#d5a63a;color:#111}
+.pl-go{background:none;border:0;padding:0;color:#fff;font:700 15px/1.25 Georgia,serif;text-align:left;cursor:pointer}.pl-go:hover{color:#f0c96b;text-decoration:underline}
+.pl-sub{font-size:12px;color:#bdb7aa;margin-top:2px}.pl-sub .tag{margin:0 4px 0 0}
+.pl-mv{display:flex;gap:4px}.pl-mv button{width:32px;height:32px;border:1px solid #444;border-radius:6px;background:#151515;color:#f0c96b;cursor:pointer;font-size:13px}.pl-mv button:disabled{opacity:.3;cursor:default}
+.pl-tacts{display:flex;gap:8px;flex-wrap:wrap}.pl-tacts .btn{width:auto}
+.pl-msg{margin:8px 0;padding:8px 10px;background:#24331f;border-left:4px solid #3ecf6e;font-size:13px}
+.pl-small{margin:8px 0 0;font-size:12px;color:#9c968a}
+@media(max-width:760px){.pl-popopen .leaflet-top{visibility:hidden}.pl-mapwrap .map{height:68vh}.pl-tacts .btn{flex:1 1 45%}.pl-banner{font-size:12px;white-space:normal;width:max-content;max-width:90%}}
+</style>
+<link rel="stylesheet" href="kpc-nav.css?v=20261010g">
 </head>
 <body>
 <header class="site-nav">
@@ -78,7 +125,7 @@
 <section class="tool-head th-fort"><div class="wrap">
 <p class="eyebrow">KPC TRIP PLANNER</p>
 <h1>PLAN A <span>RADIO TRIP</span></h1>
-<p class="sub">Pick a starting point and a distance. See every Kentucky POTA park, SOTA summit and KFF reference in range — with possible 2-fers flagged — then build a multi-stop route in Google Maps.</p>
+<p class="sub">Pick a starting point and a distance. See every Kentucky POTA park, SOTA summit and KFF reference in range — with possible 2-fers flagged — then build a trip. Zoom right in, drop a pin on the exact pull-off you want, and send the whole trip to Google Maps.</p>
 </div></section>
 <nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html" aria-current=page>Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html">Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html">Antenna</a><a href="parks.html">← Parks</a></div></nav>
 <section class="section"><div class="wrap">
@@ -95,61 +142,23 @@
 <p class="muted" id="where" style="margin:12px 0 0;font-size:14px">Choose a town or use your location to start.</p>
 </div>
 <div class="grid2" style="margin-top:20px">
-<div><div class="map" id="map" style="height:540px"></div>
+<div><div class="pl-bar"><button class="btn" id="addSpot" type="button" aria-pressed="false">📍 ADD A SPOT</button><span class="pl-hint">Zoom in, then tap the exact spot. On a phone you can also press and hold the map. <b>Satellite + roads</b> (top right) is best for spotting pull-offs.</span></div><div id="mapwrap" class="pl-mapwrap"><div class="pl-banner">Tap the map where you want your stop <button type="button" onclick="document.getElementById('addSpot').click()">Cancel</button></div><div class="map" id="map"></div></div>
 <div class="legend"><span><i style="background:#1d5a3a"></i>POTA park</span><span><i style="background:#b5452b"></i>SOTA summit</span><span><i style="background:#2b5f8a"></i>KFF only</span><span><i style="background:#d5a63a"></i>Possible 2-fer / multi-program</span></div></div>
 <div>
-<div class="panel dark" style="margin-bottom:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span style="flex:1;font-size:14px"><b id="selN" style="color:var(--gold-light)">0</b> stops selected for your route</span><button class="btn sm" id="route" disabled>OPEN ROUTE IN GOOGLE MAPS →</button><button class="btn sm alt" id="clear">CLEAR STOPS</button></div>
-<div class="card-list" id="list" style="max-height:470px;overflow:auto"><div class="empty">Results show here.</div></div>
+<div class="panel dark pl-trip" id="tripPanel"><div class="pl-thead"><b>YOUR TRIP</b><span id="tripN">0 stops</span></div>
+<ol id="trip" class="pl-list"></ol>
+<p class="pl-msg" id="tripMsg" hidden role="status"></p>
+<div class="pl-tacts"><button class="btn sm" id="route" type="button" disabled>OPEN TRIP IN GOOGLE MAPS →</button><button class="btn sm alt" id="share" type="button" disabled>SHARE TRIP</button><button class="btn sm alt" id="gpx" type="button" disabled>GPX FILE ↓</button><button class="btn sm alt" id="sortd" type="button" disabled>NEAREST-NEXT ORDER</button><button class="btn sm alt" id="clear" type="button" disabled>CLEAR TRIP</button></div>
+<p class="pl-small">Your trip is saved on this device. Use ▲ ▼ to change the order. Up to 10 stops.</p></div>
+<div class="card-list" id="list" style="max-height:620px;overflow:auto"><div class="empty">Results show here.</div></div>
 </div></div>
-<div class="note">Distances are straight-line miles from your starting point — actual drive time depends on roads. Directions go to an official parking or access point when the KPC guide has one, otherwise to the park's POTA point. Google Maps allows up to 9 stops per route. Always check the official map, access and hunting seasons before you go.</div>
+<div class="note">Distances are straight-line miles from your starting point; drive time depends on roads. Park stops go to an official parking or access point when the KPC guide has one. Map boundaries come from Kentucky and federal GIS and usually match POTA, but not always, so check the POTA map before you activate from a spot. Always check access, posted rules and hunting seasons.</div>
 </div></section>
-<script>
-const $=id=>document.getElementById(id);let D,map,layer,V0,origin=null,on={pota:1,sota:1,kff:1,two:0},sel=[];
-const ICON={pota:'#1d5a3a',sota:'#b5452b',kff:'#2b5f8a',multi:'#d5a63a'};
-(async()=>{D=await KPC.data();$('towns').innerHTML=D.towns.map(t=>`<option value="${t.n}">`).join('');
- map=KPC.leafletMap('map');KPC.countyLayer(map);layer=L.layerGroup().addTo(map);V0=[map.getCenter(),map.getZoom()];
- const q=new URLSearchParams(location.search);if(q.get('town')){$('town').value=q.get('town');pickTown()}})();
-function pickTown(){const t=D.towns.find(t=>t.n.toLowerCase()===$('town').value.trim().toLowerCase());if(!t)return;origin=[t.la,t.lo,t.n];run()}
-$('town').addEventListener('change',pickTown);$('town').addEventListener('keydown',e=>{if(e.key==='Enter')pickTown()});
-$('gps').onclick=()=>{if(!navigator.geolocation){$('where').textContent='Location is not available in this browser.';return}
- $('where').textContent='Finding your location…';navigator.geolocation.getCurrentPosition(p=>{origin=[p.coords.latitude,p.coords.longitude,'your location'];run()},()=>{$('where').textContent='Could not get your location — choose a town instead.'},{enableHighAccuracy:true,timeout:15000})};
-$('rad').oninput=e=>{$('rLbl').textContent=e.target.value+' MILES';if(origin)run()};
-$('prog_').onclick=e=>{const b=e.target.closest('button');if(!b)return;on[b.dataset.k]=on[b.dataset.k]?0:1;b.setAttribute('aria-pressed',!!on[b.dataset.k]);if(origin)run()};
-function items(){const out=[],P=new Map(D.parks.map(p=>[p.c,p]));
- D.parks.forEach(p=>{const multi=p.tf.length||p.kff.length||p.sota.length;const dest=p.ap.length?[p.ap[0][0],p.ap[0][1]]:[p.la,p.lo];
-  out.push({k:'pota',ref:p.c,n:p.n,co:p.co,la:p.la,lo:p.lo,dest,dn:p.ap.length?p.ap[0][2]:'',multi,
-  tags:[...p.tf.map(r=>`<span class="tag g">2-FER ${r}</span>`),...p.kff.map(r=>`<span class="tag k">${r}</span>`),...p.sota.map(r=>`<span class="tag r">${r}</span>`)],
-  links:[['POTA',KPC.links.pota(p.c)],p.off&&['OFFICIAL MAP',p.off],['WEATHER',KPC.links.wx(p.la,p.lo)]].filter(Boolean)})});
- D.summits.forEach(s=>{const inPark=D.parks.filter(p=>p.sota.includes(s.c));
-  out.push({k:'sota',ref:s.c,n:s.n,co:s.co,la:s.la,lo:s.lo,dest:[s.la,s.lo],multi:inPark.length,meta:`${s.ft?s.ft.toLocaleString()+' ft • ':''}${s.pts||'?'} pts`,
-  tags:inPark.map(p=>`<span class="tag g">IN ${p.c}</span>`),links:[['SOTLAS',KPC.links.sota(s.c)],['WEATHER',KPC.links.wx(s.la,s.lo)]]})});
- D.kff.forEach(k=>{if(k.p&&P.has(k.p))return; // shown with its POTA park
-  out.push({k:'kff',ref:k.c,n:k.n,co:k.co,la:k.la,lo:k.lo,dest:[k.la,k.lo],multi:0,tags:[],links:[['WWFF',KPC.links.kff(k.c)]]})});
- return out}
-let ALL=null;
-function run(){ALL=ALL||items();const R=+$('rad').value;
- const res=ALL.map(x=>({...x,d:KPC.miles(origin[0],origin[1],x.la,x.lo)})).filter(x=>x.d<=R&&on[x.k]&&(!on.two||x.multi)).sort((a,b)=>a.d-b.d);
- const c={pota:0,sota:0,kff:0};res.forEach(x=>c[x.k]++);
- $('where').innerHTML=`From <b>${KPC.esc(origin[2])}</b> within ${R} miles: <b>${c.pota}</b> POTA parks • <b>${c.sota}</b> summits • <b>${c.kff}</b> KFF-only references`;
- layer.clearLayers();L.circle([origin[0],origin[1]],{radius:R*1609.34,color:'#d5a63a',weight:1.5,fillOpacity:.05}).addTo(layer);
- L.circleMarker([origin[0],origin[1]],{radius:7,color:'#000',fillColor:'#000',fillOpacity:1}).bindPopup('Start: '+KPC.esc(origin[2])).addTo(layer);
- res.forEach(x=>L.circleMarker([x.la,x.lo],{radius:x.multi?8:6,weight:1.2,color:'#222',fillColor:x.multi?ICON.multi:ICON[x.k],fillOpacity:.95}).bindPopup(`<b>${KPC.esc(x.n)}</b><br>${x.ref} • ${x.d.toFixed(1)} mi<br><a href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">Directions</a><br><a href="finder.html?q=${x.ref}" style="font-weight:700">See boundary &amp; trails in Finder →</a>`).addTo(layer));
- map.fitBounds(L.latLng(origin[0],origin[1]).toBounds(R*1609.34*2.1));
- $('list').innerHTML=res.length?res.map((x,i)=>`<div class="item ${x.k}"><input type="checkbox" data-i="${i}" ${sel.some(s=>s.ref===x.ref)?'checked':''} aria-label="Add ${KPC.esc(x.ref)} to route">
- <div><span class="ref">${x.ref}</span> <span class="tag">${x.k.toUpperCase()}</span><h3>${KPC.esc(x.n)}</h3><div class="meta">${KPC.esc(KPC.cty(x.co))}${x.meta?' • '+x.meta:''}${x.dn?` • parking: ${KPC.esc(x.dn)}`:''}</div>${x.tags.length?`<div>${x.tags.join('')}</div>`:''}
- <div class="acts"><a class="btn sm" href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a>${x.links.map(([l,u])=>`<a class="btn sm alt" href="${u}" target="_blank" rel="noopener">${l}</a>`).join('')}</div></div>
- <div class="dist">${x.d.toFixed(1)}<small>MILES</small></div></div>`).join(''):'<div class="empty">Nothing in range — try a bigger distance.</div>';
- $('list').querySelectorAll('input[type=checkbox]').forEach(cb=>cb.onchange=()=>{const x=res[+cb.dataset.i];if(cb.checked){if(sel.length>=9){cb.checked=false;alert('Google Maps allows up to 9 stops.');return}sel.push(x)}else sel=sel.filter(s=>s.ref!==x.ref);upd()})}
-function upd(){$('selN').textContent=sel.length;$('route').disabled=!sel.length}
-$('newSearch').onclick=()=>{origin=null;sel=[];upd();$('town').value='';$('rad').value=40;$('rLbl').textContent='40 MILES';on={pota:1,sota:1,kff:1,two:0};$('prog_').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',!!on[b.dataset.k]));if(layer)layer.clearLayers();if(map&&V0)map.setView(V0[0],V0[1]);$('where').textContent='Choose a town or use your location to start.';$('list').innerHTML='<div class="empty">Results show here.</div>';try{history.replaceState(null,'',location.pathname)}catch(e){}$('town').focus()};
-$('clear').onclick=()=>{sel=[];upd();if(origin)run()};
-$('route').onclick=()=>{if(!sel.length||!origin)return;const s=[...sel].sort((a,b)=>a.d-b.d),last=s.pop();
- const u=`https://www.google.com/maps/dir/?api=1&origin=${origin[0]},${origin[1]}&destination=${last.dest[0]},${last.dest[1]}${s.length?'&waypoints='+s.map(x=>x.dest.join(',')).join('%7C'):''}`;window.open(u,'_blank','noopener')};
-</script>
+<script src="kpc-planner.js?v=20261010h"></script>
 
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
-<script src="kpc-search.js?v=20261010c" defer></script><script>
+<script src="kpc-search.js?v=20261010g" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
