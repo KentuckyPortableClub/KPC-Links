@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Antenna Pattern & SWR Estimator | KPC</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Antenna Pattern & SWR Estimator | KPC">
+<meta property="og:description" content="See the radiation pattern and estimated SWR for a dipole, inverted-V, vertical or end-fed half-wave at your height over your ground.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-antenna.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
+<meta name="description" content="See the radiation pattern and estimated SWR for a dipole, inverted-V, vertical or end-fed half-wave at your height over your ground.">
+<link rel="stylesheet" href="kpc-tools.css">
+<script src="kpc-tools.js"></script>
+<style id="kpc-nav-fit">
+/* KPC shared navbar fit: 10 links. Compact on mid-size screens, menu button below 1180px. */
+@media(min-width:1181px) and (max-width:1320px){.site-nav .nav-links a{padding-left:7px;padding-right:7px;font-size:12px;letter-spacing:.4px}.site-nav .nav-inner{gap:16px}}
+@media(max-width:1180px){.site-nav .nav-inner{position:relative}.site-nav .menu-toggle{display:block!important}.site-nav .nav-links{display:none!important;position:absolute!important;top:100%!important;left:0!important;right:0!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:10px 18px 16px!important;background:rgba(7,7,7,.99)!important;border-bottom:1px solid rgba(213,166,58,.45)!important;box-shadow:0 15px 25px rgba(0,0,0,.22);max-height:calc(100vh - 80px);overflow-y:auto}.site-nav .nav-links.open{display:flex!important}.site-nav .nav-links a{padding:13px 8px!important;font-size:14px!important;border-bottom:1px solid #292929}.site-nav .nav-links a:last-child{border-bottom:0}}
+</style>
+</head>
+<body>
+<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="toolbox.html" aria-current="page">Tool Box</a><a href="kpc-live.html" class="nav-live"><i></i>Live</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="members.html">Members</a><a href="contact.html">Contact</a></nav></div></header>
+<main>
+<section class="tool-head th-gear"><div class="wrap"><div class="th-text">
+<p class="eyebrow">KPC FIELD TOOL · BETA</p>
+<h1>ANTENNA <span>PATTERN &amp; SWR</span></h1>
+<p class="sub">Pick an antenna, a band, how high it is and what is under it. See where the signal goes (DX or nearby) and a rough SWR curve before you ever leave the house.</p>
+</div></div></section>
+<nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html">Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html" aria-current=page>Antenna</a><a href="parks.html">← Parks</a></div></nav>
+<section class="section"><div class="wrap">
+<div class="panel">
+<div class="controls">
+<label class="field" style="flex:1 1 220px">ANTENNA<select id="type">
+<option value="dipole">Dipole (flat top)</option>
+<option value="invv">Inverted-V</option>
+<option value="vert">Vertical (1/4 wave) with radials</option>
+<option value="efhw">End-fed half-wave + 49:1 transformer (sloper or flat)</option></select></label>
+<label class="field" style="flex:0 1 150px">FREQUENCY (MHz)<input id="f" type="number" min="1.8" max="54" step="0.001" value="14.2"></label>
+<label class="field" style="flex:0 1 150px" id="hwrap">HEIGHT (ft)<input id="h" type="number" min="1" max="120" step="1" value="20"></label>
+<label class="field" style="flex:0 1 150px" id="twrap" title="Feed point/top height for slopers, apex height for inverted-V">GROUND<select id="gnd"><option value="poor">Poor (dry, rocky)</option><option value="avg" selected>Average (Kentucky soil)</option><option value="good">Good (wet, rich)</option></select></label>
+<label class="field" style="flex:0 1 170px" id="lwrap">WIRE LENGTH (ft)<input id="len" type="number" min="3" max="300" step="0.1"></label>
+<label class="field" style="flex:0 1 150px" id="swrap">SLOPE (° below horizontal)<input id="slope" type="number" min="0" max="80" step="1" value="30"></label>
+<label class="field" style="flex:0 1 150px" id="rwrap">RADIALS<select id="rad"><option value="0">None</option><option value="4">4</option><option value="8" selected>8</option><option value="16">16</option><option value="32">32</option></select></label>
+</div>
+<div class="chips" id="bands" style="margin-top:12px"></div>
+<p style="font-size:13px;color:#6b6556;margin:10px 0 0" id="lenhint"></p>
+</div>
+<div class="stats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:16px 0">
+<div class="stat panel"><small>PEAK GAIN (ESTIMATE)</small><b id="s-gain">–</b></div>
+<div class="stat panel"><small>BEST TAKEOFF ANGLE</small><b id="s-to">–</b></div>
+<div class="stat panel"><small>SWR AT YOUR FREQUENCY</small><b id="s-swr">–</b></div>
+<div class="stat panel"><small>2:1 SWR BANDWIDTH</small><b id="s-bw">–</b></div>
+</div>
+<div class="panel" id="verdict" style="border-left:4px solid #c9a44c;margin-bottom:16px"></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+<div class="panel"><b class="an-h">Side view (elevation)</b><canvas id="c-el" width="560" height="340" style="width:100%;height:auto"></canvas><p class="hint">Distance from the center = signal strength. Low angles near the ground line reach far away (DX). High angles straight up fill in nearby (NVIS).</p></div>
+<div class="panel"><b class="an-h">Top view (azimuth) at the best angle</b><canvas id="c-az" width="400" height="340" style="width:100%;height:auto"></canvas><p class="hint" id="azhint"></p></div>
+</div>
+<div class="panel" style="margin-top:16px"><b class="an-h">Estimated SWR across the band</b><canvas id="c-swr" width="900" height="300" style="width:100%;height:auto"></canvas><p class="hint">Dotted line is 2:1. Tuned for your frequency when the wire length is the calculated length. Shorten the wire to move the dip higher in frequency; lengthen it to move lower.</p></div>
+<div class="panel" style="margin-top:16px;font-size:14px;line-height:1.5"><b class="an-h">How to read this (and how far to trust it)</b>
+This is a quick estimator using standard antenna theory (ground reflection with real-ground numbers, simple feed-point models), not a full NEC simulation. Expect gain within about 1–2 dB and SWR that is right in shape but not in exact numbers. Trees, nearby metal, coax length, a feedline choke and your actual ground change real results, so always check with an antenna analyzer. Later versions will add linked dipoles and side-by-side comparison.</div>
+</div></section>
+<style>.field{min-width:0}.field select,.field input{max-width:100%;box-sizing:border-box}.an-h{display:block;font:700 19px Georgia,serif;margin-bottom:10px}.stat small{display:block;font-size:12px;letter-spacing:1px;color:#6b6556;margin-bottom:4px}.stat b{font:700 26px Georgia,serif}.hint{font-size:13px;color:#6b6556;margin:8px 0 0}</style>
+<script>
+(function(){'use strict';
+const $=id=>document.getElementById(id);
+const BANDS=[['80m',3.57],['60m',5.357],['40m',7.15],['30m',10.12],['20m',14.2],['17m',18.1],['15m',21.2],['12m',24.93],['10m',28.4],['6m',51]];
+const GR={poor:[5,0.001],avg:[13,0.005],good:[20,0.03]};
+const pi=Math.PI,rad=d=>d*pi/180,C=Complex;
+function Complex(re,im){this.re=re;this.im=im||0}
+const cadd=(a,b)=>new C(a.re+b.re,a.im+b.im),csub=(a,b)=>new C(a.re-b.re,a.im-b.im),cmul=(a,b)=>new C(a.re*b.re-a.im*b.im,a.re*b.im+a.im*b.re),cabs=a=>Math.hypot(a.re,a.im);
+function cdiv(a,b){const d=b.re*b.re+b.im*b.im;return new C((a.re*b.re+a.im*b.im)/d,(a.im*b.re-a.re*b.im)/d)}
+function csqrt(a){const m=cabs(a),r=Math.sqrt((m+a.re)/2),i=Math.sign(a.im||1)*Math.sqrt(Math.max(0,(m-a.re)/2));return new C(r,i)}
+function gamma(th,f,g,horiz){ // th = elevation (rad); Fresnel reflection coefficient
+ const e=new C(g[0],-60*g[1]*(300/f)); // eps_c = er - j*60*sigma*lambda
+ const s=Math.sin(th),c2=Math.cos(th)*Math.cos(th);
+ const root=csqrt(csub(e,new C(c2,0)));
+ if(horiz)return cdiv(csub(new C(s,0),root),cadd(new C(s,0),root));
+ const es=cmul(e,new C(s,0));return cdiv(csub(es,root),cadd(es,root))}
+function j0(x){let s=0,t=1;for(let k=0;k<30;k++){s+=t;t*=-(x*x/4)/((k+1)*(k+1))}return s}
+function model(){
+ const type=$('type').value,f=+$('f').value,h=+$('h').value*0.3048,lam=300/f,g=GR[$('gnd').value],
+  slope=rad(+$('slope').value),nrad=+$('rad').value,L=+$('len').value*0.3048;
+ const m={type,f,lam,g};
+ // geometry
+ let heff=h,k=0,hor=true;
+ if(type==='invv'){const drop=0.12*lam*Math.sin(rad(30));heff=Math.max(0.3,h-drop*0.6);k=0.25}
+ if(type==='efhw'){const drop=L*Math.sin(slope);heff=Math.max(0.3,h-drop/2);k=Math.min(0.7,Math.sin(slope)*0.8)}
+ if(type==='vert')hor=false;
+ m.heff=heff;m.k=k;m.hor=hor;
+ // radials efficiency
+ let Rg=0;if(type==='vert'){const t={0:28,4:14,8:7,16:3.5,32:2}[nrad];Rg=t*(g===GR.good?0.7:g===GR.poor?1.4:1);m.Rg=Rg;m.eff=36/(36+Rg)}else m.eff=1;
+ // pattern
+ m.F=(el,az)=>{ // relative field, az from wire/broadside axis
+  const th=el;
+  if(hor){const G=gamma(th,f,g,true),ph=2*pi*(2*heff/lam)*Math.sin(th);
+   const fac=cabs(cadd(new C(1,0),cmul(G,new C(Math.cos(-ph),Math.sin(-ph)))));
+   const cc=Math.cos(th)*Math.cos(az);const cosv=Math.cos(pi/2*cc),den=Math.sqrt(Math.max(1e-6,1-cc*cc));
+   let Fd=Math.abs(cosv/den);Fd=(1-k)*Fd+k;
+   if(k>0){const G2=gamma(th,f,g,false);const fv=cabs(cadd(new C(1,0),G2))/2; /* vertical component */
+     return Fd*fac*(1-k*0.0)+0*fv}
+   return Fd*fac}
+  else{const G=gamma(th,f,g,false);const el_=Math.abs(Math.cos(pi/2*Math.sin(th))/Math.max(1e-6,Math.cos(th)));return el_*cabs(cadd(new C(1,0),G))/2*Math.sqrt(m.eff)}};
+ // peak
+ let best=-1,bel=0,baz=0;
+ for(let e=1;e<=90;e++)for(let a=0;a<=90;a+=5){const v=m.F(rad(e),rad(a));if(v>best){best=v;bel=e;baz=a}}
+ m.peak=best;m.pel=bel;
+ if(hor)m.gain=2.15+20*Math.log10(best/1); // vs free-space dipole at max=1 (factor up to 2 => +6 dB)
+ else m.gain=5.15+20*Math.log10(best);
+ m.pazr=baz;
+ return m}
+function swrAt(m,ff){
+ const type=m.type,lam=m.lam;let R,X;
+ const Lw=+$('len').value;
+ const K={dipole:468,invv:468,vert:234,efhw:468};
+ // resonant frequency from wire length (with shortening factor)
+ const sh={dipole:1,invv:0.96,vert:0.95,efhw:0.95}[type];
+ const f0=K[type]*sh/Lw;
+ const r=ff/f0-f0/ff;
+ if(type==='dipole'||type==='invv'){const d=2*m.heff*2*pi/m.lam;const G=Math.abs(gamma(rad(90),m.f,m.g,true).re);
+  let R0=73-73*G*j0(d)*Math.exp(-d/6);if(type==='invv')R0*=0.85;R0=Math.max(35,R0);R=R0;X=R0*8*r*(type==='invv'?0.95:1)}
+ else if(type==='vert'){R=36+(m.Rg||0);X=R*9*r}
+ else{R=2450*(m.g[0]<10?1.25:m.g[0]>15?0.85:1)*(1+0.0*r);const Rt=R/49;X=Rt*(10*r);R=Rt}
+ const z=new C(R,X),G=cdiv(csub(z,new C(50,0)),cadd(z,new C(50,0))),a=cabs(G);
+ return {swr:(1+a)/(1-a),f0}}
+function curve(m){const pts=[];const f0=swrAt(m,m.f).f0;const lo=f0*0.88,hi=f0*1.12;for(let i=0;i<=120;i++){const ff=lo+(hi-lo)*i/120;pts.push([ff,Math.min(10,swrAt(m,ff).swr)])}return pts}
+/* drawing */
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n);
+function drawEl(m){const cv=$('c-el'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,cx=W/2,cy=H-30,R=Math.min(W/2-40,H-60);
+ ctx.clearRect(0,0,W,H);ctx.strokeStyle='#d8d1bb';ctx.fillStyle='#6b6556';ctx.font='12px sans-serif';
+ for(let i=1;i<=4;i++){ctx.beginPath();ctx.arc(cx,cy,R*i/4,Math.PI,2*Math.PI);ctx.stroke()}
+ for(let e=0;e<=90;e+=15){const t=rad(e);[1,-1].forEach(sg=>{ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+sg*R*Math.cos(t),cy-R*Math.sin(t));ctx.stroke()});if(e%30==0){ctx.fillText(e+'°',cx+R*Math.cos(t)+4,cy-R*Math.sin(t))}}
+ ctx.strokeStyle='#3b3320';ctx.beginPath();ctx.moveTo(10,cy);ctx.lineTo(W-10,cy);ctx.stroke();ctx.fillText('ground',12,cy+16);
+ const pk=m.peak;ctx.beginPath();for(let e=0;e<=180;e++){const el=e<=90?e:180-e,v=m.F(rad(Math.min(89.5,Math.max(0.5,el))),rad(m.hor?m.pazr:0))/pk;const t=rad(e),r=R*Math.pow(v,1);const x=cx+(e<=90?1:-1)*R*v*Math.cos(rad(el)),y=cy-R*v*Math.sin(rad(el));e==0?ctx.moveTo(x,y):ctx.lineTo(x,y)}
+ ctx.closePath();ctx.fillStyle='rgba(201,164,76,.35)';ctx.fill();ctx.strokeStyle='#8a6d1f';ctx.lineWidth=2;ctx.stroke();
+ ctx.fillStyle='#6b6556';ctx.fillText('straight up',cx-28,cy-R-6);ctx.fillText('DX →',W-60,cy-10);ctx.fillText('← DX',12,cy-10)}
+function drawAz(m){const cv=$('c-az'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,cx=W/2,cy=H/2,R=Math.min(W,H)/2-30;ctx.clearRect(0,0,W,H);
+ ctx.strokeStyle='#d8d1bb';ctx.fillStyle='#6b6556';ctx.font='12px sans-serif';for(let i=1;i<=4;i++){ctx.beginPath();ctx.arc(cx,cy,R*i/4,0,2*pi);ctx.stroke()}
+ ctx.beginPath();ctx.moveTo(cx-R,cy);ctx.lineTo(cx+R,cy);ctx.moveTo(cx,cy-R);ctx.lineTo(cx,cy+R);ctx.stroke();
+ const el=rad(m.pel);let mx=0;const vals=[];for(let a=0;a<360;a+=2){const v=m.F(el,rad(a));vals.push(v);mx=Math.max(mx,v)}
+ ctx.beginPath();vals.forEach((v,i)=>{const a=rad(i*2),r=R*v/mx;/* wire axis horizontal (left-right); broadside = up-down */const x=cx+r*Math.cos(a),y=cy-r*Math.sin(a);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.closePath();ctx.fillStyle='rgba(201,164,76,.35)';ctx.fill();ctx.strokeStyle='#8a6d1f';ctx.lineWidth=2;ctx.stroke();
+ if(m.hor){ctx.strokeStyle='#b3261e';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(cx-R*0.35,cy);ctx.lineTo(cx+R*0.35,cy);ctx.stroke();ctx.fillStyle='#b3261e';ctx.fillText('wire',cx+R*0.36,cy-5)}
+ ctx.fillStyle='#6b6556';ctx.fillText('N',cx-4,12);}
+function drawSwr(m){const cv=$('c-swr'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,P=40;ctx.clearRect(0,0,W,H);const pts=curve(m);const f0=pts[0][0],f1=pts[pts.length-1][0];
+ const X=f=>P+(W-P-14)*(f-f0)/(f1-f0),Y=s=>H-28-(H-48)*(Math.min(s,6)-1)/5;
+ ctx.strokeStyle='#e0dac6';ctx.fillStyle='#6b6556';ctx.font='12px sans-serif';for(let s=1;s<=6;s++){ctx.beginPath();ctx.moveTo(P,Y(s));ctx.lineTo(W-14,Y(s));ctx.stroke();ctx.fillText(s+':1',4,Y(s)+4)}
+ ctx.setLineDash([4,4]);ctx.strokeStyle='#b3261e';ctx.beginPath();ctx.moveTo(P,Y(2));ctx.lineTo(W-14,Y(2));ctx.stroke();ctx.setLineDash([]);
+ ctx.strokeStyle='#8a6d1f';ctx.lineWidth=2.5;ctx.beginPath();pts.forEach((p,i)=>{i?ctx.lineTo(X(p[0]),Y(p[1])):ctx.moveTo(X(p[0]),Y(p[1]))});ctx.stroke();
+ ctx.strokeStyle='#2b6cb0';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(X(m.f),20);ctx.lineTo(X(m.f),H-28);ctx.stroke();ctx.fillStyle='#2b6cb0';ctx.fillText('your freq',X(m.f)+4,16);ctx.fillStyle='#6b6556';
+ for(let i=0;i<=4;i++){const f=f0+(f1-f0)*i/4;ctx.fillText(f.toFixed(2),X(f)-12,H-8)}
+ // bandwidth
+ const ok=pts.filter(p=>p[1]<=2);return ok.length?[ok[0][0],ok[ok.length-1][0]]:null}
+function autoLen(){const t=$('type').value,f=+$('f').value;const K={dipole:468,invv:468*0.96,vert:234*0.95,efhw:468*0.95};$('len').value=(K[t]/f).toFixed(1);}
+function update(){const t=$('type').value;
+ $('swrap').style.display=t==='efhw'?'':'none';$('rwrap').style.display=t==='vert'?'':'none';$('hwrap').style.display=t==='vert'?'none':'';
+ $('lenhint').textContent={dipole:'Total length for a half-wave dipole. Height is the whole wire above ground.',invv:'Total wire length. Height is the apex (center); legs droop down. Assumes about a 90–120° angle between legs.',vert:'Quarter-wave vertical, base at ground level, with the radials you choose. No raised feedpoint.',efhw:'Half-wave wire fed at one end through a 49:1 transformer. Height is the feed (high) end; slope is how far the far end drops. A flat wire is 0°.'}[t];
+ const m=model();$('s-gain').textContent=(m.gain>=0?'+':'')+m.gain.toFixed(1)+' dBi';$('s-to').textContent=m.pel+'°';
+ const sw=swrAt(m,m.f).swr;$('s-swr').textContent=sw>9.9?'>10:1':sw.toFixed(1)+':1';
+ const bw=drawSwr(m);$('s-bw').textContent=bw?Math.round((bw[1]-bw[0])*1000)+' kHz':'none';
+ drawEl(m);drawAz(m);
+ const pe=m.pel,dx=pe<30?'low and far-reaching: good for long distance (DX) contacts':pe<60?'mixed: fine for both medium-distance and DX contacts':'high and steep: best for close-in contacts out to a few hundred miles (NVIS) and weaker for DX';
+ $('verdict').innerHTML='<b>Plain English:</b> this setup sends most of its signal up at about <b>'+pe+'°</b>, which is '+dx+'.'+(t==='dipole'||t==='invv'||t==='efhw'?' The top view shows the wire’s broadside directions are strongest.':' It is about equal in every compass direction.')+(m.type==='vert'&&m.Rg>8?' More radials would cut ground loss and help the signal.':'')+(m.heff/m.lam<0.2&&m.hor?' At this height (under a fifth of a wavelength) most of your signal goes straight up. Raising the wire lowers the takeoff angle.':'')+(sw>2?' The SWR at your chosen frequency is above 2:1, so adjust the wire length (see the curve).':'');
+ $('azhint').textContent=m.hor?'The wire runs left to right. A dipole is strongest off the sides, weaker off the ends.':'A vertical radiates evenly in all directions.'}
+$('bands').innerHTML=BANDS.map(b=>'<button type="button" class="chip" data-f="'+b[1]+'">'+b[0]+'</button>').join('');
+$('bands').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$('f').value=b.dataset.f;autoLen();update()});
+['f','type'].forEach(id=>$(id).addEventListener('change',()=>{autoLen();update()}));
+['h','gnd','len','slope','rad'].forEach(id=>$(id).addEventListener('input',update));
+autoLen();update();
+})();
+</script>
+
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="resources.html">RESOURCES →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
+<script src="kpc-search.js" defer></script></body></html>
