@@ -130,7 +130,7 @@ function swrAt(m,ff){
  else{R=2450*(m.g[0]<10?1.25:m.g[0]>15?0.85:1)*(1+0.0*r);const Rt=R/49;X=Rt*(10*r);R=Rt}
  const z=new C(R,X),G=cdiv(csub(z,new C(50,0)),cadd(z,new C(50,0))),a=cabs(G);
  return {swr:(1+a)/(1-a),f0}}
-function curve(m){const pts=[];const lo=m.f*0.85,hi=m.f*1.15;for(let i=0;i<=120;i++){const ff=lo+(hi-lo)*i/120;pts.push([ff,Math.min(10,swrAt(m,ff).swr)])}return pts}
+function curve(m){const pts=[];const f0=swrAt(m,m.f).f0;const lo=f0*0.88,hi=f0*1.12;for(let i=0;i<=120;i++){const ff=lo+(hi-lo)*i/120;pts.push([ff,Math.min(10,swrAt(m,ff).swr)])}return pts}
 /* drawing */
 const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n);
 function drawEl(m){const cv=$('c-el'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height,cx=W/2,cy=H-30,R=Math.min(W/2-40,H-60);
