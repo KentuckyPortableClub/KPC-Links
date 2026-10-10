@@ -91,7 +91,7 @@ function initMap(){if(typeof L==='undefined'||typeof KPC==='undefined'||!$('lv-m
  cityLayer=L.layerGroup().addTo(map);radarCities();
  [['warnp',410],['kyp',420],['windp',630],['spotp',640]].forEach(p=>{map.createPane(p[0]);map.getPane(p[0]).style.zIndex=p[1]});
  warnLayer=L.layerGroup().addTo(map);spotLayer=L.layerGroup().addTo(map);windLayer=L.layerGroup();stateLayer=L.layerGroup().addTo(map);
- drawWarnings();drawSpotPins();loadStates();
+ drawWarnings();drawSpotPins();loadStates();loadParkXY().then(drawSpotPins);
  $('lv-c-warn').onclick=()=>{toggle('lv-c-warn')?warnLayer.addTo(map):map.removeLayer(warnLayer)};
  $('lv-c-spots').onclick=()=>{toggle('lv-c-spots')?spotLayer.addTo(map):map.removeLayer(spotLayer)};
  $('lv-c-all').onclick=()=>{spotAll=toggle('lv-c-all');drawSpotPins();if(spotAll)map.setView([39.5,-90],4)};
@@ -111,8 +111,14 @@ function drawWarnings(){if(!warnLayer)return;warnLayer.clearLayers();let n=0;
  warnData.forEach(f=>{const g=f.geometry;if(!g)return;const p=f.properties||{};if(!/Warning|Watch/.test(p.event||''))return;const col=WCOL(p.event||'');n++;
   L.geoJSON(g,{pane:'warnp',style:{color:col,weight:3,fillColor:col,fillOpacity:.24}}).bindPopup('<b>'+esc(p.event)+'</b><br>'+esc(p.headline||'')+'<br><small>'+esc(p.areaDesc||'')+'</small><br><a href="https://alerts.weather.gov/search?area=KY" target="_blank" rel="noopener">NWS details</a>').addTo(warnLayer)});
  $('lv-wnote').textContent=n?n+' warning area'+(n>1?'s':'')+' shaded on the map':'No storm-based warning areas right now'}
+/* spot position: POTA lat/lon, else KPC park data by reference, else Maidenhead grid (v20261010f) */
+const parkXY={};let parkXYp=null;
+function loadParkXY(){if(parkXYp)return parkXYp;parkXYp=fetch('kpc-ky-data.json').then(r=>r.ok?r.json():null).then(j=>{if(j)(j.parks||[]).forEach(p=>{if(isFinite(p.la)&&isFinite(p.lo))parkXY[p.c]=[+p.la,+p.lo]})}).catch(()=>{});return parkXYp}
+function gridXY(g){g=String(g||'').trim();if(!/^[A-R]{2}\d{2}([A-X]{2})?$/i.test(g))return null;g=g.toUpperCase();let lo=(g.charCodeAt(0)-65)*20-180+(+g[2])*2,la=(g.charCodeAt(1)-65)*10-90+(+g[3]);
+ if(g.length>=6){lo+=(g.charCodeAt(4)-65)/12+1/24;la+=(g.charCodeAt(5)-65)/24+1/48}else{lo+=1;la+=.5}return[la,lo]}
+function spotXY(s){const la=Number(s.latitude),lo=Number(s.longitude);if(isFinite(la)&&isFinite(lo)&&(la||lo))return[la,lo];return parkXY[s.reference]||gridXY(s.grid6)||gridXY(s.grid4)||null}
 function drawSpotPins(){if(!spotLayer)return;spotLayer.clearLayers();let n=0,m=0;
- allSpots.forEach(s=>{const la=Number(s.latitude),lo=Number(s.longitude);if(!isFinite(la)||!isFinite(lo)||(!la&&!lo))return;
+ allSpots.forEach(s=>{const xy=spotXY(s);if(!xy)return;const la=xy[0],lo=xy[1];
   const ky=String(s.locationDesc||'').split(',').some(x=>x.trim()==='US-KY'),mem=MEMBERS.includes(base(s.activator));if(!spotAll&&!ky&&!mem)return;n++;if(mem)m++;
   L.circleMarker([la,lo],{radius:mem?10:7,color:mem?'#171717':'#fff',weight:2.5,fillColor:mem?'#f0c030':'#2fa84f',fillOpacity:1,pane:'spotp'})
    .bindPopup('<b>'+esc(s.name||s.parkName||s.reference)+'</b> ('+esc(s.reference)+')<br><b>'+esc(s.activator)+'</b> &middot; '+mhz(s.frequency)+' MHz '+esc(s.mode)+(s.comments?'<br><small>'+esc(s.comments)+'</small>':'')+'<br><a href="https://pota.app/#/park/'+encodeURIComponent(s.reference)+'" target="_blank" rel="noopener">POTA park page</a>').addTo(spotLayer)});
