@@ -5,7 +5,7 @@
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const MEMBERS=['KZ4CP','N4BDW','KQ4HZK','K4ZSR'];
-const CITIES=[{n:'Louisville',la:38.25,lo:-85.76},{n:'Bowling Green',la:36.99,lo:-86.44},{n:'Hazard',la:37.25,lo:-83.19},{n:'Paducah',la:37.08,lo:-88.60}];
+const CITIES=[{n:'Louisville',la:38.25,lo:-85.76},{n:'Bowling Green',la:36.99,lo:-86.44},{n:'Hazard',la:37.25,lo:-83.19},{n:'Paducah',la:37.08,lo:-88.60},{n:'Ashland',la:38.48,lo:-82.64}];
 const BL={1:'160m',3:'80m',7:'40m',10:'30m',14:'20m',18:'17m',21:'15m',24:'12m',28:'10m',50:'6m'};
 const base=c=>String(c||'').toUpperCase().split('/').reduce((a,b)=>b.length>a.length?b:a,'');
 async function jget(u,ms){const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||15000);try{const r=await fetch(u,{signal:c.signal});if(!r.ok)throw Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(t)}}
@@ -77,7 +77,7 @@ const RTILE=m=>'https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q
 const OFFS=[50,45,40,35,30,25,20,15,10,5,0];
 function frameLabel(off){const d=new Date(Math.floor(Date.now()/300000)*300000-off*60000);return d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}
 function radarCities(){if(!cityLayer)return;cityLayer.clearLayers();CITIES.forEach(c=>{const t=cityTemps[c.n];L.marker([c.la,c.lo],{icon:L.divIcon({className:'',html:`<div class="cm"><i></i><span>${esc(c.n)}${t!=null?' '+t+'&deg;':''}</span></div>`,iconSize:[0,0]}),interactive:false}).addTo(cityLayer)})}
-function initMap(){if(!window.L||!window.KPC||!$('lv-map'))return;
+function initMap(){if(typeof L==='undefined'||typeof KPC==='undefined'||!$('lv-map'))return;
  map=KPC.leafletMap('lv-map');map.setView([37.75,-85.7],7);
  cur=L.tileLayer(RTILE(0)+'?t='+Math.floor(Date.now()/300000),{opacity:.7,maxZoom:12,attribution:'Radar: NOAA/NWS via Iowa Environmental Mesonet'}).addTo(map);
  let le=0;lightning=L.tileLayer.wms('https://nowcoast.noaa.gov/geoserver/ows',{layers:'lightning_detection:ldn_lightning_strike_density',format:'image/png',transparent:true,version:'1.3.0',opacity:.85,attribution:'Lightning: NOAA nowCOAST'}).addTo(map);
