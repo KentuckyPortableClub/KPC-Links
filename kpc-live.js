@@ -5,7 +5,7 @@
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const MEMBERS=['KZ4CP','N4BDW','KQ4HZK','K4ZSR'];
-const CITIES=[{n:'Louisville',la:38.25,lo:-85.76},{n:'Bowling Green',la:36.99,lo:-86.44},{n:'Hazard',la:37.25,lo:-83.19},{n:'Paducah',la:37.08,lo:-88.60},{n:'Ashland',la:38.48,lo:-82.64}];
+const CITIES=[{n:'Louisville',la:38.25,lo:-85.76,c:'#e6194b'},{n:'Bowling Green',la:36.99,lo:-86.44,c:'#3b6fe0'},{n:'Hazard',la:37.25,lo:-83.19,c:'#f58231'},{n:'Paducah',la:37.08,lo:-88.60,c:'#8e3fc4'},{n:'Ashland',la:38.48,lo:-82.64,c:'#0f9d8a'}];
 const BL={1:'160m',3:'80m',7:'40m',10:'30m',14:'20m',18:'17m',21:'15m',24:'12m',28:'10m',50:'6m'};
 const base=c=>String(c||'').toUpperCase().split('/').reduce((a,b)=>b.length>a.length?b:a,'');
 async function jget(u,ms){const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||15000);try{const r=await fetch(u,{signal:c.signal});if(!r.ok)throw Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(t)}}
@@ -54,11 +54,11 @@ async function spots(){try{const all=await jget('https://api.pota.app/spot/activ
 
 /* ---------- weather ---------- */
 const WX={0:'Clear',1:'Mostly clear',2:'Partly cloudy',3:'Overcast',45:'Fog',48:'Fog',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',56:'Freezing drizzle',57:'Freezing drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',66:'Freezing rain',67:'Freezing rain',71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow grains',80:'Rain showers',81:'Rain showers',82:'Heavy showers',85:'Snow showers',86:'Snow showers',95:'Thunderstorm',96:'Thunderstorm, hail',99:'Thunderstorm, hail'};
-const wxCard=(n,c)=>`<div class="w"><b>${esc(n)}</b><div class="t">${Math.round(c.temperature_2m)}&deg;</div><small>${esc(WX[c.weather_code]||'')} &middot; wind ${Math.round(c.wind_speed_10m)} mph</small></div>`;
+const wxCard=(n,c,col)=>`<div class="w"><b>${col?`<i class="cdot" style="background:${col}"></i>`:''}${esc(n)}</b><div class="t">${Math.round(c.temperature_2m)}&deg;</div><small>${esc(WX[c.weather_code]||'')} &middot; wind ${Math.round(c.wind_speed_10m)} mph</small></div>`;
 const cityTemps={};let youCard='';
 const Q='&current=temperature_2m,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph';
 async function weather(){try{const j=await jget('https://api.open-meteo.com/v1/forecast?latitude='+CITIES.map(c=>c.la).join(',')+'&longitude='+CITIES.map(c=>c.lo).join(',')+Q);
-  const a=Array.isArray(j)?j:[j];$('lv-wx').innerHTML=youCard+a.map((x,i)=>{cityTemps[CITIES[i].n]=Math.round(x.current.temperature_2m);return wxCard(CITIES[i].n,x.current)}).join('');radarCities()}catch(e){$('lv-wx').innerHTML='<div class="w" style="grid-column:1/-1"><small>Weather could not load right now. Try the <a href="kpc-weather.html">KPC Field Weather</a> page.</small></div>'}}
+  const a=Array.isArray(j)?j:[j];$('lv-wx').innerHTML=youCard+a.map((x,i)=>{cityTemps[CITIES[i].n]=Math.round(x.current.temperature_2m);return wxCard(CITIES[i].n,x.current,CITIES[i].c)}).join('');radarCities()}catch(e){$('lv-wx').innerHTML='<div class="w" style="grid-column:1/-1"><small>Weather could not load right now. Try the <a href="kpc-weather.html">KPC Field Weather</a> page.</small></div>'}}
 function alertsUI(list,where){const box=$('lv-alerts');
  if(!list){box.className='ok';box.innerHTML='Alerts could not load. <a href="https://alerts.weather.gov/search?area=KY" target="_blank" rel="noopener">Check NWS alerts</a>';return}
  if(!list.length){box.className='ok';box.innerHTML='&#10003; No active NWS watches or warnings'+(where?' for '+esc(where):' in Kentucky')+'.';return}
@@ -72,17 +72,16 @@ function useLocation(){const b=$('lv-loc');if(!navigator.geolocation){b.textCont
    try{const a=await jget('https://api.weather.gov/alerts/active?point='+la.toFixed(4)+','+lo.toFixed(4));alertsUI(a.features||[],'your location')}catch(e){}}catch(e){b.textContent='COULD NOT GET WEATHER'}},()=>{b.textContent='LOCATION BLOCKED'},{timeout:12000,maximumAge:300000})}
 
 /* ---------- radar + lightning map ---------- */
-let labelsOn=true,map,labels,cityLayer,radarFrames=[],cur,lightning,counties,loopTimer=null,playing=false,idx=0,framesBuilt=false;
+let map,cityLayer,radarFrames=[],cur,lightning,counties,loopTimer=null,playing=false,idx=0,framesBuilt=false;
 const RTILE=m=>'https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913'+(m?'-m'+String(m).padStart(2,'0')+'m':'')+'/{z}/{x}/{y}.png';
 const OFFS=[50,45,40,35,30,25,20,15,10,5,0];
 function frameLabel(off){const d=new Date(Math.floor(Date.now()/300000)*300000-off*60000);return d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}
-function radarCities(){if(!cityLayer)return;cityLayer.clearLayers();CITIES.forEach(c=>{const t=cityTemps[c.n];L.marker([c.la,c.lo],{icon:L.divIcon({className:'',html:labelsOn?(t!=null?`<div class="cm t"><span>${t}&deg;</span></div>`:''):`<div class="cm"><i></i><span>${esc(c.n)}${t!=null?' '+t+'&deg;':''}</span></div>`,iconSize:[0,0]}),interactive:false}).addTo(cityLayer)})}
+function radarCities(){if(!cityLayer)return;cityLayer.clearLayers();CITIES.forEach(c=>{const t=cityTemps[c.n];L.circleMarker([c.la,c.lo],{radius:8,color:'#fff',weight:3,fillColor:c.c,fillOpacity:1,pane:'dotp'}).bindTooltip(c.n+(t!=null?' '+t+'\u00B0':''),{direction:'top'}).addTo(cityLayer)})}
 function initMap(){if(typeof L==='undefined'||typeof KPC==='undefined'||!$('lv-map'))return;
  let svb=null;try{svb=localStorage.getItem('kpcBaseMap');localStorage.setItem('kpcBaseMap',localStorage.getItem('lvBase')||'Street')}catch(e){}
  map=KPC.leafletMap('lv-map');try{if(svb===null)localStorage.removeItem('kpcBaseMap');else localStorage.setItem('kpcBaseMap',svb)}catch(e){}
  map.on('baselayerchange',e=>{try{localStorage.setItem('lvBase',e.name)}catch(_){}});map.setView([37.75,-85.7],6);
- map.createPane('radarp');map.getPane('radarp').style.zIndex=350;map.createPane('lightp');map.getPane('lightp').style.zIndex=355;map.createPane('lblp');map.getPane('lblp').style.zIndex=460;map.getPane('lblp').style.pointerEvents='none';
- labels=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{pane:'lblp',maxZoom:12,attribution:'Labels &copy; Esri'}).addTo(map);
+ map.createPane('radarp');map.getPane('radarp').style.zIndex=350;map.createPane('lightp');map.getPane('lightp').style.zIndex=355;map.createPane('dotp');map.getPane('dotp').style.zIndex=650;
  let re=0,rok=0;const rnote=()=>{$('lv-rnote').textContent=re>3&&!rok?'Radar tiles did not load. Check your connection or try again.':rok?'Radar: NOAA NEXRAD, latest scan about '+frameLabel(0):''};
  cur=L.tileLayer(RTILE(0)+'?t='+Math.floor(Date.now()/300000),{pane:'radarp',opacity:.8,maxZoom:12,attribution:'Radar: NOAA/NWS via Iowa Environmental Mesonet'}).addTo(map);
  cur.on('tileerror',()=>{re++;rnote()});cur.on('tileload',()=>{rok++;if(rok%10===1)rnote()});
@@ -95,7 +94,6 @@ function initMap(){if(typeof L==='undefined'||typeof KPC==='undefined'||!$('lv-m
  $('lv-play').onclick=()=>playing?stop():play();
  $('lv-c-radar').onclick=()=>{const on=toggle('lv-c-radar');frames().forEach(l=>on?l.addTo(map):map.removeLayer(l));if(on){show(idx)}};
  $('lv-c-light').onclick=()=>{toggle('lv-c-light')?lightning.addTo(map):map.removeLayer(lightning)};
- $('lv-c-labels').onclick=()=>{labelsOn=toggle('lv-c-labels');labelsOn?labels.addTo(map):map.removeLayer(labels);radarCities()};
  $('lv-c-counties').onclick=()=>{const on=toggle('lv-c-counties');if(counties)on?counties.addTo(map):map.removeLayer(counties)};
  setTimeout(()=>map.invalidateSize(),300)}
 const frames=()=>framesBuilt?radarFrames:[cur];
