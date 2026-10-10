@@ -27,7 +27,8 @@
 
 /* Finder jump navigation, map pin legend, and KPC footer */
 html{scroll-behavior:smooth}
-#finder-search,#trailfinder,#finder-planner,#finder-tools,#finder-map,#finder-results{scroll-margin-top:18px}
+#finder-search,#trailfinder,#finder-planner,#finder-tools,#finder-map,#finder-results,#finder-offline,#finder-about{scroll-margin-top:96px}
+@media(max-width:760px){#finder-search,#trailfinder,#finder-planner,#finder-tools,#finder-map,#finder-results,#finder-offline,#finder-about{scroll-margin-top:84px}}
 .finder-jump{display:flex;gap:10px;flex-wrap:wrap;padding:17px 0 2px}
 .finder-jump a{display:inline-flex;align-items:center;justify-content:center;padding:11px 15px;border:1px solid #98783b;border-radius:7px;background:#1c1b16;color:#f0c96b;font-size:12px;font-weight:850;letter-spacing:.45px;text-decoration:none}
 .finder-jump a:hover,.finder-jump a:focus-visible{background:#d5a63a;color:#090909}

@@ -20,12 +20,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <link rel="stylesheet" href="kpc-tools.css">
-<script src="kpc-tools.js"></script>
-<style id="kpc-nav-fit">
-/* KPC shared navbar fit: 10 links. Compact on mid-size screens, menu button below 1180px. */
-@media(min-width:1181px) and (max-width:1320px){.site-nav .nav-links a{padding-left:7px;padding-right:7px;font-size:12px;letter-spacing:.4px}.site-nav .nav-inner{gap:16px}}
-@media(max-width:1180px){.site-nav .nav-inner{position:relative}.site-nav .menu-toggle{display:block!important}.site-nav .nav-links{display:none!important;position:absolute!important;top:100%!important;left:0!important;right:0!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:10px 18px 16px!important;background:rgba(7,7,7,.99)!important;border-bottom:1px solid rgba(213,166,58,.45)!important;box-shadow:0 15px 25px rgba(0,0,0,.22);max-height:calc(100vh - 80px);overflow-y:auto}.site-nav .nav-links.open{display:flex!important}.site-nav .nav-links a{padding:13px 8px!important;font-size:14px!important;border-bottom:1px solid #292929}.site-nav .nav-links a:last-child{border-bottom:0}}
-</style>
+<script src="kpc-tools.js?v=20261010b"></script>
 <link rel="stylesheet" href="kpc-band-maps.css">
 <style>
 .lv-hero{background:linear-gradient(120deg,#070707,#1c1a12);color:#fff;padding:34px 24px 26px;border-bottom:1px solid rgba(213,166,58,.45)}
@@ -57,7 +52,7 @@
 #band-activity{padding:44px 24px}
 @media(max-width:900px){.lv-grid{grid-template-columns:1fr}.lv-best{margin-left:0;max-width:none}.lv-status .lv-w{gap:16px 22px}}
 @media(max-width:640px){.lv-hero{padding:26px 16px 20px}.lv-w{padding:0 16px}.lv-spots .lv-w{flex-wrap:wrap}.lv-spots .lv-chips{order:3;flex-basis:100%}#lv-map{height:400px}.lv-scrub{margin-left:0;width:100%}.lv-scrub input{flex:1}.lv-card{padding:16px}.wx{grid-template-columns:repeat(2,1fr)}}
-</style><link rel="stylesheet" href="kpc-nav.css">
+</style><link rel="stylesheet" href="kpc-nav.css?v=20261010b">
 </head>
 <body>
 <header class="site-nav">
@@ -70,6 +65,7 @@
     <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
       <a href="index.html">Home</a>
 <a href="campout.html">Campout</a>
+<a href="parks.html">Parks</a>
 <a href="events.html">Events</a>
 <a href="photos.html">Photos</a>
 <a href="find.html" class="nav-search-icon">🔍</a>
@@ -129,7 +125,7 @@
 <div class="lv-w"><div class="lv-go" style="padding-top:28px"><a href="finder.html">FIND A PARK &rarr;</a><a href="kpc-planner.html">PLAN A TRIP &rarr;</a><a href="kpc-band-plan.html">BAND PLAN &rarr;</a><a href="kpc-park-sheet.html">PRINT A PARK SHEET &rarr;</a><a href="kpc-space-weather.html">FULL RADIO CONDITIONS &rarr;</a></div></div>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
-<script src="kpc-search.js" defer></script><script src="kpc-band-strip.js" defer></script><script src="kpc-band-maps.js" defer></script><script src="kpc-live.js" defer></script><script src="kpc-search.js" defer></script><script>
+<script src="kpc-search.js?v=20261010b" defer></script><script src="kpc-band-strip.js" defer></script><script src="kpc-band-maps.js" defer></script><script src="kpc-live.js" defer></script><script src="kpc-search.js?v=20261010b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

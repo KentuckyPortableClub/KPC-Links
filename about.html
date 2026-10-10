@@ -143,11 +143,6 @@ footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-
 body.field .page-jump-nav{display:none!important}
 
 </style>
-<style id="kpc-nav-fit">
-/* KPC shared navbar fit: 10 links. Compact on mid-size screens, menu button below 1180px. */
-@media(min-width:1181px) and (max-width:1320px){.site-nav .nav-links a{padding-left:7px;padding-right:7px;font-size:12px;letter-spacing:.4px}.site-nav .nav-inner{gap:16px}}
-@media(max-width:1180px){.site-nav .nav-inner{position:relative}.site-nav .menu-toggle{display:block!important}.site-nav .nav-links{display:none!important;position:absolute!important;top:100%!important;left:0!important;right:0!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:10px 18px 16px!important;background:rgba(7,7,7,.99)!important;border-bottom:1px solid rgba(213,166,58,.45)!important;box-shadow:0 15px 25px rgba(0,0,0,.22);max-height:calc(100vh - 80px);overflow-y:auto}.site-nav .nav-links.open{display:flex!important}.site-nav .nav-links a{padding:13px 8px!important;font-size:14px!important;border-bottom:1px solid #292929}.site-nav .nav-links a:last-child{border-bottom:0}}
-</style>
 <style>.founder-extras{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}.founder-extra{display:flex;flex-direction:column;gap:6px;padding:18px 20px;background:#fff;border-left:5px solid var(--gold);box-shadow:0 8px 20px rgba(0,0,0,.07);color:#171717;text-align:left}.founder-extra span{font-size:11px;font-weight:900;letter-spacing:2px;color:var(--green,#1d5a3a)}.founder-extra strong{font-family:Georgia,serif;font-size:20px}.founder-extra b{font-size:12px;letter-spacing:1px;color:var(--green,#1d5a3a)}.founder-extra.soon{opacity:.75}.founder-extra.soon b{color:#68635a}@media(max-width:760px){.founder-extras{grid-template-columns:1fr}}</style>
 <style id="kpc-hero-shade">
 /* KPC: darker shade behind header text so it reads on bright photos */
@@ -157,7 +152,7 @@ body.field .page-jump-nav{display:none!important}
 @media(max-width:900px){.kpc-hero-shade,.kpc-hero-shade.center{background:linear-gradient(180deg,rgba(5,5,5,.2) 0%,rgba(5,5,5,.55) 38%,rgba(5,5,5,.74) 100%)}}
 .hero h1,.hero .hero-copy,.hero .eyebrow,.hero-inner p{text-shadow:0 2px 14px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.6)}
 </style>
-<link rel="stylesheet" href="kpc-nav.css">
+<link rel="stylesheet" href="kpc-nav.css?v=20261010b">
 </head>
 <body>
 <header class="site-nav">
@@ -170,6 +165,7 @@ body.field .page-jump-nav{display:none!important}
     <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
       <a href="index.html">Home</a>
 <a href="campout.html">Campout</a>
+<a href="parks.html">Parks</a>
 <a href="events.html">Events</a>
 <a href="photos.html">Photos</a>
 <a href="find.html" class="nav-search-icon">🔍</a>
@@ -403,7 +399,7 @@ function apply(){secs.forEach(s=>s._set&&s._set(!mq.matches))}apply();mq.addEven
 function openTo(id){const t=id&&document.getElementById(id),s=t&&t.closest('[data-fold]');if(s&&s._set&&s.classList.contains('kpc-folded')){s._set(true);requestAnimationFrame(()=>t.scrollIntoView())}}
 window.addEventListener('hashchange',()=>openTo(location.hash.slice(1)));openTo(location.hash.slice(1));
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a)openTo(a.getAttribute('href').slice(1))})})();</script>
-<script src="kpc-search.js" defer></script><script>
+<script src="kpc-search.js?v=20261010b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

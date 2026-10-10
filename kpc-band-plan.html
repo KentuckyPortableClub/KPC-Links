@@ -18,12 +18,7 @@
 <!-- /KPC icons -->
 <meta name="description" content="US amateur band plan by license class: which CW, digital and phone portions Technician, General and Extra operators can use, with popular activity frequencies.">
 <link rel="stylesheet" href="kpc-tools.css">
-<script src="kpc-tools.js"></script>
-<style id="kpc-nav-fit">
-/* KPC shared navbar fit: 10 links. Compact on mid-size screens, menu button below 1180px. */
-@media(min-width:1181px) and (max-width:1320px){.site-nav .nav-links a{padding-left:7px;padding-right:7px;font-size:12px;letter-spacing:.4px}.site-nav .nav-inner{gap:16px}}
-@media(max-width:1180px){.site-nav .nav-inner{position:relative}.site-nav .menu-toggle{display:block!important}.site-nav .nav-links{display:none!important;position:absolute!important;top:100%!important;left:0!important;right:0!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:10px 18px 16px!important;background:rgba(7,7,7,.99)!important;border-bottom:1px solid rgba(213,166,58,.45)!important;box-shadow:0 15px 25px rgba(0,0,0,.22);max-height:calc(100vh - 80px);overflow-y:auto}.site-nav .nav-links.open{display:flex!important}.site-nav .nav-links a{padding:13px 8px!important;font-size:14px!important;border-bottom:1px solid #292929}.site-nav .nav-links a:last-child{border-bottom:0}}
-</style>
+<script src="kpc-tools.js?v=20261010b"></script>
 <style>
 .bp-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.bp-ctl .lbl{font-size:12px;font-weight:900;letter-spacing:1.5px;color:var(--muted)}
 .bp-leg{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:13px}.bp-leg span{display:inline-flex;align-items:center;gap:6px}.bp-leg i{width:18px;height:12px;border-radius:3px;display:inline-block}
@@ -39,7 +34,7 @@
 .bp-pop{margin-top:12px;padding:10px 12px;background:#f7f2e4;border:1px solid #e3d9bd;font-size:13px}.bp-pop b{color:#1d5a3a}
 .bp-special{margin-top:16px;background:#fff8e6;border:1px solid #e3d9bd;border-left:5px solid #b5452b;padding:14px 18px;font-size:14px}
 @media(max-width:560px){.bp-row{grid-template-columns:84px 1fr}.bp-row b{font-size:10px;letter-spacing:.3px}.bp-scale{margin-left:94px}.bp-band{padding:14px}.bp-seg{font-size:9px;letter-spacing:0}}
-</style><link rel="stylesheet" href="kpc-nav.css">
+</style><link rel="stylesheet" href="kpc-nav.css?v=20261010b">
 </head>
 <body>
 <header class="site-nav">
@@ -52,6 +47,7 @@
     <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
       <a href="index.html">Home</a>
 <a href="campout.html">Campout</a>
+<a href="parks.html">Parks</a>
 <a href="events.html">Events</a>
 <a href="photos.html">Photos</a>
 <a href="find.html" class="nav-search-icon">🔍</a>
@@ -91,8 +87,6 @@
     </nav>
   </div>
 </header>
-<body>
-<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html">Parks</a><a href="toolbox.html">Tool Box</a><a href="kpc-live.html" class="nav-live"><i></i>Live</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="members.html">Members</a><a href="contact.html">Contact</a></nav></div></header>
 <main>
 <section class="tool-head th-fort"><div class="wrap">
 <p class="eyebrow">KPC BAND PLAN</p>
@@ -141,7 +135,7 @@ let s0='all';try{s0=localStorage.getItem('kpcBandPlanClass')||'all'}catch(e){}if
 </script>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
-<script src="kpc-search.js" defer></script><script>
+<script src="kpc-search.js?v=20261010b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
