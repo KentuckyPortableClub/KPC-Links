@@ -110,11 +110,12 @@ body.field .page-jump-nav{display:none!important}
 </style>
 </head>
 <body>
-<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html" aria-current="page">Parks</a><a href="toolbox.html">Tool Box</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="members.html">Members</a><a href="contact.html">Contact</a></nav></div></header>
+<header class="site-nav"><div class="nav-inner"><a class="brand" href="index.html" aria-label="KPC Home"><img src="KPC-logo.png" alt="KPC — Kentucky Portable Club"><span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation">☰</button><nav class="nav-links" id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="campout.html">Campout</a><a href="events.html">Events</a><a href="parks.html" aria-current="page">Parks</a><a href="toolbox.html">Tool Box</a><a href="kpc-live.html" class="nav-live"><i></i>Live</a><a href="resources.html">Resources</a><a href="join.html">Join KPC</a><a href="members.html">Members</a><a href="contact.html">Contact</a></nav></div></header>
 
 <main>
 <section class="hero"><div class="hero-inner"><img class="hero-logo" src="KPC-logo.png" alt="Kentucky Portable Club"><p class="eyebrow">KENTUCKY • OUTDOORS • RADIO</p><h1>KENTUCKY<br><span>PARKS</span></h1><p class="hero-copy">Explore. Camp. Operate. Repeat. Find the places worth packing the radio for — then use the official maps, park resources, trails, forests, protected lands, and KPC POTA guides to plan the outing.</p></div></section>
 <nav class="page-jump-nav" aria-label="Quick page links"><a href="#explore-parks">EXPLORE</a><a href="finder.html">PARK FINDER</a><a href="#guides">FIELD GUIDES</a><a href="#tools">MAPS &amp; TOOLS</a><a href="toolbox.html">TOOL BOX</a><a href="#state">STATE PARKS</a><a href="#federal">FEDERAL LANDS</a><a href="#trails">TRAILS</a><a href="#kentucky-wild-river-maps">WILD RIVERS</a></nav>
+<div id="kpc-band-strip"></div>
 <div id="kpc-band-strip"></div>
 <section class="onair" aria-label="POTA spots on the air now"><div class="onair-inner">
 <span class="onair-title"><span class="dot off" id="oaDot"></span>ON THE AIR NOW</span>
@@ -236,4 +237,4 @@ function apply(){secs.forEach(s=>s._set&&s._set(!mq.matches))}apply();mq.addEven
 function openTo(id){const t=id&&document.getElementById(id),s=t&&t.closest('[data-fold]');if(s&&s._set&&s.classList.contains('kpc-folded')){s._set(true);requestAnimationFrame(()=>t.scrollIntoView())}}
 window.addEventListener('hashchange',()=>openTo(location.hash.slice(1)));openTo(location.hash.slice(1));
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a)openTo(a.getAttribute('href').slice(1))})})();</script>
-<script src="kpc-search.js" defer></script><script src="kpc-band-strip.js" defer></script></body></html>
+<script src="kpc-search.js" defer></script><script src="kpc-band-strip.js" defer></script><script src="kpc-band-strip.js" defer></script></body></html>
