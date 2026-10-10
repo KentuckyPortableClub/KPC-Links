@@ -99,3 +99,5 @@ html{scroll-behavior:smooth}
 @media(max-width:850px){.mapbar-l{display:none}.mapbar button{flex:1 1 auto}.mapbar .mapx{margin-left:0;flex:1 1 100%}}
 .mapwrap.kpc-mapfull .gis-controls{display:none;position:absolute;z-index:1100;top:58px;left:12px;max-width:min(380px,calc(100% - 24px));max-height:calc(100% - 80px);overflow:auto;margin:0;box-shadow:0 8px 28px #000a}.mapwrap.kpc-mapfull .gis-controls.open{display:block}
 .mapwrap.kpc-mapfull .kynotice,.mapwrap.kpc-mapfull .gis-missing,.mapwrap.kpc-mapfull .gis-note,.mapwrap.kpc-mapfull .gis-notice{display:none}.kpc-nofs-scroll .kss-float{display:none!important}.mapwrap.kpc-mapfull .gis-controls{max-height:min(420px,calc(100% - 80px))}
+.kpc-sat path.kpc-bnd{stroke:#ffee00!important;stroke-width:4px!important;stroke-opacity:1!important;filter:drop-shadow(0 0 2px #000)}.kpc-sat path.kpc-bnd[stroke-dasharray]{stroke-width:3px!important}
+path.kpc-bnd{filter:drop-shadow(0 0 1.2px rgba(0,0,0,.95)) drop-shadow(0 0 1px rgba(0,0,0,.8))}

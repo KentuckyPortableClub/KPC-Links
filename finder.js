@@ -52,7 +52,8 @@ if(window.L){
   let wantBase='Street';try{wantBase=localStorage.getItem('kpcBaseMap')||'Street'}catch(_){}
   (baseMaps[wantBase]||baseTiles).addTo(map);
   L.control.layers(baseMaps,null,{position:'topright',collapsed:true}).addTo(map);
-  map.on('baselayerchange',e=>{try{localStorage.setItem('kpcBaseMap',e.name)}catch(_){}});
+  const satCls=n=>map.getContainer().classList.toggle('kpc-sat',n==='Satellite');satCls(baseMaps[wantBase]?wantBase:'Street');
+  map.on('baselayerchange',e=>{satCls(e.name);try{localStorage.setItem('kpcBaseMap',e.name)}catch(_){}});
   layer=L.layerGroup().addTo(map);
   window.addEventListener('load',()=>map.invalidateSize({animate:false}));
 }else{status.textContent='Map library could not load; search results can still work.'}
