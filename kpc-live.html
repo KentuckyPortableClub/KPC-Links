@@ -55,13 +55,15 @@
 footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px}footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}footer.kpc-about-footer .footer-actions a:hover{border-color:#e5c87b;color:#e5c87b}@media(max-width:600px){footer.kpc-about-footer{flex-direction:column;align-items:flex-start}}
 </style><link rel="stylesheet" href="kpc-nav.css?v=20261010c">
 <style id="lv-utc-css">
-.lv-hero .lv-w{display:flex;align-items:center;justify-content:space-between;gap:20px 32px}
-.lv-hero .lv-htext{flex:1 1 420px;min-width:0}
-.lv-utc{flex:0 0 auto;text-align:center;padding:14px 24px 12px;border:1px solid rgba(213,166,58,.6);border-radius:12px;background:rgba(0,0,0,.4);box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
-.lv-utc small{display:block;color:#f0c96b;font-size:11px;font-weight:800;letter-spacing:3px}
-.lv-utc b{display:block;margin:4px 0 2px;color:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Courier New",monospace;font-size:clamp(30px,3.6vw,42px);font-weight:700;letter-spacing:1px;line-height:1.05;font-variant-numeric:tabular-nums}
-.lv-utc span{display:block;color:#bdb7aa;font-size:12px;letter-spacing:1px}
-@media(max-width:640px){.lv-hero .lv-w{flex-direction:column;align-items:stretch;gap:16px}.lv-hero .lv-htext{flex:none}.lv-utc{display:flex;align-items:baseline;justify-content:center;gap:10px;padding:10px 14px}.lv-utc b{margin:0;font-size:26px;letter-spacing:0}.lv-utc small,.lv-utc span{font-size:10px;letter-spacing:1px;white-space:nowrap}}
+/* Live page only: UTC clock in the navbar */
+.site-nav .nav-utc{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 auto;padding:5px 12px 6px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:rgba(255,255,255,.03);line-height:1;margin-left:auto}
+.site-nav .nav-utc small{color:#f0c96b;font:800 9px/1 Arial,Helvetica,sans-serif;letter-spacing:2px}
+.site-nav .nav-utc b{margin-top:3px;color:#fff;font:700 19px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,"Courier New",monospace;font-variant-numeric:tabular-nums;letter-spacing:.5px}
+.site-nav .nav-links{margin-left:0}
+@media(min-width:1001px) and (max-width:1180px){.site-nav .nav-utc{padding:4px 8px 5px}.site-nav .nav-utc b{font-size:16px}}
+@media(max-width:1000px){.site-nav .nav-utc{margin-right:4px}}
+@media(max-width:560px){.site-nav .nav-utc{padding:4px 7px 5px;margin-right:0}.site-nav .nav-utc b{font-size:14px}.site-nav .nav-utc small{font-size:8px;letter-spacing:1.5px}}
+@media(max-width:350px){.site-nav .nav-utc{display:none}}
 </style>
 </head>
 <body>
@@ -116,7 +118,7 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
   </div>
 </header>
 <main>
-<section class="lv-hero"><div class="lv-w"><div class="lv-htext"><div class="k">KENTUCKY &bull; RIGHT NOW</div><h1>HAPPENING <span>NOW</span></h1><p>Bands, spots, space weather, field weather, radar and lightning for Kentucky, all in one place. Check it before you leave the house.</p><div class="lv-stamp"><span class="lv-dot"></span> Updated <span id="lv-stamp">--</span> &middot; refreshes about every 5 minutes</div></div><div class="lv-utc" role="timer" aria-live="off" aria-label="Current UTC time"><small>UTC TIME</small><b id="lv-utc">--:--:--</b><span id="lv-utcdate">&nbsp;</span></div></div></section>
+<section class="lv-hero"><div class="lv-w"><div class="k">KENTUCKY &bull; RIGHT NOW</div><h1>HAPPENING <span>NOW</span></h1><p>Bands, spots, space weather, field weather, radar and lightning for Kentucky, all in one place. Check it before you leave the house.</p><div class="lv-stamp"><span class="lv-dot"></span> Updated <span id="lv-stamp">--</span> &middot; refreshes about every 5 minutes</div></div></section>
 <section class="lv-status" aria-label="Status"><div class="lv-w"><span class="lv-pill">STATUS</span><div class="lv-st" id="lv-sun"><b>--</b></div><div class="lv-st" id="lv-sfi"><b>SFI --</b></div><div class="lv-st" id="lv-kp"><b>Kp --</b></div><div class="lv-st" id="lv-parks"><b>-- parks</b></div><div class="lv-best" id="lv-best">Checking conditions...</div></div></section>
 <section class="lv-spots" aria-label="POTA spots on the air now"><div class="lv-w"><span class="lv-pill"><span class="lv-dot off" id="lv-dot"></span> ON THE AIR NOW</span><span style="font-size:14px" id="lv-spotcount">Checking...</span><div class="lv-chips" id="lv-spotlist"></div><a class="lv-btn" href="kpc-spots.html">SEE ALL SPOTS &rarr;</a></div></section>
 <div id="kpc-band-strip"></div>
@@ -144,9 +146,10 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
 })();
 </script>
 <script>
-(function(){var c=document.getElementById('lv-utc'),d=document.getElementById('lv-utcdate');if(!c)return;
-var D=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],p=function(n){return(n<10?'0':'')+n};
-function tick(){var n=new Date();c.textContent=p(n.getUTCHours())+':'+p(n.getUTCMinutes())+':'+p(n.getUTCSeconds())+'Z';d.textContent=D[n.getUTCDay()]+' '+n.getUTCDate()+' '+M[n.getUTCMonth()]+' '+n.getUTCFullYear();setTimeout(tick,1000-n.getMilliseconds()+5)}
+(function(){var ni=document.querySelector('.site-nav .nav-inner');if(!ni)return;
+var w=document.createElement('div');w.className='nav-utc';w.setAttribute('role','timer');w.setAttribute('aria-label','Current UTC time');w.innerHTML='<small>UTC</small><b>--:--:--</b>';
+var tg=ni.querySelector('.menu-toggle');ni.insertBefore(w,tg||null);var c=w.querySelector('b'),p=function(n){return(n<10?'0':'')+n};
+function tick(){var n=new Date();c.textContent=p(n.getUTCHours())+':'+p(n.getUTCMinutes())+':'+p(n.getUTCSeconds())+'Z';w.title='UTC '+n.toISOString().slice(0,10);setTimeout(tick,1000-n.getMilliseconds()+5)}
 tick()})();
 </script>
 </body></html>
