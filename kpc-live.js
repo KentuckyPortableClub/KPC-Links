@@ -72,15 +72,21 @@ function useLocation(){const b=$('lv-loc');if(!navigator.geolocation){b.textCont
    try{const a=await jget('https://api.weather.gov/alerts/active?point='+la.toFixed(4)+','+lo.toFixed(4));alertsUI(a.features||[],'your location')}catch(e){}}catch(e){b.textContent='COULD NOT GET WEATHER'}},()=>{b.textContent='LOCATION BLOCKED'},{timeout:12000,maximumAge:300000})}
 
 /* ---------- radar + lightning map ---------- */
-let map,cityLayer,radarFrames=[],cur,lightning,counties,loopTimer=null,playing=false,idx=0,framesBuilt=false;
+let map,labels,cityLayer,radarFrames=[],cur,lightning,counties,loopTimer=null,playing=false,idx=0,framesBuilt=false;
 const RTILE=m=>'https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913'+(m?'-m'+String(m).padStart(2,'0')+'m':'')+'/{z}/{x}/{y}.png';
 const OFFS=[50,45,40,35,30,25,20,15,10,5,0];
 function frameLabel(off){const d=new Date(Math.floor(Date.now()/300000)*300000-off*60000);return d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}
 function radarCities(){if(!cityLayer)return;cityLayer.clearLayers();CITIES.forEach(c=>{const t=cityTemps[c.n];L.marker([c.la,c.lo],{icon:L.divIcon({className:'',html:`<div class="cm"><i></i><span>${esc(c.n)}${t!=null?' '+t+'&deg;':''}</span></div>`,iconSize:[0,0]}),interactive:false}).addTo(cityLayer)})}
 function initMap(){if(typeof L==='undefined'||typeof KPC==='undefined'||!$('lv-map'))return;
- map=KPC.leafletMap('lv-map');map.setView([37.75,-85.7],7);
- cur=L.tileLayer(RTILE(0)+'?t='+Math.floor(Date.now()/300000),{opacity:.7,maxZoom:12,attribution:'Radar: NOAA/NWS via Iowa Environmental Mesonet'}).addTo(map);
- let le=0;lightning=L.tileLayer.wms('https://nowcoast.noaa.gov/geoserver/ows',{layers:'lightning_detection:ldn_lightning_strike_density',format:'image/png',transparent:true,version:'1.3.0',opacity:.85,attribution:'Lightning: NOAA nowCOAST'}).addTo(map);
+ let svb=null;try{svb=localStorage.getItem('kpcBaseMap');localStorage.setItem('kpcBaseMap',localStorage.getItem('lvBase')||'Street')}catch(e){}
+ map=KPC.leafletMap('lv-map');try{if(svb===null)localStorage.removeItem('kpcBaseMap');else localStorage.setItem('kpcBaseMap',svb)}catch(e){}
+ map.on('baselayerchange',e=>{try{localStorage.setItem('lvBase',e.name)}catch(_){}});map.setView([37.75,-85.7],6);
+ map.createPane('radarp');map.getPane('radarp').style.zIndex=350;map.createPane('lightp');map.getPane('lightp').style.zIndex=355;map.createPane('lblp');map.getPane('lblp').style.zIndex=460;map.getPane('lblp').style.pointerEvents='none';
+ labels=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{pane:'lblp',maxZoom:12,attribution:'Labels &copy; Esri'}).addTo(map);
+ let re=0,rok=0;const rnote=()=>{$('lv-rnote').textContent=re>3&&!rok?'Radar tiles did not load. Check your connection or try again.':rok?'Radar: NOAA NEXRAD, latest scan about '+frameLabel(0):''};
+ cur=L.tileLayer(RTILE(0)+'?t='+Math.floor(Date.now()/300000),{pane:'radarp',opacity:.8,maxZoom:12,attribution:'Radar: NOAA/NWS via Iowa Environmental Mesonet'}).addTo(map);
+ cur.on('tileerror',()=>{re++;rnote()});cur.on('tileload',()=>{rok++;if(rok%10===1)rnote()});
+ let le=0;lightning=L.tileLayer.wms('https://nowcoast.noaa.gov/geoserver/ows',{pane:'lightp',layers:'lightning_detection:ldn_lightning_strike_density',format:'image/png',transparent:true,version:'1.3.0',opacity:.85,attribution:'Lightning: NOAA nowCOAST'}).addTo(map);
  lightning.on('tileerror',()=>{if(++le===3)$('lv-lnote').textContent='The lightning layer did not load. It may be down for a moment.'});
  lightning.on('load',()=>{le=0;$('lv-lnote').textContent=''});
  cityLayer=L.layerGroup().addTo(map);radarCities();
@@ -89,13 +95,14 @@ function initMap(){if(typeof L==='undefined'||typeof KPC==='undefined'||!$('lv-m
  $('lv-play').onclick=()=>playing?stop():play();
  $('lv-c-radar').onclick=()=>{const on=toggle('lv-c-radar');frames().forEach(l=>on?l.addTo(map):map.removeLayer(l));if(on){show(idx)}};
  $('lv-c-light').onclick=()=>{toggle('lv-c-light')?lightning.addTo(map):map.removeLayer(lightning)};
+ $('lv-c-labels').onclick=()=>{toggle('lv-c-labels')?labels.addTo(map):map.removeLayer(labels)};
  $('lv-c-counties').onclick=()=>{const on=toggle('lv-c-counties');if(counties)on?counties.addTo(map):map.removeLayer(counties)};
  setTimeout(()=>map.invalidateSize(),300)}
 const frames=()=>framesBuilt?radarFrames:[cur];
 function toggle(id){const b=$(id),on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);return on}
 function setChip(id,on){$(id).setAttribute('aria-pressed',on)}
-function buildFrames(){if(framesBuilt)return;framesBuilt=true;radarFrames=OFFS.map(o=>o===0?cur:L.tileLayer(RTILE(o),{opacity:0,maxZoom:12}).addTo(map));$('lv-slider').max=OFFS.length-1}
-function show(i){idx=i;radarFrames.forEach((l,j)=>l.setOpacity(j===i?.7:0));$('lv-flabel').textContent=(i===OFFS.length-1?'Now ':'')+frameLabel(OFFS[i]);$('lv-slider').value=i}
+function buildFrames(){if(framesBuilt)return;framesBuilt=true;radarFrames=OFFS.map(o=>o===0?cur:L.tileLayer(RTILE(o),{pane:'radarp',opacity:0,maxZoom:12}).addTo(map));$('lv-slider').max=OFFS.length-1}
+function show(i){idx=i;radarFrames.forEach((l,j)=>l.setOpacity(j===i?.8:0));$('lv-flabel').textContent=(i===OFFS.length-1?'Now ':'')+frameLabel(OFFS[i]);$('lv-slider').value=i}
 function play(){if($('lv-c-radar').getAttribute('aria-pressed')!=='true'){toggle('lv-c-radar');}buildFrames();playing=true;$('lv-play').innerHTML='&#10074;&#10074; PAUSE';idx=0;show(0);loopTimer=setInterval(()=>{idx=(idx+1)%OFFS.length;show(idx);if(idx===OFFS.length-1){clearInterval(loopTimer);setTimeout(()=>{if(playing){idx=-1;loopTimer=setInterval(()=>{idx=(idx+1)%OFFS.length;show(idx)},650)}},1400)}},650)}
 function stop(){playing=false;clearInterval(loopTimer);$('lv-play').innerHTML='&#9654; PLAY LAST HOUR'}
 
