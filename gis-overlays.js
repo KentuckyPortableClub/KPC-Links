@@ -80,7 +80,10 @@
  function drawLegend(){const on=Object.keys(bLayers);if(!on.length){if(legend){legend.remove();legend=null}return}
   if(!legend){legend=L.control({position:'bottomleft'});legend.onAdd=()=>{const d=L.DomUtil.create('div','kpc-blegend');L.DomEvent.disableClickPropagation(d);return d};legend.addTo(map)}
   legend.getContainer().innerHTML='<button type="button" class="kbl-t" aria-expanded="true">Boundaries legend</button><div class="kbl-b"><b>Official boundaries</b>'+on.map(k=>`<div><i style="background:${bounds[k].color}33;border:2px solid ${bounds[k].color}"></i>${safe(bounds[k].name)}</div>`).join('')+'<div class="k"><i style="border:2px solid #555"></i>Solid = has a POTA reference</div><div class="k"><i style="border:2px dashed #555"></i>Dashed = no POTA reference</div></div>';const c=legend.getContainer(),t=c.querySelector('.kbl-t');if(innerWidth<760&&!c.dataset.seen){c.classList.add('closed');t.setAttribute('aria-expanded','false')}c.dataset.seen=1;t.onclick=()=>{const cl=c.classList.toggle('closed');t.setAttribute('aria-expanded',String(!cl))}}
- const setB=t=>{const e=$('gis-bstatus');if(e)e.textContent=t};
+
+ /* status text appears both in the layer panel and under the map */
+ const setAll=(n,txt)=>{const a=document.getElementById('gis-'+n),b=document.querySelector('[data-gis="'+n+'"]');if(a)a.textContent=txt;if(b)b.textContent=txt};
+ const setB=t=>setAll('bstatus',t);
  function bStatus(){drawLegend();const on=Object.keys(bLayers);setB(on.length?on.map(k=>`${bounds[k].name}: ${bData[k].features.length} (${bData[k]._src})`).join(' | ')+' · Tap a boundary for its POTA reference and official map.':'Choose a boundary layer to show official park boundaries.')}
  /* ---------- "Am I inside a park?" ---------- */
  let hereMark=null;
@@ -148,7 +151,8 @@
      vis.addTo(layer);hit.addTo(layer);lines.push(pts);n++}}
    else if(s.kind==='point'){const pt=g.x!==undefined?[g.y,g.x]:g.type==='Point'?[g.coordinates[1],g.coordinates[0]]:null;if(pt){label(L.circleMarker(pt,{radius:coarse?9:7,color:'#111',weight:2,fillColor:s.color,fillOpacity:.95}),name,s,f.attributes||f.properties).addTo(layer);n++}}}
   return{layer,lines,n}}
- function candidates(){const host=$('gis-candidates');if(!host)return;host.replaceChildren();const keys=Object.keys(routes).filter(k=>sources[k].kind==='line'&&$('gis-'+k)?.checked);if(!keys.length){return}
+ function mirrorCandidates(){const a=document.getElementById('gis-candidates'),b=document.querySelector('[data-gis="candidates"]');if(a&&b)b.replaceChildren(...[...a.cloneNode(true).childNodes])}
+function candidates(){const host=$('gis-candidates');if(!host)return;const done=()=>setTimeout(mirrorCandidates,0);done();host.replaceChildren();const keys=Object.keys(routes).filter(k=>sources[k].kind==='line'&&$('gis-'+k)?.checked);if(!keys.length){return}
   for(const k of keys){const tp=trailParks&&trailParks[{sheltowee:'sheltowee',pine:'pine-mountain',dawkins:'dawkins'}[k]];if(!tp)continue;
    const h=document.createElement('p');h.innerHTML=`<b>${safe(tp.name)} (${safe(tp.ref)}) passes through these official boundaries:</b>`;host.append(h);
    for(const r of tp.parks){if(r.boundary===tp.name)continue;const p=document.createElement('p');p.style.margin='3px 0 3px 10px';
@@ -165,17 +169,17 @@
  async function bundled(k){const s=sources[k];if(fileTrail[k])return fileTrail[k];try{const r=await fetch(s.file,{cache:'force-cache'});if(!r.ok)throw 0;const j=await r.json();if(!Array.isArray(j.features))throw 0;
    if(!trailParks){try{const t=await fetch('ky-trail-parks.json');trailParks=t.ok?await t.json():{}}catch(_){trailParks={}}}
    const render=draw(j,s);fileTrail[k]=render;return render}catch(_){return null}}
- async function load(){if(typeof map==='undefined'||!map){$('gis-status').textContent='Map unavailable.';return}
+ async function load(){if(typeof map==='undefined'||!map){setAll('status','Map unavailable.');return}
   const active=Object.keys(sources).filter(k=>$('gis-'+k)?.checked);for(const k of Object.keys(overlays)){if(!active.includes(k)){map.removeLayer(overlays[k]);delete overlays[k];delete routes[k]}}
-  if(!active.length){$('gis-status').textContent='Choose a trail layer — trails load automatically for the area on the map.';candidates();return}
+  if(!active.length){setAll('status','Choose a trail layer — trails load automatically for the area on the map.');candidates();return}
   const reportsB=[];for(const k of active.filter(k=>sources[k].file)){const r=await bundled(k);if(r){if(!map.hasLayer(r.layer))r.layer.addTo(map);overlays[k]=r.layer;routes[k]=r.lines;reportsB.push(`${sources[k].name}: full trail`)}}
   const liveKeys=active.filter(k=>!(sources[k].file&&fileTrail[k]));
-  if(!liveKeys.length){$('gis-status').textContent=reportsB.join(' | ')+' · Official state GIS lines — verify on the agency map.';candidates();return}
-  if(map.getZoom()<8){$('gis-status').textContent=(reportsB.length?reportsB.join(' | ')+' · ':'')+'Zoom in a little more (level 8+) to load the other selected trails.';candidates();return}
+  if(!liveKeys.length){setAll('status',reportsB.join(' | ')+' · Official state GIS lines — verify on the agency map.');candidates();return}
+  if(map.getZoom()<8){setAll('status',(reportsB.length?reportsB.join(' | ')+' · ':'')+'Zoom in a little more (level 8+) to load the other selected trails.');candidates();return}
   if(busy){again=true;return}busy=true;const b=map.getBounds(),bb=[b.getWest(),b.getSouth(),b.getEast(),b.getNorth()].join(',');const reports=[];
-  try{for(const k of liveKeys){const s=sources[k];if(s.minZoom&&map.getZoom()<s.minZoom){if(overlays[k]){map.removeLayer(overlays[k]);delete overlays[k]}reports.push(`${s.name}: zoom in closer (level ${s.minZoom}+)`);continue}$('gis-status').textContent='Loading '+s.name+'…';try{const j=await query(s,bb),render=draw(j,s);if(overlays[k])map.removeLayer(overlays[k]);render.layer.addTo(map);overlays[k]=render.layer;routes[k]=render.lines;reports.push(`${s.name}: ${render.n}${j.exceededTransferLimit?' (partial; zoom in)':''}`)}catch(e){reports.push(`${s.name}: unavailable (${e.message})`)}}}
+  try{for(const k of liveKeys){const s=sources[k];if(s.minZoom&&map.getZoom()<s.minZoom){if(overlays[k]){map.removeLayer(overlays[k]);delete overlays[k]}reports.push(`${s.name}: zoom in closer (level ${s.minZoom}+)`);continue}setAll('status','Loading '+s.name+'…');try{const j=await query(s,bb),render=draw(j,s);if(overlays[k])map.removeLayer(overlays[k]);render.layer.addTo(map);overlays[k]=render.layer;routes[k]=render.lines;reports.push(`${s.name}: ${render.n}${j.exceededTransferLimit?' (partial; zoom in)':''}`)}catch(e){reports.push(`${s.name}: unavailable (${e.message})`)}}}
   finally{busy=false}
-  $('gis-status').textContent=reportsB.concat(reports).join(' | ')+' · Updates as you move the map. Government GIS may change; verify before travel.';candidates();if(again){again=false;load()}}
+  setAll('status',reportsB.concat(reports).join(' | ')+' · Updates as you move the map. Government GIS may change; verify before travel.');candidates();if(again){again=false;load()}}
  let deb;const auto=()=>{clearTimeout(deb);deb=setTimeout(load,650)};
  if(typeof map!=='undefined'&&map){map.on('moveend',()=>{if(Object.keys(sources).some(k=>$('gis-'+k)?.checked))auto()})}
  Object.keys(sources).forEach(k=>$('gis-'+k)?.addEventListener('change',auto));
