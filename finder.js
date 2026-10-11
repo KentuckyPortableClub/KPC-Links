@@ -11,7 +11,7 @@ function buildCrossReferences(){potaWWFF=new Map();sotaLocations=[];for(const d 
 const savedKey='radio-finder-saved-v1';let saved={favorites:[],trip:[]};try{const v=JSON.parse(localStorage.getItem(savedKey));if(v&&Array.isArray(v.favorites)&&Array.isArray(v.trip))saved=v}catch(_){}
 const key=d=>d[0]+':'+d[1];function persist(){try{localStorage.setItem(savedKey,JSON.stringify(saved))}catch(_){}drawSaved()}
 function toggleSaved(kind,d){const k=key(d),a=saved[kind];const i=a.indexOf(k);if(i<0){a.push(k)}else{a.splice(i,1)}persist();render()}
-function drawSaved(){for(const kind of ['favorites','trip']){const el=$(kind==='favorites'?'favorites':'tripstops');el.replaceChildren();const entries=saved[kind].map(k=>data.find(d=>key(d)===k)).filter(Boolean);$(kind==='favorites'?'favcount':'tripcount').textContent=entries.length;for(const d of entries){const r=node('div','saveditem');r.append(node('span','',d[0]+' '+d[1]+' · '+d[2]));const b=node('button','tiny','Remove');b.type='button';b.addEventListener('click',()=>toggleSaved(kind,d));r.append(b);el.append(r)}if(!entries.length)el.append(node('p','meta','No saved locations yet.'))}const route=$('triproute'),stops=saved.trip.map(k=>data.find(d=>key(d)===k)).filter(Boolean).slice(0,10);if(stops.length){const points=stops.map(d=>d[3]+','+d[4]);route.href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(points.at(-1))+(points.length>1?'&waypoints='+encodeURIComponent(points.slice(0,-1).join('|')):'');route.hidden=false;route.textContent='Open '+stops.length+' trip stop'+(stops.length===1?'':'s')+' in Google Maps'}else route.hidden=true}
+function drawSaved(){for(const kind of ['favorites','trip']){const el=$(kind==='favorites'?'favorites':'tripstops');el.replaceChildren();const entries=saved[kind].map(k=>data.find(d=>key(d)===k)).filter(Boolean);$(kind==='favorites'?'favcount':'tripcount').textContent=entries.length;for(const d of entries){const r=node('div','saveditem');r.append(node('span','',d[0]+' '+d[1]+' · '+d[2]));const b=node('button','tiny','Remove');b.type='button';b.addEventListener('click',()=>toggleSaved(kind,d));r.append(b);el.append(r)}if(!entries.length)el.append(node('p','meta','No saved locations yet.'))}cmdRoute(saved.trip.map(k=>data.find(d=>key(d)===k)).filter(Boolean))}
 $('clearplan').addEventListener('click',()=>{saved.trip=[];persist();render()});
 // Use one consistent map tile layer. Do not switch providers during zoom or pan.
 // Failed tiles can be retried by reloading the page without disturbing map markers.
@@ -219,3 +219,61 @@ document.addEventListener('click',e=>{const a=e.target.closest('.finder-jump a[h
  const settle=()=>{clearTimeout(timer);timer=setTimeout(()=>{const d=y();if(Math.abs(d-scrollY)>6&&tries++<4)scrollTo({top:d,behavior:Math.abs(d-scrollY)>1500?'auto':'smooth'}),settle();else removeEventListener('scroll',settle)},180)};
  addEventListener('scroll',settle,{passive:true});scrollTo({top:y(),behavior:'smooth'});settle();
  try{history.replaceState(null,'',a.getAttribute('href'))}catch(_){}});
+
+
+/* Start and End pins for the trip (v20261010k): drop them on the map, or use GPS for the start.
+   The Google Maps route then runs Start → trip stops → End instead of starting wherever the phone is and ending at the last park. */
+const ENDKEY='kpcCmdEnds';let ends={s:null,e:null,round:false},endDrop=null,endLay=null;
+try{const v=JSON.parse(localStorage.getItem(ENDKEY)||'null');if(v&&typeof v==='object')ends=Object.assign(ends,v)}catch(_){}
+const okPt=p=>p&&Number.isFinite(+p.la)&&Number.isFinite(+p.lo);
+function saveEnds(){try{localStorage.setItem(ENDKEY,JSON.stringify(ends))}catch(_){}}
+const fmtPt=p=>(+p.la).toFixed(5)+', '+(+p.lo).toFixed(5);
+function endOf(){return ends.round?ends.s:ends.e}
+function cmdRoute(stops){const route=$('triproute');if(!route)return;drawEndsUI();
+ const S=okPt(ends.s)?ends.s:null,E=okPt(endOf())?endOf():null;
+ const max=E?9:10,use=stops.slice(0,max),pts=use.map(d=>d[3]+','+d[4]);
+ if(!pts.length&&!E){route.hidden=true;return}
+ const dest=E?E.la+','+E.lo:pts.at(-1),way=E?pts:pts.slice(0,-1);
+ route.href='https://www.google.com/maps/dir/?api=1'+(S?'&origin='+encodeURIComponent(S.la+','+S.lo):'')+'&destination='+encodeURIComponent(dest)+(way.length?'&waypoints='+encodeURIComponent(way.join('|')):'')+'&travelmode=driving';
+ route.hidden=false;
+ route.textContent='Open trip in Google Maps: '+(S?'Start → ':'')+use.length+' stop'+(use.length===1?'':'s')+(E?(ends.round?' → back to Start':' → End'):'');
+ const note=$('endsNote');if(note)note.textContent=stops.length>max?`Google Maps takes ${max} stops${E?' plus your Start and End':''}. Only the first ${max} are in the route.`:''}
+function drawEndsUI(){let box=$('tripends');const route=$('triproute');if(!route)return;
+ if(!box){box=node('div','tripends');box.id='tripends';route.before(box);
+  box.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.k;
+   if(b.dataset.a==='drop')dropMode(k);
+   else if(b.dataset.a==='gps'){if(!navigator.geolocation){status.textContent='Location is not available in this browser.';return}
+    b.textContent='Finding…';navigator.geolocation.getCurrentPosition(p=>{setEnd('s',p.coords.latitude,p.coords.longitude,'My location')},()=>{status.textContent='Could not get your location. Drop the Start pin on the map instead.';drawEndsUI()},{enableHighAccuracy:true,timeout:15000})}
+   else if(b.dataset.a==='clr'){ends[k]=null;if(k==='e')ends.round=false;saveEnds();drawEndPins();drawSaved()}
+   else if(b.dataset.a==='show'){const p=k==='e'?endOf():ends[k];if(okPt(p)&&map){$('map').scrollIntoView({block:'center',behavior:'smooth'});map.setView([p.la,p.lo],Math.max(map.getZoom(),14))}}});
+  box.addEventListener('change',e=>{if(e.target.id==='endRound'){ends.round=e.target.checked;saveEnds();drawEndPins();drawSaved()}})}
+ const row=(k,icon,label,p,empty)=>`<div class="endrow"><div class="endtxt"><b>${icon} ${label}</b> <span>${okPt(p)?esc2((p.n?p.n+' · ':'')+fmtPt(p)):empty}</span></div><div class="endbtns">`+
+  (k==='e'&&ends.round?'':`<button type="button" class="tiny" data-a="drop" data-k="${k}">📍 ${okPt(p)?'Move':'Drop'} on map</button>`)+
+  (k==='s'?`<button type="button" class="tiny secondary" data-a="gps" data-k="s">Use GPS</button>`:'')+
+  (okPt(p)?`<button type="button" class="tiny secondary" data-a="show" data-k="${k}">Show</button>`+(k==='e'&&ends.round?'':`<button type="button" class="tiny secondary" data-a="clr" data-k="${k}">Clear</button>`):'')+`</div></div>`;
+ box.innerHTML='<h4>Start &amp; End</h4>'+row('s','🟢','Start',ends.s,'Not set: Google uses where you are when you open the route')+
+  `<label class="endround"><input type="checkbox" id="endRound" ${ends.round?'checked':''}> Round trip (end back at Start)</label>`+
+  row('e','🏁','End',endOf(),'Not set: the route ends at your last trip stop')+'<p class="meta" id="endsNote"></p>'}
+function esc2(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function setEnd(k,la,lo,n){ends[k]={la:+(+la).toFixed(6),lo:+(+lo).toFixed(6),n:n||(k==='s'?'Start pin':'End pin')};if(k==='e')ends.round=false;saveEnds();drawEndPins();drawSaved();status.textContent=(k==='s'?'Start':'End')+' set at '+fmtPt(ends[k])+'. Drag the pin to fine-tune it.'}
+function dropMode(k){if(!map){status.textContent='The map did not load, so pins cannot be dropped.';return}
+ endDrop=k;const w=$('map');w.classList.add('cmd-dropping');w.setAttribute('data-drop',k==='s'?'Tap the map where you will START. Esc to cancel.':'Tap the map where you will END. Esc to cancel.');
+ w.scrollIntoView({block:'center',behavior:'smooth'});status.textContent=k==='s'?'Tap the map where your trip starts.':'Tap the map where your trip ends.'}
+function stopDrop(){endDrop=null;const w=$('map');if(w){w.classList.remove('cmd-dropping');w.removeAttribute('data-drop')}}
+function drawEndPins(){if(!map||!window.L)return;if(!endLay)endLay=L.layerGroup().addTo(map);endLay.clearLayers();
+ const mk=(k,p,txt,bg)=>{if(!okPt(p))return;const m=L.marker([p.la,p.lo],{draggable:!(k==='e'&&ends.round),zIndexOffset:2000,title:(k==='s'?'Trip start':'Trip end')+': '+(p.n||''),
+  icon:L.divIcon({className:'',html:`<span class="endpin" style="background:${bg}">${txt}</span>`,iconSize:[30,30],iconAnchor:[15,30],popupAnchor:[0,-28]})})
+  .bindPopup(()=>`<b>${k==='s'?'🟢 Trip start':'🏁 Trip end'}</b><br>${esc2(p.n||'')}<br>${fmtPt(p)}<br><small>Drag the pin to move it.</small>`).addTo(endLay);
+  m.on('dragend',()=>{const ll=m.getLatLng();setEnd(k,ll.lat,ll.lng,p.n)})};
+ mk('s',ends.s,'S','#1d7a46');if(!ends.round)mk('e',ends.e,'E','#b3261e')}
+if(map&&window.L){
+ const st=document.createElement('style');st.textContent='.tripends{margin:12px 0;padding:10px 12px;border:1px solid #3a3426;border-radius:10px;background:#141310}.tripends h4{margin:0 0 6px;font-size:13px;letter-spacing:.6px;text-transform:uppercase;color:#e5c87b}.endrow{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between;padding:6px 0;border-top:1px solid #2a2418}.endrow:first-of-type{border-top:0}.endtxt{flex:1 1 180px;font-size:14px}.endtxt span{color:#c9c5bc;font-size:13px}.endbtns{display:flex;flex-wrap:wrap;gap:6px}.endround{display:flex;gap:8px;align-items:center;font-size:13px;margin:4px 0;cursor:pointer}.endround input{width:18px;height:18px;accent-color:#d5a63a}.endpin{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);color:#fff;font:900 13px Arial;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.5)}.endpin{line-height:1}.cmd-dropping{cursor:crosshair!important;outline:3px solid #d5a63a;outline-offset:-3px}.cmd-dropping::after{content:attr(data-drop);position:absolute;left:50%;top:10px;transform:translateX(-50%);z-index:1200;background:#151515;color:#fff;border:1px solid #d5a63a;border-radius:999px;padding:8px 14px;font:800 13px Arial;max-width:90%;text-align:center;pointer-events:none}';
+ document.head.appendChild(st);
+ document.querySelectorAll('.endpin').forEach(()=>{});
+ /* catch the tap before park outlines, pins or overlap areas can open their own popups */
+ map.getContainer().addEventListener('click',e=>{if(!endDrop)return;if(e.target.closest&&e.target.closest('.leaflet-control,.leaflet-popup'))return;if(map.dragging&&map.dragging.moved&&map.dragging.moved())return;
+  e.stopPropagation();e.preventDefault();const ll=map.mouseEventToLatLng(e),k=endDrop;stopDrop();map.closePopup();setEnd(k,ll.lat,ll.lng,k==='s'?'Start pin':'End pin')},true);
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&endDrop){stopDrop();status.textContent='Pin drop canceled.'}});
+ drawEndPins();
+}
+drawSaved();
