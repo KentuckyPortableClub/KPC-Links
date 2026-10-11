@@ -91,6 +91,18 @@ body.field .page-jump-nav{display:none!important}
 
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261010g">
+<style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
+<style id="kpc-parks-hero">
+/* The photo's own "KPC PARKS" sign is the headline: keep the h1 for screen readers/search, show eyebrow + intro on a dark fade at the bottom */
+.hero{align-items:flex-end}
+.hero:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(5,6,5,.9) 0%,rgba(5,6,5,.66) 30%,rgba(5,6,5,0) 58%)}
+.hero h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.hero-inner{margin:auto auto 0;padding:40px 24px 34px}
+.hero .eyebrow{margin:0 0 10px;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.hero .hero-copy{margin:0;max-width:760px;color:#f3efe6;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.hero .hero-logo{display:none!important}
+@media(max-width:900px){.hero{min-height:560px}.hero:after{background:linear-gradient(to top,rgba(5,6,5,.92) 0%,rgba(5,6,5,.7) 34%,rgba(5,6,5,0) 56%)}.hero-inner{padding:28px 20px 26px}}
+</style>
 </head>
 <body>
 <header class="site-nav">
