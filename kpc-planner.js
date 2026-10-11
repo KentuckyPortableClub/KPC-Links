@@ -111,10 +111,10 @@ function makeMap(){
   'Satellite + Roads':L.layerGroup([L.tileLayer(esri('World_Imagery'),{maxZoom:19,attribution:EA}),L.tileLayer(esri('Reference/World_Transportation'),{maxZoom:19}),L.tileLayer(esri('Reference/World_Boundaries_and_Places'),{maxZoom:19})]),
   'Satellite':L.tileLayer(esri('World_Imagery'),{maxZoom:19,attribution:EA}),
   'Terrain':L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxNativeZoom:17,maxZoom:19,attribution:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors'})};
- let want='Road Map';try{want=localStorage.getItem('kpcPlanBase')||'Road Map'}catch(e){}
+ let want='Satellite + Roads';try{want=localStorage.getItem('kpcPlanBase2')||'Satellite + Roads'}catch(e){}   // default: Satellite + Roads
  want={'Street':'Road Map','Satellite + roads':'Satellite + Roads'}[want]||want;
- (base[want]||base['Road Map']).addTo(m);L.control.layers(base,null,{position:'topright',collapsed:true}).addTo(m);
- m.on('baselayerchange',e=>{try{localStorage.setItem('kpcPlanBase',e.name)}catch(_){}});
+ if(!base[want])want='Road Map';base[want].addTo(m);if(window.KPCX&&KPCX.baseSwitcher)KPCX.baseSwitcher(m,base,{current:want});else L.control.layers(base,null,{position:'topright',collapsed:true}).addTo(m);
+ m.on('baselayerchange',e=>{try{localStorage.setItem('kpcPlanBase2',e.name)}catch(_){}});
  L.control.scale({imperial:true,metric:false,position:'bottomleft'}).addTo(m);
  m.createPane('bndp').style.zIndex=350;m.createPane('trlp').style.zIndex=380;
  // full-screen + add-spot buttons
