@@ -182,11 +182,11 @@ async function stats(){
  $('months').innerHTML=ms.map(([k,l])=>`<div class="m" title="${by[k]||0} activations"><b>${by[k]||''}</b><i style="height:${Math.max(2,140*(by[k]||0)/mx)}px"></i>${l}</div>`).join('');
  const top=[...parks.entries()].map(([r,s])=>[r,s,mine.filter(a=>a.ref===r).length]).sort((a,b)=>b[2]-a[2]).slice(0,8);
  $('topParks').innerHTML=top.map(([r,s,n])=>`<tr><td><a class="ref" href="${KPC.links.pota(r)}" target="_blank" rel="noopener">${r}</a><br>${esc(P.get(r).n)}</td><td>${n}</td><td>${[...s].join(', ')}</td></tr>`).join('')||'<tr><td colspan="3" class="muted">No club activations yet.</td></tr>';
- if(!clubMap){clubMap=KPC.leafletMap('clubMap');await KPC.countyLayer(clubMap)}
+ if(window.L){if(!clubMap){clubMap=KPC.leafletMap('clubMap');await KPC.countyLayer(clubMap)}
  if(clubLayer)clubLayer.remove();const g=clubLayer=L.layerGroup().addTo(clubMap);
  D.parks.forEach(p=>{const s=parks.get(p.c),n=s?s.size:0;
   L.circleMarker([p.la,p.lo],{radius:n?7:4.5,weight:1.1,color:'#173a28',fillColor:n>1?'#1d5a3a':n?'#d5a63a':'#ffffff',fillOpacity:.95})
-  .bindPopup(`<b>${esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${n?'Activated by '+[...s].join(', '):'No KPC activation yet'}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`).addTo(g)})}
+  .bindPopup(`<b>${esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${n?'Activated by '+[...s].join(', '):'No KPC activation yet'}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`).addTo(g)})}else{document.getElementById('clubMap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}}
 /* ---------- COUNTY CHALLENGE ---------- */
 function countyChips(){$('cMembers').innerHTML=['CLUB',...M].map(m=>`<button class="chip" type="button" aria-pressed="${m===cSel}" data-m="${m}">${m==='CLUB'?'WHOLE CLUB':m}</button>`).join('');
  $('cMembers').onclick=e=>{const b=e.target.closest('button');if(!b)return;cSel=b.dataset.m;[...$('cMembers').children].forEach(x=>x.setAttribute('aria-pressed',x===b));counties()}}
@@ -195,11 +195,11 @@ async function counties(){
  const done=countiesFor(cSel),withPark=new Set(Object.values(PC).filter(Boolean));
  const lb=M.map(m=>[m,countiesFor(m).size]).sort((a,b)=>b[1]-a[1]);
  $('cStats').innerHTML=`<div class="stat"><b>${done.size}<small style="font-size:16px"> / 120</small></b><span>${cSel==='CLUB'?'CLUB':cSel} COUNTIES</span></div><div class="stat"><b>${[...withPark].filter(c=>!done.has(c)).length}</b><span>NEEDED WITH A POTA PARK</span></div><div class="stat"><b>${lb[0][0]}</b><span>COUNTY LEADER • ${lb[0][1]}</span></div><div class="stat"><b>${Math.round(100*done.size/120)}%</b><span>OF KENTUCKY</span></div>`;
- if(!cMap){cMap=KPC.leafletMap('cMap')}
+ if(window.L){if(!cMap){cMap=KPC.leafletMap('cMap')}
  if(cLayer)cLayer.remove();cLayer=L.layerGroup().addTo(cMap);
  C.forEach(c=>{const d=done.has(c.n),hp=withPark.has(c.n);
   c.r.forEach(r=>L.polygon(r.map(([x,y])=>[y,x]),{color:'#1d5a3a',weight:.8,fillColor:d?'#d5a63a':hp?'#e7eee8':'#ffffff',fillOpacity:d?.85:.7})
-  .bindPopup(`<b>${esc(c.n)} County</b><br>${d?'Activated ✓':hp?'Still needed — has POTA parks':'No POTA park reference point'}`).addTo(cLayer))});
+  .bindPopup(`<b>${esc(c.n)} County</b><br>${d?'Activated ✓':hp?'Still needed — has POTA parks':'No POTA park reference point'}`).addTo(cLayer))});}else{document.getElementById('cMap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}
  const need=[...withPark].filter(c=>!done.has(c)).sort();
  $('cNeed').innerHTML=need.map(c=>{const ps=D.parks.filter(p=>PC[p.c]===c);return`<tr><td><b>${esc(c)}</b></td><td>${ps.map(p=>`<a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> ${esc(p.n)}`).join('<br>')}</td></tr>`}).join('')||'<tr><td colspan="2">Every county with a POTA park is done — amazing!</td></tr>'}
 /* ---------- PARK OF THE MONTH ---------- */

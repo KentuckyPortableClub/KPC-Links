@@ -127,11 +127,12 @@ async function show(la,lo,label,note){$('msg').textContent='';$('out').style.dis
  <thead><tr><th>NEAREST TOWNS</th><th></th></tr></thead><tbody>${NT.map(x=>`<tr><td>${KPC.esc(x.n)}</td><td><b>${x.d.toFixed(1)}</b> mi</td></tr>`).join('')}</tbody></table></div>
  <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="copy">COPY GRID &amp; COUNTY</button><a class="btn sm alt" href="${KPC.links.gmap(la,lo)}" target="_blank" rel="noopener">GOOGLE MAPS</a><a class="btn sm alt" href="${KPC.links.wx(la,lo)}" target="_blank" rel="noopener">WEATHER</a></div>`;
  $('copy').onclick=()=>{const t=`${g} • ${c?c+' County, KY':'outside KY'}`;navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>{$('copy').textContent='COPIED ✓'})};
- if(!map){map=KPC.leafletMap('map');await KPC.countyLayer(map)}if(layer)layer.remove();layer=L.layerGroup().addTo(map);
+ if(window.L){if(!map){map=KPC.leafletMap('map');await KPC.countyLayer(map)}if(layer)layer.remove();layer=L.layerGroup().addTo(map);
  L.circleMarker([la,lo],{radius:9,color:'#000',fillColor:'#d5a63a',fillOpacity:1}).bindPopup(`<b>${KPC.esc(label)}</b><br>${g}${c?' • '+KPC.esc(c)+' County':''}`).addTo(layer).openPopup();
  NP.forEach(x=>L.circleMarker([x.la,x.lo],{radius:6,color:'#222',fillColor:'#1d5a3a',fillOpacity:.9}).bindPopup(`<b>${KPC.esc(x.n)}</b><br>${x.c} • ${x.d.toFixed(1)} mi<br><a href="finder.html?q=${x.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`).addTo(layer));
  NS.forEach(x=>L.circleMarker([x.la,x.lo],{radius:6,color:'#222',fillColor:'#b5452b',fillOpacity:.9}).bindPopup(`<b>${KPC.esc(x.n)}</b><br>${x.c} • ${x.d.toFixed(1)} mi<br><a href="finder.html?q=${x.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`).addTo(layer));
- map.setView([la,lo],10);history.replaceState(null,'','?q='+encodeURIComponent(label.split(' ')[0].match(/^(US|KFF|W4K)/)?label.split(' ')[0]:`${la.toFixed(5)},${lo.toFixed(5)}`))}
+ map.setView([la,lo],10)}else{document.getElementById('map').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}
+ history.replaceState(null,'','?q='+encodeURIComponent(label.split(' ')[0].match(/^(US|KFF|W4K)/)?label.split(' ')[0]:`${la.toFixed(5)},${lo.toFixed(5)}`))}
 </script>
 
 </main>
