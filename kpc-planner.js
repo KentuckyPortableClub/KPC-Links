@@ -240,7 +240,7 @@ function run(fit){ALL=ALL||items();const R=+$('rad').value;
  res.forEach(x=>{const two=x.two&&x.two.length;
   const mk=L.circleMarker([x.la,x.lo],{radius:two?8:6,weight:x.ov&&!two?2.5:1.2,color:x.ov&&!two?'#7b3fa0':'#222',fillColor:two?ICON.multi:ICON[x.k],fillOpacity:.95})
    .bindPopup(()=>pinCard(x),{maxWidth:290,minWidth:210,autoPanPadding:[12,12]});
-  if(window.KPCX)KPCX.hover(mk);mk.addTo(layer)});
+  if(window.KPCX)KPCX.hover(mk);x.mk=mk;mk.addTo(layer)});
  if(fit!==false)map.fitBounds(L.latLng(origin[0],origin[1]).toBounds(R*1609.34*2.1));
  $('list').innerHTML=res.length?res.map((x,i)=>`<div class="item ${x.k}"><input type="checkbox" data-i="${i}" ${trip.some(s=>s.ref===x.ref)?'checked':''} aria-label="Add ${esc(x.ref)} to trip">
  <div><span class="ref">${x.ref}</span> <span class="tag">${x.k.toUpperCase()}</span><h3>${esc(x.n)}</h3><div class="meta">${esc(KPC.cty(x.co))}${x.meta?' • '+x.meta:''}${x.dn?` • parking: ${esc(x.dn)}`:''}</div>${x.tags.length?`<div>${x.tags.join('')}</div>`:''}
@@ -259,11 +259,31 @@ function pinCard(x){const inTrip=trip.some(s=>s.ref===x.ref),P=PROG[x.k]||PROG.p
  ${x.also&&x.also.length?`<div class="kx-d">Also: ${esc(x.also.join(' · '))}</div>`:''}
  <div class="kx-acts"><button type="button" class="pri" data-add="${x.ref}" ${inTrip?'disabled':''}>${inTrip?'✓ IN TRIP':'+ ADD TO TRIP'}</button><a href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a>${(x.links||[]).slice(0,1).map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`).join('')}</div>
  ${x.k==='pota'?`<a href="finder.html?q=${x.ref}" style="display:inline-block;margin-top:6px;font-weight:700;font-size:12px">Open in KY Park Commander →</a>`:''}</div>`}
-function pickTown(){const t=D.towns.find(t=>t.n.toLowerCase()===$('town').value.trim().toLowerCase());if(!t)return;origin=[t.la,t.lo,t.n];save();run()}
+/* start box: a town, or a park / summit / KFF by name or number (US-1286, K-1286, 1286, W4K/EC-001, KFF-1286) */
+function places(){ALL=ALL||items();return ALL}
+function lbl(x){return `${x.n} (${x.ref})`}
+function findPlace(v){v=v.trim();if(!v)return null;const lo=v.toLowerCase(),P=places();
+ const t=D.towns.find(t=>t.n.toLowerCase()===lo);if(t)return {la:t.la,lo:t.lo,n:t.n};
+ const inParen=(v.match(/\(([^)]+)\)\s*$/)||[])[1];
+ let r=(inParen||v).toUpperCase().replace(/\s+/g,'');
+ if(/^K-?\d{1,5}$/.test(r))r='US-'+r.replace(/^K-?/,'').padStart(4,'0');
+ if(/^\d{1,5}$/.test(r))r='US-'+r.padStart(4,'0');
+ if(/^US\d/.test(r))r='US-'+r.slice(2);
+ if(/^KFF\d/.test(r))r='KFF-'+r.slice(3);
+ let x=P.find(x=>x.ref.toUpperCase()===r);
+ if(!x&&/^KFF-/.test(r)){const k=D.kff.find(k=>k.c.toUpperCase()===r);if(k&&k.p)x=P.find(y=>y.ref===k.p)}   // KFF that shares a POTA park
+ if(!x){const exact=P.filter(x=>x.n.toLowerCase()===lo);const starts=P.filter(x=>x.n.toLowerCase().startsWith(lo));const has=P.filter(x=>x.n.toLowerCase().includes(lo));
+  x=exact[0]||(starts.length===1?starts[0]:null)||(has.length===1?has[0]:null);
+  if(!x&&(starts.length||has.length)&&lo.length>2){const l=(starts.length?starts:has);$('where').innerHTML=`<b>${l.length}</b> matches for “${esc(v)}”. Pick one from the list: ${l.slice(0,6).map(x=>esc(lbl(x))).join(' · ')}${l.length>6?' …':''}`;return null}}
+ if(!x){$('where').innerHTML=`No town, park or reference matches “${esc(v)}”. Try a park name, a POTA number like US-1286, or a summit like W4K/EC-001.`;return null}
+ return {la:x.la,lo:x.lo,n:lbl(x),ref:x.ref}}
+function pickTown(){const p=findPlace($('town').value);if(!p)return;origin=[p.la,p.lo,p.n];if(p.ref)$('town').value=p.n;save();run();
+ if(p.ref){map.setView([p.la,p.lo],Math.max(map.getZoom(),11));const x=res.find(x=>x.ref===p.ref);if(x&&x.mk)setTimeout(()=>{x.mk.getPopup().options.autoPan=true;x.mk.openPopup()},350)}}
 
 /* ---------------- start ---------------- */
 (async()=>{
- D=await KPC.data();$('towns').innerHTML=D.towns.map(t=>`<option value="${t.n}">`).join('');
+ D=await KPC.data();
+ $('towns').innerHTML=D.towns.map(t=>`<option value="${esc(t.n)}">Town</option>`).join('')+places().map(x=>`<option value="${esc(lbl(x))}">${x.k==='pota'?'POTA park':x.k==='sota'?'SOTA summit':'KFF'}</option>`).join('');
  map=makeMap();KPC.countyLayer(map).catch(()=>{});
  {const b=document.querySelector('#prog_ [data-k=two]');if(b)b.setAttribute('aria-pressed',String(!!on.two))}
  layer=L.layerGroup().addTo(map);tripLayer=L.layerGroup().addTo(map);V0=[map.getCenter(),map.getZoom()];ALL=items();
@@ -277,7 +297,7 @@ function pickTown(){const t=D.towns.find(t=>t.n.toLowerCase()===$('town').value.
  loadBoundaries();
  window.kpcPlanner={map:()=>map,trip:()=>trip,where:(a,b)=>whereIs(a,b),ready:()=>bReady,extras:()=>X,res:()=>res};
 })();
-$('town').addEventListener('change',pickTown);$('town').addEventListener('keydown',e=>{if(e.key==='Enter')pickTown()});
+$('town').addEventListener('change',pickTown);$('town').addEventListener('input',e=>{if(e.inputType==='insertReplacementText'||!e.inputType)pickTown()});$('town').addEventListener('keydown',e=>{if(e.key==='Enter')pickTown()});
 $('gps').onclick=()=>{if(!navigator.geolocation){$('where').textContent='Location is not available in this browser.';return}
  $('where').textContent='Finding your location…';navigator.geolocation.getCurrentPosition(p=>{origin=[p.coords.latitude,p.coords.longitude,'your location'];save();run()},()=>{$('where').textContent='Could not get your location. Choose a town instead.'},{enableHighAccuracy:true,timeout:15000})};
 $('rad').oninput=e=>{$('rLbl').textContent=e.target.value+' MILES';if(origin)run()};
