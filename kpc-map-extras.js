@@ -1,4 +1,4 @@
-/* KPC map extras — v20261010j
+/* KPC map extras — v20261011a
    Shared by KY Park Commander (finder.html) and the Trip Planner (kpc-planner.html):
    • Parking and Entrance markers with their own on/off switches
        official = Kentucky agency GIS (KDFWR, WMA Map Points, Kentucky State Parks) and the KPC park file
@@ -33,6 +33,7 @@ const ZOFF = 11, ZOSM = 13;                      // zoom needed for live officia
 const potaUrl = r => 'https://pota.app/#/park/' + encodeURIComponent(r);
 const sotaUrl = r => 'https://sotl.as/summits/' + encodeURIComponent(r);
 const kffUrl = r => 'https://logsearch.wwff.co/directory/' + encodeURIComponent(r);
+const svUrl = (a, b) => `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${a},${b}`;   // Google Street View at a point (official Maps URL, no key)
 const dirUrl = (a, b) => `https://www.google.com/maps/dir/?api=1&destination=${a},${b}&travelmode=driving`;
 const fine = window.matchMedia ? matchMedia('(hover: hover) and (pointer: fine)').matches : false;
 const store = {get(k, d){try{const v = localStorage.getItem(k);return v == null ? d : JSON.parse(v)}catch(e){return d}}, set(k, v){try{localStorage.setItem(k, JSON.stringify(v))}catch(e){}}};
@@ -72,6 +73,8 @@ if (!document.getElementById('kx-css')) {
 .kx-note{font-size:11.5px;color:#666;margin-top:6px}
 .kx-refs{margin:4px 0}.kx-refs div{margin:1px 0}
 .kx-refs a{font-weight:900;color:#1d5a3a}
+.kx-svctl a{font-size:16px;line-height:30px!important;text-decoration:none}.kx-svctl a.on{background:#f2c230!important}
+.kx-svmode{cursor:crosshair!important}.kx-svtip{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:1200;background:#151515;color:#fff;border:1px solid #f2c230;border-radius:999px;padding:7px 8px 7px 14px;font:800 13px Arial,sans-serif;max-width:92%;text-align:center}.kx-svtip button{margin-left:8px;border:0;border-radius:999px;padding:5px 11px;background:#f2c230;color:#111;font-weight:900;cursor:pointer}
 `;
  document.head.appendChild(st);
 }
@@ -163,7 +166,7 @@ function overlapCard(p, ll, addStop){
  <div class="kx-n">${esc(p.areas.join(' + '))}</div>${size ? `<div class="kx-d">${size}</div>` : ''}${refsHtml(p)}
  <div class="kx-d">${why}</div>
  <div class="kx-note">Outlines are approximate. Overlap on a map does not guarantee both references count. Check each program’s rules and official boundary.</div>
- <div class="kx-acts"><a href="${dirUrl(ll.lat.toFixed(5), ll.lng.toFixed(5))}" target="_blank" rel="noopener">DIRECTIONS ↗</a>${addStop ? `<button type="button" class="pri" data-drop="${ll.lat.toFixed(6)},${ll.lng.toFixed(6)}">📍 ADD A SPOT HERE</button>` : ''}</div></div>`;
+ <div class="kx-acts"><a href="${dirUrl(ll.lat.toFixed(5), ll.lng.toFixed(5))}" target="_blank" rel="noopener">DIRECTIONS ↗</a><a href="${svUrl(ll.lat.toFixed(6), ll.lng.toFixed(6))}" target="_blank" rel="noopener">🚶 STREET VIEW ↗</a>${addStop ? `<button type="button" class="pri" data-drop="${ll.lat.toFixed(6)},${ll.lng.toFixed(6)}">📍 ADD A SPOT HERE</button>` : ''}</div></div>`;
 }
 
 /* ---------- the control ---------- */
@@ -208,7 +211,7 @@ function attach(map, opt){
   ${pt.alsoOsm ? '<div class="kx-d">Also mapped in OpenStreetMap.</div>' : ''}
   ${pt.kind === 'access' ? '<div class="kx-note">Agency access point. It may be a parking area or an entrance.</div>' : ''}
   <div class="kx-note">${pt.osm ? 'Community-mapped. It may be private, closed or gone. Check posted signs on site.' : 'A mapped point is not a promise of legal public parking or access. Check posted signs and the managing agency.'}</div>
-  <div class="kx-acts"><a href="${dirUrl(pt.la, pt.lo)}" target="_blank" rel="noopener">DIRECTIONS ↗</a>${opt.addStop ? `<button type="button" class="pri" data-drop="${pt.la},${pt.lo}">📍 ADD AS A STOP</button>` : ''}</div></div>`;
+  <div class="kx-acts"><a href="${dirUrl(pt.la, pt.lo)}" target="_blank" rel="noopener">DIRECTIONS ↗</a><a href="${svUrl(pt.la, pt.lo)}" target="_blank" rel="noopener">🚶 STREET VIEW ↗</a>${opt.addStop ? `<button type="button" class="pri" data-drop="${pt.la},${pt.lo}">📍 ADD AS A STOP</button>` : ''}</div></div>`;
  }
 
  /* ---------- live loading for the map view ---------- */
@@ -322,6 +325,20 @@ function attach(map, opt){
   d.addEventListener('change', e => {const k = e.target.dataset.kx; if (!k) return; st[k] = e.target.checked; apply()});
   return d}});
  new Ctl().addTo(map);
+ /* 🚶 Street View: tap the button, then tap the map. Opens Google Street View there (Maps app on phones). */
+ let svOn = false;
+ const SvCtl = L.Control.extend({options:{position:'topleft'}, onAdd(){const d = L.DomUtil.create('div', 'leaflet-bar kx-svctl');
+  d.innerHTML = '<a href="#" role="button" title="Street View: tap here, then tap the map" aria-label="Street View: tap here, then tap the map" aria-pressed="false">🚶</a>';
+  L.DomEvent.disableClickPropagation(d);L.DomEvent.on(d, 'click', e => {L.DomEvent.preventDefault(e); svMode(!svOn)});return d}});
+ const svCtl = new SvCtl().addTo(map);
+ function svMode(on){svOn = on; const c = map.getContainer(); c.classList.toggle('kx-svmode', on);
+  const a = svCtl.getContainer().querySelector('a'); a.setAttribute('aria-pressed', String(on)); a.classList.toggle('on', on);
+  let tip = c.querySelector('.kx-svtip'); if (on && !tip) {tip = L.DomUtil.create('div', 'kx-svtip', c); tip.innerHTML = 'Tap the map to open Street View there. <button type="button">Cancel</button>'; L.DomEvent.disableClickPropagation(tip); tip.querySelector('button').onclick = () => svMode(false)}
+  if (tip) tip.hidden = !on}
+ map.getContainer().addEventListener('click', e => {if (!svOn) return; if (e.target.closest && e.target.closest('.leaflet-control,.kx-svtip,.leaflet-popup')) return; if (map.dragging && map.dragging.moved && map.dragging.moved()) return;
+  e.stopImmediatePropagation(); e.preventDefault(); const ll = map.mouseEventToLatLng(e); svMode(false);
+  window.open(svUrl(ll.lat.toFixed(6), ll.lng.toFixed(6)), '_blank', 'noopener')}, true);
+ document.addEventListener('keydown', e => {if (e.key === 'Escape' && svOn) svMode(false)});
  map.on('moveend', () => {status(); refresh()});
  const fold = () => {if (box && !box.hidden) {box.hidden = true; btn.setAttribute('aria-expanded', 'false')}};
  map.on('click dragstart', fold);   // tapping or dragging the map closes the panel, so it never hides the map on a phone
@@ -341,5 +358,5 @@ function attach(map, opt){
  };
 }
 
-window.KPCX = {attach, hover, overlapData, overlapIndex, overlapCard, KINDTXT};
+window.KPCX = {attach, hover, overlapData, overlapIndex, overlapCard, KINDTXT, svUrl};
 })();

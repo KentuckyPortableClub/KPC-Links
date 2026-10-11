@@ -163,11 +163,11 @@ function addSpot(ll){if(!canAdd())return;lastLL=ll;const w=whereIs(ll.lat,ll.lng
 function spotPopup(s){const d=L.DomUtil.create('div','pl-pop');const w=whereIs(s.la,s.lo);
  d.innerHTML=`<label class="pl-f">Name<input type="text" maxlength="60" value="${esc(s.n)}" data-f="n"></label><label class="pl-f">Note (parking, gate, surface…)<input type="text" maxlength="120" value="${esc(s.note||'')}" data-f="note" placeholder="Gravel pull-off, room for 2 cars"></label>
  <div class="pl-where">${whereHtml(w)}</div><div class="pl-ll">${s.la.toFixed(5)}, ${s.lo.toFixed(5)} · drag the pin to fine-tune</div>
- <div class="pl-pacts"><a class="btn sm" href="https://www.google.com/maps/search/?api=1&query=${s.la},${s.lo}" target="_blank" rel="noopener">GOOGLE MAPS</a><button type="button" class="btn sm alt" data-rm="${s.id}">REMOVE</button></div>`;
+ <div class="pl-pacts"><a class="btn sm" href="https://www.google.com/maps/search/?api=1&query=${s.la},${s.lo}" target="_blank" rel="noopener">GOOGLE MAPS</a><a class="btn sm alt" href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${s.la},${s.lo}" target="_blank" rel="noopener">🚶 STREET VIEW</a><button type="button" class="btn sm alt" data-rm="${s.id}">REMOVE</button></div>`;
  L.DomEvent.disableClickPropagation(d);
  d.addEventListener('input',e=>{const f=e.target.dataset.f;if(!f)return;s[f]=e.target.value;save();renderTripList()});
  return d}
-function parkPopup(s){return `<b>${esc(s.n)}</b><br>${s.ref}${s.note?'<br>Parking: '+esc(s.note):''}<div class="pl-pacts" style="margin-top:8px"><button type="button" class="btn sm alt" data-info="${esc(s.ref)}">DETAILS</button><a class="btn sm" href="${KPC.links.pota(s.ref)}" target="_blank" rel="noopener">POTA</a><button type="button" class="btn sm alt" data-rm="${s.id}">REMOVE FROM TRIP</button></div>`}
+function parkPopup(s){return `<b>${esc(s.n)}</b><br>${s.ref}${s.note?'<br>Parking: '+esc(s.note):''}<div class="pl-pacts" style="margin-top:8px"><button type="button" class="btn sm alt" data-info="${esc(s.ref)}">DETAILS</button><a class="btn sm" href="${KPC.links.pota(s.ref)}" target="_blank" rel="noopener">POTA</a><a class="btn sm alt" href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${s.la},${s.lo}" target="_blank" rel="noopener">🚶 STREET VIEW</a><button type="button" class="btn sm alt" data-rm="${s.id}">REMOVE FROM TRIP</button></div>`}
 function drawTrip(){tripLayer.clearLayers();
  trip.forEach((s,i)=>{const spot=s.t==='spot';
   const icon=L.divIcon({className:'pl-pin'+(spot?' spot':''),html:`<span><b>${i+1}</b></span>`,iconSize:[34,34],iconAnchor:[17,41],popupAnchor:[0,-38]});
@@ -270,6 +270,7 @@ function infoHtml(x){const P=new Map(D.parks.map(q=>[q.c,q])),p=x.k==='pota'?P.g
  if(aps.length)L2('Directions: '+names[0],gdir(aps[0][0],aps[0][1]));else L2('Directions',gdir(x.la,x.lo));
  if(p&&p.web)L2(hostL(p.web),p.web);if(p&&p.camp&&p.camp!==p.web)L2('Campground page',p.camp);if(p&&p.off&&p.off!==p.web)L2(/\.pdf(\?|$)/i.test(p.off)?'Official map (PDF)':'Official map / info',p.off);
  L2('Share location',`https://www.google.com/maps/search/?api=1&query=${x.la},${x.lo}`);
+ L2('🚶 Street View',`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${x.dest[0]},${x.dest[1]}`);
  L2('Weather',`kpc-weather.html?lat=${x.la}&lon=${x.lo}&ref=${encodeURIComponent(x.ref)}&name=${encodeURIComponent(x.n)}`);
  if(x.k==='pota')L2('Park sheet',`kpc-park-sheet.html?ref=${encodeURIComponent(x.ref)}`);
  h+=`<div class="pi-links">${lk.join('')}</div>`;
@@ -291,7 +292,7 @@ function pinCard(x){const inTrip=trip.some(s=>s.ref===x.ref),P=PROG[x.k]||PROG.p
  ${x.dn?`<div class="kx-d">Parking / entrance on file: ${esc(x.dn)}</div>`:''}
  ${x.two&&x.two.length?`<div class="kx-d" style="margin-top:5px"><span class="kx-badge g">Possible POTA 2-Fer</span><br>with ${x.two.slice(0,4).map(r=>`<b>${esc(r[0])}</b> ${esc(r[1]||'')}`).join(', ')}${x.two.length>4?` and ${x.two.length-4} more`:''}. Verify before activating.</div>`:''}
  ${x.also&&x.also.length?`<div class="kx-d">Also: ${esc(x.also.join(' · '))}</div>`:''}
- <div class="kx-acts"><button type="button" class="pri" data-add="${x.ref}" ${inTrip?'disabled':''}>${inTrip?'✓ IN TRIP':'+ ADD TO TRIP'}</button><button type="button" data-info="${esc(x.ref)}">DETAILS ↓</button><a href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a>${(x.links||[]).slice(0,1).map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`).join('')}</div>
+ <div class="kx-acts"><button type="button" class="pri" data-add="${x.ref}" ${inTrip?'disabled':''}>${inTrip?'✓ IN TRIP':'+ ADD TO TRIP'}</button><button type="button" data-info="${esc(x.ref)}">DETAILS ↓</button><a href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${x.dest[0]},${x.dest[1]}" target="_blank" rel="noopener">🚶 STREET VIEW</a>${(x.links||[]).slice(0,1).map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`).join('')}</div>
  ${x.k==='pota'?`<a href="finder.html?q=${x.ref}" style="display:inline-block;margin-top:6px;font-weight:700;font-size:12px">Open in KY Park Commander →</a>`:''}</div>`}
 /* start box: a town, or a park / summit / KFF by name or number (US-1286, K-1286, 1286, W4K/EC-001, KFF-1286) */
 function places(){ALL=ALL||items();return ALL}
