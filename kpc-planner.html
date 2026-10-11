@@ -67,6 +67,19 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
 .pl-msg{margin:8px 0;padding:8px 10px;background:#24331f;border-left:4px solid #3ecf6e;font-size:13px}
 .pl-small{margin:8px 0 0;font-size:12px;color:#9c968a}
 @media(max-width:760px){.pl-popopen .leaflet-top{visibility:hidden}.pl-mapwrap .map{height:68vh}.pl-tacts .btn{flex:1 1 45%}.pl-banner{font-size:12px;white-space:normal;width:max-content;max-width:90%}}
+.pl-info{margin:0 0 16px;padding:16px 18px}
+.pl-ihead{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;letter-spacing:1px;margin-bottom:8px}
+.pl-ihead span{font-weight:900;color:#1d5a3a}
+.pl-imuted{color:#666;font-size:14px;margin:0}
+.pl-info .pi-tag{display:inline-block;font:900 11px Arial,sans-serif;letter-spacing:.5px;border-radius:999px;padding:4px 10px;color:#fff;background:#1d5a3a}
+.pl-info .pi-tag.sota{background:#b5452b}.pl-info .pi-tag.kff{background:#2b5f8a}
+.pl-info h3{margin:8px 0 4px;font-size:20px;line-height:1.2}
+.pl-info .pi-m{font-size:13.5px;color:#333;margin:5px 0;line-height:1.45}
+.pl-info .pi-two{background:#fff6d6;border-left:4px solid #d5a63a;padding:6px 9px;border-radius:6px}
+.pl-info .pi-m a{color:#1d5a3a;font-weight:700}
+.pl-info .pi-links{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 8px}
+.pl-info .pi-links a{font:900 11px Arial,sans-serif;letter-spacing:.3px;border:1px solid #1d5a3a;color:#1d5a3a;background:#fff;border-radius:6px;padding:6px 9px;text-decoration:none}
+.pl-info .pi-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261010g">
 </head>
@@ -151,12 +164,13 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
 <p class="pl-msg" id="tripMsg" hidden role="status"></p>
 <div class="pl-tacts"><button class="btn sm" id="route" type="button" disabled>OPEN TRIP IN GOOGLE MAPS →</button><button class="btn sm alt" id="share" type="button" disabled>SHARE TRIP</button><button class="btn sm alt" id="gpx" type="button" disabled>GPX FILE ↓</button><button class="btn sm alt" id="sortd" type="button" disabled>NEAREST-NEXT ORDER</button><button class="btn sm alt" id="clear" type="button" disabled>CLEAR TRIP</button></div>
 <p class="pl-small">Your trip is saved on this device. Use ▲ ▼ to change the order. Up to 10 stops.</p></div>
+<div class="panel pl-info" id="parkInfo" aria-live="polite"><div class="pl-ihead"><b>PARK DETAILS</b><span id="parkInfoRef"></span></div><div id="parkInfoBody"><p class="pl-imuted">Tap a park, summit or trip stop on the map, or <b>SHOW ON MAP</b> in the list, to see its details here.</p></div></div>
 <div class="card-list" id="list" style="max-height:620px;overflow:auto"><div class="empty">Results show here.</div></div>
 </div></div>
 <div class="note">Distances are straight-line miles from your starting point; drive time depends on roads. Park stops go to an official parking or access point when the KPC guide has one. Map boundaries come from Kentucky and federal GIS and usually match POTA, but not always, so check the POTA map before you activate from a spot. Always check access, posted rules and hunting seasons.</div>
 </div></section>
 <script src="kpc-map-extras.js?v=20261010j"></script>
-<script src="kpc-planner.js?v=20261010k"></script>
+<script src="kpc-planner.js?v=20261010l"></script>
 
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
