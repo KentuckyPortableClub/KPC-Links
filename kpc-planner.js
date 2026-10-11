@@ -1,4 +1,4 @@
-/* KPC Trip Planner — v20261010j
+/* KPC Trip Planner — v20261010l
    Close-up map (zoom 19, satellite + roads), official boundaries and trails,
    drop-a-pin spots with an inside-boundary check, and a reorderable trip
    that opens in Google Maps, shares as a link, and downloads as GPX.
@@ -167,7 +167,7 @@ function spotPopup(s){const d=L.DomUtil.create('div','pl-pop');const w=whereIs(s
  L.DomEvent.disableClickPropagation(d);
  d.addEventListener('input',e=>{const f=e.target.dataset.f;if(!f)return;s[f]=e.target.value;save();renderTripList()});
  return d}
-function parkPopup(s){return `<b>${esc(s.n)}</b><br>${s.ref}${s.note?'<br>Parking: '+esc(s.note):''}<div class="pl-pacts" style="margin-top:8px"><a class="btn sm" href="${KPC.links.pota(s.ref)}" target="_blank" rel="noopener">POTA</a><button type="button" class="btn sm alt" data-rm="${s.id}">REMOVE FROM TRIP</button></div>`}
+function parkPopup(s){return `<b>${esc(s.n)}</b><br>${s.ref}${s.note?'<br>Parking: '+esc(s.note):''}<div class="pl-pacts" style="margin-top:8px"><button type="button" class="btn sm alt" data-info="${esc(s.ref)}">DETAILS</button><a class="btn sm" href="${KPC.links.pota(s.ref)}" target="_blank" rel="noopener">POTA</a><button type="button" class="btn sm alt" data-rm="${s.id}">REMOVE FROM TRIP</button></div>`}
 function drawTrip(){tripLayer.clearLayers();
  trip.forEach((s,i)=>{const spot=s.t==='spot';
   const icon=L.divIcon({className:'pl-pin'+(spot?' spot':''),html:`<span><b>${i+1}</b></span>`,iconSize:[34,34],iconAnchor:[17,41],popupAnchor:[0,-38]});
@@ -186,14 +186,14 @@ function renderTripList(){const ol=$('trip');$('tripN').textContent=trip.length+
   else{const w=bReady?whereIs(s.la,s.lo):null;sub='<span class="tag g">MY SPOT</span> '+(w?(w.hits.length?'Inside '+esc(w.hits[0].name)+(w.hits[0].refs.length?' · '+esc(refTxt(w.hits[0].refs)):''):w.trails.length?'On '+esc(w.trails[0].name)+' · '+w.trails[0].ref:'Not inside a mapped boundary'):'')}
   return `<li data-id="${s.id}"><span class="pl-num${s.t==='spot'?' spot':''}">${i+1}</span><div class="pl-ti"><button type="button" class="pl-go" data-go="${s.id}">${esc(s.n)}</button><div class="pl-sub">${sub}</div>${s.note?`<div class="pl-sub">${esc(s.note)}</div>`:''}</div>
   <div class="pl-mv"><button type="button" data-up="${s.id}" aria-label="Move up" ${i?'':'disabled'}>▲</button><button type="button" data-dn="${s.id}" aria-label="Move down" ${i<trip.length-1?'':'disabled'}>▼</button><button type="button" data-rm="${s.id}" aria-label="Remove">✕</button></div></li>`}).join('')}
-function renderTrip(){drawTrip();renderTripList();syncChecks()}
+function renderTrip(){drawTrip();renderTripList();syncChecks();if(typeof refreshInfo==='function'&&D)refreshInfo()}
 function changed(){save();renderTrip()}
 function syncChecks(){document.querySelectorAll('#list input[type=checkbox]').forEach(cb=>{const x=res[+cb.dataset.i];if(x)cb.checked=trip.some(s=>s.ref===x.ref)})}
 function move(id,d){const i=trip.findIndex(s=>s.id===id),j=i+d;if(i<0||j<0||j>=trip.length)return;[trip[i],trip[j]]=[trip[j],trip[i]];changed()}
 document.addEventListener('click',e=>{const t=e.target.closest('[data-up],[data-dn],[data-rm],[data-go],[data-add],[data-drop]');if(!t)return;
  if(t.dataset.up)move(t.dataset.up,-1);else if(t.dataset.dn)move(t.dataset.dn,1);
  else if(t.dataset.rm){map.closePopup();removeStop(t.dataset.rm)}
- else if(t.dataset.go){const s=trip.find(x=>x.id===t.dataset.go);if(!s)return;map.setView([s.la,s.lo],Math.max(map.getZoom(),s.t==='spot'?17:14));const m=tripLayer.getLayers().find(x=>x._stop&&x._stop.id===s.id);if(m)setTimeout(()=>m.openPopup(),250);$('mapwrap').scrollIntoView({behavior:'smooth',block:'center'})}
+ else if(t.dataset.go){const s=trip.find(x=>x.id===t.dataset.go);if(!s)return;if(s.t==='park')showInfo(s.ref);map.setView([s.la,s.lo],Math.max(map.getZoom(),s.t==='spot'?17:14));const m=tripLayer.getLayers().find(x=>x._stop&&x._stop.id===s.id);if(m)setTimeout(()=>m.openPopup(),250);$('mapwrap').scrollIntoView({behavior:'smooth',block:'center'})}
  else if(t.dataset.add){const x=(ALL||[]).find(i=>i.ref===t.dataset.add);if(x){addPark(x);map.closePopup()}}
  else if(t.dataset.drop){const [a,b]=t.dataset.drop.split(',').map(Number);map.closePopup();addSpot(L.latLng(a,b))}});
 
@@ -222,7 +222,7 @@ function twoFers(p){const P=new Map(D.parks.map(q=>[q.c,q.n]));   // park file l
  return out.filter(r=>r[0]!==p.c)}
 function items(){const out=[],P=new Map(D.parks.map(p=>[p.c,p])),ANY=ovAnySet();
  D.parks.forEach(p=>{const two=twoFers(p),multi=two.length||p.kff.length||p.sota.length;const dest=p.ap.length?[p.ap[0][0],p.ap[0][1]]:[p.la,p.lo];
-  const also=[...p.kff.map(r=>'KFF '+r),...p.sota.map(r=>'SOTA '+r)];
+  const also=[...p.kff,...p.sota.map(r=>'SOTA '+r)];
   out.push({k:'pota',ref:p.c,n:p.n,co:p.co,la:p.la,lo:p.lo,dest,dn:p.ap.length?p.ap[0][2]:'',multi,two,also,cls:p.t,ov:ANY.has(p.c)||two.length>0,
   tags:[...two.map(r=>`<span class="tag g">POSSIBLE 2-FER ${r[0]}</span>`),...p.kff.map(r=>`<span class="tag k">${r}</span>`),...p.sota.map(r=>`<span class="tag r">${r}</span>`)],
   links:[['POTA',KPC.links.pota(p.c)],p.off&&['OFFICIAL MAP',p.off],['WEATHER',KPC.links.wx(p.la,p.lo)]].filter(Boolean)})});
@@ -240,14 +240,48 @@ function run(fit){ALL=ALL||items();const R=+$('rad').value;
  res.forEach(x=>{const two=x.two&&x.two.length;
   const mk=L.circleMarker([x.la,x.lo],{radius:two?8:6,weight:x.ov&&!two?2.5:1.2,color:x.ov&&!two?'#7b3fa0':'#222',fillColor:two?ICON.multi:ICON[x.k],fillOpacity:.95})
    .bindPopup(()=>pinCard(x),{maxWidth:290,minWidth:210,autoPanPadding:[12,12]});
-  if(window.KPCX)KPCX.hover(mk);x.mk=mk;mk.addTo(layer)});
+  if(window.KPCX)KPCX.hover(mk);mk.on('click',()=>showInfo(x.ref));x.mk=mk;mk.addTo(layer)});
  if(fit!==false)map.fitBounds(L.latLng(origin[0],origin[1]).toBounds(R*1609.34*2.1));
  $('list').innerHTML=res.length?res.map((x,i)=>`<div class="item ${x.k}"><input type="checkbox" data-i="${i}" ${trip.some(s=>s.ref===x.ref)?'checked':''} aria-label="Add ${esc(x.ref)} to trip">
  <div><span class="ref">${x.ref}</span> <span class="tag">${x.k.toUpperCase()}</span><h3>${esc(x.n)}</h3><div class="meta">${esc(KPC.cty(x.co))}${x.meta?' • '+x.meta:''}${x.dn?` • parking: ${esc(x.dn)}`:''}</div>${x.tags.length?`<div>${x.tags.join('')}</div>`:''}
  <div class="acts"><button type="button" class="btn sm alt" data-zoom="${i}">SHOW ON MAP</button><a class="btn sm" href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a>${x.links.map(([l,u])=>`<a class="btn sm alt" href="${u}" target="_blank" rel="noopener">${l}</a>`).join('')}</div></div>
  <div class="dist">${x.d.toFixed(1)}<small>MILES</small></div></div>`).join(''):'<div class="empty">Nothing in range. Try a bigger distance.</div>';
  $('list').querySelectorAll('input[type=checkbox]').forEach(cb=>cb.onchange=()=>{const x=res[+cb.dataset.i];if(cb.checked){if(!canAdd()){cb.checked=false;return}addPark(x)}else{trip=trip.filter(s=>s.ref!==x.ref);changed()}});
- $('list').querySelectorAll('[data-zoom]').forEach(b=>b.onclick=()=>{const x=res[+b.dataset.zoom];map.setView([x.la,x.lo],15);$('mapwrap').scrollIntoView({behavior:'smooth',block:'center'})})}
+ $('list').querySelectorAll('[data-zoom]').forEach(b=>b.onclick=()=>{const x=res[+b.dataset.zoom];showInfo(x.ref);map.setView([x.la,x.lo],15);$('mapwrap').scrollIntoView({behavior:'smooth',block:'center'})})}
+/* ---------------- park details box (same facts as KY Park Commander's cards) ---------------- */
+function grid6(lat,lon){lat=+lat+90;lon=+lon+180;if(!(lat>=0&&lat<=180&&lon>=0&&lon<=360))return '';const A='ABCDEFGHIJKLMNOPQR',a='abcdefghijklmnopqrstuvwx';return A[Math.floor(lon/20)]+A[Math.floor(lat/10)]+Math.floor((lon%20)/2)+Math.floor(lat%10)+a[Math.floor((lon%2)*12)]+a[Math.floor((lat%1)*24)]}
+function coTxt(co){if(!co||/official|see /i.test(co))return '';const l=String(co).replace(/\?/g,'').split('/').map(s=>s.trim()).filter(Boolean);return l.length>3?'Multi-county ('+l.length+' counties)':l.length>1?l.join(' / ')+' counties':l[0]+' County'}
+const HOSTL=[[/parks\.ky\.gov/,'Kentucky State Parks page'],[/fw\.ky\.gov/,'KDFWR area page'],[/eec\.ky\.gov/,'Nature Preserves page'],[/nps\.gov/,'National Park Service page'],[/fs\.usda\.gov/,'Forest Service page'],[/fws\.gov/,'Fish & Wildlife Service page']];
+const hostL=u=>{for(const [r,l] of HOSTL)if(r.test(u))return l;return 'Official park page'};
+const TYPEN={'WMA':'Wildlife Management Area','National / NPS':'National Park Service site'};
+const gdir=(a,b)=>`https://www.google.com/maps/dir/?api=1&destination=${a},${b}&travelmode=driving`;
+function infoHtml(x){const P=new Map(D.parks.map(q=>[q.c,q])),p=x.k==='pota'?P.get(x.ref):null,lk=[];const L2=(l,u)=>lk.push(`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)}</a>`);
+ const line=[`Grid ${grid6(x.la,x.lo)}`,coTxt(x.co),`${(+x.la).toFixed(5)}, ${(+x.lo).toFixed(5)}`].filter(Boolean).join(' · ');
+ let h=`<span class="pi-tag ${x.k}">${x.k==='pota'?'POTA':x.k==='sota'?'SOTA':'WWFF / KFF'} • ${esc(x.ref)}</span><h3>${esc(x.n)}</h3><div class="pi-m">${line}</div>`;
+ if(x.k==='sota')h+=`<div class="pi-m">${esc(x.meta||'')}</div>`;
+ if(x.also&&x.also.length)h+=`<div class="pi-m"><b>Also:</b> ${esc(x.also.join(' · '))}</div>`;
+ if(x.two&&x.two.length)h+=`<div class="pi-m pi-two"><b>Possible POTA 2-fer</b> with ${x.two.map(r=>`${esc(r[0])}${r[1]?' ('+esc(r[1])+')':''}`).join(', ')}. Verify before activating.</div>`;
+ const aps=p&&Array.isArray(p.ap)?p.ap.filter(a=>isFinite(a[0])&&isFinite(a[1])):[];
+ const tot={},cnt={};aps.forEach(a=>{const k=String(a[2]||'Access point');tot[k]=(tot[k]||0)+1});const nm=a=>{const k=String(a[2]||'Access point');if(tot[k]>1){cnt[k]=(cnt[k]||0)+1;return k+' #'+cnt[k]}return k};
+ const names=aps.map(nm);
+ if(aps.length>1)h+=`<div class="pi-m"><b>Other entrances and parking:</b> ${aps.slice(1,8).map((a,i)=>`<a href="${gdir(a[0],a[1])}" target="_blank" rel="noopener">${esc(names[i+1])}</a>`).join(' · ')}${aps.length>8?` · +${aps.length-8} more`:''}</div>`;
+ if(p){const info=[TYPEN[p.t]||p.t];if(p.acc)info.push(p.acc+' access point'+(p.acc>1?'s':'')+' on record');if(p.camp)info.push('Camping available');h+=`<div class="pi-m"><b>KPC guide:</b> ${esc(info.filter(Boolean).join(' · '))}</div>`}
+ if(x.k==='pota')L2('Program details',KPC.links.pota(x.ref));else if(x.k==='sota')L2('SOTLAS summit page',KPC.links.sota(x.ref));else L2('WWFF directory',KPC.links.kff(x.ref));
+ if(aps.length)L2('Directions: '+names[0],gdir(aps[0][0],aps[0][1]));else L2('Directions',gdir(x.la,x.lo));
+ if(p&&p.web)L2(hostL(p.web),p.web);if(p&&p.camp&&p.camp!==p.web)L2('Campground page',p.camp);if(p&&p.off&&p.off!==p.web)L2(/\.pdf(\?|$)/i.test(p.off)?'Official map (PDF)':'Official map / info',p.off);
+ L2('Share location',`https://www.google.com/maps/search/?api=1&query=${x.la},${x.lo}`);
+ L2('Weather',`kpc-weather.html?lat=${x.la}&lon=${x.lo}&ref=${encodeURIComponent(x.ref)}&name=${encodeURIComponent(x.n)}`);
+ if(x.k==='pota')L2('Park sheet',`kpc-park-sheet.html?ref=${encodeURIComponent(x.ref)}`);
+ h+=`<div class="pi-links">${lk.join('')}</div>`;
+ const inTrip=trip.some(s=>s.ref===x.ref),inList=res.some(r=>r.ref===x.ref);
+ h+=`<div class="pi-acts"><button type="button" class="btn sm" data-add="${esc(x.ref)}" ${inTrip?'disabled':''}>${inTrip?'✓ IN TRIP':'+ TRIP STOP'}</button>${inList?`<button type="button" class="btn sm alt" data-findlist="${esc(x.ref)}">FIND IN RESULTS LIST →</button>`:''}${x.k==='pota'?`<a class="btn sm alt" href="finder.html?q=${encodeURIComponent(x.ref)}">OPEN IN KY PARK COMMANDER →</a>`:''}</div>`;
+ return h}
+function showInfo(ref,scroll){ALL=ALL||items();const x=(ALL||[]).find(i=>i.ref===ref);if(!x)return;$('parkInfoBody').innerHTML=infoHtml(x);$('parkInfoRef').textContent=x.ref;$('parkInfo').dataset.ref=ref;
+ if(scroll)$('parkInfo').scrollIntoView({behavior:'smooth',block:'nearest'})}
+function refreshInfo(){const r=$('parkInfo')&&$('parkInfo').dataset.ref;if(r)showInfo(r)}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-findlist],[data-info]');if(!b)return;
+ if(b.dataset.info){showInfo(b.dataset.info,true);return}
+ const i=res.findIndex(r=>r.ref===b.dataset.findlist);const el=$('list').querySelectorAll('.item')[i];if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='3px solid #d5a63a';setTimeout(()=>el.style.outline='',1800)}});
 const PROG={pota:['POTA PARK','#1d5a3a'],sota:['SOTA SUMMIT','#b5452b'],kff:['WWFF / KFF','#2b5f8a']};
 function pinCard(x){const inTrip=trip.some(s=>s.ref===x.ref),P=PROG[x.k]||PROG.pota;
  return `<div class="kx-card"><span class="kx-badge" style="background:${P[1]};color:#fff">${P[0]}</span>
@@ -257,7 +291,7 @@ function pinCard(x){const inTrip=trip.some(s=>s.ref===x.ref),P=PROG[x.k]||PROG.p
  ${x.dn?`<div class="kx-d">Parking / entrance on file: ${esc(x.dn)}</div>`:''}
  ${x.two&&x.two.length?`<div class="kx-d" style="margin-top:5px"><span class="kx-badge g">Possible POTA 2-Fer</span><br>with ${x.two.slice(0,4).map(r=>`<b>${esc(r[0])}</b> ${esc(r[1]||'')}`).join(', ')}${x.two.length>4?` and ${x.two.length-4} more`:''}. Verify before activating.</div>`:''}
  ${x.also&&x.also.length?`<div class="kx-d">Also: ${esc(x.also.join(' · '))}</div>`:''}
- <div class="kx-acts"><button type="button" class="pri" data-add="${x.ref}" ${inTrip?'disabled':''}>${inTrip?'✓ IN TRIP':'+ ADD TO TRIP'}</button><a href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a>${(x.links||[]).slice(0,1).map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`).join('')}</div>
+ <div class="kx-acts"><button type="button" class="pri" data-add="${x.ref}" ${inTrip?'disabled':''}>${inTrip?'✓ IN TRIP':'+ ADD TO TRIP'}</button><button type="button" data-info="${esc(x.ref)}">DETAILS ↓</button><a href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a>${(x.links||[]).slice(0,1).map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`).join('')}</div>
  ${x.k==='pota'?`<a href="finder.html?q=${x.ref}" style="display:inline-block;margin-top:6px;font-weight:700;font-size:12px">Open in KY Park Commander →</a>`:''}</div>`}
 /* start box: a town, or a park / summit / KFF by name or number (US-1286, K-1286, 1286, W4K/EC-001, KFF-1286) */
 function places(){ALL=ALL||items();return ALL}
@@ -277,7 +311,7 @@ function findPlace(v){v=v.trim();if(!v)return null;const lo=v.toLowerCase(),P=pl
   if(!x&&(starts.length||has.length)&&lo.length>2){const l=(starts.length?starts:has);$('where').innerHTML=`<b>${l.length}</b> matches for “${esc(v)}”. Pick one from the list: ${l.slice(0,6).map(x=>esc(lbl(x))).join(' · ')}${l.length>6?' …':''}`;return null}}
  if(!x){$('where').innerHTML=`No town, park or reference matches “${esc(v)}”. Try a park name, a POTA number like US-1286, or a summit like W4K/EC-001.`;return null}
  return {la:x.la,lo:x.lo,n:lbl(x),ref:x.ref}}
-function pickTown(){const p=findPlace($('town').value);if(!p)return;origin=[p.la,p.lo,p.n];if(p.ref)$('town').value=p.n;save();run();
+function pickTown(){const p=findPlace($('town').value);if(!p)return;origin=[p.la,p.lo,p.n];if(p.ref)$('town').value=p.n;save();run();if(p.ref)showInfo(p.ref);
  if(p.ref){map.setView([p.la,p.lo],Math.max(map.getZoom(),11));const x=res.find(x=>x.ref===p.ref);if(x&&x.mk)setTimeout(()=>{x.mk.getPopup().options.autoPan=true;x.mk.openPopup()},350)}}
 
 /* ---------------- start ---------------- */
