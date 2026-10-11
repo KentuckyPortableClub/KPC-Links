@@ -95,7 +95,7 @@ body.field .page-jump-nav{display:none!important}
           </div>
           <div class="nav-drop-section">
             <div class="nav-drop-label">Field Reference</div>
-            <a href="kpc-frequency-guide.html" role="menuitem"><span class="ni">&#128225;</span>Frequency Guide</a>
+            <a href="kpc-band-plan.html" role="menuitem"><span class="ni">&#128225;</span>Band Plan by License</a>
             <a href="kpc-space-weather.html" role="menuitem" aria-current="page"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
             <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
             <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
@@ -315,8 +315,8 @@ setInterval(()=>{renderSun();renderCall(renderBands())},60*1000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&S.loadedAt&&Date.now()-S.loadedAt>5*6e4)init()});
 
 </script>
-<script src="kpc-fold.js" defer></script>
-<script src="kpc-search.js?v=20261010j" defer></script><script>
+<script src="kpc-fold.js?v=20261011c" defer></script>
+<script src="kpc-search.js?v=20261011c" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
