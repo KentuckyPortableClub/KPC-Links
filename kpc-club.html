@@ -46,7 +46,8 @@
         <div class="nav-dropdown" role="menu">
           <div class="nav-drop-section">
             <div class="nav-drop-label">Parks &amp; Activations</div>
-            <a href="find.html" role="menuitem"><span class="ni">&#128506;</span>Find a Park</a>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Search &amp; Park Guides</a>
             <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
             <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
           </div>
@@ -185,7 +186,7 @@ async function stats(){
  if(clubLayer)clubLayer.remove();const g=clubLayer=L.layerGroup().addTo(clubMap);
  D.parks.forEach(p=>{const s=parks.get(p.c),n=s?s.size:0;
   L.circleMarker([p.la,p.lo],{radius:n?7:4.5,weight:1.1,color:'#173a28',fillColor:n>1?'#1d5a3a':n?'#d5a63a':'#ffffff',fillOpacity:.95})
-  .bindPopup(`<b>${esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${n?'Activated by '+[...s].join(', '):'No KPC activation yet'}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See boundary &amp; trails in Finder →</a>`).addTo(g)})}
+  .bindPopup(`<b>${esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${n?'Activated by '+[...s].join(', '):'No KPC activation yet'}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`).addTo(g)})}
 /* ---------- COUNTY CHALLENGE ---------- */
 function countyChips(){$('cMembers').innerHTML=['CLUB',...M].map(m=>`<button class="chip" type="button" aria-pressed="${m===cSel}" data-m="${m}">${m==='CLUB'?'WHOLE CLUB':m}</button>`).join('');
  $('cMembers').onclick=e=>{const b=e.target.closest('button');if(!b)return;cSel=b.dataset.m;[...$('cMembers').children].forEach(x=>x.setAttribute('aria-pressed',x===b));counties()}}
@@ -244,7 +245,7 @@ $('refresh').onclick=()=>go(true);go();
 
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
-<script src="kpc-search.js?v=20261010i" defer></script><script>
+<script src="kpc-search.js?v=20261010j" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

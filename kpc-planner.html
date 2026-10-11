@@ -91,7 +91,8 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
         <div class="nav-dropdown" role="menu">
           <div class="nav-drop-section">
             <div class="nav-drop-label">Parks &amp; Activations</div>
-            <a href="find.html" role="menuitem"><span class="ni">&#128506;</span>Find a Park</a>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Search &amp; Park Guides</a>
             <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
             <a href="kpc-planner.html" role="menuitem" aria-current="page"><span class="ni">&#128197;</span>Trip Planner</a>
           </div>
@@ -137,13 +138,13 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
 <label class="field" style="flex:1 1 160px">WITHIN <span id="rLbl">40 MILES</span><input type="range" id="rad" min="10" max="150" step="5" value="40" style="min-height:44px;padding:0"></label>
 </div>
 <div class="controls" style="margin-top:12px">
-<div class="chips" id="prog_"><button class="chip" aria-pressed="true" data-k="pota">POTA PARKS</button><button class="chip" aria-pressed="true" data-k="sota">SOTA SUMMITS</button><button class="chip" aria-pressed="true" data-k="kff">KFF</button><button class="chip" aria-pressed="false" data-k="two">2-FERS ONLY</button></div>
+<div class="chips" id="prog_"><button class="chip" aria-pressed="true" data-k="pota">POTA PARKS</button><button class="chip" aria-pressed="true" data-k="sota">SOTA SUMMITS</button><button class="chip" aria-pressed="true" data-k="kff">KFF</button><button class="chip" aria-pressed="false" data-k="two" title="Highlight places where programs or references overlap, and list only those">PARK OVERLAPS</button></div>
 </div>
 <p class="muted" id="where" style="margin:12px 0 0;font-size:14px">Choose a town or use your location to start.</p>
 </div>
 <div class="grid2" style="margin-top:20px">
-<div><div class="pl-bar"><button class="btn" id="addSpot" type="button" aria-pressed="false">📍 ADD A SPOT</button><span class="pl-hint">Zoom in, then tap the exact spot. On a phone you can also press and hold the map. <b>Satellite + roads</b> (top right) is best for spotting pull-offs.</span></div><div id="mapwrap" class="pl-mapwrap"><div class="pl-banner">Tap the map where you want your stop <button type="button" onclick="document.getElementById('addSpot').click()">Cancel</button></div><div class="map" id="map"></div></div>
-<div class="legend"><span><i style="background:#1d5a3a"></i>POTA park</span><span><i style="background:#b5452b"></i>SOTA summit</span><span><i style="background:#2b5f8a"></i>KFF only</span><span><i style="background:#d5a63a"></i>Possible 2-fer / multi-program</span></div></div>
+<div><div class="pl-bar"><button class="btn" id="addSpot" type="button" aria-pressed="false">📍 ADD A SPOT</button><span class="pl-hint">Zoom in, then tap the exact spot. On a phone you can also press and hold the map. <b>Satellite + Roads</b> (top right) is best for spotting pull-offs. <b>🅿️ Parking &amp; Overlaps</b> shows mapped parking, entrances and overlap areas.</span></div><div id="mapwrap" class="pl-mapwrap"><div class="pl-banner">Tap the map where you want your stop <button type="button" onclick="document.getElementById('addSpot').click()">Cancel</button></div><div class="map" id="map"></div></div>
+<div class="legend"><span><i style="background:#1d5a3a"></i>POTA park</span><span><i style="background:#b5452b"></i>SOTA summit</span><span><i style="background:#2b5f8a"></i>KFF only</span><span><i style="background:#d5a63a"></i>Possible POTA 2-fer</span><span><i style="background:#fff;border:2.5px solid #7b3fa0;box-sizing:border-box"></i>Other multi-program overlap</span></div></div>
 <div>
 <div class="panel dark pl-trip" id="tripPanel"><div class="pl-thead"><b>YOUR TRIP</b><span id="tripN">0 stops</span></div>
 <ol id="trip" class="pl-list"></ol>
@@ -154,11 +155,12 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
 </div></div>
 <div class="note">Distances are straight-line miles from your starting point; drive time depends on roads. Park stops go to an official parking or access point when the KPC guide has one. Map boundaries come from Kentucky and federal GIS and usually match POTA, but not always, so check the POTA map before you activate from a spot. Always check access, posted rules and hunting seasons.</div>
 </div></section>
-<script src="kpc-planner.js?v=20261010h"></script>
+<script src="kpc-map-extras.js?v=20261010j"></script>
+<script src="kpc-planner.js?v=20261010j"></script>
 
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
-<script src="kpc-search.js?v=20261010i" defer></script><script>
+<script src="kpc-search.js?v=20261010j" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

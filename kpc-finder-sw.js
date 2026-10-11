@@ -6,7 +6,7 @@
 const APP = 'kpc-finder-v1';
 const TILES = 'kpc-tiles-v1';
 const MAX_TILES = 2500; // about 40–60 MB of map tiles at most
-const SAME = /\/(finder\.html|finder\.css|finder\.js|gis-overlays\.js|kpc-offline\.js|locations\.json|official-[a-z0-9-]+\.json|wwff-unmapped\.json|kpc-ky-data\.json|ky-trail-parks\.json|ky-[a-z-]+\.geojson|KPC-logo\.png|kpc-icon-(?:32|180)\.png)$/;
+const SAME = /\/(finder\.html|finder\.css|finder\.js|gis-overlays\.js|kpc-offline\.js|kpc-map-extras\.js|locations\.json|official-[a-z0-9-]+\.json|wwff-unmapped\.json|kpc-ky-data\.json|ky-trail-parks\.json|ky-[a-z-]+\.geojson|KPC-logo\.png|kpc-icon-(?:32|180)\.png)$/;
 const CDN = /^https:\/\/unpkg\.com\/leaflet@1\.9\.4\/dist\//;
 const TILE = /^https:\/\/tile\.openstreetmap\.org\/\d+\/\d+\/\d+\.png$/;
 
@@ -41,7 +41,7 @@ async function trimTiles() {
 }
 
 function offline(req) {
-  if (req.mode === 'navigate') return new Response('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Offline | KPC</title><body style="margin:0;font:16px/1.5 Arial,sans-serif;background:#070707;color:#f5f0e4;display:grid;place-items:center;min-height:100vh;text-align:center;padding:24px"><div><h1 style="font-family:Georgia,serif;color:#f0c96b">No signal</h1><p>This page hasn\'t been saved for offline use yet.<br>Next time you have signal, open the Activation Finder and tap <b>Save for offline</b>.</p></div>', { status: 503, headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+  if (req.mode === 'navigate') return new Response('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Offline | KPC</title><body style="margin:0;font:16px/1.5 Arial,sans-serif;background:#070707;color:#f5f0e4;display:grid;place-items:center;min-height:100vh;text-align:center;padding:24px"><div><h1 style="font-family:Georgia,serif;color:#f0c96b">No signal</h1><p>This page hasn\'t been saved for offline use yet.<br>Next time you have signal, open KY Park Commander and tap <b>Save for offline</b>.</p></div>', { status: 503, headers: { 'Content-Type': 'text/html; charset=utf-8' } });
   return Response.error();
 }
 

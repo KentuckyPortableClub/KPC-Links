@@ -42,7 +42,8 @@
         <div class="nav-dropdown" role="menu">
           <div class="nav-drop-section">
             <div class="nav-drop-label">Parks &amp; Activations</div>
-            <a href="find.html" role="menuitem"><span class="ni">&#128506;</span>Find a Park</a>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Search &amp; Park Guides</a>
             <a href="kpc-park-sheet.html" role="menuitem" aria-current="page"><span class="ni">&#128424;</span>Printable Park Sheet</a>
             <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
           </div>
@@ -153,7 +154,7 @@ function make(){const p=find($('q').value);if(!p){$('msg').textContent='Park not
  <div class="ps-qr"><div class="ps-q"><div class="qr" id="qr1"></div><a class="ps-a" href="${esc(off)}"><b>OFFICIAL MAP / SITE</b></a><span>${esc(short(off))}</span></div><div class="ps-q"><div class="qr" id="qr2"></div><a class="ps-a" href="${potaU}"><b>POTA PARK PAGE</b></a><span>${esc(short(potaU))}</span></div><div class="ps-q"><div class="qr" id="qr3"></div><a class="ps-a" href="${dirU}"><b>DIRECTIONS</b></a><span>Google Maps to the POTA point</span></div></div>
  ${ap.length?`<div class="ps-h">Official parking &amp; access points</div><ul class="ps-list">${ap.map(a=>`<li><a class="ps-a" href="https://www.google.com/maps/search/?api=1&query=${a[0]},${a[1]}">${a[0].toFixed(5)}, ${a[1].toFixed(5)}</a> — ${esc(a[2])}</li>`).join('')}</ul>`:`<div class="ps-h">Parking &amp; access</div><p style="font-size:13px;margin:0">${p.acc?`${p.acc} access points for this park are in the KPC POTA map file (KML/GPX) on the Parks page.`:'Check the official map for parking and access.'}</p>`}
  <div class="ps-h">Also here — possible extras</div><ul class="ps-list">${(p.tf&&p.tf.length?[`Possible 2-fer: ${p.tf.map(esc).join(', ')} — stand inside both boundaries.`]:[]).concat(p.kff&&p.kff.length?[`WWFF: ${p.kff.map(esc).join(', ')}`]:[]).concat(p.sota&&p.sota.length?[`SOTA summits inside: ${p.sota.map(esc).join(', ')}`]:[]).map(x=>`<li>${x}</li>`).join('')||'<li>No 2-fers, KFF or SOTA references listed for this park.</li>'}</ul>
- <div class="ps-h">See the boundary &amp; trails</div><p style="font-size:13px;margin:0 0 4px"><a class="ps-a" href="${esc(FINDER)}">Open this park in the KPC Park Finder →</a> (map, boundary, trail layers, offline)</p><div class="ps-h">Before you go</div><ul class="ps-list"><li>Confirm the boundary on the official map — you and your gear must be inside it, on public land.</li><li>10 contacts in one UTC day makes a valid activation. Log times in UTC.</li>${isWMA?'<li><b>Hunting land:</b> check season dates and wear blaze orange during gun seasons.</li>':''}<li>Check weather, closures and posted rules. Tell someone where you are going.</li></ul>
+ <div class="ps-h">See the boundary &amp; trails</div><p style="font-size:13px;margin:0 0 4px"><a class="ps-a" href="${esc(FINDER)}">Open this park in KY Park Commander →</a> (map, boundary, trail layers, offline)</p><div class="ps-h">Before you go</div><ul class="ps-list"><li>Confirm the boundary on the official map — you and your gear must be inside it, on public land.</li><li>10 contacts in one UTC day makes a valid activation. Log times in UTC.</li>${isWMA?'<li><b>Hunting land:</b> check season dates and wear blaze orange during gun seasons.</li>':''}<li>Check weather, closures and posted rules. Tell someone where you are going.</li></ul>
  <div class="ps-warn"><b>Notes:</b> ______________________________________________________________________________<br><br>_______________________________________________________________________________________</div>
  <div class="ps-foot"><span>KPC Park Sheet • kentuckyportableclub.github.io/KPC-Links • printed ${new Date().toLocaleDateString()}</span><span>Planning aid only — always check the official map and current rules.</span></div></div>`;
  const rows=Array.from({length:28},(_,i)=>`<tr class="${i===9?'ten':''}"><td style="width:28px">${i+1}</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>`).join('');
@@ -168,7 +169,7 @@ $('f').onsubmit=e=>{e.preventDefault();make()};$('withLog').onchange=()=>cur&&ma
 let txt=null;
 function body(){if(!txt)return '';const {p,grid,towns,off,potaU,dirU,FINDER,sheet}=txt;
  return [p.n+' ('+p.c+')',KPC.cty(p.co)+' - '+p.t,'Grid '+grid+'  GPS '+p.la.toFixed(5)+', '+p.lo.toFixed(5),'Nearest: '+towns.map(t=>t[1].toFixed(0)+' mi '+t[2]+' of '+t[0]).join('; '),'',
- 'Directions: '+dirU,'POTA page: '+potaU,'Official map/site: '+off,'Boundary & trails (Park Finder): '+FINDER,'Full park sheet: '+sheet,'','From the Kentucky Portable Club - kentuckyportableclub.github.io/KPC-Links'].join('\n')}
+ 'Directions: '+dirU,'POTA page: '+potaU,'Official map/site: '+off,'Boundary & trails (KY Park Commander): '+FINDER,'Full park sheet: '+sheet,'','From the Kentucky Portable Club - kentuckyportableclub.github.io/KPC-Links'].join('\n')}
 const flash=(b,t)=>{const o=b.textContent;b.textContent=t;setTimeout(()=>b.textContent=o,1800)};
 $('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText(body());flash($('copyBtn'),'COPIED ✓')}catch(e){const a=document.createElement('textarea');a.value=body();document.body.append(a);a.select();try{document.execCommand('copy');flash($('copyBtn'),'COPIED ✓')}catch(_){}a.remove()}};
 $('mailBtn').onclick=()=>{location.href='mailto:?subject='+encodeURIComponent(txt.p.n+' ('+txt.p.c+') - KPC park sheet')+'&body='+encodeURIComponent(body())};
@@ -178,7 +179,7 @@ init();
 
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
-<script src="kpc-search.js?v=20261010i" defer></script><script>
+<script src="kpc-search.js?v=20261010j" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
