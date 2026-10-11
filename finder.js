@@ -11,7 +11,7 @@ function buildCrossReferences(){potaWWFF=new Map();sotaLocations=[];for(const d 
 const savedKey='radio-finder-saved-v1';let saved={favorites:[],trip:[]};try{const v=JSON.parse(localStorage.getItem(savedKey));if(v&&Array.isArray(v.favorites)&&Array.isArray(v.trip))saved=v}catch(_){}
 const key=d=>d[0]+':'+d[1];function persist(){try{localStorage.setItem(savedKey,JSON.stringify(saved))}catch(_){}drawSaved()}
 function toggleSaved(kind,d){const k=key(d),a=saved[kind];const i=a.indexOf(k);if(i<0){a.push(k)}else{a.splice(i,1)}persist();render()}
-function drawSaved(){for(const kind of ['favorites','trip']){const el=$(kind==='favorites'?'favorites':'tripstops');el.replaceChildren();const entries=saved[kind].map(k=>data.find(d=>key(d)===k)).filter(Boolean);$(kind==='favorites'?'favcount':'tripcount').textContent=entries.length;for(const d of entries){const r=node('div','saveditem');r.append(node('span','',d[0]+' '+d[1]+' · '+d[2]));const b=node('button','tiny','Remove');b.type='button';b.addEventListener('click',()=>toggleSaved(kind,d));r.append(b);el.append(r)}if(!entries.length)el.append(node('p','meta','No saved locations yet.'))}cmdRoute(saved.trip.map(k=>data.find(d=>key(d)===k)).filter(Boolean))}
+function drawSaved(){for(const kind of ['favorites']){const el=$(kind==='favorites'?'favorites':'tripstops');el.replaceChildren();const entries=saved[kind].map(k=>data.find(d=>key(d)===k)).filter(Boolean);$(kind==='favorites'?'favcount':'tripcount').textContent=entries.length;for(const d of entries){const r=node('div','saveditem');r.append(node('span','',d[0]+' '+d[1]+' · '+d[2]));const b=node('button','tiny','Remove');b.type='button';b.addEventListener('click',()=>toggleSaved(kind,d));r.append(b);el.append(r)}if(!entries.length)el.append(node('p','meta','No saved locations yet.'))}if(typeof renderRove==='function')renderRove()}
 $('clearplan').addEventListener('click',()=>{saved.trip=[];persist();render()});
 // Use one consistent map tile layer. Do not switch providers during zoom or pan.
 // Failed tiles can be retried by reloading the page without disturbing map markers.
@@ -221,106 +221,126 @@ document.addEventListener('click',e=>{const a=e.target.closest('.finder-jump a[h
  try{history.replaceState(null,'',a.getAttribute('href'))}catch(_){}});
 
 
-/* Start and End pins for the trip (v20261010k): drop them on the map, or use GPS for the start.
-   The Google Maps route then runs Start → trip stops → End instead of starting wherever the phone is and ending at the last park. */
-const ENDKEY='kpcCmdEnds';let ends={s:null,e:null,round:false},endDrop=null,endLay=null;
-try{const v=JSON.parse(localStorage.getItem(ENDKEY)||'null');if(v&&typeof v==='object')ends=Object.assign(ends,v)}catch(_){}
-const okPt=p=>p&&(Array.isArray(p)?Number.isFinite(+p[3])&&Number.isFinite(+p[4]):Number.isFinite(+p.la)&&Number.isFinite(+p.lo));
-function saveEnds(){try{localStorage.setItem(ENDKEY,JSON.stringify(ends))}catch(_){}}
-const fmtPt=p=>(+p.la).toFixed(5)+', '+(+p.lo).toFixed(5);
-function endOf(){return ends.round?ends.s:ends.e}
-function cmdRoute(stops){const route=$('triproute');if(!route)return;drawEndsUI();
- const S=okPt(ends.s)?ends.s:null,E=okPt(endOf())?endOf():null;
- const max=E?9:10,use=stops.slice(0,max),pts=use.map(d=>{const s=spotOf(d);return s?s.la+','+s.lo:d[3]+','+d[4]});decorateStops(stops);
- if(!pts.length&&!E){route.hidden=true;return}
- const dest=E?E.la+','+E.lo:pts.at(-1),way=E?pts:pts.slice(0,-1);
- route.href='https://www.google.com/maps/dir/?api=1'+(S?'&origin='+encodeURIComponent(S.la+','+S.lo):'')+'&destination='+encodeURIComponent(dest)+(way.length?'&waypoints='+encodeURIComponent(way.join('|')):'')+'&travelmode=driving';
- route.hidden=false;
- route.textContent='Open trip in Google Maps: '+(S?'Start → ':'')+use.length+' stop'+(use.length===1?'':'s')+(E?(ends.round?' → back to Start':' → End'):'');
- const note=$('endsNote');if(note)note.textContent=stops.length>max?`Google Maps takes ${max} stops${E?' plus your Start and End':''}. Only the first ${max} are in the route.`:''}
-function drawEndsUI(){let box=$('tripends');const route=$('triproute');if(!route)return;
- if(!box){box=node('div','tripends');box.id='tripends';route.before(box);
-  box.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.k;
-   if(b.dataset.a==='drop')dropMode(k);
-   else if(b.dataset.a==='gps'){if(!navigator.geolocation){status.textContent='Location is not available in this browser.';return}
-    b.textContent='Finding…';navigator.geolocation.getCurrentPosition(p=>{setEnd('s',p.coords.latitude,p.coords.longitude,'My location')},()=>{status.textContent='Could not get your location. Drop the Start pin on the map instead.';drawEndsUI()},{enableHighAccuracy:true,timeout:15000})}
-   else if(b.dataset.a==='clr'){ends[k]=null;if(k==='e')ends.round=false;saveEnds();drawEndPins();drawSaved()}
-   else if(b.dataset.a==='show'){const p=k==='e'?endOf():ends[k];if(okPt(p)&&map){$('map').scrollIntoView({block:'center',behavior:'smooth'});map.setView([p.la,p.lo],Math.max(map.getZoom(),14))}}});
-  box.addEventListener('change',e=>{if(e.target.id==='endRound'){ends.round=e.target.checked;saveEnds();drawEndPins();drawSaved()}})}
- const row=(k,icon,label,p,empty)=>`<div class="endrow"><div class="endtxt"><b>${icon} ${label}</b> <span>${okPt(p)?esc2((p.n?p.n+' · ':'')+fmtPt(p)):empty}</span></div><div class="endbtns">`+
-  (k==='e'&&ends.round?'':`<button type="button" class="tiny" data-a="drop" data-k="${k}">📍 ${okPt(p)?'Move':'Drop'} on map</button>`)+
-  (k==='s'?`<button type="button" class="tiny secondary" data-a="gps" data-k="s">Use GPS</button>`:'')+
-  (okPt(p)?`<button type="button" class="tiny secondary" data-a="show" data-k="${k}">Show</button>`+(k==='e'&&ends.round?'':`<button type="button" class="tiny secondary" data-a="clr" data-k="${k}">Clear</button>`):'')+`</div></div>`;
- box.innerHTML='<h4>Start &amp; End</h4>'+row('s','🟢','Start',ends.s,'Not set: Google uses where you are when you open the route')+
-  `<label class="endround"><input type="checkbox" id="endRound" ${ends.round?'checked':''}> Round trip (end back at Start)</label>`+
-  row('e','🏁','End',endOf(),'Not set: the route ends at your last trip stop')+'<p class="meta" id="endsNote"></p>'}
-function esc2(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function setEnd(k,la,lo,n){if(/^stop:/.test(k))return setSpot(k.slice(5),la,lo,n);ends[k]={la:+(+la).toFixed(6),lo:+(+lo).toFixed(6),n:n||(k==='s'?'Start pin':'End pin')};if(k==='e')ends.round=false;saveEnds();drawEndPins();drawSaved();status.textContent=(k==='s'?'Start':'End')+' set at '+fmtPt(ends[k])+'. Drag the pin to fine-tune it.'}
-function dropMode(k){if(!map){status.textContent='The map did not load, so pins cannot be dropped.';return}
- endDrop=k;const w=$('map');w.classList.add('cmd-dropping');const sd=stopByKey(k);
- if(sd&&okPt(sd)&&map.getZoom()<14)map.setView([sd[3],sd[4]],15);
- w.setAttribute('data-drop',sd?'Tap where you will park or set up for '+sd[1]+'. Esc to cancel.':k==='s'?'Tap the map where you will START. Esc to cancel.':'Tap the map where you will END. Esc to cancel.');
- w.scrollIntoView({block:'center',behavior:'smooth'});status.textContent=sd?'Zoom in and tap your spot for '+sd[1]+'. Satellite + Roads shows pull-offs and lots best, and with 🅿️ Parking on, tapping a lot snaps to it.':k==='s'?'Tap the map where your trip starts.':'Tap the map where your trip ends.'}
-function stopDrop(){endDrop=null;const w=$('map');if(w){w.classList.remove('cmd-dropping');w.removeAttribute('data-drop')}}
-function drawEndPins(){if(!map||!window.L)return;if(!endLay)endLay=L.layerGroup().addTo(map);endLay.clearLayers();
- const mk=(k,p,txt,bg)=>{if(!okPt(p))return;const m=L.marker([p.la,p.lo],{draggable:!(k==='e'&&ends.round),zIndexOffset:2000,title:(k==='s'?'Trip start':'Trip end')+': '+(p.n||''),
-  icon:L.divIcon({className:'',html:`<span class="endpin" style="background:${bg}">${txt}</span>`,iconSize:[30,30],iconAnchor:[15,30],popupAnchor:[0,-28]})})
-  .bindPopup(()=>`<b>${k==='s'?'🟢 Trip start':'🏁 Trip end'}</b><br>${esc2(p.n||'')}<br>${fmtPt(p)}<br><small>Drag the pin to move it.</small>`).addTo(endLay);
-  m.on('dragend',()=>{const ll=m.getLatLng();setEnd(k,ll.lat,ll.lng,p.n)})};
- mk('s',ends.s,'S','#1d7a46');if(!ends.round)mk('e',ends.e,'E','#b3261e');
- /* each stop's own arrival spot: numbered orange pin, drag to fine-tune */
- tripStops().forEach((d,i)=>{const s=spotOf(d);if(!s)return;const k=key(d);
-  const m=L.marker([s.la,s.lo],{draggable:true,zIndexOffset:1900,title:'Stop '+(i+1)+' arrival: '+d[2],
-   icon:L.divIcon({className:'',html:`<span class="endpin" style="background:#c46a12">${i+1}</span>`,iconSize:[30,30],iconAnchor:[15,30],popupAnchor:[0,-28]})})
-   .bindPopup(()=>`<b>📍 Stop ${i+1}: ${esc2(d[2])}</b><br>${esc2(s.n||'My spot')}<br>${fmtPt(s)}<br><small>The route goes here instead of the park pin. Drag to move.</small>`).addTo(endLay);
-  m.on('dragend',()=>{const ll=m.getLatLng();setSpot(k,ll.lat,ll.lng,s.n)})})}
-if(map&&window.L){
- const st=document.createElement('style');st.textContent='.tripends{margin:12px 0;padding:10px 12px;border:1px solid #3a3426;border-radius:10px;background:#141310}.tripends h4{margin:0 0 6px;font-size:13px;letter-spacing:.6px;text-transform:uppercase;color:#e5c87b}.endrow{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between;padding:6px 0;border-top:1px solid #2a2418}.endrow:first-of-type{border-top:0}.endtxt{flex:1 1 180px;font-size:14px}.endtxt span{color:#c9c5bc;font-size:13px}.endbtns{display:flex;flex-wrap:wrap;gap:6px}.endround{display:flex;gap:8px;align-items:center;font-size:13px;margin:4px 0;cursor:pointer}.endround input{width:18px;height:18px;accent-color:#d5a63a}.endpin{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);color:#fff;font:900 13px Arial;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.5)}.endpin{line-height:1}.cmd-dropping{cursor:crosshair!important;outline:3px solid #d5a63a;outline-offset:-3px}.cmd-dropping::after{content:attr(data-drop);position:absolute;left:50%;top:10px;transform:translateX(-50%);z-index:1200;background:#151515;color:#fff;border:1px solid #d5a63a;border-radius:999px;padding:8px 14px;font:800 13px Arial;max-width:90%;text-align:center;pointer-events:none}';
- document.head.appendChild(st);
- document.querySelectorAll('.endpin').forEach(()=>{});
- /* catch the tap before park outlines, pins or overlap areas can open their own popups */
- map.getContainer().addEventListener('click',e=>{if(!endDrop)return;if(e.target.closest&&e.target.closest('.leaflet-control,.leaflet-popup'))return;if(map.dragging&&map.dragging.moved&&map.dragging.moved())return;
-  e.stopPropagation();e.preventDefault();let ll=map.mouseEventToLatLng(e);const k=endDrop,sn=snapTo(map.mouseEventToContainerPoint(e));if(sn)ll=L.latLng(sn.la,sn.lo);stopDrop();map.closePopup();
-  setEnd(k,ll.lat,ll.lng,sn?sn.name+(sn.osm?' (OpenStreetMap)':' (official)'):k==='s'?'Start pin':k==='e'?'End pin':'My spot')},true);
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&endDrop){stopDrop();status.textContent='Pin drop canceled.'}});
- drawEndPins();
-}
-
-/* Your own arrival spot for each trip stop (v20261010l): the route goes to the lot or pull-off you pick
-   instead of the park's reference pin. Pick from the parking on record or drop a pin. Saved on this device. */
-var SPOTKEY='kpcCmdSpots',spots={};try{spots=JSON.parse(localStorage.getItem(SPOTKEY)||'{}')||{}}catch(_){spots={}}   // var: drawEndPins() can run before this line
-function tripStops(){return saved.trip.map(k=>data.find(d=>key(d)===k)).filter(Boolean)}
-function stopByKey(k){if(!/^stop:/.test(k||''))return null;return tripStops().find(d=>key(d)===k.slice(5))||null}
-function spotOf(d){const s=spots&&spots[key(d)];return s&&Number.isFinite(+s.la)&&Number.isFinite(+s.lo)?s:null}
-function saveSpots(){try{localStorage.setItem(SPOTKEY,JSON.stringify(spots))}catch(_){}}
-function setSpot(k,la,lo,n){spots[k]={la:+(+la).toFixed(6),lo:+(+lo).toFixed(6),n:n||'My spot'};saveSpots();drawEndPins();drawSaved();
- const d=tripStops().find(x=>key(x)===k);status.textContent='Arrival spot for '+(d?d[2]:'this stop')+' set at '+fmtPt(spots[k])+'. Drag the orange pin to fine-tune it.'}
-/* parking on record, closest first to where you are coming from (the stop before, or your Start pin) */
-function apOrder(d,i,stops){const aps=apList(d),pd=i>0?stops[i-1]:null,ps=pd?(spotOf(pd)||{la:+pd[3],lo:+pd[4]}):(okPt(ends.s)?ends.s:null);
- return aps.map((a,j)=>({a,j,mi:ps?miles(+ps.la,+ps.lo,+a[0],+a[1]):null})).sort((x,y)=>ps?x.mi-y.mi:x.j-y.j)}
+/* Rove planner (v20261010m): one list of stops, as many as you like.
+   Add parks from the search results (+ Trip stop) and drop your own pins anywhere: home, a parking lot,
+   a pull-off, lunch. Put them in any order. Drag a park's pin to the lot you will really drive to.
+   Google Maps takes about 10 stops per link, so a big rove opens as legs that pick up where the last one ended. */
+const ROVEKEY='kpcRove',ROVEOPT='kpcRoveOpt',LEG=11;            // a Google Maps link: origin + 9 waypoints + destination
+var rove=null,roveLay=null,roveAdding=false,roveOpt={first:false}; // var: drawSaved() runs before this block is reached
+try{const o=JSON.parse(localStorage.getItem(ROVEOPT)||'null');if(o)roveOpt=Object.assign(roveOpt,o)}catch(_){}
+const rid=()=>Math.random().toString(36).slice(2,9);
+const okLL=p=>p&&p.la!=null&&p.lo!=null&&Number.isFinite(+p.la)&&Number.isFinite(+p.lo);
+const fmtLL=p=>(+p.la).toFixed(5)+', '+(+p.lo).toFixed(5);
+function esc2(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+let byKey=null,byKeyN=0;function dOf(k){if(!byKey||byKeyN!==data.length){byKey=new Map(data.map(d=>[key(d),d]));byKeyN=data.length}return byKey.get(k)}
+function saveRove(){try{localStorage.setItem(ROVEKEY,JSON.stringify(rove))}catch(_){}}
+function loadRove(){if(rove)return rove;
+ try{const v=JSON.parse(localStorage.getItem(ROVEKEY)||'null');if(Array.isArray(v))rove=v.filter(s=>s&&(s.t==='park'?typeof s.k==='string':okLL(s)))}catch(_){}
+ if(!rove){rove=[];let en={},sp={};try{en=JSON.parse(localStorage.getItem('kpcCmdEnds')||'{}')||{}}catch(_){}try{sp=JSON.parse(localStorage.getItem('kpcCmdSpots')||'{}')||{}}catch(_){}
+  // carry over an earlier Start / End and arrival spots
+  if(okLL(en.s))rove.push({id:rid(),t:'pin',la:+en.s.la,lo:+en.s.lo,n:en.s.n||'Start'});
+  saved.trip.forEach(k=>{const x=sp[k];rove.push({id:rid(),t:'park',k,la:okLL(x)?+x.la:null,lo:okLL(x)?+x.lo:null,n:okLL(x)?(x.n||'My spot'):''})});
+  if(en.round&&okLL(en.s))rove.push({id:rid(),t:'pin',la:+en.s.la,lo:+en.s.lo,n:(en.s.n||'Start')+' (back home)'});
+  else if(okLL(en.e))rove.push({id:rid(),t:'pin',la:+en.e.la,lo:+en.e.lo,n:en.e.n||'End'});
+  saveRove()}
+ return rove}
+/* parks follow the + Trip stop buttons: new ones go on the end, removed ones leave the list */
+function syncRove(){loadRove();const have=new Set(rove.filter(s=>s.t==='park').map(s=>s.k));let ch=false;
+ saved.trip.forEach(k=>{if(!have.has(k)){rove.push({id:rid(),t:'park',k,la:null,lo:null,n:''});ch=true}});
+ const before=rove.length;rove=rove.filter(s=>s.t!=='park'||saved.trip.includes(s.k));if(ch||rove.length!==before)saveRove()}
+function ptOf(s){if(s.t==='park'){if(okLL(s))return {la:+s.la,lo:+s.lo};const d=dOf(s.k);return d?{la:+d[3],lo:+d[4]}:null}return okLL(s)?{la:+s.la,lo:+s.lo}:null}
+function nameOf(s){if(s.t==='pin')return s.n||'Pin';const d=dOf(s.k);return d?d[1]+' · '+d[2]:s.k.replace(':',' ')}
+function stops(){return loadRove().map(s=>({s,p:ptOf(s)})).filter(x=>x.p)}
+function nearPark(la,lo){let best=null;kyGuide.forEach(p=>{if(!p||!/^US-/.test(p.c)||!Number.isFinite(p.la))return;const m=miles(la,lo,p.la,p.lo);if(m<1.5&&(!best||m<best.m))best={p,m}});return best}
+function addPin(la,lo,n){loadRove();const np=n?null:nearPark(la,lo);
+ rove.push({id:rid(),t:'pin',la:+(+la).toFixed(6),lo:+(+lo).toFixed(6),n:n||(np?(np.m<.15?'Pin at ':'Pin near ')+np.p.n:'Pin '+(rove.filter(s=>s.t==='pin').length+1))});saveRove();renderRove()}
+function removeStop(id){const s=rove.find(x=>x.id===id);if(!s)return;
+ if(s.t==='park'){const i=saved.trip.indexOf(s.k);if(i>=0)saved.trip.splice(i,1);rove=rove.filter(x=>x.id!==id);saveRove();persist();render();return}
+ rove=rove.filter(x=>x.id!==id);saveRove();renderRove()}
+function moveStop(id,dir){const i=rove.findIndex(x=>x.id===id),j=i+dir;if(i<0||j<0||j>=rove.length)return;[rove[i],rove[j]]=[rove[j],rove[i]];saveRove();renderRove()}
+function nearestOrder(){const L0=stops();if(L0.length<3)return;const out=[L0[0]],left=L0.slice(1);
+ while(left.length){const c=out[out.length-1].p;let bi=0,bd=Infinity;left.forEach((x,i)=>{const m=miles(c.la,c.lo,x.p.la,x.p.lo);if(m<bd){bd=m;bi=i}});out.push(left.splice(bi,1)[0])}
+ const ids=out.map(x=>x.s.id);rove.sort((a,b)=>ids.indexOf(a.id)-ids.indexOf(b.id));saveRove();renderRove();status.textContent='Stops put in nearest-next order, starting from stop 1.'}
+/* Google Maps links: one per leg of up to 11 points; each leg starts where the last one ended */
+function legs(){const P=stops().map(x=>x.p.la+','+x.p.lo);if(!P.length)return [];const out=[];let i=0;
+ if(!roveOpt.first){const end=Math.min(P.length,LEG-1);out.push({o:null,pts:P.slice(0,end),a:1,b:end});i=end-1}
+ while(i<P.length-1){const end=Math.min(P.length,i+LEG);out.push({o:P[i],pts:P.slice(i+1,end),a:i+1,b:end});i=end-1}
+ if(!out.length)out.push({o:null,pts:P.slice(0,1),a:1,b:1});
+ return out.map(l=>({a:l.a,b:l.b,href:'https://www.google.com/maps/dir/?api=1'+(l.o?'&origin='+encodeURIComponent(l.o):'')+'&destination='+encodeURIComponent(l.pts[l.pts.length-1])+(l.pts.length>1?'&waypoints='+encodeURIComponent(l.pts.slice(0,-1).join('|')):'')+'&travelmode=driving'}))}
+function gpx(){const x=s=>String(s).replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'}[c]));const L0=stops();
+ const w=L0.map((t,i)=>`<wpt lat="${t.p.la}" lon="${t.p.lo}"><name>${x((i+1)+'. '+nameOf(t.s))}</name>${t.s.t==='park'&&t.s.n?`<desc>${x('Drive to: '+t.s.n)}</desc>`:''}</wpt>`).join('\n');
+ return `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="KY Park Commander" xmlns="http://www.topografix.com/GPX/1/1">\n<metadata><name>KPC rove</name><time>${new Date().toISOString()}</time></metadata>\n${w}\n<rte><name>KPC rove</name>\n`+L0.map((t,i)=>`<rtept lat="${t.p.la}" lon="${t.p.lo}"><name>${x((i+1)+'. '+nameOf(t.s))}</name></rtept>`).join('\n')+`\n</rte>\n</gpx>\n`}
+function shareUrl(){const o=stops().map(t=>t.s.t==='park'?['p',t.s.k,okLL(t.s)?+t.s.la:null,okLL(t.s)?+t.s.lo:null,t.s.n||'']:['s',t.p.la,t.p.lo,t.s.n||'']);
+ const b=btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');return location.origin+location.pathname+'?rove='+b+'#finder-planner'}
+function readShared(){const c=new URLSearchParams(location.search).get('rove');if(!c)return;
+ try{const o=JSON.parse(decodeURIComponent(escape(atob(c.replace(/-/g,'+').replace(/_/g,'/')))));const r=[],trip=[];
+  for(const s of o){if(s[0]==='p'&&typeof s[1]==='string'){r.push({id:rid(),t:'park',k:s[1],la:Number.isFinite(s[2])?s[2]:null,lo:Number.isFinite(s[3])?s[3]:null,n:String(s[4]||'').slice(0,60)});trip.push(s[1])}
+   else if(s[0]==='s'&&Number.isFinite(+s[1])&&Number.isFinite(+s[2]))r.push({id:rid(),t:'pin',la:+s[1],lo:+s[2],n:String(s[3]||'Shared pin').slice(0,60)})}
+  if(r.length){rove=r;saved.trip=trip;saveRove();try{localStorage.setItem(savedKey,JSON.stringify(saved))}catch(_){}status.textContent='Rove loaded from a shared link: '+r.length+' stops.'}}catch(_){status.textContent='That shared rove link could not be read.'}}
+/* the list under Trip stops */
+function renderRove(){const box=$('tripstops');if(!box)return;syncRove();const L0=stops();$('tripcount').textContent=L0.length;
+ const old=$('triproute');if(old)old.hidden=true;
+ let h='';
+ if(!L0.length)h='<p class="meta">No stops yet. Tap <b>+ Trip stop</b> on any park, or <b>📍 Add pins</b> and tap the map: your home, a parking lot, a pull-off, lunch. Add as many as you like.</p>';
+ else h='<ol class="rovelist">'+L0.map((t,i)=>{const s=t.s,park=s.t==='park';
+  const sub=park?(okLL(s)?`Drive to: <b>${esc2(s.n||'my pin')}</b> · ${fmtLL(t.p)} <button type="button" class="linkbtn" data-rv="reset" data-id="${s.id}">use park pin</button>`:`Park pin · ${fmtLL(t.p)} <span class="rv-hint">(drag it on the map to a closer lot)</span>`):fmtLL(t.p);
+  return `<li class="rv-${park?'park':'pin'}" data-id="${s.id}"><span class="rv-n">${i+1}</span><div class="rv-b">${park?`<div class="rv-t">${esc2(nameOf(s))}</div>`:`<input class="rv-in" type="text" maxlength="60" value="${esc2(s.n)}" data-id="${s.id}" aria-label="Name for stop ${i+1}">`}<div class="rv-s">${sub}</div></div>
+  <div class="rv-m"><button type="button" data-rv="show" data-id="${s.id}" title="Show on map">◎</button><button type="button" data-rv="up" data-id="${s.id}" ${i?'':'disabled'} aria-label="Move up">▲</button><button type="button" data-rv="dn" data-id="${s.id}" ${i<L0.length-1?'':'disabled'} aria-label="Move down">▼</button><button type="button" data-rv="rm" data-id="${s.id}" aria-label="Remove">✕</button></div></li>`}).join('')+'</ol>';
+ const lg=legs();
+ h+=`<div class="rove-tools"><button type="button" class="tiny ${roveAdding?'primary':''}" data-rv="add">${roveAdding?'✓ Done adding pins':'📍 Add pins'}</button><button type="button" class="tiny secondary" data-rv="gps">📍 Add my location</button>${L0.length>2?'<button type="button" class="tiny secondary" data-rv="order">Nearest-next order</button>':''}</div>`;
+ if(L0.length){h+=`<label class="rove-first"><input type="checkbox" id="roveFirst" ${roveOpt.first?'checked':''}> Start the route at stop 1 (otherwise Google starts from where you are)</label>`;
+  h+='<div class="rove-legs">'+lg.map((l,i)=>`<a class="routebtn" href="${l.href}" target="_blank" rel="noopener noreferrer">${lg.length===1?'Open rove in Google Maps: '+L0.length+' stop'+(L0.length===1?'':'s'):'Leg '+(i+1)+' in Google Maps: stops '+l.a+'–'+l.b}</a>`).join('')+'</div>';
+  if(lg.length>1)h+=`<p class="meta">Google Maps takes about 10 stops per link, so this rove opens as ${lg.length} legs. Each leg starts where the last one ended.</p>`;
+  h+=`<div class="rove-tools"><button type="button" class="tiny secondary" data-rv="gpx">⬇ GPX file</button><button type="button" class="tiny secondary" data-rv="share">Share rove link</button></div>`}
+ box.innerHTML=h;drawRovePins()}
+function drawRovePins(){if(!map||!window.L)return;if(!roveLay)roveLay=L.layerGroup().addTo(map);roveLay.clearLayers();const L0=stops();
+ if(L0.length>1)L.polyline(L0.map(t=>[t.p.la,t.p.lo]),{color:'#d5a63a',weight:3,opacity:.85,dashArray:'2 8',interactive:false}).addTo(roveLay);
+ L0.forEach((t,i)=>{const s=t.s,park=s.t==='park';
+  const m=L.marker([t.p.la,t.p.lo],{draggable:true,autoPan:true,zIndexOffset:1900,title:'Stop '+(i+1)+': '+nameOf(s),
+   icon:L.divIcon({className:'',html:`<span class="endpin" style="background:${park?'#1d5a3a':'#2456a6'}">${i+1}</span>`,iconSize:[30,30],iconAnchor:[15,30],popupAnchor:[0,-28]})})
+   .bindPopup(()=>`<b>Stop ${i+1}: ${esc2(nameOf(s))}</b>${park&&s.n?'<br>Drive to: '+esc2(s.n):''}<br>${fmtLL(t.p)}<br><a href="https://www.google.com/maps/dir/?api=1&destination=${t.p.la},${t.p.lo}&travelmode=driving" target="_blank" rel="noopener">Directions ↗</a> · <button type="button" class="linkbtn" data-rv="rm" data-id="${s.id}">Remove</button><br><small>Drag the pin to move it.</small>`).addTo(roveLay);
+  m.on('dragend',()=>{const ll=m.getLatLng();s.la=+ll.lat.toFixed(6);s.lo=+ll.lng.toFixed(6);if(park&&!s.n)s.n='My pin';if(!park&&/^Pin (near|at) /.test(s.n||'')){const np=nearPark(s.la,s.lo);s.n=np?(np.m<.15?'Pin at ':'Pin near ')+np.p.n:s.n}saveRove();renderRove()})})}
 /* a tap within ~28 px of a parking or entrance marker snaps onto it and takes its name */
-function snapTo(cp){const X=window.kpcExtras;if(!X||!cp)return null;const s=X.state();let best=null;
- for(const p of X.points()){const park=/parking|pulloff/.test(p.kind);if(park?!s.P:!s.E)continue;const q=map.latLngToContainerPoint([p.la,p.lo]),dd=Math.hypot(q.x-cp.x,q.y-cp.y);if(dd<28&&(!best||dd<best.dd))best=Object.assign({dd},p)}
+function snapTo(cp){const X=window.kpcExtras;if(!X||!cp)return null;const st=X.state();let best=null;
+ for(const p of X.points()){const pk=/parking|pulloff/.test(p.kind);if(pk?!st.P:!st.E)continue;const q=map.latLngToContainerPoint([p.la,p.lo]),dd=Math.hypot(q.x-cp.x,q.y-cp.y);if(dd<28&&(!best||dd<best.dd))best=Object.assign({dd},p)}
  if(best&&!best.name)best.name=({parking:'Parking area',pulloff:'Roadside pull-off',trailhead:'Trailhead',gate:'Gate',boat:'Boat access',entrance:'Entrance'})[best.kind]||'Access point';
  return best}
-function apList(d){const kp=kyGuide.get(d[1]);return (d[0]==='POTA'&&kp&&Array.isArray(kp.ap))?kp.ap.filter(a=>Number.isFinite(+a[0])&&Number.isFinite(+a[1])):[]}
-function decorateStops(stops){const box=$('tripstops');if(!box)return;const rows=[...box.querySelectorAll(':scope > .saveditem')];
- rows.forEach((r,i)=>{const d=stops[i];if(!d)return;r.classList.add('stoprow');r.querySelector('.stopspot')&&r.querySelector('.stopspot').remove();
-  const lab=r.querySelector('span');if(lab&&!lab.dataset.n){lab.dataset.n='1';lab.textContent=(i+1)+'. '+lab.textContent}
-  const s=spotOf(d),k=key(d),aps=apList(d),w=node('div','stopspot');
-  w.innerHTML=`<div class="stopto">📍 Arrive at: <b>${s?esc2(s.n||'My spot'):'Park pin'}</b> <span>${s?fmtPt(s):'(the reference location)'}</span></div><div class="endbtns">`+
-   `<button type="button" class="tiny" data-sa="drop" data-k="${esc2(k)}">📍 ${s?'Move':'Drop'} my spot</button>`+
-   (aps.length?`<select class="tiny" data-sa="pick" data-k="${esc2(k)}" aria-label="Pick parking on record"><option value="">🅿️ Parking on record (${aps.length})…</option>${apOrder(d,i,stops).slice(0,12).map((o,n)=>`<option value="${o.j}">${esc2(String(o.a[2]||'Access point').slice(0,36))} #${o.j+1}${o.mi!=null?' · '+o.mi.toFixed(1)+' mi'+(n===0?' (closest to last stop)':''):''}</option>`).join('')}</select>`:'')+
-   (s?`<button type="button" class="tiny secondary" data-sa="show" data-k="${esc2(k)}">Show</button><button type="button" class="tiny secondary" data-sa="clr" data-k="${esc2(k)}">Use park pin</button>`:'')+'</div>';
-  r.append(w)});
- drawEndPins()}   // keeps the numbered arrival pins in step with the trip order
-document.addEventListener('click',e=>{const b=e.target.closest('#tripstops button[data-sa]');if(!b)return;const k=b.dataset.k,d=tripStops().find(x=>key(x)===k);
- if(b.dataset.sa==='drop')dropMode('stop:'+k);
- else if(b.dataset.sa==='clr'){delete spots[k];saveSpots();drawEndPins();drawSaved()}
- else if(b.dataset.sa==='show'){const s=spots[k];if(s&&map){$('map').scrollIntoView({block:'center',behavior:'smooth'});map.setView([s.la,s.lo],Math.max(map.getZoom(),16))}}});
-document.addEventListener('change',e=>{const s=e.target.closest('#tripstops select[data-sa=pick]');if(!s||s.value==='')return;const k=s.dataset.k,d=tripStops().find(x=>key(x)===k);if(!d)return;
- const a=apList(d)[+s.value];if(a)setSpot(k,a[0],a[1],String(a[2]||'Access point')+' #'+(+s.value+1))});
-if(map&&window.L){const st=document.createElement('style');st.textContent='#tripstops .saveditem.stoprow{flex-wrap:wrap}#tripstops .saveditem.stoprow>span{flex:1 1 60%}.stopspot{flex:1 1 100%;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between;margin-top:6px;padding:7px 9px;border-radius:8px;background:#100f0c;border:1px dashed #5a4a2a}.stopto{font-size:12.5px;flex:1 1 200px}.stopto span{color:#c9c5bc}.stopspot select.tiny{max-width:210px;border-radius:6px}.mapbar .ovlbtn[aria-pressed=true]{background:#f2c230;color:#111;border-color:#a67c00}';document.head.appendChild(st)}
+function addMode(on){roveAdding=on;const w=$('map');if(!w)return;w.classList.toggle('cmd-dropping',on);
+ if(map&&map.doubleClickZoom){if(on)map.doubleClickZoom.disable();else map.doubleClickZoom.enable()}   // quick taps add pins instead of zooming
+ let bn=document.getElementById('roveBanner');
+ if(on&&!bn&&map){bn=document.createElement('div');bn.id='roveBanner';bn.className='rove-banner';map.getContainer().append(bn);if(window.L)L.DomEvent.disableClickPropagation(bn);
+  bn.addEventListener('click',e=>{if(e.target.closest('button'))addMode(false)})}
+ if(bn){bn.hidden=!on;bn.innerHTML='Tap the map to add stops. <button type="button">✓ Done</button>'}
+ const mb=document.querySelector('.mapbar .rovebtn');if(mb){mb.setAttribute('aria-pressed',String(on));mb.textContent=on?'✓ Done adding':'📍 Add pins'}
+ if(on){status.textContent='Tap the map to add stops. Zoom in close and use Satellite + Roads to find lots and pull-offs. With 🅿️ Parking on, a tap near a lot snaps to it.';if(!document.querySelector('.kpc-mapfull'))w.scrollIntoView({block:'center',behavior:'smooth'})}
+ renderRove()}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-rv]');if(!b)return;const id=b.dataset.id,a=b.dataset.rv;
+ if(a==='rm'){map&&map.closePopup();removeStop(id)}else if(a==='up')moveStop(id,-1);else if(a==='dn')moveStop(id,1);
+ else if(a==='show'){const s=rove.find(x=>x.id===id),p=s&&ptOf(s);if(p&&map){$('map').scrollIntoView({block:'center',behavior:'smooth'});map.setView([p.la,p.lo],Math.max(map.getZoom(),15));const mk=roveLay&&roveLay.getLayers().find(l=>l.options&&l.options.title&&l.getLatLng&&Math.abs(l.getLatLng().lat-p.la)<1e-6&&Math.abs(l.getLatLng().lng-p.lo)<1e-6);if(mk)setTimeout(()=>mk.openPopup(),300)}}
+ else if(a==='reset'){const s=rove.find(x=>x.id===id);if(s){s.la=null;s.lo=null;s.n='';saveRove();renderRove()}}
+ else if(a==='add')addMode(!roveAdding);
+ else if(a==='gps'){if(!navigator.geolocation){status.textContent='Location is not available in this browser.';return}status.textContent='Finding your location…';
+  navigator.geolocation.getCurrentPosition(p=>{addPin(p.coords.latitude,p.coords.longitude,'My location');status.textContent='Your location was added as stop '+rove.length+'. Move it up to make it the start.'},()=>{status.textContent='Could not get your location. Tap 📍 Add pins and tap the map instead.'},{enableHighAccuracy:true,timeout:15000})}
+ else if(a==='order')nearestOrder();
+ else if(a==='gpx'){const bl=new Blob([gpx()],{type:'application/gpx+xml'}),l=document.createElement('a');l.href=URL.createObjectURL(bl);l.download='kpc-rove.gpx';document.body.append(l);l.click();setTimeout(()=>{URL.revokeObjectURL(l.href);l.remove()},500)}
+ else if(a==='share'){const u=shareUrl();(async()=>{try{if(navigator.share){await navigator.share({title:'KPC rove',text:'My KPC rove ('+stops().length+' stops)',url:u});return}}catch(er){if(er&&er.name==='AbortError')return}
+  try{await navigator.clipboard.writeText(u);status.textContent='Rove link copied. Paste it in a text or email.'}catch(_){prompt('Copy this rove link:',u)}})()}});
+document.addEventListener('input',e=>{const i=e.target.closest('.rv-in');if(!i)return;const s=rove.find(x=>x.id===i.dataset.id);if(s){s.n=i.value;saveRove();if(roveLay)drawRovePins()}});
+document.addEventListener('change',e=>{if(e.target.id==='roveFirst'){roveOpt.first=e.target.checked;try{localStorage.setItem(ROVEOPT,JSON.stringify(roveOpt))}catch(_){}renderRove()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&roveAdding)addMode(false)});
+$('clearplan').addEventListener('click',()=>{rove=[];saveRove();renderRove()});
+if(map&&window.L){
+ /* catch the tap before park outlines, pins or overlap areas can open their own popups */
+ map.getContainer().addEventListener('click',e=>{if(!roveAdding)return;if(e.target.closest&&e.target.closest('.leaflet-control,.leaflet-popup,.rove-banner,.leaflet-marker-icon'))return;if(map.dragging&&map.dragging.moved&&map.dragging.moved())return;
+  e.stopPropagation();e.preventDefault();let ll=map.mouseEventToLatLng(e);const sn=snapTo(map.mouseEventToContainerPoint(e));if(sn)ll=L.latLng(sn.la,sn.lo);map.closePopup();
+  addPin(ll.lat,ll.lng,sn?sn.name+(sn.osm?' (OpenStreetMap)':''):'');status.textContent='Stop '+rove.length+' added. Keep tapping to add more, or tap ✓ Done.';
+  const bn=document.getElementById('roveBanner');if(bn)bn.innerHTML=`Stop ${rove.length} added. Tap to add more. <button type="button">✓ Done</button>`},true);
+ /* 📍 Add pins button in the map toolbar too (handy in full screen) */
+ const bar=document.querySelector('.mapbar');if(bar){const rb=document.createElement('button');rb.type='button';rb.className='secondary tiny rovebtn';rb.textContent='📍 Add pins';rb.title='Drop your own stops on the map';rb.setAttribute('aria-pressed','false');
+  rb.addEventListener('click',ev=>{ev.stopPropagation();addMode(!roveAdding)});const fs=bar.querySelector('.mapfs');(fs||bar.lastChild).after(rb)}
+ const st=document.createElement('style');st.textContent='.rovelist{list-style:none;margin:6px 0 10px;padding:0}.rovelist li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid #2a2418}.rovelist li:first-child{border-top:0}.rv-n{flex:0 0 26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:900 12px Arial;color:#fff;background:#1d5a3a;margin-top:2px}.rv-pin .rv-n{background:#2456a6}.rv-b{flex:1 1 auto;min-width:0}.rv-t{font-size:14px;font-weight:700}.rv-s{font-size:12px;color:#c9c5bc;margin-top:2px;overflow-wrap:anywhere}.rv-hint{color:#9b968a}.rv-in{width:100%;box-sizing:border-box;font:700 14px Arial;padding:5px 7px;border-radius:6px;border:1px solid #5a4a2a;background:#100f0c;color:#f2ead8}.rv-m{display:flex;gap:4px;flex:0 0 auto}.rv-m button{min-width:30px;height:30px;border-radius:6px;border:1px solid #5a4a2a;background:#1b1914;color:#f2ead8;cursor:pointer;font-size:13px}.rv-m button:disabled{opacity:.35}.linkbtn{background:none;border:0;padding:0;color:#e5c87b;text-decoration:underline;cursor:pointer;font:inherit}.rove-tools{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.rove-first{display:flex;gap:8px;align-items:center;font-size:13px;margin:8px 0;cursor:pointer}.rove-first input{width:18px;height:18px;accent-color:#d5a63a;flex:0 0 auto}.rove-legs{display:flex;flex-direction:column;gap:8px;margin:8px 0}.rove-legs .routebtn{display:block}.endpin{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);color:#fff;font:900 13px Arial;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.5);line-height:1}.endpin{}.cmd-dropping{cursor:crosshair!important;outline:3px solid #d5a63a;outline-offset:-3px}.rove-banner{position:absolute;left:50%;top:10px;transform:translateX(-50%);z-index:1200;background:#151515;color:#fff;border:1px solid #d5a63a;border-radius:999px;padding:7px 8px 7px 14px;font:800 13px Arial;max-width:92%;text-align:center;white-space:nowrap}.rove-banner button{margin-left:8px;border:0;border-radius:999px;padding:6px 12px;background:#d5a63a;color:#111;font-weight:900;cursor:pointer}.mapbar .rovebtn[aria-pressed=true]{background:#d5a63a;color:#111}@media(max-width:600px){.rove-banner{white-space:normal;font-size:12px}.rovelist li{flex-wrap:wrap}.rv-b{flex:1 1 calc(100% - 40px)}.rv-m{flex:1 1 100%;padding-left:36px;gap:8px}.rv-m button{min-width:44px;height:36px}}';
+ document.head.appendChild(st)}
+readShared();
 
 /* Park Overlaps button next to the map size buttons (same switch as the map panel) */
 (function(){const bar=document.querySelector('.mapbar'),X=window.kpcExtras;if(!bar||!X)return;
