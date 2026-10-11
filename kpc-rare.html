@@ -107,12 +107,12 @@ async function go(force){D=await KPC.data();
  const never=D.parks.filter(p=>p.acts===0).length,u5=D.parks.filter(p=>p.acts<=5).length,tot=D.parks.reduce((s,p)=>s+p.acts,0);
  $('stats').innerHTML=`<div class="stat"><b>${never}</b><span>NEVER ACTIVATED</span></div><div class="stat"><b>${u5}</b><span>5 OR FEWER</span></div><div class="stat"><b>${D.parks.length}</b><span>KY PARKS</span></div><div class="stat"><b>${tot.toLocaleString()}</b><span>TOTAL KY ACTIVATIONS</span></div>`;
  draw()}
-async function draw(){if(!map){map=KPC.leafletMap('map');await KPC.countyLayer(map)}
- if(layer)layer.remove();layer=L.layerGroup().addTo(map);
- let P=D.parks.filter(p=>!reg||p.reg===reg).sort((a,b)=>a.acts-b.acts||a.q-b.q);
+async function draw(){let P=D.parks.filter(p=>!reg||p.reg===reg).sort((a,b)=>a.acts-b.acts||a.q-b.q);
  const show=f==='all'?P:f==='0'?P.filter(p=>p.acts===0):P.slice(0,25);
+ if(window.L){if(!map){map=KPC.leafletMap('map');await KPC.countyLayer(map)}
+ if(layer)layer.remove();layer=L.layerGroup().addTo(map);
  P.forEach(p=>L.circleMarker([p.la,p.lo],{radius:show.includes(p)?8:4,weight:1,color:'#222',fillColor:col(p.acts),fillOpacity:show.includes(p)?.95:.45})
-  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> • ${KPC.esc(KPC.cty(p.co))}<br><b>${p.acts}</b> activations • ${p.q} QSOs<br>Last: ${p.last?KPC.fmtDate(p.last):'never'}<br><a href="${KPC.links.dir(p.la,p.lo)}" target="_blank" rel="noopener">Directions</a>${p.off?` • <a href="${p.off}" target="_blank" rel="noopener">Official map</a>`:''}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`).addTo(layer));
+  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> • ${KPC.esc(KPC.cty(p.co))}<br><b>${p.acts}</b> activations • ${p.q} QSOs<br>Last: ${p.last?KPC.fmtDate(p.last):'never'}<br><a href="${KPC.links.dir(p.la,p.lo)}" target="_blank" rel="noopener">Directions</a>${p.off?` • <a href="${p.off}" target="_blank" rel="noopener">Official map</a>`:''}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`).addTo(layer));}else{document.getElementById('map').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}
  $('tbody').innerHTML=show.map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> ${p.acts===0?'<span class="tag r">NEVER</span>':''}<br>${KPC.esc(p.n)}<br><span class="muted" style="font-size:12px">${KPC.esc(KPC.cty(p.co))} • ${KPC.esc(p.t)}</span></td><td><b>${p.acts}</b></td><td class="hide-m">${p.q}</td><td style="font-size:12px">${p.last?KPC.fmtDate(p.last):'—'}</td></tr>`).join('')||'<tr><td colspan="4" class="muted">No parks match.</td></tr>'}
 $('flt').onclick=e=>{const b=e.target.closest('button');if(!b)return;f=b.dataset.f;[...$('flt').children].forEach(x=>x.setAttribute('aria-pressed',x===b));draw()};
 $('reg').onchange=e=>{reg=e.target.value;draw()};$('refresh').onclick=()=>go(true);

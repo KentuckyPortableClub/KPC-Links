@@ -125,11 +125,11 @@ async function run(call){call=KPC.base(call);if(!call)return;cur=call;
  $('stats').innerHTML=`<div class="stat"><b>${doneP.length}</b><span>OF ${P.length} KY PARKS</span></div><div class="stat"><b>${P.length-doneP.length}</b><span>STILL NEEDED</span></div><div class="stat"><b>${acts}</b><span>KY ACTIVATIONS</span></div><div class="stat"><b>${q.toLocaleString()}</b><span>KY QSOS</span></div>`;
  $('pbar').style.width=(100*doneP.length/P.length)+'%';$('pbarLbl').textContent=`${call}: ${Math.round(100*doneP.length/P.length)}% of Kentucky parks activated • ${counties.size} counties`;
  drawMap();drawTable()}
-async function drawMap(){if(!map){map=KPC.leafletMap('map');await KPC.countyLayer(map)}
+async function drawMap(){if(window.L){if(!map){map=KPC.leafletMap('map');await KPC.countyLayer(map)}
  if(layer)layer.remove();layer=L.layerGroup().addTo(map);
  D.parks.forEach(p=>{const s=S[p.c],done=s&&s.ok;
   L.circleMarker([p.la,p.lo],{radius:done?7:5,weight:1.2,color:'#173a28',fillColor:done?'#1d5a3a':s?'#d5a63a':'#ffffff',fillOpacity:.95})
-  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> • ${KPC.esc(KPC.cty(p.co))}<br>${done?`Activated ${s.n}× • ${s.q} QSOs • first ${KPC.fmtDate(s.first)}`:s?`${s.tries} attempt(s), under 10 QSOs`:'Not activated yet'}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`).addTo(layer)})}
+  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> • ${KPC.esc(KPC.cty(p.co))}<br>${done?`Activated ${s.n}× • ${s.q} QSOs • first ${KPC.fmtDate(s.first)}`:s?`${s.tries} attempt(s), under 10 QSOs`:'Not activated yet'}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`).addTo(layer)})}else{document.getElementById('map').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}}
 function drawTable(){const P=D.parks;let rows;
  if(tab==='done'){$('col3').textContent='FIRST';$('col4').textContent='ACTS';
   rows=P.filter(p=>S[p.c]&&S[p.c].ok).sort((a,b)=>S[a.c].first.localeCompare(S[b.c].first)).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}</td><td>${KPC.esc(p.co)}</td><td>${KPC.fmtDate(S[p.c].first)}</td><td>${S[p.c].n}</td></tr>`)}

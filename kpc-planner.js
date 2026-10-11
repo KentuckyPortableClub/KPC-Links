@@ -104,6 +104,7 @@ function bPopup(f,s,ll){const p=f.properties||{},refs=potaFor(f);
 
 /* ---------------- map ---------------- */
 function makeMap(){
+ if(!window.L){document.getElementById('map').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>';return null;}
  const m=L.map('map',{scrollWheelZoom:true,maxZoom:19,tapHold:true,zoomControl:true}).setView([37.75,-85.7],7);
  const esri=p=>`https://server.arcgisonline.com/ArcGIS/rest/services/${p}/MapServer/tile/{z}/{y}/{x}`,EA='Imagery © Esri, Maxar, Earthstar Geographics';
  const base={
@@ -319,7 +320,7 @@ function pickTown(){const p=findPlace($('town').value);if(!p)return;origin=[p.la
 (async()=>{
  D=await KPC.data();
  $('towns').innerHTML=D.towns.map(t=>`<option value="${esc(t.n)}">Town</option>`).join('')+places().map(x=>`<option value="${esc(lbl(x))}">${x.k==='pota'?'POTA park':x.k==='sota'?'SOTA summit':'KFF'}</option>`).join('');
- map=makeMap();KPC.countyLayer(map).catch(()=>{});
+ map=makeMap();if(map)KPC.countyLayer(map).catch(()=>{});
  {const b=document.querySelector('#prog_ [data-k=two]');if(b)b.setAttribute('aria-pressed',String(!!on.two))}
  layer=L.layerGroup().addTo(map);tripLayer=L.layerGroup().addTo(map);V0=[map.getCenter(),map.getZoom()];ALL=items();
  const q=new URLSearchParams(location.search);let restored=false;
