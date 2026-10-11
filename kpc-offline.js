@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   const APP = 'kpc-finder-v1', TILES = 'kpc-tiles-v1', KEY = 'kpcFinderOffline';
-  const FILES = ['finder.html', 'finder.css', 'finder.js', 'gis-overlays.js', 'kpc-offline.js',
+  const FILES = ['finder.html', 'finder.css', 'finder.js', 'gis-overlays.js', 'kpc-offline.js', 'kpc-map-extras.js', 'ky-overlaps.geojson',
     'locations.json', 'official-2fer-evidence.json', 'official-park-access.json', 'official-trail-maps.json', 'wwff-unmapped.json',
     'kpc-ky-data.json', 'ky-trail-parks.json',
     'ky-state-parks.geojson', 'ky-hunting-areas.geojson', 'ky-nature-preserves.geojson', 'ky-natural-areas.geojson', 'ky-dbnf.geojson',
@@ -40,7 +40,7 @@
   const panel = document.createElement('section');
   panel.className = 'panel kpc-off'; panel.id = 'finder-offline'; panel.setAttribute('aria-label', 'Use the finder with no signal');
   panel.innerHTML = `<h2>No signal at the park? Save it first.</h2>
-<p class="meta">Save the Activation Finder on this phone or computer before you leave home. After saving, these work with <b>no signal</b>:</p>
+<p class="meta">Save KY Park Commander on this phone or computer before you leave home. After saving, these work with <b>no signal</b>:</p>
 <ul class="meta"><li>Park, summit and KFF search by name or reference, with park details</li><li>Your favorites and trip stops</li><li>“Am I inside a park?” with GPS — Kentucky boundaries, trails and wilderness</li></ul>
 <p class="meta"><b>Map tip:</b> before you go, open the map and zoom in around the park you’re heading to. Map areas you look at while online are kept for offline use (the whole map can’t be downloaded). Town search, live POTA spots and live GIS layers still need a signal.</p>
 <div class="toolbuttons"><button id="kpcOffSave" type="button">Save for offline (about 10 MB)</button><button id="kpcOffClear" class="secondary" type="button">Remove offline copy</button></div>

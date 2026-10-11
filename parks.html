@@ -113,7 +113,8 @@ body.field .page-jump-nav{display:none!important}
         <div class="nav-dropdown" role="menu">
           <div class="nav-drop-section">
             <div class="nav-drop-label">Parks &amp; Activations</div>
-            <a href="find.html" role="menuitem"><span class="ni">&#128506;</span>Find a Park</a>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Search &amp; Park Guides</a>
             <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
             <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
           </div>
@@ -146,7 +147,7 @@ body.field .page-jump-nav{display:none!important}
 
 <main>
 <section class="hero"><div class="hero-inner"><img class="hero-logo" src="KPC-logo.png" alt="Kentucky Portable Club"><p class="eyebrow">KENTUCKY • OUTDOORS • RADIO</p><h1>KENTUCKY<br><span>PARKS</span></h1><p class="hero-copy">Explore. Camp. Operate. Repeat. Find the places worth packing the radio for — then use the official maps, park resources, trails, forests, protected lands, and KPC POTA guides to plan the outing.</p></div></section>
-<nav class="page-jump-nav" aria-label="Quick page links"><a href="#explore-parks">EXPLORE</a><a href="finder.html">PARK FINDER</a><a href="#guides">FIELD GUIDES</a><a href="#tools">MAPS &amp; TOOLS</a><a href="toolbox.html">TOOL BOX</a><a href="#state">STATE PARKS</a><a href="#federal">FEDERAL LANDS</a><a href="#trails">TRAILS</a><a href="#kentucky-wild-river-maps">WILD RIVERS</a></nav>
+<nav class="page-jump-nav" aria-label="Quick page links"><a href="#explore-parks">EXPLORE</a><a href="finder.html">PARK COMMANDER</a><a href="#guides">FIELD GUIDES</a><a href="#tools">MAPS &amp; TOOLS</a><a href="toolbox.html">TOOL BOX</a><a href="#state">STATE PARKS</a><a href="#federal">FEDERAL LANDS</a><a href="#trails">TRAILS</a><a href="#kentucky-wild-river-maps">WILD RIVERS</a></nav>
 
 <section class="section intro" id="explore-parks"><div class="section-inner intro-grid"><div class="intro-copy"><div class="kicker">EXPLORE KENTUCKY</div><h2>Places Worth Packing The Radio For</h2><p>KPC's Parks page brings the official Kentucky and federal outdoor resources together with KPC's own POTA field guides, so you can find a destination, check the rules, plan the route, and look for a portable operating opportunity.</p></div><div class="intro-panel"><div class="mark">KPC PARKS GUIDE</div><h3>Find A Place.<br>Make A Plan.</h3><div class="line"></div><p>Start with the official land manager, then use the KPC POTA resources to find the radio opportunity.</p></div></div></section>
 
@@ -163,7 +164,7 @@ body.field .page-jump-nav{display:none!important}
 </div></div></section>
 
 <section class="section features" id="tools" data-fold><div class="section-inner"><div class="section-heading"><div class="kicker">FIELD PLANNING</div><h2>KPC Tools, Maps &amp; Weather</h2><p>Use these tools together: choose the place, confirm the POTA reference, check the forecast, and verify local conditions before you go.</p><div style="margin-top:18px"><a class="btn" href="toolbox.html">OPEN THE FULL KY TOOL BOX →</a></div></div><div class="card-grid">
-<a class="card" href="finder.html"><div class="card-top"><div class="card-num">01 • KPC ACTIVATION FINDER • MAP</div><h3>Find A Park</h3><p>Search the map for POTA parks, SOTA summits and WWFF references near any town, with official boundaries and trail layers. The search works anywhere in the US; the Kentucky extras (county, state-park GIS layers, campgrounds) are for Kentucky parks.</p></div><span class="btn">OPEN THE FINDER →</span></a>
+<a class="card" href="finder.html"><div class="card-top"><div class="card-num">01 • KPC TOOL • MAP</div><h3>KY Park Commander</h3><p>Search the map for POTA parks, SOTA summits and WWFF references near any town, with official boundaries and trail layers. The search works anywhere in the US; the Kentucky extras (county, state-park GIS layers, campgrounds) are for Kentucky parks.</p></div><span class="btn">OPEN THE FINDER →</span></a>
 <a class="card" href="kpc-checker.html"><div class="card-top"><div class="card-num">02 • KPC PARK CHECKER • NEW</div><h3>Kentucky Park Checker</h3><p>Enter any callsign to see which Kentucky POTA parks it has activated and which are still needed — on a map — and download the list as a spreadsheet (CSV).</p></div><span class="btn">OPEN PARK CHECKER →</span></a>
 <a class="card" href="kpc-rare.html"><div class="card-top"><div class="card-num">03 • KPC TARGET MAP • NEW</div><h3>Rarely Activated Parks</h3><p>Every Kentucky park colored by how often it has been activated — find the ones hunters are waiting for.</p></div><span class="btn">OPEN RARE PARKS MAP →</span></a>
 <a class="card" href="kpc-planner.html"><div class="card-top"><div class="card-num">04 • KPC TRIP PLANNER • NEW</div><h3>Plan A Radio Trip</h3><p>Pick a town and a distance to see POTA parks, SOTA summits and KFF references in range, then build a multi-stop route.</p></div><span class="btn">OPEN TRIP PLANNER →</span></a>
@@ -235,7 +236,7 @@ function apply(){secs.forEach(s=>s._set&&s._set(!mq.matches))}apply();mq.addEven
 function openTo(id){const t=id&&document.getElementById(id),s=t&&t.closest('[data-fold]');if(s&&s._set&&s.classList.contains('kpc-folded')){s._set(true);requestAnimationFrame(()=>t.scrollIntoView())}}
 window.addEventListener('hashchange',()=>openTo(location.hash.slice(1)));openTo(location.hash.slice(1));
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a)openTo(a.getAttribute('href').slice(1))})})();</script>
-<script src="kpc-search.js?v=20261010i" defer></script><script>
+<script src="kpc-search.js?v=20261010j" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

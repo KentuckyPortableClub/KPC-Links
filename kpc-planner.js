@@ -1,4 +1,4 @@
-/* KPC Trip Planner — v20261010h
+/* KPC Trip Planner — v20261010j
    Close-up map (zoom 19, satellite + roads), official boundaries and trails,
    drop-a-pin spots with an inside-boundary check, and a reorderable trip
    that opens in Google Maps, shares as a link, and downloads as GPX.
@@ -14,6 +14,7 @@ let D, map, layer, tripLayer, V0, origin = null, ALL = null, res = [];
 let on = {pota:1, sota:1, kff:1, two:0};
 let trip = [];                     // {id,t:'park'|'spot',ref,k,n,la,lo,note}
 let adding = false, bReady = false;
+let X = null, OVX = null;           // map extras (parking/entrances/overlaps) and the overlap index by reference
 
 /* ---------------- boundaries & trails ---------------- */
 const B = {
@@ -106,12 +107,13 @@ function makeMap(){
  const m=L.map('map',{scrollWheelZoom:true,maxZoom:19,tapHold:true,zoomControl:true}).setView([37.75,-85.7],7);
  const esri=p=>`https://server.arcgisonline.com/ArcGIS/rest/services/${p}/MapServer/tile/{z}/{y}/{x}`,EA='Imagery © Esri, Maxar, Earthstar Geographics';
  const base={
-  'Street':L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}),
-  'Satellite + roads':L.layerGroup([L.tileLayer(esri('World_Imagery'),{maxZoom:19,attribution:EA}),L.tileLayer(esri('Reference/World_Transportation'),{maxZoom:19}),L.tileLayer(esri('Reference/World_Boundaries_and_Places'),{maxZoom:19})]),
+  'Road Map':L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}),
+  'Satellite + Roads':L.layerGroup([L.tileLayer(esri('World_Imagery'),{maxZoom:19,attribution:EA}),L.tileLayer(esri('Reference/World_Transportation'),{maxZoom:19}),L.tileLayer(esri('Reference/World_Boundaries_and_Places'),{maxZoom:19})]),
   'Satellite':L.tileLayer(esri('World_Imagery'),{maxZoom:19,attribution:EA}),
   'Terrain':L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxNativeZoom:17,maxZoom:19,attribution:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors'})};
- let want='Street';try{want=localStorage.getItem('kpcPlanBase')||'Street'}catch(e){}
- (base[want]||base.Street).addTo(m);L.control.layers(base,null,{position:'topright',collapsed:true}).addTo(m);
+ let want='Road Map';try{want=localStorage.getItem('kpcPlanBase')||'Road Map'}catch(e){}
+ want={'Street':'Road Map','Satellite + roads':'Satellite + Roads'}[want]||want;
+ (base[want]||base['Road Map']).addTo(m);L.control.layers(base,null,{position:'topright',collapsed:true}).addTo(m);
  m.on('baselayerchange',e=>{try{localStorage.setItem('kpcPlanBase',e.name)}catch(_){}});
  L.control.scale({imperial:true,metric:false,position:'bottomleft'}).addTo(m);
  m.createPane('bndp').style.zIndex=350;m.createPane('trlp').style.zIndex=380;
@@ -131,6 +133,11 @@ function makeMap(){
   btn.onclick=()=>{box.hidden=!box.hidden;btn.setAttribute('aria-expanded',String(!box.hidden))};
   d.addEventListener('change',e=>{const k=e.target.dataset.l;if(!k)return;setShown(k,e.target.checked);const l=bLay[k];if(!l)return;e.target.checked?l.addTo(map):map.removeLayer(l);order()});return d}});
  new Lyr().addTo(m);
+ // parking & entrance markers + Park Overlaps (shared with KY Park Commander)
+ if(window.KPCX){X=KPCX.attach(m,{key:'plan',addStop:true,parks:D.parks,busy:()=>adding});
+  X.onChange(s=>{if(!!s.O!==!!on.two){on.two=s.O?1:0;const b=document.querySelector('#prog_ [data-k=two]');if(b)b.setAttribute('aria-pressed',String(!!on.two));if(origin)run(false)}});
+  on.two=X.overlapsOn()?1:0;
+  KPCX.overlapIndex().then(ix=>{OVX=ix;ALL=null;if(origin)run(false)}).catch(()=>{})}
  m.on('popupopen',()=>$('mapwrap').classList.add('pl-popopen'));m.on('popupclose',()=>$('mapwrap').classList.remove('pl-popopen'));
  m.on('click',e=>{if(adding){addSpot(e.latlng);addMode(false)}});
  m.on('contextmenu',e=>{addSpot(e.latlng);addMode(false)}); // long-press on phones, right-click on desktop
@@ -168,6 +175,7 @@ function drawTrip(){tripLayer.clearLayers();
   if(spot){m.bindPopup(()=>spotPopup(s),{maxWidth:290,minWidth:220,autoPanPadding:[12,12]});m.on('popupopen',ev=>{const w=map.getSize().x,p=ev.popup;p.options.maxWidth=Math.max(200,Math.min(290,w-50));p.options.minWidth=Math.min(220,p.options.maxWidth);p.update()});
    m.on('dragend',()=>{const p=m.getLatLng();s.la=+p.lat.toFixed(6);s.lo=+p.lng.toFixed(6);save();renderTripList();m.setPopupContent(spotPopup(s));m.openPopup()})}
   else m.bindPopup(parkPopup(s),{maxWidth:280});
+  if(window.KPCX)KPCX.hover(m);
   m.addTo(tripLayer)});
  if(trip.length>1)L.polyline(trip.map(s=>[s.la,s.lo]),{color:'#d5a63a',weight:3,opacity:.85,dashArray:'2 8',interactive:false}).addTo(tripLayer)}
 function renderTripList(){const ol=$('trip');$('tripN').textContent=trip.length+(trip.length===1?' stop':' stops');
@@ -206,24 +214,33 @@ function gpx(){const x=s=>String(s).replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;
 function flash(msg){const n=$('tripMsg');n.textContent=msg;n.hidden=false;clearTimeout(flash.t);flash.t=setTimeout(()=>n.hidden=true,4000)}
 
 /* ---------------- search results (unchanged behaviour) ---------------- */
-function items(){const out=[],P=new Map(D.parks.map(p=>[p.c,p]));
- D.parks.forEach(p=>{const multi=p.tf.length||p.kff.length||p.sota.length;const dest=p.ap.length?[p.ap[0][0],p.ap[0][1]]:[p.la,p.lo];
-  out.push({k:'pota',ref:p.c,n:p.n,co:p.co,la:p.la,lo:p.lo,dest,dn:p.ap.length?p.ap[0][2]:'',multi,
-  tags:[...p.tf.map(r=>`<span class="tag g">2-FER ${r}</span>`),...p.kff.map(r=>`<span class="tag k">${r}</span>`),...p.sota.map(r=>`<span class="tag r">${r}</span>`)],
+/* overlap lookups (ky-overlaps.geojson). Until that file loads, only the park file's 2-fer list (tf) is used. */
+function ovAnySet(){const s=new Set();if(OVX)OVX.forEach((l,r)=>{s.add(r);l.forEach(o=>{o.sota.forEach(x=>s.add(x[0]));if(o.kind!=='2fer')o.kff.forEach(x=>s.add(x[0]))})});return s}
+function twoFers(p){const P=new Map(D.parks.map(q=>[q.c,q.n]));   // park file list + mapped overlaps of two POTA refs
+ const out=p.tf.map(r=>[r,P.get(r)||'']);
+ if(OVX)for(const o of OVX.get(p.c)||[])if(o.kind==='2fer')for(const r of o.others)if(!out.some(x=>x[0]===r[0]))out.push(r);
+ return out.filter(r=>r[0]!==p.c)}
+function items(){const out=[],P=new Map(D.parks.map(p=>[p.c,p])),ANY=ovAnySet();
+ D.parks.forEach(p=>{const two=twoFers(p),multi=two.length||p.kff.length||p.sota.length;const dest=p.ap.length?[p.ap[0][0],p.ap[0][1]]:[p.la,p.lo];
+  const also=[...p.kff.map(r=>'KFF '+r),...p.sota.map(r=>'SOTA '+r)];
+  out.push({k:'pota',ref:p.c,n:p.n,co:p.co,la:p.la,lo:p.lo,dest,dn:p.ap.length?p.ap[0][2]:'',multi,two,also,cls:p.t,ov:ANY.has(p.c)||two.length>0,
+  tags:[...two.map(r=>`<span class="tag g">POSSIBLE 2-FER ${r[0]}</span>`),...p.kff.map(r=>`<span class="tag k">${r}</span>`),...p.sota.map(r=>`<span class="tag r">${r}</span>`)],
   links:[['POTA',KPC.links.pota(p.c)],p.off&&['OFFICIAL MAP',p.off],['WEATHER',KPC.links.wx(p.la,p.lo)]].filter(Boolean)})});
  D.summits.forEach(s=>{const inPark=D.parks.filter(p=>p.sota.includes(s.c));
-  out.push({k:'sota',ref:s.c,n:s.n,co:s.co,la:s.la,lo:s.lo,dest:[s.la,s.lo],multi:inPark.length,meta:`${s.ft?s.ft.toLocaleString()+' ft • ':''}${s.pts||'?'} pts`,
+  out.push({k:'sota',ref:s.c,n:s.n,co:s.co,la:s.la,lo:s.lo,dest:[s.la,s.lo],multi:inPark.length,two:[],also:inPark.map(p=>'inside POTA '+p.c+' '+p.n),cls:'SOTA summit',ov:ANY.has(s.c)||inPark.length>0,meta:`${s.ft?s.ft.toLocaleString()+' ft • ':''}${s.pts||'?'} pts`,
   tags:inPark.map(p=>`<span class="tag g">IN ${p.c}</span>`),links:[['SOTLAS',KPC.links.sota(s.c)],['WEATHER',KPC.links.wx(s.la,s.lo)]]})});
- D.kff.forEach(k=>{if(k.p&&P.has(k.p))return;out.push({k:'kff',ref:k.c,n:k.n,co:k.co,la:k.la,lo:k.lo,dest:[k.la,k.lo],multi:0,tags:[],links:[['WWFF',KPC.links.kff(k.c)]]})});
+ D.kff.forEach(k=>{if(k.p&&P.has(k.p))return;out.push({k:'kff',ref:k.c,n:k.n,co:k.co,la:k.la,lo:k.lo,dest:[k.la,k.lo],multi:0,two:[],also:[],cls:'WWFF / KFF reference',ov:ANY.has(k.c),tags:[],links:[['WWFF',KPC.links.kff(k.c)]]})});
  return out}
 function run(fit){ALL=ALL||items();const R=+$('rad').value;
- res=ALL.map(x=>({...x,d:KPC.miles(origin[0],origin[1],x.la,x.lo)})).filter(x=>x.d<=R&&on[x.k]&&(!on.two||x.multi)).sort((a,b)=>a.d-b.d);
+ res=ALL.map(x=>({...x,d:KPC.miles(origin[0],origin[1],x.la,x.lo)})).filter(x=>x.d<=R&&on[x.k]&&(!on.two||x.ov)).sort((a,b)=>a.d-b.d);
  const c={pota:0,sota:0,kff:0};res.forEach(x=>c[x.k]++);
  $('where').innerHTML=`From <b>${esc(origin[2])}</b> within ${R} miles: <b>${c.pota}</b> POTA parks • <b>${c.sota}</b> summits • <b>${c.kff}</b> KFF-only references`;
  layer.clearLayers();L.circle([origin[0],origin[1]],{radius:R*1609.34,color:'#d5a63a',weight:1.5,fillOpacity:.04,interactive:false}).addTo(layer);
  L.circleMarker([origin[0],origin[1]],{radius:7,color:'#000',fillColor:'#000',fillOpacity:1}).bindPopup('Start: '+esc(origin[2])).addTo(layer);
- res.forEach(x=>L.circleMarker([x.la,x.lo],{radius:x.multi?8:6,weight:1.2,color:'#222',fillColor:x.multi?ICON.multi:ICON[x.k],fillOpacity:.95})
-  .bindPopup(()=>`<b>${esc(x.n)}</b><br>${x.ref} • ${x.d.toFixed(1)} mi<div class="pl-pacts" style="margin-top:8px"><button type="button" class="btn sm" data-add="${x.ref}" ${trip.some(s=>s.ref===x.ref)?'disabled':''}>${trip.some(s=>s.ref===x.ref)?'✓ IN TRIP':'+ ADD TO TRIP'}</button><a class="btn sm alt" href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a></div><a href="finder.html?q=${x.ref}" style="display:inline-block;margin-top:6px;font-weight:700">Open in Park Finder →</a>`).addTo(layer));
+ res.forEach(x=>{const two=x.two&&x.two.length;
+  const mk=L.circleMarker([x.la,x.lo],{radius:two?8:6,weight:x.ov&&!two?2.5:1.2,color:x.ov&&!two?'#7b3fa0':'#222',fillColor:two?ICON.multi:ICON[x.k],fillOpacity:.95})
+   .bindPopup(()=>pinCard(x),{maxWidth:290,minWidth:210,autoPanPadding:[12,12]});
+  if(window.KPCX)KPCX.hover(mk);mk.addTo(layer)});
  if(fit!==false)map.fitBounds(L.latLng(origin[0],origin[1]).toBounds(R*1609.34*2.1));
  $('list').innerHTML=res.length?res.map((x,i)=>`<div class="item ${x.k}"><input type="checkbox" data-i="${i}" ${trip.some(s=>s.ref===x.ref)?'checked':''} aria-label="Add ${esc(x.ref)} to trip">
  <div><span class="ref">${x.ref}</span> <span class="tag">${x.k.toUpperCase()}</span><h3>${esc(x.n)}</h3><div class="meta">${esc(KPC.cty(x.co))}${x.meta?' • '+x.meta:''}${x.dn?` • parking: ${esc(x.dn)}`:''}</div>${x.tags.length?`<div>${x.tags.join('')}</div>`:''}
@@ -231,12 +248,24 @@ function run(fit){ALL=ALL||items();const R=+$('rad').value;
  <div class="dist">${x.d.toFixed(1)}<small>MILES</small></div></div>`).join(''):'<div class="empty">Nothing in range. Try a bigger distance.</div>';
  $('list').querySelectorAll('input[type=checkbox]').forEach(cb=>cb.onchange=()=>{const x=res[+cb.dataset.i];if(cb.checked){if(!canAdd()){cb.checked=false;return}addPark(x)}else{trip=trip.filter(s=>s.ref!==x.ref);changed()}});
  $('list').querySelectorAll('[data-zoom]').forEach(b=>b.onclick=()=>{const x=res[+b.dataset.zoom];map.setView([x.la,x.lo],15);$('mapwrap').scrollIntoView({behavior:'smooth',block:'center'})})}
+const PROG={pota:['POTA PARK','#1d5a3a'],sota:['SOTA SUMMIT','#b5452b'],kff:['WWFF / KFF','#2b5f8a']};
+function pinCard(x){const inTrip=trip.some(s=>s.ref===x.ref),P=PROG[x.k]||PROG.pota;
+ return `<div class="kx-card"><span class="kx-badge" style="background:${P[1]};color:#fff">${P[0]}</span>
+ <div class="kx-t">${esc(x.n)}</div>
+ <div class="kx-d"><b>${esc(x.ref)}</b>${x.cls?' · '+esc(x.cls):''}${x.co&&!/official|see /i.test(x.co)?' · '+esc(KPC.cty(x.co)):''}</div>
+ <div class="kx-d">${x.d.toFixed(1)} mi from ${esc(origin?origin[2]:'start')}${x.meta?' · '+x.meta:''}</div>
+ ${x.dn?`<div class="kx-d">Parking / entrance on file: ${esc(x.dn)}</div>`:''}
+ ${x.two&&x.two.length?`<div class="kx-d" style="margin-top:5px"><span class="kx-badge g">Possible POTA 2-Fer</span><br>with ${x.two.slice(0,4).map(r=>`<b>${esc(r[0])}</b> ${esc(r[1]||'')}`).join(', ')}${x.two.length>4?` and ${x.two.length-4} more`:''}. Verify before activating.</div>`:''}
+ ${x.also&&x.also.length?`<div class="kx-d">Also: ${esc(x.also.join(' · '))}</div>`:''}
+ <div class="kx-acts"><button type="button" class="pri" data-add="${x.ref}" ${inTrip?'disabled':''}>${inTrip?'✓ IN TRIP':'+ ADD TO TRIP'}</button><a href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a>${(x.links||[]).slice(0,1).map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`).join('')}</div>
+ ${x.k==='pota'?`<a href="finder.html?q=${x.ref}" style="display:inline-block;margin-top:6px;font-weight:700;font-size:12px">Open in KY Park Commander →</a>`:''}</div>`}
 function pickTown(){const t=D.towns.find(t=>t.n.toLowerCase()===$('town').value.trim().toLowerCase());if(!t)return;origin=[t.la,t.lo,t.n];save();run()}
 
 /* ---------------- start ---------------- */
 (async()=>{
  D=await KPC.data();$('towns').innerHTML=D.towns.map(t=>`<option value="${t.n}">`).join('');
  map=makeMap();KPC.countyLayer(map).catch(()=>{});
+ {const b=document.querySelector('#prog_ [data-k=two]');if(b)b.setAttribute('aria-pressed',String(!!on.two))}
  layer=L.layerGroup().addTo(map);tripLayer=L.layerGroup().addTo(map);V0=[map.getCenter(),map.getZoom()];ALL=items();
  const q=new URLSearchParams(location.search);let restored=false;
  if(q.get('trip')){const t=readShared(q.get('trip'));if(t){trip=t.s;if(t.o)origin=t.o;restored=true;save();setTimeout(()=>flash('Trip loaded from a shared link.'),300)}}
@@ -246,15 +275,15 @@ function pickTown(){const t=D.towns.find(t=>t.n.toLowerCase()===$('town').value.
  renderTrip();
  if(trip.length&&!origin){map.fitBounds(L.latLngBounds(trip.map(s=>[s.la,s.lo])).pad(.3),{maxZoom:15})}
  loadBoundaries();
- window.kpcPlanner={map:()=>map,trip:()=>trip,where:(a,b)=>whereIs(a,b),ready:()=>bReady};
+ window.kpcPlanner={map:()=>map,trip:()=>trip,where:(a,b)=>whereIs(a,b),ready:()=>bReady,extras:()=>X,res:()=>res};
 })();
 $('town').addEventListener('change',pickTown);$('town').addEventListener('keydown',e=>{if(e.key==='Enter')pickTown()});
 $('gps').onclick=()=>{if(!navigator.geolocation){$('where').textContent='Location is not available in this browser.';return}
  $('where').textContent='Finding your location…';navigator.geolocation.getCurrentPosition(p=>{origin=[p.coords.latitude,p.coords.longitude,'your location'];save();run()},()=>{$('where').textContent='Could not get your location. Choose a town instead.'},{enableHighAccuracy:true,timeout:15000})};
 $('rad').oninput=e=>{$('rLbl').textContent=e.target.value+' MILES';if(origin)run()};
-$('prog_').onclick=e=>{const b=e.target.closest('button');if(!b)return;on[b.dataset.k]=on[b.dataset.k]?0:1;b.setAttribute('aria-pressed',!!on[b.dataset.k]);if(origin)run(false)};
-$('newSearch').onclick=()=>{origin=null;save();$('town').value='';$('rad').value=40;$('rLbl').textContent='40 MILES';on={pota:1,sota:1,kff:1,two:0};$('prog_').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',!!on[b.dataset.k]));if(layer)layer.clearLayers();if(map&&V0)map.setView(V0[0],V0[1]);$('where').textContent='Choose a town or use your location to start.';$('list').innerHTML='<div class="empty">Results show here.</div>';try{history.replaceState(null,'',location.pathname)}catch(e){}$('town').focus()};
-$('addSpot').onclick=()=>{addMode(!adding);if(adding){$('mapwrap').scrollIntoView({behavior:'smooth',block:'center'});if(map.getZoom()<12)flash('Zoom in close, then tap the exact spot. Satellite + roads (top-right) is best for spotting pull-offs.')}};
+$('prog_').onclick=e=>{const b=e.target.closest('button');if(!b)return;on[b.dataset.k]=on[b.dataset.k]?0:1;b.setAttribute('aria-pressed',!!on[b.dataset.k]);if(b.dataset.k==='two'&&X)X.setOverlaps(!!on.two);if(origin)run(false)};
+$('newSearch').onclick=()=>{origin=null;save();$('town').value='';$('rad').value=40;$('rLbl').textContent='40 MILES';on={pota:1,sota:1,kff:1,two:X&&X.overlapsOn()?1:0};$('prog_').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',!!on[b.dataset.k]));if(layer)layer.clearLayers();if(map&&V0)map.setView(V0[0],V0[1]);$('where').textContent='Choose a town or use your location to start.';$('list').innerHTML='<div class="empty">Results show here.</div>';try{history.replaceState(null,'',location.pathname)}catch(e){}$('town').focus()};
+$('addSpot').onclick=()=>{addMode(!adding);if(adding){$('mapwrap').scrollIntoView({behavior:'smooth',block:'center'});if(map.getZoom()<12)flash('Zoom in close, then tap the exact spot. Satellite + Roads (top-right) is best for spotting pull-offs.')}};
 $('clear').onclick=()=>{if(trip.length&&!confirm('Remove all '+trip.length+' stops from this trip?'))return;trip=[];changed()};
 $('sortd').onclick=()=>{const o=origin||(trip[0]&&[trip[0].la,trip[0].lo]);if(!o)return;const left=[...trip],out=[];let cur=o;
  while(left.length){let bi=0,bd=Infinity;left.forEach((s,i)=>{const d=KPC.miles(cur[0],cur[1],s.la,s.lo);if(d<bd){bd=d;bi=i}});const s=left.splice(bi,1)[0];out.push(s);cur=[s.la,s.lo]}
