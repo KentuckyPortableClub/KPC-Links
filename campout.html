@@ -65,6 +65,26 @@ body.field .page-jump-nav{display:none!important}
 
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261010g">
+<style id="kpc-campout-announce">
+.hero-inner{padding:90px 24px}
+.hero:after{background:linear-gradient(90deg,rgba(7,7,7,.74) 0%,rgba(7,7,7,.5) 45%,rgba(7,7,7,.12) 80%)!important}
+.hero .eyebrow,.hero h1,.hero .hero-copy{text-shadow:0 2px 6px rgba(0,0,0,.55)}
+.hero-copy strong{color:var(--gold-light)}
+.kpca{background:#070707;color:#fff;border-top:1px solid rgba(213,166,58,.45);padding:56px 24px 60px;font-family:Arial,Helvetica,sans-serif;position:relative;overflow:hidden}
+.kpca:before{content:"";position:absolute;width:520px;height:520px;left:-200px;bottom:-260px;border:1px solid rgba(213,166,58,.3);border-radius:50%;box-shadow:0 0 0 55px rgba(213,166,58,.03)}
+.kpca-in{width:min(1100px,100%);margin:auto;text-align:center;position:relative}
+.kpca-k{color:#f0c96b;font-size:13px;font-weight:900;letter-spacing:4px}
+.kpca h2{margin:10px 0 0;font:700 clamp(28px,4.4vw,48px)/1.08 Georgia,"Times New Roman",serif;color:#fff}.kpca h2 span{color:#f0c96b;white-space:nowrap}
+.kpca-clock{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;max-width:720px;margin:30px auto 0}
+.kpca-u{padding:20px 8px;background:#151515;border:1px solid #363636;border-top:4px solid #d5a63a}
+.kpca-u b{display:block;font:700 clamp(36px,6vw,64px)/1 Georgia,serif;color:#fff;font-variant-numeric:tabular-nums}
+.kpca-u span{display:block;margin-top:8px;font-size:11px;font-weight:900;letter-spacing:3px;color:#bcb8ae}
+.kpca-sub{margin:22px auto 0;max-width:640px;color:#d9d4c8;font-size:15px}
+.kpca-btns{margin-top:24px}.kpca-btn{display:inline-flex;align-items:center;min-height:46px;padding:11px 20px;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:1px;background:#d5a63a;color:#0b0b0b}
+@media(max-width:900px){.hero-inner{padding:40px 20px 70px}}
+@media(max-width:640px){.kpca{padding:44px 16px 48px}.kpca-clock{gap:8px}.kpca-u{padding:14px 4px}.kpca-u span{letter-spacing:1.5px;font-size:10px}}
+</style>
+<style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
 </head>
 <body>
 <header class="site-nav">
@@ -124,10 +144,39 @@ body.field .page-jump-nav{display:none!important}
   <div class="hero-inner">
     <img class="hero-mark" src="KPC-logo.png" alt="Kentucky Portable Club">
     <p class="eyebrow">2027 KYPOTA CAMPOUT • KENTUCKY PORTABLE CLUB</p>
-<h1>CAMPOUT PLANS <span>COMING SOON.</span></h1>
-<p class="hero-copy">We are finalizing plans for the KYPOTA Campout. Event information and updates will be posted here soon.</p>
+<h1>PLANS HAVE <span>BEEN SET.</span></h1>
+<p class="hero-copy">The 2027 KYPOTA Campout is locked in. We will make the full announcement on <strong>Wednesday, October 21, 2026 at 5:00 PM Central</strong> — right here.</p>
   </div>
 </section>
+<section class="kpca" id="announcement" aria-label="Countdown to the campout announcement">
+  <div class="kpca-in" id="kpcaIn">
+    <div class="kpca-k">CAMPOUT ANNOUNCEMENT</div>
+    <h2>OCTOBER 21, 2026 • <span>5:00 PM CENTRAL</span></h2>
+    <div class="kpca-clock" role="timer" aria-live="off">
+      <div class="kpca-u"><b id="kad">–</b><span>DAYS</span></div>
+      <div class="kpca-u"><b id="kah">–</b><span>HOURS</span></div>
+      <div class="kpca-u"><b id="kam">–</b><span>MINUTES</span></div>
+      <div class="kpca-u"><b id="kas">–</b><span>SECONDS</span></div>
+    </div>
+    <p class="kpca-sub" id="kpcaLocal"></p>
+  </div>
+</section>
+<script>
+(function(){
+  /* Announcement time: Oct 21, 2026, 5:00 PM Central (CDT = UTC-5) */
+  var T=Date.parse('2026-10-21T17:00:00-05:00'), pad=function(n){return(n<10?'0':'')+n};
+  var el=function(id){return document.getElementById(id)};
+  try{var loc=new Date(T).toLocaleString([],{weekday:'long',month:'long',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+      el('kpcaLocal').textContent='That is '+loc+' where you are.';}catch(e){}
+  function tick(){
+    var t=Math.floor((T-Date.now())/1000);
+    if(t<=0){el('kpcaIn').innerHTML='<div class="kpca-k">IT IS TIME</div><h2>THE ANNOUNCEMENT <span>IS OUT.</span></h2><p class="kpca-sub">Refresh this page to see the full 2027 KYPOTA Campout details.</p><div class="kpca-btns"><a class="kpca-btn" href="campout.html?v='+Date.now()+'">REFRESH →</a></div>';clearInterval(iv);return}
+    var d=Math.floor(t/86400);t-=d*86400;var h=Math.floor(t/3600);t-=h*3600;var m=Math.floor(t/60),sec=t-m*60;
+    el('kad').textContent=d;el('kah').textContent=pad(h);el('kam').textContent=pad(m);el('kas').textContent=pad(sec);
+  }
+  var iv=setInterval(tick,1000);tick();
+})();
+</script>
 <nav class="page-jump-nav" aria-label="Quick page links"><a href="events.html">VIEW EVENTS</a><a href="parks.html">EXPLORE KENTUCKY</a><a href="contact.html">CONTACT KPC</a></nav>
 </main>
 
