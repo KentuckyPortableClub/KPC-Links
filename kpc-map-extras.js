@@ -358,5 +358,29 @@ function attach(map, opt){
  };
 }
 
-window.KPCX = {attach, hover, overlapData, overlapIndex, overlapCard, KINDTXT, svUrl};
+/* Map type switcher (Road Map / Satellite / Satellite + Roads / Terrain).
+   Replaces Leaflet's layers control, which does not open reliably with a finger tap on phones.
+   Fires the usual 'baselayerchange' {name, layer} on the map. */
+let baseN = 0;
+function baseSwitcher(map, layers, opt){
+ opt = opt || {}; let cur = opt.current && layers[opt.current] ? opt.current : null; const nm = 'kxbase' + (++baseN);
+ let btn = null, box = null;
+ const Ctl = L.Control.extend({options:{position:opt.position || 'topright'}, onAdd(){
+  const d = L.DomUtil.create('div', 'kx-ctl kx-base');
+  d.innerHTML = `<button type="button" class="kx-btn" aria-expanded="false" title="Map type">🗺️ <span></span> ▾</button><div class="kx-box" hidden>` +
+   Object.keys(layers).map(n => `<label><input type="radio" name="${nm}" value="${esc(n)}">${esc(n)}</label>`).join('') + '</div>';
+  L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+  btn = d.querySelector('.kx-btn'); box = d.querySelector('.kx-box');
+  btn.onclick = () => {box.hidden = !box.hidden; btn.setAttribute('aria-expanded', String(!box.hidden))};
+  d.addEventListener('change', e => {if (e.target.name === nm) set(e.target.value)});
+  return d}});
+ function show(){if (!btn) return; btn.querySelector('span').textContent = cur || 'Map'; box.querySelectorAll('input').forEach(i => i.checked = i.value === cur)}
+ function set(n){if (!layers[n]) return; if (n !== cur) {if (cur && layers[cur]) map.removeLayer(layers[cur]); layers[n].addTo(map); cur = n; map.fire('baselayerchange', {name:n, layer:layers[n]})}
+  show(); if (box) {box.hidden = true; btn.setAttribute('aria-expanded', 'false')}}
+ new Ctl().addTo(map); show();
+ map.on('click dragstart', () => {if (box && !box.hidden) {box.hidden = true; btn.setAttribute('aria-expanded', 'false')}});
+ return {set, current:() => cur};
+}
+
+window.KPCX = {baseSwitcher, attach, hover, overlapData, overlapIndex, overlapCard, KINDTXT, svUrl};
 })();

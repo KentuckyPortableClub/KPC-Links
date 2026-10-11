@@ -53,12 +53,12 @@ if(window.L){
    'Terrain':L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'&copy; OpenTopoMap (CC-BY-SA), &copy; OpenStreetMap contributors'}),
    'Satellite':L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery &copy; Esri, Maxar, Earthstar Geographics'}),
    'Satellite + Roads':L.layerGroup([esriT('World_Imagery'),esriT('Reference/World_Transportation'),esriT('Reference/World_Boundaries_and_Places')])};
-  let wantBase='Road Map';try{wantBase=localStorage.getItem('kpcBaseMap')||'Road Map'}catch(_){}
+  let wantBase='Satellite + Roads';try{wantBase=localStorage.getItem('kpcBaseMap2')||'Satellite + Roads'}catch(_){}   // default: Satellite + Roads
   wantBase={'Street':'Road Map'}[wantBase]||wantBase;
   (baseMaps[wantBase]||baseTiles).addTo(map);
-  L.control.layers(baseMaps,null,{position:'topright',collapsed:true}).addTo(map);
+  if(window.KPCX&&KPCX.baseSwitcher)KPCX.baseSwitcher(map,baseMaps,{current:baseMaps[wantBase]?wantBase:'Road Map'});else L.control.layers(baseMaps,null,{position:'topright',collapsed:true}).addTo(map);
   const satCls=n=>map.getContainer().classList.toggle('kpc-sat',/^Satellite/.test(n));satCls(baseMaps[wantBase]?wantBase:'Road Map');
-  map.on('baselayerchange',e=>{satCls(e.name);try{localStorage.setItem('kpcBaseMap',e.name)}catch(_){}});
+  map.on('baselayerchange',e=>{satCls(e.name);try{localStorage.setItem('kpcBaseMap2',e.name)}catch(_){}});
   layer=L.layerGroup().addTo(map);
   /* parking & entrance markers + Park Overlaps (kpc-map-extras.js, shared with the Trip Planner) */
   if(window.KPCX)window.kpcExtras=KPCX.attach(map,{key:'cmd'});window.kpcMap=map;
