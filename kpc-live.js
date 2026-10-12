@@ -37,8 +37,16 @@ window.addEventListener('kpc-bands',e=>{const d=e.detail||{};lastRows=d.rows||nu
 
 /* ---------- space weather (NOAA SWPC) ---------- */
 async function spaceExtra(){try{const j=await jget('https://services.swpc.noaa.gov/products/noaa-scales.json');const c=j['0']||j[0]||{};const g=c.G&&c.G.Scale,r=c.R&&c.R.Scale,s=c.S&&c.S.Scale;
-  $('sw-g').textContent=g!=null?'G'+g:'--';$('sw-r').textContent=r!=null?'R'+r:'--';$('sw-s').textContent=s!=null?'S'+s:'--'}catch(e){}
- if(Number.isFinite(sfi))$('sw-sfi').textContent=Math.round(sfi);if(Number.isFinite(kp))$('sw-kp').textContent=kp%1?kp.toFixed(1):kp}
+  const sg=$('sw-g'),sr=$('sw-r'),ss=$('sw-s');
+  if(sg)sg.textContent=g!=null?'G'+g:'--';if(sr)sr.textContent=r!=null?'R'+r:'--';if(ss)ss.textContent=s!=null?'S'+s:'--'}catch(e){}
+ if(Number.isFinite(sfi)){const e=$('sw-sfi');if(e)e.textContent=Math.round(sfi);}
+ if(Number.isFinite(kp)){const e=$('sw-kp');if(e)e.textContent=kp%1?kp.toFixed(1):kp;}
+ /* A-index and sunspot number */
+ try{const j=await jget('https://services.swpc.noaa.gov/products/summary/solar-geophysical-activity.json');
+  const a=j['a-index'],ssn=j['sunspot-number'];
+  const ea=$('sw-a'),en=$('sw-ssn');
+  if(ea&&a!=null)ea.textContent=Math.round(Number(a));
+  if(en&&ssn!=null)en.textContent=Math.round(Number(ssn));}catch(e){}}
 async function noaaBasic(){try{const [k,f]=await Promise.all([jget('https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json'),jget('https://services.swpc.noaa.gov/products/summary/10cm-flux.json')]);kp=Number(k[k.length-1].Kp);sfi=Number((Array.isArray(f)?f[0]:f).flux);renderStatus();spaceExtra()}catch(e){}}
 
 /* ---------- POTA spots bar ---------- */
