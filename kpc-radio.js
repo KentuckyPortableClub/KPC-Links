@@ -11,17 +11,20 @@ const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.
 /* ================= receiver ================= */
 /* type: websdr (?tune=7200lsb)  kiwi (?f=7200lsbz10)  owrx (#freq=7200000,mod=lsb) */
 const RX=[
- {id:'utah',name:'Northern Utah WebSDR (Utah, USA)',type:'websdr',url:'http://websdr1.sdrutah.org:8901/index1a.html',note:'160m to 10m'},
  {id:'k3fef',name:'K3FEF WebSDR (Pennsylvania, USA)',type:'websdr',url:'http://k3fef.com:8901/'},
+ /* Northern Utah runs separate receivers per band group: #1 (port 8901) only covers up through 40m,
+    so anything above 40m goes to #2 (port 8902). A frequency a receiver doesn't cover just won't tune. */
+ {id:'utah',name:'Northern Utah WebSDR (Utah, USA)',type:'websdr',url:'http://websdr1.sdrutah.org:8901/index1a.html',above:[[7300,'http://websdr2.sdrutah.org:8902/index1a.html']]},
  {id:'twente',name:'University of Twente WebSDR (Netherlands)',type:'websdr',url:'http://websdr.ewi.utwente.nl:8901/',note:'Hear North America from Europe'}
 ];
 const BANDS=[['160m',1900,'lsb'],['80m',3850,'lsb'],['60m',5357,'usb'],['40m',7200,'lsb'],['30m',10136,'usb'],['20m',14250,'usb'],['17m',18130,'usb'],['15m',21300,'usb'],['12m',24950,'usb'],['10m',28400,'usb'],['WWV',10000,'am']];
 const MODES=['lsb','usb','cw','am'];
-let st=store.get('kpcRx',{rx:'utah',khz:7200,mode:'lsb',custom:''});
+let st=store.get('kpcRx',{rx:'k3fef',khz:7200,mode:'lsb',custom:''});
 function rxList(){const l=RX.slice();if(st.custom)l.push({id:'custom',name:'My receiver: '+st.custom.replace(/^https?:\/\//,''),type:guessType(st.custom),url:st.custom});return l}
 function curRx(){return rxList().find(r=>r.id===st.rx)||RX[0]}
 function guessType(u){return /:8073\b|kiwi/i.test(u)?'kiwi':/openwebrx|#freq|:8073\b/i.test(u)?'owrx':/:8901\b|websdr/i.test(u)?'websdr':'kiwi'}
-function tuneUrl(r,khz,mode){const base=r.url.replace(/[?#].*$/,'');const k=+(+khz).toFixed(2);
+function rxBase(r,khz){let u=r.url;(r.above||[]).forEach(([k,v])=>{if(+khz>k)u=v});return u}
+function tuneUrl(r,khz,mode){const base=rxBase(r,khz).replace(/[?#].*$/,'');const k=+(+khz).toFixed(2);
  if(r.type==='websdr')return base+'?tune='+k+mode;
  if(r.type==='owrx')return base+'#freq='+Math.round(k*1000)+',mod='+mode;
  return base.replace(/\/?$/,'/')+'?f='+k+mode+'z10'}
