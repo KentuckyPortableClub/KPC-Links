@@ -44,7 +44,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  map.on('popupopen',e=>{const el=e.popup.getElement();if(!el)return;const s=e.popup._kpc;if(!s)return;
   el.querySelectorAll('[data-a]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const a=b.dataset.a;if(a==='add'){inTrip(s.c)?removeStop(s.c):addStop(s);map.closePopup()}else if(a==='bound')showBoundary(s,b)});
   if(s.p==='POTA')livePota(s,el.querySelector('.live'))})}
-function setDrop(on){dropMode=on;$('us-drop').setAttribute('aria-pressed',on);$('usmap').classList.toggle('dropping',on);$('us-maphint').textContent=on?'Tap the map where you want your pin.':'Tap a dot to add it to your trip, see Street View or show its boundary. Use the layers button for Street, Satellite or Satellite + Streets.'}
+function setDrop(on){dropMode=on;if(on&&map)map.closePopup();$('us-drop').setAttribute('aria-pressed',on);$('usmap').classList.toggle('dropping',on);$('us-maphint').textContent=on?'Tap the map where you want your pin.':'Tap a dot to add it to your trip, see Street View or show its boundary. Use the layers button for Street, Satellite or Satellite + Streets.'}
 function links(s){const sv=`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${s.la},${s.lo}`;
  const page=s.p==='POTA'?KPC.links.pota(s.c):s.p==='SOTA'?(s.url||KPC.links.sota(s.c)):s.p==='WWFF'?KPC.links.kff(s.c):'';
  return{sv,dir:KPC.links.dir(s.la,s.lo),page}}
@@ -95,19 +95,29 @@ function drawNear(){const box=$('near');if(!center){box.style.display='none';ret
  $('near-body').innerHTML=NEAR.slice(0,150).map((s,i)=>`<tr><td><span class="dot" style="background:${COL[s.p]}"></span><a href="#" data-o="${i}" class="ref">${esc(s.c)}</a><br>${esc(s.n)}</td><td>${KPC.miles(center[0],center[1],s.la,s.lo).toFixed(1)}</td><td><button type="button" class="add${inTrip(s.c)?' in':''}" data-i="${i}">${inTrip(s.c)?'&#10003; ADDED':'+ ADD'}</button></td></tr>`).join('')||'<tr><td colspan="3" class="muted">Nothing that close. Try a bigger distance.</td></tr>'}
 
 /* ---------- boundary (OpenStreetMap, on request) ---------- */
+/* The main overpass-api.de server says it is overloaded and refuses requests at busy times, so try the free public
+   mirrors it lists first (private.coffee and VK Maps, no rate limits), then the main one. A form POST avoids long URLs
+   and needs no CORS preflight. Answers are remembered per park for this visit. */
+const OVP=['https://overpass.private.coffee/api/interpreter','https://maps.mail.ru/osm/tools/overpass/api/interpreter','https://overpass-api.de/api/interpreter'];
+const ovpCache={};
+async function overpass(q,key){if(ovpCache[key])return ovpCache[key];let last;
+ for(const u of OVP){const c=new AbortController(),t=setTimeout(()=>c.abort(),25000);
+  try{const r=await fetch(u,{method:'POST',body:'data='+encodeURIComponent(q),headers:{'Content-Type':'application/x-www-form-urlencoded'},signal:c.signal});
+   if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();if(j&&Array.isArray(j.elements)){ovpCache[key]=j;return j}throw new Error('bad answer')}
+  catch(e){last=e}finally{clearTimeout(t)}}
+ throw last||new Error('no server')}
 function sim(a,b){const w=t=>new Set(String(t).toLowerCase().replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(x=>x.length>2&&!['state','park','national','area','the','and','wildlife','management'].includes(x)));const A=w(a),B=w(b);let n=0;A.forEach(x=>{if(B.has(x))n++});return n/Math.max(1,Math.min(A.size,B.size))}
 async function showBoundary(s,btn){if(bound){bound.remove();bound=null}btn.textContent='LOOKING…';btn.disabled=true;
  const b=map.getBounds().pad(0.5),bb=`${b.getSouth().toFixed(4)},${b.getWest().toFixed(4)},${b.getNorth().toFixed(4)},${b.getEast().toFixed(4)}`;
  const q=`[out:json][timeout:25];is_in(${s.la},${s.lo})->.a;(way(pivot.a)["boundary"~"protected_area|national_park"];rel(pivot.a)["boundary"~"protected_area|national_park"];way(pivot.a)["leisure"~"park|nature_reserve"];rel(pivot.a)["leisure"~"park|nature_reserve"];);out geom(${bb});`;
- try{const r=await fetch('https://overpass-api.de/api/interpreter?data='+encodeURIComponent(q));if(!r.ok)throw new Error(r.status);const j=await r.json();
-  const els=(j.elements||[]).filter(e=>e.tags);if(!els.length){btn.textContent='NO OUTLINE IN OPENSTREETMAP';return}
+ try{const j=await overpass(q,s.c);const els=(j.elements||[]).filter(e=>e.tags);if(!els.length){btn.textContent='NO OUTLINE IN OPENSTREETMAP';return}
   const area=e=>{const g=e.type==='way'?e.geometry:(e.members||[]).flatMap(m=>m.geometry||[]);if(!g||!g.length)return 1e9;let a=1e9,c=-1e9,d=1e9,f=-1e9;g.forEach(p=>{if(!p)return;a=Math.min(a,p.lat);c=Math.max(c,p.lat);d=Math.min(d,p.lon);f=Math.max(f,p.lon)});return(c-a)*(f-d)};
   els.sort((x,y)=>(sim(s.n,y.tags.name||'')-sim(s.n,x.tags.name||''))||(area(x)-area(y)));const e=els[0];
   const lines=[];if(e.type==='way'&&e.geometry)lines.push(e.geometry.filter(Boolean).map(p=>[p.lat,p.lon]));
   else(e.members||[]).forEach(m=>{if(m.type==='way'&&m.geometry)lines.push(m.geometry.filter(Boolean).map(p=>[p.lat,p.lon]))});
   bound=L.featureGroup(lines.filter(l=>l.length>1).map(l=>{const closed=l.length>3&&l[0][0]===l[l.length-1][0]&&l[0][1]===l[l.length-1][1];return closed?L.polygon(l,{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.12,interactive:false}):L.polyline(l,{color:'#f0c96b',weight:3,interactive:false})})).addTo(map);
   btn.textContent='OUTLINE: '+String(e.tags.name||'unnamed area').toUpperCase().slice(0,40);status(`Boundary shown: <b>${esc(e.tags.name||'unnamed area')}</b> from OpenStreetMap${sim(s.n,e.tags.name||'')<.5?' (closest match: it may not be the exact POTA park area)':''}.`)}
- catch(err){btn.textContent='BOUNDARY SERVICE BUSY, TRY AGAIN';btn.disabled=false;return}btn.disabled=false}
+ catch(err){btn.textContent='MAP SERVERS BUSY, TAP TO TRY AGAIN';status('The OpenStreetMap boundary servers are all busy right now. Wait a minute and tap SHOW BOUNDARY again.');btn.disabled=false;return}btn.disabled=false}
 
 /* ---------- trip ---------- */
 const inTrip=c=>trip.some(s=>s.c===c);
