@@ -82,7 +82,7 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
 .pl-info .pi-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261010g">
-<style>#plModes .chip[aria-pressed=true]{background:#171717;color:#f0c96b;border-color:#171717}.rt-end{width:26px;height:26px;border-radius:50%;background:#171717;color:#f0c96b;font:900 13px/26px sans-serif;text-align:center;border:2px solid #f0c96b;box-shadow:0 1px 4px rgba(0,0,0,.5)}.controls[hidden]{display:none}</style>
+<style>#plModes .chip[aria-pressed=true]{background:#171717;color:#f0c96b;border-color:#171717}.rt-end{width:26px;height:26px;border-radius:50%;background:#171717;color:#f0c96b;font:900 13px/26px sans-serif;text-align:center;border:2px solid #f0c96b;box-shadow:0 1px 4px rgba(0,0,0,.5)}.controls[hidden]{display:none}.pl-sug{margin-top:8px;background:#fff;border:1px solid #cbbf9f;border-radius:6px;box-shadow:0 10px 24px rgba(0,0,0,.14);max-height:300px;overflow:auto}.pl-sug[hidden]{display:none}.pl-sug button{display:block;width:100%;text-align:left;padding:10px 12px;border:0;border-bottom:1px solid #eee5cf;background:#fff;color:#171717;font:inherit;font-size:15px;cursor:pointer;min-height:44px}.pl-sug button:hover,.pl-sug button:focus{background:#fffaf0}.pl-sug small{display:block;color:#68635a;font-size:12px;margin-top:2px}.pl-sug button.addr{background:#f3f8fd}</style>
 </head>
 <body>
 <header class="site-nav">
@@ -147,18 +147,21 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
 <div class="panel">
 <div class="chips" id="plModes" role="group" aria-label="Search type" style="margin-bottom:12px"><button type="button" class="chip" data-m="town" aria-pressed="true">&#128205; FROM A TOWN</button><button type="button" class="chip" data-m="route" aria-pressed="false">&#128663; ALONG A ROUTE</button></div>
 <div class="controls" id="routeCtl" hidden>
-<label class="field" style="flex:2 1 220px">START (TOWN, PARK, # OR GPS)<input id="rtFrom" list="towns" placeholder="Berea, US-1286, 37.57, -84.29…" autocomplete="off"></label>
-<label class="field" style="flex:2 1 220px">FINISH<input id="rtTo" list="towns" placeholder="Pikeville, Nashville TN, 36.9, -83.3…" autocomplete="off"></label>
+<label class="field" style="flex:2 1 220px">START (TOWN, PARK, ADDRESS OR GPS)<input id="rtFrom" placeholder="Town, park #, address or GPS" autocomplete="off" spellcheck="false"></label>
+<label class="field" style="flex:2 1 220px">FINISH<input id="rtTo" placeholder="Town, park #, address or GPS" autocomplete="off" spellcheck="false"></label>
 <label class="field" style="flex:0 1 140px">WITHIN<select id="rtW" style="min-height:44px"><option value="5">5 miles</option><option value="10">10 miles</option><option value="25" selected>25 miles</option><option value="50">50 miles</option></select></label>
 <button class="btn" id="rtGo" type="button" style="align-self:flex-end">FIND SPOTS ALONG THE WAY</button>
 <button class="btn alt" id="rtClear" type="button" style="align-self:flex-end">&#10005; CLEAR</button>
 </div>
+<div class="pl-sug" id="routeSug" role="listbox" hidden></div>
 <div class="controls" id="townCtl">
-<label class="field" style="flex:2 1 220px">START FROM (TOWN, PARK, #, ADDRESS OR GPS)<input id="town" list="towns" placeholder="Hazard, Natural Bridge, US-1286, W4K/EC-001…" autocomplete="off"><datalist id="towns"></datalist></label>
+<label class="field" style="flex:2 1 220px">START FROM (TOWN, PARK, #, ADDRESS OR GPS)<input id="town" placeholder="Hazard, US-1286, 123 Main St Berea KY…" autocomplete="off" spellcheck="false"></label>
+<button class="btn" id="townGo" type="button" style="align-self:flex-end">GO</button>
 <button class="btn alt" id="gps" type="button" style="align-self:flex-end">📍 USE MY LOCATION</button>
 <button class="btn alt" id="newSearch" type="button" style="align-self:flex-end">✕ CLEAR SEARCH</button>
 <label class="field" style="flex:1 1 160px">WITHIN <span id="rLbl">40 MILES</span><input type="range" id="rad" min="10" max="150" step="5" value="40" style="min-height:44px;padding:0"></label>
 </div>
+<div class="pl-sug" id="townSug" role="listbox" hidden></div>
 <div class="controls" style="margin-top:12px">
 <div class="chips" id="prog_"><button class="chip" aria-pressed="true" data-k="pota">POTA PARKS</button><button class="chip" aria-pressed="true" data-k="sota">SOTA SUMMITS</button><button class="chip" aria-pressed="true" data-k="kff">KFF</button><button class="chip" aria-pressed="false" data-k="two" title="Highlight places where programs or references overlap, and list only those">PARK OVERLAPS</button></div>
 </div>
@@ -179,7 +182,7 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
 <div class="note">Distances are straight-line miles from your starting point; drive time depends on roads. Park stops go to an official parking or access point when the KPC guide has one. Map boundaries come from Kentucky and federal GIS and usually match POTA, but not always, so check the POTA map before you activate from a spot. Always check access, posted rules and hunting seasons.</div>
 </div></section>
 <script src="kpc-map-extras.js?v=20261012h"></script>
-<script src="kpc-planner.js?v=20261012o"></script>
+<script src="kpc-planner.js?v=20261012p"></script>
 
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>

@@ -68,9 +68,12 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  const showGlow=name=>{if(name==='Satellite + Park Lines (Beta)')glow.addTo(map);else glow.remove()};showGlow(base[want]?want:'Street');
  map.on('baselayerchange',e=>showGlow(e.name));
  L.control.layers(base,null,{position:'topright',collapsed:true}).addTo(map);map.on('baselayerchange',e=>store.set('kpcUsBase',e.name));
- dots=L.layerGroup().addTo(map);
- map.on('click',e=>{if(!dropMode)return;const nm=prompt('Name this pin (campsite, gas stop, lookout…):','My pin');if(nm===null)return;
-  addStop({p:'PIN',c:'PIN-'+Date.now().toString(36),n:(nm.trim()||'My pin').slice(0,60),la:fix(e.latlng.lat),lo:fix(e.latlng.lng)});setDrop(false)});
+ dots=L.featureGroup().addTo(map);
+ /* drop mode wins over dots: with big phone tap areas most taps land on a dot, so drop the pin there too */
+ let dropBusy=0;const dropAt=ll=>{if(!dropMode||dropBusy)return;dropBusy=1;map.closePopup();setTimeout(()=>{dropBusy=0;const nm=prompt('Name this pin (campsite, gas stop, lookout…):','My pin');if(nm===null)return;
+  addStop({p:'PIN',c:'PIN-'+Date.now().toString(36),n:(nm.trim()||'My pin').slice(0,60),la:fix(ll.lat),lo:fix(ll.lng)});setDrop(false)},30)};
+ map.on('click',e=>dropAt(e.latlng));dots.on('click',e=>{if(dropMode){L.DomEvent.stop(e);dropAt(e.latlng)}});
+ map.on('popupopen',e=>{if(dropMode)setTimeout(()=>map.closePopup(),0)});
  map.on('popupopen',e=>{const el=e.popup.getElement();if(!el)return;const s=e.popup._kpc;if(!s)return;
   el.querySelectorAll('[data-a]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const a=b.dataset.a;if(a==='add'){inTrip(s.c)?removeStop(s.c):addStop(s);map.closePopup()}else if(a==='bound')showBoundary(s,b)});
   if(s.p==='POTA')livePota(s,el.querySelector('.live'))})}
