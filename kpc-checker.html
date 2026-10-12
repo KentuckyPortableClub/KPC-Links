@@ -88,6 +88,7 @@
 .mode-toggle{display:flex;gap:0;margin-bottom:20px;border:1px solid #cbbf9f;border-radius:8px;overflow:hidden;width:fit-content}
 .mode-toggle button{padding:11px 24px;font-size:13px;font-weight:900;letter-spacing:1px;background:#fff;color:#68635a;border:none;cursor:pointer;transition:background .15s,color .15s;min-height:44px}
 .mode-toggle button.active{background:#0d2419;color:#f0c96b}
+.hunt-how{margin:14px 0 0;padding:12px 14px;background:#eef5f0;border:1px solid #cfe0d5;border-left:5px solid #1d5a3a;border-radius:6px;font-size:14px;line-height:1.6}.hunt-how a{color:#1d5a3a;font-weight:700}.hunt-how ol{margin:6px 0 6px 20px;padding:0}.hunt-how li{margin:2px 0}
 .filepick{position:relative;display:flex;align-items:center;gap:10px;margin-top:6px;min-height:44px}.filepick input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}.filepick .btn{pointer-events:none;padding:10px 14px}#hfname{font-size:13px;font-weight:600;letter-spacing:0;color:#3d3a33;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mode-toggle button:first-child{border-right:1px solid #cbbf9f}
 </style>
@@ -128,11 +129,11 @@
 <div id="pane-hunt" style="display:none">
 <div class="panel">
 <form class="controls" id="fh" autocomplete="off">
-<label class="field" style="flex:1 1 180px">CALLSIGN (OPTIONAL)<input id="hcall" placeholder="Your callsign" autocapitalize="characters" spellcheck="false"></label>
-<label class="field" style="flex:2 1 260px">YOUR LOG FILE (ADIF OR CSV)<span class="filepick"><input id="hfile" type="file" accept=".adi,.adif,.csv,.txt,.adx,text/plain,text/csv"><span class="btn alt" aria-hidden="true">CHOOSE FILE</span><span id="hfname">No file chosen</span></span></label>
+<label class="field" style="flex:1 1 180px">CALLSIGN (OPTIONAL)<input id="hcall" placeholder="For the file name" autocapitalize="characters" spellcheck="false"></label>
+<label class="field" style="flex:2 1 260px">YOUR POTA HUNTER CSV<span class="filepick"><input id="hfile" type="file" accept=".adi,.adif,.csv,.txt,.adx,text/plain,text/csv"><span class="btn alt" aria-hidden="true">CHOOSE FILE</span><span id="hfname">No file chosen</span></span></label>
 <button class="btn" type="submit" style="align-self:flex-end">CHECK HUNTS</button>
 </form>
-<p class="muted" style="margin:12px 0 0;font-size:13px;line-height:1.55">POTA doesn't publish hunter logs, so this reads your own log. Export it from your logging program (HAMRS, Log4OM, N1MM, WSJT-X, QRZ, LoTW and others) as an <b>ADIF (.adi)</b> file, or use any CSV that lists park references like US-0724. Your file never leaves your device.</p>
+<div class="hunt-how"><b>Hunters: you need your hunter CSV file from POTA.</b> POTA doesn't share hunter logs publicly, so the checker reads the file you download from POTA:<ol><li>Log in at <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a> and open <b>My Stats</b>.</li><li>Download your <b>hunter parks list as a CSV</b>.</li><li>Tap <b>CHOOSE FILE</b> here and pick that CSV.</li></ol>You'll see every Kentucky park you've hunted and every one you still need, on the map and in a list. Your file stays on your device.</div>
 <div class="progress" id="hprog"><div class="bar"><i style="width:0"></i></div><small></small></div>
 </div>
 
@@ -152,7 +153,7 @@
 <div class="tablewrap" style="max-height:420px"><table class="list"><thead><tr><th>PARK</th><th>COUNTY</th><th id="hcol3">FIRST HUNT</th><th id="hcol4">QSOs</th></tr></thead><tbody id="htbody"></tbody></table></div>
 </div></div>
 </div>
-<div class="note">Reads your log file right here in your browser — nothing is uploaded, saved or shared. ADIF files count the other station's park (POTA_REF or SIG_INFO), so your own activations aren't counted as hunts. Old K-#### references are matched to today's US-#### numbers. Checks the 186 Kentucky parks in the KPC guide.</div>
+<div class="note">Hunter mode needs the hunter CSV you download from POTA. It's read right here in your browser — nothing is uploaded, saved or shared. Old K-#### references are matched to today's US-#### numbers. Checks the 186 Kentucky parks in the KPC guide.</div>
 </div><!-- /pane-hunt -->
 
 </div></section>
@@ -200,7 +201,7 @@ function setMode(m){
   document.getElementById('btn-hunt').classList.toggle('active',m==='hunt');
   document.getElementById('page-sub').textContent=m==='act'
     ?'Enter any callsign to see which of Kentucky\'s POTA parks it has activated and which are still needed — then download the list as a spreadsheet (CSV).'
-    :'Load your log file to see which of Kentucky\'s POTA parks you\'ve hunted and which are still on your list. Download the results as a CSV.';}
+    :'Upload your POTA hunter CSV to see which of Kentucky\'s POTA parks you\'ve hunted and which are still on your list, on a map. Download the results as a CSV.';}
 
 /* ===== HUNTER mode =====
    POTA does not publish anyone's hunter log, so this reads the person's own log file in the browser.
@@ -214,8 +215,8 @@ const REF_RE=/\b(?:US|K)-\d{4,5}\b/gi;
 function normRef(r){r=r.toUpperCase();return r.startsWith('K-')?'US-'+r.slice(2):r}
 function normDate(s){s=String(s||'');let m=s.match(/(\d{4})-?(\d{2})-?(\d{2})/);if(m&&+m[2]>=1&&+m[2]<=12)return m[1]+m[2]+m[3];
  m=s.match(/\b(\d{1,2})\/(\d{1,2})\/(\d{4})\b/);if(m)return m[3]+m[1].padStart(2,'0')+m[2].padStart(2,'0');return''}
-function addHunt(out,ref,date){ref=normRef(ref);const h=out[ref]||(out[ref]={q:0,first:'',last:''});h.q++;
- if(date){if(!h.first||date<h.first)h.first=date;if(!h.last||date>h.last)h.last=date}}
+function addHunt(out,ref,date,q,last){ref=normRef(ref);const h=out[ref]||(out[ref]={q:0,first:'',last:''});h.q+=q>0?q:1;
+ const l=last||date;if(date&&(!h.first||date<h.first))h.first=date;if(l&&(!h.last||l>h.last))h.last=l}
 function parseADIF(txt){const out={};let n=0;const body=txt.replace(/^[\s\S]*?<eoh>/i,'');
  for(const rec of body.split(/<eor>/i)){const f={};const re=/<([A-Za-z0-9_]+):(\d+)(?::[^>]*)?>/g;let m;
   while((m=re.exec(rec))){f[m[1].toUpperCase()]=rec.substr(re.lastIndex,+m[2]);re.lastIndex+=+m[2]}
@@ -224,9 +225,26 @@ function parseADIF(txt){const out={};let n=0;const body=txt.replace(/^[\s\S]*?<e
   const refs=new Set((src.match(REF_RE)||[]).map(normRef));
   refs.forEach(r=>addHunt(out,r,normDate(f.QSO_DATE)))}
  return{out,n}}
-function parseText(txt){const out={};let n=0;
- for(const line of txt.split(/\r?\n/)){const refs=new Set((line.match(REF_RE)||[]).map(normRef));if(!refs.size)continue;n++;
-  const d=normDate(line);refs.forEach(r=>addHunt(out,r,d))}
+function csvCells(line){const c=[];let cur='',q=false;for(let i=0;i<line.length;i++){const ch=line[i];
+  if(q){if(ch==='"'){if(line[i+1]==='"'){cur+='"';i++}else q=false}else cur+=ch}
+  else if(ch==='"')q=true;else if(ch===','||ch===';'||ch==='\t'){c.push(cur.trim());cur=''}else cur+=ch}
+ c.push(cur.trim());return c}
+/* CSV: read POTA-style columns when there is a header (Reference, QSOs, First/Last QSO date); otherwise just find park numbers */
+function parseText(txt){const out={};let n=0,col=null;
+ for(const line of txt.split(/\r?\n/)){if(!line.trim())continue;const cells=csvCells(line);
+  if(!col&&!REF_RE.test(line)){REF_RE.lastIndex=0;const h=cells.map(x=>x.toLowerCase());
+   const fi=(f)=>h.findIndex(f);
+   const c={ref:fi(x=>/reference|^park ?(ref|#|id)?$|^ref$/.test(x)),q:fi(x=>/qso|contacts|count|hunts/.test(x)&&!/date|first|last/.test(x)),
+    first:fi(x=>/first/.test(x)),last:fi(x=>/last/.test(x)),date:fi(x=>/date/.test(x)&&!/first|last/.test(x))};
+   if(c.ref>=0||c.q>=0||c.first>=0)col=c;continue}
+  REF_RE.lastIndex=0;
+  let refs;if(col&&col.ref>=0&&cells[col.ref])refs=new Set((cells[col.ref].match(REF_RE)||[]).map(normRef));
+  if(!refs||!refs.size)refs=new Set((line.match(REF_RE)||[]).map(normRef));
+  if(!refs.size)continue;n++;
+  const q=col&&col.q>=0?parseInt(String(cells[col.q]).replace(/[^\d]/g,''),10):1;
+  const first=col&&col.first>=0?normDate(cells[col.first]):(col&&col.date>=0?normDate(cells[col.date]):normDate(line));
+  const last=col&&col.last>=0?normDate(cells[col.last]):'';
+  refs.forEach(r=>addHunt(out,r,first,Number.isFinite(q)&&q>0?q:1,last))}
  return{out,n}}
 async function runHunter(){
  const file=document.getElementById('hfile').files[0];
@@ -243,7 +261,7 @@ async function runHunter(){
   HS={};Object.keys(out).forEach(r=>{if(ky.has(r))HS[r]=out[r]});
   const doneP=P.filter(p=>HS[p.c]),needed=P.length-doneP.length;
   const counties=new Set(doneP.map(p=>p.co)),totalQ=Object.values(HS).reduce((s,x)=>s+x.q,0);
-  if(!Object.keys(out).length){pbar.style.width='0';ptxt.textContent=isADIF?'No park contacts found in that ADIF file. Make sure your logger saves the park in POTA_REF or SIG_INFO.':'No park references (like US-0724) found in that file.';document.getElementById('hresult').style.display='none';return}
+  if(!Object.keys(out).length){pbar.style.width='0';ptxt.textContent=isADIF?'No park contacts found in that ADIF file. Make sure your logger saves the park in POTA_REF or SIG_INFO.':'No park references (like US-0724) found in that file. Make sure it\'s the hunter CSV you downloaded from POTA.';document.getElementById('hresult').style.display='none';return}
   document.getElementById('hresult').style.display='block';
   document.getElementById('hstats').innerHTML=`<div class="stat"><b>${doneP.length}</b><span>OF ${P.length} KY PARKS</span></div><div class="stat"><b>${needed}</b><span>STILL NEEDED</span></div><div class="stat"><b>${totalQ.toLocaleString()}</b><span>KY PARK QSOS</span></div><div class="stat"><b>${counties.size}</b><span>COUNTIES</span></div>`;
   document.getElementById('hpbar').style.width=(100*doneP.length/P.length)+'%';
@@ -255,7 +273,7 @@ async function drawHMap(){if(window.L){if(!hmap){hmap=KPC.leafletMap('hmap');awa
  if(hlayer)hlayer.remove();hlayer=L.layerGroup().addTo(hmap);
  HD.parks.forEach(p=>{const h=HS[p.c],hunted=!!h;
   L.circleMarker([p.la,p.lo],{radius:hunted?7:5,weight:1.2,color:'#173a28',fillColor:hunted?'#1d5a3a':'#ffffff',fillOpacity:.95})
-  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> • ${KPC.esc(KPC.cty(p.co))}<br>${hunted?`Hunted ${h.q} QSOs${h.first?' • first '+KPC.fmtDate(h.first):''}`:('Not hunted yet')}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See in KY Park Commander →</a>`).addTo(hlayer)})}else{document.getElementById('hmap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}}
+  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> • ${KPC.esc(KPC.cty(p.co))}<br>${KPC.esc(p.t)}<br>${hunted?`<b style="color:#1d5a3a">Hunted</b> • ${h.q} QSO${h.q===1?'':'s'}${h.first?' • first '+KPC.fmtDate(h.first):''}${h.last&&h.last!==h.first?' • last '+KPC.fmtDate(h.last):''}`:'<b>Still needed</b>'}${p.web?`<br><a href="${KPC.esc(p.web)}" target="_blank" rel="noopener">Park website ↗</a>`:''}`).addTo(hlayer)})}else{document.getElementById('hmap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}}
 function drawHTable(){const P=HD.parks;let rows;
  if(htab==='done'){document.getElementById('hcol3').textContent='FIRST HUNT';document.getElementById('hcol4').textContent='QSOs';
   rows=P.filter(p=>HS[p.c]).sort((a,b)=>(HS[a.c].first||'').localeCompare(HS[b.c].first||'')).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}</td><td>${KPC.esc(p.co)}</td><td>${KPC.fmtDate(HS[p.c].first)}</td><td>${HS[p.c].q}</td></tr>`)}
