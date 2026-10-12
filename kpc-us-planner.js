@@ -36,7 +36,21 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  const sat=L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
  const hyb=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19}),L.tileLayer(esri+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19})]);
- const base={'Street':street,'Satellite':sat,'Satellite + Streets':hyb};let want=store.get('kpcUsBase','Street');(base[want]||street).addTo(map);
+ /* Satellite + Park Lines (beta): the OpenStreetMap street map, colors flipped and tinted yellow, blended onto the
+    satellite picture with "screen". Its light background disappears and its dark parts (park and forest borders,
+    labels, road edges) show as bright yellow lines over the real land. */
+ map.createPane('parklines');const pl=map.getPane('parklines');pl.style.zIndex=250;pl.style.pointerEvents='none';pl.style.mixBlendMode='screen';
+ pl.style.filter='invert(1) grayscale(1) contrast(2.2) brightness(.9) sepia(1) saturate(9) hue-rotate(2deg)';
+ const glowStrength=()=>{const v=+store.get('kpcUsGlow',85);return Math.min(1,Math.max(.3,v/100))};
+ const lines=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{pane:'parklines',maxZoom:19,opacity:glowStrength(),attribution:'Park lines © OpenStreetMap contributors'});
+ const beta=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),lines]);
+ const base={'Street':street,'Satellite':sat,'Satellite + Streets':hyb,'Satellite + Park Lines (Beta)':beta};let want=store.get('kpcUsBase','Street');(base[want]||street).addTo(map);
+ const glow=L.control({position:'bottomleft'});glow.onAdd=()=>{const d=L.DomUtil.create('div','us-glow');
+  d.innerHTML=`<label>PARK LINES <input type="range" min="30" max="100" step="5" value="${Math.round(glowStrength()*100)}" aria-label="Park line strength"></label><small>Zoom in to county level to see park borders</small>`;
+  L.DomEvent.disableClickPropagation(d);L.DomEvent.disableScrollPropagation(d);
+  d.querySelector('input').oninput=e=>{lines.setOpacity(e.target.value/100);store.set('kpcUsGlow',+e.target.value)};return d};
+ const showGlow=name=>{if(name==='Satellite + Park Lines (Beta)')glow.addTo(map);else glow.remove()};showGlow(base[want]?want:'Street');
+ map.on('baselayerchange',e=>showGlow(e.name));
  L.control.layers(base,null,{position:'topright',collapsed:true}).addTo(map);map.on('baselayerchange',e=>store.set('kpcUsBase',e.name));
  dots=L.layerGroup().addTo(map);
  map.on('click',e=>{if(!dropMode)return;const nm=prompt('Name this pin (campsite, gas stop, lookout…):','My pin');if(nm===null)return;
@@ -100,12 +114,14 @@ function drawNear(){const box=$('near');if(!center){box.style.display='none';ret
    and needs no CORS preflight. Answers are remembered per park for this visit. */
 const OVP=['https://overpass.private.coffee/api/interpreter','https://maps.mail.ru/osm/tools/overpass/api/interpreter','https://overpass-api.de/api/interpreter'];
 const ovpCache={};
-async function overpass(q,key){if(ovpCache[key])return ovpCache[key];let last;
+/* every failure is kept so the message can say exactly what each server answered */
+const OVPN=['private.coffee','VK Maps','overpass-api.de'];
+async function overpass(q,key){if(ovpCache[key])return ovpCache[key];let last;const why=[];
  for(const u of OVP){const c=new AbortController(),t=setTimeout(()=>c.abort(),25000);
   try{const r=await fetch(u,{method:'POST',body:'data='+encodeURIComponent(q),headers:{'Content-Type':'application/x-www-form-urlencoded'},signal:c.signal});
    if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();if(j&&Array.isArray(j.elements)){ovpCache[key]=j;return j}throw new Error('bad answer')}
-  catch(e){last=e}finally{clearTimeout(t)}}
- throw last||new Error('no server')}
+  catch(e){last=e;why.push(OVPN[OVP.indexOf(u)]+': '+(e.name==='AbortError'?'timed out after 25 s':/^HTTP \d+/.test(e.message)?'server answered '+e.message.replace('HTTP ','')+({'429':' (too many requests)','406':' (request refused)','504':' (server overloaded)','503':' (server unavailable)','400':' (query not accepted)'}[e.message.slice(5)]||''):e.message==='bad answer'?'sent something that was not boundary data':'blocked or unreachable from this browser ('+(e.message||e.name)+')'))}finally{clearTimeout(t)}}
+ const err=new Error('all servers failed');err.why=why;throw err}
 function sim(a,b){const w=t=>new Set(String(t).toLowerCase().replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(x=>x.length>2&&!['state','park','national','area','the','and','wildlife','management'].includes(x)));const A=w(a),B=w(b);let n=0;A.forEach(x=>{if(B.has(x))n++});return n/Math.max(1,Math.min(A.size,B.size))}
 async function showBoundary(s,btn){if(bound){bound.remove();bound=null}btn.textContent='LOOKING…';btn.disabled=true;
  const b=map.getBounds().pad(0.5),bb=`${b.getSouth().toFixed(4)},${b.getWest().toFixed(4)},${b.getNorth().toFixed(4)},${b.getEast().toFixed(4)}`;
@@ -117,7 +133,7 @@ async function showBoundary(s,btn){if(bound){bound.remove();bound=null}btn.textC
   else(e.members||[]).forEach(m=>{if(m.type==='way'&&m.geometry)lines.push(m.geometry.filter(Boolean).map(p=>[p.lat,p.lon]))});
   bound=L.featureGroup(lines.filter(l=>l.length>1).map(l=>{const closed=l.length>3&&l[0][0]===l[l.length-1][0]&&l[0][1]===l[l.length-1][1];return closed?L.polygon(l,{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.12,interactive:false}):L.polyline(l,{color:'#f0c96b',weight:3,interactive:false})})).addTo(map);
   btn.textContent='OUTLINE: '+String(e.tags.name||'unnamed area').toUpperCase().slice(0,40);status(`Boundary shown: <b>${esc(e.tags.name||'unnamed area')}</b> from OpenStreetMap${sim(s.n,e.tags.name||'')<.5?' (closest match: it may not be the exact POTA park area)':''}.`)}
- catch(err){btn.textContent='MAP SERVERS BUSY, TAP TO TRY AGAIN';status('The OpenStreetMap boundary servers are all busy right now. Wait a minute and tap SHOW BOUNDARY again.');btn.disabled=false;return}btn.disabled=false}
+ catch(err){btn.textContent='BOUNDARY NOT AVAILABLE, TAP TO TRY AGAIN';status('Boundary lookup failed. What each server said: <b>'+esc((err.why||[err.message]).join(' \u2022 '))+'</b>. Send a screenshot of this to the site admin. Meanwhile try the <b>Satellite + Park Lines (Beta)</b> map in the layers button.');btn.disabled=false;return}btn.disabled=false}
 
 /* ---------- trip ---------- */
 const inTrip=c=>trip.some(s=>s.c===c);
