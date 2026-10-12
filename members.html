@@ -102,6 +102,7 @@ body.field .page-jump-nav{display:none!important}
 <style id="kpc-members-hero">@media(min-width:761px){.hero{background-position:0 0,right center!important}.hero .hero-copy{max-width:430px}.hero h1{text-shadow:0 2px 14px rgba(0,0,0,.7)}}</style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261010g">
 <style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
+<script src="kpc-tools.js?v=20261012t"></script>
 </head>
 <body>
 <header class="site-nav">
@@ -170,7 +171,7 @@ body.field .page-jump-nav{display:none!important}
 </div></div></section>
 
 <section class="section features" id="roster"><div class="section-inner"><div class="section-heading"><div class="kicker">KPC ROSTER</div><h2>Club Members</h2><p>Tap a callsign to open that member's Kentucky park tracker.</p></div>
-<div class="roster"><div class="mem"><b>KZ4CP</b><a href="kpc-tracker.html?call=KZ4CP">PARK TRACKER →</a><br><a href="https://www.qrz.com/db/KZ4CP" target="_blank" rel="noopener">QRZ ↗</a></div><div class="mem"><b>N4BDW</b><a href="kpc-tracker.html?call=N4BDW">PARK TRACKER →</a><br><a href="https://www.qrz.com/db/N4BDW" target="_blank" rel="noopener">QRZ ↗</a></div><div class="mem"><b>KQ4HZK</b><a href="kpc-tracker.html?call=KQ4HZK">PARK TRACKER →</a><br><a href="https://www.qrz.com/db/KQ4HZK" target="_blank" rel="noopener">QRZ ↗</a></div><div class="mem"><b>K4ZSR</b><a href="kpc-tracker.html?call=K4ZSR">PARK TRACKER →</a><br><a href="https://www.qrz.com/db/K4ZSR" target="_blank" rel="noopener">QRZ ↗</a></div></div>
+<div class="roster" id="kpcRoster"></div><script>(function(){var M=(typeof KPC!=="undefined"&&KPC.MEMBERS)||[];document.getElementById("kpcRoster").innerHTML=M.map(function(c){var e=encodeURIComponent(c);return '<div class="mem"><b>'+c+'</b><a href="kpc-tracker.html?call='+e+'">PARK TRACKER →</a><br><a href="https://www.qrz.com/db/'+e+'" target="_blank" rel="noopener">QRZ ↗</a></div>'}).join("")})();</script>
 </div></section>
 
 <section class="section features" id="public" style="background:var(--cream-2)"><div class="section-inner"><div class="section-heading"><div class="kicker">ALSO FOR EVERYONE</div><h2>Public KPC Tools</h2><p>These are on the Parks page for anyone to use.</p></div><div class="card-grid">
@@ -184,7 +185,7 @@ body.field .page-jump-nav{display:none!important}
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
 
-<script src="kpc-search.js?v=20261011c" defer></script><script>
+<script src="kpc-search.js?v=20261012t" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

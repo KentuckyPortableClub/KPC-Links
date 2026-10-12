@@ -1,4 +1,7 @@
-/* KPC Tools — shared code. Edit MEMBERS to change the club roster. */
+/* KPC Tools — shared code.
+   CLUB ROSTER: the MEMBERS line below is the ONLY place to add or remove a member.
+   Every page (Live, On The Air, Tool Box, Members, Campout, Discord page) and the Discord spot bot read it.
+   Use plain callsigns in single quotes, e.g. ['KZ4CP','N4BDW','NEW1CALL'] */
 const KPC=(()=>{
 const MEMBERS=['KZ4CP','N4BDW','KQ4HZK','K4ZSR'];
 const API='https://api.pota.app';
@@ -12,7 +15,27 @@ function grid(lat,lon){lon+=180;lat+=90;const A='ABCDEFGHIJKLMNOPQR',a='abcdefgh
  const f1=Math.floor(lon/20),f2=Math.floor(lat/10),s1=Math.floor((lon%20)/2),s2=Math.floor(lat%10),
  t1=Math.floor(((lon%2)*60)/5),t2=Math.floor(((lat%1)*60)/2.5);return A[f1]+A[f2]+s1+s2+a[t1]+a[t2]}
 function pip(x,y,ring){let ins=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const[xi,yi]=ring[i],[xj,yj]=ring[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi+1e-15)+xi)ins=!ins}return ins}
-async function data(){if(!_data)_data=fetch('kpc-ky-data.json').then(r=>r.json());return _data}
+/* POTA's current list of Kentucky parks (cached for a day). Parks POTA adds after kpc-ky-data.json was last
+   updated are added automatically with basic info (name, location, county, a type guessed from the name).
+   Hand-added details (parking, websites, 2-fers, trails) still come from kpc-ky-data.json. */
+const LIVE_KEY='kpcLiveKY';let _live;
+function liveKY(wait){if(_live)return _live;
+ _live=(async()=>{let c=null;try{c=JSON.parse(localStorage.getItem(LIVE_KEY)||'null')}catch(e){}
+  if(c&&Array.isArray(c.rows)&&Date.now()-c.t<864e5)return c.rows;
+  const ctl=typeof AbortController!=='undefined'?new AbortController():null;
+  const net=fetch(API+'/location/parks/US-KY',ctl?{signal:ctl.signal}:{}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(j=>{
+   const rows=(Array.isArray(j)?j:[]).map(x=>[String(x.reference||'').toUpperCase(),String(x.name||'').trim(),+x.latitude,+x.longitude]).filter(r=>/^US-\d+$/.test(r[0])&&r[1]&&isFinite(r[2])&&isFinite(r[3])&&r[2]!==0);
+   if(rows.length>50){try{localStorage.setItem(LIVE_KEY,JSON.stringify({t:Date.now(),rows}))}catch(e){}return rows}return null}).catch(()=>null);
+  const r=await Promise.race([net,new Promise(res=>setTimeout(()=>res(undefined),wait||3000))]);
+  if(r===undefined)net.then(()=>{});/* keep going in the background so the next visit has it */
+  return r||(c&&Array.isArray(c.rows)?c.rows:[])})();
+ return _live}
+const guessType=n=>/WMA|Wildlife Management/i.test(n)?'WMA':/State (Resort |Historic )?Park|State Historic Site/i.test(n)?'State Park':/Nature Preserve|Natural Area/i.test(n)?'Nature Preserve':/State Forest/i.test(n)?'State Forest':/National Forest/i.test(n)?'National Forest':/National Recreation Area/i.test(n)?'National Recreation Area':/National|NPS/i.test(n)?'National / NPS':/Trail/i.test(n)?'Trail':'Other';
+async function data(){if(!_data)_data=Promise.all([fetch('kpc-ky-data.json').then(r=>r.json()),liveKY().catch(()=>[])]).then(async([d,rows])=>{
+  const have=new Set(d.parks.map(p=>p.c));d.newParks=[];
+  for(const[c,n,la,lo]of rows){if(have.has(c))continue;have.add(c);let co='';try{co=await countyOf(la,lo)||''}catch(e){}
+   d.parks.push({c,n,co,t:guessType(n),la,lo,web:'',off:'',camp:null,tf:[],kff:[],sota:[],acc:0,ap:[],nw:1});d.newParks.push(c)}
+  return d});return _data}
 async function counties(){if(!_counties)_counties=fetch('kpc-ky-counties.json').then(r=>r.json());return _counties}
 async function countyOf(lat,lon){const C=await counties();for(const c of C)if(c.r.some(r=>pip(lon,lat,r)))return c.n;return null}
 const fmtDate=d=>{d=String(d);return d.length===8?new Date(+d.slice(0,4),+d.slice(4,6)-1,+d.slice(6,8)).toLocaleDateString([],{month:'short',day:'numeric',year:'numeric'}):d};
@@ -23,7 +46,9 @@ const cty=c=>{c=String(c||'');if(/^multiple/i.test(c)||/see official/i.test(c))r
    Returns {ref:[[callsign,yyyymmdd,qsos],...]} — cached in this browser for 12 hours. */
 async function history(onProgress,force){
  const D=await data(),refs=D.parks.map(p=>p.c);
- if(!force){try{const c=JSON.parse(localStorage.getItem(CACHE_KEY)||'null');if(c&&Date.now()-c.t<CACHE_HOURS*36e5&&Object.keys(c.d).length>=refs.length*0.9){onProgress&&onProgress(refs.length,refs.length,c.t);return{hist:c.d,time:c.t,failed:c.f||[]}}}catch(e){}}
+ if(!force){try{const c=JSON.parse(localStorage.getItem(CACHE_KEY)||'null');if(c&&Date.now()-c.t<CACHE_HOURS*36e5&&Object.keys(c.d).length>=refs.length*0.9){const miss=refs.filter(r=>!c.d[r]);
+   if(miss.length&&miss.length<=20){await Promise.all(miss.map(async ref=>{try{const r=await fetch(`${API}/park/activations/${ref}?count=all`);if(!r.ok)throw 0;const j=await r.json();c.d[ref]=(Array.isArray(j)?j:[]).map(a=>[String(a.activeCallsign||'').toUpperCase(),String(a.qso_date||''),+a.totalQSOs||0])}catch(e){c.d[ref]=[]}}));try{localStorage.setItem(CACHE_KEY,JSON.stringify(c))}catch(e){}}
+   onProgress&&onProgress(refs.length,refs.length,c.t);return{hist:c.d,time:c.t,failed:c.f||[]}}}catch(e){}}
  const out={},failed=[];let done=0,i=0;
  async function worker(){while(i<refs.length){const ref=refs[i++];
   try{const r=await fetch(`${API}/park/activations/${ref}?count=all`);if(!r.ok)throw 0;const j=await r.json();
@@ -55,7 +80,7 @@ const links={pota:r=>`https://pota.app/#/park/${r}`,sota:r=>`https://sotl.as/sum
  qrz:c=>`https://www.qrz.com/db/${encodeURIComponent(base(c))}`,gmap:(a,b)=>`https://www.google.com/maps/search/?api=1&query=${a},${b}`,
  dir:(a,b,o)=>`https://www.google.com/maps/dir/?api=1${o?`&origin=${o[0]},${o[1]}`:''}&destination=${a},${b}`,wx:(a,b)=>`https://weather.com/weather/today/l/${a},${b}`};
 document.addEventListener('DOMContentLoaded',navToggle);
-return{MEMBERS,esc,base,isMember,miles,grid,data,counties,countyOf,history,progressUI,leafletMap,countyLayer,links,fmtDate,ok,cty};
+return{MEMBERS,liveKY,esc,base,isMember,miles,grid,data,counties,countyOf,history,progressUI,leafletMap,countyLayer,links,fmtDate,ok,cty};
 })();
 /* KPC popup fit (shared; identical copy in kpc-tools.js and kpc-map-extras.js, runs once).
    Keeps map popups fully visible: clear of the map edges AND the sticky site menu bar, re-checked when popup
