@@ -107,9 +107,13 @@ async function loadSpots(){const note=$('sp-note');if(note)note.textContent='Loa
    where the SPOTTER is ("heard in the USA"), not the DX station. Kentucky/neighbors count as heard in the USA. */
 const DXCAT=c=>c==='DX'||c==='RBN';
 function inArea(s,a){if(a==='all')return true;
- if(DXCAT(s.cat)){if(!s.deCountry&&!s.deCont&&!s.deState)return true;
-  const deUS=/United States|^USA?$/i.test(s.deCountry)||USST.has(s.deState)||(!s.deCountry&&/^(K|W|N|A[A-L])\d/.test(s.by||''));
-  if(a==='ky'||a==='near'||a==='us')return deUS;if(a==='NA')return s.deCont==='NA'||deUS;return s.deCont===a}
+ if(DXCAT(s.cat)){const hasDe=!!(s.deCountry||s.deState),by=String(s.by||'').toUpperCase().split('/').reduce((x,y)=>/\d/.test(y)&&y.length>x.length?y:x,'');
+  const deUS=/United States|^USA?$/i.test(s.deCountry)||USST.has(s.deState)||(!hasDe&&/^(K|W|N|A[A-L])\d/.test(by));
+  const known=hasDe||!!by;
+  if(a==='ky'||a==='near'||a==='us'){if(known)return deUS}
+  else if(a==='NA'){if(s.deCont)return s.deCont==='NA';if(known)return deUS||/^(V[AEOY]|X[A-I])\d/.test(by)}
+  else if(s.deCont)return s.deCont===a}
+ /* otherwise (or when nothing is known about the spotter) use where the spotted station is */
  const us=/United States|^USA?$/i.test(s.country)||/^(US|K)-/.test(s.ref)||USST.has(s.state);
  if(a==='ky')return s.state==='KY'||/US-KY/.test(s.ref);if(a==='near')return NEAR.includes(s.state);if(a==='us')return us;
  if(a==='NA')return s.cont==='NA'||us;return s.cont===a}
@@ -130,20 +134,36 @@ const usSt=s=>STN[s.state]&&(!s.country||/United States|^USA?$/i.test(s.country)
 function spotXY(s){if(isFinite(s.la)&&isFinite(s.lo)&&(s.la||s.lo))return[s.la,s.lo];return gridXY(s.grid)||(STC[usSt(s)]||null)}
 const mi=(a,b)=>{const r=Math.PI/180,x=(b[0]-a[0])*r,y=(b[1]-a[1])*r,h=Math.sin(x/2)**2+Math.cos(a[0]*r)*Math.cos(b[0]*r)*Math.sin(y/2)**2;return 7917.6*Math.asin(Math.min(1,Math.sqrt(h)))};
 const SWEET={'160m':500,'80m':500,'60m':700,'40m':800,'30m':1200,'20m':1500,'17m':1800,'15m':2000,'12m':2000,'10m':2000};
-function bestRx(s){const xy=spotXY(s),b=bandOf(s.khz);if(!xy||!SWEET[b])return null;let best=null;
- RX.forEach(r=>{if(!isFinite(r.la))return;const d=mi(xy,[r.la,r.lo]),sc=Math.abs(Math.log(Math.max(d,50)/SWEET[b]));if(!best||sc<best.sc)best={r,d,sc}});return best}
-function whereText(s){const g=String(s.grid||'').slice(0,4).toUpperCase();const st=STN[usSt(s)];
- const place=st?st+', USA':s.country?String(s.country).replace(/^United States( of America)?$/,'USA'):'';return [place,g].filter(Boolean).join(' · ')}
+function bestRx(s){const xy=spotXY(s),b=bandOf(s.khz);if(!xy||!SWEET[b])return null;const all=[];
+ RX.forEach(r=>{if(!isFinite(r.la))return;const d=mi(xy,[r.la,r.lo]),sc=Math.abs(Math.log(Math.max(d,50)/SWEET[b]));all.push({r,d,sc})});all.sort((a,b)=>a.sc-b.sc);return all.length?{...all[0],others:all.slice(1)}:null}
+/* US state from the spot's position (state outlines in kpc-us-states.json, loaded once) */
+let STB=null,STBp=null;
+function loadStates(){if(STBp)return STBp;STBp=fetch('kpc-us-states.json').then(r=>r.json()).then(B=>{STB=B.map(b=>{let s=90,n=-90,w=180,e=-180;b.p.forEach(pl=>pl[0].forEach(([x,y])=>{if(y<s)s=y;if(y>n)n=y;if(x<w)w=x;if(x>e)e=x}));return{a:b.a,p:b.p,bb:[s,n,w,e]}});if(SP.length)drawSpots()}).catch(()=>{STB=[]});return STBp}
+function ringIn(x,y,r){let ins=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const[xi,yi]=r[i],[xj,yj]=r[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi+1e-15)+xi)ins=!ins}return ins}
+function stateAt(la,lo){if(!STB)return'';for(const b of STB){if(la<b.bb[0]||la>b.bb[1]||lo<b.bb[2]||lo>b.bb[3])continue;if(b.p.some(pl=>ringIn(lo,la,pl[0])&&!pl.slice(1).some(h=>ringIn(lo,la,h))))return b.a}return''}
+/* Canada: province from the feed if given, else from the call sign prefix (VE3 = Ontario, VE7 = BC, …) */
+const CAP={AB:'Alberta',BC:'British Columbia',MB:'Manitoba',NB:'New Brunswick',NL:'Newfoundland and Labrador',NS:'Nova Scotia',NT:'Northwest Territories',NU:'Nunavut',ON:'Ontario',PE:'Prince Edward Island',QC:'Quebec',SK:'Saskatchewan',YT:'Yukon'};
+const CAPRE={1:'NS',2:'QC',3:'ON',4:'MB',5:'SK',6:'AB',7:'BC',8:'NT',9:'NB'};
+function caProv(s){if(CAP[s.state])return CAP[s.state];const parts=String(s.call||'').toUpperCase().split('/');
+ for(const p of parts){let m=p.match(/^V[EA](\d)/);if(m&&CAPRE[m[1]])return CAP[CAPRE[m[1]]];if(/^VY0/.test(p))return CAP.NU;if(/^VY1/.test(p))return CAP.YT;if(/^VY2/.test(p))return CAP.PE;if(/^VO[12]/.test(p))return CAP.NL}return''}
+const isCA=s=>/Canada/i.test(s.country)||(!s.country&&/^(V[AEOY]\d|C[F-KY]\d)/.test(String(s.call||'').toUpperCase()));
+const isUS=s=>/United States|^USA?$/i.test(s.country)||!!usSt(s);
+function whereText(s){const g=String(s.grid||'').slice(0,4).toUpperCase();let place='';
+ if(isCA(s)){const p=caProv(s);place=(p?p+', ':'')+'Canada'}
+ else{let st=usSt(s);if(!st&&(isUS(s)||!s.country)){const xy=spotXY(s);if(xy){if(!STB)loadStates();st=stateAt(xy[0],xy[1])}}
+  place=st?STN[st]+', USA':s.country?String(s.country).replace(/^United States( of America)?$/,'USA'):''}
+ return [place,g].filter(Boolean).join(' · ')}
 /* KPC members: always pinned to the top in gold, whatever the filters (roster is MEMBERS in kpc-tools.js, the only list) */
 const isKpc=c=>{try{if(typeof KPC!=='undefined'&&KPC.isMember)return KPC.isMember(c)}catch(e){}return false};
-function drawSpots(){const tb=$('sp-list');if(!tb)return;drawFilters();store.set('kpcSpotF2',F);
+function fillStates(){if(!STB){loadStates();return}for(const s of SP){if(s._st)continue;s._st=1;if(s.state&&STN[s.state])continue;if(isCA(s)||(s.country&&!isUS(s)))continue;const xy=spotXY(s);if(!xy)continue;const a=stateAt(xy[0],xy[1]);if(a){s.state=a;if(!s.country)s.country='United States'}}}
+function drawSpots(){const tb=$('sp-list');if(!tb)return;drawFilters();store.set('kpcSpotF2',F);fillStates();
  const club=SP.filter(s=>isKpc(s.call)),L=filtered().filter(s=>!isKpc(s.call)),show=[...club,...L.slice(0,SHOWN)];
  $('sp-count').textContent=SP.length?`${(L.length+club.length).toLocaleString()} of ${SP.length.toLocaleString()} spots`+(club.length?` · ${club.length} KPC`:''):'';
  $('sp-note').textContent=SP.length?`From ${srcNote}. Last hour, newest first. Refreshes every minute.`+(F.area!=='all'&&(!F.cats.length||F.cats.some(DXCAT))?' DX cluster and skimmer spots are filtered by where the spotter is, so you see DX heard in your area.':''):(lastLoad?'No spots could be loaded right now. Try again in a minute.':'Loading spots…');
  tb.innerHTML=(club.length?`<div class="sp-kpchead">&#9733; KPC MEMBERS ON THE AIR (${club.length}) <span>always shown first</span></div>`:'')+show.map((s,i)=>{const b=bandOf(s.khz),loc=[s.state,s.state?'':s.country].filter(Boolean).join(' ')||s.grid,k=i<club.length;
   return`${!k&&i===club.length&&club.length?'<div class="sp-kpchead sp-rest">ALL OTHER SPOTS (YOUR FILTERS)</div>':''}<div class="sp-row${k?' sp-kpc':''}"><div class="sp-a"><span class="sp-cat c-${s.cat}">${esc(s.cat==='OTHER'?(String(s.label||'OTHER')).toUpperCase():s.cat==='DX'?'DX':s.cat)}</span><b class="sp-call">${esc(s.call)}</b>${k?'<span class="sp-badge">KPC</span>':''}<span class="sp-t">${ago(s.t)}</span></div>
 <div class="sp-b"><b>${fmtK(s.khz)}</b> kHz <span class="sp-m">${esc(s.mode||'?')}</span>${b?' · '+b:''}</div>
-<div class="sp-c">${s.ref?`<span class="sp-ref">${esc(s.ref)}</span> `:''}${esc(s.name)}${s.comment?` <span class="sp-cm">“${esc(String(s.comment).slice(0,80))}”</span>`:''}</div>${(()=>{const w=whereText(s),br=s.khz<=30000?bestRx(s):null;return w||br?`<div class="sp-d">${w?`&#128205; ${esc(w)}`:''}${br?`${w?' · ':''}Best receiver: <button type="button" class="sp-rx" data-rx="${br.r.id}" data-i="${i}" title="About ${Math.round(br.d).toLocaleString()} miles from this station">${esc(br.r.short||br.r.name)} &#9654;</button> <span class="sp-mi">${(br.d>=100?Math.round(br.d/10)*10:Math.round(br.d)).toLocaleString()} mi</span>`:''}</div>`:''})()}
+<div class="sp-c">${s.ref?`<span class="sp-ref">${esc(s.ref)}</span> `:''}${esc(s.name)}${s.comment?` <span class="sp-cm">“${esc(String(s.comment).slice(0,80))}”</span>`:''}</div>${(()=>{const w=whereText(s),br=s.khz<=30000?bestRx(s):null;return w||br?`<div class="sp-d">${w?`&#128205; ${esc(w)}`:''}${br?`${w?' · ':''}Best receiver: <button type="button" class="sp-rx" data-rx="${br.r.id}" data-i="${i}" title="About ${Math.round(br.d).toLocaleString()} miles from this station">${esc(br.r.short||br.r.name)} &#9654;</button> <span class="sp-mi">${(br.d>=100?Math.round(br.d/10)*10:Math.round(br.d)).toLocaleString()} mi</span>${br.others.length?` <span class="sp-or">or</span> `+br.others.map(o=>`<button type="button" class="sp-rx sp-alt" data-rx="${o.r.id}" data-i="${i}" title="About ${Math.round(o.d).toLocaleString()} miles from this station">${esc((o.r.short||o.r.name).replace(/ \(.*\)$/,''))}</button>`).join(' '):''}`:''}</div>`:''})()}
 <button type="button" class="sp-go" data-i="${i}" ${s.khz>30000?'disabled title="Above 30 MHz: HF receivers can’t tune this"':''}>&#9654; LISTEN</button></div>`}).join('')+(L.length?'':`<p class="sp-empty">${SP.length?'No '+(club.length?'other ':'')+'spots match these filters. Tap ALL on a row, pick another band, or SHOW EVERYTHING.':''}</p>`);
  if(L.length>SHOWN||SHOWN>5)tb.insertAdjacentHTML('beforeend',`<div class="sp-more">${L.length>SHOWN?`<button type="button" class="lv-chip" data-more="1">SHOW ${Math.min(20,L.length-SHOWN)} MORE (${(L.length-SHOWN).toLocaleString()} not shown)</button>`:''}${SHOWN>5?'<button type="button" class="lv-chip" data-less="1">SHOW FEWER</button>':''}</div>`);
  tb._show=show}
