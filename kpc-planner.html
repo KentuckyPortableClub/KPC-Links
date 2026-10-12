@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <link rel="stylesheet" href="kpc-tools.css">
-<script src="kpc-tools.js?v=20261012h"></script>
+<script src="kpc-tools.js?v=20261012o"></script>
 <style id="pl-css">
 .pl-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
 .pl-bar .btn{width:auto}
@@ -82,6 +82,7 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
 .pl-info .pi-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261010g">
+<style>#plModes .chip[aria-pressed=true]{background:#171717;color:#f0c96b;border-color:#171717}.rt-end{width:26px;height:26px;border-radius:50%;background:#171717;color:#f0c96b;font:900 13px/26px sans-serif;text-align:center;border:2px solid #f0c96b;box-shadow:0 1px 4px rgba(0,0,0,.5)}.controls[hidden]{display:none}</style>
 </head>
 <body>
 <header class="site-nav">
@@ -144,8 +145,16 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
 <nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-sota.html">SOTA</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html" aria-current=page>Trip Planner</a><a href="kpc-planner-us.html">US Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html">Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html">Antenna</a><a href="parks.html">← Parks</a></div></nav>
 <section class="section"><div class="wrap">
 <div class="panel">
-<div class="controls">
-<label class="field" style="flex:2 1 220px">START FROM (TOWN, PARK OR #)<input id="town" list="towns" placeholder="Hazard, Natural Bridge, US-1286, W4K/EC-001…" autocomplete="off"><datalist id="towns"></datalist></label>
+<div class="chips" id="plModes" role="group" aria-label="Search type" style="margin-bottom:12px"><button type="button" class="chip" data-m="town" aria-pressed="true">&#128205; FROM A TOWN</button><button type="button" class="chip" data-m="route" aria-pressed="false">&#128663; ALONG A ROUTE</button></div>
+<div class="controls" id="routeCtl" hidden>
+<label class="field" style="flex:2 1 220px">START (TOWN, PARK, # OR GPS)<input id="rtFrom" list="towns" placeholder="Berea, US-1286, 37.57, -84.29…" autocomplete="off"></label>
+<label class="field" style="flex:2 1 220px">FINISH<input id="rtTo" list="towns" placeholder="Pikeville, Nashville TN, 36.9, -83.3…" autocomplete="off"></label>
+<label class="field" style="flex:0 1 140px">WITHIN<select id="rtW" style="min-height:44px"><option value="5">5 miles</option><option value="10">10 miles</option><option value="25" selected>25 miles</option><option value="50">50 miles</option></select></label>
+<button class="btn" id="rtGo" type="button" style="align-self:flex-end">FIND SPOTS ALONG THE WAY</button>
+<button class="btn alt" id="rtClear" type="button" style="align-self:flex-end">&#10005; CLEAR</button>
+</div>
+<div class="controls" id="townCtl">
+<label class="field" style="flex:2 1 220px">START FROM (TOWN, PARK, #, ADDRESS OR GPS)<input id="town" list="towns" placeholder="Hazard, Natural Bridge, US-1286, W4K/EC-001…" autocomplete="off"><datalist id="towns"></datalist></label>
 <button class="btn alt" id="gps" type="button" style="align-self:flex-end">📍 USE MY LOCATION</button>
 <button class="btn alt" id="newSearch" type="button" style="align-self:flex-end">✕ CLEAR SEARCH</button>
 <label class="field" style="flex:1 1 160px">WITHIN <span id="rLbl">40 MILES</span><input type="range" id="rad" min="10" max="150" step="5" value="40" style="min-height:44px;padding:0"></label>
@@ -170,7 +179,7 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
 <div class="note">Distances are straight-line miles from your starting point; drive time depends on roads. Park stops go to an official parking or access point when the KPC guide has one. Map boundaries come from Kentucky and federal GIS and usually match POTA, but not always, so check the POTA map before you activate from a spot. Always check access, posted rules and hunting seasons.</div>
 </div></section>
 <script src="kpc-map-extras.js?v=20261012h"></script>
-<script src="kpc-planner.js?v=20261011b"></script>
+<script src="kpc-planner.js?v=20261012o"></script>
 
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>

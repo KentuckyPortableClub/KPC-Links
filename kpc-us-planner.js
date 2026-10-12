@@ -11,6 +11,7 @@ const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.
 let ALL=[],BYREF={},BORD=[],map=null,dots=null,ctrMk=null,ring=null,bound=null,road=null,center=null,radius=25,progs=store.get('kpcUsProgs',['POTA','SOTA','WWFF']);
 let trip=store.get('kpcUsTrip',[]),dropMode=false,NEAR=[];
 const liveStates={};
+const TAP=matchMedia('(pointer:coarse)').matches;
 const isPhone=()=>/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)||matchMedia('(max-width:700px)').matches;
 const fix=n=>Math.round(n*1e5)/1e5;
 function status(t){$('us-status').innerHTML=t}
@@ -30,7 +31,9 @@ async function addLive(la,lo,mi){if(!progs.includes('POTA'))return 0;let added=0
 
 /* ---------- map ---------- */
 function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>';return}
- map=L.map('usmap',{preferCanvas:true,scrollWheelZoom:false}).setView([38.5,-96],4);
+ /* dots are drawn on a canvas; tolerance widens the tap area around each dot (more on touch screens) */
+ map=L.map('usmap',{preferCanvas:true,renderer:L.canvas({padding:.5,tolerance:TAP?14:5}),scrollWheelZoom:false}).setView([38.5,-96],4);
+ if(window.kpcLocate)kpcLocate(map);
  const esri='https://server.arcgisonline.com/ArcGIS/rest/services/';
  const street=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'});
  const sat=L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
@@ -88,7 +91,7 @@ async function livePota(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;e
   el.textContent=`${a.length} activation attempt${a.length===1?'':'s'} (${good} with 10+ QSOs) • last ${KPC.fmtDate(last)}`}catch(e){el.textContent=''}}
 function drawDots(){if(!map)return;dots.clearLayers();
  const show=center?NEAR:[];
- show.forEach(s=>{const inT=inTrip(s.c);const mk=L.circleMarker([s.la,s.lo],{radius:inT?8:s.p==='SOTA'?5:6,weight:inT?3:1,color:inT?'#f0c96b':'#173a28',fillColor:COL[s.p],fillOpacity:.9});
+ show.forEach(s=>{const inT=inTrip(s.c);const mk=L.circleMarker([s.la,s.lo],{radius:(inT?9:s.p==='SOTA'?6:7)+(TAP?2:0),weight:inT?3:2,color:inT?'#f0c96b':'#ffffff',fillColor:COL[s.p],fillOpacity:.95}); /* white ring shows on satellite */
   const pp=L.popup({maxWidth:300}).setContent(popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)});
  trip.filter(s=>s.p==='PIN').forEach(s=>{const mk=L.marker([s.la,s.lo],{icon:L.divIcon({className:'',html:'<div class="pin-us"></div>',iconSize:[16,16],iconAnchor:[8,16]})});const pp=L.popup({maxWidth:300}).setContent(popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)})}
 
@@ -99,7 +102,7 @@ async function search(q){q=q.trim();if(!q)return;$('us-hits').style.display='non
  const ref=normRef(q);if(BYREF[ref]){const s=BYREF[ref];await go(s.la,s.lo,s.n);openSpot(s);return}
  const lq=q.toLowerCase();const parks=ALL.filter(s=>progs.includes(s.p)&&s.n.toLowerCase().includes(lq)).slice(0,8);
  status('Searching places…');let places=[];
- try{const r=await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&countrycodes=us&limit=6&q='+encodeURIComponent(q),{headers:{'Accept-Language':'en'}});if(r.ok)places=await r.json()}catch(e){}
+ try{places=(await kpcGeocode(q)).map(g=>({lat:g.la,lon:g.lo,display_name:g.label}))}catch(e){}
  const items=[...places.map(p=>({t:'place',la:+p.lat,lo:+p.lon,n:p.display_name})),...parks.map(s=>({t:'spot',s}))];
  if(!items.length){status(`Nothing found for “${esc(q)}”. Try a town and state (“Berea KY”), a ZIP, or a park number.`);return}
  if(items.length===1){const i=items[0];if(i.t==='place')go(i.la,i.lo,i.n);else{await go(i.s.la,i.s.lo,i.s.n);openSpot(i.s)}return}
@@ -137,9 +140,7 @@ function parseLL(q){const m=String(q).trim().match(/^([NS])?\s*(-?\d{1,2}(?:\.\d
 let lastNom=0;
 async function resolvePoint(q){q=String(q||'').trim();if(!q)return null;const ll=parseLL(q);if(ll)return ll;
  const ref=normRef(q);if(BYREF[ref]){const s=BYREF[ref];return{la:s.la,lo:s.lo,label:s.n+' ('+s.c+')'}}
- const wait=1100-(Date.now()-lastNom);if(wait>0)await new Promise(r=>setTimeout(r,wait));lastNom=Date.now(); /* place search asks for at most one request a second */
- try{const r=await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&countrycodes=us&limit=1&q='+encodeURIComponent(q),{headers:{'Accept-Language':'en'}});
-  if(r.ok){const j=await r.json();if(j&&j[0])return{la:+j[0].lat,lo:+j[0].lon,label:j[0].display_name.split(',').slice(0,3).join(',')}}}catch(e){}
+ try{const g=await kpcGeocode(q);if(g.length)return{la:g[0].la,lo:g[0].lo,label:g[0].label}}catch(e){}
  const lq=q.toLowerCase(),s=ALL.find(x=>x.n.toLowerCase().includes(lq));return s?{la:s.la,lo:s.lo,label:s.n}:null}
 async function roadRoute(a,b){try{const c=new AbortController(),t=setTimeout(()=>c.abort(),20000);
   const r=await fetch(`https://router.project-osrm.org/route/v1/driving/${a.lo},${a.la};${b.lo},${b.la}?overview=simplified&geometries=geojson`,{signal:c.signal});clearTimeout(t);
@@ -181,16 +182,20 @@ const OVP=['https://overpass.private.coffee/api/interpreter','https://maps.mail.
 const ovpCache={};
 /* every failure is kept so the message can say exactly what each server answered */
 const OVPN=['private.coffee','VK Maps','overpass-api.de'];
-async function overpass(q,key){if(ovpCache[key])return ovpCache[key];let last;const why=[];
- for(const u of OVP){const c=new AbortController(),t=setTimeout(()=>c.abort(),25000);
-  try{const r=await fetch(u,{method:'POST',body:'data='+encodeURIComponent(q),headers:{'Content-Type':'application/x-www-form-urlencoded'},signal:c.signal});
-   if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();if(j&&Array.isArray(j.elements)){ovpCache[key]=j;return j}throw new Error('bad answer')}
-  catch(e){last=e;why.push(OVPN[OVP.indexOf(u)]+': '+(e.name==='AbortError'?'timed out after 25 s':/^HTTP \d+/.test(e.message)?'server answered '+e.message.replace('HTTP ','')+({'429':' (too many requests)','406':' (request refused)','504':' (server overloaded)','503':' (server unavailable)','400':' (query not accepted)'}[e.message.slice(5)]||''):e.message==='bad answer'?'sent something that was not boundary data':'blocked or unreachable from this browser ('+(e.message||e.name)+')'))}finally{clearTimeout(t)}}
+async function overpass(q,key){if(ovpCache[key])return ovpCache[key];const why=[];
+ /* ask all three at once and take the first good answer (one at a time took up to 75 s when two were slow) */
+ const ctl=OVP.map(()=>new AbortController());
+ const one=(u,i)=>new Promise((ok,no)=>{const t=setTimeout(()=>ctl[i].abort(),22000);
+  fetch(u,{method:'POST',body:'data='+encodeURIComponent(q),headers:{'Content-Type':'application/x-www-form-urlencoded'},signal:ctl[i].signal})
+   .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(j=>{if(j&&Array.isArray(j.elements))ok(j);else throw new Error('bad answer')})
+   .catch(e=>{why.push(OVPN[i]+': '+(e.name==='AbortError'?'timed out after 22 s':/^HTTP \d+/.test(e.message)?'server answered '+e.message.replace('HTTP ','')+({'429':' (too many requests)','406':' (request refused)','504':' (server overloaded)','503':' (server unavailable)','400':' (query not accepted)'}[e.message.slice(5)]||''):e.message==='bad answer'?'sent something that was not boundary data':'blocked or unreachable from this browser ('+(e.message||e.name)+')'));no(e)})
+   .finally(()=>clearTimeout(t))});
+ try{const j=await Promise.any(OVP.map(one));ctl.forEach(c=>{try{c.abort()}catch(e){}});ovpCache[key]=j;return j}catch(e){}
  const err=new Error('all servers failed');err.why=why;throw err}
 function sim(a,b){const w=t=>new Set(String(t).toLowerCase().replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(x=>x.length>2&&!['state','park','national','area','the','and','wildlife','management'].includes(x)));const A=w(a),B=w(b);let n=0;A.forEach(x=>{if(B.has(x))n++});return n/Math.max(1,Math.min(A.size,B.size))}
 async function showBoundary(s,btn){if(bound){bound.remove();bound=null}btn.textContent='LOOKING…';btn.disabled=true;
- const b=map.getBounds().pad(0.5),bb=`${b.getSouth().toFixed(4)},${b.getWest().toFixed(4)},${b.getNorth().toFixed(4)},${b.getEast().toFixed(4)}`;
- const q=`[out:json][timeout:25];is_in(${s.la},${s.lo})->.a;(way(pivot.a)["boundary"~"protected_area|national_park"];rel(pivot.a)["boundary"~"protected_area|national_park"];way(pivot.a)["leisure"~"park|nature_reserve"];rel(pivot.a)["leisure"~"park|nature_reserve"];);out geom(${bb});`;
+ const bb=`${(s.la-.3).toFixed(4)},${(s.lo-.4).toFixed(4)},${(s.la+.3).toFixed(4)},${(s.lo+.4).toFixed(4)}`; /* outline kept to ~20 miles around the park: much less data than a whole forest */
+ const q=`[out:json][timeout:20];is_in(${s.la},${s.lo})->.a;(way(pivot.a)["boundary"~"protected_area|national_park"];rel(pivot.a)["boundary"~"protected_area|national_park"];way(pivot.a)["leisure"~"park|nature_reserve"];rel(pivot.a)["leisure"~"park|nature_reserve"];);out geom(${bb});`;
  try{const j=await overpass(q,s.c);const els=(j.elements||[]).filter(e=>e.tags);if(!els.length){btn.textContent='NO OUTLINE IN OPENSTREETMAP';return}
   const area=e=>{const g=e.type==='way'?e.geometry:(e.members||[]).flatMap(m=>m.geometry||[]);if(!g||!g.length)return 1e9;let a=1e9,c=-1e9,d=1e9,f=-1e9;g.forEach(p=>{if(!p)return;a=Math.min(a,p.lat);c=Math.max(c,p.lat);d=Math.min(d,p.lon);f=Math.max(f,p.lon)});return(c-a)*(f-d)};
   els.sort((x,y)=>(sim(s.n,y.tags.name||'')-sim(s.n,x.tags.name||''))||(area(x)-area(y)));const e=els[0];
