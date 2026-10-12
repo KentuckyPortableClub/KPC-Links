@@ -79,10 +79,24 @@
 <section class="tool-head th-fort"><div class="wrap">
 <p class="eyebrow">KPC PARK CHECKER</p>
 <h1>KENTUCKY <span>PARK CHECKER</span></h1>
-<p class="sub">Enter any callsign to see which of Kentucky's POTA parks it has activated and which are still needed — then download the list as a spreadsheet (CSV).</p>
+<p class="sub" id="page-sub">Enter any callsign to see which of Kentucky's POTA parks it has activated and which are still needed — then download the list as a spreadsheet (CSV).</p>
 </div></section>
 <nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html" aria-current=page>Park Checker</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html">Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html">Antenna</a><a href="parks.html">← Parks</a></div></nav>
 <section class="section"><div class="wrap">
+
+<style>
+.mode-toggle{display:flex;gap:0;margin-bottom:20px;border:1px solid #cbbf9f;border-radius:8px;overflow:hidden;width:fit-content}
+.mode-toggle button{padding:11px 24px;font-size:13px;font-weight:900;letter-spacing:1px;background:#fff;color:#68635a;border:none;cursor:pointer;transition:background .15s,color .15s;min-height:44px}
+.mode-toggle button.active{background:#0d2419;color:#f0c96b}
+.mode-toggle button:first-child{border-right:1px solid #cbbf9f}
+</style>
+
+<div class="mode-toggle" role="group" aria-label="Checker mode">
+  <button id="btn-act" class="active" onclick="setMode('act')">&#127897; ACTIVATOR</button>
+  <button id="btn-hunt" onclick="setMode('hunt')">&#127911; HUNTER</button>
+</div>
+
+<div id="pane-act">
 <div class="panel">
 <form class="controls" id="f" autocomplete="off">
 <label class="field" style="flex:1 1 220px">CALLSIGN<input id="call" placeholder="Your callsign" autocapitalize="characters" spellcheck="false"></label>
@@ -107,7 +121,37 @@
 <div class="tablewrap" style="max-height:420px"><table class="list"><thead><tr><th>PARK</th><th>COUNTY</th><th id="col3">FIRST</th><th id="col4">ACTS</th></tr></thead><tbody id="tbody"></tbody></table></div>
 </div></div>
 </div>
-<div class="note">Uses POTA's public activation records for the 186 Kentucky parks in the KPC guide. A park counts as activated with 10 or more QSOs in one activation. Nothing you type is saved or shared — the callsign is only used to filter POTA's public data in your browser. POTA doesn't publish hunter logs, so this checks activations only.</div>
+<div class="note">Uses POTA's public activation records for the 186 Kentucky parks in the KPC guide. A park counts as activated with 10 or more QSOs in one activation. Nothing you type is saved or shared — the callsign is only used to filter POTA's public data in your browser.</div>
+</div><!-- /pane-act -->
+
+<div id="pane-hunt" style="display:none">
+<div class="panel">
+<form class="controls" id="fh" autocomplete="off">
+<label class="field" style="flex:1 1 220px">CALLSIGN<input id="hcall" placeholder="Hunter callsign" autocapitalize="characters" spellcheck="false"></label>
+<button class="btn" type="submit" style="align-self:flex-end">CHECK HUNTS</button>
+</form>
+<div class="progress" id="hprog"><div class="bar"><i style="width:0"></i></div><small></small></div>
+</div>
+
+<div id="hresult" style="display:none;margin-top:22px">
+<div class="stats" id="hstats"></div>
+<div style="margin-top:14px"><div class="bar"><i id="hpbar" style="width:0"></i></div><small class="muted" id="hpbarLbl"></small></div>
+<div class="controls" style="margin-top:16px">
+<button class="btn" id="hcsvAll" type="button">DOWNLOAD ALL PARKS (CSV) ↓</button>
+<button class="btn alt" id="hcsvDone" type="button">HUNTED ONLY ↓</button>
+<button class="btn alt" id="hcsvNeed" type="button">STILL NEEDED ONLY ↓</button>
+</div>
+<div class="grid2" style="margin-top:20px">
+<div><div class="map" id="hmap"></div>
+<div class="legend"><span><i style="background:#1d5a3a"></i>Hunted</span><span><i style="background:#fff"></i>Still needed</span></div></div>
+<div>
+<div class="chips" id="htabs" style="margin-bottom:10px"><button class="chip" aria-pressed="true" data-t="done">HUNTED</button><button class="chip" aria-pressed="false" data-t="need">STILL NEEDED</button></div>
+<div class="tablewrap" style="max-height:420px"><table class="list"><thead><tr><th>PARK</th><th>COUNTY</th><th id="hcol3">FIRST HUNT</th><th id="hcol4">QSOs</th></tr></thead><tbody id="htbody"></tbody></table></div>
+</div></div>
+</div>
+<div class="note">Uses POTA's public hunter log for the 186 Kentucky parks in the KPC guide. Shows parks where you've made at least one hunter contact. Nothing you type is saved or shared.</div>
+</div><!-- /pane-hunt -->
+
 </div></section>
 <script>
 const $=id=>document.getElementById(id);
@@ -144,6 +188,66 @@ function csv(which){if(!cur)return;const q=v=>`"${String(v??'').replace(/"/g,'""
  const blob=new Blob(['﻿'+head+'\r\n'+rows.join('\r\n')],{type:'text/csv'}),a=document.createElement('a');
  a.href=URL.createObjectURL(blob);a.download=`${cur}_Kentucky_POTA_${which==='all'?'all':which==='done'?'activated':'needed'}_${new Date().toISOString().slice(0,10)}.csv`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
 $('csvAll').onclick=()=>csv('all');$('csvDone').onclick=()=>csv('done');$('csvNeed').onclick=()=>csv('need');
+
+/* ===== mode toggle ===== */
+function setMode(m){
+  document.getElementById('pane-act').style.display=m==='act'?'':'none';
+  document.getElementById('pane-hunt').style.display=m==='hunt'?'':'none';
+  document.getElementById('btn-act').classList.toggle('active',m==='act');
+  document.getElementById('btn-hunt').classList.toggle('active',m==='hunt');
+  document.getElementById('page-sub').textContent=m==='act'
+    ?'Enter any callsign to see which of Kentucky\'s POTA parks it has activated and which are still needed — then download the list as a spreadsheet (CSV).'
+    :'Enter your callsign to see which of Kentucky\'s POTA parks you\'ve hunted and which are still on your list. Download the results as a CSV.';}
+
+/* ===== HUNTER mode ===== */
+let HD=null,hmap=null,hlayer=null,hcur=null,HS={},htab='done';
+document.getElementById('fh').onsubmit=e=>{e.preventDefault();runHunter(document.getElementById('hcall').value)};
+async function loadHD(){if(HD)return HD;HD=await KPC.data();return HD}
+async function runHunter(call){call=KPC.base(call);if(!call)return;hcur=call;
+ const prog=document.getElementById('hprog'),pbar=prog.querySelector('i'),ptxt=prog.querySelector('small');
+ prog.style.display='block';pbar.style.width='30%';ptxt.textContent='Loading park list...';
+ try{
+  await loadHD();
+  pbar.style.width='55%';ptxt.textContent='Fetching your hunt log from POTA...';
+  const resp=await fetch('https://api.pota.app/hunter/'+encodeURIComponent(call)+'/parks');
+  if(!resp.ok)throw new Error('POTA returned '+resp.status);
+  const hunted=await resp.json();
+  pbar.style.width='90%';ptxt.textContent='Building map...';
+  HS={};
+  (Array.isArray(hunted)?hunted:[]).forEach(h=>{
+   const ref=String(h.reference||h.park||'').toUpperCase();
+   if(!ref.startsWith('KY-'))return;
+   HS[ref]={q:Number(h.count||h.qsos||1),first:String(h.firstHunted||h.firstQSO||'').replace(/[-T:Z]/g,'').slice(0,8)||'',last:String(h.lastHunted||h.lastQSO||'').replace(/[-T:Z]/g,'').slice(0,8)||''};
+  });
+  const P=HD.parks,doneP=P.filter(p=>HS[p.c]),needed=P.filter(p=>!HS[p.c]);
+  const counties=new Set(doneP.map(p=>p.co)),totalQ=Object.values(HS).reduce((s,x)=>s+x.q,0);
+  document.getElementById('hresult').style.display='block';
+  document.getElementById('hstats').innerHTML=`<div class="stat"><b>${doneP.length}</b><span>OF ${P.length} KY PARKS</span></div><div class="stat"><b>${needed.length}</b><span>STILL NEEDED</span></div><div class="stat"><b>${totalQ.toLocaleString()}</b><span>KY HUNTER QSOs</span></div><div class="stat"><b>${counties.size}</b><span>COUNTIES</span></div>`;
+  document.getElementById('hpbar').style.width=(100*doneP.length/P.length)+'%';
+  document.getElementById('hpbarLbl').textContent=`${call}: ${Math.round(100*doneP.length/P.length)}% of Kentucky parks hunted • ${counties.size} counties`;
+  pbar.style.width='100%';ptxt.textContent='Done.';
+  setTimeout(()=>{prog.style.display='none'},800);
+  drawHMap();drawHTable();
+ }catch(err){ptxt.textContent='Could not load hunt log — is that callsign registered on POTA? ('+err.message+')';pbar.style.width='0';}}
+async function drawHMap(){if(window.L){if(!hmap){hmap=KPC.leafletMap('hmap');await KPC.countyLayer(hmap)}
+ if(hlayer)hlayer.remove();hlayer=L.layerGroup().addTo(hmap);
+ HD.parks.forEach(p=>{const h=HS[p.c],hunted=!!h;
+  L.circleMarker([p.la,p.lo],{radius:hunted?7:5,weight:1.2,color:'#173a28',fillColor:hunted?'#1d5a3a':'#ffffff',fillOpacity:.95})
+  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> • ${KPC.esc(KPC.cty(p.co))}<br>${hunted?`Hunted ${h.q} QSOs${h.first?' • first '+KPC.fmtDate(h.first):''}`:('Not hunted yet')}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See in KY Park Commander →</a>`).addTo(hlayer)})}else{document.getElementById('hmap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}}
+function drawHTable(){const P=HD.parks;let rows;
+ if(htab==='done'){document.getElementById('hcol3').textContent='FIRST HUNT';document.getElementById('hcol4').textContent='QSOs';
+  rows=P.filter(p=>HS[p.c]).sort((a,b)=>(HS[a.c].first||'').localeCompare(HS[b.c].first||'')).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}</td><td>${KPC.esc(p.co)}</td><td>${KPC.fmtDate(HS[p.c].first)}</td><td>${HS[p.c].q}</td></tr>`)}
+ else{document.getElementById('hcol3').textContent='TYPE';document.getElementById('hcol4').textContent='';
+  rows=P.filter(p=>!HS[p.c]).sort((a,b)=>a.co.localeCompare(b.co)).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}</td><td>${KPC.esc(p.co)}</td><td>${KPC.esc(p.t)}</td><td></td></tr>`)}
+ document.getElementById('htbody').innerHTML=rows.join('')||`<tr><td colspan="4" class="muted">${htab==='done'?'No Kentucky hunts found for this callsign.':'Every Kentucky park hunted — fantastic!'}</td></tr>`}
+document.getElementById('htabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;htab=b.dataset.t;[...document.getElementById('htabs').children].forEach(x=>x.setAttribute('aria-pressed',x===b));if(hcur)drawHTable()};
+function hcsv(which){if(!hcur||!HD)return;const q=v=>`"${String(v??'').replace(/"/g,'""')}"`,d=x=>x?`${x.slice(0,4)}-${x.slice(4,6)}-${x.slice(6,8)}`:'';
+ const rows=HD.parks.filter(p=>{const h=HS[p.c];return which==='all'||(which==='done'?!!h:!h)}).map(p=>{const h=HS[p.c];
+  return[p.c,p.n,p.co,p.t,h?'Hunted':'Not yet',h?h.q:0,h?d(h.first):'',h?d(h.last):'',p.la,p.lo,KPC.links.pota(p.c)].map(q).join(',')});
+ const head=['Reference','Park','County','Type','Status','Hunter QSOs','First','Last','Latitude','Longitude','POTA link'].map(q).join(',');
+ const blob=new Blob(['\ufeff'+head+'\r\n'+rows.join('\r\n')],{type:'text/csv'}),a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);a.download=`${hcur}_Kentucky_POTA_hunted_${which==='all'?'all':which==='done'?'hunted':'needed'}_${new Date().toISOString().slice(0,10)}.csv`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+document.getElementById('hcsvAll').onclick=()=>hcsv('all');document.getElementById('hcsvDone').onclick=()=>hcsv('done');document.getElementById('hcsvNeed').onclick=()=>hcsv('need');
 </script>
 
 </main>
