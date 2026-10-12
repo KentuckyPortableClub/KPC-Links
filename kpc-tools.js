@@ -78,3 +78,44 @@ return{MEMBERS,esc,base,isMember,miles,grid,data,counties,countyOf,history,progr
    clearInterval(p._kpcW);if(p.options.autoPan===false)p._kpcW=setInterval(()=>{if(!p._map){clearInterval(p._kpcW);return}if(p.options.autoPan!==false){clearInterval(p._kpcW);fit(p)}},250);
    if(window.ResizeObserver&&p._container){if(p._kpcRO)p._kpcRO.disconnect();let t=0;p._kpcRO=new ResizeObserver(()=>{clearTimeout(t);t=setTimeout(()=>{cap(p);go()},60)});p._kpcRO.observe(p._container)}});
   map.on('popupclose',e=>{const p=e.popup;if(!p)return;clearInterval(p._kpcW);if(p._kpcRO){p._kpcRO.disconnect();p._kpcRO=null}})})})();
+/* KPC place + address lookup (shared by both trip planners).
+   Street addresses ("123 Main St, Berea KY") go to the US Census geocoder first (JSONP: it allows that, not plain
+   fetch), then OpenStreetMap Nominatim, then Photon. Towns and landmarks go to Nominatim first.
+   opts.ky: look inside Kentucky first. Returns [{la,lo,label}] (best first) or []. */
+window.kpcGeocode=window.kpcGeocode||(function(){let lastNom=0,seq=0;
+ const wait=ms=>new Promise(r=>setTimeout(r,ms));
+ function census(q){return new Promise(res=>{const cb='__kpcCensus'+(++seq),s=document.createElement('script');let done=false;
+  const end=v=>{if(done)return;done=true;try{delete window[cb]}catch(e){window[cb]=undefined}s.remove();res(v)};
+  window[cb]=j=>{const m=((j&&j.result&&j.result.addressMatches)||[]).map(a=>({la:+a.coordinates.y,lo:+a.coordinates.x,label:String(a.matchedAddress||q)})).filter(a=>isFinite(a.la)&&isFinite(a.lo));end(m)};
+  s.onerror=()=>end([]);setTimeout(()=>end([]),12000);
+  s.src='https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=jsonp&callback='+cb+'&address='+encodeURIComponent(q);document.head.appendChild(s)})}
+ async function nominatim(q,ky){const out=[];const base='https://nominatim.openstreetmap.org/search?format=jsonv2&countrycodes=us&limit=5&q='+encodeURIComponent(q);
+  for(const u of ky?[base+'&viewbox=-89.6,39.2,-81.9,36.4&bounded=1',base]:[base]){const w=1100-(Date.now()-lastNom);if(w>0)await wait(w);lastNom=Date.now();
+   try{const r=await fetch(u,{headers:{'Accept-Language':'en'}});if(r.ok){const j=await r.json();(j||[]).forEach(p=>out.push({la:+p.lat,lo:+p.lon,label:String(p.display_name||q).split(',').slice(0,3).join(',')}))}}catch(e){}
+   if(out.length)break}return out}
+ async function photon(q){try{const r=await fetch('https://photon.komoot.io/api/?limit=5&lang=en&q='+encodeURIComponent(q));if(!r.ok)return[];const j=await r.json();
+  return(j.features||[]).filter(f=>f.properties&&/^us$/i.test(f.properties.countrycode||'')).map(f=>{const p=f.properties;return{la:+f.geometry.coordinates[1],lo:+f.geometry.coordinates[0],label:[[p.housenumber,p.street].filter(Boolean).join(' ')||p.name,p.city||p.county,p.state].filter(Boolean).join(', ')}})}catch(e){return[]}}
+ const strip=q=>q.replace(/\b(apt|apartment|unit|suite|ste|lot|#)\s*[\w-]+/gi,'').replace(/(\d{5})-\d{4}/,'$1').replace(/\s+,/g,',').replace(/\s{2,}/g,' ').trim();
+ return async function(q,opts){q=String(q||'').trim();if(!q)return[];opts=opts||{};const addr=/^\d+[A-Za-z]?\s+\S+/.test(q),c=strip(q);
+  const steps=addr?[()=>census(c),()=>nominatim(c,opts.ky),()=>photon(c)]:[()=>nominatim(q,opts.ky),()=>photon(q)];
+  for(const st of steps){const r=await st();if(r&&r.length)return r}return[]}})();
+/* "Show where I am" map button (shared by both trip planners): live blue dot + accuracy ring. First tap finds you and
+   centers the map; tap again to re-center when you have panned away, or to turn it off when you are in view. */
+window.kpcLocate=window.kpcLocate||function(map){if(!window.L||!map||!map.getContainer)return null;
+ if(!document.getElementById('kpc-locate-css')){const st=document.createElement('style');st.id='kpc-locate-css';
+  st.textContent='.kpc-locate a{display:flex;align-items:center;justify-content:center;width:34px;height:34px;font-size:20px;line-height:1;color:#1f6fd1;background:#fff;text-decoration:none}.kpc-locate a.on{background:#1f6fd1;color:#fff}.kpc-locate a.busy{opacity:.6}@keyframes kpcpulse{0%{box-shadow:0 0 0 0 rgba(31,111,209,.55)}100%{box-shadow:0 0 0 14px rgba(31,111,209,0)}}.kpc-me{width:18px;height:18px;border-radius:50%;background:#1f6fd1;border:3px solid #fff;animation:kpcpulse 1.6s infinite}';document.head.appendChild(st)}
+ let wid=null,dot=null,ring=null,first=true,btn;
+ function stop(){if(wid!==null&&navigator.geolocation)navigator.geolocation.clearWatch(wid);wid=null;btn.classList.remove('on','busy');btn.title='Show where I am';if(dot){dot.remove();ring.remove();dot=ring=null}}
+ function start(){if(!navigator.geolocation){alert('This browser can’t share your location.');return}first=true;btn.classList.add('on','busy');btn.title='Finding you…';
+  wid=navigator.geolocation.watchPosition(p=>{const ll=[p.coords.latitude,p.coords.longitude],a=Math.min(p.coords.accuracy||0,5000);btn.classList.remove('busy');btn.title='Showing where you are (tap to re-center or turn off)';
+   if(!dot){ring=L.circle(ll,{radius:a,color:'#1f6fd1',weight:1,fillColor:'#1f6fd1',fillOpacity:.12,interactive:false}).addTo(map);
+    dot=L.marker(ll,{zIndexOffset:3000,keyboard:false,icon:L.divIcon({className:'',html:'<div class="kpc-me"></div>',iconSize:[24,24],iconAnchor:[12,12]})}).bindTooltip('You are here').addTo(map)}
+   else{dot.setLatLng(ll);ring.setLatLng(ll).setRadius(a)}
+   if(first){map.setView(ll,Math.max(map.getZoom(),13));first=false}},
+  err=>{stop();alert(err&&err.code===1?'Location is turned off for this site. Allow location in your browser settings to see where you are.':'Your location isn’t available right now. Try again in the open, away from buildings.')},
+  {enableHighAccuracy:true,maximumAge:10000,timeout:30000})}
+ const C=L.control({position:'topleft'});
+ C.onAdd=()=>{const d=L.DomUtil.create('div','leaflet-bar kpc-locate');btn=L.DomUtil.create('a','',d);btn.href='#';btn.setAttribute('role','button');btn.title='Show where I am';btn.setAttribute('aria-label','Show where I am');btn.innerHTML='&#9678;';
+  L.DomEvent.disableClickPropagation(d);L.DomEvent.on(btn,'click',e=>{L.DomEvent.preventDefault(e);
+   if(wid===null)start();else if(dot&&!map.getBounds().pad(-0.1).contains(dot.getLatLng()))map.setView(dot.getLatLng(),Math.max(map.getZoom(),13));else stop()});return d};
+ C.addTo(map);return C};

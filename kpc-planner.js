@@ -7,10 +7,11 @@
 (() => {
 const $ = id => document.getElementById(id);
 const esc = s => KPC.esc(s);
+const TAP = matchMedia('(pointer:coarse)').matches;   // touch screen: bigger dots
 const MAXSTOPS = 10;               // Google Maps: destination + 9 waypoints
 const TRIPKEY = 'kpcTripV1';
 const ICON = {pota:'#1d5a3a', sota:'#b5452b', kff:'#2b5f8a', multi:'#d5a63a'};
-let D, map, layer, tripLayer, V0, origin = null, ALL = null, res = [];
+let D, map, layer, tripLayer, V0, origin = null, ALL = null, res = [], RT = null;   // RT = along-a-route search
 let on = {pota:1, sota:1, kff:1, two:0};
 let trip = [];                     // {id,t:'park'|'spot',ref,k,n,la,lo,note}
 let adding = false, bReady = false;
@@ -232,14 +233,14 @@ function items(){const out=[],P=new Map(D.parks.map(p=>[p.c,p])),ANY=ovAnySet();
   tags:inPark.map(p=>`<span class="tag g">IN ${p.c}</span>`),links:[['SOTLAS',KPC.links.sota(s.c)],['WEATHER',KPC.links.wx(s.la,s.lo)]]})});
  D.kff.forEach(k=>{if(k.p&&P.has(k.p))return;out.push({k:'kff',ref:k.c,n:k.n,co:k.co,la:k.la,lo:k.lo,dest:[k.la,k.lo],multi:0,two:[],also:[],cls:'WWFF / KFF reference',ov:ANY.has(k.c),tags:[],links:[['WWFF',KPC.links.kff(k.c)]]})});
  return out}
-function run(fit){ALL=ALL||items();const R=+$('rad').value;
+function run(fit){ALL=ALL||items();if(RT)return runRoute(fit);const R=+$('rad').value;
  res=ALL.map(x=>({...x,d:KPC.miles(origin[0],origin[1],x.la,x.lo)})).filter(x=>x.d<=R&&on[x.k]&&(!on.two||x.ov)).sort((a,b)=>a.d-b.d);
  const c={pota:0,sota:0,kff:0};res.forEach(x=>c[x.k]++);
  $('where').innerHTML=`From <b>${esc(origin[2])}</b> within ${R} miles: <b>${c.pota}</b> POTA parks • <b>${c.sota}</b> summits • <b>${c.kff}</b> KFF-only references`;
  layer.clearLayers();L.circle([origin[0],origin[1]],{radius:R*1609.34,color:'#d5a63a',weight:1.5,fillOpacity:.04,interactive:false}).addTo(layer);
  L.circleMarker([origin[0],origin[1]],{radius:7,color:'#000',fillColor:'#000',fillOpacity:1}).bindPopup('Start: '+esc(origin[2])).addTo(layer);
  res.forEach(x=>{const two=x.two&&x.two.length;
-  const mk=L.circleMarker([x.la,x.lo],{radius:two?8:6,weight:x.ov&&!two?2.5:1.2,color:x.ov&&!two?'#7b3fa0':'#222',fillColor:two?ICON.multi:ICON[x.k],fillOpacity:.95})
+  const mk=L.circleMarker([x.la,x.lo],{radius:(two?9:7)+(TAP?2:0),weight:x.ov&&!two?3:2,color:x.ov&&!two?'#7b3fa0':'#ffffff',fillColor:two?ICON.multi:ICON[x.k],fillOpacity:.95}) /* white ring shows on satellite */
    .bindPopup(()=>pinCard(x),{maxWidth:290,minWidth:210,autoPanPadding:[12,12]});
   if(window.KPCX)KPCX.hover(mk);mk.on('click',()=>showInfo(x.ref));x.mk=mk;mk.addTo(layer)});
  if(fit!==false)map.fitBounds(L.latLng(origin[0],origin[1]).toBounds(R*1609.34*2.1));
@@ -296,6 +297,51 @@ function pinCard(x){const inTrip=trip.some(s=>s.ref===x.ref),P=PROG[x.k]||PROG.p
  <div class="kx-acts"><button type="button" class="pri" data-add="${x.ref}" ${inTrip?'disabled':''}>${inTrip?'✓ IN TRIP':'+ ADD TO TRIP'}</button><button type="button" data-info="${esc(x.ref)}">DETAILS ↓</button><a href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${x.dest[0]},${x.dest[1]}" target="_blank" rel="noopener">🚶 STREET VIEW</a>${(x.links||[]).slice(0,1).map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`).join('')}</div>
  ${x.k==='pota'?`<a href="finder.html?q=${x.ref}" style="display:inline-block;margin-top:6px;font-weight:700;font-size:12px">Open in KY Park Commander →</a>`:''}</div>`}
 /* start box: a town, or a park / summit / KFF by name or number (US-1286, K-1286, 1286, W4K/EC-001, KFF-1286) */
+/* ---------------- along a route (start + finish + distance) ----------------
+   Ends: a Kentucky town/park/number from the list, GPS ("37.57, -84.29"), or any US place via OpenStreetMap search.
+   Drive from the public OSRM server (straight line if busy). Every spot within the distance of the route is listed
+   in the order you reach it. Kentucky data only: the US Trip Planner covers other states. */
+function parseLL(q){const m=String(q).trim().match(/^([NS])?\s*(-?\d{1,2}(?:\.\d+)?)\s*°?\s*([NS])?\s*[,;\s]\s*([EW])?\s*(-?\d{1,3}(?:\.\d+)?)\s*°?\s*([EW])?$/i);if(!m)return null;
+ let la=+m[2],lo=+m[5];const ns=(m[1]||m[3]||'').toUpperCase(),ew=(m[4]||m[6]||'').toUpperCase();if(ns==='S')la=-Math.abs(la);if(ew==='W')lo=-Math.abs(lo);
+ if(!ew&&lo>60&&la>15&&la<72)lo=-lo;if(Math.abs(la)>90||Math.abs(lo)>180)return null;return{la,lo,n:la.toFixed(4)+', '+lo.toFixed(4)}}
+async function resolveEnd(v){v=String(v||'').trim();if(!v)return null;const ll=parseLL(v);if(ll)return ll;
+ const keep=$('where').innerHTML,p=findPlace(v);$('where').innerHTML=keep;if(p)return{la:p.la,lo:p.lo,n:p.n};
+ /* Kentucky first ("Berea" should not become Berea, Ohio); street addresses work too */
+ try{const g=await kpcGeocode(v,{ky:true});if(g.length)return{la:g[0].la,lo:g[0].lo,n:g[0].label}}catch(e){}
+ return null}
+async function driveRoute(a,b){try{const c=new AbortController(),t=setTimeout(()=>c.abort(),20000);
+  const r=await fetch(`https://router.project-osrm.org/route/v1/driving/${a.lo},${a.la};${b.lo},${b.la}?overview=simplified&geometries=geojson`,{signal:c.signal});clearTimeout(t);
+  if(!r.ok)throw 0;const j=await r.json(),rt=j.routes&&j.routes[0];if(!rt||!rt.geometry)throw 0;return{pts:rt.geometry.coordinates.map(c=>[c[1],c[0]]),mi:rt.distance/1609.34,hrs:rt.duration/3600,road:true}}
+ catch(e){return{pts:[[a.la,a.lo],[b.la,b.lo]],mi:KPC.miles(a.la,a.lo,b.la,b.lo),road:false}}}
+function offRoute(x){const P=RT.pts,k=Math.cos(x.la*Math.PI/180)*69.17;let best=1e9,at=0;
+ for(let i=1;i<P.length;i++){const ax=(P[i-1][1]-x.lo)*k,ay=(P[i-1][0]-x.la)*69,bx=(P[i][1]-x.lo)*k,by=(P[i][0]-x.la)*69,dx=bx-ax,dy=by-ay,L2=dx*dx+dy*dy;
+  const t=L2?Math.max(0,Math.min(1,-(ax*dx+ay*dy)/L2)):0,d=Math.hypot(ax+t*dx,ay+t*dy);if(d<best){best=d;at=RT.cum[i-1]+t*(RT.cum[i]-RT.cum[i-1])}}
+ return{off:best,at}}
+async function findRoute(){const fv=$('rtFrom').value,tv=$('rtTo').value,w=+$('rtW').value;try{localStorage.setItem('kpcPlanRoute',JSON.stringify({f:fv,t:tv,w}))}catch(e){}
+ if(!fv.trim()||!tv.trim()){$('where').textContent='Type where you start and where you finish.';return}
+ $('where').textContent='Finding your start…';const A=await resolveEnd(fv);if(!A){$('where').innerHTML=`Couldn’t find “${esc(fv)}”. Try a Kentucky town or park, a park number, or GPS like 37.57, -84.29.`;return}
+ $('where').textContent='Finding your finish…';
+ const B=await resolveEnd(tv);if(!B){$('where').innerHTML=`Couldn’t find “${esc(tv)}”. Try a Kentucky town or park, a park number, or GPS like 37.57, -84.29.`;return}
+ $('where').textContent='Working out the drive…';const R=await driveRoute(A,B);const cum=[0];for(let i=1;i<R.pts.length;i++)cum.push(cum[i-1]+KPC.miles(R.pts[i-1][0],R.pts[i-1][1],R.pts[i][0],R.pts[i][1]));
+ RT={...R,cum,A,B,w,total:cum[cum.length-1]};origin=[A.la,A.lo,A.n];save();run()}
+function runRoute(fit){const w=RT.w=+$('rtW').value;
+ res=ALL.filter(x=>on[x.k]&&(!on.two||x.ov)).map(x=>{const r=offRoute(x);return r.off<=w?{...x,d:r.at,off:r.off}:null}).filter(Boolean).sort((a,b)=>a.d-b.d);
+ const c={pota:0,sota:0,kff:0};res.forEach(x=>c[x.k]++);const h=RT.hrs?`, about ${Math.floor(RT.hrs)} h ${Math.round(RT.hrs%1*60)} min`:'';
+ $('where').innerHTML=`Along your ${Math.round(RT.road?RT.mi:RT.total)}-mile ${RT.road?'drive'+h:'route (straight line: the road-route server was busy)'} from <b>${esc(RT.A.n)}</b> to <b>${esc(RT.B.n)}</b>, within ${w} miles: <b>${c.pota}</b> POTA parks • <b>${c.sota}</b> summits • <b>${c.kff}</b> KFF-only references. In the order you reach them. Kentucky spots only: for other states use the <a href="kpc-planner-us.html">US Trip Planner</a>.`;
+ layer.clearLayers();const end=(p,t)=>L.marker([p.la,p.lo],{interactive:false,icon:L.divIcon({className:'',html:`<div class="rt-end">${t}</div>`,iconSize:[26,26],iconAnchor:[13,13]})});
+ L.polyline(RT.pts,{color:'#171717',weight:8,opacity:.5,interactive:false}).addTo(layer);L.polyline(RT.pts,{color:'#d5a63a',weight:4,interactive:false,dashArray:RT.road?null:'8 8'}).addTo(layer);end(RT.A,'A').addTo(layer);end(RT.B,'B').addTo(layer);
+ res.forEach(x=>{const two=x.two&&x.two.length;
+  const mk=L.circleMarker([x.la,x.lo],{radius:(two?9:7)+(TAP?2:0),weight:x.ov&&!two?3:2,color:x.ov&&!two?'#7b3fa0':'#ffffff',fillColor:two?ICON.multi:ICON[x.k],fillOpacity:.95}) /* white ring shows on satellite */
+   .bindPopup(()=>pinCard(x),{maxWidth:290,minWidth:210,autoPanPadding:[12,12]});
+  if(window.KPCX)KPCX.hover(mk);mk.on('click',()=>showInfo(x.ref));x.mk=mk;mk.addTo(layer)});
+ if(fit!==false)map.fitBounds(L.latLngBounds(RT.pts).pad(.08));
+ $('list').innerHTML=res.length?res.map((x,i)=>`<div class="item ${x.k}"><input type="checkbox" data-i="${i}" ${trip.some(s=>s.ref===x.ref)?'checked':''} aria-label="Add ${esc(x.ref)} to trip">
+ <div><span class="ref">${x.ref}</span> <span class="tag">${x.k.toUpperCase()}</span><h3>${esc(x.n)}</h3><div class="meta">${esc(KPC.cty(x.co))}${x.meta?' • '+x.meta:''}${x.dn?` • parking: ${esc(x.dn)}`:''}</div>${x.tags.length?`<div>${x.tags.join('')}</div>`:''}
+ <div class="acts"><button type="button" class="btn sm alt" data-zoom="${i}">SHOW ON MAP</button><a class="btn sm" href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a>${x.links.map(([l,u])=>`<a class="btn sm alt" href="${u}" target="_blank" rel="noopener">${l}</a>`).join('')}</div></div>
+ <div class="dist"><small>MILE</small>${Math.round(x.d)}<small>${x.off.toFixed(1)} MI OFF</small></div></div>`).join(''):'<div class="empty">Nothing in Kentucky that close to the route. Try a wider distance.</div>';
+ $('list').querySelectorAll('input[type=checkbox]').forEach(cb=>cb.onchange=()=>{const x=res[+cb.dataset.i];if(cb.checked){if(!canAdd()){cb.checked=false;return}addPark(x)}else{trip=trip.filter(s=>s.ref!==x.ref);changed()}});
+ $('list').querySelectorAll('[data-zoom]').forEach(b=>b.onclick=()=>{const x=res[+b.dataset.zoom];showInfo(x.ref);map.setView([x.la,x.lo],15);$('mapwrap').scrollIntoView({behavior:'smooth',block:'center'})})}
+function planMode(m){const r=m==='route';$('townCtl').hidden=r;$('routeCtl').hidden=!r;$('plModes').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.m===m)));try{localStorage.setItem('kpcPlanMode',m)}catch(e){}}
 function places(){ALL=ALL||items();return ALL}
 function lbl(x){return `${x.n} (${x.ref})`}
 function findPlace(v){v=v.trim();if(!v)return null;const lo=v.toLowerCase(),P=places();
@@ -313,14 +359,18 @@ function findPlace(v){v=v.trim();if(!v)return null;const lo=v.toLowerCase(),P=pl
   if(!x&&(starts.length||has.length)&&lo.length>2){const l=(starts.length?starts:has);$('where').innerHTML=`<b>${l.length}</b> matches for “${esc(v)}”. Pick one from the list: ${l.slice(0,6).map(x=>esc(lbl(x))).join(' · ')}${l.length>6?' …':''}`;return null}}
  if(!x){$('where').innerHTML=`No town, park or reference matches “${esc(v)}”. Try a park name, a POTA number like US-1286, or a summit like W4K/EC-001.`;return null}
  return {la:x.la,lo:x.lo,n:lbl(x),ref:x.ref}}
-function pickTown(){const p=findPlace($('town').value);if(!p)return;origin=[p.la,p.lo,p.n];if(p.ref)$('town').value=p.n;save();run();if(p.ref)showInfo(p.ref);
+async function pickAddress(v){const ll=parseLL(v);let g=ll?[{la:ll.la,lo:ll.lo,label:ll.n}]:null;
+ if(!g){$('where').textContent='Looking up that address…';try{g=await kpcGeocode(v,{ky:true})}catch(e){g=[]}}
+ if(!g||!g.length){$('where').innerHTML=`No town, park, reference or address matches “${esc(v)}”. Try a town, a park number like US-1286, a street address with town and state, or GPS like 37.57, -84.29.`;return}
+ RT=null;origin=[g[0].la,g[0].lo,g[0].label];save();run()}
+function pickTown(){const v=$('town').value,p=findPlace(v);if(!p){if(v.trim().length>3&&!/matches for/.test($('where').textContent))pickAddress(v.trim());return}RT=null;origin=[p.la,p.lo,p.n];if(p.ref)$('town').value=p.n;save();run();if(p.ref)showInfo(p.ref);
  if(p.ref){map.setView([p.la,p.lo],Math.max(map.getZoom(),11));const x=res.find(x=>x.ref===p.ref);if(x&&x.mk)setTimeout(()=>{x.mk.getPopup().options.autoPan=true;x.mk.openPopup()},350)}}
 
 /* ---------------- start ---------------- */
 (async()=>{
  D=await KPC.data();
  $('towns').innerHTML=D.towns.map(t=>`<option value="${esc(t.n)}">Town</option>`).join('')+places().map(x=>`<option value="${esc(lbl(x))}">${x.k==='pota'?'POTA park':x.k==='sota'?'SOTA summit':'KFF'}</option>`).join('');
- map=makeMap();if(map)KPC.countyLayer(map).catch(()=>{});
+ map=makeMap();if(map)KPC.countyLayer(map).catch(()=>{});if(map&&window.kpcLocate)kpcLocate(map);
  {const b=document.querySelector('#prog_ [data-k=two]');if(b)b.setAttribute('aria-pressed',String(!!on.two))}
  layer=L.layerGroup().addTo(map);tripLayer=L.layerGroup().addTo(map);V0=[map.getCenter(),map.getZoom()];ALL=items();
  const q=new URLSearchParams(location.search);let restored=false;
@@ -335,10 +385,15 @@ function pickTown(){const p=findPlace($('town').value);if(!p)return;origin=[p.la
 })();
 $('town').addEventListener('change',pickTown);$('town').addEventListener('input',e=>{if(e.inputType==='insertReplacementText'||!e.inputType)pickTown()});$('town').addEventListener('keydown',e=>{if(e.key==='Enter')pickTown()});
 $('gps').onclick=()=>{if(!navigator.geolocation){$('where').textContent='Location is not available in this browser.';return}
- $('where').textContent='Finding your location…';navigator.geolocation.getCurrentPosition(p=>{origin=[p.coords.latitude,p.coords.longitude,'your location'];save();run()},()=>{$('where').textContent='Could not get your location. Choose a town instead.'},{enableHighAccuracy:true,timeout:15000})};
+ $('where').textContent='Finding your location…';navigator.geolocation.getCurrentPosition(p=>{RT=null;origin=[p.coords.latitude,p.coords.longitude,'your location'];save();run()},()=>{$('where').textContent='Could not get your location. Choose a town instead.'},{enableHighAccuracy:true,timeout:15000})};
 $('rad').oninput=e=>{$('rLbl').textContent=e.target.value+' MILES';if(origin)run()};
 $('prog_').onclick=e=>{const b=e.target.closest('button');if(!b)return;on[b.dataset.k]=on[b.dataset.k]?0:1;b.setAttribute('aria-pressed',!!on[b.dataset.k]);if(b.dataset.k==='two'&&X)X.setOverlaps(!!on.two);if(origin)run(false)};
-$('newSearch').onclick=()=>{origin=null;save();$('town').value='';$('rad').value=40;$('rLbl').textContent='40 MILES';on={pota:1,sota:1,kff:1,two:X&&X.overlapsOn()?1:0};$('prog_').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',!!on[b.dataset.k]));if(layer)layer.clearLayers();if(map&&V0)map.setView(V0[0],V0[1]);$('where').textContent='Choose a town or use your location to start.';$('list').innerHTML='<div class="empty">Results show here.</div>';try{history.replaceState(null,'',location.pathname)}catch(e){}$('town').focus()};
+$('newSearch').onclick=()=>{RT=null;origin=null;save();$('town').value='';$('rad').value=40;$('rLbl').textContent='40 MILES';on={pota:1,sota:1,kff:1,two:X&&X.overlapsOn()?1:0};$('prog_').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',!!on[b.dataset.k]));if(layer)layer.clearLayers();if(map&&V0)map.setView(V0[0],V0[1]);$('where').textContent='Choose a town or use your location to start.';$('list').innerHTML='<div class="empty">Results show here.</div>';try{history.replaceState(null,'',location.pathname)}catch(e){}$('town').focus()};
+$('plModes').onclick=e=>{const b=e.target.closest('button');if(b)planMode(b.dataset.m)};
+$('rtGo').onclick=()=>findRoute();['rtFrom','rtTo'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();findRoute()}}));
+$('rtW').onchange=()=>{if(RT)run(false)};
+$('rtClear').onclick=()=>$('newSearch').click();
+{let r=null;try{r=JSON.parse(localStorage.getItem('kpcPlanRoute')||'null')}catch(e){}if(r){$('rtFrom').value=r.f||'';$('rtTo').value=r.t||'';if(r.w)$('rtW').value=String(r.w)}let m='town';try{m=localStorage.getItem('kpcPlanMode')||'town'}catch(e){}planMode(m)}
 $('addSpot').onclick=()=>{addMode(!adding);if(adding){$('mapwrap').scrollIntoView({behavior:'smooth',block:'center'});if(map.getZoom()<12)flash('Zoom in close, then tap the exact spot. Satellite + Roads (top-right) is best for spotting pull-offs.')}};
 $('clear').onclick=()=>{if(trip.length&&!confirm('Remove all '+trip.length+' stops from this trip?'))return;trip=[];changed()};
 $('sortd').onclick=()=>{const o=origin||(trip[0]&&[trip[0].la,trip[0].lo]);if(!o)return;const left=[...trip],out=[];let cur=o;
