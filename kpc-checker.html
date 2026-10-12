@@ -81,7 +81,7 @@
 <h1>KENTUCKY <span>PARK CHECKER</span></h1>
 <p class="sub" id="page-sub">Enter any callsign to see which of Kentucky's POTA parks it has activated and which are still needed — then download the list as a spreadsheet (CSV).</p>
 </div></section>
-<nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html" aria-current=page>Park Checker</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html">Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html">Antenna</a><a href="parks.html">← Parks</a></div></nav>
+<nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html" aria-current=page>Park Checker</a><a href="kpc-sota.html">SOTA</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html">Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html">Antenna</a><a href="parks.html">← Parks</a></div></nav>
 <section class="section"><div class="wrap">
 
 <style>
@@ -91,8 +91,10 @@
 .hunt-how{margin:14px 0 0;padding:12px 14px;background:#eef5f0;border:1px solid #cfe0d5;border-left:5px solid #1d5a3a;border-radius:6px;font-size:14px;line-height:1.6}.hunt-how a{color:#1d5a3a;font-weight:700}.hunt-how ol{margin:6px 0 6px 20px;padding:0}.hunt-how li{margin:2px 0}
 .filepick{position:relative;display:flex;align-items:center;gap:10px;margin-top:6px;min-height:44px}.filepick input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}.filepick .btn{pointer-events:none;padding:10px 14px}#hfname{font-size:13px;font-weight:600;letter-spacing:0;color:#3d3a33;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mode-toggle button:first-child{border-right:1px solid #cbbf9f}
+.state-pick{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;margin-bottom:16px}.state-pick label{font-size:11px;font-weight:900;letter-spacing:1.5px;color:#68635a;display:flex;flex-direction:column;gap:6px}.state-pick select{font:inherit;font-size:16px;font-weight:700;padding:10px 12px;border:1px solid #cbbf9f;border-radius:6px;background:#fff;min-height:44px;min-width:220px;color:#171717}#stateNote{font-size:13px;color:#68635a;max-width:560px;line-height:1.5}
 </style>
 
+<div class="state-pick"><label for="stateSel">STATE<select id="stateSel"></select></label><span id="stateNote"></span></div>
 <div class="mode-toggle" role="group" aria-label="Checker mode">
   <button id="btn-act" class="active" onclick="setMode('act')">&#127897; ACTIVATOR</button>
   <button id="btn-hunt" onclick="setMode('hunt')">&#127911; HUNTER</button>
@@ -123,7 +125,7 @@
 <div class="tablewrap" style="max-height:420px"><table class="list"><thead><tr><th>PARK</th><th>COUNTY</th><th id="col3">FIRST</th><th id="col4">ACTS</th></tr></thead><tbody id="tbody"></tbody></table></div>
 </div></div>
 </div>
-<div class="note">Uses POTA's public activation records for the 186 Kentucky parks in the KPC guide. A park counts as activated with 10 or more QSOs in one activation. Nothing you type is saved or shared — the callsign is only used to filter POTA's public data in your browser.</div>
+<div class="note" id="actNote">Uses POTA's public activation records for the 186 Kentucky parks in the KPC guide. A park counts as activated with 10 or more QSOs in one activation. Nothing you type is saved or shared — the callsign is only used to filter POTA's public data in your browser.</div>
 </div><!-- /pane-act -->
 
 <div id="pane-hunt" style="display:none">
@@ -133,7 +135,7 @@
 <label class="field" style="flex:2 1 260px">YOUR POTA HUNTER CSV<span class="filepick"><input id="hfile" type="file" accept=".adi,.adif,.csv,.txt,.adx,text/plain,text/csv"><span class="btn alt" aria-hidden="true">CHOOSE FILE</span><span id="hfname">No file chosen</span></span></label>
 <button class="btn" type="submit" style="align-self:flex-end">CHECK HUNTS</button>
 </form>
-<div class="hunt-how"><b>Hunters: you need your hunter CSV file from POTA.</b> POTA doesn't share hunter logs publicly, so the checker reads the file you download from POTA:<ol><li>Log in at <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a> and open <b>My Stats</b>.</li><li>Download your <b>hunter parks list as a CSV</b>.</li><li>Tap <b>CHOOSE FILE</b> here and pick that CSV.</li></ol>You'll see every Kentucky park you've hunted and every one you still need, on the map and in a list. Your file stays on your device.</div>
+<div class="hunt-how"><b>Hunters: you need your hunter CSV file from POTA.</b> POTA doesn't share hunter logs publicly, so the checker reads the file you download from POTA:<ol><li>Log in at <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a> and open <b>My Stats</b>.</li><li>Download your <b>hunter parks list as a CSV</b>.</li><li>Tap <b>CHOOSE FILE</b> here and pick that CSV.</li></ol>You'll see every park you've hunted in the state you picked and every one you still need, on the map and in a list. Your file stays on your device.</div>
 <div class="progress" id="hprog"><div class="bar"><i style="width:0"></i></div><small></small></div>
 </div>
 
@@ -153,15 +155,74 @@
 <div class="tablewrap" style="max-height:420px"><table class="list"><thead><tr><th>PARK</th><th>COUNTY</th><th id="hcol3">FIRST HUNT</th><th id="hcol4">QSOs</th></tr></thead><tbody id="htbody"></tbody></table></div>
 </div></div>
 </div>
-<div class="note">Hunter mode needs the hunter CSV you download from POTA. It's read right here in your browser — nothing is uploaded, saved or shared. Old K-#### references are matched to today's US-#### numbers. Checks the 186 Kentucky parks in the KPC guide.</div>
+<div class="note" id="huntNote">Hunter mode needs the hunter CSV you download from POTA. It's read right here in your browser — nothing is uploaded, saved or shared. Old K-#### references are matched to today's US-#### numbers. Checks the 186 Kentucky parks in the KPC guide.</div>
 </div><!-- /pane-hunt -->
 
 </div></section>
 <script>
 const $=id=>document.getElementById(id);
-let H=null,D=null,map=null,layer=null,cur=null,S={},tab='done';
+let H=null,D=null,map=null,layer=null,cur=null,S={},tab='done',HK=null;
+/* ===== STATE PICKER =====
+   Kentucky uses the full KPC guide (kpc-ky-data.json) exactly as before.
+   Every other state is a lite version: the park list comes live from POTA, or if POTA won't answer,
+   from the site's national park file (locations.json, the one Park Commander uses) sorted by state borders. */
+const STN={AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',DE:'Delaware',DC:'District of Columbia',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',PR:'Puerto Rico',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming'};
+let ST='KY';try{const q=(new URLSearchParams(location.search).get('state')||localStorage.getItem('kpcCheckState')||'KY').toUpperCase();if(STN[q])ST=q}catch(e){}
+const stName=a=>STN[a]||a,isKY=()=>ST==='KY';
+const SD={};
+async function jfetch(u,ms){const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||15000);try{const r=await fetch(u,{signal:c.signal});if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(t)}}
+function ringIn(x,y,r){let ins=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const[xi,yi]=r[i],[xj,yj]=r[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi+1e-15)+xi)ins=!ins}return ins}
+function inPoly(x,y,polys){return polys.some(poly=>ringIn(x,y,poly[0])&&!poly.slice(1).some(h=>ringIn(x,y,h)))}
+function stateData(a){if(a==='KY')return KPC.data();if(SD[a])return SD[a];
+ SD[a]=(async()=>{
+  try{const j=await jfetch('https://api.pota.app/location/parks/US-'+a,12000);
+   const parks=(Array.isArray(j)?j:[]).map(x=>({c:String(x.reference||'').toUpperCase(),n:x.name||'',la:+x.latitude,lo:+x.longitude,co:'',t:'',web:''})).filter(p=>/^US-\d+$/.test(p.c)&&isFinite(p.la)&&isFinite(p.lo)&&p.la!==0);
+   if(parks.length)return{parks,lite:true,src:'pota'}}catch(e){}
+  const[Lr,B]=await Promise.all([fetch('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json())]);
+  const sh=B.find(b=>b.a===a);if(!sh)throw new Error('No border for '+a);
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;sh.p.forEach(pl=>pl[0].forEach(([x,y])=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}));
+  const parks=Lr.filter(r=>r[0]==='POTA'&&/^US-/.test(r[1])&&r[4]>=x0&&r[4]<=x1&&r[3]>=y0&&r[3]<=y1&&inPoly(r[4],r[3],sh.p)).map(r=>({c:r[1],n:r[2],la:r[3],lo:r[4],co:'',t:'',web:''}));
+  return{parks,lite:true,src:'file'}})();
+ SD[a].catch(()=>{delete SD[a]});return SD[a]}
+/* activation history for a lite state: same POTA source and 12-hour browser cache as Kentucky, one key per state */
+async function liteHistory(D,a,onProg){const refs=D.parks.map(p=>p.c),KEY='kpcHistLite_'+a,HRS=12;
+ try{const c=JSON.parse(localStorage.getItem(KEY)||'null');if(c&&Date.now()-c.t<HRS*36e5&&Object.keys(c.d).length>=refs.length*0.9){onProg(refs.length,refs.length,c.t);return{hist:c.d}}}catch(e){}
+ const out={};let done=0,i=0,fails=0;
+ async function worker(){while(i<refs.length){const ref=refs[i++];
+  try{const j=await jfetch(`https://api.pota.app/park/activations/${ref}?count=all`);out[ref]=(Array.isArray(j)?j:[]).map(x=>[String(x.activeCallsign||'').toUpperCase(),String(x.qso_date||''),+x.totalQSOs||0])}
+  catch(e){fails++;out[ref]=[]}
+  done++;onProg(done,refs.length)}}
+ await Promise.all(Array.from({length:6},worker));
+ if(refs.length&&fails>=refs.length)throw new Error('POTA could not be reached');
+ const t=Date.now();try{localStorage.setItem(KEY,JSON.stringify({t,d:out}))}catch(e){/* too big to save here: still works, just reloads next visit */}
+ return{hist:out}}
+function progLite(el,name){return(d,n,cached)=>{el.classList.add('on');el.querySelector('i').style.width=(100*d/n)+'%';
+ el.querySelector('small').textContent=cached?`Loaded saved POTA data from ${new Date(cached).toLocaleString([],{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})} • refreshes every 12 hours`:`Loading POTA activation history… ${d} of ${n} ${name} parks${n>300?' (a big state: the first load takes a few minutes, then it’s saved for 12 hours)':''}`}}
+/* map view: Kentucky gets the county lines; other states just zoom to their parks */
+async function fitState(m,Dd){if(isKY()){if(!m._cty)m._cty=await KPC.countyLayer(m);if(m._st!=='KY')m.setView([37.75,-85.7],7)}
+ else{if(m._cty){m._cty.remove();m._cty=null}if(m._st!==ST&&Dd&&Dd.parks.length)m.fitBounds(L.latLngBounds(Dd.parks.map(p=>[p.la,p.lo])),{padding:[20,20],maxZoom:9})}
+ m._st=ST}
+function stateNotes(Dd){const nm=stName(ST),n=Dd?Dd.parks.length:0;
+ $('stateNote').innerHTML=isKY()?'Kentucky uses the full KPC guide: counties, park types and trails.':`<b>Lite version</b> for ${KPC.esc(nm)}: park names and map only.${Dd?` ${n.toLocaleString()} POTA parks${Dd.src==='file'?'. Parks right on a state line may show under the neighboring state.':', live from POTA.'}`:' Loading park list…'}`;
+ $('actNote').textContent=isKY()?"Uses POTA's public activation records for the 186 Kentucky parks in the KPC guide. A park counts as activated with 10 or more QSOs in one activation. Nothing you type is saved or shared — the callsign is only used to filter POTA's public data in your browser."
+  :`Uses POTA's public activation records for ${n?n.toLocaleString()+' ':''}${nm} parks. A park counts as activated with 10 or more QSOs in one activation. Nothing you type is saved or shared.`;
+ $('huntNote').textContent=`Hunter mode needs the hunter CSV you download from POTA. It's read right here in your browser — nothing is uploaded, saved or shared. Old K-#### references are matched to today's US-#### numbers. Checks ${isKY()?'the 186 Kentucky parks in the KPC guide':(n?n.toLocaleString()+' ':'the ')+nm+' POTA parks'}.`}
+function initStates(){const sel=$('stateSel');
+ sel.innerHTML=Object.entries(STN).sort((a,b)=>a[1].localeCompare(b[1])).map(([a,n])=>`<option value="${a}"${a===ST?' selected':''}>${n}${a==='KY'?' (full KPC guide)':''}</option>`).join('');
+ sel.onchange=async()=>{ST=sel.value;try{localStorage.setItem('kpcCheckState',ST)}catch(e){}
+  try{const u=new URL(location.href);if(isKY())u.searchParams.delete('state');else u.searchParams.set('state',ST);history.replaceState(null,'',u)}catch(e){}
+  H=null;HK=null;S={};HS={};$('result').style.display='none';$('hresult').style.display='none';setSub();stateNotes(null);
+  let d=null;try{d=await stateData(ST)}catch(e){$('stateNote').textContent='Could not load the '+stName(ST)+' park list right now. Try again in a minute.';return}
+  if(sel.value!==ST)return;stateNotes(d);
+  if(cur&&MODE==='act')run(cur);if($('hfile').files[0])runHunter()};
+ stateNotes(null);if(!isKY())stateData(ST).then(stateNotes).catch(()=>{$('stateNote').textContent='Could not load the '+stName(ST)+' park list right now. Try again in a minute.'})}
+
 $('f').onsubmit=e=>{e.preventDefault();run($('call').value)};
-async function load(){if(H)return H;D=await KPC.data();try{H=(await KPC.history(KPC.progressUI($('prog')))).hist}catch(e){$('prog').querySelector('small').textContent='Could not reach POTA right now — try again in a minute.';throw e}return H}
+async function load(){if(H&&HK===ST)return H;const a=ST;
+ try{if(a==='KY'){D=await KPC.data();H=(await KPC.history(KPC.progressUI($('prog')))).hist}
+  else{$('prog').classList.add('on');$('prog').querySelector('small').textContent='Loading the '+stName(a)+' park list…';D=await stateData(a);stateNotes(D);H=(await liteHistory(D,a,progLite($('prog'),stName(a)))).hist}}
+ catch(e){$('prog').querySelector('small').textContent='Could not reach POTA right now — try again in a minute.';throw e}
+ HK=a;return H}
 function statsFor(call){const c=KPC.base(call),res={};
  for(const p of D.parks){const a=(H[p.c]||[]).filter(x=>KPC.base(x[0])===c);const good=a.filter(x=>KPC.ok(x[2]));
   if(a.length){const ds=a.map(x=>x[1]).sort();res[p.c]={n:good.length,tries:a.length,q:a.reduce((s,x)=>s+x[2],0),first:ds[0],last:ds[ds.length-1],ok:good.length>0}}}
@@ -170,27 +231,27 @@ async function run(call){call=KPC.base(call);if(!call)return;cur=call;
  await load();S=statsFor(call);const P=D.parks,doneP=P.filter(p=>S[p.c]&&S[p.c].ok);
  const counties=new Set(doneP.map(p=>p.co)),acts=Object.values(S).reduce((s,x)=>s+x.n,0),q=Object.values(S).reduce((s,x)=>s+x.q,0);
  $('result').style.display='block';
- $('stats').innerHTML=`<div class="stat"><b>${doneP.length}</b><span>OF ${P.length} KY PARKS</span></div><div class="stat"><b>${P.length-doneP.length}</b><span>STILL NEEDED</span></div><div class="stat"><b>${acts}</b><span>KY ACTIVATIONS</span></div><div class="stat"><b>${q.toLocaleString()}</b><span>KY QSOS</span></div>`;
- $('pbar').style.width=(100*doneP.length/P.length)+'%';$('pbarLbl').textContent=`${call}: ${Math.round(100*doneP.length/P.length)}% of Kentucky parks activated • ${counties.size} counties`;
+ $('stats').innerHTML=`<div class="stat"><b>${doneP.length}</b><span>OF ${P.length} ${ST} PARKS</span></div><div class="stat"><b>${P.length-doneP.length}</b><span>STILL NEEDED</span></div><div class="stat"><b>${acts}</b><span>${ST} ACTIVATIONS</span></div><div class="stat"><b>${q.toLocaleString()}</b><span>${ST} QSOS</span></div>`;
+ $('pbar').style.width=(100*doneP.length/P.length)+'%';$('pbarLbl').textContent=`${call}: ${Math.round(100*doneP.length/P.length)}% of ${stName(ST)} parks activated${isKY()?' • '+counties.size+' counties':''}`;
  drawMap();drawTable()}
-async function drawMap(){if(window.L){if(!map){map=KPC.leafletMap('map');await KPC.countyLayer(map)}
+async function drawMap(){if(window.L){if(!map){map=KPC.leafletMap('map')}await fitState(map,D)
  if(layer)layer.remove();layer=L.layerGroup().addTo(map);
  D.parks.forEach(p=>{const s=S[p.c],done=s&&s.ok;
   L.circleMarker([p.la,p.lo],{radius:done?7:5,weight:1.2,color:'#173a28',fillColor:done?'#1d5a3a':s?'#d5a63a':'#ffffff',fillOpacity:.95})
-  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> • ${KPC.esc(KPC.cty(p.co))}<br>${done?`Activated ${s.n}× • ${s.q} QSOs • first ${KPC.fmtDate(s.first)}`:s?`${s.tries} attempt(s), under 10 QSOs`:'Not activated yet'}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`).addTo(layer)})}else{document.getElementById('map').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}}
+  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a>${p.co?' • '+KPC.esc(KPC.cty(p.co)):''}<br>${done?`Activated ${s.n}× • ${s.q} QSOs • first ${KPC.fmtDate(s.first)}`:s?`${s.tries} attempt(s), under 10 QSOs`:'Not activated yet'}<br><a href="finder.html?q=${p.c}" style="font-weight:700">${isKY()?'See boundary &amp; trails in KY Park Commander →':'See it in Park Commander →'}</a>`).addTo(layer)})}else{document.getElementById('map').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}}
 function drawTable(){const P=D.parks;let rows;
  if(tab==='done'){$('col3').textContent='FIRST';$('col4').textContent='ACTS';
-  rows=P.filter(p=>S[p.c]&&S[p.c].ok).sort((a,b)=>S[a.c].first.localeCompare(S[b.c].first)).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}</td><td>${KPC.esc(p.co)}</td><td>${KPC.fmtDate(S[p.c].first)}</td><td>${S[p.c].n}</td></tr>`)}
+  rows=P.filter(p=>S[p.c]&&S[p.c].ok).sort((a,b)=>S[a.c].first.localeCompare(S[b.c].first)).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}</td><td>${KPC.esc(p.co||'—')}</td><td>${KPC.fmtDate(S[p.c].first)}</td><td>${S[p.c].n}</td></tr>`)}
  else{$('col3').textContent='TYPE';$('col4').textContent='';
-  rows=P.filter(p=>!(S[p.c]&&S[p.c].ok)).sort((a,b)=>a.co.localeCompare(b.co)).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}${S[p.c]?' <span class="tag">TRIED</span>':''}</td><td>${KPC.esc(p.co)}</td><td>${KPC.esc(p.t)}</td><td></td></tr>`)}
- $('tbody').innerHTML=rows.join('')||`<tr><td colspan="4" class="muted">${tab==='done'?'No Kentucky activations found for this callsign yet.':'Every Kentucky park activated — legend!'}</td></tr>`}
+  rows=P.filter(p=>!(S[p.c]&&S[p.c].ok)).sort((a,b)=>(a.co||'').localeCompare(b.co||'')||a.n.localeCompare(b.n)).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}${S[p.c]?' <span class="tag">TRIED</span>':''}</td><td>${KPC.esc(p.co||'—')}</td><td>${KPC.esc(p.t||'—')}</td><td></td></tr>`)}
+ $('tbody').innerHTML=rows.join('')||`<tr><td colspan="4" class="muted">${tab==='done'?`No ${stName(ST)} activations found for this callsign yet.`:`Every ${stName(ST)} park activated — legend!`}</td></tr>`}
 $('tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;tab=b.dataset.t;[...$('tabs').children].forEach(x=>x.setAttribute('aria-pressed',x===b));if(cur)drawTable()};
 function csv(which){if(!cur)return;const q=v=>`"${String(v??'').replace(/"/g,'""')}"`,d=x=>x?`${x.slice(0,4)}-${x.slice(4,6)}-${x.slice(6,8)}`:'';
  const rows=D.parks.filter(p=>{const ok=S[p.c]&&S[p.c].ok;return which==='all'||(which==='done'?ok:!ok)}).map(p=>{const s=S[p.c];
   return[p.c,p.n,p.co,p.t,s&&s.ok?'Activated':s?'Tried (under 10 QSOs)':'Not yet',s?s.n:0,s?s.q:0,s?d(s.first):'',s?d(s.last):'',p.la,p.lo,KPC.links.pota(p.c)].map(q).join(',')});
  const head=['Reference','Park','County','Type','Status','Activations','QSOs','First','Last','Latitude','Longitude','POTA link'].map(q).join(',');
  const blob=new Blob(['﻿'+head+'\r\n'+rows.join('\r\n')],{type:'text/csv'}),a=document.createElement('a');
- a.href=URL.createObjectURL(blob);a.download=`${cur}_Kentucky_POTA_${which==='all'?'all':which==='done'?'activated':'needed'}_${new Date().toISOString().slice(0,10)}.csv`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+ a.href=URL.createObjectURL(blob);a.download=`${cur}_${stName(ST).replace(/ /g,'_')}_POTA_${which==='all'?'all':which==='done'?'activated':'needed'}_${new Date().toISOString().slice(0,10)}.csv`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
 $('csvAll').onclick=()=>csv('all');$('csvDone').onclick=()=>csv('done');$('csvNeed').onclick=()=>csv('need');
 
 /* ===== mode toggle ===== */
@@ -199,9 +260,11 @@ function setMode(m){
   document.getElementById('pane-hunt').style.display=m==='hunt'?'':'none';
   document.getElementById('btn-act').classList.toggle('active',m==='act');
   document.getElementById('btn-hunt').classList.toggle('active',m==='hunt');
-  document.getElementById('page-sub').textContent=m==='act'
-    ?'Enter any callsign to see which of Kentucky\'s POTA parks it has activated and which are still needed — then download the list as a spreadsheet (CSV).'
-    :'Upload your POTA hunter CSV to see which of Kentucky\'s POTA parks you\'ve hunted and which are still on your list, on a map. Download the results as a CSV.';}
+  MODE=m;setSub();}
+let MODE='act';
+function setSub(){const nm=stName(ST);document.getElementById('page-sub').textContent=MODE==='act'
+    ?`Enter any callsign to see which of ${nm}\u2019s POTA parks it has activated and which are still needed — then download the list as a spreadsheet (CSV).`
+    :`Upload your POTA hunter CSV to see which of ${nm}\u2019s POTA parks you\u2019ve hunted and which are still on your list, on a map. Download the results as a CSV.`;}
 
 /* ===== HUNTER mode =====
    POTA does not publish anyone's hunter log, so this reads the person's own log file in the browser.
@@ -210,7 +273,7 @@ function setMode(m){
 let HD=null,hmap=null,hlayer=null,hcur=null,HS={},htab='done';
 document.getElementById('fh').onsubmit=e=>{e.preventDefault();runHunter()};
 document.getElementById('hfile').onchange=()=>{const f=document.getElementById('hfile').files[0];document.getElementById('hfname').textContent=f?f.name:'No file chosen';if(f)runHunter()};
-async function loadHD(){if(HD)return HD;HD=await KPC.data();return HD}
+async function loadHD(){HD=await stateData(ST);if(!isKY())stateNotes(HD);return HD}
 const REF_RE=/\b(?:US|K)-\d{4,5}\b/gi;
 function normRef(r){r=r.toUpperCase();return r.startsWith('K-')?'US-'+r.slice(2):r}
 function normDate(s){s=String(s||'');let m=s.match(/(\d{4})-?(\d{2})-?(\d{2})/);if(m&&+m[2]>=1&&+m[2]<=12)return m[1]+m[2]+m[3];
@@ -257,37 +320,38 @@ async function runHunter(){
   const [txt]=await Promise.all([file.text(),loadHD()]);
   const isADIF=/<eor>/i.test(txt);
   const {out,n}=isADIF?parseADIF(txt):parseText(txt);
-  const P=HD.parks,ky=new Set(P.map(p=>p.c));
-  HS={};Object.keys(out).forEach(r=>{if(ky.has(r))HS[r]=out[r]});
+  const P=HD.parks,inState=new Set(P.map(p=>p.c));
+  HS={};Object.keys(out).forEach(r=>{if(inState.has(r))HS[r]=out[r]});
   const doneP=P.filter(p=>HS[p.c]),needed=P.length-doneP.length;
   const counties=new Set(doneP.map(p=>p.co)),totalQ=Object.values(HS).reduce((s,x)=>s+x.q,0);
   if(!Object.keys(out).length){pbar.style.width='0';ptxt.textContent=isADIF?'No park contacts found in that ADIF file. Make sure your logger saves the park in POTA_REF or SIG_INFO.':'No park references (like US-0724) found in that file. Make sure it\'s the hunter CSV you downloaded from POTA.';document.getElementById('hresult').style.display='none';return}
   document.getElementById('hresult').style.display='block';
-  document.getElementById('hstats').innerHTML=`<div class="stat"><b>${doneP.length}</b><span>OF ${P.length} KY PARKS</span></div><div class="stat"><b>${needed}</b><span>STILL NEEDED</span></div><div class="stat"><b>${totalQ.toLocaleString()}</b><span>KY PARK QSOS</span></div><div class="stat"><b>${counties.size}</b><span>COUNTIES</span></div>`;
+  document.getElementById('hstats').innerHTML=`<div class="stat"><b>${doneP.length}</b><span>OF ${P.length} ${ST} PARKS</span></div><div class="stat"><b>${needed}</b><span>STILL NEEDED</span></div><div class="stat"><b>${totalQ.toLocaleString()}</b><span>${ST} PARK QSOS</span></div>${isKY()?`<div class="stat"><b>${counties.size}</b><span>COUNTIES</span></div>`:`<div class="stat"><b>${Object.keys(out).length.toLocaleString()}</b><span>PARKS IN FILE (ALL STATES)</span></div>`}`;
   document.getElementById('hpbar').style.width=(100*doneP.length/P.length)+'%';
-  document.getElementById('hpbarLbl').textContent=`${call?call+': ':''}${Math.round(100*doneP.length/P.length)}% of Kentucky parks hunted • ${counties.size} counties`;
-  pbar.style.width='100%';ptxt.textContent=`Read ${n.toLocaleString()} ${isADIF?'contacts':'lines with parks'} from ${file.name} • ${doneP.length} Kentucky park${doneP.length===1?'':'s'} hunted.`;
+  document.getElementById('hpbarLbl').textContent=`${call?call+': ':''}${Math.round(100*doneP.length/P.length)}% of ${stName(ST)} parks hunted${isKY()?' • '+counties.size+' counties':''}`;
+  pbar.style.width='100%';ptxt.textContent=`Read ${n.toLocaleString()} ${isADIF?'contacts':'lines with parks'} from ${file.name} • ${doneP.length} ${stName(ST)} park${doneP.length===1?'':'s'} hunted.`;
   drawHMap();drawHTable();
  }catch(err){pbar.style.width='0';ptxt.textContent='Could not read that file. ('+err.message+')'}}
-async function drawHMap(){if(window.L){if(!hmap){hmap=KPC.leafletMap('hmap');await KPC.countyLayer(hmap)}
+async function drawHMap(){if(window.L){if(!hmap){hmap=KPC.leafletMap('hmap')}await fitState(hmap,HD)
  if(hlayer)hlayer.remove();hlayer=L.layerGroup().addTo(hmap);
  HD.parks.forEach(p=>{const h=HS[p.c],hunted=!!h;
   L.circleMarker([p.la,p.lo],{radius:hunted?7:5,weight:1.2,color:'#173a28',fillColor:hunted?'#1d5a3a':'#ffffff',fillOpacity:.95})
-  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> • ${KPC.esc(KPC.cty(p.co))}<br>${KPC.esc(p.t)}<br>${hunted?`<b style="color:#1d5a3a">Hunted</b> • ${h.q} QSO${h.q===1?'':'s'}${h.first?' • first '+KPC.fmtDate(h.first):''}${h.last&&h.last!==h.first?' • last '+KPC.fmtDate(h.last):''}`:'<b>Still needed</b>'}${p.web?`<br><a href="${KPC.esc(p.web)}" target="_blank" rel="noopener">Park website ↗</a>`:''}`).addTo(hlayer)})}else{document.getElementById('hmap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}}
+  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a>${p.co?' • '+KPC.esc(KPC.cty(p.co)):''}${p.t?'<br>'+KPC.esc(p.t):''}<br>${hunted?`<b style="color:#1d5a3a">Hunted</b> • ${h.q} QSO${h.q===1?'':'s'}${h.first?' • first '+KPC.fmtDate(h.first):''}${h.last&&h.last!==h.first?' • last '+KPC.fmtDate(h.last):''}`:'<b>Still needed</b>'}${p.web?`<br><a href="${KPC.esc(p.web)}" target="_blank" rel="noopener">Park website ↗</a>`:''}`).addTo(hlayer)})}else{document.getElementById('hmap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}}
 function drawHTable(){const P=HD.parks;let rows;
  if(htab==='done'){document.getElementById('hcol3').textContent='FIRST HUNT';document.getElementById('hcol4').textContent='QSOs';
-  rows=P.filter(p=>HS[p.c]).sort((a,b)=>(HS[a.c].first||'').localeCompare(HS[b.c].first||'')).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}</td><td>${KPC.esc(p.co)}</td><td>${KPC.fmtDate(HS[p.c].first)}</td><td>${HS[p.c].q}</td></tr>`)}
+  rows=P.filter(p=>HS[p.c]).sort((a,b)=>(HS[a.c].first||'').localeCompare(HS[b.c].first||'')).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}</td><td>${KPC.esc(p.co||'—')}</td><td>${KPC.fmtDate(HS[p.c].first)}</td><td>${HS[p.c].q}</td></tr>`)}
  else{document.getElementById('hcol3').textContent='TYPE';document.getElementById('hcol4').textContent='';
-  rows=P.filter(p=>!HS[p.c]).sort((a,b)=>a.co.localeCompare(b.co)).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}</td><td>${KPC.esc(p.co)}</td><td>${KPC.esc(p.t)}</td><td></td></tr>`)}
- document.getElementById('htbody').innerHTML=rows.join('')||`<tr><td colspan="4" class="muted">${htab==='done'?'No Kentucky hunts found for this callsign.':'Every Kentucky park hunted — fantastic!'}</td></tr>`}
+  rows=P.filter(p=>!HS[p.c]).sort((a,b)=>(a.co||'').localeCompare(b.co||'')||a.n.localeCompare(b.n)).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}</td><td>${KPC.esc(p.co||'—')}</td><td>${KPC.esc(p.t||'—')}</td><td></td></tr>`)}
+ document.getElementById('htbody').innerHTML=rows.join('')||`<tr><td colspan="4" class="muted">${htab==='done'?`No ${stName(ST)} hunts found in that file.`:`Every ${stName(ST)} park hunted — fantastic!`}</td></tr>`}
 document.getElementById('htabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;htab=b.dataset.t;[...document.getElementById('htabs').children].forEach(x=>x.setAttribute('aria-pressed',x===b));if(hcur)drawHTable()};
 function hcsv(which){if(!hcur||!HD)return;const q=v=>`"${String(v??'').replace(/"/g,'""')}"`,d=x=>x?`${x.slice(0,4)}-${x.slice(4,6)}-${x.slice(6,8)}`:'';
  const rows=HD.parks.filter(p=>{const h=HS[p.c];return which==='all'||(which==='done'?!!h:!h)}).map(p=>{const h=HS[p.c];
   return[p.c,p.n,p.co,p.t,h?'Hunted':'Not yet',h?h.q:0,h?d(h.first):'',h?d(h.last):'',p.la,p.lo,KPC.links.pota(p.c)].map(q).join(',')});
  const head=['Reference','Park','County','Type','Status','Hunter QSOs','First','Last','Latitude','Longitude','POTA link'].map(q).join(',');
  const blob=new Blob(['\ufeff'+head+'\r\n'+rows.join('\r\n')],{type:'text/csv'}),a=document.createElement('a');
- a.href=URL.createObjectURL(blob);a.download=`${hcur}_Kentucky_POTA_hunted_${which==='all'?'all':which==='done'?'hunted':'needed'}_${new Date().toISOString().slice(0,10)}.csv`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+ a.href=URL.createObjectURL(blob);a.download=`${hcur}_${stName(ST).replace(/ /g,'_')}_POTA_hunted_${which==='all'?'all':which==='done'?'hunted':'needed'}_${new Date().toISOString().slice(0,10)}.csv`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
 document.getElementById('hcsvAll').onclick=()=>hcsv('all');document.getElementById('hcsvDone').onclick=()=>hcsv('done');document.getElementById('hcsvNeed').onclick=()=>hcsv('need');
+initStates();setSub();
 </script>
 
 </main>
