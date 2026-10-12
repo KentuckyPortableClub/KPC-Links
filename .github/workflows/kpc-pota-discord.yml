@@ -28,7 +28,16 @@ jobs:
           import datetime as dt, json, os, pathlib, re, urllib.request
           from urllib.error import HTTPError
 
-          CALLS = {'KZ4CP', 'N4BDW', 'KQ4HZK', 'K4ZSR'}   # KPC operators to watch
+          # KPC operators to watch: read from the club roster in kpc-tools.js (the only list)
+          CALLS = {'KZ4CP', 'N4BDW', 'KQ4HZK', 'K4ZSR'}   # fallback if the roster can't be read
+          try:
+              _m = re.search(r"const MEMBERS\s*=\s*\[([^\]]*)\]", pathlib.Path('kpc-tools.js').read_text(encoding='utf-8'))
+              _calls = {c.strip().upper() for c in re.findall(r"['\"]([A-Za-z0-9/]+)['\"]", _m.group(1))} if _m else set()
+              if _calls:
+                  CALLS = _calls
+          except Exception as _e:
+              print('Roster read failed, using fallback:', _e)
+          print('Watching', len(CALLS), 'calls:', ', '.join(sorted(CALLS)))
           LOOKBACK_MIN = 60                              # how far back a spot can be and still alert
           KEEP_DAYS = 2                                  # how long sent alerts are remembered
 
