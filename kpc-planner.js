@@ -369,7 +369,6 @@ function pickTown(){const v=$('town').value,p=findPlace(v);if(!p){if(v.trim().le
 /* ---------------- start ---------------- */
 (async()=>{
  D=await KPC.data();
- $('towns').innerHTML=D.towns.map(t=>`<option value="${esc(t.n)}">Town</option>`).join('')+places().map(x=>`<option value="${esc(lbl(x))}">${x.k==='pota'?'POTA park':x.k==='sota'?'SOTA summit':'KFF'}</option>`).join('');
  map=makeMap();if(map)KPC.countyLayer(map).catch(()=>{});if(map&&window.kpcLocate)kpcLocate(map);
  {const b=document.querySelector('#prog_ [data-k=two]');if(b)b.setAttribute('aria-pressed',String(!!on.two))}
  layer=L.layerGroup().addTo(map);tripLayer=L.layerGroup().addTo(map);V0=[map.getCenter(),map.getZoom()];ALL=items();
@@ -383,7 +382,24 @@ function pickTown(){const v=$('town').value,p=findPlace(v);if(!p){if(v.trim().le
  loadBoundaries();
  window.kpcPlanner={map:()=>map,trip:()=>trip,where:(a,b)=>whereIs(a,b),ready:()=>bReady,extras:()=>X,res:()=>res};
 })();
-$('town').addEventListener('change',pickTown);$('town').addEventListener('input',e=>{if(e.inputType==='insertReplacementText'||!e.inputType)pickTown()});$('town').addEventListener('keydown',e=>{if(e.key==='Enter')pickTown()});
+/* Our own suggestion list for the town and route boxes. The phone's built-in list (<datalist>) shows see-through on
+   iPhones and covered the page ("double screen"). Searching happens on a pick, Enter or GO, never on blur. */
+function suggest(inp,box,onPick){let hits=[];
+ inp.addEventListener('input',()=>{if(!D){box.hidden=true;return}const raw=inp.value.trim(),v=raw.toLowerCase();if(v.length<2){box.hidden=true;return}
+  const T=D.towns.filter(t=>t.n.toLowerCase().includes(v)).slice(0,5).map(t=>({v:t.n,k:'Kentucky town'}));
+  const P=places().filter(x=>x.n.toLowerCase().includes(v)||x.ref.toLowerCase().includes(v)).slice(0,6).map(x=>({v:lbl(x),k:x.k==='pota'?'POTA park':x.k==='sota'?'SOTA summit':'KFF reference'}));
+  hits=[...T,...P].slice(0,8);
+  if(parseLL(raw))hits.unshift({v:raw,k:'GPS coordinates',a:1});else if(/\d/.test(raw)&&/[a-z]{3}/i.test(raw)||/,/.test(raw)||!hits.length)hits.push({v:raw,k:'Look up this address or place',a:1});
+  box.innerHTML=hits.map((h,i)=>`<button type="button" data-i="${i}"${h.a?' class="addr"':''}><b>${esc(h.v)}</b><small>${h.k}</small></button>`).join('');box._for=inp;box._hits=hits;box.hidden=false});
+ inp.addEventListener('keydown',e=>{if(e.key==='Escape')box.hidden=true;if(e.key==='Enter'){box.hidden=true}});
+ if(!box._wired){box._wired=1;box.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const h=box._hits[+b.dataset.i],i=box._for;box.hidden=true;i.value=h.v;i._pick(h)})}
+ inp._pick=onPick}
+suggest($('town'),$('townSug'),()=>pickTown());
+suggest($('rtFrom'),$('routeSug'),()=>$('rtTo').value.trim()?null:$('rtTo').focus());
+suggest($('rtTo'),$('routeSug'),()=>{if($('rtFrom').value.trim())findRoute()});
+document.addEventListener('click',e=>{if(!e.target.closest('#town,#townSug'))$('townSug').hidden=true;if(!e.target.closest('#rtFrom,#rtTo,#routeSug'))$('routeSug').hidden=true});
+$('town').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();pickTown()}});
+$('townGo').onclick=()=>{$('townSug').hidden=true;pickTown()};
 $('gps').onclick=()=>{if(!navigator.geolocation){$('where').textContent='Location is not available in this browser.';return}
  $('where').textContent='Finding your location…';navigator.geolocation.getCurrentPosition(p=>{RT=null;origin=[p.coords.latitude,p.coords.longitude,'your location'];save();run()},()=>{$('where').textContent='Could not get your location. Choose a town instead.'},{enableHighAccuracy:true,timeout:15000})};
 $('rad').oninput=e=>{$('rLbl').textContent=e.target.value+' MILES';if(origin)run()};
