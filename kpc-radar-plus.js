@@ -75,7 +75,7 @@ async function rainAt(la,lo,label){const box=$('lv-rain-out');box.innerHTML='<p 
  catch(e){box.innerHTML='<p class="lv-src" style="margin:8px 0;color:#b5452b">The rain forecast did not load. Try again in a minute.</p>'}}
 function setRain(on){rainMode=on;chip('lv-c-rain',on);$('lv-rain').style.display=on?'':'none';$('lv-map').classList.toggle('rain-pick',on);
  if(!on&&rainMk){rainMk.remove();rainMk=null}
- if(on){loadParks().then(P=>{$('lv-rain-list').innerHTML=P.map(p=>`<option value="${esc(p.n)} (${esc(p.c)})"></option>`).join('')});
+ if(on){loadParks();
   const last=store.get('lvRainLast',null);if(last&&isFinite(last.la))rainAt(last.la,last.lo,last.label)}}
 
 /* ---------- wire up ---------- */
@@ -91,8 +91,16 @@ function start(m){if(map||!m)return;map=m;
  /* listen on the map box itself so taps on warning or outlook areas still count in rain mode */
  map.getContainer().addEventListener('click',e=>{if(!rainMode)return;if(e.target.closest('.leaflet-control,.leaflet-popup,.leaflet-marker-icon'))return;
   const ll=map.mouseEventToLatLng(e);setTimeout(()=>map.closePopup(),0);rainAt(ll.lat,ll.lng,'the spot you tapped')});
- map.on('popupopen',e=>{const a=e.popup.getElement()&&e.popup.getElement().querySelector('[data-tune]');if(!a)return;a.onclick=ev=>{const[k,md]=a.dataset.tune.split('|');if(window.KPCRadio){ev.preventDefault();const kh=+k;window.KPCRadio.tune(kh,/CW/i.test(md)?'cw':/AM/i.test(md)?'am':kh<10000?'lsb':'usb',true)}}});
- $('lv-rain-form').onsubmit=async ev=>{ev.preventDefault();const v=$('lv-rain-q').value.trim();if(!v)return;const P=await loadParks();
+ map.on('popupopen',e=>{const a=e.popup.getElement()&&e.popup.getElement().querySelector('[data-tune]');if(!a)return;a.onclick=ev=>{const[k,md]=a.dataset.tune.split('|');if(window.KPCRadio){ev.preventDefault();const kh=+k;window.KPCRadio.tune(kh,/CW/i.test(md)?'cw':/AM/i.test(md)?'am':kh<10000?'lsb':'usb',true);const bl=$('rx-blocked'),op=$('rx-open');if(op&&bl&&getComputedStyle(bl).display!=='none')op.click()}}});
+ /* our own suggestion list (the phone's built-in one shows see-through on some phones) */
+ const sug=$('lv-rain-sug'),pick=p=>{sug.hidden=true;$('lv-rain-q').value=p.n+' ('+p.c+')';rainAt(+p.la,+p.lo,p.n);if(map)map.setView([p.la,p.lo],Math.max(map.getZoom(),8))};
+ $('lv-rain-q').addEventListener('input',async()=>{const v=$('lv-rain-q').value.trim().toLowerCase();if(v.length<2){sug.hidden=true;return}const P=await loadParks();
+  const hits=P.filter(p=>p.n.toLowerCase().includes(v)||p.c.toLowerCase().includes(v)).slice(0,8);
+  if(!hits.length){sug.hidden=true;return}sug._hits=hits;sug.innerHTML=hits.map((p,i)=>`<button type="button" data-i="${i}"><b>${esc(p.n)}</b><small>${esc(p.c)}${p.co?' \u00b7 '+esc(p.co)+' County':''}</small></button>`).join('');sug.hidden=false});
+ sug.addEventListener('click',e=>{const b=e.target.closest('button');if(b)pick(sug._hits[+b.dataset.i])});
+ document.addEventListener('click',e=>{if(!e.target.closest('#lv-rain-form,#lv-rain-sug'))sug.hidden=true});
+ $('lv-rain-q').addEventListener('keydown',e=>{if(e.key==='Escape')sug.hidden=true});
+ $('lv-rain-form').onsubmit=async ev=>{ev.preventDefault();sug.hidden=true;const v=$('lv-rain-q').value.trim();if(!v)return;const P=await loadParks();
   const ref=(v.match(/US-\d+/i)||[])[0];const p=ref?P.find(x=>x.c.toUpperCase()===ref.toUpperCase()):P.find(x=>x.n.toLowerCase()===v.toLowerCase())||P.find(x=>x.n.toLowerCase().includes(v.toLowerCase()));
   if(p){rainAt(+p.la,+p.lo,p.n);if(map)map.setView([p.la,p.lo],Math.max(map.getZoom(),8))}else $('lv-rain-out').innerHTML='<p class="lv-src" style="margin:8px 0">No Kentucky park matches that. Try part of the name, a park number like US-0724, or tap the map.</p>'};
  $('lv-rain-me').onclick=()=>{if(!navigator.geolocation)return;$('lv-rain-out').innerHTML='<p class="lv-src" style="margin:8px 0">Finding you…</p>';navigator.geolocation.getCurrentPosition(p=>rainAt(p.coords.latitude,p.coords.longitude,'your location'),()=>{$('lv-rain-out').innerHTML='<p class="lv-src" style="margin:8px 0">Location was blocked. Pick a park or tap the map instead.</p>'},{timeout:15000,maximumAge:300000})};

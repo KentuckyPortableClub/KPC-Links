@@ -126,7 +126,7 @@ function drawSpotPins(){if(!spotLayer)return;spotLayer.clearLayers();let n=0,m=0
  allSpots.forEach(s=>{const xy=spotXY(s);if(!xy)return;const la=xy[0],lo=xy[1];
   const ky=String(s.locationDesc||'').split(',').some(x=>x.trim()==='US-KY'),mem=MEMBERS.includes(base(s.activator));if(!spotAll&&!ky&&!mem)return;n++;if(mem)m++;
   L.circleMarker([la,lo],{radius:mem?10:7,color:mem?'#171717':'#fff',weight:2.5,fillColor:mem?'#f0c030':'#2fa84f',fillOpacity:1,pane:'spotp'})
-   .bindPopup('<b>'+esc(s.name||s.parkName||s.reference)+'</b> ('+esc(s.reference)+')<br><b>'+esc(s.activator)+'</b> &middot; '+mhz(s.frequency)+' MHz '+esc(s.mode)+(s.comments?'<br><small>'+esc(s.comments)+'</small>':'')+'<br><a href="https://pota.app/#/park/'+encodeURIComponent(s.reference)+'" target="_blank" rel="noopener">POTA park page</a>').addTo(spotLayer)});
+   .bindPopup('<b>'+esc(s.name||s.parkName||s.reference)+'</b> ('+esc(s.reference)+')<br><b>'+esc(s.activator)+'</b> &middot; '+mhz(s.frequency)+' MHz '+esc(s.mode)+(s.comments?'<br><small>'+esc(s.comments)+'</small>':'')+'<br><a href="https://pota.app/#/park/'+encodeURIComponent(s.reference)+'" target="_blank" rel="noopener">POTA park page</a>'+(+s.frequency?' &middot; <a href="#rx-card" data-tune="'+(+s.frequency)+'|'+esc(s.mode||'')+'">Listen</a>':'')).addTo(spotLayer)});
  $('lv-snote').textContent=n?n+' park'+(n>1?'s':'')+' on the air'+(spotAll?' (all US)':' in Kentucky')+(m?', '+m+' KPC':'')+' (gold = KPC member)':'No parks on the air '+(spotAll?'':'in Kentucky ')+'right now'}
 const WCOLS=v=>v<5?'#6f9fd8':v<10?'#2fa86a':v<15?'#c99a00':v<25?'#f07d1e':'#d7191c';
 const CMP=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
