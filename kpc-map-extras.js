@@ -384,3 +384,24 @@ function baseSwitcher(map, layers, opt){
 
 window.KPCX = {baseSwitcher, attach, hover, overlapData, overlapIndex, overlapCard, KINDTXT, svUrl};
 })();
+/* KPC popup fit (shared; identical copy in kpc-tools.js and kpc-map-extras.js, runs once).
+   Keeps map popups fully visible: clear of the map edges AND the sticky site menu bar, re-checked when popup
+   content grows after it opens (live data, boundary text), and taller popups scroll instead of running off. */
+(function(){if(!window.L||!L.Map||window.__kpcPopFit)return;window.__kpcPopFit=true;
+ function navBottom(){const n=document.querySelector('.site-nav');if(!n)return 0;const cs=getComputedStyle(n);if(!/sticky|fixed/.test(cs.position))return 0;return n.getBoundingClientRect().bottom}
+ function fit(p){const m=p&&p._map,c=p&&p._container;if(!m||!c||!c.isConnected)return;
+  const mr=m.getContainer().getBoundingClientRect(),cr=c.getBoundingClientRect();
+  const top=Math.max(mr.top,navBottom())+12,left=mr.left+10,right=mr.right-10,bottom=mr.bottom-10;
+  let dx=0,dy=0;if(cr.top<top)dy=cr.top-top;else if(cr.bottom>bottom&&cr.top-(cr.bottom-bottom)>=top)dy=cr.bottom-bottom;
+  if(cr.left<left)dx=cr.left-left;else if(cr.right>right)dx=cr.right-right;
+  if(Math.abs(dx)>2||Math.abs(dy)>2)m.panBy([Math.round(dx),Math.round(dy)],{animate:true,duration:.25})}
+ function cap(p){const m=p._map,c=p._container;if(!m||!c)return;const w=c.querySelector('.leaflet-popup-content-wrapper'),body=c.querySelector('.leaflet-popup-content');if(!w||!body)return;
+  const mr=m.getContainer().getBoundingClientRect(),room=Math.max(140,mr.bottom-Math.max(mr.top,navBottom())-70);
+  body.style.maxHeight=room+'px';body.style.overflowY='auto'}
+ L.Map.addInitHook(function(){const map=this;
+  /* Hover cards (Park Commander, KY planner) set autoPan:false on purpose so the map holds still under the mouse;
+     once a card is tapped or clicked it is pinned (autoPan:true) and is then moved fully into view. */
+  map.on('popupopen',e=>{const p=e.popup;cap(p);const go=()=>{if(p.options.autoPan!==false)fit(p)};setTimeout(go,40);setTimeout(go,400);
+   clearInterval(p._kpcW);if(p.options.autoPan===false)p._kpcW=setInterval(()=>{if(!p._map){clearInterval(p._kpcW);return}if(p.options.autoPan!==false){clearInterval(p._kpcW);fit(p)}},250);
+   if(window.ResizeObserver&&p._container){if(p._kpcRO)p._kpcRO.disconnect();let t=0;p._kpcRO=new ResizeObserver(()=>{clearTimeout(t);t=setTimeout(()=>{cap(p);go()},60)});p._kpcRO.observe(p._container)}});
+  map.on('popupclose',e=>{const p=e.popup;if(!p)return;clearInterval(p._kpcW);if(p._kpcRO){p._kpcRO.disconnect();p._kpcRO=null}})})})();
