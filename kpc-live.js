@@ -21,7 +21,7 @@ function sunStatus(){const now=new Date(),a=sunAlt(37.8,-85.7,sunPos(now)),b=sun
  if(a>=-6){sunMode='gray';return['GRAY LINE',b>a?'Sunrise in Kentucky':'Sunset in Kentucky']}
  sunMode='night';return['NIGHT','Dark in Kentucky']}
 let sfi=null,kp=null,lastRows=null,parksN=0,membersN=0;
-function renderStatus(){const [t,s]=sunStatus();$('lv-sun').innerHTML='<b>'+t+'</b><span>'+s+'</span>';
+function renderStatus(){const [t,s]=sunStatus();const su=$('lv-sun');if(su)su.innerHTML='<b>'+t+'</b><span>'+s+'</span>';
  $('lv-sfi').innerHTML='<b>'+(Number.isFinite(sfi)?'SFI '+Math.round(sfi):'SFI --')+'</b><span>Solar flux</span>';
  const kl=!Number.isFinite(kp)?'':kp<3?'Geomagnetic: quiet':kp<5?'Geomagnetic: unsettled':'Geomagnetic: storm';
  $('lv-kp').innerHTML='<b>'+(Number.isFinite(kp)?'Kp '+(kp%1?kp.toFixed(1):kp):'Kp --')+'</b><span>'+kl+'</span>';
@@ -41,12 +41,8 @@ async function spaceExtra(){try{const j=await jget('https://services.swpc.noaa.g
   if(sg)sg.textContent=g!=null?'G'+g:'--';if(sr)sr.textContent=r!=null?'R'+r:'--';if(ss)ss.textContent=s!=null?'S'+s:'--'}catch(e){}
  if(Number.isFinite(sfi)){const e=$('sw-sfi');if(e)e.textContent=Math.round(sfi);}
  if(Number.isFinite(kp)){const e=$('sw-kp');if(e)e.textContent=kp%1?kp.toFixed(1):kp;}
- /* A-index and sunspot number */
- try{const j=await jget('https://services.swpc.noaa.gov/products/summary/solar-geophysical-activity.json');
-  const a=j['a-index'],ssn=j['sunspot-number'];
-  const ea=$('sw-a'),en=$('sw-ssn');
-  if(ea&&a!=null)ea.textContent=Math.round(Number(a));
-  if(en&&ssn!=null)en.textContent=Math.round(Number(ssn));}catch(e){}}
+ /* A-index and sunspots are filled by the grey line script in kpc-live.html */
+ }
 async function noaaBasic(){try{const [k,f]=await Promise.all([jget('https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json'),jget('https://services.swpc.noaa.gov/products/summary/10cm-flux.json')]);kp=Number(k[k.length-1].Kp);sfi=Number((Array.isArray(f)?f[0]:f).flux);renderStatus();spaceExtra()}catch(e){}}
 
 /* ---------- POTA spots bar ---------- */

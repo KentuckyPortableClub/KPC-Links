@@ -88,6 +88,7 @@
 .mode-toggle{display:flex;gap:0;margin-bottom:20px;border:1px solid #cbbf9f;border-radius:8px;overflow:hidden;width:fit-content}
 .mode-toggle button{padding:11px 24px;font-size:13px;font-weight:900;letter-spacing:1px;background:#fff;color:#68635a;border:none;cursor:pointer;transition:background .15s,color .15s;min-height:44px}
 .mode-toggle button.active{background:#0d2419;color:#f0c96b}
+.filepick{position:relative;display:flex;align-items:center;gap:10px;margin-top:6px;min-height:44px}.filepick input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}.filepick .btn{pointer-events:none;padding:10px 14px}#hfname{font-size:13px;font-weight:600;letter-spacing:0;color:#3d3a33;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mode-toggle button:first-child{border-right:1px solid #cbbf9f}
 </style>
 
@@ -127,9 +128,11 @@
 <div id="pane-hunt" style="display:none">
 <div class="panel">
 <form class="controls" id="fh" autocomplete="off">
-<label class="field" style="flex:1 1 220px">CALLSIGN<input id="hcall" placeholder="Hunter callsign" autocapitalize="characters" spellcheck="false"></label>
+<label class="field" style="flex:1 1 180px">CALLSIGN (OPTIONAL)<input id="hcall" placeholder="Your callsign" autocapitalize="characters" spellcheck="false"></label>
+<label class="field" style="flex:2 1 260px">YOUR LOG FILE (ADIF OR CSV)<span class="filepick"><input id="hfile" type="file" accept=".adi,.adif,.csv,.txt,.adx,text/plain,text/csv"><span class="btn alt" aria-hidden="true">CHOOSE FILE</span><span id="hfname">No file chosen</span></span></label>
 <button class="btn" type="submit" style="align-self:flex-end">CHECK HUNTS</button>
 </form>
+<p class="muted" style="margin:12px 0 0;font-size:13px;line-height:1.55">POTA doesn't publish hunter logs, so this reads your own log. Export it from your logging program (HAMRS, Log4OM, N1MM, WSJT-X, QRZ, LoTW and others) as an <b>ADIF (.adi)</b> file, or use any CSV that lists park references like US-0724. Your file never leaves your device.</p>
 <div class="progress" id="hprog"><div class="bar"><i style="width:0"></i></div><small></small></div>
 </div>
 
@@ -149,7 +152,7 @@
 <div class="tablewrap" style="max-height:420px"><table class="list"><thead><tr><th>PARK</th><th>COUNTY</th><th id="hcol3">FIRST HUNT</th><th id="hcol4">QSOs</th></tr></thead><tbody id="htbody"></tbody></table></div>
 </div></div>
 </div>
-<div class="note">Uses POTA's public hunter log for the 186 Kentucky parks in the KPC guide. Shows parks where you've made at least one hunter contact. Nothing you type is saved or shared.</div>
+<div class="note">Reads your log file right here in your browser — nothing is uploaded, saved or shared. ADIF files count the other station's park (POTA_REF or SIG_INFO), so your own activations aren't counted as hunts. Old K-#### references are matched to today's US-#### numbers. Checks the 186 Kentucky parks in the KPC guide.</div>
 </div><!-- /pane-hunt -->
 
 </div></section>
@@ -197,38 +200,57 @@ function setMode(m){
   document.getElementById('btn-hunt').classList.toggle('active',m==='hunt');
   document.getElementById('page-sub').textContent=m==='act'
     ?'Enter any callsign to see which of Kentucky\'s POTA parks it has activated and which are still needed — then download the list as a spreadsheet (CSV).'
-    :'Enter your callsign to see which of Kentucky\'s POTA parks you\'ve hunted and which are still on your list. Download the results as a CSV.';}
+    :'Load your log file to see which of Kentucky\'s POTA parks you\'ve hunted and which are still on your list. Download the results as a CSV.';}
 
-/* ===== HUNTER mode ===== */
+/* ===== HUNTER mode =====
+   POTA does not publish anyone's hunter log, so this reads the person's own log file in the browser.
+   ADIF (.adi/.adif) is read record by record using the OTHER station's park (POTA_REF or SIG_INFO, never MY_*).
+   Anything else (CSV, text) is scanned line by line for park references. Old K-#### refs count as US-####. */
 let HD=null,hmap=null,hlayer=null,hcur=null,HS={},htab='done';
-document.getElementById('fh').onsubmit=e=>{e.preventDefault();runHunter(document.getElementById('hcall').value)};
+document.getElementById('fh').onsubmit=e=>{e.preventDefault();runHunter()};
+document.getElementById('hfile').onchange=()=>{const f=document.getElementById('hfile').files[0];document.getElementById('hfname').textContent=f?f.name:'No file chosen';if(f)runHunter()};
 async function loadHD(){if(HD)return HD;HD=await KPC.data();return HD}
-async function runHunter(call){call=KPC.base(call);if(!call)return;hcur=call;
+const REF_RE=/\b(?:US|K)-\d{4,5}\b/gi;
+function normRef(r){r=r.toUpperCase();return r.startsWith('K-')?'US-'+r.slice(2):r}
+function normDate(s){s=String(s||'');let m=s.match(/(\d{4})-?(\d{2})-?(\d{2})/);if(m&&+m[2]>=1&&+m[2]<=12)return m[1]+m[2]+m[3];
+ m=s.match(/\b(\d{1,2})\/(\d{1,2})\/(\d{4})\b/);if(m)return m[3]+m[1].padStart(2,'0')+m[2].padStart(2,'0');return''}
+function addHunt(out,ref,date){ref=normRef(ref);const h=out[ref]||(out[ref]={q:0,first:'',last:''});h.q++;
+ if(date){if(!h.first||date<h.first)h.first=date;if(!h.last||date>h.last)h.last=date}}
+function parseADIF(txt){const out={};let n=0;const body=txt.replace(/^[\s\S]*?<eoh>/i,'');
+ for(const rec of body.split(/<eor>/i)){const f={};const re=/<([A-Za-z0-9_]+):(\d+)(?::[^>]*)?>/g;let m;
+  while((m=re.exec(rec))){f[m[1].toUpperCase()]=rec.substr(re.lastIndex,+m[2]);re.lastIndex+=+m[2]}
+  if(!Object.keys(f).length)continue;n++;
+  const src=[f.POTA_REF||'',(!f.SIG||/pota/i.test(f.SIG))?(f.SIG_INFO||''):''].join(',');
+  const refs=new Set((src.match(REF_RE)||[]).map(normRef));
+  refs.forEach(r=>addHunt(out,r,normDate(f.QSO_DATE)))}
+ return{out,n}}
+function parseText(txt){const out={};let n=0;
+ for(const line of txt.split(/\r?\n/)){const refs=new Set((line.match(REF_RE)||[]).map(normRef));if(!refs.size)continue;n++;
+  const d=normDate(line);refs.forEach(r=>addHunt(out,r,d))}
+ return{out,n}}
+async function runHunter(){
+ const file=document.getElementById('hfile').files[0];
  const prog=document.getElementById('hprog'),pbar=prog.querySelector('i'),ptxt=prog.querySelector('small');
- prog.style.display='block';pbar.style.width='30%';ptxt.textContent='Loading park list...';
+ prog.style.display='block';
+ if(!file){pbar.style.width='0';ptxt.textContent='Choose your log file first (ADIF .adi or a CSV).';return}
+ const call=KPC.base(document.getElementById('hcall').value||'');hcur=call||'MY';
+ pbar.style.width='30%';ptxt.textContent='Reading '+file.name+'...';
  try{
-  await loadHD();
-  pbar.style.width='55%';ptxt.textContent='Fetching your hunt log from POTA...';
-  const resp=await fetch('https://api.pota.app/hunter/'+encodeURIComponent(call)+'/parks');
-  if(!resp.ok)throw new Error('POTA returned '+resp.status);
-  const hunted=await resp.json();
-  pbar.style.width='90%';ptxt.textContent='Building map...';
-  HS={};
-  (Array.isArray(hunted)?hunted:[]).forEach(h=>{
-   const ref=String(h.reference||h.park||'').toUpperCase();
-   if(!ref.startsWith('KY-'))return;
-   HS[ref]={q:Number(h.count||h.qsos||1),first:String(h.firstHunted||h.firstQSO||'').replace(/[-T:Z]/g,'').slice(0,8)||'',last:String(h.lastHunted||h.lastQSO||'').replace(/[-T:Z]/g,'').slice(0,8)||''};
-  });
-  const P=HD.parks,doneP=P.filter(p=>HS[p.c]),needed=P.filter(p=>!HS[p.c]);
+  const [txt]=await Promise.all([file.text(),loadHD()]);
+  const isADIF=/<eor>/i.test(txt);
+  const {out,n}=isADIF?parseADIF(txt):parseText(txt);
+  const P=HD.parks,ky=new Set(P.map(p=>p.c));
+  HS={};Object.keys(out).forEach(r=>{if(ky.has(r))HS[r]=out[r]});
+  const doneP=P.filter(p=>HS[p.c]),needed=P.length-doneP.length;
   const counties=new Set(doneP.map(p=>p.co)),totalQ=Object.values(HS).reduce((s,x)=>s+x.q,0);
+  if(!Object.keys(out).length){pbar.style.width='0';ptxt.textContent=isADIF?'No park contacts found in that ADIF file. Make sure your logger saves the park in POTA_REF or SIG_INFO.':'No park references (like US-0724) found in that file.';document.getElementById('hresult').style.display='none';return}
   document.getElementById('hresult').style.display='block';
-  document.getElementById('hstats').innerHTML=`<div class="stat"><b>${doneP.length}</b><span>OF ${P.length} KY PARKS</span></div><div class="stat"><b>${needed.length}</b><span>STILL NEEDED</span></div><div class="stat"><b>${totalQ.toLocaleString()}</b><span>KY HUNTER QSOs</span></div><div class="stat"><b>${counties.size}</b><span>COUNTIES</span></div>`;
+  document.getElementById('hstats').innerHTML=`<div class="stat"><b>${doneP.length}</b><span>OF ${P.length} KY PARKS</span></div><div class="stat"><b>${needed}</b><span>STILL NEEDED</span></div><div class="stat"><b>${totalQ.toLocaleString()}</b><span>KY PARK QSOS</span></div><div class="stat"><b>${counties.size}</b><span>COUNTIES</span></div>`;
   document.getElementById('hpbar').style.width=(100*doneP.length/P.length)+'%';
-  document.getElementById('hpbarLbl').textContent=`${call}: ${Math.round(100*doneP.length/P.length)}% of Kentucky parks hunted • ${counties.size} counties`;
-  pbar.style.width='100%';ptxt.textContent='Done.';
-  setTimeout(()=>{prog.style.display='none'},800);
+  document.getElementById('hpbarLbl').textContent=`${call?call+': ':''}${Math.round(100*doneP.length/P.length)}% of Kentucky parks hunted • ${counties.size} counties`;
+  pbar.style.width='100%';ptxt.textContent=`Read ${n.toLocaleString()} ${isADIF?'contacts':'lines with parks'} from ${file.name} • ${doneP.length} Kentucky park${doneP.length===1?'':'s'} hunted.`;
   drawHMap();drawHTable();
- }catch(err){ptxt.textContent='Could not load hunt log — is that callsign registered on POTA? ('+err.message+')';pbar.style.width='0';}}
+ }catch(err){pbar.style.width='0';ptxt.textContent='Could not read that file. ('+err.message+')'}}
 async function drawHMap(){if(window.L){if(!hmap){hmap=KPC.leafletMap('hmap');await KPC.countyLayer(hmap)}
  if(hlayer)hlayer.remove();hlayer=L.layerGroup().addTo(hmap);
  HD.parks.forEach(p=>{const h=HS[p.c],hunted=!!h;
