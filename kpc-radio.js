@@ -66,11 +66,13 @@ function initRx(){if(!$('rx-box'))return;
 /* ================= spots ================= */
 const NEAR=['KY','IN','OH','WV','VA','TN','MO','IL'];
 const USST=new Set('AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split(' '));
-const CATS=['POTA','SOTA','WWFF','DX','RBN','OTHER'],CATL={POTA:'POTA',SOTA:'SOTA',WWFF:'WWFF',DX:'DX CLUSTER',RBN:'SKIMMER (RBN)',OTHER:'OTHER xOTA'};
+const CATS=['POTA','SOTA','WWFF','DX','RBN','OTHER'],CATL={POTA:'POTA',SOTA:'SOTA',WWFF:'WWFF',DX:'DX CLUSTER',RBN:'SKIMMER (RBN)',OTHER:'OTHER PROGRAMS'}; /* GMA, HEMA, WWBOTA and the like */
 const SBANDS=['160m','80m','60m','40m','30m','20m','17m','15m','12m','10m','6m','2m'];
 const SMODES=['SSB','CW','DIGITAL','OTHER'];
 const AREAS=[['ky','Kentucky'],['near','Kentucky + neighbors'],['us','USA'],['NA','North America'],['EU','Europe'],['AS','Asia'],['SA','South America'],['AF','Africa'],['OC','Oceania'],['all','Worldwide']];
-let F=store.get('kpcSpotF',{cats:['POTA','SOTA','WWFF'],bands:[],modes:[],area:'us',q:''});
+/* default view: POTA phone on 40m in the USA (new storage key so everyone starts there once) */
+const F0=()=>({cats:['POTA'],bands:['40m'],modes:['SSB'],area:'us',q:''});
+let F=store.get('kpcSpotF2',F0()),SHOWN=5;
 let SP=[],srcNote='',lastLoad=0;
 function modeGroup(m){m=String(m||'').toUpperCase();if(/SSB|LSB|USB|PHONE/.test(m))return'SSB';if(/^CW/.test(m))return'CW';if(/FT8|FT4|RTTY|PSK|JS8|DATA|DIGI|OLIVIA|MFSK|JT|SSTV|VARA|WSPR|Q65/.test(m))return'DIGITAL';return m?'OTHER':''}
 function rxMode(m,khz){const g=modeGroup(m);return g==='CW'?'cw':/^AM$/i.test(m)?'am':sideband(khz)}
@@ -110,23 +112,25 @@ function ago(t){if(!t)return'';const m=Math.max(0,Math.round((Date.now()-t)/6000
 function chips(id,list,sel,lab){$(id).innerHTML=`<button type="button" class="lv-chip" data-v="" aria-pressed="${!sel.length}">ALL</button>`+list.map(v=>`<button type="button" class="lv-chip" data-v="${v}" aria-pressed="${sel.includes(v)}">${lab?lab[v]:v}</button>`).join('')}
 function drawFilters(){chips('sp-cats',CATS,F.cats,CATL);chips('sp-bands',SBANDS,F.bands);chips('sp-modes',SMODES,F.modes);
  $('sp-area').innerHTML=AREAS.map(([v,l])=>`<option value="${v}"${v===F.area?' selected':''}>${l}</option>`).join('');const q=$('sp-q');if(document.activeElement!==q)q.value=F.q}
-function drawSpots(){const tb=$('sp-list');if(!tb)return;drawFilters();store.set('kpcSpotF',F);
- const L=filtered(),show=L.slice(0,200);
+function drawSpots(){const tb=$('sp-list');if(!tb)return;drawFilters();store.set('kpcSpotF2',F);
+ const L=filtered(),show=L.slice(0,SHOWN);
  $('sp-count').textContent=SP.length?`${L.length.toLocaleString()} of ${SP.length.toLocaleString()} spots`:'';
  $('sp-note').textContent=SP.length?`From ${srcNote}. Last hour, newest first. Refreshes every minute.`:(lastLoad?'No spots could be loaded right now. Try again in a minute.':'Loading spots…');
  tb.innerHTML=show.map((s,i)=>{const b=bandOf(s.khz),loc=[s.state,s.state?'':s.country].filter(Boolean).join(' ')||s.grid;
-  return`<div class="sp-row"><div class="sp-a"><span class="sp-cat c-${s.cat}">${esc(s.cat==='OTHER'?(s.label||'xOTA').toUpperCase():s.cat==='DX'?'DX':s.cat)}</span><b class="sp-call">${esc(s.call)}</b><span class="sp-t">${ago(s.t)}</span></div>
+  return`<div class="sp-row"><div class="sp-a"><span class="sp-cat c-${s.cat}">${esc(s.cat==='OTHER'?(String(s.label||'OTHER')).toUpperCase():s.cat==='DX'?'DX':s.cat)}</span><b class="sp-call">${esc(s.call)}</b><span class="sp-t">${ago(s.t)}</span></div>
 <div class="sp-b"><b>${fmtK(s.khz)}</b> kHz <span class="sp-m">${esc(s.mode||'?')}</span>${b?' · '+b:''}${loc?' · '+esc(loc):''}</div>
 <div class="sp-c">${s.ref?`<span class="sp-ref">${esc(s.ref)}</span> `:''}${esc(s.name)}${s.comment?` <span class="sp-cm">“${esc(String(s.comment).slice(0,80))}”</span>`:''}</div>
-<button type="button" class="sp-go" data-i="${i}" ${s.khz>30000?'disabled title="Above 30 MHz: HF receivers can’t tune this"':''}>&#9654; LISTEN</button></div>`}).join('')||`<p class="sp-empty">${SP.length?'No spots match these filters. Try ALL or a wider area.':''}</p>`;
+<button type="button" class="sp-go" data-i="${i}" ${s.khz>30000?'disabled title="Above 30 MHz: HF receivers can’t tune this"':''}>&#9654; LISTEN</button></div>`}).join('')||`<p class="sp-empty">${SP.length?'No spots match these filters. Tap ALL on a row, pick another band, or SHOW EVERYTHING.':''}</p>`;
+ if(L.length>SHOWN||SHOWN>5)tb.insertAdjacentHTML('beforeend',`<div class="sp-more">${L.length>SHOWN?`<button type="button" class="lv-chip" data-more="1">SHOW ${Math.min(20,L.length-SHOWN)} MORE (${(L.length-SHOWN).toLocaleString()} not shown)</button>`:''}${SHOWN>5?'<button type="button" class="lv-chip" data-less="1">SHOW FEWER</button>':''}</div>`);
  tb._show=show}
 function initSpots(){if(!$('sp-list'))return;
- const tog=(key,id)=>$(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;const v=b.dataset.v;if(!v)F[key]=[];else F[key]=F[key].includes(v)?F[key].filter(x=>x!==v):F[key].concat(v);drawSpots()};
+ const tog=(key,id)=>$(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;const v=b.dataset.v;if(!v)F[key]=[];else F[key]=F[key].includes(v)?F[key].filter(x=>x!==v):F[key].concat(v);SHOWN=5;drawSpots()};
  tog('cats','sp-cats');tog('bands','sp-bands');tog('modes','sp-modes');
- $('sp-area').onchange=e=>{F.area=e.target.value;drawSpots()};
- $('sp-q').oninput=e=>{F.q=e.target.value;clearTimeout(initSpots.t);initSpots.t=setTimeout(drawSpots,250)};
- $('sp-reset').onclick=()=>{F={cats:[],bands:[],modes:[],area:'all',q:''};drawSpots()};
- $('sp-list').onclick=e=>{const b=e.target.closest('.sp-go');if(!b)return;const s=$('sp-list')._show[+b.dataset.i];if(!s)return;
+ $('sp-area').onchange=e=>{F.area=e.target.value;SHOWN=5;drawSpots()};
+ $('sp-q').oninput=e=>{F.q=e.target.value;SHOWN=5;clearTimeout(initSpots.t);initSpots.t=setTimeout(drawSpots,250)};
+ $('sp-reset').onclick=()=>{F={cats:[],bands:[],modes:[],area:'all',q:''};SHOWN=5;drawSpots()};
+ $('sp-list').onclick=e=>{if(e.target.closest('[data-more]')){SHOWN+=20;drawSpots();return}if(e.target.closest('[data-less]')){SHOWN=5;drawSpots();$('spots-card').scrollIntoView({behavior:'smooth',block:'start'});return}
+  const b=e.target.closest('.sp-go');if(!b)return;const s=$('sp-list')._show[+b.dataset.i];if(!s)return;
   tune(s.khz,rxMode(s.mode,s.khz),true);
   const r=curRx();if(!/^https:/i.test(r.url)){rxWin=window.open(tuneUrl(r,st.khz,st.mode),'kpc-websdr')}};
  drawSpots();loadSpots();setInterval(()=>{if(!document.hidden)loadSpots()},60000);
