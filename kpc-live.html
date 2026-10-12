@@ -68,6 +68,36 @@
 .lv-kypin{width:12px;height:12px;border-radius:50%;background:#d5a63a;border:2px solid #fff;box-shadow:0 0 0 2px #173a28}
 @media(max-width:900px){.lv-gl-wrap{grid-template-columns:1fr}#lv-gl-map{height:300px}}
 @media(max-width:640px){#lv-gl-map{height:230px}.lv-solar-row{grid-template-columns:repeat(2,1fr)}}
+/* HF receiver + spots */
+.rx-top{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px}
+.rx-top label{font-size:11px;font-weight:900;letter-spacing:1.5px;color:#68635a;display:flex;flex-direction:column;gap:5px}
+.rx-top select,.rx-top input,.sp-tools select,.sp-tools input{font:inherit;font-size:15px;padding:9px 10px;border:1px solid #cbbf9f;border-radius:6px;background:#fff;min-height:42px;color:#171717}
+.rx-top select{max-width:min(420px,80vw)}
+#rx-form{display:flex;gap:6px;align-items:flex-end}#rx-freq{width:120px}
+.rx-row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.rx-row .lv-chip{padding:8px 12px;min-height:40px}
+.rx-lab{font-size:11px;font-weight:900;letter-spacing:1.5px;color:#68635a;margin-top:10px}
+#rx-now{margin:12px 0 8px;font-size:14px;color:#3d3a33}#rx-now b{font-family:Georgia,serif;font-size:22px;color:#171717;margin-right:4px}
+#rx-frame{width:100%;height:560px;border:1px solid #d8cfbf;border-radius:8px;background:#111;display:none}
+#rx-blocked{display:none;flex-direction:column;align-items:flex-start;gap:12px;padding:20px;border:1px dashed #cbbf9f;border-radius:8px;background:#fbf8ef;font-size:14px;line-height:1.55}
+.rx-links{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;margin-top:10px;color:#68635a}.rx-links a,.rx-links button{color:#1d5a3a;font-weight:700;background:none;border:0;padding:0;font:inherit;font-weight:700;cursor:pointer;text-decoration:underline}
+.sp-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin:6px 0 4px}
+.sp-tools label{font-size:11px;font-weight:900;letter-spacing:1.5px;color:#68635a;display:flex;flex-direction:column;gap:5px}
+#sp-q{width:200px}
+.sp-f{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.sp-f .lv-chip{padding:7px 11px;min-height:36px;font-size:11px}
+.sp-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline;margin-top:12px;font-size:12px;color:#68635a}
+#sp-list{margin-top:8px;max-height:640px;overflow:auto;border:1px solid #e3d9bd;border-radius:8px}
+.sp-row{display:grid;grid-template-columns:190px 230px minmax(0,1fr) auto;gap:4px 14px;align-items:center;padding:10px 12px;border-bottom:1px solid #eee5cf;font-size:13px}
+.sp-row:nth-child(even){background:#fbf8ef}
+.sp-a{display:flex;gap:8px;align-items:center;min-width:0}.sp-call{font-size:15px;letter-spacing:.5px}.sp-t{color:#8a8473;font-size:12px}
+.sp-cat{font-size:10px;font-weight:900;letter-spacing:1px;padding:3px 6px;border-radius:4px;background:#e9e3d2;color:#3d3a33;white-space:nowrap}
+.c-POTA{background:#1d5a3a;color:#fff}.c-SOTA{background:#8a4b14;color:#fff}.c-WWFF{background:#2a6f2a;color:#fff}.c-DX{background:#173a6b;color:#fff}.c-RBN{background:#5b5b66;color:#fff}
+.sp-b b{font-family:Georgia,serif;font-size:16px}.sp-m{font-weight:800}
+.sp-c{color:#3d3a33;min-width:0;overflow:hidden;text-overflow:ellipsis}.sp-ref{font-weight:800;color:#1d5a3a}.sp-cm{color:#8a8473}
+.sp-go{font-size:11px;font-weight:900;letter-spacing:1px;padding:9px 12px;min-height:38px;border-radius:6px;border:0;background:#171717;color:#f0c96b;cursor:pointer;white-space:nowrap}
+.sp-go:disabled{opacity:.35;cursor:not-allowed}
+.sp-empty{padding:20px;color:#68635a;margin:0}
+@media(max-width:900px){.sp-row{grid-template-columns:minmax(0,1fr) auto}.sp-a,.sp-b,.sp-c{grid-column:1}.sp-go{grid-column:2;grid-row:1/span 3}#rx-frame{height:460px}}
+@media(max-width:640px){#sp-q{width:100%}.sp-tools label{flex:1 1 140px}.rx-top label{flex:1 1 100%}.rx-top select{max-width:none;width:100%}}
 .lv-src{font-size:12px;color:#68635a;margin:0 0 30px}
 #band-activity{padding:44px 24px}
 @media(max-width:900px){.lv-grid{grid-template-columns:1fr}.lv-best{margin-left:0;max-width:none}.lv-status .lv-w{gap:16px 22px}}
@@ -184,6 +214,28 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
   </div>
 </div>
 </div>
+<div class="lv-card" id="rx-card" style="margin-top:20px"><h2>Listen Live: HF Receiver</h2><div class="sub">Hear the bands through a public WebSDR. Pick a receiver, a band and a mode, or tap LISTEN on any spot below.</div>
+<div id="rx-box">
+<div class="rx-top">
+<label>RECEIVER<select id="rx-sel" aria-label="Receiver"></select></label>
+<form id="rx-form" autocomplete="off"><label>FREQUENCY (kHz)<input id="rx-freq" type="number" inputmode="decimal" step="any" aria-label="Frequency in kilohertz"></label><button class="lv-chip" type="submit">TUNE</button></form>
+</div>
+<div class="rx-lab">BAND</div><div class="rx-row" id="rx-bands"></div>
+<div class="rx-lab">MODE</div><div class="rx-row" id="rx-modes"></div>
+<div id="rx-now"></div>
+<iframe id="rx-frame" title="WebSDR receiver" allow="autoplay" referrerpolicy="no-referrer"></iframe>
+<div id="rx-blocked"><div id="rx-btext"></div><button type="button" class="lv-btn dk" id="rx-btn">&#127911; LISTEN IN NEW TAB &#8599;</button></div>
+<div class="rx-links"><a id="rx-open" href="#" target="kpc-websdr" rel="noopener">Open this receiver in its own tab &#8599;</a><button type="button" id="rx-add">Use a different receiver&hellip;</button><a href="http://rx.kiwisdr.com/" target="_blank" rel="noopener">Find KiwiSDRs &#8599;</a><a href="http://websdr.org/" target="_blank" rel="noopener">Find WebSDRs &#8599;</a></div>
+<p class="lv-src" style="margin:12px 0 0">Receivers are run by volunteers and can be busy or offline. If one won't connect, pick another. Tap the receiver's page once to start the audio.</p>
+</div></div>
+<div class="lv-card" id="spots-card" style="margin-top:20px"><h2>Spots: Who's On The Air</h2><div class="sub">Live POTA, SOTA, WWFF and DX cluster spots from around the world. Filter them, then tap LISTEN to tune the receiver.</div>
+<div class="rx-lab">CATEGORY</div><div class="sp-f" id="sp-cats"></div>
+<div class="rx-lab">BAND</div><div class="sp-f" id="sp-bands"></div>
+<div class="rx-lab">MODE</div><div class="sp-f" id="sp-modes"></div>
+<div class="sp-tools"><label>AREA<select id="sp-area" aria-label="Area"></select></label><label>SEARCH<input id="sp-q" type="search" placeholder="Call, park, summit&hellip;" aria-label="Search spots"></label><button type="button" class="lv-chip" id="sp-reset">SHOW EVERYTHING</button></div>
+<div class="sp-head"><span id="sp-count"></span><span id="sp-note">Loading spots&hellip;</span></div>
+<div id="sp-list" aria-live="polite"></div>
+</div>
 <div class="lv-card" style="margin-top:4px"><h2>Radar &amp; Lightning</h2><div class="sub">Statewide NEXRAD radar with NOAA lightning strike density. Use the layers button on the map for terrain or satellite.</div>
 <div class="lv-ctl"><button type="button" class="lv-chip" id="lv-play">&#9654; PLAY LAST HOUR</button><button type="button" class="lv-chip" id="lv-c-radar" aria-pressed="true">RADAR</button><button type="button" class="lv-chip" id="lv-c-light" aria-pressed="true">&#9889; LIGHTNING</button><button type="button" class="lv-chip" id="lv-c-warn" aria-pressed="true">WARNINGS</button><button type="button" class="lv-chip" id="lv-c-spots" aria-pressed="true">PARKS ON AIR</button><button type="button" class="lv-chip" id="lv-c-all" aria-pressed="false" title="Show spots across the whole US">ALL US</button><button type="button" class="lv-chip" id="lv-c-wind" aria-pressed="false">WIND</button><button type="button" class="lv-chip" id="lv-c-counties" aria-pressed="false">COUNTIES</button><button type="button" class="lv-chip" id="lv-c-ky" aria-pressed="true">OUTLINE</button><span class="lv-scrub"><span id="lv-flabel">Now</span><input type="range" id="lv-slider" min="0" max="10" value="10" aria-label="Radar time"></span></div>
 <div id="lv-map" role="img" aria-label="Kentucky radar and lightning map"></div>
@@ -279,7 +331,7 @@ setInterval(function(){kySun();moon()},60000);
 setInterval(loadNOAA,15*60000);
 })();
 </script>
-<script src="kpc-search.js?v=20261011c" defer></script><script src="kpc-band-strip.js?v=20261011c" defer></script><script src="kpc-band-maps.js?v=20261010c" defer></script><script src="kpc-live.js?v=20261012b" defer></script><script>
+<script src="kpc-search.js?v=20261011c" defer></script><script src="kpc-band-strip.js?v=20261011c" defer></script><script src="kpc-band-maps.js?v=20261010c" defer></script><script src="kpc-live.js?v=20261012b" defer></script><script src="kpc-radio.js?v=20261012c" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
