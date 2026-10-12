@@ -84,7 +84,7 @@ function refsOf(x){const r=x.sig_refs||x.sig_ref||x.refs||[];const a=Array.isArr
 function normHole(x){const khz=toKhz(x.freq!=null?x.freq:x.frequency);if(!khz)return null;const refs=refsOf(x);
  return{call:String(x.dx_call||x.activator||x.call||'').toUpperCase(),khz,mode:String(x.mode||'').toUpperCase(),cat:cat(x.sig,x.source),label:x.sig||x.source||'',
   ref:refs.map(r=>r.id).join(', '),name:refs.map(r=>r.name).filter(Boolean).join(' / ')||x.sig_refs_names||x.dx_name||'',
-  state:String(x.dx_state||'').toUpperCase(),country:x.dx_country||'',cont:String(x.dx_continent||'').toUpperCase(),grid:x.dx_grid||'',
+  state:String(x.dx_state||'').toUpperCase(),country:x.dx_country||'',cont:String(x.dx_continent||'').toUpperCase(),grid:x.dx_grid||'',la:+(x.dx_latitude??x.dx_lat??NaN),lo:+(x.dx_longitude??x.dx_lon??NaN),
   t:toMs(x.time),comment:x.comment||'',by:x.de_call||''}}
 function normPota(x){const khz=toKhz(x.frequency);if(!khz)return null;const loc=String(x.locationDesc||'');const st=(loc.match(/US-([A-Z]{2})/)||[])[1]||'';
  return{call:String(x.activator||'').toUpperCase(),khz,mode:String(x.mode||'').toUpperCase(),cat:'POTA',label:'POTA',ref:x.reference||'',name:x.name||'',state:st,country:/^US-/.test(loc)?'United States':'',cont:/^(US|CA|K|VE|XE)-/.test(loc)?'NA':'',grid:x.grid6||'',t:toMs(x.spotTime),comment:x.comments||'',by:x.spotter||''}}
@@ -100,7 +100,7 @@ async function loadSpots(){const note=$('sp-note');if(note)note.textContent='Loa
   srcNote=got.length?got.join(' and ')+' directly (the all-in-one feed is not answering, so DX cluster and WWFF spots are missing right now)':''}
  /* newest spot per call + frequency */
  const seen=new Map();out.sort((a,b)=>(b.t||0)-(a.t||0)).forEach(s=>{const k=s.call+'|'+Math.round(s.khz);if(!seen.has(k))seen.set(k,s)});
- SP=[...seen.values()];lastLoad=Date.now();drawSpots()}
+ SP=[...seen.values()];lastLoad=Date.now();window.KPCSpots=SP;try{window.dispatchEvent(new CustomEvent('kpc-spots',{detail:SP}))}catch(e){}drawSpots()}
 function inArea(s,a){if(a==='all')return true;
  const us=/United States|^USA?$/i.test(s.country)||/^(US|K)-/.test(s.ref)||USST.has(s.state);
  if(a==='ky')return s.state==='KY'||/US-KY/.test(s.ref);if(a==='near')return NEAR.includes(s.state);if(a==='us')return us;

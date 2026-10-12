@@ -94,6 +94,7 @@ function initMap(){if(typeof L==='undefined'||typeof KPC==='undefined'||!$('lv-m
  lightning.on('load',()=>{le=0;$('lv-lnote').textContent=''});
  cityLayer=L.layerGroup().addTo(map);radarCities();
  [['warnp',410],['kyp',420],['windp',630],['spotp',640]].forEach(p=>{map.createPane(p[0]);map.getPane(p[0]).style.zIndex=p[1]});
+ window.KPCLive={map};try{window.dispatchEvent(new CustomEvent('kpc-livemap',{detail:map}))}catch(e){}
  warnLayer=L.layerGroup().addTo(map);spotLayer=L.layerGroup().addTo(map);windLayer=L.layerGroup();stateLayer=L.layerGroup().addTo(map);
  drawWarnings();drawSpotPins();loadStates();loadParkXY().then(drawSpotPins);
  $('lv-c-warn').onclick=()=>{toggle('lv-c-warn')?warnLayer.addTo(map):map.removeLayer(warnLayer)};
