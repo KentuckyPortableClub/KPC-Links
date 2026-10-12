@@ -11,11 +11,11 @@ const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.
 /* ================= receiver ================= */
 /* type: websdr (?tune=7200lsb)  kiwi (?f=7200lsbz10)  owrx (#freq=7200000,mod=lsb) */
 const RX=[
- {id:'k3fef',name:'K3FEF WebSDR (Pennsylvania, USA)',type:'websdr',url:'http://k3fef.com:8901/'},
+ {id:'k3fef',name:'K3FEF WebSDR (Pennsylvania, USA)',short:'K3FEF (Pennsylvania)',type:'websdr',url:'http://k3fef.com:8901/',la:41.3,lo:-74.8},
  /* Northern Utah runs separate receivers per band group: #1 (port 8901) only covers up through 40m,
     so anything above 40m goes to #2 (port 8902). A frequency a receiver doesn't cover just won't tune. */
- {id:'utah',name:'Northern Utah WebSDR (Utah, USA)',type:'websdr',url:'http://websdr1.sdrutah.org:8901/index1a.html',above:[[7300,'http://websdr2.sdrutah.org:8902/index1a.html']]},
- {id:'twente',name:'University of Twente WebSDR (Netherlands)',type:'websdr',url:'http://websdr.ewi.utwente.nl:8901/',note:'Hear North America from Europe'}
+ {id:'utah',name:'Northern Utah WebSDR (Utah, USA)',short:'Northern Utah',la:41.5,lo:-112.1,type:'websdr',url:'http://websdr1.sdrutah.org:8901/index1a.html',above:[[7300,'http://websdr2.sdrutah.org:8902/index1a.html']]},
+ {id:'twente',name:'University of Twente WebSDR (Netherlands)',short:'Twente (Netherlands)',la:52.24,lo:6.85,type:'websdr',url:'http://websdr.ewi.utwente.nl:8901/',note:'Hear North America from Europe'}
 ];
 const BANDS=[['160m',1900,'lsb'],['80m',3850,'lsb'],['60m',5357,'usb'],['40m',7200,'lsb'],['30m',10136,'usb'],['20m',14250,'usb'],['17m',18130,'usb'],['15m',21300,'usb'],['12m',24950,'usb'],['10m',28400,'usb'],['WWV',10000,'am']];
 const MODES=['lsb','usb','cw','am'];
@@ -87,7 +87,7 @@ function normHole(x){const khz=toKhz(x.freq!=null?x.freq:x.frequency);if(!khz)re
  return{call:String(x.dx_call||x.activator||x.call||'').toUpperCase(),khz,mode:String(x.mode||'').toUpperCase(),cat:cat(x.sig,x.source),label:x.sig||x.source||'',
   ref:refs.map(r=>r.id).join(', '),name:refs.map(r=>r.name).filter(Boolean).join(' / ')||x.sig_refs_names||x.dx_name||'',
   state:String(x.dx_state||'').toUpperCase(),country:x.dx_country||'',cont:String(x.dx_continent||'').toUpperCase(),grid:x.dx_grid||'',la:+(x.dx_latitude??x.dx_lat??NaN),lo:+(x.dx_longitude??x.dx_lon??NaN),
-  t:toMs(x.time),comment:x.comment||'',by:x.de_call||''}}
+  t:toMs(x.time),comment:x.comment||'',by:x.de_call||'',deCountry:x.de_country||'',deCont:String(x.de_continent||'').toUpperCase(),deState:String(x.de_state||'').toUpperCase()}}
 function normPota(x){const khz=toKhz(x.frequency);if(!khz)return null;const loc=String(x.locationDesc||'');const st=(loc.match(/US-([A-Z]{2})/)||[])[1]||'';
  return{call:String(x.activator||'').toUpperCase(),khz,mode:String(x.mode||'').toUpperCase(),cat:'POTA',label:'POTA',ref:x.reference||'',name:x.name||'',state:st,country:/^US-/.test(loc)?'United States':'',cont:/^(US|CA|K|VE|XE)-/.test(loc)?'NA':'',grid:x.grid6||'',t:toMs(x.spotTime),comment:x.comments||'',by:x.spotter||''}}
 function normSota(x){const khz=toKhz(x.frequency);if(!khz)return null;const ac=String(x.associationCode||'');const usa=/^W\d|^W[0-9]?[A-Z]/.test(ac);
@@ -103,7 +103,13 @@ async function loadSpots(){const note=$('sp-note');if(note)note.textContent='Loa
  /* newest spot per call + frequency */
  const seen=new Map();out.sort((a,b)=>(b.t||0)-(a.t||0)).forEach(s=>{const k=s.call+'|'+Math.round(s.khz);if(!seen.has(k))seen.set(k,s)});
  SP=[...seen.values()];lastLoad=Date.now();window.KPCSpots=SP;try{window.dispatchEvent(new CustomEvent('kpc-spots',{detail:SP}))}catch(e){}drawSpots()}
+/* DX cluster and skimmer spots are about what can be HEARD where you are, so for those the area filter checks
+   where the SPOTTER is ("heard in the USA"), not the DX station. Kentucky/neighbors count as heard in the USA. */
+const DXCAT=c=>c==='DX'||c==='RBN';
 function inArea(s,a){if(a==='all')return true;
+ if(DXCAT(s.cat)){if(!s.deCountry&&!s.deCont&&!s.deState)return true;
+  const deUS=/United States|^USA?$/i.test(s.deCountry)||USST.has(s.deState)||(!s.deCountry&&/^(K|W|N|A[A-L])\d/.test(s.by||''));
+  if(a==='ky'||a==='near'||a==='us')return deUS;if(a==='NA')return s.deCont==='NA'||deUS;return s.deCont===a}
  const us=/United States|^USA?$/i.test(s.country)||/^(US|K)-/.test(s.ref)||USST.has(s.state);
  if(a==='ky')return s.state==='KY'||/US-KY/.test(s.ref);if(a==='near')return NEAR.includes(s.state);if(a==='us')return us;
  if(a==='NA')return s.cont==='NA'||us;return s.cont===a}
@@ -112,16 +118,32 @@ function ago(t){if(!t)return'';const m=Math.max(0,Math.round((Date.now()-t)/6000
 function chips(id,list,sel,lab){$(id).innerHTML=`<button type="button" class="lv-chip" data-v="" aria-pressed="${!sel.length}">ALL</button>`+list.map(v=>`<button type="button" class="lv-chip" data-v="${v}" aria-pressed="${sel.includes(v)}">${lab?lab[v]:v}</button>`).join('')}
 function drawFilters(){chips('sp-cats',CATS,F.cats,CATL);chips('sp-bands',SBANDS,F.bands);chips('sp-modes',SMODES,F.modes);
  $('sp-area').innerHTML=AREAS.map(([v,l])=>`<option value="${v}"${v===F.area?' selected':''}>${l}</option>`).join('');const q=$('sp-q');if(document.activeElement!==q)q.value=F.q}
+/* Where the spotted station is, and which WebSDR is most likely to hear it.
+   Location: the spot's own lat/lon, else its grid square, else the middle of its US state.
+   Best receiver: HF signals skip over nearby stations, so each band has a sweet-spot distance
+   (low bands shorter, high bands longer); the receiver closest to that distance wins. Rough guide only. */
+const STC={AL:[32.8,-86.8],AK:[64.2,-149.5],AZ:[34.3,-111.7],AR:[34.9,-92.4],CA:[37.2,-119.5],CO:[39,-105.5],CT:[41.6,-72.7],DE:[39,-75.5],FL:[28.6,-82.4],GA:[32.7,-83.4],HI:[20.8,-156.3],ID:[44.4,-114.6],IL:[40,-89.2],IN:[39.9,-86.3],IA:[42.1,-93.5],KS:[38.5,-98.4],KY:[37.5,-85.3],LA:[31,-92],ME:[45.4,-69.2],MD:[39,-76.8],MA:[42.3,-71.8],MI:[44.3,-85.4],MN:[46.3,-94.3],MS:[32.7,-89.7],MO:[38.4,-92.5],MT:[47,-109.6],NE:[41.5,-99.8],NV:[39.3,-116.6],NH:[43.7,-71.6],NJ:[40.2,-74.7],NM:[34.4,-106.1],NY:[42.9,-75.5],NC:[35.6,-79.4],ND:[47.5,-100.5],OH:[40.3,-82.8],OK:[35.6,-97.5],OR:[43.9,-120.6],PA:[40.9,-77.8],RI:[41.7,-71.5],SC:[33.9,-80.9],SD:[44.4,-100.2],TN:[35.9,-86.4],TX:[31.5,-99.3],UT:[39.3,-111.7],VT:[44.1,-72.7],VA:[37.5,-78.8],WA:[47.4,-120.5],WV:[38.6,-80.6],WI:[44.6,-89.9],WY:[43,-107.5],DC:[38.9,-77]};
+const STN={AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',DE:'Delaware',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming',DC:'DC'};
+function gridXY(g){g=String(g||'').trim();if(!/^[A-R]{2}\d{2}/i.test(g))return null;g=g.toUpperCase();let lo=(g.charCodeAt(0)-65)*20-180+(+g[2])*2,la=(g.charCodeAt(1)-65)*10-90+(+g[3]);
+ if(/^[A-X]{2}$/i.test(g.slice(4,6))){lo+=(g.charCodeAt(4)-65)*5/60+2.5/60;la+=(g.charCodeAt(5)-65)*2.5/60+1.25/60}else{lo+=1;la+=.5}return[la,lo]}
+const usSt=s=>STN[s.state]&&(!s.country||/United States|^USA?$/i.test(s.country))?s.state:'';
+function spotXY(s){if(isFinite(s.la)&&isFinite(s.lo)&&(s.la||s.lo))return[s.la,s.lo];return gridXY(s.grid)||(STC[usSt(s)]||null)}
+const mi=(a,b)=>{const r=Math.PI/180,x=(b[0]-a[0])*r,y=(b[1]-a[1])*r,h=Math.sin(x/2)**2+Math.cos(a[0]*r)*Math.cos(b[0]*r)*Math.sin(y/2)**2;return 7917.6*Math.asin(Math.min(1,Math.sqrt(h)))};
+const SWEET={'160m':500,'80m':500,'60m':700,'40m':800,'30m':1200,'20m':1500,'17m':1800,'15m':2000,'12m':2000,'10m':2000};
+function bestRx(s){const xy=spotXY(s),b=bandOf(s.khz);if(!xy||!SWEET[b])return null;let best=null;
+ RX.forEach(r=>{if(!isFinite(r.la))return;const d=mi(xy,[r.la,r.lo]),sc=Math.abs(Math.log(Math.max(d,50)/SWEET[b]));if(!best||sc<best.sc)best={r,d,sc}});return best}
+function whereText(s){const g=String(s.grid||'').slice(0,4).toUpperCase();const st=STN[usSt(s)];
+ const place=st?st+', USA':s.country?String(s.country).replace(/^United States( of America)?$/,'USA'):'';return [place,g].filter(Boolean).join(' · ')}
 /* KPC members: always pinned to the top in gold, whatever the filters (roster is MEMBERS in kpc-tools.js, the only list) */
 const isKpc=c=>{try{if(typeof KPC!=='undefined'&&KPC.isMember)return KPC.isMember(c)}catch(e){}return false};
 function drawSpots(){const tb=$('sp-list');if(!tb)return;drawFilters();store.set('kpcSpotF2',F);
  const club=SP.filter(s=>isKpc(s.call)),L=filtered().filter(s=>!isKpc(s.call)),show=[...club,...L.slice(0,SHOWN)];
  $('sp-count').textContent=SP.length?`${(L.length+club.length).toLocaleString()} of ${SP.length.toLocaleString()} spots`+(club.length?` · ${club.length} KPC`:''):'';
- $('sp-note').textContent=SP.length?`From ${srcNote}. Last hour, newest first. Refreshes every minute.`:(lastLoad?'No spots could be loaded right now. Try again in a minute.':'Loading spots…');
+ $('sp-note').textContent=SP.length?`From ${srcNote}. Last hour, newest first. Refreshes every minute.`+(F.area!=='all'&&(!F.cats.length||F.cats.some(DXCAT))?' DX cluster and skimmer spots are filtered by where the spotter is, so you see DX heard in your area.':''):(lastLoad?'No spots could be loaded right now. Try again in a minute.':'Loading spots…');
  tb.innerHTML=(club.length?`<div class="sp-kpchead">&#9733; KPC MEMBERS ON THE AIR (${club.length}) <span>always shown first</span></div>`:'')+show.map((s,i)=>{const b=bandOf(s.khz),loc=[s.state,s.state?'':s.country].filter(Boolean).join(' ')||s.grid,k=i<club.length;
   return`${!k&&i===club.length&&club.length?'<div class="sp-kpchead sp-rest">ALL OTHER SPOTS (YOUR FILTERS)</div>':''}<div class="sp-row${k?' sp-kpc':''}"><div class="sp-a"><span class="sp-cat c-${s.cat}">${esc(s.cat==='OTHER'?(String(s.label||'OTHER')).toUpperCase():s.cat==='DX'?'DX':s.cat)}</span><b class="sp-call">${esc(s.call)}</b>${k?'<span class="sp-badge">KPC</span>':''}<span class="sp-t">${ago(s.t)}</span></div>
-<div class="sp-b"><b>${fmtK(s.khz)}</b> kHz <span class="sp-m">${esc(s.mode||'?')}</span>${b?' · '+b:''}${loc?' · '+esc(loc):''}</div>
-<div class="sp-c">${s.ref?`<span class="sp-ref">${esc(s.ref)}</span> `:''}${esc(s.name)}${s.comment?` <span class="sp-cm">“${esc(String(s.comment).slice(0,80))}”</span>`:''}</div>
+<div class="sp-b"><b>${fmtK(s.khz)}</b> kHz <span class="sp-m">${esc(s.mode||'?')}</span>${b?' · '+b:''}</div>
+<div class="sp-c">${s.ref?`<span class="sp-ref">${esc(s.ref)}</span> `:''}${esc(s.name)}${s.comment?` <span class="sp-cm">“${esc(String(s.comment).slice(0,80))}”</span>`:''}</div>${(()=>{const w=whereText(s),br=s.khz<=30000?bestRx(s):null;return w||br?`<div class="sp-d">${w?`&#128205; ${esc(w)}`:''}${br?`${w?' · ':''}Best receiver: <button type="button" class="sp-rx" data-rx="${br.r.id}" data-i="${i}" title="About ${Math.round(br.d).toLocaleString()} miles from this station">${esc(br.r.short||br.r.name)} &#9654;</button> <span class="sp-mi">${(br.d>=100?Math.round(br.d/10)*10:Math.round(br.d)).toLocaleString()} mi</span>`:''}</div>`:''})()}
 <button type="button" class="sp-go" data-i="${i}" ${s.khz>30000?'disabled title="Above 30 MHz: HF receivers can’t tune this"':''}>&#9654; LISTEN</button></div>`}).join('')+(L.length?'':`<p class="sp-empty">${SP.length?'No '+(club.length?'other ':'')+'spots match these filters. Tap ALL on a row, pick another band, or SHOW EVERYTHING.':''}</p>`);
  if(L.length>SHOWN||SHOWN>5)tb.insertAdjacentHTML('beforeend',`<div class="sp-more">${L.length>SHOWN?`<button type="button" class="lv-chip" data-more="1">SHOW ${Math.min(20,L.length-SHOWN)} MORE (${(L.length-SHOWN).toLocaleString()} not shown)</button>`:''}${SHOWN>5?'<button type="button" class="lv-chip" data-less="1">SHOW FEWER</button>':''}</div>`);
  tb._show=show}
@@ -132,6 +154,7 @@ function initSpots(){if(!$('sp-list'))return;
  $('sp-q').oninput=e=>{F.q=e.target.value;SHOWN=5;clearTimeout(initSpots.t);initSpots.t=setTimeout(drawSpots,250)};
  $('sp-reset').onclick=()=>{F={cats:[],bands:[],modes:[],area:'all',q:''};SHOWN=5;drawSpots()};
  $('sp-list').onclick=e=>{if(e.target.closest('[data-more]')){SHOWN+=20;drawSpots();return}if(e.target.closest('[data-less]')){SHOWN=5;drawSpots();$('spots-card').scrollIntoView({behavior:'smooth',block:'start'});return}
+  const rb=e.target.closest('.sp-rx');if(rb){const s=$('sp-list')._show[+rb.dataset.i];if(!s)return;st.rx=rb.dataset.rx;tune(s.khz,rxMode(s.mode,s.khz),true);const r=curRx();if(!/^https:/i.test(r.url)){rxWin=window.open(tuneUrl(r,st.khz,st.mode),'kpc-websdr')}return}
   const b=e.target.closest('.sp-go');if(!b)return;const s=$('sp-list')._show[+b.dataset.i];if(!s)return;
   tune(s.khz,rxMode(s.mode,s.khz),true);
   const r=curRx();if(!/^https:/i.test(r.url)){rxWin=window.open(tuneUrl(r,st.khz,st.mode),'kpc-websdr')}};
