@@ -36,13 +36,26 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  const sat=L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
  const hyb=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19}),L.tileLayer(esri+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19})]);
- /* Satellite + Park Lines (beta): the OpenStreetMap street map, colors flipped and tinted yellow, blended onto the
-    satellite picture with "screen". Its light background disappears and its dark parts (park and forest borders,
-    labels, road edges) show as bright yellow lines over the real land. */
- map.createPane('parklines');const pl=map.getPane('parklines');pl.style.zIndex=250;pl.style.pointerEvents='none';pl.style.mixBlendMode='screen';
- pl.style.filter='invert(1) grayscale(1) contrast(2.2) brightness(.9) sepia(1) saturate(9) hue-rotate(2deg)';
+ /* Satellite + Park Lines (beta). Each OpenStreetMap street-map tile is repainted in the page: everything light
+    (background, park fill, forest, water, plain roads) becomes see-through and the dark parts (park and forest
+    borders, county lines, labels, road edges) become solid yellow. Green border pixels get the brightest yellow.
+    Done pixel by pixel on a canvas because CSS blend tricks render wrong on iPhone Safari (map turned blue).
+    OpenStreetMap tiles allow this (they send Access-Control-Allow-Origin: *); if a browser blocks it, the tile is
+    shown faintly as-is instead. */
  const glowStrength=()=>{const v=+store.get('kpcUsGlow',85);return Math.min(1,Math.max(.3,v/100))};
- const lines=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{pane:'parklines',maxZoom:19,opacity:glowStrength(),attribution:'Park lines © OpenStreetMap contributors'});
+ const ParkLines=L.GridLayer.extend({createTile(c,done){const t=document.createElement('canvas');t.width=t.height=256;const img=new Image();img.crossOrigin='anonymous';
+  img.onload=()=>{const x=t.getContext('2d');x.drawImage(img,0,0);
+   try{const d=x.getImageData(0,0,256,256),p=d.data;
+    for(let i=0;i<p.length;i+=4){const r=p[i],g=p[i+1],b=p[i+2],Lm=(.299*r+.587*g+.114*b)/255;
+     if(Lm>.72||p[i+3]<20){p[i+3]=0;continue}
+     const green=g>r+25&&g>b+10;let al=Math.min(1,(.72-Lm)/.32);
+     if(green){al=Math.min(1,al*1.7+.35);p[i]=255;p[i+1]=238;p[i+2]=70}else{p[i]=255;p[i+1]=214;p[i+2]=60}
+     p[i+3]=Math.round(al*255)}
+    x.putImageData(d,0,0)}
+   catch(e){x.clearRect(0,0,256,256);x.globalAlpha=.45;x.drawImage(img,0,0)}
+   done(null,t)};
+  img.onerror=()=>done(null,t);img.src='https://tile.openstreetmap.org/'+c.z+'/'+c.x+'/'+c.y+'.png';return t}});
+ const lines=new ParkLines({maxZoom:19,maxNativeZoom:19,zIndex:5,opacity:glowStrength(),attribution:'Park lines © OpenStreetMap contributors'});
  const beta=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),lines]);
  const base={'Street':street,'Satellite':sat,'Satellite + Streets':hyb,'Satellite + Park Lines (Beta)':beta};let want=store.get('kpcUsBase','Street');(base[want]||street).addTo(map);
  const glow=L.control({position:'bottomleft'});glow.onAdd=()=>{const d=L.DomUtil.create('div','us-glow');
@@ -82,6 +95,7 @@ function drawDots(){if(!map)return;dots.clearLayers();
 /* ---------- search ---------- */
 function normRef(q){q=q.trim().toUpperCase().replace(/\s+/g,'');if(/^K-\d{4,5}$/.test(q))q='US-'+q.slice(2);return q}
 async function search(q){q=q.trim();if(!q)return;$('us-hits').style.display='none';
+ const ll=parseLL(q);if(ll){go(ll.la,ll.lo,ll.label);return}
  const ref=normRef(q);if(BYREF[ref]){const s=BYREF[ref];await go(s.la,s.lo,s.n);openSpot(s);return}
  const lq=q.toLowerCase();const parks=ALL.filter(s=>progs.includes(s.p)&&s.n.toLowerCase().includes(lq)).slice(0,8);
  status('Searching places…');let places=[];
@@ -93,7 +107,7 @@ async function search(q){q=q.trim();if(!q)return;$('us-hits').style.display='non
  h.innerHTML=items.map((i,k)=>i.t==='place'?`<button type="button" data-k="${k}">&#128205; ${esc(i.n.split(',').slice(0,3).join(','))}<small>Place</small></button>`:`<button type="button" data-k="${k}"><span class="dot" style="background:${COL[i.s.p]}"></span>${esc(i.s.n)}<small>${i.s.p} ${esc(i.s.c)}</small></button>`).join('');
  h.onclick=async e=>{const b=e.target.closest('button');if(!b)return;const i=items[+b.dataset.k];h.style.display='none';if(i.t==='place')go(i.la,i.lo,i.n.split(',').slice(0,2).join(','));else{await go(i.s.la,i.s.lo,i.s.n);openSpot(i.s)}}}
 function openSpot(s){if(!map)return;let hit=null;dots.eachLayer(l=>{if(l.getPopup&&l.getPopup()&&l.getPopup()._kpc===s)hit=l});if(hit)hit.openPopup()}
-async function go(la,lo,label){center=[la,lo];radius=+$('usr').value;store.set('kpcUsLast',{la,lo,label,r:radius});
+async function go(la,lo,label){clearRoute();center=[la,lo];radius=+$('usr').value;store.set('kpcUsLast',{la,lo,label,r:radius});
  status(`Loading spots near ${esc(label||'there')}…`);
  const added=await addLive(la,lo,radius);
  NEAR=ALL.filter(s=>progs.includes(s.p)).map(s=>({s,d:KPC.miles(la,lo,s.la,s.lo)})).filter(x=>x.d<=radius).sort((a,b)=>a.d-b.d).map(x=>x.s);
@@ -105,8 +119,59 @@ async function go(la,lo,label){center=[la,lo];radius=+$('usr').value;store.set('
   map.fitBounds(ring.getBounds(),{padding:[10,10]})}
  drawDots();drawNear()}
 function drawNear(){const box=$('near');if(!center){box.style.display='none';return}box.style.display='';
+ if(RT){$('near-th2').textContent='MILE / OFF ROUTE';$('near-h').textContent=`Along your route (${NEAR.length.toLocaleString()}${NEAR.length>150?', first 150 shown':''})`;
+  $('near-body').innerHTML=NEAR.slice(0,150).map((s,i)=>{const r=RT.info[s.c]||{};return`<tr><td><span class="dot" style="background:${COL[s.p]}"></span><a href="#" data-o="${i}" class="ref">${esc(s.c)}</a><br>${esc(s.n)}</td><td>mile ${Math.round(r.at||0)}<br><small class="muted">${(r.off||0).toFixed(1)} mi off</small></td><td><button type="button" class="add${inTrip(s.c)?' in':''}" data-i="${i}">${inTrip(s.c)?'&#10003; ADDED':'+ ADD'}</button></td></tr>`}).join('')||'<tr><td colspan="3" class="muted">Nothing that close to the route. Try a wider distance.</td></tr>';return}
+ $('near-th2').textContent='MILES';
  $('near-h').textContent=`Nearby (${NEAR.length.toLocaleString()}${NEAR.length>150?', closest 150 shown':''})`;
  $('near-body').innerHTML=NEAR.slice(0,150).map((s,i)=>`<tr><td><span class="dot" style="background:${COL[s.p]}"></span><a href="#" data-o="${i}" class="ref">${esc(s.c)}</a><br>${esc(s.n)}</td><td>${KPC.miles(center[0],center[1],s.la,s.lo).toFixed(1)}</td><td><button type="button" class="add${inTrip(s.c)?' in':''}" data-i="${i}">${inTrip(s.c)?'&#10003; ADDED':'+ ADD'}</button></td></tr>`).join('')||'<tr><td colspan="3" class="muted">Nothing that close. Try a bigger distance.</td></tr>'}
+
+/* ---------- along a route ----------
+   Start and finish can be a town, ZIP, park number or GPS coordinates. The driving route comes from the public OSRM
+   server (straight line if it is busy); every spot within the chosen distance of the route is listed in the order
+   you reach it, with how far off the route it is. */
+let RT=null,routeL=null;
+function parseLL(q){const m=String(q).trim().match(/^([NS])?\s*(-?\d{1,2}(?:\.\d+)?)\s*°?\s*([NS])?\s*[,;\s]\s*([EW])?\s*(-?\d{1,3}(?:\.\d+)?)\s*°?\s*([EW])?$/i);if(!m)return null;
+ let la=+m[2],lo=+m[5];const ns=(m[1]||m[3]||'').toUpperCase(),ew=(m[4]||m[6]||'').toUpperCase();if(ns==='S')la=-Math.abs(la);if(ew==='W')lo=-Math.abs(lo);
+ if(!ew&&lo>60&&la>15&&la<72)lo=-lo; /* "37.5, 85.3" in the US almost always means west longitude */
+ if(Math.abs(la)>90||Math.abs(lo)>180)return null;return{la,lo,label:la.toFixed(4)+', '+lo.toFixed(4)}}
+let lastNom=0;
+async function resolvePoint(q){q=String(q||'').trim();if(!q)return null;const ll=parseLL(q);if(ll)return ll;
+ const ref=normRef(q);if(BYREF[ref]){const s=BYREF[ref];return{la:s.la,lo:s.lo,label:s.n+' ('+s.c+')'}}
+ const wait=1100-(Date.now()-lastNom);if(wait>0)await new Promise(r=>setTimeout(r,wait));lastNom=Date.now(); /* place search asks for at most one request a second */
+ try{const r=await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&countrycodes=us&limit=1&q='+encodeURIComponent(q),{headers:{'Accept-Language':'en'}});
+  if(r.ok){const j=await r.json();if(j&&j[0])return{la:+j[0].lat,lo:+j[0].lon,label:j[0].display_name.split(',').slice(0,3).join(',')}}}catch(e){}
+ const lq=q.toLowerCase(),s=ALL.find(x=>x.n.toLowerCase().includes(lq));return s?{la:s.la,lo:s.lo,label:s.n}:null}
+async function roadRoute(a,b){try{const c=new AbortController(),t=setTimeout(()=>c.abort(),20000);
+  const r=await fetch(`https://router.project-osrm.org/route/v1/driving/${a.lo},${a.la};${b.lo},${b.la}?overview=simplified&geometries=geojson`,{signal:c.signal});clearTimeout(t);
+  if(!r.ok)throw 0;const j=await r.json();const rt=j.routes&&j.routes[0];if(!rt||!rt.geometry)throw 0;
+  return{pts:rt.geometry.coordinates.map(c=>[c[1],c[0]]),mi:rt.distance/1609.34,hrs:rt.duration/3600,road:true}}
+ catch(e){return{pts:[[a.la,a.lo],[b.la,b.lo]],mi:KPC.miles(a.la,a.lo,b.la,b.lo),road:false}}}
+function corridor(pts,w){const cum=[0];for(let i=1;i<pts.length;i++)cum.push(cum[i-1]+KPC.miles(pts[i-1][0],pts[i-1][1],pts[i][0],pts[i][1]));
+ let s0=90,n0=-90,w0=180,e0=-180;pts.forEach(([a,b])=>{s0=Math.min(s0,a);n0=Math.max(n0,a);w0=Math.min(w0,b);e0=Math.max(e0,b)});
+ const dLa=w/69,dLo=w/(69*Math.cos(((s0+n0)/2)*Math.PI/180));const out=[],info={};
+ ALL.forEach(s=>{if(!progs.includes(s.p)||s.la<s0-dLa||s.la>n0+dLa||s.lo<w0-dLo||s.lo>e0+dLo)return;
+  const k=Math.cos(s.la*Math.PI/180)*69.17;let best=1e9,at=0;
+  for(let i=1;i<pts.length;i++){const ax=(pts[i-1][1]-s.lo)*k,ay=(pts[i-1][0]-s.la)*69,bx=(pts[i][1]-s.lo)*k,by=(pts[i][0]-s.la)*69,dx=bx-ax,dy=by-ay,L2=dx*dx+dy*dy;
+   const t=L2?Math.max(0,Math.min(1,-(ax*dx+ay*dy)/L2)):0,px=ax+t*dx,py=ay+t*dy,d=Math.hypot(px,py);if(d<best){best=d;at=cum[i-1]+t*(cum[i]-cum[i-1])}}
+  if(best<=w){out.push(s);info[s.c]={off:best,at}}});
+ out.sort((a,b)=>info[a.c].at-info[b.c].at);return{list:out,info,total:cum[cum.length-1]}}
+function clearRoute(){RT=null;if(routeL){routeL.remove();routeL=null}}
+async function runRoute(){const fq=$('urf').value,tq=$('urt').value,w=+$('urw').value;store.set('kpcUsRoute',{f:fq,t:tq,w});
+ if(!fq.trim()||!tq.trim()){status('Type where you start and where you finish.');return}
+ status('Finding your start…');const A=await resolvePoint(fq);if(!A){status(`Couldn’t find “${esc(fq)}”. Try a town and state, a ZIP, a park number or GPS like 37.57, -84.29.`);return}
+ status('Finding your finish…');const B=await resolvePoint(tq);if(!B){status(`Couldn’t find “${esc(tq)}”. Try a town and state, a ZIP, a park number or GPS like 37.57, -84.29.`);return}
+ status('Working out the drive…');const R=await roadRoute(A,B);
+ for(let i=0;i<R.pts.length;i+=Math.max(1,Math.floor(R.pts.length/12)))await addLive(R.pts[i][0],R.pts[i][1],w); /* newer POTA parks for the states the route crosses */
+ const C=corridor(R.pts,w);if(ctrMk){ctrMk.remove();ctrMk=null}if(ring){ring.remove();ring=null}
+ RT={pts:R.pts,info:C.info,A,B,w};center=[A.la,A.lo];NEAR=C.list;
+ const n={POTA:0,SOTA:0,WWFF:0};NEAR.forEach(s=>n[s.p]++);const h=R.hrs?`, about ${Math.floor(R.hrs)} h ${Math.round(R.hrs%1*60)} min`:'';
+ status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${w} miles of your ${Math.round(R.road?R.mi:C.total)}-mile ${R.road?'drive'+h:'route (straight line: the road-route server was busy)'} from <b>${esc(A.label)}</b> to <b>${esc(B.label)}</b>: ${progs.map(p=>n[p].toLocaleString()+' '+p).join(', ')}. Listed in the order you reach them.`);
+ if(map){if(routeL)routeL.remove();const pin=(p,t)=>L.marker([p.la,p.lo],{interactive:false,icon:L.divIcon({className:'',html:`<div class="rt-end">${t}</div>`,iconSize:[26,26],iconAnchor:[13,13]})});
+  routeL=L.featureGroup([L.polyline(R.pts,{color:'#171717',weight:8,opacity:.55,interactive:false}),L.polyline(R.pts,{color:'#f0c96b',weight:4,interactive:false,dashArray:R.road?null:'8 8'}),pin(A,'A'),pin(B,'B')]).addTo(map);
+  map.fitBounds(routeL.getBounds(),{padding:[24,24]})}
+ drawDots();drawNear()}
+function setSearchMode(m){const route=m==='route';$('usf').style.display=route?'none':'';$('urf-form').style.display=route?'':'none';
+ [...$('us-modes').children].forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.m===m)));store.set('kpcUsMode',m)}
 
 /* ---------- boundary (OpenStreetMap, on request) ---------- */
 /* The main overpass-api.de server says it is overloaded and refuses requests at busy times, so try the free public
@@ -133,7 +198,7 @@ async function showBoundary(s,btn){if(bound){bound.remove();bound=null}btn.textC
   else(e.members||[]).forEach(m=>{if(m.type==='way'&&m.geometry)lines.push(m.geometry.filter(Boolean).map(p=>[p.lat,p.lon]))});
   bound=L.featureGroup(lines.filter(l=>l.length>1).map(l=>{const closed=l.length>3&&l[0][0]===l[l.length-1][0]&&l[0][1]===l[l.length-1][1];return closed?L.polygon(l,{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.12,interactive:false}):L.polyline(l,{color:'#f0c96b',weight:3,interactive:false})})).addTo(map);
   btn.textContent='OUTLINE: '+String(e.tags.name||'unnamed area').toUpperCase().slice(0,40);status(`Boundary shown: <b>${esc(e.tags.name||'unnamed area')}</b> from OpenStreetMap${sim(s.n,e.tags.name||'')<.5?' (closest match: it may not be the exact POTA park area)':''}.`)}
- catch(err){btn.textContent='BOUNDARY NOT AVAILABLE, TAP TO TRY AGAIN';status('Boundary lookup failed. What each server said: <b>'+esc((err.why||[err.message]).join(' \u2022 '))+'</b>. Send a screenshot of this to the site admin. Meanwhile try the <b>Satellite + Park Lines (Beta)</b> map in the layers button.');btn.disabled=false;return}btn.disabled=false}
+ catch(err){btn.textContent='BOUNDARY NOT AVAILABLE, TAP TO TRY AGAIN';{const pop=btn.closest('.us-pop');if(pop){let w=pop.querySelector('.bwhy');if(!w){w=document.createElement('div');w.className='bwhy';w.style.cssText='font-size:11px;color:#b5452b;margin-top:6px;line-height:1.4';pop.appendChild(w)}w.textContent='Why: '+(err.why||[err.message]).join(' \u2022 ')}}status('Boundary lookup failed. What each server said: <b>'+esc((err.why||[err.message]).join(' \u2022 '))+'</b>. Send a screenshot of this to the site admin. Meanwhile try the <b>Satellite + Park Lines (Beta)</b> map in the layers button.');btn.disabled=false;return}btn.disabled=false}
 
 /* ---------- trip ---------- */
 const inTrip=c=>trip.some(s=>s.c===c);
@@ -177,10 +242,14 @@ function loadShared(){const t=new URLSearchParams(location.search).get('t');if(!
 $('usf').onsubmit=e=>{e.preventDefault();search($('usq').value)};
 $('usr').onchange=()=>{if(center)go(center[0],center[1],(store.get('kpcUsLast',{})||{}).label)};
 $('us-progs').onclick=e=>{const b=e.target.closest('button');if(!b)return;const p=b.dataset.p;progs=progs.includes(p)?progs.filter(x=>x!==p):progs.concat(p);if(!progs.length)progs=[p];store.set('kpcUsProgs',progs);
- [...$('us-progs').children].forEach(x=>x.setAttribute('aria-pressed',progs.includes(x.dataset.p)));if(center)go(center[0],center[1],(store.get('kpcUsLast',{})||{}).label)};
+ [...$('us-progs').children].forEach(x=>x.setAttribute('aria-pressed',progs.includes(x.dataset.p)));if(RT){const C=corridor(RT.pts,RT.w);RT.info=C.info;NEAR=C.list;drawDots();drawNear();status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${RT.w} miles of your route.`)}else if(center)go(center[0],center[1],(store.get('kpcUsLast',{})||{}).label)};
 $('us-me').onclick=()=>{if(!navigator.geolocation){status('This browser can’t share your location.');return}status('Finding you…');
  navigator.geolocation.getCurrentPosition(p=>go(fix(p.coords.latitude),fix(p.coords.longitude),'you'),()=>status('Location was blocked or unavailable. Type a town or ZIP instead.'),{timeout:15000,maximumAge:300000})};
 $('us-drop').onclick=()=>setDrop(!dropMode);
+$('us-modes').onclick=e=>{const b=e.target.closest('button');if(b)setSearchMode(b.dataset.m)};
+$('urf-form').onsubmit=e=>{e.preventDefault();runRoute()};
+$('urw').onchange=()=>{if(RT){const C=corridor(RT.pts,+$('urw').value);RT.w=+$('urw').value;RT.info=C.info;NEAR=C.list;drawDots();drawNear();status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${RT.w} miles of your route.`)}};
+{const r=store.get('kpcUsRoute',null);if(r){$('urf').value=r.f||'';$('urt').value=r.t||'';if(r.w)$('urw').value=String(r.w)}setSearchMode(store.get('kpcUsMode','place'))}
 $('near-body').onclick=e=>{const a=e.target.closest('[data-i]'),o=e.target.closest('[data-o]');
  if(a){const s=NEAR[+a.dataset.i];inTrip(s.c)?removeStop(s.c):addStop(s)}
  if(o){e.preventDefault();const s=NEAR[+o.dataset.o];map&&map.setView([s.la,s.lo],Math.max(map.getZoom(),11));setTimeout(()=>openSpot(s),300);$('usmap').scrollIntoView({behavior:'smooth',block:'center'})}};
