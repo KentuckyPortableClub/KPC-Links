@@ -5,9 +5,23 @@ const $=id=>document.getElementById(id), status=$('status');
    match, or a saved/shared stop outside the box. */
 let fullData=false,fullP=null,fullFail=false,kyBox=null;
 function covered(c,r){if(fullData||!kyBox)return true;const dl=r/69,dlo=r/(69*Math.max(.2,Math.cos(c[0]*Math.PI/180)));return c[0]-dl>=kyBox[0]&&c[0]+dl<=kyBox[1]&&c[1]-dlo>=kyBox[2]&&c[1]+dlo<=kyBox[3]}
+
+/* New Kentucky parks: POTA's current US-KY list (shared cache with the other KPC tools, refreshed daily).
+   Any park missing from the location files is added as a basic POTA dot so new parks show up right away. */
+let liveKYp=null;
+function liveKY(){if(liveKYp)return liveKYp;liveKYp=(async()=>{let c=null;try{c=JSON.parse(localStorage.getItem('kpcLiveKY')||'null')}catch(_){}
+ if(c&&Array.isArray(c.rows)&&Date.now()-c.t<864e5)return c.rows;
+ try{const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),8000);const r=await fetch('https://api.pota.app/location/parks/US-KY',{signal:ctl.signal});clearTimeout(tm);if(!r.ok)throw 0;const j=await r.json();
+  const rows=(Array.isArray(j)?j:[]).map(x=>[String(x.reference||'').toUpperCase(),String(x.name||'').trim(),+x.latitude,+x.longitude]).filter(r=>/^US-\d+$/.test(r[0])&&r[1]&&isFinite(r[2])&&isFinite(r[3])&&r[2]!==0);
+  if(rows.length>50){try{localStorage.setItem('kpcLiveKY',JSON.stringify({t:Date.now(),rows}))}catch(_){}return rows}}catch(_){}
+ return c&&Array.isArray(c.rows)?c.rows:[]})();return liveKYp}
+let liveAdded=new Set();
+function mergeLiveKY(){return liveKY().then(rows=>{if(!rows.length||!data.length)return;const have=new Set(data.map(key));let n=0;
+ for(const [c,nm,la,lo] of rows){if(have.has('POTA:'+c))continue;data.push(['POTA',c,nm,la,lo,'https://pota.app/#/park/'+c]);liveAdded.add(c);n++}
+ if(n){buildCrossReferences();drawSaved();if(center||$('place').value.trim())render()}}).catch(()=>{})}
 function loadAll(){if(fullData)return Promise.resolve(true);if(fullP)return fullP;
  status.textContent='Loading SOTA, POTA and WWFF locations for the rest of the U.S.…';
- fullP=fetch('locations.json').then(r=>{if(!r.ok)throw Error('Missing locations.json');return r.json()}).then(j=>{data=j;fullData=true;buildCrossReferences();drawSaved();if(center||$('place').value.trim())render();else status.textContent=`Loaded ${data.length.toLocaleString()} mapped SOTA, POTA and WWFF locations. Use GPS or search for a town.`;return true})
+ fullP=fetch('locations.json').then(r=>{if(!r.ok)throw Error('Missing locations.json');return r.json()}).then(j=>{data=j;fullData=true;buildCrossReferences();drawSaved();mergeLiveKY();if(center||$('place').value.trim())render();else status.textContent=`Loaded ${data.length.toLocaleString()} mapped SOTA, POTA and WWFF locations. Use GPS or search for a town.`;return true})
   .catch(()=>{fullFail=true;fullP=null;if(center||$('place').value.trim())render();else status.textContent='Could not load locations outside the Kentucky area. Kentucky-area searches still work.';return false});
  return fullP}
 let data=[],unmapped=[],center=null,markers=[],map=null,layer=null,requestController=null,lastMatches=[];
@@ -82,7 +96,7 @@ function link(label,url){const a=node('a','',label);a.href=url;a.target='_blank'
 /* KPC additions: Kentucky guide data (county, park type), Maidenhead grid, shortcuts, remembered search */
 let kyGuide=new Map();fetch('kpc-ky-data.json').then(r=>r.ok?r.json():null).then(j=>{if(!j)return;for(const p of j.parks||[])kyGuide.set(p.c,p);for(const p of j.summits||[])kyGuide.set(p.c,p);for(const p of j.kff||[])kyGuide.set(p.c,p);if(data.length)render()}).catch(()=>{});
 function grid6(lat,lon){lat=Number(lat)+90;lon=Number(lon)+180;if(!(lat>=0&&lat<=180&&lon>=0&&lon<=360))return '';const A='ABCDEFGHIJKLMNOPQR',a='abcdefghijklmnopqrstuvwx';const f1=Math.floor(lon/20),f2=Math.floor(lat/10),s1=Math.floor((lon%20)/2),s2=Math.floor(lat%10),t1=Math.floor((lon%2)*12),t2=Math.floor((lat%1)*24);return A[f1]+A[f2]+s1+s2+a[t1]+a[t2]}
-function kyLine(d){const g=grid6(d[3],d[4]),p=kyGuide.get(d[1]);let co='';if(p&&p.co&&!/official|see /i.test(p.co)){const l=String(p.co).replace(/\?/g,'').split('/').map(x=>x.trim()).filter(Boolean);co=l.length>3?'Multi-county ('+l.length+' counties)':l.length>1?l.join(' / ')+' counties':l[0]+' County'}return [g?'Grid '+g:'',co].filter(Boolean).join(' · ')}
+function kyLine(d){const g=grid6(d[3],d[4]),p=kyGuide.get(d[1]);let co='';if(p&&p.co&&!/official|see /i.test(p.co)){const l=String(p.co).replace(/\?/g,'').split('/').map(x=>x.trim()).filter(Boolean);co=l.length>3?'Multi-county ('+l.length+' counties)':l.length>1?l.join(' / ')+' counties':l[0]+' County'}return [g?'Grid '+g:'',co,liveAdded.has(d[1])?'New on POTA: basic info only':''].filter(Boolean).join(' · ')}
 
 /* KPC: better card links - directions to a real entrance, park-specific pages, camping, and a guide summary line */
 const HOSTLBL=[[/parks\.ky\.gov/,'Kentucky State Parks page'],[/fw\.ky\.gov/,'KDFWR area page'],[/eec\.ky\.gov/,'Nature Preserves page'],[/nps\.gov/,'National Park Service page'],[/fs\.usda\.gov/,'Forest Service page'],[/fws\.gov/,'Fish & Wildlife Service page']];
@@ -146,7 +160,7 @@ Promise.all([fetch('locations-ky.json').then(r=>{if(!r.ok)throw Error('no ky fil
   .catch(()=>fetch('locations.json').then(r=>{if(!r.ok)throw Error('Missing locations.json');return r.json()}).then(j=>{fullData=true;return j})),fetch('wwff-unmapped.json').then(r=>r.ok?r.json():[])]).then(([j,u])=>{data=j;unmapped=u;buildCrossReferences();drawSaved();
   status.textContent=fullData?`Loaded ${data.length.toLocaleString()} mapped SOTA, POTA and WWFF locations. Use GPS or search for a town.`:`Loaded ${data.length.toLocaleString()} SOTA, POTA and WWFF locations in and around Kentucky. The rest of the U.S. loads when you search farther out. Use GPS or search for a town.`;
   if(!fullData){const ks=new Set(data.map(key));let miss=saved.favorites.concat(saved.trip).some(k=>!ks.has(k));try{miss=miss||loadRove().some(s=>s.t==='park'&&!ks.has(s.k))}catch(_){}if(miss)loadAll()}
-  restoreSearch();if(!center&&!$('place').value.trim())restoreLast()}).catch(()=>{status.textContent='Could not load finder data files. Upload them beside finder.html on an HTTPS website.'});
+  restoreSearch();if(!center&&!$('place').value.trim())restoreLast();mergeLiveKY()}).catch(()=>{status.textContent='Could not load finder data files. Upload them beside finder.html on an HTTPS website.'});
 
 
 // Offline exports contain only user-visible program data; no GPS location is transmitted by this feature.

@@ -4,7 +4,7 @@
 (function(){
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const MEMBERS=['KZ4CP','N4BDW','KQ4HZK','K4ZSR'];
+const MEMBERS=(typeof KPC!=='undefined'&&KPC.MEMBERS)||[]; /* roster lives in kpc-tools.js */
 const CITIES=[{n:'Louisville',la:38.25,lo:-85.76,c:'#e6194b'},{n:'Bowling Green',la:36.99,lo:-86.44,c:'#3b6fe0'},{n:'Hazard',la:37.25,lo:-83.19,c:'#f58231'},{n:'Paducah',la:37.08,lo:-88.60,c:'#8e3fc4'},{n:'Ashland',la:38.48,lo:-82.64,c:'#0f9d8a'}];
 const BL={1:'160m',3:'80m',7:'40m',10:'30m',14:'20m',18:'17m',21:'15m',24:'12m',28:'10m',50:'6m'};
 const base=c=>String(c||'').toUpperCase().split('/').reduce((a,b)=>b.length>a.length?b:a,'');
@@ -118,7 +118,7 @@ function drawWarnings(){if(!warnLayer)return;warnLayer.clearLayers();let n=0;
  $('lv-wnote').textContent=n?n+' warning area'+(n>1?'s':'')+' shaded on the map':'No storm-based warning areas right now'}
 /* spot position: POTA lat/lon, else KPC park data by reference, else Maidenhead grid (v20261010f) */
 const parkXY={};let parkXYp=null;
-function loadParkXY(){if(parkXYp)return parkXYp;parkXYp=fetch('kpc-ky-data.json').then(r=>r.ok?r.json():null).then(j=>{if(j)(j.parks||[]).forEach(p=>{if(isFinite(p.la)&&isFinite(p.lo))parkXY[p.c]=[+p.la,+p.lo]})}).catch(()=>{});return parkXYp}
+function loadParkXY(){if(parkXYp)return parkXYp;parkXYp=(typeof KPC!=='undefined'&&KPC.data?KPC.data().catch(()=>null):fetch('kpc-ky-data.json').then(r=>r.ok?r.json():null)).then(j=>{if(j)(j.parks||[]).forEach(p=>{if(isFinite(p.la)&&isFinite(p.lo))parkXY[p.c]=[+p.la,+p.lo]})}).catch(()=>{});return parkXYp}
 function gridXY(g){g=String(g||'').trim();if(!/^[A-R]{2}\d{2}([A-X]{2})?$/i.test(g))return null;g=g.toUpperCase();let lo=(g.charCodeAt(0)-65)*20-180+(+g[2])*2,la=(g.charCodeAt(1)-65)*10-90+(+g[3]);
  if(g.length>=6){lo+=(g.charCodeAt(4)-65)/12+1/24;la+=(g.charCodeAt(5)-65)/24+1/48}else{lo+=1;la+=.5}return[la,lo]}
 function spotXY(s){const la=Number(s.latitude),lo=Number(s.longitude);if(isFinite(la)&&isFinite(lo)&&(la||lo))return[la,lo];return parkXY[s.reference]||gridXY(s.grid6)||gridXY(s.grid4)||null}

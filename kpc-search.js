@@ -23,8 +23,11 @@ ov.innerHTML='<div class="kss-pn"><div class="kss-top"><input class="kss-in" typ
 document.body.appendChild(ov);
 const inp=ov.querySelector('.kss-in'),res=ov.querySelector('.kss-res');
 let PK=null,PKp=null;
-function loadParks(){if(PKp)return PKp;PKp=fetch('kpc-ky-data.json').then(r=>r.ok?r.json():null).then(j=>{if(!j)return;PK=[];
+function loadParks(){if(PKp)return PKp;
+ /* pages with kpc-tools.js get new POTA parks merged in; elsewhere use the cached POTA list if this browser has one */
+ PKp=(typeof KPC!=='undefined'&&KPC.data?KPC.data().catch(()=>null):fetch('kpc-ky-data.json').then(r=>r.ok?r.json():null)).then(j=>{if(!j)return;PK=[];
  (j.parks||[]).forEach(p=>PK.push({k:'POTA',c:p.c,n:p.n,co:p.co||'',la:p.la,lo:p.lo,x:norm(p.n+' '+p.c+' '+(p.co||'')+' '+(p.t||''))}));
+ if(!j.newParks){try{const c=JSON.parse(localStorage.getItem('kpcLiveKY')||'null'),have=new Set((j.parks||[]).map(p=>p.c));(c&&c.rows||[]).forEach(([c2,n,la,lo])=>{if(!have.has(c2))PK.push({k:'POTA',c:c2,n,co:'',la,lo,x:norm(n+' '+c2)})})}catch(e){}}
  (j.summits||[]).forEach(p=>{if(/^unnamed/i.test(p.n||''))return;PK.push({k:'SOTA',c:p.c,n:p.n,co:p.co||'',la:p.la,lo:p.lo,x:norm(p.n+' '+p.c+' '+(p.co||''))})});
  (j.kff||[]).forEach(p=>PK.push({k:'WWFF',c:p.c,n:p.n,co:p.co||'',la:p.la,lo:p.lo,x:norm(p.n+' '+p.c+' '+(p.co||''))}))}).catch(()=>{});return PKp}
 let items=[],sel=-1;

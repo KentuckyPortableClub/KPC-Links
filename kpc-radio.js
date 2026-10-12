@@ -112,8 +112,8 @@ function ago(t){if(!t)return'';const m=Math.max(0,Math.round((Date.now()-t)/6000
 function chips(id,list,sel,lab){$(id).innerHTML=`<button type="button" class="lv-chip" data-v="" aria-pressed="${!sel.length}">ALL</button>`+list.map(v=>`<button type="button" class="lv-chip" data-v="${v}" aria-pressed="${sel.includes(v)}">${lab?lab[v]:v}</button>`).join('')}
 function drawFilters(){chips('sp-cats',CATS,F.cats,CATL);chips('sp-bands',SBANDS,F.bands);chips('sp-modes',SMODES,F.modes);
  $('sp-area').innerHTML=AREAS.map(([v,l])=>`<option value="${v}"${v===F.area?' selected':''}>${l}</option>`).join('');const q=$('sp-q');if(document.activeElement!==q)q.value=F.q}
-/* KPC members: always pinned to the top in gold, whatever the filters (roster is MEMBERS in kpc-tools.js) */
-const isKpc=c=>{try{if(typeof KPC!=='undefined'&&KPC.isMember)return KPC.isMember(c)}catch(e){}return['KZ4CP','N4BDW','KQ4HZK','K4ZSR'].includes(String(c||'').toUpperCase().split('/').reduce((a,b)=>b.length>a.length?b:a,''))};
+/* KPC members: always pinned to the top in gold, whatever the filters (roster is MEMBERS in kpc-tools.js, the only list) */
+const isKpc=c=>{try{if(typeof KPC!=='undefined'&&KPC.isMember)return KPC.isMember(c)}catch(e){}return false};
 function drawSpots(){const tb=$('sp-list');if(!tb)return;drawFilters();store.set('kpcSpotF2',F);
  const club=SP.filter(s=>isKpc(s.call)),L=filtered().filter(s=>!isKpc(s.call)),show=[...club,...L.slice(0,SHOWN)];
  $('sp-count').textContent=SP.length?`${(L.length+club.length).toLocaleString()} of ${SP.length.toLocaleString()} spots`+(club.length?` · ${club.length} KPC`:''):'';

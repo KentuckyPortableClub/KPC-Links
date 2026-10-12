@@ -72,6 +72,7 @@ body.field .page-jump-nav{display:none!important}
 @media(max-width:900px){.hero-inner{padding:40px 20px 70px}.hero:after{background:linear-gradient(to top,rgba(7,7,7,.8) 0%,rgba(7,7,7,.45) 55%,rgba(7,7,7,.15) 100%)!important}}
 </style>
 <style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
+<script src="kpc-tools.js?v=20261012t"></script>
 </head>
 <body>
 <header class="site-nav">
@@ -178,7 +179,7 @@ body.field .page-jump-nav{display:none!important}
 const START='2027-09-24T14:00:00-04:00';   // campout opens (Eastern time)
 const END  ='2027-09-26T13:00:00-04:00';   // campout ends
 const PARK ='US-1271', PARKNAME='Taylorsville Lake State Park';
-const MEMBERS=['KZ4CP','N4BDW','KQ4HZK','K4ZSR'];
+const MEMBERS=(typeof KPC!=='undefined'&&KPC.MEMBERS)||[]; /* roster lives in kpc-tools.js */
 /* ------------------- */
 const el=document.getElementById('kpccIn'),s=+new Date(START),e=+new Date(END);
 const force=new URLSearchParams(location.search).get('campout'); // ?campout=live or ?campout=after to preview
@@ -276,7 +277,7 @@ tick();setInterval(tick,1000);
 </main>
 
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
-<script src="kpc-search.js?v=20261011c" defer></script><script>
+<script src="kpc-search.js?v=20261012t" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

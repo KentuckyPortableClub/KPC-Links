@@ -52,7 +52,7 @@ async function drawOutlook(){if(!map)return;outL.clearLayers();const note=$('lv-
  catch(e){note.textContent='The severe weather outlook did not load. Try again in a few minutes.'}}
 
 /* ---------- rain at a park ---------- */
-function loadParks(){if(!PARKS)PARKS=fetch('kpc-ky-data.json').then(r=>r.json()).then(j=>j.parks||[]).catch(()=>[]);return PARKS}
+function loadParks(){if(!PARKS)PARKS=(typeof KPC!=='undefined'&&KPC.data?KPC.data():fetch('kpc-ky-data.json').then(r=>r.json())).then(j=>j.parks||[]).catch(()=>[]);return PARKS}
 async function rainAt(la,lo,label){const box=$('lv-rain-out');box.innerHTML='<p class="lv-src" style="margin:8px 0">Checking the rain forecast…</p>';
  if(map){if(rainMk)rainMk.remove();rainMk=L.marker([la,lo],{pane:'spotp',title:label,icon:L.divIcon({className:'',html:'<div style="width:18px;height:18px;border-radius:50%;background:#1f6fd1;border:3px solid #fff;box-shadow:0 0 0 2px #0b2e5a"></div>',iconSize:[18,18],iconAnchor:[9,9]})}).addTo(map)}
  try{const j=await jget(`https://api.open-meteo.com/v1/forecast?latitude=${la.toFixed(4)}&longitude=${lo.toFixed(4)}&minutely_15=precipitation&hourly=precipitation_probability,precipitation&forecast_days=2&timezone=auto&precipitation_unit=inch`);
