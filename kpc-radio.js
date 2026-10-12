@@ -112,15 +112,17 @@ function ago(t){if(!t)return'';const m=Math.max(0,Math.round((Date.now()-t)/6000
 function chips(id,list,sel,lab){$(id).innerHTML=`<button type="button" class="lv-chip" data-v="" aria-pressed="${!sel.length}">ALL</button>`+list.map(v=>`<button type="button" class="lv-chip" data-v="${v}" aria-pressed="${sel.includes(v)}">${lab?lab[v]:v}</button>`).join('')}
 function drawFilters(){chips('sp-cats',CATS,F.cats,CATL);chips('sp-bands',SBANDS,F.bands);chips('sp-modes',SMODES,F.modes);
  $('sp-area').innerHTML=AREAS.map(([v,l])=>`<option value="${v}"${v===F.area?' selected':''}>${l}</option>`).join('');const q=$('sp-q');if(document.activeElement!==q)q.value=F.q}
+/* KPC members: always pinned to the top in gold, whatever the filters (roster is MEMBERS in kpc-tools.js) */
+const isKpc=c=>{try{if(typeof KPC!=='undefined'&&KPC.isMember)return KPC.isMember(c)}catch(e){}return['KZ4CP','N4BDW','KQ4HZK','K4ZSR'].includes(String(c||'').toUpperCase().split('/').reduce((a,b)=>b.length>a.length?b:a,''))};
 function drawSpots(){const tb=$('sp-list');if(!tb)return;drawFilters();store.set('kpcSpotF2',F);
- const L=filtered(),show=L.slice(0,SHOWN);
- $('sp-count').textContent=SP.length?`${L.length.toLocaleString()} of ${SP.length.toLocaleString()} spots`:'';
+ const club=SP.filter(s=>isKpc(s.call)),L=filtered().filter(s=>!isKpc(s.call)),show=[...club,...L.slice(0,SHOWN)];
+ $('sp-count').textContent=SP.length?`${(L.length+club.length).toLocaleString()} of ${SP.length.toLocaleString()} spots`+(club.length?` · ${club.length} KPC`:''):'';
  $('sp-note').textContent=SP.length?`From ${srcNote}. Last hour, newest first. Refreshes every minute.`:(lastLoad?'No spots could be loaded right now. Try again in a minute.':'Loading spots…');
- tb.innerHTML=show.map((s,i)=>{const b=bandOf(s.khz),loc=[s.state,s.state?'':s.country].filter(Boolean).join(' ')||s.grid;
-  return`<div class="sp-row"><div class="sp-a"><span class="sp-cat c-${s.cat}">${esc(s.cat==='OTHER'?(String(s.label||'OTHER')).toUpperCase():s.cat==='DX'?'DX':s.cat)}</span><b class="sp-call">${esc(s.call)}</b><span class="sp-t">${ago(s.t)}</span></div>
+ tb.innerHTML=(club.length?`<div class="sp-kpchead">&#9733; KPC MEMBERS ON THE AIR (${club.length}) <span>always shown first</span></div>`:'')+show.map((s,i)=>{const b=bandOf(s.khz),loc=[s.state,s.state?'':s.country].filter(Boolean).join(' ')||s.grid,k=i<club.length;
+  return`${!k&&i===club.length&&club.length?'<div class="sp-kpchead sp-rest">ALL OTHER SPOTS (YOUR FILTERS)</div>':''}<div class="sp-row${k?' sp-kpc':''}"><div class="sp-a"><span class="sp-cat c-${s.cat}">${esc(s.cat==='OTHER'?(String(s.label||'OTHER')).toUpperCase():s.cat==='DX'?'DX':s.cat)}</span><b class="sp-call">${esc(s.call)}</b>${k?'<span class="sp-badge">KPC</span>':''}<span class="sp-t">${ago(s.t)}</span></div>
 <div class="sp-b"><b>${fmtK(s.khz)}</b> kHz <span class="sp-m">${esc(s.mode||'?')}</span>${b?' · '+b:''}${loc?' · '+esc(loc):''}</div>
 <div class="sp-c">${s.ref?`<span class="sp-ref">${esc(s.ref)}</span> `:''}${esc(s.name)}${s.comment?` <span class="sp-cm">“${esc(String(s.comment).slice(0,80))}”</span>`:''}</div>
-<button type="button" class="sp-go" data-i="${i}" ${s.khz>30000?'disabled title="Above 30 MHz: HF receivers can’t tune this"':''}>&#9654; LISTEN</button></div>`}).join('')||`<p class="sp-empty">${SP.length?'No spots match these filters. Tap ALL on a row, pick another band, or SHOW EVERYTHING.':''}</p>`;
+<button type="button" class="sp-go" data-i="${i}" ${s.khz>30000?'disabled title="Above 30 MHz: HF receivers can’t tune this"':''}>&#9654; LISTEN</button></div>`}).join('')+(L.length?'':`<p class="sp-empty">${SP.length?'No '+(club.length?'other ':'')+'spots match these filters. Tap ALL on a row, pick another band, or SHOW EVERYTHING.':''}</p>`);
  if(L.length>SHOWN||SHOWN>5)tb.insertAdjacentHTML('beforeend',`<div class="sp-more">${L.length>SHOWN?`<button type="button" class="lv-chip" data-more="1">SHOW ${Math.min(20,L.length-SHOWN)} MORE (${(L.length-SHOWN).toLocaleString()} not shown)</button>`:''}${SHOWN>5?'<button type="button" class="lv-chip" data-less="1">SHOW FEWER</button>':''}</div>`);
  tb._show=show}
 function initSpots(){if(!$('sp-list'))return;
