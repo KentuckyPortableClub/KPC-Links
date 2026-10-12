@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>US Trip Planner (Lite) | KPC</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="US Trip Planner (Lite) | KPC">
+<meta property="og:description" content="Plan a radio trip anywhere in the US: POTA parks, SOTA summits and WWFF references near any town, with Street View, boundaries and a Google Maps route.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-planner-us.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
+<meta name="description" content="Plan a radio trip anywhere in the US: POTA parks, SOTA summits and WWFF references near any town, with Street View, boundaries and a Google Maps route.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="kpc-tools.css">
+<script src="kpc-tools.js?v=20261010c"></script>
+<link rel="stylesheet" href="kpc-nav.css?v=20261010g">
+</head>
+<body>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Search &amp; Park Guides</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-band-plan.html" role="menuitem"><span class="ni">&#128225;</span>Band Plan by License</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="tool-head th-fort"><div class="wrap">
+<p class="eyebrow">KPC TRIP PLANNER &bull; LITE</p>
+<h1>US TRIP <span>PLANNER (LITE)</span></h1>
+<p class="sub">Find POTA parks, SOTA summits and WWFF references near any town in the US. Drop pins, check Street View, see park boundaries and send your route to Google Maps. For Kentucky, use the full <a href="kpc-planner.html" style="color:#f0c96b">KPC Trip Planner</a>.</p>
+</div></section>
+<nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-sota.html">SOTA</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-planner-us.html" aria-current=page>US Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html">Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html">Antenna</a><a href="parks.html">← Parks</a></div></nav>
+<section class="section"><div class="wrap">
+<style>
+.us-top{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.us-top .field input,.us-top .field select{font:inherit;font-size:16px;padding:10px 12px;border:1px solid #cbbf9f;border-radius:6px;background:#fff;min-height:44px;color:#171717}
+#usq{min-width:min(340px,80vw)}
+.us-progs{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.us-progs .chip[aria-pressed=true]{background:#0d2419;color:#f0c96b;border-color:#0d2419}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle;border:1px solid #173a28}
+#us-hits{margin-top:12px;display:none;border:1px solid #e3d9bd;border-radius:8px;background:#fff;max-height:300px;overflow:auto}
+#us-hits button{display:block;width:100%;text-align:left;padding:10px 12px;border:0;border-bottom:1px solid #eee5cf;background:#fff;font:inherit;font-size:14px;cursor:pointer;min-height:44px}
+#us-hits button:hover{background:#fffaf0}#us-hits small{color:#68635a;display:block;font-size:12px}
+#us-status{font-size:13px;color:#68635a;margin-top:10px;min-height:18px}
+.us-mapbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:16px 0 8px}
+.us-mapbar .chip{min-height:40px}
+.us-mapbar .chip[aria-pressed=true]{background:#b5452b;color:#fff;border-color:#b5452b}
+#usmap{height:560px}
+#usmap.dropping{cursor:crosshair}
+.us-pop b{font-size:15px}.us-pop .meta{color:#68635a;font-size:12px;margin:3px 0 6px}
+.us-pop .acts{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.us-pop .acts a,.us-pop .acts button{font:inherit;font-size:11px;font-weight:900;letter-spacing:.5px;padding:7px 9px;border-radius:5px;border:1px solid #cbbf9f;background:#fff;color:#171717;cursor:pointer;text-decoration:none;min-height:32px;display:inline-flex;align-items:center}
+.us-pop .acts .go{background:#171717;color:#f0c96b;border-color:#171717}
+.us-pop .live{font-size:12px;margin-top:5px;color:#1d5a3a}
+.trip{margin-top:20px}
+.trip ol{list-style:none;margin:0;padding:0;counter-reset:s}
+.trip li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:8px;align-items:center;padding:9px 10px;border-bottom:1px solid #eee5cf;counter-increment:s}
+.trip li::before{content:counter(s);width:24px;height:24px;border-radius:50%;background:#171717;color:#f0c96b;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.trip li small{display:block;color:#68635a;font-size:12px}
+.trip .mv{display:flex;gap:4px}.trip .mv button{width:34px;height:34px;border:1px solid #cbbf9f;border-radius:5px;background:#fff;cursor:pointer;font-size:14px}
+.trip-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.trip-acts .btn{width:auto}
+#trip-sum{font-size:13px;color:#3d3a33;margin-top:10px}
+#trip-legs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.near{margin-top:20px}.near .tablewrap{max-height:380px}
+.near td .add{font:inherit;font-size:11px;font-weight:900;padding:7px 10px;border-radius:5px;border:1px solid #cbbf9f;background:#fff;cursor:pointer;min-height:32px}
+.near td .add.in{background:#1d5a3a;color:#fff;border-color:#1d5a3a}
+.pin-us{width:16px;height:16px;border-radius:50% 50% 50% 0;background:#b5452b;border:2px solid #fff;transform:rotate(-45deg);box-shadow:0 1px 4px rgba(0,0,0,.5)}
+.ctr-us{width:14px;height:14px;border-radius:50%;background:#f0c96b;border:3px solid #171717}
+@media(max-width:900px){#usmap{height:440px}#usq{min-width:0;width:100%}.us-top .field{flex:1 1 100%}}
+</style>
+<div class="panel">
+<form class="us-top" id="usf" autocomplete="off">
+<label class="field">TOWN, ZIP, PARK NAME OR NUMBER<input id="usq" placeholder="e.g. Asheville NC, 37863, Smoky Mountains, US-0034, W4C/WP-001" spellcheck="false"></label>
+<label class="field">WITHIN<select id="usr"><option value="10">10 miles</option><option value="25" selected>25 miles</option><option value="50">50 miles</option><option value="100">100 miles</option><option value="150">150 miles</option></select></label>
+<button class="btn" type="submit" style="align-self:flex-end">SEARCH</button>
+<button class="btn alt" type="button" id="us-me" style="align-self:flex-end">&#128205; NEAR ME</button>
+</form>
+<div class="us-progs" id="us-progs" aria-label="Show">
+<button type="button" class="chip" data-p="POTA" aria-pressed="true"><span class="dot" style="background:#1d5a3a"></span>POTA PARKS</button>
+<button type="button" class="chip" data-p="SOTA" aria-pressed="true"><span class="dot" style="background:#8a4b14"></span>SOTA SUMMITS</button>
+<button type="button" class="chip" data-p="WWFF" aria-pressed="true"><span class="dot" style="background:#2b6cb0"></span>WWFF</button>
+</div>
+<div id="us-hits"></div>
+<div id="us-status">Loading the park list&hellip;</div>
+</div>
+<div class="us-mapbar"><button type="button" class="chip" id="us-drop" aria-pressed="false">&#128204; DROP A PIN</button><span class="muted" style="font-size:13px" id="us-maphint">Tap a dot to add it to your trip, see Street View or show its boundary. Use the layers button for Street, Satellite or Satellite + Streets.</span></div>
+<div class="map" id="usmap" role="application" aria-label="US trip planner map"></div>
+<div class="grid2">
+<div class="trip panel" id="trip">
+<h3 style="margin:0 0 4px;font-family:Georgia,serif">Your Trip</h3>
+<p class="muted" style="margin:0 0 10px;font-size:13px" id="trip-empty">No stops yet. Tap a dot on the map, use ADD in the list, or drop your own pin.</p>
+<ol id="trip-list"></ol>
+<div id="trip-sum"></div>
+<div class="trip-acts" id="trip-acts" style="display:none">
+<button class="btn alt" type="button" id="t-order">BEST ORDER</button>
+<button class="btn alt" type="button" id="t-road">DRAW DRIVING ROUTE</button>
+<button class="btn alt" type="button" id="t-gpx">GPX &#8595;</button>
+<button class="btn alt" type="button" id="t-share">SHARE LINK</button>
+<button class="btn alt" type="button" id="t-clear">CLEAR</button>
+</div>
+<label style="display:none;gap:8px;align-items:center;margin-top:12px;font-size:13px" id="t-fromme-l"><input type="checkbox" id="t-fromme"> Start the Google route from where I am</label>
+<div id="trip-legs"></div>
+</div>
+<div class="near" id="near" style="display:none">
+<h3 style="margin:0 0 8px;font-family:Georgia,serif" id="near-h">Nearby</h3>
+<div class="tablewrap"><table class="list"><thead><tr><th>SPOT</th><th>MILES</th><th></th></tr></thead><tbody id="near-body"></tbody></table></div>
+</div>
+</div>
+<div class="note">This is the <b>lite</b> planner for anywhere in the US: names, locations and links only. For Kentucky, the full <a href="kpc-planner.html">KPC Trip Planner</a> adds park types, access points, trails and more. POTA parks load live from POTA where possible; SOTA summits and WWFF references come from the list Park Commander uses. Boundaries are outlines from OpenStreetMap and may not match the official park area exactly. Place search by OpenStreetMap Nominatim. Routes open in Google Maps.</div>
+</div></section>
+<script src="kpc-us-planner.js?v=20261012f"></script>
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
+<script src="kpc-search.js?v=20261011c" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body></html>
