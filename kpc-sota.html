@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SOTA Summit Checker | KPC</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SOTA Summit Checker | KPC">
+<meta property="og:description" content="Map every SOTA summit in Kentucky or any US SOTA area and load your SOTA log to see which summits you have chased or activated.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-sota.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
+<meta name="description" content="Map every SOTA summit in Kentucky or any US SOTA area and load your SOTA log to see which summits you have chased or activated.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="kpc-tools.css">
+<script src="kpc-tools.js?v=20261010c"></script>
+<link rel="stylesheet" href="kpc-nav.css?v=20261010g">
+</head>
+<body>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Search &amp; Park Guides</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-band-plan.html" role="menuitem"><span class="ni">&#128225;</span>Band Plan by License</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="tool-head th-fort"><div class="wrap">
+<p class="eyebrow">KPC SOTA TOOL</p>
+<h1>SOTA <span>SUMMIT CHECKER</span></h1>
+<p class="sub">Every Summits on the Air summit in Kentucky, or any US SOTA area, on a map. Load your SOTA log to see which summits you’ve chased or activated and which are still needed.</p>
+</div></section>
+<nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-sota.html" aria-current=page>SOTA</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html">Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html">Antenna</a><a href="parks.html">← Parks</a></div></nav>
+<section class="section"><div class="wrap">
+<style>
+.sota-pick{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;margin-bottom:16px}
+.sota-pick label{font-size:11px;font-weight:900;letter-spacing:1.5px;color:#68635a;display:flex;flex-direction:column;gap:6px}
+.sota-pick select{font:inherit;font-size:16px;font-weight:700;padding:10px 12px;border:1px solid #cbbf9f;border-radius:6px;background:#fff;min-height:44px;min-width:200px;color:#171717;max-width:90vw}
+.mode-toggle{display:flex;gap:0;margin-bottom:16px;border:1px solid #cbbf9f;border-radius:8px;overflow:hidden;width:fit-content}
+.mode-toggle button{padding:11px 22px;font-size:13px;font-weight:900;letter-spacing:1px;background:#fff;color:#68635a;border:none;cursor:pointer;min-height:44px}
+.mode-toggle button.active{background:#0d2419;color:#f0c96b}.mode-toggle button:first-child{border-right:1px solid #cbbf9f}
+.hunt-how{margin:14px 0 0;padding:12px 14px;background:#eef5f0;border:1px solid #cfe0d5;border-left:5px solid #1d5a3a;border-radius:6px;font-size:14px;line-height:1.6}.hunt-how a{color:#1d5a3a;font-weight:700}.hunt-how ol{margin:6px 0 6px 20px;padding:0}
+.filepick{position:relative;display:flex;align-items:center;gap:10px;margin-top:6px;min-height:44px}.filepick input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}.filepick .btn{pointer-events:none;padding:10px 14px}#sfname{font-size:13px;font-weight:600;letter-spacing:0;color:#3d3a33;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pts{display:inline-block;min-width:26px;text-align:center;font-weight:900;font-size:12px;padding:2px 6px;border-radius:4px;background:#efe6cf;color:#3d3a33}
+.pts.p8,.pts.p10{background:#8a4b14;color:#fff}.pts.p6{background:#b8742c;color:#fff}.pts.p4{background:#d5a63a;color:#171717}
+</style>
+<div class="sota-pick">
+<label for="assocSel">SOTA AREA<select id="assocSel"></select></label>
+<label for="regionSel">REGION<select id="regionSel"></select></label>
+<span class="muted" id="assocNote" style="font-size:13px;max-width:520px;line-height:1.5"></span>
+</div>
+<div class="mode-toggle" role="group" aria-label="Log type">
+<button type="button" id="m-chase" class="active">&#127911; CHASER</button>
+<button type="button" id="m-act">&#9968;&#65039; ACTIVATOR</button>
+</div>
+<div class="panel">
+<form class="controls" id="sf" autocomplete="off">
+<label class="field" style="flex:1 1 180px">CALLSIGN (OPTIONAL)<input id="scall" placeholder="For the file name" autocapitalize="characters" spellcheck="false"></label>
+<label class="field" style="flex:2 1 260px">YOUR SOTA LOG (CSV)<span class="filepick"><input id="sfile" type="file" accept=".csv,.txt,.adi,.adif,text/csv,text/plain"><span class="btn alt" aria-hidden="true">CHOOSE FILE</span><span id="sfname">No file chosen</span></span></label>
+<button class="btn" type="submit" style="align-self:flex-end">CHECK SUMMITS</button>
+</form>
+<div class="hunt-how" id="sota-how"></div>
+<div class="progress" id="sprog"><div class="bar"><i style="width:0"></i></div><small></small></div>
+</div>
+<div style="margin-top:22px">
+<div class="stats" id="sstats"></div>
+<div style="margin-top:14px" id="sbarWrap"><div class="bar"><i id="spbar" style="width:0"></i></div><small class="muted" id="spbarLbl"></small></div>
+<div class="controls" style="margin-top:16px" id="scsv">
+<button class="btn" id="scsvAll" type="button">DOWNLOAD ALL SUMMITS (CSV) ↓</button>
+<button class="btn alt" id="scsvDone" type="button">DONE ONLY ↓</button>
+<button class="btn alt" id="scsvNeed" type="button">STILL NEEDED ONLY ↓</button>
+</div>
+<div class="grid2" style="margin-top:20px">
+<div><div class="map" id="smap"></div>
+<div class="legend"><span><i style="background:#1d5a3a"></i><span id="lgDone">Chased</span></span><span><i style="background:#fff"></i>Still needed</span><span>Bigger dot = more points</span></div></div>
+<div>
+<div class="chips" id="stabs" style="margin-bottom:10px"><button class="chip" aria-pressed="false" data-t="done" id="tabDone">CHASED</button><button class="chip" aria-pressed="true" data-t="need">STILL NEEDED</button></div>
+<div class="tablewrap" style="max-height:420px"><table class="list"><thead><tr><th>SUMMIT</th><th>HEIGHT</th><th>PTS</th><th id="scol4">FIRST</th></tr></thead><tbody id="stbody"></tbody></table></div>
+</div></div>
+</div>
+<div class="note">Summit names, heights and points come from the SOTA summit list the site already uses for Park Commander. Your log is read right here in your browser — nothing is uploaded, saved or shared. For live SOTA spots, see the <a href="kpc-live.html#spots-card">Spots section on the Live page</a>.</div>
+</div></section>
+<script>
+/* KPC SOTA tool. Summits come from locations.json (rows ['SOTA',ref,name,lat,lon,url,heightM,'SOTA10']).
+   Areas are labeled with the US states their summits sit in (kpc-us-states.json), so nothing needs updating by hand.
+   Logs: SOTA database CSV (V2,MyCall,MySummit,Date,Time,Band,Mode,HisCall,HisSummit,Notes), other CSVs (any summit
+   reference found in a row), or ADIF (SOTA_REF for chasing, MY_SOTA_REF for activating). */
+(function(){
+const $=id=>document.getElementById(id),esc=KPC.esc;
+const REF=/\b[A-Z0-9]{1,4}\/[A-Z]{2}-\d{3}\b/g;
+let ALL=null,BORD=null,AS='W4K',RG='',MODE='chase',DONE={},FILE=false,map=null,layer=null,tab='need',call='';
+try{const u=new URLSearchParams(location.search);AS=(u.get('a')||localStorage.getItem('kpcSotaA')||'W4K').toUpperCase();MODE=localStorage.getItem('kpcSotaM')==='act'?'act':'chase'}catch(e){}
+const pts=s=>+(String(s||'').match(/\d+/)||[0])[0];
+function ringIn(x,y,r){let ins=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const[xi,yi]=r[i],[xj,yj]=r[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi+1e-15)+xi)ins=!ins}return ins}
+function stateOf(lo,la){for(const b of BORD)if(b.p.some(pl=>ringIn(lo,la,pl[0])))return b.n;return''}
+async function loadAll(){if(ALL)return ALL;const[L,B]=await Promise.all([fetch('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[])]);BORD=B;
+ const by={};L.forEach(r=>{if(r[0]!=='SOTA')return;const a=r[1].split('/')[0];(by[a]=by[a]||[]).push({c:r[1],n:r[2],la:r[3],lo:r[4],url:r[5],m:+r[6]||0,p:pts(r[7]),rg:r[1].split('/')[1].split('-')[0]})});
+ const lab={};Object.entries(by).forEach(([a,l])=>{const cnt={};const step=Math.max(1,Math.floor(l.length/60));for(let i=0;i<l.length;i+=step){const s=BORD.length?stateOf(l[i].lo,l[i].la):'';if(s)cnt[s]=(cnt[s]||0)+1}
+  const tot=Object.values(cnt).reduce((x,y)=>x+y,0);lab[a]=Object.entries(cnt).sort((x,y)=>y[1]-x[1]).filter(e=>e[1]>=tot*0.12).map(e=>e[0]).slice(0,4).join(' / ')});
+ ALL={by,lab};return ALL}
+function list(){const l=ALL.by[AS]||[];return RG?l.filter(s=>s.rg===RG):l}
+function fillPickers(){const s=$('assocSel');s.innerHTML=Object.keys(ALL.by).sort((a,b)=>(ALL.lab[a]||a).localeCompare(ALL.lab[b]||b)).map(a=>`<option value="${a}"${a===AS?' selected':''}>${esc((ALL.lab[a]||'Unknown')+' ('+a+')')}</option>`).join('');
+ const regs={};(ALL.by[AS]||[]).forEach(x=>regs[x.rg]=(regs[x.rg]||0)+1);
+ $('regionSel').innerHTML='<option value="">All regions</option>'+Object.keys(regs).sort().map(r=>`<option value="${r}"${r===RG?' selected':''}>${AS}/${r} (${regs[r]} summits)</option>`).join('');
+ const l=ALL.by[AS]||[];$('assocNote').textContent=`${l.length.toLocaleString()} summits in ${AS}${ALL.lab[AS]?' ('+ALL.lab[AS]+')':''}. Highest: ${l.length?Math.max(...l.map(x=>x.m)).toLocaleString()+' m':'—'}.`}
+function how(){const act=MODE==='act';$('m-chase').classList.toggle('active',!act);$('m-act').classList.toggle('active',act);
+ $('lgDone').textContent=act?'Activated':'Chased';$('tabDone').textContent=act?'ACTIVATED':'CHASED';
+ $('sota-how').innerHTML=`<b>${act?'Activators':'Chasers'}: use your ${act?'activator':'chaser'} log CSV from the SOTA database.</b><ol><li>Log in at <a href="https://www.sotadata.org.uk" target="_blank" rel="noopener">sotadata.org.uk</a>.</li><li>Download your <b>${act?'activator':'chaser'} log</b> as a CSV.</li><li>Tap <b>CHOOSE FILE</b> here and pick it.</li></ol>An ADIF export from your logging app also works. Your file stays on your device.`}
+function normDate(s){s=String(s||'').trim();let m=s.match(/(\d{4})-?(\d{2})-?(\d{2})/);if(m&&+m[2]>=1&&+m[2]<=12)return m[1]+m[2]+m[3];
+ m=s.match(/\b(\d{1,2})\/(\d{1,2})\/(\d{2,4})\b/);if(m){let y=m[3];if(y.length===2)y=(+y>80?'19':'20')+y;return y+m[2].padStart(2,'0')+m[1].padStart(2,'0')}return''}/* SOTA dates are day/month/year */
+function cells(line){const c=[];let cur='',q=false;for(let i=0;i<line.length;i++){const ch=line[i];if(q){if(ch==='"'){if(line[i+1]==='"'){cur+='"';i++}else q=false}else cur+=ch}else if(ch==='"')q=true;else if(ch===','||ch===';'||ch==='\t'){c.push(cur.trim());cur=''}else cur+=ch}c.push(cur.trim());return c}
+function add(out,ref,d){ref=ref.toUpperCase();const x=out[ref]||(out[ref]={q:0,first:'',last:''});x.q++;if(d){if(!x.first||d<x.first)x.first=d;if(!x.last||d>x.last)x.last=d}}
+function parse(txt){const out={};let n=0;const act=MODE==='act';
+ if(/<eor>/i.test(txt)){const body=txt.replace(/^[\s\S]*?<eoh>/i,'');
+  for(const rec of body.split(/<eor>/i)){const f={};const re=/<([A-Za-z0-9_]+):(\d+)(?::[^>]*)?>/g;let m;while((m=re.exec(rec))){f[m[1].toUpperCase()]=rec.substr(re.lastIndex,+m[2]);re.lastIndex+=+m[2]}
+   const src=act?(f.MY_SOTA_REF||((f.MY_SIG||'').toUpperCase()==='SOTA'?f.MY_SIG_INFO:'')||''):(f.SOTA_REF||((f.SIG||'').toUpperCase()==='SOTA'?f.SIG_INFO:'')||'');
+   const refs=String(src).toUpperCase().match(REF)||[];if(refs.length){n++;refs.forEach(r=>add(out,r,normDate(f.QSO_DATE)))}}
+  return{out,n}}
+ for(const line of txt.split(/\r?\n/)){if(!line.trim())continue;const c=cells(line);let refs=[];
+  if(/^V2$/i.test(c[0])){refs=String(act?c[2]:c[8]||'').toUpperCase().match(REF)||[]}
+  else{const all=line.toUpperCase().match(REF)||[];refs=all.length>1&&act?[all[0]]:all}
+  if(!refs.length)continue;n++;const d=/^V2$/i.test(c[0])?normDate(c[3]):normDate(line);refs.forEach(r=>add(out,r,d))}
+ return{out,n}}
+async function runFile(){const f=$('sfile').files[0];const pr=$('sprog'),bar=pr.querySelector('i'),tx=pr.querySelector('small');pr.classList.add('on');
+ if(!f){tx.textContent='Choose your SOTA log CSV first.';return}
+ call=KPC.base($('scall').value||'');bar.style.width='40%';tx.textContent='Reading '+f.name+'…';
+ try{const txt=await f.text();await loadAll();const{out,n}=parse(txt);DONE=out;FILE=true;
+  const inArea=list().filter(s=>DONE[s.c]).length;
+  bar.style.width='100%';tx.textContent=n?`Read ${n.toLocaleString()} ${MODE==='act'?'activator':'chaser'} lines from ${f.name} • ${Object.keys(out).length.toLocaleString()} summit${Object.keys(out).length===1?"":"s"} in all, ${inArea} in ${AS}${RG?'/'+RG:''}.`:`No SOTA summit references (like W4K/EC-001) found in that file. Make sure it’s your ${MODE==='act'?'activator':'chaser'} log CSV from the SOTA database.`;
+  tab=inArea?'done':'need';draw()}catch(e){tx.textContent='Could not read that file. ('+e.message+')'}}
+function draw(){const l=list(),act=MODE==='act';const done=l.filter(s=>DONE[s.c]),need=l.filter(s=>!DONE[s.c]);
+ const pd=done.reduce((a,s)=>a+s.p,0),pa=l.reduce((a,s)=>a+s.p,0);
+ $('sstats').innerHTML=FILE?`<div class="stat"><b>${done.length}</b><span>OF ${l.length} SUMMITS</span></div><div class="stat"><b>${need.length}</b><span>STILL NEEDED</span></div><div class="stat"><b>${pd}</b><span>OF ${pa} POINTS (ONCE EACH)</span></div><div class="stat"><b>${done.reduce((a,s)=>a+DONE[s.c].q,0)}</b><span>${act?'QSO LINES':'CHASES'}</span></div>`
+  :`<div class="stat"><b>${l.length}</b><span>SUMMITS</span></div><div class="stat"><b>${pa}</b><span>TOTAL POINTS</span></div><div class="stat"><b>${l.filter(s=>s.p>=6).length}</b><span>6+ POINT SUMMITS</span></div><div class="stat"><b>${l.length?Math.max(...l.map(s=>s.m)).toLocaleString():'—'} m</b><span>HIGHEST</span></div>`;
+ $('sbarWrap').style.display=FILE?'':'none';$('scsv').style.display='';
+ if(FILE){$('spbar').style.width=(l.length?100*done.length/l.length:0)+'%';$('spbarLbl').textContent=`${call?call+': ':''}${l.length?Math.round(100*done.length/l.length):0}% of ${AS}${RG?'/'+RG:''} summits ${act?'activated':'chased'}`}
+ [...$('stabs').children].forEach(x=>x.setAttribute('aria-pressed',x.dataset.t===tab));
+ drawMap(l);drawTable(l)}
+function drawMap(l){if(!window.L){$('smap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>';return}
+ if(!map)map=KPC.leafletMap('smap');if(layer)layer.remove();layer=L.layerGroup().addTo(map);const act=MODE==='act';
+ l.forEach(s=>{const d=DONE[s.c];L.circleMarker([s.la,s.lo],{radius:4+s.p*0.6,weight:1.2,color:'#173a28',fillColor:d?'#1d5a3a':'#ffffff',fillOpacity:.95})
+  .bindPopup(`<b>${esc(s.n)}</b><br><a class="ref" href="${esc(s.url||KPC.links.sota(s.c))}" target="_blank" rel="noopener">${s.c}</a><br>${s.m.toLocaleString()} m (${Math.round(s.m*3.28084).toLocaleString()} ft) • ${s.p} point${s.p===1?'':'s'}<br>${FILE?(d?`<b style="color:#1d5a3a">${act?'Activated':'Chased'}</b>${d.first?' • first '+KPC.fmtDate(d.first):''}`:'<b>Still needed</b>'):''}`).addTo(layer)});
+ if(map._k!==AS+RG&&l.length){map.fitBounds(L.latLngBounds(l.map(s=>[s.la,s.lo])),{padding:[20,20],maxZoom:10});map._k=AS+RG}}
+function drawTable(l){const act=MODE==='act';let rows;
+ if(tab==='done'){$('scol4').textContent='FIRST';rows=l.filter(s=>DONE[s.c]).sort((a,b)=>(DONE[a.c].first||'').localeCompare(DONE[b.c].first||''))}
+ else{$('scol4').textContent='';rows=l.filter(s=>!DONE[s.c]).sort((a,b)=>b.p-a.p||b.m-a.m)}
+ $('stbody').innerHTML=rows.map(s=>`<tr><td><a class="ref" href="${esc(s.url||KPC.links.sota(s.c))}" target="_blank" rel="noopener">${s.c}</a><br>${esc(s.n)}</td><td>${s.m.toLocaleString()} m</td><td><span class="pts p${s.p}">${s.p}</span></td><td>${tab==='done'&&DONE[s.c]?KPC.fmtDate(DONE[s.c].first):''}</td></tr>`).join('')
+  ||`<tr><td colspan="4" class="muted">${tab==='done'?(FILE?`No ${AS} summits ${act?'activated':'chased'} in that file yet.`:'Load your SOTA log to see the summits you’ve done.'):'Every summit done — well climbed!'}</td></tr>`}
+function csv(which){const l=list(),q=v=>`"${String(v??'').replace(/"/g,'""')}"`,d=x=>x?`${x.slice(0,4)}-${x.slice(4,6)}-${x.slice(6,8)}`:'';
+ const rows=l.filter(s=>which==='all'||(which==='done'?DONE[s.c]:!DONE[s.c])).map(s=>{const x=DONE[s.c];return[s.c,s.n,s.m,Math.round(s.m*3.28084),s.p,x?(MODE==='act'?'Activated':'Chased'):'Not yet',x?d(x.first):'',x?d(x.last):'',s.la,s.lo,s.url].map(q).join(',')});
+ const head=['Summit','Name','Height (m)','Height (ft)','Points','Status','First','Last','Latitude','Longitude','Link'].map(q).join(',');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+head+'\r\n'+rows.join('\r\n')],{type:'text/csv'}));
+ a.download=`${call||'SOTA'}_${AS}${RG?'-'+RG:''}_${which}_${new Date().toISOString().slice(0,10)}.csv`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+function save(){try{localStorage.setItem('kpcSotaA',AS);localStorage.setItem('kpcSotaM',MODE);const u=new URL(location.href);if(AS==='W4K')u.searchParams.delete('a');else u.searchParams.set('a',AS);history.replaceState(null,'',u)}catch(e){}}
+$('assocSel').onchange=e=>{AS=e.target.value;RG='';map&&(map._k='');save();fillPickers();draw()};
+$('regionSel').onchange=e=>{RG=e.target.value;save();draw()};
+$('m-chase').onclick=()=>{MODE='chase';save();how();if($('sfile').files[0])runFile();else draw()};
+$('m-act').onclick=()=>{MODE='act';save();how();if($('sfile').files[0])runFile();else draw()};
+$('sf').onsubmit=e=>{e.preventDefault();runFile()};
+$('sfile').onchange=()=>{const f=$('sfile').files[0];$('sfname').textContent=f?f.name:'No file chosen';if(f)runFile()};
+$('stabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;tab=b.dataset.t;draw()};
+$('scsvAll').onclick=()=>csv('all');$('scsvDone').onclick=()=>csv('done');$('scsvNeed').onclick=()=>csv('need');
+how();
+const pr=$('sprog');pr.classList.add('on');pr.querySelector('small').textContent='Loading summits…';
+loadAll().then(()=>{if(!ALL.by[AS])AS='W4K';fillPickers();pr.classList.remove('on');pr.querySelector('small').textContent='';draw()}).catch(e=>{pr.querySelector('small').textContent='Could not load the summit list. Try refreshing.'});
+})();
+</script>
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
+<script src="kpc-search.js?v=20261011c" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body></html>
