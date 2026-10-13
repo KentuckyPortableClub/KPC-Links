@@ -135,7 +135,7 @@ function hover(layer){
 
 /* ---------- overlap data ---------- */
 let OVL = null;
-function overlapData(){return OVL || (OVL = fetch('ky-overlaps.geojson?v=20261013c', {cache:'force-cache'}).then(r => {if(!r.ok)throw Error('HTTP ' + r.status);return r.json()}))}
+function overlapData(){return OVL || (OVL = fetch('ky-overlaps.geojson?v=20261013e', {cache:'force-cache'}).then(r => {if(!r.ok)throw Error('HTTP ' + r.status);return r.json()}))}
 /* POTA refs → [{kind, other refs, areas}] for cards */
 function overlapIndex(){return overlapData().then(gj => {const idx = new Map();
  for (const f of gj.features) {const p = f.properties, refs = p.pota.map(r => r[0]);
@@ -146,6 +146,7 @@ const KINDTXT = {
  '2fer':['g','Possible POTA 2-Fer — Do Your Own Research'],
  pota_wwff:['p','POTA + WWFF overlap'],
  pota_sota:['p','POTA + SOTA: summit inside a park'],
+ unconfirmed:['p','Unconfirmed — not in the KPC 2-fer index'],
  other:['p','Other multi-program overlap']
 };
 function refsHtml(p){
@@ -156,19 +157,20 @@ function overlapCard(p, ll, addStop){
  let k = KINDTXT[p.kind] || KINDTXT.other;
  if (p.kind === '2fer' && p.pota.length >= 3) k = ['g', 'Possible POTA 3-Fer — Do Your Own Research'];
  let why = '';
- if (p.kind === '2fer' && p.river) why = `About ${p.miles} miles of public Ohio River bank inside this park (${esc(p.river)}). These trails are the river itself: set up on public land inside the park within 100 ft of the water. Possible only. Do your own research before counting it.`;
- else if (p.kind === '2fer' && p.nht) why = `${esc(p.nht)}. National Historic Trails have no boundary, so POTA looks for certified or official trail sites with signage. Set up inside the park near the trail site. Do your own research before counting it.`;
+ if (p.kind === '2fer' && p.river) why = `About ${p.miles} miles of public Ohio River bank inside this park (${esc(p.river)}). These trails are the river itself: set up on public land inside the park within 100 ft of the water. The bank line comes from map data and has not been checked against the actual water line, so some stretches may be farther than 100 ft from the river. Possible only. Do your own research before counting it.`;
+ else if (p.kind === '2fer' && p.nht) why = `${esc(p.nht)}${p.src ? ` (<a href="${esc(p.src)}" target="_blank" rel="noopener">NPS page ↗</a>)` : ''}. It is listed only because of that page. National Historic Trails have no boundary, so POTA looks for certified or official trail sites with signage. Set up inside the park near the trail site. Do your own research before counting it.`;
  else if (p.kind === '2fer') why = p.shared ? 'Both POTA references use the same outline in our map data. Check the POTA map for each reference.'
   : p.trail ? `About ${p.miles} miles of the ${esc(p.trail)} run inside this boundary. Being on the trail and inside the park may count for both. Verify each reference first.`
   : 'Two POTA boundaries overlap here. Make sure your exact spot is inside both before you call a 2-fer.';
+ else if (p.kind === 'unconfirmed') why = 'Two POTA boundaries touch or overlap in our map data, but this pair could not be confirmed, so it is <b>not</b> in the KPC 2-fers &amp; 3-fers index. Do your own research.';
  else if (p.kind === 'pota_wwff') why = 'One POTA reference plus a separate WWFF/KFF reference. This is <b>not</b> a POTA 2-fer.';
  else if (p.kind === 'pota_sota') why = 'A SOTA summit sits inside this POTA boundary. SOTA needs you in the summit’s activation zone. This is a POTA + SOTA combo, <b>not</b> a POTA 2-fer.';
  else why = 'More than one program is mapped here. This is <b>not</b> a POTA 2-fer.';
  const size = p.river ? `${p.miles} miles of riverbank` : p.acres ? `About ${Number(p.acres).toLocaleString()} acres overlap` : p.miles ? `${p.miles} miles of trail` : p.ft ? `Summit elevation ${Number(p.ft).toLocaleString()} ft` : '';
  return `<div class="kx-card"><span class="kx-badge ${k[0]}">${esc(k[1])}</span>
- <div class="kx-n">${esc(p.areas.join(' + '))}</div>${size ? `<div class="kx-d">${size}</div>` : ''}${refsHtml(p)}
+ <div class="kx-n">${esc(p.pota.length ? p.pota.map(r => r[1]).join(' + ') : p.areas.join(' + '))}</div>${size ? `<div class="kx-d">${size}</div>` : ''}${refsHtml(p)}
  <div class="kx-d">${why}</div>
- <div class="kx-note">Outlines are approximate. Overlap on a map does not guarantee both references count. Check each program’s rules and official boundary.</div>
+ <div class="kx-note">GPS points and outlines are guides only; they get you to the area. Outlines are approximate. Overlap on a map does not guarantee both references count. Check each program’s rules and official boundary.</div>
  <div class="kx-acts"><a href="${dirUrl(ll.lat.toFixed(5), ll.lng.toFixed(5))}" target="_blank" rel="noopener">DIRECTIONS ↗</a><a href="${svUrl(ll.lat.toFixed(6), ll.lng.toFixed(6))}" target="_blank" rel="noopener">🚶 STREET VIEW ↗</a>${addStop ? `<button type="button" class="pri" data-drop="${ll.lat.toFixed(6)},${ll.lng.toFixed(6)}">📍 ADD A SPOT HERE</button>` : ''}</div></div>`;
 }
 
