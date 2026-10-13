@@ -52,3 +52,9 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - Remote transmit.
 - KPC CW practice night on Vail (Brandon to decide).
 - N4KPC changes after the grant (see above).
+
+## 2-fers & 3-fers (single source: .claude/build/fers/fers.json)
+- fers.json holds the 62 spots, their GPS guide pins, the unconfirmed pairs, sources and the change log. Park names must match the POTA US-KY list exactly.
+- Every GPS pin is a guide that gets people to the area, never a confirmed spot. Riverbank pins are approximate (not checked against the water line). The four historic trail sites (Wickliffe Mounds, Big Bone Lick, Golden Pond VC, Columbus-Belmont) are NOT within 100 ft of the river/trail and must cite their NPS page.
+- After editing fers.json, rebuild from the repo root: `python3 .claude/build/fers/guide.py` (field guide PDF). `python3 .claude/build/fers/resource_patch.py` refreshes the index pages and the 2-fer lines in the two Resource PDFs, but it expects the ORIGINAL Resource PDFs (index pages at pages 3-5), so run it against the copies from git history before commit 'Recheck 2-fers' or adjust it.
+- Also keep in step: KPC_KY_POTA_2fers_3fers.gpx, the DATA array in kpc-multi-park-spots.html, `tf` in kpc-ky-data.json (only confirmed pairs), ky-overlaps.geojson (unconfirmed pairs use kind "unconfirmed"), and the trail boxes on parks.html.
