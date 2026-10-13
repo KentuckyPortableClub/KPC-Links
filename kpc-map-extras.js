@@ -57,7 +57,7 @@ if (!document.getElementById('kx-css')) {
 .kx-pin.osm{border:2.5px dashed #6b6b6b;background:#f4f4f4;opacity:.93}
 .kx-key{display:inline-flex;width:18px;height:18px;border-radius:50%;background:#fff;box-sizing:border-box;flex:0 0 auto}
 .kx-key.off{border:3px solid #1d7a46}.kx-key.osm{border:2.5px dashed #6b6b6b}.kx-key.mine{background:#d5a63a;border:2px solid #111}
-.kx-sota{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#7b3fa0;color:#fff;border:2px solid #fff;font-size:11px;box-shadow:0 1px 4px rgba(0,0,0,.5)}
+.kx-sota{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#7b3fa0;color:#fff;border:2px solid #fff;font-size:11px;box-shadow:0 1px 4px rgba(0,0,0,.5)}.kx-nht{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:#a67c00;color:#fff;border:2px solid #fff;font-size:13px;box-shadow:0 1px 5px rgba(0,0,0,.5)}
 .kx-card{font:13px/1.4 Arial,Helvetica,sans-serif;color:#1b1b1b;min-width:190px}
 .kx-card .kx-t{font-weight:900;font-size:14px;margin-bottom:2px}
 .kx-card .kx-n{font-weight:700}
@@ -135,7 +135,7 @@ function hover(layer){
 
 /* ---------- overlap data ---------- */
 let OVL = null;
-function overlapData(){return OVL || (OVL = fetch('ky-overlaps.geojson?v=20261013a', {cache:'force-cache'}).then(r => {if(!r.ok)throw Error('HTTP ' + r.status);return r.json()}))}
+function overlapData(){return OVL || (OVL = fetch('ky-overlaps.geojson?v=20261013b', {cache:'force-cache'}).then(r => {if(!r.ok)throw Error('HTTP ' + r.status);return r.json()}))}
 /* POTA refs → [{kind, other refs, areas}] for cards */
 function overlapIndex(){return overlapData().then(gj => {const idx = new Map();
  for (const f of gj.features) {const p = f.properties, refs = p.pota.map(r => r[0]);
@@ -143,7 +143,7 @@ function overlapIndex(){return overlapData().then(gj => {const idx = new Map();
  return idx})}
 
 const KINDTXT = {
- '2fer':['g','Possible POTA 2-Fer — Verify Before Activating'],
+ '2fer':['g','Possible POTA 2-Fer — Do Your Own Research'],
  pota_wwff:['p','POTA + WWFF overlap'],
  pota_sota:['p','POTA + SOTA: summit inside a park'],
  other:['p','Other multi-program overlap']
@@ -153,15 +153,18 @@ function refsHtml(p){
  return `<div class="kx-refs">${row('POTA', p.pota, potaUrl)}${row('WWFF/KFF', p.kff, kffUrl)}${row('SOTA', p.sota, sotaUrl)}</div>`;
 }
 function overlapCard(p, ll, addStop){
- const k = KINDTXT[p.kind] || KINDTXT.other;
+ let k = KINDTXT[p.kind] || KINDTXT.other;
+ if (p.kind === '2fer' && p.pota.length >= 3) k = ['g', 'Possible POTA 3-Fer — Do Your Own Research'];
  let why = '';
- if (p.kind === '2fer') why = p.shared ? 'Both POTA references use the same outline in our map data. Check the POTA map for each reference.'
+ if (p.kind === '2fer' && p.river) why = `About ${p.miles} miles of public Ohio River bank inside this park (${esc(p.river)}). These trails are the river itself: set up on public land inside the park within 100 ft of the water. Possible only. Do your own research before counting it.`;
+ else if (p.kind === '2fer' && p.nht) why = `${esc(p.nht)}. National Historic Trails have no boundary, so POTA looks for certified or official trail sites with signage. Set up inside the park near the trail site. Do your own research before counting it.`;
+ else if (p.kind === '2fer') why = p.shared ? 'Both POTA references use the same outline in our map data. Check the POTA map for each reference.'
   : p.trail ? `About ${p.miles} miles of the ${esc(p.trail)} run inside this boundary. Being on the trail and inside the park may count for both. Verify each reference first.`
   : 'Two POTA boundaries overlap here. Make sure your exact spot is inside both before you call a 2-fer.';
  else if (p.kind === 'pota_wwff') why = 'One POTA reference plus a separate WWFF/KFF reference. This is <b>not</b> a POTA 2-fer.';
  else if (p.kind === 'pota_sota') why = 'A SOTA summit sits inside this POTA boundary. SOTA needs you in the summit’s activation zone. This is a POTA + SOTA combo, <b>not</b> a POTA 2-fer.';
  else why = 'More than one program is mapped here. This is <b>not</b> a POTA 2-fer.';
- const size = p.acres ? `About ${Number(p.acres).toLocaleString()} acres overlap` : p.miles ? `${p.miles} miles of trail` : p.ft ? `Summit elevation ${Number(p.ft).toLocaleString()} ft` : '';
+ const size = p.river ? `${p.miles} miles of riverbank` : p.acres ? `About ${Number(p.acres).toLocaleString()} acres overlap` : p.miles ? `${p.miles} miles of trail` : p.ft ? `Summit elevation ${Number(p.ft).toLocaleString()} ft` : '';
  return `<div class="kx-card"><span class="kx-badge ${k[0]}">${esc(k[1])}</span>
  <div class="kx-n">${esc(p.areas.join(' + '))}</div>${size ? `<div class="kx-d">${size}</div>` : ''}${refsHtml(p)}
  <div class="kx-d">${why}</div>
@@ -280,8 +283,8 @@ function attach(map, opt){
    const under = L.geoJSON({type:'FeatureCollection', features:lines}, {pane:'kxovl', interactive:false, style:{color:'#111', weight:10, opacity:.45}});
    const top = L.geoJSON({type:'FeatureCollection', features:lines}, {pane:'kxovl', style:{color:'#f2c230', weight:6, opacity:1, dashArray:'12 7'},
     onEachFeature:(f, l) => l.on('click', e => {if (opt.busy && opt.busy()) return; L.popup({maxWidth:300, minWidth:210}).setLatLng(e.latlng).setContent(overlapCard(f.properties, e.latlng, opt.addStop)).openOn(map)})});
-   const pts2 = L.layerGroup(gj.features.filter(f => f.geometry.type === 'Point').map(f => {const c = f.geometry.coordinates, ll = L.latLng(c[1], c[0]);
-    const m = L.marker(ll, {pane:'kxpin', icon:L.divIcon({className:'', html:'<span class="kx-sota">▲</span>', iconSize:[22, 22], iconAnchor:[11, 11], popupAnchor:[0, -10]}), title:'SOTA summit inside a POTA park: ' + f.properties.sota[0][0]})
+   const pts2 = L.layerGroup(gj.features.filter(f => f.geometry.type === 'Point').map(f => {const c = f.geometry.coordinates, ll = L.latLng(c[1], c[0]), p = f.properties;
+    const m = L.marker(ll, {pane:'kxpin', icon:L.divIcon({className:'', html:p.nht ? '<span class="kx-nht">★</span>' : '<span class="kx-sota">▲</span>', iconSize:[24, 24], iconAnchor:[12, 12], popupAnchor:[0, -10]}), title:p.nht ? 'Historic trail site: ' + p.pota.map(r => r[0]).join(' + ') : 'SOTA summit inside a POTA park: ' + ((p.sota[0] || [])[0] || '')})
      .bindPopup(() => overlapCard(f.properties, ll, opt.addStop), {maxWidth:300, minWidth:210});
     hover(m); return m}));
    [poly, under, top, pts2].forEach(x => x.addTo(lay.O));
@@ -314,10 +317,11 @@ function attach(map, opt){
    <label><input type="checkbox" data-kx="O">Show Park Overlaps</label>
    <div data-kxlegend hidden>
     <div class="kx-lg"><span class="kx-sw" style="background:#f2c230;border:2px solid #a67c00"></span>Possible POTA 2-Fer (2+ POTA refs)</div>
-    <div class="kx-lg"><span class="kx-sw" style="background:repeating-linear-gradient(90deg,#f2c230 0 7px,transparent 7px 11px);height:5px;border:1px solid #111"></span>Trail inside another POTA park</div>
+    <div class="kx-lg"><span class="kx-sw" style="background:repeating-linear-gradient(90deg,#f2c230 0 7px,transparent 7px 11px);height:5px;border:1px solid #111"></span>Trail or Ohio River bank inside another POTA park</div>
+    <div class="kx-lg"><span class="kx-nht" style="width:16px;height:16px;font-size:9px">★</span>Trail of Tears / Lewis &amp; Clark site in a POTA park</div>
     <div class="kx-lg"><span class="kx-sw" style="background:#a66bd3;border:2px solid #5e2d82"></span>POTA + WWFF or other combo</div>
     <div class="kx-lg"><span class="kx-sota" style="width:16px;height:16px;font-size:9px">▲</span>SOTA summit inside a POTA park</div>
-    <div class="kx-stat">Tap a highlight for details. Verify before activating.</div>
+    <div class="kx-stat">Tap a highlight for details. Do your own research before activating.</div>
    </div></div>`;
   L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
   btn = d.querySelector('.kx-btn'); box = d.querySelector('.kx-box'); statEl = d.querySelector('[data-kxstat]'); legendEl = d.querySelector('[data-kxlegend]');
