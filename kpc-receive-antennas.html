@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Receive-Only Antennas (LoG, BOG, K9AY) | KPC</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Receive-Only Antennas (LoG, BOG, K9AY) | KPC">
+<meta property="og:description" content="Build a Loop on Ground (LoG), Beverage on Ground or K9AY receive antenna, pick the transformer turns, and hook it up safely to hear through low-band noise.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-receive-antennas.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
+<meta name="description" content="Build a Loop on Ground (LoG), Beverage on Ground or K9AY receive antenna, pick the transformer turns, and hook it up safely to hear through low-band noise.">
+<style>
+:root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:var(--nav-height);margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s}.nav-links a:hover,.nav-links a[aria-current=page]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:var(--black) url("parks.png") center/cover no-repeat;color:#fff;border-bottom:1px solid rgba(213,166,58,.45)}
+.hero:before{content:"";position:absolute;width:620px;height:620px;right:-170px;top:-180px;border:1px solid rgba(213,166,58,.35);border-radius:50%;box-shadow:0 0 0 55px rgba(213,166,58,.035),0 0 0 110px rgba(213,166,58,.025)}
+.hero:after{content:none}
+.hero-inner{position:relative;z-index:2;width:min(var(--max),100%);margin:auto;padding:90px 24px 84px}.hero-logo{width:min(360px,78vw);margin-bottom:24px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}.eyebrow{margin:0 0 12px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}.hero h1{max-width:800px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,6.2vw,76px);line-height:1.02;letter-spacing:-1.8px}.hero h1 span{color:var(--gold-light)}.hero-copy{max-width:720px;margin:22px 0 0;color:#eee9dd;font-size:clamp(16px,2vw,20px)}
+.section{padding:82px 24px}.section-inner{width:min(var(--max),100%);margin:auto}.section-heading{text-align:center;margin-bottom:42px}.kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:4px}.section h2{margin:7px 0 12px;color:var(--black);font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,4vw,48px);line-height:1.08}.section-heading p{max-width:760px;margin:0 auto;color:var(--muted);font-size:17px}
+.intro{background:var(--cream);border-bottom:1px solid #d9cfbd}.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}.intro-copy h2{margin:7px 0 18px}.intro-copy p{color:var(--muted);font-size:18px;margin:0}.intro-panel{padding:34px;background:var(--black);border:1px solid var(--gold);box-shadow:12px 12px 0 var(--gold);color:#fff;position:relative;overflow:hidden}.intro-panel:after{content:"";position:absolute;width:230px;height:230px;right:-90px;top:-90px;border:1px solid rgba(213,166,58,.45);border-radius:50%}.intro-panel .mark{position:relative;z-index:1;color:var(--gold-light);font-size:12px;font-weight:900;letter-spacing:3px}.intro-panel h3{position:relative;z-index:1;margin:10px 0 10px;font:700 30px/1.1 Georgia,serif}.intro-panel p{position:relative;z-index:1;margin:0;color:#c9c5bc}.intro-panel .line{position:relative;z-index:1;width:70px;height:3px;background:var(--gold);margin:20px 0}
+.features{background:#fffaf0}.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.card{min-height:285px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid #d8cfbf;background:#fff;color:var(--ink);box-shadow:0 12px 28px rgba(0,0,0,.07);transition:.2s;position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;width:6px;height:100%;background:var(--gold)}.card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.12);border-color:var(--gold)}.card-top{position:relative;z-index:1}.card-num{color:var(--green);font-size:12px;font-weight:900;letter-spacing:3px}.card h3{margin:8px 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:28px;line-height:1.1}.card p{margin:0;color:var(--muted);font-size:15px;max-width:520px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:1px;background:var(--gold);color:#0b0b0b;transition:.2s;align-self:flex-start;margin-top:24px}.btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.dark{background:var(--black);color:#fff;border-top:1px solid rgba(213,166,58,.45);border-bottom:1px solid rgba(213,166,58,.45)}.dark .section-heading p{color:#bcb8ae}.dark h2{color:#fff}.dark .card{background:#151515;border-color:#363636;color:#fff}.dark .card p{color:#bcb8ae}.dark .card h3{color:#fff}.dark .card:before{background:var(--gold)}
+.map-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.map-box{padding:30px;border:1px solid #363636;background:#151515}.map-box h3{margin:8px 0 10px;color:#fff;font:700 25px/1.1 Georgia,serif}.map-box p{margin:0;color:#bcb8ae}.map-box .btn{margin-top:22px}
+.pota-card{min-height:310px}
+.pdf-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pdf-actions .btn{margin-top:0}.pdf-actions .alt{background:#fff;border:1px solid var(--gold);color:#171717}
+.warning{background:var(--cream-2);border-top:1px solid #d1c6b3}.warning-box{border-left:6px solid var(--gold);background:#fff;padding:30px;box-shadow:0 10px 24px rgba(0,0,0,.06)}.warning-box h3{margin:0 0 10px;font:700 28px/1.1 Georgia,serif}.warning-box p{margin:0;color:var(--muted)}
+.final{padding:76px 24px;text-align:center;background:var(--cream-2)}.final h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}.final p{margin:10px 0 24px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:2px}
+footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;border-top:1px solid #292929;font-size:13px}footer strong{color:var(--gold-light)}
+@media(min-width:901px){.hero-logo{position:absolute;left:-400px;top:calc(50% - 22px);transform:translateY(-50%);justify-self:auto;margin-bottom:0}}
+@media(max-width:1000px){.nav-links a{padding-inline:7px;font-size:12px}.intro-grid{gap:38px}}
+@media(max-width:900px){.hero-logo{display:block;width:min(290px,58vw);margin-left:auto;margin-right:auto}}
+@media(max-width:760px){:root{--nav-height:70px}.nav-inner{min-height:70px;padding:8px 18px}.brand img{width:52px;height:52px}.menu-toggle{display:block}.nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45);box-shadow:0 15px 25px rgba(0,0,0,.22)}.nav-links.open{display:flex}.nav-links a{padding:13px 5px;border-bottom:1px solid #292929}.nav-links a:last-child{border-bottom:0}.hero{min-height:500px;background:url("parks-mobile.png") center/cover no-repeat}.hero-inner{padding:70px 20px 55px}.hero-logo{width:min(290px,58vw)}.section{padding:68px 20px}.intro-grid,.map-grid{grid-template-columns:1fr}.intro-panel{max-width:520px;margin:auto}.card-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-logo{width:min(250px,64vw)}}
+@media(max-width:520px){.hero h1{font-size:42px}.hero-copy{font-size:16px}.card{min-height:300px}.card h3{font-size:25px}.pdf-actions{flex-direction:column}.pdf-actions .btn{width:100%}}
+@media(max-width:380px){.brand-text small{display:none}}
+
+/* Added official trail and Wild River resource sections */
+.resource-note{background:#fff7df;border-left:5px solid var(--gold);padding:18px 22px;margin:0 0 28px;color:#332c1f}
+.resource-note p{margin:0}.resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.resource-item{padding:26px;border:1px solid #d8cfbf;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.045)}
+.resource-item h3{font:700 25px/1.18 Georgia,serif;margin:8px 0 12px}.resource-item p{color:#5f5a51;margin:0 0 12px}
+.resource-item .meta{font-size:12px;font-weight:900;letter-spacing:1.4px;color:var(--green)}
+.resource-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.resource-actions .btn{margin:0;font-size:11px;min-height:40px}
+.resource-actions .secondary{background:#f8f4eb;border:1px solid #c9ad6b}
+.river-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:25px 0}
+.river-list article{padding:18px 20px;background:#fff;border:1px solid #d8cfbf}.river-list strong{display:block;font:700 20px Georgia,serif}.river-list span{display:block;margin-top:7px;color:#5f5a51;font-size:14px}
+@media(max-width:760px){.resource-grid,.river-list{grid-template-columns:1fr}}
+/* Quick jump links, trail cards, map files */
+.jump{background:var(--black);border-bottom:1px solid rgba(213,166,58,.45);position:sticky;top:var(--nav-height);z-index:900}
+.jump-inner{width:min(var(--max),100%);margin:auto;padding:10px 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.jump-inner::-webkit-scrollbar{display:none}
+.jump a{flex:0 0 auto;padding:8px 14px;border:1px solid #3a3a3a;border-radius:999px;color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;transition:.2s}
+.jump a:hover{border-color:var(--gold);color:var(--gold-light)}
+section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn-row .btn{margin-top:0}
+.trail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.trail-grid .resource-item:last-child:nth-child(odd){grid-column:1/-1}
+.twofer{margin:14px 0 0;padding:12px 14px;background:#fff7df;border-left:4px solid var(--gold);font-size:14px;color:#332c1f}
+.twofer b{color:var(--green);letter-spacing:1px;font-size:12px}
+.files-card .pdf-actions .btn{min-width:0}
+.file-group{margin-top:16px}.file-group .card-num{margin-bottom:8px}
+.warning-box .btn-row .btn{font-size:11px;min-height:40px}
+@media(max-width:760px){.jump{top:70px}.trail-grid{grid-template-columns:1fr}.btn-row{flex-direction:column}.btn-row .btn{width:100%}}
+.dark .kicker,.dark .card-num{color:var(--gold-light)}
+/* On The Air Now bar */
+.onair{background:#0d2419;border-bottom:1px solid rgba(213,166,58,.45);color:#fff}
+.onair-inner{width:min(var(--max),100%);margin:auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.onair-title{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:3px;color:var(--gold-light);white-space:nowrap}
+.onair .dot{width:10px;height:10px;border-radius:50%;background:#3ecf6e;animation:pulse 1.8s infinite}
+.onair .dot.off{background:#8a8a8a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.6)}70%{box-shadow:0 0 0 9px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.onair-count{font-size:14px;color:#e9eee9}.onair-count b{color:#fff}
+.onair-list{display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}.onair-list::-webkit-scrollbar{display:none}
+.onair-chip{flex:0 0 auto;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;white-space:nowrap}
+.onair-chip b{color:var(--gold-light)}.onair-chip.club{border-color:var(--gold);background:rgba(213,166,58,.14)}
+.onair .btn{margin:0;min-height:38px;padding:8px 14px;font-size:11px;white-space:nowrap}
+@media(max-width:760px){.onair-inner{padding:12px 18px;gap:8px 10px}.onair-title{order:1}.onair .btn{order:2;margin-left:auto}.onair-count{order:3;flex-basis:100%}.onair-list{order:4;flex-basis:100%}}
+
+/* KPC shared About-style footer and below-hero page links */
+.page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+.page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
+.page-jump-nav a:hover,.page-jump-nav a:focus-visible{background:#3c321a;border-color:#d6b96c;color:#fff}
+section[id]{scroll-margin-top:100px}
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
+body.field .page-jump-nav{display:none!important}
+
+</style>
+<link rel="stylesheet" href="kpc-nav.css?v=20261010g">
+<style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
+<style>
+[hidden]{display:none!important}
+.hero{min-height:380px;background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.66) 45%,rgba(7,7,7,.25) 80%,rgba(7,7,7,.1) 100%),url("toolbox.jpg") center 55%/cover no-repeat #070707}
+@media(max-width:760px){.hero{min-height:340px;background:linear-gradient(180deg,rgba(7,7,7,.45) 0%,rgba(7,7,7,.8) 55%,rgba(7,7,7,.92) 100%),url("toolbox-mobile.jpg") center 60%/cover no-repeat #070707}}
+.xj{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px 16px;background:#101010;border-bottom:1px solid #2a2a2a}
+.xj a{padding:9px 13px;border:1px solid rgba(255,255,255,.28);border-radius:6px;color:#fff;font-size:11px;font-weight:900;letter-spacing:.7px}
+.xj a:hover{border-color:var(--gold);color:var(--gold-light)}
+.x2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.x3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.x4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.xc{background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);padding:20px;box-shadow:0 10px 24px rgba(0,0,0,.06);min-width:0}
+.xc .k{font-size:10px;font-weight:900;letter-spacing:1.5px;color:var(--green)}
+.xc h3{margin:6px 0 8px;font:700 22px/1.15 Georgia,serif}
+.xc p,.xc li{color:var(--muted);font-size:15px}.xc p{margin:0 0 8px}.xc ul,.xc ol{margin:0 0 8px;padding-left:18px}.xc li{margin:0 0 5px}
+.xc b{color:#171717}
+.dark .xc{background:#151515;border-color:#363636;border-top-color:var(--gold)}.dark .xc h3,.dark .xc b{color:#fff}.dark .xc p,.dark .xc li{color:#bcb8ae}.dark .xc .k{color:#7fd39a}
+.xc svg,.fig svg{display:block;width:100%;height:auto;background:#fbf8f1;border:1px solid #e1d7c3;border-radius:8px;margin:12px 0}
+.pill{display:inline-block;font-size:10px;font-weight:900;letter-spacing:1px;padding:3px 7px;border-radius:4px;background:#efe6d2;color:#5f5a51;margin-left:6px;vertical-align:2px}
+.spec{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 10px}
+.spec td{padding:7px 4px;border-bottom:1px solid #eee5d3;vertical-align:top;color:#3b372f}
+.spec td:first-child{font-size:10px;font-weight:900;letter-spacing:1px;color:#6d6658;width:40%;padding-top:9px}
+.dark .spec td{border-color:#2a2a2a;color:#ddd}
+/* calculator */
+.xd{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px;align-items:start}
+.xd-in{background:#121212;border:1px solid #2f2f2f;border-radius:10px;padding:18px}
+.xd-in label{display:block;font-size:11px;font-weight:900;letter-spacing:1.3px;color:#cfc6b2;margin:12px 0 6px}
+.xd-in label:first-child{margin-top:0}
+.xd-in select,.xd-in input{width:100%;min-height:46px;padding:9px 12px;border-radius:7px;border:1px solid #444;background:#1a1a1a;color:#fff;font:600 16px Arial,sans-serif}
+.xd-in .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.xd-in .hint{font-size:12px;color:#9c968a;margin:5px 0 0}
+.xd-out{background:#fff;border-radius:10px;padding:20px;color:var(--ink);min-width:0}
+.xd-out h3{margin:0 0 4px;font:700 24px Georgia,serif}
+.xd-out .sub{color:var(--muted);margin:0 0 14px;font-size:14px}
+.xd-t{width:100%;border-collapse:collapse;font-size:15px}
+.xd-t td{padding:8px 4px;border-bottom:1px solid #eee5d3;vertical-align:top}
+.xd-t td:first-child{font-size:11px;font-weight:900;letter-spacing:1px;color:#6d6658;width:42%;padding-top:10px}
+.xd-t b{font-size:17px}
+.big{font:700 34px/1.1 Georgia,serif;color:#171717}
+.xd-warn{margin-top:12px;padding:10px 12px;background:#fff1ec;border-left:4px solid #d2693c;color:#5a2a17;font-size:14px}
+.xd-ok{margin-top:12px;padding:10px 12px;background:#eef7ef;border-left:4px solid #2e8b3a;color:#1d3d22;font-size:14px}
+.tbl-wrap{overflow-x:auto;margin-top:12px}
+.tapt{width:100%;border-collapse:collapse;font-size:14px;min-width:340px}
+.tapt th{background:#1d1d1d;color:#cfc6b2;font-size:10px;letter-spacing:1.2px;text-align:left;padding:8px}
+.tapt td{padding:8px;border-bottom:1px solid #eee5d3}
+.tapt td:first-child{font-weight:900}
+.tips{columns:2 320px;column-gap:24px;padding-left:18px}
+.tips li{break-inside:avoid;margin:0 0 12px;color:var(--muted);font-size:15px}.tips b{color:#171717}
+.dark .tips li{color:#bcb8ae}.dark .tips b{color:#fff}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;position:relative;padding:0 0 12px 40px;color:var(--muted);font-size:15px}
+.steps li:before{content:counter(s);position:absolute;left:0;top:-2px;width:28px;height:28px;border-radius:50%;background:var(--gold);color:#111;font-weight:900;text-align:center;line-height:28px;font-size:14px}
+.steps b{color:#171717}
+.rel{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px}
+.rel a{padding:11px 15px;border:1px solid #cdbf9f;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:.7px;color:#171717;background:#fff}
+.rel a:hover{border-color:var(--gold)}
+.src{font-size:13px;color:var(--muted);text-align:center;margin-top:14px}.src a{color:var(--green);text-decoration:underline}
+@media(max-width:1000px){.x3,.x4{grid-template-columns:repeat(2,minmax(0,1fr))}.xd{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:640px){.x2,.x3,.x4{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Search &amp; Park Guides</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-band-plan.html" role="menuitem"><span class="ni">&#128225;</span>Band Plan by License</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • ANTENNA GUIDES</p><h1>RECEIVE-ONLY <span>ANTENNAS</span></h1><p class="hero-copy">Hear what the noise is hiding. The Loop on Ground (LoG), Beverage on Ground, K9AY loops and active antennas: what they are, how to build them, and how to hook them up without frying your radio.</p></div></section>
+<nav class="xj" aria-label="On this page"><a href="#why">WHY BOTHER?</a><a href="#types">WHICH ONE?</a><a href="#log">BUILD A LoG</a><a href="#bog">BEVERAGE ON GROUND</a><a href="#xfmr">TRANSFORMER HELPER</a><a href="#hookup">HOOKING IT UP</a><a href="#test">TESTING</a></nav>
+
+<section class="section features" id="why"><div class="section-inner">
+<div class="section-heading"><div class="kicker">THE BIG IDEA</div><h2>Why a Receive Antenna?</h2><p>On 160, 80 and 40 meters you can usually hear more noise than signal. A receive antenna doesn't make signals louder. It makes the <b>noise quieter</b>, so the signal stands out.</p></div>
+<div class="x3">
+ <article class="xc"><span class="k">SIGNAL-TO-NOISE</span><h3>Quieter Beats Louder</h3><p>Your transmit antenna is built to radiate well, so it also picks up every noisy power line, charger and TV in the neighborhood. A small, low, "inefficient" receive antenna hears much less of that local noise. Signals read lower on the S-meter, but you copy them better.</p></article>
+ <article class="xc"><span class="k">LOW BANDS</span><h3>Best on 160–40 m</h3><p>Low-band noise is usually stronger than your radio's own internal noise, so you can throw away antenna gain and not lose anything. On 20 m and up, band noise is lower and these antennas help much less.</p></article>
+ <article class="xc"><span class="k">PORTABLE TOO</span><h3>Great at the Campout</h3><p>A LoG is 60 feet of wire on the grass and a little transformer. It packs in a sandwich bag. Lay one out away from the generators and campers and you'll hear 80 m stations nobody else can copy.</p></article>
+</div>
+</div></section>
+
+<section class="section dark" id="types"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">PICK ONE</div><h2>Which Receive Antenna?</h2><p>Start with the LoG. It's the cheapest, smallest and most forgiving.</p></div>
+<div class="x4">
+ <article class="xc"><span class="k">EASIEST <span class="pill">START HERE</span></span><h3>Loop on Ground (LoG)</h3><p>A square of insulated wire, about 15 ft per side, lying on the grass. Fed at one corner through a small transformer.</p><table class="spec"><tr><td>SPACE</td><td>~20 × 20 ft</td></tr><tr><td>BANDS</td><td>160–40 m (some use to 20 m)</td></tr><tr><td>PATTERN</td><td>Roughly all-around</td></tr><tr><td>COST</td><td>Under $20</td></tr></table></article>
+ <article class="xc"><span class="k">DIRECTIONAL</span><h3>Beverage on Ground (BOG)</h3><p>A long, straight wire lying on the ground, aimed at the area you want to hear. A resistor to ground at the far end makes it one-way.</p><table class="spec"><tr><td>SPACE</td><td>150–300 ft straight run</td></tr><tr><td>BANDS</td><td>160–40 m</td></tr><tr><td>PATTERN</td><td>Toward the far end</td></tr><tr><td>COST</td><td>Under $25</td></tr></table></article>
+ <article class="xc"><span class="k">SWITCHABLE</span><h3>K9AY Loops</h3><p>Two triangle-shaped loops at right angles on one ~25 ft support, each with a resistor in it. A relay box picks one of four directions.</p><table class="spec"><tr><td>SPACE</td><td>~30 × 30 ft</td></tr><tr><td>BANDS</td><td>160 &amp; 80 m (40 m OK)</td></tr><tr><td>PATTERN</td><td>4 switchable directions</td></tr><tr><td>BEST FOR</td><td>Home station</td></tr></table></article>
+ <article class="xc"><span class="k">TINY</span><h3>Active Antennas</h3><p>A small amplified whip ("mini-whip") or an amplified receive loop. Needs power over the coax. Popular for SDRs and web SDRs.</p><table class="spec"><tr><td>SPACE</td><td>A pole or fence post</td></tr><tr><td>BANDS</td><td>LF to 30 MHz</td></tr><tr><td>WATCH OUT</td><td>Whips hear house noise; mount them away from the house</td></tr><tr><td>COST</td><td>$30–300</td></tr></table></article>
+</div>
+</div></section>
+
+<section class="section features" id="log"><div class="section-inner">
+<div class="section-heading"><div class="kicker">STEP BY STEP</div><h2>Build a Loop on Ground</h2><p>About an hour of work. Parts: 60 ft of insulated wire, a small ferrite core, some magnet wire, a weatherproof box, a connector and a run of coax.</p></div>
+<div class="x2">
+ <article class="xc"><span class="k">HOW IT LAYS OUT</span><h3>Top View</h3>
+  <svg viewBox="0 0 420 300" role="img" aria-label="Loop on ground: square of wire on the grass, transformer at one corner, coax to a choke, preamp and the radio">
+   <rect x="0" y="0" width="420" height="300" fill="#e7efd9"/>
+   <g fill="#c8dbb0"><circle cx="40" cy="250" r="3"/><circle cx="120" cy="30" r="3"/><circle cx="310" cy="270" r="3"/><circle cx="380" cy="60" r="3"/></g>
+   <rect x="70" y="40" width="190" height="190" fill="none" stroke="#b5651d" stroke-width="5" stroke-linejoin="round"/>
+   <text x="165" y="32" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#5f3510">15 ft</text>
+   <text x="275" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="#5f3510">15 ft</text>
+   <text x="165" y="140" text-anchor="middle" font-family="Arial" font-size="13" fill="#4d6b37">wire lies on the grass</text>
+   <text x="165" y="158" text-anchor="middle" font-family="Arial" font-size="13" fill="#4d6b37">(staple it down)</text>
+   <rect x="250" y="216" width="34" height="28" rx="4" fill="#3a3a3a"/><text x="267" y="234" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#fff">XFMR</text>
+   <path d="M284 230 C320 230 330 250 360 250 L410 250" fill="none" stroke="#262626" stroke-width="5"/>
+   <circle cx="330" cy="244" r="12" fill="none" stroke="#777" stroke-width="7"/>
+   <text x="410" y="285" text-anchor="end" font-family="Arial" font-size="11" font-weight="bold" fill="#171717">coax → choke → preamp → radio</text>
+  </svg>
+  <p>The corner where the wire ends meet is the feedpoint. Bring both ends into the box and keep the coax leaving the loop at a right angle, along the ground.</p></article>
+ <article class="xc"><span class="k">THE PARTS</span><h3>Shopping List</h3>
+  <table class="spec">
+   <tr><td>LOOP WIRE</td><td>60 ft of insulated wire, 14–20 AWG. Anything works.</td></tr>
+   <tr><td>TRANSFORMER</td><td>About <b>3:1 turns</b> (9:1 impedance) with <b>separate windings</b>. A mix 73 or 43 binocular core (BN-73-202 or similar) is easy: 3 turns on the coax side, 9 on the loop side. <a href="kpc-transformers.html#rxxfmr">Wiring diagram</a> · <a href="#xfmr">Turns helper ↓</a></td></tr>
+   <tr><td>FEEDLINE</td><td>RG-6 TV coax (75 Ω) is cheap and perfect. F-connectors are fine.</td></tr>
+   <tr><td>CHOKE</td><td>A common-mode choke at the radio end, and ideally one at the loop end. <a href="kpc-transformers.html#chokes">Choke recipes</a></td></tr>
+   <tr><td>PREAMP</td><td>Usually needed: 15–25 dB of gain. Your radio's built-in preamp is a fine start.</td></tr>
+   <tr><td>PROTECTION</td><td>An RX antenna jack, or a T/R switch that grounds the receive antenna when you transmit. <a href="#hookup">See below</a></td></tr>
+  </table></article>
+</div>
+<div class="xc" style="margin-top:18px"><span class="k">BUILD IT</span><h3>Steps</h3>
+ <ol class="steps">
+  <li><b>Wind the transformer.</b> Pass magnet wire through both holes of the binocular core: 3 turns for the coax side, 9 turns for the loop side. Keep the two windings separate. They must not touch each other electrically. Check with an ohmmeter: no continuity between the two windings.</li>
+  <li><b>Box it.</b> Mount the core in a small plastic box with a coax connector (F or BNC) on one side and two screw terminals for the loop on the other.</li>
+  <li><b>Lay out the loop.</b> Make a square, about 15 ft on each side (60 ft total), right on the grass or a few inches above it. Lawn staples hold it down. Neat corners aren't important. A circle works the same.</li>
+  <li><b>Connect it.</b> Loop ends to the 9-turn winding, coax to the 3-turn winding. Run the coax away along the ground.</li>
+  <li><b>Choke the coax</b> near the radio (and at the loop if you can). Without it, the shield of the coax becomes the antenna and you lose the quiet.</li>
+  <li><b>Into the radio's RX antenna input</b>, through a preamp if signals are weak. Then do the <a href="#test">short test</a>.</li>
+ </ol></div>
+</div></section>
+
+<section class="section dark" id="bog"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">DIRECTIONAL</div><h2>Beverage on Ground (BOG)</h2><p>A long wire on the ground that hears best in one direction. Point it at Europe, the West Coast, or wherever you want to work.</p></div>
+<div class="x2">
+ <article class="xc"><span class="k">LAYOUT</span><h3>Side View</h3>
+  <svg viewBox="0 0 420 170" role="img" aria-label="Beverage on ground: transformer at the near end, wire along the ground, resistor to a ground rod at the far end">
+   <rect x="0" y="110" width="420" height="60" fill="#d9c7a3"/><path d="M0 110 H420" stroke="#8a6b3a" stroke-width="2"/>
+   <rect x="20" y="86" width="40" height="24" rx="4" fill="#3a3a3a"/><text x="40" y="102" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#fff">XFMR</text>
+   <path d="M20 98 H4" stroke="#262626" stroke-width="5"/><text x="6" y="80" font-family="Arial" font-size="11" font-weight="bold">coax</text>
+   <path d="M40 110 V150" stroke="#555" stroke-width="4"/><text x="46" y="156" font-family="Arial" font-size="10">ground rod</text>
+   <path d="M60 106 H360" stroke="#b5651d" stroke-width="4"/>
+   <text x="210" y="96" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#5f3510">150–300 ft of wire on the ground</text>
+   <rect x="360" y="98" width="26" height="12" fill="#fff" stroke="#171717" stroke-width="2"/><text x="373" y="90" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold">470 Ω</text>
+   <path d="M386 104 H396 V150" fill="none" stroke="#555" stroke-width="4"/><text x="390" y="146" text-anchor="end" font-family="Arial" font-size="10">rod</text>
+   <path d="M150 40 H270" stroke="#2e8b3a" stroke-width="3" marker-end="url(#ar)"/>
+   <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2e8b3a"/></marker></defs>
+   <text x="210" y="30" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#2e8b3a">hears best this way →</text>
+  </svg>
+  <p>It hears best <b>toward the resistor end</b>. Leave the resistor off and it hears both ways.</p></article>
+ <article class="xc"><span class="k">BUILD NOTES</span><h3>What You Need</h3>
+  <ul>
+   <li><b>Wire:</b> insulated, 150–300 ft, laid straight on the ground. Longer is more directional, but past ~300 ft it stops helping on 160/80.</li>
+   <li><b>Feed:</b> a transformer with separate windings, 9:1 to start (same as the LoG). On very lossy ground a 4:1 sometimes matches better. Try both if you can.</li>
+   <li><b>Far end:</b> a 390–560 Ω resistor (470 Ω is a good start) to a short ground rod. Tweak it while listening to a station off the back for the deepest null.</li>
+   <li><b>Near end:</b> a ground rod for the transformer's coax side.</li>
+   <li><b>Mowers:</b> it's a trip hazard and mower bait. Flag it, or tuck it along a fence line.</li>
+  </ul></article>
+</div>
+</div></section>
+
+<section class="section features" id="xfmr"><div class="section-inner">
+<div class="section-heading"><div class="kicker">CALCULATOR</div><h2>Receive Transformer Helper</h2><p>Picks the turns for the little transformer between your receive antenna and the coax.</p></div>
+<div class="xd">
+ <div class="xd-in" style="color:#fff">
+  <label for="rxAnt">ANTENNA</label>
+  <select id="rxAnt"><option value="550">Loop on Ground (~450–650 Ω)</option><option value="450">Beverage on Ground (~300–500 Ω)</option><option value="450">K9AY loop (~450 Ω)</option><option value="600">Beverage, raised (~500–600 Ω)</option><option value="c">Other (type it in)</option></select>
+  <div id="rxCustomW" hidden><label for="rxCustom">ANTENNA IMPEDANCE (Ω)</label><input id="rxCustom" type="number" min="50" max="3000" value="500" inputmode="numeric"></div>
+  <label for="rxLine">FEEDLINE</label>
+  <select id="rxLine"><option value="75">RG-6 / RG-59 (75 Ω)</option><option value="50">RG-58 / RG-8X (50 Ω)</option></select>
+  <label for="rxCore">CORE</label>
+  <select id="rxCore"><option value="bn73">Binocular BN-73-202 (160–40 m)</option><option value="bn43">Binocular BN-43-2402 (80–20 m)</option><option value="ft">Toroid FT-50-43 / FT-37-43</option></select>
+ </div>
+ <div class="xd-out" id="rxOut" aria-live="polite"></div>
+</div>
+</div></section>
+
+<section class="section dark" id="hookup"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">DON'T FRY IT</div><h2>Hooking It Up</h2><p>Your transmit antenna puts strong RF into anything nearby, including your receive antenna. Plan for that before you key up.</p></div>
+<div class="x3">
+ <article class="xc"><span class="k">BEST</span><h3>RX Antenna Jack</h3><p>Many mid-range and higher radios have an "RX ANT" input or an RX-in/RX-out loop on the back. Use it. The radio picks the receive antenna on receive and takes care of switching when you transmit. Check your manual for the jack and the menu setting.</p></article>
+ <article class="xc"><span class="k">NO RX JACK?</span><h3>T/R Switch</h3><p>A receive-antenna switch box sits between the radio and both antennas. It listens on the receive antenna and shorts it to ground the moment you transmit. Use one that's keyed by your radio's amp-key / send line, not by RF sensing alone.</p></article>
+ <article class="xc"><span class="k">EITHER WAY</span><h3>Distance &amp; Protection</h3><ul><li>Keep the receive antenna as far as you can from the transmit antenna: <b>50 ft or more</b>, more on 160 m.</li><li>Add a <b>receiver front-end protector</b> (limiter) in the line for extra insurance.</li><li>Don't run the RX coax right alongside the TX coax.</li><li>Run QRP if you're unsure. A preamp is the first thing to die.</li></ul></article>
+</div>
+</div></section>
+
+<section class="section features" id="test"><div class="section-inner">
+<div class="section-heading"><div class="kicker">IS IT WORKING?</div><h2>Testing</h2></div>
+<ul class="tips">
+ <li><b>The short test.</b> Tune to a weak signal. Short the two loop terminals together (or pull the loop wire off). The signal should drop by <b>more than 10 dB</b>. If it barely changes, your coax shield is doing the receiving. Add or improve the choke.</li>
+ <li><b>Listen to the noise, not the S-meter.</b> Switch between the TX antenna and the receive antenna. The receive antenna will read lower, but if the noise drops more than the signal, it's winning.</li>
+ <li><b>Turn the preamp on and off.</b> If the band noise rises when the preamp is on, you have enough gain. If nothing changes, you need more.</li>
+ <li><b>Check for overload.</b> Strong AM broadcast stations can swamp a preamp. If you hear AM radio mixed into 160 m, add a broadcast-band filter ahead of the preamp.</li>
+ <li><b>Move it.</b> Receive antennas are fussy about location. Ten yards farther from the house or the power line can make a bigger difference than any tweak.</li>
+ <li><b>Compare with someone.</b> At the campout, run your LoG next to someone's EFHW and swap headphones. You'll hear the difference fast.</li>
+</ul>
+<div class="rel"><a href="kpc-transformers.html">UNUNS, BALUNS &amp; CHOKES</a><a href="kpc-loops.html">LOOPS &amp; DELTA LOOPS</a><a href="kpc-loaded-verticals.html">LOADED VERTICALS &amp; COILS</a><a href="kpc-cw.html#listen">LISTEN ON A WEB SDR</a><a href="antennas.html">ALL ANTENNA GUIDES</a></div>
+<p class="src">Further reading: <a href="https://www.kk5jy.net/LoG/" target="_blank" rel="noopener">KK5JY — The Loop on Ground</a> · <a href="https://tapr.org/loop-on-ground-log-antenna/" target="_blank" rel="noopener">TAPR — Loop on Ground</a> · <a href="https://kg3v.com/2020/01/04/loop-on-ground-the-simplest-receive-antenna-you-will-ever-build-and-it-works/" target="_blank" rel="noopener">KG3V — LoG build</a></p>
+</div></section>
+
+<section class="final"><h2>Get Outside. Get On The Air.</h2><p>HEAR THEM FIRST</p><a class="btn" href="antennas.html">MORE ANTENNA GUIDES →</a></section>
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var CORE={bn73:{n:'BN-73-202 binocular',p:{75:3,50:2},note:'Mix 73 is best on 160–40 m. A "turn" is one trip through both holes and back out the same end.'},
+ bn43:{n:'BN-43-2402 binocular',p:{75:4,50:3},note:'Mix 43 works best from 80 m up to 20 m.'},
+ ft:{n:'FT-50-43 or FT-37-43 toroid',p:{75:5,50:4},note:'Small toroids need more turns. Wind the two windings on opposite sides of the ring.'}};
+function draw(){
+ var a=$('rxAnt').value,z=a==='c'?+$('rxCustom').value:+a,zl=+$('rxLine').value,c=CORE[$('rxCore').value];
+ $('rxCustomW').hidden=a!=='c';
+ if(!(z>=50))z=500;
+ var r=z/zl,t=Math.sqrt(r),p=c.p[zl],s=Math.round(p*t);
+ var near=[[4,'4:1'],[9,'9:1'],[16,'16:1']].reduce(function(b,x){return Math.abs(Math.log(x[0]/r))<Math.abs(Math.log(b[0]/r))?x:b});
+ $('rxOut').innerHTML='<h3>'+p+' turns : '+s+' turns</h3><p class="sub">'+c.n+' · coax side : antenna side</p>'+
+ '<table class="xd-t"><tbody>'+
+ '<tr><td>IMPEDANCE RATIO</td><td><b>'+r.toFixed(1)+' : 1</b> ('+z+' Ω to '+zl+' Ω). Closest standard: '+near[1]+'</td></tr>'+
+ '<tr><td>TURNS RATIO</td><td><b>'+t.toFixed(2)+' : 1</b> (turns ratio = √ impedance ratio)</td></tr>'+
+ '<tr><td>WINDINGS</td><td>Two <b>separate</b> windings, not tapped. The isolation helps stop noise riding in on the coax shield.</td></tr>'+
+ '<tr><td>WIRE</td><td>26–30 AWG magnet wire. Receive only, so power isn\'t a concern.</td></tr>'+
+ '<tr><td>CORE NOTE</td><td>'+c.note+'</td></tr></tbody></table>'+
+ '<div class="xd-ok">Close is good enough. Receive antennas aren\'t fussy about a perfect match, and the impedance changes with the ground anyway.</div>';
+}
+['rxAnt','rxLine','rxCore','rxCustom'].forEach(function(i){$(i).addEventListener('input',draw);$(i).addEventListener('change',draw)});
+draw();
+window.KPCRX={draw:draw};
+})();
+</script>
+<script src="kpc-search.js?v=20261011c" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body></html>

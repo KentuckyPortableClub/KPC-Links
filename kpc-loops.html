@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Loops &amp; Delta Loops | KPC</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Loops &amp; Delta Loops | KPC">
+<meta property="og:description" content="Size, feed and tune full-wave delta loops, square loops and horizontal skywires, plus a magnetic loop calculator for capacitance, bandwidth, efficiency and voltage.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-loops.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
+<meta name="description" content="Size, feed and tune full-wave delta loops, square loops and horizontal skywires, plus a magnetic loop calculator for capacitance, bandwidth, efficiency and voltage.">
+<style>
+:root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:var(--nav-height);margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s}.nav-links a:hover,.nav-links a[aria-current=page]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:var(--black) url("parks.png") center/cover no-repeat;color:#fff;border-bottom:1px solid rgba(213,166,58,.45)}
+.hero:before{content:"";position:absolute;width:620px;height:620px;right:-170px;top:-180px;border:1px solid rgba(213,166,58,.35);border-radius:50%;box-shadow:0 0 0 55px rgba(213,166,58,.035),0 0 0 110px rgba(213,166,58,.025)}
+.hero:after{content:none}
+.hero-inner{position:relative;z-index:2;width:min(var(--max),100%);margin:auto;padding:90px 24px 84px}.hero-logo{width:min(360px,78vw);margin-bottom:24px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}.eyebrow{margin:0 0 12px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}.hero h1{max-width:800px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,6.2vw,76px);line-height:1.02;letter-spacing:-1.8px}.hero h1 span{color:var(--gold-light)}.hero-copy{max-width:720px;margin:22px 0 0;color:#eee9dd;font-size:clamp(16px,2vw,20px)}
+.section{padding:82px 24px}.section-inner{width:min(var(--max),100%);margin:auto}.section-heading{text-align:center;margin-bottom:42px}.kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:4px}.section h2{margin:7px 0 12px;color:var(--black);font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,4vw,48px);line-height:1.08}.section-heading p{max-width:760px;margin:0 auto;color:var(--muted);font-size:17px}
+.intro{background:var(--cream);border-bottom:1px solid #d9cfbd}.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}.intro-copy h2{margin:7px 0 18px}.intro-copy p{color:var(--muted);font-size:18px;margin:0}.intro-panel{padding:34px;background:var(--black);border:1px solid var(--gold);box-shadow:12px 12px 0 var(--gold);color:#fff;position:relative;overflow:hidden}.intro-panel:after{content:"";position:absolute;width:230px;height:230px;right:-90px;top:-90px;border:1px solid rgba(213,166,58,.45);border-radius:50%}.intro-panel .mark{position:relative;z-index:1;color:var(--gold-light);font-size:12px;font-weight:900;letter-spacing:3px}.intro-panel h3{position:relative;z-index:1;margin:10px 0 10px;font:700 30px/1.1 Georgia,serif}.intro-panel p{position:relative;z-index:1;margin:0;color:#c9c5bc}.intro-panel .line{position:relative;z-index:1;width:70px;height:3px;background:var(--gold);margin:20px 0}
+.features{background:#fffaf0}.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.card{min-height:285px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid #d8cfbf;background:#fff;color:var(--ink);box-shadow:0 12px 28px rgba(0,0,0,.07);transition:.2s;position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;width:6px;height:100%;background:var(--gold)}.card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.12);border-color:var(--gold)}.card-top{position:relative;z-index:1}.card-num{color:var(--green);font-size:12px;font-weight:900;letter-spacing:3px}.card h3{margin:8px 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:28px;line-height:1.1}.card p{margin:0;color:var(--muted);font-size:15px;max-width:520px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:1px;background:var(--gold);color:#0b0b0b;transition:.2s;align-self:flex-start;margin-top:24px}.btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.dark{background:var(--black);color:#fff;border-top:1px solid rgba(213,166,58,.45);border-bottom:1px solid rgba(213,166,58,.45)}.dark .section-heading p{color:#bcb8ae}.dark h2{color:#fff}.dark .card{background:#151515;border-color:#363636;color:#fff}.dark .card p{color:#bcb8ae}.dark .card h3{color:#fff}.dark .card:before{background:var(--gold)}
+.map-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.map-box{padding:30px;border:1px solid #363636;background:#151515}.map-box h3{margin:8px 0 10px;color:#fff;font:700 25px/1.1 Georgia,serif}.map-box p{margin:0;color:#bcb8ae}.map-box .btn{margin-top:22px}
+.pota-card{min-height:310px}
+.pdf-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pdf-actions .btn{margin-top:0}.pdf-actions .alt{background:#fff;border:1px solid var(--gold);color:#171717}
+.warning{background:var(--cream-2);border-top:1px solid #d1c6b3}.warning-box{border-left:6px solid var(--gold);background:#fff;padding:30px;box-shadow:0 10px 24px rgba(0,0,0,.06)}.warning-box h3{margin:0 0 10px;font:700 28px/1.1 Georgia,serif}.warning-box p{margin:0;color:var(--muted)}
+.final{padding:76px 24px;text-align:center;background:var(--cream-2)}.final h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}.final p{margin:10px 0 24px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:2px}
+footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;border-top:1px solid #292929;font-size:13px}footer strong{color:var(--gold-light)}
+@media(min-width:901px){.hero-logo{position:absolute;left:-400px;top:calc(50% - 22px);transform:translateY(-50%);justify-self:auto;margin-bottom:0}}
+@media(max-width:1000px){.nav-links a{padding-inline:7px;font-size:12px}.intro-grid{gap:38px}}
+@media(max-width:900px){.hero-logo{display:block;width:min(290px,58vw);margin-left:auto;margin-right:auto}}
+@media(max-width:760px){:root{--nav-height:70px}.nav-inner{min-height:70px;padding:8px 18px}.brand img{width:52px;height:52px}.menu-toggle{display:block}.nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45);box-shadow:0 15px 25px rgba(0,0,0,.22)}.nav-links.open{display:flex}.nav-links a{padding:13px 5px;border-bottom:1px solid #292929}.nav-links a:last-child{border-bottom:0}.hero{min-height:500px;background:url("parks-mobile.png") center/cover no-repeat}.hero-inner{padding:70px 20px 55px}.hero-logo{width:min(290px,58vw)}.section{padding:68px 20px}.intro-grid,.map-grid{grid-template-columns:1fr}.intro-panel{max-width:520px;margin:auto}.card-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-logo{width:min(250px,64vw)}}
+@media(max-width:520px){.hero h1{font-size:42px}.hero-copy{font-size:16px}.card{min-height:300px}.card h3{font-size:25px}.pdf-actions{flex-direction:column}.pdf-actions .btn{width:100%}}
+@media(max-width:380px){.brand-text small{display:none}}
+
+/* Added official trail and Wild River resource sections */
+.resource-note{background:#fff7df;border-left:5px solid var(--gold);padding:18px 22px;margin:0 0 28px;color:#332c1f}
+.resource-note p{margin:0}.resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.resource-item{padding:26px;border:1px solid #d8cfbf;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.045)}
+.resource-item h3{font:700 25px/1.18 Georgia,serif;margin:8px 0 12px}.resource-item p{color:#5f5a51;margin:0 0 12px}
+.resource-item .meta{font-size:12px;font-weight:900;letter-spacing:1.4px;color:var(--green)}
+.resource-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.resource-actions .btn{margin:0;font-size:11px;min-height:40px}
+.resource-actions .secondary{background:#f8f4eb;border:1px solid #c9ad6b}
+.river-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:25px 0}
+.river-list article{padding:18px 20px;background:#fff;border:1px solid #d8cfbf}.river-list strong{display:block;font:700 20px Georgia,serif}.river-list span{display:block;margin-top:7px;color:#5f5a51;font-size:14px}
+@media(max-width:760px){.resource-grid,.river-list{grid-template-columns:1fr}}
+/* Quick jump links, trail cards, map files */
+.jump{background:var(--black);border-bottom:1px solid rgba(213,166,58,.45);position:sticky;top:var(--nav-height);z-index:900}
+.jump-inner{width:min(var(--max),100%);margin:auto;padding:10px 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.jump-inner::-webkit-scrollbar{display:none}
+.jump a{flex:0 0 auto;padding:8px 14px;border:1px solid #3a3a3a;border-radius:999px;color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;transition:.2s}
+.jump a:hover{border-color:var(--gold);color:var(--gold-light)}
+section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn-row .btn{margin-top:0}
+.trail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.trail-grid .resource-item:last-child:nth-child(odd){grid-column:1/-1}
+.twofer{margin:14px 0 0;padding:12px 14px;background:#fff7df;border-left:4px solid var(--gold);font-size:14px;color:#332c1f}
+.twofer b{color:var(--green);letter-spacing:1px;font-size:12px}
+.files-card .pdf-actions .btn{min-width:0}
+.file-group{margin-top:16px}.file-group .card-num{margin-bottom:8px}
+.warning-box .btn-row .btn{font-size:11px;min-height:40px}
+@media(max-width:760px){.jump{top:70px}.trail-grid{grid-template-columns:1fr}.btn-row{flex-direction:column}.btn-row .btn{width:100%}}
+.dark .kicker,.dark .card-num{color:var(--gold-light)}
+/* On The Air Now bar */
+.onair{background:#0d2419;border-bottom:1px solid rgba(213,166,58,.45);color:#fff}
+.onair-inner{width:min(var(--max),100%);margin:auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.onair-title{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:3px;color:var(--gold-light);white-space:nowrap}
+.onair .dot{width:10px;height:10px;border-radius:50%;background:#3ecf6e;animation:pulse 1.8s infinite}
+.onair .dot.off{background:#8a8a8a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.6)}70%{box-shadow:0 0 0 9px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.onair-count{font-size:14px;color:#e9eee9}.onair-count b{color:#fff}
+.onair-list{display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}.onair-list::-webkit-scrollbar{display:none}
+.onair-chip{flex:0 0 auto;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;white-space:nowrap}
+.onair-chip b{color:var(--gold-light)}.onair-chip.club{border-color:var(--gold);background:rgba(213,166,58,.14)}
+.onair .btn{margin:0;min-height:38px;padding:8px 14px;font-size:11px;white-space:nowrap}
+@media(max-width:760px){.onair-inner{padding:12px 18px;gap:8px 10px}.onair-title{order:1}.onair .btn{order:2;margin-left:auto}.onair-count{order:3;flex-basis:100%}.onair-list{order:4;flex-basis:100%}}
+
+/* KPC shared About-style footer and below-hero page links */
+.page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+.page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
+.page-jump-nav a:hover,.page-jump-nav a:focus-visible{background:#3c321a;border-color:#d6b96c;color:#fff}
+section[id]{scroll-margin-top:100px}
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
+body.field .page-jump-nav{display:none!important}
+
+</style>
+<link rel="stylesheet" href="kpc-nav.css?v=20261010g">
+<style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
+<style>
+[hidden]{display:none!important}
+.hero{min-height:380px;background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.66) 45%,rgba(7,7,7,.25) 80%,rgba(7,7,7,.1) 100%),url("toolbox.jpg") center 55%/cover no-repeat #070707}
+@media(max-width:760px){.hero{min-height:340px;background:linear-gradient(180deg,rgba(7,7,7,.45) 0%,rgba(7,7,7,.8) 55%,rgba(7,7,7,.92) 100%),url("toolbox-mobile.jpg") center 60%/cover no-repeat #070707}}
+.xj{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px 16px;background:#101010;border-bottom:1px solid #2a2a2a}
+.xj a{padding:9px 13px;border:1px solid rgba(255,255,255,.28);border-radius:6px;color:#fff;font-size:11px;font-weight:900;letter-spacing:.7px}
+.xj a:hover{border-color:var(--gold);color:var(--gold-light)}
+.x2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.x3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.x4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.xc{background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);padding:20px;box-shadow:0 10px 24px rgba(0,0,0,.06);min-width:0}
+.xc .k{font-size:10px;font-weight:900;letter-spacing:1.5px;color:var(--green)}
+.xc h3{margin:6px 0 8px;font:700 22px/1.15 Georgia,serif}
+.xc p,.xc li{color:var(--muted);font-size:15px}.xc p{margin:0 0 8px}.xc ul,.xc ol{margin:0 0 8px;padding-left:18px}.xc li{margin:0 0 5px}
+.xc b{color:#171717}
+.dark .xc{background:#151515;border-color:#363636;border-top-color:var(--gold)}.dark .xc h3,.dark .xc b{color:#fff}.dark .xc p,.dark .xc li{color:#bcb8ae}.dark .xc .k{color:#7fd39a}
+.xc svg,.fig svg{display:block;width:100%;height:auto;background:#fbf8f1;border:1px solid #e1d7c3;border-radius:8px;margin:12px 0}
+.pill{display:inline-block;font-size:10px;font-weight:900;letter-spacing:1px;padding:3px 7px;border-radius:4px;background:#efe6d2;color:#5f5a51;margin-left:6px;vertical-align:2px}
+.spec{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 10px}
+.spec td{padding:7px 4px;border-bottom:1px solid #eee5d3;vertical-align:top;color:#3b372f}
+.spec td:first-child{font-size:10px;font-weight:900;letter-spacing:1px;color:#6d6658;width:40%;padding-top:9px}
+.dark .spec td{border-color:#2a2a2a;color:#ddd}
+/* calculator */
+.xd{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px;align-items:start}
+.xd-in{background:#121212;border:1px solid #2f2f2f;border-radius:10px;padding:18px}
+.xd-in label{display:block;font-size:11px;font-weight:900;letter-spacing:1.3px;color:#cfc6b2;margin:12px 0 6px}
+.xd-in label:first-child{margin-top:0}
+.xd-in select,.xd-in input{width:100%;min-height:46px;padding:9px 12px;border-radius:7px;border:1px solid #444;background:#1a1a1a;color:#fff;font:600 16px Arial,sans-serif}
+.xd-in .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.xd-in .hint{font-size:12px;color:#9c968a;margin:5px 0 0}
+.xd-out{background:#fff;border-radius:10px;padding:20px;color:var(--ink);min-width:0}
+.xd-out h3{margin:0 0 4px;font:700 24px Georgia,serif}
+.xd-out .sub{color:var(--muted);margin:0 0 14px;font-size:14px}
+.xd-t{width:100%;border-collapse:collapse;font-size:15px}
+.xd-t td{padding:8px 4px;border-bottom:1px solid #eee5d3;vertical-align:top}
+.xd-t td:first-child{font-size:11px;font-weight:900;letter-spacing:1px;color:#6d6658;width:42%;padding-top:10px}
+.xd-t b{font-size:17px}
+.big{font:700 34px/1.1 Georgia,serif;color:#171717}
+.xd-warn{margin-top:12px;padding:10px 12px;background:#fff1ec;border-left:4px solid #d2693c;color:#5a2a17;font-size:14px}
+.xd-ok{margin-top:12px;padding:10px 12px;background:#eef7ef;border-left:4px solid #2e8b3a;color:#1d3d22;font-size:14px}
+.tbl-wrap{overflow-x:auto;margin-top:12px}
+.tapt{width:100%;border-collapse:collapse;font-size:14px;min-width:340px}
+.tapt th{background:#1d1d1d;color:#cfc6b2;font-size:10px;letter-spacing:1.2px;text-align:left;padding:8px}
+.tapt td{padding:8px;border-bottom:1px solid #eee5d3}
+.tapt td:first-child{font-weight:900}
+.tips{columns:2 320px;column-gap:24px;padding-left:18px}
+.tips li{break-inside:avoid;margin:0 0 12px;color:var(--muted);font-size:15px}.tips b{color:#171717}
+.dark .tips li{color:#bcb8ae}.dark .tips b{color:#fff}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;position:relative;padding:0 0 12px 40px;color:var(--muted);font-size:15px}
+.steps li:before{content:counter(s);position:absolute;left:0;top:-2px;width:28px;height:28px;border-radius:50%;background:var(--gold);color:#111;font-weight:900;text-align:center;line-height:28px;font-size:14px}
+.steps b{color:#171717}
+.rel{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px}
+.rel a{padding:11px 15px;border:1px solid #cdbf9f;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:.7px;color:#171717;background:#fff}
+.rel a:hover{border-color:var(--gold)}
+.src{font-size:13px;color:var(--muted);text-align:center;margin-top:14px}.src a{color:var(--green);text-decoration:underline}
+@media(max-width:1000px){.x3,.x4{grid-template-columns:repeat(2,minmax(0,1fr))}.xd{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:640px){.x2,.x3,.x4{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Search &amp; Park Guides</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-band-plan.html" role="menuitem"><span class="ni">&#128225;</span>Band Plan by License</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • ANTENNA GUIDES</p><h1>LOOPS &amp; <span>DELTA LOOPS</span></h1><p class="hero-copy">Full-wave loops are quiet, simple and work great from a single fiberglass pole. Small magnetic loops fit on a picnic table. Here's how to size, feed and tune both.</p></div></section>
+<nav class="xj" aria-label="On this page"><a href="#types">LOOP TYPES</a><a href="#calc">LOOP CALCULATOR</a><a href="#delta">DELTA ON A POLE</a><a href="#feed">FEEDING IT</a><a href="#mag">MAGNETIC LOOPS</a><a href="#magcalc">MAG LOOP CALCULATOR</a><a href="#tips">TIPS</a></nav>
+
+<section class="section features" id="types"><div class="section-inner">
+<div class="section-heading"><div class="kicker">TWO FAMILIES</div><h2>Big Loops and Small Loops</h2><p>"Loop" means two very different antennas. Big loops are about one wavelength of wire. Small "magnetic" loops are a tiny fraction of a wavelength and need a tuning capacitor.</p></div>
+<div class="x4">
+ <article class="xc"><span class="k">FULL-WAVE</span><h3>Delta Loop</h3><p>A triangle of wire, one wavelength around. Hang it from one tall pole, point up. Fed near a bottom corner, it's vertically polarized: low-angle signals for DX from one pole, with no radials.</p></article>
+ <article class="xc"><span class="k">FULL-WAVE</span><h3>Quad / Square Loop</h3><p>Same idea, four sides. A little more gain than a delta, but it needs two supports or spreaders. It's the building block of the cubical quad beam.</p></article>
+ <article class="xc"><span class="k">FULL-WAVE OR BIGGER</span><h3>Horizontal Loop ("Skywire")</h3><p>A big loop strung flat through trees, a wavelength or more around on your lowest band. Fed with ladder line and a tuner, it works on almost every band and is quiet on receive. Home-station favorite.</p></article>
+ <article class="xc"><span class="k">SMALL</span><h3>Magnetic Loop</h3><p>A 3–4 ft hoop of copper or coax with a tuning capacitor. Tiny, quiet, and great for balconies and picnic tables. Very narrow bandwidth: you retune every few kHz. Watch the <a href="#mag">high voltage</a>.</p></article>
+</div>
+</div></section>
+
+<section class="section dark" id="calc"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">CALCULATOR</div><h2>Full-Wave Loop Calculator</h2><p>Wire lengths, side lengths, height and the matching section, for any band.</p></div>
+<div class="xd">
+ <div class="xd-in" style="color:#fff">
+  <label for="lpBand">BAND</label>
+  <select id="lpBand"><option value="3.55">80 m (3.55 CW)</option><option value="3.85">80 m (3.85 SSB)</option><option value="5.36">60 m</option><option value="7.1">40 m (7.10)</option><option value="7.2">40 m (7.20 SSB)</option><option value="10.12">30 m</option><option value="14.2" selected>20 m</option><option value="18.1">17 m</option><option value="21.2">15 m</option><option value="24.94">12 m</option><option value="28.4">10 m</option><option value="50.2">6 m</option><option value="c">Other frequency…</option></select>
+  <div id="lpCustomW" hidden><label for="lpMHz">FREQUENCY (MHz)</label><input id="lpMHz" type="number" step="0.001" min="1.8" max="60" value="14.2" inputmode="decimal"></div>
+  <label for="lpShape">SHAPE</label>
+  <select id="lpShape"><option value="delta">Delta (triangle, point up)</option><option value="quad">Square (diamond or box)</option><option value="horiz">Horizontal loop (flat)</option></select>
+  <div class="row"><div><label for="lpPole">POLE HEIGHT (ft)</label><input id="lpPole" type="number" min="10" max="120" value="31" inputmode="numeric"></div>
+  <div><label for="lpVF">MATCH COAX VF</label><select id="lpVF"><option value="0.66">0.66 (RG-59, RG-11 solid)</option><option value="0.78">0.78 (foam)</option><option value="0.82" selected>0.82 (RG-6 foam)</option><option value="0.85">0.85 (foam)</option></select></div></div>
+  <p class="hint">Fiberglass poles: 20, 26, 31 and 40 ft are common. Check your coax's spec sheet for the velocity factor (VF).</p>
+ </div>
+ <div class="xd-out" id="lpOut" aria-live="polite"></div>
+</div>
+</div></section>
+
+<section class="section features" id="delta"><div class="section-inner">
+<div class="section-heading"><div class="kicker">PORTABLE FAVORITE</div><h2>A Delta Loop on One Pole</h2><p>A 20 m delta is about 71 ft of wire, so it fits on a 31 ft fiberglass pole with room to spare. Where you feed it decides the polarization.</p></div>
+<div class="x2">
+ <article class="xc"><span class="k">WHERE TO FEED IT</span><h3>Three Feedpoints</h3>
+  <svg viewBox="0 0 420 330" role="img" aria-label="Delta loop on a pole with three feed point options">
+   <rect x="0" y="292" width="420" height="38" fill="#d9e6c8"/>
+   <path d="M210 20 V300" stroke="#9a8f7a" stroke-width="6"/>
+   <path d="M210 30 L80 255 H340 Z" fill="none" stroke="#b5651d" stroke-width="4" stroke-linejoin="round"/>
+   <path d="M80 255 L48 296 M340 255 L372 296" stroke="#777" stroke-width="1.5" stroke-dasharray="4 3"/>
+   <text x="44" y="290" text-anchor="end" font-family="Arial" font-size="10" fill="#555">guy</text>
+   <circle cx="210" cy="255" r="8" fill="#5b6ee6"/><text x="222" y="280" font-family="Arial" font-size="12" font-weight="bold" fill="#3a49b0">A · bottom middle</text>
+   <circle cx="80" cy="255" r="8" fill="#d4800f"/><text x="70" y="240" text-anchor="end" font-family="Arial" font-size="12" font-weight="bold" fill="#a35f06">B · corner</text>
+   <circle cx="305" cy="194" r="8" fill="#2e8b3a"/><text x="318" y="190" font-family="Arial" font-size="12" font-weight="bold" fill="#1f6b2a">C · on a side,</text><text x="318" y="205" font-family="Arial" font-size="12" font-weight="bold" fill="#1f6b2a">¼ λ from top</text>
+   <text x="222" y="22" font-family="Arial" font-size="11" fill="#555">top of pole</text>
+  </svg>
+  <table class="spec"><tr><td style="color:#3a49b0">A · BOTTOM MIDDLE</td><td>Horizontal polarization. Higher-angle signals. Good for regional contacts (in-state hunters).</td></tr><tr><td style="color:#a35f06">B · LOWER CORNER</td><td>A mix of both. Easy to reach. A good all-round choice.</td></tr><tr><td style="color:#1f6b2a">C · SIDE, ¼ λ FROM TOP</td><td>Vertical polarization, low angle. Best for DX from a low loop. That's a short way up from the lower corner.</td></tr></table></article>
+ <article class="xc"><span class="k">BUILD IT</span><h3>Steps</h3>
+  <ol class="steps">
+   <li><b>Cut the wire</b> to the length from the calculator, plus a foot for connections and trimming.</li>
+   <li><b>Put a small ring or insulator</b> at the top. It slides over the pole tip or ties to the top section.</li>
+   <li><b>Pick your feedpoint</b> (A, B or C) and break the wire there with a small feedpoint box or insulator.</li>
+   <li><b>Tie off the two bottom corners</b> with cord to stakes, 3–7 ft off the ground. Keep the bottom wire out of reach of people.</li>
+   <li><b>Feed it</b> with a quarter-wave 75 Ω matching section, or a 2:1 unun, then a choke. <a href="#feed">See feeding ↓</a></li>
+   <li><b>Tune</b> by trimming or adding wire at the corners. Longer wire moves the resonance lower in frequency.</li>
+  </ol></article>
+</div>
+</div></section>
+
+<section class="section dark" id="feed"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">MATCHING</div><h2>Feeding a Full-Wave Loop</h2><p>A full-wave loop is usually about <b>100–130 Ω</b> at a good height. Mounted low, it can drop toward 70 Ω. That's too high for 50 Ω coax straight in, so match it one of these ways.</p></div>
+<div class="x3">
+ <article class="xc"><span class="k">CLASSIC <span class="pill">NO PARTS</span></span><h3>Quarter-Wave 75 Ω Section</h3><p>A ¼-wavelength piece of 75 Ω coax (RG-6, RG-59, RG-11) between the loop and your 50 Ω coax turns ~110 Ω into ~50 Ω. The calculator gives the length, including the velocity factor. It's single-band, plus odd harmonics (a 40 m section also works on 15 m).</p></article>
+ <article class="xc"><span class="k">MULTIBAND-ISH</span><h3>2:1 Unun</h3><p>A 2:1 transformer takes 100 Ω down to 50 Ω on any band. Build it like a tapped autotransformer on a mix 43 or 61 core, or buy one. Add a <a href="kpc-transformers.html#chokes">1:1 choke</a> after it, because the loop is balanced.</p></article>
+ <article class="xc"><span class="k">ALL BANDS</span><h3>Ladder Line + Tuner</h3><p>Run 300 or 450 Ω ladder line to a <a href="kpc-transformers.html#4to1">4:1 balun</a> and tuner. Now a 40 m loop also works on 30, 20, 17, 15 and 10 m. This is how most horizontal "skywire" loops are fed.</p></article>
+</div>
+</div></section>
+
+<section class="section features" id="mag"><div class="section-inner">
+<div class="section-heading"><div class="kicker">SMALL LOOPS</div><h2>Magnetic Loops</h2><p>A small hoop (usually 3–4 ft across) tuned with a capacitor. It works because the loop and capacitor resonate together. That makes it efficient for its size, but very sharply tuned.</p></div>
+<div class="x2">
+ <article class="xc"><span class="k">HOW IT GOES TOGETHER</span><h3>The Parts</h3>
+  <svg viewBox="0 0 420 330" role="img" aria-label="Magnetic loop: large main loop with tuning capacitor at the top and small coupling loop at the bottom fed by coax">
+   <circle cx="210" cy="150" r="118" fill="none" stroke="#b5651d" stroke-width="10"/>
+   <rect x="186" y="14" width="48" height="36" rx="5" fill="#fff" stroke="#171717" stroke-width="2.5"/>
+   <path d="M204 22 V42 M216 22 V42" stroke="#171717" stroke-width="3"/><path d="M196 46 L224 18" stroke="#171717" stroke-width="2"/><path d="M220 18 h6 v6" fill="none" stroke="#171717" stroke-width="2"/>
+   <text x="296" y="30" font-family="Arial" font-size="12" font-weight="bold">tuning capacitor</text><text x="296" y="45" font-family="Arial" font-size="11" fill="#c0392b" font-weight="bold">⚠ thousands of volts</text>
+   <circle cx="210" cy="244" r="24" fill="none" stroke="#2e8b3a" stroke-width="5"/>
+   <text x="300" y="250" font-family="Arial" font-size="12" font-weight="bold" fill="#1f6b2a">coupling loop</text><text x="300" y="265" font-family="Arial" font-size="11" fill="#1f6b2a">⅕ of the main loop</text>
+   <path d="M210 268 V318" stroke="#262626" stroke-width="7"/><text x="222" y="314" font-family="Arial" font-size="12" font-weight="bold">coax to radio</text>
+   <text x="210" y="150" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#5f5a51">main loop</text><text x="210" y="168" text-anchor="middle" font-family="Arial" font-size="12" fill="#6d6658">copper tube or thick coax</text>
+  </svg>
+  <p>The main loop and capacitor make a tuned circuit. The little coupling loop at the bottom matches it to 50 Ω. Make the coupling loop about ⅕ the diameter of the main loop, from coax or stiff wire.</p></article>
+ <article class="xc"><span class="k">KNOW BEFORE YOU BUILD</span><h3>Mag Loop Facts</h3>
+  <ul>
+   <li><b>Fatter is better.</b> Loss is all about conductor resistance. ½–1" copper tubing beats wire, and LMR-400 shield beats RG-58.</li>
+   <li><b>Bigger is better</b> on the lower bands. A 3 ft loop on 40 m is only a few percent efficient. On 20 m it can be over half.</li>
+   <li><b>Narrow bandwidth.</b> Often 10–30 kHz on 20 m. Retune when you move. A motor or long tuning shaft helps keep your hand out of the field.</li>
+   <li><b>The capacitor sees thousands of volts</b> at 100 W, and still hundreds at QRP. Use a wide-spaced air variable, a butterfly cap or a vacuum variable rated for it. Never touch the loop or capacitor while transmitting.</li>
+   <li><b>Stay back.</b> The field close to a mag loop is intense. Check your distance with the <a href="kpc-rf-exposure.html">RF exposure tool</a>, and keep people away while you transmit.</li>
+   <li><b>No radials, no ground.</b> That's why they're popular for balconies, HOAs and picnic tables.</li>
+  </ul></article>
+</div>
+</div></section>
+
+<section class="section dark" id="magcalc"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">CALCULATOR</div><h2>Magnetic Loop Calculator</h2><p>Inductance, tuning capacitance, efficiency, bandwidth and capacitor voltage for a round loop.</p></div>
+<div class="xd">
+ <div class="xd-in" style="color:#fff">
+  <div class="row"><div><label for="mlD">LOOP DIAMETER</label><input id="mlD" type="number" step="0.1" min="0.5" max="20" value="3.3" inputmode="decimal"></div><div><label for="mlDu">UNITS</label><select id="mlDu"><option value="ft">feet</option><option value="m">meters</option></select></div></div>
+  <label for="mlC">CONDUCTOR</label>
+  <select id="mlC"><option value="0.875">7/8" copper tube (¾" pipe)</option><option value="0.625" selected>5/8" copper tube (½" pipe)</option><option value="0.5">½" copper tube</option><option value="0.375">⅜" copper tube</option><option value="0.405">LMR-400 shield</option><option value="0.242">RG-8X shield</option><option value="0.195">RG-58 shield</option></select>
+  <div class="row"><div><label for="mlF">FREQUENCY (MHz)</label><input id="mlF" type="number" step="0.01" min="1.8" max="30" value="14.2" inputmode="decimal"></div><div><label for="mlP">POWER (W)</label><input id="mlP" type="number" min="1" max="1500" value="10" inputmode="numeric"></div></div>
+  <p class="hint">Estimates for a single-turn round loop with good joints and a low-loss capacitor. Real loops usually do a little worse.</p>
+ </div>
+ <div class="xd-out" id="mlOut" aria-live="polite"></div>
+</div>
+</div></section>
+
+<section class="section features" id="tips"><div class="section-inner">
+<div class="section-heading"><div class="kicker">FIELD NOTES</div><h2>Loop Tips</h2></div>
+<ul class="tips">
+ <li><b>Loops are quiet.</b> A closed loop hears less local noise than a dipole or vertical. Many hams keep a loop just for receive.</li>
+ <li><b>Higher is better for horizontal loops,</b> but a vertically polarized delta works well with its bottom only a few feet up.</li>
+ <li><b>Keep the bottom wire safe.</b> Run it above head height, or flag it and keep people out of the triangle. At 100 W the wire carries a real voltage.</li>
+ <li><b>Insulated wire runs a bit slow.</b> Plan on cutting 2–4% shorter than the formula, or just cut long and trim.</li>
+ <li><b>Choke the feedline</b> right at the feedpoint. A loop is balanced and coax isn't. <a href="kpc-transformers.html#chokes">Choke recipes</a></li>
+ <li><b>Second harmonic is a mismatch.</b> A 40 m loop on 20 m is high impedance (~200 Ω+). Use ladder line and a tuner if you want more than one band.</li>
+ <li><b>Mag loop tuning:</b> listen for the noise to peak sharply while you turn the capacitor. That's resonance. Then fine-tune for lowest SWR at low power.</li>
+ <li><b>Mag loops on the ground</b> lose efficiency. Get the bottom at least one loop diameter up if you can.</li>
+</ul>
+<div class="rel"><a href="kpc-receive-antennas.html">RECEIVE-ONLY ANTENNAS</a><a href="kpc-loaded-verticals.html">LOADED VERTICALS &amp; COILS</a><a href="kpc-transformers.html">UNUNS, BALUNS &amp; CHOKES</a><a href="kpc-antenna.html">ANTENNA CALCULATOR</a><a href="antennas.html">ALL ANTENNA GUIDES</a></div>
+</div></section>
+
+<section class="final"><h2>Get Outside. Get On The Air.</h2><p>CLOSE THE LOOP</p><a class="btn" href="antennas.html">MORE ANTENNA GUIDES →</a></section>
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+function ft(x){var f=Math.floor(x),i=Math.round((x-f)*12);if(i===12){f++;i=0}return f?f+' ft '+i+' in':i+' in'}
+function mhz(){var b=$('lpBand').value;$('lpCustomW').hidden=b!=='c';return b==='c'?(+$('lpMHz').value||14.2):+b}
+function loop(){
+ var f=mhz(),sh=$('lpShape').value,pole=+$('lpPole').value||31,vf=+$('lpVF').value;
+ var L=1005/f,q=246*vf/f,rows=[],warn='',ok='',title;
+ rows.push(['TOTAL WIRE','<b>'+ft(L)+'</b> ('+(L*0.3048).toFixed(2)+' m)']);
+ if(sh==='delta'){
+  var s=L/3,h=s*Math.sqrt(3)/2,cfeed=L/4;
+  title='Delta loop · '+f+' MHz';
+  rows.push(['EACH SIDE','<b>'+ft(s)+'</b> (equilateral)']);
+  rows.push(['HEIGHT, POINT TO BASE','<b>'+ft(h)+'</b>']);
+  rows.push(['FEED C (VERTICAL)','<b>'+ft(cfeed)+'</b> down the wire from the top, which is <b>'+ft(s-cfeed)+'</b> above a bottom corner']);
+  var need=h+4;
+  if(need<=pole) ok='Fits your '+pole+' ft pole with the bottom wire about '+ft(pole-h-0.5)+' off the ground (allowing ~6 in at the top).';
+  else { warn='Too tall for a '+pole+' ft pole as an equilateral. Flatten it: keep the top at '+(pole-1)+' ft, bottom wire ~4 ft up, and spread the bottom corners wider. Side legs then become '+ft(Math.sqrt(Math.pow(L/2-sideB(L,pole-5)/2,2)))+' each, base '+ft(sideB(L,pole-5))+'. Feed impedance drops a little.'; }
+ } else if(sh==='quad'){
+  var s4=L/4;title='Square loop · '+f+' MHz';
+  rows.push(['EACH SIDE','<b>'+ft(s4)+'</b>']);
+  rows.push(['AS A DIAMOND','Top to bottom: <b>'+ft(s4*Math.SQRT2)+'</b>. Feed at the bottom point (horizontal) or a side point (vertical).']);
+  if(s4*Math.SQRT2+4>pole) warn='As a diamond it is taller than your '+pole+' ft pole. Hang it as a box between two supports instead.';
+  else ok='As a diamond it fits your '+pole+' ft pole.';
+ } else {
+  title='Horizontal loop · '+f+' MHz';
+  rows.push(['AS A SQUARE','<b>'+ft(L/4)+'</b> per side']);
+  rows.push(['AS A TRIANGLE','<b>'+ft(L/3)+'</b> per side (3 trees)']);
+  rows.push(['BANDS','On '+f+' MHz and its harmonics with a tuner. Use the lowest band you want as the design band.']);
+  ok='Any shape works. Keep the area as large as you can: closer to round or square is better than long and skinny.';
+ }
+ rows.push(['FEED IMPEDANCE','About <b>100–130 Ω</b> (lower when low to the ground)']);
+ rows.push(['75 Ω MATCH SECTION','<b>'+ft(q)+'</b> of 75 Ω coax (¼ λ × '+vf+' VF), then 50 Ω coax to the radio']);
+ rows.push(['OR','A <b>2:1 unun</b> + choke, or ladder line + tuner']);
+ $('lpOut').innerHTML='<h3>'+title+'</h3><p class="sub">Formula: 1005 ÷ MHz = feet of wire. Cut a little long and trim.</p><table class="xd-t"><tbody>'+rows.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'}).join('')+'</tbody></table>'+(warn?'<div class="xd-warn">'+warn+'</div>':'')+(ok?'<div class="xd-ok">'+ok+'</div>':'');
+}
+// isosceles triangle with perimeter L and height H: base b solves b + 2*sqrt(H^2+(b/2)^2) = L
+function sideB(L,H){return (L*L-4*H*H)/(2*L)}
+['lpBand','lpMHz','lpShape','lpPole','lpVF'].forEach(function(i){$(i).addEventListener('input',loop);$(i).addEventListener('change',loop)});
+
+function mag(){
+ var D=+$('mlD').value||1;if($('mlDu').value==='ft')D*=0.3048;
+ var dc=(+$('mlC').value)*0.0254,f=(+$('mlF').value||14.2)*1e6,P=+$('mlP').value||10;
+ var R=D/2,a=dc/2,mu=4e-7*Math.PI,lam=299792458/f,w=2*Math.PI*f;
+ var Lh=mu*R*(Math.log(8*R/a)-2),XL=w*Lh,C=1/(w*XL);
+ var A=Math.PI*R*R,Rr=31171*A*A/Math.pow(lam,4);
+ var Rs=Math.sqrt(Math.PI*f*mu/5.8e7),Rl=(2*Math.PI*R)/(2*Math.PI*a)*Rs+0.01;
+ var eff=Rr/(Rr+Rl),Q=XL/(2*(Rr+Rl)),bw=f/Q,V=Math.sqrt(P*XL*Q),circ=2*Math.PI*R/lam;
+ var db=10*Math.log10(eff),rows=[
+  ['TUNING CAPACITOR','<b>'+(C*1e12).toFixed(0)+' pF</b> at '+(f/1e6)+' MHz'],
+  ['EFFICIENCY','<b>'+(eff*100).toFixed(eff<0.1?1:0)+'%</b> ('+db.toFixed(1)+' dB compared with a perfect antenna)'],
+  ['BANDWIDTH (2:1 SWR)','about <b>'+(bw/1e3).toFixed(bw<10000?1:0)+' kHz</b>'],
+  ['CAPACITOR VOLTAGE','about <b>'+Math.round(V).toLocaleString()+' V</b> at '+P+' W'],
+  ['INDUCTANCE','<b>'+(Lh*1e6).toFixed(2)+' µH</b> (X<sub>L</sub> = '+XL.toFixed(0)+' Ω)'],
+  ['RADIATION / LOSS','R<sub>rad</sub> '+(Rr*1000).toFixed(Rr<0.01?2:1)+' mΩ · R<sub>loss</sub> '+(Rl*1000).toFixed(0)+' mΩ'],
+  ['COUPLING LOOP','<b>'+ft(D/5/0.3048)+'</b> diameter (⅕ of main loop)']];
+ var warn='';
+ if(circ>0.3)warn='This loop is over 0.3 λ around at this frequency. It\'s no longer a "small" loop and these numbers get less accurate. Self-resonance may be close; pick a smaller loop or a lower band.';
+ else if(eff<0.1)warn='Under 10% efficient here. It will still make contacts, especially on CW and FT8, but a bigger loop or fatter conductor helps a lot on this band.';
+ $('mlOut').innerHTML='<h3>'+(D/0.3048).toFixed(1)+' ft loop · '+(f/1e6)+' MHz</h3><p class="sub">Single turn, '+$('mlC').selectedOptions[0].text+'</p><table class="xd-t"><tbody>'+rows.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'}).join('')+'</tbody></table>'+
+ (V>1000?'<div class="xd-warn">⚠ '+Math.round(V).toLocaleString()+' V across the capacitor. Use a capacitor rated well above that, and never touch the loop while transmitting.</div>':'')+(warn?'<div class="xd-warn">'+warn+'</div>':'');
+}
+['mlD','mlDu','mlC','mlF','mlP'].forEach(function(i){$(i).addEventListener('input',mag);$(i).addEventListener('change',mag)});
+loop();mag();
+window.KPCLOOP={loop:loop,mag:mag};
+})();
+</script>
+<script src="kpc-search.js?v=20261011c" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body></html>
