@@ -1,0 +1,22 @@
+name: KPC Link Check
+# Every Sunday: checks every link and image on every page (our own pages and outside websites).
+# Problems are listed in one GitHub issue labelled "link-check" that closes itself when everything is fine.
+on:
+  schedule:
+    - cron: '41 10 * * 0'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: kpc-link-check
+  cancel-in-progress: true
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check links
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/kpc_linkcheck.py

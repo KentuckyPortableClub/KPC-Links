@@ -661,9 +661,31 @@ body.field .page-jump-nav{display:none!important}
     <div class="section-heading">
       <div class="kicker">WHAT'S HAPPENING</div>
       <h2>Stay In The Loop</h2>
-      <p>See upcoming KPC campouts, outings, activations, Support Your Parks weekends, and other club activities.</p>
+      <p>KPC campouts and outings, Support Your Parks weekends, hamfests, contests and other Kentucky radio happenings.</p>
       <a class="btn btn-primary" href="events.html">VIEW KPC EVENTS →</a>
     </div>
+<div class="nx" id="kpcNext" aria-live="polite"></div>
+<style>
+.nx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}
+.nx a{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid #d8cfbf;border-left:4px solid var(--gold);border-radius:8px;padding:14px 16px;color:#171717;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.05)}
+.nx a:hover{border-color:var(--gold)}
+.nx .d{text-align:center;min-width:52px}.nx .d span{display:block;font:900 11px Arial,sans-serif;letter-spacing:1.5px;color:var(--green)}.nx .d b{display:block;font:700 26px/1 Georgia,serif}
+.nx h3{margin:0 0 3px;font:700 17px/1.2 Georgia,serif}.nx p{margin:0;color:#6d6658;font-size:13px}
+.nx .t{font:900 9px Arial,sans-serif;letter-spacing:1.3px;color:#8a6d1c}
+@media(max-width:900px){.nx{grid-template-columns:minmax(0,1fr)}}
+</style>
+<script src="kpc-events.js?v=20261013"></script>
+<script>
+(function(){var el=document.getElementById('kpcNext');if(!el||!window.KPCEvents)return;
+var M=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function show(auto){var all=KPCEvents.upcoming(KPCEvents.merge(KPCEvents.EVENTS,auto)).filter(function(e){return !e.tba}).slice(0,3);
+ el.innerHTML=all.map(function(e){var s=KPCEvents.pd(e.start),en=e.end?KPCEvents.pd(e.end):null;
+  return '<a href="events.html#ky-radio-calendar"><div class="d"><span>'+M[s.getMonth()]+'</span><b>'+s.getDate()+(en&&en.getMonth()===s.getMonth()&&en.getDate()!==s.getDate()?'–'+en.getDate():'')+'</b></div><div><div class="t">'+(e.tags.indexOf('KPC')>=0?'KPC EVENT':'NEXT UP')+'</div><h3>'+esc(e.name)+'</h3><p>'+esc((function(w){w=String(w||'').split(' — ')[0];return w.length>62?w.slice(0,60).replace(/[ ,]+\S*$/,'')+'…':w})(e.where))+'</p></div></a>'}).join('')}
+show(null);
+fetch('kpc-events-auto.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).then(function(d){if(d)show(d)}).catch(function(){});
+})();
+</script>
   </div>
 </section>
 
