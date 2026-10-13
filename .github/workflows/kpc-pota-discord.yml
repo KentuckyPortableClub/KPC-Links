@@ -95,6 +95,7 @@ jobs:
                   raise SystemExit(f'Discord returned HTTP {error.code}; spot state not saved for failed post.')
 
           fb_id, fb_token = os.getenv('FB_PAGE_ID', '').strip(), os.getenv('FB_PAGE_TOKEN', '').strip()
+          SPOTTER = 'https://kentuckyportableclub.github.io/KPC-Links/kpc-spots.html'
           FB_GAP_MIN = 30   # Facebook: at most one post per operator every 30 minutes (Discord still gets every change)
           def fb_post(message, link):
               # One Facebook Page post per activation (band/mode changes stay Discord-only). Never blocks Discord.
@@ -147,16 +148,17 @@ jobs:
                   post('📻 KPC Operator On the Air', f'**{call_raw}** is activating!\n{details}', 13936186)
                   ref = park.split(',')[0]
                   fb_post(f'📻 {call_raw} is on the air now from {ref}' + (f' {name}' if name else '') + (f' ({loc})' if loc else '') + '!\n'
-                          f'{mhz} ({b}) {mode}. Give them a call and help them get their 10!\n\nLive spots: https://pota.app/#/spots',
-                          f'https://pota.app/#/park/{ref}')
+                          f'{mhz} ({b}) {mode}. Give them a call and help them get their 10!\n\n'
+                          f'They may change bands. Follow along live on the KPC spotter: {SPOTTER}\nPark info: https://pota.app/#/park/{ref}',
+                          SPOTTER)
                   state[f'fb|{call}'] = now.isoformat()
               else:
                   post('🔁 Band / Mode Change', f'**{call_raw}** moved to **{b} {mode}**\n{details}', 4565071)
                   last_fb = state.get(f'fb|{call}')
                   if not last_fb or now - dt.datetime.fromisoformat(last_fb) >= dt.timedelta(minutes=FB_GAP_MIN):
                       ref = park.split(',')[0]
-                      fb_post(f'🔁 {call_raw} at {ref}' + (f' {name}' if name else '') + f' is now on {mhz} ({b}) {mode}. Come find them!\n\nLive spots: https://pota.app/#/spots',
-                              f'https://pota.app/#/park/{ref}')
+                      fb_post(f'🔁 {call_raw} at {ref}' + (f' {name}' if name else '') + f' is now on {mhz} ({b}) {mode}. Come find them!\n\nEvery band change, live: {SPOTTER}',
+                              SPOTTER)
                       state[f'fb|{call}'] = now.isoformat()
               state[act_key] = state.get(act_key) or now.isoformat()
               state[bm_key] = now.isoformat()
