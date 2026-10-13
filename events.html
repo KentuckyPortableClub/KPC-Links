@@ -139,9 +139,9 @@ body.field .page-jump-nav{display:none!important}
 </div></section>
 
 <section class="section dark" id="ky-radio-calendar"><div class="section-inner"><p class="eyebrow">KENTUCKY RADIO CALENDAR</p><h2>Contests, Hamfests &amp; On-The-Air Events</h2><p class="lead">Kentucky ham radio happenings worth knowing about — KPC events plus contests and hamfests run by other clubs. Past events drop off on their own. Dates come from each organizer; always confirm on their site before you go.</p>
-<div class="krc-filters" role="group" aria-label="Filter events"><button type="button" class="krc-f" data-f="all" aria-pressed="true">ALL</button><button type="button" class="krc-f" data-f="KPC" aria-pressed="false">KPC</button><button type="button" class="krc-f" data-f="POTA" aria-pressed="false">POTA</button><button type="button" class="krc-f" data-f="CONTEST" aria-pressed="false">CONTESTS</button><button type="button" class="krc-f" data-f="HAMFEST" aria-pressed="false">HAMFESTS</button></div>
+<div class="krc-filters" role="group" aria-label="Filter events"><button type="button" class="krc-f" data-f="all" aria-pressed="true">ALL</button><button type="button" class="krc-f" data-f="KPC" aria-pressed="false">KPC</button><button type="button" class="krc-f" data-f="POTA" aria-pressed="false">POTA</button><button type="button" class="krc-f" data-f="CONTEST" aria-pressed="false">CONTESTS</button><button type="button" class="krc-f" data-f="HAMFEST" aria-pressed="false">HAMFESTS</button><button type="button" class="krc-f" data-f="SOTA" aria-pressed="false">SOTA</button><button type="button" class="krc-f" data-f="ONAIR" aria-pressed="false">ON THE AIR</button></div>
 <div class="krc-list" id="krcList"></div>
-<p class="krc-note">Not a KPC event? It’s listed here as a service to Kentucky hams — KPC isn’t the organizer. Know of a Kentucky hamfest, net or on-air event we missed? <a href="contact.html">Tell us →</a></p>
+<p class="krc-note">Not a KPC event? It’s listed here as a service to Kentucky hams — KPC isn’t the organizer. Know of a Kentucky hamfest, net or on-air event we missed? <a href="contact.html">Tell us →</a> <span id="krcAuto"></span></p>
 </div></section>
 <style>
 .krc-filters{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 18px}
@@ -154,7 +154,7 @@ body.field .page-jump-nav{display:none!important}
 .krc-date b{display:block;font:700 30px Georgia,serif;color:var(--gold-light)}.krc-date span{display:block;font:900 11px Arial,sans-serif;letter-spacing:2px;color:#cfcabf}
 .krc-date small{display:block;font:700 10px Arial,sans-serif;color:#9b978e;margin-top:3px;letter-spacing:1px}
 .krc-ev h3{margin:0 0 4px;font:700 21px/1.2 Georgia,serif;color:#fff}
-.krc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}.krc-tag{font:900 10px Arial,sans-serif;letter-spacing:1.5px;padding:3px 8px;border-radius:999px;background:#2a2a2a;color:#e5c87b}.krc-tag.KPC{background:#1d5a3a;color:#fff}
+.krc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}.krc-tag{font:900 10px Arial,sans-serif;letter-spacing:1.5px;padding:3px 8px;border-radius:999px;background:#2a2a2a;color:#e5c87b}.krc-tag.KPC{background:#1d5a3a;color:#fff}.krc-tag.AUTO{background:#3a2f12;color:#f0c96b;border:1px dashed #a88a3a}.krc-tag.SOTA{background:#24354a;color:#cfe0ff}
 .krc-ev p{margin:0;color:#cfcabf;font-size:14px;line-height:1.45}
 .krc-acts{display:flex;flex-direction:column;gap:6px;min-width:150px}
 .krc-acts a,.krc-acts button{display:block;text-align:center;padding:8px 12px;border-radius:7px;font:900 11px Arial,sans-serif;letter-spacing:1px;text-decoration:none;cursor:pointer;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;min-height:32px}
@@ -172,6 +172,7 @@ const EVENTS=[
  {name:'POTA Support Your Parks Weekend',tags:['POTA'],start:'2027-01-16',end:'2027-01-17',where:'Any Kentucky park — get out and activate!',by:'Parks on the Air',url:'https://pota.app/'},
  {name:'Orlando HamCation',tags:['HAMFEST'],start:'2027-02-12',end:'2027-02-14',time:'Fri.–Sat. 9 AM–5 PM, Sun. 9 AM–1 PM (Eastern)',where:'Central Florida Fairgrounds & Expo Park, 4603 W. Colonial Dr., Orlando, FL — one of the biggest hamfests in the Southeast',by:'Orlando Amateur Radio Club',url:'https://www.hamcation.com/'},
  {name:'Cave City Hamfest',tags:['HAMFEST'],start:'2027-03-06',where:'Cave City Convention Center, Cave City, KY',by:'Mammoth Cave Amateur Radio Club',url:'https://www.ky4x.org/hamfest',url2:'https://www.arrl.org/hamfests/cave-city-hamfest-17'},
+ {name:'SOTA Kentucky Campout',tags:['SOTA'],tba:true,when:'Usually a weekend in April (2025: weekend of April 12, the 3rd annual)',where:'Kingdom Come State Park, Cumberland, KY. Primitive camping; activate Eastern Kentucky summits all weekend',by:'Kentucky SOTA activators (announced on the SOTA Reflector)',url:'https://reflector.sota.org.uk/t/2025-sota-kentucky-campout/36069'},
  {name:'Elizabethtown Hamfest',tags:['HAMFEST'],tba:true,when:'Usually early April (2026: Sat., April 4)',where:'Elizabethtown, KY',by:'Stubblefield Repeater Club',url:'https://stubblefieldrepeaterclub.org/'},
  {name:'POTA Support Your Parks Weekend',tags:['POTA'],start:'2027-04-17',end:'2027-04-18',where:'Any Kentucky park',by:'Parks on the Air',url:'https://pota.app/'},
  {name:'Dayton Hamvention',tags:['HAMFEST'],start:'2027-05-21',end:'2027-05-23',where:'Greene County Fairgrounds & Expo Center, Xenia, OH — the biggest hamfest in the country',by:'Dayton Amateur Radio Association',url:'https://hamvention.org/'},
@@ -193,7 +194,30 @@ const nextDay=s=>{const d=pd(s);d.setDate(d.getDate()+1);return ymd(d)};
 const today=new Date();today.setHours(0,0,0,0);
 // TBA events sort by their usual month
 const sortKey=e=>e.tba?(()=>{const mm=M.findIndex(m=>e.when.toUpperCase().includes(m.slice(0,3)));const y=today.getFullYear()+(mm>=0&&mm<today.getMonth()?1:0);return new Date(y,Math.max(0,mm),15)})():pd(e.start);
-const list=EVENTS.filter(e=>e.tba||pd(e.end||e.start)>=today).sort((a,b)=>sortKey(a)-sortKey(b));
+let ALL=EVENTS.slice();
+let list=[];
+function rebuild(){list=ALL.filter(e=>e.tba||pd(e.end||e.start)>=today).sort((a,b)=>sortKey(a)-sortKey(b))}
+rebuild();
+const TAGNAME={ONAIR:'ON THE AIR',AUTO:'FOUND AUTOMATICALLY'};
+const norm=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+const words=s=>norm(s).split(' ').filter(w=>w.length>=5&&!/hamfest|kentucky|amateur|radio|annual|weekend|club|association/.test(w));
+const days=(x,y)=>Math.abs(pd(x)-pd(y))/864e5;
+function twinOf(e){if(!e.tags.includes('AUTO'))return ALL.find(b=>norm(b.name)===norm(e.name)&&!b.tba&&b.start===e.start);
+ return ALL.find(b=>!b.auto&&b.tags.some(t=>e.tags.includes(t))&&(
+  (e.url&&/\/\/[^/]+\/./.test(e.url)&&(b.url===e.url||b.url2===e.url))||
+  (norm(b.name)===norm(e.name)&&(b.tba||e.tba||b.start===e.start))||
+  (words(e.name).some(w=>words(b.name).includes(w))&&(b.tba||e.tba||days(b.start,e.start)<=3))))}
+fetch('kpc-events-auto.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{if(!d)return;
+ [...(d.recurring||[]),...(d.found||[])].forEach(e=>{if(!e||!e.name||!Array.isArray(e.tags)||(!e.start&&!e.tba))return;
+  const auto=e.tags.includes('AUTO'),t=twinOf(e);
+  if(t){ // already on our list: fill in a date we didn't have, or add the newer announcement link
+   if(t.tba&&e.start){Object.assign(t,{tba:false,start:e.start,end:e.end,auto:auto});if(auto)t.tags=[...t.tags,'AUTO'];}
+   if(auto&&e.url&&t.url!==e.url&&!t.url2){t.url2=e.url;t.url2label=e.source==='ARRL'?'ARRL LISTING ↗':'ANNOUNCEMENT ↗';}
+   return}
+  ALL.push(Object.assign({},e,{auto:auto}))});
+ rebuild();const f=(document.querySelector('.krc-f[aria-pressed="true"]')||{}).dataset;draw(f&&f.f||'all');
+ const n=document.getElementById('krcAuto');if(n&&d.updated)n.textContent='Calendar last checked automatically: '+new Date(d.updated).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+'.';
+}).catch(()=>{});
 function gcal(e){const d=`${ymd(pd(e.start))}/${nextDay(e.end||e.start)}`;return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(e.name)+'&dates='+d+'&location='+encodeURIComponent(e.where)+'&details='+encodeURIComponent((e.time?e.time+'\n':'')+'Organizer: '+e.by+'\n'+(e.local?location.href.replace(/[^/]*$/,'')+e.url:e.url)+'\nListed on the Kentucky Portable Club events page.')}
 function ics(e){const f=s=>String(s).replace(/[\;,]/g,m=>'\\'+m).replace(/\n/g,'\\n');const fold=l=>{let o='';while(l.length>74){o+=l.slice(0,74)+'\r\n ';l=l.slice(74)}return o+l};
  const L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Kentucky Portable Club//KY Radio Calendar//EN','BEGIN:VEVENT','UID:'+ymd(pd(e.start))+'-'+e.name.replace(/\W+/g,'').toLowerCase()+'@kentuckyportableclub.github.io','DTSTAMP:'+new Date().toISOString().replace(/[-:]|\.\d{3}/g,''),'DTSTART;VALUE=DATE:'+ymd(pd(e.start)),'DTEND;VALUE=DATE:'+nextDay(e.end||e.start),'SUMMARY:'+f(e.name),'LOCATION:'+f(e.where),'DESCRIPTION:'+f((e.time?e.time+'\n':'')+'Organizer: '+e.by+'\n'+e.url),'END:VEVENT','END:VCALENDAR'];
@@ -201,9 +225,9 @@ function ics(e){const f=s=>String(s).replace(/[\;,]/g,m=>'\\'+m).replace(/\n/g,'
 function dateBox(e){if(e.tba){const mm=M.find(m=>e.when.toUpperCase().includes(m.slice(0,3)));return `<div class="krc-date"><span>${mm||''}</span><b>TBA</b><small>DATE SOON</small></div>`}
  const s=pd(e.start),en=e.end?pd(e.end):null;return `<div class="krc-date"><span>${M[s.getMonth()]}</span><b>${s.getDate()}${en&&en.getMonth()===s.getMonth()?'–'+en.getDate():''}</b><small>${D[s.getDay()]} ${s.getFullYear()}</small></div>`}
 function draw(f){const el=document.getElementById('krcList');const show=list.filter(e=>f==='all'||e.tags.includes(f));
- el.innerHTML=show.length?show.map((e,i)=>`<article class="krc-ev${e.tags.includes('KPC')?' kpc':''}${e.tba?' tba':''}">${dateBox(e)}<div><div class="krc-tags">${e.tags.map(t=>`<span class="krc-tag ${t}">${t==='KPC'?'KPC':t}</span>`).join('')}${e.tags.includes('KPC')?'':'<span class="krc-tag">NOT A KPC EVENT</span>'}</div><h3>${esc(e.name)}</h3><p>${e.tba?'<b style="color:#f0c96b">'+esc(e.when)+'</b><br>':''}${e.time?esc(e.time)+'<br>':''}${esc(e.where)}<br><span style="color:#9b978e">${esc(e.by)}</span></p></div><div class="krc-acts"><a class="main" href="${esc(e.url)}"${e.local?'':' target="_blank" rel="noopener"'}>${e.local?'DETAILS →':'WEBSITE ↗'}</a>${e.url2?`<a href="${esc(e.url2)}" target="_blank" rel="noopener">ARRL LISTING ↗</a>`:''}${e.tba?'':`<a href="${gcal(e)}" target="_blank" rel="noopener">GOOGLE CALENDAR ↗</a><button type="button" data-ics="${EVENTS.indexOf(e)}">APPLE / OUTLOOK ↓</button>`}</div></article>`).join(''):'<p style="color:#bcb8ae">Nothing coming up in this category right now.</p>'}
+ el.innerHTML=show.length?show.map((e,i)=>`<article class="krc-ev${e.tags.includes('KPC')?' kpc':''}${e.tba?' tba':''}">${dateBox(e)}<div><div class="krc-tags">${e.tags.map(t=>`<span class="krc-tag ${t}">${TAGNAME[t]||t}</span>`).join('')}${e.tags.includes('KPC')?'':'<span class="krc-tag">NOT A KPC EVENT</span>'}</div><h3>${esc(e.name)}</h3><p>${e.tba?'<b style="color:#f0c96b">'+esc(e.when)+'</b><br>':''}${e.time?esc(e.time)+'<br>':''}${esc(e.where)}<br><span style="color:#9b978e">${esc(e.by)}</span>${e.auto?'<br><span style="color:#d9b65c;font-size:13px">Found automatically. Confirm the details with the organizer.</span>':''}</p></div><div class="krc-acts"><a class="main" href="${esc(e.url)}"${e.local?'':' target="_blank" rel="noopener"'}>${e.local?'DETAILS →':'WEBSITE ↗'}</a>${e.url2?`<a href="${esc(e.url2)}" target="_blank" rel="noopener">${e.url2label||'ARRL LISTING ↗'}</a>`:''}${e.tba?'':`<a href="${gcal(e)}" target="_blank" rel="noopener">GOOGLE CALENDAR ↗</a><button type="button" data-ics="${ALL.indexOf(e)}">APPLE / OUTLOOK ↓</button>`}</div></article>`).join(''):'<p style="color:#bcb8ae">Nothing coming up in this category right now.</p>'}
 document.querySelector('.krc-filters').addEventListener('click',ev=>{const b=ev.target.closest('.krc-f');if(!b)return;document.querySelectorAll('.krc-f').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));draw(b.dataset.f)});
-document.getElementById('krcList').addEventListener('click',ev=>{const b=ev.target.closest('[data-ics]');if(!b)return;const e=EVENTS[+b.dataset.ics];const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics(e)],{type:'text/calendar'}));a.download=e.name.replace(/[^A-Za-z0-9]+/g,'_')+'.ics';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)});
+document.getElementById('krcList').addEventListener('click',ev=>{const b=ev.target.closest('[data-ics]');if(!b)return;const e=ALL[+b.dataset.ics];const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics(e)],{type:'text/calendar'}));a.download=e.name.replace(/[^A-Za-z0-9]+/g,'_')+'.ics';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)});
 draw('all');
 })();
 </script>

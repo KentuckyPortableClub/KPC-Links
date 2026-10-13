@@ -1,0 +1,35 @@
+name: KPC Events Finder
+# Keeps the events calendar current. Every Monday morning this:
+#  - works out the recurring dates (POTA Support Your Parks, ARRL Field Day, Winter Field Day)
+#  - looks for Kentucky hamfests in the ARRL hamfest database
+#  - looks for Kentucky SOTA events (like the yearly SOTA Kentucky Campout) on the SOTA Reflector
+# and saves them to kpc-events-auto.json, which events.html merges with the hand-made list.
+# Run it any time from the Actions tab with "Run workflow".
+on:
+  schedule:
+    - cron: '17 11 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kpc-events
+  cancel-in-progress: false
+jobs:
+  events:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Find events
+        run: python3 .github/scripts/kpc_events.py
+      - name: Save the event list
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add kpc-events-auto.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update auto-found events'
+            git pull --rebase --autostash || true
+            git push || echo 'Push skipped; will save on the next run.'
+          fi
