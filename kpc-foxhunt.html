@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fox Hunting | Kentucky Portable Club</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fox Hunting | Kentucky Portable Club">
+<meta property="og:description" content="Fox hunting and radio direction finding: how to hunt, a bearing map that triangulates the fox from your phone's GPS and compass, a tape-measure Yagi calculator, close-in tricks and ARDF basics.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-foxhunt.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
+<meta name="description" content="Fox hunting and radio direction finding: how to hunt, a bearing map that triangulates the fox from your phone's GPS and compass, a tape-measure Yagi calculator, close-in tricks and ARDF basics.">
+<style>
+:root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:var(--nav-height);margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s}.nav-links a:hover,.nav-links a[aria-current=page]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:var(--black) url("parks.png") center/cover no-repeat;color:#fff;border-bottom:1px solid rgba(213,166,58,.45)}
+.hero:before{content:"";position:absolute;width:620px;height:620px;right:-170px;top:-180px;border:1px solid rgba(213,166,58,.35);border-radius:50%;box-shadow:0 0 0 55px rgba(213,166,58,.035),0 0 0 110px rgba(213,166,58,.025)}
+.hero:after{content:none}
+.hero-inner{position:relative;z-index:2;width:min(var(--max),100%);margin:auto;padding:90px 24px 84px}.hero-logo{width:min(360px,78vw);margin-bottom:24px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}.eyebrow{margin:0 0 12px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}.hero h1{max-width:800px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,6.2vw,76px);line-height:1.02;letter-spacing:-1.8px}.hero h1 span{color:var(--gold-light)}.hero-copy{max-width:720px;margin:22px 0 0;color:#eee9dd;font-size:clamp(16px,2vw,20px)}
+.section{padding:82px 24px}.section-inner{width:min(var(--max),100%);margin:auto}.section-heading{text-align:center;margin-bottom:42px}.kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:4px}.section h2{margin:7px 0 12px;color:var(--black);font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,4vw,48px);line-height:1.08}.section-heading p{max-width:760px;margin:0 auto;color:var(--muted);font-size:17px}
+.intro{background:var(--cream);border-bottom:1px solid #d9cfbd}.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}.intro-copy h2{margin:7px 0 18px}.intro-copy p{color:var(--muted);font-size:18px;margin:0}.intro-panel{padding:34px;background:var(--black);border:1px solid var(--gold);box-shadow:12px 12px 0 var(--gold);color:#fff;position:relative;overflow:hidden}.intro-panel:after{content:"";position:absolute;width:230px;height:230px;right:-90px;top:-90px;border:1px solid rgba(213,166,58,.45);border-radius:50%}.intro-panel .mark{position:relative;z-index:1;color:var(--gold-light);font-size:12px;font-weight:900;letter-spacing:3px}.intro-panel h3{position:relative;z-index:1;margin:10px 0 10px;font:700 30px/1.1 Georgia,serif}.intro-panel p{position:relative;z-index:1;margin:0;color:#c9c5bc}.intro-panel .line{position:relative;z-index:1;width:70px;height:3px;background:var(--gold);margin:20px 0}
+.features{background:#fffaf0}.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.card{min-height:285px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid #d8cfbf;background:#fff;color:var(--ink);box-shadow:0 12px 28px rgba(0,0,0,.07);transition:.2s;position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;width:6px;height:100%;background:var(--gold)}.card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.12);border-color:var(--gold)}.card-top{position:relative;z-index:1}.card-num{color:var(--green);font-size:12px;font-weight:900;letter-spacing:3px}.card h3{margin:8px 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:28px;line-height:1.1}.card p{margin:0;color:var(--muted);font-size:15px;max-width:520px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:1px;background:var(--gold);color:#0b0b0b;transition:.2s;align-self:flex-start;margin-top:24px}.btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.dark{background:var(--black);color:#fff;border-top:1px solid rgba(213,166,58,.45);border-bottom:1px solid rgba(213,166,58,.45)}.dark .section-heading p{color:#bcb8ae}.dark h2{color:#fff}.dark .card{background:#151515;border-color:#363636;color:#fff}.dark .card p{color:#bcb8ae}.dark .card h3{color:#fff}.dark .card:before{background:var(--gold)}
+.map-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.map-box{padding:30px;border:1px solid #363636;background:#151515}.map-box h3{margin:8px 0 10px;color:#fff;font:700 25px/1.1 Georgia,serif}.map-box p{margin:0;color:#bcb8ae}.map-box .btn{margin-top:22px}
+.pota-card{min-height:310px}
+.pdf-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pdf-actions .btn{margin-top:0}.pdf-actions .alt{background:#fff;border:1px solid var(--gold);color:#171717}
+.warning{background:var(--cream-2);border-top:1px solid #d1c6b3}.warning-box{border-left:6px solid var(--gold);background:#fff;padding:30px;box-shadow:0 10px 24px rgba(0,0,0,.06)}.warning-box h3{margin:0 0 10px;font:700 28px/1.1 Georgia,serif}.warning-box p{margin:0;color:var(--muted)}
+.final{padding:76px 24px;text-align:center;background:var(--cream-2)}.final h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}.final p{margin:10px 0 24px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:2px}
+footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;border-top:1px solid #292929;font-size:13px}footer strong{color:var(--gold-light)}
+@media(min-width:901px){.hero-logo{position:absolute;left:-400px;top:calc(50% - 22px);transform:translateY(-50%);justify-self:auto;margin-bottom:0}}
+@media(max-width:1000px){.nav-links a{padding-inline:7px;font-size:12px}.intro-grid{gap:38px}}
+@media(max-width:900px){.hero-logo{display:block;width:min(290px,58vw);margin-left:auto;margin-right:auto}}
+@media(max-width:760px){:root{--nav-height:70px}.nav-inner{min-height:70px;padding:8px 18px}.brand img{width:52px;height:52px}.menu-toggle{display:block}.nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45);box-shadow:0 15px 25px rgba(0,0,0,.22)}.nav-links.open{display:flex}.nav-links a{padding:13px 5px;border-bottom:1px solid #292929}.nav-links a:last-child{border-bottom:0}.hero{min-height:500px;background:url("parks-mobile.png") center/cover no-repeat}.hero-inner{padding:70px 20px 55px}.hero-logo{width:min(290px,58vw)}.section{padding:68px 20px}.intro-grid,.map-grid{grid-template-columns:1fr}.intro-panel{max-width:520px;margin:auto}.card-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-logo{width:min(250px,64vw)}}
+@media(max-width:520px){.hero h1{font-size:42px}.hero-copy{font-size:16px}.card{min-height:300px}.card h3{font-size:25px}.pdf-actions{flex-direction:column}.pdf-actions .btn{width:100%}}
+@media(max-width:380px){.brand-text small{display:none}}
+
+/* Added official trail and Wild River resource sections */
+.resource-note{background:#fff7df;border-left:5px solid var(--gold);padding:18px 22px;margin:0 0 28px;color:#332c1f}
+.resource-note p{margin:0}.resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.resource-item{padding:26px;border:1px solid #d8cfbf;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.045)}
+.resource-item h3{font:700 25px/1.18 Georgia,serif;margin:8px 0 12px}.resource-item p{color:#5f5a51;margin:0 0 12px}
+.resource-item .meta{font-size:12px;font-weight:900;letter-spacing:1.4px;color:var(--green)}
+.resource-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.resource-actions .btn{margin:0;font-size:11px;min-height:40px}
+.resource-actions .secondary{background:#f8f4eb;border:1px solid #c9ad6b}
+.river-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:25px 0}
+.river-list article{padding:18px 20px;background:#fff;border:1px solid #d8cfbf}.river-list strong{display:block;font:700 20px Georgia,serif}.river-list span{display:block;margin-top:7px;color:#5f5a51;font-size:14px}
+@media(max-width:760px){.resource-grid,.river-list{grid-template-columns:1fr}}
+/* Quick jump links, trail cards, map files */
+.jump{background:var(--black);border-bottom:1px solid rgba(213,166,58,.45);position:sticky;top:var(--nav-height);z-index:900}
+.jump-inner{width:min(var(--max),100%);margin:auto;padding:10px 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.jump-inner::-webkit-scrollbar{display:none}
+.jump a{flex:0 0 auto;padding:8px 14px;border:1px solid #3a3a3a;border-radius:999px;color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;transition:.2s}
+.jump a:hover{border-color:var(--gold);color:var(--gold-light)}
+section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn-row .btn{margin-top:0}
+.trail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.trail-grid .resource-item:last-child:nth-child(odd){grid-column:1/-1}
+.twofer{margin:14px 0 0;padding:12px 14px;background:#fff7df;border-left:4px solid var(--gold);font-size:14px;color:#332c1f}
+.twofer b{color:var(--green);letter-spacing:1px;font-size:12px}
+.files-card .pdf-actions .btn{min-width:0}
+.file-group{margin-top:16px}.file-group .card-num{margin-bottom:8px}
+.warning-box .btn-row .btn{font-size:11px;min-height:40px}
+@media(max-width:760px){.jump{top:70px}.trail-grid{grid-template-columns:1fr}.btn-row{flex-direction:column}.btn-row .btn{width:100%}}
+.dark .kicker,.dark .card-num{color:var(--gold-light)}
+/* On The Air Now bar */
+.onair{background:#0d2419;border-bottom:1px solid rgba(213,166,58,.45);color:#fff}
+.onair-inner{width:min(var(--max),100%);margin:auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.onair-title{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:3px;color:var(--gold-light);white-space:nowrap}
+.onair .dot{width:10px;height:10px;border-radius:50%;background:#3ecf6e;animation:pulse 1.8s infinite}
+.onair .dot.off{background:#8a8a8a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.6)}70%{box-shadow:0 0 0 9px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.onair-count{font-size:14px;color:#e9eee9}.onair-count b{color:#fff}
+.onair-list{display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}.onair-list::-webkit-scrollbar{display:none}
+.onair-chip{flex:0 0 auto;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;white-space:nowrap}
+.onair-chip b{color:var(--gold-light)}.onair-chip.club{border-color:var(--gold);background:rgba(213,166,58,.14)}
+.onair .btn{margin:0;min-height:38px;padding:8px 14px;font-size:11px;white-space:nowrap}
+@media(max-width:760px){.onair-inner{padding:12px 18px;gap:8px 10px}.onair-title{order:1}.onair .btn{order:2;margin-left:auto}.onair-count{order:3;flex-basis:100%}.onair-list{order:4;flex-basis:100%}}
+
+/* KPC shared About-style footer and below-hero page links */
+.page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+.page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
+.page-jump-nav a:hover,.page-jump-nav a:focus-visible{background:#3c321a;border-color:#d6b96c;color:#fff}
+section[id]{scroll-margin-top:100px}
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
+body.field .page-jump-nav{display:none!important}
+
+</style>
+<link rel="stylesheet" href="kpc-nav.css?v=20261010g">
+<style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+[hidden]{display:none!important}
+.hero{min-height:400px;background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.66) 45%,rgba(7,7,7,.2) 80%,rgba(7,7,7,.05) 100%),url("hdr-fort.jpg") center 55%/cover no-repeat #070707}
+@media(max-width:760px){.hero{min-height:360px;background:linear-gradient(180deg,rgba(7,7,7,.4) 0%,rgba(7,7,7,.78) 50%,rgba(7,7,7,.9) 100%),url("hdr-fort-mobile.jpg") center 60%/cover no-repeat #070707}}
+.fx-jump{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px 16px;background:#101010;border-bottom:1px solid #2a2a2a}
+.fx-jump a{padding:9px 13px;border:1px solid rgba(255,255,255,.28);border-radius:6px;color:#fff;font-size:11px;font-weight:900;letter-spacing:.7px}
+.fx-jump a:hover{border-color:var(--gold);color:var(--gold-light)}
+.fx3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.fx-card{background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);padding:22px;box-shadow:0 10px 24px rgba(0,0,0,.06)}
+.fx-card .k{font-size:10px;font-weight:900;letter-spacing:1.5px;color:var(--green)}
+.fx-card h3{margin:6px 0 8px;font:700 23px/1.15 Georgia,serif}
+.fx-card p,.fx-card li{color:var(--muted);font-size:15px}.fx-card p{margin:0 0 10px}
+.fx-card ul{margin:0;padding-left:18px}
+.dark .fx-card{background:#151515;border-color:#363636;border-top-color:var(--gold)}.dark .fx-card h3{color:#fff}.dark .fx-card p,.dark .fx-card li{color:#bcb8ae}.dark .fx-card .k{color:#7fd39a}
+.fx-steps{counter-reset:s;display:grid;grid-template-columns:repeat(2,1fr);gap:14px 26px;margin:0;padding:0;list-style:none}
+.fx-steps li{counter-increment:s;position:relative;padding:16px 18px 16px 62px;background:#fff;border:1px solid #e1d7c3;color:var(--muted);font-size:15px}
+.fx-steps li:before{content:counter(s);position:absolute;left:16px;top:14px;width:32px;height:32px;border-radius:50%;background:var(--black);color:var(--gold-light);display:grid;place-items:center;font:900 15px Arial,sans-serif}
+.fx-steps b{display:block;color:#171717;font-size:16px;margin-bottom:3px}
+.fx-tip{margin:22px 0 0;padding:16px 20px;background:#fff7df;border-left:5px solid var(--gold);color:#332c1f}
+/* bearing tool */
+.bt{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px;align-items:start}
+#foxMap{height:520px;border-radius:10px;border:1px solid #333;background:#1a1a1a}
+.bt-panel{background:#121212;border:1px solid #2f2f2f;border-radius:10px;padding:18px}
+.bt-panel h3{margin:0 0 10px;font:700 20px Georgia,serif;color:#fff}
+.bt-panel label{display:block;font-size:11px;font-weight:900;letter-spacing:1.3px;color:#cfc6b2;margin:10px 0 5px}
+.bt-panel input,.bt-panel select{width:100%;min-height:44px;padding:9px 12px;border-radius:7px;border:1px solid #444;background:#1a1a1a;color:#fff;font:600 16px Arial,sans-serif}
+.bt-row{display:flex;gap:8px}.bt-row>*{flex:1}
+.bt-btn{min-height:46px;width:100%;padding:10px 14px;border-radius:8px;border:0;background:var(--gold);color:#111;font:900 13px Arial,sans-serif;letter-spacing:1px;cursor:pointer;margin-top:8px}
+.bt-btn.alt{background:transparent;border:1px solid #555;color:#eee}.bt-btn.alt:hover{border-color:var(--gold);color:var(--gold-light)}
+.bt-btn.big{min-height:60px;font-size:15px;background:#2e8b57;color:#fff}
+.bt-btn:disabled{opacity:.45;cursor:not-allowed}
+.bt-head{display:flex;align-items:center;gap:14px;margin:6px 0 4px}
+.bt-dial{width:74px;height:74px;border-radius:50%;border:2px solid #444;position:relative;flex:0 0 auto;background:#0b0b0b}
+.bt-dial:after{content:"N";position:absolute;top:2px;left:0;right:0;text-align:center;font:900 10px Arial;color:#888}
+.bt-dial i{position:absolute;left:50%;top:50%;width:4px;height:32px;margin:-32px 0 0 -2px;background:linear-gradient(#ffcf5a,#d5a63a);border-radius:2px;transform-origin:50% 100%}
+.bt-headv{font:700 30px "Courier New",monospace;color:#fff}.bt-headv small{display:block;font:600 12px Arial;color:#9b968c}
+.bt-list{margin:12px 0 0;max-height:190px;overflow:auto;border-top:1px solid #2a2a2a}
+.bt-list div{display:flex;justify-content:space-between;gap:8px;padding:7px 2px;border-bottom:1px solid #222;color:#ddd;font-size:14px}
+.bt-list b{color:var(--gold-light)}
+.bt-est{margin-top:12px;padding:12px 14px;border-radius:8px;background:#0f2f20;border:1px solid #2e8b57;color:#e7f3ea;font-size:14px}
+.bt-est b{color:#fff;font-size:16px}
+.bt-small{color:#8f8a80;font-size:12px;margin:8px 0 0}
+.bt-msg{color:#f0c96b;font-size:13px;min-height:18px;margin-top:6px}
+.fox-ico{background:var(--gold);border:2px solid #111;border-radius:50%;box-shadow:0 0 0 4px rgba(213,166,58,.35);display:grid;place-items:center;font-size:16px}
+/* yagi */
+.yg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:28px;align-items:start}
+.yg-in{background:#fff;border:1px solid #d8cfbf;padding:20px}
+.yg-in label{display:block;font-size:11px;font-weight:900;letter-spacing:1.3px;color:#3b372f;margin:0 0 6px}
+.yg-in input,.yg-in select{width:100%;min-height:46px;padding:9px 12px;border-radius:7px;border:1px solid #c9bda4;font:700 18px Arial,sans-serif}
+.yg-in .row{display:flex;gap:10px;margin-bottom:14px}.yg-in .row>div{flex:1}
+.yg-presets{display:flex;flex-wrap:wrap;gap:6px;margin:-6px 0 14px}
+.yg-presets button{border:1px solid #c9ad6b;background:#fff8e6;border-radius:6px;padding:6px 10px;font:800 12px Arial,sans-serif;cursor:pointer}
+table.yg-t{width:100%;border-collapse:collapse;font-size:15px}
+table.yg-t th{text-align:left;font-size:10px;letter-spacing:1.3px;color:#6d6658;padding:6px 4px;border-bottom:2px solid #e1d7c3}
+table.yg-t td{padding:9px 4px;border-bottom:1px solid #eee5d3}
+table.yg-t td.v{font:700 18px "Courier New",monospace;color:#171717;white-space:nowrap}
+.yg-warn{margin-top:12px;padding:10px 12px;background:#fff1ec;border-left:4px solid #d2693c;color:#5a2a17;font-size:14px}
+.yg svg{width:100%;height:auto;background:#fff;border:1px solid #d8cfbf}
+.yg-build{margin:26px 0 0;padding-left:22px;color:var(--muted);font-size:15px}.yg-build li{margin:0 0 9px}.yg-build b{color:#171717}
+.parts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.parts span{background:#fff;border:1px solid #e1d7c3;padding:6px 10px;font-size:13px;color:#3b372f}
+.fx-links{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.fx-links a{display:block;background:#151515;border:1px solid #363636;padding:14px 16px;color:#fff;border-radius:8px}
+.fx-links a:hover{border-color:var(--gold)}
+.fx-links b{display:block;font:700 18px Georgia,serif}.fx-links span{color:#bcb8ae;font-size:13px}
+.ardf{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.ardf table{width:100%;border-collapse:collapse;font-size:14px;color:#ddd}
+.ardf td{padding:8px 6px;border-bottom:1px solid #2a2a2a}.ardf td:first-child{font-weight:900;color:var(--gold-light);white-space:nowrap}
+@media(max-width:1000px){.bt,.yg,.ardf{grid-template-columns:minmax(0,1fr)}.fx3{grid-template-columns:1fr 1fr}.fx-links{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.fx3,.fx-steps,.fx-links{grid-template-columns:1fr}#foxMap{height:400px}}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Search &amp; Park Guides</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-band-plan.html" role="menuitem"><span class="ni">&#128225;</span>Band Plan by License</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • RADIO DIRECTION FINDING</p><h1>FOX <span>HUNTING</span></h1><p class="hero-copy">Somebody hides a transmitter. Everybody else finds it with a radio, a directional antenna and a little detective work. Here's how to hunt, how to build a $20 beam, and a map that plots your bearings for you.</p></div></section>
+<nav class="fx-jump" aria-label="On this page"><a href="#what">WHAT IT IS</a><a href="#how">HOW TO HUNT</a><a href="#bearings">BEARING MAP</a><a href="#yagi">BUILD A BEAM</a><a href="#close">CLOSE-IN GEAR</a><a href="#hide">HIDE A FOX</a><a href="#ardf">ARDF</a></nav>
+
+<section class="section features" id="what"><div class="section-inner">
+<div class="section-heading"><div class="kicker">THE BASICS</div><h2>Three Ways To Hunt a Fox</h2><p>A "fox" is a small, low-power transmitter — usually on 2 meters FM — that sends a tone, a short message or CW and its callsign. Your local hunt sets the frequency; many U.S. hunts use 146.565 MHz simplex.</p></div>
+<div class="fx3">
+ <article class="fx-card"><span class="k">BY CAR</span><h3>Mobile T-Hunt</h3><p>Teams drive, take bearings from high open spots, plot them on a map and close in. Usually the fox is hidden somewhere within a few miles. Lowest time or mileage wins.</p><ul><li>Beam out the window or on a mast</li><li>Navigator plots, driver drives</li><li>Watch for signal reflections off hills</li></ul></article>
+ <article class="fx-card"><span class="k">ON FOOT</span><h3>Foxoring &amp; Park Hunts</h3><p>One or more foxes hidden in a park or woods — perfect for a KPC campout. Hunters walk with an HT and a handheld beam. Great for families and new hams.</p><ul><li>An HT + tape-measure Yagi is all you need</li><li>Short distances, lots of fun close-in</li><li>No license needed to listen and hunt</li></ul></article>
+ <article class="fx-card"><span class="k">THE SPORT</span><h3>ARDF</h3><p>Amateur Radio Direction Finding — the international, orienteering-style version. Five foxes in the woods, one minute each, a map and a compass. There are U.S. and world championships.</p><ul><li>2 m and 80 m events</li><li>Age and gender categories</li><li>No GPS allowed</li></ul></article>
+</div>
+</div></section>
+
+<section class="section warning" id="how"><div class="section-inner">
+<div class="section-heading"><div class="kicker">STEP BY STEP</div><h2>How To Find the Fox</h2></div>
+<ol class="fx-steps">
+ <li><b>Get high and in the open</b>Take your first bearings from a hilltop or open field, away from buildings and metal. Reflections fool you most in valleys and parking lots.</li>
+ <li><b>Swing the beam, find the null</b>Rotate slowly. The strongest signal is out the front — but the sharp <i>drop</i> off the back of a Yagi is often easier to pinpoint. Point the back at the fox, then turn around.</li>
+ <li><b>Write it down</b>Bearing in degrees, where you were, and the time. Or tap <b>Take bearing</b> on the map below — it records your GPS spot and compass heading for you.</li>
+ <li><b>Move sideways, take another</b>A second bearing from a spot a good distance to the side gives you a crossing point. A third one shows how good your fix is — the smaller the triangle, the better.</li>
+ <li><b>Close in, cut the signal</b>As it gets strong, everything sounds like "everywhere." Switch to an attenuator, the offset attenuator, the 3rd harmonic trick or body fade (below).</li>
+ <li><b>The last 100 feet</b>Take the antenna off your HT, hold the radio against your body and turn in a circle — your body blocks the signal. Look up, look down: foxes hide in trees, ammo cans, under picnic tables.</li>
+</ol>
+<p class="fx-tip"><b>Magnetic vs. true north:</b> a compass (and your phone) points to magnetic north. Maps use true north. In Kentucky, magnetic north is a few degrees west of true — the bearing map corrects this for you.</p>
+</div></section>
+
+<section class="section dark" id="bearings"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">PLOT IT</div><h2>Fox Hunt Bearing Map</h2><p>Each bearing draws a line. Where the lines cross is where the fox is. Use your phone's compass and GPS in the field, or add bearings by hand.</p></div>
+<div class="bt">
+ <div id="foxMap" role="application" aria-label="Fox hunt bearing map"></div>
+ <div class="bt-panel">
+  <h3>Take a Bearing</h3>
+  <div class="bt-head"><div class="bt-dial"><i id="btNeedle"></i></div><div class="bt-headv" id="btHeadV">---°<small>Point the top of your phone along the beam</small></div></div>
+  <button type="button" class="bt-btn alt" id="btCompass">🧭 START PHONE COMPASS &amp; GPS</button>
+  <button type="button" class="bt-btn big" id="btTake" disabled>📍 TAKE BEARING HERE</button>
+  <div class="bt-msg" id="btMsg"></div>
+  <details style="margin-top:10px"><summary style="cursor:pointer;color:var(--gold-light);font:900 12px Arial;letter-spacing:1.2px">+ ADD A BEARING BY HAND</summary>
+   <label for="btDeg">BEARING (DEGREES)</label><input type="number" id="btDeg" min="0" max="360" step="1" inputmode="numeric" placeholder="e.g. 245">
+   <label for="btKind">MEASURED WITH</label><select id="btKind"><option value="mag">A compass (magnetic)</option><option value="true">A map (true north)</option></select>
+   <p class="bt-small">Then tap the spot on the map where you took it — or use your GPS spot.</p>
+   <div class="bt-row"><button type="button" class="bt-btn alt" id="btPick">TAP MAP</button><button type="button" class="bt-btn alt" id="btHere">MY LOCATION</button></div>
+  </details>
+  <label for="btDecl">MAGNETIC DECLINATION (° — WEST IS NEGATIVE)</label>
+  <input type="number" id="btDecl" step="0.5" value="-4">
+  <p class="bt-small">About −2° to −6° across Kentucky. <a href="https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml" target="_blank" rel="noopener" style="color:var(--gold-light)">Look yours up (NOAA) ↗</a></p>
+  <label for="btRange">LINE LENGTH</label>
+  <select id="btRange"><option value="1">1 km — on foot</option><option value="5" selected>5 km (3 mi)</option><option value="15">15 km (9 mi) — mobile</option><option value="40">40 km (25 mi)</option></select>
+  <div class="bt-list" id="btList"></div>
+  <div class="bt-est" id="btEst" hidden></div>
+  <div class="bt-row"><button type="button" class="bt-btn alt" id="btUndo">UNDO LAST</button><button type="button" class="bt-btn alt" id="btClear">CLEAR ALL</button></div>
+  <p class="bt-small">Bearings are saved on this phone until you clear them. Phone compasses get thrown off by cars and metal — step away from the vehicle.</p>
+ </div>
+</div>
+</div></section>
+
+<section class="section features" id="yagi"><div class="section-inner">
+<div class="section-heading"><div class="kicker">WEEKEND PROJECT</div><h2>Build a Tape-Measure Yagi</h2><p>The classic fox-hunting beam: three elements cut from a steel tape measure on a PVC boom. It folds flat, costs about $20, and has a deep null off the back. Dimensions below are the popular WB2HOL design for 2 m — change the frequency to scale it.</p></div>
+<div class="yg">
+ <div class="yg-in">
+  <div class="row"><div><label for="ygF">FREQUENCY (MHz)</label><input type="number" id="ygF" value="146.565" step="0.005" min="50" max="450" inputmode="decimal"></div><div><label for="ygU">UNITS</label><select id="ygU"><option value="in">Inches</option><option value="cm">Centimeters</option></select></div></div>
+  <div class="yg-presets"><button type="button" data-f="146.565">146.565 fox</button><button type="button" data-f="146.52">146.52</button><button type="button" data-f="144.39">APRS 144.39</button><button type="button" data-f="223.5">1.25 m</button><button type="button" data-f="433.5">70 cm</button></div>
+  <table class="yg-t"><thead><tr><th>PART</th><th>CUT TO</th></tr></thead><tbody id="ygOut"></tbody></table>
+  <div class="yg-warn" id="ygWarn" hidden></div>
+ </div>
+ <div>
+  <svg viewBox="0 0 520 300" role="img" aria-label="Tape measure Yagi layout">
+   <rect x="40" y="144" width="440" height="12" rx="6" fill="#e8e1d3" stroke="#b9ad93"/>
+   <text x="260" y="176" text-anchor="middle" font-size="12" fill="#6d6658" font-family="Arial">½" PVC boom</text>
+   <g id="ygSvg"></g>
+   <text x="70" y="290" text-anchor="middle" font-size="12" font-weight="bold" fill="#171717" font-family="Arial">REFLECTOR</text>
+   <text x="210" y="290" text-anchor="middle" font-size="12" font-weight="bold" fill="#8a5a12" font-family="Arial">DRIVEN</text>
+   <text x="440" y="290" text-anchor="middle" font-size="12" font-weight="bold" fill="#171717" font-family="Arial">DIRECTOR</text>
+   <text x="510" y="22" text-anchor="end" font-size="13" fill="#1d5a3a" font-family="Arial" font-weight="bold">POINT AT THE FOX →</text>
+  </svg>
+  <ol class="yg-build">
+   <li><b>Cut the tape.</b> Use a 1" wide steel tape. Cut with tin snips (it's spring steel — gloves and safety glasses). Cover every cut end with electrical tape.</li>
+   <li><b>Driven element.</b> Two equal halves, about 1" apart in the middle. Sand the paint off where the coax solders on.</li>
+   <li><b>Hairpin match.</b> Bend the wire into a U (legs about ¾" apart) and solder its ends across the two driven halves.</li>
+   <li><b>Coax.</b> About 3 ft of thin coax: center to one driven half, shield to the other. Tape it to the boom.</li>
+   <li><b>Mount.</b> Hose clamps hold each element to a PVC cross (driven) or tee (reflector, director). Don't glue — it comes apart for the car.</li>
+   <li><b>Tune.</b> Check SWR at your frequency and slide the driven halves closer or farther apart until it's lowest.</li>
+  </ol>
+  <div class="parts"><span>1" steel tape measure</span><span>½" PVC pipe (~2 ft)</span><span>½" PVC cross + 2 tees</span><span>6 hose clamps</span><span>14–18 ga wire (5")</span><span>3 ft thin coax + connector</span><span>Electrical tape</span></div>
+ </div>
+</div>
+</div></section>
+
+<section class="section dark" id="close"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">THE LAST STRETCH</div><h2>Close-In Gear &amp; Tricks</h2><p>Near the fox, the signal floods your radio from every direction and the beam stops helping. These cut it back down so you can keep homing in.</p></div>
+<div class="fx3">
+ <article class="fx-card"><span class="k">BEST TOOL</span><h3>Offset Attenuator</h3><p>A tiny box between the beam and your HT. It mixes the fox signal with a 4 MHz oscillator, so you listen about 4 MHz away (146.565 fox → 150.565 or 142.565) and turn a knob to make the signal as weak as you need — even right next to the fox.</p><p>Your HT must receive outside the ham band. Homebrew kits are common club builds.</p></article>
+ <article class="fx-card"><span class="k">FREE TRICK</span><h3>Listen on the 3rd Harmonic</h3><p>Every transmitter leaks a weak copy at 3× its frequency. A 146.565 fox also shows up faintly on <b>439.695 MHz</b>. Tune your dual-band HT there when the main signal is pinning the meter.</p><p>Works only when you're quite close.</p></article>
+ <article class="fx-card"><span class="k">NO GEAR</span><h3>Body Fade</h3><p>Take the antenna off (or turn the squelch off and use a rubber duck), hold the HT flat against your chest and turn slowly in a circle. The signal dips when your body is between the radio and the fox — the fox is <i>behind</i> you.</p><p>Also try: step attenuator, tuning slightly off frequency, and pointing the beam up and down.</p></article>
+</div>
+<div class="fx-links" style="margin-top:24px">
+ <a href="https://www.homingin.com/joek0ov/offatten.html" target="_blank" rel="noopener"><b>Build an offset attenuator</b><span>K0OV's design and how it works</span></a>
+ <a href="https://www.w9rh.org/wp-content/uploads/2024/01/2m-tape-measure-yagi-instructions.pdf" target="_blank" rel="noopener"><b>Tape-measure Yagi PDF</b><span>Printable step-by-step build</span></a>
+ <a href="https://www.homingin.com/" target="_blank" rel="noopener"><b>Homing In</b><span>Decades of fox hunting how-tos</span></a>
+ <a href="https://ardf-r2.org/" target="_blank" rel="noopener"><b>ARDF in the Americas</b><span>IARU Region 2 events and gear</span></a>
+</div>
+</div></section>
+
+<section class="section features" id="hide"><div class="section-inner">
+<div class="section-heading"><div class="kicker">FOR THE HOST</div><h2>Hiding a Fox</h2><p>Running a hunt at a campout or club meeting? A few things make it fair, fun and legal.</p></div>
+<div class="fx3">
+ <article class="fx-card"><span class="k">THE TRANSMITTER</span><h3>What to Use</h3><ul><li>An old HT with a "fox controller," or a ready-made fox box</li><li>Low power — under a watt is plenty for a park hunt</li><li>Transmit every 30–60 seconds so hunters get bearings</li><li>Plenty of battery for the whole hunt (plus extra)</li></ul></article>
+ <article class="fx-card"><span class="k">THE RULES</span><h3>Keep It Legal</h3><ul><li>The fox must send its callsign at least every 10 minutes (CW ID is fine)</li><li>Use a simplex frequency your area uses for hunts — not a repeater input or the 146.52 calling frequency</li><li>Get permission to hide it on park or private property</li></ul></article>
+ <article class="fx-card"><span class="k">MAKE IT FUN</span><h3>Good Hiding Spots</h3><ul><li>Start easy for new hunters — in sight from a trail</li><li>Ammo cans, tree branches, under benches</li><li>Hide near metal for a challenge (reflections!)</li><li>Leave a logbook or prize inside for finders</li></ul></article>
+</div>
+</div></section>
+
+<section class="section dark" id="ardf"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">THE INTERNATIONAL SPORT</div><h2>ARDF in a Nutshell</h2><p>Amateur Radio Direction Finding blends fox hunting with orienteering. It's run under IARU rules worldwide.</p></div>
+<div class="ardf">
+ <table><tbody>
+  <tr><td>Bands</td><td>2 m (FM/AM tones) and 80 m (CW)</td></tr>
+  <tr><td>Foxes</td><td>Five low-power foxes on one frequency, each on for one minute in turn</td></tr>
+  <tr><td>IDs</td><td>Each sends Morse "MO" plus its number: MOE, MOI, MOS, MOH, MO5</td></tr>
+  <tr><td>Finish</td><td>A beacon at the finish sends all the time on its own frequency</td></tr>
+  <tr><td>Course</td><td>About 6–12 km in the woods on an orienteering map, 2–3 hour limit</td></tr>
+  <tr><td>Rules</td><td>On foot, no GPS. Categories by age and gender set how many foxes you need</td></tr>
+ </tbody></table>
+ <div>
+  <p style="color:#bcb8ae;margin-top:0">Shorter versions — <b style="color:#fff">sprint</b> and <b style="color:#fff">foxoring</b> (low-power foxes at marked points on the map) — are great starter events and easy to set up at a park.</p>
+  <div class="fx-links" style="grid-template-columns:1fr">
+   <a href="https://www.arrl.org/news/ardf-update-radio-foxhunters-find-their-champions-in-ohio" target="_blank" rel="noopener"><b>ARRL: ARDF news</b><span>U.S. championship coverage</span></a>
+   <a href="https://www.homingin.com/intlfox.html" target="_blank" rel="noopener"><b>International-style hunting</b><span>How ARDF works, explained</span></a>
+  </div>
+ </div>
+</div>
+<p style="text-align:center;margin:30px 0 0;color:#bcb8ae">Want a KPC fox hunt at the campout or a park day? <a href="contact.html" style="color:var(--gold-light);font-weight:800">Tell us →</a></p>
+</div></section>
+
+<section class="final"><h2>Get Outside. Get On The Air.</h2><p>NO LICENSE NEEDED TO HUNT — BRING THE KIDS</p><a class="btn" href="kpc-antenna.html">MORE ANTENNA BUILDS →</a></section>
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="kpc-foxhunt.js?v=20261013a"></script>
+<script src="kpc-search.js?v=20261011c" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body></html>
