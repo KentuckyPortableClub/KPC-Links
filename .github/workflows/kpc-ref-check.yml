@@ -1,0 +1,23 @@
+name: KPC Reference Check
+# On the 1st of each month: compares the site's Kentucky POTA parks, W4K SOTA summits and KFF areas
+# (kpc-ky-data.json) with the official lists. Changes are listed in one GitHub issue labelled "ref-check".
+# Nothing on the site is changed automatically.
+on:
+  schedule:
+    - cron: '23 12 1 * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: kpc-ref-check
+  cancel-in-progress: true
+jobs:
+  refs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Compare reference lists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/kpc_refcheck.py
