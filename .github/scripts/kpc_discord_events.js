@@ -23,6 +23,7 @@ function when(e) {
   if (en && +en !== +s) t += en.getMonth() === s.getMonth() ? `–${en.getDate()}` : ` – ${MN[en.getMonth()]} ${en.getDate()}`;
   return t;
 }
+const notice = m => console.log('::notice title=Discord events post::' + String(m).replace(/%/g, '%25').replace(/\n/g, '%0A'));
 const clean = s => String(s || '').replace(/[*_`~|>]/g, '').split(' — ')[0].slice(0, 90);
 
 const lines = list.map(e => {
@@ -34,9 +35,9 @@ const lines = list.map(e => {
 console.log(`${list.length} event(s) in the next ${DAYS_AHEAD} days`);
 lines.forEach(l => console.log(' -', l.split('\n')[0]));
 
-if (!list.length) { console.log('Nothing coming up; no post.'); process.exit(0); }
+if (!list.length) { notice('Nothing in the next ' + DAYS_AHEAD + ' days; no post.'); process.exit(0); }
 if (!/^https:\/\/(discord|discordapp)\.com\/api\/webhooks\//.test(webhook)) {
-  console.log('No Discord webhook set (secret KPC_DISCORD_WEBHOOK); skipping the post.');
+  notice('No Discord webhook set (secret KPC_DISCORD_WEBHOOK); skipping the post.');
   process.exit(0);
 }
 
@@ -53,6 +54,6 @@ fetch(webhook, {
     allowed_mentions: { parse: [] },
   }),
 }).then(r => {
-  console.log('Discord replied', r.status);
+  notice('Discord replied HTTP ' + r.status + ' after posting ' + list.length + ' event(s)');
   if (!r.ok) process.exit(1);
 }).catch(e => { console.error(e); process.exit(1); });
