@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Digital Modes | Kentucky Portable Club</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Digital Modes | Kentucky Portable Club">
+<meta property="og:description" content="FT8, FT4, JS8Call, PSK31, RTTY, Winlink, APRS, SSTV and digital voice — what each is for, frequencies, a clock check and FT8 timer, and how to activate a park on FT8.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-digital.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
+<meta name="description" content="FT8, FT4, JS8Call, PSK31, RTTY, Winlink, APRS, SSTV and digital voice — what each is for, frequencies, a clock check and FT8 timer, and how to activate a park on FT8.">
+<style>
+:root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:var(--nav-height);margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s}.nav-links a:hover,.nav-links a[aria-current=page]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:var(--black) url("parks.png") center/cover no-repeat;color:#fff;border-bottom:1px solid rgba(213,166,58,.45)}
+.hero:before{content:"";position:absolute;width:620px;height:620px;right:-170px;top:-180px;border:1px solid rgba(213,166,58,.35);border-radius:50%;box-shadow:0 0 0 55px rgba(213,166,58,.035),0 0 0 110px rgba(213,166,58,.025)}
+.hero:after{content:none}
+.hero-inner{position:relative;z-index:2;width:min(var(--max),100%);margin:auto;padding:90px 24px 84px}.hero-logo{width:min(360px,78vw);margin-bottom:24px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}.eyebrow{margin:0 0 12px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}.hero h1{max-width:800px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,6.2vw,76px);line-height:1.02;letter-spacing:-1.8px}.hero h1 span{color:var(--gold-light)}.hero-copy{max-width:720px;margin:22px 0 0;color:#eee9dd;font-size:clamp(16px,2vw,20px)}
+.section{padding:82px 24px}.section-inner{width:min(var(--max),100%);margin:auto}.section-heading{text-align:center;margin-bottom:42px}.kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:4px}.section h2{margin:7px 0 12px;color:var(--black);font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,4vw,48px);line-height:1.08}.section-heading p{max-width:760px;margin:0 auto;color:var(--muted);font-size:17px}
+.intro{background:var(--cream);border-bottom:1px solid #d9cfbd}.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}.intro-copy h2{margin:7px 0 18px}.intro-copy p{color:var(--muted);font-size:18px;margin:0}.intro-panel{padding:34px;background:var(--black);border:1px solid var(--gold);box-shadow:12px 12px 0 var(--gold);color:#fff;position:relative;overflow:hidden}.intro-panel:after{content:"";position:absolute;width:230px;height:230px;right:-90px;top:-90px;border:1px solid rgba(213,166,58,.45);border-radius:50%}.intro-panel .mark{position:relative;z-index:1;color:var(--gold-light);font-size:12px;font-weight:900;letter-spacing:3px}.intro-panel h3{position:relative;z-index:1;margin:10px 0 10px;font:700 30px/1.1 Georgia,serif}.intro-panel p{position:relative;z-index:1;margin:0;color:#c9c5bc}.intro-panel .line{position:relative;z-index:1;width:70px;height:3px;background:var(--gold);margin:20px 0}
+.features{background:#fffaf0}.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.card{min-height:285px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid #d8cfbf;background:#fff;color:var(--ink);box-shadow:0 12px 28px rgba(0,0,0,.07);transition:.2s;position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;width:6px;height:100%;background:var(--gold)}.card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.12);border-color:var(--gold)}.card-top{position:relative;z-index:1}.card-num{color:var(--green);font-size:12px;font-weight:900;letter-spacing:3px}.card h3{margin:8px 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:28px;line-height:1.1}.card p{margin:0;color:var(--muted);font-size:15px;max-width:520px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:1px;background:var(--gold);color:#0b0b0b;transition:.2s;align-self:flex-start;margin-top:24px}.btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.dark{background:var(--black);color:#fff;border-top:1px solid rgba(213,166,58,.45);border-bottom:1px solid rgba(213,166,58,.45)}.dark .section-heading p{color:#bcb8ae}.dark h2{color:#fff}.dark .card{background:#151515;border-color:#363636;color:#fff}.dark .card p{color:#bcb8ae}.dark .card h3{color:#fff}.dark .card:before{background:var(--gold)}
+.map-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.map-box{padding:30px;border:1px solid #363636;background:#151515}.map-box h3{margin:8px 0 10px;color:#fff;font:700 25px/1.1 Georgia,serif}.map-box p{margin:0;color:#bcb8ae}.map-box .btn{margin-top:22px}
+.pota-card{min-height:310px}
+.pdf-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pdf-actions .btn{margin-top:0}.pdf-actions .alt{background:#fff;border:1px solid var(--gold);color:#171717}
+.warning{background:var(--cream-2);border-top:1px solid #d1c6b3}.warning-box{border-left:6px solid var(--gold);background:#fff;padding:30px;box-shadow:0 10px 24px rgba(0,0,0,.06)}.warning-box h3{margin:0 0 10px;font:700 28px/1.1 Georgia,serif}.warning-box p{margin:0;color:var(--muted)}
+.final{padding:76px 24px;text-align:center;background:var(--cream-2)}.final h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}.final p{margin:10px 0 24px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:2px}
+footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;border-top:1px solid #292929;font-size:13px}footer strong{color:var(--gold-light)}
+@media(min-width:901px){.hero-logo{position:absolute;left:-400px;top:calc(50% - 22px);transform:translateY(-50%);justify-self:auto;margin-bottom:0}}
+@media(max-width:1000px){.nav-links a{padding-inline:7px;font-size:12px}.intro-grid{gap:38px}}
+@media(max-width:900px){.hero-logo{display:block;width:min(290px,58vw);margin-left:auto;margin-right:auto}}
+@media(max-width:760px){:root{--nav-height:70px}.nav-inner{min-height:70px;padding:8px 18px}.brand img{width:52px;height:52px}.menu-toggle{display:block}.nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45);box-shadow:0 15px 25px rgba(0,0,0,.22)}.nav-links.open{display:flex}.nav-links a{padding:13px 5px;border-bottom:1px solid #292929}.nav-links a:last-child{border-bottom:0}.hero{min-height:500px;background:url("parks-mobile.png") center/cover no-repeat}.hero-inner{padding:70px 20px 55px}.hero-logo{width:min(290px,58vw)}.section{padding:68px 20px}.intro-grid,.map-grid{grid-template-columns:1fr}.intro-panel{max-width:520px;margin:auto}.card-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-logo{width:min(250px,64vw)}}
+@media(max-width:520px){.hero h1{font-size:42px}.hero-copy{font-size:16px}.card{min-height:300px}.card h3{font-size:25px}.pdf-actions{flex-direction:column}.pdf-actions .btn{width:100%}}
+@media(max-width:380px){.brand-text small{display:none}}
+
+/* Added official trail and Wild River resource sections */
+.resource-note{background:#fff7df;border-left:5px solid var(--gold);padding:18px 22px;margin:0 0 28px;color:#332c1f}
+.resource-note p{margin:0}.resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.resource-item{padding:26px;border:1px solid #d8cfbf;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.045)}
+.resource-item h3{font:700 25px/1.18 Georgia,serif;margin:8px 0 12px}.resource-item p{color:#5f5a51;margin:0 0 12px}
+.resource-item .meta{font-size:12px;font-weight:900;letter-spacing:1.4px;color:var(--green)}
+.resource-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.resource-actions .btn{margin:0;font-size:11px;min-height:40px}
+.resource-actions .secondary{background:#f8f4eb;border:1px solid #c9ad6b}
+.river-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:25px 0}
+.river-list article{padding:18px 20px;background:#fff;border:1px solid #d8cfbf}.river-list strong{display:block;font:700 20px Georgia,serif}.river-list span{display:block;margin-top:7px;color:#5f5a51;font-size:14px}
+@media(max-width:760px){.resource-grid,.river-list{grid-template-columns:1fr}}
+/* Quick jump links, trail cards, map files */
+.jump{background:var(--black);border-bottom:1px solid rgba(213,166,58,.45);position:sticky;top:var(--nav-height);z-index:900}
+.jump-inner{width:min(var(--max),100%);margin:auto;padding:10px 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.jump-inner::-webkit-scrollbar{display:none}
+.jump a{flex:0 0 auto;padding:8px 14px;border:1px solid #3a3a3a;border-radius:999px;color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;transition:.2s}
+.jump a:hover{border-color:var(--gold);color:var(--gold-light)}
+section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn-row .btn{margin-top:0}
+.trail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.trail-grid .resource-item:last-child:nth-child(odd){grid-column:1/-1}
+.twofer{margin:14px 0 0;padding:12px 14px;background:#fff7df;border-left:4px solid var(--gold);font-size:14px;color:#332c1f}
+.twofer b{color:var(--green);letter-spacing:1px;font-size:12px}
+.files-card .pdf-actions .btn{min-width:0}
+.file-group{margin-top:16px}.file-group .card-num{margin-bottom:8px}
+.warning-box .btn-row .btn{font-size:11px;min-height:40px}
+@media(max-width:760px){.jump{top:70px}.trail-grid{grid-template-columns:1fr}.btn-row{flex-direction:column}.btn-row .btn{width:100%}}
+.dark .kicker,.dark .card-num{color:var(--gold-light)}
+/* On The Air Now bar */
+.onair{background:#0d2419;border-bottom:1px solid rgba(213,166,58,.45);color:#fff}
+.onair-inner{width:min(var(--max),100%);margin:auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.onair-title{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:3px;color:var(--gold-light);white-space:nowrap}
+.onair .dot{width:10px;height:10px;border-radius:50%;background:#3ecf6e;animation:pulse 1.8s infinite}
+.onair .dot.off{background:#8a8a8a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.6)}70%{box-shadow:0 0 0 9px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.onair-count{font-size:14px;color:#e9eee9}.onair-count b{color:#fff}
+.onair-list{display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}.onair-list::-webkit-scrollbar{display:none}
+.onair-chip{flex:0 0 auto;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;white-space:nowrap}
+.onair-chip b{color:var(--gold-light)}.onair-chip.club{border-color:var(--gold);background:rgba(213,166,58,.14)}
+.onair .btn{margin:0;min-height:38px;padding:8px 14px;font-size:11px;white-space:nowrap}
+@media(max-width:760px){.onair-inner{padding:12px 18px;gap:8px 10px}.onair-title{order:1}.onair .btn{order:2;margin-left:auto}.onair-count{order:3;flex-basis:100%}.onair-list{order:4;flex-basis:100%}}
+
+/* KPC shared About-style footer and below-hero page links */
+.page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+.page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
+.page-jump-nav a:hover,.page-jump-nav a:focus-visible{background:#3c321a;border-color:#d6b96c;color:#fff}
+section[id]{scroll-margin-top:100px}
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
+body.field .page-jump-nav{display:none!important}
+
+</style>
+<link rel="stylesheet" href="kpc-nav.css?v=20261010g">
+<style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
+<style>
+[hidden]{display:none!important}
+.hero{min-height:400px;background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.66) 45%,rgba(7,7,7,.2) 80%,rgba(7,7,7,.05) 100%),url("hdr-river.jpg") center 55%/cover no-repeat #070707}
+@media(max-width:760px){.hero{min-height:360px;background:linear-gradient(180deg,rgba(7,7,7,.4) 0%,rgba(7,7,7,.78) 50%,rgba(7,7,7,.9) 100%),url("hdr-river-mobile.jpg") center 60%/cover no-repeat #070707}}
+.dg-jump{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px 16px;background:#101010;border-bottom:1px solid #2a2a2a}
+.dg-jump a{padding:9px 13px;border:1px solid rgba(255,255,255,.28);border-radius:6px;color:#fff;font-size:11px;font-weight:900;letter-spacing:.7px}
+.dg-jump a:hover{border-color:var(--gold);color:var(--gold-light)}
+.dg-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 26px}
+.dg-chip{min-height:40px;padding:9px 15px;border-radius:999px;border:1px solid #c9bda4;background:#fff;color:var(--ink);font:900 12px Arial,sans-serif;letter-spacing:1px;cursor:pointer}
+.dg-chip[aria-pressed=true]{background:var(--black);border-color:var(--black);color:var(--gold-light)}
+.dg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.dg{display:flex;flex-direction:column;background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);padding:20px;box-shadow:0 10px 24px rgba(0,0,0,.06)}
+.dg .t{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.dg .t span{font-size:10px;font-weight:900;letter-spacing:1.2px;padding:3px 8px;border-radius:999px;background:#ece4d1;color:#5b5446}
+.dg .t span.pota{background:var(--green);color:#fff}
+.dg h3{margin:0 0 6px;font:700 24px/1.1 Georgia,serif}
+.dg p{margin:0 0 12px;color:var(--muted);font-size:15px}
+.dg dl{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;margin:0 0 12px;font-size:13px}
+.dg dt{font-weight:900;color:#3b372f;font-size:11px;letter-spacing:.8px;padding-top:2px}
+.dg dd{margin:0;color:#4b473f}
+.dg .meter{display:flex;gap:3px;align-items:center}
+.dg .meter i{width:14px;height:6px;border-radius:2px;background:#e3dac6}.dg .meter i.on{background:var(--gold)}
+.dg a.go{margin-top:auto;font-size:12px;font-weight:900;letter-spacing:1px;color:#8a5a12}
+.dg-none{text-align:center;color:var(--muted)}
+.fq-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.fq-tab{min-height:40px;padding:9px 15px;border-radius:8px;border:1px solid #3a3a3a;background:#141414;color:#e9e3d6;font:900 12px Arial,sans-serif;letter-spacing:1px;cursor:pointer}
+.fq-tab[aria-selected=true]{background:var(--gold);border-color:var(--gold);color:#111}
+.fq-wrap{overflow:auto;border:1px solid #333;border-radius:8px}
+table.fq{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+table.fq th{background:#1d1d1d;color:#cfc6b2;font-size:10px;letter-spacing:1.3px;text-align:left;padding:9px 10px;position:sticky;top:0}
+table.fq td{padding:9px 10px;border-top:1px solid #262626;color:#ddd}
+table.fq td:first-child{font-weight:900;color:var(--gold-light)}
+table.fq button{background:none;border:0;color:#fff;font:700 15px "Courier New",monospace;cursor:pointer;padding:2px 4px;border-radius:4px}
+table.fq button:hover{background:#2a2410;color:var(--gold-light)}
+table.fq button.copied{background:var(--green)}
+.fq-note{color:#bcb8ae;font-size:13px;margin:12px 0 0}
+.clk{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.clk>div{background:#151515;border:1px solid #363636;border-radius:10px;padding:20px;text-align:center}
+.clk .big{font:700 40px "Courier New",monospace;color:#fff;letter-spacing:2px}
+.clk .lbl{font-size:11px;font-weight:900;letter-spacing:1.5px;color:#cfc6b2;margin-bottom:6px}
+.clk .sub{color:#bcb8ae;font-size:13px;margin-top:6px}
+.clk .ring{position:relative;width:120px;height:120px;margin:4px auto 6px}
+.clk svg{width:120px;height:120px;transform:rotate(-90deg)}
+.clk .ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 30px "Courier New",monospace;color:#fff}
+.clk .even{color:#7fd39a}.clk .odd{color:#f0c96b}
+.clk button{margin-top:10px;min-height:42px;padding:9px 16px;border-radius:8px;border:0;background:var(--gold);color:#111;font:900 12px Arial,sans-serif;letter-spacing:1px;cursor:pointer}
+#clkRes{min-height:40px}
+#clkRes .good{color:#7fd39a;font-weight:900}#clkRes .ok{color:var(--gold-light);font-weight:900}#clkRes .bad{color:#ff8a6a;font-weight:900}
+.ck{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 28px}
+.ck label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#fff;border:1px solid #e1d7c3;cursor:pointer}
+.ck input{width:20px;height:20px;margin-top:2px;accent-color:var(--green);flex:0 0 auto}
+.ck b{display:block;font-size:15px;color:#171717}.ck span{color:var(--muted);font-size:14px}
+.ck label:has(input:checked){background:#eef6f0;border-color:#9cc7a9}
+.ck-bar{display:flex;align-items:center;gap:12px;justify-content:center;margin:0 0 18px;color:var(--muted);font-weight:800;font-size:13px}
+.ck-bar button{border:1px solid #c9bda4;background:#fff;border-radius:6px;padding:6px 10px;font:800 11px Arial,sans-serif;cursor:pointer}
+.ft8{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+.ft8-seq{background:#050806;border:1px solid #23402e;border-radius:8px;padding:14px;font:700 15px/1.7 "Courier New",monospace}
+.ft8-seq div{display:grid;grid-template-columns:62px 1fr;gap:8px;border-bottom:1px dashed rgba(255,255,255,.06)}
+.ft8-seq span{color:#7fd39a;font-size:11px;letter-spacing:1px;font-family:Arial,sans-serif;font-weight:900;padding-top:3px}
+.ft8-seq code{color:#e9f5ec}.ft8-seq div.me span{color:var(--gold-light)}.ft8-seq div.me code{color:#ffe6a6}
+.ft8-steps{margin:0;padding-left:20px;color:#d9d3c6}.ft8-steps li{margin:0 0 10px}.ft8-steps b{color:#fff}
+.lk{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.lk a{display:block;background:#fff;border:1px solid #d8cfbf;padding:14px 16px;color:var(--ink);transition:.2s}
+.lk a:hover{border-color:var(--gold);transform:translateY(-2px)}
+.lk b{display:block;font:700 18px Georgia,serif}.lk span{color:var(--muted);font-size:13px}
+@media(max-width:1000px){.dg-grid{grid-template-columns:repeat(2,1fr)}.lk{grid-template-columns:repeat(2,1fr)}.clk{grid-template-columns:1fr}.ft8{grid-template-columns:1fr}}
+@media(max-width:640px){.dg-grid,.ck,.lk{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Search &amp; Park Guides</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-band-plan.html" role="menuitem"><span class="ni">&#128225;</span>Band Plan by License</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • DIGITAL MODES</p><h1>DIGITAL <span>MODES</span></h1><p class="hero-copy">FT8, JS8Call, Winlink, APRS, SSTV and digital voice — what each one is for, where to find it on the dial, and how to get on the air from a park.</p></div></section>
+<nav class="dg-jump" aria-label="On this page"><a href="#modes">THE MODES</a><a href="#freqs">FREQUENCIES</a><a href="#clock">CLOCK &amp; FT8 TIMER</a><a href="#setup">SETUP CHECKLIST</a><a href="#pota">POTA ON FT8</a><a href="#links">SOFTWARE</a></nav>
+
+<section class="section features" id="modes"><div class="section-inner">
+<div class="section-heading"><div class="kicker">PICK BY WHAT YOU WANT TO DO</div><h2>The Major Digital Modes</h2><p>Tap a goal to see the modes that fit. Every mode here works with a computer (or phone) and your radio's audio.</p></div>
+<div class="dg-chips" role="group" aria-label="Filter modes">
+ <button type="button" class="dg-chip" data-f="all" aria-pressed="true">ALL</button>
+ <button type="button" class="dg-chip" data-f="pota" aria-pressed="false">GREAT FOR POTA/SOTA</button>
+ <button type="button" class="dg-chip" data-f="weak" aria-pressed="false">WEAK SIGNALS / QRP</button>
+ <button type="button" class="dg-chip" data-f="chat" aria-pressed="false">KEYBOARD CHAT</button>
+ <button type="button" class="dg-chip" data-f="emcomm" aria-pressed="false">EMAIL &amp; EMERGENCY</button>
+ <button type="button" class="dg-chip" data-f="pics" aria-pressed="false">PICTURES</button>
+ <button type="button" class="dg-chip" data-f="vhf" aria-pressed="false">VHF / UHF</button>
+ <button type="button" class="dg-chip" data-f="voice" aria-pressed="false">DIGITAL VOICE</button>
+</div>
+<div class="dg-grid" id="dgGrid">
+
+ <article class="dg" data-tags="pota weak"><div class="t"><span class="pota">POTA FAVORITE</span><span>HF • WEAK SIGNAL</span></div><h3>FT8</h3>
+  <p>The most popular mode on HF. Fully automated 15-second transmissions that get through when you can barely hear anything. Contacts are short: calls, grid, signal report.</p>
+  <dl><dt>BANDWIDTH</dt><dd>50 Hz</dd><dt>SOFTWARE</dt><dd>WSJT-X (free)</dd><dt>EASE</dt><dd><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></dd><dt>BEST FOR</dt><dd>Making contacts on low power, poor conditions, quick POTA logs</dd></dl>
+  <a class="go" href="#freqs" data-fq="ft8">SEE FT8 FREQUENCIES →</a></article>
+
+ <article class="dg" data-tags="pota weak"><div class="t"><span class="pota">POTA</span><span>HF • WEAK SIGNAL</span></div><h3>FT4</h3>
+  <p>FT8's faster sibling: 7.5-second transmissions, built for contests. A little less sensitive, but twice the contact rate when a pileup builds.</p>
+  <dl><dt>BANDWIDTH</dt><dd>90 Hz</dd><dt>SOFTWARE</dt><dd>WSJT-X</dd><dt>EASE</dt><dd><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></dd><dt>BEST FOR</dt><dd>Contests and busy runs</dd></dl>
+  <a class="go" href="#freqs" data-fq="ft4">SEE FT4 FREQUENCIES →</a></article>
+
+ <article class="dg" data-tags="chat weak emcomm pota"><div class="t"><span>HF • KEYBOARD</span><span>WEAK SIGNAL</span></div><h3>JS8Call</h3>
+  <p>FT8's weak-signal modulation turned into a real conversation mode. Type messages, relay through other stations, leave messages in inboxes. Popular with preparedness groups.</p>
+  <dl><dt>BANDWIDTH</dt><dd>50 Hz (normal speed)</dd><dt>SOFTWARE</dt><dd>JS8Call (free)</dd><dt>EASE</dt><dd><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></dd><dt>BEST FOR</dt><dd>Real QSOs on low power, store-and-forward messaging</dd></dl>
+  <a class="go" href="#freqs" data-fq="js8">SEE JS8 FREQUENCIES →</a></article>
+
+ <article class="dg" data-tags="chat"><div class="t"><span>HF • KEYBOARD</span><span>CLASSIC</span></div><h3>PSK31</h3>
+  <p>The original keyboard-to-keyboard sound card mode. Live typing at about the speed of a good typist, with a lot of narrow signals sharing one slice of the band.</p>
+  <dl><dt>BANDWIDTH</dt><dd>~31 Hz</dd><dt>SOFTWARE</dt><dd>fldigi (free)</dd><dt>EASE</dt><dd><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></dd><dt>BEST FOR</dt><dd>Real-time chats</dd></dl>
+  <a class="go" href="#freqs" data-fq="psk">SEE PSK31 FREQUENCIES →</a></article>
+
+ <article class="dg" data-tags="chat"><div class="t"><span>HF • CONTESTS</span><span>CLASSIC</span></div><h3>RTTY</h3>
+  <p>Radioteletype — the oldest digital mode, still huge in contests and DXpeditions. Wider and louder than the newer modes, and fun to work in a contest.</p>
+  <dl><dt>BANDWIDTH</dt><dd>~250 Hz</dd><dt>SOFTWARE</dt><dd>fldigi, MMTTY, N1MM+</dd><dt>EASE</dt><dd><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></dd><dt>BEST FOR</dt><dd>RTTY contests (like the ARRL RTTY Roundup), DX</dd></dl>
+  <a class="go" href="#freqs" data-fq="rtty">SEE RTTY FREQUENCIES →</a></article>
+
+ <article class="dg" data-tags="chat weak emcomm"><div class="t"><span>HF • KEYBOARD</span><span>VERY ROBUST</span></div><h3>Olivia</h3>
+  <p>Slow but almost unbreakable keyboard mode — it copies through static, fading and interference that wipes out PSK. Used by some nets and preparedness groups.</p>
+  <dl><dt>BANDWIDTH</dt><dd>250–1000 Hz (common: 8/250, 16/500)</dd><dt>SOFTWARE</dt><dd>fldigi</dd><dt>EASE</dt><dd><span class="meter"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></dd><dt>BEST FOR</dt><dd>Nets and chats in rough conditions</dd></dl>
+  <a class="go" href="#links">GET FLDIGI →</a></article>
+
+ <article class="dg" data-tags="emcomm"><div class="t"><span>HF + VHF</span><span>EMAIL</span></div><h3>Winlink</h3>
+  <p>Real email over radio, with attachments and forms. Connect to a gateway station on HF (VARA HF or ARDOP) or VHF (VARA FM or packet). The backbone of a lot of ARES and emergency work.</p>
+  <dl><dt>MODEMS</dt><dd>VARA HF/FM, ARDOP, packet</dd><dt>SOFTWARE</dt><dd>Winlink Express (Windows), Pat (Linux/Mac/Pi)</dd><dt>EASE</dt><dd><span class="meter"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></dd><dt>BEST FOR</dt><dd>Emergency messaging, email from the field</dd></dl>
+  <a class="go" href="https://winlink.org/" target="_blank" rel="noopener">WINLINK.ORG ↗</a></article>
+
+ <article class="dg" data-tags="vhf emcomm"><div class="t"><span>VHF</span><span>POSITION &amp; TEXT</span></div><h3>APRS</h3>
+  <p>Automatic Packet Reporting System — beacons your position, weather and short text messages to a nationwide network. Track your activation trip or a fox-hunt team on a map.</p>
+  <dl><dt>FREQUENCY</dt><dd>144.390 MHz (North America)</dd><dt>GEAR</dt><dd>APRS radio, or an HT + phone app (APRSdroid, aprs.fi viewers)</dd><dt>EASE</dt><dd><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></dd><dt>BEST FOR</dt><dd>Tracking, short messages, ISS digipeater</dd></dl>
+  <a class="go" href="https://aprs.fi/" target="_blank" rel="noopener">SEE STATIONS ON APRS.FI ↗</a></article>
+
+ <article class="dg" data-tags="pics vhf"><div class="t"><span>HF + VHF</span><span>PICTURES</span></div><h3>SSTV</h3>
+  <p>Slow-scan TV — send and receive pictures, about a minute each. Fun from a park ("here's my view") and during the Space Station's SSTV events on 145.800 MHz.</p>
+  <dl><dt>BANDWIDTH</dt><dd>~2.5 kHz (voice-wide)</dd><dt>SOFTWARE</dt><dd>MMSSTV, QSSTV, Robot36 (phone)</dd><dt>EASE</dt><dd><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></dd><dt>BEST FOR</dt><dd>Picture swaps, ISS events</dd></dl>
+  <a class="go" href="#freqs" data-fq="sstv">SEE SSTV FREQUENCIES →</a></article>
+
+ <article class="dg" data-tags="voice"><div class="t"><span>HF</span><span>DIGITAL VOICE</span></div><h3>FreeDV</h3>
+  <p>Open-source digital voice for HF SSB rigs — no hiss, no static, as long as the signal holds. A computer (or a small FreeDV box) does the codec.</p>
+  <dl><dt>FREQUENCY</dt><dd>14.236 MHz USB is the usual 20 m meeting spot</dd><dt>SOFTWARE</dt><dd>FreeDV (free)</dd><dt>EASE</dt><dd><span class="meter"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></dd><dt>BEST FOR</dt><dd>Experimenting with clean-sounding HF voice</dd></dl>
+  <a class="go" href="https://freedv.org/" target="_blank" rel="noopener">FREEDV.ORG ↗</a></article>
+
+ <article class="dg" data-tags="voice vhf"><div class="t"><span>VHF/UHF</span><span>DIGITAL VOICE</span></div><h3>DMR</h3>
+  <p>Digital Mobile Radio — cheap radios, lots of repeaters and worldwide "talkgroups" (Brandmeister). You need a free radio ID and a code-plug for your radio. A hotspot puts you on the network from home or camp.</p>
+  <dl><dt>NEEDS</dt><dd>DMR radio, free ID from RadioID.net, code-plug</dd><dt>EASE</dt><dd><span class="meter"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></dd><dt>BEST FOR</dt><dd>Repeater and worldwide talkgroup chats</dd></dl>
+  <a class="go" href="https://radioid.net/" target="_blank" rel="noopener">GET A RADIO ID ↗</a></article>
+
+ <article class="dg" data-tags="voice vhf"><div class="t"><span>VHF/UHF</span><span>DIGITAL VOICE</span></div><h3>D-STAR &amp; System Fusion</h3>
+  <p>The two other big digital voice systems. D-STAR is Icom's; System Fusion (C4FM) is Yaesu's and often shares repeaters with regular FM. Both link repeaters over the internet (reflectors, WIRES-X).</p>
+  <dl><dt>NEEDS</dt><dd>A D-STAR (Icom) or Fusion (Yaesu) radio; D-STAR gateway access needs registration</dd><dt>EASE</dt><dd><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></dd><dt>BEST FOR</dt><dd>Local repeaters that run them; linked nets</dd></dl>
+  <a class="go" href="https://www.repeaterbook.com/" target="_blank" rel="noopener">FIND REPEATERS ↗</a></article>
+</div>
+<p class="dg-none" id="dgNone" hidden>No modes match that.</p>
+</div></section>
+
+<section class="section dark" id="freqs"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">WHERE TO TUNE</div><h2>Digital Frequencies</h2><p>Dial frequencies in MHz, USB. Tap a frequency to copy it. These are activity centers, not rules — move off a little if it's busy.</p></div>
+<div class="fq-tabs" role="tablist" aria-label="Choose a mode">
+ <button type="button" class="fq-tab" role="tab" data-m="all">ALL HF</button><button type="button" class="fq-tab" role="tab" data-m="ft8">FT8</button><button type="button" class="fq-tab" role="tab" data-m="ft4">FT4</button><button type="button" class="fq-tab" role="tab" data-m="js8">JS8</button><button type="button" class="fq-tab" role="tab" data-m="psk">PSK31</button><button type="button" class="fq-tab" role="tab" data-m="rtty">RTTY</button><button type="button" class="fq-tab" role="tab" data-m="sstv">SSTV</button><button type="button" class="fq-tab" role="tab" data-m="vhf">VHF / UHF</button>
+</div>
+<div class="fq-wrap"><table class="fq" id="fqTable"></table></div>
+<p class="fq-note" id="fqNote"></p>
+</div></section>
+
+<section class="section dark" id="clock" style="border-top:0;padding-top:20px"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">TIMING MATTERS</div><h2>Clock Check &amp; FT8 Timer</h2><p>FT8 and FT4 only decode if your computer's clock is within about a second of everyone else's. Check it here before you head out.</p></div>
+<div class="clk">
+ <div><div class="lbl">UTC TIME</div><div class="big" id="clkUtc">--:--:--</div><div class="sub" id="clkLocal"></div><button type="button" id="clkCheck">CHECK MY CLOCK</button><div class="sub" id="clkRes"></div></div>
+ <div><div class="lbl">FT8 PERIOD (15 s)</div><div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="#2a2a2a" stroke-width="10"/><circle id="ft8Arc" cx="60" cy="60" r="52" fill="none" stroke="#d5a63a" stroke-width="10" stroke-dasharray="326.7" stroke-dashoffset="0"/></svg><b id="ft8Sec">--</b></div><div class="sub" id="ft8Which"></div></div>
+ <div><div class="lbl">FT4 PERIOD (7.5 s)</div><div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="#2a2a2a" stroke-width="10"/><circle id="ft4Arc" cx="60" cy="60" r="52" fill="none" stroke="#2e8b57" stroke-width="10" stroke-dasharray="326.7" stroke-dashoffset="0"/></svg><b id="ft4Sec">--</b></div><div class="sub" id="ft4Which"></div></div>
+</div>
+<p class="fq-note" style="text-align:center">In the field without internet? A GPS time-sync app on your laptop or phone keeps you on time. "1st" (even) periods start at :00 and :30, "2nd" (odd) at :15 and :45.</p>
+</div></section>
+
+<section class="section features" id="setup"><div class="section-inner">
+<div class="section-heading"><div class="kicker">BEFORE YOU GO</div><h2>Digital Setup Checklist</h2><p>Check them off as you go — your checks are saved on this device.</p></div>
+<div class="ck-bar"><span id="ckCount">0 of 10 done</span><button type="button" id="ckReset">RESET</button></div>
+<div class="ck" id="ck">
+ <label><input type="checkbox"><div><b>Radio-to-computer audio</b><span>Many newer rigs have a built-in USB sound card (one cable). Older or QRP rigs need an interface such as a Digirig or SignaLink.</span></div></label>
+ <label><input type="checkbox"><div><b>Rig control (CAT)</b><span>Let the software change frequency and key the radio. Pick your radio model and COM port in the software's radio settings.</span></div></label>
+ <label><input type="checkbox"><div><b>Accurate clock</b><span>Within about 1 second for FT8/FT4. Use the clock check above, or a time-sync / GPS app.</span></div></label>
+ <label><input type="checkbox"><div><b>Audio levels</b><span>Receive noise around 30 dB on the WSJT-X meter. On transmit, raise drive until power peaks, then back off so ALC shows little or none.</span></div></label>
+ <label><input type="checkbox"><div><b>Power that the radio can handle</b><span>FT8 is a constant-carrier mode. Run about half your rig's rated power (or less) so it stays cool — QRP works great.</span></div></label>
+ <label><input type="checkbox"><div><b>Callsign &amp; grid entered</b><span>Your 4-character grid square goes in every CQ. Look it up with the KPC Grid &amp; County Lookup.</span></div></label>
+ <label><input type="checkbox"><div><b>Split / "Fake It" on</b><span>WSJT-X's Split Operation "Fake It" keeps your transmit audio in the clean middle of the radio's filter.</span></div></label>
+ <label><input type="checkbox"><div><b>Logging set up</b><span>WSJT-X saves an ADIF log. For POTA, add your park in your logger (or edit the ADIF) before you upload.</span></div></label>
+ <label><input type="checkbox"><div><b>Laptop power for the day</b><span>Laptops can drain faster than the radio. Bring a charger that runs off your battery, or a power bank.</span></div></label>
+ <label><input type="checkbox"><div><b>Test at home first</b><span>Make a few contacts from the driveway. Fixing a COM port or audio setting in a park is no fun.</span></div></label>
+</div>
+</div></section>
+
+<section class="section dark" id="pota"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">PARKS ON THE AIR</div><h2>Activating a Park on FT8</h2><p>FT8 counts as a data contact for POTA. Low power, quiet campsites and automatic logging make it a great way to get your 10.</p></div>
+<div class="ft8">
+ <div>
+  <div class="ft8-seq" aria-label="Example FT8 POTA contact">
+   <div class="me"><span>YOU</span><code>CQ POTA KZ4CP EM78</code></div>
+   <div><span>HUNTER</span><code>KZ4CP W8ABC EN81</code></div>
+   <div class="me"><span>YOU</span><code>W8ABC KZ4CP -12</code></div>
+   <div><span>HUNTER</span><code>KZ4CP W8ABC R-08</code></div>
+   <div class="me"><span>YOU</span><code>W8ABC KZ4CP RR73</code></div>
+   <div><span>HUNTER</span><code>KZ4CP W8ABC 73</code></div>
+  </div>
+  <p class="fq-note">Each line is one 15-second transmission. WSJT-X sends these for you once you double-click a caller.</p>
+ </div>
+ <ol class="ft8-steps">
+  <li><b>Spot yourself</b> on pota.app with your park and frequency — hunters look there first.</li>
+  <li><b>Call "CQ POTA"</b> — WSJT-X lets you replace plain CQ with CQ POTA (type it into the CQ message).</li>
+  <li><b>Pick a clear spot</b> in the waterfall and keep transmitting there; turn on "Hold Tx Freq".</li>
+  <li><b>Watch the clock</b> — no internet in the park, so sync before you leave or use GPS time.</li>
+  <li><b>Fix your log</b> afterwards: add your park reference to every contact, then upload to POTA.</li>
+  <li><b>Check propagation</b> on PSKReporter — it shows where your CQs are being heard.</li>
+ </ol>
+</div>
+</div></section>
+
+<section class="section features" id="links"><div class="section-inner">
+<div class="section-heading"><div class="kicker">FREE SOFTWARE &amp; SITES</div><h2>Get Set Up</h2></div>
+<div class="lk">
+ <a href="https://wsjt.sourceforge.io/wsjtx.html" target="_blank" rel="noopener"><b>WSJT-X</b><span>FT8, FT4 and the other weak-signal modes</span></a>
+ <a href="http://js8call.com/" target="_blank" rel="noopener"><b>JS8Call</b><span>Keyboard chat with FT8-style sensitivity</span></a>
+ <a href="http://www.w1hkj.com/" target="_blank" rel="noopener"><b>fldigi</b><span>PSK31, RTTY, Olivia and dozens more</span></a>
+ <a href="https://pskreporter.info/pskmap.html" target="_blank" rel="noopener"><b>PSKReporter</b><span>Live map of who's hearing whom</span></a>
+ <a href="https://winlink.org/" target="_blank" rel="noopener"><b>Winlink</b><span>Email over radio, gateways and forms</span></a>
+ <a href="https://aprs.fi/" target="_blank" rel="noopener"><b>aprs.fi</b><span>See APRS stations and your track</span></a>
+ <a href="https://freedv.org/" target="_blank" rel="noopener"><b>FreeDV</b><span>Open digital voice for HF</span></a>
+ <a href="https://radioid.net/" target="_blank" rel="noopener"><b>RadioID.net</b><span>Free DMR / NXDN ID</span></a>
+</div>
+<p class="fq-note" style="color:var(--muted);text-align:center;margin-top:22px">Related KPC tools: <a href="kpc-band-plan.html" style="color:var(--green);font-weight:800">Band Plan by License</a> · <a href="kpc-lookup.html" style="color:var(--green);font-weight:800">Grid &amp; County Lookup</a> · <a href="kpc-space-weather.html" style="color:var(--green);font-weight:800">Radio Conditions</a></p>
+</div></section>
+
+<section class="final"><h2>Get Outside. Get On The Air.</h2><p>DIGITAL, CW OR PHONE — EVERY CONTACT COUNTS</p><a class="btn" href="toolbox.html">OPEN THE KY TOOL BOX →</a></section>
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
+<script>
+(function(){
+/* ---- mode filter ---- */
+var chips=document.querySelectorAll('.dg-chip'),cards=document.querySelectorAll('#dgGrid .dg');
+function filt(f){var n=0;cards.forEach(function(c){var on=f==='all'||c.dataset.tags.split(' ').indexOf(f)>=0;c.hidden=!on;if(on)n++});document.getElementById('dgNone').hidden=n>0;chips.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.f===f))})}
+chips.forEach(function(b){b.addEventListener('click',function(){filt(b.dataset.f)})});
+
+/* ---- frequency tables (MHz dial, USB) ---- */
+var BANDS=['160m','80m','60m','40m','30m','20m','17m','15m','12m','10m','6m'];
+var F={
+ ft8:{name:'FT8','160m':'1.840','80m':'3.573','60m':'5.357','40m':'7.074','30m':'10.136','20m':'14.074','17m':'18.100','15m':'21.074','12m':'24.915','10m':'28.074','6m':'50.313'},
+ ft4:{name:'FT4','80m':'3.575','40m':'7.0475','30m':'10.140','20m':'14.080','17m':'18.104','15m':'21.140','12m':'24.919','10m':'28.180','6m':'50.318'},
+ js8:{name:'JS8','160m':'1.842','80m':'3.578','40m':'7.078','30m':'10.130','20m':'14.078','17m':'18.104','15m':'21.078','12m':'24.922','10m':'28.078','6m':'50.318'},
+ psk:{name:'PSK31','160m':'1.838','80m':'3.580','40m':'7.080','30m':'10.142','20m':'14.070','17m':'18.100','15m':'21.080','12m':'24.920','10m':'28.120','6m':'50.290'},
+ rtty:{name:'RTTY','80m':'3.580–3.600','40m':'7.040 (DX) / 7.080–7.100','20m':'14.080–14.090','15m':'21.080–21.100','10m':'28.080–28.100'},
+ sstv:{name:'SSTV','80m':'3.845','40m':'7.171','20m':'14.230','15m':'21.340','10m':'28.680','6m':'50.680'}
+};
+var NOTES={
+ ft8:'Most FT8 activity is on 20 m and 40 m in the daytime, 40 m and 80 m at night. 6 m FT8 lights up during summer Sporadic-E.',
+ ft4:'FT4 is busiest during contests. Same software and setup as FT8.',
+ js8:'JS8Call has these frequencies built in — just pick a band.',
+ psk:'PSK31 signals sit just above these dial settings (about +1 kHz audio). In the US, 40 m PSK is around 7.080.',
+ rtty:'RTTY spreads out during contests — tune the whole range. 30 m and the WARC bands (17/12 m) are contest-free.',
+ sstv:'14.230 is the busiest SSTV spot. Listen first — pictures take about a minute.',
+ all:'Dial frequencies in MHz (USB). Tap any frequency to copy it.',
+ vhf:'FM simplex calling frequencies are for voice; move off to chat.'
+};
+var VHF=[['APRS (North America)','144.390 FM'],['FT8 — 2 m','144.174 USB'],['JS8 — 2 m','144.178 USB'],['ISS SSTV events (downlink)','145.800 FM'],['ISS APRS digipeater','145.825 FM'],['2 m FM simplex calling (voice)','146.520 FM'],['70 cm FM simplex calling (voice)','446.000 FM']];
+var tbl=document.getElementById('fqTable'),note=document.getElementById('fqNote'),tabs=document.querySelectorAll('.fq-tab');
+var btn=function(v){return v?'<button type="button" data-copy="'+v.split(/[ –(\/]/)[0]+'">'+v+'</button>':'<span style="color:#555">—</span>'};
+function draw(m){
+ tabs.forEach(function(t){t.setAttribute('aria-selected',String(t.dataset.m===m))});
+ var h='';
+ if(m==='vhf'){h='<thead><tr><th>USE</th><th>FREQUENCY (MHz)</th></tr></thead><tbody>'+VHF.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+btn(r[1])+'</td></tr>'}).join('')+'</tbody>'}
+ else if(m==='all'){var ks=['ft8','ft4','js8','psk','sstv'];h='<thead><tr><th>BAND</th>'+ks.map(function(k){return '<th>'+F[k].name+'</th>'}).join('')+'</tr></thead><tbody>'+BANDS.map(function(b){return '<tr><td>'+b+'</td>'+ks.map(function(k){return '<td>'+btn(F[k][b])+'</td>'}).join('')+'</tr>'}).join('')+'</tbody>'}
+ else{var f=F[m];h='<thead><tr><th>BAND</th><th>'+f.name+' DIAL (MHz)</th></tr></thead><tbody>'+BANDS.filter(function(b){return f[b]}).map(function(b){return '<tr><td>'+b+'</td><td>'+btn(f[b])+'</td></tr>'}).join('')+'</tbody>'}
+ tbl.innerHTML=h;note.textContent=NOTES[m]||'';
+}
+tabs.forEach(function(t){t.addEventListener('click',function(){draw(t.dataset.m)})});
+document.querySelectorAll('[data-fq]').forEach(function(a){a.addEventListener('click',function(){draw(a.dataset.fq)})});
+tbl.addEventListener('click',function(e){var b=e.target.closest('[data-copy]');if(!b)return;var v=b.dataset.copy;
+ var done=function(){b.classList.add('copied');var o=b.textContent;b.textContent='Copied '+v;setTimeout(function(){b.classList.remove('copied');b.textContent=o},1200)};
+ if(navigator.clipboard)navigator.clipboard.writeText(v).then(done,done);else done()});
+draw('all');
+
+/* ---- clock + FT8/FT4 period ---- */
+var off=0; // seconds to add to this device's clock (from the check)
+var C=326.7,pad=function(n){return String(n).padStart(2,'0')};
+function tick(){
+ var now=Date.now()+off*1000,d=new Date(now);
+ document.getElementById('clkUtc').textContent=pad(d.getUTCHours())+':'+pad(d.getUTCMinutes())+':'+pad(d.getUTCSeconds());
+ document.getElementById('clkLocal').textContent='Local '+d.toLocaleTimeString([], {hour:'numeric',minute:'2-digit',second:'2-digit'});
+ var s=(now/1000)%60;
+ var p8=s%15,left8=15-p8,first8=Math.floor(s/15)%2===0;
+ document.getElementById('ft8Arc').setAttribute('stroke-dashoffset',String(C*(p8/15)));
+ document.getElementById('ft8Sec').textContent=Math.ceil(left8);
+ var w8=document.getElementById('ft8Which');w8.innerHTML='Now: <b class="'+(first8?'even':'odd')+'">'+(first8?'1st / even':'2nd / odd')+'</b> period';
+ var p4=s%7.5,first4=Math.floor(s/7.5)%2===0;
+ document.getElementById('ft4Arc').setAttribute('stroke-dashoffset',String(C*(p4/7.5)));
+ document.getElementById('ft4Sec').textContent=Math.ceil(7.5-p4);
+ document.getElementById('ft4Which').innerHTML='Now: <b class="'+(first4?'even':'odd')+'">'+(first4?'1st / even':'2nd / odd')+'</b> period';
+}
+setInterval(tick,100);tick();
+document.getElementById('clkCheck').addEventListener('click',async function(){
+ var r=document.getElementById('clkRes');r.textContent='Checking…';
+ try{
+  /* The web server's Date header is whole seconds, so sample until it ticks over to get sub-second accuracy */
+  var est=null,prev=null;
+  for(var i=0;i<14&&est===null;i++){
+   var t0=Date.now();var res=await fetch(location.pathname+'?clock='+t0,{method:'HEAD',cache:'no-store'});var t1=Date.now();
+   var hd=res.headers.get('Date');if(!hd)throw new Error('no date');
+   var srv=new Date(hd).getTime(),mid=(t0+t1)/2;
+   if(prev!==null&&srv!==prev.srv&&(t1-t0)<800){est=(srv-(prev.mid+mid)/2)/1000;}
+   prev={srv:srv,mid:mid};
+   await new Promise(function(ok){setTimeout(ok,120)});
+  }
+  if(est===null)est=prev?(prev.srv+500-prev.mid)/1000:0;
+  off=est;var a=Math.abs(est);
+  r.innerHTML=a<0.7?'<span class="good">✓ Your clock looks good</span> (within about a second)':a<2?'<span class="ok">Close — about '+a.toFixed(1)+' s '+(est>0?'slow':'fast')+'</span>. Sync it before FT8.':'<span class="bad">✗ About '+a.toFixed(1)+' s '+(est>0?'slow':'fast')+'</span> — FT8 won\'t decode. Sync your clock.';
+  r.innerHTML+='<br><small>The times shown here are now corrected.</small>';
+ }catch(e){r.textContent='Could not reach the server to check — are you online?'}
+});
+
+/* ---- checklist (saved on this device) ---- */
+var boxes=document.querySelectorAll('#ck input'),KEY='kpcDigiCheck';
+var saved=[];try{saved=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+function count(){var n=0;boxes.forEach(function(b){if(b.checked)n++});document.getElementById('ckCount').textContent=n+' of '+boxes.length+' done'+(n===boxes.length?' — you\'re ready! 🎉':'')}
+boxes.forEach(function(b,i){b.checked=saved.indexOf(i)>=0;b.addEventListener('change',function(){var s=[];boxes.forEach(function(x,j){if(x.checked)s.push(j)});try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}count()})});
+document.getElementById('ckReset').addEventListener('click',function(){boxes.forEach(function(b){b.checked=false});try{localStorage.removeItem(KEY)}catch(e){}count()});
+count();
+})();
+</script>
+<script src="kpc-search.js?v=20261011c" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body></html>
