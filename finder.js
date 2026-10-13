@@ -134,7 +134,7 @@ function crossInfo(d,kp,card){const also=[],add=s=>{if(s&&!also.includes(s))also
  else if(d[0]==='SOTA'){if(!sotaToPota){sotaToPota=new Map();kyGuide.forEach(p=>{if(p&&Array.isArray(p.sota)&&/^US-/.test(p.c))p.sota.forEach(s=>{const a=sotaToPota.get(s)||[];if(!a.includes(p.c))a.push(p.c);sotaToPota.set(s,a)})})}(sotaToPota.get(d[1])||[]).forEach(r=>add('POTA '+r))}
  if(also.length){const n=node('div','meta alsoin');n.append(node('b','','Also: '),document.createTextNode(also.slice(0,6).join(' · ')+(also.length>6?' +'+(also.length-6)+' more':'')));card.append(n)}
  const tf=d[0]==='POTA'?twoFerRefs(d[1],kp):[];
- if(tf.length){const n=node('div','twofer');n.append(node('b','','Possible POTA 2-fer'),document.createTextNode(' with '+tf.slice(0,4).map(r=>{const o=kyGuide.get(r);return r+(o&&o.n?' ('+o.n+')':'')}).join(', ')+(tf.length>4?' and '+(tf.length-4)+' more':'')+'. Verify before activating.'));card.append(n)}}
+ if(tf.length){const n=node('div','twofer');n.append(node('b','','Possible POTA 2-fer'),document.createTextNode(' with '+tf.slice(0,4).map(r=>{const o=kyGuide.get(r);return r+(o&&o.n?' ('+o.n+')':'')}).join(', ')+(tf.length>4?' and '+(tf.length-4)+' more':'')+'. Do your own research before activating.'));card.append(n)}}
 /* 2-fer partners: the park file's list plus mapped boundary overlaps of two POTA references (ky-overlaps.geojson, v20261010j) */
 let ovIdx=null;
 if(window.KPCX)KPCX.overlapIndex().then(ix=>{ovIdx=ix;if(data.length)render()}).catch(()=>{});

@@ -270,7 +270,7 @@ function infoHtml(x){const P=new Map(D.parks.map(q=>[q.c,q])),p=x.k==='pota'?P.g
  let h=`<span class="pi-tag ${x.k}">${x.k==='pota'?'POTA':x.k==='sota'?'SOTA':'WWFF / KFF'} • ${esc(x.ref)}</span> ${kmBadge(x)}<h3>${esc(x.n)}</h3><div class="pi-m">${line}</div>`;
  if(x.k==='sota')h+=`<div class="pi-m">${esc(x.meta||'')}</div>`;
  if(x.also&&x.also.length)h+=`<div class="pi-m"><b>Also:</b> ${esc(x.also.join(' · '))}</div>`;
- if(x.two&&x.two.length)h+=`<div class="pi-m pi-two"><b>Possible POTA 2-fer</b> with ${x.two.map(r=>`${esc(r[0])}${r[1]?' ('+esc(r[1])+')':''}`).join(', ')}. Verify before activating.</div>`;
+ if(x.two&&x.two.length)h+=`<div class="pi-m pi-two"><b>Possible POTA 2-fer</b> with ${x.two.map(r=>`${esc(r[0])}${r[1]?' ('+esc(r[1])+')':''}`).join(', ')}. Do your own research before activating.</div>`;
  const aps=p&&Array.isArray(p.ap)?p.ap.filter(a=>isFinite(a[0])&&isFinite(a[1])):[];
  const tot={},cnt={};aps.forEach(a=>{const k=String(a[2]||'Access point');tot[k]=(tot[k]||0)+1});const nm=a=>{const k=String(a[2]||'Access point');if(tot[k]>1){cnt[k]=(cnt[k]||0)+1;return k+' #'+cnt[k]}return k};
  const names=aps.map(nm);
@@ -300,7 +300,7 @@ function pinCard(x){const inTrip=trip.some(s=>s.ref===x.ref),P=PROG[x.k]||PROG.p
  <div class="kx-d"><b>${esc(x.ref)}</b>${x.cls?' · '+esc(x.cls):''}${x.co&&!/official|see /i.test(x.co)?' · '+esc(KPC.cty(x.co)):''}</div>
  <div class="kx-d">${x.d.toFixed(1)} mi from ${esc(origin?origin[2]:'start')}${x.meta?' · '+x.meta:''}</div>
  ${x.dn?`<div class="kx-d">Parking / entrance on file: ${esc(x.dn)}</div>`:''}
- ${x.two&&x.two.length?`<div class="kx-d" style="margin-top:5px"><span class="kx-badge g">Possible POTA 2-Fer</span><br>with ${x.two.slice(0,4).map(r=>`<b>${esc(r[0])}</b> ${esc(r[1]||'')}`).join(', ')}${x.two.length>4?` and ${x.two.length-4} more`:''}. Verify before activating.</div>`:''}
+ ${x.two&&x.two.length?`<div class="kx-d" style="margin-top:5px"><span class="kx-badge g">Possible POTA 2-Fer</span><br>with ${x.two.slice(0,4).map(r=>`<b>${esc(r[0])}</b> ${esc(r[1]||'')}`).join(', ')}${x.two.length>4?` and ${x.two.length-4} more`:''}. Do your own research before activating.</div>`:''}
  ${x.also&&x.also.length?`<div class="kx-d">Also: ${esc(x.also.join(' · '))}</div>`:''}
  <div class="kx-acts"><button type="button" class="pri" data-add="${x.ref}" ${inTrip?'disabled':''}>${inTrip?'✓ IN TRIP':'+ ADD TO TRIP'}</button><button type="button" data-info="${esc(x.ref)}">DETAILS ↓</button><a href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${x.dest[0]},${x.dest[1]}" target="_blank" rel="noopener">🚶 STREET VIEW</a>${(x.links||[]).slice(0,1).map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`).join('')}</div>
  ${x.k==='pota'?`<a href="finder.html?q=${x.ref}" style="display:inline-block;margin-top:6px;font-weight:700;font-size:12px">Open in KY Park Commander →</a>`:''}</div>`}
