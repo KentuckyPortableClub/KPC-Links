@@ -23,6 +23,7 @@ from kpc_issue import report  # noqa: E402
 
 UA = 'Mozilla/5.0 (compatible; KPC-reference-check; +https://kentuckyportableclub.github.io/KPC-Links/)'
 DATA = json.load(open('kpc-ky-data.json', encoding='utf-8'))
+EXTRA = {}  # extra details for new references (location), shown in the report
 
 
 def get(url, tries=3):
@@ -80,6 +81,7 @@ def wwff():
         vals = ' '.join(str(v) for k, v in r.items() if k and k.lower() in ('state', 'region', 'county', 'iota', 'notes', 'name'))
         if re.search(r'\b(US-)?KY\b|Kentucky', vals):
             out[ref] = r.get('name', '')
+            EXTRA[ref] = '(%s, %s · %s)' % (r.get('latitude', ''), r.get('longitude', ''), r.get('county', '') or r.get('region', ''))
     return out
 
 
@@ -108,7 +110,7 @@ for label, key, fn in checks:
     problems += n
     lines = ['## %s' % label, 'Site: %d · Official: %d' % (len(mine), len(official)), '']
     if new:
-        lines += ['**New on the official list, missing from the site (%d):**' % len(new)] + ['- %s %s' % (c, official[c]) for c in new[:80]] + ['']
+        lines += ['**New on the official list, missing from the site (%d):**' % len(new)] + ['- %s %s %s' % (c, official[c], EXTRA.get(c, '')) for c in new[:80]] + ['']
     if gone:
         lines += ['**On the site but not on the official active list (%d):** retired, or not in Kentucky per the official list.' % len(gone)] + ['- %s %s' % (c, mine[c]) for c in gone[:80]] + ['']
     if renamed:
