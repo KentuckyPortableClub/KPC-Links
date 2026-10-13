@@ -753,10 +753,12 @@ function setMode(m) {
     hunt: `You're the ${S.prog === 'sota' ? 'chaser' : 'hunter'}. Press START, wait for the CQ, then send your call once.`,
     act: `You're the activator. Press START, then call CQ ${progWord()} with your call. Answer the stations that come back.`,
     free: 'Send anything — it decodes as you go. Use it to check your timing.',
-    drill: 'Press PLAY, type what you heard, press Enter.'
+    drill: 'Press PLAY, type what you heard, press Enter.',
+    listen: ''
   }[m];
   ui.status(intro || ''); ui.hint('');
   try { localStorage.setItem('kpcCWmode', m); } catch (e) {}
+  document.dispatchEvent(new CustomEvent('kpccw:mode', { detail: m }));
 }
 function setInput(v) {
   S.input = v; save(); releaseAll();
@@ -805,7 +807,7 @@ function init() {
   setInput(S.input);
   document.querySelectorAll('.cw-tab').forEach(t => t.addEventListener('click', () => setMode(t.dataset.mode)));
   let m = 'hunt'; try { m = localStorage.getItem('kpcCWmode') || 'hunt'; } catch (e) {}
-  const hm = (location.hash.match(/#(hunt|act|drill|free)\b/) || [])[1]; if (hm) m = hm;
+  const hm = (location.hash.match(/#(hunt|act|drill|free|listen)\b/) || [])[1]; if (hm) m = hm;
   setMode(m);
   $('cwGo').addEventListener('click', () => { if (session.on) stop(); else start(); });
   $('cwOverBtn').addEventListener('click', () => dec.flush());
