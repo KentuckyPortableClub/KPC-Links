@@ -581,7 +581,7 @@
      "q": "A"
     }
    ],
-   "note": "NOT within 100 ft of the river or the trail. It is listed only because of the National Park Service page: The National Park Service lists Wickliffe Mounds on its Lewis & Clark National Historic Trail pages (a Lewis & Clark passport stamp site). The NPS page does not call it a certified site. Possible only: POTA historic-trail guidance points to certified or official trail sites, so check with POTA before counting it.",
+   "note": "NOT within 100 ft of the river or the trail. It is listed only because of the National Park Service page: The National Park Service lists Wickliffe Mounds on its Lewis & Clark National Historic Trail pages (a Lewis & Clark passport stamp site). The NPS page does not call it a certified site. Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it.",
    "site": {
     "name": "Wickliffe Mounds State Historic Site",
     "why": "The National Park Service lists Wickliffe Mounds on its Lewis & Clark National Historic Trail pages (a Lewis & Clark passport stamp site). The NPS page does not call it a certified site.",
@@ -610,7 +610,7 @@
      "q": "A"
     }
    ],
-   "note": "NOT within 100 ft of the river or the trail. It is listed only because of the National Park Service page: The National Park Service lists Big Bone Lick as a \"High Potential Historic Site\" of the Lewis and Clark National Historic Trail. Possible only: POTA historic-trail guidance points to certified or official trail sites, so check with POTA before counting it.",
+   "note": "NOT within 100 ft of the river or the trail. It is listed only because of the National Park Service page: The National Park Service lists Big Bone Lick as a \"High Potential Historic Site\" of the Lewis and Clark National Historic Trail. Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it.",
    "site": {
     "name": "Big Bone Lick State Historic Site",
     "why": "The National Park Service lists Big Bone Lick as a \"High Potential Historic Site\" of the Lewis and Clark National Historic Trail.",
@@ -639,7 +639,7 @@
      "q": "A"
     }
    ],
-   "note": "NOT within 100 ft of the river or the trail. It is listed only because of the National Park Service page: The National Park Service lists Golden Pond Visitor Center under \"Lewis and Clark NHT Visitor Centers and Museums.\" Possible only: POTA historic-trail guidance points to certified or official trail sites, so check with POTA before counting it.",
+   "note": "NOT within 100 ft of the river or the trail. It is listed only because of the National Park Service page: The National Park Service lists Golden Pond Visitor Center under \"Lewis and Clark NHT Visitor Centers and Museums.\" Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it.",
    "site": {
     "name": "Golden Pond Visitor Center, Land Between the Lakes National Recreation Area",
     "why": "The National Park Service lists Golden Pond Visitor Center under \"Lewis and Clark NHT Visitor Centers and Museums.\"",
@@ -833,7 +833,7 @@
      "q": "A"
     }
    ],
-   "note": "NOT within 100 ft of the river or the trail. It is listed only because of the National Park Service page: The National Park Service lists Columbus-Belmont State Park as a Trail of Tears National Historic Trail \"Certified Site.\" Possible only: POTA historic-trail guidance points to certified or official trail sites, so check with POTA before counting it.",
+   "note": "NOT within 100 ft of the river or the trail. It is listed only because of the National Park Service page: The National Park Service lists Columbus-Belmont State Park as a Trail of Tears National Historic Trail \"Certified Site.\" Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it.",
    "site": {
     "name": "Columbus Belmont State Park",
     "why": "The National Park Service lists Columbus-Belmont State Park as a Trail of Tears National Historic Trail \"Certified Site.\"",
@@ -1969,7 +1969,7 @@
   ],
   [
    "US-1287 Pennyrile Forest State Park + US-4692 Pennyrile State Forest",
-   "No mapped overlap found. They may only share a border."
+   "Checked by a KPC member: the two do not overlap. NOT a 2-fer."
   ],
   [
    "US-10098 Green River National Wildlife Refuge + US-4572 Lewis and Clark National Historic Trail",
@@ -1984,7 +1984,7 @@
   ],
   [
    "POTA Activator Guide",
-   "Trails, parks within parks, National Historic Trails.",
+   "Trails (100 ft rule), National Historic Trails (\"historic trails do not have specific boundaries\": use NPS-certified sites and official signage), multi-park activations.",
    "https://docs.pota.app/docs/activator_reference/activator_guide-english.html"
   ],
   [
@@ -2040,6 +2040,7 @@
   "The four historic trail sites now say plainly that they are NOT within 100 ft of the river or trail, and cite the National Park Service page each one relies on. Big Bone Lick is an NPS \"High Potential Historic Site\" and Wickliffe Mounds is on the NPS Lewis & Clark pages; neither is called a visitor center by the NPS.",
   "Removed a Red River 3-fer pin that pointed to a spot 33 km outside the Daniel Boone National Forest, and a general Land Between the Lakes pin 7 mi from Golden Pond Visitor Center.",
   "Moved 19 setup and trail pins that sat on or just outside a boundary line so they are at least 100 ft inside every park in our map data.",
-  "Parking pins say \"Parking only\" and note when the lot may be just outside the park line."
+  "Parking pins say \"Parking only\" and note when the lot may be just outside the park line.",
+  "Pennyrile Forest State Park + Pennyrile State Forest: a KPC member confirmed they do not overlap, so it is NOT a 2-fer."
  ]
 }

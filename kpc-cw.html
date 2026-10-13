@@ -266,6 +266,8 @@ body.field .page-jump-nav{display:none!important}
 .cws-fs{display:flex;flex-wrap:wrap;gap:6px}
 .cws-f{padding:7px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;font:900 11px Arial,sans-serif;letter-spacing:1px;cursor:pointer}
 .cws-f[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#111}
+.cws-lab{font:900 10px Arial,sans-serif;letter-spacing:1.5px;color:#e5c87b;min-width:74px}
+.cws-upd{color:#9c968a;font-size:12px;margin:0 0 8px}.cws-upd:empty{display:none}
 .cws-rx{display:flex;align-items:center;gap:6px;font:900 10px Arial,sans-serif;letter-spacing:1px;color:#cfc6b2}
 .cws-rx select{background:#1a1a1a;color:#fff;border:1px solid #444;border-radius:6px;padding:6px;font:600 13px Arial,sans-serif;max-width:100%}
 .cws-list{display:grid;gap:6px;max-height:340px;overflow-y:auto;padding-right:2px}
@@ -408,9 +410,10 @@ body.field .page-jump-nav{display:none!important}
 
   <div class="cw-card cw-a-key" data-show="listen">
    <h3>Live CW Spots: Click to Listen</h3>
-   <p class="cw-keyhelp">POTA and SOTA stations on CW right now. Tap <b>LISTEN</b> and a WebSDR opens already tuned to them.</p>
-   <div class="cws-bar"><div class="cws-fs" role="group" aria-label="Which spots"><button type="button" class="cws-f" data-f="all">ALL</button><button type="button" class="cws-f" data-f="ky">KENTUCKY</button><button type="button" class="cws-f" data-f="kpc">KPC</button><button type="button" class="cws-f" data-f="sota">SOTA</button></div>
-    <label class="cws-rx">RECEIVER <select id="cwsRx"><option value="k3fef">K3FEF (Pennsylvania)</option><option value="utah">Northern Utah</option><option value="twente">Twente (Netherlands)</option></select></label><button type="button" class="cw-small" id="cwsRefresh">↻ REFRESH</button></div>
+   <p class="cw-keyhelp">POTA and SOTA stations spotted on CW in the last 30 minutes, newest at the top. Pick what to <b>SHOW</b>, pick the receiver to <b>LISTEN ON</b>, then tap <b>🎧 LISTEN</b> on a spot and that WebSDR opens already tuned to it.</p>
+   <div class="cws-bar"><span class="cws-lab">SHOW</span><div class="cws-fs" role="group" aria-label="Which spots to show"><button type="button" class="cws-f" data-f="all">ALL</button><button type="button" class="cws-f" data-f="pota">POTA</button><button type="button" class="cws-f" data-f="sota">SOTA</button><button type="button" class="cws-f" data-f="ky">KENTUCKY</button><button type="button" class="cws-f" data-f="kpc">KPC MEMBERS</button></div></div>
+   <div class="cws-bar"><label class="cws-rx"><span class="cws-lab">LISTEN ON</span><select id="cwsRx" aria-label="Which WebSDR receiver opens when you tap LISTEN"><option value="k3fef">K3FEF WebSDR (Pennsylvania)</option><option value="utah">Northern Utah WebSDR</option><option value="twente">Twente WebSDR (Netherlands)</option></select></label><button type="button" class="cw-small" id="cwsRefresh">↻ REFRESH</button></div>
+   <p class="cws-upd" id="cwsUpd"></p>
    <div id="cwsList" class="cws-list" aria-live="polite"></div>
    <p class="cws-msg" id="cwsMsg"></p>
    <h3 style="margin-top:18px">Where to Listen</h3>
@@ -580,7 +583,7 @@ body.field .page-jump-nav{display:none!important}
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
 <script src="kpc-cw.js?v=20261013b"></script>
-<script src="kpc-cw-spots.js?v=20261013a"></script>
+<script src="kpc-cw-spots.js?v=20261013b"></script>
 <script src="kpc-cw-rx.js?v=20261013b"></script>
 <script src="kpc-search.js?v=20261011c" defer></script><script>
 (function(){

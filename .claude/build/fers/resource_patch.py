@@ -76,7 +76,7 @@ def index_pdf(kind):
     y-=rh+4
   if y<120: c.showPage();y=frame()
   y-=6;c.setFont('CB',7.8);c.setFillColorRGB(*INK);c.drawString(M,y,'Not counted here (do your own research):')
-  t='; '.join(a for a,b in F['unconfirmed'])+'. State parks inside the Daniel Boone outer boundary (Cumberland Falls, Natural Bridge, Buckhorn Lake) are state land, not national forest land.'
+  t='; '.join(a+(' (checked: NOT a 2-fer)' if b.startswith('Checked') else '') for a,b in F['unconfirmed'])+'. State parks inside the Daniel Boone outer boundary (Cumberland Falls, Natural Bridge, Buckhorn Lake) are state land, not national forest land.'
   ls=simpleSplit(t,'C',7.6,W-2*M);c.setFont('C',7.6);c.setFillColorRGB(*MUTED)
   for i,l in enumerate(ls): c.drawString(M,y-11-i*9.6,l)
   c.showPage();c.save();buf.seek(0);return pypdf.PdfReader(buf)
