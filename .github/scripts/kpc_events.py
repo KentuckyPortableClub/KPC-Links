@@ -155,23 +155,43 @@ def arrl_hamfests():
         t = text_of(body)
         if not samples:
             samples.append(t[:900])
-            notice('ARRL detail sample', full + ' :: ' + t[:900])
         if not re.search(r'\bKentucky\b|,\s*KY\b', t):
             continue
-        og = re.search(r'(?is)<meta[^>]+property="og:title"[^>]+content="([^"]+)"', d)
-        tt = re.search(r'(?is)<title>(.*?)</title>', d)
-        title = html.unescape(og.group(1)) if og else (re.split(r'\s+[|\-–]\s+', text_of(tt.group(1)))[0] if tt else '')
-        if not title or title.strip().upper() == 'ARRL':
+        lines = [x.strip() for x in t.split('\n') if x.strip()]
+        title = ''
+        for i, x in enumerate(lines):
+            if x.upper().startswith('HAMFEST/CONVENTION') or x.upper() == 'CONVENTION' or x.upper() == 'HAMFEST':
+                title = lines[i - 1] if i else ''
+                break
+        if not title:
             title = href.rsplit('/', 1)[-1].replace('-', ' ').title()
-        title = re.sub(r'\s+\d+$', '', title.strip())
-        s, e = parse_dates(t)
+            title = re.sub(r'\s+\d+$', '', title)
+
+        def label(name):
+            m = re.search(r'(?im)^\s*' + name + r'\s*:\s*(.*)$', t)
+            return m.group(1).strip() if m else ''
+        sd, ed = label('Start Date'), label('End Date')
+        s, e = parse_dates(sd + (' - ' + ed if ed and ed != sd else '')) if sd else parse_dates(t)
         if not s or e < TODAY or s > HORIZON:
             continue
-        loc = re.search(r'(?i)(?:Location|Site|Venue)\s*:?\s*\n?\s*([^\n]{5,140})', t)
-        city = re.search(r'([A-Z][A-Za-z .\'-]+,\s*(?:KY|Kentucky))\b', t)
-        out.append({'name': title, 'tags': ['HAMFEST', 'AUTO'], 'start': iso(s), 'end': iso(e) if e != s else None,
-                    'where': (loc.group(1).strip() if loc else (city.group(1) if city else 'Kentucky')),
-                    'by': 'Listed in the ARRL hamfest database', 'url': full, 'source': 'ARRL'})
+        where = ''
+        m = re.search(r'(?is)Location:\s*(.*?)\n\s*(?:Website|Sponsor|Type|Talk-In|Public Contact)\s*:', t)
+        if m:
+            where = ', '.join(x.strip() for x in m.group(1).split('\n') if x.strip())
+        if not re.search(r'\bKY\b|Kentucky', where or t):
+            continue
+        site = re.search(r'(?is)Website:\s*(https?://\S+)', t)
+        sponsor = label('Sponsor')
+        talk = label('Talk-In')
+        ev = {'name': title, 'tags': ['HAMFEST', 'AUTO'], 'start': iso(s), 'end': iso(e) if e != s else None,
+              'where': where or 'Kentucky', 'by': (sponsor or 'See the listing') + ' (from the ARRL hamfest database)',
+              'url': site.group(1) if site else full, 'source': 'ARRL'}
+        if site:
+            ev['url2'] = full
+            ev['url2label'] = 'ARRL LISTING ↗'
+        if talk:
+            ev['time'] = 'Talk-in: ' + talk
+        out.append(ev)
         log('ARRL: found', title, s, e)
         notice('ARRL found', '%s | %s | %s' % (title, s, out[-1]['where']))
     return out
