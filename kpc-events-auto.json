@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-13T13:51:48Z",
+ "updated": "2026-10-13T13:54:17Z",
  "recurring": [
   {
    "name": "POTA Support Your Parks Weekend",
@@ -89,44 +89,32 @@
  ],
  "found": [
   {
-   "name": "ARRL",
+   "name": "American Radio Relay League",
    "tags": [
     "HAMFEST",
     "AUTO"
    ],
    "start": "2027-03-06",
-   "where": "Search",
+   "where": "Cave City Convention Center",
    "by": "Listed in the ARRL hamfest database",
    "url": "https://www.arrl.org/hamfests/cave-city-hamfest-17",
    "source": "ARRL"
   },
   {
-   "name": "ARRL",
+   "name": "American Radio Relay League",
    "tags": [
     "HAMFEST",
     "AUTO"
    ],
    "start": "2026-10-31",
-   "where": "Search",
+   "where": "VFW Post 7387",
    "by": "Listed in the ARRL hamfest database",
    "url": "https://www.arrl.org/hamfests/kentucky-mountains-amateur-radio-club-hamfest",
-   "source": "ARRL"
-  },
-  {
-   "name": "ARRL",
-   "tags": [
-    "HAMFEST",
-    "AUTO"
-   ],
-   "start": "2026-10-16",
-   "where": "Search",
-   "by": "Listed in the ARRL hamfest database",
-   "url": "http://www.arrl.org/hamfests/pacificon-arrl-pacific-division-convention-2",
    "source": "ARRL"
   }
  ],
  "status": {
-  "ARRL": "ok (3)",
+  "ARRL": "ok (2)",
   "SOTA": "ok (0)"
  }
 }
