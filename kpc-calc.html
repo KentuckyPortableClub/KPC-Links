@@ -201,7 +201,7 @@ body.field .page-jump-nav{display:none!important}
  </div>
  <div class="co" id="sOut"></div></article>
 
-<article class="cc" id="db"><h3>Decibels &amp; Power</h3><p>Watts ↔ dBm ↔ dBW, and how many dB between two powers.</p>
+<article class="cc" id="db"><h3>Decibels &amp; Power</h3><p>Watts ↔ dBm ↔ dBW, and how many dB between two powers. <a href="kpc-power-db.html" style="color:var(--green);font-weight:800">What would they hear? →</a></p>
  <div class="ci three">
   <div><label for="dW">WATTS</label><input type="number" id="dW" step="any" min="0" value="100"></div>
   <div><label for="dDbm">dBm</label><input type="number" id="dDbm" step="0.1"></div>
@@ -230,14 +230,14 @@ body.field .page-jump-nav{display:none!important}
  </div>
  <div class="co" id="wOut"></div></article>
 
-<article class="cc" id="xfmr"><h3>Transformer Turns (Ununs &amp; Baluns)</h3><p>Turns ratio is the square root of the impedance ratio — handy for winding an EFHW unun. <a href="kpc-transformers.html" style="color:var(--green);font-weight:800">Full build guide →</a></p>
+<article class="cc" id="xfmr"><h3>Transformer Turns (Ununs &amp; Baluns)</h3><p>Turns ratio is the square root of the impedance ratio — handy for winding an EFHW unun or a receive transformer. <a href="kpc-transformers.html#more" style="color:var(--green);font-weight:800">Other ratios</a> · <a href="kpc-transformers.html" style="color:var(--green);font-weight:800">Full build guide →</a></p>
  <div class="ci">
-  <div><label for="xR">IMPEDANCE RATIO</label><select id="xR"><option value="49" selected>49:1 — EFHW</option><option value="64">64:1 — EFHW</option><option value="9">9:1 — random wire</option><option value="4">4:1</option><option value="1">1:1 — choke/balun</option><option value="custom">Other…</option></select><input type="number" id="xRc" step="any" min="1" placeholder="Ratio, e.g. 16" hidden style="margin-top:8px"></div>
+  <div><label for="xR">IMPEDANCE RATIO</label><select id="xR"><option value="49" selected>49:1 — EFHW</option><option value="64">64:1 — EFHW</option><option value="9">9:1 — random wire</option><option value="4">4:1 — Guanella balun / unun</option><option value="2">2:1 — delta / quad loop</option><option value="9">9:1 — receive (LoG, Beverage)</option><option value="1">1:1 — choke/balun</option><option value="custom">Other…</option></select><input type="number" id="xRc" step="any" min="1" placeholder="Ratio, e.g. 16" hidden style="margin-top:8px"></div>
   <div><label for="xP">PRIMARY TURNS</label><input type="number" id="xP" step="1" min="1" value="2"></div>
  </div>
  <div class="co" id="xOut"></div></article>
 
-<article class="cc" id="lc"><h3>LC Resonance</h3><p>Fill in any two of frequency, inductance and capacitance — for traps, loading coils and tuned circuits.</p>
+<article class="cc" id="lc"><h3>LC Resonance</h3><p>Fill in any two of frequency, inductance and capacitance — for traps, loading coils and tuned circuits. Building a mag loop? Use the <a href="kpc-loops.html#magcalc" style="color:var(--green);font-weight:800">magnetic loop calculator</a>.</p>
  <div class="ci three">
   <div><label for="lF">FREQ (MHz)</label><input type="number" id="lF" step="any" min="0"></div>
   <div><label for="lL">L (µH)</label><input type="number" id="lL" step="any" min="0" value="4.7"></div>
@@ -295,7 +295,7 @@ function dbp(e){
  if(w!==null&&w>0&&['dW','dDbm','dDbw'].indexOf(id)>=0){src(id);setv('dW',w,w<1?4:2);setv('dDbm',10*Math.log10(w*1000),1);setv('dDbw',10*Math.log10(w),1)}
  var a=num('dA'),c=num('dB2'),o='';
  var W=num('dW');if(W&&W>0)o+='<b>'+fx(W,2)+' W</b> = '+(10*Math.log10(W*1000)).toFixed(1)+' dBm = '+(10*Math.log10(W)).toFixed(1)+' dBW<br>';
- if(a&&c&&a>0&&c>0){var d=10*Math.log10(c/a);o+=fx(c,1)+' W is <b>'+(d>=0?'+':'')+d.toFixed(1)+' dB</b> vs '+fx(a,1)+' W — about <b>'+Math.abs(d/6).toFixed(1)+' S-units</b> '+(d>=0?'louder':'quieter')+'<br><small>Rule of thumb: 3 dB = double the power, 6 dB ≈ one S-unit, 10 dB = 10× power.</small>'}
+ if(a&&c&&a>0&&c>0){var d=10*Math.log10(c/a);o+=fx(c,1)+' W is <b>'+(d>=0?'+':'')+d.toFixed(1)+' dB</b> vs '+fx(a,1)+' W — about <b>'+Math.abs(d/6).toFixed(1)+' S-units</b> '+(d>=0?'louder':'quieter')+'<br><small>Rule of thumb: 3 dB = double the power (half an S-unit), 6 dB = 4× power = one S-unit, 10 dB = 10× power. <a href="kpc-power-db.html" style=\"color:var(--green);font-weight:800\">Power &amp; S-units guide →</a></small>'}
  $('dOut').innerHTML=o;
 }
 ['dW','dDbm','dDbw','dA','dB2'].forEach(function(i){$(i).addEventListener('input',dbp)});dbp();
@@ -323,7 +323,8 @@ function wave(){
  $('wOut').innerHTML='Wavelength <b>'+lm.toFixed(2)+' m</b> ('+ft(lm)+')<br>'+
   'Half-wave dipole (468/f): <b>'+(468/f).toFixed(1)+' ft</b> total · each leg <b>'+(234/f).toFixed(1)+' ft</b><br>'+
   'Quarter-wave vertical (234/f): <b>'+(234/f).toFixed(1)+' ft</b> · EFHW wire ≈ <b>'+(468/f*1.0).toFixed(1)+' ft</b> (trim to tune)<br>'+
-  'Coax ¼-wave stub at VF '+vf+': <b>'+ft(lm/4*vf)+'</b> · ½-wave: <b>'+ft(lm/2*vf)+'</b><br><small>Wire formulas are starting points — cut long and trim.</small>';
+  'Full-wave loop (1005/f): <b>'+(1005/f).toFixed(1)+' ft</b> · delta side <b>'+(335/f).toFixed(1)+' ft</b> · quad side <b>'+(251.25/f).toFixed(1)+' ft</b><br>'+(f>=28?'J-pole: long element <b>'+(lm*0.75*0.96*39.37).toFixed(1)+' in</b> · stub <b>'+(lm*0.25*0.96*39.37).toFixed(1)+' in</b><br>':'')+
+  'Coax ¼-wave stub at VF '+vf+': <b>'+ft(lm/4*vf)+'</b> · ½-wave: <b>'+ft(lm/2*vf)+'</b><br><small>Wire formulas are starting points — cut long and trim. More: <a href="kpc-loops.html#calc" style=\"color:var(--green);font-weight:800\">loops</a> · <a href="kpc-doublets.html#check" style=\"color:var(--green);font-weight:800\">doublet feeder</a> · <a href="kpc-vhf-uhf.html#calc" style=\"color:var(--green);font-weight:800\">J-pole &amp; yagi</a></small>';
 }
 ['wF','wVf'].forEach(function(i){$(i).addEventListener('input',wave);$(i).addEventListener('change',wave)});wave();
 

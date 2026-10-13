@@ -211,7 +211,7 @@ body.field .page-jump-nav{display:none!important}
    <div class="rf-f"><label for="rfMode">MODE</label><select id="rfMode">
     <option value="0.2">SSB voice (no processing) — 20%</option><option value="0.5">SSB voice, heavy processing — 50%</option><option value="0.4" selected>CW — 40%</option><option value="1">FM voice — 100%</option><option value="1">FT8 / digital / RTTY — 100%</option><option value="1">Tuning / carrier — 100%</option></select></div>
    <div class="rf-f"><label for="rfAnt">ANTENNA</label><select id="rfAnt">
-    <option value="2.15" selected>Dipole / inverted-V / EFHW (2.15 dBi)</option><option value="1">Vertical / whip (~1 dBi)</option><option value="0">HT rubber duck (0 dBi)</option><option value="5">2 m 5/8-wave or J-pole (~5 dBi)</option><option value="7">3-element Yagi (~7 dBi)</option><option value="10">Big Yagi (~10 dBi)</option><option value="custom">Other — type gain…</option></select>
+    <option value="2.15" selected>Dipole / inverted-V / EFHW (2.15 dBi)</option><option value="1">Vertical / whip (~1 dBi)</option><option value="0">HT rubber duck (0 dBi)</option><option value="2.15">2 m J-pole / Slim Jim (~2 dBi)</option><option value="5">2 m 5/8-wave (~5 dBi)</option><option value="3">Full-wave / delta loop (~3 dBi)</option><option value="7">3-element Yagi (~7 dBi)</option><option value="10">Big Yagi (~10 dBi)</option><option value="custom">Other — type gain…</option></select>
     <input type="number" id="rfGain" step="0.1" value="2.15" hidden aria-label="Antenna gain in dBi" style="margin-top:8px"></div>
   </div>
   <div class="rf-2">
@@ -241,7 +241,7 @@ body.field .page-jump-nav{display:none!important}
 <div class="rf-learn">
  <article><h3>Two kinds of people</h3><p><b>Controlled</b> means you and people who know they're near a transmitter and can control it — your household, your club members at the table. <b>Uncontrolled</b> is everyone else: neighbors, park visitors walking by. The limit for the public is about five times stricter.</p></article>
  <article><h3>Why average power?</h3><p>The limits are averaged over time — 6 minutes for controlled, 30 minutes for the public. SSB voice is only "on" about 20% of the time, and you listen about half the time, so your average is far below your peak power. FT8 and FM are full power whenever you transmit.</p></article>
- <article><h3>Portable tips</h3><ul><li>Put the antenna up high or out away from the table and trail</li><li>QRP (5 W) is almost always fine anywhere</li><li>Don't let anyone touch the antenna while transmitting — RF burns are real</li><li>Running 100 W on a whip next to your chair? Check it here</li></ul></article>
+ <article><h3>Portable tips</h3><ul><li>Small magnetic loops have a very strong field close in. Keep extra distance and never touch one while transmitting. See <a href="kpc-loops.html#mag">mag loops</a>.</li><li>Put the antenna up high or out away from the table and trail</li><li>QRP (5 W) is almost always fine anywhere</li><li>Don't let anyone touch the antenna while transmitting — RF burns are real</li><li>Running 100 W on a whip next to your chair? Check it here</li></ul></article>
 </div>
 <h3 style="font:700 24px Georgia,serif;margin:34px 0 12px">FCC Exposure Limits (47 CFR 1.1310)</h3>
 <div style="overflow:auto"><table class="rf-tbl"><thead><tr><th>FREQUENCY (MHz)</th><th>CONTROLLED (mW/cm²) · 6 MIN</th><th>PUBLIC (mW/cm²) · 30 MIN</th></tr></thead><tbody>
