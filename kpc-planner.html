@@ -169,6 +169,7 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
 <div class="chips" id="prog_"><button class="chip" aria-pressed="true" data-k="pota">POTA PARKS</button><button class="chip" aria-pressed="true" data-k="sota">SOTA SUMMITS</button><button class="chip" aria-pressed="true" data-k="kff">KFF</button><button class="chip" aria-pressed="false" data-k="two" title="Highlight places where programs or references overlap, and list only those">PARK OVERLAPS</button></div>
 </div>
 <p class="muted" id="where" style="margin:12px 0 0;font-size:14px">Choose a town or use your location to start.</p>
+<div id="km-bar" style="margin-top:12px"></div>
 </div>
 <div class="grid2" style="margin-top:20px">
 <div><div class="pl-bar"><button class="btn" id="addSpot" type="button" aria-pressed="false">📍 ADD A SPOT</button><span class="pl-hint">Zoom in, then tap the exact spot. On a phone you can also press and hold the map. <b>Satellite + Roads</b> (top right) is best for spotting pull-offs. <b>🅿️ Parking &amp; Overlaps</b> shows mapped parking, entrances and overlap areas.</span></div><div id="mapwrap" class="pl-mapwrap"><div class="pl-banner">Tap the map where you want your stop <button type="button" onclick="document.getElementById('addSpot').click()">Cancel</button></div><div class="map" id="map"></div></div>
@@ -185,7 +186,8 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
 <div class="note">Distances are straight-line miles from your starting point; drive time depends on roads. Park stops go to an official parking or access point when the KPC guide has one. Map boundaries come from Kentucky and federal GIS and usually match POTA, but not always, so check the POTA map before you activate from a spot. Always check access, posted rules and hunting seasons.</div>
 </div></section>
 <script src="kpc-map-extras.js?v=20261012h"></script>
-<script src="kpc-planner.js?v=20261012p"></script>
+<script src="kpc-my-parks.js?v=20261013a"></script>
+<script src="kpc-planner.js?v=20261013a"></script>
 
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer>

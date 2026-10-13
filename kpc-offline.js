@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   const APP = 'kpc-finder-v1', TILES = 'kpc-tiles-v1', KEY = 'kpcFinderOffline';
-  const FILES = ['finder.html', 'finder.css', 'finder.js', 'gis-overlays.js', 'kpc-offline.js', 'kpc-map-extras.js', 'ky-overlaps.geojson',
+  const FILES = ['finder.html', 'finder.css', 'finder.js', 'gis-overlays.js', 'kpc-offline.js', 'kpc-map-extras.js', 'kpc-my-parks.js', 'kpc-us-states.json', 'ky-overlaps.geojson',
     'locations-ky.json', 'locations.json', 'official-2fer-evidence.json', 'official-park-access.json', 'official-trail-maps.json', 'wwff-unmapped.json',
     'kpc-ky-data.json', 'ky-trail-parks.json',
     'ky-state-parks.geojson', 'ky-hunting-areas.geojson', 'ky-nature-preserves.geojson', 'ky-natural-areas.geojson', 'ky-dbnf.geojson',
