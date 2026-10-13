@@ -12,6 +12,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - **Don't load kpc-tools.js into pages that already have their own inline nav script** (it adds a second menu toggle). The club roster lives only in `MEMBERS=[...]` in kpc-tools.js; other scripts fetch that file as text and read the list.
 - **Facebook can only post to the Page (ID 1342190728983628), never to Groups.**
 - **"2-fer" means two overlapping POTA parks ONLY.** A KFF or SOTA reference that shares ground with a POTA park is not a 2-fer: show it as "Also:" / a multi-program spot, never with the 2-fer label.
+- **Unlinked files (keep them off menus, hubs, search and sitemap unless Brandon says):** `KPC_Kentucky_POTA_2fers_3fers_Guide.pdf`, `KPC_KY_POTA_2fers_3fers.gpx`, `kpc-multi-park-spots.html` (noindex).
 
 ## How pages are built
 - Plain static HTML/CSS/JS, no build system. Every page carries the same header, menu ("More" menu) and footer copied from news.html. A menu change means updating all ~65 pages.
