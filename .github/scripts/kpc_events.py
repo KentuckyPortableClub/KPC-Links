@@ -28,6 +28,11 @@ def log(*a):
     print(*a, flush=True)
 
 
+def notice(title, msg):
+    """Shows up as an annotation on the workflow run (handy for checking what a source returned)."""
+    print('::notice title=%s::%s' % (title, str(msg).replace('%', '%25').replace('\r', '').replace('\n', '%0A')), flush=True)
+
+
 def get(url, data=None, tries=3):
     last = None
     for i in range(tries):
@@ -138,8 +143,7 @@ def arrl_hamfests():
         links |= set(re.findall(r'href="((?:https?://www\.arrl\.org)?/hamfests/[a-z0-9\-]+)"', res))
     else:
         log('ARRL: search form not found; scanning page links only')
-    links |= set(re.findall(r'href="((?:https?://www\.arrl\.org)?/hamfests/[a-z0-9\-]+)"', page))
-    out = []
+    out, samples = [], []
     for href in sorted(links)[:60]:
         full = urllib.parse.urljoin('https://www.arrl.org/', href)
         try:
@@ -147,10 +151,19 @@ def arrl_hamfests():
         except Exception as e:  # noqa: BLE001
             log('ARRL: could not read', full, e)
             continue
-        t = text_of(d)
+        body = re.sub(r'(?is)<(select|form|nav|header|footer)\b.*?</\1>', ' ', d)
+        t = text_of(body)
+        if not samples:
+            samples.append(t[:900])
+            notice('ARRL detail sample', full + ' :: ' + t[:900])
         if not re.search(r'\bKentucky\b|,\s*KY\b', t):
             continue
-        title = text_of((re.search(r'(?is)<h1[^>]*>(.*?)</h1>', d) or [None, ''])[1]) or href.rsplit('/', 1)[-1].replace('-', ' ').title()
+        og = re.search(r'(?is)<meta[^>]+property="og:title"[^>]+content="([^"]+)"', d)
+        tt = re.search(r'(?is)<title>(.*?)</title>', d)
+        title = html.unescape(og.group(1)) if og else (re.split(r'\s+[|\-–]\s+', text_of(tt.group(1)))[0] if tt else '')
+        if not title or title.strip().upper() == 'ARRL':
+            title = href.rsplit('/', 1)[-1].replace('-', ' ').title()
+        title = re.sub(r'\s+\d+$', '', title.strip())
         s, e = parse_dates(t)
         if not s or e < TODAY or s > HORIZON:
             continue
@@ -160,6 +173,7 @@ def arrl_hamfests():
                     'where': (loc.group(1).strip() if loc else (city.group(1) if city else 'Kentucky')),
                     'by': 'Listed in the ARRL hamfest database', 'url': full, 'source': 'ARRL'})
         log('ARRL: found', title, s, e)
+        notice('ARRL found', '%s | %s | %s' % (title, s, out[-1]['where']))
     return out
 
 
@@ -225,10 +239,12 @@ def main():
     data = {'recurring': recurring(), 'found': found, 'status': status}
     if {k: v for k, v in old.items() if k != 'updated'} == data:
         log('No changes')
+        notice('Events finder', 'no changes ' + json.dumps(status))
         return
     data = {'updated': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), **data}
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     log('Saved', OUT, status)
+    notice('Events finder', json.dumps(status))
 
 
 if __name__ == '__main__':
