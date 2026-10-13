@@ -1,1 +1,132 @@
-{"recurring":[],"found":[],"status":{}}
+{
+ "updated": "2026-10-13T13:51:48Z",
+ "recurring": [
+  {
+   "name": "POTA Support Your Parks Weekend",
+   "tags": [
+    "POTA"
+   ],
+   "start": "2026-10-17",
+   "end": "2026-10-18",
+   "where": "Any Kentucky park. Get out and activate!",
+   "by": "Parks on the Air",
+   "url": "https://pota.app/",
+   "rule": "Third full weekend of Jan, Apr, Jul and Oct"
+  },
+  {
+   "name": "POTA Support Your Parks Weekend",
+   "tags": [
+    "POTA"
+   ],
+   "start": "2027-01-16",
+   "end": "2027-01-17",
+   "where": "Any Kentucky park. Get out and activate!",
+   "by": "Parks on the Air",
+   "url": "https://pota.app/",
+   "rule": "Third full weekend of Jan, Apr, Jul and Oct"
+  },
+  {
+   "name": "POTA Support Your Parks Weekend",
+   "tags": [
+    "POTA"
+   ],
+   "start": "2027-04-17",
+   "end": "2027-04-18",
+   "where": "Any Kentucky park. Get out and activate!",
+   "by": "Parks on the Air",
+   "url": "https://pota.app/",
+   "rule": "Third full weekend of Jan, Apr, Jul and Oct"
+  },
+  {
+   "name": "POTA Support Your Parks Weekend",
+   "tags": [
+    "POTA"
+   ],
+   "start": "2027-07-17",
+   "end": "2027-07-18",
+   "where": "Any Kentucky park. Get out and activate!",
+   "by": "Parks on the Air",
+   "url": "https://pota.app/",
+   "rule": "Third full weekend of Jan, Apr, Jul and Oct"
+  },
+  {
+   "name": "POTA Support Your Parks Weekend",
+   "tags": [
+    "POTA"
+   ],
+   "start": "2027-10-16",
+   "end": "2027-10-17",
+   "where": "Any Kentucky park. Get out and activate!",
+   "by": "Parks on the Air",
+   "url": "https://pota.app/",
+   "rule": "Third full weekend of Jan, Apr, Jul and Oct"
+  },
+  {
+   "name": "ARRL Field Day",
+   "tags": [
+    "ONAIR"
+   ],
+   "start": "2027-06-26",
+   "end": "2027-06-27",
+   "time": "Starts 1800 UTC Saturday (2 PM Eastern)",
+   "where": "Clubs and portable stations everywhere. A great weekend to operate from a park.",
+   "by": "ARRL",
+   "url": "https://www.arrl.org/field-day",
+   "rule": "Fourth full weekend of June"
+  },
+  {
+   "name": "Winter Field Day",
+   "tags": [
+    "ONAIR"
+   ],
+   "start": "2027-01-30",
+   "end": "2027-01-31",
+   "where": "Portable and home stations. Cold-weather field operating.",
+   "by": "Winter Field Day Association",
+   "url": "https://winterfieldday.org/",
+   "rule": "Last full weekend of January"
+  }
+ ],
+ "found": [
+  {
+   "name": "ARRL",
+   "tags": [
+    "HAMFEST",
+    "AUTO"
+   ],
+   "start": "2027-03-06",
+   "where": "Search",
+   "by": "Listed in the ARRL hamfest database",
+   "url": "https://www.arrl.org/hamfests/cave-city-hamfest-17",
+   "source": "ARRL"
+  },
+  {
+   "name": "ARRL",
+   "tags": [
+    "HAMFEST",
+    "AUTO"
+   ],
+   "start": "2026-10-31",
+   "where": "Search",
+   "by": "Listed in the ARRL hamfest database",
+   "url": "https://www.arrl.org/hamfests/kentucky-mountains-amateur-radio-club-hamfest",
+   "source": "ARRL"
+  },
+  {
+   "name": "ARRL",
+   "tags": [
+    "HAMFEST",
+    "AUTO"
+   ],
+   "start": "2026-10-16",
+   "where": "Search",
+   "by": "Listed in the ARRL hamfest database",
+   "url": "http://www.arrl.org/hamfests/pacificon-arrl-pacific-division-convention-2",
+   "source": "ARRL"
+  }
+ ],
+ "status": {
+  "ARRL": "ok (3)",
+  "SOTA": "ok (0)"
+ }
+}
