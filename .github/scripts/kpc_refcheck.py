@@ -99,8 +99,9 @@ for label, key, fn in checks:
         continue
     new = sorted(set(official) - set(mine))
     gone = sorted(set(mine) - set(official))
-    renamed = sorted(c for c in set(mine) & set(official)
-                     if official[c] and mine[c] and re.sub(r'\W', '', official[c].lower()) != re.sub(r'\W', '', mine[c].lower()))
+    def nm(x):
+        return re.sub(r'\W', '', re.sub(r'(?i)unnamed\s+summit', '', x).lower())
+    renamed = sorted(c for c in set(mine) & set(official) if official[c] and mine[c] and nm(official[c]) != nm(mine[c]))
     status[label] = 'site %d / official %d / new %d / gone %d / renamed %d' % (len(mine), len(official), len(new), len(gone), len(renamed))
     notice(label, status[label])
     n = len(new) + len(gone)
