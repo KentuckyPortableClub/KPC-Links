@@ -63,7 +63,7 @@ jobs:
           now = dt.datetime.now(dt.timezone.utc)
           cutoff = (now - dt.timedelta(days=KEEP_DAYS)).isoformat()
           # keep only recent v2 entries (old v1 entries are dropped)
-          state = {k: v for k, v in state.items() if k.startswith(('act|', 'bm|')) and isinstance(v, str) and v >= cutoff}
+          state = {k: v for k, v in state.items() if k.startswith(('act|', 'bm|', 'fb|')) and isinstance(v, str) and v >= cutoff}
 
           def base(call):
               parts = re.sub(r'[^A-Z0-9/]', '', str(call or '').upper()).split('/')
@@ -95,6 +95,7 @@ jobs:
                   raise SystemExit(f'Discord returned HTTP {error.code}; spot state not saved for failed post.')
 
           fb_id, fb_token = os.getenv('FB_PAGE_ID', '').strip(), os.getenv('FB_PAGE_TOKEN', '').strip()
+          FB_GAP_MIN = 30   # Facebook: at most one post per operator every 30 minutes (Discord still gets every change)
           def fb_post(message, link):
               # One Facebook Page post per activation (band/mode changes stay Discord-only). Never blocks Discord.
               if not (fb_id and fb_token):
@@ -148,8 +149,15 @@ jobs:
                   fb_post(f'📻 {call_raw} is on the air now from {ref}' + (f' {name}' if name else '') + (f' ({loc})' if loc else '') + '!\n'
                           f'{mhz} ({b}) {mode}. Give them a call and help them get their 10!\n\nLive spots: https://pota.app/#/spots',
                           f'https://pota.app/#/park/{ref}')
+                  state[f'fb|{call}'] = now.isoformat()
               else:
                   post('🔁 Band / Mode Change', f'**{call_raw}** moved to **{b} {mode}**\n{details}', 4565071)
+                  last_fb = state.get(f'fb|{call}')
+                  if not last_fb or now - dt.datetime.fromisoformat(last_fb) >= dt.timedelta(minutes=FB_GAP_MIN):
+                      ref = park.split(',')[0]
+                      fb_post(f'🔁 {call_raw} at {ref}' + (f' {name}' if name else '') + f' is now on {mhz} ({b}) {mode}. Come find them!\n\nLive spots: https://pota.app/#/spots',
+                              f'https://pota.app/#/park/{ref}')
+                      state[f'fb|{call}'] = now.isoformat()
               state[act_key] = state.get(act_key) or now.isoformat()
               state[bm_key] = now.isoformat()
               posted += 1
