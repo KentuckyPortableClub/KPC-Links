@@ -1,7 +1,21 @@
 {
- "updated": "",
+ "updated": "2026-10-13T12:02:04Z",
  "channels": [
-  {"key": "kpc", "id": "UCsslHOb5hapSGIopm1qVb1Q", "handle": "@KPC-KR4PIY", "name": "Kentucky Portable Club", "ok": false, "videos": []},
-  {"key": "campout", "id": "UCPaMbm_P0d_819-i5CXo29g", "handle": "@KY.POTA.Campout", "name": "KY POTA Campout", "ok": false, "videos": []}
+  {
+   "key": "kpc",
+   "id": "UCsslHOb5hapSGIopm1qVb1Q",
+   "handle": "@KPC-KR4PIY",
+   "name": "Kentucky Portable Club",
+   "ok": true,
+   "videos": []
+  },
+  {
+   "key": "campout",
+   "id": "UCPaMbm_P0d_819-i5CXo29g",
+   "handle": "@KY.POTA.Campout",
+   "name": "KY POTA Campout",
+   "ok": true,
+   "videos": []
+  }
  ]
 }
