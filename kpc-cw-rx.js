@@ -256,10 +256,12 @@ function init() {
   $('rxTest').addEventListener('click', () => useTest());
   $('rxStop').addEventListener('click', stop);
   $('rxClear').addEventListener('click', () => { text = ''; emit(''); });
-  $('rxAuto').addEventListener('change', e => { auto = e.target.checked; });
+  const syncAuto = () => { const on = $('rxAuto').checked; auto = on; const l = $('rxAutoLbl'); if (l) l.textContent = 'AUTO-FIND: ' + (on ? 'ON' : 'OFF'); const m = $('rxManual'); if (m) m.hidden = on; const t = $('rxTone'); if (t) { t.value = Math.round(freq / 10) * 10; $('rxToneV').textContent = Math.round(freq) + ' Hz'; } };
+  $('rxAuto').addEventListener('change', syncAuto);
+  if ($('rxTone')) $('rxTone').addEventListener('input', e => { setFreq(+e.target.value); $('rxToneV').textContent = e.target.value + ' Hz'; resetDecoder(); });
   $('rxWf').addEventListener('click', e => {
     const r = e.target.getBoundingClientRect(), f = F0 + (F1 - F0) * (e.clientX - r.left) / r.width;
-    setFreq(f); auto = false; $('rxAuto').checked = false; resetDecoder();
+    setFreq(f); $('rxAuto').checked = false; syncAuto(); resetDecoder();
   });
   $('rxCopyGo').addEventListener('click', () => { copyTest.on = true; copyTest.got = ''; $('rxMine').value = ''; $('rxMine').focus(); $('rxCmp').innerHTML = 'Copying… type what you hear, then press Compare.'; });
   $('rxCopyCmp').addEventListener('click', () => { compare(); copyTest.on = false; });
