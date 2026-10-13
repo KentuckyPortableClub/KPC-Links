@@ -5,7 +5,7 @@ name: KPC Events Finder
 #  - looks for Kentucky SOTA events (like the yearly SOTA Kentucky Campout) on the SOTA Reflector
 # and saves them to kpc-events-auto.json, which events.html merges with the hand-made list.
 # Run it any time from the Actions tab with "Run workflow".
-#  - then posts the next five weeks of events to the KPC Discord (Mondays, or when you tick the box)
+#  - then posts the next five weeks of events to the KPC Discord and Facebook Page (Mondays, or when you tick the boxes)
 on:
   schedule:
     - cron: '17 11 * * 1'
@@ -13,6 +13,10 @@ on:
     inputs:
       post_discord:
         description: 'Also post the upcoming events to Discord'
+        type: boolean
+        default: false
+      post_facebook:
+        description: 'Also post the upcoming events to the KPC Facebook Page'
         type: boolean
         default: false
 permissions:
@@ -46,3 +50,9 @@ jobs:
         run: |
           git pull --rebase --autostash || true
           node .github/scripts/kpc_discord_events.js
+      - name: Post upcoming events to the Facebook Page
+        if: github.event_name == 'schedule' || inputs.post_facebook
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: node .github/scripts/kpc_facebook.js events
