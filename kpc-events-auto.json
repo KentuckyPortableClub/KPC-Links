@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-13T13:54:17Z",
+ "updated": "2026-10-13T13:56:11Z",
  "recurring": [
   {
    "name": "POTA Support Your Parks Weekend",
@@ -89,28 +89,32 @@
  ],
  "found": [
   {
-   "name": "American Radio Relay League",
+   "name": "Cave City Hamfest",
    "tags": [
     "HAMFEST",
     "AUTO"
    ],
    "start": "2027-03-06",
-   "where": "Cave City Convention Center",
-   "by": "Listed in the ARRL hamfest database",
-   "url": "https://www.arrl.org/hamfests/cave-city-hamfest-17",
-   "source": "ARRL"
+   "where": "Cave City Convention Center, 502 Mammoth Cave St., Cave City, KY 42127",
+   "by": "Mammoth Cave ARC (from the ARRL hamfest database)",
+   "url": "http://www.ky4x.org",
+   "source": "ARRL",
+   "url2": "https://www.arrl.org/hamfests/cave-city-hamfest-17",
+   "url2label": "ARRL LISTING ↗",
+   "time": "Talk-in: 146.94 /114.8"
   },
   {
-   "name": "American Radio Relay League",
+   "name": "Kentucky Mountains Amateur Radio Club Hamfest",
    "tags": [
     "HAMFEST",
     "AUTO"
    ],
    "start": "2026-10-31",
-   "where": "VFW Post 7387",
-   "by": "Listed in the ARRL hamfest database",
+   "where": "VFW Post 7387, 1700 N. Main, Hazard, KY 41701",
+   "by": "KMARC (from the ARRL hamfest database)",
    "url": "https://www.arrl.org/hamfests/kentucky-mountains-amateur-radio-club-hamfest",
-   "source": "ARRL"
+   "source": "ARRL",
+   "time": "Talk-in: 147.670"
   }
  ],
  "status": {
