@@ -155,15 +155,15 @@ y=frame('Find a spot');c.bookmarkPage('find',fit='XYZ',top=H);c.addOutlineEntry(
 c.setFont('S',22);c.setFillColorRGB(*INK);c.drawString(M,y-12,'Find a Spot')
 para(M,y-28,'Tap a section to jump to it. Tap the KPC logo on any page to come back here. Every GPS button opens Google Maps; every US-#### button opens the POTA park page. GPS pins are guides that get you to the area only.','C',8.6,MUTED,CW,11.2)
 cnt={k:sum(1 for d in SP if sec(d)==k) for k,*_ in SECS}
-boxes=[(k,t,s) for k,t,s,_ in SECS]+[('unc','Unconfirmed','Pairs to research yourself')]
+boxes=[('plan','Plan a Trip','Routes, checklist, Google Maps')]+[(k,t,s) for k,t,s,_ in SECS]+[('unc','Unconfirmed','Pairs to research yourself')]
 bw=(CW-20)/3;bh=62
 for i,(k,t,s) in enumerate(boxes):
   bx=M+(i%3)*(bw+10);by=y-60-(i//3)*(bh+10)-bh
-  dark=k=='unc';c.setFillColorRGB(*(DARK if dark else (1,1,1)));c.setStrokeColorRGB(*LINE);c.roundRect(bx,by,bw,bh,6,stroke=0 if dark else 1,fill=1)
+  dark=k in('unc','plan');c.setFillColorRGB(*(DARK if dark else (1,1,1)));c.setStrokeColorRGB(*LINE);c.roundRect(bx,by,bw,bh,6,stroke=0 if dark else 1,fill=1)
   c.setFillColorRGB(*GOLD);c.rect(bx+10,by+bh-4,bw-20,2,stroke=0,fill=1)
   c.setFont('S',12);c.setFillColorRGB(*(GOLD if dark else INK));c.drawString(bx+10,by+bh-20,t)
   c.setFont('C',7.4);c.setFillColorRGB(*((1,1,1) if dark else MUTED));c.drawString(bx+10,by+bh-31,s)
-  if k!='unc': c.setFont('S',16);c.setFillColorRGB(*INK);c.drawString(bx+10,by+10,str(cnt[k]));spaced(bx+10+pdfmetrics.stringWidth(str(cnt[k]),'S',16)+4,by+11,'SPOTS','CB',5.5,MUTED,.8)
+  if k not in('unc','plan'): c.setFont('S',16);c.setFillColorRGB(*INK);c.drawString(bx+10,by+10,str(cnt[k]));spaced(bx+10+pdfmetrics.stringWidth(str(cnt[k]),'S',16)+4,by+11,'SPOTS','CB',5.5,MUTED,.8)
   spaced(bx+bw-10,by+11,'JUMP ›','CB',6,GOLD if dark else INK,.8,'r')
   c.linkRect('',k,(bx,by,bx+bw,by+bh),relative=0)
 yy=y-60-((len(boxes)+2)//3)*(bh+10)-4
@@ -172,6 +172,42 @@ pill(M+12,yy-20,90,'HOW TO READ A CARD',SOFT,INK,stroke=GOLD)
 for i,(a,b) in enumerate([('3-FER / 2-FER','How many POTA parks the spot gives you.'),('US-####','Opens that park\'s POTA page. Names are the official POTA names.'),('GPS','Opens the first point in Google Maps (a guide pin, not a confirmed spot).'),('DIRECTIONS','Driving directions to the parking or drive-up point if there is one.'),('A  B  C','GPS grade: drive up, short walk, or check satellite view.'),('PARKING','Parking only. Never the setup spot; it can be outside the park line.'),('NOTES','What to check before you go.')]):
   c.setFont('CB',8);c.setFillColorRGB(*INK);c.drawString(M+16,yy-38-i*15,a);c.setFont('C',8);c.setFillColorRGB(*MUTED);c.drawString(M+130,yy-38-i*15,b)
 para(M,yy-168,'These spots also show in KY Park Commander and the KY Trip Planner when you turn on Park Overlaps, and in the Members Room multi-park map and GPX file.','C',8.4,MUTED,CW)
+c.showPage()
+# ---------- plan a trip ----------
+y=frame('Plan a trip');y=heading(y,'Plan a Trip','Routes & checklist','Six ready-made day routes built from the spots in this guide, plus a checklist. Tap OPEN ROUTE to load every stop in Google Maps; miles are straight-line between stops, so driving is longer. GPS points are guide pins only.','plan')
+for i,(t,b) in enumerate(DATA['planning']):
+  lines=simpleSplit(b,'C',8.2,CW-150);h=max(1,len(lines))*10.4+8
+  if y-h<44: c.showPage();y=frame('Plan a trip')
+  c.setFillColorRGB(*GOLD);c.circle(M+8,y-6,7,stroke=0,fill=1);c.setFont('CB',8);c.setFillColorRGB(*INK);c.drawCentredString(M+8,y-8.8,str(i+1))
+  c.setFont('CB',8.6);c.drawString(M+22,y-9,t)
+  c.setFont('C',8.2);c.setFillColorRGB(*MUTED)
+  for j,l in enumerate(lines): c.drawString(M+150,y-9-j*10.4,l)
+  y-=h
+y-=8
+for t in DATA['trips']:
+  bl=simpleSplit(t['blurb'],'C',8,CW-24)
+  rows=[(s,simpleSplit(s['label'],'CB',8.2,CW-200)) for s in t['stops']]
+  h=46+len(bl)*10+sum(len(r[1])*10+5 for r in rows)+22
+  if y-h<44: c.showPage();y=frame('Plan a trip')
+  c.setFillColorRGB(1,1,1);c.setStrokeColorRGB(*LINE);c.setLineWidth(.8);c.roundRect(M,y-h,CW,h,8,stroke=1,fill=1)
+  c.setFont('S',12.5);c.setFillColorRGB(*INK);c.drawString(M+12,y-18,t['title'])
+  spaced(M+12,y-30,t['tag'].upper(),'CB',6.3,GREEN,.8)
+  pill(W-M-12-96,y-24,96,'OPEN ROUTE ›',DARK,(1,1,1),url=t['url'])
+  yy=y-44
+  c.setFont('C',8);c.setFillColorRGB(*MUTED)
+  for l in bl: c.drawString(M+12,yy,l);yy-=10
+  yy-=4
+  for n,(s,ls) in enumerate(rows):
+    c.setFillColorRGB(*(GOLD if s['type']=='3-fer' else SOFT));c.roundRect(M+12,yy-7,30,10,5,stroke=0,fill=1)
+    c.setFont('CB',5.8);c.setFillColorRGB(*INK);c.drawCentredString(M+27,yy-4.3,s['type'].upper())
+    c.setFont('CB',8.2);c.setFillColorRGB(*INK)
+    for j,l in enumerate(ls): c.drawString(M+50,yy-4-j*10,f"{n+1}. "+l if j==0 else '    '+l)
+    c.setFont('CB',7.4);c.setFillColorRGB(*GREEN);rt=' + '.join(s['refs']);c.drawRightString(W-M-110,yy-4,rt)
+    c.setFont('C',7.4);c.setFillColorRGB(*MUTED);c.drawRightString(W-M-12,yy-4,(f"{s['legmi']} mi from last" if s.get('legmi') else 'start') )
+    c.linkURL(GM(s['la'],s['lo']),(M+50,yy-7,W-M-12,yy+5),relative=0)
+    yy-=len(ls)*10+5
+  c.setFont('C',7.2);c.setFillColorRGB(*MUTED);c.drawString(M+12,yy-6,'Tap a stop to open its guide pin in Google Maps. Check each spot card in this guide before you go.')
+  y-=h+10
 c.showPage()
 # ---------- sections ----------
 for k,t,s,intro in SECS:
