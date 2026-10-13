@@ -102,3 +102,18 @@ jobs:
             git pull --rebase --autostash || true
             git push || echo 'Push skipped; the list will be saved on the next run.'
           fi
+      - name: Share new videos on the Facebook Page
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: |
+          git pull --rebase --autostash || true
+          node .github/scripts/kpc_facebook.js videos
+          if [ -f kpc-fb-posted.json ]; then
+            git add kpc-fb-posted.json
+            if ! git diff --cached --quiet; then
+              git commit -m 'Remember videos shared on Facebook'
+              git pull --rebase --autostash || true
+              git push || echo 'Push skipped; will save on the next run.'
+            fi
+          fi
