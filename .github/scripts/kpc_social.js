@@ -6,7 +6,7 @@
 //   rarepark   rare park of the week (fewest valid activations in KY)       Discord + Facebook
 //   milestones member milestones (parks, counties, activations)            Discord + Facebook
 //   photos     new photo album on the site                                  Discord + Facebook
-//   pages      new guide or tool page on the site (starts Oct 22, 2026)     Discord + Facebook
+//   pages      new guide or tool page on the site (starts Oct 21, 2026)     Discord + Facebook
 //   bandalert  NOAA radio blackout / geomagnetic storm alerts                Discord only
 // --dry prints what would be posted without posting or saving anything.
 // State lives in kpc-social-state.json so nothing is posted twice.
@@ -21,7 +21,7 @@ const STATE_FILE = 'kpc-social-state.json';
 const DISCORD = (process.env.DISCORD_WEBHOOK_URL || '').trim();
 const FB_ID = (process.env.FB_PAGE_ID || '').trim();
 const FB_TOKEN = (process.env.FB_PAGE_TOKEN || '').trim();
-const PAGES_START = '2026-10-22';
+const PAGES_START = '2026-10-21'; // same day the HOLD pages (campout, events, resources) go live
 const API = 'https://api.pota.app';
 
 const notice = m => console.log(`::notice title=Social ${task}${DRY ? ' (dry run)' : ''}::` + String(m).replace(/%/g, '%25').replace(/\r/g, '').replace(/\n/g, '%0A'));
