@@ -1,7 +1,7 @@
 name: KPC Social Posts
 # Automatic posts to the KPC Discord and the KPC Facebook Page:
 #   Every morning  - campout countdown (60/30/14/7/1 days), member milestones, new photo albums,
-#                    new guide/tool pages (announcements start Oct 21, 2026)
+#                    new guide/tool pages (the first one goes out with the Oct 21, 2026 go-live)
 #   Wednesdays     - Rare Park of the Week
 #   Thursdays      - "This weekend in Kentucky ham radio" (only when something is on)
 # Nothing posts twice: what's been posted is remembered in kpc-social-state.json.
