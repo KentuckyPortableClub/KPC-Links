@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RF Exposure Check </title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RF Exposure Check ">
+<meta property="og:description" content=" Kentucky Portable Club|Check your station for FCC RF exposure limits: power, mode, antenna gain and time on the air give the minimum safe distance for you and for the public.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-rf-exposure.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
+<meta name="description" content=" Kentucky Portable Club|Check your station for FCC RF exposure limits: power, mode, antenna gain and time on the air give the minimum safe distance for you and for the public.">
+<style>
+:root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:var(--nav-height);margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s}.nav-links a:hover,.nav-links a[aria-current=page]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:var(--black) url("parks.png") center/cover no-repeat;color:#fff;border-bottom:1px solid rgba(213,166,58,.45)}
+.hero:before{content:"";position:absolute;width:620px;height:620px;right:-170px;top:-180px;border:1px solid rgba(213,166,58,.35);border-radius:50%;box-shadow:0 0 0 55px rgba(213,166,58,.035),0 0 0 110px rgba(213,166,58,.025)}
+.hero:after{content:none}
+.hero-inner{position:relative;z-index:2;width:min(var(--max),100%);margin:auto;padding:90px 24px 84px}.hero-logo{width:min(360px,78vw);margin-bottom:24px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}.eyebrow{margin:0 0 12px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}.hero h1{max-width:800px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,6.2vw,76px);line-height:1.02;letter-spacing:-1.8px}.hero h1 span{color:var(--gold-light)}.hero-copy{max-width:720px;margin:22px 0 0;color:#eee9dd;font-size:clamp(16px,2vw,20px)}
+.section{padding:82px 24px}.section-inner{width:min(var(--max),100%);margin:auto}.section-heading{text-align:center;margin-bottom:42px}.kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:4px}.section h2{margin:7px 0 12px;color:var(--black);font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,4vw,48px);line-height:1.08}.section-heading p{max-width:760px;margin:0 auto;color:var(--muted);font-size:17px}
+.intro{background:var(--cream);border-bottom:1px solid #d9cfbd}.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}.intro-copy h2{margin:7px 0 18px}.intro-copy p{color:var(--muted);font-size:18px;margin:0}.intro-panel{padding:34px;background:var(--black);border:1px solid var(--gold);box-shadow:12px 12px 0 var(--gold);color:#fff;position:relative;overflow:hidden}.intro-panel:after{content:"";position:absolute;width:230px;height:230px;right:-90px;top:-90px;border:1px solid rgba(213,166,58,.45);border-radius:50%}.intro-panel .mark{position:relative;z-index:1;color:var(--gold-light);font-size:12px;font-weight:900;letter-spacing:3px}.intro-panel h3{position:relative;z-index:1;margin:10px 0 10px;font:700 30px/1.1 Georgia,serif}.intro-panel p{position:relative;z-index:1;margin:0;color:#c9c5bc}.intro-panel .line{position:relative;z-index:1;width:70px;height:3px;background:var(--gold);margin:20px 0}
+.features{background:#fffaf0}.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.card{min-height:285px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid #d8cfbf;background:#fff;color:var(--ink);box-shadow:0 12px 28px rgba(0,0,0,.07);transition:.2s;position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;width:6px;height:100%;background:var(--gold)}.card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.12);border-color:var(--gold)}.card-top{position:relative;z-index:1}.card-num{color:var(--green);font-size:12px;font-weight:900;letter-spacing:3px}.card h3{margin:8px 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:28px;line-height:1.1}.card p{margin:0;color:var(--muted);font-size:15px;max-width:520px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:1px;background:var(--gold);color:#0b0b0b;transition:.2s;align-self:flex-start;margin-top:24px}.btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.dark{background:var(--black);color:#fff;border-top:1px solid rgba(213,166,58,.45);border-bottom:1px solid rgba(213,166,58,.45)}.dark .section-heading p{color:#bcb8ae}.dark h2{color:#fff}.dark .card{background:#151515;border-color:#363636;color:#fff}.dark .card p{color:#bcb8ae}.dark .card h3{color:#fff}.dark .card:before{background:var(--gold)}
+.map-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.map-box{padding:30px;border:1px solid #363636;background:#151515}.map-box h3{margin:8px 0 10px;color:#fff;font:700 25px/1.1 Georgia,serif}.map-box p{margin:0;color:#bcb8ae}.map-box .btn{margin-top:22px}
+.pota-card{min-height:310px}
+.pdf-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pdf-actions .btn{margin-top:0}.pdf-actions .alt{background:#fff;border:1px solid var(--gold);color:#171717}
+.warning{background:var(--cream-2);border-top:1px solid #d1c6b3}.warning-box{border-left:6px solid var(--gold);background:#fff;padding:30px;box-shadow:0 10px 24px rgba(0,0,0,.06)}.warning-box h3{margin:0 0 10px;font:700 28px/1.1 Georgia,serif}.warning-box p{margin:0;color:var(--muted)}
+.final{padding:76px 24px;text-align:center;background:var(--cream-2)}.final h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}.final p{margin:10px 0 24px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:2px}
+footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;border-top:1px solid #292929;font-size:13px}footer strong{color:var(--gold-light)}
+@media(min-width:901px){.hero-logo{position:absolute;left:-400px;top:calc(50% - 22px);transform:translateY(-50%);justify-self:auto;margin-bottom:0}}
+@media(max-width:1000px){.nav-links a{padding-inline:7px;font-size:12px}.intro-grid{gap:38px}}
+@media(max-width:900px){.hero-logo{display:block;width:min(290px,58vw);margin-left:auto;margin-right:auto}}
+@media(max-width:760px){:root{--nav-height:70px}.nav-inner{min-height:70px;padding:8px 18px}.brand img{width:52px;height:52px}.menu-toggle{display:block}.nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45);box-shadow:0 15px 25px rgba(0,0,0,.22)}.nav-links.open{display:flex}.nav-links a{padding:13px 5px;border-bottom:1px solid #292929}.nav-links a:last-child{border-bottom:0}.hero{min-height:500px;background:url("parks-mobile.png") center/cover no-repeat}.hero-inner{padding:70px 20px 55px}.hero-logo{width:min(290px,58vw)}.section{padding:68px 20px}.intro-grid,.map-grid{grid-template-columns:1fr}.intro-panel{max-width:520px;margin:auto}.card-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-logo{width:min(250px,64vw)}}
+@media(max-width:520px){.hero h1{font-size:42px}.hero-copy{font-size:16px}.card{min-height:300px}.card h3{font-size:25px}.pdf-actions{flex-direction:column}.pdf-actions .btn{width:100%}}
+@media(max-width:380px){.brand-text small{display:none}}
+
+/* Added official trail and Wild River resource sections */
+.resource-note{background:#fff7df;border-left:5px solid var(--gold);padding:18px 22px;margin:0 0 28px;color:#332c1f}
+.resource-note p{margin:0}.resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.resource-item{padding:26px;border:1px solid #d8cfbf;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.045)}
+.resource-item h3{font:700 25px/1.18 Georgia,serif;margin:8px 0 12px}.resource-item p{color:#5f5a51;margin:0 0 12px}
+.resource-item .meta{font-size:12px;font-weight:900;letter-spacing:1.4px;color:var(--green)}
+.resource-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.resource-actions .btn{margin:0;font-size:11px;min-height:40px}
+.resource-actions .secondary{background:#f8f4eb;border:1px solid #c9ad6b}
+.river-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:25px 0}
+.river-list article{padding:18px 20px;background:#fff;border:1px solid #d8cfbf}.river-list strong{display:block;font:700 20px Georgia,serif}.river-list span{display:block;margin-top:7px;color:#5f5a51;font-size:14px}
+@media(max-width:760px){.resource-grid,.river-list{grid-template-columns:1fr}}
+/* Quick jump links, trail cards, map files */
+.jump{background:var(--black);border-bottom:1px solid rgba(213,166,58,.45);position:sticky;top:var(--nav-height);z-index:900}
+.jump-inner{width:min(var(--max),100%);margin:auto;padding:10px 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.jump-inner::-webkit-scrollbar{display:none}
+.jump a{flex:0 0 auto;padding:8px 14px;border:1px solid #3a3a3a;border-radius:999px;color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;transition:.2s}
+.jump a:hover{border-color:var(--gold);color:var(--gold-light)}
+section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn-row .btn{margin-top:0}
+.trail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.trail-grid .resource-item:last-child:nth-child(odd){grid-column:1/-1}
+.twofer{margin:14px 0 0;padding:12px 14px;background:#fff7df;border-left:4px solid var(--gold);font-size:14px;color:#332c1f}
+.twofer b{color:var(--green);letter-spacing:1px;font-size:12px}
+.files-card .pdf-actions .btn{min-width:0}
+.file-group{margin-top:16px}.file-group .card-num{margin-bottom:8px}
+.warning-box .btn-row .btn{font-size:11px;min-height:40px}
+@media(max-width:760px){.jump{top:70px}.trail-grid{grid-template-columns:1fr}.btn-row{flex-direction:column}.btn-row .btn{width:100%}}
+.dark .kicker,.dark .card-num{color:var(--gold-light)}
+/* On The Air Now bar */
+.onair{background:#0d2419;border-bottom:1px solid rgba(213,166,58,.45);color:#fff}
+.onair-inner{width:min(var(--max),100%);margin:auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.onair-title{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:3px;color:var(--gold-light);white-space:nowrap}
+.onair .dot{width:10px;height:10px;border-radius:50%;background:#3ecf6e;animation:pulse 1.8s infinite}
+.onair .dot.off{background:#8a8a8a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.6)}70%{box-shadow:0 0 0 9px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.onair-count{font-size:14px;color:#e9eee9}.onair-count b{color:#fff}
+.onair-list{display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}.onair-list::-webkit-scrollbar{display:none}
+.onair-chip{flex:0 0 auto;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;white-space:nowrap}
+.onair-chip b{color:var(--gold-light)}.onair-chip.club{border-color:var(--gold);background:rgba(213,166,58,.14)}
+.onair .btn{margin:0;min-height:38px;padding:8px 14px;font-size:11px;white-space:nowrap}
+@media(max-width:760px){.onair-inner{padding:12px 18px;gap:8px 10px}.onair-title{order:1}.onair .btn{order:2;margin-left:auto}.onair-count{order:3;flex-basis:100%}.onair-list{order:4;flex-basis:100%}}
+
+/* KPC shared About-style footer and below-hero page links */
+.page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+.page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
+.page-jump-nav a:hover,.page-jump-nav a:focus-visible{background:#3c321a;border-color:#d6b96c;color:#fff}
+section[id]{scroll-margin-top:100px}
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
+body.field .page-jump-nav{display:none!important}
+
+</style>
+<link rel="stylesheet" href="kpc-nav.css?v=20261010g">
+<style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
+<style>
+[hidden]{display:none!important}
+.hero{min-height:360px;background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.66) 45%,rgba(7,7,7,.25) 80%,rgba(7,7,7,.1) 100%),url("toolbox.jpg") center 55%/cover no-repeat #070707}
+@media(max-width:760px){.hero{min-height:330px;background:linear-gradient(180deg,rgba(7,7,7,.45) 0%,rgba(7,7,7,.8) 55%,rgba(7,7,7,.92) 100%),url("toolbox-mobile.jpg") center 60%/cover no-repeat #070707}}
+.rf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.rf-card{background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);padding:22px;box-shadow:0 10px 24px rgba(0,0,0,.06)}
+.rf-card h3{margin:0 0 14px;font:700 22px Georgia,serif}
+.rf-f{margin-bottom:14px}
+.rf-f label{display:block;font-size:11px;font-weight:900;letter-spacing:1.3px;color:#3b372f;margin-bottom:6px}
+.rf-f input,.rf-f select{width:100%;min-height:46px;padding:9px 12px;border-radius:7px;border:1px solid #c9bda4;font:700 17px Arial,sans-serif;background:#fff}
+.rf-f small{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+.rf-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rf-chk{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#3b372f;cursor:pointer}.rf-chk input{width:20px;height:20px;accent-color:var(--green);flex:0 0 auto;margin-top:1px}
+.rf-out{background:var(--black);color:#fff;border-radius:10px;padding:22px}
+.rf-out h3{margin:0 0 12px;font:700 22px Georgia,serif;color:#fff}
+.rf-res{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.rf-res>div{background:#151515;border:1px solid #333;border-radius:8px;padding:14px}
+.rf-res .k{font-size:10px;font-weight:900;letter-spacing:1.3px;color:#cfc6b2}
+.rf-res b{display:block;font:700 30px Georgia,serif;color:var(--gold-light);margin:4px 0}
+.rf-res span{color:#bcb8ae;font-size:13px}
+.rf-verdict{padding:14px 16px;border-radius:8px;font-size:15px;margin-bottom:12px}
+.rf-verdict.ok{background:#0f2f20;border:1px solid #2e8b57;color:#e7f3ea}.rf-verdict.no{background:#3a140c;border:1px solid #c0502e;color:#ffe2d8}
+.rf-verdict b{font-size:17px}
+.rf-math{color:#9b968c;font-size:12px;line-height:1.6}
+.rf-math b{color:#ddd}
+.rf-learn{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rf-learn article{background:#fff;border:1px solid #d8cfbf;padding:20px}
+.rf-learn h3{margin:0 0 8px;font:700 20px Georgia,serif}.rf-learn p,.rf-learn li{color:var(--muted);font-size:15px}
+.rf-learn ul{padding-left:18px;margin:0}
+.rf-tbl{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+.rf-tbl th{background:#1d1d1d;color:#cfc6b2;font-size:10px;letter-spacing:1.2px;text-align:left;padding:8px}
+.rf-tbl td{padding:8px;border-bottom:1px solid #eee5d3}
+@media(max-width:900px){.rf,.rf-learn{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:480px){.rf-2,.rf-res{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Search &amp; Park Guides</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-band-plan.html" role="menuitem"><span class="ni">&#128225;</span>Band Plan by License</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • SAFETY</p><h1>RF EXPOSURE <span>CHECK</span></h1><p class="hero-copy">Every ham station has to be evaluated for RF exposure (FCC rule, since 2021). Enter your setup and see how far people need to be from your antenna — at home or in the park.</p></div></section>
+
+<section class="section features" id="calc"><div class="section-inner">
+<div class="rf">
+ <div class="rf-card">
+  <h3>Your Station</h3>
+  <div class="rf-2">
+   <div class="rf-f"><label for="rfP">TRANSMITTER POWER (W)</label><input type="number" id="rfP" value="100" min="0.1" step="any" inputmode="decimal"><small>PEP for SSB, carrier for CW/FM/digital</small></div>
+   <div class="rf-f"><label for="rfBand">BAND</label><select id="rfBand">
+    <option value="1.9">160 m</option><option value="3.75">80 m</option><option value="5.35">60 m</option><option value="7.15">40 m</option><option value="10.12">30 m</option><option value="14.2" selected>20 m</option><option value="18.1">17 m</option><option value="21.2">15 m</option><option value="24.9">12 m</option><option value="28.5">10 m</option><option value="50.1">6 m</option><option value="146">2 m</option><option value="222">1.25 m</option><option value="440">70 cm</option><option value="1270">23 cm</option></select></div>
+  </div>
+  <div class="rf-2">
+   <div class="rf-f"><label for="rfMode">MODE</label><select id="rfMode">
+    <option value="0.2">SSB voice (no processing) — 20%</option><option value="0.5">SSB voice, heavy processing — 50%</option><option value="0.4" selected>CW — 40%</option><option value="1">FM voice — 100%</option><option value="1">FT8 / digital / RTTY — 100%</option><option value="1">Tuning / carrier — 100%</option></select></div>
+   <div class="rf-f"><label for="rfAnt">ANTENNA</label><select id="rfAnt">
+    <option value="2.15" selected>Dipole / inverted-V / EFHW (2.15 dBi)</option><option value="1">Vertical / whip (~1 dBi)</option><option value="0">HT rubber duck (0 dBi)</option><option value="5">2 m 5/8-wave or J-pole (~5 dBi)</option><option value="7">3-element Yagi (~7 dBi)</option><option value="10">Big Yagi (~10 dBi)</option><option value="custom">Other — type gain…</option></select>
+    <input type="number" id="rfGain" step="0.1" value="2.15" hidden aria-label="Antenna gain in dBi" style="margin-top:8px"></div>
+  </div>
+  <div class="rf-2">
+   <div class="rf-f"><label for="rfOn">MINUTES TRANSMITTING</label><input type="number" id="rfOn" value="1" min="0" step="any"></div>
+   <div class="rf-f"><label for="rfOff">MINUTES LISTENING</label><input type="number" id="rfOff" value="1" min="0" step="any"><small>A busy POTA run is about 1 on, 1 off. FT8 is 1 on, 1 off.</small></div>
+  </div>
+  <div class="rf-2">
+   <div class="rf-f"><label for="rfLoss">FEEDLINE LOSS (dB)</label><input type="number" id="rfLoss" value="0" min="0" step="0.1"><small>0 = most conservative. See the Antenna Calculator for coax loss.</small></div>
+   <div class="rf-f"><label for="rfDist">NEAREST PERSON (FEET)</label><input type="number" id="rfDist" value="10" min="0.1" step="any"><small>Distance from the antenna</small></div>
+  </div>
+  <label class="rf-chk"><input type="checkbox" id="rfGnd" checked> Include ground reflection (use for low or non-directional antennas — the safe choice)</label>
+ </div>
+ <div class="rf-out" aria-live="polite">
+  <h3>Result</h3>
+  <div class="rf-res">
+   <div><span class="k">YOU &amp; YOUR HOUSEHOLD</span><b id="rfDc">—</b><span>minimum distance (controlled)</span></div>
+   <div><span class="k">PUBLIC &amp; NEIGHBORS</span><b id="rfDu">—</b><span>minimum distance (uncontrolled)</span></div>
+  </div>
+  <div class="rf-verdict" id="rfVerdict"></div>
+  <div class="rf-math" id="rfMath"></div>
+ </div>
+</div>
+</div></section>
+
+<section class="section warning" id="learn"><div class="section-inner">
+<div class="section-heading"><div class="kicker">WHAT IT MEANS</div><h2>RF Exposure in Plain English</h2></div>
+<div class="rf-learn">
+ <article><h3>Two kinds of people</h3><p><b>Controlled</b> means you and people who know they're near a transmitter and can control it — your household, your club members at the table. <b>Uncontrolled</b> is everyone else: neighbors, park visitors walking by. The limit for the public is about five times stricter.</p></article>
+ <article><h3>Why average power?</h3><p>The limits are averaged over time — 6 minutes for controlled, 30 minutes for the public. SSB voice is only "on" about 20% of the time, and you listen about half the time, so your average is far below your peak power. FT8 and FM are full power whenever you transmit.</p></article>
+ <article><h3>Portable tips</h3><ul><li>Put the antenna up high or out away from the table and trail</li><li>QRP (5 W) is almost always fine anywhere</li><li>Don't let anyone touch the antenna while transmitting — RF burns are real</li><li>Running 100 W on a whip next to your chair? Check it here</li></ul></article>
+</div>
+<h3 style="font:700 24px Georgia,serif;margin:34px 0 12px">FCC Exposure Limits (47 CFR 1.1310)</h3>
+<div style="overflow:auto"><table class="rf-tbl"><thead><tr><th>FREQUENCY (MHz)</th><th>CONTROLLED (mW/cm²) · 6 MIN</th><th>PUBLIC (mW/cm²) · 30 MIN</th></tr></thead><tbody>
+ <tr><td>0.3 – 1.34</td><td>100</td><td>100</td></tr>
+ <tr><td>1.34 – 3</td><td>100</td><td>180 / f²</td></tr>
+ <tr><td>3 – 30</td><td>900 / f²</td><td>180 / f²</td></tr>
+ <tr><td>30 – 300</td><td>1.0</td><td>0.2</td></tr>
+ <tr><td>300 – 1,500</td><td>f / 300</td><td>f / 1500</td></tr>
+ <tr><td>1,500 – 100,000</td><td>5</td><td>1.0</td></tr>
+</tbody></table></div>
+<p style="color:var(--muted);font-size:14px;margin-top:14px">This uses the standard far-field estimate from FCC OET Bulletin 65 (with ground reflection it multiplies by 2.56), which is conservative close to most ham antennas. It's a planning tool — for a written station evaluation, see the <a href="https://www.arrl.org/rf-exposure" target="_blank" rel="noopener" style="color:var(--green);font-weight:800">ARRL RF Exposure page ↗</a>.</p>
+</div></section>
+
+<section class="final"><h2>Get Outside. Get On The Air.</h2><p>SAFELY</p><a class="btn" href="kpc-calc.html">MORE HAM CALCULATORS →</a></section>
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+/* FCC 47 CFR 1.1310 Table 1, mW/cm² */
+function limC(f){return f<3?100:f<30?900/(f*f):f<300?1:f<1500?f/300:5}
+function limU(f){return f<1.34?100:f<30?180/(f*f):f<300?0.2:f<1500?f/1500:1}
+var ft=function(cm){var f=cm/30.48;return f<1?'under 1 ft':(f<10?f.toFixed(1):Math.round(f))+' ft'};
+var mm=function(cm){return cm<100?Math.round(cm)+' cm':(cm/100).toFixed(cm<1000?1:0)+' m'};
+function calc(){
+ var P=parseFloat($('rfP').value)||0,f=parseFloat($('rfBand').value),duty=parseFloat($('rfMode').value);
+ var g=$('rfAnt').value==='custom'?(parseFloat($('rfGain').value)||0):parseFloat($('rfAnt').value);
+ var on=Math.max(0,parseFloat($('rfOn').value)||0),off=Math.max(0,parseFloat($('rfOff').value)||0),tf=on+off>0?on/(on+off):1;
+ var loss=Math.max(0,parseFloat($('rfLoss').value)||0),refl=$('rfGnd').checked?2.56:1,dft=parseFloat($('rfDist').value)||0;
+ var Pant=P*Math.pow(10,-loss/10),Pavg=Pant*duty*tf,G=Math.pow(10,g/10),eirp_mW=Pavg*1000*G*refl;
+ var LC=limC(f),LU=limU(f);
+ var rC=Math.sqrt(eirp_mW/(4*Math.PI*LC)),rU=Math.sqrt(eirp_mW/(4*Math.PI*LU)); // cm
+ $('rfDc').textContent=ft(rC);$('rfDu').textContent=ft(rU);
+ $('rfDc').title=mm(rC);$('rfDu').title=mm(rU);
+ var dcm=dft*30.48,S=dcm>0?eirp_mW/(4*Math.PI*dcm*dcm):Infinity;
+ var okU=S<=LU,okC=S<=LC,v=$('rfVerdict');
+ if(okU){v.className='rf-verdict ok';v.innerHTML='<b>✓ OK for everyone</b> at '+dft+' ft — about '+Math.round(S/LU*100)+'% of the public limit.'}
+ else if(okC){v.className='rf-verdict no';v.innerHTML='<b>⚠ OK for you, not the public</b> at '+dft+' ft. Keep bystanders at least '+ft(rU)+' away, or cut power / transmit time.'}
+ else{v.className='rf-verdict no';v.innerHTML='<b>✗ Too close</b> at '+dft+' ft — over the limit even for you. Move the antenna to at least '+ft(rC)+' (you) / '+ft(rU)+' (public), or lower power.'}
+ $('rfMath').innerHTML='Power at antenna <b>'+Pant.toFixed(1)+' W</b> × mode '+Math.round(duty*100)+'% × time '+Math.round(tf*100)+'% = average <b>'+Pavg.toFixed(1)+' W</b>; gain '+g+' dBi'+(refl>1?'; ground reflection ×2.56':'')+'.<br>Limits at '+f+' MHz: controlled <b>'+LC.toFixed(3)+'</b>, public <b>'+LU.toFixed(3)+'</b> mW/cm². At '+dft+' ft: <b>'+(isFinite(S)?S.toFixed(3):'—')+'</b> mW/cm². ('+mm(rC)+' / '+mm(rU)+')';
+}
+$('rfAnt').addEventListener('change',function(){$('rfGain').hidden=$('rfAnt').value!=='custom';calc()});
+['rfP','rfBand','rfMode','rfGain','rfOn','rfOff','rfLoss','rfDist','rfGnd'].forEach(function(id){$(id).addEventListener('input',calc);$(id).addEventListener('change',calc)});
+calc();
+window.KPCRF={limC:limC,limU:limU,calc:calc};
+})();
+</script>
+<script src="kpc-search.js?v=20261011c" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body></html>
