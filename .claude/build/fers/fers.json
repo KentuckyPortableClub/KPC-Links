@@ -2315,5 +2315,414 @@
   "Added Livingston County WMA (Trail of Tears Northern Route runs through it). Columbus-Belmont: the NPS Benge Route runs through the park, so it now has an on-route pin.",
   "Wickliffe Mounds, Big Bone Lick and Golden Pond now cite the NPS \"Visitor Centers in Kentucky\" page for the Lewis & Clark trail.",
   "Lewis & Clark auto tour route: checked the NPS route for all of Kentucky. It runs along the edges of Big Bone Lick, Wickliffe Mounds, Otter Creek, Yellowbank WMA and Livingston County WMA; each now has a pin inside the park next to the signed route, and Livingston County WMA is a new possible Lewis & Clark 2-fer."
+ ],
+ "trips": [
+  {
+   "title": "Kentucky Lake & Land Between the Lakes",
+   "tag": "Trail of Tears Water Route + Lewis & Clark",
+   "blurb": "A lake-country day in Marshall, Trigg and Calloway counties. Every stop is on the Tennessee River (Kentucky Lake), the Trail of Tears Water Route; Golden Pond adds Lewis & Clark. Kentucky Lake shore spots are a looser fit (the river channel is out in the lake), so read each card.",
+   "stops": [
+    {
+     "refs": [
+      "US-3791",
+      "US-1283"
+     ],
+     "type": "2-fer",
+     "label": "Kentucky Dam Village State Park",
+     "la": 37.01856,
+     "lo": -88.28284,
+     "what": "Kentucky Lake / Tennessee River shore (approximate)"
+    },
+    {
+     "refs": [
+      "US-3791",
+      "US-3792"
+     ],
+     "type": "2-fer",
+     "label": "Land Between the Lakes: Kentucky Lake shore",
+     "la": 36.94104,
+     "lo": -88.19152,
+     "what": "Kentucky Lake shore, north LBL (approximate)",
+     "legmi": 7
+    },
+    {
+     "refs": [
+      "US-4572",
+      "US-3792"
+     ],
+     "type": "2-fer",
+     "label": "Golden Pond Visitor Center (Lewis & Clark)",
+     "la": 36.77775,
+     "lo": -88.06306,
+     "what": "Golden Pond Visitor Center, Land Between the Lakes National Recreation Area (NPS-listed trail site)",
+     "legmi": 13
+    },
+    {
+     "refs": [
+      "US-3791",
+      "US-1282"
+     ],
+     "type": "2-fer",
+     "label": "Kenlake State Park",
+     "la": 36.74358,
+     "lo": -88.11963,
+     "what": "Kentucky Lake shore (approximate)",
+     "legmi": 4
+    },
+    {
+     "refs": [
+      "US-3791",
+      "US-0703",
+      "US-3790"
+     ],
+     "type": "3-fer",
+     "label": "Fort Heiman 3-fer (Kentucky Lake WMA 2-fer is the same shore)",
+     "la": 36.5016,
+     "lo": -88.0562,
+     "what": "Fort Heiman unit (POTA location)",
+     "legmi": 17
+    }
+   ],
+   "url": "https://www.google.com/maps/dir/37.01856,-88.28284/36.94104,-88.19152/36.77775,-88.06306/36.74358,-88.11963/36.5016,-88.0562"
+  },
+  {
+   "title": "Where the Rivers Meet",
+   "tag": "Ohio + Mississippi: 3-fers and NPS sites",
+   "blurb": "Ballard, McCracken, Carlisle and Hickman counties. Two Ohio River 3-fers, the Lewis & Clark visitor center at Wickliffe Mounds, and the Trail of Tears at Columbus-Belmont and on the Mississippi.",
+   "stops": [
+    {
+     "refs": [
+      "US-4572",
+      "US-3791",
+      "US-3837"
+     ],
+     "type": "3-fer",
+     "label": "West Kentucky WMA 3-fer (Ohio River bank)",
+     "la": 37.17108,
+     "lo": -88.79834,
+     "what": "Riverbank area (approximate)"
+    },
+    {
+     "refs": [
+      "US-4572",
+      "US-3791",
+      "US-3793"
+     ],
+     "type": "3-fer",
+     "label": "Ballard WMA 3-fer (Ohio River bank)",
+     "la": 37.1918,
+     "lo": -89.03754,
+     "what": "Riverbank area (approximate)",
+     "legmi": 13
+    },
+    {
+     "refs": [
+      "US-4572",
+      "US-3788"
+     ],
+     "type": "2-fer",
+     "label": "Wickliffe Mounds (L&C visitor center + auto tour route)",
+     "la": 36.96958,
+     "lo": -89.09265,
+     "what": "Inside the park next to the auto tour route (US 60 / US 51)",
+     "legmi": 16
+    },
+    {
+     "refs": [
+      "US-3791",
+      "US-1252"
+     ],
+     "type": "2-fer",
+     "label": "Columbus-Belmont (Trail of Tears Benge Route)",
+     "la": 36.76151,
+     "lo": -89.10882,
+     "what": "On the Benge Route (Trail of Tears) inside the park",
+     "legmi": 14
+    },
+    {
+     "refs": [
+      "US-3791",
+      "US-3808"
+     ],
+     "type": "2-fer",
+     "label": "Doug Travis WMA (Mississippi bank)",
+     "la": 36.78567,
+     "lo": -89.1186,
+     "what": "Mississippi River bank area (approximate)",
+     "legmi": 2
+    }
+   ],
+   "url": "https://www.google.com/maps/dir/37.17108,-88.79834/37.1918,-89.03754/36.96958,-89.09265/36.76151,-89.10882/36.78567,-89.1186"
+  },
+  {
+   "title": "Lower Ohio River",
+   "tag": "Lewis & Clark banks + Trail of Tears",
+   "blurb": "Livingston, Crittenden, Union and Henderson counties along the Ohio. Mix of a 3-fer, riverbank 2-fers and Livingston County WMA, which has both the Trail of Tears (Northern Route) and the signed Lewis & Clark auto tour route (two separate spots).",
+   "stops": [
+    {
+     "refs": [
+      "US-3791",
+      "US-3823"
+     ],
+     "type": "2-fer",
+     "label": "Livingston County WMA (Trail of Tears)",
+     "la": 37.36672,
+     "lo": -88.44268,
+     "what": "On the Northern Route (Trail of Tears) inside the park"
+    },
+    {
+     "refs": [
+      "US-4572",
+      "US-3823"
+     ],
+     "type": "2-fer",
+     "label": "Livingston County WMA (L&C auto tour route)",
+     "la": 37.36804,
+     "lo": -88.43962,
+     "what": "Inside the park next to the auto tour route (Lola Rd)",
+     "legmi": 0
+    },
+    {
+     "refs": [
+      "US-4572",
+      "US-3791",
+      "US-3796"
+     ],
+     "type": "3-fer",
+     "label": "Big Rivers WMA 3-fer (Ohio River bank)",
+     "la": 37.5268,
+     "lo": -88.06376,
+     "what": "Riverbank area (approximate)",
+     "legmi": 23
+    },
+    {
+     "refs": [
+      "US-4572",
+      "US-3830"
+     ],
+     "type": "2-fer",
+     "label": "Sloughs WMA (Ohio River bank)",
+     "la": 37.8674,
+     "lo": -87.77754,
+     "what": "Riverbank area (approximate)",
+     "legmi": 28
+    },
+    {
+     "refs": [
+      "US-4572",
+      "US-1260"
+     ],
+     "type": "2-fer",
+     "label": "John James Audubon State Park",
+     "la": 37.90235,
+     "lo": -87.55035,
+     "what": "Riverbank area (approximate)",
+     "legmi": 13
+    },
+    {
+     "refs": [
+      "US-4572",
+      "US-7951"
+     ],
+     "type": "2-fer",
+     "label": "Green River State Forest",
+     "la": 37.89913,
+     "lo": -87.50295,
+     "what": "Riverbank area (approximate)",
+     "legmi": 3
+    }
+   ],
+   "url": "https://www.google.com/maps/dir/37.36672,-88.44268/37.36804,-88.43962/37.5268,-88.06376/37.8674,-87.77754/37.90235,-87.55035/37.89913,-87.50295"
+  },
+  {
+   "title": "Middle & Upper Ohio",
+   "tag": "Lewis & Clark auto tour route",
+   "blurb": "Follow the brown AUTO TOUR ROUTE signs. Otter Creek and Yellowbank have both a riverbank spot and a spot beside the signed route; Big Bone Lick is an NPS visitor center with the route along the park. Six Mile Island is boat-only. Big Bone Lick is about 100 miles from the other two, so this one is a long day or a weekend.",
+   "stops": [
+    {
+     "refs": [
+      "US-4572",
+      "US-3779"
+     ],
+     "type": "2-fer",
+     "label": "Big Bone Lick (L&C visitor center + auto tour route)",
+     "la": 38.8887,
+     "lo": -84.75455,
+     "what": "Inside the park next to the auto tour route (KY 338)"
+    },
+    {
+     "refs": [
+      "US-4572",
+      "US-8144"
+     ],
+     "type": "2-fer",
+     "label": "Otter Creek (bank + auto tour route)",
+     "la": 37.92524,
+     "lo": -86.0391,
+     "what": "Inside the park next to the auto tour route (Old Mill Rd)",
+     "legmi": 96
+    },
+    {
+     "refs": [
+      "US-4572",
+      "US-3840"
+     ],
+     "type": "2-fer",
+     "label": "Yellowbank WMA (bank + auto tour route)",
+     "la": 37.88206,
+     "lo": -86.58852,
+     "what": "Inside the park next to the auto tour route (KY 144)",
+     "legmi": 30
+    }
+   ],
+   "url": "https://www.google.com/maps/dir/38.8887,-84.75455/37.92524,-86.0391/37.88206,-86.58852"
+  },
+  {
+   "title": "Red River Gorge & Natural Bridge",
+   "tag": "Sheltowee Trace and wild river 3-fers",
+   "blurb": "Powell, Wolfe and Menifee counties. Trail and boundary 3-fers in the Daniel Boone National Forest (Forest Service land only) plus Natural Bridge on the Sheltowee Trace.",
+   "stops": [
+    {
+     "refs": [
+      "US-11181",
+      "US-1286"
+     ],
+     "type": "2-fer",
+     "label": "Natural Bridge State Park on the Sheltowee",
+     "la": 37.77428,
+     "lo": -83.67655,
+     "what": "On the trail"
+    },
+    {
+     "refs": [
+      "US-10104",
+      "US-3801",
+      "US-4484"
+     ],
+     "type": "3-fer",
+     "label": "Red River + Clifty Wilderness + Daniel Boone NF 3-fer",
+     "la": 37.82267,
+     "lo": -83.57337,
+     "what": "Target spot inside all three",
+     "legmi": 7
+    },
+    {
+     "refs": [
+      "US-11181",
+      "US-3801",
+      "US-4484"
+     ],
+     "type": "3-fer",
+     "label": "Sheltowee Trace + Clifty Wilderness 3-fer",
+     "la": 37.86004,
+     "lo": -83.59651,
+     "what": "On the trail",
+     "legmi": 3
+    },
+    {
+     "refs": [
+      "US-11181",
+      "US-10158",
+      "US-4484"
+     ],
+     "type": "3-fer",
+     "label": "Sheltowee + Pioneer Weapons WMA 3-fer",
+     "la": 38.0905,
+     "lo": -83.56194,
+     "what": "On the trail",
+     "legmi": 16
+    }
+   ],
+   "url": "https://www.google.com/maps/dir/37.77428,-83.67655/37.82267,-83.57337/37.86004,-83.59651/38.0905,-83.56194"
+  },
+  {
+   "title": "Cumberland Falls Country",
+   "tag": "Sheltowee Trace and wild river 3-fers",
+   "blurb": "Whitley, McCreary and Laurel counties. Cumberland Falls, the Cumberland River wild river corridor and Cane Creek, all on or near the Sheltowee Trace.",
+   "stops": [
+    {
+     "refs": [
+      "US-11181",
+      "US-10103",
+      "US-1277"
+     ],
+     "type": "3-fer",
+     "label": "Cumberland Falls 3-fer on the Sheltowee",
+     "la": 36.84604,
+     "lo": -84.33176,
+     "what": "On the trail"
+    },
+    {
+     "refs": [
+      "US-11181",
+      "US-10103",
+      "US-4484"
+     ],
+     "type": "3-fer",
+     "label": "Sheltowee + Cumberland River + Daniel Boone NF 3-fer",
+     "la": 36.82099,
+     "lo": -84.34717,
+     "what": "On the trail",
+     "legmi": 2
+    },
+    {
+     "refs": [
+      "US-11181",
+      "US-10121",
+      "US-4484"
+     ],
+     "type": "3-fer",
+     "label": "Sheltowee + Cane Creek WMA 3-fer",
+     "la": 37.02989,
+     "lo": -84.28306,
+     "what": "On the trail",
+     "legmi": 15
+    },
+    {
+     "refs": [
+      "US-10106",
+      "US-10121",
+      "US-4484"
+     ],
+     "type": "3-fer",
+     "label": "Rockcastle River + Cane Creek 3-fer",
+     "la": 37.03031,
+     "lo": -84.3063,
+     "what": "Target spot inside all three",
+     "legmi": 1
+    }
+   ],
+   "url": "https://www.google.com/maps/dir/36.84604,-84.33176/36.82099,-84.34717/37.02989,-84.28306/37.03031,-84.3063"
+  }
+ ],
+ "planning": [
+  [
+   "Pick your stops",
+   "Use the spot cards in this guide or the trip routes below. Start with grade A and B spots; leave grade C (check satellite view) for when you have time to scout."
+  ],
+  [
+   "Build it in the KY Trip Planner",
+   "Open the KY Trip Planner on the KPC site, add each park as a stop and turn on Park Overlaps plus the Trail of Tears, Lewis & Clark and Lewis & Clark auto tour route layers. It draws the route, counts the miles and exports a GPX."
+  ],
+  [
+   "Check each park before you go",
+   "Open the official park map. Wildlife Management Areas have hunting seasons (wear blaze orange in gun seasons), some lots and gates close, and national forest spots count only on Forest Service-owned land."
+  ],
+  [
+   "Scout the tricky pins",
+   "Riverbank and Kentucky Lake shore pins are approximate. Look at satellite view for a public place within 100 ft of the water. Trail spots must be within 100 ft of the trail and inside the other park."
+  ],
+  [
+   "Historic trails: look for the sign",
+   "POTA's Activator Guide says historic trails have no specific boundaries, so you need an NPS-certified site or official signage. Take a photo of the brown Lewis and Clark Trail / AUTO TOUR ROUTE or Trail of Tears sign at your spot."
+  ],
+  [
+   "On the air",
+   "Spot every reference you are activating, log each park separately (one log file per park) and keep your whole station inside every park. Upload each log to POTA after the trip."
+  ],
+  [
+   "Pack",
+   "Radio, battery, antenna that fits a small footprint, 100 ft of string or a tape to check the 100 ft rule, blaze orange in hunting season, water, a paper map (cell service is poor in the gorge and along the rivers)."
+  ]
  ]
 }
