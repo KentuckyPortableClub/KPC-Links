@@ -22,12 +22,12 @@ GM=lambda la,lo:f'https://www.google.com/maps/search/?api=1&query={la:.5f},{lo:.
 POTA=lambda r:'https://pota.app/#/park/'+r
 def sec(d):
   if d['type']=='3-fer': return 0
-  if 'Historic Trail site' in d['how']: return 1
+  if 'Historic Trail site' in d['how'] or 'auto tour route' in d['how']: return 1
   if 'Water Route bank' in d['how']: return 3
   if 'riverbank' in d['how'].lower(): return 2
   if 'through the park' in d['how']: return 4
   return 5
-SECN=['3-Fers','Historic trail sites (visitor centers & certified sites)','Ohio River banks (Lewis & Clark)','Trail of Tears Water Route (Kentucky Lake & Mississippi River)','Trail 2-fers','Shared boundaries']
+SECN=['3-Fers','Historic trail sites (visitor centers, certified sites, auto tour route)','Ohio River banks (Lewis & Clark)','Trail of Tears Water Route (Kentucky Lake & Mississippi River)','Trail 2-fers','Shared boundaries']
 def guidept(d):
   return next((p for p in d['points'] if not p['what'].lower().startswith(('parking','drive up'))),d['points'][0])
 # ---------------- index pages ----------------
