@@ -14,6 +14,14 @@ const ICON = {pota:'#1d5a3a', sota:'#b5452b', kff:'#2b5f8a', multi:'#d5a63a'};
 let D, map, layer, tripLayer, V0, origin = null, ALL = null, res = [], RT = null;   // RT = along-a-route search
 let on = {pota:1, sota:1, kff:1, two:0};
 let trip = [];                     // {id,t:'park'|'spot',ref,k,n,la,lo,note}
+/* My Parks checker (kpc-my-parks.js): NEW TO ME / ATNO filters, badges and faded / orange-ringed dots */
+const KM = window.KPCMine || null;
+let kmHid = 0;
+function kmPick(cand){if(!KM){kmHid=0;return cand}KM.ensure(cand.filter(x=>x.k!=='kff').map(x=>({ref:x.ref,la:x.la,lo:x.lo})));
+ const out=KM.filtering()?cand.filter(x=>KM.show(x.ref)):cand;kmHid=cand.length-out.length;return out}
+const kmBadge = x => KM ? KM.badge(x.ref) : '';
+function kmDot(x,o){if(!KM)return o;const m=KM.mark(x.ref);if(m.atno){o.color='#c2410c';o.weight=3}if(m.done)o.fillOpacity=.35;return o}
+const kmNote = () => kmHid ? ` • <b>${kmHid}</b> hidden by NEW TO ME / ATNO` : '';
 let adding = false, bReady = false;
 let X = null, OVX = null;           // map extras (parking/entrances/overlaps) and the overlap index by reference
 
@@ -234,20 +242,20 @@ function items(){const out=[],P=new Map(D.parks.map(p=>[p.c,p])),ANY=ovAnySet();
  D.kff.forEach(k=>{if(k.p&&P.has(k.p))return;out.push({k:'kff',ref:k.c,n:k.n,co:k.co,la:k.la,lo:k.lo,dest:[k.la,k.lo],multi:0,two:[],also:[],cls:'WWFF / KFF reference',ov:ANY.has(k.c),tags:[],links:[['WWFF',KPC.links.kff(k.c)]]})});
  return out}
 function run(fit){ALL=ALL||items();if(RT)return runRoute(fit);const R=+$('rad').value;
- res=ALL.map(x=>({...x,d:KPC.miles(origin[0],origin[1],x.la,x.lo)})).filter(x=>x.d<=R&&on[x.k]&&(!on.two||x.ov)).sort((a,b)=>a.d-b.d);
+ res=kmPick(ALL.map(x=>({...x,d:KPC.miles(origin[0],origin[1],x.la,x.lo)})).filter(x=>x.d<=R&&on[x.k]&&(!on.two||x.ov)).sort((a,b)=>a.d-b.d));
  const c={pota:0,sota:0,kff:0};res.forEach(x=>c[x.k]++);
- $('where').innerHTML=`From <b>${esc(origin[2])}</b> within ${R} miles: <b>${c.pota}</b> POTA parks • <b>${c.sota}</b> summits • <b>${c.kff}</b> KFF-only references`;
+ $('where').innerHTML=`From <b>${esc(origin[2])}</b> within ${R} miles: <b>${c.pota}</b> POTA parks • <b>${c.sota}</b> summits • <b>${c.kff}</b> KFF-only references${kmNote()}`;
  layer.clearLayers();L.circle([origin[0],origin[1]],{radius:R*1609.34,color:'#d5a63a',weight:1.5,fillOpacity:.04,interactive:false}).addTo(layer);
  L.circleMarker([origin[0],origin[1]],{radius:7,color:'#000',fillColor:'#000',fillOpacity:1}).bindPopup('Start: '+esc(origin[2])).addTo(layer);
  res.forEach(x=>{const two=x.two&&x.two.length;
-  const mk=L.circleMarker([x.la,x.lo],{radius:(two?9:7)+(TAP?2:0),weight:x.ov&&!two?3:2,color:x.ov&&!two?'#7b3fa0':'#ffffff',fillColor:two?ICON.multi:ICON[x.k],fillOpacity:.95}) /* white ring shows on satellite */
+  const mk=L.circleMarker([x.la,x.lo],kmDot(x,{radius:(two?9:7)+(TAP?2:0),weight:x.ov&&!two?3:2,color:x.ov&&!two?'#7b3fa0':'#ffffff',fillColor:two?ICON.multi:ICON[x.k],fillOpacity:.95})) /* white ring shows on satellite */
    .bindPopup(()=>pinCard(x),{maxWidth:290,minWidth:210,autoPanPadding:[12,12]});
   if(window.KPCX)KPCX.hover(mk);mk.on('click',()=>showInfo(x.ref));x.mk=mk;mk.addTo(layer)});
  if(fit!==false)map.fitBounds(L.latLng(origin[0],origin[1]).toBounds(R*1609.34*2.1));
  $('list').innerHTML=res.length?res.map((x,i)=>`<div class="item ${x.k}"><input type="checkbox" data-i="${i}" ${trip.some(s=>s.ref===x.ref)?'checked':''} aria-label="Add ${esc(x.ref)} to trip">
- <div><span class="ref">${x.ref}</span> <span class="tag">${x.k.toUpperCase()}</span><h3>${esc(x.n)}</h3><div class="meta">${esc(KPC.cty(x.co))}${x.meta?' • '+x.meta:''}${x.dn?` • parking: ${esc(x.dn)}`:''}</div>${x.tags.length?`<div>${x.tags.join('')}</div>`:''}
+ <div><span class="ref">${x.ref}</span> <span class="tag">${x.k.toUpperCase()}</span> ${kmBadge(x)}<h3>${esc(x.n)}</h3><div class="meta">${esc(KPC.cty(x.co))}${x.meta?' • '+x.meta:''}${x.dn?` • parking: ${esc(x.dn)}`:''}</div>${x.tags.length?`<div>${x.tags.join('')}</div>`:''}
  <div class="acts"><button type="button" class="btn sm alt" data-zoom="${i}">SHOW ON MAP</button><a class="btn sm" href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a>${x.links.map(([l,u])=>`<a class="btn sm alt" href="${u}" target="_blank" rel="noopener">${l}</a>`).join('')}</div></div>
- <div class="dist">${x.d.toFixed(1)}<small>MILES</small></div></div>`).join(''):'<div class="empty">Nothing in range. Try a bigger distance.</div>';
+ <div class="dist">${x.d.toFixed(1)}<small>MILES</small></div></div>`).join(''):`<div class="empty">${kmHid?'Everything in range is hidden by NEW TO ME / ATNO. Turn a filter off or try a bigger distance.':'Nothing in range. Try a bigger distance.'}</div>`;
  $('list').querySelectorAll('input[type=checkbox]').forEach(cb=>cb.onchange=()=>{const x=res[+cb.dataset.i];if(cb.checked){if(!canAdd()){cb.checked=false;return}addPark(x)}else{trip=trip.filter(s=>s.ref!==x.ref);changed()}});
  $('list').querySelectorAll('[data-zoom]').forEach(b=>b.onclick=()=>{const x=res[+b.dataset.zoom];showInfo(x.ref);map.setView([x.la,x.lo],15);$('mapwrap').scrollIntoView({behavior:'smooth',block:'center'})})}
 /* ---------------- park details box (same facts as KY Park Commander's cards) ---------------- */
@@ -259,7 +267,7 @@ const TYPEN={'WMA':'Wildlife Management Area','National / NPS':'National Park Se
 const gdir=(a,b)=>`https://www.google.com/maps/dir/?api=1&destination=${a},${b}&travelmode=driving`;
 function infoHtml(x){const P=new Map(D.parks.map(q=>[q.c,q])),p=x.k==='pota'?P.get(x.ref):null,lk=[];const L2=(l,u)=>lk.push(`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)}</a>`);
  const line=[`Grid ${grid6(x.la,x.lo)}`,coTxt(x.co),`${(+x.la).toFixed(5)}, ${(+x.lo).toFixed(5)}`].filter(Boolean).join(' · ');
- let h=`<span class="pi-tag ${x.k}">${x.k==='pota'?'POTA':x.k==='sota'?'SOTA':'WWFF / KFF'} • ${esc(x.ref)}</span><h3>${esc(x.n)}</h3><div class="pi-m">${line}</div>`;
+ let h=`<span class="pi-tag ${x.k}">${x.k==='pota'?'POTA':x.k==='sota'?'SOTA':'WWFF / KFF'} • ${esc(x.ref)}</span> ${kmBadge(x)}<h3>${esc(x.n)}</h3><div class="pi-m">${line}</div>`;
  if(x.k==='sota')h+=`<div class="pi-m">${esc(x.meta||'')}</div>`;
  if(x.also&&x.also.length)h+=`<div class="pi-m"><b>Also:</b> ${esc(x.also.join(' · '))}</div>`;
  if(x.two&&x.two.length)h+=`<div class="pi-m pi-two"><b>Possible POTA 2-fer</b> with ${x.two.map(r=>`${esc(r[0])}${r[1]?' ('+esc(r[1])+')':''}`).join(', ')}. Verify before activating.</div>`;
@@ -288,7 +296,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-findlist],
 const PROG={pota:['POTA PARK','#1d5a3a'],sota:['SOTA SUMMIT','#b5452b'],kff:['WWFF / KFF','#2b5f8a']};
 function pinCard(x){const inTrip=trip.some(s=>s.ref===x.ref),P=PROG[x.k]||PROG.pota;
  return `<div class="kx-card"><span class="kx-badge" style="background:${P[1]};color:#fff">${P[0]}</span>
- <div class="kx-t">${esc(x.n)}</div>
+ <div class="kx-t">${esc(x.n)}</div>${kmBadge(x)?'<div style="margin:3px 0">'+kmBadge(x)+'</div>':''}
  <div class="kx-d"><b>${esc(x.ref)}</b>${x.cls?' · '+esc(x.cls):''}${x.co&&!/official|see /i.test(x.co)?' · '+esc(KPC.cty(x.co)):''}</div>
  <div class="kx-d">${x.d.toFixed(1)} mi from ${esc(origin?origin[2]:'start')}${x.meta?' · '+x.meta:''}</div>
  ${x.dn?`<div class="kx-d">Parking / entrance on file: ${esc(x.dn)}</div>`:''}
@@ -325,20 +333,20 @@ async function findRoute(){const fv=$('rtFrom').value,tv=$('rtTo').value,w=+$('r
  $('where').textContent='Working out the drive…';const R=await driveRoute(A,B);const cum=[0];for(let i=1;i<R.pts.length;i++)cum.push(cum[i-1]+KPC.miles(R.pts[i-1][0],R.pts[i-1][1],R.pts[i][0],R.pts[i][1]));
  RT={...R,cum,A,B,w,total:cum[cum.length-1]};origin=[A.la,A.lo,A.n];save();run()}
 function runRoute(fit){const w=RT.w=+$('rtW').value;
- res=ALL.filter(x=>on[x.k]&&(!on.two||x.ov)).map(x=>{const r=offRoute(x);return r.off<=w?{...x,d:r.at,off:r.off}:null}).filter(Boolean).sort((a,b)=>a.d-b.d);
+ res=kmPick(ALL.filter(x=>on[x.k]&&(!on.two||x.ov)).map(x=>{const r=offRoute(x);return r.off<=w?{...x,d:r.at,off:r.off}:null}).filter(Boolean).sort((a,b)=>a.d-b.d));
  const c={pota:0,sota:0,kff:0};res.forEach(x=>c[x.k]++);const h=RT.hrs?`, about ${Math.floor(RT.hrs)} h ${Math.round(RT.hrs%1*60)} min`:'';
- $('where').innerHTML=`Along your ${Math.round(RT.road?RT.mi:RT.total)}-mile ${RT.road?'drive'+h:'route (straight line: the road-route server was busy)'} from <b>${esc(RT.A.n)}</b> to <b>${esc(RT.B.n)}</b>, within ${w} miles: <b>${c.pota}</b> POTA parks • <b>${c.sota}</b> summits • <b>${c.kff}</b> KFF-only references. In the order you reach them. Kentucky spots only: for other states use the <a href="kpc-planner-us.html">US Trip Planner</a>.`;
+ $('where').innerHTML=`Along your ${Math.round(RT.road?RT.mi:RT.total)}-mile ${RT.road?'drive'+h:'route (straight line: the road-route server was busy)'} from <b>${esc(RT.A.n)}</b> to <b>${esc(RT.B.n)}</b>, within ${w} miles: <b>${c.pota}</b> POTA parks • <b>${c.sota}</b> summits • <b>${c.kff}</b> KFF-only references${kmNote()}. In the order you reach them. Kentucky spots only: for other states use the <a href="kpc-planner-us.html">US Trip Planner</a>.`;
  layer.clearLayers();const end=(p,t)=>L.marker([p.la,p.lo],{interactive:false,icon:L.divIcon({className:'',html:`<div class="rt-end">${t}</div>`,iconSize:[26,26],iconAnchor:[13,13]})});
  L.polyline(RT.pts,{color:'#171717',weight:8,opacity:.5,interactive:false}).addTo(layer);L.polyline(RT.pts,{color:'#d5a63a',weight:4,interactive:false,dashArray:RT.road?null:'8 8'}).addTo(layer);end(RT.A,'A').addTo(layer);end(RT.B,'B').addTo(layer);
  res.forEach(x=>{const two=x.two&&x.two.length;
-  const mk=L.circleMarker([x.la,x.lo],{radius:(two?9:7)+(TAP?2:0),weight:x.ov&&!two?3:2,color:x.ov&&!two?'#7b3fa0':'#ffffff',fillColor:two?ICON.multi:ICON[x.k],fillOpacity:.95}) /* white ring shows on satellite */
+  const mk=L.circleMarker([x.la,x.lo],kmDot(x,{radius:(two?9:7)+(TAP?2:0),weight:x.ov&&!two?3:2,color:x.ov&&!two?'#7b3fa0':'#ffffff',fillColor:two?ICON.multi:ICON[x.k],fillOpacity:.95})) /* white ring shows on satellite */
    .bindPopup(()=>pinCard(x),{maxWidth:290,minWidth:210,autoPanPadding:[12,12]});
   if(window.KPCX)KPCX.hover(mk);mk.on('click',()=>showInfo(x.ref));x.mk=mk;mk.addTo(layer)});
  if(fit!==false)map.fitBounds(L.latLngBounds(RT.pts).pad(.08));
  $('list').innerHTML=res.length?res.map((x,i)=>`<div class="item ${x.k}"><input type="checkbox" data-i="${i}" ${trip.some(s=>s.ref===x.ref)?'checked':''} aria-label="Add ${esc(x.ref)} to trip">
- <div><span class="ref">${x.ref}</span> <span class="tag">${x.k.toUpperCase()}</span><h3>${esc(x.n)}</h3><div class="meta">${esc(KPC.cty(x.co))}${x.meta?' • '+x.meta:''}${x.dn?` • parking: ${esc(x.dn)}`:''}</div>${x.tags.length?`<div>${x.tags.join('')}</div>`:''}
+ <div><span class="ref">${x.ref}</span> <span class="tag">${x.k.toUpperCase()}</span> ${kmBadge(x)}<h3>${esc(x.n)}</h3><div class="meta">${esc(KPC.cty(x.co))}${x.meta?' • '+x.meta:''}${x.dn?` • parking: ${esc(x.dn)}`:''}</div>${x.tags.length?`<div>${x.tags.join('')}</div>`:''}
  <div class="acts"><button type="button" class="btn sm alt" data-zoom="${i}">SHOW ON MAP</button><a class="btn sm" href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a>${x.links.map(([l,u])=>`<a class="btn sm alt" href="${u}" target="_blank" rel="noopener">${l}</a>`).join('')}</div></div>
- <div class="dist"><small>MILE</small>${Math.round(x.d)}<small>${x.off.toFixed(1)} MI OFF</small></div></div>`).join(''):'<div class="empty">Nothing in Kentucky that close to the route. Try a wider distance.</div>';
+ <div class="dist"><small>MILE</small>${Math.round(x.d)}<small>${x.off.toFixed(1)} MI OFF</small></div></div>`).join(''):`<div class="empty">${kmHid?'Everything near the route is hidden by NEW TO ME / ATNO. Turn a filter off or try a wider distance.':'Nothing in Kentucky that close to the route. Try a wider distance.'}</div>`;
  $('list').querySelectorAll('input[type=checkbox]').forEach(cb=>cb.onchange=()=>{const x=res[+cb.dataset.i];if(cb.checked){if(!canAdd()){cb.checked=false;return}addPark(x)}else{trip=trip.filter(s=>s.ref!==x.ref);changed()}});
  $('list').querySelectorAll('[data-zoom]').forEach(b=>b.onclick=()=>{const x=res[+b.dataset.zoom];showInfo(x.ref);map.setView([x.la,x.lo],15);$('mapwrap').scrollIntoView({behavior:'smooth',block:'center'})})}
 function planMode(m){const r=m==='route';$('townCtl').hidden=r;$('routeCtl').hidden=!r;$('plModes').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.m===m)));try{localStorage.setItem('kpcPlanMode',m)}catch(e){}}
@@ -380,6 +388,10 @@ function pickTown(){const v=$('town').value,p=findPlace(v);if(!p){if(v.trim().le
  renderTrip();
  if(trip.length&&!origin){map.fitBounds(L.latLngBounds(trip.map(s=>[s.la,s.lo])).pad(.3),{maxZoom:15})}
  loadBoundaries();
+ /* new checker answers: redraw (fit kept); wait while a popup is open so it doesn't vanish */
+ if(KM){KM.bar($('km-bar'));let pend=false;const redo=()=>{if(origin){run(false);refreshInfo()}};
+  window.addEventListener('kpcmine',()=>{if(map._popup&&map.hasLayer(map._popup)){pend=true;return}redo()});
+  map.on('popupclose',()=>{if(pend){pend=false;setTimeout(redo,0)}})}
  window.kpcPlanner={map:()=>map,trip:()=>trip,where:(a,b)=>whereIs(a,b),ready:()=>bReady,extras:()=>X,res:()=>res};
 })();
 /* Our own suggestion list for the town and route boxes. The phone's built-in list (<datalist>) shows see-through on

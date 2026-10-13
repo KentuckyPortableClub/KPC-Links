@@ -15,6 +15,12 @@ const TAP=matchMedia('(pointer:coarse)').matches;
 const isPhone=()=>/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)||matchMedia('(max-width:700px)').matches;
 const fix=n=>Math.round(n*1e5)/1e5;
 function status(t){$('us-status').innerHTML=t}
+/* My Parks checker (kpc-my-parks.js): NEW TO ME / ATNO filters, badges and faded / orange-ringed dots */
+const KM=window.KPCMine||null;
+let LIST=[];
+const allNear=()=>NEAR;
+const vis=()=>KM&&KM.filtering()?NEAR.filter(s=>KM.show(s.c)):NEAR;
+const kmBadge=s=>KM&&s.p!=='PIN'?KM.badge(s.c):'';
 
 /* ---------- data ---------- */
 async function loadAll(){const[L,B]=await Promise.all([fetch('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[])]);BORD=B;
@@ -25,7 +31,7 @@ function statesNear(la,lo,mi){const dLa=mi/69,dLo=mi/(69*Math.cos(la*Math.PI/180
 async function addLive(la,lo,mi){if(!progs.includes('POTA'))return 0;let added=0;
  const st=statesNear(la,lo,mi).filter(a=>!(a in liveStates)).slice(0,4);
  await Promise.all(st.map(async a=>{liveStates[a]=null;try{const c=new AbortController(),t=setTimeout(()=>c.abort(),12000);const r=await fetch('https://api.pota.app/location/parks/US-'+a,{signal:c.signal});clearTimeout(t);if(!r.ok)throw 0;const j=await r.json();
-  liveStates[a]=true;(Array.isArray(j)?j:[]).forEach(x=>{const ref=String(x.reference||'').toUpperCase(),la2=+x.latitude,lo2=+x.longitude;if(!/^US-\d+$/.test(ref)||!isFinite(la2)||!isFinite(lo2)||!la2)return;
+  liveStates[a]=true;if(window.KPCMine)KPCMine.takePotaList(a,j);(Array.isArray(j)?j:[]).forEach(x=>{const ref=String(x.reference||'').toUpperCase(),la2=+x.latitude,lo2=+x.longitude;if(!/^US-\d+$/.test(ref)||!isFinite(la2)||!isFinite(lo2)||!la2)return;
    if(!BYREF[ref]){const s={p:'POTA',c:ref,n:x.name||ref,la:la2,lo:lo2,url:'',live:true};ALL.push(s);BYREF[ref]=s;added++}})}catch(e){delete liveStates[a]}}));
  return added}
 
@@ -84,7 +90,7 @@ function links(s){const sv=`https://www.google.com/maps/@?api=1&map_action=pano&
 function popup(s){const l=links(s),d=center?KPC.miles(center[0],center[1],s.la,s.lo):null;
  const what=s.p==='POTA'?'POTA park':s.p==='SOTA'?`SOTA summit${s.m?' • '+s.m.toLocaleString()+' m ('+Math.round(s.m*3.28084).toLocaleString()+' ft)':''}${s.pts?' • '+s.pts+' pts':''}`:s.p==='WWFF'?'WWFF reference':'Your pin';
  const div=`<div class="us-pop"><b>${esc(s.n)}</b><div class="meta">${s.p==='PIN'?'':esc(s.c)+' • '}${what}${d!=null?' • '+d.toFixed(1)+' mi away':''} • grid ${KPC.grid(s.la,s.lo).slice(0,6)}</div>
-<div class="live"></div>
+${kmBadge(s)?'<div style="margin:4px 0">'+kmBadge(s)+'</div>':''}<div class="live"></div>
 <div class="acts"><button type="button" class="go" data-a="add">${inTrip(s.c)?'&#10003; IN TRIP (REMOVE)':'+ ADD TO TRIP'}</button><a href="${l.sv}" target="_blank" rel="noopener">&#128064; STREET VIEW</a><a href="${l.dir}" target="_blank" rel="noopener">DIRECTIONS</a>${s.p!=='PIN'&&s.p!=='SOTA'?'<button type="button" data-a="bound">SHOW BOUNDARY</button>':''}${l.page?`<a href="${l.page}" target="_blank" rel="noopener">${s.p} PAGE &#8599;</a>`:''}</div></div>`;
  return div}
 async function livePota(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;el.textContent='Checking POTA…';
@@ -93,8 +99,8 @@ async function livePota(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;e
   const last=a.map(x=>String(x.qso_date||'')).sort().pop();const good=a.filter(x=>+x.totalQSOs>=10).length;
   el.textContent=`${a.length} activation attempt${a.length===1?'':'s'} (${good} with 10+ QSOs) • last ${KPC.fmtDate(last)}`}catch(e){el.textContent=''}}
 function drawDots(){if(!map)return;dots.clearLayers();
- const show=center?NEAR:[];
- show.forEach(s=>{const inT=inTrip(s.c);const mk=L.circleMarker([s.la,s.lo],{radius:(inT?9:s.p==='SOTA'?6:7)+(TAP?2:0),weight:inT?3:2,color:inT?'#f0c96b':'#ffffff',fillColor:COL[s.p],fillOpacity:.95}); /* white ring shows on satellite */
+ const show=center?vis():[];
+ show.forEach(s=>{const inT=inTrip(s.c),km=KM?KM.mark(s.c):{};const mk=L.circleMarker([s.la,s.lo],{radius:(inT?9:s.p==='SOTA'?6:7)+(TAP?2:0),weight:inT||km.atno?3:2,color:inT?'#f0c96b':km.atno?'#c2410c':'#ffffff',fillColor:COL[s.p],fillOpacity:km.done&&!inT?.35:.95}); /* white ring shows on satellite */
   const pp=L.popup({maxWidth:300}).setContent(popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)});
  trip.filter(s=>s.p==='PIN').forEach(s=>{const mk=L.marker([s.la,s.lo],{icon:L.divIcon({className:'',html:'<div class="pin-us"></div>',iconSize:[16,16],iconAnchor:[8,16]})});const pp=L.popup({maxWidth:300}).setContent(popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)})}
 
@@ -125,11 +131,13 @@ async function go(la,lo,label){clearRoute();center=[la,lo];radius=+$('usr').valu
   map.fitBounds(ring.getBounds(),{padding:[10,10]})}
  drawDots();drawNear()}
 function drawNear(){const box=$('near');if(!center){box.style.display='none';return}box.style.display='';
- if(RT){$('near-th2').textContent='MILE / OFF ROUTE';$('near-h').textContent=`Along your route (${NEAR.length.toLocaleString()}${NEAR.length>150?', first 150 shown':''})`;
-  $('near-body').innerHTML=NEAR.slice(0,150).map((s,i)=>{const r=RT.info[s.c]||{};return`<tr><td><span class="dot" style="background:${COL[s.p]}"></span><a href="#" data-o="${i}" class="ref">${esc(s.c)}</a><br>${esc(s.n)}</td><td>mile ${Math.round(r.at||0)}<br><small class="muted">${(r.off||0).toFixed(1)} mi off</small></td><td><button type="button" class="add${inTrip(s.c)?' in':''}" data-i="${i}">${inTrip(s.c)?'&#10003; ADDED':'+ ADD'}</button></td></tr>`}).join('')||'<tr><td colspan="3" class="muted">Nothing that close to the route. Try a wider distance.</td></tr>';return}
+ const NEAR0=allNear(),NEAR=vis();   /* inside this function NEAR means the filtered list */
+ if(KM)KM.ensure(NEAR0.filter(s=>s.p!=='WWFF').map(s=>({ref:s.c,la:s.la,lo:s.lo})));LIST=NEAR;const hid=NEAR0.length-NEAR.length,hidTxt=hid?`, ${hid.toLocaleString()} hidden by your filters`:'';
+ if(RT){$('near-th2').textContent='MILE / OFF ROUTE';$('near-h').textContent=`Along your route (${NEAR.length.toLocaleString()}${NEAR.length>150?', first 150 shown':''}${hidTxt})`;
+  $('near-body').innerHTML=NEAR.slice(0,150).map((s,i)=>{const r=RT.info[s.c]||{};return`<tr><td><span class="dot" style="background:${COL[s.p]}"></span><a href="#" data-o="${i}" class="ref">${esc(s.c)}</a><br>${esc(s.n)}${kmBadge(s)?'<br>'+kmBadge(s):''}</td><td>mile ${Math.round(r.at||0)}<br><small class="muted">${(r.off||0).toFixed(1)} mi off</small></td><td><button type="button" class="add${inTrip(s.c)?' in':''}" data-i="${i}">${inTrip(s.c)?'&#10003; ADDED':'+ ADD'}</button></td></tr>`}).join('')||`<tr><td colspan="3" class="muted">${hid?'Everything near the route is hidden by NEW TO ME / ATNO. Turn a filter off or widen the distance.':'Nothing that close to the route. Try a wider distance.'}</td></tr>`;return}
  $('near-th2').textContent='MILES';
- $('near-h').textContent=`Nearby (${NEAR.length.toLocaleString()}${NEAR.length>150?', closest 150 shown':''})`;
- $('near-body').innerHTML=NEAR.slice(0,150).map((s,i)=>`<tr><td><span class="dot" style="background:${COL[s.p]}"></span><a href="#" data-o="${i}" class="ref">${esc(s.c)}</a><br>${esc(s.n)}</td><td>${KPC.miles(center[0],center[1],s.la,s.lo).toFixed(1)}</td><td><button type="button" class="add${inTrip(s.c)?' in':''}" data-i="${i}">${inTrip(s.c)?'&#10003; ADDED':'+ ADD'}</button></td></tr>`).join('')||'<tr><td colspan="3" class="muted">Nothing that close. Try a bigger distance.</td></tr>'}
+ $('near-h').textContent=`Nearby (${NEAR.length.toLocaleString()}${NEAR.length>150?', closest 150 shown':''}${hidTxt})`;
+ $('near-body').innerHTML=NEAR.slice(0,150).map((s,i)=>`<tr><td><span class="dot" style="background:${COL[s.p]}"></span><a href="#" data-o="${i}" class="ref">${esc(s.c)}</a><br>${esc(s.n)}${kmBadge(s)?'<br>'+kmBadge(s):''}</td><td>${KPC.miles(center[0],center[1],s.la,s.lo).toFixed(1)}</td><td><button type="button" class="add${inTrip(s.c)?' in':''}" data-i="${i}">${inTrip(s.c)?'&#10003; ADDED':'+ ADD'}</button></td></tr>`).join('')||`<tr><td colspan="3" class="muted">${hid?'Everything here is hidden by NEW TO ME / ATNO. Turn a filter off or try a bigger distance.':'Nothing that close. Try a bigger distance.'}</td></tr>`}
 
 /* ---------- along a route ----------
    Start and finish can be a town, ZIP, park number or GPS coordinates. The driving route comes from the public OSRM
@@ -259,14 +267,18 @@ $('urf-form').onsubmit=e=>{e.preventDefault();runRoute()};
 $('urw').onchange=()=>{if(RT){const C=corridor(RT.pts,+$('urw').value);RT.w=+$('urw').value;RT.info=C.info;NEAR=C.list;drawDots();drawNear();status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${RT.w} miles of your route.`)}};
 {const r=store.get('kpcUsRoute',null);if(r){$('urf').value=r.f||'';$('urt').value=r.t||'';if(r.w)$('urw').value=String(r.w)}setSearchMode(store.get('kpcUsMode','place'))}
 $('near-body').onclick=e=>{const a=e.target.closest('[data-i]'),o=e.target.closest('[data-o]');
- if(a){const s=NEAR[+a.dataset.i];inTrip(s.c)?removeStop(s.c):addStop(s)}
- if(o){e.preventDefault();const s=NEAR[+o.dataset.o];map&&map.setView([s.la,s.lo],Math.max(map.getZoom(),11));setTimeout(()=>openSpot(s),300);$('usmap').scrollIntoView({behavior:'smooth',block:'center'})}};
+ if(a){const s=LIST[+a.dataset.i];inTrip(s.c)?removeStop(s.c):addStop(s)}
+ if(o){e.preventDefault();const s=LIST[+o.dataset.o];map&&map.setView([s.la,s.lo],Math.max(map.getZoom(),11));setTimeout(()=>openSpot(s),300);$('usmap').scrollIntoView({behavior:'smooth',block:'center'})}};
 $('trip-list').onclick=e=>{const b=e.target.closest('button');if(!b)return;const i=+(b.dataset.u??b.dataset.d??b.dataset.x);
  if(b.dataset.x!=null)return removeStop(trip[i].c);const j=b.dataset.u!=null?i-1:i+1;if(j<0||j>=trip.length)return;[trip[i],trip[j]]=[trip[j],trip[i]];saveTrip();drawTrip()};
 $('t-order').onclick=bestOrder;$('t-road').onclick=drawRoad;$('t-gpx').onclick=gpx;$('t-share').onclick=share;$('t-fromme').onchange=drawTrip;
 $('t-clear').onclick=()=>{if(confirm('Clear all stops from this trip?')){trip=[];saveTrip();if(road){road.remove();road=null}drawTrip();drawDots();drawNear()}};
 [...$('us-progs').children].forEach(x=>x.setAttribute('aria-pressed',progs.includes(x.dataset.p)));
 initMap();
+/* new checker answers: the list redraws at once; map dots wait until an open popup is closed so it doesn't vanish */
+if(KM){KM.bar($('km-bar'));let pend=false;
+ window.addEventListener('kpcmine',()=>{if(!center)return;drawNear();if(map&&map._popup&&map.hasLayer(map._popup)){pend=true;return}drawDots()});
+ if(map)map.on('popupclose',()=>{if(pend){pend=false;setTimeout(drawDots,0)}})}
 loadAll().then(()=>{const shared=loadShared();drawTrip();
  const last=store.get('kpcUsLast',null);if(last&&isFinite(last.la)){$('usr').value=String(last.r||25);go(last.la,last.lo,last.label)}
  else if(shared&&trip.length){go(trip[0].la,trip[0].lo,trip[0].n)}
