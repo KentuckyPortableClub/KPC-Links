@@ -6,7 +6,7 @@
 //   rarepark   rare park of the week (fewest valid activations in KY)       Discord + Facebook
 //   milestones member milestones (parks, counties, activations)            Discord + Facebook
 //   photos     new photo album on the site                                  Discord + Facebook
-//   pages      new guide or tool page on the site (starts Oct 21, 2026)     Discord + Facebook
+//   pages      new guide or tool page on the site (starts with the Oct 21, 2026 go-live)     Discord + Facebook
 //   bandalert  NOAA radio blackout / geomagnetic storm alerts                Discord only
 // --dry prints what would be posted without posting or saving anything.
 // State lives in kpc-social-state.json so nothing is posted twice.
@@ -21,7 +21,7 @@ const STATE_FILE = 'kpc-social-state.json';
 const DISCORD = (process.env.DISCORD_WEBHOOK_URL || '').trim();
 const FB_ID = (process.env.FB_PAGE_ID || '').trim();
 const FB_TOKEN = (process.env.FB_PAGE_TOKEN || '').trim();
-const PAGES_START = '2026-10-21'; // same day the HOLD pages (campout, events, resources) go live
+const PAGES_START = '2026-10-22'; // the first announcement is sent by the go-live job (Oct 21, 5 PM Central) right after the HOLD pages go live
 const API = 'https://api.pota.app';
 
 const notice = m => console.log(`::notice title=Social ${task}${DRY ? ' (dry run)' : ''}::` + String(m).replace(/%/g, '%25').replace(/\r/g, '').replace(/\n/g, '%0A'));
@@ -206,25 +206,48 @@ tasks.photos = async () => {
 };
 
 tasks.pages = async () => {
-  if (localDate() < PAGES_START) return notice(`New-page announcements start ${PAGES_START}.`);
+  if (localDate() < PAGES_START && process.env.FORCE_PAGES !== '1') return notice(`New-page announcements start with the Oct 21 go-live.`);
   const skip = /HOLD|^members|^contact-card|^kpc-privacy|^index|^404/i;
   const info = f => {
     const t = fs.readFileSync(f, 'utf8');
     if (/name="robots"[^>]*noindex/i.test(t)) return null;
-    const title = ((t.match(/<title>([^<]*)<\/title>/i) || [])[1] || f).replace(/\s*\|\s*KPC\s*$/, '').replace(/&amp;/g, '&');
+    const title = ((t.match(/<title>([^<]*)<\/title>/i) || [])[1] || f).replace(/\s*\|\s*(KPC|Kentucky Portable Club)\s*$/i, '').replace(/\s*:\s*$/, '').replace(/&amp;/g, '&');
     const desc = ((t.match(/<meta name="description" content="([^"]*)"/i) || [])[1] || '').replace(/&amp;/g, '&').replace(/&quot;/g, '"');
     return { f, title, desc };
   };
   const all = fs.readdirSync('.').filter(f => f.endsWith('.html') && !skip.test(f));
   if (!state.pages) {
-    // Kickoff: one roundup of the guides added in the last couple of weeks, then announce each new page as it appears.
-    let recent = [];
-    try { recent = execSync('git log --since=2026-10-09 --diff-filter=A --name-only --format=', { encoding: 'utf8' }).split('\n').filter(f => all.includes(f)); } catch (e) { /* no history */ }
-    const items = [...new Set(recent)].map(info).filter(Boolean);
+    // Kickoff (go-live day): one hand-written roundup of what's new, then each new page gets its own post.
     state.pages = all;
-    if (items.length) {
-      await post({ title: '🆕 New on the KPC website', text: items.map(i => `• **${i.title}**: ${SITE}${i.f}`).join('\n') + '\n\nAll free, all built for Kentucky portable operators.', link: SITE + 'toolbox.html' });
-    } else notice('Kickoff: no recently added pages found; remembering the current list.');
+    const U = f => SITE + f;
+    const text = [
+      '**Antennas & building**',
+      `• Ununs, baluns & chokes: ${U('kpc-transformers.html')}`,
+      `• Ladder line, doublets & the G5RV: ${U('kpc-doublets.html')}`,
+      `• Loops & delta loops: ${U('kpc-loops.html')}`,
+      `• VHF/UHF: J-pole, Slim Jim, yagi: ${U('kpc-vhf-uhf.html')}`,
+      `• Receive-only antennas (Loop on Ground): ${U('kpc-receive-antennas.html')}`,
+      `• Radial calculator: ${U('kpc-radials.html')}`,
+      '',
+      '**Learn & practice**',
+      `• New to SOTA? ${U('kpc-new-to-sota.html')}`,
+      `• New to WWFF? ${U('kpc-new-to-wwff.html')}`,
+      `• CW practice (hunt & activate in Morse): ${U('kpc-cw.html')}`,
+      `• Digital modes: ${U('kpc-digital.html')}`,
+      `• Fox hunting: ${U('kpc-foxhunt.html')}`,
+      `• Get your license: ${U('kpc-license.html')}`,
+      '',
+      '**Tools**',
+      `• Power, dB & S-units: ${U('kpc-power-db.html')}`,
+      `• Ham calculators: ${U('kpc-calc.html')}`,
+      `• SOTA activation zone check: ${U('kpc-sota-az.html')}`,
+      `• RF exposure check: ${U('kpc-rf-exposure.html')}`,
+      `• Printable quick reference card: ${U('kpc-reference.html')}`,
+      `• Club videos: ${U('videos.html')}`,
+      '',
+      'Plus a new events calendar, campout page and resources page. All free, all built for Kentucky portable operators.',
+    ].join('\n');
+    await post({ title: '🆕 New on the KPC website', text, link: SITE + 'toolbox.html' });
     save(); return;
   }
   const fresh = all.filter(f => !state.pages.includes(f)).map(info).filter(Boolean);
