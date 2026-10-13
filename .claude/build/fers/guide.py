@@ -20,13 +20,13 @@ GM=lambda la,lo:f'https://www.google.com/maps/search/?api=1&query={la:.5f},{lo:.
 DIR=lambda la,lo:f'https://www.google.com/maps/dir/?api=1&destination={la:.5f},{lo:.5f}&travelmode=driving'
 def sec(d):
   if d['type']=='3-fer': return 'three'
-  if 'Historic Trail site' in d['how']: return 'hist'
+  if 'Historic Trail site' in d['how'] or 'auto tour route' in d['how']: return 'hist'
   if 'Water Route bank' in d['how']: return 'water'
   if 'riverbank' in d['how'].lower(): return 'river'
   if 'through the park' in d['how']: return 'trail'
   return 'shared'
 SECS=[('three','3-Fers','Three POTA parks at once','Trails through two overlapping parks, overlaps of three parks, and Ohio River banks where Lewis & Clark and the Trail of Tears share the river.'),
- ('hist','Historic Trail Sites','Visitor centers & certified sites','Wickliffe Mounds, Big Bone Lick and Golden Pond Visitor Center are NOT within 100 ft of the river or the trail route; Columbus-Belmont has the NPS Benge Route running through it. Each is listed only because a National Park Service page lists it as a trail site, visitor center or certified site; the page is cited on each card. The POTA Activator Guide says historic trails "do not have specific boundaries," so you need a park or site certified by the NPS and official trail signage. Check with POTA before counting them.'),
+ ('hist','Historic Trail Sites','Visitor centers, certified sites & auto tour route','Wickliffe Mounds, Big Bone Lick and Golden Pond Visitor Center are NOT within 100 ft of the river; they are on the NPS Kentucky visitor center list, and the signed Lewis & Clark auto tour route runs along Wickliffe Mounds, Big Bone Lick and Livingston County WMA. Columbus-Belmont has the NPS Benge Route running through it. Each is listed only because a National Park Service page lists it as a trail site, visitor center or certified site; the page is cited on each card. The POTA Activator Guide says historic trails "do not have specific boundaries," so you need a park or site certified by the NPS and official trail signage. Check with POTA before counting them.'),
  ('river','Ohio River Banks','Lewis & Clark on the river','In Kentucky the Lewis & Clark trail is the Ohio River itself. You must be inside the park AND within 100 ft of the water. Riverbank pins are approximate and were not checked against the actual water line; some may be more than 100 ft from the river.'),
  ('water','Trail of Tears Water Route','Tennessee & Mississippi rivers','The Trail of Tears Water Route followed the Tennessee River (now Kentucky Lake) to Paducah, then the Ohio and Mississippi rivers. You must be inside the park AND within 100 ft of the water. On Kentucky Lake the NPS route line follows the old channel out in the lake, so these are a looser fit than the Ohio River banks. Pins are approximate.'),
  ('trail','Trail 2-Fers','A trail park through another park','Set up on public land within 100 ft of the trail, inside the other park.'),

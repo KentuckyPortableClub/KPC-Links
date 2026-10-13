@@ -9,6 +9,7 @@
  const sources={
   tears:{name:'Trail of Tears (NPS)',url:'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/TRTE_NHT/FeatureServer/0/query',info:'https://www.nps.gov/trte/planyourvisit/maps.htm',color:'#ef8a98',kind:'line'},
   lewis:{name:'Lewis & Clark (NPS)',url:'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Lewis_and_Clark_National_Historic_Trail_Congressionally_Designated_Route/FeatureServer/0/query',info:'https://www.nps.gov/lecl/planyourvisit/maps.htm',color:'#5bd5ec',kind:'line'},
+  lewisauto:{name:'Lewis & Clark auto tour route (NPS)',file:'ky-lecl-auto.geojson',url:'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/LECL_Lewis_and_Clark_NHT_Auto_Route_Final_Combined/FeatureServer/0/query',info:'https://www.nps.gov/lecl/planyourvisit/maps.htm',color:'#2f9fb8',kind:'line'},
   pine:{name:'Pine Mountain State Scenic Trail',file:'ky-pine-mountain.geojson',url:rec+'1/query',info:'https://parks.ky.gov/parks/find-a-park/pine-mountain-state-scenic-trail-7826',color:'#ffc36b',kind:'line'},
   dawkins:{name:'Dawkins Line Rail Trail',file:'ky-dawkins.geojson',url:rec+'3/query',info:'https://parks.ky.gov/parks/find-a-park/dawkins-line-rail-trail-7831',color:'#c7a5ff',kind:'line',filter:/dawkins/i},
   sheltowee:{name:'Sheltowee Trace',file:'ky-sheltowee.geojson',url:rec+'11/query',info:'https://www.fs.usda.gov/dbnf',color:'#6cdb97',kind:'line',filter:/sheltowee/i},
@@ -106,7 +107,7 @@
  /* ---------- trail drawing ---------- */
  async function query(s,bb){const p=new URLSearchParams({where:'1=1',geometry:bb,geometryType:'esriGeometryEnvelope',inSR:'4326',spatialRel:'esriSpatialRelIntersects',outFields:'*',returnGeometry:'true',outSR:'4326',f:'json'});
   const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),16000);try{const res=await fetch(s.url+'?'+p.toString(),{signal:ctrl.signal});if(!res.ok)throw Error('HTTP '+res.status);const j=await res.json();if(j.error)throw Error(j.error.message||'GIS service error');return j}finally{clearTimeout(timer)}}
- const TREF={sheltowee:'US-11181',pine:'US-10102',dawkins:'US-1253'};
+ const TREF={lewisauto:'US-4572',sheltowee:'US-11181',pine:'US-10102',dawkins:'US-1253'};
  /* real field names from the Kentucky State Parks GIS layers (MapServer 6 campgrounds, 0 trailheads, 9 trails) */
  const FIELDS={
   camping:{t:['facilityNa'],rows:[['Amp','Electric'],['WaterHookup','Water hookup'],['SewerHookup','Sewer hookup'],['Pets','Pets'],['Waterfront','Waterfront']],link:['link','Campground details / reservations']},

@@ -577,11 +577,18 @@
      "la": 36.97104,
      "lo": -89.09253,
      "what": "Wickliffe Mounds State Historic Site (NPS-listed trail site)",
-     "note": "Not within 100 ft of the river or the trail route. Set up inside the park near the site.",
+     "note": "Not within 100 ft of the river. Set up inside the park near the site, or use the auto tour route pin below.",
      "q": "A"
+    },
+    {
+     "la": 36.96958,
+     "lo": -89.09265,
+     "what": "Inside the park next to the auto tour route (US 60 / US 51)",
+     "note": "Within about 75 ft of the signed auto tour route in our map data, just inside the park line. Stay inside the park.",
+     "q": "B"
     }
    ],
-   "note": "NOT within 100 ft of the river or the trail. It is listed because the National Park Service names it on the Lewis & Clark NHT \"Visitor Centers in Kentucky\" page. Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it.",
+   "note": "NOT within 100 ft of the river. It is listed because the National Park Service names it on the Lewis & Clark NHT \"Visitor Centers in Kentucky\" page. Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it. The signed Lewis & Clark auto tour route (US 60 / US 51) runs right along the park line here; the NPS calls the auto tour route part of the trail, so a spot inside the park within 100 ft of a signed stretch may also work. Look for the brown Lewis and Clark Trail / AUTO TOUR ROUTE sign.",
    "site": {
     "name": "Wickliffe Mounds State Historic Site",
     "why": "The National Park Service lists \"Wickliffe Mounds State Historic Site\" on its official \"Visitor Centers in Kentucky\" page for the Lewis & Clark National Historic Trail.",
@@ -606,11 +613,18 @@
      "la": 38.88425,
      "lo": -84.75214,
      "what": "Big Bone Lick State Historic Site (NPS-listed trail site)",
-     "note": "Not within 100 ft of the river or the trail route. Set up inside the park near the site.",
+     "note": "Not within 100 ft of the river. Set up inside the park near the site, or use the auto tour route pin below.",
      "q": "A"
+    },
+    {
+     "la": 38.8887,
+     "lo": -84.75455,
+     "what": "Inside the park next to the auto tour route (KY 338)",
+     "note": "Within about 75 ft of the signed auto tour route in our map data, just inside the park line. Stay inside the park.",
+     "q": "B"
     }
    ],
-   "note": "NOT within 100 ft of the river or the trail. It is listed because the National Park Service names it on the Lewis & Clark NHT \"Visitor Centers in Kentucky\" page. Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it.",
+   "note": "NOT within 100 ft of the river. It is listed because the National Park Service names it on the Lewis & Clark NHT \"Visitor Centers in Kentucky\" page. Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it. The signed Lewis & Clark auto tour route (KY 338) runs right along the park line here; the NPS calls the auto tour route part of the trail, so a spot inside the park within 100 ft of a signed stretch may also work. Look for the brown Lewis and Clark Trail / AUTO TOUR ROUTE sign.",
    "site": {
     "name": "Big Bone Lick State Historic Site",
     "why": "The National Park Service lists \"Big Bone Lick State Historic Site\" on its official \"Visitor Centers in Kentucky\" page for the Lewis & Clark National Historic Trail.",
@@ -666,9 +680,16 @@
      "q": "C",
      "what": "Riverbank area (approximate)",
      "note": "Pin is on the river side of the park in our map data, not checked against the water line. Walk to the water and set up inside the park within 100 ft of the water."
+    },
+    {
+     "la": 37.88206,
+     "lo": -86.58852,
+     "what": "Inside the park next to the auto tour route (KY 144)",
+     "note": "Within about 75 ft of the signed auto tour route in our map data, just inside the park line. Stay inside the park.",
+     "q": "B"
     }
    ],
-   "note": "Ohio River: the Lewis & Clark route. The trail here is the river itself: you must be on public land inside the park AND within 100 ft of the water. The riverbank pin is approximate and has not been checked against the actual water line, so some spots may be farther than 100 ft from the river. Possible only: do your own research."
+   "note": "Ohio River: the Lewis & Clark route. The trail here is the river itself: you must be on public land inside the park AND within 100 ft of the water. The riverbank pin is approximate and has not been checked against the actual water line, so some spots may be farther than 100 ft from the river. Possible only: do your own research. The signed Lewis & Clark auto tour route (KY 144) runs right along the park line here; the NPS calls the auto tour route part of the trail, so a spot inside the park within 100 ft of a signed stretch may also work. Look for the brown Lewis and Clark Trail / AUTO TOUR ROUTE sign."
   },
   {
    "type": "2-fer",
@@ -807,9 +828,16 @@
      "q": "B",
      "what": "Parking: Otter Creek State Recreation Area",
      "note": "Parking only, not the setup spot. 0.4 mi from that bank spot. Parking may be just outside the park line."
+    },
+    {
+     "la": 37.92524,
+     "lo": -86.0391,
+     "what": "Inside the park next to the auto tour route (Old Mill Rd)",
+     "note": "Within about 75 ft of the signed auto tour route in our map data, just inside the park line. Stay inside the park.",
+     "q": "B"
     }
    ],
-   "note": "Ohio River: the Lewis & Clark route. The trail here is the river itself: you must be on public land inside the park AND within 100 ft of the water. The riverbank pin is approximate and has not been checked against the actual water line, so some spots may be farther than 100 ft from the river. Possible only: do your own research."
+   "note": "Ohio River: the Lewis & Clark route. The trail here is the river itself: you must be on public land inside the park AND within 100 ft of the water. The riverbank pin is approximate and has not been checked against the actual water line, so some spots may be farther than 100 ft from the river. Possible only: do your own research. The signed Lewis & Clark auto tour route (Old Mill Rd) runs right along the park line here; the NPS calls the auto tour route part of the trail, so a spot inside the park within 100 ft of a signed stretch may also work. Look for the brown Lewis and Clark Trail / AUTO TOUR ROUTE sign."
   },
   {
    "type": "2-fer",
@@ -2142,6 +2170,30 @@
     }
    ],
    "note": "The NPS Trail of Tears Northern Route line runs about 0.4 mi through the WMA. Much of the historic route follows today's roads, so confirm you are on WMA land within 100 ft of the route and look for official signage. The Lewis & Clark auto tour route (Lola Rd) also runs along the park edge nearby. Possible only: do your own research."
+  },
+  {
+   "type": "2-fer",
+   "how": "Lewis & Clark auto tour route along the park",
+   "refs": [
+    "US-4572",
+    "US-3823"
+   ],
+   "names": [
+    "Lewis and Clark National Historic Trail",
+    "Livingston County Wildlife Management Area"
+   ],
+   "size": "",
+   "county": "Livingston",
+   "points": [
+    {
+     "la": 37.36804,
+     "lo": -88.43962,
+     "what": "Inside the park next to the auto tour route (Lola Rd)",
+     "note": "Within about 75 ft of the signed auto tour route in our map data, just inside the park line. Stay inside the park.",
+     "q": "B"
+    }
+   ],
+   "note": "The signed Lewis & Clark auto tour route (Lola Rd) runs along the WMA line here. The NPS calls the auto tour route part of the trail, so a spot inside the WMA within 100 ft of a signed stretch may count. Look for the brown Lewis and Clark Trail / AUTO TOUR ROUTE sign. Not on the river. Possible only: do your own research. (The Trail of Tears Northern Route also crosses this WMA about 1,000 ft to the west; no single spot is within 100 ft of both.)"
   }
  ],
  "unconfirmed": [
@@ -2200,6 +2252,11 @@
    "https://catalog.data.gov/dataset/trail-of-tears-national-historic-trail"
   ],
   [
+   "NPS Lewis & Clark auto tour route (GIS)",
+   "Official auto tour route centerline (2025), used to find parks the signed route runs through or along.",
+   "https://catalog.data.gov/dataset/lecl-lewis-and-clark-nht-auto-route-final-combined"
+  ],
+  [
    "NPS: Wickliffe Mounds State Historic Site",
    "Listed on the Lewis & Clark National Historic Trail pages (passport stamp site).",
    "https://www.nps.gov/places/wickliffe-mounds-state-historic-site.htm"
@@ -2256,6 +2313,7 @@
   "Pennyrile Forest State Park + Pennyrile State Forest: a KPC member confirmed they do not overlap, so it is NOT a 2-fer.",
   "Added Trail of Tears Water Route spots on the Tennessee River (Kentucky Lake): Land Between the Lakes, Kentucky Lake WMA, Kenlake State Park, Kentucky Dam Village State Park and a Fort Heiman 3-fer; and on the Mississippi River: Doug Travis WMA. Checked against the NPS route map.",
   "Added Livingston County WMA (Trail of Tears Northern Route runs through it). Columbus-Belmont: the NPS Benge Route runs through the park, so it now has an on-route pin.",
-  "Wickliffe Mounds, Big Bone Lick and Golden Pond now cite the NPS \"Visitor Centers in Kentucky\" page for the Lewis & Clark trail."
+  "Wickliffe Mounds, Big Bone Lick and Golden Pond now cite the NPS \"Visitor Centers in Kentucky\" page for the Lewis & Clark trail.",
+  "Lewis & Clark auto tour route: checked the NPS route for all of Kentucky. It runs along the edges of Big Bone Lick, Wickliffe Mounds, Otter Creek, Yellowbank WMA and Livingston County WMA; each now has a pin inside the park next to the signed route, and Livingston County WMA is a new possible Lewis & Clark 2-fer."
  ]
 }
