@@ -204,7 +204,7 @@ const words=s=>norm(s).split(' ').filter(w=>w.length>=5&&!/hamfest|kentucky|amat
 const days=(x,y)=>Math.abs(pd(x)-pd(y))/864e5;
 function twinOf(e){if(!e.tags.includes('AUTO'))return ALL.find(b=>norm(b.name)===norm(e.name)&&!b.tba&&b.start===e.start);
  return ALL.find(b=>!b.auto&&b.tags.some(t=>e.tags.includes(t))&&(
-  (e.url&&/\/\/[^/]+\/./.test(e.url)&&(b.url===e.url||b.url2===e.url))||
+  [e.url,e.url2].some(u=>u&&/\/\/[^/]+\/./.test(u)&&(b.url===u||b.url2===u))||
   (norm(b.name)===norm(e.name)&&(b.tba||e.tba||b.start===e.start))||
   (words(e.name).some(w=>words(b.name).includes(w))&&(b.tba||e.tba||days(b.start,e.start)<=3))))}
 fetch('kpc-events-auto.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{if(!d)return;
@@ -212,7 +212,7 @@ fetch('kpc-events-auto.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).the
   const auto=e.tags.includes('AUTO'),t=twinOf(e);
   if(t){ // already on our list: fill in a date we didn't have, or add the newer announcement link
    if(t.tba&&e.start){Object.assign(t,{tba:false,start:e.start,end:e.end,auto:auto});if(auto)t.tags=[...t.tags,'AUTO'];}
-   if(auto&&e.url&&t.url!==e.url&&!t.url2){t.url2=e.url;t.url2label=e.source==='ARRL'?'ARRL LISTING ↗':'ANNOUNCEMENT ↗';}
+   if(auto&&!t.url2){const u=[e.url,e.url2].find(x=>x&&x!==t.url);if(u){t.url2=u;t.url2label=/arrl\.org\/hamfests/.test(u)?'ARRL LISTING ↗':e.source==='SOTA'?'ANNOUNCEMENT ↗':'CLUB WEBSITE ↗';}}
    return}
   ALL.push(Object.assign({},e,{auto:auto}))});
  rebuild();const f=(document.querySelector('.krc-f[aria-pressed="true"]')||{}).dataset;draw(f&&f.f||'all');
