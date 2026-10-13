@@ -23,10 +23,11 @@ POTA=lambda r:'https://pota.app/#/park/'+r
 def sec(d):
   if d['type']=='3-fer': return 0
   if 'Historic Trail site' in d['how']: return 1
+  if 'Water Route bank' in d['how']: return 3
   if 'riverbank' in d['how'].lower(): return 2
-  if 'through the park' in d['how']: return 3
-  return 4
-SECN=['3-Fers','Historic trail sites (NOT within 100 ft of the river or trail)','Ohio River banks (Lewis & Clark)','Trail 2-fers','Shared boundaries']
+  if 'through the park' in d['how']: return 4
+  return 5
+SECN=['3-Fers','Historic trail sites (visitor centers & certified sites)','Ohio River banks (Lewis & Clark)','Trail of Tears Water Route (Kentucky Lake & Mississippi River)','Trail 2-fers','Shared boundaries']
 def guidept(d):
   return next((p for p in d['points'] if not p['what'].lower().startswith(('parking','drive up'))),d['points'][0])
 # ---------------- index pages ----------------
@@ -45,7 +46,7 @@ def index_pdf(kind):
   n3=sum(1 for d in SP if d['type']=='3-fer')
   intro=(f'All {len(SP)} places in Kentucky where you may work two or three POTA parks at once ({n3} 3-fers, {len(SP)-n3} 2-fers), checked against the POTA rules by the Kentucky Portable Club. Park names and numbers match the POTA Kentucky park list. '
     'GPS POINTS ARE GUIDE PINS ONLY: they get you to the area of the possible 2-fer or 3-fer, not to a confirmed spot. You and your gear must be on public land inside every park; trail and river parks within 100 ft of the trail or water (riverbank pins are approximate and were not checked against the water line); national forests only on Forest Service-owned land. '
-    'The four historic trail sites are NOT within 100 ft of the river or trail; they rely on National Park Service listings. Tap a GPS point to open it in Google Maps. More detail, parking, NPS sources and walk-in points are in the KPC 2-Fers & 3-Fers Field Guide in the Members Room.')
+    'Wickliffe Mounds, Big Bone Lick and Golden Pond are NOT within 100 ft of the river or trail; they rely on the NPS Lewis & Clark visitor center list. Tap a GPS point to open it in Google Maps. More detail, parking, NPS sources and walk-in points are in the KPC 2-Fers & 3-Fers Field Guide in the Members Room.')
   ls=simpleSplit(intro,'C',8.2,W-2*M);c.setFont('C',8.2);c.setFillColorRGB(*MUTED)
   for i,l in enumerate(ls): c.drawString(M,y-30-i*10.4,l)
   y=y-30-len(ls)*10.4-4
@@ -87,7 +88,8 @@ def partner_text(ref):
     if ref not in d['refs']: continue
     others=[r for r in d['refs'] if r!=ref]
     tag=''
-    if sec(d)==1: tag=' (NOT within 100 ft of the river; NPS-listed site)'
+    if sec(d)==1 and 'US-1252' not in d['refs']: tag=' (NOT within 100 ft of the river; NPS-listed site)'
+    elif sec(d)==3: tag=' (Water Route shore, within 100 ft of the water)'
     elif sec(d)==2: tag=' (riverbank, within 100 ft of the water)'
     items.append((d['type'],others,tag))
   return items

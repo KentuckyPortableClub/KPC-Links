@@ -581,11 +581,11 @@
      "q": "A"
     }
    ],
-   "note": "NOT within 100 ft of the river or the trail. It is listed only because of the National Park Service page: The National Park Service lists Wickliffe Mounds on its Lewis & Clark National Historic Trail pages (a Lewis & Clark passport stamp site). The NPS page does not call it a certified site. Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it.",
+   "note": "NOT within 100 ft of the river or the trail. It is listed because the National Park Service names it on the Lewis & Clark NHT \"Visitor Centers in Kentucky\" page. Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it.",
    "site": {
     "name": "Wickliffe Mounds State Historic Site",
-    "why": "The National Park Service lists Wickliffe Mounds on its Lewis & Clark National Historic Trail pages (a Lewis & Clark passport stamp site). The NPS page does not call it a certified site.",
-    "url": "https://www.nps.gov/places/wickliffe-mounds-state-historic-site.htm"
+    "why": "The National Park Service lists \"Wickliffe Mounds State Historic Site\" on its official \"Visitor Centers in Kentucky\" page for the Lewis & Clark National Historic Trail.",
+    "url": "https://www.nps.gov/lecl/planyourvisit/visitor-centers-in-kentucky.htm"
    }
   },
   {
@@ -610,11 +610,11 @@
      "q": "A"
     }
    ],
-   "note": "NOT within 100 ft of the river or the trail. It is listed only because of the National Park Service page: The National Park Service lists Big Bone Lick as a \"High Potential Historic Site\" of the Lewis and Clark National Historic Trail. Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it.",
+   "note": "NOT within 100 ft of the river or the trail. It is listed because the National Park Service names it on the Lewis & Clark NHT \"Visitor Centers in Kentucky\" page. Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it.",
    "site": {
     "name": "Big Bone Lick State Historic Site",
-    "why": "The National Park Service lists Big Bone Lick as a \"High Potential Historic Site\" of the Lewis and Clark National Historic Trail.",
-    "url": "https://www.nps.gov/places/big-bone-lick-state-historic-site-kentucky.htm"
+    "why": "The National Park Service lists \"Big Bone Lick State Historic Site\" on its official \"Visitor Centers in Kentucky\" page for the Lewis & Clark National Historic Trail.",
+    "url": "https://www.nps.gov/lecl/planyourvisit/visitor-centers-in-kentucky.htm"
    }
   },
   {
@@ -639,11 +639,11 @@
      "q": "A"
     }
    ],
-   "note": "NOT within 100 ft of the river or the trail. It is listed only because of the National Park Service page: The National Park Service lists Golden Pond Visitor Center under \"Lewis and Clark NHT Visitor Centers and Museums.\" Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it.",
+   "note": "NOT within 100 ft of the river or the trail. It is listed because the National Park Service names it on the Lewis & Clark NHT \"Visitor Centers in Kentucky\" page. Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it.",
    "site": {
     "name": "Golden Pond Visitor Center, Land Between the Lakes National Recreation Area",
-    "why": "The National Park Service lists Golden Pond Visitor Center under \"Lewis and Clark NHT Visitor Centers and Museums.\"",
-    "url": "https://www.nps.gov/places/golden-pond-visitor-center.htm"
+    "why": "The National Park Service lists \"Golden Pond Visitor Center at Land Between the Lakes\" on its official \"Visitor Centers in Kentucky\" page for the Lewis & Clark National Historic Trail.",
+    "url": "https://www.nps.gov/lecl/planyourvisit/visitor-centers-in-kentucky.htm"
    }
   },
   {
@@ -822,21 +822,28 @@
     "Trail of Tears National Historic Trail",
     "Columbus Belmont State Park"
    ],
-   "size": "",
+   "size": "about 0.4 mi of the Benge Route inside",
    "county": "Hickman",
    "points": [
     {
+     "la": 36.76151,
+     "lo": -89.10882,
+     "what": "On the Benge Route (Trail of Tears) inside the park",
+     "note": "On the NPS route line, about 480 ft inside the park line. Stay within 100 ft of the route.",
+     "q": "B"
+    },
+    {
      "la": 36.7657,
      "lo": -89.1109,
-     "what": "Columbus Belmont State Park (NPS-listed trail site)",
-     "note": "Not within 100 ft of the river or the trail route. Set up inside the park near the site.",
+     "what": "Columbus Belmont State Park (NPS Certified Site)",
+     "note": "Park entrance area.",
      "q": "A"
     }
    ],
-   "note": "NOT within 100 ft of the river or the trail. It is listed only because of the National Park Service page: The National Park Service lists Columbus-Belmont State Park as a Trail of Tears National Historic Trail \"Certified Site.\" Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for NPS-certified sites and official trail signage, and check with POTA before counting it.",
+   "note": "The NPS Trail of Tears Benge Route runs through the park, and the NPS lists the park as a Certified Site. Set up inside the park within 100 ft of the route. The Mississippi River (Trail of Tears Water Route) is below the bluff. Possible only: the POTA Activator Guide says historic trails have no specific boundaries, so look for official signage and check with POTA before counting it.",
    "site": {
     "name": "Columbus Belmont State Park",
-    "why": "The National Park Service lists Columbus-Belmont State Park as a Trail of Tears National Historic Trail \"Certified Site.\"",
+    "why": "The National Park Service lists Columbus-Belmont State Park as a Trail of Tears National Historic Trail \"Certified Site,\" and the NPS Benge Route line runs about 0.4 mi through the park.",
     "url": "https://www.nps.gov/places/columbus-belmont-state-park.htm"
    }
   },
@@ -1944,6 +1951,197 @@
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park."
+  },
+  {
+   "type": "3-fer",
+   "how": "Trail of Tears Water Route bank (Tennessee River / Kentucky Lake)",
+   "refs": [
+    "US-3791",
+    "US-0703",
+    "US-3790"
+   ],
+   "names": [
+    "Trail of Tears National Historic Trail",
+    "Fort Donelson National Battlefield",
+    "Fort Heiman National Battlefield"
+   ],
+   "size": "about 4 mi of shoreline",
+   "county": "Calloway",
+   "points": [
+    {
+     "la": 36.49934,
+     "lo": -88.0556,
+     "what": "Kentucky Lake shore area (approximate)",
+     "note": "Pin is on the water side of the park in our map data, not checked against the water line. Walk to the water and set up inside the park within 100 ft of it.",
+     "q": "C"
+    },
+    {
+     "la": 36.5016,
+     "lo": -88.0562,
+     "what": "Fort Heiman unit (POTA location)",
+     "note": "The POTA location for Fort Heiman.",
+     "q": "B"
+    }
+   ],
+   "note": "Trail of Tears Water Route: the Tennessee River (Kentucky Lake). The trail here is the river itself, so set up on public land inside the park AND within 100 ft of the water. Kentucky Lake is the dammed Tennessee River; the NPS route line follows the old river channel out in the lake, so this is a looser fit than an Ohio River bank. Fort Heiman is a unit of Fort Donelson National Battlefield, so the same land counts for both. The pin is approximate and was not checked against the water line. Possible only: do your own research."
+  },
+  {
+   "type": "2-fer",
+   "how": "Trail of Tears Water Route bank (Tennessee River / Kentucky Lake)",
+   "refs": [
+    "US-3791",
+    "US-3792"
+   ],
+   "names": [
+    "Trail of Tears National Historic Trail",
+    "Land Between the Lakes National Recreation Area"
+   ],
+   "size": "about 40 mi of Kentucky Lake shoreline",
+   "county": "Lyon / Trigg",
+   "points": [
+    {
+     "la": 36.94104,
+     "lo": -88.19152,
+     "what": "Kentucky Lake shore, north LBL (approximate)",
+     "note": "Pin is on the water side of the park in our map data, not checked against the water line. Walk to the water and set up inside the park within 100 ft of it.",
+     "q": "C"
+    },
+    {
+     "la": 36.82373,
+     "lo": -88.13228,
+     "what": "Kentucky Lake shore, middle LBL (approximate)",
+     "note": "Pin is on the water side of the park in our map data, not checked against the water line. Walk to the water and set up inside the park within 100 ft of it.",
+     "q": "C"
+    },
+    {
+     "la": 36.70081,
+     "lo": -88.07046,
+     "what": "Kentucky Lake shore, south LBL (approximate)",
+     "note": "Pin is on the water side of the park in our map data, not checked against the water line. Walk to the water and set up inside the park within 100 ft of it.",
+     "q": "C"
+    }
+   ],
+   "note": "Trail of Tears Water Route: the Tennessee River (Kentucky Lake), along the west side of Land Between the Lakes. The trail here is the river itself, so set up on public land inside the park AND within 100 ft of the water. Kentucky Lake is the dammed Tennessee River; the NPS route line follows the old river channel out in the lake, so this is a looser fit than an Ohio River bank. Any public LBL shore on the Kentucky Lake side may work; the Lake Barkley side is the Cumberland River and does not count. The pin is approximate and was not checked against the water line. Possible only: do your own research."
+  },
+  {
+   "type": "2-fer",
+   "how": "Trail of Tears Water Route bank (Tennessee River / Kentucky Lake)",
+   "refs": [
+    "US-3791",
+    "US-10140"
+   ],
+   "names": [
+    "Trail of Tears National Historic Trail",
+    "Kentucky Lake Wildlife Management Area"
+   ],
+   "size": "about 5 mi of shoreline",
+   "county": "Calloway",
+   "points": [
+    {
+     "la": 36.49919,
+     "lo": -88.05563,
+     "what": "Kentucky Lake shore near Fort Heiman (approximate)",
+     "note": "Pin is on the water side of the park in our map data, not checked against the water line. Walk to the water and set up inside the park within 100 ft of it.",
+     "q": "C"
+    }
+   ],
+   "note": "Trail of Tears Water Route: the Tennessee River (Kentucky Lake). The trail here is the river itself, so set up on public land inside the park AND within 100 ft of the water. Kentucky Lake is the dammed Tennessee River; the NPS route line follows the old river channel out in the lake, so this is a looser fit than an Ohio River bank. Most of the WMA shore is on bays; the closest main-lake shore is near the Tennessee line by Fort Heiman. The pin is approximate and was not checked against the water line. Possible only: do your own research."
+  },
+  {
+   "type": "2-fer",
+   "how": "Trail of Tears Water Route bank (Tennessee River / Kentucky Lake)",
+   "refs": [
+    "US-3791",
+    "US-1282"
+   ],
+   "names": [
+    "Trail of Tears National Historic Trail",
+    "Kenlake State Park"
+   ],
+   "size": "about 6 mi of shoreline",
+   "county": "Marshall",
+   "points": [
+    {
+     "la": 36.74358,
+     "lo": -88.11963,
+     "what": "Kentucky Lake shore (approximate)",
+     "note": "Pin is on the water side of the park in our map data, not checked against the water line. Walk to the water and set up inside the park within 100 ft of it.",
+     "q": "C"
+    }
+   ],
+   "note": "Trail of Tears Water Route: the Tennessee River (Kentucky Lake). The trail here is the river itself, so set up on public land inside the park AND within 100 ft of the water. Kentucky Lake is the dammed Tennessee River; the NPS route line follows the old river channel out in the lake, so this is a looser fit than an Ohio River bank. The pin is approximate and was not checked against the water line. Possible only: do your own research."
+  },
+  {
+   "type": "2-fer",
+   "how": "Trail of Tears Water Route bank (Tennessee River / Kentucky Lake)",
+   "refs": [
+    "US-3791",
+    "US-1283"
+   ],
+   "names": [
+    "Trail of Tears National Historic Trail",
+    "Kentucky Dam Village State Park"
+   ],
+   "size": "about 3 mi of shoreline",
+   "county": "Marshall",
+   "points": [
+    {
+     "la": 37.01856,
+     "lo": -88.28284,
+     "what": "Kentucky Lake / Tennessee River shore (approximate)",
+     "note": "Pin is on the water side of the park in our map data, not checked against the water line. Walk to the water and set up inside the park within 100 ft of it.",
+     "q": "C"
+    }
+   ],
+   "note": "Trail of Tears Water Route: the Tennessee River at Kentucky Dam. The trail here is the river itself, so set up on public land inside the park AND within 100 ft of the water. Kentucky Lake is the dammed Tennessee River; the NPS route line follows the old river channel out in the lake, so this is a looser fit than an Ohio River bank. The pin is approximate and was not checked against the water line. Possible only: do your own research."
+  },
+  {
+   "type": "2-fer",
+   "how": "Trail of Tears Water Route bank (Mississippi River)",
+   "refs": [
+    "US-3791",
+    "US-3808"
+   ],
+   "names": [
+    "Trail of Tears National Historic Trail",
+    "Doug Travis Wildlife Management Area"
+   ],
+   "size": "about 11 mi along the river",
+   "county": "Hickman",
+   "points": [
+    {
+     "la": 36.78567,
+     "lo": -89.1186,
+     "what": "Mississippi River bank area (approximate)",
+     "note": "Pin is on the water side of the park in our map data, not checked against the water line. Walk to the water and set up inside the park within 100 ft of it.",
+     "q": "C"
+    }
+   ],
+   "note": "Trail of Tears Water Route: the Mississippi River. The trail here is the river itself, so set up on public land inside the park AND within 100 ft of the water. The pin is approximate and was not checked against the water line. Possible only: do your own research."
+  },
+  {
+   "type": "2-fer",
+   "how": "Trail of Tears National Historic Trail through the park",
+   "refs": [
+    "US-3791",
+    "US-3823"
+   ],
+   "names": [
+    "Trail of Tears National Historic Trail",
+    "Livingston County Wildlife Management Area"
+   ],
+   "size": "about 0.4 mi of the Northern Route inside",
+   "county": "Livingston",
+   "points": [
+    {
+     "la": 37.36672,
+     "lo": -88.44268,
+     "what": "On the Northern Route (Trail of Tears) inside the park",
+     "note": "On the NPS route line, about 550 ft inside the park line. Stay within 100 ft of the route.",
+     "q": "C"
+    }
+   ],
+   "note": "The NPS Trail of Tears Northern Route line runs about 0.4 mi through the WMA. Much of the historic route follows today's roads, so confirm you are on WMA land within 100 ft of the route and look for official signage. The Lewis & Clark auto tour route (Lola Rd) also runs along the park edge nearby. Possible only: do your own research."
   }
  ],
  "unconfirmed": [
@@ -1974,6 +2172,10 @@
   [
    "US-10098 Green River National Wildlife Refuge + US-4572 Lewis and Clark National Historic Trail",
    "No boundary map available here. Check the refuge map for public riverbank."
+  ],
+  [
+   "US-3827 Obion Creek Wildlife Management Area + US-3791 Trail of Tears National Historic Trail",
+   "The park comes within about half a mile of the Mississippi River channel on the NPS map; check whether it has public riverbank."
   ]
  ],
  "sources": [
@@ -1986,6 +2188,16 @@
    "POTA Activator Guide",
    "Trails (100 ft rule), National Historic Trails (\"historic trails do not have specific boundaries\": use NPS-certified sites and official signage), multi-park activations.",
    "https://docs.pota.app/docs/activator_reference/activator_guide-english.html"
+  ],
+  [
+   "NPS: Lewis & Clark Visitor Centers in Kentucky",
+   "Wickliffe Mounds, Big Bone Lick and Golden Pond Visitor Center are on this official list.",
+   "https://www.nps.gov/lecl/planyourvisit/visitor-centers-in-kentucky.htm"
+  ],
+  [
+   "NPS Trail of Tears NHT route (GIS)",
+   "Official route lines (Water, Northern and Benge routes) used to check the Kentucky Lake, Mississippi River, Columbus-Belmont and Livingston County spots.",
+   "https://catalog.data.gov/dataset/trail-of-tears-national-historic-trail"
   ],
   [
    "NPS: Wickliffe Mounds State Historic Site",
@@ -2041,6 +2253,9 @@
   "Removed a Red River 3-fer pin that pointed to a spot 33 km outside the Daniel Boone National Forest, and a general Land Between the Lakes pin 7 mi from Golden Pond Visitor Center.",
   "Moved 19 setup and trail pins that sat on or just outside a boundary line so they are at least 100 ft inside every park in our map data.",
   "Parking pins say \"Parking only\" and note when the lot may be just outside the park line.",
-  "Pennyrile Forest State Park + Pennyrile State Forest: a KPC member confirmed they do not overlap, so it is NOT a 2-fer."
+  "Pennyrile Forest State Park + Pennyrile State Forest: a KPC member confirmed they do not overlap, so it is NOT a 2-fer.",
+  "Added Trail of Tears Water Route spots on the Tennessee River (Kentucky Lake): Land Between the Lakes, Kentucky Lake WMA, Kenlake State Park, Kentucky Dam Village State Park and a Fort Heiman 3-fer; and on the Mississippi River: Doug Travis WMA. Checked against the NPS route map.",
+  "Added Livingston County WMA (Trail of Tears Northern Route runs through it). Columbus-Belmont: the NPS Benge Route runs through the park, so it now has an on-route pin.",
+  "Wickliffe Mounds, Big Bone Lick and Golden Pond now cite the NPS \"Visitor Centers in Kentucky\" page for the Lewis & Clark trail."
  ]
 }
