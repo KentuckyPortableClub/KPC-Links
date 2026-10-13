@@ -135,7 +135,7 @@ function hover(layer){
 
 /* ---------- overlap data ---------- */
 let OVL = null;
-function overlapData(){return OVL || (OVL = fetch('ky-overlaps.geojson', {cache:'force-cache'}).then(r => {if(!r.ok)throw Error('HTTP ' + r.status);return r.json()}))}
+function overlapData(){return OVL || (OVL = fetch('ky-overlaps.geojson?v=20261013a', {cache:'force-cache'}).then(r => {if(!r.ok)throw Error('HTTP ' + r.status);return r.json()}))}
 /* POTA refs → [{kind, other refs, areas}] for cards */
 function overlapIndex(){return overlapData().then(gj => {const idx = new Map();
  for (const f of gj.features) {const p = f.properties, refs = p.pota.map(r => r[0]);
