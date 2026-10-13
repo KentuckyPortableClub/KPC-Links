@@ -231,6 +231,31 @@ body.field .page-jump-nav{display:none!important}
 @media(min-width:1001px){.rs-grid>.rs:last-child:nth-child(3n+1){grid-column:1/-1}}
 @media(max-width:1000px){.rs-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.rs-grid{grid-template-columns:1fr}}
+.cw-rx{}
+#cwApp[data-mode=listen] .cw-rx{grid-column:1;grid-row:1}
+.rx-top{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:12px}
+.rx-state{font:900 12px Arial,sans-serif;letter-spacing:2px;padding:5px 10px;border-radius:999px;background:#2a2a2a;color:#bbb}
+.cw-rx.live .rx-state{background:#2e8b57;color:#fff}
+#rxLamp{width:16px;height:16px;border-radius:50%;background:#2a2a2a;box-shadow:inset 0 0 0 2px #444}#rxLamp.on{background:#ffcf5a;box-shadow:0 0 12px #ffcf5a}
+.rx-stat{font-size:11px;letter-spacing:1.2px;color:#9b968c;font-weight:900}.rx-stat b{color:#fff;font-size:15px;letter-spacing:0;margin-left:4px}
+.rx-src{display:flex;flex-wrap:wrap;gap:8px}
+.rx-src .cw-btn{flex:1 1 200px}.rx-src .rx-alt{background:#2a2a2a;color:#fff;border:1px solid #555}
+.cw-btn:disabled{opacity:.45;cursor:not-allowed}
+.rx-msg{color:#f0c96b;font-size:13px;min-height:18px;margin:10px 0}
+#rxWf{display:block;width:100%;height:140px;background:#03060a;border:1px solid #23402e;border-radius:8px;cursor:crosshair;image-rendering:pixelated}
+.rx-wfl{display:flex;justify-content:space-between;align-items:center;gap:8px;color:#8f8a80;font-size:11px;margin-top:6px}
+.rx-wfl label{display:flex;align-items:center;gap:6px;color:#ddd;font-size:12px;letter-spacing:0;font-weight:700}
+.rx-wfl input{accent-color:var(--gold);width:16px;height:16px}
+#rxText{margin-top:12px;height:180px;overflow:auto;background:#050806;border:1px solid #23402e;border-radius:8px;padding:12px;font:700 20px/1.5 "Courier New",monospace;color:#ffe6a6;letter-spacing:1px;word-break:break-word;white-space:pre-wrap}
+#rxText:empty:before{content:"Decoded text shows up here…";color:#55605a;font-size:14px;font-weight:600}
+.rx-copy{margin-top:14px}.rx-copy summary{cursor:pointer;color:var(--gold-light);font:900 12px Arial,sans-serif;letter-spacing:1.2px}
+.rx-copy textarea{width:100%;margin:10px 0 8px;padding:10px;border-radius:7px;border:1px solid #444;background:#151515;color:#fff;font:700 17px "Courier New",monospace;text-transform:uppercase}
+#rxCmp{margin-top:10px;color:#ddd;font-size:14px}#rxCmp b{color:#7fd39a;font-size:18px}#rxCmp code{color:#ffe6a6}
+.rx-how{margin:0 0 12px;padding-left:20px;color:#d9d3c6;font-size:14px}.rx-how li{margin:0 0 6px}
+.rx-sdr{display:grid;gap:8px}
+.rx-sdr div{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px;background:#181818;border:1px solid #2c2c2c;border-radius:8px}
+.rx-sdr b{color:#fff}.rx-sdr small{color:#8f8a80;flex:1}
+.rx-sdr a{font:900 11px Arial,sans-serif;letter-spacing:1px;color:#111;background:var(--gold);border-radius:6px;padding:7px 10px}
 @media(max-width:1000px){.cw-grid{grid-template-columns:minmax(0,1fr)}.cw-a-band,.cw-a-key,.cw-a-log,.cw-a-set{grid-column:1;grid-row:auto}.cw-station{grid-template-columns:1fr 1fr}.abbr{grid-template-columns:repeat(2,1fr)}.live-grid{grid-template-columns:1fr}}
 @media(max-width:700px){.ex-grid{grid-template-columns:1fr}.ex li{grid-template-columns:70px 1fr auto}.cw{padding:30px 14px 56px}.cw-tab{min-width:calc(50% - 4px)}#cwBand{height:280px;font-size:14px}.cw-line .who{flex-basis:74px}.cw-sl{grid-template-columns:1fr}.cw-keypad button{min-height:140px}}
 @media(max-width:420px){.cw-station{grid-template-columns:1fr}}
@@ -305,6 +330,7 @@ body.field .page-jump-nav{display:none!important}
  <button type="button" class="cw-tab" role="tab" data-mode="act">🏕️ ACTIVATE<small>You run the pileup</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="drill">👂 COPY DRILLS<small>Listen &amp; type</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="free">✍️ FREE SEND<small>Check your fist</small></button>
+ <button type="button" class="cw-tab" role="tab" data-mode="listen">🎧 LISTEN &amp; DECODE<small>WebSDR or microphone</small></button>
 </div>
 
 <div class="cw-grid">
@@ -325,6 +351,47 @@ body.field .page-jump-nav{display:none!important}
    <div id="cwDrillScore"></div>
    <p class="cw-safe">Tip: copy at your real character speed and lower <b>Farnsworth</b> to add space between letters while you learn.</p>
   </div>
+  <div class="cw-card cw-a-band cw-rx" id="rxCard" data-show="listen">
+   <div class="rx-top"><span class="rx-state" id="rxState">STOPPED</span><span id="rxLamp" title="Tone detected"></span><span class="rx-stat">TONE <b id="rxFreq">600 Hz</b></span><span class="rx-stat">SPEED <b id="rxWpm">—</b></span><span class="rx-stat">SIGNAL <b id="rxSnr">—</b></span></div>
+   <div class="rx-src">
+    <button type="button" class="cw-btn" id="rxTab">🖥 DECODE A TAB (WEBSDR)</button>
+    <button type="button" class="cw-btn rx-alt" id="rxMic">🎤 USE MICROPHONE</button>
+    <button type="button" class="cw-small" id="rxTest">▶ PRACTICE SIGNAL</button>
+    <button type="button" class="cw-small" id="rxStop" disabled>⏹ STOP</button>
+   </div>
+   <p class="rx-msg" id="rxMsg"></p>
+   <p class="cw-keyhelp" id="rxTabNote" hidden>Decoding a tab needs Chrome or Edge on a computer. On a phone or tablet, use the microphone.</p>
+   <canvas id="rxWf" width="600" height="140" aria-label="Waterfall — tap a signal to lock onto it"></canvas>
+   <div class="rx-wfl"><span>200 Hz</span><label><input type="checkbox" id="rxAuto" checked> Auto-find the strongest signal</label><span>1300 Hz</span></div>
+   <p class="cw-keyhelp" style="margin-top:4px">Tap a trace in the waterfall to lock onto that signal.</p>
+   <div id="rxText" aria-live="polite"></div>
+   <div class="cw-top" style="margin-top:10px"><button type="button" class="cw-small" id="rxClear">CLEAR TEXT</button></div>
+   <details class="rx-copy"><summary>COPY TEST — CHECK YOUR EAR AGAINST THE DECODER</summary>
+    <p class="cw-keyhelp">Press start, write down what you hear, then compare.</p>
+    <button type="button" class="cw-small" id="rxCopyGo">START COPY TEST</button>
+    <textarea id="rxMine" rows="3" placeholder="Type what you hear…" autocapitalize="characters" spellcheck="false"></textarea>
+    <button type="button" class="cw-btn" id="rxCopyCmp">COMPARE</button>
+    <div id="rxCmp"></div>
+   </details>
+  </div>
+
+  <div class="cw-card cw-a-key" data-show="listen">
+   <h3>Where to Listen</h3>
+   <ol class="rx-how">
+    <li>Open a WebSDR below — it opens in its own tab.</li>
+    <li>Pick <b>CW</b> mode and a narrow filter, then tune onto a signal.</li>
+    <li>Come back here, tap <b>Decode a tab</b>, choose the WebSDR tab and turn on <b>Share tab audio</b>.</li>
+   </ol>
+   <div class="rx-sdr">
+    <div><b>K3FEF</b> <small>Pennsylvania</small><a href="http://k3fef.com:8901/?tune=7030cw" target="_blank" rel="noopener">40 m CW</a><a href="http://k3fef.com:8901/?tune=14060cw" target="_blank" rel="noopener">20 m CW</a></div>
+    <div><b>Northern Utah</b> <small>Utah</small><a href="http://websdr1.sdrutah.org:8901/index1a.html?tune=7030cw" target="_blank" rel="noopener">40 m CW</a><a href="http://websdr2.sdrutah.org:8902/index1a.html?tune=14060cw" target="_blank" rel="noopener">20 m CW</a></div>
+    <div><b>Twente</b> <small>Netherlands</small><a href="http://websdr.ewi.utwente.nl:8901/?tune=7030cw" target="_blank" rel="noopener">40 m CW</a><a href="http://websdr.ewi.utwente.nl:8901/?tune=14060cw" target="_blank" rel="noopener">20 m CW</a></div>
+   </div>
+   <p class="cw-keyhelp">Want someone specific? <a href="kpc-live.html" style="color:var(--gold-light);font-weight:800">Live spots →</a> shows who's on CW right now with the best receiver for them.</p>
+   <p class="cw-keyhelp"><b>At the park or shack:</b> use the microphone next to your radio's speaker — it decodes the real thing too.</p>
+   <p class="cw-keyhelp"><b>How good is it?</b> Great on clean, steady signals. Fading, interference and sloppy fists will fool it, and it may miss the first letter or two while it learns the sender's speed — just like every CW decoder. Your ear is still the best decoder.</p>
+  </div>
+
   <div class="cw-card cw-a-key" data-show="hunt act free">
    <h3>Your Key</h3>
    <div class="cw-inputs" role="radiogroup" aria-label="How you send">
@@ -357,7 +424,7 @@ body.field .page-jump-nav{display:none!important}
    <p class="cw-safe">Practice contacts only — the stations are made up and nothing is logged anywhere. Don't upload these to POTA or SOTA.</p>
   </div>
 
-  <details class="cw-card cw-set cw-a-set" open>
+  <details class="cw-card cw-set cw-a-set" data-show="hunt act free drill" open>
    <summary>SOUND &amp; SPEED</summary>
    <div class="cw-sl">
     <div class="f"><label for="cwWpm">SPEED</label><input type="range" id="cwWpm" min="5" max="40" step="1"><output id="cwWpmV"></output></div>
@@ -475,7 +542,8 @@ body.field .page-jump-nav{display:none!important}
 <section class="final"><h2>Get Outside. Get On The Air.</h2><p>READY FOR THE REAL THING?</p><a class="btn" href="kpc-spots.html">SEE WHO'S ON THE AIR →</a></section>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
-<script src="kpc-cw.js?v=20261013a"></script>
+<script src="kpc-cw.js?v=20261013b"></script>
+<script src="kpc-cw-rx.js?v=20261013a"></script>
 <script src="kpc-search.js?v=20261011c" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
