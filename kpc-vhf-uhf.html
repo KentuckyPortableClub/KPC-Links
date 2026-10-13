@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>VHF &amp; UHF Antennas: J-Pole, Slim Jim, Yagi | KPC</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VHF &amp; UHF Antennas: J-Pole, Slim Jim, Yagi | KPC">
+<meta property="og:description" content="Build 2 m, 70 cm, 6 m and 220 antennas: J-pole, Slim Jim, roll-up twin-lead J-pole, ground plane, tape-measure yagi, HT and mobile upgrades, with a calculator and coax loss table.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-vhf-uhf.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
+<meta name="description" content="Build 2 m, 70 cm, 6 m and 220 antennas: J-pole, Slim Jim, roll-up twin-lead J-pole, ground plane, tape-measure yagi, HT and mobile upgrades, with a calculator and coax loss table.">
+<style>
+:root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:var(--nav-height);margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s}.nav-links a:hover,.nav-links a[aria-current=page]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:var(--black) url("parks.png") center/cover no-repeat;color:#fff;border-bottom:1px solid rgba(213,166,58,.45)}
+.hero:before{content:"";position:absolute;width:620px;height:620px;right:-170px;top:-180px;border:1px solid rgba(213,166,58,.35);border-radius:50%;box-shadow:0 0 0 55px rgba(213,166,58,.035),0 0 0 110px rgba(213,166,58,.025)}
+.hero:after{content:none}
+.hero-inner{position:relative;z-index:2;width:min(var(--max),100%);margin:auto;padding:90px 24px 84px}.hero-logo{width:min(360px,78vw);margin-bottom:24px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}.eyebrow{margin:0 0 12px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}.hero h1{max-width:800px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,6.2vw,76px);line-height:1.02;letter-spacing:-1.8px}.hero h1 span{color:var(--gold-light)}.hero-copy{max-width:720px;margin:22px 0 0;color:#eee9dd;font-size:clamp(16px,2vw,20px)}
+.section{padding:82px 24px}.section-inner{width:min(var(--max),100%);margin:auto}.section-heading{text-align:center;margin-bottom:42px}.kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:4px}.section h2{margin:7px 0 12px;color:var(--black);font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,4vw,48px);line-height:1.08}.section-heading p{max-width:760px;margin:0 auto;color:var(--muted);font-size:17px}
+.intro{background:var(--cream);border-bottom:1px solid #d9cfbd}.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}.intro-copy h2{margin:7px 0 18px}.intro-copy p{color:var(--muted);font-size:18px;margin:0}.intro-panel{padding:34px;background:var(--black);border:1px solid var(--gold);box-shadow:12px 12px 0 var(--gold);color:#fff;position:relative;overflow:hidden}.intro-panel:after{content:"";position:absolute;width:230px;height:230px;right:-90px;top:-90px;border:1px solid rgba(213,166,58,.45);border-radius:50%}.intro-panel .mark{position:relative;z-index:1;color:var(--gold-light);font-size:12px;font-weight:900;letter-spacing:3px}.intro-panel h3{position:relative;z-index:1;margin:10px 0 10px;font:700 30px/1.1 Georgia,serif}.intro-panel p{position:relative;z-index:1;margin:0;color:#c9c5bc}.intro-panel .line{position:relative;z-index:1;width:70px;height:3px;background:var(--gold);margin:20px 0}
+.features{background:#fffaf0}.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.card{min-height:285px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid #d8cfbf;background:#fff;color:var(--ink);box-shadow:0 12px 28px rgba(0,0,0,.07);transition:.2s;position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;width:6px;height:100%;background:var(--gold)}.card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.12);border-color:var(--gold)}.card-top{position:relative;z-index:1}.card-num{color:var(--green);font-size:12px;font-weight:900;letter-spacing:3px}.card h3{margin:8px 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:28px;line-height:1.1}.card p{margin:0;color:var(--muted);font-size:15px;max-width:520px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:1px;background:var(--gold);color:#0b0b0b;transition:.2s;align-self:flex-start;margin-top:24px}.btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.dark{background:var(--black);color:#fff;border-top:1px solid rgba(213,166,58,.45);border-bottom:1px solid rgba(213,166,58,.45)}.dark .section-heading p{color:#bcb8ae}.dark h2{color:#fff}.dark .card{background:#151515;border-color:#363636;color:#fff}.dark .card p{color:#bcb8ae}.dark .card h3{color:#fff}.dark .card:before{background:var(--gold)}
+.map-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.map-box{padding:30px;border:1px solid #363636;background:#151515}.map-box h3{margin:8px 0 10px;color:#fff;font:700 25px/1.1 Georgia,serif}.map-box p{margin:0;color:#bcb8ae}.map-box .btn{margin-top:22px}
+.pota-card{min-height:310px}
+.pdf-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pdf-actions .btn{margin-top:0}.pdf-actions .alt{background:#fff;border:1px solid var(--gold);color:#171717}
+.warning{background:var(--cream-2);border-top:1px solid #d1c6b3}.warning-box{border-left:6px solid var(--gold);background:#fff;padding:30px;box-shadow:0 10px 24px rgba(0,0,0,.06)}.warning-box h3{margin:0 0 10px;font:700 28px/1.1 Georgia,serif}.warning-box p{margin:0;color:var(--muted)}
+.final{padding:76px 24px;text-align:center;background:var(--cream-2)}.final h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}.final p{margin:10px 0 24px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:2px}
+footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;border-top:1px solid #292929;font-size:13px}footer strong{color:var(--gold-light)}
+@media(min-width:901px){.hero-logo{position:absolute;left:-400px;top:calc(50% - 22px);transform:translateY(-50%);justify-self:auto;margin-bottom:0}}
+@media(max-width:1000px){.nav-links a{padding-inline:7px;font-size:12px}.intro-grid{gap:38px}}
+@media(max-width:900px){.hero-logo{display:block;width:min(290px,58vw);margin-left:auto;margin-right:auto}}
+@media(max-width:760px){:root{--nav-height:70px}.nav-inner{min-height:70px;padding:8px 18px}.brand img{width:52px;height:52px}.menu-toggle{display:block}.nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45);box-shadow:0 15px 25px rgba(0,0,0,.22)}.nav-links.open{display:flex}.nav-links a{padding:13px 5px;border-bottom:1px solid #292929}.nav-links a:last-child{border-bottom:0}.hero{min-height:500px;background:url("parks-mobile.png") center/cover no-repeat}.hero-inner{padding:70px 20px 55px}.hero-logo{width:min(290px,58vw)}.section{padding:68px 20px}.intro-grid,.map-grid{grid-template-columns:1fr}.intro-panel{max-width:520px;margin:auto}.card-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-logo{width:min(250px,64vw)}}
+@media(max-width:520px){.hero h1{font-size:42px}.hero-copy{font-size:16px}.card{min-height:300px}.card h3{font-size:25px}.pdf-actions{flex-direction:column}.pdf-actions .btn{width:100%}}
+@media(max-width:380px){.brand-text small{display:none}}
+
+/* Added official trail and Wild River resource sections */
+.resource-note{background:#fff7df;border-left:5px solid var(--gold);padding:18px 22px;margin:0 0 28px;color:#332c1f}
+.resource-note p{margin:0}.resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.resource-item{padding:26px;border:1px solid #d8cfbf;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.045)}
+.resource-item h3{font:700 25px/1.18 Georgia,serif;margin:8px 0 12px}.resource-item p{color:#5f5a51;margin:0 0 12px}
+.resource-item .meta{font-size:12px;font-weight:900;letter-spacing:1.4px;color:var(--green)}
+.resource-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.resource-actions .btn{margin:0;font-size:11px;min-height:40px}
+.resource-actions .secondary{background:#f8f4eb;border:1px solid #c9ad6b}
+.river-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:25px 0}
+.river-list article{padding:18px 20px;background:#fff;border:1px solid #d8cfbf}.river-list strong{display:block;font:700 20px Georgia,serif}.river-list span{display:block;margin-top:7px;color:#5f5a51;font-size:14px}
+@media(max-width:760px){.resource-grid,.river-list{grid-template-columns:1fr}}
+/* Quick jump links, trail cards, map files */
+.jump{background:var(--black);border-bottom:1px solid rgba(213,166,58,.45);position:sticky;top:var(--nav-height);z-index:900}
+.jump-inner{width:min(var(--max),100%);margin:auto;padding:10px 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.jump-inner::-webkit-scrollbar{display:none}
+.jump a{flex:0 0 auto;padding:8px 14px;border:1px solid #3a3a3a;border-radius:999px;color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;transition:.2s}
+.jump a:hover{border-color:var(--gold);color:var(--gold-light)}
+section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn-row .btn{margin-top:0}
+.trail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.trail-grid .resource-item:last-child:nth-child(odd){grid-column:1/-1}
+.twofer{margin:14px 0 0;padding:12px 14px;background:#fff7df;border-left:4px solid var(--gold);font-size:14px;color:#332c1f}
+.twofer b{color:var(--green);letter-spacing:1px;font-size:12px}
+.files-card .pdf-actions .btn{min-width:0}
+.file-group{margin-top:16px}.file-group .card-num{margin-bottom:8px}
+.warning-box .btn-row .btn{font-size:11px;min-height:40px}
+@media(max-width:760px){.jump{top:70px}.trail-grid{grid-template-columns:1fr}.btn-row{flex-direction:column}.btn-row .btn{width:100%}}
+.dark .kicker,.dark .card-num{color:var(--gold-light)}
+/* On The Air Now bar */
+.onair{background:#0d2419;border-bottom:1px solid rgba(213,166,58,.45);color:#fff}
+.onair-inner{width:min(var(--max),100%);margin:auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.onair-title{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:3px;color:var(--gold-light);white-space:nowrap}
+.onair .dot{width:10px;height:10px;border-radius:50%;background:#3ecf6e;animation:pulse 1.8s infinite}
+.onair .dot.off{background:#8a8a8a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.6)}70%{box-shadow:0 0 0 9px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.onair-count{font-size:14px;color:#e9eee9}.onair-count b{color:#fff}
+.onair-list{display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}.onair-list::-webkit-scrollbar{display:none}
+.onair-chip{flex:0 0 auto;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;white-space:nowrap}
+.onair-chip b{color:var(--gold-light)}.onair-chip.club{border-color:var(--gold);background:rgba(213,166,58,.14)}
+.onair .btn{margin:0;min-height:38px;padding:8px 14px;font-size:11px;white-space:nowrap}
+@media(max-width:760px){.onair-inner{padding:12px 18px;gap:8px 10px}.onair-title{order:1}.onair .btn{order:2;margin-left:auto}.onair-count{order:3;flex-basis:100%}.onair-list{order:4;flex-basis:100%}}
+
+/* KPC shared About-style footer and below-hero page links */
+.page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+.page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
+.page-jump-nav a:hover,.page-jump-nav a:focus-visible{background:#3c321a;border-color:#d6b96c;color:#fff}
+section[id]{scroll-margin-top:100px}
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
+body.field .page-jump-nav{display:none!important}
+
+</style>
+<link rel="stylesheet" href="kpc-nav.css?v=20261010g">
+<style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
+<style>
+[hidden]{display:none!important}
+.hero{min-height:380px;background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.66) 45%,rgba(7,7,7,.25) 80%,rgba(7,7,7,.1) 100%),url("toolbox.jpg") center 55%/cover no-repeat #070707}
+@media(max-width:760px){.hero{min-height:340px;background:linear-gradient(180deg,rgba(7,7,7,.45) 0%,rgba(7,7,7,.8) 55%,rgba(7,7,7,.92) 100%),url("toolbox-mobile.jpg") center 60%/cover no-repeat #070707}}
+.xj{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px 16px;background:#101010;border-bottom:1px solid #2a2a2a}
+.xj a{padding:9px 13px;border:1px solid rgba(255,255,255,.28);border-radius:6px;color:#fff;font-size:11px;font-weight:900;letter-spacing:.7px}
+.xj a:hover{border-color:var(--gold);color:var(--gold-light)}
+.x2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.x3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.x4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.xc{background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);padding:20px;box-shadow:0 10px 24px rgba(0,0,0,.06);min-width:0}
+.xc .k{font-size:10px;font-weight:900;letter-spacing:1.5px;color:var(--green)}
+.xc h3{margin:6px 0 8px;font:700 22px/1.15 Georgia,serif}
+.xc p,.xc li{color:var(--muted);font-size:15px}.xc p{margin:0 0 8px}.xc ul,.xc ol{margin:0 0 8px;padding-left:18px}.xc li{margin:0 0 5px}
+.xc b{color:#171717}
+.dark .xc{background:#151515;border-color:#363636;border-top-color:var(--gold)}.dark .xc h3,.dark .xc b{color:#fff}.dark .xc p,.dark .xc li{color:#bcb8ae}.dark .xc .k{color:#7fd39a}
+.xc svg,.fig svg{display:block;width:100%;height:auto;background:#fbf8f1;border:1px solid #e1d7c3;border-radius:8px;margin:12px 0}
+.pill{display:inline-block;font-size:10px;font-weight:900;letter-spacing:1px;padding:3px 7px;border-radius:4px;background:#efe6d2;color:#5f5a51;margin-left:6px;vertical-align:2px}
+.spec{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 10px}
+.spec td{padding:7px 4px;border-bottom:1px solid #eee5d3;vertical-align:top;color:#3b372f}
+.spec td:first-child{font-size:10px;font-weight:900;letter-spacing:1px;color:#6d6658;width:40%;padding-top:9px}
+.dark .spec td{border-color:#2a2a2a;color:#ddd}
+/* calculator */
+.xd{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px;align-items:start}
+.xd-in{background:#121212;border:1px solid #2f2f2f;border-radius:10px;padding:18px}
+.xd-in label{display:block;font-size:11px;font-weight:900;letter-spacing:1.3px;color:#cfc6b2;margin:12px 0 6px}
+.xd-in label:first-child{margin-top:0}
+.xd-in select,.xd-in input{width:100%;min-height:46px;padding:9px 12px;border-radius:7px;border:1px solid #444;background:#1a1a1a;color:#fff;font:600 16px Arial,sans-serif}
+.xd-in .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.xd-in .hint{font-size:12px;color:#9c968a;margin:5px 0 0}
+.xd-out{background:#fff;border-radius:10px;padding:20px;color:var(--ink);min-width:0}
+.xd-out h3{margin:0 0 4px;font:700 24px Georgia,serif}
+.xd-out .sub{color:var(--muted);margin:0 0 14px;font-size:14px}
+.xd-t{width:100%;border-collapse:collapse;font-size:15px}
+.xd-t td{padding:8px 4px;border-bottom:1px solid #eee5d3;vertical-align:top}
+.xd-t td:first-child{font-size:11px;font-weight:900;letter-spacing:1px;color:#6d6658;width:42%;padding-top:10px}
+.xd-t b{font-size:17px}
+.big{font:700 34px/1.1 Georgia,serif;color:#171717}
+.xd-warn{margin-top:12px;padding:10px 12px;background:#fff1ec;border-left:4px solid #d2693c;color:#5a2a17;font-size:14px}
+.xd-ok{margin-top:12px;padding:10px 12px;background:#eef7ef;border-left:4px solid #2e8b3a;color:#1d3d22;font-size:14px}
+.tbl-wrap{overflow-x:auto;margin-top:12px}
+.tapt{width:100%;border-collapse:collapse;font-size:14px;min-width:340px}
+.tapt th{background:#1d1d1d;color:#cfc6b2;font-size:10px;letter-spacing:1.2px;text-align:left;padding:8px}
+.tapt td{padding:8px;border-bottom:1px solid #eee5d3}
+.tapt td:first-child{font-weight:900}
+.tips{columns:2 320px;column-gap:24px;padding-left:18px}
+.tips li{break-inside:avoid;margin:0 0 12px;color:var(--muted);font-size:15px}.tips b{color:#171717}
+.dark .tips li{color:#bcb8ae}.dark .tips b{color:#fff}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;position:relative;padding:0 0 12px 40px;color:var(--muted);font-size:15px}
+.steps li:before{content:counter(s);position:absolute;left:0;top:-2px;width:28px;height:28px;border-radius:50%;background:var(--gold);color:#111;font-weight:900;text-align:center;line-height:28px;font-size:14px}
+.steps b{color:#171717}
+.rel{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px}
+.rel a{padding:11px 15px;border:1px solid #cdbf9f;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:.7px;color:#171717;background:#fff}
+.rel a:hover{border-color:var(--gold)}
+.src{font-size:13px;color:var(--muted);text-align:center;margin-top:14px}.src a{color:var(--green);text-decoration:underline}
+@media(max-width:1000px){.x3,.x4{grid-template-columns:repeat(2,minmax(0,1fr))}.xd{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:640px){.x2,.x3,.x4{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Search &amp; Park Guides</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>Trip Planner</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-band-plan.html" role="menuitem"><span class="ni">&#128225;</span>Band Plan by License</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guide</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • ANTENNA GUIDES</p><h1>VHF &amp; UHF <span>ANTENNAS</span></h1><p class="hero-copy">2 meters, 70 centimeters, 6 meters and 220. J-poles, Slim Jims, roll-up J-poles for SOTA, ground planes, a tape-measure yagi, mobile antennas and rubber-duck upgrades, with a calculator that cuts them all for any band.</p></div></section>
+<nav class="xj" aria-label="On this page"><a href="#basics">THE BASICS</a><a href="#types">WHICH ANTENNA?</a><a href="#calc">CALCULATOR</a><a href="#jpole">J-POLE &amp; SLIM JIM</a><a href="#rollup">ROLL-UP J-POLE</a><a href="#yagi">TAPE-MEASURE YAGI</a><a href="#ht">HT &amp; MOBILE</a><a href="#coax">COAX MATTERS</a><a href="#tips">TIPS</a></nav>
+
+<section class="section features" id="basics"><div class="section-inner">
+<div class="section-heading"><div class="kicker">THE BASICS</div><h2>What's Different Up Here?</h2><p>VHF and UHF signals mostly travel in straight lines. They go a little past the horizon, but they don't bounce off the ionosphere the way HF does. So different things matter.</p></div>
+<div class="x4">
+ <article class="xc"><span class="k">#1 RULE</span><h3>Height Is Everything</h3><p>Getting the antenna 20 ft higher often beats doubling your power. A ridge or a summit turns a 5 W handheld into a 100-mile station. That's why 2 m on SOTA is so much fun.</p></article>
+ <article class="xc"><span class="k">POLARIZATION</span><h3>Vertical or Horizontal?</h3><p><b>FM, repeaters and packet: vertical.</b> <b>SSB, CW and weak signal: horizontal.</b> Use the wrong one and the signal can drop 20 dB. Satellites need both, or circular polarization.</p></article>
+ <article class="xc"><span class="k">SMALL &amp; EASY</span><h3>Antennas Are Tiny</h3><p>A full-size 2 m antenna is under 5 ft. A 70 cm yagi fits in a backpack. Building your own is cheap, quick and very forgiving. A great first project.</p></article>
+ <article class="xc"><span class="k">THE TRAP</span><h3>Coax Loss Is Real</h3><p>100 ft of RG-58 throws away about <b>75% of your power</b> on 2 m and over 90% on 70 cm. At these frequencies the coax matters as much as the antenna. <a href="#coax">See the numbers</a></p></article>
+</div>
+</div></section>
+
+<section class="section dark" id="types"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">PICK ONE</div><h2>Which VHF/UHF Antenna?</h2><p>Every one of these can be built at home for a few dollars. The calculator below cuts most of them.</p></div>
+<div class="x3">
+ <article class="xc"><span class="k">BASE OR CAMP <span class="pill">CLASSIC</span></span><h3>J-Pole</h3><p>A half-wave radiator on top of a quarter-wave matching stub. No radials, no ground plane. Usually built from copper pipe or aluminum. Hang it from a tree or mount it on a mast.</p><table class="spec"><tr><td>GAIN</td><td>About like a dipole (0 dBd)</td></tr><tr><td>BEST FOR</td><td>Home, camp, repeaters</td></tr></table></article>
+ <article class="xc"><span class="k">BASE OR CAMP</span><h3>Slim Jim</h3><p>A J-pole folded back on itself with a small gap. It's a little lower angle and cleaner pattern than a J-pole. It's easy to make from 450 Ω ladder line or a piece of copper wire.</p><table class="spec"><tr><td>GAIN</td><td>About a dipole, lower angle</td></tr><tr><td>BEST FOR</td><td>Hanging in a tree, attic</td></tr></table></article>
+ <article class="xc"><span class="k">SOTA &amp; HIKING <span class="pill">PACKS FLAT</span></span><h3>Roll-Up J-Pole</h3><p>A J-pole made from 300 Ω twin-lead. It rolls up in a pocket and hangs from a tree branch or a trekking pole with a string. A huge upgrade over a rubber duck.</p><table class="spec"><tr><td>WEIGHT</td><td>A couple of ounces</td></tr><tr><td>BEST FOR</td><td>HTs, SOTA, emergency kit</td></tr></table></article>
+ <article class="xc"><span class="k">EASIEST BUILD</span><h3>Quarter-Wave Ground Plane</h3><p>One SO-239 connector, five pieces of stiff wire or welding rod. One goes straight up, four slope down as radials. Build it in 30 minutes.</p><table class="spec"><tr><td>GAIN</td><td>Close to a dipole</td></tr><tr><td>BEST FOR</td><td>Home base, first build</td></tr></table></article>
+ <article class="xc"><span class="k">REACH FARTHER</span><h3>Yagi (Beam)</h3><p>Point it where you want to talk. Even 3 elements gives about 7 dBi, about 5× the power toward the other station. Great for SOTA, satellites, far repeaters and <a href="kpc-foxhunt.html">fox hunts</a>.</p><table class="spec"><tr><td>GAIN</td><td>3 el: ~7 dBi · 5 el: ~10 dBi</td></tr><tr><td>BEST FOR</td><td>Summits, simplex DX, satellites</td></tr></table></article>
+ <article class="xc"><span class="k">ON THE TRUCK</span><h3>Mobile Whips</h3><p>A ¼-wave on a mag mount or NMO mount is the simple workhorse. A 5/8-wave gives about 3 dB more on 2 m. Either way, the vehicle roof is the ground plane, so mount it in the middle of the roof.</p><table class="spec"><tr><td>¼ λ 2 M</td><td>~19 in, no matching</td></tr><tr><td>5/8 λ 2 M</td><td>~48 in, needs a base coil</td></tr></table></article>
+</div>
+</div></section>
+
+<section class="section features" id="calc"><div class="section-inner">
+<div class="section-heading"><div class="kicker">CALCULATOR</div><h2>VHF/UHF Antenna Calculator</h2><p>Pick the antenna and the frequency. Dimensions are starting points: cut a little long, then trim and slide the feed point for the lowest SWR.</p></div>
+<div class="xd">
+ <div class="xd-in" style="color:#fff">
+  <label for="vuType">ANTENNA</label>
+  <select id="vuType"><option value="j">J-pole (copper pipe / aluminum)</option><option value="sj">Slim Jim (bare wire or tubing)</option><option value="sjl">Slim Jim (450 Ω ladder line)</option><option value="roll">Roll-up J-pole (300 Ω twin-lead)</option><option value="gp">Quarter-wave ground plane</option><option value="yagi">3-element tape-measure yagi</option><option value="whip">Mobile / HT ¼-wave whip + counterpoise</option></select>
+  <label for="vuBand">BAND</label>
+  <select id="vuBand"><option value="29.6">10 m FM (29.6)</option><option value="52.525">6 m FM (52.525)</option><option value="146" selected>2 m (146.0)</option><option value="146.52">2 m simplex (146.52)</option><option value="144.2">2 m SSB (144.2)</option><option value="223.5">1.25 m (223.5)</option><option value="446">70 cm FM (446.0)</option><option value="432.1">70 cm SSB (432.1)</option><option value="c">Other frequency…</option></select>
+  <div id="vuCustomW" hidden><label for="vuMHz">FREQUENCY (MHz)</label><input id="vuMHz" type="number" step="0.001" min="28" max="1300" value="146" inputmode="decimal"></div>
+  <label for="vuUnit">UNITS</label>
+  <select id="vuUnit"><option value="in">Inches</option><option value="cm">Centimeters</option></select>
+  <p class="hint">Measure between the inside edges of the metal where pieces join. Tune outdoors, away from metal and people.</p>
+ </div>
+ <div class="xd-out" id="vuOut" aria-live="polite"></div>
+</div>
+</div></section>
+
+<section class="section dark" id="jpole"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">HOW THEY'RE BUILT</div><h2>J-Pole &amp; Slim Jim</h2><p>The letters match the calculator. Both are fed a little way up the matching stub, with the coax center on the long side and the shield on the short side.</p></div>
+<div class="x2">
+ <article class="xc"><span class="k">J-POLE</span><h3>Copper Pipe J</h3>
+  <svg viewBox="0 0 420 420" role="img" aria-label="J-pole: long element A, short stub C, feed point D above the shorted bottom">
+   <path d="M170 20 V380 H230 V260" fill="none" stroke="#b5651d" stroke-width="9" stroke-linejoin="round"/>
+   <path d="M120 20 V380" stroke="#555" stroke-width="1.5"/><path d="M114 20 h12 M114 380 h12" stroke="#555" stroke-width="1.5"/><text x="108" y="205" text-anchor="end" font-family="Arial" font-size="15" font-weight="bold">A</text><text x="108" y="222" text-anchor="end" font-family="Arial" font-size="11" fill="#6d6658">long element</text>
+   <path d="M270 260 V380" stroke="#555" stroke-width="1.5"/><path d="M264 260 h12 M264 380 h12" stroke="#555" stroke-width="1.5"/><text x="280" y="320" font-family="Arial" font-size="15" font-weight="bold">C</text><text x="280" y="336" font-family="Arial" font-size="11" fill="#6d6658">matching stub (¼ λ)</text>
+   <circle cx="170" cy="345" r="6" fill="#c0392b"/><circle cx="230" cy="345" r="6" fill="#171717"/>
+   <path d="M176 345 H224" stroke="#c0392b" stroke-width="2" stroke-dasharray="4 3"/>
+   <path d="M200 345 V405" stroke="#262626" stroke-width="7"/><text x="210" y="408" font-family="Arial" font-size="12" font-weight="bold">coax</text>
+   <text x="160" y="342" text-anchor="end" font-family="Arial" font-size="11" fill="#c0392b" font-weight="bold">center</text><text x="242" y="342" font-family="Arial" font-size="11" font-weight="bold">shield</text>
+   <path d="M300 345 V380" stroke="#555" stroke-width="1.5"/><path d="M294 345 h12" stroke="#555" stroke-width="1.5"/><text x="312" y="368" font-family="Arial" font-size="15" font-weight="bold">D</text><text x="330" y="368" font-family="Arial" font-size="11" fill="#6d6658">feed point</text>
+   <text x="160" y="396" text-anchor="end" font-family="Arial" font-size="10" fill="#6d6658">shorted bottom</text>
+   <text x="200" y="250" text-anchor="middle" font-family="Arial" font-size="11" fill="#6d6658">spacing</text><text x="200" y="263" text-anchor="middle" font-family="Arial" font-size="11" fill="#6d6658">~1–2 in</text>
+  </svg>
+  <p>Copper pipe J-poles use ½" pipe with a 90° elbow, a tee and a cap, all sweat-soldered. Hose clamps make a good adjustable feed point: slide them up or down D for the lowest SWR.</p></article>
+ <article class="xc"><span class="k">SLIM JIM</span><h3>Folded with a Gap</h3>
+  <svg viewBox="0 0 420 420" role="img" aria-label="Slim Jim: folded element with a gap E, overall length A, half wave section B, matching section C, feed point D">
+   <path d="M175 30 V380 H225 V300 M225 280 V30 H175" fill="none" stroke="#b5651d" stroke-width="7" stroke-linejoin="round"/>
+   <path d="M210 300 h30 M210 280 h30" stroke="#c0392b" stroke-width="1.5"/><text x="246" y="295" font-family="Arial" font-size="15" font-weight="bold" fill="#c0392b">E</text><text x="262" y="295" font-family="Arial" font-size="11" fill="#c0392b">gap</text>
+   <path d="M120 30 V380" stroke="#555" stroke-width="1.5"/><path d="M114 30 h12 M114 380 h12" stroke="#555" stroke-width="1.5"/><text x="108" y="200" text-anchor="end" font-family="Arial" font-size="15" font-weight="bold">A</text><text x="108" y="216" text-anchor="end" font-family="Arial" font-size="11" fill="#6d6658">overall</text>
+   <path d="M290 30 V280" stroke="#555" stroke-width="1.5"/><path d="M284 30 h12 M284 280 h12" stroke="#555" stroke-width="1.5"/><text x="300" y="150" font-family="Arial" font-size="15" font-weight="bold">B</text><text x="316" y="150" font-family="Arial" font-size="11" fill="#6d6658">half wave</text>
+   <path d="M330 300 V380" stroke="#555" stroke-width="1.5"/><path d="M324 300 h12 M324 380 h12" stroke="#555" stroke-width="1.5"/><text x="340" y="345" font-family="Arial" font-size="15" font-weight="bold">C</text><text x="356" y="345" font-family="Arial" font-size="11" fill="#6d6658">¼ wave</text>
+   <circle cx="175" cy="352" r="6" fill="#c0392b"/><circle cx="225" cy="352" r="6" fill="#171717"/>
+   <path d="M200 352 V408" stroke="#262626" stroke-width="7"/><text x="210" y="408" font-family="Arial" font-size="12" font-weight="bold">coax</text>
+   <text x="165" y="356" text-anchor="end" font-family="Arial" font-size="11" fill="#c0392b" font-weight="bold">center</text>
+   <text x="165" y="396" text-anchor="end" font-family="Arial" font-size="10" fill="#6d6658">feed: D up from bottom</text>
+  </svg>
+  <p>The gap goes in the side with the shield connection, at the top of the ¼-wave section. Ladder line makes it easy: cut a small notch in one wire for the gap, and short the two wires together at the top and the bottom.</p></article>
+</div>
+</div></section>
+
+<section class="section features" id="rollup"><div class="section-inner">
+<div class="section-heading"><div class="kicker">SOTA &amp; GO-KIT</div><h2>Roll-Up J-Pole from Twin-Lead</h2><p>About $5 of 300 Ω TV twin-lead. It rolls up into a pocket and turns a handheld into a real station on a summit or at a campsite.</p></div>
+<div class="x2">
+ <article class="xc"><span class="k">BUILD IT</span><h3>Steps</h3><ol class="steps">
+  <li><b>Cut the twin-lead</b> to the total length from the calculator (Roll-up J-pole), plus an inch.</li>
+  <li><b>Short the bottom:</b> strip the two wires at the bottom end and solder them together.</li>
+  <li><b>Cut the notch:</b> at the stub length (C) up from the bottom, cut a 1" piece out of <b>one</b> wire. Everything above the notch on the other wire is the radiator.</li>
+  <li><b>Feed it:</b> about D up from the bottom, carefully expose both wires and solder thin coax (RG-174 or RG-316): the center to the wire that continues up to the radiator, the shield to the notched wire.</li>
+  <li><b>Choke the coax:</b> wind 4–5 turns of the coax, about 1" across, right below the feed point. Without it the coax becomes part of the antenna.</li>
+  <li><b>Hang it:</b> a hole and a string loop at the top. Tie it to a branch or a pole, and keep it straight and away from metal.</li>
+ </ol></article>
+ <article class="xc"><span class="k">FIELD NOTES</span><h3>Make It Work</h3><ul>
+  <li><b>Height wins.</b> Even 15 ft up a tree beats a rubber duck at chest level by a mile.</li>
+  <li><b>Tune it once</b> with an analyzer or the HT's power meter, sliding the feed point an inch at a time. Then seal it with heat-shrink and glue.</li>
+  <li><b>Use "slotted" window twin-lead</b> if you can find it. It's a bit less affected by rain.</li>
+  <li><b>Store it loosely rolled</b>, not folded sharp. Kinks change the tuning.</li>
+  <li><b>2 m SOTA:</b> call on 146.52 MHz simplex, and post an alert so chasers know to listen.</li>
+ </ul><p><a class="btn" href="kpc-sota.html" style="margin-top:6px">SOTA SUMMIT CHECKER →</a></p></article>
+</div>
+</div></section>
+
+<section class="section dark" id="yagi"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">POINT IT</div><h2>The Tape-Measure Yagi</h2><p>A famous 3-element 2 m beam (designed by WB2HOL) with elements cut from a steel tape measure, on a PVC boom. The elements fold when they hit a branch. It costs about $15 and is used for SOTA, fox hunting and satellites.</p></div>
+<div class="x2">
+ <article class="xc"><span class="k">TOP VIEW</span><h3>Layout (146.5 MHz)</h3>
+  <svg viewBox="0 0 420 300" role="img" aria-label="Tape measure yagi top view: reflector, two driven element halves with hairpin, director on a PVC boom">
+   <path d="M40 150 H390" stroke="#e1e1e1" stroke-width="12"/><path d="M40 150 H390" stroke="#cfcfcf" stroke-width="10"/>
+   <text x="250" y="174" text-anchor="middle" font-family="Arial" font-size="11" fill="#6d6658">¾" PVC boom → front</text>
+   <path d="M80 20 V280" stroke="#d4a017" stroke-width="7"/><text x="80" y="14" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold">REFLECTOR</text><text x="92" y="292" font-family="Arial" font-size="11" fill="#6d6658">41⅜"</text>
+   <path d="M160 37 V144 M160 156 V263" stroke="#d4a017" stroke-width="7"/><text x="160" y="30" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold">DRIVEN</text><text x="172" y="276" font-family="Arial" font-size="11" fill="#6d6658">2 × 17¾", 1" gap</text>
+   <path d="M160 140 C185 140 185 160 160 160" fill="none" stroke="#2e8b3a" stroke-width="2.5"/><text x="190" y="124" font-family="Arial" font-size="11" fill="#1f6b2a" font-weight="bold">hairpin</text><text x="190" y="110" font-family="Arial" font-size="10" fill="#1f6b2a">5" wire</text>
+   <path d="M160 150 H110 V200" fill="none" stroke="#262626" stroke-width="4"/><text x="114" y="215" font-family="Arial" font-size="11" font-weight="bold">coax</text>
+   <path d="M330 48 V252" stroke="#d4a017" stroke-width="7"/><text x="330" y="40" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold">DIRECTOR</text><text x="342" y="266" font-family="Arial" font-size="11" fill="#6d6658">35⅛"</text>
+  </svg>
+  <p>The calculator scales these lengths to other frequencies. Below about 144 MHz or above 450 MHz, use a real yagi design program instead of scaling.</p></article>
+ <article class="xc"><span class="k">BUILD &amp; USE</span><h3>Tips</h3><ul>
+  <li><b>Boom:</b> ¾" schedule 40 PVC with two crosses and a tee. Elements are clamped with hose clamps. As built: about 7" of pipe between reflector and driven element, and 17½" from driven element to director.</li>
+  <li><b>Cut the tape</b> with tin snips and round the ends. Cover them with tape or end caps. The edges are sharp.</li>
+  <li><b>Sand the paint</b> off the driven element halves where the coax and hairpin connect. Solder fast, since the tape is steel.</li>
+  <li><b>Tune</b> by sliding the driven halves closer or farther apart. Many work at 1.2:1 or better right away.</li>
+  <li><b>Vertical for FM</b> (elements up and down), <b>horizontal for SSB</b>. Hold it by the boom behind the reflector.</li>
+  <li><b>Choke the coax</b> with a few turns at the boom so the coax doesn't skew the pattern.</li>
+ </ul></article>
+</div>
+</div></section>
+
+<section class="section features" id="ht"><div class="section-inner">
+<div class="section-heading"><div class="kicker">HANDHELDS &amp; VEHICLES</div><h2>HT &amp; Mobile Upgrades</h2></div>
+<div class="x3">
+ <article class="xc"><span class="k">CHEAPEST UPGRADE</span><h3>Tiger Tail</h3><p>A ¼-wave wire (about 19" for 2 m) attached at the base of the HT antenna and left hanging. It gives the antenna the counterpoise your hand was faking. It's often worth several dB. A ring terminal under the antenna, or a clip, works.</p></article>
+ <article class="xc"><span class="k">REPLACE THE DUCK</span><h3>Longer HT Antenna</h3><p>The stock rubber duck is a short, lossy compromise. A 15–18" flexible whip, or a half-wave telescoping whip, can make a big difference. Check your connector type (SMA male vs. female) before you buy.</p></article>
+ <article class="xc"><span class="k">BETTER YET</span><h3>Get It Outside &amp; Up</h3><p>Inside a car or a building, a handheld loses a lot. A mag-mount on the roof with a short run of good coax, or a roll-up J-pole in a tree, beats any antenna on the radio.</p></article>
+ <article class="xc"><span class="k">MOBILE</span><h3>Mounting</h3><ul><li><b>Center of the roof</b> gives the most even pattern.</li><li><b>NMO through-hole mounts</b> beat mag mounts for loss and reliability.</li><li><b>Dual-band (2 m/70 cm)</b> mobiles are convenient and usually worth it.</li><li><b>Check SWR</b> after mounting. Trim ¼-wave whips a little at a time.</li></ul></article>
+ <article class="xc"><span class="k">CAMP &amp; BASE</span><h3>Getting It Up</h3><ul><li>A J-pole or Slim Jim on a 20–31 ft fiberglass pole at camp</li><li>Short coax: the shorter, the better up here</li><li>Choke at the feed point</li><li>Clear of the trailer, the truck and the trees, if you can</li></ul></article>
+ <article class="xc"><span class="k">BUY VS. BUILD</span><h3>Commercial Options</h3><p>Fiberglass base collinears give 3–6 dB of gain for a home station. Satellite stations use handheld dual-band yagis. Build the J-pole first. It'll teach you more than any purchase, and it works.</p></article>
+</div>
+</div></section>
+
+<section class="section dark" id="coax"><div class="section-inner">
+<div class="section-heading"><div class="kicker" style="color:var(--gold-light)">CALCULATOR</div><h2>Coax Loss on VHF/UHF</h2><p>How much of your power actually reaches the antenna (perfect match, dry coax).</p></div>
+<div class="xd">
+ <div class="xd-in" style="color:#fff">
+  <div class="row"><div><label for="cxBand">BAND</label><select id="cxBand"><option value="52">6 m</option><option value="146" selected>2 m</option><option value="223">1.25 m</option><option value="446">70 cm</option><option value="915">33 cm</option></select></div>
+  <div><label for="cxLen">LENGTH (ft)</label><input id="cxLen" type="number" min="1" max="500" value="50" inputmode="numeric"></div></div>
+  <label for="cxPwr">POWER (W)</label><input id="cxPwr" type="number" min="1" max="1500" value="50" inputmode="numeric">
+  <p class="hint">Typical published loss figures. Old, kinked or water-soaked coax is worse, and every connector adds a little more.</p>
+ </div>
+ <div class="xd-out" id="cxOut" aria-live="polite"></div>
+</div>
+</div></section>
+
+<section class="section features" id="tips"><div class="section-inner">
+<div class="section-heading"><div class="kicker">FIELD NOTES</div><h2>VHF/UHF Tips</h2></div>
+<ul class="tips">
+ <li><b>Choke the coax</b> on J-poles and Slim Jims. A J-pole is famous for putting RF on the coax. 4–6 turns of coax about 3" across, right at the feed point, fixes it.</li>
+ <li><b>Tune it where it lives.</b> A J-pole tuned on the garage floor will shift once it's up the mast. Tune it at least a few feet up, out in the open.</li>
+ <li><b>Seal the coax connection</b> outdoors with coax seal or self-amalgamating tape. Water in the coax is the #1 VHF antenna killer.</li>
+ <li><b>Connectors matter more up here.</b> PL-259s are fine on 2 m. On 70 cm and up, N or BNC connectors are better.</li>
+ <li><b>Simplex frequencies:</b> 146.52 MHz (2 m) and 446.0 MHz (70 cm) are the national calling frequencies. See the <a href="kpc-frequency-guide.html">frequency guide</a>.</li>
+ <li><b>Higher beats bigger.</b> A J-pole at 30 ft usually beats a gain collinear at 10 ft.</li>
+ <li><b>Fox hunting?</b> A yagi plus an offset attenuator is the standard kit. See the <a href="kpc-foxhunt.html">fox hunt page</a>.</li>
+ <li><b>RF exposure:</b> keep high-gain antennas away from people, especially on 70 cm with 50 W. Check with the <a href="kpc-rf-exposure.html">RF exposure tool</a>.</li>
+</ul>
+<div class="rel"><a href="kpc-doublets.html">LADDER LINE &amp; DOUBLETS</a><a href="kpc-loaded-verticals.html">LOADED VERTICALS</a><a href="kpc-foxhunt.html">FOX HUNTING</a><a href="kpc-frequency-guide.html">FREQUENCY GUIDE</a><a href="antennas.html">ALL ANTENNA GUIDES</a></div>
+<p class="src">Further reading: <a href="https://m0ukd.com/calculators/slim-jim-and-j-pole-calculator/" target="_blank" rel="noopener">M0UKD Slim Jim &amp; J-pole calculator</a> · <a href="https://hamradioprep.com/how-to-build-a-tape-measure-yagi-antenna/" target="_blank" rel="noopener">Tape-measure yagi build</a> · <a href="https://www.cvarc.org/wp-content/uploads/2024/04/Slim-Jim-Antenna-Build.pdf" target="_blank" rel="noopener">CVARC Slim Jim build (PDF)</a></p>
+</div></section>
+
+<section class="final"><h2>Get Outside. Get On The Air.</h2><p>GET IT HIGH. KEEP THE COAX SHORT.</p><a class="btn" href="antennas.html">MORE ANTENNA GUIDES →</a></section>
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a></div></footer>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+function mhz(){var b=$('vuBand').value;$('vuCustomW').hidden=b!=='c';return b==='c'?(+$('vuMHz').value||146):+b}
+function draw(){
+ var f=mhz(),t=$('vuType').value,cm=$('vuUnit').value==='cm',lam=29979.2458/f; // lam in cm
+ function L(x){var v=cm?x:x/2.54;return cm?(v>=100?v.toFixed(0):v.toFixed(1))+' cm':(v>=10?v.toFixed(1):v.toFixed(2))+'"'+(v>=36?' ('+Math.floor(v/12)+' ft '+(v%12).toFixed(1)+' in)':'')}
+ var title,rows=[],steps='',warn='';
+ if(t==='j'){var vf=0.96;title='J-pole · '+f+' MHz';
+  rows=[['A · LONG ELEMENT',L(0.75*lam*vf)],['C · SHORT STUB',L(0.25*lam*vf)],['D · FEED POINT',L(lam/40*vf)+' up from the shorted bottom (adjust)'],['SPACING','~'+L(lam*0.022)+' center to center (not critical)'],['RADIATOR','The part of A above the stub: '+L(0.5*lam*vf)]];
+  steps='Coax center to the long element, shield to the short stub. Slide the feed point for lowest SWR, then trim the top of A to move the frequency.';}
+ else if(t==='sj'||t==='sjl'){var v2=t==='sj'?0.96:0.90,E=lam/100;title='Slim Jim · '+f+' MHz'+(t==='sjl'?' (ladder line)':'');
+  rows=[['A · OVERALL',L(0.75*lam*v2+E)],['B · HALF-WAVE SECTION',L(0.5*lam*v2)],['C · MATCHING SECTION',L(0.25*lam*v2)],['E · GAP',L(E)],['D · FEED POINT',L(lam/40*v2)+' up from the bottom (adjust)']];
+  steps=t==='sjl'?'Short the two ladder-line wires together at the top and bottom. Cut the gap in one wire, C up from the bottom. Coax center to the unbroken wire, shield to the gapped wire.':'Bend one continuous wire or tube into the folded shape. Leave gap E at the top of the matching section on the shield side.';}
+ else if(t==='roll'){title='Roll-up J-pole · '+f+' MHz';var st=0.25*lam*0.83,notch=2.5*146/f,rad=0.5*lam*0.93;
+  rows=[['C · STUB (BOTTOM TO NOTCH)',L(st)],['NOTCH','Cut out '+L(notch)+' of one wire'],['RADIATOR (ABOVE NOTCH)',L(rad)],['TOTAL LENGTH',L(st+notch+rad)],['D · FEED POINT','~'+L(3.2*146/f)+' up from the shorted bottom (adjust)']];
+  steps='Short both wires at the bottom. The notched wire is the stub side (shield). The wire that runs to the top is the radiator (coax center). Choke the coax right below the feed.';}
+ else if(t==='gp'){title='Quarter-wave ground plane · '+f+' MHz';
+  rows=[['VERTICAL',L(0.25*lam*0.95)],['4 RADIALS',L(0.25*lam*1.0)+' each'],['RADIAL ANGLE','Slope down 30–45° for about 50 Ω (flat out is about 36 Ω)'],['MATERIAL','#10–12 solid copper, brass rod or welding rod'],['CONNECTOR','SO-239 chassis mount: vertical in the center pin, radials to the four holes']];
+  steps='Solder the vertical into the center pin and bolt the radials to the corner holes. Trim the vertical for lowest SWR, a little at a time.';}
+ else if(t==='yagi'){var s=146.5/f,inch=function(x){return L(x*2.54*s)};title='3-el tape-measure yagi · '+f+' MHz';
+  rows=[['REFLECTOR',inch(41.375)],['DRIVEN (EACH HALF)',inch(17.75)+', gap '+inch(1)],['DIRECTOR',inch(35.125)],['BOOM PIPE R → DE',inch(7)+' of pipe between the fittings'],['BOOM PIPE DE → D',inch(17.5)+' of pipe between the fittings'],['HAIRPIN',inch(5)+' of wire across the driven halves']];
+  steps='Scaled from the 146.5 MHz design. Tune by moving the driven halves closer or farther apart.';
+  if(f<140||f>460)warn='This is far from the original 2 m design. Scaling gets less accurate, so use a yagi design calculator for this band.';}
+ else {var q=0.25*lam*0.95;title='¼-wave whip · '+f+' MHz';
+  rows=[['WHIP',L(q)],['TIGER TAIL / COUNTERPOISE',L(0.25*lam)+' of wire from the radio\'s ground'],['5/8-WAVE WHIP (MOBILE)','~'+L(0.625*lam*0.95)+' (needs a matching coil at the base)']];
+  steps='On a vehicle, the roof is the ground plane. On an HT, the tiger tail is.';}
+ $('vuOut').innerHTML='<h3>'+title+'</h3><p class="sub">Wavelength '+L(lam)+' · cut long, then trim</p><table class="xd-t"><tbody>'+rows.map(function(r){return '<tr><td>'+r[0]+'</td><td><b>'+r[1]+'</b></td></tr>'}).join('')+'</tbody></table><div class="xd-ok">'+steps+'</div>'+(warn?'<div class="xd-warn">'+warn+'</div>':'');
+}
+['vuType','vuBand','vuMHz','vuUnit'].forEach(function(i){$(i).addEventListener('input',draw);$(i).addEventListener('change',draw)});
+var LINES=[['RG-174',0.6,0.035],['RG-58',0.328,0.0162],['RG-8X',0.291,0.0079],['RG-213',0.185,0.0015],['LMR-240',0.24,0.0035],['LMR-400',0.122,0.0009],['LMR-600',0.078,0.0007]];
+function cx(){var f=+$('cxBand').value,len=+$('cxLen').value||50,P=+$('cxPwr').value||50;
+ $('cxOut').innerHTML='<h3>'+len+' ft at '+f+' MHz</h3><p class="sub">'+P+' W in</p><div class="tbl-wrap"><table class="tapt"><thead><tr><th>COAX</th><th>LOSS</th><th>REACHES ANTENNA</th></tr></thead><tbody>'+
+ LINES.map(function(l){var db=(l[1]*Math.sqrt(f)+l[2]*f)*len/100,out=P*Math.pow(10,-db/10),r=out/P;return '<tr><td>'+l[0]+'</td><td>'+db.toFixed(1)+' dB</td><td><b>'+(out>=10?Math.round(out):out.toFixed(1))+' W</b> ('+Math.round(r*100)+'%) <span style="display:inline-block;height:8px;width:'+Math.max(2,Math.round(r*80))+'px;background:'+(r>0.75?'#2e8b3a':r>0.5?'#d4a017':'#c0392b')+';border-radius:3px;vertical-align:middle;margin-left:4px"></span></td></tr>'}).join('')+'</tbody></table></div>';}
+['cxBand','cxLen','cxPwr'].forEach(function(i){$(i).addEventListener('input',cx);$(i).addEventListener('change',cx)});
+var h=(location.hash.match(/#(j|sj|sjl|roll|gp|yagi|whip)$/)||[])[1];if(h){$('vuType').value=h;}
+draw();cx();
+window.KPCVU={draw:draw,cx:cx};
+})();
+</script>
+<script src="kpc-search.js?v=20261011c" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body></html>
