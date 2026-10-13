@@ -21,12 +21,14 @@ DIR=lambda la,lo:f'https://www.google.com/maps/dir/?api=1&destination={la:.5f},{
 def sec(d):
   if d['type']=='3-fer': return 'three'
   if 'Historic Trail site' in d['how']: return 'hist'
+  if 'Water Route bank' in d['how']: return 'water'
   if 'riverbank' in d['how'].lower(): return 'river'
   if 'through the park' in d['how']: return 'trail'
   return 'shared'
 SECS=[('three','3-Fers','Three POTA parks at once','Trails through two overlapping parks, overlaps of three parks, and Ohio River banks where Lewis & Clark and the Trail of Tears share the river.'),
- ('hist','Historic Trail Sites','NOT on the river or trail','These four are NOT within 100 ft of the river or the trail route. Each is listed only because a National Park Service page lists it as a trail site, visitor center or certified site; the page is cited on each card. The POTA Activator Guide says historic trails "do not have specific boundaries," so you need a park or site certified by the NPS and official trail signage. Check with POTA before counting them.'),
+ ('hist','Historic Trail Sites','Visitor centers & certified sites','Wickliffe Mounds, Big Bone Lick and Golden Pond Visitor Center are NOT within 100 ft of the river or the trail route; Columbus-Belmont has the NPS Benge Route running through it. Each is listed only because a National Park Service page lists it as a trail site, visitor center or certified site; the page is cited on each card. The POTA Activator Guide says historic trails "do not have specific boundaries," so you need a park or site certified by the NPS and official trail signage. Check with POTA before counting them.'),
  ('river','Ohio River Banks','Lewis & Clark on the river','In Kentucky the Lewis & Clark trail is the Ohio River itself. You must be inside the park AND within 100 ft of the water. Riverbank pins are approximate and were not checked against the actual water line; some may be more than 100 ft from the river.'),
+ ('water','Trail of Tears Water Route','Tennessee & Mississippi rivers','The Trail of Tears Water Route followed the Tennessee River (now Kentucky Lake) to Paducah, then the Ohio and Mississippi rivers. You must be inside the park AND within 100 ft of the water. On Kentucky Lake the NPS route line follows the old channel out in the lake, so these are a looser fit than the Ohio River banks. Pins are approximate.'),
  ('trail','Trail 2-Fers','A trail park through another park','Set up on public land within 100 ft of the trail, inside the other park.'),
  ('shared','Shared Boundaries','Two parks on the same ground','Boundaries overlap on land that belongs to both. National forest spots count only on Forest Service-owned land. Setup pins sit at least 100 ft inside every boundary line in our map data.')]
 BANNER='GPS PINS ARE GUIDES ONLY  •  DO YOUR OWN RESEARCH  •  CONFIRM EVERY BOUNDARY ON THE OFFICIAL MAP'
@@ -154,7 +156,7 @@ c.setFont('S',22);c.setFillColorRGB(*INK);c.drawString(M,y-12,'Find a Spot')
 para(M,y-28,'Tap a section to jump to it. Tap the KPC logo on any page to come back here. Every GPS button opens Google Maps; every US-#### button opens the POTA park page. GPS pins are guides that get you to the area only.','C',8.6,MUTED,CW,11.2)
 cnt={k:sum(1 for d in SP if sec(d)==k) for k,*_ in SECS}
 boxes=[(k,t,s) for k,t,s,_ in SECS]+[('unc','Unconfirmed','Pairs to research yourself')]
-bw=(CW-20)/3;bh=70
+bw=(CW-20)/3;bh=62
 for i,(k,t,s) in enumerate(boxes):
   bx=M+(i%3)*(bw+10);by=y-60-(i//3)*(bh+10)-bh
   dark=k=='unc';c.setFillColorRGB(*(DARK if dark else (1,1,1)));c.setStrokeColorRGB(*LINE);c.roundRect(bx,by,bw,bh,6,stroke=0 if dark else 1,fill=1)
@@ -164,7 +166,7 @@ for i,(k,t,s) in enumerate(boxes):
   if k!='unc': c.setFont('S',16);c.setFillColorRGB(*INK);c.drawString(bx+10,by+10,str(cnt[k]));spaced(bx+10+pdfmetrics.stringWidth(str(cnt[k]),'S',16)+4,by+11,'SPOTS','CB',5.5,MUTED,.8)
   spaced(bx+bw-10,by+11,'JUMP ›','CB',6,GOLD if dark else INK,.8,'r')
   c.linkRect('',k,(bx,by,bx+bw,by+bh),relative=0)
-yy=y-60-2*(bh+10)-14
+yy=y-60-((len(boxes)+2)//3)*(bh+10)-4
 c.setFillColorRGB(1,1,1);c.setStrokeColorRGB(*LINE);c.roundRect(M,yy-150,CW,150,6,stroke=1,fill=1)
 pill(M+12,yy-20,90,'HOW TO READ A CARD',SOFT,INK,stroke=GOLD)
 for i,(a,b) in enumerate([('3-FER / 2-FER','How many POTA parks the spot gives you.'),('US-####','Opens that park\'s POTA page. Names are the official POTA names.'),('GPS','Opens the first point in Google Maps (a guide pin, not a confirmed spot).'),('DIRECTIONS','Driving directions to the parking or drive-up point if there is one.'),('A  B  C','GPS grade: drive up, short walk, or check satellite view.'),('PARKING','Parking only. Never the setup spot; it can be outside the park line.'),('NOTES','What to check before you go.')]):
