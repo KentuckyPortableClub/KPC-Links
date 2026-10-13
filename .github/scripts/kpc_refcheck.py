@@ -24,6 +24,8 @@ from kpc_issue import report  # noqa: E402
 UA = 'Mozilla/5.0 (compatible; KPC-reference-check; +https://kentuckyportableclub.github.io/KPC-Links/)'
 DATA = json.load(open('kpc-ky-data.json', encoding='utf-8'))
 EXTRA = {}  # extra details for new references (location), shown in the report
+# References the club has decided to leave off for now. Listed in the report, but not counted as problems.
+ON_HOLD = {'US-0608': 'Ohio River Islands NWR, on hold (Oct 2026)'}
 
 
 def get(url, tries=3):
@@ -99,7 +101,8 @@ for label, key, fn in checks:
         status[label] = 'official list came back empty; skipped'
         sections.append('## %s\nThe official list came back empty, so nothing was compared.\n' % label)
         continue
-    new = sorted(set(official) - set(mine))
+    held = sorted(c for c in set(official) - set(mine) if c in ON_HOLD)
+    new = sorted(set(official) - set(mine) - set(ON_HOLD))
     gone = sorted(set(mine) - set(official))
     def nm(x):
         return re.sub(r'\W', '', re.sub(r'(?i)unnamed\s+summit', '', x).lower())
@@ -116,6 +119,8 @@ for label, key, fn in checks:
     if renamed:
         lines += ['<details><summary>Name differences (%d), usually just wording</summary>' % len(renamed), ''] + \
                  ['- %s: site "%s" · official "%s"' % (c, mine[c], official[c]) for c in renamed[:80]] + ['', '</details>', '']
+    if held:
+        lines += ['_On hold (not counted): ' + ', '.join('%s (%s)' % (c, ON_HOLD[c]) for c in held) + '_', '']
     if not (new or gone or renamed):
         lines += ['✅ Matches.', '']
     sections.append('\n'.join(lines))
