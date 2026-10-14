@@ -31,9 +31,9 @@ jobs:
       - uses: actions/checkout@v5
         with:
           ref: main
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
       - name: Install the PDF printer
         run: |
           npm install --no-save --no-package-lock playwright@1.56.0
