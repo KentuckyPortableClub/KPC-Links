@@ -32,14 +32,14 @@
   const now = () => Date.now(), DAY = 864e5;
   function inSeason(sp) { const m = new Date().getMonth() + 1, ms = SP[sp].months; return ms.includes(m) || ms.includes(m % 12 + 1); }   // also a month early (preseason / exhibitions)
   async function teamSched(sp, tid) {
-    const r = await fetch('https://site.api.espn.com/apis/site/v2/sports/' + SP[sp].path + '/teams/' + tid + '/schedule', { cache: 'no-store' });
+    const r = await fetch('https://site.api.espn.com/apis/site/v2/sports/' + SP[sp].path + '/teams/' + tid + '/schedule');
     if (!r.ok) throw new Error('HTTP ' + r.status); return r.json();
   }
   function keep(ev, sp) {
     const c = ev.competitions && ev.competitions[0]; if (!c) return;
     const t = new Date(c.date || ev.date).getTime(), st = (c.status && c.status.type) || {};
     const live = st.state === 'in', done = st.state === 'post';
-    if (!live && !(done && t > now() - 3 * DAY) && !(!done && t > now() - 6 * 36e5 && t < now() + 10 * DAY)) return;
+    if (!live && !(done && t > now() - 7 * DAY) && !(!done && t > now() - 6 * 36e5 && t < now() + 10 * DAY)) return;
     const side = c.competitors.map(x => ({ id: x.team && x.team.id, abbr: (x.team && x.team.abbreviation) || '', name: (x.team && (x.team.shortDisplayName || x.team.displayName)) || '',
       logo: x.team && x.team.logos && x.team.logos[0] && x.team.logos[0].href, score: x.score && (x.score.displayValue != null ? x.score.displayValue : x.score), home: x.homeAway === 'home', win: x.winner,
       rank: x.curatedRank && x.curatedRank.current < 26 ? x.curatedRank.current : null, ky: KYID[sp + ':' + (x.team && x.team.id)] }));
@@ -80,7 +80,7 @@
     const chips = [['all', 'ALL'], ['cf', '🏈 FOOTBALL'], ['bk', '🏀 BASKETBALL'], ['bb', '⚾ BASEBALL']].filter(c => c[0] === 'all' || Object.values(games).some(g => c[0] === 'bk' ? (g.sp === 'mb' || g.sp === 'wb') : g.sp === c[0]));
     box.querySelector('.ks-chips').innerHTML = chips.map(c => `<button type="button" data-f="${c[0]}" aria-pressed="${filt === c[0]}">${c[1]}</button>`).join('');
     const track = box.querySelector('.ks-track');
-    track.innerHTML = list.length ? list.map(card).join('') : '<p class="ks-none">No Kentucky games in the last 3 days or the next 10. Check back on game day.</p>';
+    track.innerHTML = list.length ? list.map(card).join('') : '<p class="ks-none">No Kentucky games in the last week or the next 10 days. Check back on game day.</p>';
     box.querySelector('.ks-sub').textContent = (live.length ? live.length + ' live now · ' : '') + up.length + ' coming up · ' + fin.length + ' recent finals · UK, UL, WKU, EKU, Murray State, Morehead State, NKU and Bellarmine';
     box.hidden = false;
     clearTimeout(timer);
