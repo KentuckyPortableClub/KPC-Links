@@ -93,7 +93,7 @@
         {
           "title": "Kentucky Public Lands",
           "links": [
-            {"name": "KDFWR Public Lands Search", "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9719", "label": "Kentucky Public Lands"},
+            {"name": "KDFWR Public Lands Search", "url": "https://app.fw.ky.gov/Public_Lands_Search/", "label": "Kentucky Public Lands"},
             {"name": "Kentucky State Forests", "url": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/default.aspx", "label": "State Forest Directory"},
             {"name": "Kentucky Nature Preserves", "url": "https://eec.ky.gov/Nature-Preserves/Pages/default.aspx", "label": "Nature Preserves"}
           ]
