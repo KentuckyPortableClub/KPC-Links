@@ -69,5 +69,5 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 ## KPC Community (kpc-community.html)
 - Posts from Brandon's Google Form "KPC Community" (one form, branching sections by type: Station setup, Antenna build, Field tip, Gear review, Activation story, Elmer listing, Operator spotlight). Only rows with YES in Approved are published.
 - .github/workflows/kpc-community.yml (every 2 hours) runs .github/scripts/kpc_community.py with secret COMMUNITY_SHEET_CSV; writes kpc-community.json and photos/community/ (1280 px, no EXIF). Question names in the form must match FIELDS in that script.
-- The Share yours button uses FORM_URL at the top of kpc-community.js.
+- The Share yours button uses FORM_URL at the top of kpc-community.js (set Oct 13 2026). Secret COMMUNITY_SHEET_CSV is set; first test post (KZ4CP Elmer listing) published OK.
 
