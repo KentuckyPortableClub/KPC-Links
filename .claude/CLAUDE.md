@@ -52,6 +52,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - Remote transmit.
 - KPC CW practice night on Vail (Brandon to decide).
 - N4KPC changes after the grant (see above).
+- **Weekly KPC CW challenge (later, Brandon Oct 14):** same set of calls for everyone each week, scores sent in with a Google Form (like Community, with approval), club leaderboard on the CW page, Discord announcement. Other CW ideas offered but not picked yet: Morse games, CW Night countdown card, activation keyer buttons.
 - Community page chat/message board (later): embed the club Discord with WidgetBot for live chat, then Groups.io for threaded posts. Not giscus (most hams lack GitHub accounts).
 
 ## 2-fers & 3-fers (single source: .claude/build/fers/fers.json)
@@ -125,3 +126,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - Problem letters: every copy check (drills + QRQ copy) counts missed characters in localStorage kpcCWmiss.
 - Zach's (K4ZSR) welcome is keyed once per visit on the first START; checkbox to turn it off.
 - Paddle keyer is timed on the AudioContext clock; Swap Paddles button sits under the paddles.
+- Sprint tab: timed 5/10/15 min run, formats POTA run / CWops CWT / SKCC sprint, score = QSOs x states, personal bests in localStorage kpcSprint.
+- Band conditions setting (Clean / Typical / Rough): static crashes, a neighbour station (QRM) and tuner-uppers during Hunt, Activate, Ragchew and Sprint only (never in drills or the QRQ ladder).
+- Fist doctor under the fist meter: compares dah length and gaps (in a letter / between letters / between words) with textbook timing and gives up to 3 plain-word tips; with paddles only spacing is judged.
+- Decoder (kpc-cw-rx.js): mix-down + narrow 3-pole low-pass (auto width ~2.6 Hz per WPM, 50-160 Hz, or 50/100/200 picked), KPCRX.simulate({text,wpm,snr,offset,bw}) is a test bench (SNR in 2.5 kHz). Oct 14 bench: copies to about -6 dB at 15 WPM, -3 dB at 25-35 WPM (old Goertzel version failed below about +1 dB). SIGNAL readout is SNR in 2.5 kHz with GOOD/WEAK/TOO WEAK.
