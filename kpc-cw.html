@@ -209,6 +209,9 @@ body.field .page-jump-nav{display:none!important}
 #cwApp[data-mode=qrq][data-qrq=copy] .cw-a-set{grid-row:1}
 #cwApp[data-mode=qrq][data-qrq=copy] .cw-a-key{display:none}
 @media(max-width:700px){.qrq-board{grid-template-columns:repeat(2,1fr)}.qrq-target{font-size:26px}}
+#cwDrillQ{font:900 18px Arial,sans-serif;color:var(--gold-light,#f0c75e);margin:4px 0 10px}
+#cwWeak{margin-top:14px;border-top:1px solid #333;padding-top:12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}#cwWeak>b{color:var(--gold-light,#f0c75e);font-size:12px;letter-spacing:1px;margin-right:6px;width:100%}
+.wk{display:inline-flex;flex-direction:column;align-items:center;min-width:38px;padding:4px 6px;border:1px solid #ff8a6a;border-radius:8px;font:900 20px "Courier New",monospace;color:#fff}.wk small{font:800 10px Arial,sans-serif;color:#ff8a6a}
 .cw-checks{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px}
 .cw-checks label{display:flex;align-items:center;gap:7px;font-size:13px;letter-spacing:0;font-weight:700;color:#ddd;cursor:pointer}
 .cw-checks input{width:18px;height:18px;accent-color:var(--gold)}
@@ -391,11 +394,14 @@ body.field .page-jump-nav{display:none!important}
   <option>KY</option><option>AL</option><option>AR</option><option>AZ</option><option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option><option>IA</option><option>ID</option><option>IL</option><option>IN</option><option>KS</option><option>LA</option><option>MA</option><option>MD</option><option>ME</option><option>MI</option><option>MN</option><option>MO</option><option>MS</option><option>MT</option><option>NC</option><option>ND</option><option>NE</option><option>NH</option><option>NJ</option><option>NM</option><option>NV</option><option>NY</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VA</option><option>VT</option><option>WA</option><option>WI</option><option>WV</option><option>WY</option><option>AK</option><option>HI</option></select></div>
  <div class="f"><label for="cwProg">PROGRAM</label><select id="cwProg"><option value="pota">POTA (parks)</option><option value="sota">SOTA (summits)</option></select></div>
  <div class="f"><label for="cwRef">YOUR PARK / SUMMIT <small>(for P2P / S2S)</small></label><input type="text" id="cwRef" autocomplete="off" spellcheck="false" placeholder="US-1271 or W4K/EC-001"></div>
+ <div class="f" data-show="chat"><label for="cwName">YOUR NAME</label><input type="text" id="cwName" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="BRANDON"></div>
+ <div class="f" data-show="chat"><label for="cwQth">YOUR QTH (TOWN)</label><input type="text" id="cwQth" autocomplete="off" spellcheck="false" placeholder="CAVE CITY KY"></div>
 </div>
 
 <div class="cw-tabs" role="tablist" aria-label="Practice mode">
  <button type="button" class="cw-tab" role="tab" data-mode="hunt">🎯 HUNT<small>You call the activator</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="act">🏕️ ACTIVATE<small>You run the pileup</small></button>
+ <button type="button" class="cw-tab" role="tab" data-mode="chat">☕ RAGCHEW<small>A friendly full QSO</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="drill">👂 COPY DRILLS<small>Listen &amp; type</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="qrq">⚡ QRQ LADDER<small>How fast can you go?</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="free">✍️ FREE SEND<small>Check your fist</small></button>
@@ -403,8 +409,8 @@ body.field .page-jump-nav{display:none!important}
 </div>
 
 <div class="cw-grid">
-  <div class="cw-card cw-a-band" data-show="hunt act free">
-   <div class="cw-top"><button type="button" class="cw-go" id="cwGo" data-show="hunt act">START</button><span class="cw-pq" data-show="hunt act" title="How many stations call at once"><span>PILEUP</span><button type="button" id="cwPileMinus" aria-label="Smaller pileup">−</button><b id="cwPileQ">2</b><button type="button" id="cwPilePlus" aria-label="Bigger pileup">+</button></span><span id="cwStatus"></span><button type="button" class="cw-small" id="cwClear">CLEAR</button></div>
+  <div class="cw-card cw-a-band" data-show="hunt act free chat">
+   <div class="cw-top"><button type="button" class="cw-go" id="cwGo" data-show="hunt act chat">START</button><span class="cw-pq" data-show="hunt act" title="How many stations call at once"><span>PILEUP</span><button type="button" id="cwPileMinus" aria-label="Smaller pileup">−</button><b id="cwPileQ">2</b><button type="button" id="cwPilePlus" aria-label="Bigger pileup">+</button></span><span id="cwStatus"></span><button type="button" class="cw-small" id="cwClear">CLEAR</button></div>
    <p id="cwHint" hidden></p>
    <div id="cwBand" aria-live="polite"></div>
   </div>
@@ -412,12 +418,14 @@ body.field .page-jump-nav{display:none!important}
   <div class="cw-card cw-drill cw-a-band" data-show="drill">
    <h3>Copy Drills</h3>
    <div class="row"><div style="flex:1 1 200px"><label for="cwDrillType">WHAT TO COPY</label><select id="cwDrillType">
-    <option value="calls">Callsigns</option><option value="exch">POTA / SOTA exchanges</option><option value="refs">Park &amp; summit numbers</option><option value="states">State abbreviations</option><option value="nums">Numbers</option><option value="koch">Koch method (learn letters)</option></select></div></div>
+    <option value="calls">Callsigns</option><option value="exch">POTA / SOTA exchanges</option><option value="refs">Park &amp; summit numbers</option><option value="states">State abbreviations</option><option value="nums">Numbers</option><option value="koch">Koch method (learn letters)</option><option value="head">Head copy (listen, then answer a question)</option><option value="weak">My problem letters</option></select></div></div>
    <div class="row" id="cwKochRow" hidden><div style="flex:1"><label for="cwKoch">KOCH LESSON</label><input type="range" id="cwKoch" min="2" max="40" step="1"><div class="dim" id="cwKochV"></div></div></div>
    <div class="row"><button type="button" class="cw-btn" id="cwDrillPlay">▶ PLAY NEW</button><button type="button" class="cw-small" id="cwDrillAgain">↻ REPEAT</button><label style="display:flex;align-items:center;gap:6px;letter-spacing:0;font-weight:700;color:#ddd"><input type="checkbox" id="cwDrillAuto" style="width:18px;height:18px;accent-color:#d5a63a"> Auto-next</label></div>
+   <p id="cwDrillQ" hidden></p>
    <div class="cw-typerow"><input type="text" id="cwDrillIn" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Type what you heard" aria-label="Type what you heard"><button type="button" class="cw-btn" id="cwDrillOk">CHECK</button></div>
    <div id="cwDrillFb"></div>
    <div id="cwDrillScore"></div>
+   <div id="cwWeak"></div>
    <p class="cw-safe">Tip: copy at your real character speed and lower <b>Farnsworth</b> to add space between letters while you learn.</p>
   </div>
   <div class="cw-card cw-qrq cw-a-band" data-show="qrq">
@@ -495,7 +503,7 @@ body.field .page-jump-nav{display:none!important}
    <p class="cw-keyhelp"><b>How good is it?</b> Great on clean, steady signals. Fading, interference and sloppy fists will fool it, and it may miss the first letter or two while it learns the sender's speed — just like every CW decoder. Your ear is still the best decoder.</p>
   </div>
 
-  <div class="cw-card cw-a-key" data-show="hunt act free qrq">
+  <div class="cw-card cw-a-key" data-show="hunt act free qrq chat">
    <h3>Your Key</h3>
    <div class="cw-inputs" role="radiogroup" aria-label="How you send">
     <label><input type="radio" name="cwInput" value="keyboard"> ⌨️ Type it</label>
@@ -528,7 +536,7 @@ body.field .page-jump-nav{display:none!important}
    <p class="cw-safe">Practice contacts only — the stations are made up and nothing is logged anywhere. Don't upload these to POTA or SOTA.</p>
   </div>
 
-  <details class="cw-card cw-set cw-a-set" data-show="hunt act free drill qrq" open>
+  <details class="cw-card cw-set cw-a-set" data-show="hunt act free drill qrq chat" open>
    <summary>SOUND, SPEED, PILEUP &amp; FADING</summary>
    <div class="cw-sl">
     <div class="f"><label for="cwWpm">SPEED</label><input type="range" id="cwWpm" min="5" max="40" step="1"><output id="cwWpmV"></output></div>
@@ -542,14 +550,14 @@ body.field .page-jump-nav{display:none!important}
     <div class="f" data-show="hunt act free"><label for="cwOver">END-OF-OVER PAUSE</label><input type="range" id="cwOver" min="4" max="40" step="1"><output id="cwOverV"></output></div>
    </div>
    <div class="cw-sl">
-    <div class="f" data-show="hunt act"><label for="cwShow">SHOW THEIR TEXT</label><select id="cwShow"><option value="live">Right away</option><option value="after">After they finish</option><option value="never">Only if I tap it</option></select></div>
+    <div class="f" data-show="hunt act chat"><label for="cwShow">SHOW THEIR TEXT</label><select id="cwShow"><option value="live">Right away</option><option value="after">After they finish</option><option value="never">Only if I tap it</option></select></div>
     <div class="f"><label for="cwIambic">PADDLE MODE</label><select id="cwIambic"><option value="B">Iambic B (with memory)</option><option value="A">Iambic A</option></select></div>
    </div>
    <div class="cw-checks">
-    <label data-show="hunt act"><input type="checkbox" id="cwHints"> Show hints</label>
+    <label data-show="hunt act chat"><input type="checkbox" id="cwHints"> Show hints</label>
     <label><input type="checkbox" id="cwSwap"> Swap paddles</label>
-    <label data-show="hunt act"><input type="checkbox" id="cwMatch"> Everyone sends at my speed</label>
-    <label data-show="hunt act"><input type="checkbox" id="cwWelcome"> Zach's welcome on START</label>
+    <label data-show="hunt act chat"><input type="checkbox" id="cwMatch"> Everyone sends at my speed</label>
+    <label data-show="hunt act chat"><input type="checkbox" id="cwWelcome"> Zach's welcome on START</label>
     <button type="button" class="cw-small" id="cwTest">🔊 TEST TONE</button>
    </div>
    <p class="cw-keyhelp" id="cwLat">Tip: for keying, use wired headphones or the device speaker. Bluetooth adds a delay you can hear.</p>
@@ -577,10 +585,10 @@ body.field .page-jump-nav{display:none!important}
 <section class="final"><h2>Get Outside. Get On The Air.</h2><p>HOW REAL CW CONTACTS GO, PLUS CLUBS, CLASSES &amp; APPS</p><a class="btn" href="kpc-cw-info.html">CW INFO &amp; LINKS →</a> <a class="btn" href="kpc-spots.html">SEE WHO'S ON THE AIR →</a></section>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
-<script src="kpc-cw.js?v=20261014c"></script>
+<script src="kpc-cw.js?v=20261014d"></script>
 <script src="kpc-cw-spots.js?v=20261013c"></script>
 <script src="kpc-cw-rx.js?v=20261013b"></script>
-<script src="kpc-search.js?v=20261014m" defer></script><script>
+<script src="kpc-search.js?v=20261014n" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
