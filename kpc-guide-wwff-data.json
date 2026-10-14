@@ -2159,7 +2159,7 @@
   },
   "KFF-3801": {
    "pdfName": "Clifty",
-   "counties": "Menifee / Wolf",
+   "counties": "Menifee / Wolfe",
    "type": "Wilderness",
    "potaName": "Clifty Wilderness Area",
    "nameUrl": "https://www.fs.usda.gov/recarea/dbnf/recarea/?recid=39460",
@@ -2521,7 +2521,7 @@
   },
   "KFF-3811": {
    "pdfName": "Ed Mabry-Laurel Gorge",
-   "counties": "Elliot",
+   "counties": "Elliott",
    "type": "Wildlife Management Area",
    "potaName": "Ed Mabry-Laurel Gorge Wildlife Management Area",
    "nameUrl": "https://fw.ky.gov/More/Documents/EdMabry-LaurelGorgeWMA_ALL.pdf",
@@ -3615,7 +3615,7 @@
   },
   "KFF-4511": {
    "pdfName": "Daniel Boone",
-   "counties": "Bath / Clay / Estill / Harlan / Jackson / Laurel / Lee / Lenifee / Leslie / McCreary / Morgan / Perry / Powell / Pulaski / Owsley / Rockcastle / Rowan / Wayne / Whitley / Wolfe",
+   "counties": "Bath / Clay / Estill / Harlan / Jackson / Laurel / Lee / Menifee / Leslie / McCreary / Morgan / Perry / Powell / Pulaski / Owsley / Rockcastle / Rowan / Wayne / Whitley / Wolfe",
    "type": "National Forest",
    "potaName": "Daniel Boone National Forest",
    "nameUrl": "https://www.fs.usda.gov/dbnf/",
@@ -4081,7 +4081,7 @@
   },
   "KFF-6872": {
    "pdfName": "Sinking Creek",
-   "counties": "Laureel",
+   "counties": "Laurel",
    "type": "State Natural Area",
    "potaName": "Sinking Creek State Natural Area",
    "nameUrl": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Sinking-Creek.aspx",
