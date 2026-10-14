@@ -8,9 +8,9 @@ jobs:
       - uses: actions/checkout@v5
       - continue-on-error: true
         run: |
-          npm i playwright@1.47.2 >/dev/null && npx playwright install --with-deps chromium webkit >/dev/null
-          node nwr.js
+          npm i playwright@1.47.2 >/dev/null && npx playwright install --with-deps chromium >/dev/null
+          (python3 -m http.server 8000 &) ; sleep 2; node nwr.js
       - if: always()
         run: |
           git config user.name bot; git config user.email bot@x
-          git add -f wx-r-* || true; git commit -m out; git pull --rebase; git push
+          git add -f lucy.png || true; git commit -m out; git pull --rebase; git push
