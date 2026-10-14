@@ -1,8 +1,8 @@
 {
  "about": "KPC Reports Google Form. url = the form's viewform link. kindEntry = entry number of 'What are you sending' and parkEntry = entry number of 'Park number' (both from the form's Get pre-filled link, like entry.123456). The kinds must match the answer choices on the form exactly. Buttons on the site stay hidden while url is empty.",
  "url": "https://docs.google.com/forms/d/e/1FAIpQLScnnwJnLgdhqRb1k-Z4efvMDUNHmVjGWzIDgR8eWyJKxBPDJQ/viewform",
- "kindEntry": "",
- "parkEntry": "",
+ "kindEntry": "entry.1939220235",
+ "parkEntry": "entry.1238884486",
  "kinds": {
   "conditions": "Park conditions",
   "problem": "Report a problem on the website",
