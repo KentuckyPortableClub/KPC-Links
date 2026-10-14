@@ -71,7 +71,10 @@
     var co = String(p.co || ''), coL = /^multiple/i.test(co) ? 'Multiple counties' : /see official/i.test(co) ? co : co + (co.indexOf('/') >= 0 ? ' Counties' : ' County');
     var x = r.x, camp = x.campgrounds || [], lodge = x.lodging || [];
     var links = x.lodging_links || {};
-    return '<article class="cg-card" id="park-' + p.c + '"><h2>' + esc(p.n) + '</h2><p class="cg-sub">' + esc(coL) + (reg ? ' • ' + esc(reg) : '') + '</p>' +
+    var allRv = camp.concat(lodge).reduce(function (a, c) { return a.concat(reviewsFor(c.id)); }, []), rated = allRv.filter(function (n) { return n.rating; });
+    var avgP = rated.length ? rated.reduce(function (a, n) { return a + n.rating; }, 0) / rated.length : 0;
+    var starLine = allRv.length ? '<p class="cg-parkstars"><span class="cg-stars">' + (avgP ? stars(avgP) : '') + '</span> ' + (avgP ? avgP.toFixed(1) + ' from ' : '') + allRv.length + ' review' + (allRv.length > 1 ? 's' : '') + ' — tap a campground or cabin below to read them</p>' : '';
+    return '<article class="cg-card" id="park-' + p.c + '"><h2>' + esc(p.n) + '</h2><p class="cg-sub">' + esc(coL) + (reg ? ' • ' + esc(reg) : '') + '</p>' + starLine +
       '<div class="cg-prog">' + prog + '</div>' +
       '<div class="cg-btns">' + '<a class="cg-b" href="kpc-guide-pota.html#s-' + p.c + '">PARK GUIDE CARD</a><a class="cg-b" href="kpc-park-notes.html#' + p.c + '">PARK TIPS ›</a>' +
       (isFinite(p.la) ? ext(gps(p.la, p.lo), 'PARK GPS') + ext(wx(p.la, p.lo), 'WEATHER') : '') + '</div>' +
@@ -85,6 +88,7 @@
   function match(r) {
     var p = r.park, x = r.x, camp = x.campgrounds || [], lodge = x.lodging || [];
     if (F.camp && !camp.length) return false;
+    if (F.rev && !camp.concat(lodge).some(function (c) { return reviewsFor(c.id).length; })) return false;
     if (F.lodge && !lodge.length && !(x.lodging_links && (x.lodging_links.cabins || x.lodging_links.resort))) return false;
     if (F.elec && !camp.some(function (c) { return /\belectric|\d+\s*-?\s*amp\b|full hookup/i.test(c.hookups || ''); })) return false;
     if (F.map && !camp.some(function (c) { return c.map; })) return false;
