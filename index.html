@@ -274,7 +274,7 @@ button{font:inherit}
 .features{background:#fffaf0}
 .card-grid{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:16px;
 }
 .card{
@@ -300,6 +300,7 @@ button{font:inherit}
 .card:nth-child(3){background-image:url("kpc-card-events.jpg");background-position:center 30%}
 .card:nth-child(4){background-image:url("kpc-card-resources.jpg");background-position:center 30%}
 .card:nth-child(5){background-image:url("kpc-card-toolbox.jpg");background-position:center 30%}
+.card:nth-child(6){background-image:url("KPC26-Group-Photo-web.jpg");background-position:center 40%}
 .card-content{position:relative;z-index:2;padding:22px}
 .card h3{
   margin:0 0 9px;
@@ -381,12 +382,11 @@ footer strong{color:var(--gold-light)}
 .final .btn-secondary{color:#111;border:1px solid #777;background:transparent}
 .final .btn-secondary:hover{border-color:var(--green);color:var(--green)}
 
-@media(max-width:1180px) and (min-width:1001px){.card-grid{grid-template-columns:repeat(3,1fr)}.card-grid .card:nth-child(n+4){min-height:280px}}
+@media(min-width:1001px){.card-grid .card{min-height:300px}}
 @media(max-width:1000px){
   .nav-links{gap:0}
   .nav-links a{padding-inline:7px;font-size:12px}
   .card-grid{grid-template-columns:repeat(2,1fr)}
-  .card-grid .card:last-child{grid-column:1/-1;min-height:260px}
   .pillar-grid{grid-template-columns:repeat(2,1fr)}
   .intro-grid{gap:38px}
 }
@@ -624,6 +624,13 @@ body.field .page-jump-nav{display:none!important}
           <h3>KY TOOL BOX</h3>
           <p>KY Park Commander, live spots, band conditions and field calculators.</p>
           <span class="btn">OPEN TOOL BOX</span>
+        </div>
+      </a>
+      <a class="card" href="kpc-community.html">
+        <div class="card-content">
+          <h3>KPC COMMUNITY</h3>
+          <p>Station setups, antenna builds, field tips, gear reviews and Elmers who will help. Share yours.</p>
+          <span class="btn">JOIN THE COMMUNITY</span>
         </div>
       </a>
     </div>
