@@ -4,8 +4,10 @@ Rows with YES in the Approved column are used, plus rows from pre-approved call 
 marked NO. Photos are downloaded from Google Drive, shrunk to 1280 px and saved without location data in
 photos/campgrounds/.
 
-Form questions (names must start like this; the order doesn't matter):
-  Call sign | Campground or cabin | Rating | Your review | Site number | When did you stay | Town or county | GPS | Photos
+Form questions (each must START with these words; order doesn't matter; see .claude/CLAUDE.md):
+  Call sign | What are you reviewing | Campground or cabin | Campground name | Town or county | GPS | Website |
+  Type of campground | Rating | Site number | When did you stay | Restrooms | Showers | Hookups | Cell signal |
+  RF noise | Room for antennas | Shade | Other amenities | Your review | Photos
 "Campground or cabin" is pre-filled by the site's REVIEW IT buttons as "US-1277 · Ridgeline & Clifty Campgrounds".
 Anything that doesn't match a place in kpc-campgrounds.json is shown in the "Stayed somewhere else?" section."""
 import csv, io, json, os, re, hashlib, sys, urllib.request, datetime
@@ -24,8 +26,12 @@ def col(*names):
         for i, h in enumerate(H):
             if h.startswith(n): return i
     return None
-C = {'ts': col('timestamp'), 'call': col('call sign'), 'place': col('campground', 'place'), 'rating': col('rating'), 'text': col('your review', 'review'),
-     'site': col('site'), 'when': col('when'), 'where': col('town', 'where'), 'gps': col('gps'), 'photo': col('photo'), 'app': col('approved')}
+C = {'ts': col('timestamp'), 'call': col('call sign'), 'kind': col('what are you reviewing'), 'place': col('campground or cabin', 'place'),
+     'oname': col('campground name'), 'where': col('town or county', 'town', 'where'), 'gps': col('gps'), 'web': col('website'), 'otype': col('type of campground'),
+     'rating': col('rating', 'overall rating'), 'text': col('your review', 'review'), 'site': col('site number', 'site'), 'when': col('when'),
+     'rest': col('restrooms'), 'show': col('showers'), 'hook': col('hookups'), 'cell': col('cell signal', 'cell'), 'noise': col('rf noise', 'noise'),
+     'ant': col('room for antennas', 'antenna'), 'shade': col('shade'), 'amen': col('other amenities', 'amenities'), 'photo': col('photo'), 'app': col('approved')}
+FACTS = [('rest', 'Restrooms'), ('show', 'Showers'), ('hook', 'Hookups'), ('cell', 'Cell signal'), ('noise', 'RF noise'), ('ant', 'Room for antennas'), ('shade', 'Shade'), ('amen', 'Amenities')]
 def cell(r, k): i = C[k]; return r[i].strip() if i is not None and i < len(r) else ''
 if C['app'] is None: notice('No "Approved" column in the sheet yet: only pre-approved call signs are posted.')
 
@@ -53,11 +59,12 @@ except Exception: Image = None
 for r in rows[1:]:
     if not PA.ok(cell(r, 'app'), cell(r, 'call'), PRE): continue
     call = re.sub(r'[^A-Z0-9/]', '', cell(r, 'call').upper())
-    ptxt = cell(r, 'place'); text = cell(r, 'text')
+    outside = 'not in' in cell(r, 'kind').lower() or 'outside' in cell(r, 'kind').lower() or (not cell(r, 'place') and cell(r, 'oname'))
+    ptxt = cell(r, 'oname') if outside else cell(r, 'place'); text = cell(r, 'text')
     if not (ptxt and (text or cell(r, 'rating'))): continue
     nid = hashlib.sha1((cell(r, 'ts') + call + ptxt).encode()).hexdigest()[:12]
     m = re.search(r'[1-5]', cell(r, 'rating')); rating = int(m.group(0)) if m else None
-    place = find_place(ptxt)
+    place = None if outside else find_place(ptxt)
     photos = []
     for j, pid in enumerate(re.findall(r'id=([A-Za-z0-9_-]{20,})', cell(r, 'photo'))):
         fn = f'photos/campgrounds/{nid}-{j + 1}.jpg'
@@ -70,9 +77,12 @@ for r in rows[1:]:
         if os.path.exists(fn): photos.append(fn)
     ts = cell(r, 'ts'); m = re.match(r'(\d+)/(\d+)/(\d{4})', ts)
     date = f'{["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][int(m.group(1)) - 1]} {m.group(3)}' if m else ''
-    n = {'id': nid, 'place': place, 'call': call, 'rating': rating, 'text': text[:2000], 'site': cell(r, 'site')[:20], 'stayed': cell(r, 'when')[:40], 'date': date, 'photos': photos}
+    n = {'id': nid, 'place': place, 'call': call, 'rating': rating, 'text': text[:3000], 'site': cell(r, 'site')[:20], 'stayed': cell(r, 'when')[:40], 'date': date, 'photos': photos,
+         'facts': [[lab, cell(r, k)[:160]] for k, lab in FACTS if cell(r, k)]}
     if not place:
-        n['other'] = {'name': re.sub(r'^\s*(outside a park:?)\s*', '', ptxt, flags=re.I)[:120] or 'Other', 'where': cell(r, 'where')[:120], 'gps': cell(r, 'gps')[:60]}
+        web = cell(r, 'web'); web = web if re.match(r'https?://', web) else ''
+        n['other'] = {'name': re.sub(r'^\s*(outside a park:?)\s*', '', ptxt, flags=re.I)[:120] or 'Other', 'where': cell(r, 'where')[:120], 'gps': cell(r, 'gps')[:60],
+                      'web': web[:300], 'type': cell(r, 'otype')[:60]}
     notes.append(n)
 notes.sort(key=lambda n: (n['place'] or '~', n['id']))
 try: old = json.load(open('kpc-campground-notes.json'))

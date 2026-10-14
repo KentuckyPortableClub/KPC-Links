@@ -19,10 +19,14 @@
 
   var D, C, N = [], FORM = null, F = {}, ROWS = [];
 
-  function formLink(label) {
+  /* kpc-campground-form.json: url, placeEntry (Campground or cabin), and optionally kindEntry + kindInside / kindOutside
+     (the two answers of "What are you reviewing") so the form opens on the right section. */
+  function formLink(label, outside) {
     if (!FORM || !FORM.url) return '';
-    var u = FORM.url + (FORM.url.indexOf('?') < 0 ? '?' : '&') + 'usp=pp_url' + (label && FORM.placeEntry ? '&' + FORM.placeEntry + '=' + encodeURIComponent(label) : '');
-    return u;
+    var q = ['usp=pp_url'];
+    if (FORM.kindEntry && (outside ? FORM.kindOutside : FORM.kindInside)) q.push(FORM.kindEntry + '=' + encodeURIComponent(outside ? FORM.kindOutside : FORM.kindInside));
+    if (label && FORM.placeEntry && !outside) q.push(FORM.placeEntry + '=' + encodeURIComponent(label));
+    return FORM.url + (FORM.url.indexOf('?') < 0 ? '?' : '&') + q.join('&');
   }
   function reviewsFor(id) { return N.filter(function (n) { return n.place === id; }); }
   function revHtml(list) {
@@ -31,6 +35,7 @@
     return '<details class="cg-revs"><summary>' + (avg ? '<span class="cg-stars">' + stars(avg) + '</span> ' + avg.toFixed(1) + ' • ' : '') + list.length + ' REVIEW' + (list.length > 1 ? 'S' : '') + '</summary>' +
       list.map(function (n) {
         return '<div class="cg-rev"><div class="who">' + esc(n.call) + (n.date ? ' • ' + esc(n.date) : '') + (n.rating ? ' • <span class="cg-stars">' + stars(n.rating) + '</span>' : '') + (n.site ? ' • site ' + esc(n.site) : '') + (n.stayed ? ' • stayed ' + esc(n.stayed) : '') + '</div>' +
+          ((n.facts || []).length ? '<div class="facts">' + n.facts.map(function (x) { return '<span><b>' + esc(x[0]) + ':</b> ' + esc(x[1]) + '</span>'; }).join('') + '</div>' : '') +
           esc(n.text).replace(/\n/g, '<br>') + (n.photos || []).map(function (p) { return '<img src="' + esc(p) + '" alt="Photo from ' + esc(n.call) + '" loading="lazy">'; }).join('') + '</div>';
       }).join('') + '</details>';
   }
@@ -103,14 +108,15 @@
     $('cgCount').textContent = list.length + ' PARKS • ' + nc + ' CAMPGROUNDS • ' + nl + ' CABIN / LODGE LISTINGS';
   }
   function drawOther() {
-    var o = N.filter(function (n) { return !n.place; }), fl = formLink('Outside a park: ');
+    var o = N.filter(function (n) { return !n.place; }), fl = formLink('', true);
     $('cgOtherBtn').innerHTML = fl ? '<a class="cg-b gold" href="' + esc(fl) + '" target="_blank" rel="noopener">REVIEW A PLACE OUTSIDE A PARK ›</a>' : '<p>Reviews open soon.</p>';
     var by = {};
     o.forEach(function (n) { var k = ((n.other && n.other.name) || 'Other').trim(); (by[k] = by[k] || []).push(n); });
     $('cgOther').innerHTML = Object.keys(by).sort().map(function (k) {
       var a = by[k][0].other || {};
-      return '<div class="cg-place"><h3 style="color:#fff">' + esc(k) + '</h3>' + (a.where ? '<p>' + esc(a.where) + '</p>' : '') +
-        (a.gps && /^-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?$/.test(a.gps) ? '<div class="cg-btns">' + ext(gps.apply(null, a.gps.split(',').map(function (v) { return v.trim(); })), 'GPS', 'gold') + '</div>' : '') +
+      var g = a.gps && /^-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?$/.test(a.gps) ? gps.apply(null, a.gps.split(',').map(function (v) { return v.trim(); })) : '';
+      return '<div class="cg-place"><h3 style="color:#fff">' + esc(k) + (a.type ? ' <span class="cg-kind">' + esc(a.type) + '</span>' : '') + '</h3>' + (a.where ? '<p>' + esc(a.where) + '</p>' : '') +
+        (g || a.web ? '<div class="cg-btns">' + ext(a.web, 'WEBSITE', 'gold') + ext(g, 'GPS', 'gold') + '</div>' : '') +
         revHtml(by[k]).replace('<details class="cg-revs">', '<details class="cg-revs" open>') + '</div>';
     }).join('');
   }
