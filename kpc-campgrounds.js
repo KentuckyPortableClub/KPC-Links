@@ -112,6 +112,26 @@
     var nc = list.reduce(function (a, r) { return a + (r.x.campgrounds || []).length; }, 0), nl = list.reduce(function (a, r) { return a + (r.x.lodging || []).length; }, 0);
     $('cgCount').textContent = list.length + ' PARKS • ' + nc + ' CAMPGROUNDS • ' + nl + ' CABIN / LODGE LISTINGS';
   }
+  function drawRv() {
+    var box = $('cgRv'); if (!box) return;
+    var place = {}; C.parks.forEach(function (x) { (x.campgrounds || []).concat(x.lodging || []).forEach(function (c) { place[c.id] = { name: c.name, pota: x.pota }; }); });
+    var park = {}; D.parks.forEach(function (p) { park[p.c] = p.n; });
+    var ins = N.filter(function (n) { return n.place && place[n.place]; }), outN = N.filter(function (n) { return !n.place; }).length;
+    var spots = {}; ins.forEach(function (n) { spots[n.place] = 1; });
+    var fl = formLink('', true);
+    var latest = ins.slice().sort(function (a, b) { return (b.date || '') < (a.date || '') ? -1 : 1; }).slice(0, 3);
+    box.innerHTML = '<h2>⭐ CAMPGROUND &amp; CABIN REVIEWS</h2>' +
+      (ins.length ? '<p>' + ins.length + ' review' + (ins.length > 1 ? 's' : '') + ' of ' + Object.keys(spots).length + ' place' + (Object.keys(spots).length > 1 ? 's' : '') + ' inside the parks' + (outN ? ', plus ' + outN + ' recommendation' + (outN > 1 ? 's' : '') + ' outside them' : '') + '. Newest:</p>' +
+        '<div class="cg-rv-l">' + latest.map(function (n) { var pl = place[n.place];
+          return '<a class="cg-rv-i" href="#park-' + esc(pl.pota) + '" data-rv="' + esc(pl.pota) + '"><b>' + esc(pl.name) + '</b> · ' + esc(park[pl.pota] || pl.pota) + (n.rating ? ' <span class="cg-stars">' + stars(n.rating) + '</span>' : '') +
+            '<small>' + esc((n.text || '').slice(0, 140)) + ((n.text || '').length > 140 ? '…' : '') + ' — ' + esc(n.call || '') + (n.date ? ', ' + esc(n.date) : '') + '</small></a>'; }).join('') + '</div>'
+      : '<p>No reviews yet. Be the first: tap <b>REVIEW IT</b> on any campground or cabin below, or recommend a place outside the parks.</p>') +
+      '<div class="cg-btns">' + (ins.length ? '<button type="button" class="cg-b gold" id="cgRvOnly">SHOW ONLY PLACES WITH REVIEWS</button>' : '') +
+      '<a class="cg-b gold" href="#other">OUTSIDE-PARK PICKS' + (outN ? ' (' + outN + ')' : '') + ' ↓</a>' + (fl ? '<a class="cg-b gold" href="' + esc(fl) + '" target="_blank" rel="noopener">WRITE A REVIEW ›</a>' : '') + '</div>';
+    box.hidden = false;
+    var only = $('cgRvOnly'); if (only) only.onclick = function () { var c = document.querySelector('#cgChips [data-f="rev"]'); if (c && c.getAttribute('aria-pressed') !== 'true') c.click(); var l = $('cgList'); if (l) l.scrollIntoView({ behavior: 'smooth' }); };
+    box.querySelectorAll('[data-rv]').forEach(function (a) { a.addEventListener('click', function () { setTimeout(function () { var c = document.getElementById('park-' + a.dataset.rv); if (c) { var d = c.querySelector('details.cg-revs'); if (d) d.open = true; } }, 50); }); });
+  }
   function drawOther() {
     var o = N.filter(function (n) { return !n.place; }), fl = formLink('', true);
     $('cgOtherBtn').innerHTML = fl ? '<a class="cg-b gold" href="' + esc(fl) + '" target="_blank" rel="noopener">REVIEW A PLACE OUTSIDE A PARK ›</a>' : '<p>Reviews open soon.</p>';
@@ -138,7 +158,7 @@
       $('cgReg').innerHTML = '<option value="">All regions (' + ROWS.length + ')</option>' + Object.keys(regs).sort().map(function (k) { return '<option value="' + esc(k) + '">' + esc(k) + ' (' + regs[k] + ')</option>'; }).join('');
       $('cgTop').innerHTML = (C.closures ? '<div><b>CLOSURES &amp; RENOVATIONS</b>Kentucky State Parks lists lodges, cottages and campgrounds that are closed or being renovated on its Improvements page. Check it before you book; we mark what it said on the date shown on each card.<div class="cg-btns">' + ext(C.closures.url, 'STATE PARKS IMPROVEMENTS &amp; CLOSURES ↗', 'gold') + '</div></div>' : '') +
         (C.wmaRule ? '<div class="wma"><b>CAMPING ON WMAs</b>' + esc(C.wmaRule.text) + '<div class="cg-btns">' + ext(C.wmaRule.source, 'KDFWR PUBLIC LANDS RULES ↗') + '</div></div>' : '');
-      draw(); drawOther();
+      draw(); drawOther(); drawRv();
       document.documentElement.dataset.ready = '1';
       if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) { var d = t.closest('details'); t.scrollIntoView(); } }
     }).catch(function (e) {

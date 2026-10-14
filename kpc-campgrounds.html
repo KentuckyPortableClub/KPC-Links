@@ -206,7 +206,7 @@ body.field .page-jump-nav{display:none!important}
 .cg-other{background:#151515;color:#eee;padding:34px 0}
 .cg-other h2{color:#fff;font:700 28px/1.15 Georgia,serif;margin:0 0 8px}.cg-other p{color:#bcb8ae}
 .cg-other .cg-rev{background:#222;color:#eee}.cg-other .cg-revs summary{color:#e9b13a}.cg-other .cg-rev .who{color:#bcb8ae}
-.cg-top{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:4px 0 14px}.cg-top>div{background:#fff;border:1px solid #d8cfbf;border-left:5px solid #b4442c;border-radius:8px;padding:12px 14px;font-size:14px;color:#2b2b2b}.cg-top>div.wma{border-left-color:#1d5a3a}.cg-top b{display:block;font:900 11px Arial,sans-serif;letter-spacing:1.2px;margin-bottom:4px}.cg-top .cg-btns{margin-top:8px}@media(max-width:760px){.cg-top{grid-template-columns:minmax(0,1fr)}}
+.cg-rv{background:#101511;color:#f4f0e4;border:1px solid rgba(213,166,58,.55);border-radius:12px;padding:14px 16px;margin:0 0 14px}.cg-rv h2{margin:0 0 4px;font-size:18px;letter-spacing:.5px;color:#e8c46a}.cg-rv p{margin:4px 0 10px;font-size:14px;color:#d9d4c7}.cg-rv .cg-btns{display:flex;flex-wrap:wrap;gap:8px}.cg-rv-l{display:grid;gap:8px;margin:8px 0 12px}.cg-rv-i{display:block;background:#18201a;border:1px solid rgba(213,166,58,.25);border-radius:10px;padding:9px 12px;color:#f4f0e4;text-decoration:none;font-size:14px}.cg-rv-i b{color:#fff}.cg-rv-i .cg-stars{color:#e8c46a}.cg-rv-i small{display:block;color:#bcb8ae;margin-top:3px;overflow-wrap:anywhere}.cg-rv button.cg-b{cursor:pointer;font-family:inherit;border:0}.cg-top{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:4px 0 14px}.cg-top>div{background:#fff;border:1px solid #d8cfbf;border-left:5px solid #b4442c;border-radius:8px;padding:12px 14px;font-size:14px;color:#2b2b2b}.cg-top>div.wma{border-left-color:#1d5a3a}.cg-top b{display:block;font:900 11px Arial,sans-serif;letter-spacing:1.2px;margin-bottom:4px}.cg-top .cg-btns{margin-top:8px}@media(max-width:760px){.cg-top{grid-template-columns:minmax(0,1fr)}}
 .cg-parkstars{margin:-4px 0 10px;font-size:13.5px;color:#4b473d}.cg-parkstars .cg-stars{font-size:16px}
 .cg-none{padding:20px 0;color:#5b5648}
 </style>
@@ -273,6 +273,7 @@ body.field .page-jump-nav{display:none!important}
 <main>
 <section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • STAY &amp; ACTIVATE</p><h1>CAMPGROUNDS <span>&amp; CABINS</span></h1><p class="hero-copy">Campgrounds, cabins and lodges inside Kentucky POTA parks, with every program at that park on one card: POTA, WWFF (KFF) and SOTA. Campground pages, maps and booking links, plus reviews from operators who stayed there.</p></div></section>
 <div class="cg-wrap"><div class="cg-top" id="cgTop"></div></div>
+<div class="cg-wrap"><div class="cg-rv" id="cgRv" hidden></div></div>
 <div class="cg-tools"><div class="cg-wrap">
  <div class="cg-row"><input id="cgQ" type="search" placeholder="Search park, campground, county, US- / KFF- / W4K…" aria-label="Search"><select id="cgReg" aria-label="Region"><option value="">All regions</option></select></div>
  <div class="cg-chips" id="cgChips">
@@ -301,7 +302,7 @@ body.field .page-jump-nav{display:none!important}
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
 <script src="kpc-reports.js?v=20261014a"></script>
-<script src="kpc-campgrounds.js?v=20261014f"></script>
+<script src="kpc-campgrounds.js?v=20261014g"></script>
 <script src="kpc-search.js?v=20261014n" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
