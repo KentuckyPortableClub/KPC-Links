@@ -137,6 +137,8 @@ body.field .page-jump-nav{display:none!important}
     </div>
     <div class="contact-grid">
       <article class="contact-card"><div class="icon">📧</div><h3>KPC Email</h3><p>Questions, club information, or just want to say hello?</p><div class="detail">kentuckyportableclub@gmail.com</div><a class="btn" href="mailto:kentuckyportableclub@gmail.com">SEND EMAIL →</a></article>
+      <style>.contact-card[hidden]{display:none!important}</style><article class="contact-card" id="krComment" hidden><div class="icon">💬</div><h3>Leave a Comment</h3><p>Tell us what you think of the club or the website. You choose whether it shows on the Community page.</p><div class="detail">KPC Reports form</div><a class="btn" href="#" target="_blank" rel="noopener">LEAVE A COMMENT ↗</a></article>
+      <article class="contact-card" id="krProblem" hidden><div class="icon">🛠️</div><h3>Report a Website Problem</h3><p>Broken link, wrong park info, or a page that won't work on your phone? Let us know and we'll fix it.</p><div class="detail">KPC Reports form</div><a class="btn" href="#" target="_blank" rel="noopener">REPORT A PROBLEM ↗</a></article>
       <article class="contact-card"><div class="icon">📘</div><h3>KPC Facebook</h3><p>Follow the KPC Facebook page for club updates and community connection.</p><div class="detail">KPC Facebook Page</div><a class="btn" href="https://www.facebook.com/share/1F9y8WHukg/" target="_blank" rel="noopener">OPEN FACEBOOK ↗</a></article>
       <article class="contact-card"><div class="icon">📨</div><h3>KPC Campout</h3><p>Use the campout email for KYPOTA campout questions and communication.</p><div class="detail">kypotacampout@gmail.com</div><a class="btn" href="mailto:kypotacampout@gmail.com">EMAIL CAMPOUT →</a></article>
       <article class="contact-card"><div class="icon">🏕️</div><h3>KYPOTA Campout Facebook</h3><p>Join the KYPOTA Campout Facebook group for campout discussion and updates.</p><div class="detail">KYPOTA Campout Facebook Group</div><a class="btn" href="https://www.facebook.com/share/g/181cJ5cuoJ/" target="_blank" rel="noopener">OPEN GROUP ↗</a></article>
@@ -150,6 +152,9 @@ body.field .page-jump-nav{display:none!important}
 
 <section class="cta"><div class="cta-inner"><h2>Stay Connected With KPC.</h2><p>Keep up with the club, follow the campout, explore Kentucky, and get on the air when the next opportunity comes along.</p><a class="btn" href="parks.html">EXPLORE KENTUCKY →</a><a class="btn" style="margin-left:10px" href="events.html">VIEW EVENTS →</a></div></section>
 </main>
+<script src="kpc-reports.js?v=20261014a"></script>
+<script>(function(){var K=window.KPCReports;if(!K)return;K.ready.then(function(){[["krComment","comment"],["krProblem","problem"]].forEach(function(x){var u=K.formUrl(x[1]),c=document.getElementById(x[0]);if(u&&c){c.querySelector("a.btn").href=u;c.hidden=false}})})})();</script>
+
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
 
 <script src="kpc-search.js?v=20261014i" defer></script><script>
