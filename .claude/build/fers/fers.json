@@ -2194,6 +2194,30 @@
     }
    ],
    "note": "The signed Lewis & Clark auto tour route (Lola Rd) runs along the WMA line here. The NPS calls the auto tour route part of the trail, so a spot inside the WMA within 100 ft of a signed stretch may count. Look for the brown Lewis and Clark Trail / AUTO TOUR ROUTE sign. Not on the river. Possible only: do your own research. (The Trail of Tears Northern Route also crosses this WMA about 1,000 ft to the west; no single spot is within 100 ft of both.)"
+  },
+  {
+   "type": "2-fer",
+   "how": "Lewis & Clark riverbank on the Ohio",
+   "refs": [
+    "US-4572",
+    "US-0608"
+   ],
+   "names": [
+    "Lewis and Clark National Historic Trail",
+    "Ohio River Islands National Wildlife Refuge"
+   ],
+   "size": "2 islands, boat only",
+   "county": "Lewis",
+   "points": [
+    {
+     "la": 38.68733,
+     "lo": -83.58048,
+     "what": "Manchester Islands, Ohio River (approximate, boat only)",
+     "note": "Land on Manchester 1 or 2 island; the whole island is within the trail corridor (the Ohio River). Nearest public ramp: Manchester, Ohio (Island Creek, SR 52).",
+     "q": "C"
+    }
+   ],
+   "note": "Ohio River: the Lewis & Clark route. The Kentucky part of the refuge is Manchester 1 and Manchester 2 islands (river mile 395), reached only by boat. Watch for steep banks and rock dikes when landing. Open 1 hour before sunrise to 1 hour after sunset; no camping, fires or overnight mooring. The National Park Service also lists the refuge on its Lewis & Clark \"Visitor Centers in Kentucky\" page. Possible only: do your own research."
   }
  ],
  "unconfirmed": [
@@ -2314,7 +2338,8 @@
   "Added Trail of Tears Water Route spots on the Tennessee River (Kentucky Lake): Land Between the Lakes, Kentucky Lake WMA, Kenlake State Park, Kentucky Dam Village State Park and a Fort Heiman 3-fer; and on the Mississippi River: Doug Travis WMA. Checked against the NPS route map.",
   "Added Livingston County WMA (Trail of Tears Northern Route runs through it). Columbus-Belmont: the NPS Benge Route runs through the park, so it now has an on-route pin.",
   "Wickliffe Mounds, Big Bone Lick and Golden Pond now cite the NPS \"Visitor Centers in Kentucky\" page for the Lewis & Clark trail.",
-  "Lewis & Clark auto tour route: checked the NPS route for all of Kentucky. It runs along the edges of Big Bone Lick, Wickliffe Mounds, Otter Creek, Yellowbank WMA and Livingston County WMA; each now has a pin inside the park next to the signed route, and Livingston County WMA is a new possible Lewis & Clark 2-fer."
+  "Lewis & Clark auto tour route: checked the NPS route for all of Kentucky. It runs along the edges of Big Bone Lick, Wickliffe Mounds, Otter Creek, Yellowbank WMA and Livingston County WMA; each now has a pin inside the park next to the signed route, and Livingston County WMA is a new possible Lewis & Clark 2-fer.",
+  "Added US-0608 Ohio River Islands National Wildlife Refuge (Manchester islands, Lewis County, boat only) as a possible Lewis & Clark 2-fer."
  ],
  "trips": [
   {

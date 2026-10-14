@@ -25,7 +25,7 @@ UA = 'Mozilla/5.0 (compatible; KPC-reference-check; +https://kentuckyportableclu
 DATA = json.load(open('kpc-ky-data.json', encoding='utf-8'))
 EXTRA = {}  # extra details for new references (location), shown in the report
 # References the club has decided to leave off for now. Listed in the report, but not counted as problems.
-ON_HOLD = {'US-0608': 'Ohio River Islands NWR, on hold (Oct 2026)'}
+ON_HOLD = {}  # US-0608 was on hold until Oct 13 2026; now in the KPC guide
 
 
 def get(url, tries=3):
