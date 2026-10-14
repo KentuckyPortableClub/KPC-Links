@@ -29,7 +29,9 @@ jobs:
           out.ky=rings(JSON.parse(fs.readFileSync('kyout.json')).features[0].geometry);
           fs.writeFileSync(process.env.GITHUB_WORKSPACE+'/fetched-counties-hd.json',JSON.stringify(out));
           JS
-          node go.js || echo '::notice title=node::failed'
+          echo "::notice title=files::$(ls -la ky*.json 2>&1 | tr '\n' ' ')"
+          mkdir -p $GITHUB_WORKSPACE/fetched && cp ky*.json $GITHUB_WORKSPACE/fetched/ || true
+          mapshaper cb_2023_us_county_500k.shp -filter 'STATEFP=="21"' -o format=geojson precision=0.0001 $GITHUB_WORKSPACE/fetched/kyfull.json 2>&1 | tail -2 | sed 's/^/::notice title=ms::/'
       - run: |
           git config user.name bot; git config user.email bot@users.noreply.github.com
-          git add fetched-counties-hd.json && git commit -m "fetched hd counties" && git push origin HEAD:claude-trail-fetch
+          git add fetched && git commit -m "fetched hd counties" && git push origin HEAD:claude-trail-fetch
