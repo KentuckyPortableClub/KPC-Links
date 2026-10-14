@@ -1,1 +1,42 @@
 0 coming up · 0 recent finals · UK, UL, WKU, EKU, Murray State, Morehead State, NKU and Bellarmine || 
+console Access to fetch at 'https://site.api.espn.com/apis/site/v2/sports/basketball/womens-college-basketball/teams/96/schedule' from origin 'https://kentuckyportableclub.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+FAIL ports/basketball/womens-college-basketball/teams/96/schedule net::ERR_FAILED
+console Failed to load resource: net::ERR_FAILED
+console Access to fetch at 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/97/schedule' from origin 'https://kentuckyportableclub.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+FAIL s/site/v2/sports/football/college-football/teams/97/schedule net::ERR_FAILED
+console Failed to load resource: net::ERR_FAILED
+console Access to fetch at 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/96/schedule' from origin 'https://kentuckyportableclub.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+FAIL /sports/basketball/mens-college-basketball/teams/96/schedule net::ERR_FAILED
+console Failed to load resource: net::ERR_FAILED
+console Access to fetch at 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/2198/schedule' from origin 'https://kentuckyportableclub.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+FAIL site/v2/sports/football/college-football/teams/2198/schedule net::ERR_FAILED
+console Failed to load resource: net::ERR_FAILED
+console Access to fetch at 'https://site.api.espn.com/apis/site/v2/sports/basketball/womens-college-basketball/teams/98/schedule' from origin 'https://kentuckyportableclub.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+FAIL ports/basketball/womens-college-basketball/teams/98/schedule net::ERR_FAILED
+console Failed to load resource: net::ERR_FAILED
+console Access to fetch at 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/98/schedule' from origin 'https://kentuckyportableclub.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+FAIL /sports/basketball/mens-college-basketball/teams/98/schedule net::ERR_FAILED
+console Failed to load resource: net::ERR_FAILED
+console Access to fetch at 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/98/schedule' from origin 'https://kentuckyportableclub.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+FAIL s/site/v2/sports/football/college-football/teams/98/schedule net::ERR_FAILED
+console Failed to load resource: net::ERR_FAILED
+console Access to fetch at 'https://site.api.espn.com/apis/site/v2/sports/basketball/womens-college-basketball/teams/97/schedule' from origin 'https://kentuckyportableclub.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+FAIL ports/basketball/womens-college-basketball/teams/97/schedule net::ERR_FAILED
+console Failed to load resource: net::ERR_FAILED
+console Access to fetch at 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/96/schedule' from origin 'https://kentuckyportableclub.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+FAIL s/site/v2/sports/football/college-football/teams/96/schedule net::ERR_FAILED
+console Failed to load resource: net::ERR_FAILED
+console Access to fetch at 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/97/schedule' from origin 'https://kentuckyportableclub.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+FAIL /sports/basketball/mens-college-basketball/teams/97/schedule net::ERR_FAILED
+console Failed to load resource: net::ERR_FAILED
+console Access to fetch at 'https://site.api.espn.com/apis/site/v2/sports/basketball/womens-college-basketball/teams/2413/schedule' from origin 'https://kentuckyportableclub.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+FAIL rts/basketball/womens-college-basketball/teams/2413/schedule net::ERR_FAILED
+console Failed to load resource: net::ERR_FAILED
+console Access to fetch at 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/2413/schedule' from origin 'https://kentuckyportableclub.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+FAIL ports/basketball/mens-college-basketball/teams/2413/schedule net::ERR_FAILED
+console Failed to load resource: net::ERR_FAILED
+console Access to fetch at 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/2413/schedule' from origin 'https://kentuckyportableclub.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+FAIL site/v2/sports/football/college-football/teams/2413/schedule net::ERR_FAILED
+console Failed to load resource: net::ERR_FAILED
+console Access to fetch at 'https://site.api.espn.com/apis/site/v2/sports/basketball/womens-college-basketball/teams/93/schedule' from origin 'https://kentuckyportableclub.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+JS=https://kentuckyportableclub.github.io/KPC-Links/kpc-scores.js?v=20261014b
