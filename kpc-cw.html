@@ -240,6 +240,10 @@ body.field .page-jump-nav{display:none!important}
 .wk{margin-top:14px;padding:12px;border:1px solid var(--gold);border-radius:9px;background:#1c180c}.wk b{color:var(--gold-light,#f0c75e)}.wk .cw-btn{margin-top:10px}
 #cwApp[data-mode=keyer] .cw-a-set{grid-row:1}
 @media(min-width:1001px){.ky-grid{grid-template-columns:repeat(4,1fr)}}
+.cw-gaunt .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:12px 0}.gt-wk{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#ddd}.gt-wk input{width:18px;height:18px;accent-color:#d5a63a}
+#gtFb{min-height:60px;margin-top:10px}#gtFb .good{color:#7fd39a;font-weight:900}#gtFb .bad{color:#ff8a6a;font-weight:900}#gtBusts{color:#ff7b6b!important;letter-spacing:3px}
+.gt-intro{padding:12px;border:1px solid #b5412b;border-radius:9px;background:#2a120c;color:#fff}.gt-intro b{color:#ff9a7a;letter-spacing:1px}
+#gtGo.stop{background:#b5412b;color:#fff}#cwApp[data-mode=gaunt] .cw-a-set{grid-row:1}
 .cw-checks{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px}
 .cw-checks label{display:flex;align-items:center;gap:7px;font-size:13px;letter-spacing:0;font-weight:700;color:#ddd;cursor:pointer}
 .cw-checks input{width:18px;height:18px;accent-color:var(--gold)}
@@ -436,6 +440,7 @@ body.field .page-jump-nav{display:none!important}
  <button type="button" class="cw-tab" role="tab" data-mode="chat">☕ RAGCHEW<small>A friendly full QSO</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="drill">👂 COPY DRILLS<small>Listen &amp; type</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="qrq">⚡ QRQ LADDER<small>How fast can you go?</small></button>
+ <button type="button" class="cw-tab" role="tab" data-mode="gaunt">⚔️ GAUNTLET<small>Expert challenge</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="games">🎮 GAMES<small>Falling letters & the clock</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="keyer">📟 KEYER<small>Big activator buttons</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="free">✍️ FREE SEND<small>Check your fist</small></button>
@@ -489,6 +494,15 @@ body.field .page-jump-nav{display:none!important}
    <div id="qrqPB"></div>
    <div class="wk"><div id="wkInfo"></div><button type="button" class="cw-btn" id="wkGo">🏆 PLAY THIS WEEK'S CHALLENGE</button></div>
    <p class="cw-safe">Copy ladder: hearing it again is fine, but that one won't speed you up. The ladder plays a clean signal (no noise or fading) so everyone's scores compare fairly.</p>
+  </div>
+  <div class="cw-card cw-gaunt cw-a-band" data-show="gaunt">
+   <h3>⚔️ Expert Gauntlet</h3>
+   <p class="dim">For seasoned ops. Five rounds, each harder: <b>1</b> fast copy (35 WPM and up) · <b>2</b> cut numbers and tricky calls · <b>3</b> pileup from hell · <b>4</b> rough band · <b>5</b> sloppy fists. No hints, one AGN per item, 30 seconds to answer. Three busts and you're out.</p>
+   <div class="row"><button type="button" class="cw-btn" id="gtGo">⚔️ START THE GAUNTLET</button><label class="gt-wk"><input type="checkbox" id="gtWeekly"> This week's gauntlet (same for everyone)</label></div>
+   <div class="qrq-board"><div><span>ROUND</span><b id="gtRound">–</b></div><div><span>ITEM</span><b id="gtItem">–</b></div><div><span>BUSTS</span><b id="gtBusts">○○○</b></div><div><span>POINTS</span><b id="gtPts">0</b></div></div>
+   <div class="cw-typerow"><input type="text" id="gtIn" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Type what you copied" aria-label="Type what you copied"><button type="button" class="cw-btn" id="gtOk">CHECK</button><button type="button" class="cw-small" id="gtAgn" disabled>AGN? (1)</button></div>
+   <div id="gtFb" aria-live="polite"></div>
+   <p class="dim" id="gtBest"></p>
   </div>
   <div class="cw-card cw-games cw-a-band" data-show="games">
    <h3>CW Games</h3>
@@ -604,7 +618,7 @@ body.field .page-jump-nav{display:none!important}
    <p class="cw-safe">Practice contacts only — the stations are made up and nothing is logged anywhere. Don't upload these to POTA or SOTA.</p>
   </div>
 
-  <details class="cw-card cw-set cw-a-set" data-show="hunt act free drill qrq chat sprint games keyer" open>
+  <details class="cw-card cw-set cw-a-set" data-show="hunt act free drill qrq chat sprint games keyer gaunt" open>
    <summary>SOUND, SPEED, PILEUP &amp; FADING</summary>
    <div class="cw-sl">
     <div class="f"><label for="cwWpm">SPEED</label><input type="range" id="cwWpm" min="5" max="40" step="1"><output id="cwWpmV"></output></div>
@@ -654,10 +668,10 @@ body.field .page-jump-nav{display:none!important}
 <section class="final"><h2>Get Outside. Get On The Air.</h2><p>HOW REAL CW CONTACTS GO, PLUS CLUBS, CLASSES &amp; APPS</p><a class="btn" href="kpc-cw-info.html">CW INFO &amp; LINKS →</a> <a class="btn" href="kpc-spots.html">SEE WHO'S ON THE AIR →</a></section>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
-<script src="kpc-cw.js?v=20261014g"></script>
+<script src="kpc-cw.js?v=20261014h"></script>
 <script src="kpc-cw-spots.js?v=20261013c"></script>
 <script src="kpc-cw-rx.js?v=20261014b"></script>
-<script src="kpc-search.js?v=20261014p" defer></script><script>
+<script src="kpc-search.js?v=20261014q" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
