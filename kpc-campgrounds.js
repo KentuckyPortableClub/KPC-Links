@@ -56,7 +56,7 @@
       (x.notes ? '<p>' + esc(x.notes) + '</p>' : '') +
       (x.note ? '<p>' + esc(x.note) + '</p>' : '') +
       (x.phone ? '<p><b>PHONE</b> <a href="tel:' + esc(String(x.phone).replace(/[^0-9+]/g, '')) + '">' + esc(x.phone) + '</a></p>' : '') +
-      '<div class="cg-btns">' + ext(x.url, kind === 'camp' ? 'CAMPGROUND PAGE' : 'PAGE', 'dark') + ext(x.map, 'CAMPGROUND MAP', 'gold') + ext(x.reserve, kind === 'camp' ? 'RESERVE' : 'BOOK') +
+      '<div class="cg-btns">' + ext(x.url, kind === 'camp' ? 'CAMPGROUND PAGE' : 'PAGE', 'dark') + (closed && x.source && x.source !== x.url ? ext(x.source, 'WHERE IT SAYS CLOSED') : '') + ext(x.map, 'CAMPGROUND MAP', 'gold') + ext(x.reserve, kind === 'camp' ? 'RESERVE' : 'BOOK') +
       (isFinite(x.la) && x.la ? ext(gps(x.la, x.lo), 'GPS') : '') +
       (fl ? '<a class="cg-b rev" href="' + esc(fl) + '" target="_blank" rel="noopener">REVIEW IT ›</a>' : '') + '</div>' +
       revHtml(rv) + '</div>';
@@ -131,6 +131,8 @@
       }).sort(function (a, b) { return a.park.n < b.park.n ? -1 : 1; });
       var regs = {}; ROWS.forEach(function (r) { if (r.reg) regs[r.reg] = (regs[r.reg] || 0) + 1; });
       $('cgReg').innerHTML = '<option value="">All regions (' + ROWS.length + ')</option>' + Object.keys(regs).sort().map(function (k) { return '<option value="' + esc(k) + '">' + esc(k) + ' (' + regs[k] + ')</option>'; }).join('');
+      $('cgTop').innerHTML = (C.closures ? '<div><b>CLOSURES &amp; RENOVATIONS</b>Kentucky State Parks lists lodges, cottages and campgrounds that are closed or being renovated on its Improvements page. Check it before you book; we mark what it said on the date shown on each card.<div class="cg-btns">' + ext(C.closures.url, 'STATE PARKS IMPROVEMENTS &amp; CLOSURES ↗', 'gold') + '</div></div>' : '') +
+        (C.wmaRule ? '<div class="wma"><b>CAMPING ON WMAs</b>' + esc(C.wmaRule.text) + '<div class="cg-btns">' + ext(C.wmaRule.source, 'KDFWR PUBLIC LANDS RULES ↗') + '</div></div>' : '');
       draw(); drawOther();
       document.documentElement.dataset.ready = '1';
       if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) { var d = t.closest('details'); t.scrollIntoView(); } }
