@@ -52,6 +52,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - Remote transmit.
 - KPC CW practice night on Vail (Brandon to decide).
 - N4KPC changes after the grant (see above).
+- Community page chat/message board (later): embed the club Discord with WidgetBot for live chat, then Groups.io for threaded posts. Not giscus (most hams lack GitHub accounts).
 
 ## 2-fers & 3-fers (single source: .claude/build/fers/fers.json)
 - fers.json holds the 62 spots, their GPS guide pins, the unconfirmed pairs, sources and the change log. Park names must match the POTA US-KY list exactly.
