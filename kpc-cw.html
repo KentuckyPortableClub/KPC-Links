@@ -186,6 +186,7 @@ body.field .page-jump-nav{display:none!important}
 .cw-sl .f{display:flex;flex-direction:column;gap:4px}
 .cw-sl .f output{color:#fff;font-weight:800;font-size:13px}
 .cw-sl input[type=range]{width:100%;accent-color:var(--gold);height:28px}
+.cw-pq{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:900;letter-spacing:1px;color:#ccc}.cw-pq button{width:34px;height:34px;border-radius:8px;border:1px solid #666;background:#222;color:#fff;font-size:20px;font-weight:900;line-height:1;cursor:pointer}.cw-pq button:hover{border-color:var(--gold)}.cw-pq b{min-width:20px;text-align:center;color:var(--gold-light,#f0c75e);font-size:16px}
 .cw-checks{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px}
 .cw-checks label{display:flex;align-items:center;gap:7px;font-size:13px;letter-spacing:0;font-weight:700;color:#ddd;cursor:pointer}
 .cw-checks input{width:18px;height:18px;accent-color:var(--gold)}
@@ -373,7 +374,7 @@ body.field .page-jump-nav{display:none!important}
 
 <div class="cw-grid">
   <div class="cw-card cw-a-band" data-show="hunt act free">
-   <div class="cw-top"><button type="button" class="cw-go" id="cwGo" data-show="hunt act">START</button><span id="cwStatus"></span><button type="button" class="cw-small" id="cwClear">CLEAR</button></div>
+   <div class="cw-top"><button type="button" class="cw-go" id="cwGo" data-show="hunt act">START</button><span class="cw-pq" data-show="hunt act" title="How many stations call at once"><span>PILEUP</span><button type="button" id="cwPileMinus" aria-label="Smaller pileup">−</button><b id="cwPileQ">2</b><button type="button" id="cwPilePlus" aria-label="Bigger pileup">+</button></span><span id="cwStatus"></span><button type="button" class="cw-small" id="cwClear">CLEAR</button></div>
    <p id="cwHint" hidden></p>
    <div id="cwBand" aria-live="polite"></div>
   </div>
@@ -464,7 +465,7 @@ body.field .page-jump-nav{display:none!important}
    </div>
    <div class="cw-decode" data-input="straight iambic"><span id="cwLamp"></span><span id="cwLive"></span><button type="button" class="cw-small" id="cwOverBtn" title="Send it now instead of waiting">DONE ↵</button></div>
    <div class="cw-fist" id="cwFist" data-input="straight iambic"></div>
-   <p class="cw-keyhelp" data-input="straight iambic">Your over is sent when you stop keying for the <b>end-of-over pause</b> (set below), or tap DONE.</p>
+   <p class="cw-keyhelp" data-input="straight iambic">Your over is sent when you stop keying for the <b>end-of-over pause</b> (set below), or tap DONE or press <kbd>Enter</kbd>. A shorter pause means faster replies.</p>
    <p class="cw-keyhelp"><button type="button" class="cw-small" id="cwMidi">🎹 CONNECT USB KEY (MIDI)</button> &nbsp;For Vail-style adapters in MIDI mode.</p>
   </div>
 
@@ -476,7 +477,7 @@ body.field .page-jump-nav{display:none!important}
   </div>
 
   <details class="cw-card cw-set cw-a-set" data-show="hunt act free drill" open>
-   <summary>SOUND &amp; SPEED</summary>
+   <summary>SOUND, SPEED, PILEUP &amp; FADING</summary>
    <div class="cw-sl">
     <div class="f"><label for="cwWpm">SPEED</label><input type="range" id="cwWpm" min="5" max="40" step="1"><output id="cwWpmV"></output></div>
     <div class="f"><label for="cwEff">FARNSWORTH SPACING</label><input type="range" id="cwEff" min="5" max="40" step="1"><output id="cwEffV"></output></div>
@@ -484,20 +485,21 @@ body.field .page-jump-nav{display:none!important}
     <div class="f"><label for="cwTheir">THEIR TONE</label><input type="range" id="cwTheir" min="300" max="1000" step="10"><output id="cwTheirV"></output></div>
     <div class="f"><label for="cwVol">VOLUME</label><input type="range" id="cwVol" min="0" max="100" step="1"><output id="cwVolV"></output></div>
     <div class="f"><label for="cwNoise">BAND NOISE</label><input type="range" id="cwNoise" min="0" max="100" step="1"><output id="cwNoiseV"></output></div>
-    <div class="f" data-show="hunt act"><label for="cwPile">ACTIVITY</label><input type="range" id="cwPile" min="0" max="4" step="1"><output id="cwPileV"></output></div>
-    <div class="f" data-show="hunt act free"><label for="cwOver">END-OF-OVER PAUSE</label><input type="range" id="cwOver" min="8" max="40" step="1"><output id="cwOverV"></output></div>
+    <div class="f" data-show="hunt act"><label for="cwPile">PILEUP SIZE</label><input type="range" id="cwPile" min="0" max="12" step="1"><output id="cwPileV"></output></div>
+    <div class="f"><label for="cwFade">FADING (QSB)</label><input type="range" id="cwFade" min="0" max="4" step="1"><output id="cwFadeV"></output></div>
+    <div class="f" data-show="hunt act free"><label for="cwOver">END-OF-OVER PAUSE</label><input type="range" id="cwOver" min="4" max="40" step="1"><output id="cwOverV"></output></div>
    </div>
    <div class="cw-sl">
     <div class="f" data-show="hunt act"><label for="cwShow">SHOW THEIR TEXT</label><select id="cwShow"><option value="live">Right away</option><option value="after">After they finish</option><option value="never">Only if I tap it</option></select></div>
     <div class="f"><label for="cwIambic">PADDLE MODE</label><select id="cwIambic"><option value="B">Iambic B (with memory)</option><option value="A">Iambic A</option></select></div>
    </div>
    <div class="cw-checks">
-    <label><input type="checkbox" id="cwQsb"> Fading (QSB)</label>
     <label data-show="hunt act"><input type="checkbox" id="cwHints"> Show hints</label>
     <label><input type="checkbox" id="cwSwap"> Swap paddles</label>
     <label data-show="hunt act"><input type="checkbox" id="cwMatch"> Everyone sends at my speed</label>
     <button type="button" class="cw-small" id="cwTest">🔊 TEST TONE</button>
    </div>
+   <p class="cw-keyhelp" id="cwLat">Tip: for keying, use wired headphones or the device speaker. Bluetooth adds a delay you can hear.</p>
   </details>
 </div>
 </div></section>
@@ -593,7 +595,7 @@ body.field .page-jump-nav{display:none!important}
 <section class="final"><h2>Get Outside. Get On The Air.</h2><p>READY FOR THE REAL THING?</p><a class="btn" href="kpc-spots.html">SEE WHO'S ON THE AIR →</a></section>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
-<script src="kpc-cw.js?v=20261013b"></script>
+<script src="kpc-cw.js?v=20261014a"></script>
 <script src="kpc-cw-spots.js?v=20261013c"></script>
 <script src="kpc-cw-rx.js?v=20261013b"></script>
 <script src="kpc-search.js?v=20261013r" defer></script><script>
