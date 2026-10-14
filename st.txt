@@ -1,0 +1,163 @@
+== KY-Frankfort-WZ2523
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Wed, 14 Oct 2026 20:02:45 GMT
+Content-Type: audio/mpeg
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+icy-br: 32
+icy-description: Frankfort KY WZ2523
+icy-genre: Weather Radio
+icy-name: NOAA Weather Radio Frankfort KY 162.500 MHz
+icy-pub: -1
+bytes 81291
+== KY-Owenton-KZZ48
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Wed, 14 Oct 2026 20:02:51 GMT
+Content-Type: audio/mpeg
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+icy-br: 32
+icy-description: Owenton KY KZZ48
+icy-genre: Weather Radio
+icy-name: NOAA Weather Radio Owenton KY  162.450 MHz
+icy-pub: -1
+bytes 81295
+== IN-Indianapolis-KEC74
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Wed, 14 Oct 2026 20:02:57 GMT
+Content-Type: audio/mpeg
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+icy-br: 32
+icy-description: 162.550, KEC-74, Indianapolis, Indiana
+icy-genre: Weather Radio
+icy-name: Frontline Weather KEC74 NOAA Radio
+icy-pub: -1
+bytes 81277
+== WV-Charleston-WXJ84
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Wed, 14 Oct 2026 20:03:03 GMT
+Content-Type: audio/mpeg
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+icy-pub: 0
+
+bytes 81461
+== WV-Beckley-WXM71
+HTTP/1.1 404 File Not Found
+Server: nginx/1.18.0 (Ubuntu)
+Date: Wed, 14 Oct 2026 20:03:09 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+
+bytes 119
+== OH-Chillicothe-KJY68
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Wed, 14 Oct 2026 20:03:09 GMT
+Content-Type: audio/mpeg
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+icy-br: 64
+ice-audio-info: ice-bitrate=64;ice-channels=1;ice-samplerate=22050
+icy-br: 64
+icy-description: NOAA Weather Radio KJY68 Chillicothe Ohio
+icy-genre: Weather Radio
+bytes 97567
+== OH-Columbus-KIG86
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Wed, 14 Oct 2026 20:03:15 GMT
+Content-Type: audio/mpeg
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+icy-br: 32
+icy-description: Columbus, Ohio KIG86 NOAA Radio (SC 10307)
+icy-genre: Scanner
+icy-name: Columbus, Ohio KIG86 NOAA Radio
+icy-pub: 1
+bytes 81325
+== TN-Memphis-WXK49
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Wed, 14 Oct 2026 20:03:22 GMT
+Content-Type: audio/mpeg
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+icy-br: 64
+ice-audio-info: ice-bitrate=64;ice-channels=1;ice-samplerate=22050
+icy-br: 64
+icy-name: Unspecified name
+icy-pub: 0
+bytes 97693
+== MO-StLouis-KDO89
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Wed, 14 Oct 2026 20:03:28 GMT
+Content-Type: audio/mpeg
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+icy-br: 32
+ice-audio-info: ice-bitrate=32;ice-channels=1;ice-samplerate=48000
+icy-br: 32
+icy-description: MO-StLouis-KDO89 Weather Radio
+icy-genre: Weather
+bytes 81255
+== IL-Champaign-WXJ76
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Wed, 14 Oct 2026 20:03:34 GMT
+Content-Type: audio/mpeg
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+ice-audio-info: samplerate=8000;channels=1
+icy-description: NOAA Weather Radio WXJ76 - Champaign, IL - 162.550MHz
+icy-genre: Weather
+icy-name: Champaign, IL Weather Radio
+icy-pub: 0
+bytes 64934
