@@ -20,7 +20,7 @@ let state={heat:null,heard:null,hearing:null,spots:null,noaa:null,t:0},map=null,
 /* ---------- skeleton ---------- */
 root.innerHTML=`<details class="kb" id="kb-det"><summary><span><b>KPC BAND ACTIVITY &amp; GRAY LINE</b><small>Which bands are active around Kentucky, and where in the world • tap to open</small></span><i aria-hidden="true">▾</i></summary>
 <div class="kb-body" hidden>
-<div class="kb-top"><div class="kb-tile"><span>KENTUCKY RIGHT NOW</span><b id="kb-sun">…</b><small id="kb-sunsub"></small></div><div class="kb-tile"><span>SOLAR CONDITIONS</span><b id="kb-sol">…</b><small id="kb-solsub"></small></div><div class="kb-tile"><span>DATA AGE</span><b id="kb-age">…</b><small><button type="button" class="kb-btn" id="kb-refresh">REFRESH</button></small></div></div>
+<div class="kb-top"><div class="kb-tile"><span>KENTUCKY RIGHT NOW</span><b id="kb-sun">…</b><small id="kb-sunsub"></small></div>${root.dataset.nosolar?'':'<div class="kb-tile"><span>SOLAR CONDITIONS</span><b id="kb-sol">…</b><small id="kb-solsub"></small></div>'}<div class="kb-tile"><span>DATA AGE</span><b id="kb-age">…</b><small><button type="button" class="kb-btn" id="kb-refresh">REFRESH</button></small></div></div>
 <h3>Band activity near Kentucky</h3>
 <p class="kb-sub">Weak-signal (WSPR) reports where a Kentucky-area station was heard or was hearing, last 6 hours, in 30-minute blocks. Brighter means more reports. These are <b>real receptions</b>, not predictions.</p>
 <div class="kb-chips" id="kb-scale"><button type="button" class="kb-chip" data-s="band" aria-pressed="true">EACH BAND ON ITS OWN SCALE</button><button type="button" class="kb-chip" data-s="all" aria-pressed="false">ALL BANDS TOGETHER</button></div>
@@ -86,7 +86,7 @@ async function load(force){
 
 /* ---------- render ---------- */
 function paintTop(){const s=sunStatus();$('#kb-sun').textContent=s.t;$('#kb-sunsub').textContent=s.sub;
- const n=state.noaa;if(n){const k=n.kp;$('#kb-sol').textContent='SFI '+n.flux+' • Kp '+k.toFixed(1);$('#kb-solsub').textContent=k>=5?'Geomagnetic storm: HF may be disturbed.':k>=4?'Unsettled: some HF disturbance possible.':'Quiet geomagnetic field. '+(n.flux>=120?'Good flux for the higher bands.':n.flux>=90?'Moderate flux.':'Low flux; stay on the lower bands.')}else{$('#kb-sol').textContent='unavailable';$('#kb-solsub').textContent=''}
+ const n=state.noaa;if(!$('#kb-sol')){}else if(n){const k=n.kp;$('#kb-sol').textContent='SFI '+n.flux+' • Kp '+k.toFixed(1);$('#kb-solsub').textContent=k>=5?'Geomagnetic storm: HF may be disturbed.':k>=4?'Unsettled: some HF disturbance possible.':'Quiet geomagnetic field. '+(n.flux>=120?'Good flux for the higher bands.':n.flux>=90?'Moderate flux.':'Low flux; stay on the lower bands.')}else{$('#kb-sol').textContent='unavailable';$('#kb-solsub').textContent=''}
  $('#kb-age').textContent=state.t?ago(state.t):'…'}
 function paintHeat(){const box=$('#kb-heat');if(!state.heat){box.innerHTML='<p class="kb-empty">WSPR data is unavailable right now. Try REFRESH in a minute.</p>';return}
  const now=Date.now(),step=30*60000,end=Math.floor(now/step)*step,N=12,cols=[];for(let i=N-1;i>=0;i--)cols.push(end-i*step);

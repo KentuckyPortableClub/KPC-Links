@@ -218,16 +218,6 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
       <div class="lv-ht-sub" id="ht-sun-sub">Calculating...</div>
     </div>
     <div class="lv-ht">
-      <div class="lv-ht-label">SOLAR INDICES</div>
-      <div class="lv-solar-row">
-        <div class="lv-solar-pill"><b id="ht-sfi">--</b><span>SFI</span></div>
-        <div class="lv-solar-pill"><b id="ht-kp">--</b><span>Kp</span></div>
-        <div class="lv-solar-pill"><b id="ht-a">--</b><span>A-INDEX</span></div>
-        <div class="lv-solar-pill"><b id="ht-ssn">--</b><span>SUNSPOTS</span></div>
-      </div>
-      <div class="lv-ht-sub" style="margin-top:8px" id="ht-band-hint">Higher SFI = better HF. Lower Kp and A = quieter bands.</div>
-    </div>
-    <div class="lv-ht">
       <div class="lv-ht-label">MOON</div>
       <div class="lv-moon"><svg id="lv-moon-svg" viewBox="-34 -34 68 68" aria-hidden="true"></svg>
       <div><div class="lv-ht-val" id="lv-moon-name">--</div><div class="lv-ht-sub" id="lv-moon-pct">--</div><div class="lv-ht-sub" id="lv-moon-next"></div></div></div>
@@ -269,7 +259,7 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
 <div class="lv-leg"><span><i style="background:#2fbf4a"></i>light rain</span><span><i style="background:#f2d21b"></i>moderate</span><span><i style="background:#e5392d"></i>heavy</span><span>Lightning: brighter = more strikes</span><span id="lv-lnote" style="color:#b5452b"></span><span id="lv-rnote" style="color:#6b6556"></span><span id="lv-wnote"></span><span id="lv-snote"></span><span id="lv-xnote"></span><span id="lv-onote"></span><span id="lv-wdleg" style="display:none"><span id="lv-wdnote"></span> <i style="background:#6f9fd8"></i>light <i style="background:#2fa86a"></i>5+ <i style="background:#c99a00"></i>10+ <i style="background:#f07d1e"></i>15+ <i style="background:#d7191c"></i>25+ mph</span></div></div>
 <p class="lv-src" style="margin-top:14px">Sources: WSPR.live signal reports, POTA spots, NOAA SWPC, National Weather Service, Open-Meteo, Iowa Environmental Mesonet (NEXRAD) and NOAA nowCOAST (lightning). PSKReporter cannot be read by web pages, so signal reports come from WSPR. Live data is for planning, not safety. Check official warnings and shelter from lightning.</p>
 </div>
-<section class="section dark" id="band-activity"><div class="section-inner"><div class="section-heading"><div class="kicker">SIGNAL MAP</div><h2>Where Kentucky Is Being Heard</h2><p>Real signal reports from the last two hours, the day/night gray line, and a table of busy bands.</p></div><div id="kpc-bands"></div></div></section>
+<section class="section dark" id="band-activity"><div class="section-inner"><div class="section-heading"><div class="kicker">SIGNAL MAP</div><h2>Where Kentucky Is Being Heard</h2><p>Real signal reports from the last two hours, the day/night gray line, and a table of busy bands.</p></div><div id="kpc-bands" data-nosolar="1"></div></div></section>
 <div class="lv-w"><div class="lv-go" style="padding-top:28px"><a href="finder.html">KY PARK COMMANDER &rarr;</a><a href="kpc-planner.html">PLAN A TRIP &rarr;</a><a href="kpc-band-plan.html">BAND PLAN &rarr;</a><a href="kpc-park-sheet.html">PRINT A PARK SHEET &rarr;</a><a href="kpc-space-weather.html">FULL RADIO CONDITIONS &rarr;</a></div></div>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
@@ -358,7 +348,7 @@ setInterval(function(){kySun();moon()},60000);
 setInterval(loadNOAA,15*60000);
 })();
 </script>
-<script src="kpc-search.js?v=20261014i" defer></script><script src="kpc-band-strip.js?v=20261011c" defer></script><script src="kpc-band-maps.js?v=20261010c" defer></script><script src="kpc-live.js?v=20261012t" defer></script><script src="kpc-radio.js?v=20261012v" defer></script><script src="kpc-radar-plus.js?v=20261012t" defer></script><script>
+<script src="kpc-search.js?v=20261014i" defer></script><script src="kpc-band-strip.js?v=20261011c" defer></script><script src="kpc-band-maps.js?v=20261014a" defer></script><script src="kpc-live.js?v=20261012t" defer></script><script src="kpc-radio.js?v=20261012v" defer></script><script src="kpc-radar-plus.js?v=20261012t" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
