@@ -1,0 +1,8 @@
+US-7968 36.96165,-83.10868: 1 hit(s): ['E. Lucy Braun State Park State Nature Preserve / State Nature Preserve / Office of Kentucky Nature Preserves / Office of']  err=None
+KFF-6879 36.96165,-83.10868: 1 hit(s): ['E. Lucy Braun State Park State Nature Preserve / State Nature Preserve / Office of Kentucky Nature Preserves / Office of']  err=None
+US-1263 37.07386,-87.05195: 1 hit(s): ['Lake Malone / https://kygeonet.ky.gov/kyadventure/?query=ade99fb8-556e-4121-0315-28f35e04ac2f_4%2CPARK_NAME%2CLake%20Mal']  err=None
+KFF-1263 37.07404,-87.05232: 1 hit(s): ['Lake Malone / https://kygeonet.ky.gov/kyadventure/?query=ade99fb8-556e-4121-0315-28f35e04ac2f_4%2CPARK_NAME%2CLake%20Mal']  err=None
+US-1255 37.4276,-82.3508: 1 hit(s): ['https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=25 / Fishtrap Lake WMA / Northeast / KDFWR / Low Manageme']  err=None
+KFF-1255 37.44224,-82.41573: 1 hit(s): ['https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=25 / Fishtrap Lake WMA / Northeast / KDFWR / Low Manageme']  err=None
+KFF-6295 37.0877,-82.73125: 1 hit(s): ['https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9078 / Jefferson National Forest / 9078 / Southeast / Fed']  err=None
+US-4526 37.09269,-82.73391: 1 hit(s): ['https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9078 / Jefferson National Forest / 9078 / Southeast / Fed']  err=None
