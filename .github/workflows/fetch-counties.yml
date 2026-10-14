@@ -1,0 +1,33 @@
+name: Fetch county outlines (temporary)
+on: push
+permissions:
+  contents: write
+jobs:
+  f:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: '22' }
+      - run: |
+          mkdir -p /tmp/f && cd /tmp/f && npm init -y >/dev/null && npm i us-atlas@3.0.1 topojson-client@3.1.0
+          cat > go.js <<'JS'
+          const fs=require('fs'),tc=require('topojson-client');
+          const c=JSON.parse(fs.readFileSync('node_modules/us-atlas/counties-10m.json'));
+          const r4=x=>Math.round(x*10000)/10000;
+          const rings=g=>(g.type==='Polygon'?[g.coordinates]:g.coordinates).flatMap(p=>p).map(r=>r.map(p=>[r4(p[0]),r4(p[1])]));
+          const fc=tc.feature(c,c.objects.counties);
+          const ky=fc.features.filter(f=>f.id.startsWith('21')).map(f=>({n:f.properties.name,r:rings(f.geometry)}));
+          const NB={'17':'Illinois','18':'Indiana','39':'Ohio','54':'West Virginia','51':'Virginia','47':'Tennessee','29':'Missouri'};
+          const st=tc.feature(c,c.objects.states).features.filter(f=>NB[f.id]).map(f=>({n:NB[f.id],r:rings(f.geometry)}));
+          const kyo=tc.feature(c,c.objects.states).features.filter(f=>f.id==='21').map(f=>({n:'Kentucky',r:rings(f.geometry)}));
+          // neighbouring-state county lines (light), only near KY
+          const near=f=>rings(f.geometry).some(r=>r.some(p=>p[0]>-90.2&&p[0]<-81.2&&p[1]>36.0&&p[1]<39.8));
+          const nbc=fc.features.filter(f=>NB[f.id.slice(0,2)]&&near(f)).map(f=>({n:f.properties.name,s:NB[f.id.slice(0,2)],r:rings(f.geometry)}));
+          fs.writeFileSync(process.env.GITHUB_WORKSPACE+'/fetched-counties.json',JSON.stringify({src:'us-atlas 3.0.1 counties-10m (US Census cartographic boundaries)',counties:ky,ky:kyo,states:st,nbCounties:nbc}));
+          console.log('KY',ky.length,'pts',ky.reduce((a,f)=>a+f.r.reduce((b,r)=>b+r.length,0),0),'nb',nbc.length);
+          JS
+          node go.js
+      - run: |
+          git config user.name bot; git config user.email bot@users.noreply.github.com
+          git add fetched-counties.json && git commit -m "fetched counties" && git push origin HEAD:claude-trail-fetch
