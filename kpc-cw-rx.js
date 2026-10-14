@@ -31,12 +31,13 @@ function setBw() {
 }
 
 /* ---------------- envelope -> marks/spaces ---------------- */
-let es = 0, sig = 0, noise = 0, inited = false, state = false, cand = false, candT = 0, holdN = 0, segT = 0;
+let gapStart = 0, gaps = [], stretch = 0, markThr = 120, chrGap = 120, wordGap = 280, es = 0, sig = 0, noise = 0, inited = false, state = false, cand = false, candT = 0, holdN = 0, segT = 0;
 let marks = [], ditMs = 1200 / 18, cur = [], wordDone = true, text = '', lastEdge = 0, snrDb = 0, warmUntil = 0;
 function resetDecoder() {
   es = 0; sig = 0; noise = 0; inited = false; state = false; cand = false; holdN = 0; segT = sampleT / fs;
-  marks = []; cur = []; wordDone = true; warmUntil = sampleT / fs + 0.4;
+  marks = []; gaps = []; stretch = 0; cur = []; wordDone = true; warmUntil = sampleT / fs + 0.4;
   ditMs = 1200 / ((K() && K().S.wpm) || 18);
+  markThr = chrGap = 2 * ditMs; wordGap = 4.6 * ditMs;
   setBw();
 }
 function thresholdMs() {
@@ -50,14 +51,31 @@ function thresholdMs() {
         if (!lo.length || !hi.length) break;
         a = lo.reduce((x, y) => x + y, 0) / lo.length; b = hi.reduce((x, y) => x + y, 0) / hi.length;
       }
-      if (b / a > 1.8) { ditMs = Math.max(20, Math.min(240, (a + b / 3) / 2)); return Math.sqrt(a * b); }
+      if (b / a > 1.8) {
+        // Heavy keying weight, receiver AGC and filter ringing make marks longer and gaps shorter by the same amount.
+        // Using the short gaps inside letters as well as the dits cancels that out: unit = (dit + gap) / 2, stretch = (dit - gap) / 2.
+        // gaps inside letters = the shortest of the gap clusters (letter gaps are about 3x longer)
+        let gs = gaps.filter(g => g < 3 * a);
+        if (gs.length >= 4) { let lo = Math.min(...gs), hi = Math.max(...gs); if (hi / lo > 1.8) { for (let it = 0; it < 6; it++) { const t = Math.sqrt(lo * hi), L = gs.filter(g => g < t), H = gs.filter(g => g >= t); if (!L.length || !H.length) break; lo = L.reduce((x, y) => x + y, 0) / L.length; hi = H.reduce((x, y) => x + y, 0) / H.length; } const t = Math.sqrt(lo * hi); gs = gs.filter(g => g < t); } }
+        gs.sort((x, y) => x - y);
+        if (gs.length >= 3) {
+          const g1 = gs[gs.length >> 1], u = (a + g1) / 2, st = Math.max(-0.6 * u, Math.min(0.6 * u, (a - g1) / 2));
+          ditMs = Math.max(20, Math.min(240, u)); stretch = st;
+          markThr = 2 * u + st; chrGap = 2 * u - st; wordGap = 4.6 * u - st;
+          return markThr;
+        }
+        ditMs = Math.max(20, Math.min(240, (a + b / 3) / 2)); stretch = 0;
+        markThr = Math.sqrt(a * b); chrGap = 2 * ditMs; wordGap = 4.6 * ditMs;
+        return markThr;
+      }
     }
   }
-  return ditMs * 2;
+  markThr = ditMs * 2; chrGap = 2 * ditMs; wordGap = 4.6 * ditMs;
+  return markThr;
 }
+const isBlip = ms => ms < 20 || ms < ditMs * 0.4;          // a noise blip much shorter than a dit
 function onMarkEnd(ms) {
-  if (ms < 8) return;
-  if (ms < 20 || ms < ditMs * 0.4) return;               // a noise blip much shorter than a dit: ignore it
+  if (isBlip(ms)) return;
   marks.push(ms); if (marks.length > 24) marks.shift();
   cur.push(ms); if (cur.length > 8) cur.shift();
   // keep the speed estimate current so letter and word gaps are judged right
@@ -100,16 +118,20 @@ function hop(e, tSec) {
   if (raw !== state && holdN >= need) {
     const ms = (candT - segT) * 1000;
     if (state && candT > warmUntil) onMarkEnd(ms);
-    state = raw; segT = candT; lastEdge = candT; holdN = 0;
-    lamp(state);
+    // a blip doesn't count as a mark, and it mustn't restart the gap either (or word spaces get lost)
+    if (state && isBlip(ms)) { state = false; segT = gapStart; holdN = 0; lamp(false); }
+    else {
+      if (!state) { gapStart = segT; const g = (candT - segT) * 1000; if (candT > warmUntil && g > 8 && g < 1500) { gaps.push(g); if (gaps.length > 30) gaps.shift(); } }
+      state = raw; segT = candT; lastEdge = candT; holdN = 0; lamp(state);
+    }
   }
   if (!state && cur.length) {
     const gap = (tSec - segT) * 1000;
-    if (gap > ditMs * 2.0) endChar();
+    if (gap > chrGap) endChar();
   }
   if (!state && !wordDone && !cur.length) {
     const gap = (tSec - segT) * 1000;
-    if (gap > ditMs * 5.0) { emit(' '); wordDone = true; }
+    if (gap > wordGap) { emit(' '); wordDone = true; }
   }
 }
 function feed(x) {
@@ -133,10 +155,15 @@ function simulate(o) {
   const n = Math.round(total * rate), x = new Float32Array(n), f0 = pitch + (o.offset || 0);
   let mi = 0, env = 0;
   for (let i = 0; i < n; i++) {
-    const t = i / rate - lead; while (mi < tl.marks.length && t > tl.marks[mi][1]) mi++;
+    const t = i / rate - lead, st = (o.stretch || 0) / 1000; while (mi < tl.marks.length && t > tl.marks[mi][1] + st) mi++;
     const on = mi < tl.marks.length && t >= tl.marks[mi][0];
     env += ((on ? 1 : 0) - env) * 0.02;
     x[i] = A * env * Math.sin(2 * Math.PI * f0 * i / rate) + sigma * gauss();
+    if (o.qrn && rand() < o.qrn / rate) { const L = Math.round(rate * 0.004), a = A * (2 + rand() * 6); for (let k = 0; k < L && i + k < n; k++) x[i + k] += a * gauss() * Math.exp(-k / (L / 3)); }
+  }
+  if (o.agc) { // a receiver's AGC: turns the gain down on a strong signal and back up in the gaps (noise swells between letters)
+    let lv = 1e-3; const at = 1 - Math.exp(-1 / (0.002 * rate)), rl = 1 - Math.exp(-1 / (o.agc * rate));
+    for (let i = 0; i < n; i++) { const a = Math.abs(x[i]); lv += (a > lv ? at : rl) * (a - lv); x[i] = x[i] * 0.3 / Math.max(lv, sigma * 0.8); }
   }
   fs = rate; sampleT = 0; text = ''; hopCnt = 0; i1 = i2 = i3 = q1 = q2 = q3 = 0; ph = 0; if (o.bw) bwMode = String(o.bw); setFreq(pitch); resetDecoder();
   for (let i = 0; i < n; i += 1024) feed(x.subarray(i, Math.min(n, i + 1024)));
