@@ -154,11 +154,17 @@
   return{layer,lines,n}}
  function mirrorCandidates(){const a=document.getElementById('gis-candidates'),b=document.querySelector('[data-gis="candidates"]');if(a&&b)b.replaceChildren(...[...a.cloneNode(true).childNodes])}
 function candidates(){const host=$('gis-candidates');if(!host)return;const done=()=>setTimeout(mirrorCandidates,0);done();host.replaceChildren();const keys=Object.keys(routes).filter(k=>sources[k].kind==='line'&&$('gis-'+k)?.checked);if(!keys.length){return}
-  for(const k of keys){const tp=trailParks&&trailParks[{sheltowee:'sheltowee',pine:'pine-mountain',dawkins:'dawkins'}[k]];if(!tp)continue;
-   const h=document.createElement('p');h.innerHTML=`<b>${safe(tp.name)} (${safe(tp.ref)}) passes through these official boundaries:</b>`;host.append(h);
-   for(const r of tp.parks){if(r.boundary===tp.name)continue;const p=document.createElement('p');p.style.margin='3px 0 3px 10px';
-    p.innerHTML=`${r.refs.length?r.refs.map(x=>`<a href="https://pota.app/#/park/${encodeURIComponent(x)}" target="_blank" rel="noopener">${safe(x)}</a>`).join(', ')+' — ':''}${safe(r.boundary)} <span style="opacity:.75">(${safe(r.layer)}, about ${r.miles} mi of trail inside)</span>${r.refs.length?' · <b>possible 2-fer</b>':' · no POTA reference'}`;host.append(p)}
-   const n=document.createElement('p');n.style.fontSize='.8rem';n.textContent='Measured from official state GIS lines. A possible 2-fer means standing on the trail inside both boundaries — confirm both on the official maps before counting it.';host.append(n)}
+  const TPK={sheltowee:'sheltowee',pine:'pine-mountain',dawkins:'dawkins',tears:'tears',lewis:'lewis',lewisauto:'lewis'};
+  if(!trailParks){loadTrailParks().then(()=>{if(trailParks&&Object.keys(trailParks).length)candidates()});}
+  let curated=0;
+  for(const k of keys){const tp=trailParks&&trailParks[TPK[k]];if(!tp)continue;curated++;
+   const list=k==='lewisauto'?tp.parks.filter(r=>r.auto):tp.parks;
+   const h=document.createElement('p');h.innerHTML=`<b>${safe(k==='lewisauto'?'Lewis & Clark auto tour route':tp.name)} (<a href="https://pota.app/#/park/${encodeURIComponent(tp.ref)}" target="_blank" rel="noopener">${safe(tp.ref)}</a>): possible 2-fers &amp; 3-fers</b>`;host.append(h);
+   if(!list.length){const p=document.createElement('p');p.style.margin='3px 0 3px 10px';p.textContent='None confirmed in the KPC 2-fers & 3-fers index.';host.append(p)}
+   for(const r of list){const p=document.createElement('p');p.style.margin='3px 0 3px 10px';
+    p.innerHTML=`<b>${safe(r.type.toUpperCase())}</b> with ${r.refs.map((x,i)=>`<a href="https://pota.app/#/park/${encodeURIComponent(x)}" target="_blank" rel="noopener">${safe(x)}</a> ${safe(r.names[i])}`).join(' + ')} <span style="opacity:.75">(${safe(r.how)})</span>`;host.append(p)}
+   const n=document.createElement('p');n.style.fontSize='.8rem';n.textContent=k==='lewisauto'?'Parks the signed auto tour route runs along. POTA rules do not mention auto tour routes; set up inside the park and do your own research.':'From the KPC 2-fers & 3-fers index (park names as on the POTA list). Possible only: stand inside every park and within 100 ft of the trail or water, and confirm on the official maps.';host.append(n)}
+  if(curated===keys.length)return;
   if(keys.every(k=>sources[k].file&&fileTrail[k]))return;
   const ds=potaPts();if(!ds.length){host.textContent='Activation reference database not ready.';return}
   const b=map.getBounds(),results=[];
@@ -166,9 +172,10 @@ function candidates(){const host=$('gis-candidates');if(!host)return;const done=
   results.sort((a,b)=>a.best-b.best);const header=document.createElement('p');header.textContent=`${results.length} POTA-to-trail proximity matches (within 2 km). None verified; a route crossing a park does not itself qualify as two POTA references.`;host.append(header);
   for(const r of results.slice(0,70)){const p=document.createElement('p'),a=document.createElement('a');a.href='https://pota.app/#/park/'+encodeURIComponent(r.d[1]);a.target='_blank';a.rel='noopener noreferrer';a.textContent=r.d[1]+' — '+r.d[2];p.append(a,document.createTextNode(` · ${r.best.toFixed(2)} km from ${sources[r.k].name} · Proximity only; not a POTA 2-fer. Verify boundaries, access and rules.`));host.append(p)}}
  let busy=false,again=false;
- const fileTrail={};let trailParks=null;
+ const fileTrail={};let trailParks=null,tpP=null;
+ function loadTrailParks(){return tpP||(tpP=fetch('ky-trail-parks.json?v=20261013b').then(t=>t.ok?t.json():{}).catch(()=>({})).then(j=>{trailParks=j;return j}))}
  async function bundled(k){const s=sources[k];if(fileTrail[k])return fileTrail[k];try{const r=await fetch(s.file,{cache:'force-cache'});if(!r.ok)throw 0;const j=await r.json();if(!Array.isArray(j.features))throw 0;
-   if(!trailParks){try{const t=await fetch('ky-trail-parks.json');trailParks=t.ok?await t.json():{}}catch(_){trailParks={}}}
+   await loadTrailParks();
    const render=draw(j,s);fileTrail[k]=render;return render}catch(_){return null}}
  async function load(){if(typeof map==='undefined'||!map){setAll('status','Map unavailable.');return}
   const active=Object.keys(sources).filter(k=>$('gis-'+k)?.checked);for(const k of Object.keys(overlays)){if(!active.includes(k)){map.removeLayer(overlays[k]);delete overlays[k];delete routes[k]}}
