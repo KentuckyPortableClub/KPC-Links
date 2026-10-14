@@ -27,21 +27,43 @@ const LEVELS = [null, { name: 'One at a time', n: [1, 1] }, { name: 'A couple', 
 
 /* ---------------- voices ---------------- */
 let VO = [];
-function loadVoices() { const v = (window.speechSynthesis && speechSynthesis.getVoices()) || []; VO = v.filter(x => /^en[-_]/i.test(x.lang)); if (!VO.length) VO = v; }
+const ANDROID = /Android/i.test(navigator.userAgent);
+let lastCancel = 0, lastErr = '';
+function loadVoices() {
+  const v = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  VO = v.filter(x => /^en[-_]/i.test(x.lang));
+  if (ANDROID) { const loc = VO.filter(x => x.localService); if (loc.length) VO = loc; } // network voices often fail silently on Android
+  if (!VO.length) VO = v;
+}
 if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
 function speak(text, who) {
+  // some Android phones drop an utterance spoken right after cancel(): wait a moment first
+  const gap = Math.max(0, 150 - (Date.now() - lastCancel));
+  return new Promise(r0 => setTimeout(r0, gap)).then(() => speakNow(text, who));
+}
+function speakNow(text, who) {
   return new Promise(res => {
     if (!window.speechSynthesis) { res(); return; }
+    if (speechSynthesis.paused) speechSynthesis.resume();
     const u = new SpeechSynthesisUtterance(text);
-    if (who && VO.length) u.voice = VO[who.vi % VO.length];
+    if (!VO.length) loadVoices();
+    if (who && VO.length) { u.voice = VO[who.vi % VO.length]; u.lang = u.voice.lang; } else u.lang = 'en-US';
     u.rate = who ? who.rate : 1; u.pitch = who ? who.pitch : 1; u.volume = Math.max(0.15, Math.min(1, (who ? who.vol : 1) * S.vol));
     let done = false; const fin = () => { if (!done) { done = true; clearTimeout(tm); res(); } };
     const tm = setTimeout(fin, 1500 + text.length * 95 / u.rate); // some browsers never fire 'end'
-    u.onend = u.onerror = fin;
+    u.onend = fin; u.onerror = e => { lastErr = (e && e.error) || 'error'; if (lastErr !== 'interrupted' && lastErr !== 'canceled' && Date.now() - lastCancel > 400) { const d = $('vbDiag'); if (d) d.textContent = 'Voice problem: ' + lastErr + '. Tap TEST VOICE to check.'; } fin(); };
     speechSynthesis.speak(u);
   });
 }
-function hush() { if (window.speechSynthesis) speechSynthesis.cancel(); }
+function hush() { if (window.speechSynthesis) { speechSynthesis.cancel(); lastCancel = Date.now(); } }
+/* phones only let a page talk after a tap: say something short right inside the tap */
+function unlock() { try { if (!window.speechSynthesis) return; loadVoices(); const u = new SpeechSynthesisUtterance('Ready'); u.lang = 'en-US'; u.volume = 0.6; speechSynthesis.speak(u); } catch (e) {} }
+function testVoice() {
+  unlock(); loadVoices();
+  const all = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const d = $('vbDiag'); if (d) d.textContent = !window.speechSynthesis ? 'This browser has no speech voices.' : `Voices found: ${all.length} (${VO.length} English${ANDROID ? ' on-phone' : ''}). ${VO[0] ? 'First: ' + VO[0].name + '.' : ''} ${lastErr ? 'Last error: ' + lastErr + '.' : ''} If you hear nothing: turn the media volume up (not the ringer), and on Android check Settings → Text-to-speech has an English voice installed.`;
+  setTimeout(() => speakNow('Kilo Zulu Four Charlie Papa, you are five nine, Kentucky.', VO.length ? { vi: 0, rate: 1, pitch: 1, vol: 1 } : null), 900);
+}
 
 /* ---------------- band hiss (Web Audio) ---------------- */
 let AC = null, nG = null;
@@ -90,7 +112,7 @@ async function callIn(list) {
 }
 function start() {
   if (!/^[A-Z0-9]{1,3}\d[A-Z]{1,4}$/.test(myCall())) { status('Enter your call sign first.'); $('vbCall').focus(); return; }
-  hush(); run.gen++; Object.assign(run, { on: true, callers: [], cur: null, sent: false, t0: Date.now() });
+  unlock(); run.gen++; Object.assign(run, { on: true, callers: [], cur: null, sent: false, t0: Date.now() });
   hiss(true); $('vbGo').textContent = '■ STOP'; $('vbGo').classList.add('stop');
   status(`Level ${S.level}: ${LEVELS[S.level].name}. Call CQ to start.`);
   form(true);
@@ -203,6 +225,7 @@ function init() {
   $('vbLevel').addEventListener('change', () => { lbl(); }); lbl();
   $('vbGo').addEventListener('click', () => run.on ? stop() : start());
   $('vbCq').addEventListener('click', cq); $('vbQrz').addEventListener('click', qrz); $('vbAgn').addEventListener('click', agn);
+  if ($('vbTest')) $('vbTest').addEventListener('click', testVoice);
   $('vbSend').addEventListener('click', sendReport); $('vbLog').addEventListener('click', logIt); $('vbAdif').addEventListener('click', adif);
   // keyboard: Enter in CALL = send report, Enter in STATE = log it; F1 CQ, F2 QRZ, F3 AGN
   $('fCall').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); sendReport(); $('fRcvd').focus(); } });
