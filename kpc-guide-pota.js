@@ -397,14 +397,17 @@
       var c = cents[r.name], refs = (String(r.xref).match(/US-\d+/g) || []);
       var near = '';
       if (c) { var bd = 1e9; (D.towns || []).forEach(function (t) { var dx = (t.lo - c[0]) * Math.cos(c[1] * Math.PI / 180), dy = t.la - c[1], dd = dx * dx + dy * dy; if (dd < bd) { bd = dd; near = t.n + ' (' + Math.round(Math.sqrt(dd) * 69) + ' mi)'; } }); }
+      var pk = null;   // GPS and weather use the same point as the POTA park's card
+      refs.some(function (x) { return P.some(function (p) { if (p.c === x && isFinite(p.la)) { pk = p; return true; } }); });
+      if (!pk) (String(r.xref).match(/KFF-\d+/g) || []).some(function (x) { return (D.kff || []).some(function (k) { if (k.c === x && isFinite(k.la)) { pk = k; return true; } }); });   // no POTA card: use the WWFF card's point
       var fr = (G.fers && G.fers.spots || []).filter(function (d) { return d.refs.some(function (x) { return refs.indexOf(x) >= 0; }); });
-      var xr = esc(r.xref).replace(/(POTA )?(US-\d+)/g, function (m, a, c) { return (a || '') + '<a href="#' + pid(c) + '">' + c + '</a>'; })
+      var xr = esc(r.xref).replace(/(POTA )?(US-\d+)/g, function (m, a, c) { return (a || '') + (P.some(function (p) { return p.c === c; }) ? '<a href="#' + pid(c) + '">' + c + '</a>' : ext(pota(c), c) + ' (not an active POTA park right now; WWFF only)'); })
         .replace(/KFF-\d+/g, function (k) { return ext('https://logsearch.wwff.co/directory/' + k, k); });
       return '<div class="g-wr g-keep" id="wr-' + r.n + '"><div class="g-wr-h"><span class="g-wn">' + r.n + '</span><h3>' + esc(r.name) + '</h3>' + ext(r.official, 'OFFICIAL PAGE →', 'b b-gold') + '</div>' +
         '<p class="g-line"><b>COUNTIES</b> ' + esc(r.counties) + ' • <b>ACRES</b> ' + esc(r.acres) + (near ? ' • <b>NEAREST TOWN</b> ' + esc(near) : '') + '</p>' +
         '<p class="g-line"><b>ACTIVATE AS</b> ' + xr + '</p>' +
         (fr.length ? '<p class="g-line"><b>2-FER / 3-FER</b> ' + fr.length + ' possible spot' + (fr.length > 1 ? 's' : '') + ' with ' + fr.reduce(function (u, d) { d.refs.forEach(function (x) { if (refs.indexOf(x) < 0 && u.indexOf(x) < 0) u.push(x); }); return u; }, []).map(function (x) { return '<a href="#' + pid(x) + '">' + esc(x) + '</a>'; }).join(', ') + ' — see the <a href="#fers">2-Fers &amp; 3-Fers Index</a> (GPS points not exact).</p>' : '') +
-        '<div class="g-btns">' + (c ? ext(gps(c[1].toFixed(5), c[0].toFixed(5)), 'GPS (CENTER, NOT EXACT)', 'b b-gps') + ext(wx(c[1].toFixed(4), c[0].toFixed(4)), 'WEATHER', 'b b-wx') : '') +
+        '<div class="g-btns">' + (pk ? ext(gps(pk.la, pk.lo), 'GPS', 'b b-gps') + ext(wx(pk.la, pk.lo), 'WEATHER', 'b b-wx') : '') +
         (refs[0] ? '<a class="b b-near" href="kpc-park-notes.html#' + refs[0] + '">PARK TIPS ›</a><a class="b b-web" href="kpc-spots.html">LIVE SPOTS ›</a>' : '') + '</div></div>';
     }).join('');
 
