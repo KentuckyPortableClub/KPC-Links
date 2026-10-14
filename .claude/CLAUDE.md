@@ -108,4 +108,4 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 ## KPC-drawn boundaries (ky-kpc-drawn.geojson) — added Oct 14 2026
 - Approximate outlines for KY POTA parks with NO official GIS boundary: US-3802 Buckley, US-10173 Horse Park, US-1264 Levi Jackson (now Laurel County), US-10099 Wolf Creek NFH (hull around hatchery + visitor center), US-3787 White Hall. From OpenStreetMap (ODbL, credited in the popup). Brandon OK'd them from screenshots.
 - Layer "bkpc" in gis-overlays.js (Park Commander, checkbox gis-bkpc) and kpc-planner.js (B.bkpc): yellow #ffd400 dash-dot '12 5 2 5', NO shading (fillOpacity 0), popup warns it's approximate.
-- Still missing: US-10172 Salato (no outline anywhere). E. Lucy Braun, Lake Malone, Fishtrap Lake WMA and the KY part of GW&J NF already have official outlines (their pins just sit a little outside).
+- Still missing: US-10172 Salato (no outline anywhere). E. Lucy Braun, Lake Malone, Fishtrap Lake WMA and the KY part of GW&J NF already have official outlines; their POTA + KFF pins were moved just inside them on Oct 14 (GW&J pin moved from Virginia to the KY piece near Pine Mountain, 37.09269,-82.73391).
