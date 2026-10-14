@@ -1,9 +1,6 @@
-const {chromium}=require('playwright');const fs=require('fs');(async()=>{const b=await chromium.launch();const p=await b.newPage();
-await p.goto('https://noaaweatherradio.org/',{waitUntil:'networkidle',timeout:90000});await p.waitForTimeout(3000);
-fs.writeFileSync('nwro.html',await p.content());
-const links=await p.$$eval('a,audio,source',as=>as.map(a=>[a.tagName,a.textContent.trim().slice(0,80),a.href||a.src||'']).filter(x=>x[2]));fs.writeFileSync('nwro-links.json',JSON.stringify(links,null,0));
-for(const u of ['https://noaaweatherradio.org/howto.php']){try{await p.goto(u,{timeout:60000});fs.writeFileSync('nwro-howto.txt',await p.evaluate(()=>document.body.innerText))}catch(e){}}
-// test that a KY stream answers without sign-in
-const ky=links.filter(l=>/Frankfort|Owenton/i.test(l[1])||/frankfort|owenton/i.test(l[2]));const out=[];
-for(const l of ky){try{const r=await p.request.get(l[2],{timeout:15000,maxRedirects:5,headers:{Range:'bytes=0-2000'}});out.push([l[2],r.status(),r.headers()['content-type']])}catch(e){out.push([l[2],String(e).slice(0,100)])}}
-fs.writeFileSync('nwro-test.json',JSON.stringify(out,null,1));await b.close()})();
+const {chromium}=require('playwright');(async()=>{const b=await chromium.launch({args:['--autoplay-policy=no-user-gesture-required']});
+const c=await b.newContext({viewport:{width:390,height:844},geolocation:{latitude:36.9685,longitude:-86.4808},permissions:['geolocation']});const p=await c.newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));
+await p.goto('https://kentuckyportableclub.github.io/KPC-Links/kpc-weather.html?v='+Date.now(),{waitUntil:'networkidle',timeout:90000});await p.waitForTimeout(6000);
+const v=await p.evaluate(()=>[...document.scripts].map(s=>s.src).filter(s=>s.includes('kpc-weather')).join());
+await p.click('.wx-play');await p.waitForTimeout(9000);const m=await p.evaluate(()=>document.getElementById('wxPlNow').textContent);
+const el=await p.$('#wxNwr');await el.screenshot({path:'wx-radio.png'});require('fs').writeFileSync('wx-radio.txt',JSON.stringify({v,m,errs}));await b.close()})();
