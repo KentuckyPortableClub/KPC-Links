@@ -236,7 +236,7 @@
       if (lab === 'GPS') return ext(gps(p.la, p.lo), 'GPS', cls);
       if (lab === 'OSM BOUNDARY') return ext(osm(p.la, p.lo), 'OSM BOUNDARY', cls);
       if (lab === 'WEATHER') return ext(wx(p.la, p.lo), 'WEATHER', cls);
-      if (lab === 'NEARBY ›') return '<a class="' + cls + '" href="#' + pnid(p.c) + '">NEARBY ›</a>';
+      if (lab === 'NEARBY ›') return '<a class="' + cls + '" href="#' + pnid(p.c) + '">NEARBY ›</a><a class="b b-near no-print" href="kpc-park-notes.html#' + p.c + '">PARK TIPS ›</a>';
       return ext(b[1], esc(lab), cls);
     }).join('');
     var co = String(p.co || '');
@@ -355,7 +355,7 @@
       html += '<div class="g-frow g-keep"><span class="g-pill' + (d.type === '3-fer' ? ' three' : '') + '">' + esc(d.type.toUpperCase()) + '</span><div class="g-fmain"><div class="g-frefs">' +
         d.refs.map(function (r) { return '<a href="#' + pid(r) + '">' + esc(r) + '</a>'; }).join(' + ') + '</div><div class="g-fnames">' + esc(d.names.join(' + ')) +
         '</div></div><div class="g-fpin"><span>' + esc(d.county) + ' Co.</span>' + ext('https://www.google.com/maps/search/?api=1&query=' + d.pin[0].toFixed(5) + ',' + d.pin[1].toFixed(5),
-        d.pin[0].toFixed(5) + ', ' + d.pin[1].toFixed(5) + ' ›', 'g-pinlink') + '<small>not exact • guide pin: ' + esc(d.pinWhat) + '</small></div></div>';
+        d.pin[0].toFixed(5) + ', ' + d.pin[1].toFixed(5) + ' ›', 'g-pinlink') + '<small>not exact • guide pin: ' + esc(String(d.pinWhat || 'general area').replace(/^Set up here$/i, 'Suggested area').replace(/^Target spot/, 'Target area')) + '</small></div></div>';
     });
     html += '</div>';
     $('gFers').innerHTML = html;
@@ -394,11 +394,18 @@
     $('gWildDT').textContent = WI.detailsTitle || 'Wild River Details';
     $('gWildDX').textContent = WI.detailsText || '';
     $('gWild').innerHTML = W.map(function (r) {
-      var xr = esc(r.xref).replace(/(POTA )?(US-\d+)/g, function (m, a, c) { return (a || '') + ext(pota(c), c); })
+      var c = cents[r.name], refs = (String(r.xref).match(/US-\d+/g) || []);
+      var near = '';
+      if (c) { var bd = 1e9; (D.towns || []).forEach(function (t) { var dx = (t.lo - c[0]) * Math.cos(c[1] * Math.PI / 180), dy = t.la - c[1], dd = dx * dx + dy * dy; if (dd < bd) { bd = dd; near = t.n + ' (' + Math.round(Math.sqrt(dd) * 69) + ' mi)'; } }); }
+      var fr = (G.fers && G.fers.spots || []).filter(function (d) { return d.refs.some(function (x) { return refs.indexOf(x) >= 0; }); });
+      var xr = esc(r.xref).replace(/(POTA )?(US-\d+)/g, function (m, a, c) { return (a || '') + '<a href="#' + pid(c) + '">' + c + '</a>'; })
         .replace(/KFF-\d+/g, function (k) { return ext('https://logsearch.wwff.co/directory/' + k, k); });
       return '<div class="g-wr g-keep" id="wr-' + r.n + '"><div class="g-wr-h"><span class="g-wn">' + r.n + '</span><h3>' + esc(r.name) + '</h3>' + ext(r.official, 'OFFICIAL PAGE →', 'b b-gold') + '</div>' +
-        '<p class="g-line"><b>COUNTIES</b> ' + esc(r.counties) + ' • <b>ACRES</b> ' + esc(r.acres) + ' • <b>OWNERSHIP</b> ' + esc(r.owner) + ' • <b>MANAGED BY</b> ' + esc(r.manager) + '</p>' +
-        '<p class="g-line"><b>CROSS-REFERENCE</b> ' + xr + '</p></div>';
+        '<p class="g-line"><b>COUNTIES</b> ' + esc(r.counties) + ' • <b>ACRES</b> ' + esc(r.acres) + (near ? ' • <b>NEAREST TOWN</b> ' + esc(near) : '') + '</p>' +
+        '<p class="g-line"><b>ACTIVATE AS</b> ' + xr + '</p>' +
+        (fr.length ? '<p class="g-line"><b>2-FER / 3-FER</b> ' + fr.length + ' possible spot' + (fr.length > 1 ? 's' : '') + ' with ' + fr.reduce(function (u, d) { d.refs.forEach(function (x) { if (refs.indexOf(x) < 0 && u.indexOf(x) < 0) u.push(x); }); return u; }, []).map(function (x) { return '<a href="#' + pid(x) + '">' + esc(x) + '</a>'; }).join(', ') + ' — see the <a href="#fers">2-Fers &amp; 3-Fers Index</a> (GPS points not exact).</p>' : '') +
+        '<div class="g-btns">' + (c ? ext(gps(c[1].toFixed(5), c[0].toFixed(5)), 'GPS (CENTER, NOT EXACT)', 'b b-gps') + ext(wx(c[1].toFixed(4), c[0].toFixed(4)), 'WEATHER', 'b b-wx') : '') +
+        (refs[0] ? '<a class="b b-near" href="kpc-park-notes.html#' + refs[0] + '">PARK TIPS ›</a><a class="b b-web" href="kpc-spots.html">LIVE SPOTS ›</a>' : '') + '</div></div>';
     }).join('');
 
     /* regional maps */
@@ -458,7 +465,7 @@
     })
     .catch(function (e) {
       var el = $('gErr');
-      if (el) { el.hidden = false; el.textContent = 'Sorry, the park list did not load (' + e.message + '). Try reloading, or open the PDF.'; }
+      if (el) { el.hidden = false; el.textContent = 'Sorry, the park list did not load (' + e.message + '). Try reloading the page.'; }
       root.dataset.ready = 'error';
       if (window.console) console.warn(e);
     });

@@ -201,7 +201,7 @@
         var meta = [coLabel, type, k.p ? 'POTA: ' + potaName : ''].filter(Boolean).join(' • ');
         var btns = L(['map', 'areamap', 'brochure'], 'b-map') + ext(gps(k.la, k.lo), 'GPS', 'b b-gps') + ext(osm(k.la, k.lo), 'OSM BOUNDARY', 'b b-osm') +
           L(['web'], 'b-web') + (k.p ? ext('https://next.pota.app/park/' + k.p, 'POTA ' + esc(k.p), 'b b-pota') : '') + L(['entrance'], 'b-gps') +
-          ext(wx(k.la, k.lo), 'WEATHER', 'b b-wx') + '<a class="b b-near" href="#' + knid(k.c) + '">NEARBY ›</a>' + L(['camp', 'resort', 'cabins'], 'b-gold');
+          ext(wx(k.la, k.lo), 'WEATHER', 'b b-wx') + '<a class="b b-near" href="#' + knid(k.c) + '">NEARBY ›</a><a class="b b-near no-print" href="kpc-park-notes.html#' + k.c + '">TIPS ›</a>' + L(['camp', 'resort', 'cabins'], 'b-gold');
         /* notes, in the PDF's order */
         var notes = {};
         ((x && x.notes) || []).forEach(function (n) { notes[n.k] = n; });
@@ -271,7 +271,7 @@
     .then(function (a) { render(a[0], a[1], a[2]); done(); })
     .catch(function (e) {
       var el = $('gErr');
-      if (el) { el.hidden = false; el.textContent = 'Sorry, the KFF list did not load (' + e.message + '). Try reloading, or open the PDF.'; }
+      if (el) { el.hidden = false; el.textContent = 'Sorry, the KFF list did not load (' + e.message + '). Try reloading the page.'; }
       root.dataset.ready = 'error';
       if (window.console) console.warn(e);
     });
