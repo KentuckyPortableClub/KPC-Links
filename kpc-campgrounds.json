@@ -1502,16 +1502,14 @@
    "campgrounds": [
     {
      "id": "yellowbank-wma-primitive-campground",
-     "name": "Yellowbank WMA primitive campground",
+     "name": "Yellowbank WMA primitive campground (Main Area)",
      "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=192",
-     "sites": "Not stated",
      "hookups": "Primitive only",
-     "season": "Not stated",
-     "extras": "Designated sites only; primitive restrooms",
-     "phone": "(270) 547-6856",
-     "note": "WMA map (not a site map): https://fw.ky.gov/More/Documents/YellowbankWMA_ALL.pdf",
+     "extras": "Official wording: \"Primitive camping on designated site only - primitive rest rooms in camp ground.\" Primitive restrooms; a 20-stop archery trail is at the end of the campground.",
+     "checked": "2026-10-14",
      "source": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=192",
-     "checked": "2026-10-14"
+     "phone": "(270) 547-6856",
+     "note": "WMA map (not a site map): https://fw.ky.gov/More/Documents/YellowbankWMA_ALL.pdf"
     }
    ]
   },
@@ -1696,16 +1694,55 @@
      "id": "higginson-henry-wma-designated-campsites",
      "name": "Higginson-Henry WMA designated campsites",
      "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=132",
-     "sites": "Not stated",
      "hookups": "Primitive only",
-     "season": "Not stated",
-     "extras": "Camping on designated sites only",
-     "note": "WMA map (not a site map): https://fw.ky.gov/More/Documents/Higginson-HenryWMA_ALL.pdf",
+     "extras": "Official wording: \"Camping on designated sites only.\"",
+     "checked": "2026-10-14",
      "source": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=132",
-     "checked": "2026-10-14"
+     "note": "KDFWR does not say where the sites are, how many, or restrooms. Call the WMA office before you go."
     }
    ],
    "added": true
+  },
+  {
+   "pota": "US-3837",
+   "campgrounds": [
+    {
+     "id": "west-kentucky-wma-designated-camping-site",
+     "name": "West Kentucky WMA designated camping site",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=137",
+     "hookups": "Primitive only",
+     "extras": "Official wording: \"Primitive camping is allowed on the WMA, but ONLY at the designated camping site.\"",
+     "season": "Not stated",
+     "checked": "2026-10-14",
+     "source": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=137",
+     "note": "One designated primitive camping site. KDFWR does not give its location or restrooms; call before you go."
+    }
+   ]
+  },
+  {
+   "pota": "US-10161",
+   "campgrounds": [
+    {
+     "id": "rolling-fork-wma-designated-camping-area",
+     "name": "Rolling Fork WMA designated camping area",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9219",
+     "hookups": "Primitive only",
+     "extras": "Official wording: \"Primitive Camping is allowed in designated area only and only during Turkey and Deer Seasons with a 14-day limit.\"",
+     "checked": "2026-10-14",
+     "source": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9219",
+     "note": "Only during turkey and deer seasons, 14-day limit. The same KDFWR page also says \"No ATV’s, camping, horseback riding, or rock climbing is allowed on the WMA\", so call (502) 477-9024 to confirm before you camp.",
+     "phone": "(502) 477-9024",
+     "season": "Turkey and deer seasons only (14-day limit)"
+    }
+   ]
   }
- ]
+ ],
+ "wmaRule": {
+  "text": "Kentucky rule: \"Camping is not allowed on WMAs unless the area has a designated location for camping.\" Only the WMAs listed here have designated camping on the official KDFWR pages.",
+  "source": "https://fw.ky.gov/Hunt/Documents/public-lands-print.pdf"
+ },
+ "closures": {
+  "name": "Kentucky State Parks improvements and closures",
+  "url": "https://parks.ky.gov/improvements"
+ }
 }
