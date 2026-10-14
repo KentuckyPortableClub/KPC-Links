@@ -188,7 +188,8 @@
       if (!pt || !pt.properties || !pt.properties.forecast) { box.innerHTML = ''; return; }
       try {
         const f = await jget(pt.properties.forecast, NWSH), P = (f.properties && f.properties.periods) || [];
-        box.innerHTML = `<details class="wx-nws" open><summary>National Weather Service forecast, in words</summary>${P.slice(0, 8).map(x => `<p><b>${esc(x.name)}:</b> ${esc(x.detailedForecast)}</p>`).join('')}</details>`;
+        const pp = x => `<p><b>${esc(x.name)}:</b> ${esc(x.detailedForecast)}</p>`;
+        box.innerHTML = `<div class="wx-nws"><b class="t">National Weather Service forecast, in words</b>${P.slice(0, 2).map(pp).join('')}${P.length > 2 ? `<details><summary>Next ${Math.min(P.length, 10) - 2} periods</summary>${P.slice(2, 10).map(pp).join('')}</details>` : ''}</div>`;
       } catch (e) { box.innerHTML = ''; }
     });
   }
