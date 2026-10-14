@@ -74,10 +74,11 @@
     var allRv = camp.concat(lodge).reduce(function (a, c) { return a.concat(reviewsFor(c.id)); }, []), rated = allRv.filter(function (n) { return n.rating; });
     var avgP = rated.length ? rated.reduce(function (a, n) { return a + n.rating; }, 0) / rated.length : 0;
     var starLine = allRv.length ? '<p class="cg-parkstars"><span class="cg-stars">' + (avgP ? stars(avgP) : '') + '</span> ' + (avgP ? avgP.toFixed(1) + ' from ' : '') + allRv.length + ' review' + (allRv.length > 1 ? 's' : '') + ' — tap a campground or cabin below to read them</p>' : '';
-    return '<article class="cg-card" id="park-' + p.c + '"><h2>' + esc(p.n) + '</h2><p class="cg-sub">' + esc(coL) + (reg ? ' • ' + esc(reg) : '') + '</p>' + starLine +
+    var KR = window.KPCReports, cond = KR ? KR.banner(KR.related(D, p.c)) : '', rep = KR ? KR.formUrl('conditions', p.c) : '';   // park-condition reports (kpc-reports.js)
+    return '<article class="cg-card" id="park-' + p.c + '"><h2>' + esc(p.n) + '</h2><p class="cg-sub">' + esc(coL) + (reg ? ' • ' + esc(reg) : '') + '</p>' + cond + starLine +
       '<div class="cg-prog">' + prog + '</div>' +
       '<div class="cg-btns">' + '<a class="cg-b" href="kpc-guide-pota.html#s-' + p.c + '">PARK GUIDE CARD</a><a class="cg-b" href="kpc-park-notes.html#' + p.c + '">PARK TIPS ›</a>' +
-      (isFinite(p.la) ? ext(gps(p.la, p.lo), 'PARK GPS') + ext(wx(p.la, p.lo), 'WEATHER') : '') + '</div>' +
+      (isFinite(p.la) ? ext(gps(p.la, p.lo), 'PARK GPS') + ext(wx(p.la, p.lo), 'WEATHER') : '') + (rep ? ext(rep, '⚠ REPORT CONDITIONS', 'rep kpc-rep-btn') : '') + '</div>' +
       (camp.length ? '<div class="cg-h">CAMPGROUNDS (' + camp.length + ')</div>' + camp.map(function (c) { return placeHtml(c, p, 'camp'); }).join('') : '') +
       (lodge.length ? '<div class="cg-h">CABINS, COTTAGES &amp; LODGES</div>' + lodge.map(function (c) { return placeHtml(c, p, 'lodge'); }).join('') :
         (links.cabins || links.resort ? '<div class="cg-h">CABINS &amp; LODGES</div><div class="cg-btns">' + ext(links.resort, 'RESORT / LODGE') + ext(links.cabins, 'CABINS') + '</div>' : '')) +
@@ -125,7 +126,7 @@
     }).join('');
   }
 
-  Promise.all([getJSON('kpc-ky-data.json'), getJSON('kpc-campgrounds.json'), getJSON('kpc-campground-notes.json', true), getJSON('kpc-campground-form.json', true)])
+  Promise.all([getJSON('kpc-ky-data.json'), getJSON('kpc-campgrounds.json'), getJSON('kpc-campground-notes.json', true), getJSON('kpc-campground-form.json', true), window.KPCReports ? window.KPCReports.ready : null])
     .then(function (a) {
       D = a[0]; C = a[1]; N = (a[2] && a[2].notes) || []; FORM = a[3];
       var byC = {}; D.parks.forEach(function (p) { byC[p.c] = p; });

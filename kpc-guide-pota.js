@@ -227,6 +227,8 @@
     return h;
   }
 
+  // Park-condition reports from the KPC Reports form (kpc-reports.js); class no-print keeps them out of the PDFs.
+  function condBanner(c) { var KR = window.KPCReports; return KR ? KR.banner(KR.related(STATE.D, c)) : ''; }
   function card(p) {
     var x = p._x;
     var btns = x ? x.btns : [['OFFICIAL MAP', p.off], ['GPS', null], ['OSM BOUNDARY', null], ['WEBSITE', p.web], ['WEATHER', null], ['NEARBY ›', null], ['CAMPING ›', p.camp]]
@@ -257,7 +259,7 @@
     var q = [p.c, p.n, co + ' county', type, p._reg || '', p._q || ''].concat(fersFor(p.c).map(function (d) { return d.refs.join(' ') + ' 2-fer ' + d.type; })).join(' ').toLowerCase();
     return '<article class="g-card" id="' + pid(p.c) + '" data-reg="' + esc(p._reg || '') + '" data-q="' + esc(q) + '">' +
       '<div class="g-head">' + ext(pota(p.c), esc(p.c), 'g-code') + '<h3>' + ext(nameUrl, esc(p.n)) + '</h3></div>' +
-      '<p class="g-meta">' + esc(coLabel) + ' • ' + esc(type) + '</p><div class="g-btns">' + bh + '</div>' + lines + '</article>';
+      '<p class="g-meta">' + esc(coLabel) + ' • ' + esc(type) + '</p>' + condBanner(p.c) + '<div class="g-btns">' + bh + '</div>' + lines + '</article>';
   }
 
   function groupsFor(order) {
@@ -449,7 +451,7 @@
     return fetch(u, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); })
       .catch(function (e) { if (optional) return null; throw e; });
   }
-  Promise.all([getJSON('kpc-ky-data.json'), getJSON('kpc-guide-pota-data.json'), getJSON('kpc-ky-counties-hd.json'), getJSON('ky-wild-rivers.geojson', true), getJSON('kpc-campgrounds.json', true)])
+  Promise.all([getJSON('kpc-ky-data.json'), getJSON('kpc-guide-pota-data.json'), getJSON('kpc-ky-counties-hd.json'), getJSON('ky-wild-rivers.geojson', true), getJSON('kpc-campgrounds.json', true), window.KPCReports ? window.KPCReports.ready : null])
     .then(function (a) {
       STATE.CG = {}; ((a[4] && a[4].parks) || []).forEach(function (x) { STATE.CG[x.pota] = 1; });   // parks with a campground / cabin card
       setup(a[0], a[1], a[2], a[3]);
