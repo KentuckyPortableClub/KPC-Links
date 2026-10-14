@@ -66,7 +66,8 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
   img.onerror=()=>done(null,t);img.src='https://tile.openstreetmap.org/'+c.z+'/'+c.x+'/'+c.y+'.png';return t}});
  const lines=new ParkLines({maxZoom:19,maxNativeZoom:19,zIndex:5,opacity:glowStrength(),attribution:'Park lines © OpenStreetMap contributors'});
  const beta=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),lines]);
- const base={'Street':street,'Satellite':sat,'Satellite + Streets':hyb,'Satellite + Park Lines (Beta)':beta};let want=store.get('kpcUsBase','Street');(base[want]||street).addTo(map);
+ const terrain=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxNativeZoom:17,maxZoom:19,attribution:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors'});
+ const base={'Street':street,'Terrain':terrain,'Satellite':sat,'Satellite + Streets':hyb,'Satellite + Park Lines (Beta)':beta};let want=store.get('kpcUsBase','Street');(base[want]||street).addTo(map);
  const glow=L.control({position:'bottomleft'});glow.onAdd=()=>{const d=L.DomUtil.create('div','us-glow');
   d.innerHTML=`<label>PARK LINES <input type="range" min="30" max="100" step="5" value="${Math.round(glowStrength()*100)}" aria-label="Park line strength"></label><small>Zoom in to county level to see park borders</small>`;
   L.DomEvent.disableClickPropagation(d);L.DomEvent.disableScrollPropagation(d);

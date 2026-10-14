@@ -106,7 +106,9 @@ function drawB(k){const s=B[k];canvasR=canvasR||bRend();
 function drawT(k){const s=T[k];
  const under=L.geoJSON(tData[k],{pane:'trlp',interactive:false,style:()=>({color:'#111',weight:LW(7),opacity:.35})});
  const top=L.geoJSON(tData[k],{pane:'trlp',style:()=>({color:s.color,weight:LW(4),opacity:1}),onEachFeature:(f,l)=>l.on('click',e=>{if(adding)return;L.popup({maxWidth:280}).setLatLng(e.latlng).setContent(`<b>${esc(s.name)}</b><br>POTA <a href="${KPC.links.pota(s.ref)}" target="_blank" rel="noopener">${s.ref}</a><div style="margin-top:8px"><button type="button" class="btn sm" data-drop="${e.latlng.lat},${e.latlng.lng}">📍 ADD A SPOT HERE</button></div>`).openOn(map)})});
- bLay['t_'+k]=L.layerGroup([under,top]);bLay['t_'+k]._kst=[under,top];if(shown('t_'+k))bLay['t_'+k].addTo(map)}
+ /* wide invisible line over the trail: easy to tap (wider on touch screens), opens the same card */
+ const tapw=matchMedia('(pointer:coarse)').matches?28:18;const hit=L.geoJSON(tData[k],{pane:'trlp',style:()=>({color:'#000',weight:tapw,opacity:0}),onEachFeature:(f,l)=>l.on('click',e=>top.eachLayer(t=>{if(t.feature===f)t.fire('click',e)}))});
+ bLay['t_'+k]=L.layerGroup([under,top,hit]);bLay['t_'+k]._kst=[under,top];if(shown('t_'+k))bLay['t_'+k].addTo(map)}
 /* Thick boundaries switched: restyle outlines and trails already drawn (each keeps its own style function) */
 if(window.KPCX&&KPCX.onLook)KPCX.onLook((lk,k)=>{if(k!=='thick')return;Object.values(bLay).forEach(l=>{if(l._kst)l._kst.forEach(g=>g.setStyle(g.options.style));else if(l.setStyle&&l.options&&l.options.style)l.setStyle(l.options.style)})});
 function order(){if(bLay.bdbnf&&map.hasLayer(bLay.bdbnf))bLay.bdbnf.bringToBack()}
