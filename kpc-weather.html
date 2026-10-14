@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KPC Field Weather</title>
+<title>Field Weather | Kentucky Portable Club</title>
 <!-- KPC icons & share preview -->
 <link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -45,8 +45,40 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
 .hero{background:linear-gradient(120deg,rgba(7,19,13,.9),rgba(16,36,25,.68)),#07130d url("hdr-river.jpg") center/cover no-repeat}
 @media(max-width:760px){.hero{background:linear-gradient(120deg,rgba(7,19,13,.9),rgba(16,36,25,.68)),#07130d url("hdr-river-mobile.jpg") center/cover no-repeat}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <link rel="stylesheet" href="kpc-nav.css?v=20261010g">
 <style id="kpc-hero-pic">.kpc-who{position:absolute;right:14px;bottom:12px;z-index:3;background:rgba(7,7,7,.74);border:1px solid rgba(213,166,58,.7);color:#fff;font:800 13px/1.2 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.6px;padding:7px 12px;border-radius:999px;white-space:nowrap}.kpc-who b{color:#e8c46a}.hero{position:relative;background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.66) 42%,rgba(7,7,7,.18) 72%,rgba(7,7,7,0) 100%),url("hero-n4bdw.jpg") center 30%/cover no-repeat #070707}@media(max-width:760px){.hero{display:block;min-height:0;padding-top:104vw;background:linear-gradient(180deg,rgba(7,7,7,0) 0,rgba(7,7,7,0) calc(104vw - 150px),#070707 104vw),url("hero-n4bdw-mobile.jpg") center calc(-29vw)/100% auto no-repeat #070707}.hero:before,.hero:after{display:none}.hero .hero-inner,.hero .wrap{margin:0 auto;padding-top:4px;padding-bottom:38px}.kpc-who{top:12px;bottom:auto}}</style>
+<style id="kpc-wx">
+.sr{position:absolute;left:-9999px}
+.wx-locrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.wx-locrow>button{margin:0}
+.wx-q{flex:1;min-width:240px;display:flex;gap:8px}.wx-q input{flex:1;min-width:0}.wx-q button{margin:0}
+.wx-results{display:grid;gap:8px;margin-top:10px}.wx-res{margin:0;text-align:left;background:#0b100d;color:var(--cream);border:1px solid rgba(244,197,66,.25);font-weight:400}.wx-res b{display:block}.wx-res span{font-size:.82rem;color:var(--muted)}
+.wx-head{margin:26px 0 8px}.wx-head h2{margin:0 0 4px;font-size:clamp(1.5rem,4.5vw,2.2rem)}.wx-office{margin-top:6px}
+.wx-al{border-radius:14px;padding:12px 16px;margin:10px 0;border:1px solid;line-height:1.45}.wx-al summary{cursor:pointer;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.wx-al summary span{font-size:.85rem;opacity:.85}
+.wx-al.ex,.wx-al.sv{background:#3a0b0b;border-color:#ff4d4d;color:#ffe3e3}.wx-al.md{background:#3a2a07;border-color:#f4a020;color:#fff1d6}.wx-al.mn{background:#2a2a10;border-color:#d9c94a;color:#fbf6d2}
+.wx-al.none{background:#101511;border-color:var(--line);color:var(--muted)}.wx-al.ok{color:#bfe8c8;border-color:#3d7a52}
+.wx-al pre{white-space:pre-wrap;font:inherit;font-size:.9rem;margin:8px 0}.wx-al-h{font-weight:700;margin:10px 0 0}.wx-al-i{background:rgba(0,0,0,.25);padding:8px 10px;border-radius:8px}
+.panel h3{margin:0 0 10px;color:var(--gold);letter-spacing:.5px}
+.wx-now{display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:18px;align-items:center}
+.wx-big{display:flex;align-items:center;gap:12px}.wx-ic{font-size:64px;line-height:1}.wx-t{font:700 72px/1 Georgia,serif}.wx-d{font-size:1.05rem}.wx-d small{color:var(--muted)}
+.wx-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.wx-grid div{background:#121a15;border:1px solid rgba(244,197,66,.14);border-radius:12px;padding:10px}.wx-grid span{display:block;font-size:.7rem;letter-spacing:1px;color:var(--muted)}.wx-grid b{display:block;font-size:1.1rem;margin:3px 0}.wx-grid small{color:var(--muted);font-size:.78rem}
+.wx-calls{display:grid;gap:6px;margin:14px 0 6px}.wx-call{padding:9px 12px;border-radius:10px;font-weight:700;font-size:.95rem}.wx-call.good{background:#14301f;color:#bfe8c8}.wx-call.warn{background:#3a2a07;color:#ffe2a8}.wx-call.bad{background:#3a0b0b;color:#ffd0d0}
+.wx-hours{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.wx-h{flex:0 0 74px;scroll-snap-align:start;background:#121a15;border:1px solid rgba(244,197,66,.14);border-radius:12px;padding:8px 4px;text-align:center;display:flex;flex-direction:column;gap:3px}
+.wx-h span{font-size:.78rem;color:var(--muted)}.wx-h i{font-style:normal;font-size:24px}.wx-h b{font-size:1.1rem}.wx-h small{font-size:.72rem;color:var(--muted)}.wx-h small em{font-style:normal;opacity:.75}.wx-h.ts{border-color:#ff4d4d}
+.pp.hi{color:#7fc4ff!important;font-weight:700}
+.wx-rctl{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-bottom:8px}.wx-rctl button{margin:0;padding:9px 12px}.wx-rctl label{display:inline-flex;gap:6px;align-items:center;margin:0;color:var(--cream);font-size:.9rem}.wx-frame{font-weight:800;color:var(--gold);min-width:90px}
+.wx-map{height:440px;border-radius:14px;border:1px solid var(--line);overflow:hidden;background:#0b100d;isolation:isolate}
+.wx-days{display:grid;gap:6px}.wx-day{display:grid;grid-template-columns:60px 34px 54px 38px 1fr 38px 52px;gap:8px;align-items:center;background:#121a15;border:1px solid rgba(244,197,66,.12);border-radius:10px;padding:8px 10px}
+.wx-day i{font-style:normal;font-size:22px}.wx-day .lo{color:#9fc2ff;text-align:right}.wx-day .hi{color:#ffb98a}.wx-day .pp,.wx-day .w{font-size:.8rem;color:var(--muted)}
+.wx-day .bar{position:relative;height:6px;border-radius:3px;background:#26302a}.wx-day .bar em{position:absolute;top:0;bottom:0;border-radius:3px;background:linear-gradient(90deg,#6fa8ff,#ffb35c)}
+.wx-nws{margin-top:14px;background:#0b100d;border:1px solid rgba(244,197,66,.18);border-radius:12px;padding:10px 14px}.wx-nws summary{cursor:pointer;font-weight:800;color:var(--gold)}.wx-nws p{line-height:1.5;margin:8px 0;font-size:.93rem}
+.wx-tx{display:flex;gap:12px;align-items:center;background:#121a15;border:1px solid rgba(244,197,66,.14);border-radius:12px;padding:10px 12px;margin:6px 0}.wx-tx .f{font:700 1.35rem/1 Georgia,serif;color:var(--gold);min-width:92px}.wx-tx .f small{display:block;font:600 .7rem Arial;color:var(--muted);margin-top:3px}
+.wx-tx .i b{display:block}.wx-tx .i span{display:block;font-size:.8rem;color:var(--muted)}.wx-tx .i a{display:inline-block;margin-top:6px;font-weight:800;font-size:.8rem}.wx-tx.off{opacity:.65}.wx-tx em{color:#ffb35c;font-style:normal}
+@media(max-width:760px){.wx-now{grid-template-columns:1fr}.wx-grid{grid-template-columns:repeat(2,1fr)}.wx-t{font-size:60px}.wx-ic{font-size:52px}.wx-map{height:360px}
+ .wx-day{grid-template-columns:44px 28px 46px 30px 1fr 30px;gap:6px;padding:8px}.wx-day .w{display:none}.wx-q{min-width:100%}#wxGeo{width:100%}}
+</style>
 </head>
 <body>
 <style id="kpc-sitebar-css">
@@ -131,141 +163,38 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
 
 <header class="hero"><span class="kpc-who">Brent · <b>N4BDW</b></span><div class="wrap">
 <h1>Field Weather</h1>
-<p>Search by <b>Kentucky POTA park name</b>, <b>POTA park number</b>, or <b>town / ZIP code</b>. Select a result and KPC will pull a current forecast for that location.</p>
+<p>Your spot’s weather the way a field operator needs it: NWS warnings, right-now conditions, the next 24 hours, a 7-day outlook, live radar and lightning, and the NOAA Weather Radio frequency for your county. Use your location, or search any Kentucky park, summit, town or ZIP.</p>
 </div></header>
 
-<main class="wrap">
-<section class="panel">
-<h2>Find a field location</h2>
-<div class="search-grid">
-<div><label for="park">POTA park name or number</label><input id="park" placeholder="Example: Mammoth Cave or US-0050"></div>
-<div><label for="town">Town, city, or ZIP code</label><input id="town" placeholder="Example: Cave City, KY or 42127"></div>
-</div>
-<button id="searchBtn">SEARCH WEATHER</button>
-<button class="secondary" id="clearBtn">CLEAR</button>
-<div id="status" class="status"></div>
-<div id="results" class="results"></div>
+<main class="wrap wx">
+<section class="panel wx-loc">
+ <div class="wx-locrow"><button id="wxGeo" type="button">📍 USE MY LOCATION</button>
+ <div class="wx-q"><label for="wxQ" class="sr">Search</label><input id="wxQ" placeholder="Park name or number (1277), summit, town or ZIP" autocomplete="off"><button id="wxGo" type="button">SEARCH</button></div></div>
+ <div id="wxStatus" class="status" aria-live="polite"></div><div id="wxResults" class="wx-results"></div>
 </section>
 
-<section id="weather" class="panel weather">
-<h2 id="placeName">Forecast</h2>
-<div id="placeMeta" class="small"></div>
-<div class="current" id="current"></div>
-<h3>5-Day Field Outlook</h3>
-<div class="forecast" id="forecast"></div>
-<button class="secondary" id="radarBtn" type="button">VIEW NWS RADAR FOR THIS LOCATION ↗</button>
-<p class="note">Forecast data: National Weather Service when available for U.S. coordinates. Location search uses Open-Meteo geocoding only to turn a town/ZIP into coordinates. Always verify official park conditions, closures, permits, lightning, wind, and local hazards before setting up a portable station.</p>
-</section>
+<section class="wx-head"><h2 id="wxPlace">Loading…</h2><div id="wxMeta" class="small"></div><div id="wxOffice" class="small wx-office"></div></section>
+<div id="wxAlerts" aria-live="polite"></div>
+
+<section class="panel" id="wxNow"><h3>Right now</h3><div id="wxNowBody"></div></section>
+
+<section class="panel"><h3>Next 24 hours</h3><p class="small">Temperature, chance of rain 💧, and wind / gusts. Swipe sideways for more.</p><div class="wx-hours" id="wxHours"></div></section>
+
+<section class="panel" id="wxRadarP"><h3>Radar &amp; lightning</h3>
+ <div class="wx-rctl"><button id="wxPlay" type="button" class="secondary">▶ PLAY LOOP</button><span id="wxFrame" class="wx-frame">Latest</span>
+ <label><input type="checkbox" id="wxLight"> Lightning</label><label><input type="checkbox" id="wxWarnT" checked> Warning areas</label><button id="wxMe" type="button" class="secondary">◎ MY SPOT</button></div>
+ <div id="wxMap" class="wx-map" role="img" aria-label="Weather radar map"></div>
+ <p class="small">NEXRAD radar (last 50 minutes, refreshes every 5) from the Iowa Environmental Mesonet; lightning strike density from NOAA nowCOAST. Colored outlines are active NWS warnings.</p></section>
+
+<section class="panel"><h3>7-day outlook</h3><div id="wxDays"></div></section>
+
+<section class="panel" id="wxNwr"><h3>📻 NOAA Weather Radio</h3><div id="wxNwrBody"></div></section>
+
+<p class="note">Planning aid, not an official forecast. For warnings, always go by the National Weather Service and your local officials. Lightning: if you can hear thunder, you are close enough to be struck. Get the antenna down and get inside. More Kentucky conditions on <a href="kpc-live.html">Happening Now</a> and <a href="kpc-space-weather.html">Radio Conditions</a>.</p>
 </main>
 
-<script>
-const $ = id => document.getElementById(id);
-let kyParks = null;
-
-async function loadKYParks(){
-  if(kyParks) return kyParks;
-  const r = await fetch('https://api.pota.app/location/parks/US-KY');
-  if(!r.ok) throw new Error('POTA park list could not be loaded.');
-  kyParks = await r.json();
-  return kyParks;
-}
-
-function normParkRef(v){
-  v=v.trim().toUpperCase().replace(/\s+/g,'');
-  if(/^\\d+$/.test(v)) return 'US-'+v.padStart(4,'0');
-  if(/^US-\\d+$/.test(v)) return v;
-  return v;
-}
-
-async function searchParks(q){
-  const parks=await loadKYParks();
-  const term=q.trim().toLowerCase();
-  const ref=normParkRef(q);
-  return parks.filter(p=>{
-    const name=(p.name||'').toLowerCase();
-    const reference=(p.reference||'').toUpperCase();
-    return reference===ref || name.includes(term) || reference.includes(term);
-  }).slice(0,10);
-}
-
-async function searchTown(q){
-  const url='https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(q)+'&count=8&language=en&format=json&countryCode=US';
-  const r=await fetch(url); if(!r.ok) throw new Error('Town search failed.');
-  const d=await r.json();
-  return (d.results||[]).map(x=>({name:x.name, admin1:x.admin1||'', country:x.country||'United States', latitude:x.latitude, longitude:x.longitude, timezone:x.timezone||''}));
-}
-
-function showResults(items, kind){
-  $('results').innerHTML='';
-  if(!items.length){$('status').textContent='No matches found.';return;}
-  $('status').textContent='Select a location:';
-  items.forEach(item=>{
-    const el=document.createElement('div'); el.className='result';
-    if(kind==='park'){
-      el.innerHTML='<b>'+escapeHtml(item.name||'Park')+'</b><div class="small">'+escapeHtml(item.reference||'')+'</div>';
-      el.onclick=()=>loadWeather(item.latitude,item.longitude,(item.name||'Park')+' — '+(item.reference||''),'POTA park');
-    }else{
-      el.innerHTML='<b>'+escapeHtml(item.name)+'</b><div class="small">'+escapeHtml(item.admin1)+' • '+escapeHtml(item.country)+'</div>';
-      el.onclick=()=>loadWeather(item.latitude,item.longitude,item.name+', '+item.admin1,'Town / ZIP');
-    }
-    $('results').appendChild(el);
-  });
-}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-
-async function loadWeather(lat,lon,label,kind){
-  $('status').textContent='Loading forecast…';
-  $('weather').classList.remove('active');
-  try{
-    const point=await fetch('https://api.weather.gov/points/'+lat+','+lon,{headers:{'Accept':'application/geo+json','User-Agent':'KPC-Field-Weather/1.0 (kentuckyportableclub.github.io)'}});
-    if(!point.ok) throw new Error('NWS does not provide a forecast for this coordinate.');
-    const p=await point.json();
-    const fc=await fetch(p.properties.forecast,{headers:{'Accept':'application/geo+json','User-Agent':'KPC-Field-Weather/1.0 (kentuckyportableclub.github.io)'}});
-    if(!fc.ok) throw new Error('Forecast unavailable.');
-    const data=await fc.json();
-    const periods=data.properties.periods||[];
-    $('placeName').textContent=label;
-    $('placeMeta').textContent=kind+' • '+Number(lat).toFixed(4)+', '+Number(lon).toFixed(4)+' • '+(p.properties.relativeLocation?.properties?.city||'');
-    const now=periods[0];
-    $('current').innerHTML=[
-      ['NOW',now?.name||'—'],['TEMP',now?.temperature!=null?now.temperature+'°'+(now.temperatureUnit||'F'):'—'],
-      ['WIND',now?.windSpeed||'—'],['CONDITIONS',now?.shortForecast||'—']
-    ].map(x=>'<div class="metric"><span class="small">'+x[0]+'</span><b>'+escapeHtml(x[1])+'</b></div>').join('');
-    const seen=new Set(); const days=[];
-    for(const x of periods){
-      const key=x.startTime.slice(0,10);
-      if(!seen.has(key)){seen.add(key);days.push(x); if(days.length===5)break;}
-    }
-    $('forecast').innerHTML=days.map(x=>'<div class="day"><strong>'+escapeHtml(x.name)+'</strong><div>'+escapeHtml(x.shortForecast||'')+'</div><div class="small" style="margin-top:7px">Temp: '+escapeHtml(String(x.temperature??'—'))+'°'+escapeHtml(x.temperatureUnit||'F')+'<br>Wind: '+escapeHtml(x.windSpeed||'—')+' '+escapeHtml(x.windDirection||'')+'</div></div>').join('');
-    $('radarBtn').onclick=()=>window.open('https://radar.weather.gov/location?lat='+encodeURIComponent(lat)+'&lon='+encodeURIComponent(lon),'_blank');
-    $('weather').classList.add('active'); $('status').textContent='';
-  }catch(e){$('status').textContent=e.message+' Try a nearby town/ZIP or use the official NWS link below.';}
-}
-
-$('searchBtn').onclick=async()=>{
-  $('results').innerHTML=''; $('weather').classList.remove('active');
-  const park=$('park').value.trim(), town=$('town').value.trim();
-  if(!park && !town){$('status').textContent='Enter a park name/number or a town/ZIP.';return;}
-  try{
-    if(park){
-      $('status').textContent='Searching Kentucky POTA parks…';
-      const matches=await searchParks(park);
-      showResults(matches,'park');
-    }else{
-      $('status').textContent='Searching locations…';
-      const matches=await searchTown(town);
-      showResults(matches,'town');
-    }
-  }catch(e){$('status').textContent=e.message;}
-};
-$('clearBtn').onclick=()=>{ $('park').value=''; $('town').value=''; $('results').innerHTML=''; $('status').textContent=''; $('weather').classList.remove('active'); };
-/* KPC: opened from the Activation Finder with ?lat=&lon=&name=&ref= */
-(()=>{try{const q=new URLSearchParams(location.search),la=Number(q.get('lat')),lo=Number(q.get('lon'));
- if(q.has('lat')&&q.has('lon')&&Number.isFinite(la)&&Number.isFinite(lo)&&Math.abs(la)<=90&&Math.abs(lo)<=180){
-  const ref=(q.get('ref')||'').slice(0,20),nm=(q.get('name')||'Park').slice(0,120);if(ref)$('park').value=ref;
-  loadWeather(la,lo,nm+(ref?' — '+ref:''),'POTA park').then(()=>{const e=$('weather');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})})}}catch(_){}})();
-</script>
-<script src="kpc-search.js?v=20261014j" defer></script><script>
+<script src="kpc-weather.js?v=20261014a"></script>
+<script src="kpc-search.js?v=20261014k" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
