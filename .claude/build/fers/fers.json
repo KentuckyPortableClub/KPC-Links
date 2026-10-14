@@ -215,7 +215,7 @@
   },
   {
    "type": "3-fer",
-   "how": "Shared boundaries",
+   "how": "Overlapping boundaries",
    "refs": [
     "US-10104",
     "US-3801",
@@ -248,7 +248,7 @@
   },
   {
    "type": "3-fer",
-   "how": "Shared boundaries",
+   "how": "Overlapping boundaries",
    "refs": [
     "US-10106",
     "US-10121",
@@ -1046,7 +1046,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-7966",
     "US-10112"
@@ -1077,7 +1077,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-3794",
     "US-4484"
@@ -1108,7 +1108,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-0686",
     "US-10107"
@@ -1132,7 +1132,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-3799",
     "US-4484"
@@ -1163,7 +1163,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-10121",
     "US-4484"
@@ -1194,7 +1194,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-10121",
     "US-10106"
@@ -1225,7 +1225,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-1276",
     "US-12971"
@@ -1256,7 +1256,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-1276",
     "US-12972"
@@ -1287,7 +1287,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-1277",
     "US-10103"
@@ -1311,7 +1311,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-4484",
     "US-10106"
@@ -1335,7 +1335,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-4484",
     "US-10111"
@@ -1359,7 +1359,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-4484",
     "US-10103"
@@ -1383,7 +1383,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-4484",
     "US-3801"
@@ -1407,7 +1407,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-4484",
     "US-10104"
@@ -1431,7 +1431,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-10138",
     "US-4484"
@@ -1455,7 +1455,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-0050",
     "US-10105"
@@ -1486,7 +1486,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-10146",
     "US-4484"
@@ -1510,7 +1510,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-10158",
     "US-4484"
@@ -1534,7 +1534,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-10104",
     "US-3801"
@@ -1558,7 +1558,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-10159",
     "US-4484"
@@ -1589,7 +1589,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-10160",
     "US-4484"
@@ -1620,7 +1620,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-10160",
     "US-10106"
@@ -1651,7 +1651,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-10168",
     "US-4484"
@@ -1682,7 +1682,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-10170",
     "US-4484"
@@ -1713,7 +1713,7 @@
   },
   {
    "type": "2-fer",
-   "how": "Shared boundary",
+   "how": "Overlapping boundary",
    "refs": [
     "US-10171",
     "US-4484"

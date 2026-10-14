@@ -30,7 +30,7 @@ SECS=[('three','3-Fers','Three POTA parks at once','Trails through two overlappi
  ('river','Ohio River Banks','Lewis & Clark on the river','In Kentucky the Lewis & Clark trail is the Ohio River itself. You must be inside the park AND within 100 ft of the water. Riverbank pins are approximate and were not checked against the actual water line; some may be more than 100 ft from the river.'),
  ('water','Trail of Tears Water Route','Tennessee & Mississippi rivers','The Trail of Tears Water Route followed the Tennessee River (now Kentucky Lake) to Paducah, then the Ohio and Mississippi rivers. You must be inside the park AND within 100 ft of the water. On Kentucky Lake the NPS route line follows the old channel out in the lake, so these are a looser fit than the Ohio River banks. Pins are approximate.'),
  ('trail','Trail 2-Fers','A trail park through another park','Set up on public land within 100 ft of the trail, inside the other park.'),
- ('shared','Shared Boundaries','Two parks on the same ground','Boundaries overlap on land that belongs to both. National forest spots count only on Forest Service-owned land. Setup pins sit at least 100 ft inside every boundary line in our map data.')]
+ ('shared','Overlapping Boundaries','Two parks on the same ground','Boundaries overlap on land that belongs to both. National forest spots count only on Forest Service-owned land. Setup pins sit at least 100 ft inside every boundary line in our map data.')]
 BANNER='GPS PINS ARE GUIDES ONLY  •  DO YOUR OWN RESEARCH  •  CONFIRM EVERY BOUNDARY ON THE OFFICIAL MAP'
 c=canvas.Canvas(os.path.join(REPO,'KPC_Kentucky_POTA_2fers_3fers_Guide.pdf'),pagesize=(W,H))
 c.setTitle('KPC Kentucky POTA 2-Fers & 3-Fers');c.setAuthor('Kentucky Portable Club');c.setSubject('Multi-park POTA spots in Kentucky with GPS guide pins')
@@ -134,7 +134,7 @@ c.setFont('S',38);c.setFillColorRGB(1,1,1);c.drawCentredString(W/2,H-262,'KENTUC
 c.setFont('S',25);c.setFillColorRGB(*GOLD);c.drawCentredString(W/2,H-293,'2-Fers & 3-Fers')
 c.setStrokeColorRGB(*GOLD);c.setLineWidth(2);c.line(W/2-28,H-308,W/2+28,H-308)
 spaced(W/2,H-326,'MULTI-PARK FIELD GUIDE  •  OCTOBER 2026 (RECHECKED OCT 13)','CB',8,(1,1,1),1.6,'c')
-c.setFont('C',8.5);c.setFillColorRGB(*hx('c9d3cc'));c.drawCentredString(W/2,H-342,'Shared boundaries  •  Trails  •  Historic trails  •  Ohio River banks  •  Park names match the POTA Kentucky list')
+c.setFont('C',8.5);c.setFillColorRGB(*hx('c9d3cc'));c.drawCentredString(W/2,H-342,'Overlapping boundaries  •  Trails  •  Historic trails  •  Ohio River banks  •  Park names match the POTA Kentucky list')
 def darkbox(y,title,body,fill=hx('1c3f2e'),tc=GOLD,bc=(1,1,1)):
   h=para(0,0,body,'C',8.4,bc,CW-30,11,draw=False)+30
   c.setFillColorRGB(*fill);c.roundRect(M,y-h,CW,h,6,stroke=0,fill=1);c.setFillColorRGB(*GOLD);c.rect(M,y-h,3,h,stroke=0,fill=1)
@@ -142,7 +142,7 @@ def darkbox(y,title,body,fill=hx('1c3f2e'),tc=GOLD,bc=(1,1,1)):
 y=H-365
 y=darkbox(y,'GPS PINS ARE GUIDES ONLY','Every GPS point in this guide gets you to the AREA of a possible 2-fer or 3-fer. It is not a confirmed activation spot. When you get there, check that you and your gear are inside every park, and for trail and river parks within 100 ft of the trail or the water. Riverbank pins have not been checked against the actual water line. The four historic trail sites are not on the river or trail at all; they rely on National Park Service listings (cited on each card).')
 y=darkbox(y,'DO YOUR OWN RESEARCH','This guide is a planning tool put together by the Kentucky Portable Club from public map data. It has not been field-checked at every spot or approved by POTA. Boundaries can be out of date or slightly off and do not show private land, closures or hunting seasons. Confirm each boundary on the official agency map, make sure the land is public and open, and read the POTA Rules. You are responsible for making sure your activation is valid and legal.')
-y=darkbox(y,'WHAT COUNTS AS A 2-FER','2-fer means two POTA parks only (KFF and SOTA are not 2-fers). You and all your gear must be on public land inside every park you log; a shared border does not count. Trails and rivers that are their own park: within 100 ft of the trail or the river\'s edge. National forests count only on Forest Service-owned land. One log per park.')
+y=darkbox(y,'WHAT COUNTS AS A 2-FER','2-fer means two POTA parks only (KFF and SOTA are not 2-fers). You and all your gear must be on public land inside every park you log. Parks that only touch at a border do not count; the parks must overlap. Trails and rivers that are their own park: within 100 ft of the trail or the river\'s edge. National forests count only on Forest Service-owned land. One log per park.')
 c.setFillColorRGB(*GOLD);c.roundRect(M,y-78,CW,78,6,stroke=0,fill=1)
 c.setFont('S',12);c.setFillColorRGB(*hx('12291e'));c.drawString(M+15,y-20,'GPS GRADES ON EVERY SPOT')
 for i,(q,t) in enumerate([('A','Drive up: parking or entrance on file is inside every park.'),('B','Short walk, or a trail crossing you can reach from a road.'),('C','No close parking on file, or a riverbank pin not checked against the water: check satellite view.')]):
