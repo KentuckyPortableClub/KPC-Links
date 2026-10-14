@@ -1,5 +1,5 @@
-{
- "errs": [],
- "sub": "0 coming up · 0 recent finals · UK, UL, WKU, EKU, Murray State, Morehead State, NKU and Bellarmine",
- "cards": []
-}
+ERR page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:234:30), <anonymous>:1:32)
+    at UtilityScript.evaluate (<anonymous>:236:17)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at /home/runner/work/KPC-Links/KPC-Links/nwr.js:5:17
