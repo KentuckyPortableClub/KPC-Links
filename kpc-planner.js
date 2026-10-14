@@ -34,7 +34,8 @@ const B = {
  bdbnf:{name:'Daniel Boone National Forest', file:'ky-dbnf.geojson', color:'#2f7fd6', note:'This is the outer forest boundary. It includes private land and towns, so check land ownership on the Forest Service map.'},
  bnps:{name:'National Park Service', file:'ky-nps.geojson', color:'#9b6a3c'},
  bwild:{name:'Wild river corridors', file:'ky-wild-rivers.geojson', color:'#16b3c0', note:'Much of the land along wild rivers is private. Check access first.'},
- bwilder:{name:'Wilderness areas', file:'ky-wilderness.geojson', color:'#c6e03a', note:'Designated wilderness: no motorized equipment, and group size limits apply.'}
+ bwilder:{name:'Wilderness areas', file:'ky-wilderness.geojson', color:'#c6e03a', note:'Designated wilderness: no motorized equipment, and group size limits apply.'},
+ bkpc:{name:'KPC-drawn boundaries (approximate)', file:'ky-kpc-drawn.geojson', color:'#ffd400', kpc:true, note:'Approximate outline drawn by KPC (mostly from OpenStreetMap), not an official boundary. These parks have no official GIS map, and some land around them is private. Check the park’s own map before you set up.'}
 };
 const NPSQ = '?where=1%3D1&geometry=-89.6%2C36.4%2C-81.9%2C39.2&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&outSR=4326&geometryPrecision=5&f=geojson';
 const T = {
@@ -100,7 +101,7 @@ function setShown(k,v){try{const o=JSON.parse(localStorage.getItem('kpcPlanLayer
 /* line weights follow the shared "Thick boundaries" switch (kpc-map-extras.js) */
 const LW=w=>window.KPCX&&KPCX.lw?KPCX.lw(w):w,FO=f=>window.KPCX&&KPCX.fo?KPCX.fo(f):f;
 function drawB(k){const s=B[k];canvasR=canvasR||bRend();
- bLay[k]=L.geoJSON(bData[k],{renderer:canvasR,pane:'bndp',style:f=>{const has=potaFor(f).length>0;return{color:s.color,weight:LW(has?3:2),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(k==='bdbnf'?.05:(has?.18:.08))}},
+ bLay[k]=L.geoJSON(bData[k],{renderer:canvasR,pane:'bndp',style:f=>{if(s.kpc)return{color:s.color,weight:LW(3),opacity:1,dashArray:'12 5 2 5',fill:true,fillOpacity:0};const has=potaFor(f).length>0;return{color:s.color,weight:LW(has?3:2),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(k==='bdbnf'?.05:(has?.18:.08))}},
   onEachFeature:(f,l)=>{l.on('click',e=>{if(adding)return;L.popup({maxWidth:290}).setLatLng(e.latlng).setContent(bPopup(f,s,e.latlng)).openOn(map)})}});
  if(shown(k))bLay[k].addTo(map);order()}
 function drawT(k){const s=T[k];
@@ -115,7 +116,7 @@ function order(){if(bLay.bdbnf&&map.hasLayer(bLay.bdbnf))bLay.bdbnf.bringToBack(
 function bPopup(f,s,ll){const p=f.properties||{},refs=potaFor(f);
  return `<b>${esc(fName(f)||s.name)}</b><div style="font-size:12px;color:#555">${esc(p.TYPE||s.name)}${p.ACCESS?' · access: '+esc(p.ACCESS):''}</div>`+
  (refs.length?`<div style="margin-top:6px"><b>POTA:</b> ${refs.slice(0,5).map(r=>`<a href="${KPC.links.pota(r.c)}" target="_blank" rel="noopener">${r.c}</a> ${esc(r.n)}`).join('<br>')}</div>`:'<div style="margin-top:6px">No POTA reference matched to this outline.</div>')+
- (s.note?`<div style="margin-top:6px;font-size:12px;font-weight:700">⚠ ${esc(s.note)}</div>`:'')+(p.URL?`<div style="margin-top:6px"><a href="${esc(p.URL)}" target="_blank" rel="noopener">Official page ↗</a></div>`:'')+
+ (s.note?`<div style="margin-top:6px;font-size:12px;font-weight:700">⚠ ${esc(s.note)}</div>`:'')+(p.URL?`<div style="margin-top:6px"><a href="${esc(p.URL)}" target="_blank" rel="noopener">Official page ↗</a></div>`:'')+(s.kpc?`<div style="margin-top:6px;font-size:11px;color:#666">${p.NOTE?esc(p.NOTE)+' ':''}Outline source: ${esc(p.SOURCE||'KPC')}. Map data © OpenStreetMap contributors.</div>`:'')+
  `<div style="margin-top:8px"><button type="button" class="btn sm" data-drop="${ll.lat},${ll.lng}">📍 ADD A SPOT HERE</button></div>`}
 
 /* ---------------- map ---------------- */
@@ -142,7 +143,7 @@ function makeMap(){
  // "Map layers" dropdown + Thick boundaries / Big pins switches in the search bar (kpc-map-extras.js); the map keeps only map tools
  let psec=null;
  if(window.KPCX&&KPCX.layerBar){const lb=KPCX.layerBar();LB=lb;const pr=$('prog_'),row=pr&&pr.closest('.controls');if(row)row.after(lb.el);else $('where').before(lb.el);
-  const bs=lb.section('Park boundaries');bs.innerHTML='<div class="gis-row">'+Object.entries(B).map(([k,s])=>`<label><input type="checkbox" data-l="${k}" ${shown(k)?'checked':''}><i style="background:${s.color}"></i>${esc(s.name)}</label>`).join('')+'</div><div class="kx-stat">Solid outline = matched to a POTA park. Dashed = no POTA reference found.</div>';
+  const bs=lb.section('Park boundaries');bs.innerHTML='<div class="gis-row">'+Object.entries(B).map(([k,s])=>`<label><input type="checkbox" data-l="${k}" ${shown(k)?'checked':''}><i style="background:${s.color}"></i>${esc(s.name)}</label>`).join('')+'</div><div class="kx-stat">Solid outline = matched to a POTA park. Dashed = no POTA reference found. Dash-dot yellow = KPC-drawn outline (approximate).</div>';
   const ts=lb.section('Trails (POTA)');ts.innerHTML='<div class="gis-row">'+Object.entries(T).map(([k,s])=>`<label><input type="checkbox" data-l="t_${k}" ${shown('t_'+k)?'checked':''}><i style="background:${s.color}"></i>${esc(s.name)}</label>`).join('')+'</div><div id="lyrStat" class="kx-stat">Loading boundaries…</div>';
   lb.panel.addEventListener('change',e=>{const k=e.target.dataset.l;if(!k)return;setShown(k,e.target.checked);const l=bLay[k];if(!l)return;e.target.checked?l.addTo(map):map.removeLayer(l);order()});
   psec=lb.section('Parking, entrances & Park Overlaps')}
