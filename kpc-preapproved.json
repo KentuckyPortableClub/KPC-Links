@@ -1,0 +1,4 @@
+{
+ "about": "Call signs whose Park Notes, Community and Campground posts go on the site without waiting for YES in the Approved column. Every club member in MEMBERS in kpc-tools.js is already pre-approved; add trusted non-members to extra. A NO in the Approved column still keeps any post off the site.",
+ "extra": []
+}

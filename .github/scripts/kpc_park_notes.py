@@ -1,8 +1,10 @@
 """Copies APPROVED park tips from the KPC Park Tips Google Form sheet into kpc-park-notes.json.
 Needs the GitHub secret NOTES_SHEET_CSV (the sheet's "Publish to web" CSV link).
-Only rows with YES in the Approved column are used. Photos from approved rows are downloaded from
+Rows with YES in the Approved column are used, plus rows from pre-approved call signs (kpc_preapproved.py) unless marked NO. Photos from approved rows are downloaded from
 Google Drive, shrunk to 1280 px and saved without location data in photos/notes/."""
 import csv,io,json,os,re,hashlib,sys,urllib.request
+import kpc_preapproved as PA
+PRE=PA.load()
 URL=os.environ.get('NOTES_SHEET_CSV','').strip()
 def notice(m): print('::notice title=Park notes::'+str(m).replace('%','%25').replace('\n','%0A'))
 FORM_URL='https://docs.google.com/forms/d/e/1FAIpQLSc6jTku8aIPejOVridQ19ChA5ACYsFK56n7Nk9WpIgAiLGTMw/viewform'
@@ -38,7 +40,7 @@ def col(*names):
       if h.startswith(n): return i
   return None
 C={'ts':col('timestamp'),'call':col('call sign'),'ref':col('park number'),'type':col('type of tip'),'gps':col('gps'),'text':col('your tip'),'photo':col('photo'),'ok':col('ok to post'),'app':col('approved')}
-if C['app'] is None: notice('No "Approved" column in the sheet yet.'); sys.exit(0)
+if C['app'] is None: notice('No "Approved" column in the sheet yet: only pre-approved call signs are posted.')
 D=json.load(open('kpc-ky-data.json'))
 REFS={p['c'] for p in D['parks']}|{s['c'] for s in D['summits']}|{k['c'] for k in D['kff']}
 def norm(r):
@@ -54,7 +56,7 @@ try:
   from PIL import Image
 except Exception: Image=None
 for r in rows[1:]:
-  if cell(r,'app').upper() not in ('YES','Y','APPROVED','X'): continue
+  if not PA.ok(cell(r,'app'),cell(r,'call'),PRE): continue
   ref=norm(cell(r,'ref'))
   if ref not in REFS: skipped.append(cell(r,'ref')); continue
   call=re.sub(r'[^A-Z0-9/]','',cell(r,'call').upper())

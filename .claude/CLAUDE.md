@@ -80,6 +80,14 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - .github/workflows/kpc-park-notes.yml (every 2 hours) runs .github/scripts/kpc_park_notes.py: reads the sheet's published CSV from secret NOTES_SHEET_CSV, writes kpc-park-notes.json, copies approved photos to photos/notes/ (shrunk to 1280 px, no EXIF). Never put the CSV link in the site or in chat.
 - The "Submit a tip" button needs FORM.url and FORM.parkEntry at the top of kpc-park-notes.js (from the form's pre-filled link).
 
+## Campgrounds & Cabins (kpc-campgrounds.html) — goes live with the Oct 21 go-live
+- HIDDEN until Oct 21 2026 5 PM Central: noindex (marked `<!-- KPC-GOLIVE -->`), not in menus/search/Find/Tool Box. kpc-go-live.yml runs .github/scripts/kpc_golive_campgrounds.py, which unhides it and adds the menu link (after Park Notes), search, Find It and Tool Box entries; the go-live roundup in kpc_social.js lists it. Don't link it anywhere before then.
+- Only places to stay INSIDE Kentucky POTA parks. Data: kpc-campgrounds.json (campgrounds + lodging per POTA park, checked against official pages; every URL was seen, never guessed). Park names, counties, GPS, KFF/SOTA lists and 2-fer partners come live from kpc-ky-data.json. Page source: .claude/build/campgrounds/main.html (rebuild with assemble.py, then re-add the noindex line until go-live). Script: kpc-campgrounds.js.
+- Reviews: Brandon's Google Form "KPC Campground Reviews" (not made yet). Questions must start with: Call sign, Campground or cabin, Rating, Your review, Site number, When did you stay, Town or county, GPS, Photos; add an Approved column to the sheet. Set the form link and the "Campground or cabin" entry number in kpc-campground-form.json (REVIEW buttons stay hidden while url is empty) and the secret CAMPGROUND_SHEET_CSV. .github/workflows/kpc-campground-notes.yml (every 2 h) runs kpc_campground_notes.py → kpc-campground-notes.json, photos/campgrounds/. Reviews that don't match a park place go in the "Stayed somewhere else?" section.
+
+## Pre-approval for all forms (.github/scripts/kpc_preapproved.py)
+- Park Notes, Community and Campground reviews publish a row when Approved = YES, or when Approved is empty and the call sign is pre-approved: every club member in MEMBERS in kpc-tools.js plus "extra" in kpc-preapproved.json (trusted non-members). Approved = NO always blocks. Call signs are self-typed on the form.
+
 ## KPC Community (kpc-community.html)
 - Posts from Brandon's Google Form "KPC Community" (one form, branching sections by type: Station setup, Antenna build, Field tip, Gear review, Activation story, Elmer listing, Operator spotlight). Only rows with YES in Approved are published.
 - .github/workflows/kpc-community.yml (every 2 hours) runs .github/scripts/kpc_community.py with secret COMMUNITY_SHEET_CSV; writes kpc-community.json and photos/community/ (1280 px, no EXIF). Question names in the form must match FIELDS in that script.
