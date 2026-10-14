@@ -1,0 +1,12 @@
+{
+ "about": "KPC Reports Google Form. url = the form's viewform link. kindEntry = entry number of 'What are you sending' and parkEntry = entry number of 'Park number' (both from the form's Get pre-filled link, like entry.123456). The kinds must match the answer choices on the form exactly. Buttons on the site stay hidden while url is empty.",
+ "url": "",
+ "kindEntry": "",
+ "parkEntry": "",
+ "kinds": {
+  "conditions": "Park conditions",
+  "problem": "Report a problem on the website",
+  "photo": "Share a photo",
+  "event": "Add an event"
+ }
+}

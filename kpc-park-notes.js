@@ -20,6 +20,8 @@ function rows(){
  return D.kff.map(k=>({ref:k.c,n:k.n,co:k.co,ex:k.p?'Also POTA '+k.p:''})).sort((a,b)=>num(a.ref)-num(b.ref));
 }
 function tipsFor(ref){return N.filter(t=>t.ref===ref)}
+const KR=window.KPCReports;   // kpc-reports.js: park-condition reports + the KPC Reports form
+const relRefs=ref=>KR?KR.related(D,ref):[ref];
 function tipHtml(t){
  const gps=t.gps?(/^\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*$/.test(t.gps)?`<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(t.gps.replace(/\s/g,''))}" target="_blank" rel="noopener">📍 ${esc(t.gps)}</a>`:`📍 ${esc(t.gps)}`):'';
  return `<div class="pn-tip"><div class="t">${esc(String(t.type||'TIP').toUpperCase())}</div><p>${esc(t.text)}</p>
@@ -33,8 +35,9 @@ function draw(){
  const withTips=all.filter(r=>tipsFor(r.ref).length).length;
  $('pnCount').textContent=`${l.length} of ${all.length} ${tab==='pota'?'POTA parks':tab==='sota'?'SOTA summits':'KFF references'} · ${withTips} with tips · lowest number first`;
  $('pnList').innerHTML=l.length?l.map(r=>{const t=tipsFor(r.ref),f=formUrl(r.ref);
-  return `<details class="pn-item" data-ref="${esc(r.ref)}"><summary><span class="pn-ref">${esc(r.ref)}</span><span class="pn-nm">${esc(r.n)}<span class="pn-co">${esc([r.co&&r.co+(/county|counties|see official|\//i.test(r.co)?'':' County'),r.ex].filter(Boolean).join(' • '))}</span></span><span class="pn-n${t.length?' has':''}">${t.length?t.length+' TIP'+(t.length>1?'S':''):'NO TIPS YET'}</span></summary>
-  <div class="pn-body"><div class="pn-acts">${f?`<a class="go" href="${esc(f)}" target="_blank" rel="noopener">✎ SUBMIT A TIP</a>`:'<a class="go" aria-disabled="true">TIP FORM COMING SOON</a>'}<a href="${LINK[tab](r.ref)}" target="_blank" rel="noopener">${LAB[tab]} PAGE ↗</a>${tab==='pota'?`<a href="kpc-park-sheet.html?ref=${encodeURIComponent(r.ref)}">PARK SHEET</a>`:''}${tab==='pota'&&CG[r.ref]?`<a href="kpc-campgrounds.html#park-${esc(r.ref)}">⛺ CAMPGROUNDS &amp; REVIEWS</a>`:''}</div>
+  const cs=KR?KR.conds(relRefs(r.ref)):[],rf=KR?KR.formUrl('conditions',r.ref):'';
+  return `<details class="pn-item" data-ref="${esc(r.ref)}"><summary><span class="pn-ref">${esc(r.ref)}</span><span class="pn-nm">${esc(r.n)}${cs.length?`<span class="kpc-cond-n" title="Recent condition reports">⚠ ${cs.length} REPORT${cs.length>1?'S':''}</span>`:''}<span class="pn-co">${esc([r.co&&r.co+(/county|counties|see official|\//i.test(r.co)?'':' County'),r.ex].filter(Boolean).join(' • '))}</span></span><span class="pn-n${t.length?' has':''}">${t.length?t.length+' TIP'+(t.length>1?'S':''):'NO TIPS YET'}</span></summary>
+  <div class="pn-body">${cs.length?KR.banner(relRefs(r.ref)):''}<div class="pn-acts">${f?`<a class="go" href="${esc(f)}" target="_blank" rel="noopener">✎ SUBMIT A TIP</a>`:'<a class="go" aria-disabled="true">TIP FORM COMING SOON</a>'}${rf?`<a class="kpc-rep-btn" href="${esc(rf)}" target="_blank" rel="noopener">⚠ REPORT CONDITIONS</a>`:''}<a href="${LINK[tab](r.ref)}" target="_blank" rel="noopener">${LAB[tab]} PAGE ↗</a>${tab==='pota'?`<a href="kpc-park-sheet.html?ref=${encodeURIComponent(r.ref)}">PARK SHEET</a>`:''}${tab==='pota'&&CG[r.ref]?`<a href="kpc-campgrounds.html#park-${esc(r.ref)}">⛺ CAMPGROUNDS &amp; REVIEWS</a>`:''}</div>
   ${t.length?t.map(tipHtml).join(''):'<p class="pn-none">No tips yet. Been here? Share what you know.</p>'}</div></details>`}).join(''):'<p class="pn-none">Nothing matches. Try another search.</p>';
 }
 let CG={};   // POTA parks with a card on Campgrounds & Cabins
@@ -44,6 +47,7 @@ async function init(){
  document.querySelectorAll('.pn-tab').forEach(b=>b.addEventListener('click',()=>{tab=b.dataset.p;store.set('kpcNotesTab',tab);draw()}));
  $('pnQ').addEventListener('input',draw);$('pnHas').addEventListener('change',draw);
  try{D=await (await fetch('kpc-ky-data.json',{cache:'no-cache'})).json()}catch(e){$('pnList').innerHTML='<p class="pn-none">Could not load the park list. Refresh to try again.</p>';return}
+ if(KR)await KR.ready;
  try{const j=await (await fetch('kpc-park-notes.json',{cache:'no-cache'})).json();N=Array.isArray(j.notes)?j.notes:[]}catch(e){N=[]}
  try{const f=await (await fetch('kpc-park-notes-form.json',{cache:'no-cache'})).json();if(f&&f.url&&/^entry\.\d+$/.test(f.parkEntry||'')){FORM.url=f.url;FORM.parkEntry=f.parkEntry}}catch(e){}
  const h=decodeURIComponent(location.hash.slice(1)).toUpperCase();

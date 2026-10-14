@@ -3,6 +3,8 @@
 1. Recurring events worked out by rule (POTA Support Your Parks, ARRL Field Day, Winter Field Day).
 2. Kentucky hamfests found in the ARRL hamfest database.
 3. Kentucky SOTA events posted on the SOTA Reflector (like the yearly SOTA Kentucky Campout).
+4. Events members sent in on the KPC Reports form (kpc-events-submitted.json, written by kpc_reports.py),
+   added to "found" with source MEMBER so every page, Discord and Facebook post that reads this file shows them.
 
 Anything found automatically is labelled on the page so people confirm details with the organizer.
 If a source can't be reached, the last good results for that source are kept.
@@ -236,6 +238,15 @@ def sota_reflector():
     return out
 
 
+def member_events():
+    """Upcoming events from kpc-events-submitted.json (approved KPC Reports form rows)."""
+    try:
+        evs = json.loads(pathlib.Path('kpc-events-submitted.json').read_text(encoding='utf-8')).get('events', [])
+    except Exception:  # noqa: BLE001
+        return []
+    return [e for e in evs if isinstance(e, dict) and e.get('name') and e.get('start') and dt.date.fromisoformat(e.get('end') or e['start']) >= TODAY]
+
+
 def main():
     try:
         old = json.loads(OUT.read_text(encoding='utf-8'))
@@ -253,10 +264,17 @@ def main():
             found += keep
             status[name] = 'failed, kept %d from last run: %s' % (len(keep), e)
             log(name, 'FAILED:', e)
+    def nn(s):
+        return re.sub(r'[^a-z0-9]+', ' ', str(s).lower()).strip()
+    rec = recurring()
+    have = {(nn(e.get('name')), e.get('start')) for e in rec + found}
+    mem = [dict(e, source='MEMBER') for e in member_events() if (nn(e['name']), e['start']) not in have]
+    found += mem
+    status['MEMBER'] = 'ok (%d)' % len(mem)
     for f in found:
         if f.get('end') is None:
             f.pop('end', None)
-    data = {'recurring': recurring(), 'found': found, 'status': status}
+    data = {'recurring': rec, 'found': found, 'status': status}
     if {k: v for k, v in old.items() if k != 'updated'} == data:
         log('No changes')
         notice('Events finder', 'no changes ' + json.dumps(status))
