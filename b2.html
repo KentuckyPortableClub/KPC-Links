@@ -1,0 +1,7 @@
+<!doctype html><meta charset=utf-8><link rel=stylesheet href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>body{margin:0}#m{width:900px;height:640px}.t{position:absolute;z-index:999;top:10px;left:10px;background:#fff;padding:7px 11px;font:bold 16px sans-serif;border-radius:6px}</style><div id=m></div><div class=t id=t></div>
+<script>const q=new URLSearchParams(location.search),k=q.get('k');
+const C={gr:['ky-fws.geojson','Green River','US-10098 Green River NWR (official USFWS land, light blue)','#5ab0ff',false],wc:['ky-fws.geojson','Wolf Creek','US-10099 Wolf Creek NFH (official USFWS land)','#5ab0ff',false],ww:['ky-kpc-drawn.geojson','Whitley','US-3789 William Whitley House (KPC-drawn, dash-dot)','#ffd400',true]}[k];
+fetch(C[0]).then(r=>r.json()).then(g=>{document.getElementById('t').textContent=C[2];const m=L.map('m',{zoomControl:false}).setView([37.5,-85],8);
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}').addTo(m);L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}').addTo(m);
+const l=L.geoJSON({type:'FeatureCollection',features:g.features.filter(f=>f.properties.NAME.includes(C[1]))},{style:{color:C[3],weight:4,dashArray:C[4]?'12 5 2 5':null,fillOpacity:C[4]?0:.2}}).addTo(m);m.fitBounds(l.getBounds(),{padding:[50,50]});setTimeout(()=>document.title='ready',6000)})</script>
