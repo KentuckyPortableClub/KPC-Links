@@ -187,6 +187,28 @@ body.field .page-jump-nav{display:none!important}
 .cw-sl .f output{color:#fff;font-weight:800;font-size:13px}
 .cw-sl input[type=range]{width:100%;accent-color:var(--gold);height:28px}
 .cw-pq{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:900;letter-spacing:1px;color:#ccc}.cw-pq button{width:34px;height:34px;border-radius:8px;border:1px solid #666;background:#222;color:#fff;font-size:20px;font-weight:900;line-height:1;cursor:pointer}.cw-pq button:hover{border-color:var(--gold)}.cw-pq b{min-width:20px;text-align:center;color:var(--gold-light,#f0c75e);font-size:16px}
+.cw-qrq .row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.cw-qrq input[type=text]{font:700 22px "Courier New",monospace;letter-spacing:2px;text-transform:uppercase}
+.qseg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.qseg label{cursor:pointer}.qseg input{position:absolute;opacity:0;pointer-events:none}
+.qseg span{display:block;padding:10px 12px;border:1px solid #3a3a3a;border-radius:9px;background:#141414;color:#e9e3d6;font:900 13px Arial,sans-serif;letter-spacing:1px;text-align:center}
+.qseg span small{display:block;font-weight:600;letter-spacing:0;color:#aaa;margin-top:3px}
+.qseg input:checked+span{border-color:var(--gold);background:#2a2210;color:#fff}.qseg input:focus-visible+span{outline:2px solid var(--gold)}
+.qrq-board{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 12px}
+.qrq-board div{background:#141414;border:1px solid #333;border-radius:9px;padding:8px;text-align:center}
+.qrq-board span{display:block;font-size:10px;font-weight:900;letter-spacing:1px;color:#aaa}
+.qrq-board b{display:block;font-size:20px;color:var(--gold-light,#f0c75e);margin-top:2px;white-space:nowrap}
+#qrqLives{color:#ff7b6b!important;letter-spacing:2px}
+.qrq-target{font:700 34px "Courier New",monospace;letter-spacing:3px;color:#fff;text-align:center;padding:6px 0;overflow-wrap:anywhere}
+.qrq-target small{display:block;font:900 11px Arial,sans-serif;letter-spacing:1px;color:#aaa;margin-bottom:6px}
+#qrqFb{min-height:48px;margin-top:8px}#qrqFb .good{color:#7fd39a;font-weight:900}#qrqFb .bad{color:#ff8a6a;font-weight:900}
+.qrq-end{margin-top:8px;padding:12px;border:1px solid var(--gold);border-radius:9px;background:#2a2210;color:#fff;font-weight:700}.qrq-end b{font-size:24px;color:var(--gold-light,#f0c75e)}
+#qrqPB{margin-top:12px;border-top:1px solid #333;padding-top:12px}.qpb{color:#ddd;font-size:14px;margin-bottom:8px}.qpb b{color:var(--gold-light,#f0c75e);letter-spacing:1px;margin-right:6px}
+.qbadges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.qb{display:inline-flex;flex-direction:column;align-items:center;width:44px;padding:4px 0;border:1px solid #333;border-radius:8px;font-size:20px;filter:grayscale(1);opacity:.35}.qb small{font-size:10px;font-weight:900;color:#ccc}.qb.on{filter:none;opacity:1;border-color:var(--gold)}
+#qrqGo.stop{background:#b5412b;color:#fff}
+#cwApp[data-mode=qrq][data-qrq=copy] .cw-a-set{grid-row:1}
+#cwApp[data-mode=qrq][data-qrq=copy] .cw-a-key{display:none}
+@media(max-width:700px){.qrq-board{grid-template-columns:repeat(2,1fr)}.qrq-target{font-size:26px}}
 .cw-checks{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px}
 .cw-checks label{display:flex;align-items:center;gap:7px;font-size:13px;letter-spacing:0;font-weight:700;color:#ddd;cursor:pointer}
 .cw-checks input{width:18px;height:18px;accent-color:var(--gold)}
@@ -375,6 +397,7 @@ body.field .page-jump-nav{display:none!important}
  <button type="button" class="cw-tab" role="tab" data-mode="hunt">🎯 HUNT<small>You call the activator</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="act">🏕️ ACTIVATE<small>You run the pileup</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="drill">👂 COPY DRILLS<small>Listen &amp; type</small></button>
+ <button type="button" class="cw-tab" role="tab" data-mode="qrq">⚡ QRQ LADDER<small>How fast can you go?</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="free">✍️ FREE SEND<small>Check your fist</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="listen">🎧 LISTEN &amp; DECODE<small>WebSDR or microphone</small></button>
 </div>
@@ -396,6 +419,27 @@ body.field .page-jump-nav{display:none!important}
    <div id="cwDrillFb"></div>
    <div id="cwDrillScore"></div>
    <p class="cw-safe">Tip: copy at your real character speed and lower <b>Farnsworth</b> to add space between letters while you learn.</p>
+  </div>
+  <div class="cw-card cw-qrq cw-a-band" data-show="qrq">
+   <h3>QRQ Speed Ladder</h3>
+   <p class="dim">QRQ is ham shorthand for "send faster." Start at an easy speed. Every one you get right speeds up, and every miss slows it back down. Three misses and the run is over. Your score is the fastest speed you got right.</p>
+   <div class="qseg" role="radiogroup" aria-label="Ladder type">
+    <label><input type="radio" name="qrqKind" value="copy" checked><span>👂 COPY<small>We send, you type it</small></span></label>
+    <label><input type="radio" name="qrqKind" value="send"><span>🔑 SEND<small>You key it, we check it</small></span></label>
+   </div>
+   <div class="row">
+    <div style="flex:1 1 160px"><label for="qrqWhat">WHAT</label><select id="qrqWhat"><option value="calls">Callsigns</option><option value="refs">Park numbers</option><option value="words">CW words (TU, 73, QTH…)</option><option value="mixed">Mixed</option></select></div>
+    <div style="flex:1 1 120px"><label for="qrqStart">START AT</label><select id="qrqStart"><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option></select></div>
+   </div>
+   <div class="row"><button type="button" class="cw-btn" id="qrqGo">▶ START LADDER</button><button type="button" class="cw-small" id="qrqRep">↻ HEAR IT AGAIN</button></div>
+   <div class="qrq-board"><div><span>SPEED</span><b id="qrqWpm">–</b></div><div><span>BEST THIS RUN</span><b id="qrqTop">–</b></div><div><span>MISSES LEFT</span><b id="qrqLives">❤❤❤</b></div><div><span>POINTS</span><b id="qrqPts">0</b></div></div>
+   <div class="cw-typerow" data-q="copy"><input type="text" id="qrqIn" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Type it" aria-label="Type what you heard"><button type="button" class="cw-btn" id="qrqOk">CHECK</button></div>
+   <div id="qrqTarget" class="qrq-target" data-q="send" aria-live="polite"></div>
+   <p class="cw-keyhelp" data-q="send">Key it with paddles or a straight key (set under <b>Your Key</b>). Paddles run at the ladder speed. With a straight key we measure your speed, so send at the speed shown. Stop keying, press <kbd>Enter</kbd> or tap DONE to send it in.</p>
+   <p class="cw-keyhelp" id="qrqKeyNote" hidden><b>Pick Straight key or Paddles under Your Key</b> to use the send ladder.</p>
+   <div id="qrqFb" aria-live="polite"></div>
+   <div id="qrqPB"></div>
+   <p class="cw-safe">Copy ladder: hearing it again is fine, but that one won't speed you up. The ladder plays a clean signal (no noise or fading) so everyone's scores compare fairly.</p>
   </div>
   <div class="cw-card cw-a-band cw-rx" id="rxCard" data-show="listen">
    <div class="rx-top"><span class="rx-state" id="rxState">STOPPED</span><span id="rxLamp" title="Tone detected"></span><span class="rx-stat">TONE <b id="rxFreq">600 Hz</b></span><span class="rx-stat">SPEED <b id="rxWpm">—</b></span><span class="rx-stat">SIGNAL <b id="rxSnr">—</b></span></div>
@@ -451,7 +495,7 @@ body.field .page-jump-nav{display:none!important}
    <p class="cw-keyhelp"><b>How good is it?</b> Great on clean, steady signals. Fading, interference and sloppy fists will fool it, and it may miss the first letter or two while it learns the sender's speed — just like every CW decoder. Your ear is still the best decoder.</p>
   </div>
 
-  <div class="cw-card cw-a-key" data-show="hunt act free">
+  <div class="cw-card cw-a-key" data-show="hunt act free qrq">
    <h3>Your Key</h3>
    <div class="cw-inputs" role="radiogroup" aria-label="How you send">
     <label><input type="radio" name="cwInput" value="keyboard"> ⌨️ Type it</label>
@@ -468,6 +512,7 @@ body.field .page-jump-nav{display:none!important}
    </div>
    <div data-input="iambic">
     <div class="cw-keypad"><button type="button" id="cwDit">DIT<small>left paddle</small></button><button type="button" id="cwDah">DAH<small>right paddle</small></button></div>
+    <p class="cw-keyhelp"><button type="button" class="cw-small" id="cwSwapBtn">⇄ SWAP PADDLES</button> &nbsp;For left-handed or "backwards" paddles.</p>
     <p class="cw-keyhelp">Keyboard: <kbd>Left Ctrl</kbd>/<kbd>Right Ctrl</kbd>, <kbd>[</kbd>/<kbd>]</kbd> or <kbd>Z</kbd>/<kbd>X</kbd>. Squeeze both for iambic.</p>
    </div>
    <div class="cw-decode" data-input="straight iambic"><span id="cwLamp"></span><span id="cwLive"></span><button type="button" class="cw-small" id="cwOverBtn" title="Send it now instead of waiting">DONE ↵</button></div>
@@ -483,7 +528,7 @@ body.field .page-jump-nav{display:none!important}
    <p class="cw-safe">Practice contacts only — the stations are made up and nothing is logged anywhere. Don't upload these to POTA or SOTA.</p>
   </div>
 
-  <details class="cw-card cw-set cw-a-set" data-show="hunt act free drill" open>
+  <details class="cw-card cw-set cw-a-set" data-show="hunt act free drill qrq" open>
    <summary>SOUND, SPEED, PILEUP &amp; FADING</summary>
    <div class="cw-sl">
     <div class="f"><label for="cwWpm">SPEED</label><input type="range" id="cwWpm" min="5" max="40" step="1"><output id="cwWpmV"></output></div>
@@ -532,10 +577,10 @@ body.field .page-jump-nav{display:none!important}
 <section class="final"><h2>Get Outside. Get On The Air.</h2><p>HOW REAL CW CONTACTS GO, PLUS CLUBS, CLASSES &amp; APPS</p><a class="btn" href="kpc-cw-info.html">CW INFO &amp; LINKS →</a> <a class="btn" href="kpc-spots.html">SEE WHO'S ON THE AIR →</a></section>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
-<script src="kpc-cw.js?v=20261014b"></script>
+<script src="kpc-cw.js?v=20261014c"></script>
 <script src="kpc-cw-spots.js?v=20261013c"></script>
 <script src="kpc-cw-rx.js?v=20261013b"></script>
-<script src="kpc-search.js?v=20261014k" defer></script><script>
+<script src="kpc-search.js?v=20261014m" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
