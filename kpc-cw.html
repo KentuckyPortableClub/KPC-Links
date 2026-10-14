@@ -222,6 +222,22 @@ body.field .page-jump-nav{display:none!important}
 .fd-row em{font-style:normal;font-weight:900;color:#fff;text-align:right}
 .fdoc ul{margin:8px 0 0;padding-left:18px;color:#ddd;font-size:13px;line-height:1.45}
 @media(max-width:420px){.fd-row{grid-template-columns:96px 1fr 34px;font-size:11px}}
+.gm-field{position:relative;height:320px;overflow:hidden;border:1px solid #2d4a37;border-radius:9px;background:#050806;margin:8px 0;transition:background .2s}.gm-field.hit{background:#3a0f0a}
+.gm-l{position:absolute;top:0;font:900 30px "Courier New",monospace;color:#f0c75e;text-shadow:0 0 8px #000;will-change:transform}.gm-l.hid{color:#7fd39a}.gm-l.pop{color:#7fd39a;opacity:0;transition:opacity .2s;transform:scale(1.6)!important}
+.gm-over{position:absolute;inset:auto 10px 10px 10px;padding:10px;border:1px solid var(--gold);border-radius:8px;background:#2a2210;color:#fff;text-align:center}
+.gm-clock{padding:16px;text-align:center}.gm-t{font:900 26px "Courier New",monospace;letter-spacing:4px;overflow-wrap:anywhere;color:#666}.gm-t .ok{color:#7fd39a}.gm-t .now{color:#f0c75e;text-decoration:underline}.gm-s{font:700 34px "Courier New",monospace;color:#fff;margin:12px 0}
+.cw-games .row,.cw-keyer .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:12px 0}.cw-games label,.cw-keyer .row label{display:flex;align-items:center;gap:6px;font:900 11px Arial,sans-serif;letter-spacing:1px;color:#cfc6b2}
+.gm-board{grid-template-columns:1fr 1fr}
+.cw-games .qseg label{display:block}
+.ky-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.ky-b{min-height:92px;padding:10px;border-radius:12px;border:2px solid #3a3a3a;background:#1a1a1a;color:#fff;font:900 20px Arial,sans-serif;letter-spacing:1px;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.ky-b small{font-size:10px;color:#888;letter-spacing:1px}.ky-b em{font:700 11px "Courier New",monospace;color:#aaa;font-style:normal;overflow-wrap:anywhere}
+.ky-b:hover{border-color:var(--gold)}.ky-b.on{background:#2a2210;border-color:var(--gold);box-shadow:0 0 0 2px var(--gold) inset}
+.ky-out{font:700 18px "Courier New",monospace;color:#f0c75e;min-height:26px;overflow-wrap:anywhere}.ky-count{font:900 11px Arial,sans-serif;letter-spacing:1px;color:#aaa}.ky-count b{color:#fff;font-size:16px;margin-left:4px}
+.ky-edit-w summary{cursor:pointer;font:900 12px Arial,sans-serif;letter-spacing:1px;color:var(--gold-light,#f0c75e)}.ky-e{display:grid;grid-template-columns:30px 90px 1fr;gap:6px;align-items:center;margin:6px 0}.ky-e input{min-height:34px;font-size:13px;min-width:0}
+.wk{margin-top:14px;padding:12px;border:1px solid var(--gold);border-radius:9px;background:#1c180c}.wk b{color:var(--gold-light,#f0c75e)}.wk .cw-btn{margin-top:10px}
+#cwApp[data-mode=keyer] .cw-a-set{grid-row:1}
+@media(min-width:1001px){.ky-grid{grid-template-columns:repeat(4,1fr)}}
 .cw-checks{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px}
 .cw-checks label{display:flex;align-items:center;gap:7px;font-size:13px;letter-spacing:0;font-weight:700;color:#ddd;cursor:pointer}
 .cw-checks input{width:18px;height:18px;accent-color:var(--gold)}
@@ -418,6 +434,8 @@ body.field .page-jump-nav{display:none!important}
  <button type="button" class="cw-tab" role="tab" data-mode="chat">☕ RAGCHEW<small>A friendly full QSO</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="drill">👂 COPY DRILLS<small>Listen &amp; type</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="qrq">⚡ QRQ LADDER<small>How fast can you go?</small></button>
+ <button type="button" class="cw-tab" role="tab" data-mode="games">🎮 GAMES<small>Falling letters & the clock</small></button>
+ <button type="button" class="cw-tab" role="tab" data-mode="keyer">📟 KEYER<small>Big activator buttons</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="free">✍️ FREE SEND<small>Check your fist</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="listen">🎧 LISTEN &amp; DECODE<small>WebSDR or microphone</small></button>
 </div>
@@ -467,7 +485,33 @@ body.field .page-jump-nav{display:none!important}
    <p class="cw-keyhelp" id="qrqKeyNote" hidden><b>Pick Straight key or Paddles under Your Key</b> to use the send ladder.</p>
    <div id="qrqFb" aria-live="polite"></div>
    <div id="qrqPB"></div>
+   <div class="wk"><div id="wkInfo"></div><button type="button" class="cw-btn" id="wkGo">🏆 PLAY THIS WEEK'S CHALLENGE</button></div>
    <p class="cw-safe">Copy ladder: hearing it again is fine, but that one won't speed you up. The ladder plays a clean signal (no noise or fading) so everyone's scores compare fairly.</p>
+  </div>
+  <div class="cw-card cw-games cw-a-band" data-show="games">
+   <h3>CW Games</h3>
+   <div class="qseg" role="radiogroup" aria-label="Game">
+    <label><input type="radio" name="gmKind" value="fall" checked><span>🔤 FALLING LETTERS<small>Clear them before they land</small></span></label>
+    <label><input type="radio" name="gmKind" value="clock"><span>⏱ BEAT THE CLOCK<small>Send it fast and clean</small></span></label>
+   </div>
+   <div class="row">
+    <label data-gk="fall">LETTERS <select id="gmSet"><option value="az">A to Z</option><option value="azn">A to Z + numbers</option><option value="koch">My Koch lesson letters</option><option value="weak">My problem letters</option></select></label>
+    <label data-gk="clock" hidden>SEND <select id="gmClockSet"><option value="az">The alphabet A to Z</option><option value="nums">Numbers 0 to 9</option><option value="call">My call, 3 times</option><option value="paris">PARIS PARIS PARIS</option></select></label>
+    <button type="button" class="cw-btn" id="gmGo">▶ START</button>
+   </div>
+   <div class="qrq-board gm-board"><div><span>SCORE</span><b id="gmScore">0</b></div><div><span>LIVES</span><b id="gmLives">❤❤❤</b></div></div>
+   <div id="gmField" class="gm-field" aria-live="polite"></div>
+   <div class="cw-typerow" id="gmTypeRow" hidden><input type="text" id="gmType" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Type each letter you hear" aria-label="Type the letter you hear"></div>
+   <p class="cw-keyhelp" data-gk="fall">With a <b>key or paddles</b> (pick under Your Key), send each letter to clear it. With the <b>keyboard</b>, the letters are hidden: you hear each one and type it. Miss three and the game is over. It speeds up as you go.</p>
+   <p class="dim" id="gmBest"></p>
+  </div>
+  <div class="cw-card cw-keyer cw-a-band" data-show="keyer">
+   <h3>Activator Keyer</h3>
+   <p class="dim">Big buttons for the messages you send over and over in the field. Tap one to hear it as CW at your speed. Tap it again (or press Esc) to stop. On a computer, F1 to F8 work too. It's for practice and for drilling your messages: it doesn't key a radio.</p>
+   <div class="row"><label>THEIR CALL <input type="text" id="kyTheir" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="W4ABC"></label><span class="ky-count">CONTACTS <b id="kyCount">0</b></span></div>
+   <div id="kyGrid" class="ky-grid"></div>
+   <p class="ky-out" id="kyOut" aria-live="polite"></p>
+   <details class="ky-edit-w"><summary>EDIT THE BUTTONS</summary><p class="cw-keyhelp">Use {MY} for your call, {THEIR} for the box above, {REF} for your park and {ST} for your state (set at the top of the page).</p><div id="kyEdit"></div></details>
   </div>
   <div class="cw-card cw-a-band cw-rx" id="rxCard" data-show="listen">
    <div class="rx-top"><span class="rx-state" id="rxState">STOPPED</span><span id="rxLamp" title="Tone detected"></span><span class="rx-stat">TONE <b id="rxFreq">600 Hz</b></span><span class="rx-stat">SPEED <b id="rxWpm">—</b></span><span class="rx-stat">SIGNAL <b id="rxSnr">—</b></span><span class="rx-stat">FILTER <b id="rxBwV">60 Hz</b></span></div>
@@ -524,7 +568,7 @@ body.field .page-jump-nav{display:none!important}
    <p class="cw-keyhelp"><b>How good is it?</b> Great on clean, steady signals. Fading, interference and sloppy fists will fool it, and it may miss the first letter or two while it learns the sender's speed — just like every CW decoder. Your ear is still the best decoder.</p>
   </div>
 
-  <div class="cw-card cw-a-key" data-show="hunt act free qrq chat sprint">
+  <div class="cw-card cw-a-key" data-show="hunt act free qrq chat sprint games">
    <h3>Your Key</h3>
    <div class="cw-inputs" role="radiogroup" aria-label="How you send">
     <label><input type="radio" name="cwInput" value="keyboard"> ⌨️ Type it</label>
@@ -557,7 +601,7 @@ body.field .page-jump-nav{display:none!important}
    <p class="cw-safe">Practice contacts only — the stations are made up and nothing is logged anywhere. Don't upload these to POTA or SOTA.</p>
   </div>
 
-  <details class="cw-card cw-set cw-a-set" data-show="hunt act free drill qrq chat sprint" open>
+  <details class="cw-card cw-set cw-a-set" data-show="hunt act free drill qrq chat sprint games keyer" open>
    <summary>SOUND, SPEED, PILEUP &amp; FADING</summary>
    <div class="cw-sl">
     <div class="f"><label for="cwWpm">SPEED</label><input type="range" id="cwWpm" min="5" max="40" step="1"><output id="cwWpmV"></output></div>
@@ -607,10 +651,10 @@ body.field .page-jump-nav{display:none!important}
 <section class="final"><h2>Get Outside. Get On The Air.</h2><p>HOW REAL CW CONTACTS GO, PLUS CLUBS, CLASSES &amp; APPS</p><a class="btn" href="kpc-cw-info.html">CW INFO &amp; LINKS →</a> <a class="btn" href="kpc-spots.html">SEE WHO'S ON THE AIR →</a></section>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
-<script src="kpc-cw.js?v=20261014e"></script>
+<script src="kpc-cw.js?v=20261014f"></script>
 <script src="kpc-cw-spots.js?v=20261013c"></script>
 <script src="kpc-cw-rx.js?v=20261014a"></script>
-<script src="kpc-search.js?v=20261014n" defer></script><script>
+<script src="kpc-search.js?v=20261014p" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

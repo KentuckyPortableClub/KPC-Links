@@ -187,6 +187,7 @@ const dec = {
     const c = DECODE[this.code];
     this.text += c ? c : '*';
     this.code = ''; ui.live(this.text);
+    if (MODE === 'games') gameChar(c || '*');
   },
   endOver() {
     this.endChar();
@@ -376,6 +377,7 @@ const session = { on: false, qsos: [], agn: 0, start: 0 };
 /* Called when you finish an over (keyed or typed) */
 function transmit(text, how) {
   if (MODE === 'qrq') { fistMeter(); qrqSent(text, how); return; }
+  if (MODE === 'games' || MODE === 'keyer') { fistMeter(); return; }
   ui.log('YOU', text, 'you');
   fistMeter();
   if (MODE === 'free' || MODE === 'drill') { ui.hint(''); return; }
@@ -915,6 +917,142 @@ async function sprintLoop(gen) {
   }
 }
 
+/* ================================================================ Games
+   FALLING LETTERS: with a key or paddles, send each letter before it lands. With the keyboard you hear it and type it.
+   BEAT THE CLOCK: send the alphabet, the numbers or your call as fast as you cleanly can. */
+let GB = {}; try { GB = JSON.parse(localStorage.getItem('kpcGames') || '{}') || {}; } catch (e) { GB = {}; }
+const game = { kind: '', on: false, items: [], raf: 0, last: 0, spawnAt: 0, speed: 0, score: 0, lives: 3, target: '', pos: 0, t0: 0, pen: 0, v: null };
+function gSave() { try { localStorage.setItem('kpcGames', JSON.stringify(GB)); } catch (e) {} }
+function gameStop(msg) {
+  game.on = false; cancelAnimationFrame(game.raf); if (game.v) { game.v.dispose(); game.v = null; }
+  const f = $('gmField'); if (f && msg) f.insertAdjacentHTML('beforeend', `<div class="gm-over">${msg}</div>`);
+  const b = $('gmGo'); if (b) { b.textContent = '▶ START'; b.classList.remove('stop'); }
+  gameShow();
+}
+function gamePool() {
+  const k = ($('gmSet') || {}).value || 'az';
+  if (k === 'weak') { const w = weakList(10).map(x => x[0]); if (w.length >= 3) return w; }
+  if (k === 'koch') return KOCH.slice(0, Math.max(4, S.kochLevel));
+  if (k === 'azn') return 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
+  return 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+}
+function gameStart() {
+  if (game.on) { gameStop('Stopped.'); return; }
+  if (!audio()) return;
+  game.kind = (document.querySelector('input[name=gmKind]:checked') || {}).value || 'fall';
+  const f = $('gmField'); if (f) f.innerHTML = '';
+  dec.text = ''; dec.code = ''; ui.live('');
+  if (game.kind === 'clock') {
+    if (S.input === 'keyboard') { if (f) f.innerHTML = '<div class="gm-over">Pick Straight key or Paddles under Your Key to play Beat the Clock.</div>'; return; }
+    const t = ($('gmClockSet') || {}).value || 'az';
+    game.target = t === 'nums' ? '0123456789' : t === 'call' ? (myCall() || 'KZ4CP').repeat(3) : t === 'paris' ? 'PARISPARISPARIS' : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    Object.assign(game, { on: true, pos: 0, t0: 0, pen: 0 });
+    clockDraw();
+  } else {
+    Object.assign(game, { on: true, items: [], score: 0, lives: 3, speed: 28, spawnAt: 0, last: 0 });
+    const loop = ts => {
+      if (!game.on) return;
+      const dt = game.last ? Math.min(0.1, (ts - game.last) / 1000) : 0; game.last = ts;
+      const H = (f && f.clientHeight) || 300, W = (f && f.clientWidth) || 300;
+      if (ts > game.spawnAt) {
+        const pool = gamePool(), c = pick(pool), el = document.createElement('span');
+        el.className = 'gm-l' + (S.input === 'keyboard' ? ' hid' : ''); el.textContent = S.input === 'keyboard' ? '?' : c;
+        const it = { c, y: -30, x: 10 + Math.random() * Math.max(10, W - 60), el }; el.style.left = it.x + 'px'; f.appendChild(el); game.items.push(it);
+        if (S.input === 'keyboard') { if (game.v) game.v.dispose(); game.v = new Voice({ call: 'g', pitch: S.their, wpm: S.wpm, eff: S.eff, level: 0.9, noQsb: true }); game.v.play(c); }
+        game.spawnAt = ts + Math.max(900, 3200 - game.score * 60);
+      }
+      game.speed = 28 + game.score * 1.6;
+      for (let i = game.items.length - 1; i >= 0; i--) {
+        const it = game.items[i]; it.y += game.speed * dt; it.el.style.transform = `translateY(${it.y}px)`;
+        if (it.y > H - 34) { it.el.remove(); game.items.splice(i, 1); game.lives--; f.classList.add('hit'); setTimeout(() => f.classList.remove('hit'), 250); if (game.lives <= 0) { gameFallOver(); return; } }
+      }
+      gameShow(); game.raf = requestAnimationFrame(loop);
+    };
+    game.raf = requestAnimationFrame(loop);
+  }
+  const b = $('gmGo'); if (b) { b.textContent = '■ STOP'; b.classList.add('stop'); }
+  gameShow();
+  if (S.input === 'keyboard' && game.kind === 'fall') { const i = $('gmType'); if (i) { i.value = ''; i.focus({ preventScroll: true }); } }
+}
+function gameFallOver() {
+  game.items.forEach(it => { it.el.textContent = it.c; it.el.classList.remove('hid'); });
+  const k = 'fall-' + (($('gmSet') || {}).value || 'az') + (S.input === 'keyboard' ? '-copy' : '-send'), b = GB[k] || 0, isPB = game.score > b;
+  if (isPB) { GB[k] = game.score; gSave(); }
+  gameStop(`Game over: <b>${game.score}</b> letters${isPB ? ' · 🎉 New best!' : ` · best ${b}`}`);
+}
+function gameChar(c) {
+  if (!game.on) return;
+  if (game.kind === 'clock') {
+    const want = game.target[game.pos];
+    if (!game.t0) game.t0 = performance.now();
+    if (c === want) game.pos++; else game.pen += 2;
+    if (game.pos >= game.target.length) {
+      const secs = (performance.now() - game.t0) / 1000 + game.pen, k = 'clock-' + (($('gmClockSet') || {}).value || 'az'), b = GB[k], isPB = !b || secs < b;
+      if (isPB) { GB[k] = +secs.toFixed(1); gSave(); }
+      clockDraw(); gameStop(`Done in <b>${secs.toFixed(1)} s</b>${game.pen ? ` (includes ${game.pen} s for mistakes)` : ''}${isPB ? ' · 🎉 New best!' : ` · best ${b} s`}`);
+      return;
+    }
+    clockDraw(); return;
+  }
+  const i = game.items.findIndex(it => it.c === c);
+  if (i >= 0) { const it = game.items[i]; it.el.classList.add('pop'); setTimeout(() => it.el.remove(), 200); game.items.splice(i, 1); game.score++; }
+  gameShow();
+}
+function clockDraw() {
+  const f = $('gmField'); if (!f) return;
+  const t = game.target, secs = game.t0 ? ((performance.now() - game.t0) / 1000 + game.pen).toFixed(1) : '0.0';
+  f.innerHTML = `<div class="gm-clock"><div class="gm-t">${t.split('').map((c, i) => `<span class="${i < game.pos ? 'ok' : i === game.pos ? 'now' : ''}">${esc(c)}</span>`).join('')}</div><div class="gm-s">${secs} s</div><div class="dim">Send the next letter shown in gold. A wrong letter adds 2 seconds.</div></div>`;
+  if (game.on && game.t0) { clearTimeout(game.ct); game.ct = setTimeout(clockDraw, 200); }
+}
+function gameShow() {
+  const set = (id, v) => { const e = $(id); if (e) e.textContent = v; };
+  const fall = (document.querySelector('input[name=gmKind]:checked') || {}).value !== 'clock';
+  set('gmScore', fall ? String(game.score) : (game.pos + '/' + (game.target.length || 26)));
+  set('gmLives', fall ? '❤'.repeat(Math.max(0, game.lives)) + '♡'.repeat(Math.max(0, 3 - game.lives)) : '–');
+  document.querySelectorAll('[data-gk]').forEach(e => { e.hidden = e.dataset.gk !== (fall ? 'fall' : 'clock'); });
+  const ty = $('gmTypeRow'); if (ty) ty.hidden = !(fall && S.input === 'keyboard');
+  const bests = Object.keys(GB).map(k => { const p = k.split('-'); return p[0] === 'clock' ? `Beat the clock (${p[1]}): ${GB[k]} s` : `Falling letters (${p[1]}, ${p[2] === 'copy' ? 'copy' : 'send'}): ${GB[k]}`; });
+  const bb = $('gmBest'); if (bb) bb.textContent = bests.length ? 'Your bests: ' + bests.join(' · ') : 'Your bests show here.';
+}
+
+/* ================================================================ Activator keyer: big memory buttons for the field
+   Plays the message as CW at your speed (sidetone only: it doesn't key a radio). {MY} {THEIR} {REF} {ST} fill in. F1-F8 work too. */
+const KDEF = [['CQ', 'CQ POTA CQ POTA DE {MY} {MY} K'], ['MY CALL', '{MY}'], ['REPORT', '{THEIR} TU UR 5NN 5NN {ST} {ST} BK'], ['TU 73', 'TU 73 E E'], ['AGN?', 'AGN?'], ['QRZ?', 'QRZ? DE {MY} K'], ['P2P', 'P2P {REF} {REF}'], ['QRT', 'QRT TNX ALL 73 DE {MY} <SK>']];
+let KM = KDEF.map(x => x.slice()); try { const k = JSON.parse(localStorage.getItem('kpcKeyerMem') || 'null'); if (Array.isArray(k) && k.length === 8) KM = k; } catch (e) {}
+const keyer = { v: null, i: -1, n: 0 };
+function kFill(t) { const th = (($('kyTheir') || {}).value || '').toUpperCase().trim(); return t.replace(/\{MY\}/g, myCall() || 'MYCALL').replace(/\{THEIR\}/g, th || '?').replace(/\{REF\}/g, (S.ref || 'US-0000').toUpperCase()).replace(/\{ST\}/g, S.st || 'KY').replace(/\s+/g, ' ').trim(); }
+async function kPlay(i) {
+  if (!audio()) return;
+  if (keyer.v) { keyer.v.dispose(); keyer.v = null; const was = keyer.i; keyer.i = -1; kDraw(); if (was === i) return; }
+  const txt = kFill(KM[i][1]); keyer.i = i; kDraw();
+  const out = $('kyOut'); if (out) out.textContent = txt;
+  const v = new Voice({ call: 'me', pitch: S.pitch, wpm: S.wpm, eff: S.eff, level: 0.8, noQsb: true }); keyer.v = v;
+  await v.play(txt);
+  if (keyer.v === v) { v.dispose(); keyer.v = null; keyer.i = -1; kDraw(); }
+  if (/\{THEIR\}/.test(KM[i][1]) && /TU/.test(txt)) { keyer.n++; const c = $('kyCount'); if (c) c.textContent = keyer.n; }
+}
+function kDraw() {
+  const g = $('kyGrid'); if (!g) return;
+  g.innerHTML = KM.map((m, i) => `<button type="button" class="ky-b${keyer.i === i ? ' on' : ''}" data-i="${i}"><small>F${i + 1}</small>${esc(m[0])}<em>${esc(kFill(m[1]))}</em></button>`).join('');
+  g.querySelectorAll('.ky-b').forEach(b => b.addEventListener('click', () => kPlay(+b.dataset.i)));
+  const ed = $('kyEdit'); if (ed && !ed.dataset.done) {
+    ed.dataset.done = '1';
+    ed.innerHTML = KM.map((m, i) => `<div class="ky-e"><b>F${i + 1}</b><input type="text" data-i="${i}" data-f="0" value="${esc(m[0])}" maxlength="10" aria-label="Button ${i + 1} name"><input type="text" data-i="${i}" data-f="1" value="${esc(m[1])}" aria-label="Button ${i + 1} message" autocapitalize="characters" spellcheck="false"></div>`).join('') + '<button type="button" class="cw-small" id="kyReset">RESET TO DEFAULTS</button>';
+    ed.querySelectorAll('input').forEach(inp => inp.addEventListener('input', () => { KM[+inp.dataset.i][+inp.dataset.f] = inp.dataset.f === '1' ? inp.value.toUpperCase() : inp.value; try { localStorage.setItem('kpcKeyerMem', JSON.stringify(KM)); } catch (e) {} kDraw(); }));
+    $('kyReset').addEventListener('click', () => { KM = KDEF.map(x => x.slice()); try { localStorage.removeItem('kpcKeyerMem'); } catch (e) {} ed.dataset.done = ''; kDraw(); });
+  }
+}
+function kInit() {
+  if (!$('kyGrid')) return;
+  kDraw();
+  const th = $('kyTheir'); if (th) th.addEventListener('input', () => { th.value = th.value.toUpperCase().replace(/\s/g, ''); kDraw(); });
+  document.addEventListener('keydown', e => {
+    if (MODE !== 'keyer') return;
+    const m = /^F([1-8])$/.exec(e.key); if (m) { e.preventDefault(); kPlay(+m[1] - 1); return; }
+    if (e.key === 'Escape' && keyer.v) { keyer.v.dispose(); keyer.v = null; keyer.i = -1; kDraw(); }
+  });
+}
+
 /* ================================================================ Problem letters
    Every copy check (drills and the QRQ copy ladder) counts which characters you missed. */
 let MISS = {}; try { MISS = JSON.parse(localStorage.getItem('kpcCWmiss') || '{}') || {}; } catch (e) { MISS = {}; }
@@ -1029,6 +1167,7 @@ const QBADGE = [[15, '🥉', 'Bronze'], [20, '🥈', 'Silver'], [25, '🥇', 'Go
 const qrq = { on: false, kind: 'copy', what: 'calls', wpm: 15, start: 15, top: 0, lives: 3, pts: 0, n: 0, item: '', rep: false, v: null, busy: false, t: 0 };
 let QPB = {}; try { QPB = JSON.parse(localStorage.getItem('kpcQRQ') || '{}') || {}; } catch (e) { QPB = {}; }
 function qrqItem() {
+  if (qrq.weekly) return qrq.list[qrq.n % qrq.list.length];
   const w = qrq.what === 'mixed' ? pick(['calls', 'calls', 'refs', 'words']) : qrq.what;
   if (w === 'calls') return newOp().call;
   if (w === 'refs') return chance(0.7) ? 'US-' + String(rnd(1, 11000)).padStart(4, '0') : pick(PLACES.parks)[0];
@@ -1068,6 +1207,7 @@ function qrqStart() {
   qrq.kind = (document.querySelector('input[name=qrqKind]:checked') || {}).value || 'copy';
   qrq.what = ($('qrqWhat') || {}).value || 'calls';
   qrq.start = +(($('qrqStart') || {}).value || 15);
+  qrq.weekly = false;
   if (qrq.kind === 'send' && S.input === 'keyboard') { qrqShow(); const f = $('qrqFb'); if (f) f.innerHTML = '<div class="bad">Pick Straight key or Paddles under Your Key first.</div>'; return; }
   Object.assign(qrq, { on: true, wpm: qrq.start, top: 0, lives: 3, pts: 0, n: 0, item: '', rep: false });
   try { localStorage.setItem('kpcQRQset', JSON.stringify({ kind: qrq.kind, what: qrq.what, start: qrq.start })); } catch (e) {}
@@ -1127,6 +1267,7 @@ function qrqSent(text, how) {
   qrqResult(true, `<div class="good">✓ Clean at ${S.input === 'straight' ? 'about ' + meas : at} WPM</div>`);
 }
 function qrqEnd(stopped) {
+  if (qrq.weekly && qrq.n) weeklySave();
   qrq.on = false; if (qrq.v) { qrq.v.dispose(); qrq.v = null; }
   const fb = $('qrqFb'), k = qrq.kind, pb = QPB[k] || {};
   let line = '';
@@ -1140,6 +1281,37 @@ function qrqEnd(stopped) {
   const t = $('qrqTarget'); if (t) t.innerHTML = '';
   qrqShow();
 }
+/* This week's KPC challenge: the same 60 calls, park numbers and words for everyone this week (picked from the week number),
+   copy ladder starting at 15 WPM. Score = points. */
+function isoWeek(d) { const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())); const day = t.getUTCDay() || 7; t.setUTCDate(t.getUTCDate() + 4 - day); const y = t.getUTCFullYear(); return [y, Math.ceil(((t - Date.UTC(y, 0, 1)) / 86400000 + 1) / 7)]; }
+function seeded(seed, fn) { const keep = Math.random; let a = seed >>> 0; Math.random = () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; try { return fn(); } finally { Math.random = keep; } }
+let WK = {}; try { WK = JSON.parse(localStorage.getItem('kpcWeekly') || '{}') || {}; } catch (e) { WK = {}; }
+const weekId = () => { const w = isoWeek(new Date()); return w[0] + '-W' + String(w[1]).padStart(2, '0'); };
+function weeklyStart() {
+  if (qrq.on) qrqEnd(true);
+  if (!audio()) return;
+  const id = weekId(), seed = id.split('').reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+  qrq.list = seeded(seed, () => { const out = []; for (let i = 0; i < 60; i++) { const r2 = Math.random(); out.push(r2 < 0.6 ? newOp().call : r2 < 0.8 ? 'US-' + String(rnd(1, 11000)).padStart(4, '0') : pick(WORDS)); } return out; });
+  const k = document.querySelector('input[name=qrqKind][value=copy]'); if (k) k.checked = true;
+  Object.assign(qrq, { kind: 'copy', weekly: true, start: 15, on: true, wpm: 15, top: 0, lives: 3, pts: 0, n: 0, item: '', rep: false });
+  $('qrqFb').innerHTML = `<div class="dim">🏆 Week ${id.slice(-2)} challenge: same calls for everyone. Go!</div>`; qrqShow(); qrqNext();
+}
+function weeklySave() {
+  const id = weekId(), b = WK[id];
+  if (!b || qrq.pts > b.pts) { WK[id] = { pts: qrq.pts, wpm: qrq.top, date: new Date().toISOString().slice(0, 10) }; try { localStorage.setItem('kpcWeekly', JSON.stringify(WK)); } catch (e) {} }
+  weeklyShow();
+}
+function weeklyShow() {
+  const box = $('wkInfo'); if (!box) return;
+  const id = weekId(), b = WK[id];
+  box.innerHTML = `<b>THIS WEEK'S KPC CHALLENGE</b> <span class="dim">Week ${id.slice(-2)} · same calls for everyone · copy ladder from 15 WPM · new set every Monday</span><br>` +
+    (b ? `Your best this week: <b>${b.pts} points</b> (top ${b.wpm} WPM) <button type="button" class="cw-small" id="wkShare">📣 SHARE</button><span class="dim" id="wkShared"></span>` : '<span class="dim">No score yet this week.</span>');
+  const sh = $('wkShare'); if (sh) sh.addEventListener('click', async () => {
+    const txt = `${myCall() || 'I'} scored ${b.pts} points (copied up to ${b.wpm} WPM) on the KPC CW Challenge, week ${id.slice(-2)} 🏆 Same calls for everyone: https://kentuckyportableclub.github.io/KPC-Links/kpc-cw.html#qrq`;
+    const out = $('wkShared');
+    try { if (navigator.share) { await navigator.share({ text: txt }); return; } await navigator.clipboard.writeText(txt); if (out) out.textContent = ' Copied. Paste it in the KPC Discord.'; } catch (e) { if (out) out.textContent = ' ' + txt; }
+  });
+}
 function qrqInit() {
   if (!$('qrqGo')) return;
   let st = {}; try { st = JSON.parse(localStorage.getItem('kpcQRQset') || '{}') || {}; } catch (e) {}
@@ -1149,6 +1321,7 @@ function qrqInit() {
   if ($('qrqStart')) $('qrqStart').value = String(st.start || (S.wpm <= 12 ? 10 : S.wpm <= 17 ? 15 : S.wpm <= 22 ? 20 : 25));
   document.querySelectorAll('input[name=qrqKind]').forEach(rr => rr.addEventListener('change', () => { if (qrq.on) qrqEnd(true); qrq.kind = rr.value; qrqShow(); }));
   $('qrqGo').addEventListener('click', qrqStart);
+  if ($('wkGo')) $('wkGo').addEventListener('click', weeklyStart); weeklyShow();
   $('qrqRep').addEventListener('click', qrqRepeat);
   $('qrqOk').addEventListener('click', qrqCheck);
   $('qrqIn').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); qrqCheck(); } });
@@ -1231,7 +1404,7 @@ async function midi() {
 }
 
 function setMode(m) {
-  stop(true); if (qrq.on) qrqEnd(true); MODE = m;
+  stop(true); if (qrq.on) qrqEnd(true); if (game.on) gameStop(); if (keyer.v) { keyer.v.dispose(); keyer.v = null; keyer.i = -1; } MODE = m;
   const app = $('cwApp'); if (app) app.dataset.mode = m;
   document.querySelectorAll('.cw-tab').forEach(t => t.setAttribute('aria-selected', String(t.dataset.mode === m)));
   document.querySelectorAll('[data-show]').forEach(el => { el.hidden = el.dataset.show.split(' ').indexOf(m) < 0; });
@@ -1243,6 +1416,8 @@ function setMode(m) {
     free: 'Send anything — it decodes as you go. Use it to check your timing.',
     drill: 'Press PLAY, type what you heard, press Enter.',
     qrq: '',
+    games: '',
+    keyer: '',
     sprint: 'Sprint: pick the format and length, press START, call CQ and work as many as you can before the clock runs out.',
     chat: 'Ragchew: press START. Answer the CQ, then trade name, QTH, rig, antenna and weather. Send AGN? to hear an over again, or QRS to slow them down.',
     listen: ''
@@ -1316,7 +1491,7 @@ function init() {
   setInput(S.input);
   document.querySelectorAll('.cw-tab').forEach(t => t.addEventListener('click', () => setMode(t.dataset.mode)));
   let m = 'hunt'; try { m = localStorage.getItem('kpcCWmode') || 'hunt'; } catch (e) {}
-  const hm = (location.hash.match(/#(hunt|act|drill|free|listen|qrq|chat|sprint)\b/) || [])[1]; if (hm) m = hm;
+  const hm = (location.hash.match(/#(hunt|act|drill|free|listen|qrq|chat|sprint|games|keyer)\b/) || [])[1]; if (hm) m = hm;
   setMode(m);
   $('cwGo').addEventListener('click', () => { if (session.on) stop(); else start(); });
   $('cwOverBtn').addEventListener('click', () => dec.flush());
@@ -1336,7 +1511,13 @@ function init() {
   $('cwDrillOk').addEventListener('click', drillCheck);
   document.querySelectorAll('[data-say]').forEach(b => b.addEventListener('click', () => { audio(); const v = new Voice({ call: 'ex', pitch: S.their, wpm: S.wpm, eff: S.eff, level: 0.9 }); v.play(b.dataset.say).then(() => v.dispose()); }));
   const sb = $('cwSwapBtn'); if (sb) sb.addEventListener('click', () => { S.swap = !S.swap; save(); releaseAll(); padLabels(); });
-  padLabels(); qrqInit(); weakShow(); spBest();
+  padLabels(); qrqInit(); weakShow(); spBest(); kInit();
+  if ($('gmGo')) {
+    $('gmGo').addEventListener('click', gameStart);
+    document.querySelectorAll('input[name=gmKind]').forEach(x => x.addEventListener('change', () => { if (game.on) gameStop(); const f = $('gmField'); if (f) f.innerHTML = ''; gameShow(); }));
+    const ty = $('gmType'); if (ty) ty.addEventListener('input', () => { const v = ty.value.toUpperCase(); ty.value = ''; for (const c of v) if (/[A-Z0-9]/.test(c)) gameChar(c); });
+    gameShow();
+  }
   fistMeter(); ui.stats();
 }
 
