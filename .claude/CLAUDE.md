@@ -59,3 +59,10 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - After editing fers.json, rebuild from the repo root: `python3 .claude/build/fers/guide.py` (field guide PDF). `python3 .claude/build/fers/resource_patch.py` refreshes the index pages and the 2-fer lines in the two Resource PDFs, but it expects the ORIGINAL Resource PDFs (index pages at pages 3-5), so run it against the copies from git history before commit 'Recheck 2-fers' or adjust it.
 - `python3 .claude/build/fers/sync.py` pushes fers.json into kpc-multi-park-spots.html, kpc-ky-data.json (tf) and ky-overlaps.geojson; `gpx.py` writes the GPX. NPS route files used for checks (Trail of Tears, Lewis & Clark route and auto tour route) are saved in .claude/build/fers; ky-lecl-auto.geojson is the simplified auto tour route map layer.
 - Also keep in step: KPC_KY_POTA_2fers_3fers.gpx, the DATA array in kpc-multi-park-spots.html, `tf` in kpc-ky-data.json (only confirmed pairs), ky-overlaps.geojson (unconfirmed pairs use kind "unconfirmed"), and the trail boxes on parks.html.
+
+## Park Notes (kpc-park-notes.html)
+- Community tips for every KY POTA park, SOTA summit and KFF reference (from kpc-ky-data.json, lowest number first).
+- Tips come from Brandon's Google Form "KPC Park Tips" → Google Sheet. Only rows with YES in the sheet's Approved column are published.
+- .github/workflows/kpc-park-notes.yml (every 2 hours) runs .github/scripts/kpc_park_notes.py: reads the sheet's published CSV from secret NOTES_SHEET_CSV, writes kpc-park-notes.json, copies approved photos to photos/notes/ (shrunk to 1280 px, no EXIF). Never put the CSV link in the site or in chat.
+- The "Submit a tip" button needs FORM.url and FORM.parkEntry at the top of kpc-park-notes.js (from the form's pre-filled link).
+

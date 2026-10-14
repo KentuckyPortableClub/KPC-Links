@@ -1,0 +1,33 @@
+name: KPC Park Notes
+# Copies approved tips (and their photos) from the KPC Park Tips Google Form sheet to the Park Notes page.
+# Runs every 2 hours, or any time from the Actions tab with "Run workflow".
+on:
+  schedule:
+    - cron: '41 */2 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kpc-park-notes
+  cancel-in-progress: false
+jobs:
+  notes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install image tools
+        run: pip install --quiet pillow
+      - name: Copy approved tips
+        env:
+          NOTES_SHEET_CSV: ${{ secrets.NOTES_SHEET_CSV }}
+        run: python3 .github/scripts/kpc_park_notes.py
+      - name: Save
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add kpc-park-notes.json photos/notes
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update park notes'
+            git pull --rebase --autostash || true
+            git push || echo 'Push skipped; will save on the next run.'
+          fi
