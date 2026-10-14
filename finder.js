@@ -111,6 +111,7 @@ function kyExtras(d,kp,links,card){
  if(aps.length){links.append(link('Directions: '+nm(aps[0]),dest(aps[0][0],aps[0][1])));if(Math.abs(aps[0][0]-d[3])>.002||Math.abs(aps[0][1]-d[4])>.002)links.append(link('Directions: park center',dest(d[3],d[4])))}
  else links.append(link('Directions',dest(d[3],d[4])));
  if(aps.length>1){const o=node('div','meta','Other entrances and parking: ');aps.slice(1,6).forEach((a,i)=>{if(i)o.append(document.createTextNode(' · '));o.append(link(nm(a),dest(a[0],a[1])))});card.append(o)}
+ if((d[0]==='POTA'&&kp)||(d[0]==='SOTA'&&/^W4K\//.test(d[1]))||(d[0]==='WWFF'&&kp))links.append(link('Park Notes: tips from operators','kpc-park-notes.html#'+encodeURIComponent(d[1])));
  if(!kp||d[0]!=='POTA'||kp.t===undefined)return;
  const info=[TYPENAME[kp.t]||kp.t];if(kp.acc)info.push(kp.acc+' access point'+(kp.acc>1?'s':'')+' on record');
  if(kp.camp)info.push('Camping available');
