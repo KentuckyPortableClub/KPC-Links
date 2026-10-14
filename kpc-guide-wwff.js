@@ -271,7 +271,7 @@
     .then(function (a) { render(a[0], a[1], a[2]); done(); })
     .catch(function (e) {
       var el = $('gErr');
-      if (el) { el.hidden = false; el.textContent = 'Sorry, the KFF list did not load (' + e.message + '). Try reloading, or use the PDF download.'; }
+      if (el) { el.hidden = false; el.textContent = 'Sorry, the KFF list did not load (' + e.message + '). Try reloading, or open the PDF.'; }
       root.dataset.ready = 'error';
       if (window.console) console.warn(e);
     });
