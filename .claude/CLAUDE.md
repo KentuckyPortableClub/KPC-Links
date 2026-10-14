@@ -66,3 +66,8 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - .github/workflows/kpc-park-notes.yml (every 2 hours) runs .github/scripts/kpc_park_notes.py: reads the sheet's published CSV from secret NOTES_SHEET_CSV, writes kpc-park-notes.json, copies approved photos to photos/notes/ (shrunk to 1280 px, no EXIF). Never put the CSV link in the site or in chat.
 - The "Submit a tip" button needs FORM.url and FORM.parkEntry at the top of kpc-park-notes.js (from the form's pre-filled link).
 
+## KPC Community (kpc-community.html)
+- Posts from Brandon's Google Form "KPC Community" (one form, branching sections by type: Station setup, Antenna build, Field tip, Gear review, Activation story, Elmer listing, Operator spotlight). Only rows with YES in Approved are published.
+- .github/workflows/kpc-community.yml (every 2 hours) runs .github/scripts/kpc_community.py with secret COMMUNITY_SHEET_CSV; writes kpc-community.json and photos/community/ (1280 px, no EXIF). Question names in the form must match FIELDS in that script.
+- The Share yours button uses FORM_URL at the top of kpc-community.js.
+
