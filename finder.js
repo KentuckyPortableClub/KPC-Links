@@ -43,18 +43,18 @@ if(window.L){
   map=L.map('map',{zoomAnimation:true,markerZoomAnimation:true}).setView([39,-97],4);
   (function mapSize(){const el=document.getElementById('map'),wrap=el.parentElement;
    const bar=document.createElement('div');bar.className='mapbar';
-   bar.innerHTML='<span class="mapbar-l">MAP SIZE</span><button type="button" data-s="s" class="secondary tiny">Small</button><button type="button" data-s="m" class="secondary tiny">Medium</button><button type="button" data-s="t" class="secondary tiny">Tall</button><button type="button" data-s="f" class="primary tiny mapfs">⛶ Full screen</button><button type="button" class="secondary tiny maplay" hidden>☰ Layers</button><button type="button" class="primary tiny mapx" hidden>✕ Close map</button>';
+   bar.innerHTML='<span class="mapbar-l">MAP SIZE</span><button type="button" data-s="s" class="secondary tiny">Small</button><button type="button" data-s="m" class="secondary tiny">Medium</button><button type="button" data-s="t" class="secondary tiny">Tall</button><button type="button" data-s="f" class="primary tiny mapfs">⛶ Full screen</button><button type="button" class="primary tiny mapx" hidden>✕ Close map</button>';
    el.insertAdjacentElement('beforebegin',bar);
    const H={s:'280px',m:'',t:'78vh'};let cur='m';try{cur=localStorage.getItem('kpcMapSize')||'m'}catch(e){}if(cur==='f')cur='m';
    const fx=()=>setTimeout(()=>map.invalidateSize(),60);
    function set(k){if(k==='f')return full(true);cur=k;try{localStorage.setItem('kpcMapSize',k)}catch(e){}el.style.height=H[k]||'';bar.querySelectorAll('[data-s]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.s===k)));fx()}
    function sizeFull(){if(wrap.classList.contains('kpc-mapfull')){el.style.height='';el.style.minHeight='';el.style.flex=''}else el.style.height=H[cur]||''}
    window.addEventListener('resize',()=>{if(wrap.classList.contains('kpc-mapfull')){sizeFull();map.invalidateSize()}});
-   const lph=document.createComment('layers');function moveLayers(on){const drops=[...document.querySelectorAll('.layerdrop')];if(!drops.length)return;let g=wrap.querySelector('.gis-controls');if(on){if(!g){g=document.createElement('div');g.className='gis-controls';wrap.append(g)}if(!lph.parentNode)drops[0].before(lph);drops.forEach(x=>g.append(x))}else if(lph.parentNode){drops.reverse().forEach(x=>lph.after(x));lph.remove();g&&g.classList.remove('open')}}
-   function full(on){moveLayers(on);wrap.classList.toggle('kpc-mapfull',on);document.documentElement.classList.toggle('kpc-nofs-scroll',on);bar.querySelector('.mapx').hidden=!on;bar.querySelector('.maplay').hidden=!on;if(!on){const g=wrap.querySelector('.gis-controls');g&&g.classList.remove('open')}bar.querySelector('.mapfs').hidden=on;sizeFull();
+   function moveLayers(on){const lb=window.kpcLayerBar;if(!lb)return;on?lb.dock(bar):lb.undock()}   // full screen: the Map layers dropdown rides along in the map toolbar
+   function full(on){moveLayers(on);wrap.classList.toggle('kpc-mapfull',on);document.documentElement.classList.toggle('kpc-nofs-scroll',on);bar.querySelector('.mapx').hidden=!on;bar.querySelector('.mapfs').hidden=on;sizeFull();
     if(on){try{history.pushState({kpcfs:1},'')}catch(e){}}fx()}
-   bar.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.classList.contains('maplay')){const g=wrap.querySelector('.gis-controls');if(g){g.style.top=(bar.offsetTop+bar.offsetHeight+6)+'px';g.classList.toggle('open')}}else if(b.classList.contains('mapx')){if(history.state&&history.state.kpcfs){history.back()}else full(false)}else set(b.dataset.s)});
-   window.addEventListener('keydown',e=>{if(e.key==='Escape'&&wrap.classList.contains('kpc-mapfull'))full(false)});
+   bar.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.closest('.kx-tbar'))return;if(b.classList.contains('mapx')){if(history.state&&history.state.kpcfs){history.back()}else full(false)}else set(b.dataset.s)});
+   window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!e.defaultPrevented&&wrap.classList.contains('kpc-mapfull'))full(false)});
    window.addEventListener('popstate',()=>{if(wrap.classList.contains('kpc-mapfull'))full(false)});
    set(cur);})();
   const tileNotice=document.createElement('p');
@@ -85,7 +85,17 @@ if(window.L){
   map.on('baselayerchange',e=>{satCls(e.name);try{localStorage.setItem('kpcBaseMap2',e.name)}catch(_){}});
   layer=L.layerGroup().addTo(map);
   /* parking & entrance markers + Park Overlaps (kpc-map-extras.js, shared with the Trip Planner) */
-  if(window.KPCX)window.kpcExtras=KPCX.attach(map,{key:'cmd'});window.kpcMap=map;
+  /* "Map layers" dropdown + Thick boundaries / Big pins switches in the search bar (kpc-map-extras.js).
+     The boundary and trail checkboxes (read by gis-overlays.js) move into it; on/off choices are remembered (kpcCmdLayers). */
+  let lsec=null;
+  if(window.KPCX&&KPCX.layerBar){const lb=KPCX.layerBar();window.kpcLayerBar=lb;const fl=document.querySelector('#finder-search .filters');(fl||$('status')).after(lb.el);
+   document.querySelectorAll('#finder-search details.layerdrop').forEach(dt=>{const t=dt.querySelector('summary span');const sec=lb.section(t?t.textContent.replace(/^\S+\s/,''):'Layers');[...dt.childNodes].forEach(n=>{if(n.nodeName!=='SUMMARY')sec.append(n)});dt.remove()});
+   lsec=lb.section('Parking, entrances & Park Overlaps');
+   const LK='kpcCmdLayers';let sv={};try{sv=JSON.parse(localStorage.getItem(LK)||'{}')||{}}catch(_){}
+   lb.panel.querySelectorAll('input[id^="gis-"]').forEach(i=>{if(typeof sv[i.id]==='boolean')i.checked=sv[i.id];i.addEventListener('change',()=>{sv[i.id]=i.checked;try{localStorage.setItem(LK,JSON.stringify(sv))}catch(_){}})});
+   lb.recount()}
+  if(window.KPCX)window.kpcExtras=KPCX.attach(map,{key:'cmd',panel:lsec});window.kpcMap=map;
+  if(window.kpcLayerBar&&window.kpcExtras){kpcExtras.onChange(()=>kpcLayerBar.recount());kpcLayerBar.recount()}
   window.addEventListener('load',()=>map.invalidateSize({animate:false}));
 }else{status.textContent='Map library could not load; search results can still work.'}
 const rad=n=>n*Math.PI/180;
@@ -359,7 +369,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-rv]');if(!
   try{await navigator.clipboard.writeText(u);status.textContent='Rove link copied. Paste it in a text or email.'}catch(_){prompt('Copy this rove link:',u)}})()}});
 document.addEventListener('input',e=>{const i=e.target.closest('.rv-in');if(!i)return;const s=rove.find(x=>x.id===i.dataset.id);if(s){s.n=i.value;saveRove();if(roveLay)drawRovePins()}});
 document.addEventListener('change',e=>{if(e.target.id==='roveFirst'){roveOpt.first=e.target.checked;try{localStorage.setItem(ROVEOPT,JSON.stringify(roveOpt))}catch(_){}renderRove()}});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&roveAdding)addMode(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!e.defaultPrevented&&roveAdding)addMode(false)});
 $('clearplan').addEventListener('click',()=>{rove=[];saveRove();renderRove()});
 if(map&&window.L){
  /* catch the tap before park outlines, pins or overlap areas can open their own popups */
@@ -374,12 +384,6 @@ if(map&&window.L){
  document.head.appendChild(st)}
 readShared();
 
-/* Park Overlaps button next to the map size buttons (same switch as the map panel) */
-(function(){const bar=document.querySelector('.mapbar'),X=window.kpcExtras;if(!bar||!X)return;
- const b=document.createElement('button');b.type='button';b.className='secondary tiny ovlbtn';b.textContent='◆ Park Overlaps';b.title='Highlight possible POTA 2-fers and other program overlaps';
- const sync=()=>{b.setAttribute('aria-pressed',String(X.overlapsOn()))};
- b.addEventListener('click',e=>{e.stopPropagation();X.setOverlaps(!X.overlapsOn());sync();status.textContent=X.overlapsOn()?'Park Overlaps on: gold = possible POTA 2-fer, purple = other program overlap. Tap an area for details.':'Park Overlaps off.'});
- X.onChange(sync);sync();const fs=bar.querySelector('.mapfs');(fs||bar.lastChild).after(b)})();
 drawSaved();
 
 /* My Parks checker: redraw when new answers arrive, keeping the list's scroll spot; wait while a map popup is open */
