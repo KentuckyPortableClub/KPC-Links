@@ -19,8 +19,13 @@ for f,(img,pd,pm,who) in P.items():
     s=re.sub(r'<style id="kpc-hero-pic">.*?</style>\n?','',s,flags=re.S)
     s=re.sub(r'<span class="kpc-who">.*?</span>','',s)
     desk=('.hero{position:relative;background:linear-gradient(90deg,rgba(7,7,7,.9) 0%%,rgba(7,7,7,.66) 42%%,rgba(7,7,7,.18) 72%%,rgba(7,7,7,0) 100%%),url("%s.jpg") %s/cover no-repeat #070707}'%(img,pd))
+    if who:   # computers: the whole picture on the right with a soft fade, so the person is never cut off
+        desk=('@media(min-width:761px){.hero{position:relative;background:#070707;min-height:520px;overflow:hidden}'
+              '.hero:before{content:"";display:block;position:absolute;top:0;bottom:0;right:0;left:auto;width:auto;height:auto;aspect-ratio:1672/941;max-width:100%%;border:0;border-radius:0;box-shadow:none;'
+              'background:url("%s.jpg") right center/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 22%%,#000 45%%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 22%%,#000 45%%);z-index:0}'
+              '.hero .hero-inner,.hero .wrap{position:relative;z-index:2}header.hero{display:flex;align-items:center}header.hero .wrap{width:100%%}.hero h1,.hero .hero-copy,.hero .eyebrow{text-shadow:0 2px 12px rgba(0,0,0,.85)}}'%img)
     if who:   # phone: the picture sits on top (face showing), the words go underneath it
-        mob=('@media(max-width:760px){.hero{display:block;min-height:0;padding-top:104vw;background:linear-gradient(180deg,rgba(7,7,7,0) 0,rgba(7,7,7,0) calc(104vw - 150px),#070707 104vw),'
+        mob=('@media(max-width:760px){.hero{position:relative;display:block;min-height:0;padding-top:104vw;background:linear-gradient(180deg,rgba(7,7,7,0) 0,rgba(7,7,7,0) calc(104vw - 150px),#070707 104vw),'
              'url("%s-mobile.jpg") center %s/100%% auto no-repeat #070707}.hero:before,.hero:after{display:none}.hero .hero-inner,.hero .wrap{margin:0 auto;padding-top:4px;padding-bottom:38px}.kpc-who{top:12px;bottom:auto}}'%(img,pm))
     else:
         mob=('@media(max-width:760px){.hero{min-height:460px;background:linear-gradient(180deg,rgba(7,7,7,.35) 0%%,rgba(7,7,7,.55) 45%%,rgba(7,7,7,.88) 100%%),url("%s-mobile.jpg") %s/cover no-repeat #070707}}'%(img,pm))
