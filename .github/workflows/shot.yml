@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - run: npm i playwright@1.47.2 && npx playwright install --with-deps chromium && node shot.js
+      - run: python3 osm.py
       - run: |
           git config user.name bot; git config user.email bot@x
-          git add *.png; git commit -m shots; git push
+          git add osm.json; git commit -m data; git push
