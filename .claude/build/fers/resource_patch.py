@@ -27,7 +27,7 @@ def sec(d):
   if 'riverbank' in d['how'].lower(): return 2
   if 'through the park' in d['how']: return 4
   return 5
-SECN=['3-Fers','Historic trail sites (visitor centers, certified sites, auto tour route)','Ohio River banks (Lewis & Clark)','Trail of Tears Water Route (Kentucky Lake & Mississippi River)','Trail 2-fers','Shared boundaries']
+SECN=['3-Fers','Historic trail sites (visitor centers, certified sites, auto tour route)','Ohio River banks (Lewis & Clark)','Trail of Tears Water Route (Kentucky Lake & Mississippi River)','Trail 2-fers','Overlapping boundaries']
 def guidept(d):
   return next((p for p in d['points'] if not p['what'].lower().startswith(('parking','drive up'))),d['points'][0])
 # ---------------- index pages ----------------

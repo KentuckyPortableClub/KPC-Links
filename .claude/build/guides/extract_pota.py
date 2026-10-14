@@ -217,7 +217,7 @@ def fers_data():
                      'pin': [p['la'], p['lo']], 'pinWhat': p['what'].strip(),
                      'tag': tag})
     return {'updated': F.get('updated'), 'sections': ['3-Fers', 'Historic trail sites (visitor centers, certified sites, auto tour route)',
-            'Ohio River banks (Lewis & Clark)', 'Trail of Tears Water Route (Kentucky Lake & Mississippi River)', 'Trail 2-fers', 'Shared boundaries'],
+            'Ohio River banks (Lewis & Clark)', 'Trail of Tears Water Route (Kentucky Lake & Mississippi River)', 'Trail 2-fers', 'Overlapping boundaries'],
             'spots': rows, 'unconfirmed': F['unconfirmed']}
 
 def us0608():
