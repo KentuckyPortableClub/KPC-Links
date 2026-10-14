@@ -1,1 +1,17 @@
-{"updated":"2026-10-13","notes":[]}
+{
+ "updated": "2026-10-14",
+ "notes": [
+  {
+   "id": "417a19b8a22b",
+   "ref": "US-1281",
+   "call": "KZ4CP",
+   "type": "Other",
+   "gps": "37.722538,-82.740829",
+   "text": "Beautiful scenery",
+   "date": "Oct 2026",
+   "photos": [
+    "photos/notes/417a19b8a22b-1.jpg"
+   ]
+  }
+ ]
+}
