@@ -127,14 +127,14 @@ function Voice(o) {
   // fading (QSB): a slow wobble on this station's level; depth and speed follow the FADING slider
   this.rate = Math.random(); this.lfo = AC.createOscillator(); this.depth = AC.createGain(); this.depth.gain.value = 0;
   this.lfo.connect(this.depth); this.depth.connect(this.fade.gain); this.lfo.start();
-  this.noQsb = !!o.noQsb; this.setQsb();
+  this.noQsb = !!o.noQsb; this.fadeLvl = o.fade; this.bug = o.bug || 0; this.setQsb();
   this.osc.start(); VOICES.add(this);
 }
 // level 0 off, 1 light, 2 moderate, 3 deep, 4 deep & fast (fades almost to nothing)
 const QSB = [[0, 0, 0], [0.25, 0.05, 0.12], [0.45, 0.07, 0.2], [0.7, 0.1, 0.3], [0.92, 0.25, 0.7]];
 Voice.prototype.setQsb = function () {
   if (!AC || !this.lfo) return;
-  const q = (this.noQsb ? QSB[0] : QSB[S.fade]) || QSB[0], f = q[0] * Math.min(1, 0.85 + this.rate * 0.3), t = AC.currentTime;
+  const q = (this.fadeLvl != null ? QSB[this.fadeLvl] : this.noQsb ? QSB[0] : QSB[S.fade]) || QSB[0], f = q[0] * Math.min(1, 0.85 + this.rate * 0.3), t = AC.currentTime;
   const lo = Math.min(0.98, f);
   this.lfo.frequency.setTargetAtTime(q[1] + this.rate * (q[2] - q[1]) || 0.01, t, 0.3);
   this.fade.gain.setTargetAtTime(this.level * (1 - lo / 2), t, 0.3);   // swings between level*(1-lo) and level
@@ -144,6 +144,10 @@ Voice.prototype.play = function (text) {
   this.cancel();
   if (!AC) return Promise.resolve();
   const tl = timeline(text, this.wpm, this.eff, this.jit), t0 = AC.currentTime + 0.06, g = this.env.gain;
+  if (this.bug) { // a bug (semi-automatic key): machine dits, hand-made dahs that run long
+    const u = 1.2 / this.wpm; let sh = 0;
+    tl.marks = tl.marks.map(m => { const len = m[1] - m[0], s0 = m[0] + sh, l2 = len > 2 * u ? len * (1 + this.bug) : len; sh += l2 - len; return [s0, s0 + l2]; }); tl.total += sh;
+  }
   g.cancelScheduledValues(t0); g.setValueAtTime(0, t0);
   tl.marks.forEach(m => { g.setTargetAtTime(1, t0 + m[0], RAMP); g.setTargetAtTime(0, t0 + m[1], RAMP); });
   return new Promise(res => { this.done = res; this.timer = setTimeout(() => { this.timer = null; this.done = null; res(); }, (tl.total + 0.12) * 1000); });
@@ -1053,6 +1057,149 @@ function kInit() {
   });
 }
 
+/* ================================================================ Expert Gauntlet: five rounds for seasoned ops
+   1 fast copy, 2 cut numbers + tricky calls, 3 pileup from hell, 4 rough band, 5 sloppy fists.
+   One AGN per item, no hints, three busts and you're out. Optional weekly version: same rounds for everyone. */
+const GR = [null,
+  { name: 'Fast copy', how: 'Calls at 35 WPM and up, played once. Type the call.', n: 8 },
+  { name: 'Cut numbers & tricky calls', how: 'Type the call and the exchange as numbers: 5NN = 599, T = 0, N = 9, A = 1, E = 5.', n: 6 },
+  { name: 'Pileup from hell', how: 'A dozen stations at once, look-alike calls. Type every full call you can pick out (space between them). Two or more right clears it.', n: 4 },
+  { name: 'Rough band', how: 'A weak station with deep fading, static and a loud neighbour 100 Hz away. Type the call and exchange.', n: 5 },
+  { name: 'Sloppy fists', how: 'A bug with long dahs and a ragged straight key, at speed. Type what they sent.', n: 4 }];
+let GPB = {}; try { GPB = JSON.parse(localStorage.getItem('kpcGauntlet') || '{}') || {}; } catch (e) { GPB = {}; }
+const gt = { on: false, gen: 0, round: 0, idx: 0, lists: null, busts: 0, pts: 0, agn: 0, v: null, timer: 0, t0: 0, weekly: false, busy: false };
+const CUT = { '0': 'T', '9': 'N', '1': 'A', '5': 'E' }, UNCUT = { T: '0', O: '0', N: '9', A: '1', E: '5', U: '2', V: '3', B: '7', D: '8' };
+function gtCut(d) { return d.split('').map(c => CUT[c] && chance(0.75) ? CUT[c] : c).join(''); }
+function gtNum(tok) { return /^[0-9TONAEUVBD]{3}$/.test(tok) && /[0-9]/.test(tok + '0') ? tok.split('').map(c => UNCUT[c] || c).join('') : tok; }
+function gtTricky() {
+  const c = newOp().call, k = rnd(1, 7);
+  return k === 1 ? pick(['VP2V', 'KP4', 'VE3', 'KH6', 'PJ2', 'ZF2', 'C6A']) + '/' + c : k === 2 ? c + '/P' : k === 3 ? c + '/QRP' : k === 4 ? c + '/M' : k === 5 ? c + '/' + rnd(0, 9) : c;
+}
+function gtLook(c) { // a look-alike call: one letter or digit changed
+  const i = rnd(1, c.length - 1), ch = c[i], al = /\d/.test(ch) ? '0123456789' : 'ABDEHIKNRSTUVW';
+  let n; do { n = pick(al.split('')); } while (n === ch); return c.slice(0, i) + n + c.slice(i + 1);
+}
+function gtBuild() {
+  const L = [null, [], [], [], [], []];
+  for (let i = 0; i < GR[1].n; i++) L[1].push({ text: newOp().call, wpm: 35 + i });
+  for (let i = 0; i < GR[2].n; i++) { const c = gtTricky(), ser = String(rnd(1, 999)).padStart(3, '0'); L[2].push({ text: `${c} 5NN ${gtCut(ser)}`, ans: `${c} 599 ${ser}`, wpm: 30 + i }); }
+  for (let i = 0; i < GR[3].n; i++) {
+    const base = newOp().call, set = new Set([base]); const looks = rnd(2, 3);
+    for (let k = 0; k < looks; k++) set.add(gtLook(base));
+    while (set.size < rnd(9, 12)) set.add(newOp().call);
+    L[3].push({ calls: [...set].map(c => ({ c, wpm: rnd(26, 36), d: rnd(0, 700), p: rnd(-35, 35), twice: chance(0.4) })) });
+  }
+  for (let i = 0; i < GR[4].n; i++) { const o = newOp(); L[4].push({ text: `${o.call} 5NN ${o.st}`, wpm: 26 + i }); }
+  const msgs = () => { const nm = pick(NAMES), st = pick(['TX', 'OH', 'KY', 'TN', 'MI', 'NC']); return pick([`R R TNX FER CALL UR 579 579 IN ${st}`, `NAME HR IS ${nm} ${nm} QTH NR ${pick(TOWNS.KY)}`, `RIG IS ${pick(RIGS)} ES ANT IS ${pick(ANTS)}`, `WX HR ${pick(WXS)} ES ${rnd(30, 90)}F HW CPY`, `TU ${nm} 73 ES GL CU AGN`]); };
+  for (let i = 0; i < GR[5].n; i++) L[5].push({ text: msgs(), wpm: 24 + i * 2, bug: i % 2 === 0 ? 0.45 : 0, jit: i % 2 === 0 ? 0.06 : 0.3 });
+  return L;
+}
+function gtShow(msg) {
+  const set = (id, v) => { const e = $(id); if (e) e.textContent = v; };
+  set('gtRound', gt.round ? gt.round + ' / 5' : '–'); set('gtBusts', '✖'.repeat(gt.busts) + '○'.repeat(Math.max(0, 3 - gt.busts))); set('gtPts', String(gt.pts));
+  const it = gt.on && gt.lists && gt.round ? `${Math.min(gt.idx + 1, GR[gt.round].n)} of ${GR[gt.round].n}` : '–'; set('gtItem', it);
+  const go = $('gtGo'); if (go) { go.textContent = gt.on ? '■ STOP' : '⚔️ START THE GAUNTLET'; go.classList.toggle('stop', gt.on); }
+  const ag = $('gtAgn'); if (ag) ag.disabled = !gt.on || gt.agn >= 1 || gt.busy;
+  if (msg != null) { const f = $('gtFb'); if (f) f.innerHTML = msg; }
+  const b = $('gtBest'); if (b) {
+    const wk = GPB.weeks && GPB.weeks[weekId()], best = GPB.best;
+    b.innerHTML = (best ? `Your best: <b>${best.pts} points</b>, reached round ${best.round}${best.cleared ? ' · ⚔️ GAUNTLET CLEARED' : ''}` : 'No gauntlet run yet.') + (wk ? ` · This week: <b>${wk.pts}</b>` : '') + (best ? ' <button type="button" class="cw-small" id="gtShare">📣 SHARE</button><span class="dim" id="gtShared"></span>' : '');
+    const sh = $('gtShare'); if (sh) sh.onclick = async () => { const txt = `${myCall() || 'I'} scored ${best.pts} on the KPC Expert CW Gauntlet (round ${best.round} of 5${best.cleared ? ', cleared it!' : ''}) ⚔️ https://kentuckyportableclub.github.io/KPC-Links/kpc-cw.html#gaunt`; const o = $('gtShared'); try { if (navigator.share) { await navigator.share({ text: txt }); return; } await navigator.clipboard.writeText(txt); if (o) o.textContent = ' Copied.'; } catch (e) { if (o) o.textContent = ' ' + txt; } };
+  }
+}
+function gtEnv(on) { // round 4: loud hiss, static crashes and a loud neighbour
+  bandStop(); if (gt.qrm) { gt.qrm.dispose(); gt.qrm = null; }
+  if (!AC) return;
+  noiseG.gain.setTargetAtTime(on ? 0.22 : (gt.on ? 0.03 : 0), AC.currentTime, 0.1);
+  if (!on) return;
+  const g = gt.gen;
+  const qrn = () => { if (g !== gt.gen) return; crash(true); band.timers.push(setTimeout(qrn, rnd(600, 2500))); }; qrn();
+  const qrm = async () => { while (g === gt.gen) { const o = newOp(); gt.qrm = new Voice({ call: o.call, pitch: S.their + 100, wpm: rnd(22, 30), level: 0.85, noQsb: true }); await gt.qrm.play(`CQ TEST ${o.call} ${o.call} TEST`); if (gt.qrm) gt.qrm.dispose(); gt.qrm = null; await wait(rnd(100, 600)); } }; qrm();
+}
+function gtStop(msg) {
+  gt.on = false; gt.gen++; clearTimeout(gt.timer); if (gt.v) { gt.v.forEach ? gt.v.forEach(v => v.dispose()) : gt.v.dispose(); gt.v = null; }
+  gtEnv(false); if (AC) noiseG.gain.setTargetAtTime(0, AC.currentTime, 0.1);
+  gtShow(msg);
+}
+function gtStart() {
+  if (gt.on) { gtStop('Stopped.'); return; }
+  if (!audio()) return;
+  gt.weekly = !!($('gtWeekly') || {}).checked;
+  const id = weekId();
+  gt.lists = gt.weekly ? seeded(id.split('').reduce((h, c) => (h * 33 + c.charCodeAt(0)) >>> 0, 11) + 99, gtBuild) : gtBuild();
+  Object.assign(gt, { on: true, gen: gt.gen + 1, round: 0, idx: 0, busts: 0, pts: 0 });
+  gtRound(1);
+}
+async function gtRound(n) {
+  const g = gt.gen; gt.round = n; gt.idx = 0;
+  gtEnv(n === 4);
+  gtShow(`<div class="gt-intro"><b>ROUND ${n}: ${GR[n].name.toUpperCase()}</b><br>${GR[n].how}</div>`);
+  await wait(2600); if (g !== gt.gen) return;
+  gtItem();
+}
+async function gtItem() {
+  const g = gt.gen; gt.agn = 0;
+  const a = $('gtIn'); if (a) { a.value = ''; a.focus({ preventScroll: true }); }
+  gtShow(); await gtPlay(); if (g !== gt.gen) return;
+  clearTimeout(gt.timer); gt.t0 = Date.now();
+  gt.timer = setTimeout(() => { if (g === gt.gen) gtJudge(true); }, gt.round === 3 ? 45000 : 30000);
+}
+async function gtPlay() {
+  const it = gt.lists[gt.round][gt.idx]; if (!it) return;
+  if (gt.v) { gt.v.forEach ? gt.v.forEach(v => v.dispose()) : gt.v.dispose(); gt.v = null; }
+  gt.busy = true; gtShow();
+  try {
+    if (gt.round === 3) {
+      const vs = it.calls.map(c => new Voice({ call: c.c, pitch: S.their + c.p, wpm: c.wpm, jit: 0.05, level: 0.35 + Math.random() * 0.5, noQsb: true })); gt.v = vs;
+      await Promise.all(vs.map((v, i) => wait(it.calls[i].d).then(() => v.play(it.calls[i].twice ? it.calls[i].c + ' ' + it.calls[i].c : it.calls[i].c))));
+    } else {
+      const v = new Voice({ call: 'gt', pitch: S.their, wpm: it.wpm, eff: it.wpm, jit: it.jit || 0.02, bug: it.bug || 0, level: gt.round === 4 ? 0.3 : 0.9, noQsb: gt.round !== 4, fade: gt.round === 4 ? 4 : undefined });
+      gt.v = v; await v.play(it.text);
+    }
+  } finally { gt.busy = false; gtShow(); }
+}
+function gtAgn() { if (!gt.on || gt.agn >= 1 || gt.busy) return; gt.agn++; clearTimeout(gt.timer); const g = gt.gen; gtPlay().then(() => { if (g !== gt.gen) return; gt.timer = setTimeout(() => { if (g === gt.gen) gtJudge(true); }, 30000); }); }
+function gtJudge(timeout) {
+  if (!gt.on) return;
+  clearTimeout(gt.timer);
+  const it = gt.lists[gt.round][gt.idx], a = $('gtIn'), got = norm(a ? a.value : '');
+  if (!timeout && !got) return;
+  let ok = false, msg = '';
+  if (gt.round === 3) {
+    const calls = new Set(it.calls.map(c => c.c)), typed = [...new Set(got.split(' ').filter(Boolean))];
+    const right = typed.filter(t => calls.has(t)), wrong = typed.filter(t => !calls.has(t));
+    ok = right.length >= 2; gt.pts += right.length * 15 - wrong.length * 5;
+    msg = `${ok ? '<div class="good">✓' : '<div class="bad">✗'} ${right.length} right${wrong.length ? `, ${wrong.length} busted (${esc(wrong.join(' '))})` : ''}</div><div class="dim">In the pile: ${esc([...calls].join(' '))}</div>`;
+  } else if (gt.round === 5) {
+    const want = norm(it.text), d = lev(want.replace(/ /g, ''), got.replace(/ /g, '')), acc = Math.max(0, 1 - d / want.replace(/ /g, '').length);
+    ok = acc >= 0.8; if (ok) gt.pts += Math.round(acc * it.wpm * 3);
+    msg = `${ok ? '<div class="good">✓' : '<div class="bad">✗'} ${Math.round(acc * 100)}% copied</div><div class="dim">They sent: ${esc(want)}</div>`;
+  } else {
+    const want = norm(it.ans || it.text);
+    const fix = s => s.split(' ').map((t, i) => i === 0 ? t : gtNum(t)).join(' ');
+    ok = fix(got) === fix(want); if (ok) gt.pts += Math.round(it.wpm * want.replace(/ /g, '').length / 5 * gt.round);
+    msg = `${ok ? '<div class="good">✓ ' + esc(want) : '<div class="bad">✗ It was ' + esc(want)}</div>${!ok && got ? `<div class="dim">You typed: ${esc(got)}</div>` : ''}`;
+  }
+  if (timeout && !ok) msg = '<div class="bad">⏱ Out of time.</div>' + msg;
+  if (!ok) gt.busts++;
+  gtShow(msg);
+  const g = gt.gen;
+  if (gt.busts >= 3) { setTimeout(() => { if (g === gt.gen) gtFinish(false); }, 1800); return; }
+  gt.idx++;
+  setTimeout(() => {
+    if (g !== gt.gen) return;
+    if (gt.idx >= GR[gt.round].n) { gt.pts += 100 * gt.round; if (gt.round >= 5) { gtFinish(true); return; } gtRound(gt.round + 1); }
+    else gtItem();
+  }, ok ? 1100 : 2400);
+}
+function gtFinish(cleared) {
+  const pts = gt.pts, round = gt.round, best = GPB.best, isPB = !best || pts > best.pts;
+  if (isPB) GPB.best = { pts, round, cleared, date: new Date().toISOString().slice(0, 10) };
+  if (gt.weekly) { GPB.weeks = GPB.weeks || {}; const w = GPB.weeks[weekId()]; if (!w || pts > w.pts) GPB.weeks[weekId()] = { pts, round, cleared }; }
+  try { localStorage.setItem('kpcGauntlet', JSON.stringify(GPB)); } catch (e) {}
+  gtStop(`<div class="qrq-end">${cleared ? '⚔️ <b>GAUNTLET CLEARED!</b> All five rounds.' : `Three busts. Out in round ${round}: <b>${GR[round].name}</b>.`}<br><b>${pts} points</b>${isPB ? ' · 🎉 New personal best!' : ''}</div>`);
+}
+
 /* ================================================================ Problem letters
    Every copy check (drills and the QRQ copy ladder) counts which characters you missed. */
 let MISS = {}; try { MISS = JSON.parse(localStorage.getItem('kpcCWmiss') || '{}') || {}; } catch (e) { MISS = {}; }
@@ -1418,7 +1565,7 @@ async function midi() {
 }
 
 function setMode(m) {
-  stop(true); if (qrq.on) qrqEnd(true); if (game.on) gameStop(); if (keyer.v) { keyer.v.dispose(); keyer.v = null; keyer.i = -1; } MODE = m;
+  stop(true); if (qrq.on) qrqEnd(true); if (game.on) gameStop(); if (gt.on) gtStop(''); if (keyer.v) { keyer.v.dispose(); keyer.v = null; keyer.i = -1; } MODE = m;
   const app = $('cwApp'); if (app) app.dataset.mode = m;
   document.querySelectorAll('.cw-tab').forEach(t => t.setAttribute('aria-selected', String(t.dataset.mode === m)));
   document.querySelectorAll('[data-show]').forEach(el => { el.hidden = el.dataset.show.split(' ').indexOf(m) < 0; });
@@ -1431,6 +1578,7 @@ function setMode(m) {
     drill: 'Press PLAY, type what you heard, press Enter.',
     qrq: '',
     games: '',
+    gaunt: '',
     keyer: '',
     sprint: 'Sprint: pick the format and length, press START, call CQ and work as many as you can before the clock runs out.',
     chat: 'Ragchew: press START. Answer the CQ, then trade name, QTH, rig, antenna and weather. Send AGN? to hear an over again, or QRS to slow them down.',
@@ -1507,7 +1655,7 @@ function init() {
   setInput(S.input);
   document.querySelectorAll('.cw-tab').forEach(t => t.addEventListener('click', () => setMode(t.dataset.mode)));
   let m = 'hunt'; try { m = localStorage.getItem('kpcCWmode') || 'hunt'; } catch (e) {}
-  const hm = (location.hash.match(/#(hunt|act|drill|free|listen|qrq|chat|sprint|games|keyer)\b/) || [])[1]; if (hm) m = hm;
+  const hm = (location.hash.match(/#(hunt|act|drill|free|listen|qrq|chat|sprint|games|keyer|gaunt)\b/) || [])[1]; if (hm) m = hm;
   setMode(m);
   $('cwGo').addEventListener('click', () => { if (session.on) stop(); else start(); });
   $('cwOverBtn').addEventListener('click', () => dec.flush());
@@ -1528,6 +1676,7 @@ function init() {
   document.querySelectorAll('[data-say]').forEach(b => b.addEventListener('click', () => { audio(); const v = new Voice({ call: 'ex', pitch: S.their, wpm: S.wpm, eff: S.eff, level: 0.9 }); v.play(b.dataset.say).then(() => v.dispose()); }));
   const sb = $('cwSwapBtn'); if (sb) sb.addEventListener('click', () => { S.swap = !S.swap; save(); releaseAll(); padLabels(); });
   padLabels(); qrqInit(); weakShow(); spBest(); kInit();
+  if ($('gtGo')) { $('gtGo').addEventListener('click', gtStart); $('gtAgn').addEventListener('click', gtAgn); $('gtOk').addEventListener('click', () => gtJudge(false)); $('gtIn').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); gtJudge(false); } }); gtShow(); }
   if ($('gmGo')) {
     $('gmGo').addEventListener('click', gameStart);
     document.querySelectorAll('input[name=gmKind]').forEach(x => x.addEventListener('change', () => { if (game.on) gameStop(); const f = $('gmField'); if (f) f.innerHTML = ''; gameShow(); }));
@@ -1538,6 +1687,6 @@ function init() {
 }
 
 // small hooks for testing / other pages
-window.KPCCW = { timeline, charsOf, callMatch, toks, findRST, findState, findRef, lev, newOp, usCall, decode: c => DECODE[c], S, dec, transmit, session, setMode, start, stop, paddle, keyDown, keyUp, releaseAll, drill, drillItem, garble, qrq, qrqStart, qrqCheck, qrqSent, qrqEnd, waiting: () => !!waiter, trackCopy, MISS: () => MISS };
+window.KPCCW = { timeline, charsOf, callMatch, toks, findRST, findState, findRef, lev, newOp, usCall, decode: c => DECODE[c], S, dec, transmit, session, setMode, start, stop, paddle, keyDown, keyUp, releaseAll, drill, drillItem, garble, qrq, qrqStart, qrqCheck, qrqSent, qrqEnd, waiting: () => !!waiter, gt, gtJudge, gtStart, trackCopy, MISS: () => MISS };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
