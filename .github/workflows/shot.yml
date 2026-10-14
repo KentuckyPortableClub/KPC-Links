@@ -6,8 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - run: python3 espn.py
+      - run: |
+          while read u; do c=$(curl -s -o /tmp/p.html -w '%{http_code} %{url_effective}' -L --max-time 25 -A 'Mozilla/5.0 (X11; Linux x86_64) Chrome/124' "$u"); l=$(grep -oi 'listen[^<]\{0,40\}' /tmp/p.html | head -3 | tr '\n' '|'); echo "$u -> $c | $l" >> url-status.txt; done < urls.txt
+          cat url-status.txt
       - if: always()
         run: |
           git config user.name bot; git config user.email bot@x
-          git add -f espn.json || true; git commit -m out; git pull --rebase; git push
+          git add -f url-status.txt || true; git commit -m out; git pull --rebase; git push
