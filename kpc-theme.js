@@ -63,11 +63,18 @@
     effBg.set(el, myL);
     return myL;
   }
+  function svgFix(el) {   // line drawings on white: soft invert so they sit on the dark page (colours keep their hue)
+    if (el.tagName.toLowerCase() !== 'svg' || el.closest('.leaflet-container,[data-keep-light]')) return;
+    var cs = getComputedStyle(el), bg = parse(cs.backgroundColor), light = bg && bg[3] > .35 && hsl(bg[0], bg[1], bg[2])[2] > .8;
+    if (!light) { var r = el.querySelector(':scope > rect'); if (r) { var fl = parse(getComputedStyle(r).fill); var w = parseFloat(r.getAttribute('width') || '0'); light = fl && hsl(fl[0], fl[1], fl[2])[2] > .85 && (String(r.getAttribute('width')).indexOf('%') > 0 || w >= (el.viewBox && el.viewBox.baseVal ? el.viewBox.baseVal.width * .9 : 1e9)); } }
+    if (light) { setP(el, 'filter', 'invert(.9) hue-rotate(180deg) saturate(1.2)'); setP(el, 'border-radius', '8px'); }
+  }
   function walk(rootEl, startL) {
     var stack = [[rootEl, startL]];
     while (stack.length) {
       var it = stack.pop(), el = it[0];
-      if (el.nodeType !== 1 || skipEl(el)) continue;
+      if (el.nodeType !== 1) continue;
+      if (skipEl(el)) { if (el.tagName.toLowerCase() === 'svg') svgFix(el); continue; }
       var l = fix(el, it[1]);
       for (var c = el.lastElementChild; c; c = c.previousElementSibling) stack.push([c, l]);
     }
@@ -78,17 +85,27 @@
     list = list.filter(function (n) { return n.isConnected && !list.some(function (o) { return o !== n && o.contains(n); }); });
     list.forEach(function (n) { if (n.querySelectorAll) { revertEl(n); n.querySelectorAll('*').forEach(revertEl); } walk(n, parentL(n)); }); }
   function queue(n) { if (n && n.nodeType === 1) { pending.add(n); if (!raf) raf = requestAnimationFrame(flush); } }
+  var hovered = [];
+  function hoverIn(e) {
+    if (!on) return; var t = e.target, out = [];
+    for (var el = t, i = 0; el && el !== document.body && i < 5; el = el.parentElement, i++) if (el.nodeType === 1 && (saved.has(el) || el.matches('a,button,[role=button],.card,[class*=chip],[class*=btn]'))) out.push(el);
+    hovered.forEach(function (el) { if (out.indexOf(el) < 0) { revertEl(el); fix(el, parentL(el)); } });
+    out.forEach(function (el) { if (hovered.indexOf(el) < 0) { revertEl(el); fix(el, parentL(el)); } });
+    hovered = out;
+    clearTimeout(hoverIn.t); hoverIn.t = setTimeout(function () { hovered.forEach(function (el) { revertEl(el); fix(el, parentL(el)); }); }, 320);   // again after hover transitions finish
+  }
   function start() {
     if (on || !document.body) return; on = true;
     walk(document.body, 0.07);
     root.classList.remove('kpc-th-wait');
+    document.addEventListener('pointerover', hoverIn, true);
     mo = new MutationObserver(function (ms) { ms.forEach(function (m) {
       if (m.type === 'childList') m.addedNodes.forEach(queue);
       else if (m.type === 'attributes' && m.target.nodeType === 1 && !(m.attributeName === 'style' && saved.has(m.target))) queue(m.target);
     }); });
     mo.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'aria-pressed', 'aria-selected', 'aria-current', 'open', 'hidden', 'data-state'] });
   }
-  function stop() { if (!on) return; on = false; if (mo) mo.disconnect(); mo = null; Array.from(touched).forEach(revertEl); }
+  function stop() { if (!on) return; on = false; if (mo) mo.disconnect(); mo = null; document.removeEventListener('pointerover', hoverIn, true); hovered = []; Array.from(touched).forEach(revertEl); }
   function apply() {
     var d = !noDark && wantDark();
     if (d) { root.setAttribute('data-theme', 'dark'); if (document.readyState !== 'loading') start(); }
