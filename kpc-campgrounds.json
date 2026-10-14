@@ -1509,7 +1509,8 @@
      "checked": "2026-10-14",
      "source": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=192",
      "phone": "(270) 547-6856",
-     "note": "WMA map (not a site map): https://fw.ky.gov/More/Documents/YellowbankWMA_ALL.pdf"
+     "note": "Check the official WMA map for camping locations and the KDFWR website for current regulations before you go.",
+     "areaMap": "https://fw.ky.gov/More/Documents/YellowbankWMA_ALL.pdf"
     }
    ]
   },
@@ -1698,7 +1699,8 @@
      "extras": "Official wording: \"Camping on designated sites only.\"",
      "checked": "2026-10-14",
      "source": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=132",
-     "note": "KDFWR does not say where the sites are, how many, or restrooms. Call the WMA office before you go."
+     "note": "Check the official WMA map for camping locations and the KDFWR website for current regulations before you go.",
+     "areaMap": "https://fw.ky.gov/More/Documents/Higginson-HenryWMA_ALL.pdf"
     }
    ],
    "added": true
@@ -1715,7 +1717,8 @@
      "season": "Not stated",
      "checked": "2026-10-14",
      "source": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=137",
-     "note": "One designated primitive camping site. KDFWR does not give its location or restrooms; call before you go."
+     "note": "Check the official WMA map for camping locations and the KDFWR website for current regulations before you go.",
+     "areaMap": "https://fw.ky.gov/More/Documents/West_Kentucky_WMA.pdf"
     }
    ]
   },
@@ -1730,9 +1733,9 @@
      "extras": "Official wording: \"Primitive Camping is allowed in designated area only and only during Turkey and Deer Seasons with a 14-day limit.\"",
      "checked": "2026-10-14",
      "source": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9219",
-     "note": "Only during turkey and deer seasons, 14-day limit. The same KDFWR page also says \"No ATV’s, camping, horseback riding, or rock climbing is allowed on the WMA\", so call (502) 477-9024 to confirm before you camp.",
-     "phone": "(502) 477-9024",
-     "season": "Turkey and deer seasons only (14-day limit)"
+     "note": "Only during turkey and deer seasons, 14-day limit. The same KDFWR page also says \"No ATV’s, camping, horseback riding, or rock climbing is allowed on the WMA.\" Check the official WMA map for camping locations and the KDFWR website for current regulations before you go.",
+     "season": "Turkey and deer seasons only (14-day limit)",
+     "areaMap": "https://fw.ky.gov/More/Documents/RollingForkWMA_all.pdf"
     }
    ]
   }

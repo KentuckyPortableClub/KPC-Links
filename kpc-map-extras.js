@@ -534,6 +534,9 @@ window.KPCX = {baseSwitcher, attach, hover, overlapData, overlapIndex, overlapCa
    Keeps map popups fully visible: clear of the map edges AND the sticky site menu bar, re-checked when popup
    content grows after it opens (live data, boundary text), and taller popups scroll instead of running off. */
 (function(){if(!window.L||!L.Map||window.__kpcPopFit)return;window.__kpcPopFit=true;
+ /* Keep every map inside its own layer so the site menu always opens on top of it, and while a card is open
+    let the card sit above the map buttons (zoom, map type, Street View) so it is never hidden behind them. */
+ try{const st=document.createElement('style');st.textContent='.leaflet-container{isolation:isolate}.kx-popopen .leaflet-control-container .leaflet-top,.kx-popopen .leaflet-control-container .leaflet-bottom{z-index:350!important}';document.head.appendChild(st)}catch(e){}
  function navBottom(){const n=document.querySelector('.site-nav');if(!n)return 0;const cs=getComputedStyle(n);if(!/sticky|fixed/.test(cs.position))return 0;return n.getBoundingClientRect().bottom}
  function fit(p){const m=p&&p._map,c=p&&p._container;if(!m||!c||!c.isConnected)return;
   const mr=m.getContainer().getBoundingClientRect(),cr=c.getBoundingClientRect();
@@ -547,7 +550,7 @@ window.KPCX = {baseSwitcher, attach, hover, overlapData, overlapIndex, overlapCa
  L.Map.addInitHook(function(){const map=this;
   /* Hover cards (Park Commander, KY planner) set autoPan:false on purpose so the map holds still under the mouse;
      once a card is tapped or clicked it is pinned (autoPan:true) and is then moved fully into view. */
-  map.on('popupopen',e=>{const p=e.popup;cap(p);const go=()=>{if(p.options.autoPan!==false)fit(p)};setTimeout(go,40);setTimeout(go,400);
+  map.on('popupopen',e=>{const p=e.popup;map.getContainer().classList.add('kx-popopen');cap(p);const go=()=>{if(p.options.autoPan!==false)fit(p)};setTimeout(go,40);setTimeout(go,400);
    clearInterval(p._kpcW);if(p.options.autoPan===false)p._kpcW=setInterval(()=>{if(!p._map){clearInterval(p._kpcW);return}if(p.options.autoPan!==false){clearInterval(p._kpcW);fit(p)}},250);
    if(window.ResizeObserver&&p._container){if(p._kpcRO)p._kpcRO.disconnect();let t=0;p._kpcRO=new ResizeObserver(()=>{clearTimeout(t);t=setTimeout(()=>{cap(p);go()},60)});p._kpcRO.observe(p._container)}});
-  map.on('popupclose',e=>{const p=e.popup;if(!p)return;clearInterval(p._kpcW);if(p._kpcRO){p._kpcRO.disconnect();p._kpcRO=null}})})})();
+  map.on('popupclose',e=>{const p=e.popup;setTimeout(()=>{if(!map.getContainer().querySelector('.leaflet-popup'))map.getContainer().classList.remove('kx-popopen')},50);if(!p)return;clearInterval(p._kpcW);if(p._kpcRO){p._kpcRO.disconnect();p._kpcRO=null}})})})();
