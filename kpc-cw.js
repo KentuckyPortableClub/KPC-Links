@@ -1377,6 +1377,20 @@ function bindKeys() {
   hold($('cwStraight'), keyDown, keyUp);
   hold($('cwDit'), () => paddle('.', true), () => paddle('.', false));
   hold($('cwDah'), () => paddle('-', true), () => paddle('-', false));
+  // Mouse paddle (computer): left button = dit, right button = dah, both = squeeze. With a straight key, any button keys.
+  // mousedown/mouseup fire for each button separately, so squeezing both works.
+  const mp = $('cwMouse');
+  if (mp) {
+    const down = new Set();
+    const act = (btn, on) => {
+      if (S.input === 'straight') { if (on) keyDown(); else if (!down.size) keyUp(); return; }
+      if (S.input === 'iambic') paddle(btn === 2 ? '-' : '.', on);
+    };
+    mp.addEventListener('mousedown', e => { if (e.button !== 0 && e.button !== 2) return; e.preventDefault(); audio(); down.add(e.button); mp.classList.add('down'); act(e.button, true); });
+    document.addEventListener('mouseup', e => { if (!down.has(e.button)) return; down.delete(e.button); if (!down.size) mp.classList.remove('down'); act(e.button, false); });
+    mp.addEventListener('contextmenu', e => e.preventDefault());
+    window.addEventListener('blur', () => { down.clear(); mp.classList.remove('down'); });
+  }
 }
 
 async function midi() {
@@ -1432,6 +1446,7 @@ function setInput(v) {
   dec.reset(1200 / S.wpm, v === 'straight');
   const r = document.querySelector(`input[name=cwInput][value=${v}]`); if (r) r.checked = true;
   if ($('qrqGo')) qrqShow();
+  padLabels();
 }
 
 function padLabels() {
@@ -1440,6 +1455,7 @@ function padLabels() {
   if (h) h.innerHTML = (S.swap ? 'DIT' : 'DAH') + '<small>right paddle</small>';
   if (c) c.checked = !!S.swap;
   if (b) b.innerHTML = '⇄ SWAP PADDLES' + (S.swap ? ' <small>(swapped: left = dah)</small>' : '');
+  const m = $('cwMouseL'); if (m) m.textContent = S.input === 'straight' ? 'Hold any mouse button to key' : (S.swap ? 'Left click = DAH · Right click = DIT' : 'Left click = DIT · Right click = DAH');
 }
 function bindSettings() {
   const FADE = ['Off', 'Light', 'Moderate', 'Deep', 'Deep & fast'];

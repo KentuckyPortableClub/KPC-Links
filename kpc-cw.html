@@ -161,6 +161,8 @@ body.field .page-jump-nav{display:none!important}
 .cw-typerow{display:flex;gap:8px}.cw-typerow input{flex:1}
 .cw-btn{min-height:44px;padding:10px 18px;border-radius:8px;border:0;background:var(--gold);color:#0b0b0b;font:900 13px Arial,sans-serif;letter-spacing:1px;cursor:pointer}
 .cw-btn:hover{background:var(--gold-light)}
+.cw-mouse{display:none;margin-top:10px;padding:16px;border:2px dashed #555;border-radius:12px;text-align:center;cursor:crosshair;user-select:none;-webkit-user-select:none;color:#ddd}.cw-mouse b{display:block;font:900 14px Arial,sans-serif;letter-spacing:2px;color:var(--gold-light,#f0c75e)}.cw-mouse span{display:block;font-weight:800;margin:4px 0}.cw-mouse small{color:#999}.cw-mouse.down{border-color:var(--gold);background:#2a2210}
+@media (hover:hover) and (pointer:fine){.cw-mouse{display:block}.cw-mouse[hidden]{display:none}}
 .cw-keypad{display:flex;gap:12px;user-select:none;-webkit-user-select:none}
 .cw-keypad button{flex:1;min-height:120px;border-radius:14px;border:2px solid #4a4a4a;background:radial-gradient(circle at 50% 35%,#2a2a2a,#151515);color:#e9e3d6;font:900 18px Arial,sans-serif;letter-spacing:2px;cursor:pointer;touch-action:none;-webkit-touch-callout:none}
 .cw-keypad button:active,.cw-keypad button.down{border-color:var(--gold);background:radial-gradient(circle at 50% 35%,#4a3a12,#1f1a0e);color:var(--gold-light)}
@@ -588,6 +590,7 @@ body.field .page-jump-nav{display:none!important}
     <p class="cw-keyhelp"><button type="button" class="cw-small" id="cwSwapBtn">⇄ SWAP PADDLES</button> &nbsp;For left-handed or "backwards" paddles.</p>
     <p class="cw-keyhelp">Keyboard: <kbd>Left Ctrl</kbd>/<kbd>Right Ctrl</kbd>, <kbd>[</kbd>/<kbd>]</kbd> or <kbd>Z</kbd>/<kbd>X</kbd>. Squeeze both for iambic.</p>
    </div>
+   <div class="cw-mouse" id="cwMouse" data-input="straight iambic" role="button" aria-label="Mouse paddle"><b>🖱 MOUSE PADDLE</b><span id="cwMouseL">Left click = DIT · Right click = DAH</span><small>Hold the pointer in this box. Squeeze both buttons for iambic.</small></div>
    <div class="cw-decode" data-input="straight iambic"><span id="cwLamp"></span><span id="cwLive"></span><button type="button" class="cw-small" id="cwOverBtn" title="Send it now instead of waiting">DONE ↵</button></div>
    <div class="cw-fist" id="cwFist" data-input="straight iambic"></div>
    <p class="cw-keyhelp" data-input="straight iambic">Your over is sent when you stop keying for the <b>end-of-over pause</b> (set below), or tap DONE or press <kbd>Enter</kbd>. A shorter pause means faster replies.</p>
@@ -651,7 +654,7 @@ body.field .page-jump-nav{display:none!important}
 <section class="final"><h2>Get Outside. Get On The Air.</h2><p>HOW REAL CW CONTACTS GO, PLUS CLUBS, CLASSES &amp; APPS</p><a class="btn" href="kpc-cw-info.html">CW INFO &amp; LINKS →</a> <a class="btn" href="kpc-spots.html">SEE WHO'S ON THE AIR →</a></section>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
-<script src="kpc-cw.js?v=20261014f"></script>
+<script src="kpc-cw.js?v=20261014g"></script>
 <script src="kpc-cw-spots.js?v=20261013c"></script>
 <script src="kpc-cw-rx.js?v=20261014b"></script>
 <script src="kpc-search.js?v=20261014p" defer></script><script>

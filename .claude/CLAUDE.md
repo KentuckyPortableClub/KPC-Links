@@ -125,7 +125,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - Tabs: Hunt, Activate (pileup size 0-12 with quick -/+), Ragchew (full QSO: name/QTH/rig/ant/WX, AGN? repeats, QRS slows them), Copy Drills (incl. Head copy and My problem letters), QRQ Ladder (copy + send, 3 misses, personal bests/badges in localStorage kpcQRQ), Free Send, Listen & Decode.
 - Problem letters: every copy check (drills + QRQ copy) counts missed characters in localStorage kpcCWmiss.
 - Zach's (K4ZSR) welcome is keyed once per visit on the first START; checkbox to turn it off.
-- Paddle keyer is timed on the AudioContext clock; Swap Paddles button sits under the paddles.
+- Paddle keyer is timed on the AudioContext clock; Swap Paddles button sits under the paddles. Mouse paddle box (computers only, hover+fine pointer): left button = dit, right = dah, both = squeeze (honors Swap); straight key = any button.
 - Sprint tab: timed 5/10/15 min run, formats POTA run / CWops CWT / SKCC sprint, score = QSOs x states, personal bests in localStorage kpcSprint.
 - Band conditions setting (Clean / Typical / Rough): static crashes, a neighbour station (QRM) and tuner-uppers during Hunt, Activate, Ragchew and Sprint only (never in drills or the QRQ ladder).
 - Fist doctor under the fist meter: compares dah length and gaps (in a letter / between letters / between words) with textbook timing and gives up to 3 plain-word tips; with paddles only spacing is judged.
