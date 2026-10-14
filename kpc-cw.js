@@ -56,12 +56,18 @@ function timeline(text, wpm, eff, jitter) {
 /* ================================================================ Settings */
 const DEF = {
   call: '', st: 'KY', ref: '', prog: 'pota',
-  wpm: 18, eff: 18, pitch: 650, their: 600, vol: 0.7, noise: 0.12, qsb: true,
+  wpm: 18, eff: 18, pitch: 650, their: 600, vol: 0.7, noise: 0.12, qsb: true, fade: 2, pileN: 2,
   input: 'keyboard', iambic: 'B', swap: false, show: 'after', hints: true, pile: 2,
-  over: 1.6, match: false, kochLevel: 2, drill: 'calls'
+  over: 1.0, match: false, kochLevel: 2, drill: 'calls'
 };
 let S = Object.assign({}, DEF);
 try { Object.assign(S, JSON.parse(localStorage.getItem('kpcCW') || '{}')); } catch (e) {}
+// older saved settings: QSB on/off -> fading level, ACTIVITY 0-4 -> number of callers
+try { const old = JSON.parse(localStorage.getItem('kpcCW') || '{}');
+  if (!('fade' in old) && old.qsb === false) S.fade = 0;
+  if (!('pileN' in old) && 'pile' in old) S.pileN = [0, 1, 2, 4, 6][old.pile] ?? 2;
+  if (!('fade' in old) && old.over === 1.6) S.over = 1.0; // old default was slow to answer
+} catch (e) {}
 function save() { try { localStorage.setItem('kpcCW', JSON.stringify(S)); } catch (e) {} }
 
 /* ================================================================ Audio */
@@ -70,7 +76,7 @@ function audio() {
   if (!AC) {
     const C = window.AudioContext || window.webkitAudioContext;
     if (!C) return null;
-    AC = new C();
+    try { AC = new C({ latencyHint: 'interactive' }); } catch (e) { AC = new C(); }
     master = AC.createGain(); master.gain.value = S.vol; master.connect(AC.destination);
     myOsc = AC.createOscillator(); myOsc.type = 'sine'; myOsc.frequency.value = S.pitch;
     myG = AC.createGain(); myG.gain.value = 0;
@@ -87,6 +93,8 @@ function audio() {
   if (AC.state === 'suspended') AC.resume();
   return AC;
 }
+/* How long until sound reaches the speaker (ms). Bluetooth adds a lot that the page can't see. */
+function latencyMs() { if (!AC) return null; return Math.round(((AC.baseLatency || 0) + (AC.outputLatency || 0)) * 1000); }
 const RAMP = 0.0016; // ~5 ms rise/fall, no key clicks
 function sidetone(on) {
   if (!audio()) return;
@@ -116,14 +124,22 @@ function Voice(o) {
   this.env = AC.createGain(); this.env.gain.value = 0;
   this.fade = AC.createGain(); this.fade.gain.value = this.level;
   this.osc.connect(this.env); this.env.connect(this.fade); this.fade.connect(master);
-  if (S.qsb) { // slow fading
-    this.lfo = AC.createOscillator(); this.lfo.frequency.value = 0.05 + Math.random() * 0.15;
-    const depth = AC.createGain(); depth.gain.value = this.level * (0.25 + Math.random() * 0.3);
-    this.fade.gain.value = this.level * 0.75;
-    this.lfo.connect(depth); depth.connect(this.fade.gain); this.lfo.start();
-  }
+  // fading (QSB): a slow wobble on this station's level; depth and speed follow the FADING slider
+  this.rate = Math.random(); this.lfo = AC.createOscillator(); this.depth = AC.createGain(); this.depth.gain.value = 0;
+  this.lfo.connect(this.depth); this.depth.connect(this.fade.gain); this.lfo.start();
+  this.setQsb();
   this.osc.start(); VOICES.add(this);
 }
+// level 0 off, 1 light, 2 moderate, 3 deep, 4 deep & fast (fades almost to nothing)
+const QSB = [[0, 0, 0], [0.25, 0.05, 0.12], [0.45, 0.07, 0.2], [0.7, 0.1, 0.3], [0.92, 0.25, 0.7]];
+Voice.prototype.setQsb = function () {
+  if (!AC || !this.lfo) return;
+  const q = QSB[S.fade] || QSB[0], f = q[0] * Math.min(1, 0.85 + this.rate * 0.3), t = AC.currentTime;
+  const lo = Math.min(0.98, f);
+  this.lfo.frequency.setTargetAtTime(q[1] + this.rate * (q[2] - q[1]) || 0.01, t, 0.3);
+  this.fade.gain.setTargetAtTime(this.level * (1 - lo / 2), t, 0.3);   // swings between level*(1-lo) and level
+  this.depth.gain.setTargetAtTime(this.level * lo / 2, t, 0.3);
+};
 Voice.prototype.play = function (text) {
   this.cancel();
   if (!AC) return Promise.resolve();
@@ -184,6 +200,14 @@ const dec = {
 const key = { down: false };
 function keyDown() { if (key.down) return; key.down = true; sidetone(true); dec.down(performance.now()); ui.lamp(true); }
 function keyUp() { if (!key.down) return; key.down = false; sidetone(false); dec.up(performance.now()); ui.lamp(false); }
+/* Keyer elements: the tone's start and stop are both set on the sound card's clock, so every dit and dah is exactly
+   the right length even when the browser is busy. */
+function keyerOn(d, t0) {
+  key.down = true;
+  if (audio()) { const t = AC.currentTime; myG.gain.cancelScheduledValues(t); myG.gain.setTargetAtTime(1, t, RAMP); myG.gain.setTargetAtTime(0, t + d / 1000, RAMP); }
+  dec.down(t0); ui.lamp(true);
+}
+function keyerOff(t1) { key.down = false; dec.up(t1); ui.lamp(false); }
 
 const ik = { dit: false, dah: false, busy: false, mem: null, last: null, timer: null };
 /* Iambic keyer. Mode B remembers the other paddle if you touch it during an element (so a squeeze-and-release
@@ -202,10 +226,11 @@ function nextElement() {
   else if (ik.dit) el = '.';
   else if (ik.dah) el = '-';
   if (!el) { ik.busy = false; ik.last = null; return; }
-  const u = 1200 / S.wpm, d = el === '.' ? u : 3 * u;
+  const u = 1200 / S.wpm, d = el === '.' ? u : 3 * u, t0 = performance.now();
   ik.busy = true; ik.last = el;
-  keyDown();
-  ik.timer = setTimeout(() => { keyUp(); ik.timer = setTimeout(nextElement, u); }, d);
+  keyerOn(d, t0);
+  // timings come from when the element started, not from when the timer happened to fire
+  ik.timer = setTimeout(() => { keyerOff(t0 + d); ik.timer = setTimeout(nextElement, Math.max(0, t0 + d + u - performance.now())); }, d);
 }
 function releaseAll() {
   ik.dit = ik.dah = false; ik.mem = null;
@@ -419,16 +444,16 @@ async function hunterLoop(gen) {
     await say(v, cq, gen); if (gen !== GEN) return;
     ui.hint(`Send your call once: ${me}` + (S.ref ? `   (at a ${P === 'sota' ? 'summit' : 'park'} too? send ${P === 'sota' ? 'S2S' : 'P2P'} ${me})` : ''));
     // the pileup: other hunters call at the same time
-    const n = S.pile === 0 ? 0 : rnd(Math.max(0, S.pile - 2), S.pile + (S.pile >= 3 ? 2 : 0));
+    const n = S.pileN === 0 ? 0 : rnd(Math.max(1, S.pileN - 1), S.pileN + 1);
     pileOps = []; const used = new Set([me, act.call]);
     for (let i = 0; i < n; i++) { const o = newOp(used); used.add(o.call); pileOps.push(Object.assign(o, { v: voice(o.call) })); }
-    pileOps.forEach(o => { setTimeout(() => { if (gen === GEN) { busyThem++; o.v.play(o.call + (chance(0.35) ? ' ' + o.call : '')).then(() => busyThem--); } }, rnd(150, 1100)); });
+    pileOps.forEach(o => { setTimeout(() => { if (gen === GEN) { busyThem++; o.v.play(o.call + (chance(0.35) ? ' ' + o.call : '')).then(() => busyThem--); } }, rnd(150, 900 + n * 120)); });
     const r = await you(6500 + n * 600);
     if (gen !== GEN) return;
     const ts = toks(r);
     const m = r ? callMatch(ts, me) : null;
     const p2p = has(ts, 'P2P', 'S2S');
-    const won = m === 'exact' && (pileOps.length === 0 || chance(p2p ? 0.95 : 0.72));
+    const won = m === 'exact' && (pileOps.length === 0 || chance(p2p ? 0.95 : Math.max(0.3, 0.85 - pileOps.length * 0.06)));
     if (m === 'exact' && !won && pileOps.length) {
       ui.note('The activator picked someone else — stay ready and call again.');
       const o = pick(pileOps); await simQSO(v, act, o, gen); pileOps.forEach(x => x.v.dispose()); continue;
@@ -507,7 +532,7 @@ async function activatorLoop(gen) {
   ui.hint(`Call CQ: CQ ${W} CQ ${W} DE ${me} ${me} K`);
   let qrs = 0;
   const arrivals = () => {
-    const want = [1, 2, 3, 5, 7][S.pile] || 2; const n = Math.max(0, rnd(Math.max(1, want - 1), want) - callers.length);
+    const want = Math.max(1, S.pileN); const n = Math.max(0, rnd(Math.max(1, want - 1), want) - callers.length);
     for (let i = 0; i < n; i++) {
       const o = newOp(new Set([...worked, ...callers.map(c => c.call)]));
       o.p2p = chance(0.1); if (o.p2p) { const pl = place(P, o.st); o.ref = pl[0]; }
@@ -768,15 +793,16 @@ function setInput(v) {
 }
 
 function bindSettings() {
-  const PILE = ['Quiet (1 at a time)', 'Light', 'Normal', 'Busy', 'Big pileup'];
+  const FADE = ['Off', 'Light', 'Moderate', 'Deep', 'Deep & fast'];
+  const pileTxt = v => v === 0 ? 'None: one station at a time' : v === 1 ? '1 other station' : v + ' stations calling' + (v >= 8 ? ' (big pileup)' : '');
   const FMT = {
     wpm: v => v + ' WPM', eff: v => v >= S.wpm ? 'Off (normal spacing)' : v + ' WPM overall', pitch: v => v + ' Hz', their: v => v + ' Hz',
-    vol: v => Math.round(v * 100) + '%', noise: v => v < 0.01 ? 'Off' : Math.round(v * 100) + '%', pile: v => PILE[v] || v, over: v => v.toFixed(1) + ' s'
+    vol: v => Math.round(v * 100) + '%', noise: v => v < 0.01 ? 'Off' : Math.round(v * 100) + '%', pileN: pileTxt, fade: v => FADE[v] || v, over: v => v.toFixed(1) + ' s'
   };
   const UI = { vol: v => Math.round(v * 100), noise: v => Math.round(v * 100), over: v => Math.round(v * 10) };
   const TOS = { vol: v => v / 100, noise: v => v / 100, over: v => v / 10 };
   const label = k => { const o = $(IDS[k] + 'V'); if (o) o.textContent = FMT[k](S[k]); };
-  const IDS = { wpm: 'cwWpm', eff: 'cwEff', pitch: 'cwPitch', their: 'cwTheir', vol: 'cwVol', noise: 'cwNoise', pile: 'cwPile', over: 'cwOver' };
+  const IDS = { wpm: 'cwWpm', eff: 'cwEff', pitch: 'cwPitch', their: 'cwTheir', vol: 'cwVol', noise: 'cwNoise', pileN: 'cwPile', fade: 'cwFade', over: 'cwOver' };
   Object.keys(IDS).forEach(k => {
     const el = $(IDS[k]); if (!el) return;
     el.value = UI[k] ? UI[k](S[k]) : S[k]; label(k);
@@ -785,6 +811,8 @@ function bindSettings() {
       if ((k === 'wpm' || k === 'eff') && S.eff > S.wpm) { S.eff = S.wpm; const e = $('cwEff'); if (e) e.value = S.eff; }
       label(k); if (k === 'wpm') label('eff');
       save(); applyAudio();
+      if (k === 'fade') VOICES.forEach(v => v.setQsb());
+      if (k === 'pileN') { const q = $('cwPileQ'); if (q) q.textContent = S.pileN; const qq = $('cwPile'); if (qq && +qq.value !== S.pileN) qq.value = S.pileN; }
       if (k === 'wpm' && S.input !== 'straight') dec.reset(1200 / S.wpm, false);
     });
   });
@@ -794,13 +822,20 @@ function bindSettings() {
   sel('cwState', 'st'); sel('cwShow', 'show'); sel('cwIambic', 'iambic'); sel('cwDrillType', 'drill', () => { drill.item = ''; $('cwKochRow').hidden = S.drill !== 'koch'; });
   sel('cwProg', 'prog', () => { setMode(MODE); document.querySelectorAll('.cw-prog').forEach(e => { e.textContent = progWord(); }); });
   const chk = (id, k, cb) => { const el = $(id); if (!el) return; el.checked = !!S[k]; el.addEventListener('change', () => { S[k] = el.checked; save(); cb && cb(); }); };
-  chk('cwQsb', 'qsb'); chk('cwHints', 'hints', () => ui.hint($('cwHint').textContent)); chk('cwSwap', 'swap'); chk('cwMatch', 'match');
+  // quick pileup − / + next to START
+  const setPile = v => { const el = $('cwPile'); if (!el) return; el.value = Math.max(0, Math.min(12, v)); el.dispatchEvent(new Event('input')); };
+  if ($('cwPileMinus')) { $('cwPileMinus').addEventListener('click', () => setPile(S.pileN - 1)); $('cwPilePlus').addEventListener('click', () => setPile(S.pileN + 1)); $('cwPileQ').textContent = S.pileN; } chk('cwHints', 'hints', () => ui.hint($('cwHint').textContent)); chk('cwSwap', 'swap'); chk('cwMatch', 'match');
   const koch = $('cwKoch'); if (koch) { const f = () => { S.kochLevel = +koch.value; $('cwKochV').textContent = `${S.kochLevel} characters: ${KOCH.slice(0, S.kochLevel).join(' ')}`; save(); }; koch.value = S.kochLevel; koch.addEventListener('input', f); f(); }
   if ($('cwKochRow')) $('cwKochRow').hidden = S.drill !== 'koch';
   document.querySelectorAll('input[name=cwInput]').forEach(r => r.addEventListener('change', () => setInput(r.value)));
   document.querySelectorAll('.cw-prog').forEach(e => { e.textContent = progWord(); });
 }
 
+function showLat() {
+  const el = $('cwLat'); if (!el || !AC) return;
+  setTimeout(() => { const ms = latencyMs(); if (ms == null) return;
+    el.textContent = `Sound delay on this device: about ${ms} ms${ms > 60 ? ' (high)' : ''}. Bluetooth headphones and speakers add 100–300 ms more, so use wired headphones or the device speaker for keying.`; }, 300);
+}
 function init() {
   if (!$('cwApp')) return;
   bindSettings(); bindKeys();
@@ -811,10 +846,15 @@ function init() {
   setMode(m);
   $('cwGo').addEventListener('click', () => { if (session.on) stop(); else start(); });
   $('cwOverBtn').addEventListener('click', () => dec.flush());
+  document.addEventListener('keydown', e => { if (e.key === 'Enter' && !/^(INPUT|TEXTAREA|SELECT|BUTTON|A)$/.test(e.target.tagName) && (S.input === 'straight' || S.input === 'iambic') && (dec.text || dec.code)) { e.preventDefault(); dec.flush(); } });
+  // start the sound engine on the first tap or key so the very first dit isn't late
+  const warm = () => { audio(); showLat(); };
+  $('cwApp').addEventListener('pointerdown', warm, { once: true }); document.addEventListener('keydown', warm, { once: true });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && AC && AC.state === 'suspended') AC.resume(); });
   $('cwClear').addEventListener('click', () => { $('cwBand').innerHTML = ''; });
   const ty = $('cwType'); ty.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); typedSend(); } });
   $('cwTypeSend').addEventListener('click', typedSend);
-  $('cwTest').addEventListener('click', async () => { audio(); const v = new Voice({ call: 'test', pitch: S.their, wpm: S.wpm, eff: S.eff, level: 0.9 }); await v.play('VVV'); v.dispose(); });
+  $('cwTest').addEventListener('click', async () => { audio(); showLat(); const v = new Voice({ call: 'test', pitch: S.their, wpm: S.wpm, eff: S.eff, level: 0.9 }); await v.play('VVV'); v.dispose(); });
   $('cwMidi').addEventListener('click', midi);
   $('cwDrillPlay').addEventListener('click', () => drillPlay(true));
   $('cwDrillAgain').addEventListener('click', () => drillPlay(false));
