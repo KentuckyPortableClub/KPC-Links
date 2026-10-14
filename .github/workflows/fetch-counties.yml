@@ -11,8 +11,11 @@ jobs:
         with: { node-version: '22' }
       - run: |
           mkdir -p /tmp/f && cd /tmp/f
-          curl -sSL -o c.zip https://www2.census.gov/geo/tiger/GENZ2023/shp/cb_2023_us_county_500k.zip && unzip -q c.zip
-          npm i -g mapshaper@0.6.102 >/dev/null
+          curl -sSL -A 'Mozilla/5.0' -o c.zip https://www2.census.gov/geo/tiger/GENZ2023/shp/cb_2023_us_county_500k.zip || echo '::notice title=dl::curl failed'
+          echo "::notice title=zip::$(ls -la c.zip) $(file c.zip)"
+          unzip -q c.zip || { echo '::notice title=unzip::failed'; exit 1; }
+          npm i -g mapshaper >/dev/null 2>&1 || echo '::notice title=npm::mapshaper install failed'
+          echo "::notice title=ms::$(mapshaper -v 2>&1)"
           for p in 30 15 8; do
             mapshaper cb_2023_us_county_500k.shp -filter 'STATEFP=="21"' -simplify $p% keep-shapes -o format=geojson precision=0.0001 ky$p.json
           done
@@ -26,7 +29,7 @@ jobs:
           out.ky=rings(JSON.parse(fs.readFileSync('kyout.json')).features[0].geometry);
           fs.writeFileSync(process.env.GITHUB_WORKSPACE+'/fetched-counties-hd.json',JSON.stringify(out));
           JS
-          node go.js
+          node go.js || echo '::notice title=node::failed'
       - run: |
           git config user.name bot; git config user.email bot@users.noreply.github.com
           git add fetched-counties-hd.json && git commit -m "fetched hd counties" && git push origin HEAD:claude-trail-fetch
