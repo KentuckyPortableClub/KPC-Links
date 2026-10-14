@@ -408,7 +408,7 @@
         '<p class="g-line"><b>ACTIVATE AS</b> ' + xr + '</p>' +
         (fr.length ? '<p class="g-line"><b>2-FER / 3-FER</b> ' + fr.length + ' possible spot' + (fr.length > 1 ? 's' : '') + ' with ' + fr.reduce(function (u, d) { d.refs.forEach(function (x) { if (refs.indexOf(x) < 0 && u.indexOf(x) < 0) u.push(x); }); return u; }, []).map(function (x) { return '<a href="#' + pid(x) + '">' + esc(x) + '</a>'; }).join(', ') + ' — see the <a href="#fers">2-Fers &amp; 3-Fers Index</a> (GPS points not exact).</p>' : '') +
         '<div class="g-btns">' + (pk ? ext(gps(pk.la, pk.lo), 'GPS', 'b b-gps') + ext(wx(pk.la, pk.lo), 'WEATHER', 'b b-wx') : '') +
-        (refs[0] ? '<a class="b b-near" href="kpc-park-notes.html#' + refs[0] + '">PARK TIPS ›</a><a class="b b-web" href="kpc-spots.html">LIVE SPOTS ›</a>' : '') + '</div></div>';
+        (refs[0] ? '<a class="b b-near" href="kpc-park-notes.html#' + refs[0] + '">PARK TIPS ›</a>' : '') + '</div></div>';
     }).join('');
 
     /* regional maps */
