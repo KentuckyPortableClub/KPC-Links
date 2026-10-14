@@ -5,6 +5,25 @@ Google Drive, shrunk to 1280 px and saved without location data in photos/notes/
 import csv,io,json,os,re,hashlib,sys,urllib.request
 URL=os.environ.get('NOTES_SHEET_CSV','').strip()
 def notice(m): print('::notice title=Park notes::'+str(m).replace('%','%25').replace('\n','%0A'))
+FORM_URL='https://docs.google.com/forms/d/e/1FAIpQLSc6jTku8aIPejOVridQ19ChA5ACYsFK56n7Nk9WpIgAiLGTMw/viewform'
+def find_form_entry():
+  """Reads the public form and finds the hidden entry number of the 'Park number' question, so the site's
+  Submit a tip buttons can pre-fill the park. Saved to kpc-park-notes-form.json."""
+  try:
+    html=urllib.request.urlopen(urllib.request.Request(FORM_URL,headers={'User-Agent':'Mozilla/5.0 KPC park notes'}),timeout=60).read().decode('utf-8','replace')
+    m=re.search(r'FB_PUBLIC_LOAD_DATA_\s*=\s*(\[.*?\]);\s*</script>',html,re.S)
+    data=json.loads(m.group(1));items=data[1][1];entry=None;names=[]
+    for it in items:
+      t=str(it[1] or '').strip();names.append(t)
+      if t.lower().startswith('park number') and it[4]: entry='entry.'+str(it[4][0][0])
+    if not entry: notice('Could not find the Park number question on the form. Questions seen: '+', '.join(names)); return
+    new={'url':FORM_URL,'parkEntry':entry}
+    try: old=json.load(open('kpc-park-notes-form.json'))
+    except Exception: old=None
+    if old!=new: json.dump(new,open('kpc-park-notes-form.json','w'),indent=1)
+    notice('Form found; Park number is '+entry+'.')
+  except Exception as e: notice('Could not read the Google Form: '+str(e))
+find_form_entry()
 if not URL: notice('NOTES_SHEET_CSV secret not set yet; nothing to do.'); sys.exit(0)
 def get(u):
   r=urllib.request.Request(u,headers={'User-Agent':'KPC park notes'})
