@@ -1,6 +1,4 @@
-const {chromium}=require('playwright');(async()=>{try{const b=await chromium.launch();const p=await b.newPage();const log=[];
-p.on('console',m=>log.push(m.text()));p.on('requestfailed',r=>log.push('FAIL '+r.url()+' '+r.failure().errorText));
-p.on('response',async r=>{if(r.url().includes('espn')){let t='';try{t=(await r.text()).slice(0,300)}catch(e){};log.push(r.status()+' '+r.url()+' '+JSON.stringify(r.headers()['access-control-allow-origin'])+' '+t.slice(0,200))}});
-await p.goto('https://kentuckyportableclub.github.io/KPC-Links/kpc-community.html?v='+Date.now(),{waitUntil:'networkidle',timeout:90000});await p.waitForTimeout(5000);
-const r=await p.evaluate(async()=>{const j=await (await fetch('https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/96/schedule')).json();return (j.events||[]).slice(-6).map(e=>[e.date,e.name,e.competitions[0].status.type.state])});
-require('fs').writeFileSync('ks-live.txt',JSON.stringify({log:log.slice(0,30),r},null,1));await b.close()}catch(e){require('fs').writeFileSync('ks-live.txt','ERR '+e.stack)}})();
+const {chromium}=require('playwright');(async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:390,height:844},deviceScaleFactor:2,timezoneId:'America/Chicago'});
+await p.goto('https://kentuckyportableclub.github.io/KPC-Links/kpc-community.html?v='+Date.now(),{waitUntil:'load',timeout:60000});await p.waitForTimeout(8000);
+await p.evaluate(()=>{const t=document.querySelector('.ks-track');if(t)t.scrollLeft=0});const el=await p.$('.ks-wrap');if(el)await el.screenshot({path:'ks-live.png'});
+require('fs').writeFileSync('ks-live.txt',String(await p.evaluate(()=>{const e=document.querySelector('.ks-sub');return (e&&e.textContent)+' || '+[...document.querySelectorAll('.ks-g')].slice(0,4).map(g=>g.innerText.replace(/\n/g,' | ')).join(' ## ')})));await b.close()})();

@@ -1,5 +1,0 @@
-ERR page.evaluate: TypeError: Failed to fetch
-    at eval (eval at evaluate (:234:30), <anonymous>:1:32)
-    at UtilityScript.evaluate (<anonymous>:236:17)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
-    at /home/runner/work/KPC-Links/KPC-Links/nwr.js:5:17
