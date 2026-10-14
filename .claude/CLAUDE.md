@@ -145,3 +145,5 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - kpc-antenna.html / kpc-battery.html badges: badge-camp-antenna.jpg / badge-river-radio.jpg (crops of the member scene pictures) instead of badge-sign.jpg (Brandon: the wooden Kentucky shape was wrong).
 - Scoreboard cards: 🎧 LISTEN (school audio page) + 📻 RADIO (TuneIn search for the team's radio network, backup) + ESPN ↗.
 - Campgrounds reviews box: SEE ALL N REVIEWS opens the full list (best rated first, facts shown), each item jumps to its park card or the outside-park section.
+- Park Commander (finder.html) dressed up: `<style id="kpc-pc-dress">` puts hero-lake-camp(.jpg/-mobile.jpg) behind the masthead header (header:not(.site-nav)), gold-glow logo, stat chips (#pcStats, counts filled from kpc-ky-data.json: POTA parks, SOTA summits, KFF, parks with 2-fers), icon jump buttons.
+- Weather desktop hero: Brent's picture sits on the right as a ::before with aspect-ratio 1672/941 and a mask fade, so all of him shows at any width (phones keep the picture-on-top layout).
