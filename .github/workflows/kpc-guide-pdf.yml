@@ -11,6 +11,7 @@ on:
       - 'kpc-guide-*'
       - 'kpc-guide.css'
       - 'kpc-ky-data.json'
+      - 'kpc-ky-counties-hd.json'
       - 'kpc-top25.json'
       - '.github/scripts/kpc_guide_pdf.js'
   workflow_run:
