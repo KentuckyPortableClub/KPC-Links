@@ -285,6 +285,8 @@ body.field .page-jump-nav{display:none!important}
 .rx-sw input:checked+.rx-knob{background:var(--gold)}
 .rx-sw input:checked+.rx-knob:after{left:21px}
 .rx-sw input:focus-visible+.rx-knob{outline:2px solid var(--gold-light);outline-offset:2px}
+.rx-bw{display:flex;align-items:center;gap:6px;color:#cfc6b2;font:900 11px Arial,sans-serif;letter-spacing:1px}.rx-bw select{min-height:34px;font-size:13px;max-width:100%}
+#rxSnr.ok{color:#7fd39a}#rxSnr.meh{color:#f0c75e}#rxSnr.bad{color:#ff8a6a}
 .rx-man{display:flex;align-items:center;gap:8px;flex:1 1 220px;color:#cfc6b2;font:900 11px Arial,sans-serif;letter-spacing:1px}
 .rx-man input{flex:1;accent-color:var(--gold);min-width:120px}
 .rx-man b{color:#fff;min-width:56px}
@@ -450,7 +452,7 @@ body.field .page-jump-nav{display:none!important}
    <p class="cw-safe">Copy ladder: hearing it again is fine, but that one won't speed you up. The ladder plays a clean signal (no noise or fading) so everyone's scores compare fairly.</p>
   </div>
   <div class="cw-card cw-a-band cw-rx" id="rxCard" data-show="listen">
-   <div class="rx-top"><span class="rx-state" id="rxState">STOPPED</span><span id="rxLamp" title="Tone detected"></span><span class="rx-stat">TONE <b id="rxFreq">600 Hz</b></span><span class="rx-stat">SPEED <b id="rxWpm">—</b></span><span class="rx-stat">SIGNAL <b id="rxSnr">—</b></span></div>
+   <div class="rx-top"><span class="rx-state" id="rxState">STOPPED</span><span id="rxLamp" title="Tone detected"></span><span class="rx-stat">TONE <b id="rxFreq">600 Hz</b></span><span class="rx-stat">SPEED <b id="rxWpm">—</b></span><span class="rx-stat">SIGNAL <b id="rxSnr">—</b></span><span class="rx-stat">FILTER <b id="rxBwV">60 Hz</b></span></div>
    <div class="rx-src">
     <button type="button" class="cw-btn" id="rxTab">🖥 DECODE A TAB (WEBSDR)</button>
     <button type="button" class="cw-btn rx-alt" id="rxMic">🎤 USE MICROPHONE</button>
@@ -462,8 +464,9 @@ body.field .page-jump-nav{display:none!important}
    <canvas id="rxWf" width="600" height="140" aria-label="Waterfall — tap a signal to lock onto it"></canvas>
    <div class="rx-wfl"><span>200 Hz</span><span>1300 Hz</span></div>
    <div class="rx-tune"><label class="rx-sw"><input type="checkbox" id="rxAuto" checked><span class="rx-knob"></span><b id="rxAutoLbl">AUTO-FIND: ON</b></label>
+    <label class="rx-bw">FILTER <select id="rxBw" aria-label="Decoder filter width"><option value="auto">Auto (follows speed)</option><option value="50">Narrow 50 Hz (weak signals)</option><option value="100">Medium 100 Hz</option><option value="200">Wide 200 Hz (easy tuning)</option></select></label>
     <div class="rx-man" id="rxManual" hidden><span>TONE</span><input type="range" id="rxTone" min="200" max="1300" step="10" value="600" aria-label="Decoder tone in hertz"><b id="rxToneV">600 Hz</b></div></div>
-   <p class="cw-keyhelp" style="margin-top:4px" id="rxTuneHelp">Auto-find follows the strongest signal. Turn it off to stay on one signal: tap its trace in the waterfall, or slide the tone to match it.</p>
+   <p class="cw-keyhelp" style="margin-top:4px" id="rxTuneHelp">Auto-find follows the strongest signal. Turn it off to stay on one signal: tap its trace in the waterfall (it snaps onto the trace), or slide the tone to match it. <b>Weak signal?</b> Use the Narrow filter and tune right onto it. <b>SIGNAL</b> shows about what your ear hears in a normal 2.5 kHz receiver: the decoder copies down to around 0 dB at normal speeds.</p>
    <div id="rxText" aria-live="polite"></div>
    <div class="cw-top" style="margin-top:10px"><button type="button" class="cw-small" id="rxClear">CLEAR TEXT</button></div>
    <details class="rx-copy"><summary>COPY TEST — CHECK YOUR EAR AGAINST THE DECODER</summary>
@@ -587,7 +590,7 @@ body.field .page-jump-nav{display:none!important}
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
 <script src="kpc-cw.js?v=20261014d"></script>
 <script src="kpc-cw-spots.js?v=20261013c"></script>
-<script src="kpc-cw-rx.js?v=20261013b"></script>
+<script src="kpc-cw-rx.js?v=20261014a"></script>
 <script src="kpc-search.js?v=20261014n" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
