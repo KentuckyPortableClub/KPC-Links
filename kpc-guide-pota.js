@@ -197,7 +197,7 @@
       }).join(' + ') + esc(d.tag || '');
     });
     return '<p class="g-line g-2fer"><b>' + (three ? '3-FER / 2-FER' : '2-FER') + '</b> ' + parts.join(' • ') +
-      ' — GPS guide pins in the <a href="#fers">2-Fers &amp; 3-Fers Index</a>; do your own research.</p>';
+      ' — GPS points for it are in the <a href="#fers">2-Fers &amp; 3-Fers Index</a> (not exact: they only get you to the area); do your own research.</p>';
   }
 
   function alsoLine(p) {
@@ -299,8 +299,8 @@
       return '<a class="g-tile" href="#grp-' + gkey(g.key) + '"><b>' + esc(g.key) + '</b><span>' + esc(rangeLabel(g)) + '</span><small>' + n + (n === 1 ? ' PARK' : ' PARKS') + '</small></a>';
     }).join('');
     var full = G.filter(function (g) { return g.list.length; });
-    $('gJump').innerHTML = '<a href="#find">FIND</a><a href="#fers">2-FERS</a><a href="#wild">WILD RIVERS</a><a href="#maps">MAPS</a>' +
-      full.map(function (g) { return '<a href="#grp-' + gkey(g.key) + '">' + esc(g.key) + '</a>'; }).join('') + '<a href="#nearby">NEARBY</a>';
+    $('gJump').innerHTML = '<a href="#find">FIND</a><a href="#maps">MAPS</a>' +
+      full.map(function (g) { return '<a href="#grp-' + gkey(g.key) + '">' + esc(g.key) + '</a>'; }).join('') + '<a href="#fers">2-FERS</a><a href="#wild">WILD RIVERS</a><a href="#nearby">NEARBY</a>';
     $('gCards').innerHTML = full.map(function (g, i) {
       return '<section class="g-grp' + (i ? (az ? '' : ' g-break') : '') + '" id="grp-' + gkey(g.key) + '"><h2 class="g-grp-h">' + esc(g.title) + '</h2>' +
         g.list.map(card).join('') + '</section>';
@@ -341,7 +341,7 @@
     var F = G.fers, SP = F.spots, n3 = SP.filter(function (d) { return d.type === '3-fer'; }).length;
     $('gFersLead').textContent = 'All ' + SP.length + ' places in Kentucky where you may work two or three POTA parks at once (' + n3 + ' 3-fers, ' + (SP.length - n3) +
       ' 2-fers), checked against the POTA rules by the Kentucky Portable Club. Park names and numbers match the POTA Kentucky park list. ' +
-      'GPS POINTS ARE GUIDE PINS ONLY: they get you to the area of the possible 2-fer or 3-fer, not to a confirmed spot. You and your gear must be on public land inside every park; trail and river parks within 100 ft of the trail or water (riverbank pins are approximate and were not checked against the water line); national forests only on Forest Service-owned land. ' +
+      'GPS POINTS ARE NOT EXACT: they are guide pins that only get you to the area of the possible 2-fer or 3-fer, not to a confirmed spot. You and your gear must be on public land inside every park; trail and river parks within 100 ft of the trail or water (riverbank pins are approximate and were not checked against the water line); national forests only on Forest Service-owned land. ' +
       'Wickliffe Mounds, Big Bone Lick and Golden Pond are NOT within 100 ft of the river or trail; they rely on the NPS Lewis & Clark visitor center list. Tap a GPS point to open it in Google Maps. More detail, parking, NPS sources and walk-in points are in the KPC 2-Fers & 3-Fers Field Guide in the Members Room.';
     var rows = SP.slice().sort(function (a, b) { return a.sec - b.sec || (a.county < b.county ? -1 : a.county > b.county ? 1 : 0) || (a.refs.join() < b.refs.join() ? -1 : 1); });
     var html = '', cur = -1;
@@ -355,7 +355,7 @@
       html += '<div class="g-frow g-keep"><span class="g-pill' + (d.type === '3-fer' ? ' three' : '') + '">' + esc(d.type.toUpperCase()) + '</span><div class="g-fmain"><div class="g-frefs">' +
         d.refs.map(function (r) { return '<a href="#' + pid(r) + '">' + esc(r) + '</a>'; }).join(' + ') + '</div><div class="g-fnames">' + esc(d.names.join(' + ')) +
         '</div></div><div class="g-fpin"><span>' + esc(d.county) + ' Co.</span>' + ext('https://www.google.com/maps/search/?api=1&query=' + d.pin[0].toFixed(5) + ',' + d.pin[1].toFixed(5),
-        d.pin[0].toFixed(5) + ', ' + d.pin[1].toFixed(5) + ' ›', 'g-pinlink') + '<small>guide pin: ' + esc(d.pinWhat) + '</small></div></div>';
+        d.pin[0].toFixed(5) + ', ' + d.pin[1].toFixed(5) + ' ›', 'g-pinlink') + '<small>not exact • guide pin: ' + esc(d.pinWhat) + '</small></div></div>';
     });
     html += '</div>';
     $('gFers').innerHTML = html;
