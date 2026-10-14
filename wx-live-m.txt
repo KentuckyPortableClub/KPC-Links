@@ -1,0 +1,7 @@
+{
+ "errs": [],
+ "place": "Near Bowling Green, KY",
+ "alerts": "✅ No active NWS watches, warnings or advisories for this spot.",
+ "nwr": "Warren County is covered by:\n\n162.400\nMHz\nKIH45 · Bowling Green, KY\ncovers your county · 12 mi away · Louisville, KY\n\nAlso nearby:\n\n162.500\nMHz\nWNG570 · Horse Cave, KY\nnearby · 34 mi away · Louisville, KY\n162.450\nMHz\nWZ2547 · Edmonton, KY\nnearby · 48 mi away · Louisville, KY\n162.525\nMHz\nWNG631 · Laf",
+ "now": "☁️\n88°\nCloudy\nFeels like 92°F\nWIND\nW 9 mph\ngusts 16\nHUMIDITY\n56%\ndew point 70°\nPRESSURE\n29.96 in\n1015 mb\nCLOUDS\n100%\nvisibility 55 mi\nSUNRISE\n6:52 AM\nsunset 6:10 PM\nUV TODAY\n4\nmax for today\n⚡ Storms p"
+}
