@@ -15,5 +15,5 @@ for d in D:
     out.append(f'<wpt lat="{p["la"]}" lon="{p["lo"]}"><name>{x(d["type"]+" "+" + ".join(d["refs"]))}</name><cmt>{x("Guide pin: "+p["what"])}</cmt><desc>{x(" ".join(desc.split()))}</desc><sym>{sym}</sym></wpt>')
     n+=1
 out.append('</gpx>')
-open('/home/claude/kentuckyportableclub/kpc-links/KPC_KY_POTA_2fers_3fers.gpx','w').write('\n'.join(out)+'\n')
+open('KPC_KY_POTA_2fers_3fers.gpx','w').write('\n'.join(out)+'\n')
 print(n,'points')

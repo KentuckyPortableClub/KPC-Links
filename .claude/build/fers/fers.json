@@ -1795,6 +1795,20 @@
    "county": "McCreary",
    "points": [
     {
+     "la": 36.725318,
+     "lo": -84.543018,
+     "what": "On the trail at Yamacraw (KY 92 bridge)",
+     "note": "On the Sheltowee Trace inside Big South Fork NRA near the KY 92 bridge over the Big South Fork. Not exact: walk to the trail and make sure you are within 100 ft of it and inside the NRA. This stretch is NOT in the Big South Fork Wild River park (US-10107), which runs from the Tennessee line to Blue Heron.",
+     "q": "B"
+    },
+    {
+     "la": 36.7255,
+     "lo": -84.5446,
+     "what": "Parking: Yamacraw river access (KDFWR)",
+     "note": "Unpaved lot, open all year. From Whitley City: KY 1651 south, KY 92 west to the bridge, left on KY 1363, then an immediate left on the road under the bridge. Parking only, about 450 ft from the trail spot.",
+     "q": "A"
+    },
+    {
      "la": 36.76108,
      "lo": -84.54755,
      "what": "On the trail",
@@ -2324,6 +2338,11 @@
    "KPC park data",
    "Kentucky park boundaries, trail lines, parking and entrance points used across the KPC site.",
    "https://kentuckyportableclub.github.io/KPC-Links/finder.html"
+  ],
+  [
+   "KDFWR fishing access site: Big South Fork of Cumberland River - Yamacraw",
+   "Yamacraw parking and directions (KY 92 bridge, KY 1363)",
+   "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=367"
   ]
  ],
  "changes": [
@@ -2339,7 +2358,8 @@
   "Added Livingston County WMA (Trail of Tears Northern Route runs through it). Columbus-Belmont: the NPS Benge Route runs through the park, so it now has an on-route pin.",
   "Wickliffe Mounds, Big Bone Lick and Golden Pond now cite the NPS \"Visitor Centers in Kentucky\" page for the Lewis & Clark trail.",
   "Lewis & Clark auto tour route: checked the NPS route for all of Kentucky. It runs along the edges of Big Bone Lick, Wickliffe Mounds, Otter Creek, Yellowbank WMA and Livingston County WMA; each now has a pin inside the park next to the signed route, and Livingston County WMA is a new possible Lewis & Clark 2-fer.",
-  "Added US-0608 Ohio River Islands National Wildlife Refuge (Manchester islands, Lewis County, boat only) as a possible Lewis & Clark 2-fer."
+  "Added US-0608 Ohio River Islands National Wildlife Refuge (Manchester islands, Lewis County, boat only) as a possible Lewis & Clark 2-fer.",
+  "Sheltowee Trace + Big South Fork NRA: added the Yamacraw trail spot (KY 92 bridge, 36.725318, -84.543018, suggested by KZ4CP) and the KDFWR Yamacraw river access parking. Checked: not a 3-fer, the Big South Fork Wild River (US-10107) runs only from the Tennessee line to Blue Heron (POTA park notes and KY GIS)."
  ],
  "trips": [
   {
