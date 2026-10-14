@@ -52,7 +52,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - Remote transmit.
 - KPC CW practice night on Vail (Brandon to decide).
 - N4KPC changes after the grant (see above).
-- **Weekly KPC CW challenge (later, Brandon Oct 14):** same set of calls for everyone each week, scores sent in with a Google Form (like Community, with approval), club leaderboard on the CW page, Discord announcement. Other CW ideas offered but not picked yet: Morse games, CW Night countdown card, activation keyer buttons.
+- **KPC CW challenge LEADERBOARD (waiting on Brandon's Google Form):** the weekly challenge itself is built (QRQ tab, same 60 items for everyone from the ISO week, score in localStorage kpcWeekly, Share button). Still to do: a Google Form (Call sign, Week, Points, Top WPM + Approved column), published-CSV secret, a sync job like Community, and a leaderboard on the CW page. A reminder was scheduled for Brandon. Not picked yet: CW Night countdown card.
 - Community page chat/message board (later): embed the club Discord with WidgetBot for live chat, then Groups.io for threaded posts. Not giscus (most hams lack GitHub accounts).
 
 ## 2-fers & 3-fers (single source: .claude/build/fers/fers.json)
@@ -129,6 +129,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - Sprint tab: timed 5/10/15 min run, formats POTA run / CWops CWT / SKCC sprint, score = QSOs x states, personal bests in localStorage kpcSprint.
 - Band conditions setting (Clean / Typical / Rough): static crashes, a neighbour station (QRM) and tuner-uppers during Hunt, Activate, Ragchew and Sprint only (never in drills or the QRQ ladder).
 - Fist doctor under the fist meter: compares dah length and gaps (in a letter / between letters / between words) with textbook timing and gives up to 3 plain-word tips; with paddles only spacing is judged.
+- Games tab: Falling letters (send to clear with key/paddles; keyboard = hear and type) and Beat the clock (A-Z, 0-9, call x3, PARIS); bests in localStorage kpcGames. Keyer tab: 8 big memory buttons (F1-F8), {MY} {THEIR} {REF} {ST} fill-ins, editable (localStorage kpcKeyerMem); sidetone only, does not key a radio.
 - Decoder (kpc-cw-rx.js): mix-down + narrow 3-pole low-pass (auto width ~2.6 Hz per WPM, 50-160 Hz, or 50/100/200 picked), KPCRX.simulate({text,wpm,snr,offset,bw}) is a test bench (SNR in 2.5 kHz). Oct 14 bench: copies to about -6 dB at 15 WPM, -3 dB at 25-35 WPM (old Goertzel version failed below about +1 dB). SIGNAL readout is SNR in 2.5 kHz with GOOD/WEAK/TOO WEAK.
 
 ## Kentucky college scoreboard (kpc-community.html under the hero, kpc-scores.js) — Oct 14 2026
