@@ -1,0 +1,74 @@
+@@CSS@@
+<style>
+.hero{background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.62) 45%,rgba(7,7,7,.2) 80%,rgba(7,7,7,.05) 100%),url("campout.png") center 55%/cover no-repeat #070707}
+@media(max-width:760px){.hero{background:linear-gradient(180deg,rgba(7,7,7,.45) 0%,rgba(7,7,7,.8) 55%,rgba(7,7,7,.92) 100%),url("campout-mobile.jpg") center 60%/cover no-repeat #070707}}
+.cg-wrap{max-width:1160px;margin:0 auto;padding:0 16px;box-sizing:border-box}
+.cg-tools{position:sticky;top:64px;z-index:5;background:#f6f1e4;border-bottom:1px solid #e0d5bd;padding:12px 0}
+.cg-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.cg-row input,.cg-row select{min-height:42px;border:1px solid #cbbf9f;border-radius:8px;padding:8px 12px;font:15px Arial,sans-serif;background:#fff;min-width:0}
+.cg-row input{flex:1 1 260px}.cg-row select{flex:0 1 220px}
+.cg-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.cg-chip{min-height:34px;padding:6px 12px;border:1.5px solid #1c3a2a;border-radius:999px;background:#fff;color:#1c3a2a;font:900 11px Arial,sans-serif;letter-spacing:.8px;cursor:pointer}
+.cg-chip[aria-pressed=true]{background:#1c3a2a;color:#fff}
+.cg-count{font:900 11px Arial,sans-serif;letter-spacing:1px;color:#5b5648;margin-top:8px}
+.cg-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;padding:20px 0 30px}
+@media(max-width:860px){.cg-list{grid-template-columns:minmax(0,1fr)}.cg-tools{position:static}}
+.cg-card{overflow-wrap:anywhere;background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);border-radius:10px;padding:18px;box-shadow:0 10px 24px rgba(0,0,0,.06);min-width:0}
+.cg-card h2{margin:0 0 4px;font:700 22px/1.15 Georgia,serif}
+.cg-sub{color:#5b5648;font-size:14px;margin:0 0 10px}
+.cg-prog{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.cg-prog a,.cg-prog span{display:inline-block;padding:4px 9px;border-radius:999px;font:900 11px Arial,sans-serif;letter-spacing:.6px;text-decoration:none}
+.p-pota{background:#173d2b;color:#fff}.p-kff{background:#2f5f8f;color:#fff}.p-sota{background:#8a5a2b;color:#fff}.p-2fer{background:#fff4cf;color:#3b2c06;border:1px solid #e9b13a}
+.cg-btns{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
+.cg-b{display:inline-flex;align-items:center;min-height:32px;padding:5px 12px;border-radius:999px;border:1.5px solid #1c3a2a;color:#1c3a2a;background:#fff;font:900 10.5px Arial,sans-serif;letter-spacing:.8px;text-decoration:none}
+.cg-b.gold{background:#e9b13a;border-color:#e9b13a;color:#1c1c1c}.cg-b.dark{background:#1c3a2a;color:#fff}.cg-b.rev{background:#fff4cf;border-color:#e9b13a;color:#3b2c06}
+.cg-h{margin:16px 0 6px;font:900 11px Arial,sans-serif;letter-spacing:1.4px;color:#173d2b}
+.cg-place{border-top:1px solid #eee5d3;padding:10px 0}
+.cg-place:first-of-type{border-top:0}
+.cg-place h3{margin:0 0 3px;font:700 17px/1.25 Georgia,serif}
+.cg-place p{margin:0 0 4px;color:#5b5648;font-size:14px;line-height:1.45}
+.cg-place p b{color:#1c1c1c}
+.cg-closed{display:inline-block;background:#b4442c;color:#fff;font:900 10px Arial,sans-serif;letter-spacing:.8px;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:2px}
+.cg-kind{display:inline-block;background:#efe6d2;color:#5f5a51;font:900 10px Arial,sans-serif;letter-spacing:.8px;padding:2px 7px;border-radius:4px;margin-right:6px;vertical-align:2px;text-transform:uppercase}
+.cg-stars{color:#c48a12;font-size:14px;letter-spacing:1px}
+.cg-revs{margin:6px 0 0}.cg-revs summary{cursor:pointer;font:900 11px Arial,sans-serif;letter-spacing:.8px;color:#173d2b}
+.cg-rev{background:#fbf6e9;border-radius:8px;padding:8px 10px;margin:6px 0;font-size:14px;color:#2b2b2b}
+.cg-rev .who{font:900 11px Arial,sans-serif;letter-spacing:.6px;color:#5b5648;margin-bottom:3px}
+.cg-rev img{max-width:100%;height:auto;border-radius:6px;margin-top:6px}
+.cg-note{font-size:13px;color:#6b665a;margin:8px 0 0}
+.cg-other{background:#151515;color:#eee;padding:34px 0}
+.cg-other h2{color:#fff;font:700 28px/1.15 Georgia,serif;margin:0 0 8px}.cg-other p{color:#bcb8ae}
+.cg-other .cg-rev{background:#222;color:#eee}.cg-other .cg-revs summary{color:#e9b13a}.cg-other .cg-rev .who{color:#bcb8ae}
+.cg-none{padding:20px 0;color:#5b5648}
+</style>
+@@HEADER@@
+<main>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • STAY &amp; ACTIVATE</p><h1>CAMPGROUNDS <span>&amp; CABINS</span></h1><p class="hero-copy">Campgrounds, cabins and lodges inside Kentucky POTA parks, with every program at that park on one card: POTA, WWFF (KFF) and SOTA. Campground pages, maps and booking links, plus reviews from operators who stayed there.</p></div></section>
+<aside class="kpc-disclaim" role="note" style="max-width:1160px;margin:18px auto;padding:0 16px;box-sizing:border-box"><div style="background:#fff8e6;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:8px;padding:12px 16px;color:#1c1c1c;font:14px/1.55 Arial,Helvetica,sans-serif"><b>Use our tools, then check for yourself.</b> KPC builds these maps, guides and tools to help you plan, but we’re volunteers working from public data, and we make mistakes. Boundaries change, maps don’t always line up, and some land inside a park line is private. Before you activate, check the official agency map, confirm the land is public and open, and follow the rules of each program you’re activating. You’re responsible for making sure your activation is valid. Spot something wrong? <a href="contact.html" style="color:#1d5a3a;font-weight:700">Let us know</a> so we can fix it.</div></aside>
+<div class="cg-tools"><div class="cg-wrap">
+ <div class="cg-row"><input id="cgQ" type="search" placeholder="Search park, campground, county, US- / KFF- / W4K…" aria-label="Search"><select id="cgReg" aria-label="Region"><option value="">All regions</option></select></div>
+ <div class="cg-chips" id="cgChips">
+  <button class="cg-chip" type="button" data-f="camp" aria-pressed="false">CAMPGROUNDS</button>
+  <button class="cg-chip" type="button" data-f="lodge" aria-pressed="false">CABINS &amp; LODGES</button>
+  <button class="cg-chip" type="button" data-f="elec" aria-pressed="false">ELECTRIC HOOKUPS</button>
+  <button class="cg-chip" type="button" data-f="map" aria-pressed="false">HAS CAMPGROUND MAP</button>
+  <button class="cg-chip" type="button" data-f="kff" aria-pressed="false">KFF TOO</button>
+  <button class="cg-chip" type="button" data-f="sota" aria-pressed="false">SOTA TOO</button>
+  <button class="cg-chip" type="button" data-f="open" aria-pressed="false">HIDE CLOSED</button>
+ </div>
+ <div class="cg-count" id="cgCount" aria-live="polite">Loading…</div>
+</div></div>
+<div class="cg-wrap"><p class="cg-none" id="cgErr" hidden></p><div class="cg-list" id="cgList"></div><p class="cg-none" id="cgNone" hidden>Nothing matches. Try a shorter search or turn off a filter.</p></div>
+<section class="cg-other" id="other"><div class="cg-wrap">
+ <h2>Stayed somewhere else?</h2>
+ <p>This page only lists places to stay <b>inside</b> Kentucky POTA parks. If you camped or stayed near a park (a Corps of Engineers campground, a private campground, a motel close to a good activation spot), leave a review so other operators know. Reviews of places inside the parks go on that park's card above.</p>
+ <div class="cg-btns" id="cgOtherBtn"></div>
+ <div id="cgOther"></div>
+</div></section>
+<section class="section features"><div class="cg-wrap" style="padding:26px 16px">
+ <p class="cg-note"><b>About this page:</b> campground and lodge details come from the official park, Kentucky State Parks, National Park Service, Forest Service and Land Between the Lakes pages, checked on the date shown on each card. Seasons, closures and prices change: call or check the official page before you go. Reviews are from visitors and are their own opinions.</p>
+</div></section>
+<section class="final"><h2>Get Outside. Get On The Air.</h2><p>KENTUCKY PORTABLE CLUB</p><a class="btn" href="parks.html">PARKS →</a></section>
+</main>
+@@FOOTER@@
+<script src="kpc-campgrounds.js?v=20261014a"></script>

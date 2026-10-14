@@ -245,6 +245,9 @@ tasks.pages = async () => {
       `• Printable quick reference card: ${U('kpc-reference.html')}`,
       `• Club videos: ${U('videos.html')}`,
       '',
+      '**Stay & activate**',
+      `• Campgrounds & cabins inside Kentucky POTA parks (POTA, WWFF & SOTA on one card, maps, booking links, reviews): ${U('kpc-campgrounds.html')}`,
+      '',
       'Plus a new events calendar, campout page and resources page. All free, all built for Kentucky portable operators.',
     ].join('\n');
     await post({ title: '🆕 New on the KPC website', text, link: SITE + 'toolbox.html' });

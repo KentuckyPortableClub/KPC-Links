@@ -1,0 +1,1711 @@
+{
+ "about": "Campgrounds, cabins and lodges INSIDE Kentucky POTA parks for kpc-campgrounds.html. Park names, counties, GPS and the POTA/KFF/SOTA lists come live from kpc-ky-data.json. Campground facts checked against the official pages on the date in each entry (checked). Places outside the parks are not listed; people can leave reviews of them through the form (see kpc-campground-notes.json, type \"other\").",
+ "updated": "2026-10-14",
+ "parks": [
+  {
+   "pota": "US-1273",
+   "campgrounds": [
+    {
+     "id": "barren-river-lake-state-resort-park-campground",
+     "name": "Barren River Lake State Resort Park Campground",
+     "url": "https://parks.ky.gov/parks/find-a-park/barren-river-lake-campground-7834",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/barren-river-lake-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91901",
+     "sites": "101 (99 electric, 2 tent)",
+     "hookups": "Sites 1-9: 50 amp full hookup; most others 30 amp + water; 2 tent sites no hookups",
+     "season": "Mar 15 - Nov 15 (one notice says Mar 28 - Oct 31)",
+     "extras": "Bathhouse/showers, laundry, dump station, boat ramp, beach (summer)",
+     "la": 36.8546778,
+     "lo": -86.0562667,
+     "note": "Bailey's Point and The Narrows are separate Corps campgrounds; the park does not book them.",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/barren-river-lake-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91901",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "louie-b-nunn-lodge",
+     "kind": "lodge",
+     "name": "Louie B. Nunn Lodge",
+     "url": "https://parks.ky.gov/explore/louie-b-nunn-lodge-7832",
+     "reserve": "https://guestrez.megasyshms.com/ZZ4RP/barren-river-lake-state-resort-park",
+     "notes": "Closed for renovation through spring 2027",
+     "status": "closed",
+     "source": "https://parks.ky.gov/improvements",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "barren-river-lake-cottages",
+     "kind": "cottages",
+     "name": "Barren River Lake cottages",
+     "url": "https://parks.ky.gov/explore/barren-river-lake-cottages-7833",
+     "reserve": "https://guestrez.megasyshms.com/ZZ4RP/barren-river-lake-state-resort-park",
+     "notes": "Closed due to storm damage",
+     "status": "closed",
+     "source": "https://parks.ky.gov/improvements",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-3779",
+   "campgrounds": [
+    {
+     "id": "big-bone-lick-campground",
+     "name": "Big Bone Lick Campground",
+     "url": "https://parks.ky.gov/union/parks/historic/big-bone-lick-state-historic-site",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/big-bone-lick-state-historic-site/r/campgroundDetails.do?contractCode=KY&parkId=91803",
+     "sites": 62,
+     "hookups": "30 amp electric + water; back-in sites",
+     "season": "Open through Nov 15, 2026 (seasonal)",
+     "extras": "Showers, laundry, dump station, playground; pets OK; pool closed",
+     "la": 38.8837917,
+     "lo": -84.7472722,
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/big-bone-lick-state-historic-site/r/campgroundDetails.do?contractCode=KY&parkId=91803",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-0686",
+   "campgrounds": [
+    {
+     "id": "blue-heron-campground-ky",
+     "name": "Blue Heron Campground (KY)",
+     "url": "https://home.nps.gov/biso/planyourvisit/blueheroncampground.htm",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/232505",
+     "sites": 45,
+     "hookups": "Electric at all sites",
+     "season": "Open through winter Dec 2026 - Mar 2027 (pilot)",
+     "extras": "Flush toilets, hot showers, bear lockers",
+     "phone": "(423) 286-7275",
+     "source": "https://www.recreation.gov/camping/campgrounds/232505",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "bear-creek-horse-camp-ky",
+     "name": "Bear Creek Horse Camp (KY)",
+     "url": "https://home.nps.gov/biso/planyourvisit/bear-creek-horse-camp.htm",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/251468",
+     "sites": 22,
+     "hookups": "Electric; 13 sites with 2 horse stalls",
+     "season": "Not stated",
+     "extras": "Horse camp, flush toilets, hot showers",
+     "phone": "(423) 286-7275",
+     "source": "https://www.recreation.gov/camping/campgrounds/251468",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "alum-ford-campground-ky",
+     "name": "Alum Ford Campground (KY)",
+     "url": "https://home.nps.gov/biso/planyourvisit/alumfordcampground.htm",
+     "sites": 6,
+     "hookups": "Primitive only; no drinking water",
+     "season": "Year-round",
+     "extras": "Pit toilets, boat launch on Lake Cumberland, Sheltowee Trace",
+     "phone": "423-569-9778",
+     "note": "Reservable (site-specific, up to 6 months ahead) but no booking link on the NPS page.",
+     "source": "https://home.nps.gov/biso/planyourvisit/alumfordcampground.htm",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "bandy-creek-campground-tn",
+     "name": "Bandy Creek Campground (TN)",
+     "url": "https://home.nps.gov/biso/planyourvisit/bandycreekcampground.htm",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/232506",
+     "sites": "about 144 (about 95 electric, 47 non-electric/tent, 2 group)",
+     "hookups": "Electric at B, C, D loops; Loop A non-electric",
+     "season": "Not stated",
+     "extras": "Hot showers, pool (summer weekends), visitor center, horse stalls",
+     "phone": "(423) 286-7275",
+     "note": "Tennessee side of the park.",
+     "source": "https://www.recreation.gov/camping/campgrounds/232506",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "station-camp-campground-tn",
+     "name": "Station Camp Campground (TN)",
+     "url": "https://home.nps.gov/biso/planyourvisit/station-camp-campground.htm",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/10004358",
+     "sites": 24,
+     "hookups": "Electric; 10 sites with horse stalls",
+     "season": "Year-round",
+     "extras": "Horse camp, flush toilets, hot showers",
+     "phone": "(423) 286-7275",
+     "note": "Tennessee side of the park.",
+     "source": "https://www.recreation.gov/camping/campgrounds/10004358",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "charit-creek-lodge",
+     "kind": "lodge",
+     "name": "Charit Creek Lodge",
+     "url": "https://www.nps.gov/biso/planyourvisit/lodging.htm",
+     "reserve": "https://www.ccl-bsf.com/rates",
+     "notes": "Only lodging inside BSF; cabins and dorm, meals; hike, bike or horse in only; in Tennessee (Station Camp Creek)",
+     "source": "https://www.nps.gov/biso/planyourvisit/lodging.htm",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1274",
+   "campgrounds": [
+    {
+     "id": "blue-licks-battlefield-campground",
+     "name": "Blue Licks Battlefield Campground",
+     "url": "https://parks.ky.gov/carlisle/parks/historic/blue-licks-battlefield-state-resort-park",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/blue-licks-battlefield-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91917",
+     "sites": "55 (49 electric, 6 primitive tent)",
+     "hookups": "Electric + water; tent sites none; no water hookup Oct 31 - Mar 15",
+     "season": "Open through Nov 15, 2026",
+     "extras": "Showers, laundry, dump station, playground",
+     "la": 38.4294139,
+     "lo": -83.9929028,
+     "phone": "(859) 289-3653",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/blue-licks-battlefield-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91917",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "blue-licks-battlefield-lodge",
+     "kind": "lodge",
+     "name": "Blue Licks Battlefield lodge",
+     "url": "https://parks.ky.gov/carlisle/parks/historic/blue-licks-battlefield-state-resort-park",
+     "reserve": "https://guestrez.megasyshms.com/JN39V/blue-licks-battlefield-state-resort-park",
+     "notes": "One of the 17 resort parks with online lodge booking",
+     "source": "https://parks.ky.gov/parks/reservelodgecottage/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "blue-licks-cottages",
+     "kind": "cottages",
+     "name": "Blue Licks cottages",
+     "url": "https://parks.ky.gov/explore/blue-licks-cottages-7847",
+     "reserve": "https://guestrez.megasyshms.com/JN39V/blue-licks-battlefield-state-resort-park",
+     "source": "https://parks.ky.gov/parks/reservelodgecottage/",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1275",
+   "campgrounds": [],
+   "note": "No campground at the state park (lodge and cottages only); not in the Kentucky State Parks campground directory. Nearest: Corps of Engineers Buckhorn Campground below the dam (https://www.recreation.gov/camping/campgrounds/232566, 606-398-7220), outside the state park.",
+   "lodging": [
+    {
+     "id": "buckhorn-lodge",
+     "kind": "lodge",
+     "name": "Buckhorn Lodge",
+     "url": "https://parks.ky.gov/explore/buckhorn-lodge-7861",
+     "reserve": "https://guestrez.megasyshms.com/NVBWN/buckhorn-lake-state-resort-park",
+     "notes": "Pets allowed (up to 2 per room/unit, fee)",
+     "source": "https://parks.ky.gov/parks/reservelodgecottage/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "buckhorn-lake-cottages",
+     "kind": "cottages",
+     "name": "Buckhorn Lake cottages",
+     "url": "https://parks.ky.gov/explore/buckhorn-lake-cottages-7863",
+     "reserve": "https://guestrez.megasyshms.com/NVBWN/buckhorn-lake-state-resort-park",
+     "notes": "2-night minimum for cottages",
+     "source": "https://parks.ky.gov/things-to-do/lodging/reserve-a-lodge-cottage",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1251",
+   "campgrounds": [
+    {
+     "id": "carr-creek-campground",
+     "name": "Carr Creek Campground",
+     "url": "https://parks.ky.gov/explore/carr-creek-campground-7869",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/carr-creek-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91833",
+     "sites": 39,
+     "hookups": "Electric + water at most sites (a few no electric)",
+     "season": "Year-round",
+     "extras": "Beach (longest sand beach in KY State Parks), playground",
+     "la": 37.2324583,
+     "lo": -83.0019444,
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/carr-creek-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91833",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1276",
+   "campgrounds": [
+    {
+     "id": "carter-caves-campground",
+     "name": "Carter Caves Campground",
+     "url": "https://parks.ky.gov/olive-hill/parks/resort/carter-caves-state-resort-park",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/carter-caves-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91903",
+     "sites": "128 (89 electric, 31 tent, 8 equestrian)",
+     "hookups": "15/20/30/50 amp electric + water",
+     "season": "Year-round",
+     "extras": "Showers (new bathhouse at store), dump station, camp store, horse camp (book horse sites by phone)",
+     "la": 38.3750472,
+     "lo": -83.1307472,
+     "phone": "606-286-4411",
+     "note": "Lower bathhouse closed for renovation.",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/carter-caves-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91903",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "lewis-caveland-lodge",
+     "kind": "lodge",
+     "name": "Lewis Caveland Lodge",
+     "url": "https://parks.ky.gov/explore/lewis-caveland-lodge-7871",
+     "reserve": "https://guestrez.megasyshms.com/87ZX9/carter-caves-state-resort-park",
+     "notes": "Pets allowed (up to 2 per room/unit, fee)",
+     "source": "https://parks.ky.gov/parks/reservelodgecottage/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "carter-caves-cottages",
+     "kind": "cottages",
+     "name": "Carter Caves cottages",
+     "url": "https://parks.ky.gov/explore/carter-caves-cottages-7873",
+     "reserve": "https://guestrez.megasyshms.com/87ZX9/carter-caves-state-resort-park",
+     "source": "https://parks.ky.gov/parks/reservelodgecottage/",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1252",
+   "campgrounds": [
+    {
+     "id": "columbus-belmont-campground",
+     "name": "Columbus-Belmont Campground",
+     "url": "https://parks.ky.gov/explore/columbus-belmont-state-park-7809",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/columbus-belmont-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91805",
+     "sites": "35 (31 electric, 4 overflow)",
+     "hookups": "Electric + water; some 50 amp full hookup; overflow water only",
+     "season": "Year-round",
+     "extras": "Bathhouse, dump station, laundry, museum",
+     "la": 36.7620222,
+     "lo": -89.1073111,
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/columbus-belmont-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91805",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging_links": {
+    "cabins": "https://parks.ky.gov/columbus/parks/historic/columbus-belmont-state-park"
+   }
+  },
+  {
+   "pota": "US-1277",
+   "campgrounds": [
+    {
+     "id": "ridgeline-clifty-campgrounds",
+     "name": "Ridgeline & Clifty Campgrounds",
+     "url": "https://parks.ky.gov/parks/find-a-park/cumberland-falls-state-resort-park-7786",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/cumberland-falls-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91904",
+     "sites": "50 (21 electric, 29 tent)",
+     "hookups": "Ridgeline: 30 amp, many with water; Clifty 40-47: 20 amp tent sites; some no electric",
+     "season": "Open through Oct 31, 2026 (seasonal)",
+     "extras": "No vehicles over 30 ft; moonbow viewing nearby",
+     "la": 36.8411278,
+     "lo": -84.3353861,
+     "phone": "800-325-0063",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/cumberland-falls-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91904",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "dupont-lodge",
+     "kind": "lodge",
+     "name": "DuPont Lodge",
+     "url": "https://parks.ky.gov/explore/dupont-lodge-7904",
+     "reserve": "https://guestrez.megasyshms.com/SVFPF/cumberland-falls-state-resort-park",
+     "notes": "Lodge and Riverview Restaurant closed for ~$10M renovation since Nov 1 2025; closed through spring/summer 2027",
+     "status": "closed",
+     "source": "https://parks.ky.gov/improvements",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "cumberland-falls-cottages-and-cabins",
+     "kind": "cottages",
+     "name": "Cumberland Falls cottages and cabins",
+     "url": "https://parks.ky.gov/explore/cumberland-falls-cottages-7906",
+     "reserve": "https://guestrez.megasyshms.com/SVFPF/cumberland-falls-state-resort-park",
+     "notes": "Cabin and cottage rentals remain available during lodge work",
+     "source": "https://parks.ky.gov/improvements",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-0019",
+   "campgrounds": [
+    {
+     "id": "wilderness-road-campground",
+     "name": "Wilderness Road Campground",
+     "url": "https://www.nps.gov/cuga/planyourvisit/wilderness-road-campground.htm",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/258617",
+     "sites": "151 (43 electric, 98 non-electric, 10 group tent)",
+     "hookups": "Electric 20/30/50 amp at Loops B, C; no water or sewer at sites",
+     "season": "Year-round (winter: Loops B, C, D only)",
+     "extras": "Hot showers, dump station, camp store (seasonal), pets on leash",
+     "phone": "606-248-2817",
+     "note": "Campground is on the Virginia side (Ewing, VA), inside the park.",
+     "source": "https://www.recreation.gov/camping/campgrounds/258617",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1278",
+   "campgrounds": [
+    {
+     "id": "dale-hollow-lake-campground",
+     "name": "Dale Hollow Lake Campground",
+     "url": "https://parks.ky.gov/burkesville/parks/resort/dale-hollow-lake-state-resort-park",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/dale-hollow-lake-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91916",
+     "sites": "151 listed (121 electric, 24 equestrian, 6 cabin); park says 144",
+     "hookups": "50 amp electric, most with water; some full hookup (B, C loops)",
+     "season": "Open through Nov 15, 2026 (seasonal)",
+     "extras": "Horse camp, marina and boat ramp about 2 miles, pool (summer)",
+     "la": 36.6533444,
+     "lo": -85.2913389,
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/dale-hollow-lake-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91916",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "mary-ray-oaken-lodge",
+     "kind": "lodge",
+     "name": "Mary Ray Oaken Lodge",
+     "url": "https://parks.ky.gov/explore/the-mary-ray-oaken-lodge-7930",
+     "reserve": "https://guestrez.megasyshms.com/9D2NJ/dale-hollow-lake-state-resort-park",
+     "notes": "Pets allowed (up to 2 per room/unit, fee)",
+     "source": "https://parks.ky.gov/parks/reservelodgecottage/",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-4484",
+   "campgrounds": [
+    {
+     "id": "twin-knobs-campground",
+     "name": "Twin Knobs Campground",
+     "url": "https://www.fs.usda.gov/r08/danielboone/recreation/twin-knobs-campground",
+     "map": "https://usfs-public.box.com/s/mkk3sln2dj49cc207476rpru4ahck6vp",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/233782",
+     "sites": 200,
+     "hookups": "Electric, electric + water, or full hookup at some sites; dump station",
+     "season": "2nd Friday in March - 1st Sunday in November",
+     "extras": "Bathhouses/showers, camp store, beach, boat ramp (campers only), pets on leash",
+     "la": 38.09104619,
+     "lo": -83.50740413,
+     "phone": "606-780-7818",
+     "source": "https://www.fs.usda.gov/r08/danielboone/recreation/twin-knobs-campground",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "zilpo-campground",
+     "name": "Zilpo Campground",
+     "url": "https://www.fs.usda.gov/r08/danielboone/recreation/zilpo-campground",
+     "map": "https://usfs-public.box.com/s/q18extxpqb7ota6w4c6vpl65317w2iv0",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/232370",
+     "sites": "Not stated (plus cabins)",
+     "hookups": "Electric at some sites; no sewer; dump station",
+     "season": "3rd Friday in March - last Sunday in October",
+     "extras": "Bathhouses/showers, camp store, beach, boat ramp, cabins; reservations required",
+     "la": 38.07090892,
+     "lo": -83.48424725,
+     "phone": "606-768-2722",
+     "source": "https://www.fs.usda.gov/r08/danielboone/recreation/zilpo-campground",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "clear-creek-campground",
+     "name": "Clear Creek Campground",
+     "url": "https://www.fs.usda.gov/r08/danielboone/recreation/clear-creek-campground",
+     "sites": 20,
+     "hookups": "Primitive; water from faucets, no electric, no showers",
+     "season": "Year-round",
+     "extras": "Boat ramp (Clear Creek Lake), vault toilet, Sheltowee Trace; first-come",
+     "la": 38.04596598,
+     "lo": -83.58639044,
+     "phone": "606-784-6428",
+     "source": "https://www.fs.usda.gov/r08/danielboone/recreation/clear-creek-campground",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "white-sulphur-horse-camp",
+     "name": "White Sulphur Horse Camp",
+     "url": "https://www.fs.usda.gov/r08/danielboone/recreation/white-sulphur-horse-camp",
+     "sites": "Not stated",
+     "hookups": "Primitive; no electric, no water",
+     "season": "Year-round",
+     "extras": "Horse camp, picket lines, water trough, vault toilets",
+     "la": 38.08675672,
+     "lo": -83.57558553,
+     "phone": "606-784-6428",
+     "source": "https://www.fs.usda.gov/r08/danielboone/recreation/white-sulphur-horse-camp",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "koomer-ridge-campground",
+     "name": "Koomer Ridge Campground",
+     "url": "https://www.fs.usda.gov/r08/danielboone/recreation/koomer-ridge-campground",
+     "map": "https://usfs-public.box.com/s/uv28hc08gky5zkaw4bzowmqk1jbiqgs3",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/10311270",
+     "sites": "54 (19 fit RVs)",
+     "hookups": "No hookups; no dump station",
+     "season": "Year-round",
+     "extras": "Bathhouse (seasonal showers), flush toilets, Red River Gorge trails",
+     "la": 37.78403169,
+     "lo": -83.63263379,
+     "phone": "606-784-6428",
+     "source": "https://www.fs.usda.gov/r08/danielboone/recreation/koomer-ridge-campground",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "holly-bay-campground",
+     "name": "Holly Bay Campground",
+     "url": "https://www.fs.usda.gov/r08/danielboone/recreation/holly-bay-campground",
+     "map": "https://usfs-public.box.com/s/53p80eudq3r20y7i4kjk8n3lb7sg9jqn",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/232259",
+     "sites": "94 (75 electric + water, 19 walk-in tent)",
+     "hookups": "Electric + water at drive-in sites; dump station",
+     "season": "April 9 - October 19",
+     "extras": "Bathhouse/showers, marina and boat ramp nearby (Laurel River Lake)",
+     "la": 36.98224853,
+     "lo": -84.26665297,
+     "phone": "606-864-4163",
+     "note": "Courtesy dock unusable due to low lake level.",
+     "source": "https://www.fs.usda.gov/r08/danielboone/recreation/holly-bay-campground",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "grove-drive-in-campground",
+     "name": "Grove Drive-In Campground",
+     "url": "https://www.fs.usda.gov/r08/danielboone/recreation/grove-drive-campground",
+     "map": "https://usfs-public.box.com/s/wmwd44d3zi74a1whm9cf7o30v1vmgnys",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/232258",
+     "sites": "44 (35 electric + water, 5 water only, 4 walk-in tent)",
+     "hookups": "Electric + water at most drive-in sites",
+     "season": "April 15 - October 5",
+     "extras": "Flush toilets, Laurel River Lake trails; Loop A first-come",
+     "la": 36.94193827,
+     "lo": -84.21530027,
+     "phone": "606-864-4163",
+     "source": "https://www.fs.usda.gov/r08/danielboone/recreation/grove-drive-campground",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "bee-rock-campground",
+     "name": "Bee Rock Campground",
+     "url": "https://www.fs.usda.gov/r08/danielboone/recreation/bee-rock-campground",
+     "map": "https://usfs-public.box.com/s/yfegub8ltz7ye6uudxt0nxmss8tthe7o",
+     "sites": 25,
+     "hookups": "No hookups; water from faucets",
+     "season": "Laurel side year-round; Pulaski side March - November",
+     "extras": "Vault toilets, boat ramp (Rockcastle River); first-come",
+     "la": 37.027909,
+     "lo": -84.317916,
+     "phone": "606-864-4163",
+     "source": "https://www.fs.usda.gov/r08/danielboone/recreation/bee-rock-campground",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "great-meadows-campground",
+     "name": "Great Meadows Campground",
+     "url": "https://www.fs.usda.gov/r08/danielboone/recreation/great-meadows-campground",
+     "map": "https://usfs-public.box.com/s/40b3qjcdenqo3b4cehxqe0803xfmjhg6",
+     "sites": 18,
+     "hookups": "Primitive; water available, no hookups or dump",
+     "season": "April 1 - November 15",
+     "extras": "Vault toilets, fishing pier, Rock Creek trout stream; RVs to 35 ft",
+     "la": 36.628297,
+     "lo": -84.726545,
+     "phone": "606-376-5323",
+     "source": "https://www.fs.usda.gov/r08/danielboone/recreation/great-meadows-campground",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "barren-fork-horse-camp",
+     "name": "Barren Fork Horse Camp",
+     "url": "https://www.fs.usda.gov/r08/danielboone/recreation/barren-fork-horse-camp",
+     "map": "https://usfs-public.box.com/s/jp0e6xw1cv8jjryh53x3k3ixmkyhwggg",
+     "sites": 41,
+     "hookups": "Potable water; hookups not stated",
+     "season": "April 1 - November 15",
+     "extras": "Horse camp, vault toilet, picnic shelter; trailers/RVs to 35 ft",
+     "la": 36.775619,
+     "lo": -84.468008,
+     "phone": "606-376-5323",
+     "source": "https://www.fs.usda.gov/r08/danielboone/recreation/barren-fork-horse-camp",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "turkey-foot-campground",
+     "name": "Turkey Foot Campground",
+     "url": "https://www.fs.usda.gov/r08/danielboone/recreation/turkey-foot-campground",
+     "map": "https://usfs-public.box.com/s/9cpbos54l97s0vqkhihkaqz0ua8vlt61",
+     "sites": 15,
+     "hookups": "Primitive; no water, no electric",
+     "season": "Year-round",
+     "extras": "Vault toilets, free; low-water ford and steep gravel road",
+     "la": 37.46602109,
+     "lo": -83.91662833,
+     "phone": "606-864-4163",
+     "source": "https://www.fs.usda.gov/r08/danielboone/recreation/turkey-foot-campground",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "s-tree-campground",
+     "name": "S-Tree Campground",
+     "url": "https://www.fs.usda.gov/r08/danielboone/recreation/s-tree-campground",
+     "sites": 20,
+     "hookups": "Primitive; no drinking water",
+     "season": "Year-round",
+     "extras": "Vault toilets, CCC shelter; no trailers over 25 ft",
+     "la": 37.38497287,
+     "lo": -84.07326899,
+     "phone": "606-864-4163",
+     "source": "https://www.fs.usda.gov/r08/danielboone/recreation/s-tree-campground",
+     "checked": "2026-10-14"
+    }
+   ],
+   "note": "24 developed/semi-developed camping areas on the forest; the 12 most useful are listed. Others: Bell Farm, Little Lick horse camps; Boat Gunnel, Craigs Creek, Twin Knobs group camps; Claylick, Grove, White Oak boat-in; Indian Creek, Paragon, Table Rock, Trace Branch areas (https://www.fs.usda.gov/r08/danielboone/recreation/camping-cabins). Map links are the Forest Service 'Guide/Map' files on Box."
+  },
+  {
+   "pota": "US-1256",
+   "campgrounds": [
+    {
+     "id": "fort-boonesborough-campground",
+     "name": "Fort Boonesborough Campground",
+     "url": "https://parks.ky.gov/explore/fort-boonesborough-state-park-7811",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/fort-boonesborough-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91810",
+     "sites": 163,
+     "hookups": "Electric + water (park lists 18 full-hookup sites); winter water off at sites",
+     "season": "Year-round when open",
+     "extras": "Restrooms, water fill, near Kentucky River",
+     "la": 37.89813,
+     "lo": -84.26807,
+     "phone": "(859) 527-3454",
+     "status": "closed",
+     "note": "Closed due to flooding through 12/31/2026.",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/fort-boonesborough-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91810",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1257",
+   "campgrounds": [
+    {
+     "id": "general-burnside-island-campground",
+     "name": "General Burnside Island Campground",
+     "url": "https://parks.ky.gov/burnside/parks/recreation/general-burnside-island-state-park",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/general-burnside-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91811",
+     "sites": "101 (74 electric + water, 18 full service, 9 tent)",
+     "hookups": "Electric + water; 18 full hookup",
+     "season": "Open through Nov 15, 2026 (seasonal)",
+     "extras": "Boat ramp, playground, golf course; pool closed",
+     "la": 36.9805,
+     "lo": -84.6014,
+     "phone": "(606) 561-3625",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/general-burnside-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91811",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1279",
+   "campgrounds": [
+    {
+     "id": "general-butler-campground",
+     "name": "General Butler Campground",
+     "url": "https://parks.ky.gov/carrollton/parks/historic/general-butler-state-resort-park",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/general-butler-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91905",
+     "sites": 104,
+     "hookups": "Electric + water at most sites; some pull-through",
+     "season": "Year-round",
+     "extras": "Hilltop at Ohio/Kentucky River confluence",
+     "la": 38.6644444,
+     "lo": -85.1505556,
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/general-butler-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91905",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "the-general-butler-lodge",
+     "kind": "lodge",
+     "name": "The General Butler Lodge",
+     "url": "https://parks.ky.gov/explore/the-general-butler-lodge-7944",
+     "reserve": "https://guestrez.megasyshms.com/244FS/general-butler-state-resort-park",
+     "notes": "Pets allowed (up to 2 per room/unit, fee)",
+     "source": "https://parks.ky.gov/parks/reservelodgecottage/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "general-butler-cottages",
+     "kind": "cottages",
+     "name": "General Butler cottages",
+     "url": "https://parks.ky.gov/explore/general-butler-cottages-7945",
+     "reserve": "https://guestrez.megasyshms.com/244FS/general-butler-state-resort-park",
+     "notes": "2-night minimum for cottages",
+     "source": "https://parks.ky.gov/things-to-do/lodging/reserve-a-lodge-cottage",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1258",
+   "campgrounds": [
+    {
+     "id": "grayson-lake-campground",
+     "name": "Grayson Lake Campground",
+     "url": "https://parks.ky.gov/explore/grayson-lake-state-park-7813",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/grayson-lake-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91812",
+     "sites": 69,
+     "hookups": "Electric (15-50 amp) + water at most sites",
+     "season": "Mar 15 - Nov 15",
+     "extras": "Golf course; marina 4 miles",
+     "la": 38.20056,
+     "lo": -83.02806,
+     "phone": "(606) 474-6856",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/grayson-lake-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91812",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1259",
+   "campgrounds": [
+    {
+     "id": "green-river-lake-campground",
+     "name": "Green River Lake Campground",
+     "url": "https://parks.ky.gov/explore/green-river-lake-campground-7960",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/green-river-lake-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91813",
+     "sites": "227 (94 electric, 73 standard no electric, 60 tent)",
+     "hookups": "Electric at 94 sites; water at many non-electric sites",
+     "season": "Open through Dec 15, 2026",
+     "extras": "Lake water sports; marina and stables nearby (separate businesses)",
+     "la": 37.2733472,
+     "lo": -85.3167306,
+     "phone": "270-465-8255",
+     "note": "Our old note said primitive only / no electric; the reservation site now lists 94 electric sites.",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/green-river-lake-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91813",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1280",
+   "campgrounds": [
+    {
+     "id": "greenbo-lake-campground",
+     "name": "Greenbo Lake Campground",
+     "url": "https://parks.ky.gov/explore/greenbo-lake-campground-8000",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/greenbo-lake-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91906",
+     "sites": "102 (35 electric, 39 full service, 24 primitive, 4 equestrian)",
+     "hookups": "30 amp + water; full service sites; primitive none",
+     "season": "Year-round",
+     "extras": "Horse sites, lake fishing/boating, pool (fee)",
+     "la": 38.4841472,
+     "lo": -82.8901944,
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/greenbo-lake-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91906",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "jesse-stuart-lodge",
+     "kind": "lodge",
+     "name": "Jesse Stuart Lodge",
+     "url": "https://parks.ky.gov/explore/jesse-stuart-lodge-7999",
+     "reserve": "https://guestrez.megasyshms.com/NBXJM/greenbo-lake-state-resort-park",
+     "notes": "Pets allowed (up to 2 per room/unit, fee)",
+     "source": "https://parks.ky.gov/parks/reservelodgecottage/",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1281",
+   "campgrounds": [
+    {
+     "id": "jenny-wiley-campground",
+     "name": "Jenny Wiley Campground",
+     "url": "https://parks.ky.gov/parks/find-a-park/jenny-wiley-state-resort-park-7791",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/jenny-wiley-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91907",
+     "sites": "118 listed (park says 121)",
+     "hookups": "Electric + water",
+     "season": "Year-round when open",
+     "extras": "2 service buildings with showers, dump station, grocery, boat dock and ramps (Dewey Lake)",
+     "la": 37.71568,
+     "lo": -82.74066,
+     "phone": "(606) 889-1790",
+     "status": "closed",
+     "note": "Closed until March 2027 for renovations.",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/jenny-wiley-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91907",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "jenny-wiley-lodge-may-lodge",
+     "kind": "lodge",
+     "name": "Jenny Wiley lodge (May Lodge)",
+     "url": "https://parks.ky.gov/prestonsburg/parks/resort/jenny-wiley-state-resort-park",
+     "reserve": "https://guestrez.megasyshms.com/SMS3R/jenny-wiley-state-resort-park",
+     "notes": "Closed for structural renovations; reopening now expected about May 2027 (WEKU, Jul 2026)",
+     "status": "closed",
+     "source": "https://parks.ky.gov/improvements",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "jenny-wiley-cottages",
+     "kind": "cottages",
+     "name": "Jenny Wiley cottages",
+     "url": "https://parks.ky.gov/explore/jenny-wiley-cottages-8010",
+     "reserve": "https://guestrez.megasyshms.com/SMS3R/jenny-wiley-state-resort-park",
+     "notes": "WEKU (Jul 15 2026) reports cottages also closed during renovation; not stated on the state Improvements page, call park",
+     "source": "https://www.weku.org/the-commonwealth/2026-07-15/ky-state-park-renovation-closure-extended-into-2027-what-does-it-mean-for-area-tourism",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1260",
+   "campgrounds": [
+    {
+     "id": "john-james-audubon-campground",
+     "name": "John James Audubon Campground",
+     "url": "https://parks.ky.gov/henderson/parks/historic/john-james-audubon-state-park",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/john-james-audubon-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91801",
+     "sites": "83 (65 electric, 3 no electric, 15 tent)",
+     "hookups": "Electric + water; some tent sites 20 amp",
+     "season": "Mid-March - mid-November",
+     "extras": "Near Audubon museum and nature center",
+     "la": 37.8809556,
+     "lo": -87.5635278,
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/john-james-audubon-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91801",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "john-james-audubon-cottages",
+     "kind": "cottages",
+     "name": "John James Audubon cottages",
+     "url": "https://parks.ky.gov/explore/john-james-audubon-cottages-8023",
+     "notes": "Listed on parks.ky.gov, but not on the online lodge booking list; call the park",
+     "source": "https://parks.ky.gov/explore/john-james-audubon-cottages-8023",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1282",
+   "campgrounds": [
+    {
+     "id": "kenlake-campground",
+     "name": "Kenlake Campground",
+     "url": "https://parks.ky.gov/hardin/parks/resort/kenlake-state-resort-park",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/kenlake-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91908",
+     "sites": "63 (28 full service, 35 electric)",
+     "hookups": "Full hookup or electric + water; shared pedestals; long cord/hose needed",
+     "season": "Mar 15 - Nov 15",
+     "extras": "Marina; small sites (55-year-old campground)",
+     "la": 36.77191,
+     "lo": -88.13806,
+     "phone": "(270) 474-2211",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/kenlake-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91908",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "kenlake-lodge-hotel",
+     "kind": "lodge",
+     "name": "Kenlake Lodge (hotel)",
+     "url": "https://parks.ky.gov/explore/kenlake-lodge-8042",
+     "reserve": "https://guestrez.megasyshms.com/S5JZ3/kenlake-state-resort-park",
+     "notes": "Pets allowed (up to 2 per room/unit, fee)",
+     "source": "https://parks.ky.gov/parks/reservelodgecottage/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "kenlake-cottages",
+     "kind": "cottages",
+     "name": "Kenlake cottages",
+     "url": "https://parks.ky.gov/explore/kenlake-cottages-8043",
+     "reserve": "https://guestrez.megasyshms.com/S5JZ3/kenlake-state-resort-park",
+     "source": "https://parks.ky.gov/parks/reservelodgecottage/",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1283",
+   "campgrounds": [
+    {
+     "id": "kentucky-dam-village-campground",
+     "name": "Kentucky Dam Village Campground",
+     "url": "https://parks.ky.gov/explore/kentucky-dam-village-state-resort-park-7793",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/kentucky-dam-village-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91909",
+     "sites": "69 (59 electric, 10 tent)",
+     "hookups": "Electric + water; long cord/hose needed",
+     "season": "Open through Oct 31, 2026 (seasonal)",
+     "extras": "Riding stables, golf, marina",
+     "la": 37.0124806,
+     "lo": -88.2817167,
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/kentucky-dam-village-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91909",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "village-inn-lodge-village-green-inn",
+     "kind": "lodge",
+     "name": "Village Inn Lodge / Village Green Inn",
+     "url": "https://parks.ky.gov/explore/village-inn-lodge-village-green-inn-8047",
+     "reserve": "https://guestrez.megasyshms.com/28NL7/kentucky-dam-village-state-resort-park",
+     "units": "72 rooms",
+     "notes": "Village Green Inn on golf course rented to groups; lakeside restaurant; pet-friendly",
+     "source": "https://kentuckytourism.com/explore/kentucky-dam-village-state-resort-park-2028",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "kentucky-dam-cottages",
+     "kind": "cottages",
+     "name": "Kentucky Dam cottages",
+     "url": "https://parks.ky.gov/explore/kentucky-dam-cottages-8050",
+     "reserve": "https://guestrez.megasyshms.com/28NL7/kentucky-dam-village-state-resort-park",
+     "units": "61 cottages",
+     "notes": "Pet-friendly",
+     "source": "https://kentuckytourism.com/explore/kentucky-dam-village-state-resort-park-2028",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1261",
+   "campgrounds": [
+    {
+     "id": "kincaid-lake-campground",
+     "name": "Kincaid Lake Campground",
+     "url": "https://parks.ky.gov/falmouth/parks/recreation/kincaid-lake-state-park",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/kincaid-lake-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91815",
+     "sites": "159 (84 electric, 75 tent)",
+     "hookups": "Electric at 84 sites; tent sites none",
+     "season": "Open through Nov 15, 2026 (seasonal)",
+     "extras": "Lake (10 hp limit), boat rental, mini-golf, golf; pool closed",
+     "la": 38.7236111,
+     "lo": -84.2813889,
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/kincaid-lake-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91815",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1284",
+   "campgrounds": [
+    {
+     "id": "lake-barkley-campground",
+     "name": "Lake Barkley Campground",
+     "url": "https://parks.ky.gov/parks/find-a-park/lake-barkley-campground-8066",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/lake-barkley-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91910",
+     "sites": "79 (73 electric, 6 no electric)",
+     "hookups": "30 amp + water (some sites without power, see notice)",
+     "season": "Open through Oct 31, 2026 (seasonal)",
+     "extras": "Paved sites, picnic table and fire ring",
+     "la": 36.8549611,
+     "lo": -87.9147611,
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/lake-barkley-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91910",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "lake-barkley-lodge",
+     "kind": "lodge",
+     "name": "Lake Barkley Lodge",
+     "url": "https://parks.ky.gov/explore/lake-barkley-lodge-8058",
+     "reserve": "https://guestrez.megasyshms.com/8Z6QL/lake-barkley-state-resort-park",
+     "notes": "Main lodge under construction ($17M renovation), no reopening date; Little River Lodge still open",
+     "status": "closed",
+     "source": "https://parks.ky.gov/improvements",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "little-river-lodge",
+     "kind": "other",
+     "name": "Little River Lodge",
+     "url": "https://parks.ky.gov/cadiz/parks/resort/lake-barkley-state-resort-park",
+     "reserve": "https://guestrez.megasyshms.com/8Z6QL/lake-barkley-state-resort-park",
+     "notes": "Open while main lodge is rebuilt",
+     "source": "https://parks.ky.gov/improvements",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "lake-barkley-cottages",
+     "kind": "cottages",
+     "name": "Lake Barkley cottages",
+     "url": "https://parks.ky.gov/explore/lake-barkley-cottages-8060",
+     "reserve": "https://guestrez.megasyshms.com/8Z6QL/lake-barkley-state-resort-park",
+     "notes": "Cottages available; log cabins were slated to close Jan 2026 for renovation (news, Jan 2026)",
+     "source": "https://parks.ky.gov/improvements",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1285",
+   "campgrounds": [
+    {
+     "id": "lake-cumberland-campground",
+     "name": "Lake Cumberland Campground",
+     "url": "https://parks.ky.gov/parks/find-a-park/lake-cumberland-campground-8084",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/lake-cumberland-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91911",
+     "sites": "87 (11 full service, 76 tent)",
+     "hookups": "Full hookup at 11; some tent sites water only; water off Nov 1 - Mar 15",
+     "season": "Year-round",
+     "extras": "Check in at P.E.R.C.H. building; lake, trails",
+     "la": 36.92215,
+     "lo": -85.0422611,
+     "phone": "270-343-3111",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/lake-cumberland-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91911",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "lure-lodge",
+     "kind": "lodge",
+     "name": "Lure Lodge",
+     "url": "https://parks.ky.gov/explore/lure-lodge-8078",
+     "reserve": "https://guestrez.megasyshms.com/SLDF9/lake-cumberland-state-resort-park",
+     "units": "63 rooms",
+     "notes": "Lodge, dining room and indoor pool closed for $7.4M renovation; lodge closed through spring 2027",
+     "status": "closed",
+     "source": "https://parks.ky.gov/improvements",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "pumpkin-creek-lodge",
+     "kind": "lodge",
+     "name": "Pumpkin Creek Lodge",
+     "url": "https://parks.ky.gov/explore/pumpkin-creek-lodge-8080",
+     "reserve": "https://guestrez.megasyshms.com/SLDF9/lake-cumberland-state-resort-park",
+     "notes": "Smaller separate lodge; status during renovation not stated, call park",
+     "source": "https://parks.ky.gov/parks/reservelodgecottage/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "lake-cumberland-cottages",
+     "kind": "cottages",
+     "name": "Lake Cumberland cottages",
+     "url": "https://kentuckytourism.com/explore/lake-cumberland-state-resort-park-433",
+     "reserve": "https://guestrez.megasyshms.com/SLDF9/lake-cumberland-state-resort-park",
+     "units": "29 cottages",
+     "notes": "Cottages remain available during lodge renovation; up to 2 pets",
+     "source": "https://parks.ky.gov/improvements",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1263",
+   "campgrounds": [
+    {
+     "id": "lake-malone-campground",
+     "name": "Lake Malone Campground",
+     "url": "https://parks.ky.gov/explore/lake-malone-state-park-7818",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/lake-malone-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91817",
+     "sites": "25 (24 electric, 1 tent)",
+     "hookups": "30 amp + water",
+     "season": "Mar 15 - Nov 15",
+     "extras": "Boat ramp, beach, playground",
+     "la": 37.07474,
+     "lo": -87.04053,
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/lake-malone-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91817",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-3792",
+   "campgrounds": [
+    {
+     "id": "hillman-ferry-campground",
+     "name": "Hillman Ferry Campground",
+     "url": "https://www.landbetweenthelakes.us/visit/hillman-ferry-campground/",
+     "map": "https://www.landbetweenthelakes.us/wp-content/uploads/2025/04/FINAL_PRINT_-HillmanFerryCampgroundMap_2025.pdf",
+     "reserve": "https://lblweb.usedirect.com/camplbl/",
+     "sites": 368,
+     "hookups": "Basic, 30 amp, 30/50 amp + water, 30/50 amp full hookup",
+     "season": "Opens in March (Outpost April - October)",
+     "extras": "2 boat ramps, swimming area, fishing dock, showers, cabins",
+     "phone": "270-924-2181",
+     "source": "https://www.landbetweenthelakes.us/visit/hillman-ferry-campground/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "energy-lake-campground",
+     "name": "Energy Lake Campground",
+     "url": "https://www.landbetweenthelakes.us/visit/energy-lake-campground/",
+     "map": "https://www.landbetweenthelakes.us/wp-content/uploads/2025/04/FINAL_PRINT_-EnergyLakeCampgroundMap_2025.pdf",
+     "reserve": "https://lblweb.usedirect.com/camplbl/",
+     "sites": "35 (33 electric) + 13 cabins",
+     "hookups": "30 and 50 amp electric",
+     "season": "Camping season (dates not stated)",
+     "extras": "Beach, canoe/kayak rental, cabins; boat ramp at Energy Dam 1/4 mile",
+     "phone": "270-924-2270",
+     "source": "https://www.landbetweenthelakes.us/visit/energy-lake-campground/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "wranglers-campground",
+     "name": "Wranglers Campground",
+     "url": "https://www.landbetweenthelakes.us/visit/wranglers-campground/",
+     "map": "https://www.landbetweenthelakes.us/wp-content/uploads/2025/04/Wranglers_Campground_Map_2025_web.pdf",
+     "reserve": "https://lblweb.usedirect.com/camplbl/",
+     "sites": "198 + 12 cabins",
+     "hookups": "Basic, 30/50 amp, 30 amp + water, 30 amp full hookup",
+     "season": "Year-round",
+     "extras": "Horse camp, horse stalls, 100 miles of horse trails, showers",
+     "phone": "270-924-2200",
+     "source": "https://www.landbetweenthelakes.us/visit/wranglers-campground/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "piney-campground-tn",
+     "name": "Piney Campground (TN)",
+     "url": "https://www.landbetweenthelakes.us/visit/piney-campground/",
+     "map": "https://www.landbetweenthelakes.us/wp-content/uploads/2025/04/FINAL_PRINT_-PineyCampgroundMap_2025.pdf",
+     "reserve": "https://lblweb.usedirect.com/camplbl/",
+     "sites": "384 (283 electric, 44 full hookup, 57 primitive) + 19 cabins",
+     "hookups": "Electric; electric/water/sewer",
+     "season": "March - November",
+     "extras": "2 boat ramps, beach, fishing pier, cabins",
+     "phone": "931-232-5331",
+     "note": "Tennessee end of LBL (Dover, TN).",
+     "source": "https://www.landbetweenthelakes.us/visit/piney-campground/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "fenton-self-service-campground",
+     "name": "Fenton Self-Service Campground",
+     "url": "https://www.landbetweenthelakes.us/facility/self-service-camping/",
+     "sites": "Not stated",
+     "hookups": "30 amp electric",
+     "season": "Year-round",
+     "extras": "Self-pay; vault toilets, boat ramp, lake access",
+     "source": "https://www.landbetweenthelakes.us/facility/self-service-camping/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "self-service-lakeside-campgrounds-10",
+     "name": "Self-service lakeside campgrounds (10)",
+     "url": "https://www.landbetweenthelakes.us/facility/self-service-camping/",
+     "sites": "Not stated",
+     "hookups": "Primitive (no hookups)",
+     "season": "Year-round",
+     "extras": "Cravens Bay, Nickell Branch, Birmingham Ferry, Smith Bay, Sugar Bay, Taylor Bay, Redd Hollow, Boswell Landing, Gatlin Point, Turkey Bay OHV; vault toilets, boat ramps, self-pay",
+     "source": "https://www.landbetweenthelakes.us/facility/self-service-camping/",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "energy-lake-campground-cabins",
+     "kind": "camping cabins",
+     "name": "Energy Lake Campground cabins",
+     "url": "https://www.landbetweenthelakes.us/visit/energy-lake-campground/",
+     "reserve": "https://lblweb.usedirect.com/camplbl/",
+     "units": "13 cabins (sleep 8)",
+     "notes": "Heat/AC, bring linens; Golden Pond KY",
+     "source": "https://www.landbetweenthelakes.us/visit/energy-lake-campground/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "hillman-ferry-campground-cabins",
+     "kind": "camping cabins",
+     "name": "Hillman Ferry Campground cabins",
+     "url": "https://www.landbetweenthelakes.us/help-center/hillman-ferry-campground-faq/",
+     "reserve": "https://lblweb.usedirect.com/camplbl/",
+     "units": "6 cabins (sleep 8)",
+     "notes": "Heat/AC, bring linens; no pets or smoking",
+     "source": "https://www.landbetweenthelakes.us/help-center/hillman-ferry-campground-faq/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "wranglers-campground-cabins",
+     "kind": "camping cabins",
+     "name": "Wranglers Campground cabins",
+     "url": "https://www.landbetweenthelakes.us/help-center/wranglers-campground-faq/",
+     "units": "12 cabins (5 sleep 4, 7 sleep 8)",
+     "notes": "Horse campground; heat/AC, bring linens; no pets or smoking",
+     "source": "https://www.landbetweenthelakes.us/help-center/wranglers-campground-faq/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "piney-campground-cabins",
+     "kind": "camping cabins",
+     "name": "Piney Campground cabins",
+     "url": "https://www.landbetweenthelakes.us/help-center/piney-campground-faq/",
+     "units": "19 cabins (9 sleep 4, 10 sleep 8)",
+     "notes": "Piney is in the Tennessee part of LBL; bring linens; 800-525-7077",
+     "source": "https://www.landbetweenthelakes.us/help-center/piney-campground-faq/",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-0050",
+   "campgrounds": [
+    {
+     "id": "mammoth-cave-campground",
+     "name": "Mammoth Cave Campground",
+     "url": "https://home.nps.gov/maca/planyourvisit/macacampground.htm",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/232467",
+     "sites": "111 (park table); 109 per Recreation.gov",
+     "hookups": "No hookups; water in each loop",
+     "season": "March 1 - November 30",
+     "extras": "Pay showers and laundry at camp store, dump/fill station, 5-min walk to visitor center",
+     "phone": "270-758-2424",
+     "source": "https://home.nps.gov/maca/planyourvisit/camping.htm",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "maple-springs-group-campground",
+     "name": "Maple Springs Group Campground",
+     "url": "https://home.nps.gov/maca/planyourvisit/maplespringscg.htm",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/232468",
+     "sites": 7,
+     "hookups": "Hookups at all 7 group sites (no sewer)",
+     "season": "March 1 - November 30",
+     "extras": "Group sites, vault toilets, dump station; across Green River ferry",
+     "phone": "270-758-2180",
+     "source": "https://home.nps.gov/maca/planyourvisit/camping.htm",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "houchin-ferry-campground",
+     "name": "Houchin Ferry Campground",
+     "url": "https://home.nps.gov/maca/planyourvisit/houchinferrycg.htm",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/258992",
+     "sites": 12,
+     "hookups": "Primitive, tent only; water at campground entrance",
+     "season": "Year-round",
+     "extras": "Boat launch on Green River; no RVs or generators",
+     "phone": "270-758-2180",
+     "source": "https://www.recreation.gov/camping/campgrounds/258992",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "the-lodge-at-mammoth-cave",
+     "kind": "lodge",
+     "name": "The Lodge at Mammoth Cave",
+     "url": "https://www.nps.gov/maca/planyourvisit/lodging.htm",
+     "reserve": "https://us2.cloudbeds.com/en/reservation/gtBD3V?currency=usd",
+     "notes": "Hotel rooms and historic cottages next to visitor center; Green River Restaurant; 270-758-2225",
+     "source": "https://www.nps.gov/maca/planyourvisit/lodging.htm",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1267",
+   "campgrounds": [
+    {
+     "id": "my-old-kentucky-home-campground",
+     "name": "My Old Kentucky Home Campground",
+     "url": "https://parks.ky.gov/explore/my-old-kentucky-home-campground-8099",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/my-old-kentucky-home-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91820",
+     "sites": "49 (39 full service, 10 primitive)",
+     "hookups": "50 amp full hookup; primitive none",
+     "season": "Year-round when open",
+     "extras": "Near Federal Hill mansion, Bardstown",
+     "la": 37.79814,
+     "lo": -85.4569,
+     "phone": "(502) 348-3502",
+     "status": "closed",
+     "note": "Closed for renovations (reopening date not given).",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/my-old-kentucky-home-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91820",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1286",
+   "campgrounds": [
+    {
+     "id": "whittleton-middle-fork-campgrounds",
+     "name": "Whittleton & Middle Fork Campgrounds",
+     "url": "https://parks.ky.gov/explore/whittleton-campground-8107",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/natural-bridge-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91912",
+     "sites": "86 (52 electric, 34 tent)",
+     "hookups": "Electric (20 amp / multiple); water at some sites",
+     "season": "Mar 15 - Nov 15",
+     "extras": "Two campgrounds plus primitive loop; trails, lake; book 2 days ahead",
+     "la": 37.76635,
+     "lo": -83.67496,
+     "phone": "(606) 663-2214",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/natural-bridge-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91912",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "hemlock-lodge",
+     "kind": "lodge",
+     "name": "Hemlock Lodge",
+     "url": "https://parks.ky.gov/explore/the-hemlock-lodge-8103",
+     "reserve": "https://guestrez.megasyshms.com/PZQM8/natural-bridge",
+     "units": "35 rooms",
+     "notes": "Balconies; Sandstone Arches Restaurant; up to 2 pets",
+     "source": "https://kentuckytourism.com/explore/natural-bridge-state-resort-park-383",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "natural-bridge-cottages",
+     "kind": "cottages",
+     "name": "Natural Bridge cottages",
+     "url": "https://parks.ky.gov/explore/natural-bridge-cottages-8105",
+     "reserve": "https://guestrez.megasyshms.com/PZQM8/natural-bridge",
+     "units": "11 cottages (1- and 2-bedroom)",
+     "notes": "Up to 2 pets",
+     "source": "https://kentuckytourism.com/explore/natural-bridge-state-resort-park-383",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1268",
+   "campgrounds": [
+    {
+     "id": "nolin-lake-campground",
+     "name": "Nolin Lake Campground",
+     "url": "https://parks.ky.gov/parks/find-a-park/nolin-lake-campground-8135",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/nolin-lake-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91832",
+     "sites": "65 (32 'electric', 32 tent, 1 group)",
+     "hookups": "Page says no electric available on sites",
+     "season": "Year-round (online booking Mar 31 - Oct 31)",
+     "extras": "Accessible bathhouse, firewood sold, lakeshore",
+     "la": 37.2961278,
+     "lo": -86.21285,
+     "note": "Reservation site labels 32 sites 'Standard Electric' but also says there is no electric on sites; call to confirm.",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/nolin-lake-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91832",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-8144",
+   "campgrounds": [
+    {
+     "id": "otter-creek-ora-campground",
+     "name": "Otter Creek ORA Campground",
+     "url": "https://fw.ky.gov/Pages/Otter-Creek-Outdoor-Recreation-Area.aspx",
+     "map": "https://fw.ky.gov/Documents/ocoracampgroundmap.pdf",
+     "reserve": "https://app.fireflyreservations.com/Reserve/Property/OtterCreekORACampground1",
+     "sites": "About 200 (loops A-G)",
+     "hookups": "Electric + water, water-only and primitive sites",
+     "season": "Not stated (area open year-round)",
+     "extras": "Restrooms/showers, dump station, store, playground; run by Meade County",
+     "phone": "270-750-4257",
+     "source": "https://fw.ky.gov/Pages/Otter-Creek-Outdoor-Recreation-Area.aspx",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1270",
+   "campgrounds": [
+    {
+     "id": "paintsville-lake-campground",
+     "name": "Paintsville Lake Campground",
+     "url": "https://parks.ky.gov/explore/paintsville-lake-state-park-7824",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/paintsville-lake-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91823",
+     "sites": "42 (32 full service, 10 tent) + 4 pavilions",
+     "hookups": "Electric + water or full hookup at most RV sites; some tent sites water",
+     "season": "Year-round",
+     "extras": "Accessible boat ramp, trout stocking, firewood sold",
+     "la": 37.8427333,
+     "lo": -82.8787444,
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/paintsville-lake-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91823",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1287",
+   "campgrounds": [
+    {
+     "id": "pennyrile-forest-campground",
+     "name": "Pennyrile Forest Campground",
+     "url": "https://parks.ky.gov/dawson-springs/parks/resort/pennyrile-forest-state-resort-park",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/pennyrile-forest-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91913",
+     "sites": "63 (25 full service, 10 electric, 20 primitive, 8 equestrian)",
+     "hookups": "Full hookup or electric + water; primitive none",
+     "season": "Open through Nov 16, 2026 (seasonal)",
+     "extras": "Horse loop, lake beach, boat rental, golf",
+     "la": 37.0722222,
+     "lo": -87.6561111,
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/pennyrile-forest-state-resort-park/r/campgroundDetails.do?contractCode=KY&parkId=91913",
+     "checked": "2026-10-14"
+    }
+   ],
+   "lodging": [
+    {
+     "id": "pennyrile-lodge",
+     "kind": "lodge",
+     "name": "Pennyrile Lodge",
+     "url": "https://parks.ky.gov/explore/pennyrile-lodge-8143",
+     "reserve": "https://guestrez.megasyshms.com/7RFWS/pennyrile-forest-state-resort-park",
+     "notes": "Pets allowed (up to 2 per room/unit, fee)",
+     "source": "https://parks.ky.gov/parks/reservelodgecottage/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "pennyrile-forest-cottages",
+     "kind": "cottages",
+     "name": "Pennyrile Forest cottages",
+     "url": "https://parks.ky.gov/explore/pennyrile-forest-cottages-8145",
+     "reserve": "https://guestrez.megasyshms.com/7RFWS/pennyrile-forest-state-resort-park",
+     "source": "https://parks.ky.gov/parks/reservelodgecottage/",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1288",
+   "campgrounds": [],
+   "note": "No campground in the Kentucky State Parks reservation directory (31 campgrounds); park lists lodge, cottages and cabins. Could not confirm on parks.ky.gov (page content loads by script).",
+   "lodging": [
+    {
+     "id": "herndon-j-evans-lodge",
+     "kind": "lodge",
+     "name": "Herndon J. Evans Lodge",
+     "url": "https://parks.ky.gov/explore/herndon-j-evans-lodge-8171",
+     "reserve": "https://guestrez.megasyshms.com/KGX7P/pine-mountain-state-resort-park",
+     "units": "30 rooms",
+     "notes": "Mountain View Restaurant; pet friendly",
+     "source": "https://kentuckytourism.com/explore/pine-mountain-state-resort-park-697",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "pine-mountain-cottages",
+     "kind": "cottages",
+     "name": "Pine Mountain cottages",
+     "url": "https://parks.ky.gov/explore/pine-mountain-cottages-8173",
+     "reserve": "https://guestrez.megasyshms.com/KGX7P/pine-mountain-state-resort-park",
+     "units": "21 cottages",
+     "notes": "Pet friendly",
+     "source": "https://kentuckytourism.com/explore/pine-mountain-state-resort-park-697",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1289",
+   "campgrounds": [],
+   "note": "No campground in the Kentucky State Parks reservation directory. Camper reviews say the park campground closed during dam work. Corps of Engineers campgrounds on Rough River Lake (e.g. Axtel) are outside the state park. Not confirmed on parks.ky.gov.",
+   "lodging": [
+    {
+     "id": "rough-river-dam-lodge-and-cottages",
+     "kind": "lodge",
+     "name": "Rough River Dam lodge and cottages",
+     "url": "https://parks.ky.gov/explore/rough-river-dam-state-resort-park-7800",
+     "reserve": "https://guestrez.megasyshms.com/DG3DB/rough-river-dam-state-resort-park",
+     "notes": "Pets allowed (up to 2 per room/unit, fee)",
+     "source": "https://parks.ky.gov/parks/reservelodgecottage/",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1271",
+   "campgrounds": [
+    {
+     "id": "taylorsville-lake-campground",
+     "name": "Taylorsville Lake Campground",
+     "url": "https://parks.ky.gov/explore/taylorsville-lake-campground-8219",
+     "map": "https://kentuckystateparks.reserveamerica.com/camping/map_of_taylorsville-lake-state-park/r/campgroundMap.do?page=map&search=site&contractCode=KY&parkId=91825",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/taylorsville-lake-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91825",
+     "sites": "75 (44 electric, 15 tent, 10 equestrian, 6 group)",
+     "hookups": "20 amp electric; site 1 full hookup; some horse sites water",
+     "season": "Open through Nov 15, 2026 (seasonal)",
+     "extras": "Horse camp, boat ramp, dump station, showers",
+     "la": 38.0292,
+     "lo": -85.2557639,
+     "note": "Map link is the interactive ReserveAmerica site map already used on campout.html.",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/taylorsville-lake-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91825",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-10170",
+   "campgrounds": [
+    {
+     "id": "us-10170-twin-knobs-campground",
+     "name": "Twin Knobs Campground",
+     "url": "https://www.fs.usda.gov/r08/danielboone/recreation/twin-knobs-campground",
+     "map": "https://usfs-public.box.com/s/mkk3sln2dj49cc207476rpru4ahck6vp",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/233782",
+     "sites": 200,
+     "hookups": "Electric, electric + water, or full hookup at some sites; dump station",
+     "season": "2nd Friday in March - 1st Sunday in November",
+     "extras": "Bathhouses/showers, camp store, beach, boat ramp (campers only), pets on leash",
+     "la": 38.09104619,
+     "lo": -83.50740413,
+     "phone": "606-780-7818",
+     "source": "https://www.fs.usda.gov/r08/danielboone/recreation/twin-knobs-campground",
+     "checked": "2026-10-14"
+    }
+   ],
+   "note": "Same campground as in Daniel Boone National Forest (Cave Run Lake)."
+  },
+  {
+   "pota": "US-1272",
+   "campgrounds": [
+    {
+     "id": "yatesville-lake-campground",
+     "name": "Yatesville Lake Campground",
+     "url": "https://parks.ky.gov/louisa/parks/recreation/yatesville-lake-state-park",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/yatesville-lake-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91831",
+     "sites": "47 (27 electric, 16 boat-in, 4 tent)",
+     "hookups": "Electric + water at 27; boat-in/tent/hike-in none",
+     "season": "Open through Nov 15, 2026 (seasonal)",
+     "extras": "Boat ramps, marina; loops Blaine Creek, Greenbriar, Lakeside, Hike-In",
+     "la": 38.0965861,
+     "lo": -82.6824528,
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/yatesville-lake-state-park/r/campgroundDetails.do?contractCode=KY&parkId=91831",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-3840",
+   "campgrounds": [
+    {
+     "id": "yellowbank-wma-primitive-campground",
+     "name": "Yellowbank WMA primitive campground",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=192",
+     "sites": "Not stated",
+     "hookups": "Primitive only",
+     "season": "Not stated",
+     "extras": "Designated sites only; primitive restrooms",
+     "phone": "(270) 547-6856",
+     "note": "WMA map (not a site map): https://fw.ky.gov/More/Documents/YellowbankWMA_ALL.pdf",
+     "source": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=192",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-10171",
+   "campgrounds": [
+    {
+     "id": "us-10171-zilpo-campground",
+     "name": "Zilpo Campground",
+     "url": "https://www.fs.usda.gov/r08/danielboone/recreation/zilpo-campground",
+     "map": "https://usfs-public.box.com/s/q18extxpqb7ota6w4c6vpl65317w2iv0",
+     "reserve": "https://www.recreation.gov/camping/campgrounds/232370",
+     "sites": "Not stated (plus cabins)",
+     "hookups": "Electric at some sites; no sewer; dump station",
+     "season": "3rd Friday in March - last Sunday in October",
+     "extras": "Bathhouses/showers, camp store, beach, boat ramp, cabins; reservations required",
+     "la": 38.07090892,
+     "lo": -83.48424725,
+     "phone": "606-768-2722",
+     "source": "https://www.fs.usda.gov/r08/danielboone/recreation/zilpo-campground",
+     "checked": "2026-10-14"
+    }
+   ],
+   "note": "Same campground as in Daniel Boone National Forest (Cave Run Lake)."
+  },
+  {
+   "pota": "US-10173",
+   "campgrounds": [
+    {
+     "id": "kentucky-horse-park-campground",
+     "name": "Kentucky Horse Park Campground",
+     "url": "https://kyhorsepark.com/campground/",
+     "map": "https://kyhorsepark.com/wp-content/uploads/2026/03/Campground-Map-2026-Main.pdf",
+     "reserve": "https://kentuckystateparks.reserveamerica.com/camping/kentucky-horse-park/r/campgroundDetails.do?contractCode=KY&parkId=90800",
+     "sites": "257 listed (park says 260)",
+     "hookups": "20/30/50 amp electric + water at all sites; no site water mid-Nov to mid-Mar",
+     "season": "Year-round",
+     "extras": "2 bathhouses, laundry, 2 dump stations, grocery/gift shop, pool, courts",
+     "la": 38.15028,
+     "lo": -84.52111,
+     "phone": "(859) 259-4257 opt 2",
+     "note": "Entry/exit delays 5-11 pm during Southern Lights (Nov 18 - Dec 31).",
+     "source": "https://kentuckystateparks.reserveamerica.com/camping/kentucky-horse-park/r/campgroundDetails.do?contractCode=KY&parkId=90800",
+     "checked": "2026-10-14"
+    }
+   ],
+   "added": true
+  },
+  {
+   "pota": "US-1264",
+   "campgrounds": [
+    {
+     "id": "levi-jackson-campground",
+     "name": "Levi Jackson Campground",
+     "url": "https://levijacksonpark.com/accomodations/campground/",
+     "map": "https://levijacksonpark.com/wp-content/uploads/2025/05/campground-map-updated-2024-2.jpg",
+     "reserve": "https://app.fireflyreservations.com/reserve/property/LeviJacksonWildernessRoadPark",
+     "sites": 146,
+     "hookups": "Utility hookups (30/50 amp, water, sewer at some sites)",
+     "season": "Year-round",
+     "extras": "3 service buildings with showers/laundry, dump station, grocery, group area; pets OK",
+     "phone": "606-330-2130 ext 2",
+     "note": "Now run by the City of London (no longer a state park).",
+     "source": "https://levijacksonpark.com/accomodations/campground/",
+     "checked": "2026-10-14"
+    }
+   ],
+   "added": true,
+   "lodging": [
+    {
+     "id": "campground-cottages",
+     "kind": "cottages",
+     "name": "Campground Cottages",
+     "url": "https://levijacksonpark.com/accomodations/",
+     "reserve": "https://app.fireflyreservations.com/reserve/property/LeviJacksonWildernessRoadPark",
+     "units": "3 cottages (2 bed, 1 bath, sleep 6)",
+     "notes": "Park run by London/Laurel County, not the state",
+     "source": "https://levijacksonpark.com/accomodations/",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "ranger-s-retreat-house",
+     "kind": "other",
+     "name": "Ranger's Retreat (house)",
+     "url": "https://levijacksonpark.com/accomodations/rangers-retreat/",
+     "units": "3 bed, 2 bath",
+     "notes": "Short-term rental",
+     "source": "https://levijacksonpark.com/accomodations/",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-3781",
+   "campgrounds": [
+    {
+     "id": "breaks-interstate-park-campground",
+     "name": "Breaks Interstate Park Campground",
+     "url": "https://www.breakspark.com/campground",
+     "map": "https://www.breakspark.com/s/BreaksCampground-Map-Optimized.jpg",
+     "reserve": "https://app.fireflyreservations.com/reserve/property/BreaksInterstatePark",
+     "sites": 138,
+     "hookups": "Primitive, electric + water, or electric/water/sewer; group sites",
+     "season": "April 1 - October 31 (Campground D open off-season)",
+     "extras": "Store, laundry, playgrounds",
+     "phone": "(276) 865-4413 ext 3201",
+     "note": "Campground is on the Virginia side of the park.",
+     "source": "https://www.breakspark.com/campground",
+     "checked": "2026-10-14"
+    }
+   ],
+   "added": true,
+   "lodging": [
+    {
+     "id": "chafin-lodge",
+     "kind": "lodge",
+     "name": "Chafin Lodge",
+     "url": "https://www.breakspark.com/lodge",
+     "reserve": "https://app.fireflyreservations.com/reserve/property/BreaksInterstatePark",
+     "units": "70 rooms + 1 two-room suite",
+     "notes": "Rhododendron Restaurant; pets only in Dogwood Lodge ($10/pet/night); no cash; main park facilities are on the Virginia side",
+     "source": "https://www.breakspark.com/lodge",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "woodland-cottages",
+     "kind": "cottages",
+     "name": "Woodland Cottages",
+     "url": "https://www.breakspark.com/cottages",
+     "reserve": "https://app.fireflyreservations.com/reserve/property/BreaksInterstatePark",
+     "units": "4 cottages (2 bed, sleep 4)",
+     "notes": "No pets; weekly Wed-Wed in prime season",
+     "source": "https://www.breakspark.com/cottages",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "lakefront-cabins",
+     "kind": "cabins",
+     "name": "Lakefront Cabins",
+     "url": "https://www.breakspark.com/cabins",
+     "reserve": "https://app.fireflyreservations.com/reserve/property/BreaksInterstatePark",
+     "units": "5 cabins (2-3 bed)",
+     "notes": "Only Cabin 1 pet-friendly; weekly in prime season May 1-Oct 31",
+     "source": "https://www.breakspark.com/cabins",
+     "checked": "2026-10-14"
+    },
+    {
+     "id": "yurt",
+     "kind": "yurts",
+     "name": "Yurt",
+     "url": "https://www.breakspark.com/yurt",
+     "reserve": "https://app.fireflyreservations.com/reserve/property/BreaksInterstatePark",
+     "units": "Sleeps 3",
+     "notes": "2-night min; bring linens; no pets",
+     "source": "https://www.breakspark.com/yurt",
+     "checked": "2026-10-14"
+    }
+   ]
+  },
+  {
+   "pota": "US-1262",
+   "campgrounds": [
+    {
+     "id": "kingdom-come-primitive-campsites",
+     "name": "Kingdom Come primitive campsites",
+     "url": "https://parks.ky.gov/cumberland/parks/recreation/kingdom-come-state-park",
+     "sites": "Not stated",
+     "hookups": "Primitive only",
+     "season": "Year-round",
+     "extras": "Primitive tent sites; no hookups",
+     "note": "Only secondary sources (Harlan County Trails, Wikipedia) describe it; not in the state parks reservation directory. Call the park.",
+     "source": "https://www.harlancountytrails.com/kingdom-come-state-park/",
+     "checked": "2026-10-14"
+    }
+   ],
+   "added": true
+  },
+  {
+   "pota": "US-3815",
+   "campgrounds": [
+    {
+     "id": "higginson-henry-wma-designated-campsites",
+     "name": "Higginson-Henry WMA designated campsites",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=132",
+     "sites": "Not stated",
+     "hookups": "Primitive only",
+     "season": "Not stated",
+     "extras": "Camping on designated sites only",
+     "note": "WMA map (not a site map): https://fw.ky.gov/More/Documents/Higginson-HenryWMA_ALL.pdf",
+     "source": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=132",
+     "checked": "2026-10-14"
+    }
+   ],
+   "added": true
+  }
+ ]
+}

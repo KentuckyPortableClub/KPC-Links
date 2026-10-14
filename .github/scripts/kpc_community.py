@@ -1,8 +1,10 @@
 """Copies APPROVED posts from the KPC Community Google Form sheet into kpc-community.json.
 Needs the GitHub secret COMMUNITY_SHEET_CSV (the sheet's "Publish to web" CSV link).
-Only rows with YES in the Approved column are used. Photos from approved rows are downloaded from
+Rows with YES in the Approved column are used, plus rows from pre-approved call signs (kpc_preapproved.py) unless marked NO. Photos from approved rows are downloaded from
 Google Drive, shrunk to 1280 px and saved without location data in photos/community/."""
 import csv,io,json,os,re,hashlib,sys,urllib.request,datetime
+import kpc_preapproved as PA
+PRE=PA.load()
 URL=os.environ.get('COMMUNITY_SHEET_CSV','').strip()
 def notice(m): print('::notice title=Community::'+str(m).replace('%','%25').replace('\n','%0A'))
 if not URL: notice('COMMUNITY_SHEET_CSV secret not set yet; nothing to do.'); sys.exit(0)
@@ -27,14 +29,14 @@ FIELDS={
  'spotlight':[('Name you go by','name'),('Home county','county'),('Licensed since','since'),('Favorite park or summit','fav'),('About you','body')],
 }
 C={'ts':col('Timestamp'),'call':col('Call sign'),'kind':col('What are you sharing'),'photo':col('Photos'),'app':col('Approved')}
-if C['app'] is None: notice('No "Approved" column in the sheet yet.'); sys.exit(0)
+if C['app'] is None: notice('No "Approved" column in the sheet yet: only pre-approved call signs are posted.')
 def cell(r,i): return r[i].strip() if i is not None and i<len(r) else ''
 try:
   from PIL import Image
 except Exception: Image=None
 items=[];newph=0;os.makedirs('photos/community',exist_ok=True)
 for r in rows[1:]:
-  if cell(r,C['app']).upper() not in ('YES','Y','APPROVED','X'): continue
+  if not PA.ok(cell(r,C['app']) if C['app'] is not None else '',cell(r,C['call']) if C['call'] is not None else '',PRE): continue
   kind=cell(r,C['kind']).lower();t=next((v for k,v in TYPES.items() if kind.startswith(k)),None)
   if not t: continue
   call=re.sub(r'[^A-Z0-9/]','',cell(r,C['call']).upper())

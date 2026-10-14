@@ -59,6 +59,16 @@ try:
 except Exception:
     pass
 
+# Campground, cabin and lodge links (drawn on kpc-campgrounds.html by kpc-campgrounds.js)
+try:
+    cg = json.loads((ROOT / 'kpc-campgrounds.json').read_text(encoding='utf-8'))
+    for p in cg.get('parks', []):
+        for x in p.get('campgrounds', []) + p.get('lodging', []):
+            for k in ('url', 'map', 'reserve'):
+                if x.get(k): refs[x[k]].add('kpc-campgrounds.html')
+except Exception:
+    pass
+
 broken, anchors, blocked = [], [], []
 
 # ---- our own files
