@@ -28,7 +28,10 @@ async function jget(u,ms){const c=new AbortController(),t=setTimeout(()=>c.abort
 
 /* ---------- saved state ---------- */
 let call=base(get(K_CALL,''));
-let opt=Object.assign({nw:0,atno:0},get(K_OPT,{}));
+/* A page can set window.KPC_MINE_NOSAVE=true before loading this file: its NEW TO ME / ATNO toggles then start OFF
+   on every visit and are not saved or shared with the other tools (used by the Top 25 page). */
+const NOSAVE=!!window.KPC_MINE_NOSAVE;
+let opt=Object.assign({nw:0,atno:0},NOSAVE?{}:get(K_OPT,{}));
 let mine=get(K_MINE,null);if(!mine||mine.call!==call||!mine.d)mine={call,d:{}};   // d[ref]=[time, 2 activated | 1 tried | 0 never, last yyyymmdd]
 let cnt=get(K_CNT,null);if(!cnt||!cnt.d||!cnt.g)cnt={g:{},d:{}};                     // d[ref]=activations by anyone, g[group]=time loaded
 {const now=Date.now();for(const g in cnt.g)if(now-cnt.g[g]>CNT_HRS*36e5)delete cnt.g[g]}
@@ -153,7 +156,7 @@ function bar(el,o){if(!el)return;css();o=o||{};
  el.querySelector('.km-go').onclick=go;inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();go()}});
  el.querySelectorAll('.km-chip').forEach(b=>b.onclick=()=>{const k=b.dataset.o;
   if(k==='nw'&&!opt.nw&&!call){if(inp.value.trim()){setCall(inp.value)}else{inp.focus();say(el,'Type your callsign first, then tap NEW TO ME.');return}}
-  opt[k]=opt[k]?0:1;put(K_OPT,opt);bars.forEach(x=>x.querySelectorAll('.km-chip').forEach(c=>c.setAttribute('aria-pressed',String(!!opt[c.dataset.o]))));emit(true)});
+  opt[k]=opt[k]?0:1;if(!NOSAVE)put(K_OPT,opt);bars.forEach(x=>x.querySelectorAll('.km-chip').forEach(c=>c.setAttribute('aria-pressed',String(!!opt[c.dataset.o]))));emit(true)});
  bars.push(el);paint()}
 function say(el,t){const s=el.querySelector('.km-st');if(s)s.innerHTML=t}
 function setCall(c){c=base(c);if(c&&!/^[A-Z0-9]{3,10}$/.test(c)){bars.forEach(b=>say(b,'That doesn’t look like a callsign.'));return}
