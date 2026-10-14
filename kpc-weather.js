@@ -210,18 +210,39 @@
     const N = await nwr(), tx = (N.tx || []).map(t => Object.assign({}, t, { d: km(p.la, p.lo, t.la, t.lo) }));
     const cover = same ? tx.filter(t => t.same.includes(same)).sort((a, b) => a.d - b.d) : [];
     const near = tx.filter(t => !cover.includes(t)).sort((a, b) => a.d - b.d).slice(0, Math.max(0, 4 - cover.length));
-    const LIVE = { KIH43: 27092, KIH44: 35436, KIH39: 40866 };   // volunteer streams on Broadcastify (sometimes offline)
+    // Live streams with no sign-in (wxradio.org, run by volunteers; checked Oct 2026). They play right here.
+    const WXR = { WZ2523: 'KY-Frankfort-WZ2523', KZZ48: 'KY-Owenton-KZZ48', KEC74: 'IN-Indianapolis-KEC74', WXJ84: 'WV-Charleston-WXJ84', KJY68: 'OH-Chillicothe-KJY68',
+      KIG86: 'OH-Columbus-KIG86', WXK49: 'TN-Memphis-WXK49', KDO89: 'MO-StLouis-KDO89' };
+    const BFY = { KIH43: 27092, KIH44: 35436, KIH39: 40866 };   // Broadcastify (needs a free sign-in)
     const row = (t, why) => `<div class="wx-tx${t.status !== 'NORMAL' ? ' off' : ''}"><div class="f">${esc(t.freq)}<small>MHz</small></div><div class="i"><b>${esc(t.call)} · ${esc(t.site)}, ${esc(t.st)}</b>` +
       `<span>${why} · ${mi(t.d)} mi away · ${esc(t.wfo)}${t.status !== 'NORMAL' ? ' · <em>' + esc(t.status) + '</em>' : ''}</span>` +
-      (LIVE[t.call] ? `<a href="https://www.broadcastify.com/webPlayer/${LIVE[t.call]}" target="_blank" rel="noopener">▶ LISTEN ONLINE ↗</a>` : '') + '</div></div>';
-    const streams = tx.filter(t => LIVE[t.call]).sort((a, b) => a.d - b.d);
-    const listen = streams.length ? `<div class="wx-listen"><b class="t">🎧 Listen online now</b><p class="small">Volunteer streams of Kentucky weather radio. Tap one: a 15–30 second ad plays first, then the live broadcast. If it stays quiet, tap ▶ on the Broadcastify page.</p>` +
-      streams.map(t => `<a class="wx-play" href="https://www.broadcastify.com/webPlayer/${LIVE[t.call]}" target="_blank" rel="noopener"><span>▶</span><b>${esc(t.site)} · ${esc(t.call)}</b><small>${esc(t.freq)} MHz · ${mi(t.d)} mi away</small></a>`).join('') + '</div>' : '';
+      (WXR[t.call] ? `<button type="button" class="wx-pl" data-s="${WXR[t.call]}" data-n="${esc(t.site)} ${esc(t.call)}">▶ LISTEN LIVE</button>` : '') + '</div></div>';
+    const streams = tx.filter(t => WXR[t.call]).sort((a, b) => a.d - b.d).slice(0, 4);
+    const listen = streams.length ? `<div class="wx-listen"><b class="t">🎧 Listen live, right here</b><p class="small">Volunteer streams of NOAA Weather Radio, closest first. No sign-in. Tap ▶ to play, tap again to stop.</p>` +
+      streams.map(t => `<button type="button" class="wx-play wx-pl" data-s="${WXR[t.call]}" data-n="${esc(t.site)} ${esc(t.call)}"><span>▶</span><b>${esc(t.site)}, ${esc(t.st)} · ${esc(t.call)}</b><small>${esc(t.freq)} MHz · ${mi(t.d)} mi away</small></button>`).join('') +
+      `<p class="small" id="wxPlNow" aria-live="polite"></p></div>` : '';
     box.innerHTML = (cover.length ? `<p class="small">${county ? esc(county) + ' County' : 'Your county'} is covered by:</p>` + cover.map(t => row(t, 'covers your county')).join('') : '') +
       (near.length ? `<p class="small">${cover.length ? 'Also nearby' : 'Nearest transmitters'}:</p>` + near.map(t => row(t, 'nearby')).join('') : '') +
       (!cover.length && !near.length ? '<p class="small">No transmitter list loaded.</p>' : '') +
       listen + `<p class="small">Most ham HTs and scanners have a <b>WX</b> button (162.400–162.550 MHz). Set the county code <b>${same || 'for your county'}</b> in a SAME weather radio to get alerts only for this county. ` +
-      `More streams: <a href="https://www.broadcastify.com/listen/stid/21" target="_blank" rel="noopener">all Kentucky feeds on Broadcastify ↗</a>. Transmitter list from <a href="https://www.weather.gov/nwr/" target="_blank" rel="noopener">weather.gov/nwr</a> (${esc(N.updated || '')}).</p>`;
+      `More Kentucky streams (New Albany, Somerset, Ashland) are on <a href="https://www.broadcastify.com/listen/stid/21" target="_blank" rel="noopener">Broadcastify ↗</a>, which needs a free sign-in. Transmitter list from <a href="https://www.weather.gov/nwr/" target="_blank" rel="noopener">weather.gov/nwr</a> (${esc(N.updated || '')}).</p>`;
+    box.querySelectorAll('.wx-pl').forEach(b => b.onclick = () => play(b));
+  }
+
+  /* ---------- weather radio player ---------- */
+  let au = null, auBtn = null;
+  function play(b) {
+    const stopAll = () => { document.querySelectorAll('.wx-pl.on').forEach(x => { x.classList.remove('on'); if (x.firstElementChild && x.firstElementChild.tagName === 'SPAN') x.firstElementChild.textContent = '▶'; else x.textContent = '▶ LISTEN LIVE'; }); };
+    const msg = t => { const m = $('wxPlNow'); if (m) m.textContent = t; };
+    if (au && auBtn === b.dataset.s) { au.pause(); au.src = ''; au = null; auBtn = null; stopAll(); msg(''); return; }
+    if (au) { au.pause(); au.src = ''; }
+    stopAll();
+    au = new Audio('https://wxradio.org/' + b.dataset.s); auBtn = b.dataset.s;
+    document.querySelectorAll('.wx-pl[data-s="' + b.dataset.s + '"]').forEach(x => { x.classList.add('on'); if (x.firstElementChild && x.firstElementChild.tagName === 'SPAN') x.firstElementChild.textContent = '■'; else x.textContent = '■ STOP'; });
+    msg('Connecting to ' + b.dataset.n + '…');
+    au.addEventListener('playing', () => msg('🔊 Playing ' + b.dataset.n + ' live. Tap again to stop.'));
+    au.addEventListener('error', () => { msg('That stream is off the air right now. Try another one.'); stopAll(); au = null; auBtn = null; });
+    au.play().catch(e => { msg(e && e.name === 'NotAllowedError' ? 'Your browser blocked the sound. Tap ▶ again.' : 'That stream is off the air right now. Try another one.'); stopAll(); au = null; auBtn = null; });
   }
 
   /* ---------- radar map ---------- */
