@@ -5,7 +5,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 
 ## House rules (do not break these)
 - **N4KPC:** keep ALL N4KPC content off the site until Brandon says the FCC grant came through. When it does: add the call to the header, swap the hero image (KPC-logo-N4KPC.png is ready), add the Videos menu link.
-- **US-0608 is on hold.** Don't add it anywhere (kpc-ref-check.yml has it in ON_HOLD).
+- **US-0608 Ohio River Islands NWR** was on hold; Brandon approved it Oct 13 2026 (KY part = Manchester 1 & 2 islands, boat only). It is now in the guide and tools.
 - **kpc-loaded-verticals.html stays hidden:** noindex, not linked from any menu, hub, search or sitemap.
 - **Never ask Brandon to paste keys or tokens into chat.** Facebook/Discord secrets live only in GitHub → Settings → Secrets and variables → Actions: `FB_PAGE_ID`, `FB_PAGE_TOKEN`, `KPC_DISCORD_WEBHOOK`.
 - **Service worker cache name `kpc-finder-v1` (kpc-finder-sw.js / kpc-offline.js) must never change.**

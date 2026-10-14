@@ -131,7 +131,7 @@
 <div class="tablewrap" style="max-height:420px"><table class="list"><thead><tr><th>PARK</th><th>COUNTY</th><th id="col3">FIRST</th><th id="col4">ACTS</th></tr></thead><tbody id="tbody"></tbody></table></div>
 </div></div>
 </div>
-<div class="note" id="actNote">Uses POTA's public activation records for the 186 Kentucky parks in the KPC guide. A park counts as activated with 10 or more QSOs in one activation. Nothing you type is saved or shared — the callsign is only used to filter POTA's public data in your browser.</div>
+<div class="note" id="actNote">Uses POTA's public activation records for the 187 Kentucky parks in the KPC guide. A park counts as activated with 10 or more QSOs in one activation. Nothing you type is saved or shared — the callsign is only used to filter POTA's public data in your browser.</div>
 </div><!-- /pane-act -->
 
 <div id="pane-hunt" style="display:none">
@@ -161,7 +161,7 @@
 <div class="tablewrap" style="max-height:420px"><table class="list"><thead><tr><th>PARK</th><th>COUNTY</th><th id="hcol3">FIRST HUNT</th><th id="hcol4">QSOs</th></tr></thead><tbody id="htbody"></tbody></table></div>
 </div></div>
 </div>
-<div class="note" id="huntNote">Hunter mode needs the hunter CSV you download from POTA. It's read right here in your browser — nothing is uploaded, saved or shared. Old K-#### references are matched to today's US-#### numbers. Checks the 186 Kentucky parks in the KPC guide.</div>
+<div class="note" id="huntNote">Hunter mode needs the hunter CSV you download from POTA. It's read right here in your browser — nothing is uploaded, saved or shared. Old K-#### references are matched to today's US-#### numbers. Checks the 187 Kentucky parks in the KPC guide.</div>
 </div><!-- /pane-hunt -->
 
 </div></section>
@@ -210,9 +210,9 @@ async function fitState(m,Dd){if(isKY()){if(!m._cty)m._cty=await KPC.countyLayer
  m._st=ST}
 function stateNotes(Dd){const nm=stName(ST),n=Dd?Dd.parks.length:0;
  $('stateNote').innerHTML=isKY()?'Kentucky uses the full KPC guide: counties, park types and trails.':`<b>Lite version</b> for ${KPC.esc(nm)}: park names and map only.${Dd?` ${n.toLocaleString()} POTA parks${Dd.src==='file'?'. Parks right on a state line may show under the neighboring state.':', live from POTA.'}`:' Loading park list…'}`;
- $('actNote').textContent=isKY()?"Uses POTA's public activation records for the 186 Kentucky parks in the KPC guide. A park counts as activated with 10 or more QSOs in one activation. Nothing you type is saved or shared — the callsign is only used to filter POTA's public data in your browser."
+ $('actNote').textContent=isKY()?"Uses POTA's public activation records for the 187 Kentucky parks in the KPC guide. A park counts as activated with 10 or more QSOs in one activation. Nothing you type is saved or shared — the callsign is only used to filter POTA's public data in your browser."
   :`Uses POTA's public activation records for ${n?n.toLocaleString()+' ':''}${nm} parks. A park counts as activated with 10 or more QSOs in one activation. Nothing you type is saved or shared.`;
- $('huntNote').textContent=`Hunter mode needs the hunter CSV you download from POTA. It's read right here in your browser — nothing is uploaded, saved or shared. Old K-#### references are matched to today's US-#### numbers. Checks ${isKY()?'the 186 Kentucky parks in the KPC guide':(n?n.toLocaleString()+' ':'the ')+nm+' POTA parks'}.`}
+ $('huntNote').textContent=`Hunter mode needs the hunter CSV you download from POTA. It's read right here in your browser — nothing is uploaded, saved or shared. Old K-#### references are matched to today's US-#### numbers. Checks ${isKY()?'the 187 Kentucky parks in the KPC guide':(n?n.toLocaleString()+' ':'the ')+nm+' POTA parks'}.`}
 function initStates(){const sel=$('stateSel');
  sel.innerHTML=Object.entries(STN).sort((a,b)=>a[1].localeCompare(b[1])).map(([a,n])=>`<option value="${a}"${a===ST?' selected':''}>${n}${a==='KY'?' (full KPC guide)':''}</option>`).join('');
  sel.onchange=async()=>{ST=sel.value;try{localStorage.setItem('kpcCheckState',ST)}catch(e){}
