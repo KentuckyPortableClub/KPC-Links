@@ -32,7 +32,7 @@
   const now = () => Date.now(), DAY = 864e5;
   function inSeason(sp) { const m = new Date().getMonth() + 1, ms = SP[sp].months; return ms.includes(m) || ms.includes(m % 12 + 1); }   // also a month early (preseason / exhibitions)
   async function teamSched(sp, tid) {
-    const r = await fetch('https://site.api.espn.com/apis/site/v2/sports/' + SP[sp].path + '/teams/' + tid + '/schedule');
+    const r = await fetch('https://site.web.api.espn.com/apis/site/v2/sports/' + SP[sp].path + '/teams/' + tid + '/schedule');
     if (!r.ok) throw new Error('HTTP ' + r.status); return r.json();
   }
   function keep(ev, sp) {
