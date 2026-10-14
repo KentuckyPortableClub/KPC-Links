@@ -418,7 +418,11 @@ function attach(map, opt){
     const m = L.marker(ll, {pane:'kxpin', icon:L.divIcon({className:'', html:p.nht ? '<span class="kx-nht">★</span>' : '<span class="kx-sota">▲</span>', iconSize:[24, 24], iconAnchor:[12, 12], popupAnchor:[0, -10]}), title:p.nht ? 'Historic trail site: ' + p.pota.map(r => r[0]).join(' + ') : 'SOTA summit inside a POTA park: ' + ((p.sota[0] || [])[0] || '')})
      .bindPopup(() => overlapCard(f.properties, ll, opt.addStop), {maxWidth:300, minWidth:210});
     hover(m); return m}));
-   [poly, under, top, pts2].forEach(x => x.addTo(lay.O));
+   /* wide invisible line on top of each overlap trail/riverbank so it is easy to tap (wider on touch screens) */
+   const TAPW = matchMedia('(pointer:coarse)').matches ? 28 : 18;
+   const hitL = L.geoJSON({type:'FeatureCollection', features:lines}, {pane:'kxovl', style:() => ({color:'#000', weight:TAPW, opacity:0}),
+    onEachFeature:(f, l) => l.on('click', e => {if (opt.busy && opt.busy()) return; L.popup({maxWidth:300, minWidth:210}).setLatLng(e.latlng).setContent(overlapCard(f.properties, e.latlng, opt.addStop)).openOn(map)})});
+   [poly, under, top, hitL, pts2].forEach(x => x.addTo(lay.O));
    onLook((lk, k) => {if (k === 'thick') {poly.setStyle(pst); under.setStyle(ust); top.setStyle(tst)}});
    built = true;
    return gj;

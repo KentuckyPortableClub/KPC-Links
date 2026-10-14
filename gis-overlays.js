@@ -149,7 +149,7 @@
  function draw(j,s){const layer=L.layerGroup(),lines=[];let n=0;for(const f of j.features||[]){if(!matching(f,s))continue;const g=f.geometry||{},name=getName(f);
    if(s.kind==='line'){for(const pts of flatten(g)){if(pts.length<2)continue;const ll=pts.map(c=>[c[1],c[0]]);
      const vis=L.polyline(ll,{color:s.color,weight:LW(coarse?6:5),opacity:.95,interactive:false});vis._kw=coarse?6:5;
-     const hit=label(L.polyline(ll,{color:s.color,weight:coarse?24:16,opacity:0,interactive:true}),name,s,f.properties||f.attributes); /* wide invisible tap target */
+     const hit=label(L.polyline(ll,{color:s.color,weight:coarse?30:22,opacity:0,interactive:true}),name,s,f.properties||f.attributes); /* wide invisible tap target */
      hit.on('mouseover',()=>vis.setStyle({weight:LW(8)}));hit.on('mouseout',()=>vis.setStyle({weight:LW(coarse?6:5)}));
      vis.addTo(layer);hit.addTo(layer);lines.push(pts);n++}}
    else if(s.kind==='point'){const pt=g.x!==undefined?[g.y,g.x]:g.type==='Point'?[g.coordinates[1],g.coordinates[0]]:null;if(pt){label(L.circleMarker(pt,{radius:coarse?9:7,color:'#111',weight:2,fillColor:s.color,fillOpacity:.95}),name,s,f.attributes||f.properties).addTo(layer);n++}}}
