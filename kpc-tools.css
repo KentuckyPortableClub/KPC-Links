@@ -86,3 +86,16 @@ footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-
 .tool-head.has-badge .wrap{display:block}
 .th-badge{margin:16px 0 0}.th-badge.sign{width:62%;max-width:240px}.th-badge.group{width:70%;max-width:260px}.th-badge.barrel{width:120px;height:120px}}
 @media print{.tool-head{display:none!important}}
+
+/* dressed-up tool headers (Oct 14 2026): scenic photo, glow, feature chips */
+.tool-head.th-river,.tool-head.th-flag{padding:74px 24px 60px;border-bottom:2px solid #d5a63a}
+.tool-head.th-river{background:linear-gradient(90deg,rgba(7,7,7,.93) 0%,rgba(7,7,7,.72) 40%,rgba(7,7,7,.2) 75%,rgba(7,7,7,.05) 100%),#070707 url("hero-river-camp.jpg") center 60%/cover no-repeat}
+.tool-head.th-flag{background:linear-gradient(90deg,rgba(7,7,7,.93) 0%,rgba(7,7,7,.74) 40%,rgba(7,7,7,.25) 75%,rgba(7,7,7,.08) 100%),#070707 url("hero-ky-flag.jpg") center 45%/cover no-repeat}
+.tool-head.th-river:before,.tool-head.th-flag:before{display:none}
+.tool-head.th-river h1,.tool-head.th-flag h1{text-shadow:0 3px 18px rgba(0,0,0,.8)}
+.tool-head.th-river p,.tool-head.th-flag p{text-shadow:0 2px 10px rgba(0,0,0,.85)}
+.th-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.th-chips span{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(7,7,7,.62);border:1px solid rgba(213,166,58,.7);backdrop-filter:blur(3px);font-size:12px;font-weight:800;letter-spacing:.6px;color:#f5f0e4}
+@media(max-width:760px){.tool-head.th-river,.tool-head.th-flag{padding:46px 18px 40px}
+.tool-head.th-river{background:linear-gradient(180deg,rgba(7,7,7,.55) 0%,rgba(7,7,7,.75) 45%,rgba(7,7,7,.92) 100%),#070707 url("hero-river-camp-mobile.jpg") center 45%/cover no-repeat}
+.tool-head.th-flag{background:linear-gradient(180deg,rgba(7,7,7,.55) 0%,rgba(7,7,7,.75) 45%,rgba(7,7,7,.92) 100%),#070707 url("hero-ky-flag-mobile.jpg") center 30%/cover no-repeat}}
