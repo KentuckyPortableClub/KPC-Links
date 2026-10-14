@@ -1,8 +1,24 @@
-FAIL https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/96/schedule
-OK 200 364048 https://site.web.api.espn.com/apis/site/v2/sports/football/college-football/teams/96/schedule
-FAIL https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80
-OK 200 229082 https://site.web.api.espn.com/apis/v2/scoreboard/header?sport=football&league=college-football
-OK 202 0 https://cdn.espn.com/core/college-football/schedule?xhr=1
-OK 200 185 https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/teams/96/events
-FAIL https://site.web.api.espn.com/apis/common/v3/sports/football/college-football/teams/96/schedule
-FAIL https://ncaa-api.henrygd.me/scoreboard/football/fbs
+9 coming up · 5 recent finals · UK, UL, WKU, EKU, Murray State, Morehead State, NKU and Bellarmine || 🏈 Football | Today · 7:00 PM | Western KY | Sam Houston | 📺 ESPN | 🎧 LISTEN | GAME ↗ ## 🏈 Football | Sat, Oct 17 · 12:00 PM | Morehead St | Davidson | 📺 ESPN+ | 🎧 LISTEN | GAME ↗ ## 🏈 Football | Sat, Oct 17 · 1:30 PM | E Kentucky | Tennessee Tech | 📺 ESPN+ | 🎧 LISTEN | GAME ↗ ## 🏈 Football | Sat, Oct 17 · 4:00 PM | South Dakota | Murray St | 📺 ESPN+ | 🎧 LISTEN | GAME ↗
+200 s/site/v2/sports/football/college-football/teams/96/schedule acao=*
+200 s/site/v2/sports/football/college-football/teams/97/schedule acao=*
+200 /sports/basketball/mens-college-basketball/teams/96/schedule acao=*
+200 ports/basketball/womens-college-basketball/teams/96/schedule acao=*
+200 /sports/basketball/mens-college-basketball/teams/98/schedule acao=*
+200 ports/basketball/womens-college-basketball/teams/98/schedule acao=*
+200 /sports/basketball/mens-college-basketball/teams/97/schedule acao=*
+200 site/v2/sports/football/college-football/teams/2198/schedule acao=*
+200 s/site/v2/sports/football/college-football/teams/98/schedule acao=*
+200 rts/basketball/womens-college-basketball/teams/2413/schedule acao=*
+200 ports/basketball/womens-college-basketball/teams/97/schedule acao=*
+200 site/v2/sports/football/college-football/teams/2413/schedule acao=*
+200 /sports/basketball/mens-college-basketball/teams/93/schedule acao=*
+200 ports/basketball/mens-college-basketball/teams/2198/schedule acao=*
+200 s/site/v2/sports/football/college-football/teams/93/schedule acao=*
+200 ports/basketball/mens-college-basketball/teams/2413/schedule acao=*
+200 /sports/basketball/mens-college-basketball/teams/91/schedule acao=*
+200 ports/basketball/womens-college-basketball/teams/93/schedule acao=*
+200 ports/basketball/womens-college-basketball/teams/91/schedule acao=*
+200 rts/basketball/womens-college-basketball/teams/2198/schedule acao=*
+200 ports/basketball/womens-college-basketball/teams/94/schedule acao=*
+200 /sports/basketball/mens-college-basketball/teams/94/schedule acao=*
+JS=https://kentuckyportableclub.github.io/KPC-Links/kpc-scores.js?v=20261014c
