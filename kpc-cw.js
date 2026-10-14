@@ -58,7 +58,7 @@ const DEF = {
   call: '', st: 'KY', ref: '', prog: 'pota',
   wpm: 18, eff: 18, pitch: 650, their: 600, vol: 0.7, noise: 0.12, qsb: true, fade: 2, pileN: 2,
   input: 'keyboard', iambic: 'B', swap: false, show: 'after', hints: true, pile: 2,
-  over: 1.0, match: false, welcome: true, name: '', qth: '', kochLevel: 2, drill: 'calls'
+  over: 1.0, match: false, welcome: true, name: '', qth: '', nr: '', bandc: 'clean', spFmt: 'pota', spMin: 5, kochLevel: 2, drill: 'calls'
 };
 let S = Object.assign({}, DEF);
 try { Object.assign(S, JSON.parse(localStorage.getItem('kpcCW') || '{}')); } catch (e) {}
@@ -165,7 +165,8 @@ const dec = {
   unit: 1200 / 18, code: '', text: '', downAt: 0, upAt: 0, timers: [], marks: [], adapt: false,
   reset(unit, adapt) { this.unit = unit; this.adapt = adapt; this.code = ''; this.text = ''; this.clear(); },
   clear() { this.timers.forEach(clearTimeout); this.timers = []; },
-  down(t) { this.clear(); this.downAt = t; },
+  gaps: [],
+  down(t) { this.clear(); if (this.upAt && t - this.upAt < 4000) { this.gaps.push(t - this.upAt); if (this.gaps.length > 80) this.gaps.shift(); } this.downAt = t; },
   up(t) {
     const d = t - this.downAt; if (d < 8) return;
     if (!this.adapt) this.unit = 1200 / kw();   // paddles: the keyer's own speed
@@ -409,6 +410,7 @@ const goal = () => S.prog === 'sota' ? 4 : 10;
 function stop(silent) {
   GEN++; session.on = false;
   if (waiter) { const w = waiter; waiter = null; clearTimeout(waitTimer); w(null); }
+  bandStop(); sprintTimer(false);
   hushAll(); setNoise(false); releaseAll(); dec.clear(); dec.text = ''; dec.code = ''; ui.live('');
   const b = $('cwGo'); if (b) { b.textContent = 'START'; b.classList.remove('stop'); }
   if (!silent) ui.status('Stopped.');
@@ -429,6 +431,8 @@ function start() {
     if (MODE === 'hunt') hunterLoop(gen).catch(e => console.error(e));
     else if (MODE === 'act') activatorLoop(gen).catch(e => console.error(e));
     else if (MODE === 'chat') chatLoop(gen).catch(e => console.error(e));
+    else if (MODE === 'sprint') sprintLoop(gen).catch(e => console.error(e));
+    bandStart(gen);
   };
   if (S.welcome && !welcomed) { welcomed = true; welcome(gen).then(go); } else go();
 }
@@ -665,7 +669,31 @@ function fistMeter() {
   const d = av(dits), h = av(dahs), ratio = h / d, wpm = Math.round(1200 / d);
   const steady = Math.round(100 - Math.min(60, (sd(dits) + sd(dahs)) * 100));
   const rc = Math.abs(ratio - 3) < 0.45 ? 'good' : Math.abs(ratio - 3) < 0.9 ? 'ok' : 'bad';
-  e.innerHTML = `<div><b>${wpm}</b><span>WPM (from your dits)</span></div><div class="${rc}"><b>${ratio.toFixed(1)} : 1</b><span>dah : dit (aim for 3)</span></div><div class="${steady > 80 ? 'good' : steady > 65 ? 'ok' : 'bad'}"><b>${steady}%</b><span>steadiness</span></div>`;
+  e.innerHTML = `<div><b>${wpm}</b><span>WPM (from your dits)</span></div><div class="${rc}"><b>${ratio.toFixed(1)} : 1</b><span>dah : dit (aim for 3)</span></div><div class="${steady > 80 ? 'good' : steady > 65 ? 'ok' : 'bad'}"><b>${steady}%</b><span>steadiness</span></div>` + fistDoctor(d, h, dits);
+}
+/* Fist doctor: compare your timing with textbook timing (dit 1, dah 3, gap inside a letter 1, between letters 3, between words 7)
+   and say in plain words what to work on. With paddles the keyer times the dits and dahs, so only your spacing counts. */
+function fistDoctor(d, h, dits) {
+  const pad = S.input === 'iambic', u = pad ? 1200 / kw() : d;
+  const g = dec.gaps.slice(-60).map(x => x / u), av = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : null;
+  const inside = av(g.filter(x => x < 2)), between = av(g.filter(x => x >= 2 && x < 5.5)), words = av(g.filter(x => x >= 5.5 && x < 14));
+  const tips = [];
+  if (!pad) {
+    const ratio = h / d;
+    if (ratio < 2.5) tips.push(`Your dahs are short (${ratio.toFixed(1)}× a dit). Hold them a bit longer, about 3 dits.`);
+    else if (ratio > 3.6) tips.push(`Your dahs are long (${ratio.toFixed(1)}× a dit). Let go a little sooner.`);
+    const sdd = dits.length > 3 ? Math.sqrt(av(dits.map(x => (x - d) * (x - d)))) / d : 0;
+    if (sdd > 0.28) tips.push('Your dits are uneven. Try sending a slow, steady string of E\'s and S\'s.');
+    if (inside != null && inside > 1.6) tips.push(`The gaps inside your letters are long (${inside.toFixed(1)} dits). Letters may break apart: keep each letter in one smooth motion.`);
+  }
+  if (between != null && between < 2.4) tips.push(`You run letters together (only ${between.toFixed(1)} dits between letters). Leave a clear pause, about 3 dits.`);
+  else if (between != null && between > 4.3) tips.push(`The pauses between your letters are long (${between.toFixed(1)} dits). Close them up to about 3, or they read as word gaps.`);
+  if (words != null && words < 6) tips.push(`Your word spaces are short (${words.toFixed(1)} dits). Pause about 7 dits between words.`);
+  if (g.length < 6) return '';
+  const row = (name, ideal, yours) => yours == null ? '' : `<div class="fd-row"><span>${name}</span><i style="width:${Math.min(100, ideal / 8 * 100)}%"></i><b style="width:${Math.min(100, yours / 8 * 100)}%" class="${Math.abs(yours - ideal) / ideal < 0.2 ? 'good' : Math.abs(yours - ideal) / ideal < 0.4 ? 'ok' : 'bad'}"></b><em>${yours.toFixed(1)}</em></div>`;
+  return `<div class="fdoc"><div class="fd-h">FIST DOCTOR <small>gray = textbook, color = you (in dits)</small></div>` +
+    (pad ? '' : row('Dah', 3, h / d)) + row('Gap in a letter', 1, inside) + row('Gap between letters', 3, between) + row('Gap between words', 7, words) +
+    `<ul>${(tips.length ? tips.slice(0, 3) : ['Nice fist! Your timing is close to textbook.']).map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>`;
 }
 
 /* ================================================================ Ragchew: a friendly full QSO
@@ -757,6 +785,134 @@ async function chatLoop(gen) {
   session.qsos.push({ call: o.call }); ui.stats();
   ui.note(`QSO done (${mins} min). You worked ${o.name}, ${o.call} in ${o.town} ${o.st}: ${o.rig} at ${o.pwr}W, antenna ${o.ant}, WX ${o.wx} ${o.temp}F. Did you copy it all?`);
   v.dispose(); stop(true); ui.status('QSO complete. 73!'); ui.hint('Press START for another ragchew.');
+}
+
+/* ================================================================ Real band noise
+   'Typical' and 'Rough' add static crashes, a neighbour station a few hundred Hz away and the odd tuner-upper. */
+const band = { timers: [], live: [] };
+function bandStop() { band.timers.forEach(clearTimeout); band.timers = []; band.live.forEach(n => { try { n.stop(); } catch (e) {} }); band.live = []; }
+function crash(rough) {
+  if (!AC) return;
+  const t = AC.currentTime, len = Math.floor(AC.sampleRate * 0.6), buf = AC.createBuffer(1, len, AC.sampleRate), d = buf.getChannelData(0);
+  for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (Math.random() < 0.08 ? 3 : 1);
+  const src = AC.createBufferSource(); src.buffer = buf;
+  const f = AC.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = S.their; f.Q.value = 0.5;
+  const g = AC.createGain(); g.gain.value = 0;
+  const pk = (rough ? 0.5 + Math.random() * 0.7 : 0.25 + Math.random() * 0.4), n = rnd(1, rough ? 4 : 2);
+  for (let k = 0; k < n; k++) { const s0 = t + k * (0.04 + Math.random() * 0.12); g.gain.setTargetAtTime(pk, s0, 0.002); g.gain.setTargetAtTime(0, s0 + 0.01, 0.03 + Math.random() * 0.08); }
+  src.connect(f); f.connect(g); g.connect(master); src.start(t); src.stop(t + 0.6); band.live.push(src);
+  src.onended = () => { band.live = band.live.filter(x => x !== src); };
+}
+function tuneUp(rough) {
+  if (!AC) return;
+  const t = AC.currentTime, o = AC.createOscillator(), g = AC.createGain(), f0 = rnd(350, 1000), dur = 0.8 + Math.random() * (rough ? 2.5 : 1.5);
+  o.frequency.setValueAtTime(f0, t); o.frequency.linearRampToValueAtTime(f0 + rnd(-120, 120), t + dur);
+  g.gain.value = 0; g.gain.setTargetAtTime(rough ? 0.3 : 0.18, t, 0.01); g.gain.setTargetAtTime(0, t + dur, 0.01);
+  o.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 0.1); band.live.push(o);
+  o.onended = () => { band.live = band.live.filter(x => x !== o); };
+}
+function bandStart(gen) {
+  bandStop();
+  if (S.bandc === 'clean' || !audio()) return;
+  const rough = S.bandc === 'rough', T = (fn, a, b) => band.timers.push(setTimeout(fn, rnd(a, b)));
+  const qrn = () => { if (gen !== GEN) return; crash(rough); T(qrn, rough ? 700 : 1800, rough ? 4000 : 8000); };
+  const tune = () => { if (gen !== GEN) return; tuneUp(rough); T(tune, rough ? 15000 : 40000, rough ? 40000 : 90000); };
+  const qrm = async () => {
+    while (gen === GEN) {
+      const o = newOp(), v = new Voice({ call: o.call, pitch: Math.max(300, Math.min(1100, S.their + (chance(0.5) ? -1 : 1) * rnd(rough ? 90 : 170, rough ? 260 : 450))), wpm: rnd(16, 32), jit: Math.random() * 0.08, level: rough ? 0.3 + Math.random() * 0.3 : 0.12 + Math.random() * 0.15 });
+      await v.play(pick([`CQ CQ DE ${o.call} ${o.call} K`, `${o.call} TU 5NN ${o.st} ${o.st} BK`, `CQ POTA DE ${o.call} K`, `QRZ? DE ${o.call} K`, `R R TNX FER QSO 73 E E`, `UR 579 579 IN ${o.st}`]));
+      v.dispose(); if (gen !== GEN) return;
+      await wait(rnd(rough ? 400 : 2500, rough ? 3000 : 9000));
+    }
+  };
+  T(qrn, 500, 2500); T(tune, 6000, 20000); band.timers.push(setTimeout(() => { if (gen === GEN) qrm(); }, rnd(1000, 4000)));
+}
+
+/* ================================================================ Contest sprint: a timed run (POTA run, CWops CWT, SKCC sprint)
+   Score = contacts × different states (the multipliers), like a real contest. */
+let SPB = {}; try { SPB = JSON.parse(localStorage.getItem('kpcSprint') || '{}') || {}; } catch (e) { SPB = {}; }
+const sp = { end: 0, timer: 0, q: 0, mults: new Set(), busts: 0 };
+function spFmt() {
+  const me = myCall(), st = S.st || 'KY', nm = (S.name || '').toUpperCase().trim() || 'NAME', nr = (S.nr || '').toUpperCase().trim();
+  return {
+    pota: { label: 'POTA run', cq: `CQ POTA DE ${me} K`, cqWord: 'POTA', mine: `5NN ${st}`, ex: c => `${c} UR 5NN 5NN ${st} ${st} BK`, ok: ts => !!findRST(ts), ask: 'RST?', their: h => `TU UR ${h.rst} ${h.rst} ${h.st} ${h.st} BK`, rcvd: h => `${h.rst} ${h.st}` },
+    cwt: { label: 'CWops CWT', cq: `CQ CWT ${me}`, cqWord: 'CWT', mine: `${nm} ${nr || st}`, ex: c => `${c} ${nm} ${nr || st}`, ok: ts => ts.filter(t => t.length >= 2).length >= 3, ask: 'NR?', their: h => `TU ${h.name} ${h.cwops || h.st}`, rcvd: h => `${h.name} ${h.cwops || h.st}` },
+    skcc: { label: 'SKCC sprint', cq: `CQ SKS ${me}`, cqWord: 'SKS', mine: `5NN ${st} ${nm} ${nr || 'NONE'}`, ex: c => `${c} 5NN ${st} ${nm} ${nr || 'NONE'} BK`, ok: ts => !!findRST(ts) && ts.length >= 4, ask: 'AGN?', their: h => `TU 579 ${h.st} ${h.name} ${h.skcc} BK`, rcvd: h => `579 ${h.st} ${h.name} ${h.skcc}` }
+  }[S.spFmt] || null;
+}
+function sprintTimer(on) {
+  clearInterval(sp.timer); sp.timer = 0;
+  if (!on) return;
+  const tick = () => {
+    const left = Math.max(0, sp.end - Date.now()), m = Math.floor(left / 60000), s2 = Math.floor(left / 1000) % 60;
+    const t = $('spClock'); if (t) t.textContent = `${m}:${String(s2).padStart(2, '0')}`;
+    const sc = $('spScore'); if (sc) sc.textContent = `${sp.q} QSOs × ${sp.mults.size} states = ${sp.q * sp.mults.size}`;
+    if (!left) sprintDone();
+  };
+  tick(); sp.timer = setInterval(tick, 250);
+}
+function spBest() {
+  const box = $('spBest'); if (!box) return;
+  const k = S.spFmt + S.spMin, b = SPB[k];
+  const c = $('spClock'); if (c && !sp.timer) c.textContent = S.spMin + ':00';
+  box.textContent = b ? `Your best ${S.spMin}-minute ${(spFmt() || {}).label || ''}: ${b.score} points (${b.q} QSOs, ${b.rate}/hr) on ${b.date}` : 'No sprint score yet for this format and length.';
+}
+function sprintDone() {
+  const q = sp.q, mult = sp.mults.size, score = q * mult, rate = Math.round(q / (S.spMin / 60));
+  stop(true);
+  const k = S.spFmt + S.spMin, pb = SPB[k], isPB = score > 0 && (!pb || score > pb.score);
+  if (isPB) { SPB[k] = { score, q, rate, date: new Date().toISOString().slice(0, 10) }; try { localStorage.setItem('kpcSprint', JSON.stringify(SPB)); } catch (e) {} }
+  ui.status('⏱ Time! Sprint over.');
+  ui.note(`🏁 ${S.spMin}-minute ${(spFmt() || {}).label}: ${q} QSOs × ${mult} states = ${score} points · rate ${rate} QSOs/hour${sp.busts ? ` · ${sp.busts} call${sp.busts > 1 ? 's' : ''} you had to fix` : ''}${isPB ? ' · 🎉 New personal best!' : ''}`);
+  spBest(); const t = $('spClock'); if (t) t.textContent = 'DONE';
+}
+async function sprintLoop(gen) {
+  const F = spFmt(), me = myCall(); if (!F) return;
+  const callers = [], worked = new Set([me]);
+  Object.assign(sp, { end: Date.now() + S.spMin * 60000, q: 0, mults: new Set(), busts: 0 });
+  session.qsos = []; const tb = $('cwLog'); if (tb) tb.innerHTML = ''; ui.stats();
+  sprintTimer(true);
+  ui.status(`${F.label} sprint: ${S.spMin} minutes. Call CQ and work as many as you can!`);
+  ui.hint(`Call CQ: ${F.cq}`);
+  const arrivals = () => {
+    const want = Math.max(1, S.pileN); const n = Math.max(0, rnd(Math.max(1, want - 1), want) - callers.length);
+    for (let i = 0; i < n; i++) {
+      const o = newOp(new Set([...worked, ...callers.map(c => c.call)]));
+      Object.assign(o, { name: pick(NAMES), rst: rst('pota'), cwops: chance(0.65) ? String(rnd(1, 3700)) : '', skcc: rnd(1, 42000) + pick(['', '', 'C', 'T', 'S']), v: voice(o.call) });
+      callers.push(o);
+    }
+  };
+  const callIn = list => list.forEach(o => setTimeout(() => {
+    if (gen !== GEN) return; busyThem++;
+    const row = ui.log(o.call, o.call, 'them', true);
+    o.v.play(o.call).then(() => { busyThem--; ui.reveal(row); });
+  }, rnd(150, 900)));
+  while (gen === GEN) {
+    const r = await you(null); if (gen !== GEN) return;
+    const ts = toks(r);
+    if (has(ts, 'CQ', 'QRZ', 'QRZ?', 'TEST')) { arrivals(); callIn(callers); ui.hint(`Send a call + your exchange: ${F.ex(callers[0] ? callers[0].call : 'W4ABC')}`); continue; }
+    if (!callers.length) { ui.note(`Nobody calling — send ${F.cq}`); continue; }
+    if (asksAgain(ts) && !callers.some(c => callMatch(ts, c.call) === 'exact')) { session.agn++; callIn(callers); continue; }
+    const partial = ts.filter(t => t.endsWith('?') && t.length > 1 && ['AGN?', 'QRZ?', 'NR?', 'RST?'].indexOf(t) < 0).map(t => t.slice(0, -1));
+    const exact = callers.find(c => callMatch(ts, c.call) === 'exact');
+    if (!exact && partial.length) { const hit = callers.filter(c => partial.some(p => base(c.call).indexOf(p) >= 0)); if (hit.length) callIn(hit); else ui.note('No one with that in their call. Try QRZ?'); continue; }
+    const near = !exact && callers.find(c => callMatch(ts, c.call) === 'near');
+    if (near) { sp.busts++; await say(near.v, `${near.call} ${near.call}`, gen); ui.hint(`Fix the call and resend: ${F.ex(near.call)}`); continue; }
+    if (!exact) { ui.note('Send a call you heard (or part of one with ?), or QRZ?'); continue; }
+    // the exchange
+    const h = exact, t0 = Date.now(); let ok = F.ok(ts);
+    if (!ok) { await say(h.v, F.ask, gen); if (gen !== GEN) return; ui.hint(`Send your exchange: ${F.mine}`); const r2 = await you(15000); if (gen !== GEN) return; ok = F.ok(toks(r2)) || toks(r2).length >= 2; }
+    if (!ok) { ui.note(`${h.call} gave up and moved on.`); callers.splice(callers.indexOf(h), 1); h.v.dispose(); continue; }
+    const ex = F.their(h); await say(h.v, ex, gen); if (gen !== GEN) return;
+    ui.hint('Send TU (or TU + your call) to log it and bring the next caller');
+    let r3 = await you(15000); if (gen !== GEN) return;
+    if (r3 && asksAgain(toks(r3)) && !has(toks(r3), 'TU')) { session.agn++; await say(h.v, ex, gen); if (gen !== GEN) return; r3 = await you(15000); if (gen !== GEN) return; }
+    logQSO({ call: h.call, sent: F.mine, rcvd: F.rcvd(h), st: h.st, name: '', secs: Math.round((Date.now() - t0) / 1000) });
+    sp.q++; sp.mults.add(h.st);
+    callers.splice(callers.indexOf(h), 1); worked.add(h.call); h.v.dispose();
+    if (r3 && has(toks(r3), 'TU', 'QRZ', 'QRZ?', 'CQ')) { if (chance(0.7)) arrivals(); if (callers.length) callIn(callers); }
+    ui.hint(callers.length ? `Next! ${F.ex(callers[0].call)}` : `Call CQ: ${F.cq}`);
+  }
 }
 
 /* ================================================================ Problem letters
@@ -1087,6 +1243,7 @@ function setMode(m) {
     free: 'Send anything — it decodes as you go. Use it to check your timing.',
     drill: 'Press PLAY, type what you heard, press Enter.',
     qrq: '',
+    sprint: 'Sprint: pick the format and length, press START, call CQ and work as many as you can before the clock runs out.',
     chat: 'Ragchew: press START. Answer the CQ, then trade name, QTH, rig, antenna and weather. Send AGN? to hear an over again, or QRS to slow them down.',
     listen: ''
   }[m];
@@ -1134,9 +1291,9 @@ function bindSettings() {
     });
   });
   const txt = (id, k, up) => { const el = $(id); if (!el) return; el.value = S[k] || ''; el.addEventListener('input', () => { S[k] = up ? el.value.toUpperCase().replace(/\s/g, '') : el.value; if (up) el.value = S[k]; el.classList.remove('need'); save(); }); };
-  txt('cwCall', 'call', true); txt('cwRef', 'ref', true); txt('cwName', 'name', true); txt('cwQth', 'qth');
+  txt('cwCall', 'call', true); txt('cwRef', 'ref', true); txt('cwName', 'name', true); txt('cwQth', 'qth'); txt('cwNr', 'nr', true);
   const sel = (id, k, cb) => { const el = $(id); if (!el) return; el.value = S[k]; el.addEventListener('change', () => { S[k] = el.value; save(); cb && cb(); }); };
-  sel('cwState', 'st'); sel('cwShow', 'show'); sel('cwIambic', 'iambic'); sel('cwDrillType', 'drill', () => { drill.item = ''; drill.head = null; const q = $('cwDrillQ'); if (q) q.hidden = true; $('cwKochRow').hidden = S.drill !== 'koch'; });
+  sel('cwState', 'st'); sel('cwBandCond', 'bandc'); sel('spFmt', 'spFmt', spBest); sel('spMin', 'spMin', () => { S.spMin = +S.spMin; save(); spBest(); }); sel('cwShow', 'show'); sel('cwIambic', 'iambic'); sel('cwDrillType', 'drill', () => { drill.item = ''; drill.head = null; const q = $('cwDrillQ'); if (q) q.hidden = true; $('cwKochRow').hidden = S.drill !== 'koch'; });
   sel('cwProg', 'prog', () => { setMode(MODE); document.querySelectorAll('.cw-prog').forEach(e => { e.textContent = progWord(); }); });
   const chk = (id, k, cb) => { const el = $(id); if (!el) return; el.checked = !!S[k]; el.addEventListener('change', () => { S[k] = el.checked; save(); cb && cb(); }); };
   // quick pileup − / + next to START
@@ -1159,7 +1316,7 @@ function init() {
   setInput(S.input);
   document.querySelectorAll('.cw-tab').forEach(t => t.addEventListener('click', () => setMode(t.dataset.mode)));
   let m = 'hunt'; try { m = localStorage.getItem('kpcCWmode') || 'hunt'; } catch (e) {}
-  const hm = (location.hash.match(/#(hunt|act|drill|free|listen|qrq|chat)\b/) || [])[1]; if (hm) m = hm;
+  const hm = (location.hash.match(/#(hunt|act|drill|free|listen|qrq|chat|sprint)\b/) || [])[1]; if (hm) m = hm;
   setMode(m);
   $('cwGo').addEventListener('click', () => { if (session.on) stop(); else start(); });
   $('cwOverBtn').addEventListener('click', () => dec.flush());
@@ -1179,7 +1336,7 @@ function init() {
   $('cwDrillOk').addEventListener('click', drillCheck);
   document.querySelectorAll('[data-say]').forEach(b => b.addEventListener('click', () => { audio(); const v = new Voice({ call: 'ex', pitch: S.their, wpm: S.wpm, eff: S.eff, level: 0.9 }); v.play(b.dataset.say).then(() => v.dispose()); }));
   const sb = $('cwSwapBtn'); if (sb) sb.addEventListener('click', () => { S.swap = !S.swap; save(); releaseAll(); padLabels(); });
-  padLabels(); qrqInit(); weakShow();
+  padLabels(); qrqInit(); weakShow(); spBest();
   fistMeter(); ui.stats();
 }
 
