@@ -1,0 +1,76 @@
+</head>
+<body>
+@@HEADER@@
+<main>
+<section class="hero no-print"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • FIELD RESOURCE</p><h1>KENTUCKY <span>WWFF</span></h1><p class="hero-copy">KFF references • numerical order. Parks • Public Lands • Trails • Forests • Wildlife Areas. Every Kentucky KFF reference with its official map, POTA match, access points and a map of each region.</p><div class="pdf-actions"><a class="btn" href="KPC_Kentucky_WWFF_KFF_Resource.pdf" target="_blank" rel="noopener">DOWNLOAD PDF</a><a class="btn alt" href="kpc-new-to-wwff.html">NEW TO WWFF?</a><button class="btn alt" type="button" onclick="window.print()">PRINT</button></div></div></section>
+<div class="g-wrap"><div class="g-cover g-print-only"><div class="top"><span>KENTUCKY PORTABLE CLUB • KPC</span><span>PROVIDED BY BRANDON WHITE • KZ4CP</span></div><img src="KPC-logo.png" alt="KPC logo"><h1>KENTUCKY WWFF</h1><div class="sub">Field Resource</div><div class="k">KFF REFERENCES • NUMERICAL ORDER</div><div class="k2">Parks • Public Lands • Trails • Forests • Wildlife Areas</div></div></div>
+@@DISCLAIM@@
+<div class="g-wrap">
+<p class="g-err" id="gErr" hidden></p>
+
+<section class="g-sec" id="about">
+<div class="g-intro">
+ <div class="g-box"><h3>ABOUT THIS GUIDE</h3><p>Every active World Wide Flora &amp; Fauna (WWFF) reference in Kentucky (program KFF), taken from the official WWFF Logsearch directory. Each reference number opens its Logsearch page. Where a KFF area matches a Kentucky POTA park, its card also links that park’s POTA page, official map, website and access points.</p><p class="g-dim" style="font-size:13px">On this page the list of <span id="gTotal">140</span> references comes from the club’s live Kentucky data file, so it stays current. <span id="gUpdated"></span></p></div>
+ <div class="g-box"><h3>FIELD-USE NOTE</h3><p>WWFF and POTA boundaries are not always the same. Always verify WWFF rules, current park operations, closures, permits, hunting restrictions and boundaries before travel.</p></div>
+ <div class="g-box warn g-keep"><h3>Maps: Use the Official Map First</h3><p>Dark OFFICIAL MAP buttons (gold outline) open maps published by the managing agency (KDFWR, Kentucky State Parks, Nature Preserves, Forestry, NPS, USFS, USFWS). Use them first for activation boundaries.</p><p>OSM BOUNDARY buttons open OpenStreetMap, a community-edited source. Its boundaries may be incomplete, outdated or wrong — never rely on them alone. When in doubt, confirm with the agency.</p></div>
+</div>
+</section>
+
+<section class="g-sec g-break" id="find">
+<div class="g-kick">KENTUCKY WWFF FIELD RESOURCE • KFF</div>
+<h2>Find a Park</h2>
+<p class="g-sub">Tap a number range to jump to that section. Every reference number opens its Logsearch page; NEARBY jumps to that park’s nearby-parks list.</p>
+<div class="g-tiles" id="gTiles"></div>
+<div class="g-bar"><a class="lead" href="#maps">REGIONAL MAPS →</a><span id="gRegChips" style="display:contents"></span></div>
+<div class="g-how g-keep"><h3>HOW TO READ EACH CARD</h3><dl>
+ <dt>KFF-####</dt><dd>Opens the reference’s WWFF Logsearch page.</dd>
+ <dt>POTA US-####</dt><dd>Matching Kentucky POTA park (check boundaries — they can differ).</dd>
+ <dt>OFFICIAL MAP</dt><dd>Agency map (PDF or page). AREA MAP / BROCHURE = nearby map or brochure.</dd>
+ <dt>Park name / WEBSITE</dt><dd>Official park or land-manager website.</dd>
+ <dt>GPS</dt><dd>The park’s GPS point in Google Maps, for directions.</dd>
+ <dt>OSM BOUNDARY</dt><dd>OpenStreetMap at the park — community-edited boundaries.</dd>
+ <dt>WEATHER</dt><dd>The Weather Channel forecast for the park’s GPS point.</dd>
+ <dt>ENTRANCE</dt><dd>Official Fish &amp; Wildlife entrance point in Google Maps.</dd>
+ <dt>ACCESS POINTS</dt><dd>Official parking/access pins in the KPC map file (KML/GPX).</dd>
+ <dt>NEARBY</dt><dd>Jumps to this park’s nearby-parks list (nearest + all within 25 mi).</dd>
+ <dt>CAMPING • RESORT • CABINS</dt><dd>Shown only where available; each opens its linked page.</dd>
+ <dt>ALSO</dt><dd>SOTA summits inside the area (KY GIS) or within 3 miles. A summit is a separate program, not a 2-fer.</dd>
+</dl></div>
+<div class="g-links"><a class="g-url" href="https://potamap.us/?state=US-KY" target="_blank" rel="noopener">POTAMAP.US →</a><a class="g-url" href="https://kentuckyportableclub.github.io/KPC-Links/finder.html">ACTIVATION FINDER →</a><a class="g-url" href="https://kentuckyportableclub.github.io/KPC-Links/parks.html">KPC PARKS PAGE →</a></div>
+</section>
+</div>
+
+<div class="g-tools no-print"><div class="g-wrap">
+ <div class="g-row"><input id="gSearch" type="search" placeholder="Search KFF or POTA number, park, county…" aria-label="Search KFF references" autocomplete="off"><select id="gRegion" aria-label="Region"></select><button id="gClear" type="button">CLEAR</button></div>
+ <div class="g-count" id="gCount" aria-live="polite">Loading references…</div>
+ <nav class="g-jump" id="gJump" aria-label="Jump to section"></nav>
+</div></div>
+
+<div class="g-wrap">
+<section class="g-sec g-break" id="maps">
+<div class="g-kick">REGIONAL MAPS</div>
+<h2>KFF by Region</h2>
+<p class="g-sub">Six Kentucky regions. Gold pins have a matching POTA park; red pins are KFF only. Tap a pin to open its card.</p>
+<div id="gMaps"></div>
+</section>
+
+<section class="g-sec g-break" id="cards">
+<div class="g-kick">KENTUCKY WWFF FIELD RESOURCE • KFF</div>
+<h2>The References</h2>
+<div class="g-banner">USE THE OFFICIAL MAP FIRST • OSM BOUNDARIES ARE COMMUNITY-EDITED AND MAY BE INACCURATE</div>
+<p class="g-none no-print" id="gNone" hidden>No references match. Try a shorter search or pick “All regions”.</p>
+<div id="gCards"></div>
+</section>
+
+<section class="g-sec g-break" id="nearby">
+<div class="g-kick">KENTUCKY WWFF FIELD RESOURCE • KFF</div>
+<h2>Nearby Parks</h2>
+<p class="g-sub">Each park’s closest neighbor and every park within 25 miles. Tap any park to jump to its card; tap a heading to go back to that park. Distances are straight-line miles (as the crow flies) between each park’s GPS point — not driving distance.</p>
+<div id="gNearby"></div>
+</section>
+<p class="g-endnote">KPC KENTUCKY WWFF (KFF) RESOURCE • VERIFY CURRENT RULES, ACCESS, MAPS, PERMITS, AND SEASONAL CONDITIONS BEFORE TRAVEL.</p>
+<p class="g-endnote no-print"><a class="btn" href="KPC_Kentucky_WWFF_KFF_Resource.pdf" target="_blank" rel="noopener">DOWNLOAD PDF</a></p>
+</div>
+</main>
+@@FOOTER@@
+<script src="kpc-guide-wwff.js?v=20261013a" defer></script>

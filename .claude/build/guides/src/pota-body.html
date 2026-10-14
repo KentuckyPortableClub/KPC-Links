@@ -1,0 +1,127 @@
+<style>
+.g-toggle{display:inline-flex;border:1px solid #cbbf9f;border-radius:8px;overflow:hidden;background:#fff}
+.g-toggle button{min-height:44px;padding:8px 14px;border:0;background:#fff;color:#5f5a51;font:900 12px Arial,sans-serif;letter-spacing:1px;cursor:pointer}
+.g-toggle button+button{border-left:1px solid #cbbf9f}
+.g-toggle button.on{background:#13261c;color:var(--gold-light)}
+.hero .g-toggle{margin-top:14px;border-color:rgba(255,255,255,.4);background:transparent}.hero .g-toggle button{background:transparent;color:#fff}.hero .g-toggle button+button{border-color:rgba(255,255,255,.4)}.hero .g-toggle button.on{background:var(--gold);color:#111}
+.g-tiles.az{grid-template-columns:repeat(6,minmax(0,1fr))}.g-tile.none{opacity:.45}
+@media(max-width:640px){.g-tiles.az{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.g-fh{margin:18px 0 8px;font:700 19px Georgia,serif}
+.g-frow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 12px;align-items:start;background:#fff;border:1px solid #e0d5bd;border-radius:9px;padding:9px 12px;margin:0 0 7px}
+.g-pill{display:inline-block;font-size:10px;font-weight:900;letter-spacing:1px;padding:3px 8px;border-radius:999px;background:#f3dfa6;color:#1b1b1b;white-space:nowrap}.g-pill.three{background:#e9b13a}
+.g-frefs{font-weight:900;font-size:13px;color:var(--green);overflow-wrap:anywhere}.g-frefs a:hover{text-decoration:underline}
+.g-fnames{font-size:13px;color:#2b2b2b;overflow-wrap:anywhere}
+.g-fpin{text-align:right;font-size:12px;color:#5f5a51;display:flex;flex-direction:column;align-items:flex-end}
+.g-pinlink{font-weight:900;color:var(--green);white-space:nowrap}.g-pinlink:hover{text-decoration:underline}.g-fpin small{font-size:11px}
+.g-ftail{font-size:13px;color:#5f5a51;margin:12px 0 0}.g-ftail b{color:#171717}
+.g-wr{background:#fff;border:1px solid #e0d5bd;border-radius:12px;padding:12px 16px;margin:0 0 10px;scroll-margin-top:215px}
+.g-wr-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}.g-wr-h h3{margin:0;font:700 19px Georgia,serif;flex:1 1 200px}
+.g-wn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#13261c;color:var(--gold-light);font-weight:900;border:2px solid #e9b13a}
+.g-map .m-n{font:bold 12px Arial,sans-serif;fill:#f0c96b;text-anchor:middle}
+.g-offmap{font-size:12px;color:#5f5a51;margin:6px 0 0}.g-offmap a{color:var(--green);font-weight:700}
+@media(max-width:640px){.g-frow{grid-template-columns:auto minmax(0,1fr)}.g-fpin{grid-column:1/-1;align-items:flex-start;text-align:left}}
+@media(max-width:760px){.g-wr{scroll-margin-top:84px}}
+@media print{#find .g-tiles:not(.az){grid-template-columns:repeat(5,minmax(0,1fr))}#find .g-how dl{font-size:8pt;gap:.6mm 4mm}#find .g-links{break-inside:avoid}.g-frow{padding:1.6mm 3mm;margin:0 0 1.5mm}.g-fnames,.g-frefs{font-size:8pt}.g-fpin{font-size:7.5pt}.g-fh{font-size:12pt;margin:3mm 0 2mm}.g-ftail{font-size:8pt}.g-wr{padding:2.5mm 4mm}.g-wr-h h3{font-size:12pt}.g-tiles.az{grid-template-columns:repeat(6,minmax(0,1fr))}.g-tiles.az .g-tile{padding:1.5mm}}
+</style>
+</head>
+<body>
+@@HEADER@@
+<main>
+<section class="hero no-print"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • FIELD RESOURCE</p><h1>KENTUCKY <span>POTA</span></h1><p class="hero-copy">Parks • Public Lands • Trails • Forests • Wildlife Areas. Every Kentucky POTA park with its official map, website, access points, camping, 2-fers and 3-fers, nearby parks and a map of each region.</p>
+<div class="pdf-actions"><a class="btn" href="KPC_Kentucky_POTA_Resource_Numerical_v2_261005_092033.pdf" target="_blank" rel="noopener">DOWNLOAD PDF (NUMERICAL)</a><a class="btn" href="KPC_Kentucky_POTA_Resource_Alphabetical_v2_261005_092105.pdf" target="_blank" rel="noopener">DOWNLOAD PDF (A–Z)</a><button class="btn alt" type="button" onclick="window.print()">PRINT</button></div>
+<div class="g-toggle" role="group" aria-label="Card order"><button type="button" data-order="num" aria-pressed="true">NUMERICAL</button><button type="button" data-order="az" aria-pressed="false">A–Z</button></div></div></section>
+<div class="g-wrap"><div class="g-cover g-print-only"><div class="top"><span>KENTUCKY PORTABLE CLUB • KPC</span><span>PROVIDED BY BRANDON WHITE • KZ4CP</span></div><img src="KPC-logo.png" alt="KPC logo"><h1>KENTUCKY POTA</h1><div class="sub">Field Resource</div><div class="k" id="gOrderK">NUMERICAL ORDER • US-####</div><div class="k2">Parks • Public Lands • Trails • Forests • Wildlife Areas</div></div></div>
+@@DISCLAIM@@
+<div class="g-wrap">
+<p class="g-err" id="gErr" hidden></p>
+
+<section class="g-sec" id="about">
+<div class="g-intro">
+ <div class="g-box"><h3>UPDATED LINK SYSTEM</h3><p>POTA references now point directly to the Next POTA park information page at next.pota.app/park/US-####. Camping, resort, and cabin buttons are direct hyperlinks. Utilities are listed with notes such as “Water only” or “Electric + Water + Sewer” where established.</p><p class="g-dim" style="font-size:13px">On this page the list of <span id="gTotal">187</span> parks comes from the club’s live Kentucky data file, so it stays current. <span id="gUpdated"></span></p></div>
+ <div class="g-box"><h3>FIELD-USE NOTE</h3><p>Always verify current park operations, campground closures, permits, hunting restrictions, and activation boundaries before travel.</p></div>
+ <div class="g-box warn g-keep"><h3>Maps: Use the Official Map First</h3><p>Dark OFFICIAL MAP buttons (gold outline) open maps published by the managing agency (KDFWR, Kentucky State Parks, Nature Preserves, Forestry, NPS, USFS, USFWS). Use them first for activation boundaries.</p><p>OSM BOUNDARY buttons open OpenStreetMap, a community-edited source. Its boundaries may be incomplete, outdated or wrong — never rely on them alone. When in doubt, confirm with the agency.</p></div>
+</div>
+</section>
+
+<section class="g-sec g-break" id="find">
+<div class="g-kick" id="gKick1">KENTUCKY POTA FIELD RESOURCE • NUMERICAL</div>
+<h2>Find a Park</h2>
+<p class="g-sub"><span id="gFindSub">Tap a number range to jump to that section.</span> Every park number opens its Next POTA page; NEARBY jumps to that park’s nearby-parks list.</p>
+<div class="g-tiles" id="gTiles"></div>
+<div class="g-bar"><a class="lead" href="#fers">2-FERS &amp; 3-FERS INDEX →</a><a href="#wild">WILD RIVERS →</a></div>
+<div class="g-bar"><a class="lead" href="#maps">REGIONAL MAPS →</a><span id="gRegChips" style="display:contents"></span></div>
+<div class="g-how g-keep"><h3>HOW TO READ EACH CARD</h3><dl>
+ <dt>US-####</dt><dd>Opens the park’s Next POTA information page.</dd>
+ <dt>OFFICIAL MAP</dt><dd>Agency map (PDF or page). AREA MAP / BROCHURE = nearby map or brochure.</dd>
+ <dt>Park name / WEBSITE</dt><dd>Official park or land-manager website.</dd>
+ <dt>GPS</dt><dd>The park’s GPS point in Google Maps, for directions.</dd>
+ <dt>OSM BOUNDARY</dt><dd>OpenStreetMap at the park — community-edited boundaries.</dd>
+ <dt>POTA MAP</dt><dd>POTA map (used where no official site is linked).</dd>
+ <dt>WEATHER</dt><dd>The Weather Channel forecast for the park’s GPS point.</dd>
+ <dt>ENTRANCE</dt><dd>Official Fish &amp; Wildlife entrance point in Google Maps.</dd>
+ <dt>ACCESS POINTS</dt><dd>Official parking/access pins in the KPC map file (KML/GPX).</dd>
+ <dt>NEARBY</dt><dd>Jumps to this park’s nearby-parks list (nearest + all within 25 mi).</dd>
+ <dt>CAMPING • RESORT • CABINS</dt><dd>Shown only where available; each opens its linked page.</dd>
+ <dt>2-FER</dt><dd>Overlaps another POTA park per agency sources — confirm before counting.</dd>
+ <dt>ALSO</dt><dd>WWFF (KFF) references and SOTA summits at or near the park. These are other programs, not 2-fers.</dd>
+</dl></div>
+<div class="g-links"><a class="g-url" href="https://potamap.us/?state=US-KY" target="_blank" rel="noopener">POTAMAP.US →</a><a href="https://www.arcgis.com/apps/mapviewer/index.html?url=https%3A%2F%2Fkygisserver.ky.gov%2Farcgis%2Frest%2Fservices%2FWGS84WM_Services%2FKy_KNP_Wild_River_Corridors_WGS84WM%2FMapServer" target="_blank" rel="noopener">KY WILD RIVER MAP →</a><a class="g-url" href="https://kentuckyportableclub.github.io/KPC-Links/finder.html">ACTIVATION FINDER →</a><a class="g-url" href="https://kentuckyportableclub.github.io/KPC-Links/parks.html">KPC PARKS PAGE →</a></div>
+</section>
+
+<section class="g-sec g-break" id="fers">
+<div class="g-kick" id="gKick2">KENTUCKY POTA FIELD RESOURCE • 2-FERS &amp; 3-FERS INDEX</div>
+<h2>Kentucky 2-Fers &amp; 3-Fers Index</h2>
+<div class="g-banner">GPS PINS ARE GUIDES ONLY • DO YOUR OWN RESEARCH • THIS INDEX IS A PLANNING TOOL • CONFIRM EVERY BOUNDARY ON THE OFFICIAL MAP</div>
+<p class="g-sub" id="gFersLead"></p>
+<div id="gFers"></div>
+<p class="g-ftail" id="gFersTail"></p>
+</section>
+
+<section class="g-sec g-break" id="wild">
+<div class="g-kick">KENTUCKY WILD RIVERS • OFFICE OF KENTUCKY NATURE PRESERVES</div>
+<h2 id="gWildTitle">Kentucky Wild River Corridors</h2>
+<p class="g-sub" id="gWildSub"></p>
+<div class="g-mapbox g-keep" id="gWildMap"></div>
+<div class="g-links"><a class="gold" href="https://www.arcgis.com/apps/mapviewer/index.html?url=https%3A%2F%2Fkygisserver.ky.gov%2Farcgis%2Frest%2Fservices%2FWGS84WM_Services%2FKy_KNP_Wild_River_Corridors_WGS84WM%2FMapServer" target="_blank" rel="noopener">OPEN THE INTERACTIVE KENTUCKY WILD RIVER MAP (ArcGIS • KY GIS) →</a></div>
+<p class="g-foot" style="margin-top:8px">Wild River corridor outlines: Office of Kentucky Nature Preserves via Kentucky state GIS. Simplified for display — use the official map for boundaries.</p>
+<h3 class="g-fh" id="gWildDT">Wild River Details</h3>
+<p class="g-sub" id="gWildDX"></p>
+<div id="gWild"></div>
+</section>
+</div>
+
+<div class="g-tools no-print"><div class="g-wrap">
+ <div class="g-row"><div class="g-toggle" role="group" aria-label="Card order"><button type="button" data-order="num" aria-pressed="true">NUMERICAL</button><button type="button" data-order="az" aria-pressed="false">A–Z</button></div><input id="gSearch" type="search" placeholder="Search park, US- or KFF number, county…" aria-label="Search parks" autocomplete="off"><select id="gRegion" aria-label="Region"></select><button id="gClear" type="button">CLEAR</button></div>
+ <div class="g-count" id="gCount" aria-live="polite">Loading parks…</div>
+ <nav class="g-jump" id="gJump" aria-label="Jump to section"></nav>
+</div></div>
+
+<div class="g-wrap">
+<section class="g-sec g-break" id="maps">
+<div class="g-kick">REGIONAL MAPS</div>
+<h2>Parks by Region</h2>
+<p class="g-sub">Six Kentucky regions. Pins are colored by park type; tap a pin to open its card.</p>
+<div id="gMaps"></div>
+<p class="g-offmap" id="gOffMap"></p>
+</section>
+
+<section class="g-sec g-break" id="cards">
+<div class="g-kick" id="gKick3">KENTUCKY POTA FIELD RESOURCE • NUMERICAL</div>
+<h2>The Parks</h2>
+<div class="g-banner">USE THE OFFICIAL MAP FIRST • OSM BOUNDARIES ARE COMMUNITY-EDITED AND MAY BE INACCURATE</div>
+<p class="g-none no-print" id="gNone" hidden>No parks match. Try a shorter search or pick “All regions”.</p>
+<div id="gCards"></div>
+</section>
+
+<section class="g-sec g-break" id="nearby">
+<div class="g-kick">KENTUCKY POTA FIELD RESOURCE</div>
+<h2>Nearby Parks</h2>
+<p class="g-sub">Each park’s closest neighbor and every park within 25 miles. Tap any park to jump to its card; tap a heading to go back to that park. Distances are straight-line miles (as the crow flies) between each park’s GPS point — not driving distance.</p>
+<div id="gNearby"></div>
+</section>
+<p class="g-endnote">KPC KENTUCKY POTA RESOURCE • VERIFY CURRENT RULES, ACCESS, MAPS, PERMITS, AND SEASONAL CONDITIONS BEFORE TRAVEL.</p>
+<p class="g-endnote no-print"><a class="btn" href="KPC_Kentucky_POTA_Resource_Numerical_v2_261005_092033.pdf" target="_blank" rel="noopener">DOWNLOAD PDF (NUMERICAL)</a> <a class="btn" href="KPC_Kentucky_POTA_Resource_Alphabetical_v2_261005_092105.pdf" target="_blank" rel="noopener">DOWNLOAD PDF (A–Z)</a></p>
+</div>
+</main>
+@@FOOTER@@
+<script src="kpc-guide-pota.js?v=20261013a" defer></script>

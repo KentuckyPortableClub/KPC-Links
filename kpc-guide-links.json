@@ -1,0 +1,107 @@
+{
+  "about": "Links for the KPC web guides kpc-guide-tools-links.html and kpc-guide-founders-favorites.html (rendered by kpc-guide-links.js). Each link: name, url, label (the text shown), optional why.",
+  "updated": "2026-10-13",
+  "pages": {
+    "tools": {
+      "title": "Tools & Essential Links",
+      "intro": "KPC field-use reference • Ham radio, POTA, weather, mapping, Kentucky lands, and safety.",
+      "pdf": "KPC_Tools_and_Essential_Links.pdf",
+      "sections": [
+        {
+          "title": "Amateur Radio — Learn & Operate",
+          "links": [
+            {"name": "ARRL Operating Resources", "url": "https://www.arrl.org/operating-resources", "label": "arrl.org/operating-resources"},
+            {"name": "ARRL Band Plan", "url": "https://www.arrl.org/band-plan", "label": "arrl.org/band-plan"},
+            {"name": "ARRL Getting Licensed", "url": "https://www.arrl.org/getting-licensed", "label": "arrl.org/getting-licensed"},
+            {"name": "ARRL New Ham Resources", "url": "https://www.arrl.org/new-ham-resources", "label": "arrl.org/new-ham-resources"},
+            {"name": "ARRL Learning Center", "url": "https://learn.arrl.org/", "label": "learn.arrl.org"},
+            {"name": "RepeaterBook", "url": "https://www.repeaterbook.com/", "label": "repeaterbook.com"},
+            {"name": "QRZ", "url": "https://www.qrz.com/", "label": "qrz.com"}
+          ]
+        },
+        {
+          "title": "POTA — Parks on the Air",
+          "links": [
+            {"name": "POTA Main Site", "url": "https://pota.app/", "label": "pota.app"},
+            {"name": "POTA Park List", "url": "https://next.pota.app/parklist", "label": "POTA Park List"},
+            {"name": "POTA Map", "url": "https://pota.news/potamap", "label": "pota.news/potamap"},
+            {"name": "POTA Map US", "url": "https://potamap.us/", "label": "potamap.us"},
+            {"name": "New Parks", "url": "https://newparks.m0trt.radio", "label": "newparks.m0trt.radio"}
+          ]
+        },
+        {
+          "title": "Propagation, Reporting & Logging",
+          "links": [
+            {"name": "PSK Reporter", "url": "https://www.pskreporter.info/", "label": "pskreporter.info"},
+            {"name": "APRS.fi", "url": "https://aprs.fi/", "label": "aprs.fi"},
+            {"name": "ARRL Logbook of The World", "url": "https://lotw.arrl.org/", "label": "lotw.arrl.org"},
+            {"name": "73 QRZ", "url": "https://73qrz.com/", "label": "73qrz.com"}
+          ]
+        },
+        {
+          "title": "Weather & Space Weather",
+          "links": [
+            {"name": "National Weather Service", "url": "https://www.weather.gov/", "label": "weather.gov"},
+            {"name": "NWS Lightning Safety", "url": "https://www.weather.gov/safety/lightning", "label": "Lightning Safety"},
+            {"name": "NOAA Space Weather Prediction Center", "url": "https://www.swpc.noaa.gov/", "label": "swpc.noaa.gov"},
+            {"name": "NOAA Space Weather Products", "url": "https://services.swpc.noaa.gov/products/", "label": "SWPC Products"}
+          ]
+        },
+        {
+          "title": "Kentucky Parks, Forests & Nature Preserves",
+          "links": [
+            {"name": "Kentucky State Parks", "url": "https://parks.ky.gov/", "label": "parks.ky.gov"},
+            {"name": "Kentucky State Forests", "url": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/default.aspx", "label": "State Forest Directory"},
+            {"name": "Kentucky Nature Preserves", "url": "https://eec.ky.gov/Nature-Preserves/Pages/default.aspx", "label": "Nature Preserve Directory"},
+            {"name": "KDFWR Public Lands", "url": "https://fw.ky.gov/hunt/pages/public-land-hunting.aspx", "label": "Public Lands"},
+            {"name": "KDFWR Seasons Planner", "url": "https://fw.ky.gov/Hunt/Pages/ky-hunting-fishing-seasons-planner.aspx", "label": "Seasons Planner"}
+          ]
+        },
+        {
+          "title": "Portable Antennas & Field Gear",
+          "links": [
+            {"name": "Portable-Antennas.com", "url": "https://portable-antennas.com/", "label": "portable-antennas.com"}
+          ],
+          "note": "Use the <a href=\"KPC_Portable_Operating_and_Camping_Checklists_PRIN_261005_091747.pdf\">KPC Portable Operating &amp; Camping Checklist</a> and <a href=\"kpc-guide-safety.html\">KPC Portable Operations Safety Guide</a> alongside these external resources."
+        }
+      ],
+      "notes": [
+        {"title": "IMPORTANT FIELD REMINDER", "style": "dark", "html": "Always verify current park rules, access, closures, permits, hunting restrictions, weather, and seasonal conditions before travel or activation."}
+      ]
+    },
+    "founders": {
+      "title": "Founders Favorites — Apps & Tools",
+      "intro": "A working list of useful field, radio, POTA, mapping, and Kentucky outdoor tools.",
+      "pdf": "KPC_Founders_Favorites_Apps_and_Tools.pdf",
+      "sections": [
+        {
+          "title": "POTA & Park Mapping",
+          "links": [
+            {"name": "POTA Map", "url": "https://pota.news/potamap", "label": "https://pota.news/potamap"},
+            {"name": "POTA Map US", "url": "https://potamap.us/", "label": "https://potamap.us/"},
+            {"name": "New Parks", "url": "https://newparks.m0trt.radio", "label": "https://newparks.m0trt.radio"}
+          ]
+        },
+        {
+          "title": "Ham Radio & Station Tools",
+          "links": [
+            {"name": "73 QRZ", "url": "https://73qrz.com/", "label": "https://73qrz.com/"},
+            {"name": "PSK Reporter Map", "url": "https://www.pskreporter.info/pskmap?callsign=Kz4cp&search=Find", "label": "PSK Reporter"},
+            {"name": "Portable Antennas", "url": "https://portable-antennas.com/", "label": "https://portable-antennas.com/"}
+          ]
+        },
+        {
+          "title": "Kentucky Public Lands",
+          "links": [
+            {"name": "KDFWR Public Lands Search", "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9719", "label": "Kentucky Public Lands"},
+            {"name": "Kentucky State Forests", "url": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/default.aspx", "label": "State Forest Directory"},
+            {"name": "Kentucky Nature Preserves", "url": "https://eec.ky.gov/Nature-Preserves/Pages/default.aspx", "label": "Nature Preserves"}
+          ]
+        }
+      ],
+      "notes": [
+        {"title": "KPC NOTE", "style": "", "html": "This is a living list. Add a short reason beside future favorites so members know what each tool is best for in the field."}
+      ]
+    }
+  }
+}

@@ -60,6 +60,18 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - `python3 .claude/build/fers/sync.py` pushes fers.json into kpc-multi-park-spots.html, kpc-ky-data.json (tf) and ky-overlaps.geojson; `gpx.py` writes the GPX. NPS route files used for checks (Trail of Tears, Lewis & Clark route and auto tour route) are saved in .claude/build/fers; ky-lecl-auto.geojson is the simplified auto tour route map layer.
 - Also keep in step: KPC_KY_POTA_2fers_3fers.gpx, the DATA array in kpc-multi-park-spots.html, `tf` in kpc-ky-data.json (only confirmed pairs), ky-overlaps.geojson (unconfirmed pairs use kind "unconfirmed"), and the trail boxes on parks.html.
 
+## Web guides (the old PDFs are now printed from web pages)
+- Each guide is a web page; the PDF with the OLD filename is printed from it by .github/workflows/kpc-guide-pdf.yml (.github/scripts/kpc_guide_pdf.js, Playwright). It runs when a kpc-guide-* file, kpc-ky-data.json or kpc-top25.json changes, after the weekly Top 25 refresh, Mondays, or by hand. It only commits a PDF whose words or links changed. Don't edit these PDFs by hand any more: edit the page or its data.
+  - kpc-guide-pota.html (?order=num / ?order=az → the two POTA Resource PDFs), data kpc-guide-pota-data.json + live kpc-ky-data.json.
+  - kpc-guide-sota.html, kpc-guide-wwff.html (data kpc-guide-sota-data.json / kpc-guide-wwff-data.json + kpc-ky-data.json).
+  - kpc-guide-top25.html (kpc-top25.json, refreshed Mondays by kpc-top25.yml from api.pota.app).
+  - kpc-guide-tools-links.html, kpc-guide-founders-favorites.html (kpc-guide-links.json, also read by the link checker), kpc-guide-beginners.html, kpc-guide-antenna-efficiency.html.
+  - kpc-guide-safety.html is the light web version; the illustrated Safety Guide PDF stays as it was (not reprinted).
+- Page sources and rebuild scripts: .claude/build/guides/ (POTA/SOTA/WWFF: src/*.html, build_pages.py, extract_*.py) and .claude/build/guides2/ (build.sh). Edit the src and rebuild rather than editing the built HTML.
+- Print rules: kpc-guide-print.css. A page must set `<html data-ready="1">` when fully drawn or the printer skips it.
+- After editing fers.json, also run `python3 .claude/build/guides/extract_pota.py --fers` so the POTA web guide (and its PDFs) pick up the 2-fer changes. resource_patch.py is no longer needed for the Resource PDFs.
+- Still PDF-only (not web pages): Campout Flyer, checklists, 2026 event photo archive, Meet the Founders, the two "Coming Soon" founders PDFs (convert when ready), the members-only 2-fers guide.
+
 ## Park Notes (kpc-park-notes.html)
 - Community tips for every KY POTA park, SOTA summit and KFF reference (from kpc-ky-data.json, lowest number first).
 - Tips come from Brandon's Google Form "KPC Park Tips" → Google Sheet. Only rows with YES in the sheet's Approved column are published.

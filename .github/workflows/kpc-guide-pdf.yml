@@ -1,0 +1,80 @@
+name: KPC Guide PDFs
+# Prints the web guides (kpc-guide-*.html) to PDF under the old PDF filenames, so every "Download PDF" link
+# and every old link keeps working. Runs when a guide page or its data changes, after the weekly Top 25
+# refresh, every Monday, or any time from the Actions tab ("Run workflow").
+# A PDF is only replaced when its words or links really changed (not just the print date).
+# The Safety Guide keeps its original illustrated PDF and is not printed here.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'kpc-guide-*'
+      - 'kpc-guide.css'
+      - 'kpc-ky-data.json'
+      - 'kpc-top25.json'
+      - '.github/scripts/kpc_guide_pdf.js'
+  workflow_run:
+    workflows: ['KPC Top 25']
+    types: [completed]
+  schedule:
+    - cron: '41 13 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kpc-guide-pdf
+  cancel-in-progress: false
+jobs:
+  pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install the PDF printer
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.0
+          npx playwright install --with-deps chromium
+          pip install --quiet pypdf
+      - name: Print the guides
+        run: |
+          python3 -m http.server 8765 >/dev/null 2>&1 &
+          sleep 2
+          mkdir -p /tmp/guides
+          node .github/scripts/kpc_guide_pdf.js /tmp/guides
+      - name: Keep only PDFs that changed
+        run: |
+          python3 - <<'PY'
+          import glob, os, shutil
+          from pypdf import PdfReader
+          def sig(p):
+              r = PdfReader(p); out = []
+              for pg in r.pages:
+                  out.append(' '.join((pg.extract_text() or '').split()))
+                  for a in pg.get('/Annots') or []:
+                      a = a.get_object(); u = (a.get('/A') or {}).get('/URI')
+                      if u: out.append(str(u))
+              return out
+          changed = []
+          for new in sorted(glob.glob('/tmp/guides/*.pdf')):
+              name = os.path.basename(new)
+              try: same = os.path.exists(name) and sig(name) == sig(new)
+              except Exception: same = False
+              if not same: shutil.copy(new, name); changed.append(name)
+          print(f"::notice title=Guide PDFs::{len(changed)} changed: {', '.join(changed) or 'none'}")
+          PY
+      - name: Save
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- '*.pdf'
+          if git diff --cached --quiet; then echo 'No change.'; exit 0; fi
+          git commit -m 'Guide PDFs: reprint from the web guides'
+          for i in 1 2 3; do
+            git pull --rebase --autostash && git push && exit 0
+            sleep $((i * 15))
+          done
+          echo '::notice title=Push skipped::Could not push the guide PDFs; they will be saved on the next run.'

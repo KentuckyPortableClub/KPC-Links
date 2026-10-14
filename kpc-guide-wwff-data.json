@@ -1,0 +1,5016 @@
+{
+ "source": "KPC_Kentucky_WWFF_KFF_Resource.pdf",
+ "pages": 49,
+ "cards": 140,
+ "note": "Extracted from the PDF by .claude/build/guides/extract_wwff.py. Codes, names, counties and GPS on the page come from kpc-ky-data.json.",
+ "refs": {
+  "KFF-0019": {
+   "pdfName": "Cumberland Gap (KY)",
+   "counties": "Bell / Harlan",
+   "type": "National Historic Park",
+   "potaName": "Cumberland Gap National Historical Park",
+   "nameUrl": "https://www.nps.gov/cuga/index.htm",
+   "pota": [
+    "US-0019"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://www.nps.gov/cuga/planyourvisit/upload/CUGAmap1-3.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://www.nps.gov/cuga/index.htm"
+    },
+    {
+     "k": "camp",
+     "url": "https://www.nps.gov/cuga/planyourvisit/fees.htm"
+    }
+   ],
+   "gps": [
+    36.60383,
+    -83.67406
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "27 NPS parking lots — see KPC map file"
+    }
+   ],
+   "pdfPage": 9,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-0050": {
+   "pdfName": "Mammoth Cave",
+   "counties": "Barren / Edmonson / Hart",
+   "type": "National Park",
+   "potaName": "Mammoth Cave National Park",
+   "nameUrl": "https://www.nps.gov/maca/index.htm",
+   "pota": [
+    "US-0050"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://www.nps.gov/maca/planyourvisit/maps.htm"
+    },
+    {
+     "k": "web",
+     "url": "https://www.nps.gov/maca/index.htm"
+    },
+    {
+     "k": "camp",
+     "url": "https://home.nps.gov/maca/planyourvisit/camping.htm"
+    }
+   ],
+   "gps": [
+    37.18771,
+    -86.09425
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "36 NPS parking lots — see KPC map file"
+    }
+   ],
+   "pdfPage": 9,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-0295": {
+   "pdfName": "Clarks River",
+   "counties": "Marshall",
+   "type": "National Wildlife Refuge",
+   "potaName": "Clarks River National Wildlife Refuge",
+   "nameUrl": "https://www.fws.gov/refuge/clarks-river",
+   "pota": [
+    "US-0295"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://www.fws.gov/sites/default/files/documents/2024-08/public-map-july-2024.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://www.fws.gov/refuge/clarks-river"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.87952691,-88.34440353"
+    }
+   ],
+   "gps": [
+    36.87994,
+    -88.34536
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 9,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-0724": {
+   "pdfName": "Abraham Lincoln Birthplace",
+   "counties": "Larue",
+   "type": "National Historic Site",
+   "potaName": "Abraham Lincoln Birthplace National Historic Site",
+   "nameUrl": "https://www.nps.gov/abli/index.htm",
+   "pota": [
+    "US-0724"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://www.nps.gov/abli/planyourvisit/maps.htm"
+    },
+    {
+     "k": "web",
+     "url": "https://www.nps.gov/abli/index.htm"
+    }
+   ],
+   "gps": [
+    37.61146,
+    -85.63711
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "6 NPS parking lots — see KPC map file"
+    }
+   ],
+   "pdfPage": 9,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-1251": {
+   "pdfName": "Carr Creek",
+   "counties": "Knott",
+   "type": "State Park",
+   "potaName": "Carr Creek State Park",
+   "nameUrl": "https://logsearch.wwff.co/directory/KFF-1251",
+   "pota": [
+    "US-1251"
+   ],
+   "links": [
+    {
+     "k": "areamap",
+     "url": "https://fw.ky.gov/More/Documents/carrcreeklakewma_all.pdf"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/explore/carr-creek-campground-7869"
+    }
+   ],
+   "gps": [
+    37.23085,
+    -83.00133
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 KDFWR entrances • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 9,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1252": {
+   "pdfName": "Columbus Belmont",
+   "counties": "Hickman",
+   "type": "State Park",
+   "potaName": "Columbus Belmont State Park",
+   "nameUrl": "https://parks.ky.gov/columbus/parks/historic/columbus-belmont-state-park",
+   "pota": [
+    "US-1252"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/columbus/parks/historic/columbus-belmont-state-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/explore/columbus-belmont-state-park-7809"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/columbus/parks/historic/columbus-belmont-state-park"
+    }
+   ],
+   "gps": [
+    36.76289,
+    -89.10957
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 10,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-1253": {
+   "pdfName": "Dawkins Line Rail Trail",
+   "counties": "Johnson",
+   "type": "State Park",
+   "potaName": "Dawkins Line Rail Trail State Park",
+   "nameUrl": "https://parks.ky.gov/swamp-branch/parks/recreation/dawkins-line-rail-trail",
+   "pota": [
+    "US-1253"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://parks.ky.gov/explore/dawkins-line-rail-trail-7831"
+    },
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/swamp-branch/parks/recreation/dawkins-line-rail-trail"
+    }
+   ],
+   "gps": [
+    37.73721,
+    -82.89674
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "4 State Parks trailheads — see KPC map file"
+    },
+    {
+     "k": "ACCESS ADVISORY",
+     "t": "Kentucky State Parks posts trail access advisories for the Dawkins Line — check before you go and avoid the affected Breathitt County section.",
+     "links": [
+      {
+       "label": "check before you go",
+       "url": "https://parks.ky.gov/explore/dawkins-line-rail-trail-7831"
+      }
+     ]
+    }
+   ],
+   "pdfPage": 10,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1254": {
+   "pdfName": "E.P. \"Tom\" Sawyer",
+   "counties": "Jefferson",
+   "type": "State Park",
+   "potaName": "E.P. 'Tom' Sawyer State Park",
+   "nameUrl": "https://parks.ky.gov/explore/e-p-tom-sawyer-state-park-7810",
+   "pota": [
+    "US-1254"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/explore/e-p-tom-sawyer-state-park-7810"
+    }
+   ],
+   "gps": [
+    38.28627,
+    -85.55821
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "6 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 10,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-1255": {
+   "pdfName": "Fishtrap Lake",
+   "counties": "Pike",
+   "type": "State Park",
+   "potaName": "Fishtrap Lake Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=25",
+   "pota": [
+    "US-1255"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/FishtrapLakeWMA_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=25"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.4258129,-82.41323959"
+    }
+   ],
+   "gps": [
+    37.43954,
+    -82.41975
+   ],
+   "also": {
+    "inside": [
+     "W4K/EC-131",
+     "W4K/EC-138"
+    ],
+    "near": [
+     [
+      "W4K/EC-082",
+      1.6
+     ]
+    ]
+   },
+   "alsoText": "SOTA inside (KY GIS): W4K/EC-131 Unnamed 1820C • W4K/EC-138 Unnamed 1780D | SOTA within 3 mi: W4K/EC-082 Unnamed 2065 1.6 mi",
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 KDFWR entrances • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 10,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1256": {
+   "pdfName": "Fort Boonesborough",
+   "counties": "Madison",
+   "type": "State Park",
+   "potaName": "Fort Boonesborough State Park",
+   "nameUrl": "https://parks.ky.gov/richmond/parks/historic/fort-boonesborough-state-park",
+   "pota": [
+    "US-1256"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/richmond/parks/historic/fort-boonesborough-state-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/explore/fort-boonesborough-state-park-7811"
+    }
+   ],
+   "gps": [
+    37.894,
+    -84.27297
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "4 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 10,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-1257": {
+   "pdfName": "General Burnside",
+   "counties": "Pulaski",
+   "type": "State Park",
+   "potaName": "General Burnside State Park",
+   "nameUrl": "https://parks.ky.gov/burnside/parks/recreation/general-burnside-island-state-park",
+   "pota": [
+    "US-1257"
+   ],
+   "links": [
+    {
+     "k": "areamap",
+     "url": "https://fw.ky.gov/More/Documents/LakeCumberlandWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/burnside/parks/recreation/general-burnside-island-state-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/camping"
+    }
+   ],
+   "gps": [
+    36.97399,
+    -84.60343
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "3 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 11,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-1258": {
+   "pdfName": "Grayson Lake",
+   "counties": "Carter",
+   "type": "State Park",
+   "potaName": "Grayson Lake State Park",
+   "nameUrl": "https://parks.ky.gov/olive-hill/parks/recreation/grayson-lake-state-park",
+   "pota": [
+    "US-1258"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/olive-hill/parks/recreation/grayson-lake-state-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/explore/grayson-lake-state-park-7813"
+    }
+   ],
+   "gps": [
+    38.19971,
+    -83.02662
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 2 State Parks trailheads • 2 fishing access sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 11,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1259": {
+   "pdfName": "Green River Lake",
+   "counties": "Taylor",
+   "type": "State Park",
+   "potaName": "Green River Lake State Park",
+   "nameUrl": "https://parks.ky.gov/campbellsville/parks/recreation/green-river-lake-state-park",
+   "pota": [
+    "US-1259"
+   ],
+   "links": [
+    {
+     "k": "areamap",
+     "url": "https://fw.ky.gov/More/Documents/GreenRiverLakeWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/campbellsville/parks/recreation/green-river-lake-state-park"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.27642002,-85.33878869"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/explore/green-river-lake-campground-7960"
+    }
+   ],
+   "gps": [
+    37.27746,
+    -85.3387
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 KDFWR entrances • 5 State Parks trailheads • 3 fishing access sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 11,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-1260": {
+   "pdfName": "John James Audubon",
+   "counties": "Henderson",
+   "type": "State Park",
+   "potaName": "John James Audubon State Park",
+   "nameUrl": "https://parks.ky.gov/henderson/parks/historic/john-james-audubon-state-park",
+   "pota": [
+    "US-1260"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/henderson/parks/historic/john-james-audubon-state-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/camping"
+    }
+   ],
+   "gps": [
+    37.88028,
+    -87.55994
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "9 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 11,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-1261": {
+   "pdfName": "Kincaid Lake",
+   "counties": "Pendleton",
+   "type": "State Park",
+   "potaName": "Kincaid Lake State Park",
+   "nameUrl": "https://parks.ky.gov/falmouth/parks/recreation/kincaid-lake-state-park",
+   "pota": [
+    "US-1261"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/falmouth/parks/recreation/kincaid-lake-state-park"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.71967809,-84.30045047"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/camping"
+    }
+   ],
+   "gps": [
+    38.72247,
+    -84.28788
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 2 State Parks trailheads • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 11,
+   "mapRegion": "Northern Kentucky"
+  },
+  "KFF-1262": {
+   "pdfName": "Kingdom Come",
+   "counties": "Letcher",
+   "type": "State Park",
+   "potaName": "Kingdom Come State Park",
+   "nameUrl": "https://parks.ky.gov/cumberland/parks/recreation/kingdom-come-state-park",
+   "pota": [
+    "US-1262"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/cumberland/parks/recreation/kingdom-come-state-park"
+    }
+   ],
+   "gps": [
+    36.99214,
+    -82.97974
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "11 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 12,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1263": {
+   "pdfName": "Lake Malone",
+   "counties": "Muhlenberg",
+   "type": "State Park",
+   "potaName": "Lake Malone State Park",
+   "nameUrl": "https://parks.ky.gov/dunmor/parks/recreation/lake-malone-state-park",
+   "pota": [
+    "US-1263"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/dunmor/parks/recreation/lake-malone-state-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/explore/lake-malone-state-park-7818"
+    }
+   ],
+   "gps": [
+    37.07105,
+    -87.05545
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "4 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 12,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-1264": {
+   "pdfName": "Levi Jackson Wilderness Road",
+   "counties": "Laurel",
+   "type": "State Park",
+   "potaName": "Levi Jackson Wilderness Road State Park",
+   "nameUrl": "https://levijacksonpark.com/",
+   "pota": [
+    "US-1264"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://levijacksonpark.com/wp-content/uploads/2023/06/levi-jackson-park-map-2023.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://levijacksonpark.com/"
+    }
+   ],
+   "gps": [
+    37.08384,
+    -84.05489
+   ],
+   "pdfPage": 12,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1265": {
+   "pdfName": "Lincoln Homestead",
+   "counties": "Washington",
+   "type": "State Park",
+   "potaName": "Lincoln Homestead State Park",
+   "nameUrl": "https://parks.ky.gov/springfield/parks/historic/lincoln-homestead-state-park",
+   "pota": [
+    "US-1265"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/springfield/parks/historic/lincoln-homestead-state-park"
+    }
+   ],
+   "gps": [
+    37.76072,
+    -85.21402
+   ],
+   "pdfPage": 12,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-1266": {
+   "pdfName": "Mineral Mounds",
+   "counties": "Lyon",
+   "type": "State Park",
+   "potaName": "Mineral Mounds State Park",
+   "nameUrl": "https://parks.ky.gov/eddyville/parks/recreation/mineral-mound-state-park",
+   "pota": [
+    "US-1266"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/eddyville/parks/recreation/mineral-mound-state-park"
+    }
+   ],
+   "gps": [
+    37.06032,
+    -88.08636
+   ],
+   "pdfPage": 12,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-1267": {
+   "pdfName": "My Old Kentucky Home",
+   "counties": "Nelson",
+   "type": "State Park",
+   "potaName": "My Old Kentucky Home State Park",
+   "nameUrl": "https://parks.ky.gov/bardstown/parks/historic/my-old-kentucky-home-state-park",
+   "pota": [
+    "US-1267"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/bardstown/parks/historic/my-old-kentucky-home-state-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/explore/my-old-kentucky-home-campground-8099"
+    }
+   ],
+   "gps": [
+    37.80709,
+    -85.45592
+   ],
+   "pdfPage": 12,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-1268": {
+   "pdfName": "Nolin Lake",
+   "counties": "Edmonson",
+   "type": "State Park",
+   "potaName": "Nolin Lake State Park",
+   "nameUrl": "https://parks.ky.gov/mammoth-cave/parks/recreation/nolin-lake-state-park",
+   "pota": [
+    "US-1268"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/mammoth-cave/parks/recreation/nolin-lake-state-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/find-a-park/nolin-lake-campground-8135"
+    }
+   ],
+   "gps": [
+    37.29686,
+    -86.21173
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 State Parks trailhead — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 12,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-1269": {
+   "pdfName": "Old Fort Harrod",
+   "counties": "Mercer",
+   "type": "State Park",
+   "potaName": "Old Fort Harrod State Park",
+   "nameUrl": "https://parks.ky.gov/harrodsburg/parks/historic/old-fort-harrod-state-park",
+   "pota": [
+    "US-1269"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/harrodsburg/parks/historic/old-fort-harrod-state-park"
+    }
+   ],
+   "gps": [
+    37.76178,
+    -84.84572
+   ],
+   "pdfPage": 13,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-1270": {
+   "pdfName": "Paintsville Lake",
+   "counties": "Johnson",
+   "type": "State Park",
+   "potaName": "Paintsville Lake State Park",
+   "nameUrl": "https://parks.ky.gov/staffordsville/parks/recreation/paintsville-lake-state-park",
+   "pota": [
+    "US-1270"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/staffordsville/parks/recreation/paintsville-lake-state-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/explore/paintsville-lake-state-park-7824"
+    }
+   ],
+   "gps": [
+    37.84369,
+    -82.87348
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 13,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1271": {
+   "pdfName": "Taylorsville Lake",
+   "counties": "Spencer",
+   "type": "State Park",
+   "potaName": "Taylorsville Lake State Park",
+   "nameUrl": "https://parks.ky.gov/mount-eden/parks/recreation/taylorsville-lake-state-park",
+   "pota": [
+    "US-1271"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/mount-eden/parks/recreation/taylorsville-lake-state-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/explore/taylorsville-lake-campground-8219"
+    }
+   ],
+   "gps": [
+    38.02983,
+    -85.24966
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 10 State Parks trailheads • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 13,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-1272": {
+   "pdfName": "Yatesville Lake",
+   "counties": "Lawrence",
+   "type": "State Park",
+   "potaName": "Yatesville Lake State Park",
+   "nameUrl": "https://parks.ky.gov/louisa/parks/recreation/yatesville-lake-state-park",
+   "pota": [
+    "US-1272"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/louisa/parks/recreation/yatesville-lake-state-park"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.09639108,-82.68224061"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/camping"
+    }
+   ],
+   "gps": [
+    38.09653,
+    -82.68243
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 16 State Parks trailheads • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 13,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1273": {
+   "pdfName": "Barren River Lake",
+   "counties": "Barren",
+   "type": "State Park",
+   "potaName": "Barren River Lake State Park",
+   "nameUrl": "https://parks.ky.gov/lucas/parks/resort/barren-river-lake-state-resort-park",
+   "pota": [
+    "US-1273"
+   ],
+   "links": [
+    {
+     "k": "areamap",
+     "url": "https://fw.ky.gov/More/Documents/barren_river_lake_all.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/lucas/parks/resort/barren-river-lake-state-resort-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/find-a-park/barren-river-lake-campground-7834"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/lucas/parks/resort/barren-river-lake-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/lucas/parks/resort/barren-river-lake-state-resort-park"
+    }
+   ],
+   "gps": [
+    36.86064,
+    -86.05991
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 3 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 13,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-1274": {
+   "pdfName": "Blue Licks Battlefield",
+   "counties": "Nicholas",
+   "type": "State Park",
+   "potaName": "Blue Licks Battlefield State Park",
+   "nameUrl": "https://parks.ky.gov/carlisle/parks/historic/blue-licks-battlefield-state-resort-park",
+   "pota": [
+    "US-1274"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/carlisle/parks/historic/blue-licks-battlefield-state-resort-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/carlisle/parks/historic/blue-licks-battlefield-state-resort-park"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/carlisle/parks/historic/blue-licks-battlefield-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/carlisle/parks/historic/blue-licks-battlefield-state-resort-park"
+    }
+   ],
+   "gps": [
+    38.42923,
+    -83.99198
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "9 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 14,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-1275": {
+   "pdfName": "Buckhorn Lake",
+   "counties": "Perry",
+   "type": "State Park",
+   "potaName": "Buckhorn Lake State Park",
+   "nameUrl": "https://logsearch.wwff.co/directory/KFF-1275",
+   "pota": [
+    "US-1275"
+   ],
+   "links": [
+    {
+     "k": "areamap",
+     "url": "https://fw.ky.gov/More/Documents/BuckhornLakeWMA_ALL.pdf"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/find-a-park/buckhorn-lake-state-resort-park-7784"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/parks/find-a-park/buckhorn-lake-state-resort-park-7784"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/things-to-do/lodging/cottage-and-cabin-rentals"
+    }
+   ],
+   "gps": [
+    37.30618,
+    -83.44608
+   ],
+   "also": {
+    "inside": [],
+    "near": [
+     [
+      "W4K/EC-180",
+      1.3
+     ]
+    ]
+   },
+   "alsoText": "SOTA within 3 mi: W4K/EC-180 Unnamed 1529 1.3 mi",
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 3 State Parks trailheads • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 14,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1276": {
+   "pdfName": "Carter Caves",
+   "counties": "Carter",
+   "type": "State Park",
+   "potaName": "Carter Caves State Park",
+   "nameUrl": "https://parks.ky.gov/olive-hill/parks/resort/carter-caves-state-resort-park",
+   "pota": [
+    "US-1276"
+   ],
+   "links": [
+    {
+     "k": "areamap",
+     "url": "https://Eec.ky.gov/Natural-Resources/Forestry/Documents/TygartsStateForest_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/olive-hill/parks/resort/carter-caves-state-resort-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/olive-hill/parks/resort/carter-caves-state-resort-park"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/olive-hill/parks/resort/carter-caves-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/olive-hill/parks/resort/carter-caves-state-resort-park"
+    }
+   ],
+   "gps": [
+    38.37304,
+    -83.12737
+   ],
+   "notes": [
+    {
+     "k": "PARKING (official page)",
+     "t": "Parking - abundant"
+    },
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 preserve page location • 13 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 14,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1277": {
+   "pdfName": "Cumberland Falls",
+   "counties": "Mccreary",
+   "type": "State Park",
+   "potaName": "Cumberland Falls State Park",
+   "nameUrl": "https://parks.ky.gov/corbin/parks/resort/cumberland-falls-state-resort-park",
+   "pota": [
+    "US-1277"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://parks.ky.gov/parks/find-a-park/cumberland-falls-state-resort-park-7786"
+    },
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/corbin/parks/resort/cumberland-falls-state-resort-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/find-a-park/cumberland-falls-state-resort-park-7786"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/corbin/parks/resort/cumberland-falls-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/corbin/parks/resort/cumberland-falls-state-resort-park"
+    }
+   ],
+   "gps": [
+    36.84039,
+    -84.33981
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "17 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    },
+    {
+     "k": "TRAIL",
+     "t": "Moonbow Trail #1 is a section of the Sheltowee Trace (Kentucky State Parks) — possible 2-fer with US-11181; confirm both boundaries."
+    }
+   ],
+   "pdfPage": 14,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1278": {
+   "pdfName": "Dale Hollow",
+   "counties": "Clinton / Cumberland",
+   "type": "State Park",
+   "potaName": "Dale Hollow State Park",
+   "nameUrl": "https://parks.ky.gov/burkesville/parks/resort/dale-hollow-lake-state-resort-park",
+   "pota": [
+    "US-1278"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/burkesville/parks/resort/dale-hollow-lake-state-resort-park"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.66647903,-85.30034027"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/camping"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/burkesville/parks/resort/dale-hollow-lake-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/burkesville/parks/resort/dale-hollow-lake-state-resort-park"
+    }
+   ],
+   "gps": [
+    36.65169,
+    -85.29811
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 KDFWR entrances • 7 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 15,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-1279": {
+   "pdfName": "General Butler",
+   "counties": "Carroll",
+   "type": "State Park",
+   "potaName": "General Butler State Park",
+   "nameUrl": "https://parks.ky.gov/carrollton/parks/historic/general-butler-state-resort-park",
+   "pota": [
+    "US-1279"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/carrollton/parks/historic/general-butler-state-resort-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/camping"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/carrollton/parks/historic/general-butler-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/carrollton/parks/historic/general-butler-state-resort-park"
+    }
+   ],
+   "gps": [
+    38.67028,
+    -85.15317
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "15 State Parks trailheads • 2 fishing access sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 15,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-1280": {
+   "pdfName": "Greenbo Lake",
+   "counties": "Greenup",
+   "type": "State Park",
+   "potaName": "Greenbo Lake State Park",
+   "nameUrl": "https://parks.ky.gov/ashland/parks/historic/greenbo-lake-state-resort-park",
+   "pota": [
+    "US-1280"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/ashland/parks/historic/greenbo-lake-state-resort-park"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.48109887,-82.87405405"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/explore/greenbo-lake-campground-8000"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/ashland/parks/historic/greenbo-lake-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/ashland/parks/historic/greenbo-lake-state-resort-park"
+    }
+   ],
+   "gps": [
+    38.48071,
+    -82.87319
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 7 State Parks trailheads • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 15,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1281": {
+   "pdfName": "Jenny Wiley",
+   "counties": "Floyd",
+   "type": "State Park",
+   "potaName": "Jenny Wiley State Park",
+   "nameUrl": "https://parks.ky.gov/prestonsburg/parks/resort/jenny-wiley-state-resort-park",
+   "pota": [
+    "US-1281"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/prestonsburg/parks/resort/jenny-wiley-state-resort-park"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.70099907,-82.73481714"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/find-a-park/jenny-wiley-state-resort-park-7791"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/prestonsburg/parks/resort/jenny-wiley-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/prestonsburg/parks/resort/jenny-wiley-state-resort-park"
+    }
+   ],
+   "gps": [
+    37.69293,
+    -82.7253
+   ],
+   "also": {
+    "inside": [],
+    "near": [
+     [
+      "W4K/EC-176",
+      1.6
+     ],
+     [
+      "W4K/EC-183",
+      2.9
+     ],
+     [
+      "W4K/EC-190",
+      2.9
+     ]
+    ]
+   },
+   "alsoText": "SOTA within 3 mi: W4K/EC-176 Unnamed 1540A 1.6 mi • W4K/EC-183 Unnamed 1460 2.9 mi • W4K/EC-190 Unnamed 1355 2.9 mi",
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 KDFWR entrances • 10 State Parks trailheads • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 15,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1282": {
+   "pdfName": "Kenlake",
+   "counties": "Calloway / Marshall",
+   "type": "State Park",
+   "potaName": "Kenlake State Park",
+   "nameUrl": "https://parks.ky.gov/hardin/parks/resort/kenlake-state-resort-park",
+   "pota": [
+    "US-1282"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/hardin/parks/resort/kenlake-state-resort-park"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.7702539,-88.13678168"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/camping"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/hardin/parks/resort/kenlake-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/hardin/parks/resort/kenlake-state-resort-park"
+    }
+   ],
+   "gps": [
+    36.75973,
+    -88.13841
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 6 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 15,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-1283": {
+   "pdfName": "Kentucky Dam Village",
+   "counties": "Marshall",
+   "type": "State Park",
+   "potaName": "Kentucky Dam Village State Park",
+   "nameUrl": "https://parks.ky.gov/gilbertsville/parks/resort/kentucky-dam-village-state-resort-park",
+   "pota": [
+    "US-1283"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/gilbertsville/parks/resort/kentucky-dam-village-state-resort-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/explore/kentucky-dam-village-state-resort-park-7793"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/gilbertsville/parks/resort/kentucky-dam-village-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/gilbertsville/parks/resort/kentucky-dam-village-state-resort-park"
+    }
+   ],
+   "gps": [
+    36.99825,
+    -88.28876
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "6 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 16,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-1284": {
+   "pdfName": "Lake Barkley",
+   "counties": "Trigg",
+   "type": "State Park",
+   "potaName": "Lake Barkley State Park",
+   "nameUrl": "https://parks.ky.gov/cadiz/parks/resort/lake-barkley-state-resort-park",
+   "pota": [
+    "US-1284"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/cadiz/parks/resort/lake-barkley-state-resort-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/find-a-park/lake-barkley-campground-8066"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/cadiz/parks/resort/lake-barkley-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/cadiz/parks/resort/lake-barkley-state-resort-park"
+    }
+   ],
+   "gps": [
+    36.84946,
+    -87.93195
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "12 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 16,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-1285": {
+   "pdfName": "Lake Cumberland",
+   "counties": "Russell",
+   "type": "State Park",
+   "potaName": "Lake Cumberland State Park",
+   "nameUrl": "https://parks.ky.gov/jamestown/parks/resort/lake-cumberland-state-resort-park",
+   "pota": [
+    "US-1285"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/jamestown/parks/resort/lake-cumberland-state-resort-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/find-a-park/lake-cumberland-campground-8084"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/jamestown/parks/resort/lake-cumberland-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/jamestown/parks/resort/lake-cumberland-state-resort-park"
+    }
+   ],
+   "gps": [
+    36.90833,
+    -85.05764
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "5 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 16,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-1286": {
+   "pdfName": "Natural Bridge",
+   "counties": "Powell / Wolfe",
+   "type": "State Park",
+   "potaName": "Natural Bridge State Park",
+   "nameUrl": "https://parks.ky.gov/slade/parks/resort/natural-bridge-state-resort-park",
+   "pota": [
+    "US-1286"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://parks.ky.gov/explore/natural-bridge-state-resort-park-7796"
+    },
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/slade/parks/resort/natural-bridge-state-resort-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/explore/whittleton-campground-8107"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/slade/parks/resort/natural-bridge-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/slade/parks/resort/natural-bridge-state-resort-park"
+    }
+   ],
+   "gps": [
+    37.77692,
+    -83.68837
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "5 Forest Service sites • 7 State Parks trailheads • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 16,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1287": {
+   "pdfName": "Pennyrile Forest",
+   "counties": "Caldwell / Christian / Hopkins",
+   "type": "State Park",
+   "potaName": "Pennyrile Forest State Park",
+   "nameUrl": "https://parks.ky.gov/dawson-springs/parks/resort/pennyrile-forest-state-resort-park",
+   "pota": [
+    "US-1287"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map08cc7e0a-9307-47b3-85e9-29db02ce7648.pdf?sfvrsn=145d90d5_2"
+    },
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/dawson-springs/parks/resort/pennyrile-forest-state-resort-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/camping"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/dawson-springs/parks/resort/pennyrile-forest-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/dawson-springs/parks/resort/pennyrile-forest-state-resort-park"
+    }
+   ],
+   "gps": [
+    37.07247,
+    -87.66307
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "11 State Parks trailheads • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 16,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-1288": {
+   "pdfName": "Pine Mountain",
+   "counties": "Bell",
+   "type": "State Park",
+   "potaName": "Pine Mountain State Park",
+   "nameUrl": "https://parks.ky.gov/pineville/parks/resort/pine-mountain-state-resort-park",
+   "pota": [
+    "US-1288"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/pineville/parks/resort/pine-mountain-state-resort-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/camping"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/pineville/parks/resort/pine-mountain-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/pineville/parks/resort/pine-mountain-state-resort-park"
+    }
+   ],
+   "gps": [
+    36.74721,
+    -83.71239
+   ],
+   "also": {
+    "inside": [
+     "W4K/EC-043"
+    ],
+    "near": [
+     [
+      "W4K/EC-059",
+      2.4
+     ],
+     [
+      "W4K/EC-091",
+      2.5
+     ],
+     [
+      "W4K/EC-048",
+      2.8
+     ],
+     [
+      "W4K/EC-030",
+      3.0
+     ]
+    ]
+   },
+   "alsoText": "SOTA inside (KY GIS): W4K/EC-043 Unnamed 2300A | SOTA within 3 mi: W4K/EC-059 Unnamed 2187 2.4 mi • W4K/EC-091 Unnamed 2030 2.5 mi • W4K/EC-048 Flag Top 2.8 mi • W4K/EC-030 Unnamed 2452 3.0 mi",
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 18 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 17,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-1289": {
+   "pdfName": "Rough River Dam",
+   "counties": "Grayson",
+   "type": "State Park",
+   "potaName": "Rough River Dam State Park",
+   "nameUrl": "https://parks.ky.gov/falls-rough/parks/resort/rough-river-dam-state-resort-park",
+   "pota": [
+    "US-1289"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/falls-rough/parks/resort/rough-river-dam-state-resort-park"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/parks/camping"
+    },
+    {
+     "k": "resort",
+     "url": "https://parks.ky.gov/falls-rough/parks/resort/rough-river-dam-state-resort-park"
+    },
+    {
+     "k": "cabins",
+     "url": "https://parks.ky.gov/falls-rough/parks/resort/rough-river-dam-state-resort-park"
+    }
+   ],
+   "gps": [
+    37.61037,
+    -86.50534
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 3 State Parks trailheads • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 17,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-3779": {
+   "pdfName": "Big Bone Lick",
+   "counties": "Boone",
+   "type": "State Historic Site",
+   "potaName": "Big Bone Lick State Historic Site",
+   "nameUrl": "https://parks.ky.gov/union/parks/historic/big-bone-lick-state-historic-site",
+   "pota": [
+    "US-3779"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/union/parks/historic/big-bone-lick-state-historic-site"
+    },
+    {
+     "k": "camp",
+     "url": "https://parks.ky.gov/things-to-do/lodging/reserve-a-campground"
+    }
+   ],
+   "gps": [
+    38.88694,
+    -84.74778
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "3 State Parks trailheads • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 17,
+   "mapRegion": "Northern Kentucky"
+  },
+  "KFF-3781": {
+   "pdfName": "Breaks Interstate Park",
+   "counties": "Pike",
+   "type": "State Park",
+   "potaName": "Breaks Interstate State Park",
+   "nameUrl": "https://www.breakspark.com/",
+   "pota": [
+    "US-3781"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://www.breakspark.com/parkmap"
+    },
+    {
+     "k": "web",
+     "url": "https://www.breakspark.com/"
+    }
+   ],
+   "gps": [
+    37.3026,
+    -82.31215
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "16 State Parks trailheads • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 17,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-3782": {
+   "pdfName": "Dr. Thomas Walker",
+   "counties": "Knox",
+   "type": "State Historic Site",
+   "potaName": "Dr. Thomas Walker State Historic Site",
+   "nameUrl": "https://parks.ky.gov/barbourville/parks/historic/dr-thomas-walker-state-historic-site",
+   "pota": [
+    "US-3782"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/barbourville/parks/historic/dr-thomas-walker-state-historic-site"
+    }
+   ],
+   "gps": [
+    36.83974,
+    -83.91893
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 fishing access sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 17,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-3783": {
+   "pdfName": "Jefferson Davis",
+   "counties": "Todd",
+   "type": "State Historic Site",
+   "potaName": "Jefferson Davis State Historic Site",
+   "nameUrl": "https://parks.ky.gov/fairview/parks/historic/jefferson-davis-state-historic-site",
+   "pota": [
+    "US-3783"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/fairview/parks/historic/jefferson-davis-state-historic-site"
+    }
+   ],
+   "gps": [
+    36.84183,
+    -87.30012
+   ],
+   "pdfPage": 18,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-3784": {
+   "pdfName": "Old Mulkey Meetinghouse",
+   "counties": "Monroe",
+   "type": "State Historic Site",
+   "potaName": "Old Mulkey Meetinghouse State Historic Site",
+   "nameUrl": "https://parks.ky.gov/tompkinsville/parks/historic/old-mulkey-meetinghouse-state-historic-site",
+   "pota": [
+    "US-3784"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/tompkinsville/parks/historic/old-mulkey-meetinghouse-state-historic-site"
+    }
+   ],
+   "gps": [
+    36.6765,
+    -85.7064
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "3 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 18,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-3786": {
+   "pdfName": "Waveland",
+   "counties": "Fayette",
+   "type": "State Historic Site",
+   "potaName": "Waveland State Historic Site",
+   "nameUrl": "https://parks.ky.gov/lexington/parks/historic/waveland-state-historic-site",
+   "pota": [
+    "US-3786"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/lexington/parks/historic/waveland-state-historic-site"
+    }
+   ],
+   "gps": [
+    37.97155,
+    -84.53729
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 State Parks trailheads • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 18,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-3790": {
+   "pdfName": "Fort Heiman",
+   "counties": "Calloway",
+   "type": "National Battlefield",
+   "potaName": "Fort Heiman National Battlefield",
+   "nameUrl": "https://www.nps.gov/places/fort-heiman.htm",
+   "pota": [
+    "US-3790"
+   ],
+   "links": [
+    {
+     "k": "areamap",
+     "url": "https://www.nps.gov/fodo/planyourvisit/maps.htm"
+    },
+    {
+     "k": "web",
+     "url": "https://www.nps.gov/places/fort-heiman.htm"
+    }
+   ],
+   "gps": [
+    36.50452,
+    -88.0605
+   ],
+   "pdfPage": 18,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-3792": {
+   "pdfName": "Land Between the Lakes",
+   "counties": "Trigg",
+   "type": "UNESCO-MAB Biosphere Reserve",
+   "potaName": "Land Between the Lakes National Recreation Area",
+   "nameUrl": "https://landbetweenthelakes.us/",
+   "pota": [
+    "US-3792"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://www.landbetweenthelakes.us/help-center/lbl-maps/"
+    },
+    {
+     "k": "web",
+     "url": "https://landbetweenthelakes.us/"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.88675726,-88.08749684"
+    },
+    {
+     "k": "camp",
+     "url": "https://landbetweenthelakes.us/"
+    }
+   ],
+   "gps": [
+    36.77781,
+    -88.06315
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 18,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-3793": {
+   "pdfName": "Ballard",
+   "counties": "Ballard",
+   "type": "Wildlife Management Area",
+   "potaName": "Ballard Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=224",
+   "pota": [
+    "US-3793"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/BallardWMA_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=224"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.18212633,-89.02707594"
+    }
+   ],
+   "gps": [
+    37.15956,
+    -89.06136
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 18,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-3794": {
+   "pdfName": "Beaver Creek",
+   "counties": "McCreary",
+   "type": "Wilderness",
+   "potaName": "Beaver Creek Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=39",
+   "pota": [
+    "US-3794"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/BeaverCreekWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=39"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.88889808,-84.49403162"
+    }
+   ],
+   "gps": [
+    36.89665,
+    -84.44023
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 4 Forest Service sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 19,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-3795": {
+   "pdfName": "Beechy Creek",
+   "counties": "Calloway",
+   "type": "Wildlife Management Area",
+   "potaName": "Beechy Creek Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/BeechyCreekWMA-ALL.pdf",
+   "pota": [
+    "US-3795"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/BeechyCreekWMA-ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/BeechyCreekWMA-ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.55772885,-88.13260745"
+    }
+   ],
+   "gps": [
+    36.55871,
+    -88.13278
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 19,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-3796": {
+   "pdfName": "Big Rivers",
+   "counties": "Crittenden / Union",
+   "type": "Wildlife Management Area and State Forest",
+   "potaName": "Big Rivers Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9203",
+   "pota": [
+    "US-3796"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/BigRiversWMA_and_StateForest_all.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9203"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.54543957,-88.02865374"
+    }
+   ],
+   "gps": [
+    37.52021,
+    -88.03207
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 19,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-3797": {
+   "pdfName": "Boatwright",
+   "counties": "Ballard",
+   "type": "Wildlife Management Area",
+   "potaName": "Boatwright Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=222",
+   "pota": [
+    "US-3797"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/BoatwrightWMA_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=222"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.00954718,-89.12183655"
+    }
+   ],
+   "gps": [
+    37.05045,
+    -89.10556
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 19,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-3798": {
+   "pdfName": "Buck Creek",
+   "counties": "Pulaski",
+   "type": "Wildlife Management Area",
+   "potaName": "Buck Creek Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/BuckCreekWMA_All.pdf",
+   "pota": [
+    "US-3798"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/BuckCreekWMA_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/BuckCreekWMA_All.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.10693713,-84.40972204"
+    }
+   ],
+   "gps": [
+    37.10713,
+    -84.40964
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 19,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-3799": {
+   "pdfName": "Burchell-Beech",
+   "counties": "Clay",
+   "type": "Wildlife Management Area",
+   "potaName": "Burchell-Beech Wildlife Management Area",
+   "nameUrl": "https://logsearch.wwff.co/directory/KFF-3799",
+   "pota": [
+    "US-3799"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/Burchell-BeechCreekWMA_ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.16866757,-83.70812125"
+    }
+   ],
+   "gps": [
+    37.1681,
+    -83.70774
+   ],
+   "also": {
+    "inside": [
+     "W4K/EC-155"
+    ],
+    "near": [
+     [
+      "W4K/EC-175",
+      1.8
+     ]
+    ]
+   },
+   "alsoText": "SOTA inside (KY GIS): W4K/EC-155 Hector Benchmark | SOTA within 3 mi: W4K/EC-175 Unnamed 1561 1.8 mi",
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 20,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-3800": {
+   "pdfName": "Cedar Creek Lake",
+   "counties": "Hopkins",
+   "type": "Wildlife Management Area",
+   "potaName": "Cedar Creek Lake Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9004",
+   "pota": [
+    "US-3800"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/CedarCreekLakeWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9004"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.45636404,-84.54990923"
+    }
+   ],
+   "gps": [
+    37.47499,
+    -84.55799
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 2 fishing access sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 20,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-3801": {
+   "pdfName": "Clifty",
+   "counties": "Menifee / Wolf",
+   "type": "Wilderness",
+   "potaName": "Clifty Wilderness Area",
+   "nameUrl": "https://www.fs.usda.gov/recarea/dbnf/recarea/?recid=39460",
+   "pota": [
+    "US-3801"
+   ],
+   "links": [
+    {
+     "k": "areamap",
+     "url": "https://www.fs.usda.gov/r08/danielboone/maps-guides"
+    },
+    {
+     "k": "web",
+     "url": "https://www.fs.usda.gov/recarea/dbnf/recarea/?recid=39460"
+    }
+   ],
+   "gps": [
+    37.82348,
+    -83.5663
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "10 Forest Service sites • 2 fishing access sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 20,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-3802": {
+   "pdfName": "Clyde E. Buckley Wildlife Sanctuary and Audubon Center",
+   "counties": "Franklin",
+   "type": "Wildlife Sanctuary",
+   "potaName": "Clyde E Buckley Sanctuary",
+   "nameUrl": "https://bggreensource.org/buckley/",
+   "pota": [
+    "US-3802"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://bggreensource.org/wp-content/uploads/2025/01/1_Full_Sanctuary_All_Trails_50_foot_Contours.pdf-compressed_1.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://bggreensource.org/buckley/"
+    }
+   ],
+   "gps": [
+    38.1355,
+    -84.85488
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 fishing access sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 20,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-3803": {
+   "pdfName": "Coil Estate",
+   "counties": "Carlisle",
+   "type": "Wildlife Management Area",
+   "potaName": "Coil Estate Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/CoilEstateWMA_ALL.pdf",
+   "pota": [
+    "US-3803"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/CoilEstateWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/CoilEstateWMA_ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.911281,-89.02354545"
+    }
+   ],
+   "gps": [
+    36.91833,
+    -89.02762
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 20,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-3804": {
+   "pdfName": "Cranks Creek",
+   "counties": "Harlan",
+   "type": "Wildlife Management Area",
+   "potaName": "Cranks Creek Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/CranksCreekWMA_ALL.pdf",
+   "pota": [
+    "US-3804"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/CranksCreekWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/CranksCreekWMA_ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.7562941,-83.19716913"
+    }
+   ],
+   "gps": [
+    36.7556,
+    -83.19665
+   ],
+   "also": {
+    "inside": [],
+    "near": [
+     [
+      "W4K/EC-032",
+      1.5
+     ],
+     [
+      "W4K/EC-099",
+      2.2
+     ]
+    ]
+   },
+   "alsoText": "SOTA within 3 mi: W4K/EC-032 Cranks Ridge 1.5 mi • W4K/EC-099 Unnamed 2008 2.2 mi",
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 KDFWR entrances • 2 fishing access sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 21,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-3805": {
+   "pdfName": "Curtis Gates Lloyd",
+   "counties": "Grant",
+   "type": "Wildlife Management Area",
+   "potaName": "Curtis Gates Lloyd Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=153",
+   "pota": [
+    "US-3805"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/CurtisGatesLloydWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=153"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.77310131,-84.60130602"
+    }
+   ],
+   "gps": [
+    38.7635,
+    -84.59865
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 2 fishing access sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 21,
+   "mapRegion": "Northern Kentucky"
+  },
+  "KFF-3806": {
+   "pdfName": "Dennis-Gray",
+   "counties": "Adair",
+   "type": "Wildlife Management Area",
+   "potaName": "Dennis-Gray Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=148",
+   "pota": [
+    "US-3806"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/Dennis-GrayWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=148"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.26586513,-85.15066734"
+    }
+   ],
+   "gps": [
+    37.26565,
+    -85.14895
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 21,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-3807": {
+   "pdfName": "Dix River",
+   "counties": "Lincoln",
+   "type": "Wildlife Management Area",
+   "potaName": "Dix River Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9032",
+   "pota": [
+    "US-3807"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/DixRiverWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9032"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.4922702,-84.50100346"
+    }
+   ],
+   "gps": [
+    37.49205,
+    -84.50113
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 2 fishing access sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 21,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-3808": {
+   "pdfName": "Doug Travis",
+   "counties": "Carlisle / Hickman",
+   "type": "Wildlife Management Area",
+   "potaName": "Doug Travis Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=40",
+   "pota": [
+    "US-3808"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/DougTravisWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=40"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.80145786,-89.09329074"
+    }
+   ],
+   "gps": [
+    36.81162,
+    -89.11526
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 21,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-3809": {
+   "pdfName": "Dr. James R. Rich",
+   "counties": "Owen",
+   "type": "Wildlife Management Area",
+   "potaName": "Dr. James R. Rich Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=34",
+   "pota": [
+    "US-3809"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/Dr.JamesR.RichWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=34"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.39446977,-84.72841218"
+    }
+   ],
+   "gps": [
+    38.39458,
+    -84.72873
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 22,
+   "mapRegion": "Northern Kentucky"
+  },
+  "KFF-3810": {
+   "pdfName": "Dr. Norman And Martha Adair",
+   "counties": "Boone",
+   "type": "Wildlife Management Area",
+   "potaName": "Dr. Norman And Martha Adair Wildlife Management Area",
+   "nameUrl": "https://logsearch.wwff.co/directory/KFF-3810",
+   "pota": [
+    "US-3810"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/Dr.NormanandMarthaAdairWMA_all.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.92097747,-84.74680464"
+    }
+   ],
+   "gps": [
+    38.92098,
+    -84.74679
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 22,
+   "mapRegion": "Northern Kentucky"
+  },
+  "KFF-3811": {
+   "pdfName": "Ed Mabry-Laurel Gorge",
+   "counties": "Elliot",
+   "type": "Wildlife Management Area",
+   "potaName": "Ed Mabry-Laurel Gorge Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/EdMabry-LaurelGorgeWMA_ALL.pdf",
+   "pota": [
+    "US-3811"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/EdMabry-LaurelGorgeWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/EdMabry-LaurelGorgeWMA_ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.12901138,-83.18958512"
+    }
+   ],
+   "gps": [
+    38.12682,
+    -83.18827
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 22,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-3812": {
+   "pdfName": "Fleming",
+   "counties": "Fleming",
+   "type": "Wildlife Management Area",
+   "potaName": "Fleming Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=154",
+   "pota": [
+    "US-3812"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/FlemingWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=154"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.43382742,-83.63287427"
+    }
+   ],
+   "gps": [
+    38.43307,
+    -83.63288
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 22,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-3813": {
+   "pdfName": "Griffith Woods",
+   "counties": "Harrison",
+   "type": "Wildlife Management Area",
+   "potaName": "Griffith Woods Wildlife Management Area",
+   "nameUrl": "https://logsearch.wwff.co/directory/KFF-3813",
+   "pota": [
+    "US-3813"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/GriffithWoodsWMA_ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.3345736,-84.35480303"
+    }
+   ],
+   "gps": [
+    38.33202,
+    -84.35598
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 22,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-3814": {
+   "pdfName": "Hensley-Pine Mountain",
+   "counties": "Letcher",
+   "type": "Wildlife Management Area",
+   "potaName": "Hensley-Pine Mountain Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/Hensley-PineMountainWMA_ALL.pdf",
+   "pota": [
+    "US-3814"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/Hensley-PineMountainWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/Hensley-PineMountainWMA_ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.01654413,-82.937318"
+    }
+   ],
+   "gps": [
+    37.02505,
+    -82.91394
+   ],
+   "also": {
+    "inside": [],
+    "near": [
+     [
+      "W4K/EC-041",
+      2.3
+     ]
+    ]
+   },
+   "alsoText": "SOTA within 3 mi: W4K/EC-041 Unnamed 2325 2.3 mi",
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 23,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-3815": {
+   "pdfName": "Higginson-Henry",
+   "counties": "Union",
+   "type": "Wildlife Management Area",
+   "potaName": "Higginson-Henry Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=132",
+   "pota": [
+    "US-3815"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/Higginson-HenryWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=132"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.6279793,-87.82861655"
+    }
+   ],
+   "gps": [
+    37.63571,
+    -87.87955
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 23,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-3816": {
+   "pdfName": "John A. Kleber",
+   "counties": "Franklin / Owen",
+   "type": "Wildlife Management Area",
+   "potaName": "John A. Kleber Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=14",
+   "pota": [
+    "US-3816"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/John_A_Kleber_WMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=14"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.35829136,-84.78463261"
+    }
+   ],
+   "gps": [
+    38.35804,
+    -84.78471
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 23,
+   "mapRegion": "Northern Kentucky"
+  },
+  "KFF-3817": {
+   "pdfName": "John C. Williams",
+   "counties": "Nelson",
+   "type": "Wildlife Management Area",
+   "potaName": "John C. Williams Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=238",
+   "pota": [
+    "US-3817"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/JohnCWilliamsWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=238"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.77575625,-85.68425173"
+    }
+   ],
+   "gps": [
+    37.77559,
+    -85.68407
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 23,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-3818": {
+   "pdfName": "Jones-Keeney",
+   "counties": "Caldwell",
+   "type": "Wildlife Management Area",
+   "potaName": "Jones-Keeney Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/Jones-KeeneyWMA_All.pdf",
+   "pota": [
+    "US-3818"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/Jones-KeeneyWMA_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/Jones-KeeneyWMA_All.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.14970799,-87.75992238"
+    }
+   ],
+   "gps": [
+    37.12871,
+    -87.76411
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 23,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-3819": {
+   "pdfName": "Kaler Bottoms",
+   "counties": "Graves",
+   "type": "Wildlife Management Area",
+   "potaName": "Kaler Bottoms Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=21",
+   "pota": [
+    "US-3819"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/KalerBottomsWMA_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=21"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.83822339,-88.52705908"
+    }
+   ],
+   "gps": [
+    36.84104,
+    -88.52971
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 24,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-3820": {
+   "pdfName": "Kentucky River",
+   "counties": "Henry / Owen",
+   "type": "Wildlife Management Area",
+   "potaName": "Kentucky River Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=169",
+   "pota": [
+    "US-3820"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/KentuckyRiverWMA_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=169"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.40913815,-84.89513644"
+    }
+   ],
+   "gps": [
+    38.42609,
+    -84.91662
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 24,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-3821": {
+   "pdfName": "L. B. Davison",
+   "counties": "Ohio",
+   "type": "Wildlife Management Area",
+   "potaName": "L. B. Davison Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/L.B.DavisonWMA_ALL.pdf",
+   "pota": [
+    "US-3821"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/L.B.DavisonWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/L.B.DavisonWMA_ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.55028501,-86.7126055"
+    }
+   ],
+   "gps": [
+    37.55026,
+    -86.71243
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 24,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-3822": {
+   "pdfName": "Lee K. Nelson",
+   "counties": "Webster",
+   "type": "Wildlife Management Area",
+   "potaName": "Lee K. Nelson Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=9011",
+   "pota": [
+    "US-3822"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/LeeKNelsonWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=9011"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.50150406,-87.68641339"
+    }
+   ],
+   "gps": [
+    37.50132,
+    -87.68641
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 24,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-3823": {
+   "pdfName": "Livingston County",
+   "counties": "Livingston",
+   "type": "Wildlife Management Area",
+   "potaName": "Livingston County Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9117",
+   "pota": [
+    "US-3823"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/LivingstonCountyWMAandStateNaturalArea_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9117"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.33616699,-88.41726558"
+    }
+   ],
+   "gps": [
+    37.33641,
+    -88.41707
+   ],
+   "notes": [
+    {
+     "k": "PARKING (official page)",
+     "t": "Parking areas are located off KY Highway 1436 and Good Hope Cemetery road off of KY highway 1433."
+    },
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 1 preserve page location — see KPC map file"
+    }
+   ],
+   "pdfPage": 24,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-3824": {
+   "pdfName": "Marion County",
+   "counties": "Marion",
+   "type": "Wildlife Management Area and State Forest",
+   "potaName": "Marion County Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/MarionCountyWMAandSF_ALL.pdf",
+   "pota": [
+    "US-3824"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/MarionCountyWMAandSF_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/MarionCountyWMAandSF_ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.54809744,-85.1209389"
+    }
+   ],
+   "gps": [
+    37.53587,
+    -85.12482
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 25,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-3825": {
+   "pdfName": "Miller Welch",
+   "counties": "Madison",
+   "type": "Wildlife Management Area",
+   "potaName": "Miller Welch Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=15",
+   "pota": [
+    "US-3825"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/MillerWelch-CentralKentuckyWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=15"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.63449174,-84.20066658"
+    }
+   ],
+   "gps": [
+    37.63504,
+    -84.2004
+   ],
+   "also": {
+    "inside": [],
+    "near": [
+     [
+      "W4K/KA-004",
+      2.5
+     ]
+    ]
+   },
+   "alsoText": "SOTA within 3 mi: W4K/KA-004 Joe Lick Knob 2.5 mi",
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 KDFWR entrances • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 25,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-3826": {
+   "pdfName": "Mullins",
+   "counties": "Kenton",
+   "type": "Wildlife Management Area",
+   "potaName": "Mullins Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/MullinsWMA_ALL.pdf",
+   "pota": [
+    "US-3826"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/MullinsWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/MullinsWMA_ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.81360865,-84.60821099"
+    }
+   ],
+   "gps": [
+    38.80373,
+    -84.60777
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 2 fishing access sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 25,
+   "mapRegion": "Northern Kentucky"
+  },
+  "KFF-3827": {
+   "pdfName": "Obion Creek",
+   "counties": "Carlisle / Fulton / Hickman",
+   "type": "Wildlife Management Area",
+   "potaName": "Obion Creek Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=176",
+   "pota": [
+    "US-3827"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/ObionCreekWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=176"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.63167682,-89.12648173"
+    }
+   ],
+   "gps": [
+    36.63206,
+    -89.12552
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 25,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-3828": {
+   "pdfName": "Peabody",
+   "counties": "Hopkins / Muhlenberg / Ohio",
+   "type": "Wildlife Management Area",
+   "potaName": "Peabody Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=229",
+   "pota": [
+    "US-3828"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/PeabodyAll.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=229"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.2799571,-86.90344385"
+    }
+   ],
+   "gps": [
+    37.25051,
+    -87.18441
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 7 fishing access sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 25,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-3829": {
+   "pdfName": "R. F. Tarter",
+   "counties": "Adair / Russell",
+   "type": "Wildlife Management Area",
+   "potaName": "R. F. Tarter Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=171",
+   "pota": [
+    "US-3829"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/RFTarterWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=171"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.16426701,-85.07133521"
+    }
+   ],
+   "gps": [
+    37.16373,
+    -85.07198
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 26,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-3830": {
+   "pdfName": "Sloughs",
+   "counties": "Henderson / Union",
+   "type": "Wildlife Management Area",
+   "potaName": "Sloughs Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=230",
+   "pota": [
+    "US-3830"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/Sloughs_WMA_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=230"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.86088652,-87.77931044"
+    }
+   ],
+   "gps": [
+    37.85936,
+    -87.78016
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 26,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-3831": {
+   "pdfName": "South Shore",
+   "counties": "Greenup",
+   "type": "Wildlife Management Area",
+   "potaName": "South Shore Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/SouthShoreWMA_ALL.pdf",
+   "pota": [
+    "US-3831"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/SouthShoreWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/SouthShoreWMA_ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.73418657,-82.93599492"
+    }
+   ],
+   "gps": [
+    38.73422,
+    -82.93597
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 26,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-3832": {
+   "pdfName": "Stone Mountain",
+   "counties": "Harlan",
+   "type": "Wildlife Management Area",
+   "potaName": "Stone Mountain Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/StoneMountainWMAandStateNaturalArea_ALL.pdf",
+   "pota": [
+    "US-3832"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/StoneMountainWMAandStateNaturalArea_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/StoneMountainWMAandStateNaturalArea_ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.76138048,-83.13831403"
+    }
+   ],
+   "gps": [
+    36.75677,
+    -83.14449
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 26,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-3833": {
+   "pdfName": "T. N. Sullivan",
+   "counties": "Franklin",
+   "type": "Wildlife Management Area",
+   "potaName": "T. N. Sullivan Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/TN_SullivanWMA_All.pdf",
+   "pota": [
+    "US-3833"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/TN_SullivanWMA_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/TN_SullivanWMA_All.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.28016664,-84.83078346"
+    }
+   ],
+   "gps": [
+    38.27899,
+    -84.82428
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 26,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-3834": {
+   "pdfName": "Tradewater",
+   "counties": "Christian / Hopkins",
+   "type": "Wildlife Management Area",
+   "potaName": "Tradewater Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=128",
+   "pota": [
+    "US-3834"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/PennyrileStateForestandTradewaterWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=128"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.14695719,-87.67137692"
+    }
+   ],
+   "gps": [
+    37.15136,
+    -87.67004
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 27,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-3835": {
+   "pdfName": "Twin Eagle",
+   "counties": "Owen",
+   "type": "Wildlife Management Area",
+   "potaName": "Twin Eagle Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/TwinEagleWMA_ALL.pdf",
+   "pota": [
+    "US-3835"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/TwinEagleWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/TwinEagleWMA_ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.57483739,-85.0328347"
+    }
+   ],
+   "gps": [
+    38.57473,
+    -85.03194
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 27,
+   "mapRegion": "Northern Kentucky"
+  },
+  "KFF-3836": {
+   "pdfName": "Veterans Memorial",
+   "counties": "Scott",
+   "type": "Wildlife Management Area",
+   "potaName": "Veterans Memorial Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9202",
+   "pota": [
+    "US-3836"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/Veterans_Memorial_WMA_all.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9202"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.30380822,-84.55695833"
+    }
+   ],
+   "gps": [
+    38.32112,
+    -84.54838
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 4 fishing access sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 27,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-3837": {
+   "pdfName": "West Kentucky",
+   "counties": "McCracken",
+   "type": "Wildlife Management Area",
+   "potaName": "West Kentucky Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=137",
+   "pota": [
+    "US-3837"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/West_Kentucky_WMA.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=137"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.13324435,-88.81393813"
+    }
+   ],
+   "gps": [
+    37.11454,
+    -88.82137
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 27,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-3838": {
+   "pdfName": "Winford",
+   "counties": "Carlisle",
+   "type": "Wildlife Management Area",
+   "potaName": "Winford Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/WinfordWMA_ALL.pdf",
+   "pota": [
+    "US-3838"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/WinfordWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/WinfordWMA_ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.92722468,-89.06009492"
+    }
+   ],
+   "gps": [
+    36.92229,
+    -89.05777
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 27,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-3839": {
+   "pdfName": "Yatesville Lake",
+   "counties": "Lawrence",
+   "type": "Wildlife Management Area",
+   "potaName": "Yatesville Lake Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=23",
+   "pota": [
+    "US-3839"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/YatesvilleLakeWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=23"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.1080632,-82.74611739"
+    }
+   ],
+   "gps": [
+    38.08593,
+    -82.76413
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 28,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-3840": {
+   "pdfName": "Yellowbank",
+   "counties": "Breckinridge",
+   "type": "Wildlife Management Area",
+   "potaName": "Yellowbank Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=192",
+   "pota": [
+    "US-3840"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/YellowbankWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=192"
+    },
+    {
+     "k": "camp",
+     "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=192"
+    }
+   ],
+   "gps": [
+    38.0174,
+    -86.51085
+   ],
+   "pdfPage": 28,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-4511": {
+   "pdfName": "Daniel Boone",
+   "counties": "Bath / Clay / Estill / Harlan / Jackson / Laurel / Lee / Lenifee / Leslie / McCreary / Morgan / Perry / Powell / Pulaski / Owsley / Rockcastle / Rowan / Wayne / Whitley / Wolfe",
+   "type": "National Forest",
+   "potaName": "Daniel Boone National Forest",
+   "nameUrl": "https://www.fs.usda.gov/dbnf/",
+   "pota": [
+    "US-4484"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://www.fs.usda.gov/r08/danielboone/maps-guides"
+    },
+    {
+     "k": "web",
+     "url": "https://www.fs.usda.gov/dbnf/"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.99381741,-84.21368651"
+    },
+    {
+     "k": "camp",
+     "url": "https://www.fs.usda.gov/dbnf/"
+    }
+   ],
+   "gps": [
+    37.40292,
+    -84.15371
+   ],
+   "also": {
+    "inside": [
+     "W4K/EC-054",
+     "W4K/EC-065",
+     "W4K/EC-066",
+     "W4K/EC-074",
+     "W4K/EC-185"
+    ],
+    "near": []
+   },
+   "alsoText": "SOTA inside (KY GIS): W4K/EC-054 Clay County HP • W4K/EC-065 Unnamed 2170 • W4K/EC-066 Ryans Creek Mountain • W4K/EC-074 Stephens Knob • W4K/EC-185 Limestone Knob",
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 33 Forest Service sites — see KPC map file"
+    }
+   ],
+   "pdfPage": 28,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-4708": {
+   "pdfName": "Camp Nelson",
+   "counties": "Jessamine",
+   "type": "National Monument",
+   "potaName": "Camp Nelson National Monument",
+   "nameUrl": "https://www.nps.gov/cane/index.htm",
+   "pota": [
+    "US-7950"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://www.nps.gov/cane/planyourvisit/maps.htm"
+    },
+    {
+     "k": "web",
+     "url": "https://www.nps.gov/cane/index.htm"
+    }
+   ],
+   "gps": [
+    37.79514,
+    -84.59427
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 NPS parking lots — see KPC map file"
+    }
+   ],
+   "pdfPage": 28,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-6295": {
+   "pdfName": "Jefferson (KY)",
+   "counties": "Letcher / Pike",
+   "type": "National Forest",
+   "potaName": "George Washington & Jefferson National Forest",
+   "nameUrl": "https://www.fs.usda.gov/gwj",
+   "pota": [
+    "US-4526"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://www.fs.usda.gov/gwj"
+    }
+   ],
+   "gps": [
+    37.0868,
+    -82.7332
+   ],
+   "also": {
+    "inside": [],
+    "near": [
+     [
+      "W4K/EC-014",
+      1.8
+     ]
+    ]
+   },
+   "alsoText": "SOTA within 3 mi: W4K/EC-014 Pine Mountain 1.8 mi",
+   "pdfPage": 29,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-6607": {
+   "pdfName": "Green River",
+   "counties": "Henderson",
+   "type": "National Wildlife Refuge",
+   "potaName": "Green River National Wildlife Refuge",
+   "nameUrl": "https://www.fws.gov/refuge/green-river/visit-us/locations/green-river-national-wildlife-refuge",
+   "pota": [
+    "US-10098"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://www.fws.gov/sites/default/files/documents/2024-12/2024-hunt-map-508.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://www.fws.gov/refuge/green-river/visit-us/locations/green-river-national-wildlife-refuge"
+    }
+   ],
+   "gps": [
+    37.8998,
+    -87.5282
+   ],
+   "pdfPage": 29,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-6608": {
+   "pdfName": "Ohio River Islands (KY)",
+   "counties": "Lewis",
+   "type": "National Wildlife Refuge",
+   "potaName": "Ohio River Islands (KY) (POTA)",
+   "nameUrl": "https://logsearch.wwff.co/directory/KFF-6608",
+   "pota": [
+    "US-10150"
+   ],
+   "gps": [
+    38.6868,
+    -83.585
+   ],
+   "pdfPage": 29,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-6863": {
+   "pdfName": "Natural Bridge",
+   "counties": "Powell",
+   "type": "Nature Preserve",
+   "nameUrl": "https://parks.ky.gov/slade/parks/resort/natural-bridge-state-resort-park",
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/slade/parks/resort/natural-bridge-state-resort-park"
+    }
+   ],
+   "gps": [
+    37.7768,
+    -83.6833
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "5 Forest Service sites • 7 State Parks trailheads • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    },
+    {
+     "k": "NOTES",
+     "t": "Not an official KFF-POTA match. Related nearby POTA park: US-1286 Natural Bridge State Park — its links and access points are shown for convenience; check boundaries."
+    }
+   ],
+   "pdfPage": 29,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-6864": {
+   "pdfName": "Green River",
+   "counties": "Henderson",
+   "type": "State Forest",
+   "potaName": "Green River State Forest",
+   "nameUrl": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Green-River-State-Forest.aspx",
+   "pota": [
+    "US-7951"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Green-River-State-Forest.aspx"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.87609115,-87.47666171"
+    }
+   ],
+   "gps": [
+    37.8859,
+    -87.4822
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 29,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-6865": {
+   "pdfName": "Kentenia",
+   "counties": "Harlan",
+   "type": "State Forest",
+   "potaName": "Kentenia State Forest",
+   "nameUrl": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Kentenia-State-Forest.aspx",
+   "pota": [
+    "US-4688"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://eec.ky.gov/Natural-Resources/Forestry/Documents/KenteniaStateForest_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Kentenia-State-Forest.aspx"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.92444114,-83.22687745"
+    }
+   ],
+   "gps": [
+    36.9181,
+    -83.2225
+   ],
+   "also": {
+    "inside": [],
+    "near": [
+     [
+      "W4K/EC-010",
+      2.4
+     ],
+     [
+      "W4K/EC-026",
+      2.5
+     ]
+    ]
+   },
+   "alsoText": "SOTA within 3 mi: W4K/EC-010 Unnamed 3355 2.4 mi • W4K/EC-026 Unnamed 2540 2.5 mi",
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 30,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-6866": {
+   "pdfName": "Kentucky Ridge",
+   "counties": "Bell",
+   "type": "State Forest",
+   "potaName": "Kentucky Ridge State Forest",
+   "nameUrl": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Kentucky-Ridge-State-Forest.aspx",
+   "pota": [
+    "US-4689"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://eec.ky.gov/Natural-Resources/Forestry/Documents/KentuckyRidgeStateForest_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Kentucky-Ridge-State-Forest.aspx"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.67648717,-83.85264222"
+    }
+   ],
+   "gps": [
+    36.6841,
+    -83.8069
+   ],
+   "also": {
+    "inside": [
+     "W4K/EC-030",
+     "W4K/EC-091"
+    ],
+    "near": [
+     [
+      "W4K/EC-022",
+      1.4
+     ],
+     [
+      "W4K/EC-016",
+      1.6
+     ]
+    ]
+   },
+   "alsoText": "SOTA inside (KY GIS): W4K/EC-030 Unnamed 2452 • W4K/EC-091 Unnamed 2030 | SOTA within 3 mi: W4K/EC-022 Unnamed 2710 1.4 mi • W4K/EC-016 Unnamed 3070 1.6 mi",
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 KDFWR entrances — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 30,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-6867": {
+   "pdfName": "Pennyrile",
+   "counties": "Caldwell / Hopkins",
+   "type": "State Forest",
+   "potaName": "Pennyrile State Forest",
+   "nameUrl": "https://parks.ky.gov/dawson-springs/parks/resort/pennyrile-forest-state-resort-park",
+   "pota": [
+    "US-4692"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://eec.ky.gov/Natural-Resources/Forestry/Documents/PennyrileStateForestandTradewaterWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/dawson-springs/parks/resort/pennyrile-forest-state-resort-park"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.05784782,-87.65369034"
+    }
+   ],
+   "gps": [
+    37.0723,
+    -87.67
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 2 State Parks trailheads • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 30,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-6868": {
+   "pdfName": "Rolleigh Peterson",
+   "counties": "Jefferson",
+   "type": "State Forest",
+   "nameUrl": "https://logsearch.wwff.co/directory/KFF-6868",
+   "gps": [
+    38.1916,
+    -85.4635
+   ],
+   "pdfPage": 30,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-6869": {
+   "pdfName": "Tygarts",
+   "counties": "Carter",
+   "type": "State Forest",
+   "potaName": "Tygarts State Forest",
+   "nameUrl": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Tygarts-State-Forest.aspx",
+   "pota": [
+    "US-4693"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://eec.ky.gov/Natural-Resources/Forestry/Documents/TygartsStateForest_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Tygarts-State-Forest.aspx"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=38.38607856,-83.15651656"
+    }
+   ],
+   "gps": [
+    38.3848,
+    -83.1488
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    }
+   ],
+   "pdfPage": 30,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-6870": {
+   "pdfName": "Little South Fork",
+   "counties": "Wayne",
+   "type": "State Natural Area",
+   "potaName": "Little South Fork State Natural Area",
+   "nameUrl": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Burnett-WWCA.aspx",
+   "pota": [
+    "US-7962"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Burnett-WWCA.aspx"
+    }
+   ],
+   "gps": [
+    36.6981,
+    -84.7149
+   ],
+   "notes": [
+    {
+     "k": "PARKING (official page)",
+     "t": "parking is just up the hill (after metal bridge over Little South Fork)"
+    },
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 preserve page locations — see KPC map file"
+    }
+   ],
+   "pdfPage": 31,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-6871": {
+   "pdfName": "Martin's Fork",
+   "counties": "Harlan",
+   "type": "State Natural Area",
+   "potaName": "Martin's Fork (POTA)",
+   "nameUrl": "https://logsearch.wwff.co/directory/KFF-6871",
+   "pota": [
+    "US-7969"
+   ],
+   "gps": [
+    36.7366,
+    -83.2584
+   ],
+   "also": {
+    "inside": [],
+    "near": [
+     [
+      "W4K/EC-099",
+      1.7
+     ],
+     [
+      "W4K/EC-032",
+      2.9
+     ]
+    ]
+   },
+   "alsoText": "SOTA within 3 mi: W4K/EC-099 Unnamed 2008 1.7 mi • W4K/EC-032 Cranks Ridge 2.9 mi",
+   "pdfPage": 31,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-6872": {
+   "pdfName": "Sinking Creek",
+   "counties": "Laureel",
+   "type": "State Natural Area",
+   "potaName": "Sinking Creek State Natural Area",
+   "nameUrl": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Sinking-Creek.aspx",
+   "pota": [
+    "US-7970"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Sinking-Creek.aspx"
+    }
+   ],
+   "gps": [
+    37.1052,
+    -84.2339
+   ],
+   "notes": [
+    {
+     "k": "PARKING (official page)",
+     "t": "Open to the public via the Sheltowee Trace trail."
+    },
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 preserve page location — see KPC map file"
+    }
+   ],
+   "pdfPage": 31,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-6873": {
+   "pdfName": "William H. Martin",
+   "counties": "Pulaski",
+   "type": "State Natural Area",
+   "potaName": "William H. Martin State Natural Area",
+   "nameUrl": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Dr.-William-H.-Martin-WWCA.aspx",
+   "pota": [
+    "US-7964"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Dr.-William-H.-Martin-WWCA.aspx"
+    }
+   ],
+   "gps": [
+    37.0352,
+    -84.3349
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 Forest Service site • 1 preserve page location — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 31,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-6874": {
+   "pdfName": "Axe Lake",
+   "counties": "Ballard",
+   "type": "State Nature Preserve",
+   "nameUrl": "https://logsearch.wwff.co/directory/KFF-6874",
+   "gps": [
+    37.0825,
+    -89.08195
+   ],
+   "pdfPage": 31,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-6875": {
+   "pdfName": "Bad Branch",
+   "counties": "Letcher",
+   "type": "State Nature Preserve",
+   "potaName": "Bad Branch State Nature Preserve",
+   "nameUrl": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Bad-Branch.aspx",
+   "pota": [
+    "US-7966"
+   ],
+   "links": [
+    {
+     "k": "brochure",
+     "url": "https://eec.ky.gov/Nature-Preserves/Brochures/BadBranchbrochure_bw.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Bad-Branch.aspx"
+    }
+   ],
+   "gps": [
+    37.0676,
+    -82.7719
+   ],
+   "notes": [
+    {
+     "k": "PARKING (official page)",
+     "t": "Gravel parking area on left side of KY 932. There is parking for 10 vehilces or one bus available."
+    },
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 preserve page location — see KPC map file"
+    }
+   ],
+   "pdfPage": 31,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-6876": {
+   "pdfName": "Blanton Forest",
+   "counties": "Harlan",
+   "type": "State Nature Preserve",
+   "potaName": "Blanton Forest State Nature Preserve",
+   "nameUrl": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Blanton-Forest.aspx",
+   "pota": [
+    "US-7967"
+   ],
+   "links": [
+    {
+     "k": "brochure",
+     "url": "https://eec.ky.gov/Nature-Preserves/Brochures/BlantonForestbrochure_color.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Blanton-Forest.aspx"
+    }
+   ],
+   "gps": [
+    36.8592,
+    -83.3821
+   ],
+   "notes": [
+    {
+     "k": "PARKING (official page)",
+     "t": "Parking - lot adjacent to Camp Blanton."
+    },
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 preserve page location — see KPC map file"
+    }
+   ],
+   "pdfPage": 32,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-6877": {
+   "pdfName": "Blue Licks",
+   "counties": "Robertson",
+   "type": "State Nature Preserve",
+   "nameUrl": "https://parks.ky.gov/carlisle/parks/historic/blue-licks-battlefield-state-resort-park",
+   "links": [
+    {
+     "k": "web",
+     "url": "https://parks.ky.gov/carlisle/parks/historic/blue-licks-battlefield-state-resort-park"
+    }
+   ],
+   "gps": [
+    38.4318,
+    -83.9954
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "9 State Parks trailheads — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    },
+    {
+     "k": "NOTES",
+     "t": "Not an official KFF-POTA match. Related nearby POTA park: US-1274 Blue Licks Battlefield State Park — its links and access points are shown for convenience; check boundaries."
+    }
+   ],
+   "pdfPage": 32,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-6878": {
+   "pdfName": "Brigadoon",
+   "counties": "Barren",
+   "type": "State Nature Preserve",
+   "potaName": "Brigadoon State Nature Preserve",
+   "nameUrl": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Brigadoon.aspx",
+   "pota": [
+    "US-7965"
+   ],
+   "links": [
+    {
+     "k": "brochure",
+     "url": "https://eec.ky.gov/Nature-Preserves/Brochures/BrigadoonBrochure_bw.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Brigadoon.aspx"
+    }
+   ],
+   "gps": [
+    36.8978,
+    -85.9811
+   ],
+   "notes": [
+    {
+     "k": "PARKING (official page)",
+     "t": "Parking - 10 cars"
+    },
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 1 preserve page location — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 32,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-6879": {
+   "pdfName": "E. Lucy Braun",
+   "counties": "Harlan",
+   "type": "State Nature Preserve",
+   "potaName": "E. Lucy Braun State Nature Preserve",
+   "nameUrl": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/E.-Lucy-Braun.aspx",
+   "pota": [
+    "US-7968"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/E.-Lucy-Braun.aspx"
+    }
+   ],
+   "gps": [
+    36.9649,
+    -83.1094
+   ],
+   "also": {
+    "inside": [],
+    "near": [
+     [
+      "W4K/EC-023",
+      2.3
+     ],
+     [
+      "W4K/EC-013",
+      2.6
+     ],
+     [
+      "W4K/EC-020",
+      3.0
+     ]
+    ]
+   },
+   "alsoText": "SOTA within 3 mi: W4K/EC-023 Unnamed 2660 2.3 mi • W4K/EC-013 Unnamed 3340B 2.6 mi • W4K/EC-020 Unnamed 2940 3.0 mi",
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 preserve page location • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 32,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-6880": {
+   "pdfName": "Frances Johnson Palk",
+   "counties": "Pulaski",
+   "type": "State Nature Preserve",
+   "nameUrl": "https://logsearch.wwff.co/directory/KFF-6880",
+   "gps": [
+    37.9027,
+    -84.3597
+   ],
+   "pdfPage": 32,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-6881": {
+   "pdfName": "Green River",
+   "counties": "Hart",
+   "type": "State Nature Preserve",
+   "nameUrl": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx",
+   "links": [
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx"
+    }
+   ],
+   "gps": [
+    37.2603,
+    -85.9104
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 preserve page location — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "Same official website as POTA US-12752 (Rush Island Bottoms, Green River State Natural Area). The WWFF directory lists coordinates in North Carolina (35.16420, -82.58400), which are wrong, so the GPS here uses the POTA park location — confirm before you travel. Not an official KFF-POTA match. Related nearby POTA park: US-12752 Green River State Natural Area — its links and access points are shown for convenience; check boundaries."
+    }
+   ],
+   "pdfPage": 33,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-6882": {
+   "pdfName": "Hall Hill/Vernon-Douglas",
+   "counties": "Hardin",
+   "type": "State Nature Preserve",
+   "potaName": "Hall-Hill/Vernon-Douglas State Nature Preserve",
+   "nameUrl": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Vernon-Douglas.aspx",
+   "pota": [
+    "US-7957"
+   ],
+   "links": [
+    {
+     "k": "brochure",
+     "url": "https://eec.ky.gov/Nature-Preserves/Brochures/VernonDouglasBrochure_bw.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Vernon-Douglas.aspx"
+    }
+   ],
+   "gps": [
+    37.7333,
+    -85.7077
+   ],
+   "notes": [
+    {
+     "k": "PARKING (official page)",
+     "t": "Drive 0.5 mile to the preserve and park in parking lot on left."
+    },
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 preserve page location — see KPC map file"
+    }
+   ],
+   "pdfPage": 33,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-6883": {
+   "pdfName": "James E Bickford",
+   "counties": "Harlan",
+   "type": "State Nature Preserve",
+   "nameUrl": "https://logsearch.wwff.co/directory/KFF-6883",
+   "gps": [
+    36.948,
+    -83.1824
+   ],
+   "also": {
+    "inside": [],
+    "near": [
+     [
+      "W4K/EC-020",
+      1.2
+     ],
+     [
+      "W4K/EC-026",
+      1.6
+     ],
+     [
+      "W4K/EC-023",
+      2.8
+     ]
+    ]
+   },
+   "alsoText": "SOTA within 3 mi: W4K/EC-020 Unnamed 2940 1.2 mi • W4K/EC-026 Unnamed 2540 1.6 mi • W4K/EC-023 Unnamed 2660 2.8 mi",
+   "pdfPage": 33,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-6884": {
+   "pdfName": "Jesse Stuart",
+   "counties": "Greenup",
+   "type": "State Nature Preserve",
+   "potaName": "Jesse Stuart State Nature Preserve",
+   "nameUrl": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Jesse-Stuart.aspx",
+   "pota": [
+    "US-7961"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Jesse-Stuart.aspx"
+    }
+   ],
+   "gps": [
+    38.5471,
+    -82.8415
+   ],
+   "notes": [
+    {
+     "k": "PARKING (official page)",
+     "t": "Parking - six cars; one bus"
+    },
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 preserve page location • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 33,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-6885": {
+   "pdfName": "Kentucky River Palisades/Tom Dorman",
+   "counties": "Greenup",
+   "type": "State Nature Preserve",
+   "potaName": "Kentucky River Palisades/Tom Dorman State Nature Preserve",
+   "nameUrl": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Tom-Dorman.aspx",
+   "pota": [
+    "US-7958"
+   ],
+   "links": [
+    {
+     "k": "brochure",
+     "url": "https://eec.ky.gov/Nature-Preserves/Brochures/TomDormanBrochure_bw.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Tom-Dorman.aspx"
+    }
+   ],
+   "gps": [
+    37.7625,
+    -84.6172
+   ],
+   "notes": [
+    {
+     "k": "PARKING (official page)",
+     "t": "Parking - eight cars"
+    },
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 preserve page location — see KPC map file"
+    }
+   ],
+   "pdfPage": 33,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-6886": {
+   "pdfName": "Pilot Knob",
+   "counties": "Powell",
+   "type": "State Nature Preserve",
+   "potaName": "Pilot Knob State Nature Preserve",
+   "nameUrl": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Pilot-Knob.aspx",
+   "pota": [
+    "US-7963"
+   ],
+   "links": [
+    {
+     "k": "brochure",
+     "url": "https://eec.ky.gov/Nature-Preserves/Brochures/PilotKnobBrochure_bw.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Pilot-Knob.aspx"
+    }
+   ],
+   "gps": [
+    37.9121,
+    -83.945
+   ],
+   "also": {
+    "inside": [
+     "W4K/EC-184"
+    ],
+    "near": []
+   },
+   "alsoText": "SOTA inside (KY GIS): W4K/EC-184 Pilot Knob",
+   "notes": [
+    {
+     "k": "PARKING (official page)",
+     "t": "Parking - seven or eight cars; one or two buses"
+    },
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 1 preserve page location — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    }
+   ],
+   "pdfPage": 34,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-6889": {
+   "pdfName": "Knobs",
+   "counties": "Bullitt",
+   "type": "Wildlife Management Area / State Forest",
+   "nameUrl": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Knobs-State-Forest-and-Wildlife-Management-Area.aspx",
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/KnobsStateForestandWMA_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Knobs-State-Forest-and-Wildlife-Management-Area.aspx"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.89027854,-85.69610133"
+    }
+   ],
+   "gps": [
+    37.8813,
+    -85.6763
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    },
+    {
+     "k": "NOTES",
+     "t": "Not an official KFF-POTA match. Related nearby POTA park: US-4690 Knobs State Forest — its links and access points are shown for convenience; check boundaries."
+    }
+   ],
+   "pdfPage": 34,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-6891": {
+   "pdfName": "Marrow",
+   "counties": "Cumberland / Metcalfe",
+   "type": "Wildlife Management Area / State Forest",
+   "nameUrl": "https://logsearch.wwff.co/directory/KFF-6891",
+   "gps": [
+    37.535,
+    -85.1382
+   ],
+   "pdfPage": 34,
+   "mapRegion": "Bluegrass"
+  },
+  "KFF-7268": {
+   "pdfName": "Red River",
+   "counties": "Powell / Wolfe",
+   "type": "National / NPS",
+   "potaName": "Red River National Wild and Scenic River",
+   "nameUrl": "https://www.fs.usda.gov/recarea/dbnf/recreation/recarea/?recid=39548",
+   "pota": [
+    "US-10104"
+   ],
+   "links": [
+    {
+     "k": "brochure",
+     "url": "https://usfs-public.app.box.com/s/hl7pijwfnyefzcuebgl6yialfsxae9km"
+    },
+    {
+     "k": "web",
+     "url": "https://www.fs.usda.gov/recarea/dbnf/recreation/recarea/?recid=39548"
+    }
+   ],
+   "gps": [
+    37.8199,
+    -83.5751
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "11 Forest Service sites • 2 fishing access sites — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    },
+    {
+     "k": "NOTES",
+     "t": "POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm."
+    }
+   ],
+   "pdfPage": 34,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-7270": {
+   "pdfName": "Cane Creek",
+   "counties": "Pulaski",
+   "type": "WMA",
+   "potaName": "Cane Creek Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=38",
+   "pota": [
+    "US-10121"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/CaneCreekWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=38"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.99752256,-84.28476177"
+    }
+   ],
+   "gps": [
+    36.9979,
+    -84.2853
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance • 2 Forest Service sites • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    },
+    {
+     "k": "NOTES",
+     "t": "POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm."
+    }
+   ],
+   "pdfPage": 34,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-7271": {
+   "pdfName": "Crooked Creek",
+   "counties": "Bracken",
+   "type": "Nature Preserve",
+   "potaName": "Crooked Creek State Nature Preserve",
+   "nameUrl": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Crooked-Creek.aspx",
+   "pota": [
+    "US-7960"
+   ],
+   "links": [
+    {
+     "k": "web",
+     "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Crooked-Creek.aspx"
+    }
+   ],
+   "gps": [
+    38.6412,
+    -83.5722
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 preserve page location — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm."
+    }
+   ],
+   "pdfPage": 35,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-7272": {
+   "pdfName": "Dewey Lake",
+   "counties": "Floyd",
+   "type": "WMA",
+   "potaName": "Dewey Lake Wildlife Management Area",
+   "nameUrl": "https://fw.ky.gov/More/Documents/DeweyLakeWMA-ALL.pdf",
+   "pota": [
+    "US-4687"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/DeweyLakeWMA-ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/DeweyLakeWMA-ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.70153132,-82.64570093"
+    }
+   ],
+   "gps": [
+    37.7363,
+    -82.7289
+   ],
+   "also": {
+    "inside": [],
+    "near": [
+     [
+      "W4K/EC-190",
+      1.0
+     ],
+     [
+      "W4K/EC-194",
+      1.5
+     ],
+     [
+      "W4K/EC-176",
+      2.4
+     ]
+    ]
+   },
+   "alsoText": "SOTA within 3 mi: W4K/EC-190 Unnamed 1355 1.0 mi • W4K/EC-194 Unnamed 1250 1.5 mi • W4K/EC-176 Unnamed 1540A 2.4 mi",
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 KDFWR entrances • 1 fishing access site — see KPC map file; nearby points (within 5 mi) may be outside the park"
+    },
+    {
+     "k": "NOTES",
+     "t": "POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm."
+    }
+   ],
+   "pdfPage": 35,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-7366": {
+   "pdfName": "Ferguson Creek",
+   "counties": "McCracken",
+   "type": "WMA",
+   "potaName": "Ferguson Creek Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9715",
+   "pota": [
+    "US-10128"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/FergusonCreekWMA_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9715"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.14008467,-88.37013035"
+    }
+   ],
+   "gps": [
+    37.1489,
+    -88.3482
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm."
+    }
+   ],
+   "pdfPage": 35,
+   "mapRegion": "Jackson Purchase"
+  },
+  "KFF-7367": {
+   "pdfName": "Gabbard Branch",
+   "counties": "Hart",
+   "type": "WMA",
+   "potaName": "Gabbard Branch Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9713",
+   "pota": [
+    "US-10131"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/GabbardBranchWMA_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9713"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.21861192,-86.52843789"
+    }
+   ],
+   "gps": [
+    37.2186,
+    -86.5288
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm."
+    }
+   ],
+   "pdfPage": 35,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "KFF-7368": {
+   "pdfName": "Harris-Dickerson",
+   "counties": "Hopkins",
+   "type": "WMA",
+   "potaName": "Harris-Dickerson Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9709",
+   "pota": [
+    "US-10137"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/Harris-Dickerson_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9709"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=37.31829523,-87.36964354"
+    }
+   ],
+   "gps": [
+    37.3188,
+    -87.3614
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm."
+    }
+   ],
+   "pdfPage": 36,
+   "mapRegion": "Western Kentucky"
+  },
+  "KFF-7369": {
+   "pdfName": "Hoskins",
+   "counties": "Harlan / Leslie",
+   "type": "WMA",
+   "potaName": "Hoskins Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9711",
+   "pota": [
+    "US-10138"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/Hoskins_WMA_All.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9711"
+    }
+   ],
+   "gps": [
+    37.1052,
+    -83.3678
+   ],
+   "notes": [
+    {
+     "k": "NOTES",
+     "t": "POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm."
+    }
+   ],
+   "pdfPage": 36,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-7370": {
+   "pdfName": "Kentucky Ridge",
+   "counties": "Bell",
+   "type": "WMA",
+   "potaName": "Kentucky Ridge Wildlife Management Area",
+   "nameUrl": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=186",
+   "pota": [
+    "US-10141"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/KentuckyRidgeForestWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=186"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.77243809,-83.7707801"
+    }
+   ],
+   "gps": [
+    36.7729,
+    -83.7799
+   ],
+   "also": {
+    "inside": [
+     "W4K/EC-091"
+    ],
+    "near": [
+     [
+      "W4K/EC-109",
+      2.4
+     ],
+     [
+      "W4K/EC-043",
+      2.8
+     ]
+    ]
+   },
+   "alsoText": "SOTA inside (KY GIS): W4K/EC-091 Unnamed 2030 | SOTA within 3 mi: W4K/EC-109 Unnamed 1930 2.4 mi • W4K/EC-043 Unnamed 2300A 2.8 mi",
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm."
+    }
+   ],
+   "pdfPage": 36,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "KFF-7371": {
+   "pdfName": "Marrowbone",
+   "counties": "Cumberland",
+   "type": "State Forest",
+   "potaName": "Marrowbone State Forest",
+   "nameUrl": "https://fw.ky.gov/More/Documents/MarrowboneStateForestandWMA_ALL.pdf",
+   "pota": [
+    "US-7952"
+   ],
+   "links": [
+    {
+     "k": "map",
+     "url": "https://fw.ky.gov/More/Documents/MarrowboneStateForestandWMA_ALL.pdf"
+    },
+    {
+     "k": "web",
+     "url": "https://fw.ky.gov/More/Documents/MarrowboneStateForestandWMA_ALL.pdf"
+    },
+    {
+     "k": "entrance",
+     "url": "https://www.google.com/maps/search/?api=1&query=36.84787132,-85.607904"
+    }
+   ],
+   "gps": [
+    36.8643,
+    -85.6212
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR entrance — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm."
+    }
+   ],
+   "pdfPage": 36,
+   "mapRegion": "South Central Pennyroyal"
+  }
+ }
+}

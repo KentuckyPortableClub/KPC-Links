@@ -9,6 +9,7 @@ import collections
 import concurrent.futures as cf
 import datetime as dt
 import html
+import json
 import os
 import pathlib
 import re
@@ -47,6 +48,16 @@ for p in pages:
         if not u or '${' in u or u.startswith(('mailto:', 'tel:', 'javascript:', 'data:', 'sms:', 'geo:')):
             continue
         refs[u].add(p.name)
+
+# Links lists kept as data (Tools & Essential Links, Founders' Favorites) are drawn by kpc-guide-links.js
+try:
+    gl = json.loads((ROOT / 'kpc-guide-links.json').read_text(encoding='utf-8'))
+    for key, pg in gl.get('pages', {}).items():
+        page = {'tools': 'kpc-guide-tools-links.html', 'founders': 'kpc-guide-founders-favorites.html'}.get(key, 'kpc-guide-links.json')
+        for u in re.findall(r'"url":\s*"([^"]+)"', json.dumps(pg)):
+            refs[u].add(page)
+except Exception:
+    pass
 
 broken, anchors, blocked = [], [], []
 

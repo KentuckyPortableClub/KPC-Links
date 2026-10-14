@@ -1,0 +1,81 @@
+</head>
+<body>
+@@HEADER@@
+<main>
+<section class="hero no-print"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • FIELD RESOURCE</p><h1>KENTUCKY <span>SOTA</span></h1><p class="hero-copy">W4K summits • by region. Summits on the Air • Association W4K (Kentucky). Every summit, its points, the parks close by, and a map of each region.</p><div class="pdf-actions"><a class="btn" href="KPC_Kentucky_SOTA_W4K_Resource.pdf" target="_blank" rel="noopener">DOWNLOAD PDF</a><a class="btn alt" href="https://sotl.as/summits/W4K" target="_blank" rel="noopener">OPEN W4K ON SOTLAS →</a><button class="btn alt" type="button" onclick="window.print()">PRINT</button></div></div></section>
+<div class="g-wrap"><div class="g-cover g-print-only"><div class="top"><span>KENTUCKY PORTABLE CLUB • KPC</span><span>PROVIDED BY BRANDON WHITE • KZ4CP</span></div><img src="KPC-logo.png" alt="KPC logo"><h1>KENTUCKY SOTA</h1><div class="sub">Field Resource</div><div class="k">W4K SUMMITS • BY REGION</div><div class="k2">Summits on the Air • Association W4K (Kentucky)</div></div></div>
+@@DISCLAIM@@
+<div class="g-wrap">
+<p class="g-err" id="gErr" hidden></p>
+
+<section class="g-sec" id="about">
+<div class="g-intro">
+ <div class="g-box"><h3>ABOUT THIS GUIDE</h3><p>All <span id="gTotal">216</span> SOTA summits in association W4K (Kentucky), from the SOTLAS summit export. Each summit code opens its SOTLAS page. Points and elevation come from that export. Cards also list POTA and WWFF (KFF) parks within 3 miles.</p><p class="g-dim" style="font-size:13px">On this page the summit list comes from the club’s live Kentucky data file, so it stays current. <span id="gUpdated"></span></p></div>
+ <div class="g-box"><h3>FIELD-USE NOTE</h3><p>Many summits are on private land — get permission. Operate within the SOTA activation zone and follow the SOTA General Rules and W4K Association Reference Manual. Verify access, closures and hunting seasons before travel.</p></div>
+ <div class="g-box warn g-keep"><h3>Access: Permission &amp; Safety First</h3><p>Many Kentucky summits are on private, mining or timber land. Always get landowner permission where needed, and check SOTLAS and the W4K reference manual for access notes before you go.</p><p>This guide is a research tool, not the final word — do your homework before you go and confirm you are on the correct summit and inside its activation zone.</p></div>
+</div>
+</section>
+
+<section class="g-sec g-break" id="find">
+<div class="g-kick">KENTUCKY SOTA FIELD RESOURCE • W4K</div>
+<h2>Find a Summit</h2>
+<p class="g-sub">Tap a group to jump to that section. Every summit code opens its SOTLAS page; NEARBY jumps to that summit’s nearby-summits list.</p>
+<div class="g-tiles" id="gTiles"></div>
+<div class="g-bar"><a class="lead" href="#county">FIND A SUMMIT BY COUNTY →</a></div>
+<div class="g-bar"><a class="lead" href="#maps">REGIONAL MAPS →</a><span id="gRegChips" style="display:contents"></span></div>
+<div class="g-how g-keep"><h3>HOW TO READ EACH CARD</h3><dl>
+ <dt>W4K/XX-###</dt><dd>Opens the summit’s SOTLAS page (details, photos, activations).</dd>
+ <dt>POTA / KFF WITHIN 3 MI</dt><dd>Parks near the summit — distance to the park reference point; check boundaries.</dd>
+ <dt>INSIDE PUBLIC LAND (KY GIS)</dt><dd>The summit point falls inside an official Kentucky public-land polygon; confirm before claiming.</dd>
+ <dt>GPS</dt><dd>The summit’s GPS point in Google Maps, for directions.</dd>
+ <dt>OSM MAP</dt><dd>OpenStreetMap at the summit — community-edited data.</dd>
+ <dt>WEATHER</dt><dd>The Weather Channel forecast for the summit’s GPS point.</dd>
+ <dt>NEARBY</dt><dd>Jumps to this summit’s nearby-summits list (nearest + all within 10 mi).</dd>
+</dl>
+<div class="g-links"><a class="gold g-url" href="https://sotl.as/summits/W4K" target="_blank" rel="noopener">OPEN W4K ON SOTLAS (MAP • PHOTOS • ACTIVATIONS) →</a></div>
+</div>
+<div class="g-links"><a class="g-url" href="https://kentuckyportableclub.github.io/KPC-Links/finder.html">KPC ACTIVATION FINDER (WEB MAP) →</a><a class="g-url" href="https://kentuckyportableclub.github.io/KPC-Links/parks.html">KPC KENTUCKY PARKS PAGE →</a></div>
+</section>
+</div>
+
+<div class="g-tools no-print"><div class="g-wrap">
+ <div class="g-row"><input id="gSearch" type="search" placeholder="Search code, summit, county or park…" aria-label="Search summits" autocomplete="off"><select id="gRegion" aria-label="Region"></select><button id="gClear" type="button">CLEAR</button></div>
+ <div class="g-count" id="gCount" aria-live="polite">Loading summits…</div>
+ <nav class="g-jump" id="gJump" aria-label="Jump to section"></nav>
+</div></div>
+
+<div class="g-wrap">
+<section class="g-sec g-break" id="maps">
+<div class="g-kick">REGIONAL MAPS</div>
+<h2>Summits by Region</h2>
+<p class="g-sub">Six Kentucky regions. Pins are colored by SOTA points; tap a pin to open its card.</p>
+<div id="gMaps"></div>
+</section>
+
+<section class="g-sec g-break" id="county">
+<div class="g-kick">KENTUCKY SOTA FIELD RESOURCE • BY COUNTY</div>
+<h2>Summits by County</h2>
+<p class="g-sub" id="gCountyHead"></p>
+<div id="gCounty"></div>
+</section>
+
+<section class="g-sec g-break" id="cards">
+<div class="g-kick">KENTUCKY SOTA FIELD RESOURCE • W4K</div>
+<h2>The Summits</h2>
+<div class="g-banner">GET PERMISSION FOR PRIVATE LAND • CONFIRM PARK BOUNDARIES BEFORE CLAIMING A COMBO</div>
+<p class="g-none no-print" id="gNone" hidden>No summits match. Try a shorter search or pick “All regions”.</p>
+<div id="gCards"></div>
+</section>
+
+<section class="g-sec g-break" id="nearby">
+<div class="g-kick">KENTUCKY SOTA FIELD RESOURCE • W4K</div>
+<h2>Nearby Summits</h2>
+<p class="g-sub">Each summit’s closest neighbor and every summit within 10 miles. Tap any summit to jump to its card; tap a heading to go back to that summit. Distances are straight-line miles (as the crow flies) between each park’s GPS point — not driving distance.</p>
+<div id="gNearby"></div>
+</section>
+<p class="g-endnote">KPC KENTUCKY SOTA (W4K) RESOURCE • VERIFY CURRENT RULES, ACCESS, MAPS, PERMITS, AND SEASONAL CONDITIONS BEFORE TRAVEL.</p>
+<p class="g-endnote no-print"><a class="btn" href="KPC_Kentucky_SOTA_W4K_Resource.pdf" target="_blank" rel="noopener">DOWNLOAD PDF</a></p>
+</div>
+</main>
+@@FOOTER@@
+<script src="kpc-guide-sota.js?v=20261013a" defer></script>
