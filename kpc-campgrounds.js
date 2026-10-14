@@ -56,7 +56,7 @@
       (x.notes ? '<p>' + esc(x.notes) + '</p>' : '') +
       (x.note ? '<p>' + esc(x.note) + '</p>' : '') +
       (x.phone ? '<p><b>PHONE</b> <a href="tel:' + esc(String(x.phone).replace(/[^0-9+]/g, '')) + '">' + esc(x.phone) + '</a></p>' : '') +
-      '<div class="cg-btns">' + ext(x.url, kind === 'camp' ? 'CAMPGROUND PAGE' : 'PAGE', 'dark') + (closed && x.source && x.source !== x.url ? ext(x.source, 'WHERE IT SAYS CLOSED') : '') + ext(x.map, 'CAMPGROUND MAP', 'gold') + ext(x.reserve, kind === 'camp' ? 'RESERVE' : 'BOOK') +
+      '<div class="cg-btns">' + ext(x.url, kind === 'camp' ? 'CAMPGROUND PAGE' : 'PAGE', 'dark') + (closed && x.source && x.source !== x.url ? ext(x.source, 'WHERE IT SAYS CLOSED') : '') + ext(x.map, 'CAMPGROUND MAP', 'gold') + ext(x.areaMap, 'OFFICIAL WMA MAP', 'gold') + ext(x.reserve, kind === 'camp' ? 'RESERVE' : 'BOOK') +
       (isFinite(x.la) && x.la ? ext(gps(x.la, x.lo), 'GPS') : '') +
       (fl ? '<a class="cg-b rev" href="' + esc(fl) + '" target="_blank" rel="noopener">REVIEW IT ›</a>' : '') + '</div>' +
       revHtml(rv) + '</div>';
