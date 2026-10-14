@@ -1,5 +1,6 @@
 name: KPC YouTube Feed
-# Keeps videos.html current. Every two hours this reads the public YouTube feed for each
+# Keeps videos.html current and shares new videos on the Facebook Page and in the KPC Discord.
+# Every two hours this reads the public YouTube feed for each
 # club channel and saves the newest videos to kpc-youtube.json (no API key needed).
 #  - Only commits when a video is added, removed or renamed (or twice a day for view counts).
 #  - If YouTube doesn't answer, the last good list is kept, so the page never goes blank.
@@ -113,6 +114,21 @@ jobs:
             git add kpc-fb-posted.json
             if ! git diff --cached --quiet; then
               git commit -m 'Remember videos shared on Facebook'
+              git pull --rebase --autostash || true
+              git push || echo 'Push skipped; will save on the next run.'
+            fi
+          fi
+      - name: Share new videos in the KPC Discord
+        if: ${{ !cancelled() }}
+        env:
+          KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+        run: |
+          git pull --rebase --autostash || true
+          node .github/scripts/kpc_discord_videos.js
+          if [ -f kpc-discord-videos.json ]; then
+            git add kpc-discord-videos.json
+            if ! git diff --cached --quiet; then
+              git commit -m 'Remember videos shared on Discord'
               git pull --rebase --autostash || true
               git push || echo 'Push skipped; will save on the next run.'
             fi
