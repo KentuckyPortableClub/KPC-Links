@@ -23,7 +23,7 @@ def find_form_entry():
     if old!=new: json.dump(new,open('kpc-park-notes-form.json','w'),indent=1)
     notice('Form found; Park number is '+entry+'.')
   except Exception as e: notice('Could not read the Google Form: '+str(e))
-find_form_entry()
+# The form needs a Google sign-in, so it can't be read from here; the entry number is kept in kpc-park-notes-form.json.
 if not URL: notice('NOTES_SHEET_CSV secret not set yet; nothing to do.'); sys.exit(0)
 def get(u):
   r=urllib.request.Request(u,headers={'User-Agent':'KPC park notes'})
