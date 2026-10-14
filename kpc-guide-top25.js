@@ -70,6 +70,6 @@ if(KM){KM.bar($('km-bar'));window.addEventListener('kpcmine',render)}
 $('live').addEventListener('click',live);
 jget('kpc-top25.json').then(j=>{D=j;render()}).catch(()=>{
  $('upd').textContent='COULD NOT LOAD THE LIST';
- $('msg').textContent='The saved list did not load. Tap GET LIVE POTA NUMBERS, or download the PDF.';
+ $('msg').textContent='The saved list did not load. Tap GET LIVE POTA NUMBERS, or open the PDF.';
  document.documentElement.dataset.ready='1'});
 })();

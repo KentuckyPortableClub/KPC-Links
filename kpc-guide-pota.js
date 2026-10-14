@@ -458,7 +458,7 @@
     })
     .catch(function (e) {
       var el = $('gErr');
-      if (el) { el.hidden = false; el.textContent = 'Sorry, the park list did not load (' + e.message + '). Try reloading, or use a PDF download.'; }
+      if (el) { el.hidden = false; el.textContent = 'Sorry, the park list did not load (' + e.message + '). Try reloading, or open the PDF.'; }
       root.dataset.ready = 'error';
       if (window.console) console.warn(e);
     });
