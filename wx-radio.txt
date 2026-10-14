@@ -1,0 +1,1 @@
+{"v":"https://kentuckyportableclub.github.io/KPC-Links/kpc-weather.js?v=20261014d","m":"🔊 Playing Frankfort WZ2523 live. Tap again to stop.","errs":[]}
