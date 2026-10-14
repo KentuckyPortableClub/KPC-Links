@@ -170,7 +170,7 @@
         p._reg = r || D.regions[String(countyAt(C, p.la, p.lo)).toUpperCase()] || null;
       }
     });
-    STATE = { D: D, G: G, C: C, WR: WR, P: P, byC: byC };
+    STATE = { D: D, G: G, C: C, WR: WR, P: P, byC: byC, CG: STATE.CG };
   }
 
   /* ---------- 2-fers (fers.json via kpc-guide-pota-data.json) ---------- */
@@ -236,7 +236,8 @@
       if (lab === 'GPS') return ext(gps(p.la, p.lo), 'GPS', cls);
       if (lab === 'OSM BOUNDARY') return ext(osm(p.la, p.lo), 'OSM BOUNDARY', cls);
       if (lab === 'WEATHER') return ext(wx(p.la, p.lo), 'WEATHER', cls);
-      if (lab === 'NEARBY ›') return '<a class="' + cls + '" href="#' + pnid(p.c) + '">NEARBY ›</a><a class="b b-near no-print" href="kpc-park-notes.html#' + p.c + '">PARK TIPS ›</a>';
+      if (lab === 'NEARBY ›') return '<a class="' + cls + '" href="#' + pnid(p.c) + '">NEARBY ›</a><a class="b b-near no-print" href="kpc-park-notes.html#' + p.c + '">PARK TIPS ›</a>' +
+        (STATE.CG && STATE.CG[p.c] ? '<a class="b b-gold no-print" href="kpc-campgrounds.html#park-' + p.c + '">CAMPGROUNDS &amp; REVIEWS ›</a>' : '');
       return ext(b[1], esc(lab), cls);
     }).join('');
     var co = String(p.co || '');
@@ -448,8 +449,9 @@
     return fetch(u, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); })
       .catch(function (e) { if (optional) return null; throw e; });
   }
-  Promise.all([getJSON('kpc-ky-data.json'), getJSON('kpc-guide-pota-data.json'), getJSON('kpc-ky-counties-hd.json'), getJSON('ky-wild-rivers.geojson', true)])
+  Promise.all([getJSON('kpc-ky-data.json'), getJSON('kpc-guide-pota-data.json'), getJSON('kpc-ky-counties-hd.json'), getJSON('ky-wild-rivers.geojson', true), getJSON('kpc-campgrounds.json', true)])
     .then(function (a) {
+      STATE.CG = {}; ((a[4] && a[4].parks) || []).forEach(function (x) { STATE.CG[x.pota] = 1; });   // parks with a campground / cabin card
       setup(a[0], a[1], a[2], a[3]);
       renderStatic();
       renderOrder(getOrder());
