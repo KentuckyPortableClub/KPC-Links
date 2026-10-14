@@ -349,7 +349,7 @@ document.getElementById('ytGrid').addEventListener('click',function(e){var b=e.t
 fetch('kpc-youtube.json?t='+Math.floor(Date.now()/6e5),{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(start).catch(function(){start(null)});
 })();
 </script>
-<script src="kpc-search.js?v=20261011c" defer></script><script>
+<script src="kpc-search.js?v=20261013n" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
