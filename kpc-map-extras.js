@@ -1,4 +1,4 @@
-/* KPC map extras — v20261011a
+/* KPC map extras — v20261014m
    Shared by KY Park Commander (finder.html) and the Trip Planner (kpc-planner.html):
    • Parking and Entrance markers with their own on/off switches
        official = Kentucky agency GIS (KDFWR, WMA Map Points, Kentucky State Parks) and the KPC park file
@@ -38,6 +38,51 @@ const dirUrl = (a, b) => `https://www.google.com/maps/dir/?api=1&destination=${a
 const fine = window.matchMedia ? matchMedia('(hover: hover) and (pointer: fine)').matches : false;
 const store = {get(k, d){try{const v = localStorage.getItem(k);return v == null ? d : JSON.parse(v)}catch(e){return d}}, set(k, v){try{localStorage.setItem(k, JSON.stringify(v))}catch(e){}}};
 
+/* ---------- look settings, shared by both tools: Thick boundaries and Big pins ----------
+   kpcThickLines / kpcBigPins in localStorage ('1' on, '0' off; default on = the usual look).
+   Off = thinner boundary and trail lines, and pins about 60% size. Applied at once and to everything drawn later. */
+const LOOKKEY = {thick:'kpcThickLines', big:'kpcBigPins'}, PIN_S = .6;
+const lsOn = k => {try{const v = localStorage.getItem(k); return v == null ? true : v !== '0'}catch(e){return true}};
+const look = {thick:lsOn(LOOKKEY.thick), big:lsOn(LOOKKEY.big)}, lookFns = [], MAPS = [];
+document.documentElement.classList.toggle('kx-thin', !look.thick);   // satellite boundary colors in finder.css use !important widths
+const lw = w => look.thick ? w : Math.max(1, Math.round(w * 4) / 10);        // 4 → 1.6, 2.5 → 1, 6 → 2.4
+const fo = f => look.thick ? f : Math.round(f * 50) / 100;                     // fill half as strong
+L.Map.addInitHook(function(){MAPS.push(this)});
+/* smaller pins: every DivIcon marker gets a scaled copy of its icon (kpcNoScale:true opts out) */
+function scaleIcon(ic){
+ if (!ic || !(ic instanceof L.DivIcon)) return ic;
+ const base = ic._kpcBase || ic;
+ if (look.big || base.options.kpcNoScale) return base;
+ if (base._kpcSm) return base._kpcSm;
+ const o = base.options, P = (v, d) => v == null ? d : typeof v === 'number' ? L.point(v, v) : L.point(v);
+ const sz = P(o.iconSize, null); if (!sz || typeof o.html !== 'string') return base;
+ const an = P(o.iconAnchor, sz.divideBy(2)), sc = q => q.multiplyBy(PIN_S).round();
+ const sm = new L.DivIcon(Object.assign({}, o, {iconSize:sc(sz), iconAnchor:sc(an), popupAnchor:sc(P(o.popupAnchor, L.point(0, 0))), tooltipAnchor:sc(P(o.tooltipAnchor, L.point(0, 0))),
+  html:`<div class="kx-smpin" style="width:${sz.x}px;height:${sz.y}px;transform:scale(${PIN_S});transform-origin:0 0">${o.html}</div>`}));
+ sm._kpcBase = base; base._kpcSm = sm; return sm;
+}
+if (!L.Marker.prototype._kpcLook) {
+ L.Marker.prototype._kpcLook = true;
+ const ii = L.Marker.prototype._initIcon;
+ L.Marker.prototype._initIcon = function(){const n = scaleIcon(this.options.icon); if (n) this.options.icon = n; return ii.apply(this, arguments)};
+ /* circle markers keep their own radius (_kpcR0) and are drawn at 60% when Big pins is off */
+ const cm = L.CircleMarker.prototype, pr = cm._project, sr = cm.setRadius;
+ L.CircleMarker.addInitHook(function(){if (!(this instanceof L.Circle)) this._kpcR0 = this.options.radius});
+ cm._project = function(){if (this._kpcR0 != null) this._radius = this._kpcR0 * (look.big ? 1 : PIN_S); return pr.apply(this, arguments)};
+ cm.setRadius = function(r){this._kpcR0 = r; return sr.apply(this, arguments)};
+ cm.setStyle = function(o){const r = o && o.radius; L.Path.prototype.setStyle.call(this, o); if (r) this.setRadius(r); return this};
+}
+function setLook(k, v){
+ if (!(k in look) || look[k] === !!v) return; look[k] = !!v;
+ try{localStorage.setItem(LOOKKEY[k], v ? '1' : '0')}catch(e){}
+ if (k === 'thick') document.documentElement.classList.toggle('kx-thin', !look.thick);
+ if (k === 'big') MAPS.forEach(m => m.eachLayer(l => {
+  if (l instanceof L.Marker && l._icon && l.options.icon instanceof L.DivIcon) l.setIcon(l.options.icon._kpcBase || l.options.icon);
+  else if (l instanceof L.CircleMarker && l._kpcR0 != null && l._map) l.redraw()}));
+ document.querySelectorAll('[data-kxlook="' + k + '"]').forEach(b => b.setAttribute('aria-pressed', String(look[k])));
+ lookFns.forEach(fn => {try{fn(Object.assign({}, look), k)}catch(e){}});
+}
+
 /* ---------- CSS ---------- */
 if (!document.getElementById('kx-css')) {
  const st = document.createElement('style'); st.id = 'kx-css';
@@ -73,6 +118,43 @@ if (!document.getElementById('kx-css')) {
 .kx-note{font-size:11.5px;color:#666;margin-top:6px}
 .kx-refs{margin:4px 0}.kx-refs div{margin:1px 0}
 .kx-refs a{font-weight:900;color:#1d5a3a}
+html.kx-thin path.kpc-bnd{filter:drop-shadow(0 0 .8px rgba(0,0,0,.8))}
+html.kx-thin .kpc-sat path.kpc-bnd{stroke-width:1.6px!important}html.kx-thin .kpc-sat path.kpc-bnd[stroke-dasharray]{stroke-width:1.2px!important}
+.kx-tbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 0;position:relative;font-family:Arial,Helvetica,sans-serif}
+.kx-tbar>*{min-width:0}
+.kx-tbar .kx-lbtn,.kx-tbar .kx-tg{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:8px 14px;border-radius:999px;font:900 13px/1.1 Arial,Helvetica,sans-serif;letter-spacing:.3px;cursor:pointer;white-space:nowrap;box-sizing:border-box}
+.kx-tbar .kx-lbtn{background:#d5a63a;color:#111;border:1px solid #d5a63a}
+.kx-tbar .kx-lbtn[aria-expanded=true]{background:#f0c96b}
+.kx-lbtn .kx-n{font-weight:700;font-size:11.5px;background:#111;color:#f0c96b;border-radius:999px;padding:2px 7px}
+.kx-tbar .kx-tg,.kx-tbar .kx-tg[aria-pressed]{background:#171717;color:#f0c96b;border:1px solid #6b5a33}
+.kx-tg::before{content:"";flex:0 0 auto;width:28px;height:16px;border-radius:999px;background:#555 radial-gradient(circle at 8px 8px,#ddd 0 5px,transparent 5.5px);transition:background-position .15s}
+.kx-tg[aria-pressed=true]::before{background:#d5a63a radial-gradient(circle at 20px 8px,#111 0 5px,transparent 5.5px)}
+.kx-tbar .kx-tg[aria-pressed=false]{color:#cfc9bb}
+.kx-lpanel{position:fixed;z-index:1001;box-sizing:border-box;background:#fffdf7;color:#1b1b1b;border:1px solid #d5a63a;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.45);padding:6px 14px 12px;overflow:auto;overscroll-behavior:contain;font:14px/1.4 Arial,Helvetica,sans-serif;text-align:left;color-scheme:light}
+.kx-lpanel[hidden]{display:none}
+.kx-lhead{display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:-6px;background:#fffdf7;padding:8px 0 6px;margin:0 0 2px;border-bottom:1px solid #eadfc4;z-index:1}
+.kx-lhead b{font-size:13px;letter-spacing:.6px}
+.kx-tbar .kx-lx{border:1px solid #cbbf9f;background:#fff;border-radius:999px;width:34px;height:34px;min-height:0;padding:0;font:900 14px/1 Arial;cursor:pointer;color:#1b1b1b;flex:0 0 auto}
+.kx-sec{padding:8px 0 4px}
+.kx-sec+.kx-sec{border-top:1px solid #eadfc4}
+.kx-tbar:not(.kx-docked) .kx-look+.kx-sec{border-top:0}
+.kx-lpanel #gis-bstatus,.kx-lpanel #gis-status{display:none}
+.kx-sh{margin:2px 0 4px;font:900 11px Arial,Helvetica,sans-serif;letter-spacing:.6px;color:#6b5a33;text-transform:uppercase}
+.kx-sb label,.kx-lpanel .gis-cb{display:flex;align-items:center;gap:8px;padding:5px 0;min-height:30px;cursor:pointer;font-weight:700;color:#1b1b1b;font-size:13.5px}
+.kx-sb input[type=checkbox]{width:18px;height:18px;margin:0;accent-color:#1d5a3a;flex:0 0 auto}
+.kx-sb i{display:inline-block;width:14px;height:12px;border-radius:3px;flex:0 0 auto;border:1px solid #0004}
+.kx-lpanel .gis-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0 14px;margin:0}
+.kx-lpanel .gis-group{margin:0;padding:0;border:0;background:none}
+.kx-lpanel .gis-group>strong{display:none}
+.kx-lpanel .gis-note,.kx-lpanel .kx-stat{color:#5c574c;font-size:12px;margin:6px 0 0}
+.kx-lpanel .gis-btn{margin-top:8px;padding:8px 12px;font-size:12px}
+.kx-lpanel #gis-candidates{display:none}
+.kx-look{display:none}
+.kx-docked .kx-look{display:block}.kx-docked>.kx-tg{display:none}
+.kx-look .kx-tg{margin:4px 6px 2px 0}
+.kx-docked{margin:0}
+.kx-tbar.kx-docked>.kx-lbtn{min-height:34px;padding:6px 11px;font-size:12px;gap:6px;box-shadow:0 1px 6px rgba(0,0,0,.35)}
+@media(max-width:600px){.kx-tbar.kx-docked .kx-n{display:none}.kx-tbar{gap:6px}.kx-tbar>.kx-lbtn{flex:1 1 100%;justify-content:center}.kx-tbar>.kx-tg{flex:1 1 40%;justify-content:center;padding:8px 10px;font-size:12px}.kx-docked>.kx-lbtn{flex:0 0 auto}.kx-lpanel .gis-row{grid-template-columns:1fr}}
 .kx-svctl a{font-size:16px;line-height:30px!important;text-decoration:none}.kx-svctl a.on{background:#f2c230!important}
 .kx-svmode{cursor:crosshair!important}.kx-svtip{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:1200;background:#151515;color:#fff;border:1px solid #f2c230;border-radius:999px;padding:7px 8px 7px 14px;font:800 13px Arial,sans-serif;max-width:92%;text-align:center}.kx-svtip button{margin-left:8px;border:0;border-radius:999px;padding:5px 11px;background:#f2c230;color:#111;font-weight:900;cursor:pointer}
 `;
@@ -172,6 +254,51 @@ function overlapCard(p, ll, addStop){
  <div class="kx-d">${why}</div>
  <div class="kx-note">GPS points and outlines are guides only; they get you to the area. Outlines are approximate. Overlap on a map does not guarantee both references count. Check each program’s rules and official boundary.</div>
  <div class="kx-acts"><a href="${dirUrl(ll.lat.toFixed(5), ll.lng.toFixed(5))}" target="_blank" rel="noopener">DIRECTIONS ↗</a><a href="${svUrl(ll.lat.toFixed(6), ll.lng.toFixed(6))}" target="_blank" rel="noopener">🚶 STREET VIEW ↗</a>${addStop ? `<button type="button" class="pri" data-drop="${ll.lat.toFixed(6)},${ll.lng.toFixed(6)}">📍 ADD A SPOT HERE</button>` : ''}</div></div>`;
+}
+
+/* ---------- "Map layers" dropdown + look switches for the search bar (both tools) ----------
+   KPCX.layerBar() → {el, panel, section(title), dock(host), undock(), recount(), close()}.
+   Layer on/off options live here instead of on the map. The panel closes on a tap outside or Escape. */
+let lbN = 0;
+function layerBar(opt){
+ opt = opt || {};
+ const el = document.createElement('div'); el.className = 'kx-tbar';
+ const pid = 'kxlp' + (++lbN);
+ el.innerHTML = `<button type="button" class="kx-lbtn" aria-expanded="false" aria-controls="${pid}">🗂️ Map layers <span class="kx-n" hidden></span> ▾</button>` +
+  `<button type="button" class="kx-tg" data-kxlook="thick" aria-pressed="${look.thick}" title="On: thick park boundary lines. Off: thin lines and lighter fill.">Thick boundaries</button>` +
+  `<button type="button" class="kx-tg" data-kxlook="big" aria-pressed="${look.big}" title="On: full-size pins. Off: smaller pins.">Big pins</button>` +
+  `<div class="kx-lpanel" id="${pid}" role="dialog" aria-label="Map layers" hidden><div class="kx-lhead"><b>MAP LAYERS</b><button type="button" class="kx-lx" aria-label="Close map layers">✕</button></div>` +
+  `<div class="kx-sec kx-look"><div class="kx-sh">Look</div><button type="button" class="kx-tg" data-kxlook="thick" aria-pressed="${look.thick}">Thick boundaries</button><button type="button" class="kx-tg" data-kxlook="big" aria-pressed="${look.big}">Big pins</button></div></div>`;
+ const btn = el.querySelector('.kx-lbtn'), panel = el.querySelector('.kx-lpanel'), cnt = btn.querySelector('.kx-n');
+ let home = null;
+ function place(){
+  if (panel.hidden) return;
+  const r = btn.getBoundingClientRect(), vw = document.documentElement.clientWidth, vh = window.innerHeight;
+  if (r.bottom < 0 || r.top > vh) {close(); return}
+  const w = Math.min(opt.width || 600, vw - 24), left = Math.max(12, Math.min(r.left, vw - w - 12)), top = Math.max(8, r.bottom + 6);
+  Object.assign(panel.style, {left:left + 'px', top:top + 'px', width:w + 'px', maxHeight:Math.max(180, vh - top - 12) + 'px'});
+ }
+ function open(){
+  const r = btn.getBoundingClientRect(), nav = document.querySelector('.site-nav'), nb = nav && /sticky|fixed/.test(getComputedStyle(nav).position) ? nav.getBoundingClientRect().bottom : 0;
+  if (!el.classList.contains('kx-docked') && window.innerHeight - r.bottom < 320) window.scrollBy(0, r.top - nb - 12);   // room for the panel below the button
+  panel.hidden = false; btn.setAttribute('aria-expanded', 'true'); recount(); place();
+ }
+ function close(){if (panel.hidden) return; panel.hidden = true; btn.setAttribute('aria-expanded', 'false')}
+ function recount(){const n = panel.querySelectorAll('.kx-sec:not(.kx-look) input[type=checkbox]:checked').length; cnt.hidden = !n; cnt.textContent = n + ' on'}
+ btn.addEventListener('click', e => {e.stopPropagation(); panel.hidden ? open() : close()});
+ el.querySelector('.kx-lx').addEventListener('click', close);
+ el.addEventListener('click', e => {const b = e.target.closest('[data-kxlook]'); if (b) setLook(b.dataset.kxlook, !look[b.dataset.kxlook])});
+ panel.addEventListener('change', recount);
+ document.addEventListener('click', e => {if (!panel.hidden && !el.contains(e.target)) close()}, true);
+ document.addEventListener('keydown', e => {if (e.key === 'Escape' && !panel.hidden) {e.preventDefault(); close(); btn.focus()}});
+ window.addEventListener('resize', place); window.addEventListener('scroll', place, {passive:true});
+ return {
+  el, panel, open, close, recount,
+  section(title){const d = document.createElement('div'); d.className = 'kx-sec'; d.innerHTML = `<div class="kx-sh">${esc(title)}</div><div class="kx-sb"></div>`; panel.append(d); return d.querySelector('.kx-sb')},
+  /* full-screen map: move the bar into the map view (host) and back */
+  dock(host){if (!home) {home = document.createComment('kx-tbar'); el.before(home)} close(); el.classList.add('kx-docked'); host.append(el)},
+  undock(){if (!home) return; close(); el.classList.remove('kx-docked'); home.after(el); home.remove(); home = null}
+ };
 }
 
 /* ---------- the control ---------- */
@@ -278,18 +405,21 @@ function attach(map, opt){
  let ovReady = null;
  function buildOverlaps(){
   return ovReady || (ovReady = overlapData().then(gj => {
+   const pst = f => f.properties.kind === '2fer' ? {color:'#a67c00', weight:lw(2), opacity:.95, fillColor:'#f2c230', fillOpacity:look.thick ? .38 : .26} : {color:'#5e2d82', weight:lw(2), opacity:.95, fillColor:'#a66bd3', fillOpacity:look.thick ? .32 : .2};
    const poly = L.geoJSON({type:'FeatureCollection', features:gj.features.filter(f => /Polygon/.test(f.geometry.type))}, {pane:'kxov',
-    style:f => f.properties.kind === '2fer' ? {color:'#a67c00', weight:2, opacity:.95, fillColor:'#f2c230', fillOpacity:.38} : {color:'#5e2d82', weight:2, opacity:.95, fillColor:'#a66bd3', fillOpacity:.32},
+    style:pst,
     onEachFeature:(f, l) => l.on('click', e => {if (opt.busy && opt.busy()) return; L.popup({maxWidth:300, minWidth:210, autoPanPadding:[14, 14]}).setLatLng(e.latlng).setContent(overlapCard(f.properties, e.latlng, opt.addStop)).openOn(map)})});
    const lines = gj.features.filter(f => f.geometry.type === 'MultiLineString');
-   const under = L.geoJSON({type:'FeatureCollection', features:lines}, {pane:'kxovl', interactive:false, style:{color:'#111', weight:10, opacity:.45}});
-   const top = L.geoJSON({type:'FeatureCollection', features:lines}, {pane:'kxovl', style:{color:'#f2c230', weight:6, opacity:1, dashArray:'12 7'},
+   const ust = () => ({color:'#111', weight:look.thick ? 10 : 5, opacity:.45}), tst = () => ({color:'#f2c230', weight:look.thick ? 6 : 3, opacity:1, dashArray:look.thick ? '12 7' : '8 5'});
+   const under = L.geoJSON({type:'FeatureCollection', features:lines}, {pane:'kxovl', interactive:false, style:ust});
+   const top = L.geoJSON({type:'FeatureCollection', features:lines}, {pane:'kxovl', style:tst,
     onEachFeature:(f, l) => l.on('click', e => {if (opt.busy && opt.busy()) return; L.popup({maxWidth:300, minWidth:210}).setLatLng(e.latlng).setContent(overlapCard(f.properties, e.latlng, opt.addStop)).openOn(map)})});
    const pts2 = L.layerGroup(gj.features.filter(f => f.geometry.type === 'Point').map(f => {const c = f.geometry.coordinates, ll = L.latLng(c[1], c[0]), p = f.properties;
     const m = L.marker(ll, {pane:'kxpin', icon:L.divIcon({className:'', html:p.nht ? '<span class="kx-nht">★</span>' : '<span class="kx-sota">▲</span>', iconSize:[24, 24], iconAnchor:[12, 12], popupAnchor:[0, -10]}), title:p.nht ? 'Historic trail site: ' + p.pota.map(r => r[0]).join(' + ') : 'SOTA summit inside a POTA park: ' + ((p.sota[0] || [])[0] || '')})
      .bindPopup(() => overlapCard(f.properties, ll, opt.addStop), {maxWidth:300, minWidth:210});
     hover(m); return m}));
    [poly, under, top, pts2].forEach(x => x.addTo(lay.O));
+   onLook((lk, k) => {if (k === 'thick') {poly.setStyle(pst); under.setStyle(ust); top.setStyle(tst)}});
    built = true;
    return gj;
   }).catch(e => {ovReady = null; if (legendEl) legendEl.insertAdjacentHTML('beforeend', '<div class="kx-stat">Overlap file could not load: ' + esc(e.message) + '</div>'); throw e}));
@@ -305,9 +435,7 @@ function attach(map, opt){
   listeners.forEach(fn => fn(Object.assign({}, st)));
  }
 
- const Ctl = L.Control.extend({options:{position:opt.position || 'topright'}, onAdd(){
-  const d = L.DomUtil.create('div', 'kx-ctl');
-  d.innerHTML = `<button type="button" class="kx-btn" aria-expanded="false">🅿️ Parking &amp; Overlaps ▾</button><div class="kx-box" hidden>
+ const BOXHTML = `
    <label><input type="checkbox" data-kx="P">🅿️ Parking</label>
    <label><input type="checkbox" data-kx="E">🚪 Entrances</label>
    <div class="kx-lg"><span class="kx-key off"></span>Solid green ring = official agency data</div>
@@ -324,13 +452,23 @@ function attach(map, opt){
     <div class="kx-lg"><span class="kx-sw" style="background:#a66bd3;border:2px solid #5e2d82"></span>POTA + WWFF or other combo</div>
     <div class="kx-lg"><span class="kx-sota" style="width:16px;height:16px;font-size:9px">▲</span>SOTA summit inside a POTA park</div>
     <div class="kx-stat">Tap a highlight for details. Do your own research before activating.</div>
-   </div></div>`;
+   </div>`;
+ if (opt.panel) {
+  /* the options live in the "Map layers" dropdown above the map (KPCX.layerBar section) */
+  const d = opt.panel; d.classList.add('kx-box-in'); d.innerHTML = BOXHTML;
+  box = d; statEl = d.querySelector('[data-kxstat]'); legendEl = d.querySelector('[data-kxlegend]');
+  d.addEventListener('change', e => {const k = e.target.dataset.kx; if (!k) return; st[k] = e.target.checked; apply()});
+ } else {
+ const Ctl = L.Control.extend({options:{position:opt.position || 'topright'}, onAdd(){
+  const d = L.DomUtil.create('div', 'kx-ctl');
+  d.innerHTML = `<button type="button" class="kx-btn" aria-expanded="false">🅿️ Parking &amp; Overlaps ▾</button><div class="kx-box" hidden>${BOXHTML}</div>`;
   L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
   btn = d.querySelector('.kx-btn'); box = d.querySelector('.kx-box'); statEl = d.querySelector('[data-kxstat]'); legendEl = d.querySelector('[data-kxlegend]');
   btn.onclick = () => {box.hidden = !box.hidden; btn.setAttribute('aria-expanded', String(!box.hidden)); status()};
   d.addEventListener('change', e => {const k = e.target.dataset.kx; if (!k) return; st[k] = e.target.checked; apply()});
   return d}});
  new Ctl().addTo(map);
+ }
  /* 🚶 Street View: tap the button, then tap the map. Opens Google Street View there (Maps app on phones). */
  let svOn = false;
  const SvCtl = L.Control.extend({options:{position:'topleft'}, onAdd(){const d = L.DomUtil.create('div', 'leaflet-bar kx-svctl');
@@ -346,7 +484,7 @@ function attach(map, opt){
   window.open(svUrl(ll.lat.toFixed(6), ll.lng.toFixed(6)), '_blank', 'noopener')}, true);
  document.addEventListener('keydown', e => {if (e.key === 'Escape' && svOn) svMode(false)});
  map.on('moveend', () => {status(); refresh()});
- const fold = () => {if (box && !box.hidden) {box.hidden = true; btn.setAttribute('aria-expanded', 'false')}};
+ const fold = () => {if (btn && box && !box.hidden) {box.hidden = true; btn.setAttribute('aria-expanded', 'false')}};
  map.on('click dragstart', fold);   // tapping or dragging the map closes the panel, so it never hides the map on a phone
  document.addEventListener('click', e => {const b = e.target.closest('[data-kxcopy]'); if (!b) return; const v = b.dataset.kxcopy;
   (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(() => {b.textContent = 'COPIED'}).catch(() => prompt('Copy the GPS coordinates:', v))});
@@ -388,7 +526,9 @@ function baseSwitcher(map, layers, opt){
  return {set, current:() => cur};
 }
 
-window.KPCX = {baseSwitcher, attach, hover, overlapData, overlapIndex, overlapCard, KINDTXT, svUrl};
+function onLook(fn){lookFns.push(fn)}
+window.KPCX = {baseSwitcher, attach, hover, overlapData, overlapIndex, overlapCard, KINDTXT, svUrl, layerBar,
+ look:() => Object.assign({}, look), setLook, onLook, lw, fo};
 })();
 /* KPC popup fit (shared; identical copy in kpc-tools.js and kpc-map-extras.js, runs once).
    Keeps map popups fully visible: clear of the map edges AND the sticky site menu bar, re-checked when popup

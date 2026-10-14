@@ -68,9 +68,11 @@
   try{const r=await fetch(s.file,{cache:'force-cache'});if(r.ok)j=await r.json()}catch(_){}
   if(!j||!Array.isArray(j.features)){src='live from state GIS';const ctrl=new AbortController(),t=setTimeout(()=>ctrl.abort(),25000);try{const r=await fetch(s.live,{signal:ctrl.signal});if(!r.ok)throw Error('HTTP '+r.status);j=await r.json();if(j.error)throw Error(j.error.message||'GIS error')}finally{clearTimeout(t)}}
   j.features=(j.features||[]).filter(f=>f.geometry&&ringsOf(f.geometry).length);j._src=src;bData[k]=j;return j}
- function drawBoundary(k,j){const s=bounds[k];const has=f=>(f._pota!==undefined?f._pota:(f._pota=matchPota(f).length>0));const st=f=>has(f)?{color:s.color,weight:coarse?4.5:4,opacity:1,fillColor:s.color,fillOpacity:.3,dashArray:null,className:'kpc-bnd'}:{color:s.color,weight:coarse?3:2.5,opacity:1,fillColor:s.color,fillOpacity:.1,dashArray:'6 6',className:'kpc-bnd'};
+ /* line weights follow the shared "Thick boundaries" switch (kpc-map-extras.js) */
+ const LW=w=>window.KPCX&&KPCX.lw?KPCX.lw(w):w,FO=f=>window.KPCX&&KPCX.fo?KPCX.fo(f):f;
+ function drawBoundary(k,j){const s=bounds[k];const has=f=>(f._pota!==undefined?f._pota:(f._pota=matchPota(f).length>0));const st=f=>has(f)?{color:s.color,weight:LW(coarse?4.5:4),opacity:1,fillColor:s.color,fillOpacity:FO(.3),dashArray:null,className:'kpc-bnd'}:{color:s.color,weight:LW(coarse?3:2.5),opacity:1,fillColor:s.color,fillOpacity:FO(.1),dashArray:'6 6',className:'kpc-bnd'};
  const lay=L.geoJSON(j,{style:st,
-   onEachFeature:(f,l)=>{if(!coarse)l.bindTooltip(safe(getName(f)||s.name),{sticky:true,direction:'top',opacity:1,className:'kpc-gis-tooltip'});l.bindPopup(()=>boundaryPopup(f,s),{maxWidth:280});l.on('popupopen',()=>{try{l.closeTooltip()}catch(_){}});l.on('mouseover',function(){this.setStyle({fillOpacity:.34,weight:4.5})});l.on('mouseout',function(){this.setStyle(st(f))})}});return lay}
+   onEachFeature:(f,l)=>{if(!coarse)l.bindTooltip(safe(getName(f)||s.name),{sticky:true,direction:'top',opacity:1,className:'kpc-gis-tooltip'});l.bindPopup(()=>boundaryPopup(f,s),{maxWidth:280});l.on('popupopen',()=>{try{l.closeTooltip()}catch(_){}});l.on('mouseover',function(){this.setStyle({fillOpacity:FO(.34),weight:LW(4.5)})});l.on('mouseout',function(){this.setStyle(st(f))})}});lay._kst=st;return lay}
  async function toggleBoundary(k){const on=$('gis-'+k)?.checked;
   if(!on){if(bLayers[k]){map.removeLayer(bLayers[k]);delete bLayers[k]}bStatus();return}
   setB(`Loading ${bounds[k].name}…`);try{await guideReady;const j=await getBoundary(k);if(!$('gis-'+k).checked)return;if(bLayers[k])map.removeLayer(bLayers[k]);bLayers[k]=drawBoundary(k,j).addTo(map);bLayers[k].bringToBack();if(k!=='bdbnf'&&bLayers.bdbnf)bLayers.bdbnf.bringToBack();if(k!=='bwilder'&&bLayers.bwilder)bLayers.bwilder.bringToFront();bStatus()}
@@ -80,7 +82,7 @@
  let legend=null;
  function drawLegend(){const on=Object.keys(bLayers);if(!on.length){if(legend){legend.remove();legend=null}return}
   if(!legend){legend=L.control({position:'bottomleft'});legend.onAdd=()=>{const d=L.DomUtil.create('div','kpc-blegend');L.DomEvent.disableClickPropagation(d);return d};legend.addTo(map)}
-  legend.getContainer().innerHTML='<button type="button" class="kbl-t" aria-expanded="true">Boundaries legend</button><div class="kbl-b"><b>Official boundaries</b>'+on.map(k=>`<div><i style="background:${bounds[k].color}33;border:2px solid ${bounds[k].color}"></i>${safe(bounds[k].name)}</div>`).join('')+'<div class="k"><i style="border:2px solid #555"></i>Solid = has a POTA reference</div><div class="k"><i style="border:2px dashed #555"></i>Dashed = no POTA reference</div></div>';const c=legend.getContainer(),t=c.querySelector('.kbl-t');if(innerWidth<760&&!c.dataset.seen){c.classList.add('closed');t.setAttribute('aria-expanded','false')}c.dataset.seen=1;t.onclick=()=>{const cl=c.classList.toggle('closed');t.setAttribute('aria-expanded',String(!cl))}}
+  legend.getContainer().innerHTML='<button type="button" class="kbl-t" aria-expanded="true">Boundaries legend</button><div class="kbl-b"><b>Official boundaries</b>'+on.map(k=>`<div><i style="background:${bounds[k].color}33;border:2px solid ${bounds[k].color}"></i>${safe(bounds[k].name)}</div>`).join('')+'<div class="k"><i style="border:2px solid #555"></i>Solid = has a POTA reference</div><div class="k"><i style="border:2px dashed #555"></i>Dashed = no POTA reference</div></div>';const c=legend.getContainer(),t=c.querySelector('.kbl-t');if(!c.dataset.seen){c.classList.add('closed');t.setAttribute('aria-expanded','false')}c.dataset.seen=1;t.onclick=()=>{const cl=c.classList.toggle('closed');t.setAttribute('aria-expanded',String(!cl))}}
 
  /* status text appears both in the layer panel and under the map */
  const setAll=(n,txt)=>{const a=document.getElementById('gis-'+n),b=document.querySelector('[data-gis="'+n+'"]');if(a)a.textContent=txt;if(b)b.textContent=txt};
@@ -146,9 +148,9 @@
  function matching(f,s){return !s.filter||s.filter.test(getName(f))}
  function draw(j,s){const layer=L.layerGroup(),lines=[];let n=0;for(const f of j.features||[]){if(!matching(f,s))continue;const g=f.geometry||{},name=getName(f);
    if(s.kind==='line'){for(const pts of flatten(g)){if(pts.length<2)continue;const ll=pts.map(c=>[c[1],c[0]]);
-     const vis=L.polyline(ll,{color:s.color,weight:coarse?6:5,opacity:.95,interactive:false});
+     const vis=L.polyline(ll,{color:s.color,weight:LW(coarse?6:5),opacity:.95,interactive:false});vis._kw=coarse?6:5;
      const hit=label(L.polyline(ll,{color:s.color,weight:coarse?24:16,opacity:0,interactive:true}),name,s,f.properties||f.attributes); /* wide invisible tap target */
-     hit.on('mouseover',()=>vis.setStyle({weight:8}));hit.on('mouseout',()=>vis.setStyle({weight:coarse?6:5}));
+     hit.on('mouseover',()=>vis.setStyle({weight:LW(8)}));hit.on('mouseout',()=>vis.setStyle({weight:LW(coarse?6:5)}));
      vis.addTo(layer);hit.addTo(layer);lines.push(pts);n++}}
    else if(s.kind==='point'){const pt=g.x!==undefined?[g.y,g.x]:g.type==='Point'?[g.coordinates[1],g.coordinates[0]]:null;if(pt){label(L.circleMarker(pt,{radius:coarse?9:7,color:'#111',weight:2,fillColor:s.color,fillOpacity:.95}),name,s,f.attributes||f.properties).addTo(layer);n++}}}
   return{layer,lines,n}}
@@ -196,5 +198,8 @@ function candidates(){const host=$('gis-candidates');if(!host)return;const done=
  $('gis-inside-btn')?.addEventListener('click',insideCheck);
  /* layers pre-checked in the HTML: draw them once the map exists */
  setTimeout(()=>{Object.keys(bounds).forEach(k=>{if($('gis-'+k)?.checked)toggleBoundary(k)});if(Object.keys(sources).some(k=>$('gis-'+k)?.checked))load()},300);
+ /* Thick boundaries switched: restyle what is already drawn */
+ if(window.KPCX&&KPCX.onLook)KPCX.onLook((lk,k)=>{if(k!=='thick')return;Object.values(bLayers).forEach(l=>{if(l._kst)l.setStyle(l._kst)});
+  const re=g=>g&&g.eachLayer&&g.eachLayer(l=>{if(l._kw)l.setStyle({weight:LW(l._kw)})});Object.values(overlays).forEach(re);Object.values(fileTrail).forEach(r=>re(r.layer))});
  window.kpcGIS={bounds,getBoundary,inside,matchPota}; /* exposed for testing */
 })();

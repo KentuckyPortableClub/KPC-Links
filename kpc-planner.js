@@ -23,7 +23,7 @@ const kmBadge = x => KM ? KM.badge(x.ref) : '';
 function kmDot(x,o){if(!KM)return o;const m=KM.mark(x.ref);if(m.atno){o.color='#c2410c';o.weight=3}if(m.done)o.fillOpacity=.35;return o}
 const kmNote = () => kmHid ? ` • <b>${kmHid}</b> hidden by NEW TO ME / ATNO` : '';
 let adding = false, bReady = false;
-let X = null, OVX = null;           // map extras (parking/entrances/overlaps) and the overlap index by reference
+let X = null, OVX = null, LB = null;   // LB = Map layers dropdown; map extras (parking/entrances/overlaps) and the overlap index by reference
 
 /* ---------------- boundaries & trails ---------------- */
 const B = {
@@ -97,14 +97,18 @@ async function loadBoundaries(){
  tripLayer.eachLayer(m=>{if(m._stop&&m.isPopupOpen&&m.isPopupOpen())m.setPopupContent(spotPopup(m._stop))});renderTrip()}
 function shown(k){try{const o=JSON.parse(localStorage.getItem('kpcPlanLayers')||'{}');return o[k]!==false}catch(e){return true}}
 function setShown(k,v){try{const o=JSON.parse(localStorage.getItem('kpcPlanLayers')||'{}');o[k]=v;localStorage.setItem('kpcPlanLayers',JSON.stringify(o))}catch(e){}}
+/* line weights follow the shared "Thick boundaries" switch (kpc-map-extras.js) */
+const LW=w=>window.KPCX&&KPCX.lw?KPCX.lw(w):w,FO=f=>window.KPCX&&KPCX.fo?KPCX.fo(f):f;
 function drawB(k){const s=B[k];canvasR=canvasR||bRend();
- bLay[k]=L.geoJSON(bData[k],{renderer:canvasR,pane:'bndp',style:f=>{const has=potaFor(f).length>0;return{color:s.color,weight:has?3:2,opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:k==='bdbnf'?.05:(has?.18:.08)}},
+ bLay[k]=L.geoJSON(bData[k],{renderer:canvasR,pane:'bndp',style:f=>{const has=potaFor(f).length>0;return{color:s.color,weight:LW(has?3:2),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(k==='bdbnf'?.05:(has?.18:.08))}},
   onEachFeature:(f,l)=>{l.on('click',e=>{if(adding)return;L.popup({maxWidth:290}).setLatLng(e.latlng).setContent(bPopup(f,s,e.latlng)).openOn(map)})}});
  if(shown(k))bLay[k].addTo(map);order()}
 function drawT(k){const s=T[k];
- const under=L.geoJSON(tData[k],{pane:'trlp',interactive:false,style:{color:'#111',weight:7,opacity:.35}});
- const top=L.geoJSON(tData[k],{pane:'trlp',style:{color:s.color,weight:4,opacity:1},onEachFeature:(f,l)=>l.on('click',e=>{if(adding)return;L.popup({maxWidth:280}).setLatLng(e.latlng).setContent(`<b>${esc(s.name)}</b><br>POTA <a href="${KPC.links.pota(s.ref)}" target="_blank" rel="noopener">${s.ref}</a><div style="margin-top:8px"><button type="button" class="btn sm" data-drop="${e.latlng.lat},${e.latlng.lng}">📍 ADD A SPOT HERE</button></div>`).openOn(map)})});
- bLay['t_'+k]=L.layerGroup([under,top]);if(shown('t_'+k))bLay['t_'+k].addTo(map)}
+ const under=L.geoJSON(tData[k],{pane:'trlp',interactive:false,style:()=>({color:'#111',weight:LW(7),opacity:.35})});
+ const top=L.geoJSON(tData[k],{pane:'trlp',style:()=>({color:s.color,weight:LW(4),opacity:1}),onEachFeature:(f,l)=>l.on('click',e=>{if(adding)return;L.popup({maxWidth:280}).setLatLng(e.latlng).setContent(`<b>${esc(s.name)}</b><br>POTA <a href="${KPC.links.pota(s.ref)}" target="_blank" rel="noopener">${s.ref}</a><div style="margin-top:8px"><button type="button" class="btn sm" data-drop="${e.latlng.lat},${e.latlng.lng}">📍 ADD A SPOT HERE</button></div>`).openOn(map)})});
+ bLay['t_'+k]=L.layerGroup([under,top]);bLay['t_'+k]._kst=[under,top];if(shown('t_'+k))bLay['t_'+k].addTo(map)}
+/* Thick boundaries switched: restyle outlines and trails already drawn (each keeps its own style function) */
+if(window.KPCX&&KPCX.onLook)KPCX.onLook((lk,k)=>{if(k!=='thick')return;Object.values(bLay).forEach(l=>{if(l._kst)l._kst.forEach(g=>g.setStyle(g.options.style));else if(l.setStyle&&l.options&&l.options.style)l.setStyle(l.options.style)})});
 function order(){if(bLay.bdbnf&&map.hasLayer(bLay.bdbnf))bLay.bdbnf.bringToBack()}
 function bPopup(f,s,ll){const p=f.properties||{},refs=potaFor(f);
  return `<b>${esc(fName(f)||s.name)}</b><div style="font-size:12px;color:#555">${esc(p.TYPE||s.name)}${p.ACCESS?' · access: '+esc(p.ACCESS):''}</div>`+
@@ -133,19 +137,15 @@ function makeMap(){
   d.innerHTML='<a href="#" role="button" id="plFull" title="Full-screen map" aria-label="Full-screen map">⛶</a><a href="#" role="button" id="plPin" title="Add a spot" aria-label="Add a spot">📍</a>';
   L.DomEvent.disableClickPropagation(d);L.DomEvent.on(d,'click',e=>{L.DomEvent.preventDefault(e);const a=e.target.closest('a');if(!a)return;if(a.id==='plFull')full();if(a.id==='plPin')addMode(!adding)});return d}});
  new Btns().addTo(m);
- // boundary layer picker
- const Lyr=L.Control.extend({options:{position:'topright'},onAdd(){const d=L.DomUtil.create('div','pl-lyr');
-  d.innerHTML='<button type="button" class="pl-lyrbtn" aria-expanded="false">Boundaries ▾</button><div class="pl-lyrbox" hidden>'+
-   Object.entries(B).map(([k,s])=>`<label><input type="checkbox" data-l="${k}" ${shown(k)?'checked':''}><i style="background:${s.color}"></i>${esc(s.name)}</label>`).join('')+
-   '<div class="pl-lyrh">Trails (POTA)</div>'+Object.entries(T).map(([k,s])=>`<label><input type="checkbox" data-l="t_${k}" ${shown('t_'+k)?'checked':''}><i style="background:${s.color}"></i>${esc(s.name)}</label>`).join('')+
-   '<div class="pl-lyrh" style="font-weight:400">Solid outline = matched to a POTA park. Dashed = no POTA reference found.</div><div id="lyrStat" class="pl-lyrh" style="font-weight:400">Loading boundaries…</div></div>';
-  L.DomEvent.disableClickPropagation(d);L.DomEvent.disableScrollPropagation(d);
-  const btn=d.querySelector('.pl-lyrbtn'),box=d.querySelector('.pl-lyrbox');
-  btn.onclick=()=>{box.hidden=!box.hidden;btn.setAttribute('aria-expanded',String(!box.hidden))};
-  d.addEventListener('change',e=>{const k=e.target.dataset.l;if(!k)return;setShown(k,e.target.checked);const l=bLay[k];if(!l)return;e.target.checked?l.addTo(map):map.removeLayer(l);order()});return d}});
- new Lyr().addTo(m);
+ // "Map layers" dropdown + Thick boundaries / Big pins switches in the search bar (kpc-map-extras.js); the map keeps only map tools
+ let psec=null;
+ if(window.KPCX&&KPCX.layerBar){const lb=KPCX.layerBar();LB=lb;const pr=$('prog_'),row=pr&&pr.closest('.controls');if(row)row.after(lb.el);else $('where').before(lb.el);
+  const bs=lb.section('Park boundaries');bs.innerHTML='<div class="gis-row">'+Object.entries(B).map(([k,s])=>`<label><input type="checkbox" data-l="${k}" ${shown(k)?'checked':''}><i style="background:${s.color}"></i>${esc(s.name)}</label>`).join('')+'</div><div class="kx-stat">Solid outline = matched to a POTA park. Dashed = no POTA reference found.</div>';
+  const ts=lb.section('Trails (POTA)');ts.innerHTML='<div class="gis-row">'+Object.entries(T).map(([k,s])=>`<label><input type="checkbox" data-l="t_${k}" ${shown('t_'+k)?'checked':''}><i style="background:${s.color}"></i>${esc(s.name)}</label>`).join('')+'</div><div id="lyrStat" class="kx-stat">Loading boundaries…</div>';
+  lb.panel.addEventListener('change',e=>{const k=e.target.dataset.l;if(!k)return;setShown(k,e.target.checked);const l=bLay[k];if(!l)return;e.target.checked?l.addTo(map):map.removeLayer(l);order()});
+  psec=lb.section('Parking, entrances & Park Overlaps')}
  // parking & entrance markers + Park Overlaps (shared with KY Park Commander)
- if(window.KPCX){X=KPCX.attach(m,{key:'plan',addStop:true,parks:D.parks,busy:()=>adding});
+ if(window.KPCX){X=KPCX.attach(m,{key:'plan',addStop:true,parks:D.parks,busy:()=>adding,panel:psec});if(LB){X.onChange(()=>LB.recount());LB.recount()}
   X.onChange(s=>{if(!!s.O!==!!on.two){on.two=s.O?1:0;const b=document.querySelector('#prog_ [data-k=two]');if(b)b.setAttribute('aria-pressed',String(!!on.two));if(origin)run(false)}});
   on.two=X.overlapsOn()?1:0;
   KPCX.overlapIndex().then(ix=>{OVX=ix;ALL=null;if(origin)run(false)}).catch(()=>{})}
@@ -153,9 +153,9 @@ function makeMap(){
  m.on('click',e=>{if(adding){addSpot(e.latlng);addMode(false)}});
  m.on('contextmenu',e=>{addSpot(e.latlng);addMode(false)}); // long-press on phones, right-click on desktop
  return m}
-function full(force){const w=$('mapwrap');const onNow=typeof force==='boolean'?force:!w.classList.contains('pl-full');w.classList.toggle('pl-full',onNow);document.documentElement.classList.toggle('pl-noscroll',onNow);
+function full(force){const w=$('mapwrap');const onNow=typeof force==='boolean'?force:!w.classList.contains('pl-full');w.classList.toggle('pl-full',onNow);if(LB){onNow?LB.dock(w):LB.undock()}document.documentElement.classList.toggle('pl-noscroll',onNow);
  const b=$('plFull');if(b){b.textContent=onNow?'✕':'⛶';b.title=onNow?'Close full screen':'Full-screen map'}setTimeout(()=>map.invalidateSize(),60)}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(adding)addMode(false);else if($('mapwrap').classList.contains('pl-full'))full(false)}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(document.querySelector('.kx-lpanel:not([hidden])'))return;if(adding)addMode(false);else if($('mapwrap').classList.contains('pl-full'))full(false)}});
 function addMode(v){adding=v;$('mapwrap').classList.toggle('pl-adding',v);$('addSpot').setAttribute('aria-pressed',String(v));$('addSpot').textContent=v?'✕ CANCEL ADDING':'📍 ADD A SPOT';const b=$('plPin');if(b)b.classList.toggle('on',v);if(v)map.closePopup()}
 
 /* ---------------- trip ---------------- */
