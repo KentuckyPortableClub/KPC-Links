@@ -1,21 +1,4 @@
 {
  "updated": "2026-10-14",
- "photos": [
-  {
-   "id": "4efadb94b76c-1",
-   "file": "photos/members/4efadb94b76c-1.jpg",
-   "caption": "KPC",
-   "where": "AI",
-   "call": "KZ4CP",
-   "date": "2026-10-14"
-  },
-  {
-   "id": "bedfb6a5ef5f-1",
-   "file": "photos/members/bedfb6a5ef5f-1.jpg",
-   "caption": "KPC",
-   "where": "AI",
-   "call": "KZ4CP",
-   "date": "2026-10-14"
-  }
- ]
+ "photos": []
 }
