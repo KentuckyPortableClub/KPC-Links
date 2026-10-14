@@ -1,0 +1,259 @@
+How to add a stream to WXRadio.org
+
+Grab a NOAA All Hazards Weather Radio broadcast and stream it to the world.
+
+These FM transmitters typically operate with power from 100 to 1000 watts, with a reception range of 'city blocks' to 40 miles if everything is perfect. It often isn't for our location, hardware budget, etc. The frequencies used are between Standard VHF television channels 6 and 7...audio is FM with a maximum frequency deviation of 5 kHz, and the broadcast channel mode is 'mono'.
+
+Your encoder will be more efficient, and stream quality a bit better if you encode with Sample Rate ('sample frequency') of 22050 Hz and BitRate (Bit Rate) of 32Kbs. The audio Bandwidth of Commercial FM or CD is NOT necessary. Your listeners would prefer the audio in BOTH left and right channels, so "MONO" is actually best mode. If you adopt the specific parameters and optimization we outline, you can expect to utilize minimum bandwidth and resources. Your mileage may vary.
+
+Your Goal is to "Save A Life"
+
+You provide a proactive "head's up" resource for potential weather events.
+
+There are ZERO costs, dues or fees for NWROrg services. Lives are priceless.
+
+Here's How
+
+	
+Quality and Reliability
+What You Need
+Connect to the Web
+Re-check, Optimize Audio
+REGISTER Your Stream
+Stream QRA
+
+Quality Audio and Service Reliability are so important, that several PWS team members audit the site randomly for quality and status.
+
+
+
+A Quality, Reliable Stream
+Begins at the Antenna
+
+— Quality starts with reception — If you've a lousy signal, no amount of fancy software or requests for help will improve it... even adding one of those so-called 'extension' accessory antennas may be a waste of money...
+BUT — an external ¼ λ ground plane antenna can be dramatic — here's a quick and dirty-- if you can hear a signal, even noisy, this little home built ugly will clean it up.
+
+Here's a Quick HOWTO from NOAA, and more technical Advanced Info Here
+But, you say, you've got a really tough situation? See this $40 bad boy.
+
+
+
+
+Hardware
+1. PC or something similar.
+2. Weather Radio Receiver e.g. Midland WR300
+Make sure it either has a 'Line Out' or 'Headphone' output jack. 3. Audio cable from receiver to PC (whatever).
+*Radio may have only 'mono' output from line out / earphone plug...
+*Both recommended encoders below allow single channel (L or R) to stream as both channels(mono).
+If you choose another option, you must iinovate some lash up to output both channels.
+4. Raspberry Pi + SDR ? — YES! — Tim Urberg has posted scripts and documentation on Github "RTL SDR Darkice Scripts" —
+
+
+
+Encoder
+
+...software (or device) which creates good to excellent 2 channel MP3 (mono) audio from your WxRadio output; at 32 Kbs (less may produce artifacts - more is a waste of your device resources), at a sample frequency (sample rate) of 22050 Hz, streaming both channels (mono - is best setting), with -4 to 0 db average level. See STREAM QUALITY
+
+
+Some Free Encoders
+"Butt" and "SECaster" have proven very reliable by many of our providers.
+
+
+butt — (Broadcast Using This Tool) Latest
+Download ;BUTT from SourceForge
+Website: "butt" WebSite
+
+
+SECaster package from NWROrg — will run on any Windows system.
+ — Also confirmed on Ubuntu with WINE —
+SECasterNWROrg: Notes/Images can stream to multiple servers.
+SECasterNWROrg.zip INCLUDES an Audio Enhancement plug-in (Stereo Tool).
+If you've noise, hum, or other audio issues after any corrections. This additional plug appears imposing, until you realize that you WON'T need or use more than a few 'basics'.. The NWROrg pkg also includes 2 example configuration files. If you don't need it, you don't have to call it.. just use the encoder alone. Whatever, DO NOT enable the "Bass Boost" Option! More info.
+
+ — Many others available online. Search — Whatever you choose, ensure it will meet our protocols below.
+
+
+Getting it Live on the Web
+
+We've found 'alternate' streams to be advantageous! CHECK YOUR LOCAL AREA: So even if your local NWR is already on server, don't hesitate to provide a second stream! See mount protocol below, and use the 'duplicate' stream format. If your mount won't connect, see "known issues" first.
+
+Primary Server
+WxRadio.org streams your connected audio feed with HTTPS protocol.
+
+DO NOT confuse this with your encoder's connection to the wxradio.org IceCast.
+
+Many media encoders today offer TLS/SSL connection options to host server. WxRadio.org is NOT currently configured for an HTTPS encoder connection. DO NOT "enable TLS/SSL" when setting your encoder connection to our icecast, the connection will time-out.
+
+Already Online at Another Website or Server?
+
+We cannot guarantee compatibility with another web platform's streaming server. We will decline immediately, and absolutely.
+
+We DO list SOME alternate 'privately streamed' 'public service' or non-commercial connections, provided they generally meet quality and reliablility guidelines, AND we have a primary feed from that provider.
+
+Simply point a new encoder stream to wxradio.org using the below protocols:
+
+WXRADIO.ORG is for NOAA weather related, or NWROrg authorized audio.
+Unauthorized streams will be dropped when discovered, and source IP may be banned.
+
+The below encoder protocols will produce the best overall performance of your stream, optimize your bandwidth and CPU / memory and the stream acceptance on most devices. They will also support our quality and reliability committment to NOAA, WRN, etc.
+
+For some encoders, some fields are 'automatic' or not available. The below should cover most.
+
+
+Server Type: Icecast2 (or just 'Icecast' for BUTT, e.g.)
+Server / host: wxradio.org
+SSL/TLS:  DO NOT ENABLE. The connection will fail. Important!
+Port: 8000
+Public: Make sure it is enabled Important!
+Username: source
+Password: WxRadio2014
+Mount: Enter as shown below Important!
+Title/meta mode: UTF8
+Type: MP3
+Sample Rate/Frequency: 22050 Important!
+Bitrate: 32K Important!
+Channels/mode: MONO Important!
+Genre: 'Weather' or 'Weather Radio'
+Autostart: Enable
+Reconnect: Activate - Attempts: Minimum 5 suggested - Time Between: 15 sec
+Buffer: 50ms
+Sample Quality: sync best
+
+The MOUNT: Important!
+**MOUNT: Must Use this Mount point format:
+
+
+Overview
+
+Naming convention for streams: USE this tool.
+It will tell you exactly and specifically what your mount name should be.
+
+NEW radio stream (no other streams for that radio callsign) use
+  ST—RadioName—RadioCall  (e.g. ' CA-Monterey-KEC49 ' )
+ALTERNATE (additional same-transmitter stream):
+  if you provide an 'alternate' stream, then use ST—RadioName—RadioCall—alt(n)
+  for the name  (e.g. ' CA-Monterey-KEC49-alt1 ')
+DO NOT add any additional, such as ".mp3" etc
+
+
+
+Detailed:
+
+State-Transmitter Name from NOAA-CallSign
+UseTHIS TOOL for assistance.
+"State" is all caps 2 letter state/province abbreviation. So as example: XX-Podunk-ABC99
+  NO TAGS, NO SPACES, SLASHES, or OTHER CHARACTERS - only the specified dashes:
+If "RadioName" is complex ("Podunk City"), use "XX-PodunkCity-ABC123
+The direct stream access URL ('listen to') will be
+https://wxradio.org/XX-Podunk-ABC99
+   or https://wxradio.org/XX-PodunkCity-ABC123
+
+Mount a Duplicate, Alternate (secondary) stream to us: Protocols as above, then:
+Using the 'State-name-Callsign' convention,simply add:
+"-alt" after the Callsign "-alt1", "-alt2" etc.
+The direct stream access URL ('listen to') will be (e.g.)
+"https://wxradio.org/XX-Podunk-ABC99-alt (-alt1, -alt2, etc)"
+ 
+
+Known Issues:
+
+DO NOT "enable TLS/SSL" when setting your encoder connection to our icecast, the connection will time-out.
+
+In rare instances, or if you're adding an 'alternate' stream for the same transmitter,your encoder may show a "failed to connect", continual "delay" or other indication depending on the encoder. Assuming the basic setup, "Server, User, Password" are correct, then your selected mountpoint may already be in use. Check for a conflict at Radio Finder...You may need the '-alt' option above.
+
+Some encoders/'streamers' may have functions such as Bass enhance/boost that uses "BASSenc" or similar features. This specific example plug-in may continually ping the server, and is basically for commercial FM broadcasters' transmitter feed. Please disable such in your plug in. If we observe this, or similar, we will notify you, and dump your mountpoint until resolved. There may others.
+
+Playing the stream: The NWROrg website, and the 'stand-alone' script available, should play without issue on most properly configured devices.
+Successful "raw" Direct Stream access is NOT guaranteed using other 'media players', in some browsers, and some devices, possibly because a "container" does not exist for our served stream, or device/browser isn't configured for 'raw' mp3 play.
+
+
+
+Let's Do It
+Double check setup and optimize audio!
+
+
+First
+See the specific protocol settings now required on NOAA Weather Radio.org
+
+— Encode as MP3, MONO, or both L & R channels ('centered' Stereo) a singie left or right channel is very irritating to listeners, and may include some extra noise levels.
+
+
+— Bit Rate: 32k. Higher bit rates just waste bandwidth and resources for narrow band FM audio, and we've found that lower bitrates may produce artifacts, especially if you have noisy reception. May induce MORE noise! 32K is the Goldilocks number
+
+
+— "Sample Rate (Frequency)" of 22050Hz. This is the industry standard for lower bitrates, and in fact, a higher sample rate (sample frequency) may degrade quality.
+
+
+— "Audio Bandwidth" (This is an advanced option, and not available on all encoders) You might consider limiting the high end to about 3800 - 4000 Hz... higher frequency's aren't usually transmitted.... Limiting this may drastically improve your overall stream quality, and if you can cut freqs below ±130 HZ that may help with residual hum. Some encoders/'streamers' may have functions such as Bass enhance/boost that uses "BASSenc" or similar features. This specific example plug-in may continually ping the server, and is basically for commercial FM broadcasters' transmitter feed. Please disable such in your plug in. If we observe this, or similar, we will notify you, and dump your mountpoint until resolved. There may others.
+
+
+
+Second
+— Again, DON"T stream a 'single channel'. MONO is preferred, or Stream BOTH L & R Channels! (stereo or 'centered' Mono)
+
+
+Your audio source may be single channel (mono) L or R. Some encoders will take a L or R single channel, but when "Mono" is selected will output 'both' channels. Some allow 'splitting' on set up in some fashion, some do not. Simple mechanical solution is to use a "mono" to "Stereo" "splitter" adapter, which takes single source and splits to two channels for input to computer, or devices L and R line inputs-'both channels".
+
+If your encoder has an option for "Mono" try that first, it will produce better stream quality than "Stereo". "Joint Stereo" is not recommended.
+
+
+
+Third
+
+— Set adequate input and Encoder volume levels! This is important!
+Don't run too high an input level to your device. Some encoders have 'stream volume' adjustment, some depend on the 'line input level' on the device's soundcard. Use the LEFT line input on your 'device'. Set Encoder to "MONO" (if no MONO setting, you'll have to apply the radio's input to both L & R inputs, and select "stereo". Preset the WxRadio volume control about 25%, then adjust the STREAM level with the ENCODER, or any Plug-ins the encoder might have. You may have to use the Device Input level also.
+
+Hopefully, your encoder has "level indicators"
+Set the average peak at about -4 and a maximum of 0.
+(This SHOULD give a QRA rating of 'OPTIMUM' or 'High Maximum',depending on the actual 'content' and other qualities, it might rate a 'Low Good')
+— Don't 'listen'... watch the levels! —
+After you've seen a few QRA reports, you can 'fine tune' that upward or downward until you find 'Optimum'... So, set levels visually, rather than "it sounds good to me!".
+
+
+For The NWROrg QRA stream analyses, we utilize 'Digital Full Scale' (dbFS) references.
+0 dbFS is the MAXIMUM level which will NOT produce clipping or saturation in digital systems. If we calculate a level of about -3dbFS, the audio level approaches the Target "Normal" Volume of about 90% for MP3 — and assuming a clean, undistorted Encoder Audio Input and recommended encoder settings, that results in consistent streams, better overall quality, and an Enhanced User Experience, as they surf across various streams. EUI keeps 'em coming back, and coming back to YOUR PWx SITE if you're using the available NWROrg website script.
+
+Gotcha! → Signal Input → On most configurations, 'MIC' input typically expects lower signal levels than a receiver's earphone or line out signal...can result in much higher signal levels, especially if MIC has a 'boost' setting. Use the LINE Inputs if available!
+
+
+
+
+Finally: Register Your Stream!
+
+Use the 'Submission Form."
+Please make sure that email from 'noaaweatherradio.org' is allowed in your email clients. You'll receive a notice that we've received your submission. Then a personal reply when we've added your stream to the website server, further instructions. Select "New Stream" and fill in all the appropriate fields.
+
+
+
+
+Cheers!    Welcome Aboard!     Save a Life!
+
+...and remember:  — Excepting a fault in a NWR transmitter —  
+Quality and Reliability is the responsibility of each provider.
+A daily, quick, online check of your stream will prevent many 'dead' or 'disabled' feeds.
+
+The NOAA Weather Radio web nexus uses donated hosting provided by FrankfortWeather.us Chappelleweather.com Saratoga-Weather.org WxRadio.org and is supported by many, many individuals and websites. For the history through 2026, see About NWROrg
+
+
+
+
+
+
+These Streams should not be used for protection of life or property.
+
+The most recent list and status update may not reflect real-time stream availability within the NWROrg platforms and adjunct websites. Please remember that you should NOT rely on this Internet audio to receive watches or warnings.
+
+You should have, also, a dedicated NOAA Weather Radio receiver which will alert you 24 hours a day with appropriate audio and/or visual outputs.
+
+When seconds may count!
+
+The streams should be viewed as proactive resources - "pre-alert" preparation tools. The audio may have a buffer delay as long as thirty seconds, plus any provider, network, or local stream delays. A small number of streams are 'Not Live' but recorded forecast statements from specific Weather Forecast Offices, such as NHC, MIA, MRX, etc. Such audio may not serve as an authoritative source for immediate impact warnings or advisories. In some events, such as Tornado Warnings, Network and other delays of several seconds may change your status from "Safe" to "Not Safe".
+
+Additionally, a stream may be offline for various reasons when you may need it the most.
+It is "best practice" to always rely on NOAA receivers with battery back-up.
+
+The NOAA Radio and adjunct scripts were developed by:
+Chappelleweather.com,  Clifton Virginia Weather,  SE Lincoln Weather,  Saratoga-weather.org
+This page by: FrankfortWeather.US for the NOAA Weather Radio Org Team
+
+Top
+Copyright © 2026 WXRadio.us/NOAAWeatherRadio.org
