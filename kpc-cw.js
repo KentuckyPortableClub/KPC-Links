@@ -127,14 +127,14 @@ function Voice(o) {
   // fading (QSB): a slow wobble on this station's level; depth and speed follow the FADING slider
   this.rate = Math.random(); this.lfo = AC.createOscillator(); this.depth = AC.createGain(); this.depth.gain.value = 0;
   this.lfo.connect(this.depth); this.depth.connect(this.fade.gain); this.lfo.start();
-  this.setQsb();
+  this.noQsb = !!o.noQsb; this.setQsb();
   this.osc.start(); VOICES.add(this);
 }
 // level 0 off, 1 light, 2 moderate, 3 deep, 4 deep & fast (fades almost to nothing)
 const QSB = [[0, 0, 0], [0.25, 0.05, 0.12], [0.45, 0.07, 0.2], [0.7, 0.1, 0.3], [0.92, 0.25, 0.7]];
 Voice.prototype.setQsb = function () {
   if (!AC || !this.lfo) return;
-  const q = QSB[S.fade] || QSB[0], f = q[0] * Math.min(1, 0.85 + this.rate * 0.3), t = AC.currentTime;
+  const q = (this.noQsb ? QSB[0] : QSB[S.fade]) || QSB[0], f = q[0] * Math.min(1, 0.85 + this.rate * 0.3), t = AC.currentTime;
   const lo = Math.min(0.98, f);
   this.lfo.frequency.setTargetAtTime(q[1] + this.rate * (q[2] - q[1]) || 0.01, t, 0.3);
   this.fade.gain.setTargetAtTime(this.level * (1 - lo / 2), t, 0.3);   // swings between level*(1-lo) and level
@@ -168,7 +168,7 @@ const dec = {
   down(t) { this.clear(); this.downAt = t; },
   up(t) {
     const d = t - this.downAt; if (d < 8) return;
-    if (!this.adapt) this.unit = 1200 / S.wpm;   // paddles: the keyer's own speed
+    if (!this.adapt) this.unit = 1200 / kw();   // paddles: the keyer's own speed
     const el = d < this.unit * 2 ? '.' : '-';
     if (this.adapt) { // straight key: follow the operator's own speed (5–60 WPM)
       const est = el === '.' ? d : d / 3;
@@ -197,6 +197,7 @@ const dec = {
 };
 
 /* ================================================================ Keys: straight + iambic keyer */
+const kw = () => (qrq.on && qrq.kind === 'send') ? qrq.wpm : S.wpm; // keyer speed (the QRQ send ladder sets its own)
 const key = { down: false };
 function keyDown() { if (key.down) return; key.down = true; sidetone(true); dec.down(performance.now()); ui.lamp(true); }
 function keyUp() { if (!key.down) return; key.down = false; sidetone(false); dec.up(performance.now()); ui.lamp(false); }
@@ -226,7 +227,7 @@ function nextElement() {
   else if (ik.dit) el = '.';
   else if (ik.dah) el = '-';
   if (!el) { ik.busy = false; ik.last = null; return; }
-  const u = 1200 / S.wpm, d = el === '.' ? u : 3 * u, t0 = performance.now();
+  const u = 1200 / kw(), d = el === '.' ? u : 3 * u, t0 = performance.now();
   ik.busy = true; ik.last = el;
   keyerOn(d, t0);
   // timings come from when the element started, not from when the timer happened to fire
@@ -373,6 +374,7 @@ const session = { on: false, qsos: [], agn: 0, start: 0 };
 
 /* Called when you finish an over (keyed or typed) */
 function transmit(text, how) {
+  if (MODE === 'qrq') { fistMeter(); qrqSent(text, how); return; }
   ui.log('YOU', text, 'you');
   fistMeter();
   if (MODE === 'free' || MODE === 'drill') { ui.hint(''); return; }
@@ -705,6 +707,139 @@ function drillCheck() {
   const auto = $('cwDrillAuto'); if (auto && auto.checked) setTimeout(() => drillPlay(true), ok ? 700 : 1800);
 }
 
+/* ================================================================ QRQ speed ladder
+   COPY: we send, you type it. SEND: we show it, you key it. Every clean one speeds up; three misses ends the run.
+   Your score is the fastest speed you got right. Clean signal (no noise or fading) so scores compare fairly. */
+const WORDS = ['TU', '73', '5NN', 'NAME', 'QTH', 'RIG', 'ANT', 'WX', 'FB', 'OM', 'ES', 'PWR', 'QRZ', 'CQ', 'POTA', 'SOTA', 'PARK', 'AGN', 'HW', 'CPY', 'GM', 'GA', 'GE', 'RST', 'TNX', 'DE', 'UR', 'KY', 'QRP', 'QRQ', 'QSB', 'QRM', 'BK', 'SUMMIT', 'RADIO', 'KEY', 'TEST', 'HAM', 'CLUB', 'THE', 'AND', 'GOOD', 'HERE', 'THERE', 'SIGNAL', 'COPY', 'LOUD', 'NICE', 'SUNNY', 'RAIN', 'COLD', 'HOT', 'BATTERY', 'WIRE', 'VERTICAL', 'DIPOLE', 'KENTUCKY', 'TRAIL', 'LAKE', 'FOREST', 'RIVER', 'CAMP'];
+const QBADGE = [[15, '🥉', 'Bronze'], [20, '🥈', 'Silver'], [25, '🥇', 'Gold'], [30, '🏆', 'Trophy'], [35, '⚡', 'QRQ'], [40, '🚀', 'Rocket']];
+const qrq = { on: false, kind: 'copy', what: 'calls', wpm: 15, start: 15, top: 0, lives: 3, pts: 0, n: 0, item: '', rep: false, v: null, busy: false, t: 0 };
+let QPB = {}; try { QPB = JSON.parse(localStorage.getItem('kpcQRQ') || '{}') || {}; } catch (e) { QPB = {}; }
+function qrqItem() {
+  const w = qrq.what === 'mixed' ? pick(['calls', 'calls', 'refs', 'words']) : qrq.what;
+  if (w === 'calls') return newOp().call;
+  if (w === 'refs') return chance(0.7) ? 'US-' + String(rnd(1, 11000)).padStart(4, '0') : pick(PLACES.parks)[0];
+  return chance(0.5) ? pick(WORDS) : pick(WORDS) + ' ' + pick(WORDS);
+}
+function qrqShow() {
+  const set = (id, v) => { const e = $(id); if (e) e.textContent = v; };
+  set('qrqWpm', qrq.on || qrq.n ? qrq.wpm + ' WPM' : '–');
+  set('qrqTop', qrq.top ? qrq.top + ' WPM' : '–');
+  set('qrqLives', qrq.on || qrq.n ? '❤'.repeat(Math.max(0, qrq.lives)) + '♡'.repeat(Math.max(0, 3 - qrq.lives)) : '❤❤❤');
+  set('qrqPts', String(qrq.pts));
+  const go = $('qrqGo'); if (go) { go.textContent = qrq.on ? '■ STOP' : '▶ START LADDER'; go.classList.toggle('stop', qrq.on); }
+  document.querySelectorAll('[data-q]').forEach(e => { e.hidden = e.dataset.q !== qrq.kind; });
+  const app = $('cwApp'); if (app) app.dataset.qrq = qrq.kind;
+  const kn = $('qrqKeyNote'); if (kn) kn.hidden = !(qrq.kind === 'send' && S.input === 'keyboard');
+  qrqBest();
+}
+function qrqBest() {
+  const box = $('qrqPB'); if (!box) return;
+  const c = QPB.copy || {}, s = QPB.send || {}, best = Math.max(c.wpm || 0, s.wpm || 0);
+  const badges = QBADGE.map(b => `<span class="qb${best >= b[0] ? ' on' : ''}" title="${b[2]}: ${b[0]} WPM">${b[1]}<small>${b[0]}</small></span>`).join('');
+  box.innerHTML = `<div class="qpb"><b>YOUR BEST</b> Copy: ${c.wpm ? c.wpm + ' WPM' : '–'} · Send: ${s.wpm ? s.wpm + ' WPM' : '–'}</div><div class="qbadges">${badges}</div>` +
+    (best ? `<button type="button" class="cw-small" id="qrqShare">📣 SHARE MY SCORE</button><span class="dim" id="qrqShared"></span>` : '<div class="dim">Badges light up at 15, 20, 25, 30, 35 and 40 WPM.</div>');
+  const sh = $('qrqShare'); if (sh) sh.addEventListener('click', qrqShare);
+}
+async function qrqShare() {
+  const c = QPB.copy || {}, s = QPB.send || {}, me = myCall();
+  const parts = []; if (c.wpm) parts.push(`copied ${c.wpm} WPM`); if (s.wpm) parts.push(`sent ${s.wpm} WPM`);
+  const txt = `${me || 'I'} ${parts.join(' and ')} on the KPC QRQ Speed Ladder ⚡ How fast can you go? https://kentuckyportableclub.github.io/KPC-Links/kpc-cw.html#qrq`;
+  const out = $('qrqShared');
+  try { if (navigator.share) { await navigator.share({ text: txt }); return; } await navigator.clipboard.writeText(txt); if (out) out.textContent = ' Copied. Paste it in Discord or Facebook.'; }
+  catch (e) { if (out) out.textContent = ' ' + txt; }
+}
+function qrqStart() {
+  if (qrq.on) { qrqEnd(true); return; }
+  if (!audio()) return;
+  qrq.kind = (document.querySelector('input[name=qrqKind]:checked') || {}).value || 'copy';
+  qrq.what = ($('qrqWhat') || {}).value || 'calls';
+  qrq.start = +(($('qrqStart') || {}).value || 15);
+  if (qrq.kind === 'send' && S.input === 'keyboard') { qrqShow(); const f = $('qrqFb'); if (f) f.innerHTML = '<div class="bad">Pick Straight key or Paddles under Your Key first.</div>'; return; }
+  Object.assign(qrq, { on: true, wpm: qrq.start, top: 0, lives: 3, pts: 0, n: 0, item: '', rep: false });
+  try { localStorage.setItem('kpcQRQset', JSON.stringify({ kind: qrq.kind, what: qrq.what, start: qrq.start })); } catch (e) {}
+  if (qrq.kind === 'send') dec.reset(1200 / qrq.wpm, S.input === 'straight');
+  $('qrqFb').innerHTML = ''; qrqShow(); qrqNext();
+}
+async function qrqNext() {
+  if (!qrq.on) return;
+  qrq.item = qrqItem(); qrq.rep = false; qrq.n++; qrq.t = performance.now();
+  qrqShow();
+  if (qrq.kind === 'copy') {
+    const a = $('qrqIn'); if (a) { a.value = ''; a.focus({ preventScroll: true }); }
+    await qrqPlay();
+  } else {
+    if (S.input === 'iambic') dec.reset(1200 / qrq.wpm, false); else dec.unit = 1200 / qrq.wpm;
+    const t = $('qrqTarget'); if (t) t.innerHTML = `<small>SEND THIS AT ${qrq.wpm} WPM</small>${esc(qrq.item)}`;
+  }
+}
+async function qrqPlay() {
+  if (!qrq.item || !audio()) return;
+  if (qrq.v) qrq.v.dispose();
+  qrq.v = new Voice({ call: 'qrq', pitch: S.their, wpm: qrq.wpm, eff: qrq.wpm, jit: 0, level: 0.9, noQsb: true });
+  qrq.busy = true; try { await qrq.v.play(qrq.item); } finally { qrq.busy = false; }
+}
+function qrqRepeat() { if (!qrq.on || !qrq.item) return; if (qrq.kind === 'copy') qrq.rep = true; qrqPlay(); }
+function qrqDiff(want, got) { let v = ''; for (let i = 0; i < want.length; i++) { const c = want[i]; v += `<span class="${got[i] === c ? 'ok' : 'miss'}">${esc(c)}</span>`; } return `<div class="cw-diff">${v}</div>`; }
+function qrqResult(ok, msg, noSpeedUp) {
+  const fb = $('qrqFb'), at = qrq.wpm;
+  if (ok) {
+    qrq.top = Math.max(qrq.top, at);
+    qrq.pts += Math.max(1, Math.round(at * norm(qrq.item).replace(/ /g, '').length / 5));
+    if (!noSpeedUp) qrq.wpm = Math.min(60, at + (at < 20 ? 2 : 1));
+  } else { qrq.lives--; qrq.wpm = Math.max(5, Math.min(at, Math.max(qrq.start, at - 2))); }
+  if (fb) fb.innerHTML = msg;
+  qrqShow();
+  if (qrq.lives <= 0) { qrqEnd(false); return; }
+  setTimeout(qrqNext, ok ? 700 : 1600);
+}
+function qrqCheck() {
+  if (!qrq.on || qrq.kind !== 'copy' || !qrq.item) return;
+  const a = $('qrqIn'); const want = norm(qrq.item), got = norm(a ? a.value : '');
+  if (!got) return;
+  const ok = want === got, at = qrq.wpm;
+  qrqResult(ok, ok ? `<div class="good">✓ ${esc(want)} at ${at} WPM${qrq.rep ? ' (replayed, so no speed-up)' : ''}</div>`
+    : `<div class="bad">✗ It was ${esc(want)}</div>${qrqDiff(want, got)}<div class="dim">You typed: ${esc(got)}</div>`, qrq.rep);
+}
+function qrqSent(text, how) {
+  if (!qrq.on || qrq.kind !== 'send' || !qrq.item) return;
+  if (how === 'type') { $('qrqFb').innerHTML = '<div class="bad">Use your key or paddles for the send ladder.</div>'; return; }
+  const want = norm(qrq.item), got = norm(text), at = qrq.wpm;
+  const meas = S.input === 'straight' ? Math.round(1200 / dec.unit) : at;
+  if (want !== got) { qrqResult(false, `<div class="bad">✗ Decoded "${esc(got || '?')}"</div>${qrqDiff(want, got)}<div class="dim">Wanted ${esc(want)}</div>`); return; }
+  if (S.input === 'straight' && meas < at - 1) { // clean but slow: no strike, try another at the same speed
+    $('qrqFb').innerHTML = `<div class="dim">Clean copy, but you sent about ${meas} WPM. Aim for ${at}.</div>`; setTimeout(qrqNext, 1200); return;
+  }
+  qrqResult(true, `<div class="good">✓ Clean at ${S.input === 'straight' ? 'about ' + meas : at} WPM</div>`);
+}
+function qrqEnd(stopped) {
+  qrq.on = false; if (qrq.v) { qrq.v.dispose(); qrq.v = null; }
+  const fb = $('qrqFb'), k = qrq.kind, pb = QPB[k] || {};
+  let line = '';
+  if (qrq.top) {
+    const isPB = qrq.top > (pb.wpm || 0);
+    if (isPB) { QPB[k] = { wpm: qrq.top, pts: qrq.pts, what: qrq.what, date: new Date().toISOString().slice(0, 10) }; try { localStorage.setItem('kpcQRQ', JSON.stringify(QPB)); } catch (e) {} }
+    const b = QBADGE.filter(x => qrq.top >= x[0]).pop();
+    line = `<div class="qrq-end"><b>${qrq.top} WPM</b> ${k === 'copy' ? 'copied' : 'sent'} · ${qrq.pts} points${b ? ' · ' + b[1] + ' ' + b[2] : ''}${isPB ? '<br>🎉 New personal best!' : ''}</div>`;
+  } else if (!stopped) line = '<div class="qrq-end">No clean ones that run. Try a slower start speed.</div>';
+  if (fb) fb.innerHTML = (stopped ? '' : '<div class="bad">Three misses. Run over.</div>') + line + (fb && stopped ? fb.innerHTML : '');
+  const t = $('qrqTarget'); if (t) t.innerHTML = '';
+  qrqShow();
+}
+function qrqInit() {
+  if (!$('qrqGo')) return;
+  let st = {}; try { st = JSON.parse(localStorage.getItem('kpcQRQset') || '{}') || {}; } catch (e) {}
+  const kr = document.querySelector(`input[name=qrqKind][value=${st.kind === 'send' ? 'send' : 'copy'}]`); if (kr) kr.checked = true;
+  qrq.kind = kr ? kr.value : 'copy';
+  if (st.what && $('qrqWhat')) $('qrqWhat').value = st.what;
+  if ($('qrqStart')) $('qrqStart').value = String(st.start || (S.wpm <= 12 ? 10 : S.wpm <= 17 ? 15 : S.wpm <= 22 ? 20 : 25));
+  document.querySelectorAll('input[name=qrqKind]').forEach(rr => rr.addEventListener('change', () => { if (qrq.on) qrqEnd(true); qrq.kind = rr.value; qrqShow(); }));
+  $('qrqGo').addEventListener('click', qrqStart);
+  $('qrqRep').addEventListener('click', qrqRepeat);
+  $('qrqOk').addEventListener('click', qrqCheck);
+  $('qrqIn').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); qrqCheck(); } });
+  qrqShow();
+}
+
 /* ================================================================ Wiring */
 function typedSend() {
   const i = $('cwType'); if (!i) return;
@@ -781,7 +916,7 @@ async function midi() {
 }
 
 function setMode(m) {
-  stop(true); MODE = m;
+  stop(true); if (qrq.on) qrqEnd(true); MODE = m;
   const app = $('cwApp'); if (app) app.dataset.mode = m;
   document.querySelectorAll('.cw-tab').forEach(t => t.setAttribute('aria-selected', String(t.dataset.mode === m)));
   document.querySelectorAll('[data-show]').forEach(el => { el.hidden = el.dataset.show.split(' ').indexOf(m) < 0; });
@@ -792,6 +927,7 @@ function setMode(m) {
     act: `You're the activator. Press START, then call CQ ${progWord()} with your call. Answer the stations that come back.`,
     free: 'Send anything — it decodes as you go. Use it to check your timing.',
     drill: 'Press PLAY, type what you heard, press Enter.',
+    qrq: '',
     listen: ''
   }[m];
   ui.status(intro || ''); ui.hint('');
@@ -803,8 +939,16 @@ function setInput(v) {
   document.querySelectorAll('[data-input]').forEach(el => { el.hidden = el.dataset.input.split(' ').indexOf(v) < 0; });
   dec.reset(1200 / S.wpm, v === 'straight');
   const r = document.querySelector(`input[name=cwInput][value=${v}]`); if (r) r.checked = true;
+  if ($('qrqGo')) qrqShow();
 }
 
+function padLabels() {
+  const d = $('cwDit'), h = $('cwDah'), c = $('cwSwap'), b = $('cwSwapBtn');
+  if (d) d.innerHTML = (S.swap ? 'DAH' : 'DIT') + '<small>left paddle</small>';
+  if (h) h.innerHTML = (S.swap ? 'DIT' : 'DAH') + '<small>right paddle</small>';
+  if (c) c.checked = !!S.swap;
+  if (b) b.innerHTML = '⇄ SWAP PADDLES' + (S.swap ? ' <small>(swapped: left = dah)</small>' : '');
+}
 function bindSettings() {
   const FADE = ['Off', 'Light', 'Moderate', 'Deep', 'Deep & fast'];
   const pileTxt = v => v === 0 ? 'None: one station at a time' : v === 1 ? '1 other station' : v + ' stations calling' + (v >= 8 ? ' (big pileup)' : '');
@@ -837,7 +981,7 @@ function bindSettings() {
   const chk = (id, k, cb) => { const el = $(id); if (!el) return; el.checked = !!S[k]; el.addEventListener('change', () => { S[k] = el.checked; save(); cb && cb(); }); };
   // quick pileup − / + next to START
   const setPile = v => { const el = $('cwPile'); if (!el) return; el.value = Math.max(0, Math.min(12, v)); el.dispatchEvent(new Event('input')); };
-  if ($('cwPileMinus')) { $('cwPileMinus').addEventListener('click', () => setPile(S.pileN - 1)); $('cwPilePlus').addEventListener('click', () => setPile(S.pileN + 1)); $('cwPileQ').textContent = S.pileN; } chk('cwHints', 'hints', () => ui.hint($('cwHint').textContent)); chk('cwSwap', 'swap'); chk('cwMatch', 'match'); chk('cwWelcome', 'welcome');
+  if ($('cwPileMinus')) { $('cwPileMinus').addEventListener('click', () => setPile(S.pileN - 1)); $('cwPilePlus').addEventListener('click', () => setPile(S.pileN + 1)); $('cwPileQ').textContent = S.pileN; } chk('cwHints', 'hints', () => ui.hint($('cwHint').textContent)); chk('cwSwap', 'swap', padLabels); chk('cwMatch', 'match'); chk('cwWelcome', 'welcome');
   const koch = $('cwKoch'); if (koch) { const f = () => { S.kochLevel = +koch.value; $('cwKochV').textContent = `${S.kochLevel} characters: ${KOCH.slice(0, S.kochLevel).join(' ')}`; save(); }; koch.value = S.kochLevel; koch.addEventListener('input', f); f(); }
   if ($('cwKochRow')) $('cwKochRow').hidden = S.drill !== 'koch';
   document.querySelectorAll('input[name=cwInput]').forEach(r => r.addEventListener('change', () => setInput(r.value)));
@@ -855,7 +999,7 @@ function init() {
   setInput(S.input);
   document.querySelectorAll('.cw-tab').forEach(t => t.addEventListener('click', () => setMode(t.dataset.mode)));
   let m = 'hunt'; try { m = localStorage.getItem('kpcCWmode') || 'hunt'; } catch (e) {}
-  const hm = (location.hash.match(/#(hunt|act|drill|free|listen)\b/) || [])[1]; if (hm) m = hm;
+  const hm = (location.hash.match(/#(hunt|act|drill|free|listen|qrq)\b/) || [])[1]; if (hm) m = hm;
   setMode(m);
   $('cwGo').addEventListener('click', () => { if (session.on) stop(); else start(); });
   $('cwOverBtn').addEventListener('click', () => dec.flush());
@@ -874,10 +1018,12 @@ function init() {
   $('cwDrillIn').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); drillCheck(); } });
   $('cwDrillOk').addEventListener('click', drillCheck);
   document.querySelectorAll('[data-say]').forEach(b => b.addEventListener('click', () => { audio(); const v = new Voice({ call: 'ex', pitch: S.their, wpm: S.wpm, eff: S.eff, level: 0.9 }); v.play(b.dataset.say).then(() => v.dispose()); }));
+  const sb = $('cwSwapBtn'); if (sb) sb.addEventListener('click', () => { S.swap = !S.swap; save(); releaseAll(); padLabels(); });
+  padLabels(); qrqInit();
   fistMeter(); ui.stats();
 }
 
 // small hooks for testing / other pages
-window.KPCCW = { timeline, charsOf, callMatch, toks, findRST, findState, findRef, lev, newOp, usCall, decode: c => DECODE[c], S, dec, transmit, session, setMode, start, stop, paddle, keyDown, keyUp, releaseAll, drill, drillItem, garble };
+window.KPCCW = { timeline, charsOf, callMatch, toks, findRST, findState, findRef, lev, newOp, usCall, decode: c => DECODE[c], S, dec, transmit, session, setMode, start, stop, paddle, keyDown, keyUp, releaseAll, drill, drillItem, garble, qrq, qrqStart, qrqCheck, qrqSent, qrqEnd };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
