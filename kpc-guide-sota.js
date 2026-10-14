@@ -213,7 +213,7 @@
           '<p class="g-meta">' + esc(s.co) + ' County • Region ' + esc(s.c.slice(4, 6)) + ' • ' + num(Math.round(s.ft * 0.3048)) + ' m / ' + num(s.ft) + ' ft • ' +
           s.pts + (s.pts === 1 ? ' point' : ' points') + '</p>' +
           '<div class="g-btns">' + ext(gps(s.la, s.lo), 'GPS', 'b b-gps') + ext(osm(s.la, s.lo), 'OSM MAP', 'b b-osm') + ext(wx(s.la, s.lo), 'WEATHER', 'b b-wx') +
-          '<a class="b b-near" href="#' + nid(s.c) + '">NEARBY ›</a></div>' + land + nl + '</article>';
+          '<a class="b b-near" href="#' + nid(s.c) + '">NEARBY ›</a><a class="b b-near no-print" href="kpc-park-notes.html#' + encodeURIComponent(s.c) + '">SUMMIT TIPS ›</a></div>' + land + nl + '</article>';
       }).join('') + '</section>';
     }).join('');
 
@@ -265,7 +265,7 @@
     .then(function (a) { render(a[0], a[1], a[2]); done(); })
     .catch(function (e) {
       var el = $('gErr');
-      if (el) { el.hidden = false; el.textContent = 'Sorry, the summit list did not load (' + e.message + '). Try reloading, or open the PDF.'; }
+      if (el) { el.hidden = false; el.textContent = 'Sorry, the summit list did not load (' + e.message + '). Try reloading the page.'; }
       root.dataset.ready = 'error';
       if (window.console) console.warn(e);
     });

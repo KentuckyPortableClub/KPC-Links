@@ -214,7 +214,7 @@ def fers_data():
         elif s == 3: tag = ' (Water Route shore, within 100 ft of the water)'
         elif s == 2: tag = ' (riverbank, within 100 ft of the water)'
         rows.append({'type': d['type'], 'sec': s, 'refs': d['refs'], 'names': d['names'], 'county': d['county'],
-                     'pin': [p['la'], p['lo']], 'pinWhat': 'approximate riverbank' if 'riverbank' in p['what'].lower() else p['what'][:34].lower(),
+                     'pin': [p['la'], p['lo']], 'pinWhat': p['what'].strip(),
                      'tag': tag})
     return {'updated': F.get('updated'), 'sections': ['3-Fers', 'Historic trail sites (visitor centers, certified sites, auto tour route)',
             'Ohio River banks (Lewis & Clark)', 'Trail of Tears Water Route (Kentucky Lake & Mississippi River)', 'Trail 2-fers', 'Shared boundaries'],

@@ -84,6 +84,6 @@ $('live').addEventListener('click',live);
 Promise.all([jget('kpc-top25.json'),jget('kpc-ky-data.json').catch(()=>null)]).then(([j,ky])=>{
  ((ky&&ky.parks)||[]).forEach(p=>{KY[p.c]=p});D=j;render()}).catch(()=>{
  $('upd').textContent='COULD NOT LOAD THE LIST';
- $('msg').textContent='The saved list did not load. Tap GET LIVE POTA NUMBERS, or open the PDF.';
+ $('msg').textContent='The saved list did not load. Tap GET LIVE POTA NUMBERS.';
  document.documentElement.dataset.ready='1'});
 })();
