@@ -1,0 +1,12 @@
+name: shot
+on: {push: {branches: [claude-shot]}}
+permissions: {contents: write}
+jobs:
+  s:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: npm i playwright@1.47.2 && npx playwright install --with-deps chromium && node shot.js
+      - run: |
+          git config user.name bot; git config user.email bot@x
+          git add *.png; git commit -m shots; git push
