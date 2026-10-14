@@ -72,6 +72,9 @@ def build(stats, updated, parks):
         'parks': len(rows),
         'qsos': ranked(lambda r: (r['q'], r['a'], num(r['c']))),
         'acts': ranked(lambda r: (r['a'], r['q'], num(r['c']))),
+        # every ranked park as [ref, activations, QSOs], so the page can build a full 25 when a
+        # visitor hides parks they have already activated (My Parks "NEW TO ME" / "ATNO")
+        'all': [[r['c'], r['a'], r['q']] for r in sorted(rows, key=lambda r: num(r['c']))],
     }
 
 
