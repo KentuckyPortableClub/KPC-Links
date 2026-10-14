@@ -58,7 +58,7 @@ const DEF = {
   call: '', st: 'KY', ref: '', prog: 'pota',
   wpm: 18, eff: 18, pitch: 650, their: 600, vol: 0.7, noise: 0.12, qsb: true, fade: 2, pileN: 2,
   input: 'keyboard', iambic: 'B', swap: false, show: 'after', hints: true, pile: 2,
-  over: 1.0, match: false, welcome: true, kochLevel: 2, drill: 'calls'
+  over: 1.0, match: false, welcome: true, name: '', qth: '', kochLevel: 2, drill: 'calls'
 };
 let S = Object.assign({}, DEF);
 try { Object.assign(S, JSON.parse(localStorage.getItem('kpcCW') || '{}')); } catch (e) {}
@@ -428,6 +428,7 @@ function start() {
     if (gen !== GEN) return;
     if (MODE === 'hunt') hunterLoop(gen).catch(e => console.error(e));
     else if (MODE === 'act') activatorLoop(gen).catch(e => console.error(e));
+    else if (MODE === 'chat') chatLoop(gen).catch(e => console.error(e));
   };
   if (S.welcome && !welcomed) { welcomed = true; welcome(gen).then(go); } else go();
 }
@@ -667,11 +668,154 @@ function fistMeter() {
   e.innerHTML = `<div><b>${wpm}</b><span>WPM (from your dits)</span></div><div class="${rc}"><b>${ratio.toFixed(1)} : 1</b><span>dah : dit (aim for 3)</span></div><div class="${steady > 80 ? 'good' : steady > 65 ? 'ok' : 'bad'}"><b>${steady}%</b><span>steadiness</span></div>`;
 }
 
+/* ================================================================ Ragchew: a friendly full QSO
+   Name, QTH, rig, antenna and weather, then a proper sign-off. You can send AGN? to hear an over again or QRS to slow them down. */
+const TOWNS = { KY: ['BOWLING GREEN', 'LEXINGTON', 'LOUISVILLE', 'PADUCAH', 'PIKEVILLE', 'SOMERSET', 'GLASGOW', 'OWENSBORO', 'MOREHEAD', 'LONDON', 'MURRAY', 'HAZARD', 'ELIZABETHTOWN', 'FRANKFORT', 'CAVE CITY', 'CORBIN'],
+  TN: ['NASHVILLE', 'KNOXVILLE', 'CHATTANOOGA', 'MEMPHIS', 'COOKEVILLE', 'JOHNSON CITY'], OH: ['CINCINNATI', 'COLUMBUS', 'DAYTON', 'AKRON', 'ATHENS'],
+  IN: ['EVANSVILLE', 'BLOOMINGTON', 'INDIANAPOLIS', 'FORT WAYNE'], WV: ['CHARLESTON', 'HUNTINGTON', 'MORGANTOWN', 'BECKLEY'], VA: ['ROANOKE', 'RICHMOND', 'BRISTOL', 'NORFOLK'],
+  IL: ['SPRINGFIELD', 'PEORIA', 'CARBONDALE', 'CHICAGO'], NC: ['ASHEVILLE', 'RALEIGH', 'BOONE', 'CHARLOTTE'], MO: ['ST LOUIS', 'SPRINGFIELD', 'COLUMBIA'], TX: ['AUSTIN', 'DALLAS', 'AMARILLO'],
+  GA: ['ATLANTA', 'ATHENS', 'MACON'], MI: ['LANSING', 'GRAND RAPIDS'], PA: ['PITTSBURGH', 'ERIE', 'LANCASTER'], FL: ['TAMPA', 'ORLANDO', 'OCALA'], CA: ['FRESNO', 'SAN DIEGO'] };
+const RIGS = ['KX2', 'KX3', 'IC 705', 'FT 891', 'FT 818', 'QMX', 'MTR3B', 'IC 7300', 'K3', 'TS 590', 'FT 991A', 'X6100', 'KH1', 'FT DX10', 'K4'];
+const ANTS = ['EFHW', 'DIPOLE', 'VERTICAL', 'G5RV', 'LOOP', 'YAGI', 'OCF DIPOLE', 'HAMSTICK', 'RANDOM WIRE', 'HEXBEAM', 'INV V'];
+const WXS = ['SUNNY', 'CLDY', 'RAIN', 'CLEAR', 'WINDY', 'FOGGY', 'PTLY CLDY', 'SNOW'];
+const LIKES = ['POTA', 'SOTA', 'CW', 'QRP', 'DX', 'CONTESTS', 'HOMEBREW', 'RAGCHEWING', 'FT8', 'SKCC'];
+function wordsAfter(ts, w) { // QTH can be more than one word: take words up to the next break
+  const i = ts.indexOf(w); if (i < 0) return '';
+  const stop = new Set(['BK', 'KN', 'K', 'ES', 'NAME', 'OP', 'RIG', 'RST', 'UR', 'HW', 'HW?', 'WX', 'ANT', 'PWR', 'DE', 'TNX', 'FER', '73']);
+  const out = []; for (let j = i + 1; j < ts.length && out.length < 4; j++) { const t = ts[j]; if (stop.has(t)) break; if ((t === 'IS' || t === 'HR' || t === 'NR') && !out.length) continue; if (/^[A-Z][A-Z]*$/.test(t)) out.push(t); else break; }
+  return out.join(' ');
+}
+function wordAfter(ts, w) { const i = ts.indexOf(w); if (i < 0) return ''; const skip = new Set(['IS', 'HR', 'HERE', 'NR', 'NEAR', 'OP', 'OPR', 'NAME', 'QTH']); for (let j = i + 1; j < Math.min(ts.length, i + 4); j++) { if (!skip.has(ts[j]) && /^[A-Z][A-Z]+$/.test(ts[j])) return ts[j]; } return ''; }
+async function chatLoop(gen) {
+  const me = myCall(), myName = (S.name || '').toUpperCase().trim() || 'YOURNAME', myQth = (S.qth || '').toUpperCase().trim() || 'YOURTOWN';
+  let op; do { op = newOp(new Set([me])); } while (!TOWNS[op.st]); const st = op.st;
+  const o = { call: op.call, st, town: pick(TOWNS[st]), name: pick(NAMES), rig: pick(RIGS), pwr: pick([5, 5, 10, 15, 50, 100, 100]), ant: pick(ANTS), wx: '',
+    temp: (() => { const m = new Date().getMonth(); return rnd([25, 30, 40, 52, 62, 72, 78, 76, 68, 56, 44, 32][m], [45, 50, 62, 72, 82, 90, 95, 94, 88, 78, 64, 50][m]); })(), yrs: rnd(2, 45), likes: pick(LIKES) };
+  o.wx = pick(WXS.filter(w => w !== 'SNOW' || o.temp < 34));
+  const v = voice(o.call, { main: true }); let last = '', you2 = { name: '', qth: '' };
+  const over = async t => { last = t; await say(v, t, gen); };
+  // AGN? repeats the last over; QRS slows them down and repeats; returns the tokens of your real reply (or null)
+  const reply = async (hint, ms, quiet) => {
+    ui.hint(hint);
+    for (let i = 0; i < 6 && gen === GEN; i++) {
+      const r = await you(ms || 90000); if (gen !== GEN) return null;
+      if (r === null) { if (quiet) return null; await over(`${me} DE ${o.call} ?`); continue; }
+      const ts = toks(r);
+      if (has(ts, 'QRS')) { v.wpm = Math.max(6, v.wpm - 3); v.eff = Math.min(v.eff, v.wpm); ui.note(`${o.call} slowed down to ${v.wpm} WPM.`); await over('QRS OK ' + last); continue; }
+      if (asksAgain(ts) && ts.length <= 4) { session.agn++; await over(last); continue; }
+      return ts;
+    }
+    return null;
+  };
+  ui.status('Ragchew: a friendly full QSO. Listen for the CQ.');
+  // 1) CQ and your answer
+  let ts = null;
+  for (let n = 0; n < 4 && gen === GEN; n++) {
+    await over(`CQ CQ CQ DE ${o.call} ${o.call} K`); if (gen !== GEN) return;
+    ts = await reply(`Answer: ${o.call} DE ${me} ${me} K`, 15000, true); if (gen !== GEN) return;
+    if (ts && callMatch(ts, me) === 'exact') break;
+    if (ts) ui.note(`They didn't copy your call. Send: ${o.call} DE ${me} ${me} K`);
+    ts = null;
+  }
+  if (!ts) { stop(true); ui.note('No contact. Press START to try again.'); return; }
+  const t0 = Date.now();
+  // 2) their first over: report, QTH, name
+  const theirRst = pick(['579', '589', '599', '569', '559']);
+  await over(`${me} DE ${o.call} ${greet()} OM ES TNX FER CALL <BT> UR RST ${theirRst} ${theirRst} <BT> QTH ${o.town} ${o.st} ${o.town} ${o.st} <BT> NAME ${o.name} ${o.name} <BT> HW CPY? ${me} DE ${o.call} KN`); if (gen !== GEN) return;
+  let gotRst = null;
+  for (let tries = 0; tries < 3 && gen === GEN; tries++) {
+    ts = await reply(`Your turn: ${o.call} DE ${me} R ${greet()} ${o.name} TNX FER RPT <BT> UR RST 579 579 <BT> QTH ${myQth} <BT> NAME ${myName} <BT> HW? ${o.call} DE ${me} KN`); if (gen !== GEN) return;
+    if (!ts) break;
+    if (has(ts, '73', 'SK')) break;
+    gotRst = gotRst || findRST(ts); you2.name = you2.name || wordAfter(ts, 'NAME') || wordAfter(ts, 'OP'); you2.qth = you2.qth || wordsAfter(ts, 'QTH');
+    const need = [!gotRst && 'RST', !you2.name && 'NAME', !you2.qth && 'QTH'].filter(Boolean);
+    if (!need.length || tries === 2) break;
+    await over(`R R ${need.map(x => x + '?').join(' ')} ${me} DE ${o.call} KN`);
+  }
+  if (gen !== GEN) return;
+  // 3) rig, antenna and weather
+  const nm = you2.name || 'OM';
+  await over(`R R FB ${nm} ES TNX FER ${gotRst || '5NN'} <BT> ${you2.qth ? 'NICE TO MEET U IN ' + you2.qth + ' <BT> ' : ''}RIG HR IS ${o.rig} ES PWR ${o.pwr}W <BT> ANT IS ${o.ant} <BT> WX HR ${o.wx} ES ${o.temp}F <BT> HW? ${me} DE ${o.call} KN`); if (gen !== GEN) return;
+  for (let tries = 0; tries < 2 && gen === GEN; tries++) {
+    ts = await reply(`Your turn: R FB ${o.name} <BT> RIG HR IS KX2 ES PWR 5W <BT> ANT IS EFHW <BT> WX ${pick(WXS)} ES 70F <BT> HW? ${o.call} DE ${me} KN`); if (gen !== GEN) return;
+    if (!ts || has(ts, '73', 'SK')) break;
+    const n = ['RIG', 'ANT', 'WX', 'PWR'].filter(w => ts.includes(w)).length;
+    if (n >= 2 || tries === 1) break;
+    await over(`R ${n ? '' : 'RIG? '}ANT? WX? ${me} DE ${o.call} KN`);
+  }
+  if (gen !== GEN) return;
+  // 4) a bit of chat, sometimes
+  if (ts && !has(ts, '73', 'SK') && chance(0.6)) {
+    await over(`FB ${nm} <BT> BEEN A HAM ${o.yrs} YRS ES ENJOY ${o.likes} <BT> HW LONG HAVE U BEEN LICENSED? ${me} DE ${o.call} KN`); if (gen !== GEN) return;
+    ts = await reply(`Your turn: R FB <BT> LICENSED 3 YRS ES LUV POTA <BT> ${o.call} DE ${me} KN`); if (gen !== GEN) return;
+  }
+  // 5) sign-off
+  await over(`R TNX FER FB QSO ${nm} <BT> HPE CU AGN <BT> 73 ES GL <SK> ${me} DE ${o.call} TU`); if (gen !== GEN) return;
+  ts = await reply(`Sign off: TNX FER QSO ${o.name} 73 <SK> ${o.call} DE ${me} TU`, 30000, true); if (gen !== GEN) return;
+  if (ts) await say(v, 'E E', gen);
+  const mins = Math.max(1, Math.round((Date.now() - t0) / 60000));
+  session.qsos.push({ call: o.call }); ui.stats();
+  ui.note(`QSO done (${mins} min). You worked ${o.name}, ${o.call} in ${o.town} ${o.st}: ${o.rig} at ${o.pwr}W, antenna ${o.ant}, WX ${o.wx} ${o.temp}F. Did you copy it all?`);
+  v.dispose(); stop(true); ui.status('QSO complete. 73!'); ui.hint('Press START for another ragchew.');
+}
+
+/* ================================================================ Problem letters
+   Every copy check (drills and the QRQ copy ladder) counts which characters you missed. */
+let MISS = {}; try { MISS = JSON.parse(localStorage.getItem('kpcCWmiss') || '{}') || {}; } catch (e) { MISS = {}; }
+function trackCopy(want, got) {
+  want = norm(want).replace(/ /g, ''); got = norm(got).replace(/ /g, '');
+  if (!want) return;
+  // line up what you typed with what was sent (longest common subsequence), so one extra letter doesn't spoil the rest
+  const m = want.length, n = got.length, d = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+  for (let i = m - 1; i >= 0; i--) for (let j = n - 1; j >= 0; j--) d[i][j] = want[i] === got[j] ? d[i + 1][j + 1] + 1 : Math.max(d[i + 1][j], d[i][j + 1]);
+  const hit = new Array(m).fill(false); let i = 0, j = 0;
+  while (i < m && j < n) { if (want[i] === got[j]) { hit[i] = true; i++; j++; } else if (d[i + 1][j] >= d[i][j + 1]) i++; else j++; }
+  for (let k = 0; k < m; k++) { const c = want[k]; const e = MISS[c] || (MISS[c] = { n: 0, m: 0 }); e.n++; if (!hit[k]) e.m++; }
+  try { localStorage.setItem('kpcCWmiss', JSON.stringify(MISS)); } catch (e) {}
+  weakShow();
+}
+function weakList(k) { return Object.keys(MISS).filter(c => MISS[c].n >= 3 && MISS[c].m > 0).map(c => [c, MISS[c].m / MISS[c].n, MISS[c].n]).sort((a, b) => b[1] - a[1]).slice(0, k || 8); }
+function weakShow() {
+  const box = $('cwWeak'); if (!box) return;
+  const w = weakList(8), seen = Object.keys(MISS).reduce((t, c) => t + MISS[c].n, 0);
+  if (!w.length) { box.innerHTML = `<b>YOUR PROBLEM LETTERS</b> <span class="dim">${seen ? 'None yet. Nice copying!' : 'Copy a few drills and the letters you miss show up here.'}</span>`; return; }
+  box.innerHTML = `<b>YOUR PROBLEM LETTERS</b> ${w.map(x => `<span class="wk" title="missed ${Math.round(x[1] * 100)}% of ${x[2]}">${esc(x[0])}<small>${Math.round(x[1] * 100)}%</small></span>`).join('')}
+   <button type="button" class="cw-small" id="cwWeakGo">PRACTICE THESE</button> <button type="button" class="cw-small" id="cwWeakReset" title="Clear the counts">RESET</button>`;
+  $('cwWeakGo').addEventListener('click', () => { const sel = $('cwDrillType'); if (sel) { sel.value = 'weak'; sel.dispatchEvent(new Event('change')); } drillPlay(true); });
+  $('cwWeakReset').addEventListener('click', () => { if (!confirm('Clear your problem-letter counts?')) return; MISS = {}; try { localStorage.removeItem('kpcCWmiss'); } catch (e) {} weakShow(); });
+}
+function weakGroup() {
+  const w = weakList(10); if (!w.length) return null;
+  const pool = []; w.forEach(x => { for (let i = 0; i < 1 + Math.round(x[1] * 8); i++) pool.push(x[0]); });
+  const filler = 'ETAINOSRH'.split('');
+  let s = ''; const words = rnd(1, 2);
+  for (let k = 0; k < words; k++) { if (k) s += ' '; const n = rnd(3, 5); for (let i = 0; i < n; i++) s += chance(0.75) ? pick(pool) : pick(filler); }
+  return s;
+}
+
+/* ================================================================ Head copy: listen without writing, then answer a question */
+function headItem() {
+  const nm = pick(NAMES), st = pick(['KY', 'KY', 'TN', 'OH', 'IN', 'VA', 'NC']), town = pick(TOWNS[st] || TOWNS.KY), rig = pick(RIGS), ant = pick(ANTS), wx = pick(WXS), t = rnd(30, 95), pw = pick([5, 10, 20, 50, 100]), y = rnd(2, 40);
+  const F = [
+    { s: `NAME HR IS ${nm}`, q: 'What is their name?', a: [nm] },
+    { s: `QTH IS ${town} ${st}`, q: 'What town is their QTH?', a: [town, town + ' ' + st] },
+    { s: `RIG HR IS ${rig}`, q: 'What rig are they using?', a: [rig, rig.replace(/ /g, '')] },
+    { s: `ANT IS ${ant}`, q: 'What antenna?', a: [ant] },
+    { s: `WX HR ${t < 34 ? wx : wx === 'SNOW' ? 'SUNNY' : wx} ES ${t}F`, q: 'What is the temperature there?', a: [String(t), t + 'F'] },
+    { s: `PWR IS ${pw}W`, q: 'How many watts?', a: [String(pw), pw + 'W'] },
+    { s: `BEEN A HAM ${y} YRS`, q: 'How many years licensed?', a: [String(y), y + ' YRS'] }];
+  const use = F.sort(() => Math.random() - 0.5).slice(0, rnd(2, 3)), q = pick(use);
+  return { text: use.map(f => f.s).join(' <BT> '), q: q.q, a: q.a.map(norm) };
+}
+
 /* ================================================================ Copy drills */
 const KOCH = 'KMRSUAPTLOWI.NJEF0Y,VG5/Q9ZH38B?427C1D6X'.split('');
 const drill = { item: '', gen: 0, v: null, right: 0, total: 0, streak: 0 };
 function drillItem() {
   const k = S.drill;
+  drill.head = null;
+  if (k === 'head') { drill.head = headItem(); return drill.head.text; }
+  if (k === 'weak') { const g = weakGroup(); if (g) return g; }
   if (k === 'calls') return newOp().call;
   if (k === 'exch') { const o = newOp(); const r = rst(S.prog); return pick([`${r} ${r} ${o.st} ${o.st}`, `TU UR ${r} ${o.st}`, `${o.call} ${r} ${o.st}`]); }
   if (k === 'refs') return S.prog === 'sota' ? place('sota', chance(0.6) ? 'KY' : 'TN')[0] : (chance(0.6) ? pick(PLACES.parks)[0] : 'US-' + String(rnd(1, 11000)).padStart(4, '0'));
@@ -688,13 +832,27 @@ async function drillPlay(newOne) {
   if (newOne || !drill.item) { drill.item = drillItem(); const a = $('cwDrillIn'); if (a) { a.value = ''; a.focus({ preventScroll: true }); } const fb = $('cwDrillFb'); if (fb) fb.innerHTML = ''; }
   if (drill.v) drill.v.dispose();
   drill.v = new Voice({ call: 'drill', pitch: S.their, wpm: S.wpm, eff: S.eff, jit: 0, level: 0.9 });
+  const a = $('cwDrillIn'), q = $('cwDrillQ');
+  if (S.drill === 'head' && drill.head) { if (q) { q.hidden = false; q.textContent = 'Listen. Don\'t write anything down…'; } if (a) { a.placeholder = 'Wait for the question'; } }
+  else if (q) { q.hidden = true; if (a) a.placeholder = 'Type what you heard'; }
+  if (S.drill === 'weak' && !weakList().length) { const fb = $('cwDrillFb'); if (fb) fb.innerHTML = '<div class="dim">No problem letters yet, so here are Koch letters. Copy some drills first.</div>'; }
   setNoise(S.noise > 0.01); await drill.v.play(drill.item); setNoise(false);
+  if (S.drill === 'head' && drill.head) { if (q) q.textContent = drill.head.q; if (a) { a.placeholder = 'Your answer'; a.focus({ preventScroll: true }); } }
 }
 function drillCheck() {
   const a = $('cwDrillIn'), fb = $('cwDrillFb'); if (!a || !drill.item) return;
+  if (S.drill === 'head' && drill.head) {
+    const got = norm(a.value), ok = drill.head.a.indexOf(got) >= 0;
+    drill.total++; if (ok) { drill.right++; drill.streak++; } else drill.streak = 0;
+    fb.innerHTML = `<div class="${ok ? 'good' : 'bad'}">${ok ? '✓ Right' : '✗ The answer was ' + esc(drill.head.a[0])}</div><div class="dim">They sent: ${esc(drill.head.text.replace(/<BT>/g, '='))}</div>`;
+    const sc = $('cwDrillScore'); if (sc) sc.textContent = `${drill.right}/${drill.total} right · streak ${drill.streak}`;
+    const auto = $('cwDrillAuto'); if (auto && auto.checked) setTimeout(() => drillPlay(true), ok ? 1200 : 2600);
+    return;
+  }
   const want = norm(drill.item), got = norm(a.value);
   drill.total++;
   const ok = want === got;
+  trackCopy(want, got);
   if (ok) { drill.right++; drill.streak++; } else drill.streak = 0;
   // character-by-character view
   let view = '';
@@ -797,6 +955,7 @@ function qrqCheck() {
   const a = $('qrqIn'); const want = norm(qrq.item), got = norm(a ? a.value : '');
   if (!got) return;
   const ok = want === got, at = qrq.wpm;
+  trackCopy(want, got);
   qrqResult(ok, ok ? `<div class="good">✓ ${esc(want)} at ${at} WPM${qrq.rep ? ' (replayed, so no speed-up)' : ''}</div>`
     : `<div class="bad">✗ It was ${esc(want)}</div>${qrqDiff(want, got)}<div class="dim">You typed: ${esc(got)}</div>`, qrq.rep);
 }
@@ -928,6 +1087,7 @@ function setMode(m) {
     free: 'Send anything — it decodes as you go. Use it to check your timing.',
     drill: 'Press PLAY, type what you heard, press Enter.',
     qrq: '',
+    chat: 'Ragchew: press START. Answer the CQ, then trade name, QTH, rig, antenna and weather. Send AGN? to hear an over again, or QRS to slow them down.',
     listen: ''
   }[m];
   ui.status(intro || ''); ui.hint('');
@@ -974,9 +1134,9 @@ function bindSettings() {
     });
   });
   const txt = (id, k, up) => { const el = $(id); if (!el) return; el.value = S[k] || ''; el.addEventListener('input', () => { S[k] = up ? el.value.toUpperCase().replace(/\s/g, '') : el.value; if (up) el.value = S[k]; el.classList.remove('need'); save(); }); };
-  txt('cwCall', 'call', true); txt('cwRef', 'ref', true);
+  txt('cwCall', 'call', true); txt('cwRef', 'ref', true); txt('cwName', 'name', true); txt('cwQth', 'qth');
   const sel = (id, k, cb) => { const el = $(id); if (!el) return; el.value = S[k]; el.addEventListener('change', () => { S[k] = el.value; save(); cb && cb(); }); };
-  sel('cwState', 'st'); sel('cwShow', 'show'); sel('cwIambic', 'iambic'); sel('cwDrillType', 'drill', () => { drill.item = ''; $('cwKochRow').hidden = S.drill !== 'koch'; });
+  sel('cwState', 'st'); sel('cwShow', 'show'); sel('cwIambic', 'iambic'); sel('cwDrillType', 'drill', () => { drill.item = ''; drill.head = null; const q = $('cwDrillQ'); if (q) q.hidden = true; $('cwKochRow').hidden = S.drill !== 'koch'; });
   sel('cwProg', 'prog', () => { setMode(MODE); document.querySelectorAll('.cw-prog').forEach(e => { e.textContent = progWord(); }); });
   const chk = (id, k, cb) => { const el = $(id); if (!el) return; el.checked = !!S[k]; el.addEventListener('change', () => { S[k] = el.checked; save(); cb && cb(); }); };
   // quick pileup − / + next to START
@@ -999,7 +1159,7 @@ function init() {
   setInput(S.input);
   document.querySelectorAll('.cw-tab').forEach(t => t.addEventListener('click', () => setMode(t.dataset.mode)));
   let m = 'hunt'; try { m = localStorage.getItem('kpcCWmode') || 'hunt'; } catch (e) {}
-  const hm = (location.hash.match(/#(hunt|act|drill|free|listen|qrq)\b/) || [])[1]; if (hm) m = hm;
+  const hm = (location.hash.match(/#(hunt|act|drill|free|listen|qrq|chat)\b/) || [])[1]; if (hm) m = hm;
   setMode(m);
   $('cwGo').addEventListener('click', () => { if (session.on) stop(); else start(); });
   $('cwOverBtn').addEventListener('click', () => dec.flush());
@@ -1019,11 +1179,11 @@ function init() {
   $('cwDrillOk').addEventListener('click', drillCheck);
   document.querySelectorAll('[data-say]').forEach(b => b.addEventListener('click', () => { audio(); const v = new Voice({ call: 'ex', pitch: S.their, wpm: S.wpm, eff: S.eff, level: 0.9 }); v.play(b.dataset.say).then(() => v.dispose()); }));
   const sb = $('cwSwapBtn'); if (sb) sb.addEventListener('click', () => { S.swap = !S.swap; save(); releaseAll(); padLabels(); });
-  padLabels(); qrqInit();
+  padLabels(); qrqInit(); weakShow();
   fistMeter(); ui.stats();
 }
 
 // small hooks for testing / other pages
-window.KPCCW = { timeline, charsOf, callMatch, toks, findRST, findState, findRef, lev, newOp, usCall, decode: c => DECODE[c], S, dec, transmit, session, setMode, start, stop, paddle, keyDown, keyUp, releaseAll, drill, drillItem, garble, qrq, qrqStart, qrqCheck, qrqSent, qrqEnd };
+window.KPCCW = { timeline, charsOf, callMatch, toks, findRST, findState, findRef, lev, newOp, usCall, decode: c => DECODE[c], S, dec, transmit, session, setMode, start, stop, paddle, keyDown, keyUp, releaseAll, drill, drillItem, garble, qrq, qrqStart, qrqCheck, qrqSent, qrqEnd, waiting: () => !!waiter, trackCopy, MISS: () => MISS };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
