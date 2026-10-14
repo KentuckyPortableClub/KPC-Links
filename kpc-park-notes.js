@@ -3,7 +3,7 @@
    copies only approved rows (and their photos) into kpc-park-notes.json every couple of hours. */
 (function(){
 // Google Form: set from the form's pre-filled link (Get pre-filled link, Park number = US-0050)
-const FORM={url:'',parkEntry:''};
+const FORM={url:'https://docs.google.com/forms/d/e/1FAIpQLSc6jTku8aIPejOVridQ19ChA5ACYsFK56n7Nk9WpIgAiLGTMw/viewform',parkEntry:'entry.1271271904'};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
