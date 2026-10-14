@@ -58,7 +58,7 @@ const DEF = {
   call: '', st: 'KY', ref: '', prog: 'pota',
   wpm: 18, eff: 18, pitch: 650, their: 600, vol: 0.7, noise: 0.12, qsb: true, fade: 2, pileN: 2,
   input: 'keyboard', iambic: 'B', swap: false, show: 'after', hints: true, pile: 2,
-  over: 1.0, match: false, kochLevel: 2, drill: 'calls'
+  over: 1.0, match: false, welcome: true, kochLevel: 2, drill: 'calls'
 };
 let S = Object.assign({}, DEF);
 try { Object.assign(S, JSON.parse(localStorage.getItem('kpcCW') || '{}')); } catch (e) {}
@@ -422,8 +422,21 @@ function start() {
   session.on = true; session.start = Date.now();
   const b = $('cwGo'); if (b) { b.textContent = 'STOP'; b.classList.add('stop'); }
   setNoise(true);
-  if (MODE === 'hunt') hunterLoop(gen).catch(e => console.error(e));
-  else if (MODE === 'act') activatorLoop(gen).catch(e => console.error(e));
+  const go = () => {
+    if (gen !== GEN) return;
+    if (MODE === 'hunt') hunterLoop(gen).catch(e => console.error(e));
+    else if (MODE === 'act') activatorLoop(gen).catch(e => console.error(e));
+  };
+  if (S.welcome && !welcomed) { welcomed = true; welcome(gen).then(go); } else go();
+}
+/* Zach's welcome, keyed once per visit on the first START (turn it off under the settings) */
+const WELCOME = 'HELLO ES WELCOME TO K4ZSR CW ROOM I AM ZACH';
+let welcomed = false;
+async function welcome(gen) {
+  ui.status('Welcome to the K4ZSR CW Room. Zach is on the key… (STOP then START skips it)');
+  const v = new Voice({ call: 'K4ZSR', pitch: S.their, wpm: S.wpm, eff: S.eff, level: 0.9 });
+  try { await say(v, WELCOME, gen); } finally { v.dispose(); }
+  if (gen === GEN) await wait(700);
 }
 
 /* ================================================================ You are the HUNTER */
@@ -824,7 +837,7 @@ function bindSettings() {
   const chk = (id, k, cb) => { const el = $(id); if (!el) return; el.checked = !!S[k]; el.addEventListener('change', () => { S[k] = el.checked; save(); cb && cb(); }); };
   // quick pileup − / + next to START
   const setPile = v => { const el = $('cwPile'); if (!el) return; el.value = Math.max(0, Math.min(12, v)); el.dispatchEvent(new Event('input')); };
-  if ($('cwPileMinus')) { $('cwPileMinus').addEventListener('click', () => setPile(S.pileN - 1)); $('cwPilePlus').addEventListener('click', () => setPile(S.pileN + 1)); $('cwPileQ').textContent = S.pileN; } chk('cwHints', 'hints', () => ui.hint($('cwHint').textContent)); chk('cwSwap', 'swap'); chk('cwMatch', 'match');
+  if ($('cwPileMinus')) { $('cwPileMinus').addEventListener('click', () => setPile(S.pileN - 1)); $('cwPilePlus').addEventListener('click', () => setPile(S.pileN + 1)); $('cwPileQ').textContent = S.pileN; } chk('cwHints', 'hints', () => ui.hint($('cwHint').textContent)); chk('cwSwap', 'swap'); chk('cwMatch', 'match'); chk('cwWelcome', 'welcome');
   const koch = $('cwKoch'); if (koch) { const f = () => { S.kochLevel = +koch.value; $('cwKochV').textContent = `${S.kochLevel} characters: ${KOCH.slice(0, S.kochLevel).join(' ')}`; save(); }; koch.value = S.kochLevel; koch.addEventListener('input', f); f(); }
   if ($('cwKochRow')) $('cwKochRow').hidden = S.drill !== 'koch';
   document.querySelectorAll('input[name=cwInput]').forEach(r => r.addEventListener('change', () => setInput(r.value)));
