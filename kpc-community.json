@@ -1,1 +1,19 @@
-{"updated":"2026-10-13","items":[]}
+{
+ "updated": "2026-10-14",
+ "items": [
+  {
+   "id": "24bb477f5376",
+   "type": "elmer",
+   "call": "KZ4CP",
+   "date": "2026-10-13",
+   "f": {
+    "area": "Cave City",
+    "help": "Getting licensed, First POTA activation, Portable operations, Logging and uploading",
+    "reach": "Qrz"
+   },
+   "photos": [
+    "photos/community/24bb477f5376-1.jpg"
+   ]
+  }
+ ]
+}
