@@ -165,7 +165,13 @@ async function logIt() {
   hush(); run.gen++;
   line('YOU', `Thanks, 73. QRZ? ${myCall()}`, 'you');
   if (errs.length) line('', '⚠ Log check: ' + errs.join(' · '), 'bad'); else line('', '✓ Logged correctly.', 'good');
-  if (o) { run.callers = run.callers.filter(x => x !== o); run.worked.add(o.call); }
+  if (o) {
+    run.callers = run.callers.filter(x => x !== o); run.worked.add(o.call);
+    // they sign too: "thanks, 73"
+    const g = run.gen, bye = pick(['Thanks, seventy-three!', 'Seventy-three, thanks for the park!', 'Thank you, seventy-three.', 'Thanks for the contact, seventy-three.']);
+    if (showText()) line(o.call, bye.replace(/seventy-three/gi, '73'), 'them');
+    await speak(bye, o); if (g !== run.gen) return;
+  }
   run.cur = null; run.sent = false;
   ['fCall', 'fRcvd', 'fSt'].forEach(id => { $(id).value = ''; }); $('fSent').value = '59'; $('fCall').focus();
   if (chance(0.6)) arrivals();
