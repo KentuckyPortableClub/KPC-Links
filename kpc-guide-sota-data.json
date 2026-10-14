@@ -1,0 +1,3546 @@
+{
+ "source": "KPC_Kentucky_SOTA_W4K_Resource.pdf",
+ "pages": 76,
+ "cards": 216,
+ "note": "Extracted from the PDF by .claude/build/guides/extract_sota.py. Codes, names, counties, elevation, points and GPS on the page come from kpc-ky-data.json.",
+ "summits": {
+  "W4K/EC-001": {
+   "pdfName": "Black Mountain",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 1262,
+   "ft": 4140,
+   "pts": 10,
+   "gps": [
+    36.9142,
+    -82.8938
+   ],
+   "pdfPage": 12,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-002": {
+   "pdfName": "Little Black Mountain",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 1116,
+   "ft": 3661,
+   "pts": 10,
+   "gps": [
+    36.8507,
+    -83.0768
+   ],
+   "pdfPage": 12,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-003": {
+   "pdfName": "Unnamed summit (3660)",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 1116,
+   "ft": 3661,
+   "pts": 10,
+   "gps": [
+    36.8633,
+    -83.0371
+   ],
+   "pdfPage": 12,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-004": {
+   "pdfName": "Dominion Benchmark",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 1116,
+   "ft": 3661,
+   "pts": 10,
+   "gps": [
+    36.8279,
+    -83.1076
+   ],
+   "pdfPage": 12,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-005": {
+   "pdfName": "Little Black Lookout",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 1042,
+   "ft": 3419,
+   "pts": 10,
+   "gps": [
+    36.8226,
+    -83.1487
+   ],
+   "pdfPage": 12,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-006": {
+   "pdfName": "Chunklick Benchmark",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 1039,
+   "ft": 3409,
+   "pts": 10,
+   "gps": [
+    36.7345,
+    -83.3834
+   ],
+   "pdfPage": 12,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-007": {
+   "pdfName": "Unnamed summit (3380A)",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 1030,
+   "ft": 3379,
+   "pts": 10,
+   "gps": [
+    36.8959,
+    -83.1609
+   ],
+   "pdfPage": 12,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-008": {
+   "pdfName": "Unnamed summit (3380B)",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 1030,
+   "ft": 3379,
+   "pts": 10,
+   "gps": [
+    36.8208,
+    -83.217
+   ],
+   "pdfPage": 13,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-009": {
+   "pdfName": "Unnamed summit (3380C)",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 1030,
+   "ft": 3379,
+   "pts": 10,
+   "gps": [
+    36.8366,
+    -83.2569
+   ],
+   "land": "Asher Hunting Access Area",
+   "pdfPage": 13,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-010": {
+   "pdfName": "Unnamed summit (3355)",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 1023,
+   "ft": 3356,
+   "pts": 10,
+   "gps": [
+    36.8832,
+    -83.2216
+   ],
+   "near": [
+    [
+     "KFF-6865",
+     "Kentenia",
+     2.4
+    ],
+    [
+     "US-4688",
+     "Kentenia State Forest",
+     2.9
+    ]
+   ],
+   "pdfPage": 13,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-011": {
+   "pdfName": "Fox Knob",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 1018,
+   "ft": 3340,
+   "pts": 10,
+   "gps": [
+    36.8002,
+    -83.3766
+   ],
+   "pdfPage": 13,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-012": {
+   "pdfName": "Unnamed summit (3340A)",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 1018,
+   "ft": 3340,
+   "pts": 10,
+   "gps": [
+    36.9211,
+    -83.1233
+   ],
+   "pdfPage": 13,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-013": {
+   "pdfName": "Unnamed summit (3340B)",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 1018,
+   "ft": 3340,
+   "pts": 10,
+   "gps": [
+    36.9273,
+    -83.111
+   ],
+   "near": [
+    [
+     "KFF-6879",
+     "E. Lucy Braun",
+     2.6
+    ],
+    [
+     "US-7968",
+     "E. Lucy Braun State Nature Preserve",
+     2.6
+    ]
+   ],
+   "pdfPage": 13,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-014": {
+   "pdfName": "Pine Mountain",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 1006,
+   "ft": 3301,
+   "pts": 10,
+   "gps": [
+    37.1126,
+    -82.7318
+   ],
+   "near": [
+    [
+     "KFF-6295",
+     "Jefferson (KY)",
+     1.8
+    ],
+    [
+     "US-10139",
+     "Jefferson National Forest Wildlife Management Area",
+     1.8
+    ]
+   ],
+   "pdfPage": 14,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-015": {
+   "pdfName": "Grays Ridge",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 981,
+   "ft": 3219,
+   "pts": 10,
+   "gps": [
+    36.7746,
+    -83.3011
+   ],
+   "land": "Pocahontas WMA",
+   "pdfPage": 14,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-016": {
+   "pdfName": "Unnamed summit (3070)",
+   "county": "Bell",
+   "region": "EC",
+   "m": 936,
+   "ft": 3071,
+   "pts": 8,
+   "gps": [
+    36.6616,
+    -83.802
+   ],
+   "near": [
+    [
+     "KFF-6866",
+     "Kentucky Ridge",
+     1.6
+    ],
+    [
+     "US-4689",
+     "Kentucky Ridge State Forest",
+     1.7
+    ]
+   ],
+   "pdfPage": 14,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-017": {
+   "pdfName": "Double Spur",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 930,
+   "ft": 3051,
+   "pts": 8,
+   "gps": [
+    36.7481,
+    -83.3209
+   ],
+   "land": "Pocahontas WMA",
+   "pdfPage": 14,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-019": {
+   "pdfName": "Unnamed summit (2961)",
+   "county": "Bell",
+   "region": "EC",
+   "m": 903,
+   "ft": 2963,
+   "pts": 8,
+   "gps": [
+    36.7422,
+    -83.5234
+   ],
+   "pdfPage": 14,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-020": {
+   "pdfName": "Unnamed summit (2940)",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 896,
+   "ft": 2940,
+   "pts": 8,
+   "gps": [
+    36.95,
+    -83.1602
+   ],
+   "near": [
+    [
+     "KFF-6883",
+     "James E Bickford",
+     1.2
+    ],
+    [
+     "KFF-6879",
+     "E. Lucy Braun",
+     3.0
+    ],
+    [
+     "US-7968",
+     "E. Lucy Braun State Nature Preserve",
+     3.0
+    ]
+   ],
+   "pdfPage": 14,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-021": {
+   "pdfName": "Flatwoods",
+   "county": "Pike",
+   "region": "EC",
+   "m": 872,
+   "ft": 2861,
+   "pts": 8,
+   "gps": [
+    37.285,
+    -82.5246
+   ],
+   "pdfPage": 15,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-022": {
+   "pdfName": "Unnamed summit (2710)",
+   "county": "Bell",
+   "region": "EC",
+   "m": 826,
+   "ft": 2710,
+   "pts": 8,
+   "gps": [
+    36.6894,
+    -83.7831
+   ],
+   "near": [
+    [
+     "KFF-6866",
+     "Kentucky Ridge",
+     1.4
+    ],
+    [
+     "US-4689",
+     "Kentucky Ridge State Forest",
+     2.2
+    ]
+   ],
+   "pdfPage": 15,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-023": {
+   "pdfName": "Unnamed summit (2660)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 811,
+   "ft": 2661,
+   "pts": 8,
+   "gps": [
+    36.9779,
+    -83.1474
+   ],
+   "near": [
+    [
+     "KFF-6879",
+     "E. Lucy Braun",
+     2.3
+    ],
+    [
+     "US-7968",
+     "E. Lucy Braun State Nature Preserve",
+     2.3
+    ],
+    [
+     "KFF-6883",
+     "James E Bickford",
+     2.8
+    ]
+   ],
+   "pdfPage": 15,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-024": {
+   "pdfName": "Peters Knob",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 799,
+   "ft": 2621,
+   "pts": 8,
+   "gps": [
+    36.8915,
+    -83.4497
+   ],
+   "land": "Boone Forestlands WMA (likely — name not fully confirmed)",
+   "pdfPage": 15,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-025": {
+   "pdfName": "Unnamed summit (2556)",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 779,
+   "ft": 2556,
+   "pts": 8,
+   "gps": [
+    36.9188,
+    -83.3165
+   ],
+   "pdfPage": 15,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-026": {
+   "pdfName": "Unnamed summit (2540)",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 774,
+   "ft": 2539,
+   "pts": 8,
+   "gps": [
+    36.9534,
+    -83.2112
+   ],
+   "near": [
+    [
+     "KFF-6883",
+     "James E Bickford",
+     1.6
+    ],
+    [
+     "US-4688",
+     "Kentenia State Forest",
+     2.0
+    ],
+    [
+     "KFF-6865",
+     "Kentenia",
+     2.5
+    ]
+   ],
+   "pdfPage": 15,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-027": {
+   "pdfName": "Dicks Knob",
+   "county": "Pike",
+   "region": "EC",
+   "m": 762,
+   "ft": 2500,
+   "pts": 8,
+   "gps": [
+    37.5013,
+    -82.2275
+   ],
+   "pdfPage": 16,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-028": {
+   "pdfName": "Unnamed summit (2500)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 762,
+   "ft": 2500,
+   "pts": 8,
+   "gps": [
+    37.2344,
+    -82.5849
+   ],
+   "pdfPage": 16,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-029": {
+   "pdfName": "Hylton Knob",
+   "county": "Pike",
+   "region": "EC",
+   "m": 761,
+   "ft": 2497,
+   "pts": 8,
+   "gps": [
+    37.4216,
+    -82.1634
+   ],
+   "pdfPage": 16,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-030": {
+   "pdfName": "Unnamed summit (2452)",
+   "county": "Bell",
+   "region": "EC",
+   "m": 747,
+   "ft": 2451,
+   "pts": 8,
+   "gps": [
+    36.7041,
+    -83.7144
+   ],
+   "land": "Kentucky Ridge State Forest → POTA US-4689 / WWFF KFF-6866",
+   "landLinks": [
+    {
+     "label": "US-4689",
+     "url": "https://next.pota.app/park/US-4689"
+    },
+    {
+     "label": "KFF-6866",
+     "url": "https://logsearch.wwff.co/directory/KFF-6866"
+    }
+   ],
+   "near": [
+    [
+     "US-1288",
+     "Pine Mountain State Park",
+     3.0
+    ],
+    [
+     "KFF-1288",
+     "Pine Mountain",
+     3.0
+    ]
+   ],
+   "pdfPage": 16,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-031": {
+   "pdfName": "Unnamed summit (2420)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 738,
+   "ft": 2421,
+   "pts": 8,
+   "gps": [
+    37.5086,
+    -82.206
+   ],
+   "land": "Pocahontas WMA",
+   "pdfPage": 16,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-032": {
+   "pdfName": "Cranks Ridge",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 738,
+   "ft": 2421,
+   "pts": 8,
+   "gps": [
+    36.7665,
+    -83.2207
+   ],
+   "near": [
+    [
+     "KFF-3804",
+     "Cranks Creek",
+     1.5
+    ],
+    [
+     "US-3804",
+     "Cranks Creek Wildlife Management Area",
+     1.5
+    ],
+    [
+     "KFF-6871",
+     "Martin's Fork",
+     2.9
+    ]
+   ],
+   "pdfPage": 16,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-033": {
+   "pdfName": "High Knob",
+   "county": "Pike",
+   "region": "EC",
+   "m": 725,
+   "ft": 2379,
+   "pts": 6,
+   "gps": [
+    37.4547,
+    -82.1108
+   ],
+   "pdfPage": 17,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-034": {
+   "pdfName": "Unnamed summit (2380A)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 725,
+   "ft": 2379,
+   "pts": 6,
+   "gps": [
+    37.27,
+    -82.4746
+   ],
+   "near": [
+    [
+     "US-10102",
+     "Pine Mountain State Trail",
+     2.3
+    ]
+   ],
+   "pdfPage": 17,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-035": {
+   "pdfName": "Unnamed summit (2380B)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 725,
+   "ft": 2379,
+   "pts": 6,
+   "gps": [
+    37.3354,
+    -82.5109
+   ],
+   "pdfPage": 17,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-037": {
+   "pdfName": "Unnamed summit (2340A)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 713,
+   "ft": 2339,
+   "pts": 6,
+   "gps": [
+    37.2637,
+    -82.7779
+   ],
+   "pdfPage": 17,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-038": {
+   "pdfName": "Unnamed summit (2340B)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 713,
+   "ft": 2339,
+   "pts": 6,
+   "gps": [
+    37.3013,
+    -82.4557
+   ],
+   "pdfPage": 17,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-039": {
+   "pdfName": "Unnamed summit (2340C)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 713,
+   "ft": 2339,
+   "pts": 6,
+   "gps": [
+    37.2895,
+    -82.6354
+   ],
+   "pdfPage": 17,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-040": {
+   "pdfName": "Floyd County HP",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 713,
+   "ft": 2339,
+   "pts": 6,
+   "gps": [
+    37.2937,
+    -82.7011
+   ],
+   "pdfPage": 17,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-041": {
+   "pdfName": "Unnamed summit (2325)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 709,
+   "ft": 2326,
+   "pts": 6,
+   "gps": [
+    37.0361,
+    -82.9533
+   ],
+   "near": [
+    [
+     "KFF-3814",
+     "Hensley-Pine Mountain",
+     2.3
+    ],
+    [
+     "US-3814",
+     "Hensley-Pine Mountain Wildlife Management Area",
+     2.3
+    ]
+   ],
+   "pdfPage": 18,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-042": {
+   "pdfName": "Knox County HP",
+   "county": "Knox",
+   "region": "EC",
+   "m": 708,
+   "ft": 2323,
+   "pts": 6,
+   "gps": [
+    36.7182,
+    -83.8651
+   ],
+   "land": "Cumberland Forest WMA (likely — name not fully confirmed)",
+   "pdfPage": 18,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-043": {
+   "pdfName": "Unnamed summit (2300A)",
+   "county": "Bell",
+   "region": "EC",
+   "m": 701,
+   "ft": 2300,
+   "pts": 6,
+   "gps": [
+    36.7477,
+    -83.7405
+   ],
+   "land": "Pine Mountain → POTA US-1288 / WWFF KFF-1288 • Pine Mountain State Park State Nature Preserve",
+   "landLinks": [
+    {
+     "label": "US-1288",
+     "url": "https://next.pota.app/park/US-1288"
+    },
+    {
+     "label": "KFF-1288",
+     "url": "https://logsearch.wwff.co/directory/KFF-1288"
+    }
+   ],
+   "near": [
+    [
+     "US-10141",
+     "Kentucky Ridge Wildlife Management Area",
+     2.4
+    ],
+    [
+     "KFF-7370",
+     "Kentucky Ridge",
+     2.8
+    ]
+   ],
+   "pdfPage": 18,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-044": {
+   "pdfName": "Hances Ridge",
+   "county": "Bell",
+   "region": "EC",
+   "m": 701,
+   "ft": 2300,
+   "pts": 6,
+   "gps": [
+    36.6811,
+    -83.5728
+   ],
+   "pdfPage": 18,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-045": {
+   "pdfName": "Unnamed summit (2300B)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 701,
+   "ft": 2300,
+   "pts": 6,
+   "gps": [
+    37.325,
+    -82.6643
+   ],
+   "pdfPage": 18,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-046": {
+   "pdfName": "Unnamed summit (2300C)",
+   "county": "Perry",
+   "region": "EC",
+   "m": 701,
+   "ft": 2300,
+   "pts": 6,
+   "gps": [
+    37.0353,
+    -83.1858
+   ],
+   "pdfPage": 18,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-047": {
+   "pdfName": "Unnamed summit (2300D)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 701,
+   "ft": 2300,
+   "pts": 6,
+   "gps": [
+    37.2083,
+    -82.7357
+   ],
+   "pdfPage": 19,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-048": {
+   "pdfName": "Flag Top",
+   "county": "Bell",
+   "region": "EC",
+   "m": 700,
+   "ft": 2297,
+   "pts": 6,
+   "gps": [
+    36.7155,
+    -83.682
+   ],
+   "near": [
+    [
+     "US-1288",
+     "Pine Mountain State Park",
+     2.8
+    ],
+    [
+     "KFF-1288",
+     "Pine Mountain",
+     2.8
+    ]
+   ],
+   "pdfPage": 19,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-049": {
+   "pdfName": "Unnamed summit (2260A)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 689,
+   "ft": 2260,
+   "pts": 6,
+   "gps": [
+    37.1706,
+    -82.816
+   ],
+   "pdfPage": 19,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-050": {
+   "pdfName": "Unnamed summit (2260B)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 689,
+   "ft": 2260,
+   "pts": 6,
+   "gps": [
+    37.2924,
+    -82.5594
+   ],
+   "pdfPage": 19,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-052": {
+   "pdfName": "Unnamed summit (2260D)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 689,
+   "ft": 2260,
+   "pts": 6,
+   "gps": [
+    37.2184,
+    -82.7743
+   ],
+   "land": "Elk Horn Coal Hunting Access Area (likely — name not fully confirmed)",
+   "pdfPage": 19,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-053": {
+   "pdfName": "Turkey Benchmark",
+   "county": "Pike",
+   "region": "EC",
+   "m": 686,
+   "ft": 2251,
+   "pts": 6,
+   "gps": [
+    37.4189,
+    -82.2259
+   ],
+   "pdfPage": 19,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-054": {
+   "pdfName": "Clay County HP",
+   "county": "Clay",
+   "region": "EC",
+   "m": 681,
+   "ft": 2234,
+   "pts": 6,
+   "gps": [
+    36.9592,
+    -83.5849
+   ],
+   "land": "Daniel Boone National Forest (likely — name not fully confirmed) → POTA US-4484 / WWFF KFF-4511",
+   "landLinks": [
+    {
+     "label": "US-4484",
+     "url": "https://next.pota.app/park/US-4484"
+    },
+    {
+     "label": "KFF-4511",
+     "url": "https://logsearch.wwff.co/directory/KFF-4511"
+    }
+   ],
+   "pdfPage": 20,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-055": {
+   "pdfName": "Unnamed summit (2220A)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 677,
+   "ft": 2221,
+   "pts": 6,
+   "gps": [
+    37.4657,
+    -82.3654
+   ],
+   "near": [
+    [
+     "US-1255",
+     "Fishtrap Lake Wildlife Management Area",
+     2.3
+    ]
+   ],
+   "pdfPage": 20,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-056": {
+   "pdfName": "Unnamed summit (2220B)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 677,
+   "ft": 2221,
+   "pts": 6,
+   "gps": [
+    36.8548,
+    -83.6827
+   ],
+   "pdfPage": 20,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-057": {
+   "pdfName": "Bear Wallow Mountain",
+   "county": "Whitley",
+   "region": "EC",
+   "m": 667,
+   "ft": 2188,
+   "pts": 6,
+   "gps": [
+    36.657,
+    -83.9907
+   ],
+   "pdfPage": 20,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-058": {
+   "pdfName": "Point Gap 2 Benchmark",
+   "county": "Clay",
+   "region": "EC",
+   "m": 667,
+   "ft": 2188,
+   "pts": 6,
+   "gps": [
+    36.9544,
+    -83.6091
+   ],
+   "pdfPage": 20,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-059": {
+   "pdfName": "Unnamed summit (2187)",
+   "county": "Bell",
+   "region": "EC",
+   "m": 667,
+   "ft": 2188,
+   "pts": 6,
+   "gps": [
+    36.7812,
+    -83.7085
+   ],
+   "near": [
+    [
+     "KFF-1288",
+     "Pine Mountain",
+     2.4
+    ],
+    [
+     "US-1288",
+     "Pine Mountain State Park",
+     2.4
+    ]
+   ],
+   "pdfPage": 20,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-060": {
+   "pdfName": "Fourmile Benchmark",
+   "county": "Knox",
+   "region": "EC",
+   "m": 664,
+   "ft": 2178,
+   "pts": 6,
+   "gps": [
+    36.8121,
+    -83.7335
+   ],
+   "pdfPage": 20,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-061": {
+   "pdfName": "Dixon Knob",
+   "county": "Perry",
+   "region": "EC",
+   "m": 664,
+   "ft": 2178,
+   "pts": 6,
+   "gps": [
+    37.1584,
+    -83.0529
+   ],
+   "pdfPage": 21,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-062": {
+   "pdfName": "Brasher Benchmark",
+   "county": "Perry",
+   "region": "EC",
+   "m": 664,
+   "ft": 2178,
+   "pts": 6,
+   "gps": [
+    37.1039,
+    -83.1445
+   ],
+   "pdfPage": 21,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-063": {
+   "pdfName": "Unnamed summit (2180)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 664,
+   "ft": 2178,
+   "pts": 6,
+   "gps": [
+    37.3568,
+    -82.5342
+   ],
+   "pdfPage": 21,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-064": {
+   "pdfName": "Unnamed summit (2175)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 663,
+   "ft": 2175,
+   "pts": 6,
+   "gps": [
+    37.0922,
+    -82.8729
+   ],
+   "pdfPage": 21,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-065": {
+   "pdfName": "Unnamed summit (2170)",
+   "county": "Whitley",
+   "region": "EC",
+   "m": 661,
+   "ft": 2169,
+   "pts": 6,
+   "gps": [
+    36.6452,
+    -84.2101
+   ],
+   "land": "Daniel Boone National Forest → POTA US-4484 / WWFF KFF-4511",
+   "landLinks": [
+    {
+     "label": "US-4484",
+     "url": "https://next.pota.app/park/US-4484"
+    },
+    {
+     "label": "KFF-4511",
+     "url": "https://logsearch.wwff.co/directory/KFF-4511"
+    }
+   ],
+   "pdfPage": 21,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-066": {
+   "pdfName": "Ryans Creek Mountain",
+   "county": "McCreary",
+   "region": "EC",
+   "m": 660,
+   "ft": 2165,
+   "pts": 6,
+   "gps": [
+    36.6549,
+    -84.306
+   ],
+   "land": "Daniel Boone National Forest → POTA US-4484 / WWFF KFF-4511",
+   "landLinks": [
+    {
+     "label": "US-4484",
+     "url": "https://next.pota.app/park/US-4484"
+    },
+    {
+     "label": "KFF-4511",
+     "url": "https://logsearch.wwff.co/directory/KFF-4511"
+    }
+   ],
+   "pdfPage": 21,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-067": {
+   "pdfName": "Dark Ridge",
+   "county": "Bell",
+   "region": "EC",
+   "m": 659,
+   "ft": 2162,
+   "pts": 6,
+   "gps": [
+    36.6481,
+    -83.6905
+   ],
+   "pdfPage": 21,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-068": {
+   "pdfName": "Unnamed summit (2156)",
+   "county": "Bell",
+   "region": "EC",
+   "m": 657,
+   "ft": 2156,
+   "pts": 6,
+   "gps": [
+    36.8055,
+    -83.6637
+   ],
+   "pdfPage": 22,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-069": {
+   "pdfName": "Signal Knob",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 652,
+   "ft": 2139,
+   "pts": 6,
+   "gps": [
+    37.4005,
+    -82.6728
+   ],
+   "pdfPage": 22,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-070": {
+   "pdfName": "Unnamed summit (2140A)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 652,
+   "ft": 2139,
+   "pts": 6,
+   "gps": [
+    37.0513,
+    -82.973
+   ],
+   "pdfPage": 22,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-071": {
+   "pdfName": "Unnamed summit (2140B)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 652,
+   "ft": 2139,
+   "pts": 6,
+   "gps": [
+    37.4499,
+    -82.2775
+   ],
+   "pdfPage": 22,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-072": {
+   "pdfName": "Unnamed summit (2140C)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 652,
+   "ft": 2139,
+   "pts": 6,
+   "gps": [
+    37.4733,
+    -82.3776
+   ],
+   "pdfPage": 22,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-073": {
+   "pdfName": "Rocky Face",
+   "county": "Bell",
+   "region": "EC",
+   "m": 649,
+   "ft": 2129,
+   "pts": 6,
+   "gps": [
+    36.6939,
+    -83.6757
+   ],
+   "pdfPage": 22,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-074": {
+   "pdfName": "Stephens Knob",
+   "county": "McCreary",
+   "region": "EC",
+   "m": 648,
+   "ft": 2126,
+   "pts": 6,
+   "gps": [
+    36.6166,
+    -84.3362
+   ],
+   "land": "Daniel Boone National Forest (likely — name not fully confirmed) → POTA US-4484 / WWFF KFF-4511",
+   "landLinks": [
+    {
+     "label": "US-4484",
+     "url": "https://next.pota.app/park/US-4484"
+    },
+    {
+     "label": "KFF-4511",
+     "url": "https://logsearch.wwff.co/directory/KFF-4511"
+    }
+   ],
+   "pdfPage": 22,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-075": {
+   "pdfName": "Unnamed summit (2100A)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 640,
+   "ft": 2100,
+   "pts": 6,
+   "gps": [
+    37.1685,
+    -82.8878
+   ],
+   "pdfPage": 23,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-077": {
+   "pdfName": "Unnamed summit (2100C)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 640,
+   "ft": 2100,
+   "pts": 6,
+   "gps": [
+    37.2059,
+    -82.9091
+   ],
+   "pdfPage": 23,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-078": {
+   "pdfName": "Unnamed summit (2100D)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 640,
+   "ft": 2100,
+   "pts": 6,
+   "gps": [
+    37.4006,
+    -82.6117
+   ],
+   "pdfPage": 23,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-079": {
+   "pdfName": "Unnamed summit (2090)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 637,
+   "ft": 2090,
+   "pts": 4,
+   "gps": [
+    36.7433,
+    -83.8292
+   ],
+   "land": "Cumberland Forest WMA (likely — name not fully confirmed)",
+   "pdfPage": 23,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-080": {
+   "pdfName": "Unnamed summit (2082)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 635,
+   "ft": 2083,
+   "pts": 4,
+   "gps": [
+    37.4988,
+    -82.113
+   ],
+   "land": "RH Group WMA",
+   "pdfPage": 23,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-081": {
+   "pdfName": "Unnamed summit (2068)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 630,
+   "ft": 2067,
+   "pts": 4,
+   "gps": [
+    37.3715,
+    -82.3194
+   ],
+   "pdfPage": 23,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-082": {
+   "pdfName": "Unnamed summit (2065)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 629,
+   "ft": 2064,
+   "pts": 4,
+   "gps": [
+    37.4611,
+    -82.4322
+   ],
+   "land": "RH Group WMA",
+   "near": [
+    [
+     "KFF-1255",
+     "Fishtrap Lake",
+     1.6
+    ]
+   ],
+   "pdfPage": 23,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-084": {
+   "pdfName": "Unnamed summit (2060B)",
+   "county": "Knott",
+   "region": "EC",
+   "m": 628,
+   "ft": 2060,
+   "pts": 4,
+   "gps": [
+    37.2768,
+    -83.016
+   ],
+   "pdfPage": 24,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-085": {
+   "pdfName": "Unnamed summit (2060C)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 628,
+   "ft": 2060,
+   "pts": 4,
+   "gps": [
+    37.1342,
+    -82.8793
+   ],
+   "pdfPage": 24,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-086": {
+   "pdfName": "Unnamed summit (2060D)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 628,
+   "ft": 2060,
+   "pts": 4,
+   "gps": [
+    37.3417,
+    -82.5726
+   ],
+   "pdfPage": 24,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-087": {
+   "pdfName": "Unnamed summit (2060E)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 628,
+   "ft": 2060,
+   "pts": 4,
+   "gps": [
+    37.5373,
+    -82.2102
+   ],
+   "pdfPage": 24,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-088": {
+   "pdfName": "Unnamed summit (2060F)",
+   "county": "Perry",
+   "region": "EC",
+   "m": 628,
+   "ft": 2060,
+   "pts": 4,
+   "gps": [
+    37.0837,
+    -83.0915
+   ],
+   "pdfPage": 24,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-089": {
+   "pdfName": "Unnamed summit (2060G)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 628,
+   "ft": 2060,
+   "pts": 4,
+   "gps": [
+    37.5179,
+    -82.1164
+   ],
+   "pdfPage": 24,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-090": {
+   "pdfName": "Unnamed summit (2041)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 622,
+   "ft": 2041,
+   "pts": 4,
+   "gps": [
+    37.1271,
+    -82.9019
+   ],
+   "pdfPage": 24,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-091": {
+   "pdfName": "Unnamed summit (2030)",
+   "county": "Bell",
+   "region": "EC",
+   "m": 619,
+   "ft": 2031,
+   "pts": 4,
+   "gps": [
+    36.7653,
+    -83.7524
+   ],
+   "land": "Kentucky Ridge State Forest → POTA US-4689 / WWFF KFF-6866 • Kentucky Ridge Forest Wildlife Mangement Area → POTA US-10141 / WWFF KFF-7370",
+   "landLinks": [
+    {
+     "label": "US-4689",
+     "url": "https://next.pota.app/park/US-4689"
+    },
+    {
+     "label": "KFF-6866",
+     "url": "https://logsearch.wwff.co/directory/KFF-6866"
+    },
+    {
+     "label": "US-10141",
+     "url": "https://next.pota.app/park/US-10141"
+    },
+    {
+     "label": "KFF-7370",
+     "url": "https://logsearch.wwff.co/directory/KFF-7370"
+    }
+   ],
+   "near": [
+    [
+     "US-1288",
+     "Pine Mountain State Park",
+     2.5
+    ],
+    [
+     "KFF-1288",
+     "Pine Mountain",
+     2.5
+    ]
+   ],
+   "pdfPage": 25,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-092": {
+   "pdfName": "Unnamed summit (2020A)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 616,
+   "ft": 2021,
+   "pts": 4,
+   "gps": [
+    37.5995,
+    -82.1907
+   ],
+   "pdfPage": 25,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-093": {
+   "pdfName": "Unnamed summit (2020B)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 616,
+   "ft": 2021,
+   "pts": 4,
+   "gps": [
+    37.1913,
+    -82.8601
+   ],
+   "pdfPage": 25,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-094": {
+   "pdfName": "Unnamed summit (2020C)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 616,
+   "ft": 2021,
+   "pts": 4,
+   "gps": [
+    37.5575,
+    -82.1703
+   ],
+   "land": "Pocahontas WMA",
+   "pdfPage": 25,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-095": {
+   "pdfName": "Blackberry Mountain",
+   "county": "Pike",
+   "region": "EC",
+   "m": 616,
+   "ft": 2021,
+   "pts": 4,
+   "gps": [
+    37.583,
+    -82.2057
+   ],
+   "pdfPage": 25,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-096": {
+   "pdfName": "Unnamed summit (2020D)",
+   "county": "Knott",
+   "region": "EC",
+   "m": 616,
+   "ft": 2021,
+   "pts": 4,
+   "gps": [
+    37.3136,
+    -82.7519
+   ],
+   "pdfPage": 25,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-097": {
+   "pdfName": "Unnamed summit (2020E)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 616,
+   "ft": 2021,
+   "pts": 4,
+   "gps": [
+    37.1683,
+    -82.8716
+   ],
+   "pdfPage": 25,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-098": {
+   "pdfName": "Patterson Mountain",
+   "county": "Whitley",
+   "region": "EC",
+   "m": 613,
+   "ft": 2011,
+   "pts": 4,
+   "gps": [
+    36.6607,
+    -84.088
+   ],
+   "pdfPage": 26,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-099": {
+   "pdfName": "Unnamed summit (2008)",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 612,
+   "ft": 2008,
+   "pts": 4,
+   "gps": [
+    36.7528,
+    -83.2355
+   ],
+   "near": [
+    [
+     "KFF-6871",
+     "Martin's Fork",
+     1.7
+    ],
+    [
+     "KFF-3804",
+     "Cranks Creek",
+     2.2
+    ],
+    [
+     "US-3804",
+     "Cranks Creek Wildlife Management Area",
+     2.2
+    ]
+   ],
+   "pdfPage": 26,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-100": {
+   "pdfName": "Unnamed summit (1980A)",
+   "county": "Knott",
+   "region": "EC",
+   "m": 604,
+   "ft": 1982,
+   "pts": 4,
+   "gps": [
+    37.3184,
+    -82.9094
+   ],
+   "pdfPage": 26,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-101": {
+   "pdfName": "Canada Knob",
+   "county": "Pike",
+   "region": "EC",
+   "m": 604,
+   "ft": 1982,
+   "pts": 4,
+   "gps": [
+    37.5961,
+    -82.3607
+   ],
+   "pdfPage": 26,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-102": {
+   "pdfName": "Unnamed summit (1980B)",
+   "county": "Leslie",
+   "region": "EC",
+   "m": 604,
+   "ft": 1982,
+   "pts": 4,
+   "gps": [
+    37.1123,
+    -83.2374
+   ],
+   "pdfPage": 26,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-103": {
+   "pdfName": "Unnamed summit (1980C)",
+   "county": "Knott",
+   "region": "EC",
+   "m": 604,
+   "ft": 1982,
+   "pts": 4,
+   "gps": [
+    37.312,
+    -82.8973
+   ],
+   "pdfPage": 26,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-104": {
+   "pdfName": "Lawson Mountain",
+   "county": "Whitley",
+   "region": "EC",
+   "m": 594,
+   "ft": 1949,
+   "pts": 4,
+   "gps": [
+    36.688,
+    -83.9432
+   ],
+   "pdfPage": 26,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-105": {
+   "pdfName": "Unnamed summit (1940A)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 591,
+   "ft": 1939,
+   "pts": 4,
+   "gps": [
+    37.6271,
+    -82.3194
+   ],
+   "pdfPage": 27,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-106": {
+   "pdfName": "Unnamed summit (1940B)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 591,
+   "ft": 1939,
+   "pts": 4,
+   "gps": [
+    37.5692,
+    -82.3899
+   ],
+   "pdfPage": 27,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-107": {
+   "pdfName": "Unnamed summit (1940C)",
+   "county": "Knott",
+   "region": "EC",
+   "m": 591,
+   "ft": 1939,
+   "pts": 4,
+   "gps": [
+    37.2685,
+    -82.933
+   ],
+   "pdfPage": 27,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-108": {
+   "pdfName": "Unnamed summit (1940D)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 591,
+   "ft": 1939,
+   "pts": 4,
+   "gps": [
+    37.6437,
+    -82.2359
+   ],
+   "pdfPage": 27,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-109": {
+   "pdfName": "Unnamed summit (1930)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 588,
+   "ft": 1929,
+   "pts": 4,
+   "gps": [
+    36.7941,
+    -83.814
+   ],
+   "near": [
+    [
+     "KFF-7370",
+     "Kentucky Ridge",
+     2.4
+    ],
+    [
+     "US-10141",
+     "Kentucky Ridge Wildlife Management Area",
+     2.8
+    ]
+   ],
+   "pdfPage": 27,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-110": {
+   "pdfName": "Unnamed summit (1903)",
+   "county": "Knott",
+   "region": "EC",
+   "m": 580,
+   "ft": 1903,
+   "pts": 4,
+   "gps": [
+    37.2518,
+    -82.8976
+   ],
+   "pdfPage": 27,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-111": {
+   "pdfName": "Unnamed summit (1900A)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 579,
+   "ft": 1900,
+   "pts": 4,
+   "gps": [
+    37.3718,
+    -82.7271
+   ],
+   "pdfPage": 27,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-112": {
+   "pdfName": "Unnamed summit (1900B)",
+   "county": "Leslie",
+   "region": "EC",
+   "m": 579,
+   "ft": 1900,
+   "pts": 4,
+   "gps": [
+    37.0813,
+    -83.4201
+   ],
+   "pdfPage": 28,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-113": {
+   "pdfName": "Stratton Knob",
+   "county": "Pike",
+   "region": "EC",
+   "m": 579,
+   "ft": 1900,
+   "pts": 4,
+   "gps": [
+    37.4844,
+    -82.457
+   ],
+   "pdfPage": 28,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-114": {
+   "pdfName": "Unnamed summit (1890)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 576,
+   "ft": 1890,
+   "pts": 4,
+   "gps": [
+    36.8643,
+    -83.7657
+   ],
+   "pdfPage": 28,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-115": {
+   "pdfName": "Unnamed summit (1878)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 572,
+   "ft": 1877,
+   "pts": 4,
+   "gps": [
+    37.4673,
+    -82.4724
+   ],
+   "pdfPage": 28,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-116": {
+   "pdfName": "Bald Knob",
+   "county": "Whitley",
+   "region": "EC",
+   "m": 570,
+   "ft": 1870,
+   "pts": 4,
+   "gps": [
+    36.8497,
+    -84.0931
+   ],
+   "pdfPage": 28,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-117": {
+   "pdfName": "Unnamed summit (1860A)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 567,
+   "ft": 1860,
+   "pts": 4,
+   "gps": [
+    37.4357,
+    -82.7475
+   ],
+   "pdfPage": 28,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-118": {
+   "pdfName": "McDowell Benchmark",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 567,
+   "ft": 1860,
+   "pts": 4,
+   "gps": [
+    37.4595,
+    -82.7097
+   ],
+   "land": "Elk Horn Coal Hunting Access Area",
+   "pdfPage": 28,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-119": {
+   "pdfName": "Unnamed summit (1860B)",
+   "county": "Knott",
+   "region": "EC",
+   "m": 567,
+   "ft": 1860,
+   "pts": 4,
+   "gps": [
+    37.2795,
+    -82.9095
+   ],
+   "pdfPage": 29,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-120": {
+   "pdfName": "Unnamed summit (1860C)",
+   "county": "Knott",
+   "region": "EC",
+   "m": 567,
+   "ft": 1860,
+   "pts": 4,
+   "gps": [
+    37.3935,
+    -82.9008
+   ],
+   "pdfPage": 29,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-121": {
+   "pdfName": "Unnamed summit (1860D)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 567,
+   "ft": 1860,
+   "pts": 4,
+   "gps": [
+    37.609,
+    -82.2966
+   ],
+   "pdfPage": 29,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-122": {
+   "pdfName": "Unnamed summit (1850A)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 564,
+   "ft": 1850,
+   "pts": 4,
+   "gps": [
+    36.7893,
+    -83.8856
+   ],
+   "land": "Cumberland Forest WMA",
+   "pdfPage": 29,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-123": {
+   "pdfName": "Unnamed summit (1850B)",
+   "county": "Perry",
+   "region": "EC",
+   "m": 564,
+   "ft": 1850,
+   "pts": 4,
+   "gps": [
+    37.2016,
+    -83.1169
+   ],
+   "pdfPage": 29,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-124": {
+   "pdfName": "Lost Mountain",
+   "county": "Perry",
+   "region": "EC",
+   "m": 563,
+   "ft": 1847,
+   "pts": 4,
+   "gps": [
+    37.3177,
+    -83.1843
+   ],
+   "pdfPage": 29,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-125": {
+   "pdfName": "Unnamed summit (1843)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 562,
+   "ft": 1844,
+   "pts": 4,
+   "gps": [
+    36.902,
+    -83.714
+   ],
+   "pdfPage": 29,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-126": {
+   "pdfName": "Joes Knob Benchmark",
+   "county": "Pike",
+   "region": "EC",
+   "m": 558,
+   "ft": 1831,
+   "pts": 4,
+   "gps": [
+    37.533,
+    -82.4948
+   ],
+   "pdfPage": 30,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-127": {
+   "pdfName": "Peak Mountain",
+   "county": "Whitley",
+   "region": "EC",
+   "m": 558,
+   "ft": 1831,
+   "pts": 4,
+   "gps": [
+    36.6817,
+    -84.2958
+   ],
+   "pdfPage": 30,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-128": {
+   "pdfName": "Little Round Mountain",
+   "county": "Whitley",
+   "region": "EC",
+   "m": 557,
+   "ft": 1827,
+   "pts": 4,
+   "gps": [
+    36.6754,
+    -83.918
+   ],
+   "pdfPage": 30,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-129": {
+   "pdfName": "Unnamed summit (1820A)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 555,
+   "ft": 1821,
+   "pts": 4,
+   "gps": [
+    37.6536,
+    -82.324
+   ],
+   "pdfPage": 30,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-130": {
+   "pdfName": "Unnamed summit (1820B)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 555,
+   "ft": 1821,
+   "pts": 4,
+   "gps": [
+    37.4192,
+    -82.5336
+   ],
+   "pdfPage": 30,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-131": {
+   "pdfName": "Unnamed summit (1820C)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 555,
+   "ft": 1821,
+   "pts": 4,
+   "gps": [
+    37.4136,
+    -82.2725
+   ],
+   "land": "Fishtrap Lake WMA → POTA US-1255 / WWFF KFF-1255",
+   "landLinks": [
+    {
+     "label": "US-1255",
+     "url": "https://next.pota.app/park/US-1255"
+    },
+    {
+     "label": "KFF-1255",
+     "url": "https://logsearch.wwff.co/directory/KFF-1255"
+    }
+   ],
+   "pdfPage": 30,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-132": {
+   "pdfName": "Unnamed summit (1820D)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 555,
+   "ft": 1821,
+   "pts": 4,
+   "gps": [
+    37.3989,
+    -82.5086
+   ],
+   "pdfPage": 30,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-133": {
+   "pdfName": "Wood Mountain",
+   "county": "Whitley",
+   "region": "EC",
+   "m": 552,
+   "ft": 1811,
+   "pts": 4,
+   "gps": [
+    36.7712,
+    -84.1074
+   ],
+   "pdfPage": 31,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-134": {
+   "pdfName": "Chestnut Oak Mountain",
+   "county": "Whitley",
+   "region": "EC",
+   "m": 546,
+   "ft": 1791,
+   "pts": 2,
+   "gps": [
+    36.8004,
+    -84.096
+   ],
+   "pdfPage": 31,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-135": {
+   "pdfName": "Unnamed summit (1780A)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 543,
+   "ft": 1781,
+   "pts": 2,
+   "gps": [
+    37.5125,
+    -82.7013
+   ],
+   "pdfPage": 31,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-136": {
+   "pdfName": "Unnamed summit (1780B)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 543,
+   "ft": 1781,
+   "pts": 2,
+   "gps": [
+    37.4572,
+    -82.5905
+   ],
+   "pdfPage": 31,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-137": {
+   "pdfName": "Unnamed summit (1780C)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 543,
+   "ft": 1781,
+   "pts": 2,
+   "gps": [
+    37.6125,
+    -82.2575
+   ],
+   "pdfPage": 31,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-138": {
+   "pdfName": "Unnamed summit (1780D)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 543,
+   "ft": 1781,
+   "pts": 2,
+   "gps": [
+    37.4235,
+    -82.2951
+   ],
+   "land": "Fishtrap Lake WMA (likely — name not fully confirmed) → POTA US-1255 / WWFF KFF-1255 • Continental Hunting Access Area (likely — name not fully confirmed)",
+   "landLinks": [
+    {
+     "label": "US-1255",
+     "url": "https://next.pota.app/park/US-1255"
+    },
+    {
+     "label": "KFF-1255",
+     "url": "https://logsearch.wwff.co/directory/KFF-1255"
+    }
+   ],
+   "pdfPage": 31,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-139": {
+   "pdfName": "Unnamed summit (1775)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 541,
+   "ft": 1775,
+   "pts": 2,
+   "gps": [
+    37.4606,
+    -82.4854
+   ],
+   "pdfPage": 31,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-140": {
+   "pdfName": "Laurel County HP",
+   "county": "Knox",
+   "region": "EC",
+   "m": 539,
+   "ft": 1768,
+   "pts": 2,
+   "gps": [
+    37.0467,
+    -83.8774
+   ],
+   "pdfPage": 32,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-141": {
+   "pdfName": "Unnamed summit (1770)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 539,
+   "ft": 1768,
+   "pts": 2,
+   "gps": [
+    36.7513,
+    -83.9427
+   ],
+   "pdfPage": 32,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-142": {
+   "pdfName": "Unnamed summit (1750A)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 533,
+   "ft": 1749,
+   "pts": 2,
+   "gps": [
+    37.5583,
+    -82.5395
+   ],
+   "pdfPage": 32,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-143": {
+   "pdfName": "Unnamed summit (1750B)",
+   "county": "Whitley",
+   "region": "EC",
+   "m": 533,
+   "ft": 1749,
+   "pts": 2,
+   "gps": [
+    36.8262,
+    -84.0566
+   ],
+   "pdfPage": 32,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-144": {
+   "pdfName": "Unnamed summit (1749)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 533,
+   "ft": 1749,
+   "pts": 2,
+   "gps": [
+    37.5352,
+    -82.5469
+   ],
+   "pdfPage": 32,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-145": {
+   "pdfName": "Unnamed summit (1740A)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 530,
+   "ft": 1739,
+   "pts": 2,
+   "gps": [
+    37.4658,
+    -82.7234
+   ],
+   "pdfPage": 32,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-146": {
+   "pdfName": "Unnamed summit (1740B)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 530,
+   "ft": 1739,
+   "pts": 2,
+   "gps": [
+    37.5725,
+    -82.5862
+   ],
+   "pdfPage": 32,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-147": {
+   "pdfName": "Unnamed summit (1740C)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 530,
+   "ft": 1739,
+   "pts": 2,
+   "gps": [
+    37.5168,
+    -82.0675
+   ],
+   "land": "RH Group WMA",
+   "pdfPage": 33,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-148": {
+   "pdfName": "Unnamed summit (1710A)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 521,
+   "ft": 1709,
+   "pts": 2,
+   "gps": [
+    36.9149,
+    -84.0064
+   ],
+   "pdfPage": 33,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-149": {
+   "pdfName": "Unnamed summit (1710B)",
+   "county": "Whitley",
+   "region": "EC",
+   "m": 521,
+   "ft": 1709,
+   "pts": 2,
+   "gps": [
+    36.9099,
+    -84.1042
+   ],
+   "pdfPage": 33,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-150": {
+   "pdfName": "Unnamed summit (1710C)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 521,
+   "ft": 1709,
+   "pts": 2,
+   "gps": [
+    36.8812,
+    -84.0157
+   ],
+   "pdfPage": 33,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-151": {
+   "pdfName": "Unnamed summit (1700A)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 518,
+   "ft": 1699,
+   "pts": 2,
+   "gps": [
+    37.5671,
+    -82.5151
+   ],
+   "pdfPage": 33,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-152": {
+   "pdfName": "Border Benchmark",
+   "county": "Pike",
+   "region": "EC",
+   "m": 518,
+   "ft": 1699,
+   "pts": 2,
+   "gps": [
+    37.7096,
+    -82.3278
+   ],
+   "pdfPage": 33,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-153": {
+   "pdfName": "Unnamed summit (1700B)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 518,
+   "ft": 1699,
+   "pts": 2,
+   "gps": [
+    37.657,
+    -82.4263
+   ],
+   "land": "Legacy WMA",
+   "pdfPage": 33,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-154": {
+   "pdfName": "Unnamed summit (1700C)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 518,
+   "ft": 1699,
+   "pts": 2,
+   "gps": [
+    37.4752,
+    -82.7698
+   ],
+   "pdfPage": 34,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-155": {
+   "pdfName": "Hector Benchmark",
+   "county": "Clay",
+   "region": "EC",
+   "m": 518,
+   "ft": 1699,
+   "pts": 2,
+   "gps": [
+    37.1545,
+    -83.691
+   ],
+   "land": "Burchell-Beech Creek WMA (likely — name not fully confirmed) → POTA US-3799 / WWFF KFF-3799",
+   "landLinks": [
+    {
+     "label": "US-3799",
+     "url": "https://next.pota.app/park/US-3799"
+    },
+    {
+     "label": "KFF-3799",
+     "url": "https://logsearch.wwff.co/directory/KFF-3799"
+    }
+   ],
+   "pdfPage": 34,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-156": {
+   "pdfName": "Kirby Mountain",
+   "county": "Laurel",
+   "region": "EC",
+   "m": 518,
+   "ft": 1699,
+   "pts": 2,
+   "gps": [
+    36.9882,
+    -83.9481
+   ],
+   "pdfPage": 34,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-157": {
+   "pdfName": "Unnamed summit (1690A)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 515,
+   "ft": 1690,
+   "pts": 2,
+   "gps": [
+    36.9056,
+    -84.0274
+   ],
+   "pdfPage": 34,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-158": {
+   "pdfName": "Unnamed summit (1690B)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 515,
+   "ft": 1690,
+   "pts": 2,
+   "gps": [
+    36.8988,
+    -83.8078
+   ],
+   "pdfPage": 34,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-159": {
+   "pdfName": "Unnamed summit (1690C)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 515,
+   "ft": 1690,
+   "pts": 2,
+   "gps": [
+    36.928,
+    -83.9503
+   ],
+   "pdfPage": 34,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-160": {
+   "pdfName": "Unnamed summit (1690D)",
+   "county": "Whitley",
+   "region": "EC",
+   "m": 515,
+   "ft": 1690,
+   "pts": 2,
+   "gps": [
+    36.8552,
+    -84.0656
+   ],
+   "pdfPage": 34,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-161": {
+   "pdfName": "Cutoff Mountain",
+   "county": "Clay",
+   "region": "EC",
+   "m": 514,
+   "ft": 1686,
+   "pts": 2,
+   "gps": [
+    37.1312,
+    -83.8906
+   ],
+   "pdfPage": 35,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-162": {
+   "pdfName": "Unnamed summit (1660A)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 506,
+   "ft": 1660,
+   "pts": 2,
+   "gps": [
+    37.5552,
+    -82.6621
+   ],
+   "pdfPage": 35,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-163": {
+   "pdfName": "Unnamed summit (1660B)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 506,
+   "ft": 1660,
+   "pts": 2,
+   "gps": [
+    37.6516,
+    -82.2928
+   ],
+   "pdfPage": 35,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-164": {
+   "pdfName": "Unnamed summit (1660C)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 506,
+   "ft": 1660,
+   "pts": 2,
+   "gps": [
+    37.4973,
+    -82.7117
+   ],
+   "land": "Elk Horn Coal Hunting Access Area",
+   "pdfPage": 35,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-165": {
+   "pdfName": "Unnamed summit (1650A)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 503,
+   "ft": 1650,
+   "pts": 2,
+   "gps": [
+    36.8517,
+    -83.8393
+   ],
+   "pdfPage": 35,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-166": {
+   "pdfName": "Unnamed summit (1650B)",
+   "county": "Clay",
+   "region": "EC",
+   "m": 503,
+   "ft": 1650,
+   "pts": 2,
+   "gps": [
+    37.0695,
+    -83.8384
+   ],
+   "pdfPage": 35,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-167": {
+   "pdfName": "Unnamed summit (1630A)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 497,
+   "ft": 1631,
+   "pts": 2,
+   "gps": [
+    36.9427,
+    -83.8863
+   ],
+   "pdfPage": 35,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-168": {
+   "pdfName": "Unnamed summit (1630B)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 497,
+   "ft": 1631,
+   "pts": 2,
+   "gps": [
+    36.9355,
+    -83.9095
+   ],
+   "pdfPage": 36,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-169": {
+   "pdfName": "Unnamed summit (1620A)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 494,
+   "ft": 1621,
+   "pts": 2,
+   "gps": [
+    37.5543,
+    -82.8133
+   ],
+   "pdfPage": 36,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-170": {
+   "pdfName": "Unnamed summit (1620B)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 494,
+   "ft": 1621,
+   "pts": 2,
+   "gps": [
+    37.4944,
+    -82.6752
+   ],
+   "pdfPage": 36,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-171": {
+   "pdfName": "Unnamed summit (1610)",
+   "county": "Knox",
+   "region": "EC",
+   "m": 491,
+   "ft": 1611,
+   "pts": 2,
+   "gps": [
+    36.885,
+    -83.8673
+   ],
+   "pdfPage": 36,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-172": {
+   "pdfName": "Unnamed summit (1582)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 482,
+   "ft": 1581,
+   "pts": 2,
+   "gps": [
+    37.5049,
+    -82.5768
+   ],
+   "pdfPage": 36,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-173": {
+   "pdfName": "Duty Knob",
+   "county": "Pike",
+   "region": "EC",
+   "m": 482,
+   "ft": 1581,
+   "pts": 2,
+   "gps": [
+    37.492,
+    -82.5198
+   ],
+   "pdfPage": 36,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-174": {
+   "pdfName": "Unnamed summit (1580)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 482,
+   "ft": 1581,
+   "pts": 2,
+   "gps": [
+    37.5813,
+    -82.8206
+   ],
+   "land": "RH Group WMA",
+   "pdfPage": 36,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-175": {
+   "pdfName": "Unnamed summit (1561)",
+   "county": "Clay",
+   "region": "EC",
+   "m": 476,
+   "ft": 1562,
+   "pts": 2,
+   "gps": [
+    37.1881,
+    -83.7287
+   ],
+   "near": [
+    [
+     "KFF-3799",
+     "Burchell-Beech",
+     1.8
+    ],
+    [
+     "US-3799",
+     "Burchell-Beech Wildlife Management Area",
+     1.8
+    ]
+   ],
+   "pdfPage": 37,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-176": {
+   "pdfName": "Unnamed summit (1540A)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 469,
+   "ft": 1539,
+   "pts": 2,
+   "gps": [
+    37.7051,
+    -82.7501
+   ],
+   "near": [
+    [
+     "US-1281",
+     "Jenny Wiley State Park",
+     1.5
+    ],
+    [
+     "KFF-1281",
+     "Jenny Wiley",
+     1.6
+    ],
+    [
+     "US-4687",
+     "Dewey Lake Wildlife Management Area",
+     2.4
+    ],
+    [
+     "KFF-7272",
+     "Dewey Lake",
+     2.4
+    ]
+   ],
+   "pdfPage": 37,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-177": {
+   "pdfName": "Unnamed summit (1540B)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 469,
+   "ft": 1539,
+   "pts": 2,
+   "gps": [
+    37.4663,
+    -82.5504
+   ],
+   "pdfPage": 37,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-178": {
+   "pdfName": "Unnamed summit (1540C)",
+   "county": "Martin",
+   "region": "EC",
+   "m": 469,
+   "ft": 1539,
+   "pts": 2,
+   "gps": [
+    37.7172,
+    -82.5797
+   ],
+   "pdfPage": 37,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-179": {
+   "pdfName": "Unnamed summit (1540D)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 469,
+   "ft": 1539,
+   "pts": 2,
+   "gps": [
+    37.6154,
+    -82.7006
+   ],
+   "pdfPage": 37,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-180": {
+   "pdfName": "Unnamed summit (1529)",
+   "county": "Leslie",
+   "region": "EC",
+   "m": 466,
+   "ft": 1529,
+   "pts": 2,
+   "gps": [
+    37.2874,
+    -83.4424
+   ],
+   "near": [
+    [
+     "KFF-1275",
+     "Buckhorn Lake",
+     1.3
+    ],
+    [
+     "US-1275",
+     "Buckhorn Lake State Park",
+     1.3
+    ]
+   ],
+   "pdfPage": 37,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-181": {
+   "pdfName": "Stuffley Knob",
+   "county": "Johnson",
+   "region": "EC",
+   "m": 460,
+   "ft": 1509,
+   "pts": 2,
+   "gps": [
+    37.7832,
+    -82.9202
+   ],
+   "pdfPage": 37,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-182": {
+   "pdfName": "Unnamed summit (1500)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 457,
+   "ft": 1499,
+   "pts": 2,
+   "gps": [
+    37.6886,
+    -82.9045
+   ],
+   "pdfPage": 38,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-183": {
+   "pdfName": "Unnamed summit (1460)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 445,
+   "ft": 1460,
+   "pts": 1,
+   "gps": [
+    37.6517,
+    -82.7217
+   ],
+   "near": [
+    [
+     "KFF-1281",
+     "Jenny Wiley",
+     2.9
+    ]
+   ],
+   "pdfPage": 38,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-184": {
+   "pdfName": "Pilot Knob",
+   "county": "Powell",
+   "region": "EC",
+   "m": 442,
+   "ft": 1450,
+   "pts": 1,
+   "gps": [
+    37.9114,
+    -83.9357
+   ],
+   "land": "Pilot Knob State Nature Preserve → POTA US-7963 / WWFF KFF-6886",
+   "landLinks": [
+    {
+     "label": "US-7963",
+     "url": "https://next.pota.app/park/US-7963"
+    },
+    {
+     "label": "KFF-6886",
+     "url": "https://logsearch.wwff.co/directory/KFF-6886"
+    }
+   ],
+   "pdfPage": 38,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-185": {
+   "pdfName": "Limestone Knob",
+   "county": "Rowan",
+   "region": "EC",
+   "m": 437,
+   "ft": 1434,
+   "pts": 1,
+   "gps": [
+    38.1379,
+    -83.4766
+   ],
+   "land": "Daniel Boone National Forest (likely — name not fully confirmed) → POTA US-4484 / WWFF KFF-4511",
+   "landLinks": [
+    {
+     "label": "US-4484",
+     "url": "https://next.pota.app/park/US-4484"
+    },
+    {
+     "label": "KFF-4511",
+     "url": "https://logsearch.wwff.co/directory/KFF-4511"
+    }
+   ],
+   "pdfPage": 38,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-186": {
+   "pdfName": "Unnamed summit (1420)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 433,
+   "ft": 1421,
+   "pts": 1,
+   "gps": [
+    37.7291,
+    -82.8181
+   ],
+   "pdfPage": 38,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-187": {
+   "pdfName": "Unnamed summit (1380A)",
+   "county": "Johnson",
+   "region": "EC",
+   "m": 421,
+   "ft": 1381,
+   "pts": 1,
+   "gps": [
+    37.7961,
+    -82.8012
+   ],
+   "pdfPage": 38,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-188": {
+   "pdfName": "Unnamed summit (1380B)",
+   "county": "Johnson",
+   "region": "EC",
+   "m": 421,
+   "ft": 1381,
+   "pts": 1,
+   "gps": [
+    37.7461,
+    -82.8428
+   ],
+   "pdfPage": 38,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-189": {
+   "pdfName": "Unnamed summit (1380C)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 421,
+   "ft": 1381,
+   "pts": 1,
+   "gps": [
+    37.6454,
+    -82.752
+   ],
+   "pdfPage": 39,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-190": {
+   "pdfName": "Unnamed summit (1355)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 413,
+   "ft": 1355,
+   "pts": 1,
+   "gps": [
+    37.7314,
+    -82.7457
+   ],
+   "near": [
+    [
+     "US-4687",
+     "Dewey Lake Wildlife Management Area",
+     1.0
+    ],
+    [
+     "KFF-7272",
+     "Dewey Lake",
+     1.0
+    ],
+    [
+     "US-1281",
+     "Jenny Wiley State Park",
+     2.7
+    ],
+    [
+     "KFF-1281",
+     "Jenny Wiley",
+     2.9
+    ]
+   ],
+   "pdfPage": 39,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-191": {
+   "pdfName": "Unnamed summit (1340)",
+   "county": "Johnson",
+   "region": "EC",
+   "m": 408,
+   "ft": 1339,
+   "pts": 1,
+   "gps": [
+    37.7875,
+    -82.819
+   ],
+   "pdfPage": 39,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-192": {
+   "pdfName": "Unnamed summit (1283)",
+   "county": "Johnson",
+   "region": "EC",
+   "m": 391,
+   "ft": 1283,
+   "pts": 1,
+   "gps": [
+    37.7564,
+    -82.7913
+   ],
+   "pdfPage": 39,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-193": {
+   "pdfName": "Unnamed summit (1260)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 384,
+   "ft": 1260,
+   "pts": 1,
+   "gps": [
+    37.4007,
+    -82.5274
+   ],
+   "pdfPage": 39,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-194": {
+   "pdfName": "Unnamed summit (1250)",
+   "county": "Floyd",
+   "region": "EC",
+   "m": 381,
+   "ft": 1250,
+   "pts": 1,
+   "gps": [
+    37.7475,
+    -82.7532
+   ],
+   "near": [
+    [
+     "US-4687",
+     "Dewey Lake Wildlife Management Area",
+     1.5
+    ],
+    [
+     "KFF-7272",
+     "Dewey Lake",
+     1.5
+    ]
+   ],
+   "pdfPage": 39,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-195": {
+   "pdfName": "Unnamed summit (1220)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 372,
+   "ft": 1220,
+   "pts": 1,
+   "gps": [
+    37.4761,
+    -82.5349
+   ],
+   "pdfPage": 39,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-196": {
+   "pdfName": "Unnamed summit (1197)",
+   "county": "Johnson",
+   "region": "EC",
+   "m": 365,
+   "ft": 1198,
+   "pts": 1,
+   "gps": [
+    37.8008,
+    -82.7862
+   ],
+   "pdfPage": 40,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-197": {
+   "pdfName": "Unnamed summit (2950)",
+   "county": "Harlan",
+   "region": "EC",
+   "m": 899,
+   "ft": 2949,
+   "pts": 8,
+   "gps": [
+    36.7122,
+    -83.48
+   ],
+   "near": [
+    [
+     "US-10164",
+     "Shillalah Creek Wildlife Management Area",
+     2.1
+    ]
+   ],
+   "pdfPage": 40,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-198": {
+   "pdfName": "Unnamed summit (2500)",
+   "county": "Letcher",
+   "region": "EC",
+   "m": 762,
+   "ft": 2500,
+   "pts": 8,
+   "gps": [
+    37.0301,
+    -83.0478
+   ],
+   "pdfPage": 40,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-199": {
+   "pdfName": "Unnamed summit (2380)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 725,
+   "ft": 2379,
+   "pts": 6,
+   "gps": [
+    37.4821,
+    -82.2405
+   ],
+   "pdfPage": 40,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-200": {
+   "pdfName": "Unnamed summit (1780)",
+   "county": "Pike",
+   "region": "EC",
+   "m": 542,
+   "ft": 1778,
+   "pts": 2,
+   "gps": [
+    37.3674,
+    -82.5736
+   ],
+   "pdfPage": 40,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-201": {
+   "pdfName": "Unnamed summit (1980)",
+   "county": "Perry",
+   "region": "EC",
+   "m": 603,
+   "ft": 1978,
+   "pts": 4,
+   "gps": [
+    37.1717,
+    -83.1284
+   ],
+   "pdfPage": 40,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/EC-202": {
+   "pdfName": "Unnamed summit (1620)",
+   "county": "Clay",
+   "region": "EC",
+   "m": 493,
+   "ft": 1617,
+   "pts": 2,
+   "gps": [
+    37.0768,
+    -83.7139
+   ],
+   "pdfPage": 40,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/KA-001": {
+   "pdfName": "Madison County High Point",
+   "county": "Madison",
+   "region": "KA",
+   "m": 509,
+   "ft": 1670,
+   "pts": 2,
+   "gps": [
+    37.5274,
+    -84.2511
+   ],
+   "pdfPage": 41,
+   "mapRegion": "Bluegrass"
+  },
+  "W4K/KA-002": {
+   "pdfName": "Indian Fort Mountain",
+   "county": "Madison",
+   "region": "KA",
+   "m": 473,
+   "ft": 1552,
+   "pts": 2,
+   "gps": [
+    37.5637,
+    -84.233
+   ],
+   "pdfPage": 41,
+   "mapRegion": "Bluegrass"
+  },
+  "W4K/KA-003": {
+   "pdfName": "Zion Mountain",
+   "county": "Estill",
+   "region": "KA",
+   "m": 461,
+   "ft": 1512,
+   "pts": 2,
+   "gps": [
+    37.6266,
+    -84.0668
+   ],
+   "pdfPage": 41,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/KA-004": {
+   "pdfName": "Joe Lick Knob",
+   "county": "Madison",
+   "region": "KA",
+   "m": 452,
+   "ft": 1483,
+   "pts": 1,
+   "gps": [
+    37.6065,
+    -84.2291
+   ],
+   "near": [
+    [
+     "US-3825",
+     "Miller Welch Wildlife Management Area",
+     2.5
+    ],
+    [
+     "KFF-3825",
+     "Miller Welch",
+     2.5
+    ]
+   ],
+   "pdfPage": 41,
+   "mapRegion": "Bluegrass"
+  },
+  "W4K/KA-005": {
+   "pdfName": "Low Knob",
+   "county": "Estill",
+   "region": "KA",
+   "m": 442,
+   "ft": 1450,
+   "pts": 1,
+   "gps": [
+    37.7486,
+    -83.9636
+   ],
+   "pdfPage": 41,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/KA-006": {
+   "pdfName": "Unnamed summit (1450)",
+   "county": "Estill",
+   "region": "KA",
+   "m": 442,
+   "ft": 1450,
+   "pts": 1,
+   "gps": [
+    37.6031,
+    -84.1014
+   ],
+   "pdfPage": 41,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/KA-007": {
+   "pdfName": "Sugarloaf Mountain",
+   "county": "Estill",
+   "region": "KA",
+   "m": 440,
+   "ft": 1444,
+   "pts": 1,
+   "gps": [
+    37.7861,
+    -83.989
+   ],
+   "pdfPage": 41,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/KA-008": {
+   "pdfName": "Big Round Mountain",
+   "county": "Estill",
+   "region": "KA",
+   "m": 433,
+   "ft": 1421,
+   "pts": 1,
+   "gps": [
+    37.6492,
+    -84.0652
+   ],
+   "pdfPage": 42,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/KA-009": {
+   "pdfName": "Pilot Knob",
+   "county": "Madison",
+   "region": "KA",
+   "m": 430,
+   "ft": 1411,
+   "pts": 1,
+   "gps": [
+    37.5639,
+    -84.199
+   ],
+   "pdfPage": 42,
+   "mapRegion": "Bluegrass"
+  },
+  "W4K/KA-010": {
+   "pdfName": "Unnamed summit (1410)",
+   "county": "Estill",
+   "region": "KA",
+   "m": 430,
+   "ft": 1411,
+   "pts": 1,
+   "gps": [
+    37.6102,
+    -84.1124
+   ],
+   "pdfPage": 42,
+   "mapRegion": "Eastern Kentucky"
+  },
+  "W4K/KA-011": {
+   "pdfName": "Unnamed summit (1383)",
+   "county": "Madison",
+   "region": "KA",
+   "m": 422,
+   "ft": 1385,
+   "pts": 1,
+   "gps": [
+    37.5932,
+    -84.1258
+   ],
+   "pdfPage": 42,
+   "mapRegion": "Bluegrass"
+  },
+  "W4K/KA-012": {
+   "pdfName": "Unnamed summit (1370)",
+   "county": "Madison",
+   "region": "KA",
+   "m": 418,
+   "ft": 1371,
+   "pts": 1,
+   "gps": [
+    37.5812,
+    -84.1034
+   ],
+   "pdfPage": 42,
+   "mapRegion": "Bluegrass"
+  },
+  "W4K/KA-013": {
+   "pdfName": "Dawson Knob",
+   "county": "Bullitt",
+   "region": "KA",
+   "m": 302,
+   "ft": 991,
+   "pts": 1,
+   "gps": [
+    37.9215,
+    -85.7869
+   ],
+   "land": "Fort Knox Military Reservation (likely — name not fully confirmed)",
+   "pdfPage": 42,
+   "mapRegion": "Bluegrass"
+  },
+  "W4K/KA-014": {
+   "pdfName": "Wolf Gap Mountain",
+   "county": "Madison",
+   "region": "KA",
+   "m": 470,
+   "ft": 1542,
+   "pts": 2,
+   "gps": [
+    37.6136,
+    -84.1289
+   ],
+   "pdfPage": 42,
+   "mapRegion": "Bluegrass"
+  },
+  "W4K/PR-001": {
+   "pdfName": "Green River Knob",
+   "county": "Casey",
+   "region": "PR",
+   "m": 545,
+   "ft": 1788,
+   "pts": 2,
+   "gps": [
+    37.1534,
+    -84.8453
+   ],
+   "pdfPage": 43,
+   "mapRegion": "Bluegrass"
+  },
+  "W4K/PR-002": {
+   "pdfName": "Sewell Mountain",
+   "county": "Clinton",
+   "region": "PR",
+   "m": 539,
+   "ft": 1768,
+   "pts": 2,
+   "gps": [
+    36.7201,
+    -85.1061
+   ],
+   "pdfPage": 43,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "W4K/PR-003": {
+   "pdfName": "Short Mountain",
+   "county": "Clinton",
+   "region": "PR",
+   "m": 497,
+   "ft": 1631,
+   "pts": 2,
+   "gps": [
+    36.7753,
+    -85.0708
+   ],
+   "pdfPage": 43,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "W4K/PR-004": {
+   "pdfName": "Elk Ridge",
+   "county": "Wayne",
+   "region": "PR",
+   "m": 466,
+   "ft": 1529,
+   "pts": 2,
+   "gps": [
+    36.8448,
+    -84.7739
+   ],
+   "pdfPage": 43,
+   "mapRegion": "South Central Pennyroyal"
+  },
+  "W4K/PR-005": {
+   "pdfName": "Furnace Mountain",
+   "county": "Wayne",
+   "region": "PR",
+   "m": 454,
+   "ft": 1490,
+   "pts": 1,
+   "gps": [
+    36.8078,
+    -84.8978
+   ],
+   "pdfPage": 43,
+   "mapRegion": "South Central Pennyroyal"
+  }
+ }
+}

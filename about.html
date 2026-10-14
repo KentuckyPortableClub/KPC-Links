@@ -355,7 +355,7 @@ body.field .page-jump-nav{display:none!important}
         </div>
       </div>
       <div class="founder-extras">
-        <a class="founder-extra" href="KPC_Founders_Favorites_Apps_and_Tools.pdf" target="_blank" rel="noopener"><span>FOUNDERS' PICKS • PDF</span><strong>Favorite Apps &amp; Tools</strong><b>OPEN PDF →</b></a>
+        <a class="founder-extra" href="kpc-guide-founders-favorites.html"><span>FOUNDERS' PICKS • PDF</span><strong>Favorite Apps &amp; Tools</strong><b>OPEN GUIDE →</b></a>
         <div class="founder-extra soon"><span>COMING SOON</span><strong>Founders' Lessons Learned</strong><b>WATCH FOR IT</b></div>
         <div class="founder-extra soon"><span>COMING SOON</span><strong>Founding Fathers' Tips</strong><b>WATCH FOR IT</b></div>
       </div>
@@ -406,7 +406,7 @@ function apply(){secs.forEach(s=>s._set&&s._set(!mq.matches))}apply();mq.addEven
 function openTo(id){const t=id&&document.getElementById(id),s=t&&t.closest('[data-fold]');if(s&&s._set&&s.classList.contains('kpc-folded')){s._set(true);requestAnimationFrame(()=>t.scrollIntoView())}}
 window.addEventListener('hashchange',()=>openTo(location.hash.slice(1)));openTo(location.hash.slice(1));
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a)openTo(a.getAttribute('href').slice(1))})})();</script>
-<script src="kpc-search.js?v=20261013q" defer></script><script>
+<script src="kpc-search.js?v=20261013r" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

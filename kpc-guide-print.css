@@ -1,0 +1,15 @@
+/* Shared print rules for KPC web guides. The kpc-guide-pdf workflow prints each guide page to PDF with these. */
+@page { size: letter; margin: 11mm 10mm 12mm; }
+@media print {
+  header, footer, .no-print, .kpc-nav, #kpc-search, .kpc-search, nav[aria-label] { display: none !important; }
+  html, body { background: #fff !important; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 10.5pt; }
+  main { max-width: none !important; padding: 0 !important; margin: 0 !important; }
+  .g-card, .g-keep { break-inside: avoid; page-break-inside: avoid; }
+  .g-break { break-before: page; page-break-before: always; }
+  .g-print-only { display: block !important; }
+  a { color: inherit; text-decoration: none; }
+  details > summary { list-style: none; }
+  details:not([open]) > *:not(summary) { display: block !important; }
+}
+.g-print-only { display: none; }

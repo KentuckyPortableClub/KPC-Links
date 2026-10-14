@@ -1,0 +1,508 @@
+{
+ "updated": "2026-10-05",
+ "source": "October 2026 KPC Top 25 PDF snapshot (weekly POTA refresh replaces this)",
+ "qsos": [
+  {
+   "c": "US-10148",
+   "n": "Mud Camp Creek Wildlife Management Area",
+   "co": "Cumberland",
+   "la": 36.7639,
+   "lo": -85.5227,
+   "a": 2,
+   "q": 80,
+   "r": 1
+  },
+  {
+   "c": "US-10138",
+   "n": "Hoskins Wildlife Management Area",
+   "co": "Harlan / Leslie",
+   "la": 37.105,
+   "lo": -83.3679,
+   "a": 3,
+   "q": 115,
+   "r": 2
+  },
+  {
+   "c": "US-7962",
+   "n": "Little South Fork State Natural Area",
+   "co": "McCreary",
+   "la": 36.6981,
+   "lo": -84.7149,
+   "a": 6,
+   "q": 201,
+   "r": 3
+  },
+  {
+   "c": "US-12079",
+   "n": "Little Sextons Creek Wildlife Management Area",
+   "co": "Leslie",
+   "la": 37.3343,
+   "lo": -83.7951,
+   "a": 3,
+   "q": 224,
+   "r": 4
+  },
+  {
+   "c": "US-12974",
+   "n": "Clear Creek Wildlife Management Area",
+   "co": "Muhlenberg",
+   "la": 37.3156,
+   "lo": -87.6782,
+   "a": 7,
+   "q": 239,
+   "r": 5
+  },
+  {
+   "c": "US-10164",
+   "n": "Shillalah Creek Wildlife Management Area",
+   "co": "Harlan",
+   "la": 36.6981,
+   "lo": -83.447,
+   "a": 10,
+   "q": 277,
+   "r": 6
+  },
+  {
+   "c": "US-10111",
+   "n": "Rock Creek National Wild and Scenic River",
+   "co": "McCreary",
+   "la": 36.6452,
+   "lo": -84.7104,
+   "a": 8,
+   "q": 303,
+   "r": 7
+  },
+  {
+   "c": "US-3798",
+   "n": "Buck Creek Wildlife Management Area",
+   "co": "See official site",
+   "la": 37.1071,
+   "lo": -84.4096,
+   "a": 17,
+   "q": 305,
+   "r": 8
+  },
+  {
+   "c": "US-11274",
+   "n": "Horse Mill Branch Wildlife Management Area",
+   "co": "Fleming",
+   "la": 37.9437,
+   "lo": -83.1012,
+   "a": 14,
+   "q": 315,
+   "r": 9
+  },
+  {
+   "c": "US-12752",
+   "n": "Green River State Natural Area",
+   "co": "Hart",
+   "la": 37.2603,
+   "lo": -85.9104,
+   "a": 7,
+   "q": 322,
+   "r": 10
+  },
+  {
+   "c": "US-10157",
+   "n": "Ping-Sinking Valley Wildlife Management Area",
+   "co": "Pulaski",
+   "la": 37.1835,
+   "lo": -84.4038,
+   "a": 14,
+   "q": 326,
+   "r": 11
+  },
+  {
+   "c": "US-10145",
+   "n": "Meadow Creek Wildlife Management Area",
+   "co": "Wayne",
+   "la": 36.9268,
+   "lo": -84.7197,
+   "a": 10,
+   "q": 368,
+   "r": 12
+  },
+  {
+   "c": "US-7964",
+   "n": "William H. Martin State Natural Area",
+   "co": "McCreary",
+   "la": 37.0352,
+   "lo": -84.3349,
+   "a": 12,
+   "q": 371,
+   "r": 13
+  },
+  {
+   "c": "US-10141",
+   "n": "Kentucky Ridge Wildlife Management Area",
+   "co": "Bell",
+   "la": 36.7728,
+   "lo": -83.7708,
+   "a": 13,
+   "q": 401,
+   "r": 14
+  },
+  {
+   "c": "US-7970",
+   "n": "Sinking Creek State Natural Area",
+   "co": "Laurel",
+   "la": 37.1052,
+   "lo": -84.2339,
+   "a": 8,
+   "q": 409,
+   "r": 15
+  },
+  {
+   "c": "US-7968",
+   "n": "E. Lucy Braun State Nature Preserve",
+   "co": "Harlan",
+   "la": 36.9649,
+   "lo": -83.1094,
+   "a": 12,
+   "q": 440,
+   "r": 16
+  },
+  {
+   "c": "US-10107",
+   "n": "Big South Fork National Wild and Scenic River",
+   "co": "McCreary",
+   "la": 36.7906,
+   "lo": -84.5274,
+   "a": 18,
+   "q": 454,
+   "r": 17
+  },
+  {
+   "c": "US-12971",
+   "n": "Bat Cave State Nature Preserve",
+   "co": "Carter",
+   "la": 38.3781,
+   "lo": -83.1339,
+   "a": 19,
+   "q": 471,
+   "r": 18
+  },
+  {
+   "c": "US-3832",
+   "n": "Stone Mountain Wildlife Management Area",
+   "co": "Bell",
+   "la": 36.7568,
+   "lo": -83.1445,
+   "a": 14,
+   "q": 478,
+   "r": 19
+  },
+  {
+   "c": "US-3794",
+   "n": "Beaver Creek Wildlife Management Area",
+   "co": "See official site",
+   "la": 36.8966,
+   "lo": -84.4402,
+   "a": 18,
+   "q": 492,
+   "r": 20
+  },
+  {
+   "c": "US-4688",
+   "n": "Kentenia State Forest",
+   "co": "Harlan",
+   "la": 36.9243,
+   "lo": -83.2158,
+   "a": 18,
+   "q": 513,
+   "r": 21
+  },
+  {
+   "c": "US-10153",
+   "n": "Old Trace Creek Wildlife Management Area",
+   "co": "Fleming",
+   "la": 38.3802,
+   "lo": -83.277,
+   "a": 13,
+   "q": 559,
+   "r": 22
+  },
+  {
+   "c": "US-3808",
+   "n": "Doug Travis Wildlife Management Area",
+   "co": "See official site",
+   "la": 36.8076,
+   "lo": -89.0987,
+   "a": 24,
+   "q": 577,
+   "r": 23
+  },
+  {
+   "c": "US-10162",
+   "n": "Ross Creek Wildlife Management Area",
+   "co": "Wolfe",
+   "la": 37.604,
+   "lo": -83.8571,
+   "a": 15,
+   "q": 597,
+   "r": 24
+  },
+  {
+   "c": "US-12972",
+   "n": "Cascade Caverns State Nature Preserve",
+   "co": "Carter",
+   "la": 38.3566,
+   "lo": -83.1126,
+   "a": 20,
+   "q": 602,
+   "r": 25
+  }
+ ],
+ "acts": [
+  {
+   "c": "US-10148",
+   "n": "Mud Camp Creek Wildlife Management Area",
+   "co": "Cumberland",
+   "la": 36.7639,
+   "lo": -85.5227,
+   "a": 2,
+   "q": 80,
+   "r": 1
+  },
+  {
+   "c": "US-10138",
+   "n": "Hoskins Wildlife Management Area",
+   "co": "Harlan / Leslie",
+   "la": 37.105,
+   "lo": -83.3679,
+   "a": 3,
+   "q": 115,
+   "r": 2
+  },
+  {
+   "c": "US-12079",
+   "n": "Little Sextons Creek Wildlife Management Area",
+   "co": "Leslie",
+   "la": 37.3343,
+   "lo": -83.7951,
+   "a": 3,
+   "q": 224,
+   "r": 3
+  },
+  {
+   "c": "US-7962",
+   "n": "Little South Fork State Natural Area",
+   "co": "McCreary",
+   "la": 36.6981,
+   "lo": -84.7149,
+   "a": 6,
+   "q": 201,
+   "r": 4
+  },
+  {
+   "c": "US-12974",
+   "n": "Clear Creek Wildlife Management Area",
+   "co": "Muhlenberg",
+   "la": 37.3156,
+   "lo": -87.6782,
+   "a": 7,
+   "q": 239,
+   "r": 5
+  },
+  {
+   "c": "US-12752",
+   "n": "Green River State Natural Area",
+   "co": "Hart",
+   "la": 37.2603,
+   "lo": -85.9104,
+   "a": 7,
+   "q": 322,
+   "r": 6
+  },
+  {
+   "c": "US-10111",
+   "n": "Rock Creek National Wild and Scenic River",
+   "co": "McCreary",
+   "la": 36.6452,
+   "lo": -84.7104,
+   "a": 8,
+   "q": 303,
+   "r": 7
+  },
+  {
+   "c": "US-7970",
+   "n": "Sinking Creek State Natural Area",
+   "co": "Laurel",
+   "la": 37.1052,
+   "lo": -84.2339,
+   "a": 8,
+   "q": 409,
+   "r": 8
+  },
+  {
+   "c": "US-10164",
+   "n": "Shillalah Creek Wildlife Management Area",
+   "co": "Harlan",
+   "la": 36.6981,
+   "lo": -83.447,
+   "a": 10,
+   "q": 277,
+   "r": 9
+  },
+  {
+   "c": "US-10145",
+   "n": "Meadow Creek Wildlife Management Area",
+   "co": "Wayne",
+   "la": 36.9268,
+   "lo": -84.7197,
+   "a": 10,
+   "q": 368,
+   "r": 10
+  },
+  {
+   "c": "US-10159",
+   "n": "Redbird Wildlife Management Area",
+   "co": "Clay",
+   "la": 37.1031,
+   "lo": -83.5341,
+   "a": 11,
+   "q": 1291,
+   "r": 11
+  },
+  {
+   "c": "US-7964",
+   "n": "William H. Martin State Natural Area",
+   "co": "McCreary",
+   "la": 37.0352,
+   "lo": -84.3349,
+   "a": 12,
+   "q": 371,
+   "r": 12
+  },
+  {
+   "c": "US-7968",
+   "n": "E. Lucy Braun State Nature Preserve",
+   "co": "Harlan",
+   "la": 36.9649,
+   "lo": -83.1094,
+   "a": 12,
+   "q": 440,
+   "r": 13
+  },
+  {
+   "c": "US-10141",
+   "n": "Kentucky Ridge Wildlife Management Area",
+   "co": "Bell",
+   "la": 36.7728,
+   "lo": -83.7708,
+   "a": 13,
+   "q": 401,
+   "r": 14
+  },
+  {
+   "c": "US-10153",
+   "n": "Old Trace Creek Wildlife Management Area",
+   "co": "Fleming",
+   "la": 38.3802,
+   "lo": -83.277,
+   "a": 13,
+   "q": 559,
+   "r": 15
+  },
+  {
+   "c": "US-11274",
+   "n": "Horse Mill Branch Wildlife Management Area",
+   "co": "Fleming",
+   "la": 37.9437,
+   "lo": -83.1012,
+   "a": 14,
+   "q": 315,
+   "r": 16
+  },
+  {
+   "c": "US-10157",
+   "n": "Ping-Sinking Valley Wildlife Management Area",
+   "co": "Pulaski",
+   "la": 37.1835,
+   "lo": -84.4038,
+   "a": 14,
+   "q": 326,
+   "r": 17
+  },
+  {
+   "c": "US-3832",
+   "n": "Stone Mountain Wildlife Management Area",
+   "co": "Bell",
+   "la": 36.7568,
+   "lo": -83.1445,
+   "a": 14,
+   "q": 478,
+   "r": 18
+  },
+  {
+   "c": "US-10162",
+   "n": "Ross Creek Wildlife Management Area",
+   "co": "Wolfe",
+   "la": 37.604,
+   "lo": -83.8571,
+   "a": 15,
+   "q": 597,
+   "r": 19
+  },
+  {
+   "c": "US-7955",
+   "n": "Six Mile Island State Nature Preserve",
+   "co": "Jefferson",
+   "la": 38.3105,
+   "lo": -85.666,
+   "a": 15,
+   "q": 952,
+   "r": 20
+  },
+  {
+   "c": "US-3799",
+   "n": "Burchell-Beech Wildlife Management Area",
+   "co": "See official site",
+   "la": 37.1681,
+   "lo": -83.7077,
+   "a": 15,
+   "q": 1271,
+   "r": 21
+  },
+  {
+   "c": "US-3811",
+   "n": "Ed Mabry-Laurel Gorge Wildlife Management Area",
+   "co": "See official site",
+   "la": 38.1268,
+   "lo": -83.1883,
+   "a": 16,
+   "q": 939,
+   "r": 22
+  },
+  {
+   "c": "US-10121",
+   "n": "Cane Creek Wildlife Management Area",
+   "co": "Pulaski",
+   "la": 36.9979,
+   "lo": -84.2851,
+   "a": 16,
+   "q": 1335,
+   "r": 23
+  },
+  {
+   "c": "US-10160",
+   "n": "Rockcastle River Wildlife Management Area",
+   "co": "Rockcastle",
+   "la": 37.1154,
+   "lo": -84.3509,
+   "a": 16,
+   "q": 1351,
+   "r": 24
+  },
+  {
+   "c": "US-3798",
+   "n": "Buck Creek Wildlife Management Area",
+   "co": "See official site",
+   "la": 37.1071,
+   "lo": -84.4096,
+   "a": 17,
+   "q": 305,
+   "r": 25
+  }
+ ]
+}

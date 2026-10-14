@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kentucky SOTA Field Resource (W4K) | KPC</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kentucky SOTA Field Resource (W4K) | KPC">
+<meta property="og:description" content="Every Kentucky SOTA summit (association W4K) on one page: points, elevation, GPS, weather, POTA and KFF parks within 3 miles, nearby summits and regional maps. Search it, or print it as the KPC field guide.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-guide-sota.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
+<meta name="description" content="Every Kentucky SOTA summit (association W4K) on one page: points, elevation, GPS, weather, POTA and KFF parks within 3 miles, nearby summits and regional maps. Search it, or print it as the KPC field guide.">
+<style>
+:root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:var(--nav-height);margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s}.nav-links a:hover,.nav-links a[aria-current=page]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:var(--black) url("parks.png") center/cover no-repeat;color:#fff;border-bottom:1px solid rgba(213,166,58,.45)}
+.hero:before{content:"";position:absolute;width:620px;height:620px;right:-170px;top:-180px;border:1px solid rgba(213,166,58,.35);border-radius:50%;box-shadow:0 0 0 55px rgba(213,166,58,.035),0 0 0 110px rgba(213,166,58,.025)}
+.hero:after{content:none}
+.hero-inner{position:relative;z-index:2;width:min(var(--max),100%);margin:auto;padding:90px 24px 84px}.hero-logo{width:min(360px,78vw);margin-bottom:24px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}.eyebrow{margin:0 0 12px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}.hero h1{max-width:800px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,6.2vw,76px);line-height:1.02;letter-spacing:-1.8px}.hero h1 span{color:var(--gold-light)}.hero-copy{max-width:720px;margin:22px 0 0;color:#eee9dd;font-size:clamp(16px,2vw,20px)}
+.section{padding:82px 24px}.section-inner{width:min(var(--max),100%);margin:auto}.section-heading{text-align:center;margin-bottom:42px}.kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:4px}.section h2{margin:7px 0 12px;color:var(--black);font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,4vw,48px);line-height:1.08}.section-heading p{max-width:760px;margin:0 auto;color:var(--muted);font-size:17px}
+.intro{background:var(--cream);border-bottom:1px solid #d9cfbd}.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}.intro-copy h2{margin:7px 0 18px}.intro-copy p{color:var(--muted);font-size:18px;margin:0}.intro-panel{padding:34px;background:var(--black);border:1px solid var(--gold);box-shadow:12px 12px 0 var(--gold);color:#fff;position:relative;overflow:hidden}.intro-panel:after{content:"";position:absolute;width:230px;height:230px;right:-90px;top:-90px;border:1px solid rgba(213,166,58,.45);border-radius:50%}.intro-panel .mark{position:relative;z-index:1;color:var(--gold-light);font-size:12px;font-weight:900;letter-spacing:3px}.intro-panel h3{position:relative;z-index:1;margin:10px 0 10px;font:700 30px/1.1 Georgia,serif}.intro-panel p{position:relative;z-index:1;margin:0;color:#c9c5bc}.intro-panel .line{position:relative;z-index:1;width:70px;height:3px;background:var(--gold);margin:20px 0}
+.features{background:#fffaf0}.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.card{min-height:285px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid #d8cfbf;background:#fff;color:var(--ink);box-shadow:0 12px 28px rgba(0,0,0,.07);transition:.2s;position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;width:6px;height:100%;background:var(--gold)}.card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.12);border-color:var(--gold)}.card-top{position:relative;z-index:1}.card-num{color:var(--green);font-size:12px;font-weight:900;letter-spacing:3px}.card h3{margin:8px 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:28px;line-height:1.1}.card p{margin:0;color:var(--muted);font-size:15px;max-width:520px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:1px;background:var(--gold);color:#0b0b0b;transition:.2s;align-self:flex-start;margin-top:24px}.btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.dark{background:var(--black);color:#fff;border-top:1px solid rgba(213,166,58,.45);border-bottom:1px solid rgba(213,166,58,.45)}.dark .section-heading p{color:#bcb8ae}.dark h2{color:#fff}.dark .card{background:#151515;border-color:#363636;color:#fff}.dark .card p{color:#bcb8ae}.dark .card h3{color:#fff}.dark .card:before{background:var(--gold)}
+.map-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.map-box{padding:30px;border:1px solid #363636;background:#151515}.map-box h3{margin:8px 0 10px;color:#fff;font:700 25px/1.1 Georgia,serif}.map-box p{margin:0;color:#bcb8ae}.map-box .btn{margin-top:22px}
+.pota-card{min-height:310px}
+.pdf-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pdf-actions .btn{margin-top:0}.pdf-actions .alt{background:#fff;border:1px solid var(--gold);color:#171717}
+.warning{background:var(--cream-2);border-top:1px solid #d1c6b3}.warning-box{border-left:6px solid var(--gold);background:#fff;padding:30px;box-shadow:0 10px 24px rgba(0,0,0,.06)}.warning-box h3{margin:0 0 10px;font:700 28px/1.1 Georgia,serif}.warning-box p{margin:0;color:var(--muted)}
+.final{padding:76px 24px;text-align:center;background:var(--cream-2)}.final h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}.final p{margin:10px 0 24px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:2px}
+footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;border-top:1px solid #292929;font-size:13px}footer strong{color:var(--gold-light)}
+@media(min-width:901px){.hero-logo{position:absolute;left:-400px;top:calc(50% - 22px);transform:translateY(-50%);justify-self:auto;margin-bottom:0}}
+@media(max-width:1000px){.nav-links a{padding-inline:7px;font-size:12px}.intro-grid{gap:38px}}
+@media(max-width:900px){.hero-logo{display:block;width:min(290px,58vw);margin-left:auto;margin-right:auto}}
+@media(max-width:760px){:root{--nav-height:70px}.nav-inner{min-height:70px;padding:8px 18px}.brand img{width:52px;height:52px}.menu-toggle{display:block}.nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45);box-shadow:0 15px 25px rgba(0,0,0,.22)}.nav-links.open{display:flex}.nav-links a{padding:13px 5px;border-bottom:1px solid #292929}.nav-links a:last-child{border-bottom:0}.hero{min-height:500px;background:url("parks-mobile.png") center/cover no-repeat}.hero-inner{padding:70px 20px 55px}.hero-logo{width:min(290px,58vw)}.section{padding:68px 20px}.intro-grid,.map-grid{grid-template-columns:1fr}.intro-panel{max-width:520px;margin:auto}.card-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-logo{width:min(250px,64vw)}}
+@media(max-width:520px){.hero h1{font-size:42px}.hero-copy{font-size:16px}.card{min-height:300px}.card h3{font-size:25px}.pdf-actions{flex-direction:column}.pdf-actions .btn{width:100%}}
+@media(max-width:380px){.brand-text small{display:none}}
+
+/* Added official trail and Wild River resource sections */
+.resource-note{background:#fff7df;border-left:5px solid var(--gold);padding:18px 22px;margin:0 0 28px;color:#332c1f}
+.resource-note p{margin:0}.resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.resource-item{padding:26px;border:1px solid #d8cfbf;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.045)}
+.resource-item h3{font:700 25px/1.18 Georgia,serif;margin:8px 0 12px}.resource-item p{color:#5f5a51;margin:0 0 12px}
+.resource-item .meta{font-size:12px;font-weight:900;letter-spacing:1.4px;color:var(--green)}
+.resource-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.resource-actions .btn{margin:0;font-size:11px;min-height:40px}
+.resource-actions .secondary{background:#f8f4eb;border:1px solid #c9ad6b}
+.river-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:25px 0}
+.river-list article{padding:18px 20px;background:#fff;border:1px solid #d8cfbf}.river-list strong{display:block;font:700 20px Georgia,serif}.river-list span{display:block;margin-top:7px;color:#5f5a51;font-size:14px}
+@media(max-width:760px){.resource-grid,.river-list{grid-template-columns:1fr}}
+/* Quick jump links, trail cards, map files */
+.jump{background:var(--black);border-bottom:1px solid rgba(213,166,58,.45);position:sticky;top:var(--nav-height);z-index:900}
+.jump-inner{width:min(var(--max),100%);margin:auto;padding:10px 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.jump-inner::-webkit-scrollbar{display:none}
+.jump a{flex:0 0 auto;padding:8px 14px;border:1px solid #3a3a3a;border-radius:999px;color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;transition:.2s}
+.jump a:hover{border-color:var(--gold);color:var(--gold-light)}
+section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn-row .btn{margin-top:0}
+.trail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.trail-grid .resource-item:last-child:nth-child(odd){grid-column:1/-1}
+.twofer{margin:14px 0 0;padding:12px 14px;background:#fff7df;border-left:4px solid var(--gold);font-size:14px;color:#332c1f}
+.twofer b{color:var(--green);letter-spacing:1px;font-size:12px}
+.files-card .pdf-actions .btn{min-width:0}
+.file-group{margin-top:16px}.file-group .card-num{margin-bottom:8px}
+.warning-box .btn-row .btn{font-size:11px;min-height:40px}
+@media(max-width:760px){.jump{top:70px}.trail-grid{grid-template-columns:1fr}.btn-row{flex-direction:column}.btn-row .btn{width:100%}}
+.dark .kicker,.dark .card-num{color:var(--gold-light)}
+/* On The Air Now bar */
+.onair{background:#0d2419;border-bottom:1px solid rgba(213,166,58,.45);color:#fff}
+.onair-inner{width:min(var(--max),100%);margin:auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.onair-title{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:3px;color:var(--gold-light);white-space:nowrap}
+.onair .dot{width:10px;height:10px;border-radius:50%;background:#3ecf6e;animation:pulse 1.8s infinite}
+.onair .dot.off{background:#8a8a8a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.6)}70%{box-shadow:0 0 0 9px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.onair-count{font-size:14px;color:#e9eee9}.onair-count b{color:#fff}
+.onair-list{display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}.onair-list::-webkit-scrollbar{display:none}
+.onair-chip{flex:0 0 auto;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;white-space:nowrap}
+.onair-chip b{color:var(--gold-light)}.onair-chip.club{border-color:var(--gold);background:rgba(213,166,58,.14)}
+.onair .btn{margin:0;min-height:38px;padding:8px 14px;font-size:11px;white-space:nowrap}
+@media(max-width:760px){.onair-inner{padding:12px 18px;gap:8px 10px}.onair-title{order:1}.onair .btn{order:2;margin-left:auto}.onair-count{order:3;flex-basis:100%}.onair-list{order:4;flex-basis:100%}}
+
+/* KPC shared About-style footer and below-hero page links */
+.page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+.page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
+.page-jump-nav a:hover,.page-jump-nav a:focus-visible{background:#3c321a;border-color:#d6b96c;color:#fff}
+section[id]{scroll-margin-top:100px}
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
+body.field .page-jump-nav{display:none!important}
+
+</style>
+<link rel="stylesheet" href="kpc-nav.css?v=20261010g">
+<style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
+<style>
+[hidden]{display:none!important}
+.hero{min-height:380px;background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.66) 45%,rgba(7,7,7,.25) 80%,rgba(7,7,7,.1) 100%),url("toolbox.jpg") center 55%/cover no-repeat #070707}
+@media(max-width:760px){.hero{min-height:340px;background:linear-gradient(180deg,rgba(7,7,7,.45) 0%,rgba(7,7,7,.8) 55%,rgba(7,7,7,.92) 100%),url("toolbox-mobile.jpg") center 60%/cover no-repeat #070707}}
+.xj{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px 16px;background:#101010;border-bottom:1px solid #2a2a2a}
+.xj a{padding:9px 13px;border:1px solid rgba(255,255,255,.28);border-radius:6px;color:#fff;font-size:11px;font-weight:900;letter-spacing:.7px}
+.xj a:hover{border-color:var(--gold);color:var(--gold-light)}
+.x2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.x3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.x4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.xc{background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);padding:20px;box-shadow:0 10px 24px rgba(0,0,0,.06);min-width:0}
+.xc .k{font-size:10px;font-weight:900;letter-spacing:1.5px;color:var(--green)}
+.xc h3{margin:6px 0 8px;font:700 22px/1.15 Georgia,serif}
+.xc p,.xc li{color:var(--muted);font-size:15px}.xc p{margin:0 0 8px}.xc ul,.xc ol{margin:0 0 8px;padding-left:18px}.xc li{margin:0 0 5px}
+.xc b{color:#171717}
+.dark .xc{background:#151515;border-color:#363636;border-top-color:var(--gold)}.dark .xc h3,.dark .xc b{color:#fff}.dark .xc p,.dark .xc li{color:#bcb8ae}.dark .xc .k{color:#7fd39a}
+.xc svg,.fig svg{display:block;width:100%;height:auto;background:#fbf8f1;border:1px solid #e1d7c3;border-radius:8px;margin:12px 0}
+.pill{display:inline-block;font-size:10px;font-weight:900;letter-spacing:1px;padding:3px 7px;border-radius:4px;background:#efe6d2;color:#5f5a51;margin-left:6px;vertical-align:2px}
+.spec{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 10px}
+.spec td{padding:7px 4px;border-bottom:1px solid #eee5d3;vertical-align:top;color:#3b372f}
+.spec td:first-child{font-size:10px;font-weight:900;letter-spacing:1px;color:#6d6658;width:40%;padding-top:9px}
+.dark .spec td{border-color:#2a2a2a;color:#ddd}
+/* calculator */
+.xd{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px;align-items:start}
+.xd-in{background:#121212;border:1px solid #2f2f2f;border-radius:10px;padding:18px}
+.xd-in label{display:block;font-size:11px;font-weight:900;letter-spacing:1.3px;color:#cfc6b2;margin:12px 0 6px}
+.xd-in label:first-child{margin-top:0}
+.xd-in select,.xd-in input{width:100%;min-height:46px;padding:9px 12px;border-radius:7px;border:1px solid #444;background:#1a1a1a;color:#fff;font:600 16px Arial,sans-serif}
+.xd-in .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.xd-in .hint{font-size:12px;color:#9c968a;margin:5px 0 0}
+.xd-out{background:#fff;border-radius:10px;padding:20px;color:var(--ink);min-width:0}
+.xd-out h3{margin:0 0 4px;font:700 24px Georgia,serif}
+.xd-out .sub{color:var(--muted);margin:0 0 14px;font-size:14px}
+.xd-t{width:100%;border-collapse:collapse;font-size:15px}
+.xd-t td{padding:8px 4px;border-bottom:1px solid #eee5d3;vertical-align:top}
+.xd-t td:first-child{font-size:11px;font-weight:900;letter-spacing:1px;color:#6d6658;width:42%;padding-top:10px}
+.xd-t b{font-size:17px}
+.big{font:700 34px/1.1 Georgia,serif;color:#171717}
+.xd-warn{margin-top:12px;padding:10px 12px;background:#fff1ec;border-left:4px solid #d2693c;color:#5a2a17;font-size:14px}
+.xd-ok{margin-top:12px;padding:10px 12px;background:#eef7ef;border-left:4px solid #2e8b3a;color:#1d3d22;font-size:14px}
+.tbl-wrap{overflow-x:auto;margin-top:12px}
+.tapt{width:100%;border-collapse:collapse;font-size:14px;min-width:340px}
+.tapt th{background:#1d1d1d;color:#cfc6b2;font-size:10px;letter-spacing:1.2px;text-align:left;padding:8px}
+.tapt td{padding:8px;border-bottom:1px solid #eee5d3}
+.tapt td:first-child{font-weight:900}
+.tips{columns:2 320px;column-gap:24px;padding-left:18px}
+.tips li{break-inside:avoid;margin:0 0 12px;color:var(--muted);font-size:15px}.tips b{color:#171717}
+.dark .tips li{color:#bcb8ae}.dark .tips b{color:#fff}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;position:relative;padding:0 0 12px 40px;color:var(--muted);font-size:15px}
+.steps li:before{content:counter(s);position:absolute;left:0;top:-2px;width:28px;height:28px;border-radius:50%;background:var(--gold);color:#111;font-weight:900;text-align:center;line-height:28px;font-size:14px}
+.steps b{color:#171717}
+.rel{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px}
+.rel a{padding:11px 15px;border:1px solid #cdbf9f;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:.7px;color:#171717;background:#fff}
+.rel a:hover{border-color:var(--gold)}
+.src{font-size:13px;color:var(--muted);text-align:center;margin-top:14px}.src a{color:var(--green);text-decoration:underline}
+@media(max-width:1000px){.x3,.x4{grid-template-columns:repeat(2,minmax(0,1fr))}.xd{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:640px){.x2,.x3,.x4{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<style>
+[hidden]{display:none!important}
+.hero{min-height:360px;background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.66) 45%,rgba(7,7,7,.25) 80%,rgba(7,7,7,.1) 100%),url("resources.jpg") center 50%/cover no-repeat #070707}
+@media(max-width:760px){.hero{min-height:340px;background:linear-gradient(180deg,rgba(7,7,7,.45) 0%,rgba(7,7,7,.8) 55%,rgba(7,7,7,.92) 100%),url("resources-mobile.jpg") center 50%/cover no-repeat #070707}}
+.hero .pdf-actions .btn{margin-top:0}
+.g-wrap{width:min(1100px,100%);margin:0 auto;padding:0 16px;box-sizing:border-box}
+.g-sec{padding:34px 0 10px}
+.g-kick{font-size:11px;font-weight:900;letter-spacing:2.5px;color:var(--green)}
+.g-sec h2,.g-h2{margin:6px 0 8px;font:700 clamp(28px,4vw,40px)/1.1 Georgia,"Times New Roman",serif;color:var(--black)}
+.g-sub{margin:0 0 14px;color:var(--muted);font-size:15px}
+.g-intro{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.g-box{background:#fff;border:1px solid #e0d5bd;border-left:5px solid var(--green);border-radius:10px;padding:16px 18px;min-width:0}
+.g-box h3{margin:0 0 6px;font-size:11px;font-weight:900;letter-spacing:2px;color:var(--green)}
+.g-box p{margin:0 0 8px;color:#3b372f;font-size:15px}.g-box p:last-child{margin-bottom:0}
+.g-box.warn{grid-column:1/-1;background:#f3b73a;border:0;border-left:6px solid #9a6a10;color:#1b1b1b}
+.g-box.warn h3{font:700 22px Georgia,serif;letter-spacing:0;color:#111;text-transform:uppercase}.g-box.warn p{color:#1b1b1b;font-weight:700}
+.g-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}
+.g-tile{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;background:#fff;border:1px solid #e0d5bd;border-radius:12px;padding:16px 8px;min-width:0}
+.g-tile b{font:700 20px Georgia,serif;color:#1c3a2a}.g-tile span{font-size:11px;font-weight:900;letter-spacing:1px;color:#5f5a51}.g-tile small{font-size:11px;font-weight:900;letter-spacing:1.4px;color:var(--green)}
+.g-tile:hover{border-color:var(--gold);box-shadow:0 6px 16px rgba(0,0,0,.08)}
+.g-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:#e9b13a;border-radius:999px;padding:9px 16px;margin:10px 0;font-size:11px;font-weight:900;letter-spacing:1.4px;color:#1b1b1b}
+.g-bar a{padding:4px 8px;border-radius:999px}.g-bar a:hover{background:rgba(255,255,255,.4)}
+.g-bar .lead{margin-right:auto;letter-spacing:2px}
+.g-how{background:#1c3a2a;color:#e8efe9;border-radius:12px;border-left:6px solid var(--gold);padding:18px 20px;margin:14px 0}
+.g-how h3{margin:0 0 10px;font-size:11px;font-weight:900;letter-spacing:2px;color:var(--gold-light)}
+.g-how dl{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:7px 18px;margin:0;font-size:14px}
+.g-how dt{font-weight:900;color:var(--gold-light);font-size:12px;letter-spacing:.6px;padding-top:2px}.g-how dd{margin:0}
+.g-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:12px 0 0}
+.g-links a{display:block;text-align:center;padding:12px 14px;border-radius:999px;background:#13261c;border:1px solid var(--gold);color:var(--gold-light);font-size:11px;font-weight:900;letter-spacing:1.4px}
+.g-links a.gold{background:var(--gold);color:#111}
+.g-links a:hover{filter:brightness(1.12)}
+/* tools bar */
+.g-tools{position:sticky;top:var(--nav-height,78px);z-index:50;background:rgba(245,240,228,.97);border-bottom:1px solid #d9cfbd;box-shadow:0 6px 14px rgba(0,0,0,.05);margin-top:24px}
+.g-tools .g-wrap{padding-top:10px;padding-bottom:8px}
+.g-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.g-row input,.g-row select{font:600 16px Arial,sans-serif;min-height:44px;padding:8px 12px;border:1px solid #cbbf9f;border-radius:8px;background:#fff;color:#171717;min-width:0}
+.g-row input{flex:1 1 220px}.g-row select{flex:0 1 230px;max-width:100%}
+.g-row button{min-height:44px;padding:8px 14px;border-radius:8px;border:1px solid #cbbf9f;background:#fff;font:900 12px Arial,sans-serif;letter-spacing:1px;cursor:pointer}
+.g-count{font-size:12px;font-weight:900;letter-spacing:1px;color:#5f5a51;margin:6px 0 4px}
+.g-jump{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.g-jump a{padding:6px 9px;border:1px solid #cbbf9f;border-radius:6px;background:#fff;font-size:10px;font-weight:900;letter-spacing:.8px;color:#1c3a2a}
+.g-jump a:hover{border-color:var(--gold)}
+/* maps */
+.g-mapbox{background:#fffdf7;border:1px solid #e0d5bd;border-radius:12px;padding:16px;margin:0 0 18px;scroll-margin-top:215px}
+.g-mapbox h3{margin:4px 0 2px;font:700 26px/1.15 Georgia,serif}
+.g-map{display:block;width:100%;height:auto;border-radius:10px;border:1px solid #e0d5bd;background:#dbe6ee}
+.g-map .m-co{font:italic 11px Arial,sans-serif;fill:#9a9486;text-anchor:middle}
+.g-map .m-t{font:10px Arial,sans-serif;fill:#222}.g-map .m-t.big{font:bold 13px Arial,sans-serif}
+.g-map .m-p{font:bold 9px Arial,sans-serif;fill:#111;paint-order:stroke;stroke:#fff;stroke-width:2.5px}
+.g-map a:hover circle{stroke:#111}
+.g-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:10px 0 4px;font-size:12px;font-weight:700;color:#3b372f}
+.g-legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}.g-legend i.town{width:6px;height:6px;background:#161616}
+.g-foot{margin:2px 0 0;font-size:11px;color:#7a7468}
+/* county index */
+.g-co{background:#fff;border:1px solid #e0d5bd;border-radius:10px;padding:12px 16px;margin:0 0 10px}
+.g-co-h{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.g-co-h h3{margin:0;font:700 19px Georgia,serif}.g-co-h span{font-size:10px;font-weight:900;letter-spacing:1.4px;color:#5f5a51;white-space:nowrap}
+.g-co p{margin:6px 0 0;font-size:13px;line-height:1.6;color:#2b2b2b}.g-co a b{color:var(--green)}.g-co a:hover{text-decoration:underline}
+/* cards */
+.g-banner{background:#13261c;color:var(--gold-light);text-align:center;border-radius:8px;padding:9px 14px;font-size:11px;font-weight:900;letter-spacing:1.6px;margin:8px 0 14px}
+.g-grp-h{margin:22px 0 10px;font:700 26px Georgia,serif;color:#1c3a2a;scroll-margin-top:215px}
+.g-card{background:#fff;border:1px solid #e0d5bd;border-radius:12px;padding:14px 16px;margin:0 0 12px;box-shadow:0 4px 12px rgba(0,0,0,.04);scroll-margin-top:215px;min-width:0}
+.g-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
+.g-code{display:inline-block;background:#e9b13a;color:#1b1b1b;border-radius:999px;padding:5px 12px;font-size:11px;font-weight:900;letter-spacing:1px;white-space:nowrap}
+.g-head h3{margin:0;font:700 21px/1.2 Georgia,serif;min-width:0;overflow-wrap:anywhere}.g-head h3 a:hover{text-decoration:underline}
+.g-meta{margin:4px 0 8px;color:#5f5a51;font-size:14px}
+.g-btns{display:flex;flex-wrap:wrap;gap:7px}
+.b{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:6px 14px;border-radius:999px;font-size:10.5px;font-weight:900;letter-spacing:1px;border:1.5px solid #1c3a2a;background:#fff;color:#1c3a2a;white-space:nowrap}
+.b:hover{filter:brightness(.95)}
+.b-osm{background:#2f6b4c;border-color:#2f6b4c;color:#fff}.b-web{background:#13261c;border-color:#13261c;color:#fff}
+.b-wx{background:#dfeaf5;border-color:#9bb6d1;color:#24486b}.b-near{background:#fff4cf;border-color:#e9b13a;color:#3b2c06}
+.b-map{background:#13261c;border-color:#e9b13a;color:var(--gold-light)}.b-pota,.b-gold{background:#e9b13a;border-color:#e9b13a;color:#1b1b1b}
+.g-line{margin:9px 0 0;font-size:13.5px;line-height:1.55;color:#2b2b2b;overflow-wrap:anywhere}
+.g-line>b:first-child{font-size:11px;letter-spacing:.8px;color:#1c3a2a;margin-right:4px}
+.g-line a{color:var(--green);font-weight:700;text-decoration:underline;text-decoration-thickness:1px}
+.g-dim{color:#7a7468}
+.g-none{background:#fff;border:1px dashed #cbbf9f;border-radius:10px;padding:16px;color:#5f5a51}
+/* nearby */
+.g-nb{border-bottom:1px solid #e6dcc6;padding:9px 2px;scroll-margin-top:215px}
+.g-nb-h{display:flex;justify-content:space-between;gap:10px;font-weight:900;font-size:14px}
+.g-nb-h a:first-child{color:#1c3a2a;min-width:0;overflow-wrap:anywhere}.g-back{font-size:10px;letter-spacing:1px;color:var(--green);white-space:nowrap;padding-top:2px}
+.g-nb p{margin:4px 0 0;font-size:13px;line-height:1.6;color:#2b2b2b;overflow-wrap:anywhere}
+.g-nb p b{font-size:10.5px;letter-spacing:.8px;color:#5f5a51}.g-nb p a{color:var(--green);font-weight:700}
+.g-endnote{text-align:center;font-size:11px;font-weight:900;letter-spacing:1.4px;color:#5f5a51;margin:26px 0 8px}
+.g-err{background:#fff1ec;border-left:4px solid #d2693c;color:#5a2a17;padding:12px 14px;margin:16px 0;border-radius:6px}
+/* print cover */
+.g-cover{text-align:center;padding:10mm 0 6mm}
+.g-cover .top{display:flex;justify-content:space-between;font-size:8pt;font-weight:900;letter-spacing:2px;color:#9a6a10}
+.g-cover img{width:42mm;height:42mm;margin:8mm auto 4mm;display:block;border-radius:50%}
+.g-cover h1{margin:0;font:700 34pt/1.05 Georgia,serif;color:#13261c}.g-cover .sub{font:700 20pt Georgia,serif;color:#b9861c;margin:2mm 0 4mm}
+.g-cover .k{font-size:9pt;font-weight:900;letter-spacing:3px;color:#13261c}.g-cover .k2{font-size:9pt;color:#5f5a51;margin-top:1mm}
+@media(max-width:900px){.g-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.g-intro{grid-template-columns:minmax(0,1fr)}.g-how dl{grid-template-columns:minmax(0,1fr)}.g-how dd{margin-bottom:6px}.g-bar{border-radius:12px}.g-head h3{font-size:19px}.b{padding:6px 11px}}
+@media(max-width:760px){.g-tools{position:static}.g-mapbox,.g-grp-h,.g-card,.g-nb{scroll-margin-top:84px}}
+@media screen{.g-off{display:none!important}}
+@media print{
+  .hero,.g-tools,.g-back,.kpc-disc{display:none!important}
+  .g-wrap{padding:0;width:100%}
+  .g-sec{padding:4mm 0 0}
+  .g-card,.g-mapbox,.g-co,.g-box,.g-how{box-shadow:none}
+  .g-card{padding:3mm 4mm;margin:0 0 3mm;border-radius:8px}
+  .g-mapbox{padding:3mm;border:0}
+  .g-map{max-height:205mm;width:auto;max-width:100%;margin:0 auto}
+  .g-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .g-intro{grid-template-columns:repeat(2,minmax(0,1fr));gap:4mm}
+  .g-box{padding:3mm 4mm}.g-box p{font-size:9.5pt}
+  .g-cover{padding:4mm 0 2mm}.g-cover img{width:34mm;height:34mm;margin:5mm auto 3mm}
+  .b{min-height:0;padding:1.2mm 3.2mm;font-size:7pt}
+  .g-head h3{font-size:14pt}.g-meta{font-size:9pt;margin:1mm 0 2mm}.g-line{font-size:8.5pt}
+  .g-nb{padding:1.5mm 0}.g-nb p{font-size:8pt}.g-nb-h{font-size:9pt}
+  .g-co p{font-size:8.5pt}
+  .g-grp-h{margin:0 0 3mm}
+  .g-how{padding:3mm 4mm;margin:3mm 0}.g-how dl{font-size:8.5pt;gap:1mm 4mm;grid-template-columns:minmax(0,46mm) minmax(0,1fr)}.g-how dt{font-size:7.5pt}
+  .g-tiles{gap:2.5mm;margin:3mm 0}.g-tile{padding:2.5mm 2mm}.g-tile b{font-size:13pt}
+  .g-bar{padding:1.5mm 4mm;margin:2mm 0}.g-links{gap:2.5mm;margin-top:2mm}.g-links a{padding:2mm 3mm}
+  .g-sub{font-size:9.5pt;margin-bottom:2mm}.g-sec h2{font-size:22pt}
+  .g-url::after{content:" (" attr(href) ")";font-weight:400;font-size:7pt;letter-spacing:0}
+  .kpc-disclaim{margin:0 0 4mm!important;padding:0!important}
+  .g-line a,.g-nb p a{text-decoration:none}
+}
+</style>
+<link rel="stylesheet" href="kpc-guide-print.css">
+</head>
+<body>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Find It</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>KY Trip Planner</a>
+            <a href="kpc-planner-us.html" role="menuitem"><span class="ni">&#129517;</span>US Trip Planner</a>
+            <a href="kpc-checker.html" role="menuitem"><span class="ni">&#9989;</span>Park Checker (any state)</a>
+            <a href="kpc-park-notes.html" role="menuitem"><span class="ni">&#128221;</span>Park Notes (tips)</a>
+            <a href="kpc-community.html" role="menuitem"><span class="ni">&#129309;</span>Community (setups &amp; tips)</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-band-plan.html" role="menuitem"><span class="ni">&#128225;</span>Band Plan by License</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
+            <a href="antennas.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guides</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128208;</span>Antenna Calculator</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero no-print"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • FIELD RESOURCE</p><h1>KENTUCKY <span>SOTA</span></h1><p class="hero-copy">W4K summits • by region. Summits on the Air • Association W4K (Kentucky). Every summit, its points, the parks close by, and a map of each region.</p><div class="pdf-actions"><a class="btn" href="KPC_Kentucky_SOTA_W4K_Resource.pdf" target="_blank" rel="noopener">DOWNLOAD PDF</a><a class="btn alt" href="https://sotl.as/summits/W4K" target="_blank" rel="noopener">OPEN W4K ON SOTLAS →</a><button class="btn alt" type="button" onclick="window.print()">PRINT</button></div></div></section>
+<div class="g-wrap"><div class="g-cover g-print-only"><div class="top"><span>KENTUCKY PORTABLE CLUB • KPC</span><span>PROVIDED BY BRANDON WHITE • KZ4CP</span></div><img src="KPC-logo.png" alt="KPC logo"><h1>KENTUCKY SOTA</h1><div class="sub">Field Resource</div><div class="k">W4K SUMMITS • BY REGION</div><div class="k2">Summits on the Air • Association W4K (Kentucky)</div></div></div>
+<aside class="kpc-disclaim" role="note" style="max-width:1160px;margin:18px auto;padding:0 16px;box-sizing:border-box"><div style="background:#fff8e6;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:8px;padding:12px 16px;color:#1c1c1c;font:14px/1.55 Arial,Helvetica,sans-serif"><b>Use our tools, then check for yourself.</b> KPC builds these maps, guides and tools to help you plan, but we’re volunteers working from public data, and we make mistakes. Boundaries change, maps don’t always line up, and some land inside a park line is private. Before you activate, check the official agency map, confirm the land is public and open, and follow the rules of each program you’re activating. You’re responsible for making sure your activation is valid. Spot something wrong? <a href="contact.html" style="color:#1d5a3a;font-weight:700">Let us know</a> so we can fix it.</div></aside>
+<div class="g-wrap">
+<p class="g-err" id="gErr" hidden></p>
+
+<section class="g-sec" id="about">
+<div class="g-intro">
+ <div class="g-box"><h3>ABOUT THIS GUIDE</h3><p>All <span id="gTotal">216</span> SOTA summits in association W4K (Kentucky), from the SOTLAS summit export. Each summit code opens its SOTLAS page. Points and elevation come from that export. Cards also list POTA and WWFF (KFF) parks within 3 miles.</p><p class="g-dim" style="font-size:13px">On this page the summit list comes from the club’s live Kentucky data file, so it stays current. <span id="gUpdated"></span></p></div>
+ <div class="g-box"><h3>FIELD-USE NOTE</h3><p>Many summits are on private land — get permission. Operate within the SOTA activation zone and follow the SOTA General Rules and W4K Association Reference Manual. Verify access, closures and hunting seasons before travel.</p></div>
+ <div class="g-box warn g-keep"><h3>Access: Permission &amp; Safety First</h3><p>Many Kentucky summits are on private, mining or timber land. Always get landowner permission where needed, and check SOTLAS and the W4K reference manual for access notes before you go.</p><p>This guide is a research tool, not the final word — do your homework before you go and confirm you are on the correct summit and inside its activation zone.</p></div>
+</div>
+</section>
+
+<section class="g-sec g-break" id="find">
+<div class="g-kick">KENTUCKY SOTA FIELD RESOURCE • W4K</div>
+<h2>Find a Summit</h2>
+<p class="g-sub">Tap a group to jump to that section. Every summit code opens its SOTLAS page; NEARBY jumps to that summit’s nearby-summits list.</p>
+<div class="g-tiles" id="gTiles"></div>
+<div class="g-bar"><a class="lead" href="#county">FIND A SUMMIT BY COUNTY →</a></div>
+<div class="g-bar"><a class="lead" href="#maps">REGIONAL MAPS →</a><span id="gRegChips" style="display:contents"></span></div>
+<div class="g-how g-keep"><h3>HOW TO READ EACH CARD</h3><dl>
+ <dt>W4K/XX-###</dt><dd>Opens the summit’s SOTLAS page (details, photos, activations).</dd>
+ <dt>POTA / KFF WITHIN 3 MI</dt><dd>Parks near the summit — distance to the park reference point; check boundaries.</dd>
+ <dt>INSIDE PUBLIC LAND (KY GIS)</dt><dd>The summit point falls inside an official Kentucky public-land polygon; confirm before claiming.</dd>
+ <dt>GPS</dt><dd>The summit’s GPS point in Google Maps, for directions.</dd>
+ <dt>OSM MAP</dt><dd>OpenStreetMap at the summit — community-edited data.</dd>
+ <dt>WEATHER</dt><dd>The Weather Channel forecast for the summit’s GPS point.</dd>
+ <dt>NEARBY</dt><dd>Jumps to this summit’s nearby-summits list (nearest + all within 10 mi).</dd>
+</dl>
+<div class="g-links"><a class="gold g-url" href="https://sotl.as/summits/W4K" target="_blank" rel="noopener">OPEN W4K ON SOTLAS (MAP • PHOTOS • ACTIVATIONS) →</a></div>
+</div>
+<div class="g-links"><a class="g-url" href="https://kentuckyportableclub.github.io/KPC-Links/finder.html">KPC ACTIVATION FINDER (WEB MAP) →</a><a class="g-url" href="https://kentuckyportableclub.github.io/KPC-Links/parks.html">KPC KENTUCKY PARKS PAGE →</a></div>
+</section>
+</div>
+
+<div class="g-tools no-print"><div class="g-wrap">
+ <div class="g-row"><input id="gSearch" type="search" placeholder="Search code, summit, county or park…" aria-label="Search summits" autocomplete="off"><select id="gRegion" aria-label="Region"></select><button id="gClear" type="button">CLEAR</button></div>
+ <div class="g-count" id="gCount" aria-live="polite">Loading summits…</div>
+ <nav class="g-jump" id="gJump" aria-label="Jump to section"></nav>
+</div></div>
+
+<div class="g-wrap">
+<section class="g-sec g-break" id="maps">
+<div class="g-kick">REGIONAL MAPS</div>
+<h2>Summits by Region</h2>
+<p class="g-sub">Six Kentucky regions. Pins are colored by SOTA points; tap a pin to open its card.</p>
+<div id="gMaps"></div>
+</section>
+
+<section class="g-sec g-break" id="county">
+<div class="g-kick">KENTUCKY SOTA FIELD RESOURCE • BY COUNTY</div>
+<h2>Summits by County</h2>
+<p class="g-sub" id="gCountyHead"></p>
+<div id="gCounty"></div>
+</section>
+
+<section class="g-sec g-break" id="cards">
+<div class="g-kick">KENTUCKY SOTA FIELD RESOURCE • W4K</div>
+<h2>The Summits</h2>
+<div class="g-banner">GET PERMISSION FOR PRIVATE LAND • CONFIRM PARK BOUNDARIES BEFORE CLAIMING A COMBO</div>
+<p class="g-none no-print" id="gNone" hidden>No summits match. Try a shorter search or pick “All regions”.</p>
+<div id="gCards"></div>
+</section>
+
+<section class="g-sec g-break" id="nearby">
+<div class="g-kick">KENTUCKY SOTA FIELD RESOURCE • W4K</div>
+<h2>Nearby Summits</h2>
+<p class="g-sub">Each summit’s closest neighbor and every summit within 10 miles. Tap any summit to jump to its card; tap a heading to go back to that summit. Distances are straight-line miles (as the crow flies) between each park’s GPS point — not driving distance.</p>
+<div id="gNearby"></div>
+</section>
+<p class="g-endnote">KPC KENTUCKY SOTA (W4K) RESOURCE • VERIFY CURRENT RULES, ACCESS, MAPS, PERMITS, AND SEASONAL CONDITIONS BEFORE TRAVEL.</p>
+<p class="g-endnote no-print"><a class="btn" href="KPC_Kentucky_SOTA_W4K_Resource.pdf" target="_blank" rel="noopener">DOWNLOAD PDF</a></p>
+</div>
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
+<script src="kpc-guide-sota.js?v=20261013a" defer></script>
+<script src="kpc-search.js?v=20261013r" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body></html>
