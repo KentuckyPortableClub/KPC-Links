@@ -1,8 +1,0 @@
-0 Cannot read properties of undefined (reading 'min')
-0 page.waitForFunction: Timeout 60000ms exceeded.
-1 Cannot read properties of undefined (reading 'min')
-1 page.waitForFunction: Timeout 60000ms exceeded.
-2 Cannot read properties of undefined (reading 'min')
-2 page.waitForFunction: Timeout 60000ms exceeded.
-3 Cannot read properties of undefined (reading 'min')
-3 page.waitForFunction: Timeout 60000ms exceeded.
