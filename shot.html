@@ -1,5 +1,5 @@
 <!doctype html><meta charset=utf-8><link rel=stylesheet href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>body{margin:0}#m{width:900px;height:700px}.t{position:absolute;z-index:999;top:10px;left:60px;background:#fff;padding:6px 10px;font:bold 18px sans-serif;border-radius:6px}</style><div id=m></div><div class=t id=t></div>
-<script>const q=new URLSearchParams(location.search),i=+q.get('i');fetch('draft.geojson').then(r=>r.json()).then(g=>{const f=g.features[i];document.getElementById('t').textContent=f.properties.ref+' '+f.properties.NAME+' (KPC-drawn, from OSM)';
+<script>const q=new URLSearchParams(location.search),i=+q.get('i');fetch('draft.geojson').then(r=>r.json()).then(g=>{const f=g.features[i];document.getElementById('t').textContent=f.properties.ref+' '+f.properties.NAME+' (KPC-drawn)';
 const m=L.map('m',{zoomControl:false});L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}').addTo(m);L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}').addTo(m);
 const l=L.geoJSON(f,{style:{color:'#ffd400',weight:4,dashArray:'10 7',fill:false}}).addTo(m);m.fitBounds(l.getBounds(),{padding:[40,40]});setTimeout(()=>document.title='ready',6000)})</script>
