@@ -10,24 +10,23 @@ jobs:
       - uses: actions/setup-node@v5
         with: { node-version: '22' }
       - run: |
-          mkdir -p /tmp/f && cd /tmp/f && npm init -y >/dev/null && npm i us-atlas@3.0.1 topojson-client@3.1.0
+          mkdir -p /tmp/f && cd /tmp/f
+          curl -sSL -o c.zip https://www2.census.gov/geo/tiger/GENZ2023/shp/cb_2023_us_county_500k.zip && unzip -q c.zip
+          npm i -g mapshaper@0.6.102 >/dev/null
+          for p in 30 15 8; do
+            mapshaper cb_2023_us_county_500k.shp -filter 'STATEFP=="21"' -simplify $p% keep-shapes -o format=geojson precision=0.0001 ky$p.json
+          done
+          mapshaper cb_2023_us_county_500k.shp -filter 'STATEFP=="21"' -dissolve -simplify 15% keep-shapes -o format=geojson precision=0.0001 kyout.json
           cat > go.js <<'JS'
-          const fs=require('fs'),tc=require('topojson-client');
-          const c=JSON.parse(fs.readFileSync('node_modules/us-atlas/counties-10m.json'));
-          const r4=x=>Math.round(x*10000)/10000;
-          const rings=g=>(g.type==='Polygon'?[g.coordinates]:g.coordinates).flatMap(p=>p).map(r=>r.map(p=>[r4(p[0]),r4(p[1])]));
-          const fc=tc.feature(c,c.objects.counties);
-          const ky=fc.features.filter(f=>f.id.startsWith('21')).map(f=>({n:f.properties.name,r:rings(f.geometry)}));
-          const NB={'17':'Illinois','18':'Indiana','39':'Ohio','54':'West Virginia','51':'Virginia','47':'Tennessee','29':'Missouri'};
-          const st=tc.feature(c,c.objects.states).features.filter(f=>NB[f.id]).map(f=>({n:NB[f.id],r:rings(f.geometry)}));
-          const kyo=tc.feature(c,c.objects.states).features.filter(f=>f.id==='21').map(f=>({n:'Kentucky',r:rings(f.geometry)}));
-          // neighbouring-state county lines (light), only near KY
-          const near=f=>rings(f.geometry).some(r=>r.some(p=>p[0]>-90.2&&p[0]<-81.2&&p[1]>36.0&&p[1]<39.8));
-          const nbc=fc.features.filter(f=>NB[f.id.slice(0,2)]&&near(f)).map(f=>({n:f.properties.name,s:NB[f.id.slice(0,2)],r:rings(f.geometry)}));
-          fs.writeFileSync(process.env.GITHUB_WORKSPACE+'/fetched-counties.json',JSON.stringify({src:'us-atlas 3.0.1 counties-10m (US Census cartographic boundaries)',counties:ky,ky:kyo,states:st,nbCounties:nbc}));
-          console.log('KY',ky.length,'pts',ky.reduce((a,f)=>a+f.r.reduce((b,r)=>b+r.length,0),0),'nb',nbc.length);
+          const fs=require('fs');
+          const rings=g=>(g.type==='Polygon'?[g.coordinates]:g.coordinates).flatMap(p=>p);
+          const out={src:'US Census Bureau cartographic boundary file cb_2023_us_county_500k, simplified with mapshaper (keep-shapes)'};
+          for(const p of [30,15,8]){const d=JSON.parse(fs.readFileSync('ky'+p+'.json'));out['c'+p]=d.features.map(f=>({n:f.properties.NAME,r:rings(f.geometry)}));
+            console.log(p,out['c'+p].length,out['c'+p].reduce((a,f)=>a+f.r.reduce((b,r)=>b+r.length,0),0));}
+          out.ky=rings(JSON.parse(fs.readFileSync('kyout.json')).features[0].geometry);
+          fs.writeFileSync(process.env.GITHUB_WORKSPACE+'/fetched-counties-hd.json',JSON.stringify(out));
           JS
           node go.js
       - run: |
           git config user.name bot; git config user.email bot@users.noreply.github.com
-          git add fetched-counties.json && git commit -m "fetched counties" && git push origin HEAD:claude-trail-fetch
+          git add fetched-counties-hd.json && git commit -m "fetched hd counties" && git push origin HEAD:claude-trail-fetch
