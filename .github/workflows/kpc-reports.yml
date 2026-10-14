@@ -2,7 +2,7 @@ name: KPC Reports
 # Reads the KPC Reports Google Form sheet (park conditions, website problems, photos, events).
 # Park conditions -> kpc-conditions.json (shown 30 days). Photos -> photos/members + kpc-member-photos.json.
 # Events -> kpc-events-submitted.json + kpc-events-auto.json. Website problems -> one GitHub issue labelled
-# "kpc-site-problems" (never on the site). Club members and kpc-preapproved.json call signs post right away;
+# "kpc-site-problems" (never on the site). Comments marked "show it" -> kpc-comments.json (Community page). Club members and kpc-preapproved.json call signs post right away;
 # others after YES in the sheet's Approved column. Runs every 2 hours, or any time with "Run workflow".
 on:
   schedule:
@@ -30,10 +30,10 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add kpc-conditions.json kpc-member-photos.json kpc-events-submitted.json kpc-events-auto.json
+          git add kpc-conditions.json kpc-member-photos.json kpc-events-submitted.json kpc-events-auto.json kpc-comments.json
           git add -A photos/members 2>/dev/null || true
           if ! git diff --cached --quiet; then
-            git commit -m 'Update KPC reports (conditions, member photos, events)'
+            git commit -m 'Update KPC reports (conditions, member photos, events, comments)'
             for i in 1 2 3; do
               if git pull --rebase --autostash && git push; then exit 0; fi
               git rebase --abort 2>/dev/null || true

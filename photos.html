@@ -122,7 +122,7 @@ body.field .page-jump-nav{display:none!important}
 .ph-grid button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .ph-note{margin-top:18px;font-size:14px;color:var(--muted)}
 .mp-grid button{aspect-ratio:auto;display:flex;flex-direction:column;background:#fff;box-shadow:0 6px 16px rgba(0,0,0,.07);text-align:left;font:inherit;color:inherit}.mp-grid img{aspect-ratio:1;height:auto}.mp-grid .mp-c{display:block;padding:8px 10px 10px;font:12.5px/1.35 Arial,sans-serif;color:#3f3b34;overflow-wrap:anywhere}.mp-grid .mp-c b{display:block;font-size:13px;color:#171717}.mp-grid .mp-c small{display:block;color:var(--muted);margin-top:2px}
-#member-photos[hidden]{display:none}.btn[hidden]{display:none!important}
+.mp-sec{background:#fff;border-top:4px solid var(--gold)}.btn[hidden]{display:none!important}
 @media(max-width:600px){.ph-grid.mp-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.mp-grid .mp-c{padding:6px 8px 8px;font-size:12px}}
 .lb{position:fixed;inset:0;z-index:5000;background:rgba(5,5,5,.96);display:none;flex-direction:column;color:#fff;touch-action:pan-y}
 .lb.open{display:flex}
@@ -152,7 +152,7 @@ body.field .page-jump-nav{display:none!important}
       <a href="campout.html">Campout</a>
       <a href="parks.html">Parks</a>
       <a href="events.html">Events</a>
-      <a href="photos.html" aria-current="page">Photos</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
       <a href="find.html" class="nav-search-icon">&#128269;</a>
       <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
       <div class="nav-more" id="kpcNavMore">
@@ -169,6 +169,7 @@ body.field .page-jump-nav{display:none!important}
             <a href="kpc-park-notes.html" role="menuitem"><span class="ni">&#128221;</span>Park Notes (tips)</a>
             <a href="kpc-campgrounds.html" role="menuitem"><span class="ni">&#127957;</span>Campgrounds &amp; Cabins</a>
             <a href="kpc-community.html" role="menuitem"><span class="ni">&#129309;</span>Community (setups &amp; tips)</a>
+            <a href="photos.html#member-photos" role="menuitem"><span class="ni">&#128247;</span>Member Field Photos</a>
           </div>
           <div class="nav-drop-section">
             <div class="nav-drop-label">Field Reference</div>
@@ -200,10 +201,10 @@ body.field .page-jump-nav{display:none!important}
 
 <main>
 <section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB</p><h1>FROM<br><span>THE FIELD</span></h1><p class="hero-copy">Photos from KPC campouts, activations and get-togethers. Tap any photo to see it full size.</p></div></section>
-<nav class="page-jump-nav" aria-label="Quick page links"><a href="#albums">ALBUMS</a><a href="#album">PHOTOS</a><a href="#member-photos">MEMBER PHOTOS</a><a href="#share">SHARE YOURS</a></nav>
+<nav class="page-jump-nav" aria-label="Quick page links"><a href="#albums">ALBUMS</a><a href="#album">PHOTOS</a><a href="#member-photos">MEMBER FIELD PHOTOS</a><a href="#share">SHARE YOURS</a></nav>
 <section class="section features" id="albums"><div class="section-inner"><div class="section-heading"><div class="kicker">PHOTO ALBUMS</div><h2>KPC Photo Albums</h2><p>Newest first. More albums are added after each event.</p></div><div class="ph-albums" id="phAlbums"><p>Loading albums…</p></div></div></section>
 <section class="section" id="album" style="background:var(--cream)"><div class="section-inner"><div class="ph-head"><div><div class="kicker" id="phKicker"></div><h2 id="phTitle">Photos</h2><p id="phText"></p></div><div class="btns" id="phBtns"></div></div><div class="ph-grid" id="phGrid"></div><p class="ph-note">Photos are shared by KPC members. If you’re in a photo and would like it removed, <a href="contact.html" style="color:var(--green);font-weight:800">contact KPC</a> and we’ll take it down.</p></div></section>
-<section class="section" id="member-photos" hidden><div class="section-inner"><div class="ph-head"><div><div class="kicker">FROM KPC MEMBERS</div><h2>Member Photos</h2><p>Shared by members and friends of the club on the KPC Reports form. Newest first. Tap a photo to see it full size.</p></div><div class="btns" id="mpBtns"></div></div><div class="ph-grid mp-grid" id="mpGrid"></div><p class="ph-note" id="mpNote"></p></div></section>
+<section class="section mp-sec" id="member-photos"><div class="section-inner"><div class="ph-head"><div><div class="kicker">MEMBER ALBUM</div><h2>Member Field Photos</h2><p>Field photos sent in by members and friends of the club: activations, setups, antennas and parks. This album is separate from the KPC event albums above. Newest first. Tap a photo to see it full size.</p></div><div class="btns" id="mpBtns"></div></div><div class="ph-grid mp-grid" id="mpGrid"></div><p class="ph-note" id="mpNote"></p></div></section>
 <section class="section warning" id="share"><div class="section-inner"><div class="warning-box"><h3>Got Photos From A KPC Event?</h3><p>Send them in — activations, campouts, gear setups, sunsets over the antenna. Phone photos are perfect. Please only send photos of people who are OK with being on the website.</p><div class="btn-row"><a class="btn" href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener">SEE GOOGLE PHOTO ALBUM &amp; ADD PHOTOS →</a><a class="btn" id="phShareBtn" href="#" target="_blank" rel="noopener" hidden>SHARE A PHOTO ›</a><a class="btn" href="mailto:kentuckyportableclub@gmail.com?subject=KPC%20Photos">EMAIL YOUR PHOTOS →</a><a class="btn" href="contact.html">CONTACT KPC →</a></div></div></div></section>
 <section class="final"><h2>Get Outside. Get On The Air.</h2><p>KENTUCKY PORTABLE CLUB • EST. 2026</p><a class="btn" href="events.html">SEE KPC EVENTS →</a></section>
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer"><div class="lb-top"><span id="lbCount"></span><button type="button" id="lbClose" aria-label="Close">✕</button></div><div class="lb-stage" id="lbStage"><div class="lb-load" id="lbLoad">Loading…</div><img id="lbImg" alt=""><button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">‹</button><button type="button" class="lb-nav lb-next" id="lbNext" aria-label="Next photo">›</button></div><div class="lb-cap" id="lbCap"></div></div>
@@ -222,7 +223,7 @@ function showAlbum(id,scroll){A=D.albums.find(a=>a.id===id)||D.albums[0];
  $('phPlay').onclick=()=>open(0);
  $('phGrid').innerHTML=A.photos.map((p,k)=>`<button type="button" data-k="${k}" aria-label="Open photo ${k+1}${p.cap?': '+esc(p.cap):''}"><img src="${src(A,p,1)}" alt="${esc(p.cap||A.title+' photo '+(k+1))}" loading="lazy" decoding="async" width="420" height="420"></button>`).join('');
  [...document.querySelectorAll('.ph-album')].forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.id===A.id)));
- try{history.replaceState(null,'','#'+A.id)}catch(_){}
+ if(location.hash!=='#member-photos')try{history.replaceState(null,'','#'+A.id)}catch(_){}
  if(scroll)$('album').scrollIntoView({behavior:'smooth'})}
 $('phGrid').addEventListener('click',e=>{const b=e.target.closest('button[data-k]');if(b)open(+b.dataset.k)});
 function draw(){const A=S,p=A.photos[i];$('lbCount').textContent=`${A.title} • ${i+1} of ${A.photos.length}`;$('lbCap').textContent=p.cap||'';
@@ -238,29 +239,28 @@ $('lbStage').addEventListener('click',e=>{if(e.target.id==='lbStage')close()});
 document.addEventListener('keydown',e=>{if(!$('lb').classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowRight')go(1);else if(e.key==='ArrowLeft')go(-1);else if(e.key==='Tab'){e.preventDefault();$('lbClose').focus()}});
 let sx=null,sy=null;$('lbStage').addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
 $('lbStage').addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))go(dx<0?1:-1);else if(dy>90)close();sx=null},{passive:true});
-fetch('kpc-photos.json').then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{D=d;
+const albumsP=fetch('kpc-photos.json').then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{D=d;
  $('phAlbums').innerHTML=D.albums.map(a=>`<button type="button" class="ph-album" data-id="${esc(a.id)}"><img src="${esc(pre(a))}t${esc(a.cover||a.photos[0].f)}" alt="" loading="lazy"><div><span>${esc([a.date,a.place].filter(Boolean).join(' • ').toUpperCase())}</span><h3>${esc(a.title)}</h3><p>${a.photos.length} photos</p></div></button>`).join('');
  $('phAlbums').addEventListener('click',e=>{const b=e.target.closest('.ph-album');if(b)showAlbum(b.dataset.id,true)});
  const h=location.hash.slice(1);showAlbum(D.albums.some(a=>a.id===h)?h:D.albums[0].id,false);
 }).catch(()=>{$('phAlbums').innerHTML='<p>Photos could not load right now. Please try again later.</p>'});
 
 /* Member photos (kpc-member-photos.json, from the KPC Reports form) + the SHARE A PHOTO button (kpc-reports-form.json) */
-const MP={title:'Member photos',member:true,photos:[]};
+const MP={title:'Member Field Photos',member:true,photos:[]};
 const nice=d=>{const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(d||'');return m?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m[2]-1]+' '+(+m[3])+', '+m[1]:''};
 $('mpGrid').addEventListener('click',e=>{const b=e.target.closest('button[data-m]');if(b)open(+b.dataset.m,MP)});
-Promise.all([(window.KPCReports?KPCReports.ready:Promise.resolve()),fetch('kpc-member-photos.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null)]).then(([,j])=>{
+Promise.all([(window.KPCReports?KPCReports.ready:Promise.resolve()),albumsP,fetch('kpc-member-photos.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null)]).then(([,,j])=>{
  const f=window.KPCReports?KPCReports.formUrl('photo'):'';
  if(f){const b=$('phShareBtn');b.href=f;b.hidden=false;$('mpBtns').innerHTML=`<a class="btn" href="${esc(f)}" target="_blank" rel="noopener">SHARE A PHOTO ›</a>`}
  const L=((j&&j.photos)||[]).filter(p=>p&&/^photos\/members\/[\w-]+\.jpg$/.test(p.file||''));
  MP.photos=L.map(p=>({f:p.file,cap:[p.caption,p.where&&'📍 '+p.where,[p.call&&'from '+p.call,nice(p.date)].filter(Boolean).join(' • ')].filter(Boolean).join(' — ')}));
- if(!L.length&&!f)return;
- $('member-photos').hidden=false;
- $('mpGrid').innerHTML=L.map((p,k)=>`<button type="button" data-m="${k}" aria-label="Open member photo ${k+1}${p.caption?': '+esc(p.caption):''}"><img src="${esc(p.file)}" alt="${esc(p.caption||'Member photo'+(p.where?' at '+p.where:''))}" loading="lazy" decoding="async" width="420" height="420"><span class="mp-c">${p.caption?`<b>${esc(p.caption)}</b>`:''}${p.where?'📍 '+esc(p.where):''}<small>${esc([p.call,nice(p.date)].filter(Boolean).join(' • '))}</small></span></button>`).join('');
- $('mpNote').innerHTML=L.length?'Want yours here? Use the SHARE A PHOTO button and tick “OK to use on the website”. If you’re in a photo and would like it removed, <a href="contact.html" style="color:var(--green);font-weight:800">contact KPC</a>.':'No member photos yet. Be the first: tap SHARE A PHOTO and tick “OK to use on the website”.';
+ $('mpGrid').innerHTML=L.map((p,k)=>`<button type="button" data-m="${k}" aria-label="Open member field photo ${k+1}${p.caption?': '+esc(p.caption):''}"><img src="${esc(p.file)}" alt="${esc(p.caption||'Member photo'+(p.where?' at '+p.where:''))}" loading="lazy" decoding="async" width="420" height="420"><span class="mp-c">${p.caption?`<b>${esc(p.caption)}</b>`:''}${p.where?'📍 '+esc(p.where):''}<small>${esc([p.call,nice(p.date)].filter(Boolean).join(' • '))}</small></span></button>`).join('');
+ $('mpNote').innerHTML=L.length?'Want yours here? Use the SHARE A PHOTO button and tick “OK to use on the website”. If you’re in a photo and would like it removed, <a href="contact.html" style="color:var(--green);font-weight:800">contact KPC</a>.':(f?'No member field photos yet. Be the first: tap SHARE A PHOTO and tick “OK to use on the website”.':'No member field photos yet. Photo sharing opens soon.');
+ if(location.hash==='#member-photos')requestAnimationFrame(()=>$('member-photos').scrollIntoView());
 });
 })();
 </script>
-<script src="kpc-search.js?v=20261014h" defer></script><script>
+<script src="kpc-search.js?v=20261014i" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

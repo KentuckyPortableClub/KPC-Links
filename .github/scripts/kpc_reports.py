@@ -7,6 +7,8 @@ Form questions (each must START with these words; order doesn't matter; see .cla
   Problem:         Which page or park | What's wrong
   Photo:           Photo | Where was it taken | Caption | OK to use on the website
   Event:           Event name | Event date | Start time | Location | Event website | About the event
+  Comment:         Your comment | Show it on the website (Yes / No)
+  ("What are you sending" also has the answer "Leave a comment")
   Approved (column Brandon adds to the sheet)
 
 What happens to each kind:
@@ -17,7 +19,10 @@ What happens to each kind:
   - Photos -> photos/members/ (shrunk to 1280 px, no EXIF/GPS) + kpc-member-photos.json, only when approved AND
     the "OK to use on the website" box is ticked.
   - Events -> kpc-events-submitted.json, and merged into kpc-events-auto.json ("found", source MEMBER) so they show
-    on the Events page, the home page, Discord and Facebook right away. kpc_events.py merges them in too every Monday."""
+    on the Events page, the home page, Discord and Facebook right away. kpc_events.py merges them in too every Monday.
+  - Comments -> kpc-comments.json (Community page "What members are saying"), only when "Show it on the website" is Yes
+    AND approved / pre-approved. A No comment is never published, never saved in the repo and never put in the
+    GitHub issue: Brandon reads it in his sheet."""
 import csv, datetime, hashlib, io, json, os, re, shutil, subprocess, sys, urllib.request
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kpc_preapproved as PA
@@ -47,7 +52,8 @@ C = {'ts': col('timestamp'), 'call': col('call sign'), 'kind': col('what are you
      'page': col('which page'), 'wrong': col("what's wrong", 'what is wrong'),
      'photo': col('photo'), 'where': col('where was it taken'), 'cap': col('caption'), 'ok': col('ok to use'),
      'ename': col('event name'), 'edate': col('event date'), 'etime': col('start time'), 'eloc': col('location'),
-     'eweb': col('event website'), 'eabout': col('about the event'), 'app': col('approved')}
+     'eweb': col('event website'), 'eabout': col('about the event'),
+     'comment': col('your comment'), 'show': col('show it on the website'), 'app': col('approved')}
 _miss = [k for k, v in C.items() if v is None and k != 'app']
 if _miss: notice('Sheet columns not found (check the question names start with these words): ' + ', '.join(_miss) + '. Columns seen: ' + ' | '.join(h[:30] for h in H))
 if C['app'] is None: notice('No "Approved" column in the sheet yet: only pre-approved call signs are posted.')
@@ -55,6 +61,7 @@ def cell(r, k): i = C[k]; return r[i].strip() if i is not None and i < len(r) el
 
 def kind_of(r):
     k = cell(r, 'kind').lower()
+    if 'comment' in k: return 'comment'
     if 'condition' in k: return 'cond'
     if 'problem' in k: return 'problem'
     if 'photo' in k: return 'photo'
@@ -64,6 +71,7 @@ def kind_of(r):
     if cell(r, 'wrong'): return 'problem'
     if cell(r, 'photo'): return 'photo'
     if cell(r, 'ename'): return 'event'
+    if cell(r, 'comment'): return 'comment'
     return None
 
 def pdate(s):
@@ -81,6 +89,7 @@ def pdate(s):
 
 def norm_ref(r):   # same rules as kpc_park_notes.py
     r = re.sub(r'\s+', '', str(r).upper())
+    if re.fullmatch(r'\d{1,5}', r): return 'US-' + r.lstrip('0').zfill(4)   # just the number = a POTA park (1277 -> US-1277)
     m = re.fullmatch(r'(US|K|KFF)-?0*(\d+)', r)
     if m: return ('KFF' if m.group(1) == 'KFF' else 'US') + '-' + m.group(2).zfill(4)
     m = re.fullmatch(r'W4K/?([A-Z]{2})-?0*(\d+)', r)
@@ -103,7 +112,7 @@ D = json.load(open('kpc-ky-data.json', encoding='utf-8'))
 REFS = {p['c'] for p in D['parks']} | {s['c'] for s in D['summits']} | {k['c'] for k in D['kff']}
 CONDS = ['Gate locked', 'Road closed', 'Flooding', 'Campground closed', 'Hunting in progress', 'Construction', 'Other']
 
-conds, problems, photos, events = [], [], [], []
+conds, problems, photos, events, comments = [], [], [], [], []
 skipped_refs, held = [], 0
 os.makedirs('photos/members', exist_ok=True)
 try:
@@ -123,6 +132,9 @@ for rowno, r in enumerate(rows[1:]):
         if not what and not cell(r, 'page'): continue
         problems.append({'date': tsdate(r).isoformat(), 'ts': cell(r, 'ts'), 'call': call, 'page': cell(r, 'page')[:200], 'what': what[:1500]})
         continue
+
+    if k == 'comment':   # private unless the sender said Yes to showing it; private ones stay only in the sheet
+        if not cell(r, 'show').strip().lower().startswith('y') or not cell(r, 'comment'): continue
 
     if not PA.ok(app, call, PRE): held += 1; continue
 
@@ -153,6 +165,9 @@ for rowno, r in enumerate(rows[1:]):
                 keep_files.add(fn)
                 photos.append({'id': f'{nid}-{j + 1}', 'file': fn, 'caption': cell(r, 'cap')[:300], 'where': cell(r, 'where')[:160],
                                'call': call, 'date': tsdate(r).isoformat(), '_k': (tsdate(r).isoformat(), rowno, -j)})
+
+    elif k == 'comment':
+        comments.append({'id': rid(r, 'comment'), 'call': call, 'text': cell(r, 'comment')[:1500], 'date': tsdate(r).isoformat(), '_k': (tsdate(r).isoformat(), rowno)})
 
     elif k == 'event':
         name = cell(r, 'ename'); start = pdate(cell(r, 'edate'))
@@ -186,6 +201,11 @@ gone = 0
 for f in os.listdir('photos/members'):
     p = 'photos/members/' + f
     if re.fullmatch(r'[0-9a-f]{12}-\d+\.jpg', f) and p not in keep_files: os.remove(p); gone += 1
+
+# ---------- comments (newest first)
+comments.sort(key=lambda c: c['_k'], reverse=True)
+for c in comments: del c['_k']
+save('kpc-comments.json', 'comments', comments)
 
 # ---------- events (dedupe: same name + date once)
 def nn(s): return re.sub(r'[^a-z0-9]+', ' ', str(s).lower()).strip()
@@ -224,5 +244,5 @@ else:
     print('(Not running in GitHub Actions with gh + GH_TOKEN, so the issue was not touched. It would be:)')
     print(('OPEN ' + title + '\n' + body) if problems else 'CLOSE any open kpc-site-problems issue (no open problems).')
 
-notice(f'{len(conds)} condition(s) showing, {len(photos)} member photo(s) ({newph} new, {gone} removed), {len(events)} member event(s), '
+notice(f'{len(conds)} condition(s) showing, {len(photos)} member photo(s) ({newph} new, {gone} removed), {len(events)} member event(s), {len(comments)} comment(s) shown, '
        f'{len(problems)} open problem report(s), {held} row(s) not posted (waiting for YES in Approved, or marked NO).' + (f' Skipped unknown park numbers: {", ".join(skipped_refs[:10])}' if skipped_refs else ''))

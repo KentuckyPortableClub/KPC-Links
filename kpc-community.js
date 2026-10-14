@@ -39,6 +39,16 @@ async function init(){if(!$('cmList'))return;
  $('cmQ').addEventListener('input',draw);
  try{const j=await (await fetch('kpc-community.json',{cache:'no-cache'})).json();I=Array.isArray(j.items)?j.items:[]}catch(e){I=[]}
  const h=location.hash.slice(1);if(T.some(t=>t[0]===h))tab=h;
- draw()}
+ draw()
+ comments()}
+/* "What members are saying": comments from the KPC Reports form (kpc-comments.json) + the LEAVE A COMMENT button */
+async function comments(){
+ const KR=window.KPCReports;if(KR)await KR.ready;
+ const u=KR?KR.formUrl('comment'):'';if(u){$('cmComment').href=u;$('cmComment').hidden=false}
+ let C=[];try{const j=await (await fetch('kpc-comments.json',{cache:'no-cache'})).json();C=Array.isArray(j.comments)?j.comments:[]}catch(e){}
+ if(!C.length&&!u)return;
+ const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],nice=d=>{const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(d||'');return m?M[+m[2]-1]+' '+(+m[3])+', '+m[1]:''};
+ $('cmSay').innerHTML=C.length?C.map(c=>`<blockquote class="cm-q"><p>${esc(c.text)}</p><div class="cm-qby">— ${c.call?`<a href="https://www.qrz.com/db/${encodeURIComponent(c.call)}" target="_blank" rel="noopener">${esc(c.call)}</a>`:'a KPC friend'}${c.date?' · '+esc(nice(c.date)):''}</div></blockquote>`).join(''):'<p class="cm-none">No comments yet. Be the first.</p>';
+ $('comments').hidden=false}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();

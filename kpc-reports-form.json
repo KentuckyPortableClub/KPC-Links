@@ -7,6 +7,7 @@
   "conditions": "Park conditions",
   "problem": "Report a problem on the website",
   "photo": "Share a photo",
-  "event": "Add an event"
+  "event": "Add an event",
+  "comment": "Leave a comment"
  }
 }
