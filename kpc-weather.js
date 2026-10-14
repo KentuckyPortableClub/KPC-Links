@@ -216,7 +216,7 @@
     const BFY = { KIH43: 27092, KIH44: 35436, KIH39: 40866 };   // Broadcastify (needs a free sign-in)
     const row = (t, why) => `<div class="wx-tx${t.status !== 'NORMAL' ? ' off' : ''}"><div class="f">${esc(t.freq)}<small>MHz</small></div><div class="i"><b>${esc(t.call)} · ${esc(t.site)}, ${esc(t.st)}</b>` +
       `<span>${why} · ${mi(t.d)} mi away · ${esc(t.wfo)}${t.status !== 'NORMAL' ? ' · <em>' + esc(t.status) + '</em>' : ''}</span>` +
-      (WXR[t.call] ? `<button type="button" class="wx-pl" data-s="${WXR[t.call]}" data-n="${esc(t.site)} ${esc(t.call)}">▶ LISTEN LIVE</button>` : '') + '</div></div>';
+      (WXR[t.call] ? `<button type="button" class="wx-pl" data-s="${WXR[t.call]}" data-n="${esc(t.site)} ${esc(t.call)}">▶ LISTEN LIVE</button>` : `<span class="wx-nos">📻 No online stream · tune ${esc(t.freq)} on your radio</span>`) + '</div></div>';
     const streams = tx.filter(t => WXR[t.call]).sort((a, b) => a.d - b.d).slice(0, 4);
     const listen = streams.length ? `<div class="wx-listen"><b class="t">🎧 Listen live, right here</b><p class="small">Volunteer streams of NOAA Weather Radio, closest first. No sign-in. Tap ▶ to play, tap again to stop.</p>` +
       streams.map(t => `<button type="button" class="wx-play wx-pl" data-s="${WXR[t.call]}" data-n="${esc(t.site)} ${esc(t.call)}"><span>▶</span><b>${esc(t.site)}, ${esc(t.st)} · ${esc(t.call)}</b><small>${esc(t.freq)} MHz · ${mi(t.d)} mi away</small></button>`).join('') +
