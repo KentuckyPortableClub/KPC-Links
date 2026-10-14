@@ -69,6 +69,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
   - kpc-guide-tools-links.html, kpc-guide-founders-favorites.html (kpc-guide-links.json, also read by the link checker), kpc-guide-beginners.html, kpc-guide-antenna-efficiency.html.
   - kpc-guide-safety.html is the light web version; the illustrated Safety Guide PDF stays as it was (not reprinted).
 - Page sources and rebuild scripts: .claude/build/guides/ (POTA/SOTA/WWFF: src/*.html, build_pages.py, extract_*.py) and .claude/build/guides2/ (build.sh). Edit the src and rebuild rather than editing the built HTML.
+- Guide maps (POTA/SOTA/WWFF regional maps, Wild Rivers map) draw counties from kpc-ky-counties-hd.json (US Census cb_2023 500k, simplified 30% with mapshaper keep-shapes, so neighbouring counties share edges). kpc-ky-counties.json (rougher) is still used by kpc-tools.js.
 - Print rules: kpc-guide-print.css. A page must set `<html data-ready="1">` when fully drawn or the printer skips it.
 - After editing fers.json, also run `python3 .claude/build/guides/extract_pota.py --fers` so the POTA web guide (and its PDFs) pick up the 2-fer changes. resource_patch.py is no longer needed for the Resource PDFs.
 - Still PDF-only (not web pages): Campout Flyer, checklists, 2026 event photo archive, Meet the Founders, the two "Coming Soon" founders PDFs (convert when ready), the members-only 2-fers guide.

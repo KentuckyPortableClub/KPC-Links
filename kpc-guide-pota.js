@@ -44,7 +44,7 @@
   function osm(la, lo) { return 'https://www.openstreetmap.org/?mlat=' + la + '&mlon=' + lo + '#map=13/' + la + '/' + lo; }
   function wx(la, lo) { return 'https://weather.com/weather/today/l/' + la + ',' + lo; }
 
-  /* ---------- county polygons (kpc-ky-counties.json: [{n, r:[ring of [lon,lat]]}]) ---------- */
+  /* ---------- county polygons (kpc-ky-counties-hd.json, US Census 500k simplified: [{n, r:[ring of [lon,lat]]}]) ---------- */
   function pip(x, y, ring) {
     var ins = false;
     for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) {
@@ -96,7 +96,7 @@
       '<rect width="' + W + '" height="' + H + '" fill="#dbe6ee"/>'];
     C.filter(near).forEach(function (c) {
       var r = regionKey ? D.regions[c.n.toUpperCase()] === regionKey : true;
-      s.push('<path d="' + path(c) + '" fill="' + (r ? '#ffffff' : '#ece4d1') + '" stroke="' + (r ? '#7e9c88' : '#cbbfa4') + '" stroke-width="' + (r ? 1.1 : .7) + '"/>');
+      s.push('<path d="' + path(c) + '" fill="' + (r ? '#ffffff' : '#ece4d1') + '" stroke="' + (r ? '#9db8a6' : '#d9cfb6') + '" stroke-width="' + (r ? 1 : .6) + '" stroke-linejoin="round"/>');
     });
     inReg.filter(near).forEach(function (c) {
       var p = centroid(c);
@@ -112,7 +112,7 @@
     });
     if (opts.extra) s.push(opts.extra(px, py));
     pins.forEach(function (p) {
-      s.push('<a href="#' + p.id + '"><title>' + esc(p.title) + '</title><circle cx="' + px(p.lo) + '" cy="' + py(p.la) + '" r="6.5" fill="' + p.color +
+      s.push('<a href="#' + p.id + '"><title>' + esc(p.title) + '</title><circle cx="' + px(p.lo) + '" cy="' + py(p.la) + '" r="5.5" fill="' + p.color +
         '" stroke="#fff" stroke-width="1.6"/><text x="' + (+px(p.lo) + 8) + '" y="' + (+py(p.la) - 5) + '" class="m-p">' + esc(p.label) + '</text></a>');
     });
     s.push('</svg>');
@@ -438,7 +438,7 @@
     return fetch(u, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); })
       .catch(function (e) { if (optional) return null; throw e; });
   }
-  Promise.all([getJSON('kpc-ky-data.json'), getJSON('kpc-guide-pota-data.json'), getJSON('kpc-ky-counties.json'), getJSON('ky-wild-rivers.geojson', true)])
+  Promise.all([getJSON('kpc-ky-data.json'), getJSON('kpc-guide-pota-data.json'), getJSON('kpc-ky-counties-hd.json'), getJSON('ky-wild-rivers.geojson', true)])
     .then(function (a) {
       setup(a[0], a[1], a[2], a[3]);
       renderStatic();
