@@ -109,6 +109,8 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 ## KPC-drawn boundaries (ky-kpc-drawn.geojson) — added Oct 14 2026
 - Approximate outlines for KY POTA parks with NO official GIS boundary: US-3802 Buckley, US-10173 Horse Park, US-1264 Levi Jackson (now Laurel County), US-10099 Wolf Creek NFH (hull around hatchery + visitor center), US-3787 White Hall. From OpenStreetMap (ODbL, credited in the popup). Brandon OK'd them from screenshots.
 - Layer "bkpc" in gis-overlays.js (Park Commander, checkbox gis-bkpc) and kpc-planner.js (B.bkpc): yellow #ffd400 dash-dot '12 5 2 5', NO shading (fillOpacity 0), popup warns it's approximate.
+- William Whitley (US-3789) added Oct 14 (OSM way 848672001). Wolf Creek NFH was moved OUT of the KPC-drawn file: it now has official USFWS land in ky-fws.geojson.
+- **ky-fws.geojson** (layer bfws, light blue #5ab0ff, Park Commander checkbox gis-bfws + planner B.bfws): USFWS owned land (FWSInterest_Simplified_Authoritative, INTTYPE1 O/S) for Green River NWR US-10098, Clarks River NWR US-0295, Reelfoot NWR US-0538, Ohio River Islands NWR US-0608, Wolf Creek NFH US-10099.
 - Still missing: US-10172 Salato (no outline anywhere). E. Lucy Braun, Lake Malone, Fishtrap Lake WMA and the KY part of GW&J NF already have official outlines; their POTA + KFF pins were moved just inside them on Oct 14 (GW&J pin moved from Virginia to the KY piece near Pine Mountain, 37.09269,-82.73391).
 
 ## CW pages & member hero pictures — Oct 14 2026
@@ -136,3 +138,10 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - UK, UL, WKU, EKU, Murray, Morehead (football + basketball M/W + baseball), NKU and Bellarmine (basketball + baseball). ESPN public team schedules fetched in the browser from site.WEB.api.espn.com (site.api.espn.com has no CORS for browsers), only for sports in season (plus a month early). Shows live, next 10 days, finals from the last 7 days; no fetch cache option (no-store adds headers that break ESPN CORS); live games refresh every minute; gentle auto-scroll that stops on touch.
 - 🎧 LISTEN = the home KY school's audio page (UK: ukathletics.com/uk-sports-network/; others: <site>/sports/<slug>/schedule, each game's Listen link is there). ESPN ids are in TEAMS (baseball ids differ).
 - Campgrounds page: a ⭐ reviews box (#cgRv, drawRv in kpc-campgrounds.js) sits under the closures/WMA notes: newest 3 reviews, SHOW ONLY PLACES WITH REVIEWS (turns on the ★ HAS REVIEWS chip), OUTSIDE-PARK PICKS ↓, WRITE A REVIEW ›.
+
+## Other Oct 14 changes
+- contact-card.html (the QR link card) restyled dark like the Park Commander header (round KPC-logo.png with gold glow); YouTube cards moved up under Facebook.
+- photos.html: the EMAIL YOUR PHOTOS button is gone (photos come in through the KPC Reports form or the Google Photos album).
+- kpc-antenna.html / kpc-battery.html badges: badge-camp-antenna.jpg / badge-river-radio.jpg (crops of the member scene pictures) instead of badge-sign.jpg (Brandon: the wooden Kentucky shape was wrong).
+- Scoreboard cards: 🎧 LISTEN (school audio page) + 📻 RADIO (TuneIn search for the team's radio network, backup) + ESPN ↗.
+- Campgrounds reviews box: SEE ALL N REVIEWS opens the full list (best rated first, facts shown), each item jumps to its park card or the outside-park section.

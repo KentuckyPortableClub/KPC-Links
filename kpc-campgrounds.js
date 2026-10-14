@@ -126,9 +126,24 @@
           return '<a class="cg-rv-i" href="#park-' + esc(pl.pota) + '" data-rv="' + esc(pl.pota) + '"><b>' + esc(pl.name) + '</b> · ' + esc(park[pl.pota] || pl.pota) + (n.rating ? ' <span class="cg-stars">' + stars(n.rating) + '</span>' : '') +
             '<small>' + esc((n.text || '').slice(0, 140)) + ((n.text || '').length > 140 ? '…' : '') + ' — ' + esc(n.call || '') + (n.date ? ', ' + esc(n.date) : '') + '</small></a>'; }).join('') + '</div>'
       : '<p>No reviews yet. Be the first: tap <b>REVIEW IT</b> on any campground or cabin below, or recommend a place outside the parks.</p>') +
-      '<div class="cg-btns">' + (ins.length ? '<button type="button" class="cg-b gold" id="cgRvOnly">SHOW ONLY PLACES WITH REVIEWS</button>' : '') +
+      '<div class="cg-btns">' + (N.length ? '<button type="button" class="cg-b gold" id="cgRvAll">SEE ALL ' + N.length + ' REVIEW' + (N.length > 1 ? 'S' : '') + '</button>' : '') + (ins.length ? '<button type="button" class="cg-b gold" id="cgRvOnly">SHOW ONLY PLACES WITH REVIEWS</button>' : '') +
       '<a class="cg-b gold" href="#other">OUTSIDE-PARK PICKS' + (outN ? ' (' + outN + ')' : '') + ' ↓</a>' + (fl ? '<a class="cg-b gold" href="' + esc(fl) + '" target="_blank" rel="noopener">WRITE A REVIEW ›</a>' : '') + '</div>';
+    box.insertAdjacentHTML('beforeend', '<div class="cg-rv-all" id="cgRvList" hidden></div>');
     box.hidden = false;
+    var all = $('cgRvAll');
+    if (all) all.onclick = function () {
+      var L = $('cgRvList');
+      if (!L.hidden) { L.hidden = true; all.textContent = 'SEE ALL ' + N.length + ' REVIEW' + (N.length > 1 ? 'S' : ''); return; }
+      var sorted = N.slice().sort(function (a, b) { return (b.rating || 0) - (a.rating || 0) || ((b.date || '') < (a.date || '') ? -1 : 1); });
+      L.innerHTML = '<p class="cg-rv-sort">Best rated first.</p>' + sorted.map(function (n) {
+        var pl = n.place && place[n.place], nm = pl ? pl.name : ((n.other && n.other.name) || 'Other'), where = pl ? (park[pl.pota] || pl.pota) : ('Outside the parks' + (n.other && n.other.where ? ' · ' + n.other.where : ''));
+        return '<a class="cg-rv-i" href="' + (pl ? '#park-' + esc(pl.pota) : '#other') + '"' + (pl ? ' data-rv="' + esc(pl.pota) + '"' : '') + '><b>' + esc(nm) + '</b> · ' + esc(where) + (n.rating ? ' <span class="cg-stars">' + stars(n.rating) + '</span>' : '') +
+          '<small>' + esc(n.text || '') + ' — ' + esc(n.call || '') + (n.date ? ', ' + esc(n.date) : '') + '</small>' +
+          ((n.facts || []).length ? '<small>' + n.facts.slice(0, 6).map(function (f) { return '<b>' + esc(f[0]) + ':</b> ' + esc(f[1]); }).join(' · ') + '</small>' : '') + '</a>';
+      }).join('');
+      L.hidden = false; all.textContent = 'HIDE THE LIST';
+      L.querySelectorAll('[data-rv]').forEach(function (a) { a.addEventListener('click', function () { setTimeout(function () { var c = document.getElementById('park-' + a.dataset.rv); if (c) { var d = c.querySelector('details.cg-revs'); if (d) d.open = true; } }, 50); }); });
+    };
     var only = $('cgRvOnly'); if (only) only.onclick = function () { var c = document.querySelector('#cgChips [data-f="rev"]'); if (c && c.getAttribute('aria-pressed') !== 'true') c.click(); var l = $('cgList'); if (l) l.scrollIntoView({ behavior: 'smooth' }); };
     box.querySelectorAll('[data-rv]').forEach(function (a) { a.addEventListener('click', function () { setTimeout(function () { var c = document.getElementById('park-' + a.dataset.rv); if (c) { var d = c.querySelector('details.cg-revs'); if (d) d.open = true; } }, 50); }); });
   }

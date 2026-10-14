@@ -15,14 +15,14 @@
   // ESPN team ids per sport; listen = the school's official radio / audio page (UK: UK Sports Network; others: the
   // schedule page, where each game has its Listen / Watch links).
   const TEAMS = [
-    { k: 'UK', n: 'Kentucky', id: { cf: 96, mb: 96, wb: 96, bb: 82 }, listen: () => 'https://ukathletics.com/uk-sports-network/' },
-    { k: 'UL', n: 'Louisville', id: { cf: 97, mb: 97, wb: 97, bb: 83 }, site: 'https://gocards.com' },
-    { k: 'WKU', n: 'Western Kentucky', id: { cf: 98, mb: 98, wb: 98, bb: 84 }, site: 'https://wkusports.com' },
-    { k: 'EKU', n: 'Eastern Kentucky', id: { cf: 2198, mb: 2198, wb: 2198, bb: 348 }, site: 'https://ekusports.com' },
-    { k: 'MUR', n: 'Murray State', id: { cf: 93, mb: 93, wb: 93, bb: 394 }, site: 'https://goracers.com' },
-    { k: 'MORE', n: 'Morehead State', id: { cf: 2413, mb: 2413, wb: 2413, bb: 391 }, site: 'https://msueagles.com' },
-    { k: 'NKU', n: 'Northern Kentucky', id: { mb: 94, wb: 94, bb: 410 }, site: 'https://nkunorse.com' },
-    { k: 'BELL', n: 'Bellarmine', id: { mb: 91, wb: 91, bb: 1143 }, site: 'https://athletics.bellarmine.edu' }
+    { k: 'UK', n: 'Kentucky', radio: 'UK Sports Network', id: { cf: 96, mb: 96, wb: 96, bb: 82 }, listen: () => 'https://ukathletics.com/uk-sports-network/' },
+    { k: 'UL', n: 'Louisville', radio: 'Louisville Cardinals', id: { cf: 97, mb: 97, wb: 97, bb: 83 }, site: 'https://gocards.com' },
+    { k: 'WKU', n: 'Western Kentucky', radio: 'Hilltopper Sports Network', id: { cf: 98, mb: 98, wb: 98, bb: 84 }, site: 'https://wkusports.com' },
+    { k: 'EKU', n: 'Eastern Kentucky', radio: 'EKU Colonels', id: { cf: 2198, mb: 2198, wb: 2198, bb: 348 }, site: 'https://ekusports.com' },
+    { k: 'MUR', n: 'Murray State', radio: 'Murray State Racers', id: { cf: 93, mb: 93, wb: 93, bb: 394 }, site: 'https://goracers.com' },
+    { k: 'MORE', n: 'Morehead State', radio: 'Morehead State Eagles', id: { cf: 2413, mb: 2413, wb: 2413, bb: 391 }, site: 'https://msueagles.com' },
+    { k: 'NKU', n: 'Northern Kentucky', radio: 'Northern Kentucky Norse', id: { mb: 94, wb: 94, bb: 410 }, site: 'https://nkunorse.com' },
+    { k: 'BELL', n: 'Bellarmine', radio: 'Bellarmine Knights', id: { mb: 91, wb: 91, bb: 1143 }, site: 'https://athletics.bellarmine.edu' }
   ];
   const listenUrl = (t, sp) => t.listen ? t.listen(sp) : t.site + '/sports/' + SP[sp].slug + '/schedule';
   const KYID = {}; TEAMS.forEach(t => Object.keys(t.id).forEach(sp => KYID[sp + ':' + t.id[sp]] = t));
@@ -70,8 +70,9 @@
       `<span>${s.rank ? '<small>' + s.rank + '</small> ' : ''}${esc(s.name)}</span><b>${g.live || g.done ? esc(s.score == null ? '' : s.score) : ''}</b></div>`;
     return `<div class="ks-g${g.live ? ' live' : ''}" data-sp="${g.sp}"><div class="ks-h"><span>${SP[g.sp].icon} ${esc(SP[g.sp].name)}</span><span>${statusTxt(g)}</span></div>` +
       g.side.map(row).join('') +
-      `<div class="ks-f">${g.tv ? '<span class="ks-tv">📺 ' + esc(g.tv) + '</span>' : '<span></span>'}<span class="ks-b">${L ? `<a href="${esc(L)}" target="_blank" rel="noopener" title="${esc(home.ky.n)} radio and audio">🎧 LISTEN</a>` : ''}` +
-      `<a href="${esc(g.url)}" target="_blank" rel="noopener">GAME ↗</a></span></div></div>`;
+      (g.tv ? '<div class="ks-tv">📺 ' + esc(g.tv) + '</div>' : '') + `<div class="ks-f"><span class="ks-b">${L ? `<a href="${esc(L)}" target="_blank" rel="noopener" title="${esc(home.ky.n)} radio and audio">🎧 LISTEN</a>` : ''}` +
+      (home && home.ky && home.ky.radio ? `<a href="https://tunein.com/search/?query=${encodeURIComponent(home.ky.radio)}" target="_blank" rel="noopener" title="Backup: find the radio broadcast on TuneIn">📻 RADIO</a>` : '') +
+      `<a href="${esc(g.url)}" target="_blank" rel="noopener" title="Play-by-play on ESPN">ESPN ↗</a></span></div></div>`;
   }
   function draw() {
     const all = Object.values(games).filter(g => filt === 'all' || g.sp === filt || (filt === 'bk' && (g.sp === 'mb' || g.sp === 'wb')));
@@ -87,7 +88,7 @@
     if (live.length || up.some(g => g.t < now() + 15 * 6e4)) timer = setTimeout(() => load(new Set(live.concat(up.filter(g => g.t < now() + 15 * 6e4)).flatMap(g => g.side.filter(s => s.ky).map(s => g.sp + ':' + s.ky.id[g.sp])))), 60000);
   }
   box.innerHTML = '<div class="ks-head"><div><b>🏟️ KENTUCKY COLLEGE SCOREBOARD</b><span class="ks-sub">Loading…</span></div><div class="ks-chips"></div></div>' +
-    '<div class="ks-track" tabindex="0" aria-label="Scores and upcoming games, swipe sideways"></div><p class="ks-note">Scores and times from ESPN. 🎧 LISTEN opens the home Kentucky school\'s radio / audio page (some games are TV or ESPN+ only).</p>';
+    '<div class="ks-track" tabindex="0" aria-label="Scores and upcoming games, swipe sideways"></div><p class="ks-note">Scores and times from ESPN. 🎧 LISTEN opens the home Kentucky school\'s radio / audio page; 📻 RADIO is a backup that finds the team\'s radio network on TuneIn. Some games are TV or ESPN+ only.</p>';
   box.querySelector('.ks-chips').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; filt = b.dataset.f; try { localStorage.setItem('kpcScoreF', filt); } catch (x) {} draw(); });
   // gentle auto-scroll ("rolling"); stops while a finger or mouse is on it, and for people who asked for less motion
   const track = box.querySelector('.ks-track');
