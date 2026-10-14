@@ -213,12 +213,15 @@
     const LIVE = { KIH43: 27092, KIH44: 35436, KIH39: 40866 };   // volunteer streams on Broadcastify (sometimes offline)
     const row = (t, why) => `<div class="wx-tx${t.status !== 'NORMAL' ? ' off' : ''}"><div class="f">${esc(t.freq)}<small>MHz</small></div><div class="i"><b>${esc(t.call)} · ${esc(t.site)}, ${esc(t.st)}</b>` +
       `<span>${why} · ${mi(t.d)} mi away · ${esc(t.wfo)}${t.status !== 'NORMAL' ? ' · <em>' + esc(t.status) + '</em>' : ''}</span>` +
-      (LIVE[t.call] ? `<a href="https://www.broadcastify.com/listen/feed/${LIVE[t.call]}" target="_blank" rel="noopener">▶ LISTEN ONLINE ↗</a>` : '') + '</div></div>';
+      (LIVE[t.call] ? `<a href="https://www.broadcastify.com/webPlayer/${LIVE[t.call]}" target="_blank" rel="noopener">▶ LISTEN ONLINE ↗</a>` : '') + '</div></div>';
+    const streams = tx.filter(t => LIVE[t.call]).sort((a, b) => a.d - b.d);
+    const listen = streams.length ? `<div class="wx-listen"><b class="t">🎧 Listen online now</b><p class="small">Volunteer streams of Kentucky weather radio. Tap one: a 15–30 second ad plays first, then the live broadcast. If it stays quiet, tap ▶ on the Broadcastify page.</p>` +
+      streams.map(t => `<a class="wx-play" href="https://www.broadcastify.com/webPlayer/${LIVE[t.call]}" target="_blank" rel="noopener"><span>▶</span><b>${esc(t.site)} · ${esc(t.call)}</b><small>${esc(t.freq)} MHz · ${mi(t.d)} mi away</small></a>`).join('') + '</div>' : '';
     box.innerHTML = (cover.length ? `<p class="small">${county ? esc(county) + ' County' : 'Your county'} is covered by:</p>` + cover.map(t => row(t, 'covers your county')).join('') : '') +
       (near.length ? `<p class="small">${cover.length ? 'Also nearby' : 'Nearest transmitters'}:</p>` + near.map(t => row(t, 'nearby')).join('') : '') +
       (!cover.length && !near.length ? '<p class="small">No transmitter list loaded.</p>' : '') +
-      `<p class="small">Most ham HTs and scanners have a <b>WX</b> button (162.400–162.550 MHz). Set the county code <b>${same || 'for your county'}</b> in a SAME weather radio to get alerts only for this county. ` +
-      `Online streams are run by volunteers and are sometimes off: <a href="https://www.broadcastify.com/listen/stid/21" target="_blank" rel="noopener">Kentucky feeds on Broadcastify ↗</a>. Transmitter list from <a href="https://www.weather.gov/nwr/" target="_blank" rel="noopener">weather.gov/nwr</a> (${esc(N.updated || '')}).</p>`;
+      listen + `<p class="small">Most ham HTs and scanners have a <b>WX</b> button (162.400–162.550 MHz). Set the county code <b>${same || 'for your county'}</b> in a SAME weather radio to get alerts only for this county. ` +
+      `More streams: <a href="https://www.broadcastify.com/listen/stid/21" target="_blank" rel="noopener">all Kentucky feeds on Broadcastify ↗</a>. Transmitter list from <a href="https://www.weather.gov/nwr/" target="_blank" rel="noopener">weather.gov/nwr</a> (${esc(N.updated || '')}).</p>`;
   }
 
   /* ---------- radar map ---------- */
