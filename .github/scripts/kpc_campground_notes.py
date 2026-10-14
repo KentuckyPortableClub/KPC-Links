@@ -31,6 +31,8 @@ C = {'ts': col('timestamp'), 'call': col('call sign'), 'kind': col('what are you
      'rating': col('rating', 'overall rating'), 'text': col('your review', 'review'), 'site': col('site number', 'site'), 'when': col('when'),
      'rest': col('restrooms'), 'show': col('showers'), 'hook': col('hookups'), 'cell': col('cell signal', 'cell'), 'noise': col('rf noise', 'noise'),
      'ant': col('room for antennas', 'antenna'), 'shade': col('shade'), 'amen': col('other amenities', 'amenities'), 'photo': col('photo'), 'app': col('approved')}
+_miss = [k for k, v in C.items() if v is None and k not in ('app',)]
+if _miss: notice('Sheet columns not found (check the question names start with these words): ' + ', '.join(_miss) + '. Columns seen: ' + ' | '.join(h[:30] for h in H))
 FACTS = [('rest', 'Restrooms'), ('show', 'Showers'), ('hook', 'Hookups'), ('cell', 'Cell signal'), ('noise', 'RF noise'), ('ant', 'Room for antennas'), ('shade', 'Shade'), ('amen', 'Amenities')]
 def cell(r, k): i = C[k]; return r[i].strip() if i is not None and i < len(r) else ''
 if C['app'] is None: notice('No "Approved" column in the sheet yet: only pre-approved call signs are posted.')
