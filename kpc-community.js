@@ -2,7 +2,7 @@
    GitHub job every 2 hours). Tabs by type, newest first, search. */
 (function(){
 // Google Form share link (set once the form is published)
-const FORM_URL='';
+const FORM_URL='https://docs.google.com/forms/d/e/1FAIpQLSf5IRZkwNWFb7OaOXqWj-FMcCf6dy5kyns9aT_pB_Ri06tOJQ/viewform';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
