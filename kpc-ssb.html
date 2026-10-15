@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="robots" content="noindex">
 <script src="kpc-theme.js?v=20261014kz"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Voice Pileup Practice (Beta) | KPC</title>
 <!-- KPC icons & share preview -->
@@ -176,6 +175,7 @@ body.field .page-jump-nav{display:none!important}
             <div class="nav-drop-label">Field Reference</div>
             <a href="kpc-band-plan.html" role="menuitem"><span class="ni">&#128225;</span>Band Plan by License</a>
             <a href="kpc-cw.html" role="menuitem"><span class="ni">&#127911;</span>CW Practice Room</a>
+            <a href="kpc-ssb.html" role="menuitem" aria-current="page"><span class="ni">&#127897;</span>Voice Pileup Practice (BETA)</a>
             <a href="kpc-cw-info.html" role="menuitem"><span class="ni">&#128214;</span>CW Info &amp; Links</a>
             <a href="kpc-kids.html" role="menuitem"><span class="ni">&#129490;</span>Kids Room (games &amp; guides)</a>
             <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
@@ -220,13 +220,13 @@ body.field .page-jump-nav{display:none!important}
   <div class="vb-acts">
    <button type="button" class="vb-btn alt" id="vbCq" disabled>📣 CALL CQ <small>(F1)</small></button>
    <button type="button" class="vb-btn alt" id="vbQrz" disabled>QRZ? <small>(F2)</small></button>
-   <button type="button" class="vb-btn alt" id="vbAgn" disabled>SAY AGAIN / AGAIN AGAIN <small>(F3)</small></button>
+   <button type="button" class="vb-btn alt" id="vbAgn" disabled>AGAIN AGAIN <small>(F3)</small></button>
    <button type="button" class="vb-btn alt" id="vbQsl" disabled>✅ QSL <small>(F6)</small></button>
    <button type="button" class="vb-btn alt" id="vb73" disabled>👋 THANKS, 73 <small>(F5)</small></button>
    <button type="button" class="vb-btn alt" id="vbSkip" disabled>⏭ SKIP <small>(F4)</small></button>
   </div>
   <button type="button" class="vb-btn vb-talk" id="vbTalk" disabled>🎙 HOLD TO TALK <small>(or tap once, tap again when done)</small></button>
-  <p class="vb-heard" id="vbHeard">Hold the button and talk like you're on the air: "CQ POTA, CQ POTA, this is…", their call + "you're five nine Kentucky", "say again" / "again again", "QRZ", "QSL", or "thanks, seventy-three" (then you log it). Use earbuds so it doesn't hear the callers. Your voice goes to Google's or Apple's speech service to be turned into text, like talking to your phone's assistant.</p>
+  <p class="vb-heard" id="vbHeard">Hold the button and talk like you're on the air: "CQ POTA, CQ POTA, this is…", their call + "you're five nine Kentucky", "again again", "QRZ", "QSL", or "thanks, seventy-three" (then you log it). Use earbuds so it doesn't hear the callers. Your voice goes to Google's or Apple's speech service to be turned into text, like talking to your phone's assistant.</p>
   <small class="k">Type part of a call in the CALL box and press QRZ? to ask just that station ("the station with Alpha Bravo Charlie, go ahead").</small>
  </div>
  <div class="vb-card">
@@ -262,8 +262,8 @@ body.field .page-jump-nav{display:none!important}
 </div></section>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
-<script src="kpc-ssb.js?v=20261014o"></script>
-<script src="kpc-search.js?v=20261014ks" defer></script><script>
+<script src="kpc-ssb.js?v=20261014p"></script>
+<script src="kpc-search.js?v=20261014kt" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
