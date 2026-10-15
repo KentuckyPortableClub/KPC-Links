@@ -103,16 +103,16 @@ def ky_layer(path, field, web):
 
 def padus():
     out, off = {}, 0
-    where = "State_Nm='KY' AND Mang_Type IN ('FED','STAT') AND Own_Type IN ('FED','STAT') AND Category='Fee' AND Pub_Access='OA'"
+    where = "State_Nm='KY' AND Pub_Access='OA'"   # (the server's firewall refuses longer WHERE clauses; the rest is filtered here)
     while off < 20000:
-        q = urllib.parse.urlencode({'where': where, 'outFields': 'Unit_Nm,Loc_Mang,GIS_Acres', 'returnGeometry': 'false', 'f': 'json',
+        q = urllib.parse.urlencode({'where': where, 'outFields': 'Unit_Nm,Loc_Mang,GIS_Acres,Mang_Type,Own_Type,Category', 'returnGeometry': 'false', 'f': 'json',
                                     'resultOffset': off, 'resultRecordCount': 1000, 'orderByFields': 'OBJECTID'})
         j = json.loads(get(PADUS + '?' + q, ua='KPC'))
         fs = j.get('features', [])
         for f in fs:
             a = f.get('attributes', {})
             n = (a.get('Unit_Nm') or '').strip()
-            if not n:
+            if not n or a.get('Category') != 'Fee' or a.get('Mang_Type') not in ('FED', 'STAT') or a.get('Own_Type') not in ('FED', 'STAT'):
                 continue
             m, ac = out.get(n, (a.get('Loc_Mang') or '', 0))
             out[n] = (m, ac + (a.get('GIS_Acres') or 0))
