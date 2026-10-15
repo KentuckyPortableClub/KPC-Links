@@ -159,6 +159,28 @@ function m4Draw() {
   }
 }
 
+/* ---------- Story + coloring pages (kpc-kids-story.json) ---------- */
+let STORY = null;
+function printPages(pages, withText) {
+  const f = document.createElement('iframe'); f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0'; document.body.appendChild(f);
+  const html = `<!doctype html><html><head><meta charset="utf-8"><title>${esc(STORY.title)}</title><style>@page{size:letter;margin:.4in}body{margin:0;font:18px/1.5 Georgia,serif;color:#111}.pg{page-break-after:always;text-align:center}.pg:last-child{page-break-after:auto}img{max-width:100%;max-height:${withText ? '6.6in' : '9.6in'}}h2{font:700 26px Arial,sans-serif;margin:6px 0}p{text-align:left;margin:8px 0}.n{font:12px Arial;color:#666}</style></head><body>` +
+    pages.map(pg => `<div class="pg">${withText ? `<h2>${esc(pg.title)}</h2>` : ''}<img src="${pg.img}.png" alt="">${withText ? `<p>${esc(pg.text)}</p>` : ''}<div class="n">Kentucky Portable Club · Kids Radio Zone</div></div>`).join('') + '</body></html>';
+  f.contentDocument.open(); f.contentDocument.write(html); f.contentDocument.close();
+  const imgs = [...f.contentDocument.images]; let left = imgs.length;
+  const go = () => { try { f.contentWindow.focus(); f.contentWindow.print(); } catch (e) {} setTimeout(() => f.remove(), 60000); };
+  if (!left) go(); imgs.forEach(im => { if (im.complete) { if (!--left) go(); } else im.onload = im.onerror = () => { if (!--left) go(); }; });
+}
+async function storyInit() {
+  const box = $('kzStory'); if (!box) return;
+  try { STORY = await (await fetch('kpc-kids-story.json', { cache: 'no-cache' })).json(); } catch (e) { box.textContent = 'The story did not load. Refresh to try again.'; return; }
+  box.innerHTML = STORY.pages.map((pg, i) => `<article class="kz-page"><img src="${pg.img}-sm.png" alt="Coloring page: ${esc(pg.title)}" loading="lazy" width="520" height="433"><div><span class="kz-pn">PAGE ${i + 1} OF ${STORY.pages.length}</span><h3>${esc(pg.title)}</h3><p>${esc(pg.text)}</p>
+    <div class="kz-pb"><button type="button" class="kz-btn" data-pr="${i}">🖍 PRINT TO COLOR</button><button type="button" class="kz-btn alt" data-read="${i}">🔊 READ IT TO ME</button><a class="kz-btn alt" href="${pg.img}.png" download>⬇ SAVE</a></div></div></article>`).join('');
+  box.querySelectorAll('[data-pr]').forEach(b => b.addEventListener('click', () => printPages([STORY.pages[+b.dataset.pr]], false)));
+  box.querySelectorAll('[data-read]').forEach(b => b.addEventListener('click', () => { hush(); say(STORY.pages[+b.dataset.read].title + '. ' + STORY.pages[+b.dataset.read].text, 0.95); }));
+  const all = $('kzPrintAll'); if (all) all.addEventListener('click', () => printPages(STORY.pages, true));
+  const pics = $('kzPrintPics'); if (pics) pics.addEventListener('click', () => printPages(STORY.pages, false));
+}
+
 function init() {
   if (!$('kzStars')) return;
   showStars();
@@ -171,7 +193,7 @@ function init() {
   $('kzChart').innerHTML = LETTERS.map(c => `<button type="button" class="kz-cell" data-c="${c}"><b>${c}</b><span>${NATO[c]}</span></button>`).join('');
   $('kzChart').querySelectorAll('.kz-cell').forEach(b => b.addEventListener('click', () => { hush(); say(NATO[b.dataset.c]); }));
   document.querySelectorAll('input[name=m4m]').forEach(r => r.addEventListener('change', () => { m4.mode = r.value; m4.g++; clearTimeout(m4.key.timer); m4.key.code = ''; mgen++; if (gn) gn.gain.setTargetAtTime(0, AC.currentTime, 0.01); m4Draw(); }));
-  m4Draw();
+  m4Draw(); storyInit();
   $('kzReset').addEventListener('click', () => { if (confirm('Start your stars over at zero?')) { stars = 0; try { localStorage.removeItem('kpcKidsStars'); } catch (e) {} showStars(); } });
 }
 window.KPCKIDS = { g1, g3, NATO, m4, MC };
