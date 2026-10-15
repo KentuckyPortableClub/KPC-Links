@@ -228,7 +228,8 @@
    "Six Mile Island State Nature Preserve": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Six-Mile-Island.aspx",
    "Tom Dorman State Nature Preserve": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Tom-Dorman.aspx",
    "Vernon-Douglas State Nature Preserve": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Vernon-Douglas.aspx"
-  }
+  },
+  "USGS PAD-US (federal + state, open to the public)": {}
  },
  "news": {
   "a kentucky woman spent 35 years turning 45 acres into a nature preserve now a nearly 40 million sewer p the times of ind": {
@@ -436,5 +437,5 @@
   "US-8144": "Otter Creek State Recreation Area",
   "US-9756": "Decker Wildlife Management Area"
  },
- "updated": "2026-10-15 16:59 UTC"
+ "updated": "2026-10-15 17:00 UTC"
 }
