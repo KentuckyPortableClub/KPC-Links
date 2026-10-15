@@ -154,6 +154,13 @@
     } catch (e) { return null; }
   }
 
+  /* COPY GPS buttons (facts box, map popups, high-point list) */
+  document.addEventListener('click', e => {
+    const a = e.target.closest('.sg-cp'); if (!a) return; e.preventDefault(); const v = a.dataset.gps;
+    const done = () => { const t = a.textContent; a.textContent = 'COPIED ✓'; setTimeout(() => { a.textContent = t; }, 1800); };
+    (navigator.clipboard && window.isSecureContext ? navigator.clipboard.writeText(v) : Promise.reject()).then(done).catch(() => { try { const ta = document.createElement('textarea'); ta.value = v; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); done(); } catch (x) { window.prompt('Copy the GPS:', v); } });
+  });
+
   /* ---------- SUMMIT tab ---------- */
   let smap = null, spin = null, sres = null;
   const stSel = $('sgSt');
@@ -188,9 +195,67 @@
   $('sgGps').onclick = () => { initMap(); if (!navigator.geolocation) return msg('This phone or browser has no GPS access.'); msg('Getting your GPS…'); navigator.geolocation.getCurrentPosition(p => check(p.coords.latitude, p.coords.longitude, $('sgSName').value.trim(), null), () => msg('Could not get your location. Allow location for this site, or tap the map.'), { enableHighAccuracy: true, timeout: 20000 }); };
 
   const ft = m => Math.round(m * 3.28084);
+  /* ---------- FIND THE HIGH POINTS IN THIS MAP VIEW: SOTA summits + mapped peaks (OpenStreetMap) + a ground-height scan
+     (Open-Meteo elevation, 90 m data: 10x10 grid, then a closer 10x10 look around the 4 highest spots) ---------- */
+  let hiLayer = null;
+  (function hiUI() {
+    const m = $('sgMap'); if (!m || $('sgHi')) return;
+    const d = document.createElement('div'); d.id = 'sgHiBox';
+    d.innerHTML = `<div class="mr-btns" style="margin:10px 0 4px"><a href="#" class="gold" id="sgHiGo">⛰ FIND THE HIGH POINTS IN THIS MAP VIEW</a></div><p class="mr-help">Move and zoom the map to the area you want (a park, a ridge, a county corner), then tap. It lists existing SOTA summits, the peaks drawn on OpenStreetMap and the highest ground from a height scan, highest first. Tap one to check it. Height alone doesn't make a summit: it needs 150 m (492 ft) of prominence.</p><div id="sgHi"></div>`;
+    m.after(d);
+    $('sgHiGo').onclick = e => { e.preventDefault(); initMap(); hiPoints(); };
+  })();
+  async function elevMany(pts) {
+    const out = [];
+    for (let i = 0; i < pts.length; i += 100) {
+      const c = pts.slice(i, i + 100);
+      const j = await B.jget('https://api.open-meteo.com/v1/elevation?latitude=' + c.map(p => p[0].toFixed(5)).join(',') + '&longitude=' + c.map(p => p[1].toFixed(5)).join(','), null, 20000);
+      (j.elevation || []).forEach((v, k) => out.push([c[k][0], c[k][1], v]));
+    }
+    return out;
+  }
+  async function hiPoints() {
+    const box = $('sgHi'); if (!smap) return;
+    const b = smap.getBounds(), S = b.getSouth(), N = b.getNorth(), W = b.getWest(), E = b.getEast();
+    if (N - S > 0.4 || E - W > 0.5) { box.innerHTML = '<p class="mr-help"><b>Zoom in a bit first</b> (an area about 25 miles across or smaller), then tap again.</p>'; return; }
+    box.innerHTML = '<div class="mr-msg busy"><span class="mr-spin">🧭</span><span>Looking for the high points in this map view…</span></div>';
+    const cla = (S + N) / 2, clo = (W + E) / 2, rad = B.km(S, W, N, E) / 2 + 0.5;
+    const inV = (a, o) => a >= S && a <= N && o >= W && o <= E;
+    const [osm, sota, scan] = await Promise.all([
+      over(`[out:json][timeout:40];node[natural~"^(peak|hill|volcano)$"](${S},${W},${N},${E});out 300;`).then(j => j.elements || []).catch(() => null),
+      B.sotaNear(cla, clo, rad).then(L => L.filter(x => inV(x.la, x.lo))).catch(() => []),
+      (async () => {
+        const n = 10, g = []; for (let i = 0; i < n; i++) for (let k = 0; k < n; k++) g.push([S + (i + .5) * (N - S) / n, W + (k + .5) * (E - W) / n]);
+        const c1 = await elevMany(g); const top = c1.filter(x => x[2] != null).sort((a, b) => b[2] - a[2]);
+        const seeds = []; top.forEach(t => { if (seeds.length < 4 && !seeds.some(s => B.km(s[0], s[1], t[0], t[1]) < Math.max(B.km(S, W, N, W) / n * 1.5, .5))) seeds.push(t); });
+        const dy = (N - S) / n, dx = (E - W) / n, fine = [];
+        seeds.forEach(s => { for (let i = 0; i < 10; i++) for (let k = 0; k < 10; k++) fine.push([s[0] - dy + (i + .5) * 2 * dy / 10, s[1] - dx + (k + .5) * 2 * dx / 10]); });
+        const c2 = await elevMany(fine);
+        const best = []; seeds.forEach((s, si) => { const part = c2.slice(si * 100, si * 100 + 100).filter(x => x[2] != null).sort((a, b) => b[2] - a[2])[0]; if (part) best.push(part); });
+        return best;
+      })().catch(() => [])
+    ]);
+    const rows = [];
+    (sota || []).forEach(s => rows.push({ la: s.la, lo: s.lo, name: s.name, m: s.m, sota: s, src: 'SOTA list' }));
+    (osm || []).forEach(e => { const t = e.tags || {}; if (rows.some(r => B.km(r.la, r.lo, e.lat, e.lon) < 0.3)) { const r = rows.find(r => B.km(r.la, r.lo, e.lat, e.lon) < 0.3); r.tags = t; return; } rows.push({ la: e.lat, lo: e.lon, name: t.name || '(no name on the map)', m: +t.ele || null, tags: t, src: 'OpenStreetMap peak', prom: +t.prominence || null }); });
+    (scan || []).forEach(x => { if (rows.some(r => B.km(r.la, r.lo, x[0], x[1]) < 0.35)) return; rows.push({ la: x[0], lo: x[1], name: 'High ground (height scan)', m: x[2], src: 'height scan, about ±10 m' }); });
+    rows.sort((a, b) => (b.m || 0) - (a.m || 0));
+    if (hiLayer) hiLayer.remove(); hiLayer = L.layerGroup().addTo(smap);
+    rows.slice(0, 40).forEach((r, i) => L.marker([r.la, r.lo], { icon: L.divIcon({ className: '', html: `<span style="display:block;font:900 13px/1 system-ui;color:${r.sota ? '#0b6b2c' : '#7a5b12'};text-shadow:0 0 3px #fff,0 0 3px #fff">▲${i + 1}</span>`, iconSize: [26, 16], iconAnchor: [8, 12] }) }).addTo(hiLayer)
+      .bindPopup(`<b>${i + 1}. ${esc(r.name)}</b><br>${r.m ? ft(r.m).toLocaleString() + ' ft' : 'height ?'}${r.sota ? '<br>SOTA ' + esc(r.sota.ref) : ''}<br>${r.la.toFixed(5)}, ${r.lo.toFixed(5)}<br><a href="#" class="sg-cp" data-gps="${r.la.toFixed(6)}, ${r.lo.toFixed(6)}">COPY GPS</a>`));
+    if (!rows.length) { box.innerHTML = `<p class="mr-help">${osm === null ? 'Could not reach the map services right now. Try again in a minute.' : 'Nothing found in this view. Zoom out a little and try again.'}</p>`; return; }
+    const nS = rows.filter(r => r.sota).length;
+    box.innerHTML = `<p class="mr-help"><b>${rows.length} high point${rows.length > 1 ? 's' : ''} in this view</b>, highest first${nS ? ` (${nS} already on the SOTA list, green on the map)` : ' (none on the SOTA list yet)'}. Numbers match the ▲ marks on the map.</p>` +
+      rows.slice(0, 40).map((r, i) => `<div class="mr-pick" style="cursor:default"><b>${i + 1}. ${esc(r.name)}</b><span>${r.m ? ft(r.m).toLocaleString() + ' ft (' + Math.round(r.m) + ' m)' : 'height not listed'} · ${esc(r.src)}${r.sota ? ' · <b class="mr-ok">SOTA ' + esc(r.sota.ref) + ' (' + r.sota.pts + ' pts)</b>' : ''}${r.prom ? ' · prominence ' + Math.round(r.prom) + ' m' : ''}<br>${r.la.toFixed(5)}, ${r.lo.toFixed(5)}</span><div class="mr-btns" style="margin-top:6px"><a href="#" class="gold" data-hi="${i}">CHECK THIS ONE ›</a><a href="#" class="sg-cp" data-gps="${r.la.toFixed(6)}, ${r.lo.toFixed(6)}">COPY GPS</a>${r.sota ? `<a href="https://sotl.as/summits/${esc(r.sota.ref)}" target="_blank" rel="noopener">SOTLAS ↗</a>` : ''}</div></div>`).join('');
+    box.querySelectorAll('[data-hi]').forEach(a => a.onclick = e => { e.preventDefault(); const r = rows[+a.dataset.hi]; check(r.la, r.lo, /^\(no name|^High ground/.test(r.name) ? '' : r.name, r.tags ? { extratags: r.tags } : null); window.scrollTo({ top: $('sgSOut').offsetTop - 80, behavior: 'smooth' }); });
+  }
   async function check(la, lo, name, nom) {
     initMap(); msg('Checking the summit: height, nearby SOTA summits, who owns the land, county…');
-    if (spin) spin.remove(); spin = L.marker([la, lo]).addTo(smap); smap.setView([la, lo], Math.max(smap.getZoom(), 14));
+    if (spin) spin.remove();
+    spin = L.marker([la, lo], { draggable: true }).addTo(smap); smap.setView([la, lo], Math.max(smap.getZoom(), 14));
+    const gps0 = la.toFixed(6) + ', ' + lo.toFixed(6);
+    spin.bindPopup(`<b>${esc(name || 'Your pin')}</b><br>${gps0}<br><a href="#" class="sg-cp" data-gps="${gps0}">COPY GPS</a> · <a href="https://www.google.com/maps/search/?api=1&query=${gps0.replace(' ', '')}" target="_blank" rel="noopener">GOOGLE MAPS</a><br><small>Drag the pin onto the very top to re-check.</small>`);
+    spin.on('dragend', ev => { const q = ev.target.getLatLng(); check(q.lat, q.lng, '', null); });
     const st0 = stSel.value;
     const [el, sNear, land, cty, pota, wwff] = await Promise.all([
       B.elevation(la, lo).catch(() => null),
@@ -212,17 +277,19 @@
     const grid = (() => { const A = 'ABCDEFGHIJKLMNOPQR', a = 'abcdefghijklmnopqrstuvwx'; let x = lo + 180, y = la + 90; return A[Math.floor(x / 20)] + A[Math.floor(y / 10)] + Math.floor((x % 20) / 2) + Math.floor(y % 10) + a[Math.floor((x % 2) * 12)] + a[Math.floor((y % 1) * 24)]; })();
     sres = { la, lo, name: nameT, st, assoc, am, hereM, osmEle, sNear, same, lands, pub, cty, pota, wwff, grid };
     const P = la.toFixed(5) + ', ' + lo.toFixed(5);
-    const links = [['Google Maps', `https://www.google.com/maps/search/?api=1&query=${la.toFixed(6)},${lo.toFixed(6)}`], ['Topo map (CalTopo)', `https://caltopo.com/map.html#ll=${la.toFixed(5)},${lo.toFixed(5)}&z=15&b=t`], ['OpenStreetMap', `https://www.openstreetmap.org/?mlat=${la.toFixed(5)}&mlon=${lo.toFixed(5)}#map=15/${la.toFixed(5)}/${lo.toFixed(5)}`], ['Peakbagger search (prominence)', name ? `https://www.peakbagger.com/search.aspx?ss=${encodeURIComponent(name)}` : gq(`peakbagger ${la.toFixed(3)} ${lo.toFixed(3)}`)], ['ListsOfJohn / prominence (Google)', gq(`"${name}" ${ST[st] || st} prominence`)]].concat(sNear.slice(0, 3).map(s => [`Nearest SOTA summit ${s.ref}`, `https://sotl.as/summits/${s.ref}`]));
+    /* Peakbagger's own search (no Google): the summit's name, else the nearest mapped peak's name */
+    const pbName = name || (PL && PL.name) || (sNear[0] && sNear[0].name) || '';
+    const links = [['Google Maps', `https://www.google.com/maps/search/?api=1&query=${la.toFixed(6)},${lo.toFixed(6)}`], ['Topo map (CalTopo)', `https://caltopo.com/map.html#ll=${la.toFixed(5)},${lo.toFixed(5)}&z=15&b=t`], ['OpenStreetMap', `https://www.openstreetmap.org/?mlat=${la.toFixed(5)}&mlon=${lo.toFixed(5)}#map=15/${la.toFixed(5)}/${lo.toFixed(5)}`], ['Peakbagger search (prominence)', `https://www.peakbagger.com/search.aspx?tid=M&ss=${encodeURIComponent(pbName)}`], ['ListsOfJohn (prominence lists)', 'https://listsofjohn.com/']].concat(sNear.slice(0, 3).map(s => [`Nearest SOTA summit ${s.ref}`, `https://sotl.as/summits/${s.ref}`]));
     sres.links = links;
     $('sgSOut').innerHTML = `<section class="mr-res"><div class="mr-head"><div class="mr-k">${esc(st)}${assoc ? ' · SOTA association ' + esc(assoc) : ''}</div><h2>${esc(nameT)}</h2><p>${P} · grid ${grid}${hereM ? ' · ' + ft(hereM).toLocaleString() + ' ft (' + Math.round(hereM) + ' m)' : ''}</p></div>
 ${same ? `<div class="mr-v yes"><b>ALREADY A SOTA SUMMIT: ${esc(same.ref)}</b><span>${esc(same.name)} · ${same.ft.toLocaleString()} ft · ${same.pts} points · ${(same.d * 0.621).toFixed(2)} mi from the spot. Nothing to ask for.</span></div>` : !assoc ? `<div class="mr-v no"><b>NO SOTA ASSOCIATION FOR ${esc(st)}</b><span>SOTA has no association covering this state yet.</span></div>` : `<div class="mr-v maybe"><b>NOT ON THE SOTA LIST: CHECK THE PROMINENCE</b><span>SOTA needs at least 150 m (492 ft) of prominence. Enter it below if you know it.</span></div>`}
 <div class="mr-rules">
 <div class="mr-r ${same ? 'no' : 'yes'}"><i>${same ? 'NO' : 'YES'}</i><div><b>Not already a SOTA summit</b><p>${sNear.length ? 'SOTA summits near the spot: ' + sNear.slice(0, 4).map(s => `<a href="https://sotl.as/summits/${esc(s.ref)}" target="_blank" rel="noopener">${esc(s.ref)}</a> ${esc(s.name)} (${s.ft.toLocaleString()} ft, ${(s.d * 0.621).toFixed(1)} mi)`).join('; ') + '.' : 'No SOTA summit within 6 km (about 4 miles).'}</p></div></div>
-<div class="mr-r check" id="sgProm"><i>CHECK</i><div><b>Prominence at least 150 m (492 ft)</b><p>Prominence = how far you must go down from the top before climbing anything higher. SOTA's General Rules (§3.5) set 150 m as the worldwide minimum, and peaks must be distinct. Find it on Peakbagger or ListsOfJohn, then type it here:</p><div class="sg-prom"><input id="sgPromV" inputmode="decimal" placeholder="e.g. 620"><select id="sgPromU"><option value="ft">feet</option><option value="m">meters</option></select></div><div class="mr-rl"><a href="${links[3][1]}" target="_blank" rel="noopener">PEAKBAGGER SEARCH ↗</a><a href="${links[4][1]}" target="_blank" rel="noopener">PROMINENCE (GOOGLE) ↗</a></div></div></div>
+<div class="mr-r check" id="sgProm"><i>CHECK</i><div><b>Prominence at least 150 m (492 ft)</b><p>Prominence = how far you must go down from the top before climbing anything higher. SOTA's General Rules (§3.5) set 150 m as the worldwide minimum, and peaks must be distinct. Find it on Peakbagger or ListsOfJohn, then type it here:</p><div class="sg-prom"><input id="sgPromV" inputmode="decimal" placeholder="e.g. 620"><select id="sgPromU"><option value="ft">feet</option><option value="m">meters</option></select></div><div class="mr-rl"><a href="${links[3][1]}" target="_blank" rel="noopener">PEAKBAGGER SEARCH ↗</a><a href="${links[4][1]}" target="_blank" rel="noopener">LISTSOFJOHN ↗</a></div></div></div>
 <div class="mr-r ${pub.length ? 'yes' : 'check'}"><i>${pub.length ? 'YES' : 'CHECK'}</i><div><b>Legal access to the top</b><p>${lands.length ? 'Land at the spot (USGS PAD-US): ' + lands.slice(0, 3).map(p => esc((p.Unit_Nm || p.Loc_Nm || '?') + ' · ' + (p.Loc_Own || p.Own_Name || '') + ' · ' + ({ OA: 'open to the public', RA: 'restricted', XA: 'closed', UK: 'access unknown' })[p.Pub_Access] || '')).join('; ') + '.' : 'No public land at the spot in the national database: it is probably private land.'} SOTA (§3.7): you must use legitimate access and have permission or open access; private land without permission is not allowed.</p></div></div>
 <div class="mr-r info"><i>INFO</i><div><b>Height</b><p>${hereM ? `Ground at the spot: ${ft(hereM).toLocaleString()} ft (${Math.round(hereM)} m, ${el ? el.src : 'OpenStreetMap'})${osmEle && el ? `; OpenStreetMap lists the peak at ${ft(osmEle).toLocaleString()} ft` : ''}. Put the pin right on the top for the best number.` : 'Could not look up the height.'} The activation zone is the area within 25 m (82 ft) below the top.</p></div></div>
 </div>
-<div class="mr-sec mr-facts"><h3>FACTS</h3><div class="mr-fact"><span>GPS (TOP)</span><b>${P}</b></div><div class="mr-fact"><span>GRID</span><b>${grid}</b></div><div class="mr-fact"><span>COUNTY</span><b>${cty ? esc(cty.county_name + ', ' + cty.state_code) : 'not found'}</b></div>${pota.length ? `<div class="mr-fact"><span>POTA PARKS HERE</span><b>${pota.filter(p => B.km(la, lo, p.la, p.lo) < 8).slice(0, 4).map(p => esc(p.ref + ' ' + p.name)).join('; ') || 'none close by'}</b></div>` : ''}${wwff.length ? `<div class="mr-fact"><span>WWFF NEARBY</span><b>${wwff.slice(0, 3).map(x => esc(x.ref + ' ' + x.name)).join('; ')}</b></div>` : ''}<div class="mr-links">${links.map(l => `<a href="${esc(l[1])}" target="_blank" rel="noopener"><b>${esc(l[0])}</b><span>${esc(l[1])}</span></a>`).join('')}</div></div>
+<div class="mr-sec mr-facts"><h3>FACTS</h3><div class="mr-fact"><span>GPS (TOP)</span><b>${P}</b><div class="mr-btns"><a href="#" class="sg-cp gold" data-gps="${la.toFixed(6)}, ${lo.toFixed(6)}">COPY GPS</a><a href="https://www.google.com/maps/search/?api=1&query=${la.toFixed(6)},${lo.toFixed(6)}" target="_blank" rel="noopener">GOOGLE MAPS ↗</a><a href="https://maps.apple.com/?ll=${la.toFixed(6)},${lo.toFixed(6)}&q=${encodeURIComponent(nameT)}" target="_blank" rel="noopener">APPLE MAPS ↗</a><a href="https://caltopo.com/map.html#ll=${la.toFixed(5)},${lo.toFixed(5)}&z=16&b=t" target="_blank" rel="noopener">TOPO ↗</a></div><p class="mr-help">Not quite on the top? Drag the map pin onto the summit (or tap the top) and it checks again.</p></div><div class="mr-fact"><span>GRID</span><b>${grid}</b></div><div class="mr-fact"><span>COUNTY</span><b>${cty ? esc(cty.county_name + ', ' + cty.state_code) : 'not found'}</b></div>${pota.length ? `<div class="mr-fact"><span>POTA PARKS HERE</span><b>${pota.filter(p => B.km(la, lo, p.la, p.lo) < 8).slice(0, 4).map(p => esc(p.ref + ' ' + p.name)).join('; ') || 'none close by'}</b></div>` : ''}${wwff.length ? `<div class="mr-fact"><span>WWFF NEARBY</span><b>${wwff.slice(0, 3).map(x => esc(x.ref + ' ' + x.name)).join('; ')}</b></div>` : ''}<div class="mr-links">${links.map(l => `<a href="${esc(l[1])}" target="_blank" rel="noopener"><b>${esc(l[0])}</b><span>${esc(l[1])}</span></a>`).join('')}</div></div>
 <div class="mr-sec" id="sgSMail"><h3>✉ EMAIL THE SOTA ASSOCIATION MANAGER</h3></div></section>`;
     const box = $('sgSMail');
     const promTxt = () => { const v = parseFloat($('sgPromV').value); if (!isFinite(v)) return null; const m = $('sgPromU').value === 'm' ? v : v / 3.28084; return { m, ft: Math.round(m * 3.28084) }; };
