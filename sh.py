@@ -1,6 +1,7 @@
-import subprocess,sys,urllib.parse
-subprocess.run([sys.executable,'-m','pip','install','-q','playwright'],check=True)
-subprocess.run([sys.executable,'-m','playwright','install','--with-deps','chromium'],check=True,capture_output=True)
+import subprocess,sys,urllib.parse,site,importlib
+subprocess.run([sys.executable,'-m','pip','install','-q','--user','--break-system-packages','playwright'])
+site.addsitedir(site.getusersitepackages()); importlib.invalidate_caches()
+subprocess.run([sys.executable,'-m','playwright','install','--with-deps','chromium'],check=False)
 from playwright.sync_api import sync_playwright
 PAD='https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0'
 KY='https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/1'
