@@ -1,11 +1,6 @@
 O=https://kentuckyportableclub.github.io
-c(){ echo "=== $1"; curl -s -m 25 -D /tmp/h -H "Origin: $O" "$1" | head -c ${2:-700}; echo; grep -i "access-control-allow-origin\|^HTTP" /tmp/h; }
-c "https://api.pota.app/lookup?search=Vogel&size=5"
-c "https://api.pota.app/park/US-2177" 1200
-c "https://api.pota.app/locations"
-c "https://api2.sota.org.uk/api/summits/W4G/NG-001" 900
-c "https://api.sotl.as/summits/search?q=brasstown&limit=3" 900
-c "https://api2.sota.org.uk/api/associations/W4G" 300
-c "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas_Fee_Manager/FeatureServer/0/query?geometry=-83.96,34.76&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=Unit_Nm,Mang_Name,Loc_Mang,GIS_Acres&returnGeometry=false&f=json" 900
-c "https://wwff.co/wwff-data/wwff_directory.csv" 600
-c "https://spots.wwff.co/static/agendas.json" 300
+c(){ echo "=== $1"; curl -s -m 40 -D /tmp/h -H "Origin: $O" "$1" | head -c ${2:-500}; echo; grep -i "access-control-allow-origin\|^HTTP" /tmp/h; }
+Q='query?geometry=-83.7367,33.9807&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json'
+for s in "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas_Fee_Manager/FeatureServer/0" "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas_Manager_Name/FeatureServer/0" "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas_Fee/FeatureServer/0" "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas/FeatureServer/0" "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/PADUS_Fee/FeatureServer/0" "https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0" "https://gis1.usgs.gov/arcgis/rest/services/padus3_0/PADUS3_0Combined_DOD_TRIB_Fee_Designation_Easement/MapServer/0" "https://gis1.usgs.gov/arcgis/rest/services/padus4_0/PADUS4_0Combined_DOD_TRIB_Fee_Designation_Easement/MapServer/0"; do c "$s/$Q" 400; done
+c "https://www.arcgis.com/sharing/rest/search?q=PADUS%20Fee%20owner%3Aesri_livingatlas&f=json&num=5" 1500
+curl -s -m 60 -H "Origin: $O" --data-urlencode 'data=[out:json][timeout:30];is_in(33.9807,-83.7367)->.a;(area.a[boundary~"protected_area|national_park"];area.a[leisure~"^(park|nature_reserve)$"];);out tags;' https://overpass-api.de/api/interpreter -D /tmp/h | head -c 900; echo; grep -i "access-control-allow-origin" /tmp/h
