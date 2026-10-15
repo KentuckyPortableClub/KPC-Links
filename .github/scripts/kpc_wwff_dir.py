@@ -32,5 +32,18 @@ for p, rows in out.items():
 for fn in d.glob('*.json'):
     if fn.name not in keep and fn.name != 'index.json':
         fn.unlink()
+# location tiles (1 x 1 degree, by the floor of lat/lon) for "what's near me" lookups: data/wwff/t/<lat>_<lon>.json = [[ref, name, lat, lon], ...]
+import math
+t = d / 't'; t.mkdir(exist_ok=True); tiles = {}
+for rows in out.values():
+    for r in rows:
+        if r[2] is None or r[3] is None: continue
+        tiles.setdefault('%d_%d' % (math.floor(r[2]), math.floor(r[3])), []).append(r[:4])
+tk = set()
+for k, rows in tiles.items():
+    rows.sort(); fn = t / (k + '.json'); tk.add(fn.name); s2 = json.dumps(rows, ensure_ascii=False, separators=(',', ':'))
+    if not fn.exists() or fn.read_text(encoding='utf-8') != s2: fn.write_text(s2, encoding='utf-8')
+for fn in t.glob('*.json'):
+    if fn.name not in tk: fn.unlink()
 (d / 'index.json').write_text(json.dumps(sorted(out), separators=(',', ':')), encoding='utf-8')
 print('::notice title=WWFF directory::%d programs, %d active refs, KFF %d' % (len(out), sum(len(v) for v in out.values()), len(out.get('KFF', []))))
