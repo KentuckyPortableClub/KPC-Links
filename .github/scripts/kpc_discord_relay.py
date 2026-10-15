@@ -10,6 +10,7 @@ Secrets (GitHub -> Settings -> Secrets and variables -> Actions, never in the si
   DISCORD_BOT_TOKEN, KPC_RELAY_CHANNEL (channel ID), FB_PAGE_ID, FB_PAGE_TOKEN,
   RELAY_SMTP_PASS (App Password of kypotacampout@gmail.com (the campout email), the sender; RELAY_SMTP_USER overrides the address), GROUPSIO_TO (the group's post address),
   SUBSCRIBE_SHEET_CSV (published CSV of the email-updates form sheet; optional)
+  Email can instead go through the campout Gmail's Apps Script web app: RELAY_MAIL_URL + RELAY_MAIL_KEY (used when set)
 DRY_RUN=1 prints what would happen and changes nothing.
 """
 import csv, datetime, io, json, mimetypes, os, re, smtplib, ssl, sys, time, urllib.error, urllib.parse, urllib.request, uuid
@@ -23,6 +24,7 @@ TOKEN, CHAN = ENV('DISCORD_BOT_TOKEN'), ENV('KPC_RELAY_CHANNEL')
 FB_ID, FB_TOKEN = ENV('FB_PAGE_ID'), ENV('FB_PAGE_TOKEN')
 SMTP_USER, SMTP_PASS, GIO_TO = (ENV('RELAY_SMTP_USER') or 'kypotacampout@gmail.com'), ENV('RELAY_SMTP_PASS'), ENV('GROUPSIO_TO')
 SUB_CSV = ENV('SUBSCRIBE_SHEET_CSV')
+MAIL_URL, MAIL_KEY = ENV('RELAY_MAIL_URL'), ENV('RELAY_MAIL_KEY')   # Google Apps Script mailer in the campout account (no App Password needed)
 DRY = ENV('DRY_RUN').lower() in ('1', 'true', 'yes')
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 STATE, OUT, PHOTOS = 'kpc-relay-state.json', 'kpc-announcements.json', 'photos/announce'
@@ -128,6 +130,15 @@ def fb_post(text, files):
     form(base + '/feed', fields); return 'posted' + (f' with {len(files)} photos' if files else '')
 
 def mail(to, bcc, subject, text, files):
+    if MAIL_URL and MAIL_KEY:
+        # The campout Gmail sends it through its own Apps Script web app (.claude/build/relay/kpc-mailer.gs)
+        import base64
+        body = json.dumps({'key': MAIL_KEY, 'to': to, 'bcc': bcc, 'subject': subject, 'body': text,
+                           'images': [{'name': os.path.basename(f), 'b64': base64.b64encode(open(f, 'rb').read()).decode()} for f in files]}).encode()
+        c, r = http(MAIL_URL, body, {'Content-Type': 'application/json'}, 'POST', timeout=90)
+        t = (r or b'').decode('utf8', 'replace')
+        if c != 200 or '"ok":true' not in t.replace(' ', ''): raise RuntimeError(f'mailer said HTTP {c}: {t[:150]}')
+        return 'sent'
     if not SMTP_USER or not SMTP_PASS: return 'skipped (no email secrets)'
     em = EmailMessage(); em['From'] = f'Kentucky Portable Club <{SMTP_USER}>'; em['To'] = to or SMTP_USER
     em['Subject'] = subject
