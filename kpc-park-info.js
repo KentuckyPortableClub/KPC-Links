@@ -29,8 +29,8 @@
       if (k === 'pota') return showPota(ref);
       if (k === 'sota') return showSota(ref);
       if (k === 'wwff') return showWwff(ref);
-      const L = await jget('https://api.pota.app/lookup?search=' + encodeURIComponent(q) + '&size=25');
-      const parks = (L || []).filter(x => x.type === 'park');
+      const L = await jget('https://api.pota.app/lookup?search=' + encodeURIComponent(q) + '&size=150');
+      const parks = (L || []).filter(x => x.type === 'park').sort((a, b) => (/^US-/.test(b.value) - /^US-/.test(a.value)) || a.value.localeCompare(b.value, undefined, { numeric: true })).slice(0, 40);
       if (!parks.length) return msg('No POTA parks match that name. Try fewer words (e.g. <b>Vogel</b>), or type the reference number (US-1234, KFF-1234, W4G/NG-001).');
       if (parks.length === 1) return showPota(parks[0].value);
       $('piOut').innerHTML = '';
@@ -139,7 +139,7 @@
     const pre = ref.split('-')[0]; let rows;
     try { rows = await jget('data/wwff/' + encodeURIComponent(pre) + '.json'); } catch (e) { return msg('No WWFF program ' + esc(pre) + ' in our copy of the WWFF directory.'); }
     const x = rows.find(r => r[0] === ref); if (!x) return msg('No active WWFF reference ' + esc(ref) + '.');
-    card({ ref: x[0], prog: 'WWFF', name: x[1], type: 'WWFF reference', where: [x[6], x[5]].filter(Boolean).join(', '), la: x[2], lo: x[3], website: /^https?:\/\//.test(x[4]) ? x[4] : '', us: pre === 'KFF',
+    card({ ref: x[0], prog: 'WWFF', name: x[1], type: 'WWFF reference', where: [...new Set([x[6], x[5]].filter(Boolean))].join(', '), la: x[2], lo: x[3], website: /^https?:\/\//.test(x[4]) ? x[4] : '', us: pre === 'KFF',
       links: [['WWFF SPOTS & AGENDA', 'https://spots.wwff.co/']], note: 'From the WWFF directory (copied weekly). In the US, WWFF (KFF) areas usually match a POTA park; search its name too.' });
   }
 
