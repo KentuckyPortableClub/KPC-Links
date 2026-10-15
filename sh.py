@@ -1,11 +1,6 @@
-import urllib.request,json
-def get(u):
-  return urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=40).read().decode('utf8','replace')
-A=json.loads(get('https://api2.sota.org.uk/api/associations'))
-print(len(A)); print(json.dumps(A[0])[:800])
-for a in A:
-  c=a.get('associationCode','')
-  if c.startswith(('W','K','N','A')) and 'USA' in (a.get('associationName','')+a.get('dxcc','')): print(json.dumps({k:a.get(k) for k in ('associationCode','associationName','associationManager','associationManagerCallsign','dxcc','activeFrom','activeTo')}))
-try:
-  d=json.loads(get('https://api2.sota.org.uk/api/associations/W4K')); print(json.dumps(d)[:1500])
-except Exception as e: print('ERR',e)
+import urllib.request,urllib.parse
+P='https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query'
+for w,extra in [("State_Nm='KY' AND Pub_Access='OA'",{}),("State_Nm='KY' AND Mang_Type IN ('FED','STAT')",{}),("State_Nm='KY' AND (Mang_Type='FED' OR Mang_Type='STAT')",{}),("State_Nm='KY'",{'orderByFields':'OBJECTID'}),("State_Nm='KY'",{'resultOffset':0,'resultRecordCount':1000})]:
+  q=dict({'where':w,'outFields':'Unit_Nm','returnGeometry':'false','f':'json'},**extra)
+  try: r=urllib.request.urlopen(urllib.request.Request(P+'?'+urllib.parse.urlencode(q),headers={'User-Agent':'KPC'}),timeout=40); print(w,extra,r.status,len(r.read()))
+  except Exception as e: print(w,extra,'ERR',e)
