@@ -1,5 +1,2 @@
-State_Nm='KY' AND Pub_Access='OA' {} 200 91778
-State_Nm='KY' AND Mang_Type IN ('FED','STAT') {} 200 31272
-State_Nm='KY' AND (Mang_Type='FED' OR Mang_Type='STAT') {} ERR HTTP Error 403: Forbidden
-State_Nm='KY' {'orderByFields': 'OBJECTID'} 200 104476
-State_Nm='KY' {'resultOffset': 0, 'resultRecordCount': 1000} 200 52849
+[{'PUBLIC_NAM': 'John James Audubon', 'PARK_NAME': 'JJ'}, {'PUBLIC_NAM': 'Jefferson Davis', 'PARK_NAME': 'JD'}, {'PUBLIC_NAM': 'Wickliffe Mounds', 'PARK_NAME': 'WM'}, {'PUBLIC_NAM': 'Lake Malone', 'PARK_NAME': 'LM'}, {'PUBLIC_NAM': 'Breaks Interstate', 'PARK_NAME': 'BI'}, {'PUBLIC_NAM': 'Cumberland Falls', 'PARK_NAME': 'CF'}, {'PUBLIC_NAM': 'Pennyrile Forest', 'PARK_NAME': 'PF'}, {'PUBLIC_NAM': 'E.P. Tom Sawyer', 'PARK_NAME': 'EP'}]
+[{'attributes': {'PUBLIC_NAM': 'Barren River Lake'}}] None
