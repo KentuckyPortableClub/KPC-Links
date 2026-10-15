@@ -82,7 +82,7 @@
   /* Kentucky's own live GIS layers (each has its own field names) */
   const KYL = [
     { svc: 'Ky_Public_Hunting_Areas_WGS84WM', id: 1, ag: 'Kentucky Fish & Wildlife', nm: 'AREANAME', web: p => p.DETAIL || (p.KDFWR_ID ? 'https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=' + p.KDFWR_ID : ''), acc: p => /^no/i.test(p.AreaOpen || '') ? 'RA' : 'OA', ds: p => p.WMA === 'Yes' ? 'Wildlife Management Area' : 'Public hunting area' },
-    { svc: 'Ky_State_Parks_Features_WGS84WM', id: 8, ag: 'Kentucky State Parks', nm: 'PARK_NAME', web: p => p.HYPERLINK || '', acc: () => 'OA', ds: p => p.PARK_TYPE || 'State Park' },
+    { svc: 'Ky_State_Parks_Features_WGS84WM', id: 8, ag: 'Kentucky State Parks', nm: 'PUBLIC_NAM', full: p => p.PUBLIC_NAM + (/park|site/i.test(p.PUBLIC_NAM) ? '' : /\/historic\//.test(p.HYPERLINK || '') ? ' State Historic Site' : /\/resort\//.test(p.HYPERLINK || '') ? ' State Resort Park' : ' State Park'), web: p => p.HYPERLINK || '', acc: () => 'OA', ds: p => /\/historic\//.test(p.HYPERLINK || '') ? 'State Historic Site' : 'State Park' },
     { svc: 'Ky_KNP_State_Nature_Preserves_WGS84WM', id: 0, ag: 'Office of Kentucky Nature Preserves', nm: 'MANAME', web: p => p.Webpage || '', acc: p => /open/i.test(p.PUB_ACCESS || '') ? 'OA' : p.PUB_ACCESS ? 'RA' : 'UK', ds: p => p.UNIT_TYPE || 'State Nature Preserve', own: p => p.MA_OWNER, mng: p => p.MNG_INST },
     { svc: 'Ky_KNP_Natural_Areas_WGS84WM', id: 0, ag: 'Office of Kentucky Nature Preserves', nm: 'MANAME', web: p => p.Webpage || '', acc: p => /open/i.test(p.PUB_ACCESS || '') ? 'OA' : p.PUB_ACCESS ? 'RA' : 'UK', ds: p => p.UNIT_TYPE || 'State Natural Area', own: p => p.MA_OWNER, mng: p => p.MNG_INST }];
   const kyType = s => /county|fiscal court|city of|town of/i.test(s || '') ? 'LOC' : /universit|college/i.test(s || '') ? 'STAT' : /private|trust|conservancy|foundation|society/i.test(s || '') ? 'NGO' : 'STAT';
@@ -91,7 +91,7 @@
     await Promise.all(KYL.map(L => B.jget(`https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/${L.svc}/MapServer/${L.id}/query?` + new URLSearchParams({ where: ws.map(x => `UPPER(${L.nm}) LIKE '%${sq(x.toUpperCase())}%'`).join(' AND '), outFields: '*', returnGeometry: true, outSR: 4326, geometryPrecision: 5, maxAllowableOffset: 0.0001, f: 'geojson' }), null, 20000).then(j => (j.features || []).forEach(f => {
       const P = f.properties || {}; if (!f.geometry || !P[L.nm]) return;
       const own = (L.own && L.own(P)) || L.ag, mg = (L.mng && L.mng(P)) || L.ag;
-      out.push({ src: 'Kentucky state GIS (live): ' + L.ag, f: fake(f, { Unit_Nm: P[L.nm], Own_Type: kyType(own), Loc_Own: own, Mang_Type: kyType(mg), Loc_Mang: mg, Loc_Ds: L.ds(P), Pub_Access: L.acc(P), State_Nm: 'KY', Web: L.web(P) }) });
+      out.push({ src: 'Kentucky state GIS (live): ' + L.ag, f: fake(f, { Unit_Nm: L.full ? L.full(P) : P[L.nm], Own_Type: kyType(own), Loc_Own: own, Mang_Type: kyType(mg), Loc_Mang: mg, Loc_Ds: L.ds(P), Pub_Access: L.acc(P), State_Nm: 'KY', Web: L.web(P) }) });
     })).catch(() => {})));
     return out;
   }
