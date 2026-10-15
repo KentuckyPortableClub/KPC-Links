@@ -18,9 +18,8 @@
       { id: 'wwff', name: 'WWFF Spotline', p: ['WWFF'], how: 'copy', url: 'https://spots.wwff.co/', about: 'KFF / WWFF spots. Needs a Spotline login (WWFF approves new accounts by hand; use your call as the user name).', tag: ['COPY + OPEN'] },
       { id: 'gma', name: 'GMA (Global Mountain Activity)', p: ['GMA', 'SOTA'], how: 'copy', url: 'https://www.cqgma.org/', about: 'GMA spots and alerts. Sign in, then spot.', tag: ['COPY + OPEN'] }
     ]],
-    ['NO INTERNET? PHONE OR RADIO ONLY', [
-      { id: 'apspot', name: 'APSPOT (APRS or text message)', p: ['POTA', 'SOTA', 'WWFF'], how: 'copy', url: 'https://apspot.radio', about: 'Weak cell signal is enough: text one message to APSPOT (or send it by APRS) and it spots POTA, SOTA and WWFF for you. We write the message; save APSPOT\'s number from apspot.radio in your contacts once.', tag: ['COPY + OPEN'] },
-      { id: 'sotamat', name: 'SOTAmat', p: ['SOTA', 'POTA'], how: 'info', url: 'https://sotamat.com', about: 'No cell signal at all: the SOTAmat phone app turns your spot into a short FT8 signal you transmit with your radio. Stations that hear it pass it on through PSK Reporter, and SOTAmat posts your spot. Set up your account and radio at home first.', tag: ['SET UP FIRST'] }
+    ['WEAK CELL SIGNAL AT THE PARK? (TEXT MESSAGE)', [
+      { id: 'apspot', name: 'APSPOT (APRS or text message)', p: ['POTA', 'SOTA', 'WWFF'], how: 'copy', url: 'https://apspot.radio', about: 'For parks with only a bar or two: a text message gets through when the internet won\'t. Text one line to APSPOT and it spots POTA, SOTA and WWFF for you. GET IT READY AT HOME: fill in the park and frequency, tap TEXT IT and leave it as a draft in your messages (don\'t send yet). At the park, fix the frequency if it changed and hit send. Save APSPOT\'s number from apspot.radio in your contacts first.', tag: ['TEXT IT'] }
     ]],
     ['PLAN AHEAD (SO HUNTERS KNOW YOU\'RE COMING)', [
       { id: 'potasch', name: 'POTA activation schedule', p: ['POTA'], how: 'info', url: 'https://pota.app/#/activations', about: 'Post when and where you\'ll be. On CW and FT8 POTA can then spot you automatically from the Reverse Beacon Network.', tag: ['OPEN'] },
@@ -34,7 +33,7 @@
     ]]
   ];
   const ALL = G.flatMap(g => g[1]);
-  let pick = new Set((store.get('kpcSpotMePick', null) || []).filter(id => !['discord', 'fbgroup', 'pnp'].includes(id)));
+  let pick = new Set((store.get('kpcSpotMePick', null) || []).filter(id => !['discord', 'fbgroup', 'pnp', 'sotamat'].includes(id)));
   const keep = store.get('kpcSpotMePick', null) !== null;
   const form = store.get('kpcSpotMeForm', {});
 
@@ -126,7 +125,7 @@
         } catch (e) { out.push(row('err', '✗ POTA could not be reached', 'Check your signal and try again, or spot from the POTA site.', `<a href="https://pota.app/#/" target="_blank" rel="noopener">OPEN POTA</a>`)); }
       } else if (d.how === 'copy') {
         const t = txt(v, kindOf(d));
-        if (d.id === 'apspot') out.push(row('todo', d.name, 'Tap TEXT IT: your phone\'s messages app opens with the spot written. Pick your saved APSPOT contact (the gateway number is on apspot.radio) and send. Or send the same words as an APRS message to APSPOT.', `<a href="sms:?&body=${encodeURIComponent(t)}">TEXT IT ›</a>`, `<p class="sm-msg">${esc(t)}</p>`));
+        if (d.id === 'apspot') out.push(row('todo', d.name, 'Tap TEXT IT: your messages app opens with the spot written. Pick your saved APSPOT contact and send it now, or leave it as a draft to send when you get to the park. Same words work as an APRS message to APSPOT.', `<a href="sms:?&body=${encodeURIComponent(t)}">TEXT IT ›</a>`, `<p class="sm-msg">${esc(t)}</p>`));
         else out.push(row('todo', d.name, (d.others && v.call === v.by ? '⚠ You are spotting yourself here. Only do that for a special event station. ' : '') + 'Tap to copy the spot and open the site, then paste it in and press submit.', `<button type="button" data-open="${d.id}">COPY + OPEN ›</button>`, `<p class="sm-msg">${esc(t)}</p>`));
       } else {
         out.push(row('todo', d.name, esc(d.about), `<a href="${esc(d.url)}" target="_blank" rel="noopener">OPEN ›</a>`));
