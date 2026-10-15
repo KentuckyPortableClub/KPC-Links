@@ -1,0 +1,2824 @@
+{
+ "items": {
+  "Asher Hunting Access Area": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/AsherHuntingAcccessArea_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/AsherHAAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=8198"
+  },
+  "Bad Branch State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Bad-Branch.aspx"
+  },
+  "Ballard WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/BallardWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/BallardWMAOnline_Image.jpg"
+    ],
+    [
+     "Fact sheet (PDF)",
+     "https://fw.ky.gov/More/Documents/Ballard_FactSheet.pdf"
+    ],
+    [
+     "Brochure (PDF)",
+     "https://fw.ky.gov/More/Documents/BallardViewingBrochure.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=224"
+  },
+  "Barren River Lake State Resort Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map.pdf?sfvrsn=b177d244_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map.pdf?sfvrsn=efea5433_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/lucas/parks/resort/barren-river-lake-state-resort-park"
+  },
+  "Barren River Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/barren_river_lake_all.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/BarrenRiverLakeWMAOnline_Image.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/crane_zone_BarrenRiverLakeWMA.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=129"
+  },
+  "Bat Cave State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Carter-Caves.aspx"
+  },
+  "Beargrass Creek State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Beargrass-Creek.aspx"
+  },
+  "Beaver Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/BeaverCreekWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/BeaverCreekWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=39"
+  },
+  "Beechy Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/KentuckyLakeWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/BeechyCreekWMAOnline_Image.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/BeechyCreekWMA-ALL.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=228"
+  },
+  "Betterment Wildlife Hunting Access Area": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Betterment_Wildlife_HAA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/Betternent_RegionalLocator.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=7105"
+  },
+  "Big Bone Lick State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map8929d877-a36c-45e6-a250-e218cc865fb7.pdf?sfvrsn=77032b6c_2"
+    ],
+    [
+     "Orienteering Course Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/orienteering-course-map.pdf?sfvrsn=59622ed5_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-mapc7edd555-03ce-4175-a580-ff9d5f0fa8f1.pdf?sfvrsn=d2e112c2_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/union/parks/historic/big-bone-lick-state-historic-site"
+  },
+  "Big Rivers WMA and State Forest": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/BigRiversWMA_and_StateForest_all.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/BigRiversWMAandSFOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9203"
+  },
+  "Big South Fork National River and Recreation Area": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/BigSouthForkNRRA_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9022"
+  },
+  "Blackacre State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Blackacre.aspx"
+  },
+  "Blackford Oaks WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Blackford_oaksWMAAll.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/Blackford_oaks_onlineimage.png"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9719"
+  },
+  "Blanton Forest State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Blanton-Forest.aspx"
+  },
+  "Blue Grass Army Depot": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/BlueGrassArmyDepotOnline_Image.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/BlueGrassArmyDepot.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9088"
+  },
+  "Blue Licks Battlefield State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map9a72ac6f-42af-45f2-987c-a78bea3716ad.pdf?sfvrsn=13ca9773_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map89d9f1a4-8ccd-4dc3-aaae-d94b0fb88024.pdf?sfvrsn=6f13b646_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/carlisle/parks/historic/blue-licks-battlefield-state-resort-park"
+  },
+  "Blue Licks State Park State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Blue-Licks.aspx"
+  },
+  "Boatwright WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/BoatwrightWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/BoatwrightWMAOnline_Image.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/Boatwright_waterfowl.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=222"
+  },
+  "Boone County Cliffs State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Boone-County-Cliffs.aspx"
+  },
+  "Boone Forestlands WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/BooneForestlandsWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/BooneForestlandsWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9003"
+  },
+  "Breaks Interstate State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-maped22e68f-aaf4-4666-b1c9-788f4197a2e9.pdf?sfvrsn=93f7e871_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map1c3c8c9e-4df2-47c5-b89a-f6b6751d63c1.pdf?sfvrsn=4ccec27_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/elkhorn-city/parks/recreation/breaks-interstate-park"
+  },
+  "Brigadoon State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Brigadoon.aspx"
+  },
+  "Buck Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/BuckCreekWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/BuckCreekWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9132"
+  },
+  "Buckhorn Lake State Resort Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/map58f2dd46-f51b-47b9-a327-fa37a6a36d88.pdf?sfvrsn=82d241d4_0"
+    ]
+   ],
+   "page": "https://parks.ky.gov/buckhorn/parks/resort/buckhorn-lake-state-resort-park"
+  },
+  "Buckhorn Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/BuckhornLakeWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/BuckhornLakeWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=27"
+  },
+  "Burchell-Beech Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Burchell-BeechCreekWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/BurchellBeechCreekWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=18"
+  },
+  "Cane Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/CaneCreekWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/CaneCreekWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=38"
+  },
+  "Carr Creek Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/CarrCreekLakeWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/CarrCreekLakeWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=131"
+  },
+  "Carr Creek State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-mapc310a36d-e0a5-4184-9d51-b0156c7fbd1f.pdf?sfvrsn=4585a9ff_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map2c5a87e9-130a-4871-9a16-bafcb615e246.pdf?sfvrsn=aa92986c_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/sassafras/parks/recreation/carr-creek-state-park"
+  },
+  "Carter Caves State Resort Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map3d3eab0a-2c5a-424c-9142-739ead7c04eb.pdf?sfvrsn=147455ae_2"
+    ],
+    [
+     "Trail Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/trail-map.pdf?sfvrsn=5f1b60e4_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-mapbf93e98e-e76c-4d09-8aa5-759f6522781b.pdf?sfvrsn=d8568a69_0"
+    ]
+   ],
+   "page": "https://parks.ky.gov/olive-hill/parks/resort/carter-caves-state-resort-park"
+  },
+  "Cascade Caverns State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Carter-Caves.aspx"
+  },
+  "Cedar Creek Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/CedarCreekLakeWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/CedarCreekLakeWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9004"
+  },
+  "Clarks River National Wildlife Refuge": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/ClarksRiverNWR_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9075"
+  },
+  "Clay WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/ClayWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/ClayWMAOnline_Image.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/ClayWMA_QuotaHunt.pdf"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/hunter_check_in_hang_tag.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=155"
+  },
+  "Clear Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/ClearCreekWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/ClearCreekWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9006"
+  },
+  "Coil Estate WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/CoilEstateWMA_ALL.pdf"
+    ],
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/WinfordWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/CoilEstateWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9125"
+  },
+  "Columbus-Belmont State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map5b26b649-8218-47fa-93e2-4d9b3a8b06b7.pdf?sfvrsn=c1efe6cb_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-mapcd7e8459-458b-4bbb-a825-d3c05a1f167c.pdf?sfvrsn=2ffa01e8_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/columbus/parks/historic/columbus-belmont-state-park"
+  },
+  "Continental Hunting Access Area": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Continental_HAA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/Continental_RegionalLocator.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9222"
+  },
+  "Cranks Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/CranksCreekWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/CranksCreekWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=150"
+  },
+  "Crooked Creek State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Crooked-Creek.aspx"
+  },
+  "Cumberland Falls State Park State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Cumberland-Falls.aspx"
+  },
+  "Cumberland Falls State Resort Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map41e9d530-cbc4-4e6d-9f22-ba3d912c5938.pdf?sfvrsn=978558b1_2"
+    ],
+    [
+     "Trails Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/trails-map.pdf?sfvrsn=6fe37eda_2"
+    ],
+    [
+     "Clifty Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/clifty-campground-map.pdf?sfvrsn=6f4ade4a_2"
+    ],
+    [
+     "Ridgeline Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/ridgeline-campground-map.pdf?sfvrsn=7b3a0f84_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/corbin/parks/resort/cumberland-falls-state-resort-park"
+  },
+  "Cumberland Forest WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Cumberland_Forest_WMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/CF_Ataya_WMA_online_image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9002"
+  },
+  "Curtis Gates Lloyd WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/CurtisGatesLloydWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/CurtisGatesLloydWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=153"
+  },
+  "Dale Hollow Lake State Resort Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map299d3114-7520-4a68-9eb4-9c83abd57b53.pdf?sfvrsn=10762b4_2"
+    ],
+    [
+     "Park Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-campground-map.pdf?sfvrsn=3f261597_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/burkesville/parks/resort/dale-hollow-lake-state-resort-park"
+  },
+  "Dale Hollow Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/DaleHollowLakeWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/DaleHollowLakeWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=28"
+  },
+  "Daniel Boone National Forest": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/DanielBooneNF_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9089"
+  },
+  "Dawkins Line Rail Trail State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Trail Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/trail-map91be9d1d-06e0-4f87-9b9d-ead09b608681.pdf?sfvrsn=816f3c58_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/swamp-branch/parks/recreation/dawkins-line-rail-trail"
+  },
+  "Decker WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/DeckerWMAmap_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/DeckerWMA_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9717"
+  },
+  "Dennis-Gray WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Dennis-GrayWMA_ALL.pdf"
+    ],
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/GreenRiverLakeWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/DennisGrayWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=148"
+  },
+  "Dewey Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/DeweyLakeWMAOnline_Image.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/DeweyLakeWMA-ALL.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=26"
+  },
+  "Dinsmore Woods State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Boone-County-Cliffs.aspx"
+  },
+  "Dix River WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/DixRiverWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/DixRiverWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9032"
+  },
+  "Doug Travis WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/DougTravisWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/DougTravisWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=40"
+  },
+  "Dr. James R. Rich WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Dr.JamesR.RichWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/DrJamesRRichWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=34"
+  },
+  "Dr. Norman and Martha Adair WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Dr.NormanandMarthaAdairWMA_all.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/DrNormanandMarthaAdairWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=149"
+  },
+  "Dr. Thomas Walker State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map588164a3-d22b-4fd3-a499-5131a10d4c08.pdf?sfvrsn=9d9fcd12_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/barbourville/parks/historic/dr-thomas-walker-state-historic-site"
+  },
+  "Dr. William H. Martin State Natural Area": {
+   "agency": "State Natural Areas (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Dr.-William-H.-Martin-WWCA.aspx"
+  },
+  "E. Lucy Braun State Park State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/E.-Lucy-Braun.aspx"
+  },
+  "E.P. Tom Sawyer State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [],
+   "page": "https://parks.ky.gov/louisville/parks/recreation/ep-tom-sawyer-state-park"
+  },
+  "Ed Mabry - Laurel Gorge WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/EdMabry-LaurelGorgeWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/EdMabryLaurelGorgeWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9126"
+  },
+  "Elk Forest WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/ElkForestWMA_ALL.pdf"
+    ],
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/BooneForestlandsWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/ElkForestWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9124"
+  },
+  "Elk Horn Coal Hunting Access Area": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Elk_Horn_Coal_HAA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/Elkhorn _RegionalLocator.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9701"
+  },
+  "Ferguson Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/FergusonCreekWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/FergusonCreekWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9715"
+  },
+  "Fishtrap Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/FishtrapLakeWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/FishtrapLakeWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=25"
+  },
+  "Fleming WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/FlemingWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/FlemingWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=154"
+  },
+  "Floracliff Nature Sanctuary": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Floracliff.aspx"
+  },
+  "Fort Boonesborough State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map44579b90-ee86-48ee-9948-8e4a78f29318.pdf?sfvrsn=fca89642_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map4b32ecb7-6eb0-41db-8453-e2da9be3587f.pdf?sfvrsn=ecd4d2f7_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/richmond/parks/historic/fort-boonesborough-state-park"
+  },
+  "Fort Campbell Military Reservation": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/FortCampbellMR_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9076"
+  },
+  "Fort Knox Military Reservation": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/FortKnoxMR_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9077"
+  },
+  "Fortner-Davis WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Fortner-DavisWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/FortnerDavisWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9204"
+  },
+  "Gabbard Branch WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/GabbardBranchWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/GabbardBranchWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9713"
+  },
+  "General Burnside Island State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map114a9b2b-4e39-4282-94a3-8ee0727dd8e6.pdf?sfvrsn=c9ee8f89_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map1332fc6b-24b8-421e-a242-08cb04415e88.pdf?sfvrsn=c8824133_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/burnside/parks/recreation/general-burnside-island-state-park"
+  },
+  "General Butler State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Trail Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-trail-map.pdf?sfvrsn=c9c9146f_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map48720770-5029-4c6b-8682-28f50cf7d5fc.pdf?sfvrsn=10bb5b47_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/carrollton/parks/historic/general-butler-state-resort-park"
+  },
+  "Grayson Lake State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map0b6523f0-dc20-4163-a883-2a10599a6192.pdf?sfvrsn=3eec0d56_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-mapd052fb15-5def-4f0a-ace0-3d491769e5a6.pdf?sfvrsn=9c4210c9_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/olive-hill/parks/recreation/grayson-lake-state-park"
+  },
+  "Grayson Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/GraysonLakeWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/GraysonLakeWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=225"
+  },
+  "Green River Lake State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-mapee6c05c4-df01-40fa-a37d-0bac8b77095c.pdf?sfvrsn=42132385_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map7acda57c-5084-4934-be83-99669c643b68.pdf?sfvrsn=2b9dac1b_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/campbellsville/parks/recreation/green-river-lake-state-park"
+  },
+  "Green River Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/GreenRiverLakeWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/GreenRiverLakeWMAOnline_Image.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/crane_zone_green_river_Wma.pdf"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/GRL_PheasantQuotaHunt.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=29"
+  },
+  "Green River State Forest": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/GreenRiverStateForest_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/GreenRiverSFOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9079"
+  },
+  "Green River State Natural Area (Davis Bend)": {
+   "agency": "State Natural Areas (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx"
+  },
+  "Green River State Natural Area (Rush Island Bottoms)": {
+   "agency": "State Natural Areas (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx"
+  },
+  "Greenbo Lake State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map786e23f1-10fd-43dc-8a0d-ae5790d0a26b.pdf?sfvrsn=d3a95095_2"
+    ],
+    [
+     "Trails Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/trails-mapf6ae6136-23f3-4348-9afb-573948d0b094.pdf?sfvrsn=55f8143c_2"
+    ],
+    [
+     "Trail Map",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=ad63acfc-864e-4e69-8782-f50c38011522"
+    ],
+    [
+     "Trail Map",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=c510429e-f8fb-41b2-a90f-73191b8a9321"
+    ],
+    [
+     "Trail Map",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=04d23499-37ed-4907-8c05-01dcfa894dda"
+    ],
+    [
+     "Trail Map",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=8379100a-cc09-47e6-96b6-f545a4cc3735"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map1e02b293-f584-489e-823a-d1dc85ed9917.pdf?sfvrsn=401f3d4b_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/ashland/parks/historic/greenbo-lake-state-resort-park"
+  },
+  "Greenbo Lake State Resort Park": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [],
+   "page": "https://parks.ky.gov/things_to_do/hunts.html"
+  },
+  "Griffith Woods WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/GriffithWoodsWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/GriffithWoodsWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9201"
+  },
+  "Harris-Dickerson WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Harris-Dickerson_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/Harrid-DickersonRegionalLocator.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/Trail%20Access.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9709"
+  },
+  "Hensley-Pine Mountain WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Hensley-PineMountainWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/HensleyPineMountainWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=136"
+  },
+  "Hidden Valley Training Area": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/HiddenValleyTrainingArea_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/HiddenValleyTrainingAreaOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9115"
+  },
+  "Higginson-Henry WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Higginson-HenryWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/HigginsonHenryWMAOnline_Image.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/HHViewingGuide.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=132"
+  },
+  "Horsemill Branch WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Horse_Mill_branch_WMAmap_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/Horse_Mill_Branch_WMA_onlineimage.png"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9721"
+  },
+  "Hoskins WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Hoskins_WMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/HoskinsWMA_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9711"
+  },
+  "Isaac Shelby Cemetery State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map6c67554c-de88-4d6a-b7a4-3a6821c26376.pdf?sfvrsn=2878dd15_2"
+    ],
+    [
+     "Cemetery Map & Directory (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/cemetery-map-directory.pdf?sfvrsn=571f708c_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/junction-city/parks/historic/isaac-shelby-cemetery-state-historic-site"
+  },
+  "James E. Bickford State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/James-E.-Bickford.aspx"
+  },
+  "Jefferson Davis State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-mapc540f78e-2462-424b-b5e5-c447b5a6722f.pdf?sfvrsn=aee07697_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/fairview/parks/historic/jefferson-davis-state-historic-site"
+  },
+  "Jefferson National Forest": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/JeffersonNationalForest_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9078"
+  },
+  "Jenny Wiley State Resort Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-mapbc5b996c-9d9d-4496-820c-85d249377d4b.pdf?sfvrsn=4be2dff7_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map015668ca-8c6e-4754-ad34-1a8f825ab177.pdf?sfvrsn=da0cffe4_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/prestonsburg/parks/resort/jenny-wiley-state-resort-park"
+  },
+  "Jesse Stuart State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Jesse-Stuart.aspx"
+  },
+  "John A. Kleber WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/John_A_Kleber_WMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/JohnAKleberWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=14"
+  },
+  "John B. Stephenson Memorial Forest State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/John-B.-Stephenson-Memorial-Forest.aspx"
+  },
+  "John C. Williams WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/JohnCWilliamsWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/JohnCWilliamsWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=238"
+  },
+  "John James Audubon State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map50475013-f17e-4081-963b-98164c6a6fca.pdf?sfvrsn=f8b3bb8f_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map20171682-8b24-4bb4-8ed5-7623a6b9b16e.pdf?sfvrsn=f018243a_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/henderson/parks/historic/john-james-audubon-state-park"
+  },
+  "John James Audubon State Park State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [
+    [
+     "Use Google Maps to navigate",
+     "https://eec.ky.gov/Nature-Preserves/Locations/PublishingImages/googlemaps_link.jpg"
+    ]
+   ],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Audubon-State-Park.aspx"
+  },
+  "Jones-Keeney WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Jones-KeeneyWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/JonesKeeneyWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=19"
+  },
+  "Kaler Bottoms WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/KalerBottomsWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/KalerBottomsWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=21"
+  },
+  "Kenlake State Resort Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map184010cd-2282-44e9-8538-2c31533d3699.pdf?sfvrsn=3adced7e_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-mapccc7ae3f-ed53-44b7-8f1a-9496a5ed187d.pdf?sfvrsn=6e913160_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/hardin/parks/resort/kenlake-state-resort-park"
+  },
+  "Kentenia State Forest": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/KenteniaStateForest_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/KenteniaStateForestOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9080"
+  },
+  "Kentucky Dam Village State Resort Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-mapa1d96cf9-4bbf-40cb-9e2c-17ae776ad27d.pdf?sfvrsn=f6a25db3_0"
+    ],
+    [
+     "Accommodations Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/accomodations-map.pdf?sfvrsn=cb7dc2ec_0"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map6dc58594-89ea-49ff-9493-58f1c1ce75f9.pdf?sfvrsn=239cc832_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/calvert-city/parks/resort/kentucky-dam-village-state-resort-park"
+  },
+  "Kentucky Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/KentuckyLakeWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/KentuckyLakeWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=227"
+  },
+  "Kentucky Ridge Forest WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/KentuckyRidgeForestWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/KentuckyRidgeForestWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=186"
+  },
+  "Kentucky Ridge State Forest": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/KentuckyRidgeStateForest_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/KentuckyRidgeStateForestOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=185"
+  },
+  "Kentucky River WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/KentuckyRiverWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/KentuckyRiverWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=169"
+  },
+  "Kincaid Lake State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map711472d8-e0ef-4cea-856b-39f8a9d0fd7c.pdf?sfvrsn=a27d63d9_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/falmouth/parks/recreation/kincaid-lake-state-park"
+  },
+  "Kingdom Come State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-mapd99a2476-e940-431e-9e02-1589dfccd4aa.pdf?sfvrsn=9acbaaa8_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/cumberland/parks/recreation/kingdom-come-state-park"
+  },
+  "Kingdom Come State Park State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Kingdom-Come.aspx"
+  },
+  "Knobs State Forest": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/KnobsStateForestandWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/KnobsStateForestandWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9121"
+  },
+  "Knobs State Forest and WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/KnobsStateForestandWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/KnobsStateForestandWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9121"
+  },
+  "L. B. Davison WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/L.B.DavisonWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/LBDavisonWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=16"
+  },
+  "Lake Barkley State Resort Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map0bd2c0e4-72b5-4555-ab96-b722b2c866f3.pdf?sfvrsn=53829469_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map3209bd0f-efad-4d6c-8652-86b982b90579.pdf?sfvrsn=cd429782_2"
+    ],
+    [
+     "Map",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/mapace628c8-98dd-4aa6-b847-fea93dc75b3c.jpg?sfvrsn=990b6b42_2"
+    ],
+    [
+     "Map Info",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/map-infof827e9e5-179d-4d68-b5b6-4b03590b8ea4.jpg?sfvrsn=366eec3b_2"
+    ],
+    [
+     "Map",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/map.jpg?sfvrsn=c858e6d0_2"
+    ],
+    [
+     "Map Info",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/map-info.jpg?sfvrsn=d98d75b3_2"
+    ],
+    [
+     "Map",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/map0421e9a1-094b-47f5-bd36-0935d613850b.jpg?sfvrsn=63393e5d_2"
+    ],
+    [
+     "Map",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/map77f9601c-c4fc-492d-b489-ed358cfd3c58.jpg?sfvrsn=dbfb0c1f_2"
+    ],
+    [
+     "Map Info",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/map-infod3a649ff-c75a-47b2-808e-ccfe6e22540a.jpg?sfvrsn=3a1f4a5_2"
+    ],
+    [
+     "Map",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/mapc037372d-482c-47c5-8db5-7f03887ee92a.jpg?sfvrsn=33435ae1_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/cadiz/parks/resort/lake-barkley-state-resort-park"
+  },
+  "Lake Barkley WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/LakeBarkleyWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/LakeBarkleyWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=33"
+  },
+  "Lake Cumberland State Resort Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-mapd0ec4c31-5b64-467c-8700-6d4dc2b8c96e.pdf?sfvrsn=4a0abfe7_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-mapacfd5ffc-1da6-430b-abf6-1e10397ac34b.pdf?sfvrsn=3f891434_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/jamestown/parks/resort/lake-cumberland-state-resort-park"
+  },
+  "Lake Cumberland WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/LakeCumberlandWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/LakeCumberlandWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=157"
+  },
+  "Lake Malone State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-mapbf184522-cd67-4f33-87c6-1c4ee8486611.pdf?sfvrsn=542319e7_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-mapfa9aeaf8-129a-4243-ad8a-37b722a7a971.pdf?sfvrsn=e7a441d9_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/dunmor/parks/recreation/lake-malone-state-park"
+  },
+  "Land Between The Lakes National Recreation Area": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/LandBetweenLakesNRA_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9049"
+  },
+  "Lee K. Nelson WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/LeeKNelsonWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/LeeKNelsonWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9011"
+  },
+  "Legacy WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/LegacyLLC_HAA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/LegacyLLC_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=7101"
+  },
+  "Lincoln Homestead State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map3ce19887-b5a1-4d79-bc7b-b81ad7ef3856.pdf?sfvrsn=1db84187_2"
+    ],
+    [
+     "Course Map and Tee Card",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=54fae78f-d016-43fd-ba90-7e400ae59805"
+    ]
+   ],
+   "page": "https://parks.ky.gov/springfield/parks/historic/lincoln-homestead-state-park"
+  },
+  "Little Sexton Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/LittleSextonsCreekWMAAll.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/LittleSextonsCreekonlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9725"
+  },
+  "Little South Fork State Natural Area (Steele Hollow SNA)": {
+   "agency": "State Natural Areas (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Burnett-WWCA.aspx"
+  },
+  "Livingston County WMA and State Natural Area": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/LivingstonCountyWMAandStateNaturalArea_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/LivingstonCountyWMAandStateNaturalAreaOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9117"
+  },
+  "Livingston County Wildlife Management Area and State Nature Preserve (Bissell Bluff SNP)": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Livingston-County.aspx"
+  },
+  "Livingston County Wildlife Management Area and State Nature Preserve (Newman's Bluff SNP)": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Livingston-County.aspx"
+  },
+  "Logan County Glade State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Logan-County-Glade.aspx"
+  },
+  "Lower Howards Creek State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Lower-Howard's-Creek-Heritage-Park.aspx"
+  },
+  "Marion County WMA and State Forest": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/MarionCountyWMAandSF_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/MarionCountyWMAandSFOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9133"
+  },
+  "Marrowbone State Forest and WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/MarrowboneStateForestandWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/MarrowboneSFandWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9131"
+  },
+  "Martin's Fork State Natural Area": {
+   "agency": "State Natural Areas (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Martins-Fork.aspx"
+  },
+  "Martins Fork Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/MartinsForkLakeWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/MartinsForkLakeWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=41"
+  },
+  "Martins Fork WMA and State Natural Area": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/MartinsForkWMAandStateNaturalArea_All.pdf"
+    ],
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/ShilalahCreekWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/MartinsForkWMAandSNAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9118"
+  },
+  "Mary Todd Lincoln House State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [],
+   "page": "https://www.mtlhouse.org/"
+  },
+  "Meadow Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/MeadowCreekWMA_all.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/MeadowCreekWMA_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9224"
+  },
+  "Metropolis Lake State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Metropolis-Lake.aspx"
+  },
+  "Mill Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/MillCreekWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/MillCreekWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=37"
+  },
+  "Miller Welch-Central Kentucky WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/MillerWelch-CentralKentuckyWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/MillerWelchCentralKYWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=15"
+  },
+  "Mineral Mound State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map7425b9de-cd7f-4e5f-adb4-b87af339ed21.pdf?sfvrsn=c72b87b0_2"
+    ],
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map9c284078-8efc-4f95-a566-14bd36fe551c.pdf?sfvrsn=36ea47b5_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/eddyville/parks/recreation/mineral-mound-state-park"
+  },
+  "Mud Camp Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/MudCreekCampWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/MudCampCreekWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=146"
+  },
+  "Mullins WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/MullinsWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/MullinsWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=12"
+  },
+  "My Old Kentucky Home State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map1304db69-b50d-4c0c-a075-74ffeae15a0a.pdf?sfvrsn=dd5d8c7c_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/parkslibraries/default-document-library/mokh_campgroundmap-(1).pdf"
+    ]
+   ],
+   "page": "https://parks.ky.gov/bardstown/parks/historic/my-old-kentucky-home-state-park"
+  },
+  "Natural Bridge State Park State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Natural-Bridge.aspx"
+  },
+  "Natural Bridge State Resort Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Trail/Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/trail-park-map.pdf?sfvrsn=4adcf593_2"
+    ],
+    [
+     "Trail Map",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=308e120e-b306-4154-9989-40e70b5699bc"
+    ],
+    [
+     "Trail Map",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=ee90e385-cde6-4268-91c2-cd81f3613128"
+    ],
+    [
+     "Trail Map",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=303ef1f0-b786-4d05-9e58-743d5cf36e32"
+    ],
+    [
+     "Trail Map",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=cc28b5b8-dc08-4fee-a764-d18d043aaca9"
+    ],
+    [
+     "Trail Map",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=69ee0fab-c5ac-40ce-8801-fb5c233da607"
+    ],
+    [
+     "Trail Map",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=de6a86f6-2701-4637-8972-34be71bb0e43"
+    ],
+    [
+     "Trail Map",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=c337bea9-9755-4c5a-a6ff-fc9e86f140c6"
+    ],
+    [
+     "Trail Map",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=bdc61738-ac27-4bc7-801c-47f4fb045bb2"
+    ],
+    [
+     "Trail Map",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=3faceb7f-bd84-473c-bc3f-a1dc2344ca6f"
+    ],
+    [
+     "Trail Map",
+     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=1c6c737f-15f0-4ff9-9c4c-84a038065ebc"
+    ],
+    [
+     "Middle Fork Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/middle-fork-campground-map.pdf?sfvrsn=2c626448_2"
+    ],
+    [
+     "Whittleton Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/whittleton-campground-map60290a1e-2684-48e1-8c76-58c923788877.pdf?sfvrsn=58d26298_0"
+    ]
+   ],
+   "page": "https://parks.ky.gov/slade/parks/resort/natural-bridge-state-resort-park"
+  },
+  "Nolin Lake State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-mape83dbdcd-0e10-442e-896e-749c8363bb03.pdf?sfvrsn=b777de3_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-mapb265ff0e-b349-49cc-945f-a0d9f4585974.pdf?sfvrsn=52a87644_0"
+    ],
+    [
+     "Primitive Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/primitive-campground-map.pdf?sfvrsn=a48f7ebd_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/mammoth-cave/parks/recreation/nolin-lake-state-park"
+  },
+  "Nolin River Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/NolinRiverLakeWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/NolinRiverLakeWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=31"
+  },
+  "Obion Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/ObionCreekWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/ObionCreekWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=176"
+  },
+  "Ohio River Islands National Wildlife Refuge": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/OhioRiverIslandsNWROnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9082"
+  },
+  "Ohio River Islands WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/OhioRiverIslandsWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/OhioRiverIslandsWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=134"
+  },
+  "Old Fort Harrod State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map40d4be5e-7a24-4f10-94a0-0dad613ff87f.pdf?sfvrsn=544d1890_2"
+    ],
+    [
+     "Fort Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/fort-map.pdf?sfvrsn=c5c82a67_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/harrodsburg/parks/historic/old-fort-harrod-state-park"
+  },
+  "Old Mulkey Meetinghouse State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Meetinghouse Cemetery Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/meetinghouse-cemetery-map.pdf?sfvrsn=c168a4b5_2"
+    ],
+    [
+     "Whole Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/whole-park-map.pdf?sfvrsn=e0daa280_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/tompkinsville/parks/historic/old-mulkey-meetinghouse-state-historic-site"
+  },
+  "Old Trace Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Old_Trace_Creek_WMA_all.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/OldTraceCreelWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9609"
+  },
+  "Otter Creek Outdoor Recreation Area": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Otter_Creek_Trail_map.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/OtterCreekORAOnline_Image.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/OCORA_Exhibit_A.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9199"
+  },
+  "Paintsville Lake State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map39a5f06b-fed6-49fc-85ac-6aaa67d3b44f.pdf?sfvrsn=e8f8d06c_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map821b00ab-b9f3-4b16-ab16-262bb842efeb.pdf?sfvrsn=3af62afc_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/staffordsville/parks/recreation/paintsville-lake-state-park"
+  },
+  "Paintsville Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/PaintsvilleLakeWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/PaintsvilleLakeWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=24"
+  },
+  "Paul Van Booven WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/PaulVanBoovenWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/PaulVanBoovenWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9105"
+  },
+  "Peabody WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/PeabodyWMAOnline_Image.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/PeabodyAll.pdf"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/PeabodyWMA_PrintAll.pdf"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/Peabody_Removed_2020.pdf"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/Peabody_WMA_Bird_Checklist.pdf"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/hunter_check_in_hang_tag.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=229"
+  },
+  "Pennyrile Forest State Resort Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map08cc7e0a-9307-47b3-85e9-29db02ce7648.pdf?sfvrsn=145d90d5_2"
+    ],
+    [
+     "Bike Trails Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/bike-trails-map.pdf?sfvrsn=eaa4d572_2"
+    ],
+    [
+     "Trails/Equine Trailhead Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/trails-equine-trailhead-map.pdf?sfvrsn=dc214fc4_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map46588094-f7bc-49a6-b7fc-53f0e0a670b1.pdf?sfvrsn=cefda9e7_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/dawson-springs/parks/resort/pennyrile-forest-state-resort-park"
+  },
+  "Pennyrile State Forest": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/PennyrileStateForestandTradewaterWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/PennyrileSF_TradewaterWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9060"
+  },
+  "Perryville Battlefield State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Trail Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/trail-mapbac509a8-7d2a-48b2-8ac4-db37c6e13041.pdf?sfvrsn=48b1a47_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/perryville/parks/historic/perryville-battlefield-state-historic-site"
+  },
+  "Pilot Knob State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Pilot-Knob.aspx"
+  },
+  "Pine Mountain State Park State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Pine-Mountain.aspx"
+  },
+  "Pine Mountain State Resort Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-mapb229d418-421c-441c-a94a-3767521710cb.pdf?sfvrsn=a8964d93_2"
+    ],
+    [
+     "Cabins and Cottages Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/cabins-and-cottages-map.pdf?sfvrsn=2a90c2bb_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/pineville/parks/resort/pine-mountain-state-resort-park"
+  },
+  "Pine Mountain State Scenic Trail State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Birch Knob Section Trail Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/birch-knob-section-trail-map.pdf?sfvrsn=22bfe0c9_2"
+    ],
+    [
+     "Highland Section Trail Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/highland-section-trail-map.pdf?sfvrsn=f4ef7704_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/whitesburg/parks/recreation/pine-mountain-state-scenic-trail"
+  },
+  "Ping-Sinking Valley WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Ping-SinkingValleyWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/Ping-SinkingValley_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9208"
+  },
+  "Pioneer Weapons WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/PioneerWeaponsWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/PioneerWeaponsWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=36"
+  },
+  "Pocahontas WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/PocahontasWMAmap_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/PocahontasWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9723"
+  },
+  "Quiet Trails State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Quiet-Trails.aspx"
+  },
+  "R. F. Tarter WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/RFTarterWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/RFTarterWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=171"
+  },
+  "RH Group WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/RH_Group_HAA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/RHH_RegionalLocatorb.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/RH_Group_Hunter_Waiver.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9702"
+  },
+  "Redbird WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/RedbirdWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/RedbirdWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=35"
+  },
+  "Reelfoot National Wildlife Refuge": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/ReelfootNationalWR_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9074"
+  },
+  "Robinson Forest WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/RobinsonForestWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/RobinsonForestWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9120"
+  },
+  "Rockcastle River WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/RockcastleRiverWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/RockcastleRiverWMA_onlineimage.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/hunter_check_in_hang_tag.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9217"
+  },
+  "Rolling Fork WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/RollingForkWMA_all.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/RollingForkWMA_Regional_Locator.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9219"
+  },
+  "Ross Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/RossCreekWMAall.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/RossCreekWMARegionalLocator.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9705"
+  },
+  "Rough River Dam State Resort Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-mapdfb1e246-2868-4a48-9910-0a7654200f0b.pdf?sfvrsn=dd759b8b_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/falls-rough/parks/resort/rough-river-dam-state-resort-park"
+  },
+  "Rough River Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/RoughRiverLakeWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/RoughRiverLakeWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=30"
+  },
+  "Shillalah Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/ShilalahCreekWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/ShilalahCreekOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=170"
+  },
+  "Simon Kenton State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [],
+   "page": "http://www.historicwashingtonky.com/home.html"
+  },
+  "Simon Kenton WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/SimonKentonWMA_all.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/SimonKentonWMARegionalLocator.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9613"
+  },
+  "Sinking Creek State Natural Area": {
+   "agency": "State Natural Areas (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Sinking-Creek.aspx"
+  },
+  "Six Mile Island State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Six-Mile-Island.aspx"
+  },
+  "Sloughs WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Sloughs_WMA_All.pdf"
+    ],
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Sauerheber_Hunt_Unit_Waterfowl_Maps.pdf"
+    ],
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Jenny_Hole_Hunt_Unit_Waterfowl_Map.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/SloughsWMAOnline_Image.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/Sloughs_WMA_Waterfowl_FAQ.pdf"
+    ],
+    [
+     "Brochure (PDF)",
+     "https://fw.ky.gov/More/Documents/SloughsViewingBrochure.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=230"
+  },
+  "South Shore WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/SouthShoreWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/SouthShoreWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9067"
+  },
+  "Stephens Creek WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/StephensCreekWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/StephensCreekWMA_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9232"
+  },
+  "Stone Mountain WMA and State Natural Area": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/StoneMountainWMAandStateNaturalArea_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/StoneMountainWMAandSNAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9014"
+  },
+  "Stone Mountain Wildlife Management Area and State Natural Area": {
+   "agency": "State Natural Areas (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Stone-Mountain.aspx"
+  },
+  "Sunny Brook WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/SunnybrookWMAall.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/SunnybrookWMARegionalLocator.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9707"
+  },
+  "T. N. Sullivan WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/TN_SullivanWMA_All.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/TNSullivanWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=156"
+  },
+  "Taylorsville Lake State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map4c3a99b9-34ff-4971-afc1-6d7fc2c900d3.pdf?sfvrsn=523b76a3_2"
+    ],
+    [
+     "Orienteering Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/orienteering-map.pdf?sfvrsn=12530db0_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-mapcee23145-76e0-4266-bf02-a8046453f1a0.pdf?sfvrsn=d5e29ca6_0"
+    ],
+    [
+     "Park Overview Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-overview-map.pdf?sfvrsn=67be6b52_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/mount-eden/parks/recreation/taylorsville-lake-state-park"
+  },
+  "Taylorsville Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/TaylorsvilleLakeWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/TaylorsvilleLakeWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=22"
+  },
+  "Tom Dorman State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Tom-Dorman.aspx"
+  },
+  "Tradewater WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/PennyrileStateForestandTradewaterWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/PennyrileSF_TradewaterWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=128"
+  },
+  "Twin Eagle WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/TwinEagleWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/TwinEagleWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=13"
+  },
+  "Twin Knobs Campground": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/TwinKnobsCampground_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9116"
+  },
+  "Tygarts State Forest": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/TygartsStateForest_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/TygartsStateForestOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9085"
+  },
+  "University of the Cumberlands WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/University of the Cumberlands WMAAll.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/UniversityOfTheCumberlands_onlineimage.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/University of the CumberlandsTemp ROTC closure.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9727"
+  },
+  "Vernon-Douglas State Nature Preserve": {
+   "agency": "State Nature Preserves (OKNP)",
+   "maps": [],
+   "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Vernon-Douglas.aspx"
+  },
+  "Veterans Memorial WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/Veterans_Memorial_WMA_all.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/VeteransMemorialWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9202"
+  },
+  "Waveland State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-mapa3c1f5b0-c74b-4d8b-9d28-ff8e3cb13018.pdf?sfvrsn=ebab9901_2"
+    ]
+   ],
+   "page": "https://parks.ky.gov/lexington/parks/historic/waveland-state-historic-site"
+  },
+  "Wells Hunting Access Area": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/WellsHuntingAccessArea_all.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/WellsHuntingAccessAreaOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9206"
+  },
+  "West Kentucky WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/WestKYWMAOnline_Image.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/West_Kentucky_WMA.pdf"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/WestKentuckyTract1Removal.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=137"
+  },
+  "Wickliffe Mounds State Historic Site": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map5a0ad43e-b0cf-4f09-8ae9-c5db00f46227.pdf?sfvrsn=b3c88011_0"
+    ]
+   ],
+   "page": "https://parks.ky.gov/wickliffe/parks/historic/wickliffe-mounds-state-historic-site"
+  },
+  "Winford WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/WinfordWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/WinfordWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=20"
+  },
+  "Yatesville Lake State Park": {
+   "agency": "Kentucky State Parks",
+   "maps": [
+    [
+     "Park Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map10d06200-bfed-4fa9-995b-37a853f47ee3.pdf?sfvrsn=f75f0246_2"
+    ],
+    [
+     "Park Marina Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-marina-map.pdf?sfvrsn=fad319c_2"
+    ],
+    [
+     "Campground Map (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-mapaacf9360-a213-4129-8cbf-4f16c9084e55.pdf?sfvrsn=752835ca_0"
+    ]
+   ],
+   "page": "https://parks.ky.gov/louisa/parks/recreation/yatesville-lake-state-park"
+  },
+  "Yatesville Lake State Park and Lawrence County Recreation Area": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [],
+   "page": "https://parks.ky.gov/things_to_do/hunts.html"
+  },
+  "Yatesville Lake WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/YatesvilleLakeWMA_ALL.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/YatesvilleLakeWMAOnline_Image.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=23"
+  },
+  "Yellowbank WMA": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/YellowbankWMA_ALL.pdf"
+    ],
+    [
+     "Boundary map (PDF)",
+     "https://fw.ky.gov/More/Documents/YellowbankWMA_ALL_ADA.pdf"
+    ],
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/YellowbankWMAOnline_Image.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/YellowbankWMA_Main_QuotaHunt.pdf"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=192"
+  },
+  "Zilpo Campground": {
+   "agency": "Fish & Wildlife (hunting areas / WMAs)",
+   "maps": [
+    [
+     "Location map (picture)",
+     "https://app.fw.ky.gov/kfwis/Map_Images/ZilpoCampground_onlineimage.jpg"
+    ]
+   ],
+   "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9094"
+  }
+ },
+ "source": "Map links found on each agency page (KDFWR, Kentucky State Parks, Office of Kentucky Nature Preserves)",
+ "updated": "2026-10-15 20:41 UTC"
+}
