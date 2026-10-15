@@ -1,107 +1,20 @@
-200 11957 rn Distinct Values: 
- 
-     True &nbsp; 
-     False 
- 
- 
-
- 
-  Result Offset:  
-   
- 
-
- 
-  Result Record Count:  
-   
- 
-
- 
- Return Extent Only: 
- 
-     True &nbsp; 
-     False 
- 
- 
-
- 
-  SQL Format:  
- 
- 
- None 
- Standard 
- Native 
- 
- 
- 
-
- 
-  Datum Transformation:  
-   
- 
-
- 
-  Parameter Values:  
-   
- 
-
- 
-  Range Values:  
-   
- 
-
- 
-  Quantization Parameters:  
-   
- 
- 
-  Feature Encoding:  
- 
- 
- EsriDefault 
- 
- 
- 
-
- 
-  Format:  
- 
- 
- HTML 
- JSON 
- KMZ 
- GeoJSON 
- PBF 
- 
- 
- 
-
- 
- 
- 
- 
- 
- 
-
- 
-
-  
-
- 
-document.forms.sdform.where.focus();
- 
-
- # records: 1   
- Unit_Nm:   Bullock Pen Lake 
-	     Loc_Own:   Kentucky Department of Fish and Wildlife Resources 
-	     Loc_Mang:   Kentucky Department of Fish and Wildlife Resources 
-	     Pub_Access:   OA 
-	     GIS_Acres:   139 
-	     
-   
-
-  
-
- 
-
- 
-
+== Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer/0
+{"error":{"code":400,"message":"Failed to execute query.","details":[]}}
+{"currentVersion":10.91,"cimVersion":"2.9.0","id":0,"name":"State Nature Preserves","type":"Feature Layer","description":"","geometryType":"esriGeometryPolygon","sourceSpatialReference":{"wkid":102763,"latestWkid":3089,"xyTolerance":0.003280833333333333,"zTolerance":0.001,"mTolerance":0.001,"falseX"
+== Ky_KNP_Natural_Areas_WGS84WM/MapServer/0
+{"error":{"code":400,"message":"Failed to execute query.","details":[]}}
+{"currentVersion":10.91,"cimVersion":"2.9.0","id":0,"name":"State Natural Areas","type":"Feature Layer","description":"State Natural Areas are owned and managed by the Office of Kentucky Nature Preserves. State Natural Areas available in this layer are open to the public for outdoor recreation.","ge
+== Ky_State_Parks_Features_WGS84WM/MapServer/8
+{"error":{"code":400,"message":"Failed to execute query.","details":[]}}
+{"currentVersion":10.91,"cimVersion":"2.9.0","id":8,"name":"State Park Boundaries","type":"Feature Layer","description":"This dataset contains KY state park boundaries under the oversight of the Kentucky Department of Parks.","geometryType":"esriGeometryPolygon","sourceSpatialReference":{"wkid":1027
+== Ky_Public_Hunting_Areas_WGS84WM/MapServer/1
+{"error":{"code":400,"message":"Failed to execute query.","details":[]}}
+{"currentVersion":10.91,"cimVersion":"2.9.0","id":1,"name":"Hunting Areas","type":"Feature Layer","description":"","geometryType":"esriGeometryPolygon","sourceSpatialReference":{"wkid":102763,"latestWkid":3089,"xyTolerance":0.003280833333333333,"zTolerance":0.001,"mTolerance":0.001,"falseX":-1174348
+== PAD
+{"displayFieldName":"Own_Name","fieldAliases":{"Unit_Nm":"Unit Name","Loc_Nm":"Local Name","Loc_Own":"Local Owner","Loc_Mang":"Local Manager","Pub_Access":"Public Access","GIS_Acres":"GIS Acres"},"fields":[{"name":"Unit_Nm","type":"esriFieldTypeString","alias":"Unit Name","length":250},{"name":"Loc_Nm","type":"esriFieldTypeString","alias":"Local Name","length":250},{"name":"Loc_Own","type":"esriFieldTypeString","alias":"Local Owner","length":250},{"name":"Loc_Mang","type":"esriFieldTypeString","alias":"Local Manager","length":250},{"name":"Pub_Access","type":"esriFieldTypeString","alias":"Public Access","length":20},{"name":"GIS_Acres","type":"esriFieldTypeInteger","alias":"GIS Acres"}],"features":[{"attributes":{"Unit_Nm":"Apple Valley Glade State Nature Preserve","Loc_Nm":"Apple Valley Glade SNP","Loc_Own":"Kentucky State Nature Preserves Commission","Loc_Mang":"Unknown","Pub_Access":"RA","GIS_Acres":37}},{"attributes":{"Unit_Nm":"Applegrove Park","Loc_Nm":"Applegrove Park","Loc_Own":"City of Barbourville","Loc_Mang":"City of Barbourville","Pub_Access":"OA","GIS_Acres":12}},{"attributes":{"Unit_Nm":"Apple Orchard Park","Loc_Nm":"Apple Orchard Park","Loc_Own":"City of Cold Spring","Loc_Mang":"City of Cold Spring","Pub_Access":"OA","GIS_Acres":2}}]}
+== NOM
+[]
+== WD
+{"searchinfo":{"search":"Apple Valley Glades"},"search":[],"success":1}
+== AXE
+{"error":{"code":400,"message":"Failed to execute query.","details":[]}}
