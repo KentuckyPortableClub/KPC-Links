@@ -104,8 +104,11 @@
   const words = n => String(n || '').replace(/\b(state|national|park|parks|forest|wildlife|management|area|recreation|recreational|nature|preserve|refuge|historic|historical|site|reserve|natural|lake|wma|nwr|the|of|and)\b/gi, ' ').replace(/[^A-Za-z0-9' ]/g, ' ').trim().split(/\s+/).filter(w => w.length > 2);
   async function padusByName(name, la, lo) {
     const w = words(name), d = 0.35; if (!w.length) return [];
-    const where = w.slice(0, 2).map(x => `(UPPER(Unit_Nm) LIKE '%${x.toUpperCase().replace(/'/g, "''")}%' OR UPPER(Loc_Nm) LIKE '%${x.toUpperCase().replace(/'/g, "''")}%')`).join(' AND ');
-    const g = await padus({ where, geometry: `${lo - d},${la - d},${lo + d},${la + d}`, geometryType: 'esriGeometryEnvelope', returnGeometry: true, geometryPrecision: 5, maxAllowableOffset: 0.0001 });
+    /* PAD-US firewall: one plain LIKE only (no UPPER/OR/AND), so ask Title Case, CAPITALS and as typed, then merge */
+    const ws = w.slice(0, 2), pat = f => ('%' + ws.map(f).join('%') + '%').replace(/'/g, '%');
+    const wh = [...new Set([`Unit_Nm LIKE '${pat(x => x.charAt(0).toUpperCase() + x.slice(1).toLowerCase())}'`, `Loc_Nm LIKE '${pat(x => x.toUpperCase())}'`, `Unit_Nm LIKE '${pat(x => x)}'`])];
+    const gs = await Promise.all(wh.map(where => padus({ where, geometry: `${lo - d},${la - d},${lo + d},${la + d}`, geometryType: 'esriGeometryEnvelope', returnGeometry: true, geometryPrecision: 5, maxAllowableOffset: 0.0001 }).catch(() => ({ features: [] }))));
+    const seen = new Set(); const g = { features: gs.flatMap(x => x.features || []).filter(f => { const k = f.id != null ? f.id : (f.properties || {}).OBJECTID; if (k != null && seen.has(k)) return false; seen.add(k); return true; }) };
     let fs = (g.features || []).filter(f => f.geometry && f.properties.Category !== 'Proclamation'); if (!fs.length) return [];
     const nl = String(name).toLowerCase();
     fs.forEach(f => { const u = String(f.properties.Unit_Nm || '').toLowerCase(); f._s = (u.includes(nl) || nl.includes(u) ? 5 : 0) + w.filter(x => u.includes(x.toLowerCase())).length; });

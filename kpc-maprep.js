@@ -17,7 +17,13 @@
   let map = null, lay = null, cur = null, lastQ = '';
   const q = (o) => B.jget(PADUS + '?' + new URLSearchParams(Object.assign({ outFields: F, returnGeometry: false, f: 'json' }, o))).then(j => { if (j.error) throw new Error(j.error.message); return (j.features || []).map(f => f.attributes); });
   const words = n => String(n || '').replace(/\b(state|national|park|parks|the|of|and|area|wildlife|management|nature|preserve|natural|recreation|recreational|forest|refuge|site)\b/gi, ' ').replace(/[^A-Za-z0-9' ]/g, ' ').trim().split(/\s+/).filter(w => w.length > 2).map(w => w.length > 4 && /[^s]s$/i.test(w) ? w.slice(0, -1) : w);
-  const like = w => { const x = w.toUpperCase().replace(/'/g, "''"); return `(UPPER(Unit_Nm) LIKE '%${x}%' OR UPPER(Loc_Nm) LIKE '%${x}%')`; };
+  /* The PAD-US server's firewall refuses (403) any where with UPPER(), OR, IN (...), a second LIKE, or anything after a LIKE.
+     Safe shape: State_Nm='XX' AND <field> LIKE '%word%word%'. LIKE is case-sensitive, so ask in Title Case (Unit_Nm),
+     CAPITALS (Loc_Nm) and as typed, all at once, and merge. Agency picks are filtered here, not in the query. */
+  const tc = w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+  const pat = (ws, f) => ('%' + ws.map(f).join('%') + '%').replace(/'/g, '%');
+  const nameWheres = (ws, pre) => { const seen = new Set(), out = []; [['Unit_Nm', tc], ['Loc_Nm', w => w.toUpperCase()], ['Unit_Nm', w => w]].forEach(([fl, f]) => { const w = `${pre}${fl} LIKE '${pat(ws, f)}'`; if (!seen.has(w)) { seen.add(w); out.push(w); } }); return out; };
+  const qName = (ws, st, o) => Promise.all(nameWheres(ws, `State_Nm='${st}' AND `).map(w => q(Object.assign({}, o, { where: w })).catch(() => []))).then(L => { const m = new Map(); L.flat().forEach(r => m.set(r.OBJECTID, r)); return [...m.values()].sort((a, b) => (+b.GIS_Acres || 0) - (+a.GIS_Acres || 0)); });
   let tick = null;
   /* messages; a text ending in … gets a spinning compass and a seconds counter so people can see it's still working */
   const msg = h => {
@@ -43,19 +49,19 @@
     try { localStorage.setItem('kpcMrState', st); } catch (e) {}
     box.innerHTML = '<p class="mr-help">Loading the federal and state agencies that own land in ' + esc(st) + '…</p>';
     try {
-      const agq = () => B.jget(PADUS + '?' + new URLSearchParams({ where: `State_Nm='${st}' AND Mang_Type IN ('FED','STAT') AND Category<>'Easement'`, groupByFieldsForStatistics: 'Mang_Type,Mang_Name,Loc_Mang', outStatistics: JSON.stringify([{ statisticType: 'count', onStatisticField: 'OBJECTID', outStatisticFieldName: 'n' }]), f: 'json' }), null, 45000);
+      const agq = () => B.jget(PADUS + '?' + new URLSearchParams({ where: `State_Nm='${st}'`, outFields: 'Mang_Type,Mang_Name,Loc_Mang,Category', returnDistinctValues: true, returnGeometry: false, f: 'json' }), null, 45000);
       let j; try { j = await agq(); } catch (e) { box.innerHTML = '<p class="mr-help">The national database is slow, trying again…</p>'; j = await agq(); }
       const m = new Map();
-      (j.features || []).forEach(f => { const a = f.attributes, loc = (a.Loc_Mang && !/^unknown$/i.test(a.Loc_Mang)) ? a.Loc_Mang : (AG[a.Mang_Name] || a.Mang_Name); const k = a.Mang_Type + '|' + a.Mang_Name + '|' + loc.toLowerCase(); const o = m.get(k) || { t: a.Mang_Type, code: a.Mang_Name, loc, n: 0 }; o.n += a.n; m.set(k, o); });
+      (j.features || []).filter(f => /^(FED|STAT)$/.test(f.attributes.Mang_Type) && f.attributes.Category !== 'Easement').forEach(f => { const a = f.attributes, loc = (a.Loc_Mang && !/^unknown$/i.test(a.Loc_Mang)) ? a.Loc_Mang : (AG[a.Mang_Name] || a.Mang_Name); const k = a.Mang_Type + '|' + a.Mang_Name + '|' + loc.toLowerCase(); const o = m.get(k) || { t: a.Mang_Type, code: a.Mang_Name, loc, n: 0 }; o.n += 1; m.set(k, o); });
       AGL = [...m.values()].sort((a, b) => (a.t > b.t ? 1 : a.t < b.t ? -1 : 0) || b.n - a.n);
     } catch (e) { box.innerHTML = '<p class="mr-help">Could not load the agency list right now.</p>'; return; }
     drawAg(st);
   }
   function drawAg(st) {
     const grp = t => AGL.filter(a => a.t === t);
-    const chip = a => `<button type="button" class="mr-ag${agPick.has(agKey(a)) ? ' on' : ''}" data-k="${esc(agKey(a))}">${esc(a.loc)}${a.loc !== (AG[a.code] || a.code) && AG[a.code] ? ' <small>' + esc(AG[a.code]) + '</small>' : ''} <em>${a.n}</em></button>`;
+    const chip = a => `<button type="button" class="mr-ag${agPick.has(agKey(a)) ? ' on' : ''}" data-k="${esc(agKey(a))}">${esc(a.loc)}${a.loc !== (AG[a.code] || a.code) && AG[a.code] ? ' <small>' + esc(AG[a.code]) + '</small>' : ''}</button>`;
     $('mrAg').innerHTML = `<details class="mr-agd"${AGL.length && agPick.size ? ' open' : ''}><summary>AGENCIES SEARCHED IN ${esc(st)}: ${grp('FED').length} FEDERAL · ${grp('STAT').length} STATE ${agPick.size ? '· ONLY ' + agPick.size + ' PICKED' : '· ALL'} (TAP TO SEE)</summary>
-<p class="mr-help">Every search looks through all of these (from the national public land database), plus the live National Park Service and U.S. Fish &amp; Wildlife Service maps${st === 'KY' ? ', Kentucky\'s own state boundary files' : ''} and, as a backup, OpenStreetMap. Tap agencies to search only those; tap again to undo. The number is how many land areas each one has in the database.</p>
+<p class="mr-help">Every search looks through all of these (from the national public land database), plus the live National Park Service and U.S. Fish &amp; Wildlife Service maps${st === 'KY' ? ', Kentucky\'s own state boundary files' : ''} and, as a backup, OpenStreetMap. Tap agencies to search only those; tap again to undo.</p>
 <h4>FEDERAL</h4><div class="mr-ags">${grp('FED').map(chip).join('') || '<span class="mr-help">none listed</span>'}</div><h4>STATE</h4><div class="mr-ags">${grp('STAT').map(chip).join('') || '<span class="mr-help">none listed</span>'}</div></details>`;
     $('mrAg').querySelectorAll('.mr-ag').forEach(b => b.onclick = () => { const k = b.dataset.k; if (agPick.has(k)) agPick.delete(k); else agPick.add(k); drawAg(st); });
   }
@@ -150,9 +156,9 @@
     if (!st) { msg('<b>Pick the state first.</b> Each state has its own agencies, so the search needs to know where to look.'); $('mrState').focus(); return; }
     if (name.length < 3) { msg('Type at least part of the park name.'); return; }
     msg('Searching ' + esc(st) + ': the national public land database (every federal and state agency), the live National Park Service and Fish &amp; Wildlife maps' + (st === 'KY' ? ', Kentucky\'s state files' : '') + ' and OpenStreetMap…'); $('mrList').innerHTML = '';
-    const w = words(name).slice(0, 3); const W = (w.length ? w : [name]).map(like).join(' AND ');
-    let rows = [], where = W + ` AND State_Nm='${st}'`, box = null;
-    if (agPick.size) where += ' AND (' + [...agPick].map(k => { const [t, code, loc] = k.split('|'); const a = AGL.find(x => agKey(x) === k); return `(Mang_Type='${t}' AND Mang_Name='${code}'${a && a.loc !== (AG[code] || code) ? ` AND Loc_Mang='${a.loc.replace(/'/g, "''")}'` : ''})`; }).join(' OR ') + ')';
+    const w0 = words(name).slice(0, 3), w = w0.length ? w0 : [name.replace(/[^A-Za-z0-9' ]/g, ' ').trim()];
+    let rows = [], box = null;
+    const agOK = r => !agPick.size || [...agPick].some(k => { const [t, code] = k.split('|'); const a = AGL.find(x => agKey(x) === k); const loc = (r.Loc_Mang && !/^unknown$/i.test(r.Loc_Mang)) ? r.Loc_Mang : (AG[r.Mang_Name] || r.Mang_Name); return r.Mang_Type === t && r.Mang_Name === code && (!a || a.loc.toLowerCase() === String(loc).toLowerCase()); });
     const xP = agPick.size ? Promise.resolve([]) : extra(name, st);
     try {
       if (town) {
@@ -160,11 +166,12 @@
         const hit = (g && g.results || []).find(r => stateOf(r.admin1) === st);
         if (hit) box = [hit.longitude - 0.7, hit.latitude - 0.6, hit.longitude + 0.7, hit.latitude + 0.6];
       }
-      const o = { where, resultRecordCount: 200, orderByFields: 'GIS_Acres DESC' };
+      const o = { resultRecordCount: 200 };
       if (box) Object.assign(o, { geometry: box.join(','), geometryType: 'esriGeometryEnvelope', inSR: 4326, spatialRel: 'esriSpatialRelIntersects' });
-      rows = await q(o).catch(() => []);
+      rows = (await qName(w, st, o)).filter(agOK);
       /* nothing with every word? try again with fewer words (spelling differs: 'Glades' vs 'Glade', extra words) */
-      for (let n = w.length - 1; !rows.length && n >= 1; n--) { if (n === 1 && w[0].length < 5) break; o.where = w.slice(0, n).map(like).join(' AND ') + where.slice(W.length); rows = await q(o).catch(() => []); }
+      for (let n = w.length - 1; !rows.length && n >= 1; n--) { if (n === 1 && w[0].length < 5) break; rows = (await qName(w.slice(0, n), st, o)).filter(agOK); }
+      if (!rows.length && w.length > 1) for (const x of w.filter(x => x.length >= 5)) { rows = (await qName([x], st, o)).filter(agOK); if (rows.length) break; }
     } catch (e) { rows = []; }
     const X = await xP;
     const G = new Map(); rows.forEach(r => { const k = (r.Unit_Nm || r.Loc_Nm) + '|' + r.State_Nm; const g = G.get(k) || { name: r.Unit_Nm || r.Loc_Nm, st: r.State_Nm, rows: [], acres: 0, src: 'USGS PAD-US (national public land database)' }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; G.set(k, g); });
