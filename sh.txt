@@ -1,12 +1,8 @@
-https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0?f=json
-{'name': 'PADUS4_0_FeeManagers', 'type': 'Feature Layer', 'minScale': 0, 'maxScale': 0, 'geometryType': 'esriGeometryPolygon', 'capabilities': 'Query,Map,Data', 'supportsDynamicLayers': None, 'maxRecordCount': 2000, 'supportedQueryFormats': 'JSON, geoJSON, PBF', 'singleFusedMapCache': None}
- layers []
- services None
-https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer?f=json
-{'name': None, 'type': None, 'minScale': 0, 'maxScale': 0, 'geometryType': None, 'capabilities': 'Query,Map,Data', 'supportsDynamicLayers': True, 'maxRecordCount': 2000, 'supportedQueryFormats': 'JSON, geoJSON, PBF', 'singleFusedMapCache': False}
- layers [(0, 'PADUS4_0_FeeManagers', 0)]
- services None
-https://edits.nationalmap.gov/arcgis/rest/services/PAD-US?f=json
-{'name': None, 'type': None, 'minScale': None, 'maxScale': None, 'geometryType': None, 'capabilities': None, 'supportsDynamicLayers': None, 'maxRecordCount': None, 'supportedQueryFormats': None, 'singleFusedMapCache': None}
- layers []
- services [{'name': 'PAD-US/PAD_US_4_1', 'type': 'MapServer'}, {'name': 'PAD-US/PAD_US_gaz_combined', 'type': 'MapServer'}, {'name': 'PAD-US/PAD_US_Landforms', 'type': 'MapServer'}, {'name': 'PAD-US/PAD_US', 'type': 'MapServer'}]
+0 []
+0.004 []
+0.02 [('Daniel Boone National Forest', 'FED', 'Forest Service Region 08 Southern', 'Fee')]
+Laurel County
+{"place_id": 349261961, "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright", "osm_type": "way", "osm_id": 122082529, "lat": "37.2142703", "lon": "-84.1977476", "category": "highway", "type": "motorway", "place_rank": 26, "importance": 0.05336833524071104, "addresstype": "road", "name": "I 75", "display_name": "I 75, Hare, Laurel County, Kentucky, 40729, United S
+Ky_Public_Hunting_Areas_WGS84WM/MapServer/1 []
+Ky_State_Parks_Features_WGS84WM/MapServer/8 []
+Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer/0 []
