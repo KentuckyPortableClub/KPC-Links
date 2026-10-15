@@ -128,6 +128,7 @@ body.field .page-jump-nav{display:none!important}
 .vb-log{width:100%;border-collapse:collapse;font-size:13px}.vb-log th{text-align:left;color:#aaa;font-size:10px;letter-spacing:1px;padding:4px;border-bottom:1px solid #333}.vb-log td{padding:5px 4px;border-bottom:1px solid #222}.vb-log tr.ok td:last-child{color:#7fd39a}.vb-log tr.bad td{color:#ffb39f}
 .vb-logw{max-height:300px;overflow:auto;max-width:100%}
 .vb-stats{display:flex;gap:8px;margin:10px 0}.vb-stats div{flex:1;background:#181818;border:1px solid #2c2c2c;border-radius:8px;padding:8px;text-align:center}.vb-stats b{display:block;font:700 20px Georgia,serif;color:#fff}.vb-stats span{font-size:10px;color:#aaa}
+.vb-talk{width:100%;margin-top:10px;min-height:64px;font-size:16px;background:#2e8b57;color:#fff;touch-action:none;user-select:none;-webkit-user-select:none}.vb-talk.on{background:#b5412b;box-shadow:0 0 0 4px rgba(255,120,90,.35)}.vb-heard{font-size:13px;color:#cfc6b2;margin:8px 0 0;line-height:1.45}
 .vb small.k{color:#999;font-size:12px;display:block;margin-top:8px;line-height:1.45}
 .vb-chk{flex-direction:row!important;align-items:center;gap:8px!important;font-size:13px!important;letter-spacing:0!important;color:#ddd!important}.vb-chk input{min-height:0;width:18px;height:18px;accent-color:#d5a63a}
 @media(max-width:900px){.vb-grid{grid-template-columns:minmax(0,1fr)}.vb-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
@@ -153,6 +154,8 @@ body.field .page-jump-nav{display:none!important}
    <button type="button" class="vb-btn alt" id="vbQrz" disabled>QRZ? <small>(F2)</small></button>
    <button type="button" class="vb-btn alt" id="vbAgn" disabled>SAY AGAIN <small>(F3)</small></button>
   </div>
+  <button type="button" class="vb-btn vb-talk" id="vbTalk" disabled>🎙 HOLD TO TALK <small>(or Space bar)</small></button>
+  <p class="vb-heard" id="vbHeard">Hold the button and talk like you're on the air: "CQ POTA, CQ POTA, this is…", their call + "you're five nine Kentucky", "say again", "QRZ", or "thanks, seventy-three". Use earbuds so it doesn't hear the callers. Your voice goes to Google's or Apple's speech service to be turned into text, like talking to your phone's assistant.</p>
   <small class="k">Type part of a call in the CALL box and press QRZ? to ask just that station ("the station with Alpha Bravo Charlie, go ahead").</small>
  </div>
  <div class="vb-card">
@@ -186,7 +189,7 @@ body.field .page-jump-nav{display:none!important}
 </div>
 </div></section>
 </main>
-<script src="kpc-ssb.js?v=20261014d"></script>
+<script src="kpc-ssb.js?v=20261014e"></script>
 <script src="kpc-search.js?v=20261014r" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
