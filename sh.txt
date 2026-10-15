@@ -1,10 +1,4 @@
-ERR https://www.peakbagger.com/search.aspx?ss=Pilot%20Knob HTTP Error 403: Forbidden
-ERR https://www.peakbagger.com/map/BigMap.aspx?cy=37.78&cx=-83.68&z=13 HTTP Error 403: Forbidden
-ERR https://www.peakbagger.com/search.aspx?tid=R&lat=37.78&lon=-83.68&rad=5 HTTP Error 403: Forbidden
-ERR https://peakbagger.com/RadiusSearch.aspx?lat=37.78&lon=-83.68&rad=5 HTTP Error 403: Forbidden
-ERR https://www.peakbagger.com/search.aspx?tid=R&lat=37.78&lon=-83.68 HTTP Error 403: Forbidden
-ERR https://listsofjohn.com/search?q=Pilot+Knob HTTP Error 403: Forbidden
-ERR https://listsofjohn.com/mapf?lat=37.78&lon=-83.68&z=12 HTTP Error 403: Forbidden
-ERR https://listsofjohn.com/map?lat=37.78&lon=-83.68&zoom=12 HTTP Error 403: Forbidden
-ERR https://listsofjohn.com/ HTTP Error 403: Forbidden
-ERR https://listsofjohn.com/searchres?s=Pilot+Knob HTTP Error 403: Forbidden
+200 1FAIpQLScWT7T2nNJytN8hDIn2HEI_2GSRLt_txXjdJ_-jmi0Tk1QwrQ True True
+ERR 1FAIpQLScWT7T2nNJytN8hDln2HEI_2GSRLt_txXjdJ_-jmi0Tk1QwrQ HTTP Error 404: Not Found
+ERR 1FAIpQLScWT7T2nNJytN8hDIn2HEI_2GSRLt_txXjdJ_-jmiOTk1QwrQ HTTP Error 404: Not Found
+ERR 1FAIpQLScWT7T2nNJytN8hDln2HEI_2GSRLt_txXjdJ_-jmiOTk1QwrQ HTTP Error 404: Not Found
