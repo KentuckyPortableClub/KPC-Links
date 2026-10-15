@@ -1,18 +1,14 @@
-GET  State_Nm='KY' AND Unit_Nm LIKE '%Kingfisher%' => 2 hits :[{"attributes":{"Unit_Nm":"Kingfisher Lakes","State_Nm":"KY"}}]}
-POST State_Nm='KY' AND Unit_Nm LIKE '%Kingfisher%' => 2 hits :[{"attributes":{"Unit_Nm":"Kingfisher Lakes","State_Nm":"KY"}}]}
-GET  State_Nm='KY' AND Loc_Nm LIKE '%KINGFISHER%' => 1 hits :[]}
-POST State_Nm='KY' AND Loc_Nm LIKE '%KINGFISHER%' => 1 hits :[]}
-GET  State_Nm='KY' AND Unit_Nm LIKE '%Kingfisher%Lake%' => 2 hits :[{"attributes":{"Unit_Nm":"Kingfisher Lakes","State_Nm":"KY"}}]}
-POST State_Nm='KY' AND Unit_Nm LIKE '%Kingfisher%Lake%' => 2 hits :[{"attributes":{"Unit_Nm":"Kingfisher Lakes","State_Nm":"KY"}}]}
-GET  State_Nm='KY' AND Unit_Nm LIKE '%Kingfisher%' AND Unit_Nm LIKE '%Lake%' => ERR HTTP Error 403: Forbidden
-POST State_Nm='KY' AND Unit_Nm LIKE '%Kingfisher%' AND Unit_Nm LIKE '%Lake%' => ERR HTTP Error 403: Forbidden
-GET  State_Nm='KY' AND (Unit_Nm LIKE '%Kingfisher%' OR Loc_Nm LIKE '%KINGFISHER%') => ERR HTTP Error 403: Forbidden
-POST State_Nm='KY' AND (Unit_Nm LIKE '%Kingfisher%' OR Loc_Nm LIKE '%KINGFISHER%') => ERR HTTP Error 403: Forbidden
-GET  State_Nm='KY' AND Unit_Nm LIKE '%Apple Valley Glade%' => 2 hits :[{"attributes":{"Unit_Nm":"Apple Valley Glade State Nature Preserve","State_Nm":"KY"}}]}
-POST State_Nm='KY' AND Unit_Nm LIKE '%Apple Valley Glade%' => 2 hits :[{"attributes":{"Unit_Nm":"Apple Valley Glade State Nature Preserve","State_Nm":"KY"}}]}
-GET  State_Nm IN ('KY') AND Unit_Nm LIKE '%Kingfisher%' => ERR HTTP Error 403: Forbidden
-POST State_Nm IN ('KY') AND Unit_Nm LIKE '%Kingfisher%' => ERR HTTP Error 403: Forbidden
-GET  Unit_Nm LIKE '%Kingfisher%' => 11 hits :[{"attributes":{"Unit_Nm":"Kingfisher Point","State_Nm":"CO"}},{"attributes":{"Unit_Nm":"Kingfisher Natural Area On Tho
-POST Unit_Nm LIKE '%Kingfisher%' => 11 hits :[{"attributes":{"Unit_Nm":"Kingfisher Point","State_Nm":"CO"}},{"attributes":{"Unit_Nm":"Kingfisher Natural Area On Tho
-GET  State_Nm='KY' AND UPPER(Unit_Nm) LIKE '%KINGFISHER%' => ERR HTTP Error 403: Forbidden
-POST State_Nm='KY' AND UPPER(Unit_Nm) LIKE '%KINGFISHER%' => ERR HTTP Error 403: Forbidden
+GET  State_Nm='KY' AND Mang_Type IN ('FED','STAT') AND Category<>'Easement' => ERR HTTP Error 403: Forbidden
+GET  State_Nm='KY' AND Category<>'Easement' => 2001 hits :[{"attributes":{"Unit_Nm":"Louisville International Airport-Standiford FL Site 1","State_Nm":"KY"}},{"attributes":{"Uni
+GET  State_Nm='KY' AND Mang_Type<>'LOC' => 1026 hits :[{"attributes":{"Unit_Nm":"Louisville International Airport-Standiford FL Site 1","State_Nm":"KY"}},{"attributes":{"Uni
+GET  Mang_Type='STAT' AND State_Nm='KY' => 418 hits :[{"attributes":{"Unit_Nm":"Pine Mountain State Scenic Trail","State_Nm":"KY"}},{"attributes":{"Unit_Nm":"The Green at B
+GET  State_Nm='KY' AND Mang_Name='SFW' AND Unit_Nm LIKE '%Kingfisher%' => ERR HTTP Error 403: Forbidden
+GET  State_Nm='KY' AND Unit_Nm LIKE '%Kingfisher%' AND Mang_Name='SFW' => ERR HTTP Error 403: Forbidden
+GET  State_Nm='KY' AND (Mang_Name='SFW' OR Mang_Name='SDNR') => ERR HTTP Error 403: Forbidden
+GET  State_Nm='KY' AND Mang_Name='SFW' OR Mang_Name='SDNR' => ERR HTTP Error 403: Forbidden
+GET  State_Nm='KY' AND Unit_Nm LIKE '%McNeely%Lake%' => 3 hits :[{"attributes":{"Unit_Nm":"McNeely Lake Park","State_Nm":"KY"}},{"attributes":{"Unit_Nm":"McNeely Lake","State_Nm":"KY"
+GET  State_Nm='KY' AND Loc_Nm LIKE '%KINGFISHER%LAKE%' => 1 hits :[]}
+GET  State_Nm='KY' AND Unit_Nm LIKE '%Barren River%Lake%' => 3 hits :[{"attributes":{"Unit_Nm":"Barren River Lake Wildlife Management Area","State_Nm":"KY"}},{"attributes":{"Unit_Nm":"Barr
+GET  State_Nm='KY' AND Unit_Nm LIKE '%Lake Linville%' => 1 hits :[]}
+GET  State_Nm='KY' AND Unit_Nm LIKE '%O''Brien%' => ERR HTTP Error 403: Forbidden
+GET  State_Nm='KY' AND Unit_Nm LIKE 'Kingfisher%' => ERR HTTP Error 403: Forbidden
