@@ -1,7 +1,10 @@
-PAD fields ['OBJECTID', 'Shape', 'FeatClass', 'Category', 'Own_Type', 'Own_Name', 'Loc_Own', 'Mang_Type', 'Mang_Name', 'Loc_Mang', 'Des_Tp', 'Loc_Ds', 'Unit_Nm', 'Loc_Nm', 'State_Nm', 'Agg_Src', 'GIS_Src', 'Src_Date', 'GIS_Acres', 'Source_PAID', 'WDPA_Cd', 'Pub_Access', 'Access_Src', 'Access_Dt', 'GAP_Sts', 'GAPCdSrc', 'GAPCdDt', 'IUCN_Cat', 'IUCNCtSrc', 'IUCNCtDt', 'Date_Est', 'Comments', 'EsmtHldr', 'EHoldTyp', 'WebServiceMangName', 'TranspPct', 'Shape_Length', 'Shape_Area']
-State_Nm='KY' AND Unit_Nm LIKE '%Wood Creek%' []
-State_Nm='KY' AND Loc_Nm LIKE '%WOOD CREEK%' []
-OSM [('way', 'Wildcat Offroad', {'leisure': 'park'}), ('area', 'United States', {'boundary': 'administrative'}), ('area', 'Kentucky', {'boundary': 'administrative'}), ('area', 'Laurel County', {'boundary': 'administrative'}), ('area', 'America/New_York Timezone', {'boundary': 'timezone'}), ('area', 'Contiguous United States', {'boundary': 'region'}), ('area', 'UTC−05:00 standard time', {'boundary': 'timezone'}), ('way', 'Wood Creek Lake', {'natural': 'water', 'water': 'reservoir'}), ('way', 'Wildcat Offroad', {'leisure': 'park'}), ('relation', 'Daniel Boone National Forest', {'boundary': 'protected_area', 'operator': 'United States Forest Service', 'protect_class': '6'})]
-https://www.fws.gov/refuge/clarks-river 200
-https://www.fws.gov/refuge/clarks-river/map HTTP Error 403: Forbidden
-https://www.fws.gov/refuge/clarks-river/visit-us 200
+ERR https://www.peakbagger.com/search.aspx?ss=Pilot%20Knob HTTP Error 403: Forbidden
+ERR https://www.peakbagger.com/map/BigMap.aspx?cy=37.78&cx=-83.68&z=13 HTTP Error 403: Forbidden
+ERR https://www.peakbagger.com/search.aspx?tid=R&lat=37.78&lon=-83.68&rad=5 HTTP Error 403: Forbidden
+ERR https://peakbagger.com/RadiusSearch.aspx?lat=37.78&lon=-83.68&rad=5 HTTP Error 403: Forbidden
+ERR https://www.peakbagger.com/search.aspx?tid=R&lat=37.78&lon=-83.68 HTTP Error 403: Forbidden
+ERR https://listsofjohn.com/search?q=Pilot+Knob HTTP Error 403: Forbidden
+ERR https://listsofjohn.com/mapf?lat=37.78&lon=-83.68&z=12 HTTP Error 403: Forbidden
+ERR https://listsofjohn.com/map?lat=37.78&lon=-83.68&zoom=12 HTTP Error 403: Forbidden
+ERR https://listsofjohn.com/ HTTP Error 403: Forbidden
+ERR https://listsofjohn.com/searchres?s=Pilot+Knob HTTP Error 403: Forbidden
