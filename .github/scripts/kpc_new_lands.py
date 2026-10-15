@@ -179,8 +179,8 @@ def main():
         now['lists']['USGS PAD-US (federal + state, open to the public)'] = padus()
     except Exception as e:  # noqa: BLE001
         notice('Could not read PAD-US', e)
-        if old:
-            now['lists']['USGS PAD-US (federal + state, open to the public)'] = old['lists'].get('USGS PAD-US (federal + state, open to the public)', {})
+        if old and old['lists'].get('USGS PAD-US (federal + state, open to the public)'):
+            now['lists']['USGS PAD-US (federal + state, open to the public)'] = old['lists']['USGS PAD-US (federal + state, open to the public)']
     try:
         P = pota()
         now['pota'] = P
@@ -200,7 +200,7 @@ def main():
     new_lands, new_pota, new_news = [], [], []
     if old:
         for label, L in now['lists'].items():
-            if label not in old.get('lists', {}):
+            if not old.get('lists', {}).get(label):
                 continue   # a list we couldn't read last time: this week is its starting point
             before = old['lists'][label]
             for n, info in L.items():
