@@ -1,16 +1,15 @@
 import urllib.request,urllib.parse,json
 H={'User-Agent':'Mozilla/5.0 (Linux; Android 14) Chrome/129 Mobile','Origin':'https://kentuckyportableclub.github.io'}
-def get(u):
-  try: return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers=H),timeout=60).read())
+def get(u,data=None):
+  try: return json.loads(urllib.request.urlopen(urllib.request.Request(u,data=data,headers=H),timeout=90).read())
   except Exception as e: return {'ERR':str(e)}
+j=get('https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0?f=json'); print('PAD fields',[f['name'] for f in j.get('fields',[])])
 P='https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query?'
+for w in ["State_Nm='KY' AND Unit_Nm LIKE '%Wood Creek%'","State_Nm='KY' AND Loc_Nm LIKE '%WOOD CREEK%'"]:
+  j=get(P+urllib.parse.urlencode(dict(where=w,outFields='Unit_Nm,Loc_Nm,Own_Type,Loc_Mang,GIS_Acres',returnGeometry='false',f='json'))); print(w, j.get('ERR') or [f['attributes'] for f in j.get('features',[])])
 la,lo=37.214088,-84.197804
-for d in [0,.004,.02]:
-  g=dict(geometry=f'{lo},{la}',geometryType='esriGeometryPoint') if not d else dict(geometry=f'{lo-d},{la-d},{lo+d},{la+d}',geometryType='esriGeometryEnvelope')
-  j=get(P+urllib.parse.urlencode(dict(g,inSR=4326,spatialRel='esriSpatialRelIntersects',where="State_Nm='KY'",outFields='Unit_Nm,Own_Type,Mang_Name,Loc_Mang,Category,GIS_Acres',returnGeometry='false',f='json')))
-  print(d, j.get('ERR') or [ (f['attributes']['Unit_Nm'],f['attributes']['Own_Type'],f['attributes']['Loc_Mang'],f['attributes']['Category']) for f in j.get('features',[])][:12])
-print(get(f'https://geo.fcc.gov/api/census/area?lat={la}&lon={lo}&format=json').get('results',[{}])[0].get('county_name'))
-print(json.dumps(get('https://nominatim.openstreetmap.org/reverse?'+urllib.parse.urlencode(dict(lat=la,lon=lo,format='jsonv2',zoom=16))))[:400])
-for svc in ['Ky_Public_Hunting_Areas_WGS84WM/MapServer/1','Ky_State_Parks_Features_WGS84WM/MapServer/8','Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer/0']:
-  j=get('https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/'+svc+'/query?'+urllib.parse.urlencode(dict(geometry=f'{lo-.01},{la-.01},{lo+.01},{la+.01}',geometryType='esriGeometryEnvelope',inSR=4326,spatialRel='esriSpatialRelIntersects',outFields='*',returnGeometry='false',f='json')))
-  print(svc, j.get('ERR') or [ {k:v for k,v in f['attributes'].items() if k in ('AREANAME','PUBLIC_NAM','MANAME','DETAIL')} for f in j.get('features',[])][:5])
+q=f'[out:json][timeout:30];(is_in({la},{lo});)->.a;(area.a[name];)->.b;.b out tags;(nwr(around:1200,{la},{lo})[name][~"^(natural|water|leisure|boundary|landuse)$"~"^(water|reservoir|lake|park|nature_reserve|protected_area|national_park|recreation_ground)$"];);out tags center 30;'
+j=get('https://overpass-api.de/api/interpreter',('data='+urllib.parse.quote(q)).encode()); print('OSM', j.get('ERR') or [(e.get('type'),e['tags'].get('name'),{k:v for k,v in e['tags'].items() if k in('natural','water','leisure','boundary','landuse','operator','owner','website','protect_class')}) for e in j.get('elements',[])][:25])
+for u in ['https://www.fws.gov/refuge/clarks-river','https://www.fws.gov/refuge/clarks-river/map','https://www.fws.gov/refuge/clarks-river/visit-us']:
+  try: r=urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) Chrome/129'}),timeout=30); print(u,r.status)
+  except Exception as e: print(u,e)
