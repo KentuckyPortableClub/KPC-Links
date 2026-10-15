@@ -104,7 +104,7 @@
  `<div class="kit-btns"><a class="alt" href="kpc-park-notes.html?ref=${encodeURIComponent(kp ? kp.c : P.c)}">ALL PARK NOTES ›</a>${CAMP && CAMP.closures ? `<a class="alt" href="${esc(CAMP.closures.url)}" target="_blank" rel="noopener">STATE PARK CLOSURES ↗</a>` : ''}</div>`
  : `<p>KPC member reports and tips cover Kentucky only. Check ${P.web ? '<a href="' + esc(P.web) + '" target="_blank" rel="noopener">the official website</a>' : 'the official website'} for closures, and the ${P.prog} page for recent activations.</p>`}</section>
 <section class="kit-sec"><h3>☁ WEATHER</h3><div id="kitWx">${saved && saved.wx ? '' : 'Loading the forecast…'}</div><div class="kit-btns"><a class="alt" href="kpc-weather.html?lat=${P.la}&lon=${P.lo}&name=${encodeURIComponent(P.c + ' ' + P.n)}">FULL FIELD WEATHER ›</a></div></section>
-<section class="kit-sec"><h3>🗺 MAP${P.prog === 'SOTA' ? ': SUMMIT' : ': BOUNDARY'}${kp && (kp.ap || []).length ? ', PARKING &amp; TRAILHEADS' : ''}</h3><div id="kitMap"></div><p class="kit-small" id="kitBnd">Loading…</p>
+<section class="kit-sec"><h3>🗺 MAP${P.prog === 'SOTA' ? ': SUMMIT' : ': BOUNDARY'}${kp && (kp.ap || []).length ? ', PARKING &amp; TRAILHEADS' : ''}</h3><div id="kitMap"></div><p class="kit-small">👆 Tap the map to drop a pin for Street View or directions. ◎ ME shows where you are (with your GPS numbers). The layers button has Satellite + streets, Topo, Terrain and Hillshade.</p><p class="kit-small" id="kitBnd">Loading…</p>
 <div class="kit-btns"><a class="gold" href="kpc-in-park.html?ref=${encodeURIComponent(P.c)}">📍 ${P.prog === 'SOTA' ? 'AM I IN THE ACTIVATION ZONE?' : 'AM I IN THE PARK?'} ›</a></div><div class="kit-btns" id="kitFiles"></div></section>
 <section class="kit-sec"><h3>⛺ WHERE TO STAY</h3>${stay(P)}</section>
 <section class="kit-sec kit-off"><h3>📴 SAVE FOR NO SIGNAL</h3><p>Saves this kit, the boundary, the map around it and today's forecast on this phone, so it opens with no signal. Weather and spots still need signal to update.</p><div class="kit-btns"><button type="button" id="kitSave" class="gold">${saved ? 'UPDATE THE SAVED COPY' : 'SAVE THIS FOR OFFLINE'}</button></div><p class="kit-small" id="kitSaveMsg">${saved ? 'Saved ' + new Date(saved.t).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) + '.' : ''}</p></section>`;
@@ -144,9 +144,9 @@
     geo = null;
     if (!window.L) { $('kitMap').innerHTML = '<p class="kit-msg">Map unavailable.</p>'; return; }
     map = L.map('kitMap').setView([P.la, P.lo], P.prog === 'SOTA' ? 15 : 13);
-    const street = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
-    const sat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Imagery © Esri' });
-    L.control.layers({ Street: street, Satellite: sat }).addTo(map);
+    if (window.KPCLayers) KPCLayers(map); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
+    if (window.KPCPin) KPCPin(map);
+    if (window.KPCLocate) KPCLocate(map);
     L.marker([P.la, P.lo]).addTo(map).bindPopup(esc(P.c + ' ' + P.n) + '<br>' + esc(P.prog) + (P.prog === 'SOTA' ? ' summit' : ' pin'));
     const ap = (P.park && P.park.ap) || [];
     ap.forEach(a => L.circleMarker([a[0], a[1]], { radius: 7, color: '#fff', weight: 2, fillColor: '#1d5a3a', fillOpacity: 1 }).addTo(map).bindPopup(`<b>${esc(a[2])}</b><br><a href="https://www.google.com/maps/dir/?api=1&destination=${a[0]},${a[1]}" target="_blank" rel="noopener">Directions ↗</a>`));
@@ -213,7 +213,7 @@
     try {
       const app = await caches.open(APP);
       const scripts = [...document.querySelectorAll('script[src],link[rel=stylesheet][href]')].map(e => e.src || e.href).filter(u => u.startsWith(location.origin) || /unpkg\.com\/leaflet@1\.9\.4/.test(u));
-      const files = ['kpc-kit.html', 'kpc-in-park.html', 'kpc-in-park.js', 'kpc-bounds.js', 'kpc-ky-data.json', 'kpc-conditions.json', 'kpc-park-notes.json', 'kpc-campgrounds.json', 'KPC-logo.png'].concat(B.KY.map(L => L.file), B.tilesUsed(), p.prog === 'WWFF' && !p.ky ? ['data/wwff/' + p.c.split('-')[0] + '.json'] : []);
+      const files = ['kpc-kit.html', 'kpc-in-park.html', 'kpc-in-park.js', 'kpc-bounds.js', 'kpc-map-tools.js', 'kpc-ky-data.json', 'kpc-conditions.json', 'kpc-park-notes.json', 'kpc-campgrounds.json', 'KPC-logo.png'].concat(B.KY.map(L => L.file), B.tilesUsed(), p.prog === 'WWFF' && !p.ky ? ['data/wwff/' + p.c.split('-')[0] + '.json'] : []);
       const urls = [...new Set(files.map(f => new URL(f, location.href).href).concat(scripts).concat(['leaflet.css', 'leaflet.js', 'images/marker-icon.png', 'images/marker-icon-2x.png', 'images/marker-shadow.png', 'images/layers.png'].map(f => 'https://unpkg.com/leaflet@1.9.4/dist/' + f)))];
       let ok = 0;
       for (const u of urls) { try { const r = await fetch(u, { cache: 'reload' }); if (r.ok) { const k = new URL(u); if (k.origin === location.origin) k.search = ''; await app.put(k.href, r); ok++; } } catch (e) {} }
@@ -234,6 +234,7 @@
 
   /* ---------- start ---------- */
   $('kitForm').addEventListener('submit', e => { e.preventDefault(); pick($('kitQ').value); });
+  if (window.KPCTA) KPCTA.attach($('kitQ'), ref => open(ref));
   $('kitNear').addEventListener('click', near);
   document.addEventListener('click', e => { const b = e.target.closest('#kitPick [data-ref], #kitSaved [data-ref]'); if (b) { e.preventDefault(); open(b.dataset.ref); } });
   load();
