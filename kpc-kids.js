@@ -170,6 +170,32 @@ function printPages(pages, withText) {
   const go = () => { try { f.contentWindow.focus(); f.contentWindow.print(); } catch (e) {} setTimeout(() => f.remove(), 60000); };
   if (!left) go(); imgs.forEach(im => { if (im.complete) { if (!--left) go(); } else im.onload = im.onerror = () => { if (!--left) go(); }; });
 }
+/* ---------- Certificate (the name is typed for printing only, never saved) ---------- */
+function certInfo() { const got = BADGES.filter(b => stars >= b[0]); return got.length ? got[got.length - 1] : null; }
+function certShow() {
+  const box = $('kzCert'); if (!box) return; box.hidden = !box.hidden; if (box.hidden) return;
+  const b = certInfo();
+  $('kzCertLvl').innerHTML = b ? `You've earned <b>${b[1]} ${esc(b[2])}</b> with <b>${stars} stars</b>! Type your first name and print your certificate.` : `You need <b>10 stars</b> for your first certificate. You have <b>${stars}</b>. Keep playing!`;
+  $('kzCertGo').disabled = !b; $('kzCertName').focus();
+}
+function certPrint() {
+  const b = certInfo(); if (!b) return;
+  const name = ($('kzCertName').value || '').trim().slice(0, 30) || 'Young Radio Operator';
+  const d = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const all = BADGES.filter(x => stars >= x[0]).map(x => `<span>${x[1]}<small>${esc(x[2])}</small></span>`).join('');
+  const f = document.createElement('iframe'); f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0'; document.body.appendChild(f);
+  f.contentDocument.open(); f.contentDocument.write(`<!doctype html><html><head><meta charset="utf-8"><title>KPC Certificate</title><style>@page{size:letter landscape;margin:.35in}body{margin:0;font-family:Georgia,serif;color:#1d1d1d}
+  .c{border:10px double #c9a227;padding:26px 40px;text-align:center;height:6.9in;box-sizing:border-box;position:relative;background:#fffdf5}
+  .c img{width:96px;height:96px}.k{font:900 14px Arial;letter-spacing:4px;color:#1d5a3a;margin-top:6px}h1{font-size:44px;margin:6px 0 2px;color:#073b4c}.t{font-size:18px;margin:6px 0}
+  .n{font-size:46px;font-weight:700;border-bottom:2px solid #c9a227;display:inline-block;padding:0 30px 4px;margin:6px 0 8px;color:#111}
+  .lv{font-size:30px;font-weight:700;color:#b5412b;margin:6px 0}.b{display:flex;gap:26px;justify-content:center;margin:12px 0;font-size:34px}.b span{display:flex;flex-direction:column;align-items:center}.b small{font:700 11px Arial;color:#444}
+  .f{display:flex;justify-content:space-between;align-items:flex-end;position:absolute;left:40px;right:40px;bottom:24px;font:14px Arial;color:#333}.f div{text-align:center;min-width:200px}.f i{display:block;border-top:1px solid #333;margin-bottom:4px}
+  </style></head><body><div class="c"><img src="KPC-logo.png" alt=""><div class="k">KENTUCKY PORTABLE CLUB · KIDS ROOM</div><h1>Certificate of Achievement</h1><div class="t">This certifies that</div><div class="n">${esc(name)}</div><div class="t">has earned the title</div><div class="lv">${b[1]} ${esc(b[2])}</div><div class="t">by learning ham radio skills and earning <b>${stars} stars</b> in the KPC Kids Room.</div><div class="b">${all}</div>
+  <div class="f"><div><i></i>${esc(d)}</div><div style="font:700 13px Arial">Practice call sign: W4KIDS<br>Get Outside. Get On The Air.</div><div><i></i>Kentucky Portable Club</div></div></div></body></html>`);
+  f.contentDocument.close();
+  const im = f.contentDocument.images[0]; const go = () => { try { f.contentWindow.focus(); f.contentWindow.print(); } catch (e) {} setTimeout(() => f.remove(), 60000); };
+  if (!im || im.complete) setTimeout(go, 200); else im.onload = im.onerror = go;
+}
 async function storyInit() {
   const box = $('kzStory'); if (!box) return;
   try { STORY = await (await fetch('kpc-kids-story.json', { cache: 'no-cache' })).json(); } catch (e) { box.textContent = 'The story did not load. Refresh to try again.'; return; }
@@ -184,6 +210,7 @@ async function storyInit() {
 function init() {
   if (!$('kzStars')) return;
   showStars();
+  if ($('kzCertBtn')) { $('kzCertBtn').addEventListener('click', certShow); $('kzCertGo').addEventListener('click', certPrint); $('kzCertName').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); certPrint(); } }); }
   document.querySelectorAll('input[name=g1m]').forEach(r => r.addEventListener('change', () => { g1.mode = r.value; g1New(); }));
   $('g1Start').addEventListener('click', () => { $('g1Start').hidden = true; $('g1Play').hidden = false; g1New(); });
   $('g2Go').addEventListener('click', g2Go); $('g2In').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); g2Go(); } });

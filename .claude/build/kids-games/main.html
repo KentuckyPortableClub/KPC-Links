@@ -1,0 +1,104 @@
+<style>
+.kg2{background:#fffaf0;padding:26px 16px 60px;color:#222}.kg2-in{max-width:1000px;margin:0 auto}
+.kg2-back{display:inline-block;margin-bottom:12px;font:800 15px Arial,sans-serif;color:#118ab2;text-decoration:none}
+.kg2-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:#fff;border:3px solid #ffd166;border-radius:18px;padding:12px 16px;margin-bottom:16px}
+.kg2-top .s{font:900 26px Arial,sans-serif;color:#e09400}
+.kg2-jump{display:flex;flex-wrap:wrap;gap:8px}.kg2-jump a{background:#e8f6ff;color:#073b4c;border-radius:999px;padding:8px 12px;font:800 14px Arial,sans-serif;text-decoration:none}
+.kg2-card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 8px 20px rgba(0,0,0,.08);border-top:8px solid #06d6a0;margin-bottom:20px;scroll-margin-top:90px}
+.kg2-card h2{font:900 24px Arial,sans-serif;margin:0 0 6px;color:#073b4c}.kg2-card>p{margin:0 0 12px;color:#444;line-height:1.45}
+.kz-btn{min-height:48px;padding:10px 16px;border-radius:14px;border:0;background:#ffd166;color:#073b4c;font:900 16px Arial,sans-serif;cursor:pointer;box-shadow:0 4px 0 #e09400;touch-action:manipulation}.kz-btn:active{transform:translateY(3px);box-shadow:none}.kz-btn.alt{background:#e8f6ff;box-shadow:0 4px 0 #9cc9e6}
+.kg2-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.kg2-seg{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}.kg2-seg label{display:flex;align-items:center;gap:6px;font-weight:800;background:#f3f3f3;border-radius:999px;padding:6px 12px;cursor:pointer}
+.kg2-msg{min-height:44px;font:700 17px/1.45 Arial,sans-serif;color:#073b4c;margin:8px 0}
+/* words */
+.wm-b{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.wm-c{position:relative;min-height:92px;border:0;border-radius:14px;background:#118ab2;color:#fff;font:900 15px Arial,sans-serif;cursor:pointer;padding:6px;box-shadow:0 4px 0 #0b5f7c;touch-action:manipulation}
+.wm-c .f{display:none}.wm-c .b{font-size:30px}.wm-c.up,.wm-c.ok{background:#fff3c4;color:#073b4c;box-shadow:inset 0 0 0 3px #ffd166}.wm-c.term.up,.wm-c.term.ok{background:#ffe1f0;box-shadow:inset 0 0 0 3px #ef476f}
+.wm-c.up .f,.wm-c.ok .f{display:block}.wm-c.up .b,.wm-c.ok .b{display:none}.wm-c.term .f{font-size:22px}.wm-c.ok{opacity:.75;box-shadow:inset 0 0 0 3px #06d6a0}
+/* map */
+.mh-q{font:800 19px Arial,sans-serif;background:#073b4c;color:#fff;border-radius:14px;padding:12px 14px}.mh-q .mh-st{color:#ffd166}
+#mhMap svg{width:100%;height:auto;display:block}#mhMap path{fill:#d8f0e3;stroke:#fff;stroke-width:1;cursor:pointer;transition:fill .15s}#mhMap path:hover{fill:#bfe6d1}
+#mhMap path.ok{fill:#06d6a0}#mhMap path.no{fill:#ef476f}#mhMap path.hint{animation:mhb .6s steps(2) infinite}@keyframes mhb{50%{fill:#ffd166}}
+.mh-home{fill:#ef476f;stroke:#fff;stroke-width:2;pointer-events:none}
+.mh-small{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;align-items:center}.mh-small span{font:800 12px Arial;color:#666}.mh-sb{min-width:46px;min-height:38px;border-radius:10px;border:2px solid #bfe6d1;background:#d8f0e3;font:900 14px Arial;cursor:pointer;color:#073b4c}.mh-sb.ok{background:#06d6a0}.mh-sb.no{background:#ef476f;color:#fff}.mh-sb.hint{animation:mhb2 .6s steps(2) infinite}@keyframes mhb2{50%{background:#ffd166}}
+/* build */
+.br-wrap{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:14px}
+.br-scene{position:relative;aspect-ratio:4/3;background:linear-gradient(#bde4ff 0 62%,#9fd37d 62%);border-radius:16px;overflow:hidden}
+.br-tree{position:absolute;z-index:0;left:4%;top:4%;font-size:min(150px,26vw);line-height:1;pointer-events:none}
+.br-table{position:absolute;left:40%;right:6%;top:66%;height:6%;background:#a0522d;border-radius:6px}
+.br-s{position:absolute;z-index:2;width:26%;min-height:23%;border:3px dashed #073b4c;border-radius:14px;background:rgba(255,255,255,.8);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;padding:4px;font:800 11px Arial,sans-serif;color:#073b4c;text-align:center}
+.br-s b{font-size:24px}.br-s span{font-size:30px}.br-s.ok{border-style:solid;border-color:#06d6a0;background:#eafff5}
+.br-ant{left:6%;top:3%}.br-coax{left:34%;top:20%}.br-rig{left:46%;top:43%}.br-bat{left:72%;top:72%}.br-mic{left:72%;top:14%}
+.br-lamp{position:absolute;right:4%;top:4%;width:22px;height:22px;border-radius:50%;background:#555}.br-scene.on .br-lamp{background:#06d6a0;box-shadow:0 0 14px #06d6a0}
+.br-scene.on{box-shadow:0 0 0 4px #06d6a0}
+.br-tray{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start}
+.br-p{min-height:56px;border-radius:12px;border:3px solid #ddd;background:#fff;font:800 15px Arial,sans-serif;color:#073b4c;cursor:pointer;display:flex;align-items:center;gap:6px;padding:6px 8px;touch-action:manipulation}.br-p span{font-size:26px}
+.br-p.sel{border-color:#118ab2;background:#e8f6ff;transform:scale(1.04)}.br-p.gone{visibility:hidden}
+/* fox */
+.fx-wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:14px;align-items:start}
+.fx-g{display:grid;grid-template-columns:repeat(9,1fr);gap:2px;background:#7cc36b;border-radius:14px;padding:4px;touch-action:manipulation}
+.fx-c{aspect-ratio:1;border:0;border-radius:6px;background:#9fd37d;font-size:clamp(14px,3.6vw,26px);padding:0;cursor:default;display:flex;align-items:center;justify-content:center}.fx-c.adj{background:#c6ebb2;cursor:pointer}
+.fx-me{position:relative}.fx-ant{position:absolute;font-size:.6em;font-style:normal;top:-.5em;left:50%;transition:transform .2s}.fx-ant.d0{transform:translate(-50%,-30%) rotate(0)}.fx-ant.d1{transform:translate(20%,30%) rotate(90deg)}.fx-ant.d2{transform:translate(-50%,130%) rotate(180deg)}.fx-ant.d3{transform:translate(-120%,30%) rotate(-90deg)}
+.fx-meter{height:22px;border-radius:11px;background:#eee;overflow:hidden;border:2px solid #ccc}.fx-meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,#06d6a0,#ffd166,#ef476f);transition:width .2s}
+.fx-pad{display:grid;grid-template-columns:repeat(3,60px);grid-template-rows:repeat(3,52px);gap:6px;justify-content:center;margin:10px 0}.fx-pad .kz-btn{min-height:0;padding:0;font-size:22px}
+/* weather */
+.ws-box{text-align:center}.ws-pic{font-size:74px;line-height:1.1}.ws-step{font:900 12px Arial;letter-spacing:1px;color:#888;text-transform:uppercase}
+.ws-see{font:700 18px/1.45 Arial,sans-serif;color:#073b4c;max-width:620px;margin:6px auto}.ws-nc{background:#073b4c;color:#fff;border-radius:14px;padding:10px 14px;max-width:620px;margin:8px auto;font-size:16px}.ws-q{font:900 17px Arial;margin:10px 0 6px}
+.ws-a{display:grid;gap:8px;max-width:620px;margin:0 auto}.ws-b{min-height:54px;border-radius:14px;border:3px solid #ddd;background:#fff;font:800 16px Arial,sans-serif;color:#073b4c;cursor:pointer;padding:8px 12px;text-align:left}.ws-b.ok{background:#d6ffe9;border-color:#06d6a0}.ws-b.no{background:#ffe1e7;border-color:#ef476f}
+.ws-fb{min-height:48px;font:700 16px/1.45 Arial;color:#073b4c;max-width:620px;margin:10px auto 0}
+.kg-pop{position:fixed;left:50%;top:90px;transform:translateX(-50%);background:#ffd166;color:#073b4c;font:900 22px Arial,sans-serif;padding:10px 22px;border-radius:999px;box-shadow:0 8px 20px rgba(0,0,0,.2);z-index:80}
+.kg2-note{font-size:13px;color:#666;margin-top:6px}
+@media(max-width:760px){.br-wrap,.fx-wrap{grid-template-columns:minmax(0,1fr)}.wm-b{grid-template-columns:repeat(3,minmax(0,1fr))}.wm-c{min-height:84px;font-size:13px}.wm-c.term .f{font-size:18px}.br-s{font-size:9px}.br-s b{font-size:18px}.br-s span{font-size:22px}}
+</style>
+@@HEADER@@
+<main>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • KIDS ROOM</p><h1>RADIO <span>ADVENTURES</span></h1><p class="hero-copy">Five more ham radio games: match ham words, find states on the map, build a radio station, hunt a hidden fox, and help on a weather net!</p></div></section>
+<section class="kg2" data-keep-light><div class="kg2-in">
+<a class="kg2-back" href="kpc-kids.html">← Back to the Kids Room</a>
+<div class="kg2-top"><div>⭐ <span class="s" id="kgStars">0</span> stars</div><nav class="kg2-jump" aria-label="Games on this page"><a href="#words">🔤 Ham Words</a><a href="#map">🗺️ Map Hunt</a><a href="#build">🔧 Build a Radio</a><a href="#fox">🦊 Fox Hunt</a><a href="#wx">⛈️ Weather Net</a></nav></div>
+
+<div class="kg2-card" id="words"><h2>🔤 Ham Words Match</h2><p>Hams have their own short words. Flip two cards to match each word with what it means. Pink cards are the ham words!</p>
+ <div class="wm-b" id="wmBoard"></div><div class="kg2-msg" id="wmMsg"></div>
+ <button type="button" class="kz-btn alt" id="wmNew">🔄 NEW CARDS</button>
+</div>
+
+<div class="kg2-card" id="map" style="border-top-color:#118ab2"><h2>🗺️ Map Hunt</h2><p>A station gives you a report and says where they are. Can you find that state on the map? The red dot is Kentucky. Every 5 states you find earns a star.</p>
+ <div class="kg2-seg"><label><input type="radio" name="mhm" value="name" checked> State names</label><label><input type="radio" name="mhm" value="abbr"> Abbreviations (harder)</label></div>
+ <div class="kg2-row"><button type="button" class="kz-btn" id="mhGo">▶ NEW STATION</button><button type="button" class="kz-btn alt" id="mhAgain">🔁 HEAR AGAIN</button><b id="mhScore" style="font:900 16px Arial;color:#118ab2"></b></div>
+ <div class="mh-q" id="mhQ">Press NEW STATION to start.</div>
+ <div class="kg2-msg" id="mhMsg"></div>
+ <div id="mhMap"></div>
+ <div class="mh-small"><span>Tiny states:</span><span id="mhSmall"></span></div>
+</div>
+
+<div class="kg2-card" id="build" style="border-top-color:#ef476f"><h2>🔧 Build a Radio Station</h2><p>Every ham station needs a few parts. Tap a part, then tap where it goes. Watch out for silly things that don't belong!</p>
+ <div class="br-wrap"><div class="br-scene" id="brScene"></div><div class="br-tray" id="brTray"></div></div>
+ <div class="kg2-msg" id="brMsg"></div>
+ <button type="button" class="kz-btn alt" id="brNew">🔄 BUILD AGAIN</button>
+</div>
+
+<div class="kg2-card" id="fox" style="border-top-color:#8338ec"><h2>🦊 Fox Hunt</h2><p>Hams hide a little beeping transmitter called the <b>fox</b>, then hunt for it with radios. Walk around the park and listen: the beeps get louder and faster when you're close!</p>
+ <div class="kg2-seg"><label><input type="radio" name="fxm" value="easy" checked> Easy (just listen)</label><label><input type="radio" name="fxm" value="pro"> Expert (turn your antenna)</label></div>
+ <div class="fx-wrap" id="fxBox">
+  <div class="fx-g" id="fxGrid"></div>
+  <div>
+   <div style="font:900 13px Arial;letter-spacing:1px;color:#555;margin-bottom:4px">📶 SIGNAL</div><div class="fx-meter"><i id="fxMeter"></i></div>
+   <div class="fx-pad"><span></span><button type="button" class="kz-btn alt" id="fxU" aria-label="Walk up">⬆️</button><span></span><button type="button" class="kz-btn alt" id="fxL" aria-label="Walk left">⬅️</button><button type="button" class="kz-btn" id="fxTurn" style="visibility:hidden" aria-label="Turn antenna">🔄</button><button type="button" class="kz-btn alt" id="fxR" aria-label="Walk right">➡️</button><span></span><button type="button" class="kz-btn alt" id="fxD" aria-label="Walk down">⬇️</button><span></span></div>
+   <div class="kg2-row"><button type="button" class="kz-btn" id="fxStart">▶ START HUNT</button><button type="button" class="kz-btn alt" id="fxNew">🦊 NEW FOX</button><button type="button" class="kz-btn alt" id="fxMute">🔊 SOUND ON</button><b id="fxSteps" style="font:900 16px Arial;color:#8338ec"></b></div>
+  </div>
+ </div>
+ <div class="kg2-msg" id="fxMsg"></div>
+ <p class="kg2-note">You can also tap the light-green squares next to you to walk, or use the arrow keys on a computer.</p>
+</div>
+
+<div class="kg2-card" id="wx" style="border-top-color:#ffd166"><h2>⛈️ Weather Spotter Net</h2><p>When storms come, hams called <b>SKYWARN spotters</b> tell the weather service what they see. Pretend you're on the weather net. What's the right thing to do?</p>
+ <div class="ws-box" id="wsBox"><button type="button" class="kz-btn" id="wsStart">▶ JOIN THE NET</button></div>
+ <p class="kg2-note">Remember: in a real emergency, get safe first and a grown-up calls 911.</p>
+</div>
+
+<p class="kg2-note">Everything here is pretend. Call signs are made up with 4 letters after the number, which are never given to real hams. Stars are saved only on this device and count toward your Kids Room badges and certificate.</p>
+<div class="kg-pop" id="kgPop" hidden></div>
+</div></section>
+</main>
+@@FOOTER@@
+<script src="kpc-kids-games.js?v=20261015b"></script>

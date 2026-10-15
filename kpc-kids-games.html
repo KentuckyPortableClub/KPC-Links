@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="kpc-theme.js?v=20261014kz"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Radio Adventures (Kids) | KPC</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Radio Adventures (Kids) | KPC">
+<meta property="og:description" content="Kids ham radio games: match ham words, find states on a map, build a radio station, hunt a hidden fox and help on a weather spotter net.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-kids-games.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
+<meta name="description" content="Kids ham radio games: match ham words, find states on a map, build a radio station, hunt a hidden fox and help on a weather spotter net.">
+<style>
+:root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(7,7,7,.97);border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:var(--nav-height);margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s}.nav-links a:hover,.nav-links a[aria-current=page]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:var(--black) url("parks.png") center/cover no-repeat;color:#fff;border-bottom:1px solid rgba(213,166,58,.45)}
+.hero:before{content:"";position:absolute;width:620px;height:620px;right:-170px;top:-180px;border:1px solid rgba(213,166,58,.35);border-radius:50%;box-shadow:0 0 0 55px rgba(213,166,58,.035),0 0 0 110px rgba(213,166,58,.025)}
+.hero:after{content:none}
+.hero-inner{position:relative;z-index:2;width:min(var(--max),100%);margin:auto;padding:90px 24px 84px}.hero-logo{width:min(360px,78vw);margin-bottom:24px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}.eyebrow{margin:0 0 12px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}.hero h1{max-width:800px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,6.2vw,76px);line-height:1.02;letter-spacing:-1.8px}.hero h1 span{color:var(--gold-light)}.hero-copy{max-width:720px;margin:22px 0 0;color:#eee9dd;font-size:clamp(16px,2vw,20px)}
+.section{padding:82px 24px}.section-inner{width:min(var(--max),100%);margin:auto}.section-heading{text-align:center;margin-bottom:42px}.kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:4px}.section h2{margin:7px 0 12px;color:var(--black);font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,4vw,48px);line-height:1.08}.section-heading p{max-width:760px;margin:0 auto;color:var(--muted);font-size:17px}
+.intro{background:var(--cream);border-bottom:1px solid #d9cfbd}.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}.intro-copy h2{margin:7px 0 18px}.intro-copy p{color:var(--muted);font-size:18px;margin:0}.intro-panel{padding:34px;background:var(--black);border:1px solid var(--gold);box-shadow:12px 12px 0 var(--gold);color:#fff;position:relative;overflow:hidden}.intro-panel:after{content:"";position:absolute;width:230px;height:230px;right:-90px;top:-90px;border:1px solid rgba(213,166,58,.45);border-radius:50%}.intro-panel .mark{position:relative;z-index:1;color:var(--gold-light);font-size:12px;font-weight:900;letter-spacing:3px}.intro-panel h3{position:relative;z-index:1;margin:10px 0 10px;font:700 30px/1.1 Georgia,serif}.intro-panel p{position:relative;z-index:1;margin:0;color:#c9c5bc}.intro-panel .line{position:relative;z-index:1;width:70px;height:3px;background:var(--gold);margin:20px 0}
+.features{background:#fffaf0}.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.card{min-height:285px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid #d8cfbf;background:#fff;color:var(--ink);box-shadow:0 12px 28px rgba(0,0,0,.07);transition:.2s;position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;width:6px;height:100%;background:var(--gold)}.card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.12);border-color:var(--gold)}.card-top{position:relative;z-index:1}.card-num{color:var(--green);font-size:12px;font-weight:900;letter-spacing:3px}.card h3{margin:8px 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:28px;line-height:1.1}.card p{margin:0;color:var(--muted);font-size:15px;max-width:520px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:1px;background:var(--gold);color:#0b0b0b;transition:.2s;align-self:flex-start;margin-top:24px}.btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.dark{background:var(--black);color:#fff;border-top:1px solid rgba(213,166,58,.45);border-bottom:1px solid rgba(213,166,58,.45)}.dark .section-heading p{color:#bcb8ae}.dark h2{color:#fff}.dark .card{background:#151515;border-color:#363636;color:#fff}.dark .card p{color:#bcb8ae}.dark .card h3{color:#fff}.dark .card:before{background:var(--gold)}
+.map-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.map-box{padding:30px;border:1px solid #363636;background:#151515}.map-box h3{margin:8px 0 10px;color:#fff;font:700 25px/1.1 Georgia,serif}.map-box p{margin:0;color:#bcb8ae}.map-box .btn{margin-top:22px}
+.pota-card{min-height:310px}
+.pdf-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pdf-actions .btn{margin-top:0}.pdf-actions .alt{background:#fff;border:1px solid var(--gold);color:#171717}
+.warning{background:var(--cream-2);border-top:1px solid #d1c6b3}.warning-box{border-left:6px solid var(--gold);background:#fff;padding:30px;box-shadow:0 10px 24px rgba(0,0,0,.06)}.warning-box h3{margin:0 0 10px;font:700 28px/1.1 Georgia,serif}.warning-box p{margin:0;color:var(--muted)}
+.final{padding:76px 24px;text-align:center;background:var(--cream-2)}.final h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}.final p{margin:10px 0 24px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:2px}
+footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;border-top:1px solid #292929;font-size:13px}footer strong{color:var(--gold-light)}
+@media(min-width:901px){.hero-logo{position:absolute;left:-400px;top:calc(50% - 22px);transform:translateY(-50%);justify-self:auto;margin-bottom:0}}
+@media(max-width:1000px){.nav-links a{padding-inline:7px;font-size:12px}.intro-grid{gap:38px}}
+@media(max-width:900px){.hero-logo{display:block;width:min(290px,58vw);margin-left:auto;margin-right:auto}}
+@media(max-width:760px){:root{--nav-height:70px}.nav-inner{min-height:70px;padding:8px 18px}.brand img{width:52px;height:52px}.menu-toggle{display:block}.nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:10px 18px 16px;background:rgba(7,7,7,.99);border-bottom:1px solid rgba(213,166,58,.45);box-shadow:0 15px 25px rgba(0,0,0,.22)}.nav-links.open{display:flex}.nav-links a{padding:13px 5px;border-bottom:1px solid #292929}.nav-links a:last-child{border-bottom:0}.hero{min-height:500px;background:url("parks-mobile.png") center/cover no-repeat}.hero-inner{padding:70px 20px 55px}.hero-logo{width:min(290px,58vw)}.section{padding:68px 20px}.intro-grid,.map-grid{grid-template-columns:1fr}.intro-panel{max-width:520px;margin:auto}.card-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-logo{width:min(250px,64vw)}}
+@media(max-width:520px){.hero h1{font-size:42px}.hero-copy{font-size:16px}.card{min-height:300px}.card h3{font-size:25px}.pdf-actions{flex-direction:column}.pdf-actions .btn{width:100%}}
+@media(max-width:380px){.brand-text small{display:none}}
+
+/* Added official trail and Wild River resource sections */
+.resource-note{background:#fff7df;border-left:5px solid var(--gold);padding:18px 22px;margin:0 0 28px;color:#332c1f}
+.resource-note p{margin:0}.resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.resource-item{padding:26px;border:1px solid #d8cfbf;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.045)}
+.resource-item h3{font:700 25px/1.18 Georgia,serif;margin:8px 0 12px}.resource-item p{color:#5f5a51;margin:0 0 12px}
+.resource-item .meta{font-size:12px;font-weight:900;letter-spacing:1.4px;color:var(--green)}
+.resource-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.resource-actions .btn{margin:0;font-size:11px;min-height:40px}
+.resource-actions .secondary{background:#f8f4eb;border:1px solid #c9ad6b}
+.river-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:25px 0}
+.river-list article{padding:18px 20px;background:#fff;border:1px solid #d8cfbf}.river-list strong{display:block;font:700 20px Georgia,serif}.river-list span{display:block;margin-top:7px;color:#5f5a51;font-size:14px}
+@media(max-width:760px){.resource-grid,.river-list{grid-template-columns:1fr}}
+/* Quick jump links, trail cards, map files */
+.jump{background:var(--black);border-bottom:1px solid rgba(213,166,58,.45);position:sticky;top:var(--nav-height);z-index:900}
+.jump-inner{width:min(var(--max),100%);margin:auto;padding:10px 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.jump-inner::-webkit-scrollbar{display:none}
+.jump a{flex:0 0 auto;padding:8px 14px;border:1px solid #3a3a3a;border-radius:999px;color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;transition:.2s}
+.jump a:hover{border-color:var(--gold);color:var(--gold-light)}
+section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn-row .btn{margin-top:0}
+.trail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.trail-grid .resource-item:last-child:nth-child(odd){grid-column:1/-1}
+.twofer{margin:14px 0 0;padding:12px 14px;background:#fff7df;border-left:4px solid var(--gold);font-size:14px;color:#332c1f}
+.twofer b{color:var(--green);letter-spacing:1px;font-size:12px}
+.files-card .pdf-actions .btn{min-width:0}
+.file-group{margin-top:16px}.file-group .card-num{margin-bottom:8px}
+.warning-box .btn-row .btn{font-size:11px;min-height:40px}
+@media(max-width:760px){.jump{top:70px}.trail-grid{grid-template-columns:1fr}.btn-row{flex-direction:column}.btn-row .btn{width:100%}}
+.dark .kicker,.dark .card-num{color:var(--gold-light)}
+/* On The Air Now bar */
+.onair{background:#0d2419;border-bottom:1px solid rgba(213,166,58,.45);color:#fff}
+.onair-inner{width:min(var(--max),100%);margin:auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.onair-title{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:3px;color:var(--gold-light);white-space:nowrap}
+.onair .dot{width:10px;height:10px;border-radius:50%;background:#3ecf6e;animation:pulse 1.8s infinite}
+.onair .dot.off{background:#8a8a8a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.6)}70%{box-shadow:0 0 0 9px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.onair-count{font-size:14px;color:#e9eee9}.onair-count b{color:#fff}
+.onair-list{display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}.onair-list::-webkit-scrollbar{display:none}
+.onair-chip{flex:0 0 auto;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;white-space:nowrap}
+.onair-chip b{color:var(--gold-light)}.onair-chip.club{border-color:var(--gold);background:rgba(213,166,58,.14)}
+.onair .btn{margin:0;min-height:38px;padding:8px 14px;font-size:11px;white-space:nowrap}
+@media(max-width:760px){.onair-inner{padding:12px 18px;gap:8px 10px}.onair-title{order:1}.onair .btn{order:2;margin-left:auto}.onair-count{order:3;flex-basis:100%}.onair-list{order:4;flex-basis:100%}}
+
+/* KPC shared About-style footer and below-hero page links */
+.page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+.page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
+.page-jump-nav a:hover,.page-jump-nav a:focus-visible{background:#3c321a;border-color:#d6b96c;color:#fff}
+section[id]{scroll-margin-top:100px}
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
+body.field .page-jump-nav{display:none!important}
+
+</style>
+<link rel="stylesheet" href="kpc-nav.css?v=20261010g">
+<style>
+.kg2{background:#fffaf0;padding:26px 16px 60px;color:#222}.kg2-in{max-width:1000px;margin:0 auto}
+.kg2-back{display:inline-block;margin-bottom:12px;font:800 15px Arial,sans-serif;color:#118ab2;text-decoration:none}
+.kg2-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:#fff;border:3px solid #ffd166;border-radius:18px;padding:12px 16px;margin-bottom:16px}
+.kg2-top .s{font:900 26px Arial,sans-serif;color:#e09400}
+.kg2-jump{display:flex;flex-wrap:wrap;gap:8px}.kg2-jump a{background:#e8f6ff;color:#073b4c;border-radius:999px;padding:8px 12px;font:800 14px Arial,sans-serif;text-decoration:none}
+.kg2-card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 8px 20px rgba(0,0,0,.08);border-top:8px solid #06d6a0;margin-bottom:20px;scroll-margin-top:90px}
+.kg2-card h2{font:900 24px Arial,sans-serif;margin:0 0 6px;color:#073b4c}.kg2-card>p{margin:0 0 12px;color:#444;line-height:1.45}
+.kz-btn{min-height:48px;padding:10px 16px;border-radius:14px;border:0;background:#ffd166;color:#073b4c;font:900 16px Arial,sans-serif;cursor:pointer;box-shadow:0 4px 0 #e09400;touch-action:manipulation}.kz-btn:active{transform:translateY(3px);box-shadow:none}.kz-btn.alt{background:#e8f6ff;box-shadow:0 4px 0 #9cc9e6}
+.kg2-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.kg2-seg{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}.kg2-seg label{display:flex;align-items:center;gap:6px;font-weight:800;background:#f3f3f3;border-radius:999px;padding:6px 12px;cursor:pointer}
+.kg2-msg{min-height:44px;font:700 17px/1.45 Arial,sans-serif;color:#073b4c;margin:8px 0}
+/* words */
+.wm-b{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.wm-c{position:relative;min-height:92px;border:0;border-radius:14px;background:#118ab2;color:#fff;font:900 15px Arial,sans-serif;cursor:pointer;padding:6px;box-shadow:0 4px 0 #0b5f7c;touch-action:manipulation}
+.wm-c .f{display:none}.wm-c .b{font-size:30px}.wm-c.up,.wm-c.ok{background:#fff3c4;color:#073b4c;box-shadow:inset 0 0 0 3px #ffd166}.wm-c.term.up,.wm-c.term.ok{background:#ffe1f0;box-shadow:inset 0 0 0 3px #ef476f}
+.wm-c.up .f,.wm-c.ok .f{display:block}.wm-c.up .b,.wm-c.ok .b{display:none}.wm-c.term .f{font-size:22px}.wm-c.ok{opacity:.75;box-shadow:inset 0 0 0 3px #06d6a0}
+/* map */
+.mh-q{font:800 19px Arial,sans-serif;background:#073b4c;color:#fff;border-radius:14px;padding:12px 14px}.mh-q .mh-st{color:#ffd166}
+#mhMap svg{width:100%;height:auto;display:block}#mhMap path{fill:#d8f0e3;stroke:#fff;stroke-width:1;cursor:pointer;transition:fill .15s}#mhMap path:hover{fill:#bfe6d1}
+#mhMap path.ok{fill:#06d6a0}#mhMap path.no{fill:#ef476f}#mhMap path.hint{animation:mhb .6s steps(2) infinite}@keyframes mhb{50%{fill:#ffd166}}
+.mh-home{fill:#ef476f;stroke:#fff;stroke-width:2;pointer-events:none}
+.mh-small{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;align-items:center}.mh-small span{font:800 12px Arial;color:#666}.mh-sb{min-width:46px;min-height:38px;border-radius:10px;border:2px solid #bfe6d1;background:#d8f0e3;font:900 14px Arial;cursor:pointer;color:#073b4c}.mh-sb.ok{background:#06d6a0}.mh-sb.no{background:#ef476f;color:#fff}.mh-sb.hint{animation:mhb2 .6s steps(2) infinite}@keyframes mhb2{50%{background:#ffd166}}
+/* build */
+.br-wrap{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:14px}
+.br-scene{position:relative;aspect-ratio:4/3;background:linear-gradient(#bde4ff 0 62%,#9fd37d 62%);border-radius:16px;overflow:hidden}
+.br-tree{position:absolute;z-index:0;left:4%;top:4%;font-size:min(150px,26vw);line-height:1;pointer-events:none}
+.br-table{position:absolute;left:40%;right:6%;top:66%;height:6%;background:#a0522d;border-radius:6px}
+.br-s{position:absolute;z-index:2;width:26%;min-height:23%;border:3px dashed #073b4c;border-radius:14px;background:rgba(255,255,255,.8);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;padding:4px;font:800 11px Arial,sans-serif;color:#073b4c;text-align:center}
+.br-s b{font-size:24px}.br-s span{font-size:30px}.br-s.ok{border-style:solid;border-color:#06d6a0;background:#eafff5}
+.br-ant{left:6%;top:3%}.br-coax{left:34%;top:20%}.br-rig{left:46%;top:43%}.br-bat{left:72%;top:72%}.br-mic{left:72%;top:14%}
+.br-lamp{position:absolute;right:4%;top:4%;width:22px;height:22px;border-radius:50%;background:#555}.br-scene.on .br-lamp{background:#06d6a0;box-shadow:0 0 14px #06d6a0}
+.br-scene.on{box-shadow:0 0 0 4px #06d6a0}
+.br-tray{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start}
+.br-p{min-height:56px;border-radius:12px;border:3px solid #ddd;background:#fff;font:800 15px Arial,sans-serif;color:#073b4c;cursor:pointer;display:flex;align-items:center;gap:6px;padding:6px 8px;touch-action:manipulation}.br-p span{font-size:26px}
+.br-p.sel{border-color:#118ab2;background:#e8f6ff;transform:scale(1.04)}.br-p.gone{visibility:hidden}
+/* fox */
+.fx-wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:14px;align-items:start}
+.fx-g{display:grid;grid-template-columns:repeat(9,1fr);gap:2px;background:#7cc36b;border-radius:14px;padding:4px;touch-action:manipulation}
+.fx-c{aspect-ratio:1;border:0;border-radius:6px;background:#9fd37d;font-size:clamp(14px,3.6vw,26px);padding:0;cursor:default;display:flex;align-items:center;justify-content:center}.fx-c.adj{background:#c6ebb2;cursor:pointer}
+.fx-me{position:relative}.fx-ant{position:absolute;font-size:.6em;font-style:normal;top:-.5em;left:50%;transition:transform .2s}.fx-ant.d0{transform:translate(-50%,-30%) rotate(0)}.fx-ant.d1{transform:translate(20%,30%) rotate(90deg)}.fx-ant.d2{transform:translate(-50%,130%) rotate(180deg)}.fx-ant.d3{transform:translate(-120%,30%) rotate(-90deg)}
+.fx-meter{height:22px;border-radius:11px;background:#eee;overflow:hidden;border:2px solid #ccc}.fx-meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,#06d6a0,#ffd166,#ef476f);transition:width .2s}
+.fx-pad{display:grid;grid-template-columns:repeat(3,60px);grid-template-rows:repeat(3,52px);gap:6px;justify-content:center;margin:10px 0}.fx-pad .kz-btn{min-height:0;padding:0;font-size:22px}
+/* weather */
+.ws-box{text-align:center}.ws-pic{font-size:74px;line-height:1.1}.ws-step{font:900 12px Arial;letter-spacing:1px;color:#888;text-transform:uppercase}
+.ws-see{font:700 18px/1.45 Arial,sans-serif;color:#073b4c;max-width:620px;margin:6px auto}.ws-nc{background:#073b4c;color:#fff;border-radius:14px;padding:10px 14px;max-width:620px;margin:8px auto;font-size:16px}.ws-q{font:900 17px Arial;margin:10px 0 6px}
+.ws-a{display:grid;gap:8px;max-width:620px;margin:0 auto}.ws-b{min-height:54px;border-radius:14px;border:3px solid #ddd;background:#fff;font:800 16px Arial,sans-serif;color:#073b4c;cursor:pointer;padding:8px 12px;text-align:left}.ws-b.ok{background:#d6ffe9;border-color:#06d6a0}.ws-b.no{background:#ffe1e7;border-color:#ef476f}
+.ws-fb{min-height:48px;font:700 16px/1.45 Arial;color:#073b4c;max-width:620px;margin:10px auto 0}
+.kg-pop{position:fixed;left:50%;top:90px;transform:translateX(-50%);background:#ffd166;color:#073b4c;font:900 22px Arial,sans-serif;padding:10px 22px;border-radius:999px;box-shadow:0 8px 20px rgba(0,0,0,.2);z-index:80}
+.kg2-note{font-size:13px;color:#666;margin-top:6px}
+@media(max-width:760px){.br-wrap,.fx-wrap{grid-template-columns:minmax(0,1fr)}.wm-b{grid-template-columns:repeat(3,minmax(0,1fr))}.wm-c{min-height:84px;font-size:13px}.wm-c.term .f{font-size:18px}.br-s{font-size:9px}.br-s b{font-size:18px}.br-s span{font-size:22px}}
+</style>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Find It</a>
+            <a href="kpc-spot-me.html" role="menuitem"><span class="ni">&#128227;</span>Spot Me (post your spot)</a>
+            <a href="kpc-park-info.html" role="menuitem"><span class="ni">&#127963;</span>Park Info Finder (any state)</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>KY Trip Planner</a>
+            <a href="kpc-planner-us.html" role="menuitem"><span class="ni">&#129517;</span>US Trip Planner</a>
+            <a href="kpc-checker.html" role="menuitem"><span class="ni">&#9989;</span>Park Checker (any state)</a>
+            <a href="kpc-park-notes.html" role="menuitem"><span class="ni">&#128221;</span>Park Notes (tips)</a>
+            <a href="kpc-campgrounds.html" role="menuitem"><span class="ni">&#127957;</span>Campgrounds &amp; Cabins</a>
+            <a href="kpc-community.html" role="menuitem"><span class="ni">&#129309;</span>Community (setups &amp; tips)</a>
+            <a href="photos.html#member-photos" role="menuitem"><span class="ni">&#128247;</span>Member Field Photos</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-band-plan.html" role="menuitem"><span class="ni">&#128225;</span>Band Plan by License</a>
+            <a href="kpc-cw.html" role="menuitem"><span class="ni">&#127911;</span>CW Practice Room</a>
+            <a href="kpc-cw-info.html" role="menuitem"><span class="ni">&#128214;</span>CW Info &amp; Links</a>
+            <a href="kpc-kids.html" role="menuitem"><span class="ni">&#129490;</span>Kids Room (games &amp; guides)</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
+            <a href="antennas.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guides</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128208;</span>Antenna Calculator</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • KIDS ROOM</p><h1>RADIO <span>ADVENTURES</span></h1><p class="hero-copy">Five more ham radio games: match ham words, find states on the map, build a radio station, hunt a hidden fox, and help on a weather net!</p></div></section>
+<section class="kg2" data-keep-light><div class="kg2-in">
+<a class="kg2-back" href="kpc-kids.html">← Back to the Kids Room</a>
+<div class="kg2-top"><div>⭐ <span class="s" id="kgStars">0</span> stars</div><nav class="kg2-jump" aria-label="Games on this page"><a href="#words">🔤 Ham Words</a><a href="#map">🗺️ Map Hunt</a><a href="#build">🔧 Build a Radio</a><a href="#fox">🦊 Fox Hunt</a><a href="#wx">⛈️ Weather Net</a></nav></div>
+
+<div class="kg2-card" id="words"><h2>🔤 Ham Words Match</h2><p>Hams have their own short words. Flip two cards to match each word with what it means. Pink cards are the ham words!</p>
+ <div class="wm-b" id="wmBoard"></div><div class="kg2-msg" id="wmMsg"></div>
+ <button type="button" class="kz-btn alt" id="wmNew">🔄 NEW CARDS</button>
+</div>
+
+<div class="kg2-card" id="map" style="border-top-color:#118ab2"><h2>🗺️ Map Hunt</h2><p>A station gives you a report and says where they are. Can you find that state on the map? The red dot is Kentucky. Every 5 states you find earns a star.</p>
+ <div class="kg2-seg"><label><input type="radio" name="mhm" value="name" checked> State names</label><label><input type="radio" name="mhm" value="abbr"> Abbreviations (harder)</label></div>
+ <div class="kg2-row"><button type="button" class="kz-btn" id="mhGo">▶ NEW STATION</button><button type="button" class="kz-btn alt" id="mhAgain">🔁 HEAR AGAIN</button><b id="mhScore" style="font:900 16px Arial;color:#118ab2"></b></div>
+ <div class="mh-q" id="mhQ">Press NEW STATION to start.</div>
+ <div class="kg2-msg" id="mhMsg"></div>
+ <div id="mhMap"></div>
+ <div class="mh-small"><span>Tiny states:</span><span id="mhSmall"></span></div>
+</div>
+
+<div class="kg2-card" id="build" style="border-top-color:#ef476f"><h2>🔧 Build a Radio Station</h2><p>Every ham station needs a few parts. Tap a part, then tap where it goes. Watch out for silly things that don't belong!</p>
+ <div class="br-wrap"><div class="br-scene" id="brScene"></div><div class="br-tray" id="brTray"></div></div>
+ <div class="kg2-msg" id="brMsg"></div>
+ <button type="button" class="kz-btn alt" id="brNew">🔄 BUILD AGAIN</button>
+</div>
+
+<div class="kg2-card" id="fox" style="border-top-color:#8338ec"><h2>🦊 Fox Hunt</h2><p>Hams hide a little beeping transmitter called the <b>fox</b>, then hunt for it with radios. Walk around the park and listen: the beeps get louder and faster when you're close!</p>
+ <div class="kg2-seg"><label><input type="radio" name="fxm" value="easy" checked> Easy (just listen)</label><label><input type="radio" name="fxm" value="pro"> Expert (turn your antenna)</label></div>
+ <div class="fx-wrap" id="fxBox">
+  <div class="fx-g" id="fxGrid"></div>
+  <div>
+   <div style="font:900 13px Arial;letter-spacing:1px;color:#555;margin-bottom:4px">📶 SIGNAL</div><div class="fx-meter"><i id="fxMeter"></i></div>
+   <div class="fx-pad"><span></span><button type="button" class="kz-btn alt" id="fxU" aria-label="Walk up">⬆️</button><span></span><button type="button" class="kz-btn alt" id="fxL" aria-label="Walk left">⬅️</button><button type="button" class="kz-btn" id="fxTurn" style="visibility:hidden" aria-label="Turn antenna">🔄</button><button type="button" class="kz-btn alt" id="fxR" aria-label="Walk right">➡️</button><span></span><button type="button" class="kz-btn alt" id="fxD" aria-label="Walk down">⬇️</button><span></span></div>
+   <div class="kg2-row"><button type="button" class="kz-btn" id="fxStart">▶ START HUNT</button><button type="button" class="kz-btn alt" id="fxNew">🦊 NEW FOX</button><button type="button" class="kz-btn alt" id="fxMute">🔊 SOUND ON</button><b id="fxSteps" style="font:900 16px Arial;color:#8338ec"></b></div>
+  </div>
+ </div>
+ <div class="kg2-msg" id="fxMsg"></div>
+ <p class="kg2-note">You can also tap the light-green squares next to you to walk, or use the arrow keys on a computer.</p>
+</div>
+
+<div class="kg2-card" id="wx" style="border-top-color:#ffd166"><h2>⛈️ Weather Spotter Net</h2><p>When storms come, hams called <b>SKYWARN spotters</b> tell the weather service what they see. Pretend you're on the weather net. What's the right thing to do?</p>
+ <div class="ws-box" id="wsBox"><button type="button" class="kz-btn" id="wsStart">▶ JOIN THE NET</button></div>
+ <p class="kg2-note">Remember: in a real emergency, get safe first and a grown-up calls 911.</p>
+</div>
+
+<p class="kg2-note">Everything here is pretend. Call signs are made up with 4 letters after the number, which are never given to real hams. Stars are saved only on this device and count toward your Kids Room badges and certificate.</p>
+<div class="kg-pop" id="kgPop" hidden></div>
+</div></section>
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
+<script src="kpc-kids-games.js?v=20261015b"></script>
+<script src="kpc-search.js?v=20261015kg" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+</body></html>
