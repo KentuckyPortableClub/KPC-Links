@@ -316,6 +316,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
 </section>`;
     $('mrCopy').onclick = e => { e.preventDefault(); const t = $('mrNote').value; (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => e.target.textContent = 'COPIED ✓').catch(() => { $('mrNote').select(); document.execCommand('copy'); e.target.textContent = 'COPIED ✓'; }); };
     draw(feats, near, la, lo);
+    if (window.KPCSuggest) try { KPCSuggest.park({ g, la, lo, base, own, mng, acc, locM, des: base.map(r => r.Loc_Ds || DES[r.Des_Tp] || r.Des_Tp).filter(Boolean), offWeb, verdict: verdict[1], already, rules: res.map(r => ({ v: r.v, title: r.title })), grid: grid(la, lo) }); } catch (e) {}
     $('mrOut').querySelectorAll('[data-copy]').forEach(b => b.onclick = e => { e.preventDefault(); const v = b.dataset.copy; (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(() => b.textContent = 'COPIED ✓').catch(() => window.prompt('Copy:', v)); });
     $('mrOut').querySelectorAll('[data-dl]').forEach(b => b.onclick = e => { e.preventDefault(); B.saveGeo({ type: 'FeatureCollection', features: feats.map(f => ({ type: 'Feature', properties: { Unit_Nm: f.properties.Unit_Nm }, geometry: f.geometry })) }, 'kml', { ref: nm.replace(/\s+/g, '_').slice(0, 40), name: nm, la, lo }, b); });
     enrich(g, la, lo);
@@ -427,12 +428,13 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
   const HASH = 'b36efa5ab2718f715ea105ece66b600d914fb0be36ee52de48363e5727d92b73';
   const sha = async t => { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); };
   function start() {
-    $('mrLock').hidden = true; $('mrApp').hidden = false;
+    if ($('mrLock')) $('mrLock').hidden = true; $('mrApp').hidden = false;
     if ($('mrState').value) agencies($('mrState').value);
     const P = new URLSearchParams(location.search);
     if (P.get('name')) { $('mrName').value = P.get('name'); if (P.get('town')) $('mrTown').value = P.get('town'); if (P.get('state')) { $('mrState').value = P.get('state').toUpperCase(); agencies($('mrState').value); } search(); }
   }
-  let ok = false; try { ok = localStorage.getItem('kpcMrOK') === HASH; } catch (e) {}
+  let ok = !!$('mrPublic'); /* the public Suggest page uses the same engine with no password */
+  if (!ok) try { ok = localStorage.getItem('kpcMrOK') === HASH; } catch (e) {}
   if (ok) start();
   else $('mrLockForm').addEventListener('submit', async e => {
     e.preventDefault();

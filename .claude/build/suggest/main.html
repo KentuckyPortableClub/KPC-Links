@@ -1,0 +1,113 @@
+<link rel="stylesheet" href="kpc-tools.css?v=20261015a">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+.mr-wrap{max-width:1000px;margin:0 auto;padding:24px 16px 40px;box-sizing:border-box}
+.mr-card{background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);border-radius:10px;padding:18px;box-shadow:0 10px 24px rgba(0,0,0,.05)}
+.mr-form{display:grid;grid-template-columns:2fr 1.2fr .8fr auto;gap:10px;align-items:end}
+.mr-form label{display:grid;gap:5px;font:900 11px Arial,sans-serif;letter-spacing:1.4px;color:#5b5648}
+.mr-form input,.mr-form select{min-height:48px;border:1.5px solid #cbbf9f;border-radius:10px;padding:8px 12px;font:16px Arial,sans-serif;min-width:0;background:#fff}
+.mr-form button{min-height:48px;padding:10px 20px;border:0;border-radius:10px;background:#171717;color:#f0c96b;font:900 13px Arial,sans-serif;letter-spacing:1.3px;cursor:pointer}
+.mr-help{margin:8px 0 0;color:#5b5648;font-size:13.5px;line-height:1.5}
+.mr-pick{display:flex;justify-content:space-between;gap:10px;align-items:center;width:100%;text-align:left;margin-top:8px;padding:12px 14px;border:1px solid #e0d5bd;border-radius:10px;background:#fbf8ef;cursor:pointer;font:15px Arial,sans-serif;color:#171717}
+.mr-pick b{font-family:Georgia,serif}.mr-pick span{color:#1d5a3a;font:900 11.5px Arial,sans-serif;letter-spacing:.6px;text-align:right}
+.mr-msg{margin-top:14px;padding:12px 14px;border-radius:8px;background:#f6f2ea;color:#5b5648}
+.mr-res{margin-top:18px;background:#fff;border:1px solid #d8cfbf;border-radius:12px;overflow:hidden}
+.mr-head{background:#0b0b0b;color:#fff;padding:16px 18px}.mr-k{font:900 12px Arial,sans-serif;letter-spacing:2px;color:#f0c96b}.mr-head h2{margin:4px 0;font:700 27px/1.15 Georgia,serif;color:#fff}.mr-head p{margin:0;color:#cfcabf;font-size:14px}
+.mr-v{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px 18px;font:900 16px Arial,sans-serif;letter-spacing:.8px}
+.mr-msg + .mr-v{border-radius:10px;margin-top:10px}
+.mr-v span{font:700 13px Arial,sans-serif;letter-spacing:0;opacity:.85}
+.mr-v.yes{background:#e9f6ee;color:#1d6e3c}.mr-v.no{background:#fbece7;color:#a8361f}.mr-v.maybe{background:#fff6e0;color:#8a5a00}
+.mr-rules{padding:6px 18px 4px}
+.mr-r{display:grid;grid-template-columns:70px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid #eee3cc}
+.mr-r i{font-style:normal;align-self:start;text-align:center;padding:6px 4px;border-radius:7px;font:900 13px Arial,sans-serif;letter-spacing:1px;color:#fff;background:#888}
+.mr-r.yes i{background:#2c9a55}.mr-r.no i{background:#c8452b}.mr-r.check i{background:#c98a00}.mr-r.info i{background:#5b6b8a}
+.mr-r b{font:700 16px Georgia,serif;color:#171717}.mr-r p{margin:4px 0 0;font-size:14px;line-height:1.5;color:#3d3a31;overflow-wrap:anywhere}.mr-r a{color:#1d5a3a;font-weight:700}
+.mr-sec{padding:14px 18px;border-top:1px solid #eee3cc}.mr-sec h3{margin:0 0 8px;font:900 11.5px Arial,sans-serif;letter-spacing:2px;color:#1d5a3a}
+.mr-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.mr-btns a{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border-radius:8px;background:#fff;border:1.5px solid #171717;color:#171717;font:900 11.5px Arial,sans-serif;letter-spacing:1px;text-decoration:none}.mr-btns a.gold{background:var(--gold);border-color:var(--gold);color:#111}
+#mrMap{height:420px;border-radius:10px;border:1px solid #d8cfbf;position:relative;z-index:0;isolation:isolate}
+.mr-agd{margin-top:12px;border:1px solid #d8cfbf;border-radius:10px;padding:0 12px;background:#fbf8ef}.mr-agd summary{cursor:pointer;padding:11px 0;font:900 11.5px Arial,sans-serif;letter-spacing:1.2px;color:#1d5a3a}.mr-agd h4{margin:10px 0 6px;font:900 10.5px Arial,sans-serif;letter-spacing:1.6px;color:#5b5648}
+.mr-ags{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:10px}.mr-ag{border:1.5px solid #cbbf9f;background:#fff;border-radius:999px;padding:6px 11px;font:700 12.5px Arial,sans-serif;color:#171717;cursor:pointer;text-align:left}.mr-ag small{color:#68635a;font-weight:400}.mr-ag em{font-style:normal;font-weight:900;color:#1d5a3a;margin-left:3px}.mr-ag.on{background:#171717;color:#f0c96b;border-color:#171717}.mr-ag.on small,.mr-ag.on em{color:#f0c96b}
+.mr-pkbox{margin-top:8px;border:2px solid #1378ff;border-radius:10px;padding:8px 10px;background:#f2f7ff}.mr-pk{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid #d6e3f7}.mr-pk:first-of-type{border-top:0}.mr-pki{flex:0 0 30px;height:30px;border-radius:7px;background:#1378ff;color:#fff;font:900 17px Arial,sans-serif;display:flex;align-items:center;justify-content:center}.mr-pk b{display:block}.mr-pk small{display:block;color:#5b5648;line-height:1.4}.mr-pkm span{display:flex;width:26px;height:26px;border-radius:6px;background:#1378ff;color:#fff;font:900 15px Arial,sans-serif;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.5)}
+.mr-rec{margin-top:8px;border:1px solid #d8cfbf;border-radius:8px;background:#fff;padding:0 10px}.mr-rec summary{cursor:pointer;padding:8px 0;font:900 11px Arial,sans-serif;letter-spacing:1px;color:#1d5a3a}.mr-rec table{width:100%;border-collapse:collapse;margin:0 0 8px;font-size:13px}.mr-rec th{text-align:left;width:38%;padding:5px 6px;color:#5b5648;font-weight:700;vertical-align:top;border-top:1px solid #eee3cc}.mr-rec td{padding:5px 6px;border-top:1px solid #eee3cc;overflow-wrap:anywhere}
+.mr-rl{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.mr-rl a{display:inline-flex;align-items:center;min-height:34px;padding:5px 10px;border-radius:7px;border:1.5px solid #1d5a3a;background:#fff;color:#1d5a3a!important;font:900 11px Arial,sans-serif;letter-spacing:.6px;text-decoration:none}.mr-rl a.gold{background:var(--gold);border-color:var(--gold);color:#111!important}
+.mr-pick small{font-weight:400;color:#68635a;letter-spacing:0}.mr-pick.osm{border-style:dashed;border-color:#ff4fd8}
+.mr-osm{padding:12px 18px;background:#fff0fb;border-bottom:2px dashed #ff4fd8;color:#4a1640;font-size:14px;line-height:1.5}
+.mr-top{position:relative}.mr-logo{float:right;width:150px;height:150px;border-radius:50%;background:#fff;object-fit:contain;padding:6px;box-shadow:0 0 0 3px rgba(240,201,107,.6),0 8px 24px rgba(0,0,0,.4);margin:0 0 10px 16px}
+.mr-hit{padding:12px;margin:8px 0;border:1px solid #e0d5bd;border-radius:10px;background:#fbf8ef}.mr-hit>b{font:700 16px Georgia,serif}.mr-hit small{display:block;color:#68635a;font:900 10px Arial,sans-serif;letter-spacing:1.2px;margin-top:2px}.mr-hit p{margin:5px 0 0;font-size:13.5px;line-height:1.5;color:#3d3a31}
+.mr-no{color:#a8361f;font-weight:700}.mr-ok{color:#1d6e3c;font-weight:700}.mr-w{color:#8a5a00;font-weight:700}.mr-found{background:#e9f6ee}
+.mr-lock{max-width:460px;margin:0 auto}.mr-lock h2{margin:0 0 4px;font:700 24px Georgia,serif}.mr-lockf{display:flex;gap:8px;margin-top:10px}.mr-lockf input{flex:1;min-width:0;min-height:48px;border:1.5px solid #cbbf9f;border-radius:10px;padding:8px 12px;font:16px Arial,sans-serif}.mr-lockf button{min-height:48px;padding:8px 18px;border:0;border-radius:10px;background:#171717;color:#f0c96b;font:900 13px Arial,sans-serif;letter-spacing:1.2px;cursor:pointer}
+.mr-msg.busy{display:flex;gap:12px;align-items:center}.mr-spin{font-size:30px;display:inline-block;animation:mrspin 1.4s linear infinite}@keyframes mrspin{to{transform:rotate(360deg)}}.mr-sec-n{display:block;margin-top:4px;color:#1d5a3a;font-weight:700}
+.mr-facts{background:#f3f8f4}.mr-fact{display:grid;gap:3px;padding:8px 0;border-bottom:1px solid #e3eadf}.mr-fact span{font:900 10.5px Arial,sans-serif;letter-spacing:1.4px;color:#5b5648}.mr-fact b{font:700 16px Arial,sans-serif;color:#171717;overflow-wrap:anywhere}.mr-fact .mr-btns{margin-top:4px}.mr-facts h4{margin:12px 0 6px;font:900 10.5px Arial,sans-serif;letter-spacing:1.4px;color:#5b5648}
+.mr-links{display:grid;gap:6px}.mr-links a{display:grid;padding:9px 12px;border:1px solid #d8cfbf;border-radius:8px;background:#fff;text-decoration:none;color:#171717}.mr-links b{font:900 12px Arial,sans-serif;letter-spacing:.6px;color:#1d5a3a}.mr-links span{font-size:12.5px;color:#5b5648;overflow-wrap:anywhere}
+#mrNote{width:100%;box-sizing:border-box;border:1.5px solid #cbbf9f;border-radius:10px;padding:10px;font:13.5px/1.45 ui-monospace,Menlo,Consolas,monospace}
+.mr-hidden{margin:0 0 14px;padding:10px 14px;border-radius:10px;background:#eef3fb;border:1px solid #9db4d8;color:#22385c;font-size:14px}
+@media(max-width:760px){.mr-logo{width:96px;height:96px;margin-left:10px}.mr-form{grid-template-columns:1fr 1fr}.mr-form label:first-child{grid-column:1/-1}.mr-form button{grid-column:1/-1}#mrMap{height:340px}.mr-r{grid-template-columns:60px minmax(0,1fr)}}
+
+.sg-call{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;align-items:center}
+.sg-call label{font:900 11px Arial,sans-serif;letter-spacing:1.4px;color:#5b5648}
+.sg-call input{min-height:52px;border:2px solid #c98a00;border-radius:10px;padding:8px 14px;font:900 22px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;max-width:260px;width:100%;box-sizing:border-box;background:#fffaf0}
+#sgCallMsg{grid-column:1/-1;margin:0;color:#a8361f;font-weight:700;font-size:13.5px}
+.sg-tabs{display:flex;gap:8px;margin:16px 0 0}.sg-tabs button{flex:1;min-height:54px;border:2px solid #171717;border-radius:12px;background:#fff;font:900 14px Arial,sans-serif;letter-spacing:1.2px;cursor:pointer;color:#171717}
+.sg-tabs button[aria-pressed=true]{background:#171717;color:#f0c96b}
+.sg-rules{margin-top:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.sg-rules details{border:1px solid #d8cfbf;border-radius:10px;background:#fbf8ef;padding:0 12px}.sg-rules summary{cursor:pointer;padding:11px 0;font:900 12px Arial,sans-serif;letter-spacing:1.2px;color:#1d5a3a}
+.sg-rules ul{margin:0 0 10px;padding-left:18px;font-size:13.5px;line-height:1.5;color:#3d3a31}.sg-rules a{color:#1d5a3a;font-weight:700}
+.sg-sec{margin-top:18px;background:#fff;border:2px solid #c98a00;border-radius:12px;padding:16px 18px}.sg-sec>h3{margin:0 0 6px;font:900 13px Arial,sans-serif;letter-spacing:2px;color:#8a5a00}
+.sg-prog{margin-top:14px;border-top:1px solid #eee3cc;padding-top:12px}.sg-ph{font:700 15px Georgia,serif;color:#171717;margin-bottom:6px}.sg-ph b{font:900 13px Arial,sans-serif;letter-spacing:1.5px;background:#171717;color:#f0c96b;padding:3px 8px;border-radius:6px;margin-right:4px}
+.sg-mail{margin-top:10px;border:1px solid #d8cfbf;border-radius:10px;padding:12px;background:#fbf8ef}.sg-mail h4{margin:0 0 4px;font:700 16px Georgia,serif}
+.sg-tos{margin:8px 0;display:grid;gap:6px}.sg-tos>span{font:900 10.5px Arial,sans-serif;letter-spacing:1.4px;color:#5b5648}.sg-to{padding:8px 10px;border-radius:8px;background:#fff;border:1px solid #e0d5bd;font-size:14px;line-height:1.5}.sg-to a{color:#1d5a3a;font-weight:900;font-size:12px;margin-left:6px}.sg-to code{font-size:14px;overflow-wrap:anywhere}
+.sg-l{display:grid;gap:4px;margin-top:8px;font:900 10.5px Arial,sans-serif;letter-spacing:1.4px;color:#5b5648}.sg-l input,.sg-l textarea{width:100%;box-sizing:border-box;border:1.5px solid #cbbf9f;border-radius:8px;padding:9px 10px;font:14px/1.45 Arial,sans-serif;color:#171717;background:#fff;letter-spacing:0}
+.sg-l textarea{font:13px/1.45 ui-monospace,Menlo,Consolas,monospace}
+.sg-kff{padding:0 2px}.sg-kff .mr-r{padding:7px 0}.sg-kff .mr-r b{font-size:14.5px}
+.sg-jump{display:block;margin:10px 18px;padding:12px;border-radius:10px;background:#c98a00;color:#171717;text-align:center;font:900 13px Arial,sans-serif;letter-spacing:1.4px;text-decoration:none}
+.sg-prom{display:flex;gap:8px;margin-top:8px}.sg-prom input{width:140px;min-height:44px;border:1.5px solid #cbbf9f;border-radius:8px;padding:6px 10px;font:16px Arial,sans-serif}.sg-prom select{min-height:44px;border:1.5px solid #cbbf9f;border-radius:8px;padding:6px;font:15px Arial,sans-serif;background:#fff}
+#sgMap{height:380px;border-radius:10px;border:1px solid #d8cfbf;margin-top:12px;position:relative;z-index:0;isolation:isolate}
+.sg-sform{display:grid;grid-template-columns:2fr 1fr 1fr auto auto;gap:10px;align-items:end}
+@media(max-width:760px){.sg-rules{grid-template-columns:1fr}.sg-sform{grid-template-columns:1fr 1fr}.sg-sform label:first-child{grid-column:1/-1}.sg-sform button{grid-column:span 1}.sg-call{grid-template-columns:1fr}#sgMap{height:320px}}
+</style>
+@@HEADER@@
+<main>
+<section class="tool-head th-map"><div class="wrap mr-top">
+<p class="eyebrow">POTA · WWFF · SOTA · ANY STATE</p>
+<h1>Suggest a <span>Park or Summit</span></h1>
+<p class="sub">Know a park or a mountain top that should be on the air? Look it up here. The page checks it against each program's rules, then writes the email to the right volunteer with everything it found and all the links. You just read it over and send it.</p>
+</div></section>
+<div class="mr-wrap">
+<section class="mr-card">
+<div class="sg-call"><label for="sgCall">YOUR CALL SIGN (REQUIRED)</label><input id="sgCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="K4TEST"><p id="sgCallMsg"></p></div>
+<div class="sg-tabs" role="group" aria-label="What are you suggesting?"><button type="button" data-sgtab="park" aria-pressed="true">🏞 A PARK<br><small>POTA + WWFF</small></button><button type="button" data-sgtab="summit" aria-pressed="false">⛰ A SUMMIT<br><small>SOTA</small></button></div>
+<div class="sg-rules">
+<details><summary>WHAT POTA ADDS ▸</summary><ul><li>Owned AND run by the federal or state government (no city, county, private, non-profit, commission or district parks).</li><li>Open to the public (hard access is fine; permit-only is not).</li><li>Not a sub-park inside a bigger park of the same agency.</li><li>Not cut off by private land (a public road, trail or water way in).</li><li>Not a Corps of Engineers site, heritage area, National Recreation Trail, historic property or tribal land.</li><li>Has an official agency page and boundary map.</li><li>Emails go to your state's Mapping Representative. <a href="https://docs.pota.app/docs/volunteer_reference/park_additions_edits.html" target="_blank" rel="noopener">POTA rules ↗</a></li></ul></details>
+<details><summary>WHAT WWFF / KFF ADDS ▸</summary><ul><li>Nature related: no buildings, monuments, battleships, statues or old railroads.</li><li>Managed by a federal or state agency (no city parks or private centers).</li><li>Open to visitors.</li><li>Wildlife Management Areas only if major (over 500 acres).</li><li>Worldwide: a protected area (IUCN categories, Ramsar, biosphere reserve and similar, listed in the WDPA).</li><li>Emails go to the KFF coordinator. <a href="https://wwff.us/references/" target="_blank" rel="noopener">KFF rules ↗</a> · <a href="https://wwff.co/wwff_cont/uploads/2025/09/WWFF-Global-Rules-V_5.10.pdf" target="_blank" rel="noopener">WWFF rules ↗</a></li></ul></details>
+<details><summary>WHAT SOTA ADDS ▸</summary><ul><li>A distinct peak with at least 150 m (492 ft) of prominence.</li><li>Legal access to the top (open access or permission).</li><li>Operating rules: inside 25 m (82 ft) below the top, not in or next to a vehicle, no fixed power.</li><li>Your state's SOTA Association Manager handles new summits; most qualifying peaks are already listed.</li><li><a href="https://www.sota-dl.de/media/SOTA-General-Rules-v1.20.pdf" target="_blank" rel="noopener">SOTA General Rules ↗</a></li></ul></details>
+</div>
+</section>
+<div id="sgPark">
+<span id="mrPublic" hidden></span>
+<div id="mrApp">
+<section class="mr-card" style="margin-top:16px">
+<form class="mr-form" id="mrForm"><label>PARK NAME<input id="mrName" autocomplete="off" placeholder="Example Creek State Park"></label><label>TOWN (OPTIONAL)<input id="mrTown" autocomplete="off" placeholder="Anytown"></label><label>STATE (REQUIRED)<select id="mrState" required></select></label><button type="submit">CHECK IT</button></form>
+<p class="mr-help">It searches the national public land database (every federal and state agency in the state), the live National Park Service and Fish &amp; Wildlife maps and OpenStreetMap, then checks POTA's and KFF's rules. The emails appear at the bottom of the result.</p>
+<div id="mrAg"></div>
+<div id="mrList"></div>
+</section>
+<div id="mrOut"></div>
+</div>
+</div>
+<div id="sgSummit" hidden>
+<section class="mr-card" style="margin-top:16px">
+<form class="sg-sform mr-form" id="sgSForm"><label>SUMMIT NAME<input id="sgSName" autocomplete="off" placeholder="Example Knob"></label><label>TOWN (OPTIONAL)<input id="sgSTown" autocomplete="off" placeholder="Anytown"></label><label>STATE<select id="sgSt"></select></label><button type="submit">FIND IT</button><button type="button" id="sgGps">📍 MY GPS</button></form>
+<p class="mr-help">Or tap the top of the hill on the map (Topo and Terrain show the peaks). It checks the SOTA list, the height, who owns the land and the county, and writes the email to the state's SOTA Association Manager.</p>
+<div id="sgMap"></div>
+<div id="sgSList"></div>
+</section>
+<div id="sgSOut"></div>
+</div>
+</div>
+</main>
+@@FOOTER@@
+<script src="kpc-bounds.js?v=20261015e" defer></script>
+<script src="kpc-map-tools.js?v=20261015c" defer></script>
+<script src="kpc-suggest.js?v=20261015a" defer></script>
+<script src="kpc-maprep.js?v=20261015l" defer></script>
