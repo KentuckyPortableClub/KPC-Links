@@ -1,0 +1,54 @@
+name: KPC Discord relay
+# Shares new posts from the private Discord channel to the website (News / Campout page, with a date),
+# the Facebook Page (no date), Groups.io and the email-updates list. Script: .github/scripts/kpc_discord_relay.py
+# Words anywhere in the post pick the page: "campout" -> Campout page (+ News), "announcement" -> News.
+on:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (show what would be posted, change nothing)'
+        type: boolean
+        default: true
+permissions:
+  contents: write
+concurrency:
+  group: kpc-discord-relay
+  cancel-in-progress: false
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install image tools
+        run: pip install --quiet pillow
+      - name: Share new posts
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          KPC_RELAY_CHANNEL: ${{ secrets.KPC_RELAY_CHANNEL }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          RELAY_SMTP_USER: ${{ secrets.RELAY_SMTP_USER }}
+          RELAY_SMTP_PASS: ${{ secrets.RELAY_SMTP_PASS }}
+          GROUPSIO_TO: ${{ secrets.GROUPSIO_TO }}
+          SUBSCRIBE_SHEET_CSV: ${{ secrets.SUBSCRIBE_SHEET_CSV }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
+        run: python3 .github/scripts/kpc_discord_relay.py
+      - name: Save
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add kpc-announcements.json kpc-relay-state.json 2>/dev/null || true
+          git add -A photos/announce 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'New club announcement from Discord'
+            for i in 1 2 3; do
+              if git pull --rebase --autostash && git push; then exit 0; fi
+              git rebase --abort 2>/dev/null || true
+              sleep $((i * 10))
+            done
+            echo 'Push failed; the next run will try again.'
+            exit 1
+          fi
