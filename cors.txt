@@ -1,0 +1,64 @@
+=== https://api.pota.app/spot
+HTTP/2 200 
+access-control-allow-methods: POST,GET,PUT,PATCH,DELETE,OPTIONS
+access-control-allow-origin: *
+access-control-allow-headers: Content-Type,X-Amz-Date,Authorization,X-Api-Key,x-requested-with,Access-Control-Allow-Origin
+=== https://api.pota.app/spot/
+HTTP/2 200 
+access-control-allow-methods: POST,GET,PUT,PATCH,DELETE,OPTIONS
+access-control-allow-origin: *
+access-control-allow-headers: Content-Type,X-Amz-Date,Authorization,X-Api-Key,x-requested-with,Access-Control-Allow-Origin
+=== https://api2.sota.org.uk/api/spots
+HTTP/2 200 
+access-control-allow-origin: *
+access-control-allow-methods: POST, GET, DELETE, OPTIONS
+access-control-allow-headers: Authorization, id_token, Content-type
+access-control-allow-credentials: true
+=== https://spots.wwff.co/api/spots
+HTTP/2 200 
+access-control-allow-origin: https://wwff.co
+access-control-allow-methods: GET, POST, OPTIONS
+access-control-allow-headers: X-API-Key, Content-Type
+access-control-allow-credentials: true
+=== https://www.cqgma.org/api/spot.php
+HTTP/1.1 301 Moved Permanently
+=== https://www.gma.rocks/api/spot.php
+HTTP/1.1 404 Not Found
+=== https://holycluster.iarc.org
+HTTP/2 405 
+allow: GET
+=== https://www.dxsummit.fi/api/v1/spots
+HTTP/2 200 
+allow: HEAD, GET, POST, OPTIONS
+access-control-allow-origin: *
+access-control-allow-methods: DELETE, GET, POST, PUT
+access-control-max-age: 21600
+access-control-allow-headers: X-REQUESTED-WITH, CONTENT-TYPE, AUTHORIZATION, SESSIONTOKEN, SESSIONTOKEN, X-REAL-IP
+=== holy html
+<!doctype html>
+<html lang="en" style="height: 100%">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WHVBN6RG');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/favicon-DJdUGUap.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <title>Holy Cluster</title>
+  <script type="module" crossorigin src="/assets/index-44K6JmpC.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-react-7ifejqIs.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-CoRLtwrW.js">
+  <link rel="modu
