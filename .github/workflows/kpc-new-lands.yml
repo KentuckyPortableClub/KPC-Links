@@ -15,7 +15,7 @@ concurrency:
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v5
       - name: Look for new Kentucky lands
@@ -26,7 +26,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/ky-lands-seen.json
+          git add data/ky-lands-seen.json data/ky-wma-owners.json
           if ! git diff --cached --quiet; then
             git commit -m 'Update Kentucky new-lands watch lists'
             git pull --rebase --autostash || true
