@@ -46,43 +46,43 @@
 <main>
 <section class="tool-head th-op"><div class="wrap">
 <p class="eyebrow">SPOT ME</p>
-<h1>Spot Yourself <span>Everywhere</span></h1>
-<p class="sub">Type your call, frequency and park once, then pick where it goes. Pick the sites you use. POTA can be sent from here (park number required, one spot per 5 minutes); for the others we write your spot in their format, open the site, and you press submit there.</p>
+<h1>Send a <span>Spot</span></h1>
+<p class="sub">Fill in the call, frequency and park once, then pick where the spot goes. POTA spots are sent right from this page (a park number is required, and only one spot every 5 minutes). For the other sites, the spot is copied in their format and the site opens, so you just paste it and press submit.</p>
 </div></section>
 
 <div class="sm-wrap">
 <section class="sm-card" aria-labelledby="sm1">
-<h2 id="sm1">1. Your spot</h2>
-<p class="sm-sub">Same details every spotting site asks for. Frequency in kHz (14062) or MHz (14.062) both work.</p>
+<h2 id="sm1">1. The spot</h2>
+<p class="sm-sub">These are the details every spotting site asks for. Frequency works in kHz (14062) or MHz (14.062).</p>
 <div class="sm-grid">
-<label>CALL ON THE AIR (YOU, OR THE STATION YOU HEARD)<input id="smCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. KQ4ABC/P"></label>
+<label>STATION ON THE AIR (YOU OR A STATION YOU HEARD)<input id="smCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. KQ4ABC/P"></label>
 <label>FREQUENCY<input id="smFreq" inputmode="decimal" autocomplete="off" placeholder="14062 or 14.062"><span class="sm-hint" id="smBand"></span></label>
 <label>MODE<select id="smMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option><option>DATA</option></select></label>
 <label>PROGRAM<select id="smProg"><option value="POTA">POTA (park)</option><option value="SOTA">SOTA (summit)</option><option value="WWFF">WWFF / KFF</option><option value="GMA">GMA</option><option value="NONE">None (just on the air)</option></select></label>
 <label>REFERENCE<input id="smRef" list="smRefs" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-1271"><datalist id="smRefs"></datalist><span class="sm-hint" id="smRefName"></span></label>
-<label>SPOTTED BY (USUALLY YOU)<input id="smBy" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="same as your call"></label>
+<label>SPOTTED BY (YOUR CALL)<input id="smBy" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="your call (blank = same as above)"></label>
 <label class="wide">COMMENT (OPTIONAL)<input id="smCm" maxlength="80" autocomplete="off" placeholder="QRT 1500Z · 5 W · calling CQ"></label>
 </div>
-<div class="sm-prev" aria-live="polite"><small>YOUR SPOT</small><span id="smPrev">Fill in your call and frequency</span></div>
+<div class="sm-prev" aria-live="polite"><small>THE SPOT</small><span id="smPrev">Fill in the call and frequency</span></div>
 </section>
 
 <section class="sm-card" aria-labelledby="sm2">
 <h2 id="sm2">2. Where to send it</h2>
-<p class="sm-sub">All off to start. Tick the ones you want. Only the sites that fit the program you picked are shown.</p>
+<p class="sm-sub">Nothing is picked to start. Tick the sites you want. Only the sites that fit the program you chose are shown.</p>
 <div class="sm-groups" id="smDests"></div>
 <label class="sm-remember"><input type="checkbox" id="smKeep"> Remember my picks on this phone or computer</label>
 </section>
 
 <section class="sm-card" id="smOut" hidden aria-labelledby="sm3">
-<h2 id="sm3">3. Sent / finish on their site</h2>
-<p class="sm-sub">Green = sent. Gold = tap to open that site with your spot copied; paste it in and press submit there.</p>
+<h2 id="sm3">3. Finish up</h2>
+<p class="sm-sub">Green means it was sent. For the others, tap the button: the spot is copied and the site opens, then you paste it in and press submit.</p>
 <div class="sm-res" id="smRes"></div>
 </section>
 
 <section class="sm-card" aria-labelledby="sm4">
 <h2 id="sm4">Good to know</h2>
 <div class="sm-note">
-<p><b>Self-spotting is normal for POTA, SOTA and WWFF.</b> On the general DX cluster (DX Summit, Holy Cluster, DXHeat) it's frowned on unless you're a special event station, so those are links only.</p>
+<p><b>Self-spotting is normal for POTA, SOTA and WWFF.</b> On the general DX cluster (DX Summit, Holy Cluster, DXHeat) it's frowned on unless you're a special event station, so they're kept in their own <b>Spot others</b> box at the bottom of the list.</p>
 <p><b>Spots you don't have to send:</b> on CW and FT8 the Reverse Beacon Network and PSK Reporter hear you calling CQ and spot you automatically. If you post your activation on <a href="https://pota.app/#/activations" target="_blank" rel="noopener">POTA's activation schedule</a> ahead of time, POTA spots you from those automatic reports too. KPC members' POTA spots also show up on the club Discord and Facebook Page by themselves, so there's no need to post them there.</p>
 <p><b>Weak cell signal?</b> Use APSPOT (in the list above): get the text message ready at home and send it from the park.</p>
 <p><b>No cell signal at all?</b> Spot Me needs internet, so it can't help there. The free <a href="https://sotamat.com" target="_blank" rel="noopener">SOTAmat</a> phone app can: it plays a short FT8 signal you transmit with your radio, stations that hear it pass it on through PSK Reporter, and SOTAmat posts your spot. Set up its account and your radio at home first.</p>
@@ -90,7 +90,7 @@
 </div>
 </section>
 </div>
-<div class="sm-bar"><span class="sm-n" id="smN">NOTHING PICKED YET</span><button type="button" class="sm-btn" id="smSend" disabled>SEND / GET READY</button><button type="button" class="sm-btn ghost" id="smCopy">COPY SPOT TEXT</button></div>
+<div class="sm-bar"><span class="sm-n" id="smN">NOTHING PICKED YET</span><button type="button" class="sm-btn" id="smSend" disabled>SEND THE SPOT</button><button type="button" class="sm-btn ghost" id="smCopy">COPY THE SPOT</button></div>
 </main>
 @@FOOTER@@
-<script src="kpc-spot-me.js?v=20261015f" defer></script>
+<script src="kpc-spot-me.js?v=20261015g" defer></script>
