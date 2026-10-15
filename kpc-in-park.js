@@ -12,6 +12,7 @@
     map = L.map('ipMap', { zoomControl: true }).setView([la, lo], z || 7);
     if (window.KPCLayers) KPCLayers(map); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
     map.on('click', e => { stopWatch(); check(e.latlng.lat, e.latlng.lng, 0, 'map'); });
+    if (window.KPCFull) KPCFull(map);
   }
   const say = (cls, h) => { $('ipV').className = 'ip-v ' + cls; $('ipV').innerHTML = h; };
 

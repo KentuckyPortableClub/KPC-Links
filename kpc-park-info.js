@@ -82,7 +82,7 @@
 <div class="pi-sec"><h3>BOUNDARY</h3><div class="pi-bnd none" id="piBnd">Looking for the official boundary…</div><div class="pi-btns" style="margin-top:8px" id="piBndBtns"></div></div>
 <div class="pi-sec"><h3>THE PARK'S OWN MAPS</h3><div class="pi-btns"><a href="${esc(mapsQ)}" target="_blank" rel="noopener">${dom ? 'SEARCH ' + esc(dom.toUpperCase()) + ' FOR MAPS ↗' : 'SEARCH FOR THE OFFICIAL MAP ↗'}</a></div><p>${dom ? 'Searches only the official site, so you get their trail, campground and boundary maps, not random pages.' : 'No official site listed, so this searches the web for the official map.'}</p></div>
 <div class="pi-sec"><h3>MORE</h3><div class="pi-btns">${o.links.map(([t, u]) => `<a class="alt" href="${esc(u)}" target="_blank" rel="noopener">${esc(t)} ↗</a>`).join('')}${isFinite(o.la) ? `<a class="alt" href="https://www.google.com/maps/dir/?api=1&destination=${o.la},${o.lo}" target="_blank" rel="noopener">DIRECTIONS ↗</a>` : ''}</div>${o.note ? `<p>${o.note}</p>` : ''}</div>
-<div class="pi-legend"><span>👆 Tap the map to drop a pin for Street View or directions. ◎ ME shows where you are (with your GPS numbers). The layers button has Satellite + streets, Topo, Terrain and Hillshade.</span><span><i style="background:#ffb000"></i>Official boundary (PAD-US)</span><span><i style="background:#ff4fd8"></i>OpenStreetMap outline (unofficial)</span><span>📍 ${esc(o.prog)} location</span></div>
+<div class="pi-legend"><span>👆 Tap the map to drop a pin for Street View or directions. ◎ ME shows where you are (with your GPS numbers), ⛶ FULL opens the map full screen. The layers button has Satellite + streets, Topo, Terrain and Hillshade.</span><span><i style="background:#ffb000"></i>Official boundary (PAD-US)</span><span><i style="background:#ff4fd8"></i>OpenStreetMap outline (unofficial)</span><span>📍 ${esc(o.prog)} location</span></div>
 </div><div id="piMap" aria-label="Map"></div></div></section>`;
     drawMap(o);
   }
@@ -93,6 +93,7 @@
     if (window.KPCLayers) KPCLayers(map); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
     if (window.KPCPin) KPCPin(map);
     if (window.KPCLocate) KPCLocate(map);
+    if (window.KPCFull) KPCFull(map);
     L.marker([o.la, o.lo]).addTo(map).bindPopup(esc(o.ref + ' ' + o.name));
     boundary(o);
   }
