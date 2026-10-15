@@ -86,9 +86,9 @@
     sec.innerHTML = `<h3>✉ EMAIL TO ASK FOR IT TO BE ADDED</h3><p class="mr-help">Each email below already holds your call sign and everything this search found (owner, manager, access, size, GPS pin, grid, county, parking, official links and the rule check). Read it over, add anything you know, then copy it or open it in your email app. Be polite: the people who add parks are volunteers.</p>
 <div class="sg-prog"><div class="sg-ph"><b>POTA</b> · Parks on the Air · ${esc(st)} Mapping Representative${reps.length > 1 ? 's' : ''}</div><div id="sgPota"></div></div>
 <div class="sg-prog"><div class="sg-ph"><b>WWFF / KFF</b> · World Wide Flora &amp; Fauna, USA program</div><div class="sg-kff">${kffChecks.map(c => `<div class="mr-r ${c[0] ? 'yes' : 'no'}"><i>${c[0] ? 'YES' : 'NO'}</i><div><b>${esc(c[1])}</b></div></div>`).join('')}<p class="mr-help">KFF rules: <a href="${KFF.refs}" target="_blank" rel="noopener">wwff.us/references</a> (US) and the <a href="${KFF.rules}" target="_blank" rel="noopener">WWFF Global Rules</a> (§15: proposals go to the national coordinator). <span id="sgKffHave">Checking if it is already a KFF reference…</span></p></div><div id="sgKff"></div></div>
-<div class="sg-prog"><div class="sg-ph"><b>SOTA</b> · Summits on the Air</div><p class="mr-help">SOTA is for mountain tops, not parks. If there's a peak in this park you'd like added, use the <a href="#summit" data-goto="summit">SUMMIT tab</a>.</p></div>`;
+<div class="sg-prog"><div class="sg-ph"><b>SOTA</b> · Summits on the Air · the peaks in this park</div><p class="mr-help">SOTA is for mountain tops, not parks. This looks at every mapped peak inside the park's boundary and shows which ones are already SOTA summits. Tap one to check it and write the email.</p><div class="mr-btns"><a class="gold" href="#" id="sgPeaksGo">⛰ FIND THE SUMMITS IN THIS PARK</a></div><div id="sgPeaks"></div></div>`;
     out.appendChild(sec);
-    sec.querySelector('[data-goto]').onclick = e => { e.preventDefault(); tab('summit'); initMap(); };
+    $('sgPeaksGo').onclick = e => { e.preventDefault(); peaksIn(info); };
     const intro = (who) => `Hello ${who},\n\n`;
     const sign = () => `\n\nThank you for all you do for the program.\n\n73,\n${call() || '(YOUR CALL SIGN)'}\n\n(Research gathered with the Kentucky Portable Club park helper. The official sources are the agency's own page and map.)`;
     const pv = $('sgPota');
@@ -122,6 +122,37 @@
     const head = out.querySelector('.mr-v'); if (head) head.after(j);
   }
   window.KPCSuggest = { park };
+
+  /* every mapped peak inside a park (OpenStreetMap natural=peak) + the SOTA summits inside it */
+  const OVER = ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter'];
+  async function over(q) { for (const u of OVER) { try { return await B.jget(u, { method: 'POST', body: 'data=' + encodeURIComponent(q), headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }, 45000); } catch (e) {} } throw new Error('overpass'); }
+  async function peaksIn(info) {
+    const box = $('sgPeaks'); box.innerHTML = '<div class="mr-msg busy"><span class="mr-spin">🧭</span><span>Looking for the peaks inside the boundary…</span></div>';
+    const bb = info.feats.reduce((a, f) => { const b = B.bbox(f.geometry); return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])]; }, [180, 90, -180, -90]);
+    const inP = (a, b) => info.feats.some(f => B.inside(a, b, f.geometry));
+    const rad = Math.max(B.km(bb[1], bb[0], bb[3], bb[2]) / 2 + 1, 3);
+    let osm = [], sota = [];
+    try { const j = await over(`[out:json][timeout:40];(node[natural~"^(peak|hill)$"](${bb[1]},${bb[0]},${bb[3]},${bb[2]}););out 400;`); osm = (j.elements || []).filter(e => inP(e.lat, e.lon)); } catch (e) { osm = null; }
+    try { sota = (await B.sotaNear((bb[1] + bb[3]) / 2, (bb[0] + bb[2]) / 2, rad)).filter(s => inP(s.la, s.lo)); } catch (e) {}
+    const rows = (osm || []).map(e => { const t = e.tags || {}, s = sota.find(x => B.km(x.la, x.lo, e.lat, e.lon) < 0.35); return { la: e.lat, lo: e.lon, name: t.name || '(no name)', ele: +t.ele || null, prom: +t.prominence || null, tags: t, sota: s }; });
+    sota.filter(s => !rows.some(r => r.sota === s)).forEach(s => rows.push({ la: s.la, lo: s.lo, name: s.name, ele: s.m, prom: null, tags: {}, sota: s }));
+    rows.sort((a, b) => (b.ele || 0) - (a.ele || 0));
+    if (!rows.length) { box.innerHTML = `<p class="mr-help">${osm === null ? 'Could not reach OpenStreetMap right now. Try again in a minute.' : 'No mapped peaks inside this boundary. You can still tap a hilltop on the map in the SUMMIT tab.'}</p>`; return; }
+    const S = rows.filter(r => r.sota).length;
+    box.innerHTML = `<p class="mr-help"><b>${rows.length} peak${rows.length > 1 ? 's' : ''} inside the boundary</b> (OpenStreetMap)${S ? `, ${S} already SOTA summit${S > 1 ? 's' : ''}` : ', none on the SOTA list yet'}. Highest first.</p>` + rows.slice(0, 40).map((r, i) => `<button type="button" class="mr-pick" data-pk="${i}"><b>${esc(r.name)}</b><span>${r.ele ? ft(r.ele).toLocaleString() + ' ft' : 'height ?'}${r.prom ? ' · prominence ' + ft(r.prom).toLocaleString() + ' ft' : ''}<br><small>${r.sota ? '✓ SOTA ' + esc(r.sota.ref) + ' (' + r.sota.pts + ' pts)' : 'not on the SOTA list · CHECK IT ›'}</small></span></button>`).join('') + (rows.length > 40 ? `<p class="mr-help">Showing the 40 highest of ${rows.length}.</p>` : '');
+    box.onclick = e => { const b = e.target.closest('[data-pk]'); if (!b) return; const r = rows[+b.dataset.pk]; tab('summit'); initMap(); if (stSel) stSel.value = info.g.st; $('sgSName').value = r.name === '(no name)' ? '' : r.name; check(r.la, r.lo, r.name === '(no name)' ? '' : r.name, { extratags: r.tags }); window.scrollTo({ top: $('sgSummit').offsetTop - 70, behavior: 'smooth' }); };
+  }
+  /* prominence from OpenStreetMap (prominence tag) or Wikidata (P2660) for the mapped peak at the spot */
+  async function promLookup(la, lo, name) {
+    try {
+      const j = await over(`[out:json][timeout:25];node(around:250,${la},${lo})[natural~"^(peak|hill)$"];out tags center;`);
+      const e = (j.elements || []).sort((a, b) => B.km(la, lo, a.lat, a.lon) - B.km(la, lo, b.lat, b.lon))[0]; if (!e) return null;
+      const t = e.tags || {}, out = { name: t.name || '', ele: +t.ele || null, d: B.km(la, lo, e.lat, e.lon), la: e.lat, lo: e.lon };
+      if (+t.prominence) return Object.assign(out, { m: +t.prominence, src: 'OpenStreetMap' });
+      if (t.wikidata) { const w = await B.jget(`https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${encodeURIComponent(t.wikidata)}&props=claims&format=json&origin=*`, null, 15000); const c = (((w.entities || {})[t.wikidata] || {}).claims || {}).P2660; const v = c && c[0] && c[0].mainsnak.datavalue && c[0].mainsnak.datavalue.value; if (v && +v.amount) { const u = /11573|Q11573/.test(v.unit) ? 1 : /3710/.test(v.unit) ? 0.3048 : 1; return Object.assign(out, { m: +v.amount * u, src: 'Wikidata' }); } }
+      return out;
+    } catch (e) { return null; }
+  }
 
   /* ---------- SUMMIT tab ---------- */
   let smap = null, spin = null, sres = null;
@@ -166,10 +197,12 @@
       B.padusArea(la, lo, 0.002).catch(() => []),
       B.jget(`https://geo.fcc.gov/api/census/area?lat=${la}&lon=${lo}&censusYear=2020&format=json`, null, 15000).then(j => (j.results || [])[0] || null).catch(() => null),
       B.potaNear(la, lo, 0.05).catch(() => []),
-      B.wwffNear(la, lo, 3).catch(() => [])
+      B.wwffNear(la, lo, 3).catch(() => []),
     ]);
+    const PL = await promLookup(la, lo, name).catch(() => null);
+    if (!name && PL && PL.name && PL.d < 0.2) name = PL.name;
     const st = (cty && cty.state_code) || st0, assoc = SOTA[st], am = assoc ? AM[assoc] : null;
-    const osmEle = nom && nom.extratags && +nom.extratags.ele;
+    const osmEle = (nom && nom.extratags && +nom.extratags.ele) || (PL && PL.d < 0.2 && PL.ele) || null;
     const hereM = el ? el.m : (osmEle || null);
     const same = sNear.find(s => s.d < 0.4 || (name && B.sameName(s.name, name) && s.d < 2));
     const lands = (land || []).filter(f => f.geometry && B.inside(la, lo, f.geometry)).map(f => f.properties || {});
@@ -178,7 +211,7 @@
     const grid = (() => { const A = 'ABCDEFGHIJKLMNOPQR', a = 'abcdefghijklmnopqrstuvwx'; let x = lo + 180, y = la + 90; return A[Math.floor(x / 20)] + A[Math.floor(y / 10)] + Math.floor((x % 20) / 2) + Math.floor(y % 10) + a[Math.floor((x % 2) * 12)] + a[Math.floor((y % 1) * 24)]; })();
     sres = { la, lo, name: nameT, st, assoc, am, hereM, osmEle, sNear, same, lands, pub, cty, pota, wwff, grid };
     const P = la.toFixed(5) + ', ' + lo.toFixed(5);
-    const links = [['Google Maps', `https://www.google.com/maps/search/?api=1&query=${la.toFixed(6)},${lo.toFixed(6)}`], ['Topo map (CalTopo)', `https://caltopo.com/map.html#ll=${la.toFixed(5)},${lo.toFixed(5)}&z=15&b=t`], ['OpenStreetMap', `https://www.openstreetmap.org/?mlat=${la.toFixed(5)}&mlon=${lo.toFixed(5)}#map=15/${la.toFixed(5)}/${lo.toFixed(5)}`], ['Peakbagger search (prominence)', `https://www.peakbagger.com/search.aspx?ss=${encodeURIComponent(name || '')}`], ['ListsOfJohn / prominence (Google)', gq(`"${name}" ${ST[st] || st} prominence`)]].concat(sNear.slice(0, 3).map(s => [`Nearest SOTA summit ${s.ref}`, `https://sotl.as/summits/${s.ref}`]));
+    const links = [['Google Maps', `https://www.google.com/maps/search/?api=1&query=${la.toFixed(6)},${lo.toFixed(6)}`], ['Topo map (CalTopo)', `https://caltopo.com/map.html#ll=${la.toFixed(5)},${lo.toFixed(5)}&z=15&b=t`], ['OpenStreetMap', `https://www.openstreetmap.org/?mlat=${la.toFixed(5)}&mlon=${lo.toFixed(5)}#map=15/${la.toFixed(5)}/${lo.toFixed(5)}`], ['Peakbagger search (prominence)', name ? `https://www.peakbagger.com/search.aspx?ss=${encodeURIComponent(name)}` : gq(`peakbagger ${la.toFixed(3)} ${lo.toFixed(3)}`)], ['ListsOfJohn / prominence (Google)', gq(`"${name}" ${ST[st] || st} prominence`)]].concat(sNear.slice(0, 3).map(s => [`Nearest SOTA summit ${s.ref}`, `https://sotl.as/summits/${s.ref}`]));
     sres.links = links;
     $('sgSOut').innerHTML = `<section class="mr-res"><div class="mr-head"><div class="mr-k">${esc(st)}${assoc ? ' · SOTA association ' + esc(assoc) : ''}</div><h2>${esc(nameT)}</h2><p>${P} · grid ${grid}${hereM ? ' · ' + ft(hereM).toLocaleString() + ' ft (' + Math.round(hereM) + ' m)' : ''}</p></div>
 ${same ? `<div class="mr-v yes"><b>ALREADY A SOTA SUMMIT: ${esc(same.ref)}</b><span>${esc(same.name)} · ${same.ft.toLocaleString()} ft · ${same.pts} points · ${(same.d * 0.621).toFixed(2)} mi from the spot. Nothing to ask for.</span></div>` : !assoc ? `<div class="mr-v no"><b>NO SOTA ASSOCIATION FOR ${esc(st)}</b><span>SOTA has no association covering this state yet.</span></div>` : `<div class="mr-v maybe"><b>NOT ON THE SOTA LIST: CHECK THE PROMINENCE</b><span>SOTA needs at least 150 m (492 ft) of prominence. Enter it below if you know it.</span></div>`}
@@ -194,6 +227,8 @@ ${same ? `<div class="mr-v yes"><b>ALREADY A SOTA SUMMIT: ${esc(same.ref)}</b><s
     const promTxt = () => { const v = parseFloat($('sgPromV').value); if (!isFinite(v)) return null; const m = $('sgPromU').value === 'm' ? v : v / 3.28084; return { m, ft: Math.round(m * 3.28084) }; };
     const promRule = () => { const p = promTxt(), r = $('sgProm'); if (!r) return; r.className = 'mr-r ' + (!p ? 'check' : p.m >= 150 ? 'yes' : 'no'); r.querySelector('i').textContent = !p ? 'CHECK' : p.m >= 150 ? 'YES' : 'NO'; const V = $('sgSOut').querySelector('.mr-v'); if (V && !same && assoc) { V.className = 'mr-v ' + (!p ? 'maybe' : p.m >= 150 ? 'yes' : 'no'); V.querySelector('b').textContent = !p ? 'NOT ON THE SOTA LIST: CHECK THE PROMINENCE' : p.m >= 150 ? 'PROMINENCE OK: WORTH SUGGESTING' : 'TOO LITTLE PROMINENCE FOR SOTA'; V.querySelector('span').textContent = !p ? 'SOTA needs at least 150 m (492 ft) of prominence. Enter it below if you know it.' : p.m >= 150 ? 'Check the land access, then email the Association Manager below.' : 'SOTA needs at least 150 m (492 ft); this peak has ' + p.ft + ' ft.'; } refreshAll(); };
     $('sgPromV').addEventListener('input', promRule); $('sgPromU').addEventListener('change', promRule);
+    if (PL && PL.m && PL.d < 0.3) { $('sgPromV').value = Math.round(PL.m); $('sgPromU').value = 'm'; const n = document.createElement('p'); n.className = 'mr-help'; n.innerHTML = `<b>Filled in from ${esc(PL.src)}</b> (${Math.round(PL.m)} m = ${ft(PL.m)} ft) for the mapped peak${PL.name ? ' ' + esc(PL.name) : ''}. Volunteer data: double-check it on Peakbagger or ListsOfJohn.`; $('sgProm').querySelector('.sg-prom').after(n); promRule(); }
+    else { const n = document.createElement('p'); n.className = 'mr-help'; n.textContent = 'No prominence is listed for this spot in OpenStreetMap or Wikidata, so look it up with the buttons below.'; $('sgProm').querySelector('.sg-prom').after(n); }
     if (!assoc) { box.innerHTML += `<p class="mr-help">SOTA has no association for ${esc(ST[st] || st)}, so there is no one to email about a summit there yet.</p>`; return; }
     box.innerHTML += `<p class="mr-help">SOTA association <b>${esc(assoc)}</b>${am && am[1] ? ' · manager ' + esc(am[1]) : ''}. SOTA's General Rules (§3.6.1): adding a summit is handled by the Association Manager first. ${same ? '<b class="mr-ok">This one is already on the list.</b>' : ''} Rules: <a href="${SOTA_RULES}" target="_blank" rel="noopener">SOTA General Rules</a>.</p>`;
     box.appendChild(mailCard({
