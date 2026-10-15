@@ -135,6 +135,7 @@ body.field .page-jump-nav{display:none!important}
 .kz-page h3{font:900 22px Arial,sans-serif;color:#073b4c;margin:4px 0 6px}.kz-page p{font:17px/1.6 Georgia,serif;color:#222;margin:0 0 10px}.kz-pn{font:900 11px Arial;letter-spacing:1px;color:#06d6a0}
 .kz-pb{display:flex;gap:8px;flex-wrap:wrap}.kz-pb .kz-btn{min-height:42px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center}
 @media(max-width:700px){.kz-page{grid-template-columns:minmax(0,1fr)}}
+.kz-call{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#fff;border:3px dashed #118ab2;border-radius:18px;padding:12px 16px;margin-bottom:18px}.kz-call b{font:900 20px Arial,sans-serif;color:#073b4c}.kz-call span{flex:1 1 260px;color:#444}
 .kz-note{font-size:13px;color:#666;margin-top:20px}
 @media(max-width:900px){.kz-games{grid-template-columns:minmax(0,1fr)}}
 </style>
@@ -142,6 +143,7 @@ body.field .page-jump-nav{display:none!important}
 <section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • KIDS RADIO ZONE</p><h1>KIDS RADIO <span>ZONE</span></h1><p class="hero-copy">Learn to talk like a ham radio operator! Play games, earn stars, read the story of Lily and Ben, and print coloring pages.</p></div></section>
 <section class="kz"><div class="kz-in">
 <div class="kz-top"><div>⭐ <span class="s" id="kzStars">0</span> stars</div><div class="kz-badges" id="kzBadges"></div><button type="button" class="kz-btn alt" id="kzReset" style="min-height:36px;font-size:12px;box-shadow:none">START OVER</button></div>
+<div class="kz-call"><b>🎫 Your practice call sign: W4KIDS</b><span>Real hams get their own call sign. Until you get yours, use this one in our games! It can never belong to a real ham: in the US, there are never 4 letters after the number.</span><button type="button" class="kz-btn alt" id="kzSpellCall">🔊 HEAR IT</button></div>
 <div class="kz-games">
  <div class="kz-card"><h2>🔤 Phonetic Match</h2><p>Hams say <b>Alpha</b> for A and <b>Bravo</b> for B so letters don't get mixed up on the radio. Can you match them?</p>
   <div class="kz-seg"><label><input type="radio" name="g1m" value="see" checked> See the letter</label><label><input type="radio" name="g1m" value="hear"> Hear the word</label></div>
@@ -149,7 +151,7 @@ body.field .page-jump-nav{display:none!important}
   <div id="g1Play" hidden><div id="g1Q"></div><div class="kz-opts" id="g1Opts"></div><div class="kz-fb" id="g1Fb"></div></div>
  </div>
  <div class="kz-card c2"><h2>🎙️ Spell Your Name</h2><p>Type your first name (or a call sign) and hear how a ham would spell it on the radio. Then say it out loud yourself!</p>
-  <input type="text" id="g2In" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Your name" aria-label="Your name or a call sign">
+  <input type="text" id="g2In" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Your name or W4KIDS" aria-label="Your name or a call sign">
   <button type="button" class="kz-btn" id="g2Go">🔊 SPELL IT</button>
   <div class="kz-out" id="g2Out"></div><div class="kz-fb" id="g2Fb"></div>
  </div>
@@ -175,7 +177,7 @@ body.field .page-jump-nav{display:none!important}
 <p class="kz-note">Grown-ups: nothing about your child is saved or sent anywhere. Stars stay on this device only. Voices come from your phone or computer, so they sound different on different devices. Turn the media volume up.</p>
 </div></section>
 </main>
-<script src="kpc-kids.js?v=20261014c"></script>
+<script src="kpc-kids.js?v=20261014d"></script>
 <script src="kpc-search.js?v=20261014r" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');

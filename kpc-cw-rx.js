@@ -147,7 +147,7 @@ function feed(x) {
 }
 /* test bench: decode a made-up signal with a known SNR (in a 2.5 kHz receiver bandwidth) without any audio hardware */
 function simulate(o) {
-  const rate = o.fs || 48000, wpm = o.wpm || 20, pitch = o.pitch || 600, txt = o.text || 'CQ POTA DE KZ4CP K';
+  const rate = o.fs || 48000, wpm = o.wpm || 20, pitch = o.pitch || 600, txt = o.text || 'CQ POTA DE K4TEST K';
   let seed = o.seed || 1; const rand = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
   const gauss = () => { let u = 0; while (u === 0) u = rand(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * rand()); };
   const tl = K().timeline(txt, wpm, wpm, o.jitter != null ? o.jitter : 0.03), lead = 1.5, total = tl.total + lead + 1.5;
@@ -218,7 +218,7 @@ async function useTab() {
   } catch (e) { msg('Tab sharing was cancelled or isn\'t supported in this browser.'); }
 }
 /* built-in practice signal, so you can see how it works without a radio */
-const SAMPLES = ['CQ POTA CQ POTA DE W4KPC W4KPC K', 'KZ4CP GM UR 5NN 5NN KY KY BK', 'CQ SOTA DE N4XX/P K', 'TU 73 E E', 'BK TU UR 579 579 TN TN BK', 'CQ CQ DE K4ZSR K4ZSR K'];
+const SAMPLES = ['CQ POTA CQ POTA DE K4TEST K4TEST K', 'K4TEST GM UR 5NN 5NN KY KY BK', 'CQ SOTA DE K4TEST/P K', 'TU 73 E E', 'BK TU UR 579 579 TN TN BK', 'CQ CQ DE K4ZSR K4ZSR K'];
 function useTest(opts) {
   stop(); msg('');
   ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();

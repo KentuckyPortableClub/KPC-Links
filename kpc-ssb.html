@@ -129,6 +129,11 @@ body.field .page-jump-nav{display:none!important}
 .vb-logw{max-height:300px;overflow:auto;max-width:100%}
 .vb-stats{display:flex;gap:8px;margin:10px 0}.vb-stats div{flex:1;background:#181818;border:1px solid #2c2c2c;border-radius:8px;padding:8px;text-align:center}.vb-stats b{display:block;font:700 20px Georgia,serif;color:#fff}.vb-stats span{font-size:10px;color:#aaa}
 .vb-talk{width:100%;margin-top:10px;min-height:64px;font-size:16px;background:#2e8b57;color:#fff;touch-action:none;user-select:none;-webkit-user-select:none}.vb-talk.on{background:#b5412b;box-shadow:0 0 0 4px rgba(255,120,90,.35)}.vb-heard{font-size:13px;color:#cfc6b2;margin:8px 0 0;line-height:1.45}
+@media(max-width:700px){
+ .vb-talk{position:fixed;left:10px;right:74px;bottom:12px;width:auto;z-index:60;min-height:58px;margin:0;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+ .vb{padding-bottom:110px}#vbBand{height:190px}.vb-heard{font-size:12px;margin:6px 0 0}.vb-heard:not(.said){display:none}.vb small.k{display:none}.vb-acts{margin-top:8px}
+ .vb-grid>.vb-card:first-child{order:1}.vb-grid>.vb-card:last-child{order:2}
+}
 .vb small.k{color:#999;font-size:12px;display:block;margin-top:8px;line-height:1.45}
 .vb-chk{flex-direction:row!important;align-items:center;gap:8px!important;font-size:13px!important;letter-spacing:0!important;color:#ddd!important}.vb-chk input{min-height:0;width:18px;height:18px;accent-color:#d5a63a}
 @media(max-width:900px){.vb-grid{grid-template-columns:minmax(0,1fr)}.vb-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
@@ -138,9 +143,9 @@ body.field .page-jump-nav{display:none!important}
 <main>
 <section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • VOICE (SSB) • BETA</p><h1>VOICE PILEUP <span>PRACTICE</span></h1><p class="hero-copy">You're the POTA activator on phone. Stations call you, you copy their calls, give reports and keep a clean log. Start with one caller and work up to a pileup.</p></div></section>
 <section class="vb"><div class="vb-in">
-<div class="vb-beta"><b>Beta test.</b> The voices are your browser's built-in voices, so they talk one at a time (a pileup here is callers stacked back to back). Works best in Chrome or Edge on a computer; phones work too. Practice only: nothing here is a real contact.</div>
+<div class="vb-beta"><b>No license yet?</b> Leave YOUR CALL blank and you'll be <b>K4TEST</b>, a practice call sign. US call signs never have 4 letters after the number, so it can never belong to a real ham.<br><b>Beta test.</b> The voices are your browser's built-in voices, so they talk one at a time (a pileup here is callers stacked back to back). Works best in Chrome or Edge on a computer; phones work too. Practice only: nothing here is a real contact.</div>
 <div class="vb-row">
- <label>YOUR CALL<input type="text" id="vbCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="KZ4CP"></label>
+ <label>YOUR CALL<input type="text" id="vbCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="K4TEST"></label>
  <label>YOUR STATE<select id="vbSt"><option>KY</option><option>TN</option><option>OH</option><option>IN</option><option>WV</option><option>VA</option><option>IL</option><option>MO</option></select></label>
  <label>YOUR PARK<input type="text" id="vbRef" autocomplete="off" spellcheck="false" placeholder="US-1271"></label>
  <label>LEVEL <span id="vbLevelV"></span><input type="range" id="vbLevel" min="1" max="5" step="1"></label>
@@ -189,7 +194,7 @@ body.field .page-jump-nav{display:none!important}
 </div>
 </div></section>
 </main>
-<script src="kpc-ssb.js?v=20261014f"></script>
+<script src="kpc-ssb.js?v=20261014h"></script>
 <script src="kpc-search.js?v=20261014r" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
