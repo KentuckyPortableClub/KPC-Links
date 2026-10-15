@@ -10,7 +10,7 @@ Secrets (GitHub -> Settings -> Secrets and variables -> Actions, never in the si
   DISCORD_BOT_TOKEN, KPC_RELAY_CHANNEL (channel ID), FB_PAGE_ID, FB_PAGE_TOKEN,
   RELAY_SMTP_PASS (App Password of kypotacampout@gmail.com (the campout email), the sender; RELAY_SMTP_USER overrides the address), GROUPSIO_TO (the group's post address),
   SUBSCRIBE_SHEET_CSV (published CSV of the email-updates form sheet; optional)
-  Email can instead go through the campout Gmail's Apps Script web app: RELAY_MAIL_URL + RELAY_MAIL_KEY (used when set)
+  Email can instead go through an Apps Script web app in kpcwebhost@gmail.com (Brandon Oct 15): RELAY_MAIL_URL + RELAY_MAIL_KEY (used when set; mail comes FROM that account)
 DRY_RUN=1 prints what would happen and changes nothing.
 """
 import csv, datetime, io, json, mimetypes, os, re, smtplib, ssl, sys, time, urllib.error, urllib.parse, urllib.request, uuid
@@ -217,7 +217,7 @@ for m in msgs:
     if subs:
         try:
             for i in range(0, len(subs), 80):   # Gmail limit per message
-                mail(SMTP_USER, subs[i:i + 80], subject, body + '\n\nUnsubscribe: use the UNSUBSCRIBE button on ' + SITE + 'news.html', files)
+                mail('' if MAIL_URL else SMTP_USER, subs[i:i + 80], subject, body + '\n\nUnsubscribe: use the UNSUBSCRIBE button on ' + SITE + 'news.html', files)
             res['email list'] = f'sent to {len(subs)}'
         except Exception as e: res['email list'] = 'FAILED: ' + str(e)[:200]
     ok = not any(str(v).startswith('FAILED') for v in res.values())
