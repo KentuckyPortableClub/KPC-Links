@@ -1,7 +1,139 @@
-## Boone Forestlands WMA |  | links: ['https://fw.ky.gov/Fish/Documents/CurrentFishingForecast.pdf'] | WMA Overview Size: 27997 acres Location: Bell, Harlan, Clay, & Leslie Contact: (606)-654-2533 Elevation: minimum 1113 feet, maximum 2582 feet. Entrance GPS coordinates: Latitude N 36.8818, Longitude W -83.4971 Area Habitat: open land 11.26%, forest 88.72%, wetland 0.00%, open water 0.01%. Regulations Fall Hunting Season: Open under statewide rules and regulations in effect for the county. Directions & Description Boone Forestlands WMA consists of many tracts in 4 different counties. The tracts are bounded in general to the north by the Hal Rogers PKWY and on the south by KY 221 along the base of Pine Mountain, to the west by KY 66, and US 421 to the east. The largest blocks by county are in 
-## Elk Forest WMA |  | links: ['https://fw.ky.gov/Fish/Documents/CurrentFishingForecast.pdf'] | WMA Overview Size: 16587 acres Location: Clay, Bell, Knox, & Leslie Contact: 606-654-2533 Elevation: minimum 1040 feet, maximum 2440 feet. Entrance GPS coordinates: Latitude N 36.9820, Longitude W -83.5324 Area Habitat: open land 7.67%, forest 92.31%, wetland 0.00%, open water 0.01%. Regulations Fall Hunting Season: Open under statewide rules and regulations in effect for the county. Directions & Description The area lies between KY 66 and US 421 south of Hal Rogers PKWY in the area where Clay, Bell and Leslie counties meet. The area is a mixture of mature hardwoods and reclaimed coal mining land. The strip benches and other remains of mining Elk Forest WMA provide access to interior. The ar
-## Martins Fork WMA and State Natural Area |  | links: ['https://fw.ky.gov/Fish/Documents/CurrentFishingForecast.pdf'] | WMA Overview Size: 1599 acres Location: Harlan Contact: (502)330-0303 Elevation: minimum 1575 feet, maximum 3074 feet. Entrance GPS coordinates: Latitude N 36.7004, Longitude W -83.4013 Area Habitat: open land 0.19%, forest 99.56%, wetland 0.00%, open water 0.00%. Regulations Fall Hunting Season: Open under statewide rules and regulations in effect for the county. Directions & Description The property borders the eastern boundaries of Shillalah Creek WMA and Cumberland Gap National Historical Park. From Harlan, take US-421S to KY-987, watch for signs to Martin’s Fork Lake. Gated access located on KY-987, approximately 5 miles east of the Bell County line. Access is by foot traffic only. Hunt
-## Fortner-Davis WMA |  | links: ['https://fw.ky.gov/Fish/Documents/CurrentFishingForecast.pdf'] | WMA Overview Size: 1358 acres Location: Bell Contact: (606)-654-2533 Elevation: minimum 1280 feet, maximum 2400 feet. Entrance GPS coordinates: Latitude N 36.6970, Longitude W -83.7004 Area Habitat: open land 1.62%, forest 98.31%, wetland 0.00%, open water 0.15%. Regulations Fall Hunting Season: Open under statewide rules and regulations in effect for the county. Directions & Description From Pineville, KY in Bell County take US 25E south approximately 4.5 miles to CR-1149 (Ferndale Acres RD) and turn right (west). WMA entrance approximately ½ mile from US 25E. From Middlesboro, take 25E north to CR-1149 (Ferndale Acres RD) and turn left toward WMA entrance. To access Cannon Creek Lake boat 
-## Blackford Oaks WMA |  | links: ['https://fw.ky.gov/Fish/Documents/CurrentFishingForecast.pdf'] | WMA Overview Size: 565 acres Location: Webster Contact: Office (270) 389-3580 Elevation: minimum 350 feet, maximum 425 feet. Entrance GPS coordinates: Latitude N 37.4263, Longitude W -87.8649 Area Habitat: open land 46.73%, forest 10.09%, wetland 43.19%, open water 0.00%. Regulations Fall Hunting Season: Open under statewide rules and regulations in effect for the county. The CWD Antlerless Season (Sept. 25-28) is open on Blackford Oaks WMA. Directions & Description From Providence, Kentucky, take KY-109 North/West to KY-143. Turn left onto KY-143 and travel 2.8 miles to W.A. Henry Road. Turn left onto W.A. Henry Road and travel 0.5 miles to the WMA. Parking Area will be located on your left
-## EEC Martins Fork | ['/Documents/EEC%20Title%20VI%20Report.pdf', '/Energy/Data-Maps/Pages/default.aspx', '/Pages/sitemap.aspx', 'https&#58;//www.google.com/maps/place/36°41%2752.1%22N+83°23%2733.1%22W/@36.6978161,-83.3925201,965m/data=!3m1!1e3!4m5!3m4!1s0x0&#58;0x0!8m2!3d36.6978161!4d-83.3925201'] | Martin's Fork State Natural Area - Kentucky Energy and Environment Cabinet Skip to main navigation Skip to main content Ky. gov An Official Website of the Commonwealth of Kentucky Kentucky Energy and Environment Cabinet Facebook Twitter Youtube About Careers Calendar Open Records Contact Menu --> Environmental Protection Environmental Protection Air Air Asbestos Measuring Air Quality Search for Permits Education and Outreach Gasoline Tank Truck Certification Source Sampling and Testing News and Events Air Pollution Complaints Indoor Air Quality Open Burning Air Quality Public Notices Air Quality Regulations SIP Revisions 2007-2025 Archived Comments on Federal Regulations Proposed Regulation Changes Archived Regulation History Mold Fire Training Odor Complaints Permit Required Reporting Modeling and Meteorology About the Division for Air Quality Staff Directory Online Submittals & Forms A
-W {}
+L ../../js/html5shiv.js
+L /KI_CSS/agency.css
+L /KI_CSS/font-awesome.min.css
+L /KI_CSS/myStyles.css
+L /Public_Lands_Search/ScriptResource.axd?d=4Yo0Bjs-LoUJJjj4bp8GaMURvOc4xERhCxHjvgps2vGLva33WpzaGBcsMCBKe5uhE-Y9BM9wwhiI9mu7MG0Ew9lb9Wph0PTEb4D55EahuTNeiU4KApXY1u57c2BCuX5IcyK5GZ7hWY1ok7cFaA_ZnySul1FH9hSx_Febyp69o_k1&amp;t=ffffffffe6d5a9ac
+L /Public_Lands_Search/ScriptResource.axd?d=DgJVS6IuR652dYUSqLgJ2akBThui51DIKgyF811UbAvREsdgvfHtKJlHZxRdb0N6CRqrwKOZ5kEkPK3lhNrmjR--bviWJOKo5Y19IEykv3FjhvBaR0j1yLzaf_hsVCao0k13Ee3UsmMHmvY9Xt0olTFpajilyFw1F-ZMDWk0skDbs1T6vCyZMQZA0nny5zc90&amp;t=ffffffffe6d5a9ac
+L /Public_Lands_Search/WebResource.axd?d=6wTjOA8ceZFDwvbvNk8pR0i-_kmy12rbaBoKi4LRvkn9sdzvmVcqEBLLzM2e6Igyg0tO3VCmXZviQzmK5lBLzQ6PmIeHRtGSRen4zDMkLMY1&amp;t=639261909383156682
+L http://kentucky.gov/policies/Pages/accessibility.aspx
+L http://kentucky.gov/policies/Pages/default.aspx
+L http://kentucky.gov/policies/Pages/disclaimer.aspx
+L http://kentucky.gov/policies/Pages/security.aspx
+L https://app.fw.ky.gov/Calendar/
+L https://app.fw.ky.gov/HECardLookup/default.aspx
+L https://app.fw.ky.gov/KI_IMAGES/KDFWR-Logo.png
+L https://app.fw.ky.gov/SeasonDates/Default.aspx
+L https://app.fw.ky.gov/WebContact/
+L https://app.fw.ky.gov/app_assets/css/app_2020.css?parameter=1
+L https://app.fw.ky.gov/app_assets/js/app_2020.js
+L https://app.fw.ky.gov/app_assets/js/jquery.mask.js
+L https://app.fw.ky.gov/app_assets/js/jquery_2020.js
+L https://app.fw.ky.gov/myprofile/
+L https://apps.legislature.ky.gov/law/kar/TITLE301.HTM
+L https://apps.legislature.ky.gov/law/statutes/chapter.aspx?id=38379
+L https://fw.ky.gov/
+L https://fw.ky.gov/Boat
+L https://fw.ky.gov/Boat/Pages/Boat-Safety.aspx
+L https://fw.ky.gov/Boat/Pages/Boater-Education.aspx
+L https://fw.ky.gov/Education
+L https://fw.ky.gov/Education/Pages/Hunter-Education.aspx
+L https://fw.ky.gov/Education/Pages/NASP.aspx
+L https://fw.ky.gov/Education/Pages/Salato-Wildlife-Education-Center.aspx
+L https://fw.ky.gov/Education/Pages/Summer-Camps.aspx
+L https://fw.ky.gov/Education/Pages/default.aspx
+L https://fw.ky.gov/Enforcement
+L https://fw.ky.gov/Fish
+L https://fw.ky.gov/Fish/Documents/CurrentFishingForecast.pdf
+L https://fw.ky.gov/Fish/Pages/Commercial-Fishing.aspx
+L https://fw.ky.gov/Fish/Pages/Monthly-Trout-Stocking.aspx
+L https://fw.ky.gov/Fish/Pages/Recreational-Fishing.aspx
+L https://fw.ky.gov/Fish/Pages/Tournament-Fishing.aspx
+L https://fw.ky.gov/Hunt
+L https://fw.ky.gov/Hunt/Pages/Game-Species.aspx
+L https://fw.ky.gov/Hunt/Pages/Quota-Hunts.aspx
+L https://fw.ky.gov/Licenses
+L https://fw.ky.gov/Licenses/Pages/Special-Permits.aspx
+L https://fw.ky.gov/More
+L https://fw.ky.gov/More/Pages/Careers.aspx
+L https://fw.ky.gov/More/Pages/Wildlife-Management-Areas-and-Public-Hunting-Areas.aspx
+L https://fw.ky.gov/Pages/Kentucky-Wild.aspx
+L https://fw.ky.gov/Wildlife
+L https://fw.ky.gov/Wildlife/Pages/Landowner-Services.aspx
+L https://fw.ky.gov/Wildlife/Pages/Wildlife-Diversity.aspx
+L https://fw.ky.gov/kentucky-afield/Pages/default.aspx
+L https://pro.fontawesome.com/releases/v5.7.0/css/all.css
+L https://secure.kentucky.gov/enterprise/scripts/enterprise-jquerymobile-bootstrap-app-css.js
+L https://secure.kentucky.gov/enterprise/scripts/enterprise-jquerymobile-bootstrap.js
+L https://secure.kentucky.gov/enterprise/scripts/enterprise.js
+L https://secure.kentucky.gov/enterprise/styles/agencyBootstrap.css
+L https://twitter.com/kyfishwildlife?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
+L https://www.facebook.com/kdfwr/
+L https://www.googletagmanager.com/gtag/js?id=UA-25885624-1
+L https://www.instagram.com/kyfishwildlife/?hl=en
+L https://www.youtube.com/channel/UCs-FM1E9Y_Q17jRxS_GPlVg
+L javascript:__doPostBack(&#39;ctl00$MainContent$LinkButtonBack&#39;,&#39;&#39;)
+L javascript:__doPostBack(&#39;ctl00$MainContent$LinkButtonDirection&#39;,&#39;&#39;)
+U http://kentucky.gov/policies/Pages/accessibility.aspx
+U http://kentucky.gov/policies/Pages/default.aspx
+U http://kentucky.gov/policies/Pages/disclaimer.aspx
+U http://kentucky.gov/policies/Pages/security.aspx
+U https://app.fw.ky.gov/Calendar/
+U https://app.fw.ky.gov/HECardLookup/default.aspx
+U https://app.fw.ky.gov/KI_IMAGES/KDFWR-Logo.png
+U https://app.fw.ky.gov/SeasonDates/Default.aspx
+U https://app.fw.ky.gov/WebContact/
+U https://app.fw.ky.gov/app_assets/css/app_2020.css?parameter=1
+U https://app.fw.ky.gov/app_assets/js/app_2020.js
+U https://app.fw.ky.gov/app_assets/js/jquery.mask.js
+U https://app.fw.ky.gov/app_assets/js/jquery_2020.js
+U https://app.fw.ky.gov/kfwis/Map_Images/BooneForestlandsWMAOnline_Image.jpg
+U https://app.fw.ky.gov/myprofile/
+U https://apps.legislature.ky.gov/law/kar/TITLE301.HTM
+U https://apps.legislature.ky.gov/law/statutes/chapter.aspx?id=38379
+U https://fw.ky.gov/
+U https://fw.ky.gov/Boat
+U https://fw.ky.gov/Boat/Pages/Boat-Safety.aspx
+U https://fw.ky.gov/Boat/Pages/Boater-Education.aspx
+U https://fw.ky.gov/Education
+U https://fw.ky.gov/Education/Pages/Hunter-Education.aspx
+U https://fw.ky.gov/Education/Pages/NASP.aspx
+U https://fw.ky.gov/Education/Pages/Salato-Wildlife-Education-Center.aspx
+U https://fw.ky.gov/Education/Pages/Summer-Camps.aspx
+U https://fw.ky.gov/Education/Pages/default.aspx
+U https://fw.ky.gov/Enforcement
+U https://fw.ky.gov/Fish
+U https://fw.ky.gov/Fish/Documents/CurrentFishingForecast.pdf
+U https://fw.ky.gov/Fish/Pages/Commercial-Fishing.aspx
+U https://fw.ky.gov/Fish/Pages/Monthly-Trout-Stocking.aspx
+U https://fw.ky.gov/Fish/Pages/Recreational-Fishing.aspx
+U https://fw.ky.gov/Fish/Pages/Tournament-Fishing.aspx
+U https://fw.ky.gov/Hunt
+U https://fw.ky.gov/Hunt/Pages/Game-Species.aspx
+U https://fw.ky.gov/Hunt/Pages/Quota-Hunts.aspx
+U https://fw.ky.gov/Licenses
+U https://fw.ky.gov/Licenses/Pages/Special-Permits.aspx
+U https://fw.ky.gov/More
+U https://fw.ky.gov/More/Documents/BooneForestlandsWMA_ALL.pdf
+U https://fw.ky.gov/More/Pages/Careers.aspx
+U https://fw.ky.gov/More/Pages/Game-Maps.aspx
+U https://fw.ky.gov/More/Pages/Wildlife-Management-Areas-and-Public-Hunting-Areas.aspx
+U https://fw.ky.gov/Pages/Kentucky-Wild.aspx
+U https://fw.ky.gov/PublishingImages/hiking_trail.gif
+U https://fw.ky.gov/PublishingImages/hunting.gif
+U https://fw.ky.gov/Wildlife
+U https://fw.ky.gov/Wildlife/Pages/Landowner-Services.aspx
+U https://fw.ky.gov/Wildlife/Pages/Wildlife-Diversity.aspx
+U https://fw.ky.gov/kentucky-afield/Pages/default.aspx
+U https://knlt.org/
+U https://kygeonet.ky.gov/kdfwr/#data_s=where%3AdataSource_4-197c73a9a04-layer-32-197d0963d2c-layer-45%3AKDFWR_ID%3D%279003%27&zoom_to_selection%3Dtrue&scale:9027.977411
+U https://maps.google.com/?q=36.8818+-83.4971+(Boone+Forestlands+WMA)&t=m&z=12&f=l
+U https://naturepreserves.ky.gov/naturepreserves/Pages/blanton.aspx
+U https://parks.ky.gov/whitesburg/parks/recreation/pine-mountain-state-scenic-trail
+U https://pro.fontawesome.com/releases/v5.7.0/css/all.css
+U https://secure.kentucky.gov/enterprise/scripts/enterprise-jquerymobile-bootstrap-app-css.js
+U https://secure.kentucky.gov/enterprise/scripts/enterprise-jquerymobile-bootstrap.js
+U https://secure.kentucky.gov/enterprise/scripts/enterprise.js
+U https://secure.kentucky.gov/enterprise/styles/agencyBootstrap.css
+U https://twitter.com/kyfishwildlife?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
+U https://www.facebook.com/kdfwr/
+U https://www.googletagmanager.com/gtag/js?id=UA-25885624-1
+U https://www.instagram.com/kyfishwildlife/?hl=en
+U https://www.kentuckytourism.com/places_to_stay/willie-begley-memorial-rv-parkcampground/3042/
+U https://www.youtube.com/channel/UCs-FM1E9Y_Q17jRxS_GPlVg
+ew</h3></div><div class='col-md-8' aria-label='location features'><img src=https://fw.ky.gov/PublishingImages/hunting.gif height=25 width=25 alt='hunting' /> <img src=https://fw.ky.gov/PublishingImages/hiking_trail.gif height=25 width=25 alt='hiking trails' /></div></div><p><b>Size:</b> 27997 acres<br/><b>Location:</b> Bell, Harlan, Clay,  & Leslie<br/><b>Contact:</b> (606)-654-2533<br/><b>Elevation:</b> minimum 1113 feet, maximum 2582 feet.<br/><b>Entrance GPS coordinates:</b> <a href='https://maps.google.com/?q=36.8818+-83.4971+(Boone+Forestlands+WMA)&t=m&z=12&f=l' target='_blank'>Latitude N 36.8818, Longitude W -83.4971</a><br/><b>Area Habitat:</b> open land 11.26%, forest 88.72%, wetland 0.00%, open water 0.01%.</p></span>
+                    <span id="MainContent_LabelVideo"></span>
+                    <span id="MainContent_LabelRegulations"><h3>Regulations</h3><p><strong>Fall Hunting Season:</strong></p>
+<p>Open under statewide rules and regulations in effect for the county.</p></span>
+                    <span id="MainContent_LabelDirections"><h3>Directions & Description</h3>Boone Forestlands WMA consists of many tracts in 4 different counties. The tracts are bounded in general to the north by the Hal Rogers PKWY and on the south by KY 221 along the base of Pine Mountain, to the west by KY 66, and US  421 to the east. The largest blocks by county are in southern Leslie, eastern Bell, and northern Harlan. Several additional tracts are located southwest of Hyden in Leslie County. 
+<br><br>
+Boone Forestlands WMA is the result of a cooperative agreement between the owner, Boone Forestlands, LLC and the Kentucky Department of Fish and Wildlife Resources. The area consists of reclaimed surface mined and forested land located in several disjointed tracts. Public should be aware that active surface mine sites, deep mines and the coal washing facility are Off- limits.  The majority of this property is found within Elk Hunting Unit 3, but smaller sections are loc
