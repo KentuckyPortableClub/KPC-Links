@@ -6,7 +6,7 @@ Reads each agency page listed in data/ky-lands-seen.json (made by kpc_new_lands.
     plus the location-map picture and fact sheet.
   - Kentucky State Parks pages: the "Park Map" / "Trail Map" / "Campground Map" documents the park page lists.
   - Office of Kentucky Nature Preserves pages: any PDF/picture link with "map" in it.
-Only links that are ON the agency's page are saved (never guessed). Browsers can't read those pages (no CORS), so this runs in Actions.
+Saves the maps AND the other documents (fact sheets, brochures, guides) the page links. Only links that are ON the agency's page are saved (never guessed). Browsers can't read those pages (no CORS), so this runs in Actions.
 """
 import datetime as dt, html, json, pathlib, re, sys, time, urllib.request
 
@@ -34,7 +34,7 @@ def kdfwr(t):
 
 def parks(t):
     out, seen = [], set()
-    for lab, u in re.findall(r'"title":"([^"]*?Map[^"]*?)","content":"(https?://[^"]+)"', t):
+    for lab, u in re.findall(r'"title":"([^"]{2,80}?)","content":"(https?://[^"]+?\.pdf[^"]*)"', t, re.I):
         u = u.replace('\\/', '/')
         if u in seen: continue
         seen.add(u); out.append([lab.strip() + (' (PDF)' if '.pdf' in u.lower() else ''), u])
@@ -45,7 +45,8 @@ def oknp(t, base):
     out, seen = [], set()
     for h, x in re.findall(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', t, re.S | re.I):
         x = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', x))).strip(); h = html.unescape(h).replace('&#58;', ':')
-        if not re.search(r'\.(pdf|jpe?g|png)(\?|$)', h, re.I) or not re.search(r'map|boundar', h + ' ' + x, re.I) or re.search(r'Title%20VI|GIS/Pages|Data-Maps', h): continue
+        if not re.search(r'\.(pdf|jpe?g|png)(\?|$)', h, re.I) or re.search(r'Title%20VI|GIS/Pages|Data-Maps', h): continue
+        if not (re.search(r'map|boundar', h + ' ' + x, re.I) or re.search(r'/Nature-Preserves/', h, re.I)): continue
         if h.startswith('/'): h = 'https://eec.ky.gov' + h
         if h in seen: continue
         seen.add(h); out.append([(x or 'Map')[:60] + (' (PDF)' if '.pdf' in h.lower() else ''), h])
