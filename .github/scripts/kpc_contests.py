@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """KPC contest calendar -> kpc-contests.json (Events page, section #contests).
 
-Two sources:
+Three sources:
  1. The WA7BNM Contest Calendar RSS feed (every contest in the next ~8 days). Its Terms of Use allow showing
     the RSS feed on a club website as long as it is labeled "WA7BNM Contest Calendar" and links to the site,
     so we only read the feed (never the web pages) and the Events page labels and links it.
- 2. The big yearly contests worked out from their usual dates (ARRL and CQ contests, Winter Field Day),
+ 2. ARRL's Contest Corral PDFs (the QST monthly list, posted on arrl.org/contest-calendar; ARRL notes its data comes
+    from WA7BNM): every contest of the current (and sometimes next) month with mode, bands, exchange and sponsor site.
+ 3. The big yearly contests worked out from their usual dates (ARRL and CQ contests, Winter Field Day),
     checked against the ARRL 2026 contest calendar and the sponsors' rules. Each links to the official rules.
 Runs every morning from .github/workflows/kpc-ses.yml.
 """
@@ -14,8 +16,11 @@ import html
 import json
 import pathlib
 import re
+import subprocess
 import sys
+import tempfile
 import time
+import urllib.parse
 import urllib.request
 
 UA = 'Mozilla/5.0 (compatible; KPC-Links contest calendar; +https://kentuckyportableclub.github.io/KPC-Links/)'
@@ -101,6 +106,73 @@ def wa7bnm():
     return out
 
 
+def corral():
+    """ARRL Contest Corral (QST) monthly PDFs listed on arrl.org/contest-calendar: every contest of the month with
+    mode, bands, exchange and sponsor site. ARRL usually posts the current month and sometimes the next."""
+    page = get('https://www.arrl.org/contest-calendar')
+    links = sorted(set(re.findall(r'href="(/files/file/Contest%20Corral/(\d{4})/([A-Za-z]+)%20\d{4}%20Corral\.pdf)"', page)))
+    out = []
+    for href, yr, mon in links:
+        mo = MON.get(mon.lower()[:3])
+        if not mo or (int(yr), mo) < (TODAY.year, TODAY.month):
+            continue
+        req = urllib.request.Request('https://www.arrl.org' + href, headers={'User-Agent': UA})
+        data = urllib.request.urlopen(req, timeout=60).read()
+        if not data.startswith(b'%PDF'):
+            continue
+        with tempfile.NamedTemporaryFile(suffix='.pdf') as f:
+            f.write(data); f.flush()
+            txt = subprocess.run(['pdftotext', '-layout', f.name, '-'], capture_output=True, text=True, timeout=60).stdout
+        lines = txt.split('\n')
+        hi = next((i for i, l in enumerate(lines) if 'Contest Name' in l and 'Mode' in l), None)
+        if hi is None:
+            continue
+        y, m = int(yr), mo
+        cur = None
+        MODE = re.compile(r'^(CW|Ph|Dig)( (CW|Ph|Dig))*$')
+        for l in lines[hi + 1:]:
+            if l.strip().startswith('There are a number of weekly'):
+                break
+            if not l.strip():
+                continue
+            mm = re.match(r'(\s*(\d{1,2})\s+(\d{4})\s+(\d{1,2})\s+(\d{4})\s+)(.*)$', l)
+            if mm:
+                d1, t1, d2, t2 = int(mm.group(2)), mm.group(3), int(mm.group(4)), mm.group(5)
+                s_ = dt.datetime(y, m, d1, int(t1[:2]) % 24, int(t1[2:]), tzinfo=dt.timezone.utc)
+                ey, em = (y + (m == 12), m % 12 + 1) if d2 < d1 else (y, m)
+                e_ = dt.datetime(ey, em, d2, int(t2[:2]) % 24, int(t2[2:]), tzinfo=dt.timezone.utc) + dt.timedelta(minutes=1)
+                off = len(mm.group(1))
+                toks = [(off + t.start(), t.group(0)) for t in re.finditer(r'\S+(?: \S+)*', mm.group(6))]
+                mi = next((k for k, (_, v) in enumerate(toks) if MODE.match(v)), None)
+                if mi is None or mi < 2:
+                    cur = None
+                    continue
+                pos = {'name': toks[1][0], 'mode': toks[mi][0], 'exch': toks[mi + 1][0] if mi + 1 < len(toks) else 10**6, 'site': toks[-1][0] if len(toks) > mi + 2 else 10**6}
+                cur = {'s': s_, 'e': e_, 'bands': toks[0][1], 'name': ' '.join(v for _, v in toks[1:mi]), 'mode': toks[mi][1],
+                       'exch': ' '.join(v for _, v in toks[mi + 1:-1]) if len(toks) > mi + 2 else (toks[mi + 1][1] if mi + 1 < len(toks) else ''),
+                       'site': toks[-1][1] if len(toks) > mi + 2 else '', 'pos': pos}
+                out.append(cur)
+            elif cur:  # wrapped row: put each piece in the nearest column
+                for t in re.finditer(r'\S+(?: \S+)*', l):
+                    k = min(cur['pos'], key=lambda c: abs(cur['pos'][c] - t.start()))
+                    cur[k] = (cur[k] + ('' if k == 'site' else ' ') + t.group(0)).strip()
+    res = []
+    for c in out:
+        if c['e'] < NOW or not c['name']:
+            continue
+        mode = c['mode'].upper()
+        modes = [m_ for k, m_ in (('CW', 'CW'), ('PH', 'PHONE'), ('DIG', 'DIGITAL')) if re.search(r'\b' + k, mode)]
+        _, kinds = guess(c['name'])
+        if re.search(r'\b(50|144|222|432|902|1296)\b|GHZ|ABOVE', c['bands'].upper()) and not re.search(r'1\.8|3\.5|\b7\b|14|21|28', c['bands']):
+            kinds = kinds + (['VHF'] if 'VHF' not in kinds else [])
+        site = c['site'].replace(' ', '')
+        if site and not site.startswith('http'):
+            site = 'https://' + site
+        res.append({'name': c['name'], 'url': site or 'https://www.arrl.org/contest-calendar', 'when': '', 'segs': [[c['s'].strftime('%Y-%m-%dT%H:%MZ'), c['e'].strftime('%Y-%m-%dT%H:%MZ')]],
+                    'modes': modes, 'kinds': kinds, 'src': 'CORRAL', 'bands': c['bands'], 'exch': c['exch']})
+    return res
+
+
 def full_weekends(y, m):
     d = dt.date(y, m, 1)
     while d.weekday() != 5:
@@ -165,7 +237,13 @@ def main():
     except Exception as e:  # noqa: BLE001
         wk = [c for c in old.get('week', []) if c['segs'][-1][1] >= NOW.strftime('%Y-%m-%dT%H:%MZ')]
         status['WA7BNM'] = 'failed, kept %d: %s' % (len(wk), e)
-    data = {'week': wk, 'big': big(), 'status': status}
+    try:
+        co = corral()
+        status['CORRAL'] = 'ok (%d)' % len(co)
+    except Exception as e:  # noqa: BLE001
+        co = [c for c in old.get('month', []) if c['segs'][-1][1] >= NOW.strftime('%Y-%m-%dT%H:%MZ')]
+        status['CORRAL'] = 'failed, kept %d: %s' % (len(co), e)
+    data = {'week': wk, 'month': co, 'big': big(), 'status': status}
     if {k: v for k, v in old.items() if k != 'updated'} == data:
         notice('Contests', 'no changes ' + json.dumps(status))
         return 0
