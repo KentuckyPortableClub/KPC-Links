@@ -5,8 +5,10 @@ def get(u):
   except Exception as e: return 'ERR '+str(e)
 P='https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query?'
 st=json.dumps([{'statisticType':'count','onStatisticField':'OBJECTID','outStatisticFieldName':'n'}])
-r=get(P+urllib.parse.urlencode(dict(where="State_Nm='KY' AND Mang_Type<>'LOC'",groupByFieldsForStatistics='Mang_Type,Mang_Name,Loc_Mang,Category',outStatistics=st,f='json')))
-print('agency', r[:100], r.count('"n"'))
-for w in ["Unit_Nm LIKE '%Kingfisher%'","Loc_Nm LIKE '%KINGFISHER%'"]:
-  print(w, get(P+urllib.parse.urlencode(dict(where=w,geometry='-87.3,37.5,-86.6,38.2',geometryType='esriGeometryEnvelope',inSR=4326,spatialRel='esriSpatialRelIntersects',outFields='Unit_Nm',returnGeometry='true',outSR=4326,geometryPrecision=5,maxAllowableOffset=0.0001,f='geojson')))[:200])
-print('kygis upper', get('https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Hunting_Areas_WGS84WM/MapServer/0/query?'+urllib.parse.urlencode(dict(where="UPPER(AREANAME) LIKE '%BARREN%' AND UPPER(AREANAME) LIKE '%LAKE%'",outFields='AREANAME',returnGeometry='false',f='json')))[:300])
+st2=json.dumps([{'statisticType':'count','onStatisticField':'OBJECTID','outStatisticFieldName':'n'}],separators=(',',':'))
+for name,d in [('stat KY only',dict(where="State_Nm='KY'",groupByFieldsForStatistics='Mang_Type,Mang_Name,Loc_Mang,Category',outStatistics=st,f='json')),
+ ('stat compact',dict(where="State_Nm='KY'",groupByFieldsForStatistics='Mang_Type,Mang_Name,Loc_Mang,Category',outStatistics=st2,f='json')),
+ ('stat 1=1 geom-less', dict(where="State_Nm='KY'",groupByFieldsForStatistics='Mang_Type',outStatistics=st2,f='json')),
+ ('distinct',dict(where="State_Nm='KY'",outFields='Mang_Type,Mang_Name,Loc_Mang,Category',returnDistinctValues='true',returnGeometry='false',f='json')),
+ ('distinct CA',dict(where="State_Nm='CA'",outFields='Mang_Type,Mang_Name,Loc_Mang,Category',returnDistinctValues='true',returnGeometry='false',f='json'))]:
+  r=get(P+urllib.parse.urlencode(d)); print(name, r[:120], r.count('"attributes"'), r.count('exceededTransferLimit'))
