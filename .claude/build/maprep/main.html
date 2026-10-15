@@ -25,6 +25,10 @@
 .mr-sec{padding:14px 18px;border-top:1px solid #eee3cc}.mr-sec h3{margin:0 0 8px;font:900 11.5px Arial,sans-serif;letter-spacing:2px;color:#1d5a3a}
 .mr-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.mr-btns a{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border-radius:8px;background:#fff;border:1.5px solid #171717;color:#171717;font:900 11.5px Arial,sans-serif;letter-spacing:1px;text-decoration:none}.mr-btns a.gold{background:var(--gold);border-color:var(--gold);color:#111}
 #mrMap{height:420px;border-radius:10px;border:1px solid #d8cfbf;position:relative;z-index:0;isolation:isolate}
+.mr-agd{margin-top:12px;border:1px solid #d8cfbf;border-radius:10px;padding:0 12px;background:#fbf8ef}.mr-agd summary{cursor:pointer;padding:11px 0;font:900 11.5px Arial,sans-serif;letter-spacing:1.2px;color:#1d5a3a}.mr-agd h4{margin:10px 0 6px;font:900 10.5px Arial,sans-serif;letter-spacing:1.6px;color:#5b5648}
+.mr-ags{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:10px}.mr-ag{border:1.5px solid #cbbf9f;background:#fff;border-radius:999px;padding:6px 11px;font:700 12.5px Arial,sans-serif;color:#171717;cursor:pointer;text-align:left}.mr-ag small{color:#68635a;font-weight:400}.mr-ag em{font-style:normal;font-weight:900;color:#1d5a3a;margin-left:3px}.mr-ag.on{background:#171717;color:#f0c96b;border-color:#171717}.mr-ag.on small,.mr-ag.on em{color:#f0c96b}
+.mr-pick small{font-weight:400;color:#68635a;letter-spacing:0}.mr-pick.osm{border-style:dashed;border-color:#ff4fd8}
+.mr-osm{padding:12px 18px;background:#fff0fb;border-bottom:2px dashed #ff4fd8;color:#4a1640;font-size:14px;line-height:1.5}
 #mrNote{width:100%;box-sizing:border-box;border:1.5px solid #cbbf9f;border-radius:10px;padding:10px;font:13.5px/1.45 ui-monospace,Menlo,Consolas,monospace}
 .mr-hidden{margin:0 0 14px;padding:10px 14px;border-radius:10px;background:#eef3fb;border:1px solid #9db4d8;color:#22385c;font-size:14px}
 @media(max-width:760px){.mr-form{grid-template-columns:1fr 1fr}.mr-form label:first-child{grid-column:1/-1}.mr-form button{grid-column:1/-1}#mrMap{height:340px}.mr-r{grid-template-columns:60px minmax(0,1fr)}}
@@ -39,8 +43,9 @@
 <div class="mr-wrap">
 <p class="mr-hidden"><b>Private page.</b> Not on the menu or in search. Share the link only with people who need it.</p>
 <section class="mr-card">
-<form class="mr-form" id="mrForm"><label>PARK NAME<input id="mrName" autocomplete="off" placeholder="Bullock Pen Lake"></label><label>TOWN (OPTIONAL)<input id="mrTown" autocomplete="off" placeholder="Crittenden"></label><label>STATE<select id="mrState"></select></label><button type="submit">CHECK IT</button></form>
-<p class="mr-help">The rules come from POTA's "Park Additions and Edits" page (docs.pota.app). The database answers what it can (owner, manager, public access, size, other parks around it); the yellow items are ones only you can confirm, like the official web page and the way in. This is a helper, not a decision: the state's Map Rep decides.</p>
+<form class="mr-form" id="mrForm"><label>PARK NAME<input id="mrName" autocomplete="off" placeholder="Bullock Pen Lake"></label><label>TOWN (OPTIONAL)<input id="mrTown" autocomplete="off" placeholder="Crittenden"></label><label>STATE (REQUIRED)<select id="mrState" required></select></label><button type="submit">CHECK IT</button></form>
+<p class="mr-help">Pick the state first: the search then looks through every federal and state agency's land in that state (the list appears below), the live National Park Service and Fish &amp; Wildlife maps, and OpenStreetMap as a backup. The rules come from POTA's "Park Additions and Edits" page (docs.pota.app). The database answers what it can (owner, manager, public access, size, other parks around it); the yellow items are ones only you can confirm, like the official web page and the way in. This is a helper, not a decision: the state's Map Rep decides.</p>
+<div id="mrAg"></div>
 <div id="mrList"></div>
 </section>
 <div id="mrOut"></div>
@@ -49,4 +54,4 @@
 @@FOOTER@@
 <script src="kpc-bounds.js?v=20261015d" defer></script>
 <script src="kpc-map-tools.js?v=20261015c" defer></script>
-<script src="kpc-maprep.js?v=20261015a" defer></script>
+<script src="kpc-maprep.js?v=20261015b" defer></script>
