@@ -6,7 +6,7 @@
 const APP = 'kpc-finder-v1';
 const TILES = 'kpc-tiles-v1';
 const MAX_TILES = 2500; // about 40–60 MB of map tiles at most
-const SAME = /\/(finder\.html|finder\.css|finder\.js|gis-overlays\.js|kpc-offline\.js|kpc-map-extras\.js|kpc-my-parks\.js|kpc-us-states\.json|locations(?:-ky)?\.json|official-[a-z0-9-]+\.json|wwff-unmapped\.json|kpc-ky-data\.json|ky-trail-parks\.json|ky-[a-z-]+\.geojson|KPC-logo\.png|kpc-icon-(?:32|180)\.png|kpc-kit\.html|kpc-kit\.js|kpc-in-park\.html|kpc-in-park\.js|kpc-bounds\.js|kpc-tools\.css|kpc-theme\.js|kpc-search\.js|kpc-conditions\.json|kpc-park-notes\.json|kpc-campgrounds\.json)$/; /* Oct 15: + Activation Kit / Am I in the Park? */
+const SAME = /\/(finder\.html|finder\.css|finder\.js|gis-overlays\.js|kpc-offline\.js|kpc-map-extras\.js|kpc-my-parks\.js|kpc-us-states\.json|locations(?:-ky)?\.json|official-[a-z0-9-]+\.json|wwff-unmapped\.json|kpc-ky-data\.json|ky-trail-parks\.json|ky-[a-z-]+\.geojson|KPC-logo\.png|kpc-icon-(?:32|180)\.png|kpc-kit\.html|kpc-kit\.js|kpc-in-park\.html|kpc-in-park\.js|kpc-bounds\.js|kpc-tools\.css|kpc-theme\.js|kpc-search\.js|kpc-conditions\.json|kpc-park-notes\.json|kpc-campgrounds\.json|data\/(?:wwff|sota)\/t\/-?\d+_-?\d+\.json)$/; /* Oct 15: + Activation Kit / Am I in the Park? */
 const CDN = /^https:\/\/unpkg\.com\/leaflet@1\.9\.4\/dist\//;
 const TILE = /^https:\/\/tile\.openstreetmap\.org\/\d+\/\d+\/\d+\.png$/;
 

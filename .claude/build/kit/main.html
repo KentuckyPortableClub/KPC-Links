@@ -8,6 +8,7 @@
 .kit-form button,#kitNear{min-height:50px;padding:10px 18px;border:0;border-radius:10px;background:#171717;color:#f0c96b;font:900 13px Arial,sans-serif;letter-spacing:1.2px;cursor:pointer}
 #kitNear{background:#fff;color:#171717;border:2px solid #171717;margin-top:10px;width:100%}
 #kitPick{display:grid;gap:8px;margin-top:12px}#kitPick button{display:flex;justify-content:space-between;gap:10px;align-items:center;text-align:left;padding:12px 14px;border:1px solid #e0d5bd;border-radius:10px;background:#fbf8ef;cursor:pointer;font:15px Arial,sans-serif;color:#171717;width:100%}
+.kit-p{display:inline-block;background:var(--gold);color:#111;border-radius:5px;padding:1px 7px;margin-right:4px}
 #kitPick b{font-family:Georgia,serif}#kitPick span{color:#1d5a3a;font-weight:900;font-size:12px;letter-spacing:.8px;white-space:nowrap}
 #kitSaved{margin-top:10px;font-size:13.5px;color:#5b5648;line-height:1.7}#kitSaved a{color:#1d5a3a;font-weight:700}
 .kit-msg{color:#5b5648;margin:8px 0 0}
@@ -36,14 +37,14 @@
 @@HEADER@@
 <main>
 <section class="tool-head th-river"><div class="wrap">
-<p class="eyebrow">KENTUCKY POTA · ONE SCREEN</p>
+<p class="eyebrow">POTA · WWFF · SOTA · ONE SCREEN</p>
 <h1>Activation <span>Kit</span></h1>
-<p class="sub">Pick a park and get everything for the trip on one screen: member reports, weather, the boundary with parking and trailheads, 2-fers, where to stay and a Spot Me button. Save it before you go and it opens with no signal.</p>
+<p class="sub">Pick a park, WWFF area or summit (any state) and get the trip on one screen: weather, the boundary map, the other references at the same spot, where to stay and a Spot Me button. Kentucky ones add member reports, parking and trailheads, and 2-fers. Save it before you go and it opens with no signal.</p>
 </div></section>
 <div class="kit-wrap">
 <p class="kit-test"><b>Test page.</b> Not on the menu yet. Brandon is trying it out first.</p>
 <section class="kit-card">
-<form class="kit-form" id="kitForm"><input id="kitQ" list="kitList" autocomplete="off" placeholder="Park name or number (US-1277)" aria-label="Park name or number"><datalist id="kitList"></datalist><button type="submit">OPEN KIT</button></form>
+<form class="kit-form" id="kitForm"><input id="kitQ" list="kitList" autocomplete="off" placeholder="Name, or US-1277 / KFF-1277 / W4K/EC-001" aria-label="Park, WWFF area or summit"><datalist id="kitList"></datalist><button type="submit">OPEN KIT</button></form>
 <button type="button" id="kitNear">📍 PARKS NEAR ME</button>
 <div id="kitPick"></div>
 <div id="kitSaved"></div>
@@ -52,5 +53,5 @@
 </div>
 </main>
 @@FOOTER@@
-<script src="kpc-bounds.js?v=20261015c" defer></script>
-<script src="kpc-kit.js?v=20261015b" defer></script>
+<script src="kpc-bounds.js?v=20261015d" defer></script>
+<script src="kpc-kit.js?v=20261015c" defer></script>
