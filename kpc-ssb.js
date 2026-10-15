@@ -87,7 +87,7 @@ function hiss(on) {
 }
 
 /* ---------------- state ---------------- */
-const S = Object.assign({ call: '', st: 'KY', ref: '', level: 1, vol: 0.9, hiss: 0.3, rate: 1 }, store.get('kpcSSB', {}));
+const S = Object.assign({ call: '', st: 'KY', ref: '', level: 1, vol: 0.9, hiss: 0.3, rate: 1, mic: true }, store.get('kpcSSB', {}));
 const save = () => store.set('kpcSSB', S);
 const run = { on: false, callers: [], cur: null, sent: false, last: '', log: [], t0: 0, gen: 0, worked: new Set() };
 const myCall = () => (S.call || '').toUpperCase().trim() || 'K4TEST';
@@ -123,7 +123,7 @@ function start() {
   form(true);
 }
 function stop() { hush(); run.gen++; run.on = false; hiss(false); $('vbGo').textContent = '▶ START'; $('vbGo').classList.remove('stop'); status('Stopped.'); form(false); }
-function form(on) { ['vbCq', 'vbQrz', 'vbAgn', 'vbSend', 'vbLog', 'vbTalk'].forEach(id => { const e = $(id); if (e) e.disabled = !on; }); }
+function form(on) { ['vbCq', 'vbQrz', 'vbAgn', 'vbSend', 'vbLog', 'vbTalk', 'vbSkip'].forEach(id => { const e = $(id); if (e) e.disabled = !on; }); }
 
 async function cq() {
   if (!run.on) return;
@@ -187,6 +187,29 @@ function check(o, f) {
   if (!stOk) errs.push(`state: you logged ${f.st || '(blank)'}, it was ${o.st} (${STN[o.st]})`);
   return errs;
 }
+const sayBye = o => { const bye = pick(['Thanks, seventy-three!', 'Seventy-three, thanks for the park!', 'Thank you, seventy-three.', 'Thanks for the contact, seventy-three.']); if (showText()) line(o.call, bye.replace(/seventy-three/gi, '73'), 'them'); return speak(bye, o); };
+/* you said "thanks, 73" on the mic: they sign too, but YOU still do the logging (that's the skill we're practicing) */
+async function say73() {
+  if (!run.on) return;
+  const o = run.cur && run.sent ? run.cur : null;
+  hush(); run.gen++; line('YOU', 'Thanks, 73.', 'you');
+  if (!o) { status('Thanks, 73! Nobody to sign with right now. Call CQ or QRZ.'); return; }
+  o.signed = true; const g = run.gen; await sayBye(o); if (g !== run.gen) return;
+  status('Now log it: check CALL, fill RCVD and STATE, then press ✓ LOG IT.'); const r0 = $('fRcvd'); if (r0 && !r0.value) r0.focus({ preventScroll: true });
+}
+/* can't get a call? skip that station (nothing goes in the log) */
+async function skip() {
+  if (!run.on) return;
+  const typed = ($('fCall').value || '').toUpperCase().trim();
+  const o = (run.cur && run.sent) ? run.cur : run.callers.find(x => x.call === typed) || run.callers[0];
+  hush(); run.gen++;
+  if (!o) { status('Nobody to skip. Call CQ.'); return; }
+  run.callers = run.callers.filter(x => x !== o); run.cur = null; run.sent = false; run.skipped = (run.skipped || 0) + 1;
+  line('', `⏭ Skipped a station (it was ${o.call}). No penalty: it just doesn't go in the log.`, 'note');
+  ['fCall', 'fRcvd', 'fSt'].forEach(id => { $(id).value = ''; }); $('fSent').value = '59';
+  if (chance(0.6)) arrivals();
+  if (run.callers.length) { await new Promise(r0 => setTimeout(r0, 300)); await callIn(run.callers.slice()); } else status('Nobody calling. Call CQ again.');
+}
 async function logIt() {
   if (!run.on) return;
   const f = { call: ($('fCall').value || '').toUpperCase().trim(), sent: ($('fSent').value || '59').trim(), rcvd: ($('fRcvd').value || '').trim(), st: ($('fSt').value || '').toUpperCase().trim() };
@@ -196,14 +219,13 @@ async function logIt() {
   const q = { n: run.log.length + 1, time: new Date(), call: f.call, sent: f.sent, rcvd: f.rcvd, st: f.st, ok: !errs.length, errs, secs: o && o.t0 ? Math.round((Date.now() - o.t0) / 1000) : 0, truth: o ? `${o.call} ${o.rst} ${o.st}` : '' };
   run.log.push(q); drawLog();
   hush(); run.gen++;
-  line('YOU', `Thanks, 73. QRZ? ${myCall()}`, 'you');
+  const signed = o && o.signed;
+  if (!signed) line('YOU', `Thanks, 73. QRZ? ${myCall()}`, 'you');
   if (errs.length) line('', '⚠ Log check: ' + errs.join(' · '), 'bad'); else line('', '✓ Logged correctly.', 'good');
   if (o) {
     run.callers = run.callers.filter(x => x !== o); run.worked.add(o.call);
     // they sign too: "thanks, 73"
-    const g = run.gen, bye = pick(['Thanks, seventy-three!', 'Seventy-three, thanks for the park!', 'Thank you, seventy-three.', 'Thanks for the contact, seventy-three.']);
-    if (showText()) line(o.call, bye.replace(/seventy-three/gi, '73'), 'them');
-    await speak(bye, o); if (g !== run.gen) return;
+    if (!signed) { const g = run.gen; await sayBye(o); if (g !== run.gen) return; }
   }
   run.cur = null; run.sent = false;
   ['fCall', 'fRcvd', 'fSt'].forEach(id => { $(id).value = ''; }); $('fSent').value = '59'; $('fCall').focus();
@@ -288,7 +310,7 @@ async function talkDo(text) {
   if (p.kind === 'cq') return cq();
   if (p.kind === 'agn') return agn();
   if (p.kind === 'qrz') { if (p.call && p.call.length < 4) $('fCall').value = p.call; return qrz(); }
-  if (p.kind === 'close') return logIt();
+  if (p.kind === 'close') return say73();
   if (p.kind === 'report') {
     if (p.call && p.call.length < 4) { $('fCall').value = p.call; return qrz(); }
     if (p.call || (p.runs && p.runs.length)) $('fCall').value = bestSub(p.runs && p.runs.length ? p.runs : [p.raw || p.call]); if (p.rep) $('fSent').value = p.rep;
@@ -308,6 +330,9 @@ function init() {
   $('vbGo').addEventListener('click', () => run.on ? stop() : start());
   $('vbCq').addEventListener('click', cq); $('vbQrz').addEventListener('click', qrz); $('vbAgn').addEventListener('click', agn);
   if ($('vbTest')) $('vbTest').addEventListener('click', testVoice);
+  if ($('vbSkip')) $('vbSkip').addEventListener('click', skip);
+  const mic = $('vbMic'), micSync = () => { const t = $('vbTalk'); if (t) t.hidden = !S.mic; const h = $('vbHeard'); if (h) h.hidden = !S.mic; if (mic) mic.checked = !!S.mic; document.body.classList.toggle('vb-nomic', !S.mic); };
+  if (mic) mic.addEventListener('change', () => { S.mic = mic.checked; save(); micSync(); }); micSync();
   const tb = $('vbTalk');
   if (tb) {
     if (!SR) { tb.disabled = true; tb.textContent = '🎙 TALKING BACK NEEDS CHROME, EDGE OR ANDROID'; }
@@ -316,7 +341,7 @@ function init() {
       tb.addEventListener('pointerdown', e => { e.preventDefault(); if (recOn) { talkStop(); return; } recHeld = Date.now(); talkStart(); });
       tb.addEventListener('pointerup', () => { if (recOn && Date.now() - recHeld > 450) talkStop(); });
       tb.addEventListener('contextmenu', e => e.preventDefault());
-      document.addEventListener('keydown', e => { if (e.code === 'Space' && !/INPUT|TEXTAREA|SELECT/.test(e.target.tagName) && run.on && !e.repeat) { e.preventDefault(); recHeld = Date.now(); talkStart(); } });
+      document.addEventListener('keydown', e => { if (e.code === 'Space' && S.mic && !/INPUT|TEXTAREA|SELECT/.test(e.target.tagName) && run.on && !e.repeat) { e.preventDefault(); recHeld = Date.now(); talkStart(); } });
       document.addEventListener('keyup', e => { if (e.code === 'Space' && recOn) talkStop(); });
     }
   }
@@ -324,9 +349,9 @@ function init() {
   // keyboard: Enter in CALL = send report, Enter in STATE = log it; F1 CQ, F2 QRZ, F3 AGN
   $('fCall').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); sendReport(); $('fRcvd').focus(); } });
   ['fRcvd', 'fSt'].forEach(id => $(id).addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); logIt(); } }));
-  document.addEventListener('keydown', e => { const m = { F1: cq, F2: qrz, F3: agn }[e.key]; if (m && run.on) { e.preventDefault(); m(); } });
+  document.addEventListener('keydown', e => { const m = { F1: cq, F2: qrz, F3: agn, F4: skip }[e.key]; if (m && run.on) { e.preventDefault(); m(); } });
   form(false); drawLog();
 }
-window.KPCSSB = { run, S, say1, check, lev, parseSpeech, talkDo, bestSub };
+window.KPCSSB = { run, S, say1, check, lev, parseSpeech, talkDo, bestSub, skip, say73 };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
