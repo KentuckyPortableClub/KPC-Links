@@ -1,14 +1,16 @@
 import urllib.request,urllib.parse,json,time
-P='https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query'
-names=['Beaver Lake','Boltz Lake','Bullock Pen Lake','Carpenter Lake','Corinth Lake','Elmer Davis Lake','Guist Creek Lake','Kingfisher Lakes','McNeely Lake','Shanty Hollow Lake','Spurlington Lake','Washburn Lake',"Murphy's Pond",'Lake Beshear','Cumberland River Mussel Sanctuary','Dr. James C. Salato Wildlife Education Center','Russell County Fish Access - Barnes Property','Redbird Purchase Unit','Clay Hill Memorial Forest','Halls Prairie','Kentucky State University Environmental Education Center','Pullen Farm','Rowan County Sphagnum Swamp','Taylor Fork Ecological Area','The Green at BCTC']
-out={}
-for n in names:
-  for ua in ['KPC','Mozilla/5.0']:
-    q={'where':"Unit_Nm='%s'"%n.replace("'","''"),'outFields':'Unit_Nm,Loc_Own,Own_Type,Loc_Mang,Mang_Type,Pub_Access,GIS_Acres,State_Nm','returnGeometry':'true','outSR':4326,'maxAllowableOffset':0.0003,'geometryPrecision':5,'f':'geojson'}
+bb=json.load(open('bb.json'))
+for n,b in bb.items():
+  if 'Ramp' in n: continue
+  q='[out:json][timeout:40];(nwr[leisure=slipway](%f,%f,%f,%f);nwr[amenity=parking](%f,%f,%f,%f);nwr[leisure=fishing](%f,%f,%f,%f););out tags center 60;'%(tuple(b)*3)
+  for u in ['https://overpass-api.de/api/interpreter','https://overpass.private.coffee/api/interpreter']:
     try:
-      j=json.loads(urllib.request.urlopen(urllib.request.Request(P+'?'+urllib.parse.urlencode(q),headers={'User-Agent':ua}),timeout=60).read())
-      fs=[f for f in j.get('features',[]) if f['properties'].get('State_Nm')=='KY']
-      out[n]=fs;print(n,len(fs),[ (f['properties']['Loc_Own'],f['properties']['Pub_Access']) for f in fs][:3]);break
-    except Exception as e: print(n,ua,'ERR',e); time.sleep(2)
-  time.sleep(1)
-json.dump(out,open('maprep.json','w'))
+      j=json.loads(urllib.request.urlopen(urllib.request.Request(u,data=('data='+urllib.parse.quote(q)).encode(),headers={'User-Agent':'KPC'}),timeout=60).read())
+      el=j['elements'];T=lambda e:e.get('tags',{})
+      c=lambda e:(round(e.get('lat') or e.get('center',{}).get('lat'),5),round(e.get('lon') or e.get('center',{}).get('lon'),5))
+      ramps=[(T(e).get('name',''),c(e)) for e in el if T(e).get('leisure')=='slipway']
+      park=[e for e in el if T(e).get('amenity')=='parking' and T(e).get('access') not in ('private','no')]
+      pier=[e for e in el if T(e).get('leisure')=='fishing']
+      print(n,'| ramps',len(ramps),ramps[:3],'| parking',len(park),'| fishing spots',len(pier));break
+    except Exception as e: print(n,u,'ERR',e)
+  time.sleep(2)
