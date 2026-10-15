@@ -20,17 +20,13 @@
       { id: 'pnp', name: 'ParksnPeaks', p: ['WWFF', 'SOTA', 'POTA'], how: 'copy', url: 'https://parksnpeaks.org/', about: 'Australian spotting site that also takes WWFF and SOTA spots. Needs a free account.', tag: ['COPY + OPEN'] }
     ]],
     ['GENERAL DX CLUSTER (ONE SHARED NETWORK)', [
-      { id: 'dxsummit', name: 'DX Summit', p: ['*'], how: 'copy', url: 'https://www.dxsummit.fi/', about: 'Big web DX cluster. A spot here goes out to cluster nodes worldwide.', tag: ['COPY + OPEN'], warn: 1 },
-      { id: 'holy', name: 'Holy Cluster', p: ['*'], how: 'copy', url: 'https://holycluster.iarc.org', about: 'Modern map-style DX cluster (IARC). Same worldwide cluster spots.', tag: ['COPY + OPEN'], warn: 1 },
-      { id: 'dxheat', name: 'DXHeat', p: ['*'], how: 'copy', url: 'https://dxheat.com/dxc/', about: 'Web DX cluster with band filters. Same worldwide cluster spots.', tag: ['COPY + OPEN'], warn: 1 }
+      { id: 'dxsummit', name: 'DX Summit', p: ['*'], how: 'info', url: 'https://www.dxsummit.fi/', about: 'Big web DX cluster. Link only: self-spotting there is frowned on, so we don\'t fill in a spot for you. Fine for special event stations.', tag: ['LINK ONLY'], warn: 1 },
+      { id: 'holy', name: 'Holy Cluster', p: ['*'], how: 'info', url: 'https://holycluster.iarc.org', about: 'Map-style DX cluster (IARC). Link only, same worldwide cluster.', tag: ['LINK ONLY'], warn: 1 },
+      { id: 'dxheat', name: 'DXHeat', p: ['*'], how: 'info', url: 'https://dxheat.com/dxc/', about: 'Web DX cluster with band filters. Link only, same worldwide cluster.', tag: ['LINK ONLY'], warn: 1 }
     ]],
     ['NO INTERNET? PHONE OR RADIO ONLY', [
       { id: 'apspot', name: 'APSPOT (APRS or text message)', p: ['POTA', 'SOTA', 'WWFF'], how: 'copy', url: 'https://apspot.radio', about: 'Send one APRS message to APSPOT (or a text to its gateway number, listed on its site) and it spots POTA, SOTA and WWFF for you. We copy the message in its format.', tag: ['COPY + OPEN'] },
       { id: 'sotamat', name: 'SOTAmat', p: ['SOTA', 'POTA'], how: 'info', url: 'https://sotamat.com', about: 'Spots you over the air using FT8 and other digital modes, for summits with no cell signal. Set it up at home first.', tag: ['SET UP FIRST'] }
-    ]],
-    ['THE CLUB & FRIENDS', [
-      { id: 'discord', name: 'KPC Discord', p: ['*'], how: 'copy', url: 'https://discord.gg/yNNgFgnst', about: 'Paste your spot in the club Discord. (KPC members\' POTA spots already post there automatically.)', tag: ['COPY + OPEN'] },
-      { id: 'fbgroup', name: 'KPC Facebook group', p: ['*'], how: 'copy', url: 'https://www.facebook.com/share/g/181cJ5cuoJ/', about: 'Post it in the club Facebook group so friends know to listen.', tag: ['COPY + OPEN'] }
     ]],
     ['PLAN AHEAD (SO HUNTERS KNOW YOU\'RE COMING)', [
       { id: 'potasch', name: 'POTA activation schedule', p: ['POTA'], how: 'info', url: 'https://pota.app/#/activations', about: 'Post when and where you\'ll be. On CW and FT8 POTA can then spot you automatically from the Reverse Beacon Network.', tag: ['OPEN'] },
@@ -39,7 +35,7 @@
     ]]
   ];
   const ALL = G.flatMap(g => g[1]);
-  let pick = new Set(store.get('kpcSpotMePick', null) || []);
+  let pick = new Set((store.get('kpcSpotMePick', null) || []).filter(id => !['discord', 'fbgroup'].includes(id)));
   const keep = store.get('kpcSpotMePick', null) !== null;
   const form = store.get('kpcSpotMeForm', {});
 
@@ -59,7 +55,7 @@
     if (kind === 'cluster') return `${v.k ? fk(v.k) : '?'} ${v.call} ${[v.mode, pg, v.cm].filter(Boolean).join(' ')}`.slice(0, 80);
     return `${v.call} on ${v.k ? fm(v.k) + ' MHz' : '?'} ${v.mode}${pg ? ' · ' + pg : ''}${refName(v.ref) ? ' (' + refName(v.ref) + ')' : ''}${v.cm ? ' · ' + v.cm : ''}`;
   }
-  const kindOf = d => d.id === 'apspot' ? 'apspot' : ['dxsummit', 'holy', 'dxheat', 'sotawatch', 'wwff', 'gma', 'pnp'].includes(d.id) ? 'cluster' : 'plain';
+  const kindOf = d => d.id === 'apspot' ? 'apspot' : ['sotawatch', 'wwff', 'gma', 'pnp'].includes(d.id) ? 'cluster' : 'plain';
   let REFS = {};
   const refName = r => REFS[r] || '';
   const fits = (d, prog) => d.p.includes('*') || d.p.includes(prog);

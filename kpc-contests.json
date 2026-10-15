@@ -1,0 +1,941 @@
+{
+ "updated": "2026-10-15T10:40:08Z",
+ "week": [
+  {
+   "name": "Walk for the Bacon QRP Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fgo97",
+   "when": "0000Z-0100Z, Oct 15 and 0200Z-0300Z, Oct 16",
+   "segs": [
+    [
+     "2026-10-15T00:00Z",
+     "2026-10-15T01:00Z"
+    ],
+    [
+     "2026-10-16T02:00Z",
+     "2026-10-16T03:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "NTC QSO Party",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fbyih",
+   "when": "1900Z-2000Z, Oct 15",
+   "segs": [
+    [
+     "2026-10-15T19:00Z",
+     "2026-10-15T20:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "NCCC FT4 Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g2r1h",
+   "when": "0100Z-0130Z, Oct 16",
+   "segs": [
+    [
+     "2026-10-16T01:00Z",
+     "2026-10-16T01:30Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Weekly RTTY Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g3tmp",
+   "when": "0145Z-0215Z, Oct 16",
+   "segs": [
+    [
+     "2026-10-16T01:45Z",
+     "2026-10-16T02:15Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "NCCC Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g1nx8",
+   "when": "0230Z-0300Z, Oct 16",
+   "segs": [
+    [
+     "2026-10-16T02:30Z",
+     "2026-10-16T03:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "K1USN Slow Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fsw21",
+   "when": "2000Z-2100Z, Oct 16",
+   "segs": [
+    [
+     "2026-10-16T20:00Z",
+     "2026-10-16T21:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "JARL WW RTTY Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fjnv5",
+   "when": "0000Z, Oct 17 to 2400Z, Oct 18",
+   "segs": [
+    [
+     "2026-10-17T00:00Z",
+     "2026-10-19T00:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "New York QSO Party",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003b1uhl",
+   "when": "1400Z, Oct 17 to 0200Z, Oct 18",
+   "segs": [
+    [
+     "2026-10-17T14:00Z",
+     "2026-10-18T02:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Worked All Germany Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fmvlv",
+   "when": "1500Z, Oct 17 to 1459Z, Oct 18",
+   "segs": [
+    [
+     "2026-10-17T15:00Z",
+     "2026-10-18T14:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Stew Perry Topband Challenge",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fllcf",
+   "when": "1500Z, Oct 17 to 1500Z, Oct 18",
+   "segs": [
+    [
+     "2026-10-17T15:00Z",
+     "2026-10-18T15:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Feld Hell Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fbb5g",
+   "when": "2000Z-2359Z, Oct 17",
+   "segs": [
+    [
+     "2026-10-17T20:00Z",
+     "2026-10-17T23:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Argentina National 7 MHz Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fh3my",
+   "when": "2130Z-2330Z, Oct 17",
+   "segs": [
+    [
+     "2026-10-17T21:30Z",
+     "2026-10-17T23:30Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Asia-Pacific Fall Sprint, CW",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fhipg",
+   "when": "0000Z-0200Z, Oct 18",
+   "segs": [
+    [
+     "2026-10-18T00:00Z",
+     "2026-10-18T02:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "UBA ON Contest, 2m",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fm0qt",
+   "when": "0700Z-1000Z, Oct 18",
+   "segs": [
+    [
+     "2026-10-18T07:00Z",
+     "2026-10-18T10:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Illinois QSO Party",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003b21yv",
+   "when": "1700Z, Oct 18 to 0100Z, Oct 19",
+   "segs": [
+    [
+     "2026-10-18T17:00Z",
+     "2026-10-19T01:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Run for the Bacon QRP Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003feb4x",
+   "when": "2300Z, Oct 18 to 0100Z, Oct 19",
+   "segs": [
+    [
+     "2026-10-18T23:00Z",
+     "2026-10-19T01:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "K1USN Slow Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fs16x",
+   "when": "0000Z-0100Z, Oct 19",
+   "segs": [
+    [
+     "2026-10-19T00:00Z",
+     "2026-10-19T01:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ARRL School Club Roundup",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fhb26",
+   "when": "1300Z, Oct 19 to 2359Z, Oct 23",
+   "segs": [
+    [
+     "2026-10-19T13:00Z",
+     "2026-10-23T23:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ICWC Medium Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ftyo0",
+   "when": "1300Z-1400Z, Oct 19",
+   "segs": [
+    [
+     "2026-10-19T13:00Z",
+     "2026-10-19T14:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "OK1WC Memorial (MWC)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fwj8b",
+   "when": "1630Z-1729Z, Oct 19",
+   "segs": [
+    [
+     "2026-10-19T16:30Z",
+     "2026-10-19T17:29Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ICWC Medium Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003futj4",
+   "when": "1900Z-2000Z, Oct 19",
+   "segs": [
+    [
+     "2026-10-19T19:00Z",
+     "2026-10-19T20:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Worldwide Sideband Activity Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fxe34",
+   "when": "0100Z-0159Z, Oct 20",
+   "segs": [
+    [
+     "2026-10-20T01:00Z",
+     "2026-10-20T01:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ICWC Medium Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fvoe8",
+   "when": "0300Z-0400Z, Oct 20",
+   "segs": [
+    [
+     "2026-10-20T03:00Z",
+     "2026-10-20T04:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Tuesday's Telegraphy Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g4w8k",
+   "when": "1930Z-2030Z, Oct 20",
+   "segs": [
+    [
+     "2026-10-20T19:30Z",
+     "2026-10-20T20:30Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Phone Weekly Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fy8w1",
+   "when": "0230Z-0300Z, Oct 21",
+   "segs": [
+    [
+     "2026-10-21T02:30Z",
+     "2026-10-21T03:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "A1Club AWT",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fz3uj",
+   "when": "1145Z-1300Z, Oct 21",
+   "segs": [
+    [
+     "2026-10-21T11:45Z",
+     "2026-10-21T13:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fo65u",
+   "when": "1300Z-1400Z, Oct 21",
+   "segs": [
+    [
+     "2026-10-21T13:00Z",
+     "2026-10-21T14:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "VHF-UHF FT8 Activity Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fflnm",
+   "when": "1700Z-2100Z, Oct 21",
+   "segs": [
+    [
+     "2026-10-21T17:00Z",
+     "2026-10-21T21:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Mini-Test 40",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fzypj",
+   "when": "1700Z-1759Z, Oct 21",
+   "segs": [
+    [
+     "2026-10-21T17:00Z",
+     "2026-10-21T17:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Mini-Test 80",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g0tko",
+   "when": "1800Z-1859Z, Oct 21",
+   "segs": [
+    [
+     "2026-10-21T18:00Z",
+     "2026-10-21T18:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "AGCW Semi-Automatic Key Evening",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fgvmn",
+   "when": "1900Z-2030Z, Oct 21",
+   "segs": [
+    [
+     "2026-10-21T19:00Z",
+     "2026-10-21T20:30Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fp10y",
+   "when": "1900Z-2000Z, Oct 21",
+   "segs": [
+    [
+     "2026-10-21T19:00Z",
+     "2026-10-21T20:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "IRTS 80m Counties Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fjglw",
+   "when": "2000Z-2100Z, Oct 21",
+   "segs": [
+    [
+     "2026-10-21T20:00Z",
+     "2026-10-21T21:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  }
+ ],
+ "big": [
+  {
+   "name": "CQ World Wide DX Contest (SSB)",
+   "url": "https://cqww.com/rules.htm",
+   "when": "Usual dates (CQ); check the rules",
+   "segs": [
+    [
+     "2026-10-24T00:00Z",
+     "2026-10-26T00:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "CQ"
+  },
+  {
+   "name": "ARRL November Sweepstakes (CW)",
+   "url": "https://www.arrl.org/sweepstakes",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2026-11-07T21:00Z",
+     "2026-11-09T03:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL"
+  },
+  {
+   "name": "ARRL November Sweepstakes (Phone)",
+   "url": "https://www.arrl.org/sweepstakes",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2026-11-21T21:00Z",
+     "2026-11-23T03:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL"
+  },
+  {
+   "name": "CQ World Wide DX Contest (CW)",
+   "url": "https://cqww.com/rules.htm",
+   "when": "Usual dates (CQ); check the rules",
+   "segs": [
+    [
+     "2026-11-28T00:00Z",
+     "2026-11-30T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "CQ"
+  },
+  {
+   "name": "ARRL 160-Meter Contest",
+   "url": "https://www.arrl.org/160-meter",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2026-12-04T22:00Z",
+     "2026-12-06T16:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL"
+  },
+  {
+   "name": "ARRL 10-Meter Contest",
+   "url": "https://www.arrl.org/10-meter",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2026-12-12T00:00Z",
+     "2026-12-14T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL"
+  },
+  {
+   "name": "ARRL RTTY Roundup",
+   "url": "https://www.arrl.org/rtty-roundup",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2027-01-02T18:00Z",
+     "2027-01-04T00:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL"
+  },
+  {
+   "name": "ARRL January VHF Contest",
+   "url": "https://www.arrl.org/january-vhf",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2027-01-16T19:00Z",
+     "2027-01-18T04:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF",
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL"
+  },
+  {
+   "name": "Winter Field Day",
+   "url": "https://www.winterfieldday.org/",
+   "when": "Usual dates (Winter Field Day Association); check the rules",
+   "segs": [
+    [
+     "2027-01-23T16:00Z",
+     "2027-01-24T22:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "FIELD",
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "Winter Field Day Association"
+  },
+  {
+   "name": "CQ 160-Meter Contest (CW)",
+   "url": "https://www.cq160.com/rules.htm",
+   "when": "Usual dates (CQ); check the rules",
+   "segs": [
+    [
+     "2027-01-29T22:00Z",
+     "2027-01-31T22:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "CQ"
+  },
+  {
+   "name": "ARRL International DX Contest (CW)",
+   "url": "https://www.arrl.org/arrl-dx",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2027-02-20T00:00Z",
+     "2027-02-22T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL"
+  },
+  {
+   "name": "CQ 160-Meter Contest (SSB)",
+   "url": "https://www.cq160.com/rules.htm",
+   "when": "Usual dates (CQ); check the rules",
+   "segs": [
+    [
+     "2027-02-26T22:00Z",
+     "2027-02-28T22:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "CQ"
+  },
+  {
+   "name": "ARRL International DX Contest (Phone)",
+   "url": "https://www.arrl.org/arrl-dx",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2027-03-06T00:00Z",
+     "2027-03-08T00:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL"
+  },
+  {
+   "name": "CQ WPX Contest (SSB)",
+   "url": "https://www.cqwpx.com/rules.htm",
+   "when": "Usual dates (CQ); check the rules",
+   "segs": [
+    [
+     "2027-03-27T00:00Z",
+     "2027-03-29T00:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "CQ"
+  },
+  {
+   "name": "CQ WPX Contest (CW)",
+   "url": "https://www.cqwpx.com/rules.htm",
+   "when": "Usual dates (CQ); check the rules",
+   "segs": [
+    [
+     "2027-05-29T00:00Z",
+     "2027-05-31T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "CQ"
+  },
+  {
+   "name": "ARRL International Digital Contest",
+   "url": "https://www.arrl.org/arrl-digital-contest",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2027-06-05T18:00Z",
+     "2027-06-06T18:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL"
+  },
+  {
+   "name": "ARRL June VHF Contest",
+   "url": "https://www.arrl.org/june-vhf",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2027-06-12T18:00Z",
+     "2027-06-14T03:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF",
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL"
+  },
+  {
+   "name": "ARRL Field Day",
+   "url": "https://www.arrl.org/field-day",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2027-06-26T18:00Z",
+     "2027-06-27T21:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "FIELD",
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL"
+  },
+  {
+   "name": "IARU HF World Championship",
+   "url": "https://www.arrl.org/iaru-hf-world-championship",
+   "when": "Usual dates (ARRL / IARU); check the rules",
+   "segs": [
+    [
+     "2027-07-10T12:00Z",
+     "2027-07-11T12:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL / IARU"
+  },
+  {
+   "name": "ARRL September VHF Contest",
+   "url": "https://www.arrl.org/september-vhf",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2027-09-11T18:00Z",
+     "2027-09-13T03:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF",
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL"
+  },
+  {
+   "name": "CQ World Wide DX Contest (SSB)",
+   "url": "https://cqww.com/rules.htm",
+   "when": "Usual dates (CQ); check the rules",
+   "segs": [
+    [
+     "2027-10-30T00:00Z",
+     "2027-11-01T00:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "CQ"
+  },
+  {
+   "name": "ARRL November Sweepstakes (CW)",
+   "url": "https://www.arrl.org/sweepstakes",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2027-11-06T21:00Z",
+     "2027-11-08T03:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL"
+  }
+ ],
+ "status": {
+  "WA7BNM": "ok (33)"
+ }
+}

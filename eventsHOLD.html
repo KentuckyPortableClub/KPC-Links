@@ -247,7 +247,33 @@ if(window.KPCReports)KPCReports.ready.then(()=>{const u=KPCReports.formUrl('even
 </style>
 <script src="kpc-ses.js?v=20261015a" defer></script>
 </div></section>
-<section class="section" id="contests"><div class="section-inner"><p class="eyebrow-dark">RADIO CONTESTS</p><h2>Contest Calendar</h2><p class="lead">Interested in seeing how busy the bands are today? Check out the WA7BNM Contest Calendar for current contest dates and activity.</p><div class="resource-panel"><div><div class="resource-icon">📡</div><h3>WA7BNM Contest Calendar</h3><p>See what contests are happening today, this week, and beyond — and see where the bands are busy.</p></div><div class="resource-actions"><a class="btn btn-primary" href="https://www.contestcalendar.com/weeklycont.php" target="_blank" rel="noopener">VIEW CONTEST CALENDAR ↗</a></div></div></div></section>
+<section class="section" id="contests"><div class="section-inner"><p class="eyebrow-dark">RADIO CONTESTS</p><h2>Contest Calendar</h2><p class="lead">Every contest in the next 8 days, plus the big yearly weekends. Filter by when, mode and type, and see times in your own time zone.</p>
+<div id="ccBox"></div>
+<style>
+#ccBox{color:#171717}
+.cc-lab{font:900 10.5px Arial,sans-serif;letter-spacing:1.6px;color:#68635a;margin:12px 0 5px}
+.cc-row{display:flex;flex-wrap:wrap;gap:7px}
+.cc-chip{padding:8px 13px;border-radius:999px;border:1.5px solid #1c3a2a;background:#fff;color:#1c3a2a;font:900 11px Arial,sans-serif;letter-spacing:1px;cursor:pointer;min-height:36px}
+.cc-chip[aria-pressed=true]{background:#1c3a2a;color:#fff}
+.cc-row2{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:flex-end;margin-top:12px}
+.cc-chk{display:flex;gap:8px;align-items:center;font-size:14px;color:#3d3a33}.cc-chk input{width:20px;height:20px;accent-color:#1c3a2a}
+.cc-s{display:flex;flex-direction:column;gap:4px;font:900 10.5px Arial,sans-serif;letter-spacing:1.5px;color:#68635a}
+.cc-s input{font:15px Arial,sans-serif;min-height:40px;padding:8px 10px;border:1px solid #cbbf9f;border-radius:6px;background:#fff;max-width:100%}
+.cc-count{color:#68635a;font-size:13px;margin:14px 0 8px}
+.cc-list{display:grid;gap:9px}
+.cc-ev{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 14px;background:#fff;border:1px solid #e0d5bd;border-left:5px solid #b9ad8f;border-radius:8px}
+.cc-ev.big{border-left-color:var(--gold)}.cc-ev.live{border-left-color:#2e8b57;background:#f2faf4}
+.cc-date{text-align:center;background:#0b0b0b;border-radius:8px;padding:6px 2px;line-height:1.05}.cc-date b{display:block;font:700 22px Georgia,serif;color:var(--gold-light)}.cc-date span,.cc-date small{display:block;font:900 9.5px Arial,sans-serif;letter-spacing:1.5px;color:#cfcabf}
+.cc-ev h3{margin:0 0 3px;font:700 17px/1.25 Georgia,serif;color:#171717;overflow-wrap:anywhere}
+.cc-ev p{margin:0;color:#5b5648;font-size:13.5px;line-height:1.45;overflow-wrap:anywhere}.cc-utc{color:#8a8473}
+.cc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:5px}.cc-tag{font:900 9.5px Arial,sans-serif;letter-spacing:1.1px;padding:3px 7px;border-radius:999px;background:#efe8d6;color:#3d3a33}
+.cc-tag.m{background:#173a6b;color:#fff}.cc-tag.k{background:#fff4d6;color:#6b4f00;border:1px solid #e9b13a}.cc-tag.live{background:#2e8b57;color:#fff}.cc-tag.dim{background:#f3f0e8;color:#8a8473}
+.cc-acts a{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:8px 12px;border-radius:7px;background:#171717;color:#f0c96b;font:900 11px Arial,sans-serif;letter-spacing:1px;text-decoration:none;white-space:nowrap}
+.cc-moreb{justify-self:center}.cc-none{color:#68635a}.cc-note{margin-top:16px;color:#68635a;font-size:13.5px}.cc-note a,.cc-none a{color:#1d5a3a;font-weight:800}
+@media(max-width:700px){.cc-ev{grid-template-columns:56px minmax(0,1fr)}.cc-acts{grid-column:1/-1}.cc-acts a{width:100%}.cc-s{flex:1 1 100%}.cc-s input{width:100%}}
+</style>
+<script src="kpc-contests.js?v=20261015a" defer></script>
+</div></section>
 <section class="section" style="background:#f5f0e4" id="archive"><div class="section-inner"><p class="eyebrow-dark">KPC26</p><h2>2026 KPC Event Archive</h2><p class="lead">A look back at the people, portable operations, POTA activity, and friendships that made 2026 special.</p><div class="kpc26-preview-grid" style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.8fr);gap:28px;align-items:stretch;margin-top:30px"><div style="background:#fff;border:1px solid rgba(23,23,23,.12);border-top:4px solid #d5a63a;box-shadow:0 14px 35px rgba(0,0,0,.10);border-radius:10px;overflow:hidden"><div style="position:relative"><img src="KPC26-Group-Photo.jpg" alt="KPC 2026 group photo" style="width:100%;height:auto;display:block"></div><div style="padding:22px 24px"><h3 style="margin:0 0 8px;font-family:Georgia,serif;font-size:25px">KPC 2026 • Together In The Parks</h3><p style="margin:0;color:#68635a">A year of getting outside, getting on the air, learning, operating, and building the KPC community.</p></div></div><div style="background:#fff;border:1px solid rgba(23,23,23,.12);border-radius:10px;padding:28px;display:flex;flex-direction:column;justify-content:center"><p class="eyebrow-dark" style="margin-top:0">2026 ARCHIVE</p><h3 style="font-family:Georgia,serif;font-size:28px;margin:0 0 12px">The Full Story</h3><p style="color:#68635a">See the complete KPC26 photo archive, including campouts, radio operations, group activities, and the people who made 2026 memorable.</p><a class="btn btn-primary" href="photos.html#kpc26" style="margin-top:12px">SEE THE PHOTOS →</a> <a class="btn btn-primary" href="KPC_2026_Event_Archive_Photo_Archive.pdf" target="_blank" style="margin-top:12px">VIEW 2026 ARCHIVE PDF →</a></div></div></div></section>
 
 <section class="section cta"><div class="section-inner"><p class="eyebrow-dark">KENTUCKY PORTABLE CLUB</p><h2>Get Outside. Get On The Air.</h2><p class="lead">Explore Kentucky, follow upcoming activities, and stay connected with KPC.</p><div class="hero-actions"><a class="btn btn-primary" href="parks.html">EXPLORE KENTUCKY →</a><a class="btn btn-secondary-dark" href="campout.html">VIEW CAMPOUT →</a><a class="btn btn-secondary-dark" href="contact.html">CONTACT KPC →</a></div></div></section>
