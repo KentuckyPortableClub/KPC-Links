@@ -155,6 +155,9 @@
     if (form.call) $('smCall').value = form.call; if (form.freq) $('smFreq').value = form.freq; if (form.mode) $('smMode').value = form.mode;
     if (form.pota || (form.prog === 'POTA' && form.ref)) $('smPota').value = form.pota || form.ref; if (form.wwff) $('smWwff').value = form.wwff; if (form.sota) $('smSota').value = form.sota;
     if (form.by) $('smBy').value = form.by; if (form.cm) $('smCm').value = form.cm;
+    /* links from other KPC pages: kpc-spot-me.html?pota=US-1271&wwff=KFF-1271&sota=W4K/EC-001 (a new park clears the old numbers) */
+    const U = new URLSearchParams(location.search), up2 = k => (U.get(k) || '').trim().toUpperCase();
+    if (up2('pota') || up2('wwff') || up2('sota')) { $('smPota').value = up2('pota'); $('smWwff').value = up2('wwff'); $('smSota').value = up2('sota'); }
     $('smKeep').checked = keep;
     drawDests(); preview();
     ['smCall', 'smFreq', 'smPota', 'smWwff', 'smSota', 'smBy', 'smCm'].forEach(id => $(id).addEventListener('input', preview));
@@ -165,7 +168,7 @@
     $('smSend').addEventListener('click', send);
     $('smCopy').addEventListener('click', async () => { const v = val(); const ok = await copy(txt(v, 'plain')); $('smCopy').textContent = ok ? 'COPIED ✓' : 'COULD NOT COPY'; setTimeout(() => $('smCopy').textContent = 'COPY THE SPOT', 1800); });
     $('smRes').addEventListener('click', async e => { const b = e.target.closest('[data-open]'); if (!b) return; const d = ALL.find(x => x.id === b.dataset.open); const v = val(); await copy(txt(v, kindOf(d), d)); b.textContent = 'COPIED ✓ OPENING…'; window.open(d.url, '_blank', 'noopener'); setTimeout(() => b.textContent = 'COPY + OPEN AGAIN ›', 2500); });
-    fetch('kpc-ky-data.json').then(r => r.json()).then(d => { (d.parks || []).forEach(p => { REFS[p.c] = p.n; PARK[p.c] = p; }); (d.summits || []).forEach(p => REFS[p.c] = p.n); (d.kff || []).forEach(p => REFS[p.c] = p.n); fillRefs(); preview(); }).catch(() => {});
+    fetch('kpc-ky-data.json').then(r => r.json()).then(d => { (d.parks || []).forEach(p => { REFS[p.c] = p.n; PARK[p.c] = p; }); (d.summits || []).forEach(p => REFS[p.c] = p.n); (d.kff || []).forEach(p => REFS[p.c] = p.n); fillRefs(); preview(); if (up2('pota') && !up2('wwff')) autoFill(); }).catch(() => {});
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

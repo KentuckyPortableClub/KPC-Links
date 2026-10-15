@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="kpc-tools.css?v=20261014b">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+.kit-wrap{max-width:900px;margin:0 auto;padding:24px 16px 40px;box-sizing:border-box}
+.kit-card{background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);border-radius:10px;padding:18px;box-shadow:0 10px 24px rgba(0,0,0,.05)}
+.kit-form{display:flex;gap:10px;flex-wrap:wrap}.kit-form input{flex:1 1 240px;min-height:50px;border:1.5px solid #cbbf9f;border-radius:10px;padding:10px 14px;font:17px Arial,sans-serif;min-width:0}
+.kit-form button,#kitNear{min-height:50px;padding:10px 18px;border:0;border-radius:10px;background:#171717;color:#f0c96b;font:900 13px Arial,sans-serif;letter-spacing:1.2px;cursor:pointer}
+#kitNear{background:#fff;color:#171717;border:2px solid #171717;margin-top:10px;width:100%}
+#kitPick{display:grid;gap:8px;margin-top:12px}#kitPick button{display:flex;justify-content:space-between;gap:10px;align-items:center;text-align:left;padding:12px 14px;border:1px solid #e0d5bd;border-radius:10px;background:#fbf8ef;cursor:pointer;font:15px Arial,sans-serif;color:#171717;width:100%}
+#kitPick b{font-family:Georgia,serif}#kitPick span{color:#1d5a3a;font-weight:900;font-size:12px;letter-spacing:.8px;white-space:nowrap}
+#kitSaved{margin-top:10px;font-size:13.5px;color:#5b5648;line-height:1.7}#kitSaved a{color:#1d5a3a;font-weight:700}
+.kit-msg{color:#5b5648;margin:8px 0 0}
+.kit-head{margin-top:20px;background:#0b0b0b;color:#fff;border-radius:12px;padding:18px}
+.kit-ref{font:900 12px Arial,sans-serif;letter-spacing:1.6px;color:#f0c96b;overflow-wrap:anywhere}.kit-head h2{margin:6px 0 2px;font:700 28px/1.15 Georgia,serif;color:#fff}.kit-head p{margin:0;color:#cfcabf}
+.kit-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.kit-btns a,.kit-btns button{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border-radius:8px;background:#fff;color:#171717;border:1.5px solid #171717;font:900 11.5px Arial,sans-serif;letter-spacing:1px;text-decoration:none;cursor:pointer}
+.kit-head .kit-btns a{background:#1e1e1e;color:#f0c96b;border-color:#444}.kit-btns .gold,.kit-head .kit-btns a.gold{background:var(--gold);color:#111;border-color:var(--gold)}
+.kit-btns button:disabled{opacity:.6}
+.kit-spot{display:block;margin-top:12px;padding:16px;border-radius:12px;background:#1d5a3a;color:#fff;text-align:center;font:900 16px Arial,sans-serif;letter-spacing:1.2px;text-decoration:none}
+.kit-sec{margin-top:14px;background:#fff;border:1px solid #d8cfbf;border-radius:12px;padding:16px}
+.kit-sec h3{margin:0 0 8px;font:900 12px Arial,sans-serif;letter-spacing:2px;color:#1d5a3a}.kit-sec h4{margin:12px 0 4px;font:900 11px Arial,sans-serif;letter-spacing:1.4px;color:#5b5648}
+.kit-sec p{margin:6px 0 0;line-height:1.5;color:#3d3a31}.kit-small{font-size:13px;color:#5b5648!important}
+.kit-alert{margin:6px 0;padding:10px 12px;border-radius:8px;background:#fdecea;border-left:4px solid #c8452b;color:#4a160c}.kit-alert span{display:block;font-size:12.5px;opacity:.85}
+.kit-note{margin:6px 0;padding:10px 12px;border-radius:8px;background:#fbf8ef;border:1px solid #e8dfc8}.kit-note span{display:block;font-size:12px;color:#5b5648;margin-top:3px}
+.kit-row{margin:6px 0;padding:10px 12px;border-radius:8px;background:#fbf8ef;border:1px solid #e8dfc8;line-height:1.45}.kit-row em{font-style:normal;font-size:12px;color:#1d5a3a;font-weight:700}.kit-row em.bad,.bad{color:#b23a1f}
+.kit-row span{display:block;font-size:13px;color:#5b5648}.kit-l{display:flex!important;gap:12px;margin-top:4px}.kit-l a{color:#1d5a3a;font-weight:900;font-size:12px;letter-spacing:.8px}
+.kit-now{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.kit-now b{font:900 34px Arial,sans-serif}.kit-now span{color:#3d3a31}
+.kit-hours{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-top:10px}.kit-hours div{background:#f6f2ea;border-radius:8px;padding:6px 4px;text-align:center;font-size:12px;color:#5b5648;display:grid;gap:2px}.kit-hours b{font-size:15px;color:#171717}
+#kitMap{position:relative;z-index:0;isolation:isolate;height:360px;border-radius:10px;border:1px solid #d8cfbf;background:#e9e3d2}
+.kb-which{flex-basis:100%;border:1px solid #d8cfbf;border-radius:8px;background:#fbf8ef;padding:0 12px}.kb-which summary{cursor:pointer;padding:9px 0;font:900 11px Arial,sans-serif;letter-spacing:1.2px;color:#1d5a3a}.kb-which ul{margin:0 0 10px;padding-left:18px;font-size:13.5px;line-height:1.5}
+.kit-off{border:2px dashed var(--gold)}
+.kit-test{margin:0 0 14px;padding:10px 14px;border-radius:10px;background:#fff6e0;border:1px solid #e9b13a;color:#5a4300;font-size:14px}
+@media(max-width:520px){.kit-hours{grid-template-columns:repeat(3,minmax(0,1fr))}.kit-head h2{font-size:24px}}
+</style>
+@@HEADER@@
+<main>
+<section class="tool-head th-river"><div class="wrap">
+<p class="eyebrow">KENTUCKY POTA · ONE SCREEN</p>
+<h1>Activation <span>Kit</span></h1>
+<p class="sub">Pick a park and get everything for the trip on one screen: member reports, weather, the boundary with parking and trailheads, 2-fers, where to stay and a Spot Me button. Save it before you go and it opens with no signal.</p>
+</div></section>
+<div class="kit-wrap">
+<p class="kit-test"><b>Test page.</b> Not on the menu yet. Brandon is trying it out first.</p>
+<section class="kit-card">
+<form class="kit-form" id="kitForm"><input id="kitQ" list="kitList" autocomplete="off" placeholder="Park name or number (US-1277)" aria-label="Park name or number"><datalist id="kitList"></datalist><button type="submit">OPEN KIT</button></form>
+<button type="button" id="kitNear">📍 PARKS NEAR ME</button>
+<div id="kitPick"></div>
+<div id="kitSaved"></div>
+</section>
+<div id="kitOut"></div>
+</div>
+</main>
+@@FOOTER@@
+<script src="kpc-bounds.js?v=20261015c" defer></script>
+<script src="kpc-kit.js?v=20261015b" defer></script>
