@@ -13,6 +13,9 @@
 .kta .kta-h{padding:7px 14px;font:900 10px Arial,sans-serif;letter-spacing:1.4px;color:#68635a;background:#f6f2ea}
 .kpin-pop{font:14px Arial,sans-serif;min-width:190px}.kpin-pop b{display:block;margin-bottom:6px}.kpin-pop a,.kpin-pop button{display:block;width:100%;box-sizing:border-box;margin:5px 0;padding:8px 10px;border-radius:7px;border:1.5px solid #171717;background:#fff;color:#171717!important;font:900 11.5px Arial,sans-serif;letter-spacing:.8px;text-align:center;text-decoration:none;cursor:pointer}
 .kpin-pop a.g{background:#d5a63a;border-color:#d5a63a}.kloc-b{min-height:36px;padding:6px 10px;border:2px solid rgba(0,0,0,.25);border-radius:6px;background:#fff;color:#1378ff;font:900 12px Arial,sans-serif;letter-spacing:.6px;cursor:pointer}
+.kmap-full{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;max-height:none!important;min-height:0!important;margin:0!important;border-radius:0!important;z-index:5000!important}
+html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
+.kfull-b{display:block;margin-top:6px!important}
 .kpin-hint{font-size:12.5px;color:#5b5648;margin:6px 0 0}`;
   document.head.appendChild(css);
 
@@ -132,5 +135,22 @@
       return b; } });
     new C().addTo(map);
   }
-  window.KPCTA = { attach }; window.KPCPin = pin; window.KPCLayers = layers; window.KPCLocate = locate;
+  /* full-screen map (works on iPhone too: the map box is stretched over the whole screen) */
+  function full(map) {
+    const box = map.getContainer(); let on = false, ph = null;
+    const C = L.Control.extend({ options: { position: 'topleft' }, onAdd() {
+      const b = L.DomUtil.create('button', 'kloc-b kfull-b'); b.type = 'button'; b.title = 'Full screen map'; b.innerHTML = '⛶ FULL';
+      L.DomEvent.disableClickPropagation(b);
+      const set = v => {
+        on = v; box.classList.toggle('kmap-full', on); document.documentElement.classList.toggle('kmap-lock', on);
+        b.innerHTML = on ? '✕ EXIT' : '⛶ FULL'; b.title = on ? 'Exit full screen' : 'Full screen map';
+        if (on) { ph = window.scrollY; } else if (ph != null) { window.scrollTo(0, ph); }
+        setTimeout(() => map.invalidateSize(), 60);
+      };
+      b.onclick = () => set(!on);
+      document.addEventListener('keydown', e => { if (on && e.key === 'Escape') set(false); });
+      return b; } });
+    new C().addTo(map);
+  }
+  window.KPCTA = { attach }; window.KPCPin = pin; window.KPCLayers = layers; window.KPCLocate = locate; window.KPCFull = full;
 })();
