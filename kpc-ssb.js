@@ -247,9 +247,9 @@ function parseSpeech(t) {
   const rep = has(/ (five nine|five by nine|five and nine|fifty nine|fifty-nine|5 9|59|5 by 9) /) ? '59' : has(/ (five eight|five by eight|fifty eight|fifty-eight|58) /) ? '58' : has(/ (five seven|five by seven|fifty seven|fifty-seven|57) /) ? '57' : has(/ (five five|fifty five|fifty-five|55) /) ? '55' : has(/ (four four|forty four|forty-four|44) /) ? '44' : '';
   if (rep && call.endsWith(rep)) call = call.slice(0, -rep.length);
   // ham lingo (speech-to-text writes these many ways)
-  const QSL = / (qsl|q s l|q sl|qs l|cue s l|q.s.l|roger|roger that|copy that|good copy|you'?re in the log|in the log|got you|got it|confirmed) /;
+  const QSL = / (qsl|q s l|q sl|qs l|cue s l|q.s.l|roger|rodger|roger roger|rodger rodger|roger that|copy|copied|copy that|good copy|you'?re in the log|in the log|got you|got it|confirmed) /;
   const QRZ = / (qrz|q r z|q rz|qr z|cue are zee|q r zed|anybody|anyone else|who'?s calling|who is calling|next|any more|anyone|go ahead) /;
-  const AGN = / (say again|again|repeat|come again|agn|your call again|call again|last two|last letters|fill|didn'?t copy|missed that|one more time|please repeat) /;
+  const AGN = / (say again|again again|again|agn agn|repeat|come again|agn|your call again|call again|last two|last letters|fill|didn'?t copy|missed that|one more time|please repeat) /;
   const closing = (has(/ (73|seventy three|seventy-three|seven three|thanks|thank you|thank|tnx) /) || has(QSL)) && !rep;
   const kind = has(/ (qrt|q r t|shutting down|going qrt|signing off|clear and off) /) ? 'qrt' : has(/ (qrx|q r x|stand by|standby|hold on|wait one) /) ? 'qrx'
     : has(/ (cq|c q|seek you|sea queue|calling cq) /) ? 'cq' : closing ? 'close' : has(AGN) && !rep ? 'agn' : has(QRZ) && !rep && (!call || call.length < 4) ? 'qrz'
