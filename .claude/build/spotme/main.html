@@ -20,7 +20,7 @@
 .sm-d b{display:block;font:700 16px/1.2 Georgia,serif;color:#171717}
 .sm-d span{display:block;color:#5b5648;font-size:13px;line-height:1.4;margin-top:2px}
 .sm-d em{display:inline-block;font:900 9.5px Arial,sans-serif;letter-spacing:1.2px;font-style:normal;padding:2px 7px;border-radius:999px;margin:5px 4px 0 0;background:#e9e3d2;color:#3d3a33}
-.sm-d em.one{background:#1d5a3a;color:#fff}.sm-d em.warn{background:#fff1d6;color:#7a4b00;border:1px solid #e9b13a}
+.sm-d em.need{background:#fff;color:#8a4b14;border:1px dashed #c98a4a}.sm-d em.one{background:#1d5a3a;color:#fff}.sm-d em.warn{background:#fff1d6;color:#7a4b00;border:1px solid #e9b13a}
 .sm-d.on{border-color:#1d5a3a;background:#eef6f0}
 .sm-d.off{opacity:.55}
 .sm-g.sm-others{margin-top:10px;padding:14px;border:2px dashed #b9ad8f;border-radius:12px;background:#f6f2ea}.sm-onote{margin:0 0 10px;color:#5b5648;font-size:13.5px;line-height:1.5}
@@ -53,13 +53,14 @@
 <div class="sm-wrap">
 <section class="sm-card" aria-labelledby="sm1">
 <h2 id="sm1">1. The spot</h2>
-<p class="sm-sub">These are the details every spotting site asks for. Frequency works in kHz (14062) or MHz (14.062).</p>
+<p class="sm-sub">These are the details every spotting site asks for. Frequency works in kHz (14062) or MHz (14.062). Fill in every number that applies: many Kentucky parks are POTA and WWFF (KFF) at the same time, and a Kentucky park number fills in its KFF number for you.</p>
 <div class="sm-grid">
 <label>STATION ON THE AIR (YOU OR A STATION YOU HEARD)<input id="smCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. KQ4ABC/P"></label>
 <label>FREQUENCY<input id="smFreq" inputmode="decimal" autocomplete="off" placeholder="14062 or 14.062"><span class="sm-hint" id="smBand"></span></label>
 <label>MODE<select id="smMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option><option>DATA</option></select></label>
-<label>PROGRAM<select id="smProg"><option value="POTA">POTA (park)</option><option value="SOTA">SOTA (summit)</option><option value="WWFF">WWFF / KFF</option><option value="GMA">GMA</option><option value="NONE">None (just on the air)</option></select></label>
-<label>REFERENCE<input id="smRef" list="smRefs" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-1271"><datalist id="smRefs"></datalist><span class="sm-hint" id="smRefName"></span></label>
+<label>POTA PARK (IF ANY)<input id="smPota" list="smPotaList" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-1271"><datalist id="smPotaList"></datalist><span class="sm-hint" id="smPotaName"></span></label>
+<label>WWFF / KFF (IF ANY)<input id="smWwff" list="smWwffList" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="KFF-1271"><datalist id="smWwffList"></datalist><span class="sm-hint" id="smWwffName"></span></label>
+<label>SOTA SUMMIT (IF ANY)<input id="smSota" list="smSotaList" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="W4K/EC-001"><datalist id="smSotaList"></datalist><span class="sm-hint" id="smSotaName"></span></label>
 <label>SPOTTED BY (YOUR CALL)<input id="smBy" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="your call (blank = same as above)"></label>
 <label class="wide">COMMENT (OPTIONAL)<input id="smCm" maxlength="80" autocomplete="off" placeholder="QRT 1500Z · 5 W · calling CQ"></label>
 </div>
@@ -68,7 +69,7 @@
 
 <section class="sm-card" aria-labelledby="sm2">
 <h2 id="sm2">2. Where to send it</h2>
-<p class="sm-sub">Nothing is picked to start. Tick the sites you want. Only the sites that fit the program you chose are shown.</p>
+<p class="sm-sub">Nothing is picked to start. Tick the sites you want. Each one uses the matching number box above (POTA, WWFF or SOTA).</p>
 <div class="sm-groups" id="smDests"></div>
 <label class="sm-remember"><input type="checkbox" id="smKeep"> Remember my picks on this phone or computer</label>
 </section>
@@ -93,4 +94,4 @@
 <div class="sm-bar"><span class="sm-n" id="smN">NOTHING PICKED YET</span><button type="button" class="sm-btn" id="smSend" disabled>SEND THE SPOT</button><button type="button" class="sm-btn ghost" id="smCopy">COPY THE SPOT</button></div>
 </main>
 @@FOOTER@@
-<script src="kpc-spot-me.js?v=20261015g" defer></script>
+<script src="kpc-spot-me.js?v=20261015i" defer></script>
