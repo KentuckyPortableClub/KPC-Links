@@ -1,0 +1,4 @@
+vogel: US-2206 · POTAVogel State ParkState Park · Georgia OFFICIAL WEBSITEgastateparks.org ↗From the POTA listing. BOUNDARYVogel State Park · managed by Georgia Department of Natural Resources · about 266 acres. Official boundary from the USGS Protected Areas Database (PAD-US). Check the park's own map for closed areas.DOWNLOAD BOUNDARY (GEOJSON) THE PARK'S OWN MAPSSEARCH GASTATEPARKS.ORG FOR MAPS ↗Searc || list:
+vogel sw 390
+bsf:  || list:2 parks match. Pick one:Big South Fork National Recreation AreaUS-0686 ›Big South Fork National Wild and Scenic RiverUS-10107 ›
+bsf sw 390
