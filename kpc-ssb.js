@@ -67,7 +67,7 @@ function testVoice() {
   unlock(); loadVoices();
   const all = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
   const d = $('vbDiag'); if (d) d.textContent = !window.speechSynthesis ? 'This browser has no speech voices.' : `Voices found: ${all.length} (${VO.length} English${ANDROID ? ' on-phone' : ''}). ${VO[0] ? 'First: ' + VO[0].name + '.' : ''} ${lastErr ? 'Last error: ' + lastErr + '.' : ''} If you hear nothing: turn the media volume up (not the ringer), and on Android check Settings → Text-to-speech has an English voice installed.`;
-  setTimeout(() => speakNow('Kilo Zulu Four Charlie Papa, you are five nine, Kentucky.', VO.length ? { vi: 0, rate: 1, pitch: 1, vol: 1 } : null), 900);
+  setTimeout(() => speakNow('Kilo Four Tango Echo Sierra Tango, you are five nine, Kentucky.', VO.length ? { vi: 0, rate: 1, pitch: 1, vol: 1 } : null), 900);
 }
 
 /* ---------------- band hiss (Web Audio) ---------------- */
