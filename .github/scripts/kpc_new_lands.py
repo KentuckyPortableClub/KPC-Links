@@ -32,10 +32,10 @@ LABEL = 'ky-new-lands'
 TOOL = 'https://kentuckyportableclub.github.io/KPC-Links/kpc-maprep.html?state=KY&name='
 KYG = 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/'
 LAYERS = [
-    ('Fish & Wildlife (hunting areas / WMAs)', 'Ky_Public_Hunting_Areas_WGS84WM/MapServer/1', 'AREANAME', 'DETAIL'),
-    ('Kentucky State Parks', 'Ky_State_Parks_Features_WGS84WM/MapServer/8', 'PUBLIC_NAM|PARK_NAME', 'HYPERLINK'),
-    ('State Nature Preserves (OKNP)', 'Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer/0', 'MANAME', 'Webpage'),
-    ('State Natural Areas (OKNP)', 'Ky_KNP_Natural_Areas_WGS84WM/MapServer/0', 'MANAME', 'Webpage'),
+    ('Fish & Wildlife (hunting areas / WMAs)', 'Ky_Public_Hunting_Areas_WGS84WM/MapServer/1', 'AREANAME', 'DETAIL', 'MANAGER'),   # MANAGER holds the owner: KDFWR / Private / U of Ky ...
+    ('Kentucky State Parks', 'Ky_State_Parks_Features_WGS84WM/MapServer/8', 'PUBLIC_NAM|PARK_NAME', 'HYPERLINK', ''),
+    ('State Nature Preserves (OKNP)', 'Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer/0', 'MANAME', 'Webpage', 'MA_OWNER'),
+    ('State Natural Areas (OKNP)', 'Ky_KNP_Natural_Areas_WGS84WM/MapServer/0', 'MANAME', 'Webpage', 'MA_OWNER'),
 ]
 PADUS = 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query'
 NEWS_Q = [
@@ -83,11 +83,14 @@ def kind(s):
     return ''
 
 
-def ky_layer(path, field, web):
+OWNERS = {}
+
+
+def ky_layer(path, field, web, owner=''):
     out, off = {}, 0
     fields = field.split('|')
     while True:
-        q = urllib.parse.urlencode({'where': '1=1', 'outFields': ','.join(fields + [web]), 'returnGeometry': 'false', 'f': 'json',
+        q = urllib.parse.urlencode({'where': '1=1', 'outFields': ','.join(fields + [web] + ([owner] if owner else [])), 'returnGeometry': 'false', 'f': 'json',
                                     'resultOffset': off, 'resultRecordCount': 1000, 'orderByFields': 'OBJECTID'})
         j = json.loads(get(KYG + path + '/query?' + q))
         fs = j.get('features', [])
@@ -99,6 +102,8 @@ def ky_layer(path, field, web):
                 n += ' State Historic Site' if '/historic/' in h else ' State Resort Park' if '/resort/' in h else ' State Park'
             if n:
                 out[n] = (a.get(web) or '').strip()
+                if owner and a.get(owner):
+                    OWNERS[n] = str(a.get(owner)).strip()
         if not j.get('exceededTransferLimit') or not fs:
             break
         off += len(fs)
@@ -168,9 +173,13 @@ def in_pota(name, P, loose=False):
         kinds_ok = not k or not pk or pk == k or (k in PARKISH and pk in PARKISH)
         if pnn == n and kinds_ok:
             return ref
-        if loose and kinds_ok and n and pnn:
-            s, l = sorted((n, pnn), key=len)
-            if len(s) > 5 and l.startswith(s) and len(s) / len(l) >= 0.6:
+        if loose and n and pnn:
+            # spelling differences: 'Horsemill' / 'Horse Mill', 'Sexton' / 'Sextons', 'Dr. William H. Martin' / 'William H. Martin',
+            # combined names 'Knobs State Forest and WMA' / 'Knobs State Forest', 'Vernon-Douglas' / 'Hall-Hill/Vernon-Douglas'
+            sq = lambda s: re.sub(r'\b(dr|the|and|county)\b', '', ' '.join(w[:-1] if len(w) > 4 and w.endswith('s') and not w.endswith('ss') else w for w in s.split())).replace(' ', '')  # noqa: E731
+            a, b = sq(re.sub(r'\(.*?\)', '', n)), sq(pnn)
+            s, l = sorted((a, b), key=len)
+            if len(s) >= 6 and (s == l or (l.startswith(s) and len(s) / len(l) >= 0.6) or (len(s) >= 9 and s in l)) and (kinds_ok or ' and ' in name.lower() or '/' in pn):
                 return ref
     return None
 
@@ -185,9 +194,9 @@ def gh(*args, input_text=None):
 def main():
     old = json.loads(SEEN.read_text()) if SEEN.exists() else None
     now = {'updated': dt.datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'), 'lists': {}, 'news': {}}
-    for label, path, field, web in LAYERS:
+    for label, path, field, web, owner in LAYERS:
         try:
-            now['lists'][label] = ky_layer(path, field, web)
+            now['lists'][label] = ky_layer(path, field, web, owner)
             notice('Read ' + label, '%d places' % len(now['lists'][label]))
         except Exception as e:  # noqa: BLE001
             notice('Could not read ' + label, e)
@@ -248,11 +257,35 @@ def main():
     lines = ['Weekly watch for new Kentucky public lands (federal and state) that could become POTA parks.',
              'Updated %s. Each name opens the **Mapping Representative\'s Tool Box** (password) already filled in.' % now['updated'],
              '', 'Watched: ' + ', '.join('%s (%d)' % (k, len(v)) for k, v in now['lists'].items()) + ', POTA US-KY (%d parks), news headlines.' % len(P), '']
-    lines += ['<details><summary><b>%d Kentucky federal/state places with no POTA park of the same name and kind</b> (many will not qualify: Corps land, restricted preserves, tiny tracts, sub-parks)</summary>' % len(gap), '']
+    now['owners'] = OWNERS
+
+    def why_not(n, label, info):
+        o = OWNERS.get(n, '') + ' ' + (info if not info.startswith('http') else '')
+        if re.search(r'\bprivate\b|fiscal court|college|school|sanctuary|conservancy|foundation', o, re.I) and not re.search(r'office of kentucky|kdfwr|department of fish', OWNERS.get(n, ''), re.I):
+            return 'owner is not federal/state (%s)' % OWNERS.get(n, info).strip()
+        if re.search(r'hunting access area', n, re.I):
+            return 'hunting access area (usually private land leased for hunting)'
+        if re.search(r'military|army depot|training area|\bfort (knox|campbell)', n, re.I):
+            return 'military land'
+        if re.search(r'state park state nature preserve', n, re.I):
+            return 'a preserve inside a state park the parks department owns (same-agency sub-park)'
+        if re.search(r'\blake (wma|wildlife)', n, re.I) or re.search(r'^(barren river|buckhorn|carr creek|dale hollow|grayson|green river|nolin|paintsville|rough river|taylorsville|lake barkley|lake cumberland|martins fork) lake', n, re.I):
+            return 'probably Army Corps of Engineers lake land (few are exceptions)'
+        if re.search(r'universit|college|u of ky', o, re.I):
+            return 'university land (CHECK: University of the Cumberlands WMA was added)'
+        if re.search(r'(lake|lakes|pond)$', n, re.I) and 'PAD-US' in label:
+            return 'small agency fishing lake (usually not added unless public land surrounds it)'
+        if re.search(r'outstanding resource water|mussel sanctuary|education center|fish access|purchase unit|recreation area', n, re.I):
+            return 'special-use area or not a park on its own'
+        return ''
+    good, maybe = [], []
     for key in sorted(gap, key=lambda k: gap[k][0].lower()):
         n, label, info = gap[key]
-        lines.append('- %s · %s%s' % (link(n), label, (' · ' + info) if info and not info.startswith('http') else (' · [official page](%s)' % info if info else '')))
-    lines += ['', '</details>', '', 'This issue stays open; each week with something new adds a comment (GitHub emails you about comments).']
+        line = '- %s · %s%s%s' % (link(n), label, (' · owner: ' + OWNERS[n]) if n in OWNERS else '', (' · ' + info) if info and not info.startswith('http') else (' · [official page](%s)' % info if info else ''))
+        w = why_not(n, label, info)
+        (maybe if w else good).append(line + ((' · _%s_' % w) if w else ''))
+    lines += ['### ⭐ Look promising (%d)' % len(good), 'Federal/state owned, open, no POTA park of that name yet. Check each one in the Tool Box before emailing the Mapping Representative.', ''] + good + ['']
+    lines += ['<details><summary><b>%d more that probably will not qualify</b> (reason shown on each)</summary>' % len(maybe), ''] + maybe + ['', '</details>', '', 'This issue stays open; each week with something new adds a comment (GitHub emails you about comments).']
     body = '\n'.join(lines)
 
     gh('label', 'create', LABEL, '--color', '2C9A55', '--description', 'New Kentucky public lands watch (weekly)', '--force')
