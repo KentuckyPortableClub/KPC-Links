@@ -87,8 +87,17 @@ function hiss(on) {
 }
 
 /* ---------------- state ---------------- */
-const S = Object.assign({ call: '', st: 'KY', ref: '', level: 1, vol: 0.9, hiss: 0.3, rate: 1, mic: true, autolog: false }, store.get('kpcSSB', {}));
+const S = Object.assign({ call: '', st: 'KY', ref: '', level: 1, vol: 0.9, hiss: 0.3, rate: 1, mic: true, autolog: false, prog: 'pota' }, store.get('kpcSSB', {}));
 const save = () => store.set('kpcSSB', S);
+/* program: off (plain contacts), POTA, KFF (WWFF), SOTA */
+const PROG = {
+  off: { cq: 'CQ CQ CQ', where: '', ty: 'contact', goal: 0, to: '', refName: '' },
+  pota: { cq: 'CQ Parks on the Air, CQ POTA', where: 'portable in a park', ty: 'park', goal: 10, to: 'park to park', refName: 'park', ref: () => 'US-' + String(rnd(1, 11000)).padStart(4, '0') },
+  kff: { cq: 'CQ W W F F, CQ K F F', where: 'portable at a flora and fauna reference', ty: 'reference', goal: 44, to: 'K F F to K F F', refName: 'KFF reference', ref: () => 'KFF-' + String(rnd(1, 7000)).padStart(4, '0') },
+  sota: { cq: 'CQ SOTA, CQ Summits on the Air', where: 'portable on a summit', ty: 'summit', goal: 4, to: 'summit to summit', refName: 'summit', ref: () => pick(['W4K/EC', 'W4C/WM', 'W4T/SU', 'W4V/SH', 'W8V/SR']) + '-' + String(rnd(1, 140)).padStart(3, '0') }
+};
+const P = () => PROG[S.prog] || PROG.pota;
+const sayRef = ref => String(ref).replace(/[A-Z]/g, c => c + ' ').replace(/\d/g, d => ' ' + ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'][+d] + ' ').replace(/[-/]/g, ' ').replace(/\s+/g, ' ').trim();
 const run = { on: false, callers: [], cur: null, sent: false, last: '', log: [], t0: 0, gen: 0, worked: new Set() };
 const myCall = () => (S.call || '').toUpperCase().trim() || 'K4TEST';
 
@@ -100,7 +109,7 @@ function arrivals() {
   const lv = LEVELS[S.level] || LEVELS[1], want = rnd(lv.n[0], lv.n[1]);
   while (run.callers.length < want) {
     const st = pick(NEAR); let c; do { c = newCall(st); } while (run.worked.has(c) || run.callers.some(x => x.call === c) || c === myCall());
-    run.callers.push({ call: c, st, rst: pick(['59', '59', '59', '57', '58', '55', '44']), vi: rnd(0, 50), rate: (0.95 + Math.random() * 0.35) * S.rate, vol: 0.55 + Math.random() * 0.45 }); { const o = run.callers[run.callers.length - 1]; o.m = Math.random() < 0.65; o.pitch = o.m ? 0.5 + Math.random() * 0.3 : 1 + Math.random() * 0.3; }
+    run.callers.push({ call: c, st, rst: pick(['59', '59', '59', '57', '58', '55', '44']), vi: rnd(0, 50), rate: (0.95 + Math.random() * 0.35) * S.rate, vol: 0.55 + Math.random() * 0.45 }); { const o = run.callers[run.callers.length - 1]; o.m = Math.random() < 0.65; o.pitch = o.m ? 0.5 + Math.random() * 0.3 : 1 + Math.random() * 0.3; if (P().ref && Math.random() < (S.prog === 'sota' ? 0.18 : 0.1)) o.ref = P().ref(); }
   }
 }
 async function callIn(list) {
@@ -108,8 +117,8 @@ async function callIn(list) {
   for (const o of list) {
     if (g !== run.gen) return;
     const twice = chance(S.level >= 3 ? 0.25 : 0.5);
-    const t = (o.p2p ? 'park to park, ' : '') + say1(o.call) + (twice ? ', ' + say1(o.call) : '');
-    if (showText()) line(o.call, (o.p2p ? 'P2P ' : '') + o.call + (twice ? ' ' + o.call : ''), 'them');
+    const t = (o.ref ? P().to + ', ' : '') + say1(o.call) + (twice ? ', ' + say1(o.call) : '');
+    if (showText()) line(o.call, (o.ref ? P().to.toUpperCase() + ' ' : '') + o.call + (twice ? ' ' + o.call : ''), 'them');
     else line('📢', 'a station calls', 'them');
     await speak(t, o);
     if (S.level >= 3 && chance(0.4)) await new Promise(r => setTimeout(r, rnd(0, 150)));
@@ -123,12 +132,12 @@ function start() {
   form(true);
 }
 function stop() { hush(); run.gen++; run.on = false; hiss(false); $('vbGo').textContent = '▶ START'; $('vbGo').classList.remove('stop'); status('Stopped.'); form(false); }
-function form(on) { ['vbCq', 'vbQrz', 'vbAgn', 'vbSend', 'vbLog', 'vbTalk', 'vbSkip', 'vb73'].forEach(id => { const e = $(id); if (e) e.disabled = !on; }); }
+function form(on) { ['vbCq', 'vbQrz', 'vbAgn', 'vbSend', 'vbLog', 'vbTalk', 'vbSkip', 'vb73', 'vbQsl'].forEach(id => { const e = $(id); if (e) e.disabled = !on; }); }
 
 async function cq() {
   if (!run.on) return;
   hush(); run.gen++;
-  line('YOU', `CQ POTA, CQ POTA, this is ${myCall()} ${say1(myCall())}, ${myCall()} portable in a park.`, 'you');
+  line('YOU', `${P().cq}, this is ${myCall()} ${say1(myCall())}, ${myCall()}${P().where ? ' ' + P().where : ''}${S.ref && S.prog !== 'off' ? ' ' + S.ref : ''}.`, 'you');
   arrivals(); await new Promise(r => setTimeout(r, 500)); await callIn(run.callers.slice());
 }
 async function qrz() {
@@ -144,7 +153,7 @@ async function qrz() {
 }
 async function agn() {
   if (!run.on) return; hush(); run.gen++;
-  line('YOU', 'Say again?', 'you');
+  line('YOU', pick(['Say again?', 'Again, again?', 'Say again, again again?']), 'you');
   if (run.cur && run.sent) { await theirExchange(run.cur, true); } else await callIn(run.callers.slice());
 }
 const base = c => c.replace(/\/.*$/, '');
@@ -160,7 +169,7 @@ async function sendReport(opt) {
   const rs = ($('fSent').value || '59').trim();
   if (!c) { status('Type the call you heard in the CALL box first.'); $('fCall').focus(); return; }
   hush(); run.gen++;
-  line('YOU', `${c}, you're ${rs} ${STN[S.st] || S.st}${S.ref ? ', park ' + S.ref : ''}. ${myCall()}.`, 'you');
+  line('YOU', `${c}, you're ${rs} ${STN[S.st] || S.st}${S.ref && S.prog !== 'off' ? ', ' + P().refName + ' ' + S.ref : ''}. ${myCall()}.`, 'you');
   let o = run.callers.find(x => x.call === c);
   if (!o) {
     const near = run.callers.find(x => lev(x.call, c) <= 2);
@@ -173,11 +182,12 @@ async function sendReport(opt) {
 async function theirExchange(o, again) {
   const g = run.gen;
   const st = STN[o.st] || o.st;
-  const t = again ? `You're ${say1(o.rst)}, ${st}. ${st}.` : pick([`Thanks! You're ${say1(o.rst)} ${say1(o.rst)}, ${st}, ${st}. ${o.p2p ? 'Park to park from ' + say1(o.park || 'US') + '.' : ''}`, `Roger, thank you. ${say1(o.rst)} into ${st}. Thanks for the park.`, `Good copy. You're ${say1(o.rst)}, ${st}.`]);
+  const refTxt = o.ref ? ` I'm at ${P().refName} ${sayRef(o.ref)}, ${sayRef(o.ref)}.` : '', thx = P().ty === 'contact' ? 'Thanks for the contact.' : `Thanks for the ${P().ty}.`;
+  const t = again ? `You're ${say1(o.rst)}, ${st}. ${st}.${refTxt}` : pick([`Thanks! You're ${say1(o.rst)} ${say1(o.rst)}, ${st}, ${st}.${refTxt}`, `Roger, thank you. ${say1(o.rst)} into ${st}.${refTxt} ${thx}`, `Good copy. You're ${say1(o.rst)}, ${st}.${refTxt}`]);
   if (showText()) line(o.call, t.replace(/[A-Za-z-]+ (?=[A-Za-z-]+ )/g, m => m), 'them'); else line(o.call.slice(0, 0) + '📢', 'they give you their report and state', 'them');
   if (g !== run.gen) return;
   await speak(t, o);
-  if (S.autolog && g === run.gen) { $('fRcvd').value = o.rst; $('fSt').value = o.st; status('Auto log filled in their report and state. Say or tap THANKS, 73 and it logs itself.'); return; }
+  if (S.autolog && g === run.gen) { $('fRcvd').value = o.rst; $('fSt').value = o.st; if (o.ref && $('fRef')) $('fRef').value = o.ref; status('Auto log filled in their report and state. Say or tap THANKS, 73 and it logs itself.'); return; }
   status('Log their report and state, then press LOG IT (you say "thanks, 73, QRZ").');
 }
 function check(o, f) {
@@ -186,17 +196,18 @@ function check(o, f) {
   if (f.rcvd.replace(/\D/g, '') !== o.rst) errs.push(`their report: you logged ${f.rcvd || '(blank)'}, they gave ${o.rst}`);
   const stOk = f.st === o.st || (STN[o.st] || '').toUpperCase() === f.st;
   if (!stOk) errs.push(`state: you logged ${f.st || '(blank)'}, it was ${o.st} (${STN[o.st]})`);
+  if (o.ref && (f.ref || '').replace(/\s/g, '') !== o.ref) errs.push(`their ${P().refName}: you logged ${f.ref || '(blank)'}, it was ${o.ref}`);
   return errs;
 }
-const sayBye = o => { const bye = pick(['Thanks, seventy-three!', 'Seventy-three, thanks for the park!', 'Thank you, seventy-three.', 'Thanks for the contact, seventy-three.']); if (showText()) line(o.call, bye.replace(/seventy-three/gi, '73'), 'them'); return speak(bye, o); };
+const sayBye = o => { const bye = pick(['Thanks, seventy-three!', `Seventy-three, thanks for the ${P().ty}!`, 'Thank you, seventy-three.', 'Thanks for the contact, seventy-three.']); if (showText()) line(o.call, bye.replace(/seventy-three/gi, '73'), 'them'); return speak(bye, o); };
 /* you said "thanks, 73" on the mic: they sign too, but YOU still do the logging (that's the skill we're practicing) */
-async function say73() {
+async function say73(words) {
   if (!run.on) return;
   const o = run.cur && run.sent ? run.cur : null;
-  hush(); run.gen++; line('YOU', 'Thanks, 73.', 'you');
+  hush(); run.gen++; line('YOU', typeof words === 'string' ? words : 'Thanks, 73.', 'you');
   if (!o) { status('Thanks, 73! Nobody to sign with right now. Call CQ or QRZ.'); return; }
   o.signed = true; const g = run.gen; await sayBye(o); if (g !== run.gen) return;
-  if (S.autolog) { if (!$('fRcvd').value) $('fRcvd').value = o.rst; if (!$('fSt').value) $('fSt').value = o.st; return logIt(true); }
+  if (S.autolog) { if (!$('fRcvd').value) $('fRcvd').value = o.rst; if (!$('fSt').value) $('fSt').value = o.st; if (o.ref && $('fRef') && !$('fRef').value) $('fRef').value = o.ref; return logIt(true); }
   status('Now log it: check CALL, fill RCVD and STATE, then press ✓ LOG IT.'); const r0 = $('fRcvd'); if (r0 && !r0.value) r0.focus({ preventScroll: true });
 }
 /* can't get a call? skip that station (nothing goes in the log) */
@@ -208,17 +219,17 @@ async function skip() {
   if (!o) { status('Nobody to skip. Call CQ.'); return; }
   run.callers = run.callers.filter(x => x !== o); run.cur = null; run.sent = false; run.skipped = (run.skipped || 0) + 1;
   line('', `⏭ Skipped a station (it was ${o.call}). No penalty: it just doesn't go in the log.`, 'note');
-  ['fCall', 'fRcvd', 'fSt'].forEach(id => { $(id).value = ''; }); $('fSent').value = '59';
+  ['fCall', 'fRcvd', 'fSt', 'fRef'].forEach(id => { if ($(id)) $(id).value = ''; }); $('fSent').value = '59';
   if (chance(0.6)) arrivals();
   if (run.callers.length) { await new Promise(r0 => setTimeout(r0, 300)); await callIn(run.callers.slice()); } else status('Nobody calling. Call CQ again.');
 }
 async function logIt(auto) {
   if (!run.on) return;
-  const f = { call: ($('fCall').value || '').toUpperCase().trim(), sent: ($('fSent').value || '59').trim(), rcvd: ($('fRcvd').value || '').trim(), st: ($('fSt').value || '').toUpperCase().trim() };
+  const f = { call: ($('fCall').value || '').toUpperCase().trim(), sent: ($('fSent').value || '59').trim(), rcvd: ($('fRcvd').value || '').trim(), st: ($('fSt').value || '').toUpperCase().trim(), ref: (($('fRef') || {}).value || '').toUpperCase().trim() };
   const o = run.cur && run.sent ? run.cur : run.callers.find(x => x.call === f.call);
   if (!f.call) { status('Nothing to log yet.'); return; }
   const errs = o ? check(o, f) : [`${f.call} never called you`];
-  const q = { auto: !!(auto === true || S.autolog), n: run.log.length + 1, time: new Date(), call: f.call, sent: f.sent, rcvd: f.rcvd, st: f.st, ok: !errs.length, errs, secs: o && o.t0 ? Math.round((Date.now() - o.t0) / 1000) : 0, truth: o ? `${o.call} ${o.rst} ${o.st}` : '' };
+  const q = { auto: !!(auto === true || S.autolog), ref: f.ref, n: run.log.length + 1, time: new Date(), call: f.call, sent: f.sent, rcvd: f.rcvd, st: f.st, ok: !errs.length, errs, secs: o && o.t0 ? Math.round((Date.now() - o.t0) / 1000) : 0, truth: o ? `${o.call} ${o.rst} ${o.st}` : '' };
   run.log.push(q); drawLog();
   hush(); run.gen++;
   const signed = o && o.signed;
@@ -230,7 +241,7 @@ async function logIt(auto) {
     if (!signed) { const g = run.gen; await sayBye(o); if (g !== run.gen) return; }
   }
   run.cur = null; run.sent = false;
-  ['fCall', 'fRcvd', 'fSt'].forEach(id => { $(id).value = ''; }); $('fSent').value = '59'; $('fCall').focus();
+  ['fCall', 'fRcvd', 'fSt', 'fRef'].forEach(id => { if ($(id)) $(id).value = ''; }); $('fSent').value = '59'; $('fCall').focus();
   if (chance(0.6)) arrivals();
   if (run.callers.length) { await new Promise(r => setTimeout(r, 400)); await callIn(run.callers.slice()); }
   else status('Nobody calling. Call CQ again.');
@@ -239,14 +250,14 @@ async function logIt(auto) {
 }
 function drawLog() {
   const tb = $('vbLogB'); if (!tb) return;
-  tb.innerHTML = run.log.slice().reverse().map(q => `<tr class="${q.ok ? 'ok' : 'bad'}"><td>${q.n}</td><td>${q.time.toISOString().slice(11, 16)}</td><td><b>${esc(q.call)}</b></td><td>${esc(q.sent)}</td><td>${esc(q.rcvd)}</td><td>${esc(q.st)}</td><td>${q.auto ? '🤖 ' : ''}${q.ok ? '✓' : '<span title="' + esc(q.errs.join('; ')) + '">✗ ' + esc(q.truth) + '</span>'}</td></tr>`).join('');
+  tb.innerHTML = run.log.slice().reverse().map(q => `<tr class="${q.ok ? 'ok' : 'bad'}"><td>${q.n}</td><td>${q.time.toISOString().slice(11, 16)}</td><td><b>${esc(q.call)}</b></td><td>${esc(q.sent)}</td><td>${esc(q.rcvd)}</td><td>${esc(q.st)}${q.ref ? '<br><small>' + esc(q.ref) + '</small>' : ''}</td><td>${q.auto ? '🤖 ' : ''}${q.ok ? '✓' : '<span title="' + esc(q.errs.join('; ')) + '">✗ ' + esc(q.truth) + '</span>'}</td></tr>`).join('');
   const man = run.log.filter(q => !q.auto), n = run.log.length, ok = man.filter(q => q.ok).length, mins = Math.max(1, (Date.now() - run.t0) / 60000);
-  const e = $('vbStats'); if (e) e.innerHTML = `<div><b>${n}</b><span>contacts</span></div><div><b>${man.length ? Math.round(ok / man.length * 100) + '%' : '—'}</b><span>logged right (by you)</span></div><div><b>${Math.round(n / mins * 60)}</b><span>per hour</span></div>`;
+  const e = $('vbStats'); if (e) e.innerHTML = `<div><b>${n}</b><span>contacts</span></div><div><b>${man.length ? Math.round(ok / man.length * 100) + '%' : '—'}</b><span>logged right (by you)</span></div><div><b>${Math.round(n / mins * 60)}</b><span>per hour</span></div>` + (P().goal ? `<div><b>${Math.min(n, P().goal)}/${P().goal}</b><span>${n >= P().goal ? '🎉 activated!' : 'to activate'}</span></div>` : '');
 }
 function adif() {
   if (!run.log.length) return;
   const f = (k, v) => v ? `<${k}:${String(v).length}>${v} ` : '';
-  const rows = run.log.map(q => { const d = q.time.toISOString(); return f('CALL', q.call) + f('QSO_DATE', d.slice(0, 10).replace(/-/g, '')) + f('TIME_ON', d.slice(11, 16).replace(':', '')) + f('BAND', '20M') + f('MODE', 'SSB') + f('RST_SENT', q.sent) + f('RST_RCVD', q.rcvd) + f('STATE', q.st) + f('STATION_CALLSIGN', myCall()) + f('MY_SIG', S.ref ? 'POTA' : '') + f('MY_SIG_INFO', S.ref) + f('COMMENT', 'KPC PRACTICE - NOT A REAL QSO') + '<EOR>'; });
+  const rows = run.log.map(q => { const d = q.time.toISOString(); return f('CALL', q.call) + f('QSO_DATE', d.slice(0, 10).replace(/-/g, '')) + f('TIME_ON', d.slice(11, 16).replace(':', '')) + f('BAND', '20M') + f('MODE', 'SSB') + f('RST_SENT', q.sent) + f('RST_RCVD', q.rcvd) + f('STATE', q.st) + f('STATION_CALLSIGN', myCall()) + (S.prog === 'sota' ? f('MY_SOTA_REF', S.ref) + f('SOTA_REF', q.ref) : f('MY_SIG', S.ref && S.prog !== 'off' ? (S.prog === 'kff' ? 'WWFF' : 'POTA') : '') + f('MY_SIG_INFO', S.prog !== 'off' ? S.ref : '') + f('SIG', q.ref ? (S.prog === 'kff' ? 'WWFF' : 'POTA') : '') + f('SIG_INFO', q.ref)) + f('COMMENT', 'KPC PRACTICE - NOT A REAL QSO') + '<EOR>'; });
   const txt = 'KPC Voice Pileup Practice log (PRACTICE ONLY - do not upload to POTA)\n<ADIF_VER:5>3.1.4 <PROGRAMID:3>KPC <EOH>\n' + rows.join('\n') + '\n';
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], { type: 'text/plain' })); a.download = `KPC-practice-${myCall() || 'log'}.adi`; a.click();
 }
@@ -344,7 +355,9 @@ function init() {
   $('vbCq').addEventListener('click', cq); $('vbQrz').addEventListener('click', qrz); $('vbAgn').addEventListener('click', agn);
   if ($('vbTest')) $('vbTest').addEventListener('click', testVoice);
   if ($('vbSkip')) $('vbSkip').addEventListener('click', skip);
-  if ($('vb73')) $('vb73').addEventListener('click', say73);
+  if ($('vb73')) $('vb73').addEventListener('click', () => say73());
+  if ($('vbQsl')) $('vbQsl').addEventListener('click', () => say73('QSL, thank you, 73.'));
+  const pg = $('vbProg'); if (pg) { pg.value = S.prog; const lab = () => { const l = $('vbRefL'); if (l) l.firstChild.nodeValue = S.prog === 'sota' ? 'YOUR SUMMIT' : S.prog === 'kff' ? 'YOUR KFF REF' : S.prog === 'off' ? 'YOUR REF (not used)' : 'YOUR PARK'; const fr = $('fRefL'); if (fr) fr.hidden = S.prog === 'off'; drawLog(); }; pg.addEventListener('change', () => { S.prog = pg.value; save(); lab(); }); lab(); }
   const al = $('vbAuto'); if (al) { al.checked = !!S.autolog; al.addEventListener('change', () => { S.autolog = al.checked; save(); }); }
   const mic = $('vbMic'), micSync = () => { const t = $('vbTalk'); if (t) t.hidden = !S.mic; const h = $('vbHeard'); if (h) h.hidden = !S.mic; if (mic) mic.checked = !!S.mic; document.body.classList.toggle('vb-nomic', !S.mic); };
   if (mic) mic.addEventListener('change', () => { S.mic = mic.checked; save(); micSync(); }); micSync();
@@ -364,7 +377,7 @@ function init() {
   // keyboard: Enter in CALL = send report, Enter in STATE = log it; F1 CQ, F2 QRZ, F3 AGN
   $('fCall').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); sendReport(); $('fRcvd').focus(); } });
   ['fRcvd', 'fSt'].forEach(id => $(id).addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); logIt(); } }));
-  document.addEventListener('keydown', e => { const m = { F1: cq, F2: qrz, F3: agn, F4: skip, F5: say73 }[e.key]; if (m && run.on) { e.preventDefault(); m(); } });
+  document.addEventListener('keydown', e => { const m = { F1: cq, F2: qrz, F3: agn, F4: skip, F5: () => say73(), F6: () => say73('QSL, thank you, 73.') }[e.key]; if (m && run.on) { e.preventDefault(); m(); } });
   form(false); drawLog();
 }
 window.KPCSSB = { run, S, say1, check, lev, parseSpeech, talkDo, bestSub, skip, say73 };
