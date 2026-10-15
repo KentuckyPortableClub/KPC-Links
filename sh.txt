@@ -1,4 +1,4 @@
-200 1FAIpQLScWT7T2nNJytN8hDIn2HEI_2GSRLt_txXjdJ_-jmi0Tk1QwrQ True True
-ERR 1FAIpQLScWT7T2nNJytN8hDln2HEI_2GSRLt_txXjdJ_-jmi0Tk1QwrQ HTTP Error 404: Not Found
-ERR 1FAIpQLScWT7T2nNJytN8hDIn2HEI_2GSRLt_txXjdJ_-jmiOTk1QwrQ HTTP Error 404: Not Found
-ERR 1FAIpQLScWT7T2nNJytN8hDln2HEI_2GSRLt_txXjdJ_-jmiOTk1QwrQ HTTP Error 404: Not Found
+https://forms.gle/cv2fygMCDReVpjWk9 -> https://docs.google.com/forms/d/e/1FAIpQLSfW0ExC6PYtznIS4fll4AUx5Cp83zOBBT2_882thoQj8fi36w/viewform?usp=send_form | Kentucky Portable Club - Membership Waitlist
+  questions: ['What is your amateur radio callsign?', 'Do you live in the Commonwealth of Kentucky?', 'Cool, we love our neighbors! ', 'What state are you from?', 'What county do you live in?', 'How did you hear about us?']
+https://docs.google.com/forms/d/e/1FAIpQLSfW0ExC6PYtznIS4fll4AUx5Cp83zOBBT2_882thoQj8fi36w/viewform -> https://docs.google.com/forms/d/e/1FAIpQLSfW0ExC6PYtznIS4fll4AUx5Cp83zOBBT2_882thoQj8fi36w/viewform | Kentucky Portable Club - Membership Waitlist
+  questions: ['What is your amateur radio callsign?', 'Do you live in the Commonwealth of Kentucky?', 'Cool, we love our neighbors! ', 'What state are you from?', 'What county do you live in?', 'How did you hear about us?']
