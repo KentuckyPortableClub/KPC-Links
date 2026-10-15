@@ -10,7 +10,8 @@
   const NEAR = /kentucky|tennessee|ohio|indiana|illinois|missouri|west virginia|virginia/i;
   const MODES = [['all', 'ALL MODES'], ['CW', 'CW'], ['PHONE', 'PHONE'], ['DIGITAL', 'DIGITAL']];
   const KINDS = [['QSOPARTY', 'STATE QSO PARTIES'], ['NEAR', 'KY + NEIGHBORS'], ['BIG', 'BIG WEEKENDS'], ['SHORT', 'SHORT (UNDER 4 HRS)'], ['VHF', 'VHF / UHF'], ['QRP', 'QRP'], ['FIELD', 'FIELD DAY TYPE']];
-  const WHEN = [['now', 'ON NOW'], ['wknd', 'THIS WEEKEND'], ['week', 'NEXT 8 DAYS'], ['all', 'NEXT 12 MONTHS']];
+  const WHEN = [['now', 'ON NOW'], ['wknd', 'THIS WEEKEND'], ['week', 'NEXT 8 DAYS'], ['m1', 'NEXT MONTH'], ['m3', 'NEXT 3 MONTHS'], ['m6', 'NEXT 6 MONTHS'], ['all', 'NEXT 12 MONTHS']];
+  const WDAYS = { m1: 31, m3: 92, m6: 183 };
   let F = { when: 'week', mode: 'all', kinds: [], hideShort: false, q: '' }, shown = 15, ALL = [];
   try { Object.assign(F, JSON.parse(localStorage.getItem('kpcContestF') || '{}')); F.q = ''; } catch (e) {}
   const save = () => { try { localStorage.setItem('kpcContestF', JSON.stringify({ when: F.when, mode: F.mode, kinds: F.kinds, hideShort: F.hideShort })); } catch (e) {} };
@@ -36,6 +37,7 @@
       if (F.when === 'now' && !c.segsT.some(x => x[0] <= now && x[1] >= now)) return false;
       if (F.when === 'wknd' && !(c.s < w1 && c.e > w0)) return false;
       if (F.when === 'week' && c.s > now + 8.2 * 864e5) return false;
+      if (WDAYS[F.when] && c.s > now + WDAYS[F.when] * 864e5) return false;
       if (F.mode !== 'all' && c.modes.length && !c.modes.includes(F.mode)) return false;
       if (F.kinds.length && !F.kinds.some(k => c.kinds.includes(k))) return false;
       if (F.hideShort && c.kinds.includes('SHORT') && !F.kinds.includes('SHORT')) return false;
@@ -68,7 +70,7 @@
     const L = list(), el = box.querySelector('.cc-list');
     el.innerHTML = L.length ? L.slice(0, shown).map(card).join('') + (L.length > shown ? `<button type="button" class="cc-chip cc-moreb" data-more="1">SHOW ${Math.min(15, L.length - shown)} MORE (${L.length - shown} not shown)</button>` : '')
       : `<p class="cc-none">No contests match these filters${F.when === 'now' ? ' right now' : ''}. Try another time or ALL TYPES.</p>`;
-    box.querySelector('.cc-count').textContent = `${L.length} contest${L.length === 1 ? '' : 's'}` + (F.when === 'all' ? ' · past the next 8 days only the big yearly contests are listed' : '');
+    box.querySelector('.cc-count').textContent = `${L.length} contest${L.length === 1 ? '' : 's'}` + (F.when === 'all' || WDAYS[F.when] ? ' · past the next 8 days only the big yearly contests are listed' : '');
   }
   box.innerHTML = `<div class="cc-tools"><div class="cc-lab">WHEN</div><div class="cc-row cc-when"></div><div class="cc-lab">MODE</div><div class="cc-row cc-mode"></div><div class="cc-lab">TYPE</div><div class="cc-row cc-kind"></div>` +
     `<div class="cc-row2"><label class="cc-chk"><input type="checkbox" id="ccHide"> Hide short weekly contests (CWT, sprints, mini-tests)</label><label class="cc-s">SEARCH<input id="ccQ" type="search" placeholder="Contest name…" aria-label="Search contests"></label></div></div>` +
