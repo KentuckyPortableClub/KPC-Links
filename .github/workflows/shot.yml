@@ -4,12 +4,15 @@ permissions: {contents: write}
 jobs:
   s:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
       - continue-on-error: true
-        run: bash ap.sh > ap.txt 2>&1
+        timeout-minutes: 12
+        run: |
+          npm i playwright@1.47.2 >/dev/null && npx playwright install --with-deps chromium >/dev/null
+          node pi.js
       - if: always()
         run: |
           git config user.name bot; git config user.email bot@x
-          git add -f ap.txt || true; git commit -m out || true; git pull --rebase; git push
+          git add -f pi.txt pi-*.png || true; git commit -m out || true; git pull --rebase; git push
