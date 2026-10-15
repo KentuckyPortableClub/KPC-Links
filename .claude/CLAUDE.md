@@ -48,6 +48,11 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - **kpc-go-live.yml** (one time): Oct 21 2026, 5 PM Central. Swaps campoutHOLD/eventsHOLD/resourcesHOLD.html into campout/events/resources.html and posts the new-page roundup. Until then, edits to events/resources/campout must also go into the HOLD copies.
 - All workflows use actions/checkout@v5.
 
+## Future KY parks (Brandon's list, Oct 14 2026) — NOT on the site yet
+- .claude/build/future-parks/future-parks.json + future-lakes.geojson: Bullock Pen, Boltz, Guist Creek, Lake Linville, Wilgreen, Wood Creek, Beaver (Anderson Co.), Kingfisher Lakes, Carpenters Lake. County, owner, acres, KDFWR waterbody + access-site links, ramp GPS, USGS NHD lake edges (kygisserver Ky_24K_NHD_Waterbodies). None had a POTA number on Oct 14. When POTA adds them: add to kpc-ky-data.json (and the guide data) with the real US- numbers; lake edges are water only, POTA decides the land.
+- Two names on his list were already parks: Cascade Caverns SNP US-12972, Clear Creek WMA US-12974 (county fixed Muhlenberg -> Hopkins on Oct 14, per KDFWR).
+- Kingfisher Lakes and Carpenters Lake sit side by side at Maceo: touching only, not a 2-fer unless POTA boundaries overlap.
+
 ## Ideas Brandon has mentioned for later
 - Satellite pass predictor.
 - WWFF checker.
