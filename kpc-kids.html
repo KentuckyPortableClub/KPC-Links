@@ -124,6 +124,13 @@ body.field .page-jump-nav{display:none!important}
 .kz input[type=text]{width:100%;box-sizing:border-box;min-height:54px;font:900 24px Arial,sans-serif;text-transform:uppercase;border:3px solid #ddd;border-radius:14px;padding:8px 12px;margin-bottom:10px}
 .kz-out{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.kz-chip{display:flex;flex-direction:column;align-items:center;min-width:64px;padding:8px;border-radius:12px;background:#e8f6ff;border:3px solid transparent}.kz-chip b{font:900 30px Arial}.kz-chip small{font-weight:800;color:#118ab2}.kz-chip.on{border-color:#118ab2;background:#fff3c4;transform:scale(1.08)}.kz-sp{width:14px}
 .kz-chart{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px;margin-top:10px}.kz-cell{border:0;border-radius:12px;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.08);padding:8px;cursor:pointer;text-align:left}.kz-cell b{font:900 22px Arial;color:#ef476f;margin-right:6px}.kz-cell span{font-weight:800;color:#073b4c}
+.kz-card.c4{border-top-color:#8338ec}
+.kz-chip.mc small{display:flex;gap:4px;align-items:center;justify-content:center;min-height:14px}
+.dot,.dash{display:inline-block;height:12px;border-radius:6px;background:#8338ec}.dot{width:12px}.dash{width:34px}
+.kz-opts.three{grid-template-columns:repeat(3,1fr)}.kz-opt small{display:flex;gap:4px;justify-content:center;margin-top:6px}
+.m4-target{text-align:center;margin-bottom:10px}.m4-target span{font-weight:800;color:#555}.m4-target b{display:block;font:900 72px Arial,sans-serif;color:#073b4c;line-height:1.1}.m4-target div{display:flex;gap:6px;justify-content:center}
+.m4-key{display:block;width:100%;min-height:150px;border-radius:24px;border:0;background:#8338ec;color:#fff;font:900 34px Arial,sans-serif;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;box-shadow:0 8px 0 #5a1fb0}.m4-key small{display:block;font-size:14px;font-weight:700;opacity:.85}.m4-key.down{transform:translateY(6px);box-shadow:0 2px 0 #5a1fb0;background:#9d5cff}
+.m4-got{display:flex;gap:6px;justify-content:center;min-height:24px;margin-top:12px}
 .kz-note{font-size:13px;color:#666;margin-top:20px}
 @media(max-width:900px){.kz-games{grid-template-columns:minmax(0,1fr)}}
 </style>
@@ -149,11 +156,15 @@ body.field .page-jump-nav{display:none!important}
   <button type="button" class="kz-btn" id="g3Ok">✓ CHECK</button><div class="kz-fb" id="g3Fb"></div>
  </div>
 </div>
+<div class="kz-card c4" style="margin-top:20px"><h2>📻 Morse Code Fun</h2><p>Before microphones, radio operators talked with <b>beeps</b>: short ones (dots) and long ones (dashes). Hams still do it today!</p>
+ <div class="kz-seg"><label><input type="radio" name="m4m" value="name" checked> Beep my name</label><label><input type="radio" name="m4m" value="guess"> Guess the sound</label><label><input type="radio" name="m4m" value="tap"> Tap the key</label></div>
+ <div id="m4Body"></div>
+</div>
 <div class="kz-card" style="margin-top:20px;border-top-color:#ffd166"><h2>📋 The Phonetic Alphabet</h2><p>Tap any letter to hear it.</p><div class="kz-chart" id="kzChart"></div></div>
 <p class="kz-note">Grown-ups: nothing about your child is saved or sent anywhere. Stars stay on this device only. Voices come from your phone or computer, so they sound different on different devices. Turn the media volume up.</p>
 </div></section>
 </main>
-<script src="kpc-kids.js?v=20261014a"></script>
+<script src="kpc-kids.js?v=20261014b"></script>
 <script src="kpc-search.js?v=20261014r" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
