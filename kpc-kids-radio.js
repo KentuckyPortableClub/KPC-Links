@@ -274,18 +274,29 @@ function loadVoices() {
 }
 if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
 function hush() { if (window.speechSynthesis) { speechSynthesis.cancel(); lastCancel = Date.now(); } }
-function speak(text, who, pitchMul, vol) {
+/* Browser voices can get stuck (Chrome especially): onend never fires and everything queued after it stays
+   silent. So: keep a reference to the utterance (Chrome can garbage-collect it and lose its events), clear the
+   queue if something is still in it, give up on a line that never starts, and cancel after a timeout. */
+let CUR_U = null;
+function speak(text, who, pitchMul, vol, onStart) {
   return new Promise(res => {
-    if (!window.speechSynthesis) { setTimeout(res, 1500 + text.length * 60); return; }
+    if (!window.speechSynthesis) { setTimeout(() => res(false), 1500 + text.length * 60); return; }
     const go = () => {
-      if (speechSynthesis.paused) speechSynthesis.resume();
-      const u = new SpeechSynthesisUtterance(text);
+      if (speechSynthesis.speaking || speechSynthesis.pending) { speechSynthesis.cancel(); lastCancel = Date.now(); setTimeout(go2, 200); } else go2();
+    };
+    const go2 = () => {
+      try { speechSynthesis.resume(); } catch (e) {}
+      const u = new SpeechSynthesisUtterance(text); CUR_U = u;
       if (!VO.length) loadVoices();
       if (VO.length) { const pool = VO.filter(v => who.m && !who.kid ? MALE.test(v.name) : !MALE.test(v.name)); const list = pool.length ? pool : VO; u.voice = list[who.vi % list.length]; u.lang = u.voice.lang; } else u.lang = 'en-US';
       u.rate = who.rate; u.pitch = Math.max(0.05, Math.min(2, who.pitch * pitchMul)); u.volume = Math.max(0.1, Math.min(1, vol));
-      let done = false; const fin = () => { if (!done) { done = true; clearTimeout(tm); res(); } };
-      const tm = setTimeout(fin, 2000 + text.length * 90 / u.rate);
-      u.onend = fin; u.onerror = fin; speechSynthesis.speak(u);
+      let done = false, started = false;
+      const fin = stuck => { if (done) return; done = true; clearTimeout(tm); clearTimeout(t0); if (stuck) { try { speechSynthesis.cancel(); } catch (e) {} lastCancel = Date.now(); } if (CUR_U === u) CUR_U = null; res(started); };
+      const tm = setTimeout(() => fin(true), 2500 + text.length * 90 / u.rate);
+      const t0 = setTimeout(() => { if (!started) fin(true); }, 4000);
+      u.onstart = () => { started = true; if (onStart) onStart(); };
+      u.onend = () => fin(false); u.onerror = () => fin(false);
+      speechSynthesis.speak(u);
     };
     setTimeout(go, Math.max(0, 150 - (Date.now() - lastCancel)));
   });
@@ -390,10 +401,10 @@ async function play(st) {
     const [who, spoken, shown] = st.lines[p.idx], sp = st.sp[who];
     const off = (dial - st.f) / 1000 * (BANDS[band].sb === 'LSB' ? -1 : 1), clear = Math.abs(off) <= 0.25;
     const pm = clear ? 1 : Math.max(0.15, 1 - off * 0.55);
-    playing.who = who; playing.clear = clear; playing.speaking = true;
+    playing.who = who; playing.clear = clear; playing.speaking = false;
     st.said.push({ who, text: clear ? shown : garble(shown), clear }); if (st.said.length > 8) st.said.shift();
     draw();
-    await speak(spoken, sp, pm, S.vol * sp.s * (clear ? 1 : 0.75));
+    const ok = await speak(spoken, sp, pm, S.vol * sp.s * (clear ? 1 : 0.75), () => { if (playing && playing.g === g) playing.speaking = true; });
     if (!playing || playing.g !== g) return;
     playing.speaking = false;
     st.t0 = performance.now() / 1000 - (st.cum[p.idx] + st.est[p.idx]);

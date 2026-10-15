@@ -45,7 +45,8 @@ function speakNow(text, who) {
   return new Promise(res => {
     if (!window.speechSynthesis) { res(); return; }
     if (speechSynthesis.paused) speechSynthesis.resume();
-    const u = new SpeechSynthesisUtterance(text);
+    if (speechSynthesis.speaking && !window.__kpcU) { speechSynthesis.cancel(); lastCancel = Date.now(); }
+    const u = new SpeechSynthesisUtterance(text); window.__kpcU = u; // keep a reference: Chrome can lose the events of a garbage-collected utterance
     if (!VO.length) loadVoices();
     if (who && VO.length) {
       // pick a man's or woman's voice when the device has both; otherwise the pitch does the work
@@ -54,8 +55,9 @@ function speakNow(text, who) {
       const list = pool.length ? pool : VO; u.voice = list[who.vi % list.length]; u.lang = u.voice.lang;
     } else u.lang = 'en-US';
     u.rate = who ? who.rate : 1; u.pitch = who ? who.pitch : 1; u.volume = Math.max(0.15, Math.min(1, (who ? who.vol : 1) * S.vol));
-    let done = false; const fin = () => { if (!done) { done = true; clearTimeout(tm); res(); } };
-    const tm = setTimeout(fin, 1500 + text.length * 95 / u.rate); // some browsers never fire 'end'
+    let done = false, started = false; const fin = stuck => { if (!done) { done = true; clearTimeout(tm); clearTimeout(t0); if (window.__kpcU === u) window.__kpcU = null; if (stuck === true) { try { speechSynthesis.cancel(); } catch (e) {} lastCancel = Date.now(); } res(); } };
+    const tm = setTimeout(() => fin(true), 2500 + text.length * 95 / u.rate); // some browsers never fire 'end': clear the stuck queue
+    const t0 = setTimeout(() => { if (!started) fin(true); }, 4500); u.onstart = () => { started = true; };
     u.onend = fin; u.onerror = e => { lastErr = (e && e.error) || 'error'; if (lastErr !== 'interrupted' && lastErr !== 'canceled' && Date.now() - lastCancel > 400) { const d = $('vbDiag'); if (d) d.textContent = 'Voice problem: ' + lastErr + '. Tap TEST VOICE to check.'; } fin(); };
     speechSynthesis.speak(u);
   });
