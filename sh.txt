@@ -1,8 +1,7 @@
-0 []
-0.004 []
-0.02 [('Daniel Boone National Forest', 'FED', 'Forest Service Region 08 Southern', 'Fee')]
-Laurel County
-{"place_id": 349261961, "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright", "osm_type": "way", "osm_id": 122082529, "lat": "37.2142703", "lon": "-84.1977476", "category": "highway", "type": "motorway", "place_rank": 26, "importance": 0.05336833524071104, "addresstype": "road", "name": "I 75", "display_name": "I 75, Hare, Laurel County, Kentucky, 40729, United S
-Ky_Public_Hunting_Areas_WGS84WM/MapServer/1 []
-Ky_State_Parks_Features_WGS84WM/MapServer/8 []
-Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer/0 []
+PAD fields ['OBJECTID', 'Shape', 'FeatClass', 'Category', 'Own_Type', 'Own_Name', 'Loc_Own', 'Mang_Type', 'Mang_Name', 'Loc_Mang', 'Des_Tp', 'Loc_Ds', 'Unit_Nm', 'Loc_Nm', 'State_Nm', 'Agg_Src', 'GIS_Src', 'Src_Date', 'GIS_Acres', 'Source_PAID', 'WDPA_Cd', 'Pub_Access', 'Access_Src', 'Access_Dt', 'GAP_Sts', 'GAPCdSrc', 'GAPCdDt', 'IUCN_Cat', 'IUCNCtSrc', 'IUCNCtDt', 'Date_Est', 'Comments', 'EsmtHldr', 'EHoldTyp', 'WebServiceMangName', 'TranspPct', 'Shape_Length', 'Shape_Area']
+State_Nm='KY' AND Unit_Nm LIKE '%Wood Creek%' []
+State_Nm='KY' AND Loc_Nm LIKE '%WOOD CREEK%' []
+OSM [('way', 'Wildcat Offroad', {'leisure': 'park'}), ('area', 'United States', {'boundary': 'administrative'}), ('area', 'Kentucky', {'boundary': 'administrative'}), ('area', 'Laurel County', {'boundary': 'administrative'}), ('area', 'America/New_York Timezone', {'boundary': 'timezone'}), ('area', 'Contiguous United States', {'boundary': 'region'}), ('area', 'UTC−05:00 standard time', {'boundary': 'timezone'}), ('way', 'Wood Creek Lake', {'natural': 'water', 'water': 'reservoir'}), ('way', 'Wildcat Offroad', {'leisure': 'park'}), ('relation', 'Daniel Boone National Forest', {'boundary': 'protected_area', 'operator': 'United States Forest Service', 'protect_class': '6'})]
+https://www.fws.gov/refuge/clarks-river 200
+https://www.fws.gov/refuge/clarks-river/map HTTP Error 403: Forbidden
+https://www.fws.gov/refuge/clarks-river/visit-us 200
