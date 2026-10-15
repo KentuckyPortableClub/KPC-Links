@@ -1,0 +1,912 @@
+{
+ "updated": "2026-10-15T10:16:58Z",
+ "stations": [
+  {
+   "title": "Continental Army Encampment at Towamencin PA",
+   "start": "2026-10-08",
+   "end": "2026-10-16",
+   "times": "0000Z-2359Z",
+   "call": "W3T",
+   "calls": [
+    "W3T"
+   ],
+   "where": "Harleysville, PA",
+   "st": "PA",
+   "by": "WV2M",
+   "freqs": "7.030 7.240 14.030 14.240",
+   "qsl": "QSL",
+   "url": "https://www.qrz.com/db/W3T",
+   "note": ", Harleysville, PA. WV2M. 7.030 7.240 14.030 14.240. QSL. Frank Gallo WV2M, 106 Tweed Way, Harleysville, PA 19438."
+  },
+  {
+   "title": "CACTUS",
+   "start": "2026-10-09",
+   "end": "2026-10-18",
+   "times": "1200Z-2359Z",
+   "call": "K7RST",
+   "calls": [
+    "K7RST"
+   ],
+   "where": "Tucson, AZ",
+   "st": "AZ",
+   "by": "Radio Society of Tucson",
+   "freqs": "14.287",
+   "qsl": "Certificate & QSL",
+   "url": "http://cactus.k7rst.net",
+   "note": ", Tucson, AZ. Radio Society of Tucson. 14.287. Certificate & QSL. RST Attn: CACTUS Certificate Request Manager, PO Box 13603, Tucson, AZ 85732-3603."
+  },
+  {
+   "title": "3rd Annual National Sasquatch Awareness Day",
+   "start": "2026-10-12",
+   "end": "2026-10-21",
+   "times": "0001Z-2359Z",
+   "call": "W7DK",
+   "calls": [
+    "W7DK",
+    "W7B",
+    "W7I",
+    "W7G",
+    "W7F",
+    "W7O",
+    "W7T",
+    "W4S"
+   ],
+   "where": "Tacoma",
+   "st": "",
+   "by": "Radio Club Of Tacoma",
+   "freqs": "14.255",
+   "qsl": "Certificate & QSL",
+   "url": "http://w7dk.org",
+   "note": ", Tacoma. Radio Club Of Tacoma. 14.255. Certificate & QSL. Radio Club of Tacoma c/o Bigfoot, PO Box 1188, Tacoma, WA 98411. Callsigns W7B, W7I, W7G, W7F, W7O, W7T, W4S (Bonus Station) ALL Bands Modes: CW, SSB, FT-8/4, RTTY"
+  },
+  {
+   "title": "BEAM, Blind Equality Achievement Month",
+   "start": "2026-10-15",
+   "end": "2026-10-25",
+   "times": "0000Z-2359Z",
+   "call": "K4B",
+   "calls": [
+    "K4B"
+   ],
+   "where": "Lancaster, SC",
+   "st": "SC",
+   "by": "STEM Amateur Radio Club",
+   "freqs": "145.350MHz",
+   "qsl": "QSL",
+   "url": "https://www.stemarc.org",
+   "note": ", Lancaster, SC. STEM Amateur Radio Club. 145.350MHz. QSL. Vicki Carnes/ AD3i, 1093 Outlaw Avenue, Lancaster, SC 29720."
+  },
+  {
+   "title": "Willie and Martin Handcart Rescue",
+   "start": "2026-10-16",
+   "end": "2026-10-17",
+   "times": "2000Z-2200Z",
+   "call": "W7M",
+   "calls": [
+    "W7M"
+   ],
+   "where": "Alcova, WY",
+   "st": "WY",
+   "by": "",
+   "freqs": "7.056 7.256 14.056 14.256",
+   "qsl": "QSL",
+   "url": "https://handcartspecialevent.org",
+   "note": ", Alcova, WY. N/A. 7.056 7.256 14.056 14.256. QSL. Handcart Special Event, PO Box 100, Hyrum, UT 84319."
+  },
+  {
+   "title": "Chuck Berry 100th Birthday Special Event",
+   "start": "2026-10-17",
+   "end": "2026-10-18",
+   "times": "0000Z-2359Z",
+   "call": "W0B",
+   "calls": [
+    "W0B"
+   ],
+   "where": "St. Louis, MO",
+   "st": "MO",
+   "by": "St. Louis and Suburban Radio Club",
+   "freqs": "7.180 14.250 28.350",
+   "qsl": "Certificate & QSL",
+   "url": "",
+   "note": ", St. Louis, MO. St. Louis and Suburban Radio Club. 7.180 14.250 28.350. Certificate & QSL. Special Event W0B, c/o Jim Briggs, 19429 Quarry Road, Warrenton, MO 63383."
+  },
+  {
+   "title": "National Mashed Potato Day",
+   "start": "2026-10-17",
+   "end": "2026-10-18",
+   "times": "0917Z-1207Z",
+   "call": "W9P",
+   "calls": [
+    "W9P"
+   ],
+   "where": "Plover, WI",
+   "st": "WI",
+   "by": "Central Sands Amateur Radio",
+   "freqs": "14.320MHz 40m depending upon band cond",
+   "qsl": "Certificate",
+   "url": "",
+   "note": ", Plover, WI. Central Sands Amateur Radio. 14.320MHz 40m depending upon band cond. 15M band conditions . Certificate. Phil Schobert, 300 Polk St, Stevens Point, WI 54481."
+  },
+  {
+   "title": "Skyview Founders Day",
+   "start": "2026-10-17",
+   "end": "2026-10-17",
+   "times": "1400Z-2000Z",
+   "call": "K3MJW",
+   "calls": [
+    "K3MJW"
+   ],
+   "where": "New Kensington, PA",
+   "st": "PA",
+   "by": "Skyview Radio Society",
+   "freqs": "7.260 14.260",
+   "qsl": "QSL",
+   "url": "http://www.skyviewradio.net",
+   "note": ", New Kensington, PA. Skyview Radio Society. 7.260 14.260. QSL. Skyview Radio Society, 2335 Turkey Ridge Rd, New Kensington, PA 15068. Celebrating the founding members of Skyview Radio Society in 1960"
+  },
+  {
+   "title": "Town of Redington Beach Florida Safety Day",
+   "start": "2026-10-17",
+   "end": "2026-10-17",
+   "times": "1500Z-1700Z",
+   "call": "NE2CC",
+   "calls": [
+    "NE2CC"
+   ],
+   "where": "Saint Petersburg, FL",
+   "st": "FL",
+   "by": "Gulf Coast Contest Club",
+   "freqs": "14.175 21.395 28.340",
+   "qsl": "Certificate",
+   "url": "https://gulfcoastcontestclub.org",
+   "note": ", Saint Petersburg, FL. Gulf Coast Contest Club. 14.175 21.395 28.340 . Certificate. Gulf Coast Contest Club, 16001 2nd St E, Saint Petersburg, FL 33708."
+  },
+  {
+   "title": "USS Wisconsin BB-64 supporting Jamboree on the Air",
+   "start": "2026-10-17",
+   "end": "2026-10-17",
+   "times": "1400Z-2000Z",
+   "call": "N4WIS",
+   "calls": [
+    "N4WIS"
+   ],
+   "where": "Norfolk, VA",
+   "st": "VA",
+   "by": "USS Wisconsin Radio Club",
+   "freqs": "14.264, 14.064 7.264, 7.064 21.264, 21.064 28.364, 28.064",
+   "qsl": "QSL",
+   "url": "http://n4wis.org",
+   "note": ", Norfolk, VA. USS Wisconsin Radio Club. 14.264, 14.064 7.264, 7.064 21.264, 21.064 28.364, 28.064. QSL. USS Wisconsin Radio Club (N4WIS) c/o Nauticus, One Waterside Drive, Norfolk, VA 23510."
+  },
+  {
+   "title": "Yorktown Special Event",
+   "start": "2026-10-17",
+   "end": "2026-10-17",
+   "times": "1400Z-2000Z",
+   "call": "K4RC",
+   "calls": [
+    "K4RC"
+   ],
+   "where": "Williamsburg, VA",
+   "st": "VA",
+   "by": "Williamsburg Area Amateur Radio Club",
+   "freqs": "7.265 14.265",
+   "qsl": "Certificate",
+   "url": "http://www.k4rc.net",
+   "note": ", Williamsburg, VA. Williamsburg Area Amateur Radio Club. 7.265 14.265. Certificate. Williamsburg Area Amateur Radio Club, P.O. Box 1470, Williamsburg, VA 23187."
+  },
+  {
+   "title": "USS Wisconsin BB-64 supporting Jamboree on the Air",
+   "start": "2026-10-18",
+   "end": "2026-10-18",
+   "times": "1400Z-2000Z",
+   "call": "N4WIS",
+   "calls": [
+    "N4WIS"
+   ],
+   "where": "Norfolk, VA",
+   "st": "VA",
+   "by": "USS Wisconsin Radio Club",
+   "freqs": "14.264, 14.064 7.264, 7.064 21.264, 21.064 28.364, 28.064",
+   "qsl": "QSL",
+   "url": "http://n4wis.org",
+   "note": ", Norfolk, VA. USS Wisconsin Radio Club. 14.264, 14.064 7.264, 7.064 21.264, 21.064 28.364, 28.064. QSL. USS Wisconsin Radio Club (N4WIS) c/o Nauticus, One Waterside Drive, Norfolk, VA 23510."
+  },
+  {
+   "title": "United States Coast Guard Auxiliary 87 Birthday",
+   "start": "2026-10-23",
+   "end": "2026-10-25",
+   "times": "1400Z-2300Z",
+   "call": "N2S",
+   "calls": [
+    "N2S"
+   ],
+   "where": "Marlton, NJ",
+   "st": "NJ",
+   "by": "Unitee States Coast Guard Auxiliary",
+   "freqs": "7.250 21.3 14.230 28.350",
+   "qsl": "Certificate",
+   "url": "",
+   "note": ", Marlton, NJ. Unitee States Coast Guard Auxiliary. 7.250 21.3 14.230 28.350. Certificate. Michael Slepian WB2LKO, 12 Continental Ln, Marlton, NJ 08053-4606. Coast Guard Auxiliary radio operators who are also hams will participate from more than a dozen locations throughout the US."
+  },
+  {
+   "title": "2026 Frankenstein Halloween FunXpedition",
+   "start": "2026-10-31",
+   "end": "2026-11-01",
+   "times": "1800Z-0300Z",
+   "call": "W0O",
+   "calls": [
+    "W0O"
+   ],
+   "where": "Jefferson City, MO",
+   "st": "MO",
+   "by": "Mid-MO ARC",
+   "freqs": "3.538 3.963 14.038 14.280",
+   "qsl": "QSL",
+   "url": "",
+   "note": ", Jefferson City, MO. Mid-MO ARC. 3.538 3.963 14.038 14.280. QSL. Kent Trimble, K9ZTV, 2210 Heartland Ridge, Jefferson City, MO 65109. Annual Halloween FunXpedition from the only Frankenstein in the USA. CW & SSB 80-10. Consult spotting networks for frequencies. W0O QSL info on QRZ.com. Further details: K9ZTV"
+  },
+  {
+   "title": "Boo to You",
+   "start": "2026-10-31",
+   "end": "2026-11-01",
+   "times": "0000Z-0300Z",
+   "call": "KC5BOO",
+   "calls": [
+    "KC5BOO"
+   ],
+   "where": "Cleburne, TX",
+   "st": "TX",
+   "by": "KC5NX",
+   "freqs": "7.074 14.038 14.074 14.278",
+   "qsl": "QSL",
+   "url": "",
+   "note": ", Cleburne, TX. KC5NX. 7.074 14.038 14.074 14.278. QSL. Boo to You, 3701 Park Rd 21, Cleburne, TX 76033."
+  },
+  {
+   "title": "51st Anniversary, Sinking of the SS Edmund Fitzgerald",
+   "start": "2026-11-01",
+   "end": "2026-11-14",
+   "times": "0000Z-2359Z",
+   "call": "W8F",
+   "calls": [
+    "W8F"
+   ],
+   "where": "Livonia, MI",
+   "st": "MI",
+   "by": "Livonia Amateur Radio Club",
+   "freqs": "14.260 7.260 7.050 14.050",
+   "qsl": "Certificate",
+   "url": "https://livoniaarc.com",
+   "note": ", Livonia, MI. Livonia Amateur Radio Club. 14.260 7.260 7.050 14.050. Certificate. Electronic Only See QRZ page, 145.350 MHz, Livonia, MI 48151."
+  },
+  {
+   "title": "88th Anniversary of the War of the World Broadcast",
+   "start": "2026-11-01",
+   "end": "2026-11-01",
+   "times": "0500Z-1000Z",
+   "call": "W0W",
+   "calls": [
+    "W0W"
+   ],
+   "where": "Grovers Mill, NJ",
+   "st": "NJ",
+   "by": "Delaware Valley Radio Association",
+   "freqs": "7225 14255 7050 14050",
+   "qsl": "Certificate & QSL",
+   "url": "http://w2zq.com",
+   "note": ", Grovers Mill, NJ. Delaware Valley Radio Association. 7225 14255 7050 14050. Certificate & QSL. Delaware Valley Radio Association, PO BOX 7024, Trenton, NJ 08628."
+  },
+  {
+   "title": "Nat'l Animal Shelter Appreciation Week",
+   "start": "2026-11-01",
+   "end": "2026-11-07",
+   "times": "0000Z-2359Z",
+   "call": "",
+   "calls": [],
+   "where": "Melville, NY",
+   "st": "NY",
+   "by": "Dog Day Radio Amateur Radio Club",
+   "freqs": "7.035 14.040",
+   "qsl": "QSL",
+   "url": "https://www.qrz.com/db/K0DOG",
+   "note": ", Melville, NY. Dog Day Radio Amateur Radio Club. 7.035 14.040. QSL. Caryn Eve Murray, 2 Wallingford Drive, Melville, NY 11747."
+  },
+  {
+   "title": "SVARA 50th Birthday",
+   "start": "2026-11-01",
+   "end": "2026-11-30",
+   "times": "0000Z-2359Z",
+   "call": "K5GVL",
+   "calls": [
+    "K5GVL"
+   ],
+   "where": "Greenville, TX",
+   "st": "TX",
+   "by": "Sabine Valley Amateur Radio Association",
+   "freqs": "7.250 14.250 21.350 28.350",
+   "qsl": "QSL",
+   "url": "",
+   "note": ", Greenville, TX. Sabine Valley Amateur Radio Association. 7.250 14.250 21.350 28.350. QSL. SVARA 50th Birthday, PO BOX 843, Greenville, TX 75403."
+  },
+  {
+   "title": "18th Annual Veteran Honor Guard Vigil at the Ottawa IL War Memorial",
+   "start": "2026-11-06",
+   "end": "2026-11-07",
+   "times": "2200Z-2200Z",
+   "call": "W9TAL",
+   "calls": [
+    "W9TAL"
+   ],
+   "where": "Ottawa, IL",
+   "st": "IL",
+   "by": "The American Legion Post 33 Amateur Radio Club.",
+   "freqs": "7.074 14.074",
+   "qsl": "QSL",
+   "url": "https://www.ottawaalpost33.com",
+   "note": ", Ottawa, IL. The American Legion Post 33 Amateur Radio Club.. 7.074 14.074 . QSL. Joe Tokarz, The American Legion Post 33 Amateur Radio Club, 901 LaSalle St., Ottawa, IL 61350."
+  },
+  {
+   "title": "2026 Remembering the Edmund Fitzgerald - Split Rock Lighthouse",
+   "start": "2026-11-06",
+   "end": "2026-11-08",
+   "times": "1600Z-2355Z",
+   "call": "W0JH",
+   "calls": [
+    "W0JH"
+   ],
+   "where": "Stillwater, MN",
+   "st": "MN",
+   "by": "Stillwater (MN) Amateur Radio Assoc",
+   "freqs": "",
+   "qsl": "Certificate",
+   "url": "http://www.radioham.org",
+   "note": ", Stillwater, MN. Stillwater (MN) Amateur Radio Assoc. (SARA). 3.860 7.260 14.260 21.360. Certificate. Shel Mann - N0DRX, 1618 Pine St W, Stillwater, MN 55082. Requested and sent via email: W0JHFitz@outlook.com. QSL certificates may only be requested via email address: W0JHFitz@outlook.com. Important: ONLY W0JH contacts qualify for POTA US-2524, US-8095, ARLHS USA 783 validations and submission to"
+  },
+  {
+   "title": "Aviation Discovery Fest",
+   "start": "2026-11-06",
+   "end": "2026-11-06",
+   "times": "1500Z-2300Z",
+   "call": "WX3O",
+   "calls": [
+    "WX3O"
+   ],
+   "where": "San Marcos, TX",
+   "st": "TX",
+   "by": "Commerative Air Force Central Texas Wing",
+   "freqs": "14.245 14.285 7.250",
+   "qsl": "QSL",
+   "url": "http://centrltexaswing.org",
+   "note": ", San Marcos, TX. Commerative Air Force Central Texas Wing. 14.245 14.285 7.250. QSL. Mark Julicher, 5649 Temerity Way, Bulverde, TX 78163."
+  },
+  {
+   "title": "100-year celebration of RT 66",
+   "start": "2026-11-07",
+   "end": "2026-11-07",
+   "times": "1600Z-2200Z",
+   "call": "KF0MSJ",
+   "calls": [
+    "KF0MSJ"
+   ],
+   "where": "Union, MO",
+   "st": "MO",
+   "by": "Zero - Beaters Amateur Radio Club",
+   "freqs": "14.250",
+   "qsl": "QSL",
+   "url": "",
+   "note": ", Union, MO. Zero - Beaters Amateur Radio Club. 14.250. QSL. GREG BALLARD, 662 E Main St, Union, MO 63084. WE WILL SEND OUT QSL CARDS TO ALL CONTACTS"
+  },
+  {
+   "title": "Punta Gorda Air Show 2026",
+   "start": "2026-11-07",
+   "end": "2026-11-07",
+   "times": "1300Z-2000Z",
+   "call": "W7MHM",
+   "calls": [
+    "W7MHM"
+   ],
+   "where": "Punta Gorda, FL",
+   "st": "FL",
+   "by": "Military Heritage Museum Amateur Radio Club",
+   "freqs": "14.285",
+   "qsl": "QSL",
+   "url": "http://www.w7mhm.org",
+   "note": ", Punta Gorda, FL. Military Heritage Museum Amateur Radio Club. 14.285. QSL. Don Kumpost, 24771 Rio Villa Lakes Circle, Punta Gorda, FL 33950. THIS EVENT IS CANCELLED!"
+  },
+  {
+   "title": "W2TE SES POTA DAY",
+   "start": "2026-11-08",
+   "end": "2026-11-08",
+   "times": "1030Z-2030Z",
+   "call": "W2GSB",
+   "calls": [
+    "W2GSB"
+   ],
+   "where": "Babylon, NY",
+   "st": "NY",
+   "by": "GREAT SOUTH BAY AMATEUR RADIO CLUB",
+   "freqs": "14.245 28.500 21.325 7.275",
+   "qsl": "Certificate",
+   "url": "http://WWW.GSBARC.ORG",
+   "note": ", Babylon, NY. GREAT SOUTH BAY AMATEUR RADIO CLUB. 14.245 28.500 21.325 7.275. Certificate. GSBARC W2TE POTA , 200 East Sunrise Hwy, Lindenhurst, NY 11757."
+  },
+  {
+   "title": "100th ANNIVERSARY OF ROUTE 66",
+   "start": "2026-11-11",
+   "end": "2026-11-11",
+   "times": "1700Z-2100Z",
+   "call": "WE7GV",
+   "calls": [
+    "WE7GV"
+   ],
+   "where": "Sahuarita, AZ",
+   "st": "AZ",
+   "by": "Green Valley Amateur Radio Club",
+   "freqs": "14.242 14.246 14.248",
+   "qsl": "Certificate & QSL",
+   "url": "http://www.gvarc.us",
+   "note": ", Sahuarita, AZ. Green Valley Amateur Radio Club. 14.242 14.246 14.248 . Certificate & QSL. Tom Lang K7VOA, 1085 W EL TORO RD, , Sahuarita, AZ 85629."
+  },
+  {
+   "title": "Adoption of the Articles of Confederation and Perpetual Union",
+   "start": "2026-11-11",
+   "end": "2026-11-18",
+   "times": "0000Z-2359Z",
+   "call": "WV2M",
+   "calls": [
+    "WV2M"
+   ],
+   "where": "Harleysville, PA",
+   "st": "PA",
+   "by": "WV2M",
+   "freqs": "14.074 7.074 7.030 14.030",
+   "qsl": "QSL",
+   "url": "http://www.wv2m.com",
+   "note": ", Harleysville, PA. WV2M. 14.074 7.074 7.030 14.030. QSL. Frank Gallo, 106 Tweed Way, Harleysville, PA 19438."
+  },
+  {
+   "title": "Articles of Confederation",
+   "start": "2026-11-11",
+   "end": "2026-11-18",
+   "times": "0000Z-2359Z",
+   "call": "W3A",
+   "calls": [
+    "W3A"
+   ],
+   "where": "Harleysville, PA",
+   "st": "PA",
+   "by": "WV2M",
+   "freqs": "7.030 7.074 14.030 14.074",
+   "qsl": "QSL",
+   "url": "https://www.qrz.com/db/W3A",
+   "note": ", Harleysville, PA. WV2M. 7.030 7.074 14.030 14.074. QSL. Frank Gallo, 106 Tweed Way, Harleysville, PA 19438."
+  },
+  {
+   "title": "USS Orleck Amateur Radio Society (OARS) Veteran's Day Event",
+   "start": "2026-11-11",
+   "end": "2026-11-11",
+   "times": "1400Z-2100Z",
+   "call": "WJ4DD",
+   "calls": [
+    "WJ4DD"
+   ],
+   "where": "Jacksonville, FL",
+   "st": "FL",
+   "by": "USS Orleck Amateur Radio Society (OARS)",
+   "freqs": "7.190 7.250 14.250 14.320",
+   "qsl": "Certificate",
+   "url": "https://fhnsa.org/oars",
+   "note": ", Jacksonville, FL. USS Orleck Amateur Radio Society (OARS). 7.190 7.250 14.250 14.320. Certificate. Kenneth Krull, 6143 Winding Bridge Dr, Jacksonville, FL 32099."
+  },
+  {
+   "title": "Veteran's Day, National DDay Memorial",
+   "start": "2026-11-11",
+   "end": "2026-11-11",
+   "times": "1430Z-1900Z",
+   "call": "W2B",
+   "calls": [
+    "W2B"
+   ],
+   "where": "CHRISTIANSBURG, VA",
+   "st": "VA",
+   "by": "New River Valley Amateur Radio Club",
+   "freqs": "14.262",
+   "qsl": "QSL",
+   "url": "",
+   "note": ", CHRISTIANSBURG, VA. New River Valley Amateur Radio Club. 14.262. QSL. Danny Wylam, 710 McDaniel Drive Southeast, CHRISTIANSBURG, VA 24073-3848. Veteran's Day from the National DDay Memorial in Bedford VA"
+  },
+  {
+   "title": "Veterans Day",
+   "start": "2026-11-11",
+   "end": "2026-11-11",
+   "times": "1500Z-2130Z",
+   "call": "W4V",
+   "calls": [
+    "W4V"
+   ],
+   "where": "Tampa, FL",
+   "st": "FL",
+   "by": "American Victory ARC",
+   "freqs": "14.265",
+   "qsl": "QSL",
+   "url": "",
+   "note": ", Tampa, FL. American Victory ARC. 14.265. QSL. Rick Burbes - KE9VS, 5224 Franklin Woodland Dr, Plant City, FL 33565."
+  },
+  {
+   "title": "Guns on the Air (GOTA) 65th Anniversary of the WVARC",
+   "start": "2026-11-13",
+   "end": "2026-11-15",
+   "times": "2000Z-2000Z",
+   "call": "NY7S",
+   "calls": [
+    "NY7S"
+   ],
+   "where": "Sun City, AZ",
+   "st": "AZ",
+   "by": "West Valley Amateur Radio Club",
+   "freqs": "14.250 147.300",
+   "qsl": "QSL",
+   "url": "http://westvalleyARC.com",
+   "note": ", Sun City, AZ. West Valley Amateur Radio Club . 14.250 147.300. QSL. WVARC GOTA, PO Box 1573, Sun City, AZ 85372."
+  },
+  {
+   "title": "1st Transatlantic QSO",
+   "start": "2026-11-14",
+   "end": "2026-11-14",
+   "times": "1400Z-2200Z",
+   "call": "K3S",
+   "calls": [
+    "K3S"
+   ],
+   "where": "Baltimore, MD",
+   "st": "MD",
+   "by": "Nuclear Ship Savannah ARC",
+   "freqs": "7000",
+   "qsl": "QSL",
+   "url": "http://qrz.com/db/k3s",
+   "note": ", Baltimore, MD. Nuclear Ship Savannah ARC. 7000. QSL. Ulis Fleming, 980 Patuxent Road, Odenton, MD 21113."
+  },
+  {
+   "title": "USS Cobia Veterans Day Special Event",
+   "start": "2026-11-14",
+   "end": "2026-11-15",
+   "times": "1420Z-1420Z",
+   "call": "NB9QV",
+   "calls": [
+    "NB9QV"
+   ],
+   "where": "Manitowoc, WI",
+   "st": "WI",
+   "by": "NB9QV Cobia Club",
+   "freqs": "7.240 14.240",
+   "qsl": "Certificate",
+   "url": "",
+   "note": ", Manitowoc, WI. NB9QV Cobia Club. 7.240 14.240. Certificate. E-certificate only , kc9yl@arrl.net, Manitowoc, WI 54220. Send contact information to kc9yl@arrl.net to receive PDF certificate via email."
+  },
+  {
+   "title": "Veterans Day (11-11-1919) & USMC Birthday (11-10-1775)",
+   "start": "2026-11-14",
+   "end": "2026-11-14",
+   "times": "1700Z-2359Z",
+   "call": "NI6IW",
+   "calls": [
+    "NI6IW"
+   ],
+   "where": "San Diego, CA",
+   "st": "CA",
+   "by": "USS Midway Museum Ship CV-41 COMEDTRA NI6IW",
+   "freqs": "7.250 14.320 14.070 PSK31 DStar on PAPA System Repeaters",
+   "qsl": "QSL",
+   "url": "",
+   "note": ", San Diego, CA. USS Midway Museum Ship CV-41 COMEDTRA NI6IW. 7.250 14.320 14.070 PSK31 DStar on PAPA System Repeaters. QSL. USS Midway Ship Museum CV-41 COMEDTRA NI6IW, 910 N Harbor Drive, San Diego, CA 92101. See www.qrz.com/db/ni6iw for details."
+  },
+  {
+   "title": "NRA Birthday Celebration",
+   "start": "2026-11-17",
+   "end": "2026-11-17",
+   "times": "1500Z-2359Z",
+   "call": "K7GST",
+   "calls": [
+    "K7GST"
+   ],
+   "where": "Prescott, AZ",
+   "st": "AZ",
+   "by": "Yavapai Amateur Radio Club",
+   "freqs": "7.250 14.250 21.335 28.340",
+   "qsl": "Certificate",
+   "url": "",
+   "note": ", Prescott, AZ. Yavapai Amateur Radio Club. 7.250 14.250 21.335 28.340. Certificate. downloadable certificate only, None, Prescott, AZ 86304."
+  },
+  {
+   "title": "W6SFM On-Air Bug Roundup",
+   "start": "2026-11-21",
+   "end": "2026-11-23",
+   "times": "0000Z-0000Z",
+   "call": "W6SFM",
+   "calls": [
+    "W6SFM"
+   ],
+   "where": "Sacramento, CA",
+   "st": "CA",
+   "by": "Samuel F",
+   "freqs": "",
+   "qsl": "QSL",
+   "url": "https://w6sfm.org/bug-roundup",
+   "note": ", Sacramento, CA. Samuel F. Morse Amateur Radio Club. 3.533 7.033 14.033 21.033. QSL. W6SFM c/o John Geyer, 4901 Minnesota Avenue, Fair Oaks, CA 95628."
+  },
+  {
+   "title": "Amateur Radio Software Award",
+   "start": "2026-11-27",
+   "end": "2026-12-07",
+   "times": "0600Z-2359Z",
+   "call": "K7A",
+   "calls": [
+    "K7A"
+   ],
+   "where": "Ames, IA",
+   "st": "IA",
+   "by": "Amateur Radio Software Award",
+   "freqs": "14.250 7.180",
+   "qsl": "QSL",
+   "url": "https://arsaward.com/special-event.html",
+   "note": ", Ames, IA. Amateur Radio Software Award. 14.250 7.180. QSL. Amateur Radio Software Award, Special Event Station, P.O. Box 126, Ames, IA 50010. The special event to promote innovative, free and open amateur radio software and bring awareness to the Amateur Radio Software Award. During the event we honor the Hamlib project as the 2026 award recipient with Nate Bargmann (N0NB), George Baltz (N3GB), "
+  },
+  {
+   "title": "QCWA Annual Anniversary Special EventActivity",
+   "start": "2026-12-01",
+   "end": "2026-12-07",
+   "times": "0000Z-2359Z",
+   "call": "W2MM",
+   "calls": [
+    "W2MM"
+   ],
+   "where": "SANDPOINT, ID",
+   "st": "ID",
+   "by": "Quarter Century Wireless Association, Inc.",
+   "freqs": "3.540/7.035/14.040/21.050/28.050 CW 3.810/7.244/14.262/21.365/SSB 28.325 SSB Standard FT8/FT4 frequencies",
+   "qsl": "Certificate & QSL",
+   "url": "",
+   "note": ", SANDPOINT, ID. Quarter Century Wireless Association, Inc.. 3.540/7.035/14.040/21.050/28.050 CW 3.810/7.244/14.262/21.365/SSB 28.325 SSB Standard FT8/FT4 frequencies. Certificate & QSL. John R Kludt, Activity Manager, 1613 POPLAR ST, SANDPOINT, ID 83864-2081."
+  },
+  {
+   "title": "W2W Pearl Harbor Day Commemoration",
+   "start": "2026-12-04",
+   "end": "2026-12-14",
+   "times": "1300Z-2200Z",
+   "call": "K3NEM",
+   "calls": [
+    "K3NEM",
+    "W2W"
+   ],
+   "where": "Middle River, MD",
+   "st": "MD",
+   "by": "Amateur Radio Club of the National Electronics Museum",
+   "freqs": "7.041 7.241 14.041 14.241",
+   "qsl": "Certificate & QSL",
+   "url": "http://WW-2.us",
+   "note": ", Middle River, MD. Amateur Radio Club of the National Electronics Museum. 7.041 7.241 14.041 14.241. Certificate & QSL. ARCNEM, c/o Fred Heath AI3Z, 202 Baltimore-Annapolis Blvd., Severna Park, MD 21146-1368. Amateur Radio Club of the National Electronics Museum (ARCNEM) will operate W2W in commemoration of the anniversary of Pearl Harbor Day and the role of electronics in WWII. Primary operation"
+  },
+  {
+   "title": "Christmas in Bethlehem special event",
+   "start": "2026-12-05",
+   "end": "2026-12-05",
+   "times": "1400Z-2330Z",
+   "call": "W9WWI",
+   "calls": [
+    "W9WWI"
+   ],
+   "where": "Bethlehem, IN",
+   "st": "IN",
+   "by": "Clark County Amateur radio club of Indiana",
+   "freqs": "7.180",
+   "qsl": "QSL",
+   "url": "https://www.clarkcountyarc.org",
+   "note": ", Bethlehem, IN. Clark County Amateur radio club of Indiana . 7.180. QSL. Clark County Amateur Radio Club , c/o N9DPR ( secretary ) , P.O.Box 201, Sellersburg, IN 47172."
+  },
+  {
+   "title": "Punta Gorda Military Heritage Museum 25th Anniversary",
+   "start": "2026-12-05",
+   "end": "2026-12-05",
+   "times": "1500Z-2000Z",
+   "call": "W7MHM",
+   "calls": [
+    "W7MHM"
+   ],
+   "where": "Punta Gorda, FL",
+   "st": "FL",
+   "by": "Military Heritage Museum Amateur Radio Club.",
+   "freqs": "14.265",
+   "qsl": "QSL",
+   "url": "http://www.w7mhm.org",
+   "note": ", Punta Gorda, FL. Military Heritage Museum Amateur Radio Club.. 14.265. QSL. Don Kumpost, 24771 Rio Villa Lakes Circle, Punta Gorda, FL 33950."
+  },
+  {
+   "title": "USS Orleck Amateur Radio Society (OARS) Pearl Harbor Remembrance Event",
+   "start": "2026-12-05",
+   "end": "2026-12-05",
+   "times": "1400Z-2100Z",
+   "call": "WJ4DD",
+   "calls": [
+    "WJ4DD"
+   ],
+   "where": "Jacksonville, FL",
+   "st": "FL",
+   "by": "USS Orleck Amateur Radio Society (OARS)",
+   "freqs": "7.190 7.250 14.250 14.320",
+   "qsl": "Certificate",
+   "url": "",
+   "note": ", Jacksonville, FL. USS Orleck Amateur Radio Society (OARS). 7.190 7.250 14.250 14.320. Certificate. Kenneth Krull, 6143 Winding Bridge Dr, Jacksonville, FL 32099."
+  },
+  {
+   "title": "Pearl Harbor Day",
+   "start": "2026-12-07",
+   "end": "2026-12-07",
+   "times": "1500Z-2130Z",
+   "call": "W4V",
+   "calls": [
+    "W4V"
+   ],
+   "where": "Tampa, FL",
+   "st": "FL",
+   "by": "American Victory ARC",
+   "freqs": "14.265",
+   "qsl": "Certificate",
+   "url": "http://www.w4avm.org",
+   "note": ", Tampa, FL. American Victory ARC. 14.265. Certificate. Rick, Burbes, 5224 Franklin Woodland DR, Plant City, FL 33565."
+  },
+  {
+   "title": "WX3MAS",
+   "start": "2026-12-10",
+   "end": "2026-12-13",
+   "times": "1400Z-2200Z",
+   "call": "WX3MAS",
+   "calls": [
+    "WX3MAS"
+   ],
+   "where": "Nazareth, PA",
+   "st": "PA",
+   "by": "Christmas City ARC",
+   "freqs": "3850 7270 14265",
+   "qsl": "QSL",
+   "url": "http://DLARC.club",
+   "note": ", Nazareth, PA. Christmas City ARC. 3850 7270 14265 . QSL. WX3MAS c/o DLARC, 14 Gracedale Ave, Nazareth, PA 18064."
+  },
+  {
+   "title": "OSCAR-1: 65th Anniversary of First Amateur Radio Satellite Launch",
+   "start": "2026-12-12",
+   "end": "2026-12-12",
+   "times": "0000Z-2359Z",
+   "call": "W0O",
+   "calls": [
+    "W0O"
+   ],
+   "where": "Cottage Grove, MN",
+   "st": "MN",
+   "by": "South East Metro Amateur Radio Club",
+   "freqs": "7.244 14.035 14.074 14.244",
+   "qsl": "Certificate",
+   "url": "http://semarc.org",
+   "note": ", Cottage Grove, MN. South East Metro Amateur Radio Club. 7.244 14.035 14.074 14.244. Certificate. Bruce MacDonald, 4340 11th Av S, Minneapolis, MN 55407."
+  },
+  {
+   "title": "Pearl Harbor Remembrance Day (12-7-1941)",
+   "start": "2026-12-12",
+   "end": "2026-12-12",
+   "times": "1700Z-2359Z",
+   "call": "NI6IW",
+   "calls": [
+    "NI6IW"
+   ],
+   "where": "San Diego, CA",
+   "st": "CA",
+   "by": "USS Midway Museum Ship CV-41 COMEDTRA NI6IW",
+   "freqs": "7.250 14.320 14.070 PSK31 DStar on PAPA System Repeaters",
+   "qsl": "QSL",
+   "url": "",
+   "note": ", San Diego, CA. USS Midway Museum Ship CV-41 COMEDTRA NI6IW. 7.250 14.320 14.070 PSK31 DStar on PAPA System Repeaters. QSL. USS Midway Ship Museum CV-41 COMEDTRA NI6IW, 910 N Harbor Drive, San Diego, CA 92101. See www.qrz.com for details."
+  },
+  {
+   "title": "Edwin Howard Armstrong Memorial SE",
+   "start": "2026-12-18",
+   "end": "2026-12-20",
+   "times": "0000Z-2359Z",
+   "call": "W4A",
+   "calls": [
+    "W4A"
+   ],
+   "where": "Bluff City, TN",
+   "st": "TN",
+   "by": "N9EN",
+   "freqs": "3.530 7.030 14.030 21.030",
+   "qsl": "QSL",
+   "url": "",
+   "note": ", Bluff City, TN. N9EN. 3.530 7.030 14.030 21.030. QSL. Bradley Anbro, N9EN, 1118 WALNUT GROVE RD, BLUFF CITY, TN 37618-4021."
+  },
+  {
+   "title": "U.S. Steel Fairless Works (and Levittown \"Opening Day\")",
+   "start": "2026-12-19",
+   "end": "2026-12-20",
+   "times": "1200Z-0200Z",
+   "call": "W3S",
+   "calls": [
+    "W3S"
+   ],
+   "where": "Levittown, PA",
+   "st": "PA",
+   "by": "PENN WIRELESS ASSOCIATION",
+   "freqs": "7.200 14.250 18.135 146.79 -0.6 131.8PL",
+   "qsl": "QSL",
+   "url": "http://WWW.PENNWIRELESS.ORG",
+   "note": ", Levittown, PA. PENN WIRELESS ASSOCIATION. 7.200 14.250 18.135 146.79 -0.6 131.8PL. QSL. PENN WIRELESS ASSOCIATION, PO 925, Levittown, PA 19058. The industrial engine behind Levittown's growth. U.S. Steel's Fairless Works began steel production on December 11, 1952; the plant (named for executive Benjamin Franklin Fairless) drew thousands of workers who needed nearby housing — the direct economic"
+  }
+ ],
+ "yearly": [
+  {
+   "title": "Jamboree on the Air (JOTA)",
+   "start": "2026-10-17",
+   "end": "2026-10-18",
+   "times": "",
+   "about": "Third full weekend of October. Scouts on the air around the world; be kind and slow down for them.",
+   "calls": "K2BSA and Scout stations everywhere",
+   "url": "https://en.wikipedia.org/wiki/Jamboree_on_the_Air"
+  },
+  {
+   "title": "Straight Key Night",
+   "start": "2027-01-01",
+   "end": "2027-01-01",
+   "times": "0000Z-2359Z",
+   "about": "Every January 1. CW with a straight key or bug; everyone is welcome, no score.",
+   "calls": "W1AW and stations everywhere",
+   "url": "https://www.arrl.org/straight-key-night"
+  },
+  {
+   "title": "Museum Ships Weekend",
+   "start": "2027-06-05",
+   "end": "2027-06-06",
+   "times": "0000Z Sat-2359Z Sun",
+   "about": "First full weekend of June. Battleships, submarines, lightships and other museum ships on the air.",
+   "calls": "NJ2BB (USS New Jersey) and 100+ ships",
+   "url": "https://www.nj2bb.org/museum/"
+  },
+  {
+   "title": "13 Colonies Special Event",
+   "start": "2027-07-01",
+   "end": "2027-07-07",
+   "times": "1300Z Jul 1-0400Z Jul 7",
+   "about": "Every July 1-7. Work all 13 colonies plus the bonus stations for a clean sweep certificate.",
+   "calls": "K2A-K2M, WM3PEN, GB13COL",
+   "url": "https://www.13colonies.net/"
+  },
+  {
+   "title": "International Lighthouse Lightship Weekend (ILLW)",
+   "start": "2027-08-21",
+   "end": "2027-08-22",
+   "times": "0001Z Sat-2400Z Sun",
+   "about": "Third full weekend of August. Hundreds of lighthouses worldwide on the air.",
+   "calls": "Lighthouse stations worldwide",
+   "url": "https://illw.net/"
+  },
+  {
+   "title": "Route 66 On The Air",
+   "start": "2027-09-11",
+   "end": "2027-09-19",
+   "times": "",
+   "about": "Usually starts the second Saturday of September for 9 days. Stations along historic Route 66 (W6A-W6U style calls).",
+   "calls": "Citrus Belt ARC (W6JBR) and stations along Route 66",
+   "url": "https://www.arrl.org/Events/view/159881"
+  },
+  {
+   "title": "Jamboree on the Air (JOTA)",
+   "start": "2027-10-16",
+   "end": "2027-10-17",
+   "times": "",
+   "about": "Third full weekend of October. Scouts on the air around the world; be kind and slow down for them.",
+   "calls": "K2BSA and Scout stations everywhere",
+   "url": "https://en.wikipedia.org/wiki/Jamboree_on_the_Air"
+  }
+ ],
+ "status": {
+  "ARRL": "ok (49)"
+ }
+}
