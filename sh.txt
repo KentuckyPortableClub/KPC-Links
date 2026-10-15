@@ -1,19 +1,45 @@
-## https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9719 27111
-   Fishing Forecasts | https://fw.ky.gov/Fish/Documents/CurrentFishingForecast.pdf
-## https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=224 32514
-   Fishing Forecasts | https://fw.ky.gov/Fish/Documents/CurrentFishingForecast.pdf
-## https://parks.ky.gov/lucas/parks/resort/barren-river-lake-state-resort-park 148181
-## https://eec.ky.gov/Nature-Preserves/Locations/Pages/Bad-Branch.aspx 180807
-   GIS and Maps | /Environmental-Protection/Water/GIS/Pages/default.aspx
-   Data and Maps | /Energy/Data-Maps/Pages/default.aspx
-   Use Google Maps to navigate | https&#58;//maps.app.goo.gl/NC991bB4A4sQgh35A
-   Civil Rights/Derecho Civiles | /Documents/EEC%20Title%20VI%20Report.pdf
-## https://eec.ky.gov/Nature-Preserves/Locations/Pages/Dr.-William-H.-Martin-WWCA.aspx 180834
-   GIS and Maps | /Environmental-Protection/Water/GIS/Pages/default.aspx
-   Data and Maps | /Energy/Data-Maps/Pages/default.aspx
-   Civil Rights/Derecho Civiles | /Documents/EEC%20Title%20VI%20Report.pdf
-## https://www.nps.gov/maca/planyourvisit/maps.htm 39357
-   Maps | /maca/planyourvisit/maps.htm
-   cartography site. | https://www.nps.gov/carto/app/#!/maps/alphacode/MACA
-   available in a variety of formats | /maca/planyourvisit/mammoth-cave-map-guide.htm
-## https://www.fws.gov/refuge/clarks-river ERR HTTP Error 403: Forbidden
+## https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9719
+   .pdf']{
+            background:none !important;
+            padding:0px !important;
+            background-position:0px !important;
+        }
+
+
+        .body
+   .pdf'], .bodyRow dt a[href$='.pdf'], .bodyRow li a[href$='.PDF'], .bodyRow dt a[href$='.PDF'] {
+            background:none !important;
+            padding:0px !i
+   https://fw.ky.gov/More/Documents/Blackford_oaksWMAAll.pdf' target='_blank'
+   location map' class='img-responsive' src='https://app.fw.ky.gov/kfwis/Map_Images/Blackford_oaks_onlineimage.png' /
+   https://fw.ky.gov/More/Documents/Blackford_oaksWMAAll.pdf' target='_blank'
+   View Detailed Map
+   Mapping Resources
+   https://fw.ky.gov/More/Documents/Blackford_oaksWMAAll.pdf' target='_blank'
+## https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=224
+   .pdf']{
+            background:none !important;
+            padding:0px !important;
+            background-position:0px !important;
+        }
+
+
+        .body
+   .pdf'], .bodyRow dt a[href$='.pdf'], .bodyRow li a[href$='.PDF'], .bodyRow dt a[href$='.PDF'] {
+            background:none !important;
+            padding:0px !i
+   https://fw.ky.gov/More/Documents/BallardWMA_All.pdf' target='_blank'
+   location map' class='img-responsive' src='https://app.fw.ky.gov/kfwis/Map_Images/BallardWMAOnline_Image.jpg' /
+   https://fw.ky.gov/More/Documents/BallardWMA_All.pdf' target='_blank'
+   View Detailed Map
+   Mapping Resources
+   https://fw.ky.gov/More/Documents/BallardWMA_All.pdf' target='_blank'
+   https://fw.ky.gov/More/Documents/Ballard_FactSheet.pdf' target='_blank'
+   https://fw.ky.gov/More/Documents/BallardViewingBrochure.pdf' target='_blank'
+## https://parks.ky.gov/lucas/parks/resort/barren-river-lake-state-resort-park
+   Park Map","url":"/parks/park-map","slug":"parkspark-map","children":[]}],"type":5,"titleSlug":"parks","url":"","isLinkedPage":false},{"title":"Things To Do","links":[{"
+   Campground Map","content":"https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map.pdf?sfvrsn=efea5433_2"},{"title":"Park Map","content":"h
+   ttps://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map.pdf?sfvrsn=b177d244_2"}],"mainCategory":"Parks","mainImage":"http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=a15f8500-cfe5-4ce0-848a-70607e
+   Campground Map","content":"https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map.pdf?sfvrsn=efea5433_2"},{"title":"Park Map","content":"h
+   ttps://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map.pdf?sfvrsn=b177d244_2"}],"mainCategory":"Parks","mainImage":"http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=a15f8500-cfe5-4ce0-848a-70607e
+## https://eec.ky.gov/Nature-Preserves/Locations/Pages/Bad-Branch.aspx
