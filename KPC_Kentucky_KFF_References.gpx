@@ -2,787 +2,925 @@
 <gpx version="1.1" creator="Kentucky Portable Club" xmlns="http://www.topografix.com/GPX/1/1">
 <metadata><name>KPC Kentucky WWFF (KFF) References</name></metadata>
 <wpt lat="36.60383" lon="-83.67406"><name>KFF-0019 Cumberland Gap (KY)</name><desc>Cumberland Gap (KY)
+Bell / Harlan Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-0019
 Matching POTA park: US-0019 Cumberland Gap National Historical Park — https://next.pota.app/park/US-0019
 Official map: https://www.nps.gov/cuga/planyourvisit/upload/CUGAmap1-3.pdf
 Website: https://www.nps.gov/cuga/index.htm
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-0019"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.18771" lon="-86.09425"><name>KFF-0050 Mammoth Cave</name><desc>Mammoth Cave
+Barren / Edmonson / Hart Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-0050
 Matching POTA park: US-0050 Mammoth Cave National Park — https://next.pota.app/park/US-0050
 Official map: https://www.nps.gov/maca/planyourvisit/maps.htm
 Website: https://www.nps.gov/maca/index.htm
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-0050"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.87994" lon="-88.34536"><name>KFF-0295 Clarks River</name><desc>Clarks River
+Marshall County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-0295
 Matching POTA park: US-0295 Clarks River National Wildlife Refuge — https://next.pota.app/park/US-0295
 Official map: https://www.fws.gov/sites/default/files/documents/2024-08/public-map-july-2024.pdf
 Website: https://www.fws.gov/refuge/clarks-river
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-0295"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
+<wpt lat="39.40817" lon="-82.25837"><name>KFF-0608 Ohio River Islands</name><desc>Ohio River Islands
+Lewis County
+WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-0608
+Matching POTA park: US-0608 Ohio River Islands National Wildlife Refuge — https://next.pota.app/park/US-0608
+Official map: https://www.fws.gov/refuge/ohio-river-islands/visit-us
+Website: https://www.fws.gov/refuge/ohio-river-islands
+Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-0608"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
+<wpt lat="36.4884" lon="-84.6971"><name>KFF-0686 Big South Fork</name><desc>Big South Fork
+McCreary / Scott Counties
+WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-0686
+Matching POTA park: US-0686 Big South Fork National Recreation Area — https://next.pota.app/park/US-0686
+Official map: https://www.nps.gov/biso/planyourvisit/maps.htm
+Website: https://www.nps.gov/biso/index.htm
+Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-0686"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.61146" lon="-85.63711"><name>KFF-0724 Abraham Lincoln Birthplace</name><desc>Abraham Lincoln Birthplace
+Larue County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-0724
 Matching POTA park: US-0724 Abraham Lincoln Birthplace National Historic Site — https://next.pota.app/park/US-0724
 Official map: https://www.nps.gov/abli/planyourvisit/maps.htm
 Website: https://www.nps.gov/abli/index.htm
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-0724"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.23085" lon="-83.00133"><name>KFF-1251 Carr Creek</name><desc>Carr Creek
+Knott County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1251
 Matching POTA park: US-1251 Carr Creek State Park — https://next.pota.app/park/US-1251
 Official map: https://fw.ky.gov/More/Documents/carrcreeklakewma_all.pdf
+Website: https://next.pota.app/park/US-1251
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1251"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.76289" lon="-89.10957"><name>KFF-1252 Columbus Belmont</name><desc>Columbus Belmont
+Hickman County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1252
 Matching POTA park: US-1252 Columbus Belmont State Park — https://next.pota.app/park/US-1252
 Website: https://parks.ky.gov/columbus/parks/historic/columbus-belmont-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1252"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.73721" lon="-82.89674"><name>KFF-1253 Dawkins Line Rail Trail</name><desc>Dawkins Line Rail Trail
+Johnson County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1253
 Matching POTA park: US-1253 Dawkins Line Rail Trail State Park — https://next.pota.app/park/US-1253
 Official map: https://parks.ky.gov/explore/dawkins-line-rail-trail-7831
 Website: https://parks.ky.gov/swamp-branch/parks/recreation/dawkins-line-rail-trail
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1253"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.28627" lon="-85.55821"><name>KFF-1254 E.P. "Tom" Sawyer</name><desc>E.P. "Tom" Sawyer
+Jefferson County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1254
 Matching POTA park: US-1254 E.P. 'Tom' Sawyer State Park — https://next.pota.app/park/US-1254
 Website: https://parks.ky.gov/louisville/parks/recreation/ep-tom-sawyer-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1254"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.43954" lon="-82.41975"><name>KFF-1255 Fishtrap Lake</name><desc>Fishtrap Lake
+<wpt lat="37.44224" lon="-82.41573"><name>KFF-1255 Fishtrap Lake</name><desc>Fishtrap Lake
+Pike County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1255
 Matching POTA park: US-1255 Fishtrap Lake Wildlife Management Area — https://next.pota.app/park/US-1255
 Official map: https://fw.ky.gov/More/Documents/FishtrapLakeWMA_All.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=25
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1255"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.89400" lon="-84.27297"><name>KFF-1256 Fort Boonesborough</name><desc>Fort Boonesborough
+<wpt lat="37.894" lon="-84.27297"><name>KFF-1256 Fort Boonesborough</name><desc>Fort Boonesborough
+Madison County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1256
 Matching POTA park: US-1256 Fort Boonesborough State Park — https://next.pota.app/park/US-1256
 Website: https://parks.ky.gov/richmond/parks/historic/fort-boonesborough-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1256"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.97399" lon="-84.60343"><name>KFF-1257 General Burnside</name><desc>General Burnside
+Pulaski County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1257
 Matching POTA park: US-1257 General Burnside State Park — https://next.pota.app/park/US-1257
 Official map: https://fw.ky.gov/More/Documents/LakeCumberlandWMA_ALL.pdf
 Website: https://parks.ky.gov/burnside/parks/recreation/general-burnside-island-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1257"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.19971" lon="-83.02662"><name>KFF-1258 Grayson Lake</name><desc>Grayson Lake
+Carter County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1258
 Matching POTA park: US-1258 Grayson Lake State Park — https://next.pota.app/park/US-1258
 Website: https://parks.ky.gov/olive-hill/parks/recreation/grayson-lake-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1258"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.27746" lon="-85.33870"><name>KFF-1259 Green River Lake</name><desc>Green River Lake
+<wpt lat="37.27746" lon="-85.3387"><name>KFF-1259 Green River Lake</name><desc>Green River Lake
+Taylor County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1259
 Matching POTA park: US-1259 Green River Lake State Park — https://next.pota.app/park/US-1259
 Official map: https://fw.ky.gov/More/Documents/GreenRiverLakeWMA_ALL.pdf
 Website: https://parks.ky.gov/campbellsville/parks/recreation/green-river-lake-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1259"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.88028" lon="-87.55994"><name>KFF-1260 John James Audubon</name><desc>John James Audubon
+Henderson County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1260
 Matching POTA park: US-1260 John James Audubon State Park — https://next.pota.app/park/US-1260
 Website: https://parks.ky.gov/henderson/parks/historic/john-james-audubon-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1260"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.72247" lon="-84.28788"><name>KFF-1261 Kincaid Lake</name><desc>Kincaid Lake
+Pendleton County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1261
 Matching POTA park: US-1261 Kincaid Lake State Park — https://next.pota.app/park/US-1261
 Website: https://parks.ky.gov/falmouth/parks/recreation/kincaid-lake-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1261"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.99214" lon="-82.97974"><name>KFF-1262 Kingdom Come</name><desc>Kingdom Come
+Letcher County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1262
 Matching POTA park: US-1262 Kingdom Come State Park — https://next.pota.app/park/US-1262
 Website: https://parks.ky.gov/cumberland/parks/recreation/kingdom-come-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1262"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.07105" lon="-87.05545"><name>KFF-1263 Lake Malone</name><desc>Lake Malone
+<wpt lat="37.07404" lon="-87.05232"><name>KFF-1263 Lake Malone</name><desc>Lake Malone
+Muhlenberg County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1263
 Matching POTA park: US-1263 Lake Malone State Park — https://next.pota.app/park/US-1263
 Website: https://parks.ky.gov/dunmor/parks/recreation/lake-malone-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1263"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.08384" lon="-84.05489"><name>KFF-1264 Levi Jackson Wilderness Road</name><desc>Levi Jackson Wilderness Road
+Laurel County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1264
 Matching POTA park: US-1264 Levi Jackson Wilderness Road State Park — https://next.pota.app/park/US-1264
 Official map: https://levijacksonpark.com/wp-content/uploads/2023/06/levi-jackson-park-map-2023.pdf
 Website: https://levijacksonpark.com/
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1264"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.76072" lon="-85.21402"><name>KFF-1265 Lincoln Homestead</name><desc>Lincoln Homestead
+Washington County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1265
 Matching POTA park: US-1265 Lincoln Homestead State Park — https://next.pota.app/park/US-1265
 Website: https://parks.ky.gov/springfield/parks/historic/lincoln-homestead-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1265"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.06032" lon="-88.08636"><name>KFF-1266 Mineral Mounds</name><desc>Mineral Mounds
+Lyon County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1266
 Matching POTA park: US-1266 Mineral Mounds State Park — https://next.pota.app/park/US-1266
 Website: https://parks.ky.gov/eddyville/parks/recreation/mineral-mound-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1266"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.80709" lon="-85.45592"><name>KFF-1267 My Old Kentucky Home</name><desc>My Old Kentucky Home
+Nelson County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1267
 Matching POTA park: US-1267 My Old Kentucky Home State Park — https://next.pota.app/park/US-1267
 Website: https://parks.ky.gov/bardstown/parks/historic/my-old-kentucky-home-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1267"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.29686" lon="-86.21173"><name>KFF-1268 Nolin Lake</name><desc>Nolin Lake
+Edmonson County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1268
 Matching POTA park: US-1268 Nolin Lake State Park — https://next.pota.app/park/US-1268
 Website: https://parks.ky.gov/mammoth-cave/parks/recreation/nolin-lake-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1268"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.76178" lon="-84.84572"><name>KFF-1269 Old Fort Harrod</name><desc>Old Fort Harrod
+Mercer County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1269
 Matching POTA park: US-1269 Old Fort Harrod State Park — https://next.pota.app/park/US-1269
 Website: https://parks.ky.gov/harrodsburg/parks/historic/old-fort-harrod-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1269"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.84369" lon="-82.87348"><name>KFF-1270 Paintsville Lake</name><desc>Paintsville Lake
+Johnson County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1270
 Matching POTA park: US-1270 Paintsville Lake State Park — https://next.pota.app/park/US-1270
 Website: https://parks.ky.gov/staffordsville/parks/recreation/paintsville-lake-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1270"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.02983" lon="-85.24966"><name>KFF-1271 Taylorsville Lake</name><desc>Taylorsville Lake
+Spencer County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1271
 Matching POTA park: US-1271 Taylorsville Lake State Park — https://next.pota.app/park/US-1271
 Website: https://parks.ky.gov/mount-eden/parks/recreation/taylorsville-lake-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1271"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.09653" lon="-82.68243"><name>KFF-1272 Yatesville Lake</name><desc>Yatesville Lake
+Lawrence County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1272
 Matching POTA park: US-1272 Yatesville Lake State Park — https://next.pota.app/park/US-1272
 Website: https://parks.ky.gov/louisa/parks/recreation/yatesville-lake-state-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1272"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.86064" lon="-86.05991"><name>KFF-1273 Barren River Lake</name><desc>Barren River Lake
+Barren County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1273
 Matching POTA park: US-1273 Barren River Lake State Park — https://next.pota.app/park/US-1273
 Official map: https://fw.ky.gov/More/Documents/barren_river_lake_all.pdf
 Website: https://parks.ky.gov/lucas/parks/resort/barren-river-lake-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1273"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.42923" lon="-83.99198"><name>KFF-1274 Blue Licks Battlefield</name><desc>Blue Licks Battlefield
+Nicholas County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1274
 Matching POTA park: US-1274 Blue Licks Battlefield State Park — https://next.pota.app/park/US-1274
 Website: https://parks.ky.gov/carlisle/parks/historic/blue-licks-battlefield-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1274"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.30618" lon="-83.44608"><name>KFF-1275 Buckhorn Lake</name><desc>Buckhorn Lake
+Perry County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1275
 Matching POTA park: US-1275 Buckhorn Lake State Park — https://next.pota.app/park/US-1275
 Official map: https://fw.ky.gov/More/Documents/BuckhornLakeWMA_ALL.pdf
+Website: https://next.pota.app/park/US-1275
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1275"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.37304" lon="-83.12737"><name>KFF-1276 Carter Caves</name><desc>Carter Caves
+Carter County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1276
 Matching POTA park: US-1276 Carter Caves State Park — https://next.pota.app/park/US-1276
 Official map: https://Eec.ky.gov/Natural-Resources/Forestry/Documents/TygartsStateForest_ALL.pdf
 Website: https://parks.ky.gov/olive-hill/parks/resort/carter-caves-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1276"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.84039" lon="-84.33981"><name>KFF-1277 Cumberland Falls</name><desc>Cumberland Falls
+Mccreary County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1277
 Matching POTA park: US-1277 Cumberland Falls State Park — https://next.pota.app/park/US-1277
 Official map: https://parks.ky.gov/parks/find-a-park/cumberland-falls-state-resort-park-7786
 Website: https://parks.ky.gov/corbin/parks/resort/cumberland-falls-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1277"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.65169" lon="-85.29811"><name>KFF-1278 Dale Hollow</name><desc>Dale Hollow
+Clinton / Cumberland Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1278
 Matching POTA park: US-1278 Dale Hollow State Park — https://next.pota.app/park/US-1278
 Website: https://parks.ky.gov/burkesville/parks/resort/dale-hollow-lake-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1278"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.67028" lon="-85.15317"><name>KFF-1279 General Butler</name><desc>General Butler
+Carroll County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1279
 Matching POTA park: US-1279 General Butler State Park — https://next.pota.app/park/US-1279
 Website: https://parks.ky.gov/carrollton/parks/historic/general-butler-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1279"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.48071" lon="-82.87319"><name>KFF-1280 Greenbo Lake</name><desc>Greenbo Lake
+Greenup County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1280
 Matching POTA park: US-1280 Greenbo Lake State Park — https://next.pota.app/park/US-1280
 Website: https://parks.ky.gov/ashland/parks/historic/greenbo-lake-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1280"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.69293" lon="-82.72530"><name>KFF-1281 Jenny Wiley</name><desc>Jenny Wiley
+<wpt lat="37.69293" lon="-82.7253"><name>KFF-1281 Jenny Wiley</name><desc>Jenny Wiley
+Floyd County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1281
 Matching POTA park: US-1281 Jenny Wiley State Park — https://next.pota.app/park/US-1281
 Website: https://parks.ky.gov/prestonsburg/parks/resort/jenny-wiley-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1281"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.75973" lon="-88.13841"><name>KFF-1282 Kenlake</name><desc>Kenlake
+Calloway / Marshall Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1282
 Matching POTA park: US-1282 Kenlake State Park — https://next.pota.app/park/US-1282
 Website: https://parks.ky.gov/hardin/parks/resort/kenlake-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1282"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.99825" lon="-88.28876"><name>KFF-1283 Kentucky Dam Village</name><desc>Kentucky Dam Village
+Marshall County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1283
 Matching POTA park: US-1283 Kentucky Dam Village State Park — https://next.pota.app/park/US-1283
 Website: https://parks.ky.gov/gilbertsville/parks/resort/kentucky-dam-village-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1283"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.84946" lon="-87.93195"><name>KFF-1284 Lake Barkley</name><desc>Lake Barkley
+Trigg County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1284
 Matching POTA park: US-1284 Lake Barkley State Park — https://next.pota.app/park/US-1284
 Website: https://parks.ky.gov/cadiz/parks/resort/lake-barkley-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1284"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.90833" lon="-85.05764"><name>KFF-1285 Lake Cumberland</name><desc>Lake Cumberland
+Russell County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1285
 Matching POTA park: US-1285 Lake Cumberland State Park — https://next.pota.app/park/US-1285
 Website: https://parks.ky.gov/jamestown/parks/resort/lake-cumberland-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1285"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.77692" lon="-83.68837"><name>KFF-1286 Natural Bridge</name><desc>Natural Bridge
+Powell / Wolfe Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1286
 Matching POTA park: US-1286 Natural Bridge State Park — https://next.pota.app/park/US-1286
 Official map: https://parks.ky.gov/explore/natural-bridge-state-resort-park-7796
 Website: https://parks.ky.gov/slade/parks/resort/natural-bridge-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1286"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.07247" lon="-87.66307"><name>KFF-1287 Pennyrile Forest</name><desc>Pennyrile Forest
+Caldwell / Christian / Hopkins Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1287
 Matching POTA park: US-1287 Pennyrile Forest State Park — https://next.pota.app/park/US-1287
 Official map: https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map08cc7e0a-9307-47b3-85e9-29db02ce7648.pdf?sfvrsn=145d90d5_2
 Website: https://parks.ky.gov/dawson-springs/parks/resort/pennyrile-forest-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1287"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.74721" lon="-83.71239"><name>KFF-1288 Pine Mountain</name><desc>Pine Mountain
+Bell County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1288
 Matching POTA park: US-1288 Pine Mountain State Park — https://next.pota.app/park/US-1288
 Website: https://parks.ky.gov/pineville/parks/resort/pine-mountain-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1288"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.61037" lon="-86.50534"><name>KFF-1289 Rough River Dam</name><desc>Rough River Dam
+Grayson County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-1289
 Matching POTA park: US-1289 Rough River Dam State Park — https://next.pota.app/park/US-1289
 Website: https://parks.ky.gov/falls-rough/parks/resort/rough-river-dam-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-1289"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.88694" lon="-84.74778"><name>KFF-3779 Big Bone Lick</name><desc>Big Bone Lick
+Boone County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3779
 Matching POTA park: US-3779 Big Bone Lick State Historic Site — https://next.pota.app/park/US-3779
 Website: https://parks.ky.gov/union/parks/historic/big-bone-lick-state-historic-site
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3779"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.30260" lon="-82.31215"><name>KFF-3781 Breaks Interstate Park</name><desc>Breaks Interstate Park
+<wpt lat="37.3026" lon="-82.31215"><name>KFF-3781 Breaks Interstate Park</name><desc>Breaks Interstate Park
+Pike County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3781
 Matching POTA park: US-3781 Breaks Interstate State Park — https://next.pota.app/park/US-3781
 Official map: https://www.breakspark.com/parkmap
 Website: https://www.breakspark.com/
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3781"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.83974" lon="-83.91893"><name>KFF-3782 Dr. Thomas Walker</name><desc>Dr. Thomas Walker
+Knox County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3782
 Matching POTA park: US-3782 Dr. Thomas Walker State Historic Site — https://next.pota.app/park/US-3782
 Website: https://parks.ky.gov/barbourville/parks/historic/dr-thomas-walker-state-historic-site
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3782"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.84183" lon="-87.30012"><name>KFF-3783 Jefferson Davis</name><desc>Jefferson Davis
+Todd County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3783
 Matching POTA park: US-3783 Jefferson Davis State Historic Site — https://next.pota.app/park/US-3783
 Website: https://parks.ky.gov/fairview/parks/historic/jefferson-davis-state-historic-site
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3783"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="36.67650" lon="-85.70640"><name>KFF-3784 Old Mulkey Meetinghouse</name><desc>Old Mulkey Meetinghouse
+<wpt lat="36.6765" lon="-85.7064"><name>KFF-3784 Old Mulkey Meetinghouse</name><desc>Old Mulkey Meetinghouse
+Monroe County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3784
 Matching POTA park: US-3784 Old Mulkey Meetinghouse State Historic Site — https://next.pota.app/park/US-3784
 Website: https://parks.ky.gov/tompkinsville/parks/historic/old-mulkey-meetinghouse-state-historic-site
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3784"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.97155" lon="-84.53729"><name>KFF-3786 Waveland</name><desc>Waveland
+Fayette County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3786
 Matching POTA park: US-3786 Waveland State Historic Site — https://next.pota.app/park/US-3786
 Website: https://parks.ky.gov/lexington/parks/historic/waveland-state-historic-site
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3786"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="36.50452" lon="-88.06050"><name>KFF-3790 Fort Heiman</name><desc>Fort Heiman
+<wpt lat="36.50452" lon="-88.0605"><name>KFF-3790 Fort Heiman</name><desc>Fort Heiman
+Calloway County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3790
 Matching POTA park: US-3790 Fort Heiman National Battlefield — https://next.pota.app/park/US-3790
 Official map: https://www.nps.gov/fodo/planyourvisit/maps.htm
 Website: https://www.nps.gov/fodo/planyourvisit/maps.htm
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3790"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.77781" lon="-88.06315"><name>KFF-3792 Land Between the Lakes</name><desc>Land Between the Lakes
+Trigg County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3792
 Matching POTA park: US-3792 Land Between the Lakes National Recreation Area — https://next.pota.app/park/US-3792
 Official map: https://www.landbetweenthelakes.us/help-center/lbl-maps/
 Website: https://landbetweenthelakes.us/
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3792"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.15956" lon="-89.06136"><name>KFF-3793 Ballard</name><desc>Ballard
+Ballard County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3793
 Matching POTA park: US-3793 Ballard Wildlife Management Area — https://next.pota.app/park/US-3793
 Official map: https://fw.ky.gov/More/Documents/BallardWMA_All.pdf
 Website: https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=224
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3793"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.89665" lon="-84.44023"><name>KFF-3794 Beaver Creek</name><desc>Beaver Creek
+McCreary County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3794
 Matching POTA park: US-3794 Beaver Creek Wildlife Management Area — https://next.pota.app/park/US-3794
 Official map: https://fw.ky.gov/More/Documents/BeaverCreekWMA_ALL.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=39
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3794"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.55871" lon="-88.13278"><name>KFF-3795 Beechy Creek</name><desc>Beechy Creek
+Calloway County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3795
 Matching POTA park: US-3795 Beechy Creek Wildlife Management Area — https://next.pota.app/park/US-3795
 Official map: https://fw.ky.gov/More/Documents/BeechyCreekWMA-ALL.pdf
 Website: https://fw.ky.gov/More/Documents/BeechyCreekWMA-ALL.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3795"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.52021" lon="-88.03207"><name>KFF-3796 Big Rivers</name><desc>Big Rivers
+Crittenden / Union  Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3796
 Matching POTA park: US-3796 Big Rivers Wildlife Management Area — https://next.pota.app/park/US-3796
 Official map: https://fw.ky.gov/More/Documents/BigRiversWMA_and_StateForest_all.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9203
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3796"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.05045" lon="-89.10556"><name>KFF-3797 Boatwright</name><desc>Boatwright
+Ballard County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3797
 Matching POTA park: US-3797 Boatwright Wildlife Management Area — https://next.pota.app/park/US-3797
 Official map: https://fw.ky.gov/More/Documents/BoatwrightWMA_All.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=222
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3797"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.10713" lon="-84.40964"><name>KFF-3798 Buck Creek</name><desc>Buck Creek
+Pulaski County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3798
 Matching POTA park: US-3798 Buck Creek Wildlife Management Area — https://next.pota.app/park/US-3798
 Official map: https://fw.ky.gov/More/Documents/BuckCreekWMA_All.pdf
 Website: https://fw.ky.gov/More/Documents/BuckCreekWMA_All.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3798"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.16810" lon="-83.70774"><name>KFF-3799 Burchell-Beech</name><desc>Burchell-Beech
+<wpt lat="37.1681" lon="-83.70774"><name>KFF-3799 Burchell-Beech</name><desc>Burchell-Beech
+Clay County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3799
 Matching POTA park: US-3799 Burchell-Beech Wildlife Management Area — https://next.pota.app/park/US-3799
 Official map: https://fw.ky.gov/More/Documents/Burchell-BeechCreekWMA_ALL.pdf
+Website: https://next.pota.app/park/US-3799
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3799"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.47499" lon="-84.55799"><name>KFF-3800 Cedar Creek Lake</name><desc>Cedar Creek Lake
+Hopkins County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3800
 Matching POTA park: US-3800 Cedar Creek Lake Wildlife Management Area — https://next.pota.app/park/US-3800
 Official map: https://fw.ky.gov/More/Documents/CedarCreekLakeWMA_ALL.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9004
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3800"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.82348" lon="-83.56630"><name>KFF-3801 Clifty</name><desc>Clifty
+<wpt lat="37.82348" lon="-83.5663"><name>KFF-3801 Clifty</name><desc>Clifty
+Menifee / Wolfe Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3801
 Matching POTA park: US-3801 Clifty Wilderness Area — https://next.pota.app/park/US-3801
 Official map: https://www.fs.usda.gov/r08/danielboone/maps-guides
 Website: https://www.fs.usda.gov/recarea/dbnf/recarea/?recid=39460
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3801"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="38.13550" lon="-84.85488"><name>KFF-3802 Clyde E. Buckley Wildlife Sanctuary and Audubon Center</name><desc>Clyde E. Buckley Wildlife Sanctuary and Audubon Center
+<wpt lat="38.1355" lon="-84.85488"><name>KFF-3802 Clyde E. Buckley Wildlife Sanctuary and Audubon Center</name><desc>Clyde E. Buckley Wildlife Sanctuary and Audubon Center
+Franklin County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3802
 Matching POTA park: US-3802 Clyde E Buckley Sanctuary — https://next.pota.app/park/US-3802
 Official map: https://bggreensource.org/wp-content/uploads/2025/01/1_Full_Sanctuary_All_Trails_50_foot_Contours.pdf-compressed_1.pdf
 Website: https://bggreensource.org/buckley/
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3802"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.91833" lon="-89.02762"><name>KFF-3803 Coil Estate</name><desc>Coil Estate
+Carlisle County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3803
 Matching POTA park: US-3803 Coil Estate Wildlife Management Area — https://next.pota.app/park/US-3803
 Official map: https://fw.ky.gov/More/Documents/CoilEstateWMA_ALL.pdf
 Website: https://fw.ky.gov/More/Documents/CoilEstateWMA_ALL.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3803"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="36.75560" lon="-83.19665"><name>KFF-3804 Cranks Creek</name><desc>Cranks Creek
+<wpt lat="36.7556" lon="-83.19665"><name>KFF-3804 Cranks Creek</name><desc>Cranks Creek
+Harlan County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3804
 Matching POTA park: US-3804 Cranks Creek Wildlife Management Area — https://next.pota.app/park/US-3804
 Official map: https://fw.ky.gov/More/Documents/CranksCreekWMA_ALL.pdf
 Website: https://fw.ky.gov/More/Documents/CranksCreekWMA_ALL.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3804"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="38.76350" lon="-84.59865"><name>KFF-3805 Curtis Gates Lloyd</name><desc>Curtis Gates Lloyd
+<wpt lat="38.7635" lon="-84.59865"><name>KFF-3805 Curtis Gates Lloyd</name><desc>Curtis Gates Lloyd
+Grant County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3805
 Matching POTA park: US-3805 Curtis Gates Lloyd Wildlife Management Area — https://next.pota.app/park/US-3805
 Official map: https://fw.ky.gov/More/Documents/CurtisGatesLloydWMA_ALL.pdf
 Website: https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=153
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3805"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.26565" lon="-85.14895"><name>KFF-3806 Dennis-Gray</name><desc>Dennis-Gray
+Adair County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3806
 Matching POTA park: US-3806 Dennis-Gray Wildlife Management Area — https://next.pota.app/park/US-3806
 Official map: https://fw.ky.gov/More/Documents/Dennis-GrayWMA_ALL.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=148
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3806"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.49205" lon="-84.50113"><name>KFF-3807 Dix River</name><desc>Dix River
+Lincoln County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3807
 Matching POTA park: US-3807 Dix River Wildlife Management Area — https://next.pota.app/park/US-3807
 Official map: https://fw.ky.gov/More/Documents/DixRiverWMA_ALL.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9032
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3807"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.81162" lon="-89.11526"><name>KFF-3808 Doug Travis</name><desc>Doug Travis
+Carlisle / Hickman Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3808
 Matching POTA park: US-3808 Doug Travis Wildlife Management Area — https://next.pota.app/park/US-3808
 Official map: https://fw.ky.gov/More/Documents/DougTravisWMA_ALL.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=40
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3808"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.39458" lon="-84.72873"><name>KFF-3809 Dr. James R. Rich</name><desc>Dr. James R. Rich
+Owen County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3809
 Matching POTA park: US-3809 Dr. James R. Rich Wildlife Management Area — https://next.pota.app/park/US-3809
 Official map: https://fw.ky.gov/More/Documents/Dr.JamesR.RichWMA_ALL.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=34
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3809"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.92098" lon="-84.74679"><name>KFF-3810 Dr. Norman And Martha Adair</name><desc>Dr. Norman And Martha Adair
+Boone County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3810
 Matching POTA park: US-3810 Dr. Norman And Martha Adair Wildlife Management Area — https://next.pota.app/park/US-3810
 Official map: https://fw.ky.gov/More/Documents/Dr.NormanandMarthaAdairWMA_all.pdf
+Website: https://next.pota.app/park/US-3810
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3810"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.12682" lon="-83.18827"><name>KFF-3811 Ed Mabry-Laurel Gorge</name><desc>Ed Mabry-Laurel Gorge
+Elliott County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3811
 Matching POTA park: US-3811 Ed Mabry-Laurel Gorge Wildlife Management Area — https://next.pota.app/park/US-3811
 Official map: https://fw.ky.gov/More/Documents/EdMabry-LaurelGorgeWMA_ALL.pdf
 Website: https://fw.ky.gov/More/Documents/EdMabry-LaurelGorgeWMA_ALL.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3811"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.43307" lon="-83.63288"><name>KFF-3812 Fleming</name><desc>Fleming
+Fleming County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3812
 Matching POTA park: US-3812 Fleming Wildlife Management Area — https://next.pota.app/park/US-3812
 Official map: https://fw.ky.gov/More/Documents/FlemingWMA_ALL.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=154
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3812"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.33202" lon="-84.35598"><name>KFF-3813 Griffith Woods</name><desc>Griffith Woods
+Harrison County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3813
 Matching POTA park: US-3813 Griffith Woods Wildlife Management Area — https://next.pota.app/park/US-3813
 Official map: https://fw.ky.gov/More/Documents/GriffithWoodsWMA_ALL.pdf
+Website: https://next.pota.app/park/US-3813
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3813"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.02505" lon="-82.91394"><name>KFF-3814 Hensley-Pine Mountain</name><desc>Hensley-Pine Mountain
+Letcher County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3814
 Matching POTA park: US-3814 Hensley-Pine Mountain Wildlife Management Area — https://next.pota.app/park/US-3814
 Official map: https://fw.ky.gov/More/Documents/Hensley-PineMountainWMA_ALL.pdf
 Website: https://fw.ky.gov/More/Documents/Hensley-PineMountainWMA_ALL.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3814"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.63571" lon="-87.87955"><name>KFF-3815 Higginson-Henry</name><desc>Higginson-Henry
+Union County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3815
 Matching POTA park: US-3815 Higginson-Henry Wildlife Management Area — https://next.pota.app/park/US-3815
 Official map: https://fw.ky.gov/More/Documents/Higginson-HenryWMA_ALL.pdf
 Website: https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=132
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3815"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.35804" lon="-84.78471"><name>KFF-3816 John A. Kleber</name><desc>John A. Kleber
+Franklin / Owen Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3816
 Matching POTA park: US-3816 John A. Kleber Wildlife Management Area — https://next.pota.app/park/US-3816
 Official map: https://fw.ky.gov/More/Documents/John_A_Kleber_WMA_ALL.pdf
 Website: https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=14
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3816"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.77559" lon="-85.68407"><name>KFF-3817 John C. Williams</name><desc>John C. Williams
+Nelson County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3817
 Matching POTA park: US-3817 John C. Williams Wildlife Management Area — https://next.pota.app/park/US-3817
 Official map: https://fw.ky.gov/More/Documents/JohnCWilliamsWMA_ALL.pdf
 Website: https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=238
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3817"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.12871" lon="-87.76411"><name>KFF-3818 Jones-Keeney</name><desc>Jones-Keeney
+Caldwell County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3818
 Matching POTA park: US-3818 Jones-Keeney Wildlife Management Area — https://next.pota.app/park/US-3818
 Official map: https://fw.ky.gov/More/Documents/Jones-KeeneyWMA_All.pdf
 Website: https://fw.ky.gov/More/Documents/Jones-KeeneyWMA_All.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3818"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.84104" lon="-88.52971"><name>KFF-3819 Kaler Bottoms</name><desc>Kaler Bottoms
+Graves County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3819
 Matching POTA park: US-3819 Kaler Bottoms Wildlife Management Area — https://next.pota.app/park/US-3819
 Official map: https://fw.ky.gov/More/Documents/KalerBottomsWMA_All.pdf
 Website: https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=21
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3819"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.42609" lon="-84.91662"><name>KFF-3820 Kentucky River</name><desc>Kentucky River
+Henry / Owen Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3820
 Matching POTA park: US-3820 Kentucky River Wildlife Management Area — https://next.pota.app/park/US-3820
 Official map: https://fw.ky.gov/More/Documents/KentuckyRiverWMA_All.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=169
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3820"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.55026" lon="-86.71243"><name>KFF-3821 L. B. Davison</name><desc>L. B. Davison
+Ohio County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3821
 Matching POTA park: US-3821 L. B. Davison Wildlife Management Area — https://next.pota.app/park/US-3821
 Official map: https://fw.ky.gov/More/Documents/L.B.DavisonWMA_ALL.pdf
 Website: https://fw.ky.gov/More/Documents/L.B.DavisonWMA_ALL.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3821"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.50132" lon="-87.68641"><name>KFF-3822 Lee K. Nelson</name><desc>Lee K. Nelson
+Webster County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3822
 Matching POTA park: US-3822 Lee K. Nelson Wildlife Management Area — https://next.pota.app/park/US-3822
 Official map: https://fw.ky.gov/More/Documents/LeeKNelsonWMA_ALL.pdf
 Website: https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=9011
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3822"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.33641" lon="-88.41707"><name>KFF-3823 Livingston County</name><desc>Livingston County
+Livingston County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3823
 Matching POTA park: US-3823 Livingston County Wildlife Management Area — https://next.pota.app/park/US-3823
 Official map: https://fw.ky.gov/More/Documents/LivingstonCountyWMAandStateNaturalArea_All.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9117
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3823"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.53587" lon="-85.12482"><name>KFF-3824 Marion County</name><desc>Marion County
+Marion County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3824
 Matching POTA park: US-3824 Marion County Wildlife Management Area — https://next.pota.app/park/US-3824
 Official map: https://fw.ky.gov/More/Documents/MarionCountyWMAandSF_ALL.pdf
 Website: https://fw.ky.gov/More/Documents/MarionCountyWMAandSF_ALL.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3824"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.63504" lon="-84.20040"><name>KFF-3825 Miller Welch</name><desc>Miller Welch
+<wpt lat="37.63504" lon="-84.2004"><name>KFF-3825 Miller Welch</name><desc>Miller Welch
+Madison County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3825
 Matching POTA park: US-3825 Miller Welch Wildlife Management Area — https://next.pota.app/park/US-3825
 Official map: https://fw.ky.gov/More/Documents/MillerWelch-CentralKentuckyWMA_ALL.pdf
 Website: https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=15
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3825"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.80373" lon="-84.60777"><name>KFF-3826 Mullins</name><desc>Mullins
+Kenton County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3826
 Matching POTA park: US-3826 Mullins Wildlife Management Area — https://next.pota.app/park/US-3826
 Official map: https://fw.ky.gov/More/Documents/MullinsWMA_ALL.pdf
 Website: https://fw.ky.gov/More/Documents/MullinsWMA_ALL.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3826"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.63206" lon="-89.12552"><name>KFF-3827 Obion Creek</name><desc>Obion Creek
+Carlisle / Fulton / Hickman Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3827
 Matching POTA park: US-3827 Obion Creek Wildlife Management Area — https://next.pota.app/park/US-3827
 Official map: https://fw.ky.gov/More/Documents/ObionCreekWMA_ALL.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=176
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3827"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.25051" lon="-87.18441"><name>KFF-3828 Peabody</name><desc>Peabody
+Hopkins / Muhlenberg / Ohio Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3828
 Matching POTA park: US-3828 Peabody Wildlife Management Area — https://next.pota.app/park/US-3828
 Official map: https://fw.ky.gov/More/Documents/PeabodyAll.pdf
 Website: https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=229
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3828"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.16373" lon="-85.07198"><name>KFF-3829 R. F. Tarter</name><desc>R. F. Tarter
+Adair / Russell Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3829
 Matching POTA park: US-3829 R. F. Tarter Wildlife Management Area — https://next.pota.app/park/US-3829
 Official map: https://fw.ky.gov/More/Documents/RFTarterWMA_ALL.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=171
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3829"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.85936" lon="-87.78016"><name>KFF-3830 Sloughs</name><desc>Sloughs
+Henderson / Union Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3830
 Matching POTA park: US-3830 Sloughs Wildlife Management Area — https://next.pota.app/park/US-3830
 Official map: https://fw.ky.gov/More/Documents/Sloughs_WMA_All.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=230
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3830"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.73422" lon="-82.93597"><name>KFF-3831 South Shore</name><desc>South Shore
+Greenup County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3831
 Matching POTA park: US-3831 South Shore Wildlife Management Area — https://next.pota.app/park/US-3831
 Official map: https://fw.ky.gov/More/Documents/SouthShoreWMA_ALL.pdf
 Website: https://fw.ky.gov/More/Documents/SouthShoreWMA_ALL.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3831"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.75677" lon="-83.14449"><name>KFF-3832 Stone Mountain</name><desc>Stone Mountain
+Harlan County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3832
 Matching POTA park: US-3832 Stone Mountain Wildlife Management Area — https://next.pota.app/park/US-3832
 Official map: https://fw.ky.gov/More/Documents/StoneMountainWMAandStateNaturalArea_ALL.pdf
 Website: https://fw.ky.gov/More/Documents/StoneMountainWMAandStateNaturalArea_ALL.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3832"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.27899" lon="-84.82428"><name>KFF-3833 T. N. Sullivan</name><desc>T. N. Sullivan
+Franklin County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3833
 Matching POTA park: US-3833 T. N. Sullivan Wildlife Management Area — https://next.pota.app/park/US-3833
 Official map: https://fw.ky.gov/More/Documents/TN_SullivanWMA_All.pdf
 Website: https://fw.ky.gov/More/Documents/TN_SullivanWMA_All.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3833"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.15136" lon="-87.67004"><name>KFF-3834 Tradewater</name><desc>Tradewater
+Christian / Hopkins Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3834
 Matching POTA park: US-3834 Tradewater Wildlife Management Area — https://next.pota.app/park/US-3834
 Official map: https://fw.ky.gov/More/Documents/PennyrileStateForestandTradewaterWMA_ALL.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=128
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3834"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.57473" lon="-85.03194"><name>KFF-3835 Twin Eagle</name><desc>Twin Eagle
+Owen County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3835
 Matching POTA park: US-3835 Twin Eagle Wildlife Management Area — https://next.pota.app/park/US-3835
 Official map: https://fw.ky.gov/More/Documents/TwinEagleWMA_ALL.pdf
 Website: https://fw.ky.gov/More/Documents/TwinEagleWMA_ALL.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3835"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.32112" lon="-84.54838"><name>KFF-3836 Veterans Memorial</name><desc>Veterans Memorial
+Scott County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3836
 Matching POTA park: US-3836 Veterans Memorial Wildlife Management Area — https://next.pota.app/park/US-3836
 Official map: https://fw.ky.gov/More/Documents/Veterans_Memorial_WMA_all.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9202
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3836"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.11454" lon="-88.82137"><name>KFF-3837 West Kentucky</name><desc>West Kentucky
+McCracken County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3837
 Matching POTA park: US-3837 West Kentucky Wildlife Management Area — https://next.pota.app/park/US-3837
 Official map: https://fw.ky.gov/More/Documents/West_Kentucky_WMA.pdf
 Website: https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=137
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3837"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="36.92229" lon="-89.05777"><name>KFF-3838 Winford</name><desc>Winford
+Carlisle County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3838
 Matching POTA park: US-3838 Winford Wildlife Management Area — https://next.pota.app/park/US-3838
 Official map: https://fw.ky.gov/More/Documents/WinfordWMA_ALL.pdf
 Website: https://fw.ky.gov/More/Documents/WinfordWMA_ALL.pdf
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3838"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="38.08593" lon="-82.76413"><name>KFF-3839 Yatesville Lake</name><desc>Yatesville Lake
+Lawrence County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3839
 Matching POTA park: US-3839 Yatesville Lake Wildlife Management Area — https://next.pota.app/park/US-3839
 Official map: https://fw.ky.gov/More/Documents/YatesvilleLakeWMA_ALL.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=23
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3839"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="38.01740" lon="-86.51085"><name>KFF-3840 Yellowbank</name><desc>Yellowbank
+<wpt lat="38.0174" lon="-86.51085"><name>KFF-3840 Yellowbank</name><desc>Yellowbank
+Breckinridge County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-3840
 Matching POTA park: US-3840 Yellowbank Wildlife Management Area — https://next.pota.app/park/US-3840
 Official map: https://fw.ky.gov/More/Documents/YellowbankWMA_ALL.pdf
 Website: https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=192
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-3840"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.40292" lon="-84.15371"><name>KFF-4511 Daniel Boone</name><desc>Daniel Boone
+Bath / Clay / Estill / Harlan / Jackson / Laurel / Lee / Menifee / Leslie / McCreary / Morgan / Perry / Powell / Pulaski / Owsley / Rockcastle / Rowan / Wayne / Whitley / Wolfe Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-4511
 Matching POTA park: US-4484 Daniel Boone National Forest — https://next.pota.app/park/US-4484
 Official map: https://www.fs.usda.gov/r08/danielboone/maps-guides
 Website: https://www.fs.usda.gov/dbnf/
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-4511"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.79514" lon="-84.59427"><name>KFF-4708 Camp Nelson</name><desc>Camp Nelson
+Jessamine County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-4708
 Matching POTA park: US-7950 Camp Nelson National Monument — https://next.pota.app/park/US-7950
 Official map: https://www.nps.gov/cane/planyourvisit/maps.htm
 Website: https://www.nps.gov/cane/index.htm
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-4708"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.08680" lon="-82.73320"><name>KFF-6295 Jefferson (KY)</name><desc>Jefferson (KY)
+<wpt lat="37.0877" lon="-82.73125"><name>KFF-6295 Jefferson (KY)</name><desc>Jefferson (KY)
+Letcher / Pike Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6295
 Matching POTA park: US-4526 George Washington &amp; Jefferson National Forest — https://next.pota.app/park/US-4526
 Website: https://www.fs.usda.gov/gwj
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6295"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.89980" lon="-87.52820"><name>KFF-6607 Green River</name><desc>Green River
+<wpt lat="37.8998" lon="-87.5282"><name>KFF-6607 Green River</name><desc>Green River
+Henderson County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6607
 Matching POTA park: US-10098 Green River National Wildlife Refuge — https://next.pota.app/park/US-10098
 Official map: https://www.fws.gov/sites/default/files/documents/2024-12/2024-hunt-map-508.pdf
 Website: https://www.fws.gov/refuge/green-river/visit-us/locations/green-river-national-wildlife-refuge
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6607"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="38.68680" lon="-83.58500"><name>KFF-6608 Ohio River Islands (KY)</name><desc>Ohio River Islands (KY)
+<wpt lat="38.6868" lon="-83.585"><name>KFF-6608 Ohio River Islands (KY)</name><desc>Ohio River Islands (KY)
+Lewis County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6608
-Matching POTA park: US-10150 Ohio River Islands (KY) (POTA) — https://next.pota.app/park/US-10150
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6608"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.77680" lon="-83.68330"><name>KFF-6863 Natural Bridge</name><desc>Natural Bridge
+<wpt lat="37.7768" lon="-83.6833"><name>KFF-6863 Natural Bridge</name><desc>Natural Bridge
+Powell County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6863
-Website: https://parks.ky.gov/slade/parks/resort/natural-bridge-state-resort-park
-Note: Not an official KFF-POTA match. Related nearby POTA park: US-1286 Natural Bridge State Park — its links and access points are shown for convenience; check boundaries.
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6863"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.88590" lon="-87.48220"><name>KFF-6864 Green River</name><desc>Green River
+<wpt lat="37.8859" lon="-87.4822"><name>KFF-6864 Green River</name><desc>Green River
+Henderson County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6864
 Matching POTA park: US-7951 Green River State Forest — https://next.pota.app/park/US-7951
 Website: https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Green-River-State-Forest.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6864"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="36.91810" lon="-83.22250"><name>KFF-6865 Kentenia</name><desc>Kentenia
+<wpt lat="36.9181" lon="-83.2225"><name>KFF-6865 Kentenia</name><desc>Kentenia
+Harlan County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6865
 Matching POTA park: US-4688 Kentenia State Forest — https://next.pota.app/park/US-4688
 Official map: https://eec.ky.gov/Natural-Resources/Forestry/Documents/KenteniaStateForest_ALL.pdf
 Website: https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Kentenia-State-Forest.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6865"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="36.68410" lon="-83.80690"><name>KFF-6866 Kentucky Ridge</name><desc>Kentucky Ridge
+<wpt lat="36.6841" lon="-83.8069"><name>KFF-6866 Kentucky Ridge</name><desc>Kentucky Ridge
+Bell County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6866
 Matching POTA park: US-4689 Kentucky Ridge State Forest — https://next.pota.app/park/US-4689
 Official map: https://eec.ky.gov/Natural-Resources/Forestry/Documents/KentuckyRidgeStateForest_ALL.pdf
 Website: https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Kentucky-Ridge-State-Forest.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6866"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.07230" lon="-87.67000"><name>KFF-6867 Pennyrile</name><desc>Pennyrile
+<wpt lat="37.0723" lon="-87.67"><name>KFF-6867 Pennyrile</name><desc>Pennyrile
+Caldwell / Hopkins Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6867
 Matching POTA park: US-4692 Pennyrile State Forest — https://next.pota.app/park/US-4692
 Official map: https://eec.ky.gov/Natural-Resources/Forestry/Documents/PennyrileStateForestandTradewaterWMA_ALL.pdf
 Website: https://parks.ky.gov/dawson-springs/parks/resort/pennyrile-forest-state-resort-park
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6867"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="38.19160" lon="-85.46350"><name>KFF-6868 Rolleigh Peterson</name><desc>Rolleigh Peterson
+<wpt lat="38.1916" lon="-85.4635"><name>KFF-6868 Rolleigh Peterson</name><desc>Rolleigh Peterson
+Jefferson County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6868
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6868"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="38.38480" lon="-83.14880"><name>KFF-6869 Tygarts</name><desc>Tygarts
+<wpt lat="38.3848" lon="-83.1488"><name>KFF-6869 Tygarts</name><desc>Tygarts
+Carter County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6869
 Matching POTA park: US-4693 Tygarts State Forest — https://next.pota.app/park/US-4693
 Official map: https://eec.ky.gov/Natural-Resources/Forestry/Documents/TygartsStateForest_ALL.pdf
 Website: https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Tygarts-State-Forest.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6869"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="36.69810" lon="-84.71490"><name>KFF-6870 Little South Fork</name><desc>Little South Fork
+<wpt lat="36.6981" lon="-84.7149"><name>KFF-6870 Little South Fork</name><desc>Little South Fork
+Wayne County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6870
 Matching POTA park: US-7962 Little South Fork State Natural Area — https://next.pota.app/park/US-7962
 Website: https://eec.ky.gov/Nature-Preserves/Locations/Pages/Burnett-WWCA.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6870"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="36.73660" lon="-83.25840"><name>KFF-6871 Martin's Fork</name><desc>Martin's Fork
+<wpt lat="36.7366" lon="-83.2584"><name>KFF-6871 Martin's Fork</name><desc>Martin's Fork
+Harlan County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6871
-Matching POTA park: US-7969 Martin's Fork (POTA) — https://next.pota.app/park/US-7969
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6871"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.10520" lon="-84.23390"><name>KFF-6872 Sinking Creek</name><desc>Sinking Creek
+<wpt lat="37.1052" lon="-84.2339"><name>KFF-6872 Sinking Creek</name><desc>Sinking Creek
+Laurel County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6872
 Matching POTA park: US-7970 Sinking Creek State Natural Area — https://next.pota.app/park/US-7970
 Website: https://eec.ky.gov/Nature-Preserves/Locations/Pages/Sinking-Creek.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6872"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.03520" lon="-84.33490"><name>KFF-6873 William H. Martin</name><desc>William H. Martin
+<wpt lat="37.0352" lon="-84.3349"><name>KFF-6873 William H. Martin</name><desc>William H. Martin
+Pulaski County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6873
 Matching POTA park: US-7964 William H. Martin State Natural Area — https://next.pota.app/park/US-7964
 Website: https://eec.ky.gov/Nature-Preserves/Locations/Pages/Dr.-William-H.-Martin-WWCA.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6873"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.08250" lon="-89.08195"><name>KFF-6874 Axe Lake</name><desc>Axe Lake
+<wpt lat="37.0825" lon="-89.08195"><name>KFF-6874 Axe Lake</name><desc>Axe Lake
+Ballard County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6874
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6874"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.06760" lon="-82.77190"><name>KFF-6875 Bad Branch</name><desc>Bad Branch
+<wpt lat="37.0676" lon="-82.7719"><name>KFF-6875 Bad Branch</name><desc>Bad Branch
+Letcher County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6875
 Matching POTA park: US-7966 Bad Branch State Nature Preserve — https://next.pota.app/park/US-7966
 Official map: https://eec.ky.gov/Nature-Preserves/Brochures/BadBranchbrochure_bw.pdf
 Website: https://eec.ky.gov/Nature-Preserves/Locations/Pages/Bad-Branch.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6875"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="36.85920" lon="-83.38210"><name>KFF-6876 Blanton Forest</name><desc>Blanton Forest
+<wpt lat="36.8592" lon="-83.3821"><name>KFF-6876 Blanton Forest</name><desc>Blanton Forest
+Harlan County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6876
 Matching POTA park: US-7967 Blanton Forest State Nature Preserve — https://next.pota.app/park/US-7967
 Official map: https://eec.ky.gov/Nature-Preserves/Brochures/BlantonForestbrochure_color.pdf
 Website: https://eec.ky.gov/Nature-Preserves/Locations/Pages/Blanton-Forest.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6876"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="38.43180" lon="-83.99540"><name>KFF-6877 Blue Licks</name><desc>Blue Licks
+<wpt lat="38.4318" lon="-83.9954"><name>KFF-6877 Blue Licks</name><desc>Blue Licks
+Robertson County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6877
-Website: https://parks.ky.gov/carlisle/parks/historic/blue-licks-battlefield-state-resort-park
-Note: Not an official KFF-POTA match. Related nearby POTA park: US-1274 Blue Licks Battlefield State Park — its links and access points are shown for convenience; check boundaries.
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6877"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="36.89780" lon="-85.98110"><name>KFF-6878 Brigadoon</name><desc>Brigadoon
+<wpt lat="36.8978" lon="-85.9811"><name>KFF-6878 Brigadoon</name><desc>Brigadoon
+Barren County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6878
 Matching POTA park: US-7965 Brigadoon State Nature Preserve — https://next.pota.app/park/US-7965
 Official map: https://eec.ky.gov/Nature-Preserves/Brochures/BrigadoonBrochure_bw.pdf
 Website: https://eec.ky.gov/Nature-Preserves/Locations/Pages/Brigadoon.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6878"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="36.96490" lon="-83.10940"><name>KFF-6879 E. Lucy Braun</name><desc>E. Lucy Braun
+<wpt lat="36.96165" lon="-83.10868"><name>KFF-6879 E. Lucy Braun</name><desc>E. Lucy Braun
+Harlan County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6879
 Matching POTA park: US-7968 E. Lucy Braun State Nature Preserve — https://next.pota.app/park/US-7968
 Website: https://eec.ky.gov/Nature-Preserves/Locations/Pages/E.-Lucy-Braun.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6879"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.90270" lon="-84.35970"><name>KFF-6880 Frances Johnson Palk</name><desc>Frances Johnson Palk
+<wpt lat="37.9027" lon="-84.3597"><name>KFF-6880 Frances Johnson Palk</name><desc>Frances Johnson Palk
+Pulaski County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6880
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6880"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.2603" lon="-85.9104"><name>KFF-6881 Green River</name><desc>Green River
+Hart County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6881
-Website: https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx
-Note: Same official website as POTA US-12752 (Rush Island Bottoms, Green River State Natural Area). The WWFF directory lists coordinates in North Carolina (35.16420, -82.58400), which are wrong, so the GPS here uses the POTA park location — confirm before you travel. Not an official KFF-POTA match. Related nearby POTA park: US-12752 Green River State Natural Area — its links and access points are shown for convenience; check boundaries.
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6881"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.73330" lon="-85.70770"><name>KFF-6882 Hall Hill/Vernon-Douglas</name><desc>Hall Hill/Vernon-Douglas
+<wpt lat="37.7333" lon="-85.7077"><name>KFF-6882 Hall Hill/Vernon-Douglas</name><desc>Hall Hill/Vernon-Douglas
+Hardin County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6882
 Matching POTA park: US-7957 Hall-Hill/Vernon-Douglas State Nature Preserve — https://next.pota.app/park/US-7957
 Official map: https://eec.ky.gov/Nature-Preserves/Brochures/VernonDouglasBrochure_bw.pdf
 Website: https://eec.ky.gov/Nature-Preserves/Locations/Pages/Vernon-Douglas.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6882"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="36.94800" lon="-83.18240"><name>KFF-6883 James E Bickford</name><desc>James E Bickford
+<wpt lat="36.948" lon="-83.1824"><name>KFF-6883 James E Bickford</name><desc>James E Bickford
+Harlan County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6883
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6883"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="38.54710" lon="-82.84150"><name>KFF-6884 Jesse Stuart</name><desc>Jesse Stuart
+<wpt lat="38.5471" lon="-82.8415"><name>KFF-6884 Jesse Stuart</name><desc>Jesse Stuart
+Greenup County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6884
 Matching POTA park: US-7961 Jesse Stuart State Nature Preserve — https://next.pota.app/park/US-7961
 Website: https://eec.ky.gov/Nature-Preserves/Locations/Pages/Jesse-Stuart.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6884"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.76250" lon="-84.61720"><name>KFF-6885 Kentucky River Palisades/Tom Dorman</name><desc>Kentucky River Palisades/Tom Dorman
+<wpt lat="37.7625" lon="-84.6172"><name>KFF-6885 Kentucky River Palisades/Tom Dorman</name><desc>Kentucky River Palisades/Tom Dorman
+Garrard / Jessamine Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6885
 Matching POTA park: US-7958 Kentucky River Palisades/Tom Dorman State Nature Preserve — https://next.pota.app/park/US-7958
 Official map: https://eec.ky.gov/Nature-Preserves/Brochures/TomDormanBrochure_bw.pdf
 Website: https://eec.ky.gov/Nature-Preserves/Locations/Pages/Tom-Dorman.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6885"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.91210" lon="-83.94500"><name>KFF-6886 Pilot Knob</name><desc>Pilot Knob
+<wpt lat="37.9121" lon="-83.945"><name>KFF-6886 Pilot Knob</name><desc>Pilot Knob
+Powell County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6886
 Matching POTA park: US-7963 Pilot Knob State Nature Preserve — https://next.pota.app/park/US-7963
 Official map: https://eec.ky.gov/Nature-Preserves/Brochures/PilotKnobBrochure_bw.pdf
 Website: https://eec.ky.gov/Nature-Preserves/Locations/Pages/Pilot-Knob.aspx
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6886"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.88130" lon="-85.67630"><name>KFF-6889 Knobs</name><desc>Knobs
+<wpt lat="37.8813" lon="-85.6763"><name>KFF-6889 Knobs</name><desc>Knobs
+Bullitt County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6889
-Official map: https://fw.ky.gov/More/Documents/KnobsStateForestandWMA_All.pdf
-Website: https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Knobs-State-Forest-and-Wildlife-Management-Area.aspx
-Note: Not an official KFF-POTA match. Related nearby POTA park: US-4690 Knobs State Forest — its links and access points are shown for convenience; check boundaries.
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6889"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.53500" lon="-85.13820"><name>KFF-6891 Marrow</name><desc>Marrow
+<wpt lat="37.535" lon="-85.1382"><name>KFF-6891 Marrow</name><desc>Marrow
+Cumberland / Metcalfe Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-6891
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-6891"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.81990" lon="-83.57510"><name>KFF-7268 Red River</name><desc>Red River
+<wpt lat="37.8199" lon="-83.5751"><name>KFF-7268 Red River</name><desc>Red River
+Powell / Wolfe Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-7268
 Matching POTA park: US-10104 Red River National Wild and Scenic River — https://next.pota.app/park/US-10104
 Official map: https://usfs-public.app.box.com/s/hl7pijwfnyefzcuebgl6yialfsxae9km
 Website: https://www.fs.usda.gov/recarea/dbnf/recreation/recarea/?recid=39548
-Note: POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm.
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-7268"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="36.99790" lon="-84.28530"><name>KFF-7270 Cane Creek</name><desc>Cane Creek
+<wpt lat="36.9979" lon="-84.2853"><name>KFF-7270 Cane Creek</name><desc>Cane Creek
+Pulaski County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-7270
 Matching POTA park: US-10121 Cane Creek Wildlife Management Area — https://next.pota.app/park/US-10121
 Official map: https://fw.ky.gov/More/Documents/CaneCreekWMA_ALL.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=38
-Note: POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm.
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-7270"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="38.64120" lon="-83.57220"><name>KFF-7271 Crooked Creek</name><desc>Crooked Creek
+<wpt lat="38.6412" lon="-83.5722"><name>KFF-7271 Crooked Creek</name><desc>Crooked Creek
+Bracken County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-7271
 Matching POTA park: US-7960 Crooked Creek State Nature Preserve — https://next.pota.app/park/US-7960
 Website: https://eec.ky.gov/Nature-Preserves/Locations/Pages/Crooked-Creek.aspx
-Note: POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm.
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-7271"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.73630" lon="-82.72890"><name>KFF-7272 Dewey Lake</name><desc>Dewey Lake
+<wpt lat="37.7363" lon="-82.7289"><name>KFF-7272 Dewey Lake</name><desc>Dewey Lake
+Floyd County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-7272
 Matching POTA park: US-4687 Dewey Lake Wildlife Management Area — https://next.pota.app/park/US-4687
 Official map: https://fw.ky.gov/More/Documents/DeweyLakeWMA-ALL.pdf
 Website: https://fw.ky.gov/More/Documents/DeweyLakeWMA-ALL.pdf
-Note: POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm.
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-7272"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.14890" lon="-88.34820"><name>KFF-7366 Ferguson Creek</name><desc>Ferguson Creek
+<wpt lat="37.1489" lon="-88.3482"><name>KFF-7366 Ferguson Creek</name><desc>Ferguson Creek
+McCracken County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-7366
 Matching POTA park: US-10128 Ferguson Creek Wildlife Management Area — https://next.pota.app/park/US-10128
 Official map: https://fw.ky.gov/More/Documents/FergusonCreekWMA_All.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9715
-Note: POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm.
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-7366"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.21860" lon="-86.52880"><name>KFF-7367 Gabbard Branch</name><desc>Gabbard Branch
+<wpt lat="37.2186" lon="-86.5288"><name>KFF-7367 Gabbard Branch</name><desc>Gabbard Branch
+Hart County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-7367
 Matching POTA park: US-10131 Gabbard Branch Wildlife Management Area — https://next.pota.app/park/US-10131
 Official map: https://fw.ky.gov/More/Documents/GabbardBranchWMA_All.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9713
-Note: POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm.
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-7367"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.31880" lon="-87.36140"><name>KFF-7368 Harris-Dickerson</name><desc>Harris-Dickerson
+<wpt lat="37.3188" lon="-87.3614"><name>KFF-7368 Harris-Dickerson</name><desc>Harris-Dickerson
+Hopkins County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-7368
 Matching POTA park: US-10137 Harris-Dickerson Wildlife Management Area — https://next.pota.app/park/US-10137
 Official map: https://fw.ky.gov/More/Documents/Harris-Dickerson_All.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9709
-Note: POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm.
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-7368"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="37.10520" lon="-83.36780"><name>KFF-7369 Hoskins</name><desc>Hoskins
+<wpt lat="37.1052" lon="-83.3678"><name>KFF-7369 Hoskins</name><desc>Hoskins
+Harlan / Leslie Counties
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-7369
 Matching POTA park: US-10138 Hoskins Wildlife Management Area — https://next.pota.app/park/US-10138
 Official map: https://fw.ky.gov/More/Documents/Hoskins_WMA_All.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9711
-Note: POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm.
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-7369"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="36.77290" lon="-83.77990"><name>KFF-7370 Kentucky Ridge</name><desc>Kentucky Ridge
+<wpt lat="36.7729" lon="-83.7799"><name>KFF-7370 Kentucky Ridge</name><desc>Kentucky Ridge
+Bell County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-7370
 Matching POTA park: US-10141 Kentucky Ridge Wildlife Management Area — https://next.pota.app/park/US-10141
 Official map: https://fw.ky.gov/More/Documents/KentuckyRidgeForestWMA_ALL.pdf
 Website: https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=186
-Note: POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm.
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-7370"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
-<wpt lat="36.86430" lon="-85.62120"><name>KFF-7371 Marrowbone</name><desc>Marrowbone
+<wpt lat="36.8643" lon="-85.6212"><name>KFF-7371 Marrowbone</name><desc>Marrowbone
+Cumberland County
 WWFF Logsearch: https://logsearch.wwff.co/directory/KFF-7371
 Matching POTA park: US-7952 Marrowbone State Forest — https://next.pota.app/park/US-7952
 Official map: https://fw.ky.gov/More/Documents/MarrowboneStateForestandWMA_ALL.pdf
 Website: https://fw.ky.gov/More/Documents/MarrowboneStateForestandWMA_ALL.pdf
-Note: POTA match by name/location (not yet in the official KFF-POTA cross reference) — confirm.
 Verify WWFF rules and boundaries before activating.</desc><link href="https://logsearch.wwff.co/directory/KFF-7371"><text>WWFF Logsearch</text></link><type>WWFF reference</type></wpt>
 <wpt lat="37.20601363" lon="-83.04215566"><name>KFF-1251 · KDFWR entrance: Wells Hunting Access Area</name><desc>Official entrance of a different neighboring area (not this park)
 2.9 mi from the matching POTA park GPS point
