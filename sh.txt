@@ -1,10 +1,4 @@
-25 | State Game Land | Crystal Waters ; Windsor Township ; Jessups Mill Pond
-22 | State Wildlife Area | Kure Atoll ; Ramah ; Hugo
-19 | State Fish and Wildlife Area | Power City ; Jewell Meadows ; Ladd Marsh
-16 | State Fish Hatchery | Sandy ; Cabinet Gorge ; Clearwater
-16 | State Public Fishing Lake | Lee County ; Washington County ; Dallas County
-15 | State Preserve | Watson's East Triangle Complex ; Raquette Boreal Complex ; Rock Creek Island
-6 | State Fishing Lake | Upper White Oak Lake Recreation Area ; Abbotts Pond ; Andrews
-6 | National Fish Hatchery | Wolf Creek ; Hagerman ; Dworshak
-2 | State Park | Spring Creek Hatchery ; Reservoir
-1 | Wildlife Management Area | Hatchery
+point 0 lias":"State Name","length":50},{"name":"Category","type":"esriFieldTypeString","alias":"Category","length":50},{"name":"Date_Est","type":"esriFieldTypeString","alias":"Date of Establishment","length":4},{"name":"Comments","type":"esriFieldTypeString","alias":"Comments","length":255}],"features":[]}
+env 200  3
+fcc 200 {"input":{"lat":37.8452,"lon":-86.9755,"censusYear":"2020"},"results":[{"block_fips":"210590015012016","bbox":[-86.978814,37.842829,-86.971994,37.846826],"county_fips":"21059","county_name":"Davie
+nom 200 []
