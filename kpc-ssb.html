@@ -121,6 +121,11 @@ body.field .page-jump-nav{display:none!important}
 #vbStatus{color:#f0c75e;font-weight:800;font-size:14px}
 #vbBand{height:300px;overflow:auto;background:#050806;border:1px solid #2d4a37;border-radius:9px;padding:10px;font:15px/1.5 Arial,sans-serif}
 .vb-line b{display:inline-block;min-width:70px;color:#7fd39a}.vb-line.you b{color:#f0c75e}.vb-line.you{color:#ddd}.vb-line.note{color:#aaa;font-style:italic}.vb-line.good{color:#7fd39a;font-weight:800}.vb-line.bad{color:#ff8a6a;font-weight:800}
+.vb-mode{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}.vb-mode button{min-height:58px;border-radius:12px;border:2px solid #444;background:#151515;color:#fff;font:900 15px Arial,sans-serif;letter-spacing:1px;cursor:pointer}.vb-mode button small{display:block;font:700 11px Arial;color:#aaa;letter-spacing:0;margin-top:3px}.vb-mode button.on{border-color:#d5a63a;background:#2a2210;color:#f0c75e}
+body.vb-hunt .act-only{display:none!important}body:not(.vb-hunt) .hunt-only{display:none!important}
+.vb-spots{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}.vb-sp{background:#181818;border:1px solid #333;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:5px;min-width:0}.vb-sp.on{border-color:#d5a63a;box-shadow:0 0 0 2px rgba(213,166,58,.35)}.vb-sp.qrt{opacity:.5}
+.vb-sp-a{display:flex;justify-content:space-between;gap:8px;align-items:baseline}.vb-sp-a b{font:900 19px "Courier New",monospace;color:#fff}.vb-sp-a span{color:#7fd39a;font-weight:800;font-size:13px;white-space:nowrap}.vb-sp-p{font-size:14px;color:#e9e3d6}.vb-sp-p b{color:#f0c75e}.vb-sp-p i{color:#aaa;font-style:normal}.vb-sp-m{font-size:12px;color:#999}.vb-sp-m .tag{background:#5a2a1f;color:#fff;border-radius:4px;padding:1px 6px;font-weight:900}.vb-sp-m .tag.ok{background:#1d5a3a}.vb-sp-b{display:flex;gap:6px;flex-wrap:wrap}.vb-sp-b .vb-btn{min-height:38px;padding:6px 12px;font-size:12px}.vb-sp-empty{color:#aaa;margin:0}
+.vb-pretend{font:700 11px Arial;color:#ff9f80;letter-spacing:1px;margin-left:6px}.vb-tuned{background:#0f1a12;border:1px solid #2d4a37;border-radius:9px;padding:8px 10px;margin-bottom:8px;font-size:14px;color:#cfe9d6}.vb-tuned b{color:#fff}#vbPhase{color:#f0c75e;font-weight:800}
 .vb-acts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}.vb-micsw{margin-left:auto}.vb-refl{grid-column:1/-1}
 @media(max-width:700px){body.vb-nomic .vb{padding-bottom:40px}}
 .vb-entry{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:8px;margin:10px 0}.vb-entry input{width:100%}
@@ -203,21 +208,33 @@ body.field .page-jump-nav{display:none!important}
   </div>
 </header>
 <main>
-<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • VOICE (SSB) • BETA</p><h1>VOICE PILEUP <span>PRACTICE</span></h1><p class="hero-copy">You're the activator on phone: pick POTA, KFF, SOTA, or Off for regular contacts. Stations call you, you copy their calls, give reports and keep a clean log. Start with one caller and work up to a pileup.</p></div></section>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • VOICE (SSB) • BETA</p><h1>VOICE PILEUP <span>PRACTICE</span></h1><p class="hero-copy">Be the activator: stations call you, you copy their calls, give reports and keep a clean log. Or be a hunter: pick a station off the spots page and get through the pileup. POTA, KFF, SOTA, or regular contacts.</p></div></section>
 <section class="vb"><div class="vb-in">
 <div class="vb-beta"><b>No license yet?</b> Leave YOUR CALL blank and you'll be <b>K4TEST</b>, a practice call sign. US call signs never have 4 letters after the number, so it can never belong to a real ham.<br><b>Beta test.</b> The voices are your browser's built-in voices, so they talk one at a time (a pileup here is callers stacked back to back). Works best in Chrome or Edge on a computer; phones work too. Practice only: nothing here is a real contact.</div>
+<div class="vb-mode"><button type="button" id="vbModeAct" class="on" aria-pressed="true">🏕 I'M THE ACTIVATOR<small>they call me</small></button><button type="button" id="vbModeHunt" aria-pressed="false">🎯 I'M A HUNTER<small>I call them off the spots</small></button></div>
 <div class="vb-row">
  <label>YOUR CALL<input type="text" id="vbCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="K4TEST"></label>
  <label>YOUR STATE<select id="vbSt"><option>KY</option><option>TN</option><option>OH</option><option>IN</option><option>WV</option><option>VA</option><option>IL</option><option>MO</option></select></label>
  <label>PROGRAM<select id="vbProg"><option value="pota">POTA (parks)</option><option value="kff">KFF / WWFF</option><option value="sota">SOTA (summits)</option><option value="off">Off (regular contacts)</option></select></label>
  <label id="vbRefL">YOUR PARK<input type="text" id="vbRef" autocomplete="off" spellcheck="false" placeholder="US-1271"></label>
  <label>LEVEL <span id="vbLevelV"></span><input type="range" id="vbLevel" min="1" max="5" step="1"></label>
+ <label class="vb-chk hunt-only"><input type="checkbox" id="vbP2P"> 🏕 I'm in a park too (park to park gets picked first)</label>
 </div>
+<div class="vb-card hunt-only" style="margin-bottom:18px"><h3>🗺 Practice Spots <small class="vb-pretend">pretend, not real activators</small></h3><div class="vb-spots" id="vbSpots"></div><small class="k">Spots are like the POTA spots page or SOTAwatch. Careful: sometimes a spot has the call wrong, so copy the call off the air. After you work someone, RE-SPOT them to help them get more contacts.</small></div>
 <div class="vb-grid">
  <div class="vb-card">
   <div class="vb-top"><button type="button" class="vb-btn" id="vbGo">▶ START</button><label class="vb-chk vb-micsw"><input type="checkbox" id="vbMic" checked> 🎙 Talk with my voice</label><label class="vb-chk"><input type="checkbox" id="vbAuto"> 🤖 Auto log</label><span id="vbStatus">Enter your call and press START.</span></div>
+  <div class="vb-tuned hunt-only" id="vbTuned"></div>
   <div id="vbBand" aria-live="polite"></div>
-  <div class="vb-acts">
+  <div class="vb-acts hunt-only">
+   <button type="button" class="vb-btn" id="hCall" disabled>📣 CALL MY CALL <small>(F1)</small></button>
+   <button type="button" class="vb-btn" id="hRep" disabled>🎙 SEND MY REPORT <small>(F2)</small></button>
+   <button type="button" class="vb-btn alt" id="hAgn" disabled>AGAIN AGAIN <small>(F3)</small></button>
+   <button type="button" class="vb-btn alt" id="hNeg" disabled>❌ NEGATIVE, FIX MY CALL <small>(F4)</small></button>
+   <button type="button" class="vb-btn alt" id="hLeave" disabled>⏭ BACK TO SPOTS <small>(F6)</small></button>
+  </div>
+  <small class="k hunt-only">How hunting works: listen until they say <b>QRZ</b> or finish with <b>73</b>, then press CALL MY CALL once (or say your call). If they come back to you, check they got your call right (press NEGATIVE if not), then SEND MY REPORT. Calling while they're working someone is called doubling: don't!</small>
+  <div class="vb-acts act-only">
    <button type="button" class="vb-btn alt" id="vbCq" disabled>📣 CALL CQ <small>(F1)</small></button>
    <button type="button" class="vb-btn alt" id="vbQrz" disabled>QRZ? <small>(F2)</small></button>
    <button type="button" class="vb-btn alt" id="vbAgn" disabled>AGAIN AGAIN <small>(F3)</small></button>
@@ -227,26 +244,28 @@ body.field .page-jump-nav{display:none!important}
   </div>
   <button type="button" class="vb-btn vb-talk" id="vbTalk" disabled>🎙 HOLD TO TALK <small>(or tap once, tap again when done)</small></button>
   <p class="vb-heard" id="vbHeard">Hold the button and talk like you're on the air: "CQ POTA, CQ POTA, this is…", their call + "you're five nine Kentucky", "again again", "QRZ", "QSL", or "thanks, seventy-three" (then you log it). Use earbuds so it doesn't hear the callers. Your voice goes to Google's or Apple's speech service to be turned into text, like talking to your phone's assistant.</p>
-  <small class="k">Type part of a call in the CALL box and press QRZ? to ask just that station ("the station with Alpha Bravo Charlie, go ahead").</small>
+  <small class="k act-only">Type part of a call in the CALL box and press QRZ? to ask just that station ("the station with Alpha Bravo Charlie, go ahead").</small>
  </div>
  <div class="vb-card">
-  <h3>Your Log</h3>
+  <h3 id="vbLogH">Your Log</h3>
   <div class="vb-entry">
    <label>CALL<input type="text" id="fCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="W4ABC"></label>
    <label>SENT<input type="text" id="fSent" value="59" autocomplete="off" inputmode="numeric"></label>
    <label>RCVD<input type="text" id="fRcvd" autocomplete="off" inputmode="numeric" placeholder="59"></label>
-   <label>STATE<input type="text" id="fSt" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="OH"></label>
+   <label class="act-only">STATE<input type="text" id="fSt" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="OH"></label>
    <label id="fRefL" class="vb-refl">THEIR PARK / REF <small>(only if they give one)</small><input type="text" id="fRef" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-1234"></label>
   </div>
   <div class="vb-acts" style="grid-template-columns:1fr 1fr">
-   <button type="button" class="vb-btn" id="vbSend" disabled>🎙 SEND REPORT</button>
+   <button type="button" class="vb-btn act-only" id="vbSend" disabled>🎙 SEND REPORT</button>
    <button type="button" class="vb-btn" id="vbLog" disabled>✓ LOG IT</button>
   </div>
-  <small class="k">The flow: hear a call → type it in CALL → <b>Send report</b> (or press Enter) → they give you their report and state → type them in RCVD and STATE → <b>Log it</b> (or Enter). The log checks every entry against what was really said.</small>
+  <small class="k hunt-only">Hunter log: their CALL (from the air), SENT (what you gave them), RCVD (what they gave you) and THEIR PARK, then <b>Log it</b>. It checks against what really happened.</small>
+  <small class="k act-only">The flow: hear a call → type it in CALL → <b>Send report</b> (or press Enter) → they give you their report and state → type them in RCVD and STATE → <b>Log it</b> (or Enter). The log checks every entry against what was really said.</small>
   <div class="vb-stats" id="vbStats"></div>
-  <div class="vb-logw"><table class="vb-log"><thead><tr><th>#</th><th>UTC</th><th>CALL</th><th>SENT</th><th>RCVD</th><th>ST</th><th>CHECK</th></tr></thead><tbody id="vbLogB"></tbody></table></div>
+  <div class="vb-logw"><table class="vb-log"><thead><tr><th>#</th><th>UTC</th><th>CALL</th><th>SENT</th><th>RCVD</th><th id="vbLogStH">ST</th><th>CHECK</th></tr></thead><tbody id="vbLogB"></tbody></table></div>
   <div class="vb-top" style="margin-top:10px"><button type="button" class="vb-btn alt" id="vbAdif">⬇ DOWNLOAD LOG (ADIF)</button></div>
-  <small class="k">🤖 <b>Auto log</b> (next to START) fills in their report and state and logs the contact when you say or tap THANKS, 73. Good for getting the hang of the talking first; contacts it logs are marked 🤖 and don't count in "logged right." The ADIF file is marked PRACTICE. Use it to try opening a log in your logging program; never upload it to POTA.</small>
+  <small class="k hunt-only">🤖 <b>Auto log</b> fills in and logs the contact for you as soon as it's done (marked 🤖, not counted in "logged right"). The ADIF file is marked PRACTICE: never upload it to POTA.</small>
+  <small class="k act-only">🤖 <b>Auto log</b> (next to START) fills in their report and state and logs the contact when you say or tap THANKS, 73. Good for getting the hang of the talking first; contacts it logs are marked 🤖 and don't count in "logged right." The ADIF file is marked PRACTICE. Use it to try opening a log in your logging program; never upload it to POTA.</small>
  </div>
 </div>
 <div class="vb-card" style="margin-top:18px">
@@ -262,7 +281,7 @@ body.field .page-jump-nav{display:none!important}
 </div></section>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
-<script src="kpc-ssb.js?v=20261014p"></script>
+<script src="kpc-ssb.js?v=20261014r"></script>
 <script src="kpc-search.js?v=20261014ku" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
