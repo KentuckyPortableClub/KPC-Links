@@ -192,6 +192,7 @@ const dec = {
     this.text += c ? c : '*';
     this.code = ''; ui.live(this.text);
     if (MODE === 'games') gameChar(c || '*');
+    else if (MODE === 'learn') learnChar(c || '*');
   },
   endOver() {
     this.endChar();
@@ -382,6 +383,7 @@ const session = { on: false, qsos: [], agn: 0, start: 0 };
 function transmit(text, how) {
   if (MODE === 'qrq') { fistMeter(); qrqSent(text, how); return; }
   if (MODE === 'games' || MODE === 'keyer') { fistMeter(); return; }
+  if (MODE === 'learn') { fistMeter(); learnSent(text); return; }
   ui.log('YOU', text, 'you');
   fistMeter();
   if (MODE === 'free' || MODE === 'drill') { ui.hint(''); return; }
@@ -1200,6 +1202,110 @@ function gtFinish(cleared) {
   gtStop(`<div class="qrq-end">${cleared ? '⚔️ <b>GAUNTLET CLEARED!</b> All five rounds.' : `Three busts. Out in round ${round}: <b>${GR[round].name}</b>.`}<br><b>${pts} points</b>${isPB ? ' · 🎉 New personal best!' : ''}</div>`);
 }
 
+/* ================================================================ Learn CW: from scratch to 30 WPM, copy AND send
+   Koch order, two new characters in lesson 1 then one per lesson. Each lesson: MEET it, COPY (hear it, tap/type it:
+   90% of 20) and SEND (key it: 90% of 10). Characters always at 20 WPM; Farnsworth spacing starts wide and closes.
+   Then words and calls, then speed steps up to 30 WPM. Progress on this device only (localStorage kpcLearn). */
+let _LS = null; const LSF = () => _LS || (_LS = (() => {
+  const out = [];
+  for (let i = 1; i < KOCH.length; i++) out.push({ id: 'c' + i, kind: 'char', n: i + 1, newc: i === 1 ? [KOCH[0], KOCH[1]] : [KOCH[i]], cw: 20, ew: 8 + Math.floor(i / 8) });
+  out.push({ id: 'w1', kind: 'words', title: 'Common CW words', cw: 20, ew: 10, src: 'words' });
+  out.push({ id: 'w2', kind: 'words', title: 'Call signs', cw: 20, ew: 12, src: 'calls' });
+  out.push({ id: 'w3', kind: 'words', title: 'POTA exchanges', cw: 20, ew: 13, src: 'exch' });
+  [15, 18, 20].forEach(e => out.push({ id: 'f' + e, kind: 'words', title: `Speed: ${e} WPM`, cw: 20, ew: e, src: 'mix' }));
+  [22, 24, 26, 28, 30].forEach(w => out.push({ id: 's' + w, kind: 'words', title: `Speed: ${w} WPM`, cw: w, ew: w, src: 'mix' }));
+  return out;
+})());
+let LC = { at: 0, done: {} }; try { Object.assign(LC, JSON.parse(localStorage.getItem('kpcLearn') || '{}')); } catch (e) {}
+const lsave = () => { try { localStorage.setItem('kpcLearn', JSON.stringify(LC)); } catch (e) {} };
+const ln = { part: 'meet', item: '', hist: [], v: null, busy: false };
+const lsetChars = st => KOCH.slice(0, st.kind === 'char' ? st.n : KOCH.length);
+const pat = c => (PROSIGN[c] || MORSE[c] || '').replace(/\./g, '·').replace(/-/g, '−');
+const LWORDS = ['CQ', 'DE', 'TU', '73', '5NN', 'RST', 'UR', 'ES', 'FB', 'OM', 'GM', 'GA', 'GE', 'NAME', 'QTH', 'WX', 'RIG', 'ANT', 'PWR', 'AGN', 'QRZ', 'BK', 'TNX', 'HR', 'POTA', 'SOTA', 'PARK', 'KY', 'TEST', 'THE', 'AND', 'YOU', 'ARE', 'GOOD', 'SUN', 'RAIN', 'COLD', 'HOT', 'KEY', 'HAM', 'CLUB', 'LAKE', 'HILL', 'TREE', 'DOG', 'CAT', 'FUN', 'WIRE'];
+function lItem(st) {
+  if (st.kind === 'char') { const set = lsetChars(st); return chance(0.4) ? pick(st.newc) : pick(set); }
+  const k = st.src === 'mix' ? pick(['words', 'calls', 'exch', 'calls']) : st.src;
+  if (k === 'calls') return newOp().call;
+  if (k === 'exch') { const o = newOp(); return pick([`${o.call} 5NN ${o.st}`, `TU 5NN ${o.st} ${o.st}`, `UR 5NN ${o.st} BK`, `CQ POTA DE ${o.call} K`]); }
+  return pick(LWORDS) + (chance(0.4) ? ' ' + pick(LWORDS) : '');
+}
+const lneed = () => ln.part === 'send' ? 10 : 20;
+function lScore() { const h = ln.hist.slice(-lneed()); return { n: h.length, ok: h.filter(Boolean).length }; }
+function learnDraw() {
+  const box = $('lnBody'); if (!box) return;
+  const st = LSF()[LC.at] || LSF()[0], i = LC.at;
+  const total = LSF().length, doneN = Object.keys(LC.done).length;
+  $('lnMap').innerHTML = LSF().map((x, k) => `<button type="button" class="ln-dot${k === i ? ' on' : ''}${LC.done[x.id] ? ' done' : ''}" data-k="${k}" title="${x.kind === 'char' ? 'Lesson ' + (k + 1) + ': ' + x.newc.join(' ') : x.title}">${x.kind === 'char' ? esc(x.newc[x.newc.length - 1]) : x.id[0] === 'w' ? '✎' : '⚡'}</button>`).join('');
+  $('lnMap').querySelectorAll('.ln-dot').forEach(b => b.addEventListener('click', () => { LC.at = +b.dataset.k; lsave(); learnGo('meet'); }));
+  $('lnProg').textContent = `${doneN} of ${total} steps done · ${st.kind === 'char' ? `Lesson ${i + 1}: you know ${st.n} characters` : st.title} · characters at ${st.cw} WPM, spacing ${st.ew} WPM`;
+  const tabs = ['meet', 'copy', 'send'].map(p => `<button type="button" class="ln-part${ln.part === p ? ' on' : ''}" data-p="${p}">${p === 'meet' ? '1 · MEET' : p === 'copy' ? '2 · COPY' : '3 · SEND'}</button>`).join('');
+  let body = '';
+  if (ln.part === 'meet') {
+    if (st.kind === 'char') body = `<div class="ln-meet">${st.newc.map(c => `<div class="ln-card"><b>${esc(c)}</b><span>${pat(c)}</span><button type="button" class="cw-small" data-hear="${esc(c)}">▶ HEAR IT</button></div>`).join('')}</div>
+      <p class="dim">Learn the <b>sound</b>, not the dots and dashes: listen a few times and say it in your head ("di-dah" for A). Then practice copying and sending. You already know: <b>${esc(lsetChars(st).join(' '))}</b></p>`;
+    else body = `<p>${esc(st.title)}: real words and calls at <b>${st.cw} WPM</b> characters${st.ew < st.cw ? ` with extra space between them (${st.ew} WPM overall)` : ''}. Copy 90% of 20, then send 90% of 10.</p><p><button type="button" class="cw-small" id="lnSample">▶ HEAR A SAMPLE</button></p>`;
+    body += `<button type="button" class="cw-btn" id="lnNext">NEXT: COPY PRACTICE →</button>`;
+  } else {
+    const sc = lScore(), pct = sc.n ? Math.round(sc.ok / sc.n * 100) : 0;
+    const bar = `<div class="ln-bar"><i style="width:${Math.min(100, sc.n / lneed() * 100)}%"></i></div><div class="dim">${sc.ok}/${sc.n} right (${pct}%) · need 90% of ${lneed()} to pass</div>`;
+    if (ln.part === 'copy') {
+      const grid = st.kind === 'char' ? `<div class="ln-grid">${lsetChars(st).map(c => `<button type="button" class="ln-k" data-c="${esc(c)}">${esc(c)}</button>`).join('')}</div>` : `<div class="cw-typerow"><input type="text" id="lnIn" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Type what you heard, Enter" aria-label="Type what you heard"><button type="button" class="cw-btn" id="lnOk">CHECK</button></div>`;
+      body = `<div class="row"><button type="button" class="cw-btn" id="lnPlay">▶ PLAY</button><button type="button" class="cw-small" id="lnRep">↻ AGAIN</button></div>${grid}<div id="lnFb"></div>${bar}`;
+    } else {
+      body = (S.input === 'keyboard' ? '<p class="bad">Pick <b>Straight key</b> or <b>Paddles</b> under Your Key (on a phone, use the big DIT/DAH pads; on a computer the mouse paddle works too).</p>' : '') +
+        `<div class="ln-target"><small>SEND THIS</small><b id="lnT">${esc(ln.item)}</b>${ln.item.length === 1 ? `<span>${pat(ln.item)}</span>` : ''}</div><div class="row"><button type="button" class="cw-small" id="lnHearT">▶ HEAR IT FIRST</button><button type="button" class="cw-small" id="lnSkip">NEW ONE</button></div><div id="lnFb"></div>${bar}`;
+    }
+  }
+  box.innerHTML = `<div class="ln-parts">${tabs}</div>${body}`;
+  box.querySelectorAll('.ln-part').forEach(b => b.addEventListener('click', () => learnGo(b.dataset.p)));
+  box.querySelectorAll('[data-hear]').forEach(b => b.addEventListener('click', () => lPlay(b.dataset.hear, st)));
+  const on = (id, f) => { const e = $(id); if (e) e.addEventListener('click', f); };
+  on('lnNext', () => learnGo('copy')); on('lnSample', () => lPlay(lItem(st), st));
+  on('lnPlay', () => { ln.item = lItem(st); lPlay(ln.item, st); }); on('lnRep', () => ln.item && lPlay(ln.item, st));
+  on('lnOk', () => lCheck(($('lnIn') || {}).value || '')); const li = $('lnIn'); if (li) { li.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); lCheck(li.value); } }); }
+  box.querySelectorAll('.ln-k').forEach(b => b.addEventListener('click', () => lCheck(b.dataset.c)));
+  on('lnHearT', () => lPlay(ln.item, st)); on('lnSkip', () => { ln.item = lItem(st); learnDraw(); });
+}
+async function lPlay(t, st) {
+  if (!audio() || !t) return;
+  if (ln.v) ln.v.dispose();
+  ln.v = new Voice({ call: 'ln', pitch: S.their, wpm: st.cw, eff: st.ew, jit: 0, level: 0.9, noQsb: true });
+  ln.busy = true; try { await ln.v.play(t); } finally { ln.busy = false; }
+}
+function learnGo(part) {
+  ln.part = part; ln.hist = []; ln.item = '';
+  const st = LSF()[LC.at];
+  if (part === 'send') { ln.item = lItem(st); dec.text = ''; dec.code = ''; dec.reset(S.input === 'iambic' ? 1200 / S.wpm : 1200 / 15, S.input === 'straight'); }
+  learnDraw();
+  if (part === 'copy') setTimeout(() => { ln.item = lItem(st); lPlay(ln.item, st); }, 300);
+}
+function lResult(ok, msg) {
+  const st = LSF()[LC.at]; ln.hist.push(ok);
+  const sc = lScore();
+  const fb = () => { const f = $('lnFb'); if (f) f.innerHTML = msg; };
+  if (sc.n >= lneed() && sc.ok / sc.n >= 0.9) {
+    if (ln.part === 'copy') { learnGo('send'); const f = $('lnFb'); if (f) f.innerHTML = '<div class="good">✓ Copy passed! Now send it.</div>'; return; }
+    LC.done[st.id] = new Date().toISOString().slice(0, 10); if (LC.at < LSF().length - 1) LC.at++; lsave();
+    learnGo('meet'); const f = $('lnFb') || $('lnBody'); if (f) f.insertAdjacentHTML('afterbegin', `<div class="ln-pass">⭐ Step passed! ${LC.at >= LSF().length - 1 && LC.done[LSF()[LSF().length - 1].id] ? 'You made it to 30 WPM! 🎉' : 'On to the next one.'}</div>`);
+    return;
+  }
+  learnDraw(); fb();
+}
+function lCheck(got) {
+  if (ln.part !== 'copy' || !ln.item || ln.busy) return;
+  const st = LSF()[LC.at], ch = st.kind === 'char', want = ch ? ln.item : norm(ln.item), g = ch ? String(got).toUpperCase().trim() : norm(got), ok = want === g;
+  if (!ch) trackCopy(want, g); else if (/^[A-Z0-9]$/.test(want)) trackCopy(want, g);
+  lResult(ok, ok ? `<div class="good">✓ ${esc(want)}</div>` : `<div class="bad">✗ It was ${esc(want)}${want.length === 1 ? ' ' + pat(want) : ''}</div>`);
+  setTimeout(() => { if (ln.part === 'copy' && MODE === 'learn') { ln.item = lItem(st); lPlay(ln.item, st); } }, ok ? 700 : 1600);
+}
+function learnChar(c) { if (ln.part !== 'send' || ln.item.length !== 1) return; lSendResult(c === ln.item, c); }
+function learnSent(text) { if (ln.part !== 'send' || ln.item.length === 1) return; lSendResult(norm(text) === norm(ln.item), norm(text)); }
+function lSendResult(ok, got) {
+  const st = LSF()[LC.at], want = ln.item;
+  ln.item = lItem(st); dec.text = ''; ui.live('');
+  lResult(ok, ok ? `<div class="good">✓ Clean ${esc(want)}</div>` : `<div class="bad">✗ That came out as "${esc(got)}". ${want.length === 1 ? esc(want) + ' is ' + pat(want) : ''}</div>`);
+}
+
 /* ================================================================ Problem letters
    Every copy check (drills and the QRQ copy ladder) counts which characters you missed. */
 let MISS = {}; try { MISS = JSON.parse(localStorage.getItem('kpcCWmiss') || '{}') || {}; } catch (e) { MISS = {}; }
@@ -1565,7 +1671,7 @@ async function midi() {
 }
 
 function setMode(m) {
-  stop(true); if (qrq.on) qrqEnd(true); if (game.on) gameStop(); if (gt.on) gtStop(''); if (keyer.v) { keyer.v.dispose(); keyer.v = null; keyer.i = -1; } MODE = m;
+  stop(true); if (qrq.on) qrqEnd(true); if (game.on) gameStop(); if (gt.on) gtStop(''); if (ln.v) { ln.v.dispose(); ln.v = null; } if (keyer.v) { keyer.v.dispose(); keyer.v = null; keyer.i = -1; } MODE = m;
   const app = $('cwApp'); if (app) app.dataset.mode = m;
   document.querySelectorAll('.cw-tab').forEach(t => t.setAttribute('aria-selected', String(t.dataset.mode === m)));
   document.querySelectorAll('[data-show]').forEach(el => { el.hidden = el.dataset.show.split(' ').indexOf(m) < 0; });
@@ -1578,6 +1684,7 @@ function setMode(m) {
     drill: 'Press PLAY, type what you heard, press Enter.',
     qrq: '',
     games: '',
+    learn: '',
     gaunt: '',
     keyer: '',
     sprint: 'Sprint: pick the format and length, press START, call CQ and work as many as you can before the clock runs out.',
@@ -1587,6 +1694,7 @@ function setMode(m) {
   ui.status(intro || ''); ui.hint('');
   try { localStorage.setItem('kpcCWmode', m); } catch (e) {}
   document.dispatchEvent(new CustomEvent('kpccw:mode', { detail: m }));
+  if (m === 'learn' && $('lnBody')) learnGo('meet');
 }
 function setInput(v) {
   S.input = v; save(); releaseAll();
@@ -1655,7 +1763,7 @@ function init() {
   setInput(S.input);
   document.querySelectorAll('.cw-tab').forEach(t => t.addEventListener('click', () => setMode(t.dataset.mode)));
   let m = 'hunt'; try { m = localStorage.getItem('kpcCWmode') || 'hunt'; } catch (e) {}
-  const hm = (location.hash.match(/#(hunt|act|drill|free|listen|qrq|chat|sprint|games|keyer|gaunt)\b/) || [])[1]; if (hm) m = hm;
+  const hm = (location.hash.match(/#(hunt|act|drill|free|listen|qrq|chat|sprint|games|keyer|gaunt|learn)\b/) || [])[1]; if (hm) m = hm;
   setMode(m);
   $('cwGo').addEventListener('click', () => { if (session.on) stop(); else start(); });
   $('cwOverBtn').addEventListener('click', () => dec.flush());
@@ -1687,6 +1795,6 @@ function init() {
 }
 
 // small hooks for testing / other pages
-window.KPCCW = { timeline, charsOf, callMatch, toks, findRST, findState, findRef, lev, newOp, usCall, decode: c => DECODE[c], S, dec, transmit, session, setMode, start, stop, paddle, keyDown, keyUp, releaseAll, drill, drillItem, garble, qrq, qrqStart, qrqCheck, qrqSent, qrqEnd, waiting: () => !!waiter, gt, gtJudge, gtStart, trackCopy, MISS: () => MISS };
+window.KPCCW = { timeline, charsOf, callMatch, toks, findRST, findState, findRef, lev, newOp, usCall, decode: c => DECODE[c], S, dec, transmit, session, setMode, start, stop, paddle, keyDown, keyUp, releaseAll, drill, drillItem, garble, qrq, qrqStart, qrqCheck, qrqSent, qrqEnd, waiting: () => !!waiter, gt, gtJudge, gtStart, ln, LC: () => LC, LSTEPS: LSF, trackCopy, MISS: () => MISS };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
