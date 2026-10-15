@@ -4,13 +4,13 @@ permissions: {contents: write}
 jobs:
   s:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
       - continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 12
         run: |
-                    npm i playwright@1.47.2 >/dev/null && npx playwright install --with-deps chromium >/dev/null
+          npm i playwright@1.47.2 >/dev/null && npx playwright install --with-deps chromium >/dev/null
           (python3 -m http.server 8000 &) ; sleep 2; node lakes.js
       - if: always()
         run: |
