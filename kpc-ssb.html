@@ -131,6 +131,7 @@ body.vb-hunt .act-only{display:none!important}body:not(.vb-hunt) .hunt-only{disp
 .vb-entry{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:8px;margin:10px 0}.vb-entry input{width:100%}
 .vb-entry input{font:700 18px "Courier New",monospace;text-transform:uppercase}
 .vb-log{width:100%;border-collapse:collapse;font-size:13px}.vb-log th{text-align:left;color:#aaa;font-size:10px;letter-spacing:1px;padding:4px;border-bottom:1px solid #333}.vb-log td{padding:5px 4px;border-bottom:1px solid #222}.vb-log tr.ok td:last-child{color:#7fd39a}.vb-log tr.bad td{color:#ffb39f}
+.vb-qsl{min-width:34px;min-height:30px;border-radius:6px;border:1px solid #555;background:#222;color:#fff;cursor:pointer}
 .vb-logw{max-height:300px;overflow:auto;max-width:100%}
 .vb-stats{display:flex;gap:8px;margin:10px 0}.vb-stats div{flex:1;background:#181818;border:1px solid #2c2c2c;border-radius:8px;padding:8px;text-align:center}.vb-stats b{display:block;font:700 20px Georgia,serif;color:#fff}.vb-stats span{font-size:10px;color:#aaa}
 .vb-talk{width:100%;margin-top:10px;min-height:64px;font-size:16px;background:#2e8b57;color:#fff;touch-action:none;user-select:none;-webkit-user-select:none}.vb-talk.on{background:#b5412b;box-shadow:0 0 0 4px rgba(255,120,90,.35)}.vb-heard{font-size:13px;color:#cfc6b2;margin:8px 0 0;line-height:1.45}
@@ -264,10 +265,10 @@ body.vb-hunt .act-only{display:none!important}body:not(.vb-hunt) .hunt-only{disp
   <small class="k hunt-only">Hunter log: their CALL (from the air), SENT (what you gave them), RCVD (what they gave you) and THEIR PARK, then <b>Log it</b>. It checks against what really happened.</small>
   <small class="k act-only">The flow: hear a call → type it in CALL → <b>Send report</b> (or press Enter) → they give you their report and state → type them in RCVD and STATE → <b>Log it</b> (or Enter). The log checks every entry against what was really said.</small>
   <div class="vb-stats" id="vbStats"></div>
-  <div class="vb-logw"><table class="vb-log"><thead><tr><th>#</th><th>UTC</th><th>CALL</th><th>SENT</th><th>RCVD</th><th id="vbLogStH">ST</th><th>CHECK</th></tr></thead><tbody id="vbLogB"></tbody></table></div>
+  <div class="vb-logw"><table class="vb-log"><thead><tr><th>#</th><th>UTC</th><th>CALL</th><th>SENT</th><th>RCVD</th><th id="vbLogStH">ST</th><th>CHECK</th><th title="Print a QSL card">QSL</th></tr></thead><tbody id="vbLogB"></tbody></table></div>
   <div class="vb-top" style="margin-top:10px"><button type="button" class="vb-btn alt" id="vbAdif">⬇ DOWNLOAD LOG (ADIF)</button></div>
   <small class="k hunt-only">🤖 <b>Auto log</b> fills in and logs the contact for you as soon as it's done (marked 🤖, not counted in "logged right"). The ADIF file is marked PRACTICE: never upload it to POTA.</small>
-  <small class="k act-only">🤖 <b>Auto log</b> (next to START) fills in their report and state and logs the contact when you say or tap THANKS, 73. Good for getting the hang of the talking first; contacts it logs are marked 🤖 and don't count in "logged right." The ADIF file is marked PRACTICE. Use it to try opening a log in your logging program; never upload it to POTA.</small>
+  <small class="k act-only">🤖 <b>Auto log</b> (next to START) fills in their report and state and logs the contact when you say or tap THANKS, 73. Good for getting the hang of the talking first; contacts it logs are marked 🤖 and don't count in "logged right." Tap 🖨 on any contact to print a practice QSL card for it. The ADIF file is marked PRACTICE. Use it to try opening a log in your logging program; never upload it to POTA.</small>
  </div>
 </div>
 <div class="vb-card" style="margin-top:18px">
@@ -283,7 +284,7 @@ body.vb-hunt .act-only{display:none!important}body:not(.vb-hunt) .hunt-only{disp
 </div></section>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
-<script src="kpc-ssb.js?v=20261015b"></script>
+<script src="kpc-ssb.js?v=20261015c"></script>
 <script src="kpc-search.js?v=20261015kg" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
