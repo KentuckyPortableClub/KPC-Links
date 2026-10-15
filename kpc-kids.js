@@ -1,4 +1,4 @@
-/* KPC Kids Radio Zone: phonetic alphabet games. Nothing about the player is stored except stars on this device. */
+/* KPC Kids Room: phonetic alphabet games. Nothing about the player is stored except stars on this device. */
 (function () {
 'use strict';
 const $ = id => document.getElementById(id);
@@ -164,7 +164,7 @@ let STORY = null;
 function printPages(pages, withText) {
   const f = document.createElement('iframe'); f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0'; document.body.appendChild(f);
   const html = `<!doctype html><html><head><meta charset="utf-8"><title>${esc(STORY.title)}</title><style>@page{size:letter;margin:.4in}body{margin:0;font:18px/1.5 Georgia,serif;color:#111}.pg{page-break-after:always;text-align:center}.pg:last-child{page-break-after:auto}img{max-width:100%;max-height:${withText ? '6.6in' : '9.6in'}}h2{font:700 26px Arial,sans-serif;margin:6px 0}p{text-align:left;margin:8px 0}.n{font:12px Arial;color:#666}</style></head><body>` +
-    pages.map(pg => `<div class="pg">${withText ? `<h2>${esc(pg.title)}</h2>` : ''}<img src="${pg.img}.png" alt="">${withText ? `<p>${esc(pg.text)}</p>` : ''}<div class="n">Kentucky Portable Club · Kids Radio Zone</div></div>`).join('') + '</body></html>';
+    pages.map(pg => `<div class="pg">${withText ? `<h2>${esc(pg.title)}</h2>` : ''}<img src="${pg.img}.png" alt="">${withText ? `<p>${esc(pg.text)}</p>` : ''}<div class="n">Kentucky Portable Club · Kids Room</div></div>`).join('') + '</body></html>';
   f.contentDocument.open(); f.contentDocument.write(html); f.contentDocument.close();
   const imgs = [...f.contentDocument.images]; let left = imgs.length;
   const go = () => { try { f.contentWindow.focus(); f.contentWindow.print(); } catch (e) {} setTimeout(() => f.remove(), 60000); };
