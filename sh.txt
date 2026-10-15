@@ -1,20 +1,16 @@
-== Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer/0
-{"error":{"code":400,"message":"Failed to execute query.","details":[]}}
-{"currentVersion":10.91,"cimVersion":"2.9.0","id":0,"name":"State Nature Preserves","type":"Feature Layer","description":"","geometryType":"esriGeometryPolygon","sourceSpatialReference":{"wkid":102763,"latestWkid":3089,"xyTolerance":0.003280833333333333,"zTolerance":0.001,"mTolerance":0.001,"falseX"
-== Ky_KNP_Natural_Areas_WGS84WM/MapServer/0
-{"error":{"code":400,"message":"Failed to execute query.","details":[]}}
-{"currentVersion":10.91,"cimVersion":"2.9.0","id":0,"name":"State Natural Areas","type":"Feature Layer","description":"State Natural Areas are owned and managed by the Office of Kentucky Nature Preserves. State Natural Areas available in this layer are open to the public for outdoor recreation.","ge
-== Ky_State_Parks_Features_WGS84WM/MapServer/8
-{"error":{"code":400,"message":"Failed to execute query.","details":[]}}
-{"currentVersion":10.91,"cimVersion":"2.9.0","id":8,"name":"State Park Boundaries","type":"Feature Layer","description":"This dataset contains KY state park boundaries under the oversight of the Kentucky Department of Parks.","geometryType":"esriGeometryPolygon","sourceSpatialReference":{"wkid":1027
-== Ky_Public_Hunting_Areas_WGS84WM/MapServer/1
-{"error":{"code":400,"message":"Failed to execute query.","details":[]}}
-{"currentVersion":10.91,"cimVersion":"2.9.0","id":1,"name":"Hunting Areas","type":"Feature Layer","description":"","geometryType":"esriGeometryPolygon","sourceSpatialReference":{"wkid":102763,"latestWkid":3089,"xyTolerance":0.003280833333333333,"zTolerance":0.001,"mTolerance":0.001,"falseX":-1174348
-== PAD
-{"displayFieldName":"Own_Name","fieldAliases":{"Unit_Nm":"Unit Name","Loc_Nm":"Local Name","Loc_Own":"Local Owner","Loc_Mang":"Local Manager","Pub_Access":"Public Access","GIS_Acres":"GIS Acres"},"fields":[{"name":"Unit_Nm","type":"esriFieldTypeString","alias":"Unit Name","length":250},{"name":"Loc_Nm","type":"esriFieldTypeString","alias":"Local Name","length":250},{"name":"Loc_Own","type":"esriFieldTypeString","alias":"Local Owner","length":250},{"name":"Loc_Mang","type":"esriFieldTypeString","alias":"Local Manager","length":250},{"name":"Pub_Access","type":"esriFieldTypeString","alias":"Public Access","length":20},{"name":"GIS_Acres","type":"esriFieldTypeInteger","alias":"GIS Acres"}],"features":[{"attributes":{"Unit_Nm":"Apple Valley Glade State Nature Preserve","Loc_Nm":"Apple Valley Glade SNP","Loc_Own":"Kentucky State Nature Preserves Commission","Loc_Mang":"Unknown","Pub_Access":"RA","GIS_Acres":37}},{"attributes":{"Unit_Nm":"Applegrove Park","Loc_Nm":"Applegrove Park","Loc_Own":"City of Barbourville","Loc_Mang":"City of Barbourville","Pub_Access":"OA","GIS_Acres":12}},{"attributes":{"Unit_Nm":"Apple Orchard Park","Loc_Nm":"Apple Orchard Park","Loc_Own":"City of Cold Spring","Loc_Mang":"City of Cold Spring","Pub_Access":"OA","GIS_Acres":2}}]}
-== NOM
-[]
-== WD
-{"searchinfo":{"search":"Apple Valley Glades"},"search":[],"success":1}
-== AXE
-{"error":{"code":400,"message":"Failed to execute query.","details":[]}}
+== Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer/0 ['MA_ID', 'MANAME', 'UNIT_TYPE', 'MA_OWNER', 'MNG_INST', 'ACRES', 'PUB_ACCESS', 'OBJECTID', 'Webpage', 'Shape', 'Shape.STArea()', 'Shape.STLength()'] True
+NAME LIKE '%Apple%' {"error":{"code":400,"message":"Failed to execute query.","details":[]}}
+NAME LIKE '%APPLE%' {"error":{"code":400,"message":"Failed to execute query.","details":[]}}
+1=1 {"displayFieldName":"MANAME","fieldAliases":{"MA_ID":"Managed Area ID","MANAME":"Managed Area Name","UNIT_TYPE":"Unit Type","MA_OWNER":"Managed Area Owner","MNG_INST":"Managing Institution","ACRES":"Acres","PUB_ACCESS":"Public Access","OBJECTID":"OBJECTID","Webpage":"Webpage","Shape.STArea()":"Shape.STArea()","Shape.STLength()":"Shape.STLength()"},"fields":[{"name":"MA_ID","type":"esriFieldTypeDou
+== Ky_KNP_Natural_Areas_WGS84WM/MapServer/0 ['MA_ID', 'MANAME', 'UNIT_TYPE', 'MA_OWNER', 'MNG_INST', 'ACRES', 'PUB_ACCESS', 'OBJECTID', 'Webpage', 'Shape', 'Shape.STArea()', 'Shape.STLength()'] True
+NAME LIKE '%Apple%' {"error":{"code":400,"message":"Failed to execute query.","details":[]}}
+NAME LIKE '%APPLE%' {"error":{"code":400,"message":"Failed to execute query.","details":[]}}
+1=1 {"displayFieldName":"MANAME","fieldAliases":{"MA_ID":"Managed Area ID","MANAME":"Managed Area Name","UNIT_TYPE":"Unit Type","MA_OWNER":"Managed Area Owner","MNG_INST":"Managing Institution","ACRES":"Acres","PUB_ACCESS":"Public Access","OBJECTID":"OBJECTID","Webpage":"Webpage","Shape.STArea()":"Shape.STArea()","Shape.STLength()":"Shape.STLength()"},"fields":[{"name":"MA_ID","type":"esriFieldTypeDou
+== Ky_State_Parks_Features_WGS84WM/MapServer/8 ['OBJECTID', 'PUBLIC_NAM', 'HECTARES', 'EXTENT', 'HYPERLINK', 'COUNTY', 'PARK_TYPE', 'ADDRESS', 'ZIP_CODE', 'PHONE_NUMBER', 'PARK_NAME', 'ABSOLUTE_ACREAGE', 'STATE_OWNED_ACREAGE', 'LEASED_ACREAGE', 'TERRA_FIRMA_ACREAGE', 'Abbrev', 'Shape', 'site_id', 'Shape.STArea()', 'Shape.STLength()'] True
+NAME LIKE '%Apple%' {"error":{"code":400,"message":"Failed to execute query.","details":[]}}
+NAME LIKE '%APPLE%' {"error":{"code":400,"message":"Failed to execute query.","details":[]}}
+1=1 {"displayFieldName":"PARK_NAME","fieldAliases":{"OBJECTID":"OBJECTID","PUBLIC_NAM":"PUBLIC_NAM","HECTARES":"HECTARES","EXTENT":"EXTENT","HYPERLINK":"HYPERLINK","COUNTY":"COUNTY","PARK_TYPE":"PARK_TYPE","ADDRESS":"ADDRESS","ZIP_CODE":"ZIP_CODE","PHONE_NUMBER":"PHONE_NUMBER","PARK_NAME":"PARK_NAME","ABSOLUTE_ACREAGE":"ABSOLUTE_ACREAGE","STATE_OWNED_ACREAGE":"STATE_OWNED_ACREAGE","LEASED_ACREAGE":"LE
+== Ky_Public_Hunting_Areas_WGS84WM/MapServer/1 ['OBJECTID', 'DETAIL', 'WMA', 'ACRES_CAL', 'AREANAME', 'Shape', 'ElkZone', 'ElkPermit', 'KDFWR_ID', 'WILDMGTREG', 'SQMI_CAL', 'MANAGER', 'AreaOpen', 'Office', 'Management_Level', 'created_user', 'created_date', 'last_edited_user', 'last_edited_date', 'GlobalID', 'ElkZoneUnit', 'Counties', 'Shape.STArea()', 'Shape.STLength()'] True
+NAME LIKE '%Apple%' {"error":{"code":400,"message":"Failed to execute query.","details":[]}}
+NAME LIKE '%APPLE%' {"error":{"code":400,"message":"Failed to execute query.","details":[]}}
+1=1 {"displayFieldName":"AREANAME","fieldAliases":{"OBJECTID":"OBJECTID","DETAIL":"DETAIL","WMA":"WMA","ACRES_CAL":"ACRES_CAL","AREANAME":"AREANAME","ElkZone":"ElkZone","ElkPermit":"ElkPermit","KDFWR_ID":"KDFWR_ID","WILDMGTREG":"WILDMGTREG","SQMI_CAL":"SQMI_CAL","MANAGER":"MANAGER","AreaOpen":"AreaOpen","Office":"Office","Management_Level":"Tier","created_user":"created_user","created_date":"created_d
