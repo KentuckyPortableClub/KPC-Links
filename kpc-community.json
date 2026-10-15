@@ -1,4 +1,17 @@
 {
- "updated": "2026-10-14",
- "items": []
+ "updated": "2026-10-15",
+ "items": [
+  {
+   "id": "3f3428d9e462",
+   "type": "elmer",
+   "call": "K4ZSR",
+   "date": "2026-10-15",
+   "f": {
+    "area": "Meade (Ft Knox/S Louisville area)",
+    "help": "Getting licensed, First POTA activation, SOTA, CW, Antennas, Portable operations, Logging and uploading, Other",
+    "reach": "QRZ email; Discord"
+   },
+   "photos": []
+  }
+ ]
 }
