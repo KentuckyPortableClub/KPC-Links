@@ -136,7 +136,7 @@
   }
   async function osmFind(ws, st) {
     const re = ws.map(x => x.replace(/[^\w ']/g, '')).join('.*');
-    const qy = `[out:json][timeout:40];area["ISO3166-2"="US-${st}"]->.s;(nwr["name"~"${re}",i]["leisure"~"^(park|nature_reserve)$"](area.s);nwr["name"~"${re}",i]["boundary"~"^(protected_area|national_park)$"](area.s););out geom 8;`;
+    const qy = `[out:json][timeout:40];area["ISO3166-2"="US-${st}"]->.s;(nwr["name"~"${re}",i]["leisure"~"^(park|nature_reserve)$"](area.s);nwr["name"~"${re}",i]["boundary"~"^(protected_area|national_park)$"](area.s);wr["name"~"${re}",i]["natural"="water"]["water"~"^(reservoir|lake|pond)$"](area.s););out geom 8;`;
     let j = null; for (const u of OVER) { try { j = await B.jget(u, { method: 'POST', body: 'data=' + encodeURIComponent(qy), headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }, 45000); break; } catch (e) {} }
     return (j && j.elements || []).filter(e => e.tags && e.tags.name).map(e => {
       const lines = e.type === 'way' ? [e.geometry] : e.type === 'relation' ? (e.members || []).filter(m => m.type === 'way' && m.role !== 'inner' && m.geometry).map(m => m.geometry) : [];
@@ -392,10 +392,12 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     add(lakeOnly ? 'CHECK' : 'CHECK', lakeOnly ? 'Not an agency lake surrounded by city, county or private land' : 'Has a public way in (road, trail or water)',
       lakeOnly ? 'POTA does NOT add agency-owned lakes that are surrounded by city, county or private land. Look at the map: is there state/federal land around the water (shoreline, ramp area) that the public can reach, or is the shore someone else\'s?' : 'Private land all around is fine as long as the public can get in: a public road, parking lot, trailhead, trail or boat ramp that reaches the land. POTA only turns down (and since 2022 deactivates) land that is cut off by private property, where you would have to cross someone\'s land to get there. The tool looks for public roads, parking, trailheads and ramps inside the boundary.', [['SATELLITE VIEW ↗', sat], ['STREET VIEW AT THE PIN ↗', `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${la.toFixed(5)},${lo.toFixed(5)}`]]);
     const allDocs = await officialMaps(g, offWeb), isMap = m => /map|picture|boundar/i.test(m[0]), mapL = allDocs.filter(isMap), docL = allDocs.filter(m => !isMap(m)), hostOf = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; } };
+    const fwsSlug = /national wildlife refuge|\bNWR\b/i.test(g.name) ? g.name.replace(/national wildlife refuge|\bNWR\b/ig, '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') : '';
+    const fwsL = fwsSlug && !offWeb.some(u => /fws\.gov/.test(u)) ? [['FWS REFUGE PAGE (FWS.GOV/REFUGE/' + fwsSlug.toUpperCase() + ') ↗', 'https://www.fws.gov/refuge/' + fwsSlug], ['FWS: VISIT US (MAPS, HOURS) ↗', 'https://www.fws.gov/refuge/' + fwsSlug + '/visit-us']] : [];
     const shortNm = g.name.replace(/\b(state nature preserve|snp|wma|state park)\b/ig, '').trim();
     add(offWeb.length ? 'YES' : 'CHECK', 'Has an official government web page',
       offWeb.length ? `The agency's own page for it (from the official records): <a href="${esc(offWeb[0])}" target="_blank" rel="noopener">${esc(offWeb[0])}</a>. POTA lists the park from this page.${docL.length ? ' The agency also posts ' + docL.length + ' document' + (docL.length > 1 ? 's' : '') + ' for it (below).' : ''}` : `POTA needs the agency's own page for the park's POTA listing. If there's no web page, a civil-agency or GIS map can be used. Tourist or commercial sites don't count. Agency: <b>${esc(locM || '')}</b>.`,
-      offWeb.map(u => ['OFFICIAL PAGE: ' + hostOf(u).toUpperCase() + ' ↗', u, 'gold']).concat(docL.map(m => ['OFFICIAL DOCUMENT: ' + m[0].toUpperCase() + ' ↗', m[1]])).concat(osmWeb.map(u => ['WEBSITE (FROM OPENSTREETMAP) ↗', u])).concat(offWeb.length ? [] : agSites(locM + ' ' + uniq('Loc_Own').join(' '), g.st).map(d => [`FIND ITS PAGE ON ${d.toUpperCase()} (GOOGLE) ↗`, gq(`site:${d} "${shortNm}"`)])).concat(offWeb.length ? [] : [['SEARCH .GOV (GOOGLE) ↗', gq(`"${g.name}" ${g.st} site:.gov`)]]));
+      offWeb.map(u => ['OFFICIAL PAGE: ' + hostOf(u).toUpperCase() + ' ↗', u, 'gold']).concat(docL.map(m => ['OFFICIAL DOCUMENT: ' + m[0].toUpperCase() + ' ↗', m[1]])).concat(fwsL).concat([...new Set(offWeb.map(hostOf).filter(Boolean))].map(d => [`DOCUMENTS (PDF) ON ${d.toUpperCase()} (GOOGLE) ↗`, gq(`site:${d} "${shortNm}" filetype:pdf`)])).concat(osmWeb.map(u => ['WEBSITE (FROM OPENSTREETMAP) ↗', u])).concat(offWeb.length ? [] : agSites(locM + ' ' + uniq('Loc_Own').join(' '), g.st).map(d => [`FIND ITS PAGE ON ${d.toUpperCase()} (GOOGLE) ↗`, gq(`site:${d} "${shortNm}"`)])).concat(offWeb.length ? [] : [['SEARCH .GOV (GOOGLE) ↗', gq(`"${g.name}" ${g.st} site:.gov`)]]));
     const gisL = gisLinks(g, la, lo, bb);
     add(mapL.length ? 'YES' : 'CHECK', 'Has an official boundary map',
       mapL.length ? `The agency's page links its map: <a href="${esc(mapL[0][1])}" target="_blank" rel="noopener">${esc(mapL[0][0])}</a> (on ${esc(hostOf(mapL[0][2] || mapL[0][1]))}). Open it and check that its boundary matches the gold outline on this page.` : `<b>No official map found</b> on the agency's page${offWeb.length ? '' : ' (and no official page was found)'}, <b>but here is a GIS map link:</b> <a href="${esc(gisL[0][1])}" target="_blank" rel="noopener">${esc(gisL[0][0].replace(/^GIS MAP: /, ''))}</a> (the official GIS layer this boundary comes from, opened on a map and zoomed to the park). POTA's rule: "A civil-agency or GIS map ... is used only where web presence is limited." Still look on the agency's page first (MAPS ON… below); you can also save the boundary as a KML file in the facts box.`,
@@ -545,6 +547,14 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
       const dom = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; } };
       const gov = sites.filter(u => /\.(gov|us)$|\.gov\//.test(dom(u)));
       W.innerHTML = sites.length ? sites.map(u => `<a class="${gov.includes(u) ? 'gold' : ''}" href="${esc(u)}" target="_blank" rel="noopener">${gov.includes(u) ? 'OFFICIAL PAGE' : 'WEBSITE LISTED'}: ${esc(dom(u))} ↗</a>`).join('') : '<span class="mr-help">No website found on the web; use the search buttons.</span>';
+      if (gov.length) {   /* an official .gov/.us site found by the web research: the web-page rule is a YES now */
+        const box = W.closest('.mr-r'); box.className = 'mr-r yes'; box.querySelector('i').textContent = 'YES';
+        const pEl = box.querySelector('p'); if (pEl) pEl.innerHTML = `The agency's own page (found on the web, ${esc(dom(gov[0]))}): <a href="${esc(gov[0])}" target="_blank" rel="noopener">${esc(gov[0])}</a>. Check that it is this park's page.`;
+        const t = $('mrNote'); if (t) t.value = t.value.replace(/Official web page: \(paste the agency link here\)/, 'Official web page: ' + gov.join(' ; ')).replace('Has an official government web page: CHECK', 'Has an official government web page: YES (' + gov[0] + ')');
+        const yes = document.querySelectorAll('.mr-r.yes').length, no = document.querySelectorAll('.mr-r.no').length, ck = document.querySelectorAll('.mr-r.check').length;
+        const V = document.querySelector('.mr-v'); if (V && !/ALREADY|CORPS/.test(V.textContent)) { V.className = 'mr-v ' + (no ? 'no' : ck ? 'maybe' : 'yes'); V.querySelector('b').textContent = no ? 'LIKELY NOT ELIGIBLE' : ck ? 'LOOKS POSSIBLE: CONFIRM THE YELLOW ITEMS' : 'LOOKS ELIGIBLE'; V.querySelector('span').textContent = `${yes} yes · ${no} no · ${ck} to check yourself`; }
+      }
+      W.innerHTML += [...new Set(sites.map(dom).filter(Boolean))].map(d => `<a href="https://www.google.com/search?q=${encodeURIComponent('site:' + d + ' "' + g.name + '" filetype:pdf')}" target="_blank" rel="noopener">DOCUMENTS (PDF) ON ${esc(d.toUpperCase())} (GOOGLE) ↗</a>`).join('');
       const MR = $('mrMapRule'); if (MR && !MR.closest('.mr-r').classList.contains('yes') && sites.length) MR.innerHTML = [...new Set(sites.map(dom).filter(Boolean))].map(d => `<a href="https://www.google.com/search?q=${encodeURIComponent('site:' + d + ' "' + g.name + '" map')}" target="_blank" rel="noopener">MAPS ON ${esc(d.toUpperCase())} (GOOGLE) ↗</a>`).join('');
     }
   }
@@ -594,6 +604,28 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
   }
   window.KPCparseLoc = parseLoc;   /* the Suggest page's summit box uses it too */
   const looksAddress = t => /^\s*\d{1,6}\s+\S+.*\b(st|street|rd|road|ave|avenue|hwy|highway|ln|lane|dr|drive|pike|blvd|ct|court|way|pkwy|route|rt|us|ky|trail|loop)\b/i.test(t) || /\b\d{5}(-\d{4})?\s*$/.test(t);
+  /* named places at / near a spot from OpenStreetMap (lakes, parks, preserves, forests): official records sometimes miss
+     a place (Wood Creek Lake isn't in PAD-US at all), so these give you a name to check with one tap */
+  async function osmNamed(la, lo) {
+    const qy = `[out:json][timeout:25];is_in(${la},${lo})->.a;(area.a[name][~"^(leisure|boundary|natural|landuse)$"~"^(park|nature_reserve|protected_area|national_park|water|recreation_ground|forest)$"];)->.b;.b out tags;nwr(around:1200,${la},${lo})[name][~"^(natural|leisure|boundary)$"~"^(water|park|nature_reserve|protected_area|national_park)$"];out tags center 30;`;
+    let j = null; for (const u of OVER) { try { j = await B.jget(u, { method: 'POST', body: 'data=' + encodeURIComponent(qy), headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }, 30000); break; } catch (e) {} }
+    if (!j) return [];
+    const seen = new Set(), out = [];
+    (j.elements || []).forEach(e => { const t = e.tags || {}; if (!t.name || /^(administrative|timezone|region|census)$/.test(t.boundary || '')) return; const k = t.name.toLowerCase(); if (seen.has(k)) return; seen.add(k);
+      const kind = t.natural === 'water' ? (t.water || 'water') : t.leisure ? t.leisure.replace('_', ' ') : t.boundary ? t.boundary.replace('_', ' ') : t.landuse || 'place';
+      const at = e.type === 'area' ? 0 : e.center ? B.km(la, lo, e.center.lat, e.center.lon) : e.lat ? B.km(la, lo, e.lat, e.lon) : 9;
+      out.push({ name: t.name, kind, at, op: t.operator || t.owner || '' }); });
+    return out.sort((a, b) => a.at - b.at).slice(0, 10);
+  }
+  async function osmHtml(P, st) {
+    const L = await P.catch(() => []); if (!L.length) return '';
+    const h = `<span class="mr-here">📌 NAMED PLACES AT / NEAR YOUR SPOT (OPENSTREETMAP, NOT OFFICIAL)</span><p class="mr-help">The official land database may not list everything (some state lakes are missing). Tap a name to search for it by name in ${esc(st || 'this state')}.</p>` +
+      L.map((x, i) => `<button type="button" class="mr-pick osm" data-nm="${esc(x.name)}"><b>${esc(x.name)}</b><span>${esc(x.kind)}${x.op ? ' · run by ' + esc(x.op) : ''} · ${x.at < .05 ? 'your spot is inside it' : B.dist(x.at) + ' away'}</span></button>`).join('');
+    return h;
+  }
+  function osmWire() {
+    $('mrList').querySelectorAll('[data-nm]').forEach(b => b.onclick = ev => { ev.stopPropagation(); $('mrName').value = b.dataset.nm; $('mrTown').value = ''; $('mrList').innerHTML = ''; search(); });
+  }
   async function locSearch(t) {
     if (!t) { msg('Type an address, a place or GPS numbers, or tap USE MY GPS.'); return; }
     $('mrList').innerHTML = '';
@@ -615,6 +647,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
     let st = '';
     try { const c = await B.jget(`https://geo.fcc.gov/api/census/area?lat=${la}&lon=${lo}&format=json`); st = (((c.results || [])[0]) || {}).state_code || ''; } catch (e) {}
     if (st && ST.includes(st) && $('mrState').value !== st) { $('mrState').value = st; agencies(st); }
+    const osmP = osmNamed(la, lo);
     const W = st ? `State_Nm='${st}'` : '1=1', d = .004;
     const [at, near] = await Promise.all([
       q({ geometry: `${lo},${la}`, geometryType: 'esriGeometryPoint', inSR: 4326, spatialRel: 'esriSpatialRelIntersects', where: W }).catch(() => null),
@@ -640,11 +673,13 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
         if (WL.length) {
           $('mrOut').innerHTML = `<div class="mr-msg"><b>No federal or state land right at your spot</b> (${where}${st ? ', ' + esc(st) : ''}). That spot may be private, city or county land, a road, or just outside the line.<br>Here is the public land within <b>${lab.toLowerCase()}</b>. Pick one to check it, or move your dot onto the park (its entrance or parking lot works best).</div>`;
           $('mrList').innerHTML = `<span class="mr-here">↔ PUBLIC LAND WITHIN ${lab}</span>` + WL.slice(0, 25).map((g, i) => pickBtn(g, i).replace('<br><small>', (g.procl ? ' <em class="mr-w">outer "proclamation" line only: not owned land</em>' : '') + '<br><small>')).join('');
+          $('mrList').innerHTML = (await osmHtml(osmP, st)) + $('mrList').innerHTML; osmWire();
           $('mrList').onclick = e => { const b = e.target.closest('[data-i]'); if (b) { $('mrList').innerHTML = ''; $('mrOut').innerHTML = ''; open(WL[+b.dataset.i]); } };
           return;
         }
       }
       msg(`<b>No federal or state land within about 3 miles of this spot</b> in the official land database (${where}${st ? ', ' + esc(st) : ''}).<br>It is probably city, county or private land, which POTA doesn't add. Check the dot is in the right place (open the link), or search by the park's name below.`);
+      $('mrList').innerHTML = await osmHtml(osmP, st); osmWire();
       return;
     }
     $('mrOut').innerHTML = '';
@@ -653,7 +688,8 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
     $('mrList').innerHTML = `<p class="mr-help">Public land found by location: ${where}. Pick one to run the rule check.</p>` + sec(A, '📍 AT THIS SPOT', 0) + sec(N, '↔ NEXT TO IT (WITHIN ABOUT ¼ MILE)', A.length);
     const ALL = A.concat(N);
     $('mrList').onclick = e => { const b = e.target.closest('[data-i]'); if (b) { $('mrList').innerHTML = ''; open(ALL[+b.dataset.i]); } };
-    if (ALL.length === 1) { $('mrList').innerHTML = ''; open(ALL[0]); }
+    const oh = await osmHtml(osmP, st); if (oh && $('mrList').querySelector('[data-i]')) { $('mrList').insertAdjacentHTML('beforeend', oh); osmWire(); }
+    else if (ALL.length === 1 && !oh) { $('mrList').innerHTML = ''; open(ALL[0]); }
   }
   $('mrForm').addEventListener('submit', e => { e.preventDefault(); search(); });
   /* simple password lock (keeps casual visitors out; it is not bank-grade security on a public website) */
