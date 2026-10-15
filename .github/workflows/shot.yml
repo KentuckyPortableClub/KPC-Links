@@ -8,8 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - continue-on-error: true
-        run: bash ses.sh > ses.txt 2>&1
+        run: python3 ses.py > ses.txt 2>&1
       - if: always()
         run: |
           git config user.name bot; git config user.email bot@x
-          git add -f ses.txt ses1.html ses2.html ses-detail.html || true; git commit -m out || true; git pull --rebase; git push
+          git add -f ses.txt ses-res-*.html ses-detail.html || true; git commit -m out || true; git pull --rebase; git push
