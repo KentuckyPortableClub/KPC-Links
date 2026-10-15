@@ -1,11 +1,22 @@
-import urllib.request,urllib.parse,json
+import urllib.request,urllib.parse,json,time
+def g(u,data=None):
+    t=time.time()
+    r=urllib.request.urlopen(urllib.request.Request(u,data=data,headers={'User-Agent':'KPC','Origin':'https://kentuckyportableclub.github.io'}),timeout=90)
+    return json.loads(r.read()),r.headers.get('Access-Control-Allow-Origin'),round(time.time()-t,1)
 P='https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query'
-F='OBJECTID,Unit_Nm,Loc_Nm,Mang_Type,Mang_Name,Loc_Mang,Own_Type,Own_Name,Loc_Own,Des_Tp,Loc_Ds,Pub_Access,GIS_Acres,State_Nm,Category,Date_Est,Comments'
-def g(u): return urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=60).read()
-out={}
-for nm in ['Bullock Pen Lake','Taylorsville Lake Wildlife Management Area']:
-    w=f"(Unit_Nm LIKE '%{nm.split()[0]}%' OR Loc_Nm LIKE '%{nm.split()[0]}%') AND State_Nm='KY'"
-    out['s_'+nm]=json.loads(g(P+'?'+urllib.parse.urlencode({'where':w,'outFields':F,'returnGeometry':'false','f':'json','resultRecordCount':200,'orderByFields':'GIS_Acres DESC'})))
-    out['g_'+nm]=json.loads(g(P+'?'+urllib.parse.urlencode({'where':f"Unit_Nm='{nm}' AND State_Nm='KY'",'outFields':F,'returnGeometry':'true','outSR':4326,'geometryPrecision':5,'maxAllowableOffset':0.00005,'f':'geojson'})))
-json.dump(out,open('maprep.json','w'))
-print({k:len(v.get('features',[])) for k,v in out.items()}, [v.get('error') for v in out.values()])
+q={'where':"State_Nm='KY' AND Mang_Type IN ('FED','STAT')",'groupByFieldsForStatistics':'Mang_Type,Loc_Mang','outStatistics':json.dumps([{'statisticType':'count','onStatisticField':'OBJECTID','outStatisticFieldName':'n'}]),'f':'json'}
+try:
+    j,c,t=g(P+'?'+urllib.parse.urlencode(q));print('stats',t,c,len(j.get('features',[])),j.get('error'));[print('  ',f['attributes']) for f in j.get('features',[])[:40]]
+except Exception as e: print('stats ERR',e)
+N='https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2/query'
+try:
+    j,c,t=g(N+'?'+urllib.parse.urlencode({'where':"UNIT_NAME LIKE '%Camp Nelson%'",'outFields':'*','returnGeometry':'false','f':'json'}));print('nps',t,c,[f['attributes'] for f in j.get('features',[])][:2])
+except Exception as e: print('nps ERR',e)
+W='https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer/0/query'
+try:
+    j,c,t=g(W+'?'+urllib.parse.urlencode({'where':"ORGNAME LIKE '%GREEN RIVER%'",'outFields':'*','returnGeometry':'false','f':'json','resultRecordCount':3}));print('fws',t,c,[f['attributes'] for f in j.get('features',[])][:2])
+except Exception as e: print('fws ERR',e)
+oq='[out:json][timeout:40];area["ISO3166-2"="US-KY"]->.s;(nwr["name"~"Bullock Pen",i](area.s);)->.r;(.r[leisure];.r[boundary];.r[landuse];.r[natural];);out tags center 20;'
+try:
+    j,c,t=g('https://overpass-api.de/api/interpreter',('data='+urllib.parse.quote(oq)).encode());print('osm',t,c,[(e['type'],e['tags'].get('name'),e['tags'].get('leisure') or e['tags'].get('boundary') or e['tags'].get('natural'),e['tags'].get('operator')) for e in j.get('elements',[])][:10])
+except Exception as e: print('osm ERR',e)
