@@ -269,7 +269,10 @@ def main():
             return 'military land'
         if re.search(r'state park state nature preserve', n, re.I):
             return 'a preserve inside a state park the parks department owns (same-agency sub-park)'
-        if re.search(r'\blake (wma|wildlife)', n, re.I) or re.search(r'^(barren river|buckhorn|carr creek|dale hollow|grayson|green river|nolin|paintsville|rough river|taylorsville|lake barkley|lake cumberland|martins fork) lake', n, re.I):
+        part = next((r for r, pn in P.items() if ' and ' in n.lower() and any(norm(x) and norm(x) == norm(pn) for x in re.split(r'\band\b', n, flags=re.I))), None) or next((r for r, pn in P.items() if norm(n).split(' ')[0] and len(norm(n)) > 4 and norm(pn).startswith(norm(n).split(' and ')[0]) and kind(pn) in ('sf', 'nwr')), None)
+        if part:
+            return 'may be the same land as POTA %s %s' % (part, P[part])
+        if re.search(r'^lake (barkley|cumberland) wma', n, re.I) or re.search(r'\blake (wma|wildlife)', n, re.I) or re.search(r'^(barren river|buckhorn|carr creek|dale hollow|grayson|green river|nolin|paintsville|rough river|taylorsville|lake barkley|lake cumberland|martins fork) lake', n, re.I):
             return 'probably Army Corps of Engineers lake land (few are exceptions)'
         if re.search(r'universit|college|u of ky', o, re.I):
             return 'university land (CHECK: University of the Cumberlands WMA was added)'
