@@ -1,7 +1,9 @@
-import urllib.request
-def get(u):
-    try:
-        r=urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC','Origin':'https://kentuckyportableclub.github.io'}),timeout=30);return r.status,r.headers.get('Access-Control-Allow-Origin'),r.read()[:700]
-    except Exception as e: return 'ERR',None,str(e).encode()
-for u in ['https://api.sotl.as/summits/near?lat=34.874&lon=-83.81&limit=5&maxDistance=20000','https://api.sotl.as/summits/W4G/NG-001','https://sotl.as/api/summits/near?lat=34.874&lon=-83.81&limit=5','https://api2.sota.org.uk/api/regions/W4G/NG','https://storage.sota.org.uk/summitslist.csv']:
-    s,c,b=get(u);print(u,s,c,b[:500],'\n')
+import urllib.request,urllib.parse,json
+P='https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0'
+def g(u):
+    return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=60).read())
+j=g(P+'?f=json');print([f['name'] for f in j['fields']])
+for w in ["Unit_Nm LIKE '%Bullock Pen%' AND State_Nm='KY'","Unit_Nm LIKE '%Fort Yargo%'","Unit_Nm LIKE '%Taylorsville%' AND State_Nm='KY'"]:
+    q={'where':w,'outFields':'OBJECTID,Unit_Nm,Loc_Nm,Mang_Type,Mang_Name,Loc_Mang,Own_Type,Own_Name,Loc_Own,Des_Tp,Loc_Ds,Pub_Access,GIS_Acres,State_Nm,Category','returnGeometry':'false','f':'json'}
+    r=g(P+'/query?'+urllib.parse.urlencode(q));print(w,len(r.get('features',[])));[print('  ',f['attributes']) for f in r.get('features',[])[:6]]
+    if 'error' in r: print(r['error'])
