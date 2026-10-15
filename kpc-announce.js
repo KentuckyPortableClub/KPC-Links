@@ -28,7 +28,7 @@
   function card(it) {
     var ph = (it.photos || []).map(function (p) { return '<a href="' + esc(p) + '" target="_blank" rel="noopener"><img src="' + esc(p) + '" alt="Announcement photo" loading="lazy"></a>'; }).join('');
     return '<article class="ka-item" id="a-' + esc(it.id) + '"><p class="ka-date">📅 ' + esc(fmt(it.date)) + '</p><p class="ka-text">' + linkify(it.text) + '</p>' +
-      (ph ? '<div class="ka-ph">' + ph + '</div>' : '') + (it.author ? '<div class="ka-by">Posted by ' + esc(it.author) + '</div>' : '') + '</article>';
+      (ph ? '<div class="ka-ph">' + ph + '</div>' : '') + '</article>';
   }
 
   var box = document.getElementById('kpc-announce');
