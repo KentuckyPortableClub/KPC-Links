@@ -14,7 +14,7 @@
   const ACC = { OA: 'Open to the public', RA: 'Restricted (permit, season or partial)', XA: 'Closed to the public', UK: 'Unknown' };
   const DES = { NP: 'National Park', NM: 'National Monument', NF: 'National Forest', NWR: 'National Wildlife Refuge', NRA: 'National Recreation Area', NCA: 'National Conservation Area', NT: 'National Trail', NSBV: 'National Scenic/Byway', WA: 'Wilderness Area', WSR: 'Wild & Scenic River', SP: 'State Park', SW: 'State Wilderness', SRMA: 'State Resource Mgmt Area', SREC: 'State Recreation Area', SCA: 'State Conservation Area', SHCA: 'State Historic/Cultural Area', SOTH: 'State Other', SF: 'State Forest', PREC: 'Local Park', LP: 'Local Park', LREC: 'Local Recreation Area', LCA: 'Local Conservation Area', HCA: 'Historic/Cultural Area', REC: 'Recreation Area', PROC: 'Proclamation boundary', MPA: 'Marine Protected Area', ACC: 'Access Area', PUB: 'Public land', CONE: 'Conservation easement', AGRE: 'Agricultural easement' };
   const ST = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY PR VI GU AS MP'.split(' ');
-  let map = null, lay = null, cur = null;
+  let map = null, lay = null, cur = null, lastQ = '';
   const q = (o) => B.jget(PADUS + '?' + new URLSearchParams(Object.assign({ outFields: F, returnGeometry: false, f: 'json' }, o))).then(j => { if (j.error) throw new Error(j.error.message); return (j.features || []).map(f => f.attributes); });
   const words = n => String(n || '').replace(/\b(state|national|park|parks|the|of|and|area|wildlife|management|nature|preserve|natural|recreation|recreational|forest|refuge|site)\b/gi, ' ').replace(/[^A-Za-z0-9' ]/g, ' ').trim().split(/\s+/).filter(w => w.length > 2).map(w => w.length > 4 && /[^s]s$/i.test(w) ? w.slice(0, -1) : w);
   const like = w => { const x = w.toUpperCase().replace(/'/g, "''"); return `(UPPER(Unit_Nm) LIKE '%${x}%' OR UPPER(Loc_Nm) LIKE '%${x}%')`; };
@@ -43,7 +43,8 @@
     try { localStorage.setItem('kpcMrState', st); } catch (e) {}
     box.innerHTML = '<p class="mr-help">Loading the federal and state agencies that own land in ' + esc(st) + '…</p>';
     try {
-      const j = await B.jget(PADUS + '?' + new URLSearchParams({ where: `State_Nm='${st}' AND Mang_Type IN ('FED','STAT') AND Category<>'Easement'`, groupByFieldsForStatistics: 'Mang_Type,Mang_Name,Loc_Mang', outStatistics: JSON.stringify([{ statisticType: 'count', onStatisticField: 'OBJECTID', outStatisticFieldName: 'n' }]), f: 'json' }));
+      const agq = () => B.jget(PADUS + '?' + new URLSearchParams({ where: `State_Nm='${st}' AND Mang_Type IN ('FED','STAT') AND Category<>'Easement'`, groupByFieldsForStatistics: 'Mang_Type,Mang_Name,Loc_Mang', outStatistics: JSON.stringify([{ statisticType: 'count', onStatisticField: 'OBJECTID', outStatisticFieldName: 'n' }]), f: 'json' }), null, 45000);
+      let j; try { j = await agq(); } catch (e) { box.innerHTML = '<p class="mr-help">The national database is slow, trying again…</p>'; j = await agq(); }
       const m = new Map();
       (j.features || []).forEach(f => { const a = f.attributes, loc = (a.Loc_Mang && !/^unknown$/i.test(a.Loc_Mang)) ? a.Loc_Mang : (AG[a.Mang_Name] || a.Mang_Name); const k = a.Mang_Type + '|' + a.Mang_Name + '|' + loc.toLowerCase(); const o = m.get(k) || { t: a.Mang_Type, code: a.Mang_Name, loc, n: 0 }; o.n += a.n; m.set(k, o); });
       AGL = [...m.values()].sort((a, b) => (a.t > b.t ? 1 : a.t < b.t ? -1 : 0) || b.n - a.n);
@@ -127,7 +128,7 @@
 
   /* ---------- search ---------- */
   async function search() {
-    const name = $('mrName').value.trim(), town = $('mrTown').value.trim(), st = $('mrState').value;
+    const name = $('mrName').value.trim(), town = $('mrTown').value.trim(), st = $('mrState').value; lastQ = name;
     if (!st) { msg('<b>Pick the state first.</b> Each state has its own agencies, so the search needs to know where to look.'); $('mrState').focus(); return; }
     if (name.length < 3) { msg('Type at least part of the park name.'); return; }
     msg('Searching ' + esc(st) + ': the national public land database (every federal and state agency), the live National Park Service and Fish &amp; Wildlife maps' + (st === 'KY' ? ', Kentucky\'s state files' : '') + ' and OpenStreetMap…'); $('mrList').innerHTML = '';
@@ -250,9 +251,16 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
       q({ geometry: `${lo},${la}`, geometryType: 'esriGeometryPoint', inSR: 4326, spatialRel: 'esriSpatialRelIntersects', where: '1=1' }).catch(() => [])
     ]);
     const inside = near.filter(p => feats.some(f => B.inside(p.la, p.lo, f.geometry)));
-    const same = n => B.sameName(n, g.name) && B.sameKind(n, g.name);
-    const named = near.filter(p => same(p.name)).concat(((look || []).filter(x => x.type === 'park' && same(x.display.replace(/^\S+\s+/, ''))).map(x => ({ ref: x.value, name: x.display.replace(/^\S+\s+/, ''), far: true }))));
-    const already = [...new Map(named.concat(inside.filter(p => same(p.name))).map(p => [p.ref, p])).values()].filter(p => !p.far || /^US-/.test(p.ref));
+    /* 'already in POTA' only when the name is the SAME (not just close) and it's the same kind of place;
+       close names or another kind of place on the same lake/river are listed as 'similar' to check by eye */
+    const gKind = B.kindOf(g.name) || B.kindOf(R.map(r => (r.Loc_Ds || '') + ' ' + (DES[r.Des_Tp] || '')).join(' ')) || B.kindOf(lastQ);
+    const kindOK = n => { const k = B.kindOf(n); return !k || !gKind || k === gKind; };
+    const exact = n => B.norm(n) === B.norm(g.name) && kindOK(n);
+    const close = n => B.sameName(n, g.name) || B.norm(n).split(' ').filter(w => w.length > 3 && B.norm(g.name).split(' ').includes(w)).length >= 2;
+    const cand = near.concat(((look || []).filter(x => x.type === 'park').map(x => ({ ref: x.value, name: x.display.replace(/^\S+\s+/, ''), far: true })))).filter(p => !p.far || /^US-/.test(p.ref));
+    const uniqP = L => [...new Map(L.map(p => [p.ref, p])).values()];
+    const already = uniqP(cand.filter(p => exact(p.name)));
+    const similar = uniqP(cand.concat(inside).filter(p => !already.some(a => a.ref === p.ref) && close(p.name)));
     const parents = (around || []).filter(r => (r.Unit_Nm || '') !== g.name && (+r.GIS_Acres || 0) > g.acres * 1.5 && r.Category !== 'Easement');
     const parentPota = parents.map(p => ({ p, pota: near.find(x => B.sameName(x.name, p.Unit_Nm)) })).filter(x => x.pota);
     const sameAgency = parentPota.filter(x => x.p.Mang_Name === base[0].Mang_Name && (x.p.Loc_Mang || '') === (base[0].Loc_Mang || ''));
@@ -290,8 +298,8 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
       exName ? 'The name looks like a type POTA excludes (National Recreation Trail, Heritage Area, Historic Place/Landmark, byway).' : exDes ? 'This is an easement (usually private land with a conservation agreement), not a park.' : own.includes('TRIB') || mng.includes('TRIB') ? 'Tribal land is treated as private unless the tribal council says otherwise.' : mng.includes('DIST') ? 'Run by a special district or commission.' : 'Not a Corps site, heritage area, National Recreation Trail, historic landmark, tribal land, commission/district site or commercial trail.', recL('DESIGNATION IN THE OFFICIAL RECORD'));
     add(sameAgency.length ? 'NO' : parentPota.length ? 'YES' : 'YES', 'Not a "sub-park" inside an existing POTA park of the same agency',
       sameAgency.length ? `It sits inside ${sameAgency.map(x => esc(x.p.Unit_Nm) + ' (' + esc(x.pota.ref) + ')').join(', ')}, run by the same agency. POTA: "does not create sub-parks within existing parks if both parks are part of the same government tier or agency."` : parentPota.length ? `It's inside ${parentPota.map(x => esc(x.p.Unit_Nm) + ' (' + esc(x.pota.ref) + ')').join(', ')}, but that is run by a different agency, so it can be its own park (and a 2-fer).` : 'No bigger POTA park run by the same agency surrounds it.', sameAgency.concat(parentPota).map(x => [x.pota.ref + ' ON POTA ↗', 'https://pota.app/#/park/' + encodeURIComponent(x.pota.ref)]));
-    add(already.length ? 'NO' : 'YES', 'Not already in POTA',
-      already.length ? 'Looks like it is already a POTA park: ' + already.map(p => `<a href="https://pota.app/#/park/${encodeURIComponent(p.ref)}" target="_blank" rel="noopener">${esc(p.ref)} ${esc(p.name)}</a>`).join(', ') + '. No need to add it.' : `No POTA park with this name nearby.${inside.length ? ' (POTA parks with pins inside this boundary: ' + inside.map(p => esc(p.ref + ' ' + p.name)).join(', ') + ' — make sure it isn\'t the same place under another name.)' : ''}`, already.map(p => [p.ref + ' ON POTA ↗', 'https://pota.app/#/park/' + encodeURIComponent(p.ref)]).concat([['POTA NAME SEARCH ↗', 'https://api.pota.app/lookup?search=' + encodeURIComponent(words(g.name).join(' ') || g.name) + '&size=60'], ['POTA PARKS AROUND HERE ↗', `https://api.pota.app/park/grids/${(la - .3).toFixed(2)}/${(lo - .3).toFixed(2)}/${(la + .3).toFixed(2)}/${(lo + .3).toFixed(2)}/0`]]));
+    add(already.length ? 'NO' : similar.some(p => inside.some(i => i.ref === p.ref)) ? 'CHECK' : 'YES', 'Not already in POTA',
+      already.length ? 'Looks like it is already a POTA park: ' + already.map(p => `<a href="https://pota.app/#/park/${encodeURIComponent(p.ref)}" target="_blank" rel="noopener">${esc(p.ref)} ${esc(p.name)}</a>`).join(', ') + '. No need to add it.' : `No POTA park with this exact name and kind of place.${similar.length ? ' <b>Similar names in POTA (a different kind of place or a close name, so NOT counted as the same park):</b> ' + similar.slice(0, 5).map(p => `<a href="https://pota.app/#/park/${encodeURIComponent(p.ref)}" target="_blank" rel="noopener">${esc(p.ref)} ${esc(p.name)}</a>`).join(', ') + '. Open them and check it isn\'t the same land.' : ''}${inside.length ? ' (POTA parks with pins inside this boundary: ' + inside.map(p => esc(p.ref + ' ' + p.name)).join(', ') + ' — make sure it isn\'t the same place under another name.)' : ''}`, already.concat(similar.slice(0, 3)).map(p => [p.ref + ' ON POTA ↗', 'https://pota.app/#/park/' + encodeURIComponent(p.ref)]).concat([['POTA NAME SEARCH ↗', 'https://api.pota.app/lookup?search=' + encodeURIComponent(words(g.name).join(' ') || g.name) + '&size=60'], ['POTA PARKS AROUND HERE ↗', `https://api.pota.app/park/grids/${(la - .3).toFixed(2)}/${(lo - .3).toFixed(2)}/${(la + .3).toFixed(2)}/${(lo + .3).toFixed(2)}/0`]]));
     const lakeOnly = /\blake\b|\breservoir\b|\bpond\b/i.test(g.name) && g.acres < 1500;
     add(lakeOnly ? 'CHECK' : 'CHECK', lakeOnly ? 'Not an agency lake surrounded by city, county or private land' : 'Has a public way in (road, trail or water)',
       lakeOnly ? 'POTA does NOT add agency-owned lakes that are surrounded by city, county or private land. Look at the map: is there state/federal land around the water (shoreline, ramp area) that the public can reach, or is the shore someone else\'s?' : 'Private land all around is fine as long as the public can get in: a public road, parking lot, trailhead, trail or boat ramp that reaches the land. POTA only turns down (and since 2022 deactivates) land that is cut off by private property, where you would have to cross someone\'s land to get there. The tool looks for public roads, parking, trailheads and ramps inside the boundary.', [['SATELLITE VIEW ↗', sat], ['STREET VIEW AT THE PIN ↗', `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${la.toFixed(5)},${lo.toFixed(5)}`]]);
@@ -326,7 +334,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
 </section>`;
     $('mrCopy').onclick = e => { e.preventDefault(); const t = $('mrNote').value; (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => e.target.textContent = 'COPIED ✓').catch(() => { $('mrNote').select(); document.execCommand('copy'); e.target.textContent = 'COPIED ✓'; }); };
     draw(feats, near, la, lo);
-    if (window.KPCSuggest) try { KPCSuggest.park({ g, la, lo, base, own, mng, acc, locM, des: base.map(r => r.Loc_Ds || DES[r.Des_Tp] || r.Des_Tp).filter(Boolean), offWeb, verdict: verdict[1], already, rules: res.map(r => ({ v: r.v, title: r.title })), grid: grid(la, lo) }); } catch (e) {}
+    if (window.KPCSuggest) try { KPCSuggest.park({ g, la, lo, feats, base, own, mng, acc, locM, des: base.map(r => r.Loc_Ds || DES[r.Des_Tp] || r.Des_Tp).filter(Boolean), offWeb, verdict: verdict[1], already, rules: res.map(r => ({ v: r.v, title: r.title })), grid: grid(la, lo) }); } catch (e) {}
     $('mrOut').querySelectorAll('[data-copy]').forEach(b => b.onclick = e => { e.preventDefault(); const v = b.dataset.copy; (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(() => b.textContent = 'COPIED ✓').catch(() => window.prompt('Copy:', v)); });
     $('mrOut').querySelectorAll('[data-dl]').forEach(b => b.onclick = e => { e.preventDefault(); B.saveGeo({ type: 'FeatureCollection', features: feats.map(f => ({ type: 'Feature', properties: { Unit_Nm: f.properties.Unit_Nm }, geometry: f.geometry })) }, 'kml', { ref: nm.replace(/\s+/g, '_').slice(0, 40), name: nm, la, lo }, b); });
     enrich(g, la, lo);
