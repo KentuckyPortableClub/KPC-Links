@@ -102,17 +102,25 @@ def ky_layer(path, field, web):
 
 
 def padus():
-    q = urllib.parse.urlencode({'where': "State_Nm='KY' AND Mang_Type IN ('FED','STAT') AND Own_Type IN ('FED','STAT') AND Category='Fee' AND Pub_Access='OA'",
-                                'groupByFieldsForStatistics': 'Unit_Nm,Loc_Mang', 'f': 'json',
-                                'outStatistics': json.dumps([{'statisticType': 'sum', 'onStatisticField': 'GIS_Acres', 'outStatisticFieldName': 'ac'}])})
-    j = json.loads(get(PADUS + '?' + q, ua='KPC-new-lands/1.0'))
-    out = {}
-    for f in j.get('features', []):
-        a = f.get('attributes', {})
-        n = (a.get('Unit_Nm') or '').strip()
-        if n and (a.get('ac') or 0) >= 20:
-            out[n] = '%s · %d acres' % (a.get('Loc_Mang') or '', round(a.get('ac') or 0))
-    return out
+    out, off = {}, 0
+    where = "State_Nm='KY' AND Mang_Type IN ('FED','STAT') AND Own_Type IN ('FED','STAT') AND Category='Fee' AND Pub_Access='OA'"
+    while off < 20000:
+        q = urllib.parse.urlencode({'where': where, 'outFields': 'Unit_Nm,Loc_Mang,GIS_Acres', 'returnGeometry': 'false', 'f': 'json',
+                                    'resultOffset': off, 'resultRecordCount': 1000, 'orderByFields': 'OBJECTID'})
+        j = json.loads(get(PADUS + '?' + q, ua='KPC'))
+        fs = j.get('features', [])
+        for f in fs:
+            a = f.get('attributes', {})
+            n = (a.get('Unit_Nm') or '').strip()
+            if not n:
+                continue
+            m, ac = out.get(n, (a.get('Loc_Mang') or '', 0))
+            out[n] = (m, ac + (a.get('GIS_Acres') or 0))
+        if not fs or (not j.get('exceededTransferLimit') and len(fs) < 1000):
+            break
+        off += len(fs)
+        time.sleep(1)
+    return {n: '%s · %d acres' % (m, round(ac)) for n, (m, ac) in out.items() if ac >= 20}
 
 
 def pota():
