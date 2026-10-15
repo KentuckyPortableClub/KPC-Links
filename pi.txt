@@ -1,0 +1,10 @@
+yargo: US-2177 · POTAFort Yargo State ParkState Park · Georgia OFFICIAL WEBSITEgastateparks.org ↗From the POTA listing. BOUNDARYFort Yargo State Park · managed by Georgia Department of Natural Resources · about 1,819 acres. Official boundary from the USGS Protected Areas Database (PAD-US). Check the park's own map for closed areas.DOWNLOAD BOUNDARY (GEOJSON) THE PARK'S OWN MAPSSEARCH GASTATEPARKS.ORG FOR || list:
+yargo sw 390
+vogel: AT-0103 · POTAVogelschutzgebiet Großedlinger Teich National ReserveNational Reserve · Kärnten OFFICIAL WEBSITENo official website is listed for this reference. Try the search below. BOUNDARYNo boundary found in the official database or OpenStreetMap. The pin shows where POTA places it; use the park's own map. THE PARK'S OWN MAPSSEARCH FOR THE OFFICIAL MAP ↗No official site listed, so this searches || list:
+vogel sw 1280
+brass: W4G/NG-001 · SOTABrasstown Bald4,783 ft · 10 points · USA - Georgia · North Georgia OFFICIAL WEBSITENo official website is listed for this reference. Try the search below. BOUNDARYPublic land at this summit: Chattahoochee National Forest. Official boundary from USGS PAD-US. The SOTA activation zone is the area within 25 m (82 ft) of the summit's height.DOWNLOAD BOUNDARY (GEOJSON) THE PARK'S OWN MA || list:
+brass sw 390
+kff: KFF-1271 · WWFFTaylorsville LakeWWFF reference · K-KY, K-KY OFFICIAL WEBSITENo official website is listed for this reference. Try the search below. BOUNDARYTaylorsville Lake State Park · managed by Kentucky State Parks · about 2,037 acres. Official boundary from the USGS Protected Areas Database (PAD-US). Check the park's own map for closed areas.DOWNLOAD BOUNDARY (GEOJSON) THE PARK'S OWN MAPSSEAR || list:
+kff sw 390
+de: DE-0298 · POTAVogelfreistätte Innstausee bei Attel und Freiham Nature ReserveNature Reserve · Bayern OFFICIAL WEBSITEchiemsee-alpenland.de ↗From the POTA listing. BOUNDARYNo boundary found in the official database or OpenStreetMap. The pin shows where POTA places it; use the park's own map. THE PARK'S OWN MAPSSEARCH CHIEMSEE-ALPENLAND.DE FOR MAPS ↗Searches only the official site, so you get their  || list:
+de sw 390
