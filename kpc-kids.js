@@ -194,6 +194,7 @@ function init() {
   $('kzChart').querySelectorAll('.kz-cell').forEach(b => b.addEventListener('click', () => { hush(); say(NATO[b.dataset.c]); }));
   document.querySelectorAll('input[name=m4m]').forEach(r => r.addEventListener('change', () => { m4.mode = r.value; m4.g++; clearTimeout(m4.key.timer); m4.key.code = ''; mgen++; if (gn) gn.gain.setTargetAtTime(0, AC.currentTime, 0.01); m4Draw(); }));
   m4Draw(); storyInit();
+  const sc = $('kzSpellCall'); if (sc) sc.addEventListener('click', () => { hush(); say('Whiskey, Four, Kilo, India, Delta, Sierra', 0.85); });
   $('kzReset').addEventListener('click', () => { if (confirm('Start your stars over at zero?')) { stars = 0; try { localStorage.removeItem('kpcKidsStars'); } catch (e) {} showStars(); } });
 }
 window.KPCKIDS = { g1, g3, NATO, m4, MC };

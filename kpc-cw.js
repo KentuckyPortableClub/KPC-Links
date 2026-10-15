@@ -411,7 +411,7 @@ function voice(call, opts) {
   return new Voice({ call, pitch: Math.max(300, Math.min(1100, S.their + spread)), wpm: w, eff: S.match ? S.eff : (S.eff < S.wpm ? Math.max(5, w - (S.wpm - S.eff)) : w),
     jit: opts && opts.main ? 0.04 : Math.random() * 0.12, level: opts && opts.main ? 0.9 : 0.35 + Math.random() * 0.6 });
 }
-const myCall = () => (S.call || '').toUpperCase().trim();
+const myCall = () => (S.call || '').toUpperCase().trim() || 'K4TEST';
 const progWord = () => S.prog === 'sota' ? 'SOTA' : 'POTA';
 const goal = () => S.prog === 'sota' ? 4 : 10;
 
@@ -951,7 +951,7 @@ function gameStart() {
   if (game.kind === 'clock') {
     if (S.input === 'keyboard') { if (f) f.innerHTML = '<div class="gm-over">Pick Straight key or Paddles under Your Key to play Beat the Clock.</div>'; return; }
     const t = ($('gmClockSet') || {}).value || 'az';
-    game.target = t === 'nums' ? '0123456789' : t === 'call' ? (myCall() || 'KZ4CP').repeat(3) : t === 'paris' ? 'PARISPARISPARIS' : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    game.target = t === 'nums' ? '0123456789' : t === 'call' ? (myCall() || 'K4TEST').repeat(3) : t === 'paris' ? 'PARISPARISPARIS' : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     Object.assign(game, { on: true, pos: 0, t0: 0, pen: 0 });
     clockDraw();
   } else {

@@ -47,7 +47,12 @@ function speakNow(text, who) {
     if (speechSynthesis.paused) speechSynthesis.resume();
     const u = new SpeechSynthesisUtterance(text);
     if (!VO.length) loadVoices();
-    if (who && VO.length) { u.voice = VO[who.vi % VO.length]; u.lang = u.voice.lang; } else u.lang = 'en-US';
+    if (who && VO.length) {
+      // pick a man's or woman's voice when the device has both; otherwise the pitch does the work
+      const MALE = /\b(male|man|david|mark|guy|daniel|fred|alex|tom|aaron|arthur|george|james|rishi|eddy|reed|ralph|bruce|junior|lee|oliver|thomas)\b/i;
+      const pool = VO.filter(v => who.m ? MALE.test(v.name) : !MALE.test(v.name));
+      const list = pool.length ? pool : VO; u.voice = list[who.vi % list.length]; u.lang = u.voice.lang;
+    } else u.lang = 'en-US';
     u.rate = who ? who.rate : 1; u.pitch = who ? who.pitch : 1; u.volume = Math.max(0.15, Math.min(1, (who ? who.vol : 1) * S.vol));
     let done = false; const fin = () => { if (!done) { done = true; clearTimeout(tm); res(); } };
     const tm = setTimeout(fin, 1500 + text.length * 95 / u.rate); // some browsers never fire 'end'
@@ -85,7 +90,7 @@ function hiss(on) {
 const S = Object.assign({ call: '', st: 'KY', ref: '', level: 1, vol: 0.9, hiss: 0.3, rate: 1 }, store.get('kpcSSB', {}));
 const save = () => store.set('kpcSSB', S);
 const run = { on: false, callers: [], cur: null, sent: false, last: '', log: [], t0: 0, gen: 0, worked: new Set() };
-const myCall = () => (S.call || '').toUpperCase().trim();
+const myCall = () => (S.call || '').toUpperCase().trim() || 'K4TEST';
 
 function status(t) { const e = $('vbStatus'); if (e) e.textContent = t; }
 function line(who, text, cls) { const b = $('vbBand'); if (!b) return; const d = document.createElement('div'); d.className = 'vb-line ' + (cls || ''); d.innerHTML = `<b>${esc(who)}</b> ${esc(text)}`; b.appendChild(d); b.scrollTop = b.scrollHeight; while (b.children.length > 120) b.removeChild(b.firstChild); }
@@ -95,7 +100,7 @@ function arrivals() {
   const lv = LEVELS[S.level] || LEVELS[1], want = rnd(lv.n[0], lv.n[1]);
   while (run.callers.length < want) {
     const st = pick(NEAR); let c; do { c = newCall(st); } while (run.worked.has(c) || run.callers.some(x => x.call === c) || c === myCall());
-    run.callers.push({ call: c, st, rst: pick(['59', '59', '59', '57', '58', '55', '44']), vi: rnd(0, 50), rate: (0.95 + Math.random() * 0.35) * S.rate, pitch: 0.8 + Math.random() * 0.5, vol: 0.55 + Math.random() * 0.45 });
+    run.callers.push({ call: c, st, rst: pick(['59', '59', '59', '57', '58', '55', '44']), vi: rnd(0, 50), rate: (0.95 + Math.random() * 0.35) * S.rate, vol: 0.55 + Math.random() * 0.45 }); { const o = run.callers[run.callers.length - 1]; o.m = Math.random() < 0.65; o.pitch = o.m ? 0.5 + Math.random() * 0.3 : 1 + Math.random() * 0.3; }
   }
 }
 async function callIn(list) {
@@ -232,19 +237,24 @@ function parseSpeech(t) {
   const low = ' ' + t.toLowerCase().replace(/[.,!?]/g, ' ').replace(/x ray/g, 'xray').replace(/\s+/g, ' ') + ' ';
   const has = re => re.test(low);
   // call sign: the longest run of phonetics / single letters / digits
-  const toks = low.trim().split(' '); let best = '', cur = '';
+  const toks = low.trim().split(' '); let best = '', cur = ''; const runs = [];
   for (const w of toks) {
     const v = PH[w] || (/^[a-z]$/.test(w) ? w.toUpperCase() : /^\d+$/.test(w) && w.length <= 2 ? w : /^[a-z]{1,2}\d[a-z]{1,4}$/.test(w) ? w.toUpperCase() : null);
-    if (v) cur += v; else { if (cur.length > best.length) best = cur; cur = ''; }
+    if (v) cur += v; else { if (cur) runs.push(cur); if (cur.length > best.length) best = cur; cur = ''; }
   }
-  if (cur.length > best.length) best = cur;
+  if (cur) runs.push(cur); if (cur.length > best.length) best = cur;
   let call = best.replace(/^(59|5 9)/, '');
-  const rep = has(/ (five nine|5 9|59) /) ? '59' : has(/ (five eight|58) /) ? '58' : has(/ (five seven|57) /) ? '57' : has(/ (five five|55) /) ? '55' : has(/ (four four|44) /) ? '44' : '';
+  const rep = has(/ (five nine|five by nine|five and nine|fifty nine|fifty-nine|5 9|59|5 by 9) /) ? '59' : has(/ (five eight|five by eight|fifty eight|fifty-eight|58) /) ? '58' : has(/ (five seven|five by seven|fifty seven|fifty-seven|57) /) ? '57' : has(/ (five five|fifty five|fifty-five|55) /) ? '55' : has(/ (four four|forty four|forty-four|44) /) ? '44' : '';
   if (rep && call.endsWith(rep)) call = call.slice(0, -rep.length);
-  const closing = has(/ (73|seventy three|seventy-three|seven three|thanks|thank you) /) && !rep;
-  const kind = has(/ (cq|c q|seek you|sea queue|calling cq) /) ? 'cq' : closing ? 'close' : has(/ (qrz|q r z|anybody|who'?s calling) /) ? 'qrz' : has(/ (say again|again|repeat|come again) /) ? 'agn'
+  // ham lingo (speech-to-text writes these many ways)
+  const QSL = / (qsl|q s l|q sl|qs l|cue s l|q.s.l|roger|roger that|copy that|good copy|you'?re in the log|in the log|got you|got it|confirmed) /;
+  const QRZ = / (qrz|q r z|q rz|qr z|cue are zee|q r zed|anybody|anyone else|who'?s calling|who is calling|next|any more|anyone|go ahead) /;
+  const AGN = / (say again|again|repeat|come again|agn|your call again|call again|last two|last letters|fill|didn'?t copy|missed that|one more time|please repeat) /;
+  const closing = (has(/ (73|seventy three|seventy-three|seven three|thanks|thank you|thank|tnx) /) || has(QSL)) && !rep;
+  const kind = has(/ (qrt|q r t|shutting down|going qrt|signing off|clear and off) /) ? 'qrt' : has(/ (qrx|q r x|stand by|standby|hold on|wait one) /) ? 'qrx'
+    : has(/ (cq|c q|seek you|sea queue|calling cq) /) ? 'cq' : closing ? 'close' : has(AGN) && !rep ? 'agn' : has(QRZ) && !rep && (!call || call.length < 4) ? 'qrz'
     : (call || rep) ? 'report' : '';
-  return { kind, raw: best, call: /^[A-Z0-9]{3,8}$/.test(call) && /\d/.test(call) ? call : (call.length >= 2 && call.length < 4 ? call : ''), rep };
+  return { kind, raw: best, runs, call: /^[A-Z0-9]{3,8}$/.test(call) && /\d/.test(call) ? call : (call.length >= 2 && call.length < 4 ? call : ''), rep };
 }
 let rec = null, recOn = false, recHeld = 0;
 function talkStart() {
@@ -252,17 +262,18 @@ function talkStart() {
   hush(); run.gen++;
   rec = new SR(); rec.lang = 'en-US'; rec.interimResults = true; rec.maxAlternatives = 1; rec.continuous = false;
   let final = '';
-  rec.onresult = e => { let t = ''; for (const r of e.results) { t += r[0].transcript; if (r.isFinal) final = t; } const l = $('vbHeard'); if (l) l.textContent = '🎙 ' + t; };
+  rec.onresult = e => { let t = ''; for (const r of e.results) { t += r[0].transcript; if (r.isFinal) final = t; } const l = $('vbHeard'); if (l) { l.textContent = '🎙 ' + t; l.classList.add('said'); } };
   rec.onerror = e => { const l = $('vbHeard'); if (l) l.textContent = e.error === 'not-allowed' ? 'The microphone is blocked: allow it for this site.' : e.error === 'no-speech' ? 'Didn\'t hear anything. Hold the button while you talk.' : 'Mic problem: ' + e.error; };
   rec.onend = () => { recOn = false; $('vbTalk').classList.remove('on'); if (final) talkDo(final); };
   try { rec.start(); recOn = true; $('vbTalk').classList.add('on'); } catch (e) {}
 }
 function talkStop() { if (rec && recOn) try { rec.stop(); } catch (e) {} }
 /* the spoken run can pick up stray words ("a", "to", "for"): try every piece of it and keep the one closest to a station that's calling */
-function bestSub(run0) {
-  const r0 = String(run0).replace(/^(59|5 9)/, ''); let best = r0, bd = 99;
-  const calls = run.callers.map(x => x.call); if (!calls.length) return r0;
-  for (let i = 0; i < r0.length; i++) for (let j = i + 3; j <= Math.min(r0.length, i + 8); j++) {
+function bestSub(runs0) {
+  const me = myCall(), list = (Array.isArray(runs0) ? runs0 : [runs0]).map(x => String(x).replace(/^(59|5 9)/, '')).filter(x => x && x !== me);
+  const calls = run.callers.map(x => x.call); let best = list.sort((a, b) => b.length - a.length)[0] || '', bd = 99;
+  if (!calls.length) return best;
+  for (const r0 of list) for (let i = 0; i < r0.length; i++) for (let j = i + 3; j <= Math.min(r0.length, i + 8); j++) {
     const sub = r0.slice(i, j); if (!/\d/.test(sub)) continue;
     const d = Math.min(...calls.map(c => lev(c, sub))) + (r0.length - sub.length) * 0.01;
     if (d < bd) { bd = d; best = sub; }
@@ -271,14 +282,16 @@ function bestSub(run0) {
 }
 async function talkDo(text) {
   const p = parseSpeech(text);
-  const l = $('vbHeard'); if (l) l.textContent = `🎙 "${text}"`;
+  const l = $('vbHeard'); if (l) { l.textContent = `🎙 "${text}"`; l.classList.add('said'); }
+  if (p.kind === 'qrt') { line('YOU', 'QRT, thanks everyone, 73.', 'you'); return stop(); }
+  if (p.kind === 'qrx') { hush(); run.gen++; line('YOU', 'QRX, stand by please.', 'you'); status('Standing by. Say "QRZ" or press QRZ? when you\'re ready.'); return; }
   if (p.kind === 'cq') return cq();
   if (p.kind === 'agn') return agn();
   if (p.kind === 'qrz') { if (p.call && p.call.length < 4) $('fCall').value = p.call; return qrz(); }
   if (p.kind === 'close') return logIt();
   if (p.kind === 'report') {
     if (p.call && p.call.length < 4) { $('fCall').value = p.call; return qrz(); }
-    if (p.call) $('fCall').value = bestSub(p.raw || p.call); if (p.rep) $('fSent').value = p.rep;
+    if (p.call || (p.runs && p.runs.length)) $('fCall').value = bestSub(p.runs && p.runs.length ? p.runs : [p.raw || p.call]); if (p.rep) $('fSent').value = p.rep;
     if (!$('fCall').value) { status('I heard a report but no call sign. Say their call, like "Whiskey Four Alpha Bravo Charlie, five nine Kentucky".'); return; }
     return sendReport({ speech: true });
   }
@@ -314,6 +327,6 @@ function init() {
   document.addEventListener('keydown', e => { const m = { F1: cq, F2: qrz, F3: agn }[e.key]; if (m && run.on) { e.preventDefault(); m(); } });
   form(false); drawLog();
 }
-window.KPCSSB = { run, S, say1, check, lev, parseSpeech, talkDo };
+window.KPCSSB = { run, S, say1, check, lev, parseSpeech, talkDo, bestSub };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
