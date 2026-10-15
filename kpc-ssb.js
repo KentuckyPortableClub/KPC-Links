@@ -269,9 +269,35 @@ async function logIt(auto) {
 function drawLog() {
   if (S.mode === 'hunt') return drawHuntLog();
   const tb = $('vbLogB'); if (!tb) return;
-  tb.innerHTML = run.log.slice().reverse().map(q => `<tr class="${q.ok ? 'ok' : 'bad'}"><td>${q.n}</td><td>${q.time.toISOString().slice(11, 16)}</td><td><b>${esc(q.call)}</b></td><td>${esc(q.sent)}</td><td>${esc(q.rcvd)}</td><td>${esc(q.st)}${q.ref ? '<br><small>' + esc(q.ref) + '</small>' : ''}</td><td>${q.auto ? '🤖 ' : ''}${q.ok ? '✓' : '<span title="' + esc(q.errs.join('; ')) + '">✗ ' + esc(q.truth) + '</span>'}</td></tr>`).join('');
+  tb.innerHTML = run.log.slice().reverse().map(q => `<tr class="${q.ok ? 'ok' : 'bad'}"><td>${q.n}</td><td>${q.time.toISOString().slice(11, 16)}</td><td><b>${esc(q.call)}</b></td><td>${esc(q.sent)}</td><td>${esc(q.rcvd)}</td><td>${esc(q.st)}${q.ref ? '<br><small>' + esc(q.ref) + '</small>' : ''}</td><td>${q.auto ? '🤖 ' : ''}${q.ok ? '✓' : '<span title="' + esc(q.errs.join('; ')) + '">✗ ' + esc(q.truth) + '</span>'}</td><td><button type="button" class="vb-qsl" data-qsl="${q.n}" title="Print a QSL card" aria-label="Print a QSL card for ${esc(q.call)}">🖨</button></td></tr>`).join('');
   const man = run.log.filter(q => !q.auto), n = run.log.length, ok = man.filter(q => q.ok).length, mins = Math.max(1, (Date.now() - run.t0) / 60000);
   const e = $('vbStats'); if (e) e.innerHTML = `<div><b>${n}</b><span>contacts</span></div><div><b>${man.length ? Math.round(ok / man.length * 100) + '%' : '—'}</b><span>logged right (by you)</span></div><div><b>${Math.round(n / mins * 60)}</b><span>per hour</span></div>` + (P().goal ? `<div><b>${Math.min(n, P().goal)}/${P().goal}</b><span>${n >= P().goal ? '🎉 activated!' : 'to activate'}</span></div>` : '');
+}
+/* print a practice QSL card for one contact (marked PRACTICE so it can't pass as a real card) */
+function qslPrint(n) {
+  const hunt = S.mode === 'hunt', q = (hunt ? H.log : run.log).find(x => x.n === n); if (!q) return;
+  const me = myCall(), d = q.time, date = d.toISOString().slice(0, 10), utc = d.toISOString().slice(11, 16);
+  const band = (hunt ? q.band : S.band || '20') + 'm', st = STN[S.st] || S.st;
+  const progName = { pota: 'Parks on the Air', kff: 'World Wide Flora & Fauna (KFF)', sota: 'Summits on the Air' };
+  const where = hunt ? (q.ref ? `You were at ${q.ref}` : '') : (S.ref && S.prog !== 'off' ? `Activating ${S.ref} · ${progName[S.prog] || ''}` : '');
+  const f = document.createElement('iframe'); f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0'; document.body.appendChild(f);
+  f.contentDocument.open(); f.contentDocument.write(`<!doctype html><html><head><meta charset="utf-8"><title>QSL ${esc(q.call)}</title><style>@page{size:letter;margin:.5in}body{margin:0;font-family:Arial,sans-serif;color:#111}
+  .card{width:5.5in;height:3.5in;border:2px dashed #999;padding:.18in;box-sizing:border-box;position:relative;background:linear-gradient(135deg,#fff8e6,#eef7ee);margin:0 auto}
+  .top{display:flex;gap:12px;align-items:center}.top img{width:62px;height:62px}.call{font:900 46px Georgia,serif;letter-spacing:1px;color:#073b4c;line-height:1}.sub{font:700 12px Arial;color:#1d5a3a;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}th{background:#073b4c;color:#fff;font-size:10px;letter-spacing:1px;padding:4px}td{border:1px solid #073b4c;text-align:center;padding:6px 4px;font:700 15px "Courier New",monospace}
+  .to{font:700 15px Arial;margin-top:10px}.to b{font:900 20px "Courier New",monospace}.w{font-size:12px;margin-top:6px;color:#333}
+  .pr{position:absolute;right:.18in;top:.18in;border:3px solid #c1121f;color:#c1121f;font:900 13px Arial;padding:3px 8px;transform:rotate(6deg);letter-spacing:2px}
+  .ft{position:absolute;left:.18in;right:.18in;bottom:.14in;display:flex;justify-content:space-between;font-size:11px;color:#333}.tip{text-align:center;font-size:11px;color:#666;margin-top:10px}</style></head><body>
+  <div class="card"><div class="pr">PRACTICE</div><div class="top"><img src="KPC-logo.png" alt=""><div><div class="call">${esc(me)}</div><div class="sub">KENTUCKY PORTABLE CLUB · ${esc(st.toUpperCase())}</div></div></div>
+  <div class="to">To radio: <b>${esc(q.call)}</b></div>
+  <table><tr><th>DATE</th><th>UTC</th><th>BAND</th><th>MODE</th><th>${hunt ? 'RST RCVD' : 'RST SENT'}</th></tr><tr><td>${date}</td><td>${utc}</td><td>${band}</td><td>SSB</td><td>${esc(hunt ? q.rcvd : q.sent)}</td></tr></table>
+  <div class="w">${esc(where)}</div>
+  <div class="w" style="margin-top:14px;font-weight:700">☐ PSE QSL &nbsp; ☑ TNX QSL &nbsp;&nbsp; Op: ____________________</div>
+  <div class="ft"><span>Tnx for the QSO, 73!</span><span>Made in KPC Voice Pileup Practice: not a real contact</span></div></div>
+  <div class="tip">Cut on the dashed line. Real hams trade cards like this to confirm a contact!</div></body></html>`);
+  f.contentDocument.close();
+  const im = f.contentDocument.images[0]; const go = () => { try { f.contentWindow.focus(); f.contentWindow.print(); } catch (e) {} setTimeout(() => f.remove(), 60000); };
+  if (!im || im.complete) setTimeout(go, 200); else im.onload = im.onerror = go;
 }
 function adif() {
   const hunt = S.mode === 'hunt';
@@ -505,7 +531,7 @@ function huntLog(auto) {
 }
 function drawHuntLog() {
   const tb = $('vbLogB'); if (!tb) return;
-  tb.innerHTML = H.log.slice().reverse().map(q => `<tr class="${q.ok ? 'ok' : 'bad'}"><td>${q.n}</td><td>${q.time.toISOString().slice(11, 16)}</td><td><b>${esc(q.call)}</b></td><td>${esc(q.sent)}</td><td>${esc(q.rcvd)}</td><td>${esc(q.ref)}</td><td>${q.auto ? '🤖 ' : ''}${q.ok ? '✓' : '<span title="' + esc(q.errs.join('; ')) + '">✗ ' + esc(q.truth) + '</span>'}</td></tr>`).join('');
+  tb.innerHTML = H.log.slice().reverse().map(q => `<tr class="${q.ok ? 'ok' : 'bad'}"><td>${q.n}</td><td>${q.time.toISOString().slice(11, 16)}</td><td><b>${esc(q.call)}</b></td><td>${esc(q.sent)}</td><td>${esc(q.rcvd)}</td><td>${esc(q.ref)}</td><td>${q.auto ? '🤖 ' : ''}${q.ok ? '✓' : '<span title="' + esc(q.errs.join('; ')) + '">✗ ' + esc(q.truth) + '</span>'}</td><td><button type="button" class="vb-qsl" data-qsl="${q.n}" title="Print a QSL card" aria-label="Print a QSL card for ${esc(q.call)}">🖨</button></td></tr>`).join('');
   const man = H.log.filter(q => !q.auto), n = man.length, ok = man.filter(q => q.ok).length, parks = new Set(H.log.filter(q => q.ok).map(q => q.trueRef)).size;
   const e = $('vbStats'); if (e) e.innerHTML = `<div><b>${parks}</b><span>${PROGNAME[huntProg()] === 'SOTA' ? 'summits' : PROGNAME[huntProg()] === 'KFF' ? 'references' : 'parks'} hunted</span></div><div><b>${n ? Math.round(ok / n * 100) + '%' : '—'}</b><span>logged right (by you)</span></div><div><b>${H.spotsGiven}</b><span>re-spots</span></div><div><b>${H.doubled}</b><span>times you doubled</span></div>`;
 }
@@ -653,6 +679,7 @@ function init() {
       document.addEventListener('keyup', e => { if (e.code === 'Space' && recOn) talkStop(); });
     }
   }
+  $('vbLogB').addEventListener('click', e => { const b = e.target.closest('[data-qsl]'); if (b) qslPrint(+b.dataset.qsl); });
   $('vbSend').addEventListener('click', sendReport); $('vbLog').addEventListener('click', logIt); $('vbAdif').addEventListener('click', adif);
   // keyboard: Enter in CALL = send report, Enter in STATE = log it; F1 CQ, F2 QRZ, F3 AGN
   $('fCall').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); if (S.mode !== 'hunt') sendReport(); $('fRcvd').focus(); } });
