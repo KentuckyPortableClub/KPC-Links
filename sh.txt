@@ -1,2 +1,107 @@
-https://geo.fcc.gov/api/census/area?lat=38.55&lon=-84.8&censusYear=2020&format=json 200 * b'{"input":{"lat":38.55,"lon":-84.8,"censusYear":"2020"},"results":[{"block_fips":"211879702022013","bbox":[-84.808938,38.543254,-84.792063,38.556625],"county_fips":"21187","county_name":"Owen County","state_fips":"21","state_code":"KY","state_name":"Kentucky","block_pop_2020":3,"amt":"AMT004","bea":"BEA047","bta":"BTA252","cma":"CMA449","eag":"EAG702","ivm":"IVM449","mea":"MEA023","mta":"MTA026","pea":"PEA086","rea":"REA004","rpc":"RPC002","vpc":"VPC004"}]}'
-https://nominatim.openstreetmap.org/search?q=Elmer+Davis+Lake,+KY,+USA&format=jsonv2&countrycodes=us&extratags=1&limit=3 200 * b'[{"place_id":340709605,"licence":"Data \xc2\xa9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright","osm_type":"way","osm_id":1206738656,"lat":"38.4950620","lon":"-84.8819150","category":"waterway","type":"dam","place_rank":20,"importance":0.1333593339436942,"addresstype":"dam","name":"Elmer Davis Lake Dam","display_name":"Elmer Davis Lake Dam, Owen County, Kentucky, 40359, United States","extratags":{"ref:US:NID": "KY00059"},"boundingbox":["38.4949450","38.4952329","-84.8828391","-84.8809'
+200 11957 rn Distinct Values: 
+ 
+     True &nbsp; 
+     False 
+ 
+ 
+
+ 
+  Result Offset:  
+   
+ 
+
+ 
+  Result Record Count:  
+   
+ 
+
+ 
+ Return Extent Only: 
+ 
+     True &nbsp; 
+     False 
+ 
+ 
+
+ 
+  SQL Format:  
+ 
+ 
+ None 
+ Standard 
+ Native 
+ 
+ 
+ 
+
+ 
+  Datum Transformation:  
+   
+ 
+
+ 
+  Parameter Values:  
+   
+ 
+
+ 
+  Range Values:  
+   
+ 
+
+ 
+  Quantization Parameters:  
+   
+ 
+ 
+  Feature Encoding:  
+ 
+ 
+ EsriDefault 
+ 
+ 
+ 
+
+ 
+  Format:  
+ 
+ 
+ HTML 
+ JSON 
+ KMZ 
+ GeoJSON 
+ PBF 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+  
+
+ 
+document.forms.sdform.where.focus();
+ 
+
+ # records: 1   
+ Unit_Nm:   Bullock Pen Lake 
+	     Loc_Own:   Kentucky Department of Fish and Wildlife Resources 
+	     Loc_Mang:   Kentucky Department of Fish and Wildlife Resources 
+	     Pub_Access:   OA 
+	     GIS_Acres:   139 
+	     
+   
+
+  
+
+ 
+
+ 
+
