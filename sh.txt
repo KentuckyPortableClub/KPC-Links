@@ -1,5 +1,11 @@
-stat KY only ERR HTTP Error 403: Forbidden 0 0
-stat compact ERR HTTP Error 403: Forbidden 0 0
-stat 1=1 geom-less ERR HTTP Error 403: Forbidden 0 0
-distinct {"displayFieldName":"Own_Name","fieldAliases":{"Mang_Type":"Manager Type","Mang_Name":"Manager Name","Loc_Mang":"Local M 593 0
-distinct CA {"displayFieldName":"Own_Name","fieldAliases":{"Mang_Type":"Manager Type","Mang_Name":"Manager Name","Loc_Mang":"Local M 1772 0
+200 593  https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query?where=State_Nm='KY'&outFields=Mang_Type,Mang_Name,Loc_Mang,Category&returnDistinctValue
+200 1  https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query?outFields=OBJECTID,Unit_Nm,Loc_Nm,Mang_Type,Mang_Name,Loc_Mang,Own_Type,Own_Name,Loc_Ow
+200 0  https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query?outFields=OBJECTID,Unit_Nm,Loc_Nm,Mang_Type,Mang_Name,Loc_Mang,Own_Type,Own_Name,Loc_Ow
+200 0  https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query?outFields=OBJECTID,Unit_Nm,Loc_Nm,Mang_Type,Mang_Name,Loc_Mang,Own_Type,Own_Name,Loc_Ow
+200 0  https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2/query?where=STATE='KY' AND 
+200 0  https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer/0/query?where=ORGNAME LIKE '%KINGFISHER%' AND ORGNAME
+200 0  https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/1/query?where=UPPER(AREANAME) LIKE '%KINGFISHER%' AND UPPER(ARE
+200 0  https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer/8/query?where=UPPER(PUBLIC_NAM) LIKE '%KINGFISHER%' AND UPPER(P
+200 0  https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer/0/query?where=UPPER(MANAME) LIKE '%KINGFISHER%' AND UPPER
+200 0  https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_KNP_Natural_Areas_WGS84WM/MapServer/0/query?where=UPPER(MANAME) LIKE '%KINGFISHER%' AND UPPER(MANAME) 
+200 1  https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query?where=Unit_Nm='Kingfisher Lakes' AND State_Nm='KY'&outFields=OBJECTID,Unit_Nm,Loc_Nm,Ma
