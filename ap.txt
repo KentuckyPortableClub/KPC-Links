@@ -1,0 +1,44 @@
+=== https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas_Fee_Manager/FeatureServer/0/query?geometry=-83.7367,33.9807&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json
+{"error":{"code":499,"message":"Token Required","messageCode":"GWM_0003","details":["Token Required"]}}
+HTTP/2 200 
+access-control-allow-origin: *
+=== https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas_Manager_Name/FeatureServer/0/query?geometry=-83.7367,33.9807&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json
+{"error":{"code":499,"message":"Token Required","messageCode":"GWM_0003","details":["Token Required"]}}
+HTTP/2 200 
+access-control-allow-origin: *
+=== https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas_Fee/FeatureServer/0/query?geometry=-83.7367,33.9807&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json
+{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}
+HTTP/2 200 
+access-control-allow-origin: *
+=== https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas/FeatureServer/0/query?geometry=-83.7367,33.9807&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json
+{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}
+HTTP/2 200 
+access-control-allow-origin: *
+=== https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/PADUS_Fee/FeatureServer/0/query?geometry=-83.7367,33.9807&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json
+{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}
+HTTP/2 200 
+access-control-allow-origin: *
+=== https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query?geometry=-83.7367,33.9807&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json
+{"displayFieldName":"Own_Name","fieldAliases":{"OBJECTID":"OBJECTID","FeatClass":"FeatClass","Category":"Category","Own_Type":"Owner Type","Own_Name":"Owner Name","Loc_Own":"Local Owner","Mang_Type":"Manager Type","Mang_Name":"Manager Name","Loc_Mang":"Local Manager","Des_Tp":"Designation Type","Loc_Ds":"Local Designation","Unit_Nm":"Unit Name","Loc_Nm":"Local Name","State_Nm":"State Name","Agg_Sr
+HTTP/2 200 
+access-control-allow-origin: https://kentuckyportableclub.github.io
+=== https://gis1.usgs.gov/arcgis/rest/services/padus3_0/PADUS3_0Combined_DOD_TRIB_Fee_Designation_Easement/MapServer/0/query?geometry=-83.7367,33.9807&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json
+error code: 502
+
+HTTP/2 502 
+=== https://gis1.usgs.gov/arcgis/rest/services/padus4_0/PADUS4_0Combined_DOD_TRIB_Fee_Designation_Easement/MapServer/0/query?geometry=-83.7367,33.9807&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json
+error code: 502
+
+HTTP/2 502 
+=== https://www.arcgis.com/sharing/rest/search?q=PADUS%20Fee%20owner%3Aesri_livingatlas&f=json&num=5
+{"total":0,"start":1,"num":5,"nextStart":-1,"results":[]}
+HTTP/2 200 
+access-control-allow-origin: https://kentuckyportableclub.github.io
+<html>
+<head><title>406 Not Acceptable</title></head>
+<body>
+<center><h1>406 Not Acceptable</h1></center>
+<hr><center>nginx/1.22.1</center>
+</body>
+</html>
+
