@@ -118,7 +118,7 @@ function start() {
   form(true);
 }
 function stop() { hush(); run.gen++; run.on = false; hiss(false); $('vbGo').textContent = '▶ START'; $('vbGo').classList.remove('stop'); status('Stopped.'); form(false); }
-function form(on) { ['vbCq', 'vbQrz', 'vbAgn', 'vbSend', 'vbLog'].forEach(id => { const e = $(id); if (e) e.disabled = !on; }); }
+function form(on) { ['vbCq', 'vbQrz', 'vbAgn', 'vbSend', 'vbLog', 'vbTalk'].forEach(id => { const e = $(id); if (e) e.disabled = !on; }); }
 
 async function cq() {
   if (!run.on) return;
@@ -216,6 +216,58 @@ function adif() {
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], { type: 'text/plain' })); a.download = `KPC-practice-${myCall() || 'log'}.adi`; a.click();
 }
 
+/* ---------------- talk back: push-to-talk + the browser's speech recognition ----------------
+   Hold the button (or tap once to start, tap again to stop), say it like on the air. We pull out the call sign
+   (phonetics or plain letters), the report, and what you're doing: CQ, QRZ, say again, or thanks/73 to close. */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const PH = { alpha: 'A', alfa: 'A', bravo: 'B', charlie: 'C', delta: 'D', echo: 'E', foxtrot: 'F', fox: 'F', golf: 'G', hotel: 'H', india: 'I', juliet: 'J', juliett: 'J', kilo: 'K', kilowatt: 'K', king: 'K', lima: 'L', mike: 'M', mexico: 'M', november: 'N', nancy: 'N', oscar: 'O', ocean: 'O', papa: 'P', peter: 'P', quebec: 'Q', queen: 'Q', romeo: 'R', radio: 'R', sierra: 'S', sugar: 'S', tango: 'T', tom: 'T', uniform: 'U', victor: 'V', whiskey: 'W', whisky: 'W', xray: 'X', 'x-ray': 'X', yankee: 'Y', zulu: 'Z', zebra: 'Z', japan: 'J', italy: 'I', canada: 'C', germany: 'G',
+  zero: '0', one: '1', won: '1', two: '2', to: '2', too: '2', three: '3', four: '4', for: '4', five: '5', six: '6', seven: '7', eight: '8', nine: '9', niner: '9' };
+function parseSpeech(t) {
+  const low = ' ' + t.toLowerCase().replace(/[.,!?]/g, ' ').replace(/x ray/g, 'xray').replace(/\s+/g, ' ') + ' ';
+  const has = re => re.test(low);
+  // call sign: the longest run of phonetics / single letters / digits
+  const toks = low.trim().split(' '); let best = '', cur = '';
+  for (const w of toks) {
+    const v = PH[w] || (/^[a-z]$/.test(w) ? w.toUpperCase() : /^\d+$/.test(w) && w.length <= 2 ? w : /^[a-z]{1,2}\d[a-z]{1,4}$/.test(w) ? w.toUpperCase() : null);
+    if (v) cur += v; else { if (cur.length > best.length) best = cur; cur = ''; }
+  }
+  if (cur.length > best.length) best = cur;
+  let call = best.replace(/^(59|5 9)/, '');
+  const rep = has(/ (five nine|5 9|59) /) ? '59' : has(/ (five eight|58) /) ? '58' : has(/ (five seven|57) /) ? '57' : has(/ (five five|55) /) ? '55' : has(/ (four four|44) /) ? '44' : '';
+  if (rep && call.endsWith(rep)) call = call.slice(0, -rep.length);
+  const closing = has(/ (73|seventy three|seventy-three|seven three|thanks|thank you) /) && !rep;
+  const kind = has(/ (cq|c q|seek you|sea queue|calling cq) /) ? 'cq' : closing ? 'close' : has(/ (qrz|q r z|anybody|who'?s calling) /) ? 'qrz' : has(/ (say again|again|repeat|come again) /) ? 'agn'
+    : (call || rep) ? 'report' : '';
+  return { kind, call: /^[A-Z0-9]{3,8}$/.test(call) && /\d/.test(call) ? call : (call.length >= 2 && call.length < 4 ? call : ''), rep };
+}
+let rec = null, recOn = false, recHeld = 0;
+function talkStart() {
+  if (!SR || !run.on || recOn) return;
+  hush(); run.gen++;
+  rec = new SR(); rec.lang = 'en-US'; rec.interimResults = true; rec.maxAlternatives = 1; rec.continuous = false;
+  let final = '';
+  rec.onresult = e => { let t = ''; for (const r of e.results) { t += r[0].transcript; if (r.isFinal) final = t; } const l = $('vbHeard'); if (l) l.textContent = '🎙 ' + t; };
+  rec.onerror = e => { const l = $('vbHeard'); if (l) l.textContent = e.error === 'not-allowed' ? 'The microphone is blocked: allow it for this site.' : e.error === 'no-speech' ? 'Didn\'t hear anything. Hold the button while you talk.' : 'Mic problem: ' + e.error; };
+  rec.onend = () => { recOn = false; $('vbTalk').classList.remove('on'); if (final) talkDo(final); };
+  try { rec.start(); recOn = true; $('vbTalk').classList.add('on'); } catch (e) {}
+}
+function talkStop() { if (rec && recOn) try { rec.stop(); } catch (e) {} }
+async function talkDo(text) {
+  const p = parseSpeech(text);
+  const l = $('vbHeard'); if (l) l.textContent = `🎙 "${text}"`;
+  if (p.kind === 'cq') return cq();
+  if (p.kind === 'agn') return agn();
+  if (p.kind === 'qrz') { if (p.call && p.call.length < 4) $('fCall').value = p.call; return qrz(); }
+  if (p.kind === 'close') return logIt();
+  if (p.kind === 'report') {
+    if (p.call && p.call.length < 4) { $('fCall').value = p.call; return qrz(); }
+    if (p.call) $('fCall').value = p.call; if (p.rep) $('fSent').value = p.rep;
+    if (!$('fCall').value) { status('I heard a report but no call sign. Say their call, like "Whiskey Four Alpha Bravo Charlie, five nine Kentucky".'); return; }
+    return sendReport();
+  }
+  status('Not sure what you meant. Try "CQ POTA...", their call + "five nine", "say again", "QRZ" or "thanks, 73".');
+}
+
 function init() {
   if (!$('vbGo')) return;
   if (!window.speechSynthesis) { status('This browser has no built-in voices. Try Chrome, Edge or Safari.'); }
@@ -226,6 +278,18 @@ function init() {
   $('vbGo').addEventListener('click', () => run.on ? stop() : start());
   $('vbCq').addEventListener('click', cq); $('vbQrz').addEventListener('click', qrz); $('vbAgn').addEventListener('click', agn);
   if ($('vbTest')) $('vbTest').addEventListener('click', testVoice);
+  const tb = $('vbTalk');
+  if (tb) {
+    if (!SR) { tb.disabled = true; tb.textContent = '🎙 TALKING BACK NEEDS CHROME, EDGE OR ANDROID'; }
+    else {
+      // hold to talk; a quick tap toggles instead
+      tb.addEventListener('pointerdown', e => { e.preventDefault(); if (recOn) { talkStop(); return; } recHeld = Date.now(); talkStart(); });
+      tb.addEventListener('pointerup', () => { if (recOn && Date.now() - recHeld > 450) talkStop(); });
+      tb.addEventListener('contextmenu', e => e.preventDefault());
+      document.addEventListener('keydown', e => { if (e.code === 'Space' && !/INPUT|TEXTAREA|SELECT/.test(e.target.tagName) && run.on && !e.repeat) { e.preventDefault(); recHeld = Date.now(); talkStart(); } });
+      document.addEventListener('keyup', e => { if (e.code === 'Space' && recOn) talkStop(); });
+    }
+  }
   $('vbSend').addEventListener('click', sendReport); $('vbLog').addEventListener('click', logIt); $('vbAdif').addEventListener('click', adif);
   // keyboard: Enter in CALL = send report, Enter in STATE = log it; F1 CQ, F2 QRZ, F3 AGN
   $('fCall').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); sendReport(); $('fRcvd').focus(); } });
@@ -233,6 +297,6 @@ function init() {
   document.addEventListener('keydown', e => { const m = { F1: cq, F2: qrz, F3: agn }[e.key]; if (m && run.on) { e.preventDefault(); m(); } });
   form(false); drawLog();
 }
-window.KPCSSB = { run, S, say1, check, lev };
+window.KPCSSB = { run, S, say1, check, lev, parseSpeech, talkDo };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
