@@ -1,8 +1,10 @@
-Vogel GA meta 4 1200 0.8 [('Chattahoochee National Forest', 'Fee', 'OA', 750991), ('Chestatee Wildlife Management Area', 'Fee', 'OA', 19724), ('Coopers Creek Wildlife Management Area', 'Fee', 'RA', 29360), ('Vogel State Park', 'Fee', 'OA', 266)]
-  small 2 10654 bytes 0.3
-  big 2 280844 bytes 0.6
-DBNF RedRiver meta 2 670 0.9 [('Daniel Boone National Forest', 'Fee', 'OA', 563584), ('Red River (RM 49.2 to 59.5) Outstanding Resource Water', 'Fee', 'OA', 96)]
-  small 1 9698 bytes 0.4
-  big 1 569303 bytes 1.0
-Smokies meta 2 527 1.0 [('Great Smoky Mountains National Park', 'Fee', 'OA', 279592), ('Great Smoky Mountains National Park', 'Fee', 'OA', 241082)]
-  big 2 78868 bytes 0.4
+https://api-db2.sotl.as/summits/near?lat=34.874&lon=-83.81&limit=5&maxDistance=20000 ERR None b'<urlopen error [Errno -2] Name or service not known>' 
+
+https://api-db2.sotl.as/summits/W4G/NG-001 ERR None b'<urlopen error [Errno -2] Name or service not known>' 
+
+https://api2.sota.org.uk/api/summits/W4G/NG-001 200 * b'{"associationName":"USA - Georgia","associationCode":"W4G","regionName":"North Georgia","regionCode":"NG","summitCode":"W4G/NG-001","name":"Brasstown Bald","notes":"","points":10,"altM":1458,"altFt":4783,"activationCount":null,"activationCall":null,"activationDate":null,"gridRef1":"-83.8108","gridRef2":"34.8743","locator":"EM84cu","latitude":34.8743,"longitude":-83.8108,"myChases":null,"myActivations":null,"validTo":"2099-12-31T00:00:00Z","validFrom":"2012-10-01T00:00:00Z","valid":true,"restrictionMask":false,"restrictionList":[]}' 
+
+https://api.open-meteo.com/v1/elevation?latitude=34.874&longitude=-83.81 200 * b'{"elevation":[1441.0]}' 
+
+https://epqs.nationalmap.gov/v1/json?x=-83.81&y=34.874&units=Feet&wkid=4326 200 * b'{"location":{"x":-83.81,"y":34.874,"spatialReference":{"wkid":4326,"latestWkid":4326}},"locationId":0,"value":4736.596206489053,"rasterId":97268,"resolution":1}' 
+
