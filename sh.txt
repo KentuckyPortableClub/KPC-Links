@@ -1,14 +1,4 @@
-GET  State_Nm='KY' AND Mang_Type IN ('FED','STAT') AND Category<>'Easement' => ERR HTTP Error 403: Forbidden
-GET  State_Nm='KY' AND Category<>'Easement' => 2001 hits :[{"attributes":{"Unit_Nm":"Louisville International Airport-Standiford FL Site 1","State_Nm":"KY"}},{"attributes":{"Uni
-GET  State_Nm='KY' AND Mang_Type<>'LOC' => 1026 hits :[{"attributes":{"Unit_Nm":"Louisville International Airport-Standiford FL Site 1","State_Nm":"KY"}},{"attributes":{"Uni
-GET  Mang_Type='STAT' AND State_Nm='KY' => 418 hits :[{"attributes":{"Unit_Nm":"Pine Mountain State Scenic Trail","State_Nm":"KY"}},{"attributes":{"Unit_Nm":"The Green at B
-GET  State_Nm='KY' AND Mang_Name='SFW' AND Unit_Nm LIKE '%Kingfisher%' => ERR HTTP Error 403: Forbidden
-GET  State_Nm='KY' AND Unit_Nm LIKE '%Kingfisher%' AND Mang_Name='SFW' => ERR HTTP Error 403: Forbidden
-GET  State_Nm='KY' AND (Mang_Name='SFW' OR Mang_Name='SDNR') => ERR HTTP Error 403: Forbidden
-GET  State_Nm='KY' AND Mang_Name='SFW' OR Mang_Name='SDNR' => ERR HTTP Error 403: Forbidden
-GET  State_Nm='KY' AND Unit_Nm LIKE '%McNeely%Lake%' => 3 hits :[{"attributes":{"Unit_Nm":"McNeely Lake Park","State_Nm":"KY"}},{"attributes":{"Unit_Nm":"McNeely Lake","State_Nm":"KY"
-GET  State_Nm='KY' AND Loc_Nm LIKE '%KINGFISHER%LAKE%' => 1 hits :[]}
-GET  State_Nm='KY' AND Unit_Nm LIKE '%Barren River%Lake%' => 3 hits :[{"attributes":{"Unit_Nm":"Barren River Lake Wildlife Management Area","State_Nm":"KY"}},{"attributes":{"Unit_Nm":"Barr
-GET  State_Nm='KY' AND Unit_Nm LIKE '%Lake Linville%' => 1 hits :[]}
-GET  State_Nm='KY' AND Unit_Nm LIKE '%O''Brien%' => ERR HTTP Error 403: Forbidden
-GET  State_Nm='KY' AND Unit_Nm LIKE 'Kingfisher%' => ERR HTTP Error 403: Forbidden
+agency ERR HTTP Error 403: Forbidden 0
+Unit_Nm LIKE '%Kingfisher%' {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[-86.97349,37.84654],[-86.97583,37.8464],[-86.97732,37.84569],[-86.97764,37.84528],[-86.977
+Loc_Nm LIKE '%KINGFISHER%' {"type":"FeatureCollection","features":[]}
+kygis upper {"error":{"code":404,"message":"Service WGS84WM_Services/Ky_Hunting_Areas_WGS84WM/MapServer not found ","details":[]}}
