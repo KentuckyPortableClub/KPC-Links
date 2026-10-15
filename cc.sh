@@ -1,4 +1,4 @@
 UA='Mozilla/5.0 (KPC-Links contest calendar)'
-for u in https://www.contestcalendar.com/calendar.rss https://www.contestcalendar.com/calendar.ics https://www.contestcalendar.com/weeklycont.php https://www.contestcalendar.com/fivewkcal.html https://www.contestcalendar.com/contestcal.html; do echo "== $u $(curl -sL -A "$UA" -m 25 -o /tmp/x -w '%{http_code} %{size_download}' $u)"; head -c 1500 /tmp/x | tr -s '\n' ' '; echo; done
-curl -sL -A "$UA" -m 25 https://www.contestcalendar.com/weeklycont.php > wk.html
-L=$(grep -o 'contestdetails.php?ref=[0-9]*' wk.html | head -1); echo "detail $L"; curl -sL -A "$UA" -m 25 "https://www.contestcalendar.com/$L" > det.html
+curl -sL -A "$UA" -m 25 https://www.contestcalendar.com/terms.php | sed -e 's/<[^>]*>/ /g' | tr -s ' \n\t' ' ' | head -c 6000
+echo; echo ===WK; grep -o 'weeklycontdetails.php?ref=[0-9a-z]*' wk.html | head -2
+L=$(grep -o 'weeklycontdetails.php?ref=[0-9a-z]*' wk.html | head -1); curl -sL -A "$UA" -m 25 "https://www.contestcalendar.com/$L" | sed -e 's/<[^>]*>/ /g' | tr -s ' \n\t' ' ' | head -c 2500
