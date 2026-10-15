@@ -74,6 +74,8 @@
 <p class="sub">Know a park or a mountain top that should be on the air? Look it up here. The page checks it against each program's rules, then writes the email to the right volunteer with everything it found and all the links. You just read it over and send it.</p>
 </div></section>
 <div class="mr-wrap">
+<section class="mr-card mr-lock" id="mrLock"><h2>Enter the password</h2><p class="mr-help">This page is being tested. It uses the same password as the Mapping Representative's Tool Box.</p><form id="mrLockForm" class="mr-lockf"><input id="mrPw" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password"><button type="submit">UNLOCK</button></form><p class="mr-help" id="mrPwMsg"></p></section>
+<div id="mrApp" hidden>
 <section class="mr-card">
 <div class="sg-call"><label for="sgCall">YOUR CALL SIGN (REQUIRED)</label><input id="sgCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="K4TEST"><p id="sgCallMsg"></p></div>
 <div class="sg-tabs" role="group" aria-label="What are you suggesting?"><button type="button" data-sgtab="park" aria-pressed="true">🏞 A PARK<br><small>POTA + WWFF</small></button><button type="button" data-sgtab="summit" aria-pressed="false">⛰ A SUMMIT<br><small>SOTA</small></button></div>
@@ -84,8 +86,7 @@
 </div>
 </section>
 <div id="sgPark">
-<span id="mrPublic" hidden></span>
-<div id="mrApp">
+<div>
 <section class="mr-card" style="margin-top:16px">
 <form class="mr-form" id="mrForm"><label>PARK NAME<input id="mrName" autocomplete="off" placeholder="Example Creek State Park"></label><label>TOWN (OPTIONAL)<input id="mrTown" autocomplete="off" placeholder="Anytown"></label><label>STATE (REQUIRED)<select id="mrState" required></select></label><button type="submit">CHECK IT</button></form>
 <p class="mr-help">It searches the national public land database (every federal and state agency in the state), the live National Park Service and Fish &amp; Wildlife maps and OpenStreetMap, then checks POTA's and KFF's rules. The emails appear at the bottom of the result.</p>
@@ -105,9 +106,10 @@
 <div id="sgSOut"></div>
 </div>
 </div>
+</div>
 </main>
 @@FOOTER@@
-<script src="kpc-bounds.js?v=20261015e" defer></script>
+<script src="kpc-bounds.js?v=20261015f" defer></script>
 <script src="kpc-map-tools.js?v=20261015c" defer></script>
-<script src="kpc-suggest.js?v=20261015a" defer></script>
-<script src="kpc-maprep.js?v=20261015l" defer></script>
+<script src="kpc-suggest.js?v=20261015c" defer></script>
+<script src="kpc-maprep.js?v=20261015n" defer></script>
