@@ -1,25 +1,10 @@
-{"parkId": 724, "reference": "US-0724", "name": "Abraham Lincoln Birthplace", "latitude": 37.6115, "longitude": -85.6371, "grid4": "EM77", "grid6": "EM77eo", "parktypeId": 30, "active": 1, "parkComments": "National Park Service deems this park having two units, the Birthplace unit south of Hodgenville and the Boyhood Home to the northeast. ", "accessibility": null, "sensitivity": null, "accessMethods": "Automobile", "activationMethods": "Automobile,Other,Pedestrian", "agencies": null, "agencyURLs": null, "parkURLs": null, "website": "https://www.nps.gov/abli/index.htm", "createdByAdmin": null, "parktypeDesc": "National Historic Site", "locationDesc": "US-KY", "locationName": "Kentucky", "entityId": 291, "entityName": "United States of America", "referencePrefix": "US", "entityDeleted": 0, "firstActivator": "WA2USA", "firstActivationDate": "2016-03-08"}
-79 | Wildlife Management Area | Ballard Wildlife Management Area ; Beaver Creek Wildlife Management Area ; Beechy Creek Wildlife Management Area ; Big Rivers Wildlife Management Area
-39 | State Park | Barren River Lake State Park ; Blue Licks Battlefield State Park ; Breaks Interstate State Park ; Buckhorn Lake State Park
-16 | State Nature Preserve | Bad Branch State Nature Preserve ; Bat Cave State Nature Preserve ; Beargrass Creek State Nature Preserve ; Blackacre State Nature Preserve
-10 | State Historic Site | Big Bone Lick State Historic Site ; Dr. Thomas Walker State Historic Site ; Isaac Shelby Cemetery State Historic Site ; Jefferson Davis State Historic Site
-7 | State Forest | Green River State Forest ; Kentenia State Forest ; Kentucky Ridge State Forest ; Knobs State Forest
-6 | National Wild and Scenic River | Bad Branch National Wild and Scenic River ; Big South Fork National Wild and Scenic River ; Red River National Wild and Scenic River ; Rock Creek National Wild and Scenic River
-4 | National Wildlife Refuge | Clarks River National Wildlife Refuge ; Green River National Wildlife Refuge ; Ohio River Islands National Wildlife Refuge ; Reelfoot National Wildlife Refuge
-4 | State Natural Area | Green River State Natural Area ; Little South Fork State Natural Area ; Sinking Creek State Natural Area ; William H. Martin State Natural Area
-2 | National Recreation Area | Big South Fork National Recreation Area ; Land Between the Lakes National Recreation Area
-2 | National Monument | Camp Nelson National Monument ; Mill Springs Battlefield National Monument
-2 | Wilderness Area | Clifty Wilderness Area ; The Cumberland River Wilderness Area
-2 | National Forest | Daniel Boone National Forest ; George Washington & Jefferson National Forest
-2 | National Battlefield | Fort Donelson National Battlefield ; Fort Heiman National Battlefield
-2 | National Historic Trail | Lewis and Clark National Historic Trail ; Trail of Tears National Historic Trail
-1 | National Historic Site | Abraham Lincoln Birthplace National Historic Site
-1 | Sanctuary | Clyde E Buckley Sanctuary
-1 | National Historical Park | Cumberland Gap National Historical Park
-1 | Park | Kentucky Horse Park
-1 | National Park | Mammoth Cave National Park
-1 | State Recreation Area | Otter Creek State Recreation Area
-1 | State Trail | Pine Mountain State Trail
-1 | Wildlife Refuge | Salato Wildlife Refuge
-1 | National Recreation Trail | Sheltowee Trace National Recreation Trail
-1 | National Fish Hatchery | Wolf Creek National Fish Hatchery
+25 | State Game Land | Crystal Waters ; Windsor Township ; Jessups Mill Pond
+22 | State Wildlife Area | Kure Atoll ; Ramah ; Hugo
+19 | State Fish and Wildlife Area | Power City ; Jewell Meadows ; Ladd Marsh
+16 | State Fish Hatchery | Sandy ; Cabinet Gorge ; Clearwater
+16 | State Public Fishing Lake | Lee County ; Washington County ; Dallas County
+15 | State Preserve | Watson's East Triangle Complex ; Raquette Boreal Complex ; Rock Creek Island
+6 | State Fishing Lake | Upper White Oak Lake Recreation Area ; Abbotts Pond ; Andrews
+6 | National Fish Hatchery | Wolf Creek ; Hagerman ; Dworshak
+2 | State Park | Spring Creek Hatchery ; Reservoir
+1 | Wildlife Management Area | Hatchery
