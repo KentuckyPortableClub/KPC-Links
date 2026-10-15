@@ -245,6 +245,15 @@ body.field .page-jump-nav{display:none!important}
 #gtFb{min-height:60px;margin-top:10px}#gtFb .good{color:#7fd39a;font-weight:900}#gtFb .bad{color:#ff8a6a;font-weight:900}#gtBusts{color:#ff7b6b!important;letter-spacing:3px}
 .gt-intro{padding:12px;border:1px solid #b5412b;border-radius:9px;background:#2a120c;color:#fff}.gt-intro b{color:#ff9a7a;letter-spacing:1px}
 #gtGo.stop{background:#b5412b;color:#fff}#cwApp[data-mode=gaunt] .cw-a-set{grid-row:1}
+.ln-map{display:flex;flex-wrap:wrap;gap:4px;margin:12px 0 6px}.ln-dot{width:30px;height:30px;border-radius:50%;border:1px solid #444;background:#161616;color:#bbb;font:900 13px "Courier New",monospace;cursor:pointer;padding:0}
+.ln-dot.done{background:#1d3a26;border-color:#7fd39a;color:#7fd39a}.ln-dot.on{background:#d5a63a;border-color:#d5a63a;color:#111}
+.ln-prog{font-size:12px;color:#aaa;margin:0 0 10px}.ln-parts{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}.ln-part{min-height:40px;border-radius:8px;border:1px solid #3a3a3a;background:#141414;color:#ddd;font:900 12px Arial,sans-serif;letter-spacing:1px;cursor:pointer}.ln-part.on{background:#2a2210;border-color:var(--gold);color:#fff}
+.ln-meet{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px}.ln-card{flex:1 1 140px;text-align:center;padding:16px;border:1px solid var(--gold);border-radius:12px;background:#1c180c}.ln-card b{display:block;font:900 64px "Courier New",monospace;color:#fff;line-height:1}.ln-card span{display:block;font:900 30px monospace;color:var(--gold-light,#f0c75e);letter-spacing:4px;margin:8px 0}
+.ln-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:6px;margin:10px 0}.ln-k{min-height:52px;border-radius:9px;border:1px solid #444;background:#1a1a1a;color:#fff;font:900 22px "Courier New",monospace;cursor:pointer}.ln-k:active{background:#2a2210;border-color:var(--gold)}
+.ln-target{text-align:center;padding:14px;border:1px solid #333;border-radius:12px;background:#141414;margin-bottom:8px}.ln-target small{display:block;font:900 11px Arial;letter-spacing:1px;color:#aaa}.ln-target b{display:block;font:900 48px "Courier New",monospace;color:#fff;overflow-wrap:anywhere}.ln-target span{font:900 26px monospace;color:var(--gold-light,#f0c75e);letter-spacing:4px}
+.ln-bar{height:10px;border-radius:5px;background:#222;overflow:hidden;margin:10px 0 4px}.ln-bar i{display:block;height:100%;background:#7fd39a}
+#lnFb{min-height:40px;margin-top:6px}#lnFb .good,.cw-learn .good{color:#7fd39a;font-weight:900}#lnFb .bad,.cw-learn .bad{color:#ff8a6a;font-weight:900}.cw-learn .row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.ln-pass{padding:10px;border:1px solid #7fd39a;border-radius:9px;background:#13261a;color:#fff;font-weight:800;margin-bottom:10px}
 .cw-checks{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px}
 .cw-checks label{display:flex;align-items:center;gap:7px;font-size:13px;letter-spacing:0;font-weight:700;color:#ddd;cursor:pointer}
 .cw-checks input{width:18px;height:18px;accent-color:var(--gold)}
@@ -435,6 +444,7 @@ body.field .page-jump-nav{display:none!important}
 </div>
 
 <div class="cw-tabs" role="tablist" aria-label="Practice mode">
+ <button type="button" class="cw-tab" role="tab" data-mode="learn">🎓 LEARN CW<small>From zero to 30 WPM</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="hunt">🎯 HUNT<small>You call the activator</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="act">🏕️ ACTIVATE<small>You run the pileup</small></button>
  <button type="button" class="cw-tab" role="tab" data-mode="sprint">🏁 SPRINT<small>Timed contest run</small></button>
@@ -495,6 +505,13 @@ body.field .page-jump-nav{display:none!important}
    <div id="qrqPB"></div>
    <div class="wk"><div id="wkInfo"></div><button type="button" class="cw-btn" id="wkGo">🏆 PLAY THIS WEEK'S CHALLENGE</button></div>
    <p class="cw-safe">Copy ladder: hearing it again is fine, but that one won't speed you up. The ladder plays a clean signal (no noise or fading) so everyone's scores compare fairly.</p>
+  </div>
+  <div class="cw-card cw-learn cw-a-band" data-show="learn">
+   <h3>🎓 Learn CW: from zero to 30 WPM</h3>
+   <p class="dim">One step at a time: meet a new character, <b>copy</b> it by ear, then <b>send</b> it with your key. Characters are always sent at full speed (20 WPM) so you learn the sound, with extra space between them at first. After all the letters, numbers and signs come words, call signs, POTA exchanges, then speed steps to 30 WPM. Tap any dot on the map to jump around. Your progress stays on this device.</p>
+   <div class="ln-map" id="lnMap"></div>
+   <p class="ln-prog" id="lnProg"></p>
+   <div id="lnBody"></div>
   </div>
   <div class="cw-card cw-gaunt cw-a-band" data-show="gaunt">
    <h3>⚔️ Expert Gauntlet</h3>
@@ -585,7 +602,7 @@ body.field .page-jump-nav{display:none!important}
    <p class="cw-keyhelp"><b>How good is it?</b> Great on clean, steady signals. Fading, interference and sloppy fists will fool it, and it may miss the first letter or two while it learns the sender's speed — just like every CW decoder. Your ear is still the best decoder.</p>
   </div>
 
-  <div class="cw-card cw-a-key" data-show="hunt act free qrq chat sprint games">
+  <div class="cw-card cw-a-key" data-show="hunt act free qrq chat sprint games learn">
    <h3>Your Key</h3>
    <div class="cw-inputs" role="radiogroup" aria-label="How you send">
     <label><input type="radio" name="cwInput" value="keyboard"> ⌨️ Type it</label>
@@ -619,7 +636,7 @@ body.field .page-jump-nav{display:none!important}
    <p class="cw-safe">Practice contacts only — the stations are made up and nothing is logged anywhere. Don't upload these to POTA or SOTA.</p>
   </div>
 
-  <details class="cw-card cw-set cw-a-set" data-show="hunt act free drill qrq chat sprint games keyer gaunt" open>
+  <details class="cw-card cw-set cw-a-set" data-show="hunt act free drill qrq chat sprint games keyer gaunt learn" open>
    <summary>SOUND, SPEED, PILEUP &amp; FADING</summary>
    <div class="cw-sl">
     <div class="f"><label for="cwWpm">SPEED</label><input type="range" id="cwWpm" min="5" max="40" step="1"><output id="cwWpmV"></output></div>
@@ -669,10 +686,10 @@ body.field .page-jump-nav{display:none!important}
 <section class="final"><h2>Get Outside. Get On The Air.</h2><p>HOW REAL CW CONTACTS GO, PLUS CLUBS, CLASSES &amp; APPS</p><a class="btn" href="kpc-cw-info.html">CW INFO &amp; LINKS →</a> <a class="btn" href="kpc-spots.html">SEE WHO'S ON THE AIR →</a></section>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
-<script src="kpc-cw.js?v=20261014h"></script>
+<script src="kpc-cw.js?v=20261014i"></script>
 <script src="kpc-cw-spots.js?v=20261013c"></script>
 <script src="kpc-cw-rx.js?v=20261014b"></script>
-<script src="kpc-search.js?v=20261014q" defer></script><script>
+<script src="kpc-search.js?v=20261014r" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
