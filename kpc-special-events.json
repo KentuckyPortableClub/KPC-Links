@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-15T10:16:58Z",
+ "updated": "2026-10-15T11:10:50Z",
  "stations": [
   {
    "title": "Continental Army Encampment at Towamencin PA",
@@ -907,6 +907,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (49)"
+  "ARRL": "failed, kept 49: <urlopen error timed out>"
  }
 }
