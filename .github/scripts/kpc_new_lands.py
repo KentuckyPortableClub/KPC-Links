@@ -47,11 +47,11 @@ NEWS_Q = [
 ]
 
 
-def get(url, tries=3, data=None):
+def get(url, tries=3, data=None, ua=None):
     last = None
     for i in range(tries):
         try:
-            req = urllib.request.Request(url, data=data, headers={'User-Agent': UA})
+            req = urllib.request.Request(url, data=data, headers={'User-Agent': ua or UA})
             with urllib.request.urlopen(req, timeout=90) as r:
                 return r.read().decode('utf-8', 'replace')
         except Exception as e:  # noqa: BLE001
@@ -105,7 +105,7 @@ def padus():
     q = urllib.parse.urlencode({'where': "State_Nm='KY' AND Mang_Type IN ('FED','STAT') AND Own_Type IN ('FED','STAT') AND Category='Fee' AND Pub_Access='OA'",
                                 'groupByFieldsForStatistics': 'Unit_Nm,Loc_Mang', 'f': 'json',
                                 'outStatistics': json.dumps([{'statisticType': 'sum', 'onStatisticField': 'GIS_Acres', 'outStatisticFieldName': 'ac'}])})
-    j = json.loads(get(PADUS + '?' + q))
+    j = json.loads(get(PADUS + '?' + q, ua='KPC-new-lands/1.0'))
     out = {}
     for f in j.get('features', []):
         a = f.get('attributes', {})
@@ -192,7 +192,9 @@ def main():
     new_lands, new_pota, new_news = [], [], []
     if old:
         for label, L in now['lists'].items():
-            before = old.get('lists', {}).get(label, {})
+            if label not in old.get('lists', {}):
+                continue   # a list we couldn't read last time: this week is its starting point
+            before = old['lists'][label]
             for n, info in L.items():
                 if n not in before and not any(norm(n) == norm(b) for b in before):
                     new_lands.append((label, n, info, in_pota(n, P)))
