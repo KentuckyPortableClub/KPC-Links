@@ -18,7 +18,14 @@
   const q = (o) => B.jget(PADUS + '?' + new URLSearchParams(Object.assign({ outFields: F, returnGeometry: false, f: 'json' }, o))).then(j => { if (j.error) throw new Error(j.error.message); return (j.features || []).map(f => f.attributes); });
   const words = n => String(n || '').replace(/\b(state|national|park|parks|the|of|and|area|wildlife|management|nature|preserve|natural|recreation|recreational|forest|refuge|site)\b/gi, ' ').replace(/[^A-Za-z0-9' ]/g, ' ').trim().split(/\s+/).filter(w => w.length > 2);
   const like = w => `(Unit_Nm LIKE '%${w.replace(/'/g, "''")}%' OR Loc_Nm LIKE '%${w.replace(/'/g, "''")}%')`;
-  const msg = h => { $('mrOut').innerHTML = `<div class="mr-msg">${h}</div>`; };
+  let tick = null;
+  /* messages; a text ending in … gets a spinning compass and a seconds counter so people can see it's still working */
+  const msg = h => {
+    clearInterval(tick);
+    const busy = /…$/.test(h.replace(/<[^>]+>/g, '').trim());
+    $('mrOut').innerHTML = `<div class="mr-msg${busy ? ' busy' : ''}">${busy ? '<span class="mr-spin" aria-hidden="true">🧭</span>' : ''}<div>${h}${busy ? '<small class="mr-sec-n">Still searching… 0 s</small>' : ''}</div></div>`;
+    if (busy) { const t0 = Date.now(); tick = setInterval(() => { const e = document.querySelector('.mr-sec-n'); if (!e) { clearInterval(tick); return; } e.textContent = 'Still searching… ' + Math.round((Date.now() - t0) / 1000) + ' s'; }, 1000); }
+  };
 
   $('mrState').innerHTML = '<option value="">Pick a state (required)</option>' + ST.map(s => `<option>${s}</option>`).join('');
   try { const v = localStorage.getItem('kpcMrState'); if (v) $('mrState').value = v; } catch (e) {}
@@ -52,7 +59,6 @@
     $('mrAg').querySelectorAll('.mr-ag').forEach(b => b.onclick = () => { const k = b.dataset.k; if (agPick.has(k)) agPick.delete(k); else agPick.add(k); drawAg(st); });
   }
   $('mrState').addEventListener('change', e => agencies(e.target.value));
-  if ($('mrState').value) agencies($('mrState').value);
 
   /* ---------- extra official sources + OpenStreetMap backup, made to look like PAD-US rows ---------- */
   const acresOf = g => { let a = 0; B.ringsOf(g).forEach(poly => poly.forEach((r, n) => { let s2 = 0; for (let i = 0, k = r.length - 1; i < r.length; k = i++) s2 += (r[k][0] + r[i][0]) * (r[k][1] - r[i][1]); const lat = r[0][1] * Math.PI / 180; const m2 = Math.abs(s2 / 2) * 111320 * 111320 * Math.cos(lat); a += n ? -m2 : m2; })); return a / 4046.86; };
@@ -83,6 +89,22 @@
       return { src: 'OpenStreetMap (NOT official, backup)', osm: true, f: { type: 'Feature', geometry, properties: { Unit_Nm: t.name, Own_Type: 'UNK', Loc_Own: t.owner || op || 'not listed', Mang_Type: fed ? 'FED' : stt ? 'STAT' : 'UNK', Loc_Mang: op || 'not listed', Loc_Ds: t.protection_title || t.leisure || t.boundary || '', Pub_Access: t.access === 'private' || t.access === 'no' ? 'XA' : t.access === 'yes' || t.access === 'permissive' ? 'OA' : 'UK', Category: 'Fee', GIS_Acres: closed ? acresOf(geometry) : 0, State_Nm: st, Mang_Name: '', Own_Name: '' } } };
     }).filter(Boolean);
   }
+
+  /* a point surely INSIDE the land (for the POTA pin): bbox middle if inside, else the middle of the widest crossing of a mid-latitude line */
+  function pinOf(feats, bb) {
+    let la = (bb[1] + bb[3]) / 2, lo = (bb[0] + bb[2]) / 2;
+    if (feats.some(f => B.inside(la, lo, f.geometry))) return [la, lo];
+    let best = null;
+    for (let k = 1; k < 10; k++) {
+      const y = bb[1] + (bb[3] - bb[1]) * k / 10, xs = [];
+      feats.forEach(f => B.ringsOf(f.geometry).forEach(poly => poly.forEach(r => { for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [x1, y1] = r[j], [x2, y2] = r[i]; if ((y1 > y) !== (y2 > y)) xs.push(x1 + (y - y1) * (x2 - x1) / (y2 - y1)); } })));
+      xs.sort((a, b) => a - b);
+      for (let i = 0; i + 1 < xs.length; i += 2) { const w = xs[i + 1] - xs[i], m = (xs[i] + xs[i + 1]) / 2; if ((!best || w > best[2]) && feats.some(f => B.inside(y, m, f.geometry))) best = [y, m, w]; }
+    }
+    if (best) return [best[0], best[1]];
+    const ln = B.linesOf(feats[0].geometry)[0] || [[lo, la]]; return [ln[0][1], ln[0][0]];
+  }
+  function grid(la, lo) { const A = 'ABCDEFGHIJKLMNOPQR', a = 'abcdefghijklmnopqrstuvwx'; let x = lo + 180, y = la + 90; const f1 = A[Math.floor(x / 20)] + A[Math.floor(y / 10)]; x %= 20; y %= 10; const f2 = '' + Math.floor(x / 2) + Math.floor(y); x %= 2; y %= 1; return f1 + f2 + a[Math.floor(x * 12)] + a[Math.floor(y * 24)]; }
 
   /* ---------- search ---------- */
   async function search() {
@@ -186,8 +208,7 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     const feats = (fc.features || []).filter(f => f.geometry);
     if (!feats.length) { msg('No boundary shape came back for that one.'); return; }
     const bb = feats.reduce((a, f) => { const b = B.bbox(f.geometry); return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])]; }, [180, 90, -180, -90]);
-    let la = (bb[1] + bb[3]) / 2, lo = (bb[0] + bb[2]) / 2;
-    const inAny = feats.some(f => B.inside(la, lo, f.geometry)); if (!inAny) { const rg = B.ringsOf(feats[0].geometry); const pt = rg.length ? rg[0][0][0] : (B.linesOf(feats[0].geometry)[0] || [])[0]; if (pt) { la = pt[1]; lo = pt[0]; } }
+    let [la, lo] = pinOf(feats, bb);
     const R = feats.map(f => f.properties);
     const fee = R.filter(r => r.Category === 'Fee'), base = fee.length ? fee : R;
     const uniq = k => [...new Set(base.map(r => r[k]).filter(Boolean))];
@@ -234,17 +255,29 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     const verdict = already.length ? ['no', 'ALREADY A POTA PARK'] : nNo ? ['no', 'LIKELY NOT ELIGIBLE'] : nCk ? ['maybe', 'LOOKS POSSIBLE: CONFIRM THE YELLOW ITEMS'] : ['yes', 'LOOKS ELIGIBLE'];
     const gq = s => 'https://www.google.com/search?q=' + encodeURIComponent(s);
     const nm = g.name, stn = g.st;
-    const note = [`Park request: ${nm} (${stn})`, '', `Owner: ${base.map(r => r.Loc_Own || AG[r.Own_Name] || r.Own_Name).filter((x, i, a) => a.indexOf(x) === i).join('; ')}`, `Managed by: ${locM}`, `Designation: ${base.map(r => r.Loc_Ds || DES[r.Des_Tp] || r.Des_Tp).filter((x, i, a) => a.indexOf(x) === i).join('; ')}`, `Public access: ${acc.map(a => ACC[a] || a).join('; ')}`, `Size: about ${Math.round(g.acres).toLocaleString()} acres`, `Location: ${la.toFixed(5)}, ${lo.toFixed(5)}`, 'Official web page: (paste the agency link here)', 'Official boundary map: (paste the agency map link here)', `Boundary source: ${g.src || 'USGS PAD-US'} ("${nm}", ${stn})`, '', 'Rule check (KPC Mapping Rep Tool Box):'].concat(res.filter(r => r.v !== 'INFO').map(r => `- ${r.title}: ${r.v}`)).join('\n');
+    const note = [`Park request: ${nm} (${stn})`, '', `Owner: ${base.map(r => r.Loc_Own || AG[r.Own_Name] || r.Own_Name).filter((x, i, a) => a.indexOf(x) === i).join('; ')}`, `Managed by: ${locM}`, `Designation: ${base.map(r => r.Loc_Ds || DES[r.Des_Tp] || r.Des_Tp).filter((x, i, a) => a.indexOf(x) === i).join('; ')}`, `Public access: ${acc.map(a => ACC[a] || a).join('; ')}`, `Size: about ${Math.round(g.acres).toLocaleString()} acres`, `Suggested POTA pin (inside the boundary): ${la.toFixed(5)}, ${lo.toFixed(5)}`, `Grid square: ${grid(la, lo)}`, 'County: @@COUNTY@@', 'Official web page: (paste the agency link here)', 'Official boundary map: (paste the agency map link here)', `Boundary source: ${g.src || 'USGS PAD-US'} ("${nm}", ${stn})`, '', 'Rule check (KPC Mapping Rep Tool Box):'].concat(res.filter(r => r.v !== 'INFO').map(r => `- ${r.title}: ${r.v}`), ['', 'Links found:', '@@LINKS@@']).join('\n');
     $('mrOut').innerHTML = `<section class="mr-res">
 <div class="mr-head"><div class="mr-k">${esc(stn)} · ${esc(g.src || "USGS PAD-US")}</div><h2>${esc(nm)}</h2><p>${esc([locM, Math.round(g.acres).toLocaleString() + ' acres', base.map(r => r.Loc_Ds || DES[r.Des_Tp] || '').filter(Boolean).filter((x, i, a) => a.indexOf(x) === i).join(' / ')].filter(Boolean).join(' · '))}</p></div>
 ${g.osm ? `<div class="mr-osm"><b>From OpenStreetMap, not an official source.</b> ${esc(B.OSM_NOTE)} Owner and manager come from volunteer tags, so treat every answer below as CHECK until the agency's own page confirms it.</div>` : ""}<div class="mr-v ${verdict[0]}"><b>${verdict[1]}</b><span>${res.filter(r => r.v === 'YES').length} yes · ${nNo} no · ${nCk} to check yourself</span></div>
 <div class="mr-rules">${res.map(r => `<div class="mr-r ${r.v.toLowerCase()}"><i>${r.v === 'INFO' ? 'INFO' : r.v}</i><div><b>${esc(r.title)}</b><p>${r.why}</p></div></div>`).join('')}</div>
 <div class="mr-sec"><h3>OFFICIAL WEBSITE &amp; MAP</h3><div class="mr-btns"><a class="gold" href="${gq(`"${nm}" ${stn} site:.gov`)}" target="_blank" rel="noopener">FIND THE OFFICIAL .GOV PAGE ↗</a><a href="${gq(`"${nm}" ${locM} boundary map`)}" target="_blank" rel="noopener">FIND THE AGENCY BOUNDARY MAP ↗</a><a href="${gq(`"${nm}" ${stn} ${locM}`)}" target="_blank" rel="noopener">SEARCH THE AGENCY ↗</a></div><p class="mr-help">These search only for the park by name with its agency. Use the agency's own page, not tourist sites.</p></div>
 <div class="mr-sec"><h3>BOUNDARY MAP (${esc(g.src || 'USGS PAD-US')})</h3><div id="mrMap"></div><p class="mr-help">Gold = this park's land in the source above. Blue pins = POTA parks nearby (tap for the number). Tap the map to drop a pin; ⛶ FULL for full screen; layers for satellite, topo and terrain.</p><div class="mr-btns" id="mrFiles"></div></div>
-<div class="mr-sec"><h3>NOTE FOR YOUR MAP REP</h3><textarea id="mrNote" rows="13">${esc(note)}</textarea><div class="mr-btns"><a class="gold" href="#" id="mrCopy">COPY THE NOTE</a><a href="${RULES_URL}" target="_blank" rel="noopener">POTA PARK-ADDITION RULES ↗</a><a href="#" id="mrWeb2">RESEARCH THE WEB FOR MORE ›</a></div><p class="mr-help">Send park requests to the Mapping Representative for the state (see the POTA rules page for the Map Rep list; email them from their QRZ page). POTA adds parks at the Map Rep's discretion.</p></div>
+<div class="mr-sec mr-facts"><h3>📍 FACTS FOR ADDING THE PARK</h3>
+<div class="mr-fact"><span>POTA PIN (inside the boundary)</span><b>${la.toFixed(5)}, ${lo.toFixed(5)}</b><div class="mr-btns"><a href="#" data-copy="${la.toFixed(5)}, ${lo.toFixed(5)}">COPY GPS</a><a href="https://www.google.com/maps/search/?api=1&query=${la.toFixed(5)},${lo.toFixed(5)}" target="_blank" rel="noopener">GOOGLE MAPS ↗</a><a href="https://maps.apple.com/?ll=${la.toFixed(5)},${lo.toFixed(5)}&q=${encodeURIComponent(nm)}" target="_blank" rel="noopener">APPLE MAPS ↗</a><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${la.toFixed(5)},${lo.toFixed(5)}" target="_blank" rel="noopener">STREET VIEW ↗</a></div></div>
+<div class="mr-fact"><span>GRID SQUARE</span><b>${grid(la, lo)}</b></div>
+<div class="mr-fact"><span>COUNTY</span><b id="mrCounty">looking it up…</b></div>
+<div class="mr-fact"><span>SIZE</span><b>about ${Math.round(g.acres).toLocaleString()} acres</b></div>
+<div class="mr-fact"><span>OWNER · MANAGER</span><b>${esc(base.map(r => r.Loc_Own || AG[r.Own_Name] || r.Own_Name).filter((x, i, a) => a.indexOf(x) === i).join('; '))} · ${esc(locM)}</b></div>
+<div class="mr-fact"><span>BOUNDARY SOURCE</span><b>${esc(g.src || 'USGS PAD-US')}</b><div class="mr-btns">${g.src && /PAD-US/.test(g.src) || !g.src ? '<a href="https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview" target="_blank" rel="noopener">ABOUT PAD-US ↗</a>' : ''}<a href="#" data-dl="kml">SAVE BOUNDARY (KML)</a></div></div>
+<h4>LINKS FOUND</h4><div id="mrLinks"><p class="mr-help">Searching Wikipedia / Wikidata and OpenStreetMap for this park's links…</p></div>
+<p class="mr-help">These came from the web search. Add the agency's own page and map before you send the request; web links help the Map Rep find it.</p></div>
+<div class="mr-sec"><h3>NOTE FOR YOUR MAP REP</h3><textarea id="mrNote" rows="16">${esc(note)}</textarea><div class="mr-btns"><a class="gold" href="#" id="mrCopy">COPY THE NOTE</a><a href="${RULES_URL}" target="_blank" rel="noopener">POTA PARK-ADDITION RULES ↗</a><a href="#" id="mrWeb2">RESEARCH THE WEB FOR MORE ›</a></div><p class="mr-help">Send park requests to the Mapping Representative for the state (see the POTA rules page for the Map Rep list; email them from their QRZ page). POTA adds parks at the Map Rep's discretion.</p></div>
 </section>`;
     $('mrCopy').onclick = e => { e.preventDefault(); const t = $('mrNote').value; (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => e.target.textContent = 'COPIED ✓').catch(() => { $('mrNote').select(); document.execCommand('copy'); e.target.textContent = 'COPIED ✓'; }); };
     draw(feats, near, la, lo);
+    $('mrOut').querySelectorAll('[data-copy]').forEach(b => b.onclick = e => { e.preventDefault(); const v = b.dataset.copy; (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(() => b.textContent = 'COPIED ✓').catch(() => window.prompt('Copy:', v)); });
+    $('mrOut').querySelectorAll('[data-dl]').forEach(b => b.onclick = e => { e.preventDefault(); B.saveGeo({ type: 'FeatureCollection', features: feats.map(f => ({ type: 'Feature', properties: { Unit_Nm: f.properties.Unit_Nm }, geometry: f.geometry })) }, 'kml', { ref: nm.replace(/\s+/g, '_').slice(0, 40), name: nm, la, lo }, b); });
+    enrich(g, la, lo);
     $('mrWeb2').onclick = e => { e.preventDefault(); notFound(g.name, g.st, ''); };
     window.scrollTo({ top: $('mrOut').offsetTop - 70, behavior: 'smooth' });
   }
@@ -261,7 +294,38 @@ ${g.osm ? `<div class="mr-osm"><b>From OpenStreetMap, not an official source.</b
     $('mrFiles').innerHTML = `<a class="alt" href="#" data-f="kml">SAVE KML · GOOGLE EARTH</a><a class="alt" href="#" data-f="gpx">GPX · GPS UNITS</a><a class="alt" href="#" data-f="geojson">GEOJSON</a>`;
     $('mrFiles').querySelectorAll('[data-f]').forEach(b => b.onclick = e => { e.preventDefault(); B.saveGeo(fc, b.dataset.f, o, b); });
   }
+  /* county (FCC census area) + links from the web, filled into the facts box and the note */
+  async function enrich(g, la, lo) {
+    const me = cur;
+    const setNote = (k, v) => { const t = $('mrNote'); if (t) t.value = t.value.replace(k, v); };
+    B.jget(`https://geo.fcc.gov/api/census/area?lat=${la}&lon=${lo}&censusYear=2020&format=json`, null, 15000).then(j => { const r = (j.results || [])[0]; const c = r ? r.county_name + ', ' + r.state_code : 'not found'; if (cur !== me) return; $('mrCounty').textContent = c; setNote('@@COUNTY@@', c); }).catch(() => { if (cur === me) { $('mrCounty').textContent = 'could not look it up'; setNote('@@COUNTY@@', '(check)'); } });
+    let R = { hits: [] }; try { R = await webResearch(g.name, g.st, ''); } catch (e) {}
+    if (cur !== me) return;
+    const near = R.hits.filter(h => B.km(h.la, h.lo, la, lo) < 15 && (B.sameName(h.name, g.name) || B.km(h.la, h.lo, la, lo) < 3));
+    const links = [];
+    near.forEach(h => { if (h.web) links.push(['Website listed (' + h.src + ')', h.web]); if (h.wiki) links.push(['Wikipedia', h.wiki]); if (h.item) links.push(['Wikidata', h.item]); });
+    links.push(['OpenStreetMap at the pin', `https://www.openstreetmap.org/?mlat=${la.toFixed(5)}&mlon=${lo.toFixed(5)}#map=15/${la.toFixed(5)}/${lo.toFixed(5)}`]);
+    const seen = new Set(), L = links.filter(x => !seen.has(x[1]) && seen.add(x[1]));
+    const info = near.filter(h => h.operator || h.owner || h.what).slice(0, 3).map(h => `<p class="mr-help"><b>${esc(h.name)}</b> (${esc(h.src)}): ${esc([h.what, h.operator ? 'run by ' + h.operator : '', h.owner ? 'owned by ' + h.owner : ''].filter(Boolean).join(' · '))}</p>`).join('');
+    $('mrLinks').innerHTML = `<div class="mr-links">${L.map(x => `<a href="${esc(x[1])}" target="_blank" rel="noopener"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></a>`).join('')}</div>${info}`;
+    setNote('@@LINKS@@', L.map(x => `- ${x[0]}: ${x[1]}`).join('\n'));
+  }
   $('mrForm').addEventListener('submit', e => { e.preventDefault(); search(); });
-  const P = new URLSearchParams(location.search);
-  if (P.get('name')) { $('mrName').value = P.get('name'); if (P.get('town')) $('mrTown').value = P.get('town'); if (P.get('state')) $('mrState').value = P.get('state').toUpperCase(); search(); }
+  /* simple password lock (keeps casual visitors out; it is not bank-grade security on a public website) */
+  const HASH = 'b36efa5ab2718f715ea105ece66b600d914fb0be36ee52de48363e5727d92b73';
+  const sha = async t => { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); };
+  function start() {
+    $('mrLock').hidden = true; $('mrApp').hidden = false;
+    if ($('mrState').value) agencies($('mrState').value);
+    const P = new URLSearchParams(location.search);
+    if (P.get('name')) { $('mrName').value = P.get('name'); if (P.get('town')) $('mrTown').value = P.get('town'); if (P.get('state')) { $('mrState').value = P.get('state').toUpperCase(); agencies($('mrState').value); } search(); }
+  }
+  let ok = false; try { ok = localStorage.getItem('kpcMrOK') === HASH; } catch (e) {}
+  if (ok) start();
+  else $('mrLockForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const h = await sha('kpc-maprep:' + $('mrPw').value.trim().toLowerCase());
+    if (h === HASH) { try { localStorage.setItem('kpcMrOK', HASH); } catch (x) {} start(); }
+    else { $('mrPwMsg').textContent = 'That password is not right.'; $('mrPw').select(); }
+  });
 })();

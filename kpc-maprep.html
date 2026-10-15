@@ -140,6 +140,10 @@ body.field .page-jump-nav{display:none!important}
 .mr-top{position:relative}.mr-logo{float:right;width:150px;height:150px;border-radius:50%;background:#fff;object-fit:contain;padding:6px;box-shadow:0 0 0 3px rgba(240,201,107,.6),0 8px 24px rgba(0,0,0,.4);margin:0 0 10px 16px}
 .mr-hit{padding:12px;margin:8px 0;border:1px solid #e0d5bd;border-radius:10px;background:#fbf8ef}.mr-hit>b{font:700 16px Georgia,serif}.mr-hit small{display:block;color:#68635a;font:900 10px Arial,sans-serif;letter-spacing:1.2px;margin-top:2px}.mr-hit p{margin:5px 0 0;font-size:13.5px;line-height:1.5;color:#3d3a31}
 .mr-no{color:#a8361f;font-weight:700}.mr-ok{color:#1d6e3c;font-weight:700}.mr-w{color:#8a5a00;font-weight:700}.mr-found{background:#e9f6ee}
+.mr-lock{max-width:460px;margin:0 auto}.mr-lock h2{margin:0 0 4px;font:700 24px Georgia,serif}.mr-lockf{display:flex;gap:8px;margin-top:10px}.mr-lockf input{flex:1;min-width:0;min-height:48px;border:1.5px solid #cbbf9f;border-radius:10px;padding:8px 12px;font:16px Arial,sans-serif}.mr-lockf button{min-height:48px;padding:8px 18px;border:0;border-radius:10px;background:#171717;color:#f0c96b;font:900 13px Arial,sans-serif;letter-spacing:1.2px;cursor:pointer}
+.mr-msg.busy{display:flex;gap:12px;align-items:center}.mr-spin{font-size:30px;display:inline-block;animation:mrspin 1.4s linear infinite}@keyframes mrspin{to{transform:rotate(360deg)}}.mr-sec-n{display:block;margin-top:4px;color:#1d5a3a;font-weight:700}
+.mr-facts{background:#f3f8f4}.mr-fact{display:grid;gap:3px;padding:8px 0;border-bottom:1px solid #e3eadf}.mr-fact span{font:900 10.5px Arial,sans-serif;letter-spacing:1.4px;color:#5b5648}.mr-fact b{font:700 16px Arial,sans-serif;color:#171717;overflow-wrap:anywhere}.mr-fact .mr-btns{margin-top:4px}.mr-facts h4{margin:12px 0 6px;font:900 10.5px Arial,sans-serif;letter-spacing:1.4px;color:#5b5648}
+.mr-links{display:grid;gap:6px}.mr-links a{display:grid;padding:9px 12px;border:1px solid #d8cfbf;border-radius:8px;background:#fff;text-decoration:none;color:#171717}.mr-links b{font:900 12px Arial,sans-serif;letter-spacing:.6px;color:#1d5a3a}.mr-links span{font-size:12.5px;color:#5b5648;overflow-wrap:anywhere}
 #mrNote{width:100%;box-sizing:border-box;border:1.5px solid #cbbf9f;border-radius:10px;padding:10px;font:13.5px/1.45 ui-monospace,Menlo,Consolas,monospace}
 .mr-hidden{margin:0 0 14px;padding:10px 14px;border-radius:10px;background:#eef3fb;border:1px solid #9db4d8;color:#22385c;font-size:14px}
 @media(max-width:760px){.mr-logo{width:96px;height:96px;margin-left:10px}.mr-form{grid-template-columns:1fr 1fr}.mr-form label:first-child{grid-column:1/-1}.mr-form button{grid-column:1/-1}#mrMap{height:340px}.mr-r{grid-template-columns:60px minmax(0,1fr)}}
@@ -216,7 +220,8 @@ body.field .page-jump-nav{display:none!important}
 <p class="sub">Type a park's name (add the town and state to narrow it down). It finds the land in the national public land database, checks it against POTA's rules for adding a park, and gives a yes, no or check-it-yourself for each rule, with the official links and a boundary map.</p>
 </div></section>
 <div class="mr-wrap">
-<p class="mr-hidden"><b>Private page.</b> Not on the menu or in search. Share the link only with people who need it.</p>
+<section class="mr-card mr-lock" id="mrLock"><h2>Enter the password</h2><p class="mr-help">This tool is for invited Mapping helpers.</p><form id="mrLockForm" class="mr-lockf"><input id="mrPw" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password"><button type="submit">UNLOCK</button></form><p class="mr-help" id="mrPwMsg"></p></section>
+<div id="mrApp" hidden>
 <section class="mr-card">
 <form class="mr-form" id="mrForm"><label>PARK NAME<input id="mrName" autocomplete="off" placeholder="Bullock Pen Lake"></label><label>TOWN (OPTIONAL)<input id="mrTown" autocomplete="off" placeholder="Crittenden"></label><label>STATE (REQUIRED)<select id="mrState" required></select></label><button type="submit">CHECK IT</button></form>
 <p class="mr-help">Pick the state first: the search then looks through every federal and state agency's land in that state (the list appears below), the live National Park Service and Fish &amp; Wildlife maps, and OpenStreetMap as a backup. The rules come from POTA's "Park Additions and Edits" page (docs.pota.app). The database answers what it can (owner, manager, public access, size, other parks around it); the yellow items are ones only you can confirm, like the official web page and the way in. This is a helper, not a decision: the state's Map Rep decides.</p>
@@ -225,11 +230,12 @@ body.field .page-jump-nav{display:none!important}
 </section>
 <div id="mrOut"></div>
 </div>
+</div>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
 <script src="kpc-bounds.js?v=20261015d" defer></script>
 <script src="kpc-map-tools.js?v=20261015c" defer></script>
-<script src="kpc-maprep.js?v=20261015c" defer></script>
+<script src="kpc-maprep.js?v=20261015d" defer></script>
 <script src="kpc-search.js?v=20261015kk" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
