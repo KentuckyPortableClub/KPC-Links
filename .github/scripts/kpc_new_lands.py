@@ -135,11 +135,16 @@ def pota():
 def news():
     items = {}
     for q in NEWS_Q:
-        u = 'https://news.google.com/rss/search?' + urllib.parse.urlencode({'q': q + ' when:30d', 'hl': 'en-US', 'gl': 'US', 'ceid': 'US:en'})
-        try:
-            root = ET.fromstring(get(u))
-        except Exception as e:  # noqa: BLE001
-            notice('News search failed', '%s: %s' % (q, e))
+        root = None
+        for u in ('https://www.bing.com/news/search?' + urllib.parse.urlencode({'q': q, 'format': 'rss', 'qft': 'interval="8"'}),
+                  'https://news.google.com/rss/search?' + urllib.parse.urlencode({'q': q + ' when:30d', 'hl': 'en-US', 'gl': 'US', 'ceid': 'US:en'})):
+            try:
+                root = ET.fromstring(get(u, tries=2))
+                break
+            except Exception as e:  # noqa: BLE001
+                last = e
+        if root is None:
+            notice('News search failed', '%s: %s' % (q, last))
             continue
         for it in root.iter('item'):
             t = (it.findtext('title') or '').strip()
@@ -153,11 +158,20 @@ def news():
     return items
 
 
-def in_pota(name, P):
+PARKISH = {'sp', 'hist', ''}
+
+
+def in_pota(name, P, loose=False):
     n, k = norm(name), kind(name)
     for ref, pn in P.items():
-        if norm(pn) == n and (not k or not kind(pn) or kind(pn) == k):
+        pk, pnn = kind(pn), norm(pn)
+        kinds_ok = not k or not pk or pk == k or (k in PARKISH and pk in PARKISH)
+        if pnn == n and kinds_ok:
             return ref
+        if loose and kinds_ok and n and pnn:
+            s, l = sorted((n, pnn), key=len)
+            if len(s) > 5 and l.startswith(s) and len(s) / len(l) >= 0.6:
+                return ref
     return None
 
 
@@ -221,7 +235,7 @@ def main():
     gap = {}
     for label, L in now['lists'].items():
         for n, info in L.items():
-            if not in_pota(n, P):
+            if not in_pota(n, P, loose=True):
                 key = norm(n) + '|' + kind(n)
                 gap.setdefault(key, (n, label, info))
     SEEN.parent.mkdir(parents=True, exist_ok=True)
