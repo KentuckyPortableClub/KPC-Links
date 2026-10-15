@@ -75,7 +75,12 @@
   },
   "Bat Cave State Nature Preserve": {
    "agency": "State Nature Preserves (OKNP)",
-   "maps": [],
+   "maps": [
+    [
+     "Map",
+     "https://eec.ky.gov/Nature-Preserves/Locations/PublishingImages/Carter%20Caves%20SP%20-%20photo%20by%20Thomas%20G.%20Barnes%20from%20Kentucky,%20Naturally%20book.jpg"
+    ]
+   ],
    "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Carter-Caves.aspx"
   },
   "Beargrass Creek State Nature Preserve": {
@@ -143,6 +148,14 @@
     [
      "Campground Map (PDF)",
      "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-mapc7edd555-03ce-4175-a580-ff9d5f0fa8f1.pdf?sfvrsn=d2e112c2_2"
+    ],
+    [
+     "Bison Fact Sheet (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/bison-fact-sheet.pdf?sfvrsn=679258bf_2"
+    ],
+    [
+     "Self-Guided Tour (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/self-guided-tour.pdf?sfvrsn=4fa9d2fb_2"
     ]
    ],
    "page": "https://parks.ky.gov/union/parks/historic/big-bone-lick-state-historic-site"
@@ -392,13 +405,26 @@
     [
      "Campground Map (PDF)",
      "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-mapbf93e98e-e76c-4d09-8aa5-759f6522781b.pdf?sfvrsn=d8568a69_0"
+    ],
+    [
+     "Late Summer Cave Tour Schedule (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/late-summer-cave-tour-schedule.pdf?sfvrsn=e3475e01_0"
+    ],
+    [
+     "Fall Cave Tour Schedule (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/fall-cave-tour-schedulecd951f92-378f-4084-9e82-999681f8ace6.pdf?sfvrsn=c8621d80_0"
     ]
    ],
    "page": "https://parks.ky.gov/olive-hill/parks/resort/carter-caves-state-resort-park"
   },
   "Cascade Caverns State Nature Preserve": {
    "agency": "State Nature Preserves (OKNP)",
-   "maps": [],
+   "maps": [
+    [
+     "Map",
+     "https://eec.ky.gov/Nature-Preserves/Locations/PublishingImages/Carter%20Caves%20SP%20-%20photo%20by%20Thomas%20G.%20Barnes%20from%20Kentucky,%20Naturally%20book.jpg"
+    ]
+   ],
    "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Carter-Caves.aspx"
   },
   "Cedar Creek Lake WMA": {
@@ -748,7 +774,12 @@
   },
   "Dr. William H. Martin State Natural Area": {
    "agency": "State Natural Areas (OKNP)",
-   "maps": [],
+   "maps": [
+    [
+     "Map",
+     "https://eec.ky.gov/Nature-Preserves/Locations/PublishingImages/WH%20Martin%20WWCA%20-%20photo%20by%20Joe%20Dietz%20from%20Kentucky,%20Naturally%20book.jpg"
+    ]
+   ],
    "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Dr.-William-H.-Martin-WWCA.aspx"
   },
   "E. Lucy Braun State Park State Nature Preserve": {
@@ -1024,12 +1055,22 @@
   },
   "Green River State Natural Area (Davis Bend)": {
    "agency": "State Natural Areas (OKNP)",
-   "maps": [],
+   "maps": [
+    [
+     "Map",
+     "https://eec.ky.gov/Nature-Preserves/Locations/PublishingImages/Rush%20Island%20WWCA%20-%20%20photo%20by%20Zeb%20Weese%20from%20Kentucky,%20Naturally%20book.jpg"
+    ]
+   ],
    "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx"
   },
   "Green River State Natural Area (Rush Island Bottoms)": {
    "agency": "State Natural Areas (OKNP)",
-   "maps": [],
+   "maps": [
+    [
+     "Map",
+     "https://eec.ky.gov/Nature-Preserves/Locations/PublishingImages/Rush%20Island%20WWCA%20-%20%20photo%20by%20Zeb%20Weese%20from%20Kentucky,%20Naturally%20book.jpg"
+    ]
+   ],
    "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx"
   },
   "Greenbo Lake State Historic Site": {
@@ -1042,22 +1083,6 @@
     [
      "Trails Map (PDF)",
      "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/trails-mapf6ae6136-23f3-4348-9afb-573948d0b094.pdf?sfvrsn=55f8143c_2"
-    ],
-    [
-     "Trail Map",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=ad63acfc-864e-4e69-8782-f50c38011522"
-    ],
-    [
-     "Trail Map",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=c510429e-f8fb-41b2-a90f-73191b8a9321"
-    ],
-    [
-     "Trail Map",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=04d23499-37ed-4907-8c05-01dcfa894dda"
-    ],
-    [
-     "Trail Map",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=8379100a-cc09-47e6-96b6-f545a4cc3735"
     ],
     [
      "Campground Map (PDF)",
@@ -1286,6 +1311,10 @@
    "agency": "State Nature Preserves (OKNP)",
    "maps": [
     [
+     "Map",
+     "https://eec.ky.gov/Nature-Preserves/Locations/PublishingImages/Audubon.jpg"
+    ],
+    [
      "Use Google Maps to navigate",
      "https://eec.ky.gov/Nature-Preserves/Locations/PublishingImages/googlemaps_link.jpg"
     ]
@@ -1428,6 +1457,10 @@
     [
      "Park Map (PDF)",
      "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map711472d8-e0ef-4cea-856b-39f8a9d0fd7c.pdf?sfvrsn=a27d63d9_2"
+    ],
+    [
+     "Park Campground (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-campground.pdf?sfvrsn=a79b71be_2"
     ]
    ],
    "page": "https://parks.ky.gov/falmouth/parks/recreation/kincaid-lake-state-park"
@@ -1499,38 +1532,6 @@
     [
      "Campground Map (PDF)",
      "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-map3209bd0f-efad-4d6c-8652-86b982b90579.pdf?sfvrsn=cd429782_2"
-    ],
-    [
-     "Map",
-     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/mapace628c8-98dd-4aa6-b847-fea93dc75b3c.jpg?sfvrsn=990b6b42_2"
-    ],
-    [
-     "Map Info",
-     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/map-infof827e9e5-179d-4d68-b5b6-4b03590b8ea4.jpg?sfvrsn=366eec3b_2"
-    ],
-    [
-     "Map",
-     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/map.jpg?sfvrsn=c858e6d0_2"
-    ],
-    [
-     "Map Info",
-     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/map-info.jpg?sfvrsn=d98d75b3_2"
-    ],
-    [
-     "Map",
-     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/map0421e9a1-094b-47f5-bd36-0935d613850b.jpg?sfvrsn=63393e5d_2"
-    ],
-    [
-     "Map",
-     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/map77f9601c-c4fc-492d-b489-ed358cfd3c58.jpg?sfvrsn=dbfb0c1f_2"
-    ],
-    [
-     "Map Info",
-     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/map-infod3a649ff-c75a-47b2-808e-ccfe6e22540a.jpg?sfvrsn=3a1f4a5_2"
-    ],
-    [
-     "Map",
-     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/mapc037372d-482c-47c5-8db5-7f03887ee92a.jpg?sfvrsn=33435ae1_2"
     ]
    ],
    "page": "https://parks.ky.gov/cadiz/parks/resort/lake-barkley-state-resort-park"
@@ -1635,10 +1636,6 @@
     [
      "Park Map (PDF)",
      "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map3ce19887-b5a1-4d79-bc7b-b81ad7ef3856.pdf?sfvrsn=1db84187_2"
-    ],
-    [
-     "Course Map and Tee Card",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=54fae78f-d016-43fd-ba90-7e400ae59805"
     ]
    ],
    "page": "https://parks.ky.gov/springfield/parks/historic/lincoln-homestead-state-park"
@@ -1659,7 +1656,12 @@
   },
   "Little South Fork State Natural Area (Steele Hollow SNA)": {
    "agency": "State Natural Areas (OKNP)",
-   "maps": [],
+   "maps": [
+    [
+     "Map",
+     "https://eec.ky.gov/Nature-Preserves/Locations/PublishingImages/Burnett%20WWCA%20-%20photo%20by%20Zeb%20Weese%20from%20Kentucky,%20Naturally%20book.jpg"
+    ]
+   ],
    "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Burnett-WWCA.aspx"
   },
   "Livingston County WMA and State Natural Area": {
@@ -1823,6 +1825,10 @@
     [
      "Park Map (PDF)",
      "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-map9c284078-8efc-4f95-a566-14bd36fe551c.pdf?sfvrsn=36ea47b5_2"
+    ],
+    [
+     "Scorecard (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/scorecard.pdf?sfvrsn=84cfa5be_2"
     ]
    ],
    "page": "https://parks.ky.gov/eddyville/parks/recreation/mineral-mound-state-park"
@@ -1865,6 +1871,10 @@
     [
      "Campground Map (PDF)",
      "https://www.kentuckytourism.com/media/docs/parkslibraries/default-document-library/mokh_campgroundmap-(1).pdf"
+    ],
+    [
+     "2025 Meeting Proposal (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/2025-meeting-proposal.pdf?sfvrsn=3106739d_2"
     ]
    ],
    "page": "https://parks.ky.gov/bardstown/parks/historic/my-old-kentucky-home-state-park"
@@ -1880,46 +1890,6 @@
     [
      "Trail/Park Map (PDF)",
      "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/trail-park-map.pdf?sfvrsn=4adcf593_2"
-    ],
-    [
-     "Trail Map",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=308e120e-b306-4154-9989-40e70b5699bc"
-    ],
-    [
-     "Trail Map",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=ee90e385-cde6-4268-91c2-cd81f3613128"
-    ],
-    [
-     "Trail Map",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=303ef1f0-b786-4d05-9e58-743d5cf36e32"
-    ],
-    [
-     "Trail Map",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=cc28b5b8-dc08-4fee-a764-d18d043aaca9"
-    ],
-    [
-     "Trail Map",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=69ee0fab-c5ac-40ce-8801-fb5c233da607"
-    ],
-    [
-     "Trail Map",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=de6a86f6-2701-4637-8972-34be71bb0e43"
-    ],
-    [
-     "Trail Map",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=c337bea9-9755-4c5a-a6ff-fc9e86f140c6"
-    ],
-    [
-     "Trail Map",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=bdc61738-ac27-4bc7-801c-47f4fb045bb2"
-    ],
-    [
-     "Trail Map",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=3faceb7f-bd84-473c-bc3f-a1dc2344ca6f"
-    ],
-    [
-     "Trail Map",
-     "http://kentucky.simpleviewcrm.com/sched/getfilebykey.cfm?filekey=1c6c737f-15f0-4ff9-9c4c-84a038065ebc"
     ],
     [
      "Middle Fork Campground Map (PDF)",
@@ -2440,7 +2410,12 @@
   },
   "Sinking Creek State Natural Area": {
    "agency": "State Natural Areas (OKNP)",
-   "maps": [],
+   "maps": [
+    [
+     "Map",
+     "https://eec.ky.gov/Nature-Preserves/Locations/PublishingImages/Sinking%20Creek%20-%20Sheltowee%20Trace%20Bridge%20-%20photo%20by%20Thomas%20G.%20Barnes%20from%20Kentucky,%20Naturally%20book.jpg"
+    ]
+   ],
    "page": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Sinking-Creek.aspx"
   },
   "Six Mile Island State Nature Preserve": {
@@ -2820,5 +2795,5 @@
   }
  },
  "source": "Map links found on each agency page (KDFWR, Kentucky State Parks, Office of Kentucky Nature Preserves)",
- "updated": "2026-10-15 20:41 UTC"
+ "updated": "2026-10-15 21:17 UTC"
 }
