@@ -43,7 +43,7 @@ function speak(text, who) {
 }
 function speakNow(text, who) {
   return new Promise(res => {
-    if (!window.speechSynthesis) { res(); return; }
+    if (!window.speechSynthesis) { res(false); return; }
     if (speechSynthesis.paused) speechSynthesis.resume();
     if (speechSynthesis.speaking && !window.__kpcU) { speechSynthesis.cancel(); lastCancel = Date.now(); }
     const u = new SpeechSynthesisUtterance(text); window.__kpcU = u; // keep a reference: Chrome can lose the events of a garbage-collected utterance
@@ -55,7 +55,7 @@ function speakNow(text, who) {
       const list = pool.length ? pool : VO; u.voice = list[who.vi % list.length]; u.lang = u.voice.lang;
     } else u.lang = 'en-US';
     u.rate = who ? who.rate : 1; u.pitch = who ? who.pitch : 1; u.volume = Math.max(0.15, Math.min(1, (who ? who.vol : 1) * S.vol));
-    let done = false, started = false; const fin = stuck => { if (!done) { done = true; clearTimeout(tm); clearTimeout(t0); if (window.__kpcU === u) window.__kpcU = null; if (stuck === true) { try { speechSynthesis.cancel(); } catch (e) {} lastCancel = Date.now(); } res(); } };
+    let done = false, started = false; const fin = stuck => { if (!done) { done = true; clearTimeout(tm); clearTimeout(t0); if (window.__kpcU === u) window.__kpcU = null; if (stuck === true) { try { speechSynthesis.cancel(); } catch (e) {} lastCancel = Date.now(); } res(started); } };
     const tm = setTimeout(() => fin(true), 2500 + text.length * 95 / u.rate); // some browsers never fire 'end': clear the stuck queue
     const t0 = setTimeout(() => { if (!started) fin(true); }, 4500); u.onstart = () => { started = true; };
     u.onend = fin; u.onerror = e => { lastErr = (e && e.error) || 'error'; if (lastErr !== 'interrupted' && lastErr !== 'canceled' && Date.now() - lastCancel > 400) { const d = $('vbDiag'); if (d) d.textContent = 'Voice problem: ' + lastErr + '. Tap TEST VOICE to check.'; } fin(); };
@@ -350,7 +350,21 @@ function tune(id) {
 }
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function waitFor(fn, ms, g) { const t0 = Date.now(); while (Date.now() - t0 < ms) { if (g !== H.gen) return 'gone'; const v = fn(); if (v) return v; await sleep(150); } return null; }
-function aSay(s, spoken, shown) { if (showText()) line(s.call, shown || spoken, 'them'); else line('📢', 'the activator talks', 'them'); return speak(spoken, s.v); }
+async function aSay(s, spoken, shown) {
+  const g = H.gen;
+  await waitFor(() => !recOn, 10000, g); // they wait while you're transmitting
+  if (g !== H.gen) return;
+  const txt = shown || spoken;
+  if (showText()) line(s.call, txt, 'them'); else line('📢', 'the activator talks', 'them');
+  for (let i = 0; i < 2; i++) {
+    H.cut = false;
+    const ok = await speak(spoken, s.v);
+    if (g !== H.gen) return;
+    if (H.cut) { await waitFor(() => !recOn && Date.now() - recOffAt > 300, 10000, g); if (g !== H.gen) return; line('', '🔁 You keyed up over them, so they say it again:', 'note'); if (!showText()) line(s.call, txt, 'them'); continue; }
+    if (!ok && !showText()) line(s.call, txt + '  (the voice didn\'t play, so here it is in words)', 'them');
+    return;
+  }
+}
 async function actLoop(s, g) {
   const pg = PROGNAME[s.prog], refS = sayRef(s.ref);
   const hunters = () => { const n = Math.max(0, s.pile + rnd(-1, 1)); return Array.from({ length: n }, () => { const st = pick(NEAR); return Object.assign({ call: newCall(st), st, rst: pick(['59', '59', '57', '58']) }, voiceFor()); }); };
@@ -361,13 +375,14 @@ async function actLoop(s, g) {
     setPhase('cq');
     const cqWords = s.prog === 'sota' ? 'CQ SOTA, CQ SOTA' : s.prog === 'kff' ? 'CQ K F F, CQ W W F F' : 'CQ POTA, CQ Parks on the Air';
     if (first || chance(0.3)) await aSay(s, `${cqWords}, this is ${say1(s.call)}, ${say1(s.call)}, at ${s.prog === 'sota' ? 'summit' : s.prog === 'kff' ? 'reference' : 'park'} ${refS}, ${s.name}.`, `${cqWords.replace('K F F', 'KFF').replace('W W F F', 'WWFF')}, this is ${s.call}, ${s.call}, at ${s.ref}, ${s.name}.`);
-    else await aSay(s, `QRZ, ${say1(s.call)}, ${pg}.`, `QRZ? ${s.call}, ${pg}.`);
+    else await aSay(s, `Q R Zee? ${say1(s.call)}, ${pg}.`, `QRZ? ${s.call}, ${pg}.`);
     first = false; if (g !== H.gen) return;
     /* the window: everybody calls */
     setPhase('window'); const w0 = Date.now() - 1200; H.called = 0;
     const hs = hunters();
     for (const h of hs) { if (g !== H.gen) return; if (showText()) line(h.call, h.call, 'them'); else line('📢', 'a hunter calls', 'them'); await speak(say1(h.call), h); }
     await waitFor(() => H.called && Date.now() - H.calledAt > 900, hs.length ? 1600 : 4500, g);
+    if (!H.called && (recOn || Date.now() - recOffAt < 1500)) await waitFor(() => H.called || (!recOn && Date.now() - recOffAt > 2500), 9000, g); // you're still talking / the phone is still working out what you said
     if (g !== H.gen) return;
     const me = H.calledAt > w0 && H.called;
     if (!me && !hs.length) { await sleep(800); continue; }
@@ -379,13 +394,13 @@ async function actLoop(s, g) {
     }
     if (pickMe) {
       /* dupe? */
-      if (H.qsos.some(q => q.s.call === s.call && q.s.ref === s.ref && q.heardRight)) { setPhase('mine'); await aSay(s, `${say1(myCall())}, we already worked, you're in the log. Thanks! QRZ.`, `${myCall()}, we already worked, you're in the log. Thanks! QRZ.`); line('', '🔁 Dupe! You already have this park in your log. Check your log before calling, and give someone else a turn.', 'note'); continue; }
+      if (H.qsos.some(q => q.s.call === s.call && q.s.ref === s.ref && q.heardRight)) { setPhase('mine'); await aSay(s, `${say1(myCall())}, we already worked, you're in the log. Thanks! Q R Zee?`, `${myCall()}, we already worked, you're in the log. Thanks! QRZ.`); line('', '🔁 Dupe! You already have this park in your log. Check your log before calling, and give someone else a turn.', 'note'); continue; }
       /* partial copy first sometimes */
       if (S.level >= 2 && chance(0.3)) {
         const part = myCall().slice(-2); setPhase('partial'); H.called = 0;
         await aSay(s, `The station with ${say1(part)}, again?`, `The station with ${part}, again?`);
         const ans = await waitFor(() => H.called ? 1 : null, 7000, g); if (g !== H.gen) return;
-        if (!ans) { await aSay(s, `Lost them. QRZ?`); continue; }
+        if (!ans) { await aSay(s, `Lost them. Q R Zee?`, `Lost them. QRZ?`); continue; }
       }
       let heard = myCall(); const wrong = S.level >= 2 && chance(0.15); if (wrong) heard = bust(heard);
       setPhase('mine'); const st = STN[s.st] || s.st;
@@ -397,7 +412,7 @@ async function actLoop(s, g) {
       let asked = false;
       for (;;) {
         const ev = await waitFor(() => H.wait, asked ? 7000 : 11000, g); if (g !== H.gen) return; H.wait = null;
-        if (!ev) { if (!asked) { asked = true; await aSay(s, `${say1(heard)}, are you there?`, `${heard}, are you there?`); continue; } await aSay(s, `Lost that one. QRZ?`); line('', 'They gave up waiting. Answer quicker next time: they have a pileup to work.', 'note'); H.pending = null; break; }
+        if (!ev) { if (!asked) { asked = true; await aSay(s, `${say1(heard)}, are you there?`, `${heard}, are you there?`); continue; } await aSay(s, `Lost that one. Q R Zee?`, `Lost that one. QRZ?`); line('', 'They gave up waiting. Answer quicker next time: they have a pileup to work.', 'note'); H.pending = null; break; }
         if (ev === 'again') { await repLine(); continue; }
         if (ev === 'neg') { if (heard !== myCall()) { heard = myCall(); pend.heard = heard; pend.corrected = true; await aSay(s, `Sorry about that. ${say1(heard)}, roger. You're ${say1(s.rst)}, ${st}.`, `Sorry about that. ${heard}, roger. You're ${s.rst}, ${st}.`); } else { await aSay(s, `Roger, I have you as ${say1(heard)}. That's right.`, `Roger, I have you as ${heard}. That's right.`); } continue; }
         if (ev === 'report') {
@@ -535,7 +550,7 @@ function parseSpeech(t) {
     : (call || rep) ? 'report' : '';
   return { kind, raw: best, runs, call: /^[A-Z0-9]{3,8}$/.test(call) && /\d/.test(call) ? call : (call.length >= 2 && call.length < 4 ? call : ''), rep };
 }
-let rec = null, recOn = false, recHeld = 0, recWant = false, recText = '';
+let rec = null, recOn = false, recHeld = 0, recWant = false, recText = '', recOffAt = 0;
 /* Keyed = recWant. Chrome ends recognition on its own after a short pause, so while you're still keyed we quietly start it again
    and keep everything you said; the words are only acted on when you unkey. */
 function recBegin() {
@@ -546,7 +561,7 @@ function recBegin() {
   rec.onend = () => {
     recText += (seg || rec._last || '') + ' ';
     if (recWant) { try { recBegin(); return; } catch (x) {} }
-    recOn = false; $('vbTalk').classList.remove('on'); if (run.on) hiss(true);
+    recOn = false; recOffAt = Date.now(); $('vbTalk').classList.remove('on'); if (run.on) hiss(true);
     const said = recText.replace(/\s+/g, ' ').trim(); recText = '';
     if (said) talkDo(said); else { const l = $('vbHeard'); if (l) { l.textContent = 'Didn\'t hear anything. Hold the button (or tap it once) while you talk.'; l.classList.add('said'); } }
   };
@@ -554,7 +569,7 @@ function recBegin() {
 }
 function talkStart() {
   if (!SR || !run.on || recOn) return;
-  hush(); run.gen++; recText = ''; recWant = true;
+  hush(); run.gen++; recText = ''; recWant = true; if (H.on) H.cut = true;
   try { recBegin(); recOn = true; $('vbTalk').classList.add('on'); hiss(false); } catch (e) { recWant = false; } // like a real rig: the receiver goes quiet while you transmit
 }
 function talkStop() { recWant = false; if (rec && recOn) try { rec.stop(); } catch (e) {} }
