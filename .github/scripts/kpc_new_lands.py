@@ -32,7 +32,7 @@ LABEL = 'ky-new-lands'
 TOOL = 'https://kentuckyportableclub.github.io/KPC-Links/kpc-maprep.html?state=KY&name='
 KYG = 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/'
 LAYERS = [
-    ('Fish & Wildlife (hunting areas / WMAs)', 'Ky_Public_Hunting_Areas_WGS84WM/MapServer/1', 'AREANAME', 'DETAIL', 'MANAGER'),   # MANAGER holds the owner: KDFWR / Private / U of Ky ...
+    ('Fish & Wildlife (hunting areas / WMAs)', 'Ky_Public_Hunting_Areas_WGS84WM/MapServer/1', 'AREANAME', 'DETAIL', ''),   # owner comes from each KDFWR page (wma_owners), NOT the MANAGER field
     ('Kentucky State Parks', 'Ky_State_Parks_Features_WGS84WM/MapServer/8', 'PUBLIC_NAM|PARK_NAME', 'HYPERLINK', ''),
     ('State Nature Preserves (OKNP)', 'Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer/0', 'MANAME', 'Webpage', 'MA_OWNER'),
     ('State Natural Areas (OKNP)', 'Ky_KNP_Natural_Areas_WGS84WM/MapServer/0', 'MANAME', 'Webpage', 'MA_OWNER'),
@@ -191,6 +191,38 @@ def gh(*args, input_text=None):
     return r.stdout
 
 
+WMA_OWNERS = pathlib.Path('data/ky-wma-owners.json')
+
+
+def owner_type(s):
+    s = s.lower()
+    if re.search(r'corps of engineers|usace', s): return 'Corps'
+    if re.search(r'privately owned|llc|inc\b|company|corporation|timber|coal|land co|private', s): return 'Private'
+    if re.search(r'universit|college|school', s): return 'University'
+    if re.search(r'fiscal court|county|city of', s): return 'Local'
+    if re.search(r'forest service|national park|fish and wildlife service|tennessee valley|tva|army|military|department of defense', s): return 'Federal'
+    if re.search(r'department of fish|kdfwr|fish and wildlife resources|nature preserves|division of forestry|commonwealth|state of kentucky|kentucky state parks', s): return 'State'
+    return ''
+
+
+def wma_owners(urls):
+    """Read the 'Owned by ...' / 'privately owned' / 'cooperative agreement between the owner ...' sentence on every KDFWR WMA page."""
+    out = {}
+    for n, u in sorted(urls.items()):
+        if not u.startswith('http'):
+            continue
+        try:
+            t = get(u, tries=2)
+        except Exception as e:  # noqa: BLE001
+            notice('KDFWR page failed', '%s: %s' % (n, e)); continue
+        T = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', re.sub(r'(?s)<script.*?</script>|<style.*?</style>', '', t))))
+        m = re.search(r'[^.]*(?:\b[Oo]wned by\b|privately owned|between the owner,?[^.]*|[Oo]wnership)[^.]*\.', T)
+        s = m.group(0).strip() if m else ''
+        out[n] = {'url': u, 'says': s[:300], 'type': owner_type(s) if s else ''}
+        time.sleep(0.4)
+    return out
+
+
 def main():
     old = json.loads(SEEN.read_text()) if SEEN.exists() else None
     now = {'updated': dt.datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'), 'lists': {}, 'news': {}}
@@ -202,6 +234,15 @@ def main():
             notice('Could not read ' + label, e)
             if old and label in old.get('lists', {}):
                 now['lists'][label] = old['lists'][label]   # keep last week's so a hiccup isn't reported as "removed"
+    hunting = now['lists'].get('Fish & Wildlife (hunting areas / WMAs)', {})
+    WO = wma_owners(hunting)
+    if WO:
+        WMA_OWNERS.parent.mkdir(parents=True, exist_ok=True)
+        WMA_OWNERS.write_text(json.dumps({'updated': now['updated'], 'source': 'Each WMA page on app.fw.ky.gov (Public Lands Search)', 'wmas': WO}, indent=1, sort_keys=True, ensure_ascii=False))
+        for n, o in WO.items():
+            if o['type']:
+                OWNERS[n] = {'State': 'KDFWR / state', 'Private': 'Private', 'Corps': 'U.S. Army Corps of Engineers', 'University': 'University', 'Local': 'County / city', 'Federal': 'Federal'}[o['type']]
+        notice('KDFWR owners read', '%d pages, %d with an owner sentence' % (len(WO), sum(1 for o in WO.values() if o['type'])))
     try:
         now['lists']['USGS PAD-US (federal + state, open to the public)'] = padus()
     except Exception as e:  # noqa: BLE001
@@ -261,8 +302,10 @@ def main():
 
     def why_not(n, label, info):
         o = OWNERS.get(n, '') + ' ' + (info if not info.startswith('http') else '')
-        if re.search(r'\bprivate\b|fiscal court|college|school|sanctuary|conservancy|foundation', o, re.I) and not re.search(r'office of kentucky|kdfwr|department of fish', OWNERS.get(n, ''), re.I):
-            return 'owner is not federal/state (%s)' % OWNERS.get(n, info).strip()
+        if re.search(r'U.S. Army Corps', OWNERS.get(n, '')):
+            return 'Army Corps of Engineers land (its KDFWR page says so; few are exceptions)'
+        if re.search(r'\bprivate\b|fiscal court|county / city|college|school|sanctuary|conservancy|foundation', o, re.I) and not re.search(r'office of kentucky|kdfwr|department of fish', OWNERS.get(n, ''), re.I):
+            return 'owner is not federal/state (%s)%s' % (OWNERS.get(n, info).strip(), (': "' + WO[n]['says'] + '"') if n in WO and WO[n]['says'] else '')
         if re.search(r'hunting access area', n, re.I):
             return 'hunting access area (usually private land leased for hunting)'
         if re.search(r'military|army depot|training area|\bfort (knox|campbell)', n, re.I):
@@ -286,6 +329,9 @@ def main():
         n, label, info = gap[key]
         line = '- %s · %s%s%s' % (link(n), label, (' · owner: ' + OWNERS[n]) if n in OWNERS else '', (' · ' + info) if info and not info.startswith('http') else (' · [official page](%s)' % info if info else ''))
         w = why_not(n, label, info)
+        if not w and 'Fish & Wildlife' in label:
+            o = WO.get(n, {})
+            line += (' · KDFWR page: "%s"' % o['says']) if o.get('says') else ' · _owner not stated on its KDFWR page: ask Fish & Wildlife_'
         (maybe if w else good).append(line + ((' · _%s_' % w) if w else ''))
     lines += ['### ⭐ Look promising (%d)' % len(good), 'Federal/state owned, open, no POTA park of that name yet. A public road, trail or boat ramp in is enough access (Fish & Wildlife lakes with a public ramp count). Check each one in the Tool Box before emailing the Mapping Representative.', ''] + good + ['']
     lines += ['<details><summary><b>%d more that probably will not qualify</b> (reason shown on each)</summary>' % len(maybe), ''] + maybe + ['', '</details>', '', 'This issue stays open; each week with something new adds a comment (GitHub emails you about comments).']
