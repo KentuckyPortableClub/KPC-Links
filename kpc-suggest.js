@@ -170,6 +170,7 @@
   $('sgSForm').addEventListener('submit', async e => {
     e.preventDefault(); initMap();
     const name = $('sgSName').value.trim(), st = stSel.value, town = $('sgSTown').value.trim();
+    const gp = window.KPCparseLoc && window.KPCparseLoc(name); if (gp) { $('sgSList').innerHTML = ''; return check(gp[0], gp[1]); }   /* GPS numbers typed in the name box */
     if (!st) { msg('<b>Pick the state first.</b>'); return; }
     if (name.length < 3) { msg('Type the summit name, or tap the map / USE MY GPS.'); return; }
     msg('Looking for the summit…'); $('sgSList').innerHTML = '';

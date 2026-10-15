@@ -592,6 +592,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
     if (m) return fix(+m[2], +m[5], m[1] || m[3], m[4] || m[6]);
     return null;
   }
+  window.KPCparseLoc = parseLoc;   /* the Suggest page's summit box uses it too */
   const looksAddress = t => /^\s*\d{1,6}\s+\S+.*\b(st|street|rd|road|ave|avenue|hwy|highway|ln|lane|dr|drive|pike|blvd|ct|court|way|pkwy|route|rt|us|ky|trail|loop)\b/i.test(t) || /\b\d{5}(-\d{4})?\s*$/.test(t);
   async function locSearch(t) {
     if (!t) { msg('Type an address, a place or GPS numbers, or tap USE MY GPS.'); return; }
