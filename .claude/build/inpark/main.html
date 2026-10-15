@@ -21,6 +21,8 @@
 .ip-acc{font-size:12.5px;color:#5b5648}
 .ip-ref{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px;align-items:center;margin-top:8px;padding:8px 10px;background:rgba(255,255,255,.7);border-radius:8px}
 .ip-ref em{font-style:normal;font-size:12.5px;color:#5b5648;flex:1 1 140px}.ip-ref span{display:flex;gap:6px}.ip-ref a{display:inline-flex;align-items:center;min-height:34px;padding:4px 10px;border-radius:7px;background:#171717;color:#f0c96b;font:900 11px Arial,sans-serif;letter-spacing:.8px;text-decoration:none}
+.ip-p{font-style:normal;font:900 10px Arial,sans-serif;letter-spacing:1px;background:#171717;color:#f0c96b;border-radius:5px;padding:2px 6px}
+.ip-sota{margin-top:12px;padding:12px 14px;border-radius:10px;border:1px solid #c9bfa8;background:#f6f2ea}.ip-sota.ok{background:#e9f6ee;border-color:#2c9a55}.ip-sota h3{margin:0 0 4px;font:900 14px Arial,sans-serif;letter-spacing:.8px}
 .ip-osm{margin-top:12px;padding:12px 14px;border-radius:10px;border:2px dashed #ff4fd8;background:#fff0fb;color:#4a1640;line-height:1.5}.ip-osm span{display:block;margin-top:6px;font-size:13px}
 #ipMap{position:relative;z-index:0;isolation:isolate;height:420px;margin-top:16px;border-radius:10px;border:1px solid #d8cfbf;background:#e9e3d2}
 .ip-list h3{margin:18px 0 6px;font:900 11px Arial,sans-serif;letter-spacing:2px;color:#1d5a3a}
@@ -34,26 +36,29 @@
 @@HEADER@@
 <main>
 <section class="tool-head th-map"><div class="wrap">
-<p class="eyebrow">ANY STATE · POTA · GPS CHECK</p>
+<p class="eyebrow">POTA · WWFF · SOTA · ANY STATE</p>
 <h1>Am I in <span>the Park?</span></h1>
-<p class="sub">Uses your phone's GPS and the official park boundaries to tell you if you're inside a POTA park, how far you are from the line, and which way to walk if you're not.</p>
+<p class="sub">Uses your phone's GPS and the official boundaries to tell you if you're inside a POTA park or WWFF area (and which references count from that spot), how far you are from the line, and which way to walk. Near a SOTA summit it checks if you're high enough for the activation zone.</p>
 </div></section>
 <div class="ip-wrap">
 <section class="ip-card">
 <div class="ip-go"><button type="button" id="ipGo">📍 CHECK WHERE I AM</button><button type="button" id="ipWatch">🚶 KEEP CHECKING AS I WALK</button></div>
-<form class="ip-one" id="ipRefForm"><label for="ipRef">CHECKING FOR ONE PARK? (OPTIONAL)</label><input id="ipRef" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-1271"><button type="submit">USE THIS PARK</button></form>
+<form class="ip-one" id="ipRefForm"><label for="ipRef">CHECKING FOR ONE REFERENCE? (OPTIONAL)</label><input id="ipRef" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-1271, KFF-1271 or W4K/EC-001"><button type="submit">CHECK THIS ONE</button></form>
 <div id="ipTgt"></div>
 <p class="ip-small">Planning at home? Tap any spot on the map to check it.</p>
 <div class="ip-v wait" id="ipV">Tap <b>CHECK WHERE I AM</b>. Your location stays on your phone; it is only used to ask the boundary map about that spot.</div>
+<div id="ipSota"></div>
 <div id="ipOsm"></div>
 <div id="ipMap" aria-label="Map"></div>
 <div class="ip-legend"><span><i style="background:#ffb000"></i>Official boundary</span><span><i style="border-top:3px dashed #e0b800;height:0"></i>KPC-drawn (approximate)</span><span><i style="border-top:3px dashed #ff4fd8;height:0"></i>OpenStreetMap (not official)</span><span><i style="background:#1378ff;height:10px;width:10px;border-radius:50%"></i>You</span></div>
 <div class="ip-list" id="ipList"></div>
 </section>
 <section class="ip-know"><h2>Good to know</h2><ul>
-<li><b>This is a guide, not a ruling.</b> POTA counts the park's official boundary. Signs, the park's own map and the park staff win over any app.</li>
+<li><b>This is a guide, not a ruling.</b> POTA and WWFF count the official boundary of the park or area. Signs, the park's own map and the park staff win over any app.</li>
 <li><b>Official boundaries</b> come from the agencies that own the land: Kentucky's state GIS files (the same ones Park Commander uses) and, for every state, the USGS Protected Areas Database (PAD-US). They can still lag behind new land deals.</li>
 <li><b>OpenStreetMap is a free map drawn by volunteers.</b> Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. We only show them when no official boundary answers, in pink, so you know to double-check. KPC-drawn outlines (yellow dashes) come from OpenStreetMap too, for Kentucky parks that have no official map file.</li>
+<li><b>SOTA:</b> the activation zone is everything within 82 ft (25 m) of height below the summit. We compare the summit's height with the ground height where you stand (USGS elevation map in the US). It's close, not exact, so if it's borderline, walk higher. Summits come from the SOTA summits list, copied weekly.</li>
+<li><b>WWFF:</b> WWFF areas come from the WWFF directory (copied weekly). In the US most match a POTA park, so they show up together.</li>
 <li><b>GPS isn't perfect.</b> A phone is usually good to 15-50 ft outdoors, worse under trees, in valleys or inside a car. If you're closer to the line than that, walk farther in.</li>
 <li><b>Daniel Boone National Forest:</b> its outer line includes private land and towns. We also check the national database to see if your exact spot is Forest Service land.</li>
 <li><b>Easements and closed land:</b> some land in the database is private with a conservation easement, or closed to the public. We flag those so you don't count them.</li>
@@ -62,5 +67,5 @@
 </div>
 </main>
 @@FOOTER@@
-<script src="kpc-bounds.js?v=20261015c" defer></script>
-<script src="kpc-in-park.js?v=20261015b" defer></script>
+<script src="kpc-bounds.js?v=20261015d" defer></script>
+<script src="kpc-in-park.js?v=20261015c" defer></script>

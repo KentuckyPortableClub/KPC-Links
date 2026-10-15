@@ -116,6 +116,36 @@
   }
   function refsFor(f, near) { return near.filter(p => sameName(p.name, f._nm) || (inside(p.la, p.lo, f.geometry) && f.properties.Category !== 'Easement')); }
 
+  /* ---------- WWFF and SOTA near a spot (weekly copies in data/wwff/t and data/sota/t, 1x1 degree tiles) ---------- */
+  const tileCache = {};
+  function tilesAround(la, lo, kmR) {
+    const dla = kmR / 111, dlo = kmR / (111 * Math.cos(la * Math.PI / 180)), K = new Set();
+    for (const a of [la - dla, la + dla]) for (const o of [lo - dlo, lo + dlo]) K.add(Math.floor(a) + '_' + Math.floor(o));
+    K.add(Math.floor(la) + '_' + Math.floor(lo)); return [...K];
+  }
+  async function tileRows(dir, la, lo, kmR) {
+    const rows = await Promise.all(tilesAround(la, lo, kmR).map(k => { const u = dir + k + '.json'; return tileCache[u] || (tileCache[u] = fetch(u).then(r => r.ok ? r.json() : []).catch(() => [])); }));
+    return rows.flat();
+  }
+  async function wwffNear(la, lo, kmR) { return (await tileRows('data/wwff/t/', la, lo, kmR)).map(r => ({ ref: r[0], name: r[1], la: r[2], lo: r[3], d: km(la, lo, r[2], r[3]) })).filter(x => x.d <= kmR).sort((a, b) => a.d - b.d); }
+  async function sotaNear(la, lo, kmR) { return (await tileRows('data/sota/t/', la, lo, kmR)).map(r => ({ ref: r[0], name: r[1], ft: r[2], m: r[3], la: r[4], lo: r[5], pts: r[6], d: km(la, lo, r[4], r[5]) })).filter(x => x.d <= kmR).sort((a, b) => a.d - b.d); }
+  /* ground height in meters: USGS (US, about 1 m) then Open-Meteo (worldwide, about 90 m grid) */
+  async function elevation(la, lo) {
+    try { const j = await jget(`https://epqs.nationalmap.gov/v1/json?x=${lo}&y=${la}&units=Meters&wkid=4326`, null, 12000); const v = +j.value; if (isFinite(v) && v > -500) return { m: v, src: 'USGS' }; } catch (e) {}
+    try { const j = await jget(`https://api.open-meteo.com/v1/elevation?latitude=${la}&longitude=${lo}`, null, 12000); const v = +(j.elevation || [])[0]; if (isFinite(v)) return { m: v, src: 'Open-Meteo' }; } catch (e) {}
+    return null;
+  }
+  /* any reference -> {prog, ref, name, la, lo, type, where, web, off} */
+  async function lookup(q) {
+    q = String(q || '').trim().toUpperCase().replace(/\s+/g, '');
+    let m = q.match(/^([A-Z0-9]{1,4}\/[A-Z0-9]{2})-(\d{1,3})$/);
+    if (m) { const ref = m[1] + '-' + m[2].padStart(3, '0'); const [a, r] = ref.split('/'); const s = await jget(`https://api2.sota.org.uk/api/summits/${encodeURIComponent(a)}/${encodeURIComponent(r)}`); if (!s || !s.summitCode) return null; return { prog: 'SOTA', ref: s.summitCode, name: s.name, la: +s.latitude, lo: +s.longitude, ft: s.altFt, mAlt: s.altM, pts: s.points, type: (s.altFt ? s.altFt.toLocaleString() + ' ft · ' : '') + (s.points != null ? s.points + ' points' : ''), where: s.associationName + (s.regionName ? ' · ' + s.regionName : ''), us: /^USA/.test(s.associationName || '') }; }
+    m = q.match(/^([A-Z0-9]{1,4})-(\d{1,5})$/); if (!m) return null;
+    if (/FF$/.test(m[1])) { const ref = m[1] + '-' + m[2].padStart(4, '0'); const rows = await jget('data/wwff/' + m[1] + '.json').catch(() => []); const x = rows.find(r => r[0] === ref); if (!x) return null; return { prog: 'WWFF', ref, name: x[1], la: x[2], lo: x[3], web: /^https?:/.test(x[4]) ? x[4] : '', type: 'WWFF reference', where: [...new Set([x[6], x[5]].filter(Boolean))].join(', '), us: m[1] === 'KFF' }; }
+    const ref = m[1] + '-' + m[2].padStart(4, '0'); const p = await jget('https://api.pota.app/park/' + encodeURIComponent(ref)); if (!p || !p.reference) return null;
+    return { prog: 'POTA', ref, name: p.name + (p.parktypeDesc && !new RegExp(p.parktypeDesc, 'i').test(p.name) ? ' ' + p.parktypeDesc : ''), short: p.name, la: +p.latitude, lo: +p.longitude, web: p.website || '', type: p.parktypeDesc, where: p.locationName || p.locationDesc, us: /^US-/.test(p.locationDesc || ''), ky: /^US-KY/.test(p.locationDesc || '') };
+  }
+
   /* ---------- OpenStreetMap (volunteer map, not official) ---------- */
   const post = (u, q, ms) => jget(u, { method: 'POST', body: 'data=' + encodeURIComponent(q), headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }, ms);
   async function osmAt(la, lo) {
@@ -152,5 +182,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();
