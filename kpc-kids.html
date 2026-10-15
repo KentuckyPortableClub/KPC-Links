@@ -135,6 +135,7 @@ body.field .page-jump-nav{display:none!important}
 .kz-pb{display:flex;gap:8px;flex-wrap:wrap}.kz-pb .kz-btn{min-height:42px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center}
 @media(max-width:700px){.kz-page{grid-template-columns:minmax(0,1fr)}}
 .kz-call{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#fff;border:3px dashed #118ab2;border-radius:18px;padding:12px 16px;margin-bottom:18px}.kz-call b{font:900 20px Arial,sans-serif;color:#073b4c}.kz-call span{flex:1 1 260px;color:#444}
+.kz-radio{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(#3a3f48,#24272d);color:#fff;border-radius:20px;padding:14px 18px;margin-bottom:18px;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.15)}.kz-radio>span{font-size:44px}.kz-radio div{flex:1 1 240px}.kz-radio b{display:block;font:900 22px Arial,sans-serif;color:#ffd166}.kz-radio small{font-size:15px;color:#eee;line-height:1.4}.kz-radio em{font:900 16px Arial,sans-serif;font-style:normal;background:#06d6a0;color:#073b4c;border-radius:12px;padding:10px 14px}
 .kz-note{font-size:13px;color:#666;margin-top:20px}
 @media(max-width:900px){.kz-games{grid-template-columns:minmax(0,1fr)}}
 </style>
@@ -205,6 +206,7 @@ body.field .page-jump-nav{display:none!important}
 <section class="kz"><div class="kz-in">
 <div class="kz-top"><div>⭐ <span class="s" id="kzStars">0</span> stars</div><div class="kz-badges" id="kzBadges"></div><button type="button" class="kz-btn alt" id="kzReset" style="min-height:36px;font-size:12px;box-shadow:none">START OVER</button></div>
 <div class="kz-call"><b>🎫 Your practice call sign: W4KIDS</b><span>Real hams get their own call sign. Until you get yours, use this one in our games! It can never belong to a real ham: in the US, there are never 4 letters after the number.</span><button type="button" class="kz-btn alt" id="kzSpellCall">🔊 HEAR IT</button></div>
+<a class="kz-radio" href="kpc-kids-radio.html"><span>📻</span><div><b>NEW! Spin the Dial</b><small>Turn on a pretend ham radio, spin the big knob and listen to parks, mountains, nets, chats and Morse code beeps. Find all 12 kinds of stations!</small></div><em>TURN IT ON ›</em></a>
 <div class="kz-games">
  <div class="kz-card"><h2>🔤 Phonetic Match</h2><p>Hams say <b>Alpha</b> for A and <b>Bravo</b> for B so letters don't get mixed up on the radio. Can you match them?</p>
   <div class="kz-seg"><label><input type="radio" name="g1m" value="see" checked> See the letter</label><label><input type="radio" name="g1m" value="hear"> Hear the word</label></div>
@@ -240,7 +242,7 @@ body.field .page-jump-nav{display:none!important}
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
 <script src="kpc-kids.js?v=20261014d"></script>
-<script src="kpc-search.js?v=20261014kt" defer></script><script>
+<script src="kpc-search.js?v=20261014ku" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
