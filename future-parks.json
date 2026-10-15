@@ -1,0 +1,377 @@
+{
+ "note": "FUTURE / NOT YET POTA PARKS (Brandon list, Oct 14 2026). Keep OFF the site until POTA gives them US- numbers. Lake edges are USGS NHD 24K (via KY GIS). No official land boundary published for these lakes yet; POTA will define the park when it adds them.",
+ "already_parks": [
+  {
+   "ref": "US-12972",
+   "name": "Cascade Caverns State Nature Preserve",
+   "county": "Carter",
+   "boundary": "ky-nature-preserves.geojson (official KNP)"
+  },
+  {
+   "ref": "US-12974",
+   "name": "Clear Creek Wildlife Management Area",
+   "county": "Hopkins",
+   "boundary": "ky-hunting-areas.geojson (official KDFWR)",
+   "fix": "county corrected Muhlenberg -> Hopkins Oct 14"
+  }
+ ],
+ "future": [
+  {
+   "key": "bullock",
+   "name": "Bullock Pen Lake",
+   "nhd": "Bullock Pen Lake",
+   "wb": "Bullock Pen Lake",
+   "wid": 51,
+   "acres": 134,
+   "county": "Grant (lake runs into Boone)",
+   "owner": "Kentucky Dept. of Fish & Wildlife Resources (one of its 11 department-owned lakes)",
+   "notes": "Idle speed only on boats over 10 hp. Boat ramp off Violet Rd (I-75 exit 166).",
+   "web": [
+    "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=51"
+   ],
+   "water_acres_nhd": 134,
+   "access": [
+    {
+     "name": "Bullock Pen Lake Ramp",
+     "lat": 38.79905,
+     "lon": -84.63941,
+     "url": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=206",
+     "directions": "I-75 N of Williamstown to Exit 166; Hwy 2363 W; left on Violet Road"
+    }
+   ],
+   "bbox": [
+    -84.65723,
+    38.78841,
+    -84.63072,
+    38.80711
+   ],
+   "pin": [
+    38.79905,
+    -84.63941
+   ],
+   "owner_src": "https://fw.ky.gov/News/Pages/Kentucky-Fish-and-Wildlife-to-host-public-meetings-for-input-on-boat-dock-shoreline-use-regulations.aspx",
+   "shore_note": "Private boat docks/shoreline permits exist on department lakes, so some shoreline is next to private lots: set up at the ramp, pier or public parking."
+  },
+  {
+   "key": "boltz",
+   "name": "Boltz Lake",
+   "nhd": "Boltz Lake",
+   "wb": "Boltz Lake",
+   "wid": 50,
+   "acres": 92,
+   "county": "Grant",
+   "owner": "Kentucky Dept. of Fish & Wildlife Resources (one of its 11 department-owned lakes)",
+   "notes": "Named for Kentucky's first conservation officer. Ramp on Boltz Lake Rd off KY 467 (Dry Ridge exit 159).",
+   "web": [
+    "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=50"
+   ],
+   "water_acres_nhd": 87,
+   "access": [
+    {
+     "name": "Boltz Lake Ramp",
+     "lat": 38.7064,
+     "lon": -84.62043,
+     "url": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=204",
+     "directions": "I-75 N of Williamstown to Dry Ridge (Exit 159); KY 22 W; right on KY 467; right on Mt. Zion Road; right on Boltz Lake Road"
+    }
+   ],
+   "bbox": [
+    -84.62238,
+    38.6963,
+    -84.60243,
+    38.70882
+   ],
+   "pin": [
+    38.7064,
+    -84.62043
+   ],
+   "owner_src": "https://fw.ky.gov/News/Pages/Kentucky-Fish-and-Wildlife-to-host-public-meetings-for-input-on-boat-dock-shoreline-use-regulations.aspx",
+   "shore_note": "Private boat docks/shoreline permits exist on department lakes, so some shoreline is next to private lots: set up at the ramp, pier or public parking."
+  },
+  {
+   "key": "guist",
+   "name": "Guist Creek Lake",
+   "nhd": "Guist Creek Lake",
+   "wb": "Guist Creek Lake",
+   "wid": 56,
+   "acres": 317,
+   "county": "Shelby",
+   "owner": "Kentucky Dept. of Fish & Wildlife Resources (one of its 11 department-owned lakes)",
+   "notes": "Guist Creek Marina (concession) has the ramp; also a free bank-fishing lot at the Benson Pike bridge. State-record saugeye lake.",
+   "web": [
+    "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=56"
+   ],
+   "water_acres_nhd": 341,
+   "access": [
+    {
+     "name": "Guist Creek Marina",
+     "lat": 38.20916,
+     "lon": -85.1446,
+     "url": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=571",
+     "directions": "US 60 E of Shelbyville; left on Hwy 1871; right on Hwy 1779; entrance on right"
+    },
+    {
+     "name": "GCL Bank Access",
+     "lat": 38.217694,
+     "lon": -85.149011,
+     "url": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=928",
+     "directions": "Take Route 60 east out of Shelbyville. Right onto Rocket Lane by school.  Right on Benson Pike to bridge.  Parking lot is on east side of bridge. "
+    }
+   ],
+   "bbox": [
+    -85.16202,
+    38.20052,
+    -85.11198,
+    38.23761
+   ],
+   "pin": [
+    38.20916,
+    -85.1446
+   ],
+   "owner_src": "https://fw.ky.gov/News/Pages/Kentucky-Fish-and-Wildlife-to-host-public-meetings-for-input-on-boat-dock-shoreline-use-regulations.aspx",
+   "shore_note": "Private boat docks/shoreline permits exist on department lakes, so some shoreline is next to private lots: set up at the ramp, pier or public parking."
+  },
+  {
+   "key": "linville",
+   "name": "Lake Linville",
+   "nhd": "Lake Linville",
+   "wb": "Lake Linville",
+   "wid": 312,
+   "acres": 356,
+   "county": "Rockcastle",
+   "owner": "Commonwealth of Kentucky (Kentucky Fish & Wildlife manages the fishery)",
+   "notes": "Campground, ramp, dock and splash pad near Renfro Valley (US 25 N of Mt. Vernon, KY 2793). KDFWR listed a ramp closure for rebuilding starting Oct 27: check before you go.",
+   "web": [
+    "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=312",
+    "https://fw.ky.gov/Alerts/Pages/Lake-Linville-Boat-Ramp-Closure-for-Reconstruction-starting-Oct-27.aspx"
+   ],
+   "water_acres_nhd": 368,
+   "access": [
+    {
+     "name": "Lake Linville Ramp",
+     "lat": 37.40156,
+     "lon": -84.34963,
+     "url": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=525",
+     "directions": "US 25 N of Mt. Vernon past I-75; left on Ky 2793"
+    }
+   ],
+   "bbox": [
+    -84.36295,
+    37.37155,
+    -84.33522,
+    37.40408
+   ],
+   "pin": [
+    37.40156,
+    -84.34963
+   ],
+   "owner_src": "https://en.wikipedia.org/wiki/Lake_Linville"
+  },
+  {
+   "key": "wilgreen",
+   "name": "Wilgreen Lake",
+   "nhd": "Wilgreen Lake",
+   "wb": "Wilgreen Lake",
+   "wid": 121,
+   "acres": 169,
+   "county": "Madison",
+   "owner": "Madison County Parks (county park); Kentucky Fish & Wildlife manages the fishery",
+   "notes": "Idle speed only. Ramp off Curtis Rd (KY 876 E of Richmond). The county runs the park around the lake.",
+   "web": [
+    "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=121",
+    "https://www.madisoncountyky.us/index.php/county-parks/wilgreen-lake"
+   ],
+   "water_acres_nhd": 138,
+   "access": [
+    {
+     "name": "Wilgreen Lake (Taylor Fork) Ramp",
+     "lat": 37.70617,
+     "lon": -84.35587,
+     "url": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=383",
+     "directions": "KY 876 E of Richmond; left on Curtis Road; left on gravel road at bottom of hill."
+    }
+   ],
+   "bbox": [
+    -84.35729,
+    37.70137,
+    -84.33329,
+    37.72045
+   ],
+   "pin": [
+    37.70617,
+    -84.35587
+   ],
+   "owner_src": "OpenStreetMap park tag (operator Madison County Parks) + county website"
+  },
+  {
+   "key": "woodcreek",
+   "name": "Wood Creek Lake",
+   "nhd": "Wood Creek Lake",
+   "wb": "Wood Creek Lake",
+   "wid": 102,
+   "acres": 645,
+   "county": "Laurel",
+   "owner": "Kentucky Fish & Wildlife manages the fishery (land owner not confirmed yet)",
+   "notes": "Biggest of the bunch. Ramp off Wood Creek Lake Rd (KY 80 W of London to Bernstadt, Swiss Colony Rd). Slot limit on bass.",
+   "web": [
+    "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=102",
+    "https://kentuckytourism.com/explore/wood-creek-lake-3035"
+   ],
+   "water_acres_nhd": 645,
+   "access": [
+    {
+     "name": "Wood Creek Lake Ramp",
+     "lat": 37.18575,
+     "lon": -84.17688,
+     "url": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=302",
+     "directions": "KY 80 W of London to Bernstadt; right on Swiss Colony Road to Wood Creek Lake Road"
+    }
+   ],
+   "bbox": [
+    -84.21352,
+    37.16056,
+    -84.14706,
+    37.2146
+   ],
+   "pin": [
+    37.18575,
+    -84.17688
+   ]
+  },
+  {
+   "key": "beaver",
+   "name": "Beaver Lake",
+   "nhd": "Beaver Lake",
+   "wb": "Beaver Lake",
+   "wid": 49,
+   "acres": 158,
+   "county": "Anderson",
+   "owner": "Kentucky Dept. of Fish & Wildlife Resources (one of its 11 department-owned lakes)",
+   "notes": "Ramp + fishing pier on Beaver Lake Rd (KY 749), 7 mi W of Lawrenceburg. Not the Beaver Lake pits on Peabody WMA.",
+   "web": [
+    "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=49"
+   ],
+   "water_acres_nhd": 162,
+   "access": [
+    {
+     "name": "Beaver Ramp",
+     "lat": 37.97634,
+     "lon": -85.00848,
+     "url": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=15",
+     "directions": "US 62 W of Lawrenceburg (7 miles); right on Beaver Lake Road (KY 749) to lake"
+    }
+   ],
+   "bbox": [
+    -85.03269,
+    37.96177,
+    -85.00829,
+    37.97796
+   ],
+   "pin": [
+    37.97634,
+    -85.00848
+   ],
+   "owner_src": "https://fw.ky.gov/News/Pages/Kentucky-Fish-and-Wildlife-to-host-public-meetings-for-input-on-boat-dock-shoreline-use-regulations.aspx",
+   "shore_note": "Private boat docks/shoreline permits exist on department lakes, so some shoreline is next to private lots: set up at the ramp, pier or public parking."
+  },
+  {
+   "key": "kingfisher",
+   "name": "Kingfisher Lakes",
+   "nhd": "Kingfisher Lakes",
+   "wb": "Kingfisher Lakes",
+   "wid": 40,
+   "acres": 35,
+   "county": "Daviess",
+   "owner": "Kentucky Dept. of Fish & Wildlife Resources (one of its 11 department-owned lakes)",
+   "notes": "Two small lakes (Old and New Kingfisher) at Maceo, US 60 E of Owensboro, Hwy 405. No gas motors. Right next door to Carpenters Lake.",
+   "web": [
+    "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=40"
+   ],
+   "water_acres_nhd": 35,
+   "access": [
+    {
+     "name": "New Kingfisher Lake",
+     "lat": 37.84319,
+     "lon": -86.97673,
+     "url": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=148",
+     "directions": "US 60 E of Owensboro to Maceo; right on Hwy 405"
+    },
+    {
+     "name": "Old Kingfisher Lake",
+     "lat": 37.84677,
+     "lon": -86.97352,
+     "url": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=147",
+     "directions": "US 60 E of Owensboro to Maceo; right on Hwy 405"
+    }
+   ],
+   "bbox": [
+    -86.97873,
+    37.84289,
+    -86.97149,
+    37.84851
+   ],
+   "pin": [
+    37.84319,
+    -86.97673
+   ],
+   "owner_src": "https://fw.ky.gov/News/Pages/Kentucky-Fish-and-Wildlife-to-host-public-meetings-for-input-on-boat-dock-shoreline-use-regulations.aspx",
+   "shore_note": "Private boat docks/shoreline permits exist on department lakes, so some shoreline is next to private lots: set up at the ramp, pier or public parking."
+  },
+  {
+   "key": "carpenter",
+   "name": "Carpenters Lake",
+   "nhd": "Carpenter Lake",
+   "wb": "Carpenter Lake",
+   "wid": 39,
+   "acres": 69,
+   "county": "Daviess",
+   "owner": "Kentucky Dept. of Fish & Wildlife Resources (one of its 11 department-owned lakes)",
+   "notes": "KDFWR calls it Carpenter Lake. Ramp, fishing pier and jetty at Maceo (Hwy 405). No gas motors. Next door to Kingfisher Lakes: if both become parks they would only touch, not overlap, so not a 2-fer.",
+   "web": [
+    "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=39"
+   ],
+   "water_acres_nhd": 69,
+   "access": [
+    {
+     "name": "Carpenter Lake Ramp",
+     "lat": 37.845117,
+     "lon": -86.978407,
+     "url": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=149",
+     "directions": "US 60 E of Owensboro to Maceo; right on Hwy 405"
+    },
+    {
+     "name": "Carpenter Lake Fishing Jetty",
+     "lat": 37.8444,
+     "lon": -86.9799,
+     "url": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=1188",
+     "directions": "US 60 E of Owensboro to Maceo; right on Hwy 405"
+    },
+    {
+     "name": "Carpenter Lake Fishing Pier",
+     "lat": 37.844416,
+     "lon": -86.979895,
+     "url": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=931",
+     "directions": "US 60 E of Owensboro to Maceo; right on Hwy 405"
+    }
+   ],
+   "bbox": [
+    -86.9849,
+    37.84284,
+    -86.97436,
+    37.85068
+   ],
+   "pin": [
+    37.845117,
+    -86.978407
+   ],
+   "owner_src": "https://fw.ky.gov/News/Pages/Kentucky-Fish-and-Wildlife-to-host-public-meetings-for-input-on-boat-dock-shoreline-use-regulations.aspx",
+   "shore_note": "Private boat docks/shoreline permits exist on department lakes, so some shoreline is next to private lots: set up at the ramp, pier or public parking."
+  }
+ ],
+ "sources": [
+  "USGS NHD 24K waterbodies via kygisserver.ky.gov Ky_24K_NHD_Waterbodies_WGS84WM",
+  "KDFWR access sites via Ky_Fish_Wildlife_WGS84WM",
+  "KDFWR waterbody pages app.fw.ky.gov/fisheries",
+  "POTA US-KY list api.pota.app (none of the 9 listed as of Oct 14)"
+ ]
+}
