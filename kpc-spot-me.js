@@ -16,26 +16,25 @@
       { id: 'pota', name: 'POTA (pota.app)', p: ['POTA'], how: 'post', url: 'https://pota.app/#/', about: 'Posts your spot to the POTA spots page from here. Only with a real park number, and at most one spot every 5 minutes and 4 an hour, so nobody can flood POTA.', tag: ['SENDS FOR YOU', 'one'] },
       { id: 'sotawatch', name: 'SOTAwatch', p: ['SOTA'], how: 'copy', url: 'https://sotawatch.sota.org.uk/en/', about: 'Summit spots. Sign in with your free SOTA account, then Post spot and paste.', tag: ['COPY + OPEN'] },
       { id: 'wwff', name: 'WWFF Spotline', p: ['WWFF'], how: 'copy', url: 'https://spots.wwff.co/', about: 'KFF / WWFF spots. Needs a Spotline login (WWFF approves new accounts by hand; use your call as the user name).', tag: ['COPY + OPEN'] },
-      { id: 'gma', name: 'GMA (Global Mountain Activity)', p: ['GMA', 'SOTA'], how: 'copy', url: 'https://www.cqgma.org/', about: 'GMA spots and alerts. Sign in, then spot.', tag: ['COPY + OPEN'] },
-      { id: 'pnp', name: 'ParksnPeaks', p: ['WWFF', 'SOTA', 'POTA'], how: 'copy', url: 'https://parksnpeaks.org/', about: 'Australian spotting site that also takes WWFF and SOTA spots. Needs a free account.', tag: ['COPY + OPEN'] }
-    ]],
-    ['GENERAL DX CLUSTER (ONE SHARED NETWORK)', [
-      { id: 'dxsummit', name: 'DX Summit', p: ['*'], how: 'copy', url: 'https://www.dxsummit.fi/', about: 'Big web DX cluster. Copies a spot in cluster format (frequency, call, comment). Self-spotting there is frowned on except for special events.', tag: ['COPY + OPEN'], warn: 1 },
-      { id: 'holy', name: 'Holy Cluster', p: ['*'], how: 'copy', url: 'https://holycluster.iarc.org', about: 'Map-style DX cluster (IARC). Copies a spot in cluster format. Same worldwide cluster.', tag: ['COPY + OPEN'], warn: 1 },
-      { id: 'dxheat', name: 'DXHeat', p: ['*'], how: 'copy', url: 'https://dxheat.com/dxc/', about: 'Web DX cluster with band filters. Copies a spot in cluster format. Same worldwide cluster.', tag: ['COPY + OPEN'], warn: 1 }
+      { id: 'gma', name: 'GMA (Global Mountain Activity)', p: ['GMA', 'SOTA'], how: 'copy', url: 'https://www.cqgma.org/', about: 'GMA spots and alerts. Sign in, then spot.', tag: ['COPY + OPEN'] }
     ]],
     ['NO INTERNET? PHONE OR RADIO ONLY', [
-      { id: 'apspot', name: 'APSPOT (APRS or text message)', p: ['POTA', 'SOTA', 'WWFF'], how: 'copy', url: 'https://apspot.radio', about: 'Send one APRS message to APSPOT (or a text to its gateway number, listed on its site) and it spots POTA, SOTA and WWFF for you. We copy the message in its format.', tag: ['COPY + OPEN'] },
-      { id: 'sotamat', name: 'SOTAmat', p: ['SOTA', 'POTA'], how: 'info', url: 'https://sotamat.com', about: 'Spots you over the air using FT8 and other digital modes, for summits with no cell signal. Set it up at home first.', tag: ['SET UP FIRST'] }
+      { id: 'apspot', name: 'APSPOT (APRS or text message)', p: ['POTA', 'SOTA', 'WWFF'], how: 'copy', url: 'https://apspot.radio', about: 'Weak cell signal is enough: text one message to APSPOT (or send it by APRS) and it spots POTA, SOTA and WWFF for you. We write the message; save APSPOT\'s number from apspot.radio in your contacts once.', tag: ['COPY + OPEN'] },
+      { id: 'sotamat', name: 'SOTAmat', p: ['SOTA', 'POTA'], how: 'info', url: 'https://sotamat.com', about: 'No cell signal at all: the SOTAmat phone app turns your spot into a short FT8 signal you transmit with your radio. Stations that hear it pass it on through PSK Reporter, and SOTAmat posts your spot. Set up your account and radio at home first.', tag: ['SET UP FIRST'] }
     ]],
     ['PLAN AHEAD (SO HUNTERS KNOW YOU\'RE COMING)', [
       { id: 'potasch', name: 'POTA activation schedule', p: ['POTA'], how: 'info', url: 'https://pota.app/#/activations', about: 'Post when and where you\'ll be. On CW and FT8 POTA can then spot you automatically from the Reverse Beacon Network.', tag: ['OPEN'] },
       { id: 'sotaalert', name: 'SOTAwatch alert', p: ['SOTA'], how: 'info', url: 'https://sotawatch.sota.org.uk/en/', about: 'Post an alert for your planned summit and time.', tag: ['OPEN'] },
       { id: 'wwffag', name: 'WWFF agenda', p: ['WWFF'], how: 'info', url: 'https://spots.wwff.co/', about: 'Add your planned activation. With an agenda posted, Spotline can spot you automatically from the Reverse Beacon Network.', tag: ['OPEN'] }
+    ]],
+    ['SPOT OTHERS: DX CLUSTER (FOR A STATION YOU HEARD)', [
+      { id: 'dxsummit', name: 'DX Summit', p: ['*'], how: 'copy', url: 'https://www.dxsummit.fi/', about: 'Big web DX cluster. For spotting a station you heard. Copies the spot in cluster format (frequency, call, comment), opens the site, you press submit.', tag: ['COPY + OPEN'], warn: 1, others: 1 },
+      { id: 'holy', name: 'Holy Cluster', p: ['*'], how: 'copy', url: 'https://holycluster.iarc.org', about: 'Map-style DX cluster (IARC). Copies a spot in cluster format. Same worldwide cluster.', tag: ['COPY + OPEN'], warn: 1, others: 1 },
+      { id: 'dxheat', name: 'DXHeat', p: ['*'], how: 'copy', url: 'https://dxheat.com/dxc/', about: 'Web DX cluster with band filters. Copies a spot in cluster format. Same worldwide cluster.', tag: ['COPY + OPEN'], warn: 1, others: 1 }
     ]]
   ];
   const ALL = G.flatMap(g => g[1]);
-  let pick = new Set((store.get('kpcSpotMePick', null) || []).filter(id => !['discord', 'fbgroup'].includes(id)));
+  let pick = new Set((store.get('kpcSpotMePick', null) || []).filter(id => !['discord', 'fbgroup', 'pnp'].includes(id)));
   const keep = store.get('kpcSpotMePick', null) !== null;
   const form = store.get('kpcSpotMeForm', {});
 
@@ -55,7 +54,7 @@
     if (kind === 'cluster') return `${v.k ? fk(v.k) : '?'} ${v.call} ${[v.mode, pg, v.cm].filter(Boolean).join(' ')}`.slice(0, 80);
     return `${v.call} on ${v.k ? fm(v.k) + ' MHz' : '?'} ${v.mode}${pg ? ' · ' + pg : ''}${refName(v.ref) ? ' (' + refName(v.ref) + ')' : ''}${v.cm ? ' · ' + v.cm : ''}`;
   }
-  const kindOf = d => d.id === 'apspot' ? 'apspot' : ['sotawatch', 'wwff', 'gma', 'pnp', 'dxsummit', 'holy', 'dxheat'].includes(d.id) ? 'cluster' : 'plain';
+  const kindOf = d => d.id === 'apspot' ? 'apspot' : ['sotawatch', 'wwff', 'gma', 'dxsummit', 'holy', 'dxheat'].includes(d.id) ? 'cluster' : 'plain';
   let REFS = {};
   const refName = r => REFS[r] || '';
   /* POTA spam guard (this browser): one spot per 5 minutes, at most 4 an hour. */
@@ -68,11 +67,12 @@
 
   function drawDests() {
     const prog = $('smProg').value;
-    $('smDests').innerHTML = G.map(([h, list]) => `<div class="sm-g"><h3>${esc(h)}</h3><div class="sm-list">` + list.map(d => {
-      const ok = fits(d, prog), on = ok && pick.has(d.id);
+    $('smDests').innerHTML = G.map(([h, list]) => { list = list.filter(d => fits(d, prog)); if (!list.length) return ''; const oth = list.some(d => d.others);
+      return `<div class="sm-g${oth ? ' sm-others' : ''}"><h3>${esc(h)}</h3>${oth ? '<p class="sm-onote">The DX cluster is for spotting <b>other</b> stations you hear. Put <b>their</b> call in the first box and yours in SPOTTED BY. Spotting yourself there is frowned on, except for special event stations.</p>' : ''}<div class="sm-list">` + list.map(d => {
+      const ok = true, on = pick.has(d.id);
       return `<label class="sm-d${on ? ' on' : ''}${ok ? '' : ' off'}"><input type="checkbox" data-id="${d.id}"${on ? ' checked' : ''}${ok ? '' : ' disabled'}><div><b>${esc(d.name)}</b><span>${esc(d.about)}</span>` +
-        `<em class="${d.tag[1] || ''}">${esc(d.tag[0])}</em>${d.warn ? '<em class="warn">SELF-SPOT FROWNED ON (EXCEPT SPECIAL EVENTS)</em>' : ''}${ok ? '' : `<em>NOT FOR ${esc(prog === 'NONE' ? 'NO PROGRAM' : prog)}</em>`}</div></label>`;
-    }).join('') + `</div></div>`).join('');
+        `<em class="${d.tag[1] || ''}">${esc(d.tag[0])}</em>${d.warn ? '<em class="warn">NOT FOR SELF-SPOTTING (EXCEPT SPECIAL EVENTS)</em>' : ''}</div></label>`;
+    }).join('') + `</div></div>`; }).join('');
     count();
   }
   function chosen() { const prog = $('smProg').value; return ALL.filter(d => pick.has(d.id) && fits(d, prog)); }
@@ -126,7 +126,8 @@
         } catch (e) { out.push(row('err', '✗ POTA could not be reached', 'Check your signal and try again, or spot from the POTA site.', `<a href="https://pota.app/#/" target="_blank" rel="noopener">OPEN POTA</a>`)); }
       } else if (d.how === 'copy') {
         const t = txt(v, kindOf(d));
-        out.push(row('todo', d.name, 'Tap to copy your spot and open the site, then paste it in.', `<button type="button" data-open="${d.id}">COPY + OPEN ›</button>`, `<p class="sm-msg">${esc(t)}</p>`));
+        if (d.id === 'apspot') out.push(row('todo', d.name, 'Tap TEXT IT: your phone\'s messages app opens with the spot written. Pick your saved APSPOT contact (the gateway number is on apspot.radio) and send. Or send the same words as an APRS message to APSPOT.', `<a href="sms:?&body=${encodeURIComponent(t)}">TEXT IT ›</a>`, `<p class="sm-msg">${esc(t)}</p>`));
+        else out.push(row('todo', d.name, (d.others && v.call === v.by ? '⚠ You are spotting yourself here. Only do that for a special event station. ' : '') + 'Tap to copy the spot and open the site, then paste it in and press submit.', `<button type="button" data-open="${d.id}">COPY + OPEN ›</button>`, `<p class="sm-msg">${esc(t)}</p>`));
       } else {
         out.push(row('todo', d.name, esc(d.about), `<a href="${esc(d.url)}" target="_blank" rel="noopener">OPEN ›</a>`));
       }
