@@ -20,33 +20,109 @@
   const like = w => `(Unit_Nm LIKE '%${w.replace(/'/g, "''")}%' OR Loc_Nm LIKE '%${w.replace(/'/g, "''")}%')`;
   const msg = h => { $('mrOut').innerHTML = `<div class="mr-msg">${h}</div>`; };
 
-  $('mrState').innerHTML = '<option value="">Any state</option>' + ST.map(s => `<option>${s}</option>`).join('');
+  $('mrState').innerHTML = '<option value="">Pick a state (required)</option>' + ST.map(s => `<option>${s}</option>`).join('');
+  try { const v = localStorage.getItem('kpcMrState'); if (v) $('mrState').value = v; } catch (e) {}
+  const NPSQ = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2/query';
+  const FWSQ = 'https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer/0/query';
+  const OVER = ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter'];
+  let STB = null; const stBox = async st => { if (!STB) STB = await B.jget('kpc-us-states.json').catch(() => []); const x = (STB || []).find(b => b.a === st); if (!x) return null; let a = [180, 90, -180, -90]; x.p.forEach(pl => pl[0].forEach(([X, Y]) => { a = [Math.min(a[0], X), Math.min(a[1], Y), Math.max(a[2], X), Math.max(a[3], Y)]; })); return a; };
+
+  /* ---------- the agencies we search, per state (from PAD-US itself) ---------- */
+  let AGL = [], agPick = new Set();
+  const agKey = a => a.t + '|' + a.code + '|' + a.loc;
+  async function agencies(st) {
+    const box = $('mrAg'); AGL = []; agPick = new Set();
+    if (!st) { box.innerHTML = ''; return; }
+    try { localStorage.setItem('kpcMrState', st); } catch (e) {}
+    box.innerHTML = '<p class="mr-help">Loading the federal and state agencies that own land in ' + esc(st) + '…</p>';
+    try {
+      const j = await B.jget(PADUS + '?' + new URLSearchParams({ where: `State_Nm='${st}' AND Mang_Type IN ('FED','STAT') AND Category<>'Easement'`, groupByFieldsForStatistics: 'Mang_Type,Mang_Name,Loc_Mang', outStatistics: JSON.stringify([{ statisticType: 'count', onStatisticField: 'OBJECTID', outStatisticFieldName: 'n' }]), f: 'json' }));
+      const m = new Map();
+      (j.features || []).forEach(f => { const a = f.attributes, loc = (a.Loc_Mang && !/^unknown$/i.test(a.Loc_Mang)) ? a.Loc_Mang : (AG[a.Mang_Name] || a.Mang_Name); const k = a.Mang_Type + '|' + a.Mang_Name + '|' + loc.toLowerCase(); const o = m.get(k) || { t: a.Mang_Type, code: a.Mang_Name, loc, n: 0 }; o.n += a.n; m.set(k, o); });
+      AGL = [...m.values()].sort((a, b) => (a.t > b.t ? 1 : a.t < b.t ? -1 : 0) || b.n - a.n);
+    } catch (e) { box.innerHTML = '<p class="mr-help">Could not load the agency list right now.</p>'; return; }
+    drawAg(st);
+  }
+  function drawAg(st) {
+    const grp = t => AGL.filter(a => a.t === t);
+    const chip = a => `<button type="button" class="mr-ag${agPick.has(agKey(a)) ? ' on' : ''}" data-k="${esc(agKey(a))}">${esc(a.loc)}${a.loc !== (AG[a.code] || a.code) && AG[a.code] ? ' <small>' + esc(AG[a.code]) + '</small>' : ''} <em>${a.n}</em></button>`;
+    $('mrAg').innerHTML = `<details class="mr-agd"${AGL.length && agPick.size ? ' open' : ''}><summary>AGENCIES SEARCHED IN ${esc(st)}: ${grp('FED').length} FEDERAL · ${grp('STAT').length} STATE ${agPick.size ? '· ONLY ' + agPick.size + ' PICKED' : '· ALL'} (TAP TO SEE)</summary>
+<p class="mr-help">Every search looks through all of these (from the national public land database), plus the live National Park Service and U.S. Fish &amp; Wildlife Service maps${st === 'KY' ? ', Kentucky\'s own state boundary files' : ''} and, as a backup, OpenStreetMap. Tap agencies to search only those; tap again to undo. The number is how many land areas each one has in the database.</p>
+<h4>FEDERAL</h4><div class="mr-ags">${grp('FED').map(chip).join('') || '<span class="mr-help">none listed</span>'}</div><h4>STATE</h4><div class="mr-ags">${grp('STAT').map(chip).join('') || '<span class="mr-help">none listed</span>'}</div></details>`;
+    $('mrAg').querySelectorAll('.mr-ag').forEach(b => b.onclick = () => { const k = b.dataset.k; if (agPick.has(k)) agPick.delete(k); else agPick.add(k); drawAg(st); });
+  }
+  $('mrState').addEventListener('change', e => agencies(e.target.value));
+  if ($('mrState').value) agencies($('mrState').value);
+
+  /* ---------- extra official sources + OpenStreetMap backup, made to look like PAD-US rows ---------- */
+  const acresOf = g => { let a = 0; B.ringsOf(g).forEach(poly => poly.forEach((r, n) => { let s2 = 0; for (let i = 0, k = r.length - 1; i < r.length; k = i++) s2 += (r[k][0] + r[i][0]) * (r[k][1] - r[i][1]); const lat = r[0][1] * Math.PI / 180; const m2 = Math.abs(s2 / 2) * 111320 * 111320 * Math.cos(lat); a += n ? -m2 : m2; })); return a / 4046.86; };
+  const fake = (f, P) => ({ type: 'Feature', geometry: f.geometry, properties: Object.assign({ Pub_Access: 'UK', Category: 'Fee', Des_Tp: '', Own_Name: '', Mang_Name: '' }, P, { GIS_Acres: P.GIS_Acres || acresOf(f.geometry) }) });
+  async function extra(name, st) {
+    const w = words(name).slice(0, 3), ws = w.length ? w : [name], box = await stBox(st), out = [];
+    const sq = x => x.replace(/'/g, "''");
+    const jobs = [
+      B.jget(NPSQ + '?' + new URLSearchParams({ where: `STATE='${st}' AND ` + ws.map(x => `UNIT_NAME LIKE '%${sq(x)}%'`).join(' AND '), outFields: 'UNIT_NAME,UNIT_TYPE', returnGeometry: true, outSR: 4326, geometryPrecision: 5, maxAllowableOffset: 0.0001, f: 'geojson' })).then(j => (j.features || []).forEach(f => out.push({ src: 'National Park Service boundary (live)', f: fake(f, { Unit_Nm: f.properties.UNIT_NAME, Own_Type: 'FED', Own_Name: 'NPS', Loc_Own: 'National Park Service', Mang_Type: 'FED', Mang_Name: 'NPS', Loc_Mang: 'National Park Service', Loc_Ds: f.properties.UNIT_TYPE, State_Nm: st }) }))).catch(() => {}),
+      box ? B.jget(FWSQ + '?' + new URLSearchParams({ where: ws.map(x => `ORGNAME LIKE '%${sq(x.toUpperCase())}%'`).join(' AND '), geometry: box.join(','), geometryType: 'esriGeometryEnvelope', inSR: 4326, spatialRel: 'esriSpatialRelIntersects', outFields: 'ORGNAME,RSL_TYPE,INTTYPE1,SUM_GISACRES', returnGeometry: true, outSR: 4326, geometryPrecision: 5, maxAllowableOffset: 0.0001, f: 'geojson' })).then(j => (j.features || []).forEach(f => { const p = f.properties; out.push({ src: 'U.S. Fish & Wildlife Service land (live)', f: fake(f, { Unit_Nm: p.ORGNAME.replace(/\b\w+/g, t => t[0] + t.slice(1).toLowerCase()), Own_Type: 'FED', Own_Name: 'FWS', Loc_Own: 'U.S. Fish & Wildlife Service', Mang_Type: 'FED', Mang_Name: 'FWS', Loc_Mang: 'U.S. Fish & Wildlife Service', Loc_Ds: p.RSL_TYPE, GIS_Acres: p.SUM_GISACRES, Category: p.INTTYPE1 === 'E' ? 'Easement' : 'Fee', State_Nm: st }) }); })).catch(() => {}) : null,
+      st === 'KY' ? B.ky().then(F => F.filter(f => B.sameName(f._nm, name) || ws.every(x => f._nm.toLowerCase().includes(x.toLowerCase()))).forEach(f => { const fed = /bnps|bdbnf|bwilder|bfws/.test(f._L.k), kpc = f._L.kpc; out.push({ src: kpc ? 'KPC-drawn outline (approximate)' : 'Kentucky state boundary file (' + f._L.agency + ')', f: fake({ geometry: f.geometry }, { Unit_Nm: f._nm, Own_Type: kpc ? 'UNK' : fed ? 'FED' : 'STAT', Loc_Own: f._L.agency, Mang_Type: kpc ? 'UNK' : fed ? 'FED' : 'STAT', Loc_Mang: f._L.agency, Loc_Ds: (f.properties || {}).TYPE || f._L.name, Pub_Access: /restricted/i.test((f.properties || {}).ACCESS || '') ? 'RA' : 'UK', State_Nm: 'KY' }) }); })).catch(() => {}) : null,
+      osmFind(ws, st).then(L => L.forEach(x => out.push(x))).catch(() => {})
+    ].filter(Boolean);
+    await Promise.all(jobs);
+    return out;
+  }
+  async function osmFind(ws, st) {
+    const re = ws.map(x => x.replace(/[^\w ']/g, '')).join('.*');
+    const qy = `[out:json][timeout:40];area["ISO3166-2"="US-${st}"]->.s;(nwr["name"~"${re}",i]["leisure"~"^(park|nature_reserve)$"](area.s);nwr["name"~"${re}",i]["boundary"~"^(protected_area|national_park)$"](area.s););out geom 8;`;
+    let j = null; for (const u of OVER) { try { j = await B.jget(u, { method: 'POST', body: 'data=' + encodeURIComponent(qy), headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }, 45000); break; } catch (e) {} }
+    return (j && j.elements || []).filter(e => e.tags && e.tags.name).map(e => {
+      const lines = e.type === 'way' ? [e.geometry] : e.type === 'relation' ? (e.members || []).filter(m => m.type === 'way' && m.role !== 'inner' && m.geometry).map(m => m.geometry) : [];
+      if (!lines.length) return null;
+      const closed = lines.length === 1 && lines[0].length > 3 && lines[0][0].lat === lines[0][lines[0].length - 1].lat && lines[0][0].lon === lines[0][lines[0].length - 1].lon;
+      const geometry = closed ? { type: 'Polygon', coordinates: [lines[0].map(p => [p.lon, p.lat])] } : { type: 'MultiLineString', coordinates: lines.map(l => l.map(p => [p.lon, p.lat])) };
+      const t = e.tags, op = t.operator || t.owner || '';
+      const fed = /national|u\.?s\.?|united states|forest service|fish and wildlife service|park service|bureau|army corps/i.test(op), stt = /state|commonwealth|department|division|dnr|kdfwr|fish (and|&) wildlife|nature preserves/i.test(op) && !fed;
+      return { src: 'OpenStreetMap (NOT official, backup)', osm: true, f: { type: 'Feature', geometry, properties: { Unit_Nm: t.name, Own_Type: 'UNK', Loc_Own: t.owner || op || 'not listed', Mang_Type: fed ? 'FED' : stt ? 'STAT' : 'UNK', Loc_Mang: op || 'not listed', Loc_Ds: t.protection_title || t.leisure || t.boundary || '', Pub_Access: t.access === 'private' || t.access === 'no' ? 'XA' : t.access === 'yes' || t.access === 'permissive' ? 'OA' : 'UK', Category: 'Fee', GIS_Acres: closed ? acresOf(geometry) : 0, State_Nm: st, Mang_Name: '', Own_Name: '' } } };
+    }).filter(Boolean);
+  }
 
   /* ---------- search ---------- */
   async function search() {
     const name = $('mrName').value.trim(), town = $('mrTown').value.trim(), st = $('mrState').value;
+    if (!st) { msg('<b>Pick the state first.</b> Each state has its own agencies, so the search needs to know where to look.'); $('mrState').focus(); return; }
     if (name.length < 3) { msg('Type at least part of the park name.'); return; }
-    msg('Searching the national public land database…'); $('mrList').innerHTML = '';
+    msg('Searching ' + esc(st) + ': the national public land database (every federal and state agency), the live National Park Service and Fish &amp; Wildlife maps' + (st === 'KY' ? ', Kentucky\'s state files' : '') + ' and OpenStreetMap…'); $('mrList').innerHTML = '';
     const w = words(name).slice(0, 3); const W = (w.length ? w : [name]).map(like).join(' AND ');
-    let rows = [], where = W, box = null;
+    let rows = [], where = W + ` AND State_Nm='${st}'`, box = null;
+    if (agPick.size) where += ' AND (' + [...agPick].map(k => { const [t, code, loc] = k.split('|'); const a = AGL.find(x => agKey(x) === k); return `(Mang_Type='${t}' AND Mang_Name='${code}'${a && a.loc !== (AG[code] || code) ? ` AND Loc_Mang='${a.loc.replace(/'/g, "''")}'` : ''})`; }).join(' OR ') + ')';
+    const xP = agPick.size ? Promise.resolve([]) : extra(name, st);
     try {
       if (town) {
         const g = await B.jget('https://geocoding-api.open-meteo.com/v1/search?count=10&language=en&format=json&countryCode=US&name=' + encodeURIComponent(town)).catch(() => null);
-        let hit = (g && g.results || []).find(r => !st || (r.admin1_code || '').toUpperCase() === st || stateOf(r.admin1) === st) || (g && g.results || [])[0];
+        const hit = (g && g.results || []).find(r => stateOf(r.admin1) === st);
         if (hit) box = [hit.longitude - 0.7, hit.latitude - 0.6, hit.longitude + 0.7, hit.latitude + 0.6];
       }
-      if (st) where += ` AND State_Nm='${st}'`;
       const o = { where, resultRecordCount: 200, orderByFields: 'GIS_Acres DESC' };
       if (box) Object.assign(o, { geometry: box.join(','), geometryType: 'esriGeometryEnvelope', inSR: 4326, spatialRel: 'esriSpatialRelIntersects' });
-      rows = await q(o);
-    } catch (e) { msg('The public land database did not answer (' + esc(e.message || 'network') + '). Try again in a minute.'); return; }
-    if (!rows.length) { msg(`Nothing named like that in the national public land database${st ? ' in ' + st : ''}${town ? ' near ' + esc(town) : ''}. Try fewer words, or check the spelling. If it's brand new or very small it may not be in the database yet: then use the agency's own map.`); return; }
-    const G = new Map(); rows.forEach(r => { const k = (r.Unit_Nm || r.Loc_Nm) + '|' + r.State_Nm; const g = G.get(k) || { name: r.Unit_Nm || r.Loc_Nm, st: r.State_Nm, rows: [], acres: 0 }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; G.set(k, g); });
-    const L = [...G.values()].sort((a, b) => (B.sameName(b.name, name) - B.sameName(a.name, name)) || b.acres - a.acres);
-    if (L.length === 1) return open(L[0]);
+      rows = await q(o).catch(() => []);
+    } catch (e) { rows = []; }
+    const X = await xP;
+    const G = new Map(); rows.forEach(r => { const k = (r.Unit_Nm || r.Loc_Nm) + '|' + r.State_Nm; const g = G.get(k) || { name: r.Unit_Nm || r.Loc_Nm, st: r.State_Nm, rows: [], acres: 0, src: 'USGS PAD-US (national public land database)' }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; G.set(k, g); });
+    const L = [...G.values()];
+    // extra sources: grouped by name; only added when PAD-US has nothing with that name
+    const XG = new Map(); X.forEach(x => { const n = x.f.properties.Unit_Nm; if (L.some(g => B.sameName(g.name, n))) return; const k = n + '|' + x.src; const g = XG.get(k) || { name: n, st, rows: [], acres: 0, src: x.src, osm: x.osm, feats: [] }; g.feats.push(x.f); g.rows.push(x.f.properties); g.acres += +x.f.properties.GIS_Acres || 0; XG.set(k, g); });
+    const all = L.concat([...XG.values()].sort((a, b) => (a.osm ? 1 : 0) - (b.osm ? 1 : 0))).sort((a, b) => (B.sameName(b.name, name) - B.sameName(a.name, name)) || ((a.osm ? 1 : 0) - (b.osm ? 1 : 0)) || b.acres - a.acres);
+    if (!all.length) return notFound(name, st, town);
+    if (all.length === 1) return open(all[0]);
     $('mrOut').innerHTML = '';
-    $('mrList').innerHTML = `<p class="mr-help">${L.length} matches. Pick one:</p>` + L.slice(0, 40).map((g, i) => `<button type="button" class="mr-pick" data-i="${i}"><b>${esc(g.name)}</b><span>${esc(g.st)} · ${Math.round(g.acres).toLocaleString()} acres · ${esc(g.rows[0].Loc_Mang || AG[g.rows[0].Mang_Name] || '')}</span></button>`).join('');
-    $('mrList').onclick = e => { const b = e.target.closest('[data-i]'); if (b) { $('mrList').innerHTML = ''; open(L[+b.dataset.i]); } };
+    $('mrList').innerHTML = `<p class="mr-help">${all.length} matches in ${esc(st)}. Pick one:</p>` + all.slice(0, 40).map((g, i) => `<button type="button" class="mr-pick${g.osm ? ' osm' : ''}" data-i="${i}"><b>${esc(g.name)}</b><span>${g.acres ? Math.round(g.acres).toLocaleString() + ' acres · ' : ''}${esc(g.rows[0].Loc_Mang || AG[g.rows[0].Mang_Name] || '')}<br><small>${esc(g.src)}</small></span></button>`).join('');
+    $('mrList').onclick = e => { const b = e.target.closest('[data-i]'); if (b) { $('mrList').innerHTML = ''; open(all[+b.dataset.i]); } };
+  }
+  function notFound(name, st, town) {
+    const gq = s => 'https://www.google.com/search?q=' + encodeURIComponent(s);
+    const list = AGL.filter(a => !/universit|college|guard|transportation|veterans|unknown|division of water/i.test(a.loc)).slice(0, 30);
+    $('mrOut').innerHTML = `<div class="mr-msg"><b>Not found in ${esc(st)}</b> in the national public land database, the live National Park Service and Fish &amp; Wildlife maps${st === 'KY' ? ', Kentucky\'s state files' : ''} or OpenStreetMap${town ? ' near ' + esc(town) : ''}.
+<p>That usually means it's brand new, very small, or the agency spells it differently. Try fewer words (one main word works best), or search each agency's own website below:</p>
+<div class="mr-btns">${list.map(a => `<a href="${gq(`"${name}" "${a.loc}"`)}" target="_blank" rel="noopener">${esc(a.loc)} ↗</a>`).join('')}<a class="gold" href="${gq(`"${name}" ${st} site:.gov`)}" target="_blank" rel="noopener">ANY .GOV SITE ↗</a></div>
+<p class="mr-help">If the agency's own page shows it's federal or state land and open to the public, it may still qualify: tell your Map Rep and include the agency's page and map.</p></div>`;
   }
   const SN = { alabama: 'AL', alaska: 'AK', arizona: 'AZ', arkansas: 'AR', california: 'CA', colorado: 'CO', connecticut: 'CT', delaware: 'DE', florida: 'FL', georgia: 'GA', hawaii: 'HI', idaho: 'ID', illinois: 'IL', indiana: 'IN', iowa: 'IA', kansas: 'KS', kentucky: 'KY', louisiana: 'LA', maine: 'ME', maryland: 'MD', massachusetts: 'MA', michigan: 'MI', minnesota: 'MN', mississippi: 'MS', missouri: 'MO', montana: 'MT', nebraska: 'NE', nevada: 'NV', 'new hampshire': 'NH', 'new jersey': 'NJ', 'new mexico': 'NM', 'new york': 'NY', 'north carolina': 'NC', 'north dakota': 'ND', ohio: 'OH', oklahoma: 'OK', oregon: 'OR', pennsylvania: 'PA', 'rhode island': 'RI', 'south carolina': 'SC', 'south dakota': 'SD', tennessee: 'TN', texas: 'TX', utah: 'UT', vermont: 'VT', virginia: 'VA', washington: 'WA', 'west virginia': 'WV', wisconsin: 'WI', wyoming: 'WY' };
   const stateOf = n => SN[String(n || '').toLowerCase()] || '';
@@ -55,7 +131,8 @@
   async function open(g) {
     msg('Loading the boundary and checking POTA…');
     let fc;
-    try {
+    if (g.feats) fc = { features: g.feats };
+    else try {
       const where = `Unit_Nm='${g.name.replace(/'/g, "''")}' AND State_Nm='${g.st}'`;
       const big = g.acres > 50000;
       fc = await B.jget(PADUS + '?' + new URLSearchParams({ where, outFields: F, returnGeometry: true, outSR: 4326, geometryPrecision: 5, maxAllowableOffset: big ? 0.0004 : 0.00005, f: 'geojson' }));
@@ -64,7 +141,7 @@
     if (!feats.length) { msg('No boundary shape came back for that one.'); return; }
     const bb = feats.reduce((a, f) => { const b = B.bbox(f.geometry); return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])]; }, [180, 90, -180, -90]);
     let la = (bb[1] + bb[3]) / 2, lo = (bb[0] + bb[2]) / 2;
-    const inAny = feats.some(f => B.inside(la, lo, f.geometry)); if (!inAny) { const r = B.ringsOf(feats[0].geometry)[0][0]; la = r[0][1]; lo = r[0][0]; }
+    const inAny = feats.some(f => B.inside(la, lo, f.geometry)); if (!inAny) { const rg = B.ringsOf(feats[0].geometry); const pt = rg.length ? rg[0][0][0] : (B.linesOf(feats[0].geometry)[0] || [])[0]; if (pt) { la = pt[1]; lo = pt[0]; } }
     const R = feats.map(f => f.properties);
     const fee = R.filter(r => r.Category === 'Fee'), base = fee.length ? fee : R;
     const uniq = k => [...new Set(base.map(r => r[k]).filter(Boolean))];
@@ -111,13 +188,13 @@
     const verdict = already.length ? ['no', 'ALREADY A POTA PARK'] : nNo ? ['no', 'LIKELY NOT ELIGIBLE'] : nCk ? ['maybe', 'LOOKS POSSIBLE: CONFIRM THE YELLOW ITEMS'] : ['yes', 'LOOKS ELIGIBLE'];
     const gq = s => 'https://www.google.com/search?q=' + encodeURIComponent(s);
     const nm = g.name, stn = g.st;
-    const note = [`Park request: ${nm} (${stn})`, '', `Owner: ${base.map(r => r.Loc_Own || AG[r.Own_Name] || r.Own_Name).filter((x, i, a) => a.indexOf(x) === i).join('; ')}`, `Managed by: ${locM}`, `Designation: ${base.map(r => r.Loc_Ds || DES[r.Des_Tp] || r.Des_Tp).filter((x, i, a) => a.indexOf(x) === i).join('; ')}`, `Public access: ${acc.map(a => ACC[a] || a).join('; ')}`, `Size: about ${Math.round(g.acres).toLocaleString()} acres`, `Location: ${la.toFixed(5)}, ${lo.toFixed(5)}`, 'Official web page: (paste the agency link here)', 'Official boundary map: (paste the agency map link here)', `GIS boundary: USGS PAD-US (Unit_Nm "${nm}", ${stn})`, '', 'Rule check (KPC Mapping Rep Tool Box):'].concat(res.filter(r => r.v !== 'INFO').map(r => `- ${r.title}: ${r.v}`)).join('\n');
+    const note = [`Park request: ${nm} (${stn})`, '', `Owner: ${base.map(r => r.Loc_Own || AG[r.Own_Name] || r.Own_Name).filter((x, i, a) => a.indexOf(x) === i).join('; ')}`, `Managed by: ${locM}`, `Designation: ${base.map(r => r.Loc_Ds || DES[r.Des_Tp] || r.Des_Tp).filter((x, i, a) => a.indexOf(x) === i).join('; ')}`, `Public access: ${acc.map(a => ACC[a] || a).join('; ')}`, `Size: about ${Math.round(g.acres).toLocaleString()} acres`, `Location: ${la.toFixed(5)}, ${lo.toFixed(5)}`, 'Official web page: (paste the agency link here)', 'Official boundary map: (paste the agency map link here)', `Boundary source: ${g.src || 'USGS PAD-US'} ("${nm}", ${stn})`, '', 'Rule check (KPC Mapping Rep Tool Box):'].concat(res.filter(r => r.v !== 'INFO').map(r => `- ${r.title}: ${r.v}`)).join('\n');
     $('mrOut').innerHTML = `<section class="mr-res">
-<div class="mr-head"><div class="mr-k">${esc(stn)} · PAD-US</div><h2>${esc(nm)}</h2><p>${esc([locM, Math.round(g.acres).toLocaleString() + ' acres', base.map(r => r.Loc_Ds || DES[r.Des_Tp] || '').filter(Boolean).filter((x, i, a) => a.indexOf(x) === i).join(' / ')].filter(Boolean).join(' · '))}</p></div>
-<div class="mr-v ${verdict[0]}"><b>${verdict[1]}</b><span>${res.filter(r => r.v === 'YES').length} yes · ${nNo} no · ${nCk} to check yourself</span></div>
+<div class="mr-head"><div class="mr-k">${esc(stn)} · ${esc(g.src || "USGS PAD-US")}</div><h2>${esc(nm)}</h2><p>${esc([locM, Math.round(g.acres).toLocaleString() + ' acres', base.map(r => r.Loc_Ds || DES[r.Des_Tp] || '').filter(Boolean).filter((x, i, a) => a.indexOf(x) === i).join(' / ')].filter(Boolean).join(' · '))}</p></div>
+${g.osm ? `<div class="mr-osm"><b>From OpenStreetMap, not an official source.</b> ${esc(B.OSM_NOTE)} Owner and manager come from volunteer tags, so treat every answer below as CHECK until the agency's own page confirms it.</div>` : ""}<div class="mr-v ${verdict[0]}"><b>${verdict[1]}</b><span>${res.filter(r => r.v === 'YES').length} yes · ${nNo} no · ${nCk} to check yourself</span></div>
 <div class="mr-rules">${res.map(r => `<div class="mr-r ${r.v.toLowerCase()}"><i>${r.v === 'INFO' ? 'INFO' : r.v}</i><div><b>${esc(r.title)}</b><p>${r.why}</p></div></div>`).join('')}</div>
 <div class="mr-sec"><h3>OFFICIAL WEBSITE &amp; MAP</h3><div class="mr-btns"><a class="gold" href="${gq(`"${nm}" ${stn} site:.gov`)}" target="_blank" rel="noopener">FIND THE OFFICIAL .GOV PAGE ↗</a><a href="${gq(`"${nm}" ${locM} boundary map`)}" target="_blank" rel="noopener">FIND THE AGENCY BOUNDARY MAP ↗</a><a href="${gq(`"${nm}" ${stn} ${locM}`)}" target="_blank" rel="noopener">SEARCH THE AGENCY ↗</a></div><p class="mr-help">These search only for the park by name with its agency. Use the agency's own page, not tourist sites.</p></div>
-<div class="mr-sec"><h3>BOUNDARY MAP (USGS PAD-US)</h3><div id="mrMap"></div><p class="mr-help">Gold = this park's land in PAD-US. Blue pins = POTA parks nearby (tap for the number). Tap the map to drop a pin; ⛶ FULL for full screen; layers for satellite, topo and terrain.</p><div class="mr-btns" id="mrFiles"></div></div>
+<div class="mr-sec"><h3>BOUNDARY MAP (${esc(g.src || 'USGS PAD-US')})</h3><div id="mrMap"></div><p class="mr-help">Gold = this park's land in the source above. Blue pins = POTA parks nearby (tap for the number). Tap the map to drop a pin; ⛶ FULL for full screen; layers for satellite, topo and terrain.</p><div class="mr-btns" id="mrFiles"></div></div>
 <div class="mr-sec"><h3>NOTE FOR YOUR MAP REP</h3><textarea id="mrNote" rows="13">${esc(note)}</textarea><div class="mr-btns"><a class="gold" href="#" id="mrCopy">COPY THE NOTE</a><a href="${RULES_URL}" target="_blank" rel="noopener">POTA PARK-ADDITION RULES ↗</a></div><p class="mr-help">Send park requests to the Mapping Representative for the state (see the POTA rules page for the Map Rep list; email them from their QRZ page). POTA adds parks at the Map Rep's discretion.</p></div>
 </section>`;
     $('mrCopy').onclick = e => { e.preventDefault(); const t = $('mrNote').value; (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => e.target.textContent = 'COPIED ✓').catch(() => { $('mrNote').select(); document.execCommand('copy'); e.target.textContent = 'COPIED ✓'; }); };
