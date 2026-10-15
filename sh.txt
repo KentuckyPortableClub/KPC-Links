@@ -1,25 +1,24 @@
-BLACKFORD ERR HTTP Error 403: Forbidden
-BOONE FOREST ERR HTTP Error 403: Forbidden
-CUMBERLAND FOREST ERR HTTP Error 403: Forbidden
-ELK FOREST ERR HTTP Error 403: Forbidden
-FORTNER ERR HTTP Error 403: Forbidden
-LEGACY ERR HTTP Error 403: Forbidden
-POCAHONTAS ERR HTTP Error 403: Forbidden
-RH GROUP ERR HTTP Error 403: Forbidden
-ROBINSON FOREST ERR HTTP Error 403: Forbidden
-ASHER ERR HTTP Error 403: Forbidden
-BETTERMENT ERR HTTP Error 403: Forbidden
-CONTINENTAL ERR HTTP Error 403: Forbidden
-ELK HORN ERR HTTP Error 403: Forbidden
-WELLS ERR HTTP Error 403: Forbidden
-BOONE COUNTY CLIFFS ERR HTTP Error 403: Forbidden
-DINSMORE ERR HTTP Error 403: Forbidden
-BICKFORD ERR HTTP Error 403: Forbidden
-STEPHENSON ERR HTTP Error 403: Forbidden
-LOGAN COUNTY GLADE ERR HTTP Error 403: Forbidden
-HOWARDS CREEK ERR HTTP Error 403: Forbidden
-MARTINS FORK ERR HTTP Error 403: Forbidden
-MARTIN ERR HTTP Error 403: Forbidden
-BESHEAR ERR HTTP Error 403: Forbidden
-MURPHY ERR HTTP Error 403: Forbidden
-KNOBS ERR HTTP Error 403: Forbidden
+## Blackford Oaks WMA | KDFWR | 565 ac | Crittenden, Webster | open Yes
+     Public Land Search | KDFWR --> Kentucky Department of Fish & Wildlife Resources 𝕏 Toggle navigation Search Search MY PROFILE BUY LICENSE HUNTING FISHING BOATING WILDLIFE EDUCATION ENFORCEMENT MORE 𝕏 Blackford Oaks WMA Get Directions Close Return to Search --> WMA Overview Size: 565 acres Location: Webster Contact: Office (270) 389-3580 Elevation: minimum 350 feet, maximum 425 feet. Entrance GPS coordinates: Latitude N 37.4263, Longitude W -87.8649 Area Habitat: open land 46.73%, forest 10.09%, wetland 43.19%, open water 0.00%. Regulations Fall Hunting Season: Open under statewide rules and re
+## Boone Forestlands WMA | KDFWR | 27995 ac | Bell, Clay, Harlan, Leslie | open Yes
+     Public Land Search | KDFWR --> Kentucky Department of Fish & Wildlife Resources 𝕏 Toggle navigation Search Search MY PROFILE BUY LICENSE HUNTING FISHING BOATING WILDLIFE EDUCATION ENFORCEMENT MORE 𝕏 Boone Forestlands WMA Get Directions Close Return to Search --> WMA Overview Size: 27997 acres Location: Bell, Harlan, Clay, & Leslie Contact: (606)-654-2533 Elevation: minimum 1113 feet, maximum 2582 feet. Entrance GPS coordinates: Latitude N 36.8818, Longitude W -83.4971 Area Habitat: open land 11.26%, forest 88.72%, wetland 0.00%, open water 0.01%. Regulations Fall Hunting Season: Open under st
+## Cumberland Forest WMA | Private | 54128 ac | Bell, Harlan, Knox, Leslie, Whitley | open Yes
+     Public Land Search | KDFWR --> Kentucky Department of Fish & Wildlife Resources 𝕏 Toggle navigation Search Search MY PROFILE BUY LICENSE HUNTING FISHING BOATING WILDLIFE EDUCATION ENFORCEMENT MORE 𝕏 Cumberland Forest WMA Get Directions Close Return to Search --> WMA Overview Size: 54137 acres Location: Bell, Knox & Leslie Contact: (606)275-3247 Elevation: minimum 929 feet, maximum 3143 feet. Entrance GPS coordinates: Latitude N 36.6302, Longitude W -83.8577 Area Habitat: open land 7.12%, forest 92.82%, wetland 0.00%, open water 0.03%. Regulations Fall Hunting Season: Open under statewide rule
+## Elk Forest WMA | KDFWR | 16586 ac | Bell, Clay, Harlan, Knox, Leslie | open Yes
+     Public Land Search | KDFWR --> Kentucky Department of Fish & Wildlife Resources 𝕏 Toggle navigation Search Search MY PROFILE BUY LICENSE HUNTING FISHING BOATING WILDLIFE EDUCATION ENFORCEMENT MORE 𝕏 Elk Forest WMA Get Directions Close Return to Search --> WMA Overview Size: 16587 acres Location: Clay, Bell, Knox, & Leslie Contact: 606-654-2533 Elevation: minimum 1040 feet, maximum 2440 feet. Entrance GPS coordinates: Latitude N 36.9820, Longitude W -83.5324 Area Habitat: open land 7.67%, forest 92.31%, wetland 0.00%, open water 0.01%. Regulations Fall Hunting Season: Open under statewide rule
+## Fortner-Davis WMA | KDFWR | 1358 ac | Bell | open Yes
+     Public Land Search | KDFWR --> Kentucky Department of Fish & Wildlife Resources 𝕏 Toggle navigation Search Search MY PROFILE BUY LICENSE HUNTING FISHING BOATING WILDLIFE EDUCATION ENFORCEMENT MORE 𝕏 Fortner-Davis WMA Get Directions Close Return to Search --> WMA Overview Size: 1358 acres Location: Bell Contact: (606)-654-2533 Elevation: minimum 1280 feet, maximum 2400 feet. Entrance GPS coordinates: Latitude N 36.6970, Longitude W -83.7004 Area Habitat: open land 1.62%, forest 98.31%, wetland 0.00%, open water 0.15%. Regulations Fall Hunting Season: Open under statewide rules and regulations 
+## Legacy WMA | Private | 21355 ac | Floyd, Martin, Pike | open Yes
+     Public Land Search | KDFWR --> Kentucky Department of Fish & Wildlife Resources 𝕏 Toggle navigation Search Search MY PROFILE BUY LICENSE HUNTING FISHING BOATING WILDLIFE EDUCATION ENFORCEMENT MORE 𝕏 Legacy WMA Get Directions Close Return to Search --> WMA Overview Size: 21351 acres Location: Floyd, Martin, and Pike Counties Contact: 859-473-0061 Elevation: minimum 720 feet, maximum 1650 feet. Entrance GPS coordinates: Latitude N 37.7437, Longitude W -82.4473 Area Habitat: open land 13.39%, forest 86.24%, wetland 0.02%, open water 0.37%. Regulations Fall Hunting Season: Open under statewide ru
+## Pocahontas WMA | Private | 56598 ac | Floyd, Harlan, Johnson, Martin, Pike | open Yes
+     Public Land Search | KDFWR --> Kentucky Department of Fish & Wildlife Resources 𝕏 Toggle navigation Search Search MY PROFILE BUY LICENSE HUNTING FISHING BOATING WILDLIFE EDUCATION ENFORCEMENT MORE 𝕏 Pocahontas WMA Get Directions Close Return to Search --> WMA Overview Size: 54568 acres Location: Harlan, Pike, Martin, Floyd, Johnson Contact: Harlan County Wes Hodges (606)-654-2533, Martin/Pike/ Scott Freidhof 606-783-8634 Elevation: minimum 680 feet, maximum 3250 feet. Entrance GPS coordinates: Latitude N 36.7524, Longitude W -83.3449 Area Habitat: open land 10.52%, forest 89.44%, wetland 0.00
+## RH Group WMA | Private | 15088 ac | Floyd, Johnson, Letcher, Magoffin, Martin, McCreary, Pike | open Yes
+     Public Land Search | KDFWR --> Kentucky Department of Fish & Wildlife Resources 𝕏 Toggle navigation Search Search MY PROFILE BUY LICENSE HUNTING FISHING BOATING WILDLIFE EDUCATION ENFORCEMENT MORE 𝕏 RH Group WMA Get Directions Close Return to Search --> WMA Overview Size: 15088 acres Location: Floyd, Letcher, Magoffin, McCreary, and Pike counties Contact: 270-283-0244 Elevation: minimum 600 feet, maximum 2200 feet. Entrance GPS coordinates: Latitude N 37.5048, Longitude W -82.3581 Area Habitat: open land 13.53%, forest 86.39%, wetland 0.01%, open water 0.05%. Regulations A waiver is required 
+## Robinson Forest WMA | U of Ky | 2003 ac | Breathitt, Perry | open Yes
+     Public Land Search | KDFWR --> Kentucky Department of Fish & Wildlife Resources 𝕏 Toggle navigation Search Search MY PROFILE BUY LICENSE HUNTING FISHING BOATING WILDLIFE EDUCATION ENFORCEMENT MORE 𝕏 Robinson Forest WMA Get Directions Close Return to Search --> WMA Overview Size: 2003 acres Location: Breathitt & Perry Contact: (606)-654-2533 Elevation: minimum 760 feet, maximum 1640 feet. Entrance GPS coordinates: Latitude N 37.4502, Longitude W -83.1954 Area Habitat: open land 7.14%, forest 92.86%, wetland 0.00%, open water 0.00%. Regulations Fall Hunting Season: The main block of this area i
+## Asher Hunting Access Area | Private | 13144 ac | Bell, Harlan, Knox | open Yes
+     Public Land Search | KDFWR --> Kentucky Department of Fish & Wildlife Resources 𝕏 Toggle navigation Search Search MY PROFILE BUY LICENSE HUNTING FISHING BOATING WILDLIFE EDUCATION ENFORCEMENT MORE 𝕏 Asher Hunting Access Area Get Directions Close Return to Search --> WMA Overview Size: 13145 acres Location: Bell and Harlan Contact: (606)-654-2533 Elevation: minimum 1200 feet, maximum 3360 feet. Entrance GPS coordinates: Latitude N 36.8967, Longitude W -83.5772 Area Habitat: open land 11.93%, forest 88.02%, wetland 0.00%, open water 0.02%. Regulations Fall Hunting Season: Open under statewide r
+## Martins Fork WMA and State Natural Area | KDFWR | 1599 ac | Harlan | open Yes
+     Public Land Search | KDFWR --> Kentucky Department of Fish & Wildlife Resources 𝕏 Toggle navigation Search Search MY PROFILE BUY LICENSE HUNTING FISHING BOATING WILDLIFE EDUCATION ENFORCEMENT MORE 𝕏 Martins Fork WMA and State Natural Area Get Directions Close Return to Search --> WMA Overview Size: 1599 acres Location: Harlan Contact: (502)330-0303 Elevation: minimum 1575 feet, maximum 3074 feet. Entrance GPS coordinates: Latitude N 36.7004, Longitude W -83.4013 Area Habitat: open land 0.19%, forest 99.56%, wetland 0.00%, open water 0.00%. Regulations Fall Hunting Season: Open under statewide
+## Knobs State Forest and WMA | KDFWR | 1537 ac | Bullitt | open Yes
+     Public Land Search | KDFWR --> Kentucky Department of Fish & Wildlife Resources 𝕏 Toggle navigation Search Search MY PROFILE BUY LICENSE HUNTING FISHING BOATING WILDLIFE EDUCATION ENFORCEMENT MORE 𝕏 Knobs State Forest and WMA Get Directions Close Return to Search --> WMA Overview Size: 1537 acres Location: Bullitt Contact: (502) 477-9024 Elevation: minimum 467 feet, maximum 941 feet. Entrance GPS coordinates: Latitude N 37.8903, Longitude W -85.6961 Area Habitat: open land 2.86%, forest 97.20%, wetland 0.00%, open water 0.00%. Regulations Fall Hunting Season: Open under statewide rules and re
