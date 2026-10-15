@@ -153,7 +153,7 @@ async function qrz() {
 }
 async function agn() {
   if (!run.on) return; hush(); run.gen++;
-  line('YOU', pick(['Say again?', 'Again, again?', 'Say again, again again?']), 'you');
+  line('YOU', 'Again, again?', 'you');
   if (run.cur && run.sent) { await theirExchange(run.cur, true); } else await callIn(run.callers.slice());
 }
 const base = c => c.replace(/\/.*$/, '');
