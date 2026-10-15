@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-15T10:40:08Z",
+ "updated": "2026-10-15T11:58:40Z",
  "week": [
   {
    "name": "Walk for the Bacon QRP Contest",
@@ -498,6 +498,375 @@
    "src": "WA7BNM"
   }
  ],
+ "month": [
+  {
+   "name": "Walk for the Bacon QRP Contest",
+   "url": "https://qrpcontest.com/pigwalk20",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-15T00:00Z",
+     "2026-10-16T03:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "CORRAL",
+   "bands": "14",
+   "exch": "Max 13 WPM: RST, SPC, name, mbr or pwr"
+  },
+  {
+   "name": "JARL WW RTTY Contest",
+   "url": "https://jarl.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-17T00:00Z",
+     "2026-10-19T00:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RST, avg age or \"01\""
+  },
+  {
+   "name": "902 MHz and Up Fall Sprint",
+   "url": "https://packratvhf.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-17T08:00Z",
+     "2026-10-17T14:01Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "CORRAL",
+   "bands": "902 and above",
+   "exch": "6-char grid"
+  },
+  {
+   "name": "New York QSO Party",
+   "url": "https://www.nyqp.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-17T14:00Z",
+     "2026-10-18T02:01Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "CORRAL",
+   "bands": "No WARC",
+   "exch": "RS(T), NY county or SPC"
+  },
+  {
+   "name": "Worked All Germany Contest",
+   "url": "https://www.darc.de",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-17T15:00Z",
+     "2026-10-18T15:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RS(T), DOK or \"NM\" or serial"
+  },
+  {
+   "name": "Stew Perry Topband Challenge",
+   "url": "https://www.kkn.net/stew",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-17T15:00Z",
+     "2026-10-18T15:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8",
+   "exch": "4-char grid"
+  },
+  {
+   "name": "Feld Hell Sprint",
+   "url": "https://sites.google.com/site/feldhellclub",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-17T20:00Z",
+     "2026-10-18T00:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28,50",
+   "exch": "See rules"
+  },
+  {
+   "name": "Argentina National 7 MHz Contest",
+   "url": "https://www.lu4aa.org/wp",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-17T21:30Z",
+     "2026-10-17T23:31Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "7",
+   "exch": "RS, 2-digit year irst licensed"
+  },
+  {
+   "name": "Illinois QSO Party",
+   "url": "https://w9awe.org/ilqp",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-18T17:00Z",
+     "2026-10-19T01:01Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "CORRAL",
+   "bands": "1.8-28,50,144",
+   "exch": "RS(T), IL county or SPC"
+  },
+  {
+   "name": "Run for the Bacon QRP Contest",
+   "url": "https://qrpcontest.com/pigrun",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-18T23:00Z",
+     "2026-10-19T01:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "RST, SPC, mbr or pwr"
+  },
+  {
+   "name": "ARRL School Club Roundup",
+   "url": "https://www.arrl.org/school-club-roundup",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-19T13:00Z",
+     "2026-10-24T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "No WARC",
+   "exch": "RS(T), class (I/C/S), SPC"
+  },
+  {
+   "name": "CQ Worldwide DX Contest, SSB",
+   "url": "https://www.cqww.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-24T00:00Z",
+     "2026-10-26T00:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "RS, CQ zone"
+  },
+  {
+   "name": "RSGB FT4 Contest",
+   "url": "https://www.rsgbcc.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-26T20:00Z",
+     "2026-10-26T22:01Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "Signal report"
+  },
+  {
+   "name": "SKCC Sprint",
+   "url": "https://www.skccgroup.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-28T00:00Z",
+     "2026-10-28T02:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28,50",
+   "exch": "RST, SPC, name, mbr or \"none\""
+  },
+  {
+   "name": "UKEICC 80m Contest",
+   "url": "https://www.ukeicc.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-28T20:00Z",
+     "2026-10-28T21:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5",
+   "exch": "6-char grid"
+  },
+  {
+   "name": "Zombie Shuffle",
+   "url": "https://www.zianet.com/qrp",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-30T15:00Z",
+     "2026-10-31T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RS(T), SPC, Zombie no. or area code, name"
+  },
+  {
+   "name": "ARRL EME Contest",
+   "url": "https://www.arrl.org/eme-contest",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-31T00:00Z",
+     "2026-11-02T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "CORRAL",
+   "bands": "50-1296",
+   "exch": "4-char grid"
+  },
+  {
+   "name": "Russian WW MultiMode Contest",
+   "url": "https://www.rdrclub.ru",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-31T12:00Z",
+     "2026-11-01T12:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "RST(Q), 2-letter oblast or serial"
+  },
+  {
+   "name": "UK/EI DX Contest, SSB",
+   "url": "https://www.ukeicc.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-10-31T12:00Z",
+     "2026-11-01T12:01Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RS, serial, district code (if UK/EI)"
+  }
+ ],
  "big": [
   {
    "name": "CQ World Wide DX Contest (SSB)",
@@ -936,6 +1305,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (33)"
+  "WA7BNM": "ok (33)",
+  "CORRAL": "ok (19)"
  }
 }
