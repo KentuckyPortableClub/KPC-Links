@@ -87,7 +87,7 @@ function hiss(on) {
 }
 
 /* ---------------- state ---------------- */
-const S = Object.assign({ call: '', st: 'KY', ref: '', level: 1, vol: 0.9, hiss: 0.3, rate: 1, mic: true, autolog: false, prog: 'pota' }, store.get('kpcSSB', {}));
+const S = Object.assign({ call: '', st: 'KY', ref: '', level: 1, vol: 0.9, hiss: 0.3, rate: 1, mic: true, autolog: false, prog: 'pota', mode: 'act', p2p: false }, store.get('kpcSSB', {}));
 const save = () => store.set('kpcSSB', S);
 /* program: off (plain contacts), POTA, KFF (WWFF), SOTA */
 const PROG = {
@@ -132,7 +132,7 @@ function start() {
   form(true);
 }
 function stop() { hush(); run.gen++; run.on = false; hiss(false); $('vbGo').textContent = '▶ START'; $('vbGo').classList.remove('stop'); status('Stopped.'); form(false); }
-function form(on) { ['vbCq', 'vbQrz', 'vbAgn', 'vbSend', 'vbLog', 'vbTalk', 'vbSkip', 'vb73', 'vbQsl'].forEach(id => { const e = $(id); if (e) e.disabled = !on; }); }
+function form(on) { ['vbCq', 'vbQrz', 'vbAgn', 'vbSend', 'vbLog', 'vbTalk', 'vbSkip', 'vb73', 'vbQsl', 'hCall', 'hRep', 'hAgn', 'hNeg', 'hLeave'].forEach(id => { const e = $(id); if (e) e.disabled = !on; }); }
 
 async function cq() {
   if (!run.on) return;
@@ -224,6 +224,7 @@ async function skip() {
   if (run.callers.length) { await new Promise(r0 => setTimeout(r0, 300)); await callIn(run.callers.slice()); } else status('Nobody calling. Call CQ again.');
 }
 async function logIt(auto) {
+  if (S.mode === 'hunt') return H.on ? huntLog() : undefined;
   if (!run.on) return;
   const f = { call: ($('fCall').value || '').toUpperCase().trim(), sent: ($('fSent').value || '59').trim(), rcvd: ($('fRcvd').value || '').trim(), st: ($('fSt').value || '').toUpperCase().trim(), ref: (($('fRef') || {}).value || '').toUpperCase().trim() };
   const o = run.cur && run.sent ? run.cur : run.callers.find(x => x.call === f.call);
@@ -249,17 +250,258 @@ async function logIt(auto) {
   if (good && good % 10 === 0 && S.level < 5 && run.log.slice(-10).every(x => x.ok)) { status(`10 clean contacts in a row! Try level ${S.level + 1}.`); }
 }
 function drawLog() {
+  if (S.mode === 'hunt') return drawHuntLog();
   const tb = $('vbLogB'); if (!tb) return;
   tb.innerHTML = run.log.slice().reverse().map(q => `<tr class="${q.ok ? 'ok' : 'bad'}"><td>${q.n}</td><td>${q.time.toISOString().slice(11, 16)}</td><td><b>${esc(q.call)}</b></td><td>${esc(q.sent)}</td><td>${esc(q.rcvd)}</td><td>${esc(q.st)}${q.ref ? '<br><small>' + esc(q.ref) + '</small>' : ''}</td><td>${q.auto ? '🤖 ' : ''}${q.ok ? '✓' : '<span title="' + esc(q.errs.join('; ')) + '">✗ ' + esc(q.truth) + '</span>'}</td></tr>`).join('');
   const man = run.log.filter(q => !q.auto), n = run.log.length, ok = man.filter(q => q.ok).length, mins = Math.max(1, (Date.now() - run.t0) / 60000);
   const e = $('vbStats'); if (e) e.innerHTML = `<div><b>${n}</b><span>contacts</span></div><div><b>${man.length ? Math.round(ok / man.length * 100) + '%' : '—'}</b><span>logged right (by you)</span></div><div><b>${Math.round(n / mins * 60)}</b><span>per hour</span></div>` + (P().goal ? `<div><b>${Math.min(n, P().goal)}/${P().goal}</b><span>${n >= P().goal ? '🎉 activated!' : 'to activate'}</span></div>` : '');
 }
 function adif() {
-  if (!run.log.length) return;
+  const hunt = S.mode === 'hunt';
+  if (!(hunt ? H.log : run.log).length) return;
   const f = (k, v) => v ? `<${k}:${String(v).length}>${v} ` : '';
-  const rows = run.log.map(q => { const d = q.time.toISOString(); return f('CALL', q.call) + f('QSO_DATE', d.slice(0, 10).replace(/-/g, '')) + f('TIME_ON', d.slice(11, 16).replace(':', '')) + f('BAND', '20M') + f('MODE', 'SSB') + f('RST_SENT', q.sent) + f('RST_RCVD', q.rcvd) + f('STATE', q.st) + f('STATION_CALLSIGN', myCall()) + (S.prog === 'sota' ? f('MY_SOTA_REF', S.ref) + f('SOTA_REF', q.ref) : f('MY_SIG', S.ref && S.prog !== 'off' ? (S.prog === 'kff' ? 'WWFF' : 'POTA') : '') + f('MY_SIG_INFO', S.prog !== 'off' ? S.ref : '') + f('SIG', q.ref ? (S.prog === 'kff' ? 'WWFF' : 'POTA') : '') + f('SIG_INFO', q.ref)) + f('COMMENT', 'KPC PRACTICE - NOT A REAL QSO') + '<EOR>'; });
+  const rows = hunt ? huntAdif() : run.log.map(q => { const d = q.time.toISOString(); return f('CALL', q.call) + f('QSO_DATE', d.slice(0, 10).replace(/-/g, '')) + f('TIME_ON', d.slice(11, 16).replace(':', '')) + f('BAND', '20M') + f('MODE', 'SSB') + f('RST_SENT', q.sent) + f('RST_RCVD', q.rcvd) + f('STATE', q.st) + f('STATION_CALLSIGN', myCall()) + (S.prog === 'sota' ? f('MY_SOTA_REF', S.ref) + f('SOTA_REF', q.ref) : f('MY_SIG', S.ref && S.prog !== 'off' ? (S.prog === 'kff' ? 'WWFF' : 'POTA') : '') + f('MY_SIG_INFO', S.prog !== 'off' ? S.ref : '') + f('SIG', q.ref ? (S.prog === 'kff' ? 'WWFF' : 'POTA') : '') + f('SIG_INFO', q.ref)) + f('COMMENT', 'KPC PRACTICE - NOT A REAL QSO') + '<EOR>'; });
   const txt = 'KPC Voice Pileup Practice log (PRACTICE ONLY - do not upload to POTA)\n<ADIF_VER:5>3.1.4 <PROGRAMID:3>KPC <EOH>\n' + rows.join('\n') + '\n';
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], { type: 'text/plain' })); a.download = `KPC-practice-${myCall() || 'log'}.adi`; a.click();
+}
+
+/* ================= HUNT MODE =================
+   A pretend spots page (like pota.app / SOTAwatch). Tune to a spot, listen to the activator work the pileup,
+   throw your call at the right moment, give your report, then log them. Some spots are busted (the call on the
+   spot is wrong), some activators copy your call wrong (say NEGATIVE and correct them), and working the same
+   park twice is a dupe. */
+let KYD = null;
+fetch('kpc-ky-data.json').then(r => r.json()).then(d => { KYD = d; }).catch(() => {});
+const H = { on: false, spots: [], cur: null, gen: 0, phase: 'idle', log: [], qsos: [], pending: null, called: 0, calledAt: 0, tries: 0, doubled: 0, spotsGiven: 0, wait: null, timer: null };
+const huntProg = () => (S.prog === 'kff' || S.prog === 'sota') ? S.prog : 'pota';
+const PROGNAME = { pota: 'POTA', kff: 'KFF', sota: 'SOTA' };
+function huntRef(prog) {
+  const ky = Math.random() < 0.55;
+  if (prog === 'sota') {
+    if (ky && KYD && KYD.summits && KYD.summits.length) { const s = pick(KYD.summits); return { ref: s.c, name: s.n, st: 'KY' }; }
+    const a = pick([['W4C/WM', 'NC'], ['W4T/SU', 'TN'], ['W4V/SH', 'VA'], ['W8V/SR', 'WV'], ['W4G/NG', 'GA'], ['W0C/FR', 'CO']]);
+    return { ref: a[0] + '-' + String(rnd(1, 140)).padStart(3, '0'), name: 'a summit in ' + STN[a[1]], st: a[1] };
+  }
+  if (prog === 'kff') {
+    if (ky && KYD && KYD.kff && KYD.kff.length) { const s = pick(KYD.kff); return { ref: s.c, name: s.n, st: 'KY' }; }
+    const st = pick(NEAR.filter(x => x !== 'KY')); return { ref: 'KFF-' + String(rnd(1, 7000)).padStart(4, '0'), name: 'a reference in ' + STN[st], st };
+  }
+  if (ky && KYD && KYD.parks && KYD.parks.length) { const s = pick(KYD.parks.filter(p => p.n && p.n.length < 50)); return { ref: s.c, name: s.n, st: 'KY' }; }
+  const st = pick(NEAR.filter(x => x !== 'KY')); return { ref: 'US-' + String(rnd(1, 11000)).padStart(4, '0'), name: 'a park in ' + STN[st], st };
+}
+function voiceFor() { const m = Math.random() < 0.65; return { vi: rnd(0, 50), rate: (0.95 + Math.random() * 0.3) * S.rate, vol: 0.6 + Math.random() * 0.4, m, pitch: m ? 0.5 + Math.random() * 0.3 : 1 + Math.random() * 0.3 }; }
+function bust(c) { const i = rnd(c.search(/\d/) + 1, c.length - 1), ch = c[i]; let n; do { n = L(); } while (n === ch); return c.slice(0, i) + n + c.slice(i + 1); }
+const COMMENTS = ['QRV SSB', 'tnx QSO', 'good signal', 'QSB', 'big pileup!', 'weak here', '5/9 into KY', 'first time activator', 'tnx for the park', 'loud'];
+function newSpot() {
+  const prog = huntProg(), r = huntRef(prog);
+  let call; do { call = newCall(r.st); } while (H.spots.some(s => s.call === call) || call === myCall());
+  const band = pick(['20', '20', '20', '40', '40', '17']);
+  const fr = band === '20' ? 14200 + rnd(5, 140) + pick([0, 0, 0.5]) : band === '40' ? 7180 + rnd(0, 110) + pick([0, 0.5]) : 18130 + rnd(0, 30);
+  const busted = Math.random() < 0.15;
+  const lvMax = (LEVELS[S.level] || LEVELS[1]).n[1];
+  return Object.assign({ id: Math.random().toString(36).slice(2, 8), prog, call, shown: busted ? bust(call) : call, busted, band, fr: fr.toFixed(1), born: Date.now() - rnd(0, 8) * 60000, life: rnd(5, 14) * 60000, pile: rnd(0, lvMax), comment: pick(COMMENTS), spotter: newCall(pick(NEAR)), qrt: false, rst: pick(['59', '59', '57', '58', '55']), cnt: rnd(1, 9) }, r, { v: voiceFor() });
+}
+function huntStart() {
+  if (!/^[A-Z0-9]{1,3}\d[A-Z]{1,4}$/.test(myCall())) { status('Enter your call sign first.'); $('vbCall').focus(); return; }
+  unlock(); H.on = true; run.on = true; H.gen++; H.cur = null; H.phase = 'idle'; run.t0 = Date.now();
+  if (!H.spots.length || H.spots[0].prog !== huntProg()) H.spots = Array.from({ length: 7 }, newSpot);
+  $('vbGo').textContent = '■ STOP'; $('vbGo').classList.add('stop'); form(true); hiss(true);
+  status('Pick a spot and press TUNE to listen in.'); drawSpots(); drawTuned();
+  clearInterval(H.timer); H.timer = setInterval(spotTick, 5000);
+}
+function huntStop() { H.on = false; run.on = false; H.gen++; hush(); hiss(false); clearInterval(H.timer); H.cur = null; H.phase = 'idle'; $('vbGo').textContent = '▶ START'; $('vbGo').classList.remove('stop'); form(false); status('Stopped.'); drawSpots(); drawTuned(); }
+function spotTick() {
+  if (!H.on) return;
+  const now = Date.now();
+  H.spots.forEach(s => { if (!s.qrt && s !== H.cur && now - s.born > s.life) s.qrt = true; });
+  H.spots = H.spots.filter(s => !(s.qrt && now - s.born > s.life + 120000 && s !== H.cur));
+  if (H.spots.filter(s => !s.qrt).length < 6 || Math.random() < 0.12) { const s = newSpot(); s.born = now; H.spots.unshift(s); }
+  drawSpots();
+}
+const ago = t => { const m = Math.round((Date.now() - t) / 60000); return m < 1 ? 'just now' : m + ' min ago'; };
+function workedRight(s) { return H.log.some(q => q.ok && q.trueCall === s.call && q.trueRef === s.ref); }
+function drawSpots() {
+  const box = $('vbSpots'); if (!box) return;
+  if (!H.on) { box.innerHTML = '<p class="vb-sp-empty">Press ▶ START to load the practice spots.</p>'; return; }
+  const list = H.spots.slice().sort((a, b) => (a.qrt - b.qrt) || (b.born - a.born));
+  box.innerHTML = list.map(s => `<div class="vb-sp${s === H.cur ? ' on' : ''}${s.qrt ? ' qrt' : ''}">
+    <div class="vb-sp-a"><b>${esc(s.shown)}</b><span>${esc(s.fr)} kHz · SSB</span></div>
+    <div class="vb-sp-p"><b>${esc(s.ref)}</b> ${esc(s.name)} <i>(${esc(s.st)})</i></div>
+    <div class="vb-sp-m">${s.qrt ? '<span class="tag">QRT</span> ' : ''}${workedRight(s) ? '<span class="tag ok">✓ WORKED</span> ' : ''}"${esc(s.comment)}" · by ${esc(s.spotter)} · ${ago(s.born)} · ${s.cnt} spots</div>
+    <div class="vb-sp-b">${s.qrt ? '' : `<button type="button" class="vb-btn${s === H.cur ? '' : ' alt'}" data-tune="${s.id}">${s === H.cur ? '📻 LISTENING' : '📻 TUNE'}</button>`}${workedRight(s) && !s.respotted && !s.qrt ? `<button type="button" class="vb-btn alt" data-respot="${s.id}">📢 RE-SPOT</button>` : ''}</div>
+  </div>`).join('');
+}
+function drawTuned() {
+  const t = $('vbTuned'); if (!t) return;
+  const s = H.cur;
+  t.innerHTML = s ? `📻 Tuned to <b>${esc(s.fr)} kHz</b> · spot says <b>${esc(s.shown)}</b> at ${esc(s.ref)} · <span id="vbPhase">${phaseText()}</span>` : 'Not tuned to anyone. Pick a spot above.';
+}
+function phaseText() { return { idle: '', cq: 'they\'re calling CQ', window: '🟢 your turn: call now!', qso: '🔴 they\'re working someone, wait', partial: '🟡 they want the rest of a call', mine: '🟢 they\'re talking to YOU', done: 'contact done, log it', qrt: 'they went QRT' }[H.phase] || ''; }
+function setPhase(p) { H.phase = p; const e = $('vbPhase'); if (e) e.textContent = phaseText(); }
+function tune(id) {
+  const s = H.spots.find(x => x.id === id); if (!s || s.qrt) return;
+  hush(); H.gen++; H.cur = s; H.called = 0; H.tries = 0; H.wait = null;
+  s.life = Math.max(s.life, Date.now() - s.born + rnd(4, 8) * 60000); // stay on long enough to get a turn
+  $('vbBand').innerHTML = ''; line('', `📻 Tuning to ${s.fr} kHz. Listen first: copy the activator's call and park from the air, not just the spot.`, 'note');
+  ['fCall', 'fRcvd', 'fRef'].forEach(k => { if ($(k)) $(k).value = ''; }); $('fSent').value = '59';
+  drawSpots(); drawTuned(); actLoop(s, H.gen);
+}
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+async function waitFor(fn, ms, g) { const t0 = Date.now(); while (Date.now() - t0 < ms) { if (g !== H.gen) return 'gone'; const v = fn(); if (v) return v; await sleep(150); } return null; }
+function aSay(s, spoken, shown) { if (showText()) line(s.call, shown || spoken, 'them'); else line('📢', 'the activator talks', 'them'); return speak(spoken, s.v); }
+async function actLoop(s, g) {
+  const pg = PROGNAME[s.prog], refS = sayRef(s.ref);
+  const hunters = () => { const n = Math.max(0, s.pile + rnd(-1, 1)); return Array.from({ length: n }, () => { const st = pick(NEAR); return Object.assign({ call: newCall(st), st, rst: pick(['59', '59', '57', '58']) }, voiceFor()); }); };
+  let first = true;
+  await sleep(600);
+  while (g === H.gen) {
+    if (Date.now() - s.born > s.life + 60000) { await aSay(s, `Thanks everyone, I'm going Q R T. Seventy-three from ${say1(s.call)}.`, `Thanks everyone, I'm going QRT. 73 from ${s.call}.`); s.qrt = true; setPhase('qrt'); drawSpots(); status('They went QRT (off the air). Pick another spot.'); return; }
+    setPhase('cq');
+    const cqWords = s.prog === 'sota' ? 'CQ SOTA, CQ SOTA' : s.prog === 'kff' ? 'CQ K F F, CQ W W F F' : 'CQ POTA, CQ Parks on the Air';
+    if (first || chance(0.3)) await aSay(s, `${cqWords}, this is ${say1(s.call)}, ${say1(s.call)}, at ${s.prog === 'sota' ? 'summit' : s.prog === 'kff' ? 'reference' : 'park'} ${refS}, ${s.name}.`, `${cqWords.replace('K F F', 'KFF').replace('W W F F', 'WWFF')}, this is ${s.call}, ${s.call}, at ${s.ref}, ${s.name}.`);
+    else await aSay(s, `QRZ, ${say1(s.call)}, ${pg}.`, `QRZ? ${s.call}, ${pg}.`);
+    first = false; if (g !== H.gen) return;
+    /* the window: everybody calls */
+    setPhase('window'); const w0 = Date.now() - 1200; H.called = 0;
+    const hs = hunters();
+    for (const h of hs) { if (g !== H.gen) return; if (showText()) line(h.call, h.call, 'them'); else line('📢', 'a hunter calls', 'them'); await speak(say1(h.call), h); }
+    await waitFor(() => H.called && Date.now() - H.calledAt > 900, hs.length ? 1600 : 4500, g);
+    if (g !== H.gen) return;
+    const me = H.calledAt > w0 && H.called;
+    if (!me && !hs.length) { await sleep(800); continue; }
+    let pickMe = false;
+    if (me) {
+      const wMe = (1 + H.tries * 0.6) * (H.called >= 3 ? 0.5 : 1) * (S.p2p && S.ref ? 6 : 1);
+      pickMe = Math.random() < wMe / (wMe + hs.length);
+      if (!pickMe) H.tries++;
+    }
+    if (pickMe) {
+      /* dupe? */
+      if (H.qsos.some(q => q.s.call === s.call && q.s.ref === s.ref && q.heardRight)) { setPhase('mine'); await aSay(s, `${say1(myCall())}, we already worked, you're in the log. Thanks! QRZ.`, `${myCall()}, we already worked, you're in the log. Thanks! QRZ.`); line('', '🔁 Dupe! You already have this park in your log. Check your log before calling, and give someone else a turn.', 'note'); continue; }
+      /* partial copy first sometimes */
+      if (S.level >= 2 && chance(0.3)) {
+        const part = myCall().slice(-2); setPhase('partial'); H.called = 0;
+        await aSay(s, `The station with ${say1(part)}, again?`, `The station with ${part}, again?`);
+        const ans = await waitFor(() => H.called ? 1 : null, 7000, g); if (g !== H.gen) return;
+        if (!ans) { await aSay(s, `Lost them. QRZ?`); continue; }
+      }
+      let heard = myCall(); const wrong = S.level >= 2 && chance(0.15); if (wrong) heard = bust(heard);
+      setPhase('mine'); const st = STN[s.st] || s.st;
+      const pend = { s, heard, rcvd: s.rst, sentRep: false, corrected: false, t0: Date.now() }; H.pending = pend;
+      H.wait = null;
+      const repLine = () => aSay(s, `${say1(heard)}, thanks for the call. You're ${say1(s.rst)}, ${say1(s.rst)}, ${st}.`, `${heard}, thanks for the call. You're ${s.rst}, ${s.rst}, ${st}.`);
+      await repLine(); if (g !== H.gen) return;
+      status(heard === myCall() ? 'They have you! Send your report: SEND MY REPORT (or say "QSL, you\'re five nine Kentucky, thanks, 73").' : 'Listen close: did they get your call right? If not, press NEGATIVE.');
+      let asked = false;
+      for (;;) {
+        const ev = await waitFor(() => H.wait, asked ? 7000 : 11000, g); if (g !== H.gen) return; H.wait = null;
+        if (!ev) { if (!asked) { asked = true; await aSay(s, `${say1(heard)}, are you there?`, `${heard}, are you there?`); continue; } await aSay(s, `Lost that one. QRZ?`); line('', 'They gave up waiting. Answer quicker next time: they have a pileup to work.', 'note'); H.pending = null; break; }
+        if (ev === 'again') { await repLine(); continue; }
+        if (ev === 'neg') { if (heard !== myCall()) { heard = myCall(); pend.heard = heard; pend.corrected = true; await aSay(s, `Sorry about that. ${say1(heard)}, roger. You're ${say1(s.rst)}, ${st}.`, `Sorry about that. ${heard}, roger. You're ${s.rst}, ${st}.`); } else { await aSay(s, `Roger, I have you as ${say1(heard)}. That's right.`, `Roger, I have you as ${heard}. That's right.`); } continue; }
+        if (ev === 'report') {
+          pend.sentRep = true; pend.done = Date.now(); pend.heardRight = heard === myCall(); H.qsos.push(pend);
+          await aSay(s, pick([`QSL, thank you. Seventy-three.`, `Roger, thanks for the call. Seventy-three!`, `Thank you, seventy-three.`]));
+          setPhase('done'); s.cnt++;
+          if (!pend.heardRight) line('', `⚠ They logged you as ${heard} and you didn't correct them. That contact won't count for you. Press NEGATIVE next time.`, 'bad');
+          status('Contact done! Log it: their CALL, RCVD (the report they gave you) and THEIR PARK, then ✓ LOG IT.');
+          if (S.autolog) { $('fCall').value = s.call; $('fRcvd').value = s.rst; if ($('fRef')) $('fRef').value = s.ref; huntLog(true); }
+          await sleep(1500); break;
+        }
+        if (ev === 'call') continue;
+      }
+      continue;
+    }
+    /* they work somebody else */
+    const h = hs.length ? pick(hs) : null; if (!h) continue;
+    setPhase('qso'); H.called = 0;
+    await aSay(s, `${say1(h.call)}, you're five nine ${STN[s.st] || s.st}.`, `${h.call}, you're 59 ${STN[s.st] || s.st}.`); if (g !== H.gen) return;
+    if (showText()) line(h.call, `QSL, ${h.rst} ${STN[h.st]}, thanks, 73.`, 'them'); else line('📢', 'the hunter answers', 'them');
+    await speak(`QSL, ${say1(h.rst)}, ${STN[h.st]}. Thanks, seventy-three.`, h); if (g !== H.gen) return;
+    await aSay(s, `Thank you, seventy-three.`);
+    if (me && !pickMe) status(`They picked ${h.call} that time. Wait for QRZ, then call again. Calling once, clearly, works best.`);
+  }
+}
+/* your buttons / your voice in hunt mode */
+function hCall() {
+  if (!H.on) return;
+  if (!H.cur) { status('Tune to a spot first.'); return; }
+  const p2p = S.p2p && S.ref;
+  line('YOU', (p2p ? 'Park to park, ' : '') + myCall(), 'you');
+  if (H.phase === 'qso') { H.doubled++; line('', '⚠ You called while they were working someone. That covers them up. Wait for "thanks, 73" or "QRZ".', 'bad'); return; }
+  if (H.phase === 'mine') { H.wait = 'call'; return; }
+  if (H.phase === 'cq') line('', 'Wait until they finish talking, then call.', 'note');
+  H.called++; H.calledAt = Date.now();
+  if (H.called === 3) line('', 'Tip: calling over and over can cover the activator. Call once, then listen.', 'note');
+}
+function hReport() {
+  if (!H.on || !H.cur) return;
+  const rs = ($('fSent').value || '59').trim(), st = STN[S.st] || S.st;
+  const p2p = S.p2p && S.ref ? ` I'm at ${S.ref}.` : '';
+  line('YOU', `QSL, you're ${rs} ${st}.${p2p} Thanks, 73.`, 'you');
+  if (H.phase !== 'mine') { line('', 'They weren\'t talking to you yet. Wait until they say your call.', 'note'); return; }
+  H.wait = 'report';
+}
+function hAgain() { if (!H.on || !H.cur) return; line('YOU', 'Again, again?', 'you'); if (H.phase === 'mine') H.wait = 'again'; else line('', 'Just listen: they\'ll say it again in a moment.', 'note'); }
+function hNeg() { if (!H.on || !H.cur) return; line('YOU', `Negative. ${myCall()}, ${myCall()}.`, 'you'); if (H.phase === 'mine') H.wait = 'neg'; }
+function hLeave() { hush(); H.gen++; H.cur = null; setPhase('idle'); drawSpots(); drawTuned(); status('Pick another spot.'); }
+function respot(id) {
+  const s = H.spots.find(x => x.id === id); if (!s) return;
+  const c = prompt('Re-spot them. Add a short comment (like "tnx QSO, 59 in KY"):', 'tnx QSO'); if (c == null) return;
+  s.respotted = true; s.born = Date.now(); s.spotter = myCall(); s.comment = c.slice(0, 40) || 'tnx QSO'; s.cnt++; H.spotsGiven++;
+  line('', `📢 Thanks for re-spotting ${s.call}! Spots help activators get their contacts.`, 'good'); drawSpots(); drawLog();
+}
+function huntLog(auto) {
+  const f = { call: ($('fCall').value || '').toUpperCase().trim(), sent: ($('fSent').value || '59').trim(), rcvd: ($('fRcvd').value || '').trim(), ref: (($('fRef') || {}).value || '').toUpperCase().replace(/\s/g, '') };
+  if (!f.call) { status('Type their call in CALL first.'); return; }
+  const p = H.qsos.slice().reverse().find(x => !x.logged && (x.s.call === f.call || x.s.shown === f.call)) || H.qsos.slice().reverse().find(x => !x.logged);
+  const errs = [];
+  if (!p) errs.push(`you never finished a contact with ${f.call}`);
+  else {
+    const s = p.s;
+    if (f.call !== s.call) errs.push(f.call === s.shown && s.busted ? `call: the SPOT was wrong (${s.shown}). On the air they said ${s.call}. Always copy the call off the air` : `call: you logged ${f.call}, it was ${s.call}`);
+    if (f.rcvd.replace(/\D/g, '') !== p.rcvd) errs.push(`their report: you logged ${f.rcvd || '(blank)'}, they gave you ${p.rcvd}`);
+    if (f.ref !== s.ref) errs.push(`park: you logged ${f.ref || '(blank)'}, it was ${s.ref}`);
+    if (!p.heardRight) errs.push(`they logged you as ${p.heard}, so it won't count for you`);
+    p.logged = true;
+  }
+  const q = { auto: auto === true, n: H.log.length + 1, time: new Date(), call: f.call, sent: f.sent, rcvd: f.rcvd, ref: f.ref, ok: !errs.length, errs, trueCall: p ? p.s.call : '', trueRef: p ? p.s.ref : '', heardRight: p ? p.heardRight : false, prog: p ? p.s.prog : huntProg(), band: p ? p.s.band : '20', truth: p ? `${p.s.call} ${p.rcvd} ${p.s.ref}` : '' };
+  H.log.push(q);
+  if (errs.length) line('', '⚠ Log check: ' + errs.join(' · '), 'bad'); else line('', `✓ Logged correctly. ${H.log.filter(x => x.ok).length} parks hunted.`, 'good');
+  ['fCall', 'fRcvd', 'fRef'].forEach(k => { if ($(k)) $(k).value = ''; }); $('fSent').value = '59';
+  drawLog(); drawSpots();
+  if (q.ok) status('Nice! Stay for the next one, RE-SPOT them to help out, or tune another spot.');
+}
+function drawHuntLog() {
+  const tb = $('vbLogB'); if (!tb) return;
+  tb.innerHTML = H.log.slice().reverse().map(q => `<tr class="${q.ok ? 'ok' : 'bad'}"><td>${q.n}</td><td>${q.time.toISOString().slice(11, 16)}</td><td><b>${esc(q.call)}</b></td><td>${esc(q.sent)}</td><td>${esc(q.rcvd)}</td><td>${esc(q.ref)}</td><td>${q.auto ? '🤖 ' : ''}${q.ok ? '✓' : '<span title="' + esc(q.errs.join('; ')) + '">✗ ' + esc(q.truth) + '</span>'}</td></tr>`).join('');
+  const man = H.log.filter(q => !q.auto), n = man.length, ok = man.filter(q => q.ok).length, parks = new Set(H.log.filter(q => q.ok).map(q => q.trueRef)).size;
+  const e = $('vbStats'); if (e) e.innerHTML = `<div><b>${parks}</b><span>${PROGNAME[huntProg()] === 'SOTA' ? 'summits' : PROGNAME[huntProg()] === 'KFF' ? 'references' : 'parks'} hunted</span></div><div><b>${n ? Math.round(ok / n * 100) + '%' : '—'}</b><span>logged right (by you)</span></div><div><b>${H.spotsGiven}</b><span>re-spots</span></div><div><b>${H.doubled}</b><span>times you doubled</span></div>`;
+}
+function huntTalk(p, text) {
+  const low = ' ' + text.toLowerCase() + ' ';
+  if (/ (negative|no no|wrong|not correct|that's not|correction) /.test(low)) return hNeg();
+  if (p.rep || / (qsl|roger|thanks|thank you|73|seventy three|seventy-three) /.test(low)) { if (p.rep) $('fSent').value = p.rep; return hReport(); }
+  if (p.kind === 'agn') return hAgain();
+  if (p.kind === 'qrt') return hLeave();
+  const me = myCall(), runs = (p.runs || []).concat([p.raw || '', p.call || '']);
+  if (runs.some(r => r && (r.includes(me) || lev(r, me) <= 2 || (me.endsWith(r) && r.length >= 2)))) return hCall();
+  status('Not sure what you meant. In hunt mode say your call, then "QSL, you\'re five nine Kentucky, thanks, 73", "again again", or "negative" + your call.');
+}
+function huntAdif() {
+  const f = (k, v) => v ? `<${k}:${String(v).length}>${v} ` : '';
+  return H.log.map(q => { const d = q.time.toISOString(); return f('CALL', q.call) + f('QSO_DATE', d.slice(0, 10).replace(/-/g, '')) + f('TIME_ON', d.slice(11, 16).replace(':', '')) + f('BAND', q.band + 'M') + f('MODE', 'SSB') + f('RST_SENT', q.sent) + f('RST_RCVD', q.rcvd) + f('STATION_CALLSIGN', myCall()) + (q.prog === 'sota' ? f('SOTA_REF', q.ref) : f('SIG', q.prog === 'kff' ? 'WWFF' : 'POTA') + f('SIG_INFO', q.ref)) + (S.p2p && S.ref ? f(S.prog === 'sota' ? 'MY_SOTA_REF' : 'MY_SIG_INFO', S.ref) : '') + f('COMMENT', 'KPC PRACTICE HUNT - NOT A REAL QSO') + '<EOR>'; });
+}
+function setMode(m) {
+  if (run.on || H.on) { S.mode === 'hunt' ? huntStop() : stop(); }
+  S.mode = m; save();
+  document.body.classList.toggle('vb-hunt', m === 'hunt');
+  $('vbModeAct').classList.toggle('on', m !== 'hunt'); $('vbModeHunt').classList.toggle('on', m === 'hunt');
+  $('vbModeAct').setAttribute('aria-pressed', m !== 'hunt'); $('vbModeHunt').setAttribute('aria-pressed', m === 'hunt');
+  const lh = $('vbLogH'); if (lh) lh.textContent = m === 'hunt' ? 'Your Hunter Log' : 'Your Log';
+  const th = $('vbLogStH'); if (th) th.textContent = m === 'hunt' ? 'PARK' : 'ST';
+  const fr = $('fRefL'); if (fr) { fr.hidden = m !== 'hunt' && S.prog === 'off'; fr.firstChild.nodeValue = m === 'hunt' ? 'THEIR PARK / REF ' : 'THEIR PARK / REF '; const sm = fr.querySelector('small'); if (sm) sm.textContent = m === 'hunt' ? '(copy it from the air)' : '(only if they give one)'; }
+  $('vbBand').innerHTML = ''; status(m === 'hunt' ? 'Hunter mode: press START to load the spots.' : 'Enter your call and press START.');
+  drawLog(); drawSpots(); drawTuned();
 }
 
 /* ---------------- talk back: push-to-talk + the browser's speech recognition ----------------
@@ -329,6 +571,7 @@ function bestSub(runs0) {
 async function talkDo(text) {
   const p = parseSpeech(text);
   const l = $('vbHeard'); if (l) { l.textContent = `🎙 "${text}"`; l.classList.add('said'); }
+  if (S.mode === 'hunt') return huntTalk(p, text);
   if (p.kind === 'qrt') { line('YOU', 'QRT, thanks everyone, 73.', 'you'); return stop(); }
   if (p.kind === 'qrx') { hush(); run.gen++; line('YOU', 'QRX, stand by please.', 'you'); status('Standing by. Say "QRZ" or press QRZ? when you\'re ready.'); return; }
   if (p.kind === 'cq') return cq();
@@ -351,13 +594,17 @@ function init() {
   bind('vbCall', 'call', true); bind('vbSt', 'st'); bind('vbRef', 'ref', true); bind('vbLevel', 'level', false, true); bind('vbVol', 'vol', false, true); bind('vbHiss', 'hiss', false, true); bind('vbRate', 'rate', false, true);
   const lbl = () => { const l = $('vbLevelV'); if (l) l.textContent = `${S.level}: ${LEVELS[S.level].name}`; if (run.on) hiss(true); };
   $('vbLevel').addEventListener('change', () => { lbl(); }); lbl();
-  $('vbGo').addEventListener('click', () => run.on ? stop() : start());
+  $('vbGo').addEventListener('click', () => S.mode === 'hunt' ? (H.on ? huntStop() : huntStart()) : (run.on ? stop() : start()));
+  $('vbModeAct').addEventListener('click', () => setMode('act')); $('vbModeHunt').addEventListener('click', () => setMode('hunt'));
+  [['hCall', hCall], ['hRep', hReport], ['hAgn', hAgain], ['hNeg', hNeg], ['hLeave', hLeave]].forEach(([id, fn]) => { const e = $(id); if (e) e.addEventListener('click', fn); });
+  $('vbSpots').addEventListener('click', e => { const t = e.target.closest('[data-tune]'); if (t) tune(t.dataset.tune); const r = e.target.closest('[data-respot]'); if (r) respot(r.dataset.respot); });
+  const pp = $('vbP2P'); if (pp) { pp.checked = !!S.p2p; pp.addEventListener('change', () => { S.p2p = pp.checked; save(); if (S.p2p && !S.ref) status('Put your park in YOUR PARK so they know where you are.'); }); }
   $('vbCq').addEventListener('click', cq); $('vbQrz').addEventListener('click', qrz); $('vbAgn').addEventListener('click', agn);
   if ($('vbTest')) $('vbTest').addEventListener('click', testVoice);
   if ($('vbSkip')) $('vbSkip').addEventListener('click', skip);
   if ($('vb73')) $('vb73').addEventListener('click', () => say73());
   if ($('vbQsl')) $('vbQsl').addEventListener('click', () => say73('QSL, thank you, 73.'));
-  const pg = $('vbProg'); if (pg) { pg.value = S.prog; const lab = () => { const l = $('vbRefL'); if (l) l.firstChild.nodeValue = S.prog === 'sota' ? 'YOUR SUMMIT' : S.prog === 'kff' ? 'YOUR KFF REF' : S.prog === 'off' ? 'YOUR REF (not used)' : 'YOUR PARK'; const fr = $('fRefL'); if (fr) fr.hidden = S.prog === 'off'; drawLog(); }; pg.addEventListener('change', () => { S.prog = pg.value; save(); lab(); }); lab(); }
+  const pg = $('vbProg'); if (pg) { pg.value = S.prog; const lab = () => { const l = $('vbRefL'); if (l) l.firstChild.nodeValue = S.prog === 'sota' ? 'YOUR SUMMIT' : S.prog === 'kff' ? 'YOUR KFF REF' : S.prog === 'off' ? 'YOUR REF (not used)' : 'YOUR PARK'; const fr = $('fRefL'); if (fr) fr.hidden = S.prog === 'off' && S.mode !== 'hunt'; drawLog(); }; pg.addEventListener('change', () => { S.prog = pg.value; save(); lab(); if (H.on) { hLeave(); H.spots = Array.from({ length: 7 }, newSpot); drawSpots(); } }); lab(); }
   const al = $('vbAuto'); if (al) { al.checked = !!S.autolog; al.addEventListener('change', () => { S.autolog = al.checked; save(); }); }
   const mic = $('vbMic'), micSync = () => { const t = $('vbTalk'); if (t) t.hidden = !S.mic; const h = $('vbHeard'); if (h) h.hidden = !S.mic; if (mic) mic.checked = !!S.mic; document.body.classList.toggle('vb-nomic', !S.mic); };
   if (mic) mic.addEventListener('change', () => { S.mic = mic.checked; save(); micSync(); }); micSync();
@@ -375,11 +622,11 @@ function init() {
   }
   $('vbSend').addEventListener('click', sendReport); $('vbLog').addEventListener('click', logIt); $('vbAdif').addEventListener('click', adif);
   // keyboard: Enter in CALL = send report, Enter in STATE = log it; F1 CQ, F2 QRZ, F3 AGN
-  $('fCall').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); sendReport(); $('fRcvd').focus(); } });
-  ['fRcvd', 'fSt'].forEach(id => $(id).addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); logIt(); } }));
-  document.addEventListener('keydown', e => { const m = { F1: cq, F2: qrz, F3: agn, F4: skip, F5: () => say73(), F6: () => say73('QSL, thank you, 73.') }[e.key]; if (m && run.on) { e.preventDefault(); m(); } });
-  form(false); drawLog();
+  $('fCall').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); if (S.mode !== 'hunt') sendReport(); $('fRcvd').focus(); } });
+  ['fRcvd', 'fSt', 'fRef'].forEach(id => $(id).addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); logIt(); } }));
+  document.addEventListener('keydown', e => { const m = S.mode === 'hunt' ? { F1: hCall, F2: hReport, F3: hAgain, F4: hNeg, F6: hLeave }[e.key] : { F1: cq, F2: qrz, F3: agn, F4: skip, F5: () => say73(), F6: () => say73('QSL, thank you, 73.') }[e.key]; if (m && run.on) { e.preventDefault(); m(); } });
+  form(false); setMode(S.mode === 'hunt' ? 'hunt' : 'act');
 }
-window.KPCSSB = { run, S, say1, check, lev, parseSpeech, talkDo, bestSub, skip, say73 };
+window.KPCSSB = { H, tune, hCall, hReport, hNeg, huntLog, setMode, run, S, say1, check, lev, parseSpeech, talkDo, bestSub, skip, say73 };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
