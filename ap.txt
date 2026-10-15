@@ -1,0 +1,45 @@
+=== https://api.pota.app/lookup?search=Vogel&size=5
+[{"type": "park", "id": 85145, "display": "AT-0103  Vogelschutzgebiet Großedlinger Teich National Reserve", "value": "AT-0103"}, {"type": "park", "id": 85185, "display": "AT-0140  Vogelschutzgebiet Völkermarkter Stausee National Reserve", "value": "AT-0140"}, {"type": "park", "id": 65220, "display": "BE-0259  Vogelkijkhut Testelt Nature Reserve", "value": "BE-0259"}, {"type": "park", "id": 109668, "display": "CH-0265  Vogelroupfi Wetland Reserve", "value": "CH-0265"}, {"type": "park", "id": 78548, "display": "DE-0298  Vogelfreistätte Innstausee bei Attel und Freiham Nature Reserve", "value": "DE-0298"}]
+HTTP/2 200 
+access-control-allow-origin: *
+=== https://api.pota.app/park/US-2177
+{"parkId": 2177, "reference": "US-2177", "name": "Fort Yargo", "latitude": 33.9807, "longitude": -83.7367, "grid4": "EM83", "grid6": "EM83dx", "parktypeId": 101, "active": 1, "parkComments": null, "accessibility": null, "sensitivity": null, "accessMethods": "Automobile,Foot", "activationMethods": "Automobile,Cabin,Campground,Pedestrian,Shelter", "agencies": null, "agencyURLs": null, "parkURLs": null, "website": "https://gastateparks.org/FortYargo", "createdByAdmin": null, "parktypeDesc": "State Park", "locationDesc": "US-GA", "locationName": "Georgia", "entityId": 291, "entityName": "United States of America", "referencePrefix": "US", "entityDeleted": 0, "firstActivator": "N4JAH", "firstActivationDate": "2019-01-05"}
+HTTP/2 200 
+access-control-allow-origin: *
+=== https://api.pota.app/locations
+[{"locationId": 2, "entityId": 6, "entityName": "Alaska", "locationDesc": "US-AK", "locationName": "Alaska", "latitude": 61.3707, "longitude": -152.404, "iso": "US-AK"}, {"locationId": 3, "entityId": 291, "entityName": "United States of America", "locationDesc": "US-AL", "locationName": "Alabama", "latitude": 32.8067, "longitude": -86.7911, "iso": "US-AL"}, {"locationId": 4, "entityId": 291, "entityName": "United States of America", "locationDesc": "US-AR", "locationName": "Arkansas", "latitude": 34.9697, "longitude": -92.3731, "iso": "US-AR"}, {"locationId": 5, "entityId": 291, "entityName": "United States of America", "locationDesc": "US-AZ", "locationName": "Arizona", "latitude": 33.7298,
+HTTP/2 200 
+access-control-allow-origin: *
+=== https://api2.sota.org.uk/api/summits/W4G/NG-001
+{"associationName":"USA - Georgia","associationCode":"W4G","regionName":"North Georgia","regionCode":"NG","summitCode":"W4G/NG-001","name":"Brasstown Bald","notes":"","points":10,"altM":1458,"altFt":4783,"activationCount":null,"activationCall":null,"activationDate":null,"gridRef1":"-83.8108","gridRef2":"34.8743","locator":"EM84cu","latitude":34.8743,"longitude":-83.8108,"myChases":null,"myActivations":null,"validTo":"2099-12-31T00:00:00Z","validFrom":"2012-10-01T00:00:00Z","valid":true,"restrictionMask":false,"restrictionList":[]}
+HTTP/2 200 
+access-control-allow-origin: *
+=== https://api.sotl.as/summits/search?q=brasstown&limit=3
+
+=== https://api2.sota.org.uk/api/associations/W4G
+{"activeFrom":"2012-10-01T00:00:00Z","associationCode":"W4G","associationName":"USA - Georgia","associationManagerCallsign":"WG4I","dxcc":"291","manager":"Ryan Kovacs","maxLat":34.9983,"maxLong":-83.1342,"minLat":32.8407,"minLong":-85.4663,"regionsCount":3,"summitsCount":136,"continent":"NA","region
+HTTP/2 200 
+access-control-allow-origin: *
+=== https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas_Fee_Manager/FeatureServer/0/query?geometry=-83.96,34.76&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=Unit_Nm,Mang_Name,Loc_Mang,GIS_Acres&returnGeometry=false&f=json
+{"error":{"code":499,"message":"Token Required","messageCode":"GWM_0003","details":["Token Required"]}}
+HTTP/2 200 
+access-control-allow-origin: *
+=== https://wwff.co/wwff-data/wwff_directory.csv
+reference,status,name,program,dxcc,state,county,continent,iota,iaruLocator,latitude,longitude,IUCNcat,validFrom,validTo,notes,lastMod,changeLog,reviewFlag,specialFlags,website,country,region,dxccEnum,qsoCount,lastAct
+1SFF-0001,active,Spratly,1SFF,1S,1S,1S,AS,-,OJ58XO,8.61946,111.92416,n/a,0000-00-00,0000-00-00,"IOTA AS-051","2023-08-23 by M0YMA - Updated","2023-08-23 by M0YMA - Updated: Lat/Lon, Locator<br>2023-04-21 by ON4BB - Updated: Website, State, County<br>2023-03-13 by OK2APY - Updated: Website, DXCC, Lat/Lon, Locator, Notes",0,,-,"Spratly Archipelago",-,,,
+3AFF-0001,active,"Reserve sou
+HTTP/1.1 200 OK
+=== https://spots.wwff.co/static/agendas.json
+[
+    {
+        "id": 5488,
+        "activator_call": "OH2XA/P",
+        "reference": "OHFF-1734",
+        "utc_start": "2026-10-15 10:00:00",
+        "utc_end": "2026-10-15 14:00:00",
+        "band": "80m, 60m, 40m, 20m, 12m",
+        "mode": "SSB",
+        "remarks": "times +/- sth",
+        "post
+HTTP/2 200 
+access-control-allow-origin: *
