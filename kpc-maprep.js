@@ -113,17 +113,63 @@
     if (!all.length) return notFound(name, st, town);
     if (all.length === 1) return open(all[0]);
     $('mrOut').innerHTML = '';
-    $('mrList').innerHTML = `<p class="mr-help">${all.length} matches in ${esc(st)}. Pick one:</p>` + all.slice(0, 40).map((g, i) => `<button type="button" class="mr-pick${g.osm ? ' osm' : ''}" data-i="${i}"><b>${esc(g.name)}</b><span>${g.acres ? Math.round(g.acres).toLocaleString() + ' acres · ' : ''}${esc(g.rows[0].Loc_Mang || AG[g.rows[0].Mang_Name] || '')}<br><small>${esc(g.src)}</small></span></button>`).join('');
-    $('mrList').onclick = e => { const b = e.target.closest('[data-i]'); if (b) { $('mrList').innerHTML = ''; open(all[+b.dataset.i]); } };
+    $('mrList').innerHTML = `<p class="mr-help">${all.length} matches in ${esc(st)}. Pick one, or <a href="#" id="mrWeb">research the web for it ›</a></p>` + all.slice(0, 40).map((g, i) => `<button type="button" class="mr-pick${g.osm ? ' osm' : ''}" data-i="${i}"><b>${esc(g.name)}</b><span>${g.acres ? Math.round(g.acres).toLocaleString() + ' acres · ' : ''}${esc(g.rows[0].Loc_Mang || AG[g.rows[0].Mang_Name] || '')}<br><small>${esc(g.src)}</small></span></button>`).join('');
+    $('mrList').onclick = e => { if (e.target.id === 'mrWeb') { e.preventDefault(); $('mrList').innerHTML = ''; notFound(name, st, town); return; } const b = e.target.closest('[data-i]'); if (b) { $('mrList').innerHTML = ''; open(all[+b.dataset.i]); } };
   }
-  function notFound(name, st, town) {
+  /* ---------- nothing official by name: research the web (Wikidata / Wikipedia + OpenStreetMap search),
+     then go BACK to the official database with the location we learned (finds it even when the agency spells it differently) ---------- */
+  const WD = 'https://www.wikidata.org/w/api.php';
+  async function webResearch(name, st, town) {
+    const box = await stBox(st), inSt = (la, lo) => !box || (lo >= box[0] - .05 && lo <= box[2] + .05 && la >= box[1] - .05 && la <= box[3] + .05);
+    const hits = [];
+    const wd = (async () => {
+      const s1 = await B.jget(WD + '?' + new URLSearchParams({ action: 'wbsearchentities', search: name, language: 'en', type: 'item', limit: 8, format: 'json', origin: '*' }));
+      const ids = (s1.search || []).map(x => x.id); if (!ids.length) return;
+      const e = await B.jget(WD + '?' + new URLSearchParams({ action: 'wbgetentities', ids: ids.join('|'), props: 'labels|descriptions|claims|sitelinks', languages: 'en', sitefilter: 'enwiki', format: 'json', origin: '*' }));
+      const val = (c, p) => ((c[p] || [])[0] || {}).mainsnak && c[p][0].mainsnak.datavalue ? c[p][0].mainsnak.datavalue.value : null;
+      const refIds = new Set(); const items = Object.values(e.entities || {});
+      items.forEach(it => { const c = it.claims || {}; ['P137', 'P127', 'P31'].forEach(p => (c[p] || []).forEach(x => { const v = x.mainsnak.datavalue; if (v && v.value && v.value.id) refIds.add(v.value.id); })); });
+      let L = {}; if (refIds.size) { const r = await B.jget(WD + '?' + new URLSearchParams({ action: 'wbgetentities', ids: [...refIds].slice(0, 50).join('|'), props: 'labels', languages: 'en', format: 'json', origin: '*' })).catch(() => ({})); Object.values(r.entities || {}).forEach(x => { L[x.id] = x.labels && x.labels.en ? x.labels.en.value : x.id; }); }
+      const lab = (c, p) => (c[p] || []).map(x => x.mainsnak.datavalue && x.mainsnak.datavalue.value.id).filter(Boolean).map(id => L[id] || id);
+      items.forEach(it => { const c = it.claims || {}, co = val(c, 'P625'); if (!co || !inSt(co.latitude, co.longitude)) return;
+        hits.push({ src: 'Wikidata / Wikipedia', name: it.labels && it.labels.en ? it.labels.en.value : name, la: co.latitude, lo: co.longitude, what: it.descriptions && it.descriptions.en ? it.descriptions.en.value : '', type: lab(c, 'P31').join(', '), operator: lab(c, 'P137').join(', '), owner: lab(c, 'P127').join(', '), web: val(c, 'P856') || '', wiki: it.sitelinks && it.sitelinks.enwiki ? 'https://en.wikipedia.org/wiki/' + encodeURIComponent(it.sitelinks.enwiki.title.replace(/ /g, '_')) : '', item: 'https://www.wikidata.org/wiki/' + it.id }); });
+    })().catch(() => {});
+    const nm = (async () => {
+      const j = await B.jget('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: name + (town ? ', ' + town : '') + ', ' + st + ', USA', format: 'jsonv2', countrycodes: 'us', extratags: 1, limit: 6 }));
+      (j || []).forEach(x => { const la = +x.lat, lo = +x.lon; if (!inSt(la, lo)) return; const t = x.extratags || {};
+        hits.push({ src: 'OpenStreetMap search', name: x.name || x.display_name.split(',')[0], la, lo, what: x.display_name, type: (x.category + ' / ' + x.type).replace(/_/g, ' '), operator: t.operator || '', owner: t.owner || t.ownership || '', web: t.website || t['contact:website'] || t.url || '', access: t.access || '' }); });
+    })().catch(() => {});
+    await Promise.all([wd, nm]);
+    // back to the official database at each place we learned about
+    const seen = new Set(), found = [];
+    for (const h of hits.slice(0, 8)) {
+      const k = h.la.toFixed(3) + ',' + h.lo.toFixed(3); if (seen.has(k)) continue; seen.add(k);
+      h.land = await q({ geometry: `${h.lo},${h.la}`, geometryType: 'esriGeometryPoint', inSR: 4326, spatialRel: 'esriSpatialRelIntersects', where: `State_Nm='${st}'` }).catch(() => null);
+      if (h.land && !h.land.length) h.land = await q({ geometry: `${h.lo - .004},${h.la - .004},${h.lo + .004},${h.la + .004}`, geometryType: 'esriGeometryEnvelope', inSR: 4326, spatialRel: 'esriSpatialRelIntersects', where: `State_Nm='${st}'` }).then(r => { r.forEach(x => x._near = true); return r; }).catch(() => null);
+      (h.land || []).forEach(r => found.push(r));
+    }
+    return { hits, found };
+  }
+  async function notFound(name, st, town) {
     const gq = s => 'https://www.google.com/search?q=' + encodeURIComponent(s);
     const list = AGL.filter(a => !/universit|college|guard|transportation|veterans|unknown|division of water/i.test(a.loc)).slice(0, 30);
-    $('mrOut').innerHTML = `<div class="mr-msg"><b>Not found in ${esc(st)}</b> in the national public land database, the live National Park Service and Fish &amp; Wildlife maps${st === 'KY' ? ', Kentucky\'s state files' : ''} or OpenStreetMap${town ? ' near ' + esc(town) : ''}.
-<p>That usually means it's brand new, very small, or the agency spells it differently. Try fewer words (one main word works best), or search each agency's own website below:</p>
-<div class="mr-btns">${list.map(a => `<a href="${gq(`"${name}" "${a.loc}"`)}" target="_blank" rel="noopener">${esc(a.loc)} ↗</a>`).join('')}<a class="gold" href="${gq(`"${name}" ${st} site:.gov`)}" target="_blank" rel="noopener">ANY .GOV SITE ↗</a></div>
+    msg(`Not in the official databases by that name. Now researching the web (Wikipedia / Wikidata and the OpenStreetMap search) to find where it is, then checking the official land database at that spot…`);
+    const R = await webResearch(name, st, town);
+    const lands = new Map(); R.found.forEach(r => { const k = (r.Unit_Nm || r.Loc_Nm) + '|' + r.State_Nm; const g = lands.get(k) || { name: r.Unit_Nm || r.Loc_Nm, st: r.State_Nm, rows: [], acres: 0, src: 'USGS PAD-US (found by location)' }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; lands.set(k, g); });
+    const LG = [...lands.values()];
+    const hitHtml = R.hits.length ? R.hits.slice(0, 6).map(h => {
+      const land = h.land == null ? '<span class="mr-w">Could not check the official database at this spot.</span>' : !h.land.length ? '<span class="mr-no">No public land at this spot in the official database: it may be private land, or too new to be listed.</span>' : '<span class="mr-ok">Official database at this spot: ' + [...new Set(h.land.map(r => (r.Unit_Nm || r.Loc_Nm) + ' (' + (TYPE[r.Own_Type] || r.Own_Type) + (r.Loc_Mang ? ', ' + r.Loc_Mang : '') + ')' + (r._near ? ' — next to it' : '')))].map(esc).join('; ') + '</span>';
+      const pvt = /private|privately/i.test(h.owner + ' ' + h.access + ' ' + h.operator);
+      return `<div class="mr-hit"><b>${esc(h.name)}</b><small>${esc(h.src)}</small><p>${esc([h.what, h.type].filter(Boolean).join(' · '))}</p>${h.operator || h.owner ? `<p>Run by: <b>${esc(h.operator || '?')}</b>${h.owner ? ' · owned by: <b>' + esc(h.owner) + '</b>' : ''}${pvt ? ' <span class="mr-no">says private</span>' : ''}</p>` : ''}${h.access ? `<p>Access tag: ${esc(h.access)}</p>` : ''}<p>${land}</p><div class="mr-btns">${h.web ? `<a class="gold" href="${esc(h.web)}" target="_blank" rel="noopener">WEBSITE LISTED ↗</a>` : ''}${h.wiki ? `<a href="${esc(h.wiki)}" target="_blank" rel="noopener">WIKIPEDIA ↗</a>` : ''}${h.item ? `<a href="${esc(h.item)}" target="_blank" rel="noopener">WIKIDATA ↗</a>` : ''}<a href="https://www.google.com/maps/search/?api=1&query=${h.la},${h.lo}" target="_blank" rel="noopener">MAP ↗</a>${h.operator ? `<a href="${gq(`"${h.name}" "${h.operator}" site:.gov`)}" target="_blank" rel="noopener">SEARCH ${esc(h.operator.toUpperCase().slice(0, 40))} ↗</a>` : ''}</div></div>`;
+    }).join('') : '<p>The web search didn\'t find it either.</p>';
+    $('mrOut').innerHTML = `<div class="mr-msg"><b>Not found by name in ${esc(st)}</b> in the official databases${town ? ' near ' + esc(town) : ''}.</div>
+${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFICIAL DATABASE</h3><p class="mr-help">The web told us where it is, and the official land database has land there under a different name. Pick one to run the rule check:</p>${LG.map((g, i) => `<button type="button" class="mr-pick" data-l="${i}"><b>${esc(g.name)}</b><span>${Math.round(g.acres).toLocaleString()} acres · ${esc(g.rows[0].Loc_Mang || AG[g.rows[0].Mang_Name] || '')}${g.rows.some(r => r._near) ? '<br><small>next to the spot the web gave</small>' : ''}</span></button>`).join('')}</div>` : ''}
+<div class="mr-sec"><h3>WHAT THE WEB SAYS (NOT OFFICIAL)</h3><p class="mr-help">From Wikipedia / Wikidata and the OpenStreetMap search. Use it to find the place and the agency's own site; the official answer is still the agency's page.</p>${hitHtml}</div>
+<div class="mr-sec"><h3>SEARCH EACH AGENCY'S OWN WEBSITE</h3><p class="mr-help">Brand-new or very small places often show up on the agency's site first. Try fewer words if nothing comes up.</p><div class="mr-btns">${list.map(a => `<a href="${gq(`"${name}" "${a.loc}"`)}" target="_blank" rel="noopener">${esc(a.loc)} ↗</a>`).join('')}<a class="gold" href="${gq(`"${name}" ${st} site:.gov`)}" target="_blank" rel="noopener">ANY .GOV SITE ↗</a></div>
 <p class="mr-help">If the agency's own page shows it's federal or state land and open to the public, it may still qualify: tell your Map Rep and include the agency's page and map.</p></div>`;
+    $('mrOut').querySelectorAll('[data-l]').forEach(b => b.onclick = () => open(LG[+b.dataset.l]));
   }
+
   const SN = { alabama: 'AL', alaska: 'AK', arizona: 'AZ', arkansas: 'AR', california: 'CA', colorado: 'CO', connecticut: 'CT', delaware: 'DE', florida: 'FL', georgia: 'GA', hawaii: 'HI', idaho: 'ID', illinois: 'IL', indiana: 'IN', iowa: 'IA', kansas: 'KS', kentucky: 'KY', louisiana: 'LA', maine: 'ME', maryland: 'MD', massachusetts: 'MA', michigan: 'MI', minnesota: 'MN', mississippi: 'MS', missouri: 'MO', montana: 'MT', nebraska: 'NE', nevada: 'NV', 'new hampshire': 'NH', 'new jersey': 'NJ', 'new mexico': 'NM', 'new york': 'NY', 'north carolina': 'NC', 'north dakota': 'ND', ohio: 'OH', oklahoma: 'OK', oregon: 'OR', pennsylvania: 'PA', 'rhode island': 'RI', 'south carolina': 'SC', 'south dakota': 'SD', tennessee: 'TN', texas: 'TX', utah: 'UT', vermont: 'VT', virginia: 'VA', washington: 'WA', 'west virginia': 'WV', wisconsin: 'WI', wyoming: 'WY' };
   const stateOf = n => SN[String(n || '').toLowerCase()] || '';
 
@@ -195,10 +241,11 @@ ${g.osm ? `<div class="mr-osm"><b>From OpenStreetMap, not an official source.</b
 <div class="mr-rules">${res.map(r => `<div class="mr-r ${r.v.toLowerCase()}"><i>${r.v === 'INFO' ? 'INFO' : r.v}</i><div><b>${esc(r.title)}</b><p>${r.why}</p></div></div>`).join('')}</div>
 <div class="mr-sec"><h3>OFFICIAL WEBSITE &amp; MAP</h3><div class="mr-btns"><a class="gold" href="${gq(`"${nm}" ${stn} site:.gov`)}" target="_blank" rel="noopener">FIND THE OFFICIAL .GOV PAGE ↗</a><a href="${gq(`"${nm}" ${locM} boundary map`)}" target="_blank" rel="noopener">FIND THE AGENCY BOUNDARY MAP ↗</a><a href="${gq(`"${nm}" ${stn} ${locM}`)}" target="_blank" rel="noopener">SEARCH THE AGENCY ↗</a></div><p class="mr-help">These search only for the park by name with its agency. Use the agency's own page, not tourist sites.</p></div>
 <div class="mr-sec"><h3>BOUNDARY MAP (${esc(g.src || 'USGS PAD-US')})</h3><div id="mrMap"></div><p class="mr-help">Gold = this park's land in the source above. Blue pins = POTA parks nearby (tap for the number). Tap the map to drop a pin; ⛶ FULL for full screen; layers for satellite, topo and terrain.</p><div class="mr-btns" id="mrFiles"></div></div>
-<div class="mr-sec"><h3>NOTE FOR YOUR MAP REP</h3><textarea id="mrNote" rows="13">${esc(note)}</textarea><div class="mr-btns"><a class="gold" href="#" id="mrCopy">COPY THE NOTE</a><a href="${RULES_URL}" target="_blank" rel="noopener">POTA PARK-ADDITION RULES ↗</a></div><p class="mr-help">Send park requests to the Mapping Representative for the state (see the POTA rules page for the Map Rep list; email them from their QRZ page). POTA adds parks at the Map Rep's discretion.</p></div>
+<div class="mr-sec"><h3>NOTE FOR YOUR MAP REP</h3><textarea id="mrNote" rows="13">${esc(note)}</textarea><div class="mr-btns"><a class="gold" href="#" id="mrCopy">COPY THE NOTE</a><a href="${RULES_URL}" target="_blank" rel="noopener">POTA PARK-ADDITION RULES ↗</a><a href="#" id="mrWeb2">RESEARCH THE WEB FOR MORE ›</a></div><p class="mr-help">Send park requests to the Mapping Representative for the state (see the POTA rules page for the Map Rep list; email them from their QRZ page). POTA adds parks at the Map Rep's discretion.</p></div>
 </section>`;
     $('mrCopy').onclick = e => { e.preventDefault(); const t = $('mrNote').value; (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => e.target.textContent = 'COPIED ✓').catch(() => { $('mrNote').select(); document.execCommand('copy'); e.target.textContent = 'COPIED ✓'; }); };
     draw(feats, near, la, lo);
+    $('mrWeb2').onclick = e => { e.preventDefault(); notFound(g.name, g.st, ''); };
     window.scrollTo({ top: $('mrOut').offsetTop - 70, behavior: 'smooth' });
   }
   function draw(feats, near, la, lo) {
