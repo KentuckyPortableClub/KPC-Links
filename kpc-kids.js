@@ -94,6 +94,71 @@ function g3Check() {
   else { g3.tries++; const hint = g3.ans.split('').map((c, i) => got[i] === c ? c : '_').join(' '); f.innerHTML = `<b class="bad">Not quite.</b> <span>What you got right: <code>${hint}</code></span>${g3.tries >= 2 ? ` <span>The answer was <b>${g3.ans}</b>.</span>` : ''}`; if (g3.tries >= 2) setTimeout(g3New, 2600); }
 }
 
+/* ---------- Morse Code Fun (simple, for kids) ---------- */
+const MC = { A:'.-',B:'-...',C:'-.-.',D:'-..',E:'.',F:'..-.',G:'--.',H:'....',I:'..',J:'.---',K:'-.-',L:'.-..',M:'--',N:'-.',O:'---',P:'.--.',Q:'--.-',R:'.-.',S:'...',T:'-',U:'..-',V:'...-',W:'.--',X:'-..-',Y:'-.--',Z:'--..',
+  '0':'-----','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.' };
+const MD = {}; Object.keys(MC).forEach(k => { MD[MC[k]] = k; });
+const EASY = ['E', 'T', 'I', 'M', 'A', 'N', 'S', 'O'];
+const dd = code => code.split('').map(c => c === '.' ? '<i class="dot"></i>' : '<i class="dash"></i>').join('');
+let AC = null, osc = null, gn = null;
+function ac() {
+  if (!AC) { AC = new (window.AudioContext || window.webkitAudioContext)(); osc = AC.createOscillator(); osc.frequency.value = 600; gn = AC.createGain(); gn.gain.value = 0; osc.connect(gn); gn.connect(AC.destination); osc.start(); }
+  if (AC.state === 'suspended') AC.resume(); return AC;
+}
+const U = 0.11; // seconds per dit: slow and friendly (about 11 WPM)
+let mgen = 0;
+function beepSeq(text, onChar) { // plays text; calls onChar(index) as each character starts
+  ac(); const g = ++mgen, t0 = AC.currentTime + 0.1; let t = t0; const starts = [];
+  gn.gain.cancelScheduledValues(AC.currentTime); gn.gain.setValueAtTime(0, AC.currentTime);
+  text.split('').forEach((ch, i) => {
+    if (ch === ' ') { t += U * 4; return; }
+    const c = MC[ch]; if (!c) return; starts.push([i, t]);
+    c.split('').forEach((e, k) => { const d = e === '.' ? U : 3 * U; gn.gain.setTargetAtTime(0.5, t, 0.004); gn.gain.setTargetAtTime(0, t + d, 0.004); t += d + (k < c.length - 1 ? U : 0); });
+    t += U * 3;
+  });
+  if (onChar) starts.forEach(([i, ts]) => setTimeout(() => { if (g === mgen) onChar(i); }, (ts - AC.currentTime) * 1000));
+  return new Promise(r => setTimeout(() => r(g === mgen), (t - AC.currentTime) * 1000 + 100));
+}
+const m4 = { mode: 'name', ans: '', g: 0, key: { down: 0, code: '', timer: 0 } };
+const later = (f, ms) => { const g = m4.g; setTimeout(() => { if (g === m4.g) f(); }, ms); };
+function m4Draw() {
+  const b = $('m4Body'); if (!b) return; m4.g++;
+  if (m4.mode === 'name') {
+    b.innerHTML = `<input type="text" id="m4In" maxlength="12" autocomplete="off" spellcheck="false" placeholder="Your name" aria-label="Your name"><button type="button" class="kz-btn" id="m4Go">🔊 BEEP MY NAME</button><div class="kz-out" id="m4Out"></div><div class="kz-fb" id="m4Fb"></div>`;
+    const go = async () => {
+      const t = ($('m4In').value || '').toUpperCase().replace(/[^A-Z0-9 ]/g, '').trim(); if (!t) return;
+      $('m4Out').innerHTML = t.split('').map((c, i) => c === ' ' ? '<span class="kz-sp"></span>' : `<span class="kz-chip mc" id="m4c${i}"><b>${c}</b><small>${dd(MC[c] || '')}</small></span>`).join('');
+      const ok = await beepSeq(t, i => { document.querySelectorAll('#m4Out .on').forEach(e => e.classList.remove('on')); const e = $('m4c' + i); if (e) e.classList.add('on'); });
+      document.querySelectorAll('#m4Out .on').forEach(e => e.classList.remove('on'));
+      if (ok) { addStar(); $('m4Fb').innerHTML = '<b class="good">⭐ That\'s your name in Morse code! Try tapping it on the key.</b>'; }
+    };
+    $('m4Go').addEventListener('click', go); $('m4In').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); go(); } });
+  } else if (m4.mode === 'guess') {
+    const L = pick(EASY), opts = shuffle([L].concat(shuffle(EASY.filter(x => x !== L)).slice(0, 2))); m4.ans = L;
+    b.innerHTML = `<button type="button" class="kz-btn" id="m4Hear">🔊 HEAR THE BEEPS</button><p class="dim">Which letter was that?</p><div class="kz-opts three">${opts.map(x => `<button type="button" class="kz-opt big" data-a="${x}">${x}<small>${dd(MC[x])}</small></button>`).join('')}</div><div class="kz-fb" id="m4Fb"></div>`;
+    $('m4Hear').addEventListener('click', () => beepSeq(L));
+    b.querySelectorAll('.kz-opt').forEach(x => x.addEventListener('click', () => {
+      if (x.dataset.a === m4.ans) { x.classList.add('ok'); addStar(); $('m4Fb').innerHTML = `<b class="good">⭐ Yes! That was ${m4.ans}.</b>`; later(() => m4Draw(), 1300); }
+      else { x.classList.add('no'); $('m4Fb').innerHTML = '<b class="bad">Listen again and try another!</b>'; }
+    }));
+    beepSeq(L);
+  } else {
+    const L = pick(EASY.concat(['K', 'R', 'D', 'U', 'W'])); m4.ans = L;
+    b.innerHTML = `<div class="m4-target"><span>Tap this letter:</span><b>${L}</b><div>${dd(MC[L])}</div></div><button type="button" class="m4-key" id="m4Key" aria-label="Morse key">TAP<small>short tap = dot · hold = dash</small></button><div class="m4-got" id="m4Got"></div><div class="kz-fb" id="m4Fb"></div>`;
+    const k = $('m4Key'), K = m4.key; K.code = '';
+    const show = () => { $('m4Got').innerHTML = dd(K.code); };
+    const finish = () => {
+      const got = MD[K.code] || '?';
+      if (got === m4.ans) { addStar(); $('m4Fb').innerHTML = `<b class="good">⭐ Perfect ${m4.ans}!</b>`; later(m4Draw, 1300); }
+      else { $('m4Fb').innerHTML = `<b class="bad">That was ${got === '?' ? 'not a letter' : got}. Try again: ${m4.ans} is ${dd(MC[m4.ans])}</b>`; }
+      K.code = ''; later(show, 900);
+    };
+    k.addEventListener('pointerdown', e => { e.preventDefault(); ac(); clearTimeout(K.timer); K.down = performance.now(); gn.gain.setTargetAtTime(0.5, AC.currentTime, 0.004); k.classList.add('down'); try { k.setPointerCapture(e.pointerId); } catch (x) {} });
+    const up = e => { if (!K.down) return; e.preventDefault(); const d = performance.now() - K.down; K.down = 0; gn.gain.setTargetAtTime(0, AC.currentTime, 0.004); k.classList.remove('down'); K.code += d < 250 ? '.' : '-'; show(); const g = m4.g; K.timer = setTimeout(() => { if (g === m4.g) finish(); }, 900); };
+    k.addEventListener('pointerup', up); k.addEventListener('pointercancel', up); k.addEventListener('contextmenu', e => e.preventDefault());
+  }
+}
+
 function init() {
   if (!$('kzStars')) return;
   showStars();
@@ -105,8 +170,10 @@ function init() {
   document.querySelectorAll('input[name=g3l]').forEach(r => r.addEventListener('change', () => { g3.lvl = +r.value; }));
   $('kzChart').innerHTML = LETTERS.map(c => `<button type="button" class="kz-cell" data-c="${c}"><b>${c}</b><span>${NATO[c]}</span></button>`).join('');
   $('kzChart').querySelectorAll('.kz-cell').forEach(b => b.addEventListener('click', () => { hush(); say(NATO[b.dataset.c]); }));
+  document.querySelectorAll('input[name=m4m]').forEach(r => r.addEventListener('change', () => { m4.mode = r.value; m4.g++; clearTimeout(m4.key.timer); m4.key.code = ''; mgen++; if (gn) gn.gain.setTargetAtTime(0, AC.currentTime, 0.01); m4Draw(); }));
+  m4Draw();
   $('kzReset').addEventListener('click', () => { if (confirm('Start your stars over at zero?')) { stars = 0; try { localStorage.removeItem('kpcKidsStars'); } catch (e) {} showStars(); } });
 }
-window.KPCKIDS = { g1, g3, NATO };
+window.KPCKIDS = { g1, g3, NATO, m4, MC };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
