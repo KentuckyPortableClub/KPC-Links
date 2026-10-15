@@ -1,4 +1,5 @@
-agency ERR HTTP Error 403: Forbidden 0
-Unit_Nm LIKE '%Kingfisher%' {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[-86.97349,37.84654],[-86.97583,37.8464],[-86.97732,37.84569],[-86.97764,37.84528],[-86.977
-Loc_Nm LIKE '%KINGFISHER%' {"type":"FeatureCollection","features":[]}
-kygis upper {"error":{"code":404,"message":"Service WGS84WM_Services/Ky_Hunting_Areas_WGS84WM/MapServer not found ","details":[]}}
+stat KY only ERR HTTP Error 403: Forbidden 0 0
+stat compact ERR HTTP Error 403: Forbidden 0 0
+stat 1=1 geom-less ERR HTTP Error 403: Forbidden 0 0
+distinct {"displayFieldName":"Own_Name","fieldAliases":{"Mang_Type":"Manager Type","Mang_Name":"Manager Name","Loc_Mang":"Local M 593 0
+distinct CA {"displayFieldName":"Own_Name","fieldAliases":{"Mang_Type":"Manager Type","Mang_Name":"Manager Name","Loc_Mang":"Local M 1772 0
