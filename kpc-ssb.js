@@ -87,7 +87,7 @@ function hiss(on) {
 }
 
 /* ---------------- state ---------------- */
-const S = Object.assign({ call: '', st: 'KY', ref: '', level: 1, vol: 0.9, hiss: 0.3, rate: 1, mic: true }, store.get('kpcSSB', {}));
+const S = Object.assign({ call: '', st: 'KY', ref: '', level: 1, vol: 0.9, hiss: 0.3, rate: 1, mic: true, autolog: false }, store.get('kpcSSB', {}));
 const save = () => store.set('kpcSSB', S);
 const run = { on: false, callers: [], cur: null, sent: false, last: '', log: [], t0: 0, gen: 0, worked: new Set() };
 const myCall = () => (S.call || '').toUpperCase().trim() || 'K4TEST';
@@ -177,6 +177,7 @@ async function theirExchange(o, again) {
   if (showText()) line(o.call, t.replace(/[A-Za-z-]+ (?=[A-Za-z-]+ )/g, m => m), 'them'); else line(o.call.slice(0, 0) + '📢', 'they give you their report and state', 'them');
   if (g !== run.gen) return;
   await speak(t, o);
+  if (S.autolog && g === run.gen) { $('fRcvd').value = o.rst; $('fSt').value = o.st; status('Auto log filled in their report and state. Say or tap THANKS, 73 and it logs itself.'); return; }
   status('Log their report and state, then press LOG IT (you say "thanks, 73, QRZ").');
 }
 function check(o, f) {
@@ -195,6 +196,7 @@ async function say73() {
   hush(); run.gen++; line('YOU', 'Thanks, 73.', 'you');
   if (!o) { status('Thanks, 73! Nobody to sign with right now. Call CQ or QRZ.'); return; }
   o.signed = true; const g = run.gen; await sayBye(o); if (g !== run.gen) return;
+  if (S.autolog) { if (!$('fRcvd').value) $('fRcvd').value = o.rst; if (!$('fSt').value) $('fSt').value = o.st; return logIt(true); }
   status('Now log it: check CALL, fill RCVD and STATE, then press ✓ LOG IT.'); const r0 = $('fRcvd'); if (r0 && !r0.value) r0.focus({ preventScroll: true });
 }
 /* can't get a call? skip that station (nothing goes in the log) */
@@ -210,13 +212,13 @@ async function skip() {
   if (chance(0.6)) arrivals();
   if (run.callers.length) { await new Promise(r0 => setTimeout(r0, 300)); await callIn(run.callers.slice()); } else status('Nobody calling. Call CQ again.');
 }
-async function logIt() {
+async function logIt(auto) {
   if (!run.on) return;
   const f = { call: ($('fCall').value || '').toUpperCase().trim(), sent: ($('fSent').value || '59').trim(), rcvd: ($('fRcvd').value || '').trim(), st: ($('fSt').value || '').toUpperCase().trim() };
   const o = run.cur && run.sent ? run.cur : run.callers.find(x => x.call === f.call);
   if (!f.call) { status('Nothing to log yet.'); return; }
   const errs = o ? check(o, f) : [`${f.call} never called you`];
-  const q = { n: run.log.length + 1, time: new Date(), call: f.call, sent: f.sent, rcvd: f.rcvd, st: f.st, ok: !errs.length, errs, secs: o && o.t0 ? Math.round((Date.now() - o.t0) / 1000) : 0, truth: o ? `${o.call} ${o.rst} ${o.st}` : '' };
+  const q = { auto: !!(auto === true || S.autolog), n: run.log.length + 1, time: new Date(), call: f.call, sent: f.sent, rcvd: f.rcvd, st: f.st, ok: !errs.length, errs, secs: o && o.t0 ? Math.round((Date.now() - o.t0) / 1000) : 0, truth: o ? `${o.call} ${o.rst} ${o.st}` : '' };
   run.log.push(q); drawLog();
   hush(); run.gen++;
   const signed = o && o.signed;
@@ -237,9 +239,9 @@ async function logIt() {
 }
 function drawLog() {
   const tb = $('vbLogB'); if (!tb) return;
-  tb.innerHTML = run.log.slice().reverse().map(q => `<tr class="${q.ok ? 'ok' : 'bad'}"><td>${q.n}</td><td>${q.time.toISOString().slice(11, 16)}</td><td><b>${esc(q.call)}</b></td><td>${esc(q.sent)}</td><td>${esc(q.rcvd)}</td><td>${esc(q.st)}</td><td>${q.ok ? '✓' : '<span title="' + esc(q.errs.join('; ')) + '">✗ ' + esc(q.truth) + '</span>'}</td></tr>`).join('');
-  const n = run.log.length, ok = run.log.filter(q => q.ok).length, mins = Math.max(1, (Date.now() - run.t0) / 60000);
-  const e = $('vbStats'); if (e) e.innerHTML = `<div><b>${n}</b><span>contacts</span></div><div><b>${n ? Math.round(ok / n * 100) : 0}%</b><span>logged right</span></div><div><b>${Math.round(n / mins * 60)}</b><span>per hour</span></div>`;
+  tb.innerHTML = run.log.slice().reverse().map(q => `<tr class="${q.ok ? 'ok' : 'bad'}"><td>${q.n}</td><td>${q.time.toISOString().slice(11, 16)}</td><td><b>${esc(q.call)}</b></td><td>${esc(q.sent)}</td><td>${esc(q.rcvd)}</td><td>${esc(q.st)}</td><td>${q.auto ? '🤖 ' : ''}${q.ok ? '✓' : '<span title="' + esc(q.errs.join('; ')) + '">✗ ' + esc(q.truth) + '</span>'}</td></tr>`).join('');
+  const man = run.log.filter(q => !q.auto), n = run.log.length, ok = man.filter(q => q.ok).length, mins = Math.max(1, (Date.now() - run.t0) / 60000);
+  const e = $('vbStats'); if (e) e.innerHTML = `<div><b>${n}</b><span>contacts</span></div><div><b>${man.length ? Math.round(ok / man.length * 100) + '%' : '—'}</b><span>logged right (by you)</span></div><div><b>${Math.round(n / mins * 60)}</b><span>per hour</span></div>`;
 }
 function adif() {
   if (!run.log.length) return;
@@ -343,6 +345,7 @@ function init() {
   if ($('vbTest')) $('vbTest').addEventListener('click', testVoice);
   if ($('vbSkip')) $('vbSkip').addEventListener('click', skip);
   if ($('vb73')) $('vb73').addEventListener('click', say73);
+  const al = $('vbAuto'); if (al) { al.checked = !!S.autolog; al.addEventListener('change', () => { S.autolog = al.checked; save(); }); }
   const mic = $('vbMic'), micSync = () => { const t = $('vbTalk'); if (t) t.hidden = !S.mic; const h = $('vbHeard'); if (h) h.hidden = !S.mic; if (mic) mic.checked = !!S.mic; document.body.classList.toggle('vb-nomic', !S.mic); };
   if (mic) mic.addEventListener('change', () => { S.mic = mic.checked; save(); micSync(); }); micSync();
   const tb = $('vbTalk');
