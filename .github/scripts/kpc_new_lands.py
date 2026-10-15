@@ -276,8 +276,8 @@ def main():
             return 'probably Army Corps of Engineers lake land (few are exceptions)'
         if re.search(r'universit|college|u of ky', o, re.I):
             return 'university land (CHECK: University of the Cumberlands WMA was added)'
-        if re.search(r'(lake|lakes|pond)$', n, re.I) and 'PAD-US' in label:
-            return 'small agency fishing lake (usually not added unless public land surrounds it)'
+        if re.search(r'leased', OWNERS.get(n, '') + info, re.I) or n in ('Mary Todd Lincoln House State Park', 'Simon Kenton State Park'):
+            return 'state owned but leased to a non-profit that runs it'
         if re.search(r'outstanding resource water|mussel sanctuary|education center|fish access|purchase unit|recreation area', n, re.I):
             return 'special-use area or not a park on its own'
         return ''
@@ -287,7 +287,7 @@ def main():
         line = '- %s · %s%s%s' % (link(n), label, (' · owner: ' + OWNERS[n]) if n in OWNERS else '', (' · ' + info) if info and not info.startswith('http') else (' · [official page](%s)' % info if info else ''))
         w = why_not(n, label, info)
         (maybe if w else good).append(line + ((' · _%s_' % w) if w else ''))
-    lines += ['### ⭐ Look promising (%d)' % len(good), 'Federal/state owned, open, no POTA park of that name yet. Check each one in the Tool Box before emailing the Mapping Representative.', ''] + good + ['']
+    lines += ['### ⭐ Look promising (%d)' % len(good), 'Federal/state owned, open, no POTA park of that name yet. A public road, trail or boat ramp in is enough access (Fish & Wildlife lakes with a public ramp count). Check each one in the Tool Box before emailing the Mapping Representative.', ''] + good + ['']
     lines += ['<details><summary><b>%d more that probably will not qualify</b> (reason shown on each)</summary>' % len(maybe), ''] + maybe + ['', '</details>', '', 'This issue stays open; each week with something new adds a comment (GitHub emails you about comments).']
     body = '\n'.join(lines)
 
