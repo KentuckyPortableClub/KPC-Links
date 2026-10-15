@@ -28,7 +28,7 @@
     if (d) { s = l > .5 ? d / (2 - mx - mn) : d / (mx + mn); h = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h /= 6; } return [h, s, l]; }
   function css(h, s, l, a) { return 'hsla(' + Math.round(h * 360) + ',' + Math.round(s * 100) + '%,' + Math.round(l * 100) + '%,' + (a == null ? 1 : a) + ')'; }
   var SKIP = /^(IMG|PICTURE|VIDEO|CANVAS|IFRAME|SVG|svg|SCRIPT|STYLE|NOSCRIPT|LINK|META|BR|HR|SOURCE|OPTION)$/;
-  function skipEl(el) { return SKIP.test(el.tagName) || (el.classList && (el.classList.contains('leaflet-tile-pane') || el.classList.contains('leaflet-tile') || el.classList.contains('qrbox'))) || el.hasAttribute('data-keep-light'); }
+  function skipEl(el) { return SKIP.test(el.tagName) || (el.classList && (el.classList.contains('leaflet-tile-pane') || el.classList.contains('leaflet-tile') || el.classList.contains('qrbox'))) || el.hasAttribute('data-keep-light') || !!(el.closest && el.closest('[data-keep-light]')); }
 
   var saved = new WeakMap(), touched = new Set(), effBg = new WeakMap();
   function setP(el, prop, val) {
