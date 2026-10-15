@@ -1,4 +1,4 @@
-name: KPC WWFF Directory Copy
+name: KPC WWFF Directory Copy (+ SOTA summits)
 # Sundays: saves a slim copy of the WWFF directory (active references, by program) for the Park Info Finder.
 on:
   schedule:
@@ -15,10 +15,12 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: python3 .github/scripts/kpc_wwff_dir.py
+      - run: python3 .github/scripts/kpc_sota_dir.py
+        continue-on-error: true
       - run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A data/wwff
+          git add -A data/wwff data/sota
           if ! git diff --cached --quiet; then
             git commit -m 'Update WWFF directory copy'
             git pull --rebase --autostash || true
