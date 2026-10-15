@@ -264,8 +264,8 @@ function talkStart() {
   let final = '';
   rec.onresult = e => { let t = ''; for (const r of e.results) { t += r[0].transcript; if (r.isFinal) final = t; } const l = $('vbHeard'); if (l) { l.textContent = '🎙 ' + t; l.classList.add('said'); } };
   rec.onerror = e => { const l = $('vbHeard'); if (l) l.textContent = e.error === 'not-allowed' ? 'The microphone is blocked: allow it for this site.' : e.error === 'no-speech' ? 'Didn\'t hear anything. Hold the button while you talk.' : 'Mic problem: ' + e.error; };
-  rec.onend = () => { recOn = false; $('vbTalk').classList.remove('on'); if (final) talkDo(final); };
-  try { rec.start(); recOn = true; $('vbTalk').classList.add('on'); } catch (e) {}
+  rec.onend = () => { recOn = false; $('vbTalk').classList.remove('on'); if (run.on) hiss(true); if (final) talkDo(final); };
+  try { rec.start(); recOn = true; $('vbTalk').classList.add('on'); hiss(false); } catch (e) {} // like a real rig: the receiver goes quiet while you transmit
 }
 function talkStop() { if (rec && recOn) try { rec.stop(); } catch (e) {} }
 /* the spoken run can pick up stray words ("a", "to", "for"): try every piece of it and keep the one closest to a station that's calling */
