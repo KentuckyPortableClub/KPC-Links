@@ -123,7 +123,7 @@ function start() {
   form(true);
 }
 function stop() { hush(); run.gen++; run.on = false; hiss(false); $('vbGo').textContent = '▶ START'; $('vbGo').classList.remove('stop'); status('Stopped.'); form(false); }
-function form(on) { ['vbCq', 'vbQrz', 'vbAgn', 'vbSend', 'vbLog', 'vbTalk', 'vbSkip'].forEach(id => { const e = $(id); if (e) e.disabled = !on; }); }
+function form(on) { ['vbCq', 'vbQrz', 'vbAgn', 'vbSend', 'vbLog', 'vbTalk', 'vbSkip', 'vb73'].forEach(id => { const e = $(id); if (e) e.disabled = !on; }); }
 
 async function cq() {
   if (!run.on) return;
@@ -278,18 +278,29 @@ function parseSpeech(t) {
     : (call || rep) ? 'report' : '';
   return { kind, raw: best, runs, call: /^[A-Z0-9]{3,8}$/.test(call) && /\d/.test(call) ? call : (call.length >= 2 && call.length < 4 ? call : ''), rep };
 }
-let rec = null, recOn = false, recHeld = 0;
+let rec = null, recOn = false, recHeld = 0, recWant = false, recText = '';
+/* Keyed = recWant. Chrome ends recognition on its own after a short pause, so while you're still keyed we quietly start it again
+   and keep everything you said; the words are only acted on when you unkey. */
+function recBegin() {
+  rec = new SR(); rec.lang = 'en-US'; rec.interimResults = true; rec.maxAlternatives = 1; rec.continuous = true;
+  let seg = '';
+  rec.onresult = e => { let t = '', f = ''; for (const r of e.results) { t += r[0].transcript + ' '; if (r.isFinal) f += r[0].transcript + ' '; } seg = f; const l = $('vbHeard'); if (l) { l.textContent = '🎙 ' + (recText + t).trim(); l.classList.add('said'); } rec._last = t; };
+  rec.onerror = e => { if (e.error === 'no-speech' || e.error === 'aborted') return; const l = $('vbHeard'); if (l) { l.textContent = e.error === 'not-allowed' ? 'The microphone is blocked: allow it for this site.' : 'Mic problem: ' + e.error; l.classList.add('said'); } if (e.error === 'not-allowed') recWant = false; };
+  rec.onend = () => {
+    recText += (seg || rec._last || '') + ' ';
+    if (recWant) { try { recBegin(); return; } catch (x) {} }
+    recOn = false; $('vbTalk').classList.remove('on'); if (run.on) hiss(true);
+    const said = recText.replace(/\s+/g, ' ').trim(); recText = '';
+    if (said) talkDo(said); else { const l = $('vbHeard'); if (l) { l.textContent = 'Didn\'t hear anything. Hold the button (or tap it once) while you talk.'; l.classList.add('said'); } }
+  };
+  rec.start();
+}
 function talkStart() {
   if (!SR || !run.on || recOn) return;
-  hush(); run.gen++;
-  rec = new SR(); rec.lang = 'en-US'; rec.interimResults = true; rec.maxAlternatives = 1; rec.continuous = false;
-  let final = '';
-  rec.onresult = e => { let t = ''; for (const r of e.results) { t += r[0].transcript; if (r.isFinal) final = t; } const l = $('vbHeard'); if (l) { l.textContent = '🎙 ' + t; l.classList.add('said'); } };
-  rec.onerror = e => { const l = $('vbHeard'); if (l) l.textContent = e.error === 'not-allowed' ? 'The microphone is blocked: allow it for this site.' : e.error === 'no-speech' ? 'Didn\'t hear anything. Hold the button while you talk.' : 'Mic problem: ' + e.error; };
-  rec.onend = () => { recOn = false; $('vbTalk').classList.remove('on'); if (run.on) hiss(true); if (final) talkDo(final); };
-  try { rec.start(); recOn = true; $('vbTalk').classList.add('on'); hiss(false); } catch (e) {} // like a real rig: the receiver goes quiet while you transmit
+  hush(); run.gen++; recText = ''; recWant = true;
+  try { recBegin(); recOn = true; $('vbTalk').classList.add('on'); hiss(false); } catch (e) { recWant = false; } // like a real rig: the receiver goes quiet while you transmit
 }
-function talkStop() { if (rec && recOn) try { rec.stop(); } catch (e) {} }
+function talkStop() { recWant = false; if (rec && recOn) try { rec.stop(); } catch (e) {} }
 /* the spoken run can pick up stray words ("a", "to", "for"): try every piece of it and keep the one closest to a station that's calling */
 function bestSub(runs0) {
   const me = myCall(), list = (Array.isArray(runs0) ? runs0 : [runs0]).map(x => String(x).replace(/^(59|5 9)/, '')).filter(x => x && x !== me);
@@ -331,6 +342,7 @@ function init() {
   $('vbCq').addEventListener('click', cq); $('vbQrz').addEventListener('click', qrz); $('vbAgn').addEventListener('click', agn);
   if ($('vbTest')) $('vbTest').addEventListener('click', testVoice);
   if ($('vbSkip')) $('vbSkip').addEventListener('click', skip);
+  if ($('vb73')) $('vb73').addEventListener('click', say73);
   const mic = $('vbMic'), micSync = () => { const t = $('vbTalk'); if (t) t.hidden = !S.mic; const h = $('vbHeard'); if (h) h.hidden = !S.mic; if (mic) mic.checked = !!S.mic; document.body.classList.toggle('vb-nomic', !S.mic); };
   if (mic) mic.addEventListener('change', () => { S.mic = mic.checked; save(); micSync(); }); micSync();
   const tb = $('vbTalk');
@@ -338,7 +350,7 @@ function init() {
     if (!SR) { tb.disabled = true; tb.textContent = '🎙 TALKING BACK NEEDS CHROME, EDGE OR ANDROID'; }
     else {
       // hold to talk; a quick tap toggles instead
-      tb.addEventListener('pointerdown', e => { e.preventDefault(); if (recOn) { talkStop(); return; } recHeld = Date.now(); talkStart(); });
+      tb.addEventListener('pointerdown', e => { e.preventDefault(); try { tb.setPointerCapture(e.pointerId); } catch (x) {} if (recOn) { talkStop(); return; } recHeld = Date.now(); talkStart(); });
       tb.addEventListener('pointerup', () => { if (recOn && Date.now() - recHeld > 450) talkStop(); });
       tb.addEventListener('contextmenu', e => e.preventDefault());
       document.addEventListener('keydown', e => { if (e.code === 'Space' && S.mic && !/INPUT|TEXTAREA|SELECT/.test(e.target.tagName) && run.on && !e.repeat) { e.preventDefault(); recHeld = Date.now(); talkStart(); } });
@@ -349,7 +361,7 @@ function init() {
   // keyboard: Enter in CALL = send report, Enter in STATE = log it; F1 CQ, F2 QRZ, F3 AGN
   $('fCall').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); sendReport(); $('fRcvd').focus(); } });
   ['fRcvd', 'fSt'].forEach(id => $(id).addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); logIt(); } }));
-  document.addEventListener('keydown', e => { const m = { F1: cq, F2: qrz, F3: agn, F4: skip }[e.key]; if (m && run.on) { e.preventDefault(); m(); } });
+  document.addEventListener('keydown', e => { const m = { F1: cq, F2: qrz, F3: agn, F4: skip, F5: say73 }[e.key]; if (m && run.on) { e.preventDefault(); m(); } });
   form(false); drawLog();
 }
 window.KPCSSB = { run, S, say1, check, lev, parseSpeech, talkDo, bestSub, skip, say73 };
