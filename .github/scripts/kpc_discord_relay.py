@@ -8,7 +8,7 @@ Poster names are NOT shown anywhere (Brandon Oct 15). A ✅ reaction is added in
 
 Secrets (GitHub -> Settings -> Secrets and variables -> Actions, never in the site or chat):
   DISCORD_BOT_TOKEN, KPC_RELAY_CHANNEL (channel ID), FB_PAGE_ID, FB_PAGE_TOKEN,
-  RELAY_SMTP_PASS (App Password of kentuckyportableclub@gmail.com, the sender; RELAY_SMTP_USER overrides the address), GROUPSIO_TO (the group's post address),
+  RELAY_SMTP_PASS (App Password of kypotacampout@gmail.com (the campout email), the sender; RELAY_SMTP_USER overrides the address), GROUPSIO_TO (the group's post address),
   SUBSCRIBE_SHEET_CSV (published CSV of the email-updates form sheet; optional)
 DRY_RUN=1 prints what would happen and changes nothing.
 """
@@ -21,7 +21,7 @@ def notice(m): print('::notice title=' + TITLE + '::' + str(m).replace('%', '%25
 ENV = lambda k: (os.environ.get(k) or '').strip()
 TOKEN, CHAN = ENV('DISCORD_BOT_TOKEN'), ENV('KPC_RELAY_CHANNEL')
 FB_ID, FB_TOKEN = ENV('FB_PAGE_ID'), ENV('FB_PAGE_TOKEN')
-SMTP_USER, SMTP_PASS, GIO_TO = (ENV('RELAY_SMTP_USER') or 'kentuckyportableclub@gmail.com'), ENV('RELAY_SMTP_PASS'), ENV('GROUPSIO_TO')
+SMTP_USER, SMTP_PASS, GIO_TO = (ENV('RELAY_SMTP_USER') or 'kypotacampout@gmail.com'), ENV('RELAY_SMTP_PASS'), ENV('GROUPSIO_TO')
 SUB_CSV = ENV('SUBSCRIBE_SHEET_CSV')
 DRY = ENV('DRY_RUN').lower() in ('1', 'true', 'yes')
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
