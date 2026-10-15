@@ -1,0 +1,16 @@
+[(0, 'PADUS4_0_FeeManagers')]
+== layer 0
+{'displayFieldName': 'Own_Name', 'fieldAliases': {'Unit_Nm': 'Unit Name', 'Loc_Nm': 'Local Name', 'Mang_Name': 'Manager Name', 'Loc_Mang': 'Local Manager', 'Des_Tp': 'Designation Type', 'GIS_Acres': 'GIS Acres', 'Pub_Access': 'Public Access', 'Src_Date': 'GIS Source Date'}, 'fields': [{'name': 'Unit_Nm', 'type': 'esriFieldTypeString', 'alias': 'Unit Name', 'length': 250}, {'name': 'Loc_Nm', 'type': 'esriFieldTypeString', 'alias': 'Local Name', 'length': 250}, {'name': 'Mang_Name', 'type': 'esriFieldTypeString', 'alias': 'Manager Name', 'length': 70}, {'name': 'Loc_Mang', 'type': 'esriFieldTypeString', 'alias': 'Local Manager', 'length': 250}, {'name': 'Des_Tp', 'type': 'esriFieldTypeString', 'alias': 'Designation Type', 'length': 75}, {'name': 'GIS_Acres', 'type': 'esriFieldTypeInteger', 'alias': 'GIS Acres'}, {'name': 'Pub_Access', 'type': 'esriFieldTypeString', 'alias': 'Public Access'
+== layer 1
+{'error': {'code': 400, 'message': 'Invalid or missing input parameters.', 'details': []}}
+
+== layer 2
+{'error': {'code': 400, 'message': 'Invalid or missing input parameters.', 'details': []}}
+
+== layer 3
+{'error': {'code': 400, 'message': 'Invalid or missing input parameters.', 'details': []}}
+
+== geojson size
+{"type":"FeatureCollection","features":[]}
+== name query
+{"displayFieldName":"Own_Name","fieldAliases":{"Unit_Nm":"Unit Name","Mang_Name":"Manager Name"},"fields":[{"name":"Unit_Nm","type":"esriFieldTypeString","alias":"Unit Name","length":250},{"name":"Mang_Name","type":"esriFieldTypeString","alias":"Manager Name","length":70}],"features":[{"attributes":{"Unit_Nm":"Vogel State Park","Mang_Name":"SDNR"}}]}
