@@ -166,6 +166,7 @@
   function grid(la, lo) { const A = 'ABCDEFGHIJKLMNOPQR', a = 'abcdefghijklmnopqrstuvwx'; let x = lo + 180, y = la + 90; const f1 = A[Math.floor(x / 20)] + A[Math.floor(y / 10)]; x %= 20; y %= 10; const f2 = '' + Math.floor(x / 2) + Math.floor(y); x %= 2; y %= 1; return f1 + f2 + a[Math.floor(x * 12)] + a[Math.floor(y * 24)]; }
 
   /* ---------- search ---------- */
+  const pickBtn = (g, i) => `<button type="button" class="mr-pick${g.osm ? ' osm' : ''}" data-i="${i}"><b>${esc(g.name)}</b><span>${g.acres ? Math.round(g.acres).toLocaleString() + ' acres · ' : ''}${esc((g.rows[0].Loc_Mang && !/^unknown$/i.test(g.rows[0].Loc_Mang) ? g.rows[0].Loc_Mang : '') || AG[g.rows[0].Mang_Name] || g.rows[0].Loc_Own || '')}${['LOC', 'PVT', 'NGO', 'DIST'].includes(g.rows[0].Own_Type) ? ' <em class="mr-no">' + ({ LOC: 'city/county land: not eligible', PVT: 'private: not eligible', NGO: 'non-profit: not eligible', DIST: 'district: not eligible' })[g.rows[0].Own_Type] + '</em>' : ''}<br><small>${esc(g.src)}</small></span></button>`;
   async function search() {
     const name = $('mrName').value.trim(), town = $('mrTown').value.trim(), st = $('mrState').value; lastQ = name;
     if (!st) { msg('<b>Pick the state first.</b> Each state has its own agencies, so the search needs to know where to look.'); $('mrState').focus(); return; }
@@ -199,7 +200,7 @@
     if (!all.length) return notFound(name, st, town);
     if (all.length === 1) return open(all[0]);
     $('mrOut').innerHTML = '';
-    $('mrList').innerHTML = `<p class="mr-help">${all.length} matches in ${esc(st)}. Pick one, or <a href="#" id="mrWeb">research the web for it ›</a></p>` + all.slice(0, 40).map((g, i) => `<button type="button" class="mr-pick${g.osm ? ' osm' : ''}" data-i="${i}"><b>${esc(g.name)}</b><span>${g.acres ? Math.round(g.acres).toLocaleString() + ' acres · ' : ''}${esc((g.rows[0].Loc_Mang && !/^unknown$/i.test(g.rows[0].Loc_Mang) ? g.rows[0].Loc_Mang : '') || AG[g.rows[0].Mang_Name] || g.rows[0].Loc_Own || '')}${['LOC', 'PVT', 'NGO', 'DIST'].includes(g.rows[0].Own_Type) ? ' <em class="mr-no">' + ({ LOC: 'city/county land: not eligible', PVT: 'private: not eligible', NGO: 'non-profit: not eligible', DIST: 'district: not eligible' })[g.rows[0].Own_Type] + '</em>' : ''}<br><small>${esc(g.src)}</small></span></button>`).join('');
+    $('mrList').innerHTML = `<p class="mr-help">${all.length} matches in ${esc(st)}. Pick one, or <a href="#" id="mrWeb">research the web for it ›</a></p>` + all.slice(0, 40).map(pickBtn).join('');
     $('mrList').onclick = e => { if (e.target.id === 'mrWeb') { e.preventDefault(); $('mrList').innerHTML = ''; notFound(name, st, town); return; } const b = e.target.closest('[data-i]'); if (b) { $('mrList').innerHTML = ''; open(all[+b.dataset.i]); } };
   }
   /* ---------- nothing official by name: research the web (Wikidata / Wikipedia + OpenStreetMap search),
@@ -493,6 +494,74 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
       const gov = sites.filter(u => /\.(gov|us)$|\.gov\//.test(dom(u)));
       W.innerHTML = sites.length ? sites.map(u => `<a class="${gov.includes(u) ? 'gold' : ''}" href="${esc(u)}" target="_blank" rel="noopener">${gov.includes(u) ? 'OFFICIAL PAGE' : 'WEBSITE LISTED'}: ${esc(dom(u))} ↗</a>`).join('') + [...new Set(sites.map(dom).filter(Boolean))].map(d => `<a href="https://www.google.com/search?q=${encodeURIComponent('site:' + d + ' "' + g.name + '" map')}" target="_blank" rel="noopener">MAPS ON ${esc(d.toUpperCase())} ↗</a>`).join('') : '<span class="mr-help">No website found on the web; use the search buttons.</span>';
     }
+  }
+
+  /* ---------- SEARCH BY LOCATION (address, place, GPS numbers or my GPS): the most reliable way.
+     The point / small-box query is a shape the PAD-US firewall always allows, and it doesn't care how the park is spelled. ---------- */
+  (function locUI() {
+    const f = $('mrForm'); if (!f || $('mrLocBox')) return;
+    const d = document.createElement('div'); d.id = 'mrLocBox'; d.className = 'mr-loc';
+    d.innerHTML = `<div class="mr-locnote"><b>⭐ BEST WAY TO SEARCH: BY LOCATION</b><p>Type the park's <b>address</b> (or a place name with the town), <b>paste its GPS numbers</b>, or stand there and tap <b>USE MY GPS</b>.</p><p><b>Why this works best:</b> the national land database simply answers <i>"what public land is at this spot?"</i>, so the name doesn't have to match. Different spellings ("Carpenter" vs "Carpenters Lake"), capital letters, extra words or a brand-new name don't matter, and it even finds state land you didn't know the name of. Name searches can miss all of those.</p><p class="mr-help">Tip: use the main entrance or parking lot. A dot on the water or just outside the line still works: it also checks about ¼ mile (400 m) around the spot. To get GPS numbers from Google Maps, press and hold on the spot.</p></div>
+<form class="mr-form mr-locf" id="mrLocForm"><label>ADDRESS, PLACE OR GPS<input id="mrLoc" autocomplete="off" placeholder="123 Main St, Anytown, KY  ·  or  37.84520, -86.97550"></label><button type="submit">FIND THE LAND HERE</button><button type="button" id="mrLocGps">📍 USE MY GPS</button></form><p class="mr-or">— OR SEARCH BY NAME —</p>`;
+    f.parentNode.insertBefore(d, f);
+    const st = document.createElement('style'); st.textContent = '.mr-loc{margin:0 0 6px}.mr-locnote{background:#fff8e6;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:10px;padding:12px 14px;margin:0 0 12px}.mr-locnote>b:first-child{display:block;letter-spacing:1px;color:#7a5b12;margin-bottom:4px}.mr-locnote p{margin:6px 0 0;line-height:1.45}.mr-or{text-align:center;font-weight:900;letter-spacing:2px;font-size:12px;color:#7a7365;margin:14px 0 10px}.mr-locf input{min-width:0}.mr-here{display:block;font:900 12px/1.2 system-ui,sans-serif;letter-spacing:1px;margin:12px 0 6px;color:#1e6b3a}';
+    document.head.appendChild(st);
+    $('mrLocForm').addEventListener('submit', e => { e.preventDefault(); locSearch($('mrLoc').value.trim()); });
+    $('mrLocGps').onclick = () => {
+      if (!navigator.geolocation) { msg('This device has no GPS. Type the address or GPS numbers instead.'); return; }
+      msg('Getting your GPS…');
+      navigator.geolocation.getCurrentPosition(p => { const v = p.coords.latitude.toFixed(5) + ', ' + p.coords.longitude.toFixed(5); $('mrLoc').value = v; locSearch(v); },
+        err => msg('Could not get your GPS (' + esc(err.message) + '). Check that location is allowed for this site, or type the address.'), { enableHighAccuracy: true, timeout: 20000, maximumAge: 30000 });
+    };
+  })();
+  async function locSearch(t) {
+    if (!t) { msg('Type an address, a place or GPS numbers, or tap USE MY GPS.'); return; }
+    $('mrList').innerHTML = '';
+    let la, lo, label;
+    const m = t.match(/^\s*\(?\s*(-?\d{1,3}(?:\.\d+)?)\s*°?\s*[NS]?\s*[,;\s]\s*(-?\d{1,3}(?:\.\d+)?)\s*°?\s*([EW]?)\s*\)?\s*$/i);
+    if (m) {
+      la = +m[1]; lo = +m[2]; if (Math.abs(la) > 90) [la, lo] = [lo, la];
+      if (/w/i.test(m[3] || '') || (lo > 60 && la > 15)) lo = -Math.abs(lo);   /* US longitudes are west (negative) */
+      label = 'GPS ' + la.toFixed(5) + ', ' + lo.toFixed(5);
+    } else {
+      msg('Finding that address…');
+      const st0 = $('mrState').value, nq = q2 => B.jget('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: q2, format: 'jsonv2', countrycodes: 'us', addressdetails: 1, limit: 1 })).then(j => (j || [])[0]).catch(() => null);
+      let h = await nq(t);
+      if (!h && st0 && !new RegExp('\\b' + st0 + '\\b', 'i').test(t)) h = await nq(t + ', ' + st0);
+      if (!h) { msg('<b>Could not find that address.</b> Add the town and state, try the road name only, or paste GPS numbers (in Google Maps, press and hold on the spot to see them).'); return; }
+      la = +h.lat; lo = +h.lon; label = h.display_name;
+    }
+    if (!isFinite(la) || !isFinite(lo) || Math.abs(la) > 90 || Math.abs(lo) > 180) { msg('Those GPS numbers don\'t look right. Example: 37.84520, -86.97550'); return; }
+    msg('Checking the official land database at ' + esc(label) + '…');
+    let st = '';
+    try { const c = await B.jget(`https://geo.fcc.gov/api/census/area?lat=${la}&lon=${lo}&format=json`); st = (((c.results || [])[0]) || {}).state_code || ''; } catch (e) {}
+    if (st && ST.includes(st) && $('mrState').value !== st) { $('mrState').value = st; agencies(st); }
+    const W = st ? `State_Nm='${st}'` : '1=1', d = .004;
+    const [at, near] = await Promise.all([
+      q({ geometry: `${lo},${la}`, geometryType: 'esriGeometryPoint', inSR: 4326, spatialRel: 'esriSpatialRelIntersects', where: W }).catch(() => null),
+      q({ geometry: `${lo - d},${la - d},${lo + d},${la + d}`, geometryType: 'esriGeometryEnvelope', inSR: 4326, spatialRel: 'esriSpatialRelIntersects', where: W, resultRecordCount: 80 }).catch(() => null)]);
+    if (at == null && near == null) { msg('The national land database did not answer. Try again in a minute.'); return; }
+    const here = new Set((at || []).map(r => r.OBJECTID)), G = new Map();
+    (at || []).concat((near || []).filter(r => !here.has(r.OBJECTID))).forEach(r => {
+      const k = (r.Unit_Nm || r.Loc_Nm) + '|' + r.State_Nm;
+      const g = G.get(k) || { name: r.Unit_Nm || r.Loc_Nm || 'Public land', st: r.State_Nm, rows: [], acres: 0, src: 'USGS PAD-US (found by location)', here: false, procl: true };
+      g.rows.push(r); g.acres += +r.GIS_Acres || 0; g.here = g.here || here.has(r.OBJECTID); g.procl = g.procl && r.Category === 'Proclamation'; G.set(k, g);
+    });
+    const good = g => ['FED', 'STAT'].includes(g.rows[0].Own_Type) || ['FED', 'STAT'].includes(g.rows[0].Mang_Type);
+    const all = [...G.values()].sort((a, b) => (b.here - a.here) || (a.procl - b.procl) || (good(b) - good(a)) || a.acres - b.acres);
+    lastQ = all[0] ? all[0].name : '';
+    const where = `<a href="https://www.google.com/maps/search/?api=1&query=${la.toFixed(5)},${lo.toFixed(5)}" target="_blank" rel="noopener">${esc(label.length > 90 ? label.slice(0, 90) + '…' : label)} ↗</a>`;
+    if (!all.length) {
+      msg(`<b>No federal or state land at or next to this spot</b> in the official land database (${where}${st ? ', ' + esc(st) : ''}).<br>It may be city, county or private land, which POTA doesn't add, or the dot is off: try the main entrance or parking lot, or search by name below.`);
+      return;
+    }
+    $('mrOut').innerHTML = '';
+    const A = all.filter(g => g.here), N = all.filter(g => !g.here);
+    const sec = (list, title, off) => list.length ? `<span class="mr-here">${title}</span>` + list.slice(0, 25).map((g, i) => pickBtn(g, i + off).replace('<br><small>', (g.procl ? ' <em class="mr-w">outer "proclamation" line only: not owned land</em>' : '') + '<br><small>')).join('') : '';
+    $('mrList').innerHTML = `<p class="mr-help">Public land found by location: ${where}. Pick one to run the rule check.</p>` + sec(A, '📍 AT THIS SPOT', 0) + sec(N, '↔ NEXT TO IT (WITHIN ABOUT ¼ MILE)', A.length);
+    const ALL = A.concat(N);
+    $('mrList').onclick = e => { const b = e.target.closest('[data-i]'); if (b) { $('mrList').innerHTML = ''; open(ALL[+b.dataset.i]); } };
+    if (ALL.length === 1) { $('mrList').innerHTML = ''; open(ALL[0]); }
   }
   $('mrForm').addEventListener('submit', e => { e.preventDefault(); search(); });
   /* simple password lock (keeps casual visitors out; it is not bank-grade security on a public website) */
