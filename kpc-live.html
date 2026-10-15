@@ -84,6 +84,17 @@
 .sp-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin:6px 0 4px}
 .sp-tools label{font-size:11px;font-weight:900;letter-spacing:1.5px;color:#68635a;display:flex;flex-direction:column;gap:5px}
 #sp-q{width:200px}
+.sp-dds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0 4px}
+.sp-dd{position:relative;min-width:0}
+.sp-dd summary{list-style:none;cursor:pointer;border:1px solid #cbbf9f;border-radius:8px;padding:6px 30px 6px 11px;background:#fff;min-height:46px;display:flex;flex-direction:column;justify-content:center;position:relative;box-sizing:border-box}
+.sp-dd summary::-webkit-details-marker{display:none}.sp-dd summary::after{content:'\25BE';position:absolute;right:11px;top:50%;transform:translateY(-50%);font-size:14px;color:#68635a}
+.sp-dd[open] summary::after{content:'\25B4'}
+.sp-dd summary small{font-size:10px;font-weight:900;letter-spacing:1.5px;color:#68635a}
+.sp-dd summary span{font-weight:800;font-size:13.5px;color:#171717;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sp-dd[open] .sp-f{position:absolute;z-index:40;left:0;top:calc(100% + 4px);width:max-content;min-width:100%;max-width:min(92vw,560px);background:#fff;border:1px solid #cbbf9f;border-radius:10px;padding:10px;box-shadow:0 12px 28px rgba(0,0,0,.2);margin:0;box-sizing:border-box}
+.sp-dd:last-child[open] .sp-f{left:auto;right:0}
+.sp-f .sp-done{margin-left:auto}
+@media(max-width:640px){.sp-dds{grid-template-columns:1fr}.sp-dd[open] .sp-f{position:static;width:auto;max-width:none;box-shadow:none;margin-top:6px}}
 .sp-f{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.sp-f .lv-chip{padding:7px 11px;min-height:36px;font-size:11px}
 .sp-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline;margin-top:12px;font-size:12px;color:#68635a}
 #sp-list{margin-top:8px;max-height:640px;overflow:auto;border:1px solid #e3d9bd;border-radius:8px}
@@ -252,9 +263,11 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
 <p class="lv-src" style="margin:12px 0 0">Receivers are run by volunteers and can be busy or offline. If one won't connect, pick another. Tap the receiver's page once to start the audio.</p>
 </div></div>
 <div class="lv-card" id="spots-card" style="margin-top:20px"><h2>Spots: Who's On The Air</h2><div class="sub">Live POTA, SOTA, WWFF and DX cluster spots from around the world. Filter them, then tap LISTEN to tune the receiver.</div>
-<div class="rx-lab">CATEGORY</div><div class="sp-f" id="sp-cats"></div>
-<div class="rx-lab">BAND</div><div class="sp-f" id="sp-bands"></div>
-<div class="rx-lab">MODE</div><div class="sp-f" id="sp-modes"></div>
+<div class="sp-dds">
+<details class="sp-dd"><summary><small>CATEGORY</small><span id="sp-s-cats">ALL</span></summary><div class="sp-f" id="sp-cats"></div></details>
+<details class="sp-dd"><summary><small>BAND</small><span id="sp-s-bands">ALL</span></summary><div class="sp-f" id="sp-bands"></div></details>
+<details class="sp-dd"><summary><small>MODE</small><span id="sp-s-modes">ALL</span></summary><div class="sp-f" id="sp-modes"></div></details>
+</div>
 <div class="sp-tools"><label>AREA<select id="sp-area" aria-label="Area"></select></label><label>SEARCH<input id="sp-q" type="search" placeholder="Call, park, summit&hellip;" aria-label="Search spots"></label><button type="button" class="lv-chip" id="sp-reset">SHOW EVERYTHING</button></div>
 <div class="sp-head"><span id="sp-count"></span><span id="sp-note">Loading spots&hellip;</span></div>
 <div id="sp-list" aria-live="polite"></div>
@@ -355,7 +368,7 @@ setInterval(function(){kySun();moon()},60000);
 setInterval(loadNOAA,15*60000);
 })();
 </script>
-<script src="kpc-search.js?v=20261015kh" defer></script><script src="kpc-band-strip.js?v=20261011c" defer></script><script src="kpc-band-maps.js?v=20261014a" defer></script><script src="kpc-live.js?v=20261012t" defer></script><script src="kpc-radio.js?v=20261015b" defer></script><script src="kpc-radar-plus.js?v=20261012t" defer></script><script>
+<script src="kpc-search.js?v=20261015kh" defer></script><script src="kpc-band-strip.js?v=20261015a" defer></script><script src="kpc-band-maps.js?v=20261014a" defer></script><script src="kpc-live.js?v=20261012t" defer></script><script src="kpc-radio.js?v=20261015c" defer></script><script src="kpc-radar-plus.js?v=20261012t" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

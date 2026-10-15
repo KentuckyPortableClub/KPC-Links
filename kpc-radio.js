@@ -133,7 +133,9 @@ function inArea(s,a){if(a==='all')return true;
 function filtered(){const q=F.q.trim().toUpperCase();return SP.filter(s=>(!F.cats.length||F.cats.includes(s.cat)||(s.ev&&F.cats.includes('EVENT'))||(s.tags||[]).some(t=>F.cats.includes(t)))&&(!F.bands.length||F.bands.includes(bandOf(s.khz)))&&(!F.modes.length||F.modes.includes(modeGroup(s.mode)))&&inArea(s,F.area)&&(!q||(s.call+' '+s.ref+' '+s.name+' '+s.comment).toUpperCase().includes(q)))}
 function ago(t){if(!t)return'';const m=Math.max(0,Math.round((Date.now()-t)/60000));return m<1?'now':m<60?m+'m':Math.floor(m/60)+'h'}
 function chips(id,list,sel,lab){$(id).innerHTML=`<button type="button" class="lv-chip" data-v="" aria-pressed="${!sel.length}">ALL</button>`+list.map(v=>`<button type="button" class="lv-chip" data-v="${v}" aria-pressed="${sel.includes(v)}">${lab?lab[v]:v}</button>`).join('')}
+function sumTxt(sel,lab){if(!sel.length)return'ALL';const t=sel.map(v=>lab?lab[v]:v);return t.length>2?t.slice(0,2).join(', ')+' +'+(t.length-2):t.join(', ')}
 function drawFilters(){chips('sp-cats',CATS,F.cats,CATL);chips('sp-bands',SBANDS,F.bands);chips('sp-modes',SMODES,F.modes);
+ [['cats',CATL],['bands'],['modes']].forEach(([k,l])=>{const e=$('sp-s-'+k);if(e)e.textContent=sumTxt(F[k],l);const f=$('sp-'+k);if(f&&f.closest('details'))f.insertAdjacentHTML('beforeend','<button type="button" class="lv-chip sp-done" data-done="1">DONE ✓</button>')});
  $('sp-area').innerHTML=AREAS.map(([v,l])=>`<option value="${v}"${v===F.area?' selected':''}>${l}</option>`).join('');const q=$('sp-q');if(document.activeElement!==q)q.value=F.q}
 /* Where the spotted station is, and which WebSDR is most likely to hear it.
    Location: the spot's own lat/lon, else its grid square, else the middle of its US state.
@@ -182,8 +184,11 @@ function drawSpots(){const tb=$('sp-list');if(!tb)return;drawFilters();store.set
  tb._show=show}
 function initSpots(){if(!$('sp-list'))return;
  {const w=new URLSearchParams(location.search).get('spot');if(w&&/^[A-Z0-9\/]{3,12}$/i.test(w))F={cats:[],bands:[],modes:[],area:'all',q:w.toUpperCase()}}
- const tog=(key,id)=>$(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;const v=b.dataset.v;if(!v)F[key]=[];else F[key]=F[key].includes(v)?F[key].filter(x=>x!==v):F[key].concat(v);SHOWN=5;drawSpots()};
+ const tog=(key,id)=>$(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.done){b.closest('details').open=false;return}const v=b.dataset.v;if(!v)F[key]=[];else F[key]=F[key].includes(v)?F[key].filter(x=>x!==v):F[key].concat(v);SHOWN=5;drawSpots()};
  tog('cats','sp-cats');tog('bands','sp-bands');tog('modes','sp-modes');
+ /* filter drop-downs: one open at a time, a tap outside closes them */
+ const dds=[...document.querySelectorAll('.sp-dd')];dds.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)dds.forEach(o=>{if(o!==d)o.open=false})}));
+ document.addEventListener('click',e=>{if(!e.composedPath().some(n=>n.classList&&n.classList.contains('sp-dd')))dds.forEach(d=>d.open=false)});
  $('sp-area').onchange=e=>{F.area=e.target.value;SHOWN=5;drawSpots()};
  $('sp-q').oninput=e=>{F.q=e.target.value;SHOWN=5;clearTimeout(initSpots.t);initSpots.t=setTimeout(drawSpots,250)};
  $('sp-reset').onclick=()=>{F={cats:[],bands:[],modes:[],area:'all',q:''};SHOWN=5;drawSpots()};
