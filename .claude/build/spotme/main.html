@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="kpc-tools.css?v=20261014b">
+<style>
+.sm-wrap{max-width:1100px;margin:0 auto;padding:26px 16px 40px;box-sizing:border-box}
+.sm-card{background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);border-radius:10px;padding:20px;box-shadow:0 10px 24px rgba(0,0,0,.05);margin-bottom:20px}
+.sm-card h2{margin:0 0 4px;font:700 26px/1.15 Georgia,serif}
+.sm-card .sm-sub{margin:0 0 14px;color:#5b5648;font-size:14.5px}
+.sm-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.sm-grid label{display:flex;flex-direction:column;gap:5px;font:900 11px Arial,sans-serif;letter-spacing:1.4px;color:#5b5648;min-width:0}
+.sm-grid input,.sm-grid select{min-height:44px;border:1px solid #cbbf9f;border-radius:8px;padding:8px 11px;font:16px Arial,sans-serif;background:#fff;color:#171717;width:100%;box-sizing:border-box}
+.sm-grid .wide{grid-column:1/-1}
+.sm-grid input.bad{border-color:#b3261e;box-shadow:0 0 0 2px rgba(179,38,30,.15)}
+.sm-hint{font:400 12.5px Arial,sans-serif;letter-spacing:0;color:#7a7466}
+.sm-prev{margin-top:14px;padding:12px 14px;background:#0b0b0b;color:#f0c96b;border-radius:8px;font:700 15px ui-monospace,Menlo,Consolas,monospace;overflow-wrap:anywhere}
+.sm-prev small{display:block;color:#bcb8ae;font:900 10.5px Arial,sans-serif;letter-spacing:1.5px;margin-bottom:4px}
+.sm-groups{display:grid;gap:18px}
+.sm-g h3{margin:0 0 8px;font:900 12px Arial,sans-serif;letter-spacing:2px;color:#1d5a3a}
+.sm-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.sm-d{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;padding:12px 14px;border:1.5px solid #e0d5bd;border-radius:10px;background:#fbf8ef;cursor:pointer;min-width:0}
+.sm-d input{width:22px;height:22px;margin:2px 0 0;accent-color:#1d5a3a}
+.sm-d b{display:block;font:700 16px/1.2 Georgia,serif;color:#171717}
+.sm-d span{display:block;color:#5b5648;font-size:13px;line-height:1.4;margin-top:2px}
+.sm-d em{display:inline-block;font:900 9.5px Arial,sans-serif;letter-spacing:1.2px;font-style:normal;padding:2px 7px;border-radius:999px;margin:5px 4px 0 0;background:#e9e3d2;color:#3d3a33}
+.sm-d em.one{background:#1d5a3a;color:#fff}.sm-d em.warn{background:#fff1d6;color:#7a4b00;border:1px solid #e9b13a}
+.sm-d.on{border-color:#1d5a3a;background:#eef6f0}
+.sm-d.off{opacity:.55}
+.sm-bar{position:sticky;bottom:0;z-index:5;background:rgba(11,11,11,.96);border-top:2px solid var(--gold);padding:12px 16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center}
+.sm-bar .sm-n{color:#cfcabf;font:900 11px Arial,sans-serif;letter-spacing:1.4px}
+.sm-btn{min-height:46px;padding:10px 20px;border-radius:8px;border:0;background:var(--gold);color:#111;font:900 13px Arial,sans-serif;letter-spacing:1.3px;cursor:pointer}
+.sm-btn[disabled]{opacity:.4;cursor:not-allowed}
+.sm-btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff}
+.sm-res{display:grid;gap:10px}
+.sm-r{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 14px;border:1px solid #e0d5bd;border-radius:10px;background:#fff}
+.sm-r b{font:700 16px Georgia,serif}.sm-r p{margin:2px 0 0;color:#5b5648;font-size:13.5px;overflow-wrap:anywhere}
+.sm-r.ok{border-left:5px solid #2e8b57}.sm-r.err{border-left:5px solid #b3261e}.sm-r.todo{border-left:5px solid var(--gold)}
+.sm-r a,.sm-r button{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 14px;border-radius:8px;background:#171717;color:#f0c96b;font:900 11.5px Arial,sans-serif;letter-spacing:1px;text-decoration:none;border:0;cursor:pointer;white-space:nowrap}
+.sm-msg{margin:6px 0 0;font:700 13px ui-monospace,Menlo,Consolas,monospace;background:#f3eee2;border-radius:6px;padding:6px 8px;color:#171717;overflow-wrap:anywhere}
+.sm-note{color:#5b5648;font-size:14px;line-height:1.55}
+.sm-note b{color:#171717}
+.sm-remember{display:flex;gap:8px;align-items:center;margin-top:12px;font-size:14px;color:#3d3a33}
+.sm-remember input{width:20px;height:20px;accent-color:#1d5a3a}
+@media(max-width:860px){.sm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sm-list{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:520px){.sm-grid{grid-template-columns:minmax(0,1fr)}.sm-r{grid-template-columns:minmax(0,1fr)}.sm-r a,.sm-r button{width:100%}}
+</style>
+@@HEADER@@
+<main>
+<section class="tool-head th-op"><div class="wrap">
+<p class="eyebrow">SPOT ME</p>
+<h1>Spot Yourself <span>Everywhere</span></h1>
+<p class="sub">Type your call, frequency and park once, then pick where it goes. Nothing is sent anywhere until you tick it and press SEND. POTA spots post straight from here; the rest open with your spot ready to paste.</p>
+</div></section>
+
+<div class="sm-wrap">
+<section class="sm-card" aria-labelledby="sm1">
+<h2 id="sm1">1. Your spot</h2>
+<p class="sm-sub">Same details every spotting site asks for. Frequency in kHz (14062) or MHz (14.062) both work.</p>
+<div class="sm-grid">
+<label>YOUR CALL (ON THE AIR)<input id="smCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. KQ4ABC/P"></label>
+<label>FREQUENCY<input id="smFreq" inputmode="decimal" autocomplete="off" placeholder="14062 or 14.062"><span class="sm-hint" id="smBand"></span></label>
+<label>MODE<select id="smMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option><option>DATA</option></select></label>
+<label>PROGRAM<select id="smProg"><option value="POTA">POTA (park)</option><option value="SOTA">SOTA (summit)</option><option value="WWFF">WWFF / KFF</option><option value="GMA">GMA</option><option value="NONE">None (just on the air)</option></select></label>
+<label>REFERENCE<input id="smRef" list="smRefs" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-1271"><datalist id="smRefs"></datalist><span class="sm-hint" id="smRefName"></span></label>
+<label>SPOTTED BY (USUALLY YOU)<input id="smBy" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="same as your call"></label>
+<label class="wide">COMMENT (OPTIONAL)<input id="smCm" maxlength="80" autocomplete="off" placeholder="QRT 1500Z · 5 W · calling CQ"></label>
+</div>
+<div class="sm-prev" aria-live="polite"><small>YOUR SPOT</small><span id="smPrev">Fill in your call and frequency</span></div>
+</section>
+
+<section class="sm-card" aria-labelledby="sm2">
+<h2 id="sm2">2. Where to send it</h2>
+<p class="sm-sub">All off to start. Tick the ones you want. Greyed-out ones don't fit the program you picked.</p>
+<div class="sm-groups" id="smDests"></div>
+<label class="sm-remember"><input type="checkbox" id="smKeep"> Remember my picks on this phone or computer</label>
+</section>
+
+<section class="sm-card" id="smOut" hidden aria-labelledby="sm3">
+<h2 id="sm3">3. Sent / to finish</h2>
+<p class="sm-sub">Green = done. Gold = one tap to open that site; your spot is already copied, just paste it in.</p>
+<div class="sm-res" id="smRes"></div>
+</section>
+
+<section class="sm-card" aria-labelledby="sm4">
+<h2 id="sm4">Good to know</h2>
+<div class="sm-note">
+<p><b>Self-spotting is normal for POTA, SOTA and WWFF.</b> On the general DX cluster (DX Summit, Holy Cluster, DXHeat) it's frowned on unless you're a special event station, so those are marked.</p>
+<p><b>Spots you don't have to send:</b> on CW and FT8 the Reverse Beacon Network and PSK Reporter hear you calling CQ and spot you automatically. If you post your activation on <a href="https://pota.app/#/activations" target="_blank" rel="noopener">POTA's activation schedule</a> ahead of time, POTA spots you from those automatic reports too. KPC members' POTA spots also show up on the club Discord and Facebook Page by themselves.</p>
+<p><b>No cell signal?</b> APSPOT takes one APRS message (or text) and spots POTA, SOTA and WWFF for you; SOTAmat spots summits over the air using FT8. Both are listed below with their own instructions.</p>
+<p>See who's on now: <a href="kpc-live.html#spots-card">Happening Now spots</a> · <a href="kpc-spots.html">Kentucky parks on the air</a>.</p>
+</div>
+</section>
+</div>
+<div class="sm-bar"><span class="sm-n" id="smN">NOTHING PICKED YET</span><button type="button" class="sm-btn" id="smSend" disabled>SEND MY SPOT</button><button type="button" class="sm-btn ghost" id="smCopy">COPY SPOT TEXT</button></div>
+</main>
+@@FOOTER@@
+<script src="kpc-spot-me.js?v=20261015a" defer></script>
