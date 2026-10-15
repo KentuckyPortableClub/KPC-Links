@@ -18,7 +18,9 @@ jobs:
       - uses: actions/checkout@v5
       - name: Find special event stations
         run: python3 .github/scripts/kpc_ses.py
-      - name: Contest calendar (WA7BNM RSS feed + big yearly contests)
+      - name: PDF reader for the ARRL Contest Corral
+        run: command -v pdftotext || (sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils)
+      - name: Contest calendar (WA7BNM RSS feed + ARRL Contest Corral + big yearly contests)
         run: python3 .github/scripts/kpc_contests.py
       - name: Save
         run: |
