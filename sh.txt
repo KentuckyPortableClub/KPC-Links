@@ -1,4 +1,19 @@
-point 0 lias":"State Name","length":50},{"name":"Category","type":"esriFieldTypeString","alias":"Category","length":50},{"name":"Date_Est","type":"esriFieldTypeString","alias":"Date of Establishment","length":4},{"name":"Comments","type":"esriFieldTypeString","alias":"Comments","length":255}],"features":[]}
-env 200  3
-fcc 200 {"input":{"lat":37.8452,"lon":-86.9755,"censusYear":"2020"},"results":[{"block_fips":"210590015012016","bbox":[-86.978814,37.842829,-86.971994,37.846826],"county_fips":"21059","county_name":"Davie
-nom 200 []
+## https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9719 27111
+   Fishing Forecasts | https://fw.ky.gov/Fish/Documents/CurrentFishingForecast.pdf
+## https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=224 32514
+   Fishing Forecasts | https://fw.ky.gov/Fish/Documents/CurrentFishingForecast.pdf
+## https://parks.ky.gov/lucas/parks/resort/barren-river-lake-state-resort-park 148181
+## https://eec.ky.gov/Nature-Preserves/Locations/Pages/Bad-Branch.aspx 180807
+   GIS and Maps | /Environmental-Protection/Water/GIS/Pages/default.aspx
+   Data and Maps | /Energy/Data-Maps/Pages/default.aspx
+   Use Google Maps to navigate | https&#58;//maps.app.goo.gl/NC991bB4A4sQgh35A
+   Civil Rights/Derecho Civiles | /Documents/EEC%20Title%20VI%20Report.pdf
+## https://eec.ky.gov/Nature-Preserves/Locations/Pages/Dr.-William-H.-Martin-WWCA.aspx 180834
+   GIS and Maps | /Environmental-Protection/Water/GIS/Pages/default.aspx
+   Data and Maps | /Energy/Data-Maps/Pages/default.aspx
+   Civil Rights/Derecho Civiles | /Documents/EEC%20Title%20VI%20Report.pdf
+## https://www.nps.gov/maca/planyourvisit/maps.htm 39357
+   Maps | /maca/planyourvisit/maps.htm
+   cartography site. | https://www.nps.gov/carto/app/#!/maps/alphacode/MACA
+   available in a variety of formats | /maca/planyourvisit/mammoth-cave-map-guide.htm
+## https://www.fws.gov/refuge/clarks-river ERR HTTP Error 403: Forbidden
