@@ -1,0 +1,1 @@
+curl -s -m 20 -i -X POST https://api.pota.app/spot/ -H "Origin: https://kentuckyportableclub.github.io" -H "Content-Type: application/json" -d '{"activator":"K4TEST","spotter":"K4TEST","frequency":"14062","reference":"XX-99999","mode":"CW","source":"KPC test","comments":"format test, ignore"}' | head -c 1500
