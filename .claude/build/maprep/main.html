@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="kpc-tools.css?v=20261015a">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+.mr-wrap{max-width:1000px;margin:0 auto;padding:24px 16px 40px;box-sizing:border-box}
+.mr-card{background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);border-radius:10px;padding:18px;box-shadow:0 10px 24px rgba(0,0,0,.05)}
+.mr-form{display:grid;grid-template-columns:2fr 1.2fr .8fr auto;gap:10px;align-items:end}
+.mr-form label{display:grid;gap:5px;font:900 11px Arial,sans-serif;letter-spacing:1.4px;color:#5b5648}
+.mr-form input,.mr-form select{min-height:48px;border:1.5px solid #cbbf9f;border-radius:10px;padding:8px 12px;font:16px Arial,sans-serif;min-width:0;background:#fff}
+.mr-form button{min-height:48px;padding:10px 20px;border:0;border-radius:10px;background:#171717;color:#f0c96b;font:900 13px Arial,sans-serif;letter-spacing:1.3px;cursor:pointer}
+.mr-help{margin:8px 0 0;color:#5b5648;font-size:13.5px;line-height:1.5}
+.mr-pick{display:flex;justify-content:space-between;gap:10px;align-items:center;width:100%;text-align:left;margin-top:8px;padding:12px 14px;border:1px solid #e0d5bd;border-radius:10px;background:#fbf8ef;cursor:pointer;font:15px Arial,sans-serif;color:#171717}
+.mr-pick b{font-family:Georgia,serif}.mr-pick span{color:#1d5a3a;font:900 11.5px Arial,sans-serif;letter-spacing:.6px;text-align:right}
+.mr-msg{margin-top:14px;padding:12px 14px;border-radius:8px;background:#f6f2ea;color:#5b5648}
+.mr-res{margin-top:18px;background:#fff;border:1px solid #d8cfbf;border-radius:12px;overflow:hidden}
+.mr-head{background:#0b0b0b;color:#fff;padding:16px 18px}.mr-k{font:900 12px Arial,sans-serif;letter-spacing:2px;color:#f0c96b}.mr-head h2{margin:4px 0;font:700 27px/1.15 Georgia,serif;color:#fff}.mr-head p{margin:0;color:#cfcabf;font-size:14px}
+.mr-v{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px 18px;font:900 16px Arial,sans-serif;letter-spacing:.8px}
+.mr-v span{font:700 13px Arial,sans-serif;letter-spacing:0;opacity:.85}
+.mr-v.yes{background:#e9f6ee;color:#1d6e3c}.mr-v.no{background:#fbece7;color:#a8361f}.mr-v.maybe{background:#fff6e0;color:#8a5a00}
+.mr-rules{padding:6px 18px 4px}
+.mr-r{display:grid;grid-template-columns:70px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid #eee3cc}
+.mr-r i{font-style:normal;align-self:start;text-align:center;padding:6px 4px;border-radius:7px;font:900 13px Arial,sans-serif;letter-spacing:1px;color:#fff;background:#888}
+.mr-r.yes i{background:#2c9a55}.mr-r.no i{background:#c8452b}.mr-r.check i{background:#c98a00}.mr-r.info i{background:#5b6b8a}
+.mr-r b{font:700 16px Georgia,serif;color:#171717}.mr-r p{margin:4px 0 0;font-size:14px;line-height:1.5;color:#3d3a31;overflow-wrap:anywhere}.mr-r a{color:#1d5a3a;font-weight:700}
+.mr-sec{padding:14px 18px;border-top:1px solid #eee3cc}.mr-sec h3{margin:0 0 8px;font:900 11.5px Arial,sans-serif;letter-spacing:2px;color:#1d5a3a}
+.mr-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.mr-btns a{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border-radius:8px;background:#fff;border:1.5px solid #171717;color:#171717;font:900 11.5px Arial,sans-serif;letter-spacing:1px;text-decoration:none}.mr-btns a.gold{background:var(--gold);border-color:var(--gold);color:#111}
+#mrMap{height:420px;border-radius:10px;border:1px solid #d8cfbf;position:relative;z-index:0;isolation:isolate}
+#mrNote{width:100%;box-sizing:border-box;border:1.5px solid #cbbf9f;border-radius:10px;padding:10px;font:13.5px/1.45 ui-monospace,Menlo,Consolas,monospace}
+.mr-hidden{margin:0 0 14px;padding:10px 14px;border-radius:10px;background:#eef3fb;border:1px solid #9db4d8;color:#22385c;font-size:14px}
+@media(max-width:760px){.mr-form{grid-template-columns:1fr 1fr}.mr-form label:first-child{grid-column:1/-1}.mr-form button{grid-column:1/-1}#mrMap{height:340px}.mr-r{grid-template-columns:60px minmax(0,1fr)}}
+</style>
+@@HEADER@@
+<main>
+<section class="tool-head th-map"><div class="wrap">
+<p class="eyebrow">POTA PARK ADDITIONS · ANY STATE</p>
+<h1>Mapping Representative's <span>Tool Box</span></h1>
+<p class="sub">Type a park's name (add the town and state to narrow it down). It finds the land in the national public land database, checks it against POTA's rules for adding a park, and gives a yes, no or check-it-yourself for each rule, with the official links and a boundary map.</p>
+</div></section>
+<div class="mr-wrap">
+<p class="mr-hidden"><b>Private page.</b> Not on the menu or in search. Share the link only with people who need it.</p>
+<section class="mr-card">
+<form class="mr-form" id="mrForm"><label>PARK NAME<input id="mrName" autocomplete="off" placeholder="Bullock Pen Lake"></label><label>TOWN (OPTIONAL)<input id="mrTown" autocomplete="off" placeholder="Crittenden"></label><label>STATE<select id="mrState"></select></label><button type="submit">CHECK IT</button></form>
+<p class="mr-help">The rules come from POTA's "Park Additions and Edits" page (docs.pota.app). The database answers what it can (owner, manager, public access, size, other parks around it); the yellow items are ones only you can confirm, like the official web page and the way in. This is a helper, not a decision: the state's Map Rep decides.</p>
+<div id="mrList"></div>
+</section>
+<div id="mrOut"></div>
+</div>
+</main>
+@@FOOTER@@
+<script src="kpc-bounds.js?v=20261015d" defer></script>
+<script src="kpc-map-tools.js?v=20261015c" defer></script>
+<script src="kpc-maprep.js?v=20261015a" defer></script>
