@@ -1,0 +1,25 @@
+[(0, '24K NHD Waterbodies (Lakes, swamps, etc.)')]
+0 ['OBJECTID', 'FDate', 'Resolution', 'GNIS_ID', 'GNIS_Name', 'AreaSqKm', 'Elevation', 'ReachCode', 'FType', 'FCode', 'Shape', 'Permanent_Identifier', 'VisibilityFilter', 'Shape.STArea()', 'Shape.STLength()']
+  Bullock Pen Lake 136 named [{'gnis_id': '00488380', 'gnis_name': 'Bullock Pen Lake', 'areasqkm': 0.48161063, 'ftype': 390}, {'gnis_id': '00488380', 'gnis_name': 'Bullock Pen Lake', 'areasqkm': 0.06054607, 'ftype': 390}]
+  Boltz Lake 141 named [{'gnis_id': '00487648', 'gnis_name': 'Boltz Lake', 'areasqkm': 0.35122704, 'ftype': 390}]
+  Guist Creek Lake 138 named [{'gnis_id': '00493464', 'gnis_name': 'Guist Creek Lake', 'areasqkm': 1.37995892, 'ftype': 390}]
+  Lake Linville 19 named [{'gnis_id': '00513442', 'gnis_name': 'Lake Linville', 'areasqkm': 1.48869409, 'ftype': 390}]
+  Wilgreen Lake 166 named [{'gnis_id': '00505023', 'gnis_name': 'Wilgreen Lake', 'areasqkm': 0.55924003, 'ftype': 390}]
+  Wood Creek Lake 37 named [{'gnis_id': '00516467', 'gnis_name': 'Wood Creek Lake', 'areasqkm': 2.61015125, 'ftype': 390}]
+  Beaver Lake 78 named [{'gnis_id': '00486624', 'gnis_name': 'Beaver Lake', 'areasqkm': 0.65670791, 'ftype': 390}]
+  Kingfisher Lakes 70 named [{'gnis_id': '00495754', 'gnis_name': 'Kingfisher Lakes', 'areasqkm': 0.055, 'ftype': 390}, {'gnis_id': '00495754', 'gnis_name': 'Kingfisher Lakes', 'areasqkm': 0.0855191, 'ftype': 390}]
+  Carpenter Lake 64 named [{'gnis_id': '00488966', 'gnis_name': 'Carpenters Lake', 'areasqkm': 0.28017875, 'ftype': 390}]
+osm Bullock Pen Lake [('relation', 1647141, 'Bullock Pen Lake')]
+osm Boltz Lake [('way', 119969679, 'Bolz Lake')]
+osm Guist Creek Lake HTTP Error 504: Gateway Timeout
+osm Guist Creek Lake [('way', 240847301, 'Guist Creek Lake')]
+osm Lake Linville [('way', 184705220, 'Lake Linville')]
+osm Wilgreen Lake HTTP Error 504: Gateway Timeout
+osm Wilgreen Lake [('way', 240405134, 'Wilgreen Lake')]
+osm Wood Creek Lake [('way', 220504100, 'Wood Creek Lake')]
+osm Beaver Lake HTTP Error 504: Gateway Timeout
+osm Beaver Lake HTTP Error 504: Gateway Timeout
+osm Beaver Lake HTTP Error 504: Gateway Timeout
+osm Beaver Lake [('way', 239633001, 'Beaver Lake')]
+osm Kingfisher Lakes [('way', 1314961027, 'Carpenter Lake'), ('relation', 18033170, 'Kingfisher Lakes')]
+osm Carpenter Lake [('way', 1314961027, 'Carpenter Lake'), ('relation', 18033170, 'Kingfisher Lakes')]
