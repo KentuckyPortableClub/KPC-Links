@@ -66,10 +66,10 @@ function initRx(){if(!$('rx-box'))return;
 /* ================= spots ================= */
 const NEAR=['KY','IN','OH','WV','VA','TN','MO','IL'];
 const USST=new Set('AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split(' '));
-const CATS=['POTA','SOTA','WWFF','DX','RBN','OTHER'],CATL={POTA:'POTA',SOTA:'SOTA',WWFF:'WWFF',DX:'DX CLUSTER',RBN:'SKIMMER (RBN)',OTHER:'OTHER PROGRAMS'}; /* GMA, HEMA, WWBOTA and the like */
+const CATS=['POTA','SOTA','WWFF','EVENT','DX','RBN','OTHER'],CATL={POTA:'POTA',SOTA:'SOTA',WWFF:'WWFF',EVENT:'SPECIAL EVENTS',DX:'DX CLUSTER',RBN:'SKIMMER (RBN)',OTHER:'OTHER PROGRAMS'}; /* GMA, HEMA, WWBOTA and the like */
 const SBANDS=['160m','80m','60m','40m','30m','20m','17m','15m','12m','10m','6m','2m'];
 const SMODES=['SSB','CW','DIGITAL','OTHER'];
-const AREAS=[['ky','Kentucky'],['near','Kentucky + neighbors'],['us','USA'],['NA','North America'],['EU','Europe'],['AS','Asia'],['SA','South America'],['AF','Africa'],['OC','Oceania'],['all','Worldwide']];
+const AREAS=[['ky','Kentucky'],['near','Kentucky + neighbors'],['us','USA'],['usca','Stations in USA + Canada'],['NA','North America'],['EU','Europe'],['AS','Asia'],['SA','South America'],['AF','Africa'],['OC','Oceania'],['all','Worldwide']];
 /* default view: POTA phone on 40m in the USA (new storage key so everyone starts there once) */
 const F0=()=>({cats:['POTA'],bands:['40m'],modes:['SSB'],area:'us',q:''});
 let F=store.get('kpcSpotF2',F0()),SHOWN=5;
@@ -102,12 +102,22 @@ async function loadSpots(){const note=$('sp-note');if(note)note.textContent='Loa
   srcNote=got.length?got.join(' and ')+' directly (the all-in-one feed is not answering, so DX cluster and WWFF spots are missing right now)':''}
  /* newest spot per call + frequency */
  const seen=new Map();out.sort((a,b)=>(b.t||0)-(a.t||0)).forEach(s=>{const k=s.call+'|'+Math.round(s.khz);if(!seen.has(k))seen.set(k,s)});
- SP=[...seen.values()];lastLoad=Date.now();window.KPCSpots=SP;try{window.dispatchEvent(new CustomEvent('kpc-spots',{detail:SP}))}catch(e){}drawSpots()}
+ SP=[...seen.values()];SP.forEach(s=>s.ev=isEvent(s));loadSes();lastLoad=Date.now();window.KPCSpots=SP;try{window.dispatchEvent(new CustomEvent('kpc-spots',{detail:SP}))}catch(e){}drawSpots()}
+/* Special event stations: calls on today's ARRL special event list (kpc-special-events.json, refreshed daily),
+   US 1x1 calls (K4B, W0B…), W1AW/n, Canadian special-event prefixes, or a comment that says so. */
+let SES=new Set(),SESp=null;
+function loadSes(){if(SESp)return SESp;SESp=fetch('kpc-special-events.json').then(r=>r.json()).then(d=>{const t=Date.now(),D=864e5;(d.stations||[]).forEach(e=>{if(Date.parse(e.start)-D<=t&&Date.parse(e.end)+2*D>=t)(e.calls||[]).concat(e.call||[]).forEach(c=>c&&SES.add(String(c).split('/')[0].toUpperCase()))});SP.forEach(s=>s.ev=isEvent(s));if(SP.length)drawSpots()}).catch(()=>{});return SESp}
+const baseCall=c=>String(c||'').toUpperCase().split('/').reduce((a,b)=>/\d/.test(b)&&b.length>a.length?b:a,'');
+function isEvent(s){const c=String(s.call||'').toUpperCase(),b=baseCall(c);if(!b)return false;
+ if(SES.has(b))return true;if(/^[KNW]\d[A-Z]$/.test(b))return true;if(/^W1AW\//.test(c))return true;
+ if(/^(VC|VG|VX|XJ|XK|XL|XM|XN|XO|C[F-KZ])\d/.test(b))return true;
+ return /special event|\bSES\b|13 colon|museum ship|lighthouse|\bILLW\b|\bJOTA\b|route 66|certificate/i.test(s.comment||'')}
 /* DX cluster and skimmer spots are about what can be HEARD where you are, so for those the area filter checks
    where the SPOTTER is ("heard in the USA"), not the DX station. Kentucky/neighbors count as heard in the USA. */
 const DXCAT=c=>c==='DX'||c==='RBN';
 function inArea(s,a){if(a==='all')return true;
- if(DXCAT(s.cat)){const hasDe=!!(s.deCountry||s.deState),by=String(s.by||'').toUpperCase().split('/').reduce((x,y)=>/\d/.test(y)&&y.length>x.length?y:x,'');
+ if(a==='usca')return isUS(s)||isCA(s)||(!s.country&&/^(K|W|N|A[A-L])\d/.test(baseCall(s.call)));
+ if(DXCAT(s.cat)&&!s.ev){const hasDe=!!(s.deCountry||s.deState),by=String(s.by||'').toUpperCase().split('/').reduce((x,y)=>/\d/.test(y)&&y.length>x.length?y:x,'');
   const deUS=/United States|^USA?$/i.test(s.deCountry)||USST.has(s.deState)||(!hasDe&&/^(K|W|N|A[A-L])\d/.test(by));
   const known=hasDe||!!by;
   if(a==='ky'||a==='near'||a==='us'){if(known)return deUS}
@@ -117,7 +127,7 @@ function inArea(s,a){if(a==='all')return true;
  const us=/United States|^USA?$/i.test(s.country)||/^(US|K)-/.test(s.ref)||USST.has(s.state);
  if(a==='ky')return s.state==='KY'||/US-KY/.test(s.ref);if(a==='near')return NEAR.includes(s.state);if(a==='us')return us;
  if(a==='NA')return s.cont==='NA'||us;return s.cont===a}
-function filtered(){const q=F.q.trim().toUpperCase();return SP.filter(s=>(!F.cats.length||F.cats.includes(s.cat))&&(!F.bands.length||F.bands.includes(bandOf(s.khz)))&&(!F.modes.length||F.modes.includes(modeGroup(s.mode)))&&inArea(s,F.area)&&(!q||(s.call+' '+s.ref+' '+s.name+' '+s.comment).toUpperCase().includes(q)))}
+function filtered(){const q=F.q.trim().toUpperCase();return SP.filter(s=>(!F.cats.length||F.cats.includes(s.cat)||(s.ev&&F.cats.includes('EVENT')))&&(!F.bands.length||F.bands.includes(bandOf(s.khz)))&&(!F.modes.length||F.modes.includes(modeGroup(s.mode)))&&inArea(s,F.area)&&(!q||(s.call+' '+s.ref+' '+s.name+' '+s.comment).toUpperCase().includes(q)))}
 function ago(t){if(!t)return'';const m=Math.max(0,Math.round((Date.now()-t)/60000));return m<1?'now':m<60?m+'m':Math.floor(m/60)+'h'}
 function chips(id,list,sel,lab){$(id).innerHTML=`<button type="button" class="lv-chip" data-v="" aria-pressed="${!sel.length}">ALL</button>`+list.map(v=>`<button type="button" class="lv-chip" data-v="${v}" aria-pressed="${sel.includes(v)}">${lab?lab[v]:v}</button>`).join('')}
 function drawFilters(){chips('sp-cats',CATS,F.cats,CATL);chips('sp-bands',SBANDS,F.bands);chips('sp-modes',SMODES,F.modes);
@@ -161,13 +171,14 @@ function drawSpots(){const tb=$('sp-list');if(!tb)return;drawFilters();store.set
  $('sp-count').textContent=SP.length?`${(L.length+club.length).toLocaleString()} of ${SP.length.toLocaleString()} spots`+(club.length?` · ${club.length} KPC`:''):'';
  $('sp-note').textContent=SP.length?`From ${srcNote}. Last hour, newest first. Refreshes every minute.`+(F.area!=='all'&&(!F.cats.length||F.cats.some(DXCAT))?' DX cluster and skimmer spots are filtered by where the spotter is, so you see DX heard in your area.':''):(lastLoad?'No spots could be loaded right now. Try again in a minute.':'Loading spots…');
  tb.innerHTML=(club.length?`<div class="sp-kpchead">&#9733; KPC MEMBERS ON THE AIR (${club.length}) <span>always shown first</span></div>`:'')+show.map((s,i)=>{const b=bandOf(s.khz),loc=[s.state,s.state?'':s.country].filter(Boolean).join(' ')||s.grid,k=i<club.length;
-  return`${!k&&i===club.length&&club.length?'<div class="sp-kpchead sp-rest">ALL OTHER SPOTS (YOUR FILTERS)</div>':''}<div class="sp-row${k?' sp-kpc':''}"><div class="sp-a"><span class="sp-cat c-${s.cat}">${esc(s.cat==='OTHER'?(String(s.label||'OTHER')).toUpperCase():s.cat==='DX'?'DX':s.cat)}</span><b class="sp-call">${esc(s.call)}</b>${k?'<span class="sp-badge">KPC</span>':''}<span class="sp-t">${ago(s.t)}</span></div>
+  return`${!k&&i===club.length&&club.length?'<div class="sp-kpchead sp-rest">ALL OTHER SPOTS (YOUR FILTERS)</div>':''}<div class="sp-row${k?' sp-kpc':''}"><div class="sp-a"><span class="sp-cat c-${s.cat}">${esc(s.cat==='OTHER'?(String(s.label||'OTHER')).toUpperCase():s.cat==='DX'?'DX':s.cat)}</span><b class="sp-call">${esc(s.call)}</b>${k?'<span class="sp-badge">KPC</span>':''}${s.ev&&s.cat!=='POTA'&&s.cat!=='SOTA'&&s.cat!=='WWFF'?'<span class="sp-cat c-EVENT">SPECIAL EVENT</span>':''}<span class="sp-t">${ago(s.t)}</span></div>
 <div class="sp-b"><b>${fmtK(s.khz)}</b> kHz <span class="sp-m">${esc(s.mode||'?')}</span>${b?' · '+b:''}</div>
 <div class="sp-c">${s.ref?`<span class="sp-ref">${esc(s.ref)}</span> `:''}${esc(s.name)}${s.comment?` <span class="sp-cm">“${esc(String(s.comment).slice(0,80))}”</span>`:''}</div>${(()=>{const w=whereText(s),br=s.khz<=30000?bestRx(s):null;return w||br?`<div class="sp-d">${w?`&#128205; ${esc(w)}`:''}${br?`${w?' · ':''}Best receiver: <button type="button" class="sp-rx" data-rx="${br.r.id}" data-i="${i}" title="About ${Math.round(br.d).toLocaleString()} miles from this station">${esc(br.r.short||br.r.name)} &#9654;</button> <span class="sp-mi">${(br.d>=100?Math.round(br.d/10)*10:Math.round(br.d)).toLocaleString()} mi</span>${br.others.length?` <span class="sp-or">or</span> `+br.others.map(o=>`<button type="button" class="sp-rx sp-alt" data-rx="${o.r.id}" data-i="${i}" title="About ${Math.round(o.d).toLocaleString()} miles from this station">${esc((o.r.short||o.r.name).replace(/ \(.*\)$/,''))}</button>`).join(' '):''}`:''}</div>`:''})()}
 <button type="button" class="sp-go" data-i="${i}" ${s.khz>30000?'disabled title="Above 30 MHz: HF receivers can’t tune this"':''}>&#9654; LISTEN</button></div>`}).join('')+(L.length?'':`<p class="sp-empty">${SP.length?'No '+(club.length?'other ':'')+'spots match these filters. Tap ALL on a row, pick another band, or SHOW EVERYTHING.':''}</p>`);
  if(L.length>SHOWN||SHOWN>5)tb.insertAdjacentHTML('beforeend',`<div class="sp-more">${L.length>SHOWN?`<button type="button" class="lv-chip" data-more="1">SHOW ${Math.min(20,L.length-SHOWN)} MORE (${(L.length-SHOWN).toLocaleString()} not shown)</button>`:''}${SHOWN>5?'<button type="button" class="lv-chip" data-less="1">SHOW FEWER</button>':''}</div>`);
  tb._show=show}
 function initSpots(){if(!$('sp-list'))return;
+ {const w=new URLSearchParams(location.search).get('spot');if(w&&/^[A-Z0-9\/]{3,12}$/i.test(w))F={cats:[],bands:[],modes:[],area:'all',q:w.toUpperCase()}}
  const tog=(key,id)=>$(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;const v=b.dataset.v;if(!v)F[key]=[];else F[key]=F[key].includes(v)?F[key].filter(x=>x!==v):F[key].concat(v);SHOWN=5;drawSpots()};
  tog('cats','sp-cats');tog('bands','sp-bands');tog('modes','sp-modes');
  $('sp-area').onchange=e=>{F.area=e.target.value;SHOWN=5;drawSpots()};

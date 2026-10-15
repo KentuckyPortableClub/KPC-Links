@@ -94,7 +94,7 @@
 .sp-kpchead{padding:8px 12px;background:#0b0b0b;color:#f0c96b;font-size:11px;font-weight:900;letter-spacing:1.5px}.sp-kpchead span{color:#bcb8ae;font-weight:400;letter-spacing:.5px;margin-left:6px}.sp-kpchead.sp-rest{background:#efe8d6;color:#3b3320}
 .sp-a{display:flex;gap:8px;align-items:center;min-width:0}.sp-call{font-size:15px;letter-spacing:.5px}.sp-t{color:#8a8473;font-size:12px}
 .sp-cat{font-size:10px;font-weight:900;letter-spacing:1px;padding:3px 6px;border-radius:4px;background:#e9e3d2;color:#3d3a33;white-space:nowrap}
-.c-POTA{background:#1d5a3a;color:#fff}.c-SOTA{background:#8a4b14;color:#fff}.c-WWFF{background:#2a6f2a;color:#fff}.c-DX{background:#173a6b;color:#fff}.c-RBN{background:#5b5b66;color:#fff}
+.c-POTA{background:#1d5a3a;color:#fff}.c-SOTA{background:#8a4b14;color:#fff}.c-WWFF{background:#2a6f2a;color:#fff}.c-DX{background:#173a6b;color:#fff}.c-RBN{background:#5b5b66;color:#fff}.c-EVENT{background:#7a1d5a;color:#fff}
 .sp-b b{font-family:Georgia,serif;font-size:16px}.sp-m{font-weight:800}
 .sp-c{color:#3d3a33;min-width:0;overflow:hidden;text-overflow:ellipsis}.sp-ref{font-weight:800;color:#1d5a3a}.sp-cm{color:#8a8473}
 .sp-go{font-size:11px;font-weight:900;letter-spacing:1px;padding:9px 12px;min-height:38px;border-radius:6px;border:0;background:#171717;color:#f0c96b;cursor:pointer;white-space:nowrap}
@@ -159,6 +159,7 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
             <div class="nav-drop-label">Parks &amp; Activations</div>
             <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
             <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Find It</a>
+            <a href="kpc-spot-me.html" role="menuitem"><span class="ni">&#128227;</span>Spot Me (post your spot)</a>
             <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
             <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>KY Trip Planner</a>
             <a href="kpc-planner-us.html" role="menuitem"><span class="ni">&#129517;</span>US Trip Planner</a>
@@ -353,7 +354,7 @@ setInterval(function(){kySun();moon()},60000);
 setInterval(loadNOAA,15*60000);
 })();
 </script>
-<script src="kpc-search.js?v=20261014ku" defer></script><script src="kpc-band-strip.js?v=20261011c" defer></script><script src="kpc-band-maps.js?v=20261014a" defer></script><script src="kpc-live.js?v=20261012t" defer></script><script src="kpc-radio.js?v=20261012v" defer></script><script src="kpc-radar-plus.js?v=20261012t" defer></script><script>
+<script src="kpc-search.js?v=20261015a" defer></script><script src="kpc-band-strip.js?v=20261011c" defer></script><script src="kpc-band-maps.js?v=20261014a" defer></script><script src="kpc-live.js?v=20261012t" defer></script><script src="kpc-radio.js?v=20261015a" defer></script><script src="kpc-radar-plus.js?v=20261012t" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
