@@ -131,11 +131,15 @@ body.field .page-jump-nav{display:none!important}
 .m4-target{text-align:center;margin-bottom:10px}.m4-target span{font-weight:800;color:#555}.m4-target b{display:block;font:900 72px Arial,sans-serif;color:#073b4c;line-height:1.1}.m4-target div{display:flex;gap:6px;justify-content:center}
 .m4-key{display:block;width:100%;min-height:150px;border-radius:24px;border:0;background:#8338ec;color:#fff;font:900 34px Arial,sans-serif;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;box-shadow:0 8px 0 #5a1fb0}.m4-key small{display:block;font-size:14px;font-weight:700;opacity:.85}.m4-key.down{transform:translateY(6px);box-shadow:0 2px 0 #5a1fb0;background:#9d5cff}
 .m4-got{display:flex;gap:6px;justify-content:center;min-height:24px;margin-top:12px}
+.kz-page{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:18px;align-items:center;padding:16px 0;border-top:2px dashed #eee}.kz-page img{width:100%;height:auto;border-radius:12px;border:2px solid #eee;background:#fff}
+.kz-page h3{font:900 22px Arial,sans-serif;color:#073b4c;margin:4px 0 6px}.kz-page p{font:17px/1.6 Georgia,serif;color:#222;margin:0 0 10px}.kz-pn{font:900 11px Arial;letter-spacing:1px;color:#06d6a0}
+.kz-pb{display:flex;gap:8px;flex-wrap:wrap}.kz-pb .kz-btn{min-height:42px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center}
+@media(max-width:700px){.kz-page{grid-template-columns:minmax(0,1fr)}}
 .kz-note{font-size:13px;color:#666;margin-top:20px}
 @media(max-width:900px){.kz-games{grid-template-columns:minmax(0,1fr)}}
 </style>
 <main>
-<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • KIDS RADIO ZONE</p><h1>KIDS RADIO <span>ZONE</span></h1><p class="hero-copy">Learn to talk like a ham radio operator! Play games, earn stars and become a phonetic alphabet pro.</p></div></section>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • KIDS RADIO ZONE</p><h1>KIDS RADIO <span>ZONE</span></h1><p class="hero-copy">Learn to talk like a ham radio operator! Play games, earn stars, read the story of Lily and Ben, and print coloring pages.</p></div></section>
 <section class="kz"><div class="kz-in">
 <div class="kz-top"><div>⭐ <span class="s" id="kzStars">0</span> stars</div><div class="kz-badges" id="kzBadges"></div><button type="button" class="kz-btn alt" id="kzReset" style="min-height:36px;font-size:12px;box-shadow:none">START OVER</button></div>
 <div class="kz-games">
@@ -161,10 +165,14 @@ body.field .page-jump-nav{display:none!important}
  <div id="m4Body"></div>
 </div>
 <div class="kz-card" style="margin-top:20px;border-top-color:#ffd166"><h2>📋 The Phonetic Alphabet</h2><p>Tap any letter to hear it.</p><div class="kz-chart" id="kzChart"></div></div>
+<div class="kz-card kz-story-w" style="margin-top:20px;border-top-color:#06d6a0" data-keep-light><h2>📖 Story Time &amp; Coloring Pages</h2><p><b>Lily and Ben's Big Radio Day.</b> Read the story, then print the pictures and color them in!</p>
+ <div class="kz-pb" style="margin-bottom:14px"><button type="button" class="kz-btn" id="kzPrintAll">🖨 PRINT THE WHOLE STORYBOOK</button><button type="button" class="kz-btn alt" id="kzPrintPics">🖍 PRINT ALL 8 COLORING PAGES</button></div>
+ <div id="kzStory"></div>
+</div>
 <p class="kz-note">Grown-ups: nothing about your child is saved or sent anywhere. Stars stay on this device only. Voices come from your phone or computer, so they sound different on different devices. Turn the media volume up.</p>
 </div></section>
 </main>
-<script src="kpc-kids.js?v=20261014b"></script>
+<script src="kpc-kids.js?v=20261014c"></script>
 <script src="kpc-search.js?v=20261014r" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
