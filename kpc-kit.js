@@ -1,4 +1,4 @@
-/* KPC Activation Kit (kpc-kit.html, NOT linked yet: Brandon is trying it first).
+/* KPC Activation Kit (kpc-kit.html). Public since Oct 15 2026.
    Any POTA park, WWFF area or SOTA summit, any state -> one screen: weather, boundary map, the other references
    at the same spot, where to stay and a Spot Me button. Kentucky parks also get member reports and tips,
    parking/trailhead points, 2-fers and KPC's campground list. SAVE FOR NO SIGNAL keeps it on the phone.
@@ -103,7 +103,7 @@
  (notes.length ? '<h4>Latest member tips</h4>' + notes.map(n => `<div class="kit-note">${esc(n.text)}<span>${esc(n.type || 'Tip')} · ${esc(n.call || '')} · ${esc(n.date || '')}</span></div>`).join('') : '') +
  `<div class="kit-btns"><a class="alt" href="kpc-park-notes.html?ref=${encodeURIComponent(kp ? kp.c : P.c)}">ALL PARK NOTES ›</a>${CAMP && CAMP.closures ? `<a class="alt" href="${esc(CAMP.closures.url)}" target="_blank" rel="noopener">STATE PARK CLOSURES ↗</a>` : ''}</div>`
  : `<p>KPC member reports and tips cover Kentucky only. Check ${P.web ? '<a href="' + esc(P.web) + '" target="_blank" rel="noopener">the official website</a>' : 'the official website'} for closures, and the ${P.prog} page for recent activations.</p>`}</section>
-<section class="kit-sec"><h3>☁ WEATHER</h3><div id="kitWx">${saved && saved.wx ? '' : 'Loading the forecast…'}</div><div class="kit-btns"><a class="alt" href="kpc-weather.html?lat=${P.la}&lon=${P.lo}&name=${encodeURIComponent(P.c + ' ' + P.n)}">FULL FIELD WEATHER ›</a></div></section>
+<section class="kit-sec"><h3>☁ WEATHER &amp; ☀ BANDS</h3><div id="kitSun"></div><div id="kitWx">${saved && saved.wx ? '' : 'Loading the forecast…'}</div><div class="kit-btns"><a class="alt" href="kpc-weather.html?lat=${P.la}&lon=${P.lo}&name=${encodeURIComponent(P.c + ' ' + P.n)}">FULL FIELD WEATHER ›</a></div></section>
 <section class="kit-sec"><h3>🗺 MAP${P.prog === 'SOTA' ? ': SUMMIT' : ': BOUNDARY'}${kp && (kp.ap || []).length ? ', PARKING &amp; TRAILHEADS' : ''}</h3><div id="kitMap"></div><p class="kit-small">👆 Tap the map to drop a pin for Street View or directions. ◎ ME shows where you are (with your GPS numbers). The layers button has Satellite + streets, Topo, Terrain and Hillshade.</p><p class="kit-small" id="kitBnd">Loading…</p>
 <div class="kit-btns"><a class="gold" href="kpc-in-park.html?ref=${encodeURIComponent(P.c)}">📍 ${P.prog === 'SOTA' ? 'AM I IN THE ACTIVATION ZONE?' : 'AM I IN THE PARK?'} ›</a></div><div class="kit-btns" id="kitFiles"></div></section>
 <section class="kit-sec"><h3>⛺ WHERE TO STAY</h3>${stay(P)}</section>
@@ -111,6 +111,8 @@
     $('kitSave').onclick = () => saveOffline(P);
     drawMap(P);
     weather(P, saved);
+    sun(P, saved);
+    autoRefresh(P);
     others(P).then(L => drawMulti(P, L)).catch(() => drawMulti(P, []));
     window.scrollTo({ top: $('kitOut').offsetTop - 70, behavior: 'smooth' });
   }
@@ -174,7 +176,7 @@
   /* ---------- weather (Open-Meteo + NWS alerts) ---------- */
   const WX = c => c >= 95 ? '⛈ Thunderstorms' : c >= 80 ? '🌦 Showers' : c >= 71 ? '🌨 Snow' : c >= 61 ? '🌧 Rain' : c >= 51 ? '🌦 Drizzle' : c >= 45 ? '🌫 Fog' : c >= 3 ? '☁ Cloudy' : c >= 1 ? '⛅ Partly cloudy' : '☀ Clear';
   async function fetchWx(p) {
-    const u = `https://api.open-meteo.com/v1/forecast?latitude=${p.la}&longitude=${p.lo}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,wind_gusts_10m&hourly=temperature_2m,precipitation_probability,weather_code,wind_gusts_10m&forecast_hours=12&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=auto`;
+    const u = `https://api.open-meteo.com/v1/forecast?latitude=${p.la}&longitude=${p.lo}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,wind_gusts_10m&hourly=temperature_2m,precipitation_probability,weather_code,wind_gusts_10m&daily=sunrise,sunset&forecast_days=1&forecast_hours=12&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=auto`;
     const [w, a] = await Promise.all([j(u), fetch(`https://api.weather.gov/alerts/active?point=${p.la.toFixed(4)},${p.lo.toFixed(4)}`, { headers: { Accept: 'application/geo+json' } }).then(r => r.ok ? r.json() : null).catch(() => null)]);
     if (!w || !w.current) return null;
     return { t: Date.now(), w, alerts: a ? (a.features || []).map(f => ({ ev: f.properties.event, sev: f.properties.severity, until: f.properties.ends || f.properties.expires })) : null };
@@ -183,10 +185,11 @@
     const c = x.w.current, h = x.w.hourly, rows = h.time.map((t, i) => ({ t, temp: h.temperature_2m[i], pp: h.precipitation_probability[i], wc: h.weather_code[i], g: h.wind_gusts_10m[i] }));
     const storm = rows.some(r => r.wc >= 95), maxPP = Math.max(...rows.map(r => r.pp || 0)), maxG = Math.max(...rows.map(r => r.g || 0));
     const calls = [storm ? '<b class="bad">Storms in the next 12 h: no antennas up near lightning.</b>' : '', maxG >= 25 ? `Gusts to ${Math.round(maxG)} mph: guy your mast.` : '', maxPP >= 50 ? `Rain chance up to ${maxPP}%: bring a tarp.` : ''].filter(Boolean);
-    $('kitWx').innerHTML = (old ? `<p class="kit-small">Saved forecast from ${new Date(x.t).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })} (no signal right now).</p>` : '') +
+    $('kitWx').innerHTML = (!old ? `<p class="kit-small">Updated ${new Date(x.t).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })} · refreshes every 15 minutes while this page is open</p>` : '') + (old ? `<p class="kit-small">Saved forecast from ${new Date(x.t).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })} (no signal right now).</p>` : '') +
       (x.alerts && x.alerts.length ? x.alerts.map(a => `<div class="kit-alert"><b>${esc(a.ev)}</b><span>${a.until ? 'until ' + new Date(a.until).toLocaleString([], { weekday: 'short', hour: 'numeric', minute: '2-digit' }) : ''}</span></div>`).join('') : x.alerts ? '<p class="kit-small">No weather alerts for this spot.</p>' : '') +
       `<div class="kit-now"><b>${Math.round(c.temperature_2m)}°F</b><span>${WX(c.weather_code)} · feels ${Math.round(c.apparent_temperature)}° · wind ${Math.round(c.wind_speed_10m)} mph, gusts ${Math.round(c.wind_gusts_10m)}</span></div>` +
       (calls.length ? `<p>${calls.join(' ')}</p>` : '<p>Looks fine for the next 12 hours.</p>') +
+      (x.w.daily && x.w.daily.sunrise ? `<p class="kit-small">🌅 Sunrise ${new Date(x.w.daily.sunrise[0]).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })} · 🌇 Sunset ${new Date(x.w.daily.sunset[0]).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })} (gray line: the half hour around each is often good for long distance)</p>` : '') +
       `<div class="kit-hours">${rows.filter((r, i) => i % 2 === 0).map(r => `<div><span>${new Date(r.t).toLocaleTimeString([], { hour: 'numeric' })}</span><b>${Math.round(r.temp)}°</b><span>${WX(r.wc).split(' ')[0]} ${r.pp || 0}%</span></div>`).join('')}</div>`;
   }
   async function weather(p, saved) {
@@ -195,6 +198,33 @@
     if (x) { showWx(x, false); const S = store.get(SAVEKEY) || {}; if (S[p.c]) { S[p.c].wx = x; S[p.c].t = S[p.c].t || x.t; store.set(SAVEKEY, S); } }
     else if (!saved || !saved.wx) $('kitWx').innerHTML = '<p class="kit-small">No forecast right now (no signal?).</p>';
   }
+
+  /* ---------- solar / band conditions (NOAA SWPC: Kp every 3 hours, solar flux once a day) ---------- */
+  async function fetchSun() {
+    const [k, f] = await Promise.all([j('https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json'), j('https://services.swpc.noaa.gov/products/summary/10cm-flux.json')]);
+    let kp = null, sfi = null;
+    try { const r = k[k.length - 1]; kp = Number(Array.isArray(r) ? r[1] : r.Kp); } catch (e) {}
+    try { sfi = Number((Array.isArray(f) ? f[0] : f).flux); } catch (e) {}
+    if (!isFinite(kp) && !isFinite(sfi)) return null;
+    return { t: Date.now(), kp: isFinite(kp) ? kp : null, sfi: isFinite(sfi) ? sfi : null };
+  }
+  function showSun(x, old) {
+    const el = $('kitSun'); if (!el) return;
+    if (!x) { el.innerHTML = '<p class="kit-small">Solar numbers not available right now.</p>'; return; }
+    const kp = x.kp, sfi = x.sfi, hr = new Date().getHours(), day = hr >= 8 && hr < 18;
+    const storm = kp != null && kp >= 5, unset = kp != null && kp >= 4;
+    const lvl = storm ? ['bad', 'ROUGH'] : sfi == null ? ['', '?'] : sfi >= 150 && !unset ? ['good', 'GREAT'] : sfi >= 100 && !unset ? ['good', 'GOOD'] : sfi >= 80 ? ['ok', 'FAIR'] : ['ok', 'SO-SO'];
+    const bands = storm ? 'Geomagnetic storm: high bands are noisy and fade; try 40 m, and expect weaker signals.' : day ? (sfi >= 120 ? 'Daytime: 20, 17, 15 and even 10 m should be open.' : 'Daytime: 20 and 40 m are your best bets.') : (sfi >= 150 ? 'Evening: 20 m may stay open; 40 and 80 m for closer stations.' : 'Evening and night: 40 and 80 m work best.');
+    el.innerHTML = `<div class="kit-sun"><span class="kit-sb ${lvl[0]}">HF ${lvl[1]}</span><span>Solar flux <b>${sfi != null ? Math.round(sfi) : '?'}</b> · Kp <b>${kp != null ? kp.toFixed(kp % 1 ? 1 : 0) : '?'}</b> <small>(flux: higher = better high bands · Kp 0-9: lower = calmer)</small></span></div><p class="kit-small">${bands}${old ? ' (saved numbers, no signal right now)' : ''} <a href="kpc-live.html">Live band activity ›</a></p>`;
+  }
+  async function sun(p, saved) {
+    if (saved && saved.sun) showSun(saved.sun, true);
+    const x = await fetchSun();
+    if (x) { showSun(x, false); const S = store.get(SAVEKEY) || {}; if (S[p.c]) { S[p.c].sun = x; store.set(SAVEKEY, S); } }
+    else if (!saved || !saved.sun) showSun(null);
+  }
+  let timer = null;
+  function autoRefresh(P) { clearInterval(timer); timer = setInterval(() => { if (document.hidden || cur !== P) return; weather(P, null); sun(P, null); }, 15 * 60 * 1000); }
 
   /* ---------- save for offline ---------- */
   function tileList(p, bb) {
@@ -225,7 +255,7 @@
         msg.textContent = `Saving the map around the park… ${Math.min(100, Math.round((i + 6) / tiles.length * 100))}%`;
       }
       const wx = await fetchWx(p);
-      const S = store.get(SAVEKEY) || {}; S[p.c] = { t: Date.now(), name: p.n, wx: wx || (S[p.c] && S[p.c].wx) || null }; store.set(SAVEKEY, S);
+      const S = store.get(SAVEKEY) || {}; S[p.c] = { t: Date.now(), name: p.n, wx: wx || (S[p.c] && S[p.c].wx) || null, sun: (await fetchSun()) || (S[p.c] && S[p.c].sun) || null }; store.set(SAVEKEY, S);
       msg.innerHTML = `✓ Saved ${new Date().toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}: the kit, ${done} map pieces and today's forecast. To test it, turn on airplane mode and open this page again.`;
       btn.textContent = 'UPDATE THE SAVED COPY';
     } catch (e) { msg.textContent = 'Saving stopped: ' + (e.message || 'storage full?'); }
