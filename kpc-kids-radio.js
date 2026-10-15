@@ -47,15 +47,38 @@ function person(o) {
   o = o || {};
   const kid = o.kid ? pick(KIDS) : null;
   const m = kid ? !!kid[1] : (o.m != null ? o.m : Math.random() < 0.65);
-  const st = o.st || pick(STATES);
+  const st = o.st || bandState();
   return {
     call: o.call || fakeCall(o.ky ? 4 : st[1]), name: kid ? kid[0] : pick(m ? MEN : WOMEN), m, kid: !!kid, age: kid ? rnd(9, 13) : 0,
-    st: st[0], town: o.ky || st[0] === 'Kentucky' ? pick(TOWNS) : '',
+    st: st[0], town: o.ky || st[0] === 'Kentucky' ? pick(TOWNS) : st[0],
     pitch: kid ? 1.45 + Math.random() * 0.25 : m ? 0.55 + Math.random() * 0.3 : 1 + Math.random() * 0.25,
     rate: kid ? 1.05 : 0.92 + Math.random() * 0.15, vi: vi++, s: 0.55 + Math.random() * 0.45
   };
 }
 const KY = ['Kentucky', 4];
+/* who you hear depends on the band (the listener is in Kentucky): 40 m = Kentucky and nearby states,
+   20 m skips over the neighbours and brings in stations 500+ miles away */
+const SN = { AL: 'Alabama', AR: 'Arkansas', AZ: 'Arizona', CA: 'California', CO: 'Colorado', CT: 'Connecticut', DE: 'Delaware', FL: 'Florida', GA: 'Georgia', IA: 'Iowa', ID: 'Idaho', IL: 'Illinois', IN: 'Indiana', KS: 'Kansas', KY: 'Kentucky', LA: 'Louisiana', MA: 'Massachusetts', MD: 'Maryland', ME: 'Maine', MI: 'Michigan', MN: 'Minnesota', MO: 'Missouri', MS: 'Mississippi', MT: 'Montana', NC: 'North Carolina', ND: 'North Dakota', NE: 'Nebraska', NH: 'New Hampshire', NJ: 'New Jersey', NM: 'New Mexico', NV: 'Nevada', NY: 'New York', OH: 'Ohio', OK: 'Oklahoma', OR: 'Oregon', PA: 'Pennsylvania', RI: 'Rhode Island', SC: 'South Carolina', SD: 'South Dakota', TN: 'Tennessee', TX: 'Texas', UT: 'Utah', VA: 'Virginia', VT: 'Vermont', WA: 'Washington', WI: 'Wisconsin', WV: 'West Virginia', WY: 'Wyoming' };
+Object.keys(SN).forEach(k => { STAB[SN[k]] = k; });
+const REGION = {}; ['1 CT ME MA NH RI VT', '2 NJ NY', '3 DE MD PA', '4 AL FL GA KY NC SC TN VA', '5 AR LA MS NM OK TX', '6 CA', '7 AZ ID MT NV OR UT WA WY', '8 MI OH WV', '9 IL IN WI', '0 CO IA KS MN MO NE ND SD'].forEach(r => { const p = r.split(' '); p.slice(1).forEach(k => { REGION[k] = +p[0]; }); });
+const CEN = { AL: [32.8, -86.8], AR: [34.9, -92.4], AZ: [34.3, -111.7], CA: [37.2, -119.5], CO: [39, -105.5], CT: [41.6, -72.7], DE: [39, -75.5], FL: [28.6, -82.4], GA: [32.7, -83.4], IA: [42.1, -93.5], ID: [44.4, -114.6], IL: [40, -89.2], IN: [39.9, -86.3], KS: [38.5, -98.4], KY: [37.5, -85.3], LA: [31.1, -92], MA: [42.3, -71.8], MD: [39, -76.8], ME: [45.4, -69.2], MI: [43.7, -84.7], MN: [46.3, -94.3], MO: [38.4, -92.5], MS: [32.7, -89.7], MT: [47, -109.6], NC: [35.6, -79.4], ND: [47.5, -100.5], NE: [41.5, -99.8], NH: [43.7, -71.6], NJ: [40.2, -74.7], NM: [34.4, -106.1], NV: [39.3, -116.6], NY: [42.9, -75.5], OH: [40.3, -82.8], OK: [35.6, -97.5], OR: [43.9, -120.6], PA: [40.9, -77.8], RI: [41.7, -71.5], SC: [33.9, -80.9], SD: [44.4, -100.2], TN: [35.9, -86.4], TX: [31.5, -99.3], UT: [39.3, -111.7], VA: [37.5, -78.8], VT: [44.1, -72.7], WA: [47.4, -120.5], WI: [44.6, -89.9], WV: [38.6, -80.6], WY: [43, -107.6] };
+const HAMS = { CA: 3, TX: 2.5, FL: 2, NY: 1.8, PA: 1.4, OH: 1.4, IL: 1.3, GA: 1.2, NC: 1.2, MI: 1.2, VA: 1.1, WA: 1.1, TN: 1.1, KY: 1.1, DE: 0.3, RI: 0.3, VT: 0.3, WY: 0.3, ND: 0.3, SD: 0.35, MT: 0.45, NH: 0.5, ME: 0.5, NV: 0.6, ID: 0.5, NE: 0.5 };
+function miles(a, b) { const A = CEN[a], B = CEN[b], r = Math.PI / 180, x = (B[1] - A[1]) * r * Math.cos((A[0] + B[0]) / 2 * r), y = (B[0] - A[0]) * r; return Math.sqrt(x * x + y * y) * 3959; }
+function bandState() {
+  const keys = Object.keys(CEN), w = keys.map(k => { const d = miles('KY', k); return (band === 40 ? (d < 350 ? 1.5 : d < 700 ? 0.8 : d < 1200 ? 0.22 : 0.05) : (d < 450 ? 0.03 : d < 650 ? 0.4 : d < 2600 ? 1 : 0.5)) * (HAMS[k] || 0.8); });
+  let t = Math.random() * w.reduce((a, b) => a + b, 0);
+  for (let i = 0; i < keys.length; i++) { t -= w[i]; if (t <= 0) return [SN[keys[i]], REGION[keys[i]]]; }
+  return ['Texas', 5];
+}
+/* the main station: in Kentucky on 40 m, far away on 20 m */
+const loc = extra => Object.assign(band === 40 ? { st: KY, ky: 1 } : {}, extra || {});
+const SOTA_AS = { NC: 'W4C/WM', TN: 'W4T/SU', VA: 'W4V/SH', WV: 'W8V/SR', GA: 'W4G/NG', CO: 'W0C/FR', CA: 'W6/CT', AZ: 'W7A/MN', OR: 'W7O/CM', WA: 'W7W/KG', NY: 'W2/GA', NH: 'W1/HA', VT: 'W1/NL', ME: 'W1/AM', TX: 'W5T/HE', NM: 'W5N/SI', UT: 'W7U/SL', MT: 'W7M/BR', ID: 'W7I/SR', PA: 'W3/PD', AR: 'W5A/OZ', NV: 'W7N/CC', WY: 'W7Y/MA' };
+function refFor(p, kind) {
+  const ky = p.st === 'Kentucky';
+  if (kind === 'sota') { if (ky) return pick(SUMMITS); return { c: (SOTA_AS[STAB[p.st]] || 'W7A/MN') + '-' + String(rnd(1, 140)).padStart(3, '0'), n: 'a mountain in ' + (SOTA_AS[STAB[p.st]] ? p.st : 'Arizona') }; }
+  if (kind === 'kff') return ky ? pick(KFFS) : { c: 'KFF-' + String(rnd(1, 7000)).padStart(4, '0'), n: 'a wildlife area in ' + p.st };
+  return ky ? pick(PARKS) : { c: 'US-' + String(rnd(1, 11000)).padStart(4, '0'), n: 'a state park in ' + p.st };
+}
 
 /* ---------------- what each kind of station is ---------------- */
 const KINDS = {
@@ -93,39 +116,39 @@ function voiceScript(kind) {
   const say = (i, spoken, shown) => L.push([i, spoken, shown || spoken]);
   let sp;
   if (kind === 'pota' || kind === 'kff') {
-    const a = person({ st: KY, ky: 1 }), hs = [person(), person(), person()], ref = kind === 'kff' ? pick(KFFS) : pick(PARKS);
+    const a = person(loc()), hs = [person(), person(), person()], ref = refFor(a, kind === 'kff' ? 'kff' : 'pota');
     sp = [a].concat(hs);
     const cq = kind === 'kff' ? 'CQ W W F F, CQ K F F' : 'CQ Parks on the Air, CQ POTA', cqS = kind === 'kff' ? 'CQ WWFF, CQ KFF' : 'CQ Parks on the Air, CQ POTA';
     say(0, `${cq}, this is ${phon(a.call)}, ${phon(a.call)}, portable at ${ref.n}, ${sayRef(ref.c)}.`, `${cqS}, this is ${a.call}, ${a.call}, portable at ${ref.n}, ${ref.c}.`);
     say(1, phon(hs[0].call), hs[0].call);
-    say(0, `${phon(hs[0].call)}, thanks for the call. You're five nine in Kentucky. Five nine.`, `${hs[0].call}, thanks for the call. You're five nine in Kentucky. Five nine.`);
+    say(0, `${phon(hs[0].call)}, thanks for the call. You're five nine in ${a.st}. Five nine.`, `${hs[0].call}, thanks for the call. You're five nine in ${a.st}. Five nine.`);
     say(1, `Roger roger! You're five nine also, in ${hs[0].st}. Thanks for the ${kind === 'kff' ? 'reference' : 'park'}. Seventy-three!`);
     say(0, `Thank you, seventy-three. QRZ? This is ${phon(a.call)}.`, `Thank you, 73. QRZ? This is ${a.call}.`);
     say(2, phon(hs[1].call.slice(-2)), hs[1].call.slice(-2) + ' (just the end of the call)');
     say(0, `Station ending in ${phon(hs[1].call.slice(-2))}, again, again?`, `Station ending in ${hs[1].call.slice(-2)}, again, again?`);
     say(2, `${phon(hs[1].call)}, ${phon(hs[1].call)}.`, `${hs[1].call}, ${hs[1].call}.`);
-    say(0, `${phon(hs[1].call)}, you're five seven, five seven, Kentucky.`, `${hs[1].call}, you're five seven, five seven, Kentucky.`);
+    say(0, `${phon(hs[1].call)}, you're five seven, five seven, ${a.st}.`, `${hs[1].call}, you're five seven, five seven, ${a.st}.`);
     say(2, `QSL. You're five nine in ${hs[1].st}. Have fun out there, seventy-three.`);
     say(0, `Seventy-three. QRZ for ${phon(a.call)}, ${kind === 'kff' ? 'K F F' : 'POTA'}.`, `73. QRZ for ${a.call}, ${kind === 'kff' ? 'KFF' : 'POTA'}.`);
     say(3, phon(hs[2].call), hs[2].call);
-    say(0, `${phon(hs[2].call)}, you're five nine Kentucky.`, `${hs[2].call}, you're five nine Kentucky.`);
+    say(0, `${phon(hs[2].call)}, you're five nine ${a.st}.`, `${hs[2].call}, you're five nine ${a.st}.`);
     say(3, `Thanks! Five eight ${hs[2].st}. Seventy-three.`);
     return { sp, lines: L, about: `${a.call} (${a.name}) is at ${ref.n}, ${ref.c}. Hunters are calling from ${hs.map(h => h.st).join(', ')}.` };
   }
   if (kind === 'p2p') {
-    const a = person({ st: KY, ky: 1 }), b = person(), pa = pick(PARKS), pb = { c: 'US-' + String(rnd(1, 9999)).padStart(4, '0'), n: 'a park in ' + b.st };
+    const a = person(loc()), b = person(), pa = refFor(a, 'pota'), pb = { c: 'US-' + String(rnd(1, 9999)).padStart(4, '0'), n: 'a park in ' + b.st };
     sp = [a, b];
     say(0, `CQ POTA, CQ POTA, this is ${phon(a.call)} at ${pa.n}.`, `CQ POTA, CQ POTA, this is ${a.call} at ${pa.n}.`);
     say(1, `Park to park! ${phon(b.call)}, ${phon(b.call)}.`, `Park to park! ${b.call}, ${b.call}.`);
     say(0, `Park to park, go ahead ${phon(b.call)}!`, `Park to park, go ahead ${b.call}!`);
     say(1, `You're five nine, five nine. I'm in ${pb.n}, ${sayRef(pb.c)}. ${sayRef(pb.c)}.`, `You're five nine, five nine. I'm in ${pb.n}, ${pb.c}. ${pb.c}.`);
-    say(0, `Roger, ${sayRef(pb.c)}. You're five eight. I'm at ${sayRef(pa.c)}, in Kentucky. Thanks for the park to park!`, `Roger, ${pb.c}. You're five eight. I'm at ${pa.c}, in Kentucky. Thanks for the park to park!`);
+    say(0, `Roger, ${sayRef(pb.c)}. You're five eight. I'm at ${sayRef(pa.c)}, in ${a.st}. Thanks for the park to park!`, `Roger, ${pb.c}. You're five eight. I'm at ${pa.c}, in ${a.st}. Thanks for the park to park!`);
     say(1, `QSL! Great contact, two parks each. Seventy-three!`);
     say(0, `Seventy-three. QRZ for ${phon(a.call)}, POTA.`, `73. QRZ for ${a.call}, POTA.`);
     return { sp, lines: L, about: `${a.call} is at ${pa.n} (${pa.c}). ${b.call} (${b.name}) is in ${pb.n} (${pb.c}).` };
   }
   if (kind === 'sota') {
-    const a = person({ st: KY, ky: 1 }), h = [person(), person()], s = pick(SUMMITS);
+    const a = person(loc()), h = [person(), person()], s = refFor(a, 'sota');
     sp = [a].concat(h);
     say(0, `CQ SOTA, CQ Summits on the Air. This is ${phon(a.call)} portable, on ${s.n}, ${sayRef(s.c)}. It's windy up here!`, `CQ SOTA, CQ Summits on the Air. This is ${a.call}/P on ${s.n}, ${s.c}. It's windy up here!`);
     say(1, phon(h[0].call), h[0].call);
@@ -138,7 +161,7 @@ function voiceScript(kind) {
     return { sp, lines: L, about: `${a.call} (${a.name}) hiked up ${s.n}, ${s.c}${s.ft ? ', ' + s.ft + ' feet high' : ''}.` };
   }
   if (kind === 'rag') {
-    const a = person({ st: KY, ky: 1, m: true }), b = person({ st: KY, ky: 1 });
+    const a = person(loc({ m: true })), b = person(band === 40 ? loc() : {});
     sp = [a, b];
     say(0, `${phon(b.call)}, this is ${phon(a.call)}. Good to hear you again, ${b.name}. How's the weather down your way? Over.`, `${b.call}, this is ${a.call}. Good to hear you again, ${b.name}. How's the weather down your way? Over.`);
     say(1, `Hey ${a.name}! It's raining cats and dogs here in ${b.town}. My dog is hiding under the bed. Over to you. ${phon(a.call)}, this is ${phon(b.call)}.`, `Hey ${a.name}! It's raining cats and dogs here in ${b.town}. My dog is hiding under the bed. Over to you. ${a.call}, this is ${b.call}.`);
@@ -147,7 +170,7 @@ function voiceScript(kind) {
     say(0, `She sure did! She's a Technician now, eleven years old. She already talked to a station in Texas. Over.`);
     say(1, `That's wonderful, tell her congratulations. Well, it's time for supper. Seventy-three, ${a.name}. ${phon(a.call)}, this is ${phon(b.call)}, clear.`, `That's wonderful, tell her congratulations. Well, it's time for supper. 73, ${a.name}. ${a.call}, this is ${b.call}, clear.`);
     say(0, `Seventy-three, ${b.name}. Talk to you next week. ${phon(b.call)}, this is ${phon(a.call)}, clear.`, `73, ${b.name}. Talk to you next week. ${b.call}, this is ${a.call}, clear.`);
-    return { sp, lines: L, about: `${a.name} (${a.call}) in ${a.town} and ${b.name} (${b.call}) in ${b.town}, both in Kentucky.` };
+    return { sp, lines: L, about: `${a.name} (${a.call}) in ${a.town} and ${b.name} (${b.call}) in ${b.town}${a.st === 'Kentucky' && b.st === 'Kentucky' ? ', both in Kentucky' : ''}.` };
   }
   if (kind === 'net') {
     const nc = person({ st: KY, ky: 1 }), c1 = person({ st: KY, ky: 1 }), c2 = person({ st: KY, ky: 1, kid: true }), c3 = person({ st: KY, ky: 1 });
@@ -167,11 +190,11 @@ function voiceScript(kind) {
     return { sp, lines: L, about: `${nc.name} (${nc.call}) is net control. Check-ins: ${c1.call}, ${c2.call} (a kid!), ${c3.call}.` };
   }
   /* kid */
-  const k = person({ st: KY, ky: 1, kid: true }), o = person();
+  const k = person(loc({ kid: true })), o = person();
   sp = [k, o];
   say(0, `CQ CQ CQ, this is ${phon(k.call)}, ${phon(k.call)}, calling CQ.`, `CQ CQ CQ, this is ${k.call}, ${k.call}, calling CQ.`);
   say(1, `${phon(k.call)}, this is ${phon(o.call)}.`, `${k.call}, this is ${o.call}.`);
-  say(0, `Hi! You're five nine. My name is ${k.name}, I'm ${k.age}, and I'm in ${k.town}, Kentucky. What's your name? ${phon(o.call)}, this is ${phon(k.call)}.`, `Hi! You're five nine. My name is ${k.name}, I'm ${k.age}, and I'm in ${k.town}, Kentucky. What's your name? ${o.call}, this is ${k.call}.`);
+  say(0, `Hi! You're five nine. My name is ${k.name}, I'm ${k.age}, and I'm in ${k.st === 'Kentucky' ? k.town + ', Kentucky' : k.st}. What's your name? ${phon(o.call)}, this is ${phon(k.call)}.`, `Hi! You're five nine. My name is ${k.name}, I'm ${k.age}, and I'm in ${k.st === 'Kentucky' ? k.town + ', Kentucky' : k.st}. What's your name? ${o.call}, this is ${k.call}.`);
   say(1, `Hello ${k.name}! My name is ${o.name}, and I'm in ${o.st}. You sound great. How long have you been a ham? Over.`);
   say(0, `Two months! I passed my test at the library. This is my third contact ever! Over.`);
   say(1, `Congratulations! Keep it up, you're doing a great job. Seventy-three, ${k.name}!`, `Congratulations! Keep it up, you're doing a great job. 73, ${k.name}!`);
@@ -182,32 +205,32 @@ function voiceScript(kind) {
 function cwScript(kind) {
   const P = [], s = (i, t) => P.push([i, t]);
   if (kind === 'cwcq' || kind === 'cwslow') {
-    const a = person({ st: KY, ky: 1 }), b = person();
+    const a = person(loc()), b = person();
     const A = a.call, B = b.call, nb = b.name.toUpperCase(), na = a.name.toUpperCase();
     s(0, `CQ CQ CQ DE ${A} ${A} K`); s(0, `CQ CQ CQ DE ${A} ${A} K`);
     s(1, `${A} DE ${B} ${B} K`);
-    s(0, `${B} DE ${A} GM TNX FER CALL = UR RST 579 579 = NAME ${na} ${na} = QTH KY = HW? ${B} DE ${A} KN`);
+    s(0, `${B} DE ${A} GM TNX FER CALL = UR RST 579 579 = NAME ${na} ${na} = QTH ${STAB[a.st] || 'KY'} = HW? ${B} DE ${A} KN`);
     s(1, `R R FB ${na} = UR 599 = NAME ${nb} = QTH ${STAB[b.st] || b.st} = TNX ES 73 ${A} DE ${B} <SK>`);
     s(0, `TU ${nb} 73 GL <SK> EE`);
     return { sp: [a, b], parts: P, wpm: kind === 'cwslow' ? 8 : 16, about: `${A} (${a.name}) is calling CQ. ${B} (${b.name}) answers.` };
   }
   if (kind === 'cwpota') {
-    const a = person({ st: KY, ky: 1 }), h = [person(), person(), person()], p = pick(PARKS);
+    const a = person(loc()), h = [person(), person(), person()], p = refFor(a, 'pota');
     s(0, `CQ POTA CQ POTA DE ${a.call} ${a.call} K`);
-    h.forEach((x, i) => { s(i + 1, x.call); s(0, `${x.call} 5NN KY`); s(i + 1, `TU 5NN ${STAB[x.st] || 'OH'} 73`); s(0, `TU ${a.call} POTA`); });
+    h.forEach((x, i) => { s(i + 1, x.call); s(0, `${x.call} 5NN ${STAB[a.st] || 'KY'}`); s(i + 1, `TU 5NN ${STAB[x.st] || 'OH'} 73`); s(0, `TU ${a.call} POTA`); });
     return { sp: [a].concat(h), parts: P, wpm: 20, about: `${a.call} is in ${p.n} (${p.c}) sending Morse code. Hunters: ${h.map(x => x.call).join(', ')}.` };
   }
   if (kind === 'cwrag') {
-    const a = person({ st: KY, ky: 1 }), b = person();
+    const a = person(loc()), b = person();
     const A = a.call, B = b.call, na = a.name.toUpperCase(), nb = b.name.toUpperCase();
     s(0, `${B} DE ${A} R R FB ${nb} = WX HR SUNNY ES WARM = RIG HR IS KX2 ES ANT IS WIRE IN TREE = HW? ${B} DE ${A} KN`);
     s(1, `${A} DE ${B} R FB ${na} NICE RIG = WX HR RAIN = MY DOG IS BARKING AT THUNDER HI HI = ${A} DE ${B} KN`);
     s(0, `R HI HI = OK ${nb} TNX FER QSO = 73 ES CUL ${B} DE ${A} <SK>`);
     s(1, `TU ${na} 73 <SK> EE`);
-    return { sp: [a, b], parts: P, wpm: 18, about: `${a.name} (${A}) in Kentucky and ${b.name} (${B}) in ${b.st} are chatting in Morse.` };
+    return { sp: [a, b], parts: P, wpm: 18, about: `${a.name} (${A}) in ${a.st} and ${b.name} (${B}) in ${b.st} are chatting in Morse.` };
   }
   /* cwsota */
-  const a = person({ st: KY, ky: 1 }), b = person(), sa = pick(SUMMITS), sb = 'W4C/WM-' + String(rnd(1, 99)).padStart(3, '0');
+  const a = person(loc()), b = person(), sa = refFor(a, 'sota'), sb = (SOTA_AS[STAB[b.st]] || 'W4C/WM') + '-' + String(rnd(1, 99)).padStart(3, '0');
   s(0, `CQ SOTA DE ${a.call}/P K`);
   s(1, `S2S ${b.call}/P`);
   s(0, `${b.call} 559 559 ${sa.c}`);
@@ -281,21 +304,20 @@ let CUR_U = null;
 function speak(text, who, pitchMul, vol, onStart) {
   return new Promise(res => {
     if (!window.speechSynthesis) { setTimeout(() => res(false), 1500 + text.length * 60); return; }
+    /* Android: never cancel() just before speaking (it drops the next line) and don't trust onstart */
     const go = () => {
-      if (speechSynthesis.speaking || speechSynthesis.pending) { speechSynthesis.cancel(); lastCancel = Date.now(); setTimeout(go2, 200); } else go2();
-    };
-    const go2 = () => {
-      try { speechSynthesis.resume(); } catch (e) {}
+      try { if (speechSynthesis.paused) speechSynthesis.resume(); } catch (e) {}
       const u = new SpeechSynthesisUtterance(text); CUR_U = u;
       if (!VO.length) loadVoices();
       if (VO.length) { const pool = VO.filter(v => who.m && !who.kid ? MALE.test(v.name) : !MALE.test(v.name)); const list = pool.length ? pool : VO; u.voice = list[who.vi % list.length]; u.lang = u.voice.lang; } else u.lang = 'en-US';
       u.rate = who.rate; u.pitch = Math.max(0.05, Math.min(2, who.pitch * pitchMul)); u.volume = Math.max(0.1, Math.min(1, vol));
       let done = false, started = false;
-      const fin = stuck => { if (done) return; done = true; clearTimeout(tm); clearTimeout(t0); if (stuck) { try { speechSynthesis.cancel(); } catch (e) {} lastCancel = Date.now(); } if (CUR_U === u) CUR_U = null; res(started); };
-      const tm = setTimeout(() => fin(true), 2500 + text.length * 90 / u.rate);
-      const t0 = setTimeout(() => { if (!started) fin(true); }, 4000);
-      u.onstart = () => { started = true; if (onStart) onStart(); };
-      u.onend = () => fin(false); u.onerror = () => fin(false);
+      const begin = () => { if (!started) { started = true; if (onStart) onStart(); } };
+      const fin = stuck => { if (done) return; done = true; clearTimeout(tm); clearTimeout(t0); if (stuck && !ANDROID) { try { speechSynthesis.cancel(); } catch (e) {} lastCancel = Date.now(); } if (CUR_U === u) CUR_U = null; res(started); };
+      const tm = setTimeout(() => fin(true), 3000 + text.length * 95 / u.rate);
+      const t0 = setTimeout(() => { if (ANDROID) begin(); else if (!started) fin(true); }, ANDROID ? 700 : 6000);
+      u.onstart = begin;
+      u.onend = () => { started = true; fin(false); }; u.onerror = () => fin(false);
       speechSynthesis.speak(u);
     };
     setTimeout(go, Math.max(0, 150 - (Date.now() - lastCancel)));
@@ -557,7 +579,7 @@ function power() {
   $('krPower').classList.toggle('on', on); $('krRig').classList.toggle('on', on);
   if (on) {
     audio();
-    if (window.speechSynthesis) { try { loadVoices(); const u = new SpeechSynthesisUtterance(' '); u.volume = 0; speechSynthesis.speak(u); } catch (e) {} }
+    if (window.speechSynthesis) { try { loadVoices(); const u = new SpeechSynthesisUtterance('Radio on.'); u.lang = 'en-US'; u.volume = 0.5; CUR_U = u; speechSynthesis.speak(u); } catch (e) {} } // phones only let a page talk after a tap: say something inside the tap
     buildBand(true); setNoise(0.08);
     clearInterval(power.iv); power.iv = setInterval(tick, 100);
   } else {
