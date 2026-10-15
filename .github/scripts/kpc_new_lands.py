@@ -201,7 +201,7 @@ def owner_type(s):
     if re.search(r'universit|college|school', s): return 'University'
     if re.search(r'fiscal court|county|city of', s): return 'Local'
     if re.search(r'forest service|national park|fish and wildlife service|tennessee valley|tva|army|military|department of defense', s): return 'Federal'
-    if re.search(r'department of fish|kdfwr|fish and wildlife resources|nature preserves|division of forestry|commonwealth|state of kentucky|kentucky state parks', s): return 'State'
+    if re.search(r'department of fish|dept\.? of fish|kdfwr|fish and wildlife|fish & wildlife|nature preserves|division of forestry|commonwealth|state of kentucky|kentucky state parks|national guard', s): return 'State'
     return ''
 
 
@@ -216,8 +216,22 @@ def wma_owners(urls):
         except Exception as e:  # noqa: BLE001
             notice('KDFWR page failed', '%s: %s' % (n, e)); continue
         T = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', re.sub(r'(?s)<script.*?</script>|<style.*?</style>', '', t))))
-        m = re.search(r'[^.]*(?:\b[Oo]wned by\b|privately owned|between the owner,?[^.]*|[Oo]wnership)[^.]*\.', T)
-        s = m.group(0).strip() if m else ''
+        m = re.search(r'(?:\b[Oo]wned by\b|\b[Oo]wned\b|privately owned|between the owner|[Oo]wnership)', T)
+        s = ''
+        if m:
+            p = T.rfind('. ', 0, m.start())
+            st = max(p + 2 if p >= 0 else 0, m.start() - 160)
+            seg = T[st:m.end() + 260]
+            cut = len(seg)
+            for d in re.finditer(r'\.(?=\s+[A-Z(]|\s*$)', seg):
+                if d.start() < m.start() - st:
+                    continue
+                w = re.search(r'(\S+)$', seg[:d.start()]).group(1) if seg[:d.start()].strip() else ''
+                if re.fullmatch(r'[A-Z]|U\.S|Co|Inc|Ky|LLC|Corp|Dept|St|Mt|Dr|[A-Z]\.[A-Z]', w):
+                    continue   # an abbreviation, not the end of the sentence
+                cut = d.end(); break
+            s = seg[:cut]
+            s = re.sub(r'\s*(View Detailed Map|Mapping Resources).*$', '', s).strip()
         out[n] = {'url': u, 'says': s[:300], 'type': owner_type(s) if s else ''}
         time.sleep(0.4)
     return out

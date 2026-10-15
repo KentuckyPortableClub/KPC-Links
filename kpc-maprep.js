@@ -75,10 +75,28 @@
       osmFind(ws, st).then(L => L.forEach(x => out.push(x))).catch(() => {})
     ].filter(Boolean);
     await Promise.all(jobs);
+    if (st === 'KY') await wmaOwners(out);
     return out;
   }
   /* the agency's own web site, to search for the park's page */
   const agSites = (s, st) => { const o = []; if (/nature preserve/i.test(s)) o.push(st === 'KY' ? 'eec.ky.gov' : ''); if (/fish (&|and) wildlife|kdfwr/i.test(s) && st === 'KY') o.push('fw.ky.gov'); if (/state parks|department of parks/i.test(s) && st === 'KY') o.push('parks.ky.gov'); if (/forestry/i.test(s) && st === 'KY') o.push('eec.ky.gov'); if (/national park service|\bNPS\b/.test(s)) o.push('nps.gov'); if (/fish (&|and) wildlife service|\bFWS\b/.test(s)) o.push('fws.gov'); if (/forest service|USFS/.test(s)) o.push('fs.usda.gov'); return [...new Set(o.filter(Boolean))]; };
+  /* Kentucky WMAs: the state map's MANAGER field is the manager, NOT the owner. The real owner is the 'Owned by ...' /
+     'privately owned' line on each WMA's Fish & Wildlife page, read weekly into data/ky-wma-owners.json (kpc-new-lands.yml). */
+  let WMAO = null;
+  const OT = { State: ['STAT', 'Kentucky Fish & Wildlife / state'], Private: ['PVT', 'Private owner'], Corps: ['FED', 'U.S. Army Corps of Engineers', 'USACE'], University: ['UNK', 'University'], Local: ['LOC', 'County / city'], Federal: ['FED', 'Federal agency'] };
+  async function wmaOwners(list, onlyKnown) {
+    if (!WMAO) WMAO = await B.jget('data/ky-wma-owners.json?v=' + Math.floor(Date.now() / 864e5), null, 15000).then(j => j.wmas || {}).catch(() => ({}));
+    list.forEach(x => {
+      if (!/Fish & Wildlife/.test(x.src) && !onlyKnown) return;
+      const P = x.f.properties, n = P.Unit_Nm;
+      const k = Object.keys(WMAO).find(o => B.norm(o) === B.norm(n) && B.sameKind(o, n)) || Object.keys(WMAO).find(o => B.sameName(o, n) && B.sameKind(o, n));
+      const o = k && WMAO[k];
+      if (o && o.type && OT[o.type]) { const [ty, lab, code] = OT[o.type]; P.Own_Type = ty; P.Loc_Own = lab; if (code) P.Own_Name = code; }
+      else if (!onlyKnown) { P.Own_Type = 'UNK'; P.Loc_Own = 'Not stated: check the owner line on the Fish & Wildlife page'; }
+      if (o && o.says) P.Says = o.says;
+      if (o && o.url && !P.Web) P.Web = o.url;
+    });
+  }
   /* Kentucky's own live GIS layers (each has its own field names) */
   const KYL = [
     { svc: 'Ky_Public_Hunting_Areas_WGS84WM', id: 1, ag: 'Kentucky Fish & Wildlife', nm: 'AREANAME', web: p => p.DETAIL || (p.KDFWR_ID ? 'https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=' + p.KDFWR_ID : ''), acc: p => /^no/i.test(p.AreaOpen || '') ? 'RA' : 'OA', ds: p => p.WMA === 'Yes' ? 'Wildlife Management Area' : 'Public hunting area' },
@@ -240,6 +258,7 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     const bb = feats.reduce((a, f) => { const b = B.bbox(f.geometry); return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])]; }, [180, 90, -180, -90]);
     let [la, lo] = pinOf(feats, bb);
     const R = feats.map(f => f.properties);
+    if (g.st === 'KY' && /\bWMA\b|wildlife management area|wildlife area|hunting/i.test(g.name)) await wmaOwners(R.map(r => ({ src: '', f: { properties: r } })), true);
     const fee = R.filter(r => r.Category === 'Fee'), base = fee.length ? fee : R;
     const uniq = k => [...new Set(base.map(r => r[k]).filter(Boolean))];
     cur = { g, feats, la, lo, bb, R };
@@ -272,7 +291,7 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     const add = (v, title, why, links) => res.push({ v, title, why, links: links || [] });
     if (g.st === 'KY' && !R.some(r => r.Web)) { try { const F = await B.ky(); const m = F.find(f => f.properties && f.properties.URL && (B.sameName(f._nm, g.name) || B.norm(f._nm) === B.norm(g.name))); if (m) R.push({ Web: m.properties.URL, _ky: true }); } catch (e) {} if (!R.some(r => r.Web)) { try { const L = await kyLive(words(g.name).slice(0, 3)); const m = L.find(x => x.f.properties.Web && (B.sameName(x.f.properties.Unit_Nm, g.name) || B.norm(x.f.properties.Unit_Nm) === B.norm(g.name))) || (L.length === 1 && L[0].f.properties.Web ? L[0] : null); if (m) R.push({ Web: m.f.properties.Web, _ky: true }); } catch (e) {} } }
     const offWeb = [...new Set(R.map(r => !r.WebOsm && r.Web).filter(Boolean))], osmWeb = [...new Set(R.map(r => r.WebOsm && r.Web).filter(Boolean))];
-    const LBL = [['Unit_Nm', 'Name'], ['Loc_Own', 'Owner'], ['Own_Type', 'Owner type'], ['Loc_Mang', 'Manager'], ['Mang_Type', 'Manager type'], ['Loc_Ds', 'Designation'], ['Pub_Access', 'Public access'], ['GIS_Acres', 'Acres'], ['Category', 'Kind of record'], ['Date_Est', 'Established'], ['Comments', 'Notes'], ['Web', 'Official page']];
+    const LBL = [['Unit_Nm', 'Name'], ['Says', 'Fish & Wildlife page says'], ['Loc_Own', 'Owner'], ['Own_Type', 'Owner type'], ['Loc_Mang', 'Manager'], ['Mang_Type', 'Manager type'], ['Loc_Ds', 'Designation'], ['Pub_Access', 'Public access'], ['GIS_Acres', 'Acres'], ['Category', 'Kind of record'], ['Date_Est', 'Established'], ['Comments', 'Notes'], ['Web', 'Official page']];
     const fmtV = (k, v) => k === 'Own_Type' || k === 'Mang_Type' ? (TYPE[v] || v) : k === 'Pub_Access' ? (ACC[v] || v) : k === 'GIS_Acres' ? Math.round(+v).toLocaleString() : k === 'Category' ? ({ Fee: 'Owned land (fee)', Easement: 'Easement', Designation: 'Designation', Proclamation: 'Proclamation boundary' }[v] || v) : v;
     const recHtml = () => `<details class="mr-rec"><summary>SEE THE RECORD THIS CAME FROM</summary><p class="mr-help">Source: ${esc(g.src || 'USGS PAD-US')}${!g.src || /PAD-US/.test(g.src) ? ' (USGS Protected Areas Database, version 4)' : ''}</p>${base.slice(0, 6).map(r => `<table>${LBL.filter(([k]) => r[k] != null && r[k] !== '' && k !== 'WebOsm').map(([k, l]) => `<tr><th>${l}</th><td>${k === 'Web' ? `<a href="${esc(r[k])}" target="_blank" rel="noopener">${esc(r[k])}</a>` : esc(fmtV(k, r[k]))}</td></tr>`).join('')}</table>`).join('')}</details>`;
     const recL = () => [];
