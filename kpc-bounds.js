@@ -101,7 +101,7 @@
   const words = n => String(n || '').replace(/\b(state|national|park|parks|forest|wildlife|management|area|recreation|recreational|nature|preserve|refuge|historic|historical|site|reserve|natural|lake|wma|nwr|the|of|and)\b/gi, ' ').replace(/[^A-Za-z0-9' ]/g, ' ').trim().split(/\s+/).filter(w => w.length > 2);
   async function padusByName(name, la, lo) {
     const w = words(name), d = 0.35; if (!w.length) return [];
-    const where = w.slice(0, 2).map(x => `(Unit_Nm LIKE '%${x.replace(/'/g, "''")}%' OR Loc_Nm LIKE '%${x.replace(/'/g, "''")}%')`).join(' AND ');
+    const where = w.slice(0, 2).map(x => `(UPPER(Unit_Nm) LIKE '%${x.toUpperCase().replace(/'/g, "''")}%' OR UPPER(Loc_Nm) LIKE '%${x.toUpperCase().replace(/'/g, "''")}%')`).join(' AND ');
     const g = await padus({ where, geometry: `${lo - d},${la - d},${lo + d},${la + d}`, geometryType: 'esriGeometryEnvelope', returnGeometry: true, geometryPrecision: 5, maxAllowableOffset: 0.0001 });
     let fs = (g.features || []).filter(f => f.geometry && f.properties.Category !== 'Proclamation'); if (!fs.length) return [];
     const nl = String(name).toLowerCase();

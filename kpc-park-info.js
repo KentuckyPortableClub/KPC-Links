@@ -44,7 +44,7 @@
     const w = words(name), d = small ? 0.004 : 0.35;
     const env = `${lo - d},${la - d},${lo + d},${la + d}`;
     const base = { geometry: env, geometryType: 'esriGeometryEnvelope', inSR: 4326, spatialRel: 'esriSpatialRelIntersects', outFields: 'Unit_Nm,Loc_Nm,Mang_Name,Loc_Mang,Des_Tp,GIS_Acres,Pub_Access', returnGeometry: true, outSR: 4326, geometryPrecision: 5, maxAllowableOffset: 0.0003, f: 'geojson' };
-    if (!small && w.length) base.where = w.slice(0, 2).map(x => `(Unit_Nm LIKE '%${x.replace(/'/g, "''")}%' OR Loc_Nm LIKE '%${x.replace(/'/g, "''")}%')`).join(' AND ');
+    if (!small && w.length) base.where = w.slice(0, 2).map(x => `(UPPER(Unit_Nm) LIKE '%${x.toUpperCase().replace(/'/g, "''")}%' OR UPPER(Loc_Nm) LIKE '%${x.toUpperCase().replace(/'/g, "''")}%')`).join(' AND ');
     else base.where = '1=1';
     const g = await jget(PADUS + '?' + new URLSearchParams(base));
     let fs = (g.features || []).filter(f => f.geometry);
