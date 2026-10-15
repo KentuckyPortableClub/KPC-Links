@@ -82,7 +82,7 @@
 <div class="pi-sec"><h3>BOUNDARY</h3><div class="pi-bnd none" id="piBnd">Looking for the official boundary…</div><div class="pi-btns" style="margin-top:8px" id="piBndBtns"></div></div>
 <div class="pi-sec"><h3>THE PARK'S OWN MAPS</h3><div class="pi-btns"><a href="${esc(mapsQ)}" target="_blank" rel="noopener">${dom ? 'SEARCH ' + esc(dom.toUpperCase()) + ' FOR MAPS ↗' : 'SEARCH FOR THE OFFICIAL MAP ↗'}</a></div><p>${dom ? 'Searches only the official site, so you get their trail, campground and boundary maps, not random pages.' : 'No official site listed, so this searches the web for the official map.'}</p></div>
 <div class="pi-sec"><h3>MORE</h3><div class="pi-btns">${o.links.map(([t, u]) => `<a class="alt" href="${esc(u)}" target="_blank" rel="noopener">${esc(t)} ↗</a>`).join('')}${isFinite(o.la) ? `<a class="alt" href="https://www.google.com/maps/dir/?api=1&destination=${o.la},${o.lo}" target="_blank" rel="noopener">DIRECTIONS ↗</a>` : ''}</div>${o.note ? `<p>${o.note}</p>` : ''}</div>
-<div class="pi-legend"><span><i style="background:#ffb000"></i>Official boundary (PAD-US)</span><span><i style="background:#ff4fd8"></i>OpenStreetMap outline (unofficial)</span><span>📍 ${esc(o.prog)} location</span></div>
+<div class="pi-legend"><span>👆 Tap the map to drop a pin for Street View or directions. ◎ ME shows where you are (with your GPS numbers). The layers button has Satellite + streets, Topo, Terrain and Hillshade.</span><span><i style="background:#ffb000"></i>Official boundary (PAD-US)</span><span><i style="background:#ff4fd8"></i>OpenStreetMap outline (unofficial)</span><span>📍 ${esc(o.prog)} location</span></div>
 </div><div id="piMap" aria-label="Map"></div></div></section>`;
     drawMap(o);
   }
@@ -90,9 +90,9 @@
     if (map) { map.remove(); map = null; }
     if (!window.L || !isFinite(o.la)) { $('piMap').innerHTML = '<p class="pi-msg">Map unavailable.</p>'; return; }
     map = L.map('piMap', { zoomControl: true }).setView([o.la, o.lo], 13);
-    const street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' });
-    const sat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Imagery © Esri' });
-    street.addTo(map); L.control.layers({ Street: street, Satellite: sat }).addTo(map);
+    if (window.KPCLayers) KPCLayers(map); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
+    if (window.KPCPin) KPCPin(map);
+    if (window.KPCLocate) KPCLocate(map);
     L.marker([o.la, o.lo]).addTo(map).bindPopup(esc(o.ref + ' ' + o.name));
     boundary(o);
   }
@@ -174,6 +174,7 @@
   }
 
   $('piForm').addEventListener('submit', e => { e.preventDefault(); search($('piQ').value); });
+  if (window.KPCTA) KPCTA.attach($('piQ'), ref => search(ref));
   document.querySelector('.pi-ex').addEventListener('click', e => { const b = e.target.closest('[data-q]'); if (b) { $('piQ').value = b.dataset.q; search(b.dataset.q); } });
   $('piList').addEventListener('click', e => { const b = e.target.closest('[data-ref]'); if (b) { $('piList').innerHTML = ''; showPota(b.dataset.ref); } });
   const q0 = new URLSearchParams(location.search).get('q'); if (q0) { $('piQ').value = q0; search(q0); }

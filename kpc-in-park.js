@@ -10,9 +10,7 @@
   function initMap(la, lo, z) {
     if (map) return;
     map = L.map('ipMap', { zoomControl: true }).setView([la, lo], z || 7);
-    const street = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' });
-    const sat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Imagery © Esri' });
-    street.addTo(map); L.control.layers({ Street: street, Satellite: sat }).addTo(map);
+    if (window.KPCLayers) KPCLayers(map); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
     map.on('click', e => { stopWatch(); check(e.latlng.lat, e.latlng.lng, 0, 'map'); });
   }
   const say = (cls, h) => { $('ipV').className = 'ip-v ' + cls; $('ipV').innerHTML = h; };
@@ -73,7 +71,7 @@
     const good = r => !r.L.proc && !r.L.ease && r.L.access !== 'XA';
     const progHits = hits.filter(r => r.refs.length && good(r));
     const fsLand = hits.some(r => r.src === 'padus' && /Forest Service|USFS/i.test((r.f.properties.Loc_Mang || '') + (r.f.properties.Mang_Name || '')) && !r.L.ease);
-    const accTxt = how === 'map' ? 'Spot you tapped on the map.' : acc ? `Your GPS is good to about ±${B.dist(accKm)}.` : '';
+    const accTxt = (how === 'map' ? 'Spot you tapped on the map: ' : 'You: ') + `<b>${la.toFixed(6)}, ${lo.toFixed(6)}</b>.` + (how !== 'map' && acc ? ` GPS good to about ±${B.dist(accKm)}.` : '');
     const btns = refs => refs.map(r => `<div class="ip-ref"><b>${esc(r.ref)}</b> ${esc(r.name)}<span><a href="kpc-spot-me.html?pota=${encodeURIComponent(r.ref)}">SPOT ME ›</a><a href="kpc-park-info.html?q=${encodeURIComponent(r.ref)}">PARK INFO ›</a></span></div>`).join('');
     const uniq = list => { const m = new Map(); list.forEach(r => r.refs.forEach(x => m.set(x.ref, x))); return [...m.values()]; };
     let v;
