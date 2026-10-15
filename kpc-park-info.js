@@ -96,10 +96,39 @@
     L.marker([o.la, o.lo]).addTo(map).bindPopup(esc(o.ref + ' ' + o.name));
     boundary(o);
   }
+  /* Boundary files. Phones: share menu (Save to Files / open in a map app). Computers: a normal download. */
+  const xe = t => String(t == null ? '' : t).replace(/[<>&"']/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&apos;' }[c]));
+  function rings(g) { if (!g) return []; if (g.type === 'Polygon') return [g.coordinates]; if (g.type === 'MultiPolygon') return g.coordinates; return []; }
+  function toKml(fc, o) {
+    const pm = fc.features.map(f => rings(f.geometry).map(poly => `<Placemark><name>${xe((f.properties && (f.properties.Unit_Nm || f.properties.name)) || o.name)}</name><styleUrl>#b</styleUrl><Polygon>` +
+      poly.map((r, n) => `<${n ? 'innerBoundaryIs' : 'outerBoundaryIs'}><LinearRing><coordinates>${r.map(c => (+c[0]).toFixed(6) + ',' + (+c[1]).toFixed(6)).join(' ')}</coordinates></LinearRing></${n ? 'innerBoundaryIs' : 'outerBoundaryIs'}>`).join('') + `</Polygon></Placemark>`).join('')).join('');
+    return `<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>${xe(o.ref + ' ' + o.name)}</name><Style id="b"><LineStyle><color>ff00b0ff</color><width>3</width></LineStyle><PolyStyle><color>3300b0ff</color></PolyStyle></Style>` +
+      `<Placemark><name>${xe(o.ref)}</name><Point><coordinates>${o.lo},${o.la}</coordinates></Point></Placemark>${pm}</Document></kml>`;
+  }
+  function toGpx(fc, o) {
+    let n = 0; const tr = fc.features.map(f => rings(f.geometry).map(poly => `<trk><name>${xe(o.ref + ' boundary ' + (++n))}</name><trkseg>${poly[0].map(c => `<trkpt lat="${(+c[1]).toFixed(6)}" lon="${(+c[0]).toFixed(6)}"/>`).join('')}</trkseg></trk>`).join('')).join('');
+    return `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Kentucky Portable Club" xmlns="http://www.topografix.com/GPX/1/1"><wpt lat="${o.la}" lon="${o.lo}"><name>${xe(o.ref + ' ' + o.name)}</name></wpt>${tr}</gpx>`;
+  }
+  async function saveGeo(f, o, btn) {
+    if (!lastGeo) return;
+    const T = { kml: ['application/vnd.google-earth.kml+xml', toKml], gpx: ['application/gpx+xml', toGpx], geojson: ['application/geo+json', fc => JSON.stringify(fc)] }[f];
+    const name = (o.ref + '-boundary.' + f).replace(/[^\w.-]/g, '_'), blob = new Blob([T[1](lastGeo, o)], { type: T[0] });
+    const phone = matchMedia('(pointer:coarse)').matches;
+    if (phone && navigator.canShare) {
+      try { const file = new File([blob], name, { type: T[0] }); if (navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: o.ref + ' boundary' }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
+    }
+    const url = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href = url; a.download = name; a.rel = 'noopener'; a.style.display = 'none'; document.body.appendChild(a); a.click();
+    setTimeout(() => { a.remove(); URL.revokeObjectURL(url); }, 60000);
+    const was = btn.textContent; btn.textContent = 'SAVED ✓ (CHECK DOWNLOADS)'; setTimeout(() => btn.textContent = was, 3000);
+  }
   async function boundary(o) {
     const B = $('piBnd'), BB = $('piBndBtns'); lastGeo = null;
     const show = (fc, color, dash, fill) => { if (layer) layer.remove(); layer = L.geoJSON(fc, { style: { color, weight: 3, dashArray: dash, fillOpacity: fill } }).addTo(map); try { map.fitBounds(layer.getBounds(), { padding: [20, 20], maxZoom: 15 }); } catch (e) {} lastGeo = fc; };
-    const dl = () => { BB.innerHTML = `<a class="alt" href="#" id="piDl">DOWNLOAD BOUNDARY (GEOJSON)</a>`; $('piDl').onclick = e => { e.preventDefault(); const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(lastGeo)], { type: 'application/geo+json' })); a.download = (o.ref + '-boundary.geojson').replace(/[^\w.-]/g, '_'); a.click(); }; };
+    const dl = () => {
+      BB.innerHTML = `<a class="gold" href="#" data-f="kml">SAVE MAP FILE (KML)</a><a class="alt" href="#" data-f="gpx">GPX</a><a class="alt" href="#" data-f="geojson">GEOJSON</a><p style="flex-basis:100%;margin:2px 0 0;font-size:12.5px">On a phone this opens your share menu: pick <b>Save to Files</b>, or send it straight to Google Earth, Gaia GPS, onX, CalTopo or Avenza. KML works in most map apps.</p>`;
+      BB.querySelectorAll('[data-f]').forEach(b => b.onclick = e => { e.preventDefault(); saveGeo(b.dataset.f, o, b); });
+    };
     try {
       if (o.us) {
         const fc = await padus(o.prog === 'SOTA' ? '' : (o.short || o.name), o.la, o.lo, o.prog === 'SOTA');
