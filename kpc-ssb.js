@@ -144,16 +144,22 @@ async function agn() {
 }
 const base = c => c.replace(/\/.*$/, '');
 function lev(a, b) { const m = a.length, n = b.length, d = []; for (let i = 0; i <= m; i++) { d[i] = [i]; } for (let j = 1; j <= n; j++) d[0][j] = j; for (let i = 1; i <= m; i++) for (let j = 1; j <= n; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[m][n]; }
-async function sendReport() {
+async function sendReport(opt) {
   if (!run.on) return;
-  const c = ($('fCall').value || '').toUpperCase().trim(), rs = ($('fSent').value || '59').trim();
+  let c = ($('fCall').value || '').toUpperCase().trim();
+  // spoken call: speech-to-text sometimes gets one letter wrong ("Bravo" heard as "Brava"), so match it to the station it's closest to
+  if (opt && opt.speech && c && !run.callers.some(x => x.call === c)) {
+    const best = run.callers.map(x => [x, lev(x.call, c)]).sort((a, b) => a[1] - b[1]);
+    if (best[0] && best[0][1] <= 1 && !(best[1] && best[1][1] === best[0][1])) { line('', `🎙 Heard ${c}, matched to ${best[0][0].call}.`, 'note'); c = best[0][0].call; $('fCall').value = c; }
+  }
+  const rs = ($('fSent').value || '59').trim();
   if (!c) { status('Type the call you heard in the CALL box first.'); $('fCall').focus(); return; }
   hush(); run.gen++;
   line('YOU', `${c}, you're ${rs} ${STN[S.st] || S.st}${S.ref ? ', park ' + S.ref : ''}. ${myCall()}.`, 'you');
   let o = run.callers.find(x => x.call === c);
   if (!o) {
     const near = run.callers.find(x => lev(x.call, c) <= 2);
-    if (near) { run.cur = near; run.sent = true; if (showText()) line(near.call, `Negative, ${near.call}`, 'them'); await speak(`Negative. ${say1(near.call)}. ${say1(near.call)}.`, near); status('They corrected you. Fix the CALL box (no penalty yet, but it counts if you log it wrong).'); return; }
+    if (near) { run.cur = near; run.sent = true; const d = lev(near.call, c); line('', `You sent ${c}: ${d === 1 ? 'one letter or number is' : 'a couple of letters are'} off. Listen to how they say it.`, 'note'); if (showText()) line(near.call, `Negative, ${near.call}`, 'them'); await speak(`Negative. ${say1(near.call)}. ${say1(near.call)}.`, near); status('They corrected you. Fix the CALL box (no penalty yet, but it counts if you log it wrong).'); return; }
     line('', 'Nobody answers. Nobody with that call is calling you: try AGN or QRZ.', 'note'); return;
   }
   run.cur = o; run.sent = true; o.t0 = Date.now();
@@ -238,7 +244,7 @@ function parseSpeech(t) {
   const closing = has(/ (73|seventy three|seventy-three|seven three|thanks|thank you) /) && !rep;
   const kind = has(/ (cq|c q|seek you|sea queue|calling cq) /) ? 'cq' : closing ? 'close' : has(/ (qrz|q r z|anybody|who'?s calling) /) ? 'qrz' : has(/ (say again|again|repeat|come again) /) ? 'agn'
     : (call || rep) ? 'report' : '';
-  return { kind, call: /^[A-Z0-9]{3,8}$/.test(call) && /\d/.test(call) ? call : (call.length >= 2 && call.length < 4 ? call : ''), rep };
+  return { kind, raw: best, call: /^[A-Z0-9]{3,8}$/.test(call) && /\d/.test(call) ? call : (call.length >= 2 && call.length < 4 ? call : ''), rep };
 }
 let rec = null, recOn = false, recHeld = 0;
 function talkStart() {
@@ -252,6 +258,17 @@ function talkStart() {
   try { rec.start(); recOn = true; $('vbTalk').classList.add('on'); } catch (e) {}
 }
 function talkStop() { if (rec && recOn) try { rec.stop(); } catch (e) {} }
+/* the spoken run can pick up stray words ("a", "to", "for"): try every piece of it and keep the one closest to a station that's calling */
+function bestSub(run0) {
+  const r0 = String(run0).replace(/^(59|5 9)/, ''); let best = r0, bd = 99;
+  const calls = run.callers.map(x => x.call); if (!calls.length) return r0;
+  for (let i = 0; i < r0.length; i++) for (let j = i + 3; j <= Math.min(r0.length, i + 8); j++) {
+    const sub = r0.slice(i, j); if (!/\d/.test(sub)) continue;
+    const d = Math.min(...calls.map(c => lev(c, sub))) + (r0.length - sub.length) * 0.01;
+    if (d < bd) { bd = d; best = sub; }
+  }
+  return best;
+}
 async function talkDo(text) {
   const p = parseSpeech(text);
   const l = $('vbHeard'); if (l) l.textContent = `🎙 "${text}"`;
@@ -261,9 +278,9 @@ async function talkDo(text) {
   if (p.kind === 'close') return logIt();
   if (p.kind === 'report') {
     if (p.call && p.call.length < 4) { $('fCall').value = p.call; return qrz(); }
-    if (p.call) $('fCall').value = p.call; if (p.rep) $('fSent').value = p.rep;
+    if (p.call) $('fCall').value = bestSub(p.raw || p.call); if (p.rep) $('fSent').value = p.rep;
     if (!$('fCall').value) { status('I heard a report but no call sign. Say their call, like "Whiskey Four Alpha Bravo Charlie, five nine Kentucky".'); return; }
-    return sendReport();
+    return sendReport({ speech: true });
   }
   status('Not sure what you meant. Try "CQ POTA...", their call + "five nine", "say again", "QRZ" or "thanks, 73".');
 }
