@@ -1,0 +1,4 @@
+%m/%d/%Y 51438 https://www.arrl.org/special-event-stations 0 []
+pages ['/special_events/search/page:2/Date.start:2026-10-15/Date.end:2026-11-29/model:Event', '/special_events/search/page:3/Date.start:2026-10-15/Date.end:2026-11-29/model:Event', '/special_events/search/page:4/Date.start:2026-10-15/Date.end:2026-11-29/model:Event', '/special_events/search/page:5/Date.start:2026-10-15/Date.end:2026-11-29/model:Event']
+%Y-%m-%d 51438 https://www.arrl.org/special-event-stations 0 []
+pages ['/special_events/search/page:2/Date.start:2026-10-15/Date.end:2026-11-29/model:Event', '/special_events/search/page:3/Date.start:2026-10-15/Date.end:2026-11-29/model:Event', '/special_events/search/page:4/Date.start:2026-10-15/Date.end:2026-11-29/model:Event', '/special_events/search/page:5/Date.start:2026-10-15/Date.end:2026-11-29/model:Event']
