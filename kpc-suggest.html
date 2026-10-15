@@ -4,21 +4,21 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex,nofollow">
 <script src="kpc-theme.js?v=20261014kz"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Suggest a Park or Summit | KPC</title>
+<title>Suggest a Park or Summit </title>
 <!-- KPC icons & share preview -->
 <link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
 <meta property="og:site_name" content="Kentucky Portable Club">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Suggest a Park or Summit | KPC">
-<meta property="og:description" content="Check a park or summit against the POTA, WWFF and SOTA rules and email the right volunteer.">
+<meta property="og:title" content="Suggest a Park or Summit ">
+<meta property="og:description" content=" KPC|Check a park or summit against the POTA, WWFF and SOTA rules and email the right volunteer.">
 <meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-suggest.html">
 <meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /KPC icons -->
-<meta name="description" content="Check a park or summit against the POTA, WWFF and SOTA rules and email the right volunteer.">
+<meta name="description" content=" KPC|Check a park or summit against the POTA, WWFF and SOTA rules and email the right volunteer.">
 <style>
 :root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
@@ -246,6 +246,8 @@ body.field .page-jump-nav{display:none!important}
 <p class="sub">Know a park or a mountain top that should be on the air? Look it up here. The page checks it against each program's rules, then writes the email to the right volunteer with everything it found and all the links. You just read it over and send it.</p>
 </div></section>
 <div class="mr-wrap">
+<section class="mr-card mr-lock" id="mrLock"><h2>Enter the password</h2><p class="mr-help">This page is being tested. It uses the same password as the Mapping Representative's Tool Box.</p><form id="mrLockForm" class="mr-lockf"><input id="mrPw" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password"><button type="submit">UNLOCK</button></form><p class="mr-help" id="mrPwMsg"></p></section>
+<div id="mrApp" hidden>
 <section class="mr-card">
 <div class="sg-call"><label for="sgCall">YOUR CALL SIGN (REQUIRED)</label><input id="sgCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="K4TEST"><p id="sgCallMsg"></p></div>
 <div class="sg-tabs" role="group" aria-label="What are you suggesting?"><button type="button" data-sgtab="park" aria-pressed="true">🏞 A PARK<br><small>POTA + WWFF</small></button><button type="button" data-sgtab="summit" aria-pressed="false">⛰ A SUMMIT<br><small>SOTA</small></button></div>
@@ -256,8 +258,7 @@ body.field .page-jump-nav{display:none!important}
 </div>
 </section>
 <div id="sgPark">
-<span id="mrPublic" hidden></span>
-<div id="mrApp">
+<div>
 <section class="mr-card" style="margin-top:16px">
 <form class="mr-form" id="mrForm"><label>PARK NAME<input id="mrName" autocomplete="off" placeholder="Example Creek State Park"></label><label>TOWN (OPTIONAL)<input id="mrTown" autocomplete="off" placeholder="Anytown"></label><label>STATE (REQUIRED)<select id="mrState" required></select></label><button type="submit">CHECK IT</button></form>
 <p class="mr-help">It searches the national public land database (every federal and state agency in the state), the live National Park Service and Fish &amp; Wildlife maps and OpenStreetMap, then checks POTA's and KFF's rules. The emails appear at the bottom of the result.</p>
@@ -277,12 +278,13 @@ body.field .page-jump-nav{display:none!important}
 <div id="sgSOut"></div>
 </div>
 </div>
+</div>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
-<script src="kpc-bounds.js?v=20261015e" defer></script>
+<script src="kpc-bounds.js?v=20261015f" defer></script>
 <script src="kpc-map-tools.js?v=20261015c" defer></script>
-<script src="kpc-suggest.js?v=20261015a" defer></script>
-<script src="kpc-maprep.js?v=20261015l" defer></script>
+<script src="kpc-suggest.js?v=20261015c" defer></script>
+<script src="kpc-maprep.js?v=20261015n" defer></script>
 <script src="kpc-search.js?v=20261015kk" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');

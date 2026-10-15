@@ -111,7 +111,7 @@
       body: () => intro(KFF.call) + `I'd like to suggest ${g.name} in ${ST[st] || st} as a new KFF (WWFF) reference. Below is what I found about it.\n\nKFF checks (wwff.us/references):\n` + kffChecks.map(c => `- ${c[1]}: ${c[0] ? 'YES' : 'NO'}`).join('\n') + '\n' + (kffHave || '') + '\n' + note() + sign()
     }));
     B.wwffNear(info.la, info.lo, 8).then(L => {
-      const m = L.filter(x => B.sameName(x.name, g.name) || x.d < 1);
+      const m = L.filter(x => (B.sameName(x.name, g.name) && B.sameKind(x.name, g.name)) || (x.d < 1 && B.sameKind(x.name, g.name)));
       kffHave = m.length ? `Already in WWFF nearby: ${m.slice(0, 3).map(x => x.ref + ' ' + x.name + ' (' + x.d.toFixed(1) + ' km)').join('; ')}\n` : 'No WWFF reference with this name nearby (checked the WWFF directory).\n';
       const H = $('sgKffHave'); if (H) H.innerHTML = m.length ? `<b class="mr-w">Already in WWFF?</b> ${m.slice(0, 3).map(x => esc(x.ref + ' ' + x.name)).join(', ')} is close by: check it isn't the same place before emailing.` : '<b class="mr-ok">Not in the WWFF directory</b> by that name.';
       refreshAll();
@@ -210,5 +210,8 @@ ${same ? `<div class="mr-v yes"><b>ALREADY A SOTA SUMMIT: ${esc(same.ref)}</b><s
     B.jget(`https://api2.sota.org.uk/api/associations/${assoc}`, null, 15000).then(j => { if (j && j.associationManagerCallsign && sres && sres.assoc === assoc) { AM[assoc] = [j.associationManagerCallsign, j.manager || '']; const t = box.querySelector('.sg-to'); if (t) t.innerHTML = `<b>${esc(j.associationManagerCallsign)}</b>${j.manager ? ' · ' + esc(j.manager) : ''} <small>SOTA Association Manager, ${esc(assoc)} (live from SOTA)</small><br><small>Email address: on their QRZ page (free QRZ sign-in may be needed)</small> <a href="${qrz(j.associationManagerCallsign)}" target="_blank" rel="noopener">QRZ PAGE ↗</a>`; if (am) { am[0] = j.associationManagerCallsign; am[1] = j.manager || am[1]; } refreshAll(); } }).catch(() => {});
   }
 
-  const h = (location.hash || '').slice(1); if (h === 'summit') { tab('summit'); initMap(); } else tab('park');
+  const h = (location.hash || '').slice(1); tab(h === 'summit' ? 'summit' : 'park');
+  /* the page is locked until the password is entered (kpc-maprep.js unhides #mrApp): draw the summit map then */
+  const app = $('mrApp'), wake = () => { if (app && !app.hidden && !$('sgSummit').hidden) { initMap(); if (smap) smap.invalidateSize(); } };
+  if (app) new MutationObserver(wake).observe(app, { attributes: true, attributeFilter: ['hidden'] }); wake();
 })();

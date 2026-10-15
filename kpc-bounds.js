@@ -33,6 +33,9 @@
 
   /* ---------- names ---------- */
   const norm = s => String(s || '').toLowerCase().replace(/&/g, ' and ').replace(/wildlife management area|state nature preserve|state natural area|state resort park|state historic site|state recreation area|national wildlife refuge|national recreation area|national historical park|national historic site|national park|national forest|state park|state forest|wma|nwr|the |[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+  /* what kind of place a name describes; two names of different kinds (a WMA and a state park on the same lake) are NOT the same place */
+  const kindOf = s => { s = String(s || '').toLowerCase(); return /wildlife management area|\bwma\b|wildlife area|hunting area|game (land|area)/.test(s) ? 'wma' : /nature preserve|natural area|\bsnp\b|\bsna\b/.test(s) ? 'snp' : /historic site|historical park|historic park|\bshs\b/.test(s) ? 'hist' : /state (resort )?park|\bsrp\b|recreation(al)? area/.test(s) ? 'sp' : /national forest/.test(s) ? 'nf' : /state forest/.test(s) ? 'sf' : /wildlife refuge|\bnwr\b/.test(s) ? 'nwr' : /hatchery|\bnfh\b/.test(s) ? 'nfh' : /national (park|monument|preserve|seashore|lakeshore|battlefield|river)/.test(s) ? 'nps' : ''; };
+  const sameKind = (a, b) => { const x = kindOf(a), y = kindOf(b); return !x || !y || x === y; };
   function sameName(a, b) { a = norm(a); b = norm(b); if (!a || !b) return false; if (a === b) return true; const s = a.length < b.length ? a : b, l = a.length < b.length ? b : a; return s.length > 5 && l.startsWith(s) && s.length / l.length >= 0.6; }
 
   /* ---------- Kentucky official layers (same files as Park Commander) ---------- */
@@ -182,5 +185,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();
