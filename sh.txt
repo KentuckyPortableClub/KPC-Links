@@ -1,14 +1,14 @@
 Installing dependencies...
 Switching to root user to install dependencies...
 Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
-Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
 Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
-Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.4 kB]
+Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [581 kB]
 Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [523 kB]
-Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [581 kB]
+Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.4 kB]
 Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1397 kB]
 Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [308 kB]
 Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1704 kB]
@@ -21,7 +21,7 @@ Get:18 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Pack
 Get:19 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [246 kB]
 Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1713 kB]
 Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [392 kB]
-Fetched 12.4 MB in 1s (12.1 MB/s)
+Fetched 12.4 MB in 1s (9627 kB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -97,7 +97,7 @@ Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings a
 Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
 Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
 Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
-Fetched 21.1 MB in 1s (18.9 MB/s)
+Fetched 21.1 MB in 1s (15.8 MB/s)
 Selecting previously unselected package fonts-ipafont-gothic.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 203540 files and directories currently installed.)
 Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
@@ -188,12 +188,11 @@ Downloading Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-she
 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 120 MiB
 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 120 MiB
 Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1248
-pad https://www.arcgis.com/apps/mapviewer/index.html?url=https%3A%2F%2Fedits.nationalmap.gov%2Farcgis%2Frest%2Fservices%2FPAD-US%2FPAD_US%2FMapServer%2F0&center=-86.9755%2C37.8452&level=15
- title Untitled map
- text Untitled map | Sign In | Use the selector above to switch between layers in the map. | Blending | Normal | Transparency | Visible range | Time series with field values | Get started | You can explore maps, add layers, and more without signing in. To save your work, sign in before creating your map. | Learn more about Map Viewer | Esri Community Maps Contributors | Commonwealth of Kentucky | Esri | TomTom | Garmin | Saf
-ky https://www.arcgis.com/apps/mapviewer/index.html?url=https%3A%2F%2Fkygisserver.ky.gov%2Farcgis%2Frest%2Fservices%2FWGS84WM_Services%2FKy_Public_Hunting_Areas_WGS84WM%2FMapServer%2F1&center=-87.09%2C37.40&level=13
+pad https://www.arcgis.com/apps/mapviewer/index.html?url=https%3A%2F%2Fedits.nationalmap.gov%2Farcgis%2Frest%2Fservices%2FPAD-US%2FPAD_US%2FMapServer%2F0&center=-86.9755%2C37.8452&level=14
+ reqs [(200, 'https://www.arcgis.com/apps/mapviewer/index.html?url=https%3A%2F%2Fedits.nationalmap.gov%2Farcgis%2Frest%2Fservices%2FPAD-US%2FPAD_US%2FMapServer%2F0&'), (200, 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0?f=json'), (200, 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0?f=json')]
  title Untitled map
  text Untitled map | Sign In | Use the selector above to switch between layers in the map. | Blending | Normal | Transparency | Visible range | Time series with field values | Get started | You can explore maps, add layers, and more without signing in. To save your work, sign in before creating your map. | Learn more about Map Viewer | Commonwealth of Kentucky | Esri | TomTom | Garmin | SafeGraph | GeoTechnologies, Inc | NAS
-padmapserver https://www.arcgis.com/apps/mapviewer/index.html?url=https%3A%2F%2Fedits.nationalmap.gov%2Farcgis%2Frest%2Fservices%2FPAD-US%2FPAD_US%2FMapServer&center=-86.9755%2C37.8452&level=15
+ky https://www.arcgis.com/apps/mapviewer/index.html?url=https%3A%2F%2Fkygisserver.ky.gov%2Farcgis%2Frest%2Fservices%2FWGS84WM_Services%2FKy_Public_Hunting_Areas_WGS84WM%2FMapServer%2F1&center=-89.03%2C37.15&level=12
+ reqs [(200, 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/1?f=json'), (200, 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/1?f=json'), (200, 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/1/query?f=pbf&geometry=%7B%22xmin%22%3A-990'), (200, 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/1/query?f=pbf&geometry=%7B%22xmin%22%3A-990'), (200, 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/1/query?f=pbf&geometry=%7B%22xmin%22%3A-992'), (200, 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/1/query?f=pbf&geometry=%7B%22xmin%22%3A-992'), (200, 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/1/query?f=pbf&geometry=%7B%22xmin%22%3A-994'), (200, 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/1/query?f=pbf&geometry=%7B%22xmin%22%3A-994')]
  title Untitled map
- text Untitled map | Sign In | Use the selector above to switch between layers in the map. | Blending | Normal | Transparency | Visible range | Get started | You can explore maps, add layers, and more without signing in. To save your work, sign in before creating your map. | Learn more about Map Viewer | Esri Community Maps Contributors | Commonwealth of Kentucky | Esri | TomTom | Garmin | SafeGraph | GeoTechnologies, Inc 
+ text Untitled map | Sign In | Use the selector above to switch between layers in the map. | Blending | Normal | Transparency | Visible range | Time series with field values | Get started | You can explore maps, add layers, and more without signing in. To save your work, sign in before creating your map. | Learn more about Map Viewer | Commonwealth of Kentucky | Esri | TomTom | Garmin | SafeGraph | GeoTechnologies, Inc | NAS
