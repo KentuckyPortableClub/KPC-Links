@@ -1,6 +1,6 @@
-import urllib.request,urllib.parse
-P='https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query'
-for w,extra in [("State_Nm='KY' AND Pub_Access='OA'",{}),("State_Nm='KY' AND Mang_Type IN ('FED','STAT')",{}),("State_Nm='KY' AND (Mang_Type='FED' OR Mang_Type='STAT')",{}),("State_Nm='KY'",{'orderByFields':'OBJECTID'}),("State_Nm='KY'",{'resultOffset':0,'resultRecordCount':1000})]:
-  q=dict({'where':w,'outFields':'Unit_Nm','returnGeometry':'false','f':'json'},**extra)
-  try: r=urllib.request.urlopen(urllib.request.Request(P+'?'+urllib.parse.urlencode(q),headers={'User-Agent':'KPC'}),timeout=40); print(w,extra,r.status,len(r.read()))
-  except Exception as e: print(w,extra,'ERR',e)
+import urllib.request,urllib.parse,json
+K='https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer/8/query?'
+j=json.loads(urllib.request.urlopen(K+urllib.parse.urlencode({'where':'1=1','outFields':'PUBLIC_NAM,PARK_NAME','returnGeometry':'false','f':'json','resultRecordCount':8}),timeout=40).read())
+print([f['attributes'] for f in j['features']])
+j=json.loads(urllib.request.urlopen(K+urllib.parse.urlencode({'where':"UPPER(PUBLIC_NAM) LIKE '%BARREN%'",'outFields':'PUBLIC_NAM','returnGeometry':'false','f':'json'}),timeout=40).read())
+print(j.get('features'),j.get('error'))
