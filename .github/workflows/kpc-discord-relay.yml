@@ -34,6 +34,8 @@ jobs:
           RELAY_SMTP_PASS: ${{ secrets.RELAY_SMTP_PASS }}
           GROUPSIO_TO: ${{ secrets.GROUPSIO_TO }}
           SUBSCRIBE_SHEET_CSV: ${{ secrets.SUBSCRIBE_SHEET_CSV }}
+          RELAY_MAIL_URL: ${{ secrets.RELAY_MAIL_URL }}
+          RELAY_MAIL_KEY: ${{ secrets.RELAY_MAIL_KEY }}
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
         run: python3 .github/scripts/kpc_discord_relay.py
       - name: Save
