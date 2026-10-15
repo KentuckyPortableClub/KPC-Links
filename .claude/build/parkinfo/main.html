@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="kpc-tools.css?v=20261014b">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+.pi-wrap{max-width:1100px;margin:0 auto;padding:24px 16px 40px;box-sizing:border-box}
+.pi-search{background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);border-radius:10px;padding:18px;box-shadow:0 10px 24px rgba(0,0,0,.05)}
+.pi-form{display:flex;gap:10px;flex-wrap:wrap}
+.pi-form input{flex:1 1 280px;min-height:50px;border:1.5px solid #cbbf9f;border-radius:10px;padding:10px 14px;font:17px Arial,sans-serif;min-width:0}
+.pi-form button{min-height:50px;padding:10px 22px;border:0;border-radius:10px;background:#171717;color:#f0c96b;font:900 13px Arial,sans-serif;letter-spacing:1.4px;cursor:pointer}
+.pi-help{margin:10px 0 0;color:#5b5648;font-size:14px;line-height:1.5}
+.pi-help code{background:#f3eee2;padding:1px 6px;border-radius:5px;font-size:13px}
+.pi-ex{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.pi-ex button{min-height:32px;padding:5px 11px;border-radius:999px;border:1.5px solid #1c3a2a;background:#fff;color:#1c3a2a;font:900 11px Arial,sans-serif;letter-spacing:.8px;cursor:pointer}
+.pi-list{display:grid;gap:8px;margin-top:14px}
+.pi-pick{display:flex;justify-content:space-between;gap:10px;align-items:center;text-align:left;padding:12px 14px;border:1px solid #e0d5bd;border-radius:10px;background:#fbf8ef;cursor:pointer;font:15px Arial,sans-serif;color:#171717;width:100%}
+.pi-pick b{font-family:Georgia,serif}.pi-pick span{color:#1d5a3a;font-weight:900;font-size:12px;letter-spacing:1px;white-space:nowrap}
+.pi-res{margin-top:20px;background:#fff;border:1px solid #d8cfbf;border-radius:10px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.05)}
+.pi-head{padding:18px 18px 12px;background:#0b0b0b;color:#fff}
+.pi-head .pi-ref{font:900 12px Arial,sans-serif;letter-spacing:2px;color:#f0c96b}
+.pi-head h2{margin:4px 0 2px;font:700 28px/1.15 Georgia,serif;color:#fff;overflow-wrap:anywhere}
+.pi-head p{margin:0;color:#cfcabf;font-size:14px}
+.pi-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:0}
+.pi-info{padding:16px 18px;display:grid;gap:14px;align-content:start}
+.pi-sec h3{margin:0 0 6px;font:900 11px Arial,sans-serif;letter-spacing:2px;color:#1d5a3a}
+.pi-btns{display:flex;flex-wrap:wrap;gap:8px}
+.pi-btns a{display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border-radius:8px;background:#171717;color:#f0c96b;font:900 11.5px Arial,sans-serif;letter-spacing:1px;text-decoration:none}
+.pi-btns a.alt{background:#fff;color:#171717;border:1.5px solid #171717}
+.pi-btns a.gold{background:var(--gold);color:#111}
+.pi-sec p{margin:4px 0 0;color:#5b5648;font-size:13.5px;line-height:1.5;overflow-wrap:anywhere}
+.pi-bnd{padding:10px 12px;border-radius:8px;font-size:13.5px;line-height:1.45}
+.pi-bnd.ok{background:#eef6f0;border:1px solid #9cc8aa;color:#1c3a2a}.pi-bnd.osm{background:#fff8e6;border:1px solid #e9b13a;color:#5a4300}.pi-bnd.none{background:#f6f2ea;border:1px solid #ddd3bd;color:#5b5648}
+#piMap{min-height:440px;height:100%;background:#e9e3d2}
+.pi-legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:#5b5648}.pi-legend i{display:inline-block;width:18px;height:4px;vertical-align:middle;margin-right:5px;border-radius:2px}
+.pi-msg{margin-top:14px;padding:12px 14px;border-radius:8px;background:#f6f2ea;color:#5b5648}
+@media(max-width:860px){.pi-body{grid-template-columns:minmax(0,1fr)}#piMap{min-height:340px;height:340px}}
+</style>
+@@HEADER@@
+<main>
+<section class="tool-head th-map"><div class="wrap">
+<p class="eyebrow">ANY STATE · POTA · SOTA · WWFF</p>
+<h1>Park &amp; Summit <span>Info Finder</span></h1>
+<p class="sub">Type a park, summit or WWFF reference, or a park's name, anywhere. You get back only what you need: the official website, the official boundary on a map, and where to find the park's own maps.</p>
+</div></section>
+<div class="pi-wrap">
+<section class="pi-search">
+<form class="pi-form" id="piForm"><input id="piQ" type="search" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-2177, KFF-1234, W4G/NG-001 or Vogel State Park" aria-label="Reference or park name"><button type="submit">FIND IT</button></form>
+<p class="pi-help">Works with <code>US-1234</code> (POTA, any country's prefix too), <code>KFF-1234</code> (WWFF, any program), <code>W4G/NG-001</code> (SOTA), or part of a park's name.</p>
+<div class="pi-ex"><button type="button" data-q="US-2177">Fort Yargo (GA)</button><button type="button" data-q="Vogel">Vogel (GA)</button><button type="button" data-q="W4G/NG-001">Brasstown Bald (SOTA)</button><button type="button" data-q="KFF-1271">KFF-1271</button></div>
+<div class="pi-list" id="piList"></div>
+</section>
+<div id="piOut"></div>
+</div>
+</main>
+@@FOOTER@@
+<script src="kpc-park-info.js?v=20261015a" defer></script>
