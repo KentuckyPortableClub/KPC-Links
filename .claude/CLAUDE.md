@@ -93,6 +93,10 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - After editing fers.json, also run `python3 .claude/build/guides/extract_pota.py --fers` so the POTA web guide (and its PDFs) pick up the 2-fer changes. resource_patch.py is no longer needed for the Resource PDFs.
 - Still PDF-only (not web pages): Campout Flyer, checklists, 2026 event photo archive, Meet the Founders, the two "Coming Soon" founders PDFs (convert when ready), the members-only 2-fers guide.
 
+## KPC Map Files on parks.html (card 06)
+- KPC_Kentucky_POTA_Parks / _KFF_References / _SOTA_W4K_Summits (.kml + .gpx). Oct 15: the POTA + KFF main pins were rebuilt from kpc-ky-data.json with `python3 .claude/build/mapfiles/refresh.py` (keeps the access-point folders/waypoints and the old 'Notes:' lines; adds 2-fer (overlapping boundaries) from tf, 'Possible 2-fer (not confirmed)' from ky-overlaps unconfirmed, 'Also (same ground, other programs)' for KFF/SOTA). RE-RUN IT whenever kpc-ky-data.json parks/kff change. SOTA files are built elsewhere and matched the data on Oct 15.
+- Buttons say what each file is for (KML · GOOGLE EARTH / MAP APPS, GPX · GARMIN / GPS UNITS) plus a 'WHICH FILE DO I NEED?' box (iPhone / Android / Garmin / computer). On touch screens a small script at the bottom of parks.html opens the phone share menu (Save to Files, Google Earth...) instead of a silent download. Same labels + box on the Info Finder.
+
 ## Park Notes (kpc-park-notes.html)
 - Community tips for every KY POTA park, SOTA summit and KFF reference (from kpc-ky-data.json, lowest number first).
 - Tips come from Brandon's Google Form "KPC Park Tips" → Google Sheet. Only rows with YES in the sheet's Approved column are published.
