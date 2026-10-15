@@ -274,11 +274,12 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
 ${g.osm ? `<div class="mr-osm"><b>From OpenStreetMap, not an official source.</b> ${esc(B.OSM_NOTE)} Owner and manager come from volunteer tags, so treat every answer below as CHECK until the agency's own page confirms it.</div>` : ""}<div class="mr-v ${verdict[0]}"><b>${verdict[1]}</b><span>${res.filter(r => r.v === 'YES').length} yes · ${nNo} no · ${nCk} to check yourself</span></div>
 <div class="mr-rules">${res.map(r => `<div class="mr-r ${r.v.toLowerCase()}"><i>${r.v === 'INFO' ? 'INFO' : r.v}</i><div><b>${esc(r.title)}</b><p>${r.why}</p>${/^Owned/.test(r.title) ? recHtml() : /^(Run|Open|Not a type)/.test(r.title) ? '<p class="mr-help">Record: see SEE THE RECORD THIS CAME FROM in the first rule.</p>' : ''}${r.links.length ? `<div class="mr-rl">${r.links.map(l => `<a class="${l[2] || ''}" href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])}${/↗$/.test(l[0]) ? '' : ' ↗'}</a>`).join('')}</div>` : ''}${/official government web page/.test(r.title) ? '<div class="mr-rl" id="mrWebRule"></div>' : ''}${/surrounded|public way in/.test(r.title) ? '<div id="mrAccess" class="mr-help">Looking for a public road, parking, trailhead or ramp into it…</div><div id="mrAround" class="mr-help">Checking the official land around it…</div>' : ''}${/sub-park/.test(r.title) ? `<details class="mr-rec"><summary>LAND RECORDS AT THE PIN</summary><table>${(around || []).slice(0, 12).map(x => `<tr><th>${esc(x.Unit_Nm || x.Loc_Nm || '?')}</th><td>${esc([x.Loc_Mang, TYPE[x.Own_Type] || x.Own_Type, x.GIS_Acres ? Math.round(+x.GIS_Acres).toLocaleString() + ' acres' : ''].filter(Boolean).join(' · '))}</td></tr>`).join('') || '<tr><td>none in the database</td></tr>'}</table></details>` : ''}</div></div>`).join('')}</div>
 <div class="mr-sec"><h3>OFFICIAL WEBSITE &amp; MAP</h3><div class="mr-btns">${offWeb.map(u => `<a class="gold" href="${esc(u)}" target="_blank" rel="noopener">OFFICIAL PAGE ↗</a>`).join("")}<a href="${gq(`"${nm}" ${stn} site:.gov`)}" target="_blank" rel="noopener">SEARCH .GOV (GOOGLE) ↗</a><a href="${gq(`"${nm}" ${locM} boundary map`)}" target="_blank" rel="noopener">SEARCH FOR THE MAP (GOOGLE) ↗</a></div><p class="mr-help">These search only for the park by name with its agency. Use the agency's own page, not tourist sites.</p></div>
-<div class="mr-sec"><h3>BOUNDARY MAP (${esc(g.src || 'USGS PAD-US')})</h3><div id="mrMap"></div><p class="mr-help">Gold = this park's land in the source above. Blue pins = POTA parks nearby (tap for the number). Tap the map to drop a pin; ⛶ FULL for full screen; layers for satellite, topo and terrain.</p><div class="mr-btns" id="mrFiles"></div></div>
+<div class="mr-sec"><h3>BOUNDARY MAP (${esc(g.src || 'USGS PAD-US')})</h3><div id="mrMap"></div><p class="mr-help">Gold = this park's land in the source above. Blue dots = POTA parks nearby (tap for the number). Blue P squares = parking (🥾 trailhead, ⛵ boat ramp); green dots = roads or trails into it. Tap the map to drop a pin; ⛶ FULL for full screen; layers for satellite, topo and terrain.</p><div class="mr-btns" id="mrFiles"></div></div>
 <div class="mr-sec mr-facts"><h3>📍 FACTS FOR ADDING THE PARK</h3>
 <div class="mr-fact"><span>POTA PIN (inside the boundary)</span><b>${la.toFixed(5)}, ${lo.toFixed(5)}</b><div class="mr-btns"><a href="#" data-copy="${la.toFixed(5)}, ${lo.toFixed(5)}">COPY GPS</a><a href="https://www.google.com/maps/search/?api=1&query=${la.toFixed(5)},${lo.toFixed(5)}" target="_blank" rel="noopener">GOOGLE MAPS ↗</a><a href="https://maps.apple.com/?ll=${la.toFixed(5)},${lo.toFixed(5)}&q=${encodeURIComponent(nm)}" target="_blank" rel="noopener">APPLE MAPS ↗</a><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${la.toFixed(5)},${lo.toFixed(5)}" target="_blank" rel="noopener">STREET VIEW ↗</a></div></div>
 ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.map(u => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a>`).join("<br>")}</b></div>` : ""}<div class="mr-fact"><span>GRID SQUARE</span><b>${grid(la, lo)}</b></div>
 <div class="mr-fact"><span>COUNTY</span><b id="mrCounty">looking it up…</b></div>
+<div class="mr-fact"><span>PARKING</span><b id="mrFactsPk">looking for parking…</b></div>
 <div class="mr-fact"><span>SIZE</span><b>about ${Math.round(g.acres).toLocaleString()} acres</b></div>
 <div class="mr-fact"><span>OWNER · MANAGER</span><b>${esc(base.map(r => r.Loc_Own || AG[r.Own_Name] || r.Own_Name).filter((x, i, a) => a.indexOf(x) === i).join('; '))} · ${esc(locM)}</b></div>
 <div class="mr-fact"><span>BOUNDARY SOURCE</span><b>${esc(g.src || 'USGS PAD-US')}</b><div class="mr-btns">${g.src && /PAD-US/.test(g.src) || !g.src ? '<a href="https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview" target="_blank" rel="noopener">ABOUT PAD-US ↗</a>' : ''}<a href="#" data-dl="kml">SAVE BOUNDARY (KML)</a></div></div>
@@ -307,38 +308,64 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
     $('mrFiles').innerHTML = `<a class="alt" href="#" data-f="kml">SAVE KML · GOOGLE EARTH</a><a class="alt" href="#" data-f="gpx">GPX · GPS UNITS</a><a class="alt" href="#" data-f="geojson">GEOJSON</a>`;
     $('mrFiles').querySelectorAll('[data-f]').forEach(b => b.onclick = e => { e.preventDefault(); B.saveGeo(fc, b.dataset.f, o, b); });
   }
-  /* public way in: OpenStreetMap roads / parking / trailheads / ramps that reach inside the boundary */
+  /* public way in: OpenStreetMap roads / parking / trailheads / ramps that reach inside the boundary;
+     parking, trailheads and ramps up to ~400 m outside are shown too (walk-in), each with a pin button */
   async function accessIn(me) {
-    const [w, s, e, n] = cur.bb, pad = .002;
+    const [w, s, e, n] = cur.bb, pad = .005;
     const bx = `(${(s - pad).toFixed(5)},${(w - pad).toFixed(5)},${(n + pad).toFixed(5)},${(e + pad).toFixed(5)})`;
-    const qy = `[out:json][timeout:40];(way[highway~"^(primary|secondary|tertiary|unclassified|residential|service|track|path|footway|bridleway)$"]["access"!~"^(private|no)$"]${bx};nwr[amenity=parking]["access"!~"^(private|no)$"]${bx};node[highway=trailhead]${bx};nwr[leisure=slipway]${bx};);out tags geom 600;`;
+    const qy = `[out:json][timeout:40];(way[highway~"^(primary|secondary|tertiary|unclassified|residential|service|track|path|footway|bridleway)$"]["access"!~"^(private|no)$"]${bx};nwr[amenity=parking]["access"!~"^(private|no|customers)$"]${bx};node[highway=trailhead]${bx};nwr[leisure=slipway]${bx};);out tags geom 800;`;
     let j = null; for (const u of OVER) { try { j = await B.jget(u, { method: 'POST', body: 'data=' + encodeURIComponent(qy), headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }, 45000); break; } catch (e2) {} }
     if (cur !== me) return; const X = $('mrAccess'); if (!X) return;
     if (!j) throw new Error('osm');
     const inF = (a, b) => cur.feats.some(f => B.inside(a, b, f.geometry));
+    const edgeKm = (a, b) => Math.min(...cur.feats.map(f => B.edge(a, b, f.geometry).km));
     const KIND = t => t.leisure === 'slipway' ? 'Boat ramp' : t.highway === 'trailhead' ? 'Trailhead' : t.amenity === 'parking' ? 'Parking' : /^(path|footway|bridleway)$/.test(t.highway) ? 'Trail' : t.highway === 'track' ? 'Dirt / gravel road' : 'Public road';
     const RANK = { 'Parking': 0, 'Trailhead': 1, 'Boat ramp': 2, 'Public road': 3, 'Dirt / gravel road': 4, 'Trail': 5 };
+    const SPOT = k => k === 'Parking' || k === 'Trailhead' || k === 'Boat ramp';
     const hits = [];
     (j.elements || []).forEach(el => {
-      const t = el.tags || {}; if (/private|no/.test(t.access || '') || /private|no/.test(t.motor_vehicle || '') && !t.highway) return;
-      const pts = el.type === 'node' ? [[el.lat, el.lon]] : (el.geometry || []).map(p => [p.lat, p.lon]);
+      const t = el.tags || {}; if (/^(private|no)$/.test(t.access || '')) return;
+      const k = KIND(t);
+      let pts = el.type === 'node' ? [[el.lat, el.lon]] : (el.geometry || []).map(p => [p.lat, p.lon]);
       if (el.type === 'relation' && el.members) el.members.forEach(m => (m.geometry || []).forEach(p => pts.push([p.lat, p.lon])));
-      const p = pts.find(q2 => inF(q2[0], q2[1])); if (!p) return;
-      hits.push({ k: KIND(t), name: t.name || t.ref || '', la: p[0], lo: p[1], gate: /gate/.test(t.barrier || '') });
+      if (!pts.length) return;
+      if (SPOT(k)) {   /* one point for a lot: its middle */
+        const c = pts.length === 1 ? pts[0] : [pts.reduce((a, p) => a + p[0], 0) / pts.length, pts.reduce((a, p) => a + p[1], 0) / pts.length];
+        const ins = inF(c[0], c[1]) || pts.some(p => inF(p[0], p[1])); const d = ins ? 0 : edgeKm(c[0], c[1]);
+        if (!ins && d > .4) return;
+        hits.push({ k, name: t.name || '', la: c[0], lo: c[1], ins, d, fee: t.fee, surf: t.surface, cap: t.capacity });
+      } else { const p = pts.find(q2 => inF(q2[0], q2[1])); if (p) hits.push({ k, name: t.name || t.ref || '', la: p[0], lo: p[1], ins: true, d: 0 }); }
     });
-    const seen = new Set(), H = hits.sort((a, b) => RANK[a.k] - RANK[b.k]).filter(h => { const key = h.k + '|' + (h.name || h.la.toFixed(3) + h.lo.toFixed(3)); return !seen.has(key) && seen.add(key); });
+    const seen = new Set(), H = hits.sort((a, b) => RANK[a.k] - RANK[b.k] || a.d - b.d).filter(h => { const key = h.k + '|' + (SPOT(h.k) ? h.la.toFixed(4) + h.lo.toFixed(4) : h.name || h.la.toFixed(3) + h.lo.toFixed(3)); return !seen.has(key) && seen.add(key); });
     const box = X.closest('.mr-r'), lake = box && /agency lake/.test(box.querySelector('b').textContent);
-    const drive = H.filter(h => /Parking|Boat ramp|road/i.test(h.k)), foot = H.filter(h => /Trail/.test(h.k));
-    const gm = h => `https://www.google.com/maps/search/?api=1&query=${h.la.toFixed(5)},${h.lo.toFixed(5)}`;
-    X.innerHTML = H.length ? `<p class="mr-help"><b>${drive.length ? 'YES: you can drive in.' : 'Foot access only (trail / trailhead).'}</b> OpenStreetMap shows ${H.length} public way${H.length === 1 ? '' : 's'} in that reach inside the boundary (volunteer map: check that the road is public and not gated).</p><details class="mr-rec" open><summary>WAYS IN FOUND (${H.length})</summary><table>${H.slice(0, 10).map(h => `<tr><th>${esc(h.k)}</th><td>${esc(h.name || '(no name)')} · <a href="${gm(h)}" target="_blank" rel="noopener">${h.la.toFixed(5)}, ${h.lo.toFixed(5)} ↗</a></td></tr>`).join('')}</table></details>`
-      : '<p class="mr-help"><b>No public road, parking, trailhead or ramp found inside the boundary on OpenStreetMap.</b> That does not prove there is none (the map can be missing them). Check the satellite and street view, and the agency\'s page for directions or an access point. If the only way in is across private land, POTA will not add it.</p>';
-    if (map && H.length) H.slice(0, 10).forEach(h => L.circleMarker([h.la, h.lo], { radius: 6, color: '#fff', weight: 2, fillColor: '#18a957', fillOpacity: 1 }).addTo(map).bindPopup(`<b>${esc(h.k)}</b> ${esc(h.name)}<br>Way in (OpenStreetMap)`));
+    const inH = H.filter(h => h.ins), spots = H.filter(h => SPOT(h.k));
+    const drive = inH.filter(h => /Parking|Boat ramp|road/i.test(h.k)), foot = inH.filter(h => /Trail/.test(h.k)), nextTo = spots.filter(h => !h.ins);
+    const ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const dirU = h => ios ? `https://maps.apple.com/?daddr=${h.la.toFixed(6)},${h.lo.toFixed(6)}` : `https://www.google.com/maps/dir/?api=1&destination=${h.la.toFixed(6)},${h.lo.toFixed(6)}`;
+    const where = h => h.ins ? 'inside the boundary' : B.dist(h.d) + ' outside the line (walk in)';
+    const extra = h => [h.fee === 'yes' ? 'fee' : '', h.surf ? h.surf : '', h.cap ? h.cap + ' spaces' : ''].filter(Boolean).join(' · ');
+    const ICON = { 'Parking': 'P', 'Trailhead': '🥾', 'Boat ramp': '⛵' };
+    const spotRow = (h, i) => `<div class="mr-pk"><span class="mr-pki">${ICON[h.k]}</span><div><b>${esc(h.k)}${h.name ? ': ' + esc(h.name) : ''}</b><small>${esc(where(h))}${extra(h) ? ' · ' + esc(extra(h)) : ''}<br>${h.la.toFixed(5)}, ${h.lo.toFixed(5)}</small><div class="mr-rl"><a href="#" data-pk="${i}">📍 PIN IT ON THE MAP</a><a class="gold" href="${dirU(h)}" target="_blank" rel="noopener">DIRECTIONS ↗</a><a href="#" data-cp="${h.la.toFixed(6)}, ${h.lo.toFixed(6)}">COPY GPS</a></div></div></div>`;
+    const roads = inH.filter(h => !SPOT(h.k));
+    X.innerHTML = (inH.length ? `<p class="mr-help"><b>${drive.length ? 'YES: you can drive in.' : 'Foot access only (trail / trailhead).'}</b> OpenStreetMap shows ${inH.length} public way${inH.length === 1 ? '' : 's'} in that reach inside the boundary (volunteer map: check that it's public and not gated).</p>` : nextTo.length ? `<p class="mr-help"><b>Parking or a trailhead right next to it, but no road inside.</b> Walk-in access may be fine; make sure the walk is on public land or a public trail.</p>` : '<p class="mr-help"><b>No public road, parking, trailhead or ramp found inside the boundary on OpenStreetMap.</b> That does not prove there is none (the map can be missing them). Check the satellite and street view, and the agency\'s page for directions or an access point. If the only way in is across private land, POTA will not add it.</p>')
+      + (spots.length ? `<div class="mr-pkbox"><div class="mr-k">PARKING &amp; ACCESS POINTS FOUND (${spots.length})</div>${spots.slice(0, 8).map((h, i) => spotRow(h, i)).join('')}<p class="mr-help">POTA: activating from a roadside pull-off usually puts you OUTSIDE the park. Park, then walk in past the boundary line.</p></div>` : '')
+      + (roads.length ? `<details class="mr-rec"><summary>ROADS / TRAILS INTO IT (${roads.length})</summary><table>${roads.slice(0, 10).map(h => `<tr><th>${esc(h.k)}</th><td>${esc(h.name || '(no name)')} · <a href="https://www.google.com/maps/search/?api=1&query=${h.la.toFixed(5)},${h.lo.toFixed(5)}" target="_blank" rel="noopener">${h.la.toFixed(5)}, ${h.lo.toFixed(5)} ↗</a></td></tr>`).join('')}</table></details>` : '');
+    const top = spots.slice(0, 8);
+    X.querySelectorAll('[data-pk]').forEach(a => a.onclick = ev => { ev.preventDefault(); const h = top[+a.dataset.pk]; if (!map) return; const M = $('mrMap'); if (M) M.scrollIntoView({ behavior: 'smooth', block: 'center' }); map.setView([h.la, h.lo], 17); map.fire('click', { latlng: L.latLng(h.la, h.lo) }); });
+    X.querySelectorAll('[data-cp]').forEach(a => a.onclick = ev => { ev.preventDefault(); const v = a.dataset.cp; (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(() => a.textContent = 'COPIED ✓').catch(() => window.prompt('Copy the GPS:', v)); });
+    if (map) {
+      top.forEach(h => L.marker([h.la, h.lo], { icon: L.divIcon({ className: 'mr-pkm', html: `<span>${ICON[h.k]}</span>`, iconSize: [26, 26], iconAnchor: [13, 13] }) }).addTo(map).bindPopup(`<b>${esc(h.k)}${h.name ? ': ' + esc(h.name) : ''}</b><br>${esc(where(h))}<br>${h.la.toFixed(5)}, ${h.lo.toFixed(5)}<br><a href="${dirU(h)}" target="_blank" rel="noopener">DIRECTIONS ↗</a> · <a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${h.la.toFixed(6)},${h.lo.toFixed(6)}" target="_blank" rel="noopener">STREET VIEW ↗</a><br><small>From OpenStreetMap</small>`));
+      roads.slice(0, 10).forEach(h => L.circleMarker([h.la, h.lo], { radius: 5, color: '#fff', weight: 2, fillColor: '#18a957', fillOpacity: 1 }).addTo(map).bindPopup(`<b>${esc(h.k)}</b> ${esc(h.name)}<br>Way in (OpenStreetMap)`));
+    }
+    const T = $('mrNote');
+    if (T && spots.length) T.value = T.value.replace('Links found:', 'Parking / access points (OpenStreetMap):\n' + spots.slice(0, 5).map(h => `- ${h.k}${h.name ? ' ' + h.name : ''}: ${h.la.toFixed(5)}, ${h.lo.toFixed(5)} (${where(h)})`).join('\n') + '\nLinks found:');
     if (box && !lake && drive.length + foot.length) {
       box.className = 'mr-r yes'; box.querySelector('i').textContent = 'YES';
-      const T = $('mrNote'); if (T) T.value = T.value.replace('Has a public way in (road, trail or water): CHECK', 'Has a public way in (road, trail or water): YES (OpenStreetMap: ' + H.slice(0, 3).map(h => h.k + (h.name ? ' ' + h.name : '') + ' at ' + h.la.toFixed(5) + ', ' + h.lo.toFixed(5)).join('; ') + ')');
+      if (T) T.value = T.value.replace('Has a public way in (road, trail or water): CHECK', 'Has a public way in (road, trail or water): YES (OpenStreetMap: ' + inH.slice(0, 3).map(h => h.k + (h.name ? ' ' + h.name : '') + ' at ' + h.la.toFixed(5) + ', ' + h.lo.toFixed(5)).join('; ') + ')');
       const yes = document.querySelectorAll('.mr-r.yes').length, no = document.querySelectorAll('.mr-r.no').length, ck = document.querySelectorAll('.mr-r.check').length;
       const V = document.querySelector('.mr-v'); if (V && !/ALREADY/.test(V.textContent)) { V.className = 'mr-v ' + (no ? 'no' : ck ? 'maybe' : 'yes'); V.querySelector('b').textContent = no ? 'LIKELY NOT ELIGIBLE' : ck ? 'LOOKS POSSIBLE: CONFIRM THE YELLOW ITEMS' : 'LOOKS ELIGIBLE'; V.querySelector('span').textContent = `${yes} yes · ${no} no · ${ck} to check yourself`; }
     }
+    const FB = $('mrFactsPk'); if (FB) FB.innerHTML = spots.length ? `${esc(spots[0].k)}${spots[0].name ? ' ' + esc(spots[0].name) : ''}: ${spots[0].la.toFixed(5)}, ${spots[0].lo.toFixed(5)} <a href="${dirU(spots[0])}" target="_blank" rel="noopener">directions ↗</a>${spots.length > 1 ? ` (+${spots.length - 1} more under the access rule)` : ''}` : 'none found on OpenStreetMap';
   }
   /* county (FCC census area) + links from the web, filled into the facts box and the note */
   async function enrich(g, la, lo) {
