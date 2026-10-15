@@ -1,0 +1,26 @@
+name: KPC WWFF Directory Copy
+# Sundays: saves a slim copy of the WWFF directory (active references, by program) for the Park Info Finder.
+on:
+  schedule:
+    - cron: '23 9 * * 0'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kpc-wwff-dir
+  cancel-in-progress: false
+jobs:
+  wwff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: python3 .github/scripts/kpc_wwff_dir.py
+      - run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A data/wwff
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update WWFF directory copy'
+            git pull --rebase --autostash || true
+            git push || echo 'Push skipped'
+          fi
