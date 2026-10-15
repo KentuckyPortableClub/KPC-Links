@@ -1,6 +1,5 @@
 O=https://kentuckyportableclub.github.io
-B=https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer
-curl -s -m 40 -H "Origin: $O" "$B?f=json" | python3 -c "import json,sys;d=json.load(sys.stdin);print([(l['id'],l['name']) for l in d.get('layers',[])])"
-for L in 0 1 2 3; do echo "== layer $L"; curl -s -m 40 -H "Origin: $O" "$B/$L/query?geometry=-83.7367,33.9807&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=Unit_Nm,Loc_Nm,Mang_Name,Loc_Mang,Des_Tp,GIS_Acres,Pub_Access,Src_Date&returnGeometry=false&f=json" | python3 -c "import json,sys;d=json.load(sys.stdin);print([f['attributes'] for f in d.get('features',[])] or d)" | head -c 900; echo; done
-echo "== geojson size"; curl -s -m 60 -H "Origin: $O" "$B/0/query?geometry=-83.7367,33.9807&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=Unit_Nm&returnGeometry=true&outSR=4326&geometryPrecision=5&maxAllowableOffset=0.0002&f=geojson" | head -c 400; echo
-echo "== name query"; curl -s -m 40 -H "Origin: $O" "$B/0/query?where=Unit_Nm%20LIKE%20%27%25Vogel%25%27%20AND%20State_Nm%3D%27GA%27&outFields=Unit_Nm,Mang_Name&returnGeometry=false&f=json" | head -c 500
+B=https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0
+curl -s -m 60 -H "Origin: $O" "$B/query?geometry=-83.7567,33.9607,-83.7167,34.0007&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=Unit_Nm,Mang_Name,Des_Tp,GIS_Acres&returnGeometry=false&f=json" | python3 -c "import json,sys;d=json.load(sys.stdin);print([f['attributes'] for f in d.get('features',[])] or d)" | head -c 800; echo
+curl -s -m 60 -H "Origin: $O" "$B/query?where=Unit_Nm%20LIKE%20%27%25Yargo%25%27&outFields=Unit_Nm&returnGeometry=true&outSR=4326&geometryPrecision=5&maxAllowableOffset=0.0002&f=geojson" | head -c 300; echo
+curl -s -m 60 -H "Origin: $O" "$B/query?where=Unit_Nm%20LIKE%20%27%25Yargo%25%27&outFields=Unit_Nm&returnGeometry=true&outSR=4326&geometryPrecision=5&maxAllowableOffset=0.0002&f=json" | head -c 300; echo
