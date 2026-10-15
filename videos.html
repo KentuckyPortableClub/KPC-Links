@@ -190,6 +190,7 @@ body.field .page-jump-nav{display:none!important}
             <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
             <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Find It</a>
             <a href="kpc-spot-me.html" role="menuitem"><span class="ni">&#128227;</span>Spot Me (post your spot)</a>
+            <a href="kpc-park-info.html" role="menuitem"><span class="ni">&#127963;</span>Park Info Finder (any state)</a>
             <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
             <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>KY Trip Planner</a>
             <a href="kpc-planner-us.html" role="menuitem"><span class="ni">&#129517;</span>US Trip Planner</a>
@@ -359,7 +360,7 @@ document.getElementById('ytGrid').addEventListener('click',function(e){var b=e.t
 fetch('kpc-youtube.json?t='+Math.floor(Date.now()/6e5),{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(start).catch(function(){start(null)});
 })();
 </script>
-<script src="kpc-search.js?v=20261015a" defer></script><script>
+<script src="kpc-search.js?v=20261015b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
