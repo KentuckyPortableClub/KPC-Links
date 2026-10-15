@@ -1,38 +1,25 @@
-Bad Branch State Nature Preserve | The Nature Conservancy & Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 2830 | Open
-Bat Cave State Nature Preserve | Kentucky State Parks | Kentucky State Parks | 136 | Open
-Beargrass Creek State Nature Preserve | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 41 | Open
-Blackacre State Nature Preserve | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 181 | Open
-Blanton Forest State Nature Preserve | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 3504 | Open
-Blue Licks State Park State Nature Preserve | Kentucky State Parks & Office of Kentucky Nature Preserves | Kentucky State Parks | 54 | Open
-Boone County Cliffs State Nature Preserve | Boone County Fiscal Court | Boone County Parks and Recreation | 75 | Open
-Brigadoon State Nature Preserve | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 187 | Open
-Cascade Caverns State Nature Preserve | Kentucky State Parks | Kentucky State Parks; Office of Kentucky Nature Preserves | 21 | Open
-Crooked Creek State Nature Preserve | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 729 | Open
-Cumberland Falls State Park State Nature Preserve | Kentucky State Parks | Kentucky State Parks; Office of Kentucky Nature Preserves | 1266 | Open
-Dinsmore Woods State Nature Preserve | Boone County Fiscal Court | Boone County Parks and Recreation; Office of Kentucky Nature Preserves | 105 | Open
-E. Lucy Braun State Park State Nature Preserve | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 609 | Open
-Floracliff Nature Sanctuary | Floracliff Nature Sanctuary | Floracliff Nature Sanctuary; Office of Kentucky Nature Preserves | 349 | Restricted
-James E. Bickford State Nature Preserve | Pine Mountain Settlement School | Pine Mountain Settlement School; Office of Kentucky Nature Preserves | 348 | Open
-Jesse Stuart State Nature Preserve | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 711 | Open
-John B. Stephenson Memorial Forest State Nature Preserve | Berea College | Berea College; Office of Kentucky Nature Preserves | 124 | Open
-John James Audubon State Park State Nature Preserve | Kentucky State Parks | Kentucky State Parks; Office of Kentucky Nature Preserves | 338 | Open
-Kingdom Come State Park State Nature Preserve | Kentucky State Parks | Kentucky State Parks; Office of Kentucky Nature Preserves | 236 | Open
-Livingston County Wildlife Management Area and State Nature Preserve (Bissell Bluff SNP) | Livingston County Fiscal Court | Kentucky Department of Fish and Wildlife Resources; Office of Kentucky Nature Preserves | 563 | Open
-Livingston County Wildlife Management Area and State Nature Preserve (Newman's Bluff SNP) | Livingston County Fiscal Court | Kentucky Department of Fish and Wildlife Resources; Office of Kentucky Nature Preserves | 994 | Open
-Logan County Glade State Nature Preserve | Logan County Fiscal Court | Office of Kentucky Nature Preserves | 42 | Open
-Lower Howards Creek State Nature Preserve | Clark County Fiscal Court | Office of Kentucky Nature Preserves; Friends of Lower Howard's Creek; Clark County Fiscal Court | 228 | Open
-Metropolis Lake State Nature Preserve | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 123 | Open
-Natural Bridge State Park State Nature Preserve | Kentucky State Parks | Kentucky State Parks; Office of Kentucky Nature Preserves | 1238 | Open
-Pilot Knob State Nature Preserve | Office of Kentucky Nature Preserves & Powell County Fiscal Court | Office of Kentucky Nature Preserves | 742 | Open
-Pine Mountain State Park State Nature Preserve | Kentucky State Parks | Kentucky State Parks; Office of Kentucky Nature Preserves | 980 | Open
-Quiet Trails State Nature Preserve | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 177 | Open
-Six Mile Island State Nature Preserve | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 86 | Open
-Tom Dorman State Nature Preserve | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 911 | Open
-Vernon-Douglas State Nature Preserve | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 729 | Open
-Dr. William H. Martin State Natural Area | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 459 | Open
-Green River State Natural Area (Davis Bend) | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 166 | Open
-Green River State Natural Area (Rush Island Bottoms) | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 139 | Open
-Little South Fork State Natural Area (Steele Hollow SNA) | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 2231 | Open
-Martin's Fork State Natural Area | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 1601 | Open
-Sinking Creek State Natural Area | Office of Kentucky Nature Preserves | Office of Kentucky Nature Preserves | 301 | Open
-Stone Mountain Wildlife Management Area and State Natural Area | Kentucky Department of Fish and Wildlife Resources & Office of Kentucky Nature Preserves | Kentucky Department of Fish and Wildlife Resources; Office of Kentucky Nature Preserves | 1017 | Open
+Beaver Lake 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+Boltz Lake 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+Bullock Pen Lake 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+Carpenter Lake 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+Corinth Lake 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+Elmer Davis Lake 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+Guist Creek Lake 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+Kingfisher Lakes 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+McNeely Lake 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+Shanty Hollow Lake 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+Spurlington Lake 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+Washburn Lake 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+Murphy's Pond 1 [('Murray State University', 'OA')]
+Lake Beshear 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+Cumberland River Mussel Sanctuary 1 [('U.S. Department of the Army', 'OA')]
+Dr. James C. Salato Wildlife Education Center 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+Russell County Fish Access - Barnes Property 1 [('Kentucky Department of Fish and Wildlife Resources', 'OA')]
+Redbird Purchase Unit 1 [('USDA FOREST SERVICE', 'OA')]
+Clay Hill Memorial Forest 2 [('Cumberland University', 'XA'), ('Campbellsville University', 'OA')]
+Halls Prairie 1 [('University of Kentucky', 'OA')]
+Kentucky State University Environmental Education Center 1 [('Kentucky State University', 'OA')]
+Pullen Farm 1 [('Murray State University', 'OA')]
+Rowan County Sphagnum Swamp 1 [('Morehead State University', 'OA')]
+Taylor Fork Ecological Area 1 [('Eastern Kentucky University', 'OA')]
+The Green at BCTC 1 [('Bluegrass Community and Technical College', 'OA')]
