@@ -15,6 +15,21 @@ const AREA = { 1: 'CT ME MA NH RI VT', 2: 'NJ NY', 3: 'DE MD PA', 4: 'AL FL GA K
 const ST_AREA = {}; Object.keys(AREA).forEach(n => AREA[n].split(' ').forEach(s => { ST_AREA[s] = n; }));
 const NEAR = ['KY', 'KY', 'TN', 'TN', 'OH', 'OH', 'IN', 'IN', 'WV', 'VA', 'IL', 'MO', 'NC', 'GA', 'MI', 'PA', 'AL', 'TX', 'FL', 'NY', 'WI', 'CA', 'MN', 'CO', 'AZ', 'WA'];
 const L = () => String.fromCharCode(65 + rnd(0, 25));
+/* who you can hear depends on the band: 40 m = nearby states (some farther), 20 m / 17 m skip over the
+   neighbours (the skip zone) and bring in stations 500+ miles away. Rough state centers (lat, lon). */
+const CEN = { AL: [32.8, -86.8], AR: [34.9, -92.4], AZ: [34.3, -111.7], CA: [37.2, -119.5], CO: [39, -105.5], CT: [41.6, -72.7], DE: [39, -75.5], FL: [28.6, -82.4], GA: [32.7, -83.4], IA: [42.1, -93.5], ID: [44.4, -114.6], IL: [40, -89.2], IN: [39.9, -86.3], KS: [38.5, -98.4], KY: [37.5, -85.3], LA: [31.1, -92], MA: [42.3, -71.8], MD: [39, -76.8], ME: [45.4, -69.2], MI: [43.7, -84.7], MN: [46.3, -94.3], MO: [38.4, -92.5], MS: [32.7, -89.7], MT: [47, -109.6], NC: [35.6, -79.4], ND: [47.5, -100.5], NE: [41.5, -99.8], NH: [43.7, -71.6], NJ: [40.2, -74.7], NM: [34.4, -106.1], NV: [39.3, -116.6], NY: [42.9, -75.5], OH: [40.3, -82.8], OK: [35.6, -97.5], OR: [43.9, -120.6], PA: [40.9, -77.8], RI: [41.7, -71.5], SC: [33.9, -80.9], SD: [44.4, -100.2], TN: [35.9, -86.4], TX: [31.5, -99.3], UT: [39.3, -111.7], VA: [37.5, -78.8], VT: [44.1, -72.7], WA: [47.4, -120.5], WI: [44.6, -89.9], WV: [38.6, -80.6], WY: [43, -107.6] };
+const HAMS = { CA: 3, TX: 2.5, FL: 2, NY: 1.8, PA: 1.4, OH: 1.4, IL: 1.3, GA: 1.2, NC: 1.2, MI: 1.2, VA: 1.1, WA: 1.1, TN: 1.1, KY: 1.1, IN: 1, AZ: 1, CO: 1, DE: 0.3, RI: 0.3, VT: 0.3, WY: 0.3, ND: 0.3, SD: 0.35, MT: 0.45, NH: 0.5, ME: 0.5, NV: 0.6, ID: 0.5, NE: 0.5 }; // roughly how many hams live there
+function miles(a, b) { const A = CEN[a], B = CEN[b]; if (!A || !B) return 800; const r = Math.PI / 180, x = (B[1] - A[1]) * r * Math.cos((A[0] + B[0]) / 2 * r), y = (B[0] - A[0]) * r; return Math.sqrt(x * x + y * y) * 3959; }
+function bandWeight(band, d) {
+  if (String(band) === '40') return d < 700 ? 1 : d < 1200 ? 0.3 : 0.06;
+  return d < 120 ? 0.04 : d < 450 ? 0.03 : d < 650 ? 0.4 : d < 2600 ? 1 : 0.5; // 20 m / 17 m
+}
+function pickState(band, from) {
+  const home = CEN[from] ? from : 'KY', keys = Object.keys(CEN), w = keys.map(k => bandWeight(band, miles(home, k)) * (HAMS[k] || 0.8));
+  let t = Math.random() * w.reduce((a, b) => a + b, 0);
+  for (let i = 0; i < keys.length; i++) { t -= w[i]; if (t <= 0) return keys[i]; }
+  return 'TX';
+}
 function newCall(st) {
   const n = ST_AREA[st], f = rnd(1, 100), p = () => pick(['K', 'W', 'N']);
   if (f <= 12) return p() + n + L() + L();
@@ -39,13 +54,14 @@ if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = lo
 function speak(text, who) {
   // some Android phones drop an utterance spoken right after cancel(): wait a moment first
   const gap = Math.max(0, 150 - (Date.now() - lastCancel));
+  // while you're keyed up (transmitting) you can't hear anybody: let the time pass silently
+  if (typeof recOn !== 'undefined' && recOn) return new Promise(r0 => setTimeout(() => r0(false), 400 + text.length * 45));
   return new Promise(r0 => setTimeout(r0, gap)).then(() => speakNow(text, who));
 }
 function speakNow(text, who) {
   return new Promise(res => {
     if (!window.speechSynthesis) { res(false); return; }
     if (speechSynthesis.paused) speechSynthesis.resume();
-    if (speechSynthesis.speaking && !window.__kpcU) { speechSynthesis.cancel(); lastCancel = Date.now(); }
     const u = new SpeechSynthesisUtterance(text); window.__kpcU = u; // keep a reference: Chrome can lose the events of a garbage-collected utterance
     if (!VO.length) loadVoices();
     if (who && VO.length) {
@@ -55,10 +71,10 @@ function speakNow(text, who) {
       const list = pool.length ? pool : VO; u.voice = list[who.vi % list.length]; u.lang = u.voice.lang;
     } else u.lang = 'en-US';
     u.rate = who ? who.rate : 1; u.pitch = who ? who.pitch : 1; u.volume = Math.max(0.15, Math.min(1, (who ? who.vol : 1) * S.vol));
-    let done = false, started = false; const fin = stuck => { if (!done) { done = true; clearTimeout(tm); clearTimeout(t0); if (window.__kpcU === u) window.__kpcU = null; if (stuck === true) { try { speechSynthesis.cancel(); } catch (e) {} lastCancel = Date.now(); } res(started); } };
-    const tm = setTimeout(() => fin(true), 2500 + text.length * 95 / u.rate); // some browsers never fire 'end': clear the stuck queue
-    const t0 = setTimeout(() => { if (!started) fin(true); }, 4500); u.onstart = () => { started = true; };
-    u.onend = fin; u.onerror = e => { lastErr = (e && e.error) || 'error'; if (lastErr !== 'interrupted' && lastErr !== 'canceled' && Date.now() - lastCancel > 400) { const d = $('vbDiag'); if (d) d.textContent = 'Voice problem: ' + lastErr + '. Tap TEST VOICE to check.'; } fin(); };
+    let done = false, started = false; const fin = stuck => { if (!done) { done = true; clearTimeout(tm); clearTimeout(t0); if (window.__kpcU === u) window.__kpcU = null; if (stuck === true && !ANDROID) { try { speechSynthesis.cancel(); } catch (e) {} lastCancel = Date.now(); } res(started); } };
+    const tm = setTimeout(() => fin(true), 3000 + text.length * 95 / u.rate); // some browsers never fire 'end': clear the stuck queue
+    const t0 = setTimeout(() => { if (ANDROID) started = true; else if (!started) fin(true); }, ANDROID ? 700 : 6000); u.onstart = () => { started = true; }; // Android: onstart isn't reliable, and cancel() drops the next line
+    u.onend = () => { started = true; fin(); }; u.onerror = e => { lastErr = (e && e.error) || 'error'; if (lastErr !== 'interrupted' && lastErr !== 'canceled' && Date.now() - lastCancel > 400) { const d = $('vbDiag'); if (d) d.textContent = 'Voice problem: ' + lastErr + '. Tap TEST VOICE to check.'; } fin(); };
     speechSynthesis.speak(u);
   });
 }
@@ -89,7 +105,7 @@ function hiss(on) {
 }
 
 /* ---------------- state ---------------- */
-const S = Object.assign({ call: '', st: 'KY', ref: '', level: 1, vol: 0.9, hiss: 0.3, rate: 1, mic: true, autolog: false, prog: 'pota', mode: 'act', p2p: false }, store.get('kpcSSB', {}));
+const S = Object.assign({ call: '', st: 'KY', ref: '', level: 1, vol: 0.9, hiss: 0.3, rate: 1, mic: true, autolog: false, prog: 'pota', mode: 'act', p2p: false, band: '20' }, store.get('kpcSSB', {}));
 const save = () => store.set('kpcSSB', S);
 /* program: off (plain contacts), POTA, KFF (WWFF), SOTA */
 const PROG = {
@@ -110,7 +126,7 @@ function showText() { return $('vbShow') && $('vbShow').checked; }
 function arrivals() {
   const lv = LEVELS[S.level] || LEVELS[1], want = rnd(lv.n[0], lv.n[1]);
   while (run.callers.length < want) {
-    const st = pick(NEAR); let c; do { c = newCall(st); } while (run.worked.has(c) || run.callers.some(x => x.call === c) || c === myCall());
+    const st = pickState(S.band, S.st); let c; do { c = newCall(st); } while (run.worked.has(c) || run.callers.some(x => x.call === c) || c === myCall());
     run.callers.push({ call: c, st, rst: pick(['59', '59', '59', '57', '58', '55', '44']), vi: rnd(0, 50), rate: (0.95 + Math.random() * 0.35) * S.rate, vol: 0.55 + Math.random() * 0.45 }); { const o = run.callers[run.callers.length - 1]; o.m = Math.random() < 0.65; o.pitch = o.m ? 0.5 + Math.random() * 0.3 : 1 + Math.random() * 0.3; if (P().ref && Math.random() < (S.prog === 'sota' ? 0.18 : 0.1)) o.ref = P().ref(); }
   }
 }
@@ -262,7 +278,7 @@ function adif() {
   const hunt = S.mode === 'hunt';
   if (!(hunt ? H.log : run.log).length) return;
   const f = (k, v) => v ? `<${k}:${String(v).length}>${v} ` : '';
-  const rows = hunt ? huntAdif() : run.log.map(q => { const d = q.time.toISOString(); return f('CALL', q.call) + f('QSO_DATE', d.slice(0, 10).replace(/-/g, '')) + f('TIME_ON', d.slice(11, 16).replace(':', '')) + f('BAND', '20M') + f('MODE', 'SSB') + f('RST_SENT', q.sent) + f('RST_RCVD', q.rcvd) + f('STATE', q.st) + f('STATION_CALLSIGN', myCall()) + (S.prog === 'sota' ? f('MY_SOTA_REF', S.ref) + f('SOTA_REF', q.ref) : f('MY_SIG', S.ref && S.prog !== 'off' ? (S.prog === 'kff' ? 'WWFF' : 'POTA') : '') + f('MY_SIG_INFO', S.prog !== 'off' ? S.ref : '') + f('SIG', q.ref ? (S.prog === 'kff' ? 'WWFF' : 'POTA') : '') + f('SIG_INFO', q.ref)) + f('COMMENT', 'KPC PRACTICE - NOT A REAL QSO') + '<EOR>'; });
+  const rows = hunt ? huntAdif() : run.log.map(q => { const d = q.time.toISOString(); return f('CALL', q.call) + f('QSO_DATE', d.slice(0, 10).replace(/-/g, '')) + f('TIME_ON', d.slice(11, 16).replace(':', '')) + f('BAND', (S.band || '20') + 'M') + f('MODE', 'SSB') + f('RST_SENT', q.sent) + f('RST_RCVD', q.rcvd) + f('STATE', q.st) + f('STATION_CALLSIGN', myCall()) + (S.prog === 'sota' ? f('MY_SOTA_REF', S.ref) + f('SOTA_REF', q.ref) : f('MY_SIG', S.ref && S.prog !== 'off' ? (S.prog === 'kff' ? 'WWFF' : 'POTA') : '') + f('MY_SIG_INFO', S.prog !== 'off' ? S.ref : '') + f('SIG', q.ref ? (S.prog === 'kff' ? 'WWFF' : 'POTA') : '') + f('SIG_INFO', q.ref)) + f('COMMENT', 'KPC PRACTICE - NOT A REAL QSO') + '<EOR>'; });
   const txt = 'KPC Voice Pileup Practice log (PRACTICE ONLY - do not upload to POTA)\n<ADIF_VER:5>3.1.4 <PROGRAMID:3>KPC <EOH>\n' + rows.join('\n') + '\n';
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], { type: 'text/plain' })); a.download = `KPC-practice-${myCall() || 'log'}.adi`; a.click();
 }
@@ -277,31 +293,31 @@ fetch('kpc-ky-data.json').then(r => r.json()).then(d => { KYD = d; }).catch(() =
 const H = { on: false, spots: [], cur: null, gen: 0, phase: 'idle', log: [], qsos: [], pending: null, called: 0, calledAt: 0, tries: 0, doubled: 0, spotsGiven: 0, wait: null, timer: null };
 const huntProg = () => (S.prog === 'kff' || S.prog === 'sota') ? S.prog : 'pota';
 const PROGNAME = { pota: 'POTA', kff: 'KFF', sota: 'SOTA' };
-function huntRef(prog) {
-  const ky = Math.random() < 0.55;
+function huntRef(prog, band) {
+  const where = pickState(band, S.st), ky = where === 'KY';
   if (prog === 'sota') {
     if (ky && KYD && KYD.summits && KYD.summits.length) { const s = pick(KYD.summits); return { ref: s.c, name: s.n, st: 'KY' }; }
-    const a = pick([['W4C/WM', 'NC'], ['W4T/SU', 'TN'], ['W4V/SH', 'VA'], ['W8V/SR', 'WV'], ['W4G/NG', 'GA'], ['W0C/FR', 'CO']]);
+    const AS = { NC: 'W4C/WM', TN: 'W4T/SU', VA: 'W4V/SH', WV: 'W8V/SR', GA: 'W4G/NG', CO: 'W0C/FR', CA: 'W6/CT', AZ: 'W7A/MN', OR: 'W7O/CM', WA: 'W7W/KG', NY: 'W2/GA', NH: 'W1/HA', VT: 'W1/NL', ME: 'W1/AM', TX: 'W5T/HE', NM: 'W5N/SI', UT: 'W7U/SL', MT: 'W7M/BR', ID: 'W7I/SR', PA: 'W3/PD', AR: 'W5A/OZ', MO: 'W0M/OZ', NV: 'W7N/CC', WY: 'W7Y/MA', SC: 'W4C/US', AL: 'W4A/NE', OK: 'W5O/NE', MA: 'W1/MB', SD: 'W0D/BH', MN: 'W0M/NE', MI: 'W8M/UP', WI: 'W9/WI', OH: 'W8O/SO', IN: 'W9/IN', IL: 'W9/IL', MD: 'W3/WE', NJ: 'W2/NJ', CT: 'W1/CT', IA: 'W0I/IA', NE: 'W0N/NE', KS: 'W0K/KS', ND: 'W0D/ND', LA: 'W5L/LA', MS: 'W5M/MS', FL: 'W4F/FL', DE: 'W3/DE', RI: 'W1/RI' };
+    const a = [AS[where] || 'W4T/SU', AS[where] ? where : 'TN'];
     return { ref: a[0] + '-' + String(rnd(1, 140)).padStart(3, '0'), name: 'a summit in ' + STN[a[1]], st: a[1] };
   }
   if (prog === 'kff') {
     if (ky && KYD && KYD.kff && KYD.kff.length) { const s = pick(KYD.kff); return { ref: s.c, name: s.n, st: 'KY' }; }
-    const st = pick(NEAR.filter(x => x !== 'KY')); return { ref: 'KFF-' + String(rnd(1, 7000)).padStart(4, '0'), name: 'a reference in ' + STN[st], st };
+    const st = where; return { ref: 'KFF-' + String(rnd(1, 7000)).padStart(4, '0'), name: 'a reference in ' + STN[st], st };
   }
   if (ky && KYD && KYD.parks && KYD.parks.length) { const s = pick(KYD.parks.filter(p => p.n && p.n.length < 50)); return { ref: s.c, name: s.n, st: 'KY' }; }
-  const st = pick(NEAR.filter(x => x !== 'KY')); return { ref: 'US-' + String(rnd(1, 11000)).padStart(4, '0'), name: 'a park in ' + STN[st], st };
+  const st = where; return { ref: 'US-' + String(rnd(1, 11000)).padStart(4, '0'), name: 'a park in ' + STN[st], st };
 }
 function voiceFor() { const m = Math.random() < 0.65; return { vi: rnd(0, 50), rate: (0.95 + Math.random() * 0.3) * S.rate, vol: 0.6 + Math.random() * 0.4, m, pitch: m ? 0.5 + Math.random() * 0.3 : 1 + Math.random() * 0.3 }; }
 function bust(c) { const i = rnd(c.search(/\d/) + 1, c.length - 1), ch = c[i]; let n; do { n = L(); } while (n === ch); return c.slice(0, i) + n + c.slice(i + 1); }
 const COMMENTS = ['QRV SSB', 'tnx QSO', 'good signal', 'QSB', 'big pileup!', 'weak here', '5/9 into KY', 'first time activator', 'tnx for the park', 'loud'];
 function newSpot() {
-  const prog = huntProg(), r = huntRef(prog);
+  const prog = huntProg(), band = pick(['20', '20', '20', '40', '40', '17']), r = huntRef(prog, band);
   let call; do { call = newCall(r.st); } while (H.spots.some(s => s.call === call) || call === myCall());
-  const band = pick(['20', '20', '20', '40', '40', '17']);
   const fr = band === '20' ? 14200 + rnd(5, 140) + pick([0, 0, 0.5]) : band === '40' ? 7180 + rnd(0, 110) + pick([0, 0.5]) : 18130 + rnd(0, 30);
   const busted = Math.random() < 0.15;
   const lvMax = (LEVELS[S.level] || LEVELS[1]).n[1];
-  return Object.assign({ id: Math.random().toString(36).slice(2, 8), prog, call, shown: busted ? bust(call) : call, busted, band, fr: fr.toFixed(1), born: Date.now() - rnd(0, 8) * 60000, life: rnd(5, 14) * 60000, pile: rnd(0, lvMax), comment: pick(COMMENTS), spotter: newCall(pick(NEAR)), qrt: false, rst: pick(['59', '59', '57', '58', '55']), cnt: rnd(1, 9) }, r, { v: voiceFor() });
+  return Object.assign({ id: Math.random().toString(36).slice(2, 8), prog, call, shown: busted ? bust(call) : call, busted, band, fr: fr.toFixed(1), born: Date.now() - rnd(0, 8) * 60000, life: rnd(5, 14) * 60000, pile: rnd(0, lvMax), comment: pick(COMMENTS), spotter: newCall(pickState(band, S.st)), qrt: false, rst: pick(['59', '59', '57', '58', '55']), cnt: rnd(1, 9) }, r, { v: voiceFor() });
 }
 function huntStart() {
   if (!/^[A-Z0-9]{1,3}\d[A-Z]{1,4}$/.test(myCall())) { status('Enter your call sign first.'); $('vbCall').focus(); return; }
@@ -367,7 +383,7 @@ async function aSay(s, spoken, shown) {
 }
 async function actLoop(s, g) {
   const pg = PROGNAME[s.prog], refS = sayRef(s.ref);
-  const hunters = () => { const n = Math.max(0, s.pile + rnd(-1, 1)); return Array.from({ length: n }, () => { const st = pick(NEAR); return Object.assign({ call: newCall(st), st, rst: pick(['59', '59', '57', '58']) }, voiceFor()); }); };
+  const hunters = () => { const n = Math.max(0, s.pile + rnd(-1, 1)); return Array.from({ length: n }, () => { const st = pickState(s.band, S.st); return Object.assign({ call: newCall(st), st, rst: pick(['59', '59', '57', '58']) }, voiceFor()); }); };
   let first = true;
   await sleep(600);
   while (g === H.gen) {
@@ -380,7 +396,7 @@ async function actLoop(s, g) {
     /* the window: everybody calls */
     setPhase('window'); const w0 = Date.now() - 1200; H.called = 0;
     const hs = hunters();
-    for (const h of hs) { if (g !== H.gen) return; if (showText()) line(h.call, h.call, 'them'); else line('📢', 'a hunter calls', 'them'); await speak(say1(h.call), h); }
+    for (const h of hs) { if (g !== H.gen) return; if (recOn) { await sleep(500); continue; } if (showText()) line(h.call, h.call, 'them'); else line('📢', 'a hunter calls', 'them'); await speak(say1(h.call), h); }
     await waitFor(() => H.called && Date.now() - H.calledAt > 900, hs.length ? 1600 : 4500, g);
     if (!H.called && (recOn || Date.now() - recOffAt < 1500)) await waitFor(() => H.called || (!recOn && Date.now() - recOffAt > 2500), 9000, g); // you're still talking / the phone is still working out what you said
     if (g !== H.gen) return;
@@ -554,9 +570,9 @@ let rec = null, recOn = false, recHeld = 0, recWant = false, recText = '', recOf
 /* Keyed = recWant. Chrome ends recognition on its own after a short pause, so while you're still keyed we quietly start it again
    and keep everything you said; the words are only acted on when you unkey. */
 function recBegin() {
-  rec = new SR(); rec.lang = 'en-US'; rec.interimResults = true; rec.maxAlternatives = 1; rec.continuous = true;
+  rec = new SR(); rec.lang = 'en-US'; rec.interimResults = true; rec.maxAlternatives = 1; rec.continuous = !ANDROID; // Android repeats everything said so far in every result when continuous
   let seg = '';
-  rec.onresult = e => { let t = '', f = ''; for (const r of e.results) { t += r[0].transcript + ' '; if (r.isFinal) f += r[0].transcript + ' '; } seg = f; const l = $('vbHeard'); if (l) { l.textContent = '🎙 ' + (recText + t).trim(); l.classList.add('said'); } rec._last = t; };
+  rec.onresult = e => { let t = '', f = ''; if (ANDROID) { const r = e.results[e.results.length - 1]; t = r[0].transcript + ' '; if (r.isFinal) f = t; } else for (const r of e.results) { t += r[0].transcript + ' '; if (r.isFinal) f += r[0].transcript + ' '; } seg = f; const l = $('vbHeard'); if (l) { l.textContent = '🎙 ' + (recText + t).trim(); l.classList.add('said'); } rec._last = t; };
   rec.onerror = e => { if (e.error === 'no-speech' || e.error === 'aborted') return; const l = $('vbHeard'); if (l) { l.textContent = e.error === 'not-allowed' ? 'The microphone is blocked: allow it for this site.' : 'Mic problem: ' + e.error; l.classList.add('said'); } if (e.error === 'not-allowed') recWant = false; };
   rec.onend = () => {
     recText += (seg || rec._last || '') + ' ';
@@ -586,6 +602,7 @@ function bestSub(runs0) {
   return best;
 }
 async function talkDo(text) {
+  text = String(text).replace(/\b((?:\S+\s+){0,5}\S+)(?:\s+\1\b){2,}/gi, '$1'); // a phrase repeated 3+ times (a phone glitch) counts once
   const p = parseSpeech(text);
   const l = $('vbHeard'); if (l) { l.textContent = `🎙 "${text}"`; l.classList.add('said'); }
   if (S.mode === 'hunt') return huntTalk(p, text);
@@ -608,7 +625,7 @@ function init() {
   if (!$('vbGo')) return;
   if (!window.speechSynthesis) { status('This browser has no built-in voices. Try Chrome, Edge or Safari.'); }
   const bind = (id, k, up, num) => { const e = $(id); if (!e) return; e.value = S[k]; e.addEventListener(e.tagName === 'SELECT' || e.type === 'range' ? 'input' : 'input', () => { S[k] = num ? +e.value : up ? e.value.toUpperCase().trim() : e.value; save(); lbl(); }); };
-  bind('vbCall', 'call', true); bind('vbSt', 'st'); bind('vbRef', 'ref', true); bind('vbLevel', 'level', false, true); bind('vbVol', 'vol', false, true); bind('vbHiss', 'hiss', false, true); bind('vbRate', 'rate', false, true);
+  bind('vbBandSel', 'band'); bind('vbCall', 'call', true); bind('vbSt', 'st'); bind('vbRef', 'ref', true); bind('vbLevel', 'level', false, true); bind('vbVol', 'vol', false, true); bind('vbHiss', 'hiss', false, true); bind('vbRate', 'rate', false, true);
   const lbl = () => { const l = $('vbLevelV'); if (l) l.textContent = `${S.level}: ${LEVELS[S.level].name}`; if (run.on) hiss(true); };
   $('vbLevel').addEventListener('change', () => { lbl(); }); lbl();
   $('vbGo').addEventListener('click', () => S.mode === 'hunt' ? (H.on ? huntStop() : huntStart()) : (run.on ? stop() : start()));

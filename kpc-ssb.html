@@ -217,6 +217,7 @@ body.vb-hunt .act-only{display:none!important}body:not(.vb-hunt) .hunt-only{disp
  <label>YOUR STATE<select id="vbSt"><option>KY</option><option>TN</option><option>OH</option><option>IN</option><option>WV</option><option>VA</option><option>IL</option><option>MO</option></select></label>
  <label>PROGRAM<select id="vbProg"><option value="pota">POTA (parks)</option><option value="kff">KFF / WWFF</option><option value="sota">SOTA (summits)</option><option value="off">Off (regular contacts)</option></select></label>
  <label id="vbRefL">YOUR PARK<input type="text" id="vbRef" autocomplete="off" spellcheck="false" placeholder="US-1271"></label>
+ <label class="act-only">BAND<select id="vbBandSel"><option value="40">40 m (nearby states)</option><option value="20">20 m (far away)</option><option value="17">17 m (far away)</option></select></label>
  <label>LEVEL <span id="vbLevelV"></span><input type="range" id="vbLevel" min="1" max="5" step="1"></label>
  <label class="vb-chk hunt-only"><input type="checkbox" id="vbP2P"> 🏕 I'm in a park too (park to park gets picked first)</label>
 </div>
@@ -281,7 +282,7 @@ body.vb-hunt .act-only{display:none!important}body:not(.vb-hunt) .hunt-only{disp
 </div></section>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
-<script src="kpc-ssb.js?v=20261014t"></script>
+<script src="kpc-ssb.js?v=20261015a"></script>
 <script src="kpc-search.js?v=20261014ku" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
