@@ -1,7 +1,10 @@
-import urllib.request,re,html
-def get(u): return urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'Mozilla/5.0 KPC'}),timeout=40).read().decode('utf8','replace')
-for n,i in [('Boone Forestlands',9003),('Elk Forest',9124),('Martins Fork',9118),('Fortner-Davis',9204),('Blackford Oaks',9719),('Robinson Forest',9120)]:
-  T=re.sub(r'\s+',' ',html.unescape(re.sub(r'<[^>]+>',' ',re.sub(r'(?s)<script.*?</script>|<style.*?</style>','',get('https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=%d'%i)))))
-  hits=[T[max(0,m.start()-200):m.end()+200] for m in re.finditer(r'[Oo]wned|[Ll]ease|[Ee]asement|[Pp]rivate|[Pp]urchase|[Aa]cquir|[Pp]artner|agreement',T)]
-  d=T.find('Directions & Description')
-  print('##',n,'| HITS:',' || '.join(hits[:4]) or '(none)','| DESC:',T[d:d+900],flush=True)
+import urllib.request,urllib.parse,json
+def get(u): 
+  try: return urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'Mozilla/5.0 KPC'}),timeout=40).read().decode('utf8','replace')
+  except Exception as e: return 'ERR '+str(e)
+P='https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query?'
+for x0,y0,x1,y1 in [(-86.995,37.835,-86.96,37.855)]:
+  q=dict(geometry=f'{x0},{y0},{x1},{y1}',geometryType='esriGeometryEnvelope',inSR=4326,spatialRel='esriSpatialRelIntersects',outFields='OBJECTID,Unit_Nm,Loc_Nm,Own_Name,Own_Type,Mang_Name,Pub_Access,Des_Tp,GIS_Acres,State_Nm',returnGeometry='false',f='json')
+  print('PAD box:',get(P+urllib.parse.urlencode(q))[:3000])
+for w in ["UPPER(Unit_Nm) LIKE '%KINGFISHER%'","UPPER(Loc_Nm) LIKE '%KINGFISHER%'","Unit_Nm LIKE '%Kingfisher%'"]:
+  print('PAD where',w,':',get(P+urllib.parse.urlencode(dict(where=w,outFields='Unit_Nm,Loc_Nm,State_Nm,Mang_Name',returnGeometry='false',f='json')))[:800])
