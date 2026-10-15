@@ -12,4 +12,4 @@ jobs:
       - if: always()
         run: |
           git config user.name bot; git config user.email bot@x
-          git add -f sh.txt || true; git commit -m out || true; git pull --rebase; git push
+          git add -f sh.txt *.pdf || true; git commit -m out || true; git pull --rebase; git push
