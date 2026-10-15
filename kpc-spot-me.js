@@ -1,6 +1,7 @@
 /* KPC Spot Me (kpc-spot-me.html): one form, pick where your spot goes.
    Nothing is sent until the visitor ticks a destination and presses SEND.
-   Nothing is posted by this page (Brandon, Oct 15: never auto-spot). For every site we copy a ready-made spot to the clipboard and open that site (they need their own login,
+   POTA only: posted from the browser to api.pota.app/spot/ (needs a real park number; spam guard 1 per 5 min, 4 per hour).
+   Everything else: we copy a ready-made spot to the clipboard and open that site (they need their own login,
    or don't accept spots from other websites). */
 (function () {
   'use strict';
@@ -9,10 +10,10 @@
   const store = { get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }, del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
   const BANDS = [[1800, 2000, '160m'], [3500, 4000, '80m'], [5330, 5410, '60m'], [7000, 7300, '40m'], [10100, 10150, '30m'], [14000, 14350, '20m'], [18068, 18168, '17m'], [21000, 21450, '15m'], [24890, 24990, '12m'], [28000, 29700, '10m'], [50000, 54000, '6m'], [144000, 148000, '2m'], [222000, 225000, '1.25m'], [420000, 450000, '70cm']];
 
-  /* p = programs it suits ('*' = any); how: 'copy' (copy in that site's format + open it; the visitor pastes) | 'info' (just open). Nothing is ever posted for them. */
+  /* p = programs it suits ('*' = any); how: 'post' (POTA only: we send it, real park number required, max 1 per 5 min / 4 per hour per browser) | 'copy' (copy in that site's format + open it; the visitor submits there) | 'info' (just open). */
   const G = [
     ['SPOTTING NETWORKS FOR YOUR PROGRAM', [
-      { id: 'pota', name: 'POTA (pota.app)', p: ['POTA'], how: 'copy', url: 'https://pota.app/#/', about: 'Copies your spot and opens POTA. Tap the spot (+) button on the POTA spots page and paste in the details. No login needed.', tag: ['COPY + OPEN'] },
+      { id: 'pota', name: 'POTA (pota.app)', p: ['POTA'], how: 'post', url: 'https://pota.app/#/', about: 'Posts your spot to the POTA spots page from here. Only with a real park number, and at most one spot every 5 minutes and 4 an hour, so nobody can flood POTA.', tag: ['SENDS FOR YOU', 'one'] },
       { id: 'sotawatch', name: 'SOTAwatch', p: ['SOTA'], how: 'copy', url: 'https://sotawatch.sota.org.uk/en/', about: 'Summit spots. Sign in with your free SOTA account, then Post spot and paste.', tag: ['COPY + OPEN'] },
       { id: 'wwff', name: 'WWFF Spotline', p: ['WWFF'], how: 'copy', url: 'https://spots.wwff.co/', about: 'KFF / WWFF spots. Needs a Spotline login (WWFF approves new accounts by hand; use your call as the user name).', tag: ['COPY + OPEN'] },
       { id: 'gma', name: 'GMA (Global Mountain Activity)', p: ['GMA', 'SOTA'], how: 'copy', url: 'https://www.cqgma.org/', about: 'GMA spots and alerts. Sign in, then spot.', tag: ['COPY + OPEN'] },
@@ -51,13 +52,18 @@
   function txt(v, kind) {
     const pg = v.prog === 'NONE' ? '' : v.prog + (v.ref ? ' ' + v.ref : '');
     if (kind === 'apspot') return `! ${v.prog === 'NONE' ? 'POTA' : v.prog} ${v.ref || '?'} ${v.k ? fm(v.k) : '?'} ${v.mode}${v.cm ? ' ' + v.cm : ''}`;
-    if (kind === 'pota') return `Activator: ${v.call}\nPark: ${v.ref || '?'}\nFrequency: ${v.k ? fk(v.k) : '?'} kHz\nMode: ${v.mode}\nComments: ${v.cm || ''}`;
     if (kind === 'cluster') return `${v.k ? fk(v.k) : '?'} ${v.call} ${[v.mode, pg, v.cm].filter(Boolean).join(' ')}`.slice(0, 80);
     return `${v.call} on ${v.k ? fm(v.k) + ' MHz' : '?'} ${v.mode}${pg ? ' · ' + pg : ''}${refName(v.ref) ? ' (' + refName(v.ref) + ')' : ''}${v.cm ? ' · ' + v.cm : ''}`;
   }
-  const kindOf = d => d.id === 'apspot' ? 'apspot' : d.id === 'pota' ? 'pota' : ['sotawatch', 'wwff', 'gma', 'pnp', 'dxsummit', 'holy', 'dxheat'].includes(d.id) ? 'cluster' : 'plain';
+  const kindOf = d => d.id === 'apspot' ? 'apspot' : ['sotawatch', 'wwff', 'gma', 'pnp', 'dxsummit', 'holy', 'dxheat'].includes(d.id) ? 'cluster' : 'plain';
   let REFS = {};
   const refName = r => REFS[r] || '';
+  /* POTA spam guard (this browser): one spot per 5 minutes, at most 4 an hour. */
+  const RL = { gap: 5 * 6e4, hour: 4 };
+  function rlCheck() { const t = Date.now(), L = (store.get('kpcSpotMeSent', []) || []).filter(x => t - x < 36e5);
+    if (L.length && t - L[L.length - 1] < RL.gap) return 'Please wait ' + Math.ceil((RL.gap - (t - L[L.length - 1])) / 6e4) + ' more minute(s): one POTA spot every 5 minutes.';
+    if (L.length >= RL.hour) return 'That\'s 4 POTA spots this hour. Try again in ' + Math.ceil((36e5 - (t - L[0])) / 6e4) + ' minute(s).'; return ''; }
+  function rlNote() { const L = (store.get('kpcSpotMeSent', []) || []).filter(x => Date.now() - x < 36e5); L.push(Date.now()); store.set('kpcSpotMeSent', L); }
   const fits = (d, prog) => d.p.includes('*') || d.p.includes(prog);
 
   function drawDests() {
@@ -100,11 +106,25 @@
     const c = chosen();
     if (c.some(d => d.id === 'pota') && !/^[A-Z]{1,4}-\d{4,5}$/.test(v.ref)) { errs.push('a POTA park number like US-1271'); $('smRef').classList.add('bad'); }
     if (errs.length) { alert('Please check ' + errs.join(', ') + '.'); return; }
+    if (c.some(d => d.how === 'post')) {
+      if (!REFS[v.ref] && !/^US-|^[A-Z]{1,4}-\d{4,5}$/.test(v.ref)) { alert('POTA needs a real park number like US-1271.'); return; }
+      const wait = rlCheck(); if (wait && !c.some(d => d.how !== 'post')) { alert(wait); return; }
+      if (!wait && !confirm(`This posts a real, public spot on POTA:\n\n${txt(v, 'plain')}\n\nOnly send it when you're on the air. Send it?`)) return;
+    }
     if (c.some(d => d.how === 'copy')) copy(txt(v, kindOf(c.find(d => d.how === 'copy'))));
     const out = [];
     $('smOut').hidden = false;
     for (const d of c) {
-      if (d.how === 'copy') {
+      if (d.how === 'post' && d.id === 'pota') {
+        const wait = rlCheck();
+        if (wait) { out.push(row('err', 'POTA: not sent', esc(wait), `<a href="https://pota.app/#/" target="_blank" rel="noopener">OPEN POTA</a>`)); continue; }
+        try {
+          const r = await fetch('https://api.pota.app/spot/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ activator: v.call, spotter: v.by, frequency: fk(v.k), reference: v.ref, mode: v.mode, source: 'KPC Spot Me', comments: v.cm }) });
+          const body = await r.text().catch(() => '');
+          if (r.ok) { rlNote(); out.push(row('ok', '✓ POTA: spotted', `${esc(v.call)} at ${esc(v.ref)} on ${fm(v.k)} ${esc(v.mode)}. It shows on pota.app within a minute. Next POTA spot allowed in 5 minutes.`, `<a href="https://pota.app/#/" target="_blank" rel="noopener">SEE IT ›</a>`)); }
+          else out.push(row('err', '✗ POTA said no', esc(String(body).replace(/^"|"$/g, '') || ('Error ' + r.status)) + '. Nothing was posted; fix it and try again.', `<a href="https://pota.app/#/" target="_blank" rel="noopener">OPEN POTA</a>`));
+        } catch (e) { out.push(row('err', '✗ POTA could not be reached', 'Check your signal and try again, or spot from the POTA site.', `<a href="https://pota.app/#/" target="_blank" rel="noopener">OPEN POTA</a>`)); }
+      } else if (d.how === 'copy') {
         const t = txt(v, kindOf(d));
         out.push(row('todo', d.name, 'Tap to copy your spot and open the site, then paste it in.', `<button type="button" data-open="${d.id}">COPY + OPEN ›</button>`, `<p class="sm-msg">${esc(t)}</p>`));
       } else {
