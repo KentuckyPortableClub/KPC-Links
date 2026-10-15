@@ -62,7 +62,7 @@ function speakNow(text, who) {
   return new Promise(res => {
     if (!window.speechSynthesis) { res(false); return; }
     if (speechSynthesis.paused) speechSynthesis.resume();
-    const u = new SpeechSynthesisUtterance(text); window.__kpcU = u; // keep a reference: Chrome can lose the events of a garbage-collected utterance
+    const u = new SpeechSynthesisUtterance(text); window.__kpcU = u; // keep a reference (Chrome can lose a garbage-collected utterance's events)
     if (!VO.length) loadVoices();
     if (who && VO.length) {
       // pick a man's or woman's voice when the device has both; otherwise the pitch does the work
@@ -71,10 +71,9 @@ function speakNow(text, who) {
       const list = pool.length ? pool : VO; u.voice = list[who.vi % list.length]; u.lang = u.voice.lang;
     } else u.lang = 'en-US';
     u.rate = who ? who.rate : 1; u.pitch = who ? who.pitch : 1; u.volume = Math.max(0.15, Math.min(1, (who ? who.vol : 1) * S.vol));
-    let done = false, started = false; const fin = stuck => { if (!done) { done = true; clearTimeout(tm); clearTimeout(t0); if (window.__kpcU === u) window.__kpcU = null; if (stuck === true && !ANDROID) { try { speechSynthesis.cancel(); } catch (e) {} lastCancel = Date.now(); } res(started); } };
-    const tm = setTimeout(() => fin(true), 3000 + text.length * 95 / u.rate); // some browsers never fire 'end': clear the stuck queue
-    const t0 = setTimeout(() => { if (ANDROID) started = true; else if (!started) fin(true); }, ANDROID ? 700 : 6000); u.onstart = () => { started = true; }; // Android: onstart isn't reliable, and cancel() drops the next line
-    u.onend = () => { started = true; fin(); }; u.onerror = e => { lastErr = (e && e.error) || 'error'; if (lastErr !== 'interrupted' && lastErr !== 'canceled' && Date.now() - lastCancel > 400) { const d = $('vbDiag'); if (d) d.textContent = 'Voice problem: ' + lastErr + '. Tap TEST VOICE to check.'; } fin(); };
+    let done = false, spoke = false; const fin = () => { if (!done) { done = true; clearTimeout(tm); res(spoke); } };
+    const tm = setTimeout(fin, 1500 + text.length * 95 / u.rate); // some browsers never fire 'end'
+    u.onstart = () => { spoke = true; }; u.onend = () => { spoke = true; fin(); }; u.onerror = e => { lastErr = (e && e.error) || 'error'; if (lastErr !== 'interrupted' && lastErr !== 'canceled' && Date.now() - lastCancel > 400) { const d = $('vbDiag'); if (d) d.textContent = 'Voice problem: ' + lastErr + '. Tap TEST VOICE to check.'; } fin(); };
     speechSynthesis.speak(u);
   });
 }
@@ -377,7 +376,7 @@ async function aSay(s, spoken, shown) {
     const ok = await speak(spoken, s.v);
     if (g !== H.gen) return;
     if (H.cut) { await waitFor(() => !recOn && Date.now() - recOffAt > 300, 10000, g); if (g !== H.gen) return; line('', '🔁 You keyed up over them, so they say it again:', 'note'); if (!showText()) line(s.call, txt, 'them'); continue; }
-    if (!ok && !showText()) line(s.call, txt + '  (the voice didn\'t play, so here it is in words)', 'them');
+    if (!ok && !showText()) line(s.call, txt + '  (in words, in case the voice didn\'t play)', 'them');
     return;
   }
 }

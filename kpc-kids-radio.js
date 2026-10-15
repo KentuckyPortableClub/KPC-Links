@@ -297,32 +297,28 @@ function loadVoices() {
 }
 if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
 function hush() { if (window.speechSynthesis) { speechSynthesis.cancel(); lastCancel = Date.now(); } }
-/* Browser voices can get stuck (Chrome especially): onend never fires and everything queued after it stays
-   silent. So: keep a reference to the utterance (Chrome can garbage-collect it and lose its events), clear the
-   queue if something is still in it, give up on a line that never starts, and cancel after a timeout. */
+/* Speech: kept as simple as the version that worked on Android. Only extras: keep a reference to the
+   utterance (Chrome can lose its events if it's garbage-collected) and report whether it really spoke. */
 let CUR_U = null;
 function speak(text, who, pitchMul, vol, onStart) {
   return new Promise(res => {
     if (!window.speechSynthesis) { setTimeout(() => res(false), 1500 + text.length * 60); return; }
-    /* Android: never cancel() just before speaking (it drops the next line) and don't trust onstart */
     const go = () => {
-      try { if (speechSynthesis.paused) speechSynthesis.resume(); } catch (e) {}
+      if (speechSynthesis.paused) speechSynthesis.resume();
       const u = new SpeechSynthesisUtterance(text); CUR_U = u;
       if (!VO.length) loadVoices();
       if (VO.length) { const pool = VO.filter(v => who.m && !who.kid ? MALE.test(v.name) : !MALE.test(v.name)); const list = pool.length ? pool : VO; u.voice = list[who.vi % list.length]; u.lang = u.voice.lang; } else u.lang = 'en-US';
       u.rate = who.rate; u.pitch = Math.max(0.05, Math.min(2, who.pitch * pitchMul)); u.volume = Math.max(0.1, Math.min(1, vol));
-      let done = false, started = false;
-      const begin = () => { if (!started) { started = true; if (onStart) onStart(); } };
-      const fin = stuck => { if (done) return; done = true; clearTimeout(tm); clearTimeout(t0); if (stuck && !ANDROID) { try { speechSynthesis.cancel(); } catch (e) {} lastCancel = Date.now(); } if (CUR_U === u) CUR_U = null; res(started); };
-      const tm = setTimeout(() => fin(true), 3000 + text.length * 95 / u.rate);
-      const t0 = setTimeout(() => { if (ANDROID) begin(); else if (!started) fin(true); }, ANDROID ? 700 : 6000);
-      u.onstart = begin;
-      u.onend = () => { started = true; fin(false); }; u.onerror = () => fin(false);
+      let done = false, spoke = false; const fin = () => { if (!done) { done = true; clearTimeout(tm); if (CUR_U === u) CUR_U = null; res(spoke); } };
+      const tm = setTimeout(fin, 2000 + text.length * 90 / u.rate);
+      u.onstart = () => { spoke = true; }; u.onend = () => { spoke = true; fin(); }; u.onerror = e => { lastErr = (e && e.error) || 'error'; fin(); };
       speechSynthesis.speak(u);
+      if (onStart) onStart();
     };
     setTimeout(go, Math.max(0, 150 - (Date.now() - lastCancel)));
   });
 }
+let lastErr = '';
 
 /* ---------------- building a band ---------------- */
 function place(list, minGap) {
@@ -579,7 +575,7 @@ function power() {
   $('krPower').classList.toggle('on', on); $('krRig').classList.toggle('on', on);
   if (on) {
     audio();
-    if (window.speechSynthesis) { try { loadVoices(); const u = new SpeechSynthesisUtterance('Radio on.'); u.lang = 'en-US'; u.volume = 0.5; CUR_U = u; speechSynthesis.speak(u); } catch (e) {} } // phones only let a page talk after a tap: say something inside the tap
+    if (window.speechSynthesis) { try { loadVoices(); const u = new SpeechSynthesisUtterance('Radio on'); u.lang = 'en-US'; u.volume = 0.6; CUR_U = u; speechSynthesis.speak(u); } catch (e) {} } // phones only let a page talk after a tap: say something short right inside the tap
     buildBand(true); setNoise(0.08);
     clearInterval(power.iv); power.iv = setInterval(tick, 100);
   } else {
@@ -632,6 +628,12 @@ function init() {
   w.addEventListener('click', () => { S.words = !S.words; save(); sw(); lastNowKey = ''; drawNow(); }); sw();
   const fb = $('krFast'); fb.addEventListener('click', () => { FAST = !FAST; fb.classList.toggle('on', FAST); fb.setAttribute('aria-pressed', FAST); });
   $('krHint').addEventListener('click', hint);
+  const tv = $('krTest'); if (tv) tv.addEventListener('click', () => {
+    loadVoices(); const all = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+    const d = $('krDiag');
+    if (!window.speechSynthesis) { d.textContent = 'This browser has no reading voices. Try Chrome.'; return; }
+    speak('Kilo Four Frog, you are five nine.', { m: true, kid: false, vi: 0, rate: 1, pitch: 1 }, 1, 1).then(ok => { d.textContent = `Voices found: ${all.length} (${VO.length} English${ANDROID ? ' on the phone' : ''}). ${VO[0] ? 'Using: ' + VO[0].name + '.' : ''} ${ok ? 'It talked.' : 'It did not report talking.'} ${lastErr ? 'Last problem: ' + lastErr + '.' : ''} No sound? Turn the MEDIA volume up, and on Android check Settings > Text-to-speech has an English voice.`; });
+  });
   $('krMap').addEventListener('click', e => { if (!on) return; const r = $('krMap').getBoundingClientRect(), B = BANDS[band]; scanning++; setDial(Math.round((B.lo + (e.clientX - r.left) / r.width * (B.hi - B.lo)) / 1000) * 1000); });
   $('krReset').addEventListener('click', () => { if (confirm('Clear your station finder checklist?')) { S.found = []; save(); drawFound(); } });
   knob(); draw(); drawFound(); drawNow();
