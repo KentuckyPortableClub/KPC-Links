@@ -8,11 +8,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - continue-on-error: true
-        timeout-minutes: 8
+        timeout-minutes: 10
         run: |
-          npm i playwright@1.47.2 >/dev/null && npx playwright install --with-deps chromium >/dev/null
-          (python3 -m http.server 8000 &) ; sleep 2; node nwr.js
+                    python3 fut.py 2>&1 | tee fut.txt
       - if: always()
         run: |
           git config user.name bot; git config user.email bot@x
-          git add -f b2-*.png || true; git commit -m out || true; git pull --rebase; git push
+          git add -f fut.json fut.txt || true; git commit -m out || true; git pull --rebase; git push
