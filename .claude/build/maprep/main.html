@@ -27,6 +27,7 @@
 #mrMap{height:420px;border-radius:10px;border:1px solid #d8cfbf;position:relative;z-index:0;isolation:isolate}
 .mr-agd{margin-top:12px;border:1px solid #d8cfbf;border-radius:10px;padding:0 12px;background:#fbf8ef}.mr-agd summary{cursor:pointer;padding:11px 0;font:900 11.5px Arial,sans-serif;letter-spacing:1.2px;color:#1d5a3a}.mr-agd h4{margin:10px 0 6px;font:900 10.5px Arial,sans-serif;letter-spacing:1.6px;color:#5b5648}
 .mr-ags{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:10px}.mr-ag{border:1.5px solid #cbbf9f;background:#fff;border-radius:999px;padding:6px 11px;font:700 12.5px Arial,sans-serif;color:#171717;cursor:pointer;text-align:left}.mr-ag small{color:#68635a;font-weight:400}.mr-ag em{font-style:normal;font-weight:900;color:#1d5a3a;margin-left:3px}.mr-ag.on{background:#171717;color:#f0c96b;border-color:#171717}.mr-ag.on small,.mr-ag.on em{color:#f0c96b}
+.mr-rl{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.mr-rl a{display:inline-flex;align-items:center;min-height:34px;padding:5px 10px;border-radius:7px;border:1.5px solid #1d5a3a;background:#fff;color:#1d5a3a!important;font:900 11px Arial,sans-serif;letter-spacing:.6px;text-decoration:none}.mr-rl a.gold{background:var(--gold);border-color:var(--gold);color:#111!important}
 .mr-pick small{font-weight:400;color:#68635a;letter-spacing:0}.mr-pick.osm{border-style:dashed;border-color:#ff4fd8}
 .mr-osm{padding:12px 18px;background:#fff0fb;border-bottom:2px dashed #ff4fd8;color:#4a1640;font-size:14px;line-height:1.5}
 .mr-top{position:relative}.mr-logo{float:right;width:150px;height:150px;border-radius:50%;background:#fff;object-fit:contain;padding:6px;box-shadow:0 0 0 3px rgba(240,201,107,.6),0 8px 24px rgba(0,0,0,.4);margin:0 0 10px 16px}
@@ -51,8 +52,8 @@
 <section class="mr-card mr-lock" id="mrLock"><h2>Enter the password</h2><p class="mr-help">This tool is for invited Mapping helpers.</p><form id="mrLockForm" class="mr-lockf"><input id="mrPw" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password"><button type="submit">UNLOCK</button></form><p class="mr-help" id="mrPwMsg"></p></section>
 <div id="mrApp" hidden>
 <section class="mr-card">
-<form class="mr-form" id="mrForm"><label>PARK NAME<input id="mrName" autocomplete="off" placeholder="Bullock Pen Lake"></label><label>TOWN (OPTIONAL)<input id="mrTown" autocomplete="off" placeholder="Crittenden"></label><label>STATE (REQUIRED)<select id="mrState" required></select></label><button type="submit">CHECK IT</button></form>
-<p class="mr-help">Pick the state first: the search then looks through every federal and state agency's land in that state (the list appears below), the live National Park Service and Fish &amp; Wildlife maps, and OpenStreetMap as a backup. The rules come from POTA's "Park Additions and Edits" page (docs.pota.app). The database answers what it can (owner, manager, public access, size, other parks around it); the yellow items are ones only you can confirm, like the official web page and the way in. This is a helper, not a decision: the state's Map Rep decides.</p>
+<form class="mr-form" id="mrForm"><label>PARK NAME<input id="mrName" autocomplete="off" placeholder="Example Creek State Park"></label><label>TOWN (OPTIONAL)<input id="mrTown" autocomplete="off" placeholder="Anytown"></label><label>STATE (REQUIRED)<select id="mrState" required></select></label><button type="submit">CHECK IT</button></form>
+<p class="mr-help">Pick the state first: the search then looks through every federal and state agency's land in that state (the list appears below), the live National Park Service and Fish &amp; Wildlife maps, and OpenStreetMap as a backup. The rules come from POTA's "Park Additions and Edits" page (docs.pota.app). The database answers what it can (owner, manager, public access, size, other parks around it); the yellow items are ones only you can confirm, like the official web page and the way in. It's a helper that gathers the facts and links; the decision is yours.</p>
 <div id="mrAg"></div>
 <div id="mrList"></div>
 </section>
@@ -63,4 +64,4 @@
 @@FOOTER@@
 <script src="kpc-bounds.js?v=20261015d" defer></script>
 <script src="kpc-map-tools.js?v=20261015c" defer></script>
-<script src="kpc-maprep.js?v=20261015d" defer></script>
+<script src="kpc-maprep.js?v=20261015e" defer></script>
