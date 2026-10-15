@@ -48,7 +48,7 @@
     if (busy) { const t0 = Date.now(); tick = setInterval(() => { const e = document.querySelector('.mr-sec-n'); if (!e) { clearInterval(tick); return; } e.textContent = 'Still searching… ' + Math.round((Date.now() - t0) / 1000) + ' s'; }, 1000); }
   };
 
-  $('mrState').innerHTML = '<option value="">Pick a state (required)</option>' + ST.map(s => `<option>${s}</option>`).join('');
+  $('mrState').innerHTML = '<option value="">Pick a state (or let it find out)</option>' + ST.map(s => `<option>${s}</option>`).join('');
   try { const v = localStorage.getItem('kpcMrState'); if (v) $('mrState').value = v; } catch (e) {}
   const NPSQ = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2/query';
   const FWSQ = 'https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer/0/query';
@@ -168,14 +168,22 @@
   /* ---------- search ---------- */
   const pickBtn = (g, i) => `<button type="button" class="mr-pick${g.osm ? ' osm' : ''}" data-i="${i}"><b>${esc(g.name)}</b><span>${g.acres ? Math.round(g.acres).toLocaleString() + ' acres · ' : ''}${esc((g.rows[0].Loc_Mang && !/^unknown$/i.test(g.rows[0].Loc_Mang) ? g.rows[0].Loc_Mang : '') || AG[g.rows[0].Mang_Name] || g.rows[0].Loc_Own || '')}${['LOC', 'PVT', 'NGO', 'DIST'].includes(g.rows[0].Own_Type) ? ' <em class="mr-no">' + ({ LOC: 'city/county land: not eligible', PVT: 'private: not eligible', NGO: 'non-profit: not eligible', DIST: 'district: not eligible' })[g.rows[0].Own_Type] + '</em>' : ''}<br><small>${esc(g.src)}</small></span></button>`;
   async function search() {
-    const name = $('mrName').value.trim(), town = $('mrTown').value.trim(), st = $('mrState').value; lastQ = name;
-    if (!st) { msg('<b>Pick the state first.</b> Each state has its own agencies, so the search needs to know where to look.'); $('mrState').focus(); return; }
+    const name = $('mrName').value.trim(), town = $('mrTown').value.trim(); let st = $('mrState').value; lastQ = name;
     if (name.length < 3) { msg('Type at least part of the park name.'); return; }
+    if (!st) {   /* no state picked: find out where that name (and town) is, and take the state from there */
+      msg('Finding out which state that is in…');
+      const j = await B.jget('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: name + (town ? ', ' + town : '') + ', USA', format: 'jsonv2', countrycodes: 'us', addressdetails: 1, limit: 3 })).catch(() => null);
+      const iso = ((j || []).map(x => (x.address || {})['ISO3166-2-lvl4'] || '').find(Boolean) || '').replace(/^US-/, '');
+      if (iso && ST.includes(iso)) { st = iso; $('mrState').value = st; agencies(st); }
+      else { msg('<b>Which state is it in?</b> Pick the state (or add the town) and search again. Each state has its own agencies, so the search needs to know where to look.'); $('mrState').focus(); return; }
+    }
     msg('Searching ' + esc(st) + ': the national public land database (every federal and state agency), the live National Park Service and Fish &amp; Wildlife maps' + (st === 'KY' ? ', Kentucky\'s state files' : '') + ' and OpenStreetMap…'); $('mrList').innerHTML = '';
     const w0 = words(name).slice(0, 3), w = w0.length ? w0 : [name.replace(/[^A-Za-z0-9' ]/g, ' ').trim()];
     let rows = [], box = null;
     const agOK = r => !agPick.size || [...agPick].some(k => { const [t, code] = k.split('|'); const a = AGL.find(x => agKey(x) === k); const loc = (r.Loc_Mang && !/^unknown$/i.test(r.Loc_Mang)) ? r.Loc_Mang : (AG[r.Mang_Name] || r.Mang_Name); return r.Mang_Type === t && r.Mang_Name === code && (!a || a.loc.toLowerCase() === String(loc).toLowerCase()); });
     const xP = agPick.size ? Promise.resolve([]) : extra(name, st);
+    /* at the same time: find WHERE that name is on the map (Wikidata / OpenStreetMap), then ask the official database what land is at that spot (catches other spellings) */
+    const wP = agPick.size ? Promise.resolve(null) : webResearch(name, st, town).catch(() => null);
     try {
       if (town) {
         const g = await B.jget('https://geocoding-api.open-meteo.com/v1/search?count=10&language=en&format=json&countryCode=US&name=' + encodeURIComponent(town)).catch(() => null);
@@ -191,13 +199,15 @@
     } catch (e) { rows = []; }
     const X = await xP;
     const G = new Map(); rows.forEach(r => { const k = (r.Unit_Nm || r.Loc_Nm) + '|' + r.State_Nm; const g = G.get(k) || { name: r.Unit_Nm || r.Loc_Nm, st: r.State_Nm, rows: [], acres: 0, src: 'USGS PAD-US (national public land database)' }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; G.set(k, g); });
+    const WR = await wP;
+    if (WR) WR.found.filter(agOK).forEach(r => { const k = (r.Unit_Nm || r.Loc_Nm) + '|' + r.State_Nm; if (G.has(k)) return; if (![r.Own_Type, r.Mang_Type].some(t => t === 'FED' || t === 'STAT')) return; const g = { name: r.Unit_Nm || r.Loc_Nm, st: r.State_Nm, rows: [], acres: 0, src: 'USGS PAD-US (found by where that name is on the map' + (r._near ? ', next to it' : '') + ')', byLoc: true }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; G.set(k, g); });
     const L = [...G.values()];
     // extra sources: grouped by name; only added when PAD-US has nothing with that name
     const rank = x => (x.osm ? 2 : 0) + (x.f.properties.Web ? 0 : 1) + (/live/.test(x.src) ? 0 : .5);
     X.sort((a, b) => rank(a) - rank(b));
     const XG = new Map(); X.forEach(x => { const n = x.f.properties.Unit_Nm; if (L.some(g => B.sameName(g.name, n))) return; const k = B.norm(n); const ex = XG.get(k); if (ex && ex.src !== x.src) return; const g = XG.get(k) || { name: n, st, rows: [], acres: 0, src: x.src, osm: x.osm, feats: [] }; g.feats.push(x.f); g.rows.push(x.f.properties); g.acres += +x.f.properties.GIS_Acres || 0; XG.set(k, g); });
-    const all = L.concat([...XG.values()].sort((a, b) => (a.osm ? 1 : 0) - (b.osm ? 1 : 0))).sort((a, b) => (B.sameName(b.name, name) - B.sameName(a.name, name)) || ((a.osm ? 1 : 0) - (b.osm ? 1 : 0)) || b.acres - a.acres);
-    if (!all.length) return notFound(name, st, town);
+    const all = L.concat([...XG.values()].sort((a, b) => (a.osm ? 1 : 0) - (b.osm ? 1 : 0))).sort((a, b) => (B.sameName(b.name, name) - B.sameName(a.name, name)) || ((a.byLoc ? 1 : 0) - (b.byLoc ? 1 : 0)) || ((a.osm ? 1 : 0) - (b.osm ? 1 : 0)) || b.acres - a.acres);
+    if (!all.length) return notFound(name, st, town, WR);
     if (all.length === 1) return open(all[0]);
     $('mrOut').innerHTML = '';
     $('mrList').innerHTML = `<p class="mr-help">${all.length} matches in ${esc(st)}. Pick one, or <a href="#" id="mrWeb">research the web for it ›</a></p>` + all.slice(0, 40).map(pickBtn).join('');
@@ -237,11 +247,11 @@
     }
     return { hits, found };
   }
-  async function notFound(name, st, town) {
+  async function notFound(name, st, town, pre) {
     const gq = s => 'https://www.google.com/search?q=' + encodeURIComponent(s);
     const list = AGL.filter(a => !/universit|college|guard|transportation|veterans|unknown|division of water/i.test(a.loc)).slice(0, 30);
     msg(`Not in the official databases by that name. Now researching the web (Wikipedia / Wikidata and the OpenStreetMap search) to find where it is, then checking the official land database at that spot…`);
-    const R = await webResearch(name, st, town);
+    const R = pre || await webResearch(name, st, town);
     const lands = new Map(); R.found.forEach(r => { const k = (r.Unit_Nm || r.Loc_Nm) + '|' + r.State_Nm; const g = lands.get(k) || { name: r.Unit_Nm || r.Loc_Nm, st: r.State_Nm, rows: [], acres: 0, src: 'USGS PAD-US (found by location)' }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; lands.set(k, g); });
     const LG = [...lands.values()];
     const hitHtml = R.hits.length ? R.hits.slice(0, 6).map(h => {
@@ -267,6 +277,20 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
   const stateOf = n => SN[String(n || '').toLowerCase()] || '';
 
   /* ---------- one park ---------- */
+  /* Official boundary-map links: Kentucky agency pages are read weekly in Actions (data/ky-official-maps.json, browsers can't read them),
+     NPS units have a standard maps page. Only links that are on the agency's own site. */
+  let KYM = null;
+  async function officialMaps(g, offWeb) {
+    const out = [];
+    if (g.st === 'KY') {
+      if (!KYM) KYM = await B.jget('data/ky-official-maps.json').then(j => (j && j.items) || {}).catch(() => ({}));
+      const ks = Object.keys(KYM);
+      const hit = ks.find(k => B.norm(k) === B.norm(g.name)) || ks.find(k => offWeb.some(u => u.toLowerCase() === String(KYM[k].page).toLowerCase())) || ks.find(k => B.sameName(k, g.name) && (B.kindOf(k) || '') === (B.kindOf(g.name) || ''));
+      if (hit) (KYM[hit].maps || []).forEach(m => out.push([m[0], m[1], KYM[hit].page]));
+    }
+    offWeb.forEach(u => { const m = String(u).match(/^https?:\/\/(?:www\.)?nps\.gov\/([a-z]{4})(?:\/|$)/i); if (m) out.push(['National Park Service maps page', `https://www.nps.gov/${m[1].toLowerCase()}/planyourvisit/maps.htm`, u]); });
+    return out;
+  }
   async function open(g) {
     msg('Loading the boundary and checking POTA…');
     let fc;
@@ -345,9 +369,14 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     const lakeOnly = /\blake\b|\breservoir\b|\bpond\b/i.test(g.name) && g.acres < 1500;
     add(lakeOnly ? 'CHECK' : 'CHECK', lakeOnly ? 'Not an agency lake surrounded by city, county or private land' : 'Has a public way in (road, trail or water)',
       lakeOnly ? 'POTA does NOT add agency-owned lakes that are surrounded by city, county or private land. Look at the map: is there state/federal land around the water (shoreline, ramp area) that the public can reach, or is the shore someone else\'s?' : 'Private land all around is fine as long as the public can get in: a public road, parking lot, trailhead, trail or boat ramp that reaches the land. POTA only turns down (and since 2022 deactivates) land that is cut off by private property, where you would have to cross someone\'s land to get there. The tool looks for public roads, parking, trailheads and ramps inside the boundary.', [['SATELLITE VIEW ↗', sat], ['STREET VIEW AT THE PIN ↗', `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${la.toFixed(5)},${lo.toFixed(5)}`]]);
-    add(offWeb.length ? 'YES' : 'CHECK', 'Has an official government web page with a boundary map',
-      offWeb.length ? `The official source lists the agency's page for it (below).${offWeb.some(u => /fw\.ky\.gov\/Public_Lands_Search/i.test(u)) ? ' On Kentucky Fish & Wildlife pages the boundary map PDF is linked on that page.' : ' Open it and find the boundary map there.'}` : `POTA needs the agency's own page (and its boundary map) for the park's POTA listing. If there's no web page, a civil-agency or GIS map can be used. Tourist or commercial sites don't count. Agency: <b>${esc(locM || '')}</b>.`,
-      offWeb.map(u => ['OFFICIAL PAGE: ' + (u.replace(/^https?:\/\/(www\.)?/, '').split('/')[0]).toUpperCase() + ' ↗', u, 'gold']).concat(osmWeb.map(u => ['WEBSITE (FROM OPENSTREETMAP) ↗', u])).concat(offWeb.length ? [] : agSites(locM + ' ' + uniq('Loc_Own').join(' '), g.st).map(d => [`FIND ITS PAGE ON ${d.toUpperCase()} (GOOGLE) ↗`, gq(`site:${d} "${g.name.replace(/\b(state nature preserve|snp|wma|state park)\b/ig, '').trim()}"`)])).concat([['SEARCH .GOV (GOOGLE) ↗', gq(`"${g.name}" ${g.st} site:.gov`)], ['SEARCH FOR THE MAP (GOOGLE) ↗', gq(`"${g.name}" ${locM} map`)]]));
+    const mapL = await officialMaps(g, offWeb), hostOf = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; } };
+    const shortNm = g.name.replace(/\b(state nature preserve|snp|wma|state park)\b/ig, '').trim();
+    add(offWeb.length ? 'YES' : 'CHECK', 'Has an official government web page',
+      offWeb.length ? `The agency's own page for it (from the official records): <a href="${esc(offWeb[0])}" target="_blank" rel="noopener">${esc(offWeb[0])}</a>. POTA lists the park from this page.` : `POTA needs the agency's own page for the park's POTA listing. If there's no web page, a civil-agency or GIS map can be used. Tourist or commercial sites don't count. Agency: <b>${esc(locM || '')}</b>.`,
+      offWeb.map(u => ['OFFICIAL PAGE: ' + hostOf(u).toUpperCase() + ' ↗', u, 'gold']).concat(osmWeb.map(u => ['WEBSITE (FROM OPENSTREETMAP) ↗', u])).concat(offWeb.length ? [] : agSites(locM + ' ' + uniq('Loc_Own').join(' '), g.st).map(d => [`FIND ITS PAGE ON ${d.toUpperCase()} (GOOGLE) ↗`, gq(`site:${d} "${shortNm}"`)])).concat(offWeb.length ? [] : [['SEARCH .GOV (GOOGLE) ↗', gq(`"${g.name}" ${g.st} site:.gov`)]]));
+    add(mapL.length ? 'YES' : 'CHECK', 'Has an official boundary map',
+      mapL.length ? `The agency's page links its map: <a href="${esc(mapL[0][1])}" target="_blank" rel="noopener">${esc(mapL[0][0])}</a> (on ${esc(hostOf(mapL[0][2] || mapL[0][1]))}). Open it and check that its boundary matches the gold outline on this page.` : `POTA wants the agency's own boundary map with the listing. No map link was found on the agency's page${offWeb.length ? '' : ' (no official page was found either)'}, so look on the official page or use the map searches. <b>No map online?</b> POTA accepts a civil-agency or GIS map where web presence is limited: the gold boundary on this page comes from the USGS official public land database (save it with SAVE BOUNDARY (KML) in the facts box).`,
+      mapL.map(m => ['OFFICIAL MAP: ' + m[0].toUpperCase() + ' ↗', m[1], 'gold']).concat([...new Set(offWeb.map(hostOf).filter(Boolean))].map(d => [`MAPS ON ${d.toUpperCase()} (GOOGLE) ↗`, gq(`site:${d} "${shortNm}" map`)])).concat(mapL.length ? [] : [['SEARCH FOR THE MAP (GOOGLE) ↗', gq(`"${g.name}" ${locM} boundary map`)]]));
     add('INFO', 'Size', `About ${Math.round(g.acres).toLocaleString()} acres. POTA has no size rule, but very small parks may wait if activating would get in the way of the park's main use.`);
     if (feats.length > 1) add('INFO', 'Split into pieces', `The land comes in ${feats.length} pieces. POTA: all tracts of one unit share ONE reference number.`);
     if (/wildlife refuge|\bNWR\b/i.test(g.name) || uniq('Own_Name').includes('FWS') && /refuge/i.test(uniq('Loc_Ds').join(' '))) add('INFO', 'National Wildlife Refuge', 'POTA calls refuges its most sensitive US park type: what is fine in other parks may not be fine here. Check with the refuge office before activating.');
@@ -355,11 +384,11 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     const verdict = already.length ? ['no', 'ALREADY A POTA PARK'] : nNo ? ['no', 'LIKELY NOT ELIGIBLE'] : corpsOwn ? ['no', 'UNLIKELY: ARMY CORPS OF ENGINEERS LAND (ONLY A FEW ARE EXCEPTIONS)'] : nCk ? ['maybe', 'LOOKS POSSIBLE: CONFIRM THE YELLOW ITEMS'] : ['yes', 'LOOKS ELIGIBLE'];
 
     const nm = g.name, stn = g.st, PT = potaType(nm, base, locM);
-    const note = [`Park: ${nm} (${stn})`, '', `Owner: ${base.map(r => r.Loc_Own || AG[r.Own_Name] || r.Own_Name).filter((x, i, a) => a.indexOf(x) === i).join('; ')}`, `Managed by: ${locM}`, `Designation: ${base.map(r => r.Loc_Ds || DES[r.Des_Tp] || r.Des_Tp).filter((x, i, a) => a.indexOf(x) === i).join('; ')}`, `Public access: ${acc.map(a => ACC[a] || a).join('; ')}`, `Size: about ${Math.round(g.acres).toLocaleString()} acres`, `Suggested POTA park type: ${PT[0] || '(pick the closest POTA label)'}`, `Suggested POTA pin (inside the boundary): ${la.toFixed(5)}, ${lo.toFixed(5)}`, `Grid square: ${grid(la, lo)}`, 'County: @@COUNTY@@', 'Official web page: ' + (offWeb.join(' ; ') || '(paste the agency link here)'), 'Official boundary map: (paste the agency map link here)', `Boundary source: ${g.src || 'USGS PAD-US'} ("${nm}", ${stn})`, '', 'Rule check:'].concat(res.filter(r => r.v !== 'INFO').map(r => `- ${r.title}: ${r.v}`), ['', 'Links found:', '@@LINKS@@']).join('\n');
+    const note = [`Park: ${nm} (${stn})`, '', `Owner: ${base.map(r => r.Loc_Own || AG[r.Own_Name] || r.Own_Name).filter((x, i, a) => a.indexOf(x) === i).join('; ')}`, `Managed by: ${locM}`, `Designation: ${base.map(r => r.Loc_Ds || DES[r.Des_Tp] || r.Des_Tp).filter((x, i, a) => a.indexOf(x) === i).join('; ')}`, `Public access: ${acc.map(a => ACC[a] || a).join('; ')}`, `Size: about ${Math.round(g.acres).toLocaleString()} acres`, `Suggested POTA park type: ${PT[0] || '(pick the closest POTA label)'}`, `Suggested POTA pin (inside the boundary): ${la.toFixed(5)}, ${lo.toFixed(5)}`, `Grid square: ${grid(la, lo)}`, 'County: @@COUNTY@@', 'Official web page: ' + (offWeb.join(' ; ') || '(paste the agency link here)'), 'Official boundary map: ' + (mapL.length ? mapL.map(m => m[0] + ' ' + m[1]).join(' ; ') : '(paste the agency map link here)'), `Boundary source: ${g.src || 'USGS PAD-US'} ("${nm}", ${stn})`, '', 'Rule check:'].concat(res.filter(r => r.v !== 'INFO').map(r => `- ${r.title}: ${r.v}`), ['', 'Links found:', '@@LINKS@@']).join('\n');
     $('mrOut').innerHTML = `<section class="mr-res">
 <div class="mr-head"><div class="mr-k">${esc(stn)} · ${esc(g.src || "USGS PAD-US")}</div><h2>${esc(nm)}</h2><p>${esc([locM, Math.round(g.acres).toLocaleString() + ' acres', base.map(r => r.Loc_Ds || DES[r.Des_Tp] || '').filter(Boolean).filter((x, i, a) => a.indexOf(x) === i).join(' / ')].filter(Boolean).join(' · '))}</p></div>
 ${g.osm ? `<div class="mr-osm"><b>From OpenStreetMap, not an official source.</b> ${esc(B.OSM_NOTE)} Owner and manager come from volunteer tags, so treat every answer below as CHECK until the agency's own page confirms it.</div>` : ""}<div class="mr-v ${verdict[0]}"><b>${verdict[1]}</b><span>${res.filter(r => r.v === 'YES').length} yes · ${nNo} no · ${nCk} to check yourself</span></div>
-<div class="mr-rules">${res.map(r => `<div class="mr-r ${r.v.toLowerCase()}"><i>${r.v === 'INFO' ? 'INFO' : r.v}</i><div><b>${esc(r.title)}</b><p>${r.why}</p>${/^Owned/.test(r.title) ? recHtml() : /^(Run|Open|Not a type)/.test(r.title) ? '<p class="mr-help">Record: see SEE THE RECORD THIS CAME FROM in the first rule.</p>' : ''}${r.links.length ? `<div class="mr-rl">${r.links.map(l => `<a class="${l[2] || ''}" href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])}${/↗$/.test(l[0]) ? '' : ' ↗'}</a>`).join('')}</div>` : ''}${/official government web page/.test(r.title) ? '<div class="mr-rl" id="mrWebRule"></div>' : ''}${/surrounded|public way in/.test(r.title) ? '<div id="mrAccess" class="mr-help">Looking for a public road, parking, trailhead or ramp into it…</div><div id="mrAround" class="mr-help">Checking the official land around it…</div>' : ''}${/sub-park/.test(r.title) ? `<details class="mr-rec"><summary>LAND RECORDS AT THE PIN</summary><table>${(around || []).slice(0, 12).map(x => `<tr><th>${esc(x.Unit_Nm || x.Loc_Nm || '?')}</th><td>${esc([x.Loc_Mang, TYPE[x.Own_Type] || x.Own_Type, x.GIS_Acres ? Math.round(+x.GIS_Acres).toLocaleString() + ' acres' : ''].filter(Boolean).join(' · '))}</td></tr>`).join('') || '<tr><td>none in the database</td></tr>'}</table></details>` : ''}</div></div>`).join('')}</div>
+<div class="mr-rules">${res.map(r => `<div class="mr-r ${r.v.toLowerCase()}"><i>${r.v === 'INFO' ? 'INFO' : r.v}</i><div><b>${esc(r.title)}</b><p>${r.why}</p>${/^Owned/.test(r.title) ? recHtml() : /^(Run|Open|Not a type)/.test(r.title) ? '<p class="mr-help">Record: see SEE THE RECORD THIS CAME FROM in the first rule.</p>' : ''}${r.links.length ? `<div class="mr-rl">${r.links.map(l => `<a class="${l[2] || ''}" href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])}${/↗$/.test(l[0]) ? '' : ' ↗'}</a>`).join('')}</div>` : ''}${/official government web page/.test(r.title) ? '<div class="mr-rl" id="mrWebRule"></div>' : ''}${/official boundary map/.test(r.title) ? '<div class="mr-rl" id="mrMapRule"></div>' : ''}${/surrounded|public way in/.test(r.title) ? '<div id="mrAccess" class="mr-help">Looking for a public road, parking, trailhead or ramp into it…</div><div id="mrAround" class="mr-help">Checking the official land around it…</div>' : ''}${/sub-park/.test(r.title) ? `<details class="mr-rec"><summary>LAND RECORDS AT THE PIN</summary><table>${(around || []).slice(0, 12).map(x => `<tr><th>${esc(x.Unit_Nm || x.Loc_Nm || '?')}</th><td>${esc([x.Loc_Mang, TYPE[x.Own_Type] || x.Own_Type, x.GIS_Acres ? Math.round(+x.GIS_Acres).toLocaleString() + ' acres' : ''].filter(Boolean).join(' · '))}</td></tr>`).join('') || '<tr><td>none in the database</td></tr>'}</table></details>` : ''}</div></div>`).join('')}</div>
 <div class="mr-sec"><h3>OFFICIAL WEBSITE &amp; MAP</h3><div class="mr-btns">${offWeb.map(u => `<a class="gold" href="${esc(u)}" target="_blank" rel="noopener">OFFICIAL PAGE ↗</a>`).join("")}<a href="${gq(`"${nm}" ${stn} site:.gov`)}" target="_blank" rel="noopener">SEARCH .GOV (GOOGLE) ↗</a><a href="${gq(`"${nm}" ${locM} boundary map`)}" target="_blank" rel="noopener">SEARCH FOR THE MAP (GOOGLE) ↗</a></div><p class="mr-help">These search only for the park by name with its agency. Use the agency's own page, not tourist sites.</p></div>
 <div class="mr-sec"><h3>BOUNDARY MAP (${esc(g.src || 'USGS PAD-US')})</h3><div id="mrMap"></div><p class="mr-help">Gold = this park's land in the source above. Blue dots = POTA parks nearby (tap for the number). Blue P squares = parking (🥾 trailhead, ⛵ boat ramp); green dots = roads or trails into it. Tap the map to drop a pin; ⛶ FULL for full screen; layers for satellite, topo and terrain.</p><div class="mr-btns" id="mrFiles"></div></div>
 <div class="mr-sec mr-facts"><h3>📍 FACTS FOR ADDING THE PARK</h3>
@@ -492,7 +521,8 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
       const sites = [...new Set(near.map(h => h.web).filter(Boolean))];
       const dom = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; } };
       const gov = sites.filter(u => /\.(gov|us)$|\.gov\//.test(dom(u)));
-      W.innerHTML = sites.length ? sites.map(u => `<a class="${gov.includes(u) ? 'gold' : ''}" href="${esc(u)}" target="_blank" rel="noopener">${gov.includes(u) ? 'OFFICIAL PAGE' : 'WEBSITE LISTED'}: ${esc(dom(u))} ↗</a>`).join('') + [...new Set(sites.map(dom).filter(Boolean))].map(d => `<a href="https://www.google.com/search?q=${encodeURIComponent('site:' + d + ' "' + g.name + '" map')}" target="_blank" rel="noopener">MAPS ON ${esc(d.toUpperCase())} ↗</a>`).join('') : '<span class="mr-help">No website found on the web; use the search buttons.</span>';
+      W.innerHTML = sites.length ? sites.map(u => `<a class="${gov.includes(u) ? 'gold' : ''}" href="${esc(u)}" target="_blank" rel="noopener">${gov.includes(u) ? 'OFFICIAL PAGE' : 'WEBSITE LISTED'}: ${esc(dom(u))} ↗</a>`).join('') : '<span class="mr-help">No website found on the web; use the search buttons.</span>';
+      const MR = $('mrMapRule'); if (MR && !MR.closest('.mr-r').classList.contains('yes') && sites.length) MR.innerHTML = [...new Set(sites.map(dom).filter(Boolean))].map(d => `<a href="https://www.google.com/search?q=${encodeURIComponent('site:' + d + ' "' + g.name + '" map')}" target="_blank" rel="noopener">MAPS ON ${esc(d.toUpperCase())} (GOOGLE) ↗</a>`).join('');
     }
   }
 
@@ -501,10 +531,16 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
   (function locUI() {
     const f = $('mrForm'); if (!f || $('mrLocBox')) return;
     const d = document.createElement('div'); d.id = 'mrLocBox'; d.className = 'mr-loc';
-    d.innerHTML = `<div class="mr-locnote"><b>⭐ BEST WAY TO SEARCH: BY LOCATION</b><p>Type the park's <b>address</b> (or a place name with the town), <b>paste its GPS numbers</b>, or stand there and tap <b>USE MY GPS</b>.</p><p><b>Why this works best:</b> the national land database simply answers <i>"what public land is at this spot?"</i>, so the name doesn't have to match. Different spellings ("Carpenter" vs "Carpenters Lake"), capital letters, extra words or a brand-new name don't matter, and it even finds state land you didn't know the name of. Name searches can miss all of those.</p><p class="mr-help">Tip: use the main entrance or parking lot. A dot on the water or just outside the line still works: it also checks about ¼ mile (400 m) around the spot. To get GPS numbers from Google Maps, press and hold on the spot.</p></div>
+    d.innerHTML = `<div class="mr-locnote"><b>⭐ HOW TO SEARCH (BEST WAY FIRST)</b>
+<ol class="mr-howto"><li><b>GPS numbers, or USE MY GPS at the park.</b> Best: an exact spot. The national land database just answers <i>"what public land is right here?"</i>, so the name doesn't matter at all.</li>
+<li><b>The address</b> of the entrance or parking lot. Almost as good: the address is turned into a GPS spot, then the same check runs.</li>
+<li><b>The name, with the town.</b> Good: the tool searches the official records by name AND looks up where that name is on the map and checks the land at that spot, so a different spelling ("Carpenter" vs "Carpenters Lake") still turns up.</li>
+<li><b>The name only.</b> Works when it's spelled like the official record. Leave the state blank and it tries to find out the state too.</li></ol>
+<p><b>Why location beats the name:</b> official records often use a different name, spelling or capital letters than signs and websites, and brand-new land may not have its name in the records yet. A spot on the map has none of those problems, and it even finds state land you didn't know the name of.</p>
+<p class="mr-help">Tips: use the main entrance or parking lot. A dot on the water or just outside the line still works, because it also checks about ¼ mile (400 m) around the spot. To get GPS numbers from Google Maps, press and hold on the spot. Whatever you search with, the tool fills in the rest (state, county, grid, owner, official page, map, entrance pin) from the official records.</p></div>
 <form class="mr-form mr-locf" id="mrLocForm"><label>ADDRESS, PLACE OR GPS<input id="mrLoc" autocomplete="off" placeholder="123 Main St, Anytown, KY  ·  or  37.84520, -86.97550"></label><button type="submit">FIND THE LAND HERE</button><button type="button" id="mrLocGps">📍 USE MY GPS</button></form><p class="mr-or">— OR SEARCH BY NAME —</p>`;
     f.parentNode.insertBefore(d, f);
-    const st = document.createElement('style'); st.textContent = '.mr-loc{margin:0 0 6px}.mr-locnote{background:#fff8e6;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:10px;padding:12px 14px;margin:0 0 12px}.mr-locnote>b:first-child{display:block;letter-spacing:1px;color:#7a5b12;margin-bottom:4px}.mr-locnote p{margin:6px 0 0;line-height:1.45}.mr-or{text-align:center;font-weight:900;letter-spacing:2px;font-size:12px;color:#7a7365;margin:14px 0 10px}.mr-locf input{min-width:0}.mr-here{display:block;font:900 12px/1.2 system-ui,sans-serif;letter-spacing:1px;margin:12px 0 6px;color:#1e6b3a}';
+    const st = document.createElement('style'); st.textContent = '.mr-loc{margin:0 0 6px}.mr-locnote{background:#fff8e6;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:10px;padding:12px 14px;margin:0 0 12px}.mr-locnote>b:first-child{display:block;letter-spacing:1px;color:#7a5b12;margin-bottom:4px}.mr-locnote p{margin:6px 0 0;line-height:1.45}.mr-howto{margin:6px 0 0;padding-left:20px;line-height:1.45}.mr-howto li{margin:4px 0}.mr-or{text-align:center;font-weight:900;letter-spacing:2px;font-size:12px;color:#7a7365;margin:14px 0 10px}.mr-locf input{min-width:0}.mr-here{display:block;font:900 12px/1.2 system-ui,sans-serif;letter-spacing:1px;margin:12px 0 6px;color:#1e6b3a}';
     document.head.appendChild(st);
     $('mrLocForm').addEventListener('submit', e => { e.preventDefault(); locSearch($('mrLoc').value.trim()); });
     $('mrLocGps').onclick = () => {
