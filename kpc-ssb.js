@@ -82,7 +82,7 @@ function hiss(on) {
       nG = AC.createGain(); nG.gain.value = 0; s.connect(f); f.connect(nG); nG.connect(AC.destination); s.start();
     }
     if (AC.state === 'suspended') AC.resume();
-    nG.gain.setTargetAtTime(on ? S.hiss * 0.25 : 0, AC.currentTime, 0.2);
+    nG.gain.setTargetAtTime(on ? S.hiss * 0.25 : 0, AC.currentTime, on ? 0.15 : 0.02);
   } catch (e) {}
 }
 
