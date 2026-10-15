@@ -175,7 +175,7 @@
    "wid": 121,
    "acres": 169,
    "county": "Madison",
-   "owner": "Madison County Parks (county park); Kentucky Fish & Wildlife manages the fishery",
+   "owner": "Run by Madison County Fiscal Court (took over operation of the lake; owner not stated). Kentucky Fish & Wildlife manages the fishery.",
    "notes": "Idle speed only. Ramp off Curtis Rd (KY 876 E of Richmond). The county runs the park around the lake.",
    "web": [
     "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=121",
@@ -201,7 +201,7 @@
     37.70617,
     -84.35587
    ],
-   "owner_src": "OpenStreetMap park tag (operator Madison County Parks) + county website"
+   "owner_src": "https://www.richmondregister.com/news/wilgreen-lake-marina-closes-boaters-may-still-use-ramp/article_6f2cbc96-13d4-11e6-a982-e3fa805e1849.html (Richmond Register: \"the Madison Fiscal Court has assumed operation of the fishing lake\"); OSM tag operator=Madison County Parks"
   },
   {
    "key": "woodcreek",
