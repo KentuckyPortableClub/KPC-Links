@@ -33,7 +33,7 @@ TOOL = 'https://kentuckyportableclub.github.io/KPC-Links/kpc-maprep.html?state=K
 KYG = 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/'
 LAYERS = [
     ('Fish & Wildlife (hunting areas / WMAs)', 'Ky_Public_Hunting_Areas_WGS84WM/MapServer/1', 'AREANAME', 'DETAIL'),
-    ('Kentucky State Parks', 'Ky_State_Parks_Features_WGS84WM/MapServer/8', 'PARK_NAME', 'HYPERLINK'),
+    ('Kentucky State Parks', 'Ky_State_Parks_Features_WGS84WM/MapServer/8', 'PUBLIC_NAM|PARK_NAME', 'HYPERLINK'),
     ('State Nature Preserves (OKNP)', 'Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer/0', 'MANAME', 'Webpage'),
     ('State Natural Areas (OKNP)', 'Ky_KNP_Natural_Areas_WGS84WM/MapServer/0', 'MANAME', 'Webpage'),
 ]
@@ -85,14 +85,18 @@ def kind(s):
 
 def ky_layer(path, field, web):
     out, off = {}, 0
+    fields = field.split('|')
     while True:
-        q = urllib.parse.urlencode({'where': '1=1', 'outFields': '%s,%s' % (field, web), 'returnGeometry': 'false', 'f': 'json',
+        q = urllib.parse.urlencode({'where': '1=1', 'outFields': ','.join(fields + [web]), 'returnGeometry': 'false', 'f': 'json',
                                     'resultOffset': off, 'resultRecordCount': 1000, 'orderByFields': 'OBJECTID'})
         j = json.loads(get(KYG + path + '/query?' + q))
         fs = j.get('features', [])
         for f in fs:
             a = f.get('attributes', {})
-            n = (a.get(field) or '').strip()
+            n = next((str(a.get(x)).strip() for x in fields if a.get(x) and len(str(a.get(x)).strip()) > 3), '')
+            if n and 'PUBLIC_NAM' in fields and not re.search(r'park|site', n, re.I):
+                h = a.get(web) or ''
+                n += ' State Historic Site' if '/historic/' in h else ' State Resort Park' if '/resort/' in h else ' State Park'
             if n:
                 out[n] = (a.get(web) or '').strip()
         if not j.get('exceededTransferLimit') or not fs:
@@ -112,7 +116,7 @@ def padus():
         for f in fs:
             a = f.get('attributes', {})
             n = (a.get('Unit_Nm') or '').strip()
-            if not n or a.get('Category') != 'Fee' or a.get('Mang_Type') not in ('FED', 'STAT') or a.get('Own_Type') not in ('FED', 'STAT'):
+            if not n or re.search(r'outstanding resource water', n, re.I) or re.search(r'division of water', a.get('Loc_Mang') or '', re.I) or a.get('Category') != 'Fee' or a.get('Mang_Type') not in ('FED', 'STAT') or a.get('Own_Type') not in ('FED', 'STAT'):
                 continue
             m, ac = out.get(n, (a.get('Loc_Mang') or '', 0))
             out[n] = (m, ac + (a.get('GIS_Acres') or 0))
