@@ -3,6 +3,7 @@
 
 Anyone who posts in the channel is shared (bots are skipped). Where it goes on the website comes from words ANYWHERE
 in the post: "campout" / "camp out" -> Campout page (and News), "announcement(s)" -> News page. No keyword -> News page.
+WHERE it goes = a tag at the start ("Email:", "Facebook:", "Website:", "Facebook + Email:", "All:"); none = website + Facebook (see where_to).
 Website posts carry a date stamp; Facebook posts do not. Links and pictures go everywhere.
 Poster names are NOT shown anywhere (Brandon Oct 15). A ✅ reaction is added in Discord when a post went out.
 
@@ -90,9 +91,28 @@ def clean(m):
     t = re.sub(r'<a?:(\w+):\d+>', r':\1:', t)               # custom emoji -> :name:
     t = re.sub(r'<(https?://[^>\s]+)>', r'\1', t)            # <link> (no preview) -> link
     t = re.sub(r'\*\*|__|~~|\|\||`{1,3}', '', t)            # Discord markdown marks
-    t = re.sub(r'^\s*(announcements?|camp ?out)\s*[:\-–]\s*', '', t, flags=re.I)  # a leading "Announcement:" tag
+    t = TAG.sub('', t, count=1)                              # leading "Email + Facebook:" / "Announcement:" tag
     t = re.sub(r'[ \t]+\n', '\n', t)
     return re.sub(r'\n{3,}', '\n\n', t).strip()
+
+# Where a post goes = the words at the very START of the post, before a colon (Brandon Oct 15):
+#   "Email:"  "Facebook:"  "Website:"  "Facebook + Email:"  "All:"  ("only" / "and" / + & , / are fine).
+#   The tag lists exactly where it goes; "All:" = website + Facebook + email. No tag = website + Facebook.
+#   Email (Groups.io + the email-updates list) ONLY when the tag says email or all.
+#   "Campout" / "Announcement" can sit in the tag too ("Campout email:"); they still work anywhere in the post.
+TAGW = r'(?:e-?mail|facebook|fb|website|web ?site|web|site|all|everything|everywhere|camp ?-?out|announcements?|only|and|\+|&|,|/)'
+TAG = re.compile(r'^\s*(' + TAGW + r'(?:\s*' + TAGW + r')*)\s*[:\-–]\s*', re.I)
+
+def where_to(raw):
+    m = TAG.match(raw or '')
+    w = (m.group(1).lower() if m else '')
+    if re.search(r'\b(all|everything|everywhere)\b', w): return {'web', 'fb', 'email'}
+    d = set()
+    if re.search(r'e-?mail', w): d.add('email')
+    if re.search(r'facebook|\bfb\b', w): d.add('fb')
+    if re.search(r'web|site', w): d.add('web')
+    if not d: d = {'web', 'fb'}
+    return d
 
 def pages_for(text):
     low = text.lower()
@@ -182,6 +202,7 @@ for m in msgs:
     if not text and not imgs:
         state['last_id'] = mid; continue
     pages = pages_for(m.get('content') or '')
+    dest = where_to(m.get('content') or '')
     when = m['timestamp']
     author = who(m.get('author', {}), m.get('member'))
 
@@ -189,40 +210,46 @@ for m in msgs:
     for n, a in enumerate(imgs[:10], 1):
         c, data = http(a['url'])
         if c != 200: continue
-        dest = f'{PHOTOS}/{mid}-{n}.jpg'
+        fp = f'{PHOTOS}/{mid}-{n}.jpg'
         try:
-            if not DRY: shrink(data, dest)
-            files.append(dest); urls.append(dest)
+            if not DRY: shrink(data, fp)
+            files.append(fp); urls.append(fp)
         except Exception as e:
             notice(f'Picture skipped ({e}).')
 
     page_url = SITE + ('campout.html' if 'campout' in pages else 'news.html')
     plain = text + ('\n\n' + '\n'.join(others) if others else '')
     if DRY:
-        notice(f'[dry run] {author} -> pages {pages}, {len(files)} picture(s)\n{plain[:600]}'); continue
-
-    feed['items'] = [it for it in feed.get('items', []) if it.get('id') != mid]
-    feed['items'].insert(0, {'id': mid, 'date': when, 'pages': pages, 'text': plain, 'photos': urls})
-    feed['items'] = feed['items'][:150]
+        notice(f'[dry run] {author} -> {sorted(dest)} pages {pages}, {len(files)} picture(s)\n{plain[:600]}'); continue
 
     res = {}
-    try: res['facebook'] = fb_post(plain, files)
-    except Exception as e: res['facebook'] = 'FAILED: ' + str(e)[:200]
+    if 'web' in dest:
+      feed['items'] = [it for it in feed.get('items', []) if it.get('id') != mid]
+      feed['items'].insert(0, {'id': mid, 'date': when, 'pages': pages, 'text': plain, 'photos': urls})
+      feed['items'] = feed['items'][:150]
+      res['website'] = ', '.join(pages) + ' page'
+    if 'fb' in dest:
+      try: res['facebook'] = fb_post(plain, files)
+      except Exception as e: res['facebook'] = 'FAILED: ' + str(e)[:200]
     subject = 'KPC: ' + (re.sub(r'\s+', ' ', text.split('\n')[0])[:70] or 'Club update')
-    body = plain + f'\n\n— Kentucky Portable Club\n{page_url}'
-    if GIO_TO:
+    body = plain + '\n\n— Kentucky Portable Club' + (f'\n{page_url}' if 'web' in dest else '\n' + SITE)
+    if 'email' in dest and GIO_TO:
         try: res['groups.io'] = mail(GIO_TO, [], subject, body, files)
         except Exception as e: res['groups.io'] = 'FAILED: ' + str(e)[:200]
-    if subs is None: subs = subscribers()
-    if subs:
+    if 'email' in dest and subs is None: subs = subscribers()
+    if 'email' in dest and subs:
         try:
             for i in range(0, len(subs), 80):   # Gmail limit per message
                 mail('' if MAIL_URL else SMTP_USER, subs[i:i + 80], subject, body + '\n\nUnsubscribe: use the UNSUBSCRIBE button on ' + SITE + 'news.html', files)
             res['email list'] = f'sent to {len(subs)}'
         except Exception as e: res['email list'] = 'FAILED: ' + str(e)[:200]
+    if 'web' not in dest:                       # pictures only needed for Facebook / email: keep them off the site
+        for f in files:
+            try: os.remove(f)
+            except OSError: pass
     ok = not any(str(v).startswith('FAILED') for v in res.values())
     dc(f'/channels/{CHAN}/messages/{mid}/reactions/{urllib.parse.quote("✅" if ok else "⚠️")}/@me', 'PUT')
-    notice(f'Shared {author}\'s post ({", ".join(pages)} page): ' + '; '.join(f'{k} {v}' for k, v in res.items()))
+    notice(f'Shared {author}\'s post: ' + '; '.join(f'{k} {v}' for k, v in res.items()))
     state['last_id'] = mid; done += 1
 
 if not DRY:
