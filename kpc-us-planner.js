@@ -40,6 +40,23 @@ async function addLive(la,lo,mi){if(!progs.includes('POTA'))return 0;let added=0
  return added}
 
 /* ---------- map ---------- */
+function nationalTrails(map){
+ const g=L.layerGroup(),done={};let IDX=null,busy=false;
+ map.createPane('kpcTrails');map.getPane('kpcTrails').style.zIndex=390;
+ const rend=L.svg({pane:'kpcTrails',padding:.5});
+ const pop=t=>`<div class="us-pop"><b>${esc(t.name)}</b><div class="meta">POTA <b>${esc(t.ref)}</b> · ${t.kind==='NST'?'National Scenic Trail':'National Historic Trail'}</div>`+
+  `<div class="meta" style="margin-top:6px">Official route from the ${esc(t.by)}. A trail is one POTA park along its whole length: check the trail's POTA page for where you can set up.</div>`+
+  `<div class="acts"><a href="${KPC.links.pota(t.ref)}" target="_blank" rel="noopener">POTA PAGE ↗</a></div></div>`;
+ async function load(){if(!map.hasLayer(g)||busy)return;busy=true;
+  try{if(!IDX)IDX=await fetch('data/trails/index.json').then(r=>r.json()).catch(()=>[]);
+   const b=map.getBounds().pad(.3),W=b.getWest(),S=b.getSouth(),E=b.getEast(),N=b.getNorth();
+   for(const t of IDX){if(done[t.ref]||t.bbox[0]>E||t.bbox[2]<W||t.bbox[1]>N||t.bbox[3]<S)continue;done[t.ref]=1;
+    fetch('data/trails/'+t.ref+'.json').then(r=>r.json()).then(f=>{
+     const st={renderer:rend,interactive:false,style:{color:'#1b1b1b',weight:6,opacity:.55}};
+     const casing=L.geoJSON(f,st),line=L.geoJSON(f,{renderer:rend,style:{color:t.kind==='NST'?'#ff5fa2':'#ffb347',weight:3,opacity:.95,dashArray:t.kind==='NST'?null:'9 6'}});
+     line.bindPopup(pop(t),{maxWidth:300});line.bindTooltip(t.name,{sticky:true});g.addLayer(casing);g.addLayer(line)}).catch(()=>{delete done[t.ref]})}}
+  finally{busy=false}}
+ g.on('add',load);map.on('moveend',load);return g}
 function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>';return}
  /* dots are drawn on a canvas; tolerance widens the tap area around each dot (more on touch screens) */
  map=L.map('usmap',{preferCanvas:true,renderer:L.canvas({padding:.5,tolerance:TAP?14:5}),scrollWheelZoom:false}).setView([38.5,-96],4);
@@ -86,7 +103,14 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
   d.querySelector('input').oninput=e=>{lines.setOpacity(e.target.value/100);store.set('kpcUsGlow',+e.target.value)};return d};
  const showGlow=name=>{if(name==='Satellite + Park Lines (Beta)')glow.addTo(map);else glow.remove()};showGlow(base[want]?want:'Street');
  map.on('baselayerchange',e=>showGlow(e.name));
- L.control.layers(base,pad?{'Official park boundaries (PAD-US)':pad.layer}:null,{position:'topright',collapsed:true}).addTo(map);map.on('baselayerchange',e=>store.set('kpcUsBase',e.name));
+ /* National Scenic / Historic Trails that are POTA parks (data/trails, official lines from the NPS, Forest Service and
+    trail partners, refreshed monthly by kpc-us-trails.yml). Only trails crossing the map view are loaded. Drawn in their
+    own pane under the park dots so a tap on a dot still opens the dot. */
+ const trails=nationalTrails(map);
+ const over={};if(pad)over['Official park boundaries (PAD-US)']=pad.layer;over['National trails (POTA parks)']=trails;
+ if(store.get('kpcUsTrails',true))trails.addTo(map);
+ map.on('overlayadd',e=>{if(e.layer===trails)store.set('kpcUsTrails',true)});map.on('overlayremove',e=>{if(e.layer===trails)store.set('kpcUsTrails',false)});
+ L.control.layers(base,over,{position:'topright',collapsed:true}).addTo(map);map.on('baselayerchange',e=>store.set('kpcUsBase',e.name));
  dots=L.featureGroup().addTo(map);
  /* drop mode wins over dots: with big phone tap areas most taps land on a dot, so drop the pin there too */
  let dropBusy=0;const dropAt=ll=>{if(!dropMode||dropBusy)return;dropBusy=1;map.closePopup();setTimeout(()=>{dropBusy=0;const nm=prompt('Name this pin (campsite, gas stop, lookout…):','My pin');if(nm===null)return;

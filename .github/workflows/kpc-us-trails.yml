@@ -27,8 +27,3 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/trails
           if ! git diff --cached --quiet; then git commit -m 'National trails: monthly refresh'; git pull --rebase --autostash || true; git push; fi
-          cp /tmp/trails-log.txt /tmp/log.txt 2>/dev/null || true
-      - name: Keep the full log (temporary branch)
-        if: always()
-        run: |
-          mkdir /tmp/b && cd /tmp/b && git init -q && cp /tmp/trails-log.txt . && git add . && git -c user.name=bot -c user.email=b@b commit -qm t && git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" HEAD:zz-trails
