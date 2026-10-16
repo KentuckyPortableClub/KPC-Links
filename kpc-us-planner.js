@@ -100,8 +100,7 @@ async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
   const d=await PINFO[st];const p=d&&d.parks&&d.parks[s.c];if(!p)continue;
   const [,web,typ,act]=p,how=(act||'').split(',').map(x=>ACT[x.trim()]||x.trim().toLowerCase()).filter(Boolean);
   el.innerHTML=`<div class="meta" style="margin:6px 0 2px">${typ?esc(typ):''}${how.length?(typ?' · ':'')+'activate by '+esc(how.join(', ')):''}</div>`+
-   `<div class="acts">${web?`<a href="${esc(web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}${d.stateSite&&/State Park|State Forest|State Recreation/i.test(typ)?`<a href="${esc(d.stateSite)}" target="_blank" rel="noopener">${esc(st)} STATE PARKS SITE (CAMPING, MAPS) ↗</a>`:''}</div>`+
-   `<div class="meta" style="font-size:11px;opacity:.8">Links from POTA's park list, not checked by KPC.</div>`;return}}
+   `<div class="acts">${web?`<a href="${esc(web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}${d.stateSite&&/State Park|State Forest|State Recreation/i.test(typ)?`<a href="${esc(d.stateSite)}" target="_blank" rel="noopener">${esc(st)} STATE PARKS SITE (CAMPING, MAPS) ↗</a>`:''}</div>`;return}}
 async function livePota(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;el.textContent='Checking POTA…';
  try{const r=await fetch(`https://api.pota.app/park/activations/${s.c}?count=all`);if(!r.ok)throw 0;const j=await r.json();const a=Array.isArray(j)?j:[];
   if(!a.length){el.textContent='No activations yet: a new one for POTA!';return}
