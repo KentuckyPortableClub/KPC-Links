@@ -111,6 +111,15 @@ async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
  const cg=near.filter(x=>x.c[7]!=='s'),sh=near.filter(x=>x.c[7]==='s');
  if(cg.length)h+=hd('⛺ FEDERAL CAMPGROUNDS NEARBY (RECREATION.GOV)')+cg.slice(0,4).map(row).join('');
  if(sh.length)h+=hd('🧺 PICNIC SHELTERS NEARBY (SHADE + TABLE, GOOD FOR ACTIVATING)')+sh.slice(0,3).map(row).join('');
+ /* same park in WWFF + SOTA summits in / near it (data/wwff + data/sota tiles via kpc-bounds.js) */
+ if(window.KPCB){try{const GEN=/\b(state|national|park|parks|forest|wildlife|management|area|recreation|historic|historical|site|refuge|preserve|nature|the|of|and|lake|river|scenic|wild|memorial|monument|conservation|wma|nwr|sp|np|nf)\b/g;
+  const words=t=>String(t||'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(GEN,' ').split(/\s+/).filter(w=>w.length>2);
+  const sim=(a,b)=>{const A=words(a),B=new Set(words(b));if(!A.length||!B.size)return 0;return A.filter(w=>B.has(w)).length/Math.max(A.length,B.size)};
+  const [ww,so]=await Promise.all([KPCB.wwffNear(s.la,s.lo,12),KPCB.sotaNear(s.la,s.lo,4.83)]);
+  const same=ww.map(w=>Object.assign({sc:sim(s.n,w.name)},w)).filter(w=>w.sc>=.6||(w.d<.4&&w.sc>0)).sort((a,b)=>b.sc-a.sc||a.d-b.d).slice(0,1);
+  if(same.length)h+=hd('🌲 ALSO A WWFF REFERENCE')+same.map(w=>`<div class="meta" style="margin:2px 0"><a href="https://wwff.co/directory/?showRef=${encodeURIComponent(w.ref)}" target="_blank" rel="noopener">${esc(w.ref)} ↗</a> ${esc(w.name)} · one activation can count for both (check its WWFF rules)</div>`).join('');
+  if(so.length)h+=hd(`⛰ SOTA SUMMITS WITHIN 3 MILES (${so.length})`)+so.slice(0,4).map(x=>`<div class="meta" style="margin:2px 0"><a href="https://sotl.as/summits/${encodeURIComponent(x.ref)}" target="_blank" rel="noopener">${esc(x.ref)} ↗</a> ${esc(x.name)} · ${Number(x.ft).toLocaleString()} ft · ${x.pts} pt${x.pts==1?'':'s'} · ${(x.d/1.609).toFixed(1)} mi</div>`).join('')+(so.length>4?`<div class="meta" style="font-size:11px;opacity:.8">${so.length-4} more on the map (turn on SOTA).</div>`:'');
+ }catch(e){}}
  if(h)el.innerHTML=h}
 async function livePota(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;el.textContent='Checking POTA…';
  try{const r=await fetch(`https://api.pota.app/park/activations/${s.c}?count=all`);if(!r.ok)throw 0;const j=await r.json();const a=Array.isArray(j)?j:[];
