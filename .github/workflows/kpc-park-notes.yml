@@ -27,6 +27,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add kpc-park-notes.json kpc-park-notes-form.json photos/notes 2>/dev/null || git add kpc-park-notes.json photos/notes
+          if [ -e kpc-park-notes-us.json ]; then git add kpc-park-notes-us.json; fi
           if [ -e data/kpc-checks-notes.json ]; then git add data/kpc-checks-notes.json; fi
           if ! git diff --cached --quiet; then
             git commit -m 'Update park notes'
