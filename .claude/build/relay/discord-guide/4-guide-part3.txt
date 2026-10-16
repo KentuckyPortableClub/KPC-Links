@@ -1,0 +1,44 @@
+Skip: 📌 HOW TO POST (part 3 of 3) — the bot ignores this message
+
+━━━━━━━━━━━━━━━━━━━━
+**⚠️ PARK CONDITIONS (red warning on the park, 30 days)**
+
+`Conditions US-1277: Gate locked at the main entrance`
+Warning only. Add places to post it too: `Conditions US-1277 + Facebook:`
+
+━━━━━━━━━━━━━━━━━━━━
+**📻 ACTIVATION REPORT (News page, From The Field)**
+
+`Activation: US-1277 Taylorsville Lake, 42 QSOs on 20 m...`
+Add photos to the post.
+
+━━━━━━━━━━━━━━━━━━━━
+**📝 NOTE (NOT shared anywhere)**
+
+`Skip: this is just a note`
+`Ignore:` and `Do not share:` work the same way.
+Must be the very first word, with the colon.
+Edit a shared post to start with `Skip:` → it comes down everywhere (not email).
+Removing `Skip:` later won't share it. Post it again instead.
+
+━━━━━━━━━━━━━━━━━━━━
+**✏️ EDIT • 🗑️ DELETE • 📌 PIN**
+
+Edit your post → website, Facebook and Discord update.
+Delete your post → removed from all of them.
+Pin your post → stays at the top of its website page.
+⚠️ Email can NOT be unsent or changed once it goes out.
+
+━━━━━━━━━━━━━━━━━━━━
+**✅ WHAT THE BOT'S REACTIONS MEAN**
+
+✅ shared
+⏰ waiting for its time
+⏳ email still going out
+⚠️ something went wrong (tell Brandon)
+
+━━━━━━━━━━━━━━━━━━━━
+**📧 EMAIL NOTES**
+
+Subscribers get one roundup email Sunday evening with the week's website posts. No posts = no email.
+Gmail allows about 90 emails a day; extras go out the next day on their own.

@@ -1,0 +1,36 @@
+Skip: 📌 HOW TO POST (part 2 of 3) — the bot ignores this message
+
+━━━━━━━━━━━━━━━━━━━━
+**⏰ LATER (Kentucky / Central time)**
+Start with **Post** (or **Schedule**), then the day and time:
+
+`Post Oct 20 8am:`
+`Post Oct 20 8:30 pm:`
+`Post October 20 at 6:30 pm:`
+`Post 10/20 8pm:`
+`Post 10/20/2026 7am:`
+`Post Saturday 7am:`
+`Post tomorrow noon:`
+`Post 3pm:`  (today, or tomorrow if 3 PM has passed)
+`Post Oct 20:`  (no time = 8 AM)
+
+Add places too: `Post Friday 6pm + All:`
+Shows ⏰ while it waits. Delete it to cancel. Edit it to change the time.
+
+━━━━━━━━━━━━━━━━━━━━
+**🏕️ CAMPOUT PAGE**
+
+`Campout:`  →  Campout page + News page
+`Campout + All:`  →  same, plus everywhere
+━━━━━━━━━━━━━━━━━━━━
+**📅 EVENT (goes on the Events calendar)**
+```
+Event: Fall Activation Day
+Date: Nov 7 2026
+Time: 9 AM - 3 PM
+Where: Green River Lake State Park
+Link: (optional)
+A few words about it...
+```
+Dates can be `Nov 7`, `Nov 7 2026`, `11/7` or `Nov 7-8` (two days).
+Put it on the calendar later too: `Post Oct 20 8am + Event:`
