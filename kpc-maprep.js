@@ -1,13 +1,12 @@
 /* KPC Mapping Representative's Tool Box (kpc-maprep.html) — HIDDEN page (noindex, not linked anywhere).
    Type a park name (and optionally a town and/or state). Finds it in USGS PAD-US (the national public-land database),
-   checks it against POTA's park-addition rules (docs.pota.app, "Park Additions and Edits"), shows YES / NO / CHECK
+   checks it against POTA's park-addition rules, shows YES / NO / CHECK
    for each rule, the official links, a boundary map, existing POTA parks nearby, and a copyable park summary (for POTA Mapping Representatives).
    Uses kpc-bounds.js (KPCB) + kpc-map-tools.js. */
 (function () {
   'use strict';
   const B = window.KPCB, $ = id => document.getElementById(id), esc = B.esc;
   const PADUS = 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query';
-  const RULES_URL = 'https://docs.pota.app/docs/volunteer_reference/park_additions_edits.html';
   const F = 'OBJECTID,Unit_Nm,Loc_Nm,Mang_Type,Mang_Name,Loc_Mang,Own_Type,Own_Name,Loc_Own,Des_Tp,Loc_Ds,Pub_Access,GIS_Acres,State_Nm,Category,Date_Est,Comments';
   const TYPE = { FED: 'Federal', STAT: 'State', LOC: 'Local (county / city)', PVT: 'Private', NGO: 'Non-profit', TRIB: 'Tribal', JNT: 'Joint', DIST: 'Special district', UNK: 'Unknown', TERR: 'Territorial' };
   const AG = { NPS: 'National Park Service', USFS: 'U.S. Forest Service', FWS: 'U.S. Fish & Wildlife Service', BLM: 'Bureau of Land Management', USACE: 'U.S. Army Corps of Engineers', TVA: 'Tennessee Valley Authority', BOR: 'Bureau of Reclamation', DOD: 'Department of Defense', SPR: 'State parks agency', SDNR: 'State natural resources agency', SFW: 'State fish & wildlife agency', SDOF: 'State forestry', SDC: 'State conservation department', SLB: 'State land board', OTHS: 'Other state agency', CITY: 'City', CNTY: 'County', REG: 'Regional agency', NGO: 'Non-profit', PVT: 'Private', UNK: 'Unknown' };
@@ -237,7 +236,7 @@
     const nm = (async () => {
       const j = await B.jget('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: name + (town ? ', ' + town : '') + ', ' + st + ', USA', format: 'jsonv2', countrycodes: 'us', extratags: 1, limit: 6 }));
       (j || []).forEach(x => { const la = +x.lat, lo = +x.lon; if (!inSt(la, lo)) return; const t = x.extratags || {};
-        hits.push({ src: 'OpenStreetMap search', name: x.name || x.display_name.split(',')[0], la, lo, what: x.display_name, type: (x.category + ' / ' + x.type).replace(/_/g, ' '), operator: t.operator || '', owner: t.owner || t.ownership || '', web: t.website || t['contact:website'] || t.url || '', access: t.access || '' }); });
+        hits.push({ src: 'OpenStreetMap search', url: 'https://www.openstreetmap.org/' + x.osm_type + '/' + x.osm_id, name: x.name || x.display_name.split(',')[0], la, lo, what: x.display_name, type: (x.category + ' / ' + x.type).replace(/_/g, ' '), operator: t.operator || '', owner: t.owner || t.ownership || '', web: t.website || t['contact:website'] || t.url || '', access: t.access || '' }); });
     })().catch(() => {});
     await Promise.all([wd, nm]);
     // back to the official database at each place we learned about
@@ -363,7 +362,8 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     const LBL = [['Unit_Nm', 'Name'], ['Says', 'Fish & Wildlife page says'], ['Loc_Own', 'Owner'], ['Own_Type', 'Owner type'], ['Loc_Mang', 'Manager'], ['Mang_Type', 'Manager type'], ['Loc_Ds', 'Designation'], ['Pub_Access', 'Public access'], ['GIS_Acres', 'Acres'], ['Category', 'Kind of record'], ['Date_Est', 'Established'], ['Comments', 'Notes'], ['Web', 'Official page']];
     const fmtV = (k, v) => k === 'Own_Type' || k === 'Mang_Type' ? (TYPE[v] || v) : k === 'Pub_Access' ? (ACC[v] || v) : k === 'GIS_Acres' ? Math.round(+v).toLocaleString() : k === 'Category' ? ({ Fee: 'Owned land (fee)', Easement: 'Easement', Designation: 'Designation', Proclamation: 'Proclamation boundary' }[v] || v) : v;
     const recHtml = () => `<details class="mr-rec"><summary>SEE THE RECORD THIS CAME FROM</summary><p class="mr-help">Source: ${esc(g.src || 'USGS PAD-US')}${!g.src || /PAD-US/.test(g.src) ? ' (USGS Protected Areas Database, version 4)' : ''}</p>${base.slice(0, 6).map(r => `<table>${LBL.filter(([k]) => r[k] != null && r[k] !== '' && k !== 'WebOsm').map(([k, l]) => `<tr><th>${l}</th><td>${k === 'Web' ? `<a href="${esc(r[k])}" target="_blank" rel="noopener">${esc(r[k])}</a>` : esc(fmtV(k, r[k]))}</td></tr>`).join('')}</table>`).join('')}</details>`;
-    const recL = () => [];
+    const padRecs = (!g.src || /PAD-US/.test(g.src)) ? base.filter(r => r.OBJECTID != null).slice(0, 3) : [];
+    const recL = label => padRecs.map((r, i) => [label + (padRecs.length > 1 ? ' ' + (i + 1) : '') + ' (USGS PAD-US RECORD) ↗', PADUS + '?' + new URLSearchParams({ where: 'OBJECTID=' + r.OBJECTID, outFields: '*', f: 'html' }), 'gold']);
     const gq = s2 => 'https://www.google.com/search?q=' + encodeURIComponent(s2);
     const sat = `https://www.google.com/maps/@${la.toFixed(5)},${lo.toFixed(5)},15z/data=!3m1!1e3`;
     add(own.every(top) ? 'YES' : own.some(t => t === 'JNT' || t === 'UNK') && !own.some(t => ['LOC', 'PVT', 'NGO', 'TRIB', 'DIST'].includes(t)) ? 'CHECK' : 'NO', 'Owned by the national or state government',
@@ -375,7 +375,7 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     add(corpsMng ? 'NO' : corpsOwn ? 'CHECK' : 'YES', 'Not Army Corps of Engineers land',
       corpsMng ? 'The Army Corps of Engineers runs it. POTA\'s rules say Corps sites are 100% Corps owned but mostly run through partnerships with local governments, so POTA has generally sidestepped them, with only a few confirmed exceptions. Treat this as not eligible.'
       : corpsOwn ? `The land belongs to the Army Corps of Engineers and ${esc(locM || 'another agency')} runs it. POTA has generally sidestepped Corps sites; only a few have been confirmed as exceptions. Some state wildlife areas on Corps lakes are POTA parks (in Kentucky, for example, Dewey Lake, Fishtrap Lake and Yatesville Lake WMAs) and many are not. <b>Don't count on it:</b> only the Mapping Representative can say whether this one is an exception.`
-      : 'The owner is not the Army Corps of Engineers.', corpsOwn || corpsMng ? [['POTA RULES: CORPS OF ENGINEERS ↗', RULES_URL]] : []);
+      : 'The owner is not the Army Corps of Engineers.', corpsOwn || corpsMng ? [['ARMY CORPS SITE (USACE.ARMY.MIL, GOOGLE) ↗', gq(`site:usace.army.mil "${g.name}"`)], ['WHO RUNS IT? (GOOGLE) ↗', gq(`"${g.name}" ${g.st} managed by operated by`)]] : []);
     const raOnly = !acc.includes('OA') && acc.includes('RA');
     add(acc.includes('OA') ? 'YES' : acc.includes('XA') || raOnly ? 'NO' : 'CHECK', 'Open to the public',
       raOnly ? `Database says: <b>restricted</b> (visits only with a permit, by appointment, in some seasons, or only part of it). POTA adds parks the agency says are open to the public; a place you can only visit with special permission is not open to the public. <b>Only if the agency's own page says anyone may visit</b> (no special permit) could it still qualify; then treat this as YES.${/nature preserve/i.test(locM + ' ' + uniq('Loc_Own').join(' ') + ' ' + g.name) ? ' Many Kentucky state nature preserves are visit-by-permission only.' : ''}`
@@ -413,7 +413,7 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     $('mrOut').innerHTML = `<section class="mr-res">
 <div class="mr-head"><div class="mr-k">${esc(stn)} · ${esc(g.src || "USGS PAD-US")}</div><h2>${esc(nm)}</h2><p>${esc([locM, Math.round(g.acres).toLocaleString() + ' acres', base.map(r => r.Loc_Ds || DES[r.Des_Tp] || '').filter(Boolean).filter((x, i, a) => a.indexOf(x) === i).join(' / ')].filter(Boolean).join(' · '))}</p></div>
 ${g.osm ? `<div class="mr-osm"><b>From OpenStreetMap, not an official source.</b> ${esc(B.OSM_NOTE)} Owner and manager come from volunteer tags, so treat every answer below as CHECK until the agency's own page confirms it.</div>` : ""}<div class="mr-v ${verdict[0]}"><b>${verdict[1]}</b><span>${res.filter(r => r.v === 'YES').length} yes · ${nNo} no · ${nCk} to check yourself</span></div>
-<div class="mr-rules">${res.map(r => `<div class="mr-r ${r.v.toLowerCase()}"><i>${r.v === 'INFO' ? 'INFO' : r.v}</i><div><b>${esc(r.title)}</b><p>${r.why}</p>${/^Owned/.test(r.title) ? recHtml() : /^(Run|Open|Not a type)/.test(r.title) ? '<p class="mr-help">Record: see SEE THE RECORD THIS CAME FROM in the first rule.</p>' : ''}${r.links.length ? `<div class="mr-rl">${r.links.map(l => `<a class="${l[2] || ''}" href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])}${/↗$/.test(l[0]) ? '' : ' ↗'}</a>`).join('')}</div>` : ''}${/official government web page/.test(r.title) ? '<div class="mr-rl" id="mrWebRule"></div>' : ''}${/official boundary map/.test(r.title) ? '<div class="mr-rl" id="mrMapRule"></div>' : ''}${/surrounded|public way in/.test(r.title) ? '<div id="mrAccess" class="mr-help">Looking for a public road, parking, trailhead or ramp into it…</div><div id="mrAround" class="mr-help">Checking the official land around it…</div>' : ''}${/sub-park/.test(r.title) ? `<details class="mr-rec"><summary>LAND RECORDS AT THE PIN</summary><table>${(around || []).slice(0, 12).map(x => `<tr><th>${esc(x.Unit_Nm || x.Loc_Nm || '?')}</th><td>${esc([x.Loc_Mang, TYPE[x.Own_Type] || x.Own_Type, x.GIS_Acres ? Math.round(+x.GIS_Acres).toLocaleString() + ' acres' : ''].filter(Boolean).join(' · '))}</td></tr>`).join('') || '<tr><td>none in the database</td></tr>'}</table></details>` : ''}</div></div>`).join('')}</div>
+<div class="mr-rules">${res.map(r => `<div class="mr-r ${r.v.toLowerCase()}"><i>${r.v === 'INFO' ? 'INFO' : r.v}</i><div><b>${esc(r.title)}</b><p>${r.why}</p>${/^Owned/.test(r.title) ? recHtml() : /^(Run|Open|Not a type)/.test(r.title) ? '<p class="mr-help">Record: see SEE THE RECORD THIS CAME FROM in the first rule.</p>' : ''}${r.links.length ? `<div class="mr-rl">${r.links.map(l => `<a class="${l[2] || ''}" href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])}${/↗$/.test(l[0]) ? '' : ' ↗'}</a>`).join('')}</div>` : ''}${/official government web page/.test(r.title) ? '<div class="mr-rl" id="mrWebRule"></div>' : ''}${/official boundary map/.test(r.title) ? '<div class="mr-rl" id="mrMapRule"></div>' : ''}${/^(Owned|Run \(|Open to)/.test(r.title) ? `<div class="mr-ev" data-ev="${/^Owned/.test(r.title) ? 'owner' : /^Run/.test(r.title) ? 'mgr' : 'acc'}"></div>` : ''}${/surrounded|public way in/.test(r.title) ? '<div id="mrAccess" class="mr-help">Looking for a public road, parking, trailhead or ramp into it…</div><div id="mrAround" class="mr-help">Checking the official land around it…</div>' : ''}${/sub-park/.test(r.title) ? `<details class="mr-rec"><summary>LAND RECORDS AT THE PIN</summary><table>${(around || []).slice(0, 12).map(x => `<tr><th>${esc(x.Unit_Nm || x.Loc_Nm || '?')}</th><td>${esc([x.Loc_Mang, TYPE[x.Own_Type] || x.Own_Type, x.GIS_Acres ? Math.round(+x.GIS_Acres).toLocaleString() + ' acres' : ''].filter(Boolean).join(' · '))}</td></tr>`).join('') || '<tr><td>none in the database</td></tr>'}</table></details>` : ''}</div></div>`).join('')}</div>
 <div class="mr-sec"><h3>OFFICIAL WEBSITE &amp; MAP</h3><div class="mr-btns">${offWeb.map(u => `<a class="gold" href="${esc(u)}" target="_blank" rel="noopener">OFFICIAL PAGE ↗</a>`).join("")}<a href="${gq(`"${nm}" ${stn} site:.gov`)}" target="_blank" rel="noopener">SEARCH .GOV (GOOGLE) ↗</a><a href="${gq(`"${nm}" ${locM} boundary map`)}" target="_blank" rel="noopener">SEARCH FOR THE MAP (GOOGLE) ↗</a></div><p class="mr-help">These search only for the park by name with its agency. Use the agency's own page, not tourist sites.</p></div>
 <div class="mr-sec"><h3>BOUNDARY MAP (${esc(g.src || 'USGS PAD-US')})</h3><div id="mrMap"></div><p class="mr-help">Gold = this park's land in the source above. Blue dots = POTA parks nearby (tap for the number). Blue P squares = parking (🥾 trailhead, ⛵ boat ramp); green dots = roads or trails into it. Tap the map to drop a pin; ⛶ FULL for full screen; layers for satellite, topo and terrain.</p><div class="mr-btns" id="mrFiles"></div></div>
 <div class="mr-sec mr-facts"><h3>📍 FACTS FOR ADDING THE PARK</h3>
@@ -428,7 +428,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
 <div class="mr-fact"><span>BOUNDARY SOURCE</span><b>${esc(g.src || 'USGS PAD-US')}</b><div class="mr-btns">${g.src && /PAD-US/.test(g.src) || !g.src ? '<a href="https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview" target="_blank" rel="noopener">ABOUT PAD-US ↗</a>' : ''}<a href="#" data-dl="kml">SAVE BOUNDARY (KML)</a></div></div>
 <h4>LINKS FOUND</h4><div id="mrLinks"><p class="mr-help">Searching Wikipedia / Wikidata and OpenStreetMap for this park's links…</p></div>
 <p class="mr-help">These came from the web search. The agency's own page and map are the official sources.</p></div>
-<div class="mr-sec"><h3>PARK SUMMARY (COPY FOR YOUR RECORDS)</h3><textarea id="mrNote" rows="16">${esc(note)}</textarea><div class="mr-btns"><a class="gold" href="#" id="mrCopy">COPY THE SUMMARY</a><a href="${RULES_URL}" target="_blank" rel="noopener">POTA PARK-ADDITION RULES ↗</a><a href="#" id="mrWeb2">RESEARCH THE WEB FOR MORE ›</a></div><p class="mr-help">Everything above in one block: paste it into your notes or the park record.</p></div>
+<div class="mr-sec"><h3>PARK SUMMARY (COPY FOR YOUR RECORDS)</h3><textarea id="mrNote" rows="16">${esc(note)}</textarea><div class="mr-btns"><a class="gold" href="#" id="mrCopy">COPY THE SUMMARY</a><a href="#" id="mrWeb2">RESEARCH THE WEB FOR MORE ›</a></div><p class="mr-help">Everything above in one block: paste it into your notes or the park record.</p></div>
 </section>`;
     $('mrCopy').onclick = e => { e.preventDefault(); const t = $('mrNote').value; (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => e.target.textContent = 'COPIED ✓').catch(() => { $('mrNote').select(); document.execCommand('copy'); e.target.textContent = 'COPIED ✓'; }); };
     draw(feats, near, la, lo);
@@ -542,6 +542,34 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
       A.innerHTML = `<details class="mr-rec"><summary>OFFICIAL LAND AROUND IT: ${other.length} RECORD${other.length === 1 ? '' : 'S'}</summary><table>${other.map(x => `<tr><th>${esc(x.Unit_Nm || x.Loc_Nm || '?')}</th><td>${esc([x.Loc_Mang, TYPE[x.Own_Type] || x.Own_Type, ACC[x.Pub_Access] || '', x.GIS_Acres ? Math.round(+x.GIS_Acres).toLocaleString() + ' acres' : ''].filter(Boolean).join(' · '))}</td></tr>`).join('') || '<tr><td>No other public land touches it in the database, so the neighbours are probably private. That is fine if a public road, trail or ramp gets you in (see above).</td></tr>'}</table></details>`;
     }).catch(() => { const A = $('mrAround'); if (A) A.textContent = ''; });
     accessIn(me).catch(() => { const X = $('mrAccess'); if (X && cur === me) X.innerHTML = '<p class="mr-help">Could not check OpenStreetMap for a way in right now. Use the satellite and street view buttons.</p>'; const PM = $('mrPinMain'); if (PM && cur === me) PM.innerHTML = '<div class="mr-fact"><span>MAIN ENTRANCE PIN</span><b>Could not look for parking right now.</b><p class="mr-help">POTA usually puts the pin at the main entrance: find it on satellite, or use the backup pin below.</p></div>'; });
+    /* EVIDENCE for ownership, management, public access and the boundary map: official record first (the buttons above),
+       then what Wikipedia / Wikidata / OpenStreetMap say (with the link), then general searches so there are always more links to follow */
+    {
+      const nm = g.name, st = g.st, dom0 = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; } };
+      const srch = (label, qq) => [['GOOGLE: ' + label, 'https://www.google.com/search?q=' + encodeURIComponent(qq)], ['BING: ' + label, 'https://www.bing.com/search?q=' + encodeURIComponent(qq)], ['DUCKDUCKGO: ' + label, 'https://duckduckgo.com/?q=' + encodeURIComponent(qq)]];
+      const KIND = { owner: ['OWNER', 'owner', 'owned by'], mgr: ['MANAGER', 'operator', 'managed by'], acc: ['PUBLIC ACCESS', 'access', 'open to the public'] };
+      const wikiSays = {};   /* filled from the Wikipedia summary below */
+      const sayLines = k => near.map(h => {
+        const v = k === 'owner' ? h.owner : k === 'mgr' ? h.operator : (h.access || ''), u = h.wiki || h.url || h.item || h.web;
+        return v && u ? { t: `${h.src} says ${KIND[k][1]}: ${v}`, u } : null;
+      }).filter(Boolean);
+      const paint = () => document.querySelectorAll('.mr-ev').forEach(box => {
+        const k = box.dataset.ev, lines = sayLines(k).concat(wikiSays[k] || []);
+        const seenU = new Set(), ls = lines.filter(l => !seenU.has(l.t) && seenU.add(l.t));
+        const q1 = `"${nm}" ${st} ${KIND[k][2]}`, q2 = `"${nm}" ${st} site:.gov ${KIND[k][2]}`;
+        box.innerHTML = (ls.length ? `<p class="mr-help"><b>WHAT THE WEB SAYS (not official; confirm on the agency's page):</b></p>${ls.slice(0, 4).map(l => `<p class="mr-help">${esc(l.t)} · <a href="${esc(l.u)}" target="_blank" rel="noopener">${esc(dom0(l.u))} ↗</a></p>`).join('')}` : '<p class="mr-help">The official records did not settle this. General web searches (not official sources):</p>')
+          + `<div class="mr-rl">${srch(KIND[k][0] + ' (.GOV)', q2).concat(srch(KIND[k][0], q1)).concat(k === 'acc' ? [['STREET VIEW AT THE PIN ↗', `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${la.toFixed(5)},${lo.toFixed(5)}`]] : []).map(l => `<a href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])} ↗</a>`).join('')}</div>`;
+      });
+      paint();
+      const wt = near.find(h => h.wiki);
+      if (wt) B.jget('https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(wt.wiki.split('/wiki/')[1] || ''), null, 12000).then(j => {
+        if (cur !== me || !j || !j.extract) return;
+        const sents = j.extract.split(/(?<=[.!?])\s+/), pick = re => sents.filter(x => re.test(x)).slice(0, 2).map(x => ({ t: 'Wikipedia: ' + x, u: wt.wiki }));
+        wikiSays.owner = pick(/\b(owned|ownership|owns)\b/i); wikiSays.mgr = pick(/\b(managed|operated|administered|maintained|run by)\b/i); wikiSays.acc = pick(/\b(open to the public|public access|admission|permit|hours|closed)\b/i);
+        paint();
+      }).catch(() => {});
+      const MRb = $('mrMapRule'); if (MRb) MRb.innerHTML += srch('BOUNDARY MAP', `"${nm}" ${st} boundary map`).concat(srch('BOUNDARY MAP (.GOV, PDF)', `"${nm}" ${st} site:.gov map filetype:pdf`)).map(l => `<a href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])} ↗</a>`).join('');
+    }
     const W = $('mrWebRule'); if (W && !W.closest('.mr-r').classList.contains('yes')) {
       const sites = [...new Set(near.map(h => h.web).filter(Boolean))];
       const dom = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; } };
@@ -555,7 +583,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
         const V = document.querySelector('.mr-v'); if (V && !/ALREADY|CORPS/.test(V.textContent)) { V.className = 'mr-v ' + (no ? 'no' : ck ? 'maybe' : 'yes'); V.querySelector('b').textContent = no ? 'LIKELY NOT ELIGIBLE' : ck ? 'LOOKS POSSIBLE: CONFIRM THE YELLOW ITEMS' : 'LOOKS ELIGIBLE'; V.querySelector('span').textContent = `${yes} yes · ${no} no · ${ck} to check yourself`; }
       }
       W.innerHTML += [...new Set(sites.map(dom).filter(Boolean))].map(d => `<a href="https://www.google.com/search?q=${encodeURIComponent('site:' + d + ' "' + g.name + '" filetype:pdf')}" target="_blank" rel="noopener">DOCUMENTS (PDF) ON ${esc(d.toUpperCase())} (GOOGLE) ↗</a>`).join('');
-      const MR = $('mrMapRule'); if (MR && !MR.closest('.mr-r').classList.contains('yes') && sites.length) MR.innerHTML = [...new Set(sites.map(dom).filter(Boolean))].map(d => `<a href="https://www.google.com/search?q=${encodeURIComponent('site:' + d + ' "' + g.name + '" map')}" target="_blank" rel="noopener">MAPS ON ${esc(d.toUpperCase())} (GOOGLE) ↗</a>`).join('');
+      const MR = $('mrMapRule'); if (MR && !MR.closest('.mr-r').classList.contains('yes') && sites.length) MR.innerHTML += [...new Set(sites.map(dom).filter(Boolean))].map(d => `<a href="https://www.google.com/search?q=${encodeURIComponent('site:' + d + ' "' + g.name + '" map')}" target="_blank" rel="noopener">MAPS ON ${esc(d.toUpperCase())} (GOOGLE) ↗</a>`).join('');
     }
   }
 
