@@ -372,23 +372,34 @@ def mail(to, bcc, subject, text, files):
     with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=ssl.create_default_context(), timeout=60) as s:
         s.login(SMTP_USER, SMTP_PASS); s.send_message(em)
 
+ALL_PREFS = ['all', 'camp', 'week']
+
+def pref_of(v):
+    """'Which emails do you want?' answer -> all / camp (campout only) / week (Sunday roundup only). Blank = all."""
+    v = (v or '').lower()
+    if 'campout' in v or 'camp out' in v: return 'camp'
+    if re.search(r'weekly|roundup|sunday', v): return 'week'
+    return 'all'
+
 def subscribers():
-    """Latest answer per email wins: Subscribe -> on the list, Unsubscribe -> off."""
-    if not SUB_CSV: return []
+    """{email: pref}. Latest answer per email wins: Subscribe -> on the list, Unsubscribe -> off."""
+    if not SUB_CSV: return {}
     c, r = http(SUB_CSV)
-    if c != 200: notice(f'Could not read the subscriber sheet (HTTP {c}).'); return []
+    if c != 200: notice(f'Could not read the subscriber sheet (HTTP {c}).'); return {}
     rows = list(csv.reader(io.StringIO(r.decode('utf-8-sig'))))
-    if not rows: return []
+    if not rows: return {}
     hd = [h.strip().lower() for h in rows[0]]
-    ie = next((i for i, h in enumerate(hd) if 'email' in h), None)
-    ic = next((i for i, h in enumerate(hd) if 'subscribe' in h or 'what would you like' in h), None)
-    if ie is None or ic is None: notice('Subscriber sheet needs an Email column and a Subscribe/Unsubscribe column.'); return []
+    ie = next((i for i, h in enumerate(hd) if 'email' in h and 'which emails' not in h), None)
+    ic = next((i for i, h in enumerate(hd) if ('subscribe' in h or 'what would you like' in h) and 'which emails' not in h), None)
+    ip = next((i for i, h in enumerate(hd) if 'which emails' in h), None)
+    if ie is None or ic is None: notice('Subscriber sheet needs an Email column and a Subscribe/Unsubscribe column.'); return {}
     on = {}
     for row in rows[1:]:
         e = (row[ie] if ie < len(row) else '').strip().lower()
         if not re.fullmatch(r'[^@\s,;<>]+@[^@\s,;<>]+\.[a-z]{2,}', e): continue
-        on[e] = not re.search(r'unsub|stop|remove', (row[ic] if ic < len(row) else '').lower())
-    return sorted(e for e, v in on.items() if v)
+        if re.search(r'unsub|stop|remove', (row[ic] if ic < len(row) else '').lower()): on.pop(e, None)
+        else: on[e] = pref_of(row[ip] if ip is not None and ip < len(row) else '')
+    return dict(sorted(on.items()))
 
 def spam_tip():
     return ('Tip: save kpcwebhost@gmail.com as a contact so our emails stay out of Spam (a one-tap contact card is at '
@@ -433,7 +444,8 @@ def flush_mail():
             elif it.get('gio'): it['gio'] = False
             if it.get('list'):
                 if subs is None: subs = subscribers()
-                todo = [e for e in subs if fp(e) not in it['done']]
+                ok = it.get('prefs') or ALL_PREFS              # older queue items went to everyone
+                todo = [e for e, pr in subs.items() if pr in ok and fp(e) not in it['done']]
                 while todo:
                     n = min(80, room() - 1)                    # -1: the account's own To: address counts too
                     if n < 1: break
@@ -455,8 +467,9 @@ def flush_mail():
                 notice('Gmail daily limit reached; the rest goes out in the next runs.'); break
     state['queue'] = q
 
-def queue_mail(mid, subject, body, gio, lst, now, what=''):
-    item = {'mid': mid, 'subject': subject, 'body': body, 'gio': bool(gio), 'list': bool(lst), 'done': [], 'what': what}
+def queue_mail(mid, subject, body, gio, lst, now, what='', prefs=None):
+    item = {'mid': mid, 'subject': subject, 'body': body, 'gio': bool(gio), 'list': bool(lst), 'done': [], 'what': what,
+            'prefs': prefs or ALL_PREFS}
     q = state.setdefault('queue', [])
     q.insert(0, item) if now else q.append(item)
 
@@ -583,7 +596,9 @@ def sync(m, first):
     if first:
         lst_now = p['list_now']
         if ('gio' in p['dest'] and GIO_TO) or lst_now:
-            queue_mail(mid, subject_for(p), body_for(p, plain), 'gio' in p['dest'], lst_now, p['now'], 'post ' + mid)
+            # right-away email: 'Everything' people, plus 'Campout only' people for campout posts (roundup-only people wait for Sunday)
+            queue_mail(mid, subject_for(p), body_for(p, plain), 'gio' in p['dest'], lst_now, p['now'], 'post ' + mid,
+                       ['all'] + (['camp'] if 'campout' in p['pages'] else []))
             res['email'] = 'on its way'
         rec['listnow'] = lst_now
     else:
@@ -642,20 +657,32 @@ wk = NOW.strftime('%G-W%V')
 if NOW.weekday() == 6 and NOW.hour >= 18 and state.get('roundup') != wk and not DRY:
     state['roundup'] = wk
     since = (NOW - datetime.timedelta(days=7)).isoformat()
-    items = [it for it in sorted(feed.get('items', []), key=lambda it: it['date']) if it.get('date', '') >= since and not posts.get(it['id'], {}).get('listnow')]
-    if items:
+    week = [it for it in sorted(feed.get('items', []), key=lambda it: it['date']) if it.get('date', '') >= since]
+    unsent = [it for it in week if not posts.get(it['id'], {}).get('listnow')]
+    camp = [it for it in unsent if 'campout' in (it.get('pages') or [])]
+    def roundup(items, what):
         parts = []
         for it in items:
             d = datetime.datetime.fromisoformat(it['date']).astimezone(CT)
             parts.append(f"■ {d:%a %b %-d}\n{it['text']}" + (f"\n({len(it['photos'])} photo(s) on the website)" if it.get('photos') else ''))
-        body = (f"Here's what the Kentucky Portable Club posted this week ({len(items)} update{'s' if len(items) != 1 else ''}).\n\n"
+        return (f"Here's what the Kentucky Portable Club posted this week{what} ({len(items)} update{'s' if len(items) != 1 else ''}).\n\n"
                 + '\n\n'.join(parts) + '\n\n— Kentucky Portable Club\n' + SITE + 'news.html')
-        queue_mail(None, f"KPC weekly roundup: {NOW:%b %-d, %Y}", body, False, True, False, 'the weekly roundup')
-        notice(f'Weekly roundup queued with {len(items)} post(s).')
+    subj = f"KPC weekly roundup: {NOW:%b %-d, %Y}"
+    # Everything: the week's posts they did not already get right away. Campout only: the same, campout posts only.
+    # Weekly roundup only: every website post of the week (they got nothing right away).
+    for items, prefs, what, label in ((unsent, ['all'], '', 'everything'), (camp, ['camp'], ' about the campout', 'campout only'),
+                                      (week, ['week'], '', 'roundup only')):
+        if items:
+            queue_mail(None, subj, roundup(items, what), False, True, False, f'the weekly roundup ({label})', prefs)
+            notice(f'Weekly roundup ({label}) queued with {len(items)} post(s).')
 
 # 6) email, then save
 if DRY:   # practice run: say whether the email-updates sheet can be read (a count only, never addresses)
-    notice(('Email-updates list: ' + str(len(subscribers())) + ' subscriber(s) found.') if SUB_CSV else 'Email-updates list: SUBSCRIBE_SHEET_CSV secret not set.')
+    if SUB_CSV:
+        sb = list(subscribers().values())
+        notice(f"Email-updates list: {len(sb)} subscriber(s) found (everything {sb.count('all')}, campout only {sb.count('camp')}, "
+               f"weekly roundup only {sb.count('week')}).")
+    else: notice('Email-updates list: SUBSCRIBE_SHEET_CSV secret not set.')
 if not DRY:
     flush_mail()
     # park warnings + calendar items made from Discord (ids start with dc-), merged with the KPC Reports form's own items
