@@ -127,9 +127,12 @@ PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain wor
                         'Log it. Your credit shows up after the activator uploads their log.',
                         'See which parks you still need, in any state, with the <a href="kpc-checker.html">Park Checker</a> (it reads your hunter file from pota.app).']),
     ]),
-    section('KENTUCKY GUIDES', '📚 Our Kentucky POTA Guides', 'Free club guides for every Kentucky POTA park. The web pages are always current; the PDFs are printed from them.', [
+    section('KENTUCKY GUIDES', '📚 Our Kentucky POTA Guides', 'Free club guides for every Kentucky POTA park. The web pages are always current; the printable PDFs are made from them every week.', [
         card('kpc-guide-pota.html?order=num', '📗', 'Kentucky POTA Resource (by number)', 'Every Kentucky park in park-number order, with its details, the other references on the same ground, and links.', 'you know the park number.'),
         card('kpc-guide-pota.html?order=az', '📘', 'Kentucky POTA Resource (A to Z)', 'The same guide sorted by park name.', 'you know the park\'s name.'),
+        card('KPC_Kentucky_POTA_Resource_Numerical_v2_261005_092033.pdf', '📄', 'POTA Resource PDF (by number)', 'The printable PDF of the guide, in park-number order.', 'you want it on paper or offline.'),
+        card('KPC_Kentucky_POTA_Resource_Alphabetical_v2_261005_092105.pdf', '📄', 'POTA Resource PDF (A to Z)', 'The printable PDF, sorted by park name.', 'you want it on paper or offline.'),
+        card('kpc-new-to-pota.html', '🔰', 'New to POTA?', 'Our beginner\'s walk-through: what to bring and how your first activation goes.', 'it\'s your very first time.'),
         card('kpc-guide-top25.html', '🏅', 'Top 25 Rare Kentucky Parks', 'The 25 parks with the fewest contacts and the 25 with the fewest activations, updated every week.', 'you want to be the activation hunters remember.'),
         card('kpc-park-notes.html', '📝', 'Park Notes', 'Tips from members for every park: where to set up, gates, cell signal, RF noise.', 'you want to know what a park is like before you go.'),
         card('kpc-campgrounds.html', '🏕', 'Campgrounds &amp; Cabins', 'Places to stay inside Kentucky POTA parks, with reviews.', 'you\'re making a weekend of it.'),
@@ -184,6 +187,7 @@ PAGES['kpc-wwff-room.html'] = ('WWFF / KFF Room | KPC', 'World Wide Flora & Faun
     section('KENTUCKY GUIDES', '📚 Our Kentucky KFF Guide', '', [
         card('kpc-guide-wwff.html', '📗', 'Kentucky WWFF / KFF Resource', 'Every Kentucky KFF reference with its details and links.', 'you\'re picking a KFF reference in Kentucky.'),
         card('KPC_Kentucky_WWFF_KFF_Resource.pdf', '📄', 'KFF Resource (PDF)', 'The same guide as a printable PDF.', 'you want it on paper or offline.'),
+        card('kpc-new-to-wwff.html', '🔰', 'New to WWFF?', 'Our beginner\'s walk-through for WWFF and KFF.', 'it\'s your very first time.'),
         card('kpc-park-notes.html', '📝', 'Park Notes', 'Member tips for every park and KFF reference.', 'you want to know what a place is like.'),
     ], alt=True, sid='guides'),
     '<section class="kb-sec"><div class="kb-in"><p class="kb-k">MAP FILES</p><h2>📥 Kentucky KFF References for Your Phone or GPS</h2>' + files_box('KFF') + '</div></section>',
@@ -234,6 +238,7 @@ PAGES['kpc-sota-room.html'] = ('SOTA Room | KPC', 'Summits on the Air in plain w
     section('KENTUCKY GUIDES', '📚 Our Kentucky SOTA Guide', '', [
         card('kpc-guide-sota.html', '📗', 'Kentucky SOTA (W4K) Resource', 'Every Kentucky summit with its details and the summits near it.', 'you\'re picking a Kentucky summit.'),
         card('KPC_Kentucky_SOTA_W4K_Resource.pdf', '📄', 'SOTA Resource (PDF)', 'The same guide as a printable PDF.', 'you want it on paper or offline.'),
+        card('kpc-new-to-sota.html', '🔰', 'New to SOTA?', 'Our beginner\'s walk-through for your first summit.', 'it\'s your very first time.'),
         card('kpc-park-notes.html', '📝', 'Park Notes', 'Member tips for every summit: trails, parking, where to set up.', 'you want to know the hike before you go.'),
     ], alt=True, sid='guides'),
     '<section class="kb-sec"><div class="kb-in"><p class="kb-k">MAP FILES</p><h2>📥 Kentucky Summits for Your Phone or GPS</h2>' + files_box('SOTA') + '</div></section>',
