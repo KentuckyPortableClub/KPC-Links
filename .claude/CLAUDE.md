@@ -83,8 +83,9 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - KY planner (kpc-planner.js suggest()): Kentucky towns/places first as before, then out-of-state towns + POTA parks marked '(outside Kentucky)' after 300 ms; picking one = farPick(): centres there and shows 'See every park around it in the US Trip Planner ›' (kpc-planner-us.html?q=). Route boxes get the GPS numbers.
 - US planner: suggestions on #usq, #urf, #urt (local = our POTA/SOTA/WWFF list ALL, then towns); route picks remembered in PICKED for resolvePoint(); ?q= searches on load.
 
-## iPhone map labels — Oct 16 2026 (Brandon: 'writing on android and pc looks good… iphone a little weird')
-- window.kpcPlaceLabels(zIndex) (copy at the top of finder.js, kpc-planner.js, kpc-map-tools.js, kpc-padus-layer.js, kpc-us-planner.js) makes the place-name layer of every 'Satellite + Roads/Streets' map: iPhone/iPad = CARTO dark_only_labels @2x (sharp on Retina), everything else = the Esri World_Boundaries_and_Places labels as before. Don't put the Esri label URL back directly.
+## iPhone map labels — Oct 16 2026
+- window.kpcPlaceLabels(zIndex) (copy at the top of finder.js, kpc-planner.js, kpc-map-tools.js, kpc-padus-layer.js, kpc-us-planner.js) = the Esri World_Boundaries_and_Places label layer on every 'Satellite + Roads/Streets' map. An iPhone-only CARTO dark_only_labels swap was tried and REMOVED the same day: CARTO tiles now say 'API KEY REQUIRED'. Don't use CARTO basemaps without a key. Brandon still finds 'text' a little off on iPhone (unclear which text; raster labels are the same picture on every device).
+- KPCTA (Kit, Info Finder, In-Park…): a bare 3-5 digit number = POTA US-; typed numbers are padded (US-785 → US-0785, KFF-50 → KFF-0050, W4K/EC-1 → W4K/EC-001) and looked up for their real name (POTA api / data/wwff / SOTA api) under 'FOUND'.
 
 ## Harmonics Planner (kpc-harmonics.html) — Oct 16 2026
 - Built from Brandon's claude.ai preview 'KPC Harmonics Planner' (another chat). Source .claude/build/harmonics/main.html (assemble.py). Hero = hero-mast.jpg picture + chips, like the Antenna Calculator (Oct 16). All page classes that clashed with site CSS are renamed hm-* and every rule is scoped to main#hm; the band bars (.track/.avoid) carry data-keep-light with their own html[data-theme=dark] colours.

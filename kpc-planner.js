@@ -1,8 +1,6 @@
-/* place-name labels over satellite: iPhones/iPads get CARTO's sharp high-resolution labels (Brandon Oct 16: the Esri
-   labels looked fuzzy on iPhone); Android and computers keep the Esri labels. */
-window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
- var o={maxZoom:19};if(z)o.zIndex=z;
- if(ios){o.subdomains='abcd';o.attribution='Labels © CARTO, © OpenStreetMap contributors';return L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}@2x.png',o)}
+/* place-name labels over satellite (Esri). Oct 16: an iPhone-only CARTO version was tried and taken out again:
+   CARTO now answers 'API KEY REQUIRED' (Brandon's iPhone screenshot). Same labels on every device. */
+window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z)o.zIndex=z;
  return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',o)};
 /* KPC Trip Planner — v20261010l
    Close-up map (zoom 19, satellite + roads), official boundaries and trails,

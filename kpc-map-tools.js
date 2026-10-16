@@ -1,8 +1,6 @@
-/* place-name labels over satellite: iPhones/iPads get CARTO's sharp high-resolution labels (Brandon Oct 16: the Esri
-   labels looked fuzzy on iPhone); Android and computers keep the Esri labels. */
-window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
- var o={maxZoom:19};if(z)o.zIndex=z;
- if(ios){o.subdomains='abcd';o.attribution='Labels © CARTO, © OpenStreetMap contributors';return L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}@2x.png',o)}
+/* place-name labels over satellite (Esri). Oct 16: an iPhone-only CARTO version was tried and taken out again:
+   CARTO now answers 'API KEY REQUIRED' (Brandon's iPhone screenshot). Same labels on every device. */
+window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z)o.zIndex=z;
  return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',o)};
 /* KPC small shared helpers for the Park Info Finder and the Activation Kit.
    KPCTA.attach(input, onPick): suggestions as you type (Kentucky POTA / WWFF / SOTA from kpc-ky-data.json right away,
@@ -29,6 +27,21 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
   const kyP = fetch('kpc-ky-data.json').then(r => r.json()).then(d => { KY = [].concat((d.parks || []).map(p => [p.c, p.n, 'POTA · KY']), (d.kff || []).map(p => [p.c, p.n, 'WWFF · KY']), (d.summits || []).map(p => [p.c, p.n, 'SOTA · KY'])); }).catch(() => { KY = []; });
   const isRef = q => /^[A-Z0-9]{1,4}(\/[A-Z0-9]{2})?-\d{1,5}$/.test(q);
   const prog = r => /\//.test(r) ? 'SOTA' : /FF-/.test(r) ? 'WWFF' : 'POTA';
+  const padRef = r => { if (/^\d{3,5}$/.test(r)) r = 'US-' + r;   /* a bare number = a POTA park */
+    const m = r.match(/^([A-Z0-9]{1,4}\/[A-Z0-9]{2})-(\d{1,3})$/); if (m) return m[1] + '-' + m[2].padStart(3, '0');
+    const k = r.match(/^([A-Z0-9]{1,4})-(\d{1,5})$/); return k ? k[1] + '-' + k[2].padStart(4, '0') : r; };
+  /* the real name of a typed number from anywhere (POTA from api.pota.app, WWFF from our weekly copy) */
+  const nameCache = {};
+  async function refName(r) {
+    if (r in nameCache) return nameCache[r];
+    let out = null;
+    try {
+      if (/\//.test(r)) { const [a, b] = r.split('/'); const j = await fetch('https://api2.sota.org.uk/api/summits/' + encodeURIComponent(a) + '/' + encodeURIComponent(b)).then(x => x.ok ? x.json() : null); if (j && j.name) out = [r, j.name, 'SOTA']; }
+      else if (/FF-/.test(r)) { const rows = await fetch('data/wwff/' + r.split('-')[0] + '.json').then(x => x.ok ? x.json() : []); const x = rows.find(y => y[0] === r); if (x) out = [r, x[1], 'WWFF' + (x[5] ? ' · ' + x[5] : '')]; }
+      else { const j = await fetch('https://api.pota.app/park/' + encodeURIComponent(r)).then(x => x.ok ? x.json() : null); if (j && j.name) out = [r, j.name + (j.parktypeDesc && !new RegExp(j.parktypeDesc, 'i').test(j.name) ? ' ' + j.parktypeDesc : ''), 'POTA' + (j.locationDesc ? ' · ' + String(j.locationDesc).replace(/^US-/, '').split(',')[0] : '')]; }
+    } catch (e) {}
+    return (nameCache[r] = out);
+  }
 
   function attach(input, onPick) {
     const wrap = document.createElement('div'); wrap.className = 'kta-wrap';
@@ -39,26 +52,32 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
     const close = () => { box.classList.remove('on'); sel = -1; };
     const draw = (local, far, q) => {
       items = []; let h = '';
-      const up = q.toUpperCase().replace(/\s+/g, '');
-      if (isRef(up) && !local.some(x => x[0] === up)) { items.push([up, 'Look up ' + up, prog(up)]); }
+      const up = padRef(q.toUpperCase().replace(/\s+/g, ''));
+      const lookRow = isRef(up) && !local.some(x => x[0] === up) && !far.some(x => x[0] === up);
+      if (lookRow) { items.push([up, 'Look up ' + up, prog(up)]); }
       if (local.length) { items.push(...local); }
       if (far.length) items.push(...far);
       if (!items.length) { close(); return; }
       let i = 0;
       const row = x => `<button type="button" data-i="${i++}" role="option"><b>${esc(x[1])}</b><span>${esc(x[2])} · ${esc(x[0])}</span></button>`;
-      const nRef = isRef(up) && !local.some(x => x[0] === up) ? 1 : 0;
+      const nRef = lookRow ? 1 : 0;
       h += items.slice(0, nRef).map(row).join('');
       if (local.length) h += '<div class="kta-h">KENTUCKY</div>' + local.map(row).join('');
-      if (far.length) h += '<div class="kta-h">POTA PARKS EVERYWHERE</div>' + far.map(row).join('');
+      if (far.length) h += '<div class="kta-h">' + (isRef(up) ? 'FOUND' : 'POTA PARKS EVERYWHERE') + '</div>' + far.map(row).join('');
       box.innerHTML = h; box.classList.add('on'); sel = -1;
     };
     async function suggest() {
       const q = input.value.trim(), my = ++seq; if (q.length < 2) { close(); return; }
       await kyP;
-      const l = q.toLowerCase(), up = q.toUpperCase().replace(/\s+/g, '');
+      const l = q.toLowerCase(), up = padRef(q.toUpperCase().replace(/\s+/g, ''));
       const local = (KY || []).filter(x => x[1].toLowerCase().includes(l) || x[0].startsWith(up)).sort((a, b) => (b[1].toLowerCase().startsWith(l) - a[1].toLowerCase().startsWith(l)) || a[1].localeCompare(b[1])).slice(0, 8);
       draw(local, [], q);
-      if (q.length < 3 || isRef(up)) return;
+      if (isRef(up)) {                              /* a typed number: show its real name */
+        if (local.some(x => x[0] === up)) return;
+        const hit = await refName(up); if (my !== seq || !hit) return;
+        draw(local, [hit], q); return;
+      }
+      if (q.length < 3) return;
       try {
         const c = new AbortController(), tm = setTimeout(() => c.abort(), 8000);
         const L = await fetch('https://api.pota.app/lookup?search=' + encodeURIComponent(q) + '&size=60', { signal: c.signal }).then(r => r.json()); clearTimeout(tm);
