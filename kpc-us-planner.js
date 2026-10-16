@@ -40,23 +40,6 @@ async function addLive(la,lo,mi){if(!progs.includes('POTA'))return 0;let added=0
  return added}
 
 /* ---------- map ---------- */
-function nationalTrails(map){
- const g=L.layerGroup(),done={};let IDX=null,busy=false;
- map.createPane('kpcTrails');map.getPane('kpcTrails').style.zIndex=390;
- const rend=L.svg({pane:'kpcTrails',padding:.5});
- const pop=t=>`<div class="us-pop"><b>${esc(t.name)}</b><div class="meta">POTA <b>${esc(t.ref)}</b> · ${t.kind==='NST'?'National Scenic Trail':'National Historic Trail'}</div>`+
-  `<div class="meta" style="margin-top:6px">Official route from the ${esc(t.by)}. A trail is one POTA park along its whole length: check the trail's POTA page for where you can set up.</div>`+
-  `<div class="acts"><a href="${KPC.links.pota(t.ref)}" target="_blank" rel="noopener">POTA PAGE ↗</a></div></div>`;
- async function load(){if(!map.hasLayer(g)||busy)return;busy=true;
-  try{if(!IDX)IDX=await fetch('data/trails/index.json').then(r=>r.json()).catch(()=>[]);
-   const b=map.getBounds().pad(.3),W=b.getWest(),S=b.getSouth(),E=b.getEast(),N=b.getNorth();
-   for(const t of IDX){if(done[t.ref]||t.bbox[0]>E||t.bbox[2]<W||t.bbox[1]>N||t.bbox[3]<S)continue;done[t.ref]=1;
-    fetch('data/trails/'+t.ref+'.json').then(r=>r.json()).then(f=>{
-     const st={renderer:rend,interactive:false,style:{color:'#1b1b1b',weight:6,opacity:.55}};
-     const casing=L.geoJSON(f,st),line=L.geoJSON(f,{renderer:rend,style:{color:t.kind==='NST'?'#ff5fa2':'#ffb347',weight:3,opacity:.95,dashArray:t.kind==='NST'?null:'9 6'}});
-     line.bindPopup(pop(t),{maxWidth:300});line.bindTooltip(t.name,{sticky:true});g.addLayer(casing);g.addLayer(line)}).catch(()=>{delete done[t.ref]})}}
-  finally{busy=false}}
- g.on('add',load);map.on('moveend',load);return g}
 function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>';return}
  /* dots are drawn on a canvas; tolerance widens the tap area around each dot (more on touch screens) */
  map=L.map('usmap',{preferCanvas:true,renderer:L.canvas({padding:.5,tolerance:TAP?14:5}),scrollWheelZoom:false}).setView([38.5,-96],4);
@@ -93,7 +76,8 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  const offi=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);   /* streets + names above the boundary outlines (zIndex 6) */
  const OFF='Satellite + Streets + Official Boundaries';
- const base={'Street':street,'Terrain':terrain,'Satellite':sat,'Satellite + Streets':hyb,[OFF]:offi,'Satellite + Park Lines (Beta)':beta};let want=store.get('kpcUsBase',pad?OFF:'Street');if(want==='Satellite + Official Boundaries')want=OFF;(base[want]||street).addTo(map);
+ /* 'Satellite + Park Lines (Beta)' retired Oct 16 (repainted street tiles made iPhone text look odd); official boundaries replace it */
+ const base={'Street':street,'Terrain':terrain,'Satellite':sat,'Satellite + Streets':hyb,[OFF]:offi};let want=store.get('kpcUsBase',pad?OFF:'Street');if(want==='Satellite + Official Boundaries'||/Park Lines/.test(want))want=pad?OFF:'Satellite + Streets';(base[want]||street).addTo(map);
  if(pad){if(store.get('kpcUsPad',true)||want===OFF)pad.layer.addTo(map);
   map.on('baselayerchange',e=>{if(e.name===OFF&&!map.hasLayer(pad.layer))pad.layer.addTo(map)});
   map.on('overlayadd',e=>{if(e.layer===pad.layer)store.set('kpcUsPad',true)});map.on('overlayremove',e=>{if(e.layer===pad.layer)store.set('kpcUsPad',false)})}
@@ -101,12 +85,12 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
   d.innerHTML=`<label>PARK LINES <input type="range" min="30" max="100" step="5" value="${Math.round(glowStrength()*100)}" aria-label="Park line strength"></label><small>Zoom in to county level to see park borders</small>`;
   L.DomEvent.disableClickPropagation(d);L.DomEvent.disableScrollPropagation(d);
   d.querySelector('input').oninput=e=>{lines.setOpacity(e.target.value/100);store.set('kpcUsGlow',+e.target.value)};return d};
- const showGlow=name=>{if(name==='Satellite + Park Lines (Beta)')glow.addTo(map);else glow.remove()};showGlow(base[want]?want:'Street');
+ const showGlow=()=>{};
  map.on('baselayerchange',e=>showGlow(e.name));
  /* National Scenic / Historic Trails that are POTA parks (data/trails, official lines from the NPS, Forest Service and
     trail partners, refreshed monthly by kpc-us-trails.yml). Only trails crossing the map view are loaded. Drawn in their
     own pane under the park dots so a tap on a dot still opens the dot. */
- const trails=nationalTrails(map);
+ const trails=window.KPCTrails?KPCTrails(map):L.layerGroup();
  const over={};if(pad)over['Official park boundaries (PAD-US)']=pad.layer;over['National trails (POTA parks)']=trails;
  if(store.get('kpcUsTrails',true))trails.addTo(map);
  map.on('overlayadd',e=>{if(e.layer===trails)store.set('kpcUsTrails',true)});map.on('overlayremove',e=>{if(e.layer===trails)store.set('kpcUsTrails',false)});
