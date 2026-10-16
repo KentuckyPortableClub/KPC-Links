@@ -23,6 +23,8 @@ The tag is removed before posting. Words in the middle of a sentence never send 
 
 `Email:`  →  Groups.io now + subscribers on Sunday
 
+📧 Subscribers pick what they get: **Everything**, **Campout only** (only posts that mention the campout) or **Sunday roundup only** (one email a week with everything).
+
 `All:`  →  everywhere
 
 Mix them in any order: `Facebook + Groups.io:`  `FB+Discord:`
