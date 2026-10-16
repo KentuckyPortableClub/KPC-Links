@@ -8,6 +8,7 @@ HOW A POST IS READ (Brandon Oct 15). Words at the very START of the post, before
   when          : Post Oct 20 8am / Schedule Friday 6pm / Post tomorrow noon  (waits until then, Central time)
   what kind     : Event (calendar)  /  Conditions US-1277 (red park warning, 30 days)  /  Activation (News page reports)
   extra page    : Campout / Announcement (these also still work anywhere in the post)
+  not shared    : Skip: / Ignore: / Do not share:  (notes and the pinned how-to guide in the channel)
   Mix with + or spaces: "Now + Facebook:", "Campout + All:", "Event + Email:", "Post Oct 20 8am + All:".
 No tag = Website + Facebook + the other Discord server. Email ONLY when the tag says Email / Groups.io / Subscribers /
 All / Now. Website posts also go to the other Discord server (RELAY_DISCORD_WEBHOOKS).
@@ -106,7 +107,7 @@ WORDS = [  # (pattern, flag)  -- every word in a tag must be one of these, or it
     (r'facebook|fb', 'fb'), (r'discord', 'dc'), (r'web ?site|web|site', 'web'), (r'all|everything|everywhere', 'all'),
     (r'now|urgent|important|asap', 'now'), (r'post|schedule[d]?|send', 'sched'),
     (r'events?', 'event'), (r'conditions?|park alert|warning', 'cond'), (r'activation(?: report)?s?', 'act'),
-    (r'camp ?-?out', 'campout'), (r'announcements?', 'news'), (r'only|and|also|\+|&|,|/|-', None),
+    (r'skip|ignore|do not share|don.?t share|not for sharing', 'skip'), (r'camp ?-?out', 'campout'), (r'announcements?', 'news'), (r'only|and|also|\+|&|,|/|-', None),
     (r'US-\d{4,5}|KFF-\d{4}|W4K/[A-Z]{2}-\d{3}', 'ref'), (D_ANY, 'date'), (r'\d{5}', 'date')]
 WRX = re.compile(r'\s*(?:' + '|'.join('(' + p + ')' for p, _ in WORDS) + r')(?:(?<=[^\w])|(?![\w/-]))', re.I)   # "+" may touch the next word
 
@@ -602,6 +603,7 @@ for m in window:
     if not DRY: state['last_id'] = m['id']
     if m.get('author', {}).get('bot') or m.get('type', 0) not in (0, 19): continue
     p = parse(m)
+    if 'skip' in p['flags']: notice(f"Post {m['id']} starts with Skip:, so it was not shared."); continue
     if p['due']:
         if DRY: notice(f"[dry run] post {m['id']} waits until {p['due']:%a %b %-d %-I:%M %p} Central"); continue
         sched[m['id']] = p['due'].isoformat(); react(m['id'], '⏰')
