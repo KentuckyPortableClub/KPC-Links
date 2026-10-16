@@ -174,7 +174,7 @@
     const fc = { type: 'FeatureCollection', features: feats.map(f => ({ type: 'Feature', properties: { NAME: f._nm }, geometry: f.geometry })) };
     geo = feats.length ? fc : null;
     if (feats.length) {
-      const lay = L.geoJSON(fc, { style: kpc ? { color: '#ffd400', weight: 3, dashArray: '12 5 2 5', fillOpacity: 0 } : { color: '#ffb000', weight: 3, fillColor: '#ffb000', fillOpacity: .12 } }).addTo(map);
+      const lay = L.geoJSON(fc, { style: kpc ? { color: '#ffd400', weight: 3, dashArray: '12 5 2 5', fillOpacity: 0 } : { color: '#ffb000', weight: 3, fillColor: '#ffb000', fillOpacity: 0 } }).addTo(map);
       if (!proc) try { map.fitBounds(lay.getBounds(), { padding: [16, 16], maxZoom: 15 }); } catch (e) {}
       $('kitBnd').innerHTML = (kpc ? '<b>Approximate outline drawn by KPC</b> from OpenStreetMap (this park has no official map file). OpenStreetMap is drawn by volunteers, so it can be off; check the park\'s own map.' : proc ? 'Daniel Boone National Forest outer line (it includes private land).' : 'Official boundary' + (feats[0]._L ? ' from ' + [...new Set(feats.map(f => f._L.agency))].map(esc).join(' and ') : ' (USGS PAD-US)') + '.') + (ap.length ? ` Green dots: ${ap.length} parking / trailhead / entrance point${ap.length > 1 ? 's' : ''} (tap for directions).` : '');
       files(fc);
