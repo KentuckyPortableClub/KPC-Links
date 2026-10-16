@@ -1,0 +1,9 @@
+name: zz POTA api test (temporary)
+on: workflow_dispatch
+jobs:
+  t:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for u in "https://api.pota.app/lookup?search=shawnee&size=5" "https://api.pota.app/park/US-7856" "https://api.pota.app/lookup?search=US-7856&size=5" "https://geocoding-api.open-meteo.com/v1/search?count=3&countryCode=US&name=Asheville"; do
+            b=$(curl -s -D /tmp/h "$u" | head -c 700 | tr '\n' ' '); c=$(grep -i '^access-control-allow-origin' /tmp/h | tr -d '\r'); echo "::notice title=$(echo $u | cut -c9-60)::[$c] $b"; done
