@@ -99,7 +99,7 @@ MONTHS = {m: i + 1 for i, m in enumerate(['jan', 'feb', 'mar', 'apr', 'may', 'ju
 DAYS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 D_MONTH = r'(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?'
 D_DAY = r'(?:mon(?:day)?|tue(?:s(?:day)?)?|wed(?:nesday)?|thu(?:rs(?:day)?)?|fri(?:day)?|sat(?:urday)?|sun(?:day)?)\.?'
-D_TIME = r'(?:\d{1,2}(?::\d{2})?\s*(?:a\.?m\.?|p\.?m\.?|a|p)\b|\d{1,2}:\d{2}|noon|midnight)'
+D_TIME = r'(?:\d{1,2}(?::\d{2})?\s*(?:a\.?m\.?|p\.?m\.?|a|p)(?!\w)|\d{1,2}:\d{2}|noon|midnight)'
 D_ANY = r'(?:' + D_MONTH + r'|' + D_DAY + r'|' + D_TIME + r'|\d{1,2}/\d{1,2}(?:/\d{2,4})?|\d{1,2}(?:st|nd|rd|th)?|\d{4}|tomorrow|today|tonight|at|on|of|,)'
 REFRX = r'(?:US-\d{4,5}|KFF-\d{4}|W4K/[A-Z]{2}-\d{3}|\d{4,5})'
 WORDS = [  # (pattern, flag)  -- every word in a tag must be one of these, or it's just normal text
@@ -155,7 +155,7 @@ def parse_when(s, base=None, default_hour=8):
             ahead = (DAYS.index(m.group(1)) - base.weekday()) % 7
             d = base.date() + datetime.timedelta(days=ahead)
     hh = mm = None
-    m = re.search(r'\b(\d{1,2})(?::(\d{2}))?\s*(a\.?m\.?|p\.?m\.?|a|p)\b', s)
+    m = re.search(r'\b(\d{1,2})(?::(\d{2}))?\s*(a\.?m\.?|p\.?m\.?|a|p)(?!\w)', s)
     if m:
         hh, mm = int(m.group(1)) % 12, int(m.group(2) or 0)
         if m.group(3).startswith('p'): hh += 12
