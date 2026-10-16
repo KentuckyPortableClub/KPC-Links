@@ -34,6 +34,7 @@ jobs:
           RELAY_SMTP_USER: ${{ secrets.RELAY_SMTP_USER }}
           RELAY_SMTP_PASS: ${{ secrets.RELAY_SMTP_PASS }}
           GROUPSIO_TO: ${{ secrets.GROUPSIO_TO }}
+          GROUPSIO_SUBJECT: ${{ vars.GROUPSIO_SUBJECT }}
           SUBSCRIBE_SHEET_CSV: ${{ secrets.SUBSCRIBE_SHEET_CSV }}
           RELAY_MAIL_URL: ${{ secrets.RELAY_MAIL_URL }}
           RELAY_MAIL_KEY: ${{ secrets.RELAY_MAIL_KEY }}
