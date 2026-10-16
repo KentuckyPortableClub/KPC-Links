@@ -60,6 +60,25 @@ def fetch(u, lid):
         off += len(fs)
         if not fs or off > 60000: break
     return feats
+def fetch_esri(u, lid):
+    """the same query in Esri's own format (paths / rings), for services whose GeoJSON comes back empty"""
+    out, off = [], 0
+    for tol in (TOL, 0):
+        out, off = [], 0
+        while True:
+            q = urllib.parse.urlencode({'where': '1=1', 'outFields': 'OBJECTID', 'returnGeometry': 'true', 'returnZ': 'false', 'returnM': 'false', 'outSR': 4326,
+                                        'maxAllowableOffset': tol, 'resultOffset': off, 'resultRecordCount': 500, 'f': 'json'})
+            j = get(f'{u}/{lid}/query?{q}', 180)
+            if j.get('error'): note('esri error', f"{u} {j['error']}"); break
+            fs = j.get('features') or []
+            for f in fs:
+                g = f.get('geometry') or {}
+                if g.get('paths'): out.append({'type': 'MultiLineString', 'coordinates': g['paths']})
+                elif g.get('rings'): out.append({'type': 'MultiLineString', 'coordinates': g['rings']})
+            if not j.get('exceededTransferLimit') or not fs or off > 60000: break
+            off += len(fs)
+        if out: break
+    return out
 def lines_of(g):
     if not g: return []
     t, c = g.get('type'), g.get('coordinates')
@@ -76,8 +95,10 @@ for x in T:
     try:
         u = svc(x); lid = pick_layer(u, x.get('layer'))
         L = []
-        for f in fetch(u, lid):
-            for ln in lines_of(f.get('geometry')):
+        geoms = [f.get('geometry') for f in fetch(u, lid)]
+        if not any(lines_of(g) for g in geoms): geoms = fetch_esri(u, lid)     # some services won't hand out GeoJSON
+        for g in geoms:
+            for ln in lines_of(g):
                 pts = [[round(p[0], 5), round(p[1], 5)] for p in ln if p and len(p) >= 2]
                 pts = [p for i, p in enumerate(pts) if i == 0 or p != pts[i - 1]]
                 if len(pts) > 1: L.append(pts)
