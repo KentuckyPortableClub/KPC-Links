@@ -1,0 +1,314 @@
+[
+{
+"ref": "US-4565",
+"name": "Ala Kahakai National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-156.0617,
+18.9108,
+-155.0162,
+20.2685
+],
+"by": "National Park Service",
+"kb": 19
+},
+{
+"ref": "US-4556",
+"name": "Appalachian National Scenic Trail",
+"kind": "NST",
+"bbox": [
+-84.1986,
+34.6266,
+-68.9215,
+45.9045
+],
+"by": "National Park Service",
+"kb": 235
+},
+{
+"ref": "US-4557",
+"name": "Arizona National Scenic Trail",
+"kind": "NST",
+"bbox": [
+-112.1892,
+31.3336,
+-110.2779,
+37.0011
+],
+"by": "Arizona Trail Association (USFS partner)",
+"kb": 73
+},
+{
+"ref": "US-9757",
+"name": "Butterfield Overland National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-122.4659,
+30.5268,
+-90.718,
+38.6719
+],
+"by": "National Park Service",
+"kb": 136
+},
+{
+"ref": "US-4566",
+"name": "California National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-123.4146,
+37.988,
+-94.4156,
+44.9193
+],
+"by": "National Park Service",
+"kb": 245
+},
+{
+"ref": "US-4558",
+"name": "Continental Divide National Scenic Trail",
+"kind": "NST",
+"bbox": [
+-113.9362,
+31.4953,
+-105.6619,
+49.0468
+],
+"by": "U.S. Forest Service",
+"kb": 228
+},
+{
+"ref": "US-4569",
+"name": "El Camino Real de Tierra Adentro National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-100.3301,
+27.2155,
+-93.0893,
+31.7549
+],
+"by": "National Park Service",
+"kb": 54
+},
+{
+"ref": "US-4568",
+"name": "El Camino Real de los Tejas National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-107.1444,
+31.5514,
+-105.939,
+36.0567
+],
+"by": "National Park Service",
+"kb": 19
+},
+{
+"ref": "US-4238",
+"name": "Ice Age National Scenic Trail",
+"kind": "NST",
+"bbox": [
+-92.6496,
+42.6676,
+-87.3809,
+45.6775
+],
+"by": "Ice Age Trail Alliance (NPS partner)",
+"kb": 53
+},
+{
+"ref": "US-4572",
+"name": "Lewis and Clark National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-124.064,
+36.9707,
+-80.0113,
+48.7027
+],
+"by": "National Park Service",
+"kb": 204
+},
+{
+"ref": "US-4573",
+"name": "Mormon Pioneer National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-111.8863,
+40.523,
+-91.3995,
+42.8666
+],
+"by": "National Park Service",
+"kb": 43
+},
+{
+"ref": "US-4560",
+"name": "Natchez Trace National Scenic Trail",
+"kind": "NST",
+"bbox": [
+-91.3684,
+31.5457,
+-86.9745,
+36.0318
+],
+"by": "National Park Service",
+"kb": 15
+},
+{
+"ref": "US-4574",
+"name": "Nez Perce (Nee-Me-Poo) National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-117.2303,
+44.0089,
+-108.6399,
+48.378
+],
+"by": "U.S. Forest Service",
+"kb": 74
+},
+{
+"ref": "US-4239",
+"name": "North Country National Scenic Trail",
+"kind": "NST",
+"bbox": [
+-101.4535,
+38.6872,
+-72.8392,
+48.1021
+],
+"by": "North Country Trail Association (NPS partner)",
+"kb": 367
+},
+{
+"ref": "US-4575",
+"name": "Old Spanish National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-118.2301,
+34.0548,
+-105.384,
+39.2221
+],
+"by": "National Park Service",
+"kb": 67
+},
+{
+"ref": "US-4576",
+"name": "Oregon National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-122.7904,
+38.8006,
+-94.4168,
+45.7416
+],
+"by": "National Park Service",
+"kb": 79
+},
+{
+"ref": "US-4577",
+"name": "Overmountain Victory National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-82.2637,
+35.0734,
+-80.8621,
+36.7048
+],
+"by": "National Park Service",
+"kb": 15
+},
+{
+"ref": "US-4578",
+"name": "Pony Express National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-122.4007,
+37.7921,
+-94.8606,
+42.8667
+],
+"by": "National Park Service",
+"kb": 68
+},
+{
+"ref": "US-4564",
+"name": "Potomac Heritage National Scenic Trail",
+"kind": "NST",
+"bbox": [
+-79.4951,
+37.8437,
+-76.2584,
+40.4087
+],
+"by": "National Park Service",
+"kb": 56
+},
+{
+"ref": "US-4579",
+"name": "Santa Fe National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-105.9386,
+35.3672,
+-92.7415,
+39.2145
+],
+"by": "National Park Service",
+"kb": 63
+},
+{
+"ref": "US-4580",
+"name": "Selma to Montgomery National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-87.02,
+32.2617,
+-86.3012,
+32.4124
+],
+"by": "National Park Service",
+"kb": 1
+},
+{
+"ref": "US-4581",
+"name": "Star-Spangled Banner National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-77.3011,
+37.8293,
+-75.8243,
+39.6039
+],
+"by": "National Park Service",
+"kb": 20
+},
+{
+"ref": "US-3791",
+"name": "Trail of Tears National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-95.1191,
+33.7775,
+-83.3812,
+37.9969
+],
+"by": "National Park Service",
+"kb": 282
+},
+{
+"ref": "US-4582",
+"name": "Washington-Rochambeau Revolutionary Route National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-77.4723,
+37.2288,
+-71.0509,
+42.3597
+],
+"by": "National Park Service",
+"kb": 26
+}
+]
