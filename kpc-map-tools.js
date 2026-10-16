@@ -43,27 +43,31 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
     return (nameCache[r] = out);
   }
 
-  function attach(input, onPick) {
+  function attach(input, onPick, opts) {
+    opts = opts || {};
     const wrap = document.createElement('div'); wrap.className = 'kta-wrap';
     input.parentNode.insertBefore(wrap, input); wrap.appendChild(input);
     input.removeAttribute('list'); input.setAttribute('autocomplete', 'off');
     const box = document.createElement('div'); box.className = 'kta'; box.setAttribute('role', 'listbox'); wrap.appendChild(box);
     let t = null, seq = 0, items = [], sel = -1;
     const close = () => { box.classList.remove('on'); sel = -1; };
-    const draw = (local, far, q) => {
+    const draw = (local, far, q, towns) => {
+      towns = towns || [];
       items = []; let h = '';
       const up = padRef(q.toUpperCase().replace(/\s+/g, ''));
       const lookRow = isRef(up) && !local.some(x => x[0] === up) && !far.some(x => x[0] === up);
       if (lookRow) { items.push([up, 'Look up ' + up, prog(up)]); }
       if (local.length) { items.push(...local); }
       if (far.length) items.push(...far);
+      if (towns.length) items.push(...towns);
       if (!items.length) { close(); return; }
       let i = 0;
-      const row = x => `<button type="button" data-i="${i++}" role="option"><b>${esc(x[1])}</b><span>${esc(x[2])} · ${esc(x[0])}</span></button>`;
+      const row = x => `<button type="button" data-i="${i++}" role="option"><b>${esc(x[1])}</b><span>${esc(x[2])}${x[0] ? ' · ' + esc(x[0]) : ''}</span></button>`;
       const nRef = lookRow ? 1 : 0;
       h += items.slice(0, nRef).map(row).join('');
       if (local.length) h += '<div class="kta-h">KENTUCKY</div>' + local.map(row).join('');
       if (far.length) h += '<div class="kta-h">' + (isRef(up) ? 'FOUND' : 'POTA PARKS EVERYWHERE') + '</div>' + far.map(row).join('');
+      if (towns.length) h += '<div class="kta-h">TOWNS: SHOW WHAT\'S NEARBY</div>' + towns.map(row).join('');
       box.innerHTML = h; box.classList.add('on'); sel = -1;
     };
     async function suggest() {
@@ -78,13 +82,17 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
         draw(local, [hit], q); return;
       }
       if (q.length < 3) return;
+      /* towns anywhere in the US (kpc-place-suggest.js), when the page asks for them */
+      const twP = opts.onTown && window.KPCPlace ? KPCPlace.towns(q).then(a => a.slice(0, 5).map(t => ['', t.v, t.k, { town: 1, la: t.la, lo: t.lo, v: t.v }])).catch(() => []) : Promise.resolve([]);
+      let far = [];
       try {
         const c = new AbortController(), tm = setTimeout(() => c.abort(), 8000);
         const L = await fetch('https://api.pota.app/lookup?search=' + encodeURIComponent(q) + '&size=60', { signal: c.signal }).then(r => r.json()); clearTimeout(tm);
         if (my !== seq) return;
-        const far = (L || []).filter(x => x.type === 'park' && !local.some(y => y[0] === x.value)).sort((a, b) => (/^US-/.test(b.value) - /^US-/.test(a.value))).slice(0, 10).map(x => [x.value, x.display.replace(/^\S+\s+/, ''), 'POTA']);
-        draw(local, far, q);
+        far = (L || []).filter(x => x.type === 'park' && !local.some(y => y[0] === x.value)).sort((a, b) => (/^US-/.test(b.value) - /^US-/.test(a.value))).slice(0, 10).map(x => [x.value, x.display.replace(/^\S+\s+/, ''), 'POTA']);
       } catch (e) {}
+      const towns = await twP; if (my !== seq) return;
+      draw(local, far, q, towns);
     }
     input.addEventListener('input', () => { clearTimeout(t); t = setTimeout(suggest, 180); });
     input.addEventListener('focus', () => { if (input.value.trim().length >= 2) suggest(); });
@@ -95,7 +103,7 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
       else if (e.key === 'Escape') close();
     });
     box.addEventListener('mousedown', e => e.preventDefault());
-    box.addEventListener('click', e => { const b = e.target.closest('button[data-i]'); if (!b) return; const x = items[+b.dataset.i]; close(); input.value = x[0]; input.blur(); onPick(x[0], x); });
+    box.addEventListener('click', e => { const b = e.target.closest('button[data-i]'); if (!b) return; const x = items[+b.dataset.i]; close(); input.blur(); if (x[3] && x[3].town) { input.value = x[1]; opts.onTown(x[3]); return; } input.value = x[0]; onPick(x[0], x); });
     document.addEventListener('click', e => { if (!wrap.contains(e.target)) close(); });
     return { close };
   }
