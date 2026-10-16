@@ -1,0 +1,29 @@
+/* KPC "dressed-up" tool pages (Oct 16 2026, Brandon: dress up the KY planner, Activation Kit, Am I in the Park?,
+   Info Finder and Park Commander like the KPC US Trip Planner).
+   Use: <body class="kd" style="--kd-bg:url('bg-lake-camp.jpg');--kd-bgm:url('bg-lake-camp-mobile.jpg')">
+   A soft, darkened picture sits behind the page (fixed); content sits on cream cards (.panel, .kd-card, .note). */
+body.kd{background:#0b120e}
+body.kd::before{content:"";position:fixed;inset:0;z-index:-1;background:#0b120e var(--kd-bg) center/cover no-repeat}
+@media(max-width:700px){body.kd::before{background-image:var(--kd-bgm,var(--kd-bg))}}
+body.kd main,body.kd .section{background:transparent}
+body.kd .tool-head{border-bottom:3px solid #d5a63a}
+body.kd .tool-head h1{font-size:clamp(36px,6vw,62px)}
+body.kd .tool-head .kd-go{display:inline-block;margin-top:18px;font:900 13px Arial,sans-serif;letter-spacing:1.2px;padding:13px 20px;border-radius:10px;background:#d5a63a;color:#0b0b0b;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+body.kd .toolnav{background:rgba(7,7,7,.85)}
+body.kd .section{padding-top:8px}
+body.kd .panel:not(.dark),body.kd .kd-card,body.kd .note{background:rgba(255,250,240,.97);border-radius:16px;border:1px solid rgba(213,166,58,.35);box-shadow:0 18px 44px rgba(0,0,0,.38)}
+body.kd .panel.dark{border-radius:16px;box-shadow:0 18px 44px rgba(0,0,0,.45)}
+body.kd .kd-card{padding:20px;margin:20px 0}
+body.kd .note{padding:16px 20px;color:#3d3a33;margin-top:20px}
+body.kd .map{border-radius:12px;overflow:hidden}
+body.kd .kpc-disclaim{margin-top:20px!important}
+body.kd .kpc-disclaim>div{border-radius:14px!important;box-shadow:0 18px 44px rgba(0,0,0,.3)}
+.kd-h{display:flex;align-items:center;gap:12px;margin:0 0 14px}
+.kd-h .n{flex:0 0 34px;height:34px;border-radius:50%;background:#171717;color:#f0c96b;font:900 15px/34px Arial,sans-serif;text-align:center;border:2px solid #d5a63a}
+.kd-h h2{margin:0;font:900 22px/1.15 Georgia,serif;color:#171717}
+.kd-h small{display:block;font:13px/1.4 Arial,sans-serif;color:#5e584d;margin-top:2px}
+.kd-brand{display:flex;align-items:center;gap:10px;font:900 13px Arial,sans-serif;letter-spacing:1.4px;color:#1d5a3a;margin:0 0 10px}
+.kd-brand img{width:34px;height:34px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px #d5a63a}
+.kd-brand b{display:block;font-size:11px;letter-spacing:2px;color:#8a6a1c}
+@media(max-width:600px){body.kd .kd-card{padding:15px;border-radius:14px;margin:14px 0}.kd-h h2{font-size:19px}
+ body.kd .map .leaflet-control-attribution{font-size:9px;line-height:1.3}body.kd .map .leaflet-bottom.leaflet-left{bottom:24px}}
