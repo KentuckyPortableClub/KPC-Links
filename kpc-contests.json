@@ -1,88 +1,6 @@
 {
- "updated": "2026-10-15T11:58:40Z",
+ "updated": "2026-10-16T11:06:38Z",
  "week": [
-  {
-   "name": "Walk for the Bacon QRP Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fgo97",
-   "when": "0000Z-0100Z, Oct 15 and 0200Z-0300Z, Oct 16",
-   "segs": [
-    [
-     "2026-10-15T00:00Z",
-     "2026-10-15T01:00Z"
-    ],
-    [
-     "2026-10-16T02:00Z",
-     "2026-10-16T03:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [
-    "QRP"
-   ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "NTC QSO Party",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fbyih",
-   "when": "1900Z-2000Z, Oct 15",
-   "segs": [
-    [
-     "2026-10-15T19:00Z",
-     "2026-10-15T20:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [
-    "QSOPARTY"
-   ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "NCCC FT4 Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g2r1h",
-   "when": "0100Z-0130Z, Oct 16",
-   "segs": [
-    [
-     "2026-10-16T01:00Z",
-     "2026-10-16T01:30Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Weekly RTTY Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g3tmp",
-   "when": "0145Z-0215Z, Oct 16",
-   "segs": [
-    [
-     "2026-10-16T01:45Z",
-     "2026-10-16T02:15Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "NCCC Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g1nx8",
-   "when": "0230Z-0300Z, Oct 16",
-   "segs": [
-    [
-     "2026-10-16T02:30Z",
-     "2026-10-16T03:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "K1USN Slow Speed Test",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fsw21",
@@ -496,29 +414,57 @@
    "modes": [],
    "kinds": [],
    "src": "WA7BNM"
-  }
- ],
- "month": [
+  },
   {
-   "name": "Walk for the Bacon QRP Contest",
-   "url": "https://qrpcontest.com/pigwalk20",
-   "when": "",
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fq3lu",
+   "when": "0300Z-0400Z, Oct 22",
    "segs": [
     [
-     "2026-10-15T00:00Z",
-     "2026-10-16T03:01Z"
+     "2026-10-22T03:00Z",
+     "2026-10-22T04:00Z"
     ]
    ],
    "modes": [
     "CW"
    ],
-   "kinds": [
-    "QRP"
-   ],
-   "src": "CORRAL",
-   "bands": "14",
-   "exch": "Max 13 WPM: RST, SPC, name, mbr or pwr"
+   "kinds": [],
+   "src": "WA7BNM"
   },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fr66q",
+   "when": "0700Z-0800Z, Oct 22",
+   "segs": [
+    [
+     "2026-10-22T07:00Z",
+     "2026-10-22T08:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "RSGB 80m Autumn Series, SSB",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fdvrf",
+   "when": "1900Z-2030Z, Oct 22",
+   "segs": [
+    [
+     "2026-10-22T19:00Z",
+     "2026-10-22T20:30Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  }
+ ],
+ "month": [
   {
    "name": "JARL WW RTTY Contest",
    "url": "https://jarl.org",
@@ -1305,7 +1251,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (33)",
-  "CORRAL": "ok (19)"
+  "WA7BNM": "ok (31)",
+  "CORRAL": "ok (18)"
  }
 }
