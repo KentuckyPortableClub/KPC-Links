@@ -85,6 +85,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 
 ## iPhone map labels — Oct 16 2026
 - window.kpcPlaceLabels(zIndex) (copy at the top of finder.js, kpc-planner.js, kpc-map-tools.js, kpc-padus-layer.js, kpc-us-planner.js) = the Esri World_Boundaries_and_Places label layer on every 'Satellite + Roads/Streets' map. An iPhone-only CARTO dark_only_labels swap was tried and REMOVED the same day: CARTO tiles now say 'API KEY REQUIRED'. Don't use CARTO basemaps without a key. Brandon still finds 'text' a little off on iPhone (unclear which text; raster labels are the same picture on every device).
+- KPCTA.attach(input, onPick, {onTown}) : with onTown (and kpc-place-suggest.js loaded) it also lists 'TOWNS: SHOW WHAT'S NEARBY' (Open-Meteo). Activation Kit uses it: a town = listNear(la,lo,name) = up to 7 POTA/WWFF + 4 SOTA nearest (KY files + api.pota.app grids + data/wwff + data/sota tiles). Live check Oct 16 from Actions: api.pota.app lookup + /park answer with CORS *, lookup display has TWO spaces after the ref.
 - KPCTA (Kit, Info Finder, In-Park…): a bare 3-5 digit number = POTA US-; typed numbers are padded (US-785 → US-0785, KFF-50 → KFF-0050, W4K/EC-1 → W4K/EC-001) and looked up for their real name (POTA api / data/wwff / SOTA api) under 'FOUND'.
 
 ## Harmonics Planner (kpc-harmonics.html) — Oct 16 2026

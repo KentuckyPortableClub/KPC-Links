@@ -43,17 +43,24 @@
   function near() {
     if (!navigator.geolocation) return;
     $('kitPick').innerHTML = '<p class="kit-msg">Getting your location…</p>';
-    navigator.geolocation.getCurrentPosition(async pos => {
-      const la = pos.coords.latitude, lo = pos.coords.longitude, out = [];
+    navigator.geolocation.getCurrentPosition(pos => listNear(pos.coords.latitude, pos.coords.longitude),
+      () => { $('kitPick').innerHTML = '<p class="kit-msg">Could not get your location. Type the park or summit instead.</p>'; }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 60000 });
+  }
+  /* the 10 closest parks / summits to a spot (your GPS, or a town picked in the box) */
+  async function listNear(la, lo, label) {
+      if (label) $('kitPick').innerHTML = '<p class="kit-msg">Finding parks and summits near ' + B.esc(label) + '…</p>';
+      const out = [];
       D.parks.forEach(p => out.push({ c: p.c, n: p.n, d: B.km(la, lo, p.la, p.lo) }));
       D.summits.forEach(p => out.push({ c: p.c, n: p.n, d: B.km(la, lo, p.la, p.lo) }));
       if (!B.inKY(la, lo)) {
         const [P, S] = await Promise.all([B.potaNear(la, lo, 0.4).catch(() => []), B.sotaNear(la, lo, 40).catch(() => [])]);
         P.forEach(p => out.push({ c: p.ref, n: p.name, d: B.km(la, lo, p.la, p.lo) })); S.forEach(s => out.push({ c: s.ref, n: s.name, d: s.d }));
       }
-      const L = out.filter((x, i, a) => a.findIndex(y => y.c === x.c) === i).sort((a, b) => a.d - b.d).slice(0, 10);
-      $('kitPick').innerHTML = L.map(x => btn(x.c, x.n, B.dist(x.d) + ' · ' + progOf(x.c))).join('');
-    }, () => { $('kitPick').innerHTML = '<p class="kit-msg">Could not get your location. Type the park or summit instead.</p>'; }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 60000 });
+      if (!B.inKY(la, lo)) { const W = await B.wwffNear(la, lo, 40).catch(() => []); W.forEach(w => out.push({ c: w.ref, n: w.name, d: w.d })); }
+      /* parks first: up to 7 POTA / WWFF, then up to 4 SOTA summits (mountain towns would otherwise show only summits) */
+      const U = out.filter((x, i, a) => a.findIndex(y => y.c === x.c) === i).sort((a, b) => a.d - b.d);
+      const isS = x => /\//.test(x.c), L = U.filter(x => !isS(x)).slice(0, 7).concat(U.filter(isS).slice(0, 4)).sort((a, b) => a.d - b.d);
+      $('kitPick').innerHTML = (label ? '<p class="kit-msg">Closest to <b>' + B.esc(label) + '</b>: tap one.</p>' : '') + L.map(x => btn(x.c, x.n, B.dist(x.d) + ' · ' + progOf(x.c))).join('');
   }
 
   /* ---------- one place, any program: {prog, c, n, la, lo, t, where, web, off, ky, park (KY park data), sota/kff lists, ft} ---------- */
@@ -244,7 +251,7 @@
     try {
       const app = await caches.open(APP);
       const scripts = [...document.querySelectorAll('script[src],link[rel=stylesheet][href]')].map(e => e.src || e.href).filter(u => u.startsWith(location.origin) || /unpkg\.com\/leaflet@1\.9\.4/.test(u));
-      const files = ['kpc-kit.html', 'kpc-in-park.html', 'kpc-in-park.js', 'kpc-bounds.js', 'kpc-map-tools.js', 'kpc-padus-layer.js', 'kpc-ky-data.json', 'kpc-conditions.json', 'kpc-park-notes.json', 'kpc-campgrounds.json', 'KPC-logo.png'].concat(B.KY.map(L => L.file), B.tilesUsed(), p.prog === 'WWFF' && !p.ky ? ['data/wwff/' + p.c.split('-')[0] + '.json'] : []);
+      const files = ['kpc-kit.html', 'kpc-in-park.html', 'kpc-in-park.js', 'kpc-bounds.js', 'kpc-map-tools.js', 'kpc-padus-layer.js', 'kpc-place-suggest.js', 'kpc-ky-data.json', 'kpc-conditions.json', 'kpc-park-notes.json', 'kpc-campgrounds.json', 'KPC-logo.png'].concat(B.KY.map(L => L.file), B.tilesUsed(), p.prog === 'WWFF' && !p.ky ? ['data/wwff/' + p.c.split('-')[0] + '.json'] : []);
       const urls = [...new Set(files.map(f => new URL(f, location.href).href).concat(scripts).concat(['leaflet.css', 'leaflet.js', 'images/marker-icon.png', 'images/marker-icon-2x.png', 'images/marker-shadow.png', 'images/layers.png'].map(f => 'https://unpkg.com/leaflet@1.9.4/dist/' + f)))];
       let ok = 0;
       for (const u of urls) { try { const r = await fetch(u, { cache: 'reload' }); if (r.ok) { const k = new URL(u); if (k.origin === location.origin) k.search = ''; await app.put(k.href, r); ok++; } } catch (e) {} }
@@ -265,7 +272,7 @@
 
   /* ---------- start ---------- */
   $('kitForm').addEventListener('submit', e => { e.preventDefault(); pick($('kitQ').value); });
-  if (window.KPCTA) KPCTA.attach($('kitQ'), ref => open(ref));
+  if (window.KPCTA) KPCTA.attach($('kitQ'), ref => open(ref), { onTown: t => listNear(t.la, t.lo, t.v) });
   $('kitNear').addEventListener('click', near);
   document.addEventListener('click', e => { const b = e.target.closest('#kitPick [data-ref], #kitSaved [data-ref]'); if (b) { e.preventDefault(); open(b.dataset.ref); } });
   load();
