@@ -24,7 +24,7 @@ let kmHid = 0;
 function kmPick(cand){if(!KM){kmHid=0;return cand}KM.ensure(cand.filter(x=>x.k!=='kff').map(x=>({ref:x.ref,la:x.la,lo:x.lo})));
  const out=KM.filtering()?cand.filter(x=>KM.show(x.ref)):cand;kmHid=cand.length-out.length;return out}
 const kmBadge = x => KM ? KM.badge(x.ref) : '';
-function kmDot(x,o){if(!KM)return o;const m=KM.mark(x.ref);if(m.atno){o.color='#c2410c';o.weight=3}if(m.done)o.fillOpacity=.35;return o}
+function kmDot(x,o){if(!KM)return o;const m=KM.mark(x.ref);if(m.atno){o.color='#c2410c';o.weight=3}else if(m.rare){o.color='#e08a2c';o.weight=3}if(m.done)o.fillOpacity=.35;return o}
 const kmNote = () => kmHid ? ` • <b>${kmHid}</b> hidden by NEW TO ME / ATNO` : '';
 let adding = false, bReady = false;
 let X = null, OVX = null, LB = null;   // LB = Map layers dropdown; map extras (parking/entrances/overlaps) and the overlap index by reference
