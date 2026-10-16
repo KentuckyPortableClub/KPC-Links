@@ -2,5 +2,11 @@
  "url": "https://docs.google.com/forms/d/e/1FAIpQLScWT7T2nNJytN8hDIn2HEI_2GSRLt_txXjdJ_-jmi0Tk1QwrQ/viewform",
  "choiceEntry": "entry.1708769741",
  "subscribe": "Subscribe",
- "unsubscribe": "Unsubscribe"
+ "unsubscribe": "Unsubscribe",
+ "prefEntry": "entry.1771679199",
+ "prefs": {
+  "all": "Everything (all club updates)",
+  "camp": "Campout updates only",
+  "week": "Weekly roundup only (one email on Sundays)"
+ }
 }
