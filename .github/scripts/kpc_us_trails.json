@@ -1,26 +1,188 @@
 [
- {"ref":"US-4556","name":"Appalachian National Scenic Trail","url":"ANST_Centerline/FeatureServer"},
- {"ref":"US-4562","name":"Pacific Crest National Scenic Trail","url":"PacificCrestTrail/FeatureServer"},
- {"ref":"US-4564","name":"Potomac Heritage National Scenic Trail","url":"POHE_Trail_Centerline_FTDS_view/FeatureServer"},
- {"ref":"US-4560","name":"Natchez Trace National Scenic Trail","url":"NATT_TRANS_NSTTrail/FeatureServer"},
- {"ref":"US-4576","name":"Oregon National Historic Trail","url":"OREG_NHT/FeatureServer"},
- {"ref":"US-4573","name":"Mormon Pioneer National Historic Trail","url":"MOPI_NHT/FeatureServer"},
- {"ref":"US-4566","name":"California National Historic Trail","url":"CALI_NHT/FeatureServer"},
- {"ref":"US-4578","name":"Pony Express National Historic Trail","url":"POEX_NHT/FeatureServer"},
- {"ref":"US-4579","name":"Santa Fe National Historic Trail","url":"SAFE_NHT/FeatureServer"},
- {"ref":"US-4575","name":"Old Spanish National Historic Trail","url":"OLSP_NHT/FeatureServer"},
- {"ref":"US-4568","name":"El Camino Real de los Tejas National Historic Trail","url":"ELCA_NHT/FeatureServer"},
- {"ref":"US-4569","name":"El Camino Real de Tierra Adentro National Historic Trail","url":"ELTE_NHT/FeatureServer"},
- {"ref":"US-3791","name":"Trail of Tears National Historic Trail","url":"TRTE_NHT/FeatureServer"},
- {"ref":"US-4571","name":"Juan Bautista de Anza National Historic Trail","url":"JUBA_HistoricTrail_ln/FeatureServer"},
- {"ref":"US-4572","name":"Lewis and Clark National Historic Trail","url":"Lewis_and_Clark_National_Historic_Trail_Congressionally_Designated_Route/FeatureServer"},
- {"ref":"US-4570","name":"Iditarod National Historic Trail","url":"Iditarod_National_Historic_Trail_BLM_Official_Temp/FeatureServer"},
- {"ref":"US-4577","name":"Overmountain Victory National Historic Trail","url":"Overmountain_Victory_National_Historic_Trail_Official_Temp/FeatureServer"},
- {"ref":"US-4580","name":"Selma to Montgomery National Historic Trail","url":"Selma_to_Montgomery_National_Historic_Trail_Official/FeatureServer"},
- {"ref":"US-4581","name":"Star-Spangled Banner National Historic Trail","url":"Sta_Spangled_Banner_National_Historic_Trail_Official_Centerline/FeatureServer"},
- {"ref":"US-4567","name":"Captain John Smith Chesapeake National Historic Trail","url":"CAJO_Captain_John_Smith_Chesapeake_NHT_Centerline_ln/FeatureServer"},
- {"ref":"US-4582","name":"Washington-Rochambeau Revolutionary Route National Historic Trail","url":"20200622_2016_URI_WARO_NST_trail_centerline_states_combined_web_mercator/FeatureServer"},
- {"ref":"US-4565","name":"Ala Kahakai National Historic Trail","url":"Ala_Kahakai_National_Historic_Trail_Official_Corridor/FeatureServer"},
- {"ref":"US-9757","name":"Butterfield Overland National Historic Trail","url":"BUOV_Congressionally_Designated_Alignment/FeatureServer"},
- {"ref":"?NEEN","name":"New England National Scenic Trail","url":"NEEN_BND_NationalScenicTrailCenterline_ln/FeatureServer"}
+ {
+  "ref": "US-4556",
+  "name": "Appalachian National Scenic Trail",
+  "url": "ANST_Centerline/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4562",
+  "name": "Pacific Crest National Scenic Trail",
+  "url": "PacificCrestTrail/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4564",
+  "name": "Potomac Heritage National Scenic Trail",
+  "url": "POHE_Trail_Centerline_FTDS_view/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4560",
+  "name": "Natchez Trace National Scenic Trail",
+  "url": "NATT_TRANS_NSTTrail/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4576",
+  "name": "Oregon National Historic Trail",
+  "url": "OREG_NHT/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4573",
+  "name": "Mormon Pioneer National Historic Trail",
+  "url": "MOPI_NHT/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4566",
+  "name": "California National Historic Trail",
+  "url": "CALI_NHT/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4578",
+  "name": "Pony Express National Historic Trail",
+  "url": "POEX_NHT/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4579",
+  "name": "Santa Fe National Historic Trail",
+  "url": "SAFE_NHT/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4575",
+  "name": "Old Spanish National Historic Trail",
+  "url": "OLSP_NHT/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4568",
+  "name": "El Camino Real de los Tejas National Historic Trail",
+  "url": "ELCA_NHT/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4569",
+  "name": "El Camino Real de Tierra Adentro National Historic Trail",
+  "url": "ELTE_NHT/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-3791",
+  "name": "Trail of Tears National Historic Trail",
+  "url": "TRTE_NHT/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4571",
+  "name": "Juan Bautista de Anza National Historic Trail",
+  "url": "JUBA_HistoricTrail_ln/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4572",
+  "name": "Lewis and Clark National Historic Trail",
+  "url": "Lewis_and_Clark_National_Historic_Trail_Congressionally_Designated_Route/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4570",
+  "name": "Iditarod National Historic Trail",
+  "url": "Iditarod_National_Historic_Trail_BLM_Official_Temp/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4577",
+  "name": "Overmountain Victory National Historic Trail",
+  "url": "Overmountain_Victory_National_Historic_Trail_Official_Temp/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4580",
+  "name": "Selma to Montgomery National Historic Trail",
+  "url": "Selma_to_Montgomery_National_Historic_Trail_Official/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4581",
+  "name": "Star-Spangled Banner National Historic Trail",
+  "url": "Sta_Spangled_Banner_National_Historic_Trail_Official_Centerline/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4567",
+  "name": "Captain John Smith Chesapeake National Historic Trail",
+  "url": "CAJO_Captain_John_Smith_Chesapeake_NHT_Centerline_ln/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4582",
+  "name": "Washington-Rochambeau Revolutionary Route National Historic Trail",
+  "url": "20200622_2016_URI_WARO_NST_trail_centerline_states_combined_web_mercator/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4565",
+  "name": "Ala Kahakai National Historic Trail",
+  "url": "Ala_Kahakai_National_Historic_Trail_Official_Corridor/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-9757",
+  "name": "Butterfield Overland National Historic Trail",
+  "url": "BUOV_Congressionally_Designated_Alignment/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4561",
+  "name": "New England National Scenic Trail",
+  "url": "NEEN_BND_NationalScenicTrailCenterline_ln/FeatureServer",
+  "by": "National Park Service"
+ },
+ {
+  "ref": "US-4558",
+  "name": "Continental Divide National Scenic Trail",
+  "url": "https://services1.arcgis.com/gGHDlz6USftL5Pau/arcgis/rest/services/ContinentalDivideNST/FeatureServer",
+  "by": "U.S. Forest Service"
+ },
+ {
+  "ref": "US-4563",
+  "name": "Pacific Northwest National Scenic Trail",
+  "url": "https://services1.arcgis.com/gGHDlz6USftL5Pau/arcgis/rest/services/Pacific_Northwest_National_Scenic_Trail/FeatureServer",
+  "by": "U.S. Forest Service"
+ },
+ {
+  "ref": "US-4574",
+  "name": "Nez Perce (Nee-Me-Poo) National Historic Trail",
+  "url": "https://services1.arcgis.com/gGHDlz6USftL5Pau/arcgis/rest/services/R01_NezPerceNeeMePoo_NationalHistoricTrail_Centerline/FeatureServer",
+  "by": "U.S. Forest Service"
+ },
+ {
+  "ref": "US-4239",
+  "name": "North Country National Scenic Trail",
+  "url": "https://services2.arcgis.com/UfGVyqUm4GHa2zrj/arcgis/rest/services/nct_public/FeatureServer",
+  "by": "North Country Trail Association (NPS partner)"
+ },
+ {
+  "ref": "US-4238",
+  "name": "Ice Age National Scenic Trail",
+  "url": "https://services.arcgis.com/EeCmkqXss9GYEKIZ/arcgis/rest/services/IAT_Segments1/FeatureServer",
+  "by": "Ice Age Trail Alliance (NPS partner)"
+ },
+ {
+  "ref": "US-4559",
+  "name": "Florida National Scenic Trail",
+  "url": "https://services9.arcgis.com/soy9dtLUh5hYXg8U/arcgis/rest/services/FNST%20Master/FeatureServer",
+  "by": "Florida Trail Association (USFS partner)"
+ },
+ {
+  "ref": "US-4557",
+  "name": "Arizona National Scenic Trail",
+  "url": "https://services3.arcgis.com/IKBBLZOXy58PXgpl/arcgis/rest/services/Arizona_National_Scenic_Trail_Feature_Layers_view/FeatureServer",
+  "by": "Arizona Trail Association (USFS partner)"
+ }
 ]
