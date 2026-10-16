@@ -20,6 +20,10 @@ var TZ = ['Eastern', 'Central', 'Mountain', 'Pacific', 'UTC'];
 var BANDS = ['160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m', '6m', '2m', '70cm'];
 var MODES = ['SSB (voice)', 'CW', 'FT8', 'FT4', 'FM', 'Other digital'];
 var PROGS = ['POTA', 'WWFF / KFF', 'SOTA', 'Other'];
+var ONE = '([A-Za-z0-9]{1,4}-[0-9]{1,5}|[A-Za-z0-9]{1,4}/[A-Za-z0-9]{2}-[0-9]{3})';
+var REFS = '^\\s*' + ONE + '(\\s*,\\s*' + ONE + ')*\\s*$';   // US-1271, KFF-1271, W4K/EC-001 (commas between)
+function refCheck(help) { return FormApp.createTextValidation().requireTextMatchesPattern(REFS).setHelpText(help).build(); }
+function shortNote() { return FormApp.createParagraphTextValidation().requireTextLengthLessThanOrEqualTo(300).setHelpText('300 letters or fewer').build(); }
 
 function makeActivationForm() {
   var form = FormApp.create('KPC Activations & Park Requests');
@@ -43,8 +47,8 @@ function makeActivationForm() {
   form.addMultipleChoiceItem().setTitle('Planned or on the air now?').setRequired(true)
     .setChoiceValues(['Planned activation', 'On the air now']);
   form.addTextItem().setTitle('Park, summit or reference number(s)').setRequired(true)
-    .setHelpText('Like US-1271, KFF-1271 or W4K/EC-001. Two or more? Separate with commas.');
-  form.addTextItem().setTitle('Park or summit name').setHelpText('Optional, like Taylorsville Lake State Park');
+    .setHelpText('Numbers only, like US-1271, KFF-1271 or W4K/EC-001. Two or more? Separate with commas.')
+    .setValidation(refCheck('Use the number, like US-1271 or W4K/EC-001 (commas between two or more)'));
   form.addCheckboxItem().setTitle('Program').setChoiceValues(PROGS);
   form.addDateItem().setTitle('Date').setRequired(true);
   form.addTimeItem().setTitle('Start time').setRequired(true);
@@ -52,20 +56,23 @@ function makeActivationForm() {
   form.addMultipleChoiceItem().setTitle('Time zone').setRequired(true).setChoiceValues(TZ);
   form.addCheckboxItem().setTitle('Bands').setRequired(true).setChoiceValues(BANDS);
   form.addCheckboxItem().setTitle('Modes').setRequired(true).setChoiceValues(MODES);
-  form.addTextItem().setTitle('Frequencies').setHelpText('Optional, like 14.285, 7.032');
-  form.addParagraphTextItem().setTitle('Notes').setHelpText('Optional: 2-fer, QRP, kids on the air, first activation...');
+  form.addTextItem().setTitle('Frequencies').setHelpText('Optional, like 14.285, 7.032')
+    .setValidation(FormApp.createTextValidation().requireTextMatchesPattern('^[0-9.,\\s]+$').setHelpText('Numbers only, like 14.285, 7.032').build());
+  form.addCheckboxItem().setTitle('Extras').setChoiceValues(['Park-to-park welcome', 'QRP (low power)', 'First activation', 'Kids on the air', '2-fer (two parks at once)', 'Club outing']);
+  form.addParagraphTextItem().setTitle('Notes').setHelpText('Optional. Posts with notes are checked by a club officer before they show.').setValidation(shortNote());
 
   // ---- section B: hunter request ----
   var pageB = form.addPageBreakItem().setTitle('Park request (hunters)')
     .setHelpText('Ask for a park you still need. An activator may pick it up.');
   pageB.setGoToPage(FormApp.PageNavigationType.SUBMIT); // section A ends here and submits
   form.addTextItem().setTitle('Park(s) you need').setRequired(true)
-    .setHelpText('Like US-1271, or the park name. Two or more? Separate with commas.');
+    .setHelpText('Numbers only, like US-1271 (look it up on pota.app). Two or more? Separate with commas.')
+    .setValidation(refCheck('Use the park number, like US-1271 (commas between two or more)'));
   form.addCheckboxItem().setTitle('Program (request)').setChoiceValues(PROGS);
   form.addCheckboxItem().setTitle('Bands you can hear').setChoiceValues(BANDS);
   form.addCheckboxItem().setTitle('Modes you can work').setChoiceValues(MODES);
-  form.addParagraphTextItem().setTitle('When works best for you?').setHelpText('Optional: weekends, evenings, a certain date...');
-  form.addParagraphTextItem().setTitle('Notes (request)').setHelpText('Optional');
+  form.addCheckboxItem().setTitle('When works best for you?').setChoiceValues(['Weekday mornings', 'Weekday afternoons', 'Weekday evenings', 'Weekends', 'Any time']);
+  form.addParagraphTextItem().setTitle('Notes (request)').setHelpText('Optional. Requests with notes are checked by a club officer before they show.').setValidation(shortNote());
 
   kind.setChoices([
     kind.createChoice('My activation (planned or on the air now)', pageA),
