@@ -150,7 +150,7 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
     });
     const layer = new Pad({ tileSize: 256, maxZoom: 19, zIndex: 6, attribution: 'Boundaries: USGS PAD-US' });
 
-    const legend = L.control({ position: 'topleft' });
+    const legend = L.control({ position: opts.keyPos || 'topleft' });
     legend.onAdd = () => {
       const d = L.DomUtil.create('div', 'kpc-pad-key');
       /* starts folded as a small button so it never covers the map or its buttons; tap to open (remembered) */
