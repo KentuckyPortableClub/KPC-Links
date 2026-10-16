@@ -44,7 +44,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  const street=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'});
  const sat=L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
  const hyb=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
-  L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19}),L.tileLayer(esri+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19})]);
+  L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),L.tileLayer(esri+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:9})]);
  /* Satellite + Park Lines (beta). Each OpenStreetMap street-map tile is repainted in the page: everything light
     (background, park fill, forest, water, plain roads) becomes see-through and the dark parts (park and forest
     borders, county lines, labels, road edges) become solid yellow. Green border pixels get the brightest yellow.
@@ -70,9 +70,9 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  /* Official boundaries (USGS PAD-US, kpc-padus-layer.js): federal + state land outlined over any map */
  const pad=window.KPCPad?KPCPad(map):null;
  const offi=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
-  L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19}),L.tileLayer(esri+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19})]);
- const OFF='Satellite + Official Boundaries';
- const base={'Street':street,'Terrain':terrain,'Satellite':sat,'Satellite + Streets':hyb,[OFF]:offi,'Satellite + Park Lines (Beta)':beta};let want=store.get('kpcUsBase',pad?OFF:'Street');(base[want]||street).addTo(map);
+  L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),L.tileLayer(esri+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:9})]);   /* streets + names above the boundary outlines (zIndex 6) */
+ const OFF='Satellite + Streets + Official Boundaries';
+ const base={'Street':street,'Terrain':terrain,'Satellite':sat,'Satellite + Streets':hyb,[OFF]:offi,'Satellite + Park Lines (Beta)':beta};let want=store.get('kpcUsBase',pad?OFF:'Street');if(want==='Satellite + Official Boundaries')want=OFF;(base[want]||street).addTo(map);
  if(pad){if(store.get('kpcUsPad',true)||want===OFF)pad.layer.addTo(map);
   map.on('baselayerchange',e=>{if(e.name===OFF&&!map.hasLayer(pad.layer))pad.layer.addTo(map)});
   map.on('overlayadd',e=>{if(e.layer===pad.layer)store.set('kpcUsPad',true)});map.on('overlayremove',e=>{if(e.layer===pad.layer)store.set('kpcUsPad',false)})}
@@ -92,7 +92,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  map.on('popupopen',e=>{const el=e.popup.getElement();if(!el)return;const s=e.popup._kpc;if(!s)return;
   el.querySelectorAll('[data-a]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const a=b.dataset.a;if(a==='add'){inTrip(s.c)?removeStop(s.c):addStop(s);map.closePopup()}else if(a==='bound')showBoundary(s,b)});
   if(s.p==='POTA')livePota(s,el.querySelector('.live'))})}
-function setDrop(on){dropMode=on;if(on&&map)map.closePopup();$('us-drop').setAttribute('aria-pressed',on);$('usmap').classList.toggle('dropping',on);$('us-maphint').textContent=on?'Tap the map where you want your pin.':'Tap a dot to add it to your trip, see Street View or show its boundary. Zoom in to county level to see official federal and state boundaries; the layers button switches maps (Satellite + Official Boundaries) or turns the boundaries off.'}
+function setDrop(on){dropMode=on;if(on&&map)map.closePopup();$('us-drop').setAttribute('aria-pressed',on);$('usmap').classList.toggle('dropping',on);$('us-maphint').textContent=on?'Tap the map where you want your pin.':'Tap a dot to add it to your trip, see Street View or show its boundary. Zoom in to county level to see official federal and state boundaries; the layers button switches maps (Satellite + Streets + Official Boundaries) or turns the boundaries off.'}
 function links(s){const sv=`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${s.la},${s.lo}`;
  const page=s.p==='POTA'?KPC.links.pota(s.c):s.p==='SOTA'?(s.url||KPC.links.sota(s.c)):s.p==='WWFF'?KPC.links.kff(s.c):'';
  return{sv,dir:KPC.links.dir(s.la,s.lo),page}}
