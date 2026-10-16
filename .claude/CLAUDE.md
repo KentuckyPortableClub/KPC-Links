@@ -84,6 +84,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 
 ## Ideas Brandon has mentioned for later
 - Satellite pass predictor.
+- **Email subscription choices (Brandon Oct 16: 'I like that... we come back to that'):** let subscribers pick what they get: Everything (default) / Campout updates only / Weekly roundup only. Nothing built yet. FIRST check how the Sunday 6 PM roundup in kpc_discord_relay.py picks posts (website posts of the week not already emailed), and how campout posts are told apart (pages [campout, news]). Then add the choice to the subscribe form (kpc-subscribe-form.json would need a new entry id; Brandon adds the question in the Google Form himself) and filter the list by it in the relay.
 - WWFF checker.
 - Remote transmit.
 - KPC CW practice night on Vail (Brandon to decide).
