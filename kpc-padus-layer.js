@@ -92,8 +92,15 @@
     };
     const Pad = L.GridLayer.extend({
       createTile(c, done) {
+        /* the tile handed to the map is a plain picture (img): some Android browsers draw big canvas tiles on top of
+           the map buttons. The repainting happens on an off-screen canvas. */
         const S = 512, t = document.createElement('canvas'); t.width = t.height = S;
-        if (c.z < MINZ) { setTimeout(() => done(null, t), 0); return t; }
+        const out = document.createElement('img'); out.alt = ''; out.setAttribute('role', 'presentation');
+        if (c.z < MINZ) { setTimeout(() => done(null, out), 0); return out; }
+        const finish = () => {
+          const give = u => { out.onload = () => { if (u.startsWith('blob:')) setTimeout(() => URL.revokeObjectURL(u), 1000); done(null, out); }; out.onerror = () => done(null, out); out.src = u; };
+          try { if (t.toBlob) t.toBlob(b => b ? give(URL.createObjectURL(b)) : done(null, out), 'image/png'); else give(t.toDataURL('image/png')); } catch (e) { done(null, out); }
+        };
         const n = 2 ** c.z, w = 2 * EXT / n, x0 = -EXT + c.x * w, y1 = EXT - c.y * w;
         const url = `${SRV}?bbox=${x0},${y1 - w},${x0 + w},${y1}&bboxSR=3857&imageSR=3857&size=${S},${S}&dpi=192&format=png32&transparent=true&f=image`;
         const draw = (img, raw) => {
@@ -119,22 +126,22 @@
           for (let j = 0, i = 0; j < cat.length; j++, i += 4) {
             const k = cat[j]; if (!k) { p[i + 3] = 0; continue; }
             const col = GROUPS[CAT[k - 1][1]].col;
-            p[i] = col[0]; p[i + 1] = col[1]; p[i + 2] = col[2]; p[i + 3] = v[j] ? 255 : 46;
+            p[i] = col[0]; p[i + 1] = col[1]; p[i + 2] = col[2]; p[i + 3] = v[j] ? 255 : 0;   // outline only, inside left clear (Brandon Oct 16)
           }
           x.putImageData(d, 0, 0);
           if (opts.skipKY) cutKY(x, c, S, kyRings);
         };
         const img = new Image(); img.crossOrigin = 'anonymous';
-        img.onload = () => { ok++; draw(img, false); done(null, t); tellStatus(); };
+        img.onload = () => { ok++; draw(img, false); finish(); tellStatus(); };
         img.onerror = () => {                       /* no CORS? show the picture faintly instead */
           const im2 = new Image();
-          im2.onload = () => { ok++; t.style.opacity = .45; draw(im2, true); done(null, t); tellStatus(); };
-          im2.onerror = () => { fails++; done(null, t); tellStatus(); };
+          im2.onload = () => { ok++; out.style.opacity = .45; out.onload = () => done(null, out); out.src = url; tellStatus(); };   /* can't repaint: show it faintly as it is */
+          im2.onerror = () => { fails++; done(null, out); tellStatus(); };
           im2.src = url;
         };
         let kyRings = [];
         if (opts.skipKY) kyReady().then(r => { kyRings = r; img.src = url; }); else img.src = url;
-        return t;
+        return out;
       }
     });
     const layer = new Pad({ tileSize: 256, maxZoom: 19, zIndex: 6, attribution: 'Boundaries: USGS PAD-US' });
@@ -163,7 +170,7 @@
         '.kpc-pad-body{display:none;padding:0 10px 8px;max-height:min(46vh,260px);overflow:auto}.kpc-pad-key.open .kpc-pad-body{display:block}' +
         '.kpc-pad-key b{display:block;color:#f0c96b;font-size:10.5px;letter-spacing:.06em;margin-bottom:4px}.kpc-pad-key label{display:flex;gap:6px;align-items:center;margin:3px 0;cursor:pointer}' +
         '.kpc-pad-key i:not(.sw){flex:0 0 14px;height:12px;border:2px solid;border-radius:2px}.kpc-pad-key small{display:block;color:#cfc6b2;margin-top:4px;font-size:10.5px}.kpc-pad-key small:empty{display:none}' +
-        '.kpc-pad-key .kpc-pad-st{color:#ffd23f;padding:0 9px 6px;margin:0}@media(max-width:600px){.kpc-pad-key{max-width:190px;font-size:11px}}';
+        '.leaflet-top,.leaflet-bottom{transform:translateZ(0)}.kpc-pad-key .kpc-pad-st{color:#ffd23f;padding:0 9px 6px;margin:0}@media(max-width:600px){.kpc-pad-key{max-width:190px;font-size:11px}}';
       document.head.appendChild(s);
     }
     if (opts.legend !== false) { layer.on('add', () => legend.addTo(map)); layer.on('remove', () => legend.remove()); }
