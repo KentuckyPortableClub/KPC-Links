@@ -84,7 +84,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - US planner: overlay 'National trails (POTA parks)' (localStorage kpcUsTrails, default on), loads only trails whose bbox crosses the view, own SVG pane 'kpcTrails' z 390 (under the dot canvas), pink solid = NST, orange dashed = NHT, dark casing, tooltip + popup (POTA ref, source agency, POTA PAGE). New National Trails need a line in kpc_us_trails.json.
 - A throwaway branch zz-trails / zz-padus may exist from testing (can't delete from here; harmless).
 
-- Oct 16 (Brandon's iPhone screenshots): US planner base 'Satellite + Park Lines (Beta)' (OSM tiles repainted yellow, text looked odd) was RETIRED; saved choices map to 'Satellite + Streets + Official Boundaries'. KY planner Kentucky boundary fill lightened (POTA-matched .18→.07, others .08→.04, DBNF .05→.03).
+- Oct 16 (Brandon's iPhone screenshots): US planner base 'Satellite + Park Lines (Beta)' (OSM tiles repainted yellow, text looked odd) was REMOVED, code and all (Brandon: 'remove the beta layer'); saved choices map to 'Satellite + Streets + Official Boundaries'. KY planner Kentucky boundary fill lightened (POTA-matched .18→.07, others .08→.04, DBNF .05→.03).
 
 ## Trip planner suggestions — Oct 16 2026 (Brandon: 'KY planner predictive text out of state not working… no predictive text on US planner')
 - kpc-place-suggest.js (window.KPCPlace): towns(q) = Open-Meteo geocoding (US, ZIPs, 'Town ST' keeps that state), parks(q) = api.pota.app/lookup (US parks), park(ref) = coords on pick, box(input,{local,remote,parks,onPick}) = ready-made list (.kps-box).

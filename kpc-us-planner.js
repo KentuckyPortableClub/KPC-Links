@@ -49,44 +49,17 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  const sat=L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
  const hyb=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);
- /* Satellite + Park Lines (beta). Each OpenStreetMap street-map tile is repainted in the page: everything light
-    (background, park fill, forest, water, plain roads) becomes see-through and the dark parts (park and forest
-    borders, county lines, labels, road edges) become solid yellow. Green border pixels get the brightest yellow.
-    Done pixel by pixel on a canvas because CSS blend tricks render wrong on iPhone Safari (map turned blue).
-    OpenStreetMap tiles allow this (they send Access-Control-Allow-Origin: *); if a browser blocks it, the tile is
-    shown faintly as-is instead. */
- const glowStrength=()=>{const v=+store.get('kpcUsGlow',85);return Math.min(1,Math.max(.3,v/100))};
- const ParkLines=L.GridLayer.extend({createTile(c,done){const t=document.createElement('canvas');t.width=t.height=256;const img=new Image();img.crossOrigin='anonymous';
-  img.onload=()=>{const x=t.getContext('2d');x.drawImage(img,0,0);
-   try{const d=x.getImageData(0,0,256,256),p=d.data;
-    for(let i=0;i<p.length;i+=4){const r=p[i],g=p[i+1],b=p[i+2],Lm=(.299*r+.587*g+.114*b)/255;
-     if(Lm>.72||p[i+3]<20){p[i+3]=0;continue}
-     const green=g>r+25&&g>b+10;let al=Math.min(1,(.72-Lm)/.32);
-     if(green){al=Math.min(1,al*1.7+.35);p[i]=255;p[i+1]=238;p[i+2]=70}else{p[i]=255;p[i+1]=214;p[i+2]=60}
-     p[i+3]=Math.round(al*255)}
-    x.putImageData(d,0,0)}
-   catch(e){x.clearRect(0,0,256,256);x.globalAlpha=.45;x.drawImage(img,0,0)}
-   done(null,t)};
-  img.onerror=()=>done(null,t);img.src='https://tile.openstreetmap.org/'+c.z+'/'+c.x+'/'+c.y+'.png';return t}});
- const lines=new ParkLines({maxZoom:19,maxNativeZoom:19,zIndex:5,opacity:glowStrength(),attribution:'Park lines © OpenStreetMap contributors'});
- const beta=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),lines]);
  const terrain=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxNativeZoom:17,maxZoom:19,attribution:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors'});
  /* Official boundaries (USGS PAD-US, kpc-padus-layer.js): federal + state land outlined over any map */
  const pad=window.KPCPad?KPCPad(map):null;
  const offi=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);   /* streets + names above the boundary outlines (zIndex 6) */
  const OFF='Satellite + Streets + Official Boundaries';
- /* 'Satellite + Park Lines (Beta)' retired Oct 16 (repainted street tiles made iPhone text look odd); official boundaries replace it */
+ /* the old 'Satellite + Park Lines (Beta)' map was removed Oct 16 (Brandon); anyone who had it gets the official boundaries map */
  const base={'Street':street,'Terrain':terrain,'Satellite':sat,'Satellite + Streets':hyb,[OFF]:offi};let want=store.get('kpcUsBase',pad?OFF:'Street');if(want==='Satellite + Official Boundaries'||/Park Lines/.test(want))want=pad?OFF:'Satellite + Streets';(base[want]||street).addTo(map);
  if(pad){if(store.get('kpcUsPad',true)||want===OFF)pad.layer.addTo(map);
   map.on('baselayerchange',e=>{if(e.name===OFF&&!map.hasLayer(pad.layer))pad.layer.addTo(map)});
   map.on('overlayadd',e=>{if(e.layer===pad.layer)store.set('kpcUsPad',true)});map.on('overlayremove',e=>{if(e.layer===pad.layer)store.set('kpcUsPad',false)})}
- const glow=L.control({position:'bottomleft'});glow.onAdd=()=>{const d=L.DomUtil.create('div','us-glow');
-  d.innerHTML=`<label>PARK LINES <input type="range" min="30" max="100" step="5" value="${Math.round(glowStrength()*100)}" aria-label="Park line strength"></label><small>Zoom in to county level to see park borders</small>`;
-  L.DomEvent.disableClickPropagation(d);L.DomEvent.disableScrollPropagation(d);
-  d.querySelector('input').oninput=e=>{lines.setOpacity(e.target.value/100);store.set('kpcUsGlow',+e.target.value)};return d};
- const showGlow=()=>{};
- map.on('baselayerchange',e=>showGlow(e.name));
  /* National Scenic / Historic Trails that are POTA parks (data/trails, official lines from the NPS, Forest Service and
     trail partners, refreshed monthly by kpc-us-trails.yml). Only trails crossing the map view are loaded. Drawn in their
     own pane under the park dots so a tap on a dot still opens the dot. */
