@@ -21,12 +21,14 @@ jobs:
       - name: Copy reviews
         env:
           CAMPGROUND_SHEET_CSV: ${{ secrets.CAMPGROUND_SHEET_CSV }}
+          KPC_CHECKS: data/kpc-checks-campgrounds.json
         run: python3 .github/scripts/kpc_campground_notes.py
       - name: Save
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add kpc-campground-notes.json photos/campgrounds 2>/dev/null || git add kpc-campground-notes.json
+          if [ -e data/kpc-checks-campgrounds.json ]; then git add data/kpc-checks-campgrounds.json; fi
           if ! git diff --cached --quiet; then
             git commit -m 'Update campground reviews'
             git pull --rebase --autostash || true
