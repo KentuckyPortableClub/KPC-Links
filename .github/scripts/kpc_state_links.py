@@ -17,6 +17,7 @@ def get(u):
 def note(t, m): print(f'::notice title={t}::{m}')
 clean = lambda v: '' if v in (None, 'None', 'null') else str(v).strip()
 total = 0
+COORD = {}
 for st in STATES:
     path = f'{OUT}/US-{st}.json'
     try: old = json.load(open(path)).get('parks', {})
@@ -38,6 +39,8 @@ for st in STATES:
             except Exception: typ, act, acc = (o[2], o[3], o[4]) if o else ('', '', '')
             time.sleep(.25)
         parks[ref] = [clean(p.get('name')), web, typ, act, acc]
+        try: COORD[ref] = (round(float(p.get('latitude')), 5), round(float(p.get('longitude')), 5))
+        except Exception: pass
     doms = collections.Counter(urllib.parse.urlparse(v[1]).netloc.lower().replace('www.', '') for v in parks.values() if v[1] and v[2] == 'State Park')
     site = ''
     if doms:

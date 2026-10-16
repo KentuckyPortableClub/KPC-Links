@@ -106,8 +106,11 @@ async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
  const near=[];for(const st of [...new Set([...sts,...statesNear(s.la,s.lo,10)])]){if(!(st in CFED))CFED[st]=fetch('data/campfed/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await CFED[st];((d&&d.camps)||[]).forEach(c=>{const mi=KPC.miles(s.la,s.lo,c[2],c[3]);if(mi<=10&&!near.some(x=>x.c[0]===c[0]))near.push({c,mi})})}
  near.sort((a,b)=>a.mi-b.mi);
- if(near.length)h+=`<div class="meta" style="margin:8px 0 3px;font-weight:800;letter-spacing:.5px">⛺ FEDERAL CAMPGROUNDS NEARBY (RECREATION.GOV)</div>`+near.slice(0,4).map(({c,mi})=>
-  `<div class="meta" style="margin:2px 0"><a href="${esc(c[6])}" target="_blank" rel="noopener">${esc(c[1])} ↗</a> · ${mi<.3?'at the park':mi.toFixed(1)+' mi'}${c[4]?' · '+esc(AGN[c[4]]||c[4]):''}${c[5]?' · can reserve':' · first come'}</div>`).join('');
+ const row=({c,mi})=>`<div class="meta" style="margin:2px 0"><a href="${esc(c[6])}" target="_blank" rel="noopener">${esc(c[1])} ↗</a> · ${mi<.3?'at the park':mi.toFixed(1)+' mi'}${c[4]?' · '+esc(AGN[c[4]]||c[4]):''}${c[5]?' · can reserve':' · first come'}</div>`;
+ const hd=t=>`<div class="meta" style="margin:8px 0 3px;font-weight:800;letter-spacing:.5px">${t}</div>`;
+ const cg=near.filter(x=>x.c[7]!=='s'),sh=near.filter(x=>x.c[7]==='s');
+ if(cg.length)h+=hd('⛺ FEDERAL CAMPGROUNDS NEARBY (RECREATION.GOV)')+cg.slice(0,4).map(row).join('');
+ if(sh.length)h+=hd('🧺 PICNIC SHELTERS NEARBY (SHADE + TABLE, GOOD FOR ACTIVATING)')+sh.slice(0,3).map(row).join('');
  if(h)el.innerHTML=h}
 async function livePota(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;el.textContent='Checking POTA…';
  try{const r=await fetch(`https://api.pota.app/park/activations/${s.c}?count=all`);if(!r.ok)throw 0;const j=await r.json();const a=Array.isArray(j)?j:[];
