@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="kpc-boards.css?v=20261016a">
+@@HEADER@@
+<main class="kb" id="ab">
+<section class="kb-hero" style="--pic:url('hero-river-camp.jpg');--picm:url('hero-river-camp-mobile.jpg')"><div class="kb-hero-in">
+<p class="kb-eyebrow">KPC ACTIVATION BOARD • POTA • WWFF • SOTA</p>
+<h1>WHO'S GOING <span>OUT?</span></h1>
+<p class="kb-copy">See who is on the air right now, who is heading to a park or summit soon, and which parks hunters still need. Post your own plan in a minute, any state, any program.</p>
+<div class="kb-chips"><span>📡 On the air now</span><span>🗓 Planned activations</span><span>🎯 Park requests</span></div>
+<div class="kb-actions"><a class="kb-btn gold" data-ab-form hidden target="_blank" rel="noopener">📻 POST MY ACTIVATION</a><a class="kb-btn ghost" data-ab-form hidden target="_blank" rel="noopener">🎯 REQUEST A PARK</a><a class="kb-btn ghost" href="#how">HOW IT WORKS ↓</a></div>
+</div></section>
+
+<section class="kb-sec"><div class="kb-in">
+<div class="kb-bar" id="abProg" role="group" aria-label="Program">
+<button type="button" class="kb-chip" data-p="all">ALL</button><button type="button" class="kb-chip" data-p="pota">POTA</button><button type="button" class="kb-chip" data-p="wwff">WWFF / KFF</button><button type="button" class="kb-chip" data-p="sota">SOTA</button>
+<button type="button" class="kb-chip" id="abKY" aria-pressed="false">KENTUCKY ONLY</button>
+<input type="search" id="abQ" placeholder="Search call, park, band…" aria-label="Search the board">
+</div>
+<p class="kb-small" id="abCount"></p>
+
+<p class="kb-k">RIGHT NOW</p><h2>📡 On the Air</h2>
+<div id="abLive"><div class="kb-empty">Loading…</div></div>
+</div></section>
+
+<section class="kb-sec" style="background:#ebe3d1"><div class="kb-in">
+<p class="kb-k">COMING UP</p><h2>🗓 Planned Activations</h2>
+<p class="kb-lead">Times show in the activator's time zone, with your own time underneath when it's different.</p>
+<div id="abPlan"><div class="kb-empty">Loading…</div></div>
+</div></section>
+
+<section class="kb-sec"><div class="kb-in">
+<p class="kb-k">HUNTERS</p><h2>🎯 Park Requests</h2>
+<p class="kb-lead">Parks, summits and references hunters still need. Live nearby? Tap <b>I CAN ACTIVATE IT</b> to post your plan with the park already filled in.</p>
+<div id="abReq"><div class="kb-empty">Loading…</div></div>
+</div></section>
+
+<section class="kb-sec" id="how" style="background:#ebe3d1"><div class="kb-in">
+<div class="kb-how">
+<p class="kb-k">HOW IT WORKS</p><h2 style="margin-top:4px">Post in about a minute</h2>
+<ul>
+<li>Tap <b>POST MY ACTIVATION</b> or <b>REQUEST A PARK</b>. It opens a short Google Form: your call sign, then mostly tap-to-pick answers.</li>
+<li>Park, summit and reference numbers only (like <b>US-1277</b>, <b>KFF-1277</b> or <b>W4K/EC-001</b>). Two or more? Put commas between.</li>
+<li>Your post shows here within about 20 minutes. Only your call sign is shown, never your name or email.</li>
+<li>Posts are checked automatically: a real licensed call sign, real park numbers, a date in the next 60 days, and notes without links, phone numbers or bad words. Anything else waits for a club officer.</li>
+<li>Past activations drop off by themselves. Park requests stay up for 30 days.</li>
+<li>This board is for planning. To tell people you're on the air <i>right now</i>, also spot yourself with <a href="kpc-spot-me.html">Spot Me</a>.</li>
+</ul>
+<p class="kb-small" id="abUpd"></p>
+<div class="kb-actions"><a class="kb-btn green" data-ab-form hidden target="_blank" rel="noopener">📻 POST MY ACTIVATION</a><a class="kb-btn line" href="kpc-live.html">🔴 WHO'S SPOTTED RIGHT NOW</a><a class="kb-btn line" href="kpc-kit.html">🎒 ACTIVATION KIT</a></div>
+</div>
+</div></section>
+</main>
+@@FOOTER@@
+<script src="kpc-activations.js?v=20261016a"></script>
