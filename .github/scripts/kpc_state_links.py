@@ -5,7 +5,7 @@ Writes data/parkinfo/US-XX.json  {state, updated, stateSite, parks:{ref:[name, w
 Automatic, NOT checked by KPC (Kentucky stays hand-checked in kpc-ky-data.json / kpc-campgrounds.json).
 Park details are fetched once and reused; RECHECK=1 fetches them all again. STATES='TN IN ...' picks states."""
 import json, os, time, urllib.request, urllib.parse, datetime, collections
-STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL').split()
+STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL AL GA NC MS AR MD DC PA MI WI IA NE KS OK').split()
 UA = {'User-Agent': 'KPC park links (kentuckyportableclub.github.io)'}
 OUT = 'data/parkinfo'; os.makedirs(OUT, exist_ok=True)
 def get(u):
