@@ -4,6 +4,7 @@ Groups.io, the email-updates list, the Events calendar and park condition warnin
 
 HOW A POST IS READ (Brandon Oct 15). Words at the very START of the post, before a colon, are the "tag":
   where it goes : Website / Facebook (FB) / Discord / Groups.io (Group) / Subscribers / Email (= Groups.io + subscribers) / All
+  minus         : -Groups.io / No Facebook / All except Email  (only minuses = everywhere except those)
   how fast      : Now  (right away, everywhere unless other places are named, subscribers emailed at once)
   when          : Post Oct 20 8am / Schedule Friday 6pm / Post tomorrow noon  (waits until then, Central time)
   what kind     : Event (calendar)  /  Conditions US-1277 (red park warning, 30 days)  /  Activation (News page reports)
@@ -107,7 +108,7 @@ WORDS = [  # (pattern, flag)  -- every word in a tag must be one of these, or it
     (r'facebook|fb', 'fb'), (r'discord', 'dc'), (r'web ?site|web|site', 'web'), (r'all|everything|everywhere', 'all'),
     (r'now|urgent|important|asap', 'now'), (r'post|schedule[d]?|send', 'sched'),
     (r'events?', 'event'), (r'conditions?|park alert|warning', 'cond'), (r'activation(?: report)?s?', 'act'),
-    (r'skip|ignore|do not share|don.?t share|not for sharing', 'skip'), (r'camp ?-?out', 'campout'), (r'announcements?', 'news'), (r'only|and|also|\+|&|,|/|-', None),
+    (r'skip|ignore|do not share|don.?t share|not for sharing', 'skip'), (r'no|not|except|without|minus|but', 'not'), (r'camp ?-?out', 'campout'), (r'announcements?', 'news'), (r'only|and|also|\+|&|,|/|-', None),
     (r'US-\d{4,5}|KFF-\d{4}|W4K/[A-Z]{2}-\d{3}', 'ref'), (D_ANY, 'date'), (r'\d{5}', 'date')]
 WRX = re.compile(r'\s*(?:' + '|'.join('(' + p + ')' for p, _ in WORDS) + r')(?:(?<=[^\w])|(?![\w/-]))', re.I)   # "+" may touch the next word
 
@@ -115,15 +116,24 @@ def split_tag(raw):
     """-> (set of flags, tag text, rest of the post) or (set(), '', raw) when the post has no tag."""
     m = re.match(r'\s*([^\n]{1,120}?):(?!\d)\s*', raw or '')
     if not m: return set(), '', raw or ''
-    tag, pos, flags = m.group(1), 0, set()
+    tag, pos, flags, neg = m.group(1), 0, set(), False
+    PLACES = {'web', 'fb', 'dc', 'gio', 'list', 'email'}
     while pos < len(tag):
         w = WRX.match(tag, pos)
         if not w or w.end() == pos:
             if tag[pos:].strip() == '': break
             return set(), '', raw
-        flags.add(next((WORDS[i][1] for i, g in enumerate(w.groups()) if g), None)); pos = w.end()
-    flags.discard(None)
-    real = flags - {'date', 'ref'}
+        f = next((WORDS[i][1] for i, g in enumerate(w.groups()) if g), None)
+        if f == 'not' or (w.group(0).strip() == '-' and pos < len(tag) - 1 and w.end() < len(tag) and not tag[w.end()].isspace()
+                          and (w.start() == 0 or tag[w.start():w.end()].startswith(' ') or tag[w.start() - 1] in ' +,&')):
+            neg = True                                   # "-Groups.io" / "No Facebook" / "All except Email"
+        elif f in PLACES and neg: flags.add('no_' + f); neg = False
+        else:
+            flags.add(f)
+            if f is not None: neg = False
+        pos = w.end()
+    flags.discard(None); flags.discard('not')
+    real = {f for f in flags if not f.startswith('no_')} - {'date', 'ref'} | {'x' for f in flags if f.startswith('no_')}
     if not real: return set(), '', raw                     # "10:30:" or "Oct 5:" alone is not a tag
     if 'ref' in flags and 'cond' not in flags: return set(), '', raw
     if 'date' in flags and not flags & {'sched', 'event', 'cond', 'act'}: return set(), '', raw
@@ -203,13 +213,16 @@ def parse(m):
     p['kind'] = 'event' if 'event' in flags else 'cond' if 'cond' in flags else 'act' if 'act' in flags else 'news'
     p['now'] = 'now' in flags
     named = flags & {'web', 'fb', 'dc', 'gio', 'list', 'email', 'all'}
-    if 'all' in flags or (p['now'] and not named): dest = {'web', 'fb', 'dc', 'gio', 'list'}
+    nots = {f[3:] for f in flags if f.startswith('no_')}
+    if nots and not (named - {'all'}): named = {'all'}         # only minuses = everywhere except those
+    if 'all' in named or (p['now'] and not named): dest = {'web', 'fb', 'dc', 'gio', 'list'}
     elif named:
         dest = set(named) - {'email'}
         if 'email' in flags: dest |= {'gio', 'list'}
         if 'web' in dest: dest.add('dc')                   # the other server mirrors the website
     elif p['kind'] == 'cond': dest = set()                 # a condition is just the red park warning unless places are named
     else: dest = {'web', 'fb', 'dc'}
+    for f in nots: dest -= {'gio', 'list'} if f == 'email' else {f}
     p['dest'] = dest
     p['list_now'] = 'list' in dest and (p['now'] or 'list' in flags)   # otherwise subscribers get it in the Sunday roundup
     if p['kind'] == 'act': pages = ['activation']
