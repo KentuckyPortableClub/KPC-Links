@@ -136,7 +136,7 @@ body.vb-hunt .act-only{display:none!important}body:not(.vb-hunt) .hunt-only{disp
 .vb-stats{display:flex;gap:8px;margin:10px 0}.vb-stats div{flex:1;background:#181818;border:1px solid #2c2c2c;border-radius:8px;padding:8px;text-align:center}.vb-stats b{display:block;font:700 20px Georgia,serif;color:#fff}.vb-stats span{font-size:10px;color:#aaa}
 .vb-talk{width:100%;margin-top:10px;min-height:64px;font-size:16px;background:#2e8b57;color:#fff;touch-action:none;user-select:none;-webkit-user-select:none}.vb-talk.on{background:#b5412b;box-shadow:0 0 0 4px rgba(255,120,90,.35)}.vb-heard{font-size:13px;color:#cfc6b2;margin:8px 0 0;line-height:1.45}
 @media(max-width:700px){
- .vb-talk{position:fixed;left:10px;right:74px;bottom:12px;width:auto;z-index:60;min-height:58px;margin:0;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+ .vb-talk:not(:disabled){position:fixed;left:10px;right:74px;bottom:12px;width:auto;z-index:60;min-height:58px;margin:0;box-shadow:0 6px 18px rgba(0,0,0,.5)}
  .vb{padding-bottom:110px}#vbBand{height:190px}.vb-heard{font-size:12px;margin:6px 0 0}.vb-heard:not(.said){display:none}.vb small.k{display:none}.vb-acts{margin-top:8px}
  .vb-grid>.vb-card:first-child{order:1}.vb-grid>.vb-card:last-child{order:2}
 }
@@ -211,6 +211,11 @@ body.vb-hunt .act-only{display:none!important}body:not(.vb-hunt) .hunt-only{disp
     </nav>
   </div>
 </header>
+<style id="kpc-hero-readable">
+.hero{background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.72) 42%,rgba(7,7,7,.25) 72%,rgba(7,7,7,.05) 100%),var(--black) url("parks.png") center/cover no-repeat}
+.hero h1,.hero p{text-shadow:0 2px 12px rgba(0,0,0,.85)}
+@media(max-width:760px){.hero{background:linear-gradient(180deg,rgba(7,7,7,.45) 0%,rgba(7,7,7,.78) 40%,rgba(7,7,7,.9) 100%),var(--black) url("parks-mobile.png") center/cover no-repeat}}
+</style>
 <main>
 <section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • VOICE (SSB) • BETA</p><h1>VOICE PILEUP <span>PRACTICE</span></h1><p class="hero-copy">Be the activator: stations call you, you copy their calls, give reports and keep a clean log. Or be a hunter: pick a station off the spots page and get through the pileup. POTA, KFF, SOTA, or regular contacts.</p></div></section>
 <section class="vb"><div class="vb-in">
