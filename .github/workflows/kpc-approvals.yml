@@ -1,0 +1,48 @@
+name: KPC Approvals email
+# Every day at 4 PM Kentucky time: one email listing every form post that is waiting for YES/NO in its sheet.
+# Two times are listed because of daylight saving; the script only sends when it is 4 PM in Kentucky.
+on:
+  schedule:
+    - cron: '2 21 * * *'
+    - cron: '2 22 * * *'
+  workflow_dispatch:
+    inputs:
+      send_now:
+        description: 'Send the email now, even if it is not 4 PM'
+        type: boolean
+        default: true
+permissions:
+  contents: write
+concurrency:
+  group: kpc-approvals
+  cancel-in-progress: false
+jobs:
+  approvals:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check every sheet and email the list
+        env:
+          FORCE: ${{ inputs.send_now }}
+          KPC_CHECKS: data/kpc-checks-approvals.json
+          RELAY_MAIL_URL: ${{ secrets.RELAY_MAIL_URL }}
+          RELAY_MAIL_KEY: ${{ secrets.RELAY_MAIL_KEY }}
+          APPROVAL_EMAIL: ${{ secrets.APPROVAL_EMAIL }}
+          NOTES_SHEET_CSV: ${{ secrets.NOTES_SHEET_CSV }}
+          COMMUNITY_SHEET_CSV: ${{ secrets.COMMUNITY_SHEET_CSV }}
+          CAMPGROUND_SHEET_CSV: ${{ secrets.CAMPGROUND_SHEET_CSV }}
+          KPC_REPORTS_CSV: ${{ secrets.KPC_REPORTS_CSV }}
+          KPC_ACTIVATIONS_CSV: ${{ secrets.KPC_ACTIVATIONS_CSV }}
+          KPC_GUESTBOOK_CSV: ${{ secrets.KPC_GUESTBOOK_CSV }}
+          KPC_CWBOARD_CSV: ${{ secrets.KPC_CWBOARD_CSV }}
+        run: python3 .github/scripts/kpc_approvals.py
+      - name: Save the license-lookup cache
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if [ -e data/kpc-checks-approvals.json ]; then git add data/kpc-checks-approvals.json; fi
+          if ! git diff --cached --quiet; then
+            git commit -m 'Approvals: license lookup cache'
+            git pull --rebase --autostash || true
+            git push || echo 'Push skipped; will save on the next run.'
+          fi
