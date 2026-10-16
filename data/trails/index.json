@@ -65,6 +65,19 @@
 "kb": 245
 },
 {
+"ref": "US-4567",
+"name": "Captain John Smith Chesapeake National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-79.8544,
+36.759,
+-74.9199,
+42.7006
+],
+"by": "National Park Service",
+"kb": 80
+},
+{
 "ref": "US-4558",
 "name": "Continental Divide National Scenic Trail",
 "kind": "NST",
@@ -104,6 +117,19 @@
 "kb": 19
 },
 {
+"ref": "US-4559",
+"name": "Florida National Scenic Trail",
+"kind": "NST",
+"bbox": [
+-87.2897,
+25.8571,
+-80.6106,
+30.9969
+],
+"by": "Florida Trail Association (USFS partner)",
+"kb": 90
+},
+{
 "ref": "US-4238",
 "name": "Ice Age National Scenic Trail",
 "kind": "NST",
@@ -115,6 +141,32 @@
 ],
 "by": "Ice Age Trail Alliance (NPS partner)",
 "kb": 53
+},
+{
+"ref": "US-4570",
+"name": "Iditarod National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-165.4228,
+60.0989,
+-148.9691,
+64.7862
+],
+"by": "National Park Service",
+"kb": 23
+},
+{
+"ref": "US-4571",
+"name": "Juan Bautista de Anza National Historic Trail",
+"kind": "NHT",
+"bbox": [
+-122.484,
+31.3343,
+-110.9312,
+38.0557
+],
+"by": "National Park Service",
+"kb": 19
 },
 {
 "ref": "US-4572",
@@ -151,6 +203,19 @@
 31.5457,
 -86.9745,
 36.0318
+],
+"by": "National Park Service",
+"kb": 15
+},
+{
+"ref": "US-4561",
+"name": "New England National Scenic Trail",
+"kind": "NST",
+"bbox": [
+-72.8447,
+41.2675,
+-72.2481,
+42.7207
 ],
 "by": "National Park Service",
 "kb": 15
@@ -219,6 +284,32 @@
 ],
 "by": "National Park Service",
 "kb": 15
+},
+{
+"ref": "US-4562",
+"name": "Pacific Crest National Scenic Trail",
+"kind": "NST",
+"bbox": [
+-123.258,
+32.5896,
+-116.4127,
+48.9999
+],
+"by": "National Park Service",
+"kb": 219
+},
+{
+"ref": "US-4563",
+"name": "Pacific Northwest National Scenic Trail",
+"kind": "NST",
+"bbox": [
+-124.7328,
+47.7463,
+-113.6592,
+48.9961
+],
+"by": "U.S. Forest Service",
+"kb": 87
 },
 {
 "ref": "US-4578",
