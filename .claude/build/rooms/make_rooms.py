@@ -86,7 +86,7 @@ PAGES['kpc-map-room.html'] = ('Map Room | KPC', 'Every Kentucky Portable Club ma
     ], alt=True, sid='at'),
     section('LOOK IT UP', '🔎 Check &amp; Track', 'Quick answers about a spot or a call sign.', [
         card('kpc-lookup.html', '🔢', 'Grid &amp; County Lookup', 'Your grid square, Kentucky county and the nearest parks for your location or any reference.', 'a contact asks for your grid or county, or you\'re filling in a log.', 'KENTUCKY'),
-        card('kpc-checker.html', '✅', 'Park Checker', 'Shows which Kentucky POTA parks any call sign has activated, on a map and as a list you can download.', 'you want to know which parks you, or a friend, still need.', 'KENTUCKY'),
+        card('kpc-checker.html', '✅', 'Park Checker', 'Pick any state and see which POTA parks a call sign has <b>activated</b>, on a map and as a list you can download. <b>Hunters</b> load the hunter file from pota.app to see which parks they\'ve worked and which they still need.', 'you want to know which parks you, or a friend, still need to activate or hunt, in any state.', 'ANY STATE'),
         card('kpc-tracker.html', '📊', 'Park Tracker', 'Tracks the Kentucky POTA parks a call sign has activated, with the KPC club leaderboard.', 'you\'re working toward activating every park in Kentucky.', 'KENTUCKY'),
     ], sid='look'),
     '<section class="kb-sec" id="files" style="background:#ebe3d1"><div class="kb-in"><p class="kb-k">MAP FILES</p><h2>📥 Take the Pins With You</h2>'
@@ -125,7 +125,7 @@ PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain wor
                         'Check the <a href="kpc-activations.html">Activation Board</a> for planned activations, or post a park you need.',
                         'Call with your call sign once, give a signal report and your state, and listen for the park number.',
                         'Log it. Your credit shows up after the activator uploads their log.',
-                        'See which Kentucky parks you still need with the <a href="kpc-checker.html">Park Checker</a>.']),
+                        'See which parks you still need, in any state, with the <a href="kpc-checker.html">Park Checker</a> (it reads your hunter file from pota.app).']),
     ]),
     section('KENTUCKY GUIDES', '📚 Our Kentucky POTA Guides', 'Free club guides for every Kentucky POTA park. The web pages are always current; the PDFs are printed from them.', [
         card('kpc-guide-pota.html?order=num', '📗', 'Kentucky POTA Resource (by number)', 'Every Kentucky park in park-number order, with its details, the other references on the same ground, and links.', 'you know the park number.'),
