@@ -78,7 +78,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  map.on('popupopen',e=>{const el=e.popup.getElement();if(!el)return;const s=e.popup._kpc;if(!s)return;
   {const bb=el.querySelector('[data-a="bound"]');if(bb)bb.textContent=bound&&boundRef===s.c?'HIDE OUTLINE':'SHOW THIS PARK\u2019S OUTLINE'}
   el.querySelectorAll('[data-a]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const a=b.dataset.a;if(a==='add'){inTrip(s.c)?removeStop(s.c):addStop(s);map.closePopup()}else if(a==='bound')showBoundary(s,b)});
-  if(s.p==='POTA'){livePota(s,el.querySelector('.live'));parkInfo(s,el.querySelector('.pinfo'))}})}
+  if(s.p==='POTA')livePota(s,el.querySelector('.live'));if(s.p!=='PIN')parkInfo(s,el.querySelector('.pinfo'))})}
 function setDrop(on){dropMode=on;if(on&&map)map.closePopup();$('us-drop').setAttribute('aria-pressed',on);$('usmap').classList.toggle('dropping',on);$('us-maphint').textContent=on?'Tap the map where you want your pin.':'Tap a dot to add it to your trip, see Street View or show its boundary. Zoom in to county level to see official federal and state boundaries; the layers button switches maps (Satellite + Streets + Official Boundaries) or turns the boundaries off.'}
 function links(s){const sv=`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${s.la},${s.lo}`;
  const page=s.p==='POTA'?KPC.links.pota(s.c):s.p==='SOTA'?(s.url||KPC.links.sota(s.c)):s.p==='WWFF'?KPC.links.kff(s.c):'';
@@ -96,35 +96,64 @@ function stateAt(la,lo){const inR=(r)=>{let c=false;for(let i=0,j=r.length-1;i<r
  const b=BORD.find(b=>b.p.some(pl=>inR(pl[0])));return b?b.a:''}
 const ACT={Automobile:'car',Campground:'campground',Pedestrian:'on foot',Boat:'boat',Bicycle:'bike',Backpacking:'backpacking',Hiking:'hiking'};
 const CFED={},AGN={FS:'Forest Service',NPS:'National Park Service',USACE:'Army Corps',BLM:'BLM',FWS:'Fish & Wildlife',TVA:'TVA',BOR:'Reclamation'};
+const SOTAI={};let KFFROWS=null;
+const hd=t=>`<div class="meta" style="margin:8px 0 3px;font-weight:800;letter-spacing:.5px">${t}</div>`;
+const ln=t=>`<div class="meta" style="margin:2px 0">${t}</div>`;
+const GENW=/\b(state|national|park|parks|forest|wildlife|management|area|recreation|historic|historical|site|refuge|preserve|nature|the|of|and|lake|river|scenic|wild|memorial|monument|conservation|wma|nwr|sp|np|nf)\b/g;
+const nwords=t=>String(t||'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(GENW,' ').split(/\s+/).filter(w=>w.length>2);
+const nsim=(a,b)=>{const A=nwords(a),B=new Set(nwords(b));if(!A.length||!B.size)return 0;return A.filter(w=>B.has(w)).length/Math.max(A.length,B.size)};
+const ymd=d=>{const t=new Date(d);return isNaN(t)?'':t.toLocaleDateString([],{month:'short',day:'numeric',year:'numeric'})};
+/* SOTA summit facts from api2.sota.org.uk (CORS ok): height, points, winter bonus, how often activated */
+async function sotaFacts(s){const [a,r]=s.c.split('/');if(!(s.c in SOTAI))SOTAI[s.c]=fetch('https://api2.sota.org.uk/api/summits/'+encodeURIComponent(a)+'/'+encodeURIComponent(r)).then(x=>x.ok?x.json():null).catch(()=>null);
+ const j=await SOTAI[s.c];let h='';
+ if(j){const n=+j.activationCount||0;
+  h+=ln(`<b>${j.points||s.pts||0} point${(j.points||s.pts)==1?'':'s'}</b>${+j.bonusPoints?` + ${j.bonusPoints} winter bonus`:''}${j.regionName?' · '+esc(j.regionName):''}`);
+  h+=ln(n?`Activated <b>${n.toLocaleString()}</b> time${n===1?'':'s'}${j.activationDate?' · last '+esc(ymd(j.activationDate)):''}${j.activationCall?' by '+esc(j.activationCall):''}${n<=5?' · <b style="color:#b45309">RARE</b>':''}`:'<b style="color:#c2410c">Never activated: a SOTA "ATNO"!</b>')}
+ else if(s.m)h+=ln(`${Math.round(s.m*3.28084).toLocaleString()} ft (${s.m.toLocaleString()} m) · ${s.pts||0} points`);
+ h+=ln('Activation zone: within 25 m (82 ft) of the top, on foot (no vehicles). 4 contacts to score the points.');
+ h+=`<div class="acts"><a href="kpc-in-park.html?ref=${encodeURIComponent(s.c)}">AM I IN THE ZONE?</a><a href="https://sotl.as/summits/${encodeURIComponent(s.c)}" target="_blank" rel="noopener">SOTLAS (ROUTES, PHOTOS) ↗</a></div>`;
+ return h}
+/* WWFF (KFF) facts from our weekly copy of the WWFF directory (data/wwff/KFF.json) */
+async function wwffFacts(s){if(!KFFROWS)KFFROWS=fetch('data/wwff/KFF.json').then(r=>r.ok?r.json():[]).catch(()=>[]);
+ const x=(await KFFROWS).find(r=>r[0]===s.c);let h='';
+ if(x&&x[5]){const a=String(x[5]).replace(/^K-/,''),c=String(x[6]||'').replace(/^K-/,'');h+=ln(`WWFF (KFF) reference · ${esc(a)}${c&&c!==a?' · '+esc(c):''}`)}
+ h+=ln('WWFF counts every contact you make there, and you can add up visits: 44 contacts for the WWFF award (KFF may accept fewer for its own awards; check wwff.us).');
+ if(x&&x[4])h+=`<div class="acts">${x&&x[4]?`<a href="${esc(x[4])}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}</div>`;
+ return h}
 async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
- const sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);let h='';
- for(const st of sts){if(!(st in PINFO))PINFO[st]=fetch('data/parkinfo/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+ const P=s.p,sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);let h='';
+ if(P==='POTA')for(const st of sts){if(!(st in PINFO))PINFO[st]=fetch('data/parkinfo/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await PINFO[st];const p=d&&d.parks&&d.parks[s.c];if(!p)continue;
   const [,web,typ,act]=p,how=(act||'').split(',').map(x=>ACT[x.trim()]||x.trim().toLowerCase()).filter(Boolean);
   h=`<div class="meta" style="margin:6px 0 2px">${typ?esc(typ):''}${how.length?(typ?' · ':'')+'activate by '+esc(how.join(', ')):''}</div>`+
    `<div class="acts">${web?`<a href="${esc(web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}${d.stateSite&&/State Park|State Forest|State Recreation/i.test(typ)?`<a href="${esc(d.stateSite)}" target="_blank" rel="noopener">${esc(st)} STATE PARKS SITE (CAMPING, MAPS) ↗</a>`:''}</div>`;break}
- /* Park Notes tips (Kentucky page or the other-states page) */
+ if(P==='SOTA')h+=await sotaFacts(s);
+ if(P==='WWFF')h+=await wwffFacts(s);
+ /* Park Notes tips (Kentucky page or the other-states page; parks, summits and KFF references) */
  if(!window.__kpcNotes)window.__kpcNotes=Promise.all(['kpc-park-notes.json','kpc-park-notes-us.json'].map(u=>fetch(u).then(r=>r.ok?r.json():null).catch(()=>null)));
  {const [kyN,usN]=await window.__kpcNotes,nk=((kyN&&kyN.notes)||[]).filter(t=>t.ref===s.c).length,nu=((usN&&usN.notes)||[]).filter(t=>t.ref===s.c).length;
   const ky=nk||(!nu&&stateAt(s.la,s.lo)==='KY'),n=nk+nu,href=ky?'kpc-park-notes.html#'+encodeURIComponent(s.c):'kpc-park-notes-us.html?ref='+encodeURIComponent(s.c)+'#find';
   h+=`<div class="meta" style="margin:8px 0 2px;font-weight:800"><a href="${href}">📝 ${n?'PARK NOTES: '+n+' TIP'+(n===1?'':'S'):'PARK NOTES: BE THE FIRST TO ADD A TIP'} ›</a></div>`}
- /* federal campgrounds within 10 miles (Recreation.gov, data/campfed/US-XX.json, weekly by kpc-fed-camps.yml) */
+ /* federal campgrounds + picnic shelters within 10 miles (Recreation.gov, data/campfed/US-XX.json, weekly by kpc-fed-camps.yml) */
  const near=[];for(const st of [...new Set([...sts,...statesNear(s.la,s.lo,10)])]){if(!(st in CFED))CFED[st]=fetch('data/campfed/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await CFED[st];((d&&d.camps)||[]).forEach(c=>{const mi=KPC.miles(s.la,s.lo,c[2],c[3]);if(mi<=10&&!near.some(x=>x.c[0]===c[0]))near.push({c,mi})})}
  near.sort((a,b)=>a.mi-b.mi);
- const row=({c,mi})=>`<div class="meta" style="margin:2px 0"><a href="${esc(c[6])}" target="_blank" rel="noopener">${esc(c[1])} ↗</a> · ${mi<.3?'at the park':mi.toFixed(1)+' mi'}${c[4]?' · '+esc(AGN[c[4]]||c[4]):''}${c[5]?' · can reserve':' · first come'}</div>`;
- const hd=t=>`<div class="meta" style="margin:8px 0 3px;font-weight:800;letter-spacing:.5px">${t}</div>`;
+ const row=({c,mi})=>ln(`<a href="${esc(c[6])}" target="_blank" rel="noopener">${esc(c[1])} ↗</a> · ${mi<.3?'right there':mi.toFixed(1)+' mi'}${c[4]?' · '+esc(AGN[c[4]]||c[4]):''}${c[5]?' · can reserve':' · first come'}`);
  const cg=near.filter(x=>x.c[7]!=='s'),sh=near.filter(x=>x.c[7]==='s');
  if(cg.length)h+=hd('⛺ FEDERAL CAMPGROUNDS NEARBY (RECREATION.GOV)')+cg.slice(0,4).map(row).join('');
- if(sh.length)h+=hd('🧺 PICNIC SHELTERS NEARBY (SHADE + TABLE, GOOD FOR ACTIVATING)')+sh.slice(0,3).map(row).join('');
- /* same park in WWFF + SOTA summits in / near it (data/wwff + data/sota tiles via kpc-bounds.js) */
- if(window.KPCB){try{const GEN=/\b(state|national|park|parks|forest|wildlife|management|area|recreation|historic|historical|site|refuge|preserve|nature|the|of|and|lake|river|scenic|wild|memorial|monument|conservation|wma|nwr|sp|np|nf)\b/g;
-  const words=t=>String(t||'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(GEN,' ').split(/\s+/).filter(w=>w.length>2);
-  const sim=(a,b)=>{const A=words(a),B=new Set(words(b));if(!A.length||!B.size)return 0;return A.filter(w=>B.has(w)).length/Math.max(A.length,B.size)};
-  const [ww,so]=await Promise.all([KPCB.wwffNear(s.la,s.lo,12),KPCB.sotaNear(s.la,s.lo,4.83)]);
-  const same=ww.map(w=>Object.assign({sc:sim(s.n,w.name)},w)).filter(w=>w.sc>=.6||(w.d<.4&&w.sc>0)).sort((a,b)=>b.sc-a.sc||a.d-b.d).slice(0,1);
-  if(same.length)h+=hd('🌲 ALSO A WWFF REFERENCE')+same.map(w=>`<div class="meta" style="margin:2px 0"><a href="https://wwff.co/directory/?showRef=${encodeURIComponent(w.ref)}" target="_blank" rel="noopener">${esc(w.ref)} ↗</a> ${esc(w.name)} · one activation can count for both (check its WWFF rules)</div>`).join('');
-  if(so.length)h+=hd(`⛰ SOTA SUMMITS WITHIN 3 MILES (${so.length})`)+so.slice(0,4).map(x=>`<div class="meta" style="margin:2px 0"><a href="https://sotl.as/summits/${encodeURIComponent(x.ref)}" target="_blank" rel="noopener">${esc(x.ref)} ↗</a> ${esc(x.name)} · ${Number(x.ft).toLocaleString()} ft · ${x.pts} pt${x.pts==1?'':'s'} · ${(x.d/1.609).toFixed(1)} mi</div>`).join('')+(so.length>4?`<div class="meta" style="font-size:11px;opacity:.8">${so.length-4} more on the map (turn on SOTA).</div>`:'');
+ if(sh.length&&P!=='SOTA')h+=hd('🧺 PICNIC SHELTERS NEARBY (SHADE + TABLE, GOOD FOR ACTIVATING)')+sh.slice(0,3).map(row).join('');
+ /* the other programs at the same place */
+ const sotaRows=so=>so.slice(0,4).map(x=>ln(`<a href="https://sotl.as/summits/${encodeURIComponent(x.ref)}" target="_blank" rel="noopener">${esc(x.ref)} ↗</a> ${esc(x.name)} · ${Number(x.ft).toLocaleString()} ft · ${x.pts} pt${x.pts==1?'':'s'} · ${(x.d/1.609).toFixed(1)} mi`)).join('')+(so.length>4?`<div class="meta" style="font-size:11px;opacity:.8">${so.length-4} more on the map (turn on SOTA).</div>`:'');
+ if(window.KPCB){try{
+  if(P==='POTA'){const [ww,so]=await Promise.all([KPCB.wwffNear(s.la,s.lo,12),KPCB.sotaNear(s.la,s.lo,4.83)]);
+   const same=ww.map(w=>Object.assign({sc:nsim(s.n,w.name)},w)).filter(w=>w.sc>=.6||(w.d<.4&&w.sc>0)).sort((a,b)=>b.sc-a.sc||a.d-b.d).slice(0,1);
+   if(same.length)h+=hd('🌲 ALSO A WWFF REFERENCE')+same.map(w=>ln(`<a href="https://wwff.co/directory/?showRef=${encodeURIComponent(w.ref)}" target="_blank" rel="noopener">${esc(w.ref)} ↗</a> ${esc(w.name)} · one activation can count for both (check the WWFF rules)`)).join('');
+   if(so.length)h+=hd(`⛰ SOTA SUMMITS WITHIN 3 MILES (${so.length})`)+sotaRows(so)}
+  if(P==='WWFF'){const pota=ALL.filter(x=>x.p==='POTA'&&Math.abs(x.la-s.la)<.12&&Math.abs(x.lo-s.lo)<.15).map(x=>({x,sc:nsim(x.n,s.n),d:KPC.miles(s.la,s.lo,x.la,x.lo)})).filter(o=>o.sc>=.6||(o.d<.25&&o.sc>0)).sort((a,b)=>b.sc-a.sc||a.d-b.d).slice(0,1);
+   if(pota.length)h+=hd('🏞 ALSO A POTA PARK')+pota.map(o=>ln(`<a href="https://pota.app/#/park/${encodeURIComponent(o.x.c)}" target="_blank" rel="noopener">${esc(o.x.c)} ↗</a> ${esc(o.x.n)} · one activation can count for both`)).join('');
+   const so=await KPCB.sotaNear(s.la,s.lo,4.83);if(so.length)h+=hd(`⛰ SOTA SUMMITS WITHIN 3 MILES (${so.length})`)+sotaRows(so)}
+  if(P==='SOTA'){const pk=ALL.filter(x=>x.p==='POTA'&&Math.abs(x.la-s.la)<.06&&Math.abs(x.lo-s.lo)<.08).map(x=>({x,d:KPC.miles(s.la,s.lo,x.la,x.lo)})).filter(o=>o.d<=3).sort((a,b)=>a.d-b.d).slice(0,3);
+   if(pk.length)h+=hd('🏞 POTA PARKS NEAR THE SUMMIT')+pk.map(o=>ln(`<a href="https://pota.app/#/park/${encodeURIComponent(o.x.c)}" target="_blank" rel="noopener">${esc(o.x.c)} ↗</a> ${esc(o.x.n)} · ${o.d.toFixed(1)} mi`)).join('')+'<div class="meta" style="font-size:11px;opacity:.8">A summit can count for POTA too when it is inside the park’s boundary: check with AM I IN THE ZONE?, or tap the park’s dot and SHOW THIS PARK’S OUTLINE.</div>'}
  }catch(e){}}
  if(h)el.innerHTML=h}
 async function livePota(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;el.textContent='Checking POTA…';
