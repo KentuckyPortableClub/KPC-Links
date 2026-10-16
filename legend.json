@@ -1,0 +1,272 @@
+{
+ "layers": [
+  {
+   "layerId": 0,
+   "layerName": "PADUS4_0_FeeManagers",
+   "layerType": "Feature Layer",
+   "minScale": 0,
+   "maxScale": 0,
+   "legend": [
+    {
+     "label": "Other Federal (TVA, ARS, BPA, DOE, etc.)",
+     "url": "7467257741c49bde7b508619aacae782",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATElEQVQ4je3UoREAIAxD0dDLYAzEDkjWwrFVj6tEN47+AZ6ICNcZ3R0dgsywGVhrmArQHSDEscB0zBNvBeajwHgq8IsNzbDjaRWFdQHXMQ2IRRdBswAAAABJRU5ErkJggg==",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "ARS",
+      "BPA",
+      "DOE",
+      "OTHF",
+      "TVA"
+     ]
+    },
+    {
+     "label": "Bureau of Land Management (BLM)",
+     "url": "df506717bb5963cf48857083c147c8e6",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQ4jWP5fLvf4R8DkwMDFQATw78DLCDDGBkZ6qlh4L//TAwsDFQGLKMGUgxYKDcCFYwaSDlgoYIZKGDUwBERhkwM/w6ASlpqAJBZAA17Dy20QbW9AAAAAElFTkSuQmCC",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "BLM"
+     ]
+    },
+    {
+     "label": "City Land",
+     "url": "c5ebd8581ff08b9eef40eed6a928747d",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAARElEQVQ4jWPZfTjCgYGBAYSpAQ6wgA1jZKininH/GRhABlIVsIwaSDFgodwIVDBqIOWAhQpmoIBRA0dKGB4AlbRUAgcACJ4HpRQfin4AAAAASUVORK5CYII=",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "CITY"
+     ]
+    },
+    {
+     "label": "County / Regional Agency Land",
+     "url": "bfec19c1ccbed0451a48d4b0a8768f9e",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAS0lEQVQ4je3UMREAIAxD0cBFGDJwgyzWusBN4RiZm41+AW/IEM7VGyoaFDmMFyvYQ+HtWkCIY4LhGCfeEoxHgfGU4B8bOuw+rSSHHdxdC7gWRRc/AAAAAElFTkSuQmCC",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "CNTY",
+      "REG",
+      "RWD"
+     ]
+    },
+    {
+     "label": "Department of Defense (DOD)",
+     "url": "7ff59cbbc9d6ed660823b8b36a03ab5a",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAASUlEQVQ4je3UsQ2AQAxD0cjyUJTZDEbLZL4Toro67sgf4BUuzCevDCHDEVT8sHVbQCEY5jhgO/aJswH70WAcDfiPDaF6n9YSVBsoiQzHVeScDQAAAABJRU5ErkJggg==",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "DOD"
+     ]
+    },
+    {
+     "label": "U.S. Fish and Wildlife Service (FWS)",
+     "url": "4fce355c26b9651e69caff614be98446",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATUlEQVQ4jWNZHZHiwMTA4MBABfCPgeEAC9iw/wz11DCQiZGBgYWByoBl1ECKAQvlRqCCUQMpByxUMAMFjBo4IsLwHwPDAVBJSw0AMgsAuxcJOuihwOYAAAAASUVORK5CYII=",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "FWS"
+     ]
+    },
+    {
+     "label": "Joint, Other, Unknown",
+     "url": "8e92514ca45adc4586bca23a261c548c",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAARUlEQVQ4jWN5vH69AwMDAwhTAxxgARvGyFBPFeP+MzCADKQqYBk1kGLAQrkRqGDUQMoBCxXMQAGjBo6UMDwAKmmpBA4AAKzTCBDkpRQyAAAAAElFTkSuQmCC",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "JNT",
+      "OTHR",
+      "UNK",
+      "UNKL"
+     ]
+    },
+    {
+     "label": "Non-Governmental Organization",
+     "url": "0707696800ba8476fe8b0b2653630640",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAS0lEQVQ4je3UMREAIAxD0ZSLMEZcYa1ucAFcR+Zmo1/AGzKEa4y+gQ5BDXAGZudMBbjNQIhjgemYJ94KzEeB8VTgFxs2wONpFYV1Aeu9C0jkFdwlAAAAAElFTkSuQmCC",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "NGO"
+     ]
+    },
+    {
+     "label": "National Park Service (NPS)",
+     "url": "5bfa8a0360313e8bae2f1eee5f10ee9c",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAASUlEQVQ4jWMpmF/gwMDE4MBADfCP4QAL1LB6qhjIxMDAwkBlwDJqIMWAhXIjUMGogZQDFiqYgQJGDRwZYfiP4QCopKUK+MdwAABSMAhRmIXsFAAAAABJRU5ErkJggg==",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "NPS"
+     ]
+    },
+    {
+     "label": "Natural Resources Conservation Service (NRCS)",
+     "url": "b3269c45237507bb73ccddfde1581e97",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAASUlEQVQ4jWP578LhwPCPwYGBGoCJ4QAL1LB6qhj4j4GBhYHKgGXUQIoBC+VGoIJRAykHLFQwAwWMGjgywpCJ4QCopKUKYGI4AADSOQkZdcOwTAAAAABJRU5ErkJggg==",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "NRCS"
+     ]
+    },
+    {
+     "label": "Other State (NHP, DOT, HS, etc.)",
+     "url": "21bfb95332eb4c42d189d5e8e92f7481",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAASUlEQVQ4jWNZPX2/AwMTgwMDNcA/hgMsUMPqqWIgEwMDCwOVAcuogRQDFsqNQAWjBlIOWKhgBgoYNXBkhOE/hgOgkpYq4B/DAQCH7QjTJWq0PgAAAABJRU5ErkJggg==",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "OTHS",
+      "SDC"
+     ]
+    },
+    {
+     "label": "Private Conservation; Private Corporation",
+     "url": "dab4ff2232cee6f8e4b7008ce83162ee",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATUlEQVQ4je3UMRHAMAxDUUcnYBnKqwBKKmzCQu15zGxt9QfwBg3ifq4pYIYhSIuJjXhvByggGObYYDnWibMG69FgHDX4iw0hrXxaR2l9VE8QiCRTErEAAAAASUVORK5CYII=",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "PVT"
+     ]
+    },
+    {
+     "label": "State Trust Land",
+     "url": "ee3d2d74a6a143c20f1f895b2b6a7145",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAARUlEQVQ4jWPZXzPdgYGByYGBKuDfARaoYfXUMZCJgYWByoBl1ECKAQvlRqCCUQMpByxUMAMFjBo4QsLw3wFQSUsd8O8AAFwKCKRR2DKpAAAAAElFTkSuQmCC",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "SDNR",
+      "SDOL",
+      "SLB"
+     ]
+    },
+    {
+     "label": "State Fish and Wildlife",
+     "url": "79b2babd0d210dc5fe51572927d8f9d9",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAS0lEQVQ4jWNZPPm+A8O/fw4M1ABMTAdYwIYxMtZTxcB//xhYGKgMWEYNpBiwUG4EKhg1kHLAQgUzUMCogSMjDJmYDoBKWqoAJqYDAA4vDeNp2B6sAAAAAElFTkSuQmCC",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "SFW"
+     ]
+    },
+    {
+     "label": "State Park and Recreation",
+     "url": "92a87657c893bd6f92fa8c9017558df1",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAS0lEQVQ4jWOZvfq+A8O/fw4M1ABMTAdYwIYxMtZTxcB//xhYGKgMWEYNpBiwUG4EKhg1kHLAQgUzUMCogSMjDJmYDoBKWqoAJqYDAHNHDfMA9H2fAAAAAElFTkSuQmCC",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "SPR"
+     ]
+    },
+    {
+     "label": "American Indian Areas (Census Bureau)",
+     "url": "d1deb9405ae857bc3465887b1c2c2d1a",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQ4jWNZOa1zOwPTfwcGaoB/jAdYQIZpG+pyUMO8q+cvO7AwUBmwjBpIMWCh3AhUMGog5YCFCmaggFEDR0YY/mM8ACppqWLaP8YDAAGiEI6KrpFXAAAAAElFTkSuQmCC",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "TRIB"
+     ]
+    },
+    {
+     "label": "Army Corps of Engineers (USACE)",
+     "url": "95b8b953d06327d1e44363e5a67e55cd",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAS0lEQVQ4je3UMRHAMAxD0d+cgAVMeZSaeZSL08uY2drqD+ANGqT7XZPBxFES2tiCx+FdA4Q5NVhOdeKswXoyGEcN/mPDJPbTWkriAwdsChHj8E9bAAAAAElFTkSuQmCC",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "USACE"
+     ]
+    },
+    {
+     "label": "Bureau of Reclamation (USBR)",
+     "url": "ed54bbea8ce9aa1c206ce2fb7bab41aa",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAARklEQVQ4jWNhiHnuwMDwz4GBKoDpAAvEMMZ66hj4j4GFgcqAZdRAigEL5UagglEDKQcsVDADBYwaOELCkOkAqKSlDmA6AACfyQkSLYm2rwAAAABJRU5ErkJggg==",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "USBR"
+     ]
+    },
+    {
+     "label": "Forest Service (USFS)",
+     "url": "6d355c86ca607ad2a1952b2e49281454",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAS0lEQVQ4jWNp363jwMT0z4GBCuDfP6YDLFDD6qlhIBPTPwYWBioDllEDKQYslBuBCkYNpBywUMEMFDBq4IgIw3//mA6ASlpqAJBZAI6FD0AW9hnMAAAAAElFTkSuQmCC",
+     "contentType": "image/png",
+     "groupId": "0",
+     "height": 20,
+     "width": 20,
+     "values": [
+      "USFS"
+     ]
+    },
+    {
+     "label": "<all other values>",
+     "url": "338ff8bb56c87a26ab2cd2383d74d675",
+     "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAASElEQVQ4jWPJz8/fzsDA4MBAHXCABWSYsLAwBzVMe/v2rQPIQKoCllEDKQYslBuBCkYNpBywUMEMFDBq4EgJwwOgkpZK5h0AAEzKC2T03wVLAAAAAElFTkSuQmCC",
+     "contentType": "image/png",
+     "groupId": "1",
+     "height": 20,
+     "width": 20
+    }
+   ],
+   "legendGroups": [
+    {
+     "id": "0",
+     "heading": "Manager Name"
+    },
+    {
+     "id": "1",
+     "heading": ""
+    }
+   ]
+  }
+ ]
+}
