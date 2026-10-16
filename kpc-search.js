@@ -40,7 +40,7 @@ function loadParks(){if(PKp)return PKp;
  (j.kff||[]).forEach(p=>PK.push({k:'WWFF',c:p.c,n:p.n,co:p.co||'',la:p.la,lo:p.lo,x:norm(p.n+' '+p.c+' '+(p.co||''))}))}).catch(()=>{});return PKp}
 /* POTA parks in the states around Kentucky (data/parkinfo/index.json, weekly by kpc-state-links.yml) */
 let NB=null,NBp=null;
-function loadNB(){if(NBp)return NBp;NBp=fetch('data/parkinfo/index.json').then(r=>r.ok?r.json():[]).then(L=>{NB=L.map(r=>({c:r[0],n:r[1],st:r[2],la:r[3],lo:r[4],t:r[5]||'',w:r[6]||'',x:norm(r[1]+' '+r[0]+' '+r[2]+' '+(r[5]||''))}))}).catch(()=>{NB=[]});return NBp}
+function loadNB(){if(NBp)return NBp;NBp=fetch('data/parkinfo/index.json').then(r=>r.ok?r.json():[]).then(J=>{const T=J&&J.types,L=Array.isArray(J)?J:(J&&J.rows)||[];NB=L.map(r=>{const t=T?(T[r[5]]||''):(r[5]||'');return{c:r[0],n:r[1],st:r[2],la:r[3],lo:r[4],t,w:T?'':(r[6]||''),x:norm(r[1]+' '+r[0]+' '+r[2]+' '+t)}})}).catch(()=>{NB=[]});return NBp}
 const NBW={};function nbWeb(){res.querySelectorAll('a[data-nbw]').forEach(a=>{const st=a.dataset.st,c=a.dataset.nbw;
  if(!(st in NBW))NBW[st]=fetch('data/parkinfo/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
  NBW[st].then(d=>{const p=d&&d.parks&&d.parks[c];if(p&&p[1]){a.href=p[1];a.hidden=false}})})}
