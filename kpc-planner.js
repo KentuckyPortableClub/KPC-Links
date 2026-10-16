@@ -128,6 +128,7 @@ function bPopup(f,s,ll){const p=f.properties||{},refs=potaFor(f);
 function makeMap(){
  if(!window.L){document.getElementById('map').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>';return null;}
  const m=L.map('map',{scrollWheelZoom:true,maxZoom:19,tapHold:true,zoomControl:true}).setView([37.75,-85.7],7);
+ try{kpcFullBtn(m)}catch(e){}
  const esri=p=>`https://server.arcgisonline.com/ArcGIS/rest/services/${p}/MapServer/tile/{z}/{y}/{x}`,EA='Imagery © Esri, Maxar, Earthstar Geographics';
  const base={
   'Road Map':L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}),
@@ -456,3 +457,11 @@ $('share').onclick=async()=>{if(!trip.length)return;const u=shareUrl();
  try{await navigator.clipboard.writeText(u);flash('Trip link copied. Paste it in a text or email.')}catch(e){prompt('Copy this trip link:',u)}};
 $('gpx').onclick=()=>{if(!trip.length)return;const b=new Blob([gpx()],{type:'application/gpx+xml'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='kpc-trip.gpx';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)};
 })();
+
+/* ⛶ FULL / ✕ EXIT button (same as the Kit / Info Finder / In-Park maps; Esc exits) */
+function kpcFullBtn(map){if(!window.L||!map)return;if(!document.getElementById('kpc-full-css')){const c=document.createElement('style');c.id='kpc-full-css';
+ c.textContent='.kfull-b{min-height:36px;padding:6px 10px;border:2px solid rgba(0,0,0,.25);border-radius:6px;background:#fff;color:#1378ff;font:900 12px Arial,sans-serif;letter-spacing:.6px;cursor:pointer}.kmap-full{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;max-height:none!important;min-height:0!important;margin:0!important;border-radius:0!important;z-index:5000!important}html.kmap-lock,html.kmap-lock body{overflow:hidden!important}';document.head.appendChild(c)}
+ const box=map.getContainer();let on=false,ph=null;
+ const C=L.Control.extend({options:{position:'topleft'},onAdd(){const b=L.DomUtil.create('button','kfull-b');b.type='button';b.title='Full screen map';b.innerHTML='⛶ FULL';L.DomEvent.disableClickPropagation(b);
+  const set=v=>{on=v;box.classList.toggle('kmap-full',on);document.documentElement.classList.toggle('kmap-lock',on);b.innerHTML=on?'✕ EXIT':'⛶ FULL';b.title=on?'Exit full screen':'Full screen map';if(on)ph=window.scrollY;else if(ph!=null)window.scrollTo(0,ph);setTimeout(()=>map.invalidateSize(),60)};
+  b.onclick=()=>set(!on);document.addEventListener('keydown',e=>{if(on&&e.key==='Escape')set(false)});return b}});new C().addTo(map)}
