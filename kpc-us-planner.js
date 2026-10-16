@@ -17,7 +17,7 @@ const fix=n=>Math.round(n*1e5)/1e5;
 function status(t){$('us-status').innerHTML=t}
 /* My Parks checker (kpc-my-parks.js): NEW TO ME / ATNO filters, badges and faded / orange-ringed dots */
 const KM=window.KPCMine||null;
-let LIST=[];
+let LIST=[];const PICKED={};   /* route boxes: places picked from the suggestion list */
 const allNear=()=>NEAR;
 const vis=()=>KM&&KM.filtering()?NEAR.filter(s=>KM.show(s.c)):NEAR;
 const kmBadge=s=>KM&&s.p!=='PIN'?KM.badge(s.c):'';
@@ -159,7 +159,7 @@ function parseLL(q){const m=String(q).trim().match(/^([NS])?\s*(-?\d{1,2}(?:\.\d
  if(!ew&&lo>60&&la>15&&la<72)lo=-lo; /* "37.5, 85.3" in the US almost always means west longitude */
  if(Math.abs(la)>90||Math.abs(lo)>180)return null;return{la,lo,label:la.toFixed(4)+', '+lo.toFixed(4)}}
 let lastNom=0;
-async function resolvePoint(q){q=String(q||'').trim();if(!q)return null;const ll=parseLL(q);if(ll)return ll;
+async function resolvePoint(q){q=String(q||'').trim();if(!q)return null;if(PICKED[q])return PICKED[q];const ll=parseLL(q);if(ll)return ll;
  const ref=normRef(q);if(BYREF[ref]){const s=BYREF[ref];return{la:s.la,lo:s.lo,label:s.n+' ('+s.c+')'}}
  try{const g=await kpcGeocode(q);if(g.length)return{la:g[0].la,lo:g[0].lo,label:g[0].label}}catch(e){}
  const lq=q.toLowerCase(),s=ALL.find(x=>x.n.toLowerCase().includes(lq));return s?{la:s.la,lo:s.lo,label:s.n}:null}
@@ -275,6 +275,16 @@ function loadShared(){const t=new URLSearchParams(location.search).get('t');if(!
 
 /* ---------- wire up ---------- */
 $('usf').onsubmit=e=>{e.preventDefault();search($('usq').value)};
+/* suggestions as you type (Brandon Oct 16: 'no predictive text on us planner'): parks / summits / WWFF from our list
+   right away, then towns and ZIP codes anywhere in the US (kpc-place-suggest.js, Open-Meteo) */
+if(window.KPCPlace){
+ const KIND={POTA:'POTA park',SOTA:'SOTA summit',WWFF:'WWFF reference'};
+ const local=q=>{const l=q.toLowerCase(),r=normRef(q);const hit=ALL.filter(s=>progs.includes(s.p)&&(s.c.toUpperCase()===r||s.c.toUpperCase().startsWith(r)&&r.length>3||s.n.toLowerCase().includes(l)));
+  hit.sort((a,b)=>(b.n.toLowerCase().startsWith(l)-a.n.toLowerCase().startsWith(l))||a.n.localeCompare(b.n));
+  return hit.slice(0,7).map(s=>({v:s.n,k:KIND[s.p]+' · '+s.c,la:s.la,lo:s.lo,s}))};
+ KPCPlace.box($('usq'),{local,remote:true,onPick:async x=>{if(x.s){$('usq').value=x.s.n;await go(x.s.la,x.s.lo,x.s.n);openSpot(x.s)}else go(x.la,x.lo,x.v)}});
+ ['urf','urt'].forEach(id=>KPCPlace.box($(id),{local,remote:true,onPick:x=>{PICKED[x.v]={la:x.la,lo:x.lo,label:x.s?x.s.n+' ('+x.s.c+')':x.v}}}));
+}
 $('usr').onchange=()=>{if(center)go(center[0],center[1],(store.get('kpcUsLast',{})||{}).label)};
 $('us-progs').onclick=e=>{const b=e.target.closest('button');if(!b)return;const p=b.dataset.p;progs=progs.includes(p)?progs.filter(x=>x!==p):progs.concat(p);if(!progs.length)progs=[p];store.set('kpcUsProgs',progs);
  [...$('us-progs').children].forEach(x=>x.setAttribute('aria-pressed',progs.includes(x.dataset.p)));if(RT){const C=corridor(RT.pts,RT.w);RT.info=C.info;NEAR=C.list;drawDots();drawNear();status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${RT.w} miles of your route.`)}else if(center)go(center[0],center[1],(store.get('kpcUsLast',{})||{}).label)};
@@ -299,6 +309,8 @@ if(KM){KM.bar($('km-bar'));let pend=false;
  window.addEventListener('kpcmine',()=>{if(!center)return;drawNear();if(map&&map._popup&&map.hasLayer(map._popup)){pend=true;return}drawDots()});
  if(map)map.on('popupclose',()=>{if(pend){pend=false;setTimeout(drawDots,0)}})}
 loadAll().then(()=>{const shared=loadShared();drawTrip();
+ /* ?q=… (sent by the KY Trip Planner for an out-of-state place): search it straight away */
+ const qp=new URLSearchParams(location.search).get('q');if(qp&&!shared){$('usq').value=qp;search(qp);return}
  const last=store.get('kpcUsLast',null);if(last&&isFinite(last.la)){$('usr').value=String(last.r||25);go(last.la,last.lo,last.label)}
  else if(shared&&trip.length){go(trip[0].la,trip[0].lo,trip[0].n)}
  else status(`${ALL.length.toLocaleString()} POTA parks, SOTA summits and WWFF references ready. Search a town, ZIP or park to start.`);

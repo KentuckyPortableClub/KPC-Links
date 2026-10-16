@@ -407,10 +407,24 @@ function suggest(inp,box,onPick){let hits=[];
   const P=places().filter(x=>x.n.toLowerCase().includes(v)||x.ref.toLowerCase().includes(v)).slice(0,6).map(x=>({v:lbl(x),k:x.k==='pota'?'POTA park':x.k==='sota'?'SOTA summit':'KFF reference'}));
   hits=[...T,...P].slice(0,8);
   if(parseLL(raw))hits.unshift({v:raw,k:'GPS coordinates',a:1});else if(/\d/.test(raw)&&/[a-z]{3}/i.test(raw)||/,/.test(raw)||!hits.length)hits.push({v:raw,k:'Look up this address or place',a:1});
-  box.innerHTML=hits.map((h,i)=>`<button type="button" data-i="${i}"${h.a?' class="addr"':''}><b>${esc(h.v)}</b><small>${h.k}</small></button>`).join('');box._for=inp;box._hits=hits;box.hidden=false});
+  const paint=()=>{box.innerHTML=hits.map((h,i)=>`<button type="button" data-i="${i}"${h.a?' class="addr"':''}><b>${esc(h.v)}</b><small>${esc(h.k)}</small></button>`).join('');box._for=inp;box._hits=hits;box.hidden=!hits.length};paint();
+  /* towns and POTA parks outside Kentucky (kpc-place-suggest.js), added a moment later (Brandon Oct 16) */
+  if(window.KPCPlace&&raw.length>=3&&!parseLL(raw)){const my=inp._seq=(inp._seq||0)+1;clearTimeout(inp._t);inp._t=setTimeout(async()=>{
+   const [tw,pk]=await Promise.all([KPCPlace.towns(raw),KPCPlace.parks(raw)]);if(my!==inp._seq||inp.value.trim()!==raw)return;
+   const kyRefs=new Set(places().map(x=>x.ref));
+   const far=[...tw.filter(t=>t.st&&t.st!=='KY').slice(0,4).map(t=>({v:t.v,k:t.k+' (outside Kentucky)',far:1,la:t.la,lo:t.lo})),
+    ...pk.filter(p=>!kyRefs.has(p.ref)).slice(0,4).map(p=>({v:p.v,k:p.k+' (outside Kentucky)',far:1,ref:p.ref}))];
+   if(!far.length)return;hits=hits.filter(h=>!h.a||parseLL(h.v)).concat(far);paint()},300)}});
  inp.addEventListener('keydown',e=>{if(e.key==='Escape')box.hidden=true;if(e.key==='Enter'){box.hidden=true}});
- if(!box._wired){box._wired=1;box.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const h=box._hits[+b.dataset.i],i=box._for;box.hidden=true;i.value=h.v;i._pick(h)})}
+ if(!box._wired){box._wired=1;box.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const h=box._hits[+b.dataset.i],i=box._for;box.hidden=true;i.value=h.v;if(h.far){farPick(i,h);return}i._pick(h)})}
  inp._pick=onPick}
+/* a town or POTA park outside Kentucky was picked: centre there; this planner only lists Kentucky places, so offer the US planner */
+async function farPick(inp,h){let la=h.la,lo=h.lo,name=h.v;inp._seq=(inp._seq||0)+1;
+ if(h.ref){$('where').textContent='Looking up '+h.ref+'…';const p=await KPCPlace.park(h.ref);if(!p){$('where').textContent='Could not reach POTA for '+h.ref+'. Try again.';return}la=p.la;lo=p.lo;name=p.n+' ('+h.ref+')'}
+ if(inp.id!=='town'){inp.value=la.toFixed(5)+', '+lo.toFixed(5);if(inp.id==='rtFrom'&&!$('rtTo').value.trim())$('rtTo').focus();else if($('rtFrom').value.trim()&&$('rtTo').value.trim())findRoute();return}
+ RT=null;origin=[la,lo,name];save();run();map.setView([la,lo],Math.max(map.getZoom(),10));
+ const q=h.ref||name;setTimeout(()=>{$('where').innerHTML=`<b>${esc(name)}</b> is outside Kentucky. This planner lists Kentucky parks, summits and KFF references only. `+
+  `<a href="kpc-planner-us.html?q=${encodeURIComponent(q)}" style="font-weight:800">See every park around it in the US Trip Planner ›</a>`},400)}
 suggest($('town'),$('townSug'),()=>pickTown());
 suggest($('rtFrom'),$('routeSug'),()=>$('rtTo').value.trim()?null:$('rtTo').focus());
 suggest($('rtTo'),$('routeSug'),()=>{if($('rtFrom').value.trim())findRoute()});
