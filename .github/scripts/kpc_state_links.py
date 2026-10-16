@@ -44,7 +44,7 @@ for st in STATES:
         n_act = p.get('activations'); n_try = p.get('attempts'); n_q = p.get('qsos')
         parks[ref] = [clean(p.get('name')), web, typ, act, acc, la, lo,
                       int(n_act) if str(n_act).isdigit() else None, int(n_try) if str(n_try).isdigit() else None, int(n_q) if str(n_q).isdigit() else None]
-    doms = collections.Counter(urllib.parse.urlparse(v[1]).netloc.lower().replace('www.', '') for v in parks.values() if v[1] and v[2] == 'State Park')
+    doms = collections.Counter(d for d in (urllib.parse.urlparse(v[1]).netloc.lower().replace('www.', '') for v in parks.values() if v[1] and v[2] == 'State Park') if '.' in d)
     site = ''
     if doms:
         dom, n = doms.most_common(1)[0]
@@ -54,16 +54,23 @@ for st in STATES:
     withweb = sum(1 for v in parks.values() if v[1])
     note(f'US-{st}', f'{len(parks)} parks, {withweb} with a website, {fetched} details fetched, state park site {site or "(none found)"}')
     total += len(parks)
-# small index for the site search box (kpc-search.js), built from EVERY state file on disk: [[ref, name, state, lat, lon, type]]
-# (websites are not in the index: the search reads them from the state file only for the parks it shows)
-rows = []
+# small index for the site search box (kpc-search.js), built from EVERY state file on disk.
+# Compact (Oct 16, ~13k parks): {v:2, types:[...], rows:[[ref, name, state, lat, lon, typeIndex, activations]]}; coords fall back to locations.json.
+LOC = {}
+try:
+    for r in json.load(open('locations.json')):
+        if r[0] == 'POTA': LOC[r[1]] = (r[3], r[4])
+except Exception: pass
+types, ti, rows = [], {}, []
 for f in sorted(os.listdir(OUT)):
     if not (f.startswith('US-') and f.endswith('.json')): continue
     try: d = json.load(open(f'{OUT}/{f}'))
     except Exception: continue
     for ref, v in d['parks'].items():
-        la, lo = (v[5], v[6]) if len(v) > 6 else (None, None)
-        rows.append([ref, v[0], d['state'], la, lo, v[2], v[7] if len(v) > 7 else None])
+        la, lo = (v[5], v[6]) if len(v) > 6 and v[5] is not None else LOC.get(ref, (None, None))
+        t = v[2] or ''
+        if t not in ti: ti[t] = len(types); types.append(t)
+        rows.append([ref, v[0], d['state'], round(la, 3) if la is not None else None, round(lo, 3) if lo is not None else None, ti[t], v[7] if len(v) > 7 else None])
 rows.sort(key=lambda r: (r[2], r[1]))
-json.dump(rows, open(f'{OUT}/index.json', 'w'), separators=(',', ':'), ensure_ascii=False)
+json.dump({'v': 2, 'types': types, 'rows': rows}, open(f'{OUT}/index.json', 'w'), separators=(',', ':'), ensure_ascii=False)
 note('Park links done', f'{total} parks in {len(STATES)} states')
