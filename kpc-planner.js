@@ -128,7 +128,7 @@ function bPopup(f,s,ll){const p=f.properties||{},refs=potaFor(f);
 function makeMap(){
  if(!window.L){document.getElementById('map').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>';return null;}
  const m=L.map('map',{scrollWheelZoom:true,maxZoom:19,tapHold:true,zoomControl:true}).setView([37.75,-85.7],7);
- try{kpcFullBtn(m)}catch(e){}
+
  const esri=p=>`https://server.arcgisonline.com/ArcGIS/rest/services/${p}/MapServer/tile/{z}/{y}/{x}`,EA='Imagery © Esri, Maxar, Earthstar Geographics';
  const base={
   'Road Map':L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}),
@@ -142,7 +142,7 @@ function makeMap(){
  L.control.scale({imperial:true,metric:false,position:'bottomleft'}).addTo(m);
  m.createPane('bndp').style.zIndex=350;m.createPane('trlp').style.zIndex=380;
  // full-screen + add-spot buttons
- const Btns=L.Control.extend({options:{position:'topleft'},onAdd(){const d=L.DomUtil.create('div','leaflet-bar pl-ctl');
+ const Btns=L.Control.extend({options:{position:'bottomright'},onAdd(){const d=L.DomUtil.create('div','leaflet-bar pl-ctl');
   d.innerHTML='<a href="#" role="button" id="plFull" title="Full-screen map" aria-label="Full-screen map">⛶</a><a href="#" role="button" id="plPin" title="Add a spot" aria-label="Add a spot">📍</a>';
   L.DomEvent.disableClickPropagation(d);L.DomEvent.on(d,'click',e=>{L.DomEvent.preventDefault(e);const a=e.target.closest('a');if(!a)return;if(a.id==='plFull')full();if(a.id==='plPin')addMode(!adding)});return d}});
  new Btns().addTo(m);
@@ -387,7 +387,7 @@ function pickTown(){const v=$('town').value,p=findPlace(v);if(!p){if(v.trim().le
 /* ---------------- start ---------------- */
 (async()=>{
  D=await KPC.data();
- map=makeMap();if(map)KPC.countyLayer(map).catch(()=>{});if(map&&window.kpcLocate)kpcLocate(map);
+ map=makeMap();if(map)KPC.countyLayer(map).catch(()=>{});if(map&&window.kpcLocate)kpcLocate(map,{position:'bottomright'});
  {const b=document.querySelector('#prog_ [data-k=two]');if(b)b.setAttribute('aria-pressed',String(!!on.two))}
  layer=L.layerGroup().addTo(map);tripLayer=L.layerGroup().addTo(map);V0=[map.getCenter(),map.getZoom()];ALL=items();
  const q=new URLSearchParams(location.search);let restored=false;
