@@ -86,6 +86,11 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 
 - Oct 16 (Brandon's iPhone screenshots): US planner base 'Satellite + Park Lines (Beta)' (OSM tiles repainted yellow, text looked odd) was REMOVED, code and all (Brandon: 'remove the beta layer'); saved choices map to 'Satellite + Streets + Official Boundaries'. KY planner Kentucky boundary fill lightened (POTA-matched .18→.07, others .08→.04, DBNF .05→.03).
 
+## Park links for the states around Kentucky — Oct 16 2026 (Brandon: 'roll with surrounding states info')
+- .github/workflows/kpc-state-links.yml (Tuesdays 08:41 UTC + manual, inputs states / recheck) → .github/scripts/kpc_state_links.py → data/parkinfo/US-XX.json {state, updated, stateSite, parks:{ref:[name, website, type, activationMethods, accessMethods]}} for TN IN OH WV VA MO IL (STATES env). Website from api.pota.app/location/parks/US-XX (has 'website'); type + methods from api.pota.app/park/<ref> once, reused (RECHECK=1 refetches). stateSite = most common domain among that state's 'State Park' websites (≥3), never a guessed URL.
+- US planner park card: parkInfo() finds the state(s) of the dot (BORD polygons + statesNear 3 mi), shows type · 'activate by car, campground, on foot', OFFICIAL WEBSITE, '<ST> STATE PARKS SITE (CAMPING, MAPS)' for state parks/forests, 'Links from POTA's park list, not checked by KPC.' Kentucky has no file (KY stays hand-checked).
+- PLAN step 2 (not built): Recreation.gov RIDB campgrounds on federal land need a free API key (ridb.recreation.gov answered 401) → Brandon to add secret RIDB_API_KEY. Step 3: more states after the neighbors.
+
 ## Trip planner suggestions — Oct 16 2026 (Brandon: 'KY planner predictive text out of state not working… no predictive text on US planner')
 - kpc-place-suggest.js (window.KPCPlace): towns(q) = Open-Meteo geocoding (US, ZIPs, 'Town ST' keeps that state), parks(q) = api.pota.app/lookup (US parks), park(ref) = coords on pick, box(input,{local,remote,parks,onPick}) = ready-made list (.kps-box).
 - KY planner (kpc-planner.js suggest()): Kentucky towns/places first as before, then out-of-state towns + POTA parks marked '(outside Kentucky)' after 300 ms; picking one = farPick(): centres there and shows 'See every park around it in the US Trip Planner ›' (kpc-planner-us.html?q=). Route boxes get the GPS numbers.
