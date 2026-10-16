@@ -70,7 +70,20 @@
     map.on('overlayremove', e => { if (e.layer === pad.layer) try { localStorage.setItem(k, '0'); } catch (x) {} });
     pad.NAME = NAME; return pad;
   };
-  window.KPCPad = function (map) {
+  /* opts.skipKY: leave Kentucky out (Park Commander already has Kentucky's own official files).
+     Kentucky is cut out of each tile using the county outlines (US Census, kpc-ky-counties-hd.json). */
+  let KYC = null;
+  const kyReady = () => KYC || (KYC = fetch('kpc-ky-counties-hd.json').then(r => r.json()).then(a => a.map(c => c.r)).catch(() => []));
+  function cutKY(x, c, S, rings) {
+    const n = 2 ** c.z * S, X = lo => (lo + 180) / 360 * n - c.x * S,
+      Y = la => { const r = la * Math.PI / 180; return (1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * n - c.y * S; };
+    if (X(-82) < 0 || X(-89.6) > S || Y(36.4) < 0 || Y(39.2) > S) return;   /* tile is nowhere near Kentucky */
+    x.save(); x.globalAlpha = 1; x.globalCompositeOperation = 'destination-out'; x.beginPath();
+    rings.forEach(poly => poly.forEach(ring => ring.forEach(([lo, la], i) => i ? x.lineTo(X(lo), Y(la)) : x.moveTo(X(lo), Y(la)))));
+    x.fill('nonzero'); x.lineWidth = 2; x.stroke(); x.restore();
+  }
+  window.KPCPad = function (map, opts) {
+    opts = opts || {};
     let fails = 0, ok = 0, statusEl = null;
     const tellStatus = () => {
       if (!statusEl) return;
@@ -85,7 +98,7 @@
         const url = `${SRV}?bbox=${x0},${y1 - w},${x0 + w},${y1}&bboxSR=3857&imageSR=3857&size=${S},${S}&dpi=192&format=png32&transparent=true&f=image`;
         const draw = (img, raw) => {
           const x = t.getContext('2d'); x.drawImage(img, 0, 0, S, S);
-          if (raw) return;
+          if (raw) { if (opts.skipKY) cutKY(x, c, S, kyRings); return; }
           let d; try { d = x.getImageData(0, 0, S, S); } catch (e) { x.clearRect(0, 0, S, S); x.globalAlpha = .45; x.drawImage(img, 0, 0, S, S); return; }
           const p = d.data, cat = new Uint8Array(S * S);
           for (let i = 0, j = 0; j < cat.length; i += 4, j++) {
@@ -109,6 +122,7 @@
             p[i] = col[0]; p[i + 1] = col[1]; p[i + 2] = col[2]; p[i + 3] = v[j] ? 255 : 46;
           }
           x.putImageData(d, 0, 0);
+          if (opts.skipKY) cutKY(x, c, S, kyRings);
         };
         const img = new Image(); img.crossOrigin = 'anonymous';
         img.onload = () => { ok++; draw(img, false); done(null, t); tellStatus(); };
@@ -118,7 +132,8 @@
           im2.onerror = () => { fails++; done(null, t); tellStatus(); };
           im2.src = url;
         };
-        img.src = url;
+        let kyRings = [];
+        if (opts.skipKY) kyReady().then(r => { kyRings = r; img.src = url; }); else img.src = url;
         return t;
       }
     });
@@ -143,7 +158,7 @@
         '.kpc-pad-key .kpc-pad-st{color:#ffd23f}@media(max-width:600px){.kpc-pad-key{max-width:200px;font-size:11px}.kpc-pad-key small{display:none}.kpc-pad-key .kpc-pad-st{display:block}}';
       document.head.appendChild(s);
     }
-    layer.on('add', () => legend.addTo(map)); layer.on('remove', () => legend.remove());
+    if (opts.legend !== false) { layer.on('add', () => legend.addTo(map)); layer.on('remove', () => legend.remove()); }
     return { layer, legend };
   };
 })();

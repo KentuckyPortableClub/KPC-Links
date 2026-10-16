@@ -8,7 +8,7 @@
 const $=id=>document.getElementById(id),esc=KPC.esc;
 const COL={POTA:'#1d5a3a',SOTA:'#8a4b14',WWFF:'#2b6cb0',PIN:'#b5452b'};
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-let ALL=[],BYREF={},BORD=[],map=null,dots=null,ctrMk=null,ring=null,bound=null,road=null,center=null,radius=25,progs=store.get('kpcUsProgs',['POTA','SOTA','WWFF']);
+let ALL=[],BYREF={},BORD=[],map=null,dots=null,ctrMk=null,ring=null,bound=null,boundRef='',road=null,center=null,radius=25,progs=store.get('kpcUsProgs',['POTA','SOTA','WWFF']);
 let trip=store.get('kpcUsTrip',[]),dropMode=false,NEAR=[];
 const liveStates={};
 const TAP=matchMedia('(pointer:coarse)').matches;
@@ -90,6 +90,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  map.on('click',e=>dropAt(e.latlng));dots.on('click',e=>{if(dropMode){L.DomEvent.stop(e);dropAt(e.latlng)}});
  map.on('popupopen',e=>{if(dropMode)setTimeout(()=>map.closePopup(),0)});
  map.on('popupopen',e=>{const el=e.popup.getElement();if(!el)return;const s=e.popup._kpc;if(!s)return;
+  {const bb=el.querySelector('[data-a="bound"]');if(bb)bb.textContent=bound&&boundRef===s.c?'HIDE OUTLINE':'SHOW THIS PARK\u2019S OUTLINE'}
   el.querySelectorAll('[data-a]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const a=b.dataset.a;if(a==='add'){inTrip(s.c)?removeStop(s.c):addStop(s);map.closePopup()}else if(a==='bound')showBoundary(s,b)});
   if(s.p==='POTA')livePota(s,el.querySelector('.live'))})}
 function setDrop(on){dropMode=on;if(on&&map)map.closePopup();$('us-drop').setAttribute('aria-pressed',on);$('usmap').classList.toggle('dropping',on);$('us-maphint').textContent=on?'Tap the map where you want your pin.':'Tap a dot to add it to your trip, see Street View or show its boundary. Zoom in to county level to see official federal and state boundaries; the layers button switches maps (Satellite + Streets + Official Boundaries) or turns the boundaries off.'}
@@ -100,7 +101,7 @@ function popup(s){const l=links(s),d=center?KPC.miles(center[0],center[1],s.la,s
  const what=s.p==='POTA'?'POTA park':s.p==='SOTA'?`SOTA summit${s.m?' • '+s.m.toLocaleString()+' m ('+Math.round(s.m*3.28084).toLocaleString()+' ft)':''}${s.pts?' • '+s.pts+' pts':''}`:s.p==='WWFF'?'WWFF reference':'Your pin';
  const div=`<div class="us-pop"><b>${esc(s.n)}</b><div class="meta">${s.p==='PIN'?'':esc(s.c)+' • '}${what}${d!=null?' • '+d.toFixed(1)+' mi away':''} • grid ${KPC.grid(s.la,s.lo).slice(0,6)}</div>
 ${kmBadge(s)?'<div style="margin:4px 0">'+kmBadge(s)+'</div>':''}<div class="live"></div>
-<div class="acts"><button type="button" class="go" data-a="add">${inTrip(s.c)?'&#10003; IN TRIP (REMOVE)':'+ ADD TO TRIP'}</button><a href="${l.sv}" target="_blank" rel="noopener">&#128064; STREET VIEW</a><a href="${l.dir}" target="_blank" rel="noopener">DIRECTIONS</a>${s.p!=='PIN'&&s.p!=='SOTA'?'<button type="button" data-a="bound">SHOW BOUNDARY</button>':''}${l.page?`<a href="${l.page}" target="_blank" rel="noopener">${s.p} PAGE &#8599;</a>`:''}</div></div>`;
+<div class="acts"><button type="button" class="go" data-a="add">${inTrip(s.c)?'&#10003; IN TRIP (REMOVE)':'+ ADD TO TRIP'}</button><a href="${l.sv}" target="_blank" rel="noopener">&#128064; STREET VIEW</a><a href="${l.dir}" target="_blank" rel="noopener">DIRECTIONS</a>${s.p!=='PIN'&&s.p!=='SOTA'?'<button type="button" data-a="bound">SHOW THIS PARK\u2019S OUTLINE</button>':''}${l.page?`<a href="${l.page}" target="_blank" rel="noopener">${s.p} PAGE &#8599;</a>`:''}</div></div>`;
  return div}
 async function livePota(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;el.textContent='Checking POTA…';
  try{const r=await fetch(`https://api.pota.app/park/activations/${s.c}?count=all`);if(!r.ok)throw 0;const j=await r.json();const a=Array.isArray(j)?j:[];
@@ -213,11 +214,14 @@ async function overpass(q,key){if(ovpCache[key])return ovpCache[key];const why=[
  try{const j=await Promise.any(OVP.map(one));ctl.forEach(c=>{try{c.abort()}catch(e){}});ovpCache[key]=j;return j}catch(e){}
  const err=new Error('all servers failed');err.why=why;throw err}
 function sim(a,b){const w=t=>new Set(String(t).toLowerCase().replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(x=>x.length>2&&!['state','park','national','area','the','and','wildlife','management'].includes(x)));const A=w(a),B=w(b);let n=0;A.forEach(x=>{if(B.has(x))n++});return n/Math.max(1,Math.min(A.size,B.size))}
-async function showBoundary(s,btn){if(bound){bound.remove();bound=null}btn.textContent='LOOKING…';btn.disabled=true;
+async function showBoundary(s,btn){
+ /* on/off switch (Brandon Oct 16): tap again to hide this park's outline */
+ if(bound&&boundRef===s.c){bound.remove();bound=null;boundRef='';btn.textContent='SHOW THIS PARK\u2019S OUTLINE';status('Outline hidden.');return}
+ if(bound){bound.remove();bound=null}boundRef=s.c;btn.textContent='LOOKING…';btn.disabled=true;
  /* official first: USGS PAD-US by the park's name near its pin (kpc-bounds.js), then OpenStreetMap */
  if(window.KPCB&&s.p!=='SOTA'){try{const fs=await KPCB.padusByName(s.n,s.la,s.lo);if(fs&&fs.length){
    bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.15}}).addTo(map);
-   const nm=fs[0]._nm||s.n;btn.textContent='OFFICIAL OUTLINE: '+String(nm).toUpperCase().slice(0,40);btn.disabled=false;
+   const nm=fs[0]._nm||s.n;btn.textContent='HIDE OUTLINE ('+String(nm).toUpperCase().slice(0,28)+')';btn.disabled=false;
    try{map.fitBounds(bound.getBounds(),{maxZoom:14,padding:[20,20]})}catch(e){}
    status(`Official boundary shown: <b>${esc(nm)}</b> (USGS PAD-US). POTA goes by the official boundary; check the park's own map too.`);return}}catch(e){}}
  const bb=`${(s.la-.3).toFixed(4)},${(s.lo-.4).toFixed(4)},${(s.la+.3).toFixed(4)},${(s.lo+.4).toFixed(4)}`; /* outline kept to ~20 miles around the park: much less data than a whole forest */
@@ -228,7 +232,7 @@ async function showBoundary(s,btn){if(bound){bound.remove();bound=null}btn.textC
   const lines=[];if(e.type==='way'&&e.geometry)lines.push(e.geometry.filter(Boolean).map(p=>[p.lat,p.lon]));
   else(e.members||[]).forEach(m=>{if(m.type==='way'&&m.geometry)lines.push(m.geometry.filter(Boolean).map(p=>[p.lat,p.lon]))});
   bound=L.featureGroup(lines.filter(l=>l.length>1).map(l=>{const closed=l.length>3&&l[0][0]===l[l.length-1][0]&&l[0][1]===l[l.length-1][1];return closed?L.polygon(l,{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.12,interactive:false}):L.polyline(l,{color:'#f0c96b',weight:3,interactive:false})})).addTo(map);
-  btn.textContent='OUTLINE (NOT OFFICIAL): '+String(e.tags.name||'unnamed area').toUpperCase().slice(0,30);status(`No official boundary found, so this outline is from OpenStreetMap (a volunteer map, not official): <b>${esc(e.tags.name||'unnamed area')}</b>${sim(s.n,e.tags.name||'')<.5?' (closest match: it may not be the exact POTA park area)':''}.`)}
+  btn.textContent='HIDE OUTLINE (NOT OFFICIAL)';btn.disabled=false;status(`No official boundary found, so this outline is from OpenStreetMap (a volunteer map, not official): <b>${esc(e.tags.name||'unnamed area')}</b>${sim(s.n,e.tags.name||'')<.5?' (closest match: it may not be the exact POTA park area)':''}.`)}
  catch(err){btn.textContent='BOUNDARY NOT AVAILABLE, TAP TO TRY AGAIN';{const pop=btn.closest('.us-pop');if(pop){let w=pop.querySelector('.bwhy');if(!w){w=document.createElement('div');w.className='bwhy';w.style.cssText='font-size:11px;color:#b5452b;margin-top:6px;line-height:1.4';pop.appendChild(w)}w.textContent='Why: '+(err.why||[err.message]).join(' \u2022 ')}}status('Boundary lookup failed. What each server said: <b>'+esc((err.why||[err.message]).join(' \u2022 '))+'</b>. Send a screenshot of this to the site admin. Meanwhile try the <b>Satellite + Park Lines (Beta)</b> map in the layers button.');btn.disabled=false;return}btn.disabled=false}
 
 /* ---------- trip ---------- */
