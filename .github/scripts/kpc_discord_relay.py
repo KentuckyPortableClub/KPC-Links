@@ -38,6 +38,9 @@ TOKEN, CHAN = ENV('DISCORD_BOT_TOKEN'), ENV('KPC_RELAY_CHANNEL')
 FB_ID, FB_TOKEN = ENV('FB_PAGE_ID'), ENV('FB_PAGE_TOKEN')
 SMTP_USER, SMTP_PASS, GIO_TO = (ENV('RELAY_SMTP_USER') or 'kypotacampout@gmail.com'), ENV('RELAY_SMTP_PASS'), ENV('GROUPSIO_TO')
 SUB_CSV = ENV('SUBSCRIBE_SHEET_CSV')
+# Every Groups.io email gets this ONE subject so it lands in the same topic (Brandon Oct 16: 'direct to a 2027 topic').
+# Change it without code: repo Settings > Secrets and variables > Actions > Variables > GROUPSIO_SUBJECT.
+GIO_SUBJECT = ENV('GROUPSIO_SUBJECT') or '2027 Kentucky POTA Campout'
 MAIL_URL, MAIL_KEY = ENV('RELAY_MAIL_URL'), ENV('RELAY_MAIL_KEY')
 HOOKS = [u for u in re.split(r'\s+', ENV('RELAY_DISCORD_WEBHOOKS')) if re.match(r'https://(?:\w+\.)?discord(?:app)?\.com/api/webhooks/\d+/[\w-]+(\?\S*)?$', u)]
 DRY = ENV('DRY_RUN').lower() in ('1', 'true', 'yes')
@@ -423,7 +426,7 @@ def flush_mail():
             bad = []
             if it.get('gio') and GIO_TO:
                 if room() < 1: break
-                try: mail(GIO_TO, [], it['subject'], it['body'], files); spent(1); it['gio'] = False
+                try: mail(GIO_TO, [], GIO_SUBJECT, it['body'], files); spent(1); it['gio'] = False
                 except Exception as e:
                     bad.append('groups.io: ' + str(e)[:150])
                     if re.search(r'too many|quota|limit', str(e), re.I): break
