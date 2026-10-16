@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="kpc-boards.css?v=20261016a">
+<style>
+main#pnu .pnu-find{position:relative;max-width:640px}
+main#pnu .pnu-find input{width:100%;box-sizing:border-box;font:16px Arial,sans-serif;padding:13px 14px;border:2px solid #1d5a3a;border-radius:10px;background:#fff;color:#171717}
+main#pnu .pnu-card{background:#fff;border:1px solid #d9cfb8;border-radius:12px;padding:16px;margin:14px 0;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+main#pnu .pnu-card h3{margin:0 0 4px;font:900 22px/1.15 Arial,sans-serif;color:#171717}
+main#pnu .pnu-meta{font:700 13px Arial,sans-serif;color:#5e584d;letter-spacing:.3px}
+main#pnu .pnu-acts{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+main#pnu .pnu-acts a{font:900 12px Arial,sans-serif;letter-spacing:.6px;text-decoration:none;padding:9px 12px;border-radius:8px;border:2px solid #1d5a3a;color:#1d5a3a;background:#fff}
+main#pnu .pnu-acts a.gold{background:#d9a42b;border-color:#d9a42b;color:#171717}
+main#pnu .pnu-tip{border-left:4px solid #d9a42b;background:#faf6ec;border-radius:0 8px 8px 0;padding:10px 12px;margin:10px 0}
+main#pnu .pnu-tip .t{font:900 11px Arial,sans-serif;letter-spacing:1px;color:#1d5a3a}
+main#pnu .pnu-tip p{margin:5px 0;font:16px/1.45 Georgia,serif;color:#222;overflow-wrap:anywhere}
+main#pnu .pnu-tip .m{font:12px Arial,sans-serif;color:#5e584d}
+main#pnu .pnu-tip .w{font:800 13px Arial,sans-serif;margin-bottom:2px}
+main#pnu .pnu-tip .w a{color:#171717}
+main#pnu .pnu-ph{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+main#pnu .pnu-ph img{width:110px;height:82px;object-fit:cover;border-radius:6px}
+main#pnu .pnu-sts{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+main#pnu .pnu-none{font:15px Arial,sans-serif;color:#5e584d}
+</style>
+@@HEADER@@
+<main class="kb" id="pnu">
+<section class="kb-hero" style="--pic:url('hero-lake-camp.jpg');--picm:url('hero-lake-camp-mobile.jpg')"><div class="kb-hero-in">
+<p class="kb-eyebrow">KPC PARK NOTES • EVERY STATE • POTA • WWFF • SOTA</p>
+<h1>PARK NOTES: <span>OTHER STATES</span></h1>
+<p class="kb-copy">Tips from operators who have been there, for any POTA park, SOTA summit or KFF reference outside Kentucky: where to park, where to set up, cell signal, gates and anything else worth knowing.</p>
+<div class="kb-chips"><span>📝 Tips from operators</span><span>🗺 Any US state</span><span>📷 Photos</span></div>
+<div class="kb-actions"><a class="kb-btn gold" href="#find">🔎 FIND A PARK</a><a class="kb-btn ghost" href="kpc-park-notes.html">🏠 KENTUCKY PARK NOTES</a></div>
+</div></section>
+
+<section class="kb-sec" id="find"><div class="kb-in">
+<p class="kb-k">LOOK IT UP</p><h2>🔎 Find a park, summit or reference</h2>
+<p class="kb-lead">Type a name or a number like <b>US-0003</b>, <b>KFF-1939</b> or <b>W4V/WV-001</b>. A plain number like <b>3</b> means POTA park US-0003.</p>
+<div class="pnu-find"><input type="search" id="pnuQ" placeholder="Park name or number" aria-label="Find a park, summit or reference"></div>
+<div id="pnuOne"></div>
+</div></section>
+
+<section class="kb-sec" style="background:#ebe3d1"><div class="kb-in">
+<p class="kb-k">AROUND THE COUNTRY</p><h2>🆕 Newest Tips</h2>
+<div class="pnu-sts" id="pnuSts" role="group" aria-label="State"></div>
+<div id="pnuList"><div class="kb-empty">Loading…</div></div>
+</div></section>
+
+<section class="kb-sec"><div class="kb-in"><div class="kb-how">
+<p class="kb-k">HOW IT WORKS</p><h2 style="margin-top:4px">Share what you know</h2>
+<ul>
+<li>Find the park, summit or reference above and tap <b>SUBMIT A TIP</b>. It opens our short Google Form with the number filled in.</li>
+<li>Tips with a real licensed call sign and no links, phone numbers or bad words show up within a few hours. Photos and anything else wait for a club officer to OK them.</li>
+<li>Kentucky places have their own page: <a href="kpc-park-notes.html">Kentucky Park Notes</a>.</li>
+<li>Tips are from other operators, not official information. Check the park's own map and rules. <a href="kpc-privacy.html">Privacy</a></li>
+</ul>
+<p class="kb-small" id="pnuUpd"></p>
+</div></div></section>
+</main>
+@@FOOTER@@
+<script src="kpc-map-tools.js?v=20261016e"></script>
+<script src="kpc-park-notes-us.js?v=20261016a"></script>

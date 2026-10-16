@@ -102,6 +102,11 @@ async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
   const [,web,typ,act]=p,how=(act||'').split(',').map(x=>ACT[x.trim()]||x.trim().toLowerCase()).filter(Boolean);
   h=`<div class="meta" style="margin:6px 0 2px">${typ?esc(typ):''}${how.length?(typ?' · ':'')+'activate by '+esc(how.join(', ')):''}</div>`+
    `<div class="acts">${web?`<a href="${esc(web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}${d.stateSite&&/State Park|State Forest|State Recreation/i.test(typ)?`<a href="${esc(d.stateSite)}" target="_blank" rel="noopener">${esc(st)} STATE PARKS SITE (CAMPING, MAPS) ↗</a>`:''}</div>`;break}
+ /* Park Notes tips (Kentucky page or the other-states page) */
+ if(!window.__kpcNotes)window.__kpcNotes=Promise.all(['kpc-park-notes.json','kpc-park-notes-us.json'].map(u=>fetch(u).then(r=>r.ok?r.json():null).catch(()=>null)));
+ {const [kyN,usN]=await window.__kpcNotes,nk=((kyN&&kyN.notes)||[]).filter(t=>t.ref===s.c).length,nu=((usN&&usN.notes)||[]).filter(t=>t.ref===s.c).length;
+  const ky=nk||(!nu&&stateAt(s.la,s.lo)==='KY'),n=nk+nu,href=ky?'kpc-park-notes.html#'+encodeURIComponent(s.c):'kpc-park-notes-us.html?ref='+encodeURIComponent(s.c)+'#find';
+  h+=`<div class="meta" style="margin:8px 0 2px;font-weight:800"><a href="${href}">📝 ${n?'PARK NOTES: '+n+' TIP'+(n===1?'':'S'):'PARK NOTES: BE THE FIRST TO ADD A TIP'} ›</a></div>`}
  /* federal campgrounds within 10 miles (Recreation.gov, data/campfed/US-XX.json, weekly by kpc-fed-camps.yml) */
  const near=[];for(const st of [...new Set([...sts,...statesNear(s.la,s.lo,10)])]){if(!(st in CFED))CFED[st]=fetch('data/campfed/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await CFED[st];((d&&d.camps)||[]).forEach(c=>{const mi=KPC.miles(s.la,s.lo,c[2],c[3]);if(mi<=10&&!near.some(x=>x.c[0]===c[0]))near.push({c,mi})})}
