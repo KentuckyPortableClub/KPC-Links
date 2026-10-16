@@ -119,6 +119,7 @@ function makeActivationForm() {
   var col = sh.getLastColumn() + 1;
   sh.getRange(1, col).setValue('Approved');
   sh.getRange(1, col).setFontWeight('bold');
+  approvedDropdown(sh, col);
 
   // Example pre-filled link (Claude reads the entry numbers from it)
   var r = form.createResponse();
@@ -133,4 +134,31 @@ function makeActivationForm() {
   Logger.log('EDIT: ' + form.getEditUrl());
   Logger.log('SHEET: ' + ss.getUrl());
   Logger.log('PREFILL (for Claude): ' + r.toPrefilledUrl());
+}
+
+// YES / NO drop-down on the Approved column (rows 2 to 2000).
+function approvedDropdown(sh, col) {
+  var rule = SpreadsheetApp.newDataValidation();
+  rule = rule.requireValueInList(['YES', 'NO'], true);
+  rule = rule.setAllowInvalid(false);
+  sh.getRange(2, col, 1999, 1).setDataValidation(rule.build());
+}
+
+// Run this ONE function on a form that was already made, to add the drop-down afterwards.
+function addApprovedDropdown() {
+  var form = FormApp.openById('1-j5g1EpIgHERSlKCjA7Cvgvrv-HiOvLW1KLy53VVOyE');
+  var ss = SpreadsheetApp.openById(form.getDestinationId());
+  var sheets = ss.getSheets();
+  for (var i = 0; i < sheets.length; i++) {
+    var sh = sheets[i];
+    var head = sh.getRange(1, 1, 1, Math.max(sh.getLastColumn(), 1)).getValues()[0];
+    for (var c = 0; c < head.length; c++) {
+      if (String(head[c]).trim().toLowerCase() === 'approved') {
+        approvedDropdown(sh, c + 1);
+        Logger.log('Drop-down added on sheet "' + sh.getName() + '", column ' + (c + 1));
+        return;
+      }
+    }
+  }
+  Logger.log('No Approved column found. Type Approved in the first empty top cell, then run this again.');
 }
