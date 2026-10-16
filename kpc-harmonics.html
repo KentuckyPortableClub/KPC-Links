@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="kpc-theme.js?v=20261014kz"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Harmonics Planner | KPC</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Harmonics Planner | KPC">
+<meta property="og:description" content="Plan a multiband end-fed or dipole using harmonics, find good random-wire lengths, and check where your transmitter's harmonics land, what they could hit and how to filter them.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-harmonics.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
+<meta name="description" content="Plan a multiband end-fed or dipole using harmonics, find good random-wire lengths, and check where your transmitter's harmonics land, what they could hit and how to filter them.">
+<style>
+:root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
+.site-nav{position:sticky;top:0;z-index:1000;background:#070707;border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:var(--nav-height);margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s}.nav-links a:hover,.nav-links a[aria-current=page]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:var(--black) url("parks.png") center/cover no-repeat;color:#fff;border-bottom:1px solid rgba(213,166,58,.45)}
+.hero:before{content:"";position:absolute;width:620px;height:620px;right:-170px;top:-180px;border:1px solid rgba(213,166,58,.35);border-radius:50%;box-shadow:0 0 0 55px rgba(213,166,58,.035),0 0 0 110px rgba(213,166,58,.025)}
+.hero:after{content:none}
+.hero-inner{position:relative;z-index:2;width:min(var(--max),100%);margin:auto;padding:90px 24px 84px}.hero-logo{width:min(360px,78vw);margin-bottom:24px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}.eyebrow{margin:0 0 12px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}.hero h1{max-width:800px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,6.2vw,76px);line-height:1.02;letter-spacing:-1.8px}.hero h1 span{color:var(--gold-light)}.hero-copy{max-width:720px;margin:22px 0 0;color:#eee9dd;font-size:clamp(16px,2vw,20px)}
+.section{padding:82px 24px}.section-inner{width:min(var(--max),100%);margin:auto}.section-heading{text-align:center;margin-bottom:42px}.kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:4px}.section h2{margin:7px 0 12px;color:var(--black);font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,4vw,48px);line-height:1.08}.section-heading p{max-width:760px;margin:0 auto;color:var(--muted);font-size:17px}
+.intro{background:var(--cream);border-bottom:1px solid #d9cfbd}.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}.intro-copy h2{margin:7px 0 18px}.intro-copy p{color:var(--muted);font-size:18px;margin:0}.intro-panel{padding:34px;background:var(--black);border:1px solid var(--gold);box-shadow:12px 12px 0 var(--gold);color:#fff;position:relative;overflow:hidden}.intro-panel:after{content:"";position:absolute;width:230px;height:230px;right:-90px;top:-90px;border:1px solid rgba(213,166,58,.45);border-radius:50%}.intro-panel .mark{position:relative;z-index:1;color:var(--gold-light);font-size:12px;font-weight:900;letter-spacing:3px}.intro-panel h3{position:relative;z-index:1;margin:10px 0 10px;font:700 30px/1.1 Georgia,serif}.intro-panel p{position:relative;z-index:1;margin:0;color:#c9c5bc}.intro-panel .line{position:relative;z-index:1;width:70px;height:3px;background:var(--gold);margin:20px 0}
+.features{background:#fffaf0}.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.card{min-height:285px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid #d8cfbf;background:#fff;color:var(--ink);box-shadow:0 12px 28px rgba(0,0,0,.07);transition:.2s;position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;width:6px;height:100%;background:var(--gold)}.card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.12);border-color:var(--gold)}.card-top{position:relative;z-index:1}.card-num{color:var(--green);font-size:12px;font-weight:900;letter-spacing:3px}.card h3{margin:8px 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:28px;line-height:1.1}.card p{margin:0;color:var(--muted);font-size:15px;max-width:520px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:1px;background:var(--gold);color:#0b0b0b;transition:.2s;align-self:flex-start;margin-top:24px}.btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.dark{background:var(--black);color:#fff;border-top:1px solid rgba(213,166,58,.45);border-bottom:1px solid rgba(213,166,58,.45)}.dark .section-heading p{color:#bcb8ae}.dark h2{color:#fff}.dark .card{background:#151515;border-color:#363636;color:#fff}.dark .card p{color:#bcb8ae}.dark .card h3{color:#fff}.dark .card:before{background:var(--gold)}
+.map-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.map-box{padding:30px;border:1px solid #363636;background:#151515}.map-box h3{margin:8px 0 10px;color:#fff;font:700 25px/1.1 Georgia,serif}.map-box p{margin:0;color:#bcb8ae}.map-box .btn{margin-top:22px}
+.pota-card{min-height:310px}
+.pdf-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pdf-actions .btn{margin-top:0}.pdf-actions .alt{background:#fff;border:1px solid var(--gold);color:#171717}
+.warning{background:var(--cream-2);border-top:1px solid #d1c6b3}.warning-box{border-left:6px solid var(--gold);background:#fff;padding:30px;box-shadow:0 10px 24px rgba(0,0,0,.06)}.warning-box h3{margin:0 0 10px;font:700 28px/1.1 Georgia,serif}.warning-box p{margin:0;color:var(--muted)}
+.final{padding:76px 24px;text-align:center;background:var(--cream-2)}.final h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}.final p{margin:10px 0 24px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:2px}
+footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;border-top:1px solid #292929;font-size:13px}footer strong{color:var(--gold-light)}
+@media(min-width:901px){.hero-logo{position:absolute;left:-400px;top:calc(50% - 22px);transform:translateY(-50%);justify-self:auto;margin-bottom:0}}
+@media(max-width:1000px){.nav-links a{padding-inline:7px;font-size:12px}.intro-grid{gap:38px}}
+@media(max-width:900px){.hero-logo{display:block;width:min(290px,58vw);margin-left:auto;margin-right:auto}}
+@media(max-width:760px){:root{--nav-height:70px}.nav-inner{min-height:70px;padding:8px 18px}.brand img{width:52px;height:52px}.menu-toggle{display:block}.nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:10px 18px 16px;background:#070707;border-bottom:1px solid rgba(213,166,58,.45);box-shadow:0 15px 25px rgba(0,0,0,.22)}.nav-links.open{display:flex}.nav-links a{padding:13px 5px;border-bottom:1px solid #292929}.nav-links a:last-child{border-bottom:0}.hero{min-height:500px;background:url("parks-mobile.png") center/cover no-repeat}.hero-inner{padding:70px 20px 55px}.hero-logo{width:min(290px,58vw)}.section{padding:68px 20px}.intro-grid,.map-grid{grid-template-columns:1fr}.intro-panel{max-width:520px;margin:auto}.card-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-logo{width:min(250px,64vw)}}
+@media(max-width:520px){.hero h1{font-size:42px}.hero-copy{font-size:16px}.card{min-height:300px}.card h3{font-size:25px}.pdf-actions{flex-direction:column}.pdf-actions .btn{width:100%}}
+@media(max-width:380px){.brand-text small{display:none}}
+
+/* Added official trail and Wild River resource sections */
+.resource-note{background:#fff7df;border-left:5px solid var(--gold);padding:18px 22px;margin:0 0 28px;color:#332c1f}
+.resource-note p{margin:0}.resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.resource-item{padding:26px;border:1px solid #d8cfbf;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.045)}
+.resource-item h3{font:700 25px/1.18 Georgia,serif;margin:8px 0 12px}.resource-item p{color:#5f5a51;margin:0 0 12px}
+.resource-item .meta{font-size:12px;font-weight:900;letter-spacing:1.4px;color:var(--green)}
+.resource-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.resource-actions .btn{margin:0;font-size:11px;min-height:40px}
+.resource-actions .secondary{background:#f8f4eb;border:1px solid #c9ad6b}
+.river-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:25px 0}
+.river-list article{padding:18px 20px;background:#fff;border:1px solid #d8cfbf}.river-list strong{display:block;font:700 20px Georgia,serif}.river-list span{display:block;margin-top:7px;color:#5f5a51;font-size:14px}
+@media(max-width:760px){.resource-grid,.river-list{grid-template-columns:1fr}}
+/* Quick jump links, trail cards, map files */
+.jump{background:var(--black);border-bottom:1px solid rgba(213,166,58,.45);position:sticky;top:var(--nav-height);z-index:900}
+.jump-inner{width:min(var(--max),100%);margin:auto;padding:10px 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.jump-inner::-webkit-scrollbar{display:none}
+.jump a{flex:0 0 auto;padding:8px 14px;border:1px solid #3a3a3a;border-radius:999px;color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;transition:.2s}
+.jump a:hover{border-color:var(--gold);color:var(--gold-light)}
+section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn-row .btn{margin-top:0}
+.trail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.trail-grid .resource-item:last-child:nth-child(odd){grid-column:1/-1}
+.twofer{margin:14px 0 0;padding:12px 14px;background:#fff7df;border-left:4px solid var(--gold);font-size:14px;color:#332c1f}
+.twofer b{color:var(--green);letter-spacing:1px;font-size:12px}
+.files-card .pdf-actions .btn{min-width:0}
+.file-group{margin-top:16px}.file-group .card-num{margin-bottom:8px}
+.warning-box .btn-row .btn{font-size:11px;min-height:40px}
+@media(max-width:760px){.jump{top:70px}.trail-grid{grid-template-columns:1fr}.btn-row{flex-direction:column}.btn-row .btn{width:100%}}
+.dark .kicker,.dark .card-num{color:var(--gold-light)}
+/* On The Air Now bar */
+.onair{background:#0d2419;border-bottom:1px solid rgba(213,166,58,.45);color:#fff}
+.onair-inner{width:min(var(--max),100%);margin:auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.onair-title{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:3px;color:var(--gold-light);white-space:nowrap}
+.onair .dot{width:10px;height:10px;border-radius:50%;background:#3ecf6e;animation:pulse 1.8s infinite}
+.onair .dot.off{background:#8a8a8a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.6)}70%{box-shadow:0 0 0 9px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.onair-count{font-size:14px;color:#e9eee9}.onair-count b{color:#fff}
+.onair-list{display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}.onair-list::-webkit-scrollbar{display:none}
+.onair-chip{flex:0 0 auto;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;white-space:nowrap}
+.onair-chip b{color:var(--gold-light)}.onair-chip.club{border-color:var(--gold);background:rgba(213,166,58,.14)}
+.onair .btn{margin:0;min-height:38px;padding:8px 14px;font-size:11px;white-space:nowrap}
+@media(max-width:760px){.onair-inner{padding:12px 18px;gap:8px 10px}.onair-title{order:1}.onair .btn{order:2;margin-left:auto}.onair-count{order:3;flex-basis:100%}.onair-list{order:4;flex-basis:100%}}
+
+/* KPC shared About-style footer and below-hero page links */
+.page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+.page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
+.page-jump-nav a:hover,.page-jump-nav a:focus-visible{background:#3c321a;border-color:#d6b96c;color:#fff}
+section[id]{scroll-margin-top:100px}
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
+body.field .page-jump-nav{display:none!important}
+
+</style>
+<link rel="stylesheet" href="kpc-nav.css?v=20261015a">
+<style id="kpc-harmonics-css">
+html[data-theme=dark] #hm .track{background:#24261f}html[data-theme=dark] #hm .seg{background:#2f5a40}html[data-theme=dark] #hm .hm-mark{background:#f0c96b}html[data-theme=dark] #hm .hm-mark.out{background:#ff6b5b}html[data-theme=dark] #hm .edge{color:#bcb8ae}html[data-theme=dark] #hm .avoid{background:#2f5a40}html[data-theme=dark] #hm .avoid .x{background:#8a3b31}html[data-theme=dark] #hm .avoid .g{background:#f0c96b}html[data-theme=dark] #hm .avoid .lab{color:#f0c96b}#hm{background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55;display:block;overflow-x:hidden}#hm a{text-decoration:none;color:inherit}#hm button,#hm input,#hm select,#hm textarea{font:inherit}#hm *{box-sizing:border-box}
+#hm{--black:#070707;--black2:#111;--gold:#d5a63a;--gold2:#f0c96b;--cream:#f5f0e4;--cream2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--green2:#2d7a4e;--white:#fff;--red:#b84b3d;--max:1200px;--nav:78px}
+#hm .hm-hero{position:relative;overflow:hidden;background:radial-gradient(circle at 76% 24%,rgba(213,166,58,.24),transparent 23%),linear-gradient(135deg,#07130d 0%,#0f2f20 45%,#070707 100%);color:#fff}
+#hm .hm-hero-inner{position:relative;width:min(var(--max),100%);margin:auto;padding:54px 24px 50px;display:flex;gap:28px;align-items:center}
+#hm .hm-hero-logo{width:min(120px,26vw);flex:0 0 auto;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}
+#hm .hm-eyebrow{margin:0 0 12px;color:var(--gold2);font-size:13px;font-weight:900;letter-spacing:4px}
+#hm .hm-hero h1{margin:0;font:700 clamp(40px,6vw,68px)/.98 Georgia,"Times New Roman",serif;letter-spacing:-2px}
+#hm .hm-hero h1 span{color:var(--gold2)}
+#hm .hm-hero-copy{max-width:760px;margin:16px 0 0;color:#eee9dd;font-size:clamp(15px,2vw,18px)}
+#hm .hm-hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+#hm .hm-btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:7px;font-size:13px;font-weight:900;letter-spacing:1px;cursor:pointer;border:0;transition:.2s}
+#hm .hm-btn:hover{transform:translateY(-2px)}
+#hm .hm-btn-primary{background:var(--gold);color:#0b0b0b}
+#hm .hm-btn-secondary{color:#fff;border:1px solid rgba(255,255,255,.65);background:rgba(0,0,0,.25)}
+#hm .hm-btn-dark{color:var(--ink);border:1px solid rgba(23,23,23,.28);background:transparent}
+#hm .hm-section{padding:72px 24px}
+#hm .hm-section-inner{width:min(1100px,100%);margin:auto}
+#hm .hm-eyebrow-dark{color:var(--green);font-size:13px;font-weight:900;letter-spacing:4px;margin:0}
+#hm .hm-section h2{font:700 clamp(32px,5vw,50px)/1.05 Georgia,"Times New Roman",serif;margin:10px 0 18px}
+#hm .lead{font-size:18px;color:#5f5a51;max-width:860px}
+#hm .hm-dark{background:var(--black);color:#fff}
+#hm .hm-dark h2{color:#fff}
+#hm .hm-dark .lead{color:#d9d4c9}
+#hm .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+#hm .hm-card{background:#fff;border:1px solid rgba(23,23,23,.08);padding:26px;box-shadow:0 12px 30px rgba(0,0,0,.06);color:var(--ink)}
+#hm .hm-card:before{content:"";display:block;width:38px;height:4px;background:var(--gold);margin-bottom:16px}
+#hm .hm-card h3{font:700 23px Georgia,serif;margin:0 0 10px}
+#hm .hm-card p{margin:0;color:#625e57}
+#hm .hm-card p+p{margin-top:10px}
+#hm .panel{background:#fff;border-top:5px solid var(--gold);padding:26px;box-shadow:0 12px 30px rgba(0,0,0,.06);margin-top:24px}
+#hm .panel h3{font:700 27px Georgia,serif;margin:0 0 6px}
+#hm .panel>p{color:#625e57;margin:0 0 14px}
+#hm /* calculator */
+.calc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:end}
+#hm .hm-field label{display:block;font-size:11px;font-weight:900;letter-spacing:1.5px;color:var(--green);text-transform:uppercase;margin-bottom:6px}
+#hm .hm-field input,#hm .hm-field select,#hm .hm-field textarea{width:100%;font-size:16px;padding:11px 12px;border:1px solid #b9ad8f;border-radius:7px;background:#fff;color:var(--ink)}
+#hm .hm-field textarea{min-height:120px;font-family:Consolas,Menlo,monospace;font-size:15px}
+#hm .hm-field .hint{font-size:12px;color:var(--muted);margin-top:5px}
+#hm .chips{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 4px}
+#hm .chip{border:1px solid #cbbf9f;background:#fafafa;border-radius:6px;padding:8px 11px;font-size:13px;font-weight:900;cursor:pointer;color:var(--ink)}
+#hm .chip:hover,#hm .chip.on{background:var(--green);border-color:var(--green);color:#fff}
+#hm .summary{margin-top:20px;padding:16px 18px;background:var(--cream2);border-left:5px solid var(--green)}
+#hm .summary.warn{border-left-color:var(--red)}
+#hm .summary strong{font-family:Georgia,serif;font-size:19px;display:block;margin-bottom:4px}
+#hm .summary p{margin:4px 0 0;color:#4e4a43}
+#hm .htable{width:100%;border-collapse:collapse;margin-top:18px}
+#hm .htable th,#hm .htable td{padding:11px 10px;border-bottom:1px solid rgba(23,23,23,.1);text-align:left;vertical-align:top}
+#hm .htable th{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--green)}
+#hm .htable td:first-child{font:700 19px Georgia,serif;white-space:nowrap}
+#hm .htable .f{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:700}
+#hm .tag{display:inline-block;margin:2px 4px 2px 0;padding:4px 8px;border-radius:5px;font-size:12px;font-weight:900}
+#hm .t-ham{background:#dceee2;color:#175f39}
+#hm .t-safety{background:#f8deda;color:#9f4036}
+#hm .t-bcst{background:#f8edc8;color:#7c5b0d}
+#hm .t-other{background:#e9e7e2;color:#55504a}
+#hm .t-clear{color:var(--muted);font-size:13px}
+#hm .legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;font-size:12px;color:var(--muted)}
+#hm .out{margin-top:16px}
+#hm .row2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+#hm .big{font:700 34px Georgia,serif;margin:4px 0}
+#hm .mini{font-size:11px;font-weight:900;letter-spacing:1.5px;color:var(--green);text-transform:uppercase}
+#hm .stat{background:#fafafa;border:1px solid rgba(23,23,23,.08);padding:14px 16px}
+#hm .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+#hm .stat .s{font-size:12px;color:var(--muted)}
+#hm .conf{margin-top:8px;padding:11px 14px;background:#fafafa;border-left:4px solid var(--gold);font-size:14px}
+#hm .conf.bad{border-left-color:var(--red);background:#fbefed}
+#hm .conf.ok{border-left-color:var(--green2)}
+#hm .quick{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:28px}
+#hm .tip{background:var(--cream2);padding:22px}
+#hm .tip strong{display:block;font-family:Georgia,serif;font-size:19px;margin-bottom:5px}
+#hm .tip p{margin:0;color:#5f5a51}
+#hm .classic{width:100%;border-collapse:collapse;margin-top:20px;background:#fff;color:var(--ink)}
+#hm .classic th,#hm .classic td{padding:12px 12px;border-bottom:1px solid rgba(23,23,23,.1);text-align:left}
+#hm .classic th{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--green)}
+#hm .classic td:first-child{font-weight:900}
+#hm .note{font-size:13px;color:var(--muted);margin-top:12px}
+#hm .source-box{display:flex;align-items:center;justify-content:space-between;gap:25px;background:#fff;border-top:5px solid var(--gold);padding:28px;box-shadow:0 12px 30px rgba(0,0,0,.07)}
+#hm .source-box h3{font:700 27px Georgia,serif;margin:0 0 7px}
+#hm .source-box p{margin:0;color:#625e57;max-width:680px}
+#hm .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px;border-bottom:2px solid rgba(23,23,23,.12)}
+#hm .tabs button{background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:12px 14px;font-weight:900;font-size:14px;letter-spacing:.5px;color:var(--muted);cursor:pointer}
+#hm .tabs button[aria-selected=true]{color:var(--green);border-bottom-color:var(--gold)}
+#hm .tabpanel[hidden]{display:none}
+#hm .bars{display:grid;gap:14px;margin-top:18px}
+#hm .bar-row{display:grid;grid-template-columns:62px 1fr;gap:12px;align-items:center}
+#hm .bar-row .bn{font:700 20px Georgia,serif}
+#hm .bar-row .bn small{display:block;font:900 10px Arial;letter-spacing:1px;color:var(--muted)}
+#hm .track{position:relative;height:34px;background:#ece7db;border-radius:6px}
+#hm .seg{position:absolute;top:0;bottom:0;background:#cfe3d6;border-radius:6px}
+#hm .hm-mark{position:absolute;top:-5px;bottom:-5px;width:4px;margin-left:-2px;background:var(--ink);border-radius:2px}
+#hm .hm-mark.out{background:var(--red)}
+#hm .edge{position:absolute;bottom:-17px;font-size:10px;color:var(--muted)}
+#hm .edge.r{right:0}
+#hm .edge.l{left:0}
+#hm .bar-info{grid-column:2;font-size:13px;color:#4e4a43;margin-top:12px}
+#hm .bar-info b{font-variant-numeric:tabular-nums}
+#hm .bar-info .bad{color:var(--red);font-weight:900}
+#hm .bar-info .good{color:var(--green2);font-weight:900}
+#hm .slider{width:100%;accent-color:var(--green);margin-top:10px}
+#hm .wires{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+#hm .wire{background:#dceee2;color:#175f39;border-radius:6px;padding:9px 13px;font-weight:900}
+#hm .wire small{display:block;font-weight:700;font-size:11px;color:#3e6b51}
+#hm .avoid{position:relative;height:40px;background:#dceee2;border-radius:6px;margin-top:26px}
+#hm .avoid .x{position:absolute;top:0;bottom:0;background:#e9b6ae}
+#hm .avoid .g{position:absolute;top:-6px;bottom:-6px;width:3px;margin-left:-1.5px;background:var(--green)}
+#hm .avoid .lab{position:absolute;top:-22px;font-size:11px;font-weight:900;color:var(--green);transform:translateX(-50%);white-space:nowrap}
+@media(max-width:900px){#hm .grid3{grid-template-columns:1fr}#hm .calc{grid-template-columns:1fr 1fr}#hm .row2,#hm .quick{grid-template-columns:1fr}}
+@media(max-width:820px){#hm .hm-hero-inner{padding:40px 16px;flex-direction:column;align-items:flex-start}#hm .hm-hero-logo{width:90px}#hm .hm-section{padding:52px 16px}#hm .panel{padding:20px 16px}#hm .hm-card{padding:20px}#hm .stats{grid-template-columns:1fr}#hm .htable th,#hm .htable td{padding:9px 6px}#hm .htable td:first-child{font-size:16px}#hm .classic th,#hm .classic td{padding:9px 6px;font-size:13px}#hm .tabs button{padding:10px 9px;font-size:13px}#hm .source-box{flex-direction:column;align-items:flex-start}}
+@media(max-width:420px){#hm .calc{grid-template-columns:1fr}}
+@media(max-width:600px){#hm .avoid .lab{display:none}#hm .avoid{margin-top:14px}}
+</style>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="finder.html" role="menuitem"><span class="ni">&#128506;</span>KY Park Commander</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Find It</a>
+            <a href="kpc-spot-me.html" role="menuitem"><span class="ni">&#128227;</span>Spot Me (post your spot)</a>
+            <a href="kpc-park-info.html" role="menuitem"><span class="ni">&#127963;</span>Park Info Finder (any state)</a>
+            <a href="kpc-in-park.html" role="menuitem"><span class="ni">&#128205;</span>Am I in the Park? (GPS check)</a>
+            <a href="kpc-kit.html" role="menuitem"><span class="ni">&#127890;</span>Activation Kit (all the info in one tap)</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
+            <a href="kpc-planner.html" role="menuitem"><span class="ni">&#128197;</span>KY Trip Planner</a>
+            <a href="kpc-planner-us.html" role="menuitem"><span class="ni">&#129517;</span>US Trip Planner</a>
+            <a href="kpc-checker.html" role="menuitem"><span class="ni">&#9989;</span>Park Checker (any state)</a>
+            <a href="kpc-park-notes.html" role="menuitem"><span class="ni">&#128221;</span>Park Notes (tips)</a>
+            <a href="kpc-campgrounds.html" role="menuitem"><span class="ni">&#127957;</span>Campgrounds &amp; Cabins</a>
+            <a href="kpc-community.html" role="menuitem"><span class="ni">&#129309;</span>Community (setups &amp; tips)</a>
+            <a href="photos.html#member-photos" role="menuitem"><span class="ni">&#128247;</span>Member Field Photos</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-band-plan.html" role="menuitem"><span class="ni">&#128225;</span>Band Plan by License</a>
+            <a href="kpc-cw.html" role="menuitem"><span class="ni">&#127911;</span>CW Practice Room</a>
+            <a href="kpc-cw-info.html" role="menuitem"><span class="ni">&#128214;</span>CW Info &amp; Links</a>
+            <a href="kpc-kids.html" role="menuitem"><span class="ni">&#129490;</span>Kids Room (games &amp; guides)</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
+            <a href="antennas.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guides</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128208;</span>Antenna Calculator</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<main id="hm">
+<section class="hm-hero"><div class="hm-hero-inner"><div><p class="hm-eyebrow">KPC • RADIO • CLEAN SIGNALS</p><h1>HARMONICS <span>PLANNER</span></h1><p class="hm-hero-copy">Harmonics work for you and against you. Your antenna can use them to cover many bands with one wire; your transmitter leaks them where they don't belong. This page handles both.</p><div class="hm-hero-actions"><a class="hm-btn hm-btn-primary" href="#antenna">PLAN A MULTIBAND WIRE ↓</a><a class="hm-btn hm-btn-secondary" href="#calculator">CHECK MY TRANSMITTER</a></div></div></div></section>
+
+<section class="hm-section" id="antenna"><div class="hm-section-inner"><p class="hm-eyebrow-dark">ANTENNA PLANNER</p><h2>One Wire, Many Bands</h2><p class="lead">A half-wave wire is also resonant at 2×, 3×, 4×… its frequency. Cut an end-fed for <b>3.550 MHz</b> and the resonances fall at <b>7.100</b>, <b>14.200</b>, <b>21.300</b> and <b>28.400</b> — inside 40, 20, 15 and 10 metres. Pick the right starting frequency and you rarely need the tuner. Drag the slider to see each band move, or let the planner find the best spot.</p>
+
+<div class="tabs" role="tablist">
+<button role="tab" aria-selected="true" aria-controls="tab-res" id="b-res">Resonant multiband wire</button>
+<button role="tab" aria-selected="false" aria-controls="tab-rnd" id="b-rnd">Random-wire lengths</button>
+</div>
+
+<div class="tabpanel panel" id="tab-res" role="tabpanel" aria-labelledby="b-res" style="margin-top:0;border-top-width:0">
+<div class="calc">
+<div class="hm-field"><label for="aType">Antenna</label><select id="aType"><option value="efhw">End-fed half-wave (every harmonic)</option><option value="dipole">Center-fed dipole (odd harmonics only)</option></select></div>
+<div class="hm-field"><label for="aBase">Lowest band</label><select id="aBase"><option value="160m">160m</option><option value="80m" selected>80m</option><option value="40m">40m</option><option value="20m">20m</option></select></div>
+<div class="hm-field"><label for="aMode">I mostly operate</label><select id="aMode"><option value="all">Anywhere in the band</option><option value="cw">CW &amp; digital (FT8)</option><option value="ssb">SSB phone</option></select></div>
+<div class="hm-field"><label>&nbsp;</label><button type="button" class="hm-btn hm-btn-primary" id="aBest" style="width:100%">FIND BEST FREQUENCY</button></div>
+</div>
+<div class="hm-field" style="margin-top:14px"><label for="aF">Wire cut for (MHz)</label><input id="aF" inputmode="decimal" value="3.550" style="max-width:220px"><input type="range" class="slider" id="aSlide" step="0.0005" aria-label="Fundamental frequency"></div>
+<div class="hm-field" style="margin-top:6px"><label>Bands I want</label><div class="chips" id="aTargets" style="margin-top:0"></div></div>
+<div id="aOut"></div>
+</div>
+
+<div class="tabpanel panel" id="tab-rnd" role="tabpanel" aria-labelledby="b-rnd" hidden style="margin-top:0;border-top-width:0">
+<p>A random wire with a 9:1 unun and a tuner works best when it is <em>not</em> a half-wave multiple on any band you use. At those lengths the feed point is a very high impedance and the tuner struggles. This finds lengths that stay clear on every band you pick.</p>
+<div class="calc">
+<div class="hm-field"><label for="rMin">Shortest (ft)</label><input id="rMin" inputmode="decimal" value="25"></div>
+<div class="hm-field"><label for="rMax">Longest (ft)</label><input id="rMax" inputmode="decimal" value="90"></div>
+<div class="hm-field"><label for="rUnits">Show lengths in</label><select id="rUnits"><option value="ft">feet</option><option value="m">metres</option></select></div>
+</div>
+<div class="hm-field" style="margin-top:8px"><label>Bands I want</label><div class="chips" id="rBands" style="margin-top:0"></div></div>
+<div id="rOut"></div>
+</div>
+</div></section>
+
+<section class="hm-section" id="calculator"><div class="hm-section-inner"><p class="hm-eyebrow-dark">TRANSMITTER HARMONICS</p><h2>Where Do My Harmonics Land?</h2><p class="lead">Type a frequency, or tap a band to check the whole band at once. Each harmonic is checked against the US amateur bands and the services you least want to interfere with.</p>
+
+<div class="tabs" role="tablist">
+<button role="tab" aria-selected="true" aria-controls="tab-fwd" id="b-fwd">My harmonics</button>
+<button role="tab" aria-selected="false" aria-controls="tab-rev" id="b-rev">Who's causing this?</button>
+<button role="tab" aria-selected="false" aria-controls="tab-camp" id="b-camp">Campout check</button>
+<button role="tab" aria-selected="false" aria-controls="tab-pwr" id="b-pwr">How strong?</button>
+</div>
+
+<!-- forward -->
+<div class="tabpanel panel" id="tab-fwd" role="tabpanel" aria-labelledby="b-fwd" style="margin-top:0;border-top-width:0">
+<div class="calc">
+<div class="hm-field"><label for="fLo">Frequency (MHz)</label><input id="fLo" inputmode="decimal" value="7.074" autocomplete="off"><div class="hint">e.g. 14.285 or 7032 kHz → 7.032</div></div>
+<div class="hm-field"><label for="fHi">To (optional, MHz)</label><input id="fHi" inputmode="decimal" placeholder="for a range" autocomplete="off"><div class="hint">Fill in to check a range</div></div>
+<div class="hm-field"><label for="nMax">Show up to</label><select id="nMax"><option value="5">5th harmonic</option><option value="7">7th harmonic</option><option value="10" selected>10th harmonic</option></select></div>
+<div class="hm-field"><label for="fUnit">Typed in</label><select id="fUnit"><option value="MHz">MHz</option><option value="kHz">kHz</option></select></div>
+</div>
+<div class="chips" id="bandChips" aria-label="Whole-band shortcuts"></div>
+<div id="fwdOut"></div>
+<div class="legend"><span><span class="tag t-ham">Ham band</span> another amateur band</span><span><span class="tag t-safety">Safety</span> aviation, marine, weather, GPS</span><span><span class="tag t-bcst">Broadcast</span> FM, TV, AM, CB</span><span><span class="tag t-other">Other</span> land mobile, time signals</span></div>
+</div>
+
+<!-- reverse -->
+<div class="tabpanel panel" id="tab-rev" role="tabpanel" aria-labelledby="b-rev" hidden style="margin-top:0;border-top-width:0">
+<p>Hearing a mystery signal or causing a complaint? Enter the frequency where the trouble is and see which fundamentals could put a harmonic there.</p>
+<div class="calc" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+<div class="hm-field"><label for="rF">Trouble frequency (MHz)</label><input id="rF" inputmode="decimal" value="21.222" autocomplete="off"></div>
+<div class="hm-field"><label for="rN">Check up to</label><select id="rN"><option value="5">5th harmonic</option><option value="10" selected>10th harmonic</option></select></div>
+</div>
+<div id="revOut"></div>
+</div>
+
+<!-- campout -->
+<div class="tabpanel panel" id="tab-camp" role="tabpanel" aria-labelledby="b-camp" hidden style="margin-top:0;border-top-width:0">
+<p>Running more than one station at a campout or a shared park? List each station's frequency (one per line, a name first if you like). The check flags any station whose harmonic lands on, or in the same band as, another station.</p>
+<div class="row2">
+<div class="hm-field"><label for="cList">Stations</label><textarea id="cList" spellcheck="false">Tent 1 40m FT8  7.074
+Tent 2 15m SSB  21.300
+Truck 20m CW  14.062
+Picnic table 10m  28.400</textarea><div class="hint">Frequencies in MHz. Up to 12 stations.</div></div>
+<div><div class="hm-field"><label for="cWin">Counts as "on top of" within</label><select id="cWin"><option value="0.003">±3 kHz (SSB)</option><option value="0.01" selected>±10 kHz</option><option value="0.025">±25 kHz</option></select></div><div class="hm-field" style="margin-top:12px"><label for="cN">Check up to</label><select id="cN"><option value="3">3rd harmonic</option><option value="5" selected>5th harmonic</option><option value="10">10th harmonic</option></select></div></div>
+</div>
+<div id="campOut"></div>
+</div>
+
+<!-- power -->
+<div class="tabpanel panel" id="tab-pwr" role="tabpanel" aria-labelledby="b-pwr" hidden style="margin-top:0;border-top-width:0">
+<p>How much power is actually in a harmonic? Enter your output power and how far below it the harmonic sits (from your radio's spec sheet or a published lab test).</p>
+<div class="calc">
+<div class="hm-field"><label for="pW">Output power (W)</label><input id="pW" inputmode="decimal" value="100"></div>
+<div class="hm-field"><label for="pDb">Harmonic is down (dB)</label><input id="pDb" inputmode="decimal" value="43"></div>
+<div class="hm-field"><label for="pF">Operating frequency (MHz)</label><input id="pF" inputmode="decimal" value="14.2"><div class="hint">Sets the FCC minimum</div></div>
+<div class="hm-field"><label>&nbsp;</label><button type="button" class="hm-btn hm-btn-dark" id="pLegal" style="width:100%">Use FCC minimum</button></div>
+</div>
+<div id="pwrOut"></div>
+</div>
+</div></section>
+
+<section class="hm-section hm-dark" id="basics"><div class="hm-section-inner"><p class="hm-eyebrow" style="color:var(--gold2)">THE BASICS</p><h2>What Is A Harmonic?</h2><p class="lead">No transmitter is perfectly pure. Alongside the signal you meant to send (the <em>fundamental</em>), it leaks small copies at whole-number multiples of that frequency. Transmit on 7.100 MHz and there is a faint signal at 14.200, 21.300, 28.400 MHz and up.</p><div class="grid3">
+<article class="hm-card"><h3>Why They Happen</h3><p>Amplifiers are not perfectly linear. Any distortion of the wave shape creates energy at 2×, 3×, 4× the frequency. Pushing a final amplifier too hard makes it worse.</p><p>Many amplifiers cancel even harmonics, so the <strong>3rd</strong> is often the strongest one left.</p></article>
+<article class="hm-card"><h3>Why Portable Ops Should Care</h3><p>A multiband end-fed or a random wire is resonant on many bands <em>because</em> those bands are harmonically related. That means your antenna radiates your 2nd and 3rd harmonics very efficiently.</p><p>At a campout, the next tent's receiver is a few feet away.</p></article>
+<article class="hm-card"><h3>What The Rules Say</h3><p>Under FCC Part 97.307, spurious emissions below 30 MHz must be at least <strong>43 dB</strong> under your signal (for equipment in service after 2003); above 30 MHz, at least <strong>60 dB</strong>. And if a harmonic causes harmful interference, you must fix it — meeting the number is not a free pass.</p></article>
+</div></div></section>
+
+<section class="hm-section"><div class="hm-section-inner"><p class="hm-eyebrow-dark">CLASSIC TROUBLE SPOTS</p><h2>Combinations Worth Knowing</h2><p class="lead">The amateur bands were laid out in harmonic steps, so some pairs bite more often than others.</p>
+<div style="overflow-x:auto"><table class="classic"><thead><tr><th>You transmit on</th><th>Harmonic</th><th>Lands on</th><th>Why it matters</th></tr></thead><tbody>
+<tr><td>40m (7.0–7.3)</td><td>2nd</td><td>14.0–14.6</td><td>Right in 20m — the classic two-tent problem.</td></tr>
+<tr><td>40m (7.0–7.3)</td><td>3rd</td><td>21.0–21.9</td><td>Lands in 15m. A 40m station can wipe out a 15m station next door.</td></tr>
+<tr><td>80m (3.5–4.0)</td><td>2nd</td><td>7.0–8.0</td><td>The bottom half of 80m doubles straight into 40m.</td></tr>
+<tr><td>20m (14.0–14.35)</td><td>2nd</td><td>28.0–28.7</td><td>Lands in 10m.</td></tr>
+<tr><td>10m (28.0–29.7)</td><td>3rd</td><td>84–89</td><td>TV channel 6 and the bottom of the FM broadcast band.</td></tr>
+<tr><td>6m (50–54)</td><td>2nd</td><td>100–108</td><td>FM broadcast — the most common 6m neighbour complaint.</td></tr>
+<tr><td>2m (144–148)</td><td>3rd</td><td>432–444</td><td>Lands in 70cm. Your own dual-band radio may hear it.</td></tr>
+<tr><td>2m (144–148)</td><td>2nd</td><td>288–296</td><td>Military aviation UHF — keep handheld amps clean.</td></tr>
+</tbody></table></div></div></section>
+
+<section class="hm-section" style="padding-top:0"><div class="hm-section-inner"><p class="hm-eyebrow-dark">KEEPING IT CLEAN</p><h2>Fixes That Work In The Field</h2><div class="quick">
+<div class="tip"><strong>A multiband wire radiates your harmonics too.</strong><p>The same trick that makes one wire work on 40, 20, 15 and 10 means it happily radiates your transmitter's 2nd, 4th and 6th harmonics. That's the strongest argument for a low-pass filter on a portable end-fed.</p></div>
+<div class="tip"><strong>Put a low-pass filter on the rig.</strong><p>A low-pass filter goes between the radio (or amplifier) and the antenna. Its cutoff must be above your operating frequency but below the 2nd harmonic. The calculator tells you that window for any band. Multiband QRP filters exist that switch with the band.</p></div>
+<div class="tip"><strong>Don't overdrive.</strong><p>Too much mic gain, too much ALC, or a small amp pushed to full output all distort the signal. Back off until the ALC barely moves.</p></div>
+<div class="tip"><strong>A tuner is not a filter.</strong><p>Some tuner designs knock harmonics down a little; many do almost nothing. Don't count on one to clean up a dirty signal.</p></div>
+<div class="tip"><strong>Use band-pass filters at multi-station events.</strong><p>When two stations share a site, a band-pass filter on each <em>receiver</em> as well as clean transmitters is what makes them coexist. Field Day groups have done this for decades.</p></div>
+<div class="tip"><strong>Listen for yourself.</strong><p>Have a friend (or a WebSDR) tune to 2× and 3× your frequency while you transmit. If you can hear yourself loud on the harmonic nearby, so can the next tent.</p></div>
+<div class="tip"><strong>Check it on the bench.</strong><p>An inexpensive spectrum analyzer shows harmonics directly. Always go through a dummy load and enough attenuation — never connect a transmitter straight into the analyzer.</p></div>
+</div></div></section>
+
+<section class="hm-section" style="padding-top:0"><div class="hm-section-inner"><div class="source-box"><div><p class="hm-eyebrow-dark">GOING DEEPER</p><h3>Official Rules &amp; Allocations</h3><p>This calculator uses US amateur band edges and a selection of other services. For the full picture, see the FCC rules and the national frequency allocation chart.</p></div><div class="hm-hero-actions"><a class="hm-btn hm-btn-primary" href="https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-97/subpart-D/section-97.307" target="_blank" rel="noopener">FCC §97.307 ↗</a><a class="hm-btn hm-btn-dark" href="https://www.ntia.gov/page/united-states-frequency-allocation-chart" target="_blank" rel="noopener">US ALLOCATION CHART ↗</a></div></div></div></section>
+</main>
+<script>
+/* Allocation table: [low MHz, high MHz, name, kind]. kind: ham | safety | bcst | other */
+const HAM=[[1.8,2.0,'160m'],[3.5,4.0,'80m'],[5.3305,5.4065,'60m'],[7.0,7.3,'40m'],[10.1,10.15,'30m'],[14.0,14.35,'20m'],[18.068,18.168,'17m'],[21.0,21.45,'15m'],[24.89,24.99,'12m'],[28.0,29.7,'10m'],[50,54,'6m'],[144,148,'2m'],[222,225,'1.25m'],[420,450,'70cm'],[902,928,'33cm'],[1240,1300,'23cm']];
+const OTHER=[
+[0.53,1.7,'AM broadcast','bcst'],[2.179,2.185,'2182 kHz maritime distress','safety'],
+[2.495,2.505,'WWV time signal','other'],[4.995,5.005,'WWV time signal','other'],[9.995,10.005,'WWV time signal','other'],[14.995,15.005,'WWV time signal','other'],[19.995,20.005,'WWV time signal','other'],[24.995,25.005,'WWV time signal','other'],
+[26.965,27.405,'CB radio','bcst'],[54,72,'TV channels 2–4','bcst'],[76,88,'TV channels 5–6','bcst'],[88,108,'FM broadcast','bcst'],
+[108,117.975,'Aviation navigation (VOR/ILS)','safety'],[117.975,137,'Aviation voice','safety'],[121.45,121.55,'121.5 aircraft emergency','safety'],[137,138,'Weather satellites','other'],
+[150.8,174,'VHF land mobile / public safety','other'],[156,162.025,'Marine VHF','safety'],[162.4,162.55,'NOAA Weather Radio','safety'],[174,216,'TV channels 7–13','bcst'],
+[225,400,'Military aviation UHF','safety'],[406,406.1,'406 MHz distress beacons','safety'],[450,470,'UHF land mobile / public safety','other'],[462.5,467.75,'FRS / GMRS','other'],[470,608,'UHF TV','bcst'],
+[1029,1031,'Aircraft transponder (1030)','safety'],[1089,1091,'Aircraft transponder / ADS-B (1090)','safety'],[1226.6,1228.6,'GPS L2','safety'],[1574.4,1576.4,'GPS L1','safety']];
+const ALL=[...HAM.map(b=>[b[0],b[1],b[2]+' ham band','ham',b[2]]),...OTHER];
+const ORD=['th','st','nd','rd'];const ord=n=>n+((n%100>10&&n%100<14)?'th':(ORD[n%10]||'th'));
+const $=id=>document.getElementById(id);
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function parseF(v,unit){const x=parseFloat(String(v).replace(/,/g,'').trim());if(!isFinite(x)||x<=0)return null;let m=unit==='kHz'?x/1000:x;if(unit!=='kHz'&&m>=1000&&m<100000&&String(v).indexOf('.')<0)m=m/1000;return m} // "7032" typed in MHz is almost certainly kHz
+function fm(m){if(m>=1000)return(m/1000).toFixed(4).replace(/\.?0+$/,'')+' GHz';const d=m<30?4:m<300?3:2;return m.toFixed(d).replace(/(\.\d*?)0+$/,'$1').replace(/\.$/,'')+' MHz'}
+function fr(lo,hi){if(Math.abs(hi-lo)<1e-9)return fm(lo);if(hi<1000){const d=hi<30?3:hi<300?2:1;return lo.toFixed(d)+'–'+hi.toFixed(d)+' MHz'}return fm(lo)+' – '+fm(hi)}
+function hits(lo,hi){return ALL.filter(a=>lo<=a[1]&&hi>=a[0])}
+function hamBand(f){const b=HAM.find(b=>f>=b[0]&&f<=b[1]);return b?b[2]:null}
+function tagHtml(a){return'<span class="tag t-'+a[3]+'">'+esc(a[2])+'</span>'}
+
+/* ---------- forward ---------- */
+function bandChips(){$('bandChips').innerHTML=HAM.slice(0,12).map(b=>'<button type="button" class="chip" data-lo="'+b[0]+'" data-hi="'+b[1]+'">'+b[2]+'</button>').join('');$('bandChips').querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{$('fUnit').value='MHz';$('fLo').value=c.dataset.lo;$('fHi').value=c.dataset.hi;fwd()}))}
+function fwd(){const u=$('fUnit').value;let lo=parseF($('fLo').value,u),hi=$('fHi').value.trim()?parseF($('fHi').value,u):null;const N=+$('nMax').value,out=$('fwdOut');
+$('bandChips').querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',hi!=null&&+c.dataset.lo===lo&&+c.dataset.hi===hi));
+if(lo==null){out.innerHTML='<div class="summary warn"><strong>Enter a frequency</strong><p>Use MHz, like 7.074 or 146.52.</p></div>';return}
+if(hi==null)hi=lo;if(hi<lo)[lo,hi]=[hi,lo];if(hi>3000){out.innerHTML='<div class="summary warn"><strong>That is above 3 GHz</strong><p>This calculator covers HF through the low microwave bands.</p></div>';return}
+const own=hamBand(lo),ownHi=hamBand(hi);let safety=0,hamHits=[],rows='';
+for(let n=2;n<=N;n++){const a=lo*n,b=hi*n,h=hits(a,b);if(h.some(x=>x[3]==='safety'))safety++;h.forEach(x=>{if(x[3]==='ham')hamHits.push(ord(n)+' → '+x[4])});rows+='<tr><td>'+ord(n)+'</td><td class="f">'+fr(a,b)+'</td><td>'+(h.length?h.map(tagHtml).join(''):'<span class="t-clear">Nothing listed here</span>')+'</td></tr>'}
+// low-pass filter window: above the top of the band you use, below the lowest 2nd harmonic. A single frequency inside a ham band uses that band's edges, since filters are sold per band.
+const hb=HAM.find(b=>lo>=b[0]&&hi<=b[1]);const fl=hi===lo&&hb?hb[0]:lo,fh=hi===lo&&hb?hb[1]:hi;const lpf=2*fl>fh?'<p><strong style="display:inline;font-size:inherit">Low-pass filter:</strong> pick one with its cutoff between <b>'+fm(fh)+'</b> and <b>'+fm(2*fl)+'</b>'+(fl!==lo?' (covers all of '+hb[2]+')':'')+'. That passes your signal and blocks every harmonic.</p>':'<p><strong style="display:inline;font-size:inherit">Low-pass filter:</strong> this range is too wide for one filter — its low end\'s 2nd harmonic ('+fm(2*lo)+') falls inside the range. Check each band separately.</p>';
+const where=own?(own===ownHi?'You are in the '+own+' band.':'Range spans more than one ham band.'):'<b>Note:</b> '+fm(lo)+' is not inside a US amateur band.';
+out.innerHTML='<div class="summary'+(safety?' warn':'')+'"><strong>'+(hi===lo?fm(lo):fr(lo,hi))+' — '+(safety?safety+' harmonic'+(safety>1?'s touch':' touches')+' safety services':'no safety services hit up to the '+ord(N))+'</strong><p>'+where+(hamHits.length?' Harmonics fall in other ham bands: '+esc(hamHits.join(', '))+' — watch out for other stations nearby.':'')+'</p>'+lpf+'</div><div style="overflow-x:auto"><table class="htable"><thead><tr><th>Harmonic</th><th>Frequency</th><th>Lands in</th></tr></thead><tbody>'+rows+'</tbody></table></div><p class="note">A tag means the harmonic falls inside that allocation. It does not mean you will cause interference — a clean, filtered transmitter keeps harmonics far below the level that matters. It shows where to listen and where to be careful.</p>';
+}
+
+/* ---------- reverse ---------- */
+function rev(){const f=parseF($('rF').value,'MHz'),N=+$('rN').value,o=$('revOut');if(f==null){o.innerHTML='<div class="summary warn"><strong>Enter the frequency where you hear the trouble</strong></div>';return}
+let rows='',likely=[];for(let n=2;n<=N;n++){const s=f/n,b=hamBand(s);if(b)likely.push(fm(s)+' ('+b+', '+ord(n)+')');const o2=ALL.filter(a=>a[3]!=='ham'&&s>=a[0]&&s<=a[1]);rows+='<tr><td>'+ord(n)+'</td><td class="f">'+fm(s)+'</td><td>'+(b?'<span class="tag t-ham">'+b+' ham band</span>':'')+o2.map(tagHtml).join('')+(!b&&!o2.length?'<span class="t-clear">—</span>':'')+'</td></tr>'}
+o.innerHTML='<div class="summary'+(likely.length?' warn':'')+'"><strong>'+(likely.length?'Likely amateur sources: '+likely.length:'No amateur band divides evenly into '+fm(f))+'</strong><p>'+(likely.length?'A station transmitting on '+esc(likely.join(' or '))+' would put a harmonic on '+fm(f)+'.':'An amateur harmonic is unlikely. Look at nearby broadcast stations, mixing between two strong signals, or local electrical noise.')+'</p></div><div style="overflow-x:auto"><table class="htable"><thead><tr><th>If it is the…</th><th>The source would be on</th><th>That frequency is in</th></tr></thead><tbody>'+rows+'</tbody></table></div><p class="note">Harmonics are exact multiples, so the source frequency is the trouble frequency divided by 2, 3, 4… Two strong signals can also mix and create products at other frequencies; this tool covers harmonics only.</p>'}
+
+/* ---------- campout ---------- */
+function camp(){const W=+$('cWin').value,N=+$('cN').value,o=$('campOut');const st=$('cList').value.split('\n').map(l=>l.trim()).filter(Boolean).slice(0,12).map((l,i)=>{const m=l.match(/(\d+(?:\.\d+)?)\s*(mhz|khz)?\s*$/i);if(!m)return{label:l,f:null};let f=parseFloat(m[1]);if(/khz/i.test(m[2]||'')||(f>=1000&&m[1].indexOf('.')<0&&f<100000))f/=1000;const label=l.slice(0,m.index).trim()||('Station '+(i+1));return{label,f}});
+const bad=st.filter(s=>s.f==null);const ok=st.filter(s=>s.f!=null);if(ok.length<2){o.innerHTML='<div class="summary warn"><strong>Enter at least two stations</strong><p>One per line, ending in the frequency in MHz.</p></div>';return}
+const res=[];ok.forEach(a=>ok.forEach(b=>{if(a===b)return;for(let n=2;n<=N;n++){const h=a.f*n,d=Math.abs(h-b.f),hb=hamBand(h),bb=hamBand(b.f);if(d<=W)res.push({lvl:2,a,b,n,h,d});else if(hb&&hb===bb)res.push({lvl:1,a,b,n,h,d})}}));
+res.sort((x,y)=>y.lvl-x.lvl||x.d-y.d);const on=res.filter(r=>r.lvl===2).length,near=res.filter(r=>r.lvl===1).length;
+o.innerHTML='<div class="summary'+(on?' warn':'')+'"><strong>'+(on?on+' direct hit'+(on>1?'s':''):near?'No direct hits — '+near+' same-band overlap'+(near>1?'s':''):'No harmonic conflicts found')+'</strong><p>'+(on?'A station\'s harmonic sits right on another station. Move one of them, or filter the transmitter.':near?'A harmonic lands in the same band as another station but not on top of it. Usually fine with good filters; worth a quick listen.':'Checked '+ok.length+' stations up to the '+ord(N)+' harmonic.')+'</p></div>'+
+res.map(r=>'<div class="conf'+(r.lvl===2?' bad':'')+'"><strong>'+esc(r.a.label)+'</strong> ('+fm(r.a.f)+') — '+ord(r.n)+' harmonic at <b>'+fm(r.h)+'</b> '+(r.lvl===2?'lands '+(r.d*1000).toFixed(1)+' kHz from':'is in the same band as')+' <strong>'+esc(r.b.label)+'</strong> ('+fm(r.b.f)+')</div>').join('')+
+(bad.length?'<p class="note">Could not read a frequency on: '+bad.map(b=>esc(b.label)).join(', ')+'</p>':'')+'<p class="note">The receiving station will also hear a strong nearby transmitter on its fundamental (overload), even with no harmonic involved. Spread antennas out and point them away from each other.</p>'}
+
+/* ---------- power ---------- */
+function legalDb(f){return f!=null&&f>=30?60:43}
+function pwr(){const P=parseFloat($('pW').value),dB=parseFloat($('pDb').value),f=parseFloat($('pF').value),o=$('pwrOut');if(!(P>0)||!isFinite(dB)){o.innerHTML='<div class="summary warn"><strong>Enter power and dB</strong></div>';return}
+const mW=P*1000*Math.pow(10,-dB/10),dBm=10*Math.log10(mW),L=legalDb(isFinite(f)?f:null),meets=dB>=L;
+const show=mW>=1000?(mW/1000).toFixed(2)+' W':mW>=1?mW.toFixed(mW<10?2:1)+' mW':mW>=0.001?(mW*1000).toFixed(mW*1000<10?2:0)+' µW':(mW*1e6).toFixed(1)+' nW';
+o.innerHTML='<div class="stats"><div class="stat"><div class="mini">Harmonic power</div><div class="big">'+show+'</div><div class="s">'+dBm.toFixed(1)+' dBm</div></div><div class="stat"><div class="mini">FCC minimum here</div><div class="big">'+L+' dB</div><div class="s">'+(L===60?'At or above 30 MHz':'Below 30 MHz')+'</div></div><div class="stat"><div class="mini">Your figure</div><div class="big" style="color:'+(meets?'var(--green2)':'var(--red)')+'">'+(meets?'Meets it':'Short by '+(L-dB).toFixed(0)+' dB')+'</div><div class="s">'+dB+' dB below '+P+' W</div></div></div><p class="note">For scale: '+show+' is '+(mW>=1?'more than enough to be heard by a receiver in the next tent, and on a good path, much further — WSPR beacons of a few hundred milliwatts are copied across the country':'small, but a receiver a few feet away can still hear it')+'. Every 10 dB of extra filtering cuts it by ten times.</p>'}
+
+/* ---------- antenna planner ---------- */
+// Segments: [band lo, band hi, CW/digital lo, hi, SSB lo, hi]. US General/Extra portions where most activity is.
+const SEG={'160m':[1.8,2.0,1.8,1.85,1.85,2.0],'80m':[3.5,4.0,3.5,3.6,3.8,4.0],'40m':[7.0,7.3,7.0,7.125,7.175,7.3],'30m':[10.1,10.15,10.1,10.15,null,null],'20m':[14.0,14.35,14.0,14.15,14.225,14.35],'17m':[18.068,18.168,18.068,18.11,18.11,18.168],'15m':[21.0,21.45,21.0,21.2,21.275,21.45],'12m':[24.89,24.99,24.89,24.93,24.93,24.99],'10m':[28.0,29.0,28.0,28.3,28.3,28.6]};
+const HF=Object.keys(SEG);const FT=468; // half-wave in feet ≈ 468 / MHz for typical wire
+function segOf(b,mode){const s=SEG[b];if(mode==='cw')return[s[2],s[3]];if(mode==='ssb')return s[4]==null?null:[s[4],s[5]];return[s[0],s[1]]}
+// Pick the harmonic number that puts the base band onto a target band (odd only for a center-fed dipole)
+function harmN(base,t,type){const B=SEG[base],T=SEG[t],c=(T[0]+T[1])/2,bc=(B[0]+B[1])/2;let best=null;for(let n=1;n<=16;n++){if(type==='dipole'&&n%2===0)continue;const q=(T[1]-T[0])*0.25;if(n*B[1]<T[0]+q||n*B[0]>T[1]-q)continue;if(!best||Math.abs(n*bc-c)<Math.abs(best*bc-c))best=n}return best}
+let aSel=null;
+function aTargets(){const base=$('aBase').value,type=$('aType').value,i=HF.indexOf(base);const avail=HF.slice(i);if(!aSel||aSel.base!==base){aSel={base,set:new Set(base==='80m'?['80m','40m','20m','15m','10m']:avail)}}
+$('aTargets').innerHTML=avail.map(b=>{const n=harmN(base,b,type);return'<button type="button" class="chip'+(aSel.set.has(b)?' on':'')+'" data-b="'+b+'"'+(n?'':' title="Not reachable with this antenna"')+' style="'+(n?'':'opacity:.45')+'">'+b+(n&&n>1?' <small style="font-weight:700">×'+n+'</small>':'')+'</button>'}).join('');
+$('aTargets').querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{const b=c.dataset.b;if(b===base)return;aSel.set.has(b)?aSel.set.delete(b):aSel.set.add(b);aTargets();aRun()}));
+const B=SEG[base];const sl=$('aSlide');sl.min=B[0];sl.max=B[1]}
+function aScore(f1,list){let worst=0,sum=0;list.forEach(x=>{const r=f1*x.n,c=(x.s[0]+x.s[1])/2,hw=(x.s[1]-x.s[0])/2,d=Math.abs(r-c)/hw;worst=Math.max(worst,d);sum+=d*d});return worst*100+sum}
+function aList(){const base=$('aBase').value,type=$('aType').value,mode=$('aMode').value;const list=[],skip=[];[...aSel.set].filter(b=>HF.indexOf(b)>=HF.indexOf(base)).sort((a,b)=>HF.indexOf(a)-HF.indexOf(b)).forEach(b=>{const n=harmN(base,b,type),s=segOf(b,mode)||segOf(b,'all');if(!n){skip.push(b);return}list.push({b,n,s,band:[SEG[b][0],SEG[b][1]],fallback:!segOf(b,mode)})});return{list,skip}}
+function aBest(){const{list}=aList(),B=SEG[$('aBase').value];let best=B[0],bs=1e9;for(let f=B[0];f<=B[1]+1e-9;f+=0.0005){const s=aScore(f,list);if(s<bs){bs=s;best=f}}$('aF').value=best.toFixed(3);aRun()}
+function aRun(){const f1=parseFloat($('aF').value),B=SEG[$('aBase').value],o=$('aOut');if(!isFinite(f1)||f1<=0){o.innerHTML='';return}$('aSlide').value=f1;const{list,skip}=aList(),type=$('aType').value;
+let outCount=0;const rows=list.map(x=>{const r=f1*x.n,[lo,hi]=x.band,span=hi-lo,pad=span*0.08,L=lo-pad,R=hi+pad,W=R-L,pos=v=>Math.max(0,Math.min(100,(v-L)/W*100));const inBand=r>=lo&&r<=hi,inSeg=r>=x.s[0]&&r<=x.s[1],c=(x.s[0]+x.s[1])/2,off=(r-c)*1000;if(!inBand)outCount++;
+const verdict=!inBand?'<span class="bad">Outside the band — '+(r<lo?'too low':'too high')+' by '+Math.round(Math.abs(r<lo?lo-r:r-hi)*1000)+' kHz</span>':inSeg?(Math.abs(off)<(x.s[1]-x.s[0])*250?'<span class="good">Well placed</span>':'<span class="good">In your segment</span>, '+Math.round(Math.abs(off))+' kHz '+(off<0?'low':'high')+' of centre'):'In the band, but '+Math.round(Math.abs(off))+' kHz '+(off<0?'below':'above')+' your segment centre — tuner likely';
+return'<div class="bar-row"><div class="bn">'+x.b+'<small>'+(x.n===1?'BASE':'×'+x.n)+'</small></div><div data-keep-light class="track" aria-hidden="true"><div class="seg" style="left:'+pos(x.s[0])+'%;width:'+(pos(x.s[1])-pos(x.s[0]))+'%"></div><div class="hm-mark'+(inBand?'':' out')+'" style="left:'+pos(r)+'%"></div><span class="edge l" style="left:'+pos(lo)+'%">'+lo+'</span><span class="edge r" style="right:'+(100-pos(hi))+'%">'+hi+'</span></div><div class="bar-info">Resonance <b>'+r.toFixed(3)+' MHz</b> — '+verdict+(x.fallback?' (no SSB on this band; shaded area is the whole band)':'')+'</div></div>'}).join('');
+const ft=FT/f1,m=ft*0.3048,move=f1/ft*0.5; // kHz the base band moves per 6 inches of wire
+o.innerHTML='<div class="summary'+(outCount?' warn':'')+'"><strong>'+f1.toFixed(3)+' MHz '+(type==='efhw'?'end-fed':'dipole')+' — '+(outCount?outCount+' band'+(outCount>1?'s fall':' falls')+' outside':(list.length>1?'all '+list.length+' bands land inside':'only the base band works — no other band you picked is reachable'))+'</strong><p>Starting length: <b>'+ft.toFixed(1)+' ft</b> ('+m.toFixed(2)+' m) of wire'+(type==='dipole'?', split into two legs of '+(ft/2).toFixed(1)+' ft':'')+'. Cut it a little long and trim.</p><p>Trimming 6 inches raises '+list[0].b+' about <b>'+Math.round(move*1000)+' kHz</b>'+(list.length>1?' — and '+list[list.length-1].b+' about <b>'+Math.round(move*1000*list[list.length-1].n)+' kHz</b>, because every harmonic moves by its multiple':'')+'. Trim in small steps.</p>'+(skip.length?'<p><b>Not reachable with this antenna:</b> '+skip.join(', ')+(type==='dipole'?'. A centre-fed dipole only works on odd multiples; an end-fed covers even ones too.':'')+'</p>':'')+'</div><div class="bars">'+rows+'</div><p class="note">Shaded = the part of the band you chose. The thin line = where the wire resonates. In practice the higher harmonics usually come out a little <em>above</em> the exact multiple, so if 10m matters most, aim it slightly low and check with an antenna analyzer. Length uses 468 ÷ MHz, a common starting point for insulated wire; your height, ground and transformer will shift it.</p>'}
+
+/* ---------- random wire ---------- */
+let rSel=new Set(['80m','40m','30m','20m','17m','15m','12m','10m']);
+function rChips(){$('rBands').innerHTML=HF.map(b=>'<button type="button" class="chip'+(rSel.has(b)?' on':'')+'" data-b="'+b+'">'+b+'</button>').join('');$('rBands').querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{const b=c.dataset.b;rSel.has(b)?rSel.delete(b):rSel.add(b);rChips();rRun()}))}
+function rRun(){const a=parseFloat($('rMin').value),z=parseFloat($('rMax').value),o=$('rOut'),U=$('rUnits').value,cv=v=>U==='m'?(v*0.3048).toFixed(1)+' m':(Math.round(v*2)/2)+' ft';if(!(a>0&&z>a)||!rSel.size){o.innerHTML='<div class="summary warn"><strong>Pick a length range and at least one band</strong></div>';return}
+const bad=[];rSel.forEach(b=>{const[lo,hi]=SEG[b];for(let n=1;n*FT/hi<=z+5;n++)bad.push([n*FT/hi,n*FT/lo,b,n])}); // lengths that are ~ n half-waves somewhere in the band
+const isBad=L=>bad.some(x=>L>=x[0]&&L<=x[1]),clear=L=>Math.min(...bad.map(x=>L<x[0]?x[0]-L:L>x[1]?L-x[1]:0));
+const step=0.25,pts=[];for(let L=a;L<=z;L+=step)pts.push({L,c:isBad(L)?0:clear(L)});
+// best length in each clear gap
+const gaps=[];let cur=null;pts.forEach(p=>{if(p.c>0){if(!cur||p.c>cur.c)cur=cur&&cur.open?{...p,open:true}:{...p,open:true}}if(p.c>0){if(!cur.open)cur.open=true}else if(cur){gaps.push(cur);cur=null}});if(cur)gaps.push(cur);
+// recompute peak per gap properly
+const peaks=[];let run=[];pts.forEach(p=>{if(p.c>0)run.push(p);else{if(run.length)peaks.push(run.reduce((m,q)=>q.c>m.c?q:m));run=[]}});if(run.length)peaks.push(run.reduce((m,q)=>q.c>m.c?q:m));
+const good=peaks.filter(p=>p.c>=0.75).sort((x,y)=>y.c-x.c).slice(0,6).sort((x,y)=>x.L-y.L);
+const pos=v=>(v-a)/(z-a)*100;const bars=bad.filter(x=>x[1]>=a&&x[0]<=z).map(x=>'<div class="x" title="'+x[2]+' ×'+x[3]+'" style="left:'+Math.max(0,pos(x[0]))+'%;width:'+(Math.min(100,pos(x[1]))-Math.max(0,pos(x[0])))+'%"></div>').join('');
+o.innerHTML='<div class="summary'+(good.length?'':' warn')+'"><strong>'+(good.length?'Good lengths for '+[...rSel].sort((x,y)=>HF.indexOf(x)-HF.indexOf(y)).join(', '):'No clear lengths in this range')+'</strong><p>'+(good.length?'Each one stays at least '+cv(Math.min(...good.map(g=>g.c))).replace(/^0 /,'')+' away from a half-wave point on every band you picked. The one with the most room is <b>'+cv(good.slice().sort((x,y)=>y.c-x.c)[0].L)+'</b>.':'With this many bands the half-wave points crowd together. Drop a band (160m and 30m are the usual culprits) or widen the range.')+'</p></div>'+(good.length?'<div class="wires">'+good.map(g=>'<span class="wire">'+cv(g.L)+'<small>±'+cv(g.c).replace(' ft','').replace(' m','')+(U==='m'?' m':' ft')+' room</small></span>').join('')+'</div>':'')+'<div data-keep-light class="avoid" aria-hidden="true">'+bars+good.map(g=>'<div class="g" style="left:'+pos(g.L)+'%"></div><span class="lab" style="left:'+pos(g.L)+'%">'+cv(g.L)+'</span>').join('')+'</div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px"><span>'+cv(a)+'</span><span>'+cv(z)+'</span></div><p class="note">Red = lengths to avoid (near a half-wave multiple on one of your bands). Green = recommended. Uses 468 ÷ MHz per half-wave; you still need a counterpoise and a tuner — this just keeps the tuner in its comfortable range.</p>'}
+
+/* ---------- wiring ---------- */
+['fLo','fHi','nMax','fUnit'].forEach(id=>$(id).addEventListener('input',fwd));['rF','rN'].forEach(id=>$(id).addEventListener('input',rev));['cList','cWin','cN'].forEach(id=>$(id).addEventListener('input',camp));['pW','pDb','pF'].forEach(id=>$(id).addEventListener('input',pwr));
+$('aType').addEventListener('change',()=>{aTargets();aRun()});$('aBase').addEventListener('change',()=>{aTargets();const B=SEG[$('aBase').value];$('aF').value=(B[0]+(B[1]-B[0])*0.1).toFixed(3);aBest()});$('aMode').addEventListener('change',aRun);$('aBest').addEventListener('click',aBest);$('aF').addEventListener('input',aRun);$('aSlide').addEventListener('input',()=>{$('aF').value=(+$('aSlide').value).toFixed(3);aRun()});
+['rMin','rMax','rUnits'].forEach(id=>$(id).addEventListener('input',rRun));
+$('pLegal').addEventListener('click',()=>{const f=parseFloat($('pF').value);$('pDb').value=legalDb(isFinite(f)?f:null);pwr()});
+document.querySelectorAll('[role=tablist]').forEach(tl=>{const tabs=[...tl.querySelectorAll('[role=tab]')];tabs.forEach(t=>t.addEventListener('click',()=>{tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);$(x.getAttribute('aria-controls')).hidden=!on})}))});
+bandChips();fwd();rev();camp();pwr();aTargets();aRun();rChips();rRun();
+</script>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
+<script src="kpc-search.js?v=20261016b" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+<script src="kpc-announce.js?v=20261016a" defer></script>
+</body></html>

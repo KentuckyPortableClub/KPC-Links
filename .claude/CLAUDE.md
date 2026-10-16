@@ -72,6 +72,11 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - Header bar is now fully opaque (#070707) on every page (kpc-nav.css / kpc-tools.css / inline .site-nav + .nav-links): page text was showing through it in dark mode.
 - Playwright: to test the service worker, run with PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 so routes reach SW fetches.
 
+## Harmonics Planner (kpc-harmonics.html) — Oct 16 2026
+- Built from Brandon's claude.ai preview 'KPC Harmonics Planner' (another chat). Source .claude/build/harmonics/main.html (assemble.py). All page classes that clashed with site CSS are renamed hm-* and every rule is scoped to main#hm; the band bars (.track/.avoid) carry data-keep-light with their own html[data-theme=dark] colours.
+- Tabs: Resonant multiband wire (EFHW all harmonics / dipole odd only, 468/MHz) + Random-wire lengths; transmitter: My harmonics, Who's causing this?, Campout check, How strong? (FCC 97.307 43/60 dB). Band edges, CW/SSB segments (10m 'whole band' 28.0-29.0) are Brandon's: don't change without asking.
+- Linked from antennas.html (Use The Numbers), toolbox.html (#gear), find.html (Gear), kpc-search.js. Not in the See More menu.
+
 ## Ideas Brandon has mentioned for later
 - Satellite pass predictor.
 - WWFF checker.
