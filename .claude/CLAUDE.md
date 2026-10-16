@@ -77,6 +77,10 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - Tabs: Resonant multiband wire (EFHW all harmonics / dipole odd only, 468/MHz) + Random-wire lengths; transmitter: My harmonics, Who's causing this?, Campout check, How strong? (FCC 97.307 43/60 dB). Band edges, CW/SSB segments (10m 'whole band' 28.0-29.0) are Brandon's: don't change without asking.
 - Linked from antennas.html (Use The Numbers), toolbox.html (#gear), find.html (Gear), kpc-search.js. Not in the See More menu.
 
+## Site polish pass — Oct 16 2026 (Brandon: 'make sure all is good nice and neat')
+- Whole-site sweep (96 pages, phone + computer, light + dark): no broken local links, no sideways scroll. Fixed: kpc-access-finder.html now has the site header/footer and club colours (source .claude/build/access-finder/main.html, styles scoped to main#af; rebuild with assemble.py, title 'Parking & Access Finder | KPC'); kids pages + kpc-ssb.html hero darkened so titles read (<style id="kpc-hero-readable">); kpc-live.html header fits phones (<style id="kpc-live-hdr-fit">, clock hidden under 372px); weather hero title in site style (<style id="kpc-wx-hero">) and Weather footer restored; Park Notes menu got Campgrounds back; Privacy links added (finder, spot-discord); page titles end in '| KPC'; duplicate Band Plan button removed (frequency guide); videos play label moved under the button; voice-pileup talk button floats only once started; join waitlist button keeps dark text in dark mode.
+- This sandbox can't reach unpkg/cdnjs, so map pages show 'L is not defined' here only; for screenshots route unpkg leaflet to /tmp/claude-0/lf/dist if it still exists.
+
 ## Ideas Brandon has mentioned for later
 - Satellite pass predictor.
 - WWFF checker.

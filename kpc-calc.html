@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="kpc-theme.js?v=20261014kz"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ham Calculators </title>
+<title>Ham Calculators | KPC</title>
 <!-- KPC icons & share preview -->
 <link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -308,7 +308,7 @@ function dbp(e){
  if(w!==null&&w>0&&['dW','dDbm','dDbw'].indexOf(id)>=0){src(id);setv('dW',w,w<1?4:2);setv('dDbm',10*Math.log10(w*1000),1);setv('dDbw',10*Math.log10(w),1)}
  var a=num('dA'),c=num('dB2'),o='';
  var W=num('dW');if(W&&W>0)o+='<b>'+fx(W,2)+' W</b> = '+(10*Math.log10(W*1000)).toFixed(1)+' dBm = '+(10*Math.log10(W)).toFixed(1)+' dBW<br>';
- if(a&&c&&a>0&&c>0){var d=10*Math.log10(c/a);o+=fx(c,1)+' W is <b>'+(d>=0?'+':'')+d.toFixed(1)+' dB</b> vs '+fx(a,1)+' W — about <b>'+Math.abs(d/6).toFixed(1)+' S-units</b> '+(d>=0?'louder':'quieter')+'<br><small>Rule of thumb: 3 dB = double the power (half an S-unit), 6 dB = 4× power = one S-unit, 10 dB = 10× power. <a href="kpc-power-db.html" style=\"color:var(--green);font-weight:800\">Power &amp; S-units guide →</a></small>'}
+ if(a&&c&&a>0&&c>0){var d=10*Math.log10(c/a);o+=fx(c,1)+' W is <b>'+(d>=0?'+':'')+d.toFixed(1)+' dB</b> vs '+fx(a,1)+' W — about <b>'+Math.abs(d/6).toFixed(1)+' S-units</b> '+(d>=0?'louder':'quieter')+'<br><small>Rule of thumb: 3 dB = double the power (half an S-unit), 6 dB = 4× power = one S-unit, 10 dB = 10× power. <a href="kpc-power-db.html" style=\"color:#f0c96b;font-weight:800\">Power &amp; S-units guide →</a></small>'}
  $('dOut').innerHTML=o;
 }
 ['dW','dDbm','dDbw','dA','dB2'].forEach(function(i){$(i).addEventListener('input',dbp)});dbp();
@@ -337,7 +337,7 @@ function wave(){
   'Half-wave dipole (468/f): <b>'+(468/f).toFixed(1)+' ft</b> total · each leg <b>'+(234/f).toFixed(1)+' ft</b><br>'+
   'Quarter-wave vertical (234/f): <b>'+(234/f).toFixed(1)+' ft</b> · EFHW wire ≈ <b>'+(468/f*1.0).toFixed(1)+' ft</b> (trim to tune)<br>'+
   'Full-wave loop (1005/f): <b>'+(1005/f).toFixed(1)+' ft</b> · delta side <b>'+(335/f).toFixed(1)+' ft</b> · quad side <b>'+(251.25/f).toFixed(1)+' ft</b><br>'+(f>=28?'J-pole: long element <b>'+(lm*0.75*0.96*39.37).toFixed(1)+' in</b> · stub <b>'+(lm*0.25*0.96*39.37).toFixed(1)+' in</b><br>':'')+
-  'Coax ¼-wave stub at VF '+vf+': <b>'+ft(lm/4*vf)+'</b> · ½-wave: <b>'+ft(lm/2*vf)+'</b><br><small>Wire formulas are starting points — cut long and trim. More: <a href="kpc-loops.html#calc" style=\"color:var(--green);font-weight:800\">loops</a> · <a href="kpc-doublets.html#check" style=\"color:var(--green);font-weight:800\">doublet feeder</a> · <a href="kpc-vhf-uhf.html#calc" style=\"color:var(--green);font-weight:800\">J-pole &amp; yagi</a></small>';
+  'Coax ¼-wave stub at VF '+vf+': <b>'+ft(lm/4*vf)+'</b> · ½-wave: <b>'+ft(lm/2*vf)+'</b><br><small>Wire formulas are starting points — cut long and trim. More: <a href="kpc-loops.html#calc" style=\"color:#f0c96b;font-weight:800\">loops</a> · <a href="kpc-doublets.html#check" style=\"color:#f0c96b;font-weight:800\">doublet feeder</a> · <a href="kpc-vhf-uhf.html#calc" style=\"color:#f0c96b;font-weight:800\">J-pole &amp; yagi</a></small>';
 }
 ['wF','wVf'].forEach(function(i){$(i).addEventListener('input',wave);$(i).addEventListener('change',wave)});wave();
 
