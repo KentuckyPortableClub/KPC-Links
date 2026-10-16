@@ -2,7 +2,7 @@
    OFF until CODE is set to the club's GoatCounter code (the "xxx" in xxx.goatcounter.com).
    Your own visits: open any page once with ?nocount=1 on that phone/computer and it stops counting you (?nocount=0 undoes it). */
 (function () {
-  var CODE = '';
+  var CODE = 'kentuckyportableclub';
   try {
     var q = new URLSearchParams(location.search);
     if (q.get('nocount') === '1') localStorage.setItem('kpcNoCount', '1');
