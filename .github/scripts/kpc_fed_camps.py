@@ -1,6 +1,6 @@
 """Federal campgrounds (Recreation.gov RIDB) for the states around Kentucky — US Trip Planner park cards.
 Needs secret RIDB_API_KEY (free key from ridb.recreation.gov, Profile). Writes data/campfed/US-XX.json
-{state, updated, camps:[[id, name, lat, lon, agency, reservable(0/1), url]]}. Keeps last week's file if RIDB fails.
+{state, updated, camps:[[id, name, lat, lon, agency, reservable(0/1), url, kind c=campground s=picnic shelter/day use]]}. Keeps last week's file if RIDB fails.
 The key is never printed or saved."""
 import json, os, re, time, urllib.request, urllib.parse, datetime
 KEY = os.environ.get('RIDB_API_KEY', '').strip()
@@ -47,13 +47,13 @@ for st in STATES:
                 except Exception: continue
                 if not la or not lo: continue
                 nm = re.sub(r'\s+', ' ', (f.get('FacilityName') or '').strip())
-                if re.search(r'picnic|pavilion|day use|shelter', nm, re.I) and not re.search(r'camp', nm, re.I): continue
+                kind = 's' if re.search(r'picnic|pavilion|day use|shelter', nm, re.I) and not re.search(r'camp', nm, re.I) else 'c'
                 if nm.isupper(): nm = re.sub(r"'S\b", "'s", nm.title())
                 nm = re.sub(r'\b(Ky|Tn|Va|Wv|Oh|Mo|Il|In)\b(?=\W*$)', lambda m: m.group(1).upper(), nm)
                 fid = str(f.get('FacilityID'))
                 camps.append([fid, nm, la, lo,
                               ORG.get(f.get('ParentOrgID'), ''), 1 if f.get('Reservable') else 0,
-                              'https://www.recreation.gov/camping/campgrounds/' + fid])
+                              'https://www.recreation.gov/camping/campgrounds/' + fid, kind])
             off += len(R)
             if not R or off >= int(j.get('METADATA', {}).get('RESULTS', {}).get('TOTAL_COUNT', 0)): break
             time.sleep(.3)
@@ -61,6 +61,6 @@ for st in STATES:
         json.dump({'state': st, 'updated': datetime.date.today().isoformat(), 'camps': camps},
                   open(f'{OUT}/US-{st}.json', 'w'), separators=(',', ':'))
         total += len(camps)
-        note(f'US-{st}', f'{len(camps)} federal campgrounds ({sum(c[5] for c in camps)} reservable), agencies: ' + ', '.join(sorted({c[4] for c in camps if c[4]})))
+        note(f'US-{st}', f'{sum(c[7]=="c" for c in camps)} campgrounds + {sum(c[7]=="s" for c in camps)} picnic shelters ({sum(c[5] for c in camps)} reservable), agencies: ' + ', '.join(sorted({c[4] for c in camps if c[4]})))
     except Exception as e: note(f'US-{st} FAILED', f'{e}; kept the old file')
 note('Federal campgrounds done', f'{total} campgrounds in {len(STATES)} states')
