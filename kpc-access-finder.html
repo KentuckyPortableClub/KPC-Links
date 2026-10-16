@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
 <script src="kpc-theme.js?v=20261014kz"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Parking &amp; Access Finder | KPC</title>
 <!-- KPC icons & share preview -->
@@ -346,7 +347,7 @@ map.on('click',e=>{lastCoords=e.latlng.lat.toFixed(6)+', '+e.latlng.lng.toFixed(
   const u=new URLSearchParams(location.search).get('ref');if(u){inp.value=u;setTimeout(()=>go(u),400)}
 })();
 </script>
-<script src="kpc-search.js?v=20261016c" defer></script><script>
+<script src="kpc-search.js?v=20261016d" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
