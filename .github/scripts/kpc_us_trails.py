@@ -49,10 +49,17 @@ def pick_layer(u, want=None):
     pref = [l for l in lines if any(w in l['name'].lower() for w in ('trail', 'centerline', 'route', 'nst', 'nht', 'segment', 'line'))]
     pick = (pref or lines or [l for l in L if l.get('geometryType') == 'esriGeometryPolygon'] or L)[0]
     return pick['id']
+OIDF = {}
+def oid(u, lid):
+    k = f'{u}/{lid}'
+    if k not in OIDF:
+        try: OIDF[k] = get(k + '?f=json').get('objectIdField') or 'OBJECTID'
+        except Exception: OIDF[k] = 'OBJECTID'
+    return OIDF[k]
 def fetch(u, lid):
     feats, off = [], 0
     while True:
-        q = urllib.parse.urlencode({'where': '1=1', 'outFields': 'OBJECTID', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': TOL,
+        q = urllib.parse.urlencode({'where': '1=1', 'outFields': oid(u, lid), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': TOL,
                                     'geometryPrecision': 5, 'resultOffset': off, 'resultRecordCount': 1000, 'f': 'geojson'})
         j = get(f'{u}/{lid}/query?{q}', 180); fs = j.get('features') or []
         feats += fs
@@ -66,7 +73,7 @@ def fetch_esri(u, lid):
     for tol in (TOL, 0):
         out, off = [], 0
         while True:
-            q = urllib.parse.urlencode({'where': '1=1', 'outFields': 'OBJECTID', 'returnGeometry': 'true', 'returnZ': 'false', 'returnM': 'false', 'outSR': 4326,
+            q = urllib.parse.urlencode({'where': '1=1', 'outFields': oid(u, lid), 'returnGeometry': 'true', 'returnZ': 'false', 'returnM': 'false', 'outSR': 4326,
                                         'maxAllowableOffset': tol, 'resultOffset': off, 'resultRecordCount': 500, 'f': 'json'})
             j = get(f'{u}/{lid}/query?{q}', 180)
             if j.get('error'): note('esri error', f"{u} {j['error']}"); break
