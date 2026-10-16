@@ -1,0 +1,22 @@
+name: zz trails discovery (temporary)
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  t:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with: {path: repo}
+      - run: |
+          mkdir out; cd out
+          S='https://www.arcgis.com/sharing/rest/search?f=json&num=100&sortField=numviews&sortOrder=desc&q='
+          for q in 'title:"National Historic Trail" type:"Feature Service"' 'title:"National Scenic Trail" type:"Feature Service"' 'title:"National Trails System" type:"Feature Service"' 'title:"NHT" owner:nps type:"Feature Service"' 'NSHT type:"Feature Service"'; do
+            curl -s "$S$(python3 -c 'import sys,urllib.parse;print(urllib.parse.quote(sys.argv[1]))' "$q")" >> arc.jsonl; echo >> arc.jsonl; done
+          for q in 'National Historic Trail' 'National Scenic Trail' 'Historic Trail' 'Scenic Trail'; do
+            curl -s "https://api.pota.app/lookup?search=$(python3 -c 'import sys,urllib.parse;print(urllib.parse.quote(sys.argv[1]))' "$q")&size=200" >> pota.jsonl; echo >> pota.jsonl; done
+          curl -s "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NSHT/MapServer?f=json" > blm.json
+          curl -s "https://mapservices.nps.gov/arcgis/rest/services/NationalDatasets/NPS_Public_Trails/MapServer?f=json" > npspub.json
+          ls -la
+      - run: |
+          cd repo && git checkout --orphan zz-trails && git rm -rqf . && cp ../out/* . && git add . && git -c user.name=bot -c user.email=b@b commit -qm t && git push -f origin zz-trails
