@@ -14,7 +14,7 @@ Secrets (GitHub -> Settings -> Secrets and variables -> Actions, never in the si
   Email can instead go through an Apps Script web app in kpcwebhost@gmail.com (Brandon Oct 15): RELAY_MAIL_URL + RELAY_MAIL_KEY (used when set; mail comes FROM that account)
 DRY_RUN=1 prints what would happen and changes nothing.
 """
-import csv, datetime, io, json, mimetypes, os, re, smtplib, ssl, sys, time, urllib.error, urllib.parse, urllib.request, uuid
+import csv, datetime, hashlib, hmac, io, tempfile, json, mimetypes, os, re, smtplib, ssl, sys, time, urllib.error, urllib.parse, urllib.request, uuid
 from email.message import EmailMessage
 
 TITLE = 'KPC Discord relay'
@@ -62,6 +62,7 @@ def load(p, d):
     except Exception: return d
 
 state = load(STATE, {})
+state0 = json.dumps(state, sort_keys=True)
 feed = load(OUT, {'items': []})
 
 # ---------------------------------------------------------------- read the channel
@@ -77,7 +78,7 @@ if not after:
         state['last_id'] = msgs[-1]['id'] if msgs else '0'; json.dump(state, open(STATE, 'w'), indent=1)
     notice(f'First run: saved the starting point ({len(msgs)} older messages left alone). New posts from now on will be shared.')
     sys.exit(0)
-if not msgs: notice('No new posts.'); sys.exit(0)
+if not msgs: notice('No new posts.')
 
 # ---------------------------------------------------------------- helpers
 def who(u, member=None):
@@ -190,6 +191,73 @@ def subscribers():
         on[e] = not re.search(r'unsub|stop|remove', (row[ic] if ic < len(row) else '').lower())
     return sorted(e for e, v in on.items() if v)
 
+# ---------------------------------------------------------------- Gmail daily limit
+# A personal Gmail Apps Script may email about 100 people per rolling 24 hours (every To/Bcc address counts;
+# Groups.io counts as ONE because Groups.io sends to its members itself). We stay under CAP, remember what went
+# out in kpc-relay-state.json ("sent"), and leave the rest in "queue" for the next runs (every 15 min).
+# Email addresses are never saved: only a keyed fingerprint (HMAC with the mail key) of who already got it.
+CAP = int(ENV('RELAY_DAILY_CAP') or 90)
+def react(mid, emo, how='PUT'):
+    dc(f'/channels/{CHAN}/messages/{mid}/reactions/{urllib.parse.quote(emo)}/@me', how)
+def fp(e): return hmac.new((MAIL_KEY or TOKEN).encode(), e.encode(), hashlib.sha256).hexdigest()[:20]
+def room():
+    now = time.time()
+    state['sent'] = [x for x in state.get('sent', []) if now - x[0] < 86400 + 600]
+    return CAP - sum(x[1] for x in state['sent'])
+def spent(n): state.setdefault('sent', []).append([int(time.time()), n])
+def photos_of(mid, tmp):
+    c, r = dc(f'/channels/{CHAN}/messages/{mid}')
+    if c != 200: return []
+    out = []
+    for n, a in enumerate([a for a in json.loads(r).get('attachments', []) if (a.get('content_type') or '').startswith('image/')][:10], 1):
+        c2, data = http(a['url'])
+        if c2 != 200: continue
+        try: f = os.path.join(tmp, f'{mid}-{n}.jpg'); shrink(data, f); out.append(f)
+        except Exception: pass
+    return out
+def flush_mail():
+    q = state.get('queue') or []
+    if not q: return
+    if not (MAIL_URL and MAIL_KEY) and not SMTP_PASS:
+        notice(f'{len(q)} email post(s) waiting: email secrets are not set yet.'); return
+    subs = None
+    with tempfile.TemporaryDirectory() as tmp:
+        for it in list(q):
+            files = photos_of(it['mid'], tmp)
+            bad = []
+            if it.get('gio'):
+                if room() < 1: break
+                try: mail(GIO_TO, [], it['subject'], it['body'], files); spent(1); it['gio'] = False
+                except Exception as e:
+                    bad.append('groups.io: ' + str(e)[:150])
+                    if re.search(r'too many|quota|limit', str(e), re.I): break
+            if it.get('list'):
+                if subs is None: subs = subscribers()
+                todo = [e for e in subs if fp(e) not in it['done']]
+                while todo:
+                    n = min(80, room() - 1)              # -1: the account's own To: address counts too
+                    if n < 1: break
+                    part = todo[:n]
+                    try:
+                        mail('' if MAIL_URL else SMTP_USER, part, it['subject'],
+                             it['body'] + '\n\nUnsubscribe: use the UNSUBSCRIBE button on ' + SITE + 'news.html', files)
+                    except Exception as e:
+                        bad.append('email list: ' + str(e)[:150]); break
+                    spent(len(part) + 1); it['done'] += [fp(e) for e in part]; todo = todo[n:]
+                if not todo: it['list'] = False
+            if bad:
+                notice('Email problem: ' + '; '.join(bad)); react(it['mid'], '⚠️')
+                it['tries'] = it.get('tries', 0) + 1
+                if it['tries'] >= 8:                       # give up after ~2 hours of failures
+                    q.remove(it); notice('Gave up on emailing post ' + it['mid']); continue
+            if not it.get('gio') and not it.get('list'):
+                q.remove(it); react(it['mid'], '⏳', 'DELETE'); react(it['mid'], '✅')
+                notice(f'Emailed post {it["mid"]} ({len(it["done"])} subscriber(s)).')
+            else:
+                react(it['mid'], '⏳')
+                notice(f'Post {it["mid"]}: Gmail daily limit reached; the rest goes out in the next runs.'); break
+    state['queue'] = q
+
 # ---------------------------------------------------------------- go
 os.makedirs(PHOTOS, exist_ok=True)
 subs = None
@@ -235,27 +303,24 @@ for m in msgs:
       except Exception as e: res['facebook'] = 'FAILED: ' + str(e)[:200]
     subject = 'KPC: ' + (re.sub(r'\s+', ' ', text.split('\n')[0])[:70] or 'Club update')
     body = plain + '\n\n— Kentucky Portable Club' + (f'\n{page_url}' if 'web' in dest else '\n' + SITE)
-    if 'gio' in dest and GIO_TO:
-        try: res['groups.io'] = mail(GIO_TO, [], subject, body, files)
-        except Exception as e: res['groups.io'] = 'FAILED: ' + str(e)[:200]
-    if 'list' in dest and subs is None: subs = subscribers()
-    if 'list' in dest and subs:
-        try:
-            for i in range(0, len(subs), 80):   # Gmail limit per message
-                mail('' if MAIL_URL else SMTP_USER, subs[i:i + 80], subject, body + '\n\nUnsubscribe: use the UNSUBSCRIBE button on ' + SITE + 'news.html', files)
-            res['email list'] = f'sent to {len(subs)}'
-        except Exception as e: res['email list'] = 'FAILED: ' + str(e)[:200]
-    if 'web' not in dest:                       # pictures only needed for Facebook / email: keep them off the site
-        for f in files:
-            try: os.remove(f)
-            except OSError: pass
+    if ('gio' in dest and GIO_TO) or 'list' in dest:
+        # Email waits in a queue so we never go over Gmail's daily limit (sent by flush_mail() below)
+        state.setdefault('queue', []).append({'mid': mid, 'subject': subject, 'body': body,
+            'gio': bool('gio' in dest and GIO_TO), 'list': 'list' in dest, 'done': []})
+        res['email'] = 'queued'
+    for f in ([] if 'web' in dest else files):  # pictures only needed for Facebook: keep them off the site
+        try: os.remove(f)
+        except OSError: pass
     ok = not any(str(v).startswith('FAILED') for v in res.values())
-    dc(f'/channels/{CHAN}/messages/{mid}/reactions/{urllib.parse.quote("✅" if ok else "⚠️")}/@me', 'PUT')
+    if not ok: react(mid, '⚠️')
+    elif 'email' not in res: react(mid, '✅')
     notice(f'Shared {author}\'s post: ' + '; '.join(f'{k} {v}' for k, v in res.items()))
     state['last_id'] = mid; done += 1
 
 if not DRY:
-    feed['updated'] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')
-    json.dump(feed, open(OUT, 'w'), indent=1, ensure_ascii=False)
-    json.dump(state, open(STATE, 'w'), indent=1)
+    flush_mail()
+    if done:
+        feed['updated'] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')
+        json.dump(feed, open(OUT, 'w'), indent=1, ensure_ascii=False)
+    if json.dumps(state, sort_keys=True) != state0: json.dump(state, open(STATE, 'w'), indent=1)
 notice(f'{done} post(s) shared.')
