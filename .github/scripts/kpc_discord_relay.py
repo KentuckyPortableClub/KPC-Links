@@ -108,7 +108,7 @@ WORDS = [  # (pattern, flag)  -- every word in a tag must be one of these, or it
     (r'events?', 'event'), (r'conditions?|park alert|warning', 'cond'), (r'activation(?: report)?s?', 'act'),
     (r'camp ?-?out', 'campout'), (r'announcements?', 'news'), (r'only|and|also|\+|&|,|/|-', None),
     (r'US-\d{4,5}|KFF-\d{4}|W4K/[A-Z]{2}-\d{3}', 'ref'), (D_ANY, 'date'), (r'\d{5}', 'date')]
-WRX = re.compile(r'\s*(?:' + '|'.join('(' + p + ')' for p, _ in WORDS) + r')(?![\w/-])', re.I)
+WRX = re.compile(r'\s*(?:' + '|'.join('(' + p + ')' for p, _ in WORDS) + r')(?:(?<=[^\w])|(?![\w/-]))', re.I)   # "+" may touch the next word
 
 def split_tag(raw):
     """-> (set of flags, tag text, rest of the post) or (set(), '', raw) when the post has no tag."""
