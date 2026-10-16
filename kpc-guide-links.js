@@ -33,9 +33,7 @@
       document.documentElement.dataset.ready = '1';
     })
     .catch(function () {
-      var pdf = box.getAttribute('data-pdf') || '';
-      box.innerHTML = '<div class="g-call warn"><b class="t">COULD NOT LOAD THE LIST</b><p>Please refresh the page' +
-        (pdf ? ', or open the <a href="' + esc(pdf) + '" style="color:#ffb59a">PDF version</a>' : '') + '.</p></div>';
+      box.innerHTML = '<div class="g-call warn"><b class="t">COULD NOT LOAD THE LIST</b><p>Please refresh the page.</p></div>';
       document.documentElement.dataset.ready = 'error';
     });
 })();
