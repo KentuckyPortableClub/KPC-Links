@@ -66,11 +66,11 @@ def files_box(only=None):
 PAGES = {}
 
 # ================================================================== MAP ROOM
-PAGES['kpc-map-room.html'] = ('Map Room | KPC', 'Every Kentucky Portable Club map tool in one place, with what each one does: park and summit maps, GPS boundary checks, trip planners, rare parks and KML/GPX map files.', ''.join([
+PAGES['kpc-map-room.html'] = ('Map Room | KPC', 'Every Kentucky Portable Club map tool in one place, with what each one does: park and summit maps, GPS boundary checks, trip planners and rare parks.', ''.join([
     hero('hero-map', 'KPC MAP ROOM • EVERY MAP TOOL IN ONE PLACE', 'THE MAP', 'ROOM',
          "Not sure which map to open? Here's every KPC map tool, what it's for, and when to use it. Kentucky tools first, then the ones that work in any state.",
-         ['🗺 Find & plan', '📍 At the park', '🔎 Look it up', '📥 Map files'],
-         [('🗺 FIND & PLAN ↓', '#plan'), ('📍 AT THE PARK ↓', '#at'), ('📥 MAP FILES ↓', '#files')]),
+         ['🗺 Find & plan', '📍 At the park', '🔎 Look it up', '🌎 Any state'],
+         [('🗺 FIND & PLAN ↓', '#plan'), ('📍 AT THE PARK ↓', '#at'), ('🔎 LOOK IT UP ↓', '#look')]),
     section('FIND &amp; PLAN', '🗺 Find a Park or Summit, Plan a Trip', 'Start here when you\'re choosing where to go.', [
         card('finder.html', '🗺', 'KY Park Commander', 'The big Kentucky map: every POTA park, SOTA summit and KFF reference, with official boundary layers and overlapping-boundary (2-fer) areas.', 'you want to see everything in Kentucky on one map and pick a spot.', 'KENTUCKY'),
         card('kpc-planner.html', '📅', 'KY Trip Planner', 'Type a town and see the POTA parks, SOTA summits and KFF references nearby, then build a route that hits several in one trip.', 'you\'re planning a day out or a weekend of activations in Kentucky.', 'KENTUCKY'),
@@ -86,17 +86,14 @@ PAGES['kpc-map-room.html'] = ('Map Room | KPC', 'Every Kentucky Portable Club ma
     ], alt=True, sid='at'),
     section('LOOK IT UP', '🔎 Check &amp; Track', 'Quick answers about a spot or a call sign.', [
         card('kpc-lookup.html', '🔢', 'Grid &amp; County Lookup', 'Your grid square, Kentucky county and the nearest parks for your location or any reference.', 'a contact asks for your grid or county, or you\'re filling in a log.', 'KENTUCKY'),
-        card('kpc-checker.html', '✅', 'Park Checker', 'Pick any state and see which POTA parks a call sign has <b>activated</b>, on a map and as a list you can download. <b>Hunters</b> load the hunter file from pota.app to see which parks they\'ve worked and which they still need.', 'you want to know which parks you, or a friend, still need to activate or hunt, in any state.', 'ANY STATE'),
+        card('kpc-checker.html', '✅', 'Park Checker', 'Pick any state and see which POTA parks a call sign has <b>activated</b>, on a map and as a list. <b>Hunters</b> load the hunter file from pota.app to see which parks they\'ve worked and which they still need.', 'you want to know which parks you, or a friend, still need to activate or hunt, in any state.', 'ANY STATE'),
         card('kpc-tracker.html', '📊', 'Park Tracker', 'Tracks the Kentucky POTA parks a call sign has activated, with the KPC club leaderboard.', 'you\'re working toward activating every park in Kentucky.', 'KENTUCKY'),
     ], sid='look'),
-    '<section class="kb-sec" id="files" style="background:#ebe3d1"><div class="kb-in"><p class="kb-k">MAP FILES</p><h2>📥 Take the Pins With You</h2>'
-    '<p class="kb-lead">Every Kentucky POTA park, KFF reference and SOTA summit as a file for your phone, Google Earth or a Garmin. Works with no signal once it\'s loaded.</p>'
-    + files_box() + '</div></section>',
     other_rooms('kpc-map-room.html'),
 ]))
 
 # ================================================================== POTA ROOM
-PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain words: what POTA is, the rules (10 contacts in one UTC day), how to activate and hunt, Kentucky guides, map files and tools.', ''.join([
+PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain words: what POTA is, the rules (10 contacts in one UTC day), how to activate and hunt, Kentucky guides and tools.', ''.join([
     hero('hero-lake-camp', 'KPC POTA ROOM • PARKS ON THE AIR', 'PARKS ON', 'THE AIR',
          'Take a radio to a public park and make contacts, or hunt the people who do. Here are the rules in plain words, our Kentucky guides, and every tool you need.',
          ['📻 Activate', '🎯 Hunt', '🌲 Kentucky parks'],
@@ -127,18 +124,15 @@ PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain wor
                         'Log it. Your credit shows up after the activator uploads their log.',
                         'See which parks you still need, in any state, with the <a href="kpc-checker.html">Park Checker</a> (it reads your hunter file from pota.app).']),
     ]),
-    section('KENTUCKY GUIDES', '📚 Our Kentucky POTA Guides', 'Free club guides for every Kentucky POTA park. The web pages are always current; the printable PDFs are made from them every week.', [
+    section('KENTUCKY GUIDES', '📚 Our Kentucky POTA Guides', 'Free club guides for every Kentucky POTA park.', [
         card('kpc-guide-pota.html?order=num', '📗', 'Kentucky POTA Resource (by number)', 'Every Kentucky park in park-number order, with its details, the other references on the same ground, and links.', 'you know the park number.'),
         card('kpc-guide-pota.html?order=az', '📘', 'Kentucky POTA Resource (A to Z)', 'The same guide sorted by park name.', 'you know the park\'s name.'),
-        card('KPC_Kentucky_POTA_Resource_Numerical_v2_261005_092033.pdf', '📄', 'POTA Resource PDF (by number)', 'The printable PDF of the guide, in park-number order.', 'you want it on paper or offline.'),
-        card('KPC_Kentucky_POTA_Resource_Alphabetical_v2_261005_092105.pdf', '📄', 'POTA Resource PDF (A to Z)', 'The printable PDF, sorted by park name.', 'you want it on paper or offline.'),
         card('kpc-new-to-pota.html', '🔰', 'New to POTA?', 'Our beginner\'s walk-through: what to bring and how your first activation goes.', 'it\'s your very first time.'),
         card('kpc-guide-top25.html', '🏅', 'Top 25 Rare Kentucky Parks', 'The 25 parks with the fewest contacts and the 25 with the fewest activations, updated every week.', 'you want to be the activation hunters remember.'),
         card('kpc-park-notes.html', '📝', 'Park Notes', 'Tips from members for every park: where to set up, gates, cell signal, RF noise.', 'you want to know what a park is like before you go.'),
         card('kpc-campgrounds.html', '🏕', 'Campgrounds &amp; Cabins', 'Places to stay inside Kentucky POTA parks, with reviews.', 'you\'re making a weekend of it.'),
         card('kpc-park-sheet.html', '🖨', 'Printable Park Sheet', 'A one-page sheet for any Kentucky park with QR codes and an optional paper log.', 'you want paper backup in the field.'),
     ], alt=True, sid='guides'),
-    '<section class="kb-sec"><div class="kb-in"><p class="kb-k">MAP FILES</p><h2>📥 Kentucky POTA Parks for Your Phone or GPS</h2>' + files_box('POTA') + '</div></section>',
     section('POTA TOOLS', '🧰 Tools That Help', '', [
         card('kpc-spot-me.html', '📣', 'Spot Me', 'Post your POTA spot (and copy it for other spotting sites) from one form.', 'you\'re on the air and want hunters to find you.'),
         card('kpc-spots.html', '🔴', 'On The Air Now', 'Live POTA spots for Kentucky parks and KPC members.', 'you\'re hunting.'),
@@ -155,7 +149,7 @@ PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain wor
 ]))
 
 # ================================================================== WWFF ROOM
-PAGES['kpc-wwff-room.html'] = ('WWFF / KFF Room | KPC', 'World Wide Flora & Fauna (KFF in the USA) in plain words: what it is, the rules (44 contacts for WWFF awards), how to activate and hunt, Kentucky guides, map files and tools.', ''.join([
+PAGES['kpc-wwff-room.html'] = ('WWFF / KFF Room | KPC', 'World Wide Flora & Fauna (KFF in the USA) in plain words: what it is, the rules (44 contacts for WWFF awards), how to activate and hunt, Kentucky guides and tools.', ''.join([
     hero('hero-river-camp', 'KPC WWFF ROOM • WORLD WIDE FLORA &amp; FAUNA', 'WWFF', '&amp; KFF',
          'WWFF is a worldwide program for nature areas. In the USA it\'s called KFF, and many Kentucky POTA parks also have a KFF number, so you can often do both on one trip.',
          ['🌿 Nature areas', '🌎 Worldwide', '🦌 KFF = USA'],
@@ -186,11 +180,9 @@ PAGES['kpc-wwff-room.html'] = ('WWFF / KFF Room | KPC', 'World Wide Flora & Faun
     ]),
     section('KENTUCKY GUIDES', '📚 Our Kentucky KFF Guide', '', [
         card('kpc-guide-wwff.html', '📗', 'Kentucky WWFF / KFF Resource', 'Every Kentucky KFF reference with its details and links.', 'you\'re picking a KFF reference in Kentucky.'),
-        card('KPC_Kentucky_WWFF_KFF_Resource.pdf', '📄', 'KFF Resource (PDF)', 'The same guide as a printable PDF.', 'you want it on paper or offline.'),
         card('kpc-new-to-wwff.html', '🔰', 'New to WWFF?', 'Our beginner\'s walk-through for WWFF and KFF.', 'it\'s your very first time.'),
         card('kpc-park-notes.html', '📝', 'Park Notes', 'Member tips for every park and KFF reference.', 'you want to know what a place is like.'),
     ], alt=True, sid='guides'),
-    '<section class="kb-sec"><div class="kb-in"><p class="kb-k">MAP FILES</p><h2>📥 Kentucky KFF References for Your Phone or GPS</h2>' + files_box('KFF') + '</div></section>',
     section('TOOLS', '🧰 Tools That Help', '', [
         card('kpc-park-info.html', '🏛', 'Park &amp; Summit Info Finder', 'Any WWFF reference worldwide: official website and boundary map.', 'you\'re outside Kentucky.'),
         card('kpc-in-park.html', '📍', 'Am I in the Park?', 'GPS check against official POTA and WWFF boundaries.', 'you want to be sure you\'re inside.'),
@@ -206,7 +198,7 @@ PAGES['kpc-wwff-room.html'] = ('WWFF / KFF Room | KPC', 'World Wide Flora & Faun
 ]))
 
 # ================================================================== SOTA ROOM
-PAGES['kpc-sota-room.html'] = ('SOTA Room | KPC', 'Summits on the Air in plain words: what SOTA is, the rules (activation zone, 1 contact to log, 4 for points), how to activate and chase, Kentucky W4K guides, map files and tools.', ''.join([
+PAGES['kpc-sota-room.html'] = ('SOTA Room | KPC', 'Summits on the Air in plain words: what SOTA is, the rules (activation zone, 1 contact to log, 4 for points), how to activate and chase, Kentucky W4K guides and tools.', ''.join([
     hero('hero-mast', 'KPC SOTA ROOM • SUMMITS ON THE AIR', 'SUMMITS ON', 'THE AIR',
          'Hike to the top of a listed mountain, set up a small station and make contacts, or chase the people who do. Kentucky\'s summits are in the W4K association.',
          ['⛰ Activate', '🎯 Chase', '🥾 Kentucky W4K'],
@@ -237,11 +229,9 @@ PAGES['kpc-sota-room.html'] = ('SOTA Room | KPC', 'Summits on the Air in plain w
     ]),
     section('KENTUCKY GUIDES', '📚 Our Kentucky SOTA Guide', '', [
         card('kpc-guide-sota.html', '📗', 'Kentucky SOTA (W4K) Resource', 'Every Kentucky summit with its details and the summits near it.', 'you\'re picking a Kentucky summit.'),
-        card('KPC_Kentucky_SOTA_W4K_Resource.pdf', '📄', 'SOTA Resource (PDF)', 'The same guide as a printable PDF.', 'you want it on paper or offline.'),
         card('kpc-new-to-sota.html', '🔰', 'New to SOTA?', 'Our beginner\'s walk-through for your first summit.', 'it\'s your very first time.'),
         card('kpc-park-notes.html', '📝', 'Park Notes', 'Member tips for every summit: trails, parking, where to set up.', 'you want to know the hike before you go.'),
     ], alt=True, sid='guides'),
-    '<section class="kb-sec"><div class="kb-in"><p class="kb-k">MAP FILES</p><h2>📥 Kentucky Summits for Your Phone or GPS</h2>' + files_box('SOTA') + '</div></section>',
     section('TOOLS', '🧰 Tools That Help', '', [
         card('kpc-sota.html', '⛰', 'SOTA Summit Map', 'Every summit in Kentucky or any US SOTA area; load your log to see what you\'ve done.', 'you\'re planning which summit is next.'),
         card('kpc-in-park.html', '📍', 'Am I in the Park?', 'Shows your height against the summit\'s and whether you\'re in the activation zone.', 'you\'re at the top.'),
@@ -261,6 +251,5 @@ if __name__ == '__main__':
     os.makedirs(os.path.join(HERE, 'out'), exist_ok=True)
     for page, (title, desc, body) in PAGES.items():
         mf = os.path.join(HERE, 'out', page.replace('.html', '-main.html'))
-        open(mf, 'w', encoding='utf-8').write('<link rel="stylesheet" href="kpc-boards.css?v=20261016b"><link rel="stylesheet" href="kpc-rooms.css?v=20261016a">\n@@HEADER@@\n<main class="kb rm">' + body + '</main>\n@@FOOTER@@\n'
-                                              '<script>(function(){if(!/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)||!navigator.share)return;document.querySelectorAll(\'a[download]\').forEach(function(a){a.addEventListener(\'click\',async function(ev){try{ev.preventDefault();var r=await fetch(a.href),b=await r.blob(),n=a.getAttribute(\'href\').split(\'/\').pop(),f=new File([b],n,{type:b.type||\'application/octet-stream\'});if(navigator.canShare&&navigator.canShare({files:[f]}))await navigator.share({files:[f],title:n});else location.href=a.href}catch(e){if(e&&e.name!==\'AbortError\')location.href=a.href}})})})();</script>\n')
+        open(mf, 'w', encoding='utf-8').write('<link rel="stylesheet" href="kpc-boards.css?v=20261016b"><link rel="stylesheet" href="kpc-rooms.css?v=20261016a">\n@@HEADER@@\n<main class="kb rm">' + body + '</main>\n@@FOOTER@@\n')
         subprocess.run(['python3', os.path.join(REPO, '.claude/build/assemble.py'), mf, page, title, desc], cwd=REPO, check=True)
