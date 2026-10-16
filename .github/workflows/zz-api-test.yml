@@ -1,0 +1,10 @@
+name: zz POTA api test (temporary)
+on: workflow_dispatch
+jobs:
+  t:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          j=$(curl -s "https://api.pota.app/location/parks/US-TN"); echo "::notice title=list count::$(echo "$j" | python3 -c 'import sys,json;d=json.load(sys.stdin);print(len(d), list(d[0].keys()), d[0])')"
+          echo "::notice title=park keys::$(curl -s https://api.pota.app/park/US-2961 | python3 -c 'import sys,json;d=json.load(sys.stdin);print({k:(str(v)[:80]) for k,v in d.items()})')"
+          echo "::notice title=ridb::$(curl -s -o /dev/null -w '%{http_code}' 'https://ridb.recreation.gov/api/v1/facilities?limit=1')"
