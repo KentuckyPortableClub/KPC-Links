@@ -51,4 +51,16 @@ for st in STATES:
     withweb = sum(1 for v in parks.values() if v[1])
     note(f'US-{st}', f'{len(parks)} parks, {withweb} with a website, {fetched} details fetched, state park site {site or "(none found)"}')
     total += len(parks)
+# small index for the site search box (kpc-search.js): [[ref, name, state, lat, lon, type, website]]
+IX = f'{OUT}/index.json'
+try: rows = [r for r in json.load(open(IX)) if r[2] not in STATES]
+except Exception: rows = []
+for st in STATES:
+    try: d = json.load(open(f'{OUT}/US-{st}.json'))
+    except Exception: continue
+    for ref, v in d['parks'].items():
+        la, lo = COORD.get(ref, (None, None))
+        rows.append([ref, v[0], st, la, lo, v[2], v[1]])
+rows.sort(key=lambda r: (r[2], r[1]))
+json.dump(rows, open(IX, 'w'), separators=(',', ':'), ensure_ascii=False)
 note('Park links done', f'{total} parks in {len(STATES)} states')
