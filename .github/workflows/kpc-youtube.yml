@@ -122,6 +122,7 @@ jobs:
         if: ${{ !cancelled() }}
         env:
           KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          KPC_YOUTUBE_WEBHOOK: ${{ secrets.KPC_YOUTUBE_WEBHOOK }}
         run: |
           git pull --rebase --autostash || true
           node .github/scripts/kpc_discord_videos.js
