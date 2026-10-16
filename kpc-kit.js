@@ -70,7 +70,7 @@
     if (kk) { const pk = D.parks.find(x => x.c === kk.p); return { prog: 'WWFF', c: kk.c, n: kk.n, la: kk.la, lo: kk.lo, t: 'WWFF area', where: kk.co ? kk.co + ' County, Kentucky' : 'Kentucky', web: pk && pk.web, off: pk && pk.off, ky: true, park: pk || null }; }
     if (ks) return { prog: 'SOTA', c: ks.c, n: ks.n, la: ks.la, lo: ks.lo, t: (ks.ft ? ks.ft.toLocaleString() + ' ft' : '') + (ks.pts != null ? ' · ' + ks.pts + ' points' : ''), ft: ks.ft, where: ks.co ? ks.co + ' County, Kentucky' : 'Kentucky', ky: true, park: null };
     const o = await B.lookup(ref).catch(() => null); if (!o) return null;
-    return { prog: o.prog, c: o.ref, n: o.name, short: o.short, la: o.la, lo: o.lo, t: o.type, where: o.where, web: o.web, off: '', ft: o.ft, us: o.us, ky: !!o.ky, park: null };
+    return { prog: o.prog, c: o.ref, n: o.name, short: o.short, la: o.la, lo: o.lo, t: o.type, where: o.where, web: o.web, off: '', ft: o.ft, us: o.us, st: o.st || '', ky: !!o.ky, park: null };
   }
   /* the other references at the same spot */
   async function others(P) {
@@ -104,12 +104,12 @@
     $('kitOut').innerHTML = `
 <section class="kit-head"><div class="kit-ref"><span class="kit-p">${esc(P.prog)}</span> ${esc(P.c)}</div><h2>${esc(P.n)}</h2><p>${esc([P.t, P.where].filter(Boolean).join(' · '))}</p>
 <div class="kit-btns"><a class="gold" href="${g}${P.la},${P.lo}" target="_blank" rel="noopener">DIRECTIONS ↗</a>${P.off ? `<a href="${esc(P.off)}" target="_blank" rel="noopener">OFFICIAL MAP ↗</a>` : ''}${P.web && P.web !== P.off ? `<a href="${esc(P.web)}" target="_blank" rel="noopener">WEBSITE ↗</a>` : ''}<a href="${esc(progLink[1])}" target="_blank" rel="noopener">${progLink[0]}</a>${P.prog !== 'SOTA' ? `<a href="kpc-park-info.html?q=${encodeURIComponent(P.c)}">PARK INFO ›</a>` : ''}</div></section>
-<a class="kit-spot" id="kitSpot" href="kpc-spot-me.html?${spotKey[P.prog]}=${encodeURIComponent(P.c)}">📣 SPOT ME AT ${esc(P.c)} ›</a>
+ ${!P.ky && P.us ? '<div id="kitUS"></div>' : ''}<a class="kit-spot" id="kitSpot" href="kpc-spot-me.html?${spotKey[P.prog]}=${encodeURIComponent(P.c)}">📣 SPOT ME AT ${esc(P.c)} ›</a>
 <section class="kit-sec"><h3>➕ OTHER REFERENCES AT THIS SPOT</h3><div id="kitMulti"><p class="kit-small">Checking POTA, WWFF and SOTA…</p></div></section>
 <section class="kit-sec"><h3>⚠ HEADS UP</h3>${P.ky ? (conds.length ? conds.map(c => `<div class="kit-alert"><b>${esc(c.kind)}</b>${c.details ? ' · ' + esc(c.details) : ''}<span>Reported ${esc(c.seen || '')}${c.call ? ' by ' + esc(c.call) : ''}${c.ref !== P.c ? ' (for ' + esc(c.ref) + ')' : ''}</span></div>`).join('') : '<p>No closures or problems reported by members in the last 30 days.</p>') +
  (notes.length ? '<h4>Latest member tips</h4>' + notes.map(n => `<div class="kit-note">${esc(n.text)}<span>${esc(n.type || 'Tip')} · ${esc(n.call || '')} · ${esc(n.date || '')}</span></div>`).join('') : '') +
  `<div class="kit-btns"><a class="alt" href="kpc-park-notes.html?ref=${encodeURIComponent(kp ? kp.c : P.c)}">ALL PARK NOTES ›</a>${CAMP && CAMP.closures ? `<a class="alt" href="${esc(CAMP.closures.url)}" target="_blank" rel="noopener">STATE PARK CLOSURES ↗</a>` : ''}</div>`
- : `<p>KPC member reports and tips cover Kentucky only. Check ${P.web ? '<a href="' + esc(P.web) + '" target="_blank" rel="noopener">the official website</a>' : 'the official website'} for closures, and the ${P.prog} page for recent activations.</p>`}</section>
+ : `<p>Check ${P.web ? '<a href="' + esc(P.web) + '" target="_blank" rel="noopener">the official website</a>' : 'the official website'} for closures, and the ${P.prog} page for recent activations.</p><div id="kitUSNotes"></div><div class="kit-btns"><a class="alt" href="kpc-park-notes-us.html?ref=${encodeURIComponent(P.c)}#find">PARK NOTES (ALL STATES) ›</a></div>`}</section>
 <section class="kit-sec"><h3>☁ WEATHER &amp; ☀ BANDS</h3><div id="kitSun"></div><div id="kitWx">${saved && saved.wx ? '' : 'Loading the forecast…'}</div><div class="kit-btns"><a class="alt" href="kpc-weather.html?lat=${P.la}&lon=${P.lo}&name=${encodeURIComponent(P.c + ' ' + P.n)}">FULL FIELD WEATHER ›</a></div></section>
 <section class="kit-sec"><h3>🗺 MAP${P.prog === 'SOTA' ? ': SUMMIT' : ': BOUNDARY'}${kp && (kp.ap || []).length ? ', PARKING &amp; TRAILHEADS' : ''}</h3><div id="kitMap"></div><p class="kit-small">👆 Tap the map to drop a pin for Street View or directions. ◎ ME shows where you are (with your GPS numbers), ⛶ FULL opens the map full screen. The layers button has Satellite + streets, Topo, Terrain and Hillshade.</p><p class="kit-small" id="kitBnd">Loading…</p>
 <div class="kit-btns"><a class="gold" href="kpc-in-park.html?ref=${encodeURIComponent(P.c)}">📍 ${P.prog === 'SOTA' ? 'AM I IN THE ACTIVATION ZONE?' : 'AM I IN THE PARK?'} ›</a></div><div class="kit-btns" id="kitFiles"></div></section>
@@ -121,7 +121,33 @@
     sun(P, saved);
     autoRefresh(P);
     others(P).then(L => drawMulti(P, L)).catch(() => drawMulti(P, []));
+    if (!P.ky && P.us) usExtras(P);
     window.scrollTo({ top: $('kitOut').offsetTop - 70, behavior: 'smooth' });
+  }
+  /* Other states (Oct 16): park type / how to activate / state parks site from data/parkinfo, tips from
+     kpc-park-notes-us.json, federal campgrounds + picnic shelters within 10 mi from data/campfed (same data as the US Trip Planner) */
+  const jcache = {};
+  const jload = u => jcache[u] || (jcache[u] = fetch(u).then(r => r.ok ? r.json() : null).catch(() => null));
+  async function usExtras(P) {
+    const st = P.st, ACT = { Automobile: 'car', Campground: 'campground', Pedestrian: 'on foot', Boat: 'boat', Bicycle: 'bike' };
+    if (st && P.prog === 'POTA') {
+      const d = await jload('data/parkinfo/US-' + st + '.json'), p = d && d.parks && d.parks[P.c], el = $('kitUS');
+      if (p && el && cur === P) {
+        const how = String(p[3] || '').split(',').map(x => ACT[x.trim()] || x.trim().toLowerCase()).filter(Boolean);
+        el.innerHTML = `<p class="kit-small" style="margin:6px 0">${esc(p[2] || '')}${how.length ? (p[2] ? ' · ' : '') + 'activate by ' + esc(how.join(', ')) : ''}${p[7] === 0 ? ' · <b>ATNO: never activated!</b>' : p[7] != null && p[7] <= 5 ? ' · <b>RARE: ' + p[7] + ' activation' + (p[7] === 1 ? '' : 's') + '</b>' : ''}</p>` +
+          (d.stateSite && /State Park|State Forest|State Recreation/i.test(p[2]) ? `<div class="kit-btns"><a class="alt" href="${esc(d.stateSite)}" target="_blank" rel="noopener">${esc(st)} STATE PARKS SITE ↗</a></div>` : '');
+      }
+    }
+    const N = await jload('kpc-park-notes-us.json'), tips = ((N && N.notes) || []).filter(n => n.ref === P.c).slice(0, 3), te = $('kitUSNotes');
+    if (te && cur === P && tips.length) te.innerHTML = '<h4>Latest tips from operators</h4>' + tips.map(n => `<div class="kit-note">${esc(n.text)}<span>${esc(n.type || 'Tip')} · ${esc(n.call || '')} · ${esc(n.date || '')}</span></div>`).join('');
+    const fe = $('kitFed'); if (!fe) return;
+    const camps = []; if (st) { const c = await jload('data/campfed/US-' + st + '.json'); ((c && c.camps) || []).forEach(x => { const d = B.km(P.la, P.lo, x[2], x[3]); if (d <= 16.1) camps.push({ x, d }); }); }
+    camps.sort((a, b) => a.d - b.d);
+    const AG = { FS: 'Forest Service', NPS: 'National Park Service', USACE: 'Army Corps', BLM: 'BLM', FWS: 'Fish & Wildlife', BOR: 'Reclamation' };
+    const row = o => `<div class="kit-row"><b>${esc(o.x[1])}</b> <em>${esc(B.dist(o.d))} away</em><span>${esc([AG[o.x[4]] || o.x[4], o.x[5] ? 'can reserve' : 'first come'].filter(Boolean).join(' · '))}</span><span class="kit-l"><a href="${esc(o.x[6])}" target="_blank" rel="noopener">RECREATION.GOV ↗</a></span></div>`;
+    const cg = camps.filter(o => o.x[7] !== 's').slice(0, 4), sh = camps.filter(o => o.x[7] === 's').slice(0, 3);
+    if (cur !== P) return;
+    fe.innerHTML = (cg.length ? '<h4>Federal campgrounds within 10 miles</h4>' + cg.map(row).join('') : '<p class="kit-small">No federal campgrounds on Recreation.gov within 10 miles.</p>') + (sh.length && P.prog !== 'SOTA' ? '<h4>Picnic shelters nearby (good for activating)</h4>' + sh.map(row).join('') : '');
   }
   function drawMulti(P, L) {
     if (cur !== P) return;
@@ -139,7 +165,7 @@
   function stay(P) {
     const card = (c, far) => `<div class="kit-row"><b>${esc(c.name)}</b>${far ? ` <em>${esc(far)}</em>` : ''}${c.status === 'closed' ? ' <em class="bad">CLOSED</em>' : ''}<span>${esc([c.sites, c.season, c.notes || c.note].filter(Boolean).join(' · '))}</span><span class="kit-l">${c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener">INFO ↗</a>` : ''}${c.reserve ? `<a href="${esc(c.reserve)}" target="_blank" rel="noopener">RESERVE ↗</a>` : ''}</span></div>`;
     const search = `<div class="kit-btns"><a class="alt" href="https://www.google.com/maps/search/campground/@${P.la},${P.lo},11z" target="_blank" rel="noopener">CAMPGROUNDS NEAR HERE ↗</a><a class="alt" href="https://www.recreation.gov/search?q=campground&lat=${P.la}&lng=${P.lo}&radius=25" target="_blank" rel="noopener">RECREATION.GOV ↗</a></div>`;
-    if (!P.ky) return '<p>KPC\'s campground list covers Kentucky parks. These search near this spot:</p>' + search;
+    if (!P.ky) return '<div id="kitFed"><p class="kit-small">Looking for federal campgrounds and picnic shelters nearby…</p></div><p class="kit-small">State park campgrounds aren\'t in this list: check the park\'s own website. These search near this spot:</p>' + search;
     const cg = P.park && (CAMP && CAMP.parks || []).find(x => x.pota === P.park.c);
     if (cg && ((cg.campgrounds || []).length || (cg.lodging || []).length)) return (cg.campgrounds || []).map(c => card(c)).join('') + (cg.lodging || []).map(c => card(c)).join('') + `<div class="kit-btns"><a class="alt" href="kpc-campgrounds.html">CAMPGROUNDS &amp; CABINS ›</a></div>`;
     const all = []; (CAMP && CAMP.parks || []).forEach(x => (x.campgrounds || []).forEach(c => { if (isFinite(c.la)) all.push({ c, x, d: B.km(P.la, P.lo, c.la, c.lo) }); }));
