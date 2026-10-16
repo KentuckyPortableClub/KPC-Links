@@ -11,7 +11,7 @@
     '.ka-ph{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.ka-ph a{display:block;flex:1 1 140px;max-width:100%}.ka-ph img{display:block;width:100%;height:auto;max-height:340px;object-fit:cover;border-radius:8px}' +
     '.ka-by{margin-top:10px;font-size:13px;color:#666}.ka-more{display:inline-block;margin:4px 0 0;padding:10px 16px;border-radius:999px;border:2px solid #d5a63a;background:transparent;font:800 13px system-ui,sans-serif;letter-spacing:1px;cursor:pointer;color:inherit}' +
     '.ka-sub{display:inline-block;padding:12px 18px;border-radius:999px;background:#d5a63a;color:#10140f!important;font:900 13px system-ui,sans-serif;letter-spacing:1.2px;text-decoration:none;margin:6px 6px 0 0}' +
-    '.ka-subnote{display:block;font-size:13px;margin-top:6px;opacity:.85}';
+    '.ka-pin{border-left-color:#c0392b;background:#fffaf2}.ka-ed{color:#8a6d2a;font-weight:700}.ka-subnote{display:block;font-size:13px;margin-top:6px;opacity:.85}';
   var st = document.createElement('style'); st.textContent = CSS; document.head.appendChild(st);
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -27,23 +27,30 @@
   }
   function card(it) {
     var ph = (it.photos || []).map(function (p) { return '<a href="' + esc(p) + '" target="_blank" rel="noopener"><img src="' + esc(p) + '" alt="Announcement photo" loading="lazy"></a>'; }).join('');
-    return '<article class="ka-item" id="a-' + esc(it.id) + '"><p class="ka-date">📅 ' + esc(fmt(it.date)) + '</p><p class="ka-text">' + linkify(it.text) + '</p>' +
+    return '<article class="ka-item' + (it.pinned ? ' ka-pin' : '') + '" id="a-' + esc(it.id) + '"><p class="ka-date">' + (it.pinned ? '📌 PINNED · ' : '📅 ') + esc(fmt(it.date)) +
+      (it.edited ? ' <span class="ka-ed">· UPDATED ' + esc(fmt(it.edited)) + '</span>' : '') + '</p><p class="ka-text">' + linkify(it.text) + '</p>' +
       (ph ? '<div class="ka-ph">' + ph + '</div>' : '') + '</article>';
   }
 
-  var box = document.getElementById('kpc-announce');
-  if (box) {
-    var page = box.getAttribute('data-page') || 'news', SHOW = 5;
-    fetch('kpc-announcements.json?t=' + Math.floor(Date.now() / 300000)).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
-      var list = ((j && j.items) || []).filter(function (it) { return (it.pages || [it.page]).indexOf(page) >= 0; });
-      if (!list.length) return;
-      box.className = 'ka-wrap';
-      function draw(n) {
-        box.innerHTML = list.slice(0, n).map(card).join('') + (list.length > n ? '<button type="button" class="ka-more">SHOW OLDER POSTS (' + (list.length - n) + ')</button>' : '');
-        var b = box.querySelector('.ka-more'); if (b) b.onclick = function () { draw(n + 10); };
-      }
-      draw(SHOW);
-      var sh = document.querySelectorAll('[data-ka-show]'); for (var i = 0; i < sh.length; i++) sh[i].hidden = false;
+  // Every feed box: #kpc-announce (news / campout) and any [data-ka-feed] box (e.g. the Activation Reports section).
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('#kpc-announce,[data-ka-feed]'));
+  if (boxes.length) {
+    fetch('kpc-announcements.json?t=' + Math.floor(Date.now() / 120000)).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+      var all = (j && j.items) || [];
+      boxes.forEach(function (box) {
+        var page = box.getAttribute('data-page') || 'news', SHOW = 5;
+        var list = all.filter(function (it) { return (it.pages || [it.page]).indexOf(page) >= 0; })
+          .sort(function (a, b) { return (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || String(b.date).localeCompare(String(a.date)); });
+        if (!list.length) return;
+        box.classList.add('ka-wrap');
+        function draw(n) {
+          box.innerHTML = list.slice(0, n).map(card).join('') + (list.length > n ? '<button type="button" class="ka-more">SHOW OLDER POSTS (' + (list.length - n) + ')</button>' : '');
+          var b = box.querySelector('.ka-more'); if (b) b.onclick = function () { draw(n + 10); };
+        }
+        draw(SHOW);
+        var sel = box.getAttribute('data-ka-reveal');
+        var sh = document.querySelectorAll(sel || '[data-ka-show]'); for (var i = 0; i < sh.length; i++) sh[i].hidden = false;
+      });
     }).catch(function () {});
   }
 

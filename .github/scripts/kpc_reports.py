@@ -189,6 +189,13 @@ for rowno, r in enumerate(rows[1:]):
         ev.update({'source': 'MEMBER', 'member': True, 'id': rid(r, 'event', name)})
         events.append(ev)
 
+# ---------- items posted from Discord by the relay (ids start with dc-) are kept as they are
+def _dc(path, key):
+    try: return [x for x in json.load(open(path, encoding='utf-8')).get(key, []) if str(x.get('id', '')).startswith('dc-')]
+    except Exception: return []
+conds += _dc('kpc-conditions.json', 'items')
+events += _dc('kpc-events-submitted.json', 'events')
+
 # ---------- conditions
 conds.sort(key=lambda c: (c['seen'], c['id']), reverse=True)
 save('kpc-conditions.json', 'items', conds)
