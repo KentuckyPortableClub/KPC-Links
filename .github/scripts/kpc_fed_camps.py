@@ -4,7 +4,7 @@ Needs secret RIDB_API_KEY (free key from ridb.recreation.gov, Profile). Writes d
 The key is never printed or saved."""
 import json, os, re, time, urllib.request, urllib.parse, datetime
 KEY = os.environ.get('RIDB_API_KEY', '').strip()
-STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL').split()
+STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL AL GA NC MS AR MD DC PA MI WI IA NE KS OK').split()
 OUT = 'data/campfed'; os.makedirs(OUT, exist_ok=True)
 def note(t, m): print(f'::notice title={t}::{m}')
 if not KEY: note('RIDB_API_KEY missing', 'Add the secret RIDB_API_KEY (GitHub Settings > Secrets and variables > Actions).'); raise SystemExit(0)

@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       states:
-        description: 'States (blank = TN IN OH WV VA MO IL)'
+        description: 'States (blank = all 21: KY neighbors + the next ring)'
         default: ''
       recheck:
         description: 'Fetch every park page again'
@@ -20,7 +20,7 @@ concurrency:
 jobs:
   links:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 300
     steps:
       - uses: actions/checkout@v5
       - name: Build the state files
