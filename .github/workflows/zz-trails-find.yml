@@ -1,5 +1,7 @@
 name: zz trails discovery (temporary)
 on: workflow_dispatch
+permissions:
+  contents: write
 jobs:
   t:
     runs-on: ubuntu-latest
@@ -8,5 +10,8 @@ jobs:
       - run: python3 .github/scripts/kpc_us_trails.py
         env:
           MODE: info
+          OUT: /tmp/info.txt
           SEARCH: 'Continental Divide National Scenic Trail|North Country National Scenic Trail|Ice Age National Scenic Trail|Pacific Northwest National Scenic Trail|Nez Perce National Historic Trail|Florida National Scenic Trail|Arizona National Scenic Trail|National Scenic Trails owner:USFS'
           POTA: 'Florida Trail|Arizona Trail|New England Trail|Nez Perce'
+      - run: |
+          mkdir /tmp/b && cd /tmp/b && git init -q && cp /tmp/info.txt . && git add . && git -c user.name=bot -c user.email=b@b commit -qm t && git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" HEAD:zz-trails
