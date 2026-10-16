@@ -56,7 +56,7 @@ try:
   from PIL import Image
 except Exception: Image=None
 for r in rows[1:]:
-  if not PA.ok(cell(r,'app'),cell(r,'call'),PRE): continue
+  if not PA.auto(cell(r,'app'),cell(r,'call'),PRE,[cell(r,k) for k in C if k not in {'ts','call','photo','app','gps','ok','show','seen','edate','etime','rating'}],cell(r,'photo')): continue
   ref=norm(cell(r,'ref'))
   if ref not in REFS: skipped.append(cell(r,'ref')); continue
   call=re.sub(r'[^A-Z0-9/]','',cell(r,'call').upper())

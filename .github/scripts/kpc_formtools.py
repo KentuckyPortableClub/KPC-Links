@@ -10,7 +10,7 @@ Look-ups are remembered in data/kpc-form-checks.json (call signs and reference n
 import csv, io, json, os, re, time, urllib.request, urllib.parse, datetime
 
 UA = {'User-Agent': 'KPC form sync (kentuckyportableclub.github.io)'}
-CACHE_FILE = 'data/kpc-form-checks.json'
+CACHE_FILE = os.environ.get('KPC_CHECKS') or 'data/kpc-form-checks.json'   # each workflow keeps its own, so jobs never clash
 try: CACHE = json.load(open(CACHE_FILE))
 except Exception: CACHE = {}
 CACHE.setdefault('calls', {}); CACHE.setdefault('refs', {})

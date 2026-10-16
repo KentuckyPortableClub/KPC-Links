@@ -136,7 +136,9 @@ for rowno, r in enumerate(rows[1:]):
     if k == 'comment':   # private unless the sender said Yes to showing it; private ones stay only in the sheet
         if not cell(r, 'show').strip().lower().startswith('y') or not cell(r, 'comment'): continue
 
-    if not PA.ok(app, call, PRE): held += 1; continue
+    if k == 'photo':   # photos always wait for YES (or a member)
+        if not PA.ok(app, call, PRE): held += 1; continue
+    elif not PA.auto(app, call, PRE, [cell(r, x) for x in C if x not in {'ts','call','photo','app','gps','ok','show','seen','edate','etime','rating'}], cell(r, 'photo')): held += 1; continue
 
     if k == 'cond':
         ref = norm_ref(cell(r, 'ref'))

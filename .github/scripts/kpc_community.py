@@ -36,7 +36,10 @@ try:
 except Exception: Image=None
 items=[];newph=0;os.makedirs('photos/community',exist_ok=True)
 for r in rows[1:]:
-  if not PA.ok(cell(r,C['app']) if C['app'] is not None else '',cell(r,C['call']) if C['call'] is not None else '',PRE): continue
+  _app=cell(r,C['app']) if C['app'] is not None else '';_call=cell(r,C['call']) if C['call'] is not None else ''
+  if cell(r,C['kind']).lower().startswith('elmer'):   # Elmer listings carry contact info: always wait for YES (or a member)
+    if not PA.ok(_app,_call,PRE): continue
+  elif not PA.auto(_app,_call,PRE,[x for i,x in enumerate(r) if i not in {C['ts'],C['call'],C['photo'],C['app']}],cell(r,C['photo'])): continue
   kind=cell(r,C['kind']).lower();t=next((v for k,v in TYPES.items() if kind.startswith(k)),None)
   if not t: continue
   call=re.sub(r'[^A-Z0-9/]','',cell(r,C['call']).upper())
