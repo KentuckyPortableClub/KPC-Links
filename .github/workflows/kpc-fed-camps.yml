@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       states:
-        description: 'States (blank = all 21: KY neighbors + the next ring)'
+        description: 'States (blank = every state but KY)'
         default: ''
 permissions:
   contents: write
