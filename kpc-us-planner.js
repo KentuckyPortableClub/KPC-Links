@@ -94,13 +94,21 @@ const PINFO={};
 function stateAt(la,lo){const inR=(r)=>{let c=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const xi=r[i][0],yi=r[i][1],xj=r[j][0],yj=r[j][1];if((yi>la)!==(yj>la)&&lo<(xj-xi)*(la-yi)/(yj-yi)+xi)c=!c}return c};
  const b=BORD.find(b=>b.p.some(pl=>inR(pl[0])));return b?b.a:''}
 const ACT={Automobile:'car',Campground:'campground',Pedestrian:'on foot',Boat:'boat',Bicycle:'bike',Backpacking:'backpacking',Hiking:'hiking'};
+const CFED={},AGN={FS:'Forest Service',NPS:'National Park Service',USACE:'Army Corps',BLM:'BLM',FWS:'Fish & Wildlife',TVA:'TVA',BOR:'Reclamation'};
 async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
- const sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);
+ const sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);let h='';
  for(const st of sts){if(!(st in PINFO))PINFO[st]=fetch('data/parkinfo/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await PINFO[st];const p=d&&d.parks&&d.parks[s.c];if(!p)continue;
   const [,web,typ,act]=p,how=(act||'').split(',').map(x=>ACT[x.trim()]||x.trim().toLowerCase()).filter(Boolean);
-  el.innerHTML=`<div class="meta" style="margin:6px 0 2px">${typ?esc(typ):''}${how.length?(typ?' · ':'')+'activate by '+esc(how.join(', ')):''}</div>`+
-   `<div class="acts">${web?`<a href="${esc(web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}${d.stateSite&&/State Park|State Forest|State Recreation/i.test(typ)?`<a href="${esc(d.stateSite)}" target="_blank" rel="noopener">${esc(st)} STATE PARKS SITE (CAMPING, MAPS) ↗</a>`:''}</div>`;return}}
+  h=`<div class="meta" style="margin:6px 0 2px">${typ?esc(typ):''}${how.length?(typ?' · ':'')+'activate by '+esc(how.join(', ')):''}</div>`+
+   `<div class="acts">${web?`<a href="${esc(web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}${d.stateSite&&/State Park|State Forest|State Recreation/i.test(typ)?`<a href="${esc(d.stateSite)}" target="_blank" rel="noopener">${esc(st)} STATE PARKS SITE (CAMPING, MAPS) ↗</a>`:''}</div>`;break}
+ /* federal campgrounds within 10 miles (Recreation.gov, data/campfed/US-XX.json, weekly by kpc-fed-camps.yml) */
+ const near=[];for(const st of [...new Set([...sts,...statesNear(s.la,s.lo,10)])]){if(!(st in CFED))CFED[st]=fetch('data/campfed/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+  const d=await CFED[st];((d&&d.camps)||[]).forEach(c=>{const mi=KPC.miles(s.la,s.lo,c[2],c[3]);if(mi<=10&&!near.some(x=>x.c[0]===c[0]))near.push({c,mi})})}
+ near.sort((a,b)=>a.mi-b.mi);
+ if(near.length)h+=`<div class="meta" style="margin:8px 0 3px;font-weight:800;letter-spacing:.5px">⛺ FEDERAL CAMPGROUNDS NEARBY (RECREATION.GOV)</div>`+near.slice(0,4).map(({c,mi})=>
+  `<div class="meta" style="margin:2px 0"><a href="${esc(c[6])}" target="_blank" rel="noopener">${esc(c[1])} ↗</a> · ${mi<.3?'at the park':mi.toFixed(1)+' mi'}${c[4]?' · '+esc(AGN[c[4]]||c[4]):''}${c[5]?' · can reserve':' · first come'}</div>`).join('');
+ if(h)el.innerHTML=h}
 async function livePota(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;el.textContent='Checking POTA…';
  try{const r=await fetch(`https://api.pota.app/park/activations/${s.c}?count=all`);if(!r.ok)throw 0;const j=await r.json();const a=Array.isArray(j)?j:[];
   if(!a.length){el.textContent='No activations yet: a new one for POTA!';return}

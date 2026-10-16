@@ -2,7 +2,7 @@
 Needs secret RIDB_API_KEY (free key from ridb.recreation.gov, Profile). Writes data/campfed/US-XX.json
 {state, updated, camps:[[id, name, lat, lon, agency, reservable(0/1), url]]}. Keeps last week's file if RIDB fails.
 The key is never printed or saved."""
-import json, os, time, urllib.request, urllib.parse, datetime
+import json, os, re, time, urllib.request, urllib.parse, datetime
 KEY = os.environ.get('RIDB_API_KEY', '').strip()
 STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL').split()
 OUT = 'data/campfed'; os.makedirs(OUT, exist_ok=True)
@@ -46,8 +46,12 @@ for st in STATES:
                 try: la, lo = round(float(la), 5), round(float(lo), 5)
                 except Exception: continue
                 if not la or not lo: continue
+                nm = re.sub(r'\s+', ' ', (f.get('FacilityName') or '').strip())
+                if re.search(r'picnic|pavilion|day use|shelter', nm, re.I) and not re.search(r'camp', nm, re.I): continue
+                if nm.isupper(): nm = re.sub(r"'S\b", "'s", nm.title())
+                nm = re.sub(r'\b(Ky|Tn|Va|Wv|Oh|Mo|Il|In)\b(?=\W*$)', lambda m: m.group(1).upper(), nm)
                 fid = str(f.get('FacilityID'))
-                camps.append([fid, (f.get('FacilityName') or '').strip().title().replace("'S ", "'s "), la, lo,
+                camps.append([fid, nm, la, lo,
                               ORG.get(f.get('ParentOrgID'), ''), 1 if f.get('Reservable') else 0,
                               'https://www.recreation.gov/camping/campgrounds/' + fid])
             off += len(R)
