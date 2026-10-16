@@ -216,6 +216,10 @@ html[data-theme=dark] #hm .track{background:#24261f}html[data-theme=dark] #hm .s
 @media(max-width:820px){#hm .hm-hero-inner{padding:40px 16px;flex-direction:column;align-items:flex-start}#hm .hm-hero-logo{width:90px}#hm .hm-section{padding:52px 16px}#hm .panel{padding:20px 16px}#hm .hm-card{padding:20px}#hm .stats{grid-template-columns:1fr}#hm .htable th,#hm .htable td{padding:9px 6px}#hm .htable td:first-child{font-size:16px}#hm .classic th,#hm .classic td{padding:9px 6px;font-size:13px}#hm .tabs button{padding:10px 9px;font-size:13px}#hm .source-box{flex-direction:column;align-items:flex-start}}
 @media(max-width:420px){#hm .calc{grid-template-columns:1fr}}
 @media(max-width:600px){#hm .avoid .lab{display:none}#hm .avoid{margin-top:14px}}
+#hm .hm-hero{background:linear-gradient(90deg,rgba(7,7,7,.93) 0%,rgba(7,7,7,.72) 40%,rgba(7,7,7,.2) 75%,rgba(7,7,7,.05) 100%),#070707 url("hero-mast.jpg") center 45%/cover no-repeat;border-bottom:2px solid #d5a63a}
+#hm .hm-hero-inner{padding:74px 24px 60px}#hm .hm-hero h1,#hm .hm-hero p{text-shadow:0 3px 16px rgba(0,0,0,.85)}#hm .hm-hero-copy{max-width:640px}
+#hm .hm-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}#hm .hm-chips span{border:1px solid rgba(213,166,58,.6);background:rgba(7,7,7,.55);color:#fff;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:800;letter-spacing:.5px}
+@media(max-width:760px){#hm .hm-hero{background:linear-gradient(180deg,rgba(7,7,7,.55) 0%,rgba(7,7,7,.75) 45%,rgba(7,7,7,.92) 100%),#070707 url("hero-mast-mobile.jpg") center 30%/cover no-repeat}#hm .hm-hero-inner{padding:46px 18px 40px}}
 </style>
 <header class="site-nav">
   <div class="nav-inner">
@@ -283,7 +287,7 @@ html[data-theme=dark] #hm .track{background:#24261f}html[data-theme=dark] #hm .s
   </div>
 </header>
 <main id="hm">
-<section class="hm-hero"><div class="hm-hero-inner"><div><p class="hm-eyebrow">KPC • RADIO • CLEAN SIGNALS</p><h1>HARMONICS <span>PLANNER</span></h1><p class="hm-hero-copy">Harmonics work for you and against you. Your antenna can use them to cover many bands with one wire; your transmitter leaks them where they don't belong. This page handles both.</p><div class="hm-hero-actions"><a class="hm-btn hm-btn-primary" href="#antenna">PLAN A MULTIBAND WIRE ↓</a><a class="hm-btn hm-btn-secondary" href="#calculator">CHECK MY TRANSMITTER</a></div></div></div></section>
+<section class="hm-hero"><div class="hm-hero-inner"><div><p class="hm-eyebrow">KPC FIELD TOOL • ANTENNAS &amp; CLEAN SIGNALS</p><h1>HARMONICS <span>PLANNER</span></h1><p class="hm-hero-copy">Harmonics work for you and against you. Your antenna can use them to cover many bands with one wire; your transmitter leaks them where they don't belong. This page handles both.</p><div class="hm-chips"><span>📡 Multiband wire</span><span>〰️ Random-wire lengths</span><span>🔇 Transmitter harmonics</span></div><div class="hm-hero-actions"><a class="hm-btn hm-btn-primary" href="#antenna">PLAN A MULTIBAND WIRE ↓</a><a class="hm-btn hm-btn-secondary" href="#calculator">CHECK MY TRANSMITTER</a></div></div></div></section>
 
 <section class="hm-section" id="antenna"><div class="hm-section-inner"><p class="hm-eyebrow-dark">ANTENNA PLANNER</p><h2>One Wire, Many Bands</h2><p class="lead">A half-wave wire is also resonant at 2×, 3×, 4×… its frequency. Cut an end-fed for <b>3.550 MHz</b> and the resonances fall at <b>7.100</b>, <b>14.200</b>, <b>21.300</b> and <b>28.400</b> — inside 40, 20, 15 and 10 metres. Pick the right starting frequency and you rarely need the tuner. Drag the slider to see each band move, or let the planner find the best spot.</p>
 
