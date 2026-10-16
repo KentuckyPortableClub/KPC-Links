@@ -137,14 +137,19 @@
         return t;
       }
     });
-    const layer = new Pad({ tileSize: 256, maxZoom: 19, zIndex: 6, attribution: 'Official boundaries: USGS PAD-US' });
+    const layer = new Pad({ tileSize: 256, maxZoom: 19, zIndex: 6, attribution: 'Boundaries: USGS PAD-US' });
 
-    const legend = L.control({ position: 'bottomleft' });
+    const legend = L.control({ position: 'topleft' });
     legend.onAdd = () => {
       const d = L.DomUtil.create('div', 'kpc-pad-key');
-      d.innerHTML = '<b>OFFICIAL BOUNDARIES (USGS PAD-US)</b>' + GK.map(k => `<label><input type="checkbox" data-g="${k}"${GROUPS[k].on ? ' checked' : ''}><i style="border-color:${css(GROUPS[k].col)};background:${css(GROUPS[k].col)}33"></i>${GROUPS[k].name}</label>`).join('') +
-        '<small>Public land from the US government\'s map of protected areas. A park\'s POTA boundary can differ: check the park\'s own map before you set up.</small><small class="kpc-pad-st"></small>';
+      /* starts folded as a small button so it never covers the map or its buttons; tap to open (remembered) */
+      let open = false; try { open = localStorage.getItem('kpcPadKeyOpen') === '1'; } catch (e) {}
+      d.classList.toggle('open', open);
+      d.innerHTML = '<button type="button" class="kpc-pad-tg" aria-expanded="' + open + '"><i class="sw"></i>BOUNDARIES <span>' + (open ? '▾' : '▸') + '</span></button><div class="kpc-pad-body"><b>OFFICIAL BOUNDARIES (USGS PAD-US)</b>' + GK.map(k => `<label><input type="checkbox" data-g="${k}"${GROUPS[k].on ? ' checked' : ''}><i style="border-color:${css(GROUPS[k].col)};background:${css(GROUPS[k].col)}33"></i>${GROUPS[k].name}</label>`).join('') +
+        '<small>Public land from the US government\'s map of protected areas. A park\'s POTA boundary can differ: check the park\'s own map before you set up.</small></div><small class="kpc-pad-st"></small>';
       statusEl = d.querySelector('.kpc-pad-st'); tellStatus();
+      const tg = d.querySelector('.kpc-pad-tg');
+      tg.onclick = () => { open = !open; d.classList.toggle('open', open); tg.setAttribute('aria-expanded', open); tg.querySelector('span').textContent = open ? '▾' : '▸'; try { localStorage.setItem('kpcPadKeyOpen', open ? '1' : '0'); } catch (e) {} };
       L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
       d.querySelectorAll('input').forEach(b => b.onchange = () => { GROUPS[b.dataset.g].on = b.checked; const v = {}; GK.forEach(k => v[k] = GROUPS[k].on); store.set(v); layer.redraw(); });
       return d;
@@ -152,10 +157,13 @@
     map.on('zoomend', tellStatus);
     if (!document.getElementById('kpc-pad-css')) {
       const s = document.createElement('style'); s.id = 'kpc-pad-css';
-      s.textContent = '.kpc-pad-key{background:rgba(10,10,10,.86);color:#f3efe4;padding:8px 10px;border-radius:8px;font:12px/1.35 system-ui,sans-serif;max-width:250px;box-shadow:0 2px 8px rgba(0,0,0,.35)}' +
-        '.kpc-pad-key b{display:block;color:#f0c96b;font-size:11px;letter-spacing:.06em;margin-bottom:4px}.kpc-pad-key label{display:flex;gap:6px;align-items:center;margin:3px 0;cursor:pointer}' +
-        '.kpc-pad-key i{flex:0 0 14px;height:12px;border:2px solid;border-radius:2px}.kpc-pad-key small{display:block;color:#cfc6b2;margin-top:4px;font-size:10.5px}.kpc-pad-key small:empty{display:none}' +
-        '.kpc-pad-key .kpc-pad-st{color:#ffd23f}@media(max-width:600px){.kpc-pad-key{max-width:200px;font-size:11px}.kpc-pad-key small{display:none}.kpc-pad-key .kpc-pad-st{display:block}}';
+      s.textContent = '.kpc-pad-key{background:rgba(10,10,10,.88);color:#f3efe4;border-radius:8px;font:12px/1.35 system-ui,sans-serif;max-width:240px;box-shadow:0 2px 8px rgba(0,0,0,.35)}' +
+        '.kpc-pad-tg{all:unset;cursor:pointer;display:flex;gap:6px;align-items:center;padding:6px 9px;font:700 11px/1 system-ui,sans-serif;letter-spacing:.06em;color:#f0c96b}' +
+        '.kpc-pad-tg .sw{width:14px;height:10px;border:2px solid #ffd633;border-right-color:#38e8ff;border-bottom-color:#38e8ff;border-radius:2px}' +
+        '.kpc-pad-body{display:none;padding:0 10px 8px;max-height:min(46vh,260px);overflow:auto}.kpc-pad-key.open .kpc-pad-body{display:block}' +
+        '.kpc-pad-key b{display:block;color:#f0c96b;font-size:10.5px;letter-spacing:.06em;margin-bottom:4px}.kpc-pad-key label{display:flex;gap:6px;align-items:center;margin:3px 0;cursor:pointer}' +
+        '.kpc-pad-key i:not(.sw){flex:0 0 14px;height:12px;border:2px solid;border-radius:2px}.kpc-pad-key small{display:block;color:#cfc6b2;margin-top:4px;font-size:10.5px}.kpc-pad-key small:empty{display:none}' +
+        '.kpc-pad-key .kpc-pad-st{color:#ffd23f;padding:0 9px 6px;margin:0}@media(max-width:600px){.kpc-pad-key{max-width:190px;font-size:11px}}';
       document.head.appendChild(s);
     }
     if (opts.legend !== false) { layer.on('add', () => legend.addTo(map)); layer.on('remove', () => legend.remove()); }
