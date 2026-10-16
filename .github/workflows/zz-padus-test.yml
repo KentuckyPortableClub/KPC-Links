@@ -1,5 +1,7 @@
 name: zz PAD-US export test (temporary)
 on: workflow_dispatch
+permissions:
+  contents: write
 jobs:
   t:
     runs-on: ubuntu-latest
@@ -14,5 +16,7 @@ jobs:
           curl -s -w "%{http_code} %{content_type}\n" -o out/wide.png "$B/export?bbox=-9800000,4300000,-9200000,4800000&bboxSR=3857&imageSR=3857&size=512,512&format=png32&transparent=true&f=image" | sed 's/^/::notice title=wide::/'
           curl -s -w "%{http_code} %{content_type}\n" -o out/l0.png "$B/export?bbox=-9425000,4570000,-9390000,4605000&bboxSR=3857&imageSR=3857&size=512,512&format=png32&transparent=true&layers=show:0&f=image" | sed 's/^/::notice title=layer0::/'
           ls -la out
-      - uses: actions/upload-artifact@v4
-        with: {name: padus, path: out}
+      - uses: actions/checkout@v5
+        with: {path: repo}
+      - run: |
+          cd repo && git checkout --orphan zz-padus && git rm -rqf . && cp ../out/* . && git add . && git -c user.name=bot -c user.email=b@b commit -qm t && git push -f origin zz-padus
