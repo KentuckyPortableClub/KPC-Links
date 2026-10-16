@@ -387,6 +387,10 @@ def subscribers():
         on[e] = not re.search(r'unsub|stop|remove', (row[ic] if ic < len(row) else '').lower())
     return sorted(e for e, v in on.items() if v)
 
+def spam_tip():
+    return ('Tip: save kpcwebhost@gmail.com as a contact so our emails stay out of Spam (a one-tap contact card is at '
+            + SITE + 'news.html). If one lands in Spam, tap "Not spam".')
+
 def unsub_line():
     f = load('kpc-subscribe-form.json', {})
     if re.match(r'https://docs\.google\.com/forms/', f.get('url') or '') and f.get('choiceEntry'):
@@ -431,7 +435,7 @@ def flush_mail():
                     n = min(80, room() - 1)                    # -1: the account's own To: address counts too
                     if n < 1: break
                     part = todo[:n]
-                    try: mail('' if MAIL_URL else SMTP_USER, part, it['subject'], it['body'] + '\n\n' + unsub_line(), files)
+                    try: mail('' if MAIL_URL else SMTP_USER, part, it['subject'], it['body'] + '\n\n' + spam_tip() + '\n\n' + unsub_line(), files)
                     except Exception as e: bad.append('email list: ' + str(e)[:150]); break
                     spent(len(part) + 1); it['done'] += [fp(e) for e in part]; todo = todo[n:]
                 if not todo: it['list'] = False

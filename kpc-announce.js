@@ -65,7 +65,9 @@
       for (var i = 0; i < subs.length; i++) {
         subs[i].innerHTML = '<a class="ka-sub" href="' + esc(u(f.subscribe)) + '" target="_blank" rel="noopener">📬 GET EMAIL UPDATES</a>' +
           '<a class="ka-sub" style="background:transparent;border:2px solid #d5a63a;color:inherit!important" href="' + esc(u(f.unsubscribe)) + '" target="_blank" rel="noopener">UNSUBSCRIBE</a>' +
-          '<span class="ka-subnote">Club news and campout updates by email. Same form for both; your email is only used for these updates.</span>';
+          '<a class="ka-sub" style="background:transparent;border:2px solid #d5a63a;color:inherit!important" href="KPC-Email-Contact.vcf" download="Kentucky-Portable-Club.vcf">📇 SAVE KPC AS A CONTACT</a>' +
+          '<span class="ka-subnote">Club news and campout updates by email. Same form for both; your email is only used for these updates.</span>' +
+          '<span class="ka-subnote"><b>Keep our emails out of Spam:</b> tap SAVE KPC AS A CONTACT after you sign up. If an email still lands in Spam, open it and tap <b>Not spam</b>.</span>';
       }
       var c = document.getElementById('kaSubCard'); if (c) c.hidden = false;
     }).catch(function () {});
