@@ -1,3 +1,9 @@
+/* place-name labels over satellite: iPhones/iPads get CARTO's sharp high-resolution labels (Brandon Oct 16: the Esri
+   labels looked fuzzy on iPhone); Android and computers keep the Esri labels. */
+window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+ var o={maxZoom:19};if(z)o.zIndex=z;
+ if(ios){o.subdomains='abcd';o.attribution='Labels © CARTO, © OpenStreetMap contributors';return L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}@2x.png',o)}
+ return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',o)};
 /* KPC small shared helpers for the Park Info Finder and the Activation Kit.
    KPCTA.attach(input, onPick): suggestions as you type (Kentucky POTA / WWFF / SOTA from kpc-ky-data.json right away,
    POTA parks anywhere from api.pota.app/lookup, and a typed reference number). Solid panel that covers the page.
@@ -101,7 +107,7 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
       'Satellite + streets': L.layerGroup([
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Imagery © Esri' }),
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19 }),
-        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19 })]),
+        kpcPlaceLabels()]),
       'Topo (USGS, US only)': L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, attribution: 'USGS The National Map' }),
       'Terrain (OpenTopoMap)': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { maxZoom: 17, subdomains: 'abc', attribution: '© OpenStreetMap, SRTM · OpenTopoMap (CC-BY-SA)' })
     };

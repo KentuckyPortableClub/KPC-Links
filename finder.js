@@ -1,3 +1,9 @@
+/* place-name labels over satellite: iPhones/iPads get CARTO's sharp high-resolution labels (Brandon Oct 16: the Esri
+   labels looked fuzzy on iPhone); Android and computers keep the Esri labels. */
+window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+ var o={maxZoom:19};if(z)o.zIndex=z;
+ if(ios){o.subdomains='abcd';o.attribution='Labels © CARTO, © OpenStreetMap contributors';return L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}@2x.png',o)}
+ return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',o)};
 'use strict';
 const $=id=>document.getElementById(id), status=$('status');
 /* Locations (v20261011e): locations-ky.json (Kentucky + ~100 mi) loads first; the national locations.json
@@ -76,7 +82,7 @@ if(window.L){
   const baseMaps={'Road Map':baseTiles,
    'Terrain':L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'&copy; OpenTopoMap (CC-BY-SA), &copy; OpenStreetMap contributors'}),
    'Satellite':L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery &copy; Esri, Maxar, Earthstar Geographics'}),
-   'Satellite + Roads':L.layerGroup([esriT('World_Imagery'),esriT('Reference/World_Transportation'),esriT('Reference/World_Boundaries_and_Places')])};
+   'Satellite + Roads':L.layerGroup([esriT('World_Imagery'),esriT('Reference/World_Transportation'),kpcPlaceLabels()])};
   let wantBase='Satellite + Roads';try{wantBase=localStorage.getItem('kpcBaseMap2')||'Satellite + Roads'}catch(_){}   // default: Satellite + Roads
   wantBase={'Street':'Road Map'}[wantBase]||wantBase;
   (baseMaps[wantBase]||baseTiles).addTo(map);

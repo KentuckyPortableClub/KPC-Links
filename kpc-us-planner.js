@@ -1,3 +1,9 @@
+/* place-name labels over satellite: iPhones/iPads get CARTO's sharp high-resolution labels (Brandon Oct 16: the Esri
+   labels looked fuzzy on iPhone); Android and computers keep the Esri labels. */
+window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+ var o={maxZoom:19};if(z)o.zIndex=z;
+ if(ios){o.subdomains='abcd';o.attribution='Labels © CARTO, © OpenStreetMap contributors';return L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}@2x.png',o)}
+ return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',o)};
 /* KPC US Trip Planner (Lite).
    Spots: locations.json (rows [prog,ref,name,lat,lon,url,...]) for POTA, SOTA and WWFF, plus POTA parks loaded live
    from api.pota.app/location/parks/US-XX for the states near the search (adds parks newer than the file).
@@ -44,7 +50,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  const street=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'});
  const sat=L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
  const hyb=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
-  L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),L.tileLayer(esri+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:9})]);
+  L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);
  /* Satellite + Park Lines (beta). Each OpenStreetMap street-map tile is repainted in the page: everything light
     (background, park fill, forest, water, plain roads) becomes see-through and the dark parts (park and forest
     borders, county lines, labels, road edges) become solid yellow. Green border pixels get the brightest yellow.
@@ -70,7 +76,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  /* Official boundaries (USGS PAD-US, kpc-padus-layer.js): federal + state land outlined over any map */
  const pad=window.KPCPad?KPCPad(map):null;
  const offi=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
-  L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),L.tileLayer(esri+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:9})]);   /* streets + names above the boundary outlines (zIndex 6) */
+  L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);   /* streets + names above the boundary outlines (zIndex 6) */
  const OFF='Satellite + Streets + Official Boundaries';
  const base={'Street':street,'Terrain':terrain,'Satellite':sat,'Satellite + Streets':hyb,[OFF]:offi,'Satellite + Park Lines (Beta)':beta};let want=store.get('kpcUsBase',pad?OFF:'Street');if(want==='Satellite + Official Boundaries')want=OFF;(base[want]||street).addTo(map);
  if(pad){if(store.get('kpcUsPad',true)||want===OFF)pad.layer.addTo(map);

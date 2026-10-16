@@ -1,3 +1,9 @@
+/* place-name labels over satellite: iPhones/iPads get CARTO's sharp high-resolution labels (Brandon Oct 16: the Esri
+   labels looked fuzzy on iPhone); Android and computers keep the Esri labels. */
+window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+ var o={maxZoom:19};if(z)o.zIndex=z;
+ if(ios){o.subdomains='abcd';o.attribution='Labels © CARTO, © OpenStreetMap contributors';return L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}@2x.png',o)}
+ return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',o)};
 /* KPC official public-land layer for Leaflet maps (US Trip Planner).
    Source: USGS PAD-US (Protected Areas Database of the US), The National Map map service, no key.
    The service draws every owner as a solid colour block, which would hide a satellite picture, so each tile is
@@ -61,7 +67,7 @@
     const pad = window.KPCPad(map), NAME = 'Satellite + Streets + Official Boundaries';
     base[NAME] = L.layerGroup([L.tileLayer(ESRI + 'World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics' }),
       L.tileLayer(ESRI + 'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, zIndex: 8 }),
-      L.tileLayer(ESRI + 'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, zIndex: 9 })]);
+      kpcPlaceLabels(9)]);
     over['Official boundaries (PAD-US)'] = pad.layer;
     const k = key || 'kpcPadOn'; let on = false; try { on = localStorage.getItem(k) === '1'; } catch (e) {}
     map.whenReady(() => { if (on && !map.hasLayer(pad.layer)) pad.layer.addTo(map); });
