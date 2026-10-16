@@ -140,6 +140,7 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
     };
     const O = { 'Hillshade (terrain shading)': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, opacity: .45, attribution: 'Hillshade © Esri' }) };
     const pad = window.KPCPadMenu ? KPCPadMenu(map, B, O) : null;   /* official PAD-US boundaries (kpc-padus-layer.js) */
+    if (pad && pad.legend && pad.legend.setPosition) pad.legend.setPosition('bottomleft');   /* key at the bottom (Brandon Oct 16) */
     let pick = 'Street'; try { const v = localStorage.getItem('kpcMapBase'); if (B[v]) pick = v; } catch (e) {}
     if (first && B[first]) pick = first;
     B[pick].addTo(map); if (pad && pick === pad.NAME) pad.layer.addTo(map);
@@ -150,7 +151,7 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
   /* "where am I" button: blue dot + accuracy circle + your GPS numbers (tap again to refresh) */
   function locate(map) {
     let dot = null, ring = null;
-    const C = L.Control.extend({ options: { position: 'topleft' }, onAdd() {
+    const C = L.Control.extend({ options: { position: 'bottomright' }, onAdd() {
       const b = L.DomUtil.create('button', 'kloc-b'); b.type = 'button'; b.title = 'Show where I am'; b.innerHTML = '◎ ME';
       L.DomEvent.disableClickPropagation(b);
       b.onclick = () => {
@@ -172,7 +173,7 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
   /* full-screen map (works on iPhone too: the map box is stretched over the whole screen) */
   function full(map) {
     const box = map.getContainer(); let on = false, ph = null;
-    const C = L.Control.extend({ options: { position: 'topleft' }, onAdd() {
+    const C = L.Control.extend({ options: { position: 'bottomright' }, onAdd() {
       const b = L.DomUtil.create('button', 'kloc-b kfull-b'); b.type = 'button'; b.title = 'Full screen map'; b.innerHTML = '⛶ FULL';
       L.DomEvent.disableClickPropagation(b);
       const set = v => {
