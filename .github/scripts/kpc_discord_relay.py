@@ -39,7 +39,7 @@ FB_ID, FB_TOKEN = ENV('FB_PAGE_ID'), ENV('FB_PAGE_TOKEN')
 SMTP_USER, SMTP_PASS, GIO_TO = (ENV('RELAY_SMTP_USER') or 'kypotacampout@gmail.com'), ENV('RELAY_SMTP_PASS'), ENV('GROUPSIO_TO')
 SUB_CSV = ENV('SUBSCRIBE_SHEET_CSV')
 MAIL_URL, MAIL_KEY = ENV('RELAY_MAIL_URL'), ENV('RELAY_MAIL_KEY')
-HOOKS = [u for u in re.split(r'\s+', ENV('RELAY_DISCORD_WEBHOOKS')) if re.match(r'https://(?:\w+\.)?discord(?:app)?\.com/api/webhooks/\d+/[\w-]+$', u)]
+HOOKS = [u for u in re.split(r'\s+', ENV('RELAY_DISCORD_WEBHOOKS')) if re.match(r'https://(?:\w+\.)?discord(?:app)?\.com/api/webhooks/\d+/[\w-]+(\?\S*)?$', u)]
 DRY = ENV('DRY_RUN').lower() in ('1', 'true', 'yes')
 CAP = int(ENV('RELAY_DAILY_CAP') or 90)
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
@@ -339,15 +339,17 @@ def hook_send(url, text, files, mid=None):
     payload = {'content': text[:1990], 'username': 'Kentucky Portable Club', 'allowed_mentions': {'parse': []}}
     if mid:
         body, hd = multipart({'payload_json': json.dumps(payload)})
-        c, r = http(f'{url}/messages/{mid}', body, hd, 'PATCH')
+        base, _, q = url.partition('?')
+        c, r = http(f'{base}/messages/{mid}' + ('?' + q if q else ''), body, hd, 'PATCH')
     else:
         body, hd = multipart({'payload_json': json.dumps(payload)}, files[:10], field='files')
-        c, r = http(url + '?wait=true', body, hd, 'POST')
+        c, r = http(url + ('&' if '?' in url else '?') + 'wait=true', body, hd, 'POST')
     if c not in (200, 204): raise RuntimeError(f'webhook HTTP {c}: {(r or b"")[:120]!r}')
     return (json.loads(r).get('id') if r else mid)
 
 def hook_delete(url, mid):
-    http(f'{url}/messages/{mid}', None, None, 'DELETE')
+    base, _, q = url.partition('?')
+    http(f'{base}/messages/{mid}' + ('?' + q if q else ''), None, None, 'DELETE')
 
 # ---------------------------------------------------------------- email
 def mail(to, bcc, subject, text, files):
