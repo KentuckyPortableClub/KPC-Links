@@ -40,5 +40,5 @@ Pin your post → stays at the top of its website page.
 ━━━━━━━━━━━━━━━━━━━━
 **📧 EMAIL NOTES**
 
-Subscribers get one roundup email Sunday evening with the week's website posts. No posts = no email.
+Sunday evening roundup: Everything / Campout-only subscribers get the week's posts they didn't already get by email. Roundup-only subscribers get all of the week's website posts. No posts = no email.
 Gmail allows about 90 emails a day; extras go out the next day on their own.
