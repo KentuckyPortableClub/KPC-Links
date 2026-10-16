@@ -96,23 +96,25 @@ def clean(m):
     return re.sub(r'\n{3,}', '\n\n', t).strip()
 
 # Where a post goes = the words at the very START of the post, before a colon (Brandon Oct 15):
-#   "Email:"  "Facebook:"  "Website:"  "Facebook + Email:"  "All:"  ("only" / "and" / + & , / are fine).
+#   "Email:" (Groups.io + email list)  "Groups.io:"  "Subscribers:"  "Facebook:"  "Website:"  "Facebook + Email:"  "All:"  ("only" / "and" / + & , / are fine).
 #   The tag lists exactly where it goes; "All:" = website + Facebook + email. No tag = website + Facebook.
 #   Email (Groups.io + the email-updates list) ONLY when the tag says email or all.
 #   "Campout" / "Announcement" can sit in the tag too ("Campout email:"); they still work anywhere in the post.
-TAGW = r'(?:e-?mail|facebook|fb|website|web ?site|web|site|all|everything|everywhere|camp ?-?out|announcements?|only|and|\+|&|,|/)'
+TAGW = r'(?:groups?[ .]?io|groups?|subscribers?|e-?mail|facebook|fb|website|web ?site|web|site|all|everything|everywhere|camp ?-?out|announcements?|only|and|\+|&|,|/)'
 TAG = re.compile(r'^\s*(' + TAGW + r'(?:\s*' + TAGW + r')*)\s*[:\-–]\s*', re.I)
 
 def where_to(raw):
+    """web, fb, gio (Groups.io), list (email-updates subscribers). 'Email' = gio + list."""
     m = TAG.match(raw or '')
     w = (m.group(1).lower() if m else '')
-    if re.search(r'\b(all|everything|everywhere)\b', w): return {'web', 'fb', 'email'}
+    if re.search(r'\b(all|everything|everywhere)\b', w): return {'web', 'fb', 'gio', 'list'}
     d = set()
-    if re.search(r'e-?mail', w): d.add('email')
+    if re.search(r'e-?mail', w): d |= {'gio', 'list'}
+    if re.search(r'groups?', w): d.add('gio')
+    if re.search(r'subscriber', w): d.add('list')
     if re.search(r'facebook|\bfb\b', w): d.add('fb')
     if re.search(r'web|site', w): d.add('web')
-    if not d: d = {'web', 'fb'}
-    return d
+    return d or {'web', 'fb'}
 
 def pages_for(text):
     low = text.lower()
@@ -233,11 +235,11 @@ for m in msgs:
       except Exception as e: res['facebook'] = 'FAILED: ' + str(e)[:200]
     subject = 'KPC: ' + (re.sub(r'\s+', ' ', text.split('\n')[0])[:70] or 'Club update')
     body = plain + '\n\n— Kentucky Portable Club' + (f'\n{page_url}' if 'web' in dest else '\n' + SITE)
-    if 'email' in dest and GIO_TO:
+    if 'gio' in dest and GIO_TO:
         try: res['groups.io'] = mail(GIO_TO, [], subject, body, files)
         except Exception as e: res['groups.io'] = 'FAILED: ' + str(e)[:200]
-    if 'email' in dest and subs is None: subs = subscribers()
-    if 'email' in dest and subs:
+    if 'list' in dest and subs is None: subs = subscribers()
+    if 'list' in dest and subs:
         try:
             for i in range(0, len(subs), 80):   # Gmail limit per message
                 mail('' if MAIL_URL else SMTP_USER, subs[i:i + 80], subject, body + '\n\nUnsubscribe: use the UNSUBSCRIBE button on ' + SITE + 'news.html', files)
