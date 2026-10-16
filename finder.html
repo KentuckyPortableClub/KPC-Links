@@ -124,7 +124,7 @@ header:not(.site-nav) p{text-shadow:0 2px 10px rgba(0,0,0,.8)}
  const tb=document.getElementById('gis-ntrails');if(window.KPCTrails&&tb){const tr=KPCTrails(map,{skipKY:true});let ton=true;try{ton=localStorage.getItem('kpcPcTrails')!=='0'}catch(e){}tb.checked=ton;if(ton)tr.addTo(map);
   tb.addEventListener('change',()=>{if(tb.checked)tr.addTo(map);else tr.remove();try{localStorage.setItem('kpcPcTrails',tb.checked?'1':'0')}catch(e){}})}}
  document.readyState==='loading'?document.addEventListener('DOMContentLoaded',go):go()})();</script>
-<script src="kpc-offline.js?v=20261013a"></script><script src="kpc-search.js?v=20261016g" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script>
+<script src="kpc-offline.js?v=20261013a"></script><script src="kpc-search.js?v=20261016h" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
