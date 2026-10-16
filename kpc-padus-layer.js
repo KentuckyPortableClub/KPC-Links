@@ -53,6 +53,23 @@
     return best + 1;   // 0 = nothing there
   }
 
+  /* Add 'Satellite + Streets + Official Boundaries' to a page's map choices and 'Official boundaries' as a checkbox.
+     base / over are the objects handed to L.control.layers. Returns the KPCPad result (or null). */
+  const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/';
+  window.KPCPadMenu = function (map, base, over, key) {
+    if (!window.L || !window.KPCPad) return null;
+    const pad = window.KPCPad(map), NAME = 'Satellite + Streets + Official Boundaries';
+    base[NAME] = L.layerGroup([L.tileLayer(ESRI + 'World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics' }),
+      L.tileLayer(ESRI + 'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, zIndex: 8 }),
+      L.tileLayer(ESRI + 'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, zIndex: 9 })]);
+    over['Official boundaries (PAD-US)'] = pad.layer;
+    const k = key || 'kpcPadOn'; let on = false; try { on = localStorage.getItem(k) === '1'; } catch (e) {}
+    map.whenReady(() => { if (on && !map.hasLayer(pad.layer)) pad.layer.addTo(map); });
+    map.on('baselayerchange', e => { if (e.name === NAME && !map.hasLayer(pad.layer)) pad.layer.addTo(map); });
+    map.on('overlayadd', e => { if (e.layer === pad.layer) try { localStorage.setItem(k, '1'); } catch (x) {} });
+    map.on('overlayremove', e => { if (e.layer === pad.layer) try { localStorage.setItem(k, '0'); } catch (x) {} });
+    pad.NAME = NAME; return pad;
+  };
   window.KPCPad = function (map) {
     let fails = 0, ok = 0, statusEl = null;
     const tellStatus = () => {

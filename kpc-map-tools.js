@@ -106,9 +106,10 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
       'Terrain (OpenTopoMap)': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { maxZoom: 17, subdomains: 'abc', attribution: '© OpenStreetMap, SRTM · OpenTopoMap (CC-BY-SA)' })
     };
     const O = { 'Hillshade (terrain shading)': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, opacity: .45, attribution: 'Hillshade © Esri' }) };
+    const pad = window.KPCPadMenu ? KPCPadMenu(map, B, O) : null;   /* official PAD-US boundaries (kpc-padus-layer.js) */
     let pick = 'Street'; try { const v = localStorage.getItem('kpcMapBase'); if (B[v]) pick = v; } catch (e) {}
     if (first && B[first]) pick = first;
-    B[pick].addTo(map);
+    B[pick].addTo(map); if (pad && pick === pad.NAME) pad.layer.addTo(map);
     L.control.layers(B, O, { collapsed: true }).addTo(map);
     map.on('baselayerchange', e => { try { localStorage.setItem('kpcMapBase', e.name); } catch (x) {} });
     return B[pick];

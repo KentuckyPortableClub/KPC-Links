@@ -70,8 +70,9 @@ function leafletMap(id){const m=L.map(id,{scrollWheelZoom:false}).setView([37.75
  const base={'Street':st};
  try{base['Terrain']=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors'});
   base['Satellite']=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
+  const over={},pad=window.KPCPadMenu?KPCPadMenu(m,base,over):null;   /* official PAD-US boundaries (kpc-padus-layer.js) */
   let want='Street';try{want=localStorage.getItem('kpcBaseMap')||'Street'}catch(e){}
-  (base[want]||st).addTo(m);L.control.layers(base,null,{position:'topright',collapsed:true}).addTo(m);
+  (base[want]||st).addTo(m);if(pad&&want===pad.NAME)pad.layer.addTo(m);L.control.layers(base,pad?over:null,{position:'topright',collapsed:true}).addTo(m);
   m.on('baselayerchange',e=>{try{localStorage.setItem('kpcBaseMap',e.name)}catch(x){}})}catch(e){st.addTo(m)}
  return m}
 async function countyLayer(m){const C=await counties();const g=L.layerGroup();
