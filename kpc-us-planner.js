@@ -12,7 +12,7 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
 const $=id=>document.getElementById(id),esc=KPC.esc;
 const COL={POTA:'#1d5a3a',SOTA:'#8a4b14',WWFF:'#2b6cb0',PIN:'#b5452b'};
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-let ALL=[],BYREF={},BORD=[],map=null,dots=null,ctrMk=null,ring=null,bound=null,boundRef='',road=null,center=null,radius=25,progs=store.get('kpcUsProgs',['POTA','SOTA','WWFF']);
+let BIG=store.get('kpcUsBig',false),ALL=[],BYREF={},BORD=[],map=null,dots=null,ctrMk=null,ring=null,bound=null,boundRef='',road=null,center=null,radius=25,progs=store.get('kpcUsProgs',['POTA','SOTA','WWFF']);
 let trip=store.get('kpcUsTrip',[]),dropMode=false,NEAR=[];
 const liveStates={};
 const TAP=matchMedia('(pointer:coarse)').matches;
@@ -87,7 +87,7 @@ function popup(s){const l=links(s),d=center?KPC.miles(center[0],center[1],s.la,s
  const what=s.p==='POTA'?'POTA park':s.p==='SOTA'?`SOTA summit${s.m?' • '+s.m.toLocaleString()+' m ('+Math.round(s.m*3.28084).toLocaleString()+' ft)':''}${s.pts?' • '+s.pts+' pts':''}`:s.p==='WWFF'?'WWFF reference':'Your pin';
  const div=`<div class="us-pop"><b>${esc(s.n)}</b><div class="meta">${s.p==='PIN'?'':esc(s.c)+' • '}${what}${d!=null?' • '+d.toFixed(1)+' mi away':''} • grid ${KPC.grid(s.la,s.lo).slice(0,6)}</div>
 ${kmBadge(s)?'<div style="margin:4px 0">'+kmBadge(s)+'</div>':''}<div class="pinfo"></div><div class="live"></div>
-<div class="acts"><button type="button" class="go" data-a="add">${inTrip(s.c)?'&#10003; IN TRIP (REMOVE)':'+ ADD TO TRIP'}</button><a href="${l.sv}" target="_blank" rel="noopener">&#128064; STREET VIEW</a><a href="${l.dir}" target="_blank" rel="noopener">DIRECTIONS</a>${s.p!=='PIN'&&s.p!=='SOTA'?'<button type="button" data-a="bound">SHOW THIS PARK\u2019S OUTLINE</button>':''}${l.page?`<a href="${l.page}" target="_blank" rel="noopener">${s.p} PAGE &#8599;</a>`:''}</div></div>`;
+<div class="acts"><button type="button" class="go" data-a="add">${inTrip(s.c)?'&#10003; IN TRIP (REMOVE)':'+ ADD TO TRIP'}</button><a href="${l.sv}" target="_blank" rel="noopener">&#128064; STREET VIEW</a><a href="${l.dir}" target="_blank" rel="noopener">DIRECTIONS</a>${s.p!=='PIN'&&s.p!=='SOTA'?`<a href="${/iPhone|iPad|iPod/.test(navigator.userAgent)?'https://maps.apple.com/?q=parking&sll='+s.la+','+s.lo+'&z=14':'https://www.google.com/maps/search/parking/@'+s.la+','+s.lo+',14z'}" target="_blank" rel="noopener">🅿 LOOK FOR PARKING</a>`:''}${s.p!=='PIN'&&s.p!=='SOTA'?'<button type="button" data-a="bound">SHOW THIS PARK\u2019S OUTLINE</button>':''}${l.page?`<a href="${l.page}" target="_blank" rel="noopener">${s.p} PAGE &#8599;</a>`:''}</div></div>`;
  return div}
 /* official website + park type + how you can activate, for the states around Kentucky (data/parkinfo/US-XX.json, weekly from
    POTA by kpc-state-links.yml; automatic, not checked by KPC). The state comes from where the dot is. */
@@ -134,7 +134,7 @@ async function livePota(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;e
   el.textContent=`${a.length} activation attempt${a.length===1?'':'s'} (${good} with 10+ QSOs) • last ${KPC.fmtDate(last)}`}catch(e){el.textContent=''}}
 function drawDots(){if(!map)return;dots.clearLayers();
  const show=center?vis():[];
- show.forEach(s=>{const inT=inTrip(s.c),km=KM?KM.mark(s.c):{};const mk=L.circleMarker([s.la,s.lo],{radius:(inT?9:s.p==='SOTA'?6:7)+(TAP?2:0),weight:inT||km.atno?3:2,color:inT?'#f0c96b':km.atno?'#c2410c':'#ffffff',fillColor:COL[s.p],fillOpacity:km.done&&!inT?.35:.95}); /* white ring shows on satellite */
+ show.forEach(s=>{const inT=inTrip(s.c),km=KM?KM.mark(s.c):{};const mk=L.circleMarker([s.la,s.lo],{radius:BIG?(inT?9:s.p==='SOTA'?6:7)+(TAP?2:0):(inT?6:s.p==='SOTA'?3.5:4.5)+(TAP?1:0),weight:inT||km.atno?3:2,color:inT?'#f0c96b':km.atno?'#c2410c':'#ffffff',fillColor:COL[s.p],fillOpacity:km.done&&!inT?.35:.95}); /* white ring shows on satellite */
   const pp=L.popup({maxWidth:300}).setContent(popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)});
  trip.filter(s=>s.p==='PIN').forEach(s=>{const mk=L.marker([s.la,s.lo],{icon:L.divIcon({className:'',html:'<div class="pin-us"></div>',iconSize:[16,16],iconAnchor:[8,16]})});const pp=L.popup({maxWidth:300}).setContent(popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)})}
 
@@ -310,8 +310,9 @@ if(window.KPCPlace){
  ['urf','urt'].forEach(id=>KPCPlace.box($(id),{local,remote:true,onPick:x=>{PICKED[x.v]={la:x.la,lo:x.lo,label:x.s?x.s.n+' ('+x.s.c+')':x.v}}}));
 }
 $('usr').onchange=()=>{if(center)go(center[0],center[1],(store.get('kpcUsLast',{})||{}).label)};
-$('us-progs').onclick=e=>{const b=e.target.closest('button');if(!b)return;const p=b.dataset.p;progs=progs.includes(p)?progs.filter(x=>x!==p):progs.concat(p);if(!progs.length)progs=[p];store.set('kpcUsProgs',progs);
- [...$('us-progs').children].forEach(x=>x.setAttribute('aria-pressed',progs.includes(x.dataset.p)));if(RT){const C=corridor(RT.pts,RT.w);RT.info=C.info;NEAR=C.list;drawDots();drawNear();status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${RT.w} miles of your route.`)}else if(center)go(center[0],center[1],(store.get('kpcUsLast',{})||{}).label)};
+{const bb=$('us-big');if(bb){bb.setAttribute('aria-pressed',String(BIG));bb.onclick=()=>{BIG=!BIG;store.set('kpcUsBig',BIG);bb.setAttribute('aria-pressed',String(BIG));drawDots()}}}   /* bigger dots chip (small = default, Brandon Oct 16) */
+$('us-progs').onclick=e=>{const b=e.target.closest('button[data-p]');if(!b)return;const p=b.dataset.p;progs=progs.includes(p)?progs.filter(x=>x!==p):progs.concat(p);if(!progs.length)progs=[p];store.set('kpcUsProgs',progs);
+ [...$('us-progs').querySelectorAll('[data-p]')].forEach(x=>x.setAttribute('aria-pressed',progs.includes(x.dataset.p)));if(RT){const C=corridor(RT.pts,RT.w);RT.info=C.info;NEAR=C.list;drawDots();drawNear();status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${RT.w} miles of your route.`)}else if(center)go(center[0],center[1],(store.get('kpcUsLast',{})||{}).label)};
 $('us-me').onclick=()=>{if(!navigator.geolocation){status('This browser can’t share your location.');return}status('Finding you…');
  navigator.geolocation.getCurrentPosition(p=>go(fix(p.coords.latitude),fix(p.coords.longitude),'you'),()=>status('Location was blocked or unavailable. Type a town or ZIP instead.'),{timeout:15000,maximumAge:300000})};
 $('us-drop').onclick=()=>setDrop(!dropMode);
@@ -326,7 +327,7 @@ $('trip-list').onclick=e=>{const b=e.target.closest('button');if(!b)return;const
  if(b.dataset.x!=null)return removeStop(trip[i].c);const j=b.dataset.u!=null?i-1:i+1;if(j<0||j>=trip.length)return;[trip[i],trip[j]]=[trip[j],trip[i]];saveTrip();drawTrip()};
 $('t-order').onclick=bestOrder;$('t-road').onclick=drawRoad;$('t-gpx').onclick=gpx;$('t-share').onclick=share;$('t-fromme').onchange=drawTrip;
 $('t-clear').onclick=()=>{if(confirm('Clear all stops from this trip?')){trip=[];saveTrip();if(road){road.remove();road=null}drawTrip();drawDots();drawNear()}};
-[...$('us-progs').children].forEach(x=>x.setAttribute('aria-pressed',progs.includes(x.dataset.p)));
+[...$('us-progs').querySelectorAll('[data-p]')].forEach(x=>x.setAttribute('aria-pressed',progs.includes(x.dataset.p)));
 initMap();
 /* new checker answers: the list redraws at once; map dots wait until an open popup is closed so it doesn't vanish */
 if(KM){KM.bar($('km-bar'));let pend=false;

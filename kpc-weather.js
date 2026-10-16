@@ -195,19 +195,23 @@
   }
 
   /* ---------- forecast office, county and NOAA Weather Radio ---------- */
-  const SFIPS = { AL: '01', AR: '05', GA: '13', IL: '17', IN: '18', KY: '21', MO: '29', MS: '28', NC: '37', OH: '39', TN: '47', VA: '51', WV: '54' };
+  const SFIPS = { AL:'01',AK:'02',AZ:'04',AR:'05',CA:'06',CO:'08',CT:'09',DE:'10',DC:'11',FL:'12',GA:'13',HI:'15',ID:'16',IL:'17',IN:'18',IA:'19',KS:'20',KY:'21',LA:'22',ME:'23',MD:'24',MA:'25',MI:'26',MN:'27',MS:'28',MO:'29',MT:'30',NE:'31',NV:'32',NH:'33',NJ:'34',NM:'35',NY:'36',NC:'37',ND:'38',OH:'39',OK:'40',OR:'41',PA:'42',RI:'44',SC:'45',SD:'46',TN:'47',TX:'48',UT:'49',VT:'50',VA:'51',WA:'53',WV:'54',WI:'55',WY:'56',PR:'72' };
+  const NWRST = {};   // data/nwr/<ST>.json: every transmitter that covers part of that state (nationwide, Oct 16)
   async function office(pt, p) {
     const P = pt && pt.properties, box = $('wxNwrBody'), o = $('wxOffice');
-    let same = '', county = '';
+    let same = '', county = '', stc = '';
     if (P) {
       const cz = (P.county || '').split('/').pop();          // e.g. KYC227
-      const m = /^([A-Z]{2})C(\d{3})$/.exec(cz); if (m && SFIPS[m[1]]) same = '0' + SFIPS[m[1]] + m[2];
+      const m = /^([A-Z]{2})C(\d{3})$/.exec(cz); if (m && SFIPS[m[1]]) { same = '0' + SFIPS[m[1]] + m[2]; stc = m[1]; }
       const rl = P.relativeLocation && P.relativeLocation.properties;
       if (rl && here && here.kind === 'gps') { $('wxPlace').textContent = 'Near ' + rl.city + ', ' + rl.state; }
       if (P.cwa) o.innerHTML = `Your NWS office: <a href="https://www.weather.gov/${esc(P.cwa.toLowerCase())}/" target="_blank" rel="noopener">${esc(P.cwa)} ↗</a> · <a href="https://forecast.weather.gov/product.php?site=${esc(P.cwa)}&issuedby=${esc(P.cwa)}&product=AFD&format=txt&glossary=1" target="_blank" rel="noopener">Forecast discussion ↗</a> · <a href="https://forecast.weather.gov/MapClick.php?lat=${p.la.toFixed(4)}&lon=${p.lo.toFixed(4)}" target="_blank" rel="noopener">NWS point forecast ↗</a>`;
       try { if (P.county) { const cj = await jget(P.county, NWSH); county = cj.properties && cj.properties.name; } } catch (e) {}
     } else o.innerHTML = '';
-    const N = await nwr(), tx = (N.tx || []).map(t => Object.assign({}, t, { d: km(p.la, p.lo, t.la, t.lo) }));
+    const N0 = await nwr(); let all = (N0.tx || []).slice();
+    if (stc && stc !== 'KY') { if (!(stc in NWRST)) NWRST[stc] = jget('data/nwr/' + stc + '.json').catch(() => null);
+      const S = await NWRST[stc]; if (S && S.tx) { const have = new Set(all.map(t => t.call)); S.tx.forEach(t => { if (!have.has(t.call)) all.push(t); }); } }
+    const N = { tx: all }, tx = (N.tx || []).map(t => Object.assign({}, t, { d: km(p.la, p.lo, t.la, t.lo) }));
     const cover = same ? tx.filter(t => t.same.includes(same)).sort((a, b) => a.d - b.d) : [];
     const near = tx.filter(t => !cover.includes(t)).sort((a, b) => a.d - b.d).slice(0, Math.max(0, 4 - cover.length));
     // Live streams with no sign-in (wxradio.org, run by volunteers; checked Oct 2026). They play right here.
