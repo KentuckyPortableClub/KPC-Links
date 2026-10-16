@@ -647,6 +647,8 @@ if NOW.weekday() == 6 and NOW.hour >= 18 and state.get('roundup') != wk and not 
         notice(f'Weekly roundup queued with {len(items)} post(s).')
 
 # 6) email, then save
+if DRY:   # practice run: say whether the email-updates sheet can be read (a count only, never addresses)
+    notice(('Email-updates list: ' + str(len(subscribers())) + ' subscriber(s) found.') if SUB_CSV else 'Email-updates list: SUBSCRIBE_SHEET_CSV secret not set.')
 if not DRY:
     flush_mail()
     # park warnings + calendar items made from Discord (ids start with dc-), merged with the KPC Reports form's own items
