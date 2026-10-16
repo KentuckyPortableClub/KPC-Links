@@ -41,6 +41,9 @@ function loadParks(){if(PKp)return PKp;
 /* POTA parks in the states around Kentucky (data/parkinfo/index.json, weekly by kpc-state-links.yml) */
 let NB=null,NBp=null;
 function loadNB(){if(NBp)return NBp;NBp=fetch('data/parkinfo/index.json').then(r=>r.ok?r.json():[]).then(L=>{NB=L.map(r=>({c:r[0],n:r[1],st:r[2],la:r[3],lo:r[4],t:r[5]||'',w:r[6]||'',x:norm(r[1]+' '+r[0]+' '+r[2]+' '+(r[5]||''))}))}).catch(()=>{NB=[]});return NBp}
+const NBW={};function nbWeb(){res.querySelectorAll('a[data-nbw]').forEach(a=>{const st=a.dataset.st,c=a.dataset.nbw;
+ if(!(st in NBW))NBW[st]=fetch('data/parkinfo/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+ NBW[st].then(d=>{const p=d&&d.parks&&d.parks[c];if(p&&p[1]){a.href=p[1];a.hidden=false}})})}
 let items=[],sel=-1;
 function cty(co){const l=String(co||'').replace(/\?/g,'').split('/').map(x=>x.trim()).filter(Boolean);return !l.length||/official|see /i.test(co)?'':l.length>2?l.length+' counties':l.join(' / ')+' Co.'}
 function run(){const q=norm(inp.value),w=q.split(' ').filter(Boolean);items=[];sel=-1;
@@ -54,13 +57,13 @@ function run(){const q=norm(inp.value),w=q.split(' ').filter(Boolean);items=[];s
    const lk=[`<a href="${f}">MAP &amp; BOUNDARY</a>`];if(p.k==='POTA'){lk.push(`<a href="kpc-park-sheet.html?ref=${encodeURIComponent(p.c)}">PARK SHEET</a>`);if(p.la&&p.lo)lk.push(`<a href="kpc-weather.html?lat=${p.la}&lon=${p.lo}&ref=${encodeURIComponent(p.c)}&name=${encodeURIComponent(p.n)}">WEATHER</a>`)}
    return `<div class="kss-it"><div class="kss-t">${esc(p.n)}<span class="kss-tag">${p.k}</span></div><div class="kss-d">${esc(p.c)}${cty(p.co)?' &middot; '+esc(cty(p.co)):''}</div><div class="kss-lk">${lk.join('')}</div></div>`}).join('')+(ps.length>10?`<div class="kss-n">${ps.length-10} more. Keep typing to narrow it down.</div>`:'')}
   let nb=[];if(NB&&q.length>=3){const kyc=new Set((PK||[]).map(p=>p.c));nb=NB.filter(p=>!kyc.has(p.c)&&w.every(x=>p.x.includes(x)));nb.sort((a,b)=>(norm(a.n).startsWith(q)?0:1)-(norm(b.n).startsWith(q)?0:1)||a.n.localeCompare(b.n))}
-  if(nb.length){h+='<div class="kss-h">PARKS IN NEARBY STATES ('+nb.length+')</div>'+nb.slice(0,8).map(p=>{const f='kpc-planner-us.html?q='+encodeURIComponent(p.c);items.push(f);
-   const lk=[`<a href="${f}">US TRIP PLANNER</a>`];if(p.w)lk.push(`<a href="${esc(p.w)}" target="_blank" rel="noopener">OFFICIAL WEBSITE &#8599;</a>`);
+  if(nb.length){h+='<div class="kss-h">PARKS IN OTHER STATES ('+nb.length+')</div>'+nb.slice(0,8).map(p=>{const f='kpc-planner-us.html?q='+encodeURIComponent(p.c);items.push(f);
+   const lk=[`<a href="${f}">US TRIP PLANNER</a>`];lk.push(p.w?`<a href="${esc(p.w)}" target="_blank" rel="noopener">OFFICIAL WEBSITE &#8599;</a>`:`<a hidden data-nbw="${esc(p.c)}" data-st="${esc(p.st)}" target="_blank" rel="noopener">OFFICIAL WEBSITE &#8599;</a>`);
    if(p.la&&p.lo)lk.push(`<a href="kpc-weather.html?lat=${p.la}&lon=${p.lo}&name=${encodeURIComponent(p.n)}">WEATHER</a>`);lk.push(`<a href="https://pota.app/#/park/${encodeURIComponent(p.c)}" target="_blank" rel="noopener">POTA PAGE &#8599;</a>`);
    return `<div class="kss-it"><div class="kss-t">${esc(p.n)}<span class="kss-tag">POTA &middot; ${esc(p.st)}</span></div><div class="kss-d">${esc(p.c)}${p.t?' &middot; '+esc(p.t):''}</div><div class="kss-lk">${lk.join('')}</div></div>`}).join('')+(nb.length>8?`<div class="kss-n">${nb.length-8} more. Keep typing, or add a state like “TN”.</div>`:'')}
   if(!t.length&&!ps.length&&!nb.length)h='<div class="kss-n"><b>Nothing matched.</b> Try a shorter word, or open <a href="find.html">Find It</a> or the <a href="toolbox.html">Tool Box</a>.</div>';
   else h+='<div class="kss-n"><a href="find.html?q='+encodeURIComponent(inp.value.trim())+'">Open the full Find It list →</a></div>';
-  res.innerHTML=h};
+  res.innerHTML=h;nbWeb()};
  draw();if(!PK)loadParks().then(()=>{if(inp.value.trim()&&norm(inp.value)===q)run()});if(!NB&&q.length>=3)loadNB().then(()=>{if(inp.value.trim()&&norm(inp.value)===q)run()})}
 function mark(){const a=[...res.querySelectorAll('a.kss-it,.kss-it')];a.forEach((e,i)=>e.classList.toggle('sel',i===sel));if(a[sel])a[sel].scrollIntoView({block:'nearest'})}
 function open(){ov.classList.add('on');document.documentElement.style.overflow='hidden';inp.value='';run();loadParks();setTimeout(()=>inp.focus(),30)}
