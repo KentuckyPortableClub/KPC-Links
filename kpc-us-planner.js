@@ -134,7 +134,7 @@ async function livePota(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;e
   el.textContent=`${a.length} activation attempt${a.length===1?'':'s'} (${good} with 10+ QSOs) • last ${KPC.fmtDate(last)}`}catch(e){el.textContent=''}}
 function drawDots(){if(!map)return;dots.clearLayers();
  const show=center?vis():[];
- show.forEach(s=>{const inT=inTrip(s.c),km=KM?KM.mark(s.c):{};const mk=L.circleMarker([s.la,s.lo],{radius:BIG?(inT?9:s.p==='SOTA'?6:7)+(TAP?2:0):(inT?6:s.p==='SOTA'?3.5:4.5)+(TAP?1:0),weight:inT||km.atno?3:2,color:inT?'#f0c96b':km.atno?'#c2410c':'#ffffff',fillColor:COL[s.p],fillOpacity:km.done&&!inT?.35:.95}); /* white ring shows on satellite */
+ show.forEach(s=>{const inT=inTrip(s.c),km=KM?KM.mark(s.c):{};const mk=L.circleMarker([s.la,s.lo],{radius:BIG?(inT?9:s.p==='SOTA'?6:7)+(TAP?2:0):(inT?6:s.p==='SOTA'?3.5:4.5)+(TAP?1:0),weight:inT||km.atno||km.rare?3:2,color:inT?'#f0c96b':km.atno?'#c2410c':km.rare?'#e08a2c':'#ffffff',fillColor:COL[s.p],fillOpacity:km.done&&!inT?.35:.95}); /* white ring shows on satellite */
   const pp=L.popup({maxWidth:300}).setContent(popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)});
  trip.filter(s=>s.p==='PIN').forEach(s=>{const mk=L.marker([s.la,s.lo],{icon:L.divIcon({className:'',html:'<div class="pin-us"></div>',iconSize:[16,16],iconAnchor:[8,16]})});const pp=L.popup({maxWidth:300}).setContent(popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)})}
 
