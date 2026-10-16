@@ -83,6 +83,9 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - KY planner (kpc-planner.js suggest()): Kentucky towns/places first as before, then out-of-state towns + POTA parks marked '(outside Kentucky)' after 300 ms; picking one = farPick(): centres there and shows 'See every park around it in the US Trip Planner ›' (kpc-planner-us.html?q=). Route boxes get the GPS numbers.
 - US planner: suggestions on #usq, #urf, #urt (local = our POTA/SOTA/WWFF list ALL, then towns); route picks remembered in PICKED for resolvePoint(); ?q= searches on load.
 
+## iPhone map labels — Oct 16 2026 (Brandon: 'writing on android and pc looks good… iphone a little weird')
+- window.kpcPlaceLabels(zIndex) (copy at the top of finder.js, kpc-planner.js, kpc-map-tools.js, kpc-padus-layer.js, kpc-us-planner.js) makes the place-name layer of every 'Satellite + Roads/Streets' map: iPhone/iPad = CARTO dark_only_labels @2x (sharp on Retina), everything else = the Esri World_Boundaries_and_Places labels as before. Don't put the Esri label URL back directly.
+
 ## Harmonics Planner (kpc-harmonics.html) — Oct 16 2026
 - Built from Brandon's claude.ai preview 'KPC Harmonics Planner' (another chat). Source .claude/build/harmonics/main.html (assemble.py). Hero = hero-mast.jpg picture + chips, like the Antenna Calculator (Oct 16). All page classes that clashed with site CSS are renamed hm-* and every rule is scoped to main#hm; the band bars (.track/.avoid) carry data-keep-light with their own html[data-theme=dark] colours.
 - Tabs: Resonant multiband wire (EFHW all harmonics / dipole odd only, 468/MHz) + Random-wire lengths; transmitter: My harmonics, Who's causing this?, Campout check, How strong? (FCC 97.307 43/60 dB). Band edges, CW/SSB segments (10m 'whole band' 28.0-29.0) are Brandon's: don't change without asking.

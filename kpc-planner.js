@@ -1,3 +1,9 @@
+/* place-name labels over satellite: iPhones/iPads get CARTO's sharp high-resolution labels (Brandon Oct 16: the Esri
+   labels looked fuzzy on iPhone); Android and computers keep the Esri labels. */
+window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+ var o={maxZoom:19};if(z)o.zIndex=z;
+ if(ios){o.subdomains='abcd';o.attribution='Labels © CARTO, © OpenStreetMap contributors';return L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}@2x.png',o)}
+ return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',o)};
 /* KPC Trip Planner — v20261010l
    Close-up map (zoom 19, satellite + roads), official boundaries and trails,
    drop-a-pin spots with an inside-boundary check, and a reorderable trip
@@ -127,7 +133,7 @@ function makeMap(){
  const esri=p=>`https://server.arcgisonline.com/ArcGIS/rest/services/${p}/MapServer/tile/{z}/{y}/{x}`,EA='Imagery © Esri, Maxar, Earthstar Geographics';
  const base={
   'Road Map':L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}),
-  'Satellite + Roads':L.layerGroup([L.tileLayer(esri('World_Imagery'),{maxZoom:19,attribution:EA}),L.tileLayer(esri('Reference/World_Transportation'),{maxZoom:19}),L.tileLayer(esri('Reference/World_Boundaries_and_Places'),{maxZoom:19})]),
+  'Satellite + Roads':L.layerGroup([L.tileLayer(esri('World_Imagery'),{maxZoom:19,attribution:EA}),L.tileLayer(esri('Reference/World_Transportation'),{maxZoom:19}),kpcPlaceLabels()]),
   'Satellite':L.tileLayer(esri('World_Imagery'),{maxZoom:19,attribution:EA}),
   'Terrain':L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxNativeZoom:17,maxZoom:19,attribution:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors'})};
  let want='Satellite + Roads';try{want=localStorage.getItem('kpcPlanBase2')||'Satellite + Roads'}catch(e){}   // default: Satellite + Roads
