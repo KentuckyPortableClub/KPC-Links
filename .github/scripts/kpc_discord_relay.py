@@ -215,6 +215,14 @@ def photos_of(mid, tmp):
         try: f = os.path.join(tmp, f'{mid}-{n}.jpg'); shrink(data, f); out.append(f)
         except Exception: pass
     return out
+def unsub_line():
+    """One-tap unsubscribe: the email-updates form with 'Unsubscribe' already picked."""
+    f = load('kpc-subscribe-form.json', {})
+    if re.match(r'https://docs\.google\.com/forms/', f.get('url') or '') and f.get('choiceEntry'):
+        u = f['url'] + ('&' if '?' in f['url'] else '?') + 'usp=pp_url&' + urllib.parse.urlencode({f['choiceEntry']: f.get('unsubscribe') or 'Unsubscribe'})
+        return 'To stop these emails, tap here and press Submit: ' + u
+    return 'To stop these emails, use the UNSUBSCRIBE button on ' + SITE + 'news.html'
+
 def flush_mail():
     q = state.get('queue') or []
     if not q: return
@@ -240,7 +248,7 @@ def flush_mail():
                     part = todo[:n]
                     try:
                         mail('' if MAIL_URL else SMTP_USER, part, it['subject'],
-                             it['body'] + '\n\nUnsubscribe: use the UNSUBSCRIBE button on ' + SITE + 'news.html', files)
+                             it['body'] + '\n\n' + unsub_line(), files)
                     except Exception as e:
                         bad.append('email list: ' + str(e)[:150]); break
                     spent(len(part) + 1); it['done'] += [fp(e) for e in part]; todo = todo[n:]
