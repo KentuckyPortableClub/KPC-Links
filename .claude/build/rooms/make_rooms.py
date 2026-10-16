@@ -48,6 +48,10 @@ def other_rooms(skip):
     return ('<section class="kb-sec"><div class="kb-in"><p class="kb-k">MORE ROOMS</p><h2>Keep Exploring</h2><div class="kb-grid">'
             + ''.join(card(h, i, t, d, '') for h, i, t, d in R if h != skip) + '</div></div></section>')
 
+AFF = {  # Brandon Oct 16: program logo policies (POTA: no logo in software without a license) -> say we're independent, no program logos
+ 'pota': '<p class="kb-small rm-note">KPC is an independent ham radio club. We are not part of Parks on the Air&reg; and this is not official POTA material: the official site is <a href="https://parksontheair.com/" target="_blank" rel="noopener">parksontheair.com</a>. Following POTA&rsquo;s graphics policy, we don&rsquo;t use the POTA logo on our pages.</p>',
+ 'wwff': '<p class="kb-small rm-note">KPC is an independent ham radio club. We are not part of WWFF or KFF and this is not official WWFF material: the official sites are <a href="https://wwff.co/" target="_blank" rel="noopener">wwff.co</a> and <a href="https://wwff.us/" target="_blank" rel="noopener">wwff.us</a>.</p>',
+ 'sota': '<p class="kb-small rm-note">KPC is an independent ham radio club. We are not part of Summits on the Air and this is not official SOTA material: the official site is <a href="https://www.sota.org.uk/" target="_blank" rel="noopener">sota.org.uk</a>.</p>'}
 DISCLAIM = ('<p class="kb-small rm-note">These are short, plain-language summaries to get you started. The program\'s own rules always win: '
             'read the official pages linked here before you go, because rules can change.</p>')
 
@@ -110,7 +114,7 @@ PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain wor
         '<b>Hunters don\'t send logs.</b> POTA runs on the honor system: hunters get credit from the logs activators upload.',
         '<b>Be a good guest:</b> follow the law and the park\'s rules, listen to rangers, leave no trace, be courteous to other visitors, and follow the DX Code of Conduct.',
         '<b>Overlapping parks (2-fers):</b> where two POTA parks overlap, one contact can count for both. Parks that only touch at a border are not a 2-fer. A WWFF or SOTA reference on the same ground is a different program, not a 2-fer.',
-    ], 'Sources: <a href="https://parksontheair.com/rules/" target="_blank" rel="noopener">parksontheair.com/rules</a> and the detailed rules at <a href="https://docs.pota.app/" target="_blank" rel="noopener">docs.pota.app</a>.' + DISCLAIM),
+    ], 'Sources: <a href="https://parksontheair.com/rules/" target="_blank" rel="noopener">parksontheair.com/rules</a> and the detailed rules at <a href="https://docs.pota.app/" target="_blank" rel="noopener">docs.pota.app</a>.' + DISCLAIM + AFF['pota']),
     steps('HOW TO START', '🚀 Your First Activation or Hunt', [
         ('📻 Activating', ['Pick a park: <a href="finder.html">KY Park Commander</a> or <a href="kpc-rare.html">Rarely Activated Parks</a>.',
                           'Read its <a href="kpc-park-notes.html">Park Notes</a> and open its <a href="kpc-kit.html">Activation Kit</a> (weather, parking, boundary).',
@@ -166,7 +170,7 @@ PAGES['kpc-wwff-room.html'] = ('WWFF / KFF Room | KPC', 'World Wide Flora & Faun
         '<b>Activators don\'t upload their own logs to WWFF Logsearch.</b> Logs go to the national log manager (for KFF, see wwff.us for how to send yours).',
         '<b>Hunters:</b> every contact counts once the activator\'s log is in Logsearch, no matter how many contacts the activator made. No QSL cards needed.',
         '<b>Same ground as a POTA park?</b> A KFF reference sharing ground with a POTA park is a different program: you can log both on one trip, but that\'s not a POTA 2-fer.',
-    ], 'Sources: <a href="https://wwff.co/wwff_cont/uploads/2025/09/WWFF-Global-Rules-V_5.10.pdf" target="_blank" rel="noopener">WWFF Global Rules v5.10</a> and <a href="https://wwff.co/rules-faq/how-to-activate-a-wwff-reference" target="_blank" rel="noopener">How to activate a WWFF reference</a>.' + DISCLAIM),
+    ], 'Sources: <a href="https://wwff.co/wwff_cont/uploads/2025/09/WWFF-Global-Rules-V_5.10.pdf" target="_blank" rel="noopener">WWFF Global Rules v5.10</a> and <a href="https://wwff.co/rules-faq/how-to-activate-a-wwff-reference" target="_blank" rel="noopener">How to activate a WWFF reference</a>.' + DISCLAIM + AFF['wwff']),
     steps('HOW TO START', '🚀 Your First KFF Activation or Hunt', [
         ('📻 Activating', ['Find a KFF reference: <a href="finder.html">KY Park Commander</a>, our <a href="kpc-guide-wwff.html">KFF guide</a>, or the <a href="kpc-park-info.html">Info Finder</a> for other states.',
                           'Check the boundary with <a href="kpc-in-park.html">Am I in the Park?</a> (it shows WWFF areas too).',
@@ -215,7 +219,7 @@ PAGES['kpc-sota-room.html'] = ('SOTA Room | KPC', 'Summits on the Air in plain w
         '<b>Chasers</b> log their contacts in the SOTA database too, to earn chaser points.',
         '<b>Points</b> for each summit are in the summit list; some associations add a seasonal bonus. Check the W4K manual for Kentucky\'s.',
         '<b>Same ground as a POTA park?</b> A summit inside a POTA park is a different program: you can log both, but that\'s not a POTA 2-fer. For POTA you must still be inside the park boundary.',
-    ], 'Sources: <a href="https://www.sota.org.uk/" target="_blank" rel="noopener">sota.org.uk</a> (General Rules and the W4K Association Reference Manual).' + DISCLAIM),
+    ], 'Sources: <a href="https://www.sota.org.uk/" target="_blank" rel="noopener">sota.org.uk</a> (General Rules and the W4K Association Reference Manual).' + DISCLAIM + AFF['sota']),
     steps('HOW TO START', '🚀 Your First Summit or Chase', [
         ('⛰ Activating', ['Pick a summit: our <a href="kpc-guide-sota.html">Kentucky SOTA guide</a> or the <a href="kpc-sota.html">SOTA Summit Map</a>.',
                          'Post an alert on SOTAwatch and the <a href="kpc-activations.html">Activation Board</a>, and check <a href="kpc-weather.html">Field Weather</a>.',
