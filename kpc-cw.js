@@ -1105,7 +1105,8 @@ function gtShow(msg) {
   if (msg != null) { const f = $('gtFb'); if (f) f.innerHTML = msg; }
   const b = $('gtBest'); if (b) {
     const wk = GPB.weeks && GPB.weeks[weekId()], best = GPB.best;
-    b.innerHTML = (best ? `Your best: <b>${best.pts} points</b>, reached round ${best.round}${best.cleared ? ' · ⚔️ GAUNTLET CLEARED' : ''}` : 'No gauntlet run yet.') + (wk ? ` · This week: <b>${wk.pts}</b>` : '') + (best ? ' <button type="button" class="cw-small" id="gtShare">📣 SHARE</button><span class="dim" id="gtShared"></span>' : '');
+    b.innerHTML = (best ? `Your best: <b>${best.pts} points</b>, reached round ${best.round}${best.cleared ? ' · ⚔️ GAUNTLET CLEARED' : ''}` : 'No gauntlet run yet.') + (wk ? ` · This week: <b>${wk.pts}</b>` : '') + (best ? ' <button type="button" class="cw-small" id="gtShare">📣 SHARE</button><span class="dim" id="gtShared"></span>' : '') + (wk ? ' <a class="cw-small" id="gtSubmit" hidden target="_blank" rel="noopener">🏆 SUBMIT THIS WEEK\'S SCORE</a>' : '');
+    if (wk && window.KPCCWBoard) KPCCWBoard.ready.then(() => { const a = $('gtSubmit'), u = KPCCWBoard.link('gauntlet', weekId(), wk.pts, wk.round, S.call); if (a && u) { a.href = u; a.hidden = false; } });
     const sh = $('gtShare'); if (sh) sh.onclick = async () => { const txt = `${myCall() || 'I'} scored ${best.pts} on the KPC Expert CW Gauntlet (round ${best.round} of 5${best.cleared ? ', cleared it!' : ''}) ⚔️ https://kentuckyportableclub.github.io/KPC-Links/kpc-cw.html#gaunt`; const o = $('gtShared'); try { if (navigator.share) { await navigator.share({ text: txt }); return; } await navigator.clipboard.writeText(txt); if (o) o.textContent = ' Copied.'; } catch (e) { if (o) o.textContent = ' ' + txt; } };
   }
 }
@@ -1558,7 +1559,8 @@ function weeklyShow() {
   const box = $('wkInfo'); if (!box) return;
   const id = weekId(), b = WK[id];
   box.innerHTML = `<b>THIS WEEK'S KPC CHALLENGE</b> <span class="dim">Week ${id.slice(-2)} · same calls for everyone · copy ladder from 15 WPM · new set every Monday</span><br>` +
-    (b ? `Your best this week: <b>${b.pts} points</b> (top ${b.wpm} WPM) <button type="button" class="cw-small" id="wkShare">📣 SHARE</button><span class="dim" id="wkShared"></span>` : '<span class="dim">No score yet this week.</span>');
+    (b ? `Your best this week: <b>${b.pts} points</b> (top ${b.wpm} WPM) <button type="button" class="cw-small" id="wkShare">📣 SHARE</button><a class="cw-small" id="wkSubmit" hidden target="_blank" rel="noopener">🏆 SUBMIT MY SCORE</a><span class="dim" id="wkShared"></span>` : '<span class="dim">No score yet this week.</span>');
+  if (b && window.KPCCWBoard) KPCCWBoard.ready.then(() => { const a = $('wkSubmit'), u = KPCCWBoard.link('copy', id, b.pts, b.wpm, S.call); if (a && u) { a.href = u; a.hidden = false; } });
   const sh = $('wkShare'); if (sh) sh.addEventListener('click', async () => {
     const txt = `${myCall() || 'I'} scored ${b.pts} points (copied up to ${b.wpm} WPM) on the KPC CW Challenge, week ${id.slice(-2)} 🏆 Same calls for everyone: https://kentuckyportableclub.github.io/KPC-Links/kpc-cw.html#qrq`;
     const out = $('wkShared');
