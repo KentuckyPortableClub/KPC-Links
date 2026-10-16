@@ -67,14 +67,22 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  const lines=new ParkLines({maxZoom:19,maxNativeZoom:19,zIndex:5,opacity:glowStrength(),attribution:'Park lines © OpenStreetMap contributors'});
  const beta=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),lines]);
  const terrain=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxNativeZoom:17,maxZoom:19,attribution:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors'});
- const base={'Street':street,'Terrain':terrain,'Satellite':sat,'Satellite + Streets':hyb,'Satellite + Park Lines (Beta)':beta};let want=store.get('kpcUsBase','Street');(base[want]||street).addTo(map);
+ /* Official boundaries (USGS PAD-US, kpc-padus-layer.js): federal + state land outlined over any map */
+ const pad=window.KPCPad?KPCPad(map):null;
+ const offi=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
+  L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19}),L.tileLayer(esri+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19})]);
+ const OFF='Satellite + Official Boundaries';
+ const base={'Street':street,'Terrain':terrain,'Satellite':sat,'Satellite + Streets':hyb,[OFF]:offi,'Satellite + Park Lines (Beta)':beta};let want=store.get('kpcUsBase',pad?OFF:'Street');(base[want]||street).addTo(map);
+ if(pad){if(store.get('kpcUsPad',true)||want===OFF)pad.layer.addTo(map);
+  map.on('baselayerchange',e=>{if(e.name===OFF&&!map.hasLayer(pad.layer))pad.layer.addTo(map)});
+  map.on('overlayadd',e=>{if(e.layer===pad.layer)store.set('kpcUsPad',true)});map.on('overlayremove',e=>{if(e.layer===pad.layer)store.set('kpcUsPad',false)})}
  const glow=L.control({position:'bottomleft'});glow.onAdd=()=>{const d=L.DomUtil.create('div','us-glow');
   d.innerHTML=`<label>PARK LINES <input type="range" min="30" max="100" step="5" value="${Math.round(glowStrength()*100)}" aria-label="Park line strength"></label><small>Zoom in to county level to see park borders</small>`;
   L.DomEvent.disableClickPropagation(d);L.DomEvent.disableScrollPropagation(d);
   d.querySelector('input').oninput=e=>{lines.setOpacity(e.target.value/100);store.set('kpcUsGlow',+e.target.value)};return d};
  const showGlow=name=>{if(name==='Satellite + Park Lines (Beta)')glow.addTo(map);else glow.remove()};showGlow(base[want]?want:'Street');
  map.on('baselayerchange',e=>showGlow(e.name));
- L.control.layers(base,null,{position:'topright',collapsed:true}).addTo(map);map.on('baselayerchange',e=>store.set('kpcUsBase',e.name));
+ L.control.layers(base,pad?{'Official park boundaries (PAD-US)':pad.layer}:null,{position:'topright',collapsed:true}).addTo(map);map.on('baselayerchange',e=>store.set('kpcUsBase',e.name));
  dots=L.featureGroup().addTo(map);
  /* drop mode wins over dots: with big phone tap areas most taps land on a dot, so drop the pin there too */
  let dropBusy=0;const dropAt=ll=>{if(!dropMode||dropBusy)return;dropBusy=1;map.closePopup();setTimeout(()=>{dropBusy=0;const nm=prompt('Name this pin (campsite, gas stop, lookout…):','My pin');if(nm===null)return;
@@ -84,7 +92,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  map.on('popupopen',e=>{const el=e.popup.getElement();if(!el)return;const s=e.popup._kpc;if(!s)return;
   el.querySelectorAll('[data-a]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const a=b.dataset.a;if(a==='add'){inTrip(s.c)?removeStop(s.c):addStop(s);map.closePopup()}else if(a==='bound')showBoundary(s,b)});
   if(s.p==='POTA')livePota(s,el.querySelector('.live'))})}
-function setDrop(on){dropMode=on;if(on&&map)map.closePopup();$('us-drop').setAttribute('aria-pressed',on);$('usmap').classList.toggle('dropping',on);$('us-maphint').textContent=on?'Tap the map where you want your pin.':'Tap a dot to add it to your trip, see Street View or show its boundary. Use the layers button for Street, Satellite or Satellite + Streets.'}
+function setDrop(on){dropMode=on;if(on&&map)map.closePopup();$('us-drop').setAttribute('aria-pressed',on);$('usmap').classList.toggle('dropping',on);$('us-maphint').textContent=on?'Tap the map where you want your pin.':'Tap a dot to add it to your trip, see Street View or show its boundary. Zoom in to county level to see official federal and state boundaries; the layers button switches maps (Satellite + Official Boundaries) or turns the boundaries off.'}
 function links(s){const sv=`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${s.la},${s.lo}`;
  const page=s.p==='POTA'?KPC.links.pota(s.c):s.p==='SOTA'?(s.url||KPC.links.sota(s.c)):s.p==='WWFF'?KPC.links.kff(s.c):'';
  return{sv,dir:KPC.links.dir(s.la,s.lo),page}}
@@ -206,6 +214,12 @@ async function overpass(q,key){if(ovpCache[key])return ovpCache[key];const why=[
  const err=new Error('all servers failed');err.why=why;throw err}
 function sim(a,b){const w=t=>new Set(String(t).toLowerCase().replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(x=>x.length>2&&!['state','park','national','area','the','and','wildlife','management'].includes(x)));const A=w(a),B=w(b);let n=0;A.forEach(x=>{if(B.has(x))n++});return n/Math.max(1,Math.min(A.size,B.size))}
 async function showBoundary(s,btn){if(bound){bound.remove();bound=null}btn.textContent='LOOKING…';btn.disabled=true;
+ /* official first: USGS PAD-US by the park's name near its pin (kpc-bounds.js), then OpenStreetMap */
+ if(window.KPCB&&s.p!=='SOTA'){try{const fs=await KPCB.padusByName(s.n,s.la,s.lo);if(fs&&fs.length){
+   bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.15}}).addTo(map);
+   const nm=fs[0]._nm||s.n;btn.textContent='OFFICIAL OUTLINE: '+String(nm).toUpperCase().slice(0,40);btn.disabled=false;
+   try{map.fitBounds(bound.getBounds(),{maxZoom:14,padding:[20,20]})}catch(e){}
+   status(`Official boundary shown: <b>${esc(nm)}</b> (USGS PAD-US). POTA goes by the official boundary; check the park's own map too.`);return}}catch(e){}}
  const bb=`${(s.la-.3).toFixed(4)},${(s.lo-.4).toFixed(4)},${(s.la+.3).toFixed(4)},${(s.lo+.4).toFixed(4)}`; /* outline kept to ~20 miles around the park: much less data than a whole forest */
  const q=`[out:json][timeout:20];is_in(${s.la},${s.lo})->.a;(way(pivot.a)["boundary"~"protected_area|national_park"];rel(pivot.a)["boundary"~"protected_area|national_park"];way(pivot.a)["leisure"~"park|nature_reserve"];rel(pivot.a)["leisure"~"park|nature_reserve"];);out geom(${bb});`;
  try{const j=await overpass(q,s.c);const els=(j.elements||[]).filter(e=>e.tags);if(!els.length){btn.textContent='NO OUTLINE IN OPENSTREETMAP';return}
@@ -214,7 +228,7 @@ async function showBoundary(s,btn){if(bound){bound.remove();bound=null}btn.textC
   const lines=[];if(e.type==='way'&&e.geometry)lines.push(e.geometry.filter(Boolean).map(p=>[p.lat,p.lon]));
   else(e.members||[]).forEach(m=>{if(m.type==='way'&&m.geometry)lines.push(m.geometry.filter(Boolean).map(p=>[p.lat,p.lon]))});
   bound=L.featureGroup(lines.filter(l=>l.length>1).map(l=>{const closed=l.length>3&&l[0][0]===l[l.length-1][0]&&l[0][1]===l[l.length-1][1];return closed?L.polygon(l,{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.12,interactive:false}):L.polyline(l,{color:'#f0c96b',weight:3,interactive:false})})).addTo(map);
-  btn.textContent='OUTLINE: '+String(e.tags.name||'unnamed area').toUpperCase().slice(0,40);status(`Boundary shown: <b>${esc(e.tags.name||'unnamed area')}</b> from OpenStreetMap${sim(s.n,e.tags.name||'')<.5?' (closest match: it may not be the exact POTA park area)':''}.`)}
+  btn.textContent='OUTLINE (NOT OFFICIAL): '+String(e.tags.name||'unnamed area').toUpperCase().slice(0,30);status(`No official boundary found, so this outline is from OpenStreetMap (a volunteer map, not official): <b>${esc(e.tags.name||'unnamed area')}</b>${sim(s.n,e.tags.name||'')<.5?' (closest match: it may not be the exact POTA park area)':''}.`)}
  catch(err){btn.textContent='BOUNDARY NOT AVAILABLE, TAP TO TRY AGAIN';{const pop=btn.closest('.us-pop');if(pop){let w=pop.querySelector('.bwhy');if(!w){w=document.createElement('div');w.className='bwhy';w.style.cssText='font-size:11px;color:#b5452b;margin-top:6px;line-height:1.4';pop.appendChild(w)}w.textContent='Why: '+(err.why||[err.message]).join(' \u2022 ')}}status('Boundary lookup failed. What each server said: <b>'+esc((err.why||[err.message]).join(' \u2022 '))+'</b>. Send a screenshot of this to the site admin. Meanwhile try the <b>Satellite + Park Lines (Beta)</b> map in the layers button.');btn.disabled=false;return}btn.disabled=false}
 
 /* ---------- trip ---------- */
