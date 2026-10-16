@@ -13,7 +13,9 @@ def get(u, t=90):
             with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=t) as f: return json.loads(f.read().decode('utf-8', 'replace'))
         except Exception as e: err = e; time.sleep(3)
     raise err
-def note(t, m): print(f'::notice title={t}::' + str(m).replace('\n', ' ')[:3000])
+def note(t, m):
+    line = f'{t} => ' + str(m).replace('\n', ' ')[:3000]; print(line)
+    if os.environ.get('OUT'): open(os.environ['OUT'], 'a').write(line + '\n')
 def svc(x): return x['url'] if x['url'].startswith('http') else NPS + x['url']
 MODE = os.environ.get('MODE', 'build')
 if MODE == 'info':
