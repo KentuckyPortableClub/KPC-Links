@@ -130,7 +130,7 @@ window.kpcGeocode=window.kpcGeocode||(function(){let lastNom=0,seq=0;
   for(const st of steps){const r=await st();if(r&&r.length)return r}return[]}})();
 /* "Show where I am" map button (shared by both trip planners): live blue dot + accuracy ring. First tap finds you and
    centers the map; tap again to re-center when you have panned away, or to turn it off when you are in view. */
-window.kpcLocate=window.kpcLocate||function(map){if(!window.L||!map||!map.getContainer)return null;
+window.kpcLocate=window.kpcLocate||function(map,opts){opts=opts||{};if(!window.L||!map||!map.getContainer)return null;
  if(!document.getElementById('kpc-locate-css')){const st=document.createElement('style');st.id='kpc-locate-css';
   st.textContent='.kpc-locate a{display:flex;align-items:center;justify-content:center;width:34px;height:34px;font-size:20px;line-height:1;color:#1f6fd1;background:#fff;text-decoration:none}.kpc-locate a.on{background:#1f6fd1;color:#fff}.kpc-locate a.busy{opacity:.6}@keyframes kpcpulse{0%{box-shadow:0 0 0 0 rgba(31,111,209,.55)}100%{box-shadow:0 0 0 14px rgba(31,111,209,0)}}.kpc-me{width:18px;height:18px;border-radius:50%;background:#1f6fd1;border:3px solid #fff;animation:kpcpulse 1.6s infinite}';document.head.appendChild(st)}
  let wid=null,dot=null,ring=null,first=true,btn;
@@ -143,7 +143,7 @@ window.kpcLocate=window.kpcLocate||function(map){if(!window.L||!map||!map.getCon
    if(first){map.setView(ll,Math.max(map.getZoom(),13));first=false}},
   err=>{stop();alert(err&&err.code===1?'Location is turned off for this site. Allow location in your browser settings to see where you are.':'Your location isn’t available right now. Try again in the open, away from buildings.')},
   {enableHighAccuracy:true,maximumAge:10000,timeout:30000})}
- const C=L.control({position:'topleft'});
+ const C=L.control({position:opts.position||'topleft'});
  C.onAdd=()=>{const d=L.DomUtil.create('div','leaflet-bar kpc-locate');btn=L.DomUtil.create('a','',d);btn.href='#';btn.setAttribute('role','button');btn.title='Show where I am';btn.setAttribute('aria-label','Show where I am');btn.innerHTML='&#9678;';
   L.DomEvent.disableClickPropagation(d);L.DomEvent.on(btn,'click',e=>{L.DomEvent.preventDefault(e);
    if(wid===null)start();else if(dot&&!map.getBounds().pad(-0.1).contains(dot.getLatLng()))map.setView(dot.getLatLng(),Math.max(map.getZoom(),13));else stop()});return d};

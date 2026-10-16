@@ -2,7 +2,7 @@
    CARTO now answers 'API KEY REQUIRED' (Brandon's iPhone screenshot). Same labels on every device. */
 window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z)o.zIndex=z;
  return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',o)};
-/* KPC US Trip Planner (Lite).
+/* KPC KPC US Trip Planner.
    Spots: locations.json (rows [prog,ref,name,lat,lon,url,...]) for POTA, SOTA and WWFF, plus POTA parks loaded live
    from api.pota.app/location/parks/US-XX for the states near the search (adds parks newer than the file).
    Place search: OpenStreetMap Nominatim (only when someone presses Search). Boundaries: OpenStreetMap via Overpass,
@@ -43,8 +43,8 @@ async function addLive(la,lo,mi){if(!progs.includes('POTA'))return 0;let added=0
 function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>';return}
  /* dots are drawn on a canvas; tolerance widens the tap area around each dot (more on touch screens) */
  map=L.map('usmap',{preferCanvas:true,renderer:L.canvas({padding:.5,tolerance:TAP?14:5}),scrollWheelZoom:false}).setView([38.5,-96],4);
- try{kpcFullBtn(map)}catch(e){}
- if(window.kpcLocate)kpcLocate(map);
+ try{kpcFullBtn(map,'bottomright')}catch(e){}
+ if(window.kpcLocate)kpcLocate(map,{position:'bottomright'});
  const esri='https://server.arcgisonline.com/ArcGIS/rest/services/';
  const street=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'});
  const sat=L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
@@ -52,7 +52,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);
  const terrain=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxNativeZoom:17,maxZoom:19,attribution:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors'});
  /* Official boundaries (USGS PAD-US, kpc-padus-layer.js): federal + state land outlined over any map */
- const pad=window.KPCPad?KPCPad(map):null;
+ const pad=window.KPCPad?KPCPad(map,{keyPos:'bottomleft'}):null;
  const offi=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);   /* streets + names above the boundary outlines (zIndex 6) */
  const OFF='Satellite + Streets + Official Boundaries';
@@ -373,9 +373,9 @@ loadAll().then(()=>{const shared=loadShared();drawTrip();
 })();
 
 /* ⛶ FULL / ✕ EXIT button (same as the Kit / Info Finder / In-Park maps; Esc exits) */
-function kpcFullBtn(map){if(!window.L||!map)return;if(!document.getElementById('kpc-full-css')){const c=document.createElement('style');c.id='kpc-full-css';
+function kpcFullBtn(map,pos){if(!window.L||!map)return;if(!document.getElementById('kpc-full-css')){const c=document.createElement('style');c.id='kpc-full-css';
  c.textContent='.kfull-b{min-height:36px;padding:6px 10px;border:2px solid rgba(0,0,0,.25);border-radius:6px;background:#fff;color:#1378ff;font:900 12px Arial,sans-serif;letter-spacing:.6px;cursor:pointer}.kmap-full{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;max-height:none!important;min-height:0!important;margin:0!important;border-radius:0!important;z-index:5000!important}html.kmap-lock,html.kmap-lock body{overflow:hidden!important}';document.head.appendChild(c)}
  const box=map.getContainer();let on=false,ph=null;
- const C=L.Control.extend({options:{position:'topleft'},onAdd(){const b=L.DomUtil.create('button','kfull-b');b.type='button';b.title='Full screen map';b.innerHTML='⛶ FULL';L.DomEvent.disableClickPropagation(b);
+ const C=L.Control.extend({options:{position:pos||'topleft'},onAdd(){const b=L.DomUtil.create('button','kfull-b');b.type='button';b.title='Full screen map';b.innerHTML='⛶ FULL';L.DomEvent.disableClickPropagation(b);
   const set=v=>{on=v;box.classList.toggle('kmap-full',on);document.documentElement.classList.toggle('kmap-lock',on);b.innerHTML=on?'✕ EXIT':'⛶ FULL';b.title=on?'Exit full screen':'Full screen map';if(on)ph=window.scrollY;else if(ph!=null)window.scrollTo(0,ph);setTimeout(()=>map.invalidateSize(),60)};
   b.onclick=()=>set(!on);document.addEventListener('keydown',e=>{if(on&&e.key==='Escape')set(false)});return b}});new C().addTo(map)}

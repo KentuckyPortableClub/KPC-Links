@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <script src="kpc-theme.js?v=20261014kz"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>US Trip Planner (Lite) | KPC</title>
+<title>KPC US Trip Planner | KPC</title>
 <!-- KPC icons & share preview -->
 <link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
 <meta property="og:site_name" content="Kentucky Portable Club">
 <meta property="og:type" content="website">
-<meta property="og:title" content="US Trip Planner (Lite) | KPC">
+<meta property="og:title" content="KPC US Trip Planner | KPC">
 <meta property="og:description" content="Plan a radio trip anywhere in the US: POTA parks, SOTA summits and WWFF references near any town, with Street View, boundaries and a Google Maps route.">
 <meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-planner-us.html">
 <meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
@@ -21,10 +21,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <link rel="stylesheet" href="kpc-tools.css?v=20261015a">
-<script src="kpc-tools.js?v=20261016a"></script>
+<script src="kpc-tools.js?v=20261016b"></script>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 </head>
-<body>
+<body class="usp">
 <header class="site-nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="KPC Home">
@@ -92,15 +92,58 @@
   </div>
 </header>
 <main>
-<section class="tool-head th-flag"><div class="wrap">
-<p class="eyebrow">KPC TRIP PLANNER &bull; LITE</p>
-<h1>US TRIP <span>PLANNER (LITE)</span></h1>
-<p class="sub">Find POTA parks, SOTA summits and WWFF references near any town in the US, or along your whole drive. Tap any dot for its official website, nearby campgrounds and picnic shelters, tips from other operators, and the other programs at the same spot. See official park boundaries and national trails on the map, spot the rare parks, and send your route to Google Maps. For Kentucky, use the full <a href="kpc-planner.html" style="color:#f0c96b">KPC Trip Planner</a>.</p>
-<div class="th-chips"><span>🇺🇸 Any town in the US</span><span>🛣️ Parks along your drive</span><span>🗺 Official boundaries</span><span>⛺ Campgrounds &amp; shelters</span><span>🔥 Rare parks</span><span>🚗 Route to Google Maps</span></div></div></section>
+<style id="usp-look">
+/* KPC US Trip Planner look (Oct 16 2026, Brandon: 'organized and neat… an image behind the rest of the page') */
+body.usp{background:#0b120e}
+body.usp::before{content:"";position:fixed;inset:0;z-index:-1;background:#0b120e url('us-planner-bg.jpg') center/cover no-repeat}
+@media(max-width:700px){body.usp::before{background-image:url('us-planner-bg-mobile.jpg')}}
+body.usp main{background:transparent}
+.usp-hero{position:relative;color:#fff;background:#0b120e url('hero-map.jpg') center/cover no-repeat;border-bottom:3px solid #d5a63a}
+.usp-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,10,8,.92) 0%,rgba(6,10,8,.72) 48%,rgba(6,10,8,.25) 100%)}
+.usp-hero .in{position:relative;max-width:1160px;margin:0 auto;padding:54px 20px 46px}
+.usp-hero .eb{font:900 12px Arial,sans-serif;letter-spacing:3px;color:#f0c96b;margin:0 0 10px}
+.usp-hero h1{font:900 clamp(34px,6vw,62px)/1 Georgia,serif;margin:0 0 14px;letter-spacing:.5px;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.usp-hero h1 span{color:#f0c96b}
+.usp-hero .lead{max-width:640px;font:17px/1.55 Arial,sans-serif;color:#efe9da;margin:0 0 18px}
+.usp-hero .lead a{color:#f0c96b;font-weight:700}
+.usp-chips{display:flex;flex-wrap:wrap;gap:8px}
+.usp-chips span{font:800 12px Arial,sans-serif;letter-spacing:.6px;padding:8px 12px;border-radius:999px;background:rgba(0,0,0,.45);border:1px solid rgba(240,201,107,.55);color:#fff;backdrop-filter:blur(3px)}
+.usp-hero .go{display:inline-block;margin-top:20px;font:900 13px Arial,sans-serif;letter-spacing:1.2px;padding:13px 20px;border-radius:10px;background:#d5a63a;color:#0b0b0b;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+body.usp .toolnav{background:rgba(7,7,7,.85)}
+.usp-wrap{max-width:1160px;margin:0 auto;padding:6px 16px 30px;box-sizing:border-box}
+.usp-card{background:rgba(255,250,240,.97);border-radius:16px;box-shadow:0 18px 44px rgba(0,0,0,.38);padding:20px;margin:20px 0;border:1px solid rgba(213,166,58,.35)}
+.usp-h{display:flex;align-items:center;gap:12px;margin:0 0 14px}
+.usp-h .n{flex:0 0 34px;height:34px;border-radius:50%;background:#171717;color:#f0c96b;font:900 15px/34px Arial,sans-serif;text-align:center;border:2px solid #d5a63a}
+.usp-h h2{margin:0;font:900 22px/1.15 Georgia,serif;color:#171717}
+.usp-h small{display:block;font:13px/1.4 Arial,sans-serif;color:#5e584d;margin-top:2px}
+.usp-maphead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:0 0 10px}
+.usp-brand{display:flex;align-items:center;gap:10px;font:900 13px Arial,sans-serif;letter-spacing:1.4px;color:#1d5a3a}
+.usp-brand img{width:34px;height:34px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px #d5a63a}
+.usp-brand b{display:block;font-size:11px;letter-spacing:2px;color:#8a6a1c}
+body.usp #usmap{border-radius:12px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.usp-hint{font:13px/1.5 Arial,sans-serif;color:#5e584d;margin:10px 2px 0}
+.usp-key{display:flex;flex-wrap:wrap;gap:6px 14px;margin:8px 2px 0;font:12px Arial,sans-serif;color:#3d3a33}
+.usp-key span{display:inline-flex;align-items:center;gap:6px}
+.usp-key i{width:11px;height:11px;border-radius:50%;display:inline-block;border:1px solid #fff;box-shadow:0 0 0 1px #888}
+.usp-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.usp-two>.usp-card{margin:0}
+#near-empty{display:none}.near[style*="none"]~#near-empty{display:block}
+body.usp .km-bar{margin:0}
+body.usp .trip,body.usp .near{margin-top:0}
+body.usp .usp-about .note{margin:0;background:none;border:0;padding:0;font:13px/1.6 Arial,sans-serif;color:#3d3a33}
+body.usp .usp-about .kpc-disclaim{max-width:none!important;margin:14px 0 0!important;padding:0!important}
+@media(max-width:900px){.usp-two{grid-template-columns:1fr}.usp-hero .in{padding:38px 16px 34px}}
+@media(max-width:600px){body.usp #usmap .leaflet-control-attribution{font-size:9px;line-height:1.3}body.usp #usmap .leaflet-bottom.leaflet-left{bottom:24px}.usp-wrap{padding:2px 10px 24px}.usp-card{padding:15px;border-radius:14px;margin:14px 0}.usp-h h2{font-size:19px}.usp-hero .lead{font-size:15px}}
+</style>
+<section class="usp-hero"><div class="in">
+<p class="eb">KENTUCKY PORTABLE CLUB &bull; ALL 50 STATES &bull; POTA &bull; SOTA &bull; WWFF</p>
+<h1>KPC US <span>TRIP PLANNER</span></h1>
+<p class="lead">Plan a radio trip anywhere in the country. Find parks, summits and WWFF references near any town or along your whole drive, tap a dot for its official website, campgrounds, picnic shelters and tips, and send your route to Google Maps. Staying in Kentucky? Use the <a href="kpc-planner.html">KPC Trip Planner</a>.</p>
+<div class="usp-chips"><span>🇺🇸 Any town in the US</span><span>🛣️ Parks along your drive</span><span>🗺 Official boundaries</span><span>⛺ Campgrounds &amp; shelters</span><span>🔥 Rare parks</span><span>🚗 Route to Google Maps</span></div>
+<a class="go" href="#plan">START PLANNING ↓</a>
+</div></section>
 <nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-sota.html">SOTA</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-planner-us.html" aria-current=page>US Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html">Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html">Antenna</a><a href="parks.html">← Parks</a></div></nav>
-<aside class="kpc-disclaim" role="note" style="max-width:1160px;margin:18px auto;padding:0 16px;box-sizing:border-box"><div style="background:#fff8e6;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:8px;padding:12px 16px;color:#1c1c1c;font:14px/1.55 Arial,Helvetica,sans-serif"><b>Use our tools, then check for yourself.</b> KPC builds these maps, guides and tools to help you plan, but we’re volunteers working from public data, and we make mistakes. Boundaries change, maps don’t always line up, and some land inside a park line is private. Before you activate, check the official agency map, confirm the land is public and open, and follow the rules of each program you’re activating. You’re responsible for making sure your activation is valid. Spot something wrong? <a href="contact.html" style="color:#1d5a3a;font-weight:700">Let us know</a> so we can fix it.</div></aside>
-
-<section class="section"><div class="wrap">
+<div class="usp-wrap">
 <style>
 .us-top{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
 .us-top .field input,.us-top .field select{font:inherit;font-size:16px;padding:10px 12px;border:1px solid #cbbf9f;border-radius:6px;background:#fff;min-height:44px;color:#171717}
@@ -144,7 +187,8 @@
 .ctr-us{width:14px;height:14px;border-radius:50%;background:#f0c96b;border:3px solid #171717}
 @media(max-width:900px){#usmap{height:440px}#usq{min-width:0;width:100%}.us-top .field{flex:1 1 100%}}
 </style>
-<div class="panel">
+<section class="usp-card" id="plan">
+<div class="usp-h"><span class="n">1</span><div><h2>Where are you headed?</h2><small>Search near a town, ZIP, park number or GPS spot, or along a drive from start to finish.</small></div></div>
 <div class="us-modes" id="us-modes" role="group" aria-label="Search type"><button type="button" class="chip" data-m="place" aria-pressed="true">&#128205; NEAR A PLACE</button><button type="button" class="chip" data-m="route" aria-pressed="false">&#128663; ALONG A ROUTE</button></div>
 <form class="us-top" id="urf-form" autocomplete="off" style="display:none">
 <label class="field">START<input id="urf" placeholder="Town, address, ZIP, park # or GPS (37.57, -84.29)" spellcheck="false"></label>
@@ -166,14 +210,21 @@
 </div>
 <div id="us-hits"></div>
 <div id="us-status">Loading the park list&hellip;</div>
-</div>
+</section>
+<section class="usp-card">
+<div class="usp-h"><span class="n">2</span><div><h2>Find new ones</h2><small>Add your call sign to fade out what you've already activated. ATNO and RARE show the parks almost nobody has done.</small></div></div>
 <div id="km-bar"></div>
-<div class="us-mapbar"><button type="button" class="chip" id="us-drop" aria-pressed="false">&#128204; DROP A PIN</button><span class="muted" style="font-size:13px" id="us-maphint">Tap a dot for its card: add it to your trip, Street View, parking, its outline and more. Pink lines = national scenic trails, orange dashes = national historic trails (all POTA parks; tap one). Zoom in to see official boundaries (gold = federal, light blue = state, orange = Army Corps); the layers button switches maps.</span></div>
-<div class="us-brand" style="display:flex;align-items:center;gap:8px;margin:8px 0 6px;font:900 13px Arial,sans-serif;letter-spacing:1.4px;color:#1d5a3a"><img src="KPC-logo.png" alt="" width="28" height="28" style="width:28px;height:28px;border-radius:50%;object-fit:cover">KENTUCKY PORTABLE CLUB</div>
-<div class="map" id="usmap" role="application" aria-label="US trip planner map"></div>
-<div class="grid2">
-<div class="trip panel" id="trip">
-<h3 style="margin:0 0 4px;font-family:Georgia,serif">Your Trip</h3>
+</section>
+<section class="usp-card">
+<div class="usp-maphead"><div class="usp-brand"><img src="KPC-logo.png" alt="" width="34" height="34"><div><b>KPC US TRIP PLANNER</b>KENTUCKY PORTABLE CLUB</div></div><button type="button" class="chip" id="us-drop" aria-pressed="false">&#128204; DROP A PIN</button></div>
+<div class="map" id="usmap" role="application" aria-label="KPC US Trip Planner map"></div>
+<p class="usp-hint" id="us-maphint">Tap a dot for its card: add it to your trip, Street View, parking, its outline and more. Pink lines = national scenic trails, orange dashes = national historic trails (all POTA parks; tap one). Zoom in to see official boundaries (gold = federal, light blue = state, orange = Army Corps); the layers button switches maps.</p>
+<div class="usp-key"><span><i style="background:#1d5a3a"></i>POTA park</span><span><i style="background:#8a4b14"></i>SOTA summit</span><span><i style="background:#2b6cb0"></i>WWFF</span><span><i style="background:#fff;box-shadow:0 0 0 2px #c2410c"></i>ATNO</span><span><i style="background:#fff;box-shadow:0 0 0 2px #e08a2c"></i>Rare</span><span><i style="background:#fff;box-shadow:0 0 0 2px #f0c96b"></i>In your trip</span></div>
+</section>
+<div class="usp-two">
+<section class="usp-card">
+<div class="usp-h"><span class="n">3</span><div><h2>Your trip</h2><small>Put your stops in order, draw the drive and share it.</small></div></div>
+<div class="trip" id="trip">
 <p class="muted" style="margin:0 0 10px;font-size:13px" id="trip-empty">No stops yet. Tap a dot on the map, use ADD in the list, or drop your own pin.</p>
 <ol id="trip-list"></ol>
 <div id="trip-sum"></div>
@@ -187,15 +238,26 @@
 <label style="display:none;gap:8px;align-items:center;margin-top:12px;font-size:13px" id="t-fromme-l"><input type="checkbox" id="t-fromme"> Start the Google route from where I am</label>
 <div id="trip-legs"></div>
 </div>
+
+</section>
+<section class="usp-card">
+<div class="usp-h"><span class="n">4</span><div><h2>What's nearby</h2><small>Everything in range, closest first. Tap ADD to put it in your trip.</small></div></div>
 <div class="near" id="near" style="display:none">
-<h3 style="margin:0 0 8px;font-family:Georgia,serif" id="near-h">Nearby</h3>
+<h3 style="margin:0 0 8px;font:900 14px Arial,sans-serif;letter-spacing:1px;color:#1d5a3a" id="near-h">Nearby</h3>
 <div class="tablewrap"><table class="list"><thead><tr><th>SPOT</th><th id="near-th2">MILES</th><th></th></tr></thead><tbody id="near-body"></tbody></table></div>
 </div>
+
+<p class="muted" id="near-empty" style="font-size:13px;margin:0">Search a town or a route above and everything in range shows up here.</p>
+</section>
 </div>
+<section class="usp-card usp-about">
+<div class="usp-h"><span class="n">i</span><div><h2>Where this comes from</h2></div></div>
 <div class="note">This planner covers the whole US. Park types, official websites and how you can activate come from POTA&rsquo;s park list, refreshed every week; campgrounds and picnic shelters come from Recreation.gov (federal land only, so check state parks on their own site); SOTA summits come from SOTA and WWFF references from the WWFF directory. Boundaries on the map are the official USGS PAD-US outlines; when a park has none, its outline is from OpenStreetMap and is marked NOT OFFICIAL. For Kentucky, the full <a href="kpc-planner.html">KPC Trip Planner</a> adds hand-checked access points, 2-fers and more. Place search by OpenStreetMap Nominatim. Routes open in Google Maps.</div>
-</div></section>
+<aside class="kpc-disclaim" role="note" style="max-width:1160px;margin:18px auto;padding:0 16px;box-sizing:border-box"><div style="background:#fff8e6;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:8px;padding:12px 16px;color:#1c1c1c;font:14px/1.55 Arial,Helvetica,sans-serif"><b>Use our tools, then check for yourself.</b> KPC builds these maps, guides and tools to help you plan, but we’re volunteers working from public data, and we make mistakes. Boundaries change, maps don’t always line up, and some land inside a park line is private. Before you activate, check the official agency map, confirm the land is public and open, and follow the rules of each program you’re activating. You’re responsible for making sure your activation is valid. Spot something wrong? <a href="contact.html" style="color:#1d5a3a;font-weight:700">Let us know</a> so we can fix it.</div></aside>
+</section>
+</div>
 <script src="kpc-my-parks.js?v=20261016a"></script>
-<script src="kpc-bounds.js?v=20261015g"></script><script src="kpc-padus-layer.js?v=20261016g"></script><script src="kpc-place-suggest.js?v=20261016a"></script><script src="kpc-trails-layer.js?v=20261016a"></script><script src="kpc-us-planner.js?v=20261016t"></script>
+<script src="kpc-bounds.js?v=20261015g"></script><script src="kpc-padus-layer.js?v=20261016h"></script><script src="kpc-place-suggest.js?v=20261016a"></script><script src="kpc-trails-layer.js?v=20261016a"></script><script src="kpc-us-planner.js?v=20261016u"></script>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps.</div>
 <script src="kpc-search.js?v=20261016j" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script>
