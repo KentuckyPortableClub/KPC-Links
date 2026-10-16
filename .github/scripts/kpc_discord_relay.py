@@ -580,7 +580,7 @@ done = 0
 for mid in list(posts):
     if not visible(mid): continue
     m = byid.get(mid)
-    if m is None: unpublish(mid); done += 1
+    if m is None or 'skip' in parse(m)['flags']: unpublish(mid); done += 1   # deleted, or edited to start with Skip:
     elif (m.get('edited_timestamp') or '') + '|' + str(len(m.get('attachments', []))) != posts[mid].get('sig'): sync(m, False); done += 1
 # 2) waiting (scheduled) posts: deleted, edited to a new time, or due now
 for mid, due in list(sched.items()):
