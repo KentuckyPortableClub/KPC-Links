@@ -191,7 +191,8 @@
     ['eCall', 'eRef', 'eName', 'eSt', 'eNote', 'eRs', 'eRr'].forEach(i => $(i).value = '');
     if (!keepRadio) { $('eFreq').value = ''; $('eBand').value = ''; }
     modeSet();
-    $('eWho').innerHTML = ''; WHO = null; SPOTLL = null; EDIT = null; $('eLog').innerHTML = '✓ LOG IT <small>(Enter)</small>';
+    $('eWho').innerHTML = ''; WHO = null; SPOTLL = null; if (EDIT) drawer(false); EDIT = null; $('eLog').textContent = '⬆'; $('eLog').setAttribute('aria-label', 'Log it'); $('eDel').hidden = true; $('dEdit').hidden = true;
+    if ($('eManual').checked) { $('eManual').checked = false; $('eWhen').hidden = true; $('eTime').textContent = 'Time: now (UTC)'; }
   }
   function entryInit() {
     const lastF = get('kpcLgRadio', null); if (lastF) { $('eFreq').value = lastF.f || ''; $('eMode').value = lastF.m || 'SSB'; }
@@ -211,7 +212,7 @@
     if (!myCall()) { toast('Put YOUR call in ⚙ STATION first.'); stationOpen(true); $('myCall').focus(); return; }
     if (!myParks().length && !myWwff() && !mySota()) { toast('Put your park, WWFF or summit number in ⚙ STATION first.'); stationOpen(true); $('myPark').focus(); return; }
     const k = kHzOf($('eFreq').value), band = bandOf(k);
-    if (!k || !band) { toast('Type the frequency (like 14.285 or 14285).'); $('eFreq').focus(); return; }
+    if (!k || !band) { toast('Type the frequency (like 14.285 or 14285).'); drawer(true); $('eFreq').focus(); return; }
     const mode = $('eMode').value;
     let when = new Date();
     if ($('eManual').checked && $('eWhen').value) { const w = new Date($('eWhen').value + ':00Z'); if (!isNaN(w)) when = w; }
@@ -224,32 +225,74 @@
       my: EDIT ? EDIT.my : stationCall(), op: EDIT ? (EDIT.op || EDIT.my) : curOp(), pk: EDIT ? EDIT.pk : myParks().join(','), wf: EDIT ? (EDIT.wf || '') : myWwff(), so: EDIT ? (EDIT.so || '') : mySota(), mg: EDIT ? EDIT.mg : SET.grid, pw: EDIT ? EDIT.pw : SET.pwr, x: 0 };
     if (EDIT) { const i = L.q.findIndex(x => x.id === EDIT.id); if (i >= 0) L.q[i] = q; toast('✓ Contact updated.'); }
     else { L.q.push(q); const n = actList().filter(x => x.my === q.my).length; toast(`✓ ${call} logged${multi() ? ' by ' + q.op : ''} (${n} this activation${multi() && !SET.share ? ' for ' + q.my : ''})${n === 10 ? ': 🎉 that makes it a valid activation!' : ''}`, () => { L.q = L.q.filter(x => x.id !== q.id); save(); drawAll(); }); NEWID = q.id; }
-    save(); clearForm(true); drawAll(); $('eCall').focus();
+    save(); clearForm(true); drawAll(); radioTxt(); $('eCall').focus();
   }
   let NEWID = null;
 
   /* ---------------- log table ---------------- */
   let LV = 'act';
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   function drawLog() {
     const s = $('lSearch').value.trim().toUpperCase();
-    let R = (LV === 'act' ? actList() : L.q.slice()).sort((a, b) => b.t - a.t);
+    let R = (LV === 'act' ? actList() : L.q.slice()).sort((a, b) => tsOf(a) - tsOf(b) || a.t - b.t);
     if (s) R = R.filter(q => [q.call, q.ref, q.name, q.st, q.qth, q.pk, q.band, q.mode].join(' ').toUpperCase().includes(s));
     $('lCount').textContent = `${R.length} shown · ${L.q.length} in all`;
-    $('lBody').innerHTML = R.length ? R.slice(0, 500).map(q => `<tr data-id="${q.id}"${q.id === NEWID ? ' class="new"' : ''}><td class="m">${LV === 'all' ? esc(fD(q.d).slice(5)) + ' ' : ''}${fT(q.tm)}</td><td class="c">${esc(q.call)}${multi() || (q.op && q.op !== q.my) ? `<div class="lg-mu" style="margin:0;font:11px Arial">by ${esc(q.op || q.my)}</div>` : ''}</td><td class="m">${esc(q.f)}</td><td class="hs">${esc(q.mode)}</td><td class="hs m">${esc(q.rs)} / ${esc(q.rr)}</td><td>${q.ref ? `<span class="p2p">${esc(q.ref)}</span>` : ''}${LV === 'all' ? `<div class="lg-mu" style="margin:0">at ${esc(q.pk)}</div>` : ''}</td><td class="hs">${esc([q.name, q.st].filter(Boolean).join(' · '))}</td><td><button type="button" data-ed="${q.id}" aria-label="Edit">✏️</button><button type="button" data-del="${q.id}" aria-label="Delete">🗑</button></td></tr>`).join('')
-      : `<tr><td colspan="8"><div class="lg-empty">${LV === 'act' ? (myParks().length ? 'No contacts in this activation yet. Tap a spot or type a call above.' : 'Put your park number in ⚙ STATION, then log away.') : 'Nothing logged yet.'}</div></td></tr>`;
+    $('tN').textContent = actList().length;
+    if (!R.length) { $('lList').innerHTML = `<div class="lg-empty">${LV === 'act' ? (myParks().length || myWwff() || mySota() ? 'No contacts in this activation yet. Tap a spot or type a call below.' : 'Put your park number in ⚙ STATION, then log away.') : 'Nothing logged yet.'}</div>`; return; }
+    R = R.slice(-800); const out = []; let day = '';
+    const byDay = {}; R.forEach(q => { byDay[q.d] = byDay[q.d] || []; byDay[q.d].push(q); });
+    R.forEach(q => {
+      if (q.d !== day) { day = q.d; const D = byDay[day], sts = new Set(D.map(x => x.st).filter(v => /^[A-Z]{2}$/.test(v))).size, refs = new Set(D.map(x => [x.pk, x.wf, x.so].filter(Boolean).join(' '))).size;
+        out.push(`<div class="lg-day"><b>${MON[+day.slice(4, 6) - 1]} ${+day.slice(6, 8)}</b><span>${D.length} QSO${D.length > 1 ? 's' : ''}</span><i>${sts ? '🗺 ' + sts + ' states' : ''}${LV === 'all' ? ' · ' + esc([...new Set(D.map(x => x.pk || x.wf || x.so))].join(', ')) : ''}</i></div>`); }
+      const f = String(q.f || ''), fi = f.split('.'), fk = fi.length > 1 ? `${fi[0]}.${(fi[1] + '000').slice(0, 3)}<small>.${(fi[1] + '0000').slice(3, 4)}</small>` : esc(f);
+      out.push(`<div class="lr${q.id === NEWID ? ' new' : ''}${EDIT && EDIT.id === q.id ? ' ed' : ''}" data-ed="${q.id}" role="button" tabindex="0"><span class="t">${fT(q.tm)}z</span><span class="f">${fk}</span><span class="c">${esc(q.call)}${multi() || (q.op && q.op !== q.my) ? `<small>${esc(q.op || q.my)}</small>` : ''}</span><span class="s">${esc(q.st)}</span><span class="n">${esc(q.name)}</span><span class="p" title="${esc(q.ref)}">${q.ref ? '🌲' : ''}${q.note ? '📝' : ''}</span><span class="r">${esc(q.rs)}</span><span class="r">${esc(q.rr)}</span></div>`);
+    });
+    $('lList').innerHTML = out.join('');
+    if (!s) $('lList').scrollTop = $('lList').scrollHeight;
     NEWID = null;
+  }
+  function editStart(q) {
+    EDIT = q;
+    $('eCall').value = q.call; $('eFreq').value = q.f; $('eMode').value = q.mode; $('eRs').value = q.rs; $('eRr').value = q.rr; $('eRef').value = q.ref; $('eName').value = q.name; $('eSt').value = q.st; $('eNote').value = q.note || '';
+    $('eManual').checked = true; $('eWhen').hidden = false; $('eWhen').value = fD(q.d) + 'T' + fT(q.tm); $('eTime').textContent = 'Editing a saved contact';
+    bandSet(); radioTxt(); $('eLog').textContent = '💾'; $('eLog').setAttribute('aria-label', 'Save changes'); $('eDel').hidden = false; $('dEdit').hidden = false; drawer(true); drawLog(); who(); $('eCall').focus();
   }
   function logInit() {
     document.querySelectorAll('[data-lv]').forEach(b => b.onclick = () => { LV = b.dataset.lv; document.querySelectorAll('[data-lv]').forEach(x => x.classList.toggle('on', x === b)); drawLog(); });
     $('lSearch').oninput = drawLog;
-    $('lBody').onclick = e => {
-      const ed = e.target.closest('[data-ed]'), del = e.target.closest('[data-del]');
-      if (del) { const i = L.q.findIndex(q => q.id === del.dataset.del); if (i < 0) return; const [gone] = L.q.splice(i, 1); save(); drawAll(); toast(`🗑 ${gone.call} deleted.`, () => { L.q.push(gone); save(); drawAll(); }); }
-      if (ed) { const q = L.q.find(x => x.id === ed.dataset.ed); if (!q) return; EDIT = q;
-        $('eCall').value = q.call; $('eFreq').value = q.f; $('eMode').value = q.mode; $('eRs').value = q.rs; $('eRr').value = q.rr; $('eRef').value = q.ref; $('eName').value = q.name; $('eSt').value = q.st; $('eNote').value = q.note || '';
-        $('eManual').checked = true; $('eWhen').hidden = false; $('eWhen').value = fD(q.d) + 'T' + fT(q.tm); $('eTime').textContent = 'editing a saved contact';
-        bandSet(); $('eLog').innerHTML = '💾 SAVE CHANGES'; $('cEntry').scrollIntoView({ behavior: 'smooth', block: 'start' }); who(); }
+    const pick = e => { const r = e.target.closest('[data-ed]'); if (!r) return; const q = L.q.find(x => x.id === r.dataset.ed); if (q) editStart(q); };
+    $('lList').onclick = pick; $('lList').onkeydown = e => { if (e.key === 'Enter') pick(e); };
+    /* are you sure? before deleting (Brandon Oct 16) */
+    $('eDel').onclick = () => {
+      if (!EDIT) return; const i = L.q.findIndex(q => q.id === EDIT.id); if (i < 0) return; const dq = L.q[i];
+      if (!confirm(`Are you sure? Delete ${dq.call} (${fT(dq.tm)}Z ${dq.band} ${dq.mode}) from your log?`)) return;
+      const [gone] = L.q.splice(i, 1); clearForm(true); save(); drawAll(); toast(`🗑 ${gone.call} deleted.`, () => { L.q.push(gone); save(); drawAll(); });
     };
+  }
+
+  /* ---------------- the docked entry: radio chip, More drawer, tabs ---------------- */
+  function radioTxt() { const k = kHzOf($('eFreq').value); $('dRadioT').textContent = k ? `${mhz(k)} · ${$('eMode').value}` : 'set frequency'; }
+  function drawer(open) { $('eMore').hidden = !open; $('dRadio').setAttribute('aria-expanded', open); $('dMoreB').classList.toggle('on', open); $('dRadio').classList.toggle('on', open); dockSize(); }
+  const tabMode = () => matchMedia('(max-width:1099px)').matches;
+  function tab(t, quiet) {
+    const m = document.getElementById('lg'); m.dataset.tab = t; put('kpcLgTab', t);
+    document.querySelectorAll('[data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab === t));
+    if (t === 'map' && MAP) setTimeout(() => { MAP.invalidateSize(); drawMap(true); }, 60);
+    if (t === 'log') setTimeout(drawLog, 30);
+    if (!quiet && tabMode()) { const y = $('lgTabs').getBoundingClientRect().top + scrollY - hdrH(); if (scrollY > y) scrollTo({ top: y, behavior: 'smooth' }); }
+  }
+  const hdrH = () => { const h = document.querySelector('header.site-nav, header'); return h ? Math.max(0, h.getBoundingClientRect().bottom) : 0; };
+  function dockSize() { const m = document.getElementById('lg'); m.style.setProperty('--dock', $('cEntry').offsetHeight + 'px'); m.style.setProperty('--hdr', hdrH() + 'px'); }
+  function dockInit() {
+    $('dRadio').onclick = () => drawer($('eMore').hidden);
+    $('dMoreB').onclick = () => drawer($('eMore').hidden);
+    $('dSpot').onclick = () => { $('sCopy').onclick(); if (tabMode()) tab('spots'); setTimeout(() => $('cSpot').scrollIntoView({ behavior: 'smooth', block: 'center' }), 80); };
+    $('dSta').onclick = () => { stationOpen(true); if (tabMode()) scrollTo({ top: $('cOp').getBoundingClientRect().top + scrollY - hdrH() - 8, behavior: 'smooth' }); else $('cOp').scrollIntoView({ behavior: 'smooth' }); };
+    document.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => tab(b.dataset.tab));
+    tab(get('kpcLgTab', 'log'), true);
+    ['eFreq', 'eMode'].forEach(i => $(i).addEventListener('input', radioTxt)); $('eMode').addEventListener('change', radioTxt); radioTxt();
+    if (!kHzOf($('eFreq').value) && !tabMode()) drawer(true);
+    if (window.ResizeObserver) new ResizeObserver(dockSize).observe($('cEntry')); addEventListener('resize', dockSize); setTimeout(dockSize, 100);
   }
 
   /* ---------------- ADIF / CSV ---------------- */
@@ -365,7 +408,7 @@
       const md = spMode(x); $('eMode').value = [...$('eMode').options].some(o => o.value === md) ? md : 'OTHER';
       $('eRef').value = x.reference || ''; bandSet(); modeSet(); put('kpcLgRadio', { f: $('eFreq').value, m: $('eMode').value });
       SPOTLL = x.latitude != null ? [+x.latitude, +x.longitude] : null;
-      who(); if (matchMedia('(max-width:1099px)').matches) $('cEntry').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      radioTxt(); who(); if (tabMode()) tab('log');
       setTimeout(() => $('eRs').focus(), 350);
     };
     spots();
@@ -453,6 +496,8 @@
     const last10 = T.slice(-10), r10 = last10.length > 1 ? Math.round((last10.length - 1) / Math.max((last10[last10.length - 1] - last10[0]) / 36e5, 1 / 60)) : 0;
     const hr = T.filter(t => now - t <= 36e5).length;
     $('sAct').textContent = n; $('sRate').textContent = r10; $('sHr').textContent = hr; $('sTot').textContent = L.q.length.toLocaleString(); opBar(n);
+    $('dN').textContent = n; $('dRate').textContent = r10; $('tN').textContent = n;
+    const sp = T.length ? (now - T[0]) / 6e4 : 0; $('dSpan').textContent = sp >= 1440 ? Math.floor(sp / 1440) + 'd ' + Math.floor(sp % 1440 / 60) + 'h' : sp >= 60 ? Math.floor(sp / 60) + 'h ' + Math.round(sp % 60) + 'm' : Math.round(sp) + 'm';
     if (multi() && !SET.share) { $('sOps').innerHTML = opsList().map(c => { const k2 = A.filter(q => q.my === c).length; return `<span class="${k2 >= 10 ? 'ok' : ''}">${esc(c)} ${k2 >= 10 ? '✓ ' + k2 : k2 + '/10'}</span>`; }).join(''); }
     else if (multi()) { $('sOps').innerHTML = opsList().map(c => `<span>${esc(c)} ${A.filter(q => (q.op || q.my) === c).length} logged</span>`).join(''); }
     else $('sOps').innerHTML = '';
@@ -643,7 +688,7 @@
   }
 
   async function start() {
-    const parts = [() => { $('rShare').onclick = sharePic; $('hShare').onclick = sharePic; }, stationInit, opBarInit, opsInit, nearInit, entryInit, logInit, expInit, spotsInit, spotInit, notesInit, notesAllInit, appInit, mapInit];
+    const parts = [() => { $('rShare').onclick = sharePic; $('hShare').onclick = sharePic; }, stationInit, opBarInit, opsInit, nearInit, entryInit, dockInit, logInit, expInit, spotsInit, spotInit, notesInit, notesAllInit, appInit, mapInit];
     parts.forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } });
     try { const o = await idbGet('log'); IDBok = true; if (o && Array.isArray(o.q) && ((o.u || 0) > (L.u || 0) || o.q.length > L.q.length)) { L = o; put(LK, L); } } catch (e) {}
     if (navigator.storage && navigator.storage.persisted) { try { PERSIST = await navigator.storage.persisted(); } catch (e) {} }
