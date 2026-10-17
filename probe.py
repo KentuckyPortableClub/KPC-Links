@@ -1,30 +1,44 @@
-import urllib.request, json, urllib.parse
-out=[]
+import urllib.request, json, urllib.parse, re, unicodedata, random, collections
+random.seed(7); out=[]
 B='https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/'
+N2K=B+'Natura2000Sites/MapServer/2/query'; NAT=B+'CDDA_Dyna_WM/MapServer/4/query'
 def g(u):
-    try:
-        r=urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent':'KPC probe','Origin':'https://kentuckyportableclub.github.io'}), timeout=60)
-        return r.status, r.headers.get('Access-Control-Allow-Origin'), r.read()
-    except Exception as e: return 'ERR', None, str(e).encode()
-for lay in [3,4]:
-    s,c,b=g(B+f'CDDA_Dyna_WM/MapServer/{lay}?f=json')
-    try: j=json.loads(b); out.append(f'CDDA/{lay} {j.get("name")} geom {j.get("geometryType")} minScale {j.get("minScale")} fields: '+', '.join(f["name"] for f in j.get('fields',[]))[:600])
-    except Exception: out.append(f'CDDA/{lay} {s} '+b[:200].decode())
-for la,lo in [(48.95,13.42),(37.0,-6.45),(52.07,5.82),(50.73,7.2),(45.2,6.9)]:
-    for lay in [3,4]:
-        q=urllib.parse.urlencode({'geometry':f'{lo},{la}','geometryType':'esriGeometryPoint','inSR':4326,'spatialRel':'esriSpatialRelIntersects','outFields':'siteName,designationTypeCode,iucnCategory,siteArea,countryCode,OBJECTID,nationalId','returnGeometry':'false','f':'json'})
-        s,c,b=g(B+f'CDDA_Dyna_WM/MapServer/{lay}/query?'+q)
-        try: j=json.loads(b); out.append(f'PT {la},{lo} CDDA/{lay}: '+json.dumps([f['attributes'] for f in j.get('features',[])], ensure_ascii=False)[:500]+(' ERR '+json.dumps(j.get('error')) if j.get('error') else ''))
-        except Exception: out.append(f'PT CDDA/{lay} {s} '+b[:300].decode('utf-8','replace'))
-# name LIKE query + geojson geometry
-for svc,lay,fld,nm in [('Natura2000Sites',2,'SITENAME','Bayerischer Wald'),('CDDA_Dyna_WM',4,'siteName','Bayerischer Wald')]:
-    q=urllib.parse.urlencode({'where':f"{fld} LIKE '%{nm}%'",'outFields':fld,'returnGeometry':'true','outSR':4326,'maxAllowableOffset':0.0005,'f':'geojson','resultRecordCount':3})
-    s,c,b=g(B+f'{svc}/MapServer/{lay}/query?'+q)
-    try: j=json.loads(b); f=j.get('features',[]); out.append(f'LIKE {svc}/{lay}: {s} cors={c} n={len(f)} bytes={len(b)} first={json.dumps(f[0]["properties"],ensure_ascii=False) if f else ""} geom={f[0]["geometry"]["type"] if f and f[0].get("geometry") else None} pts={len(json.dumps(f[0]["geometry"])) if f else 0}'+(' ERR '+json.dumps(j.get('error')) if isinstance(j,dict) and j.get('error') else ''))
-    except Exception as e: out.append(f'LIKE {svc} {s} {e} '+b[:300].decode('utf-8','replace'))
-# POTA: a German + Spanish park pin and name, to compare
-for ref in ['DE-0001','DE-0577','ES-0010','IT-0001','FR-0001','PL-0001','GB-0001','SE-0001']:
-    s,c,b=g('https://api.pota.app/park/'+ref)
-    try: j=json.loads(b); out.append(f'{ref}: {j.get("name")} | {j.get("parktypeDesc")} | {j.get("latitude")},{j.get("longitude")} | web {j.get("website")}')
-    except Exception: out.append(ref+' '+str(s))
+    try: return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent':'KPC probe'}), timeout=60).read())
+    except Exception as e: return None
+GEN=r'\b(national|nationalpark|nature|natural|naturale|natura|naturpark|naturschutzgebiet|landschaftsschutzgebiet|nsg|lsg|ffh|spa|sac|sci|park|parks|parc|parco|parque|krajobrazowy|rezerwat|obszar|chronionego|krajobrazu|regional|regionale|nazionale|nacional|reserve|riserva|reserva|naturreservat|area|site|zone|zona|sito|the|of|and|de|del|della|di|du|des|la|le|les|der|die|das|von|im|am|en|et|y|e|i|och|og)\b'
+def deacc(s): return ''.join(c for c in unicodedata.normalize('NFD', str(s or '')) if unicodedata.category(c)!='Mn').lower()
+def words(s):
+    s=re.sub(r'[^a-z0-9 ]',' ',re.sub(r'["\'„“”«»]',' ',deacc(s))); s=re.sub(GEN,' ',s); return [w for w in s.split() if len(w)>2]
+def sim(a,b):
+    A=words(a); Bs=set(words(b))
+    if not A or not Bs: return 0
+    hit=sum(1 for w in A if w in Bs or any(len(x)>4 and len(w)>4 and (x.startswith(w[:5]) or w.startswith(x[:5])) for x in Bs))
+    return hit/max(len(A),len(Bs))
+def at(url,la,lo,d,fields):
+    q={'geometry':f'{lo-d},{la-d},{lo+d},{la+d}','geometryType':'esriGeometryEnvelope'} if d else {'geometry':f'{lo},{la}','geometryType':'esriGeometryPoint'}
+    q.update({'inSR':4326,'spatialRel':'esriSpatialRelIntersects','outFields':fields,'returnGeometry':'false','f':'json'})
+    j=g(url+'?'+urllib.parse.urlencode(q)); return [f['attributes'] for f in (j or {}).get('features',[])]
+L=g('https://api.pota.app/locations') or []
+res=collections.Counter(); bytype=collections.defaultdict(lambda:[0,0]); fails=[]
+for cc in ['DE','FR','IT','ES','PL','SE','NL','CZ','AT','PT','FI','GB']:
+    descs=[l['locationDesc'] for l in L if l['locationDesc'].split('-')[0]==cc]
+    parks=[]
+    for d in random.sample(descs, min(4,len(descs))):
+        parks += (g('https://api.pota.app/location/parks/'+d) or [])
+    sample=random.sample(parks, min(20,len(parks)))
+    for p in sample:
+        la,lo=float(p['latitude']),float(p['longitude']); name=p['name']
+        det=g('https://api.pota.app/park/'+p['reference']) or {}; typ=det.get('parktypeDesc','')
+        best=0; bn=''
+        for d in [0,0.01]:
+            C=[x['SITENAME'] for x in at(N2K,la,lo,d,'SITENAME')]+[x['siteName'] for x in at(NAT,la,lo,d,'siteName')]
+            for c in C:
+                s=sim(name,c)
+                if s>best: best,bn=s,c
+            if best>=.5: break
+        ok=best>=.5; res[(cc,ok)]+=1; bytype[typ][0]+=ok; bytype[typ][1]+=1
+        if not ok and len(fails)<40: fails.append(f'{p["reference"]} {name} [{typ}] best={bn!r} {best:.2f}')
+out.append('by country (matched, total): '+json.dumps({cc:[res[(cc,True)],res[(cc,True)]+res[(cc,False)]] for cc in ['DE','FR','IT','ES','PL','SE','NL','CZ','AT','PT','FI','GB']}))
+out.append('by type: '+json.dumps({k:v for k,v in sorted(bytype.items(), key=lambda x:-x[1][1])}, ensure_ascii=False))
+out+=fails
 open('out.txt','w').write('\n'.join(out))
