@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261017b">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261017d">
 @@HEADER@@
 <main id="hl" data-keep-light data-theme="lodge">
 <div id="hlApp">
@@ -34,6 +34,7 @@
   <div class="dk-fx" aria-hidden="true"><i style="--x:6%;--d:0s;--s:1"></i><i style="--x:18%;--d:1.3s;--s:1.3"></i><i style="--x:31%;--d:.6s;--s:.9"></i><i style="--x:44%;--d:2.1s;--s:1.2"></i><i style="--x:57%;--d:.2s;--s:1.4"></i><i style="--x:69%;--d:1.7s;--s:1"></i><i style="--x:81%;--d:.9s;--s:1.25"></i><i style="--x:93%;--d:2.5s;--s:.95"></i></div>
   <div class="dk-top"><span class="dk-clk" id="dkClk">--:-- UTC</span><button type="button" class="dk-rad" id="dkRad" aria-expanded="false">📻 <span id="dkRadT">FREQ?</span> ▾</button><span class="dk-tip">Click a spot and it fills in · <b>Enter</b> logs it</span><span class="dk-dupe" id="dkDupe" hidden></span></div>
   <div class="dk-r1"><label>FREQ<input id="dFreq" inputmode="decimal" placeholder="14.285"></label><label>MODE<select id="dMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option><option>PSK31</option><option>JS8</option><option>OTHER</option></select></label><label class="b">BAND<input id="dBand" readonly tabindex="-1"></label><label class="w">PARK / REF<input id="dRef" autocapitalize="characters" placeholder="US-1234"></label><label class="w">NAME<input id="dName"></label></div>
+  <div class="dk-who" id="dkWho" aria-live="polite"></div>
   <div class="dk-r2"><label class="c">CALL<input id="dCall" autocapitalize="characters" spellcheck="false" enterkeyhint="go"></label><label>SENT<input id="dRs" inputmode="numeric"></label><label>RCVD<input id="dRr" inputmode="numeric"></label><label class="s">ST<input id="dSt" maxlength="2" autocapitalize="characters"></label><label class="w">NOTE<input id="dNote" maxlength="200"></label><button type="button" class="dk-x" id="dkClr" title="Clear">⌫</button><button type="submit" class="dk-go" id="dkLog">⬆ LOG</button></div>
  </form>
 </section>
@@ -173,4 +174,4 @@
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-hunt.js?v=20261017a"></script>
+<script src="kpc-hunt.js?v=20261017d"></script>

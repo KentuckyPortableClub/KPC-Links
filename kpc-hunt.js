@@ -623,7 +623,7 @@
         + af('STATION_CALLSIGN', q.my || CALL) + af('OPERATOR', q.my || CALL) + af('MY_GRIDSQUARE', q.grid || Q.grid)
         + af('POTA_REF', pota.join(',')) + af('WWFF_REF', wwff[0] || '') + af('SOTA_REF', sota[0] || '')
         + (pota.length ? af('SIG', 'POTA') + af('SIG_INFO', pota[0]) : wwff.length ? af('SIG', 'WWFF') + af('SIG_INFO', wwff[0]) : '')
-        + af('STATE', /^[A-Z]{2}$/.test(q.st || '') && ST[q.st] ? q.st : '') + af('COMMENT', [refs.join(' '), q.name].filter(Boolean).join(' ').slice(0, 120)) + af('NOTES', q.note) + '<EOR>\n';
+        + af('NAME', q.on || '') + af('QTH', q.qth || '') + af('GRIDSQUARE', q.tg || '') + af('STATE', /^[A-Z]{2}$/.test(q.st || '') && ST[q.st] ? q.st : '') + af('COMMENT', [refs.join(' '), q.name].filter(Boolean).join(' ').slice(0, 120)) + af('NOTES', q.note) + '<EOR>\n';
     });
     return o;
   }
@@ -1019,7 +1019,9 @@
   if (!PUB && $('hlRtabs')) {
     $('hlRtabs').addEventListener('click', e => { const b = e.target.closest('[data-rt]'); if (!b) return; rtab(b.dataset.rt);
       const y = $('hlDk').getBoundingClientRect().top + scrollY - 150; if (scrollY > y + 5) scrollTo({ top: y, behavior: 'smooth' }); });
-    $('hlFbtn').onclick = e => { e.stopPropagation(); $('hlFtog').click(); };
+    $('hlFbtn').onclick = e => { e.stopPropagation(); $('hlFtog').click(); fPlace(); };
+    function fPlace() { const f = $('hlFilters'), r = $('hlFbtn').getBoundingClientRect(), t = $('hlTick') ? $('hlTick').getBoundingClientRect().bottom : 0; const top = Math.max(r.bottom, t) + 8; f.style.top = top + 'px'; f.style.maxHeight = (innerHeight - top - 16) + 'px'; }
+    addEventListener('scroll', () => { if (DESKON() && $('hlFilters').classList.contains('open')) fPlace(); }, { passive: true });
     document.addEventListener('click', e => {   /* tap outside the pop-up closes it */
       const f = $('hlFilters'); if (!DESKON() || !f.classList.contains('open')) return;
       if (e.target.closest('#hlFilters,#hlFbtn,#hlActive')) return; $('hlFtog').click();
@@ -1033,7 +1035,7 @@
       const hit = c && Q.q.find(q => base(q.call) === c && q.d === d && q.band === b && String(q.ref || '').replace(/\s/g, '') === r);
       $('dkDupe').hidden = !hit; if (hit) $('dkDupe').textContent = `⚠ DUPE: ${c} logged at ${fmtT(hit.tm)} UTC`;
     }
-    $('dFreq').addEventListener('input', dkBand); ['dCall', 'dRef'].forEach(id => $(id).addEventListener('input', dkDupe));
+    $('dFreq').addEventListener('input', dkBand); ['dCall', 'dRef'].forEach(id => $(id).addEventListener('input', dkDupe)); $('dCall').addEventListener('input', dkWho);
     $('dMode').onchange = () => { $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value); };
     $('dCall').addEventListener('input', () => { const v = $('dCall').value.toUpperCase(); if (v !== $('dCall').value) $('dCall').value = v; });
     $('dSt').addEventListener('input', () => { $('dSt').value = $('dSt').value.toUpperCase(); });
@@ -1050,6 +1052,38 @@
     deskSet(); window.addEventListener('load', deskSet);
   }
   let BACKY = 0, BACKK = '';
+  /* call sign look-up, same as the KPC Logger (callook.info for US calls, HamDB otherwise; shares its cache kpcLgCache) */
+  const LKC = get('kpcLgCache', {});
+  const tCase = v => { v = String(v || '').trim(); if (!v || /[a-z]/.test(v)) return v; return v.toLowerCase().replace(/\b([a-z])/g, m => m.toUpperCase()); };
+  async function lookCall(call) {
+    const b = base(call); if (!/^[A-Z0-9]{1,3}\d[A-Z0-9]{1,5}$/.test(b)) return null;
+    const c = LKC[b]; if (c && Date.now() - c.t < 30 * 864e5) return c;
+    const us = /^(A[A-L]|[KNW])[0-9A-Z]*\d/.test(b);
+    const callook = async () => { const j = await fetch('https://callook.info/' + encodeURIComponent(b) + '/json').then(x => x.ok ? x.json() : null); if (!j || j.status !== 'VALID') return null;
+      const l2 = String((j.address && j.address.line2) || ''), m = l2.match(/^(.*?),\s*([A-Z]{2})\s+\d/);
+      return { name: j.name || '', qth: m ? tCase(m[1]) : tCase(l2), st: m ? m[2] : '', g: (j.location && j.location.gridsquare) || '', cl: (j.current && j.current.operClass) || (j.type === 'CLUB' ? 'CLUB' : ''), cty: 'United States' }; };
+    const hamdb = async () => { const j = await fetch('https://api.hamdb.org/v1/' + encodeURIComponent(b) + '/json/kpclogger').then(x => x.ok ? x.json() : null); const h = j && j.hamdb, x = h && h.callsign;
+      if (!x || !x.call || x.call === 'NOT_FOUND') return null;
+      return { name: [x.fname, x.mi, x.name].filter(Boolean).join(' '), qth: tCase(x.addr2 || ''), st: x.state || '', g: x.grid || '', cl: x.class || '', cty: x.country || '' }; };
+    let r = null; try { r = us ? (await callook().catch(() => null)) || (await hamdb().catch(() => null)) : await hamdb().catch(() => null); } catch (e) { r = null; }
+    if (r) { r.t = Date.now(); r.name = tCase(r.name); LKC[b] = r; const k = Object.keys(LKC); if (k.length > 600) k.sort((x, y) => LKC[x].t - LKC[y].t).slice(0, 100).forEach(x => delete LKC[x]); put('kpcLgCache', LKC); }
+    return r;
+  }
+  let dkWT = 0, dkWN = 0, DKWHO = null;
+  function dkWho() {
+    clearTimeout(dkWT); const call = $('dCall').value.trim().toUpperCase(), n = ++dkWN; DKWHO = null;
+    if (base(call).length < 3) { $('dkWho').innerHTML = ''; return; }
+    const prev = Q.q.filter(q => base(q.call) === base(call)).sort((a, b) => (b.d + b.tm).localeCompare(a.d + a.tm));
+    const pv = prev.length ? `<span class="pv">🔁 worked ${prev.length}× before · last ${fmtD(prev[0].d)}${prev[0].ref ? ' at ' + esc(prev[0].ref) : ''} (${esc(prev[0].band)} ${esc(prev[0].mode)})</span>` : '<span class="pv nw">🆕 first time in your log</span>';
+    $('dkWho').innerHTML = `<span class="lk">🔎 looking up ${esc(base(call))}…</span>${pv}`;
+    dkWT = setTimeout(async () => {
+      const r = await lookCall(call); if (n !== dkWN) return;
+      DKWHO = r ? Object.assign({ call: base(call) }, r) : null;
+      const who = r ? `<b>👤 ${esc(r.name || base(call))}</b> <span>${esc([r.qth, r.st].filter(Boolean).join(', ') || r.cty || '')}${r.g ? ' · ' + esc(r.g) : ''}${r.cl ? ' · ' + esc(r.cl) : ''}</span>` : `<span class="lk">No public listing for ${esc(base(call))}</span>`;
+      $('dkWho').innerHTML = who + pv;
+      if (r && r.st && !$('dSt').value && !$('dRef').value) $('dSt').value = r.st;
+    }, 450);
+  }
   function dkRadT() { const f = $('dFreq').value.trim(), r = $('dRef').value.trim(); $('dkRadT').textContent = (f || 'FREQ?') + ' ' + $('dMode').value + (r ? ' · ' + r : ''); $('dkRad').classList.toggle('bad', !f); }
   /* phones: jump down to the log; ↑ BACK TO SPOTS (only that button) goes back up */
   function dkGo() { BACKY = scrollY; setTimeout(() => $('hlDk').scrollIntoView({ behavior: 'smooth', block: 'end' }), 30); }
@@ -1060,12 +1094,12 @@
     if (s.mode) $('dMode').value = modePick(s.mode);
     $('dRef').value = s.ref || ''; $('dName').value = s.name || ''; $('dSt').value = s.st || ''; $('dNote').value = '';
     $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value);
-    $('dFreq').dispatchEvent(new Event('input')); dkRadT();
+    $('dFreq').dispatchEvent(new Event('input')); dkRadT(); dkWho();
     const d = $('dkForm'); d.classList.remove('flash'); void d.offsetWidth; d.classList.add('flash');
     (s.call ? $('dRr') : $('dCall')).focus({ preventScroll: true }); if (s.call) $('dRr').select();
   }
   function dkClear() {
-    ['dCall', 'dRef', 'dName', 'dSt', 'dNote'].forEach(id => { $(id).value = ''; });
+    ['dCall', 'dRef', 'dName', 'dSt', 'dNote'].forEach(id => { $(id).value = ''; }); dkWN++; DKWHO = null; $('dkWho').innerHTML = '';
     $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value); $('dkDupe').hidden = true;
   }
   async function dkLog() {
@@ -1075,6 +1109,7 @@
     const f = $('dFreq').value.trim();
     const rec = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: n.d, tm: n.t, f, band: $('dBand').value, mode: $('dMode').value, ref,
       name: $('dName').value.trim(), st: $('dSt').value.trim().toUpperCase(), rs: $('dRs').value.trim(), rr: $('dRr').value.trim(), note: $('dNote').value.trim(), my: CALL, grid: Q.grid, x: 0, t: Date.now() };
+    const w = DKWHO && DKWHO.call === base(call) ? DKWHO : (LKC[base(call)] || null); if (w) { rec.on = w.name || ''; rec.qth = [w.qth, w.st].filter(Boolean).join(', '); rec.tg = w.g || ''; }
     Q.q.push(rec); await qSave();
     ref.split(/[ ,]+/).filter(Boolean).forEach(r => { if (!WK.has(r)) { WK.add(r); MAN.add(r); } }); saveLog(); logInfo();
     qList(); ticker(false); draw(); needDraw();
@@ -1091,7 +1126,7 @@
     let last = '';
     el.innerHTML = L.length ? L.slice(0, 300).map(x => {
       const day = x.d !== last ? `<div class="dk-day">${x.d === today ? 'TODAY' : fmtD(x.d)}</div>` : ''; last = x.d;
-      return `${day}<div class="dk-q${x.x ? '' : ' nx'}"><span class="t">${fmtT(x.tm)}</span><b class="c">${esc(x.call)}</b><span class="m">${esc(x.band)} ${esc(x.mode)}</span><span class="r">${esc(x.ref || '')}${x.st ? ' <i>' + esc(x.st) + '</i>' : ''}</span><span class="s">${esc(x.rs || '')}/${esc(x.rr || '')}</span><span class="a"><button type="button" data-qe="${x.id}" title="Edit">✏</button><button type="button" data-qd="${x.id}" title="Delete">🗑</button></span></div>`;
+      return `${day}<div class="dk-q${x.x ? '' : ' nx'}"><span class="t">${fmtT(x.tm)}</span><b class="c">${esc(x.call)}${x.on ? ` <small class="on">${esc(x.on.split(' ')[0])}</small>` : ''}</b><span class="m">${esc(x.band)} ${esc(x.mode)}</span><span class="r">${esc(x.ref || '')}${x.st ? ' <i>' + esc(x.st) + '</i>' : ''}</span><span class="s">${esc(x.rs || '')}/${esc(x.rr || '')}</span><span class="a"><button type="button" data-qe="${x.id}" title="Edit">✏</button><button type="button" data-qd="${x.id}" title="Delete">🗑</button></span></div>`;
     }).join('') : `<div class="hl-empty">${Q.q.length ? 'None match.' : 'No contacts yet. Click a spot on the right and it fills in down below.'}</div>`;
   }
   document.addEventListener('click', e => {
