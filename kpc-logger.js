@@ -107,12 +107,21 @@
   }
   let pT, KYD = null;
   /* the one park box: POTA, WWFF and SOTA numbers together; adding WWFF / SOTA later also marks this activation's contacts */
+  /* tap the park box: offer the other programs at the same place (KFF for a KY park, summits inside it); nothing is added by itself */
+  async function parkSug() {
+    const box = $('myParkSug'), P = refsOf(SET.park), have = anyRefs(SET.park), out = [];
+    try { KYD = KYD || await fetch('kpc-ky-data.json').then(r => r.json()); } catch (e) {}
+    if (KYD) P.forEach(r => { const kp = (KYD.parks || []).find(x => x.c === r); if (!kp) return;
+      (kp.kff || []).forEach(k => { if (!have.includes(k)) out.push(`<button type="button" data-sug="${esc(k)}">+ ${esc(k)} <small>WWFF / KFF, same park</small></button>`); });
+      (kp.sota || []).forEach(k => { if (!have.includes(k)) out.push(`<button type="button" data-sug="${esc(k)}">+ ${esc(k)} <small>SOTA summit here (only if you're on top)</small></button>`); }); });
+    box.innerHTML = out.length ? '<span>Also here (tap to add):</span>' + out.join('') : ''; box.hidden = !out.length;
+  }
   function setRefs(v, typing) {
     const before = actList(), W0 = myWwff(), S0 = mySota();
     SET.park = String(v || '').toUpperCase().replace(/^[\s,]+/, ''); if (!typing || $('myPark').value.toUpperCase() !== SET.park) $('myPark').value = SET.park;
     const W = myWwff(), So = mySota(); let ch = 0;
     if (W && W !== W0) before.forEach(q => { if (!q.wf) { q.wf = W; ch++; } }); if (So && So !== S0) before.forEach(q => { if (!q.so) { q.so = So; ch++; } });
-    saveSet(); if (ch) save(); drawAll();
+    saveSet(); if (ch) save(); drawAll(); if (document.activeElement === $('myPark')) { clearTimeout(setRefs.t); setRefs.t = setTimeout(parkSug, 800); }
   }
   async function parkInfo() {
     const P = myParks(), out = [];
@@ -129,8 +138,7 @@
       out.push(pi ? `<b>${esc(r)}</b> ${esc(pi.n)} <span class="lg-mu">(${esc(pi.st)}${pi.g ? ' · ' + esc(pi.g) : ''})</span>` : `<b>${esc(r)}</b> <span class="bad">POTA didn't know this number (or no signal)</span>`);
     }
     /* a Kentucky park that is also a KFF reference fills in the WWFF box (never the SOTA box: you must be on the summit) */
-    try { if (!myWwff() && !SET.noKff) { KYD = KYD || await fetch('kpc-ky-data.json').then(r => r.json()); const kp = (KYD.parks || []).find(x => x.c === P[0]);
-      if (kp && kp.kff && kp.kff.length === 1) { setRefs(SET.park + ', ' + kp.kff[0]); toast(`✓ ${P[0]} is also ${kp.kff[0]} (WWFF / KFF): added to your park numbers. Take it out if you're not doing WWFF.`); } } } catch (e) {}
+
     const p0 = SET.pinfo[P[0]];
     if (p0 && p0.g && !SET.grid) { SET.grid = p0.g; $('myGrid').value = p0.g; saveSet(); }
     $('myParkInfo').innerHTML = out.join(' &nbsp;·&nbsp; ') + (P.length > 1 ? ' <span class="lg-mu">· a ' + P.length + '-fer: every contact counts for each park</span>' : '');
@@ -140,6 +148,8 @@
     $('myCall').value = SET.call; $('myPark').value = SET.park; $('myGrid').value = SET.grid; $('myPwr').value = SET.pwr;
     $('myCall').oninput = e => { SET.call = e.target.value.toUpperCase().trim(); e.target.value = SET.call; put('kpcMyCall', base(SET.call)); saveSet(); drawAll(); };
     $('myPark').oninput = e => { const W0 = myWwff(); setRefs(e.target.value, true); if (W0 && !myWwff()) SET.noKff = true; saveSet(); clearTimeout(pT); pT = setTimeout(parkInfo, 700); };
+    $('myPark').addEventListener('focus', parkSug);
+    $('myParkSug').onclick = e => { const b = e.target.closest('[data-sug]'); if (!b) return; setRefs([SET.park, b.dataset.sug].filter(x => String(x || '').trim()).join(', ')); parkSug(); toast('✓ ' + b.dataset.sug + ' added.'); };
     $('myGrid').oninput = e => { SET.grid = e.target.value.trim(); SET.me = null; saveSet(); drawMap(); opBar(); };
     $('myPwr').oninput = e => { SET.pwr = e.target.value.trim(); saveSet(); opBar(); };
     $('myGps').onclick = () => {
@@ -214,6 +224,7 @@
     $('eClear').onclick = () => { clearForm(true); $('eCall').focus(); };
     $('eManual').onchange = e => { $('eWhen').hidden = !e.target.checked; if (e.target.checked && !$('eWhen').value) $('eWhen').value = iso(new Date()).slice(0, 16); $('eTime').textContent = e.target.checked ? 'Time: typed by hand (UTC)' : 'Time: now (UTC)'; };
     $('eForm').onsubmit = e => { e.preventDefault(); logIt(); };
+    ['eCall', 'eRs', 'eRr', 'eSt', 'eRef', 'eName', 'eFreq', 'eNote'].forEach(i => $(i).addEventListener('keydown', e => { if ((e.key === 'Enter' || e.keyCode === 13) && !e.isComposing) { e.preventDefault(); logIt(); } }));
   }
   function logIt() {
     const call = $('eCall').value.toUpperCase().trim();
@@ -294,7 +305,7 @@
     document.querySelectorAll('[data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab === t));
     if (t === 'map' && MAP) setTimeout(() => { MAP.invalidateSize(); drawMap(true); }, 60);
     if (t === 'log') setTimeout(drawLog, 30);
-    if (!quiet && tabMode()) { const y = $('lgTabs').getBoundingClientRect().top + scrollY - hdrH(); if (scrollY > y) scrollTo({ top: y, behavior: 'smooth' }); }
+    if (tabMode()) scrollTo(0, 0);
   }
   const hdrH = () => { const h = document.querySelector('header.site-nav, header'); return h ? Math.max(0, h.getBoundingClientRect().bottom) : 0; };
   function dockSize() { const m = document.getElementById('lg'); m.style.setProperty('--dock', $('cEntry').offsetHeight + 'px'); m.style.setProperty('--hdr', hdrH() + 'px'); }
@@ -302,9 +313,9 @@
     $('dRadio').onclick = () => { radioRow(!document.getElementById('lg').hasAttribute('data-radio')); if (document.getElementById('lg').hasAttribute('data-radio')) $('eFreq').focus(); };
     $('dMoreB').onclick = () => drawer($('eMore').hidden);
     document.querySelectorAll('[data-rt]').forEach(b => b.onclick = () => rtab(b.dataset.rt)); rtab(get('kpcLgRt', 'spots'));
-    $('dSta').onclick = () => { stationOpen(true); if (tabMode()) scrollTo({ top: $('cOp').getBoundingClientRect().top + scrollY - hdrH() - 8, behavior: 'smooth' }); else $('cOp').scrollIntoView({ behavior: 'smooth' }); };
+    $('dSta').onclick = () => { stationOpen(true); if (tabMode()) { tab('station'); return; } if (tabMode()) scrollTo({ top: $('cOp').getBoundingClientRect().top + scrollY - hdrH() - 8, behavior: 'smooth' }); else $('cOp').scrollIntoView({ behavior: 'smooth' }); };
     document.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => tab(b.dataset.tab));
-    tab(({ stats: 'info', notes: 'log' })[get('kpcLgTab', 'log')] || get('kpcLgTab', 'log'), true);
+    tab((!myCall() || (!isHunt() && !myParks().length && !myWwff() && !mySota())) && tabMode() ? 'station' : (({ stats: 'info', notes: 'log' })[get('kpcLgTab', 'log')] || get('kpcLgTab', 'log')), true);
     ['eFreq', 'eMode'].forEach(i => $(i).addEventListener('input', radioTxt)); $('eMode').addEventListener('change', radioTxt); radioTxt();
     if (!kHzOf($('eFreq').value)) radioRow(true);
     if (window.ResizeObserver) new ResizeObserver(dockSize).observe($('cEntry')); addEventListener('resize', dockSize); setTimeout(dockSize, 100);
@@ -573,10 +584,11 @@
   function opBar(n) {
     const P = myParks(), sc = stationCall();
     $('oCall').textContent = sc || 'YOUR CALL'; $('oAt').textContent = isHunt() ? '·' : '@'; $('oPark').textContent = isHunt() ? '🎯 HUNTING' : (myRefsTxt() || 'NO PARK YET');
-    if (isHunt()) { const A = actList(); $('oSub').textContent = !sc ? 'Tap ⚙ STATION to set your call' : `${A.length} contacts today · ${new Set(A.map(q => q.ref).filter(Boolean)).size} parks`; $('oN').textContent = A.length; return; }
+    if (isHunt()) { const A = actList(); $('oSub').textContent = !sc ? 'Tap ⚙ STATION to set your call' : `${A.length} contacts today · ${new Set(A.map(q => q.ref).filter(Boolean)).size} parks`; $('oN').textContent = A.length; $('lMini').innerHTML = `<b>${esc(sc || 'YOUR CALL')}</b> · 🎯 HUNTING`; return; }
     const nm = P.map(r => SET.pinfo[r] && SET.pinfo[r].n).filter(Boolean).join(' + ');
     $('oSub').textContent = !sc || !myRefsTxt() ? 'Tap ⚙ STATION to set your call and park' : [nm, SET.grid, SET.pwr ? SET.pwr + ' W' : '', multi() ? opsList().length + ' operators' : ''].filter(Boolean).join(' · ');
     $('oN').textContent = n == null ? actList().length : n;
+    $('lMini').innerHTML = `<b>${esc(sc || 'YOUR CALL')}</b> ${isHunt() ? '· 🎯 HUNTING' : '@ <i>' + esc(myRefsTxt() || 'NO PARK YET') + '</i>'}`;
   }
   function stationOpen(open) { $('cStation').hidden = !open; $('oEdit').setAttribute('aria-expanded', open); $('oEdit').textContent = open ? '✓ DONE' : '⚙ STATION'; }
   function night(on) { document.getElementById('lg').toggleAttribute('data-night', on); $('oNight').textContent = on ? '☀ DAY' : '🌙 NIGHT'; put('kpcLgNight', on); }
