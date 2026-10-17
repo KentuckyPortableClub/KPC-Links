@@ -9,7 +9,7 @@ P={
  'kpc-cw.html':      ('hero-k4zsr',     'center 42%','0px', ('Zach','K4ZSR')),
  'kpc-cw-info.html': ('hero-k4zsr',     'center 42%','0px', ('Zach','K4ZSR')),
  'kpc-weather.html': ('hero-n4bdw',     'center 30%','calc(-29vw)',    ('Brent','N4BDW')),
- 'kpc-community.html':('hero-kq4hzk',   'center 45%','calc(-34vw)',    ('Aaron','KQ4HZK')),
+ 'kpc-community.html':('hero-campfire-crew','center 55%','center 55%', None),
  'members.html':     ('hero-ky-flag',   'center 45%','center 40%', None),
  'kpc-campgrounds.html':('hero-campsite','center 58%','center 60%', None),
  'kpc-park-notes.html':('hero-journal','center 55%','center 62%', None),
