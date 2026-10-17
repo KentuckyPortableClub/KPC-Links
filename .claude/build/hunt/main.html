@@ -1,6 +1,8 @@
-<link rel="stylesheet" href="kpc-hunt.css?v=20261016a">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261016c">
 @@HEADER@@
-<main id="hl" data-keep-light>
+<main id="hl" data-keep-light data-theme="lodge">
+<section class="hl-lock" id="hlLock"><p class="hl-k">KPC HUNTERS LOUNGE</p><h2>Enter the password</h2><p class="hl-p">This room is being tried out by club members first.</p><form id="hlLockForm"><input id="hlPw" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password"><button type="submit" class="hl-btn gold">UNLOCK</button></form><p class="hl-msg" id="hlPwMsg"></p></section>
+<div id="hlApp" hidden>
 <div class="hl-far" id="hlFar" hidden><span class="hl-far-k">FAR AWAY NEW ONES</span><div class="hl-far-run"><div class="hl-far-track" id="hlFarT"></div></div></div>
 
 <section class="hl-hero"><div class="hl-in">
@@ -14,10 +16,12 @@
  <div><b id="hsAge">–</b><span>NEXT CHECK</span></div>
 </div>
 <div class="hl-acts"><a class="hl-btn gold" href="#hlSetup">📥 LOAD MY LOG</a><a class="hl-btn ghost" href="#hlNeed">🎯 PARKS I NEED</a><a class="hl-btn ghost" href="#hlTop">🏆 TOP ACTIVATORS</a></div>
+<div class="hl-theme" role="group" aria-label="Look">LOOK: <button type="button" class="hl-chip" data-theme-pick="lodge">🔥 CABIN LODGE</button><button type="button" class="hl-chip" data-theme-pick="night">🌌 NIGHT SKY</button></div>
 </div></section>
 
 <section class="hl-tick" id="hlTick" aria-live="polite">
  <div class="hl-tick-k"><span class="dot"></span>NEW TO YOU</div>
+ <button type="button" class="hl-na" id="hlNa" aria-label="Map of new parks on the air (tap to enlarge)"><svg viewBox="0 0 480 305" id="hlNaSvg" aria-hidden="true"></svg><span class="hl-na-cap">Blinking green = new to you in your range · blue = new but far · grey = other spots · gold ring = home. Tap to close.</span></button>
  <div class="hl-tick-run"><div class="hl-tick-track" id="hlTickT"><span class="hl-wait">Waiting for a park that's new to you…</span></div></div>
  <button type="button" class="hl-bell" id="hlBell" aria-pressed="false" title="Alert me">🔕 ALERT OFF</button>
 </section>
@@ -34,6 +38,16 @@
 <p class="hl-count" id="hlCount"></p>
 <div class="hl-grid" id="hlSpots"><div class="hl-empty">Loading spots…</div></div>
 <p class="hl-src" id="hlSrc"></p>
+</div></section>
+
+<section class="hl-sec" id="hlLog"><div class="hl-in">
+<p class="hl-k">YOUR CONTACTS</p><h2>📝 My hunting log</h2>
+<p class="hl-p">Tap any spot card (or <b>📝 LOG IT</b>) and the contact fills itself in: call, frequency, band, mode, park and the time in UTC. Fix anything, tap <b>SAVE</b>. Every save is kept on this device right away, twice over (and in a backup file on computers that allow it), and the park is marked worked.</p>
+<div class="hl-safe" id="lgSafe"></div>
+<div class="hl-row"><button type="button" class="hl-btn gold sm" id="lgAdif">⬇ DOWNLOAD FOR QRZ (ADIF)</button><button type="button" class="hl-btn line sm" id="lgNew">⬇ ONLY THE NEW ONES</button><button type="button" class="hl-btn line sm" id="lgCsv">⬇ CSV</button><button type="button" class="hl-btn line sm" id="lgFile">💾 KEEP A BACKUP FILE</button><label class="hl-btn line sm" style="position:relative">↥ RESTORE FROM A FILE<input type="file" id="lgLoad" accept=".adi,.adif,.txt" style="position:absolute;inset:0;opacity:0;cursor:pointer"></label><button type="button" class="hl-btn line sm" id="lgAdd">＋ ADD ONE BY HAND</button></div>
+<div class="hl-row"><label class="hl-lab">My call <input id="lgMy" autocomplete="off" autocapitalize="characters" placeholder="Your call" style="width:130px"></label><label class="hl-lab">My grid <input id="lgGrid" autocomplete="off" maxlength="6" placeholder="EM77" style="width:100px"></label><input type="search" id="lgQ" placeholder="Search my log…" aria-label="Search my log"></div>
+<div class="hl-logwrap"><div id="lgList"><div class="hl-empty">No contacts logged on this device yet.</div></div></div>
+<p class="hl-src"><b>Putting it in QRZ:</b> tap DOWNLOAD FOR QRZ, then open your <a href="https://logbook.qrz.com" target="_blank" rel="noopener">QRZ Logbook</a> and use its ADIF import to add the file. The same file works in LoTW (through TQSL) and most logging programs. Hunters don't upload to POTA: your credit comes from the activator's log. <b>•</b> = not downloaded yet.</p>
 </div></section>
 
 <section class="hl-sec alt" id="hlSetup"><div class="hl-in">
@@ -86,6 +100,26 @@
 <h3 class="hl-h3">📊 My numbers</h3>
 <div id="mStats"><div class="hl-empty">Put your call sign in Step 1.</div></div>
 </div></section>
+</div>
+<div class="hl-sheet" id="lgSheet" role="dialog" aria-label="Log this contact"><div class="in">
+<h3><span id="lgTitle">📝 Log this contact</span><button type="button" id="lgX" aria-label="Close">✕</button></h3>
+<form id="lgForm" autocomplete="off"><div class="hl-f">
+<label>CALL<input id="fCall" required autocapitalize="characters"></label>
+<label>FREQ (MHz)<input id="fFreq" inputmode="decimal"></label>
+<label>MODE<select id="fMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option><option>PSK31</option><option>JS8</option><option>OTHER</option></select></label>
+<label>BAND<input id="fBand" readonly tabindex="-1"></label>
+<label class="w2">PARK / REF<input id="fRef" autocapitalize="characters" placeholder="US-1234, KFF-1234, W4K/EC-001"></label>
+<label class="w2">NAME<input id="fName"></label>
+<label>DATE (UTC)<input id="fDate" type="date"></label>
+<label>TIME (UTC)<input id="fTime" type="time"></label>
+<label>RST SENT<input id="fRs" inputmode="numeric"></label>
+<label>RST RCVD<input id="fRr" inputmode="numeric"></label>
+<label class="w2">STATE<input id="fSt" maxlength="2" autocapitalize="characters"></label>
+<label class="w2">NOTE<input id="fNote" maxlength="200"></label>
+</div>
+<p class="hl-dupe" id="fDupe" hidden></p>
+<div class="hl-row" style="margin-top:12px"><button type="submit" class="hl-btn gold">✓ SAVE</button><button type="button" class="hl-btn line" id="fNow">⏱ TIME = NOW</button><button type="button" class="hl-btn line" id="fCancel">CANCEL</button></div>
+</form></div></div>
 </main>
 @@FOOTER@@
-<script src="kpc-hunt.js?v=20261016a"></script>
+<script src="kpc-hunt.js?v=20261016c"></script>
