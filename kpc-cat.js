@@ -150,6 +150,15 @@
   window.KPCQrz = {
     get: () => Object.assign({}, Z), set(o) { Z = Object.assign({}, Z, o || {}); SV('kpcQrz', Z); }, on: () => !!(Z.on && Z.key),
     relay: async () => !!(await relayUrl()),
+    /* QRZ's OWN answer in a new tab (no relay needed): a normal form post opens logbook.qrz.com/api in a tab, and QRZ's
+       plain-text reply (RESULT=OK / FAIL / AUTH + REASON) shows right there (Oct 17, Brandon: 'qrz still not working') */
+    showAnswer(action, rec) {
+      if (!Z.key) return false;
+      const f = document.createElement('form'); f.method = 'POST'; f.action = 'https://logbook.qrz.com/api'; f.target = '_blank'; f.style.display = 'none';
+      const add = (n, v) => { const i = document.createElement('input'); i.type = 'hidden'; i.name = n; i.value = v; f.appendChild(i); };
+      add('KEY', Z.key); add('ACTION', action); if (action === 'INSERT') add('ADIF', rec || '');
+      document.body.appendChild(f); f.submit(); setTimeout(() => f.remove(), 2000); return true;
+    },
     async test() {   /* ACTION=STATUS: is the key good? (needs the relay to see the answer) */
       if (!Z.key) return { ok: false, msg: 'No QRZ logbook key saved.' };
       const t = await viaRelay('STATUS'); if (t == null) return { ok: null, msg: 'A web page can\'t see QRZ\'s answer without the KPC QRZ relay, so this test can\'t run yet. Log one contact and check your QRZ logbook.' };
