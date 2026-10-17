@@ -1512,7 +1512,7 @@
     toast(`✓ ${call} logged${ref ? ' at ' + ref : ''}.${!KPCQrzOn() && rec.qs ? ' (QRZ upload is off: turn it on in the CAT & QRZ tab.)' : ''}`, () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); draw(); try { lmDraw(); } catch (e) {} });
     if (opt.qrz && window.KPCQrz && !KPCQrz.get().key) toast('✓ Logged. To send to QRZ, save your QRZ key on the 📻 CAT & QRZ tab.');
     if (!PUB && (KPCQrzOn() || (opt.qrz && window.KPCQrz && KPCQrz.get().key))) { const a = adif([rec]); const one = a.slice(a.indexOf('<EOH>') + 5).trim();
-      KPCQrz.send(one).then(r => { if (r.ok) { rec.qz = r.sure ? 2 : 1; qSave(); try { qzCount(); } catch (e) {} } toast((r.ok ? '☁ QRZ: ' : '⚠ QRZ: ') + r.msg); }); }
+      KPCQrz.send(one).then(r => { if (r.ok) { rec.qz = r.sure ? 2 : 1; qSave(); try { qzCount(); } catch (e) {} } else toast('⚠ QRZ: ' + r.msg); }); }  /* no note when it went OK (Brandon Oct 17): only a problem shows */
     /* the effect flares only every 50 contacts or for DX outside North America (Brandon Oct 17) */
     const NAPRE = /^(A[A-L]|[KNW]|V[A-GOY]|C[F-KYZ]|X[A-O]|4[A-C]|6[D-J]|C[LMO]|T[GI]|H[O-RI]|YN|YS|V[23P]|J[3678]|8P|6Y|ZF|C6|FG|FM|FS|PJ|P4|HH|OX|XP|TO|FP|ZB)/;
     const dx = base(call).length > 2 && !NAPRE.test(base(call)), tot = Q.q.length;
