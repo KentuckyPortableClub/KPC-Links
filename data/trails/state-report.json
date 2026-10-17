@@ -1993,7 +1993,13 @@
    "North Bend Rail Trail State Trail",
    "3 lines 0 km from pin",
    "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donald",
-   "m/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0 trailName"
+   "m/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0 trailName",
+   {
+    "North Bend Rail-Trail": [
+     113,
+     "dataAgency=WVDOT sourceData=WVDOT Compilation trailNumbe=  trailSyste=  trailSurfa=Asphalt/Gravel manageOrg=WV Division of Natural Resources municip=  county=Mu"
+    ]
+   }
   ],
   [
    "Greenbrier River Trail State Trail",
@@ -2077,7 +2083,17 @@
    "Greenbrier River Trail State Trail",
    "3 lines 0 km from pin",
    "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donald",
-   "m/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0 trailName"
+   "m/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0 trailName",
+   {
+    "Greenbrier River Rail-Trail": [
+     124,
+     "dataAgency=USFS MNF sourceData=Trails of the Mon National Forest trailNumbe=000 trailSyste=  trailSurfa=Gravel manageOrg=WV Division of Natural Resources munici"
+    ],
+    "Greenbrier River Trail": [
+     279,
+     "dataAgency=WVDNR sourceData=NHD24K trailNumbe=  trailSyste=  trailSurfa=Water manageOrg=WV Division of Natural Resources municip=  county=Multiple state=WV mgmt"
+    ]
+   }
   ],
   [
    "Elk River Trail State Trail",
@@ -2161,7 +2177,21 @@
    "Elk River Trail State Trail",
    "3 lines 0 km from pin",
    "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donald",
-   "m/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0 trailName"
+   "m/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0 trailName",
+   {
+    "Elk River Rail-Trail": [
+     2,
+     "dataAgency=RTI sourceData=GPS'd trailNumbe=  trailSyste=  trailSurfa=Asphalt/Gravel manageOrg=Kanawha County Park and Recreation Commission municip=  county=Kan"
+    ],
+    "Elk River Water Trail": [
+     164,
+     "dataAgency=WVGISTC sourceData=Digitized trailNumbe=  trailSyste=  trailSurfa=Water manageOrg=WV Division of Natural Resources municip=  county=Multiple state=WV"
+    ],
+    "Elk River Rail Trail (Under Construction)": [
+     86,
+     "dataAgency=WVDOT sourceData=Digitized trailNumbe=\b trailSyste=Elk River Trail System trailSurfa=  manageOrg=WV Division of Natural Resources municip=\b county=Mu"
+    ]
+   }
   ]
  ]
 }
