@@ -145,6 +145,16 @@
           return;
         }
       }
+      /* Canada (our saved CPCAD / provincial file) and Europe (EEA Natura 2000 + national designations, asked live) — Oct 17 */
+      if (!o.us && window.KPCB && KPCB.worldByName) {
+        const fs = await KPCB.worldByName(o.ref, o.prog === 'SOTA' ? '' : (o.short || o.name), o.la, o.lo, { small: o.prog === 'SOTA', type: o.type }).catch(() => []);
+        if (fs.length) {
+          const f = fs[0]; show({ type: 'FeatureCollection', features: fs }, '#ffb000', null, .12); dl(); B.className = 'pi-bnd ok';
+          B.innerHTML = o.prog === 'SOTA' ? `<b>Protected land at this summit:</b> ${esc(f._nm)}${f._info ? ' · ' + esc(f._info) : ''}. Official outline from ${esc(f._src)}. The SOTA activation zone is the area within 25 m (82 ft) of the summit's height.`
+            : `<b>${esc(f._nm)}</b>${f._info ? ' · ' + esc(f._info) : ''}${f._ha ? ' · about ' + Math.round(f._ha * 2.471).toLocaleString() + ' acres' : ''}. Official outline from ${esc(f._src)}${/^EEA/.test(f._src) ? ' (matched by name at the POTA pin; the program may count a slightly different area)' : ''}. Check the park's own map for closed areas.`;
+          return;
+        }
+      }
       const os = await osm(o.la, o.lo);
       if (os) { show(os.fc, '#ff4fd8', '8 6', 0); dl(); B.className = 'pi-bnd osm'; B.innerHTML = `<b>${esc(os.name)}</b>${os.op ? ' · ' + esc(os.op) : ''}. Outline from OpenStreetMap: <b>not official</b>, just a guide. Use the park's own map to be sure.`; return; }
       B.className = 'pi-bnd none'; B.innerHTML = 'No boundary found in the official database or OpenStreetMap. The pin shows where ' + esc(o.prog) + ' places it; use the park\'s own map.';
