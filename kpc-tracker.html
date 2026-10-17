@@ -133,7 +133,7 @@
 <section class="section" style="padding-top:0"><div class="wrap">
 <div class="sec-head"><div><div class="kicker">KENTUCKY PORTABLE CLUB</div><h2>KPC Leaderboard — Kentucky Parks</h2></div><button class="btn sm alt" id="lbBtn">LOAD LEADERBOARD</button></div>
 <div id="lb"><div class="empty">Load the leaderboard to rank KPC members by unique Kentucky parks activated.</div></div>
-<div class="note">Counts come from POTA's public activation records for the 187 Kentucky parks in the KPC guide. A park counts as activated with 10 or more QSOs in one activation. Data is saved in your browser for 12 hours. Hunted parks are only shown if you load your own file.</div>
+<div class="note">Counts come from POTA's public activation records for the 191 Kentucky parks in the KPC guide. A park counts as activated with 10 or more QSOs in one activation. Data is saved in your browser for 12 hours. Hunted parks are only shown if you load your own file.</div>
 </div></section>
 <script>
 const $=id=>document.getElementById(id);
@@ -176,7 +176,7 @@ const q=new URLSearchParams(location.search).get('call');if(q){$('call').value=q
 
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
-<script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261017d" defer></script><script src="kpc-warn.js?v=20261017a" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+<script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261017d" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

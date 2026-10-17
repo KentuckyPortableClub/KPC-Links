@@ -2,19 +2,19 @@
    under the hero (and its bars). Text is per page (W below). Skipped when printing. Close (✕) hides it for this visit. */
 (function () {
   const P = location.pathname.split('/').pop() || 'index.html';
-  const BOUND = '<b>A guide, not the final word.</b> Our boundary check uses official maps where we have them, but lines can be off, GPS can drift, and some land inside a park line is private. <b>POTA (and WWFF / SOTA) decide what counts</b>: check the official park map and the program\'s own rules before you rely on a spot.';
-  const CALC = '<b>Starting numbers, not guarantees.</b> Cut wire a little long and trim, and check with an SWR meter or analyzer before you transmit. Put a fuse on every battery lead, and keep wires, masts and throw lines well away from power lines.';
+  const BOUND = '<b>A guide, not the final word.</b> Lines can be off and GPS can drift. <b>POTA, WWFF and SOTA decide what counts.</b>';
+  const CALC = '<b>Starting numbers only.</b> Check SWR before you transmit, fuse every battery lead, and stay clear of power lines.';
   const W = {
     'kpc-in-park.html': ['⚠️', BOUND], 'kpc-kit.html': ['⚠️', BOUND], 'kpc-park-info.html': ['⚠️', BOUND],
-    'kpc-spot-me.html': ['📣', '<b>Spots go to the real sites.</b> A POTA spot from here appears on pota.app for everyone in a few seconds, so only spot a station that is really on the air, on that frequency, from that park. Please don\'t send test spots.'],
-    'kpc-weather.html': ['⛈', '<b>Forecasts can be wrong.</b> Use this to plan, then watch the sky. If you hear thunder or see lightning, take the antenna down and get to a car or building. A mast or wire in a storm is the tallest thing around: don\'t wait it out under a tree.'],
-    'kpc-antenna.html': ['🔧', CALC], 'kpc-battery.html': ['🔋', CALC.replace('Cut wire a little long and trim, and check with an SWR meter or analyzer before you transmit.', 'Real batteries give less than the label in the cold and as they age, so carry extra.')],
+    'kpc-spot-me.html': ['📣', '<b>These spots are real.</b> They show on pota.app for everyone, so only spot a station that\'s really on the air. No test spots.'],
+    'kpc-weather.html': ['⛈', '<b>Forecasts can be wrong.</b> If you hear thunder, take the antenna down and get to a car or building.'],
+    'kpc-antenna.html': ['🔧', CALC], 'kpc-battery.html': ['🔋', '<b>Starting numbers only.</b> Batteries give less than the label in the cold and as they age, so carry extra.'],
     'kpc-harmonics.html': ['🔧', CALC], 'kpc-radials.html': ['🔧', CALC], 'kpc-antenna-model.html': ['🔧', CALC], 'kpc-calc.html': ['🔧', CALC], 'kpc-loaded-verticals.html': ['🔧', CALC],
-    'kpc-kids.html': ['👪', '<b>For grown-ups:</b> nothing about your child is saved or sent anywhere. Stars and badges stay on this device only, and names typed for the certificate are never stored. <b>Kids:</b> ask a grown-up before you use a real radio, and only talk on the air with a licensed ham next to you.'],
-    'kpc-maprep.html': ['🧭', '<b>A research start only.</b> This tool reads public records and maps to help you look into a place. POTA decides which places become parks, and its own rules and Mapping Representatives make the final call.'],
-    'kpc-suggest.html': ['🧭', '<b>A research start only.</b> This tool reads public records and maps to help you look into a place. POTA (and SOTA / WWFF) decide which places are added, and their own rules and volunteers make the final call.'],
-    'kpc-logger.html': ['💾', '<b>Your log lives only on this phone or computer.</b> Nothing is sent to KPC. Clearing your browser or losing the phone can lose it, so download a copy (Download &amp; files) after each outing.'],
-    'kpc-hunt.html': ['💾', '<b>Your log lives only on this device.</b> Nothing is sent to KPC. Download a copy for QRZ now and then (MY LOG FILES), because clearing the browser or losing the phone can lose it.']
+    'kpc-kids.html': ['👪', '<b>Grown-ups:</b> nothing about your child is saved or sent. <b>Kids:</b> ask a grown-up before using a real radio.'],
+    'kpc-maprep.html': ['🧭', '<b>A research start only.</b> POTA (and SOTA and WWFF) make the final call.'],
+    'kpc-suggest.html': ['🧭', '<b>A research start only.</b> POTA (and SOTA and WWFF) make the final call.'],
+    'kpc-logger.html': ['💾', '<b>Your log lives only on this device.</b> Download a copy after each outing.'],
+    'kpc-hunt.html': ['💾', '<b>Your log lives only on this device.</b> Download a copy after each outing.']
   };
   const w = W[P]; if (!w || /[?&](print|pdf)=/.test(location.search)) return;
   try { if (sessionStorage.getItem('kpcWarnX:' + P)) return; } catch (e) {}
