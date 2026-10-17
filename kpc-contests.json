@@ -1,20 +1,6 @@
 {
- "updated": "2026-10-16T11:06:38Z",
+ "updated": "2026-10-17T10:59:53Z",
  "week": [
-  {
-   "name": "K1USN Slow Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fsw21",
-   "when": "2000Z-2100Z, Oct 16",
-   "segs": [
-    [
-     "2026-10-16T20:00Z",
-     "2026-10-16T21:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "JARL WW RTTY Contest",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fjnv5",
@@ -460,6 +446,66 @@
    "modes": [
     "PHONE"
    ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "NCCC FT4 Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g2yr9",
+   "when": "0100Z-0130Z, Oct 23",
+   "segs": [
+    [
+     "2026-10-23T01:00Z",
+     "2026-10-23T01:30Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Weekly RTTY Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g41ch",
+   "when": "0145Z-0215Z, Oct 23",
+   "segs": [
+    [
+     "2026-10-23T01:45Z",
+     "2026-10-23T02:15Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "NCCC Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g1vn0",
+   "when": "0230Z-0300Z, Oct 23",
+   "segs": [
+    [
+     "2026-10-23T02:30Z",
+     "2026-10-23T03:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "K1USN Slow Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ft3rt",
+   "when": "2000Z-2100Z, Oct 23",
+   "segs": [
+    [
+     "2026-10-23T20:00Z",
+     "2026-10-23T21:00Z"
+    ]
+   ],
+   "modes": [],
    "kinds": [],
    "src": "WA7BNM"
   }
@@ -1248,10 +1294,29 @@
    ],
    "src": "RULE",
    "by": "ARRL"
+  },
+  {
+   "name": "ARRL November Sweepstakes (Phone)",
+   "url": "https://www.arrl.org/sweepstakes",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2027-11-20T21:00Z",
+     "2027-11-22T03:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL"
   }
  ],
  "status": {
-  "WA7BNM": "ok (31)",
+  "WA7BNM": "ok (34)",
   "CORRAL": "ok (18)"
  }
 }
