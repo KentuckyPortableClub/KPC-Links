@@ -1102,6 +1102,16 @@
   function dkRadT() { const f = $('dFreq').value.trim(), r = $('dRef').value.trim(); $('dkRadT').textContent = (f || 'FREQ?') + ' ' + $('dMode').value + (r ? ' · ' + r : ''); $('dkRad').classList.toggle('bad', !f); }
   /* phones: jump down to the log; ↑ BACK TO SPOTS (only that button) goes back up */
   function dkGo() { BACKY = scrollY; setTimeout(() => $('hlDk').scrollIntoView({ behavior: 'smooth', block: 'end' }), 30); }
+  /* phones: keyboard up while typing in the log = hide the extras so a few contacts show above the entry line (Brandon Oct 17) */
+  let VVMAX = 0;
+  function dkKb() {
+    const vv = window.visualViewport, h = document.documentElement; if (!vv || PUB || DESKON() || !$('hlDk')) { h.classList.remove('hl-kb'); return; }
+    VVMAX = Math.max(VVMAX, vv.height); const ae = document.activeElement, inDk = ae && ae.closest && ae.closest('#dkForm') && /^(INPUT|SELECT)$/.test(ae.tagName);
+    const kb = !!inDk && vv.height < VVMAX - 120, was = h.classList.contains('hl-kb'); h.classList.toggle('hl-kb', kb);
+    h.style.setProperty('--vvh', Math.round(vv.height) + 'px'); h.style.setProperty('--dkd', $('dkForm').offsetHeight + 'px');
+    if (kb && !was) setTimeout(() => { const r = $('hlDk').getBoundingClientRect(); scrollBy(0, r.bottom - vv.height - vv.offsetTop + 6); }, 80);
+  }
+  if (window.visualViewport) { visualViewport.addEventListener('resize', dkKb); addEventListener('orientationchange', () => { VVMAX = 0; setTimeout(dkKb, 400); }); document.addEventListener('focusin', () => setTimeout(dkKb, 350)); document.addEventListener('focusout', () => setTimeout(dkKb, 350)); }
   function dkFill(s) {
     if (!$('dCall')) return;
     BACKK = s.call ? s.p + '|' + s.call + '|' + s.ref : '';

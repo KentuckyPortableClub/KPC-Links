@@ -568,3 +568,21 @@ main#lg .lg-fold:not(.open){padding-top:12px;padding-bottom:12px}
  main#lg:not([data-tab=more]):not([data-night]) .lg-hero .lg-pic{aspect-ratio:auto;height:118px;background:url('hero-founders.jpg') center 38%/cover no-repeat;-webkit-mask-image:none;mask-image:none}
  main#lg:not([data-tab=more]):not([data-night]) .lg-hero .lg-in{display:none}
 }
+
+/* Oct 17 (Brandon's phone picture): less empty space under the entry line, and KEYBOARD MODE (main#lg[data-kb], set by vvFit()):
+   the app fits the visible part of the screen, the extras hide, and the log fills the room above the entry line */
+@media(max-width:1099px){
+ main#lg .lg-dock{padding-bottom:max(8px,calc(env(safe-area-inset-bottom) - 24px))}
+ main#lg[data-kb]{top:var(--vvt,0px)!important;bottom:auto!important;height:var(--vvh,100dvh)!important}
+ main#lg[data-kb] .lg-dock{bottom:var(--kbb,0px);padding:5px 8px 5px}
+ main#lg[data-kb] .lg-hero,main#lg[data-kb] .lg-mini,main#lg[data-kb] .lg-dstat,main#lg[data-kb] .lg-day i{display:none!important}
+ main#lg[data-kb] .lg-tabs button{padding:8px 10px 7px;font-size:13px}
+ main#lg[data-kb] .lg-tabs a img,main#lg[data-kb] .lg-tabs .lg-tlogo{max-height:26px}
+ main#lg[data-kb] .lg-day{padding:3px 12px;font-size:13px}
+ main#lg[data-kb] .lr{padding:5px 12px}
+ main#lg[data-kb] .lg-dchips{margin-bottom:4px}
+ main#lg[data-kb] .lg-dchips .dc{padding:5px 8px}
+ main#lg[data-kb] .lg-who{margin-top:3px}
+ main#lg[data-kb] #cLog .lg-list{height:calc(var(--vvh,100dvh) - 38px - var(--dock,200px))!important;min-height:90px}
+}
+html:has(main#lg[data-kb]) .lg-toast{bottom:auto;top:8px}
