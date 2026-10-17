@@ -1,0 +1,24 @@
+name: KPC world POTA pins
+# Monthly (5th) + by hand: every POTA park outside the US and Canada as map tiles (data/pota/t) for the KPC US Trip Planner.
+on:
+  schedule:
+    - cron: '17 6 5 * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kpc-world-pota
+  cancel-in-progress: false
+jobs:
+  world:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+      - run: python3 .github/scripts/kpc_world_pota.py
+      - name: Save
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A data/pota
+          if ! git diff --cached --quiet; then git commit -m 'World POTA pins'; git pull --rebase --autostash || true; git push; fi
