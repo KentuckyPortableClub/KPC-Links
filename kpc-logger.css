@@ -507,3 +507,31 @@ main#lg[data-night] #eMore:not([hidden]){background:#140000}
 #cEntry[data-fx=stars] .lg-f.e.main label{border-bottom-color:#7aa7ff}
 main#lg[data-night] #cEntry{background:#0a0000!important}
 @media(prefers-reduced-motion:reduce){.lg-dock .dk-fx i{animation:none!important;opacity:.35!important}}
+
+/* ===== Oct 17 (Brandon: 'give them the same treatment with the themes'): page LOOKS like the Hunters Lounge.
+   main#lg[data-look] = classic (club photo, teal) / lodge (cabin lodge picture, warm gold) / night (aurora, blue-teal) / dark (black, orange).
+   Picked from the hero LOOK chips or the ⚙ Station op bar (SET.look, default lodge). ===== */
+.lg-looks{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px}
+.lg-looks span{font:900 11px Arial;letter-spacing:1.6px;color:var(--mu)}
+.lg-looks button{border:1px solid var(--ln);background:rgba(0,0,0,.45);color:var(--tx);border-radius:999px;padding:6px 12px;font:700 12px Arial;letter-spacing:.6px;cursor:pointer}
+.lg-looks button.on{background:var(--g);color:#1a1205;border-color:var(--g)}
+main#lg[data-look=lodge]{--g:#e3a24a;--g2:#ffcf7a;--gr:#9be36b;--bg:#1a100a;--card:rgba(36,22,13,.88);--ln:rgba(227,162,74,.38);--tx:#f6e9d6;--mu:#c6a988}
+main#lg[data-look=lodge]::before{background:linear-gradient(180deg,rgba(20,11,5,.45),rgba(20,11,5,.82)),#1a100a url('bg-lodge.jpg') center/cover no-repeat}
+main#lg[data-look=night]{--g:#7fd3e8;--g2:#b9ecff;--gr:#7ef0b2;--bg:#050a18;--card:rgba(8,16,34,.85);--ln:rgba(127,211,232,.32);--tx:#eaf3ff;--mu:#93a8c4}
+main#lg[data-look=night]::before{background:linear-gradient(180deg,rgba(4,8,20,.35),rgba(4,8,20,.8)),#050a18 url('bg-night.jpg') center/cover no-repeat}
+main#lg[data-look=dark]{--g:#ff8a3d;--g2:#ffb072;--gr:#4cf0a0;--bg:#050505;--card:rgba(18,18,18,.92);--ln:rgba(255,138,61,.28);--tx:#eeeeee;--mu:#9a9a9a}
+main#lg[data-look=dark]::before{background:radial-gradient(900px 600px at 15% 0%,rgba(255,138,61,.12),transparent 60%),#030303}
+@media(max-width:700px){
+ main#lg[data-look=lodge]::before{background-image:linear-gradient(180deg,rgba(20,11,5,.45),rgba(20,11,5,.82)),url('bg-lodge-mobile.jpg')}
+ main#lg[data-look=night]::before{background-image:linear-gradient(180deg,rgba(4,8,20,.35),rgba(4,8,20,.8)),url('bg-night-mobile.jpg')}
+}
+main#lg[data-look=lodge]::after,main#lg[data-look=night]::after,main#lg[data-look=dark]::after{opacity:.12}
+/* tab bars, table heads, station panel and respot buttons follow the look */
+main#lg[data-look=lodge] .lg-tabs,main#lg[data-look=lodge] .lg-rtabs,main#lg[data-look=lodge] .lg-sp .rs{background:#3a2210}
+main#lg[data-look=lodge] .lg-stpanel,main#lg[data-look=lodge] .lg-t th{background:#1c120a}
+main#lg[data-look=night] .lg-tabs,main#lg[data-look=night] .lg-rtabs,main#lg[data-look=night] .lg-sp .rs{background:#0c2142}
+main#lg[data-look=night] .lg-stpanel,main#lg[data-look=night] .lg-t th{background:#071226}
+main#lg[data-look=dark] .lg-tabs,main#lg[data-look=dark] .lg-rtabs,main#lg[data-look=dark] .lg-sp .rs{background:#161616}
+main#lg[data-look=dark] .lg-stpanel,main#lg[data-look=dark] .lg-t th{background:#0b0b0b}
+main#lg[data-look=dark] .lg-tabs button.on{border-bottom-color:var(--g);color:var(--g2)}
+main#lg[data-night]::before{background:#000!important}

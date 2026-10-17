@@ -623,6 +623,9 @@
     role(SET.role);
     const FXL = { flames: '🔥 FLAMES', fireworks: '🎆 FIREWORKS', stars: '🌠 STARS', off: '🚫 PLAIN' };
     const fxSet = f => { SET.fx = FXL[f] ? f : 'flames'; saveSet(); $('cEntry').dataset.fx = SET.fx; $('oFx').textContent = FXL[SET.fx]; };
+    const LKL = { classic: '🏕 CLASSIC', lodge: '🔥 CABIN LODGE', night: '🌌 NIGHT SKY', dark: '🌑 DARK' }, LKN = { classic: 'lodge', lodge: 'night', night: 'dark', dark: 'classic' };
+    const lookSet = l => { SET.look = LKL[l] ? l : 'lodge'; saveSet(); document.getElementById('lg').dataset.look = SET.look; $('oLook').textContent = LKL[SET.look]; document.querySelectorAll('[data-look]').forEach(b => b.classList.toggle('on', b.dataset.look === SET.look)); };
+    lookSet(SET.look || 'lodge'); $('oLook').onclick = () => lookSet(LKN[SET.look]); document.querySelectorAll('[data-look]').forEach(b => b.onclick = () => lookSet(b.dataset.look));
     fxSet(SET.fx || 'flames'); $('oFx').onclick = () => fxSet(({ flames: 'fireworks', fireworks: 'stars', stars: 'off', off: 'flames' })[SET.fx]);
     night(!!get('kpcLgNight', false)); $('oNight').onclick = () => night(!document.getElementById('lg').hasAttribute('data-night'));
     $('oEdit').onclick = () => stationOpen(false);

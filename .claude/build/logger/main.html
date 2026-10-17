@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261017a">
+<link rel="stylesheet" href="kpc-logger.css?v=20261017b">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -20,6 +20,7 @@
 <div class="lg-ops-goal" id="sOps"></div>
 <div class="lg-ops-goal" id="sProg"></div>
 <div class="lg-hacts"><a class="lg-btn line sm" href="#cApp">📲 INSTALL / USE WITH NO SIGNAL</a><a class="lg-btn line sm" href="#cOp">📝 NOTES</a><button type="button" class="lg-btn line sm" id="hShare">📸 SHARE MY ACTIVATION</button></div>
+<div class="lg-looks" role="group" aria-label="Look"><span>LOOK:</span><button type="button" data-look="classic">🏕 CLASSIC</button><button type="button" data-look="lodge">🔥 CABIN LODGE</button><button type="button" data-look="night">🌌 NIGHT SKY</button><button type="button" data-look="dark">🌑 DARK</button></div>
 </div></section>
 
 <div class="lg-wrap">
@@ -50,7 +51,7 @@
 <div class="lg-opbar">
  <div class="lg-opwho"><b id="oCall">YOUR CALL</b> <span id="oAt">@</span> <b id="oPark" class="pk">PARK</b><div class="lg-opsub" id="oSub">Tap ⚙ STATION to set your call and park</div></div>
  <div class="lg-opn"><b id="oN">0</b><span>QSOs</span></div>
- <div class="lg-opb"><button type="button" class="lg-btn gold sm" id="oEdit" aria-expanded="false">✓ DONE</button><button type="button" class="lg-btn line sm" id="oFx" title="Look of the log box: flames, fireworks, shooting stars or plain">🔥 FLAMES</button><button type="button" class="lg-btn line sm" id="oNight">🌙 NIGHT</button></div>
+ <div class="lg-opb"><button type="button" class="lg-btn gold sm" id="oEdit" aria-expanded="false">✓ DONE</button><button type="button" class="lg-btn line sm" id="oLook" title="Page look">🏕 CLASSIC</button><button type="button" class="lg-btn line sm" id="oFx" title="Look of the log box: flames, fireworks, shooting stars or plain">🔥 FLAMES</button><button type="button" class="lg-btn line sm" id="oNight">🌙 NIGHT</button></div>
 </div>
 <div class="lg-oprow">
  <div class="lg-role" role="group" aria-label="What are you doing?"><button type="button" data-role="act" class="on">🏕 ACTIVATING</button><button type="button" data-role="hunt">🎯 HUNTING</button></div>
@@ -179,4 +180,4 @@
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-logger.js?v=20261017a"></script>
+<script src="kpc-logger.js?v=20261017b"></script>
