@@ -19,7 +19,7 @@
   const BANDS = [['160m', 1800, 2000], ['80m', 3500, 4000], ['60m', 5330, 5410], ['40m', 7000, 7300], ['30m', 10100, 10150], ['20m', 14000, 14350], ['17m', 18068, 18168], ['15m', 21000, 21450], ['12m', 24890, 24990], ['10m', 28000, 29700], ['6m', 50000, 54000], ['2m', 144000, 148000], ['70cm', 420000, 450000]];
   const bandOf = k => (BANDS.find(b => k >= b[1] && k <= b[2]) || ['OTHER'])[0];
   const modeOf = m => { m = String(m || '').toUpperCase(); if (/SSB|LSB|USB|PHONE|^AM$|^FM$/.test(m)) return 'PHONE'; if (/^CW/.test(m)) return 'CW'; if (/FT8|FT4|RTTY|PSK|JS8|DATA|DIGI|OLIVIA|MFSK|JT|SSTV|VARA|Q65/.test(m)) return 'DIGITAL'; return 'OTHER'; };
-  const WHERE = [['all', 'EVERYWHERE'], ['us', 'USA'], ['usca', 'USA + CANADA'], ['range', 'IN MY RANGE']];
+  const WHERE = [['all', 'EVERYWHERE'], ['us', 'USA'], ['usca', 'USA + CANADA']];
 
   /* ---------------- references ---------------- */
   const nref = r => {
@@ -42,8 +42,10 @@
   const saveLog = () => { LOG.r = [...WK]; LOG.m = [...MAN]; put('kpcHuntLog', LOG); };
   const hasLog = () => WK.size > 0;
   let F = Object.assign({ view: 'cards', p: ['POTA', 'WWFF', 'SOTA', 'DXPED', 'EVENT'], hide: false, nw: false, rg: false, bands: [], modes: [], where: 'all', st: '', q: '', sort: 'new' }, get('kpcHuntF', {}));
+  F.rg = false; if (F.where === 'range') F.where = 'all'; if (F.sort === 'far') F.sort = 'new'; if (!Array.isArray(F.xc)) F.xc = [];
   const saveF = () => put('kpcHuntF', F);
-  let HOME = get('kpcHuntHome', null), RANGE = +get('kpcHuntRange', 1500) || 1500, FAR = get('kpcHuntFar', true), BELL = get('kpcHuntBell', false), NOTE = get('kpcHuntNote', false);
+  /* 'normal range' was removed Oct 16 (Brandon): no home, no far-away ticker */
+  let HOME = null, RANGE = 1e9, FAR = false, BELL = get('kpcHuntBell', false), NOTE = get('kpcHuntNote', false);
   let CALL = base(get('kpcMyCall', ''));
 
   /* ---------------- geo ---------------- */
@@ -128,7 +130,7 @@
     ]);
     const now = Date.now(), seen = new Map();
     out.filter(s => s.call && (!s.t || now - s.t < 75 * 60e3)).sort((a, b) => (b.t || 0) - (a.t || 0)).forEach(s => { const k = keyOf(s); if (!seen.has(k)) seen.set(k, s); });
-    SP = [...seen.values()];
+    SP = [...seen.values()]; SP.forEach(cty);
     await loadParks();
     SP.forEach(s => {
       const k = PK[s.ref];
@@ -139,12 +141,23 @@
     /* look up where new-to-you SOTA summits are (only those), then redraw */
     const need = SP.filter(s => s.p === 'SOTA' && !isFinite(s.la) && isNew(s)).slice(0, 12);
     if (need.length) Promise.all(need.map(async s => { const w = await sotaWhere(s); if (w) { s.la = w[0]; s.lo = w[1]; s.acts = w[2]; } })).then(() => { ticker(false); draw(); });
-    ticker(!first); first = false; draw(); needDraw();
+    ticker(!first); first = false; chips(); draw(); needDraw();
     next = Date.now() + 60e3;
   }
   const isNew = s => !!s.ref && hasLog() && !WK.has(s.ref);
   const keyOf = s => s.p + '|' + s.call + '|' + (s.ref || Math.round(s.khz));
-  const passPBM = s => F.p.includes(s.p) && (!F.bands.length || F.bands.includes(bandOf(s.khz))) && (!F.modes.length || F.modes.includes(modeOf(s.mode)));
+  /* country of each spot: POTA ref prefix → POTA's program list, SOTA association → SOTA's list, others from Spothole */
+  const PROG = {}, ASSOC = {};
+  fetch('https://api.pota.app/programs').then(r => r.ok ? r.json() : []).then(L => { (L || []).forEach(x => { if (x.programPrefix) PROG[x.programPrefix] = x.programName; }); SP.forEach(cty); chips(); draw(); }).catch(() => {});
+  fetch('https://api2.sota.org.uk/api/associations').then(r => r.ok ? r.json() : []).then(L => { (L || []).forEach(x => { if (x.associationCode) ASSOC[x.associationCode] = String(x.associationName || ''); }); SP.forEach(cty); chips(); draw(); }).catch(() => {});
+  const ctyName = n => { n = String(n || '').trim(); if (/^(USA|United States)/i.test(n)) return 'United States'; return n.split(/ - | \(|, /)[0].trim(); };
+  function cty(s) {
+    if (s.p === 'POTA') { const pre = String(s.ref).split('-')[0]; s.cty = PROG[pre] ? ctyName(PROG[pre]) : (pre === 'US' ? 'United States' : pre === 'CA' ? 'Canada' : pre); }
+    else if (s.p === 'SOTA') { const a = String(s.ref).split('/')[0]; s.cty = ASSOC[a] ? ctyName(ASSOC[a]) : /^(W|K|N|A)\d|^K[HL]/.test(a) ? 'United States' : /^(VE|VA|VY|VO)/.test(a) ? 'Canada' : a; }
+    else s.cty = ctyName(s.loc) || (s.us ? 'United States' : s.ca ? 'Canada' : 'Unknown');
+    return s;
+  }
+  const passPBM = s => F.p.includes(s.p) && !F.xc.includes(s.cty) && (!F.bands.length || F.bands.includes(bandOf(s.khz))) && (!F.modes.length || F.modes.includes(modeOf(s.mode)));
 
   /* ---------------- ticker + alerts ---------------- */
   let AC = null;
@@ -158,7 +171,7 @@
   const tItem = s => `<span class="it" data-k="${esc(keyOf(s))}">✨ <b>${esc(s.ref)}</b> ${esc(s.name || '')} <small>${esc(s.st || s.loc || '')}</small> · ${esc(s.call)} <i>${(s.khz / 1000).toFixed(3)}</i> <small>${esc(s.mode || '')}</small></span>`;
   function ticker(alert) {
     const T = $('hlTickT'), FT = $('hlFarT');
-    if (!hasLog()) { T.innerHTML = '<span class="hl-wait">Load your log (Step 1 below) and new-to-you parks will roll across here.</span>'; T.style.setProperty('--dur', '22s'); $('hlFar').hidden = true; naDraw(); return; }
+    if (!hasLog()) { T.innerHTML = '<span class="hl-wait">Tap ⭐ GET MY PARKS FROM POTA (top of the page) and new-to-you parks will roll across here.</span>'; T.style.setProperty('--dur', '22s'); $('hlFar').hidden = true; naDraw(); return; }
     const L = SP.filter(s => isNew(s) && passPBM(s));
     const far = FAR && HOME ? L.filter(isFar) : [], near = L.filter(s => !far.includes(s));
     const fresh = near.filter(s => !SEEN.has(keyOf(s)));
@@ -249,6 +262,10 @@
     $('sMode').textContent = F.modes.length ? F.modes.join(' ') : 'ALL';
     $('sWhere').textContent = (WHERE.find(w => w[0] === F.where) || WHERE[0])[1] + (F.st ? ' · ' + F.st : '');
     $('fSt').value = F.st; $('fSort').value = F.sort; $('fQ').value = F.q;
+    const cc = {}; SP.forEach(x => { if (x.cty) cc[x.cty] = (cc[x.cty] || 0) + 1; }); F.xc.forEach(c => { if (!(c in cc)) cc[c] = 0; });
+    $('fCty').innerHTML = Object.keys(cc).sort((a, b) => (cc[b] - cc[a]) || a.localeCompare(b)).map(c => `<button type="button" class="hl-chip${F.xc.includes(c) ? ' off' : ''}" data-cty="${esc(c)}" aria-pressed="${F.xc.includes(c)}">${F.xc.includes(c) ? '🚫 ' : ''}${esc(c)} <small>${cc[c]}</small></button>`).join('') || '<span class="hl-src">No spots yet.</span>';
+    $('sCty').textContent = F.xc.length ? F.xc.length + ' HIDDEN' : 'NONE';
+    activeBox();
   }
   document.addEventListener('click', e => {
     const t = e.target.closest('[data-g=p],[data-band],[data-mode],[data-where],#fHide,#fNew,#fRange'); if (!t) return;
@@ -261,11 +278,39 @@
     else if (t.id === 'fHide') F.hide = !F.hide; else if (t.id === 'fNew') F.nw = !F.nw; else if (t.id === 'fRange') { F.rg = !F.rg; if (F.rg && !HOME) { $('hlSetup').scrollIntoView({ behavior: 'smooth' }); $('hHome').textContent = 'Set where you are first.'; } }
     saveF(); chips(); ticker(false); draw();
   });
+  /* the box that shows what you're filtering, each with an ✕, plus CLEAR ALL */
+  const F0 = { p: ['POTA', 'WWFF', 'SOTA', 'DXPED', 'EVENT'], hide: false, nw: false, bands: [], modes: [], where: 'all', st: '', q: '', xc: [] };
+  function activeBox() {
+    const it = [];
+    const PN = { POTA: 'POTA', WWFF: 'WWFF / KFF', SOTA: 'SOTA', DXPED: 'DXPEDITIONS', EVENT: 'SPECIAL EVENTS', DX: 'DX CLUSTER' };
+    const pOff = F0.p.filter(x => !F.p.includes(x)), pOn = F.p.filter(x => !F0.p.includes(x));
+    if (pOff.length || pOn.length) it.push(['p', 'Showing: ' + F.p.map(x => PN[x]).join(', ')]);
+    if (F.hide) it.push(['hide', '🙈 Hiding parks I’ve worked']);
+    if (F.nw) it.push(['nw', '✨ New to me only']);
+    F.bands.forEach(b => it.push(['band:' + b, 'Band ' + b]));
+    F.modes.forEach(m => it.push(['mode:' + m, 'Mode ' + m]));
+    if (F.where !== 'all') it.push(['where', (WHERE.find(w => w[0] === F.where) || [0, F.where])[1]]);
+    if (F.st) it.push(['st', 'State ' + F.st]);
+    if (F.q.trim()) it.push(['q', 'Search “' + F.q.trim() + '”']);
+    F.xc.forEach(c => it.push(['xc:' + c, '🚫 ' + c]));
+    const b = $('hlActive'); b.hidden = !it.length;
+    b.innerHTML = it.length ? `<b>FILTERING:</b>${it.map(([k, t]) => `<button type="button" class="hl-pill" data-unf="${esc(k)}" title="Remove this filter">${esc(t)} ✕</button>`).join('')}<button type="button" class="hl-btn line sm" data-unf="*">CLEAR ALL FILTERS</button>` : '';
+  }
+  document.addEventListener('click', e => {
+    const c = e.target.closest('[data-cty]');
+    if (c) { const v = c.dataset.cty; F.xc = F.xc.includes(v) ? F.xc.filter(x => x !== v) : F.xc.concat(v); saveF(); chips(); ticker(false); draw(); return; }
+    const u = e.target.closest('[data-unf]'); if (!u) return;
+    const k = u.dataset.unf;
+    if (k === '*') Object.assign(F, JSON.parse(JSON.stringify(F0)));
+    else if (k === 'p') F.p = F0.p.slice(); else if (k === 'hide') F.hide = false; else if (k === 'nw') F.nw = false; else if (k === 'where') F.where = 'all'; else if (k === 'st') F.st = ''; else if (k === 'q') F.q = '';
+    else if (k.startsWith('band:')) F.bands = F.bands.filter(x => x !== k.slice(5)); else if (k.startsWith('mode:')) F.modes = F.modes.filter(x => x !== k.slice(5)); else if (k.startsWith('xc:')) F.xc = F.xc.filter(x => x !== k.slice(3));
+    saveF(); chips(); ticker(false); draw();
+  });
   document.addEventListener('click', e => { const v = e.target.closest('[data-view]'); if (!v) return; F.view = v.dataset.view; saveF(); viewChips(); draw(); });
   function viewChips() { document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', (F.view || 'cards') === b.dataset.view)); }
   $('fSt').onchange = () => { F.st = $('fSt').value; saveF(); chips(); draw(); };
   $('fSort').onchange = () => { F.sort = $('fSort').value; saveF(); draw(); };
-  $('fQ').oninput = () => { F.q = $('fQ').value; saveF(); draw(); };
+  $('fQ').oninput = () => { F.q = $('fQ').value; saveF(); activeBox(); draw(); };
   document.addEventListener('click', e => { document.querySelectorAll('.hl-dd[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; }); });
   document.querySelectorAll('.hl-dd').forEach(d => d.addEventListener('toggle', () => { if (d.open) document.querySelectorAll('.hl-dd[open]').forEach(o => { if (o !== d) o.open = false; }); }));
 
