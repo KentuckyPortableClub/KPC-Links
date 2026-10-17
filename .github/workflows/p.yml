@@ -8,16 +8,16 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: |
-          npm i world-atlas@2 topojson-client@3 >/dev/null
-          node -e '
-          const t=require("world-atlas/countries-50m.json"),tc=require("topojson-client");
-          const f=tc.feature(t,t.objects.countries).features.filter(x=>["124","840","484","304"].includes(String(x.id)));
-          const X=lo=>(lo+170)*4, Y=la=>(75-la)*4*1.25;
-          const out={};
-          for(const g of f){const polys=g.geometry.type==="Polygon"?[g.geometry.coordinates]:g.geometry.coordinates;let d="";
-            for(const p of polys){const r=p[0].filter(([lo,la])=>lo<-50&&lo>-170&&la>14);if(r.length<8)continue;
-              let s="",last=null;for(const [lo,la] of r){const x=Math.round(X(lo)),y=Math.round(Y(la));const k=x+","+y;if(k===last)continue;last=k;s+=(s?"L":"M")+x+" "+y}
-              if((s.match(/L/g)||[]).length>=4)d+=s+"Z"}
-            out[g.id]=d}
-          require("fs").writeFileSync("na.json",JSON.stringify(out));console.log(Object.entries(out).map(([k,v])=>k+":"+v.length).join(" "))'
-          git config user.name x; git config user.email x@x; git add na.json; git commit -qm na; git push
+          mkdir -p pa && cd pa
+          curl -sL https://pota.app/ -o index.html
+          grep -o 'src="[^"]*\.js"\|href="[^"]*\.js"' index.html | sed 's/.*="//;s/"//' | sort -u > list.txt
+          cat list.txt
+          for f in $(cat list.txt); do u=$f; case $u in http*) ;; /*) u=https://pota.app$u;; *) u=https://pota.app/$u;; esac; curl -sL "$u" -o "$(basename $f)"; done
+          # follow chunk names referenced in js
+          grep -oh '"[a-zA-Z0-9_./-]*\.js"' *.js | tr -d '"' | sort -u | head -400 > chunks.txt
+          for c in $(cat chunks.txt); do b=$(basename $c); [ -f "$b" ] || curl -sfL "https://pota.app/js/$b" -o "$b" || curl -sfL "https://pota.app/$c" -o "$b" || true; done
+          ls -la | head -50
+          grep -oh '"/user/[^"]*"\|`/user/[^`]*`\|"user/[^"]*"\|/user/[a-zA-Z/]*' *.js | sort | uniq -c | sort -rn | head -80 > ../user-endpoints.txt
+          grep -oh '[a-zA-Z]*[Hh]unt[a-zA-Z]*' *.js | sort | uniq -c | sort -rn | head -60 >> ../user-endpoints.txt
+          grep -oh '.\{80\}[Ee]xport.\{120\}' *.js | head -40 >> ../user-endpoints.txt
+          cd ..; git config user.name x; git config user.email x@x; git add user-endpoints.txt; git commit -qm ep; git push
