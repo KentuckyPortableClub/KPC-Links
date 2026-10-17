@@ -1173,7 +1173,7 @@
      allowed), else your log's grid, else the middle of Kentucky. Nothing about you is sent anywhere but those services. */
   (function cxBar() {
     const bar = $('hlCx'); if (!bar) return;
-    const wide = () => matchMedia('(min-width:1100px)').matches;
+    const wide = () => true;   /* computers AND phones since Oct 17 (Brandon) */
     const g2ll = g => { g = String(g || '').toUpperCase(); if (!/^[A-R]{2}\d{2}/.test(g)) return null; const lo = (g.charCodeAt(0) - 65) * 20 - 180 + (+g[2]) * 2 + 1, la = (g.charCodeAt(1) - 65) * 10 - 90 + (+g[3]) + .5; return [la, lo]; };
     const ll2g = (la, lo) => { lo += 180; la += 90; return String.fromCharCode(65 + Math.floor(lo / 20)) + String.fromCharCode(65 + Math.floor(la / 10)) + Math.floor((lo % 20) / 2) + Math.floor(la % 10); };
     const around = g => { const c = g2ll(g); if (!c) return [g]; const o = new Set(); for (let a = -1; a <= 1; a++) for (let b = -1; b <= 1; b++) o.add(ll2g(c[0] + a, c[1] + b * 2)); return [...o]; };

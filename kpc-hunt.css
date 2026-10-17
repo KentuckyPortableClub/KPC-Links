@@ -749,8 +749,7 @@ main#hl .hl-ptabs a[aria-current="page"]{color:#2a1a05!important}
 html.hl-kb .hl-toast{bottom:auto!important;top:8px!important}
 
 /* Oct 17 (Brandon: 'desktop only… a smaller scrolling bar with solar, weather and WSPR reports by band from where you are') */
-.hl-cx{display:none}
-@media(min-width:1100px){
+@media all{
  .hl-cx{display:flex;align-items:stretch;min-height:34px;background:linear-gradient(180deg,#0f1410,#0a0d0a);border-bottom:1px solid rgba(240,201,107,.45);box-shadow:0 6px 16px rgba(0,0,0,.35);font:13px Arial;color:#e8e1cf}
  .hl-cx-k{flex:0 0 auto;display:flex;align-items:center;padding:0 12px;font:900 11px Arial;letter-spacing:1.6px;color:#2a1a05;background:linear-gradient(180deg,#f6d58a,#d5a63a)}
  .hl-cx-run{flex:1;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
@@ -771,3 +770,14 @@ html.hl-kb .hl-toast{bottom:auto!important;top:8px!important}
  main#hl[data-page="need"] .hl-cx{display:none}
 }
 @media(prefers-reduced-motion:reduce){.hl-cx-track{animation:none!important}.hl-cx-run{overflow-x:auto}}
+
+/* Oct 17 (Brandon: 'do both mobiles too'): the conditions bar on phones, smaller */
+@media(max-width:1099px){
+ .hl-cx{min-height:30px;font-size:12px}
+ .hl-cx-k{padding:0 8px;font-size:10px;letter-spacing:1px}
+ .hl-cx-b{padding:0 9px;font-size:0}
+ .hl-cx-b::before{content:'📍';font-size:14px}
+ .hl-cx .cs{padding:0 8px}
+ .hl-cx-track{padding-left:12px}
+ html.hl-kb .hl-cx{display:none!important}
+}
