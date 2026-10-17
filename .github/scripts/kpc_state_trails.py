@@ -237,6 +237,11 @@ for st, cand in jobs():
         if not lines and iso.startswith('US-'):
             lines, org = agency(name, stc, la, lo)
             if lines: by, off = org, True
+            # Oct 17: an agency layer that only has a tiny piece (Empire State Trail 4 km) loses to a much longer OpenStreetMap line
+            if lines and sum(seglen(l) for l in lines) < 8:
+                ol, on = osm(name, iso, la, lo)
+                if ol and sum(seglen(l) for l in ol) > 3 * sum(seglen(l) for l in lines) and min(km(la, lo, p[1], p[0]) for l in ol for p in l) <= CHECK_KM:
+                    lines, by, off = ol, 'OpenStreetMap (not official)', False
         if not lines:
             lines, on = osm(name, iso, la, lo); by = 'OpenStreetMap (not official)' if lines else ''
         if not lines: report['missing'].append([ref, name, stc, 'no line found']); continue
