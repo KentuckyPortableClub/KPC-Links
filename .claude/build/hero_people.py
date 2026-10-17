@@ -12,7 +12,7 @@ P={
  'kpc-community.html':('hero-kq4hzk',   'center 45%','calc(-34vw)',    ('Aaron','KQ4HZK')),
  'members.html':     ('hero-ky-flag',   'center 45%','center 40%', None),
  'kpc-campgrounds.html':('hero-campsite','center 58%','center 60%', None),
- 'kpc-park-notes.html':('hero-river-camp','center 58%','center 55%', None),
+ 'kpc-park-notes.html':('hero-journal','center 55%','center 62%', None),
 }
 for f,(img,pd,pm,who) in P.items():
     s=open(f,encoding='utf-8').read()
