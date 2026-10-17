@@ -111,7 +111,7 @@
     const khz = toKhz(x.freq != null ? x.freq : x.frequency); if (!khz) return null;
     const call = String(x.dx_call || x.activator || '').toUpperCase(), com = x.comment || '';
     const country = x.dx_country || '', usa = /united states/i.test(country), can = /canada/i.test(country);
-    const g = { call, khz, mode: String(x.mode || '').toUpperCase(), loc: country, st: usa ? String(x.dx_state || '').toUpperCase() : '', la: +(x.dx_latitude ?? NaN), lo: +(x.dx_longitude ?? NaN),
+    const g = { qrt: !!x.qrt, call, khz, mode: String(x.mode || '').toUpperCase(), loc: country, st: usa ? String(x.dx_state || '').toUpperCase() : '', la: +(x.dx_latitude ?? NaN), lo: +(x.dx_longitude ?? NaN),
       t: toMs(x.time), by: x.de_call || '', com, us: usa, ca: can };
     if (/WWFF/i.test(sig)) {
       const rr = x.sig_refs || []; const refs = (Array.isArray(rr) ? rr : [rr]).map(v => typeof v === 'string' ? { id: v } : { id: v.id || v.ref || '', name: v.name || '' }).filter(v => v.id);
@@ -157,7 +157,8 @@
     else s.cty = ctyName(s.loc) || (s.us ? 'United States' : s.ca ? 'Canada' : 'Unknown');
     return s;
   }
-  const passPBM = s => F.p.includes(s.p) && !F.xc.includes(s.cty) && (!F.bands.length || F.bands.includes(bandOf(s.khz))) && (!F.modes.length || F.modes.includes(modeOf(s.mode)));
+  const isQrt = s => s.qrt || /QRT|\bhunting\b/i.test(s.com || '');
+  const passPBM = s => F.p.includes(s.p) && !F.xc.includes(s.cty) && (!F.qrt || !isQrt(s)) && (!F.bands.length || F.bands.includes(bandOf(s.khz))) && (!F.modes.length || F.modes.includes(modeOf(s.mode)));
 
   /* ---------------- ticker + alerts ---------------- */
   let AC = null;
@@ -182,13 +183,14 @@
     if (far.length) { FT.innerHTML = far.map(s => `<span>✨ <b>${esc(s.ref)}</b> ${esc(s.name)} ${esc(s.st || '')} · ${esc(s.call)} ${(s.khz / 1000).toFixed(3)} ${esc(s.mode)} · ${Math.round(dist(s))} mi</span>`).join(''); FT.style.setProperty('--dur', Math.max(25, FT.textContent.length * .16) + 's'); }
     if (alert && fresh.length) {
       const t = $('hlTick'); t.classList.remove('flash'); void t.offsetWidth; t.classList.add('flash');
+      fire(`🔥 NEW PARK: ${fresh[0].ref} ${fresh[0].name || ''} · ${fresh[0].call} ${(fresh[0].khz / 1000).toFixed(3)}${fresh.length > 1 ? ` (+${fresh.length - 1} more)` : ''}`);
       if (BELL) chime();
       if (NOTE && 'Notification' in window && Notification.permission === 'granted') {
         try { const s = fresh[0]; new Notification('New park for you: ' + s.ref, { body: `${s.name || ''} ${s.st || ''}\n${s.call} on ${(s.khz / 1000).toFixed(3)} ${s.mode}${fresh.length > 1 ? `\n+${fresh.length - 1} more` : ''}`, icon: 'kpc-icon-180.png', tag: 'kpc-hunt' }); } catch (e) {}
       }
     }
     $('hsNew').textContent = hasLog() ? SP.filter(isNew).length : '–';
-    naDraw();
+    naDraw(); try { lmDraw(); } catch (e) { console.error('map', e); }
   }
   function bell() { const b = $('hlBell'); b.setAttribute('aria-pressed', BELL); b.textContent = BELL ? '🔔 ALERT ON' : '🔕 ALERT OFF'; }
   $('hlBell').onclick = () => { BELL = !BELL; put('kpcHuntBell', BELL); bell(); if (BELL) chime(); };
@@ -202,18 +204,31 @@
   const ago = t => { if (!t) return ''; const m = Math.max(0, Math.round((Date.now() - t) / 60e3)); return m < 1 ? 'just now' : m + ' min ago'; };
   const PL = { POTA: 'POTA', WWFF: 'WWFF', SOTA: 'SOTA', DXPED: 'DXPEDITION', EVENT: 'SPECIAL EVENT', DX: 'DX CLUSTER' };
   const pageOf = s => s.p === 'SOTA' ? 'https://sotl.as/summits/' + s.ref : s.p === 'WWFF' ? 'https://wwff.co/directory/?showRef=' + s.ref : 'https://pota.app/#/park/' + s.ref;
+  /* award progress right on the spot (Brandon Oct 16): times you've worked this park / this activator, N1CC new band */
+  let CNT = get('kpcHuntCounts', null);
+  function awardChips(s, short) {
+    if (!CNT || s.p !== 'POTA') return '';
+    const out = [], pc = (CNT.pc || {})[s.ref] || 0, ac = (CNT.ac || {})[base(s.call)] || (CNT.ac || {})[s.call] || 0, n1 = (CNT.n1 || {})[s.ref];
+    const lvl = (v, step) => (Math.floor(v / step) + 1) * step;
+    if (pc) { const n = lvl(pc, 20), near = n - pc <= 5; out.push(`<span class="ac${near ? ' near' : ''}" title="Repeat Offender: every 20 QSOs with a park">🔁 ${short ? '' : 'Park '}${pc}/${n}${near ? ' · ALMOST' : ''}</span>`); }
+    if (ac) { const n = lvl(ac, 50), near = n - ac <= 10; out.push(`<span class="ac${near ? ' near' : ''}" title="Operator to Operator: every 50 QSOs with the same activator">🤝 ${short ? '' : base(s.call) + ' '}${ac}/${n}${near ? ' · ALMOST' : ''}</span>`); }
+    if (n1 != null) { const L = n1.toUpperCase().split(',').filter(Boolean), b = bandOf(s.khz).toUpperCase(); if (L.length < 10 && !L.includes(b)) out.push(`<span class="ac near" title="N1CC: this park on 10 different bands">📶 NEW BAND ${L.length}/10</span>`); }
+    return out.join('');
+  }
   function card(s) {
     const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), d = dist(s), k = keyOf(s);
     const b = [`<span class="hb prog">${PL[s.p] || s.p}${s.label ? ' · ' + esc(s.label) : ''}</span>`];
     if (n) b.push('<span class="hb new">✨ NEW TO YOU</span>'); else if (w) b.push('<span class="hb wk">✓ WORKED</span>');
     if (s.acts === 0) b.push('<span class="hb atno">FIRST EVER ACTIVATION</span>'); else if (s.acts != null && s.acts <= 5) b.push(`<span class="hb rare">RARE · ${s.acts}</span>`);
     if (d != null && d > RANGE) b.push(`<span class="hb far">FAR · ${Math.round(d)} MI</span>`);
+    if (isQrt(s)) b.push('<span class="hb qrt">QRT</span>');
     b.push(`<span class="hb">${bandOf(s.khz)}</span>`, `<span class="hb">${esc(s.mode || '?')}</span>`);
-    return `<article class="hs${n ? ' new' : ''}${w ? ' worked' : ''}" data-k="${esc(k)}">
+    return `<article class="hs p-${s.p}${n ? ' new' : ''}${w ? ' worked' : ''}${isQrt(s) ? ' qrt' : ''}" data-k="${esc(k)}">
  <div class="hs-top"><div class="hs-call"><a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">${esc(s.call)}</a></div><div class="hs-f"><b>${(s.khz / 1000).toFixed(3)}</b><span>MHz · ${esc(s.mode || '')}</span></div></div>
  <div class="hs-park">${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener">${esc(s.ref)}</a>` : ''}${esc(s.name || '')}</div>
  <div class="hs-meta">${esc(s.st ? (ST[s.st] || s.st) : s.loc)}${d != null ? ' · ' + Math.round(d) + ' mi' : ''} · ${ago(s.t)}${s.by ? ' · spotted by ' + esc(s.by) : ''}</div>
  ${s.com ? `<div class="hs-com">“${esc(String(s.com).slice(0, 140))}”</div>` : ''}
+ ${awardChips(s) ? `<div class="hs-aw">${awardChips(s)}</div>` : ''}
  <div class="hs-b">${b.join('')}</div>
  <div class="hs-a"><button type="button" class="lg" data-log="1">📝 LOG IT</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}">${w ? '✓ WORKED' : '＋ I WORKED IT'}</button><a href="${pageOf(s)}" target="_blank" rel="noopener">${s.p === 'SOTA' ? 'SOTLAS' : s.p} PAGE ↗</a>${s.p === 'POTA' && s.us ? `<a href="kpc-planner-us.html?q=${encodeURIComponent(s.ref)}">ON THE MAP</a>` : ''}<a href="kpc-park-info.html?ref=${encodeURIComponent(s.ref)}">PARK INFO</a>` : `<a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">QRZ ↗</a><a href="https://www.dxsummit.fi/#/?dx_calls=${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">DX SUMMIT ↗</a>`}</div>
 </article>`;
@@ -223,7 +238,7 @@
     const tag = n ? '<span class="hb new">NEW</span>' : w ? '<span class="hb wk">✓</span>' : '';
     const rare = s.acts === 0 ? '<span class="hb atno">1ST</span>' : s.acts != null && s.acts <= 5 ? `<span class="hb rare">RARE ${s.acts}</span>` : '';
     return `<tr class="hr${n ? ' new' : ''}${w ? ' worked' : ''}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c">${esc(s.call)}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
-<td><span class="pg">${PL[s.p] || s.p}</span> ${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener" class="r">${esc(s.ref)}</a> ` : ''}${esc(s.name || '')} ${tag}${rare}</td><td class="hide-s">${esc(s.st || '')}</td><td class="hide-s">${d != null ? Math.round(d) : ''}</td>
+<td><span class="pg">${PL[s.p] || s.p}</span> ${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener" class="r">${esc(s.ref)}</a> ` : ''}${esc(s.name || '')} ${tag}${rare} ${awardChips(s, true)}</td><td class="hide-s">${esc(s.st || '')}</td><td class="hide-s">${d != null ? Math.round(d) : ''}</td>
 <td class="a"><button type="button" class="lg" data-log="1" title="Log it">📝</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" title="Mark worked">✓</button>` : ''}</td></tr>`;
   }
   function draw() {
@@ -254,7 +269,7 @@
   /* ---------------- filters ---------------- */
   function chips() {
     document.querySelectorAll('[data-g=p]').forEach(b => b.setAttribute('aria-pressed', F.p.includes(b.dataset.v)));
-    $('fHide').setAttribute('aria-pressed', F.hide); $('fNew').setAttribute('aria-pressed', F.nw); $('fRange').setAttribute('aria-pressed', F.rg);
+    $('fHide').setAttribute('aria-pressed', F.hide); $('fQrt').setAttribute('aria-pressed', !!F.qrt); $('fNew').setAttribute('aria-pressed', F.nw); $('fRange').setAttribute('aria-pressed', F.rg);
     $('fBands').innerHTML = BANDS.map(b => b[0]).concat(['OTHER']).map(b => `<button type="button" class="hl-chip" data-band="${b}" aria-pressed="${F.bands.includes(b)}">${b.toUpperCase()}</button>`).join('');
     $('fModes').innerHTML = ['PHONE', 'CW', 'DIGITAL', 'OTHER'].map(m => `<button type="button" class="hl-chip" data-mode="${m}" aria-pressed="${F.modes.includes(m)}">${m === 'PHONE' ? 'PHONE (SSB/FM)' : m}</button>`).join('');
     $('fWhere').innerHTML = WHERE.map(w => `<button type="button" class="hl-chip" data-where="${w[0]}" aria-pressed="${F.where === w[0]}">${w[1]}</button>`).join('');
@@ -268,24 +283,26 @@
     activeBox();
   }
   document.addEventListener('click', e => {
-    const t = e.target.closest('[data-g=p],[data-band],[data-mode],[data-where],#fHide,#fNew,#fRange'); if (!t) return;
+    const t = e.target.closest('[data-g=p],[data-band],[data-mode],[data-where],#fHide,#fNew,#fRange,#fQrt'); if (!t) return;
     const tog = (a, v) => a.includes(v) ? a.filter(x => x !== v) : a.concat(v);
     if (t.dataset.g === 'p') { F.p = tog(F.p, t.dataset.v); if (!F.p.length) F.p = [t.dataset.v]; }
     else if (t.dataset.band) F.bands = tog(F.bands, t.dataset.band);
     else if (t.dataset.mode) F.modes = tog(F.modes, t.dataset.mode);
     else if (t.dataset.where) { F.where = t.dataset.where; if (F.where === 'range' && !HOME) { $('hlSetup').scrollIntoView({ behavior: 'smooth' }); $('hHome').textContent = 'Set where you are first.'; } }
     else if ((t.id === 'fHide' || t.id === 'fNew') && !hasLog()) { toast('Load your worked parks first (⭐ GET MY PARKS FROM POTA): until then the page can’t tell which parks you’ve worked.'); return; }
+    else if (t.id === 'fQrt') F.qrt = !F.qrt;
     else if (t.id === 'fHide') F.hide = !F.hide; else if (t.id === 'fNew') F.nw = !F.nw; else if (t.id === 'fRange') { F.rg = !F.rg; if (F.rg && !HOME) { $('hlSetup').scrollIntoView({ behavior: 'smooth' }); $('hHome').textContent = 'Set where you are first.'; } }
     saveF(); chips(); ticker(false); draw();
   });
   /* the box that shows what you're filtering, each with an ✕, plus CLEAR ALL */
-  const F0 = { p: ['POTA', 'WWFF', 'SOTA', 'DXPED', 'EVENT'], hide: false, nw: false, bands: [], modes: [], where: 'all', st: '', q: '', xc: [] };
+  const F0 = { p: ['POTA', 'WWFF', 'SOTA', 'DXPED', 'EVENT'], qrt: false, hide: false, nw: false, bands: [], modes: [], where: 'all', st: '', q: '', xc: [] };
   function activeBox() {
     const it = [];
     const PN = { POTA: 'POTA', WWFF: 'WWFF / KFF', SOTA: 'SOTA', DXPED: 'DXPEDITIONS', EVENT: 'SPECIAL EVENTS', DX: 'DX CLUSTER' };
     const pOff = F0.p.filter(x => !F.p.includes(x)), pOn = F.p.filter(x => !F0.p.includes(x));
     if (pOff.length || pOn.length) it.push(['p', 'Showing: ' + F.p.map(x => PN[x]).join(', ')]);
-    if (F.hide) it.push(['hide', '🙈 Hiding parks I’ve worked']);
+    if (F.hide) it.push(['hide', '🙈 Hiding parks I’ve hunted']);
+    if (F.qrt) it.push(['qrt', '🚫 Hiding QRT']);
     if (F.nw) it.push(['nw', '✨ New to me only']);
     F.bands.forEach(b => it.push(['band:' + b, 'Band ' + b]));
     F.modes.forEach(m => it.push(['mode:' + m, 'Mode ' + m]));
@@ -302,7 +319,7 @@
     const u = e.target.closest('[data-unf]'); if (!u) return;
     const k = u.dataset.unf;
     if (k === '*') Object.assign(F, JSON.parse(JSON.stringify(F0)));
-    else if (k === 'p') F.p = F0.p.slice(); else if (k === 'hide') F.hide = false; else if (k === 'nw') F.nw = false; else if (k === 'where') F.where = 'all'; else if (k === 'st') F.st = ''; else if (k === 'q') F.q = '';
+    else if (k === 'p') F.p = F0.p.slice(); else if (k === 'hide') F.hide = false; else if (k === 'qrt') F.qrt = false; else if (k === 'nw') F.nw = false; else if (k === 'where') F.where = 'all'; else if (k === 'st') F.st = ''; else if (k === 'q') F.q = '';
     else if (k.startsWith('band:')) F.bands = F.bands.filter(x => x !== k.slice(5)); else if (k.startsWith('mode:')) F.modes = F.modes.filter(x => x !== k.slice(5)); else if (k.startsWith('xc:')) F.xc = F.xc.filter(x => x !== k.slice(3));
     saveF(); chips(); ticker(false); draw();
   });
@@ -684,6 +701,11 @@
           one.forEach((k, i) => { aw[k] = r1[i]; });
           const r2 = await Promise.all(list.map(k => G(B + k + '?page=1&size=30&sort=closest')));
           list.forEach((k, i) => { let v = r2[i]; const total = v && !Array.isArray(v) ? (v.total ?? v.count ?? null) : null; if (v && !Array.isArray(v)) v = v.data || v.items || v.results || []; aw[k] = { total: total ?? (Array.isArray(v) ? v.length : 0), top: (v || []).slice(0, 30) }; });
+          /* how many times you've worked each park and each activator (the numbers pota.app's own spot chips use) + N1CC bands */
+          const [pc, ac, n1] = await Promise.all([G('https://api.pota.app/user/stats/hunted_activated_list?type=park_counts'), G('https://api.pota.app/user/stats/hunted_activated_list?type=activator_counts'), G(B + 'hunter/n1ccmultiband')]);
+          const flat = o => { const out = {}; if (Array.isArray(o)) o.forEach(x => { const k = x.reference || x.activator || x.callsign, v = x.count ?? x.contacts ?? x.qsos; if (k) out[String(k).toUpperCase()] = +v || 0; }); else if (o && typeof o === 'object') Object.keys(o).forEach(k => { const v = o[k]; out[k.toUpperCase()] = typeof v === 'object' && v ? +(v.count ?? v.contacts ?? 0) : +v || 0; }); return out; };
+          aw.pc = flat(pc); aw.ac = flat(ac);
+          aw.n1 = {}; (Array.isArray(n1) ? n1 : (n1 && n1.data) || []).forEach(x => { if (x.reference) aw.n1[x.reference] = String(x.bandlist || ''); });
           const e = await G('https://api.pota.app/user/award/earned');
           aw.earned = (e || []).map(x => [x.awardName, x.dateGranted, x.endorsements || '', x.operatorCallsign || x.operator || '', x.reference || '']);
           if (hunted) { const L = {}; hunted.forEach(x => String(x.locationDesc || x.location || x.locations || '').split(',').forEach(l => { l = l.trim(); if (l) L[l] = (L[l] || 0) + 1; })); aw.loc = L; }
@@ -691,7 +713,9 @@
         }
         const g = {};
         refs.forEach(x => { const m = String(x || '').match(/^([A-Z0-9]+)-(\d+)$/); if (m) (g[m[1]] = g[m[1]] || []).push(+m[2]); });
-        location.href = HERE + '#pota=' + Object.keys(g).map(p => p + '~' + g[p].join('.')).join('_') + '&n=' + refs.length + (t ? '&aw=' + encodeURIComponent(JSON.stringify(aw)) : '');
+        /* the data rides along in window.name (no size limit like a web address has), the address just says to look */
+        window.name = 'KPCPOTA:' + JSON.stringify({ refs: Object.keys(g).map(p => p + '~' + g[p].join('.')).join('_'), n: refs.length, aw: t ? aw : null });
+        location.href = HERE + '#kpcpota';
       } catch (e) { alert('Could not get your parks: ' + e.message); }
     })();
   }
@@ -701,9 +725,20 @@
   $('hBm').onclick = e => { e.preventDefault(); toast('Drag this button to your bookmarks bar, then use it on pota.app.'); };
   $('hBmCopy').onclick = async () => { try { await navigator.clipboard.writeText(BMURL); toast('✓ Copied. Now paste it as a bookmark’s web address.'); } catch (e) { prompt('Copy this, then paste it as a bookmark’s web address:', BMURL); } };
   function fromPotaHash() {
-    const m = location.hash.match(/[#&]pota=([^&]*)/); if (!m) return;
-    const a = location.hash.match(/[#&]aw=([^&]*)/);
-    if (a) { try { const A = JSON.parse(decodeURIComponent(a[1])); put('kpcHuntAwards', A); if (A.call && !CALL) { CALL = base(A.call); put('kpcMyCall', CALL); $('hCall').value = CALL; $('lgMy').value = CALL; } awDraw(); } catch (e) {} }
+    let m = location.hash.match(/[#&]pota=([^&]*)/), A = null;
+    if (!m && /kpcpota/.test(location.hash) && String(window.name).startsWith('KPCPOTA:')) {
+      try { const P = JSON.parse(window.name.slice(8)); m = [0, P.refs]; A = P.aw; } catch (e) {}
+      window.name = '';
+    }
+    if (!m) return;
+    if (!A) { const a = location.hash.match(/[#&]aw=([^&]*)/); if (a) try { A = JSON.parse(decodeURIComponent(a[1])); } catch (e) {} }
+    if (A) {
+      try {
+        if (A.pc || A.ac || A.n1) { put('kpcHuntCounts', { t: A.t || Date.now(), pc: A.pc || {}, ac: A.ac || {}, n1: A.n1 || {} }); CNT = get('kpcHuntCounts', null); delete A.pc; delete A.ac; delete A.n1; }
+        put('kpcHuntAwards', A);
+        if (A.call && !CALL) { CALL = base(A.call); put('kpcMyCall', CALL); $('hCall').value = CALL; $('lgMy').value = CALL; }
+      } catch (e) {}
+    }
     const got = new Set();
     decodeURIComponent(m[1]).split('_').forEach(grp => { const [pre, nums] = grp.split('~'); if (!pre || !nums) return; nums.split('.').forEach(n => { if (/^\d+$/.test(n)) got.add(nref(pre + '-' + n.padStart(4, '0'))); }); });
     try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
@@ -770,6 +805,62 @@
       <p class="hl-src">From POTA for ${esc(A.call || CALL || 'you')}, brought over ${new Date(A.t).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}. POTA updates achievements once a day, and hunters get credit only after the activator's log is in. Tap the ⭐ bookmark on pota.app again to refresh. <a href="https://pota.app/#/user/achievements/progress" target="_blank" rel="noopener">POTA ACHIEVEMENTS ↗</a></p>`;
   }
   document.addEventListener('click', e => { const a = e.target.closest('[data-need]'); if (!a) return; e.preventDefault(); $('nSt').value = a.dataset.need; $('nSt').dataset.set = 1; needLoad(); $('hlNeed').scrollIntoView({ behavior: 'smooth' }); });
+
+  /* ---------------- the real map (Leaflet + Esri satellite + place names) ---------------- */
+  let LM = null, LG = null, LMV = get('kpcHuntMz', 'na');
+  const MZ = { na: [[15, -168], [70, -52]], us: [[24.5, -125], [49.5, -66.5]] };
+  function lmZoom(z) { if (!LM) return; LMV = z; put('kpcHuntMz', z); if (z === 'world') LM.setView([25, -20], 2); else LM.fitBounds(MZ[z] || MZ.na); document.querySelectorAll('[data-mz]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mz === z)); }
+  function lmInit() {
+    if (LM || !window.L || !$('hlLmap')) return;
+    LM = L.map('hlLmap', { worldCopyJump: true, zoomSnap: .5, minZoom: 2 });
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 17, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics' }).addTo(LM);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 17, opacity: .9 }).addTo(LM);
+    LG = L.layerGroup().addTo(LM); lmZoom(LMV);
+  }
+  const NEWICON = () => L.divIcon({ className: 'hl-pin', html: '<span></span>', iconSize: [22, 22], iconAnchor: [11, 11] });
+  function lmDraw() {
+    lmInit(); if (!LM) return; LG.clearLayers();
+    SP.filter(s => isFinite(s.la) && isFinite(s.lo) && passPBM(s)).sort((a, b) => isNew(a) - isNew(b)).forEach(s => {
+      const k = keyOf(s), n = isNew(s), w = !!s.ref && WK.has(s.ref);
+      const pop = `<div class="hl-pop"><b>${esc(s.call)}</b> <span class="f">${(s.khz / 1000).toFixed(3)}</span> ${esc(s.mode || '')}<br>${s.ref ? `<span class="r">${esc(s.ref)}</span> ` : ''}${esc(s.name || '')}${n ? '<br><span class="pn">✨ NEW TO YOU</span>' : w ? '<br><span class="pw">✓ hunted</span>' : ''}${awardChips(s) ? '<br>' + awardChips(s) : ''}<div class="hl-popb"><button type="button" data-logk="${esc(k)}">📝 LOG IT</button><button type="button" data-dk="${esc(k)}">SHOW SPOT</button></div></div>`;
+      const m = n ? L.marker([s.la, s.lo], { icon: NEWICON(), zIndexOffset: 1000 }) : L.circleMarker([s.la, s.lo], { radius: w ? 5 : 4.5, color: '#111', weight: 1, fillColor: w ? '#f0c96b' : '#cfd6d1', fillOpacity: .9 });
+      m.bindPopup(pop, { maxWidth: 260 }).addTo(LG);
+    });
+  }
+  document.addEventListener('click', e => {
+    const z = e.target.closest('[data-mz]'); if (z) { lmZoom(z.dataset.mz); return; }
+    const lk = e.target.closest('[data-logk]'); if (lk) { const s = SP.find(x => keyOf(x) === lk.dataset.logk); if (s) openSheet(s); return; }
+    const c = e.target.closest('.hl-pop [data-dk], #hlBigSvg [data-dk]'); if (!c) return;
+    let el = document.querySelector(`#hlSpots [data-k="${CSS.escape(c.dataset.dk)}"]`);
+    if (!el) { F.hide = false; F.nw = false; F.q = ''; saveF(); chips(); draw(); el = document.querySelector(`#hlSpots [data-k="${CSS.escape(c.dataset.dk)}"]`); }
+    if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.classList.remove('fresh'); void el.offsetWidth; el.classList.add('fresh'); }
+  });
+
+  /* ---------------- 🔥 flames up from the bottom when a new park shows up (Brandon Oct 16) ---------------- */
+  let FLAME = get('kpcHuntFlame', true), fireT = 0;
+  function flameBtn() { const b = $('hlFlame'); b.setAttribute('aria-pressed', FLAME); b.textContent = FLAME ? '🔥 FLAMES ON' : '🔥 FLAMES OFF'; }
+  $('hlFlame').onclick = () => { FLAME = !FLAME; put('kpcHuntFlame', FLAME); flameBtn(); if (FLAME) fire('🔥 Flames are on'); };
+  function fire(msg) {
+    if (!FLAME || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cv = $('hlFire'), cx = cv.getContext('2d'), W = cv.width = innerWidth, H = cv.height = Math.round(innerHeight * .55);
+    const P = [], t0 = performance.now(), DUR = 3800;
+    if (msg) { const m = $('hlFireMsg'); m.textContent = msg; m.classList.remove('on'); void m.offsetWidth; m.classList.add('on'); }
+    cv.classList.add('on'); cancelAnimationFrame(fireT);
+    const step = now => {
+      const el = now - t0, live = el < DUR - 900;
+      for (let i = 0; live && i < Math.max(14, W / 26); i++) P.push({ x: Math.random() * W, y: H + 10, vx: (Math.random() - .5) * .9, vy: -(2.2 + Math.random() * 4.2), r: 10 + Math.random() * 26, life: 0, max: 50 + Math.random() * 45 });
+      cx.clearRect(0, 0, W, H); cx.globalCompositeOperation = 'lighter';
+      for (let i = P.length - 1; i >= 0; i--) {
+        const p = P[i]; p.life++; p.x += p.vx + Math.sin((p.life + i) / 6) * .6; p.y += p.vy; p.r *= .985;
+        const k = p.life / p.max; if (k >= 1) { P.splice(i, 1); continue; }
+        const g = cx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+        g.addColorStop(0, `rgba(255,${Math.round(230 - 150 * k)},${Math.round(120 - 110 * k)},${.75 * (1 - k)})`); g.addColorStop(.5, `rgba(255,${Math.round(110 - 80 * k)},0,${.45 * (1 - k)})`); g.addColorStop(1, 'rgba(120,10,0,0)');
+        cx.fillStyle = g; cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, 6.283); cx.fill();
+      }
+      if (el < DUR || P.length) fireT = requestAnimationFrame(step); else { cv.classList.remove('on'); cx.clearRect(0, 0, W, H); }
+    };
+    fireT = requestAnimationFrame(step);
+  }
   /* ---------------- looks (Brandon Oct 16: switchable themes; Cabin Lodge = his pictures) ---------------- */
   let THEME = get('kpcHuntTheme', 'lodge');
   function theme() { $('hl').dataset.theme = THEME; document.querySelectorAll('[data-theme-pick]').forEach(b => b.setAttribute('aria-pressed', b.dataset.themePick === THEME)); }
@@ -792,7 +883,7 @@
   }
   $('hlNa').onclick = () => { if (!MAPON) { MAPON = true; put('kpcHuntMap', true); mapOn(); } $('hlMapSec').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
   let MAPON = get('kpcHuntMap', true);
-  function mapOn() { $('hlBigMap').hidden = !MAPON; $('hlMapTog').textContent = MAPON ? 'HIDE MAP' : 'SHOW MAP'; }
+  function mapOn() { $('hlBigMap').hidden = !MAPON; $('hlMapTog').textContent = MAPON ? 'HIDE MAP' : 'SHOW MAP'; if (MAPON && LM) setTimeout(() => LM.invalidateSize(), 50); }
   $('hlMapTog').onclick = () => { MAPON = !MAPON; put('kpcHuntMap', MAPON); mapOn(); };
   document.addEventListener('click', e => {
     const c = e.target.closest('#hlBigSvg [data-dk]'); if (!c) return;
@@ -810,7 +901,7 @@
     $('hSt').innerHTML = '<option value="">…or pick your state</option>' + stOpts('');
     $('nSt').innerHTML = stOpts(st0); $('tSt').innerHTML = stOpts(st0);
     /* each part on its own, so one problem never stops the rest of the page */
-    [stick, chips, viewChips, bell, logInfo, homeInfo, mapOn, qsoInit, awDraw, fromPotaHash, load, needLoad, topDraw, myStats].forEach(f => { try { const r = f(); if (r && r.catch) r.catch(e => console.error(f.name, e)); } catch (e) { console.error(f.name, e); } });
+    [stick, chips, viewChips, bell, flameBtn, lmInit, logInfo, homeInfo, mapOn, qsoInit, awDraw, fromPotaHash, load, needLoad, topDraw, myStats].forEach(f => { try { const r = f(); if (r && r.catch) r.catch(e => console.error(f.name, e)); } catch (e) { console.error(f.name, e); } });
     setInterval(() => { const s = Math.max(0, Math.round((next - Date.now()) / 1000)); $('hsAge').textContent = next ? s + 's' : '–'; if (next && Date.now() >= next) { next = 0; load(); } }, 1000);
     setInterval(() => { document.querySelectorAll('.hs').length && draw(); }, 5 * 60e3);
   }
