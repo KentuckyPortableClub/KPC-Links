@@ -187,3 +187,33 @@ main#lg .lg-stats{grid-template-columns:repeat(5,minmax(0,170px))}
 .lg-station{margin:0 0 16px;padding:14px;border-radius:12px;background:rgba(0,0,0,.35);border:1px dashed var(--ln)}
 .lg-time{margin-top:6px}
 @media(max-width:600px){.lg-opbar{grid-template-columns:minmax(0,1fr) auto;padding:10px 12px}.lg-opbar #oEdit{grid-column:1/-1}.lg-opwho{font-size:18px}}
+/* Oct 16 v4: worked-before line, op bar buttons, QRT button, share picture, NIGHT MODE */
+.lg-prev{font-size:12.5px;font-weight:700;color:#ffd27a}
+.lg-prev.new{color:var(--gr)}
+.lg-opb{display:flex;flex-direction:column;gap:6px}
+.lg-btn.red{border-color:#ff6b5a;color:#ffb3a8}
+.lg-shareout img{display:block;max-width:min(360px,100%);margin-top:12px;border-radius:12px;border:1px solid var(--ln)}
+@media(max-width:600px){.lg-opb{grid-column:1/-1;flex-direction:row}.lg-opb .lg-btn{flex:1}}
+/* night mode: red on black (keeps your night eyes, saves battery), no pictures, bigger touch targets */
+main#lg[data-night]{--g:#c0392b;--g2:#ff6b5a;--gr:#ff6b5a;--bl:#ff8a80;--tx:#ff9c90;--mu:#b85a50;--ln:rgba(192,57,43,.45);--card:#0a0000}
+main#lg[data-night]::before{background:#000!important}
+main#lg[data-night]::after,main#lg[data-night] .lg-pic,main#lg[data-night] .lg-copy,main#lg[data-night] #cMap,main#lg[data-night] .lg-foot{display:none!important}
+html:has(main#lg[data-night]){background:#000!important}
+main#lg[data-night] .lg-hero{border-color:#5a0f08}
+main#lg[data-night] .lg-hero .lg-in{margin-top:0;padding-top:14px}
+main#lg[data-night] .lg-hero h1{font-size:30px;color:#ff6b5a}
+main#lg[data-night] .lg-hero h1 span,main#lg[data-night] .lg-eyebrow{color:#c0392b}
+main#lg[data-night] .lg-card{background:#060000;box-shadow:none;backdrop-filter:none}
+main#lg[data-night] input,main#lg[data-night] select,main#lg[data-night] textarea{background:#000;color:#ff9c90;border-color:#4a0d07;font-size:19px;padding:13px 14px}
+main#lg[data-night] #eCall{font-size:32px;color:#ff6b5a}
+main#lg[data-night] .lg-stats b,main#lg[data-night] .lg-opwho,main#lg[data-night] .lg-t td.c,main#lg[data-night] .lg-sp .c,main#lg[data-night] .lg-who .w b,main#lg[data-night] .lg-tiles b{color:#ff8a80}
+main#lg[data-night] .lg-stats div,main#lg[data-night] .lg-opbar,main#lg[data-night] .lg-sp,main#lg[data-night] .lg-tiles div{background:#0d0000;border-color:#4a0d07}
+main#lg[data-night] .lg-btn{padding:15px 18px;font-size:15px}
+main#lg[data-night] .lg-btn.gold{background:#7a1a10;color:#ffd3cc;border-color:#c0392b}
+main#lg[data-night] .lg-chip.on{background:#7a1a10;color:#ffd3cc}
+main#lg[data-night] .lg-t th{background:#100000;color:#b85a50}
+main#lg[data-night] .lg-sp .md{background:#2a0500;color:#ff8a80}
+main#lg[data-night] .lg-who .w{background:#140200;border-color:#4a0d07}
+main#lg[data-night] .lg-opn b,main#lg[data-night] .lg-stats .g b{color:#ff6b5a;text-shadow:none}
+main#lg[data-night] .lg-goal .bar i,main#lg[data-night] .lg-hours .h i{background:#c0392b}
+main#lg[data-night] img,main#lg[data-night] .lg-shareout{filter:brightness(.5) sepia(1) hue-rotate(-30deg) saturate(3)}
