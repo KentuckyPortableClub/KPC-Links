@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261016j">
+<link rel="stylesheet" href="kpc-logger.css?v=20261016l">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -77,6 +77,7 @@
 </div>
 <form id="eForm" autocomplete="off">
 <div class="lg-radio" id="eRadio">
+ <div class="lg-pophd"><b>📻 RADIO &amp; THEIR PARK</b><button type="button" class="lg-popx" data-popx="radio">✓ DONE</button></div>
  <label>Frequency<input id="eFreq" inputmode="decimal" placeholder="14.285"></label>
  <label>Band<input id="eBand" readonly tabindex="-1"></label>
  <label>Mode<select id="eMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option><option>PSK31</option><option>JS8</option><option>OTHER</option></select></label>
@@ -84,6 +85,7 @@
  <label>Name<input id="eName"></label>
 </div>
 <div class="lg-drawer" id="eMore" hidden>
+ <div class="lg-pophd"><b>✏️ NOTE · SPOT · TIME</b><button type="button" class="lg-popx" data-popx="more">✓ DONE</button></div>
  <div class="lg-f">
   <label class="wide">Note for this contact<input id="eNote"></label>
   <label class="wide">Spot comment<input id="sCm" maxlength="60" placeholder="QRV · 2-fer · QRT 22z"></label>
@@ -95,9 +97,10 @@
 <div class="lg-dchips">
  <span class="dc clk" id="dClk">🕒 --:--:--z</span>
  <button type="button" class="dc" id="dRadio" aria-expanded="false">📻 <span id="dRadioT">Band??? · SSB</span></button>
+ <button type="button" class="dc" id="dRole" title="Activating or hunting (tap to switch)">🏕 ACTIVATING</button>
  <button type="button" class="dc" id="dSpot">📣 <span id="dSpotT">Spot me</span></button>
- <button type="button" class="dc" id="dMoreB">✏️ More</button>
- <button type="button" class="dc" id="dSta" aria-label="Station">⚙</button>
+ <button type="button" class="dc" id="dMoreB">✏️ <span class="tx">More</span></button>
+ <button type="button" class="dc" id="dSta" aria-label="Station">⚙ <span class="tx">Station</span></button>
 </div>
 <div class="lg-who" id="eWho" aria-live="polite"></div>
 <div class="lg-dstat"><span>⏱ <b id="dN">0</b> QSOs in <b id="dSpan">0m</b></span><span><b id="dRate">0</b> Q/h for last 10</span><span class="ed" id="dEdit" hidden>✏️ EDITING A SAVED CONTACT</span></div>
@@ -175,4 +178,4 @@
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-logger.js?v=20261016j"></script>
+<script src="kpc-logger.js?v=20261016l"></script>
