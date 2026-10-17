@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261016l">
+<link rel="stylesheet" href="kpc-logger.css?v=20261017a">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -44,12 +44,13 @@
 
 <!-- the log entry, docked under the log (phones: always at the bottom of the screen) -->
 <section class="lg-dock" id="cEntry" aria-label="Log a contact">
+<div class="dk-fx" aria-hidden="true"><i style="--x:6%;--d:0s;--s:1"></i><i style="--x:18%;--d:1.3s;--s:1.3"></i><i style="--x:31%;--d:.6s;--s:.9"></i><i style="--x:44%;--d:2.1s;--s:1.2"></i><i style="--x:57%;--d:.2s;--s:1.4"></i><i style="--x:69%;--d:1.7s;--s:1"></i><i style="--x:81%;--d:.9s;--s:1.25"></i><i style="--x:93%;--d:2.5s;--s:.95"></i></div>
 <!-- ⚙ station menu: who, where, hunting or activating, notes; folds open above the entry -->
 <div class="lg-stpanel" id="cOp" hidden>
 <div class="lg-opbar">
  <div class="lg-opwho"><b id="oCall">YOUR CALL</b> <span id="oAt">@</span> <b id="oPark" class="pk">PARK</b><div class="lg-opsub" id="oSub">Tap ⚙ STATION to set your call and park</div></div>
  <div class="lg-opn"><b id="oN">0</b><span>QSOs</span></div>
- <div class="lg-opb"><button type="button" class="lg-btn gold sm" id="oEdit" aria-expanded="false">✓ DONE</button><button type="button" class="lg-btn line sm" id="oNight">🌙 NIGHT</button></div>
+ <div class="lg-opb"><button type="button" class="lg-btn gold sm" id="oEdit" aria-expanded="false">✓ DONE</button><button type="button" class="lg-btn line sm" id="oFx" title="Look of the log box: flames, fireworks, shooting stars or plain">🔥 FLAMES</button><button type="button" class="lg-btn line sm" id="oNight">🌙 NIGHT</button></div>
 </div>
 <div class="lg-oprow">
  <div class="lg-role" role="group" aria-label="What are you doing?"><button type="button" data-role="act" class="on">🏕 ACTIVATING</button><button type="button" data-role="hunt">🎯 HUNTING</button></div>
@@ -178,4 +179,4 @@
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-logger.js?v=20261016l"></script>
+<script src="kpc-logger.js?v=20261017a"></script>
