@@ -494,3 +494,7 @@ main#hl[data-theme=lodge] .hl-copy,main#hl[data-theme=dark] .hl-copy{text-shadow
  main#hl #hlLmap{height:calc(100vh - 250px);min-height:540px;max-height:1100px}
 }
 @media(min-width:1700px){main#hl .hl-split{grid-template-columns:minmax(0,1fr) minmax(600px,50%)}}
+/* public copy (kpc-hunters.html, main#hl[data-public=1]): no POTA bookmark, no hunting log, no Top 50 */
+main#hl:not([data-public="1"]) .pub-only{display:none!important}
+main#hl[data-public="1"] .mem-only,main#hl[data-public="1"] #hPota,main#hl[data-public="1"] #hlLog,main#hl[data-public="1"] [data-log],main#hl[data-public="1"] [data-logk]{display:none!important}
+main#hl[data-public="1"] #hlSpots .hs{cursor:default}

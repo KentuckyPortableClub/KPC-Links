@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261016w">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261016x">
 @@HEADER@@
 <main id="hl" data-keep-light data-theme="lodge">
 <div id="hlApp">
@@ -15,7 +15,7 @@
  <div class="clk"><b id="hsUtc">--:--</b><span id="hsUtcL">UTC</span></div>
  <div><b id="hsAge">–</b><span>NEXT CHECK</span></div>
 </div>
-<div class="hl-acts"><a class="hl-btn gold" href="#hPota">⭐ GET MY PARKS FROM POTA</a><a class="hl-btn ghost" href="#hlNeed">🎯 PARKS I NEED</a><a class="hl-btn ghost" href="kpc-top50.html">🏆 TOP 50 BY STATE</a></div>
+<div class="hl-acts"><a class="hl-btn gold mem-only" href="#hPota">⭐ GET MY PARKS FROM POTA</a><a class="hl-btn gold pub-only" href="#hlSetup">📄 LOAD MY WORKED PARKS</a><a class="hl-btn ghost" href="#hlNeed">🎯 PARKS I NEED</a><a class="hl-btn ghost mem-only" href="kpc-top50.html">🏆 TOP 50 BY STATE</a></div>
 <div class="hl-theme" role="group" aria-label="Look">LOOK: <button type="button" class="hl-chip" data-theme-pick="lodge">🔥 CABIN LODGE</button><button type="button" class="hl-chip" data-theme-pick="night">🌌 NIGHT SKY</button><button type="button" class="hl-chip" data-theme-pick="dark">🌑 DARK + GHOST FLAMES</button></div>
 </div></section>
 
@@ -49,7 +49,7 @@
 <form class="hl-row" id="favForm"><input id="favIn" placeholder="Add a call" autocapitalize="characters" autocomplete="off" style="width:160px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
 <div class="hl-row" id="favList"></div></details>
 <div id="hlFavs"></div>
-<a class="hl-nolog" id="hlNoLog" href="#hPota" hidden>⭐ <b>Load your hunted parks from POTA</b> so the new-to-you ones light up. Tap here ›</a>
+<a class="hl-nolog mem-only" id="hlNoLog" href="#hPota" hidden>⭐ <b>Load your hunted parks from POTA</b> so the new-to-you ones light up. Tap here ›</a><a class="hl-nolog pub-only" id="hlNoLogP" href="#hlSetup" hidden>📄 <b>Load the parks you've worked</b> (a CSV or ADIF file) so the new-to-you ones light up. Tap here ›</a>
 <div class="hl-row hl-viewbar"><span class="hl-count" id="hlCount"></span><span class="hl-vt" role="group" aria-label="View"><button type="button" class="hl-chip" data-view="cards">▦ CARDS</button><button type="button" class="hl-chip" data-view="table">☰ TABLE</button></span></div>
 <div class="hl-grid" id="hlSpots"><div class="hl-empty">Loading spots…</div></div>
 <p class="hl-src" id="hlSrc"></p>
@@ -116,7 +116,7 @@
 <div class="hl-card">
  <h3>Where do I get the file?</h3>
  <ul class="hl-how">
- <li><b>POTA:</b> use the ⭐ bookmark on the left (pota.app's own CSV download is for activations only). Or an ADIF from your logging program or your QRZ Logbook: the page reads the park numbers in it.</li>
+ <li><b>POTA:</b> <span class="mem-only">use the ⭐ bookmark on the left (pota.app's own CSV download is for activations only). Or </span>an ADIF from your logging program or your QRZ Logbook: the page reads the park numbers in it.</li>
  <li><b>WWFF / KFF:</b> your log from <a href="https://wwff.co/logsearch/" target="_blank" rel="noopener">WWFF Logsearch</a>, or any ADIF from your logger with WWFF numbers in it.</li>
  <li><b>SOTA:</b> sign in at <a href="https://www.sotadata.org.uk" target="_blank" rel="noopener">sotadata.org.uk</a> and download your chaser log as a CSV file.</li>
  <li>Any CSV or ADIF works: the page just looks for park, reference and summit numbers in it. Old POTA numbers like <b>K-1234</b> count as <b>US-1234</b>.</li>
@@ -162,4 +162,4 @@
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-hunt.js?v=20261016t"></script>
+<script src="kpc-hunt.js?v=20261016v"></script>

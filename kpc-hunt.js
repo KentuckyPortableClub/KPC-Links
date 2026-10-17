@@ -11,6 +11,7 @@
 (function () {
   'use strict';
   const $ = id => document.getElementById(id);
+  const PUB = !!(document.getElementById('hl') && document.getElementById('hl').dataset.public === '1');   /* kpc-hunters.html = the public copy */
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const get = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
   const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
@@ -183,7 +184,7 @@
   const tItem = s => `<span class="it" data-k="${esc(keyOf(s))}">✨ <b>${esc(s.ref)}</b> ${esc(s.name || '')} <small>${esc(s.st || s.loc || '')}</small> · ${esc(s.call)} <i>${(s.khz / 1000).toFixed(3)}</i> <small>${esc(s.mode || '')}</small></span>`;
   function ticker(alert) {
     const T = $('hlTickT'), FT = $('hlFarT');
-    if (!hasLog()) { T.innerHTML = '<span class="hl-wait">Tap ⭐ GET MY PARKS FROM POTA (top of the page) and new-to-you parks will roll across here.</span>'; T.style.setProperty('--dur', '22s'); $('hlFar').hidden = true; naDraw(); return; }
+    if (!hasLog()) { T.innerHTML = PUB ? '<span class="hl-wait">Tap 📄 LOAD MY WORKED PARKS (top of the page) and new-to-you parks will roll across here.</span>' : '<span class="hl-wait">Tap ⭐ GET MY PARKS FROM POTA (top of the page) and new-to-you parks will roll across here.</span>'; T.style.setProperty('--dur', '22s'); $('hlFar').hidden = true; naDraw(); return; }
     const L = SP.filter(s => isNew(s) && passPBM(s));
     const far = FAR && HOME ? L.filter(isFar) : [], near = L.filter(s => !far.includes(s));
     const fresh = near.filter(s => !SEEN.has(keyOf(s)));
@@ -219,6 +220,7 @@
   /* award progress right on the spot (Brandon Oct 16): times you've worked this park / this activator, N1CC new band */
   let CNT = get('kpcHuntCounts', null);
   function awardChips(s, short) {
+    if (PUB) return '';
     if (!CNT || s.p !== 'POTA') return '';
     const out = [], pc = (CNT.pc || {})[s.ref] || 0, ac = (CNT.ac || {})[base(s.call)] || (CNT.ac || {})[s.call] || 0, n1 = (CNT.n1 || {})[s.ref];
     const lvl = (v, step) => (Math.floor(v / step) + 1) * step;
@@ -296,7 +298,7 @@
     if (old.size) document.querySelectorAll('#hlSpots .hs.new, #hlSpots tr.hr.new').forEach(x => { if (!old.has(x.dataset.k)) x.classList.add('fresh'); });
     const hid = SP.length - L.length;
     $('hlCount').textContent = `${L.length} spot${L.length === 1 ? '' : 's'} shown${hid ? ` · ${hid} hidden by your filters` : ''}${hasLog() ? '' : ' · load your log to see which are new to you'}`;
-    $('hsLive').textContent = SP.length; $('hlSrc').textContent = src; $('hlNoLog').hidden = hasLog();
+    $('hsLive').textContent = SP.length; $('hlSrc').textContent = src; $('hlNoLog').hidden = hasLog(); if ($('hlNoLogP')) $('hlNoLogP').hidden = hasLog();
   }
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-wk]'); if (!b) return;
@@ -328,7 +330,7 @@
     else if (t.dataset.band) F.bands = tog(F.bands, t.dataset.band);
     else if (t.dataset.mode) F.modes = tog(F.modes, t.dataset.mode);
     else if (t.dataset.where) { F.where = t.dataset.where; if (F.where === 'range' && !HOME) { $('hlSetup').scrollIntoView({ behavior: 'smooth' }); $('hHome').textContent = 'Set where you are first.'; } }
-    else if ((t.id === 'fHide' || t.id === 'fNew') && !hasLog()) { toast('Load your worked parks first (⭐ GET MY PARKS FROM POTA): until then the page can’t tell which parks you’ve worked.'); return; }
+    else if ((t.id === 'fHide' || t.id === 'fNew') && !hasLog()) { toast('Load your worked parks first (' + (PUB ? '📄 LOAD MY WORKED PARKS' : '⭐ GET MY PARKS FROM POTA') + '): until then the page can’t tell which parks you’ve worked.'); return; }
     else if (t.id === 'fQrt') F.qrt = !F.qrt;
     else if (t.id === 'fHide') F.hide = !F.hide; else if (t.id === 'fNew') F.nw = !F.nw; else if (t.id === 'fRange') { F.rg = !F.rg; if (F.rg && !HOME) { $('hlSetup').scrollIntoView({ behavior: 'smooth' }); $('hHome').textContent = 'Set where you are first.'; } }
     saveF(); chips(); ticker(false); draw();
@@ -673,6 +675,7 @@
   }
   function setNow() { const n = utc(new Date()); $('fDate').value = fmtD(n.d); $('fTime').value = fmtT(n.t); dupe(); }
   function openSheet(s, x) {
+    if (PUB) return;
     EDIT = x || null;
     $('lgTitle').textContent = x ? '✏️ Edit this contact' : '📝 Log this contact';
     if (x) {
@@ -724,7 +727,7 @@
   document.addEventListener('click', e => {
     const lg = e.target.closest('[data-log]');
     const c = lg ? lg.closest('.hs, tr.hr') : (!e.target.closest('a,button,input,select,label') && e.target.closest('#hlSpots .hs, #hlSpots tr.hr'));
-    if (!c) return; const s = SP.find(x => x.p + '|' + x.call + '|' + x.ref === c.dataset.k); if (s) openSheet(s);
+    if (!c || PUB) return; const s = SP.find(x => x.p + '|' + x.call + '|' + x.ref === c.dataset.k); if (s) openSheet(s);
   });
 
 
@@ -748,6 +751,7 @@
   document.addEventListener('click', e => { const b = e.target.closest('[data-dev]'); if (b) dev(b.dataset.dev); });
   document.addEventListener('click', async e => { if (!e.target.closest('[data-bmcopy]')) return; try { await navigator.clipboard.writeText(BMURL); toast('✓ Copied. Now paste it as the bookmark’s web address.'); } catch (x) { prompt('Copy this, then paste it as the bookmark’s web address:', BMURL); } });
   async function fromPotaHash() {
+    if (PUB) return;
     let m = location.hash.match(/[#&]pota=([^&]*)/), A = null;
     if (!m && /kpcpota/.test(location.hash)) {
       let P = null;
@@ -997,7 +1001,7 @@
     setInterval(() => {
       const s = Math.max(0, Math.round((next - Date.now()) / 1000)); $('hsAge').textContent = next ? s + 's' : '–'; if (next && Date.now() >= next) { next = 0; load(); }
       const u = new Date(); $('hsUtc').textContent = u.toISOString().slice(11, 19);
-      const n = Q.q.filter(q => q.d === today()).length; $('hsUtcL').textContent = `UTC · ${n} LOGGED TODAY`;
+      const n = Q.q.filter(q => q.d === today()).length; $('hsUtcL').textContent = PUB ? 'UTC' : `UTC · ${n} LOGGED TODAY`;
     }, 1000);
     setInterval(() => { document.querySelectorAll('.hs').length && draw(); }, 5 * 60e3);
   }
