@@ -20,6 +20,7 @@
 <meta name="description" content="A one-page printable sheet for any Kentucky POTA park, with QR codes and an optional log sheet.">
 <link rel="stylesheet" href="kpc-tools.css?v=20261015a">
 <script src="kpc-tools.js?v=20261016a"></script>
+<script src="kpc-bounds.js?v=20261016a"></script>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 </head>
 <body>
@@ -93,14 +94,14 @@
 <section class="tool-head th-map no-print"><div class="wrap">
 <p class="eyebrow">KPC FIELD TOOL</p>
 <h1>PRINTABLE <span>PARK SHEET</span></h1>
-<p class="sub">Pick any Kentucky POTA park and print a one-page field sheet — QR codes to the official map, POTA page and directions, plus GPS, grid, parking points and possible 2-fers. Add a log sheet on the back.</p>
+<p class="sub">Pick any POTA park in any state and print a one-page field sheet: QR codes to the official map, POTA page and directions, GPS, grid, how often it has been activated, the NOAA Weather Radio station for that county, places to stay, other programs at the same spot and the latest tips. Kentucky parks add parking points and 2-fers. Add a log sheet on the back.</p>
 </div></section>
 <div class="no-print"><nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-sota.html">SOTA</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html" aria-current=page>Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html">Antenna</a><a href="parks.html">← Parks</a></div></nav>
 <aside class="kpc-disclaim" role="note" style="max-width:1160px;margin:18px auto;padding:0 16px;box-sizing:border-box"><div style="background:#fff8e6;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:8px;padding:12px 16px;color:#1c1c1c;font:14px/1.55 Arial,Helvetica,sans-serif"><b>Use our tools, then check for yourself.</b> KPC builds these maps, guides and tools to help you plan, but we’re volunteers working from public data, and we make mistakes. Boundaries change, maps don’t always line up, and some land inside a park line is private. Before you activate, check the official agency map, confirm the land is public and open, and follow the rules of each program you’re activating. You’re responsible for making sure your activation is valid. Spot something wrong? <a href="contact.html" style="color:#1d5a3a;font-weight:700">Let us know</a> so we can fix it.</div></aside>
 </div>
 <section class="section no-print" style="padding-bottom:0"><div class="wrap">
 <div class="panel"><form class="controls" id="f" autocomplete="off">
-<label class="field" style="flex:1 1 320px">PARK (NAME OR US-####)<input id="q" list="parks" placeholder="Taylorsville Lake or US-1271"><datalist id="parks"></datalist></label>
+<label class="field" style="flex:1 1 320px">PARK (ANY STATE: NAME OR US-####)<input id="q" list="parks" placeholder="Taylorsville Lake, US-1271 or Yosemite"><datalist id="parks"></datalist></label>
 <label class="field" style="flex:0 1 160px">YOUR CALLSIGN (OPTIONAL)<input id="call" autocapitalize="characters" spellcheck="false"></label>
 <button class="btn" type="submit" style="align-self:flex-end">MAKE SHEET</button>
 <button class="btn alt" type="button" id="clearSheet" style="align-self:flex-end">✕ CLEAR</button>
@@ -152,27 +153,79 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-const $=id=>document.getElementById(id);let D,T,cur=null;
+/* KPC Park Sheet (Oct 16 2026, Brandon: 'update it: any state + more'). Any US POTA park: Kentucky parks use our files
+   (parking points, 2-fers, KFF/SOTA, campgrounds); other states use POTA's park page + our weekly copies
+   (data/parkinfo, data/campfed, data/nwr, data/wwff + data/sota tiles via kpc-bounds.js). Everyone gets activation
+   count (POTA), NOAA Weather Radio for the county (geo.fcc.gov county + data/nwr), places to stay and latest tips. */
+const $=id=>document.getElementById(id);let D,T,cur=null,txt=null;
 const esc=KPC.esc;
+const jget=(u,ms)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||9000);return fetch(u,{signal:c.signal}).then(r=>r.ok?r.json():null).catch(()=>null).finally(()=>clearTimeout(t))};
+const J={};const once=u=>J[u]||(J[u]=jget(u));
 async function init(){D=await KPC.data();try{T=await fetch('kpc-ky-towns.json').then(r=>r.json())}catch(e){T=[]}
  $('parks').innerHTML=D.parks.map(p=>`<option value="${p.c} ${esc(p.n)}">`).join('');
  const q=new URLSearchParams(location.search);if(q.get('call'))$('call').value=q.get('call');if(q.get('ref')){$('q').value=q.get('ref');make()}}
-function find(v){v=String(v||'').trim();const m=v.match(/US-\d{4,5}/i);if(m){const r=m[0].toUpperCase();return D.parks.find(p=>p.c===r)}
- const l=v.toLowerCase();return D.parks.find(p=>p.n.toLowerCase()===l)||D.parks.find(p=>p.n.toLowerCase().includes(l))}
+const pad=r=>{const m=String(r).toUpperCase().match(/^(US|K)-?(\d{1,5})$/);return m?'US-'+m[2].padStart(4,'0'):''};
+/* a Kentucky park from our files, else any US POTA park from POTA (by number or by name) */
+async function find(v){v=String(v||'').trim();let ref=pad((v.match(/(US|K)-?\d{1,5}/i)||[''])[0]||(/^\d{1,5}$/.test(v)?v:''));
+ if(ref){const k=D.parks.find(p=>p.c===ref);if(k)return Object.assign({ky:true,st:'KY'},k)}
+ else{const l=v.toLowerCase(),k=D.parks.find(p=>p.n.toLowerCase()===l)||D.parks.find(p=>p.n.toLowerCase().includes(l));if(k)return Object.assign({ky:true,st:'KY'},k);
+  const L=await jget('https://api.pota.app/lookup?search='+encodeURIComponent(v)+'&size=40');const h=(L||[]).find(x=>x.type==='park'&&/^US-/.test(x.value));if(!h)return null;ref=h.value}
+ const o=window.KPCB?await KPCB.lookup(ref).catch(()=>null):null;if(!o||o.prog!=='POTA'||!o.us)return null;
+ if(o.ky){const k=D.parks.find(p=>p.c===o.ref);if(k)return Object.assign({ky:true,st:'KY'},k)}
+ return{ky:false,c:o.ref,n:o.name,la:o.la,lo:o.lo,t:o.type||'',web:o.web||'',off:'',co:'',st:o.st||'',where:o.where||''}}
 const dir=(a,b,c,d)=>{const y=Math.sin((d-b)*Math.PI/180)*Math.cos(c*Math.PI/180),x=Math.cos(a*Math.PI/180)*Math.sin(c*Math.PI/180)-Math.sin(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.cos((d-b)*Math.PI/180);const br=(Math.atan2(y,x)*180/Math.PI+360)%360;return['N','NE','E','SE','S','SW','W','NW'][Math.round(br/45)%8]};
 function qr(el,url){el.innerHTML='';if(window.QRCode){try{new QRCode(el,{text:url,width:240,height:240,correctLevel:QRCode.CorrectLevel.M});return}catch(e){}}el.innerHTML='<span style="font-size:11px">QR code needs an internet connection — the link is printed below.</span>'}
 function short(u){return String(u).replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'').slice(0,60)}
-function make(){const p=find($('q').value);if(!p){$('msg').textContent='Park not found — pick one from the list or type a US-#### number.';return}
- cur=p;$('msg').textContent='';history.replaceState(null,'','?ref='+p.c+($('call').value?'&call='+encodeURIComponent($('call').value.toUpperCase()):''));
- const grid=KPC.grid(p.la,p.lo),towns=T.map(t=>[t[0],KPC.miles(t[1],t[2],p.la,p.lo),dir(t[1],t[2],p.la,p.lo)]).sort((a,b)=>a[1]-b[1]).slice(0,2);
- const FINDER=new URL('finder.html?q='+encodeURIComponent(p.c),location.href).href;const off=p.off||p.web,potaU=`https://pota.app/#/park/${p.c}`,dirU=`https://www.google.com/maps/dir/?api=1&destination=${p.la},${p.lo}`;
- const isWMA=/wildlife|wma|hunting|forest/i.test(p.n+' '+p.t),ap=(p.ap||[]).slice(0,8),call=($('call').value||'').toUpperCase();
- const page1=`<div class="ps-page"><div class="ps-top"><img src="KPC-logo.png" alt=""><div><div class="ps-k">KENTUCKY PORTABLE CLUB • PARK SHEET</div><div class="ps-name">${esc(p.n)}</div><div class="ps-sub">${esc(KPC.cty(p.co))} • ${esc(p.t)}</div></div><div class="ps-ref"><b>${p.c}</b><span>POTA reference</span></div></div>
- <div class="ps-grid"><div class="ps-box"><small>GPS (POTA POINT)</small><b><a class="ps-a" href="https://www.google.com/maps/search/?api=1&query=${p.la},${p.lo}">${p.la.toFixed(5)}, ${p.lo.toFixed(5)}</a></b></div><div class="ps-box"><small>GRID SQUARE</small><b>${grid}</b></div><div class="ps-box"><small>COUNTY</small><b>${esc(p.co)}</b></div><div class="ps-box"><small>NEAREST TOWNS</small><b>${towns.map(t=>`${t[1].toFixed(0)} mi ${t[2]} of ${esc(t[0])}`).join('<br>')}</b></div></div>
+const GEN=/\b(state|national|park|parks|forest|wildlife|management|area|recreation|historic|historical|site|refuge|preserve|nature|the|of|and|lake|river|scenic|wild|memorial|monument|conservation|wma|nwr|sp|np|nf)\b/g;
+const words=t=>String(t||'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(GEN,' ').split(/\s+/).filter(w=>w.length>2);
+const sim=(a,b)=>{const A=words(a),B=new Set(words(b));if(!A.length||!B.size)return 0;return A.filter(w=>B.has(w)).length/Math.max(A.length,B.size)};
+const fmtD=d=>{d=String(d||'');const t=d.length===8?new Date(+d.slice(0,4),+d.slice(4,6)-1,+d.slice(6)):new Date(d);return isNaN(t)?'':t.toLocaleDateString([],{month:'short',day:'numeric',year:'numeric'})};
+/* everything extra for the sheet, each piece with its own time limit so a slow service never blocks the sheet */
+async function extras(p){
+ const X={};const tasks=[];
+ tasks.push(jget('https://api.pota.app/park/activations/'+p.c+'?count=all').then(a=>{if(Array.isArray(a)){const v=a.filter(x=>x.totalQSOs==null||+x.totalQSOs>=10);X.acts=v.length;X.last=v.map(x=>String(x.qso_date||'')).sort().pop()||''}})   /* valid activations only (10+ contacts), like Rare Parks */);
+ tasks.push(jget(`https://geo.fcc.gov/api/census/area?lat=${p.la}&lon=${p.lo}&format=json`).then(async g=>{const r=g&&g.results&&g.results[0];if(r){X.county=r.county_name;X.same='0'+r.county_fips;X.st2=r.state_code}
+  const st=p.st||X.st2||'';const N=st==='KY'?await once('kpc-nwr.json'):await once('data/nwr/'+st+'.json');const tx=(N&&N.tx)||[];
+  const cov=X.same?tx.filter(t=>(t.same||[]).includes(X.same)):[];const L=(cov.length?cov:tx).map(t=>Object.assign({mi:KPC.miles(p.la,p.lo,t.la,t.lo),cov:cov.includes(t)},t)).sort((a,b)=>a.mi-b.mi).slice(0,2);X.nwr=L}));
+ const [kyN,usN]=await Promise.all([once('kpc-park-notes.json'),once('kpc-park-notes-us.json')]);
+ X.tips=[].concat((kyN&&kyN.notes)||[],(usN&&usN.notes)||[]).filter(t=>t.ref===p.c).slice(-3).reverse();
+ if(p.ky){const C=await once('kpc-campgrounds.json');const cg=((C&&C.parks)||[]).find(x=>x.pota===p.c);X.stay=cg?[].concat(cg.campgrounds||[],cg.lodging||[]).slice(0,5).map(c=>({n:c.name,d:[c.sites,c.season].filter(Boolean).join(' · ')})):[]}
+ else{tasks.push((async()=>{const st=p.st;if(!st)return;const [I,F]=await Promise.all([once('data/parkinfo/US-'+st+'.json'),once('data/campfed/US-'+st+'.json')]);
+   const r=I&&I.parks&&I.parks[p.c];if(r){X.how=String(r[3]||'').split(',').map(x=>({Automobile:'car',Campground:'campground',Pedestrian:'on foot',Boat:'boat',Bicycle:'bike'}[x.trim()]||x.trim().toLowerCase())).filter(Boolean);X.stateSite=I.stateSite;if(!p.web)p.web=r[1]}
+   const near=((F&&F.camps)||[]).map(c=>({c,mi:KPC.miles(p.la,p.lo,c[2],c[3])})).filter(o=>o.mi<=10).sort((a,b)=>a.mi-b.mi);
+   const AG={FS:'Forest Service',NPS:'National Park Service',USACE:'Army Corps',BLM:'BLM',FWS:'Fish & Wildlife'};
+   X.stay=near.filter(o=>o.c[7]!=='s').slice(0,4).map(o=>({n:o.c[1],d:`${o.mi.toFixed(1)} mi · ${AG[o.c[4]]||o.c[4]||''} · ${o.c[5]?'reserve on Recreation.gov':'first come'}`}));
+   X.shel=near.filter(o=>o.c[7]==='s').slice(0,3).map(o=>({n:o.c[1],d:`${o.mi.toFixed(1)} mi`}))})());
+  if(window.KPCB)tasks.push(Promise.all([KPCB.wwffNear(p.la,p.lo,12).catch(()=>[]),KPCB.sotaNear(p.la,p.lo,3.2).catch(()=>[])]).then(([w,so])=>{
+   const m=w.map(x=>Object.assign({sc:sim(p.n,x.name)},x)).filter(x=>x.sc>=.6||(x.d<.4&&x.sc>0)).sort((a,b)=>b.sc-a.sc||a.d-b.d)[0];X.wwff=m?[m.ref+' '+m.name]:[];
+   X.sota=so.slice(0,4).map(x=>`${x.ref} ${x.name} (${Number(x.ft).toLocaleString()} ft, ${(x.d/1.609).toFixed(1)} mi)`)}))}
+ await Promise.all(tasks.map(t=>t.catch(()=>{})));return X}
+async function make(){$('msg').textContent='Making the sheet…';const p=await find($('q').value);
+ if(!p){$('msg').textContent='Park not found. Pick a Kentucky park from the list, or type a US-#### number or a park name from any state.';return}
+ cur=p;history.replaceState(null,'','?ref='+p.c+($('call').value?'&call='+encodeURIComponent($('call').value.toUpperCase()):''));
+ const X=await extras(p);$('msg').textContent='';
+ const grid=KPC.grid(p.la,p.lo),towns=p.ky?T.map(t=>[t[0],KPC.miles(t[1],t[2],p.la,p.lo),dir(t[1],t[2],p.la,p.lo)]).sort((a,b)=>a[1]-b[1]).slice(0,2):[];
+ const FINDER=new URL(p.ky?'finder.html?q='+encodeURIComponent(p.c):'kpc-planner-us.html?q='+encodeURIComponent(p.c),location.href).href;
+ const off=p.off||p.web||`https://pota.app/#/park/${p.c}`,potaU=`https://pota.app/#/park/${p.c}`,dirU=`https://www.google.com/maps/dir/?api=1&destination=${p.la},${p.lo}`;
+ const isWMA=/wildlife|wma|hunting|forest|game land/i.test(p.n+' '+p.t),ap=(p.ap||[]).slice(0,8),call=($('call').value||'').toUpperCase();
+ const where=p.ky?KPC.cty(p.co):(X.county?X.county+' County, ':'')+(p.where||p.st);
+ const rare=X.acts===0?' · <b>ATNO: never activated!</b>':X.acts!=null&&X.acts<=5?' · <b>RARE</b>':'';
+ const actBox=X.acts!=null?`${X.acts.toLocaleString()} time${X.acts===1?'':'s'}${X.last?'<br><span style="font-size:12px">last '+esc(fmtD(X.last))+'</span>':''}${rare}`:'check pota.app';
+ const radio=(X.nwr||[]).length?X.nwr.map(t=>`${esc(t.freq)} MHz · ${esc(t.call)} ${esc(t.site)}${t.cov?'':' (nearest)'}`).join('<br>'):'check weather.gov/nwr';
+ const extrasL=p.ky?(p.tf&&p.tf.length?[`Possible 2-fer: ${p.tf.map(esc).join(', ')} — stand inside both boundaries.`]:[]).concat(p.kff&&p.kff.length?[`WWFF: ${p.kff.map(esc).join(', ')}`]:[]).concat(p.sota&&p.sota.length?[`SOTA summits inside: ${p.sota.map(esc).join(', ')}`]:[])
+  :(X.wwff||[]).map(w=>`WWFF: ${esc(w)} (same place; one activation can count for both)`).concat((X.sota||[]).length?[`SOTA summits within 2 miles: ${X.sota.map(esc).join('; ')} (count for POTA only when the summit is inside the park)`]:[]);
+ const stay=(X.stay||[]).length?`<ul class="ps-list">${X.stay.map(c=>`<li><b>${esc(c.n)}</b>${c.d?' — '+esc(c.d):''}</li>`).join('')}</ul>`:`<p style="font-size:13px;margin:0">${p.ky?'No campground or cabins listed inside this park.':'No federal campgrounds on Recreation.gov within 10 miles. State park campgrounds: see the park’s own website.'}</p>`;
+ const shel=(X.shel||[]).length?`<p style="font-size:13px;margin:6px 0 0"><b>Picnic shelters nearby (good for activating):</b> ${X.shel.map(c=>esc(c.n)+' ('+esc(c.d)+')').join('; ')}</p>`:'';
+ const tips=(X.tips||[]).length?`<div class="ps-h">Tips from other operators</div><ul class="ps-list">${X.tips.map(t=>`<li>${esc(String(t.text).slice(0,220))}${String(t.text).length>220?'…':''} <span style="color:#666">— ${esc(t.call||'')}${t.date?', '+esc(t.date):''}</span></li>`).join('')}</ul>`:'';
+ const page1=`<div class="ps-page"><div class="ps-top"><img src="KPC-logo.png" alt=""><div><div class="ps-k">KENTUCKY PORTABLE CLUB • PARK SHEET</div><div class="ps-name">${esc(p.n)}</div><div class="ps-sub">${esc(where)}${p.t?' • '+esc(p.t):''}${(X.how||[]).length?' • activate by '+esc(X.how.join(', ')):''}</div></div><div class="ps-ref"><b>${p.c}</b><span>POTA reference</span></div></div>
+ <div class="ps-grid"><div class="ps-box"><small>GPS (POTA POINT)</small><b><a class="ps-a" href="https://www.google.com/maps/search/?api=1&query=${p.la},${p.lo}">${(+p.la).toFixed(5)}, ${(+p.lo).toFixed(5)}</a></b></div><div class="ps-box"><small>GRID SQUARE</small><b>${grid}</b></div><div class="ps-box"><small>${p.ky?'NEAREST TOWNS':'COUNTY'}</small><b>${p.ky?towns.map(t=>`${t[1].toFixed(0)} mi ${t[2]} of ${esc(t[0])}`).join('<br>'):esc(X.county||'—')}</b></div><div class="ps-box"><small>ACTIVATED</small><b>${actBox}</b></div></div>
+ <div class="ps-grid" style="grid-template-columns:1fr 1fr;margin-top:-4px"><div class="ps-box"><small>NOAA WEATHER RADIO${X.county?' ('+esc(X.county).toUpperCase()+' CO.)':''}</small><b style="font-size:13px">${radio}</b></div><div class="ps-box"><small>COUNTY CODE FOR A SAME WEATHER RADIO</small><b>${esc(X.same||'—')}</b></div></div>
  <div class="ps-qr"><div class="ps-q"><div class="qr" id="qr1"></div><a class="ps-a" href="${esc(off)}"><b>OFFICIAL MAP / SITE</b></a><span>${esc(short(off))}</span></div><div class="ps-q"><div class="qr" id="qr2"></div><a class="ps-a" href="${potaU}"><b>POTA PARK PAGE</b></a><span>${esc(short(potaU))}</span></div><div class="ps-q"><div class="qr" id="qr3"></div><a class="ps-a" href="${dirU}"><b>DIRECTIONS</b></a><span>Google Maps to the POTA point</span></div></div>
- ${ap.length?`<div class="ps-h">Official parking &amp; access points</div><ul class="ps-list">${ap.map(a=>`<li><a class="ps-a" href="https://www.google.com/maps/search/?api=1&query=${a[0]},${a[1]}">${a[0].toFixed(5)}, ${a[1].toFixed(5)}</a> — ${esc(a[2])}</li>`).join('')}</ul>`:`<div class="ps-h">Parking &amp; access</div><p style="font-size:13px;margin:0">${p.acc?`${p.acc} access points for this park are in the KPC POTA map file (KML/GPX) on the Parks page.`:'Check the official map for parking and access.'}</p>`}
- <div class="ps-h">Also here — possible extras</div><ul class="ps-list">${(p.tf&&p.tf.length?[`Possible 2-fer: ${p.tf.map(esc).join(', ')} — stand inside both boundaries.`]:[]).concat(p.kff&&p.kff.length?[`WWFF: ${p.kff.map(esc).join(', ')}`]:[]).concat(p.sota&&p.sota.length?[`SOTA summits inside: ${p.sota.map(esc).join(', ')}`]:[]).map(x=>`<li>${x}</li>`).join('')||'<li>No 2-fers, KFF or SOTA references listed for this park.</li>'}</ul>
- <div class="ps-h">See the boundary &amp; trails</div><p style="font-size:13px;margin:0 0 4px"><a class="ps-a" href="${esc(FINDER)}">Open this park in KY Park Commander →</a> (map, boundary, trail layers, offline)</p><div class="ps-h">Before you go</div><ul class="ps-list"><li>Confirm the boundary on the official map — you and your gear must be inside it, on public land.</li><li>10 contacts in one UTC day makes a valid activation. Log times in UTC.</li>${isWMA?'<li><b>Hunting land:</b> check season dates and wear blaze orange during gun seasons.</li>':''}<li>Check weather, closures and posted rules. Tell someone where you are going.</li></ul>
+ ${ap.length?`<div class="ps-h">Official parking &amp; access points</div><ul class="ps-list">${ap.map(a=>`<li><a class="ps-a" href="https://www.google.com/maps/search/?api=1&query=${a[0]},${a[1]}">${a[0].toFixed(5)}, ${a[1].toFixed(5)}</a> — ${esc(a[2])}</li>`).join('')}</ul>`:`<div class="ps-h">Parking &amp; access</div><p style="font-size:13px;margin:0">${p.acc?`${p.acc} access points for this park are in the KPC POTA map file (KML/GPX) on the Parks page.`:'Check the official map for parking and access, or search “parking” at the POTA point in Google or Apple Maps.'}</p>`}
+ <div class="ps-h">Also here — other programs</div><ul class="ps-list">${extrasL.map(x=>`<li>${x}</li>`).join('')||'<li>No 2-fers, WWFF or SOTA references found for this park.</li>'}</ul>
+ <div class="ps-h">Where to stay</div>${stay}${shel}
+ ${tips}
+ <div class="ps-h">See the boundary</div><p style="font-size:13px;margin:0 0 4px"><a class="ps-a" href="${esc(FINDER)}">${p.ky?'Open this park in KY Park Commander →</a> (map, boundary, trail layers, offline)':'Open this park in the KPC US Trip Planner →</a> (official boundary, campgrounds, nearby parks)'}</p><div class="ps-h">Before you go</div><ul class="ps-list"><li>Confirm the boundary on the official map — you and your gear must be inside it, on public land.</li><li>10 contacts in one UTC day makes a valid activation. Log times in UTC.</li>${isWMA?'<li><b>Hunting land:</b> check season dates and wear blaze orange during gun seasons.</li>':''}<li>Check weather, closures and posted rules. Tell someone where you are going.</li></ul>
  <div class="ps-warn"><b>Notes:</b> ______________________________________________________________________________<br><br>_______________________________________________________________________________________</div>
  <div class="ps-foot"><span>KPC Park Sheet • kentuckyportableclub.github.io/KPC-Links • printed ${new Date().toLocaleDateString()}</span><span>Planning aid only — always check the official map and current rules.</span></div></div>`;
  const rows=Array.from({length:28},(_,i)=>`<tr class="${i===9?'ten':''}"><td style="width:28px">${i+1}</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>`).join('');
@@ -181,13 +234,13 @@ function make(){const p=find($('q').value);if(!p){$('msg').textContent='Park not
  <table class="ps-log"><thead><tr><th>#</th><th>TIME UTC</th><th>CALLSIGN</th><th>BAND / FREQ</th><th>MODE</th><th>SENT</th><th>RCVD</th><th>STATE / PARK</th><th>NOTES</th></tr></thead><tbody>${rows}</tbody></table>
  <div class="ps-foot"><span>Heavy line after #10 = valid activation. Upload your log to pota.app → My Log Uploads.</span><span>${p.c} • ${esc(p.n)}</span></div></div>`;
  $('sheet').innerHTML=page1+($('withLog').checked?page2:'');
- qr($('qr1'),off);qr($('qr2'),potaU);qr($('qr3'),dirU);$('printBtn').disabled=false;['shareBtn','copyBtn','mailBtn'].forEach(i=>$(i).disabled=false);txt={p,grid,towns,off,potaU,dirU,FINDER,sheet:location.href}}
+ qr($('qr1'),off);qr($('qr2'),potaU);qr($('qr3'),dirU);$('printBtn').disabled=false;['shareBtn','copyBtn','mailBtn'].forEach(i=>$(i).disabled=false);txt={p,grid,towns,off,potaU,dirU,FINDER,sheet:location.href,X,where}}
 $('clearSheet').onclick=()=>{cur=null;txt=null;['shareBtn','copyBtn','mailBtn'].forEach(i=>$(i).disabled=true);$('q').value='';$('sheet').innerHTML='';$('printBtn').disabled=true;$('msg').textContent='';try{history.replaceState(null,'',location.pathname)}catch(e){}$('q').focus()};
 $('f').onsubmit=e=>{e.preventDefault();make()};$('withLog').onchange=()=>cur&&make();$('printBtn').onclick=()=>window.print();
-let txt=null;
-function body(){if(!txt)return '';const {p,grid,towns,off,potaU,dirU,FINDER,sheet}=txt;
- return [p.n+' ('+p.c+')',KPC.cty(p.co)+' - '+p.t,'Grid '+grid+'  GPS '+p.la.toFixed(5)+', '+p.lo.toFixed(5),'Nearest: '+towns.map(t=>t[1].toFixed(0)+' mi '+t[2]+' of '+t[0]).join('; '),'',
- 'Directions: '+dirU,'POTA page: '+potaU,'Official map/site: '+off,'Boundary & trails (KY Park Commander): '+FINDER,'Full park sheet: '+sheet,'','From the Kentucky Portable Club - kentuckyportableclub.github.io/KPC-Links'].join('\n')}
+function body(){if(!txt)return '';const {p,grid,towns,off,potaU,dirU,FINDER,sheet,X,where}=txt;
+ return [p.n+' ('+p.c+')',where+(p.t?' - '+p.t:''),'Grid '+grid+'  GPS '+(+p.la).toFixed(5)+', '+(+p.lo).toFixed(5),towns.length?'Nearest: '+towns.map(t=>t[1].toFixed(0)+' mi '+t[2]+' of '+t[0]).join('; '):'',
+ X.acts!=null?'Activated '+X.acts+' times'+(X.last?' (last '+fmtD(X.last)+')':''):'',(X.nwr||[]).length?'NOAA Weather Radio: '+X.nwr.map(t=>t.freq+' MHz '+t.call+' '+t.site).join('; '):'','',
+ 'Directions: '+dirU,'POTA page: '+potaU,'Official map/site: '+off,'Boundary: '+FINDER,'Full park sheet: '+sheet,'','From the Kentucky Portable Club - kentuckyportableclub.github.io/KPC-Links'].filter((x,i,a)=>x!==''||a[i-1]!=='').join('\n')}
 const flash=(b,t)=>{const o=b.textContent;b.textContent=t;setTimeout(()=>b.textContent=o,1800)};
 $('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText(body());flash($('copyBtn'),'COPIED ✓')}catch(e){const a=document.createElement('textarea');a.value=body();document.body.append(a);a.select();try{document.execCommand('copy');flash($('copyBtn'),'COPIED ✓')}catch(_){}a.remove()}};
 $('mailBtn').onclick=()=>{location.href='mailto:?subject='+encodeURIComponent(txt.p.n+' ('+txt.p.c+') - KPC park sheet')+'&body='+encodeURIComponent(body())};
