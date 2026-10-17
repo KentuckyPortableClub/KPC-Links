@@ -136,8 +136,16 @@ def rings2geo(g):
     return {'type': 'MultiPolygon', 'coordinates': [[r] for r in rings]} if rings else None
 
 
+def xsim(nm, other):
+    # stricter than CPCAD: every key word of the POTA name must be in the map's name, or 2 of 3 words shared
+    A, B = set(words(nm)), set(words(other))
+    if not A or not B:
+        return 0.0
+    return 1.0 if A <= B else (sim(nm, other) if sim(nm, other) >= 0.67 else 0.0)
+
+
 def best_of(nm, cands):
-    sc = [(max(sim(nm, a.get(f) or '') for f in fl) if fl else 0, a, fl) for a, fl in cands]
+    sc = [(max(xsim(nm, a.get(f) or '') for f in fl) if fl else 0, a, fl) for a, fl in cands]
     sc.sort(key=lambda x: -x[0])
     return sc[0] if sc else (0, None, None)
 
