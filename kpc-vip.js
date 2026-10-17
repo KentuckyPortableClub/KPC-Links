@@ -2,10 +2,14 @@
    Used on kpc-hunt.html, kpc-hunt-need.html, kpc-hunt-cat.html and kpc-top50.html. Load it in <head> so nothing shows first.
    Only the SHA-256 of 'kpc-vip:' + password is here, never the password. One unlock opens all four pages on this device
    (localStorage kpcVipOK). Client-side only: it keeps casual visitors out, it is not real security.
-   window.KPCVIP.ready = a promise that resolves once unlocked (the Lounge waits for it before loading spots). */
+   window.KPCVIP.ready = a promise that resolves once unlocked (the Lounge waits for it before loading spots).
+   BETA mode (Brandon Oct 17: 'lock the public hunters lounge till I beta it'): <script src="kpc-vip.js" data-lock="beta"> on kpc-hunters.html
+   uses its own password (SHA-256 of 'kpc-beta:' + password) and localStorage kpcBetaOK. A VIP unlock also opens the beta page. */
 (function () {
-  var HASH = '1c98fe8c74bed6bc1d39200459508faa9126ea623c8d5062946caebe906a9f9f', KEY = 'kpcVipOK';
-  var ok = false; try { ok = localStorage.getItem(KEY) === HASH; } catch (e) {}
+  var BETA = !!(document.currentScript && document.currentScript.getAttribute('data-lock') === 'beta');
+  var VIPH = '1c98fe8c74bed6bc1d39200459508faa9126ea623c8d5062946caebe906a9f9f';
+  var HASH = BETA ? '754c4f28bd19b9a46d2e23ee7126a19d08f13054ef7b03e78f48ac4373d6e121' : VIPH, KEY = BETA ? 'kpcBetaOK' : 'kpcVipOK', SALT = BETA ? 'kpc-beta:' : 'kpc-vip:';
+  var ok = false; try { ok = localStorage.getItem(KEY) === HASH || (BETA && localStorage.getItem('kpcVipOK') === VIPH); } catch (e) {}
   var done; var ready = new Promise(function (r) { done = r; });
   window.KPCVIP = { ready: ready, ok: function () { return ok; } };
   if (ok) { done(); return; }
@@ -22,12 +26,14 @@
   var sha = function (t) { return crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)).then(function (b) { return Array.prototype.map.call(new Uint8Array(b), function (x) { return x.toString(16).padStart(2, '0'); }).join(''); }); };
   function show() {
     var box = document.createElement('div'); box.id = 'vipLock'; box.setAttribute('data-keep-light', '');
-    box.innerHTML = '<span class="v">⭐ VIP</span><h1>VIP Hunters Lounge</h1><p>This part of the Lounge is for KPC members. Type the VIP password to come in. You only need it once on this device.</p>' +
-      '<form><input type="password" inputmode="numeric" autocomplete="off" placeholder="PASSWORD" aria-label="VIP password"><button type="submit">🔓 COME IN</button><div class="bad" aria-live="polite"></div></form>' +
-      '<p style="margin-top:16px;font-size:13px">No password? The <a href="kpc-hunters.html">free Hunters Lounge</a> is open to everyone.</p>';
+    box.innerHTML = (BETA ? '<span class="v">🧪 BETA</span><h1>Hunters Lounge</h1><p>The Hunters Lounge is being tested and opens to everyone soon. Testers: type the beta password to come in. You only need it once on this device.</p>'
+      : '<span class="v">⭐ VIP</span><h1>VIP Hunters Lounge</h1><p>This part of the Lounge is for KPC members. Type the VIP password to come in. You only need it once on this device.</p>') +
+      '<form><input type="password" ' + (BETA ? '' : 'inputmode="numeric" ') + 'autocomplete="off" placeholder="PASSWORD" aria-label="Password"><button type="submit">🔓 COME IN</button><div class="bad" aria-live="polite"></div></form>' +
+      (BETA ? '<p style="margin-top:16px;font-size:13px">Want live spots now? <a href="kpc-live.html">Happening Now</a> is open to everyone.</p>'
+      : '<p style="margin-top:16px;font-size:13px">The free Hunters Lounge is being tested and opens to everyone soon.</p>');
     var hdr = document.querySelector('header.site-nav'); if (hdr && hdr.parentNode) hdr.parentNode.insertBefore(box, hdr.nextSibling); else document.body.insertBefore(box, document.body.firstChild);
     var f = box.querySelector('form'), inp = box.querySelector('input'), bad = box.querySelector('.bad');
-    f.onsubmit = function (e) { e.preventDefault(); sha('kpc-vip:' + inp.value.trim().toLowerCase()).then(function (h) {
+    f.onsubmit = function (e) { e.preventDefault(); sha(SALT + inp.value.trim().toLowerCase()).then(function (h) {
       if (h === HASH) { try { localStorage.setItem(KEY, HASH); } catch (x) {} ok = true; box.remove(); de.classList.remove('vip-lock'); done(); try { dispatchEvent(new Event('resize')); } catch (x) {} }
       else { bad.textContent = 'That is not it. Try again.'; inp.select(); }
     }); };

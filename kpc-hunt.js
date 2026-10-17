@@ -1732,6 +1732,6 @@
     spots: () => SP.map(s => ({ activator: s.call, reference: s.ref || '', mode: s.mode, prog: s.p })),
     station: () => openModal('lgModal'), tab: () => {}
   };
-  (window.KPCVIP && !PUB ? window.KPCVIP.ready : Promise.resolve()).then(startApp);
+  (window.KPCVIP ? window.KPCVIP.ready : Promise.resolve()).then(startApp);
   window.KPCHunt = { scan, nref, adif, parseAdif };
 })();
