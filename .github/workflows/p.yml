@@ -5,5 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          curl -s -D /tmp/h -o /tmp/b https://pota.app/; echo "::notice title=headers::$(tr -d '\r' < /tmp/h | grep -i 'content-security\|x-frame\|server' | tr '\n' ' ')"
-          echo "::notice title=meta csp::$(grep -io '<meta[^>]*content-security[^>]*>' /tmp/b | head -2)"
+          for u in "https://callook.info/W1AW/json" "https://api.hamdb.org/W1AW/json/kpc" "https://api.hamdb.org/v1/W1AW/json/kpc" "https://api.hamdb.org/VE3ABC/json/kpc"; do
+            h=$(curl -s -m 20 -D - -o /tmp/b -H 'Origin: https://kentuckyportableclub.github.io' "$u" | tr -d '\r' | grep -i 'access-control-allow-origin\|^HTTP' | tr '\n' ' ')
+            echo "::notice title=$u::$h BODY $(head -c 600 /tmp/b | tr '\n' ' ')"
+          done
+          curl -s -m 20 -X OPTIONS -D - -o /dev/null -H 'Origin: https://x.github.io' -H 'Access-Control-Request-Method: POST' -H 'Access-Control-Request-Headers: content-type' https://api.pota.app/spot/ | tr -d '\r' | grep -i 'access-control\|^HTTP' | tr '\n' ' ' | sed 's/^/::notice title=pota spot preflight::/'
+          curl -s -m 20 -D - -o /tmp/b -H 'Origin: https://x.github.io' "https://api.pota.app/spot/activator" | tr -d '\r' | grep -i 'access-control\|^HTTP' | tr '\n' ' ' | sed 's/^/::notice title=pota spots::/'; echo; head -c 700 /tmp/b | sed 's/^/::notice title=spot sample::/'
