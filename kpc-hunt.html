@@ -105,7 +105,7 @@ body.field .page-jump-nav{display:none!important}
 
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261016c">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261016d">
 <header class="site-nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="KPC Home">
@@ -227,6 +227,15 @@ body.field .page-jump-nav{display:none!important}
 <div class="hl-two">
 <div class="hl-card">
  <h3>Load the parks you've worked</h3>
+ <div class="hl-pota"><b>⭐ EASIEST: GET MY HUNTED PARKS STRAIGHT FROM POTA</b>
+ <p>pota.app no longer has a hunted-parks CSV, so this little bookmark asks POTA for your list while you're signed in there, then brings just the park numbers back here. Your POTA password and sign-in never leave pota.app.</p>
+ <ol>
+ <li><b>On a computer:</b> drag this button up to your bookmarks bar: <a class="hl-btn gold sm" id="hBm" href="#" title="Drag me to your bookmarks bar">⭐ KPC: MY POTA PARKS</a></li>
+ <li><b>On a phone:</b> tap <button type="button" class="hl-btn line sm" id="hBmCopy">COPY THE BOOKMARK</button>, bookmark any page, then edit that bookmark: name it <b>KPC parks</b> and paste over its web address.</li>
+ <li>Go to <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a> and sign in. Then tap the bookmark (on Android Chrome: type <b>KPC parks</b> in the address bar and pick the bookmark).</li>
+ <li>You land back here with your parks loaded. Do it again any time to refresh.</li>
+ </ol></div>
+ <p class="hl-p" style="margin-top:14px"><b>Or load a file:</b></p>
  <label class="hl-lab">Your call sign <input id="hCall" autocomplete="off" autocapitalize="characters" placeholder="Your call"></label>
  <div class="hl-drop" id="hDrop"><input type="file" id="hFile" accept=".csv,.txt,.adi,.adif,text/csv" multiple><b>📄 TAP TO PICK YOUR FILE</b><span>or drop it here · CSV or ADIF · POTA, WWFF and SOTA</span></div>
  <div class="hl-row"><label class="hl-chk"><input type="checkbox" id="hAdd"> Add to my list (don't replace it)</label></div>
@@ -237,7 +246,7 @@ body.field .page-jump-nav{display:none!important}
 <div class="hl-card">
  <h3>Where do I get the file?</h3>
  <ul class="hl-how">
- <li><b>POTA:</b> sign in at <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a>, open your stats, and download your <b>hunted parks</b> list as a CSV file.</li>
+ <li><b>POTA:</b> use the ⭐ bookmark on the left (pota.app's own CSV download is for activations only). Or an ADIF from your logging program or your QRZ Logbook: the page reads the park numbers in it.</li>
  <li><b>WWFF / KFF:</b> your log from <a href="https://wwff.co/logsearch/" target="_blank" rel="noopener">WWFF Logsearch</a>, or any ADIF from your logger with WWFF numbers in it.</li>
  <li><b>SOTA:</b> sign in at <a href="https://www.sotadata.org.uk" target="_blank" rel="noopener">sotadata.org.uk</a> and download your chaser log as a CSV file.</li>
  <li>Any CSV or ADIF works: the page just looks for park, reference and summit numbers in it. Old POTA numbers like <b>K-1234</b> count as <b>US-1234</b>.</li>
@@ -294,7 +303,7 @@ body.field .page-jump-nav{display:none!important}
 </form></div></div>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
-<script src="kpc-hunt.js?v=20261016c"></script>
+<script src="kpc-hunt.js?v=20261016d"></script>
 <script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');

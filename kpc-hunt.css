@@ -238,3 +238,8 @@ main#hl[data-theme=lodge] .hl-sheet{background:#2b1b10}
 .hl-sheet{background:#161d19}
 main#hl .hl-f input{font-size:16px;padding:9px 10px;border:1px solid rgba(255,255,255,.22);border-radius:8px;background:#0d1210;color:var(--tx);min-width:0;color-scheme:dark}
 .hl-sheet:not(.on){visibility:hidden;transition:transform .22s,visibility 0s .22s}
+.hl-pota{background:rgba(240,201,107,.08);border:1px solid var(--g);border-radius:12px;padding:12px 14px;margin:10px 0}
+.hl-pota>b{color:var(--g2);letter-spacing:.6px}
+.hl-pota p{margin:6px 0;font-size:14px;color:#d9d2c1}
+.hl-pota ol{margin:6px 0 0;padding-left:20px;font-size:14px;color:#d9d2c1}
+.hl-pota li{margin:7px 0}
