@@ -12,6 +12,7 @@ P={
  'kpc-community.html':('hero-campfire-crew','center 55%','center 55%', None),
  'members.html':     ('hero-ky-flag',   'center 45%','center 40%', None),
  'kpc-campgrounds.html':('hero-campsite','center 58%','center 60%', None),
+ 'kpc-kids.html':('hero-kids','center 45%','70% 40%', None),
  'kpc-park-notes.html':('hero-journal','center 55%','center 62%', None),
 }
 for f,(img,pd,pm,who) in P.items():
