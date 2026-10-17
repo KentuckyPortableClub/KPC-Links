@@ -908,3 +908,10 @@ main#hl[data-desk="1"] .hl-logtog-m{display:none}
 .hl-mm .hl-chip i{font-style:normal;background:rgba(0,0,0,.35);border-radius:99px;padding:0 6px;margin-left:3px}
 .hl-mm .hl-chip i:empty{display:none}
 main#hl[data-nolog="1"] .hs-a .lg,main#hl[data-nolog="1"] .hl-st .a .lg{display:none!important}
+/* dock: ✅ QSL → QRZ + 📣 RESPOT above the name box (Oct 17) */
+.dk-act{position:relative;z-index:1;display:flex;justify-content:flex-end;gap:8px;margin:2px 0 6px}
+.dk-act button{border-radius:999px;padding:7px 14px;font:900 12px Arial;letter-spacing:1px;cursor:pointer;white-space:nowrap}
+.dk-act .dk-qsl{background:linear-gradient(180deg,#5be39a,#22a861);color:#05210f;border:1px solid #7ff0b0;box-shadow:0 0 14px rgba(61,220,132,.3)}
+.dk-act .dk-rsp{background:rgba(255,180,60,.16);color:#ffd27a;border:1px solid rgba(255,180,60,.6)}
+.dk-act button[hidden]{display:none}
+@media(max-width:600px){.dk-act{justify-content:stretch}.dk-act button{flex:1;padding:8px 10px}#hlFlameW .t{display:none}}
