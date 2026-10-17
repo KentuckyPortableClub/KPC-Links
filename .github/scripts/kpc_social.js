@@ -381,8 +381,7 @@ tasks.bandtimes = async () => {
     total += B.n;
     let best = -1, at = 0;
     for (let i = 0; i < 24; i++) { const v = B.h[i] + B.h[(i + 1) % 24] + B.h[(i + 2) % 24]; if (v > best) { best = v; at = i; } }
-    const mi = Math.round(B.d / 1.609);
-    lines.push(`**${name}**: best ${hr(at)}–${hr(at + 3)} · ${B.n.toLocaleString('en-US')} reports · farthest ${mi.toLocaleString('en-US')} mi`);
+    lines.push(`**${name}**: best ${hr(at)}–${hr(at + 3)} · ${B.n.toLocaleString('en-US')} reports`);
   }
   if (!lines.length) return notice('Not enough WSPR reports this week to post.');
   const title = '📡 Best band times from Kentucky this week';
