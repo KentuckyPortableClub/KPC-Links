@@ -81,16 +81,20 @@ except Exception:
 d2.text((148, 48), 'KENTUCKY PORTABLE CLUB', font=font(22), fill='#f6d58a')
 d2.text((148, 80), 'ACTIVATION RECAP', font=font(18, False), fill='#c9b48a')
 d2.text((40, 170), info.get('call', ''), font=font(74, mono=True), fill='#ffffff')
-d2.text((44, 262), f"{info.get('qsos', 0)} contacts", font=font(40), fill='#f6d58a')
-d2.text((44, 316), info.get('date', ''), font=font(24, False), fill='#d9cdb4')
-y = 370
-for p in info.get('parks', [])[:4]:
+parks = info.get('parks', [])
+n = len(parks) or 1
+d2.text((44, 262), f"{n} activation{'s' if n > 1 else ''}", font=font(40), fill='#f6d58a')
+d2.text((44, 314), f"{info.get('qsos', 0)} contacts · {info.get('date', '')}", font=font(22, False), fill='#d9cdb4')
+y = 362
+for p in parks[:3]:
     name = p.get('name', '')
     if len(name) > 30:
         name = name[:29].rstrip() + '…'
     d2.text((44, y), p.get('ref', ''), font=font(22, mono=True), fill='#f6d58a')
     d2.text((44, y + 28), name, font=font(22, False), fill='#ffffff')
-    y += 66
+    y += 64
+if len(parks) > 3:
+    d2.text((44, y), f"+ {len(parks) - 3} more", font=font(20, False), fill='#c9b48a')
 d2.text((40, H - 46), 'kentuckyportableclub.github.io/KPC-Links', font=font(18, False), fill='#a8987a')
 d2.rectangle([0, 0, W - 1, H - 1], outline='#d5a63a', width=4)
 img.save(out, optimize=True)
