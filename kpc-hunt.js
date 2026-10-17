@@ -903,7 +903,7 @@
     fireT = requestAnimationFrame(step);
   }
   /* ---------------- looks (Brandon Oct 16: switchable themes; Cabin Lodge = his pictures) ---------------- */
-  let THEME = get('kpcHuntTheme', null) || (matchMedia('(max-width:700px)').matches && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'lodge');
+  let THEME = get('kpcHuntTheme', null) || 'lodge';
   function theme() { $('hl').dataset.theme = THEME; document.querySelectorAll('[data-theme-pick]').forEach(b => b.setAttribute('aria-pressed', b.dataset.themePick === THEME)); }
   document.addEventListener('click', e => { const b = e.target.closest('[data-theme-pick]'); if (!b) return; THEME = b.dataset.themePick; put('kpcHuntTheme', THEME); theme(); });
   theme();
