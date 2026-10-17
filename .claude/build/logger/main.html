@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261016h">
+<link rel="stylesheet" href="kpc-logger.css?v=20261016j">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -24,41 +24,11 @@
 
 <div class="lg-wrap">
 
-<!-- the operation: who, where, hunting or activating, notes (station details fold out) -->
-<section class="lg-card lg-op" id="cOp" data-tabp="station">
-<div class="lg-opbar">
- <div class="lg-opwho"><b id="oCall">YOUR CALL</b> <span id="oAt">@</span> <b id="oPark" class="pk">PARK</b><div class="lg-opsub" id="oSub">Tap ⚙ STATION to set your call and park</div></div>
- <div class="lg-opn"><b id="oN">0</b><span>QSOs</span></div>
- <div class="lg-opb"><button type="button" class="lg-btn line sm" id="oEdit" aria-expanded="false">⚙ STATION</button><button type="button" class="lg-btn line sm" id="oNight">🌙 NIGHT</button></div>
-</div>
-<div class="lg-oprow">
- <div class="lg-role" role="group" aria-label="What are you doing?"><button type="button" data-role="act" class="on">🏕 ACTIVATING</button><button type="button" data-role="hunt">🎯 HUNTING</button></div>
- <div class="lg-notes">
-  <input id="nText" placeholder="Notes for this outing: rig, antenna, weather, where you set up…" autocomplete="off">
-  <label class="lg-chk"><input type="checkbox" id="nCarry"> Add to all new QSOs</label>
-  <label class="lg-chk"><input type="checkbox" id="nPrev"> Add to QSOs already logged</label>
- </div>
-</div>
-<div class="lg-station" id="cStation" hidden>
-<div class="lg-f">
- <label>My call<input id="myCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Your call"></label>
- <label class="wide2" id="myParkL">My park numbers<input id="myPark" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-1234 · for a 2-fer add a comma: US-1234, US-5678 · KFF-0000 · W4K/EC-001"></label>
- <label>My grid<input id="myGrid" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="EM78"></label>
- <label>Power (W)<input id="myPwr" inputmode="decimal" placeholder="100"></label>
- <label class="wide">Other operators logging with you (optional)<input id="myOps" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Their calls, like K4TEST, W4KIDS"></label>
-</div>
-<label class="lg-chk" id="myShareL" hidden><input type="checkbox" id="myShare"> We all use ONE station call (my call above). Leave this off when everyone uses their own call, so each operator gets their own POTA file and credit.</label>
-<div class="lg-sug" id="myParkSug" hidden></div>
-<p class="lg-park" id="myParkInfo"></p>
-<div class="lg-row"><button type="button" class="lg-btn gold sm" id="myNearB">📍 PARKS NEAR ME (GPS)</button><button type="button" class="lg-btn line sm" id="myGps">GRID FROM MY GPS</button><span class="lg-mu" id="myGpsMsg"></span></div>
-<div class="lg-near" id="myNear" hidden></div>
-</div>
-<div class="lg-opsel" id="eOps" hidden></div>
-</section>
+
 
 <!-- phones and tablets: one part at a time, like Ham2K PoLo -->
 <nav class="lg-tabs" id="lgTabs" aria-label="Logger parts">
- <button type="button" data-tab="log" class="on"><b id="tN">0</b> QSOs</button><button type="button" data-tab="spots">SPOTS</button><button type="button" data-tab="map">MAP</button><button type="button" data-tab="info">INFO</button><button type="button" data-tab="station">⚙ STATION</button><button type="button" data-tab="more">MORE</button>
+ <a class="lg-home" href="members.html" aria-label="Back to the Members Room"><img src="KPC-logo.png" alt=""></a> <button type="button" data-tab="log" class="on"><b id="tN">0</b> QSOs</button><button type="button" data-tab="spots">SPOTS</button><button type="button" data-tab="map">MAP</button><button type="button" data-tab="info">INFO</button><button type="button" data-tab="more">MORE</button>
 </nav>
 
 <div class="lg-main">
@@ -74,6 +44,37 @@
 
 <!-- the log entry, docked under the log (phones: always at the bottom of the screen) -->
 <section class="lg-dock" id="cEntry" aria-label="Log a contact">
+<!-- ⚙ station menu: who, where, hunting or activating, notes; folds open above the entry -->
+<div class="lg-stpanel" id="cOp" hidden>
+<div class="lg-opbar">
+ <div class="lg-opwho"><b id="oCall">YOUR CALL</b> <span id="oAt">@</span> <b id="oPark" class="pk">PARK</b><div class="lg-opsub" id="oSub">Tap ⚙ STATION to set your call and park</div></div>
+ <div class="lg-opn"><b id="oN">0</b><span>QSOs</span></div>
+ <div class="lg-opb"><button type="button" class="lg-btn gold sm" id="oEdit" aria-expanded="false">✓ DONE</button><button type="button" class="lg-btn line sm" id="oNight">🌙 NIGHT</button></div>
+</div>
+<div class="lg-oprow">
+ <div class="lg-role" role="group" aria-label="What are you doing?"><button type="button" data-role="act" class="on">🏕 ACTIVATING</button><button type="button" data-role="hunt">🎯 HUNTING</button></div>
+ <div class="lg-notes">
+  <input id="nText" placeholder="Notes for this outing: rig, antenna, weather, where you set up…" autocomplete="off">
+  <label class="lg-chk"><input type="checkbox" id="nCarry"> Add to all new QSOs</label>
+  <label class="lg-chk"><input type="checkbox" id="nPrev"> Add to QSOs already logged</label>
+ </div>
+</div>
+<div class="lg-station" id="cStation">
+<div class="lg-f">
+ <label>My call<input id="myCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Your call"></label>
+ <label class="wide2" id="myParkL">My park numbers<input id="myPark" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-1234 · for a 2-fer add a comma: US-1234, US-5678 · KFF-0000 · W4K/EC-001"></label>
+ <label>My grid<input id="myGrid" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="EM78"></label>
+ <label>Power (W)<input id="myPwr" inputmode="decimal" placeholder="100"></label>
+ <label class="wide">Other operators logging with you (optional)<input id="myOps" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Their calls, like K4TEST, W4KIDS"></label>
+</div>
+<label class="lg-chk" id="myShareL" hidden><input type="checkbox" id="myShare"> We all use ONE station call (my call above). Leave this off when everyone uses their own call, so each operator gets their own POTA file and credit.</label>
+<div class="lg-sug" id="myParkSug" hidden></div>
+<p class="lg-park" id="myParkInfo"></p>
+<div class="lg-row"><button type="button" class="lg-btn gold sm" id="myNearB">📍 PARKS NEAR ME (GPS)</button><button type="button" class="lg-btn line sm" id="myGps">GRID FROM MY GPS</button><span class="lg-mu" id="myGpsMsg"></span></div>
+<div class="lg-near" id="myNear" hidden></div>
+</div>
+<div class="lg-opsel" id="eOps" hidden></div>
+</div>
 <form id="eForm" autocomplete="off">
 <div class="lg-radio" id="eRadio">
  <label>Frequency<input id="eFreq" inputmode="decimal" placeholder="14.285"></label>
@@ -174,4 +175,4 @@
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-logger.js?v=20261016i"></script>
+<script src="kpc-logger.js?v=20261016j"></script>

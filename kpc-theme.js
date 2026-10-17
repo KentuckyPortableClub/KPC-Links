@@ -88,7 +88,7 @@
   var hovered = [];
   function hoverIn(e) {
     if (!on) return; var t = e.target, out = [];
-    for (var el = t, i = 0; el && el !== document.body && i < 5; el = el.parentElement, i++) if (el.nodeType === 1 && (saved.has(el) || el.matches('a,button,[role=button],.card,[class*=chip],[class*=btn]'))) out.push(el);
+    for (var el = t, i = 0; el && el !== document.body && i < 5; el = el.parentElement, i++) if (el.nodeType === 1 && !skipEl(el) && (saved.has(el) || el.matches('a,button,[role=button],.card,[class*=chip],[class*=btn]'))) out.push(el);
     hovered.forEach(function (el) { if (out.indexOf(el) < 0) { revertEl(el); fix(el, parentL(el)); } });
     out.forEach(function (el) { if (hovered.indexOf(el) < 0) { revertEl(el); fix(el, parentL(el)); } });
     hovered = out;

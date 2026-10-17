@@ -428,3 +428,33 @@ main#lg #nText{min-height:0;margin:0;height:auto;resize:none}
  .lg-drawer{max-height:30vh;margin-bottom:6px;padding:8px}
 }
 @media(max-width:1099px){main#lg[data-tab=station] [data-tabp=station]{display:block!important}}
+/* ===== Oct 16 v9: ⚙ station menu folds open above the entry; phones = locked full-screen app with tabs; RESPOT on spots ===== */
+.lg-stpanel{max-height:62vh;overflow:auto;margin:0 0 10px;padding:12px;border-radius:12px;background:#0b1418;border:1px solid var(--ln);box-shadow:inset 0 0 0 1px rgba(255,255,255,.03)}
+.lg-stpanel .lg-opbar{margin:0}
+.lg-stpanel .lg-station{margin:12px 0 0;padding:12px;border:1px dashed var(--ln);background:rgba(0,0,0,.25)}
+.lg-stpanel .lg-opsel{margin:10px 0 0}
+.lg-dchips .dc#dSta.on{background:#ffe2bf;color:#5a2d0c}
+.lg-mini{display:block;padding:7px 14px;background:#1b2327;color:#dfe5e6;font:14px Arial,sans-serif;border-bottom:1px solid rgba(255,255,255,.08);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:12px -18px 0}
+.lg-mini b{font-family:ui-monospace,Menlo,Consolas,monospace;color:#fff}.lg-mini i{font-style:normal;color:var(--g2);font-family:ui-monospace,Menlo,Consolas,monospace}
+.lg-mini+h2{margin-top:12px}
+.lg-sp .rs{grid-column:3;grid-row:2;justify-self:end;align-self:center;padding:4px 8px;border-radius:7px;background:#0b3a46;color:#fff;font:900 11px Arial,sans-serif;letter-spacing:.5px;cursor:pointer}
+.lg-sp .rs:hover{background:#125565}
+.lg-home{display:none}
+@media(max-width:1099px){
+ /* the logger takes the whole screen (no page scroll): tabs on top, the QSO list, the entry at the bottom */
+ main#lg{position:fixed;inset:0;z-index:1100;overflow-y:auto;overscroll-behavior:contain;--hdr:0px!important;padding-bottom:var(--dock,200px)!important}
+ html:has(main#lg){overflow:hidden}
+ .lg-home{display:flex;align-items:center;padding:0 8px 0 10px;flex:0 0 auto}
+ .lg-home img{width:30px;height:30px;border-radius:50%}
+ .lg-tabs{top:0!important}
+ .lg-mini{margin:0;padding:7px 12px}
+ main#lg #cLog .lg-list{height:calc(100dvh - 44px - 32px - var(--dock,200px))}
+ .lg-stpanel{max-height:58dvh;padding:10px}
+ .lg-stpanel .lg-opbar{padding:8px 10px}
+ .lg-stpanel .lg-opwho{font-size:16px}
+ .lg-stpanel .lg-oprow{gap:8px;margin-top:8px}
+ .lg-stpanel .lg-role button{padding:9px 10px;font-size:12px}
+ .lg-stpanel .lg-station{padding:10px}
+ .lg-stpanel .lg-opn b{font-size:22px}
+ .lg-sp .rs{font-size:10.5px}
+}
