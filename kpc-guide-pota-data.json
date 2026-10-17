@@ -10104,6 +10104,222 @@
    ],
    "also": "WWFF: KFF-0608",
    "source": ".claude/build/add_park_card.py"
+  },
+  "US-13598": {
+   "pdfName": "Beaver Lake",
+   "counties": "Anderson",
+   "type": "State Fishing Lake",
+   "nameUrl": "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=49",
+   "btns": [
+    [
+     "OFFICIAL MAP",
+     null
+    ],
+    [
+     "GPS",
+     null
+    ],
+    [
+     "OSM BOUNDARY",
+     null
+    ],
+    [
+     "WEBSITE",
+     "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=49"
+    ],
+    [
+     "ENTRANCE",
+     "https://www.google.com/maps/search/?api=1&query=37.97634,-85.00848"
+    ],
+    [
+     "WEATHER",
+     null
+    ],
+    [
+     "NEARBY ›",
+     null
+    ]
+   ],
+   "gps": [
+    37.9766,
+    -85.0093
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR access site — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "Ramp + fishing pier on Beaver Lake Rd (KY 749), 7 mi W of Lawrenceburg. Not the Beaver Lake pits on Peabody WMA. Private boat docks/shoreline permits exist on department lakes, so some shoreline is next to private lots: set up at the ramp, pier or public parking."
+    }
+   ],
+   "mapRegion": "Bluegrass",
+   "short": "Beaver Lake"
+  },
+  "US-13599": {
+   "pdfName": "Kingfisher Lakes",
+   "counties": "Daviess",
+   "type": "State Fishing Lake",
+   "nameUrl": "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=40",
+   "btns": [
+    [
+     "OFFICIAL MAP",
+     null
+    ],
+    [
+     "GPS",
+     null
+    ],
+    [
+     "OSM BOUNDARY",
+     null
+    ],
+    [
+     "WEBSITE",
+     "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=40"
+    ],
+    [
+     "ENTRANCE",
+     "https://www.google.com/maps/search/?api=1&query=37.84319,-86.97673"
+    ],
+    [
+     "WEATHER",
+     null
+    ],
+    [
+     "NEARBY ›",
+     null
+    ]
+   ],
+   "gps": [
+    37.8469,
+    -86.9736
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 KDFWR access sites — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "Two small lakes (Old and New Kingfisher) at Maceo, US 60 E of Owensboro, Hwy 405. No gas motors. Right next door to Carpenters Lake. Private boat docks/shoreline permits exist on department lakes, so some shoreline is next to private lots: set up at the ramp, pier or public parking."
+    },
+    {
+     "k": "NOTES",
+     "t": "Kingfisher Lakes and Carpenters Lake sit side by side at Maceo: they touch, they do not overlap, so they are not a 2-fer."
+    }
+   ],
+   "mapRegion": "Western Kentucky",
+   "short": "Kingfisher Lakes"
+  },
+  "US-13600": {
+   "pdfName": "Carpenters Lake",
+   "counties": "Daviess",
+   "type": "State Fishing Lake",
+   "nameUrl": "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=39",
+   "btns": [
+    [
+     "OFFICIAL MAP",
+     null
+    ],
+    [
+     "GPS",
+     null
+    ],
+    [
+     "OSM BOUNDARY",
+     null
+    ],
+    [
+     "WEBSITE",
+     "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=39"
+    ],
+    [
+     "ENTRANCE",
+     "https://www.google.com/maps/search/?api=1&query=37.845117,-86.978407"
+    ],
+    [
+     "WEATHER",
+     null
+    ],
+    [
+     "NEARBY ›",
+     null
+    ]
+   ],
+   "gps": [
+    37.8452,
+    -86.9784
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "3 KDFWR access sites — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "KDFWR calls it Carpenter Lake. Ramp, fishing pier and jetty at Maceo (Hwy 405). No gas motors. Next door to Kingfisher Lakes: if both become parks they would only touch, not overlap, so not a 2-fer. Private boat docks/shoreline permits exist on department lakes, so some shoreline is next to private lots: set up at the ramp, pier or public parking."
+    },
+    {
+     "k": "NOTES",
+     "t": "Kingfisher Lakes and Carpenters Lake sit side by side at Maceo: they touch, they do not overlap, so they are not a 2-fer."
+    }
+   ],
+   "mapRegion": "Western Kentucky",
+   "short": "Carpenters Lake"
+  },
+  "US-13601": {
+   "pdfName": "Guist Creek Lake",
+   "counties": "Shelby",
+   "type": "State Fishing Lake",
+   "nameUrl": "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=56",
+   "btns": [
+    [
+     "OFFICIAL MAP",
+     null
+    ],
+    [
+     "GPS",
+     null
+    ],
+    [
+     "OSM BOUNDARY",
+     null
+    ],
+    [
+     "WEBSITE",
+     "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=56"
+    ],
+    [
+     "ENTRANCE",
+     "https://www.google.com/maps/search/?api=1&query=38.20916,-85.1446"
+    ],
+    [
+     "WEATHER",
+     null
+    ],
+    [
+     "NEARBY ›",
+     null
+    ]
+   ],
+   "gps": [
+    38.2178,
+    -85.1494
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "2 KDFWR access sites — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "Guist Creek Marina (concession) has the ramp; also a free bank-fishing lot at the Benson Pike bridge. State-record saugeye lake. Private boat docks/shoreline permits exist on department lakes, so some shoreline is next to private lots: set up at the ramp, pier or public parking."
+    }
+   ],
+   "mapRegion": "Bluegrass",
+   "short": "Guist Creek Lake"
   }
  },
  "wildIntro": {
