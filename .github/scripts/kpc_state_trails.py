@@ -158,6 +158,10 @@ def agency(name, st, la, lo):
                     for wh in likes(fld, w):
                         try: L = lyr_lines(lu, wh, la, lo, fld=fld, want=name)
                         except Exception: continue
+                        # Oct 18: long trails run past the ±1° search box (Empire State Trail: 750 miles) → ask again with a statewide box
+                        if L and any(abs(p[0] - lo) > 0.95 or abs(p[1] - la) > 0.95 for l in L for p in l):
+                            try: L = lyr_lines(lu, wh, la, lo, d=7.0, fld=fld, want=name) or L
+                            except Exception: pass
                         if L:
                             nk = min(km(la, lo, p[1], p[0]) for l in L for p in l)
                             ALOG.append([name, f'{len(L)} lines {nk:.0f} km from pin', org[:60], lu[-90:] + ' ' + fld, {k: [round(v[0]), v[1]] for k, v in list(NAMES.items())[:8]}])
