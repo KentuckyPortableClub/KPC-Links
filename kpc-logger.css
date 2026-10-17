@@ -247,7 +247,7 @@ main#lg[data-night] img,main#lg[data-night] .lg-shareout{filter:brightness(.5) s
  .lg-tabs button.on{color:#fff;border-bottom-color:#fff}
  .lg-tabs b{font-weight:700}
  main#lg [data-tabp]{display:none!important}
- main#lg[data-tab=log] [data-tabp=log],main#lg[data-tab=spots] [data-tabp=spots],main#lg[data-tab=map] [data-tabp=map],main#lg[data-tab=stats] [data-tabp=stats],main#lg[data-tab=notes] [data-tabp=notes],main#lg[data-tab=more] [data-tabp=more]{display:block!important}
+ main#lg[data-tab=log] [data-tabp=log],main#lg[data-tab=spots] [data-tabp=spots],main#lg[data-tab=map] [data-tabp=map],main#lg[data-tab=stats] [data-tabp=stats],main#lg[data-tab=notes] [data-tabp=notes],main#lg[data-tab=info] [data-tabp=info],main#lg[data-tab=more] [data-tabp=more]{display:block!important}
  main#lg{padding-bottom:calc(var(--dock,200px) + 16px)}
  main#lg .lg-foot{display:none}
 }
@@ -554,3 +554,17 @@ main#lg[data-night] #eMore:not([hidden]){background:#140000}
 .lg-spf>summary .tip{margin-left:auto;font:400 12px Arial;letter-spacing:0;color:var(--mu)}
 .lg-spf>.lg-row{padding:0 12px 10px;margin:0}
 .lg-progs{gap:14px}
+
+/* Oct 17 (Brandon): Download & files and Install are bars that open and close */
+main#lg .lg-fold>h2{cursor:pointer;user-select:none;margin:0}
+main#lg .lg-fold>h2::after{content:'OPEN ▾';margin-left:auto;font:900 11px Arial;letter-spacing:1.2px;padding:5px 11px;border-radius:999px;background:var(--g);color:#1a1205}
+main#lg .lg-fold.open>h2::after{content:'CLOSE ▴'}
+main#lg .lg-fold>h2+*{margin-top:12px}
+main#lg .lg-fold:not(.open)>:not(h2){display:none!important}
+main#lg .lg-fold:not(.open){padding-top:12px;padding-bottom:12px}
+/* small laptops / tablets (700-1099 px wide use the app layout): a short picture strip of the founders above the tabs */
+@media(min-width:700px) and (max-width:1099px){
+ main#lg:not([data-tab=more]):not([data-night]) .lg-hero{display:block;border-bottom:0}
+ main#lg:not([data-tab=more]):not([data-night]) .lg-hero .lg-pic{aspect-ratio:auto;height:118px;background:url('hero-founders.jpg') center 38%/cover no-repeat;-webkit-mask-image:none;mask-image:none}
+ main#lg:not([data-tab=more]):not([data-night]) .lg-hero .lg-in{display:none}
+}
