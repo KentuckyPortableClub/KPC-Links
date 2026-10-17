@@ -499,3 +499,69 @@ main#hl:not([data-public="1"]) .pub-only{display:none!important}
 main#hl[data-public="1"] .mem-only,main#hl[data-public="1"] #hPota,main#hl[data-public="1"] #hlLog,main#hl[data-public="1"] [data-log],main#hl[data-public="1"] [data-logk]{display:none!important}
 main#hl[data-public="1"] #hlSpots .hs{cursor:default}
 main#hl .hs-a .hc{color:#cfc6b4}
+
+/* ===== Oct 16 late (Brandon: 'how you got it on the new desktop logger is better for the hunter lounge… pop up menu for all the filters'):
+   members copy on computers = log + entry dock on the left, SPOTS / MAP tabs on the right, filters in one pop-up ===== */
+.hl-dk,.hl-rtabs{display:none}
+@media(min-width:1100px){
+ main#hl[data-desk="1"] .hl-split{grid-template-columns:minmax(460px,42%) minmax(0,1fr);grid-template-rows:auto 1fr;gap:0 18px;padding-top:14px}
+ main#hl[data-desk="1"] .hl-dk{display:flex;flex-direction:column;grid-column:1;grid-row:1/3;position:sticky;top:150px;height:calc(100vh - 166px);min-height:520px;background:rgba(10,13,11,.93);border:1px solid var(--ln);border-radius:14px;overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.45)}
+ main#hl[data-desk="1"] .hl-rtabs{display:flex;grid-column:2;grid-row:1;gap:6px;align-items:center;position:sticky;top:150px;z-index:30;background:#0a0d0b;box-shadow:0 -14px 0 4px #0a0d0b;border:1px solid var(--ln);border-radius:12px;padding:6px}
+ main#hl[data-desk="1"] .hl-split>.hl-spsec,main#hl[data-desk="1"] .hl-split>.hl-mapsec{grid-column:2;grid-row:2;padding:10px 0 30px;position:relative;top:auto}
+ main#hl[data-desk="1"][data-rt="map"] .hl-split>.hl-spsec,main#hl[data-desk="1"]:not([data-rt="map"]) .hl-split>.hl-mapsec{display:none}
+ main#hl[data-desk="1"] .hl-mapsec .hl-maphd span,main#hl[data-desk="1"] #hlMapTog{display:none}
+ main#hl[data-desk="1"] .hl-mapsec{position:sticky!important;top:210px!important}
+ main#hl[data-desk="1"] #hlLmap{height:calc(100vh - 330px);min-height:480px;max-height:none}
+ /* tabs */
+ .hl-rtabs button{flex:0 0 auto;font:900 13px Arial;letter-spacing:1.2px;padding:10px 16px;border-radius:9px;border:1px solid transparent;background:transparent;color:var(--mu);cursor:pointer}
+ .hl-rtabs button:hover{color:var(--tx);background:rgba(255,255,255,.06)}
+ .hl-rtabs button[aria-pressed="true"]{background:var(--g);color:#1a1205}
+ .hl-rtabs button i{font-style:normal;font-size:11px;opacity:.75;margin-left:4px}
+ .hl-rtabs .rt-f{margin-left:auto;border-color:var(--ln);color:var(--g2)}
+ .hl-rtabs .rt-f[aria-expanded="true"]{background:rgba(213,166,58,.18)}
+ .hl-rtabs .rt-f i{background:var(--g);color:#1a1205;border-radius:9px;padding:1px 6px;opacity:1}
+ .hl-rtabs .rt-f i:empty{display:none}
+ /* filters = pop-up menu */
+ main#hl[data-desk="1"] .hl-filters:not(.open){display:none}
+ main#hl[data-desk="1"] .hl-filters.open{position:fixed;right:max(30px,calc((100vw - 1800px)/2 + 30px));top:212px;z-index:40;width:min(620px,100%);max-height:calc(100vh - 240px);overflow:auto;background:#0d1210;border:1px solid var(--g);border-radius:14px;padding:12px 14px 14px;box-shadow:0 22px 60px rgba(0,0,0,.7)}
+ main#hl[data-desk="1"] .hl-filters .hl-ftog{display:flex;width:100%;justify-content:space-between;align-items:center;background:none;border:0;border-bottom:1px solid var(--ln);color:var(--g2);font:900 13px Arial;letter-spacing:1.5px;padding:2px 2px 9px;margin-bottom:6px;cursor:pointer}
+ main#hl[data-desk="1"] .hl-filters .hl-row{margin:7px 0}
+ main#hl[data-desk="1"] .hl-viewbar{margin-top:0}
+ main#hl[data-desk="1"] .hl-split .hl-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+ /* log pane */
+ .dk-hd{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--ln);background:rgba(213,166,58,.08)}
+ .dk-hd>b{font:900 14px Arial;letter-spacing:1.5px;color:var(--g2);white-space:nowrap}
+ .dk-hd #dkN{font:12px Arial;color:var(--mu);white-space:nowrap}.dk-hd #dkN b{color:var(--tx)}
+ main#hl .dk-hd input{flex:1;font-size:13px;padding:6px 10px;min-width:80px}
+ .dk-files{font:900 11px Arial;letter-spacing:1px;text-decoration:none;border:1px solid var(--ln);border-radius:8px;padding:7px 9px;white-space:nowrap}
+ .dk-list{flex:1;overflow-y:auto;min-height:0;font-family:Consolas,'Courier New',monospace}
+ .dk-day{position:sticky;top:0;background:#1a1610;color:var(--g2);font:900 10.5px Arial;letter-spacing:1.5px;padding:4px 12px;border-bottom:1px solid var(--ln)}
+ .dk-q{display:grid;grid-template-columns:54px minmax(70px,1.1fr) 78px minmax(70px,1.3fr) 62px 52px;gap:6px;align-items:center;padding:6px 12px;border-bottom:1px solid rgba(255,255,255,.06);font-size:13.5px;color:var(--tx)}
+ .dk-q:nth-child(even){background:rgba(255,255,255,.025)}
+ .dk-q:hover{background:rgba(213,166,58,.1)}
+ .dk-q .t{color:var(--mu)}.dk-q .c{color:#fff;font-size:14.5px}.dk-q .m{color:var(--mu);font-size:12px}.dk-q .r{color:var(--gr);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dk-q .r i{font-style:normal;color:var(--mu)}.dk-q .s{color:var(--mu);font-size:12px}
+ .dk-q.nx .t:before{content:'•';color:var(--g);margin-right:2px}
+ .dk-q .a{display:flex;gap:2px;justify-content:flex-end}.dk-q .a button{background:none;border:0;cursor:pointer;opacity:.45;font-size:13px;padding:2px 3px}.dk-q:hover .a button{opacity:1}
+ /* dock */
+ .dk-dock{border-top:2px solid var(--g);background:#120f0a;padding:8px 12px 12px}
+ .dk-dock.flash{animation:dkFlash .7s}
+ @keyframes dkFlash{0%{background:rgba(61,220,132,.28)}100%{background:#120f0a}}
+ .dk-top{display:flex;align-items:center;gap:10px;margin-bottom:6px;font:12px Arial;color:var(--mu)}
+ .dk-clk{font:900 13px Consolas,monospace;color:var(--g2);background:rgba(213,166,58,.12);border-radius:6px;padding:3px 8px}
+ .dk-dupe{margin-left:auto;color:#ffd2cc;background:rgba(255,107,90,.2);border-radius:6px;padding:3px 8px;font-weight:700}
+ .dk-r1,.dk-r2{display:flex;gap:6px;align-items:flex-end}
+ .dk-r2{margin-top:7px}
+ .dk-dock label{display:flex;flex-direction:column;gap:2px;font:900 9.5px Arial;letter-spacing:1px;color:var(--mu);flex:1 1 60px;min-width:0}
+ .dk-dock label.w{flex:2 1 90px}.dk-dock label.b{flex:0 0 52px}.dk-dock label.s{flex:0 0 44px}.dk-dock label.c{flex:2.2 1 110px}
+ main#hl .dk-dock input,main#hl .dk-dock select{width:100%;font:15px Consolas,monospace;padding:7px 7px;border-radius:7px;border:1px solid rgba(255,255,255,.2);background:#0a0d0b;color:var(--tx)}
+ main#hl .dk-dock select{font-family:Arial;font-size:13px;padding:8px 4px}
+ main#hl .dk-dock #dBand{background:transparent;border-style:dashed;color:var(--mu)}
+ main#hl .dk-dock #dCall{font-size:19px;font-weight:700;color:#fff;border-color:var(--g);text-transform:uppercase;padding:6px 8px}
+ main#hl .dk-dock input:focus,main#hl .dk-dock select:focus{outline:2px solid var(--g2);outline-offset:0}
+ .dk-x,.dk-go{flex:0 0 auto;height:40px;border-radius:8px;cursor:pointer;font:900 13px Arial;letter-spacing:1px}
+ .dk-x{width:42px;background:transparent;border:1px solid rgba(255,255,255,.22);color:var(--mu)}
+ .dk-go{padding:0 16px;background:var(--gr);border:0;color:#062312}
+ .dk-go:hover{filter:brightness(1.1)}
+ /* the lower log section keeps the files/backups; its long table isn't needed next to the pane */
+ main#hl[data-desk="1"] #hlLog .hl-logwrap,main#hl[data-desk="1"] #hlLog #lgQ{display:none}
+}

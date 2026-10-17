@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261016y">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261016zb">
 @@HEADER@@
 <main id="hl" data-keep-light data-theme="lodge">
 <div id="hlApp">
@@ -27,12 +27,22 @@
 </section>
 
 <div class="hl-split">
+<section class="hl-dk mem-only" id="hlDk" aria-label="My hunting log">
+ <div class="dk-hd"><b>📒 MY LOG</b><span id="dkN"></span><input type="search" id="dkQ" placeholder="Search my log…" aria-label="Search my log"><a href="#hlLog" class="dk-files" title="Download for QRZ, backups, restore">⬇ FILES</a></div>
+ <div class="dk-list" id="dkList"></div>
+ <form class="dk-dock" id="dkForm" autocomplete="off">
+  <div class="dk-top"><span class="dk-clk" id="dkClk">--:-- UTC</span><span class="dk-tip">Click a spot and it fills in · <b>Enter</b> logs it</span><span class="dk-dupe" id="dkDupe" hidden></span></div>
+  <div class="dk-r1"><label>FREQ<input id="dFreq" inputmode="decimal" placeholder="14.285"></label><label>MODE<select id="dMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option><option>PSK31</option><option>JS8</option><option>OTHER</option></select></label><label class="b">BAND<input id="dBand" readonly tabindex="-1"></label><label class="w">PARK / REF<input id="dRef" autocapitalize="characters" placeholder="US-1234"></label><label class="w">NAME<input id="dName"></label></div>
+  <div class="dk-r2"><label class="c">CALL<input id="dCall" autocapitalize="characters" spellcheck="false" enterkeyhint="go"></label><label>SENT<input id="dRs" inputmode="numeric"></label><label>RCVD<input id="dRr" inputmode="numeric"></label><label class="s">ST<input id="dSt" maxlength="2" autocapitalize="characters"></label><label class="w">NOTE<input id="dNote" maxlength="200"></label><button type="button" class="dk-x" id="dkClr" title="Clear">⌫</button><button type="submit" class="dk-go" id="dkLog">⬆ LOG</button></div>
+ </form>
+</section>
+<div class="hl-rtabs mem-only" id="hlRtabs"><button type="button" data-rt="spots">📡 SPOTS <i id="rtN"></i></button><button type="button" data-rt="map">🗺 MAP</button><button type="button" class="rt-f" id="hlFbtn" aria-expanded="false">⚙ FILTERS <i id="hlFbN"></i></button></div>
 <section class="hl-mapsec" id="hlMapSec"><div class="hl-in">
 <div class="hl-maphd"><b>🗺 LIVE MAP</b><span>Blinking green = new to you · gold = parks you’ve hunted · grey = other spots. Tap a dot for the station.</span><button type="button" class="hl-btn line sm" id="hlMapTog">HIDE MAP</button></div>
 <div class="hl-bigmap" id="hlBigMap"><div id="hlLmap" role="region" aria-label="Map of spots"></div><div class="hl-mapbtns"><button type="button" class="hl-chip" data-mz="na">NORTH AMERICA</button><button type="button" class="hl-chip" data-mz="us">USA</button><button type="button" class="hl-chip" data-mz="world">WORLD</button></div></div>
 </div></section>
 
-<section class="hl-sec"><div class="hl-in">
+<section class="hl-sec hl-spsec"><div class="hl-in">
 <div class="hl-filters" id="hlFilters">
  <button type="button" class="hl-ftog" id="hlFtog" aria-expanded="false"><span>⚙ FILTERS</span><span id="hlFtogN">TAP TO OPEN ▾</span></button>
  <div class="hl-row" role="group" aria-label="Program"><button type="button" class="hl-chip" data-g="p" data-v="POTA">POTA</button><button type="button" class="hl-chip" data-g="p" data-v="WWFF">WWFF / KFF</button><button type="button" class="hl-chip" data-g="p" data-v="SOTA">SOTA</button><button type="button" class="hl-chip" data-g="p" data-v="DXPED">DXPEDITIONS</button><button type="button" class="hl-chip" data-g="p" data-v="EVENT">SPECIAL EVENTS</button><button type="button" class="hl-chip" data-g="p" data-v="DX">DX CLUSTER</button></div>
@@ -162,4 +172,4 @@
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-hunt.js?v=20261016w"></script>
+<script src="kpc-hunt.js?v=20261016y"></script>

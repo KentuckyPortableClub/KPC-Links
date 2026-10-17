@@ -11,7 +11,8 @@
 (function () {
   'use strict';
   const $ = id => document.getElementById(id);
-  const PUB = !!(document.getElementById('hl') && document.getElementById('hl').dataset.public === '1');   /* kpc-hunters.html = the public copy */
+  const PUB = !!(document.getElementById('hl') && document.getElementById('hl').dataset.public === '1');
+  const DESKON = () => !PUB && !!document.getElementById('hlDk') && matchMedia('(min-width:1100px)').matches;   /* kpc-hunters.html = the public copy */
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const get = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
   const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
@@ -304,6 +305,7 @@
       : L.slice(0, 240).map(card).join('');
     if (old.size) document.querySelectorAll('#hlSpots .hs.new, #hlSpots tr.hr.new').forEach(x => { if (!old.has(x.dataset.k)) x.classList.add('fresh'); });
     const hid = SP.length - L.length;
+    if ($('rtN')) $('rtN').textContent = L.length;
     $('hlCount').textContent = `${L.length} spot${L.length === 1 ? '' : 's'} shown${hid ? ` · ${hid} hidden by your filters` : ''}${hasLog() ? '' : ' · load your log to see which are new to you'}`;
     $('hsLive').textContent = SP.length; $('hlSrc').textContent = src; $('hlNoLog').hidden = hasLog(); if ($('hlNoLogP')) $('hlNoLogP').hidden = hasLog();
   }
@@ -365,6 +367,7 @@
     if (F.st) it.push(['st', 'State ' + F.st]);
     if (F.q.trim()) it.push(['q', 'Search “' + F.q.trim() + '”']);
     F.xc.forEach(c => it.push(['xc:' + c, '🚫 ' + c]));
+    const fb = $('hlFbN'); if (fb) fb.textContent = it.length ? it.length + ' ON' : '';
     const ft = $('hlFtogN'); if (ft) ft.textContent = ($('hlFilters').classList.contains('open') ? 'CLOSE ▴' : 'TAP TO OPEN ▾') + (it.length ? ` · ${it.length} ON` : '');
     const b = $('hlActive'); b.hidden = !it.length;
     b.innerHTML = it.length ? `<b>FILTERING:</b>${it.map(([k, t]) => `<button type="button" class="hl-pill" data-unf="${esc(k)}" title="Remove this filter">${esc(t)} ✕</button>`).join('')}<button type="button" class="hl-btn line sm" data-unf="def" title="POTA, phone, hide hunted parks and QRT">↺ DEFAULT</button><button type="button" class="hl-btn line sm" data-unf="*">CLEAR ALL FILTERS</button>` : '';
@@ -380,7 +383,7 @@
     else if (k.startsWith('band:')) F.bands = F.bands.filter(x => x !== k.slice(5)); else if (k.startsWith('mode:')) F.modes = F.modes.filter(x => x !== k.slice(5)); else if (k.startsWith('xc:')) F.xc = F.xc.filter(x => x !== k.slice(3));
     saveF(); chips(); ticker(false); draw();
   });
-  $('hlFtog').onclick = () => { const f = $('hlFilters'); f.classList.toggle('open'); $('hlFtog').setAttribute('aria-expanded', f.classList.contains('open')); activeBox(); };
+  $('hlFtog').onclick = () => { const f = $('hlFilters'); f.classList.toggle('open'); if ($('hlFbtn')) $('hlFbtn').setAttribute('aria-expanded', f.classList.contains('open')); $('hlFtog').setAttribute('aria-expanded', f.classList.contains('open')); activeBox(); };
   document.addEventListener('click', e => { const v = e.target.closest('[data-view]'); if (!v) return; F.view = v.dataset.view; saveF(); viewChips(); draw(); });
   function viewChips() { document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', (F.view || 'cards') === b.dataset.view)); }
   $('fSt').onchange = () => { F.st = $('fSt').value; saveF(); chips(); draw(); };
@@ -672,6 +675,7 @@
     $('lgList').innerHTML = L.length ? `<table class="hl-logt"><thead><tr><th>UTC</th><th>CALL</th><th>FREQ</th><th>PARK / REF</th><th class="hide-s">RST</th><th></th></tr></thead><tbody>${L.slice(0, qShown).map(x => `<tr class="${x.x ? '' : 'nx'}"><td>${fmtD(x.d)}<br>${fmtT(x.tm)}</td><td class="c">${esc(x.call)}</td><td>${esc(x.f)}<br><small>${esc(x.band)} ${esc(x.mode)}</small></td><td class="r">${esc(x.ref)}<br><small style="color:var(--mu);font-family:Arial">${esc(x.name || '')}${x.st ? ' · ' + esc(x.st) : ''}</small></td><td class="hide-s">${esc(x.rs)} / ${esc(x.rr)}</td><td><button type="button" data-qe="${x.id}">EDIT</button><button type="button" data-qd="${x.id}">DELETE</button></td></tr>`).join('')}</tbody></table>${L.length > qShown ? '<div class="hl-row" style="padding:8px"><button type="button" class="hl-btn line sm" id="lgMore">SHOW MORE</button></div>' : ''}`
       : `<div class="hl-empty">${Q.q.length ? 'None match.' : 'No contacts logged on this device yet. Tap a spot card to log one.'}</div>`;
     const m = $('lgMore'); if (m) m.onclick = () => { qShown += 200; qList(); };
+    dkList();
   }
   document.addEventListener('click', e => {
     const ed = e.target.closest('[data-qe]'); if (ed) { const x = Q.q.find(q => q.id === ed.dataset.qe); if (x) openSheet(null, x); return; }
@@ -690,6 +694,7 @@
   function setNow() { const n = utc(new Date()); $('fDate').value = fmtD(n.d); $('fTime').value = fmtT(n.t); dupe(); }
   function openSheet(s, x) {
     if (PUB) return;
+    if (!x && DESKON()) { dkFill(s || {}); return; }   /* computers (members): the spot fills the log dock on the left instead */
     EDIT = x || null;
     $('lgTitle').textContent = x ? '✏️ Edit this contact' : '📝 Log this contact';
     if (x) {
@@ -993,8 +998,91 @@
   }
   $('hlNa').onclick = () => { if (!MAPON) { MAPON = true; put('kpcHuntMap', true); mapOn(); } $('hlMapSec').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
   let MAPON = get('kpcHuntMap', true);
-  function mapOn() { $('hlBigMap').hidden = !MAPON; $('hlMapTog').textContent = MAPON ? 'HIDE MAP' : 'SHOW MAP'; if (MAPON && LM) setTimeout(() => LM.invalidateSize(), 50); }
+  function mapOn() { $('hlBigMap').hidden = !MAPON && !DESKON(); $('hlMapTog').textContent = MAPON ? 'HIDE MAP' : 'SHOW MAP'; if (MAPON && LM) setTimeout(() => LM.invalidateSize(), 50); }
   $('hlMapTog').onclick = () => { MAPON = !MAPON; put('kpcHuntMap', MAPON); mapOn(); };
+
+  /* ---------------- computers, members copy (Brandon Oct 16, 'like the new desktop logger'): ----------------
+     log + entry dock on the left, SPOTS / MAP tabs on the right, every filter in one pop-up menu. Phones are unchanged. */
+  function deskSet() {
+    const m = $('hl'), on = DESKON();
+    if (on) m.dataset.desk = '1'; else delete m.dataset.desk;
+    if (on) { rtab(RT); dkList(); } else { const f = $('hlFilters'); if (f) f.classList.remove('desk-pop'); }
+    mapOn();
+  }
+  let RT = get('kpcHuntRt', 'spots'); if (RT !== 'map') RT = 'spots';
+  function rtab(v) {
+    RT = v; put('kpcHuntRt', v); $('hl').dataset.rt = v;
+    document.querySelectorAll('#hlRtabs [data-rt]').forEach(b => b.setAttribute('aria-pressed', b.dataset.rt === v));
+    if (v === 'map') { lmInit(); setTimeout(() => { if (LM) { LM.invalidateSize(); lmZoom(LMV); } draw(); }, 60); }
+  }
+  if (!PUB && $('hlRtabs')) {
+    $('hlRtabs').addEventListener('click', e => { const b = e.target.closest('[data-rt]'); if (!b) return; rtab(b.dataset.rt);
+      const y = $('hlDk').getBoundingClientRect().top + scrollY - 150; if (scrollY > y + 5) scrollTo({ top: y, behavior: 'smooth' }); });
+    $('hlFbtn').onclick = e => { e.stopPropagation(); $('hlFtog').click(); };
+    document.addEventListener('click', e => {   /* tap outside the pop-up closes it */
+      const f = $('hlFilters'); if (!DESKON() || !f.classList.contains('open')) return;
+      if (e.target.closest('#hlFilters,#hlFbtn,#hlActive')) return; $('hlFtog').click();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && DESKON() && $('hlFilters').classList.contains('open')) $('hlFtog').click(); });
+    matchMedia('(min-width:1100px)').addEventListener('change', deskSet);
+    /* the dock */
+    const dkBand = () => { const f = parseFloat($('dFreq').value); $('dBand').value = f ? bandOf(f * 1000).replace('OTHER', '') : ''; dkDupe(); };
+    function dkDupe() {
+      const c = base($('dCall').value), r = $('dRef').value.toUpperCase().replace(/\s/g, ''), b = $('dBand').value, d = utc(new Date()).d;
+      const hit = c && Q.q.find(q => base(q.call) === c && q.d === d && q.band === b && String(q.ref || '').replace(/\s/g, '') === r);
+      $('dkDupe').hidden = !hit; if (hit) $('dkDupe').textContent = `⚠ DUPE: ${c} logged at ${fmtT(hit.tm)} UTC`;
+    }
+    $('dFreq').addEventListener('input', dkBand); ['dCall', 'dRef'].forEach(id => $(id).addEventListener('input', dkDupe));
+    $('dMode').onchange = () => { $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value); };
+    $('dCall').addEventListener('input', () => { const v = $('dCall').value.toUpperCase(); if (v !== $('dCall').value) $('dCall').value = v; });
+    $('dSt').addEventListener('input', () => { $('dSt').value = $('dSt').value.toUpperCase(); });
+    $('dkQ').oninput = () => dkList();
+    $('dkClr').onclick = () => { dkClear(); $('dCall').focus(); };
+    $('dkForm').addEventListener('submit', e => { e.preventDefault(); dkLog(); });
+    const clk = () => { const n = new Date(); $('dkClk').textContent = n.toISOString().slice(11, 19) + ' UTC'; };
+    clk(); setInterval(clk, 1000);
+    if (!$('dRs').value) $('dMode').onchange();
+    deskSet(); window.addEventListener('load', deskSet);
+  }
+  function dkFill(s) {
+    if (!$('dCall')) return;
+    $('dCall').value = s.call || ''; $('dFreq').value = s.khz ? (s.khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, '') : $('dFreq').value;
+    if (s.mode) $('dMode').value = modePick(s.mode);
+    $('dRef').value = s.ref || ''; $('dName').value = s.name || ''; $('dSt').value = s.st || ''; $('dNote').value = '';
+    $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value);
+    $('dFreq').dispatchEvent(new Event('input'));
+    const d = $('dkForm'); d.classList.remove('flash'); void d.offsetWidth; d.classList.add('flash');
+    (s.call ? $('dRr') : $('dCall')).focus({ preventScroll: true }); if (s.call) $('dRr').select();
+  }
+  function dkClear() {
+    ['dCall', 'dRef', 'dName', 'dSt', 'dNote'].forEach(id => { $(id).value = ''; });
+    $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value); $('dkDupe').hidden = true;
+  }
+  async function dkLog() {
+    const call = $('dCall').value.trim().toUpperCase(); if (!call) { $('dCall').focus(); return; }
+    const n = utc(new Date());
+    const ref = $('dRef').value.toUpperCase().split(/[ ,]+/).filter(Boolean).map(nref).join(', ');
+    const f = $('dFreq').value.trim();
+    const rec = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: n.d, tm: n.t, f, band: $('dBand').value, mode: $('dMode').value, ref,
+      name: $('dName').value.trim(), st: $('dSt').value.trim().toUpperCase(), rs: $('dRs').value.trim(), rr: $('dRr').value.trim(), note: $('dNote').value.trim(), my: CALL, grid: Q.grid, x: 0, t: Date.now() };
+    Q.q.push(rec); await qSave();
+    ref.split(/[ ,]+/).filter(Boolean).forEach(r => { if (!WK.has(r)) { WK.add(r); MAN.add(r); } }); saveLog(); logInfo();
+    qList(); ticker(false); draw(); needDraw();
+    toast(`✓ ${call} logged${ref ? ' at ' + ref : ''}.`, () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); draw(); });
+    dkClear(); $('dCall').focus();
+  }
+  function dkList() {
+    const el = $('dkList'); if (!el || PUB) return;
+    const q = ($('dkQ').value || '').trim().toUpperCase(), today = utc(new Date()).d;
+    const L = Q.q.filter(x => !q || [x.call, x.ref, x.name, x.st, x.band, x.mode, x.note].join(' ').toUpperCase().includes(q)).sort((a, b) => (b.d + b.tm).localeCompare(a.d + a.tm));
+    const nt = Q.q.filter(x => x.d === today).length;
+    $('dkN').innerHTML = `<b>${nt}</b> today · <b>${Q.q.length}</b> total`;
+    let last = '';
+    el.innerHTML = L.length ? L.slice(0, 300).map(x => {
+      const day = x.d !== last ? `<div class="dk-day">${x.d === today ? 'TODAY' : fmtD(x.d)}</div>` : ''; last = x.d;
+      return `${day}<div class="dk-q${x.x ? '' : ' nx'}"><span class="t">${fmtT(x.tm)}</span><b class="c">${esc(x.call)}</b><span class="m">${esc(x.band)} ${esc(x.mode)}</span><span class="r">${esc(x.ref || '')}${x.st ? ' <i>' + esc(x.st) + '</i>' : ''}</span><span class="s">${esc(x.rs || '')}/${esc(x.rr || '')}</span><span class="a"><button type="button" data-qe="${x.id}" title="Edit">✏</button><button type="button" data-qd="${x.id}" title="Delete">🗑</button></span></div>`;
+    }).join('') : `<div class="hl-empty">${Q.q.length ? 'None match.' : 'No contacts yet. Click a spot on the right and it fills in down below.'}</div>`;
+  }
   document.addEventListener('click', e => {
     const c = e.target.closest('#hlBigSvg [data-dk]'); if (!c) return;
     let el = document.querySelector(`#hlSpots [data-k="${CSS.escape(c.dataset.dk)}"]`);
