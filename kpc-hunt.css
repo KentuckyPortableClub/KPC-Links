@@ -919,3 +919,7 @@ main#hl[data-nolog="1"] .hs-a .lg,main#hl[data-nolog="1"] .hl-st .a .lg{display:
 /* Oct 17 fix (Brandon: 'scroll bar for the main spotting page is gone'): the computer layout's display:block!important beat the popped window's flex column, so the list never got its own scroll bar */
 main#hl[data-desk="1"] .hl-split>.hl-spsec.hl-popped{display:flex!important;flex-direction:column}
 main#hl[data-desk="1"] .hl-split>.hl-spsec.hl-popped>.hl-in{flex:1 1 auto;min-height:0;overflow-y:auto}
+/* Oct 17 (Brandon: 'shows I worked these stations and I did not'): 'hunted before' = the PARK is on your POTA hunted list, shown grey; a call actually in today's log = green */
+.hb.td{background:linear-gradient(180deg,#5be39a,#22a861);color:#05210f;font-weight:900}
+.hl-st .a .wk.on{background:rgba(255,255,255,.06)!important;color:#9da59f!important;border-color:rgba(255,255,255,.2)!important}
+.hs-a .wk.on{background:rgba(255,255,255,.06)!important;color:#c9cfca!important;border-color:rgba(255,255,255,.22)!important}
