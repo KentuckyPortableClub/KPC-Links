@@ -10,7 +10,17 @@
   const iOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
   const dirUrl = (la, lo) => iOS ? `https://maps.apple.com/?daddr=${la},${lo}` : `https://www.google.com/maps/dir/?api=1&destination=${la},${lo}`;
   const COL = { pota: '#2e9e52', kff: '#1aa6a0', sota: '#e07a1c' };
-  const SHOW = Object.assign({ pota: true, kff: false, sota: false }, get('kpcPcShow', {}));
+  const SHOW = Object.assign({ pota: true, kff: false, sota: false, trails: true }, get('kpcPcShow', {}));
+  /* Kentucky trail parks (Brandon Oct 18: 'park control needs the trails'): official lines (Forest Service / State Parks / NPS), Kentucky part only */
+  const KYB = [-89.6, 36.45, -81.9, 39.2], inKY = (lo, la) => lo >= KYB[0] && lo <= KYB[2] && la >= KYB[1] && la <= KYB[3];
+  const TR = [
+    { ref: 'US-11181', f: 'ky-sheltowee.geojson', col: '#6cdb97', by: 'U.S. Forest Service' },
+    { ref: 'US-10102', f: 'ky-pine-mountain.geojson', col: '#ffc36b', by: 'Kentucky State Parks' },
+    { ref: 'US-1253', f: 'ky-dawkins.geojson', col: '#c7a5ff', by: 'Kentucky State Parks' },
+    { ref: 'US-3791', f: 'data/trails/US-3791.json', col: '#ef8a98', by: 'National Park Service' },
+    { ref: 'US-4572', f: 'data/trails/US-4572.json', col: '#5bd5ec', by: 'National Park Service', lab: 'route (Ohio River)' },
+    { ref: 'US-4572', f: 'ky-lecl-auto.geojson', col: '#2f9fb8', by: 'National Park Service', lab: 'auto tour route (signed roads)', dash: '7 6' }];
+  const TL = {}; let TP = {}, trP = null, hi = null;
   let D = null, CG = {}, NOTES = {}, map = null, LAY = {}, outline = null, sel = null, ALL = [];
   let TRIP = get('kpcPcTrip', []);
 
@@ -19,22 +29,46 @@
     map = L.map('pcMap', { zoomControl: true, preferCanvas: true }).setView([37.75, -85.7], 7);
     if (window.KPCLayers) KPCLayers(map); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
     if (window.KPCLocate) KPCLocate(map); if (window.KPCFull) KPCFull(map);
-    for (const k of ['pota', 'kff', 'sota']) { LAY[k] = L.layerGroup(); if (SHOW[k]) LAY[k].addTo(map); }
+    for (const k of ['pota', 'kff', 'sota', 'trails']) { LAY[k] = L.layerGroup(); if (SHOW[k]) LAY[k].addTo(map); }
+    if (SHOW.trails) trails();
     for (const x of ALL) { const k = kindOf(x);
       const m = L.circleMarker([x.la, x.lo], { radius: k === 'sota' ? 5 : 6.5, color: '#fff', weight: 1.4, fillColor: COL[k], fillOpacity: .92 });
       m.bindTooltip(`${x.c} · ${x.n}`); m.on('click', () => pick(x, false)); m.addTo(LAY[k]); x.m = m; }
     count(); chips();
   }
-  function count() { const n = ALL.filter(x => SHOW[kindOf(x)]).length; $('pcCount').textContent = n + ' on the map'; }
+  function count() { const n = ALL.filter(x => SHOW[kindOf(x)]).length; $('pcCount').textContent = n + ' on the map' + (SHOW.trails ? ' + ' + new Set(TR.map(t => t.ref)).size + ' trails' : ''); }
+  /* lines: keep only the stretches inside Kentucky */
+  function kyLines(g) { const out = []; const add = l => { let run = []; for (const p of l) { if (inKY(p[0], p[1])) run.push([p[1], p[0]]); else { if (run.length > 1) out.push(run); run = []; } } if (run.length > 1) out.push(run); };
+    const geo = gg => { if (!gg) return; if (gg.type === 'LineString') add(gg.coordinates); else if (gg.type === 'MultiLineString') gg.coordinates.forEach(add); else if (gg.type === 'GeometryCollection') gg.geometries.forEach(geo); };
+    (g.type === 'FeatureCollection' ? g.features : [g]).forEach(f => geo(f.geometry || f)); return out; }
+  function trails() {
+    return trP || (trP = Promise.all([fetch('ky-trail-parks.json').then(r => r.json()).catch(() => ({}))].concat(TR.map(t => fetch(t.f).then(r => r.json()).catch(() => null)))).then(([tp, ...G]) => {
+      Object.values(tp || {}).forEach(v => { if (v && v.ref) TP[v.ref] = v; });
+      G.forEach((g, i) => { const t = TR[i]; if (!g) return; const ls = kyLines(g); if (!ls.length) return; const x = byRef(t.ref), nm = (x ? x.n : t.ref) + (t.lab ? ' · ' + t.lab : '');
+        const lay = L.layerGroup([L.polyline(ls, { color: '#111', weight: 7, opacity: .55, interactive: false }), L.polyline(ls, { color: t.col, weight: 4, opacity: .95, dashArray: t.dash || null })]);
+        lay.eachLayer(p => { if (p.options.interactive !== false) { p.bindTooltip(`🥾 ${t.ref} · ${nm}`, { sticky: true }); p.on('click', () => { const y = byRef(t.ref); if (y) pick(y); }); } });
+        lay.addTo(LAY.trails); (TL[t.ref] = TL[t.ref] || []).push({ ls, t });
+        /* a trail park whose POTA pin is outside Kentucky (Lewis & Clark: Omaha) gets a pin on its Kentucky line */
+        if (x && !inKY(x.lo, x.la) && !x.kyPin) { const mid = ls.reduce((a, b) => b.length > a.length ? b : a); const p = mid[Math.floor(mid.length / 2)]; x.la = p[0]; x.lo = p[1]; x.kyPin = 1; if (x.m) x.m.setLatLng(p); } });
+      count(); }));
+  }
+  const tBounds = ref => { const b = L.latLngBounds([]); (TL[ref] || []).forEach(o => o.ls.forEach(l => l.forEach(p => b.extend(p)))); return b; };
   function chips() { document.querySelectorAll('[data-pg]').forEach(b => { const k = b.dataset.pg; b.classList.toggle('on', !!SHOW[k]); b.setAttribute('aria-pressed', SHOW[k] ? 'true' : 'false'); }); }
-  document.querySelectorAll('[data-pg]').forEach(b => b.onclick = () => { const k = b.dataset.pg; SHOW[k] = !SHOW[k]; put('kpcPcShow', SHOW); if (map) { if (SHOW[k]) LAY[k].addTo(map); else map.removeLayer(LAY[k]); } chips(); count(); });
+  document.querySelectorAll('[data-pg]').forEach(b => b.onclick = () => { const k = b.dataset.pg; SHOW[k] = !SHOW[k]; put('kpcPcShow', SHOW); if (map) { if (SHOW[k]) { LAY[k].addTo(map); if (k === 'trails') trails(); } else map.removeLayer(LAY[k]); } chips(); count(); });
 
   const byRef = c => ALL.find(x => x.c.toUpperCase() === String(c).toUpperCase());
   async function pick(x, fly) {
     sel = x; const k = kindOf(x); if (!SHOW[k]) { SHOW[k] = true; put('kpcPcShow', SHOW); LAY[k].addTo(map); chips(); count(); }
+    if (hi) { map.removeLayer(hi); hi = null; }
+    if (outline) { map.removeLayer(outline); outline = null; }
+    if (TR.some(t => t.ref === x.c)) { /* a trail park: light up its line instead of an outline */
+      if (!SHOW.trails) { SHOW.trails = true; put('kpcPcShow', SHOW); LAY.trails.addTo(map); chips(); }
+      await trails(); if (sel !== x) return; info(x); try { history.replaceState(null, '', '?ref=' + encodeURIComponent(x.c)); } catch (e) {}
+      hi = L.layerGroup((TL[x.c] || []).map(o => L.polyline(o.ls, { color: '#f0c96b', weight: 8, opacity: .55, interactive: false }))).addTo(map);
+      const b = tBounds(x.c); if (fly !== false && b.isValid()) map.fitBounds(b.pad(.08), { maxZoom: 13 }); return; }
+    if (SHOW.trails) trails().then(() => { if (sel === x) info(x); });
     if (fly !== false) map.setView([x.la, x.lo], Math.max(map.getZoom(), k === 'sota' ? 13 : 12));
     info(x); try { history.replaceState(null, '', '?ref=' + encodeURIComponent(x.c)); } catch (e) {}
-    if (outline) { map.removeLayer(outline); outline = null; }
     if (k !== 'sota' && window.KPCB && KPCB.kyFor) {
       try { const ref = k === 'kff' && x.p ? x.p : x.c, F = await KPCB.kyFor(ref); if (sel !== x || !F || !F.length) return;
         outline = L.geoJSON({ type: 'FeatureCollection', features: F }, { style: { color: '#f0c96b', weight: 2.5, fill: false }, interactive: false }).addTo(map);
@@ -48,6 +82,10 @@
     const also = [];
     if (k === 'pota') { (x.kff || []).forEach(r => { const y = byRef(r); also.push([r, y ? y.n : '', 'Also KFF']); }); (x.sota || []).forEach(r => { const y = byRef(r); also.push([r, y ? y.n : '', 'SOTA summit inside (only counts on top)']); }); (x.tf || []).forEach(r => { const y = byRef(typeof r === 'string' ? r : r.c || r[0]); const rr = typeof r === 'string' ? r : r.c || r[0]; also.push([rr, y ? y.n : '', 'Overlapping boundaries (2-fer)']); }); }
     if (k === 'kff' && park) also.push([park.c, park.n, 'Same place: POTA park']);
+    if (k === 'pota') Object.values(TP).forEach(v => { if ((v.parks || []).some(p => (p.refs || []).includes(x.c)) && !also.some(a => a[0] === v.ref)) also.push([v.ref, v.name, 'Trail passes through (possible 2-fer: stand on the trail inside the park)']); });
+    const tp = TP[x.c], tline = TL[x.c];
+    const trailBox = tline ? `<div class="pc-k" style="margin-top:8px">🥾 TRAIL</div><p class="pc-note" style="margin-top:2px">Shown on the map in Kentucky (line from the ${esc(tline[0].t.by)}${tline.length > 1 ? '; dashed = ' + esc(tline[1].t.lab || '') : ''}). Set up on the trail itself, on public land.</p>` +
+      (tp && tp.parks && tp.parks.length ? `<div class="pc-k" style="margin-top:8px">THE TRAIL PASSES THROUGH (POSSIBLE 2-FER / 3-FER: VERIFY)</div><ul class="pc-list">${tp.parks.map(p => `<li>${(p.refs || []).map((r, i) => `<a href="?ref=${encodeURIComponent(r)}" data-ref="${esc(r)}">${esc(r)}</a> ${esc((p.names || [])[i] || '')}`).join(' + ')} <span class="pc-tag">${esc(p.type || '2-fer')}${p.how ? ' · ' + esc(p.how) : ''}</span></li>`).join('')}</ul><p class="pc-note">Stand on the trail inside the other park, and confirm both boundaries on the official maps.</p>` : '') : '';
     const ap = (park && park.ap) || [];
     $('pcInfo').innerHTML = `<div class="pc-k">${lab}</div><h3>${esc(x.n)}</h3>
       <div class="pc-meta"><span class="pc-ref">${esc(x.c)}</span>${x.co ? ' · ' + esc(x.co) + ' County' : ''}${x.t ? ' · ' + esc(x.t) : ''}${x.ft ? ' · ' + Number(x.ft).toLocaleString() + ' ft' + (x.pts ? ' · ' + x.pts + ' pts' : '') : ''}</div>
@@ -56,6 +94,7 @@
       <a href="${page}" target="_blank" rel="noopener">${k === 'pota' ? 'POTA' : k === 'kff' ? 'WWFF' : 'SOTLAS'} PAGE ↗</a>
       <a href="kpc-park-notes.html#${encodeURIComponent(tipsRef)}">📝 PARK TIPS${tips ? ' (' + tips + ')' : ''}</a>${cg ? `<a href="kpc-campgrounds.html#park-${esc(park.c)}">⛺ PLACES TO STAY</a>` : ''}</div>
       ${also.length ? `<div class="pc-k" style="margin-top:8px">ALSO HERE</div><ul class="pc-list">${also.map(a => `<li><a href="?ref=${encodeURIComponent(a[0])}" data-ref="${esc(a[0])}">${esc(a[0])}</a> ${esc(a[1])} <span class="pc-tag">${esc(a[2])}</span></li>`).join('')}</ul>` : ''}
+      ${trailBox}
       ${ap.length ? `<div class="pc-k" style="margin-top:8px">🅿 PARKING &amp; ACCESS POINTS (FROM THE LAND MANAGER)</div><ul class="pc-list">${ap.slice(0, 8).map(p => `<li>${esc(p[2] || 'Access point')} · <a href="${dirUrl(p[0], p[1])}" target="_blank" rel="noopener">DIRECTIONS</a></li>`).join('')}</ul>` : ''}
       <p class="pc-note">GPS ${x.la.toFixed(5)}, ${x.lo.toFixed(5)}${k === 'sota' ? ' · activation zone = within 25 m (82 ft) of the top, no vehicle' : ' · the pin is a guide; the official boundary decides'}</p>`;
     $('pcAdd').onclick = () => { if (!TRIP.some(t => t.c === x.c)) { TRIP.push({ c: x.c, n: x.n, la: x.la, lo: x.lo }); if (TRIP.length > 10) TRIP.shift(); put('kpcPcTrip', TRIP); } trip(); info(x); };
