@@ -1071,7 +1071,8 @@
     let t = document.querySelector('.hl-toast'); if (!t) { t = document.createElement('div'); t.className = 'hl-toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
     t.innerHTML = esc(msg) + (undo ? '<button type="button">UNDO</button>' : ''); t.hidden = false;
     if (undo) t.querySelector('button').onclick = () => { undo(); t.hidden = true; };
-    clearTimeout(tT); tT = setTimeout(() => { t.hidden = true; }, undo ? 7000 : 3500);
+    clearTimeout(tT); tT = setTimeout(() => { t.hidden = true; }, undo ? 7000 : Math.min(6000, 3000 + String(msg).length * 25));
+    t.onclick = e => { if (!e.target.closest('button')) t.hidden = true; };
   }
   /* tapping a spot card (not its links/buttons) opens the log with everything filled in */
   document.addEventListener('click', e => {
