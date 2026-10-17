@@ -1,4 +1,5 @@
-/* KPC national trails layer (US Trip Planner + Park Commander). National Scenic / Historic Trails that are POTA parks,
+/* KPC trails layer: national trails + (Oct 16) state trails, National Recreation Trails and rail-trail parks from data/trails/index-state.json.
+   Was: KPC national trails layer (US Trip Planner + Park Commander). National Scenic / Historic Trails that are POTA parks,
    official routes from data/trails (refreshed monthly by .github/workflows/kpc-us-trails.yml). Only trails crossing the
    map view are loaded. Own SVG pane under the park dots so a tap on a dot still opens the dot.
    KPCTrails(map, {skipKY:true}) leaves out the parts inside Kentucky (Park Commander has Kentucky's own trail layers). */
@@ -20,13 +21,14 @@
     const g = L.layerGroup(), done = {}; let IDX = null, busy = false;
     if (!map.getPane('kpcTrails')) { map.createPane('kpcTrails'); map.getPane('kpcTrails').style.zIndex = 390; }
     const rend = L.svg({ pane: 'kpcTrails', padding: .5 });
-    const pop = t => `<div class="us-pop"><b>${esc(t.name)}</b><div class="meta">POTA <b>${esc(t.ref)}</b> · ${t.kind === 'NST' ? 'National Scenic Trail' : 'National Historic Trail'}</div>` +
-      `<div class="meta" style="margin-top:6px">Official route from the ${esc(t.by)}. A trail is one POTA park along its whole length: check the trail's POTA page for where you can set up.</div>` +
-      `<div class="acts" style="margin-top:8px"><a href="https://pota.app/#/park/${encodeURIComponent(t.ref)}" target="_blank" rel="noopener" style="font-weight:800">POTA PAGE ↗</a></div></div>`;
+    const KIND = { NST: ['National Scenic Trail', '#ff5fa2', null], NHT: ['National Historic Trail', '#ffb347', '9 6'], ST: ['State Trail', '#3ddc84', null], NRT: ['National Recreation Trail', '#b388ff', '4 5'], TP: ['Trail park', '#3ddc84', null] };
+    const pop = t => { const k = KIND[t.kind] || KIND.ST; return `<div class="us-pop"><b>${esc(t.name)}</b><div class="meta">POTA <b>${esc(t.ref)}</b> · ${esc(t.type || k[0])}${t.km ? ' · about ' + t.km + ' km of trail drawn' : ''}</div>` +
+      `<div class="meta" style="margin-top:6px">${t.official === false ? 'Line from <b>OpenStreetMap</b> (a volunteer map, usually close but <b>not official</b>).' : 'Official route from the ' + esc(t.by) + '.'} A trail is one POTA park along its whole length: check the trail's POTA page for where you can set up.</div>` +
+      `<div class="acts" style="margin-top:8px"><a href="https://pota.app/#/park/${encodeURIComponent(t.ref)}" target="_blank" rel="noopener" style="font-weight:800">POTA PAGE ↗</a></div></div>`; };
     async function load() {
       if (!map.hasLayer(g) || busy) return; busy = true;
       try {
-        if (!IDX) IDX = await fetch('data/trails/index.json').then(r => r.json()).catch(() => []);
+        if (!IDX) IDX = [].concat(...await Promise.all(['data/trails/index.json', 'data/trails/index-state.json'].map(u => fetch(u).then(r => r.ok ? r.json() : []).catch(() => []))));   /* national + state / recreation trails */
         const C = opts.skipKY ? await kyP() : null;
         const b = map.getBounds().pad(.3), W = b.getWest(), S = b.getSouth(), E = b.getEast(), N = b.getNorth();
         for (const t of IDX) {
@@ -35,7 +37,7 @@
             if (C && C.length) f = dropKY(f, C);
             if (!f.geometry.coordinates.length) return;
             const casing = L.geoJSON(f, { renderer: rend, interactive: false, style: { color: '#1b1b1b', weight: 6, opacity: .55 } });
-            const line = L.geoJSON(f, { renderer: rend, style: { color: t.kind === 'NST' ? '#ff5fa2' : '#ffb347', weight: 3, opacity: .95, dashArray: t.kind === 'NST' ? null : '9 6' } });
+            const k = KIND[t.kind] || KIND.ST, line = L.geoJSON(f, { renderer: rend, style: { color: k[1], weight: 3, opacity: .95, dashArray: k[2] } });
             line.bindPopup(pop(t), { maxWidth: 300 }); line.bindTooltip(t.name, { sticky: true });
             g.addLayer(casing); g.addLayer(line);
           }).catch(() => { delete done[t.ref]; });

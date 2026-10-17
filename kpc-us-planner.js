@@ -66,7 +66,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
     trail partners, refreshed monthly by kpc-us-trails.yml). Only trails crossing the map view are loaded. Drawn in their
     own pane under the park dots so a tap on a dot still opens the dot. */
  const trails=window.KPCTrails?KPCTrails(map):L.layerGroup();
- const over={};if(pad)over['Official park boundaries (PAD-US)']=pad.layer;over['National trails (POTA parks)']=trails;
+ const over={};if(pad)over['Official park boundaries (PAD-US)']=pad.layer;over['Trails that are POTA parks']=trails;
  if(store.get('kpcUsTrails',true))trails.addTo(map);
  map.on('overlayadd',e=>{if(e.layer===trails)store.set('kpcUsTrails',true)});map.on('overlayremove',e=>{if(e.layer===trails)store.set('kpcUsTrails',false)});
  L.control.layers(base,over,{position:'topright',collapsed:true}).addTo(map);map.on('baselayerchange',e=>store.set('kpcUsBase',e.name));
