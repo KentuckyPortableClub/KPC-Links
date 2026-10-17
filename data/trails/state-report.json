@@ -786,14 +786,6 @@
    0.1
   ],
   [
-   "US-11181",
-   "Sheltowee Trace National Recreation Trail",
-   "TN",
-   "US Forest Service",
-   346,
-   0.5
-  ],
-  [
    "US-9741",
    "North Bend Rail Trail State Trail",
    "WV",
@@ -906,22 +898,6 @@
    2.4
   ],
   [
-   "US-1766",
-   "Katy Trail State Park",
-   "MO",
-   "OpenStreetMap (not official)",
-   851,
-   0.1
-  ],
-  [
-   "US-7836",
-   "Ozark State Trail",
-   "MO",
-   "OpenStreetMap (not official)",
-   994,
-   0.0
-  ],
-  [
    "US-9893",
    "Tunnel Hill State Trail",
    "IL",
@@ -944,6 +920,30 @@
    "OpenStreetMap (not official)",
    139,
    0.0
+  ],
+  [
+   "US-1766",
+   "Katy Trail State Park",
+   "MO",
+   "OpenStreetMap (not official)",
+   851,
+   0.1
+  ],
+  [
+   "US-7836",
+   "Ozark State Trail",
+   "MO",
+   "OpenStreetMap (not official)",
+   994,
+   0.0
+  ],
+  [
+   "US-11181",
+   "Sheltowee Trace National Recreation Trail",
+   "TN",
+   "US Forest Service",
+   346,
+   0.5
   ]
  ],
  "missing": [
@@ -1680,18 +1680,6 @@
    "no line found"
   ],
   [
-   "US-2955",
-   "Wilson Cumberland Trail State Park",
-   "TN",
-   "no line found"
-  ],
-  [
-   "US-8313",
-   "Mountains to Sea State Trail",
-   "TN",
-   "no line found"
-  ],
-  [
    "US-1310",
    "New River Trail State Park",
    "VA",
@@ -1728,12 +1716,6 @@
    "no line found"
   ],
   [
-   "US-9753",
-   "Katy Trail Rock Island Spur State Park",
-   "MO",
-   "no line found"
-  ],
-  [
    "US-1002",
    "Johnson Sauk Trail State Park",
    "IL",
@@ -1750,6 +1732,1184 @@
    "Lincoln Trail Homestead State Park",
    "IL",
    "no line found"
+  ],
+  [
+   "US-9753",
+   "Katy Trail Rock Island Spur State Park",
+   "MO",
+   "no line found"
+  ],
+  [
+   "US-2955",
+   "Wilson Cumberland Trail State Park",
+   "TN",
+   "no line found"
+  ],
+  [
+   "US-8313",
+   "Mountains to Sea State Trail",
+   "TN",
+   "no line found"
+  ]
+ ],
+ "agency": [
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "MO_2019_Katy_Trail"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "KATY_TRAIL"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Katy"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Channel of the Miss"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Water Trails"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Tributaries and Str"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "MOBirdingTrail"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Missouri Statewide Trails Database"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT High Potential Historic Sites"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Side Excursions"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Belton Trails"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Outbound Campsites"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Course and Distance"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Oregon Trail"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Observation Locatio"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Panoramic Mapping Potential 2025 Fi"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Future Trail Connections"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark National Historic Trail Congressionally"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Panoramic Mapping Segments"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Washington State Park trails"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Santa Fe National Historic Trail"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Trail Visitor Centers and Museums"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Vail to Upper Missouri River Breaks Optimized Distance"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Descent Trail"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Trail Corridor"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "City of Columbia, Missouri",
+   "Park Trails  for City of Columbia, MO"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Butterfield Overland Trail"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "MO_MDC_Trails"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Auto Route Final Combined"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "NM National Parks"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Lewis_and_Clark_Trail_Historic_Route"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Auto Route Final Combined NP Map"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Pivotal Places"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "TAP_Grant_Trail"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Species Discoveries"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Pony Express Trail"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Missouri_River_Response_WFL"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Historic Campsites (Bergantino)"
+  ],
+  [
+   "Katy Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Mormon Pioneer Trail"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Channel of the Miss"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Water Trails"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Tributaries and Str"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "MOBirdingTrail"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "Missouri Statewide Trails Database"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT High Potential Historic Sites"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Side Excursions"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "Belton Trails"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Outbound Campsites"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Course and Distance"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "Oregon Trail"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Observation Locatio"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Panoramic Mapping Potential 2025 Fi"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "Future Trail Connections"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark National Historic Trail Congressionally"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Panoramic Mapping Segments"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "Washington State Park trails"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "Santa Fe National Historic Trail"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Trail Visitor Centers and Museums"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "Vail to Upper Missouri River Breaks Optimized Distance"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "MO_2019_Katy_Trail"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Descent Trail"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Trail Corridor"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "City of Columbia, Missouri",
+   "Park Trails  for City of Columbia, MO"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "Butterfield Overland Trail"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "MO_MDC_Trails"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Auto Route Final Combined"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "NM National Parks"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "Lewis_and_Clark_Trail_Historic_Route"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Auto Route Final Combined NP Map"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Pivotal Places"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "TAP_Grant_Trail"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Species Discoveries"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "Pony Express Trail"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "Missouri_River_Response_WFL"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Historic Campsites (Bergantino)"
+  ],
+  [
+   "Ozark State Trail",
+   "skip (not state/federal)",
+   "",
+   "Mormon Pioneer Trail"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Channel of the Miss"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Water Trails"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Tributaries and Str"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "MOBirdingTrail"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "Missouri Statewide Trails Database"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT High Potential Historic Sites"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Side Excursions"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "Belton Trails"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Outbound Campsites"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Course and Distance"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "Oregon Trail"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Expedition Historic Observation Locatio"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Panoramic Mapping Potential 2025 Fi"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "Future Trail Connections"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark National Historic Trail Congressionally"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Panoramic Mapping Segments"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "Washington State Park trails"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "Santa Fe National Historic Trail"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Trail Visitor Centers and Museums"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "Vail to Upper Missouri River Breaks Optimized Distance"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "MO_2019_Katy_Trail"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Descent Trail"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Trail Corridor"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "City of Columbia, Missouri",
+   "Park Trails  for City of Columbia, MO"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "Butterfield Overland Trail"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "MO_MDC_Trails"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Auto Route Final Combined"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "NM National Parks"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "Lewis_and_Clark_Trail_Historic_Route"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Auto Route Final Combined NP Map"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Pivotal Places"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "TAP_Grant_Trail"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark Species Discoveries"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "Pony Express Trail"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "Missouri_River_Response_WFL"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "LECL Lewis and Clark NHT Historic Campsites (Bergantino)"
+  ],
+  [
+   "Katy Trail Rock Island Spur State Park",
+   "skip (not state/federal)",
+   "",
+   "Mormon Pioneer Trail"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "The Nature Conservancy",
+   "Ataya TN Trails TWRA public view"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Tennessee Statewide Trails Lines Public"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "Shelby County 911",
+   "911 Trail Markers"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Tennessee State Park Trails (Public View)"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "TREC Tennessee Statewide Trails and Greenways SCTDD"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "TDEC Public Trails"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Tennessee Statewide Trails Points Public"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "TDEC Public Trails1"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Greenways and Trails"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Mile Markers"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Tennessee State Parks Public Recreation Assets"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Chattanooga Regional Trails"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Scrum Branch"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Tennessee Statewide Recreation Areas Public"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Five-Foot Contours of Washington County, Tennessee"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Sams Branch"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Asghar 2026 Public Trails Managed by Tennessee Department of"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Appalachian Trail Visitor Use Management"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "KyGovMaps",
+   "US National Forest Trails in Kentucky"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Storybook Trails"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Road Segment"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Overmountain Victory National Historic Trail Official Temp"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Bigbee River Trail"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Butterfield Overland Trail"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "ETRIMS_Roads_All"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "TDOT Roads Knoxville Region"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "TDOT_Road_Segment_clip"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "NChick_web1"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Road Segments Near Main St Mall v2"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "road_segments"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Seven Islands Trails"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Vance Sidewalk Project Area"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "GreenbeltTrails"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Recreation in Southern Appalachia 30x30 Study Area"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Vance Sidewalks Project Area Clean"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Trail Spots"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "High Injury Network"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Buffalo Mountain Hiking Trails 2_WFL1"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "SavageGulfHikingEasy"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "",
+   "Implementation Projects"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "The Nature Conservancy",
+   "Ataya TN Trails TWRA public view"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Tennessee Statewide Trails Lines Public"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "Shelby County 911",
+   "911 Trail Markers"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Tennessee State Park Trails (Public View)"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "TREC Tennessee Statewide Trails and Greenways SCTDD"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "TDEC Public Trails"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Tennessee Statewide Trails Points Public"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "TDEC Public Trails1"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Greenways and Trails"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Mile Markers"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Tennessee State Parks Public Recreation Assets"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Chattanooga Regional Trails"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Scrum Branch"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Tennessee Statewide Recreation Areas Public"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Five-Foot Contours of Washington County, Tennessee"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Sams Branch"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Asghar 2026 Public Trails Managed by Tennessee Department of"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Appalachian Trail Visitor Use Management"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "KyGovMaps",
+   "US National Forest Trails in Kentucky"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Storybook Trails"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Road Segment"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Overmountain Victory National Historic Trail Official Temp"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Bigbee River Trail"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Butterfield Overland Trail"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "ETRIMS_Roads_All"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "TDOT Roads Knoxville Region"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "TDOT_Road_Segment_clip"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "NChick_web1"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Road Segments Near Main St Mall v2"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "road_segments"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Seven Islands Trails"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Vance Sidewalk Project Area"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "GreenbeltTrails"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Recreation in Southern Appalachia 30x30 Study Area"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Vance Sidewalks Project Area Clean"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Trail Spots"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "High Injury Network"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Buffalo Mountain Hiking Trails 2_WFL1"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "SavageGulfHikingEasy"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "",
+   "Implementation Projects"
   ]
  ]
 }
