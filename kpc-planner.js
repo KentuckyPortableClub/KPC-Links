@@ -137,7 +137,8 @@ function makeMap(){
   'Terrain':L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxNativeZoom:17,maxZoom:19,attribution:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors'})};
  let want='Satellite + Roads';try{want=localStorage.getItem('kpcPlanBase2')||'Satellite + Roads'}catch(e){}   // default: Satellite + Roads
  want={'Street':'Road Map','Satellite + roads':'Satellite + Roads'}[want]||want;
- if(!base[want])want='Road Map';base[want].addTo(m);if(window.KPCX&&KPCX.baseSwitcher)KPCX.baseSwitcher(m,base,{current:want});else L.control.layers(base,null,{position:'topright',collapsed:true}).addTo(m);
+ if(!base[want])want='Road Map';if(window.KPCTripOffline&&KPCTripOffline.offline())want='Road Map';   /* no signal: the saved street map */
+ base[want].addTo(m);if(window.KPCX&&KPCX.baseSwitcher)KPCX.baseSwitcher(m,base,{current:want});else L.control.layers(base,null,{position:'topright',collapsed:true}).addTo(m);
  m.on('baselayerchange',e=>{try{localStorage.setItem('kpcPlanBase2',e.name)}catch(_){}});
  L.control.scale({imperial:true,metric:false,position:'bottomleft'}).addTo(m);
  m.createPane('bndp').style.zIndex=350;m.createPane('trlp').style.zIndex=380;
@@ -199,7 +200,7 @@ function drawTrip(){tripLayer.clearLayers();
   m.addTo(tripLayer)});
  if(trip.length>1)L.polyline(trip.map(s=>[s.la,s.lo]),{color:'#d5a63a',weight:3,opacity:.85,dashArray:'2 8',interactive:false}).addTo(tripLayer)}
 function renderTripList(){const ol=$('trip');$('tripN').textContent=trip.length+(trip.length===1?' stop':' stops');
- ['route','share','gpx','sortd','clear'].forEach(id=>$(id).disabled=!trip.length);
+ ['route','share','gpx','sortd','clear','offsave'].forEach(id=>{if($(id))$(id).disabled=!trip.length});
  if(!trip.length){ol.innerHTML='<li class="pl-empty">No stops yet. Tick parks in the list, tap <b>+ Add to trip</b> on a map pin, or use <b>📍 Add a spot</b> to drop your own spot.</li>';return}
  ol.innerHTML=trip.map((s,i)=>{let sub='';
   if(s.t==='park')sub=`<span class="tag">${(s.k||'pota').toUpperCase()}</span> ${s.ref}`;
@@ -392,6 +393,7 @@ function pickTown(){const v=$('town').value,p=findPlace(v);if(!p){if(v.trim().le
  layer=L.layerGroup().addTo(map);tripLayer=L.layerGroup().addTo(map);V0=[map.getCenter(),map.getZoom()];ALL=items();
  const q=new URLSearchParams(location.search);let restored=false;
  if(q.get('trip')){const t=readShared(q.get('trip'));if(t){trip=t.s;if(t.o)origin=t.o;restored=true;save();setTimeout(()=>flash('Trip loaded from a shared link.'),300)}}
+ if(window.KPCTripOffline&&KPCTripOffline.offline())setTimeout(()=>{const w=$('where');if(w)w.innerHTML='📴 <b>No signal.</b> Showing your saved trip. The Road Map works around the stops you saved; searching comes back with signal.'},1200);
  if(!restored){try{const o=JSON.parse(localStorage.getItem(TRIPKEY)||'null');if(o&&Array.isArray(o.s)){trip=o.s.filter(s=>isFinite(s.la)&&isFinite(s.lo)).slice(0,MAXSTOPS);if(Array.isArray(o.o))origin=o.o}}catch(e){}}
  if(q.get('town')){$('town').value=q.get('town');pickTown()}
  else if(origin){$('town').value=origin[2]==='your location'?'':origin[2];run()}
@@ -447,6 +449,9 @@ $('rtW').onchange=()=>{if(RT)run(false)};
 $('rtClear').onclick=()=>$('newSearch').click();
 {let r=null;try{r=JSON.parse(localStorage.getItem('kpcPlanRoute')||'null')}catch(e){}if(r){$('rtFrom').value=r.f||'';$('rtTo').value=r.t||'';if(r.w)$('rtW').value=String(r.w)}let m='town';try{m=localStorage.getItem('kpcPlanMode')||'town'}catch(e){}planMode(m)}
 $('addSpot').onclick=()=>{addMode(!adding);if(adding){$('mapwrap').scrollIntoView({behavior:'smooth',block:'center'});if(map.getZoom()<12)flash('Zoom in close, then tap the exact spot. Satellite + Roads (top-right) is best for spotting pull-offs.')}};
+/* 📴 SAVE TRIP FOR NO SIGNAL (kpc-trip-offline.js; Brandon Oct 16) */
+if($('offsave'))$('offsave').onclick=()=>{if(!window.KPCTripOffline||!trip.length)return;
+ KPCTripOffline.save({stops:trip.filter(s=>isFinite(s.la)&&isFinite(s.lo)),files:['kpc-ky-data.json','kpc-park-notes.json','kpc-campgrounds.json','kpc-conditions.json','KPC-logo.png'],msg:$('offmsg'),btn:$('offsave'),key:'kpcKyTripSaved'})};
 $('clear').onclick=()=>{if(trip.length&&!confirm('Remove all '+trip.length+' stops from this trip?'))return;trip=[];changed()};
 $('sortd').onclick=()=>{const o=origin||(trip[0]&&[trip[0].la,trip[0].lo]);if(!o)return;const left=[...trip],out=[];let cur=o;
  while(left.length){let bi=0,bd=Infinity;left.forEach((s,i)=>{const d=KPC.miles(cur[0],cur[1],s.la,s.lo);if(d<bd){bd=d;bi=i}});const s=left.splice(bi,1)[0];out.push(s);cur=[s.la,s.lo]}
