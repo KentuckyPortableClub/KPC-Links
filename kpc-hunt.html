@@ -106,7 +106,7 @@ body.field .page-jump-nav{display:none!important}
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261016v">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261016w">
 <header class="site-nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="KPC Home">
@@ -238,6 +238,16 @@ body.field .page-jump-nav{display:none!important}
 <p class="hl-src"><b>Putting it in QRZ:</b> tap DOWNLOAD FOR QRZ, then open your <a href="https://logbook.qrz.com" target="_blank" rel="noopener">QRZ Logbook</a> and use its ADIF import to add the file. The same file works in LoTW (through TQSL) and most logging programs. Hunters don't upload to POTA: your credit comes from the activator's log. <b>•</b> = not downloaded yet.</p>
 </div></section>
 
+
+<section class="hl-sec" id="hlNeed"><div class="hl-in">
+<p class="hl-k">STATE BY STATE</p><h2>🎯 Parks I still need</h2>
+<div class="hl-row"><select id="nSt" aria-label="State"></select><input type="search" id="nQ" placeholder="Search parks…" aria-label="Search parks"><select id="nSort" aria-label="Sort"><option value="rare">Rarest first</option><option value="name">A to Z</option><option value="ref">By number</option><option value="busy">Most activated first</option></select><label class="hl-chk"><input type="checkbox" id="nAir"> On the air now</label></div>
+<div class="hl-row" role="group" aria-label="View"><button type="button" class="hl-chip" data-nv="list">☰ LIST</button><button type="button" class="hl-chip" data-nv="map">🗺 STATE MAP</button><button type="button" class="hl-chip" data-nv="all">🇺🇸 ALL STATES</button></div>
+<div class="hl-prog" id="nBar"></div>
+<div class="hl-stmap" id="nMap" hidden></div>
+<div class="hl-list" id="nList"><div class="hl-empty">Pick a state.</div></div>
+</div></section>
+
 <section class="hl-sec" id="hlSetup"><div class="hl-in">
 <p class="hl-k">STEP 1</p><h2>📥 Your log</h2>
 <div class="hl-two">
@@ -296,15 +306,6 @@ body.field .page-jump-nav{display:none!important}
  <label class="hl-chk"><input type="checkbox" id="hFarMode" checked> Far-away new parks go to the small ticker at the top only (no alert)</label>
  </div>
 </div>
-</div></section>
-
-<section class="hl-sec" id="hlNeed"><div class="hl-in">
-<p class="hl-k">STATE BY STATE</p><h2>🎯 Parks I still need</h2>
-<div class="hl-row"><select id="nSt" aria-label="State"></select><input type="search" id="nQ" placeholder="Search parks…" aria-label="Search parks"><select id="nSort" aria-label="Sort"><option value="rare">Rarest first</option><option value="name">A to Z</option><option value="ref">By number</option><option value="busy">Most activated first</option></select><label class="hl-chk"><input type="checkbox" id="nAir"> On the air now</label></div>
-<div class="hl-row" role="group" aria-label="View"><button type="button" class="hl-chip" data-nv="list">☰ LIST</button><button type="button" class="hl-chip" data-nv="map">🗺 STATE MAP</button><button type="button" class="hl-chip" data-nv="all">🇺🇸 ALL STATES</button></div>
-<div class="hl-prog" id="nBar"></div>
-<div class="hl-stmap" id="nMap" hidden></div>
-<div class="hl-list" id="nList"><div class="hl-empty">Pick a state.</div></div>
 </div></section>
 
 </div>
