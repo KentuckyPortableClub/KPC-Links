@@ -54,7 +54,17 @@
       if (only && !only.has(sp + ':' + t.id[sp])) return;
       jobs.push(teamSched(sp, t.id[sp]).then(j => (j.events || []).forEach(ev => keep(ev, sp))).catch(() => {}));
     }));
-    await Promise.all(jobs); draw();
+    await Promise.all(jobs); await liveFix(); draw();
+  }
+  /* Oct 17 (Brandon: 'see no scores'): a team's schedule doesn't update during a game, so games that should be under way
+     ask ESPN's game summary for the live score and clock */
+  async function liveFix() {
+    const due = Object.values(games).filter(g => !g.done && g.t < now() + 5 * 6e4 && g.t > now() - 8 * 36e5);
+    await Promise.all(due.map(g => fetch('https://site.web.api.espn.com/apis/site/v2/sports/' + SP[g.sp].path + '/summary?event=' + g.id).then(r => r.ok ? r.json() : null).then(j => {
+      const c = j && j.header && j.header.competitions && j.header.competitions[0]; if (!c) return;
+      const st = (c.status && c.status.type) || {}; g.st = st; g.live = st.state === 'in'; g.done = st.state === 'post';
+      (c.competitors || []).forEach(x => { const s = g.side.find(y => y.id === (x.team && x.team.id)); if (s) { s.score = x.score != null ? (x.score.displayValue != null ? x.score.displayValue : x.score) : s.score; s.win = x.winner; } });
+    }).catch(() => {})));
   }
   function statusTxt(g) {
     if (g.live) return '<b class="ks-live">● LIVE</b> ' + esc(g.st.shortDetail || '');
@@ -66,12 +76,14 @@
   function card(g) {
     const ky = g.side.map(s => s.ky).filter(Boolean), home = g.side.find(s => s.home && s.ky) || g.side.find(s => s.ky);
     const L = home && home.ky ? listenUrl(home.ky, g.sp) : '';
+    const other = g.side.find(s => s.ky && s !== home), L2 = other ? listenUrl(other.ky, g.sp) : '';
     const row = s => `<div class="ks-t${g.done && s.win ? ' w' : ''}${s.ky ? ' ky' : ''}">${s.logo ? `<img src="${esc(s.logo)}" alt="" loading="lazy" width="22" height="22">` : '<i></i>'}` +
       `<span>${s.rank ? '<small>' + s.rank + '</small> ' : ''}${esc(s.name)}</span><b>${g.live || g.done ? esc(s.score == null ? '' : s.score) : ''}</b></div>`;
     return `<div class="ks-g${g.live ? ' live' : ''}" data-sp="${g.sp}"><div class="ks-h"><span>${SP[g.sp].icon} ${esc(SP[g.sp].name)}</span><span>${statusTxt(g)}</span></div>` +
       g.side.map(row).join('') +
       (g.tv ? '<div class="ks-tv">📺 ' + esc(g.tv) + '</div>' : '') + `<div class="ks-f"><span class="ks-b">${L ? `<a href="${esc(L)}" target="_blank" rel="noopener" title="${esc(home.ky.n)} radio and audio">🎧 LISTEN</a>` : ''}` +
       (home && home.ky && home.ky.radio ? `<a href="https://tunein.com/search/?query=${encodeURIComponent(home.ky.radio)}" target="_blank" rel="noopener" title="Backup: find the radio broadcast on TuneIn">📻 RADIO</a>` : '') +
+      (L2 ? `<a href="${esc(L2)}" target="_blank" rel="noopener" title="${esc(other.ky.n)} radio and audio">🎧 ${esc(other.ky.k)}</a>` : '') +
       `<a href="${esc(g.url)}" target="_blank" rel="noopener" title="Play-by-play on ESPN">ESPN ↗</a></span></div></div>`;
   }
   function draw() {
