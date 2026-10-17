@@ -10,14 +10,13 @@ jobs:
       - run: |
           mkdir -p pa && cd pa
           curl -sL https://pota.app/ -o index.html
-          grep -o 'src="[^"]*\.js"\|href="[^"]*\.js"' index.html | sed 's/.*="//;s/"//' | sort -u > list.txt
-          cat list.txt
-          for f in $(cat list.txt); do u=$f; case $u in http*) ;; /*) u=https://pota.app$u;; *) u=https://pota.app/$u;; esac; curl -sL "$u" -o "$(basename $f)"; done
-          # follow chunk names referenced in js
+          for f in $(grep -o 'src="[^"]*\.js"\|href="[^"]*\.js"' index.html | sed 's/.*="//;s/"//' | sort -u); do u=$f; case $u in http*) ;; /*) u=https://pota.app$u;; *) u=https://pota.app/$u;; esac; curl -sL "$u" -o "$(basename $f)"; done
           grep -oh '"[a-zA-Z0-9_./-]*\.js"' *.js | tr -d '"' | sort -u | head -400 > chunks.txt
           for c in $(cat chunks.txt); do b=$(basename $c); [ -f "$b" ] || curl -sfL "https://pota.app/js/$b" -o "$b" || curl -sfL "https://pota.app/$c" -o "$b" || true; done
-          ls -la | head -50
-          grep -oh '"/user/[^"]*"\|`/user/[^`]*`\|"user/[^"]*"\|/user/[a-zA-Z/]*' *.js | sort | uniq -c | sort -rn | head -80 > ../user-endpoints.txt
-          grep -oh '[a-zA-Z]*[Hh]unt[a-zA-Z]*' *.js | sort | uniq -c | sort -rn | head -60 >> ../user-endpoints.txt
-          grep -oh '.\{80\}[Ee]xport.\{120\}' *.js | head -40 >> ../user-endpoints.txt
-          cd ..; git config user.name x; git config user.email x@x; git add user-endpoints.txt; git commit -qm ep; git push
+          { echo "== stats/hunted"; grep -oh '.\{700\}stats/hunted.\{900\}' *.js | head -4
+            echo "== huntedParkRefs"; grep -oh '.\{300\}huntedParkRefs.\{500\}' *.js | head -4
+            echo "== Authorization"; grep -oh '.\{300\}Authorization.\{300\}' *.js | head -6
+            echo "== idToken"; grep -oh '.\{200\}idToken.\{200\}' *.js | head -6
+            echo "== apiBase"; grep -oh 'https://api[a-z0-9.-]*pota[a-z.]*[^"`]\{0,30\}' *.js | sort | uniq -c | head
+          } > ../hunted.txt
+          cd ..; git config user.name x; git config user.email x@x; git add hunted.txt; git commit -qm ep; git push
