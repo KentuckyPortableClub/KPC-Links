@@ -935,3 +935,4 @@ main#hl[data-desk="1"] .hl-split>.hl-spsec.hl-popped>.hl-in{flex:1 1 auto;min-he
 .hl-qz{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0;padding:10px 12px;border:1px solid rgba(61,220,132,.45);border-radius:12px;background:rgba(61,220,132,.06)}
 .hl-qz>b{font:900 12px Arial;letter-spacing:1.4px;color:#7ff0b0}.hl-qz>span{font:12px Arial;color:var(--mu);margin-right:auto}
 .hl-qz .hl-src{flex-basis:100%;margin:0}
+.hl-toast[hidden]{display:none!important}
