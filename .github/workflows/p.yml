@@ -1,16 +1,9 @@
 name: zz probe
 on: push
-permissions:
-  contents: write
 jobs:
   p:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
       - run: |
-          curl -s "https://spothole.app/api/v1/spots?limit=1000&max_age=3600" -o hole.json
-          curl -s "https://api.pota.app/spot/activator" -o pota.json
-          curl -s "https://api2.sota.org.uk/api/spots/50/all" -o sota.json
-          curl -s "https://api.pota.app/programs" -o programs.json
-          curl -s "https://api2.sota.org.uk/api/associations" -o assoc.json
-          git config user.name x; git config user.email x@x; git add *.json; git commit -qm d; git push
+          curl -s -D /tmp/h -o /tmp/b https://pota.app/; echo "::notice title=headers::$(tr -d '\r' < /tmp/h | grep -i 'content-security\|x-frame\|server' | tr '\n' ' ')"
+          echo "::notice title=meta csp::$(grep -io '<meta[^>]*content-security[^>]*>' /tmp/b | head -2)"
