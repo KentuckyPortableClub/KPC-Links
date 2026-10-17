@@ -5,10 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          for c in 5 100 1000 all; do curl -s -o /tmp/b -w "%{http_code} %{time_total}" "https://api.pota.app/park/leaderboard/US-1277?count=$c" > /tmp/h; python3 -c "
-          import json;d=json.load(open('/tmp/b'));print('::notice title=count $c::'+open('/tmp/h').read()+' '+str({k:len(v) for k,v in d.items()}))"; done
-          curl -s -o /tmp/b -w "%{http_code} %{time_total}" "https://api.pota.app/location/parks/US-KY" > /tmp/h; python3 -c "
-          import json;d=json.load(open('/tmp/b'));print('::notice title=locparks::'+open('/tmp/h').read()+' n='+str(len(d))+' keys='+str(list(d[0].keys())))"
-          curl -s -D - -o /dev/null -H 'Origin: https://kentuckyportableclub.github.io' https://api.pota.app/location/parks/US-KY | tr -d '\r' | grep -i 'access-control' | sed 's/^/::notice title=cors::/'
-          curl -s "https://spothole.app/api/v1/spots?limit=400&max_age=3600" -o /tmp/s; python3 -c "
-          import json,collections;d=json.load(open('/tmp/s'));d=d if isinstance(d,list) else d.get('spots',[]);print('::notice title=hole::'+str(collections.Counter((x.get('sig') or '-')+'/'+(x.get('source') or '-') for x in d).most_common(20)));print('::notice title=holekeys::'+str(sorted(d[0].keys())))"
+          curl -s https://api.pota.app/programs -o /tmp/p; python3 -c "
+          import json;d=json.load(open('/tmp/p'));print('::notice title=programs::'+str(len(d))+' '+json.dumps(d[:3])[:600])"
+          curl -s -D /tmp/h -o /dev/null -H 'Origin: https://x.github.io' https://api.pota.app/programs; grep -i access-control /tmp/h | sed 's/^/::notice title=cors::/'
+          curl -s https://api2.sota.org.uk/api/associations -o /tmp/s; python3 -c "
+          import json;d=json.load(open('/tmp/s'));print('::notice title=sota::'+str(len(d))+' '+json.dumps(d[:2])[:700])"
+          curl -s -D /tmp/h2 -o /dev/null -H 'Origin: https://x.github.io' https://api2.sota.org.uk/api/associations; grep -i access-control /tmp/h2 | sed 's/^/::notice title=sotacors::/'
+          curl -s https://api.pota.app/spot/activator -o /tmp/a; python3 -c "
+          import json;d=json.load(open('/tmp/a'));print('::notice title=spot::'+json.dumps(d[0])[:600])"
