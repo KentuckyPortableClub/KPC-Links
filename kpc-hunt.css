@@ -954,3 +954,7 @@ main#hl[data-desk="1"] .hl-split>.hl-spsec.hl-popped>.hl-in{flex:1 1 auto;min-he
 /* ⭐ VIP (Brandon Oct 17) */
 .hl-vipb{display:inline-flex;align-items:center;font:900 12px Arial;letter-spacing:2px;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg,#f6d58a,#d5a63a);color:#2a1a05;box-shadow:0 0 14px rgba(246,213,138,.45)}
 main#hl[data-public="1"] .hl-vipb{display:none}
+
+/* 📡 FT8 helper link on digital spots */
+main#hl a.ft8{display:inline-flex;align-items:center;gap:4px;font:900 11px Arial;letter-spacing:.6px;padding:5px 10px;border-radius:999px;background:rgba(80,170,255,.16);border:1px solid rgba(120,190,255,.6);color:#cfe8ff;text-decoration:none;margin-right:6px}
+main#hl a.ft8:hover{background:rgba(80,170,255,.3)}

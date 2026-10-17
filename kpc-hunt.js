@@ -191,6 +191,9 @@
   const isQrt = s => s.qrt || /QRT|\bhunting\b/i.test(s.com || '');
   const passPBM = s => F.p.includes(s.p) && !F.xc.includes(s.cty) && (!F.qrt || !isQrt(s)) && (!F.bands.length || F.bands.includes(bandOf(s.khz))) && (!F.modes.length || F.modes.includes(modeOf(s.mode)));
 
+  /* 📡 digital spots (FT8/FT4…) open the FT8 helper in a new tab (Brandon Oct 17): call to copy, dial frequency, audio
+     offset, WSJT-X steps, where they're being heard (PSK Reporter). A web page can't drive WSJT-X itself. */
+  const ft8Link = (s, sm) => modeOf(s.mode) !== 'DIGITAL' ? '' : `<a class="ft8" target="_blank" rel="noopener" href="kpc-ft8.html?call=${encodeURIComponent(base(s.call))}&khz=${encodeURIComponent(s.khz)}&mode=${encodeURIComponent(s.mode || '')}&ref=${encodeURIComponent(s.ref || '')}&name=${encodeURIComponent(s.name || '')}" title="Open the FT8 helper in a new tab: copy the call, dial frequency, where they're heard">📡${sm ? '' : ' FT8 HELPER'}</a>`;
   /* ---------------- ticker + alerts ---------------- */
   let AC = null;
   function chime() {
@@ -467,7 +470,7 @@
  ${s.com ? `<div class="hs-com">“${esc(String(s.com).slice(0, 140))}”</div>` : ''}
  ${awardChips(s) ? `<div class="hs-aw">${awardChips(s)}</div>` : ''}
  <div class="hs-b">${b.join('')}</div>
- <div class="hs-a">${!PUB && s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(k)}" title="Spot them again on POTA, with you as the spotter">📣 RESPOT</button>` : ''}<button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call until 0000 UTC">🙈 HIDE ${esc(base(s.call))} TODAY</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" data-wc="${esc(s.call)}">${w ? '✓ HUNTED BEFORE' : '＋ I WORKED IT'}</button><a href="${pageOf(s)}" target="_blank" rel="noopener">${s.p === 'SOTA' ? 'SOTLAS' : s.p} PAGE ↗</a>${s.p === 'POTA' && s.us ? `<a href="kpc-planner-us.html?q=${encodeURIComponent(s.ref)}">ON THE MAP</a>` : ''}<a href="kpc-park-info.html?ref=${encodeURIComponent(s.ref)}">PARK INFO</a>` : `<a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">QRZ ↗</a><a href="https://www.dxsummit.fi/#/?dx_calls=${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">DX SUMMIT ↗</a>`}</div>
+ <div class="hs-a">${ft8Link(s)}${!PUB && s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(k)}" title="Spot them again on POTA, with you as the spotter">📣 RESPOT</button>` : ''}<button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call until 0000 UTC">🙈 HIDE ${esc(base(s.call))} TODAY</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" data-wc="${esc(s.call)}">${w ? '✓ HUNTED BEFORE' : '＋ I WORKED IT'}</button><a href="${pageOf(s)}" target="_blank" rel="noopener">${s.p === 'SOTA' ? 'SOTLAS' : s.p} PAGE ↗</a>${s.p === 'POTA' && s.us ? `<a href="kpc-planner-us.html?q=${encodeURIComponent(s.ref)}">ON THE MAP</a>` : ''}<a href="kpc-park-info.html?ref=${encodeURIComponent(s.ref)}">PARK INFO</a>` : `<a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">QRZ ↗</a><a href="https://www.dxsummit.fi/#/?dx_calls=${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">DX SUMMIT ↗</a>`}</div>
 </article>`;
   }
   function row(s) {
@@ -476,7 +479,7 @@
     const rare = s.acts === 0 ? '<span class="hb atno">1ST</span>' : s.acts != null && s.acts <= 5 ? `<span class="hb rare">RARE ${s.acts}</span>` : '';
     return `<tr class="hr${n ? ' new' : ''}${w ? ' worked' : ''}${selCls(s)}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}">${isFav(s) ? '★' : '☆'}</button>${PUB ? esc(s.call) : `<button type="button" class="hs-cb" data-tolog="${esc(keyOf(s))}" title="Send ${esc(s.call)} to my log">${esc(s.call)}</button>`}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
 <td><span class="pg">${PL[s.p] || s.p}</span> ${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener" class="r">${esc(s.ref)}</a> ` : ''}${esc(s.name || '')} ${tag}${rare} ${awardChips(s, true)}</td><td class="hide-s">${esc(s.st || '')}</td><td class="hide-s">${d != null ? Math.round(d) : ''}</td>
-<td class="a">${!PUB && s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(keyOf(s))}" title="Respot them on POTA">📣</button>` : ''}<button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call today">🙈</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" title="${w ? 'You have hunted this park before. Tap to take it off your hunted list.' : 'Mark this park as hunted'}">✓</button>` : ''}</td></tr>`;
+<td class="a">${ft8Link(s, 1)}${!PUB && s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(keyOf(s))}" title="Respot them on POTA">📣</button>` : ''}<button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call today">🙈</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" title="${w ? 'You have hunted this park before. Tap to take it off your hunted list.' : 'Mark this park as hunted'}">✓</button>` : ''}</td></tr>`;
   }
   function draw() {
     const q = F.q.trim().toUpperCase();
