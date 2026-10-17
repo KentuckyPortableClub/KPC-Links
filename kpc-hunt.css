@@ -784,3 +784,11 @@ html.hl-kb .hl-toast{bottom:auto!important;top:8px!important}
 .hl-bell.hl-amb{white-space:nowrap}
 .hl-bell.hl-amb[aria-pressed=true]{background:rgba(255,140,40,.25);color:#ffd27a}
 @media(max-width:600px){.hl-bell.hl-amb{font-size:0;padding:0 9px}.hl-bell.hl-amb::before{content:'🪵';font-size:16px}}
+/* Kentucky hunting season badge in the hero (Oct 17) */
+.hl-season{display:inline-flex;align-items:center;gap:12px;margin:14px 0 4px;padding:9px 16px 9px 12px;border-radius:14px;background:rgba(10,6,2,.78);border:2px solid #ff7a1a;color:#ffd2a8;text-decoration:none;max-width:640px;box-shadow:0 0 18px rgba(255,122,26,.35)}
+.hl-season i{flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:54px;height:40px;border-radius:10px;background:#ff7a1a;color:#2a1205;font-style:normal}
+.hl-season i .em{font-size:26px;line-height:1}
+.hl-season b{display:block;font:900 13px Arial;letter-spacing:1.2px;color:#fff}
+.hl-season small{display:block;font:12px Arial;color:#ffd2a8;margin-top:2px}
+.hl-season:hover{border-color:#ffa04d}
+@media(max-width:600px){.hl-season{gap:9px;padding:7px 10px}.hl-season i{width:44px;height:34px}.hl-season b{font-size:11.5px}.hl-season small{font-size:11px}}

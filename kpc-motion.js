@@ -13,7 +13,7 @@
 @media screen and (prefers-reduced-motion:no-preference){
  .kpm-drift{position:absolute;inset:0;z-index:0;pointer-events:none;background:inherit;animation:kpmDrift 46s ease-in-out infinite alternate;transform-origin:60% 45%;will-change:transform}
  .kpm-host{overflow:hidden!important;background-image:none!important}
- .kpm-host>*:not(.kpm-drift):not(.kpm-sparks){position:relative;z-index:1}
+ .kpm-host>*:not(.kpm-drift):not(.kpm-sparks){position:relative;z-index:2}
  .kpm-host>.kpc-who,.kpm-host>.gb-who{position:absolute!important;z-index:3}
  .kpm-host.kpm-b::before{animation:kpmDrift 46s ease-in-out infinite alternate;transform-origin:70% 45%}
  @keyframes kpmDrift{0%{transform:scale(1.02) translate(0,0)}100%{transform:scale(1.09) translate(-1.6%,-1%)}}
