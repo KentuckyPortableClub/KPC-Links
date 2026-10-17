@@ -645,3 +645,17 @@ main#lg #pList:has(.lg-st){background:rgba(14,10,6,.9)!important;border-radius:1
 main#lg .lg-qzm .lg-btn.on{background:linear-gradient(90deg,#f6d58a,#d5a63a);color:#2a1a05;border-color:#d5a63a}
 main#lg .dk-qz{padding:2px 8px;border-radius:999px;border:1px solid rgba(240,201,107,.55);background:rgba(0,0,0,.35);color:#9ff0b8;font:800 11px Arial;cursor:pointer;white-space:nowrap}
 main#lg .dk-qz.bad{color:#ffb4a8;border-color:#ff8f7a}
+/* Oct 17 (Brandon: logger too big on a laptop): short computer screens get a tighter log head and entry box so everything fits on one screen */
+@media (min-width:1100px) and (max-height:820px){
+ main#lg .lg-logc h2{margin:2px 0 4px;font-size:15px}
+ main#lg .lg-logc .lg-row,main#lg .lg-logc .lg-mini{margin:4px 0}
+ main#lg .lg-dock{padding-top:8px!important;padding-bottom:8px!important}
+ main#lg .lg-radio{gap:6px!important;padding:5px!important;margin-bottom:6px!important}
+ main#lg .lg-radio label{padding:2px 8px 1px!important;font-size:11px!important}
+ main#lg .lg-radio input,main#lg .lg-radio select{font-size:15px!important;padding:1px 0!important}
+ main#lg .lg-dchips{gap:6px!important;margin-bottom:4px!important;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+ main#lg .lg-dchips .dc{padding:6px 10px!important;font-size:13px!important;white-space:nowrap}
+ main#lg .lg-dstat{margin:2px 0!important;font-size:12.5px}
+ main#lg .lg-dock input{font-size:17px}
+ main#lg .lg-dock label{padding-top:2px!important;padding-bottom:2px!important}
+}

@@ -211,7 +211,7 @@
   }
   function wEnd() {
     W.done = true; const n = W.got.reduce((a, b) => a + b, 0); if (W.tx || W.c === wTxOn || n < 70) { if (MODE === 'WSPR') $('dgWSt').textContent = (W.tx || W.c === wTxOn) ? 'Sent my beacon this cycle.' : 'Listening… (first full cycle starts on the next even minute)'; return; }
-    const c = W.c, audio = W.buf; $('dgWSt').textContent = '🔎 Decoding ' + H.utc(c).replace(/(\d\d)(\d\d)/, '$1:$2') + 'z…';
+    const c = W.c, audio = W.buf; if (window.__wsprKeep) window.__wsprLast = { c, n, audio: audio.slice() }; $('dgWSt').textContent = '🔎 Decoding ' + H.utc(c).replace(/(\d\d)(\d\d)/, '$1:$2') + 'z…';
     const done = res => { wShow(c, res); };
     try { if (!WK) { WK = new Worker('kpc-digi.js?v=20261018b'); WK.onmessage = e => { const m = e.data; if (m && m.cmd === 'wspr' && WK.cb && WK.cb[m.id]) { WK.cb[m.id](m.res || []); delete WK.cb[m.id]; } }; WK.cb = {}; }
       const id = ++wid; WK.cb[id] = done; WK.postMessage({ cmd: 'wspr', id, audio, opt: { ms: 60000 } }, [audio.buffer]); }
