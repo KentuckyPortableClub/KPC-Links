@@ -74,6 +74,7 @@ FED = r'forest service|usda|national park service|\bnps\b|fish (and|&) wildlife|
 AGW = r'department|dept|division|office|commission|conservation|natural resources|\bdnr\b|\bdcr\b|parks|forestry|transportation|\bdot\b|wildlife|environment|gis|geographic|state of|commonwealth'
 ORG = {}
 STS = {}
+NAMES = {}
 ALOG = []  # Oct 18: what the agency search looked at (written to state-report.json 'agency')
 def org_name(oid):
     if oid not in ORG:
@@ -95,10 +96,11 @@ def official_org(org, st):
 NPS_TRAILS = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Public_Trails/FeatureServer/0'
 def lyr_lines(url, where, la, lo, d=1.0, fld=None, want=''):
     out, off = [], 0
+    NAMES.clear()
     nowater = not re.search(r'water|river|canoe|paddl|blueway', want or '', re.I)
     for _ in range(6):
         q = {'where': where, 'geometry': f'{lo-d},{la-d},{lo+d},{la+d}', 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-             'outFields': fld or '', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 1000}
+             'outFields': '*' if fld else '', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 1000}
         j = get(url + '/query?' + urllib.parse.urlencode(q), t=90)
         if 'error' in j: raise Exception(str(j['error'])[:150])
         fs = j.get('features', [])
@@ -107,7 +109,9 @@ def lyr_lines(url, where, la, lo, d=1.0, fld=None, want=''):
             if nowater and re.search(r'water ?trail|blueway|paddl|canoe', nm, re.I) and not re.search(r'water ?trail|blueway', want or '', re.I): continue
             # a land trail's piece must be named like a trail (the river 'Greenbrier River' is not the 'Greenbrier River Trail')
             if nowater and nm and re.search(r'\btrail\b', want or '', re.I) and not re.search(r'trail|path|greenway|rail|bikeway|route|\btr\b', nm, re.I): continue
-            out += [[[round(x, 5), round(y, 5)] for x, y in p[:]] for p in (f.get('geometry') or {}).get('paths', [])]
+            ps = [[[round(x, 5), round(y, 5)] for x, y in p[:]] for p in (f.get('geometry') or {}).get('paths', [])]
+            out += ps; NAMES.setdefault(nm, [0, '']); NAMES[nm][0] += sum(seglen(p) for p in ps)
+            if not NAMES[nm][1]: NAMES[nm][1] = ' '.join(f'{k}={v}' for k, v in (f.get('attributes') or {}).items() if isinstance(v, str) and v and k != fld)[:160]
         if not j.get('exceededTransferLimit') or not fs: break
         off += len(fs)
     return out
@@ -149,7 +153,7 @@ def agency(name, st, la, lo):
                         except Exception: continue
                         if L:
                             nk = min(km(la, lo, p[1], p[0]) for l in L for p in l)
-                            ALOG.append([name, f'{len(L)} lines {nk:.0f} km from pin', org[:60], lu[-90:] + ' ' + fld])
+                            ALOG.append([name, f'{len(L)} lines {nk:.0f} km from pin', org[:60], lu[-90:] + ' ' + fld, {k: [round(v[0]), v[1]] for k, v in list(NAMES.items())[:8]}])
                             if nk <= CHECK_KM: return L, org
         except Exception as e:
             ALOG.append([name, 'error ' + str(e)[:80], org[:60], u[-90:]])
