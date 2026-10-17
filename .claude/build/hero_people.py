@@ -14,7 +14,22 @@ P={
  'kpc-campgrounds.html':('hero-campsite','center 58%','center 60%', None),
  'kpc-kids.html':('hero-kids','center 45%','70% 40%', None),
  'kpc-park-notes.html':('hero-journal','center 55%','center 62%', None),
+ # Oct 17 2026: Brandon's 20 field pictures replace the generic toolbox / parks heroes
 }
+for _f in ['antennas.html','kpc-antenna-safety.html','kpc-doublets.html','kpc-first-dipole.html','kpc-linked-dipole.html','kpc-loaded-verticals.html',
+           'kpc-loops.html','kpc-receive-antennas.html','kpc-rf-exposure.html','kpc-power-db.html']:
+    P[_f]=('hero-dipole','center 55%','center 55%',None)
+for _f in ['kpc-kids-games.html','kpc-kids-radio-waves.html','kpc-kids-radio.html','kpc-kids-states.html','kpc-kids-why-ham.html']:
+    P[_f]=('hero-kids','center 45%','70% 40%',None)
+P.update({
+ 'kpc-new-to-pota.html':('hero-statepark','center 55%','center 55%',None),
+ 'kpc-new-to-sota.html':('hero-summit','center 55%','center 55%',None),
+ 'kpc-new-to-wwff.html':('hero-wildlife','center 55%','center 55%',None),
+ 'kpc-rules-you-should-know.html':('hero-boundary','center 40%','center 40%',None),
+ 'kpc-privacy.html':('hero-aurora-camp','center 60%','center 60%',None),
+ 'photos.html':('hero-overlook-cam','center 50%','center 50%',None),
+ 'kpc-ssb.html':('hero-tailgate','center 60%','center 60%',None),
+})
 for f,(img,pd,pm,who) in P.items():
     s=open(f,encoding='utf-8').read()
     s=re.sub(r'<style id="kpc-hero-pic">.*?</style>\n?','',s,flags=re.S)

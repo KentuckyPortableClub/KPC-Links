@@ -11,7 +11,7 @@
   var mq = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
   function pref() { try { return localStorage.getItem(KEY) || 'auto'; } catch (e) { return 'auto'; } }
   /* page LOOKS (kpc-looks.js, Oct 17 2026): a picked look (Cabin Lodge, Night Sky, Campfire, Dark) on this page always uses the dark colours */
-  try { var LK = localStorage.getItem('kpcLook:' + (location.pathname.split('/').pop() || 'index.html')); if (/^(lodge|night|camp|dark)$/.test(LK || '')) root.setAttribute('data-look', LK); } catch (e) {}
+  try { var LK = localStorage.getItem('kpcLook:' + (location.pathname.split('/').pop() || 'index.html')); if (/^(lodge|night|camp|aurora|overlook|dark)$/.test(LK || '')) root.setAttribute('data-look', LK); } catch (e) {}
   function wantDark() { if (root.hasAttribute('data-look')) return true; var p = pref(); return p === 'dark' || (p === 'auto' && mq && mq.matches); }
   var noDark = /[?&](print|pdf)=/.test(location.search) || root.hasAttribute('data-no-dark');
   // paint the page dark straight away (no white flash), then fix colours once it has loaded
