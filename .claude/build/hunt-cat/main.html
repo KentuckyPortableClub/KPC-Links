@@ -1,0 +1,117 @@
+<link rel="stylesheet" href="kpc-hunt.css?v=20261017p">
+@@HEADER@@
+<main id="hl" data-keep-light data-theme="lodge" data-page="cat">
+<nav class="hl-ptabs" aria-label="Hunters Lounge pages"><a href="kpc-hunt.html">🎯 SPOTS &amp; LOG</a><a href="kpc-hunt-need.html">📋 PARKS I NEED</a><a href="kpc-top50.html">🏆 TOP 50</a><a href="kpc-hunt-cat.html" aria-current="page">📻 CAT &amp; QRZ</a></nav>
+<style id="cat-look">
+main#hl[data-page=cat]{max-width:980px;margin:0 auto;padding:0 12px 40px}
+main#hl .ct-head{margin:6px 0 14px;padding:22px 20px;border-radius:14px;border:1px solid rgba(240,201,107,.6);box-shadow:0 0 22px rgba(240,201,107,.18);background:linear-gradient(90deg,rgba(18,10,4,.92),rgba(18,10,4,.55)),url(hero-lodge.jpg) center/cover;color:#f6e9d6}
+main#hl .ct-head h1{margin:0 0 6px;font:900 clamp(22px,4vw,32px)/1.15 Georgia,serif;color:#ffcf7a}
+main#hl .ct-head p{margin:0;font:15px/1.5 Arial;color:#e9dcc6;max-width:720px}
+main#hl .ct-card{margin:0 0 16px;padding:18px;border-radius:14px;background:rgba(30,18,10,.9);border:1px solid rgba(240,201,107,.5);box-shadow:0 0 18px rgba(240,201,107,.12);color:#f3e7d3;font:15px/1.5 Arial}
+main#hl .ct-card h2{margin:0 0 10px;font:900 13px Arial;letter-spacing:1.6px;color:#ffcf7a;text-transform:uppercase}
+main#hl .ct-row{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-end;margin:10px 0}
+main#hl .ct-row label{display:flex;flex-direction:column;gap:4px;font:800 10px Arial;letter-spacing:1.2px;color:#c6a988;text-transform:uppercase}
+main#hl .ct-row select,main#hl .ct-row input[type=text],main#hl .ct-row input[type=password]{min-width:150px;padding:9px 10px;border-radius:8px;border:1px solid rgba(240,201,107,.45);background:#120a05;color:#fff;font:15px ui-monospace,Menlo,monospace}
+main#hl .ct-sw{display:flex;gap:10px;align-items:center;margin:8px 0;font:700 15px Arial;cursor:pointer}
+main#hl .ct-sw input{width:22px;height:22px;accent-color:#e3a24a}
+main#hl .ct-btn{display:inline-flex;align-items:center;gap:6px;padding:11px 16px;border-radius:999px;border:0;cursor:pointer;font:900 12px Arial;letter-spacing:1.1px;background:linear-gradient(180deg,#f6d58a,#d5a63a);color:#2a1a05;box-shadow:0 0 14px rgba(240,201,107,.3)}
+main#hl .ct-btn.ghost{background:transparent;color:#ffcf7a;border:1px solid rgba(240,201,107,.6);box-shadow:none}
+main#hl .ct-st{margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(0,0,0,.35);border-left:4px solid #c6a988;font:14px/1.4 Arial;min-height:20px}
+main#hl .ct-st.ok{border-left-color:#5fd27a;color:#d6ffde}main#hl .ct-st.bad{border-left-color:#ff7b5c;color:#ffd9cf}
+main#hl .ct-help{margin:12px 0 0;padding-left:20px;color:#e3d4bb;font-size:14px}main#hl .ct-help li{margin:4px 0}
+main#hl .ct-note{font-size:13px;color:#c6a988}
+main#hl .ct-adv{margin-top:8px}main#hl .ct-adv summary{cursor:pointer;font:800 12px Arial;letter-spacing:1px;color:#ffcf7a}
+main#hl .ct-card a{color:#ffcf7a}
+@media(max-width:600px){main#hl .ct-row select,main#hl .ct-row input{min-width:0;width:100%}main#hl .ct-row label{flex:1 1 100%}}
+</style>
+<header class="ct-head"><h1>📻 Radio Control &amp; QRZ</h1><p>Turn these on once and the Hunters Lounge does the rest: click a spot and your radio jumps to that frequency and mode while the log fills in, and every contact you log can go straight to your QRZ logbook.</p></header>
+
+<section class="ct-card" id="ctCat">
+ <h2>1 · Radio control (CAT)</h2>
+ <div id="ctNo" class="ct-st bad" hidden>This browser can't talk to a radio. Use <b>Chrome or Edge on a computer</b> (Windows, Mac or Linux) with the radio plugged in by USB. Phones and iPads can't do this from a web page.</div>
+ <label class="ct-sw"><input type="checkbox" id="ctOn"> Tune my radio when I click a spot in the Hunters Lounge</label>
+ <div class="ct-row">
+  <label>MY RADIO<select id="ctRadio">
+   <option value="">Pick your radio…</option>
+   <optgroup label="Icom (CI-V)"><option value="ic705">Icom IC-705</option><option value="ic7300">Icom IC-7300</option><option value="ic7610">Icom IC-7610</option><option value="ic9700">Icom IC-9700</option><option value="ic7100">Icom IC-7100</option><option value="ic718">Icom IC-718</option></optgroup>
+   <optgroup label="Xiegu (CI-V)"><option value="g90">Xiegu G90</option><option value="x6100">Xiegu X6100</option></optgroup>
+   <optgroup label="Yaesu"><option value="ft991">Yaesu FT-991A</option><option value="ft891">Yaesu FT-891</option><option value="ft710">Yaesu FT-710</option><option value="ftdx10">Yaesu FTDX10 / FTDX101</option><option value="ft817">Yaesu FT-817 / 818</option><option value="ft857">Yaesu FT-857 / 897</option></optgroup>
+   <optgroup label="Elecraft"><option value="kx2">Elecraft KX2</option><option value="kx3">Elecraft KX3</option><option value="k3">Elecraft K3 / K3S / K4</option></optgroup>
+   <optgroup label="Kenwood"><option value="ts590">Kenwood TS-590 / 890 / 990</option><option value="ts480">Kenwood TS-480</option></optgroup>
+   <optgroup label="Others"><option value="qmx">QRP Labs QMX / QDX</option><option value="trusdx">(tr)uSDX</option><option value="tx500">Lab599 TX-500</option><option value="other">Something else (pick the settings below)</option></optgroup>
+  </select></label>
+  <button type="button" class="ct-btn" id="ctConnect">🔌 CONNECT MY RADIO</button>
+  <button type="button" class="ct-btn ghost" id="ctRead">🔎 TEST: READ MY DIAL</button>
+  <button type="button" class="ct-btn ghost" id="ctDrop" hidden>✕ DISCONNECT</button>
+ </div>
+ <label class="ct-sw"><input type="checkbox" id="ctFollow"> When I turn my radio's dial, update the log's frequency and mode too</label>
+ <details class="ct-adv" id="ctAdv"><summary>SETTINGS FOR MY RADIO (filled in when you pick one)</summary>
+  <div class="ct-row">
+   <label>TALKS LIKE<select id="ctProto"><option value="icom">Icom CI-V (Icom, Xiegu)</option><option value="kenwood">Kenwood / Elecraft / QRP Labs</option><option value="yaesu">Yaesu (newer: FT-991A, 891, 710, FTDX)</option><option value="yaesuold">Yaesu (older: FT-817 / 857 / 897)</option></select></label>
+   <label>SPEED (BAUD)<select id="ctBaud"><option>4800</option><option>9600</option><option>19200</option><option>38400</option><option>57600</option><option>115200</option></select></label>
+   <label>CI-V ADDRESS (ICOM)<input type="text" id="ctCiv" maxlength="2" placeholder="94"></label>
+   <label>DIGITAL SPOTS (FT8…)<select id="ctData"><option value="usb">Plain USB</option><option value="data">Radio's DATA mode</option></select></label>
+  </div>
+  <p class="ct-note">The speed must match your radio's menu (Icom: CI-V Baud Rate · Yaesu: CAT RATE · Kenwood: COM speed). Icom: the CI-V address must match the radio's CI-V Address menu.</p>
+ </details>
+ <div class="ct-st" id="ctSt">Not connected yet.</div>
+ <ul class="ct-help">
+  <li><b>Plug the radio into the computer</b> with its USB cable. Some radios need a driver first (Icom IC-7300 / 705 and many Yaesus: the Silicon Labs CP210x driver from the radio maker's site).</li>
+  <li><b>Close other radio programs</b> (WSJT-X, flrig, Ham Radio Deluxe, the radio's own app). Only one program can use the radio's port at a time.</li>
+  <li>Press <b>CONNECT MY RADIO</b> and pick the radio's port in the box Chrome shows. Yaesu radios show two ports: pick the <b>Enhanced</b> (or first) one.</li>
+  <li>Press <b>TEST: READ MY DIAL</b>. If it shows your frequency, you're set: go to the Hunters Lounge and click a spot.</li>
+ </ul>
+ <p class="ct-note">⚠ Clicking a spot only changes your radio's frequency and mode. It never transmits. Check the frequency is inside your license privileges before you call.</p>
+</section>
+
+<section class="ct-card" id="ctQrz">
+ <h2>2 · Send contacts to QRZ as I log them</h2>
+ <label class="ct-sw"><input type="checkbox" id="qzOn"> Send each contact to my QRZ logbook when I press Enter in the Hunters Lounge</label>
+ <div class="ct-row">
+  <label>MY QRZ LOGBOOK API KEY<input type="password" id="qzKey" autocomplete="off" placeholder="XXXX-XXXX-XXXX-XXXX"></label>
+  <button type="button" class="ct-btn" id="qzSave">💾 SAVE</button>
+  <button type="button" class="ct-btn ghost" id="qzShow">👁 SHOW</button>
+  <button type="button" class="ct-btn ghost" id="qzForget">🗑 FORGET MY KEY</button>
+ </div>
+ <div class="ct-st" id="qzSt">No key saved.</div>
+ <ul class="ct-help">
+  <li><b>Where's my key?</b> On qrz.com: <b>Logbook</b> → <b>Settings</b> (the gear) → <b>API Access Key</b>. Sending to the logbook this way needs a QRZ <b>XML Logbook Data</b> subscription (QRZ's rule).</li>
+  <li>Your key is saved <b>only in this browser on this device</b>. It goes to qrz.com and nowhere else: KPC never sees it.</li>
+  <li>QRZ doesn't let a web page read its answer back, so the Lounge can't always tell you QRZ took it. <b>Log one contact, then look in your QRZ logbook</b> to be sure. Your Lounge log keeps every contact either way, and DOWNLOAD FOR QRZ still works.</li>
+ </ul>
+</section>
+</main>
+<script src="kpc-cat.js?v=20261017a"></script>
+<script id="cat-page">
+(function(){
+ const $=id=>document.getElementById(id);
+ const PRE={ic705:['icom',115200,'A4'],ic7300:['icom',115200,'94'],ic7610:['icom',115200,'98'],ic9700:['icom',115200,'A2'],ic7100:['icom',19200,'88'],ic718:['icom',9600,'5E'],
+  g90:['icom',19200,'70','xiegu'],x6100:['icom',19200,'70','xiegu'],ft991:['yaesu',38400],ft891:['yaesu',38400],ft710:['yaesu',38400],ftdx10:['yaesu',38400],ft817:['yaesuold',9600],ft857:['yaesuold',9600],
+  kx2:['kenwood',38400,'','elecraft'],kx3:['kenwood',38400,'','elecraft'],k3:['kenwood',38400,'','elecraft'],ts590:['kenwood',115200],ts480:['kenwood',57600],qmx:['kenwood',115200],trusdx:['kenwood',115200],tx500:['kenwood',9600],other:null};
+ const st=(t,c)=>{const e=$('ctSt');e.innerHTML=t;e.className='ct-st'+(c===true?' ok':c===false?' bad':'')};
+ function show(){const S=KPCCat.get();$('ctOn').checked=S.on;$('ctFollow').checked=S.follow;$('ctRadio').value=S.radio||'';$('ctProto').value=S.proto;$('ctBaud').value=String(S.baud);$('ctCiv').value=S.civ||'';$('ctData').value=S.data;
+  $('ctDrop').hidden=!KPCCat.connected();}
+ function save(){KPCCat.set({on:$('ctOn').checked,follow:$('ctFollow').checked,radio:$('ctRadio').value,proto:$('ctProto').value,baud:+$('ctBaud').value,civ:$('ctCiv').value.trim().toUpperCase()||'94',data:$('ctData').value})}
+ if(!KPCCat.supported()){$('ctNo').hidden=false;['ctConnect','ctRead'].forEach(i=>$(i).disabled=true)}
+ $('ctRadio').onchange=()=>{const p=PRE[$('ctRadio').value];if(p){$('ctProto').value=p[0];$('ctBaud').value=String(p[1]);$('ctCiv').value=p[2]||'';KPCCat.set({model:p[3]||''})}else $('ctAdv').open=true;save();
+  if(p)st('Settings filled in for your radio. Now press <b>CONNECT MY RADIO</b>.'+(p[0]==='yaesu'?' Set the radio\'s <b>CAT RATE</b> menu to '+p[1]+'.':p[0]==='icom'?' Check the radio\'s <b>CI-V Address</b> is '+p[2]+(p[3]==='xiegu'?' (Xiegu: see your manual, it may differ)':'')+'.':''))};
+ ['ctOn','ctFollow','ctProto','ctBaud','ctCiv','ctData'].forEach(i=>$(i).addEventListener('change',()=>{save();if(i==='ctOn'&&$('ctOn').checked&&!KPCCat.connected())st('On. Now press <b>CONNECT MY RADIO</b>.')}));
+ KPCCat.onStatus((t,ok)=>{st(t,ok);show()});
+ $('ctConnect').onclick=async()=>{save();if(!$('ctRadio').value&&!$('ctAdv').open){st('Pick your radio first.',false);return}
+  if(await KPCCat.connect(true)){if(!$('ctOn').checked){$('ctOn').checked=true;save()}st('✅ Radio connected. Press <b>TEST: READ MY DIAL</b> to check it.',true)}show()};
+ $('ctDrop').onclick=async()=>{await KPCCat.disconnect();show()};
+ $('ctRead').onclick=async()=>{save();if(!KPCCat.connected()&&!await KPCCat.connect(true))return;st('Asking the radio…');const r=await KPCCat.read();
+  if(r&&r.khz)st(`✅ Your radio is on <b>${(r.khz/1000).toFixed(4)} MHz</b>${r.mode?' '+r.mode:''}. You're set: open the Hunters Lounge and click a spot.`,true);
+  else st('The radio didn\'t answer. Check the speed (baud) and, for Icom, the CI-V address in SETTINGS FOR MY RADIO, and that no other program has the radio open.',false)};
+ show(); if(KPCCat.get().on&&KPCCat.supported())KPCCat.connect(false).then(ok=>{if(ok)st('✅ Radio connected.',true);show()});
+ /* QRZ */
+ const qst=(t,c)=>{const e=$('qzSt');e.innerHTML=t;e.className='ct-st'+(c===true?' ok':c===false?' bad':'')};
+ function qshow(){const Z=KPCQrz.get();$('qzOn').checked=Z.on;$('qzKey').value=Z.key||'';qst(Z.key?(Z.on?'✅ Key saved. Contacts you log in the Hunters Lounge go to QRZ.':'Key saved. Tick the box above to send contacts.'):'No key saved.',Z.key&&Z.on?true:null)}
+ $('qzSave').onclick=()=>{const k=$('qzKey').value.trim();if(!/^[A-Z0-9-]{8,}$/i.test(k)){qst('That doesn\'t look like a QRZ logbook key (letters and numbers like XXXX-XXXX-XXXX-XXXX).',false);return}KPCQrz.set({key:k,on:true});qshow()};
+ $('qzOn').onchange=()=>{if($('qzOn').checked&&!KPCQrz.get().key){qst('Paste your key and press SAVE first.',false);$('qzOn').checked=false;return}KPCQrz.set({on:$('qzOn').checked});qshow()};
+ $('qzShow').onclick=()=>{const k=$('qzKey');k.type=k.type==='password'?'text':'password'};
+ $('qzForget').onclick=()=>{if(!confirm('Forget your QRZ key on this device?'))return;KPCQrz.set({key:'',on:false});qshow()};
+ qshow();
+})();
+</script>
+@@FOOTER@@

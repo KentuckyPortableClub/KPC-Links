@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261017o">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261017p">
 @@HEADER@@
 <main id="hl" data-keep-light data-theme="lodge">
-<nav class="hl-ptabs mem-only" aria-label="Hunters Lounge pages"><a href="kpc-hunt.html" data-pt="lounge">🎯 SPOTS &amp; LOG</a><a href="kpc-hunt-need.html" data-pt="need">📋 PARKS I NEED</a><a href="kpc-top50.html" data-pt="top50">🏆 TOP 50</a></nav>
+<nav class="hl-ptabs mem-only" aria-label="Hunters Lounge pages"><a href="kpc-hunt.html" data-pt="lounge">🎯 SPOTS &amp; LOG</a><a href="kpc-hunt-need.html" data-pt="need">📋 PARKS I NEED</a><a href="kpc-top50.html" data-pt="top50">🏆 TOP 50</a><a href="kpc-hunt-cat.html" data-pt="cat">📻 CAT &amp; QRZ</a></nav>
 <div id="hlApp">
 <div class="hl-far" id="hlFar" hidden><span class="hl-far-k">FAR AWAY NEW ONES</span><div class="hl-far-run"><div class="hl-far-track" id="hlFarT"></div></div></div>
 
@@ -24,7 +24,7 @@
  <div class="hl-tick-k"><span class="dot"></span>NEW TO YOU</div>
  <button type="button" class="hl-na" id="hlNa" aria-label="Map of new parks on the air (tap to enlarge)"><svg viewBox="0 0 480 305" id="hlNaSvg" aria-hidden="true"></svg><span class="hl-na-cap">Blinking green = new to you in your range · blue = new but far · grey = other spots · gold ring = home. Tap to close.</span></button>
  <div class="hl-tick-run"><div class="hl-tick-track" id="hlTickT"><span class="hl-wait">Waiting for a park that's new to you…</span></div></div>
- <button type="button" class="hl-bell" id="hlFlame" aria-pressed="true" title="What happens on screen when a new park comes on: flames, fireworks or nothing (tap to change)">🔥 FLAMES</button><button type="button" class="hl-bell" id="hlBell" aria-pressed="false" title="Alert me">🔕 ALERT OFF</button>
+ <button type="button" class="hl-bell" id="hlFlame" aria-pressed="true" title="What happens on screen when a new park comes on: flames, fireworks or nothing (tap to change)">🔥 FLAMES</button><button type="button" class="hl-bell" id="hlBell" aria-pressed="false" title="Alert me">🔕 ALERT OFF</button><button type="button" class="hl-bell" id="hlBan" aria-pressed="true" title="Turn the scrolling banners (new parks + conditions) on or off">🎞<span class="t"> BANNERS ON</span></button>
 </section>
 <div class="hl-cx" id="hlCx" aria-label="Solar, weather and band conditions"><span class="hl-cx-k" id="hlCxK">📡 CONDITIONS</span><div class="hl-cx-run"><div class="hl-cx-track" id="hlCxT"><span>Checking the sun, your weather and WSPR reports near you…</span></div></div><button type="button" class="hl-cx-b" id="hlCxLoc" title="Use my location for the weather and band reports">📍 MY SPOT</button></div>
 
@@ -35,7 +35,7 @@
  <div class="dk-mapslot" id="dkMapSlot"></div>
  <form class="dk-dock" id="dkForm" autocomplete="off">
   <div class="dk-fx" aria-hidden="true"><i style="--x:6%;--d:0s;--s:1"></i><i style="--x:18%;--d:1.3s;--s:1.3"></i><i style="--x:31%;--d:.6s;--s:.9"></i><i style="--x:44%;--d:2.1s;--s:1.2"></i><i style="--x:57%;--d:.2s;--s:1.4"></i><i style="--x:69%;--d:1.7s;--s:1"></i><i style="--x:81%;--d:.9s;--s:1.25"></i><i style="--x:93%;--d:2.5s;--s:.95"></i></div>
-  <div class="dk-top"><span class="dk-clk" id="dkClk">--:-- UTC</span><button type="button" class="dk-rad" id="dkRad" aria-expanded="false">📻 <span id="dkRadT">FREQ?</span> ▾</button><span class="dk-tip">Click a spot and it fills in · <b>Enter</b> logs it</span><span class="dk-dupe" id="dkDupe" hidden></span></div>
+  <div class="dk-top"><span class="dk-clk" id="dkClk">--:-- UTC</span><button type="button" class="dk-rad" id="dkRad" aria-expanded="false">📻 <span id="dkRadT">FREQ?</span> ▾</button><a class="dk-cat mem-only" id="dkCat" href="kpc-hunt-cat.html" hidden title="Radio control (CAT)">📻 CAT</a><span class="dk-tip">Click a spot and it fills in · <b>Enter</b> logs it</span><span class="dk-dupe" id="dkDupe" hidden></span></div>
   <div class="dk-r1"><label>FREQ<input id="dFreq" inputmode="decimal" placeholder="14.285"></label><label>MODE<select id="dMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option><option>PSK31</option><option>JS8</option><option>OTHER</option></select></label><label class="b">BAND<input id="dBand" readonly tabindex="-1"></label><label class="w">PARK / REF<input id="dRef" autocapitalize="characters" placeholder="US-1234"></label><label class="w">NAME<input id="dName"></label></div>
   <div class="dk-who" id="dkWho" aria-live="polite"></div>
   <div class="dk-r2"><label class="c">CALL<input id="dCall" autocapitalize="characters" spellcheck="false" enterkeyhint="go"></label><label>SENT<input id="dRs" inputmode="numeric"></label><label>RCVD<input id="dRr" inputmode="numeric"></label><label class="s">ST<input id="dSt" maxlength="2" autocapitalize="characters"></label><label class="w">NOTE<input id="dNote" maxlength="200"></label><button type="button" class="dk-x" id="dkClr" title="Clear">⌫</button><button type="submit" class="dk-go" id="dkLog">⬆ LOG</button></div>
@@ -184,4 +184,5 @@
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-ambient.js?v=20261017a"></script><script src="kpc-hunt.js?v=20261017m"></script>
+<script src="kpc-ambient.js?v=20261017a"></script><script src="kpc-cat.js?v=20261017a"></script>
+<script src="kpc-hunt.js?v=20261017n"></script>

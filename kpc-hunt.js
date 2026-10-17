@@ -220,6 +220,10 @@
   }
   function bell() { const b = $('hlBell'); b.setAttribute('aria-pressed', BELL); b.innerHTML = (BELL ? '🔔' : '🔕') + '<span class="t"> ALERT ' + (BELL ? 'ON' : 'OFF') + '</span>'; }
   $('hlBell').onclick = () => { BELL = !BELL; put('kpcHuntBell', BELL); bell(); if (BELL) chime(); };
+  /* scrolling banners on/off (Brandon Oct 17): the new-park ticker + the conditions bar; the buttons stay so you can turn them back on */
+  let BAN = get('kpcHuntBanner', true);
+  function ban() { const b = $('hlBan'); if (!b) return; $('hl').dataset.noban = BAN ? '' : '1'; b.setAttribute('aria-pressed', BAN); b.innerHTML = '🎞<span class="t"> BANNERS ' + (BAN ? 'ON' : 'OFF') + '</span>'; }
+  if ($('hlBan')) { $('hlBan').onclick = () => { BAN = !BAN; put('kpcHuntBanner', BAN); ban(); toast(BAN ? 'Scrolling banners on.' : 'Scrolling banners off. Tap 🎞 to bring them back.'); }; ban(); }
   document.addEventListener('click', e => {
     const it = e.target.closest('.hl-tick-track .it'); if (!it) return;
     const c = document.querySelector(`.hs[data-k="${CSS.escape(it.dataset.k)}"]`);
@@ -1122,8 +1126,19 @@
     $('dRef').value = s.ref || ''; $('dName').value = s.name || ''; $('dSt').value = s.st || ''; $('dNote').value = '';
     $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value);
     $('dFreq').dispatchEvent(new Event('input')); dkRadT(); dkWho();
+    if (!PUB && window.KPCCat && KPCCat.get().on && s.khz) KPCCat.tune(s.khz, $('dMode').value || s.mode).then(ok => { catChip(); if (!ok) toast('📻 Radio not set: open the CAT & QRZ tab to connect it.'); });
     const d = $('dkForm'); d.classList.remove('flash'); void d.offsetWidth; d.classList.add('flash');
     (s.call ? $('dRr') : $('dCall')).focus({ preventScroll: true }); if (s.call) $('dRr').select();
+  }
+  /* radio control (CAT, kpc-cat.js; set up on the CAT & QRZ tab): chip on the log + the log follows the radio's dial */
+  function catChip() { const c = $('dkCat'); if (!c || !window.KPCCat) return; const S = KPCCat.get(); c.hidden = !S.on; const on = KPCCat.connected();
+    c.className = 'dk-cat mem-only ' + (on ? 'on' : 'off'); c.textContent = on ? '📻 CAT ON' : '📻 CAT: CONNECT'; c.title = on ? 'Your radio follows the spots you click' : 'Radio not connected: tap to set it up'; }
+  if (!PUB && window.KPCCat) {
+    KPCCat.onStatus(() => catChip()); catChip();
+    if (KPCCat.get().on) KPCCat.connect(false).then(catChip); // a radio this browser was allowed before reconnects by itself
+    $('dkCat') && $('dkCat').addEventListener('click', async e => { if (!KPCCat.connected() && KPCCat.supported()) { e.preventDefault(); if (await KPCCat.connect(true)) toast('📻 Radio connected.'); else location.href = 'kpc-hunt-cat.html'; catChip(); } });
+    KPCCat.follow(r => { if (!$('dFreq') || !r.khz) return; $('dFreq').value = (r.khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, ''); if (r.mode) { const m = r.mode === 'DATA' ? 'FT8' : /SB$/.test(r.mode) ? 'SSB' : r.mode; if ([...$('dMode').options].some(o => o.value === m)) $('dMode').value = m; }
+      $('dFreq').dispatchEvent(new Event('input')); dkRadT(); });
   }
   function dkClear() {
     ['dCall', 'dRef', 'dName', 'dSt', 'dNote'].forEach(id => { $(id).value = ''; }); dkWN++; DKWHO = null; $('dkWho').innerHTML = '';
@@ -1142,6 +1157,8 @@
     qList(); ticker(false); draw(); needDraw();
     toast(`✓ ${call} logged${ref ? ' at ' + ref : ''}.`, () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); draw(); });
     dkClear(); $('dCall').focus({ preventScroll: true });
+    if (!PUB && window.KPCQrz && KPCQrz.on()) { const a = adif([rec]); const one = a.slice(a.indexOf('<EOH>') + 5).trim();
+      KPCQrz.send(one).then(r => { if (r.ok) { rec.qz = r.sure ? 2 : 1; qSave(); } toast((r.ok ? '☁ QRZ: ' : '⚠ QRZ: ') + r.msg); }); }
     /* the effect flares only every 50 contacts or for DX outside North America (Brandon Oct 17) */
     const NAPRE = /^(A[A-L]|[KNW]|V[A-GOY]|C[F-KYZ]|X[A-O]|4[A-C]|6[D-J]|C[LMO]|T[GI]|H[O-RI]|YN|YS|V[23P]|J[3678]|8P|6Y|ZF|C6|FG|FM|FS|PJ|P4|HH|OX|XP|TO|FP|ZB)/;
     const dx = base(call).length > 2 && !NAPRE.test(base(call)), tot = Q.q.length;
