@@ -590,3 +590,23 @@ html:has(main#lg[data-kb]) .lg-toast{bottom:auto;top:8px}
 .lg-qz{margin:14px 0;padding:12px 14px;border:1px solid rgba(61,220,132,.5);border-radius:14px;background:rgba(61,220,132,.07)}
 .lg-qz h3{margin:0 0 6px;font:900 13px Arial;letter-spacing:1.4px;color:#7ff0b0}
 .lg-qz input{background:#0b0805;color:#fff;border:1px solid rgba(240,201,107,.4);border-radius:10px;padding:9px 10px;font:14px ui-monospace,Menlo,monospace}
+/* spots as a table like the Hunters Lounge (Brandon Oct 17) */
+main#lg .lg-st{width:100%;border-collapse:collapse;font:13.5px Arial,sans-serif;background:rgba(14,10,6,.9);border-radius:12px;overflow:hidden}
+main#lg .lg-st th{font:900 10.5px Arial;letter-spacing:1px;color:#f0c96b;text-align:left;padding:8px;border-bottom:1px solid rgba(240,201,107,.45);position:sticky;top:0;background:#1a120a;white-space:nowrap}
+main#lg .lg-st th.srt{cursor:pointer}main#lg .lg-st th.srt.on{color:#fff}
+main#lg .lg-st td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:middle;color:#f3e6c8}
+main#lg .lg-st tr.sp{cursor:pointer}main#lg .lg-st tr.sp:hover td{background:rgba(240,201,107,.08)}
+main#lg .lg-st tr.wk td{opacity:.55}
+main#lg .lg-st td.c{font:900 14px ui-monospace,Menlo,Consolas,monospace;color:#fff;white-space:nowrap}
+main#lg .lg-st td.c i{color:#3ddc84;font-style:normal}
+main#lg .lg-st td.f{font:900 14px ui-monospace,Menlo,Consolas,monospace;color:#3ddc84;white-space:nowrap}
+main#lg .lg-st td.f small{display:block;font:700 10px Arial;color:#cdbb95}
+main#lg .lg-st td.t{color:#cdbb95;white-space:nowrap}
+main#lg .lg-st td.r b{font:900 13px ui-monospace,Menlo,Consolas,monospace;color:#f6d58a}
+main#lg .lg-st td.r small{display:block;font-size:12px;color:#d9c9a5;max-width:44ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+main#lg .lg-st td.r small.x{color:#a99773;font-style:italic}
+main#lg .lg-st .rs{display:inline-block;border:1px solid rgba(240,201,107,.6);border-radius:8px;padding:4px 7px;cursor:pointer}
+@media(max-width:600px){main#lg .lg-st .hs{display:none}main#lg .lg-st{font-size:12.5px}main#lg .lg-st td{padding:6px 5px}main#lg .lg-st td.r small{max-width:26ch}}
+main#lg[data-night] .lg-st,main#lg[data-night] .lg-st th{background:#000}main#lg[data-night] .lg-st td,main#lg[data-night] .lg-st td.c,main#lg[data-night] .lg-st td.f,main#lg[data-night] .lg-st th,main#lg[data-night] .lg-st td.r b{color:#ff9c90}
+main#lg .lg-st{align-self:start;height:auto!important}main#lg #pList:has(.lg-st){align-content:start}
+main#lg #pList:has(.lg-st){background:rgba(14,10,6,.9)!important;border-radius:12px}
