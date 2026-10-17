@@ -163,3 +163,27 @@ main#lg input::placeholder{color:#5f706e}
 .lg-near .np em{font-style:normal;color:var(--mu);font-size:12px}
 @media(max-width:600px){.lg-near .np{grid-template-columns:1fr 1fr}.lg-near .np>div{grid-column:1/-1}}
 .lg-how p{margin:10px 0 0;font-size:14px;color:#dbe3dd}
+/* Oct 16 v3 (Brandon): the four founders cartoon as the hero, picture shown whole with the words under it */
+main#lg .lg-hero{display:block;min-height:0;background:#050b0f}
+main#lg .lg-pic{aspect-ratio:1800/608;background:url('hero-founders.jpg') center/cover no-repeat;-webkit-mask-image:linear-gradient(180deg,#000 82%,transparent);mask-image:linear-gradient(180deg,#000 82%,transparent)}
+main#lg .lg-hero .lg-in{padding:0 0 26px;margin-top:-34px;position:relative}
+main#lg .lg-stats{grid-template-columns:repeat(5,minmax(0,170px))}
+@media(max-width:700px){
+ main#lg .lg-hero{background:#050b0f}
+ main#lg .lg-pic{aspect-ratio:1024/1340;background:url('hero-founders-mobile.jpg') center top/100% auto no-repeat}
+ main#lg .lg-hero .lg-in{padding:0 0 20px;margin-top:-28px}
+ main#lg .lg-stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+ main#lg .lg-stats .clk{grid-column:1/-1;display:flex;align-items:baseline;gap:10px}
+}
+/* operation bar + station panel (station and the contact form in one card, like Ham2K PoLo) */
+.lg-opbar{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;margin:-4px 0 14px;padding:12px 14px;border-radius:12px;background:linear-gradient(90deg,rgba(226,176,74,.16),rgba(0,0,0,.35));border:1px solid var(--ln)}
+.lg-opwho{min-width:0;font:900 22px/1.15 ui-monospace,Menlo,Consolas,monospace;color:#fff;letter-spacing:1px}
+.lg-opwho span{color:var(--mu);font-size:16px}
+.lg-opwho .pk{color:var(--g2)}
+.lg-opsub{font:13px/1.3 Arial,sans-serif;color:#cfd8d3;letter-spacing:0;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lg-opn{text-align:center;padding:4px 12px;border-left:1px solid rgba(255,255,255,.15)}
+.lg-opn b{display:block;font:900 30px/1 ui-monospace,Menlo,Consolas,monospace;color:var(--gr);text-shadow:0 0 12px rgba(69,224,143,.5)}
+.lg-opn span{font-size:10px;font-weight:900;letter-spacing:1.5px;color:var(--mu)}
+.lg-station{margin:0 0 16px;padding:14px;border-radius:12px;background:rgba(0,0,0,.35);border:1px dashed var(--ln)}
+.lg-time{margin-top:6px}
+@media(max-width:600px){.lg-opbar{grid-template-columns:minmax(0,1fr) auto;padding:10px 12px}.lg-opbar #oEdit{grid-column:1/-1}.lg-opwho{font-size:18px}}
