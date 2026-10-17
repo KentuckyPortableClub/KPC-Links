@@ -243,32 +243,78 @@
   function popSet() {
     const sec = $('hlSpSec'), b = $('hlPop'); if (!sec || !b) return; const on = !!(POP && POP.on) && DESKON();
     let ph = $('hlPopPh');
-    if (on && !ph) { ph = document.createElement('div'); ph.id = 'hlPopPh'; ph.className = 'hl-popph'; ph.style.height = Math.max(400, sec.offsetHeight) + 'px'; ph.innerHTML = '<span>📡 The main spots list is popped out. Drag it by its top bar, or tap <b>⤓ PUT BACK</b>.</span>'; sec.after(ph); }
+    if (on && !ph) {   /* first pop: it starts exactly where it was, then you drag it */
+      const r0 = sec.getBoundingClientRect(), m = mainR();
+      if (POP.px == null && POP.x == null) { POP.fl = false; POP.px = Math.round(r0.left - m.left); POP.py = Math.round(r0.top - m.top); POP.w = Math.round(r0.width); POP.h = Math.min(Math.round(r0.height), Math.max(400, innerHeight - 200)); }
+      ph = document.createElement('div'); ph.id = 'hlPopPh'; ph.className = 'hl-popph'; ph.style.height = Math.max(400, sec.offsetHeight) + 'px'; ph.innerHTML = '<span>📡 The main spots list is popped out. Drag it by its top bar, or tap <b>⤓ PUT BACK</b>.</span>'; sec.after(ph); }
     if (!on && ph) ph.remove();
     sec.classList.toggle('hl-popped', on); b.setAttribute('aria-pressed', on); b.textContent = on ? '⤓ PUT BACK' : '⧉ POP OUT';
     let h = $('hlPopH');
-    if (on && !h) { h = document.createElement('header'); h.id = 'hlPopH'; h.className = 'hw-h'; h.title = 'Drag me anywhere'; h.innerHTML = '<span class="hw-grip">⠿</span><b class="hw-n">📡 MAIN SPOTS</b><i class="hw-c" id="hlPopN"></i><button type="button" class="hw-b" data-popback title="Put it back">⤓</button>'; sec.prepend(h);
-      const rs = document.createElement('span'); rs.className = 'hw-rs'; rs.id = 'hlPopR'; rs.textContent = '◢'; sec.appendChild(rs); popDrag(sec, h, rs); }
-    if (!on && h) { h.remove(); const r = $('hlPopR'); if (r) r.remove(); sec.removeAttribute('style'); }
-    if (on) { const w = POP; if (w.x == null) { w.w = Math.min(760, innerWidth - 60); w.h = innerHeight - 200; w.x = innerWidth - w.w - 24; w.y = winTop(); }
-      w.x = Math.max(0, Math.min(innerWidth - 120, w.x)); w.y = Math.max(winTop(), Math.min(innerHeight - 60, w.y));
-      Object.assign(sec.style, { left: w.x + 'px', top: w.y + 'px', width: w.w + 'px', height: Math.min(w.h, innerHeight - w.y - 6) + 'px' }); }
-    winAway();
+    if (on && !h) { h = document.createElement('header'); h.id = 'hlPopH'; h.className = 'hw-h'; h.title = 'Drag me anywhere'; h.innerHTML = '<span class="hw-grip">⠿</span><b class="hw-n">📡 MAIN SPOTS</b><i class="hw-c" id="hlPopN"></i><button type="button" class="hw-b" data-plock>📌</button><button type="button" class="hw-b" data-popback title="Put it back">⤓</button>'; sec.prepend(h);
+      const rs = document.createElement('span'); rs.className = 'hw-rs'; rs.id = 'hlPopR'; rs.textContent = '◢'; sec.appendChild(rs); wmDrag(sec, h, rs, POP, () => put('kpcHuntPop', POP)); }
+    if (!on && h) { h.remove(); const r = $('hlPopR'); if (r) r.remove(); sec.removeAttribute('style'); sec.classList.remove('fl'); }
+    wmFree();
+    if (on) { if (POP.fl && POP.x == null) { POP.w = POP.w || Math.min(760, innerWidth - 60); POP.h = POP.h || innerHeight - 200; POP.x = innerWidth - POP.w - 24; POP.y = winTop(); } wmApply(sec, POP); const lb = h.querySelector('[data-plock]'); if (lb) { lb.textContent = POP.fl ? '🪟' : '📌'; } }
+    wmRoom(); winAway();
   }
-  function popDrag(el, h, rs) {
-    const go = (e, mode) => { if (mode === 'move' && e.target.closest('button')) return; e.preventDefault();
-      const w = POP, sx = e.clientX, sy = e.clientY, x0 = w.x, y0 = w.y, w0 = w.w, h0 = parseFloat(el.style.height) || w.h; el.style.zIndex = 60 + (++winZ);
-      const mv = ev => { const dx = ev.clientX - sx, dy = ev.clientY - sy;
-        if (mode === 'move') { w.x = Math.max(0, Math.min(innerWidth - 120, x0 + dx)); w.y = Math.max(winTop(), Math.min(innerHeight - 50, y0 + dy)); }
-        else { w.w = Math.max(300, Math.min(innerWidth - w.x - 4, w0 + dx)); w.h = Math.max(200, Math.min(innerHeight - w.y - 6, h0 + dy)); }
-        Object.assign(el.style, { left: w.x + 'px', top: w.y + 'px', width: w.w + 'px', height: Math.min(w.h, innerHeight - w.y - 6) + 'px' }); };
-      const up = () => { removeEventListener('pointermove', mv); removeEventListener('pointerup', up); put('kpcHuntPop', POP); };
-      addEventListener('pointermove', mv); addEventListener('pointerup', up); };
-    h.addEventListener('pointerdown', e => go(e, 'move')); rs.addEventListener('pointerdown', e => go(e, 'size'));
-  }
+  document.addEventListener('click', e => { if (e.target.closest('[data-plock]')) { wmLock($('hlSpSec'), POP, () => put('kpcHuntPop', POP)); const lb = e.target.closest('[data-plock]'); lb.textContent = POP.fl ? '🪟' : '📌'; } });
   document.addEventListener('click', e => { if (e.target.closest('#hlPop') || e.target.closest('[data-popback]')) { POP = Object.assign(POP || {}, { on: !(POP && POP.on) }); put('kpcHuntPop', POP); popSet(); } });
   addEventListener('resize', () => setTimeout(popSet, 250));
   setTimeout(popSet, 0);
+  /* the spot you picked stays lit up (gold), and with CAT on the spot your radio's dial is on glows too (Brandon Oct 17) */
+  let SELK = '', DIAL = 0;
+  const onDial = s => DIAL && s.khz && Math.abs(s.khz - DIAL) <= 0.6;
+  const selCls = s => (keyOf(s) === SELK ? ' sel' : '') + (onDial(s) ? ' dial' : '');
+  function markSel() { const M = new Map(SP.map(s => [keyOf(s), s])); document.querySelectorAll('#hlSpots [data-k], #hlFavs [data-k], .hl-win [data-k]').forEach(e => { const s = M.get(e.dataset.k); e.classList.toggle('sel', e.dataset.k === SELK); e.classList.toggle('dial', !!(s && onDial(s))); }); }
+  function pickSpot(s) {   /* logger off: a tap just picks the station (tunes the radio when CAT is on) */
+    SELK = keyOf(s); markSel();
+    if (window.KPCCat && KPCCat.get().on && s.khz) KPCCat.tune(s.khz, s.mode).then(ok => { try { catChip(); } catch (e) {} if (!ok) toast('📻 Radio not set: open the CAT & QRZ tab to connect it.'); });
+    toast(`📻 ${s.call}${s.ref ? ' · ' + s.ref : ''} picked. Tap ✅ QSL when you've worked them.`);
+  }
+  /* 📒 LOGGER ON/OFF (Brandon Oct 17: 'toggle the on screen logger off if people use the upload to qrz'): off = no log box,
+     tap a spot to pick it, ✅ QSL logs it in one tap (and sends it to QRZ when that's on) */
+  let NOLOG = get('kpcHuntNoLog', false);
+  function logTog() {
+    if (PUB) return; $('hl').dataset.nolog = NOLOG ? '1' : '';
+    document.querySelectorAll('[data-logtog]').forEach(b => { b.setAttribute('aria-pressed', !NOLOG); b.innerHTML = NOLOG ? '📒 LOGGER: OFF' : '📒 LOGGER: ON'; b.title = NOLOG ? 'The log box is hidden: tap a spot to pick it, then ✅ QSL. Tap to show the log box again.' : 'Hide the log box (log with the ✅ QSL buttons instead)'; });
+    if (NOLOG && DESKON() && RT !== 'map') rtab('map');
+  }
+  document.addEventListener('click', e => { const b = e.target.closest('[data-logtog]'); if (!b) return; NOLOG = !NOLOG; put('kpcHuntNoLog', NOLOG); logTog(); if (!NOLOG && DESKON()) rtab('log');
+    toast(NOLOG ? '📒 Log box off. Tap a spot to pick it, then ✅ QSL to log it (and send it to QRZ if that is on).' : '📒 Log box back on.'); });
+  setTimeout(logTog, 0);
+  /* ✅ QSL: one tap = logged now with 59/599 and sent to QRZ when that's on (Brandon Oct 17) */
+  async function qsl(s) {
+    if (!CALL) { toast('Put your call sign in MY LOG FILES first.'); openModal('lgModal'); return; }
+    const n = utc(new Date()), band = bandOf(s.khz), mode = modePick(s.mode), ref = s.ref || '';
+    if (Q.q.some(q => q.d === n.d && base(q.call) === base(s.call) && q.band === band && (q.ref || '') === ref) && !confirm(`${s.call} is already in today's log on ${band}${ref ? ' at ' + ref : ''}. Log it again?`)) return;
+    const rec = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call: s.call, d: n.d, tm: n.t, f: (s.khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, ''), band, mode, ref,
+      name: s.name || '', st: s.st || '', rs: rstFor(mode), rr: rstFor(mode), note: '', my: CALL, grid: Q.grid, x: 0, t: Date.now(), qs: 1 };
+    if (isFinite(s.la) && isFinite(s.lo)) { rec.la = s.la; rec.lo = s.lo; }
+    const w = LKC[base(s.call)]; if (w) { rec.on = w.name || ''; rec.qth = [w.qth, w.st].filter(Boolean).join(', '); rec.tg = w.g || ''; }
+    SELK = keyOf(s); await afterLog(rec);
+  }
+  /* 📣 RESPOT (POTA spots): POST to POTA with you as the spotter; same spam guard as Spot Me and the KPC Logger */
+  function rlCheck() { const t = Date.now(), L0 = (get('kpcSpotMeSent', []) || []).filter(x => t - x < 36e5);
+    if (L0.length && t - L0[L0.length - 1] < 3e5) return 'Please wait ' + Math.ceil((3e5 - (t - L0[L0.length - 1])) / 6e4) + ' more minute(s): one POTA spot every 5 minutes from this device.';
+    if (L0.length >= 4) return 'That\'s 4 POTA spots this hour from this device. Try again in ' + Math.ceil((36e5 - (t - L0[0])) / 6e4) + ' minute(s).'; return ''; }
+  function rlNote() { const L0 = (get('kpcSpotMeSent', []) || []).filter(x => Date.now() - x < 36e5); L0.push(Date.now()); put('kpcSpotMeSent', L0); }
+  async function respot(s) {
+    if (!CALL) { toast('Put your call sign in MY LOG FILES first.'); openModal('lgModal'); return; }
+    const wait = rlCheck(); if (wait) { toast('⏳ ' + wait); return; }
+    const mode = /SSB|USB|LSB/.test(s.mode || '') ? 'SSB' : (s.mode || '');
+    const c0 = prompt(`Respot ${s.call} at ${s.ref} on ${(s.khz / 1000).toFixed(3)} ${mode}?\nComment (optional):`, 'Thanks! 73'); if (c0 === null) return;
+    try { const r = await fetch('https://api.pota.app/spot/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ activator: s.call, spotter: CALL, frequency: String(Math.round(s.khz * 10) / 10), reference: s.ref, mode, source: 'KPC Hunters Lounge', comments: c0.slice(0, 60) }) });
+      const body = await r.text().catch(() => ''); if (r.ok) { rlNote(); toast(`📣 Respotted ${s.call} at ${s.ref}.`); setTimeout(load, 8000); } else toast('✗ POTA turned it down: ' + (String(body).replace(/^"|"$/g, '').slice(0, 120) || 'error ' + r.status)); }
+    catch (e) { toast('✗ POTA could not be reached. Check your signal.'); }
+  }
+  document.addEventListener('click', e => {
+    const q = e.target.closest('[data-qsl]'), r = e.target.closest('[data-rsp]'); if (!q && !r) return; e.preventDefault(); e.stopPropagation();
+    const s = SP.find(x => keyOf(x) === (q || r).dataset[q ? 'qsl' : 'rsp']); if (!s) { toast('That spot is gone.'); return; }
+    if (q) qsl(s); else respot(s);
+  }, true);
+  /* map: 📡 ON THE AIR (spots) or ✅ WORKED TODAY (your contacts since 0000 UTC) (Brandon Oct 17) */
+  let MAPM = get('kpcHuntMapM', 'air'); if (MAPM !== 'today') MAPM = 'air';
+  document.addEventListener('click', e => { const b = e.target.closest('[data-mm]'); if (!b) return; MAPM = b.dataset.mm; put('kpcHuntMapM', MAPM); lmDraw(); });
   /* tap any award badge = the badge legend (Brandon Oct 17) */
   document.addEventListener('click', e => { const a = e.target.closest('.ac'); if (!a || a.closest('#awModal')) return; e.preventDefault(); e.stopPropagation(); openModal('awModal'); }, true);
   document.addEventListener('click', e => {
@@ -331,23 +377,23 @@
     if (d != null && d > RANGE) b.push(`<span class="hb far">FAR · ${Math.round(d)} MI</span>`);
     if (isQrt(s)) b.push('<span class="hb qrt">QRT</span>');
     b.push(`<span class="hb">${bandOf(s.khz)}</span>`, `<span class="hb">${esc(s.mode || '?')}</span>`);
-    return `<article class="hs p-${s.p}${n ? ' new' : ''}${w ? ' worked' : ''}${isQrt(s) ? ' qrt' : ''}" data-k="${esc(k)}">
+    return `<article class="hs p-${s.p}${n ? ' new' : ''}${w ? ' worked' : ''}${isQrt(s) ? ' qrt' : ''}${selCls(s)}" data-k="${esc(k)}">
  <div class="hs-top"><div class="hs-call"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}" title="${isFav(s) ? 'Remove from favorites' : 'Add to favorite activators'}">${isFav(s) ? '★' : '☆'}</button><a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">${esc(s.call)}</a></div><div class="hs-f"><b>${(s.khz / 1000).toFixed(3)}</b><span>MHz · ${esc(s.mode || '')}</span></div></div>
  <div class="hs-park">${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener">${esc(s.ref)}</a>` : ''}${esc(s.name || '')}</div>
  <div class="hs-meta">${esc(s.st ? (ST[s.st] || s.st) : s.loc)}${d != null ? ' · ' + Math.round(d) + ' mi' : ''} · ${ago(s.t)}${s.by ? ' · spotted by ' + esc(s.by) : ''}</div>
  ${s.com ? `<div class="hs-com">“${esc(String(s.com).slice(0, 140))}”</div>` : ''}
  ${awardChips(s) ? `<div class="hs-aw">${awardChips(s)}</div>` : ''}
  <div class="hs-b">${b.join('')}</div>
- <div class="hs-a"><button type="button" class="lg" data-log="1">📝 LOG IT</button><button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call until 0000 UTC">🙈 HIDE ${esc(base(s.call))} TODAY</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" data-wc="${esc(s.call)}">${w ? '✓ WORKED' : '＋ I WORKED IT'}</button><a href="${pageOf(s)}" target="_blank" rel="noopener">${s.p === 'SOTA' ? 'SOTLAS' : s.p} PAGE ↗</a>${s.p === 'POTA' && s.us ? `<a href="kpc-planner-us.html?q=${encodeURIComponent(s.ref)}">ON THE MAP</a>` : ''}<a href="kpc-park-info.html?ref=${encodeURIComponent(s.ref)}">PARK INFO</a>` : `<a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">QRZ ↗</a><a href="https://www.dxsummit.fi/#/?dx_calls=${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">DX SUMMIT ↗</a>`}</div>
+ <div class="hs-a">${PUB ? '' : `<button type="button" class="qs" data-qsl="${esc(k)}" title="Log it now (this minute, 59/599) and send it to QRZ if that is on">✅ QSL</button>`}${!PUB && s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(k)}" title="Spot them again on POTA, with you as the spotter">📣 RESPOT</button>` : ''}<button type="button" class="lg" data-log="1">📝 LOG IT</button><button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call until 0000 UTC">🙈 HIDE ${esc(base(s.call))} TODAY</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" data-wc="${esc(s.call)}">${w ? '✓ WORKED' : '＋ I WORKED IT'}</button><a href="${pageOf(s)}" target="_blank" rel="noopener">${s.p === 'SOTA' ? 'SOTLAS' : s.p} PAGE ↗</a>${s.p === 'POTA' && s.us ? `<a href="kpc-planner-us.html?q=${encodeURIComponent(s.ref)}">ON THE MAP</a>` : ''}<a href="kpc-park-info.html?ref=${encodeURIComponent(s.ref)}">PARK INFO</a>` : `<a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">QRZ ↗</a><a href="https://www.dxsummit.fi/#/?dx_calls=${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">DX SUMMIT ↗</a>`}</div>
 </article>`;
   }
   function row(s) {
     const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), d = dist(s);
     const tag = n ? '<span class="hb new">NEW</span>' : w ? '<span class="hb wk">✓</span>' : '';
     const rare = s.acts === 0 ? '<span class="hb atno">1ST</span>' : s.acts != null && s.acts <= 5 ? `<span class="hb rare">RARE ${s.acts}</span>` : '';
-    return `<tr class="hr${n ? ' new' : ''}${w ? ' worked' : ''}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}">${isFav(s) ? '★' : '☆'}</button>${esc(s.call)}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
+    return `<tr class="hr${n ? ' new' : ''}${w ? ' worked' : ''}${selCls(s)}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}">${isFav(s) ? '★' : '☆'}</button>${esc(s.call)}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
 <td><span class="pg">${PL[s.p] || s.p}</span> ${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener" class="r">${esc(s.ref)}</a> ` : ''}${esc(s.name || '')} ${tag}${rare} ${awardChips(s, true)}</td><td class="hide-s">${esc(s.st || '')}</td><td class="hide-s">${d != null ? Math.round(d) : ''}</td>
-<td class="a"><button type="button" class="lg" data-log="1" title="Log it">📝</button><button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call today">🙈</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" title="Mark worked">✓</button>` : ''}</td></tr>`;
+<td class="a">${PUB ? '' : `<button type="button" class="qs" data-qsl="${esc(keyOf(s))}" title="QSL: log it now and send to QRZ">✅</button>`}${!PUB && s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(keyOf(s))}" title="Respot them on POTA">📣</button>` : ''}<button type="button" class="lg" data-log="1" title="Log it">📝</button><button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call today">🙈</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" title="Mark worked">✓</button>` : ''}</td></tr>`;
   }
   function draw() {
     const q = F.q.trim().toUpperCase();
@@ -395,47 +441,72 @@
   function winBox(i) {
     let el = $('hlWin' + i); if (el) return el;
     el = document.createElement('section'); el.className = 'hl-win'; el.id = 'hlWin' + i; el.dataset.i = i;
-    el.innerHTML = `<header class="hw-h" title="Drag me anywhere"><span class="hw-grip">⠿</span><b class="hw-n"></b><i class="hw-c"></i><button type="button" class="hw-b" data-wbell title="Chime when a new spot shows up in this list">🔕</button><button type="button" class="hw-b" data-wf title="Filters for this list">⚙</button><button type="button" class="hw-b" data-wx title="Turn this list off">✕</button></header>
+    el.innerHTML = `<header class="hw-h" title="Drag me anywhere"><span class="hw-grip">⠿</span><b class="hw-n"></b><i class="hw-c"></i><button type="button" class="hw-b" data-wlock title="Lock to the page / float on the screen">📌</button><button type="button" class="hw-b" data-wbell title="Chime when a new spot shows up in this list">🔕</button><button type="button" class="hw-b" data-wf title="Filters for this list">⚙</button><button type="button" class="hw-b" data-wx title="Turn this list off">✕</button></header>
 <div class="hw-f" hidden></div><div class="hw-l"></div><span class="hw-rs" title="Drag to resize">◢</span>`;
     $('hl').appendChild(el);
     winDrag(el, i); return el;
   }
-  function winPlace(el, i) {
-    const w = WIN[i], dk = $('hlDk'); if (!dk) return;
-    if (w.x == null || w.auto) {   /* until you drag it: side by side on the screen, under the log box (which stays put while you scroll) */
-      const d = dk.getBoundingClientRect(), top = (parseFloat(getComputedStyle(dk).top) || 150) + dk.offsetHeight + 12, half = Math.floor((d.width - 12) / 2);
-      w.x = Math.round(d.left + i * (half + 12)); w.y = Math.round(top); if (!w.mw) { w.w = half; w.h = Math.max(220, innerHeight - top - 16); } w.auto = true;
-    }
-    w.x = Math.max(0, Math.min(innerWidth - 120, w.x)); w.y = Math.max(winTop(), Math.min(innerHeight - 60, w.y));
-    Object.assign(el.style, { left: w.x + 'px', top: w.y + 'px', width: w.w + 'px', height: Math.min(w.h, innerHeight - w.y - 6) + 'px' });
+  /* 📌 LOCKED (default, Brandon Oct 17: 'lock them in once they are not being dragged and let them scroll'): the window sits on
+     the page and scrolls with it (position absolute in main#hl, st.px/st.py). 🪟 FLOATING: stays put on the screen (st.x/st.y). */
+  const mainR = () => $('hl').getBoundingClientRect();
+  function wmAnyLocked() { return winOn() && (WIN.some(w => w.on && !w.fl) || !!(POP && POP.on && !POP.fl)); }
+  function wmFree() { $('hl').dataset.dkfree = wmAnyLocked() ? '1' : ''; }   /* the log box stops riding down the page while locked windows sit on the page */
+  function wmApply(el, st) {
+    el.classList.toggle('fl', !!st.fl);
+    const lb = el.querySelector('[data-wlock]'); if (lb) { lb.textContent = st.fl ? '🪟' : '📌'; lb.title = st.fl ? 'Floating: stays on the screen while you scroll. Tap to lock it to the page.' : 'Locked to the page: scrolls with it. Tap to make it float on the screen.'; }
+    if (st.fl) { st.x = Math.max(0, Math.min(innerWidth - 120, st.x)); st.y = Math.max(winTop(), Math.min(innerHeight - 60, st.y));
+      Object.assign(el.style, { left: st.x + 'px', top: st.y + 'px', width: st.w + 'px', height: Math.min(st.h, innerHeight - st.y - 6) + 'px' }); }
+    else { const mw = $('hl').clientWidth; st.px = Math.max(0, Math.min(mw - 120, st.px)); st.py = Math.max(0, st.py);
+      Object.assign(el.style, { left: st.px + 'px', top: st.py + 'px', width: st.w + 'px', height: st.h + 'px', transform: '', maxHeight: '' }); }
   }
-  /* windows never go up under the sticky bars: the top is just below the SPOTS tab bar's stuck spot */
-  function winTop() { const r = $('hlRtabs'); if (!r) return 160; const t0 = parseFloat(getComputedStyle(r).top); return Math.round((isFinite(t0) ? t0 : 150) + r.offsetHeight + 8); }
-  function winAway() {   /* the windows only show while the spots are on the screen (not over the picture at the top) */
-    const sp = document.querySelector('.hl-split'), rt = $('hlRtabs'); if (!sp || !rt) return; const r = sp.getBoundingClientRect(), t0 = parseFloat(getComputedStyle(rt).top) || 0,
-      stuck = rt.getBoundingClientRect().top <= t0 + 3 || (scrollY >= document.documentElement.scrollHeight - innerHeight - 4 && r.top < innerHeight * .5), away = !stuck || r.bottom < 260;   /* only once the SPOTS bar has locked at the top, so they never cover the bars */
-    const real = rt.getBoundingClientRect().top <= t0 + 3, minTop = real ? 0 : rt.getBoundingClientRect().bottom + 8;   /* short page: the bars never lock, so slide the windows below them */
-    document.querySelectorAll('.hl-win, .hl-spsec.hl-popped').forEach(el => { el.classList.toggle('away', away); const y = parseFloat(el.style.top) || 0, d = Math.max(0, minTop - y); el.style.transform = d ? `translateY(${Math.round(d)}px)` : ''; el.style.maxHeight = d ? Math.max(160, innerHeight - y - d - 6) + 'px' : ''; });
+  function wmRoom() {   /* make the page long enough to hold locked windows */
+    let b = 0; const add = (on, st) => { if (on && !st.fl && st.py != null) b = Math.max(b, st.py + st.h + 30); };
+    if (winOn()) { WIN.forEach(w => add(w.on, w)); if (POP) add(POP.on, POP); }
+    $('hl').style.minHeight = b ? b + 'px' : '';
   }
-  addEventListener('scroll', () => { if (!winAway.q) winAway.q = requestAnimationFrame(() => { winAway.q = 0; winAway(); }); }, { passive: true });
-  function winRoom() {}
-  function winDrag(el, i) {
-    const h = el.querySelector('.hw-h'), rs = el.querySelector('.hw-rs');
+  function wmLock(el, st, save) {
+    const r = el.getBoundingClientRect(), m = mainR();
+    if (st.fl) { st.px = Math.round(r.left - m.left); st.py = Math.round(r.top - m.top); st.fl = false; } else { st.x = Math.round(r.left); st.y = Math.round(r.top); st.fl = true; }
+    st.auto = false; save(); wmFree(); wmApply(el, st); wmRoom(); winAway();
+  }
+  function wmDrag(el, h, rs, st, save) {
     const go = (e, mode) => {
-      if (mode === 'move' && e.target.closest('button')) return;
-      e.preventDefault(); const w = WIN[i], sx = e.clientX, sy = e.clientY, x0 = w.x, y0 = w.y, w0 = w.w, h0 = parseFloat(el.style.height) || w.h;
+      if (mode === 'move' && e.target.closest('button')) return; e.preventDefault();
+      const sx = e.clientX, sy = e.clientY, x0 = st.fl ? st.x : st.px, y0 = st.fl ? st.y : st.py, w0 = st.w, h0 = parseFloat(el.style.height) || st.h;
       el.classList.add('drag'); el.style.zIndex = 60 + (++winZ);
-      const mv = ev => {
-        const dx = ev.clientX - sx, dy = ev.clientY - sy;
-        if (mode === 'move') { w.auto = false; w.x = Math.max(0, Math.min(innerWidth - 120, x0 + dx)); w.y = Math.max(winTop(), Math.min(innerHeight - 50, y0 + dy)); }
-        else { w.mw = 1; w.w = Math.max(240, Math.min(innerWidth - w.x - 4, w0 + dx)); w.h = Math.max(160, Math.min(innerHeight - w.y - 6, h0 + dy)); }
-        Object.assign(el.style, { left: w.x + 'px', top: w.y + 'px', width: w.w + 'px', height: Math.min(w.h, innerHeight - w.y - 6) + 'px' });
-      };
-      const up = () => { removeEventListener('pointermove', mv); removeEventListener('pointerup', up); el.classList.remove('drag'); winSave(); };
+      const mv = ev => { const dx = ev.clientX - sx, dy = ev.clientY - sy;
+        if (mode === 'move') { st.auto = false; if (st.fl) { st.x = x0 + dx; st.y = y0 + dy; } else { st.px = x0 + dx; st.py = y0 + dy; } }
+        else { st.mw = 1; st.w = Math.max(240, Math.min(innerWidth - 8, w0 + dx)); st.h = Math.max(160, h0 + dy); }
+        wmApply(el, st); };
+      const up = () => { removeEventListener('pointermove', mv); removeEventListener('pointerup', up); el.classList.remove('drag'); save(); wmRoom(); };
       addEventListener('pointermove', mv); addEventListener('pointerup', up);
     };
     h.addEventListener('pointerdown', e => go(e, 'move')); rs.addEventListener('pointerdown', e => go(e, 'size'));
   }
+  function winPlace(el, i) {
+    const w = WIN[i], dk = $('hlDk'); if (!dk) return;
+    if (w.auto || (w.fl ? w.x == null : w.px == null)) {   /* until you drag it: side by side under the log box */
+      const d = dk.getBoundingClientRect(), m = mainR(), half = Math.floor((d.width - 12) / 2);
+      if (!w.mw) { w.w = half; w.h = w.fl ? Math.max(220, innerHeight - ((parseFloat(getComputedStyle(dk).top) || 150) + dk.offsetHeight + 12) - 16) : 460; }
+      if (w.fl) { w.x = Math.round(d.left + i * (half + 12)); w.y = Math.round((parseFloat(getComputedStyle(dk).top) || 150) + dk.offsetHeight + 12); }
+      else { w.px = Math.round(d.left - m.left + i * (half + 12)); w.py = Math.round(d.bottom - m.top + 14); }
+      w.auto = true;
+    }
+    wmApply(el, w);
+  }
+  /* windows never go up under the sticky bars: the top is just below the SPOTS tab bar's stuck spot */
+  function winTop() { const r = $('hlRtabs'); if (!r) return 160; const t0 = parseFloat(getComputedStyle(r).top); return Math.round((isFinite(t0) ? t0 : 150) + r.offsetHeight + 8); }
+  function winAway() {   /* FLOATING windows only show while the spots are on the screen (not over the picture at the top) */
+    const sp = document.querySelector('.hl-split'), rt = $('hlRtabs'); if (!sp || !rt) return; const r = sp.getBoundingClientRect(), t0 = parseFloat(getComputedStyle(rt).top) || 0,
+      stuck = rt.getBoundingClientRect().top <= t0 + 3 || (scrollY >= document.documentElement.scrollHeight - innerHeight - 4 && r.top < innerHeight * .5), away = !stuck || r.bottom < 260;
+    const real = rt.getBoundingClientRect().top <= t0 + 3, minTop = real ? 0 : rt.getBoundingClientRect().bottom + 8;
+    document.querySelectorAll('.hl-win, .hl-spsec.hl-popped').forEach(el => {
+      if (!el.classList.contains('fl')) { el.classList.remove('away'); return; }
+      el.classList.toggle('away', away); const y = parseFloat(el.style.top) || 0, d = Math.max(0, minTop - y); el.style.transform = d ? `translateY(${Math.round(d)}px)` : ''; el.style.maxHeight = d ? Math.max(160, innerHeight - y - d - 6) + 'px' : ''; });
+  }
+  addEventListener('scroll', () => { if (!winAway.q) winAway.q = requestAnimationFrame(() => { winAway.q = 0; winAway(); }); }, { passive: true });
+  function winRoom() { wmRoom(); }
+  function winDrag(el, i) { wmDrag(el, el.querySelector('.hw-h'), el.querySelector('.hw-rs'), WIN[i], winSave); }
   let winZ = 0;
   function winFilt(i) {
     const w = WIN[i], c = (k, v, on, t) => `<button type="button" class="hl-chip" data-wk-${k}="${v}" aria-pressed="${on}">${t || v}</button>`;
@@ -449,10 +520,10 @@
 <div class="hw-g"><button type="button" class="hl-btn sm" data-wreset title="Filters, size and place back to how they started">↺ RESET THIS LIST</button><button type="button" class="hl-btn gold sm" data-wf>✓ DONE</button></div>`;
   }
   const wrow = s => { const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref);
-    return `<div class="hw-r p-${s.p}${n ? ' new' : ''}${w ? ' worked' : ''}" data-k="${esc(keyOf(s))}" title="Tap to log it"><span class="f">${(s.khz / 1000).toFixed(3)}</span><b>${esc(s.call)}</b><span class="m">${esc(s.mode || '')}</span><span class="r">${s.ref ? esc(s.ref) + ' ' : ''}<small>${esc(s.name || s.loc || '')}${s.st ? ' · ' + esc(s.st) : ''}</small></span>${n ? '<i class="hb new">NEW</i>' : ''}<span class="t">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</span></div>`; };
+    return `<div class="hw-r p-${s.p}${n ? ' new' : ''}${w ? ' worked' : ''}${selCls(s)}" data-k="${esc(keyOf(s))}" title="Tap to log it"><span class="f">${(s.khz / 1000).toFixed(3)}</span><b>${esc(s.call)}</b><span class="m">${esc(s.mode || '')}</span><span class="r">${s.ref ? esc(s.ref) + ' ' : ''}<small>${esc(s.name || s.loc || '')}${s.st ? ' · ' + esc(s.st) : ''}</small></span>${n ? '<i class="hb new">NEW</i>' : ''}<span class="t">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</span></div>`; };
   function winDraw() {
     if (PUB) return;
-    const on = winOn();
+    const on = winOn(); wmFree();
     WIN.forEach((w, i) => {
       const t = $('hlWT' + i); if (t) { t.setAttribute('aria-pressed', w.on); t.textContent = (w.on ? '🪟 ' : '＋ ') + w.name; }
       if (!on || !w.on) { const el = $('hlWin' + i); if (el) el.hidden = true; return; }
@@ -467,14 +538,15 @@
       if (fresh.length && w.bell) chime();
       WSEEN[i] = ks;
     });
-    winAway();
+    wmRoom(); winAway();
   }
   document.addEventListener('click', e => {
     const tg = e.target.closest('[data-wt]'); if (tg) { const w = WIN[+tg.dataset.wt]; w.on = !w.on; winSave(); winDraw(); return; }
     const el = e.target.closest('.hl-win'); if (!el) return; const i = +el.dataset.i, w = WIN[i];
+    if (e.target.closest('[data-wlock]')) { wmLock(el, w, winSave); return; }
     if (e.target.closest('[data-wx]')) { w.on = false; winSave(); winDraw(); toast(`${w.name} is off. Turn it back on with the 🪟 buttons over the spots.`); return; }
     if (e.target.closest('[data-wbell]')) { w.bell = !w.bell; winSave(); if (w.bell) chime(); winDraw(); return; }
-    if (e.target.closest('[data-wreset]')) { WIN[i] = Object.assign({}, WDEF[i]); winSave(); el.querySelector('.hw-f').innerHTML = winFilt(i); winDraw(); return; }
+    if (e.target.closest('[data-wreset]')) { WIN[i] = Object.assign({}, WDEF[i], { auto: true }); winSave(); el.querySelector('.hw-f').innerHTML = winFilt(i); winDraw(); return; }
     if (e.target.closest('[data-wf]')) { const f = el.querySelector('.hw-f'); f.hidden = !f.hidden; if (!f.hidden) f.innerHTML = winFilt(i); return; }
     const b = e.target.closest('.hw-f .hl-chip'); if (b) {
       const d = b.dataset, tog = (a, v) => { const k = a.indexOf(v); if (k < 0) a.push(v); else a.splice(k, 1); };
@@ -875,6 +947,7 @@
   function setNow() { const n = utc(new Date()); $('fDate').value = fmtD(n.d); $('fTime').value = fmtT(n.t); dupe(); }
   function openSheet(s, x) {
     if (PUB) return;
+    if (!x && NOLOG && s) { pickSpot(s); return; }
     if (!x && DOCKON()) { dkFill(s || {}); if (!DESKON()) dkGo(); return; }   /* members: the spot fills the log dock (left pane on computers, under the spots on phones) */
     EDIT = x || null;
     $('lgTitle').textContent = x ? '✏️ Edit this contact' : '📝 Log this contact';
@@ -1059,6 +1132,18 @@
   const NEWICON = () => L.divIcon({ className: 'hl-pin', html: '<span></span>', iconSize: [22, 22], iconAnchor: [11, 11] });
   function lmDraw() {
     lmInit(); if (!LM) return; LG.clearLayers();
+    document.querySelectorAll('[data-mm]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mm === MAPM));
+    const today0 = utc(new Date()).d, TQ = PUB ? [] : Q.q.filter(q => q.d === today0); if ($('hlMmN')) $('hlMmN').textContent = TQ.length ? TQ.length : '';
+    if (MAPM === 'today') {
+      const pts = [];
+      TQ.forEach(q => { let p = isFinite(q.la) && isFinite(q.lo) ? [q.la, q.lo] : null; const r1 = String(q.ref || '').split(/[ ,]+/)[0];
+        if (!p && r1 && PK[r1] && isFinite(PK[r1].la)) p = [PK[r1].la, PK[r1].lo]; if (!p && r1 && SUM[r1]) p = [SUM[r1][0], SUM[r1][1]]; if (!p && q.tg) p = grid(q.tg);
+        if (!p) return; pts.push(p);
+        L.circleMarker(p, { radius: 7, color: '#0b2a17', weight: 2, fillColor: '#3ddc84', fillOpacity: .95 }).bindPopup(`<div class="hl-pop"><b>✅ ${esc(q.call)}</b> <span class="f">${esc(q.f || '')}</span> ${esc(q.band || '')} ${esc(q.mode || '')}<br>${q.ref ? `<span class="r">${esc(q.ref)}</span> ` : ''}${esc(q.name || q.qth || '')}<br><small>${fmtT(q.tm)} UTC${q.qz ? ' · ☁ sent to QRZ' : ''}</small></div>`, { maxWidth: 260 }).addTo(LG); });
+      if (pts.length) { try { LM.fitBounds(pts.length > 1 ? pts : [pts[0], pts[0]], { padding: [30, 30], maxZoom: 7 }); } catch (e) {} }
+      else toast(TQ.length ? 'Today\'s contacts have no map spot yet (no park or grid).' : 'No contacts logged since 0000 UTC yet.');
+      return;
+    }
     SP.filter(s => isFinite(s.la) && isFinite(s.lo) && passPBM(s)).sort((a, b) => isNew(a) - isNew(b)).forEach(s => {
       const k = keyOf(s), n = isNew(s), w = !!s.ref && WK.has(s.ref);
       const pop = `<div class="hl-pop"><b>${esc(s.call)}</b> <span class="f">${(s.khz / 1000).toFixed(3)}</span> ${esc(s.mode || '')}<br>${s.ref ? `<span class="r">${esc(s.ref)}</span> ` : ''}${esc(s.name || '')}${n ? '<br><span class="pn">✨ NEW TO YOU</span>' : w ? '<br><span class="pw">✓ hunted</span>' : ''}${awardChips(s) ? '<br>' + awardChips(s) : ''}<div class="hl-popb"><button type="button" data-logk="${esc(k)}">📝 LOG IT</button><button type="button" data-dk="${esc(k)}">SHOW SPOT</button></div></div>`;
@@ -1288,6 +1373,7 @@
     BACKK = s.call ? s.p + '|' + s.call + '|' + s.ref : '';
     $('dCall').value = s.call || ''; $('dFreq').value = s.khz ? (s.khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, '') : $('dFreq').value;
     if (s.mode) $('dMode').value = modePick(s.mode);
+    if (s.call) { DKS = s; SELK = keyOf(s); markSel(); }
     $('dRef').value = s.ref || ''; $('dName').value = s.name || ''; $('dSt').value = s.st || ''; $('dNote').value = '';
     $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value);
     $('dFreq').dispatchEvent(new Event('input')); dkRadT(); dkWho();
@@ -1296,13 +1382,14 @@
     (s.call ? $('dRr') : $('dCall')).focus({ preventScroll: true }); if (s.call) $('dRr').select();
   }
   /* radio control (CAT, kpc-cat.js; set up on the CAT & QRZ tab): chip on the log + the log follows the radio's dial */
+  let DKS = null;
   function catChip() { const c = $('dkCat'); if (!c || !window.KPCCat) return; const S = KPCCat.get(); c.hidden = !S.on; const on = KPCCat.connected();
     c.className = 'dk-cat mem-only ' + (on ? 'on' : 'off'); c.textContent = on ? '📻 CAT ON' : '📻 CAT: CONNECT'; c.title = on ? 'Your radio follows the spots you click' : 'Radio not connected: tap to set it up'; }
   if (!PUB && window.KPCCat) {
     KPCCat.onStatus(() => catChip()); catChip();
     if (KPCCat.get().on) KPCCat.connect(false).then(catChip); // a radio this browser was allowed before reconnects by itself
     $('dkCat') && $('dkCat').addEventListener('click', async e => { if (!KPCCat.connected() && KPCCat.supported()) { e.preventDefault(); if (await KPCCat.connect(true)) toast('📻 Radio connected.'); else location.href = 'kpc-hunt-cat.html'; catChip(); } });
-    KPCCat.follow(r => { if (!$('dFreq') || !r.khz) return; $('dFreq').value = (r.khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, ''); if (r.mode) { const m = r.mode === 'DATA' ? 'FT8' : /SB$/.test(r.mode) ? 'SSB' : r.mode; if ([...$('dMode').options].some(o => o.value === m)) $('dMode').value = m; }
+    KPCCat.follow(r => { if (r.khz && Math.abs(r.khz - DIAL) > .05) { DIAL = r.khz; markSel(); } if (!$('dFreq') || !r.khz || NOLOG) return; $('dFreq').value = (r.khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, ''); if (r.mode) { const m = r.mode === 'DATA' ? 'FT8' : /SB$/.test(r.mode) ? 'SSB' : r.mode; if ([...$('dMode').options].some(o => o.value === m)) $('dMode').value = m; }
       $('dFreq').dispatchEvent(new Event('input')); dkRadT(); });
   }
   function dkClear() {
@@ -1317,19 +1404,25 @@
     const rec = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: n.d, tm: n.t, f, band: $('dBand').value, mode: $('dMode').value, ref,
       name: $('dName').value.trim(), st: $('dSt').value.trim().toUpperCase(), rs: $('dRs').value.trim(), rr: $('dRr').value.trim(), note: $('dNote').value.trim(), my: CALL, grid: Q.grid, x: 0, t: Date.now() };
     const w = DKWHO && DKWHO.call === base(call) ? DKWHO : (LKC[base(call)] || null); if (w) { rec.on = w.name || ''; rec.qth = [w.qth, w.st].filter(Boolean).join(', '); rec.tg = w.g || ''; }
+    if (DKS && base(DKS.call) === base(call) && isFinite(DKS.la) && isFinite(DKS.lo)) { rec.la = DKS.la; rec.lo = DKS.lo; }
+    await afterLog(rec);
+    dkClear(); $('dCall').focus({ preventScroll: true });
+  }
+  async function afterLog(rec) {
+    const call = rec.call, ref = rec.ref;
     Q.q.push(rec); await qSave();
     ref.split(/[ ,]+/).filter(Boolean).forEach(r => { if (!WK.has(r)) { WK.add(r); MAN.add(r); } }); saveLog(); logInfo();
-    qList(); ticker(false); draw(); needDraw();
-    toast(`✓ ${call} logged${ref ? ' at ' + ref : ''}.`, () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); draw(); });
-    dkClear(); $('dCall').focus({ preventScroll: true });
-    if (!PUB && window.KPCQrz && KPCQrz.on()) { const a = adif([rec]); const one = a.slice(a.indexOf('<EOH>') + 5).trim();
+    qList(); ticker(false); draw(); needDraw(); try { lmDraw(); } catch (e) {}
+    toast(`✓ ${call} logged${ref ? ' at ' + ref : ''}.${!KPCQrzOn() && rec.qs ? ' (QRZ upload is off: turn it on in the CAT & QRZ tab.)' : ''}`, () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); draw(); try { lmDraw(); } catch (e) {} });
+    if (!PUB && KPCQrzOn()) { const a = adif([rec]); const one = a.slice(a.indexOf('<EOH>') + 5).trim();
       KPCQrz.send(one).then(r => { if (r.ok) { rec.qz = r.sure ? 2 : 1; qSave(); } toast((r.ok ? '☁ QRZ: ' : '⚠ QRZ: ') + r.msg); }); }
     /* the effect flares only every 50 contacts or for DX outside North America (Brandon Oct 17) */
     const NAPRE = /^(A[A-L]|[KNW]|V[A-GOY]|C[F-KYZ]|X[A-O]|4[A-C]|6[D-J]|C[LMO]|T[GI]|H[O-RI]|YN|YS|V[23P]|J[3678]|8P|6Y|ZF|C6|FG|FM|FS|PJ|P4|HH|OX|XP|TO|FP|ZB)/;
     const dx = base(call).length > 2 && !NAPRE.test(base(call)), tot = Q.q.length;
-    if (tot % 50 === 0 || dx) { const fx = $('dkForm'); fx.classList.remove('pop'); void fx.offsetWidth; fx.classList.add('pop'); setTimeout(() => fx.classList.remove('pop'), 3200);
+    if (tot % 50 === 0 || dx) { const fx = $('dkForm'); if (fx) { fx.classList.remove('pop'); void fx.offsetWidth; fx.classList.add('pop'); setTimeout(() => fx.classList.remove('pop'), 3200); }
       fire(dx ? `🌍 DX! ${base(call)} is outside North America` : `🎉 ${tot} contacts in your log!`); }
   }
+  const KPCQrzOn = () => !!(window.KPCQrz && KPCQrz.on());
   function dkList() {
     const el = $('dkList'); if (!el || PUB) return;
     const q = ($('dkQ').value || '').trim().toUpperCase(), today = utc(new Date()).d;
