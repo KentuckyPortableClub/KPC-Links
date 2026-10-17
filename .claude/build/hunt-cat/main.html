@@ -83,6 +83,7 @@ main#hl .ct-card a{color:#ffcf7a}
   <label>MY QRZ LOGBOOK API KEY<input type="password" id="qzKey" autocomplete="off" placeholder="XXXX-XXXX-XXXX-XXXX"></label>
   <button type="button" class="ct-btn" id="qzSave">💾 SAVE</button>
   <button type="button" class="ct-btn ghost" id="qzTest">🔎 TEST MY KEY</button>
+  <button type="button" class="ct-btn ghost" id="qzLast" title="Send my newest Hunters Lounge contact to QRZ again and open QRZ's answer in a new tab">🔁 RESEND MY LAST CONTACT (SEE QRZ'S ANSWER)</button>
   <button type="button" class="ct-btn ghost" id="qzForget">🗑 FORGET MY KEY</button>
  </div>
  <div class="ct-st" id="qzSt">No key saved.</div>
@@ -94,7 +95,7 @@ main#hl .ct-card a{color:#ffcf7a}
  </ul>
 </section>
 </main>
-<script src="kpc-cat.js?v=20261017c"></script>
+<script src="kpc-cat.js?v=20261018a"></script>
 <script id="cat-page">
 (function(){
  const $=id=>document.getElementById(id);
@@ -130,7 +131,16 @@ main#hl .ct-card a{color:#ffcf7a}
  function qshow(){const Z=KPCQrz.get();$('qzOn').checked=Z.on;$('qzKey').value=Z.key||'';qst(Z.key?(Z.on?'✅ Key saved. Contacts you log in the Hunters Lounge go to QRZ.':'Key saved. Tick the box above to send contacts.'):'No key saved.',Z.key&&Z.on?true:null)}
  $('qzSave').onclick=()=>{const k=$('qzKey').value.trim();if(!/^[A-Z0-9-]{8,}$/i.test(k)){qst('That doesn\'t look like a QRZ logbook key (letters and numbers like XXXX-XXXX-XXXX-XXXX).',false);return}KPCQrz.set({key:k,on:true});qshow()};
  $('qzOn').onchange=()=>{if($('qzOn').checked&&!KPCQrz.get().key){qst('Paste your key and press SAVE first.',false);$('qzOn').checked=false;return}KPCQrz.set({on:$('qzOn').checked});qshow()};
- $('qzTest').onclick=async()=>{const k=$('qzKey').value.trim();if(k&&k!==KPCQrz.get().key)KPCQrz.set({key:k});qst('Asking QRZ…');const r=await KPCQrz.test();qst((r.ok?'✅ ':r.ok===false?'⚠ ':'ℹ ')+r.msg,r.ok)};
+ $('qzTest').onclick=async()=>{const k=$('qzKey').value.trim();if(k&&k!==KPCQrz.get().key)KPCQrz.set({key:k});if(!KPCQrz.get().key){qst('Paste your key and press SAVE first.',false);return}
+  if(!await KPCQrz.relay()){KPCQrz.showAnswer('STATUS');qst('A new tab opened with <b>QRZ\'s own answer</b>. <b>RESULT=OK</b> = your key works (it also shows your logbook\'s call sign and contact count). <b>RESULT=AUTH</b> or <b>invalid api key</b> = wrong key (use the <b>Logbook API key</b>, not your password). <b>FAIL</b> with a REASON = read the reason: often the logbook needs a QRZ subscription. No tab? Allow pop-ups for this page.',null);return}
+  qst('Asking QRZ…');const r=await KPCQrz.test();qst((r.ok?'✅ ':r.ok===false?'⚠ ':'ℹ ')+r.msg,r.ok)};
+ /* resend my last Hunters Lounge contact and show QRZ's own answer in a new tab */
+ function lastAdif(){let q;try{q=JSON.parse(localStorage.getItem('kpcHuntQSO')||'{}').q||[]}catch(e){q=[]}const x=q.slice().sort((a,b)=>(b.d+b.tm).localeCompare(a.d+a.tm))[0];if(!x)return null;
+  const my=(()=>{try{return JSON.parse(localStorage.getItem('kpcMyCall')||'""')}catch(e){return''}})()||x.my||'';const af=(n,v)=>v?`<${n}:${String(v).length}>${v}`:'';const m=String(x.mode||'').toUpperCase(),md=/FT4|JS8/.test(m)?'MFSK':m==='OTHER'?'':m,sm=/FT4|JS8/.test(m)?m:'';
+  const refs=String(x.ref||'').toUpperCase().split(/[ ,]+/).filter(Boolean),pota=refs.filter(r=>!/\//.test(r)&&!/FF-\d{4}$/.test(r));
+  return{x,adif:af('CALL',x.call)+af('QSO_DATE',x.d)+af('TIME_ON',x.tm)+af('FREQ',x.f)+af('BAND',x.band)+af('MODE',md)+af('SUBMODE',sm)+af('RST_SENT',x.rs)+af('RST_RCVD',x.rr)+af('STATION_CALLSIGN',x.my||my)+af('OPERATOR',x.my||my)+af('POTA_REF',pota.join(','))+(pota.length?af('SIG','POTA')+af('SIG_INFO',pota[0]):'')+'<EOR>'}}
+ $('qzLast').onclick=()=>{if(!KPCQrz.get().key){qst('Paste your key and press SAVE first.',false);return}const L=lastAdif();if(!L){qst('No contacts in your Hunters Lounge log on this device yet.',false);return}
+  KPCQrz.showAnswer('INSERT',L.adif);qst(`A new tab opened with <b>QRZ's own answer</b> for <b>${L.x.call}</b> (${L.x.band||''} ${L.x.mode||''}). <b>RESULT=OK</b> + a LOGID = it's in your QRZ logbook now. <b>duplicate</b> = it was already there (so sending works). <b>FAIL</b> = the REASON says why. No tab? Allow pop-ups for this page.`,null)};
  KPCQrz.relay().then(on=>{const n=$('qzRelayNote');if(n)n.innerHTML=on?'✅ Contacts go through the club\'s QRZ relay, so you\'ll see QRZ\'s real answer (saved / duplicate / why it refused). Your key passes through and is never saved.':'ℹ A web page can\'t see QRZ\'s reply, so after your first contact check your QRZ logbook once. (The club relay that shows QRZ\'s answer isn\'t switched on yet.)'});
  $('qzForget').onclick=()=>{if(!confirm('Forget your QRZ key on this device?'))return;KPCQrz.set({key:'',on:false});qshow()};
  qshow();
