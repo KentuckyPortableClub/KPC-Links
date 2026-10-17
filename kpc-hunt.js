@@ -139,12 +139,18 @@
   }
   /* POTA + SOTA come first; Spothole (about 1 MB: WWFF, DX cluster, DXpeditions, special events) arrives on its own and
      is merged in when it lands, so a slow phone still sees POTA right away. The last Spothole list is reused meanwhile. */
-  let LP = [], LS = [], LH = [], GOT = {}, holeBusy = false;
+  let LP = [], LS = [], LH = [], GOT = {}, holeBusy = false, holeLast = 0;
   async function load() {
     const a = jget('https://api.pota.app/spot/activator', 25000).then(x => { LP = (x || []).map(fromPota).filter(Boolean); GOT.POTA = 1; }).catch(() => { GOT.POTA = 0; });
     const b = jget('https://api2.sota.org.uk/api/spots/50/all', 25000).then(x => { LS = (x || []).map(fromSota).filter(Boolean); GOT.SOTA = 1; }).catch(() => { GOT.SOTA = 0; });
-    if (!holeBusy) {
-      holeBusy = true;
+    /* Spothole is a small hobby service and its list is ~1 MB (Brandon Oct 17, 250 users at once): ask it only when a list,
+       spot window or the alert actually shows WWFF / DX / DXpeditions / special events, at most every 3 min (every 10 min
+       while the tab is in the background); POTA + SOTA still come every minute */
+    const HOLEP = ['WWFF', 'DX', 'DXPED', 'EVENT'];
+    const holeNeed = () => { try { return F.p.some(x => HOLEP.includes(x)) || (AF.p.length ? AF.p : (AF.same ? [] : HOLEP)).some(x => HOLEP.includes(x)) || (Array.isArray(WIN) && WIN.some(w => w && w.on && (w.p || []).some(x => HOLEP.includes(x)))); } catch (e) { return true; } };
+    const holeGap = document.hidden ? 10 * 60e3 : 3 * 60e3;
+    if (!holeBusy && holeNeed() && Date.now() - holeLast >= holeGap) {
+      holeBusy = true; holeLast = Date.now();
       jget('https://spothole.app/api/v1/spots?max_age=2700', 60000).then(j => { const L = Array.isArray(j) ? j : (j && j.spots) || []; LH = L.map(fromHole).filter(Boolean); GOT.HOLE = 1; })
         .catch(() => { GOT.HOLE = 0; }).finally(() => { holeBusy = false; build(!first); });
     }
