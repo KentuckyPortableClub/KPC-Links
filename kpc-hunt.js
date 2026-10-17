@@ -529,6 +529,30 @@
     if (!c) return; const s = SP.find(x => x.p + '|' + x.call + '|' + x.ref === c.dataset.k); if (s) openSheet(s);
   });
 
+
+  /* ---------------- ⭐ bookmark: hunted parks straight from POTA (Brandon Oct 16) ----------------
+     pota.app's own page loads them from api.pota.app/user/stats/hunted_activated_list?type=both with the signed-in
+     Cognito idToken (localStorage CognitoIdentityServiceProvider.<client>.<user>.idToken) as the Authorization header
+     (read from pota.app's web bundle Oct 16). The bookmark runs ON pota.app, makes that same call, and sends ONLY the
+     park numbers back here in the address (#pota=US~1.2.17_CA~5), so the sign-in never leaves pota.app. */
+  const HERE = location.origin + location.pathname;
+  const BM = `(async()=>{try{if(!/pota\\.app$/.test(location.hostname)){alert('Open pota.app first (signed in), then tap this bookmark there.');return}let t='';for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(/CognitoIdentityServiceProvider\\..*\\.idToken$/.test(k))t=localStorage.getItem(k)}if(!t){alert('Sign in to pota.app first, then tap this bookmark again.');return}const r=await fetch('https://api.pota.app/user/stats/hunted_activated_list?type=both',{headers:{Authorization:t}});if(!r.ok){alert('POTA answered '+r.status+'. Sign out of pota.app and back in, then try again.');return}const j=await r.json(),h=j.hunted||[],g={};h.forEach(x=>{const m=String(x.reference||'').match(/^([A-Z0-9]+)-(\\d+)$/);if(m)(g[m[1]]=g[m[1]]||[]).push(+m[2])});location.href='${HERE}#pota='+Object.keys(g).map(p=>p+'~'+g[p].join('.')).join('_')+'&n='+h.length}catch(e){alert('Could not get your parks: '+e.message)}})()`;
+  const BMURL = 'javascript:' + encodeURIComponent(BM);
+  $('hBm').href = BMURL;
+  $('hBm').onclick = e => { e.preventDefault(); toast('Drag this button to your bookmarks bar, then use it on pota.app.'); };
+  $('hBmCopy').onclick = async () => { try { await navigator.clipboard.writeText(BMURL); toast('✓ Copied. Now paste it as a bookmark’s web address.'); } catch (e) { prompt('Copy this, then paste it as a bookmark’s web address:', BMURL); } };
+  function fromPotaHash() {
+    const m = location.hash.match(/[#&]pota=([^&]*)/); if (!m) return;
+    const got = new Set();
+    decodeURIComponent(m[1]).split('_').forEach(grp => { const [pre, nums] = grp.split('~'); if (!pre || !nums) return; nums.split('.').forEach(n => { if (/^\d+$/.test(n)) got.add(nref(pre + '-' + n.padStart(4, '0'))); }); });
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    if (!got.size) { $('hMsg').className = 'hl-msg bad'; $('hMsg').textContent = 'POTA sent back no hunted parks. Are you signed in with the right call?'; return; }
+    const keep = [...WK].filter(r => progOf(r) !== 'POTA');      // WWFF / SOTA you loaded stay
+    WK = new Set(keep.concat([...MAN]).concat([...got]));
+    LOG.t = Date.now(); LOG.file = 'POTA (' + got.size + ' hunted parks)'; saveLog(); logInfo(); ticker(false); draw(); needDraw();
+    toast(`✓ ${got.size.toLocaleString()} hunted parks loaded from POTA.`);
+    setTimeout(() => $('hlSetup').scrollIntoView({ behavior: 'smooth' }), 400);
+  }
   /* ---------------- looks (Brandon Oct 16: switchable themes; Cabin Lodge = his pictures) ---------------- */
   let THEME = get('kpcHuntTheme', 'lodge');
   function theme() { $('hl').dataset.theme = THEME; document.querySelectorAll('[data-theme-pick]').forEach(b => b.setAttribute('aria-pressed', b.dataset.themePick === THEME)); }
@@ -559,7 +583,7 @@
     $('hSt').innerHTML = '<option value="">…or pick your state</option>' + stOpts('');
     $('nSt').innerHTML = stOpts(st0); $('tSt').innerHTML = stOpts(st0);
     stick();
-    chips(); bell(); logInfo(); homeInfo(); qsoInit();
+    chips(); bell(); logInfo(); homeInfo(); qsoInit(); fromPotaHash();
     load(); needLoad(); topDraw(); myStats();
     setInterval(() => { const s = Math.max(0, Math.round((next - Date.now()) / 1000)); $('hsAge').textContent = next ? s + 's' : '–'; if (next && Date.now() >= next) { next = 0; load(); } }, 1000);
     setInterval(() => { document.querySelectorAll('.hs').length && draw(); }, 5 * 60e3);
