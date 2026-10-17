@@ -246,9 +246,11 @@
     let ph = $('hlPopPh');
     if (on && !ph) {   /* first pop: it starts exactly where it was, then you drag it */
       const r0 = sec.getBoundingClientRect(), m = mainR();
-      if (POP.px == null && POP.x == null) { POP.fl = false; POP.px = Math.round(r0.left - m.left); POP.py = Math.round(r0.top - m.top); POP.w = Math.round(r0.width); POP.h = Math.max(500, innerHeight - 220); }
+      if (!POP.fl && !(isFinite(POP.px) && isFinite(POP.py))) { POP.fl = false; delete POP.x; delete POP.y; POP.px = Math.round(r0.left - m.left); POP.py = Math.round(r0.top - m.top); POP.w = Math.round(r0.width); POP.h = Math.max(500, innerHeight - 220); }
       ph = document.createElement('div'); ph.id = 'hlPopPh'; ph.className = 'hl-popph'; ph.style.height = Math.max(400, sec.offsetHeight) + 'px'; ph.innerHTML = '<span>📡 The main spots list is popped out. Drag it by its top bar, or tap <b>⤓ PUT BACK</b>.</span>'; sec.after(ph); }
-    if (!on && ph) ph.remove();
+    /* while popped it lives right inside main#hl, so its place is measured from the page (inside the grid it was measured from the spots column and landed too far right) */
+    if (on && sec.parentNode !== $('hl')) $('hl').appendChild(sec);
+    if (!on && ph) { ph.before(sec); ph.remove(); }
     sec.classList.toggle('hl-popped', on); b.setAttribute('aria-pressed', on); b.textContent = on ? '⤓ PUT BACK' : '⧉ POP OUT';
     let h = $('hlPopH');
     if (on && !h) { h = document.createElement('header'); h.id = 'hlPopH'; h.className = 'hw-h'; h.title = 'Drag me anywhere'; h.innerHTML = '<span class="hw-grip">⠿</span><b class="hw-n">📡 MAIN SPOTS</b><i class="hw-c" id="hlPopN"></i><button type="button" class="hw-b" data-plock>📌</button><button type="button" class="hw-b" data-popback title="Put it back">⤓</button>'; sec.prepend(h);
@@ -470,6 +472,9 @@
   function wmApply(el, st) {
     el.classList.toggle('fl', !!st.fl);
     const lb = el.querySelector('[data-wlock]'); if (lb) { lb.textContent = st.fl ? '🪟' : '📌'; lb.title = st.fl ? 'Floating: stays on the screen while you scroll. Tap to lock it to the page.' : 'Locked to the page: scrolls with it. Tap to make it float on the screen.'; }
+    if (!isFinite(st.w) || st.w < 240) st.w = 600; if (!isFinite(st.h) || st.h < 160) st.h = Math.max(500, innerHeight - 220);
+    if (st.fl && !(isFinite(st.x) && isFinite(st.y))) { st.x = Math.max(0, innerWidth - st.w - 24); st.y = winTop(); }
+    if (!st.fl && !(isFinite(st.px) && isFinite(st.py))) { const r = el.getBoundingClientRect(), m = mainR(); st.px = Math.round(r.left - m.left); st.py = Math.round(r.top - m.top); }
     if (st.fl) { st.x = Math.max(0, Math.min(innerWidth - 120, st.x)); st.y = Math.max(winTop(), Math.min(innerHeight - 60, st.y));
       Object.assign(el.style, { left: st.x + 'px', top: st.y + 'px', width: st.w + 'px', height: Math.min(st.h, innerHeight - st.y - 6) + 'px' }); }
     else { const mw = $('hl').clientWidth; st.px = Math.max(0, Math.min(mw - 120, st.px)); st.py = Math.max(0, st.py);
