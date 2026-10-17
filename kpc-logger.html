@@ -107,7 +107,7 @@ body.field .page-jump-nav{display:none!important}
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261018p"><link rel="stylesheet" href="kpc-ft8.css?v=20261018e">
+<link rel="stylesheet" href="kpc-logger.css?v=20261018w"><link rel="stylesheet" href="kpc-ft8.css?v=20261018e">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -288,11 +288,12 @@ body.field .page-jump-nav{display:none!important}
  <button type="button" class="dc" id="dRole" title="Activating or hunting (tap to switch)">🏕 ACTIVATING</button>
  <button type="button" class="dc" id="dSpot">📣 <span id="dSpotT">Spot me</span></button>
  <button type="button" class="dc" id="dCat" hidden title="Radio control">📻 <span class="tx">CAT</span></button>
+ <button type="button" class="dc" id="dVk" data-vk-open title="Voice keyer: play recorded CQ / calls through the radio">🎙 <span class="tx">Voice</span></button>
  <button type="button" class="dc" id="dMoreB">✏️ <span class="tx">More</span></button>
  <button type="button" class="dc" id="dSta" aria-label="Station">⚙ <span class="tx">Station</span></button>
 </div>
 <div class="lg-who" id="eWho" aria-live="polite"></div>
-<div class="lg-dstat"><span>⏱ <b id="dN">0</b> QSOs in <b id="dSpan">0m</b></span><span><b id="dRate">0</b> Q/h for last 10</span><span class="ed" id="dEdit" hidden>✏️ EDITING A SAVED CONTACT</span></div>
+<div class="lg-dstat"><span class="dk-goal" id="dGoal" title="Contacts toward a valid POTA activation"><i><b id="dGoalBar"></b></i><em id="dGoalT">0/10</em></span><button type="button" class="dk-wrap" id="dWrap">🏁 WRAP UP</button><span>⏱ <b id="dN">0</b> QSOs in <b id="dSpan">0m</b></span><span><b id="dRate">0</b> Q/h for last 10</span><span class="ed" id="dEdit" hidden>✏️ EDITING A SAVED CONTACT</span></div>
 <div class="lg-drow">
  <div class="lg-f e main">
   <label class="call">Their Call<input id="eCall" enterkeyhint="go" autocapitalize="characters" spellcheck="false" placeholder="K4TEST" required></label>
@@ -352,6 +353,7 @@ body.field .page-jump-nav{display:none!important}
  <label class="lg-btn line" for="xLoad">⬆ RESTORE FROM FILE<input type="file" id="xLoad" accept=".adi,.adif,.txt" hidden></label>
  <button type="button" class="lg-btn line" id="xNew">🏁 START A NEW ACTIVATION</button>
 </div>
+<div data-kpc-drive="logger"></div>
 <div class="lg-qz" id="xQz">
  <h3>☁ SEND TO MY QRZ LOGBOOK</h3>
  <p class="lg-mu">When you're done, send your contacts straight to your QRZ logbook (works on phones too). It needs the <b>logbook API key</b> of the QRZ logbook for the call you were on (qrz.com → Logbook → that book → Settings → API key; QRZ's logbook API is part of a QRZ subscription). The key is kept only on this device.</p>
@@ -381,7 +383,7 @@ body.field .page-jump-nav{display:none!important}
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="kpc-fx.js?v=20261017a"></script>
-<script src="kpc-cat.js?v=20261018k"></script><script src="kpc-logger.js?v=20261018d2"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261018e"></script><script src="kpc-digi.js?v=20261018b"></script><script src="kpc-digi-ui.js?v=20261018b"></script>
+<script src="kpc-cat.js?v=20261018k"></script><script src="kpc-logger.js?v=20261018w"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261018e"></script><script src="kpc-digi.js?v=20261018b"></script><script src="kpc-digi-ui.js?v=20261018b"></script><script src="kpc-voicekeyer.js?v=20261018a"></script><script src="kpc-gdrive.js?v=20261018a"></script>
 <script src="kpc-search.js?v=20261017x" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261017d" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');

@@ -287,6 +287,7 @@
     $('hsNew').textContent = hasLog() ? SP.filter(isNew).length : '–';
     naDraw(); try { lmDraw(); } catch (e) { console.error('map', e); }
     try { favAlert(); } catch (e) {}
+    try { chAlert(); } catch (e) {}
   }
   function bell() { const b = $('hlBell'); b.setAttribute('aria-pressed', BELL); b.innerHTML = (BELL ? '🔔' : '🔕') + '<span class="t"> ALERT ' + (BELL ? 'ON' : 'OFF') + '</span>'; }
   $('hlBell').onclick = () => { BELL = !BELL; put('kpcHuntBell', BELL); bell(); if (BELL) chime(); };
@@ -472,6 +473,32 @@
     const d = e.target.closest('[data-fdone]'); if (d) { FDONE.add(d.dataset.fdone + '|' + today()); saveFav(); draw(); toast('✓ Got them. Unpinned for today.'); }
   }, true);
   $('favForm').addEventListener('submit', e => { e.preventDefault(); const c = base($('favIn').value); if (!/^[A-Z0-9]{3,10}$/.test(c)) { toast('That doesn’t look like a call sign.'); return; } FAV.add(c); $('favIn').value = ''; saveFav(); favDraw(); draw(); });
+  /* 🎯 CHASE LIST (Brandon Oct 17: 'a list of parks you want that alerts you only when one of them comes on the air, any band or mode'):
+     park / reference numbers in localStorage kpcHuntChase. On the air = pinned in #hlChase above the list (passes no filters: any band,
+     mode, program, even parks you've hunted), flames + chime the first time each one shows up (even with 🔔 ALERT off), ✓ GOT IT takes it off. */
+  let CH = new Set(get('kpcHuntChase', [])); const CHSEEN = new Set(); let chFirst = true;
+  const chRef = v => { v = String(v || '').trim().toUpperCase().replace(/\s+/g, ''); if (/^\d{1,5}$/.test(v)) v = 'US-' + v.padStart(4, '0'); if (/^K-\d+$/.test(v)) v = 'US-' + v.slice(2).padStart(4, '0'); const m = v.match(/^([A-Z0-9]{1,4})-(\d{1,5})$/); if (m && !/FF$/.test(m[1])) v = m[1] + '-' + m[2].padStart(4, '0'); else if (m) v = m[1] + '-' + m[2].padStart(4, '0'); return v; };
+  const isCh = s => !!s.ref && CH.has(String(s.ref).toUpperCase());
+  const saveCh = () => put('kpcHuntChase', [...CH]);
+  function chDraw() {
+    const on = new Set(SP.filter(isCh).map(s => String(s.ref).toUpperCase())), n = $('chN'), L = $('chList'); if (!L) return;
+    n.textContent = CH.size ? `(${CH.size}${on.size ? ' · ' + on.size + ' ON THE AIR' : ''})` : '';
+    L.innerHTML = CH.size ? [...CH].sort().map(r => `<span class="hl-fav${on.has(r) ? ' on' : ''}">${esc(r)}${on.has(r) ? ' 📡' : ''}<button type="button" data-chx="${esc(r)}" title="Remove">✕</button></span>`).join('') : '<span class="hl-p" style="margin:0">No parks on your chase list yet.</span>';
+  }
+  function chAlert() {
+    const L = SP.filter(s => isCh(s) && !isQrt(s)), fresh = L.filter(s => !CHSEEN.has(keyOf(s)));
+    L.forEach(s => CHSEEN.add(keyOf(s)));
+    if (fresh.length) { const s = fresh[0], msg = `🎯 ON YOUR CHASE LIST: ${s.ref} ${s.name || ''} · ${s.call} ${(s.khz / 1000).toFixed(3)} ${s.mode || ''}${fresh.length > 1 ? ` (+${fresh.length - 1} more)` : ''}`;
+      if (chFirst) toast(msg.replace('ON YOUR CHASE LIST', fresh.length > 1 ? fresh.length + ' CHASE LIST PARKS ON THE AIR NOW' : 'CHASE LIST PARK ON THE AIR NOW')); else { fire(msg); chime(); }
+      if (!chFirst && NOTE && 'Notification' in window && Notification.permission === 'granted') { try { new Notification('Chase list: ' + s.ref + ' is on the air', { body: `${s.name || ''}\n${s.call} on ${(s.khz / 1000).toFixed(3)} ${s.mode || ''}`, icon: 'kpc-icon-180.png', tag: 'kpc-chase' }); } catch (e) {} } }
+    chFirst = false; chDraw();
+  }
+  document.addEventListener('click', e => {
+    const x = e.target.closest('[data-chx]'); if (x) { CH.delete(x.dataset.chx); saveCh(); chDraw(); draw(); return; }
+    const d = e.target.closest('[data-chdone]'); if (d) { e.stopPropagation(); CH.delete(d.dataset.chdone); saveCh(); chDraw(); draw(); toast('✓ Got it. ' + d.dataset.chdone + ' is off your chase list.'); return; }
+    const a = e.target.closest('[data-chadd]'); if (a) { e.stopPropagation(); const r = chRef(a.dataset.chadd); if (CH.has(r)) { CH.delete(r); toast(r + ' is off your chase list.'); } else { CH.add(r); toast('🎯 ' + r + ' is on your chase list: you get a sound and flames when it comes on the air.'); } saveCh(); chDraw(); draw(); }
+  }, true);
+  if ($('chForm')) $('chForm').addEventListener('submit', e => { e.preventDefault(); const V = $('chIn').value.split(/[\s,;]+/).map(chRef).filter(v => /^[A-Z0-9]{1,4}-\d{4,5}$|^[A-Z0-9]{1,4}FF-\d{4}$|^[A-Z0-9]{1,4}\/[A-Z]{2}-\d{3}$/.test(v)); if (!V.length) { toast('Type a park number like US-1234, KFF-0001 or W4K/EC-001.'); return; } V.forEach(v => CH.add(v)); $('chIn').value = ''; saveCh(); chDraw(); draw(); toast('🎯 Added ' + V.join(', ') + ' to your chase list.'); });
   function favAlert() {
     const L = SP.filter(s => isFav(s) && !favHunted(s)), fresh = L.filter(s => !SEENFAV.has(base(s.call)));
     L.forEach(s => SEENFAV.add(base(s.call)));
@@ -490,7 +517,7 @@
     if (isQrt(s)) b.push('<span class="hb qrt">QRT</span>');
     b.push(`<span class="hb">${bandOf(s.khz)}</span>`, `<span class="hb">${esc(s.mode || '?')}</span>`);
     return `<article class="hs p-${s.p}${n ? ' new' : ''}${w ? ' worked' : ''}${isQrt(s) ? ' qrt' : ''}${selCls(s)}" data-k="${esc(k)}">
- <div class="hs-top"><div class="hs-call"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}" title="${isFav(s) ? 'Remove from favorites' : 'Add to favorite activators'}">${isFav(s) ? '★' : '☆'}</button>${`<button type="button" class="hs-cb" data-tolog="${esc(k)}" title="Send ${esc(s.call)} to my log">${esc(s.call)}</button>`}</div><div class="hs-f"><b>${(s.khz / 1000).toFixed(3)}</b><span>MHz · ${esc(s.mode || '')}</span></div></div>
+ <div class="hs-top"><div class="hs-call"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}" title="${isFav(s) ? 'Remove from favorites' : 'Add to favorite activators'}">${isFav(s) ? '★' : '☆'}</button>${s.ref ? `<button type="button" class="fv chs${isCh(s) ? ' on' : ''}" data-chadd="${esc(s.ref)}" title="${isCh(s) ? 'Take this park off my chase list' : 'Add this park to my chase list'}">🎯</button>` : ''}${`<button type="button" class="hs-cb" data-tolog="${esc(k)}" title="Send ${esc(s.call)} to my log">${esc(s.call)}</button>`}</div><div class="hs-f"><b>${(s.khz / 1000).toFixed(3)}</b><span>MHz · ${esc(s.mode || '')}</span></div></div>
  <div class="hs-park">${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener">${esc(s.ref)}</a>` : ''}${esc(s.name || '')}</div>
  <div class="hs-meta">${esc(s.st ? (ST[s.st] || s.st) : s.loc)}${d != null ? ' · ' + Math.round(d) + ' mi' : ''} · ${ago(s.t)}${s.by ? ' · spotted by ' + esc(s.by) : ''}</div>
  ${s.com ? `<div class="hs-com">“${esc(String(s.com).slice(0, 140))}”</div>` : ''}
@@ -503,7 +530,7 @@
     const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), d = dist(s);
     const tag = (n ? '<span class="hb new">NEW</span>' : w ? '<span class="hb wk" title="You have hunted this PARK before (from your POTA list). It does not mean you worked this station.">HUNTED BEFORE</span>' : '') + (wkToday(s) ? '<span class="hb td" title="This call is in your log today (UTC)">✅ IN MY LOG TODAY</span>' : '');
     const rare = s.acts === 0 ? '<span class="hb atno">1ST</span>' : s.acts != null && s.acts <= 5 ? `<span class="hb rare">RARE ${s.acts}</span>` : '';
-    return `<tr class="hr${n ? ' new' : ''}${w ? ' worked' : ''}${selCls(s)}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}">${isFav(s) ? '★' : '☆'}</button>${`<button type="button" class="hs-cb" data-tolog="${esc(keyOf(s))}" title="Send ${esc(s.call)} to my log">${esc(s.call)}</button>`}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
+    return `<tr class="hr${n ? ' new' : ''}${w ? ' worked' : ''}${selCls(s)}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}">${isFav(s) ? '★' : '☆'}</button>${s.ref ? `<button type="button" class="fv chs${isCh(s) ? ' on' : ''}" data-chadd="${esc(s.ref)}" title="${isCh(s) ? 'Take this park off my chase list' : 'Add this park to my chase list'}">🎯</button>` : ''}${`<button type="button" class="hs-cb" data-tolog="${esc(keyOf(s))}" title="Send ${esc(s.call)} to my log">${esc(s.call)}</button>`}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
 <td><span class="pg">${PL[s.p] || s.p}</span> ${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener" class="r">${esc(s.ref)}</a> ` : ''}${esc(s.name || '')} ${tag}${rare} ${awardChips(s, true)}</td><td class="hide-s">${esc(s.st || '')}</td><td class="hide-s">${d != null ? Math.round(d) : ''}</td>
 <td class="a">${!PUB && s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(keyOf(s))}" title="Respot them on POTA">📣</button>` : ''}<button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call today">🙈</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" title="${w ? 'You have hunted this park before. Tap to take it off your hunted list.' : 'Mark this park as hunted'}">✓</button>` : ''}</td></tr>`;
   }
@@ -516,6 +543,9 @@
       && (!q || [s.call, s.ref, s.name, s.st, ST[s.st] || '', s.loc, s.com].join(' ').toUpperCase().includes(q)));
     const srt = { new: (a, b) => (b.t || 0) - (a.t || 0), old: (a, b) => (a.t || 0) - (b.t || 0), freq: (a, b) => a.khz - b.khz, freqd: (a, b) => b.khz - a.khz, mode: (a, b) => modeOf(a.mode).localeCompare(modeOf(b.mode)) || String(a.mode).localeCompare(String(b.mode)) || a.khz - b.khz, call: (a, b) => a.call.localeCompare(b.call), park: (a, b) => String(a.ref || '~').localeCompare(String(b.ref || '~')), mine: (a, b) => (isNew(b) - isNew(a)) || (b.t || 0) - (a.t || 0), far: (a, b) => (dist(a) ?? 1e9) - (dist(b) ?? 1e9) }[F.sort] || null;
     if (srt) L.sort(srt);
+    const CHP = SP.filter(s => isCh(s) && !isQrt(s)), CHK = new Set(CHP.map(keyOf));
+    if ($('hlChase')) $('hlChase').innerHTML = CHP.length ? `<div class="hl-pinbar ch">🎯 ON MY CHASE LIST, ON THE AIR NOW <small>any band or mode · tap ✓ GOT IT when you've worked it</small></div><div class="hl-grid hl-pinned">${CHP.map(s => card(s).replace('<div class="hs-a">', `<div class="hs-a"><button type="button" class="got" data-chdone="${esc(String(s.ref).toUpperCase())}">✓ GOT IT</button>`)).join('')}</div>` : '';
+    L = L.filter(s => !CHK.has(keyOf(s)));
     const PIN = L.filter(favPinned); L = L.filter(s => !favPinned(s));
     $('hlFavs').innerHTML = PIN.length ? `<div class="hl-pinbar">⭐ FAVORITES ON THE AIR <small>pinned until you work them today</small></div><div class="hl-grid hl-pinned">${PIN.map(s => card(s).replace('<div class="hs-a">', `<div class="hs-a"><button type="button" class="got" data-fdone="${esc(base(s.call))}">✓ GOT THEM</button>`)).join('')}</div>` : '';
     favDraw();
