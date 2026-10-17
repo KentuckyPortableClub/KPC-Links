@@ -80,8 +80,14 @@ def org_name(oid):
         try: ORG[oid] = (get(f'https://www.arcgis.com/sharing/rest/portals/{oid}?f=json', t=40) or {}).get('name', '') or ''
         except Exception: ORG[oid] = ''
     return ORG[oid]
+ABBR = {'MO': r'modnr|\bmdc\b|_mdc_|modot|mostateparks|mo_?dnr', 'TN': r'tdec|tdot|tnstateparks|tn_?state', 'VA': r'vdcr|\bdcr\b|vdot|vdof|vadcr|virginiadcr',
+        'WV': r'wvdnr|wvdep|wvgis|wv_?gis|wvstateparks|wvdot', 'IL': r'\bidnr|il_?dnr|ildnr|idot', 'IN': r'indnr|in_?dnr|indot', 'OH': r'odnr|odot|ohiodnr',
+        'NC': r'ncdnr|ncdpr|ncparks|ncdot|ncdeq', 'GA': r'gadnr|gdot|ga_?dnr', 'AL': r'aldcnr|adcnr|aldot', 'MI': r'midnr|mi_?dnr|mdot', 'PA': r'padcnr|dcnr|penndot',
+        'MS': r'mdwfp|msdot', 'AR': r'arkansasstateparks|ardot|agfc', 'MD': r'mddnr|md_?dnr|mdot', 'WI': r'widnr|wi_?dnr|wisdot', 'MN': r'mndnr|mn_?dnr|mndot', 'IA': r'iadnr|iowadnr|iowadot'}
+FEDO = r'\bnps\b|nps_|_nps|usfs|usda_?fs|\bfws\b|usfws|\bblm\b|usace'
 def official_org(org, st):
     o = org.lower()
+    if re.search(ABBR.get(st, r'^$'), o) or re.search(FEDO, o): return True
     if re.search(FED, o): return True
     sn = STN.get(st, '').lower()
     if re.search(r'\b(county|city|town|village|township|university|college|club|association|alliance|friends|conservancy|council)\b', o): return False
@@ -121,7 +127,7 @@ def agency(name, st, la, lo):
         u = (it.get('url') or '').rstrip('/')
         if not u or u in seen or not re.search(r'/(Feature|Map)Server(/\d+)?$', u): continue
         seen.add(u)
-        org = org_name(it.get('orgId', '')) if it.get('orgId') else ''
+        org = ((org_name(it.get('orgId', '')) if it.get('orgId') else '') + ' | ' + (it.get('accessInformation') or '') + ' | ' + (it.get('owner') or '')).strip(' |')
         if not official_org(org, st): ALOG.append([name, 'skip (not state/federal)', org[:60], it.get('title', '')[:60]]); continue
         tries.append((u, org, None))
     for u, org, flds in tries[:14]:
