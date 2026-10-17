@@ -632,3 +632,16 @@ main#hl .hs-a .hc{color:#cfc6b4}
  .hl-dk[data-fx=stars] .dk-go{background:radial-gradient(circle at 35% 30%,#e8f1ff,#7aa7ff 60%,#2a4fa8);color:#061234}
  .hl-dk[data-fx=fireworks] .dk-go{background:radial-gradient(circle at 35% 30%,#ffd1dc,#ef476f 60%,#8e1838);color:#fff}
 }
+
+/* Oct 17 (Brandon, computer): the filter pop-up sat under the sticky banner; the log pane was too tall; call look-up line */
+@media(min-width:1100px){
+ main#hl[data-desk="1"] .hl-filters.open{z-index:1500}
+ main#hl[data-desk="1"] .hl-dk{height:auto;min-height:0;max-height:calc(100vh - 170px)}
+ main#hl[data-desk="1"] .hl-dk .dk-list{flex:0 1 auto;min-height:150px;max-height:min(42vh,420px)}
+}
+.dk-who{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;min-height:20px;margin:0 0 6px;font:13px Arial;color:var(--mu)}
+.dk-who:empty{display:none}
+.dk-who b{color:#fff;font-size:14px}
+.dk-who .pv{color:var(--g2)}.dk-who .pv.nw{color:var(--gr)}
+.dk-who .lk{font-style:italic}
+.dk-q .c small.on{font:11px Arial;color:var(--mu);font-weight:400}
