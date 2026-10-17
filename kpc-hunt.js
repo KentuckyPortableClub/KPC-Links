@@ -706,6 +706,14 @@
     toast(wasEdit ? '✓ Changes saved.' : `✓ ${call} saved on this device.`, wasEdit ? null : () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); });
   });
   let tT = 0;
+  /* big box in the middle of the screen, so the POTA bookmark result can't be missed (a toast was too easy to miss on iPhone) */
+  function bigNote(ok, html) {
+    let d = document.getElementById('hlBig'); if (!d) { d = document.createElement('div'); d.id = 'hlBig'; d.setAttribute('role', 'alertdialog'); document.body.appendChild(d); }
+    d.className = 'hl-big ' + (ok ? 'ok' : 'bad');
+    d.innerHTML = `<div class="hl-bigbox"><div class="hl-bigic">${ok ? '✅' : '⚠️'}</div>${html}<button type="button">${ok ? 'SHOW ME THE SPOTS' : 'OK'}</button></div>`;
+    d.hidden = false;
+    d.querySelector('button').onclick = () => { d.hidden = true; if (ok) { const t = $('hlList') || $('hlTick'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } };
+  }
   function toast(msg, undo) {
     let t = document.querySelector('.hl-toast'); if (!t) { t = document.createElement('div'); t.className = 'hl-toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
     t.innerHTML = esc(msg) + (undo ? '<button type="button">UNDO</button>' : ''); t.hidden = false;
@@ -753,7 +761,7 @@
       }
       if (!P && String(window.name).startsWith('KPCPOTA:')) { try { P = JSON.parse(window.name.slice(8)); } catch (e) {} }
       window.name = '';
-      if (!P) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} toast('The park list from POTA didn’t arrive. Update this browser, or try the bookmark on a computer.'); return; }
+      if (!P) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} bigNote(false, '<h3>The park list from POTA didn’t come through</h3><p>Go back to pota.app, make sure you are signed in, wait until the page has fully loaded, then tap the ⭐ bookmark again. If it still fails, send Brandon a screenshot of this box.</p>'); return; }
       m = [0, P.refs]; A = P.aw;
     }
     if (!m) return;
@@ -768,12 +776,13 @@
     const got = new Set();
     decodeURIComponent(m[1]).split('_').forEach(grp => { const [pre, nums] = grp.split('~'); if (!pre || !nums) return; nums.split('.').forEach(n => { if (/^\d+$/.test(n)) got.add(nref(pre + '-' + n.padStart(4, '0'))); }); });
     try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
-    if (!got.size) { $('hMsg').className = 'hl-msg bad'; $('hMsg').textContent = 'POTA sent back no hunted parks. Are you signed in with the right call?'; return; }
+    if (!got.size) { $('hMsg').className = 'hl-msg bad'; $('hMsg').textContent = 'POTA sent back no hunted parks. Are you signed in with the right call?'; bigNote(false, '<h3>POTA sent back 0 hunted parks</h3><p>Are you signed in to pota.app with the right call sign? Sign in, let the page load, then tap the ⭐ bookmark again.</p>'); return; }
     const keep = [...WK].filter(r => progOf(r) !== 'POTA');      // WWFF / SOTA you loaded stay
     WK = new Set(keep.concat([...MAN]).concat([...got]));
     LOG.t = Date.now(); LOG.file = 'POTA (' + got.size + ' hunted parks)'; saveLog(); logInfo(); ticker(false); draw(); needDraw();
-    toast(`✓ ${got.size.toLocaleString()} hunted parks loaded from POTA.`);
-    setTimeout(() => $('hlSetup').scrollIntoView({ behavior: 'smooth' }), 400);
+    try { window.scrollTo(0, 0); } catch (e) {}
+    const st = new Set([...got].map(r => r.split('-')[0])).size;
+    bigNote(true, `<h3>${got.size.toLocaleString()} hunted parks loaded from POTA</h3><p>${A && A.call ? 'For <b>' + esc(base(A.call)) + '</b>. ' : ''}From ${st} countr${st === 1 ? 'y' : 'ies'}. They are saved on this device, so parks you've already hunted drop out of the spots and only new ones light up.${CNT ? ' Your park and operator counts came over too (the 🔁 and 🤝 numbers on each spot).' : ''}</p><p class="s">Hunt more parks? Tap the ⭐ bookmark on pota.app again any time to refresh.</p>`);
   }
 
   /* ---------------- 🏅 my POTA awards (brought over by the ⭐ bookmark; kept in localStorage kpcHuntAwards) ---------------- */
