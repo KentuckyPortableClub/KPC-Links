@@ -390,3 +390,41 @@ main#lg[data-night] .lg-dchips .dc.clk{background:#2a0500;color:#ff8a80}
 @media(max-width:1099px){main#lg .lg-radio{gap:6px;padding:6px;margin-bottom:8px}main#lg .lg-radio label{padding:3px 8px 1px;font-size:11.5px}main#lg .lg-radio input,main#lg .lg-radio select{font-size:16px;padding:1px 0 3px}
  .lg-dock .lg-who .w{padding:7px 10px;font-size:13px;gap:3px 10px}.lg-dock .lg-who .w b{font-size:14.5px}}
 main#lg #nText{min-height:0;margin:0;height:auto;resize:none}
+/* ===== Oct 16 v8 (Brandon on his phone): typing box + the last QSOs is the main screen; everything else on tabs; smaller dock ===== */
+.lg-sug{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
+.lg-sug span{font-size:12.5px;color:var(--mu)}
+.lg-sug button{padding:7px 11px;border-radius:9px;border:1px solid var(--g);background:rgba(226,176,74,.12);color:var(--g2);font:700 13px Arial,sans-serif;cursor:pointer}
+.lg-sug small{font-weight:400;color:#cfd8d3;margin-left:4px}
+.lg-mini{display:none}
+@media(max-width:1099px){
+ main#lg:not([data-tab=more]) .lg-hero{display:none}
+ main#lg .lg-wrap{width:100%}
+ .lg-tabs{margin:0;top:var(--hdr,0px)}
+ .lg-tabs button{padding:11px 11px 9px;font-size:13px}
+ main#lg .lg-card{border-radius:0;margin-top:0;border-left:0;border-right:0}
+ main#lg #cLog{padding:0;background:#101416;border:0}
+ main#lg #cLog h2,main#lg #cLog>.lg-row{display:none}
+ .lg-mini{display:block;padding:7px 12px;background:#1b2327;color:#dfe5e6;font:14px Arial,sans-serif;border-bottom:1px solid rgba(255,255,255,.08);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .lg-mini b{font-family:ui-monospace,Menlo,Consolas,monospace;color:#fff}.lg-mini i{font-style:normal;color:var(--g2);font-family:ui-monospace,Menlo,Consolas,monospace}
+ main#lg #cLog .lg-list{margin:0;height:calc(100dvh - var(--hdr,64px) - 44px - 34px - var(--dock,200px));min-height:160px;max-height:none;border:0}
+ main#lg{padding-bottom:var(--dock,200px)}
+ main#lg[data-tab=log] ~ footer,main#lg[data-tab=log] ~ .kpc-disc{display:none}
+ /* smaller dock */
+ .lg-dock{padding:6px 8px calc(8px + env(safe-area-inset-bottom));border-radius:14px 14px 0 0}
+ .lg-dchips{gap:6px}
+ .lg-dchips .dc{padding:7px 10px;font-size:13px;border-radius:9px}
+ .lg-dstat{font-size:12.5px;margin:5px 2px 5px;gap:2px 12px}
+ .lg-dock .lg-who{margin-top:5px}
+ .lg-dock .lg-who .w{padding:5px 9px;font-size:12px;flex-wrap:nowrap;overflow:hidden;white-space:nowrap}
+ .lg-dock .lg-who .w>*{flex:0 0 auto}
+ .lg-drow{gap:6px;align-items:center}
+ .lg-dock .lg-f.e.main{gap:5px}
+ .lg-dock .lg-f.e.main label{padding:3px 6px 0;font-size:11px;border-bottom-width:2px}
+ main#lg .lg-dock .lg-f.e.main input{font-size:18px;padding:0 0 4px}
+ main#lg .lg-dock #eCall{font-size:19px}
+ .lg-dbtns{flex-direction:row;gap:5px}
+ .lg-go{width:46px;height:46px;font-size:22px}
+ .lg-clr{width:36px;height:46px;font-size:16px;border-radius:10px}
+ .lg-drawer{max-height:30vh;margin-bottom:6px;padding:8px}
+}
+@media(max-width:1099px){main#lg[data-tab=station] [data-tabp=station]{display:block!important}}

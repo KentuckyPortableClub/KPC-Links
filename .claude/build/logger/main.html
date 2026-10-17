@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261016g">
+<link rel="stylesheet" href="kpc-logger.css?v=20261016h">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -25,7 +25,7 @@
 <div class="lg-wrap">
 
 <!-- the operation: who, where, hunting or activating, notes (station details fold out) -->
-<section class="lg-card lg-op" id="cOp">
+<section class="lg-card lg-op" id="cOp" data-tabp="station">
 <div class="lg-opbar">
  <div class="lg-opwho"><b id="oCall">YOUR CALL</b> <span id="oAt">@</span> <b id="oPark" class="pk">PARK</b><div class="lg-opsub" id="oSub">Tap ⚙ STATION to set your call and park</div></div>
  <div class="lg-opn"><b id="oN">0</b><span>QSOs</span></div>
@@ -48,6 +48,7 @@
  <label class="wide">Other operators logging with you (optional)<input id="myOps" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Their calls, like K4TEST, W4KIDS"></label>
 </div>
 <label class="lg-chk" id="myShareL" hidden><input type="checkbox" id="myShare"> We all use ONE station call (my call above). Leave this off when everyone uses their own call, so each operator gets their own POTA file and credit.</label>
+<div class="lg-sug" id="myParkSug" hidden></div>
 <p class="lg-park" id="myParkInfo"></p>
 <div class="lg-row"><button type="button" class="lg-btn gold sm" id="myNearB">📍 PARKS NEAR ME (GPS)</button><button type="button" class="lg-btn line sm" id="myGps">GRID FROM MY GPS</button><span class="lg-mu" id="myGpsMsg"></span></div>
 <div class="lg-near" id="myNear" hidden></div>
@@ -57,12 +58,12 @@
 
 <!-- phones and tablets: one part at a time, like Ham2K PoLo -->
 <nav class="lg-tabs" id="lgTabs" aria-label="Logger parts">
- <button type="button" data-tab="log" class="on"><b id="tN">0</b> QSOs</button><button type="button" data-tab="spots">SPOTS</button><button type="button" data-tab="map">MAP</button><button type="button" data-tab="info">INFO</button><button type="button" data-tab="more">MORE</button>
+ <button type="button" data-tab="log" class="on"><b id="tN">0</b> QSOs</button><button type="button" data-tab="spots">SPOTS</button><button type="button" data-tab="map">MAP</button><button type="button" data-tab="info">INFO</button><button type="button" data-tab="station">⚙ STATION</button><button type="button" data-tab="more">MORE</button>
 </nav>
 
 <div class="lg-main">
 <div class="lg-left">
-<section class="lg-card lg-logc" id="cLog" data-tabp="log"><h2><span id="lTitle">My log</span> <small id="lCount"></small></h2>
+<section class="lg-card lg-logc" id="cLog" data-tabp="log"><div class="lg-mini" id="lMini"></div><h2><span id="lTitle">My log</span> <small id="lCount"></small></h2>
 <div class="lg-row">
  <button type="button" class="lg-chip on" data-lv="act" id="lvAct">THIS ACTIVATION</button>
  <button type="button" class="lg-chip" data-lv="all">EVERYTHING</button>
@@ -101,10 +102,10 @@
 <div class="lg-dstat"><span>⏱ <b id="dN">0</b> QSOs in <b id="dSpan">0m</b></span><span><b id="dRate">0</b> Q/h for last 10</span><span class="ed" id="dEdit" hidden>✏️ EDITING A SAVED CONTACT</span></div>
 <div class="lg-drow">
  <div class="lg-f e main">
-  <label class="call">Their Call<input id="eCall" autocapitalize="characters" spellcheck="false" placeholder="K4TEST" required></label>
-  <label>Sent<input id="eRs" inputmode="numeric" placeholder="59"></label>
-  <label>Rcvd<input id="eRr" inputmode="numeric" placeholder="59"></label>
-  <label>State<input id="eSt" autocapitalize="characters" maxlength="3"></label>
+  <label class="call">Their Call<input id="eCall" enterkeyhint="go" autocapitalize="characters" spellcheck="false" placeholder="K4TEST" required></label>
+  <label>Sent<input id="eRs" enterkeyhint="go" inputmode="numeric" placeholder="59"></label>
+  <label>Rcvd<input id="eRr" enterkeyhint="go" inputmode="numeric" placeholder="59"></label>
+  <label>State<input id="eSt" enterkeyhint="go" autocapitalize="characters" maxlength="3"></label>
  </div>
  <div class="lg-dbtns"><button type="button" class="lg-clr" id="eClear" aria-label="Clear">⌫</button><button type="button" class="lg-clr del" id="eDel" aria-label="Delete this contact" hidden>🗑</button><button type="submit" class="lg-go" id="eLog" aria-label="Log it">⬆</button></div>
 </div>
@@ -173,4 +174,4 @@
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-logger.js?v=20261016h"></script>
+<script src="kpc-logger.js?v=20261016i"></script>
