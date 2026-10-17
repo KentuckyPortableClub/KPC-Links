@@ -1,22 +1,42 @@
-CDDA/3 Nationally designated areas (NatDA) - Medium scale viewing geom esriGeometryPolygon minScale 2999999 fields: OBJECTID, SHAPE, siteName, legalFoundationDate, spatialDataDissemination, metadata_versionId, metadata_beginLifeSpanVersion, metadata_statusCode, metadata_featureStatus, metadata_statements, geomType, id, iucnCategory, Priority, SHAPE_Length, SHAPE_Area, FC_name, FC_nameLAEA, countryCode, natDAId, natDACountryCode, natDARegionCode, inspireIDLocalId, inspireIDNamespace, inspireIDVersionId, thematicIdentifier, nationalId, designationTypeCode, designatedAreaType, siteArea, majorEcosystemType, marineAreaPercentage, target30Percent, strictProtection, conservationObjectivesPA, managementPlanPA, mana
-CDDA/4 Nationally designated areas (NatDA) - Large scale viewing geom esriGeometryPolygon minScale 999999 fields: OBJECTID, SHAPE, siteName, legalFoundationDate, spatialDataDissemination, metadata_versionId, metadata_beginLifeSpanVersion, metadata_statusCode, metadata_featureStatus, metadata_statements, geomType, id, iucnCategory, Priority, SHAPE_Length, SHAPE_Area, FC_name, FC_nameLAEA, countryCode, natDAId, natDACountryCode, natDARegionCode, inspireIDLocalId, inspireIDNamespace, inspireIDVersionId, thematicIdentifier, _issues___count, _issues___issue_found, _issues___location_sample_x, _issues___location_sample_y, _issues___location_sample_z, nationalId, designationTypeCode, designatedAreaType, siteArea
-PT 48.95,13.42 CDDA/3: [{"siteName": "Bayerischer Wald", "designationTypeCode": "DE01", "iucnCategory": "II", "siteArea": 24980, "countryCode": "DE", "OBJECTID": 105853, "nationalId": "DE01nlp_100"}, {"siteName": "LSG \"Bayerischer Wald\"", "designationTypeCode": "DE07", "iucnCategory": "V", "siteArea": 231027.24, "countryCode": "DE", "OBJECTID": 108777, "nationalId": "DE07by_LSG-00547.01"}]
-PT 48.95,13.42 CDDA/4: [{"siteName": "Bayerischer Wald", "designationTypeCode": "DE01", "iucnCategory": "II", "siteArea": 24980, "countryCode": "DE", "OBJECTID": 106635, "nationalId": "DE01nlp_100"}, {"siteName": "LSG \"Bayerischer Wald\"", "designationTypeCode": "DE07", "iucnCategory": "V", "siteArea": 231027.24, "countryCode": "DE", "OBJECTID": 109581, "nationalId": "DE07by_LSG-00547.01"}]
-PT 37.0,-6.45 CDDA/3: [{"siteName": "Doñana", "designationTypeCode": "ES49", "iucnCategory": "IV", "siteArea": 113898.6579, "countryCode": "ES", "OBJECTID": 55059, "nationalId": "ES0000024"}, {"siteName": "Doñana", "designationTypeCode": "ES08", "iucnCategory": "II", "siteArea": 53424.77921, "countryCode": "ES", "OBJECTID": 61574, "nationalId": "ES610010"}]
-PT 37.0,-6.45 CDDA/4: [{"siteName": "Doñana", "designationTypeCode": "ES49", "iucnCategory": "IV", "siteArea": 113898.6579, "countryCode": "ES", "OBJECTID": 55546, "nationalId": "ES0000024"}, {"siteName": "Doñana", "designationTypeCode": "ES08", "iucnCategory": "II", "siteArea": 53424.77921, "countryCode": "ES", "OBJECTID": 62070, "nationalId": "ES610010"}]
-PT 52.07,5.82 CDDA/3: [{"siteName": "Veluwe", "designationTypeCode": "NL01", "iucnCategory": "IV", "siteArea": 88436.0563141842, "countryCode": "NL", "OBJECTID": 109052, "nationalId": "N2k-57"}, {"siteName": "De Hoge Veluwe", "designationTypeCode": "NL22", "iucnCategory": "II", "siteArea": 5105, "countryCode": "NL", "OBJECTID": 111093, "nationalId": "NP-9"}]
-PT 52.07,5.82 CDDA/4: [{"siteName": "Veluwe", "designationTypeCode": "NL01", "iucnCategory": "IV", "siteArea": 88436.0563141842, "countryCode": "NL", "OBJECTID": 109856, "nationalId": "N2k-57"}, {"siteName": "NNN-GE", "designationTypeCode": "NL21", "iucnCategory": "notApplicable", "siteArea": 140618, "countryCode": "NL", "OBJECTID": 111263, "nationalId": "NNN-GE"}, {"siteName": "De Hoge Veluwe", "designationTypeCode": "NL22", "iucnCategory": "II", "siteArea": 5105, "countryCode": "NL", "OBJECTID": 111919, "nationalId
-PT 50.73,7.2 CDDA/3: []
-PT 50.73,7.2 CDDA/4: []
-PT 45.2,6.9 CDDA/3: [{"siteName": "Montcenis Et Vallon De Savine", "designationTypeCode": "FR05", "iucnCategory": "IV", "siteArea": 6088.46309, "countryCode": "FR", "OBJECTID": 48, "nationalId": "FR3800208"}]
-PT 45.2,6.9 CDDA/4: [{"siteName": "Montcenis Et Vallon De Savine", "designationTypeCode": "FR05", "iucnCategory": "IV", "siteArea": 6088.46309, "countryCode": "FR", "OBJECTID": 54, "nationalId": "FR3800208"}]
-LIKE Natura2000Sites/2: 200 cors=https://kentuckyportableclub.github.io n=3 bytes=28698 first={"SITENAME": "Nationalpark Bayerischer Wald"} geom=MultiPolygon pts=16171
-LIKE CDDA_Dyna_WM/4: 200 cors=https://kentuckyportableclub.github.io n=3 bytes=407706 first={"siteName": "Bayerischer Wald"} geom=MultiPolygon pts=16787
-DE-0001: Berchtesgaden | National Park | 47.5528,12.9176 | web https://www.nationalpark-berchtesgaden.bayern.de/
-DE-0577: Taubergießen | Natura 2000 | 48.2626,7.69053 | web https://www.naturzentrum-rheinauen.eu/natur/taubergiessen/karte-naturschutzgebiet
-ES-0010: Sierra de Andujar | Nature Park | 38.29,-4.02874 | web https://www.juntadeandalucia.es/medioambiente/portal/web/ventanadelvisitante/detalle-buscador-mapa/-/asset_publisher/Jlbxh2qB3NwR/content/sierra-de-andujar-4
-IT-0001: Foresta di Monte Arcosu | Natura 2000 | 39.1286,8.84639 | web https://www.protectedplanet.net/555529980
-FR-0001: l'Avesnois | Regional Park | 50.1667,3.86667 | web http://www.parc-naturel-avesnois.fr/
-PL-0001: Kraśnicki | Protected Landscape Area | 50.9305,22.1225 | web https://parki.lubelskie.pl/obszary-chronionego-krajobrazu/krasnicki-obszar-chronionego-krajobrazu/o-ochk
-GB-0001: Cassop Vale | National Nature Reserve | 54.7388,-1.46958 | web https://www.woodlandtrust.org.uk/visiting-woods/woods/cassop-vale-nnr/
-SE-0001: Abisko | National Park | 68.3579,18.7868 | web https://www.nationalparksofsweden.se/choose-park---list/abisko-national-park/
+by country (matched, total): {"DE": [11, 20], "FR": [6, 20], "IT": [18, 20], "ES": [17, 20], "PL": [20, 20], "SE": [18, 20], "NL": [7, 20], "CZ": [15, 20], "AT": [15, 20], "PT": [10, 20], "FI": [19, 20], "GB": [0, 20]}
+by type: {"Natura 2000": [78, 84], "Nature Reserve": [35, 36], "Biological Reserve": [3, 16], "Nature Park": [5, 9], "National Nature Reserve": [2, 8], "Provincial Park": [5, 7], "National Park": [3, 6], "National Scenic Trail": [0, 5], "Protected Landscape Area": [3, 5], "National Recreation Trail": [0, 5], "Recreation Park": [0, 4], "Park": [0, 4], "Natural Monument": [3, 4], "Landscape Reserve": [2, 3], "Marine Protected Area": [0, 3], "Nature Monument": [3, 3], "National Forest": [0, 3], "State Nature Preserve": [3, 3], "Conservation Area": [0, 3], "National Historic Trail": [0, 2], "Biosphere Reserve": [1, 2], "Other Conservation Area": [1, 2], "World Heritage Site": [0, 2], "National Heritage Area": [2, 2], "National Reserve": [2, 2], "Geopark": [1, 2], "Forest Reserve": [0, 2], "Country Park": [0, 2], "UNESCO Biosphere Reserve": [1, 1], "Historic Site": [0, 1], "National Historic Site": [0, 1], "Regional Park": [1, 1], "Protected Landscape": [0, 1], "UNESCO Geopark": [0, 1], "National Monument": [1, 1], "Flora and Fauna Reserve": [1, 1], "Protected Area": [0, 1], "RSPB Reserve": [0, 1], "Site of Significant Scientific Interest": [0, 1]}
+DE-0744 Ludwigspark Recreation Park [Recreation Park] best='' 0.00
+DE-0449 Landschaftsgebiet Bockwitzer See Landscape Reserve [Landscape Reserve] best='Bergbaufolgelandschaft Bockwitz' 0.25
+DE-0883 Mittelerzgebirgische Basaltberge Natura 2000 [Natura 2000] best='' 0.00
+DE-0858 Via Sancti Martini National Historic Trail [National Historic Trail] best='' 0.00
+DE-0817 Elberadweg National Scenic Trail [National Scenic Trail] best='' 0.00
+DE-0706 Clara-Zetkin-Park Recreation Park [Recreation Park] best='' 0.00
+DE-0649 Neue Harth Recreation Park [Recreation Park] best='' 0.00
+DE-1015 Saar-Hunsrück-Steig National Scenic Trail [National Scenic Trail] best='' 0.00
+DE-0875 Linkselbische Fels- und Waldgebiete Natura 2000 [Natura 2000] best='' 0.00
+FR-4963 Marais de Bovinens Biological Reserve [Biological Reserve] best='' 0.00
+FR-10351 MARAIS DE MAGOAR - PENVERN - GUERNEVAN Biological Reserve [Biological Reserve] best='Landes Et Marais De Glomel' 0.20
+FR-14438 Plateau de Concoules Biological Reserve [Biological Reserve] best='' 0.00
+FR-10706 Pelouse seche et boisement thermophile de Bel-Air Biological Reserve [Biological Reserve] best='' 0.00
+FR-15521 ENSEMBLE DE ZONES HUMIDES DE SAINT JEAN DE CHEVELU Biological Reserve [Biological Reserve] best='Lacs Et Marais De Saint-Jean De Chevelu' 0.43
+FR-12170 FORET DE VILLECARTIER Biological Reserve [Biological Reserve] best='' 0.00
+FR-11007 ALLIER PONT DE MIREFLEURS - DALLET Biological Reserve [Biological Reserve] best="Val d'Allier - Alagnon" 0.20
+FR-15186 La Douze et milieux annexes Biological Reserve [Biological Reserve] best='' 0.00
+FR-10558 Prairie de fauche des Cadorats Biological Reserve [Biological Reserve] best='' 0.00
+FR-3006 LE SALAGOU FR9112002 Natura 2000 [Natura 2000] best='Le Salagou' 0.33
+FR-16336 versant rocheux sous villard-notre-dame Biological Reserve [Biological Reserve] best="Plaine de Bourg d'Oisans et ses versants" 0.14
+FR-16552 site a chauves-souris : mine d'or de la celle-dunoise Biological Reserve [Biological Reserve] best='' 0.00
+FR-12495 Pic de Benal Biological Reserve [Biological Reserve] best='' 0.00
+FR-12833 BOIS MAL Biological Reserve [Biological Reserve] best='' 0.00
+IT-0378 Parco del Castello di Miramare Historic Site [Historic Site] best='Miramare' 0.33
+IT-1329 Biotopo Magredi di San Quirino Other Conservation Area [Other Conservation Area] best='Magredi di S. Quirino' 0.33
+ES-2355 Caminos de Santiago de Compostela: Camino francés y Caminos del Norte de España World Heritage Site [World Heritage Site] best='' 0.00
+ES-1469 Palacio Real de La Almudaina National Historic Site [National Historic Site] best='' 0.00
+ES-1984 Camino de la Vera Cruz National Historic Trail [National Historic Trail] best='' 0.00
+SE-2056 Komosse (västra) Natura 2000 [Natura 2000] best='Komosse' 0.33
+SE-2164 Lilla Vickleby Protected Landscape [Protected Landscape] best='' 0.00
+NL-0023 Speulder en Sprielderbos Nature Park [Nature Park] best='' 0.00
+NL-0045 Deelerwoud Provincial Park [Provincial Park] best='' 0.00
+NL-0264 Zuiderzeepad (LAW 8) National Recreation Trail [National Recreation Trail] best='' 0.00
+NL-0065 Westerwolde -Overdiep Provincial Park [Provincial Park] best='' 0.00
+NL-0027 Kootwijkerzand Park [Park] best='' 0.00
+NL-0074 Rosendael Bos Park [Park] best='' 0.00
+NL-0235 Schakerloopolder Marine Protected Area [Marine Protected Area] best='' 0.00
+NL-0309 Natuur- en recreatiegebied Engbergen Recreation Park [Recreation Park] best='' 0.00
+NL-0260 Pieterpad (LAW 9) National Recreation Trail [National Recreation Trail] best='' 0.00
+NL-0211 Grebbelinie National Park [National Park] best='' 0.00
