@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261018a">
+<link rel="stylesheet" href="kpc-logger.css?v=20261018c">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -81,8 +81,8 @@
 <div class="lg-radio" id="eRadio">
  <div class="lg-pophd"><b>📻 RADIO &amp; THEIR PARK</b><button type="button" class="lg-popx" data-popx="radio">✓ DONE</button></div>
  <label>Frequency<input id="eFreq" inputmode="decimal" placeholder="14.285"></label>
- <label>Band<input id="eBand" readonly tabindex="-1"></label>
- <label>Mode<select id="eMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option><option>PSK31</option><option>JS8</option><option>OTHER</option></select></label>
+ <label>Band<select id="eBand"><option value="">pick</option><option>160m</option><option>80m</option><option>60m</option><option>40m</option><option>30m</option><option>20m</option><option>17m</option><option>15m</option><option>12m</option><option>10m</option><option>6m</option><option>2m</option><option>1.25m</option><option>70cm</option></select></label>
+ <label>Mode<select id="eMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FT2</option><option>FM</option><option>AM</option><option>RTTY</option><option>PSK31</option><option>JS8</option><option>OTHER</option></select></label>
  <label class="ref">Their park / ref<input id="eRef" autocapitalize="characters" spellcheck="false" placeholder="US-0000, KFF-0000…"></label>
  <label>Name<input id="eName"></label>
 </div>
@@ -190,4 +190,4 @@
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="kpc-fx.js?v=20261017a"></script>
-<script src="kpc-cat.js?v=20261018a"></script><script src="kpc-logger.js?v=20261018a"></script>
+<script src="kpc-cat.js?v=20261018a"></script><script src="kpc-logger.js?v=20261018b"></script>

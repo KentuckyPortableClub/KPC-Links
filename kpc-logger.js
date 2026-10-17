@@ -203,6 +203,34 @@
   /* ---------------- entry form ---------------- */
   let EDIT = null;
   function bandSet() { const k = kHzOf($('eFreq').value); $('eBand').value = bandOf(k); }
+  /* AUTO FREQUENCY (Brandon Oct 17: 'FT8 FT4 FT2 select the band and the freq is automatic… if any mode changes the freq goes
+     to somewhere in the right freq area'): FT8/FT4/FT2/JS8/PSK31 = the standard dial frequency; CW, phone, AM, FM = a common
+     spot in that part of the band, only when the frequency is empty, on another band or outside that mode's part of the band */
+  const DIAL = {
+    FT8: { '160m': 1840, '80m': 3573, '60m': 5357, '40m': 7074, '30m': 10136, '20m': 14074, '17m': 18100, '15m': 21074, '12m': 24915, '10m': 28074, '6m': 50313, '2m': 144174 },
+    FT4: { '80m': 3575, '40m': 7047.5, '30m': 10140, '20m': 14080, '17m': 18104, '15m': 21140, '12m': 24919, '10m': 28180, '6m': 50318, '2m': 144170 },
+    FT2: { '40m': 7052, '20m': 14084 },   /* new mode (2025-26): only these two are published so far; check your FT2 program */
+    JS8: { '160m': 1842, '80m': 3578, '40m': 7078, '30m': 10130, '20m': 14078, '17m': 18104, '15m': 21078, '12m': 24922, '10m': 28078, '6m': 50318 },
+    PSK31: { '80m': 3580, '40m': 7070, '30m': 10142, '20m': 14070, '17m': 18100, '15m': 21070, '12m': 24920, '10m': 28120, '6m': 50290 },
+    RTTY: { '80m': 3580, '40m': 7080, '30m': 10140, '20m': 14080, '17m': 18100, '15m': 21080, '12m': 24920, '10m': 28080 },
+    CW: { '160m': 1820, '80m': 3530, '60m': 5332, '40m': 7030, '30m': 10110, '20m': 14040, '17m': 18080, '15m': 21040, '12m': 24900, '10m': 28040, '6m': 50090, '2m': 144050, '70cm': 432100 },
+    SSB: { '160m': 1900, '80m': 3850, '60m': 5330.5, '40m': 7200, '20m': 14250, '17m': 18130, '15m': 21300, '12m': 24950, '10m': 28400, '6m': 50150, '2m': 144200, '1.25m': 222100, '70cm': 432100 },
+    AM: { '160m': 1885, '80m': 3885, '40m': 7290, '20m': 14286, '15m': 21425, '10m': 29000, '6m': 50400, '2m': 144400 },
+    FM: { '10m': 29600, '6m': 52525, '2m': 146520, '1.25m': 223500, '70cm': 446000 },
+  };
+  /* the part of each band where a mode belongs (kHz from the band's bottom edge up to the top) */
+  const AREA = { CW: { '160m': [1800, 1840], '80m': [3500, 3600], '40m': [7000, 7125], '30m': [10100, 10150], '20m': [14000, 14150], '17m': [18068, 18110], '15m': [21000, 21200], '12m': [24890, 24930], '10m': [28000, 28300], '6m': [50000, 50100] },
+    SSB: { '160m': [1843, 2000], '80m': [3600, 4000], '60m': [5330, 5410], '40m': [7125, 7300], '20m': [14150, 14350], '17m': [18110, 18168], '15m': [21200, 21450], '12m': [24930, 24990], '10m': [28300, 29700], '6m': [50100, 54000], '2m': [144100, 148000], '1.25m': [222000, 225000], '70cm': [420000, 450000] } };
+  AREA.AM = AREA.SSB;
+  function autoFreq(why) {
+    const m = $('eMode').value, b = $('eBand').value, k = kHzOf($('eFreq').value); if (!b) return;
+    const D = DIAL[m] || {}, fixed = ['FT8', 'FT4', 'FT2', 'JS8', 'PSK31', 'RTTY'].includes(m);
+    let f = null;
+    if (fixed) { if (D[b]) f = D[b]; else if (why === 'band' || bandOf(k) !== b) { toast(`No standard ${m} frequency on ${b}: type the one you are on.`); return; } }
+    else { const A = (AREA[m] || {})[b]; const okNow = k && bandOf(k) === b && (!A || (k >= A[0] && k <= A[1])); if (!okNow && D[b]) f = D[b]; }
+    if (f == null || Math.abs(f - k) < 0.01) return;
+    $('eFreq').value = mhz(f); put('kpcLgRadio', { f: $('eFreq').value, m }); try { radioTxt(); } catch (e) {}
+  }
   /* reports are filled in (59 phone, 599 CW) unless you change them (Brandon Oct 16: 'everyone is 59 unless we change it') */
   function modeSet() { const m = $('eMode').value, d = rstDef(m);
     ['eRs', 'eRr'].forEach(i => { const el = $(i); el.placeholder = d || '–'; if (!el.value || el.value === el.dataset.def) el.value = d; el.dataset.def = d; }); }
@@ -218,7 +246,8 @@
     bandSet(); modeSet();
     $('eCall').oninput = e => { const p = e.target.selectionStart; e.target.value = e.target.value.toUpperCase().replace(/\s/g, ''); try { e.target.setSelectionRange(p, p); } catch (x) {} clearTimeout(lkT); lkT = setTimeout(who, 450); };
     $('eFreq').oninput = () => { bandSet(); put('kpcLgRadio', { f: $('eFreq').value, m: $('eMode').value }); };
-    $('eMode').onchange = () => { modeSet(); put('kpcLgRadio', { f: $('eFreq').value, m: $('eMode').value }); who(); };
+    $('eMode').onchange = () => { modeSet(); autoFreq('mode'); put('kpcLgRadio', { f: $('eFreq').value, m: $('eMode').value }); who(); };
+    $('eBand').onchange = () => { autoFreq('band'); if (!$('eBand').value) return; if (bandOf(kHzOf($('eFreq').value)) !== $('eBand').value) { const D = DIAL[$('eMode').value] || DIAL.SSB; const f = D[$('eBand').value] || (BANDS.find(x => x[0] === $('eBand').value) || [0, 0])[1]; if (f) $('eFreq').value = mhz(f); } put('kpcLgRadio', { f: $('eFreq').value, m: $('eMode').value }); try { radioTxt(); } catch (e) {} };
     $('eRef').onblur = e => { e.target.value = anyRefs(e.target.value).join(', ') || e.target.value.toUpperCase(); };
     $('eSt').oninput = e => { e.target.value = e.target.value.toUpperCase(); };
     $('eClear').onclick = () => { clearForm(true); $('eCall').focus(); };
@@ -344,7 +373,7 @@
   /* ---------------- ADIF / CSV ---------------- */
   const enc = new TextEncoder();
   const af = (k, v) => { v = String(v == null ? '' : v).replace(/[<>]/g, ''); return v === '' ? '' : `<${k}:${enc.encode(v).length}>${v} `; };
-  function adMode(m) { m = String(m || '').toUpperCase(); if (m === 'FT4') return ['MFSK', 'FT4']; if (m === 'JS8') return ['MFSK', 'JS8']; if (m === 'PSK31') return ['PSK', 'PSK31']; if (m === 'OTHER') return ['', '']; return [m, '']; }
+  function adMode(m) { m = String(m || '').toUpperCase(); if (m === 'FT4') return ['MFSK', 'FT4']; if (m === 'FT2') return ['MFSK', 'FT2']; if (m === 'JS8') return ['MFSK', 'JS8']; if (m === 'PSK31') return ['PSK', 'PSK31']; if (m === 'OTHER') return ['', '']; return [m, '']; }
   function adif(Q, onePark, prog) {
     let o = `KPC Activator Logger\n${af('ADIF_VER', '3.1.4')}${af('PROGRAMID', 'KPC Activator Logger')}${af('CREATED_TIMESTAMP', iso(new Date()).replace(/[-:]/g, '').replace('T', ' ').slice(0, 15))}<EOH>\n`;
     Q.forEach(q => {
@@ -487,12 +516,22 @@
       if (s && ![x.activator, x.reference, x.name, x.locationDesc, x.comments].join(' ').toUpperCase().includes(s)) return false; return true; });
     const BO = BANDS.map(b => b[0]); R.sort((a, c) => BO.indexOf(bandOf(+a.frequency)) - BO.indexOf(bandOf(+c.frequency)) || (+a.frequency) - (+c.frequency));
     $('pAge').textContent = spAt ? `${R.length} shown · updated ${new Date(spAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}` : '';
-    let lastB = ''; const cnt = {}; R.forEach(x => { const b = bandOf(+x.frequency) || 'other'; cnt[b] = (cnt[b] || 0) + 1; });
-    $('pList').innerHTML = R.length ? R.slice(0, 160).map(x => { const k = +x.frequency, b = bandOf(k) || 'other', w = worked.has(base(x.activator) + '|' + bandOf(k)), ago = Math.max(0, Math.round((Date.now() - (x._t || Date.parse(x.spotTime + 'Z'))) / 6e4));
-      const fs = (k / 1000).toFixed(3).replace('.', ','), hd = b !== lastB ? `<div class="lg-sband">${esc(b)} · ${cnt[b]} spot${cnt[b] > 1 ? 's' : ''}</div>` : ''; lastB = b;
-      return `${hd}<button type="button" class="lg-sp${w ? ' wk' : ''}" data-sp="${x.spotId}"><span class="f">${fs}</span><span class="c">${esc(x.activator)}${w ? ' <i>✓</i>' : ''}</span><span class="a">${ago < 60 ? ago + 'm' : Math.floor(ago / 60) + 'h'} ago</span><span class="md">${esc(spMode(x) || '?')}</span><span class="n">${PICON[x.prog] || '🌲'} ${esc(x.reference)}${x.locationDesc ? ': ' + esc(String(x.locationDesc).split(',')[0].replace(/^US-/, '')) : ''} · ${esc(x.name || '')}</span>${x.comments && !isRbn(x) ? `<span class="x">${esc(String(x.comments).slice(0, 80))}</span>` : ''}${(x.prog || 'POTA') === 'POTA' ? `<span class="rs" data-respot="${x.spotId}" role="button" tabindex="0">📣 RESPOT</span>` : ''}</button>`; }).join('')
+    /* TABLE like the Hunters Lounge (Brandon Oct 17: 'make it like the hunters lounge table view… and the sort by features'):
+       tap a heading to sort (tap again to flip); saved in kpcLgSpSort; tap a row = fill the log */
+    const AGE = x => Math.max(0, Math.round((Date.now() - (x._t || Date.parse(x.spotTime + 'Z'))) / 6e4));
+    const SO = SPSORT.k, dir = SPSORT.d;
+    const key = { when: x => AGE(x), call: x => base(x.activator), freq: x => +x.frequency, mode: x => spMode(x), park: x => String(x.reference || '') }[SO] || (x => +x.frequency);
+    R.sort((a, c) => { const A = key(a), C = key(c); return (A < C ? -1 : A > C ? 1 : 0) * dir || (+a.frequency) - (+c.frequency); });
+    const th = (k, n, c) => `<th class="srt${SO === k ? ' on' : ''}${c ? ' ' + c : ''}" data-srt="${k}" title="Sort by this">${n}${SO === k ? (dir > 0 ? ' ▴' : ' ▾') : ''}</th>`;
+    $('pList').innerHTML = R.length ? `<table class="lg-st"><thead><tr>${th('when', 'WHEN', 'hs')}${th('call', 'CALL')}${th('freq', 'MHz')}${th('mode', 'MODE', 'hs')}${th('park', 'PARK / REF')}<th></th></tr></thead><tbody>` + R.slice(0, 200).map(x => {
+      const k = +x.frequency, w = worked.has(base(x.activator) + '|' + bandOf(k)), ago = AGE(x);
+      const st = x.locationDesc ? String(x.locationDesc).split(',')[0].replace(/^US-/, '') : '';
+      return `<tr class="sp${w ? ' wk' : ''}" data-sp="${x.spotId}"><td class="t hs">${ago < 60 ? ago + 'm' : Math.floor(ago / 60) + 'h'}</td><td class="c">${esc(x.activator)}${w ? ' <i>✓</i>' : ''}</td><td class="f">${(k / 1000).toFixed(3)}<small>${esc(bandOf(k))}</small></td><td class="hs">${esc(spMode(x) || '?')}</td><td class="r"><b>${PICON[x.prog] || '🌲'} ${esc(x.reference || '')}</b><small>${esc(x.name || '')}${st ? ' · ' + esc(st) : ''}</small>${x.comments && !isRbn(x) ? `<small class="x">${esc(String(x.comments).slice(0, 70))}</small>` : ''}</td><td class="a">${(x.prog || 'POTA') === 'POTA' ? `<span class="rs" data-respot="${x.spotId}" role="button" tabindex="0" title="Respot them on POTA">📣</span>` : ''}</td></tr>`; }).join('') + '</tbody></table>'
       : `<div class="lg-empty">${SP.length ? 'No spots match these choices.' : 'Loading spots…'}</div>`;
   }
+  let SPSORT = Object.assign({ k: 'freq', d: 1 }, get('kpcLgSpSort', {}));
+  document.addEventListener('click', e => { const h = e.target.closest('#pList th[data-srt]'); if (!h) return; const k = h.dataset.srt;
+    SPSORT = SPSORT.k === k ? { k, d: -SPSORT.d } : { k, d: k === 'when' ? 1 : 1 }; put('kpcLgSpSort', SPSORT); drawSpots(); });
   function spotsInit() {
     $('pBand').innerHTML = '<option value="">All bands</option>' + BANDS.slice(0, 11).map(b => `<option>${b[0]}</option>`).join('');
     ['pBand', 'pMode', 'pNoRbn', 'pNoWk', 'pPota', 'pWwff', 'pSota'].forEach(i => $(i).onchange = () => { put('kpcLgSpF', { b: $('pBand').value, m: $('pMode').value, r: $('pNoRbn').checked, w: $('pNoWk').checked, pp: $('pPota').checked, pw: $('pWwff').checked, ps: $('pSota').checked }); drawSpots(); });
