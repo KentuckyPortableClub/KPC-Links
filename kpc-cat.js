@@ -137,19 +137,33 @@
 
   /* ---- QRZ logbook (ACTION=INSERT with the logbook's own API key; needs a QRZ XML/logbook subscription) ---- */
   let Z = Object.assign({ on: false, key: '' }, LS('kpcQrz') || {});
+  /* QRZ answers web pages but doesn't let them read the answer (no CORS, checked Oct 17). With the KPC QRZ relay
+     (kpc-qrz-relay.json url = a Google Apps Script web app) the page gets QRZ's real answer; without it, it sends ONCE
+     straight to QRZ (before Oct 17 it sent twice) and can only say 'sent'. */
+  let RELAY = null;
+  const relayUrl = () => RELAY || (RELAY = fetch('kpc-qrz-relay.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).then(j => (j && /^https:\/\/script\.google(usercontent)?\.com\//.test(j.url || '') ? j.url : '')).catch(() => ''));
+  const reasonOf = t => decodeURIComponent(((/REASON=([^&]*)/.exec(t) || [, ''])[1]).replace(/\+/g, ' ')).trim();
+  async function viaRelay(action, rec) {
+    const u = await relayUrl(); if (!u) return null;
+    try { const r = await fetch(u, { method: 'POST', body: JSON.stringify({ key: Z.key, action, adif: rec || '' }) }); const j = await r.json(); return String(j.reply || ''); } catch (e) { return null; }
+  }
   window.KPCQrz = {
     get: () => Object.assign({}, Z), set(o) { Z = Object.assign({}, Z, o || {}); SV('kpcQrz', Z); }, on: () => !!(Z.on && Z.key),
+    relay: async () => !!(await relayUrl()),
+    async test() {   /* ACTION=STATUS: is the key good? (needs the relay to see the answer) */
+      if (!Z.key) return { ok: false, msg: 'No QRZ logbook key saved.' };
+      const t = await viaRelay('STATUS'); if (t == null) return { ok: null, msg: 'A web page can\'t see QRZ\'s answer without the KPC QRZ relay, so this test can\'t run yet. Log one contact and check your QRZ logbook.' };
+      if (/RESULT=OK/.test(t)) { const n = (/COUNT=(\d+)/.exec(t) || [])[1], c = (/CALLSIGN=([^&]*)/.exec(t) || [])[1]; return { ok: true, msg: `Key works${c ? ' for ' + decodeURIComponent(c) : ''}${n ? ' · ' + n + ' contacts in that logbook' : ''}.` }; }
+      return { ok: false, msg: 'QRZ said: ' + (reasonOf(t) || t.slice(0, 120)) + (/AUTH/.test(t) ? ' (check the key: QRZ.com → Logbook → Settings → API key; it needs a QRZ subscription that includes the logbook API)' : '') };
+    },
     async send(rec) {
       if (!Z.key) return { ok: false, msg: 'No QRZ logbook key saved.' };
-      const body = new URLSearchParams({ KEY: Z.key, ACTION: 'INSERT', ADIF: rec });
-      try { // QRZ answers like RESULT=OK&LOGID=… when the browser is allowed to read the answer
-        const r = await fetch('https://logbook.qrz.com/api', { method: 'POST', body });
-        const t = await r.text(); const ok = /RESULT=(OK|REPLACE)/.test(t);
-        return { ok, sure: true, msg: ok ? 'Saved in your QRZ logbook.' : 'QRZ said: ' + decodeURIComponent((/REASON=([^&]*)/.exec(t) || [, t.slice(0, 120)])[1]).replace(/\+/g, ' ') };
-      } catch (e) { // QRZ's server doesn't let web pages read its answer: send it anyway, we just can't see the reply
-        try { await fetch('https://logbook.qrz.com/api', { method: 'POST', body, mode: 'no-cors' }); return { ok: true, sure: false, msg: 'Sent to QRZ (QRZ doesn\'t let a web page see its reply, so check your QRZ logbook once).' }; }
-        catch (e2) { return { ok: false, msg: 'Could not reach QRZ (no signal?). Download your log for QRZ later.' }; }
-      }
+      const t = await viaRelay('INSERT', rec);
+      if (t != null) { const ok = /RESULT=(OK|REPLACE)/.test(t), dup = /duplicate/i.test(t);
+        return { ok: ok || dup, sure: true, msg: ok ? 'Saved in your QRZ logbook.' : dup ? 'Already in your QRZ logbook.' : 'QRZ said: ' + (reasonOf(t) || t.slice(0, 120)) }; }
+      try { await fetch('https://logbook.qrz.com/api', { method: 'POST', body: new URLSearchParams({ KEY: Z.key, ACTION: 'INSERT', ADIF: rec }), mode: 'no-cors' });
+        return { ok: true, sure: false, msg: 'Sent to QRZ. (A web page can\'t see QRZ\'s reply, so check your QRZ logbook once to be sure.)' }; }
+      catch (e) { return { ok: false, msg: 'Could not reach QRZ (no signal?). Download your log for QRZ later.' }; }
     }
   };
 })();
