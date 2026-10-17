@@ -153,3 +153,13 @@ html.f8-open,html.f8-open body{overflow:hidden}
 :is(#lg,#hl) .f8 .f8-pwr,:is(#lg,#hl) .f8-pwr{display:flex;align-items:center;gap:6px}
 :is(#lg,#hl) .f8-pwr input[type=range]{flex:1;min-width:120px}
 :is(#lg,#hl) .f8-pwr .f8-b{min-width:34px;padding:4px 8px;font-size:16px;line-height:1}
+
+/* Oct 17: Feld Hellschreiber (data-m=hell) uses the RTTY/PSK keyboard + log, with a picture instead of text */
+.f8[data-m=hell] .dg{display:block}
+.f8[data-m=hell] :is(.f8-lists,.f8-ctl,.f8-chks,.f8-txm,.f8-slot,.f8-mapw){display:none!important}
+.f8[data-m=hell] :is(.dg-kb,.dg-kb2){display:block}
+.f8[data-m=hell] .dg-log{display:flex!important;flex-wrap:wrap;align-items:flex-end}
+.f8[data-m=hell] :is(.dg-rx,#dgCalls){display:none!important}
+.f8 .dg-only-hell{display:none!important}.f8[data-m=hell] .dg-only-hell{display:inline-flex!important}.f8[data-m=hell] div.dg-only-hell{display:block!important}
+.f8[data-m=hell] .dg-kb label.ck{display:none}
+.f8 .dg-hell canvas{width:100%;height:auto;max-height:46vh;display:block;background:#0b0d10;border:1px solid #2b3036;border-radius:8px;image-rendering:pixelated}

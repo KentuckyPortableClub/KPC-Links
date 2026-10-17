@@ -1,4 +1,4 @@
-/* KPC digital modes engine: RTTY, PSK31, SSTV and WSPR (Brandon Oct 17 2026: 'go ahead with RTTY, PSK31, SSTV, WSPR').
+/* KPC digital modes engine: RTTY, PSK31, SSTV, WSPR and Feld Hellschreiber (Oct 17) (Brandon Oct 17 2026: 'go ahead with RTTY, PSK31, SSTV, WSPR').
    Pure sound math at 12 000 samples a second, shared by the KPC Logger and both Hunters Lounges (kpc-logger-ft8.js draws the screens).
    - RTTY: 45.45 / 50 / 75 baud, any shift; two matched filters + W7AY-style automatic threshold; Baudot (US figures, unshift on space).
    - PSK31: BPSK at 31.25 baud, Varicode (table from fldigi, GPL), AFC, squelch; many channels at once for the signal browser.
@@ -396,6 +396,65 @@
       if (got && !out.some(o => o.call === got.call && Math.abs(o.df - c.freq) < 4)) out.push(Object.assign(got, { snr: Math.round(c.snr), dt: +(c.shift * dt - 1).toFixed(1), df: +c.freq.toFixed(1), drift: c.drift, sync: c.sync })); }
     return out.sort((a, b) => a.df - b.df);
   };
+
+  /* ---------------- Feld Hellschreiber (Oct 17, Brandon: 'hellschreiber') ----------------
+     On/off keyed tone, 2.5 characters a second: each character = 7 columns, each column = 14 picture elements scanned
+     bottom to top (245 elements a second, about 4.08 ms each). Nothing to decode: the receiver just paints the tone's
+     strength as a picture, so your eyes read it (that's why it copies through noise and needs no sync). */
+  const HELLF = {
+    'A': ['01110', '10001', '10001', '11111', '10001', '10001', '10001'], 'B': ['11110', '10001', '10001', '11110', '10001', '10001', '11110'],
+    'C': ['01110', '10001', '10000', '10000', '10000', '10001', '01110'], 'D': ['11110', '10001', '10001', '10001', '10001', '10001', '11110'],
+    'E': ['11111', '10000', '10000', '11110', '10000', '10000', '11111'], 'F': ['11111', '10000', '10000', '11110', '10000', '10000', '10000'],
+    'G': ['01110', '10001', '10000', '10111', '10001', '10001', '01111'], 'H': ['10001', '10001', '10001', '11111', '10001', '10001', '10001'],
+    'I': ['01110', '00100', '00100', '00100', '00100', '00100', '01110'], 'J': ['00111', '00010', '00010', '00010', '00010', '10010', '01100'],
+    'K': ['10001', '10010', '10100', '11000', '10100', '10010', '10001'], 'L': ['10000', '10000', '10000', '10000', '10000', '10000', '11111'],
+    'M': ['10001', '11011', '10101', '10101', '10001', '10001', '10001'], 'N': ['10001', '10001', '11001', '10101', '10011', '10001', '10001'],
+    'O': ['01110', '10001', '10001', '10001', '10001', '10001', '01110'], 'P': ['11110', '10001', '10001', '11110', '10000', '10000', '10000'],
+    'Q': ['01110', '10001', '10001', '10001', '10101', '10010', '01101'], 'R': ['11110', '10001', '10001', '11110', '10100', '10010', '10001'],
+    'S': ['01111', '10000', '10000', '01110', '00001', '00001', '11110'], 'T': ['11111', '00100', '00100', '00100', '00100', '00100', '00100'],
+    'U': ['10001', '10001', '10001', '10001', '10001', '10001', '01110'], 'V': ['10001', '10001', '10001', '10001', '10001', '01010', '00100'],
+    'W': ['10001', '10001', '10001', '10101', '10101', '10101', '01010'], 'X': ['10001', '10001', '01010', '00100', '01010', '10001', '10001'],
+    'Y': ['10001', '10001', '01010', '00100', '00100', '00100', '00100'], 'Z': ['11111', '00001', '00010', '00100', '01000', '10000', '11111'],
+    '0': ['01110', '10001', '10011', '10101', '11001', '10001', '01110'], '1': ['00100', '01100', '00100', '00100', '00100', '00100', '01110'],
+    '2': ['01110', '10001', '00001', '00010', '00100', '01000', '11111'], '3': ['11111', '00010', '00100', '00010', '00001', '10001', '01110'],
+    '4': ['00010', '00110', '01010', '10010', '11111', '00010', '00010'], '5': ['11111', '10000', '11110', '00001', '00001', '10001', '01110'],
+    '6': ['00110', '01000', '10000', '11110', '10001', '10001', '01110'], '7': ['11111', '00001', '00010', '00100', '01000', '01000', '01000'],
+    '8': ['01110', '10001', '10001', '01110', '10001', '10001', '01110'], '9': ['01110', '10001', '10001', '01111', '00001', '00010', '01100'],
+    '.': ['00000', '00000', '00000', '00000', '00000', '01100', '01100'], ',': ['00000', '00000', '00000', '00000', '01100', '00100', '01000'],
+    '?': ['01110', '10001', '00001', '00010', '00100', '00000', '00100'], '/': ['00000', '00001', '00010', '00100', '01000', '10000', '00000'],
+    '-': ['00000', '00000', '00000', '11111', '00000', '00000', '00000'], '=': ['00000', '00000', '11111', '00000', '11111', '00000', '00000'],
+    '+': ['00000', '00100', '00100', '11111', '00100', '00100', '00000'], ':': ['00000', '01100', '01100', '00000', '01100', '01100', '00000'],
+    "'": ['01100', '00100', '01000', '00000', '00000', '00000', '00000'], '(': ['00010', '00100', '01000', '01000', '01000', '00100', '00010'],
+    ')': ['01000', '00100', '00010', '00010', '00010', '00100', '01000'], '!': ['00100', '00100', '00100', '00100', '00100', '00000', '00100'],
+    '@': ['01110', '10001', '10111', '10101', '10111', '10000', '01110'], '#': ['01010', '01010', '11111', '01010', '11111', '01010', '01010'],
+    ' ': ['00000', '00000', '00000', '00000', '00000', '00000', '00000']
+  };
+  D.HELL = { cps: 2.5, cols: 7, rows: 14, rate: 245 };
+  /* columns of 14 elements (bottom first) for a text */
+  function hellCols(text) { const out = []; for (const ch of String(text).toUpperCase()) { const g = HELLF[ch] || HELLF[ch === '\n' ? ' ' : '?'];
+      const C = [[], [], [], [], [], [], []]; for (let c = 0; c < 7; c++) for (let r = 13; r >= 0; r--) { const row = Math.floor(r / 2), on = c >= 1 && c <= 5 && g[row][c - 1] === '1'; C[c].push(on ? 1 : 0); }
+      /* rows are listed top to bottom; the scan goes bottom to top, so element 0 = bottom (row 6) */
+      out.push(...C); } return out; }
+  D.hellTx = function (text, fc, rate) { rate = rate || R; const cols = hellCols(' ' + text + ' '), el = rate / 245, N = Math.ceil(cols.length * 14 * el), out = new Float32Array(N + 8);
+    const rise = Math.max(4, Math.round(rate * 0.0012)); let ph = 0; const w = TAU * fc / rate;
+    const bits = []; for (const c of cols) for (const b of c) bits.push(b);
+    for (let n = 0; n < N; n++) { const k = Math.floor(n / el), b = bits[k] || 0; let env = b; if (b) { const st = Math.round(k * el), en = Math.round((k + 1) * el); let a = Math.min(n - st, en - n) / rise;
+        if (bits[k - 1]) a = Math.max(a, (en - n) / rise > 1 ? 1 : a); if (bits[k + 1]) a = Math.max(a, (n - st) / rise > 1 ? 1 : a); if (bits[k - 1] && bits[k + 1]) a = 1; env = Math.min(1, Math.max(0, a)); env = 0.5 - 0.5 * Math.cos(Math.PI * env); }
+      out[n] = 0.85 * env * Math.sin(ph); ph += w; if (ph > TAU) ph -= TAU; } return out; };
+  /* receiver: mix to 0 Hz, ~2 ms smoothing (passes 245 elements a second), strength per element, slow AGC */
+  function HellRx(fc) { this.tune(fc || 1000); this.i = 0; this.q = 0; this.acc = 0; this.n = 0; this.pos = 0; this.pk = 1e-6; this.fl = 1e-7; this.onPx = null; this.sig = 0; }
+  HellRx.prototype.tune = function (fc) { this.fc = fc; this.w = TAU * fc / R; this.ph = this.ph || 0; };
+  HellRx.prototype.feed = function (x) {
+    this.ph += this.w; if (this.ph > TAU) this.ph -= TAU; const a = 0.11;                    /* one-pole low-pass at ~220 Hz, run twice */
+    this.i += a * (x * Math.cos(this.ph) - this.i); this.q += a * (-x * Math.sin(this.ph) - this.q);
+    this.i2 = (this.i2 || 0) + a * (this.i - (this.i2 || 0)); this.q2 = (this.q2 || 0) + a * (this.q - (this.q2 || 0));
+    this.acc += Math.sqrt(this.i2 * this.i2 + this.q2 * this.q2); this.n++; this.pos += 245 / R;
+    if (this.pos >= 1) { this.pos -= 1; const v = this.acc / this.n; this.acc = 0; this.n = 0;
+      this.pk = Math.max(v, this.pk * 0.9993); this.fl = Math.min(v, this.fl * 1.0005 + 1e-9); if (this.fl > v) this.fl = v;
+      const span = Math.max(this.pk - this.fl, 1e-7), lvl = Math.max(0, Math.min(1, (v - this.fl) / span)); this.sig = this.sig * 0.995 + lvl * 0.005;
+      if (this.onPx) this.onPx(lvl); } };
+  D.HellRx = HellRx;
+  D._hellCols = hellCols;
   D._unpack = unpack; D._fano = fano; D._down = down;
 
   /* worker mode: decode WSPR off the main screen */

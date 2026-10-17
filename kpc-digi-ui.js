@@ -6,8 +6,8 @@
   const UI = window.KPCFT8UI, D = window.KPCDigi; if (!UI || !UI.host || !D) return;
   const H = UI.host, S = H.S, $ = id => document.getElementById(id), esc = H.esc;
   const R = 12000;
-  S.dg = Object.assign({ rtty: { center: 1500, shift: 170, baud: 45.45, rev: false, afc: true }, psk: { hz: 1000, afc: true, sq: 35 }, sstv: { auto: true, tx: 'Martin 1', top: '{MY}', bot: '{REF} · 73', man: 'Martin 1' }, wspr: { tx: false, pct: 20, dbm: 23, hz: 1500 }, mac: null, rs: '599', srs: '595' }, S.dg || {});
-  ['rtty', 'psk', 'sstv', 'wspr'].forEach(k => { S.dg[k] = Object.assign({}, { rtty: { center: 1500, shift: 170, baud: 45.45, rev: false, afc: true }, psk: { hz: 1000, afc: true, sq: 35 }, sstv: { auto: true, tx: 'Martin 1', top: '{MY}', bot: '{REF} · 73', man: 'Martin 1' }, wspr: { tx: false, pct: 20, dbm: 23, hz: 1500 } }[k], S.dg[k]); });
+  S.dg = Object.assign({ rtty: { center: 1500, shift: 170, baud: 45.45, rev: false, afc: true }, psk: { hz: 1000, afc: true, sq: 35 }, sstv: { auto: true, tx: 'Martin 1', top: '{MY}', bot: '{REF} · 73', man: 'Martin 1' }, wspr: { tx: false, pct: 20, dbm: 23, hz: 1500 }, hell: { hz: 1000, gain: 1, wide: 2 }, mac: null, rs: '599', srs: '595' }, S.dg || {});
+  ['rtty', 'psk', 'sstv', 'wspr', 'hell'].forEach(k => { S.dg[k] = Object.assign({}, { rtty: { center: 1500, shift: 170, baud: 45.45, rev: false, afc: true }, psk: { hz: 1000, afc: true, sq: 35 }, sstv: { auto: true, tx: 'Martin 1', top: '{MY}', bot: '{REF} · 73', man: 'Martin 1' }, wspr: { tx: false, pct: 20, dbm: 23, hz: 1500 }, hell: { hz: 1000, gain: 1, wide: 2 } }[k], S.dg[k]); });
   const G = S.dg, save = () => H.saveS();
   let MODE = '';
 
@@ -19,7 +19,9 @@
     <div class="dg-kb">
       <div class="dg-set">
         <b class="dg-name" id="dgName">RTTY</b>
-        <span class="dg-only-rtty">CENTER <b id="dgHzT">1500</b> Hz</span><span class="dg-only-psk">CARRIER <b id="dgPHzT">1000</b> Hz</span>
+        <span class="dg-only-rtty">CENTER <b id="dgHzT">1500</b> Hz</span><span class="dg-only-psk">CARRIER <b id="dgPHzT">1000</b> Hz</span><span class="dg-only-hell">TONE <b id="dgHHzT">1000</b> Hz</span>
+        <label class="dg-sq dg-only-hell">DARKER<input type="range" id="dgHGain" min="0.5" max="3" step="0.1" title="Make the writing darker or lighter"></label>
+        <select id="dgHWide" class="dg-only-hell" aria-label="Writing size"><option value="1">Narrow writing</option><option value="2">Normal writing</option><option value="3">Wide writing</option></select>
         <select id="dgShift" class="dg-only-rtty" aria-label="Shift"><option value="170">170 Hz shift</option><option value="200">200 Hz</option><option value="425">425 Hz</option><option value="850">850 Hz</option></select>
         <select id="dgBaud" class="dg-only-rtty" aria-label="Speed"><option value="45.45">45.45 baud</option><option value="50">50 baud</option><option value="75">75 baud</option></select>
         <label class="ck dg-only-rtty"><input type="checkbox" id="dgRev"> REV</label>
@@ -30,6 +32,7 @@
       </div>
       <div class="dg-br dg-only-psk" id="dgBr" aria-label="Every PSK31 signal on the waterfall"></div>
       <div class="dg-rx" id="dgRx" aria-live="polite"></div>
+      <div class="dg-hell dg-only-hell"><canvas id="dgHell" width="1100" height="336" aria-label="Hellschreiber writing"></canvas><p class="f8-help">Hellschreiber is printed, not decoded: read the writing yourself. It shows two copies of each line, so one of them is always whole even when the timing drifts. Tap the signal on the waterfall to tune to it. Calls aren't picked out automatically: type their call below.</p></div>
       <div class="cw-calls" id="dgCalls"></div>
     </div>
     <div class="dg-sstv">
@@ -74,7 +77,7 @@
   const me = () => H.myCall() || '';
   const myRef = () => { const L = H.LG(), m = L ? L.me() : {}; return (m.pota && m.pota[0]) || ''; };
   const fill = t => String(t).replace(/\{MY\}/g, me() || 'K4TEST').replace(/\{THEIR\}/g, $('dgCall').value.trim().toUpperCase()).replace(/\{REF\}/g, myRef()).replace(/\{GRID\}/g, H.myGrid()).replace(/\{ST\}/g, H.stateOf(H.myGrid()) || '');
-  const audioHz = () => MODE === 'RTTY' ? G.rtty.center : MODE === 'PSK31' ? G.psk.hz : MODE === 'WSPR' ? G.wspr.hz : 1500;
+  const audioHz = () => MODE === 'RTTY' ? G.rtty.center : MODE === 'PSK31' ? G.psk.hz : MODE === 'HELL' ? G.hell.hz : MODE === 'WSPR' ? G.wspr.hz : 1500;
   let TXSRC = null, txT = null;
   async function play(buf, why, done) {
     const AC = H.ac() || (await H.startAudio(), H.ac()); if (!AC) { H.note('Press START LISTENING first.'); return false; }
@@ -131,18 +134,18 @@
   function macDraw() { $('dgMac').innerHTML = macros().map((m, i) => `<button type="button" data-dgm="${i}" title="${esc(m[1])}">F${i + 1} ${esc(m[0])}</button>`).join('') + '<button type="button" data-dgmedit>✏️ EDIT</button>'; }
   function sendText(t) {
     t = fill(t).toUpperCase().trim(); if (!t) return; const AC = H.ac();
-    if (MODE !== 'RTTY' && MODE !== 'PSK31') return;
-    const go = () => { const a = H.ac(), line = '\n' + t + '\n'; const buf = MODE === 'RTTY' ? D.rttyTx(line, G.rtty, a.sampleRate) : D.pskTx(line, G.psk.hz, a.sampleRate);
+    if (MODE !== 'RTTY' && MODE !== 'PSK31' && MODE !== 'HELL') return;
+    const go = () => { const a = H.ac(), line = '\n' + t + '\n'; const buf = MODE === 'RTTY' ? D.rttyTx(line, G.rtty, a.sampleRate) : MODE === 'HELL' ? D.hellTx(t, G.hell.hz, a.sampleRate) : D.pskTx(line, G.psk.hz, a.sampleRate);
       txt += '\n[TX] ' + t + '\n'; drawRx(); play(buf, t).then(ok => { if (ok) $('dgTx').placeholder = '▶ sending: ' + t.slice(0, 40); }); };
     if (!AC) H.startAudio().then(ok => ok && go()); else go();
   }
   $('dgMac').addEventListener('click', e => { const b = e.target.closest('[data-dgm]'); if (b) { sendText(macros()[+b.dataset.dgm][1]); return; }
     if (e.target.closest('[data-dgmedit]')) { const M = macros().map(m => m.slice()); for (let i = 0; i < M.length; i++) { const v = prompt(`F${i + 1} ${M[i][0]} (use {MY} {THEIR} {REF} {ST}; blank = keep, RESET = defaults)`, M[i][1]); if (v === null) break; if (v.trim().toUpperCase() === 'RESET') { G.mac = null; save(); macDraw(); return; } if (v.trim()) M[i][1] = v.trim().toUpperCase(); } G.mac = M; save(); macDraw(); } });
-  addEventListener('keydown', e => { if (H.root.hidden || (MODE !== 'RTTY' && MODE !== 'PSK31') || !/^F[1-8]$/.test(e.key)) return; e.preventDefault(); const m = macros()[+e.key.slice(1) - 1]; if (m) sendText(m[1]); });
+  addEventListener('keydown', e => { if (H.root.hidden || (MODE !== 'RTTY' && MODE !== 'PSK31' && MODE !== 'HELL') || !/^F[1-8]$/.test(e.key)) return; e.preventDefault(); const m = macros()[+e.key.slice(1) - 1]; if (m) sendText(m[1]); });
   $('dgTx').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); const v = $('dgTx').value; $('dgTx').value = ''; sendText(v); } });
   $('dgSendT').onclick = () => { const v = $('dgTx').value; $('dgTx').value = ''; sendText(v); };
   $('dgStop').onclick = () => { stopTx(); $('dgTx').placeholder = 'Type here and press Enter to send it'; };
-  $('dgClr').onclick = () => { txt = ''; drawRx(); calls = []; $('dgCalls').innerHTML = ''; };
+  $('dgClr').onclick = () => { txt = ''; drawRx(); calls = []; $('dgCalls').innerHTML = ''; if (MODE === 'HELL') hellClear(); };
   $('dgShift').value = String(G.rtty.shift); $('dgShift').onchange = () => { G.rtty.shift = +$('dgShift').value; save(); rtty.set({ shift: G.rtty.shift }); H.drawScale(); };
   $('dgBaud').value = String(G.rtty.baud); $('dgBaud').onchange = () => { G.rtty.baud = +$('dgBaud').value; save(); rtty.set({ baud: G.rtty.baud }); };
   $('dgRev').checked = G.rtty.rev; $('dgRev').onchange = () => { G.rtty.rev = $('dgRev').checked; save(); rtty.set({ rev: G.rtty.rev }); H.drawScale(); };
@@ -153,6 +156,23 @@
     const mode = MODE === 'SSTV' ? 'SSTV' : MODE; const k = H.dialK() + (MODE === 'SSTV' ? 0 : audioHz() / 1000);
     const r = L.add({ call, khz: Math.round(k * 10) / 10, mode, rs: $('dgRs').value || (MODE === 'SSTV' ? '595' : '599'), rr: $('dgRr').value || (MODE === 'SSTV' ? '595' : '599'), ref: $('dgRef').value.trim() });
     if (r && r.ok) { H.note(`✅ ${call} logged · ${S.band} ${mode}${r.n ? ' · ' + r.n + (L.me().hunt ? ' today' : ' this activation') : ''}`, 3000, 'log'); $('dgCall').value = ''; $('dgRef').value = ''; } else H.note('⚠️ Not logged: ' + ((r && r.msg) || ''), 5000); };
+
+  /* ---------------- Feld Hellschreiber: the tone's strength painted as a picture ---------------- */
+  const hell = new D.HellRx(G.hell.hz), hc = $('dgHell'), hx = hc.getContext('2d');
+  const HROWS = 14, HL = 4; let hX = 0, hCol = [], hDirty = false;
+  function hellLineH() { return HROWS * 2 * 3; }   /* two copies × 3 screen pixels per element */
+  function hellClear() { hx.fillStyle = '#0b0d10'; hx.fillRect(0, 0, hc.width, hc.height); hX = 0; }
+  hellClear();
+  hell.onPx = v => { hCol.push(v); if (hCol.length < HROWS) return; const col = hCol; hCol = [];
+    const lh = hellLineH(), y0 = hc.height - lh, w = +G.hell.wide || 2, g = +G.hell.gain || 1;
+    if (hX + w > hc.width) { const im = hx.getImageData(0, lh, hc.width, hc.height - lh); hx.putImageData(im, 0, 0); hx.fillStyle = '#0b0d10'; hx.fillRect(0, y0, hc.width, lh); hX = 0; }
+    for (let r = 0; r < HROWS; r++) { const lv = Math.max(0, Math.min(1, col[r] * g)), c = Math.round(255 * lv);
+      hx.fillStyle = `rgb(${Math.round(c * .95)},${c},${Math.round(c * .8)})`;
+      const yy = (HROWS - 1 - r) * 3; hx.fillRect(hX, y0 + yy, w, 3); hx.fillRect(hX, y0 + HROWS * 3 + yy, w, 3); }
+    hX += w; };
+  function hellTune(hz) { G.hell.hz = Math.max(300, Math.min(2700, Math.round(hz))); save(); hell.tune(G.hell.hz); $('dgHHzT').textContent = G.hell.hz; H.drawScale(); }
+  $('dgHGain').value = G.hell.gain; $('dgHGain').oninput = () => { G.hell.gain = +$('dgHGain').value; save(); };
+  $('dgHWide').value = String(G.hell.wide); $('dgHWide').onchange = () => { G.hell.wide = +$('dgHWide').value; save(); };
 
   /* ---------------- SSTV ---------------- */
   const sstv = new D.SstvRx(); let cur = null, rows = 0;
@@ -213,7 +233,7 @@
     W.done = true; const n = W.got.reduce((a, b) => a + b, 0); if (W.tx || W.c === wTxOn || n < 70) { if (MODE === 'WSPR') $('dgWSt').textContent = (W.tx || W.c === wTxOn) ? 'Sent my beacon this cycle.' : 'Listening… (first full cycle starts on the next even minute)'; return; }
     const c = W.c, audio = W.buf; if (window.__wsprKeep) window.__wsprLast = { c, n, audio: audio.slice() }; $('dgWSt').textContent = '🔎 Decoding ' + H.utc(c).replace(/(\d\d)(\d\d)/, '$1:$2') + 'z…';
     const done = res => { wShow(c, res); };
-    try { if (!WK) { WK = new Worker('kpc-digi.js?v=20261018b'); WK.onmessage = e => { const m = e.data; if (m && m.cmd === 'wspr' && WK.cb && WK.cb[m.id]) { WK.cb[m.id](m.res || []); delete WK.cb[m.id]; } }; WK.cb = {}; }
+    try { if (!WK) { WK = new Worker('kpc-digi.js?v=20261018h'); WK.onmessage = e => { const m = e.data; if (m && m.cmd === 'wspr' && WK.cb && WK.cb[m.id]) { WK.cb[m.id](m.res || []); delete WK.cb[m.id]; } }; WK.cb = {}; }
       const id = ++wid; WK.cb[id] = done; WK.postMessage({ cmd: 'wspr', id, audio, opt: { ms: 60000 } }, [audio.buffer]); }
     catch (e) { setTimeout(() => { try { done(D.wsprDecode(audio, { ms: 30000 })); } catch (x) { done([]); } }, 50); }
   }
@@ -258,26 +278,28 @@
   /* ---------------- hooks for the FT8 screen ---------------- */
   let qT = 0;
   window.KPCDigiUI = {
-    mode(m) { const was = MODE; MODE = /^(RTTY|PSK31|SSTV|WSPR)$/.test(m) ? m : ''; if (was && was !== MODE) stopTx(); if (MODE !== 'SSTV' && sstv.img) sstv.stop();
+    mode(m) { const was = MODE; MODE = /^(RTTY|PSK31|HELL|SSTV|WSPR)$/.test(m) ? m : ''; if (was && was !== MODE) stopTx(); if (MODE !== 'SSTV' && sstv.img) sstv.stop();
       if (!MODE) return; $('dgName').textContent = MODE; $('dgAfc').checked = MODE === 'PSK31' ? G.psk.afc : G.rtty.afc;
-      $('dgRs').value = MODE === 'SSTV' ? '595' : '599'; $('dgRr').value = MODE === 'SSTV' ? '595' : '599'; $('dgHzT').textContent = G.rtty.center; $('dgPHzT').textContent = Math.round(G.psk.hz);
+      $('dgRs').value = MODE === 'SSTV' ? '595' : '599'; $('dgRr').value = MODE === 'SSTV' ? '595' : '599'; $('dgHzT').textContent = G.rtty.center; $('dgPHzT').textContent = Math.round(G.psk.hz); $('dgHHzT').textContent = G.hell.hz;
       if (MODE === 'WSPR') wMsg(); if (MODE === 'PSK31') drawBr(); },
     range() { return MODE === 'SSTV' ? [1000, 2500] : MODE === 'WSPR' ? [1400, 1600] : [200, 2800]; },
     feed(blk, t) {
       if (MODE === 'RTTY') { for (let i = 0; i < blk.length; i++) rtty.feed(blk[i]); rttyAfc(); }
       else if (MODE === 'PSK31') { for (let i = 0; i < blk.length; i++) { const x = blk[i]; psk.feed(x); for (const c of BR) c.rx.feed(x); } }
+      else if (MODE === 'HELL') { if (!TXSRC) for (let i = 0; i < blk.length; i++) hell.feed(blk[i]); }
       else if (MODE === 'SSTV') { if (!TXSRC) for (let i = 0; i < blk.length; i++) sstv.feed(blk[i]); }
       else if (MODE === 'WSPR') wFeed(blk, t);
-      const now = performance.now(); if (now - qT > 200) { qT = now; const q = MODE === 'RTTY' ? rtty.q : MODE === 'PSK31' ? Math.max(0, psk.q) : 0; $('dgQ').style.width = Math.round(q * 100) + '%'; if (MODE === 'PSK31' && G.psk.afc) $('dgPHzT').textContent = Math.round(psk.fc); }
+      const now = performance.now(); if (now - qT > 200) { qT = now; const q = MODE === 'RTTY' ? rtty.q : MODE === 'PSK31' ? Math.max(0, psk.q) : MODE === 'HELL' ? Math.min(1, hell.sig * 3) : 0; $('dgQ').style.width = Math.round(q * 100) + '%'; if (MODE === 'PSK31' && G.psk.afc) $('dgPHzT').textContent = Math.round(psk.fc); }
     },
     wf(vals) { if (MODE === 'PSK31') { pskGate(vals); brFind(vals); } },
     marks(m) {
       if (MODE === 'RTTY') { const s = G.rtty.shift / 2; m(G.rtty.center + s, 8, G.rtty.rev ? '#ff5c5c' : '#45e08f', 5); m(G.rtty.center - s, 8, G.rtty.rev ? '#45e08f' : '#ff5c5c', 5); }
       else if (MODE === 'PSK31') { m(psk ? psk.fc : G.psk.hz, 31, '#45e08f', 5); for (const c of BR) m(c.rx.fc, 3, '#f0c96b', 3); }
+      else if (MODE === 'HELL') { m(G.hell.hz, 245, 'rgba(69,224,143,.35)', 5); m(G.hell.hz, 3, '#45e08f', 6); }
       else if (MODE === 'SSTV') { m(1200, 6, '#ff5c5c', 4); m(1500, 6, '#c9b48a', 4); m(1900, 6, '#4da3ff', 4); m(2300, 6, '#fff', 4); }
       else if (MODE === 'WSPR') { m(1500, 200, 'rgba(240,201,107,.25)', 3); m(G.wspr.hz, 6, '#ff5c5c', 5); }
     },
-    click(hz) { if (MODE === 'RTTY') rttyTune(snapRtty(hz)); else if (MODE === 'PSK31') pskTune(snapPsk(hz)); else if (MODE === 'WSPR') { G.wspr.hz = Math.max(1410, Math.min(1590, Math.round(hz))); $('dgWHz').value = G.wspr.hz; save(); H.drawScale(); } },
+    click(hz) { if (MODE === 'RTTY') rttyTune(snapRtty(hz)); else if (MODE === 'PSK31') pskTune(snapPsk(hz)); else if (MODE === 'HELL') hellTune(snapPsk(hz)); else if (MODE === 'WSPR') { G.wspr.hz = Math.max(1410, Math.min(1590, Math.round(hz))); $('dgWHz').value = G.wspr.hz; save(); H.drawScale(); } },
     go(o, off) { if (o.call) { $('dgCall').value = String(o.call).toUpperCase(); } if (o.ref) $('dgRef').value = o.ref; if (off != null && off > 200 && off < 2800) { if (MODE === 'RTTY') rttyTune(off); else if (MODE === 'PSK31') pskTune(off); }
       H.note(`Listening for ${o.call || 'them'}${o.ref ? ' at ' + o.ref : ''}. Tap their signal on the waterfall if it isn't lined up${H.running() ? '' : ' (press START LISTENING first)'}.`, 6000); },
     mapOpen() { wMap(); },

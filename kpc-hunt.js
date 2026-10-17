@@ -1042,7 +1042,7 @@
     else if (w) { rec.qth = rec.qth || [w.qth, w.st].filter(Boolean).join(', '); rec.tg = rec.tg || w.g || ''; if (!rec.st && w.st) rec.st = w.st; }
     return rec;
   }
-  function adMode(m) { m = String(m || '').toUpperCase(); if (m === 'FT4') return ['MFSK', 'FT4']; if (m === 'JS8') return ['MFSK', 'JS8']; if (m === 'PSK31') return ['PSK', 'PSK31']; if (/^(USB|LSB)$/.test(m)) return ['SSB', m]; if (m === 'OTHER' || !m) return ['SSB', '']; return [m, '']; }
+  function adMode(m) { m = String(m || '').toUpperCase(); if (m === 'FT4') return ['MFSK', 'FT4']; if (m === 'JS8') return ['MFSK', 'JS8']; if (m === 'PSK31') return ['PSK', 'PSK31']; if (m === 'HELL' || m === 'FMHELL') return ['HELL', 'FMHELL']; if (/^(USB|LSB)$/.test(m)) return ['SSB', m]; if (m === 'OTHER' || !m) return ['SSB', '']; return [m, '']; }
   function adif(L) {
     let o = `KPC Hunters Lounge log\n${af('ADIF_VER', '3.1.4')}${af('PROGRAMID', 'KPC Hunters Lounge')}${af('CREATED_TIMESTAMP', new Date().toISOString().replace(/[-:]/g, '').replace('T', ' ').slice(0, 15))}<EOH>\n`;
     L.forEach(q => {

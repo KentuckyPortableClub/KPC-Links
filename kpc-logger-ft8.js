@@ -22,10 +22,12 @@
     RTTY: { '80m': 3580, '40m': 7080, '30m': 10140, '20m': 14085, '17m': 18100, '15m': 21080, '12m': 24920, '10m': 28080 },
     PSK31: { '160m': 1838, '80m': 3580, '40m': 7070, '30m': 10142, '20m': 14070, '17m': 18100, '15m': 21070, '12m': 24920, '10m': 28120, '6m': 50290 },
     SSTV: { '80m': 3845, '40m': 7171, '20m': 14230, '17m': 18160, '15m': 21340, '12m': 24975, '10m': 28680, '6m': 50680, '2m (ISS)': 145800 },
+    /* Feld Hell nets (hellschreiber.com, Oct 17): FHC 80 m Fridays 3585, 40 m Thursdays 7069.5, 30 m Wednesdays 10142.5, 17 m Saturday transatlantic 18098 */
+    HELL: { '80m': 3585, '40m': 7069.5, '30m': 10142.5, '17m': 18098 },
     WSPR: { '160m': 1836.6, '80m': 3568.6, '60m': 5287.2, '40m': 7038.6, '30m': 10138.7, '20m': 14095.6, '17m': 18104.6, '15m': 21094.6, '12m': 24924.6, '10m': 28124.6, '6m': 50293, '2m': 144489 }
   };
   const isFT = () => S.mode === 'FT8' || S.mode === 'FT4';
-  const isDG = () => /^(RTTY|PSK31|SSTV|WSPR)$/.test(S.mode);
+  const isDG = () => /^(RTTY|PSK31|HELL|SSTV|WSPR)$/.test(S.mode);
   const DG = () => window.KPCDigiUI || null;
   const S = Object.assign({ mode: 'FT8', band: '20m', inDev: '', outDev: '', ptt: 'vox', txHz: 1500, rxHz: 1500, hold: true, auto: true, first: true, even: true, keepCq: false, cqw: 'POTA', lvl: 0.3, deep: false, wd: 2, cwHz: 600, cwWpm: 20, cwVia: 'cat', cwBw: 'auto', cwMac: null, aPark: true, aState: false, aGrid: false, watch: '', mm: 'hear' }, get('kpcFt8', {}));
   const saveS = () => put('kpcFt8', S);
@@ -43,7 +45,7 @@
   root.innerHTML = `
   <div class="f8-top">
     <button type="button" class="f8-back" id="f8Back">← LOGGER</button>
-    <div class="f8-modes" role="group" aria-label="Mode"><button type="button" data-f8m="FT8">FT8</button><button type="button" data-f8m="FT4">FT4</button><button type="button" data-f8m="CW">CW</button><button type="button" data-f8m="RTTY">RTTY</button><button type="button" data-f8m="PSK31">PSK31</button><button type="button" data-f8m="SSTV">SSTV</button><button type="button" data-f8m="WSPR">WSPR</button></div>
+    <div class="f8-modes" role="group" aria-label="Mode"><button type="button" data-f8m="FT8">FT8</button><button type="button" data-f8m="FT4">FT4</button><button type="button" data-f8m="CW">CW</button><button type="button" data-f8m="RTTY">RTTY</button><button type="button" data-f8m="PSK31">PSK31</button><button type="button" data-f8m="HELL" title="Feld Hellschreiber">HELL</button><button type="button" data-f8m="SSTV">SSTV</button><button type="button" data-f8m="WSPR">WSPR</button></div>
     <select id="f8Band" aria-label="Band"></select>
     <b class="f8-dial" id="f8Dial">14.074 000</b>
     <span class="f8-clk"><b id="f8Utc">--:--:--</b><i class="f8-slot"><i id="f8SlotBar"></i></i></span>

@@ -14,7 +14,7 @@
   const bandOf = k => { for (const [b, a, z] of BANDS) if (k >= a && k <= z) return b; return ''; };
   const kHzOf = v => { v = parseFloat(String(v || '').replace(',', '.')); if (!v) return 0; return v > 1000 ? v : v * 1000; };
   const mhz = k => k ? (k / 1000).toFixed(k % 1 ? 4 : 3).replace(/0+$/, '').replace(/\.$/, '') : '';
-  const PHONE = /^(SSB|USB|LSB|FM|AM)$/, CWISH = /^(CW|RTTY|PSK31)$/, DIGI = /^(FT8|FT4|JS8)$/;
+  const PHONE = /^(SSB|USB|LSB|FM|AM)$/, CWISH = /^(CW|RTTY|PSK31|HELL)$/, DIGI = /^(FT8|FT4|JS8)$/;
   const rstDef = m => PHONE.test(m) ? '59' : CWISH.test(m) ? '599' : '';
   const REF = /^[A-Z0-9]{1,4}-\d{4,5}$/;
   const nref = r => { r = String(r || '').trim().toUpperCase().replace(/^K-/, 'US-'); if (/^\d{3,5}$/.test(r)) r = 'US-' + r; const m = r.match(/^([A-Z0-9]{1,4})-(\d{1,5})$/); return m ? m[1] + '-' + m[2].padStart(4, '0') : r; };
@@ -394,7 +394,7 @@
   /* ---------------- ADIF / CSV ---------------- */
   const enc = new TextEncoder();
   const af = (k, v) => { v = String(v == null ? '' : v).replace(/[<>]/g, ''); return v === '' ? '' : `<${k}:${enc.encode(v).length}>${v} `; };
-  function adMode(m) { m = String(m || '').toUpperCase(); if (m === 'FT4') return ['MFSK', 'FT4']; if (m === 'FT2') return ['MFSK', 'FT2']; if (m === 'JS8') return ['MFSK', 'JS8']; if (m === 'PSK31') return ['PSK', 'PSK31']; if (m === 'OTHER') return ['', '']; return [m, '']; }
+  function adMode(m) { m = String(m || '').toUpperCase(); if (m === 'FT4') return ['MFSK', 'FT4']; if (m === 'FT2') return ['MFSK', 'FT2']; if (m === 'JS8') return ['MFSK', 'JS8']; if (m === 'PSK31') return ['PSK', 'PSK31']; if (m === 'HELL' || m === 'FMHELL') return ['HELL', 'FMHELL']; if (m === 'OTHER') return ['', '']; return [m, '']; }
   function adif(Q, onePark, prog) {
     let o = `KPC Activator Logger\n${af('ADIF_VER', '3.1.4')}${af('PROGRAMID', 'KPC Activator Logger')}${af('CREATED_TIMESTAMP', iso(new Date()).replace(/[-:]/g, '').replace('T', ' ').slice(0, 15))}<EOH>\n`;
     Q.forEach(q => {
