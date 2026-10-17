@@ -664,6 +664,126 @@
    "OpenStreetMap (not official)",
    71,
    0.0
+  ],
+  [
+   "CA-5344",
+   "The West Coast Trail National Park",
+   "CA-BC",
+   "OpenStreetMap (not official)",
+   179,
+   0.4
+  ],
+  [
+   "CA-6381",
+   "Semiahmoo National Historic Trail",
+   "CA-BC",
+   "OpenStreetMap (not official)",
+   20,
+   0.0
+  ],
+  [
+   "CA-5688",
+   "Hillside Trail National Scenic Trail",
+   "CA-NB",
+   "OpenStreetMap (not official)",
+   3,
+   0.0
+  ],
+  [
+   "CA-5701",
+   "Matthew's Brook Trail National Recreation Trail",
+   "CA-NB",
+   "OpenStreetMap (not official)",
+   0,
+   0.1
+  ],
+  [
+   "CA-5722",
+   "Saunder's Brook Trail National Recreation Trail",
+   "CA-NB",
+   "OpenStreetMap (not official)",
+   3,
+   0.0
+  ],
+  [
+   "CA-5628",
+   "Bruce Trail National Recreation Trail",
+   "CA-ON",
+   "OpenStreetMap (not official)",
+   1159,
+   0.0
+  ],
+  [
+   "CA-6130",
+   "Mud Creek Trail National Recreation Trail",
+   "CA-SK",
+   "OpenStreetMap (not official)",
+   2,
+   0.0
+  ],
+  [
+   "CA-6140",
+   "Shady Lake Trail National Recreation Trail",
+   "CA-SK",
+   "OpenStreetMap (not official)",
+   1,
+   0.0
+  ],
+  [
+   "CA-6142",
+   "Spruce River Highlands Trail National Recreation Trail",
+   "CA-SK",
+   "OpenStreetMap (not official)",
+   7,
+   0.0
+  ],
+  [
+   "CA-6143",
+   "Freight Tait Springs Trail National Recreation Trail",
+   "CA-SK",
+   "OpenStreetMap (not official)",
+   2,
+   0.0
+  ],
+  [
+   "CA-6147",
+   "Amyot Lake Trail National Recreation Trail",
+   "CA-SK",
+   "OpenStreetMap (not official)",
+   2,
+   4.8
+  ],
+  [
+   "CA-6149",
+   "Narrows Peninsula Trail National Recreation Trail",
+   "CA-SK",
+   "OpenStreetMap (not official)",
+   3,
+   0.0
+  ],
+  [
+   "CA-6150",
+   "Kingsmere River Trail National Recreation Trail",
+   "CA-SK",
+   "OpenStreetMap (not official)",
+   3,
+   0.0
+  ],
+  [
+   "CA-6152",
+   "Red Deer Trail National Recreation Trail",
+   "CA-SK",
+   "OpenStreetMap (not official)",
+   14,
+   0.0
+  ],
+  [
+   "CA-6339",
+   "River Ridge Trails National Historic Trail",
+   "CA-SK",
+   "OpenStreetMap (not official)",
+   1,
+   0.1
   ]
  ],
  "missing": [
@@ -1163,6 +1283,240 @@
    "US-9778",
    "Devil\u2019s River State Trail",
    "WI",
+   "no line found"
+  ],
+  [
+   "CA-5082",
+   "The Trans Canada Trail National Scenic Trail",
+   "CA-AB",
+   "no line found"
+  ],
+  [
+   "CA-5525",
+   "Jackson Lake Trail Staging Provincial Recreation Area",
+   "CA-AB",
+   "no line found"
+  ],
+  [
+   "CA-3546",
+   "Giscome Portage Trail Protected Area",
+   "CA-BC",
+   "no line found"
+  ],
+  [
+   "CA-4189",
+   "Telegraph Trail Park",
+   "CA-BC",
+   "short: probably a park, not a trail"
+  ],
+  [
+   "CA-4786",
+   "Chilkoot Trail National Historic Site",
+   "CA-BC",
+   "no line found"
+  ],
+  [
+   "CA-5081",
+   "International Appalachian Trail (IAT) National Scenic Trail",
+   "CA-NB",
+   "no line found"
+  ],
+  [
+   "CA-5137",
+   "Thatch Road Trail (MacDougal) National Recreation Trail",
+   "CA-NB",
+   "no line found"
+  ],
+  [
+   "CA-5674",
+   "Chatham Waterfront Trail Recreation Park",
+   "CA-NB",
+   "no line found"
+  ],
+  [
+   "CA-6234",
+   "Fundy Trail Provincial Park",
+   "CA-NB",
+   "no line found"
+  ],
+  [
+   "CA-6388",
+   "Dobson Recreational Trail Recreation Site",
+   "CA-NB",
+   "no line found"
+  ],
+  [
+   "CA-6530",
+   "Sentier Nepisiguit Mi\u2019gmaq Trail Recreation Site",
+   "CA-NB",
+   "no line found"
+  ],
+  [
+   "CA-0752",
+   "Cameron Falls Trail Territorial Park",
+   "CA-NT",
+   "no line found"
+  ],
+  [
+   "CA-4575",
+   "Fossil Creek Trail Wilderness Preserve",
+   "CA-NU",
+   "no line found"
+  ],
+  [
+   "CA-4585",
+   "Northwest Passage Trail Territorial Park",
+   "CA-NU",
+   "no line found"
+  ],
+  [
+   "CA-1301",
+   "Barron Canyon National Geologic Trail",
+   "CA-ON",
+   "no line found"
+  ],
+  [
+   "CA-1599",
+   "South Point Trail (Rondeau) Provincial Park",
+   "CA-ON",
+   "no line found"
+  ],
+  [
+   "CA-5506",
+   "Nine Mile Portage Heritage Trail Recreation Site",
+   "CA-ON",
+   "no line found"
+  ],
+  [
+   "CA-5536",
+   "Nassagaweya Canyon Trail Recreation Site",
+   "CA-ON",
+   "no line found"
+  ],
+  [
+   "CA-5565",
+   "Dofasco 2000 Trail Conservation Area",
+   "CA-ON",
+   "no line found"
+  ],
+  [
+   "CA-5595",
+   "Gord Harry Trail Conservation Area",
+   "CA-ON",
+   "no line found"
+  ],
+  [
+   "CA-5993",
+   "Burgess Park Trail Conservation Area",
+   "CA-ON",
+   "no line found"
+  ],
+  [
+   "CA-6003",
+   "Great Lakes Waterfront Trail Recreation Site",
+   "CA-ON",
+   "no line found"
+  ],
+  [
+   "CA-6211",
+   "Oak Ridges Moraine National Recreation Trail",
+   "CA-ON",
+   "no line found"
+  ],
+  [
+   "CA-1101",
+   "Carlton Trail Regional Park",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-6128",
+   "Gray Owl Trail National Recreation Trail",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-6141",
+   "Height-of-Land Lookout Tower National Recreation Trail",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-6144",
+   "Elk Trail National Recreation Trail",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-6145",
+   "Hunters Lake Trail National Recreation Trail",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-6146",
+   "Valleyview Trail Network National Recreation Trail",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-6148",
+   "Treebeard Trail National Recreation Trail",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-6151",
+   "Boundary Bog Trail National Geologic Trail",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-6153",
+   "Fisher Trail National Recreation Trail",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-6170",
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-6207",
+   "Cochin Green Lake Trail National Historic Trail",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-6217",
+   "Meadow lake Battleford Trail National Historic Trail",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-6233",
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-6311",
+   "Troy-Prince Albert National Historic Trail",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-6344",
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "CA-SK",
+   "no line found"
+  ],
+  [
+   "CA-4628",
+   "Spruce Beetle Trail Recreation Site",
+   "CA-YT",
    "no line found"
   ]
  ]
