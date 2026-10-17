@@ -372,7 +372,23 @@
     document.addEventListener('click', e => { const x = e.target.closest('[data-popx]'); if (x) { if (x.dataset.popx === 'radio') radioRow(false); else drawer(false); return; }
       if (tabMode() && !e.target.closest('#cEntry') && !e.target.closest('.lg-toast')) popOnly(''); });
     $('dRole').onclick = () => { role(isHunt() ? 'act' : 'hunt'); toast(isHunt() ? '🎯 Hunting: no park number needed. Tap a spot, log it, and the park goes with the contact.' : '🏕 Activating: your park number goes on every contact.'); };
+    addEventListener('storage', e => { if (e.key === 'kpcHuntLog' || e.key === 'kpcHuntCounts') try { drawSpots(); } catch (x) {} });
+    addEventListener('focus', () => { try { drawSpots(); } catch (x) {} });
     if (window.ResizeObserver) new ResizeObserver(dockSize).observe($('cEntry')); addEventListener('resize', dockSize); setTimeout(dockSize, 100);
+    /* Oct 17 (Brandon: 'the logger looked too big for my laptop… adjust size each screen'): on computers the log list, spots and map are sized to
+       the window, so the whole logger (list + entry box, and the right side) fits on one screen at any size; short screens start scrolled to it */
+    let fitT = 0;
+    function deskFit() { if (innerWidth < 1100) { ['lList', 'pList', 'mMap'].forEach(id => { const e = $(id); if (e) e.style.height = ''; }); return; }
+      const hdr = hdrH(), M = document.querySelector('.lg-main'), mt = M ? M.getBoundingClientRect().top : 0, H0 = innerHeight - hdr - 18, L = $('cLog'), list = $('lList'), dock = $('cEntry'), H = H0 - (L && M ? L.getBoundingClientRect().top - mt : 0);
+      if (L && list && dock) { const above = list.getBoundingClientRect().top - L.getBoundingClientRect().top; list.style.height = Math.max(120, H - above - dock.offsetHeight - 6) + 'px'; list.style.minHeight = '0'; }
+      const R = document.querySelector('.lg-right'), tabs = $('lgRt');
+      ['pList', 'mMap'].forEach(id => { const e = $(id); if (!e || !e.offsetParent) return; const above = e.getBoundingClientRect().top - mt;
+        e.style.height = Math.max(200, H0 - above - 4) + 'px'; e.style.maxHeight = 'none'; e.style.minHeight = '0'; });
+      if (window.L && MAP) try { MAP.invalidateSize(); } catch (e) {} }
+    const fitSoon = () => { clearTimeout(fitT); fitT = setTimeout(deskFit, 120); };
+    addEventListener('resize', fitSoon); if (window.ResizeObserver) new ResizeObserver(fitSoon).observe($('cEntry'));
+    document.addEventListener('click', e => { if (e.target.closest('#lgRt,[data-rt],#pFilt,summary')) setTimeout(deskFit, 60); });
+    setTimeout(() => { deskFit(); if (innerWidth >= 1100 && innerHeight < 950 && scrollY < 40 && !location.hash) { const w = document.querySelector('.lg-main'); if (w) scrollTo({ top: w.getBoundingClientRect().top + scrollY - hdrH() - 6 }); } }, 600);
   }
 
   /* ---------------- ADIF / CSV ---------------- */
@@ -577,7 +593,8 @@
   const isRbn = s => /RBN/i.test(s.source || '') || /-#$/.test(s.spotter || '');
   function drawSpots() {
     const b = $('pBand').value, m = $('pMode').value, nr = $('pNoRbn').checked, nw = $('pNoWk').checked, s = $('pSearch').value.trim().toUpperCase(), onlyNew = $('pNew').checked, noQrt = $('pQrt').checked, WKP = HLOG();
-    $('pPlusT').innerHTML = WKP.size ? `⭐ Your POTA hunted list: <b>${WKP.size.toLocaleString()}</b> parks${HCNT() ? ' + award counts' : ''} (from the VIP Hunters Lounge). <a href="kpc-hunt.html#hPota">Refresh it ›</a>` : '⭐ Want 🆕 NEW PARK and award badges (Repeat Offender, Op to Op, N1CC) like POTA Plus? <a href="kpc-hunt.html#hPota">Load your POTA hunted parks in the VIP Hunters Lounge ›</a>';
+    $('pPlusT').innerHTML = WKP.size ? `⭐ POTA stats on: <b>${WKP.size.toLocaleString()}</b> parks you've hunted${HCNT() ? ' + award counts' : ''}. Parks you still need show <span class="ac new">🆕 NEW PARK</span>. <a class="lg-btn line sm" href="kpc-hunt.html#hPota" target="_blank" rel="noopener">⭐ REFRESH MY POTA PARKS ›</a>`
+      : `<a class="lg-btn gold sm" href="kpc-hunt.html#hPota" target="_blank" rel="noopener">⭐ GET MY POTA PARKS</a> See which parks are <b>🆕 NEW</b> to you (plus Repeat Offender, Op to Op and N1CC badges) like POTA Plus. It opens the VIP Lounge in a new tab: follow its one-time bookmark step on pota.app, then come back here. The badges show up by themselves.`;
     const pg = { POTA: $('pPota').checked, WWFF: $('pWwff').checked, SOTA: $('pSota').checked, DX: $('pDx').checked };
     const nOn = [!!b, !!m, nw, !pg.POTA, !pg.WWFF, !pg.SOTA, pg.DX, !!s, onlyNew, noQrt].filter(Boolean).length; $('pfN').textContent = nOn ? nOn + ' ON' : '';
     const worked = new Set(actList().map(q => base(q.call) + '|' + q.band));
