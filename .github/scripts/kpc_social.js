@@ -362,12 +362,21 @@ tasks.recaps = async () => {
     const n = g.acts || ps.length, ago = dayDiff(localDate(), iso(g.date));
     // the post goes out in the morning; POTA dates are UTC, so an evening activation can carry today's date: call it yesterday
     const when = ago <= 1 ? 'yesterday' : 'on ' + day;
-    const hi = 'Good morning';
     const title = `📻 ${g.call} activated ${ps.length > 1 ? ps.length + ' parks' : ps[0].name}`;
-    // Brandon Oct 17: a friendly note in the club's voice ('Good morning, call sign here had a good day yesterday…')
-    const text = `${hi}! **${g.call}** had a good day ${when} enjoying the parks: **${n} activation${n > 1 ? 's' : ''}** and **${g.qsos} contacts** in the log.\n\n` +
+    // Brandon Oct 17: a friendly note in the club's voice, and 'not the same thing every time: mix it up' (he OK'd these lines).
+    // One line is picked from each group; the pick is steady for the same call + day (a re-run says the same thing).
+    let seed = 0; for (const ch of k) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+    const pick = (A, salt) => A[(seed + salt * 7919) % A.length];
+    const C = `**${g.call}**`, acts = `**${n} activation${n > 1 ? 's' : ''}**`, Q = `**${g.qsos} contacts**`;
+    const OPEN = [`Good morning! ${C} had a good day ${when} enjoying the parks`, `Rise and shine, KPC! ${C} was out in the parks ${when}`,
+      `Morning, hunters! ${C} put ${ps.length > 1 ? 'some parks' : 'another park'} on the air ${when}`, `Coffee's on! Here's what ${C} was up to ${when}`, `Another great day in the parks for ${C} ${when}`];
+    const MID = over ? [`: two parks at once, ${acts} and ${Q} in the log.`] : g.qsos >= 50 ? [`: what a pileup! ${acts} and ${Q} in the log.`, `: ${acts} and ${Q} in the log. Busy day!`]
+      : [`: ${acts} and ${Q} in the log.`, `, and **${g.qsos} of you** made it into the log (${acts}).`];
+    const CLOSE = [`${g.call} was happy to hear so many of you. Hope to catch you next time.`, 'Thanks to every hunter who called in. See you down the log!',
+      'If you got them, thanks for the call. If you didn\'t, there\'s always next time.', 'Great signals and great company. Thanks, everyone!', 'Keep an eye on the spots, there\'s more where that came from.'];
+    const text = pick(OPEN, 1) + pick(MID, 2) + '\n\n' +
       ps.map(p => `🌲 ${p.ref} · ${p.name}${p.co ? ` (${p.co} County)` : ''} · ${p.q} contacts`).join('\n') +
-      `\n\n${g.call} was happy to hear so many of you get in the log! We appreciate every hunter who called in. Hope to catch you next time.\n\n73,\nKPC`;
+      '\n\n' + pick(CLOSE, 3) + '\n\n73,\nKPC';
     await post({ title, text, link: `${SITE}kpc-park-notes.html#${ps[0].ref}`, file: pic || undefined });
     state.recaps.push(k); if (g.also) state.recaps.push(g.also); state.recaps = state.recaps.slice(-2000); save();
     await sleep(2000);

@@ -695,3 +695,18 @@ main#lg .f8 label{margin:0}
 .f8-l.park{box-shadow:inset 5px 0 0 #1f9d55}.f8-l.park:not(.cq):not(.cqp):not(.me){background:#d9f7e6}
 .f8-l .ref{padding:0 5px;border-radius:5px;background:#1f9d55;color:#fff!important;font-size:11px}
 .f8-pf{float:right;margin:-2px 0 0;padding:2px 9px;border-radius:999px;border:1px solid #2f6f4a;background:#0f2a1b;color:#9ff0c2;font:900 10px Arial;letter-spacing:.6px;cursor:pointer}.f8-pf.on{background:#1f9d55;color:#fff}
+/* FT8 tab: map, alerts, distance (Oct 17, GridTracker ideas) */
+.f8-mapw{margin-top:8px;border:1px solid #2a313b;border-radius:10px;background:#11151a;overflow:hidden}
+.f8-mapw summary{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 10px;cursor:pointer;font:900 12px Arial;letter-spacing:1px;color:#f6d58a}
+.f8-mapw summary small{color:#9aa3ad;font-weight:700;letter-spacing:.3px}
+.f8-mm{display:inline-flex;border:1px solid rgba(240,201,107,.45);border-radius:999px;overflow:hidden}.f8-mm button{padding:4px 10px;border:0;background:#15110a;color:#e8dcc0;font:900 10.5px Arial;letter-spacing:.5px}.f8-mm button.on{background:linear-gradient(90deg,#f6d58a,#d5a63a);color:#2a1a05}
+#f8Map{height:min(46vh,380px);background:#000;isolation:isolate;z-index:0}
+.f8-maph{margin:0;padding:6px 10px;color:#9aa3ad;font-size:11.5px}
+.f8-star{color:#f6d58a;font-size:22px;line-height:22px;text-align:center;text-shadow:0 0 6px #000,0 0 2px #000}
+.f8-tri{color:#ff9f1a;font-size:15px;line-height:16px;text-align:center;text-shadow:0 0 3px #000}
+.f8-l .dst{font-style:normal;color:#555;font-size:11px;margin-left:4px}
+.f8-l.al{outline:2px solid #ff9f1a;outline-offset:-2px;animation:f8al 1s ease-in-out 3}
+@keyframes f8al{50%{outline-color:transparent}}
+.f8-note.al{border-color:#ff9f1a;background:rgba(50,30,5,.96)}
+.f8-al{display:flex;flex-direction:column;gap:4px;font:12px Arial;letter-spacing:0;color:#dcd6c8}
+@media(prefers-reduced-motion:reduce){.f8-l.al{animation:none}}
