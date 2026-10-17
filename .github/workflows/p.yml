@@ -1,0 +1,11 @@
+name: zz probe
+on: push
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for u in location/US-KY location/leaderboard/US-KY leaderboard/location/US-KY location/stats/US-KY stats/location/US-KY "park/leaderboard/US-1277?count=5" "location/activators/US-KY" "location/hunters/US-KY" profile/KZ4CP stats/user/KZ4CP "user/stats/KZ4CP" "leaderboard/activator" "stats/leaderboard" "park/stats/US-1277" "location/parks/US-KY"; do
+            h=$(curl -s -D - -o /tmp/b -H 'Origin: https://kentuckyportableclub.github.io' "https://api.pota.app/$u" | tr -d '\r' | grep -i '^HTTP\|access-control-allow-origin' | tr '\n' ' ')
+            echo "::notice title=$u::$h $(head -c 700 /tmp/b | tr '\n' ' ')"
+          done
