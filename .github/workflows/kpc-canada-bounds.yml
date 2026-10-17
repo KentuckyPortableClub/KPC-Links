@@ -14,6 +14,10 @@ on:
         description: 'Only this many parks (0 = all)'
         required: false
         default: '0'
+      misses:
+        description: '1 = look again only at the parks that were not matched'
+        required: false
+        default: ''
       recheck:
         description: '1 = look again at parks already saved'
         required: false
@@ -34,6 +38,7 @@ jobs:
           MODE: ${{ inputs.mode }}
           LIMIT: ${{ inputs.limit }}
           RECHECK: ${{ inputs.recheck }}
+          MISSES: ${{ inputs.misses }}
           MINUTES: '160'
         run: python3 .github/scripts/kpc_canada_bounds.py
       - name: Save
