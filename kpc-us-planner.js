@@ -273,6 +273,12 @@ async function showBoundary(s,btn){
  /* on/off switch (Brandon Oct 16): tap again to hide this park's outline */
  if(bound&&boundRef===s.c){bound.remove();bound=null;boundRef='';btn.textContent='SHOW THIS PARK\u2019S OUTLINE';status('Outline hidden.');return}
  if(bound){bound.remove();bound=null}boundRef=s.c;btn.textContent='LOOKING…';btn.disabled=true;
+ /* Canada (Oct 17): the official CPCAD outline saved by kpc-canada-bounds.yml (data/canada-bounds/<REF>.json) */
+ if(/^CA-/.test(s.c)){try{const r=await fetch('data/canada-bounds/'+encodeURIComponent(s.c)+'.json');if(r.ok){const f=await r.json();
+   bound=L.geoJSON(f,{interactive:false,style:{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.15}}).addTo(map);
+   const nm=(f.properties&&f.properties.cpcad)||s.n;btn.textContent='HIDE OUTLINE ('+String(nm).toUpperCase().slice(0,28)+')';btn.disabled=false;
+   try{map.fitBounds(bound.getBounds(),{maxZoom:14,padding:[20,20]})}catch(e){}
+   status(`Official boundary shown: <b>${esc(nm)}</b> (Canadian Protected and Conserved Areas Database, Government of Canada, Open Government Licence). POTA goes by the official boundary; check the park's own map too.`);return}}catch(e){}}
  /* official first: USGS PAD-US by the park's name near its pin (kpc-bounds.js), then OpenStreetMap */
  if(window.KPCB&&s.p!=='SOTA'){try{const fs=await KPCB.padusByName(s.n,s.la,s.lo);if(fs&&fs.length){
    bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.15}}).addTo(map);
