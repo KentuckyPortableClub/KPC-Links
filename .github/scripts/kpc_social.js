@@ -321,7 +321,7 @@ tasks.bandalert = async () => {
 };
 
 // Member activation recap: a member finished a valid activation (10+ contacts) at a Kentucky park.
-// One post per call per UTC day (a 2-fer = both parks in one post), with a map picture. Only the last 3 days.
+// One post per call per UTC day (every park that day in one post, counted as activations), with a map picture. Only the last 3 days.
 tasks.recaps = async () => {
   const h = await history(), calls = new Set(members());
   const park = Object.fromEntries(KY.parks.map(p => [p.c, p]));
@@ -344,16 +344,16 @@ tasks.recaps = async () => {
     const dt0 = new Date(iso(g.date) + 'T12:00:00Z');
     const day = `${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dt0.getUTCDay()]}, ${MN[dt0.getUTCMonth()]} ${dt0.getUTCDate()}`;
     const ps = g.parks.map(p => ({ q: p.q, ref: p.ref, name: (park[p.ref] || {}).n || p.ref, la: (park[p.ref] || {}).la, lo: (park[p.ref] || {}).lo, co: (park[p.ref] || {}).co }));
-    // '2-fer' only when our data says the parks overlap (tf); two parks the same day can just be two stops
+    // no '2-fer' wording (Brandon Oct 17: 'just number of activations'); overlapping parks share the same contacts, so don't add them twice
     const over = ps.length > 1 && ps.every((p, i) => ps.every((q, k) => i === k || ((park[p.ref] || {}).tf || []).includes(q.ref)));
-    const two = over ? (ps.length === 2 ? ' (a 2-fer!)' : ` (a ${ps.length}-fer!)`) : '';
-    g.qsos = over ? Math.max(...ps.map(p => p.q)) : ps.reduce((a, p) => a + p.q, 0); // a 2-fer logs the same contacts at both parks
+    g.qsos = over ? Math.max(...ps.map(p => p.q)) : ps.reduce((a, p) => a + p.q, 0);
     const file = `/tmp/recap-${g.call}-${g.date}.png`;
     let pic = null;
     try { execSync(`python3 .github/scripts/kpc_recap_map.py ${file}`, { input: JSON.stringify({ call: g.call, date: day, qsos: g.qsos, parks: ps }), stdio: ['pipe', 'ignore', 'inherit'] }); pic = file; }
     catch (e) { notice('Map picture failed: ' + e.message); }
-    const title = `📻 ${g.call} activated ${ps.length > 1 ? ps.length + ' parks' : ps[0].name}`;
-    const text = `**${g.call}** put **${g.qsos} contacts** in the log on ${day}${two}.\n\n` + ps.map(p => `🌲 ${p.ref} · ${p.name}${p.co ? ` (${p.co} County)` : ''}${!over && ps.length > 1 ? ` · ${p.q} contacts` : ''}`).join('\n') + '\n\nThanks to every hunter who worked them. Nice job!';
+    const n = ps.length;
+    const title = `📻 ${g.call} activated ${n > 1 ? n + ' parks' : ps[0].name}`;
+    const text = `**${g.call}** finished **${n} activation${n > 1 ? 's' : ''}** on ${day} with **${g.qsos} contacts** in the log.\n\n` + ps.map(p => `🌲 ${p.ref} · ${p.name}${p.co ? ` (${p.co} County)` : ''} · ${p.q} contacts`).join('\n') + '\n\nThanks to every hunter who worked them. Nice job!';
     await post({ title, text, link: `${SITE}kpc-park-notes.html#${ps[0].ref}`, file: pic || undefined });
     state.recaps.push(k); state.recaps = state.recaps.slice(-2000); save();
     await sleep(2000);
