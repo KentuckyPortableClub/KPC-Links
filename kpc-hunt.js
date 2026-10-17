@@ -991,8 +991,10 @@
   }
   /* ---------------- looks (Brandon Oct 16: switchable themes; Cabin Lodge = his pictures) ---------------- */
   let THEME = get('kpcHuntTheme', null) || 'lodge';
-  function theme() { $('hl').dataset.theme = THEME; document.querySelectorAll('[data-theme-pick]').forEach(b => b.setAttribute('aria-pressed', b.dataset.themePick === THEME)); }
+  function theme() { $('hl').dataset.theme = THEME; if (window.__hlAmb) { __hlAmb.hidden = THEME !== 'lodge'; if (THEME !== 'lodge' && __hlAmb.kOff) __hlAmb.kOff(); } document.querySelectorAll('[data-theme-pick]').forEach(b => b.setAttribute('aria-pressed', b.dataset.themePick === THEME)); }
   document.addEventListener('click', e => { const b = e.target.closest('[data-theme-pick]'); if (!b) return; THEME = b.dataset.themePick; put('kpcHuntTheme', THEME); theme(); });
+  /* campfire crackle (+ crickets after dark) for the Cabin Lodge look (Brandon Oct 17); off until tapped */
+  try { if (window.KPCAmbient && $('hlFlame')) { window.__hlAmb = KPCAmbient.button($('hlFlame').parentNode, 'fire', { cls: 'hl-bell hl-amb', when: () => THEME === 'lodge' }); $('hlFlame').parentNode.insertBefore(__hlAmb, $('hlFlame')); } } catch (e) {}
   theme();
 
   /* ---------------- mini North America map in the ticker ---------------- */
