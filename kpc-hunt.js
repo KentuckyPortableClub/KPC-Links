@@ -232,10 +232,39 @@
   });
   document.addEventListener('change', e => { const c = e.target.closest('[data-afck]'); if (!c) return; AF[c.dataset.afck] = c.checked; put('kpcHuntAF', AF); afDraw(); });
   setTimeout(afDraw, 0);
+  /* 🎞 PARKS BAR FILTERS (Brandon Oct 17: 'filter for the parks bar'): which new-to-you parks roll across the bar.
+     same = start from the spot list's filters (default); off = every new-to-you park on the air (not QRT). */
+  const BF0 = { same: true, p: [], bands: [], modes: [], na: false };
+  let BF = Object.assign({}, BF0, get('kpcHuntBF', {}));
+  const bfPass = s => (!BF.p.length || BF.p.includes(s.p)) && (!BF.bands.length || BF.bands.includes(bandOf(s.khz))) && (!BF.modes.length || BF.modes.includes(modeOf(s.mode))) && (!BF.na || isNA(s));
+  const bfOn = () => !BF.same || BF.p.length || BF.bands.length || BF.modes.length || BF.na;
+  const barList = () => SP.filter(s => isNew(s) && (BF.same ? passPBM(s) : !isQrt(s)) && bfPass(s));
+  function bfDraw() {
+    const b = $('hlBanF'); if (b) { b.classList.toggle('on', !!bfOn()); b.querySelector('.n').textContent = bfOn() ? ' ✓' : ''; }
+    const box = $('bfBody'); if (!box) return;
+    const chip = (k, v, label) => `<button type="button" class="hl-chip" data-bf="${k}" data-v="${esc(v)}" aria-pressed="${BF[k].includes(v)}">${esc(label)}</button>`;
+    const n = barList().length;
+    box.innerHTML = `<p class="hl-p">Pick which new-to-you parks roll across the <b>🎞 parks bar</b>. Nothing picked in a row = anything in that row.</p>
+      <label class="af-ck"><input type="checkbox" data-bfck="same"${BF.same ? ' checked' : ''}> Start from my spot list filters (program, band, mode…)</label>
+      <h3 class="af-h">PROGRAMS</h3><div class="af-row">${[['POTA', 'POTA'], ['WWFF', 'WWFF'], ['SOTA', 'SOTA'], ['DXPED', 'DXPEDITIONS'], ['EVENT', 'SPECIAL EVENTS'], ['DX', 'DX CLUSTER']].map(([v, l]) => chip('p', v, l)).join('')}</div>
+      <h3 class="af-h">BANDS</h3><div class="af-row">${BANDS.map(b => chip('bands', b[0], b[0].toUpperCase())).join('')}</div>
+      <h3 class="af-h">MODES</h3><div class="af-row">${[['PHONE', 'PHONE'], ['CW', 'CW'], ['DIGITAL', 'DIGITAL'], ['OTHER', 'OTHER']].map(([v, l]) => chip('modes', v, l)).join('')}</div>
+      <label class="af-ck"><input type="checkbox" data-bfck="na"${BF.na ? ' checked' : ''}> North America only</label>
+      <div class="af-row"><button type="button" class="hl-chip" data-bfreset>↺ BACK TO NORMAL</button><button type="button" class="hl-chip on" data-mclose>✓ DONE</button></div>
+      <p class="hl-p af-now">Right now <b>${n}</b> park${n === 1 ? '' : 's'} would roll across the bar.</p>`;
+  }
+  const bfSave = () => { put('kpcHuntBF', BF); bfDraw(); try { ticker(false); } catch (e) {} };
+  document.addEventListener('click', e => {
+    const c = e.target.closest('[data-bf]'); if (c) { const L = BF[c.dataset.bf], v = c.dataset.v, i = L.indexOf(v); if (i < 0) L.push(v); else L.splice(i, 1); bfSave(); return; }
+    if (e.target.closest('[data-bfreset]')) { BF = JSON.parse(JSON.stringify(BF0)); bfSave(); return; }
+    if (e.target.closest('#hlBanF')) { bfDraw(); openModal('bfModal'); }
+  });
+  document.addEventListener('change', e => { const c = e.target.closest('[data-bfck]'); if (!c) return; BF[c.dataset.bfck] = c.checked; bfSave(); });
+  setTimeout(bfDraw, 0);
   function ticker(alert) {
     const T = $('hlTickT'), FT = $('hlFarT');
     if (!hasLog()) { T.innerHTML = PUB ? '<span class="hl-wait">Tap 📄 LOAD MY WORKED PARKS (top of the page) and new-to-you parks will roll across here.</span>' : '<span class="hl-wait">Tap ⭐ GET MY PARKS FROM POTA (top of the page) and new-to-you parks will roll across here.</span>'; T.style.setProperty('--dur', '22s'); $('hlFar').hidden = true; naDraw(); return; }
-    const L = SP.filter(s => isNew(s) && passPBM(s));
+    const L = barList();   /* 🎞 parks bar filters (Brandon Oct 17) */
     const far = FAR && HOME ? L.filter(isFar) : [], near = L.filter(s => !far.includes(s));
     const fresh = near.filter(s => !SEEN.has(keyOf(s)));
     L.forEach(s => SEEN.add(keyOf(s)));
