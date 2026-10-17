@@ -106,7 +106,7 @@ body.field .page-jump-nav{display:none!important}
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261016k">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261016m">
 <header class="site-nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="KPC Home">
@@ -215,6 +215,11 @@ body.field .page-jump-nav{display:none!important}
  <div class="hl-row"><input type="search" id="fQ" placeholder="Search call, park, number, state…" aria-label="Search spots"><select id="fSort" aria-label="Sort"><option value="new">Newest first</option><option value="mine">New to me first</option><option value="freq">By frequency</option></select></div>
 </div>
 <div class="hl-active" id="hlActive" hidden></div>
+<details class="hl-favbox" id="hlFavBox"><summary>⭐ MY FAVORITE ACTIVATORS <i id="favN"></i></summary>
+<p class="hl-p">Tap the ☆ on any spot, or type a call here. When a favorite comes on the air they're pinned to the top until you've worked them today (log them, or tap ✓ GOT THEM).</p>
+<form class="hl-row" id="favForm"><input id="favIn" placeholder="Add a call" autocapitalize="characters" autocomplete="off" style="width:160px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
+<div class="hl-row" id="favList"></div></details>
+<div id="hlFavs"></div>
 <a class="hl-nolog" id="hlNoLog" href="#hPota" hidden>⭐ <b>Load your hunted parks from POTA</b> so the new-to-you ones light up. Tap here ›</a>
 <div class="hl-row hl-viewbar"><span class="hl-count" id="hlCount"></span><span class="hl-vt" role="group" aria-label="View"><button type="button" class="hl-chip" data-view="cards">▦ CARDS</button><button type="button" class="hl-chip" data-view="table">☰ TABLE</button></span></div>
 <div class="hl-grid" id="hlSpots"><div class="hl-empty">Loading spots…</div></div>
@@ -237,13 +242,27 @@ body.field .page-jump-nav{display:none!important}
 <div class="hl-two">
 <div class="hl-card">
  <h3>Load the parks you've worked</h3>
- <div class="hl-pota" id="hPota"><b>⭐ EASIEST: GET MY HUNTED PARKS STRAIGHT FROM POTA</b>
- <p>pota.app no longer has a hunted-parks CSV, so this little bookmark asks POTA for your list while you're signed in there, then brings just the park numbers back here. Your POTA password and sign-in never leave pota.app.</p>
- <ol>
- <li><b>On a computer:</b> drag this button up to your bookmarks bar: <a class="hl-btn gold sm" id="hBm" href="#" title="Drag me to your bookmarks bar">⭐ KPC: MY POTA PARKS</a></li>
- <li><b>On a phone:</b> tap <button type="button" class="hl-btn line sm" id="hBmCopy">COPY THE BOOKMARK</button>, bookmark any page, then edit that bookmark: name it <b>KPC parks</b> and paste over its web address.</li>
- <li>Go to <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a> and sign in. Then tap the bookmark (on Android Chrome: type <b>KPC parks</b> in the address bar and pick the bookmark).</li>
- <li>You land back here with your parks loaded. Do it again any time to refresh.</li>
+ <div class="hl-pota" id="hPota"><b>⭐ GET MY HUNTED PARKS + AWARD NUMBERS STRAIGHT FROM POTA</b>
+ <p>pota.app has no hunted-parks download, so a little bookmark asks POTA for your list (and how many times you've worked each park and operator) while you're signed in there, then brings just those numbers back here. Your POTA sign-in never leaves pota.app. Set it up once per phone or computer.</p>
+ <div class="hl-row" role="group" aria-label="Which device"><button type="button" class="hl-chip" data-dev="pc">💻 COMPUTER</button><button type="button" class="hl-chip" data-dev="iphone">📱 IPHONE / IPAD</button><button type="button" class="hl-chip" data-dev="android">📱 ANDROID</button></div>
+ <ol data-devs="pc">
+ <li>Drag this button up to your bookmarks bar: <a class="hl-btn gold sm" id="hBm" href="#" title="Drag me to your bookmarks bar">⭐ KPC: MY POTA PARKS</a> <small>(no bookmarks bar? Ctrl+Shift+B shows it)</small></li>
+ <li>Go to <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a>, sign in, and click the bookmark.</li>
+ <li>You land back here with everything loaded. Click it again any time to refresh.</li>
+ </ol>
+ <ol data-devs="iphone" hidden>
+ <li>Tap <button type="button" class="hl-btn gold sm" data-bmcopy>📋 COPY THE BOOKMARK</button></li>
+ <li>On this page, tap the <b>Share</b> button (square with the arrow) → <b>Add Bookmark</b> → name it <b>KPC parks</b> → Save.</li>
+ <li>Tap the <b>Bookmarks</b> button (open book) → <b>Edit</b> → tap <b>KPC parks</b> → tap the web address, clear it, and <b>Paste</b>. Tap Done.</li>
+ <li>Go to <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a> in Safari and sign in. Tap the <b>Bookmarks</b> button → <b>KPC parks</b>.</li>
+ <li>You land back here with everything loaded.</li>
+ </ol>
+ <ol data-devs="android" hidden>
+ <li>Tap <button type="button" class="hl-btn gold sm" data-bmcopy>📋 COPY THE BOOKMARK</button></li>
+ <li>In Chrome tap <b>⋮</b> → the <b>☆ star</b> to bookmark this page. Tap <b>Edit</b> on the message that pops up (or ⋮ → Bookmarks → this page → ✏️).</li>
+ <li>Change the name to <b>KPC parks</b>, clear the web address (URL) box and <b>paste</b>. Save.</li>
+ <li>Go to <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a> and sign in. Then tap the address bar, type <b>KPC parks</b> and tap the bookmark that shows up under it (that's the only way Chrome on Android runs it).</li>
+ <li>You land back here with everything loaded.</li>
  </ol></div>
  <p class="hl-p" style="margin-top:14px"><b>Or load a file:</b></p>
  <label class="hl-lab">Your call sign <input id="hCall" autocomplete="off" autocapitalize="characters" placeholder="Your call"></label>
@@ -319,7 +338,7 @@ body.field .page-jump-nav{display:none!important}
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-hunt.js?v=20261016k"></script>
+<script src="kpc-hunt.js?v=20261016m"></script>
 <script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');

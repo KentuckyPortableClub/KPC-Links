@@ -401,3 +401,22 @@ main#hl[data-theme=lodge] .hs.new{background:linear-gradient(180deg,rgba(255,170
 .hl-firemsg.on{animation:hlFireMsg 3.6s ease-out}
 @keyframes hlFireMsg{0%{opacity:0;transform:translate(-50%,60px) scale(.9)}15%{opacity:1;transform:translate(-50%,0) scale(1.05)}75%{opacity:1;transform:translate(-50%,-10px) scale(1)}100%{opacity:0;transform:translate(-50%,-40px)}}
 #hlFlame[aria-pressed=true]{background:linear-gradient(180deg,#c0461a,#7a2208);color:#fff}
+/* favorites */
+.fv{background:none;border:0;color:#ffd76a;font-size:20px;line-height:1;cursor:pointer;padding:0 6px 0 0;vertical-align:-2px;text-shadow:0 0 8px rgba(255,200,80,.5)}
+.fv:not(.on){color:rgba(255,255,255,.45);text-shadow:none}
+.hl-st .fv{font-size:16px}
+.hl-favbox{margin:12px 0 0;background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:10px 14px}
+.hl-favbox summary{cursor:pointer;font:900 12px Arial;letter-spacing:1.4px;color:var(--g2);list-style:none}
+.hl-favbox summary::-webkit-details-marker{display:none}
+.hl-favbox summary i{font-style:normal;color:var(--gr);margin-left:6px}
+.hl-fav{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--ln);border-radius:999px;padding:4px 6px 4px 11px;font:900 13px ui-monospace,Menlo,Consolas,monospace}
+.hl-fav a{color:var(--tx);text-decoration:none}
+.hl-fav.on{border-color:var(--gr);box-shadow:0 0 12px rgba(61,220,132,.35)}
+.hl-fav button{background:rgba(255,255,255,.08);border:0;color:var(--tx);border-radius:50%;width:22px;height:22px;cursor:pointer}
+.hl-pinbar{margin:14px 0 8px;font:900 13px Arial;letter-spacing:2px;color:#ffd76a;text-shadow:0 0 12px rgba(255,200,80,.5)}
+.hl-pinbar small{font:700 11.5px Arial;letter-spacing:.5px;color:var(--mu);margin-left:6px}
+.hl-pinned .hs{border:2px solid #ffd76a;box-shadow:0 0 0 1px rgba(255,215,106,.3),0 0 30px rgba(255,190,80,.3)}
+.hs-a .got{background:#ffd76a;color:#2a1503;border-color:#ffd76a}
+.hl-pota ol[hidden]{display:none}
+.hl-pota small{color:var(--mu)}
+@media(max-width:600px){.hl-na{display:none}.hl-bell .t{display:none}.hl-bell{font-size:18px;padding:0 12px}}

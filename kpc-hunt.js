@@ -41,7 +41,8 @@
   let WK = new Set(LOG.r), MAN = new Set(LOG.m || []);
   const saveLog = () => { LOG.r = [...WK]; LOG.m = [...MAN]; put('kpcHuntLog', LOG); };
   const hasLog = () => WK.size > 0;
-  let F = Object.assign({ view: 'cards', p: ['POTA', 'WWFF', 'SOTA', 'DXPED', 'EVENT'], hide: false, nw: false, rg: false, bands: [], modes: [], where: 'all', st: '', q: '', sort: 'new' }, get('kpcHuntF', {}));
+  let F = Object.assign({ v: 2, view: 'cards', p: ['POTA', 'WWFF', 'SOTA', 'DXPED', 'EVENT', 'DX'], hide: false, nw: false, rg: false, bands: [], modes: [], where: 'all', st: '', q: '', sort: 'new' }, get('kpcHuntF', {}));
+  if (!F.v || F.v < 2) { ['DXPED', 'EVENT', 'DX'].forEach(x => { if (!F.p.includes(x)) F.p.push(x); }); F.v = 2; }
   F.rg = false; if (F.where === 'range') F.where = 'all'; if (F.sort === 'far') F.sort = 'new'; if (!Array.isArray(F.xc)) F.xc = [];
   const saveF = () => put('kpcHuntF', F);
   /* 'normal range' was removed Oct 16 (Brandon): no home, no far-away ticker */
@@ -121,15 +122,24 @@
     const p = DXPRE.test(sig + ' ' + com) ? 'DXPED' : isEvent(call, com) ? 'EVENT' : 'DX';
     return Object.assign(g, { p, ref: '', label: sig && !/^dxpedition$/i.test(sig) ? sig : '', name: (x.dx_name ? x.dx_name + ' · ' : '') + country });
   }
+  /* POTA + SOTA come first; Spothole (about 1 MB: WWFF, DX cluster, DXpeditions, special events) arrives on its own and
+     is merged in when it lands, so a slow phone still sees POTA right away. The last Spothole list is reused meanwhile. */
+  let LP = [], LS = [], LH = [], GOT = {}, holeBusy = false;
   async function load() {
-    const out = [], got = [];
-    await Promise.all([
-      jget('https://api.pota.app/spot/activator').then(a => { (a || []).forEach(x => { const s = fromPota(x); if (s) out.push(s); }); got.push('POTA'); }).catch(() => {}),
-      jget('https://api2.sota.org.uk/api/spots/50/all').then(a => { (a || []).forEach(x => { const s = fromSota(x); if (s) out.push(s); }); got.push('SOTA'); }).catch(() => {}),
-      jget('https://spothole.app/api/v1/spots?limit=1000&max_age=3600').then(j => { const a = Array.isArray(j) ? j : (j && j.spots) || []; a.forEach(x => { const s = fromHole(x); if (s) out.push(s); }); got.push('WWFF, DX cluster, DXpeditions and special events (Spothole)'); }).catch(() => {})
-    ]);
+    const a = jget('https://api.pota.app/spot/activator', 25000).then(x => { LP = (x || []).map(fromPota).filter(Boolean); GOT.POTA = 1; }).catch(() => { GOT.POTA = 0; });
+    const b = jget('https://api2.sota.org.uk/api/spots/50/all', 25000).then(x => { LS = (x || []).map(fromSota).filter(Boolean); GOT.SOTA = 1; }).catch(() => { GOT.SOTA = 0; });
+    if (!holeBusy) {
+      holeBusy = true;
+      jget('https://spothole.app/api/v1/spots?max_age=2700', 60000).then(j => { const L = Array.isArray(j) ? j : (j && j.spots) || []; LH = L.map(fromHole).filter(Boolean); GOT.HOLE = 1; })
+        .catch(() => { GOT.HOLE = 0; }).finally(() => { holeBusy = false; build(!first); });
+    }
+    await Promise.all([a, b]);
+    await build(!first); first = false;
+    next = Date.now() + 60e3;
+  }
+  async function build(alert) {
     const now = Date.now(), seen = new Map();
-    out.filter(s => s.call && (!s.t || now - s.t < 75 * 60e3)).sort((a, b) => (b.t || 0) - (a.t || 0)).forEach(s => { const k = keyOf(s); if (!seen.has(k)) seen.set(k, s); });
+    LP.concat(LS, LH).filter(s => s.call && (!s.t || now - s.t < 75 * 60e3)).sort((a, b) => (b.t || 0) - (a.t || 0)).forEach(s => { const k = keyOf(s); if (!seen.has(k)) seen.set(k, s); });
     SP = [...seen.values()]; SP.forEach(cty);
     await loadParks();
     SP.forEach(s => {
@@ -137,12 +147,12 @@
       if (k) { if (!isFinite(s.la) && isFinite(k.la)) { s.la = k.la; s.lo = k.lo; } if (!s.st && k.st) s.st = k.st; if (k.a != null) s.acts = k.a; if (!s.name) s.name = k.n; }
       if (s.p === 'SOTA' && SUM[s.ref]) { s.la = SUM[s.ref][0]; s.lo = SUM[s.ref][1]; s.acts = SUM[s.ref][2]; }
     });
-    src = got.length ? 'Spots from ' + got.join(', ') + '. Checked every minute while this page is open.' : 'The spot sites are not answering right now. Trying again in a minute.';
-    /* look up where new-to-you SOTA summits are (only those), then redraw */
+    const got = [GOT.POTA && 'POTA', GOT.SOTA && 'SOTA', GOT.HOLE && 'WWFF, DX cluster, DXpeditions and special events (Spothole)'].filter(Boolean);
+    src = (got.length ? 'Spots from ' + got.join(', ') + '. Checked every minute while this page is open.' : 'The spot sites are not answering right now. Trying again in a minute.')
+      + (GOT.HOLE === undefined ? ' Still loading the DX cluster, DXpedition, special event and WWFF spots…' : GOT.HOLE === 0 ? ' The DX cluster feed (Spothole) did not answer this time; trying again next minute.' : '');
     const need = SP.filter(s => s.p === 'SOTA' && !isFinite(s.la) && isNew(s)).slice(0, 12);
     if (need.length) Promise.all(need.map(async s => { const w = await sotaWhere(s); if (w) { s.la = w[0]; s.lo = w[1]; s.acts = w[2]; } })).then(() => { ticker(false); draw(); });
-    ticker(!first); first = false; chips(); draw(); needDraw();
-    next = Date.now() + 60e3;
+    ticker(alert); chips(); draw(); needDraw();
   }
   const isNew = s => !!s.ref && hasLog() && !WK.has(s.ref);
   const keyOf = s => s.p + '|' + s.call + '|' + (s.ref || Math.round(s.khz));
@@ -191,8 +201,9 @@
     }
     $('hsNew').textContent = hasLog() ? SP.filter(isNew).length : '–';
     naDraw(); try { lmDraw(); } catch (e) { console.error('map', e); }
+    try { favAlert(); } catch (e) {}
   }
-  function bell() { const b = $('hlBell'); b.setAttribute('aria-pressed', BELL); b.textContent = BELL ? '🔔 ALERT ON' : '🔕 ALERT OFF'; }
+  function bell() { const b = $('hlBell'); b.setAttribute('aria-pressed', BELL); b.innerHTML = (BELL ? '🔔' : '🔕') + '<span class="t"> ALERT ' + (BELL ? 'ON' : 'OFF') + '</span>'; }
   $('hlBell').onclick = () => { BELL = !BELL; put('kpcHuntBell', BELL); bell(); if (BELL) chime(); };
   document.addEventListener('click', e => {
     const it = e.target.closest('.hl-tick-track .it'); if (!it) return;
@@ -215,6 +226,30 @@
     if (n1 != null) { const L = n1.toUpperCase().split(',').filter(Boolean), b = bandOf(s.khz).toUpperCase(); if (L.length < 10 && !L.includes(b)) out.push(`<span class="ac near" title="N1CC: this park on 10 different bands">📶 NEW BAND ${L.length}/10</span>`); }
     return out.join('');
   }
+  /* ⭐ favorite activators (Brandon Oct 16): pinned to the top while on the air, until you've worked them today */
+  let FAV = new Set(get('kpcHuntFav', [])), FDONE = new Set(get('kpcHuntFavDone', [])), SEENFAV = new Set(), favFirst = true;
+  const today = () => new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  const isFav = s => FAV.has(base(s.call));
+  const favHunted = s => { const c = base(s.call), d = today(); return FDONE.has(c + '|' + d) || Q.q.some(q => base(q.call) === c && q.d === d); };
+  const favPinned = s => isFav(s) && !favHunted(s);
+  const saveFav = () => { put('kpcHuntFav', [...FAV]); const d = today(); FDONE = new Set([...FDONE].filter(x => x.endsWith('|' + d))); put('kpcHuntFavDone', [...FDONE]); };
+  function favDraw() {
+    const on = new Set(SP.map(s => base(s.call)));
+    $('favN').textContent = FAV.size ? `(${FAV.size}${[...FAV].some(c => on.has(c)) ? ' · ' + [...FAV].filter(c => on.has(c)).length + ' ON THE AIR' : ''})` : '';
+    $('favList').innerHTML = FAV.size ? [...FAV].sort().map(c => `<span class="hl-fav${on.has(c) ? ' on' : ''}"><a href="https://www.qrz.com/db/${encodeURIComponent(c)}" target="_blank" rel="noopener">${esc(c)}</a>${on.has(c) ? ' 📡' : ''}<button type="button" data-favx="${esc(c)}" title="Remove">✕</button></span>`).join('') : '<span class="hl-src">No favorites yet.</span>';
+  }
+  document.addEventListener('click', e => {
+    const f = e.target.closest('[data-fav]'); if (f) { e.stopPropagation(); const c = f.dataset.fav; if (FAV.has(c)) FAV.delete(c); else { FAV.add(c); toast(`⭐ ${c} is a favorite: pinned to the top whenever they're on the air.`); } saveFav(); favDraw(); draw(); return; }
+    const x = e.target.closest('[data-favx]'); if (x) { FAV.delete(x.dataset.favx); saveFav(); favDraw(); draw(); return; }
+    const d = e.target.closest('[data-fdone]'); if (d) { FDONE.add(d.dataset.fdone + '|' + today()); saveFav(); draw(); toast('✓ Got them. Unpinned for today.'); }
+  }, true);
+  $('favForm').addEventListener('submit', e => { e.preventDefault(); const c = base($('favIn').value); if (!/^[A-Z0-9]{3,10}$/.test(c)) { toast('That doesn’t look like a call sign.'); return; } FAV.add(c); $('favIn').value = ''; saveFav(); favDraw(); draw(); });
+  function favAlert() {
+    const L = SP.filter(s => isFav(s) && !favHunted(s)), fresh = L.filter(s => !SEENFAV.has(base(s.call)));
+    L.forEach(s => SEENFAV.add(base(s.call)));
+    if (!favFirst && fresh.length) { const s = fresh[0]; fire(`⭐ FAVORITE ON THE AIR: ${s.call}${s.ref ? ' · ' + s.ref : ''} · ${(s.khz / 1000).toFixed(3)} ${s.mode}`); if (BELL) chime(); }
+    favFirst = false;
+  }
   function card(s) {
     const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), d = dist(s), k = keyOf(s);
     const b = [`<span class="hb prog">${PL[s.p] || s.p}${s.label ? ' · ' + esc(s.label) : ''}</span>`];
@@ -224,7 +259,7 @@
     if (isQrt(s)) b.push('<span class="hb qrt">QRT</span>');
     b.push(`<span class="hb">${bandOf(s.khz)}</span>`, `<span class="hb">${esc(s.mode || '?')}</span>`);
     return `<article class="hs p-${s.p}${n ? ' new' : ''}${w ? ' worked' : ''}${isQrt(s) ? ' qrt' : ''}" data-k="${esc(k)}">
- <div class="hs-top"><div class="hs-call"><a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">${esc(s.call)}</a></div><div class="hs-f"><b>${(s.khz / 1000).toFixed(3)}</b><span>MHz · ${esc(s.mode || '')}</span></div></div>
+ <div class="hs-top"><div class="hs-call"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}" title="${isFav(s) ? 'Remove from favorites' : 'Add to favorite activators'}">${isFav(s) ? '★' : '☆'}</button><a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">${esc(s.call)}</a></div><div class="hs-f"><b>${(s.khz / 1000).toFixed(3)}</b><span>MHz · ${esc(s.mode || '')}</span></div></div>
  <div class="hs-park">${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener">${esc(s.ref)}</a>` : ''}${esc(s.name || '')}</div>
  <div class="hs-meta">${esc(s.st ? (ST[s.st] || s.st) : s.loc)}${d != null ? ' · ' + Math.round(d) + ' mi' : ''} · ${ago(s.t)}${s.by ? ' · spotted by ' + esc(s.by) : ''}</div>
  ${s.com ? `<div class="hs-com">“${esc(String(s.com).slice(0, 140))}”</div>` : ''}
@@ -237,7 +272,7 @@
     const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), d = dist(s);
     const tag = n ? '<span class="hb new">NEW</span>' : w ? '<span class="hb wk">✓</span>' : '';
     const rare = s.acts === 0 ? '<span class="hb atno">1ST</span>' : s.acts != null && s.acts <= 5 ? `<span class="hb rare">RARE ${s.acts}</span>` : '';
-    return `<tr class="hr${n ? ' new' : ''}${w ? ' worked' : ''}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c">${esc(s.call)}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
+    return `<tr class="hr${n ? ' new' : ''}${w ? ' worked' : ''}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}">${isFav(s) ? '★' : '☆'}</button>${esc(s.call)}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
 <td><span class="pg">${PL[s.p] || s.p}</span> ${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener" class="r">${esc(s.ref)}</a> ` : ''}${esc(s.name || '')} ${tag}${rare} ${awardChips(s, true)}</td><td class="hide-s">${esc(s.st || '')}</td><td class="hide-s">${d != null ? Math.round(d) : ''}</td>
 <td class="a"><button type="button" class="lg" data-log="1" title="Log it">📝</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" title="Mark worked">✓</button>` : ''}</td></tr>`;
   }
@@ -249,6 +284,9 @@
       && (!q || [s.call, s.ref, s.name, s.st, ST[s.st] || '', s.loc, s.com].join(' ').toUpperCase().includes(q)));
     const srt = { new: (a, b) => (b.t || 0) - (a.t || 0), freq: (a, b) => a.khz - b.khz, mine: (a, b) => (isNew(b) - isNew(a)) || (b.t || 0) - (a.t || 0), far: (a, b) => (dist(a) ?? 1e9) - (dist(b) ?? 1e9) }[F.sort] || null;
     if (srt) L.sort(srt);
+    const PIN = L.filter(favPinned); L = L.filter(s => !favPinned(s));
+    $('hlFavs').innerHTML = PIN.length ? `<div class="hl-pinbar">⭐ FAVORITES ON THE AIR <small>pinned until you work them today</small></div><div class="hl-grid hl-pinned">${PIN.map(s => card(s).replace('<div class="hs-a">', `<div class="hs-a"><button type="button" class="got" data-fdone="${esc(base(s.call))}">✓ GOT THEM</button>`)).join('')}</div>` : '';
+    favDraw();
     const old = new Set([...document.querySelectorAll('#hlSpots .hs')].map(x => x.dataset.k));
     $('hlSpots').className = F.view === 'table' ? 'hl-tablewrap' : 'hl-grid';
     $('hlSpots').innerHTML = !L.length ? `<div class="hl-empty">${SP.length ? 'No spots match your filters right now.' : 'No spots yet.'}</div>`
@@ -295,7 +333,7 @@
     saveF(); chips(); ticker(false); draw();
   });
   /* the box that shows what you're filtering, each with an ✕, plus CLEAR ALL */
-  const F0 = { p: ['POTA', 'WWFF', 'SOTA', 'DXPED', 'EVENT'], qrt: false, hide: false, nw: false, bands: [], modes: [], where: 'all', st: '', q: '', xc: [] };
+  const F0 = { p: ['POTA', 'WWFF', 'SOTA', 'DXPED', 'EVENT', 'DX'], qrt: false, hide: false, nw: false, bands: [], modes: [], where: 'all', st: '', q: '', xc: [] };
   function activeBox() {
     const it = [];
     const PN = { POTA: 'POTA', WWFF: 'WWFF / KFF', SOTA: 'SOTA', DXPED: 'DXPEDITIONS', EVENT: 'SPECIAL EVENTS', DX: 'DX CLUSTER' };
@@ -723,7 +761,12 @@
   const BMURL = 'javascript:' + encodeURIComponent(BM);
   $('hBm').href = BMURL;
   $('hBm').onclick = e => { e.preventDefault(); toast('Drag this button to your bookmarks bar, then use it on pota.app.'); };
-  $('hBmCopy').onclick = async () => { try { await navigator.clipboard.writeText(BMURL); toast('✓ Copied. Now paste it as a bookmark’s web address.'); } catch (e) { prompt('Copy this, then paste it as a bookmark’s web address:', BMURL); } };
+  /* which device steps to show: guessed from the device, can be switched */
+  const DEV0 = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) ? 'iphone' : /Android/.test(navigator.userAgent) ? 'android' : 'pc';
+  function dev(d) { document.querySelectorAll('[data-devs]').forEach(o => o.hidden = o.dataset.devs !== d); document.querySelectorAll('[data-dev]').forEach(b => b.setAttribute('aria-pressed', b.dataset.dev === d)); }
+  dev(DEV0);
+  document.addEventListener('click', e => { const b = e.target.closest('[data-dev]'); if (b) dev(b.dataset.dev); });
+  document.addEventListener('click', async e => { if (!e.target.closest('[data-bmcopy]')) return; try { await navigator.clipboard.writeText(BMURL); toast('✓ Copied. Now paste it as the bookmark’s web address.'); } catch (x) { prompt('Copy this, then paste it as the bookmark’s web address:', BMURL); } });
   function fromPotaHash() {
     let m = location.hash.match(/[#&]pota=([^&]*)/), A = null;
     if (!m && /kpcpota/.test(location.hash) && String(window.name).startsWith('KPCPOTA:')) {
@@ -838,7 +881,7 @@
 
   /* ---------------- 🔥 flames up from the bottom when a new park shows up (Brandon Oct 16) ---------------- */
   let FLAME = get('kpcHuntFlame', true), fireT = 0;
-  function flameBtn() { const b = $('hlFlame'); b.setAttribute('aria-pressed', FLAME); b.textContent = FLAME ? '🔥 FLAMES ON' : '🔥 FLAMES OFF'; }
+  function flameBtn() { const b = $('hlFlame'); b.setAttribute('aria-pressed', FLAME); b.innerHTML = '🔥<span class="t"> FLAMES ' + (FLAME ? 'ON' : 'OFF') + '</span>'; }
   $('hlFlame').onclick = () => { FLAME = !FLAME; put('kpcHuntFlame', FLAME); flameBtn(); if (FLAME) fire('🔥 Flames are on'); };
   function fire(msg) {
     if (!FLAME || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
