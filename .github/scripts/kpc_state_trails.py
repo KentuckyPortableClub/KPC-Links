@@ -81,6 +81,11 @@ try: IDX = {x['ref']: x for x in json.load(open(f'{OUT}/index-state.json'))}
 except Exception: IDX = {}
 try: NAT = {x['ref'] for x in json.load(open(f'{OUT}/index.json'))}
 except Exception: NAT = set()
+LOC = {}
+try:
+    for r in json.load(open('locations.json')):
+        if r[0] == 'POTA': LOC[r[1]] = (r[3], r[4])
+except Exception: pass
 report = {'updated': datetime.date.today().isoformat(), 'found': [], 'missing': []}
 for st in STATES:
     try: d = json.load(open(f'data/parkinfo/US-{st}.json'))
@@ -91,7 +96,7 @@ for st in STATES:
     got = 0
     for ref, v in cand:
         name, typ = v[0], v[2] or ''
-        la, lo = (v[5], v[6]) if len(v) > 6 and v[5] is not None else (None, None)
+        la, lo = (v[5], v[6]) if len(v) > 6 and v[5] is not None else LOC.get(ref, (None, None))
         if la is None: report['missing'].append([ref, name, st, 'no pin']); continue
         lines, by, off = None, '', False
         if 'National Recreation' in typ:
