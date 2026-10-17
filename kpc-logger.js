@@ -114,8 +114,8 @@
     $('myCall').value = SET.call; $('myPark').value = SET.park; $('myGrid').value = SET.grid; $('myPwr').value = SET.pwr;
     $('myCall').oninput = e => { SET.call = e.target.value.toUpperCase().trim(); e.target.value = SET.call; put('kpcMyCall', base(SET.call)); saveSet(); drawAll(); };
     $('myPark').oninput = e => { SET.park = e.target.value.toUpperCase(); e.target.value = SET.park; saveSet(); clearTimeout(pT); pT = setTimeout(parkInfo, 700); };
-    $('myGrid').oninput = e => { SET.grid = e.target.value.trim(); SET.me = null; saveSet(); drawMap(); };
-    $('myPwr').oninput = e => { SET.pwr = e.target.value.trim(); saveSet(); };
+    $('myGrid').oninput = e => { SET.grid = e.target.value.trim(); SET.me = null; saveSet(); drawMap(); opBar(); };
+    $('myPwr').oninput = e => { SET.pwr = e.target.value.trim(); saveSet(); opBar(); };
     $('myGps').onclick = () => {
       if (!navigator.geolocation) { $('myGpsMsg').textContent = 'This browser has no GPS.'; return; }
       $('myGpsMsg').textContent = 'Finding you…';
@@ -181,13 +181,13 @@
     $('eRef').onblur = e => { e.target.value = refsOf(e.target.value).join(', ') || e.target.value.toUpperCase(); };
     $('eSt').oninput = e => { e.target.value = e.target.value.toUpperCase(); };
     $('eClear').onclick = () => { clearForm(true); $('eCall').focus(); };
-    $('eManual').onchange = e => { $('eWhen').hidden = !e.target.checked; if (e.target.checked && !$('eWhen').value) $('eWhen').value = iso(new Date()).slice(0, 16); $('eTime').textContent = e.target.checked ? 'time: typed by hand (UTC)' : 'time: now (UTC)'; };
+    $('eManual').onchange = e => { $('eWhen').hidden = !e.target.checked; if (e.target.checked && !$('eWhen').value) $('eWhen').value = iso(new Date()).slice(0, 16); $('eTime').textContent = e.target.checked ? 'Time: typed by hand (UTC)' : 'Time: now (UTC)'; };
     $('eForm').onsubmit = e => { e.preventDefault(); logIt(); };
   }
   function logIt() {
     const call = $('eCall').value.toUpperCase().trim();
     if (!okCall(call)) { toast('Type their call sign first.'); $('eCall').focus(); return; }
-    if (!myCall()) { toast('Put YOUR call in "My station" first.'); $('myCall').focus(); return; }
+    if (!myCall()) { toast('Put YOUR call in ⚙ STATION first.'); stationOpen(true); $('myCall').focus(); return; }
     const k = kHzOf($('eFreq').value), band = bandOf(k);
     if (!k || !band) { toast('Type the frequency (like 14.285 or 14285).'); $('eFreq').focus(); return; }
     const mode = $('eMode').value;
@@ -214,7 +214,7 @@
     if (s) R = R.filter(q => [q.call, q.ref, q.name, q.st, q.qth, q.pk, q.band, q.mode].join(' ').toUpperCase().includes(s));
     $('lCount').textContent = `${R.length} shown · ${L.q.length} in all`;
     $('lBody').innerHTML = R.length ? R.slice(0, 500).map(q => `<tr data-id="${q.id}"${q.id === NEWID ? ' class="new"' : ''}><td class="m">${LV === 'all' ? esc(fD(q.d).slice(5)) + ' ' : ''}${fT(q.tm)}</td><td class="c">${esc(q.call)}${multi() || (q.op && q.op !== q.my) ? `<div class="lg-mu" style="margin:0;font:11px Arial">by ${esc(q.op || q.my)}</div>` : ''}</td><td class="m">${esc(q.f)}</td><td class="hs">${esc(q.mode)}</td><td class="hs m">${esc(q.rs)} / ${esc(q.rr)}</td><td>${q.ref ? `<span class="p2p">${esc(q.ref)}</span>` : ''}${LV === 'all' ? `<div class="lg-mu" style="margin:0">at ${esc(q.pk)}</div>` : ''}</td><td class="hs">${esc([q.name, q.st].filter(Boolean).join(' · '))}</td><td><button type="button" data-ed="${q.id}" aria-label="Edit">✏️</button><button type="button" data-del="${q.id}" aria-label="Delete">🗑</button></td></tr>`).join('')
-      : `<tr><td colspan="8"><div class="lg-empty">${LV === 'act' ? (myParks().length ? 'No contacts in this activation yet. Tap a spot or type a call above.' : 'Put your park number in "My station", then log away.') : 'Nothing logged yet.'}</div></td></tr>`;
+      : `<tr><td colspan="8"><div class="lg-empty">${LV === 'act' ? (myParks().length ? 'No contacts in this activation yet. Tap a spot or type a call above.' : 'Put your park number in ⚙ STATION, then log away.') : 'Nothing logged yet.'}</div></td></tr>`;
     NEWID = null;
   }
   function logInit() {
@@ -275,7 +275,7 @@
   function expInit() {
     $('xPota').onclick = async () => {
       const A = actList(); if (!A.length) { toast('No contacts in this activation yet.'); return; }
-      const P = myParks(); if (!P.length) { toast('Put your park number in "My station" first.'); return; }
+      const P = myParks(); if (!P.length) { toast('Put your park number in ⚙ STATION first.'); return; }
       const d = A[0].d, calls = [...new Set(A.map(q => q.my))], F = [], short = [];
       calls.forEach(c => { const Q = A.filter(q => q.my === c); if (Q.length < 10) short.push(c + ' ' + Q.length); P.forEach(p => F.push([`${c.replace(/\//g, '-')}@${p}-${d}.adi`, adif(Q, p)])); });
       const ok = await files(F);
@@ -350,8 +350,8 @@
     if (!$('sFreq').value) $('sFreq').value = $('eFreq').value;
     $('sSend').onclick = async () => {
       const call = stationCall(), P = myParks(), k = kHzOf($('sFreq').value), mode = $('sMode').value;
-      if (!call) { msg('Put your call in "My station" first.', 'bad'); return; }
-      if (!P.length) { msg('Put your park number in "My station" first.', 'bad'); return; }
+      if (!call) { msg('Put your call in ⚙ STATION first.', 'bad'); return; }
+      if (!P.length) { msg('Put your park number in ⚙ STATION first.', 'bad'); return; }
       if (!k || !bandOf(k)) { msg('Type the frequency you are on (like 14.285).', 'bad'); return; }
       const wait = rlCheck(); if (wait) { msg(wait, 'bad'); return; }
       let cm = $('sCm').value.trim(); if (P.length > 1 && !/fer|US-|\d{4}/i.test(cm)) cm = (P.length + '-fer: ' + P.slice(1).join(' ') + ' ' + cm).trim();
@@ -410,7 +410,7 @@
     const A = actList(), now = Date.now(), T = A.map(tsOf).sort((a, b) => a - b), n = A.length;
     const last10 = T.slice(-10), r10 = last10.length > 1 ? Math.round((last10.length - 1) / Math.max((last10[last10.length - 1] - last10[0]) / 36e5, 1 / 60)) : 0;
     const hr = T.filter(t => now - t <= 36e5).length;
-    $('sAct').textContent = n; $('sRate').textContent = r10; $('sHr').textContent = hr;
+    $('sAct').textContent = n; $('sRate').textContent = r10; $('sHr').textContent = hr; $('sTot').textContent = L.q.length.toLocaleString(); opBar(n);
     if (multi() && !SET.share) { $('sOps').innerHTML = opsList().map(c => { const k2 = A.filter(q => q.my === c).length; return `<span class="${k2 >= 10 ? 'ok' : ''}">${esc(c)} ${k2 >= 10 ? '✓ ' + k2 : k2 + '/10'}</span>`; }).join(''); }
     else if (multi()) { $('sOps').innerHTML = opsList().map(c => `<span>${esc(c)} ${A.filter(q => (q.op || q.my) === c).length} logged</span>`).join(''); }
     else $('sOps').innerHTML = '';
@@ -418,7 +418,7 @@
     const g = Math.min(n, 10); $('sGoalBar').style.width = g * 10 + '%';
     const P = myParks();
     $('sGoal').parentElement.classList.toggle('done', n >= 10);
-    $('sGoal').textContent = !P.length ? 'Add your park number in "My station" to start an activation' : n >= 10 ? `✓ Valid activation at ${P.join(' + ')} (${n} contacts). Keep going!` : `${n} of 10 contacts for a valid POTA activation at ${P.join(' + ')}`;
+    $('sGoal').textContent = !P.length ? 'Add your park number in ⚙ STATION to start an activation' : n >= 10 ? `✓ Valid activation at ${P.join(' + ')} (${n} contacts). Keep going!` : `${n} of 10 contacts for a valid POTA activation at ${P.join(' + ')}`;
     const calls = new Set(A.map(q => base(q.call))).size, p2p = A.filter(q => q.ref).length, sts = new Set(A.map(q => q.st).filter(s => /^[A-Z]{2}$/.test(s))).size;
     const me = meLL(); let far = null; A.forEach(q => { if (me && q.la != null) { const m = miles(me, [q.la, q.lo]); if (!far || m > far[0]) far = [m, q.call]; } });
     const span = T.length > 1 ? (T[T.length - 1] - T[0]) / 36e5 : 0, avg = span > 0.05 ? Math.round((n - 1) / span) : 0;
@@ -436,6 +436,20 @@
   }
 
   function drawAll() { drawLog(); rates(); drawMap(); drawSpots(); }
+
+  /* ---------------- the operation bar on top of the log card (PoLo style) ---------------- */
+  function opBar(n) {
+    const P = myParks(), sc = stationCall();
+    $('oCall').textContent = sc || 'YOUR CALL'; $('oPark').textContent = P.length ? P.join(' + ') : 'NO PARK YET';
+    const nm = P.map(r => SET.pinfo[r] && SET.pinfo[r].n).filter(Boolean).join(' + ');
+    $('oSub').textContent = !sc || !P.length ? 'Tap ⚙ STATION to set your call and park' : [nm, SET.grid, SET.pwr ? SET.pwr + ' W' : '', multi() ? opsList().length + ' operators' : ''].filter(Boolean).join(' · ');
+    $('oN').textContent = n == null ? actList().length : n;
+  }
+  function stationOpen(open) { $('cStation').hidden = !open; $('oEdit').setAttribute('aria-expanded', open); $('oEdit').textContent = open ? '✓ DONE' : '⚙ STATION'; }
+  function opBarInit() {
+    $('oEdit').onclick = () => stationOpen($('cStation').hidden);
+    stationOpen(!myCall() || !myParks().length);
+  }
 
   /* ---------------- operators ---------------- */
   function drawOps() {
@@ -522,7 +536,7 @@
   }
 
   async function start() {
-    const parts = [stationInit, opsInit, nearInit, entryInit, logInit, expInit, spotsInit, spotInit, notesInit, notesAllInit, appInit, mapInit];
+    const parts = [stationInit, opBarInit, opsInit, nearInit, entryInit, logInit, expInit, spotsInit, spotInit, notesInit, notesAllInit, appInit, mapInit];
     parts.forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } });
     try { const o = await idbGet('log'); IDBok = true; if (o && Array.isArray(o.q) && ((o.u || 0) > (L.u || 0) || o.q.length > L.q.length)) { L = o; put(LK, L); } } catch (e) {}
     if (navigator.storage && navigator.storage.persisted) { try { PERSIST = await navigator.storage.persisted(); } catch (e) {} }

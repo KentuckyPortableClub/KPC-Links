@@ -1,5 +1,5 @@
 {
-  "name": "KPC Activator Logger",
+  "name": "KPC Logger",
   "short_name": "KPC Logger",
   "description": "Kentucky Portable Club activation logger: POTA spots, call lookups, QSO map, rates and POTA files.",
   "start_url": "kpc-logger.html",

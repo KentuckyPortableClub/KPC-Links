@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex,nofollow">
 <script src="kpc-theme.js?v=20261014kz"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Activator Logger | KPC</title>
+<title>KPC Logger | KPC</title>
 <!-- KPC icons & share preview -->
 <link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
 <meta property="og:site_name" content="Kentucky Portable Club">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Activator Logger | KPC">
+<meta property="og:title" content="KPC Logger | KPC">
 <meta property="og:description" content="KPC members: log a POTA activation with spot fill-in, call sign lookup, a QSO map, rates and POTA files.">
 <meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-logger.html">
 <meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
@@ -107,7 +107,7 @@ body.field .page-jump-nav{display:none!important}
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261016b">
+<link rel="stylesheet" href="kpc-logger.css?v=20261016c">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -179,12 +179,13 @@ body.field .page-jump-nav{display:none!important}
   </div>
 </header>
 <main id="lg" data-keep-light>
-<section class="lg-hero"><div class="lg-in">
-<p class="lg-eyebrow">KPC MEMBERS ROOM • ACTIVATOR LOGGER</p>
-<h1>KPC <span>Activator</span> Logger</h1>
+<section class="lg-hero"><div class="lg-pic" role="img" aria-label="The four KPC founders operating at a campsite over the lake"></div><div class="lg-in">
+<p class="lg-eyebrow">KPC MEMBERS ROOM • BETA</p>
+<h1>KPC <span>Logger</span></h1>
 <p class="lg-copy">Log your activation from the park: tap a POTA spot to fill it in, look up every call, watch your contacts land on the map, keep an eye on your rate, spot yourself, and send POTA the right file when you're done.</p>
 <div class="lg-stats" id="lgStats">
  <div class="clk"><b id="sUtc">--:--:--</b><span>UTC</span></div>
+ <div><b id="sTot">0</b><span>TOTAL QSOs IN MY LOG</span></div>
  <div class="g"><b id="sAct">0</b><span>THIS ACTIVATION</span></div>
  <div><b id="sRate">0</b><span>RATE (LAST 10, PER HOUR)</span></div>
  <div><b id="sHr">0</b><span>LAST 60 MIN</span></div>
@@ -196,8 +197,16 @@ body.field .page-jump-nav{display:none!important}
 
 <div class="lg-wrap">
 
-<!-- 1 station -->
-<section class="lg-card" id="cStation"><h2><i>1</i> My station</h2>
+<div class="lg-main">
+<div class="lg-left">
+<!-- station + entry together (like Ham2K PoLo: the operation on top, the contact under it) -->
+<section class="lg-card lg-entry" id="cEntry">
+<div class="lg-opbar">
+ <div class="lg-opwho"><b id="oCall">YOUR CALL</b> <span>@</span> <b id="oPark" class="pk">PARK</b><div class="lg-opsub" id="oSub">Tap STATION to set your call and park</div></div>
+ <div class="lg-opn"><b id="oN">0</b><span>QSOs</span></div>
+ <button type="button" class="lg-btn line sm" id="oEdit" aria-expanded="false">⚙ STATION</button>
+</div>
+<div class="lg-station" id="cStation" hidden>
 <div class="lg-f">
  <label>My call<input id="myCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Your call"></label>
  <label>My park number(s)<input id="myPark" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-1234 (2-fer: US-1234, US-5678)"></label>
@@ -209,12 +218,7 @@ body.field .page-jump-nav{display:none!important}
 <p class="lg-park" id="myParkInfo"></p>
 <div class="lg-row"><button type="button" class="lg-btn gold sm" id="myNearB">📍 PARKS NEAR ME (GPS)</button><button type="button" class="lg-btn line sm" id="myGps">GRID FROM MY GPS</button><span class="lg-mu" id="myGpsMsg"></span></div>
 <div class="lg-near" id="myNear" hidden></div>
-</section>
-
-<div class="lg-main">
-<div class="lg-left">
-<!-- 2 entry -->
-<section class="lg-card lg-entry" id="cEntry"><h2><i>2</i> Log a contact <small id="eTime">time: now (UTC)</small></h2>
+</div>
 <div class="lg-opsel" id="eOps" hidden></div>
 <form id="eForm" autocomplete="off">
 <div class="lg-f e">
@@ -237,10 +241,11 @@ body.field .page-jump-nav{display:none!important}
  <input id="eWhen" type="datetime-local" step="60" hidden>
 </div>
 </form>
+<p class="lg-mu lg-time" id="eTime">Time: now (UTC)</p>
 </section>
 
 <!-- log -->
-<section class="lg-card" id="cLog"><h2><i>3</i> My log <small id="lCount"></small></h2>
+<section class="lg-card" id="cLog"><h2>My log <small id="lCount"></small></h2>
 <div class="lg-row">
  <button type="button" class="lg-chip on" data-lv="act">THIS ACTIVATION</button>
  <button type="button" class="lg-chip" data-lv="all">EVERYTHING</button>
@@ -261,7 +266,7 @@ body.field .page-jump-nav{display:none!important}
 
 <div class="lg-right">
 <!-- spots -->
-<section class="lg-card" id="cSpots"><h2><i>4</i> POTA spots <small id="pAge"></small></h2>
+<section class="lg-card" id="cSpots"><h2>POTA spots <small id="pAge"></small></h2>
 <p class="lg-mu">Tap a spot to fill in the log (call, frequency, mode and their park for a park-to-park).</p>
 <div class="lg-row">
  <select id="pBand"><option value="">All bands</option></select>
@@ -274,7 +279,7 @@ body.field .page-jump-nav{display:none!important}
 </section>
 
 <!-- self spot -->
-<section class="lg-card" id="cSpot"><h2><i>5</i> Spot myself on POTA</h2>
+<section class="lg-card" id="cSpot"><h2>Spot myself on POTA</h2>
 <div class="lg-f">
  <label>Freq (MHz or kHz)<input id="sFreq" inputmode="decimal" placeholder="14.285"></label>
  <label>Mode<select id="sMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option></select></label>
@@ -289,13 +294,13 @@ body.field .page-jump-nav{display:none!important}
 
 <!-- map + rate -->
 <div class="lg-two">
-<section class="lg-card" id="cMap"><h2><i>6</i> QSO map <small id="mInfo"></small></h2>
+<section class="lg-card" id="cMap"><h2>QSO map <small id="mInfo"></small></h2>
 <div id="mMap" role="region" aria-label="Map of contacts"></div>
 <div class="lg-row"><button type="button" class="lg-chip on" data-mv="act">THIS ACTIVATION</button><button type="button" class="lg-chip" data-mv="all">EVERYTHING</button><span class="lg-mu">Gold star = you · dots coloured by band · lines show the path.</span></div>
 <div class="lg-key" id="mKey"></div>
 </section>
 
-<section class="lg-card" id="cRate"><h2><i>7</i> Rates &amp; hours</h2>
+<section class="lg-card" id="cRate"><h2>Rates &amp; hours</h2>
 <div class="lg-tiles" id="rTiles"></div>
 <h3 class="lg-h3">Contacts each hour (UTC)</h3>
 <div class="lg-hours" id="rHours"></div>
@@ -305,7 +310,7 @@ body.field .page-jump-nav{display:none!important}
 </div>
 
 <!-- notes -->
-<section class="lg-card" id="cNotes"><h2><i>8</i> Activation notes</h2>
+<section class="lg-card" id="cNotes"><h2>Activation notes</h2>
 <div class="lg-row"><label class="lg-chk"><input type="checkbox" id="nStamp"> Start my notes with my park number and today's date</label>
 <label class="lg-chk"><input type="checkbox" id="nCarry"> Add these notes to every contact I log</label></div>
 <p class="lg-stamp" id="nStampTxt" hidden></p>
@@ -314,7 +319,7 @@ body.field .page-jump-nav{display:none!important}
 <p class="lg-mu" id="nSaved">Notes save on this device as you type. With "every contact" ticked, they go into each new contact's notes (and the ADIF file).</p>
 </section>
 
-<section class="lg-card" id="cApp"><h2><i>9</i> Install it · use it with no signal</h2>
+<section class="lg-card" id="cApp"><h2>Install it · use it with no signal</h2>
 <div class="lg-row"><button type="button" class="lg-btn gold" id="aInstall" hidden>📲 INSTALL THE LOGGER</button><button type="button" class="lg-btn gold" id="aSave">💾 SAVE FOR NO SIGNAL</button><span class="lg-msg" id="aMsg"></span></div>
 <div class="lg-how">
  <p><b>On a computer (Chrome or Edge):</b> tap 📲 INSTALL THE LOGGER above, or the install icon at the right end of the address bar. It opens in its own window like a program.</p>
@@ -330,7 +335,7 @@ body.field .page-jump-nav{display:none!important}
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-logger.js?v=20261016c"></script>
+<script src="kpc-logger.js?v=20261016d"></script>
 <script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
