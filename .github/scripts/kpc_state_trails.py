@@ -93,15 +93,19 @@ def official_org(org, st):
     if re.search(r'\b(county|city|town|village|township|university|college|club|association|alliance|friends|conservancy|council)\b', o): return False
     return bool(sn) and bool(re.search(r'(?<!west )\b' + re.escape(sn) + r'\b', o)) and bool(re.search(AGW, o))
 NPS_TRAILS = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Public_Trails/FeatureServer/0'
-def lyr_lines(url, where, la, lo, d=1.0):
+def lyr_lines(url, where, la, lo, d=1.0, fld=None, want=''):
     out, off = [], 0
+    nowater = not re.search(r'water|river|canoe|paddl|blueway', want or '', re.I)
     for _ in range(6):
         q = {'where': where, 'geometry': f'{lo-d},{la-d},{lo+d},{la+d}', 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-             'outFields': '', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 1000}
+             'outFields': fld or '', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 1000}
         j = get(url + '/query?' + urllib.parse.urlencode(q), t=90)
         if 'error' in j: raise Exception(str(j['error'])[:150])
         fs = j.get('features', [])
-        out += [[[round(x, 5), round(y, 5)] for x, y in p[:]] for f in fs for p in (f.get('geometry') or {}).get('paths', [])]
+        for f in fs:  # Oct 18: 'Greenbrier River Trail' must not pick up the 'Greenbrier River Water Trail' (the river itself)
+            nm = str((f.get('attributes') or {}).get(fld, '') if fld else '')
+            if nowater and re.search(r'water ?trail|blueway|paddl|canoe', nm, re.I) and not re.search(r'water ?trail|blueway', want or '', re.I): continue
+            out += [[[round(x, 5), round(y, 5)] for x, y in p[:]] for p in (f.get('geometry') or {}).get('paths', [])]
         if not j.get('exceededTransferLimit') or not fs: break
         off += len(fs)
     return out
@@ -139,7 +143,7 @@ def agency(name, st, la, lo):
                 F = [x['name'] for x in meta.get('fields', []) if x.get('type') == 'esriFieldTypeString' and (flds is None and re.search(r'name|trail|trl|label|title', x['name'], re.I) or flds and x['name'] in flds)]
                 for fld in F[:4]:
                     for wh in likes(fld, w):
-                        try: L = lyr_lines(lu, wh, la, lo)
+                        try: L = lyr_lines(lu, wh, la, lo, fld=fld, want=name)
                         except Exception: continue
                         if L:
                             nk = min(km(la, lo, p[1], p[0]) for l in L for p in l)
@@ -230,7 +234,13 @@ for st, cand in jobs():
         if not lines: report['missing'].append([ref, name, stc, 'no line found']); continue
         near = min(km(la, lo, p[1], p[0]) for l in lines for p in l)
         if near > CHECK_KM: report['missing'].append([ref, name, stc, f'line found {near:.0f} km from the POTA pin: not used']); continue
-        lines = [dp(l, 0.0003) for l in lines]
+        # Oct 18: agency layers often hold the same line 2-4 times (one per surface / year / direction): keep one copy
+        _u, _seen = [], set()
+        for l in lines:
+            k = tuple(map(tuple, l)); kr = tuple(reversed(k))
+            if k in _seen or kr in _seen: continue
+            _seen.add(k); _u.append(l)
+        lines = [dp(l, 0.0003) for l in _u]
         total = sum(seglen(l) for l in lines)
         if kind(typ, name) == 'TP' and total < 4: report['missing'].append([ref, name, stc, 'short: probably a park, not a trail']); continue
         xs = [p[0] for l in lines for p in l]; ys = [p[1] for l in lines for p in l]
