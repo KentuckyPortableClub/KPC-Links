@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261018j">
+<link rel="stylesheet" href="kpc-logger.css?v=20261018m"><link rel="stylesheet" href="kpc-ft8.css?v=20261018m">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -29,7 +29,7 @@
 
 <!-- phones and tablets: one part at a time, like Ham2K PoLo -->
 <nav class="lg-tabs" id="lgTabs" aria-label="Logger parts">
- <a class="lg-home" href="members.html" aria-label="Back to the Members Room"><img src="KPC-logo.png" alt=""></a> <button type="button" data-tab="log" class="on"><b id="tN">0</b> QSOs</button><button type="button" data-tab="spots">SPOTS</button><button type="button" class="lg-f8t" data-ft8open>FT8</button><button type="button" data-tab="map">MAP</button><button type="button" data-tab="info">INFO</button><button type="button" data-tab="more">MORE</button>
+ <a class="lg-home" href="members.html" aria-label="Back to the Members Room"><img src="KPC-logo.png" alt=""></a> <button type="button" data-tab="log" class="on"><b id="tN">0</b> QSOs</button><button type="button" data-tab="spots">SPOTS</button><button type="button" class="lg-f8t" data-ft8open>DIGI</button><button type="button" data-tab="map">MAP</button><button type="button" data-tab="info">INFO</button><button type="button" data-tab="more">MORE</button>
 </nav>
 
 <div class="lg-main">
@@ -77,13 +77,7 @@
 <div class="lg-cat" id="myCat">
  <h3>📻 RADIO CONTROL (CAT) <small id="catSt">off</small></h3>
  <div class="lg-f">
-  <label>My radio<select id="catRadio"><option value="">Pick your radio…</option>
-   <optgroup label="Icom (CI-V)"><option value="ic705">Icom IC-705</option><option value="ic7300">Icom IC-7300</option><option value="ic7610">Icom IC-7610</option><option value="ic9700">Icom IC-9700</option><option value="ic7100">Icom IC-7100</option><option value="ic718">Icom IC-718</option></optgroup>
-   <optgroup label="Xiegu (CI-V)"><option value="g90">Xiegu G90</option><option value="x6100">Xiegu X6100</option></optgroup>
-   <optgroup label="Yaesu"><option value="ft991">Yaesu FT-991A</option><option value="ft891">Yaesu FT-891</option><option value="ft710">Yaesu FT-710</option><option value="ftdx10">Yaesu FTDX10 / FTDX101</option><option value="ftx1">Yaesu FTX-1</option><option value="ft817">Yaesu FT-817 / 818</option><option value="ft857">Yaesu FT-857 / 897</option></optgroup>
-   <optgroup label="Elecraft"><option value="kx2">Elecraft KX2</option><option value="kx3">Elecraft KX3</option><option value="k3">Elecraft K3 / K3S / K4</option></optgroup>
-   <optgroup label="Kenwood"><option value="ts590">Kenwood TS-590 / 890 / 990</option><option value="ts480">Kenwood TS-480</option></optgroup>
-   <optgroup label="Others"><option value="qmx">QRP Labs QMX / QDX</option><option value="trusdx">(tr)uSDX</option><option value="tx500">Lab599 TX-500</option></optgroup></select></label>
+  <label>My radio<select id="catRadio"><option value="">Pick your radio…</option></select></label>
  </div>
  <div class="lg-row">
   <button type="button" class="lg-btn gold sm" id="catGo">🔌 CONNECT MY RADIO</button>
@@ -139,7 +133,7 @@
 </div>
 
 <div class="lg-right">
-<nav class="lg-rtabs" id="lgRt" aria-label="Right side"><button type="button" data-rt="spots" class="on">SPOTS</button><button type="button" class="lg-f8t" data-ft8open>📡 FT8 / FT4</button><button type="button" data-rt="map">MAP</button><button type="button" data-rt="info">INFO</button></nav>
+<nav class="lg-rtabs" id="lgRt" aria-label="Right side"><button type="button" data-rt="spots" class="on">SPOTS</button><button type="button" class="lg-f8t" data-ft8open>📡 FT8 · CW</button><button type="button" data-rt="map">MAP</button><button type="button" data-rt="info">INFO</button></nav>
 <section class="lg-card" id="cSpots" data-tabp="spots" data-rp="spots"><h2>Spots: POTA · WWFF · SOTA · DX <small id="pAge"></small></h2>
 <details class="lg-spf" id="pFilt"><summary>⚙ FILTERS <i id="pfN"></i><span class="tip">Tap a spot to fill in the log</span></summary>
 <div class="lg-row lg-progs"><label class="lg-chk"><input type="checkbox" id="pPota" checked> 🌲 POTA</label><label class="lg-chk"><input type="checkbox" id="pWwff" checked> 🌳 WWFF / KFF</label><label class="lg-chk"><input type="checkbox" id="pSota" checked> ⛰ SOTA</label><label class="lg-chk"><input type="checkbox" id="pDx"> 🌐 DX CLUSTER</label></div>
@@ -210,4 +204,4 @@
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="kpc-fx.js?v=20261017a"></script>
-<script src="kpc-cat.js?v=20261018h"></script><script src="kpc-logger.js?v=20261018j"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261018j"></script>
+<script src="kpc-cat.js?v=20261018k"></script><script src="kpc-logger.js?v=20261018m"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261018n"></script>

@@ -234,7 +234,7 @@ main#hl .ct-card a{color:#ffcf7a}
  <label class="ct-sw"><input type="checkbox" id="ctFollow"> When I turn my radio's dial, update the log's frequency and mode too</label>
  <details class="ct-adv" id="ctAdv"><summary>SETTINGS FOR MY RADIO (filled in when you pick one)</summary>
   <div class="ct-row">
-   <label>TALKS LIKE<select id="ctProto"><option value="icom">Icom CI-V (Icom, Xiegu)</option><option value="kenwood">Kenwood / Elecraft / QRP Labs</option><option value="yaesu">Yaesu (newer: FT-991A, 891, 710, FTDX)</option><option value="yaesuold">Yaesu (older: FT-817 / 857 / 897)</option></select></label>
+   <label>TALKS LIKE<select id="ctProto"><option value="icom">Icom CI-V (Icom, Xiegu)</option><option value="kenwood">Kenwood / Elecraft / QRP Labs</option><option value="yaesu">Yaesu (newer: FT-991A, 891, 710, FTDX)</option><option value="yaesu8">Yaesu (FT-450D, FT-950, FT-2000, FTDX1200 / 3000 / 5000)</option><option value="yaesuold">Yaesu (older: FT-817 / 857 / 897)</option></select></label>
    <label>SPEED (BAUD)<select id="ctBaud"><option>4800</option><option>9600</option><option>19200</option><option>38400</option><option>57600</option><option>115200</option></select></label>
    <label>CI-V ADDRESS (ICOM)<input type="text" id="ctCiv" maxlength="2" placeholder="94"></label>
    <label>DIGITAL SPOTS (FT8…)<select id="ctData"><option value="usb">Plain USB</option><option value="data">Radio's DATA mode</option></select></label>
@@ -274,9 +274,7 @@ main#hl .ct-card a{color:#ffcf7a}
 <script id="cat-page">
 (function(){
  const $=id=>document.getElementById(id);
- const PRE={ic705:['icom',115200,'A4'],ic7300:['icom',115200,'94'],ic7610:['icom',115200,'98'],ic9700:['icom',115200,'A2'],ic7100:['icom',19200,'88'],ic718:['icom',9600,'5E'],
-  g90:['icom',19200,'70','xiegu'],x6100:['icom',19200,'70','xiegu'],ft991:['yaesu',38400],ft891:['yaesu',38400],ft710:['yaesu',38400],ftdx10:['yaesu',38400],ftx1:['yaesu',38400],ft817:['yaesuold',9600],ft857:['yaesuold',9600],
-  kx2:['kenwood',38400,'','elecraft'],kx3:['kenwood',38400,'','elecraft'],k3:['kenwood',38400,'','elecraft'],ts590:['kenwood',115200],ts480:['kenwood',57600],qmx:['kenwood',115200],trusdx:['kenwood',115200],tx500:['kenwood',9600],other:null};
+ KPCCat.fillSelect($('ctRadio'));const PRE={};Object.values(KPCCat.RADIO).forEach(r=>{PRE[r.id]=[r.proto,r.baud,r.civ,r.model]});PRE.other=null;
  const st=(t,c)=>{const e=$('ctSt');e.innerHTML=t;e.className='ct-st'+(c===true?' ok':c===false?' bad':'')};
  function show(){const S=KPCCat.get();$('ctOn').checked=S.on;$('ctFollow').checked=S.follow;$('ctRadio').value=S.radio||'';$('ctProto').value=S.proto;$('ctBaud').value=String(S.baud);$('ctCiv').value=S.civ||'';$('ctData').value=S.data;
   $('ctDrop').hidden=!KPCCat.connected();}

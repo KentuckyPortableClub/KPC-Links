@@ -870,9 +870,6 @@
   /* ---------------- radio control (CAT), like the Hunters Lounge (Brandon Oct 17: 'build cat control… for ssb, cw etc
      also change bands modes frequency'). Uses kpc-cat.js (Web Serial: Chrome / Edge on a computer). Settings shared with the
      Lounge (localStorage kpcCat); the two ticks live in SET.catT / SET.catF. ---------------- */
-  const CPRE = { ic705: ['icom', 115200, 'A4'], ic7300: ['icom', 115200, '94'], ic7610: ['icom', 115200, '98'], ic9700: ['icom', 115200, 'A2'], ic7100: ['icom', 19200, '88'], ic718: ['icom', 9600, '5E'],
-    g90: ['icom', 19200, '70', 'xiegu'], x6100: ['icom', 19200, '70', 'xiegu'], ft991: ['yaesu', 38400], ft891: ['yaesu', 38400], ft710: ['yaesu', 38400], ftdx10: ['yaesu', 38400], ftx1: ['yaesu', 38400], ft817: ['yaesuold', 9600], ft857: ['yaesuold', 9600],
-    kx2: ['kenwood', 38400, '', 'elecraft'], kx3: ['kenwood', 38400, '', 'elecraft'], k3: ['kenwood', 38400, '', 'elecraft'], ts590: ['kenwood', 115200], ts480: ['kenwood', 57600], qmx: ['kenwood', 115200], trusdx: ['kenwood', 115200], tx500: ['kenwood', 9600] };
   let catBusy = false, catT = null;
   const catOk = () => !!(window.KPCCat && KPCCat.get().on && KPCCat.connected());
   function catDraw() {
@@ -901,12 +898,12 @@
   }
   function catInit() {
     if (!window.KPCCat) { $('myCat').hidden = true; return; }
-    const C = KPCCat.get(); $('catRadio').value = C.radio || '';
+    KPCCat.fillSelect($('catRadio')); const C = KPCCat.get(); $('catRadio').value = C.radio || '';
     $('catTune').checked = SET.catT !== false; $('catFollow').checked = SET.catF !== false;
     $('catTune').onchange = () => { SET.catT = $('catTune').checked; saveSet(); };
     $('catFollow').onchange = () => { SET.catF = $('catFollow').checked; saveSet(); KPCCat.set({ follow: SET.catF }); };
-    $('catRadio').onchange = () => { const p = CPRE[$('catRadio').value]; if (!p) return; KPCCat.set({ radio: $('catRadio').value, proto: p[0], baud: p[1], civ: p[2] || '94', model: p[3] || '' });
-      $('catMsg').textContent = 'Settings filled in for your radio. Now press CONNECT MY RADIO.' + (p[0] === 'yaesu' ? ' Set the radio\'s CAT RATE menu to ' + p[1] + '.' : p[0] === 'icom' ? ' The radio\'s CI-V address should be ' + p[2] + '.' : ''); };
+    $('catRadio').onchange = () => { const r = KPCCat.pickRadio($('catRadio').value); if (!r) { $('catMsg').textContent = 'Set the speed and radio type on the VIP Lounge CAT & QRZ tab.'; return; }
+      $('catMsg').textContent = 'Settings filled in for your ' + r.label + '. Now press CONNECT MY RADIO.' + (/yaesu/.test(r.proto) ? ' Set the radio\'s CAT RATE menu to ' + r.baud + '.' : r.proto === 'icom' ? ' The radio\'s CI-V address should be ' + r.civ + ' (CI-V USB echo off).' : ''); };
     if (!KPCCat.supported()) { $('catGo').disabled = true; $('catMsg').textContent = 'This browser can\'t talk to a radio. Use Chrome or Edge on a computer, or Chrome on an Android phone (newer versions, with a USB-C cable). iPhones can\'t do this yet.'; }
     $('catGo').onclick = async () => {
       if (catOk()) { await KPCCat.disconnect(); KPCCat.set({ on: false }); catDraw(); return; }
@@ -962,6 +959,7 @@
     dupe: (call, band, mode) => dupeOf(call, band, mode, '').length > 0,
     worked: call => { const b = base(call); return L.q.some(q => base(q.call) === b); },
     qs: () => L.q,
+    freq: () => kHzOf($('eFreq').value),
     spots: () => SP, station: () => stationOpen(true),
     tab: t => { if (tabMode()) tab(t); else rtab(t); }
   };
