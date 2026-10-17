@@ -941,3 +941,12 @@ main#hl[data-desk="1"] .hl-split>.hl-spsec.hl-popped>.hl-in{flex:1 1 auto;min-he
 @keyframes hlAwFlash{0%,100%{opacity:1;filter:brightness(1);box-shadow:0 0 6px rgba(255,190,90,.5)}50%{opacity:.55;filter:brightness(1.5);box-shadow:0 0 18px rgba(255,210,120,.95)}}
 .ac.flash{animation:hlAwFlash 1.1s ease-in-out infinite!important}
 @media (prefers-reduced-motion:reduce){.ac.flash{animation:none!important}}
+
+/* 🔔 alert filters pop-up (Brandon Oct 17) */
+.hl-bellf.on{background:linear-gradient(90deg,#f6d58a,#d5a63a)!important;color:#2a1a05!important;border-color:#f6d58a!important}
+#afModal .af-h{font:900 11px Arial;letter-spacing:1.4px;color:#f0c96b;margin:14px 0 6px}
+#afModal .af-row{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+#afModal .af-row .hl-chip[aria-pressed="true"]{background:linear-gradient(90deg,#f6d58a,#d5a63a);color:#2a1a05;border-color:#f6d58a}
+#afModal .af-ck{display:flex;gap:8px;align-items:flex-start;margin:10px 0;font:700 13px Arial;color:#f3e6c8;cursor:pointer}
+#afModal .af-ck input{margin-top:2px;accent-color:#d5a63a;width:17px;height:17px}
+#afModal .af-now{margin-top:12px;color:#e8d8b4}

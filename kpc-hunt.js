@@ -195,6 +195,37 @@
     try { navigator.vibrate && navigator.vibrate([180, 90, 180]); } catch (e) {}
   }
   const tItem = s => `<span class="it" data-k="${esc(keyOf(s))}">✨ <b>${esc(s.ref)}</b> ${esc(s.name || '')} <small>${esc(s.st || s.loc || '')}</small> · ${esc(s.call)} <i>${(s.khz / 1000).toFixed(3)}</i> <small>${esc(s.mode || '')}</small></span>`;
+  /* 🔔 ALERT FILTERS (Brandon Oct 17: 'add filters to the sound alert'): which new-to-you parks make the sound.
+     same = start from the spots that pass my list filters (default); off = any new-to-you park on the air (not QRT).
+     p / bands / modes empty = any; na = North America only; fav = also chime when a favorite comes on. */
+  let AF = Object.assign({ same: true, p: [], bands: [], modes: [], na: false, fav: true }, get('kpcHuntAF', {}));
+  const ASEEN = new Set();
+  const afPass = s => (!AF.p.length || AF.p.includes(s.p)) && (!AF.bands.length || AF.bands.includes(bandOf(s.khz))) && (!AF.modes.length || AF.modes.includes(modeOf(s.mode))) && (!AF.na || isNA(s));
+  const afOn = () => !AF.same || AF.p.length || AF.bands.length || AF.modes.length || AF.na || !AF.fav;
+  function afList() { const L = SP.filter(s => isNew(s) && !isQrt(s) && (!AF.same || passPBM(s)) && afPass(s)); const f = L.filter(s => !ASEEN.has(keyOf(s))); L.forEach(s => ASEEN.add(keyOf(s))); return f; }
+  function afDraw() {
+    const b = $('hlBellF'); if (b) { b.classList.toggle('on', !!afOn()); b.querySelector('.n').textContent = afOn() ? ' ✓' : ''; }
+    const box = $('afBody'); if (!box) return;
+    const chip = (k, v, label) => `<button type="button" class="hl-chip" data-af="${k}" data-v="${esc(v)}" aria-pressed="${AF[k].includes(v)}">${esc(label)}</button>`;
+    box.innerHTML = `<p class="hl-p">Pick what should make the <b>🔔 sound</b>. Nothing picked in a row = anything in that row.</p>
+      <label class="af-ck"><input type="checkbox" data-afck="same"${AF.same ? ' checked' : ''}> Only parks that pass my spot list filters (program, band, mode…)</label>
+      <h3 class="af-h">PROGRAMS</h3><div class="af-row">${[['POTA', 'POTA'], ['WWFF', 'WWFF'], ['SOTA', 'SOTA'], ['DXPED', 'DXPEDITIONS'], ['EVENT', 'SPECIAL EVENTS'], ['DX', 'DX CLUSTER']].map(([v, l]) => chip('p', v, l)).join('')}</div>
+      <h3 class="af-h">BANDS</h3><div class="af-row">${BANDS.map(b => chip('bands', b[0], b[0].toUpperCase())).join('')}</div>
+      <h3 class="af-h">MODES</h3><div class="af-row">${[['PHONE', 'PHONE'], ['CW', 'CW'], ['DIGITAL', 'DIGITAL'], ['OTHER', 'OTHER']].map(([v, l]) => chip('modes', v, l)).join('')}</div>
+      <label class="af-ck"><input type="checkbox" data-afck="na"${AF.na ? ' checked' : ''}> North America only</label>
+      <label class="af-ck"><input type="checkbox" data-afck="fav"${AF.fav ? ' checked' : ''}> Also chime when one of my ⭐ favorite activators comes on</label>
+      <div class="af-row"><button type="button" class="hl-chip" data-afreset>↺ BACK TO NORMAL</button><button type="button" class="hl-chip" data-aftest>🔊 TEST THE SOUND</button><button type="button" class="hl-chip on" data-mclose>✓ DONE</button></div>
+      <p class="hl-p af-now">${afNow()}</p>`;
+  }
+  function afNow() { const n = SP.filter(s => isNew(s) && !isQrt(s) && (!AF.same || passPBM(s)) && afPass(s)).length; return `Right now <b>${n}</b> new-to-you spot${n === 1 ? '' : 's'} on the air would make the sound.${BELL ? '' : ' (The 🔔 ALERT button is OFF, so nothing plays until you turn it on.)'}`; }
+  document.addEventListener('click', e => {
+    const c = e.target.closest('[data-af]'); if (c) { const k = c.dataset.af, v = c.dataset.v, L = AF[k]; const i = L.indexOf(v); if (i < 0) L.push(v); else L.splice(i, 1); put('kpcHuntAF', AF); afDraw(); return; }
+    if (e.target.closest('[data-afreset]')) { AF = { same: true, p: [], bands: [], modes: [], na: false, fav: true }; put('kpcHuntAF', AF); afDraw(); return; }
+    if (e.target.closest('[data-aftest]')) { chime(); return; }
+    if (e.target.closest('#hlBellF')) { afDraw(); openModal('afModal'); }
+  });
+  document.addEventListener('change', e => { const c = e.target.closest('[data-afck]'); if (!c) return; AF[c.dataset.afck] = c.checked; put('kpcHuntAF', AF); afDraw(); });
+  setTimeout(afDraw, 0);
   function ticker(alert) {
     const T = $('hlTickT'), FT = $('hlFarT');
     if (!hasLog()) { T.innerHTML = PUB ? '<span class="hl-wait">Tap 📄 LOAD MY WORKED PARKS (top of the page) and new-to-you parks will roll across here.</span>' : '<span class="hl-wait">Tap ⭐ GET MY PARKS FROM POTA (top of the page) and new-to-you parks will roll across here.</span>'; T.style.setProperty('--dur', '22s'); $('hlFar').hidden = true; naDraw(); return; }
@@ -210,9 +241,12 @@
       const t = $('hlTick'); t.classList.remove('flash'); void t.offsetWidth; t.classList.add('flash');
       const fxL = FLALL ? fresh : fresh.filter(isNA);   /* flames: North America only unless 🌍 ALL is picked (Brandon Oct 17) */
       if (fxL.length) fire(`🔥 NEW PARK: ${fxL[0].ref} ${fxL[0].name || ''} · ${fxL[0].call} ${(fxL[0].khz / 1000).toFixed(3)}${fxL.length > 1 ? ` (+${fxL.length - 1} more)` : ''}`);
+    }
+    const al = afList();   /* runs every time so spots already on the air when the page opens never chime */
+    if (alert && al.length) {
       if (BELL) chime();
-      if (NOTE && 'Notification' in window && Notification.permission === 'granted') {
-        try { const s = fresh[0]; new Notification('New park for you: ' + s.ref, { body: `${s.name || ''} ${s.st || ''}\n${s.call} on ${(s.khz / 1000).toFixed(3)} ${s.mode}${fresh.length > 1 ? `\n+${fresh.length - 1} more` : ''}`, icon: 'kpc-icon-180.png', tag: 'kpc-hunt' }); } catch (e) {}
+      if (NOTE && al.length && 'Notification' in window && Notification.permission === 'granted') {
+        try { const s = al[0]; new Notification('New park for you: ' + s.ref, { body: `${s.name || ''} ${s.st || ''}\n${s.call} on ${(s.khz / 1000).toFixed(3)} ${s.mode}${al.length > 1 ? `\n+${al.length - 1} more` : ''}`, icon: 'kpc-icon-180.png', tag: 'kpc-hunt' }); } catch (e) {}
       }
     }
     $('hsNew').textContent = hasLog() ? SP.filter(isNew).length : '–';
@@ -406,7 +440,7 @@
   function favAlert() {
     const L = SP.filter(s => isFav(s) && !favHunted(s)), fresh = L.filter(s => !SEENFAV.has(base(s.call)));
     L.forEach(s => SEENFAV.add(base(s.call)));
-    if (!favFirst && fresh.length) { const s = fresh[0]; fire(`⭐ FAVORITE ON THE AIR: ${s.call}${s.ref ? ' · ' + s.ref : ''} · ${(s.khz / 1000).toFixed(3)} ${s.mode}`); if (BELL) chime(); }
+    if (!favFirst && fresh.length) { const s = fresh[0]; fire(`⭐ FAVORITE ON THE AIR: ${s.call}${s.ref ? ' · ' + s.ref : ''} · ${(s.khz / 1000).toFixed(3)} ${s.mode}`); if (BELL && AF.fav) chime(); }
     favFirst = false;
   }
   /* this CALL is in my log today (UTC) — different from 'park hunted before' (Brandon Oct 17) */
