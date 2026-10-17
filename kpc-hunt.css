@@ -453,3 +453,24 @@ main#hl[data-theme=dark] .hl-hero .hl-in{padding:22px 22px 30px}
 main#hl[data-theme=dark] .hl-hero .hl-eyebrow,main#hl[data-theme=dark] .hl-hero h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media(max-width:700px){main#hl[data-theme=lodge] .hl-hero .hl-in,main#hl[data-theme=dark] .hl-hero .hl-in{padding:16px 16px 22px}main#hl .hl-hero .hl-copy{font-size:14.5px}}
 @media(max-width:600px){main#hl .hl-stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}main#hl .hl-stats div{padding:8px 6px}main#hl .hl-stats b{font-size:17px}main#hl .hl-stats .clk b{font-size:14px;letter-spacing:0}main#hl .hl-stats span{font-size:8.5px;letter-spacing:.4px;line-height:1.25;display:block}}
+/* Oct 16 late (Brandon: Night Sky is perfect — the info sits ON the picture): Cabin Lodge and Dark now do the same.
+   The picture fills the hero, the words/numbers sit on a dark fade at the bottom so the KPC sign stays clear. */
+main#hl[data-theme=lodge] .hl-hero,main#hl[data-theme=dark] .hl-hero{display:flex;flex-direction:column;justify-content:flex-end;min-height:max(560px,min(40vw,760px));
+ background:linear-gradient(180deg,rgba(8,5,2,0) 30%,rgba(8,5,2,.55) 58%,rgba(8,5,2,.94) 100%),linear-gradient(90deg,rgba(8,5,2,.55),rgba(8,5,2,0) 60%),#120a05 url('hero-lodge.jpg') center top/cover no-repeat}
+main#hl[data-theme=dark] .hl-hero{background:linear-gradient(180deg,rgba(0,0,0,.1) 25%,rgba(0,0,0,.65) 55%,rgba(0,0,0,.96) 100%),linear-gradient(90deg,rgba(0,0,0,.6),rgba(0,0,0,0) 60%),#000 url('hero-lodge.jpg') center top/cover no-repeat}
+main#hl[data-theme=lodge] .hl-hero::before,main#hl[data-theme=dark] .hl-hero::before{content:none;display:none}
+main#hl[data-theme=lodge] .hl-hero .hl-in,main#hl[data-theme=dark] .hl-hero .hl-in{width:min(1180px,100%);margin:0 auto;padding:0 22px 26px}
+main#hl[data-theme=lodge] .hl-copy,main#hl[data-theme=dark] .hl-copy{text-shadow:0 2px 10px #000,0 0 2px #000}
+@media(max-width:700px){
+ main#hl[data-theme=lodge] .hl-hero,main#hl[data-theme=dark] .hl-hero{min-height:620px;background-image:linear-gradient(180deg,rgba(8,5,2,0) 22%,rgba(8,5,2,.6) 40%,rgba(8,5,2,.95) 62%),url('hero-lodge-mobile.jpg');background-size:auto,100% auto;background-position:center top,center top;background-repeat:no-repeat;background-color:#120a05}
+ main#hl[data-theme=lodge] .hl-hero .hl-in,main#hl[data-theme=dark] .hl-hero .hl-in{padding:0 16px 20px}
+}
+#hlFlame[data-fx=stars]{background:linear-gradient(180deg,#1b3a7a,#0a1430);color:#fff}
+.hl-firemsg.star{text-shadow:0 0 18px #7fb2ff,0 0 40px #3a6dff,0 3px 6px #000}
+/* phones: the words start over the bottom half of the picture (under the sign), like Night Sky */
+@media(max-width:700px){
+ main#hl[data-theme=lodge] .hl-hero,main#hl[data-theme=dark] .hl-hero{min-height:0;justify-content:flex-start;
+  background-image:linear-gradient(180deg,rgba(8,5,2,0) 0,rgba(8,5,2,0) 26vw,rgba(8,5,2,.7) 42vw,rgba(8,5,2,.95) 58vw),url('hero-lodge-mobile.jpg');background-size:100% 100%,100% auto}
+ main#hl[data-theme=dark] .hl-hero{background-image:linear-gradient(180deg,rgba(0,0,0,.1) 0,rgba(0,0,0,.1) 26vw,rgba(0,0,0,.75) 42vw,rgba(0,0,0,.97) 58vw),url('hero-lodge-mobile.jpg')}
+ main#hl[data-theme=lodge] .hl-hero .hl-in,main#hl[data-theme=dark] .hl-hero .hl-in{padding-top:34vw}
+}
