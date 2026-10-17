@@ -686,3 +686,9 @@ main#lg .f8 .f8-tm input{width:100%}
 main#lg .f8 .f8-sg select{width:100%}
 main#lg .f8 label{margin:0}
 @media(max-width:760px){main#lg .f8 select,main#lg .f8 input:not([type=checkbox]):not([type=range]){font-size:16px}main#lg .f8 #f8Dx{width:112px}}
+/* CAT in the logger + APSPOT text spot (Oct 17) */
+.lg-cat{margin-top:14px;padding:12px;border-radius:12px;background:rgba(0,0,0,.32);border:1px solid rgba(240,201,107,.35)}
+.lg-cat h3{margin:0 0 8px;font:900 12px Arial;letter-spacing:1.2px;color:#f6d58a}.lg-cat h3 small{margin-left:8px;color:#c9b48a;font-weight:700;letter-spacing:.3px}.lg-cat h3 small.ok{color:#45e08f}
+.lg-dchips .dc.on{background:#1f7a46;color:#eafff2}
+.lg-ap{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}.lg-ap code{flex:1 1 220px;padding:8px 10px;border-radius:8px;background:#05070a;color:#7dffb1;font:700 13px monospace;word-break:break-all}
+.f8-mic{margin:0 0 8px;padding:8px 10px;border-radius:8px;background:rgba(240,201,107,.1);color:#e2d2ae;font-size:12.5px}main#lg .f8-mic[hidden]{display:none}

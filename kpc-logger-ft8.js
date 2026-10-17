@@ -18,7 +18,7 @@
     FT8: { '160m': 1840, '80m': 3573, '60m': 5357, '40m': 7074, '30m': 10136, '20m': 14074, '17m': 18100, '15m': 21074, '12m': 24915, '10m': 28074, '6m': 50313, '2m': 144174 },
     FT4: { '80m': 3575, '40m': 7047.5, '30m': 10140, '20m': 14080, '17m': 18104, '15m': 21140, '12m': 24919, '10m': 28180, '6m': 50318 }
   };
-  const S = Object.assign({ mode: 'FT8', band: '20m', inDev: '', outDev: '', ptt: 'vox', txHz: 1500, rxHz: 1500, hold: true, auto: true, first: true, even: true, keepCq: false, cqw: 'POTA', lvl: 0.3, deep: false }, get('kpcFt8', {}));
+  const S = Object.assign({ mode: 'FT8', band: '20m', inDev: '', outDev: '', ptt: 'vox', txHz: 1500, rxHz: 1500, hold: true, auto: true, first: true, even: true, keepCq: false, cqw: 'POTA', lvl: 0.3, deep: false, wd: 2 }, get('kpcFt8', {}));
   const saveS = () => put('kpcFt8', S);
   const slotLen = () => S.mode === 'FT4' ? 7.5 : 15;
   const dialK = () => (DIAL[S.mode] || DIAL.FT8)[S.band] || DIAL.FT8['20m'];
@@ -74,7 +74,10 @@
       <label>TX LEVEL<input type="range" id="f8Pwr" min="0.02" max="1" step="0.01"><small>turn it down until the radio's ALC barely moves</small></label>
       <label>PTT (KEYING THE RADIO)<select id="f8Ptt"><option value="vox">VOX (radio or interface keys on the audio)</option><option value="cat">CAT command (radio connected by USB)</option><option value="rts">RTS line (Digirig and many cables)</option><option value="dtr">DTR line</option></select></label>
       <label>CQ<select id="f8Cqw"><option value="">CQ</option><option value="POTA">CQ POTA</option><option value="SOTA">CQ SOTA</option><option value="WWFF">CQ WWFF</option></select></label>
+      <label>STOP CALLING AFTER (NO ANSWER)<select id="f8Wd"><option value="1">1 minute</option><option value="2">2 minutes</option><option value="3">3 minutes</option><option value="5">5 minutes</option><option value="10">10 minutes</option></select></label>
       <label class="ck"><input type="checkbox" id="f8Deep"> Deeper decoding (finds weaker stations, uses more battery)</label>
+      <div class="f8-catrow"><button type="button" class="f8-b" id="f8Mic">🎤 NO CABLE? USE THIS PHONE'S MIC + SPEAKER</button></div>
+      <p class="f8-mic" id="f8MicT" hidden>Using the built-in mic and speaker: put the phone right next to the radio's speaker (radio volume about half), and the radio's mic close to the phone's speaker. Turn the radio's <b>VOX</b> on so it keys when the phone plays, and keep the room quiet. It works, but a cable (Digirig, the radio's USB) decodes far more stations.</p>
       <div class="f8-catrow"><button type="button" class="f8-b" id="f8Cat">📻 CONNECT MY RADIO (CAT)</button><span id="f8CatT"></span></div>
     </div>
     <p class="f8-help">How it works: it listens to the radio's audio and shows everyone it decodes each 15 seconds (FT4: 7.5 s). Tap a station to call them: the six messages fill in and TX turns on. With <b>Auto seq</b> on it answers by itself (grid → report → R-report → RR73 → 73) and the contact goes into your log as soon as it's complete. <b>📣 CQ</b> calls CQ (CQ POTA when you have a park number). Set the radio to USB (or DATA/USB-D), the dial on the FT8 frequency, and keep the TX audio low. Your computer's or phone's clock must be right within about a second (turn on "set time automatically"). Engine: ft8_lib by Karlis Goba (MIT license). Practice calls on this page: K4TEST.</p>
@@ -305,7 +308,7 @@
       const c = L.slice().sort((a, b) => S.first ? 0 : b.db - a.db)[0];
       if (c && c.fr && !/\.\.\./.test(c.fr)) { QS.dx = c.fr; QS.grid = c.grid || ''; QS.rs = fmtDb(c.db); QS.rr = ''; QS.logged = false; QS.tries = 0; QS.since = nowS(); QS.ref = ''; S.even = c.par === 1; $('f8Dx').value = QS.dx; $('f8DxG').value = QS.grid; $('f8Rpt').value = QS.rs; mine = c; }
     }
-    if (!mine) { /* watchdog: 6 minutes of calling with no answer */ if (TXON && QS.since && nowS() - QS.since > 360) { halt('⏱ No answer for 6 minutes: TX turned off (the watchdog, like WSJT-X).'); QS.since = 0; } return; }
+    if (!mine) { /* watchdog: 6 minutes of calling with no answer */ const wd = (+S.wd || 2) * 60; if (TXON && QS.since && nowS() - QS.since > wd) { halt(`⏱ No answer for ${S.wd || 2} minute${(+S.wd || 2) > 1 ? 's' : ''}: TX turned off. Change this in ⚙ SETTINGS.`); QS.since = 0; } return; }
     const tk = mine.text.split(/\s+/), last = tk[tk.length - 1].toUpperCase();
     QS.since = nowS(); if (!QS.rs) QS.rs = fmtDb(mine.db);
     S.even = mine.par === 1;
@@ -381,6 +384,10 @@
   Object.keys(CK).forEach(id => { $(id).checked = !!S[CK[id]]; $(id).onchange = () => { S[CK[id]] = $(id).checked; saveS(); }; });
   $('f8Pwr').value = S.lvl; $('f8Pwr').oninput = () => { S.lvl = +$('f8Pwr').value; saveS(); };
   $('f8Ptt').value = S.ptt; $('f8Ptt').onchange = () => { S.ptt = $('f8Ptt').value; saveS(); if (S.ptt !== 'vox' && window.KPCCat && !KPCCat.connected()) $('f8CatT').textContent = 'Connect the radio for this PTT choice.'; };
+  $('f8Wd').value = String(S.wd || 2); $('f8Wd').onchange = () => { S.wd = +$('f8Wd').value; saveS(); };
+  /* no interface: the phone's own mic + speaker held next to the radio (Brandon Oct 17) */
+  $('f8Mic').onclick = async () => { S.inDev = ''; S.outDev = ''; S.ptt = 'vox'; S.lvl = Math.max(S.lvl, 0.8); saveS(); $('f8Ptt').value = 'vox'; $('f8Pwr').value = S.lvl; $('f8MicT').hidden = false;
+    if (RUN) { stopAudio(); } await startAudio(); devices(); note('🎤 Using this phone\'s mic and speaker. Radio VOX on, phone next to the radio.', 4000); };
   $('f8Cqw').value = S.cqw; $('f8Cqw').onchange = () => { S.cqw = $('f8Cqw').value; saveS(); gen(); };
   $('f8Cat').onclick = async () => { if (!window.KPCCat || !KPCCat.supported()) { $('f8CatT').textContent = 'Radio control needs Chrome or Edge on a computer. Use VOX on phones.'; return; }
     KPCCat.set({ on: true }); const ok = await KPCCat.connect(true); $('f8CatT').textContent = ok ? '✓ Radio connected. Pick the radio type on the Lounge CAT & QRZ tab if it doesn\'t follow.' : 'Not connected.'; if (ok) radioTune(); };
