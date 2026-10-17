@@ -1,0 +1,15 @@
+name: zz psk test
+on: push
+jobs:
+  t:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for C in W1AW K1ABC N4BDW; do
+          curl -s -m 30 -D h.txt -H 'Origin: https://kentuckyportableclub.github.io' "https://retrieve.pskreporter.info/query?senderCallsign=$C&flowStartSeconds=-1800&rronly=1&appcontact=kpc&callback=cb" -o b.txt
+          echo "::notice title=$C headers::$(tr '\r\n' '  ' < h.txt | cut -c1-600)"
+          echo "::notice title=$C body::$(head -c 700 b.txt | tr '\r\n' '  ')"
+          done
+          curl -s -m 30 -D h.txt -H 'Origin: https://kentuckyportableclub.github.io' "https://retrieve.pskreporter.info/query?senderCallsign=W1AW&flowStartSeconds=-1800&rronly=1&appcontact=kpc&format=json" -o b.txt
+          echo "::notice title=json headers::$(tr '\r\n' '  ' < h.txt | cut -c1-600)"
+          echo "::notice title=json body::$(head -c 500 b.txt | tr '\r\n' '  ')"
