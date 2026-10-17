@@ -300,7 +300,7 @@ function apply(){secs.forEach(s=>s._set&&s._set(!mq.matches))}apply();mq.addEven
 function openTo(id){const t=id&&document.getElementById(id),s=t&&t.closest('[data-fold]');if(s&&s._set&&s.classList.contains('kpc-folded')){s._set(true);requestAnimationFrame(()=>t.scrollIntoView())}}
 window.addEventListener('hashchange',()=>openTo(location.hash.slice(1)));openTo(location.hash.slice(1));
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a)openTo(a.getAttribute('href').slice(1))})})();</script>
-<script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261017d" defer></script><script src="kpc-season.js?v=20261017a" defer></script><script>
+<script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261017d" defer></script><script src="kpc-warn.js?v=20261017a" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
@@ -311,5 +311,5 @@ document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');i
 <script src="kpc-lc-map.js?v=20261013a" defer></script>
 <script>/* Map files on phones: open the share menu (Save to Files / Google Earth / Gaia...) instead of a silent download. */
 (function(){if(!matchMedia('(pointer:coarse)').matches||!navigator.canShare)return;document.querySelectorAll('.files-card a[download]').forEach(function(a){a.addEventListener('click',function(e){var u=a.getAttribute('href'),n=u.split('/').pop(),t=/\.kml$/i.test(n)?'application/vnd.google-earth.kml+xml':'application/gpx+xml';e.preventDefault();fetch(u).then(function(r){return r.blob()}).then(function(b){var f=new File([b],n,{type:t});if(navigator.canShare({files:[f]}))return navigator.share({files:[f],title:n});throw 0}).catch(function(err){if(err&&err.name==='AbortError')return;var l=document.createElement('a');l.href=u;l.download=n;document.body.appendChild(l);l.click();l.remove()})})})})();</script>
-<script src="kpc-cx.js?v=20261017b" defer></script>
+<script src="kpc-cx.js?v=20261017c" defer></script>
 </body></html>

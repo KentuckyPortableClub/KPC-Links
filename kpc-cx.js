@@ -71,6 +71,7 @@
       const max = Math.max(0, ...rows.map(r => Number(r.c)));
       if (ws) it.push(`📡 WSPR near ${esc(L.g)} (last 30 min): ` + BN.map(([b, n]) => { const v = m[b]; return v ? `<span class="wb${v[0] >= max * .6 ? ' hot' : ''}">${n} <b>${v[0].toLocaleString()}</b>${v[1] ? ` <small>to ${Math.round(v[1] * .621).toLocaleString()} mi</small>` : ''}</span>` : `<span class="wb q">${n} quiet</span>`; }).join(' '));
       else it.push('📡 WSPR reports are not answering right now');
+      it.push('⛈ <i class="meh">Forecasts can be wrong: watch the sky, and take the antenna down if you hear thunder</i>');
       const html = it.map(x => `<span class="ci">${x}</span>`).join('<span class="cs">•</span>');
       $('kcxT').innerHTML = html + '<span class="cs">•</span>' + html;
       $('kcxT').style.animationDuration = Math.max(40, Math.round($('kcxT').scrollWidth / 2 / 45)) + 's';

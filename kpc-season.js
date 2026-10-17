@@ -34,6 +34,7 @@
   const bar = document.getElementById('kpc-season-bar');
   if (bar) { bar.className = 'kss-bar'; bar.setAttribute('data-keep-light', ''); bar.innerHTML = `<span class="ic">${now.icon}</span><span><b>${now.name.toUpperCase()} IN KENTUCKY</b> until about ${fd(now.end)}. Hunters are in the WMAs and forests: wear blaze orange, stay near roads and parking, and check the area's rules. <a href="https://fw.ky.gov" target="_blank" rel="noopener">fw.ky.gov ›</a></span>`; }
   let T = null;
+  if (!/^(finder|kpc-park-notes|kpc-campgrounds|kpc-kit)\.html$/.test(location.pathname.split('/').pop() || '')) return;   /* only these pages have park cards */
   fetch('kpc-ky-data.json').then(r => r.ok ? r.json() : null).then(d => { if (!d) return; T = {}; d.parks.forEach(p => { T[p.c] = p.t; }); scan(); }).catch(() => {});
   const isHunt = ref => T && HUNT.test(T[ref] || '');
   function put(el, where) { if (el.dataset.kss) return; el.dataset.kss = '1'; const s = document.createElement('div'); s.innerHTML = chip(); where.after ? where.after(s.firstChild) : el.appendChild(s.firstChild); }
