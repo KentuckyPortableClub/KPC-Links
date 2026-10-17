@@ -23,16 +23,24 @@
   const TL = {}; let TP = {}, trP = null, hi = null;
   let D = null, CG = {}, NOTES = {}, map = null, LAY = {}, outline = null, sel = null, ALL = [];
   let TRIP = get('kpcPcTrip', []);
+  /* Oct 17 (Brandon): guests get 'coming soon' instead of 2-fer / 3-fer information; members see it all */
+  const GUEST = !!(window.KPCGate && !window.KPCGate.member()), SOON = '2-fer and 3-fer information coming soon!';
+  const isPin = t => /^PIN/.test(t.c);
 
   function kindOf(x) { return /^US-/.test(x.c) ? 'pota' : /^KFF-/.test(x.c) ? 'kff' : 'sota'; }
   function init() {
     map = L.map('pcMap', { zoomControl: true, preferCanvas: true }).setView([37.75, -85.7], 7);
     if (window.KPCLayers) KPCLayers(map); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
     if (window.KPCLocate) KPCLocate(map); if (window.KPCFull) KPCFull(map);
+    /* drop a pin anywhere: street view, directions, copy GPS, add the spot to the trip */
+    if (window.KPCPin) KPCPin(map, { extra: (la, lo) => `<button type="button" data-pctrip="${la},${lo}" style="margin-top:6px;width:100%;padding:8px;border-radius:8px;border:1px solid #d5a63a;background:#fff6dd;font:900 12px Arial;cursor:pointer">+ ADD THIS SPOT TO MY TRIP</button>`,
+      onPop: el => el.querySelectorAll('[data-pctrip]').forEach(b => b.onclick = () => { const [la, lo] = b.dataset.pctrip.split(',').map(Number); const nm = prompt('Name this stop (optional):', 'Pin ' + la.toFixed(4) + ', ' + lo.toFixed(4));
+        if (nm === null) return; TRIP.push({ c: 'PIN-' + Date.now().toString(36), n: nm || 'Dropped pin', la, lo }); if (TRIP.length > 10) TRIP.shift(); put('kpcPcTrip', TRIP); trip(); b.textContent = '✓ ON MY TRIP'; }) });
+    $('pcDrop').onclick = () => { const c = map.getCenter(); map.fire('click', { latlng: c }); $('pcMap').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
     for (const k of ['pota', 'kff', 'sota', 'trails']) { LAY[k] = L.layerGroup(); if (SHOW[k]) LAY[k].addTo(map); }
     if (SHOW.trails) trails();
     for (const x of ALL) { const k = kindOf(x);
-      const m = L.circleMarker([x.la, x.lo], { radius: k === 'sota' ? 5 : 6.5, color: '#fff', weight: 1.4, fillColor: COL[k], fillOpacity: .92 });
+      const m = L.circleMarker([x.la, x.lo], { radius: k === 'sota' ? 5 : 6.5, bubblingMouseEvents: false, color: '#fff', weight: 1.4, fillColor: COL[k], fillOpacity: .92 });
       m.bindTooltip(`${x.c} · ${x.n}`); m.on('click', () => pick(x, false)); m.addTo(LAY[k]); x.m = m; }
     count(); chips();
   }
@@ -45,7 +53,7 @@
     return trP || (trP = Promise.all([fetch('ky-trail-parks.json').then(r => r.json()).catch(() => ({}))].concat(TR.map(t => fetch(t.f).then(r => r.json()).catch(() => null)))).then(([tp, ...G]) => {
       Object.values(tp || {}).forEach(v => { if (v && v.ref) TP[v.ref] = v; });
       G.forEach((g, i) => { const t = TR[i]; if (!g) return; const ls = kyLines(g); if (!ls.length) return; const x = byRef(t.ref), nm = (x ? x.n : t.ref) + (t.lab ? ' · ' + t.lab : '');
-        const lay = L.layerGroup([L.polyline(ls, { color: '#111', weight: 7, opacity: .55, interactive: false }), L.polyline(ls, { color: t.col, weight: 4, opacity: .95, dashArray: t.dash || null })]);
+        const lay = L.layerGroup([L.polyline(ls, { color: '#111', weight: 7, opacity: .55, interactive: false }), L.polyline(ls, { color: t.col, weight: 4, opacity: .95, dashArray: t.dash || null, bubblingMouseEvents: false })]);
         lay.eachLayer(p => { if (p.options.interactive !== false) { p.bindTooltip(`🥾 ${t.ref} · ${nm}`, { sticky: true }); p.on('click', () => { const y = byRef(t.ref); if (y) pick(y); }); } });
         lay.addTo(LAY.trails); (TL[t.ref] = TL[t.ref] || []).push({ ls, t });
         /* a trail park whose POTA pin is outside Kentucky (Lewis & Clark: Omaha) gets a pin on its Kentucky line */
@@ -80,12 +88,12 @@
     const park = k === 'pota' ? x : k === 'kff' && x.p ? byRef(x.p) : null;
     const tipsRef = x.c, tips = NOTES[tipsRef] || 0, cg = park && CG[park.c];
     const also = [];
-    if (k === 'pota') { (x.kff || []).forEach(r => { const y = byRef(r); also.push([r, y ? y.n : '', 'Also KFF']); }); (x.sota || []).forEach(r => { const y = byRef(r); also.push([r, y ? y.n : '', 'SOTA summit inside (only counts on top)']); }); (x.tf || []).forEach(r => { const y = byRef(typeof r === 'string' ? r : r.c || r[0]); const rr = typeof r === 'string' ? r : r.c || r[0]; also.push([rr, y ? y.n : '', 'Overlapping boundaries (2-fer)']); }); }
+    if (k === 'pota') { if (GUEST) x = Object.assign({}, x, { tf: [] }); (x.kff || []).forEach(r => { const y = byRef(r); also.push([r, y ? y.n : '', 'Also KFF']); }); (x.sota || []).forEach(r => { const y = byRef(r); also.push([r, y ? y.n : '', 'SOTA summit inside (only counts on top)']); }); (x.tf || []).forEach(r => { const y = byRef(typeof r === 'string' ? r : r.c || r[0]); const rr = typeof r === 'string' ? r : r.c || r[0]; also.push([rr, y ? y.n : '', 'Overlapping boundaries (2-fer)']); }); }
     if (k === 'kff' && park) also.push([park.c, park.n, 'Same place: POTA park']);
-    if (k === 'pota') Object.values(TP).forEach(v => { if ((v.parks || []).some(p => (p.refs || []).includes(x.c)) && !also.some(a => a[0] === v.ref)) also.push([v.ref, v.name, 'Trail passes through (possible 2-fer: stand on the trail inside the park)']); });
+    if (k === 'pota' && !GUEST) Object.values(TP).forEach(v => { if ((v.parks || []).some(p => (p.refs || []).includes(x.c)) && !also.some(a => a[0] === v.ref)) also.push([v.ref, v.name, 'Trail passes through (possible 2-fer: stand on the trail inside the park)']); });
     const tp = TP[x.c], tline = TL[x.c];
     const trailBox = tline ? `<div class="pc-k" style="margin-top:8px">🥾 TRAIL</div><p class="pc-note" style="margin-top:2px">Shown on the map in Kentucky (line from the ${esc(tline[0].t.by)}${tline.length > 1 ? '; dashed = ' + esc(tline[1].t.lab || '') : ''}). Set up on the trail itself, on public land.</p>` +
-      (tp && tp.parks && tp.parks.length ? `<div class="pc-k" style="margin-top:8px">THE TRAIL PASSES THROUGH (POSSIBLE 2-FER / 3-FER: VERIFY)</div><ul class="pc-list">${tp.parks.map(p => `<li>${(p.refs || []).map((r, i) => `<a href="?ref=${encodeURIComponent(r)}" data-ref="${esc(r)}">${esc(r)}</a> ${esc((p.names || [])[i] || '')}`).join(' + ')} <span class="pc-tag">${esc(p.type || '2-fer')}${p.how ? ' · ' + esc(p.how) : ''}</span></li>`).join('')}</ul><p class="pc-note">Stand on the trail inside the other park, and confirm both boundaries on the official maps.</p>` : '') : '';
+      (GUEST ? `<p class="pc-note">${SOON}</p>` : '') + (!GUEST && tp && tp.parks && tp.parks.length ? `<div class="pc-k" style="margin-top:8px">THE TRAIL PASSES THROUGH (POSSIBLE 2-FER / 3-FER: VERIFY)</div><ul class="pc-list">${tp.parks.map(p => `<li>${(p.refs || []).map((r, i) => `<a href="?ref=${encodeURIComponent(r)}" data-ref="${esc(r)}">${esc(r)}</a> ${esc((p.names || [])[i] || '')}`).join(' + ')} <span class="pc-tag">${esc(p.type || '2-fer')}${p.how ? ' · ' + esc(p.how) : ''}</span></li>`).join('')}</ul><p class="pc-note">Stand on the trail inside the other park, and confirm both boundaries on the official maps.</p>` : '') : '';
     const ap = (park && park.ap) || [];
     $('pcInfo').innerHTML = `<div class="pc-k">${lab}</div><h3>${esc(x.n)}</h3>
       <div class="pc-meta"><span class="pc-ref">${esc(x.c)}</span>${x.co ? ' · ' + esc(x.co) + ' County' : ''}${x.t ? ' · ' + esc(x.t) : ''}${x.ft ? ' · ' + Number(x.ft).toLocaleString() + ' ft' + (x.pts ? ' · ' + x.pts + ' pts' : '') : ''}</div>
@@ -105,10 +113,10 @@
     const el = $('pcTripL'); if (!TRIP.length) { el.innerHTML = '<p class="pc-empty">Tap <b>+ ADD TO MY TRIP</b> on a park to start a trip.</p>'; return; }
     const last = TRIP[TRIP.length - 1], way = TRIP.slice(0, -1).map(t => t.la + ',' + t.lo).join('|');
     const g = `https://www.google.com/maps/dir/?api=1&destination=${last.la},${last.lo}${way ? '&waypoints=' + encodeURIComponent(way) : ''}`;
-    el.innerHTML = `<ol>${TRIP.map((t, i) => `<li><a href="?ref=${encodeURIComponent(t.c)}" data-tr="${i}">${esc(t.c)}</a> ${esc(t.n)}<button type="button" data-rm="${i}" aria-label="Remove">✕</button></li>`).join('')}</ol>
+    el.innerHTML = `<ol>${TRIP.map((t, i) => `<li>${isPin(t) ? `<a href="#" data-tr="${i}">📌</a>` : `<a href="?ref=${encodeURIComponent(t.c)}" data-tr="${i}">${esc(t.c)}</a>`} ${esc(t.n)}<button type="button" data-rm="${i}" aria-label="Remove">✕</button></li>`).join('')}</ol>
       <div class="pc-acts"><a class="gold" href="${g}" target="_blank" rel="noopener">🗺 OPEN MY TRIP IN GOOGLE MAPS</a><button type="button" id="pcClr">CLEAR</button></div><p class="pc-note">Google Maps starts from where you are and stops at each park in this order. Up to 10 stops.</p>`;
     el.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { TRIP.splice(+b.dataset.rm, 1); put('kpcPcTrip', TRIP); trip(); if (sel) info(sel); });
-    el.querySelectorAll('[data-tr]').forEach(a => a.onclick = e => { e.preventDefault(); const y = byRef(TRIP[+a.dataset.tr].c); if (y) pick(y); });
+    el.querySelectorAll('[data-tr]').forEach(a => a.onclick = e => { e.preventDefault(); const t = TRIP[+a.dataset.tr], y = byRef(t.c); if (y) pick(y); else { map.setView([t.la, t.lo], 15); map.fire('click', { latlng: L.latLng(t.la, t.lo) }); } });
     $('pcClr').onclick = () => { TRIP = []; put('kpcPcTrip', TRIP); trip(); if (sel) info(sel); };
   }
   /* search: parks / references / summits by name or number, and Kentucky towns */

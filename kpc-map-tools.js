@@ -117,13 +117,14 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
       if (m) m.remove();
       const dir = ios ? `https://maps.apple.com/?daddr=${la},${lo}` : `https://www.google.com/maps/dir/?api=1&destination=${la},${lo}`;
       const html = `<div class="kpin-pop"><b>Dropped pin</b>${la}, ${lo}<a class="g" href="${dir}" target="_blank" rel="noopener">DIRECTIONS (MAP APP) ↗</a><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${la},${lo}" target="_blank" rel="noopener">STREET VIEW ↗</a>${ios ? `<a href="https://www.google.com/maps/dir/?api=1&destination=${la},${lo}" target="_blank" rel="noopener">GOOGLE MAPS ↗</a>` : ''}<button type="button" data-copy="${la}, ${lo}">COPY GPS</button><button type="button" data-rm="1">REMOVE PIN</button></div>`;
-      m = L.marker(e.latlng, { draggable: true }).addTo(map).bindPopup(html).openPopup();
+      m = L.marker(e.latlng, { draggable: true }).addTo(map).bindPopup(opts && opts.extra ? html.replace(/<\/div>$/, opts.extra(la, lo) + '</div>') : html).openPopup();
       m.on('dragend', () => { const p = m.getLatLng(); m.remove(); m = null; map.fire('click', { latlng: p }); });
     });
     map.on('popupopen', ev => {
       const el = ev.popup.getElement(); if (!el) return;
       el.querySelectorAll('[data-copy]').forEach(b => b.onclick = () => { const v = b.dataset.copy; (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(() => b.textContent = 'COPIED ✓').catch(() => { window.prompt('Copy the GPS:', v); }); });
       el.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { if (m) { m.remove(); m = null; } });
+      if (opts && opts.onPop) opts.onPop(el, m);
     });
   }
   /* base maps + terrain: Street, Satellite, USGS Topo (US), Terrain (OpenTopoMap, worldwide), plus a Hillshade overlay */
@@ -187,5 +188,6 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
       return b; } });
     new C().addTo(map);
   }
+  /* Oct 17: KPCPin(map, {extra(la, lo) → more popup html, onPop(el, marker)}) (Kentucky Park Control: + ADD THIS SPOT TO MY TRIP) */
   window.KPCTA = { attach }; window.KPCPin = pin; window.KPCLayers = layers; window.KPCLocate = locate; window.KPCFull = full;
 })();

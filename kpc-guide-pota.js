@@ -153,6 +153,9 @@
   function shortSota(n) { return String(n).replace(/^Unnamed summit \((.+)\)$/, 'Unnamed $1'); }
 
   var STATE = {};
+  /* Oct 17 (Brandon): guests see 'coming soon' instead of the 2-fer / 3-fer information; members (and the PDF printer) see it all */
+  var GUEST = !!(window.KPCGate && !window.KPCGate.member());
+  var SOON = '2-fer and 3-fer information coming soon!';
 
   function setup(D, G, C, WR) {
     var X = G.parks || {};
@@ -184,6 +187,7 @@
     return m;
   }
   function twoferLine(ref, hadLine) {
+    if (GUEST) return '';
     var items = fersFor(ref), NAMES = fersNames();
     if (!items.length) {
       if (!hadLine) return '';
@@ -256,7 +260,7 @@
     });
     if (lines.indexOf('<b>ALSO</b>') < 0) lines += alsoLine(p);
     var nameUrl = (x && x.nameUrl) || p.web || pota(p.c);
-    var q = [p.c, p.n, co + ' county', type, p._reg || '', p._q || ''].concat(fersFor(p.c).map(function (d) { return d.refs.join(' ') + ' 2-fer ' + d.type; })).join(' ').toLowerCase();
+    var q = [p.c, p.n, co + ' county', type, p._reg || '', p._q || ''].concat((GUEST ? [] : fersFor(p.c)).map(function (d) { return d.refs.join(' ') + ' 2-fer ' + d.type; })).join(' ').toLowerCase();
     return '<article class="g-card" id="' + pid(p.c) + '" data-reg="' + esc(p._reg || '') + '" data-q="' + esc(q) + '">' +
       '<div class="g-head">' + ext(pota(p.c), esc(p.c), 'g-code') + '<h3>' + ext(nameUrl, esc(p.n)) + '</h3></div>' +
       '<p class="g-meta">' + esc(coLabel) + ' • ' + esc(type) + '</p>' + condBanner(p.c) + '<div class="g-btns">' + bh + '</div>' + lines + '</article>';
@@ -340,6 +344,12 @@
 
   function renderStatic() {
     var D = STATE.D, G = STATE.G, C = STATE.C, P = STATE.P;
+    if (GUEST) {
+      var fs = document.getElementById('fers');
+      if (fs) fs.innerHTML = '<div class="g-kick">KENTUCKY POTA FIELD RESOURCE</div><h2>2-Fers &amp; 3-Fers</h2><div class="g-box g-keep" style="margin:12px 0"><h3>Coming soon!</h3><p>' + SOON + '</p></div>';
+      document.querySelectorAll('.g-bar a[href="#fers"]').forEach(function (a) { a.textContent = '2-FERS & 3-FERS: COMING SOON →'; });
+      document.querySelectorAll('dt').forEach(function (dt) { if (/^2-FER$/.test(dt.textContent.trim())) { var dd = dt.nextElementSibling; if (dd && dd.tagName === 'DD') dd.textContent = SOON; } });
+    } else {
     /* 2-fers index */
     var F = G.fers, SP = F.spots, n3 = SP.filter(function (d) { return d.type === '3-fer'; }).length;
     $('gFersLead').textContent = 'All ' + SP.length + ' places in Kentucky where you may work two or three POTA parks at once (' + n3 + ' 3-fers, ' + (SP.length - n3) +
@@ -364,6 +374,7 @@
     $('gFers').innerHTML = html;
     $('gFersTail').innerHTML = '<b>Not counted here (do your own research):</b> ' + esc(F.unconfirmed.map(function (u) { return u[0] + (/^Checked/.test(u[1]) ? ' (checked: NOT a 2-fer)' : ''); }).join('; ')) +
       '. State parks inside the Daniel Boone outer boundary (Cumberland Falls, Natural Bridge, Buckhorn Lake) are state land, not national forest land.';
+    }
 
     /* wild rivers */
     var W = G.wildRivers, WI = G.wildIntro, feats = (STATE.WR && STATE.WR.features) || [];
@@ -409,7 +420,7 @@
       return '<div class="g-wr g-keep" id="wr-' + r.n + '"><div class="g-wr-h"><span class="g-wn">' + r.n + '</span><h3>' + esc(r.name) + '</h3>' + ext(r.official, 'OFFICIAL PAGE →', 'b b-gold') + '</div>' +
         '<p class="g-line"><b>COUNTIES</b> ' + esc(r.counties) + ' • <b>ACRES</b> ' + esc(r.acres) + (near ? ' • <b>NEAREST TOWN</b> ' + esc(near) : '') + '</p>' +
         '<p class="g-line"><b>ACTIVATE AS</b> ' + xr + '</p>' +
-        (fr.length ? '<p class="g-line"><b>2-FER / 3-FER</b> ' + fr.length + ' possible spot' + (fr.length > 1 ? 's' : '') + ' with ' + fr.reduce(function (u, d) { d.refs.forEach(function (x) { if (refs.indexOf(x) < 0 && u.indexOf(x) < 0) u.push(x); }); return u; }, []).map(function (x) { return '<a href="#' + pid(x) + '">' + esc(x) + '</a>'; }).join(', ') + ' — see the <a href="#fers">2-Fers &amp; 3-Fers Index</a> (GPS points not exact).</p>' : '') +
+        (fr.length && !GUEST ? '<p class="g-line"><b>2-FER / 3-FER</b> ' + fr.length + ' possible spot' + (fr.length > 1 ? 's' : '') + ' with ' + fr.reduce(function (u, d) { d.refs.forEach(function (x) { if (refs.indexOf(x) < 0 && u.indexOf(x) < 0) u.push(x); }); return u; }, []).map(function (x) { return '<a href="#' + pid(x) + '">' + esc(x) + '</a>'; }).join(', ') + ' — see the <a href="#fers">2-Fers &amp; 3-Fers Index</a> (GPS points not exact).</p>' : '') +
         '<div class="g-btns">' + (pk ? ext(gps(pk.la, pk.lo), 'GPS', 'b b-gps') + ext(wx(pk.la, pk.lo), 'WEATHER', 'b b-wx') : '') +
         (refs[0] ? '<a class="b b-near" href="kpc-park-notes.html#' + refs[0] + '">PARK TIPS ›</a>' : '') + '</div></div>';
     }).join('');
