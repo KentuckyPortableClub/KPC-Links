@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<script src="kpc-theme.js?v=20261016z"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="kpc-theme.js?v=20261017a"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Live: Happening Now | KPC</title>
 <!-- KPC icons & share preview -->
 <link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
@@ -220,7 +220,7 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
 <section class="lv-hero"><div class="lv-w"><div class="k">KENTUCKY &bull; RIGHT NOW</div><h1>HAPPENING <span>NOW</span></h1><p>Bands, spots, space weather, field weather, radar and lightning for Kentucky, all in one place. Check it before you leave the house.</p><div class="lv-stamp"><span class="lv-dot"></span> Updated <span id="lv-stamp">--</span> &middot; refreshes about every 5 minutes</div></div></section>
 <div hidden id="lv-oldbars"><section class="lv-status-old" aria-label="Status"><div class="lv-w"><span class="lv-pill">STATUS</span><div class="lv-st" id="lv-sfi"><b>SFI --</b></div><div class="lv-st" id="lv-kp"><b>Kp --</b></div><div class="lv-st" id="lv-parks"><b>-- parks</b></div><div class="lv-best" id="lv-best">Checking conditions...</div></div></section>
 <section class="lv-spots" aria-label="POTA spots on the air now"><div class="lv-w"><span class="lv-pill"><span class="lv-dot off" id="lv-dot"></span> ON THE AIR NOW</span><span style="font-size:14px" id="lv-spotcount">Checking...</span><div class="lv-chips" id="lv-spotlist"></div><a class="lv-btn" href="kpc-spots.html">SEE ALL SPOTS &rarr;</a></div></section></div>
-<div id="kpc-cx"></div>
+<div id="kpc-cx"></div><div id="kpc-looks"></div>
 <div class="lv-w">
 <div class="lv-grid">
 <div class="lv-card"><h2>Field Weather</h2><div class="sub">Current conditions across Kentucky &middot; Open-Meteo and the National Weather Service</div><div class="wx" id="lv-wx"><div class="w"><small>Loading weather...</small></div></div><div class="ok" id="lv-alerts">Checking NWS alerts...</div><div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="lv-btn dk" id="lv-loc">&#128205; USE MY LOCATION</button><a class="lv-btn dk" href="kpc-weather.html">FIELD WEATHER SEARCH &rarr;</a></div></div>
@@ -372,7 +372,7 @@ setInterval(function(){kySun();moon()},60000);
 setInterval(loadNOAA,15*60000);
 })();
 </script>
-<script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017a" defer></script><script src="kpc-cx.js?v=20261017b" defer></script><script src="kpc-band-maps.js?v=20261014a" defer></script><script src="kpc-live.js?v=20261012t" defer></script><script src="kpc-radio.js?v=20261015c" defer></script><script src="kpc-radar-plus.js?v=20261012t" defer></script><script>
+<script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017b" defer></script><script src="kpc-looks.js?v=20261017a" defer></script><script src="kpc-cx.js?v=20261017b" defer></script><script src="kpc-band-maps.js?v=20261014a" defer></script><script src="kpc-live.js?v=20261012t" defer></script><script src="kpc-radio.js?v=20261015c" defer></script><script src="kpc-radar-plus.js?v=20261012t" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
