@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="kpc-hunt.css?v=20261016d">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261016e">
 @@HEADER@@
 <main id="hl" data-keep-light data-theme="lodge">
 <section class="hl-lock" id="hlLock"><p class="hl-k">KPC HUNTERS LOUNGE</p><h2>Enter the password</h2><p class="hl-p">This room is being tried out by club members first.</p><form id="hlLockForm"><input id="hlPw" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password"><button type="submit" class="hl-btn gold">UNLOCK</button></form><p class="hl-msg" id="hlPwMsg"></p></section>
@@ -15,7 +15,7 @@
  <div><b id="hsLog">0</b><span>IN YOUR LOG</span></div>
  <div><b id="hsAge">–</b><span>NEXT CHECK</span></div>
 </div>
-<div class="hl-acts"><a class="hl-btn gold" href="#hlSetup">📥 LOAD MY LOG</a><a class="hl-btn ghost" href="#hlNeed">🎯 PARKS I NEED</a><a class="hl-btn ghost" href="#hlTop">🏆 TOP ACTIVATORS</a></div>
+<div class="hl-acts"><a class="hl-btn gold" href="#hPota">⭐ GET MY PARKS FROM POTA</a><a class="hl-btn ghost" href="#hlNeed">🎯 PARKS I NEED</a><a class="hl-btn ghost" href="#hlTop">🏆 TOP ACTIVATORS</a></div>
 <div class="hl-theme" role="group" aria-label="Look">LOOK: <button type="button" class="hl-chip" data-theme-pick="lodge">🔥 CABIN LODGE</button><button type="button" class="hl-chip" data-theme-pick="night">🌌 NIGHT SKY</button></div>
 </div></section>
 
@@ -35,6 +35,7 @@
  <details class="hl-dd"><summary>WHERE <i id="sWhere">EVERYWHERE</i></summary><div class="hl-row" id="fWhere"></div><label class="hl-lab">State <select id="fSt"><option value="">Any state</option></select></label></details>
  <div class="hl-row"><input type="search" id="fQ" placeholder="Search call, park, number, state…" aria-label="Search spots"><select id="fSort" aria-label="Sort"><option value="new">Newest first</option><option value="mine">New to me first</option><option value="freq">By frequency</option><option value="far">Closest first</option></select></div>
 </div>
+<a class="hl-nolog" id="hlNoLog" href="#hPota" hidden>⭐ <b>Load your hunted parks from POTA</b> so the new-to-you ones light up. Tap here ›</a>
 <p class="hl-count" id="hlCount"></p>
 <div class="hl-grid" id="hlSpots"><div class="hl-empty">Loading spots…</div></div>
 <p class="hl-src" id="hlSrc"></p>
@@ -55,7 +56,7 @@
 <div class="hl-two">
 <div class="hl-card">
  <h3>Load the parks you've worked</h3>
- <div class="hl-pota"><b>⭐ EASIEST: GET MY HUNTED PARKS STRAIGHT FROM POTA</b>
+ <div class="hl-pota" id="hPota"><b>⭐ EASIEST: GET MY HUNTED PARKS STRAIGHT FROM POTA</b>
  <p>pota.app no longer has a hunted-parks CSV, so this little bookmark asks POTA for your list while you're signed in there, then brings just the park numbers back here. Your POTA password and sign-in never leave pota.app.</p>
  <ol>
  <li><b>On a computer:</b> drag this button up to your bookmarks bar: <a class="hl-btn gold sm" id="hBm" href="#" title="Drag me to your bookmarks bar">⭐ KPC: MY POTA PARKS</a></li>
@@ -131,4 +132,4 @@
 </form></div></div>
 </main>
 @@FOOTER@@
-<script src="kpc-hunt.js?v=20261016d"></script>
+<script src="kpc-hunt.js?v=20261016e"></script>

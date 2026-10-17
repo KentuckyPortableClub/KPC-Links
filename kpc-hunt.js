@@ -201,7 +201,7 @@
     if (old.size) document.querySelectorAll('#hlSpots .hs.new').forEach(x => { if (!old.has(x.dataset.k)) x.classList.add('fresh'); });
     const hid = SP.length - L.length;
     $('hlCount').textContent = `${L.length} spot${L.length === 1 ? '' : 's'} shown${hid ? ` · ${hid} hidden by your filters` : ''}${hasLog() ? '' : ' · load your log to see which are new to you'}`;
-    $('hsLive').textContent = SP.length; $('hlSrc').textContent = src;
+    $('hsLive').textContent = SP.length; $('hlSrc').textContent = src; $('hlNoLog').hidden = hasLog();
   }
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-wk]'); if (!b) return;
