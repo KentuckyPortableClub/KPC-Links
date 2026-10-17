@@ -41,7 +41,7 @@
   let WK = new Set(LOG.r), MAN = new Set(LOG.m || []);
   const saveLog = () => { LOG.r = [...WK]; LOG.m = [...MAN]; put('kpcHuntLog', LOG); };
   const hasLog = () => WK.size > 0;
-  let F = Object.assign({ p: ['POTA', 'WWFF', 'SOTA'], hide: false, nw: false, rg: false, bands: [], modes: [], where: 'all', st: '', q: '', sort: 'new' }, get('kpcHuntF', {}));
+  let F = Object.assign({ view: 'cards', p: ['POTA', 'WWFF', 'SOTA', 'DXPED', 'EVENT'], hide: false, nw: false, rg: false, bands: [], modes: [], where: 'all', st: '', q: '', sort: 'new' }, get('kpcHuntF', {}));
   const saveF = () => put('kpcHuntF', F);
   let HOME = get('kpcHuntHome', null), RANGE = +get('kpcHuntRange', 1500) || 1500, FAR = get('kpcHuntFar', true), BELL = get('kpcHuntBell', false), NOTE = get('kpcHuntNote', false);
   let CALL = base(get('kpcMyCall', ''));
@@ -85,7 +85,7 @@
   let SP = [], src = '', first = true, SEEN = new Set(), next = 0;
   const toKhz = f => { f = Number(f); if (!isFinite(f) || f <= 0) return null; return f < 1000 ? f * 1000 : f < 1e6 ? f : f / 1000; };
   const toMs = t => { if (t == null) return null; if (typeof t === 'number') return t < 1e12 ? t * 1000 : t; const s = String(t); const d = Date.parse(/[zZ]|[+-]\d\d:?\d\d$/.test(s) ? s : s + 'Z'); return isFinite(d) ? d : null; };
-  async function jget(u) { const c = new AbortController(), tm = setTimeout(() => c.abort(), 15000); try { const r = await fetch(u, { cache: 'no-store', signal: c.signal }); if (!r.ok) throw new Error(r.status); return await r.json(); } finally { clearTimeout(tm); } }
+  async function jget(u, ms) { const c = new AbortController(), tm = setTimeout(() => c.abort(), ms || 15000); try { const r = await fetch(u, { cache: 'no-store', signal: c.signal }); if (!r.ok) throw new Error(r.status); return await r.json(); } finally { clearTimeout(tm); } }
   function fromPota(x) {
     const khz = toKhz(x.frequency); if (!khz || !x.reference) return null;
     const loc = String(x.locationDesc || ''), g = grid(x.grid6 || x.grid4), ref = nref(x.reference);
@@ -97,22 +97,37 @@
     return { p: 'SOTA', call: String(x.activatorCallsign || '').toUpperCase(), khz, mode: String(x.mode || '').toUpperCase(), ref, name: x.summitDetails || '', loc: a, st: '', la: NaN, lo: NaN,
       t: toMs(x.timeStamp), by: x.callsign || '', com: x.comments || '', us: /^(W\d|K[HL]\d|W[0-9]?[A-Z])/.test(a), ca: /^(VE|VA|VY|VO)/.test(a) };
   }
+  /* special event stations: calls on today's ARRL list (kpc-special-events.json), US 1x1 calls, W1AW/n, or the comment says so */
+  let SES = new Set();
+  fetch('kpc-special-events.json').then(r => r.ok ? r.json() : null).then(j => { ((j && j.stations) || []).forEach(x => [x.call].concat(x.calls || []).forEach(c => c && SES.add(base(c)))); }).catch(() => {});
+  const isEvent = (call, com) => SES.has(base(call)) || /^[KNW]\d[A-Z]$/.test(base(call)) || /^W1AW\/\d$/.test(call) || /SPECIAL EVENT|\bSES\b/i.test(com || '');
+  const DXPRE = /DXPEDITION|DX-?PED/i;
+  /* Spothole: WWFF, other programs and the DX cluster (POTA and SOTA come straight from their own sites; skimmers left out) */
   function fromHole(x) {
-    if (!/WWFF/i.test(String(x.sig || ''))) return null; const khz = toKhz(x.freq != null ? x.freq : x.frequency); if (!khz) return null;
-    const rr = x.sig_refs || x.sig_ref || []; const refs = (Array.isArray(rr) ? rr : [rr]).map(v => typeof v === 'string' ? { id: v } : { id: v.id || v.ref || '', name: v.name || '' }).filter(v => v.id);
-    if (!refs.length) return null; const ref = refs[0].id.toUpperCase();
-    return { p: 'WWFF', call: String(x.dx_call || x.activator || '').toUpperCase(), khz, mode: String(x.mode || '').toUpperCase(), ref, name: refs[0].name || x.sig_refs_names || '', loc: '', st: String(x.dx_state || '').toUpperCase(),
-      la: +(x.dx_latitude ?? x.dx_lat ?? NaN), lo: +(x.dx_longitude ?? x.dx_lon ?? NaN), t: toMs(x.time), by: x.de_call || '', com: x.comment || '', us: /^KFF-/.test(ref), ca: /^VEFF-/.test(ref) };
+    const sig = String(x.sig || ''), src0 = String(x.source || '');
+    if (/^(POTA|SOTA)$/i.test(sig) || /RBN|SKIM/i.test(src0)) return null;
+    const khz = toKhz(x.freq != null ? x.freq : x.frequency); if (!khz) return null;
+    const call = String(x.dx_call || x.activator || '').toUpperCase(), com = x.comment || '';
+    const country = x.dx_country || '', usa = /united states/i.test(country), can = /canada/i.test(country);
+    const g = { call, khz, mode: String(x.mode || '').toUpperCase(), loc: country, st: usa ? String(x.dx_state || '').toUpperCase() : '', la: +(x.dx_latitude ?? NaN), lo: +(x.dx_longitude ?? NaN),
+      t: toMs(x.time), by: x.de_call || '', com, us: usa, ca: can };
+    if (/WWFF/i.test(sig)) {
+      const rr = x.sig_refs || []; const refs = (Array.isArray(rr) ? rr : [rr]).map(v => typeof v === 'string' ? { id: v } : { id: v.id || v.ref || '', name: v.name || '' }).filter(v => v.id);
+      if (!refs.length) return null; const ref = refs[0].id.toUpperCase();
+      return Object.assign(g, { p: 'WWFF', ref, name: refs[0].name || '', us: /^KFF-/.test(ref), ca: /^VEFF-/.test(ref) });
+    }
+    const p = DXPRE.test(sig + ' ' + com) ? 'DXPED' : isEvent(call, com) ? 'EVENT' : 'DX';
+    return Object.assign(g, { p, ref: '', label: sig && !/^dxpedition$/i.test(sig) ? sig : '', name: (x.dx_name ? x.dx_name + ' · ' : '') + country });
   }
   async function load() {
     const out = [], got = [];
     await Promise.all([
       jget('https://api.pota.app/spot/activator').then(a => { (a || []).forEach(x => { const s = fromPota(x); if (s) out.push(s); }); got.push('POTA'); }).catch(() => {}),
       jget('https://api2.sota.org.uk/api/spots/50/all').then(a => { (a || []).forEach(x => { const s = fromSota(x); if (s) out.push(s); }); got.push('SOTA'); }).catch(() => {}),
-      jget('https://spothole.app/api/v1/spots?limit=1000&max_age=3600').then(j => { const a = Array.isArray(j) ? j : (j && j.spots) || []; a.forEach(x => { const s = fromHole(x); if (s) out.push(s); }); got.push('WWFF (Spothole)'); }).catch(() => {})
+      jget('https://spothole.app/api/v1/spots?limit=1000&max_age=3600').then(j => { const a = Array.isArray(j) ? j : (j && j.spots) || []; a.forEach(x => { const s = fromHole(x); if (s) out.push(s); }); got.push('WWFF, DX cluster, DXpeditions and special events (Spothole)'); }).catch(() => {})
     ]);
     const now = Date.now(), seen = new Map();
-    out.filter(s => s.call && (!s.t || now - s.t < 75 * 60e3)).sort((a, b) => (b.t || 0) - (a.t || 0)).forEach(s => { const k = s.p + '|' + s.call + '|' + s.ref; if (!seen.has(k)) seen.set(k, s); });
+    out.filter(s => s.call && (!s.t || now - s.t < 75 * 60e3)).sort((a, b) => (b.t || 0) - (a.t || 0)).forEach(s => { const k = keyOf(s); if (!seen.has(k)) seen.set(k, s); });
     SP = [...seen.values()];
     await loadParks();
     SP.forEach(s => {
@@ -127,7 +142,8 @@
     ticker(!first); first = false; draw(); needDraw();
     next = Date.now() + 60e3;
   }
-  const isNew = s => hasLog() && !WK.has(s.ref);
+  const isNew = s => !!s.ref && hasLog() && !WK.has(s.ref);
+  const keyOf = s => s.p + '|' + s.call + '|' + (s.ref || Math.round(s.khz));
   const passPBM = s => F.p.includes(s.p) && (!F.bands.length || F.bands.includes(bandOf(s.khz))) && (!F.modes.length || F.modes.includes(modeOf(s.mode)));
 
   /* ---------------- ticker + alerts ---------------- */
@@ -139,14 +155,14 @@
     } catch (e) {}
     try { navigator.vibrate && navigator.vibrate([180, 90, 180]); } catch (e) {}
   }
-  const tItem = s => `<span class="it" data-k="${esc(s.p + '|' + s.call + '|' + s.ref)}">✨ <b>${esc(s.ref)}</b> ${esc(s.name || '')} <small>${esc(s.st || s.loc || '')}</small> · ${esc(s.call)} <i>${(s.khz / 1000).toFixed(3)}</i> <small>${esc(s.mode || '')}</small></span>`;
+  const tItem = s => `<span class="it" data-k="${esc(keyOf(s))}">✨ <b>${esc(s.ref)}</b> ${esc(s.name || '')} <small>${esc(s.st || s.loc || '')}</small> · ${esc(s.call)} <i>${(s.khz / 1000).toFixed(3)}</i> <small>${esc(s.mode || '')}</small></span>`;
   function ticker(alert) {
     const T = $('hlTickT'), FT = $('hlFarT');
     if (!hasLog()) { T.innerHTML = '<span class="hl-wait">Load your log (Step 1 below) and new-to-you parks will roll across here.</span>'; T.style.setProperty('--dur', '22s'); $('hlFar').hidden = true; naDraw(); return; }
     const L = SP.filter(s => isNew(s) && passPBM(s));
     const far = FAR && HOME ? L.filter(isFar) : [], near = L.filter(s => !far.includes(s));
-    const fresh = near.filter(s => !SEEN.has(s.p + '|' + s.call + '|' + s.ref));
-    L.forEach(s => SEEN.add(s.p + '|' + s.call + '|' + s.ref));
+    const fresh = near.filter(s => !SEEN.has(keyOf(s)));
+    L.forEach(s => SEEN.add(keyOf(s)));
     if (near.length) { const h = near.map(tItem).join(''); if (T.dataset.h !== h) { T.innerHTML = h; T.dataset.h = h; T.style.setProperty('--dur', Math.max(20, T.textContent.length * .2) + 's'); } }
     else { T.dataset.h = ''; T.innerHTML = `<span class="hl-wait">Nothing new to you on the air right now${far.length ? ` (${far.length} far away up top)` : ''}. Checking every minute…</span>`; T.style.setProperty('--dur', '24s'); }
     $('hlFar').hidden = !far.length;
@@ -171,22 +187,31 @@
 
   /* ---------------- spot cards ---------------- */
   const ago = t => { if (!t) return ''; const m = Math.max(0, Math.round((Date.now() - t) / 60e3)); return m < 1 ? 'just now' : m + ' min ago'; };
+  const PL = { POTA: 'POTA', WWFF: 'WWFF', SOTA: 'SOTA', DXPED: 'DXPEDITION', EVENT: 'SPECIAL EVENT', DX: 'DX CLUSTER' };
   const pageOf = s => s.p === 'SOTA' ? 'https://sotl.as/summits/' + s.ref : s.p === 'WWFF' ? 'https://wwff.co/directory/?showRef=' + s.ref : 'https://pota.app/#/park/' + s.ref;
   function card(s) {
-    const n = isNew(s), w = hasLog() && WK.has(s.ref), d = dist(s), k = s.p + '|' + s.call + '|' + s.ref;
-    const b = [`<span class="hb prog">${s.p}</span>`];
+    const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), d = dist(s), k = keyOf(s);
+    const b = [`<span class="hb prog">${PL[s.p] || s.p}${s.label ? ' · ' + esc(s.label) : ''}</span>`];
     if (n) b.push('<span class="hb new">✨ NEW TO YOU</span>'); else if (w) b.push('<span class="hb wk">✓ WORKED</span>');
     if (s.acts === 0) b.push('<span class="hb atno">FIRST EVER ACTIVATION</span>'); else if (s.acts != null && s.acts <= 5) b.push(`<span class="hb rare">RARE · ${s.acts}</span>`);
     if (d != null && d > RANGE) b.push(`<span class="hb far">FAR · ${Math.round(d)} MI</span>`);
     b.push(`<span class="hb">${bandOf(s.khz)}</span>`, `<span class="hb">${esc(s.mode || '?')}</span>`);
     return `<article class="hs${n ? ' new' : ''}${w ? ' worked' : ''}" data-k="${esc(k)}">
  <div class="hs-top"><div class="hs-call"><a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">${esc(s.call)}</a></div><div class="hs-f"><b>${(s.khz / 1000).toFixed(3)}</b><span>MHz · ${esc(s.mode || '')}</span></div></div>
- <div class="hs-park"><a href="${pageOf(s)}" target="_blank" rel="noopener">${esc(s.ref)}</a>${esc(s.name || '')}</div>
+ <div class="hs-park">${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener">${esc(s.ref)}</a>` : ''}${esc(s.name || '')}</div>
  <div class="hs-meta">${esc(s.st ? (ST[s.st] || s.st) : s.loc)}${d != null ? ' · ' + Math.round(d) + ' mi' : ''} · ${ago(s.t)}${s.by ? ' · spotted by ' + esc(s.by) : ''}</div>
  ${s.com ? `<div class="hs-com">“${esc(String(s.com).slice(0, 140))}”</div>` : ''}
  <div class="hs-b">${b.join('')}</div>
- <div class="hs-a"><button type="button" class="lg" data-log="1">📝 LOG IT</button><button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}">${w ? '✓ WORKED' : '＋ I WORKED IT'}</button><a href="${pageOf(s)}" target="_blank" rel="noopener">${s.p === 'SOTA' ? 'SOTLAS' : s.p} PAGE ↗</a>${s.p === 'POTA' && s.us ? `<a href="kpc-planner-us.html?q=${encodeURIComponent(s.ref)}">ON THE MAP</a>` : ''}<a href="kpc-park-info.html?ref=${encodeURIComponent(s.ref)}">PARK INFO</a></div>
+ <div class="hs-a"><button type="button" class="lg" data-log="1">📝 LOG IT</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}">${w ? '✓ WORKED' : '＋ I WORKED IT'}</button><a href="${pageOf(s)}" target="_blank" rel="noopener">${s.p === 'SOTA' ? 'SOTLAS' : s.p} PAGE ↗</a>${s.p === 'POTA' && s.us ? `<a href="kpc-planner-us.html?q=${encodeURIComponent(s.ref)}">ON THE MAP</a>` : ''}<a href="kpc-park-info.html?ref=${encodeURIComponent(s.ref)}">PARK INFO</a>` : `<a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">QRZ ↗</a><a href="https://www.dxsummit.fi/#/?dx_calls=${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">DX SUMMIT ↗</a>`}</div>
 </article>`;
+  }
+  function row(s) {
+    const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), d = dist(s);
+    const tag = n ? '<span class="hb new">NEW</span>' : w ? '<span class="hb wk">✓</span>' : '';
+    const rare = s.acts === 0 ? '<span class="hb atno">1ST</span>' : s.acts != null && s.acts <= 5 ? `<span class="hb rare">RARE ${s.acts}</span>` : '';
+    return `<tr class="hr${n ? ' new' : ''}${w ? ' worked' : ''}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c">${esc(s.call)}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
+<td><span class="pg">${PL[s.p] || s.p}</span> ${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener" class="r">${esc(s.ref)}</a> ` : ''}${esc(s.name || '')} ${tag}${rare}</td><td class="hide-s">${esc(s.st || '')}</td><td class="hide-s">${d != null ? Math.round(d) : ''}</td>
+<td class="a"><button type="button" class="lg" data-log="1" title="Log it">📝</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" title="Mark worked">✓</button>` : ''}</td></tr>`;
   }
   function draw() {
     const q = F.q.trim().toUpperCase();
@@ -197,8 +222,11 @@
     const srt = { new: (a, b) => (b.t || 0) - (a.t || 0), freq: (a, b) => a.khz - b.khz, mine: (a, b) => (isNew(b) - isNew(a)) || (b.t || 0) - (a.t || 0), far: (a, b) => (dist(a) ?? 1e9) - (dist(b) ?? 1e9) }[F.sort] || null;
     if (srt) L.sort(srt);
     const old = new Set([...document.querySelectorAll('#hlSpots .hs')].map(x => x.dataset.k));
-    $('hlSpots').innerHTML = L.length ? L.slice(0, 240).map(card).join('') : `<div class="hl-empty">${SP.length ? 'No spots match your filters right now.' : 'No spots yet.'}</div>`;
-    if (old.size) document.querySelectorAll('#hlSpots .hs.new').forEach(x => { if (!old.has(x.dataset.k)) x.classList.add('fresh'); });
+    $('hlSpots').className = F.view === 'table' ? 'hl-tablewrap' : 'hl-grid';
+    $('hlSpots').innerHTML = !L.length ? `<div class="hl-empty">${SP.length ? 'No spots match your filters right now.' : 'No spots yet.'}</div>`
+      : F.view === 'table' ? `<table class="hl-st"><thead><tr><th class="hide-s">WHEN</th><th>CALL</th><th>MHz</th><th class="hide-s">MODE</th><th>PARK / WHERE</th><th class="hide-s">STATE</th><th class="hide-s">MI</th><th></th></tr></thead><tbody>${L.slice(0, 400).map(row).join('')}</tbody></table>`
+      : L.slice(0, 240).map(card).join('');
+    if (old.size) document.querySelectorAll('#hlSpots .hs.new, #hlSpots tr.hr.new').forEach(x => { if (!old.has(x.dataset.k)) x.classList.add('fresh'); });
     const hid = SP.length - L.length;
     $('hlCount').textContent = `${L.length} spot${L.length === 1 ? '' : 's'} shown${hid ? ` · ${hid} hidden by your filters` : ''}${hasLog() ? '' : ' · load your log to see which are new to you'}`;
     $('hsLive').textContent = SP.length; $('hlSrc').textContent = src; $('hlNoLog').hidden = hasLog();
@@ -229,9 +257,12 @@
     else if (t.dataset.band) F.bands = tog(F.bands, t.dataset.band);
     else if (t.dataset.mode) F.modes = tog(F.modes, t.dataset.mode);
     else if (t.dataset.where) { F.where = t.dataset.where; if (F.where === 'range' && !HOME) { $('hlSetup').scrollIntoView({ behavior: 'smooth' }); $('hHome').textContent = 'Set where you are first.'; } }
+    else if ((t.id === 'fHide' || t.id === 'fNew') && !hasLog()) { toast('Load your worked parks first (⭐ GET MY PARKS FROM POTA): until then the page can’t tell which parks you’ve worked.'); return; }
     else if (t.id === 'fHide') F.hide = !F.hide; else if (t.id === 'fNew') F.nw = !F.nw; else if (t.id === 'fRange') { F.rg = !F.rg; if (F.rg && !HOME) { $('hlSetup').scrollIntoView({ behavior: 'smooth' }); $('hHome').textContent = 'Set where you are first.'; } }
     saveF(); chips(); ticker(false); draw();
   });
+  document.addEventListener('click', e => { const v = e.target.closest('[data-view]'); if (!v) return; F.view = v.dataset.view; saveF(); viewChips(); draw(); });
+  function viewChips() { document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', (F.view || 'cards') === b.dataset.view)); }
   $('fSt').onchange = () => { F.st = $('fSt').value; saveF(); chips(); draw(); };
   $('fSort').onchange = () => { F.sort = $('fSort').value; saveF(); draw(); };
   $('fQ').oninput = () => { F.q = $('fQ').value; saveF(); draw(); };
@@ -303,26 +334,62 @@
   /* ---------------- parks I still need ---------------- */
   let NP = [], nShown = 120, nSrc = '';
   const stOpts = sel => Object.keys(ST).map(a => `<option value="${a}"${a === sel ? ' selected' : ''}>${ST[a]}</option>`).join('');
+  let NV = get('kpcHuntNV', 'list'), BORDERS = null;
   async function needLoad() {
-    const a = $('nSt').value; $('nList').innerHTML = '<div class="hl-empty">Loading ' + esc(ST[a]) + '’s parks…</div>'; NP = []; nShown = 120;
-    try { const L = await jget('https://api.pota.app/location/parks/US-' + a); NP = (L || []).map(p => ({ r: nref(p.reference), n: p.name, a: +p.activations || 0, la: +p.latitude, lo: +p.longitude })); nSrc = 'POTA'; }
-    catch (e) { await loadParks(); NP = Object.entries(PK).filter(([r, k]) => k.st === a && /^US-/.test(r)).map(([r, k]) => ({ r, n: k.n, a: k.a })); nSrc = 'KPC copy'; }
+    const a = $('nSt').value; $('nList').innerHTML = '<div class="hl-empty">Loading ' + esc(ST[a]) + '’s parks…</div>'; $('nBar').innerHTML = ''; NP = []; nShown = 120;
+    try { const L = await jget('https://api.pota.app/location/parks/US-' + a, 45000); NP = (L || []).filter(p => p && p.reference).map(p => ({ r: nref(p.reference), n: p.name || p.reference, a: +p.activations || 0, la: +p.latitude, lo: +p.longitude })); nSrc = 'POTA'; } catch (e) { NP = []; }
+    if (!NP.length) { await loadParks(); NP = Object.entries(PK).filter(([r, k]) => k.st === a && /^US-/.test(r)).map(([r, k]) => ({ r, n: k.n || r, a: +k.a || 0, la: k.la, lo: k.lo })); nSrc = 'KPC copy'; }
+    if (!NP.length) { $('nList').innerHTML = `<div class="hl-empty">Couldn’t load ${esc(ST[a])}’s parks just now. <button type="button" class="hl-btn line sm" id="nRetry">TRY AGAIN</button></div>`; $('nRetry').onclick = needLoad; return; }
     needDraw();
   }
+  function nvChips() { document.querySelectorAll('[data-nv]').forEach(b => b.setAttribute('aria-pressed', NV === b.dataset.nv)); }
+  document.addEventListener('click', e => { const b = e.target.closest('[data-nv]'); if (!b) return; NV = b.dataset.nv; put('kpcHuntNV', NV); nvChips(); needDraw(); });
   function needDraw() {
-    if (!NP.length) return;
-    const a = $('nSt').value, q = $('nQ').value.trim().toUpperCase(), air = new Map(SP.filter(s => s.p === 'POTA').map(s => [s.ref, s]));
-    const done = NP.filter(p => WK.has(p.r)).length, pct = Math.round(done / NP.length * 100);
-    $('nBar').innerHTML = `<div class="bar"><i style="width:${pct}%"></i></div><p><b>${done}</b> of <b>${NP.length}</b> ${esc(ST[a])} parks worked (${pct}%) · <b>${NP.length - done}</b> still to go${hasLog() ? '' : ' · load your log in Step 1 to see yours'}</p>`;
-    let L = NP.filter(p => !WK.has(p.r) && (!q || (p.r + ' ' + p.n).toUpperCase().includes(q)) && (!$('nAir').checked || air.has(p.r)));
-    const s = $('nSort').value;
-    L.sort(s === 'name' ? (x, y) => x.n.localeCompare(y.n) : s === 'ref' ? (x, y) => x.r.localeCompare(y.r, undefined, { numeric: true }) : s === 'busy' ? (x, y) => y.a - x.a : (x, y) => (x.a - y.a) || x.n.localeCompare(y.n));
-    L.sort((x, y) => air.has(y.r) - air.has(x.r));
-    $('nList').innerHTML = L.length ? L.slice(0, nShown).map(p => { const o = air.get(p.r); return `<div class="hn${o ? ' air' : ''}"><a class="r" href="https://pota.app/#/park/${encodeURIComponent(p.r)}" target="_blank" rel="noopener">${esc(p.r)}</a>${esc(p.n)}<div class="m">${p.a ? p.a + ' activation' + (p.a === 1 ? '' : 's') : 'never activated'}${p.a > 0 && p.a <= 5 ? ' · RARE' : ''} · <a href="kpc-planner-us.html?q=${encodeURIComponent(p.r)}">map</a></div>${o ? `<div class="air">📡 ON THE AIR: ${esc(o.call)} ${(o.khz / 1000).toFixed(3)} ${esc(o.mode)}</div>` : ''}</div>`; }).join('')
-      + (L.length > nShown ? `<div class="hl-row" style="grid-column:1/-1"><button type="button" class="hl-btn line sm" id="nMore">SHOW MORE (${L.length - nShown} left)</button></div>` : '')
-      : `<div class="hl-empty">${q || $('nAir').checked ? 'None match.' : '🎉 You’ve worked every park in ' + esc(ST[a]) + '!'}</div>`;
-    const m = $('nMore'); if (m) m.onclick = () => { nShown += 200; needDraw(); };
+    try {
+      nvChips();
+      const a = $('nSt').value, q = $('nQ').value.trim().toUpperCase(), air = new Map(SP.filter(s => s.p === 'POTA').map(s => [s.ref, s]));
+      $('nMap').hidden = NV !== 'map';
+      if (NV === 'all') { allStates(); return; }
+      if (!NP.length) return;
+      const done = NP.filter(p => WK.has(p.r)).length, pct = Math.round(done / NP.length * 100);
+      $('nBar').innerHTML = `<div class="bar"><i style="width:${pct}%"></i></div><p><b>${done.toLocaleString()}</b> of <b>${NP.length.toLocaleString()}</b> ${esc(ST[a])} parks worked (${pct}%) · <b>${(NP.length - done).toLocaleString()}</b> still to go${hasLog() ? '' : ' · tap ⭐ GET MY PARKS FROM POTA to see yours'}</p>`;
+      let L = NP.filter(p => !WK.has(p.r) && (!q || (p.r + ' ' + p.n).toUpperCase().includes(q)) && (!$('nAir').checked || air.has(p.r)));
+      const s = $('nSort').value;
+      L.sort(s === 'name' ? (x, y) => String(x.n).localeCompare(String(y.n)) : s === 'ref' ? (x, y) => x.r.localeCompare(y.r, undefined, { numeric: true }) : s === 'busy' ? (x, y) => y.a - x.a : (x, y) => (x.a - y.a) || String(x.n).localeCompare(String(y.n)));
+      L.sort((x, y) => air.has(y.r) - air.has(x.r));
+      if (NV === 'map') stateMap(a, air);
+      $('nList').innerHTML = L.length ? L.slice(0, nShown).map(p => { const o = air.get(p.r); return `<div class="hn${o ? ' air' : ''}"><a class="r" href="https://pota.app/#/park/${encodeURIComponent(p.r)}" target="_blank" rel="noopener">${esc(p.r)}</a>${esc(p.n)}<div class="m">${p.a ? p.a + ' activation' + (p.a === 1 ? '' : 's') : 'never activated'}${p.a > 0 && p.a <= 5 ? ' · RARE' : ''} · <a href="kpc-planner-us.html?q=${encodeURIComponent(p.r)}">map</a></div>${o ? `<div class="air">📡 ON THE AIR: ${esc(o.call)} ${(o.khz / 1000).toFixed(3)} ${esc(o.mode)}</div>` : ''}</div>`; }).join('')
+        + (L.length > nShown ? `<div class="hl-row" style="grid-column:1/-1"><button type="button" class="hl-btn line sm" id="nMore">SHOW MORE (${(L.length - nShown).toLocaleString()} left)</button></div>` : '')
+        : `<div class="hl-empty">${q || $('nAir').checked ? 'None match.' : hasLog() ? '🎉 You’ve worked every park in ' + esc(ST[a]) + '!' : 'Load your parks first.'}</div>`;
+      const m = $('nMore'); if (m) m.onclick = () => { nShown += 200; needDraw(); };
+    } catch (e) { $('nList').innerHTML = '<div class="hl-empty">Something went wrong drawing this list: ' + esc(e.message) + '</div>'; }
   }
+  /* state view: the state's outline with every park as a dot (gold = still needed, green = worked, pulsing = on the air now) */
+  async function stateMap(a, air) {
+    const box = $('nMap');
+    try { BORDERS = BORDERS || await fetch('kpc-us-states.json').then(r => r.json()); } catch (e) { box.innerHTML = '<div class="hl-empty">Couldn’t load the state map.</div>'; return; }
+    const b = BORDERS.find(x => x.a === a); if (!b) { box.innerHTML = ''; return; }
+    let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+    b.p.forEach(pl => pl[0].forEach(([x, y]) => { x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }));
+    if (a === 'AK') { x1 = Math.min(x1, -129); x0 = Math.max(x0, -180); }
+    const k = Math.cos((y0 + y1) / 2 * Math.PI / 180), W = 640, sc = Math.min(W / ((x1 - x0) * k || 1), 380 / ((y1 - y0) || 1)), H = Math.round((y1 - y0) * sc) + 20;
+    const X = lo => ((lo - x0) * k * sc + 10).toFixed(1), Y = la => ((y1 - la) * sc + 10).toFixed(1);
+    const path = b.p.map(pl => pl.map(r => 'M' + r.map(([x, y]) => X(x) + ' ' + Y(y)).join('L') + 'Z').join('')).join('');
+    const dots = NP.filter(p => isFinite(p.la) && isFinite(p.lo) && p.lo >= x0 - .5 && p.lo <= x1 + .5).map(p => { const w = WK.has(p.r), o = air.get(p.r); return `<circle class="${o ? 'on' : w ? 'wk' : 'nd'}" cx="${X(p.lo)}" cy="${Y(p.la)}" r="${o ? 6 : 4}" data-pr="${esc(p.r)}"><title>${esc(p.r + ' ' + p.n + (w ? ' (worked)' : ' (still needed)') + (o ? ' · ON THE AIR ' + o.call : ''))}</title></circle>`; });
+    box.innerHTML = `<svg viewBox="0 0 ${W + 20} ${H}" role="img" aria-label="${esc(ST[a])} parks"><path class="st" d="${path}"/>${dots.join('')}</svg><p class="hl-src">Gold = still needed · green = worked · pulsing = on the air now. Tap a dot for the park.</p><p class="hl-msg" id="nPick"></p>`;
+  }
+  document.addEventListener('click', e => { const c = e.target.closest('[data-pr]'); if (!c) return; const p = NP.find(x => x.r === c.dataset.pr); if (p) $('nPick').innerHTML = `<a href="https://pota.app/#/park/${encodeURIComponent(p.r)}" target="_blank" rel="noopener"><b>${esc(p.r)}</b></a> ${esc(p.n)} · ${p.a ? p.a + ' activations' : 'never activated'} · ${WK.has(p.r) ? '✓ worked' : 'still needed'} · <a href="kpc-planner-us.html?q=${encodeURIComponent(p.r)}">trip planner</a>`; });
+  /* all states at a glance: worked / total in every state (our weekly park list + Kentucky's own file) */
+  async function allStates() {
+    await loadParks();
+    const tot = {}, wk = {};
+    Object.entries(PK).forEach(([r, k]) => { if (!/^US-/.test(r) || !k.st) return; tot[k.st] = (tot[k.st] || 0) + 1; if (WK.has(r)) wk[k.st] = (wk[k.st] || 0) + 1; });
+    const L = Object.keys(ST).filter(x => tot[x]).map(x => [x, wk[x] || 0, tot[x]]).sort((p, q) => (q[1] / q[2]) - (p[1] / p[2]) || p[0].localeCompare(q[0]));
+    const all = L.reduce((n, r) => n + r[1], 0), T = L.reduce((n, r) => n + r[2], 0);
+    $('nBar').innerHTML = `<p><b>${all.toLocaleString()}</b> of <b>${T.toLocaleString()}</b> US parks worked (${Math.round(all / T * 100)}%). Tap a state for its list.</p>`;
+    $('nList').innerHTML = L.map(([x, w, t]) => `<button type="button" class="hn hs-st" data-sto="${x}"><b>${x}</b> ${esc(ST[x])}<div class="bar"><i style="width:${Math.round(w / t * 100)}%"></i></div><div class="m">${w.toLocaleString()} / ${t.toLocaleString()} · ${(t - w).toLocaleString()} to go</div></button>`).join('');
+  }
+  document.addEventListener('click', e => { const b = e.target.closest('[data-sto]'); if (!b) return; $('nSt').value = b.dataset.sto; $('nSt').dataset.set = 1; NV = 'list'; put('kpcHuntNV', NV); needLoad(); });
   $('nSt').onchange = () => { $('nSt').dataset.set = 1; needLoad(); };
   $('nQ').oninput = needDraw; $('nSort').onchange = needDraw; $('nAir').onchange = needDraw;
 
@@ -334,9 +401,14 @@
     const d = TD[a];
     if (d.none) { $('tList').innerHTML = `<div class="hl-empty">${esc(ST[a])}’s list is still being added up. It fills in within a week.</div>`; $('tSrc').textContent = ''; return; }
     const L = d[TT] || [], me = CALL ? L.findIndex(r => r[0] === CALL) : -1;
-    const row = (r, i) => `<div class="ht${r[0] === CALL ? ' me' : ''}"><span class="n">${i + 1}</span><span class="c"><a href="https://www.qrz.com/db/${encodeURIComponent(r[0])}" target="_blank" rel="noopener">${esc(r[0])}</a></span><span class="v">${(TT === 'acts' ? r[1] : r[2]).toLocaleString()}<small>${TT === 'acts' ? 'ACTIVATIONS' : 'PARKS'}</small></span><span class="v">${(TT === 'acts' ? r[2] : r[1]).toLocaleString()}<small>${TT === 'acts' ? 'PARKS' : 'ACTIVATIONS'}</small></span></div>`;
-    $('tList').innerHTML = L.slice(0, 20).map(row).join('') + (me >= 20 ? row(L[me], me) : '') || '<div class="hl-empty">No activations yet.</div>';
-    $('tSrc').innerHTML = `${esc(ST[a])}: ${d.activators.toLocaleString()} activators across ${d.activated.toLocaleString()} activated parks (${d.parks.toLocaleString()} parks in all). Added up by KPC from POTA’s public activation lists (10+ contacts counts, calls like K4TEST/P count as K4TEST). Updated ${esc(d.updated)}, weekly.${CALL && me < 0 ? ` ${esc(CALL)} isn’t in this state’s top 50 yet.` : ''}`;
+    const v = (n, l) => `<span class="v">${(+n || 0).toLocaleString()}<small>${l}</small></span>`;
+    const COLS = { acts: r => v(r[1], 'ACTIVATIONS') + v(r[2], 'PARKS') + v(r[3], 'QSOS'), uniq: r => v(r[2], 'PARKS') + v(r[1], 'ACTIVATIONS') + v(r[3], 'QSOS'),
+      hunt: r => v(r[1], 'QSOS') + v(r[2], 'PARKS (TOP 10)'), huntp: r => v(r[2], 'PARKS (TOP 10)') + v(r[1], 'QSOS') };
+    const row = (r, i) => `<div class="ht${r[0] === CALL ? ' me' : ''}${/^hunt/.test(TT) ? ' two' : ''}"><span class="n">${i + 1}</span><span class="c"><a href="https://www.qrz.com/db/${encodeURIComponent(r[0])}" target="_blank" rel="noopener">${esc(r[0])}</a></span>${COLS[TT](r)}</div>`;
+    $('tList').innerHTML = !L.length ? `<div class="hl-empty">${/^hunt/.test(TT) ? 'The hunter list is being added up this week.' : 'No activations yet.'}</div>` : L.slice(0, 20).map(row).join('') + (me >= 20 ? row(L[me], me) : '');
+    $('tSrc').innerHTML = /^hunt/.test(TT)
+      ? `Hunters in ${esc(ST[a])}: POTA only shares each park’s top 10 hunters, so KPC adds those lists up across the state’s ${d.parks.toLocaleString()} parks. QSOS = contacts counted where they’re in a park’s top 10; PARKS = how many ${esc(ST[a])} parks they’re top 10 at. Close, but not an official count. Updated ${esc(d.updated)}, weekly.`
+      : `${esc(ST[a])}: ${d.activators.toLocaleString()} activators across ${d.activated.toLocaleString()} activated parks (${d.parks.toLocaleString()} parks in all). Added up by KPC from POTA’s public activation lists (10+ contacts counts, calls like K4TEST/P count as K4TEST). Updated ${esc(d.updated)}, weekly.${CALL && me < 0 ? ` ${esc(CALL)} isn’t in this state’s top 50 yet.` : ''}`;
   }
   document.addEventListener('click', e => { const b = e.target.closest('[data-t]'); if (!b) return; TT = b.dataset.t; document.querySelectorAll('[data-t]').forEach(x => x.setAttribute('aria-pressed', x === b)); topDraw(); });
   $('tSt').onchange = topDraw;
@@ -525,7 +597,7 @@
   /* tapping a spot card (not its links/buttons) opens the log with everything filled in */
   document.addEventListener('click', e => {
     const lg = e.target.closest('[data-log]');
-    const c = lg ? lg.closest('.hs') : (!e.target.closest('a,button,input,select,label') && e.target.closest('#hlSpots .hs'));
+    const c = lg ? lg.closest('.hs, tr.hr') : (!e.target.closest('a,button,input,select,label') && e.target.closest('#hlSpots .hs, #hlSpots tr.hr'));
     if (!c) return; const s = SP.find(x => x.p + '|' + x.call + '|' + x.ref === c.dataset.k); if (s) openSheet(s);
   });
 
@@ -631,7 +703,8 @@
     }).join('');
     return `<div class="aw-c"><h4>${title}</h4><p>${desc}${d.total ? ` · ${(+d.total).toLocaleString()} in progress` : ''}. Closest to the next level:</p>${rows}</div>`;
   }
-  function awDraw() {
+  function awDraw() { try { awDraw0(); } catch (e) { console.error('awards', e); const b = $('awBox'); if (b) b.innerHTML = '<div class="hl-empty">Your awards came over, but KPC couldn’t read part of them (' + esc(e.message) + '). Send Brandon a screenshot.</div>'; } }
+  function awDraw0() {
     const box = $('awBox'); if (!box) return; const A = get('kpcHuntAwards', null); if (!A || !A.t) return;
     const n = (k, ...f) => numOf(A[k], ...f);
     const tiles = [tile('PARKS HUNTED', n('hunter/parks', 'numParks', 'parks'), FE, 'parks'), tile('PARKS ACTIVATED', n('activator/parks', 'numParks', 'parks'), FE, 'parks'),
@@ -662,41 +735,40 @@
   const NA = {"124":"M171 122L178 123L181 128L185 129L187 133L179 131L181 129L178 130L174 128L173 125L170 125L168 123L170 122L167 122ZM160 96L160 94L153 92L139 76L130 80L123 75L124 73L116 73L116 27L123 27L139 32L136 30L138 30L137 28L144 27L143 29L162 24L148 29L146 31L150 31L150 29L165 26L169 24L167 23L169 22L176 28L179 28L182 24L184 27L182 28L195 26L207 30L222 31L224 34L219 34L219 36L244 36L250 43L249 40L251 41L251 39L248 36L257 32L251 34L245 34L247 32L256 30L262 35L266 34L274 37L286 35L291 37L291 35L286 35L285 33L289 32L294 33L293 35L296 34L295 39L297 38L298 40L294 40L297 42L296 40L299 40L297 36L306 32L305 30L302 31L303 28L306 28L296 26L294 19L302 15L314 24L310 24L312 25L308 27L318 27L315 29L318 30L319 34L321 30L327 30L329 33L327 33L327 36L330 39L334 38L338 31L341 31L338 29L338 26L355 29L352 30L355 32L350 33L355 38L354 40L347 43L340 40L345 44L333 42L336 45L332 48L314 45L332 49L328 54L320 54L319 57L305 54L306 56L315 57L317 60L310 61L312 62L310 62L310 64L307 63L308 65L306 65L301 72L300 80L303 81L303 84L304 81L307 81L310 88L309 90L319 89L337 97L339 100L344 98L350 99L353 114L358 117L357 119L359 118L363 121L361 118L365 118L366 112L361 102L369 99L374 94L373 87L366 82L366 80L371 77L370 71L367 71L370 67L367 64L370 62L377 64L387 63L389 66L394 67L394 69L402 70L402 74L397 75L401 75L401 78L403 78L400 82L405 80L407 82L407 84L404 85L407 85L407 83L409 83L409 85L414 81L416 83L421 73L421 75L426 78L424 80L429 82L426 83L430 83L427 85L432 85L430 88L435 90L435 92L430 91L433 92L434 95L439 96L438 100L441 98L441 101L444 99L450 102L438 107L439 109L447 104L450 104L451 108L453 106L457 108L457 112L455 112L457 112L457 114L454 117L446 118L440 124L414 124L402 134L396 133L401 135L394 142L383 147L384 148L375 153L373 157L364 157L364 161L349 167L347 164L351 159L350 148L347 147L346 144L344 145L344 142L342 143L340 140L326 133L324 135L314 135L301 131L301 128L299 128L299 130L188 130L187 127L184 128L184 126L186 127L184 126L185 124L184 126L180 124L181 121L176 123L174 122L176 121L174 122L174 120L169 119L173 117L171 116L169 118L169 114L173 114L171 113L172 111L168 116L167 115L168 110L166 111L166 109L163 108L165 106L164 107L168 109L165 105L162 109L159 107L160 104L162 104L158 103L162 98L161 97L160 100ZM218 -12L215 -11L217 -10L215 -10L216 -8L212 -8L211 -6L208 -7L209 -9L205 -8L205 -6L202 -7L200 -4L197 -6L188 -6L204 -12ZM247 -5L252 -3L253 -5L258 -5L256 0L230 3L223 1L236 -1L225 0L226 -2L224 -2L222 0L215 0L210 -2L220 -3L211 -3L220 -4L213 -5L221 -6L217 -6L221 -8L235 -3L244 -3L239 -7L246 -9ZM222 12L230 10L235 11L233 14L239 12L237 10L240 10L244 11L249 17L251 16L248 13L248 8L258 10L263 18L262 20L276 24L276 27L266 27L268 29L272 28L273 30L264 31L253 28L242 32L227 33L225 29L214 28L211 24L233 24L206 20L219 18L207 18L209 17L204 16L207 12L221 8L224 9ZM201 4L212 4L218 8L203 12L196 18L187 19L177 15L185 6L181 3L195 2ZM402 -40L414 -40L407 -38L420 -40L435 -36L405 -31L421 -32L402 -27L397 -28L399 -26L392 -26L397 -26L396 -24L381 -24L386 -24L386 -22L372 -23L382 -20L366 -20L382 -18L374 -18L379 -17L377 -15L368 -15L367 -12L360 -11L353 -13L355 -12L352 -11L363 -11L368 -8L356 -6L350 -9L351 -7L326 -7L326 -9L326 -7L322 -7L322 -9L326 -11L333 -11L328 -14L346 -12L350 -15L341 -12L338 -15L342 -16L340 -16L341 -18L335 -15L336 -17L330 -16L333 -19L353 -20L342 -20L346 -20L334 -24L335 -27L360 -23L348 -27L373 -29L365 -30L372 -32L356 -28L334 -28L347 -31L328 -28L323 -30L340 -31L321 -30L323 -31L321 -32L330 -33L318 -32L321 -33L314 -34L340 -35L334 -36L338 -37L362 -34L350 -37L357 -38L355 -39L365 -38L359 -40L374 -38L378 -38L371 -40ZM280 5L292 6L286 10L294 11L294 16L286 16L287 18L281 16L269 11L279 11L278 9L281 9L274 7L278 8L276 6ZM340 49L343 48L351 51L353 53L352 55L358 55L356 58L348 54L346 55L341 59L338 59L337 56L331 57L335 55L336 46L338 45ZM289 -7L290 -4L288 -4L291 -2L289 -3L288 0L279 0L277 -2L283 -3L269 -3L276 -4L272 -7L279 -5L282 -6L278 -6L280 -7L277 -8ZM266 -22L270 -19L276 -20L282 -18L283 -14L270 -16L260 -17L267 -19L260 -19L258 -22ZM312 -31L317 -28L323 -28L323 -26L329 -27L328 -25L332 -25L331 -23L338 -23L340 -21L330 -18L327 -20L328 -17L325 -18L325 -16L320 -18L322 -16L312 -16L309 -17L313 -18L306 -19L303 -20L315 -22L300 -21L297 -23L302 -24L297 -23L293 -26L302 -25L295 -26L298 -27L296 -27L296 -29L304 -28L298 -29L307 -30L303 -32ZM303 -10L307 -9L306 -7L323 -7L314 -6L321 -5L323 -4L321 -3L324 -2L343 -4L360 -3L359 -2L362 -1L358 0L362 1L359 0L359 2L352 3L346 0L346 2L337 3L326 3L327 1L313 2L312 -1L310 -1L312 -4L308 -7L299 -6L292 -9ZM307 4L319 6L312 11L303 11L306 13L299 15L297 7L301 7L299 5L302 4ZM412 149L409 147L409 140L403 138L397 149L381 150L386 148L391 142L398 140L406 132L414 129L423 130L423 133L413 135L417 135L417 137L421 136L420 138L419 140L421 140L422 144L435 147L436 149L427 151L426 153L423 152L419 157L415 156L417 152L415 153L422 148L423 150L427 148L420 148L423 146L421 145L419 148ZM458 117L453 127L455 124L458 125L455 127L459 127L459 130L462 127L466 128L463 131L465 131L464 133L468 132L465 137L469 134L467 136L467 138L469 136L468 142L466 142L466 140L463 141L464 136L458 141L456 140L461 137L443 137L447 132L443 132L448 130L447 128L449 128L450 122L453 118ZM334 20L341 20L341 17L336 15L343 15L337 12L338 10L343 11L338 9L349 6L358 9L359 11L355 13L358 13L356 15L363 13L366 16L365 13L370 14L366 12L372 11L380 13L376 16L380 14L383 15L379 16L381 17L380 19L384 16L383 18L386 17L387 19L387 17L393 17L395 19L389 21L397 19L396 22L392 23L395 22L394 24L398 21L404 21L407 23L400 25L407 25L408 23L411 25L403 27L413 29L403 31L413 33L412 35L415 34L414 36L418 35L418 37L421 35L425 37L421 38L428 39L425 41L433 40L435 42L430 43L432 45L429 47L426 46L426 50L418 46L422 43L416 45L411 42L408 43L411 45L405 44L411 47L413 51L415 50L420 53L418 54L422 56L422 59L419 56L421 61L419 60L419 62L409 56L409 58L404 56L414 62L416 66L395 60L392 58L394 57L387 54L387 52L384 53L380 51L381 53L371 54L367 52L370 48L377 49L378 51L377 48L386 48L382 44L391 38L387 33L384 33L385 31L382 32L378 30L374 32L377 28L371 27L373 26L364 22L362 23L365 24L363 26L325 23L322 20L331 20L320 17L323 9L329 6L340 6L333 11L335 16L340 18ZM362 7L375 9L376 11L369 11L360 11L357 6Z","304":"M480 63L480 60L478 61L474 57L474 55L479 54L473 54L475 52L480 53L480 51L476 49L477 51L472 54L470 48L476 46L470 48L466 45L475 41L465 44L470 40L464 39L469 36L478 37L465 37L467 34L474 35L475 33L466 34L470 31L476 32L475 30L479 29L476 29L479 25L463 23L462 21L477 23L473 20L476 20L468 19L469 17L473 17L466 17L467 15L465 13L466 16L464 18L458 18L457 16L461 13L457 14L458 12L460 13L461 10L457 10L459 8L457 8L455 4L451 4L455 2L447 -1L445 -4L428 -7L407 -5L402 -7L408 -8L395 -10L405 -12L415 -11L415 -13L403 -12L389 -16L390 -18L418 -21L423 -26L412 -25L412 -27L421 -30L428 -29L427 -31L435 -31L435 -34L438 -35L454 -32L443 -35L463 -37L466 -33L468 -37L476 -34L479 -35L476 -37L480 -37Z","484":"M211 212L221 211L234 218L254 216L266 230L268 230L270 226L274 226L282 237L283 242L291 245L289 253L289 264L291 268L289 265L289 267L297 282L299 281L303 284L312 281L314 283L319 269L332 267L333 271L329 277L329 284L327 281L323 286L316 286L316 289L314 289L318 295L313 295L311 302L304 294L301 294L294 297L276 289L273 285L269 285L260 278L257 273L259 272L257 262L250 252L242 246L243 243L244 244L243 242L233 233L229 226L228 219L225 217L220 215L221 224L229 233L232 241L234 241L237 253L242 257L240 261L239 257L231 250L232 246L227 240L225 241L220 236L224 237L224 233L217 226Z","840":"M160 96L158 101L156 100L156 95L151 97L154 94L146 89L145 87L148 87L144 85L144 82L143 84L141 83L139 78L140 84L136 83L136 80L132 80L136 82L133 84L122 78L122 75L123 77L122 75L115 76L115 74L103 75L101 72L94 72L93 70L95 69L89 71L88 69L86 70L87 72L85 73L88 72L86 75L82 74L82 76L72 79L76 76L73 76L75 71L84 71L80 69L83 68L82 67L73 70L68 74L69 76L63 79L67 80L66 82L46 93L46 95L37 98L33 97L27 101L31 96L39 96L39 93L45 91L48 87L50 88L50 82L53 79L48 82L46 81L48 80L45 80L45 83L41 80L31 82L33 79L30 74L32 72L30 75L23 76L19 72L26 72L24 71L26 70L18 70L17 67L15 67L18 66L18 63L22 62L22 59L28 60L31 57L35 58L37 55L34 52L37 51L19 53L12 49L15 48L8 46L21 42L25 42L25 45L33 45L36 43L32 43L30 40L34 43L39 42L25 39L13 33L15 31L25 30L32 23L40 22L41 24L41 21L48 21L53 18L58 19L55 20L56 21L67 20L72 23L107 24L116 27L116 73L124 73L123 75L130 80L139 76L153 92L160 94ZM381 150L397 149L400 141L403 138L407 138L412 151L406 152L406 154L405 152L404 155L399 156L397 159L398 162L396 163L398 166L400 165L400 167L397 166L395 168L394 166L394 168L385 171L384 169L382 179L380 180L378 176L380 175L378 176L380 183L377 189L377 183L375 183L375 178L377 177L374 178L373 183L375 185L371 182L375 185L375 187L372 185L375 187L374 189L373 187L375 190L371 189L376 190L378 196L376 192L377 194L373 194L376 195L376 197L377 195L376 198L372 197L374 198L372 200L375 200L370 201L360 212L357 212L358 214L357 213L354 218L354 224L360 240L359 248L355 249L352 240L349 238L349 230L344 224L338 227L338 224L332 222L330 224L328 224L328 222L319 223L319 225L323 225L321 227L324 230L319 227L320 229L315 229L315 227L311 226L305 225L302 228L300 226L297 232L295 233L296 232L293 231L294 233L291 234L289 238L290 246L283 242L282 237L274 226L270 226L269 229L266 230L254 216L234 218L221 211L211 212L208 206L198 203L197 198L190 189L190 186L192 188L190 185L194 185L188 185L183 174L184 167L182 160L184 144L187 144L184 144L185 140L183 140L181 133L189 134L187 138L190 135L190 139L188 139L191 138L189 130L299 130L299 128L301 128L301 131L314 135L324 135L326 133L340 140L342 143L344 142L344 145L346 144L346 146L350 148L351 159L347 164L349 167L364 161L364 157L373 157L375 153Z"};
   const PX = lo => ((lo + 170) * 4).toFixed(1), PY = la => ((75 - la) * 5).toFixed(1);
   function naDraw() {
-    const sv = $('hlNaSvg'); if (!sv) return;
+    const sv = $('hlNaSvg'), bs = $('hlBigSvg'); if (!sv) return;
     const land = Object.entries(NA).map(([k, d]) => `<path class="land${k === '840' ? ' us' : ''}" d="${d}"/>`).join('');
     const on = s => isFinite(s.la) && isFinite(s.lo) && s.lo > -170 && s.lo < -50 && s.la > 14 && s.la < 75;
-    const other = SP.filter(s => on(s) && !isNew(s)).map(s => `<circle class="sp" cx="${PX(s.lo)}" cy="${PY(s.la)}" r="3"/>`).join('');
-    const nw = SP.filter(s => on(s) && isNew(s) && passPBM(s)).map(s => `<circle class="${FAR && HOME && isFar(s) ? 'fr' : 'nw'}" cx="${PX(s.lo)}" cy="${PY(s.la)}" r="7"><title>${esc(s.ref + ' ' + (s.name || '') + ' · ' + s.call)}</title></circle>`).join('');
+    const tt = s => `<title>${esc((s.ref ? s.ref + ' ' : '') + (s.name || '') + ' · ' + s.call + ' ' + (s.khz / 1000).toFixed(3) + ' ' + s.mode)}</title>`;
+    const other = SP.filter(s => on(s) && !isNew(s) && passPBM(s)).map(s => `<circle class="sp" cx="${PX(s.lo)}" cy="${PY(s.la)}" r="3" data-dk="${esc(keyOf(s))}">${tt(s)}</circle>`).join('');
+    const nw = SP.filter(s => on(s) && isNew(s) && passPBM(s)).map(s => `<circle class="${FAR && HOME && isFar(s) ? 'fr' : 'nw'}" cx="${PX(s.lo)}" cy="${PY(s.la)}" r="6" data-dk="${esc(keyOf(s))}">${tt(s)}</circle>`).join('');
     const hm = HOME ? `<circle class="home" cx="${PX(HOME.lo)}" cy="${PY(HOME.la)}" r="8"/>` : '';
     sv.innerHTML = land + other + nw + hm;
+    if (bs) bs.innerHTML = land + other + nw + hm;
   }
-  $('hlNa').onclick = () => $('hlNa').classList.toggle('big');
+  $('hlNa').onclick = () => { if (!MAPON) { MAPON = true; put('kpcHuntMap', true); mapOn(); } $('hlMapSec').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+  let MAPON = get('kpcHuntMap', true);
+  function mapOn() { $('hlBigMap').hidden = !MAPON; $('hlMapTog').textContent = MAPON ? 'HIDE MAP' : 'SHOW MAP'; }
+  $('hlMapTog').onclick = () => { MAPON = !MAPON; put('kpcHuntMap', MAPON); mapOn(); };
+  document.addEventListener('click', e => {
+    const c = e.target.closest('#hlBigSvg [data-dk]'); if (!c) return;
+    let el = document.querySelector(`#hlSpots [data-k="${CSS.escape(c.dataset.dk)}"]`);
+    if (!el) { F.hide = false; F.nw = false; F.q = ''; saveF(); chips(); draw(); el = document.querySelector(`#hlSpots [data-k="${CSS.escape(c.dataset.dk)}"]`); }
+    if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.classList.remove('fresh'); void el.offsetWidth; el.classList.add('fresh'); }
+  });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') { $('hlNa').classList.remove('big'); closeSheet(); } });
 
-  /* ---------------- start (after the password) ---------------- */
+  /* ---------------- start (Members Room page, no password since Oct 16 evening) ---------------- */
   function startApp() {
-    $('hlLock').hidden = true; $('hlApp').hidden = false;
     const home0 = (HOME && HOME.label && (HOME.label.match(/middle of (.+)$/) || [])[1]) || '';
     const st0 = Object.keys(ST).find(k => ST[k] === home0) || 'KY';
     $('fSt').innerHTML = '<option value="">Any state</option>' + stOpts('');
     $('hSt').innerHTML = '<option value="">…or pick your state</option>' + stOpts('');
     $('nSt').innerHTML = stOpts(st0); $('tSt').innerHTML = stOpts(st0);
-    stick();
-    chips(); bell(); logInfo(); homeInfo(); qsoInit(); awDraw(); fromPotaHash();
-    load(); needLoad(); topDraw(); myStats();
+    /* each part on its own, so one problem never stops the rest of the page */
+    [stick, chips, viewChips, bell, logInfo, homeInfo, mapOn, qsoInit, awDraw, fromPotaHash, load, needLoad, topDraw, myStats].forEach(f => { try { const r = f(); if (r && r.catch) r.catch(e => console.error(f.name, e)); } catch (e) { console.error(f.name, e); } });
     setInterval(() => { const s = Math.max(0, Math.round((next - Date.now()) / 1000)); $('hsAge').textContent = next ? s + 's' : '–'; if (next && Date.now() >= next) { next = 0; load(); } }, 1000);
     setInterval(() => { document.querySelectorAll('.hs').length && draw(); }, 5 * 60e3);
   }
-  /* simple password lock, same password as the Map Rep Tool Box (keeps casual visitors out; not bank-grade security) */
-  const HASH = 'b36efa5ab2718f715ea105ece66b600d914fb0be36ee52de48363e5727d92b73';
-  const sha = async t => { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); };
-  let unlocked = false; try { unlocked = localStorage.getItem('kpcHuntOK') === HASH; } catch (e) {}
-  if (unlocked) startApp();
-  else $('hlLockForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    const h = await sha('kpc-maprep:' + $('hlPw').value.trim().toLowerCase());
-    if (h === HASH) { try { localStorage.setItem('kpcHuntOK', HASH); } catch (x) {} startApp(); }
-    else { $('hlPwMsg').textContent = 'That password is not right.'; $('hlPw').select(); }
-  });
+  startApp();
   window.KPCHunt = { scan, nref, adif, parseAdif };
 })();
