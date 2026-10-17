@@ -4,7 +4,7 @@ For every POTA park in each state: official website (POTA's park list), park typ
 Writes data/parkinfo/US-XX.json  {state, updated, stateSite, parks:{ref:[name, website, type, activation, access, lat, lon, activations, attempts, qsos]}}.
 Automatic, NOT checked by KPC (Kentucky stays hand-checked in kpc-ky-data.json / kpc-campgrounds.json).
 Park details are fetched once and reused; RECHECK=1 fetches them all again. STATES='TN IN ...' picks states."""
-import json, os, time, urllib.request, urllib.parse, datetime, collections
+import json, os, re, time, urllib.request, urllib.parse, datetime, collections
 STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL AL GA NC MS AR MD DC PA MI WI IA NE KS OK AK AZ CA CO CT DE FL HI ID LA ME MA MN MT NV NH NJ NM NY ND OR RI SD TX UT VT WA WY').split()
 UA = {'User-Agent': 'KPC park links (kentuckyportableclub.github.io)'}
 OUT = 'data/parkinfo'; os.makedirs(OUT, exist_ok=True)
@@ -16,6 +16,11 @@ def get(u):
     raise err
 def note(t, m): print(f'::notice title={t}::{m}')
 clean = lambda v: '' if v in (None, 'None', 'null') else str(v).strip()
+def fixurl(u):
+    """POTA's list has some websites without https:// (e.g. 'parksandrecreation.idaho.gov'), which broke links"""
+    u = clean(u)
+    if u and not re.match(r'^https?://', u, re.I) and re.match(r'^[\w.-]+\.[a-z]{2,}(/|$)', u, re.I): u = 'https://' + u
+    return u if re.match(r'^https?://', u, re.I) else ''
 total = 0
 COORD = {}
 for st in STATES:
@@ -29,14 +34,14 @@ for st in STATES:
     for p in L:
         ref = p.get('reference', '')
         if not ref.startswith('US-'): continue
-        web = clean(p.get('website'))
+        web = fixurl(p.get('website'))
         o = old.get(ref)
         if o and not os.environ.get('RECHECK'): typ, act, acc = o[2], o[3], o[4]
         else:
             try:
                 d = get('https://api.pota.app/park/' + urllib.parse.quote(ref)); fetched += 1
                 typ, act, acc = clean(d.get('parktypeDesc')), clean(d.get('activationMethods')), clean(d.get('accessMethods'))
-                web = web or clean(d.get('website'))
+                web = web or fixurl(d.get('website'))
             except Exception: typ, act, acc = (o[2], o[3], o[4]) if o else ('', '', '')
             time.sleep(.25)
         try: la, lo = round(float(p.get('latitude')), 5), round(float(p.get('longitude')), 5)

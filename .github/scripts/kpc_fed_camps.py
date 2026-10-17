@@ -33,34 +33,59 @@ try:
         if not R or off >= int(j.get('METADATA', {}).get('RESULTS', {}).get('TOTAL_COUNT', 0)): break
 except Exception as e:
     note('RIDB FAILED', f'{e} (401/403 = the key is wrong or not active yet)'); raise SystemExit(0)
-total = 0
+def row(f):
+    if 'campground' not in (f.get('FacilityTypeDescription') or '').lower() or f.get('Enabled') is False: return None
+    la, lo = f.get('FacilityLatitude'), f.get('FacilityLongitude')
+    try: la, lo = round(float(la), 5), round(float(lo), 5)
+    except Exception: return None
+    if not la or not lo: return None
+    nm = re.sub(r'\s+', ' ', (f.get('FacilityName') or '').strip())
+    kind = 's' if re.search(r'picnic|pavilion|day use|shelter', nm, re.I) and not re.search(r'camp', nm, re.I) else 'c'
+    if nm.isupper(): nm = re.sub(r"'S\b", "'s", nm.title())
+    nm = re.sub(r'\b(Ky|Tn|Va|Wv|Oh|Mo|Il|In)\b(?=\W*$)', lambda m: m.group(1).upper(), nm)
+    fid = str(f.get('FacilityID'))
+    return [fid, nm, la, lo, ORG.get(f.get('ParentOrgID'), ''), 1 if f.get('Reservable') else 0, 'https://www.recreation.gov/camping/campgrounds/' + fid, kind]
+def pages(q):
+    off = 0
+    while True:
+        j = get('facilities', dict(q, limit=50, offset=off)); R = j.get('RECDATA', [])
+        for f in R: yield f
+        off += len(R)
+        if not R or off >= int(j.get('METADATA', {}).get('RESULTS', {}).get('TOTAL_COUNT', 0)): break
+        time.sleep(.3)
+BY, ok = {}, set()
 for st in STATES:
     try:
-        camps, off = [], 0
-        while True:
-            j = get('facilities', {'state': st, 'limit': 50, 'offset': off}); R = j.get('RECDATA', [])
-            for f in R:
-                if 'campground' not in (f.get('FacilityTypeDescription') or '').lower(): continue
-                if f.get('Enabled') is False: continue
-                la, lo = f.get('FacilityLatitude'), f.get('FacilityLongitude')
-                try: la, lo = round(float(la), 5), round(float(lo), 5)
-                except Exception: continue
-                if not la or not lo: continue
-                nm = re.sub(r'\s+', ' ', (f.get('FacilityName') or '').strip())
-                kind = 's' if re.search(r'picnic|pavilion|day use|shelter', nm, re.I) and not re.search(r'camp', nm, re.I) else 'c'
-                if nm.isupper(): nm = re.sub(r"'S\b", "'s", nm.title())
-                nm = re.sub(r'\b(Ky|Tn|Va|Wv|Oh|Mo|Il|In)\b(?=\W*$)', lambda m: m.group(1).upper(), nm)
-                fid = str(f.get('FacilityID'))
-                camps.append([fid, nm, la, lo,
-                              ORG.get(f.get('ParentOrgID'), ''), 1 if f.get('Reservable') else 0,
-                              'https://www.recreation.gov/camping/campgrounds/' + fid, kind])
-            off += len(R)
-            if not R or off >= int(j.get('METADATA', {}).get('RESULTS', {}).get('TOTAL_COUNT', 0)): break
-            time.sleep(.3)
-        camps.sort(key=lambda c: c[1])
-        json.dump({'state': st, 'updated': datetime.date.today().isoformat(), 'camps': camps},
-                  open(f'{OUT}/US-{st}.json', 'w'), separators=(',', ':'))
-        total += len(camps)
-        note(f'US-{st}', f'{sum(c[7]=="c" for c in camps)} campgrounds + {sum(c[7]=="s" for c in camps)} picnic shelters ({sum(c[5] for c in camps)} reservable), agencies: ' + ', '.join(sorted({c[4] for c in camps if c[4]})))
+        BY[st] = {r[0]: r for r in (row(f) for f in pages({'state': st})) if r}; ok.add(st)
     except Exception as e: note(f'US-{st} FAILED', f'{e}; kept the old file')
+# Oct 16: some states (Louisiana, Delaware) came back empty by state name, so also read EVERY facility once and
+# put each campground in the state its pin is in (kpc-us-states.json outlines).
+def inside(x, y, ring):
+    c = False; j = len(ring) - 1
+    for i in range(len(ring)):
+        xi, yi = ring[i]; xj, yj = ring[j]
+        if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / (yj - yi) + xi: c = not c
+        j = i
+    return c
+try:
+    SHAPES = [(b['a'], [pl[0] for pl in b['p']]) for b in json.load(open('kpc-us-states.json'))]
+    def state_of(la, lo):
+        for a, rings in SHAPES:
+            if a in BY and any(inside(lo, la, r) for r in rings): return a
+        return ''
+    added = 0
+    for f in pages({}):
+        r = row(f)
+        if not r: continue
+        a = state_of(r[2], r[3])
+        if a and r[0] not in BY[a]: BY[a][r[0]] = r; added += 1
+    note('Nationwide pass', f'{added} campgrounds added that the state search missed')
+except Exception as e: note('Nationwide pass FAILED', str(e)[:150])
+total = 0
+for st in STATES:
+    if st not in ok and not BY.get(st): continue
+    camps = sorted(BY.get(st, {}).values(), key=lambda c: c[1])
+    json.dump({'state': st, 'updated': datetime.date.today().isoformat(), 'camps': camps}, open(f'{OUT}/US-{st}.json', 'w'), separators=(',', ':'))
+    total += len(camps)
+    if st in ('LA', 'DE', 'TN', 'KY') or len(camps) < 3: note(f'US-{st}', f'{sum(c[7]=="c" for c in camps)} campgrounds + {sum(c[7]=="s" for c in camps)} picnic shelters')
 note('Federal campgrounds done', f'{total} campgrounds in {len(STATES)} states')
