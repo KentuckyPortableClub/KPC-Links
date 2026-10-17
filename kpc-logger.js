@@ -907,7 +907,7 @@
     $('catFollow').onchange = () => { SET.catF = $('catFollow').checked; saveSet(); KPCCat.set({ follow: SET.catF }); };
     $('catRadio').onchange = () => { const p = CPRE[$('catRadio').value]; if (!p) return; KPCCat.set({ radio: $('catRadio').value, proto: p[0], baud: p[1], civ: p[2] || '94', model: p[3] || '' });
       $('catMsg').textContent = 'Settings filled in for your radio. Now press CONNECT MY RADIO.' + (p[0] === 'yaesu' ? ' Set the radio\'s CAT RATE menu to ' + p[1] + '.' : p[0] === 'icom' ? ' The radio\'s CI-V address should be ' + p[2] + '.' : ''); };
-    if (!KPCCat.supported()) { $('catGo').disabled = true; $('catMsg').textContent = 'This browser can\'t talk to a radio. Use Chrome or Edge on a computer, with the radio plugged in by USB.'; }
+    if (!KPCCat.supported()) { $('catGo').disabled = true; $('catMsg').textContent = 'This browser can\'t talk to a radio. Use Chrome or Edge on a computer, or Chrome on an Android phone (newer versions, with a USB-C cable). iPhones can\'t do this yet.'; }
     $('catGo').onclick = async () => {
       if (catOk()) { await KPCCat.disconnect(); KPCCat.set({ on: false }); catDraw(); return; }
       if (!KPCCat.get().proto || !$('catRadio').value && !KPCCat.get().radio) { $('catMsg').textContent = 'Pick your radio first.'; return; }
