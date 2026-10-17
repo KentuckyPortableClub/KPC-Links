@@ -645,3 +645,30 @@ main#hl .hs-a .hc{color:#cfc6b4}
 .dk-who .pv{color:var(--g2)}.dk-who .pv.nw{color:var(--gr)}
 .dk-who .lk{font-style:italic}
 .dk-q .c small.on{font:11px Arial;color:var(--mu);font-weight:400}
+
+/* Oct 17 (Brandon): the spot TABLE is tighter so more spots fit; the orange 'NEW TO YOU' square on the left of the
+   streaming banner is gone so the calls are easier to read; the computer log box gets the same dressed-up look as phones */
+.hl-tick-k{display:none!important}
+.hl-st{font-size:12.5px}
+.hl-st th{padding:5px 6px;font-size:9.5px}
+.hl-st td{padding:3px 6px;line-height:1.25}
+.hl-st td.c,.hl-st td.f{font-size:13px}
+.hl-st td:nth-child(5){max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hl-st td.a button{padding:2px 5px;font-size:11px;margin-right:2px}
+.hl-st .fv{padding:0 3px 0 0;font-size:12px}
+.hl-st .hb{font-size:8.5px;padding:0 5px}
+@media(min-width:1100px){
+ main#hl[data-desk="1"] .hl-dk{border:1px solid rgba(240,201,107,.6);border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.6),0 0 30px rgba(240,180,80,.12)}
+ main#hl[data-desk="1"] .dk-hd{padding:12px 14px;background:linear-gradient(90deg,rgba(12,7,3,.92),rgba(12,7,3,.5)),url('hero-lodge.jpg') center 42%/cover;border-bottom:1px solid rgba(240,201,107,.45)}
+ main#hl[data-desk="1"] .dk-hd>b{font-size:16px;text-shadow:0 2px 8px #000}
+ main#hl[data-desk="1"] .dk-hd #dkN{color:#e9dcc0}
+ main#hl[data-desk="1"] .dk-dock{padding:10px 14px 14px}
+ main#hl[data-desk="1"] .dk-r2{align-items:flex-end}
+ main#hl[data-desk="1"] .dk-dock #dCall{font-size:21px}
+ main#hl[data-desk="1"] .dk-x{height:44px;width:44px}
+ main#hl[data-desk="1"] .dk-go{height:54px;width:54px;padding:0;border-radius:50%;font-size:0;background:radial-gradient(circle at 35% 30%,#ffe7a8,#e3a43a 60%,#a56a12);color:#2a1a05;box-shadow:0 6px 18px rgba(0,0,0,.55),0 0 18px rgba(255,170,60,.35)}
+ main#hl[data-desk="1"] .dk-go:before{content:'⬆';font-size:25px}
+ main#hl[data-desk="1"] .hl-dk[data-fx=stars] .dk-go{background:radial-gradient(circle at 35% 30%,#e8f1ff,#7aa7ff 60%,#2a4fa8);color:#061234}
+ main#hl[data-desk="1"] .hl-dk[data-fx=fireworks] .dk-go{background:radial-gradient(circle at 35% 30%,#ffd1dc,#ef476f 60%,#8e1838);color:#fff}
+ main#hl[data-desk="1"] .dk-clk{font-size:14px}
+}
