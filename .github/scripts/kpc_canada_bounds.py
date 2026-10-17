@@ -10,6 +10,8 @@ The KPC US Trip Planner's SHOW THIS PARK'S OUTLINE draws these for CA- parks (la
 
 How a park is matched: CPCAD areas within about 3 km of the POTA pin (the pin is often at the entrance, outside
 the line), best name match after dropping generic words, ties to the area that holds the pin.
+If CPCAD has no match, the provincial maps (Ontario, Alberta, Quebec, Saskatchewan, Manitoba, BC parks + recreation sites) and
+Parks Canada's own places layer are tried (EXTRA list; properties.srcShort names the source).
 Resumable: parks already saved are skipped unless RECHECK=1; misses are retried after 30 days.
 MODE=info prints the service's layers and fields only (use it first if the service changes).
 """
@@ -86,6 +88,108 @@ def layer_info():
     return lid, info, fields, F
 
 
+# ---------------------------------------------------------------- provincial + Parks Canada maps (Brandon Oct 17: 'yes')
+# Used only when CPCAD has no name match near the pin. Each source: label, kind, url, name fields (None = guess), bbox (lon/lat).
+CA = (-141.1, 41.6, -52.5, 83.2)
+EXTRA = [
+    ('Parks Canada', 'arcgis', 'https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Places_Public_lieux_public_APCA/FeatureServer', None, CA),
+    ('Ontario Parks (Land Information Ontario)', 'arcgis', 'https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4', ['PROTECTED_AREA_NAME_ENG', 'PROTECTED_AREA_NAME_FR', 'COMMON_SHORT_NAME'], (-95.2, 41.6, -74.3, 56.9)),
+    ('Ontario conservation reserves (Land Information Ontario)', 'arcgis', 'https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/2', ['PROTECTED_AREA_NAME_ENG', 'PROTECTED_AREA_NAME_FR', 'COMMON_SHORT_NAME'], (-95.2, 41.6, -74.3, 56.9)),
+    ('Alberta Parks (Government of Alberta)', 'arcgis', 'https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer/0', ['NAME', 'OC_NAME'], (-120.1, 48.9, -109.9, 60.1)),
+    ('Québec protected areas register (MELCCFP)', 'arcgis', 'https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23', ['TOPONYME', 'DESIGNOM'], (-79.8, 44.9, -57.0, 62.7)),
+    ('Saskatchewan Parks (Government of Saskatchewan)', 'arcgis', 'https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer', None, (-110.1, 48.9, -101.3, 60.1)),
+    ('Manitoba Parks (Government of Manitoba)', 'arcgis', 'https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Parks/FeatureServer', None, (-102.2, 48.9, -88.9, 60.1)),
+    ('BC Parks (BC Geographic Warehouse)', 'wfs', 'WHSE_TANTALIS.TA_PARK_ECORES_PA_SVW', ['PROTECTED_LANDS_NAME'], (-139.2, 48.2, -114.0, 60.1)),
+    ('BC recreation sites (BC Geographic Warehouse)', 'wfs', 'WHSE_FOREST_TENURE.FTEN_RECREATION_POLY_SVW', ['PROJECT_NAME', 'SITE_NAME'], (-139.2, 48.2, -114.0, 60.1)),
+]
+BCWFS = 'https://openmaps.gov.bc.ca/geo/pub/wfs'
+NAMEY = re.compile(r'(name|nom|toponym|title|site)', re.I)
+_layers = {}
+
+
+def arc_layers(url):
+    """Polygon layers of a service (or the one layer given), with their name fields."""
+    if url in _layers:
+        return _layers[url]
+    out = []
+    try:
+        if re.search(r'/(MapServer|FeatureServer)/\d+$', url):
+            ids = [url]
+        else:
+            root = get(url, {'f': 'json'})
+            ids = [f"{url}/{l['id']}" for l in root.get('layers') or [] if not l.get('subLayerIds')]
+        for lu in ids[:12]:
+            i = get(lu, {'f': 'json'})
+            if 'Polygon' not in str(i.get('geometryType', '')):
+                continue
+            fl = [f['name'] for f in i.get('fields', []) if 'String' in f.get('type', '')]
+            out.append((lu, i.get('objectIdField') or 'OBJECTID', [f for f in fl if NAMEY.search(f) and not re.search(r'url|link|code|id$', f, re.I)][:4],
+                        'geoJSON' in str(i.get('supportedQueryFormats', ''))))
+    except Exception as e:
+        note('Extra source failed', f'{url}: {str(e)[:120]}')
+    _layers[url] = out
+    return out
+
+
+def rings2geo(g):
+    rings = (g or {}).get('rings') or []
+    return {'type': 'MultiPolygon', 'coordinates': [[r] for r in rings]} if rings else None
+
+
+def best_of(nm, cands):
+    sc = [(max(sim(nm, a.get(f) or '') for f in fl) if fl else 0, a, fl) for a, fl in cands]
+    sc.sort(key=lambda x: -x[0])
+    return sc[0] if sc else (0, None, None)
+
+
+def extra_one(ref, nm, la, lo):
+    for label, kind, url, nf, bb in EXTRA:
+        if not (bb[0] <= lo <= bb[2] and bb[1] <= la <= bb[3]):
+            continue
+        for d in (0.03, 0.12, 0.3):
+            try:
+                if kind == 'wfs':
+                    j = get(BCWFS, {'service': 'WFS', 'version': '2.0.0', 'request': 'GetFeature', 'typeName': url, 'outputFormat': 'json', 'srsName': 'EPSG:4326',
+                                    'count': 60, 'bbox': f'{la - d},{lo - d},{la + d},{lo + d},urn:ogc:def:crs:EPSG::4326'})
+                    feats = j.get('features') or []
+                    cands = [(f.get('properties') or {}, nf) for f in feats]
+                    s_, best, fl = best_of(nm, cands)
+                    if best is not None and s_ >= 0.5:
+                        f = feats[[c[0] for c in cands].index(best)]
+                        name = next((best.get(k) for k in nf if best.get(k)), nm)
+                        return {'geometry': f['geometry'], 'cpcad': str(name).title() if str(name).isupper() else name, 'src': label}
+                else:
+                    for lu, oid, fl0, gj in arc_layers(url):
+                        fl = nf or fl0
+                        if not fl:
+                            continue
+                        j = get(lu + '/query', {'f': 'json', 'geometry': f'{lo - d},{la - d},{lo + d},{la + d}', 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
+                                                'spatialRel': 'esriSpatialRelIntersects', 'outFields': ','.join([oid] + fl), 'returnGeometry': 'false'})
+                        cands = [(f['attributes'], fl) for f in j.get('features') or []]
+                        s_, best, _ = best_of(nm, cands)
+                        if best is None or s_ < 0.5:
+                            continue
+                        geo = None
+                        for off in (0.0004, 0.002, 0.006):
+                            q = {'objectIds': best[oid], 'outSR': 4326, 'returnGeometry': 'true', 'maxAllowableOffset': off, 'geometryPrecision': 5, 'outFields': oid}
+                            if gj:
+                                g = get(lu + '/query', dict(q, f='geojson'))
+                                fs = g.get('features') or []
+                                geo = fs[0].get('geometry') if fs else None
+                            else:
+                                g = get(lu + '/query', dict(q, f='json'))
+                                fs = g.get('features') or []
+                                geo = rings2geo(fs[0].get('geometry')) if fs else None
+                            if not geo or len(json.dumps(geo)) < 450_000:
+                                break
+                        if geo:
+                            name = next((best.get(k) for k in fl if best.get(k)), nm)
+                            return {'geometry': geo, 'cpcad': str(name).title() if str(name).isupper() else name, 'src': label}
+            except Exception as e:
+                break
+    return None
+
+
 def main():
     lid, info, fields, F = layer_info()
     if os.environ.get('MODE') == 'info':
@@ -118,6 +222,16 @@ def main():
     note('Canada boundaries', f'{len(parks)} Canadian POTA parks; {len(idx["found"])} already saved; checking {len(todo)} now')
     outf = ','.join(x for x in [F['oid'], F['name'], F.get('namef'), F['type'], F['owner'], F['mgr'], F['loc']] if x)
 
+    def extra_try(ref, nm, la, lo, why):
+        if os.environ.get('NO_EXTRA') == '1':
+            return ref, None, why
+        x = extra_one(ref, nm, la, lo)
+        if not x:
+            return ref, None, why
+        feat = {'type': 'Feature', 'properties': {'ref': ref, 'name': nm, 'cpcad': x['cpcad'], 'type': None, 'owner': None, 'manager': None,
+                'src': x['src'], 'srcShort': x['src']}, 'geometry': x['geometry']}
+        return ref, feat, 'ok'
+
     def one(r):
         if time.time() > DEADLINE:
             return r[1], None, 'time'
@@ -136,7 +250,7 @@ def main():
             if any(simb(nm, a, F) >= 0.5 for a in cands):
                 break
         if not cands:
-            return ref, None, 'none'
+            return extra_try(ref, nm, la, lo, 'none')
         # does the pin sit inside? (one extra point query, only when there is a choice)
         inside = set()
         if len(cands) > 1:
@@ -150,7 +264,7 @@ def main():
         best = scored[0]
         s = simb(nm, best, F)
         if s < 0.5 and not (best.get(F['oid']) in inside and len(words(nm)) == 0):
-            return ref, None, f'no name match (closest: {best.get(F["name"])})'
+            return extra_try(ref, nm, la, lo, f'no name match (closest: {best.get(F["name"])})')
         oid = best[F['oid']]
         geo = None
         for off in (0.0004, 0.002, 0.006):
@@ -182,7 +296,7 @@ def main():
             if feat:
                 txt = json.dumps(feat, separators=(',', ':'))
                 open(os.path.join(OUT, ref + '.json'), 'w').write(txt)
-                idx['found'][ref] = [feat['properties']['cpcad'], round(len(txt) / 1024)]
+                idx['found'][ref] = [feat['properties']['cpcad'], round(len(txt) / 1024)] + ([feat['properties']['srcShort']] if feat['properties'].get('srcShort') else [])
                 idx['miss'].pop(ref, None); done += 1
             elif why.startswith('err'):
                 err += 1
