@@ -1,10 +1,11 @@
-<link rel="stylesheet" href="kpc-hunt.css?v=20261016i">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261016k">
 @@HEADER@@
 <main id="hl" data-keep-light data-theme="lodge">
 <div id="hlApp">
 <div class="hl-far" id="hlFar" hidden><span class="hl-far-k">FAR AWAY NEW ONES</span><div class="hl-far-run"><div class="hl-far-track" id="hlFarT"></div></div></div>
 
-<section class="hl-hero"><div class="hl-in">
+<section class="hl-hero"><div class="hl-embers" aria-hidden="true"><i style="--x:8%;--d:0s;--t:7s"></i><i style="--x:17%;--d:2.1s;--t:9s"></i><i style="--x:29%;--d:4s;--t:8s"></i><i style="--x:41%;--d:1.2s;--t:10s"></i><i style="--x:53%;--d:3.3s;--t:7.5s"></i><i style="--x:64%;--d:0.6s;--t:9.5s"></i><i style="--x:76%;--d:2.7s;--t:8s"></i><i style="--x:88%;--d:4.4s;--t:10s"></i><i style="--x:94%;--d:1.8s;--t:7s"></i></div><div class="hl-in">
 <p class="hl-eyebrow">KPC HUNTERS LOUNGE • POTA • WWFF • SOTA</p>
 <h1>HUNTERS <span>LOUNGE</span></h1>
 <p class="hl-copy">Live spots with the parks you've already worked tucked out of the way. Load your log once, and every park that's new to you lights up and rolls across the screen.</p>
@@ -14,7 +15,7 @@
  <div><b id="hsLog">0</b><span>IN YOUR LOG</span></div>
  <div><b id="hsAge">–</b><span>NEXT CHECK</span></div>
 </div>
-<div class="hl-acts"><a class="hl-btn gold" href="#hPota">⭐ GET MY PARKS FROM POTA</a><a class="hl-btn ghost" href="#hlAw">🏅 MY AWARDS</a><a class="hl-btn ghost" href="#hlNeed">🎯 PARKS I NEED</a><a class="hl-btn ghost" href="#hlTop">🏆 TOP ACTIVATORS</a></div>
+<div class="hl-acts"><a class="hl-btn gold" href="#hPota">⭐ GET MY PARKS FROM POTA</a><a class="hl-btn ghost" href="#hlNeed">🎯 PARKS I NEED</a><a class="hl-btn ghost" href="#hlTop">🏆 TOP ACTIVATORS</a></div>
 <div class="hl-theme" role="group" aria-label="Look">LOOK: <button type="button" class="hl-chip" data-theme-pick="lodge">🔥 CABIN LODGE</button><button type="button" class="hl-chip" data-theme-pick="night">🌌 NIGHT SKY</button></div>
 </div></section>
 
@@ -22,19 +23,19 @@
  <div class="hl-tick-k"><span class="dot"></span>NEW TO YOU</div>
  <button type="button" class="hl-na" id="hlNa" aria-label="Map of new parks on the air (tap to enlarge)"><svg viewBox="0 0 480 305" id="hlNaSvg" aria-hidden="true"></svg><span class="hl-na-cap">Blinking green = new to you in your range · blue = new but far · grey = other spots · gold ring = home. Tap to close.</span></button>
  <div class="hl-tick-run"><div class="hl-tick-track" id="hlTickT"><span class="hl-wait">Waiting for a park that's new to you…</span></div></div>
- <button type="button" class="hl-bell" id="hlBell" aria-pressed="false" title="Alert me">🔕 ALERT OFF</button>
+ <button type="button" class="hl-bell" id="hlFlame" aria-pressed="true" title="Flames when a new park comes on">🔥 FLAMES</button><button type="button" class="hl-bell" id="hlBell" aria-pressed="false" title="Alert me">🔕 ALERT OFF</button>
 </section>
 
 <div class="hl-split">
 <section class="hl-mapsec" id="hlMapSec"><div class="hl-in">
-<div class="hl-maphd"><b>🗺 LIVE MAP</b><span>Blinking green = new to you · grey = other spots. Tap a dot to jump to it.</span><button type="button" class="hl-btn line sm" id="hlMapTog">HIDE MAP</button></div>
-<div class="hl-bigmap" id="hlBigMap"><svg viewBox="0 0 480 305" id="hlBigSvg" role="img" aria-label="Map of spots across North America"></svg></div>
+<div class="hl-maphd"><b>🗺 LIVE MAP</b><span>Blinking green = new to you · gold = parks you’ve hunted · grey = other spots. Tap a dot for the station.</span><button type="button" class="hl-btn line sm" id="hlMapTog">HIDE MAP</button></div>
+<div class="hl-bigmap" id="hlBigMap"><div id="hlLmap" role="region" aria-label="Map of spots"></div><div class="hl-mapbtns"><button type="button" class="hl-chip" data-mz="na">NORTH AMERICA</button><button type="button" class="hl-chip" data-mz="us">USA</button><button type="button" class="hl-chip" data-mz="world">WORLD</button></div></div>
 </div></section>
 
 <section class="hl-sec"><div class="hl-in">
 <div class="hl-filters">
  <div class="hl-row" role="group" aria-label="Program"><button type="button" class="hl-chip" data-g="p" data-v="POTA">POTA</button><button type="button" class="hl-chip" data-g="p" data-v="WWFF">WWFF / KFF</button><button type="button" class="hl-chip" data-g="p" data-v="SOTA">SOTA</button><button type="button" class="hl-chip" data-g="p" data-v="DXPED">DXPEDITIONS</button><button type="button" class="hl-chip" data-g="p" data-v="EVENT">SPECIAL EVENTS</button><button type="button" class="hl-chip" data-g="p" data-v="DX">DX CLUSTER</button></div>
- <div class="hl-row" role="group" aria-label="Show"><button type="button" class="hl-chip big" id="fHide" aria-pressed="false">🙈 HIDE PARKS I'VE WORKED</button><button type="button" class="hl-chip big" id="fNew" aria-pressed="false">✨ NEW TO ME ONLY</button><button type="button" class="hl-chip big" id="fRange" aria-pressed="false" hidden>📏 IN MY RANGE ONLY</button></div>
+ <div class="hl-row" role="group" aria-label="Show"><button type="button" class="hl-chip big" id="fHide" aria-pressed="false">🙈 HIDE PARKS I'VE HUNTED</button><button type="button" class="hl-chip big" id="fQrt" aria-pressed="false">🚫 HIDE QRT</button><button type="button" class="hl-chip big" id="fNew" aria-pressed="false">✨ NEW TO ME ONLY</button><button type="button" class="hl-chip big" id="fRange" aria-pressed="false" hidden>📏 IN MY RANGE ONLY</button></div>
  <details class="hl-dd"><summary>BAND <i id="sBand">ALL</i></summary><div class="hl-row" id="fBands"></div></details>
  <details class="hl-dd"><summary>MODE <i id="sMode">ALL</i></summary><div class="hl-row" id="fModes"></div></details>
  <details class="hl-dd"><summary>HIDE COUNTRIES <i id="sCty">NONE</i></summary><div class="hl-row" id="fCty"></div><p class="hl-src" style="margin:4px 0 0">Tap a country to hide its spots (tap again to bring them back). Only countries on the air right now are listed.</p></details>
@@ -57,11 +58,6 @@
 <div class="hl-row"><label class="hl-lab">My call <input id="lgMy" autocomplete="off" autocapitalize="characters" placeholder="Your call" style="width:130px"></label><label class="hl-lab">My grid <input id="lgGrid" autocomplete="off" maxlength="6" placeholder="EM77" style="width:100px"></label><input type="search" id="lgQ" placeholder="Search my log…" aria-label="Search my log"></div>
 <div class="hl-logwrap"><div id="lgList"><div class="hl-empty">No contacts logged on this device yet.</div></div></div>
 <p class="hl-src"><b>Putting it in QRZ:</b> tap DOWNLOAD FOR QRZ, then open your <a href="https://logbook.qrz.com" target="_blank" rel="noopener">QRZ Logbook</a> and use its ADIF import to add the file. The same file works in LoTW (through TQSL) and most logging programs. Hunters don't upload to POTA: your credit comes from the activator's log. <b>•</b> = not downloaded yet.</p>
-</div></section>
-
-<section class="hl-sec alt" id="hlAw"><div class="hl-in">
-<p class="hl-k">FROM POTA</p><h2>🏅 My POTA awards</h2>
-<div id="awBox"><div class="hl-empty">Tap the <a href="#hPota">⭐ bookmark</a> on pota.app and your award progress comes over too: parks, Operator to Operator, Repeat Offender, N1CC, Six Pack, Kilo, Park to Park, Early/Late Shift, DX entities and states.</div></div>
 </div></section>
 
 <section class="hl-sec" id="hlSetup"><div class="hl-in">
@@ -146,6 +142,9 @@
 <p class="hl-dupe" id="fDupe" hidden></p>
 <div class="hl-row" style="margin-top:12px"><button type="submit" class="hl-btn gold">✓ SAVE</button><button type="button" class="hl-btn line" id="fNow">⏱ TIME = NOW</button><button type="button" class="hl-btn line" id="fCancel">CANCEL</button></div>
 </form></div></div>
+<canvas class="hl-fire" id="hlFire" aria-hidden="true"></canvas>
+<div class="hl-firemsg" id="hlFireMsg" aria-live="polite"></div>
 </main>
 @@FOOTER@@
-<script src="kpc-hunt.js?v=20261016i"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="kpc-hunt.js?v=20261016k"></script>
