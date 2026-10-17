@@ -49,8 +49,19 @@
         const g = {};
         refs.forEach(x => { const m = String(x || '').match(/^([A-Z0-9]+)-(\d+)$/); if (m) (g[m[1]] = g[m[1]] || []).push(+m[2]); });
         /* the data rides along in window.name (no size limit like a web address has), the address just says to look */
-        window.name = 'KPCPOTA:' + JSON.stringify({ refs: Object.keys(g).map(p => p + '~' + g[p].join('.')).join('_'), n: refs.length, aw: t ? aw : null });
-        location.href = HERE + '#kpcpota';
+        const json = JSON.stringify({ refs: Object.keys(g).map(p => p + '~' + g[p].join('.')).join('_'), n: refs.length, aw: t ? aw : null });
+        window.name = 'KPCPOTA:' + json;
+        /* iPhone Safari wipes window.name when the page changes sites, so the data ALSO rides in the address, squeezed
+           (deflate + base64url, about a fifth of the size). Older browsers without CompressionStream use window.name only. */
+        let z = '';
+        try {
+          if (window.CompressionStream) {
+            const buf = await new Response(new Blob([json]).stream().pipeThrough(new CompressionStream('deflate-raw'))).arrayBuffer();
+            let bin = ''; const u = new Uint8Array(buf); for (let i = 0; i < u.length; i += 8192) bin += String.fromCharCode.apply(null, u.subarray(i, i + 8192));
+            z = btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+          }
+        } catch (e) { z = ''; }
+        location.href = HERE + '#kpcpota' + (z && z.length < 1500000 ? '&z=' + z : '');
       } catch (e) { alert('Could not get your parks: ' + e.message); }
     })();
   }
