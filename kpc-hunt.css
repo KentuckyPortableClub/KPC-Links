@@ -781,3 +781,6 @@ html.hl-kb .hl-toast{bottom:auto!important;top:8px!important}
  .hl-cx-track{padding-left:12px}
  html.hl-kb .hl-cx{display:none!important}
 }
+.hl-bell.hl-amb{white-space:nowrap}
+.hl-bell.hl-amb[aria-pressed=true]{background:rgba(255,140,40,.25);color:#ffd27a}
+@media(max-width:600px){.hl-bell.hl-amb{font-size:0;padding:0 9px}.hl-bell.hl-amb::before{content:'🪵';font-size:16px}}
