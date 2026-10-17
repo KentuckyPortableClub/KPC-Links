@@ -1,13 +1,13 @@
-/* KPC page LOOKS (Oct 17 2026, Brandon: looks, no effects, for the CW Practice Room, Happening Now and Voice Pileup Practice).
+/* KPC page LOOKS (Oct 17 2026, Brandon: looks, no effects, for the CW Practice Room, Happening Now and Voice Pileup Practice; Oct 17 also Community, Activation Board, Park Notes, Campgrounds + AURORA / OVERLOOK from Brandon's pictures).
    Mount: <div id="kpc-looks"></div>. 🏕 CLASSIC = the page as it was; 🔥 CABIN LODGE / 🌌 NIGHT SKY / 🔥 CAMPFIRE = dark colours with a
    blurred club picture behind every section (fixed, so it reads as one backdrop); 🌑 DARK = plain dark. Saved per page in
    localStorage kpcLook:<page>; kpc-theme.js reads it before the page draws (no flash) and turns the dark colours on for it. */
 (function () {
   const mount = document.getElementById('kpc-looks'); if (!mount) return;
   const H = document.documentElement, PAGE = location.pathname.split('/').pop() || 'index.html', KEY = 'kpcLook:' + PAGE;
-  const L = [['classic', '🏕 CLASSIC'], ['lodge', '🪵 CABIN LODGE'], ['night', '🌌 NIGHT SKY'], ['camp', '🔥 CAMPFIRE'], ['dark', '🌑 DARK']];
-  const PIC = { lodge: 'bg-lodge', night: 'bg-night', camp: 'bg-campsite' }, VEIL = { lodge: '20,12,6', night: '6,10,22', camp: '18,10,6', dark: '8,8,8' };
-  const ACC = { lodge: '#e3a24a', night: '#7fd3e8', camp: '#ff9a3c', dark: '#ff8a3d' };
+  const L = [['classic', '🏕 CLASSIC'], ['lodge', '🪵 CABIN LODGE'], ['night', '🌌 NIGHT SKY'], ['camp', '🔥 CAMPFIRE'], ['aurora', '🌠 AURORA'], ['overlook', '🌅 OVERLOOK'], ['dark', '🌑 DARK']];
+  const PIC = { lodge: 'bg-lodge', night: 'bg-night', camp: 'bg-campsite', aurora: 'bg-aurora', overlook: 'bg-overlook' }, VEIL = { lodge: '20,12,6', night: '6,10,22', camp: '18,10,6', aurora: '8,6,22', overlook: '22,12,8', dark: '8,8,8' };
+  const ACC = { lodge: '#e3a24a', night: '#7fd3e8', camp: '#ff9a3c', aurora: '#9be29a', overlook: '#ffb35c', dark: '#ff8a3d' };
   const st = document.createElement('style');
   st.textContent = '.kpl{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;padding:10px 12px;background:#0b0b0b;border-bottom:1px solid rgba(213,166,58,.35)}'
     + '.kpl span{font:900 11px Arial;letter-spacing:1.6px;color:#a59e8c;margin-right:2px}'
