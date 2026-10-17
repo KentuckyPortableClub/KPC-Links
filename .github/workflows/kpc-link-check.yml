@@ -1,5 +1,6 @@
 name: KPC Link Check
-# Every Sunday: checks every link and image on every page (our own pages and outside websites).
+# Every Sunday: checks every link and image on every page (our own pages and outside websites),
+# pictures named in CSS/JS, pictures over 800 KB and pages over 4 MB.
 # Problems are listed in one GitHub issue labelled "link-check" that closes itself when everything is fine.
 on:
   schedule:

@@ -3,6 +3,8 @@
 Checks every link and image on every page:
   - links to our own pages and files (does the file exist? does the #section exist?)
   - links to other websites (does the page still load?)
+  - pictures named in our CSS and JavaScript files (does the picture exist?)
+  - pictures bigger than 800 KB and pages heavier than 4 MB (they make phones slow)
 Results go into one GitHub issue labelled "link-check", which closes itself when everything is fine.
 """
 import collections
@@ -29,7 +31,7 @@ SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 NO_BOTS = ('facebook.com', 'instagram.com', 'x.com', 'twitter.com', 'linkedin.com', 'photos.google.com', 'photos.app.goo.gl',
            'tiktok.com', 'reddit.com', 'qrz.com', 'fs.usda.gov', 'groups.io')
 # #hashes that the page's own JavaScript handles (not real section ids)
-JS_HASHES = {'listen', 'hunt', 'act', 'drill', 'free', 'efhw', '9to1', 'choke', '4to1', 'j', 'sj', 'sjl', 'roll', 'gp', 'whip', 'top', ''}
+JS_HASHES = {'listen', 'hunt', 'act', 'drill', 'free', 'qrq', 'chat', 'sprint', 'games', 'keyer', 'gaunt', 'learn', 'efhw', '9to1', 'choke', '4to1', 'j', 'sj', 'sjl', 'roll', 'gp', 'whip', 'top', ''}
 try:  # photo album ids (photos.html#album-id)
     import json
     JS_HASHES |= {a.get('id') for a in json.load(open('kpc-photos.json')).get('albums', []) if a.get('id')}
@@ -125,7 +127,33 @@ with cf.ThreadPoolExecutor(max_workers=12) as ex:
         elif state == 'skip':
             blocked.append((u, info, sorted(refs[u])))
 
-problems = len(broken) + len(anchors)
+# ---- pictures named in CSS / JavaScript (backgrounds, heroes) and file sizes
+IMG = re.compile(r'''(?<![\w./-])((?:[\w-]+/)*[\w.-]+\.(?:jpe?g|png|gif|webp|svg))(?=[\s'"\)?#,])''', re.I)
+PIC_EXT = ('.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg')
+BIG_PIC, HEAVY_PAGE = 800_000, 4_000_000
+pics = collections.defaultdict(set)
+for f in list(ROOT.glob('*.html')) + list(ROOT.glob('*.css')) + list(ROOT.glob('*.js')):
+    for m in IMG.findall(f.read_text(encoding='utf-8', errors='replace')):
+        if m.startswith(('-', 'images/')):  # pieces of names built in code; Leaflet's own icons
+            continue
+        pics[m].add(f.name)
+missing_pics = sorted((u, sorted(w)) for u, w in pics.items() if not (ROOT / u).exists() and not any(u == b[0] for b in broken))
+big_pics = sorted(((u, (ROOT / u).stat().st_size, sorted(w)) for u, w in pics.items() if (ROOT / u).is_file() and (ROOT / u).stat().st_size > BIG_PIC), key=lambda x: -x[1])
+heavy = []
+for p in pages:
+    t = p.read_text(encoding='utf-8', errors='replace')
+    tot, seen = p.stat().st_size, set()
+    for u in re.findall(r'(?:src|href)="([^"#?]+)', t) + IMG.findall(t):
+        if u in seen or u.startswith(('http', '//', '-')):
+            continue
+        seen.add(u)
+        f = ROOT / urllib.parse.unquote(u)
+        if f.is_file() and f.suffix.lower() in PIC_EXT + ('.css', '.js'):
+            tot += f.stat().st_size
+    if tot > HEAVY_PAGE:
+        heavy.append((p.name, tot))
+
+problems = len(broken) + len(anchors) + len(missing_pics) + len(big_pics) + len(heavy)
 when = dt.datetime.now(dt.timezone.utc).strftime('%b %d, %Y')
 lines = ['_Checked %s: %d pages, %d outside links._' % (when, len(pages), len(ext)), '']
 if broken:
@@ -136,6 +164,18 @@ if anchors:
     lines += ['## Links to a section that doesn\'t exist (%d)' % len(anchors), '', 'The page loads, but the `#section` part points nowhere.', '']
     lines += ['- `%s` on %s' % (u, ', '.join(w[:4])) for u, w in anchors]
     lines.append('')
+if missing_pics:
+    lines += ['## Missing pictures (%d)' % len(missing_pics), '', 'A style or script file names a picture that is not in the site.', '']
+    lines += ['- `%s` in %s' % (u, ', '.join(w[:4])) for u, w in missing_pics]
+    lines.append('')
+if big_pics:
+    lines += ['## Big pictures that slow phones down (%d)' % len(big_pics), '', 'Over %d KB. Ask Claude to shrink them (same look, smaller file).' % (BIG_PIC // 1000), '']
+    lines += ['- `%s` %d KB, used by %s' % (u, n // 1024, ', '.join(w[:4])) for u, n, w in big_pics]
+    lines.append('')
+if heavy:
+    lines += ['## Heavy pages (%d)' % len(heavy), '', 'The page plus its pictures, styles and scripts add up to more than %d MB.' % (HEAVY_PAGE // 1_000_000), '']
+    lines += ['- %s: %.1f MB' % (n, t / 1e6) for n, t in heavy]
+    lines.append('')
 if blocked:
     lines += ['<details><summary>Couldn\'t check automatically (%d). These sites block robots; click through now and then.</summary>' % len(blocked), '']
     lines += ['- %s (%s)' % (u, info) for u, info, _ in blocked]
@@ -143,6 +183,6 @@ if blocked:
 lines += ['', 'This issue updates every Sunday and closes itself when everything checks out. Run it any time: Actions → KPC Link Check → Run workflow.']
 body = '\n'.join(lines)
 print(body)
-title = '🔗 Broken links: %d to fix (%s)' % (problems, when)
+title = '🔗 Broken links & pictures: %d to fix (%s)' % (problems, when)
 if os.getenv('GITHUB_ACTIONS'):
     report('link-check', title, body, problems)

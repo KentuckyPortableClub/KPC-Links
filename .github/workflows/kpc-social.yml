@@ -4,6 +4,9 @@ name: KPC Social Posts
 #                    new guide/tool pages (the first one goes out with the Oct 21, 2026 go-live)
 #   Wednesdays     - Rare Park of the Week
 #   Thursdays      - "This weekend in Kentucky ham radio" (only when something is on)
+#   Every morning  - member activation recaps (Kentucky parks, 10+ contacts, with a map picture)
+#   Every morning  - club birthday + license anniversaries (only members listed in kpc-birthdays.json)
+#   Fridays        - best band times from Kentucky this week (WSPR beacon reports)
 # Nothing posts twice: what's been posted is remembered in kpc-social-state.json.
 # Test any task from the Actions tab: Run workflow, pick the task, and leave "dry run" ticked to see the post without sending it.
 on:
@@ -11,12 +14,13 @@ on:
     - cron: '7 13 * * *'
     - cron: '29 14 * * 3'
     - cron: '13 22 * * 4'
+    - cron: '17 12 * * 5'
   workflow_dispatch:
     inputs:
       task:
         description: 'Which post'
         type: choice
-        options: [countdown, weekend, rarepark, milestones, photos, pages, bandalert]
+        options: [countdown, weekend, rarepark, milestones, recaps, bandtimes, birthdays, photos, pages, bandalert]
         default: weekend
       dry_run:
         description: 'Dry run (show the post, do not send)'
@@ -35,6 +39,8 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: true
+      - name: Picture tools
+        run: python3 -c 'import PIL' 2>/dev/null || pip install --quiet pillow
       - name: Post
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.KPC_DISCORD_WEBHOOK }}
@@ -45,7 +51,8 @@ jobs:
           TASK: ${{ inputs.task }}
         run: |
           case "$SCHED" in
-            '7 13 * * *')  TASKS='countdown milestones photos pages' ;;
+            '7 13 * * *')  TASKS='countdown milestones recaps birthdays photos pages' ;;
+            '17 12 * * 5') TASKS='bandtimes' ;;
             '29 14 * * 3') TASKS='rarepark' ;;
             '13 22 * * 4') TASKS='weekend' ;;
             *)             TASKS="$TASK" ;;
