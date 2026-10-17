@@ -13,6 +13,8 @@ STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL NC GA AL MI PA').spl
 OUT = 'data/trails'; os.makedirs(OUT, exist_ok=True)
 UA = {'User-Agent': 'KPC trails (kentuckyportableclub.github.io)'}
 CHECK_KM = 8.0
+# parks named 'Trail' that are NOT trails (a line there would mislead): Scioto Trail SP is a forest park
+SKIP = {'US-1990'}
 def note(t, m): print(f'::notice title={t}::' + str(m).replace('\n', ' ')[:900])
 def get(u, data=None, t=120):
     err = None
@@ -95,6 +97,7 @@ for st in STATES:
         or ((v[2] or '') == 'State Park' and re.search(r'\bTrail\b', v[0]) and not re.search(r'Trail of Tears', v[0])))]
     got = 0
     for ref, v in cand:
+        if ref in SKIP: continue
         name, typ = v[0], v[2] or ''
         la, lo = (v[5], v[6]) if len(v) > 6 and v[5] is not None else LOC.get(ref, (None, None))
         if la is None: report['missing'].append([ref, name, st, 'no pin']); continue
