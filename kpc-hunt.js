@@ -536,13 +536,57 @@
      (read from pota.app's web bundle Oct 16). The bookmark runs ON pota.app, makes that same call, and sends ONLY the
      park numbers back here in the address (#pota=US~1.2.17_CA~5), so the sign-in never leaves pota.app. */
   const HERE = location.origin + location.pathname;
-  const BM = `(async()=>{try{if(!/pota\\.app$/.test(location.hostname)){alert('Open pota.app first (signed in), then tap this bookmark there.');return}let refs=null,t='';try{const el=document.querySelector('[data-v-app]')||document.getElementById('app');const pin=el&&el.__vue_app__&&el.__vue_app__.config.globalProperties.$pinia;if(pin)for(const v of Object.values(pin.state.value)){if(v&&v.huntedParkRefs&&v.huntedParkRefs.size&&v.huntedActivatedLoaded)refs=[...v.huntedParkRefs];if(v&&typeof v.token==='string'&&v.token.length>100)t=v.token}}catch(e){}const jwt=x=>{x=String(x||'');try{x=decodeURIComponent(x)}catch(e){}const m=x.match(/eyJ[\\w-]+\\.eyJ[\\w-]+\\.[\\w-]+/);if(!m)return'';try{const p=JSON.parse(atob(m[0].split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));return p.token_use==='id'||p['pota:callsign']?m[0]:''}catch(e){return''}};if(!refs&&!t){for(const S of[localStorage,sessionStorage])for(let i=0;i<S.length&&!t;i++)t=jwt(S.getItem(S.key(i)));if(!t)document.cookie.split(';').forEach(c=>{if(!t)t=jwt(c.split('=').slice(1).join('='))})}if(!refs){if(!t){alert('KPC could not find your pota.app sign-in on this page. Make sure you are signed in (your call shows top right), wait for the page to finish loading, then tap the bookmark again.');return}const r=await fetch('https://api.pota.app/user/stats/hunted_activated_list?type=both',{headers:{Authorization:t}});if(!r.ok){alert('POTA answered '+r.status+'. Sign out of pota.app and back in, then try again.');return}const j=await r.json();refs=(j.hunted||[]).map(x=>x.reference)}const g={};refs.forEach(x=>{const m=String(x||'').match(/^([A-Z0-9]+)-(\\d+)$/);if(m)(g[m[1]]=g[m[1]]||[]).push(+m[2])});location.href='${HERE}#pota='+Object.keys(g).map(p=>p+'~'+g[p].join('.')).join('_')+'&n='+refs.length}catch(e){alert('Could not get your parks: '+e.message)}})()`;
+  /* Written as a normal function, then turned into the bookmark text, so it can be read and fixed. It runs ON pota.app. */
+  function kpcPotaBM(HERE) {
+    (async () => {
+      try {
+        if (!/pota\.app$/.test(location.hostname)) { alert('Open pota.app first (signed in), then tap this bookmark there.'); return; }
+        let refs = null, t = '', hunted = null;
+        try {
+          const el = document.querySelector('[data-v-app]') || document.getElementById('app');
+          const pin = el && el.__vue_app__ && el.__vue_app__.config.globalProperties.$pinia;
+          if (pin) for (const v of Object.values(pin.state.value)) {
+            if (v && v.huntedParkRefs && v.huntedParkRefs.size && v.huntedActivatedLoaded) refs = [...v.huntedParkRefs];
+            if (v && typeof v.token === 'string' && /^eyJ/.test(v.token)) t = v.token;
+          }
+        } catch (e) {}
+        const jwt = x => { x = String(x || ''); try { x = decodeURIComponent(x); } catch (e) {} const m = x.match(/eyJ[\w-]+\.eyJ[\w-]+\.[\w-]+/); if (!m) return ''; try { const p = JSON.parse(atob(m[0].split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))); return p.token_use === 'id' || p['pota:callsign'] ? m[0] : ''; } catch (e) { return ''; } };
+        if (!t) { for (const S of [localStorage, sessionStorage]) for (let i = 0; i < S.length && !t; i++) t = jwt(S.getItem(S.key(i))); if (!t) document.cookie.split(';').forEach(c => { if (!t) t = jwt(c.split('=').slice(1).join('=')); }); }
+        if (!refs && !t) { alert('KPC could not find your pota.app sign-in on this page. Make sure you are signed in (your call shows top right), wait for the page to finish loading, then tap the bookmark again.'); return; }
+        const H = { headers: { Authorization: t } };
+        const G = u => fetch(u, H).then(r => r.ok ? r.json() : null).catch(() => null);
+        if (t) { const j = await G('https://api.pota.app/user/stats/hunted_activated_list?type=both'); if (j && j.hunted) { hunted = j.hunted; refs = hunted.map(x => x.reference); } }
+        if (!refs) { alert('POTA did not send your hunted parks. Sign out of pota.app and back in, then try again.'); return; }
+        /* award progress, the same calls pota.app's Achievements pages make */
+        const aw = { t: Date.now() };
+        if (t) {
+          const B = 'https://api.pota.app/user/award/progress/';
+          const one = ['activator/parks', 'hunter/parks', 'activator/lateshift', 'hunter/lateshift', 'activator/earlyshift', 'hunter/earlyshift', 'activator/p2p', 'hunter/dxentity', 'activator/dxentity'];
+          const list = ['hunter/op2op', 'activator/op2op', 'hunter/repeatoffender', 'activator/repeatoffender', 'hunter/n1ccmultiband', 'activator/n1ccmultiband', 'hunter/sixpack', 'activator/sixpack', 'activator/kilos'];
+          const r1 = await Promise.all(one.map(k => G(B + k)));
+          one.forEach((k, i) => { aw[k] = r1[i]; });
+          const r2 = await Promise.all(list.map(k => G(B + k + '?page=1&size=30&sort=closest')));
+          list.forEach((k, i) => { let v = r2[i]; const total = v && !Array.isArray(v) ? (v.total ?? v.count ?? null) : null; if (v && !Array.isArray(v)) v = v.data || v.items || v.results || []; aw[k] = { total: total ?? (Array.isArray(v) ? v.length : 0), top: (v || []).slice(0, 30) }; });
+          const e = await G('https://api.pota.app/user/award/earned');
+          aw.earned = (e || []).map(x => [x.awardName, x.dateGranted, x.endorsements || '', x.operatorCallsign || x.operator || '', x.reference || '']);
+          if (hunted) { const L = {}; hunted.forEach(x => String(x.locationDesc || x.location || x.locations || '').split(',').forEach(l => { l = l.trim(); if (l) L[l] = (L[l] || 0) + 1; })); aw.loc = L; }
+          try { const p = JSON.parse(atob(t.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))); aw.call = p['pota:callsign'] || ''; } catch (e) {}
+        }
+        const g = {};
+        refs.forEach(x => { const m = String(x || '').match(/^([A-Z0-9]+)-(\d+)$/); if (m) (g[m[1]] = g[m[1]] || []).push(+m[2]); });
+        location.href = HERE + '#pota=' + Object.keys(g).map(p => p + '~' + g[p].join('.')).join('_') + '&n=' + refs.length + (t ? '&aw=' + encodeURIComponent(JSON.stringify(aw)) : '');
+      } catch (e) { alert('Could not get your parks: ' + e.message); }
+    })();
+  }
+  const BM = '(' + kpcPotaBM.toString() + ')(' + JSON.stringify(HERE) + ')';
   const BMURL = 'javascript:' + encodeURIComponent(BM);
   $('hBm').href = BMURL;
   $('hBm').onclick = e => { e.preventDefault(); toast('Drag this button to your bookmarks bar, then use it on pota.app.'); };
   $('hBmCopy').onclick = async () => { try { await navigator.clipboard.writeText(BMURL); toast('✓ Copied. Now paste it as a bookmark’s web address.'); } catch (e) { prompt('Copy this, then paste it as a bookmark’s web address:', BMURL); } };
   function fromPotaHash() {
     const m = location.hash.match(/[#&]pota=([^&]*)/); if (!m) return;
+    const a = location.hash.match(/[#&]aw=([^&]*)/);
+    if (a) { try { const A = JSON.parse(decodeURIComponent(a[1])); put('kpcHuntAwards', A); if (A.call && !CALL) { CALL = base(A.call); put('kpcMyCall', CALL); $('hCall').value = CALL; $('lgMy').value = CALL; } awDraw(); } catch (e) {} }
     const got = new Set();
     decodeURIComponent(m[1]).split('_').forEach(grp => { const [pre, nums] = grp.split('~'); if (!pre || !nums) return; nums.split('.').forEach(n => { if (/^\d+$/.test(n)) got.add(nref(pre + '-' + n.padStart(4, '0'))); }); });
     try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
@@ -553,6 +597,61 @@
     toast(`✓ ${got.size.toLocaleString()} hunted parks loaded from POTA.`);
     setTimeout(() => $('hlSetup').scrollIntoView({ behavior: 'smooth' }), 400);
   }
+
+  /* ---------------- 🏅 my POTA awards (brought over by the ⭐ bookmark; kept in localStorage kpcHuntAwards) ---------------- */
+  const FE = [0, 10, 20, 30, 40, 50, 75, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000, 10500, 11000, 11500, 12000, 12500, 13000, 13500, 14000, 14500, 15000];
+  const numOf = (o, ...k) => { if (o == null) return null; if (typeof o === 'number') return o; for (const x of k) if (o[x] != null && isFinite(+o[x])) return +o[x]; const v = Object.values(o).find(v => typeof v === 'number'); return v ?? null; };
+  const nextOf = (v, step) => Array.isArray(step) ? (step.find(x => x > v) ?? v) : (Math.floor(v / step) + 1) * step;
+  const prevOf = (v, step) => Array.isArray(step) ? Math.max(0, ...step.filter(x => x <= v)) : Math.floor(v / step) * step;
+  function tile(lbl, v, step, unit) {
+    if (v == null) return '';
+    const n = nextOf(v, step), p0 = prevOf(v, step), pct = n > p0 ? Math.round((v - p0) / (n - p0) * 100) : 100;
+    return `<div class="aw-t"><b>${v.toLocaleString()}</b><span>${lbl}</span><div class="bar"><i style="width:${pct}%"></i></div><small>${n > v ? `${(n - v).toLocaleString()} more ${unit} to ${n.toLocaleString()}` : 'top level'}</small></div>`;
+  }
+  const AWL = {
+    'hunter/op2op': ['🤝 Hunter Operator to Operator', 'Work the same activator 50 times; every 50 more is a new level', 'contacts', 50, 'activator'],
+    'activator/op2op': ['🤝 Activator Operator to Operator', 'Work the same hunter 50 times from parks', 'contacts', 50, 'hunter'],
+    'hunter/repeatoffender': ['🔁 Repeat Offender (hunter)', 'Hunt a park 20 times; every 20 more contacts is a new level', 'contacts', 20, 'park'],
+    'activator/repeatoffender': ['🔁 Repeat Offender (activator)', 'Activate a park 20 times', 'activations', 20, 'park'],
+    'hunter/n1ccmultiband': ['📶 N1CC (hunter)', '10 different parks on 10 different bands', 'bands', 10, 'park'],
+    'activator/n1ccmultiband': ['📶 N1CC (activator)', '10 parks activated on 10 bands', 'bands', 10, 'park'],
+    'hunter/sixpack': ['6️⃣ Six Pack (hunter)', 'Contacts with 6 different parks on 6 m', 'contacts', 0, 'park'],
+    'activator/sixpack': ['6️⃣ Six Pack (activator)', '10 contacts at 6 different parks on 6 m', 'contacts', 10, 'park'],
+    'activator/kilos': ['🏆 Kilo (activator)', '1,000 contacts from one park', 'contacts', 1000, 'park']
+  };
+  function awList(k, d) {
+    const [title, desc, field, step, kind] = AWL[k]; const L = (d && d.top) || []; if (!L.length) return '';
+    const rows = L.slice(0, 8).map(x => {
+      const who = x.callsign || x.operatorCallsign || x.hunter || x.activator || x.reference || x.park || '?';
+      const sub = x.name || x.parkName || x.locationDesc || '';
+      const v = +(x[field] ?? x.contacts ?? x.activations ?? x.bands ?? 0);
+      const nx = step ? nextOf(v, step) : null;
+      const link = kind === 'park' ? `https://pota.app/#/park/${encodeURIComponent(who)}` : `https://www.qrz.com/db/${encodeURIComponent(base(who))}`;
+      return `<div class="aw-r"><a href="${link}" target="_blank" rel="noopener">${esc(who)}</a><span class="s">${esc(sub)}${x.bandlist ? ' · ' + esc(String(x.bandlist).split(',').join(' ')) : ''}</span><span class="v">${v.toLocaleString()}${nx ? ` <small>/ ${nx.toLocaleString()}</small>` : ''}</span></div>`;
+    }).join('');
+    return `<div class="aw-c"><h4>${title}</h4><p>${desc}${d.total ? ` · ${(+d.total).toLocaleString()} in progress` : ''}. Closest to the next level:</p>${rows}</div>`;
+  }
+  function awDraw() {
+    const box = $('awBox'); if (!box) return; const A = get('kpcHuntAwards', null); if (!A || !A.t) return;
+    const n = (k, ...f) => numOf(A[k], ...f);
+    const tiles = [tile('PARKS HUNTED', n('hunter/parks', 'numParks', 'parks'), FE, 'parks'), tile('PARKS ACTIVATED', n('activator/parks', 'numParks', 'parks'), FE, 'parks'),
+      tile('DX ENTITIES HUNTED', n('hunter/dxentity', 'numEntities'), 5, 'entities'), tile('DX ENTITIES ACTIVATED', n('activator/dxentity', 'numEntities'), 5, 'entities'),
+      tile('PARK TO PARK', n('activator/p2p', 'contacts'), 25, 'contacts'), tile('EARLY SHIFT HUNTER', n('hunter/earlyshift', 'contacts'), 100, 'contacts'), tile('LATE SHIFT HUNTER', n('hunter/lateshift', 'contacts'), 100, 'contacts'),
+      tile('EARLY SHIFT ACTIVATOR', n('activator/earlyshift', 'contacts'), 100, 'contacts'), tile('LATE SHIFT ACTIVATOR', n('activator/lateshift', 'contacts'), 100, 'contacts')].join('');
+    let was = '';
+    if (A.loc) {
+      const got = Object.keys(ST).filter(a => a !== 'DC' && A.loc['US-' + a]), miss = Object.keys(ST).filter(a => a !== 'DC' && !A.loc['US-' + a]);
+      was = `<div class="aw-c"><h4>🗺 Worked All States (parks hunted)</h4><p><b>${got.length} of 50</b> states${miss.length ? '. Still needed: ' + miss.map(a => `<a href="#hlNeed" data-need="${a}">${a}</a>`).join(' ') : ': all 50! 🎉'}</p>
+        <p>${Object.keys(A.loc).filter(l => !/^US-/.test(l)).length} other locations (provinces / countries) hunted.</p></div>`;
+    }
+    const E = A.earned || [], g = {};
+    E.forEach(e => { g[e[0]] = (g[e[0]] || 0) + 1; });
+    const rec = E.slice().sort((a, b) => String(b[1]).localeCompare(String(a[1]))).slice(0, 8);
+    const earned = E.length ? `<div class="aw-c"><h4>🎖 Achievements earned: ${E.length.toLocaleString()}</h4><p>${Object.entries(g).sort((a, b) => b[1] - a[1]).slice(0, 12).map(([k, v]) => `${esc(k)} <b>${v}</b>`).join(' · ')}</p><p><b>Newest:</b></p>${rec.map(e => `<div class="aw-r"><span>${esc(e[0])}${e[3] ? ' · ' + esc(e[3]) : ''}${e[4] ? ' · ' + esc(e[4]) : ''}</span><span class="v"><small>${esc(String(e[1] || '').slice(0, 10))}</small></span></div>`).join('')}</div>` : '';
+    box.innerHTML = `<div class="aw-g">${tiles}</div><div class="aw-cols">${was}${earned}${Object.keys(AWL).map(k => awList(k, A[k])).join('')}</div>
+      <p class="hl-src">From POTA for ${esc(A.call || CALL || 'you')}, brought over ${new Date(A.t).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}. POTA updates achievements once a day, and hunters get credit only after the activator's log is in. Tap the ⭐ bookmark on pota.app again to refresh. <a href="https://pota.app/#/user/achievements/progress" target="_blank" rel="noopener">POTA ACHIEVEMENTS ↗</a></p>`;
+  }
+  document.addEventListener('click', e => { const a = e.target.closest('[data-need]'); if (!a) return; e.preventDefault(); $('nSt').value = a.dataset.need; $('nSt').dataset.set = 1; needLoad(); $('hlNeed').scrollIntoView({ behavior: 'smooth' }); });
   /* ---------------- looks (Brandon Oct 16: switchable themes; Cabin Lodge = his pictures) ---------------- */
   let THEME = get('kpcHuntTheme', 'lodge');
   function theme() { $('hl').dataset.theme = THEME; document.querySelectorAll('[data-theme-pick]').forEach(b => b.setAttribute('aria-pressed', b.dataset.themePick === THEME)); }
@@ -583,7 +682,7 @@
     $('hSt').innerHTML = '<option value="">…or pick your state</option>' + stOpts('');
     $('nSt').innerHTML = stOpts(st0); $('tSt').innerHTML = stOpts(st0);
     stick();
-    chips(); bell(); logInfo(); homeInfo(); qsoInit(); fromPotaHash();
+    chips(); bell(); logInfo(); homeInfo(); qsoInit(); awDraw(); fromPotaHash();
     load(); needLoad(); topDraw(); myStats();
     setInterval(() => { const s = Math.max(0, Math.round((next - Date.now()) / 1000)); $('hsAge').textContent = next ? s + 's' : '–'; if (next && Date.now() >= next) { next = 0; load(); } }, 1000);
     setInterval(() => { document.querySelectorAll('.hs').length && draw(); }, 5 * 60e3);
