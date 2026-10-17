@@ -339,7 +339,15 @@ tasks.recaps = async () => {
   if (first) { state.recaps = keys.slice(-2000); save(); return notice(`First run: remembered ${keys.length} past member activations. Recaps post from now on.`); }
   const fresh = keys.filter(k => !done.has(k) && dayDiff(localDate(), iso(groups[k].date)) <= 3);
   if (!fresh.length) { notice('No new member activations.'); return; }
+  /* an evening activation runs past 0000 UTC, so POTA splits it into two days (Brandon Oct 17, N4BDW): when the same call has
+     the next UTC day waiting too, post them together as one recap */
+  const nextDay = d => { const t = new Date(iso(d) + 'T12:00:00Z'); t.setUTCDate(t.getUTCDate() + 1); return t.toISOString().slice(0, 10).replace(/-/g, ''); };
+  const joined = new Set();
+  for (const k of fresh) { const g = groups[k], k2 = g.call + '|' + nextDay(g.date); if (joined.has(k) || !fresh.includes(k2)) continue;
+    const g2 = groups[k2]; joined.add(k2); g.also = k2; g.acts = g.parks.length + g2.parks.length;
+    for (const p of g2.parks) { const m = g.parks.find(x => x.ref === p.ref); if (m) m.q += p.q; else g.parks.push(Object.assign({}, p)); } }
   for (const k of fresh) {
+    if (joined.has(k)) continue;
     const g = groups[k];
     const dt0 = new Date(iso(g.date) + 'T12:00:00Z');
     const day = `${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dt0.getUTCDay()]}, ${MN[dt0.getUTCMonth()]} ${dt0.getUTCDate()}`;
@@ -351,17 +359,17 @@ tasks.recaps = async () => {
     let pic = null;
     try { execSync(`python3 .github/scripts/kpc_recap_map.py ${file}`, { input: JSON.stringify({ call: g.call, date: day, qsos: g.qsos, parks: ps }), stdio: ['pipe', 'ignore', 'inherit'] }); pic = file; }
     catch (e) { notice('Map picture failed: ' + e.message); }
-    const n = ps.length, ago = dayDiff(localDate(), iso(g.date));
+    const n = g.acts || ps.length, ago = dayDiff(localDate(), iso(g.date));
     // the post goes out in the morning; POTA dates are UTC, so an evening activation can carry today's date: call it yesterday
     const when = ago <= 1 ? 'yesterday' : 'on ' + day;
     const hi = 'Good morning';
-    const title = `📻 ${g.call} activated ${n > 1 ? n + ' parks' : ps[0].name}`;
+    const title = `📻 ${g.call} activated ${ps.length > 1 ? ps.length + ' parks' : ps[0].name}`;
     // Brandon Oct 17: a friendly note in the club's voice ('Good morning, call sign here had a good day yesterday…')
     const text = `${hi}! **${g.call}** had a good day ${when} enjoying the parks: **${n} activation${n > 1 ? 's' : ''}** and **${g.qsos} contacts** in the log.\n\n` +
       ps.map(p => `🌲 ${p.ref} · ${p.name}${p.co ? ` (${p.co} County)` : ''} · ${p.q} contacts`).join('\n') +
       `\n\n${g.call} was happy to hear so many of you get in the log! We appreciate every hunter who called in. Hope to catch you next time.\n\n73,\nKPC`;
     await post({ title, text, link: `${SITE}kpc-park-notes.html#${ps[0].ref}`, file: pic || undefined });
-    state.recaps.push(k); state.recaps = state.recaps.slice(-2000); save();
+    state.recaps.push(k); if (g.also) state.recaps.push(g.also); state.recaps = state.recaps.slice(-2000); save();
     await sleep(2000);
   }
 };
