@@ -231,6 +231,44 @@
   if ($('hlBan')) $('hlBan').onclick = () => { BAN = !BAN; put('kpcHuntBanner', BAN); ban(); toast(BAN ? 'New-parks bar on.' : 'New-parks bar off. Tap 🎞 to bring it back.'); };
   if ($('hlCxBan')) $('hlCxBan').onclick = () => { CXB = !CXB; put('kpcHuntCxBar', CXB); ban(); toast(CXB ? 'Conditions bar on.' : 'Conditions bar off. Tap 📡 to bring it back.'); };
   ban();
+  /* parks bar off = your call sign sits in the bar instead, not moving (Brandon Oct 17) */
+  function myCallBar() { const e = $('hlMyCall'); if (!e) return; e.hidden = BAN;
+    e.innerHTML = CALL ? `<span class="mc-k">📻 ON THE HUNT</span><b>${esc(CALL)}</b><span class="mc-k">${PUB ? 'HUNTERS LOUNGE' : 'KPC HUNTERS LOUNGE'}</span>` : `<a href="${PUB ? '#hlSetup' : '#lgModal'}" class="mc-set">📻 PUT YOUR CALL SIGN HERE ›</a>`; }
+  { const b0 = ban; ban = function () { b0(); myCallBar(); }; }
+  ban();
+  /* tap a table heading to sort by it (tap again to flip) */
+  document.addEventListener('click', e => { const h = e.target.closest('th[data-srt]'); if (!h) return; F.sort = h.dataset.srt; saveF(); if ($('fSort').querySelector(`option[value="${F.sort}"]`)) $('fSort').value = F.sort; draw(); });
+  /* ⧉ POP OUT: the main spots list as a window you can drag and size (Brandon Oct 17); the space it leaves stays put */
+  let POP = get('kpcHuntPop', null);
+  function popSet() {
+    const sec = $('hlSpSec'), b = $('hlPop'); if (!sec || !b) return; const on = !!(POP && POP.on) && DESKON();
+    let ph = $('hlPopPh');
+    if (on && !ph) { ph = document.createElement('div'); ph.id = 'hlPopPh'; ph.className = 'hl-popph'; ph.style.height = Math.max(400, sec.offsetHeight) + 'px'; ph.innerHTML = '<span>📡 The main spots list is popped out. Drag it by its top bar, or tap <b>⤓ PUT BACK</b>.</span>'; sec.after(ph); }
+    if (!on && ph) ph.remove();
+    sec.classList.toggle('hl-popped', on); b.setAttribute('aria-pressed', on); b.textContent = on ? '⤓ PUT BACK' : '⧉ POP OUT';
+    let h = $('hlPopH');
+    if (on && !h) { h = document.createElement('header'); h.id = 'hlPopH'; h.className = 'hw-h'; h.title = 'Drag me anywhere'; h.innerHTML = '<span class="hw-grip">⠿</span><b class="hw-n">📡 MAIN SPOTS</b><i class="hw-c" id="hlPopN"></i><button type="button" class="hw-b" data-popback title="Put it back">⤓</button>'; sec.prepend(h);
+      const rs = document.createElement('span'); rs.className = 'hw-rs'; rs.id = 'hlPopR'; rs.textContent = '◢'; sec.appendChild(rs); popDrag(sec, h, rs); }
+    if (!on && h) { h.remove(); const r = $('hlPopR'); if (r) r.remove(); sec.removeAttribute('style'); }
+    if (on) { const w = POP; if (w.x == null) { w.w = Math.min(760, innerWidth - 60); w.h = innerHeight - 200; w.x = innerWidth - w.w - 24; w.y = winTop(); }
+      w.x = Math.max(0, Math.min(innerWidth - 120, w.x)); w.y = Math.max(winTop(), Math.min(innerHeight - 60, w.y));
+      Object.assign(sec.style, { left: w.x + 'px', top: w.y + 'px', width: w.w + 'px', height: Math.min(w.h, innerHeight - w.y - 6) + 'px' }); }
+    winAway();
+  }
+  function popDrag(el, h, rs) {
+    const go = (e, mode) => { if (mode === 'move' && e.target.closest('button')) return; e.preventDefault();
+      const w = POP, sx = e.clientX, sy = e.clientY, x0 = w.x, y0 = w.y, w0 = w.w, h0 = parseFloat(el.style.height) || w.h; el.style.zIndex = 60 + (++winZ);
+      const mv = ev => { const dx = ev.clientX - sx, dy = ev.clientY - sy;
+        if (mode === 'move') { w.x = Math.max(0, Math.min(innerWidth - 120, x0 + dx)); w.y = Math.max(winTop(), Math.min(innerHeight - 50, y0 + dy)); }
+        else { w.w = Math.max(300, Math.min(innerWidth - w.x - 4, w0 + dx)); w.h = Math.max(200, Math.min(innerHeight - w.y - 6, h0 + dy)); }
+        Object.assign(el.style, { left: w.x + 'px', top: w.y + 'px', width: w.w + 'px', height: Math.min(w.h, innerHeight - w.y - 6) + 'px' }); };
+      const up = () => { removeEventListener('pointermove', mv); removeEventListener('pointerup', up); put('kpcHuntPop', POP); };
+      addEventListener('pointermove', mv); addEventListener('pointerup', up); };
+    h.addEventListener('pointerdown', e => go(e, 'move')); rs.addEventListener('pointerdown', e => go(e, 'size'));
+  }
+  document.addEventListener('click', e => { if (e.target.closest('#hlPop') || e.target.closest('[data-popback]')) { POP = Object.assign(POP || {}, { on: !(POP && POP.on) }); put('kpcHuntPop', POP); popSet(); } });
+  addEventListener('resize', () => setTimeout(popSet, 250));
+  setTimeout(popSet, 0);
   /* tap any award badge = the badge legend (Brandon Oct 17) */
   document.addEventListener('click', e => { const a = e.target.closest('.ac'); if (!a || a.closest('#awModal')) return; e.preventDefault(); e.stopPropagation(); openModal('awModal'); }, true);
   document.addEventListener('click', e => {
@@ -318,7 +356,7 @@
       && (F.where === 'all' || (F.where === 'us' && s.us) || (F.where === 'usca' && (s.us || s.ca)) || (F.where === 'range' && dist(s) != null && !isFar(s)))
       && (!F.st || s.st === F.st)
       && (!q || [s.call, s.ref, s.name, s.st, ST[s.st] || '', s.loc, s.com].join(' ').toUpperCase().includes(q)));
-    const srt = { new: (a, b) => (b.t || 0) - (a.t || 0), freq: (a, b) => a.khz - b.khz, mine: (a, b) => (isNew(b) - isNew(a)) || (b.t || 0) - (a.t || 0), far: (a, b) => (dist(a) ?? 1e9) - (dist(b) ?? 1e9) }[F.sort] || null;
+    const srt = { new: (a, b) => (b.t || 0) - (a.t || 0), old: (a, b) => (a.t || 0) - (b.t || 0), freq: (a, b) => a.khz - b.khz, freqd: (a, b) => b.khz - a.khz, mode: (a, b) => modeOf(a.mode).localeCompare(modeOf(b.mode)) || String(a.mode).localeCompare(String(b.mode)) || a.khz - b.khz, call: (a, b) => a.call.localeCompare(b.call), park: (a, b) => String(a.ref || '~').localeCompare(String(b.ref || '~')), mine: (a, b) => (isNew(b) - isNew(a)) || (b.t || 0) - (a.t || 0), far: (a, b) => (dist(a) ?? 1e9) - (dist(b) ?? 1e9) }[F.sort] || null;
     if (srt) L.sort(srt);
     const PIN = L.filter(favPinned); L = L.filter(s => !favPinned(s));
     $('hlFavs').innerHTML = PIN.length ? `<div class="hl-pinbar">⭐ FAVORITES ON THE AIR <small>pinned until you work them today</small></div><div class="hl-grid hl-pinned">${PIN.map(s => card(s).replace('<div class="hs-a">', `<div class="hs-a"><button type="button" class="got" data-fdone="${esc(base(s.call))}">✓ GOT THEM</button>`)).join('')}</div>` : '';
@@ -326,11 +364,11 @@
     const old = new Set([...document.querySelectorAll('#hlSpots .hs')].map(x => x.dataset.k));
     $('hlSpots').className = F.view === 'table' ? 'hl-tablewrap' : 'hl-grid';
     $('hlSpots').innerHTML = !L.length ? `<div class="hl-empty">${SP.length ? 'No spots match your filters right now.' : 'No spots yet.'}</div>`
-      : F.view === 'table' ? `<table class="hl-st"><thead><tr><th class="hide-s">WHEN</th><th>CALL</th><th>MHz</th><th class="hide-s">MODE</th><th>PARK / WHERE</th><th class="hide-s">STATE</th><th class="hide-s">MI</th><th></th></tr></thead><tbody>${L.slice(0, 400).map(row).join('')}</tbody></table>`
+      : F.view === 'table' ? `<table class="hl-st"><thead><tr>${[['hide-s','WHEN','new','old'],['','CALL','call'],['','MHz','freq','freqd'],['hide-s','MODE','mode'],['','PARK / WHERE','park'],['hide-s','STATE'],['hide-s','MI']].map(([c, n, s1, s2]) => s1 ? `<th class="${c} srt${F.sort === s1 || F.sort === s2 ? ' on' : ''}" data-srt="${F.sort === s1 && s2 ? s2 : s1}" title="Sort by this">${n}${F.sort === s1 ? ' ▾' : F.sort === s2 ? ' ▴' : ''}</th>` : `<th class="${c}">${n}</th>`).join('')}<th></th></tr></thead><tbody>${L.slice(0, 400).map(row).join('')}</tbody></table>`
       : L.slice(0, 240).map(card).join('');
     if (old.size) document.querySelectorAll('#hlSpots .hs.new, #hlSpots tr.hr.new').forEach(x => { if (!old.has(x.dataset.k)) x.classList.add('fresh'); });
     const hid = SP.length - L.length;
-    if ($('rtN')) $('rtN').textContent = L.length;
+    if ($('rtN')) $('rtN').textContent = L.length; if ($('hlPopN')) $('hlPopN').textContent = L.length;
     $('hlCount').textContent = `${L.length} spot${L.length === 1 ? '' : 's'} shown${hid ? ` · ${hid} hidden by your filters` : ''}${hasLog() ? '' : ' · load your log to see which are new to you'}`;
     $('hsLive').textContent = SP.length; $('hlSrc').textContent = src; $('hlNoLog').hidden = hasLog(); if ($('hlNoLogP')) $('hlNoLogP').hidden = hasLog();
     try { winDraw(); } catch (e) { console.error('winDraw', e); }
@@ -346,6 +384,7 @@
   const winSave = () => put('kpcHuntWin', WIN);
   const WSEEN = [null, null];
   const winOn = () => DESKON() && !!document.querySelector('.hl-split');
+  const WSORT = { new: (a, b) => (b.t || 0) - (a.t || 0), old: (a, b) => (a.t || 0) - (b.t || 0), freq: (a, b) => a.khz - b.khz, freqd: (a, b) => b.khz - a.khz, mode: (a, b) => modeOf(a.mode).localeCompare(modeOf(b.mode)) || a.khz - b.khz, call: (a, b) => a.call.localeCompare(b.call), park: (a, b) => String(a.ref || '~').localeCompare(String(b.ref || '~')) };
   function winPass(w, s) {
     const q = String(w.q || '').toUpperCase().split(/[,;]+/).map(x => x.trim()).filter(Boolean);
     return w.p.includes(s.p) && (!w.bands.length || w.bands.includes(bandOf(s.khz))) && (!w.modes.length || w.modes.includes(modeOf(s.mode)))
@@ -367,12 +406,16 @@
       const d = dk.getBoundingClientRect(), top = (parseFloat(getComputedStyle(dk).top) || 150) + dk.offsetHeight + 12, half = Math.floor((d.width - 12) / 2);
       w.x = Math.round(d.left + i * (half + 12)); w.y = Math.round(top); if (!w.mw) { w.w = half; w.h = Math.max(220, innerHeight - top - 16); } w.auto = true;
     }
-    w.x = Math.max(0, Math.min(innerWidth - 120, w.x)); w.y = Math.max(60, Math.min(innerHeight - 60, w.y));
+    w.x = Math.max(0, Math.min(innerWidth - 120, w.x)); w.y = Math.max(winTop(), Math.min(innerHeight - 60, w.y));
     Object.assign(el.style, { left: w.x + 'px', top: w.y + 'px', width: w.w + 'px', height: Math.min(w.h, innerHeight - w.y - 6) + 'px' });
   }
+  /* windows never go up under the sticky bars: the top is just below the SPOTS tab bar's stuck spot */
+  function winTop() { const r = $('hlRtabs'); if (!r) return 160; const t0 = parseFloat(getComputedStyle(r).top); return Math.round((isFinite(t0) ? t0 : 150) + r.offsetHeight + 8); }
   function winAway() {   /* the windows only show while the spots are on the screen (not over the picture at the top) */
-    const sp = document.querySelector('.hl-split'); if (!sp) return; const r = sp.getBoundingClientRect(), away = r.top > innerHeight * .55 || r.bottom < 260;
-    document.querySelectorAll('.hl-win').forEach(el => el.classList.toggle('away', away));
+    const sp = document.querySelector('.hl-split'), rt = $('hlRtabs'); if (!sp || !rt) return; const r = sp.getBoundingClientRect(), t0 = parseFloat(getComputedStyle(rt).top) || 0,
+      stuck = rt.getBoundingClientRect().top <= t0 + 3 || (scrollY >= document.documentElement.scrollHeight - innerHeight - 4 && r.top < innerHeight * .5), away = !stuck || r.bottom < 260;   /* only once the SPOTS bar has locked at the top, so they never cover the bars */
+    const real = rt.getBoundingClientRect().top <= t0 + 3, minTop = real ? 0 : rt.getBoundingClientRect().bottom + 8;   /* short page: the bars never lock, so slide the windows below them */
+    document.querySelectorAll('.hl-win, .hl-spsec.hl-popped').forEach(el => { el.classList.toggle('away', away); const y = parseFloat(el.style.top) || 0, d = Math.max(0, minTop - y); el.style.transform = d ? `translateY(${Math.round(d)}px)` : ''; el.style.maxHeight = d ? Math.max(160, innerHeight - y - d - 6) + 'px' : ''; });
   }
   addEventListener('scroll', () => { if (!winAway.q) winAway.q = requestAnimationFrame(() => { winAway.q = 0; winAway(); }); }, { passive: true });
   function winRoom() {}
@@ -384,7 +427,7 @@
       el.classList.add('drag'); el.style.zIndex = 60 + (++winZ);
       const mv = ev => {
         const dx = ev.clientX - sx, dy = ev.clientY - sy;
-        if (mode === 'move') { w.auto = false; w.x = Math.max(0, Math.min(innerWidth - 120, x0 + dx)); w.y = Math.max(60, Math.min(innerHeight - 50, y0 + dy)); }
+        if (mode === 'move') { w.auto = false; w.x = Math.max(0, Math.min(innerWidth - 120, x0 + dx)); w.y = Math.max(winTop(), Math.min(innerHeight - 50, y0 + dy)); }
         else { w.mw = 1; w.w = Math.max(240, Math.min(innerWidth - w.x - 4, w0 + dx)); w.h = Math.max(160, Math.min(innerHeight - w.y - 6, h0 + dy)); }
         Object.assign(el.style, { left: w.x + 'px', top: w.y + 'px', width: w.w + 'px', height: Math.min(w.h, innerHeight - w.y - 6) + 'px' });
       };
@@ -414,11 +457,12 @@
       const t = $('hlWT' + i); if (t) { t.setAttribute('aria-pressed', w.on); t.textContent = (w.on ? '🪟 ' : '＋ ') + w.name; }
       if (!on || !w.on) { const el = $('hlWin' + i); if (el) el.hidden = true; return; }
       const el = winBox(i); el.hidden = false; winPlace(el, i);
-      const L = SP.filter(s => winPass(w, s)).sort((a, b) => (b.t || 0) - (a.t || 0));
+      const so = w.sort || 'new', L = SP.filter(s => winPass(w, s)).sort(WSORT[so] || WSORT.new);
       el.querySelector('.hw-n').textContent = w.name; el.querySelector('.hw-c').textContent = L.length;
       el.querySelector('[data-wbell]').textContent = w.bell ? '🔔' : '🔕';
       const ks = new Set(L.map(keyOf)), fresh = WSEEN[i] ? L.filter(s => !WSEEN[i].has(keyOf(s))) : [];
-      el.querySelector('.hw-l').innerHTML = L.length ? L.slice(0, 200).map(wrow).join('') : `<div class="hw-e">${SP.length ? 'Nothing on the air matches this list right now.' : 'Waiting for spots…'}</div>`;
+      const hdr = `<div class="hw-r hw-hd">${[['f', 'MHz', 'freq', 'freqd'], ['c', 'CALL', 'call'], ['m', 'MODE', 'mode'], ['r', 'PARK', 'park'], ['x', ''], ['t', 'TIME', 'new', 'old']].map(([c, n, s1, s2]) => s1 ? `<span class="${c}" data-wsrt="${so === s1 && s2 ? s2 : s1}" title="Sort by this">${n}${so === s1 ? ' ▾' : so === s2 ? ' ▴' : ''}</span>` : '<span></span>').join('')}</div>`;
+      el.querySelector('.hw-l').innerHTML = hdr + (L.length ? L.slice(0, 200).map(wrow).join('') : `<div class="hw-e">${SP.length ? 'Nothing on the air matches this list right now.' : 'Waiting for spots…'}</div>`);
       fresh.forEach(s => { const r = el.querySelector(`.hw-r[data-k="${CSS.escape(keyOf(s))}"]`); if (r) r.classList.add('fresh'); });
       if (fresh.length && w.bell) chime();
       WSEEN[i] = ks;
@@ -437,7 +481,8 @@
       if (d.wkP) tog(w.p, d.wkP); else if (d.wkBand) tog(w.bands, d.wkBand); else if (d.wkMode) tog(w.modes, d.wkMode); else if (d.wkWhere) w.where = d.wkWhere; else if (d.wkFlag) w[d.wkFlag] = !w[d.wkFlag];
       winSave(); el.querySelector('.hw-f').innerHTML = winFilt(i); winDraw(); return;
     }
-    const r = e.target.closest('.hw-r'); if (r) { const s = SP.find(x => keyOf(x) === r.dataset.k); if (s) openSheet(s); }
+    const ws = e.target.closest('[data-wsrt]'); if (ws) { w.sort = ws.dataset.wsrt; winSave(); winDraw(); return; }
+    const r = e.target.closest('.hw-r:not(.hw-hd)'); if (r) { const s = SP.find(x => keyOf(x) === r.dataset.k); if (s) openSheet(s); }
   });
   document.addEventListener('input', e => {
     const el = e.target.closest('.hl-win'); if (!el) return; const w = WIN[+el.dataset.i];
@@ -556,7 +601,7 @@
   dz.addEventListener('drop', e => { if (e.dataTransfer.files.length) takeFiles([...e.dataTransfer.files]); });
   $('hClear').onclick = () => { if (!confirm('Clear the worked list saved on this device?')) return; WK = new Set(); MAN = new Set(); LOG = { t: 0, file: '', r: [], m: [] }; saveLog(); logInfo(); ticker(false); draw(); needDraw(); };
   $('hCall').value = CALL;
-  $('hCall').onchange = () => { CALL = base($('hCall').value); $('hCall').value = CALL; put('kpcMyCall', CALL); topDraw(); myStats(); };
+  $('hCall').onchange = () => { CALL = base($('hCall').value); $('hCall').value = CALL; put('kpcMyCall', CALL); topDraw(); myStats(); myCallBar(); };
 
   /* ---------------- home + range ---------------- */
   function homeInfo() {
@@ -800,7 +845,7 @@
     add.forEach(q => String(q.ref || '').split(/[ ,]+/).filter(Boolean).forEach(r => WK.add(r))); saveLog(); logInfo();
     await qSave(); qList(); toast(`↥ ${add.length} contact${add.length === 1 ? '' : 's'} added (${L.length - add.length} already in your log).`);
   };
-  $('lgMy').onchange = () => { CALL = base($('lgMy').value); $('lgMy').value = CALL; $('hCall').value = CALL; put('kpcMyCall', CALL); myStats(); topDraw(); };
+  $('lgMy').onchange = () => { CALL = base($('lgMy').value); $('lgMy').value = CALL; $('hCall').value = CALL; put('kpcMyCall', CALL); myStats(); topDraw(); myCallBar(); };
   $('lgGrid').onchange = () => { Q.grid = $('lgGrid').value.trim().toUpperCase().slice(0, 6); $('lgGrid').value = Q.grid; qSave(); };
   $('lgQ').oninput = () => qList();
   /* ---------- the list ---------- */

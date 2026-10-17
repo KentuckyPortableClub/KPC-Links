@@ -197,6 +197,11 @@ main#hl .ct-note{font-size:13px;color:#c6a988}
 main#hl .ct-adv{margin-top:8px}main#hl .ct-adv summary{cursor:pointer;font:800 12px Arial;letter-spacing:1px;color:#ffcf7a}
 main#hl .ct-card a{color:#ffcf7a}
 @media(max-width:600px){main#hl .ct-row select,main#hl .ct-row input{min-width:0;width:100%}main#hl .ct-row label{flex:1 1 100%}}
+.ct-ports{margin:12px 0;padding:12px 14px;border:1px solid rgba(240,201,107,.6);border-radius:14px;background:rgba(12,9,6,.9)}
+.ct-ports b{font:900 12px Arial;letter-spacing:1.4px;color:#ffe2a6}.ct-ports p{font:13px/1.45 Arial;color:#e8e1cf;margin:6px 0 10px}
+.ct-prow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 10px;border:1px solid rgba(255,255,255,.12);border-radius:10px;margin:6px 0;font:13px Arial;color:#e8e1cf}
+.ct-prow span{flex:1 1 220px}.ct-prow.on{border-color:#3ddc84;background:rgba(61,220,132,.08)}.ct-prow i{color:#7ff0b0;font-style:normal}
+.ct-btn.sm{padding:6px 10px;font-size:11px}.ct-pbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 </style>
 <header class="ct-head"><h1>📻 Radio Control &amp; QRZ</h1><p>Turn these on once and the Hunters Lounge does the rest: click a spot and your radio jumps to that frequency and mode while the log fills in, and every contact you log can go straight to your QRZ logbook.</p></header>
 
@@ -217,6 +222,13 @@ main#hl .ct-card a{color:#ffcf7a}
   <button type="button" class="ct-btn" id="ctConnect">🔌 CONNECT MY RADIO</button>
   <button type="button" class="ct-btn ghost" id="ctRead">🔎 TEST: READ MY DIAL</button>
   <button type="button" class="ct-btn ghost" id="ctDrop" hidden>✕ DISCONNECT</button>
+  <button type="button" class="ct-btn ghost" id="ctPortBtn" aria-expanded="false">🔁 CHANGE PORT</button>
+ </div>
+ <div class="ct-ports" id="ctPorts" hidden>
+  <b>WHICH PORT IS MY RADIO?</b>
+  <p>Picked the wrong one? Tap the right port here, or pick a different one. Not sure which? Unplug the radio's USB cable, see which port goes away, plug it back in.</p>
+  <div id="ctPortList"></div>
+  <div class="ct-pbtns"><button type="button" class="ct-btn" id="ctPortNew">➕ PICK A DIFFERENT PORT</button><button type="button" class="ct-btn ghost" id="ctPortDone">✓ DONE</button></div>
  </div>
  <label class="ct-sw"><input type="checkbox" id="ctFollow"> When I turn my radio's dial, update the log's frequency and mode too</label>
  <details class="ct-adv" id="ctAdv"><summary>SETTINGS FOR MY RADIO (filled in when you pick one)</summary>
@@ -255,7 +267,7 @@ main#hl .ct-card a{color:#ffcf7a}
  </ul>
 </section>
 </main>
-<script src="kpc-cat.js?v=20261017a"></script>
+<script src="kpc-cat.js?v=20261017b"></script>
 <script id="cat-page">
 (function(){
  const $=id=>document.getElementById(id);
@@ -274,6 +286,14 @@ main#hl .ct-card a{color:#ffcf7a}
  $('ctConnect').onclick=async()=>{save();if(!$('ctRadio').value&&!$('ctAdv').open){st('Pick your radio first.',false);return}
   if(await KPCCat.connect(true)){if(!$('ctOn').checked){$('ctOn').checked=true;save()}st('✅ Radio connected. Press <b>TEST: READ MY DIAL</b> to check it.',true)}show()};
  $('ctDrop').onclick=async()=>{await KPCCat.disconnect();show()};
+ /* change the port (Brandon Oct 17) */
+ async function plist(){const L=await KPCCat.ports();$('ctPortList').innerHTML=L.length?L.map(p=>`<div class="ct-prow${p.now?' on':''}"><span>${p.now?'✅ ':''}Port ${p.i+1}: ${p.label}${p.now?' <i>(in use)</i>':''}</span><button type="button" class="ct-btn sm" data-puse="${p.i}">${p.now?'RECONNECT':'USE THIS ONE'}</button><button type="button" class="ct-btn ghost sm" data-pfor="${p.i}" title="Take this port off the list">🗑 FORGET</button></div>`).join(''):'<p class="ct-st">No ports allowed yet. Press <b>PICK A DIFFERENT PORT</b>.</p>'}
+ $('ctPortBtn').onclick=async()=>{const b=$('ctPorts');b.hidden=!b.hidden;$('ctPortBtn').setAttribute('aria-expanded',!b.hidden);if(!b.hidden)await plist()};
+ $('ctPortDone').onclick=()=>{$('ctPorts').hidden=true;$('ctPortBtn').setAttribute('aria-expanded','false')};
+ $('ctPortNew').onclick=async()=>{save();if(await KPCCat.pickNew()){if(!$('ctOn').checked){$('ctOn').checked=true;save()}st('✅ Connected on the new port. Press <b>TEST: READ MY DIAL</b> to check it.',true)}show();plist()};
+ $('ctPortList').addEventListener('click',async e=>{const u=e.target.closest('[data-puse]'),f=e.target.closest('[data-pfor]');
+  if(u){save();if(await KPCCat.usePort(+u.dataset.puse))st('✅ Connected on port '+(+u.dataset.puse+1)+'. Press <b>TEST: READ MY DIAL</b> to check it.',true);show();plist()}
+  if(f){await KPCCat.forget(+f.dataset.pfor);show();plist()}});
  $('ctRead').onclick=async()=>{save();if(!KPCCat.connected()&&!await KPCCat.connect(true))return;st('Asking the radio…');const r=await KPCCat.read();
   if(r&&r.khz)st(`✅ Your radio is on <b>${(r.khz/1000).toFixed(4)} MHz</b>${r.mode?' '+r.mode:''}. You're set: open the Hunters Lounge and click a spot.`,true);
   else st('The radio didn\'t answer. Check the speed (baud) and, for Icom, the CI-V address in SETTINGS FOR MY RADIO, and that no other program has the radio open.',false)};
