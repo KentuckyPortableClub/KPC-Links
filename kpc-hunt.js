@@ -1118,7 +1118,11 @@
     qList(); ticker(false); draw(); needDraw();
     toast(`✓ ${call} logged${ref ? ' at ' + ref : ''}.`, () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); draw(); });
     dkClear(); $('dCall').focus({ preventScroll: true });
-    const fx = $('dkForm'); fx.classList.remove('pop'); void fx.offsetWidth; fx.classList.add('pop'); setTimeout(() => fx.classList.remove('pop'), 1600);
+    /* the effect flares only every 50 contacts or for DX outside North America (Brandon Oct 17) */
+    const NAPRE = /^(A[A-L]|[KNW]|V[A-GOY]|C[F-KYZ]|X[A-O]|4[A-C]|6[D-J]|C[LMO]|T[GI]|H[O-RI]|YN|YS|V[23P]|J[3678]|8P|6Y|ZF|C6|FG|FM|FS|PJ|P4|HH|OX|XP|TO|FP|ZB)/;
+    const dx = base(call).length > 2 && !NAPRE.test(base(call)), tot = Q.q.length;
+    if (tot % 50 === 0 || dx) { const fx = $('dkForm'); fx.classList.remove('pop'); void fx.offsetWidth; fx.classList.add('pop'); setTimeout(() => fx.classList.remove('pop'), 3200);
+      fire(dx ? `🌍 DX! ${base(call)} is outside North America` : `🎉 ${tot} contacts in your log!`); }
   }
   function dkList() {
     const el = $('dkList'); if (!el || PUB) return;

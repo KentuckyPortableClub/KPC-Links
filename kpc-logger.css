@@ -535,3 +535,22 @@ main#lg[data-look=dark] .lg-tabs,main#lg[data-look=dark] .lg-rtabs,main#lg[data-
 main#lg[data-look=dark] .lg-stpanel,main#lg[data-look=dark] .lg-t th{background:#0b0b0b}
 main#lg[data-look=dark] .lg-tabs button.on{border-bottom-color:var(--g);color:var(--g2)}
 main#lg[data-night]::before{background:#000!important}
+
+/* Oct 17 (Brandon, computer): ✏️ More opens UPWARD over the log instead of pushing the box down */
+@media(min-width:1100px){
+ main#lg #eMore:not([hidden]){position:absolute;left:0;right:0;bottom:calc(100% + 10px);z-index:60;margin:0;max-height:60vh;overflow:auto;background:#2a1606;border:1px solid rgba(255,226,191,.35);border-radius:14px;padding:10px 12px 12px;box-shadow:0 -14px 44px rgba(0,0,0,.7)}
+ main#lg #eMore .lg-pophd{display:flex;align-items:center;justify-content:space-between;margin:0 0 8px;font:900 12.5px Arial,sans-serif;letter-spacing:1.4px;color:#ffe2bf}
+ main#lg #eMore .lg-popx{border:0;border-radius:9px;background:#ffe2bf;color:#5a2d0c;font:900 12.5px Arial,sans-serif;letter-spacing:1px;padding:7px 12px;cursor:pointer}
+}
+main#lg[data-night] #eMore:not([hidden]){background:#140000}
+/* spots: every filter folds into one ⚙ FILTERS line (closed = just the line) */
+.lg-spf{margin:0 0 10px;border:1px solid var(--ln);border-radius:12px;background:rgba(0,0,0,.3)}
+.lg-spf>summary{display:flex;align-items:center;gap:8px;padding:9px 12px;cursor:pointer;list-style:none;font:900 12.5px Arial;letter-spacing:1.4px;color:var(--g2)}
+.lg-spf>summary::-webkit-details-marker{display:none}
+.lg-spf>summary::after{content:'▾';margin-left:4px}
+.lg-spf[open]>summary::after{content:'▴'}
+.lg-spf>summary i{font-style:normal;background:var(--g);color:#1a1205;border-radius:9px;padding:1px 7px;font-size:10.5px}
+.lg-spf>summary i:empty{display:none}
+.lg-spf>summary .tip{margin-left:auto;font:400 12px Arial;letter-spacing:0;color:var(--mu)}
+.lg-spf>.lg-row{padding:0 12px 10px;margin:0}
+.lg-progs{gap:14px}
