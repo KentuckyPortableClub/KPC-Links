@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="kpc-hunt.css?v=20261016a">
+@@HEADER@@
+<main id="hl" data-keep-light>
+<div class="hl-far" id="hlFar" hidden><span class="hl-far-k">FAR AWAY NEW ONES</span><div class="hl-far-run"><div class="hl-far-track" id="hlFarT"></div></div></div>
+
+<section class="hl-hero"><div class="hl-in">
+<p class="hl-eyebrow">KPC HUNTERS LOUNGE • POTA • WWFF • SOTA</p>
+<h1>HUNTERS <span>LOUNGE</span></h1>
+<p class="hl-copy">Live spots with the parks you've already worked tucked out of the way. Load your log once, and every park that's new to you lights up and rolls across the screen.</p>
+<div class="hl-stats">
+ <div><b id="hsLive">–</b><span>SPOTS ON THE AIR</span></div>
+ <div class="g"><b id="hsNew">–</b><span>NEW TO YOU</span></div>
+ <div><b id="hsLog">0</b><span>IN YOUR LOG</span></div>
+ <div><b id="hsAge">–</b><span>NEXT CHECK</span></div>
+</div>
+<div class="hl-acts"><a class="hl-btn gold" href="#hlSetup">📥 LOAD MY LOG</a><a class="hl-btn ghost" href="#hlNeed">🎯 PARKS I NEED</a><a class="hl-btn ghost" href="#hlTop">🏆 TOP ACTIVATORS</a></div>
+</div></section>
+
+<section class="hl-tick" id="hlTick" aria-live="polite">
+ <div class="hl-tick-k"><span class="dot"></span>NEW TO YOU</div>
+ <div class="hl-tick-run"><div class="hl-tick-track" id="hlTickT"><span class="hl-wait">Waiting for a park that's new to you…</span></div></div>
+ <button type="button" class="hl-bell" id="hlBell" aria-pressed="false" title="Alert me">🔕 ALERT OFF</button>
+</section>
+
+<section class="hl-sec"><div class="hl-in">
+<div class="hl-filters">
+ <div class="hl-row" role="group" aria-label="Program"><button type="button" class="hl-chip" data-g="p" data-v="POTA">POTA</button><button type="button" class="hl-chip" data-g="p" data-v="WWFF">WWFF / KFF</button><button type="button" class="hl-chip" data-g="p" data-v="SOTA">SOTA</button></div>
+ <div class="hl-row" role="group" aria-label="Show"><button type="button" class="hl-chip big" id="fHide" aria-pressed="false">🙈 HIDE PARKS I'VE WORKED</button><button type="button" class="hl-chip big" id="fNew" aria-pressed="false">✨ NEW TO ME ONLY</button><button type="button" class="hl-chip big" id="fRange" aria-pressed="false">📏 IN MY RANGE ONLY</button></div>
+ <details class="hl-dd"><summary>BAND <i id="sBand">ALL</i></summary><div class="hl-row" id="fBands"></div></details>
+ <details class="hl-dd"><summary>MODE <i id="sMode">ALL</i></summary><div class="hl-row" id="fModes"></div></details>
+ <details class="hl-dd"><summary>WHERE <i id="sWhere">EVERYWHERE</i></summary><div class="hl-row" id="fWhere"></div><label class="hl-lab">State <select id="fSt"><option value="">Any state</option></select></label></details>
+ <div class="hl-row"><input type="search" id="fQ" placeholder="Search call, park, number, state…" aria-label="Search spots"><select id="fSort" aria-label="Sort"><option value="new">Newest first</option><option value="mine">New to me first</option><option value="freq">By frequency</option><option value="far">Closest first</option></select></div>
+</div>
+<p class="hl-count" id="hlCount"></p>
+<div class="hl-grid" id="hlSpots"><div class="hl-empty">Loading spots…</div></div>
+<p class="hl-src" id="hlSrc"></p>
+</div></section>
+
+<section class="hl-sec alt" id="hlSetup"><div class="hl-in">
+<p class="hl-k">STEP 1</p><h2>📥 Your log</h2>
+<div class="hl-two">
+<div class="hl-card">
+ <h3>Load the parks you've worked</h3>
+ <label class="hl-lab">Your call sign <input id="hCall" autocomplete="off" autocapitalize="characters" placeholder="Your call"></label>
+ <div class="hl-drop" id="hDrop"><input type="file" id="hFile" accept=".csv,.txt,.adi,.adif,text/csv" multiple><b>📄 TAP TO PICK YOUR FILE</b><span>or drop it here · CSV or ADIF · POTA, WWFF and SOTA</span></div>
+ <div class="hl-row"><label class="hl-chk"><input type="checkbox" id="hAdd"> Add to my list (don't replace it)</label></div>
+ <p class="hl-msg" id="hMsg"></p>
+ <div class="hl-progs" id="hProgs"></div>
+ <div class="hl-row"><button type="button" class="hl-btn line sm" id="hClear">CLEAR MY LIST</button></div>
+</div>
+<div class="hl-card">
+ <h3>Where do I get the file?</h3>
+ <ul class="hl-how">
+ <li><b>POTA:</b> sign in at <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a>, open your stats, and download your <b>hunted parks</b> list as a CSV file.</li>
+ <li><b>WWFF / KFF:</b> your log from <a href="https://wwff.co/logsearch/" target="_blank" rel="noopener">WWFF Logsearch</a>, or any ADIF from your logger with WWFF numbers in it.</li>
+ <li><b>SOTA:</b> sign in at <a href="https://www.sotadata.org.uk" target="_blank" rel="noopener">sotadata.org.uk</a> and download your chaser log as a CSV file.</li>
+ <li>Any CSV or ADIF works: the page just looks for park, reference and summit numbers in it. Old POTA numbers like <b>K-1234</b> count as <b>US-1234</b>.</li>
+ </ul>
+ <div class="hl-note"><b>Will it remember me?</b> Yes, on this phone or computer. Your list is saved in this web browser, not on GitHub or anywhere else, so it's still here when you come back in 4 days (or 4 months). It's gone if you clear your browser's data or use a private window, and a different phone needs its own upload. Your log only changes when you upload again, so do that every week or two. Tapping <b>✓ WORKED</b> on a spot adds that park right away.</div>
+</div>
+</div>
+
+<p class="hl-k" style="margin-top:28px">STEP 2</p><h2>📏 Your normal range</h2>
+<div class="hl-card">
+ <p class="hl-p">Far-away new parks are harder to work, so they can go to the small ticker at the very top instead of the big one. Set where you are and how far you usually hear.</p>
+ <div class="hl-row"><button type="button" class="hl-btn green sm" id="hGps">📍 USE MY LOCATION</button><select id="hSt" aria-label="Home state"><option value="">…or pick your state</option></select><input id="hGrid" placeholder="…or grid (EM77)" maxlength="6" style="width:150px" aria-label="Grid square"></div>
+ <p class="hl-msg" id="hHome"></p>
+ <div class="hl-row" role="group" aria-label="Range" id="hRange"></div>
+ <label class="hl-chk"><input type="checkbox" id="hFarMode" checked> Far-away new parks go to the small ticker at the top only (no alert)</label>
+ <label class="hl-chk"><input type="checkbox" id="hNotify"> Also pop up a phone/computer notice while this page is open</label>
+</div>
+</div></section>
+
+<section class="hl-sec" id="hlNeed"><div class="hl-in">
+<p class="hl-k">STATE BY STATE</p><h2>🎯 Parks I still need</h2>
+<div class="hl-row"><select id="nSt" aria-label="State"></select><input type="search" id="nQ" placeholder="Search parks…" aria-label="Search parks"><select id="nSort" aria-label="Sort"><option value="rare">Rarest first</option><option value="name">A to Z</option><option value="ref">By number</option><option value="busy">Most activated first</option></select><label class="hl-chk"><input type="checkbox" id="nAir"> On the air now</label></div>
+<div class="hl-prog" id="nBar"></div>
+<div class="hl-list" id="nList"><div class="hl-empty">Pick a state.</div></div>
+</div></section>
+
+<section class="hl-sec alt" id="hlTop"><div class="hl-in">
+<p class="hl-k">WHO'S PUTTING THEM ON THE AIR</p><h2>🏆 Top 20 activators</h2>
+<div class="hl-row"><select id="tSt" aria-label="State"></select><button type="button" class="hl-chip" data-t="acts" aria-pressed="true">MOST ACTIVATIONS</button><button type="button" class="hl-chip" data-t="uniq" aria-pressed="false">MOST DIFFERENT PARKS</button></div>
+<div class="hl-top" id="tList"><div class="hl-empty">Loading…</div></div>
+<p class="hl-src" id="tSrc"></p>
+<h3 class="hl-h3">📊 My numbers</h3>
+<div id="mStats"><div class="hl-empty">Put your call sign in Step 1.</div></div>
+</div></section>
+</main>
+@@FOOTER@@
+<script src="kpc-hunt.js?v=20261016a"></script>
