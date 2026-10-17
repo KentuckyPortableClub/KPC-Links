@@ -708,7 +708,7 @@ var s=KPCEvents.pd(camp.start),d=Math.round((s-t0)/864e5),y=s.getFullYear();
 el.innerHTML=d<=0?'🏕️ <b>The '+y+' campout is ON now!</b>':'🏕️ <b>'+d+'</b> '+(d==1?'day':'days')+' to the '+y+' KYPOTA Campout';
 el.hidden=false;})();
 </script>
-<style id="kpc-campcount-css">.kpc-campcount{display:inline-flex;gap:6px;align-items:center;margin-top:14px;padding:5px 13px;border-radius:999px;background:rgba(0,0,0,.45);border:1px solid rgba(240,201,107,.6);color:#f6d58a;font:700 12px/1.3 Arial,sans-serif;letter-spacing:.6px;text-decoration:none;box-shadow:0 0 12px rgba(240,201,107,.25)}.kpc-campcount b{color:#fff;font-size:14px}.kpc-campcount:hover{background:rgba(0,0,0,.6)}</style>
+<style id="kpc-campcount-css">.kpc-campcount{display:inline-flex;gap:8px;align-items:center;margin-top:16px;padding:8px 18px;border-radius:999px;background:rgba(0,0,0,.5);border:1px solid rgba(240,201,107,.7);color:#f6d58a;font:700 15px/1.3 Arial,sans-serif;letter-spacing:.6px;text-decoration:none;box-shadow:0 0 14px rgba(240,201,107,.3)}.kpc-campcount b{color:#fff;font-size:19px}.kpc-campcount{white-space:nowrap}@media(max-width:420px){.kpc-campcount{font-size:13px;padding:7px 14px;letter-spacing:.3px}.kpc-campcount b{font-size:17px}}.kpc-campcount:hover{background:rgba(0,0,0,.6)}</style>
 <script>
 (function(){var el=document.getElementById('kpcNext');if(!el||!window.KPCEvents)return;
 var M=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
@@ -758,7 +758,7 @@ fetch('kpc-events-auto.json',{cache:'no-cache'}).then(function(r){return r.ok?r.
 
 
 <script src="kpc-fold.js?v=20261011c" defer></script>
-<script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261017d" defer></script><script src="kpc-warn.js?v=20261017a" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+<script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261017d" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
