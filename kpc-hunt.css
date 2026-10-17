@@ -975,3 +975,16 @@ main#hl .f8{top:0}
 /* 🎯 chase list (Oct 17) */
 main#hl .fv.chs{opacity:.35;filter:grayscale(1)}main#hl .fv.chs.on{opacity:1;filter:none}
 main#hl .hl-pinbar.ch{background:linear-gradient(90deg,rgba(255,92,92,.28),rgba(240,201,107,.12));border-color:rgba(255,120,120,.6)}
+/* Oct 17 (Brandon: 'the header makes the image in the hero look funny… smooth that out'):
+   1) the page tabs float ON the top of the hero picture (no separate strip with a different background between the menu and the picture);
+   2) computers: the whole picture shows (no cropping), the words start under the KPC sign, and the bottom of the picture fades into the page. */
+main#hl:not([data-page=need]) > .hl-ptabs{position:absolute;top:12px;left:50%;transform:translateX(-50%);margin:0;z-index:6;background:rgba(10,7,4,.72);backdrop-filter:blur(3px)}
+@media(min-width:701px){
+ main#hl[data-theme=lodge] .hl-hero,main#hl[data-theme=dark] .hl-hero{justify-content:flex-start;min-height:0;
+  background:linear-gradient(180deg,rgba(8,5,2,.45) 0,rgba(8,5,2,0) 70px,rgba(8,5,2,0) calc(33.8vw * .5),rgba(8,5,2,.55) calc(33.8vw * .78),#120a05 33.8vw),linear-gradient(90deg,rgba(8,5,2,.5),rgba(8,5,2,0) 55%),#120a05 url('hero-lodge.jpg') center top/100% auto no-repeat}
+ main#hl[data-theme=dark] .hl-hero{background:linear-gradient(180deg,rgba(0,0,0,.45) 0,rgba(0,0,0,0) 70px,rgba(0,0,0,.15) calc(33.8vw * .5),rgba(0,0,0,.65) calc(33.8vw * .78),#000 33.8vw),linear-gradient(90deg,rgba(0,0,0,.6),rgba(0,0,0,0) 55%),#000 url('hero-lodge.jpg') center top/100% auto no-repeat}
+ main#hl[data-theme=lodge] .hl-hero .hl-in,main#hl[data-theme=dark] .hl-hero .hl-in{padding-top:calc(33.8vw * .56)}
+}
+@media(min-width:1921px){main#hl[data-theme=lodge] .hl-hero .hl-in,main#hl[data-theme=dark] .hl-hero .hl-in{padding-top:calc(33.8vw * .5)}}
+/* phones: the tabs would cover the sign, so they become a dark strip that joins the site menu above the picture */
+@media(max-width:700px){main#hl > .hl-ptabs{position:static!important;transform:none!important;width:100%!important;max-width:none!important;margin:0!important;border-radius:0!important;border:0!important;border-bottom:1px solid rgba(213,166,58,.35)!important;background:#070707!important;box-shadow:none!important;justify-content:flex-start;padding:6px 8px!important}}
