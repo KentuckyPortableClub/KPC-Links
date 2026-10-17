@@ -105,6 +105,8 @@ def lyr_lines(url, where, la, lo, d=1.0, fld=None, want=''):
         for f in fs:  # Oct 18: 'Greenbrier River Trail' must not pick up the 'Greenbrier River Water Trail' (the river itself)
             nm = str((f.get('attributes') or {}).get(fld, '') if fld else '')
             if nowater and re.search(r'water ?trail|blueway|paddl|canoe', nm, re.I) and not re.search(r'water ?trail|blueway', want or '', re.I): continue
+            # a land trail's piece must be named like a trail (the river 'Greenbrier River' is not the 'Greenbrier River Trail')
+            if nowater and nm and re.search(r'\btrail\b', want or '', re.I) and not re.search(r'trail|path|greenway|rail|bikeway|route|\btr\b', nm, re.I): continue
             out += [[[round(x, 5), round(y, 5)] for x, y in p[:]] for p in (f.get('geometry') or {}).get('paths', [])]
         if not j.get('exceededTransferLimit') or not fs: break
         off += len(fs)
