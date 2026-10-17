@@ -8,6 +8,9 @@
 //   photos     new photo album on the site                                  Discord + Facebook
 //   pages      new guide or tool page on the site (starts with the Oct 21, 2026 go-live)     Discord + Facebook
 //   bandalert  NOAA radio blackout / geomagnetic storm alerts                Discord only
+//   recaps     member activation recap (Kentucky parks, 10+ contacts) with a little map picture   Discord + Facebook
+//   birthdays  'KPC is N years old' + members' license anniversaries (opt-in list kpc-birthdays.json)  Discord + Facebook
+//   bandtimes  weekly best band times from Kentucky (WSPR beacon reports, last 7 days)            Discord + Facebook
 // --dry prints what would be posted without posting or saving anything.
 // State lives in kpc-social-state.json so nothing is posted twice.
 const fs = require('fs');
@@ -39,20 +42,31 @@ const localDate = () => { // Kentucky date (Eastern/Central both fine for whole-
 const dayDiff = (a, b) => Math.round((Date.parse(a + 'T12:00:00Z') - Date.parse(b + 'T12:00:00Z')) / 864e5);
 
 // ------------------------------------------------------------------ posting
-async function postDiscord({ title, text, link, image, color }) {
+async function postDiscord({ title, text, link, image, color, file }) {
   if (!/^https:\/\/(discord|discordapp)\.com\/api\/webhooks\//.test(DISCORD)) { notice('No Discord webhook; skipped Discord.'); return; }
   const embed = { title: title.slice(0, 250), description: (text + (link ? `\n\n[Open →](${link})` : '')).slice(0, 4000), color: color || 0xd5a63a };
   if (link) embed.url = link;
   if (image) embed.image = { url: image };
-  const r = await fetch(DISCORD, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: 'KPC', embeds: [embed], allowed_mentions: { parse: [] } }) });
+  let r;
+  if (file) { // a picture made by the job (no web address yet): send it with the post
+    embed.image = { url: 'attachment://' + path.basename(file) };
+    const fd = new FormData();
+    fd.append('payload_json', JSON.stringify({ username: 'KPC', embeds: [embed], allowed_mentions: { parse: [] } }));
+    fd.append('files[0]', new Blob([fs.readFileSync(file)], { type: 'image/png' }), path.basename(file));
+    r = await fetch(DISCORD, { method: 'POST', body: fd });
+  } else r = await fetch(DISCORD, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: 'KPC', embeds: [embed], allowed_mentions: { parse: [] } }) });
   if (!r.ok) throw new Error('Discord HTTP ' + r.status);
 }
-async function postFacebook({ title, text, link, image }) {
+async function postFacebook({ title, text, link, image, file }) {
   if (!FB_ID || !FB_TOKEN) { notice('No Facebook secrets; skipped Facebook.'); return; }
-  const message = `${title}\n\n${text}${link && image ? `\n\n${link}` : ''}`;
-  const body = new URLSearchParams({ access_token: FB_TOKEN });
+  const message = `${title}\n\n${text}${link && (image || file) ? `\n\n${link}` : ''}`;
+  let body = new URLSearchParams({ access_token: FB_TOKEN });
   let url;
-  if (image) { url = `https://graph.facebook.com/${FB_ID}/photos`; body.set('url', image); body.set('caption', message); }
+  if (file) {
+    url = `https://graph.facebook.com/${FB_ID}/photos`;
+    body = new FormData(); body.append('access_token', FB_TOKEN); body.append('caption', message);
+    body.append('source', new Blob([fs.readFileSync(file)], { type: 'image/png' }), path.basename(file));
+  } else if (image) { url = `https://graph.facebook.com/${FB_ID}/photos`; body.set('url', image); body.set('caption', message); }
   else { url = `https://graph.facebook.com/${FB_ID}/feed`; body.set('message', message); if (link) body.set('link', link); }
   const r = await fetch(url, { method: 'POST', body });
   const j = await r.json().catch(() => ({}));
@@ -60,7 +74,7 @@ async function postFacebook({ title, text, link, image }) {
 }
 async function post(msg, where = ['discord', 'facebook']) {
   const plain = msg.text.replace(/\*\*/g, '');
-  if (DRY) { notice(`[${where.join('+')}] ${msg.title}\n${plain}${msg.link ? '\n' + msg.link : ''}${msg.image ? '\n(image) ' + msg.image : ''}`); return; }
+  if (DRY) { notice(`[${where.join('+')}] ${msg.title}\n${plain}${msg.link ? '\n' + msg.link : ''}${msg.image ? '\n(image) ' + msg.image : ''}${msg.file ? '\n(picture made: ' + msg.file + ')' : ''}`); return; }
   const errs = [];
   if (where.includes('discord')) await postDiscord(msg).catch(e => errs.push(e.message));
   if (where.includes('facebook')) await postFacebook({ ...msg, text: plain }).catch(e => errs.push(e.message));
@@ -90,7 +104,14 @@ async function getJSON(url, tries = 3) {
   throw last;
 }
 // Activation history for every Kentucky park: {ref: [[call, yyyymmdd, qsos], ...]}
-async function history() {
+async function history() { // cached for 3 hours so milestones + recaps in the same job only ask POTA once
+  const C = '/tmp/kpc-history.json';
+  try { const st = fs.statSync(C); if (Date.now() - st.mtimeMs < 3 * 36e5) return JSON.parse(fs.readFileSync(C, 'utf8')); } catch (e) { /* none yet */ }
+  const h = await history0();
+  try { fs.writeFileSync(C, JSON.stringify(h)); } catch (e) { /* fine */ }
+  return h;
+}
+async function history0() {
   const refs = KY.parks.map(p => p.c), out = {};
   let i = 0, fails = 0;
   async function worker() {
@@ -297,6 +318,98 @@ tasks.bandalert = async () => {
   }
   save();
   if (!posted) notice('No new strong alerts.');
+};
+
+// Member activation recap: a member finished a valid activation (10+ contacts) at a Kentucky park.
+// One post per call per UTC day (a 2-fer = both parks in one post), with a map picture. Only the last 3 days.
+tasks.recaps = async () => {
+  const h = await history(), calls = new Set(members());
+  const park = Object.fromEntries(KY.parks.map(p => [p.c, p]));
+  const groups = {};
+  for (const [ref, list] of Object.entries(h)) for (const [c, d0, q] of list) {
+    const d = String(d0).replace(/\D/g, '').slice(0, 8);
+    if (!calls.has(c) || q < 10 || !/^\d{8}$/.test(d)) continue;
+    (groups[c + '|' + d] = groups[c + '|' + d] || { call: c, date: d, parks: [], qsos: 0 }).parks.push({ ref, q });
+  }
+  const iso = d => `${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6, 8)}`;
+  const keys = Object.keys(groups).sort();
+  const first = !state.recaps;
+  state.recaps = state.recaps || [];
+  const done = new Set(state.recaps);
+  if (first) { state.recaps = keys.slice(-2000); save(); return notice(`First run: remembered ${keys.length} past member activations. Recaps post from now on.`); }
+  const fresh = keys.filter(k => !done.has(k) && dayDiff(localDate(), iso(groups[k].date)) <= 3);
+  if (!fresh.length) { notice('No new member activations.'); return; }
+  for (const k of fresh) {
+    const g = groups[k];
+    const dt0 = new Date(iso(g.date) + 'T12:00:00Z');
+    const day = `${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dt0.getUTCDay()]}, ${MN[dt0.getUTCMonth()]} ${dt0.getUTCDate()}`;
+    const ps = g.parks.map(p => ({ q: p.q, ref: p.ref, name: (park[p.ref] || {}).n || p.ref, la: (park[p.ref] || {}).la, lo: (park[p.ref] || {}).lo, co: (park[p.ref] || {}).co }));
+    // '2-fer' only when our data says the parks overlap (tf); two parks the same day can just be two stops
+    const over = ps.length > 1 && ps.every((p, i) => ps.every((q, k) => i === k || ((park[p.ref] || {}).tf || []).includes(q.ref)));
+    const two = over ? (ps.length === 2 ? ' (a 2-fer!)' : ` (a ${ps.length}-fer!)`) : '';
+    g.qsos = over ? Math.max(...ps.map(p => p.q)) : ps.reduce((a, p) => a + p.q, 0); // a 2-fer logs the same contacts at both parks
+    const file = `/tmp/recap-${g.call}-${g.date}.png`;
+    let pic = null;
+    try { execSync(`python3 .github/scripts/kpc_recap_map.py ${file}`, { input: JSON.stringify({ call: g.call, date: day, qsos: g.qsos, parks: ps }), stdio: ['pipe', 'ignore', 'inherit'] }); pic = file; }
+    catch (e) { notice('Map picture failed: ' + e.message); }
+    const title = `📻 ${g.call} activated ${ps.length > 1 ? ps.length + ' parks' : ps[0].name}`;
+    const text = `**${g.call}** put **${g.qsos} contacts** in the log on ${day}${two}.\n\n` + ps.map(p => `🌲 ${p.ref} · ${p.name}${p.co ? ` (${p.co} County)` : ''}${!over && ps.length > 1 ? ` · ${p.q} contacts` : ''}`).join('\n') + '\n\nThanks to every hunter who worked them. Nice job!';
+    await post({ title, text, link: `${SITE}kpc-park-notes.html#${ps[0].ref}`, file: pic || undefined });
+    state.recaps.push(k); state.recaps = state.recaps.slice(-2000); save();
+    await sleep(2000);
+  }
+};
+
+// Weekly best band times from Kentucky: WSPR beacon reports heard from / by stations in Kentucky's grid squares,
+// last 7 days, counted per band and Eastern-time hour. The best 3-hour stretch per band is posted.
+tasks.bandtimes = async () => {
+  const wk = localDate();
+  state.bandtimes = state.bandtimes || [];
+  if (!DRY && state.bandtimes.includes(wk)) return notice('Already posted today.');
+  const BN = [[3, '80m'], [5, '60m'], [7, '40m'], [10, '30m'], [14, '20m'], [18, '17m'], [21, '15m'], [24, '12m'], [28, '10m'], [50, '6m']];
+  const SQ = ['EM66', 'EM67', 'EM76', 'EM77', 'EM78', 'EM86', 'EM87', 'EM88', 'EM96', 'EM97', 'EM68', 'EM79', 'EM89'];
+  const IN = "('" + SQ.join("','") + "')";
+  const sql = `SELECT band, toHour(toTimeZone(time,'America/New_York')) AS h, count() AS c, max(distance) AS d, uniqExact(if(substring(tx_loc,1,4) IN ${IN}, rx_sign, tx_sign)) AS u FROM wspr.rx WHERE time > now() - INTERVAL 7 DAY AND band IN (${BN.map(b => b[0]).join(',')}) AND (substring(tx_loc,1,4) IN ${IN} OR substring(rx_loc,1,4) IN ${IN}) GROUP BY band, h ORDER BY band, h FORMAT JSON`;
+  const j = await getJSON('https://db1.wspr.live/?query=' + encodeURIComponent(sql));
+  const by = {};
+  for (const r of j.data || []) { const b = +r.band; (by[b] = by[b] || { h: Array(24).fill(0), d: 0, n: 0 }); by[b].h[+r.h] += +r.c; by[b].d = Math.max(by[b].d, +r.d); by[b].n += +r.c; }
+  const hr = h => { const x = ((h % 24) + 24) % 24; return (x % 12 || 12) + (x < 12 ? ' AM' : ' PM'); };
+  const lines = [];
+  let total = 0;
+  for (const [b, name] of BN) {
+    const B = by[b]; if (!B || B.n < 40) continue;
+    total += B.n;
+    let best = -1, at = 0;
+    for (let i = 0; i < 24; i++) { const v = B.h[i] + B.h[(i + 1) % 24] + B.h[(i + 2) % 24]; if (v > best) { best = v; at = i; } }
+    const mi = Math.round(B.d / 1.609);
+    lines.push(`**${name}**: best ${hr(at)}–${hr(at + 3)} · ${B.n.toLocaleString('en-US')} reports · farthest ${mi.toLocaleString('en-US')} mi`);
+  }
+  if (!lines.length) return notice('Not enough WSPR reports this week to post.');
+  const title = '📡 Best band times from Kentucky this week';
+  const text = `From ${total.toLocaleString('en-US')} WSPR beacon reports heard to and from Kentucky over the last 7 days (Eastern time):\n\n` + lines.join('\n') +
+    `\n\nWSPR beacons run just a few watts, so when they get through, your SSB or CW signal from the park can too. Bands change with the sun: check the live conditions bar before you head out.`;
+  await post({ title, text, link: SITE + 'kpc-live.html', color: 0x3a8dd5 });
+  if (!DRY) { state.bandtimes.push(wk); state.bandtimes = state.bandtimes.slice(-20); save(); }
+};
+
+// Club birthday + license anniversaries. Only members listed in kpc-birthdays.json (they said yes) are mentioned.
+tasks.birthdays = async () => {
+  let B = {}; try { B = JSON.parse(fs.readFileSync('kpc-birthdays.json', 'utf8')); } catch (e) { return notice('No kpc-birthdays.json.'); }
+  const d = localDate(), md = d.slice(5), yr = +d.slice(0, 4);
+  state.birthdays = state.birthdays || [];
+  if (state.birthdays.includes(d)) return notice('Already posted today.');
+  const lines = []; let club = 0;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(B.club || '') && B.club.slice(5) === md && yr > +B.club.slice(0, 4)) club = yr - +B.club.slice(0, 4);
+  for (const m of B.members || []) {
+    if (!m || !/^\d{4}-\d{2}-\d{2}$/.test(m.licensed || '') || m.licensed.slice(5) !== md) continue;
+    const n = yr - +m.licensed.slice(0, 4); if (n < 1) continue;
+    lines.push(`📜 **${String(m.call).toUpperCase()}** got their ham license **${n} year${n > 1 ? 's' : ''}** ago today!`);
+  }
+  if (!club && !lines.length) return notice('No birthdays or anniversaries today.');
+  const title = club ? `🎂 Kentucky Portable Club is ${club} year${club > 1 ? 's' : ''} old today!` : '📜 Ham radio anniversary';
+  const text = (club ? `Thank you to every member, hunter and friend who has gotten outside and on the air with us. Here's to many more years in the parks!${lines.length ? '\n\n' : ''}` : '') + lines.join('\n') + (lines.length ? '\n\nCongratulations and 73!' : '');
+  await post({ title, text, link: SITE + (club ? 'about.html' : 'members.html') });
+  if (!DRY) { state.birthdays.push(d); state.birthdays = state.birthdays.slice(-30); save(); }
 };
 
 if (!tasks[task]) { console.error('Unknown task. Use: ' + Object.keys(tasks).join(', ')); process.exit(2); }
