@@ -1,5 +1,8 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261016a">
+<link rel="stylesheet" href="kpc-logger.css?v=20261016b">
+<link rel="manifest" href="kpc-logger.webmanifest">
+<meta name="theme-color" content="#050b0f">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
 @@HEADER@@
 <main id="lg" data-keep-light>
 <section class="lg-hero"><div class="lg-in">
@@ -13,6 +16,8 @@
  <div><b id="sHr">0</b><span>LAST 60 MIN</span></div>
 </div>
 <div class="lg-goal"><div class="bar"><i id="sGoalBar"></i></div><span id="sGoal">10 contacts makes a valid POTA activation</span></div>
+<div class="lg-ops-goal" id="sOps"></div>
+<div class="lg-hacts"><a class="lg-btn line sm" href="#cApp">📲 INSTALL / USE WITH NO SIGNAL</a><a class="lg-btn line sm" href="#cNotes">📝 NOTES</a></div>
 </div></section>
 
 <div class="lg-wrap">
@@ -24,15 +29,19 @@
  <label>My park number(s)<input id="myPark" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-1234 (2-fer: US-1234, US-5678)"></label>
  <label>My grid<input id="myGrid" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="EM78"></label>
  <label>Power (W)<input id="myPwr" inputmode="decimal" placeholder="100"></label>
+ <label class="wide">Other operators logging with you (optional)<input id="myOps" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Their calls, like K4TEST, W4KIDS"></label>
 </div>
+<label class="lg-chk" id="myShareL" hidden><input type="checkbox" id="myShare"> We all use ONE station call (my call above). Leave this off when everyone uses their own call, so each operator gets their own POTA file and credit.</label>
 <p class="lg-park" id="myParkInfo"></p>
-<div class="lg-row"><button type="button" class="lg-btn line sm" id="myGps">📍 GRID FROM MY GPS</button><span class="lg-mu" id="myGpsMsg"></span></div>
+<div class="lg-row"><button type="button" class="lg-btn gold sm" id="myNearB">📍 PARKS NEAR ME (GPS)</button><button type="button" class="lg-btn line sm" id="myGps">GRID FROM MY GPS</button><span class="lg-mu" id="myGpsMsg"></span></div>
+<div class="lg-near" id="myNear" hidden></div>
 </section>
 
 <div class="lg-main">
 <div class="lg-left">
 <!-- 2 entry -->
 <section class="lg-card lg-entry" id="cEntry"><h2><i>2</i> Log a contact <small id="eTime">time: now (UTC)</small></h2>
+<div class="lg-opsel" id="eOps" hidden></div>
 <form id="eForm" autocomplete="off">
 <div class="lg-f e">
  <label class="call">Their call<input id="eCall" autocapitalize="characters" spellcheck="false" placeholder="K4TEST" required></label>
@@ -126,7 +135,18 @@
 <label class="lg-chk"><input type="checkbox" id="nCarry"> Add these notes to every contact I log</label></div>
 <p class="lg-stamp" id="nStampTxt" hidden></p>
 <textarea id="nText" rows="5" placeholder="Rig, antenna, weather, where you set up, who came by…"></textarea>
+<div class="lg-row"><button type="button" class="lg-btn line sm" id="nAll">➕ ADD MY NOTES TO THE CONTACTS ALREADY IN THIS ACTIVATION</button></div>
 <p class="lg-mu" id="nSaved">Notes save on this device as you type. With "every contact" ticked, they go into each new contact's notes (and the ADIF file).</p>
+</section>
+
+<section class="lg-card" id="cApp"><h2><i>9</i> Install it · use it with no signal</h2>
+<div class="lg-row"><button type="button" class="lg-btn gold" id="aInstall" hidden>📲 INSTALL THE LOGGER</button><button type="button" class="lg-btn gold" id="aSave">💾 SAVE FOR NO SIGNAL</button><span class="lg-msg" id="aMsg"></span></div>
+<div class="lg-how">
+ <p><b>On a computer (Chrome or Edge):</b> tap 📲 INSTALL THE LOGGER above, or the install icon at the right end of the address bar. It opens in its own window like a program.</p>
+ <p><b>On an iPhone or iPad (Safari):</b> tap Share (on newer iPhones •••, then Share) → <b>Add to Home Screen</b> → Add.</p>
+ <p><b>On Android (Chrome):</b> tap 📲 INSTALL THE LOGGER above, or ⋮ → <b>Add to Home screen</b> / <b>Install app</b>.</p>
+ <p><b>No signal at the park?</b> Tap 💾 SAVE FOR NO SIGNAL at home first (it also saves the park list for PARKS NEAR ME). With no signal you can still log, see your rate and notes, find nearby parks by GPS and download your POTA files. Spots, call look-ups, self-spotting and the map pictures need signal; calls you've looked up before are remembered.</p>
+</div>
 </section>
 
 <p class="lg-mu lg-foot">Call sign details come from public FCC data (callook.info, HamDB). Your log stays on this device (two copies) until you download it. KPC is an independent ham radio club, not part of Parks on the Air®.</p>
@@ -135,4 +155,4 @@
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-logger.js?v=20261016a"></script>
+<script src="kpc-logger.js?v=20261016b"></script>

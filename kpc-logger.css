@@ -145,3 +145,21 @@ main#lg input::placeholder{color:#5f706e}
 .lg-toast button{margin-left:10px;background:var(--g);border:0;border-radius:7px;padding:6px 10px;font-weight:900;cursor:pointer}
 @media(max-width:700px){.lg-card{padding:14px 12px}.lg-f.e{grid-template-columns:repeat(2,minmax(0,1fr))}.lg-f label.call{grid-column:1/-1}.lg-btn.big{width:100%}}
 @media(max-width:700px){.lg-eyebrow{font-size:11px;letter-spacing:2px}}
+/* Oct 16 v2: operators, parks near me, install card */
+.lg-hacts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.lg-hacts .lg-btn{background:rgba(0,0,0,.45)}
+.lg-ops-goal{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.lg-ops-goal span{font:700 12.5px ui-monospace,Menlo,Consolas,monospace;padding:5px 10px;border-radius:99px;background:rgba(0,0,0,.55);border:1px solid var(--ln);color:#e7ece7}
+.lg-ops-goal span.ok{border-color:var(--gr);color:var(--gr)}
+.lg-opsel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 12px;padding:10px 12px;border-radius:12px;background:rgba(226,176,74,.08);border:1px solid var(--ln)}
+.lg-opsel b{font-size:11px;letter-spacing:1.5px;color:var(--mu);margin-right:4px}
+.lg-opsel button{font:900 15px ui-monospace,Menlo,Consolas,monospace;letter-spacing:1px;padding:9px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.4);color:#fff;cursor:pointer}
+.lg-opsel button.on{background:var(--g);border-color:var(--g);color:#1a1205}
+.lg-opsel button small{font-size:11px;opacity:.75;margin-left:4px}
+.lg-near{margin-top:12px;display:grid;gap:8px}
+.lg-near .np{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;align-items:center;padding:10px 12px;border-radius:12px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12)}
+.lg-near .np b{color:var(--g2);font-family:ui-monospace,Menlo,Consolas,monospace}
+.lg-near .np span{font-size:13px;color:#cfd8d3}
+.lg-near .np em{font-style:normal;color:var(--mu);font-size:12px}
+@media(max-width:600px){.lg-near .np{grid-template-columns:1fr 1fr}.lg-near .np>div{grid-column:1/-1}}
+.lg-how p{margin:10px 0 0;font-size:14px;color:#dbe3dd}
