@@ -729,7 +729,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
   }
   $('mrForm').addEventListener('submit', e => { e.preventDefault(); search(); });
   /* simple password lock (keeps casual visitors out; it is not bank-grade security on a public website) */
-  const HASH = 'b36efa5ab2718f715ea105ece66b600d914fb0be36ee52de48363e5727d92b73';
+  const HASH = '04801b98a434eac10dc37a3bb1a503b473e7a97687e982dff47e6b20266f565e';
   const sha = async t => { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); };
   function start() {
     if ($('mrLock')) $('mrLock').hidden = true; $('mrApp').hidden = false;
@@ -738,7 +738,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
     if (P.get('name')) { $('mrName').value = P.get('name'); if (P.get('town')) $('mrTown').value = P.get('town'); if (P.get('state')) { $('mrState').value = P.get('state').toUpperCase(); agencies($('mrState').value); } search(); }
   }
   let ok = !!$('mrPublic'); /* the public Suggest page uses the same engine with no password */
-  if (!ok) try { ok = localStorage.getItem('kpcMrOK') === HASH; } catch (e) {}
+  if (!ok) try { ok = localStorage.getItem('kpcMrOK') === HASH || localStorage.getItem('kpcMember') === '2925a56a5048f6d5dabbe552f8abb71e7c8b4dfc8b42b29cd76f9083c226a540'; } catch (e) {} /* one member sign-in opens it too */
   if (ok) start();
   else $('mrLockForm').addEventListener('submit', async e => {
     e.preventDefault();

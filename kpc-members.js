@@ -1,6 +1,7 @@
 /* KPC members-only gate. NOTE: GitHub Pages is public — this keeps casual visitors out, it is not real security.
    To change the password: open any page with ?newpass=YourNewPassword, copy the code it shows, paste it below. */
 (function(){
+if(window.KPCGate)return; /* Oct 17 2026: kpc-gate.js (on every page) does the members lock now, with the new password */
 const HASH='af9a50b3b6a03acfaed05b33cd9d2cfec5bd0f3e257745b403928e6930ebcc3c'; // set by the build — see note above
 const KEY='kpcMember';
 async function sha(t){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t.trim()));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}

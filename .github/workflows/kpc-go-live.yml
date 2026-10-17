@@ -3,7 +3,7 @@ name: KPC Go-Live (Oct 21, 2026)
 #   1. puts the new pages live: campoutHOLD.html -> campout.html, eventsHOLD.html -> events.html,
 #      resourcesHOLD.html -> resources.html (the old versions stay in the git history),
 #      and unhides kpc-campgrounds.html (menu, search, Find It, Tool Box) with .github/scripts/kpc_golive_campgrounds.py
-#   2. then posts the "New on the KPC website" roundup to Discord and the KPC Facebook Page.
+#   2. (Oct 17: the roundup post was removed at Brandon's request; the regular daily posts carry on.)
 # It only does anything on that date while the HOLD files still exist, so it can't run twice.
 # To go live early, run it from the Actions tab and tick "go live now".
 on:
@@ -52,18 +52,3 @@ jobs:
           git push
           echo "::notice title=Go-live::Now live:${moved}"
           echo "done=yes" >> "$GITHUB_OUTPUT"
-      - name: Announce what's new
-        if: steps.swap.outputs.done == 'yes'
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.KPC_DISCORD_WEBHOOK }}
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-          FORCE_PAGES: '1'
-        run: |
-          node .github/scripts/kpc_social.js pages
-          git add kpc-social-state.json 2>/dev/null || true
-          if ! git diff --cached --quiet; then
-            git commit -m 'Remember announced pages'
-            git pull --rebase --autostash || true
-            git push || true
-          fi
