@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261016m">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261016o">
 @@HEADER@@
 <main id="hl" data-keep-light data-theme="lodge">
 <div id="hlApp">
@@ -12,10 +12,10 @@
 <div class="hl-stats">
  <div><b id="hsLive">–</b><span>SPOTS ON THE AIR</span></div>
  <div class="g"><b id="hsNew">–</b><span>NEW TO YOU</span></div>
- <div><b id="hsLog">0</b><span>IN YOUR LOG</span></div>
+ <div class="clk"><b id="hsUtc">--:--</b><span id="hsUtcL">UTC</span></div>
  <div><b id="hsAge">–</b><span>NEXT CHECK</span></div>
 </div>
-<div class="hl-acts"><a class="hl-btn gold" href="#hPota">⭐ GET MY PARKS FROM POTA</a><a class="hl-btn ghost" href="#hlNeed">🎯 PARKS I NEED</a><a class="hl-btn ghost" href="#hlTop">🏆 TOP ACTIVATORS</a></div>
+<div class="hl-acts"><a class="hl-btn gold" href="#hPota">⭐ GET MY PARKS FROM POTA</a><a class="hl-btn ghost" href="#hlNeed">🎯 PARKS I NEED</a><a class="hl-btn ghost" href="kpc-top50.html">🏆 TOP 50 BY STATE</a></div>
 <div class="hl-theme" role="group" aria-label="Look">LOOK: <button type="button" class="hl-chip" data-theme-pick="lodge">🔥 CABIN LODGE</button><button type="button" class="hl-chip" data-theme-pick="night">🌌 NIGHT SKY</button></div>
 </div></section>
 
@@ -23,7 +23,7 @@
  <div class="hl-tick-k"><span class="dot"></span>NEW TO YOU</div>
  <button type="button" class="hl-na" id="hlNa" aria-label="Map of new parks on the air (tap to enlarge)"><svg viewBox="0 0 480 305" id="hlNaSvg" aria-hidden="true"></svg><span class="hl-na-cap">Blinking green = new to you in your range · blue = new but far · grey = other spots · gold ring = home. Tap to close.</span></button>
  <div class="hl-tick-run"><div class="hl-tick-track" id="hlTickT"><span class="hl-wait">Waiting for a park that's new to you…</span></div></div>
- <button type="button" class="hl-bell" id="hlFlame" aria-pressed="true" title="Flames when a new park comes on">🔥 FLAMES</button><button type="button" class="hl-bell" id="hlBell" aria-pressed="false" title="Alert me">🔕 ALERT OFF</button>
+ <button type="button" class="hl-bell" id="hlFlame" aria-pressed="true" title="What happens on screen when a new park comes on: flames, fireworks or nothing (tap to change)">🔥 FLAMES</button><button type="button" class="hl-bell" id="hlBell" aria-pressed="false" title="Alert me">🔕 ALERT OFF</button>
 </section>
 
 <div class="hl-split">
@@ -133,14 +133,6 @@
 <div class="hl-list" id="nList"><div class="hl-empty">Pick a state.</div></div>
 </div></section>
 
-<section class="hl-sec alt" id="hlTop"><div class="hl-in">
-<p class="hl-k">WHO'S ON TOP IN THE STATE</p><h2>🏆 Top 20 activators &amp; hunters</h2>
-<div class="hl-row"><select id="tSt" aria-label="State"></select><button type="button" class="hl-chip" data-t="acts" aria-pressed="true">MOST ACTIVATIONS</button><button type="button" class="hl-chip" data-t="uniq" aria-pressed="false">MOST DIFFERENT PARKS</button><button type="button" class="hl-chip" data-t="hunt" aria-pressed="false">🎯 TOP HUNTERS</button><button type="button" class="hl-chip" data-t="huntp" aria-pressed="false">🎯 HUNTERS BY PARKS</button></div>
-<div class="hl-top" id="tList"><div class="hl-empty">Loading…</div></div>
-<p class="hl-src" id="tSrc"></p>
-<h3 class="hl-h3">📊 My numbers</h3>
-<div id="mStats"><div class="hl-empty">Put your call sign in Step 1.</div></div>
-</div></section>
 </div>
 <div class="hl-sheet" id="lgSheet" role="dialog" aria-label="Log this contact"><div class="in">
 <h3><span id="lgTitle">📝 Log this contact</span><button type="button" id="lgX" aria-label="Close">✕</button></h3>
@@ -166,4 +158,4 @@
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-hunt.js?v=20261016m"></script>
+<script src="kpc-hunt.js?v=20261016n"></script>
