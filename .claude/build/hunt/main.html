@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261018t">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261018u">
 @@HEADER@@
 <main id="hl" data-keep-light data-theme="lodge">
 <nav class="hl-ptabs mem-only" aria-label="Hunters Lounge pages"><a href="kpc-hunt.html" data-pt="lounge">🎯 SPOTS &amp; LOG</a><a href="kpc-hunt-need.html" data-pt="need">📋 PARKS I NEED</a><a href="kpc-top50.html" data-pt="top50">🏆 TOP 50</a><a href="kpc-hunt-cat.html" data-pt="cat">📻 CAT &amp; QRZ</a></nav>
@@ -65,7 +65,7 @@
 <form class="hl-row" id="favForm"><input id="favIn" placeholder="Add a call" autocapitalize="characters" autocomplete="off" style="width:160px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
 <div class="hl-row" id="favList"></div></details>
 <div id="hlFavs"></div>
-<a class="hl-nolog mem-only" id="hlNoLog" href="#hPota" hidden>⭐ <b>Load your hunted parks from POTA</b> so the new-to-you ones light up. Tap here ›</a><a class="hl-nolog pub-only" id="hlNoLogP" href="#hlSetup" hidden>📄 <b>Load the parks you've worked</b> (a CSV or ADIF file) so the new-to-you ones light up. Tap here ›</a>
+<a class="hl-nolog mem-only" id="hlNoLog" href="#hPota" hidden>⭐ <b>Load your hunted parks from POTA</b> so the new-to-you ones light up. Tap here ›</a><a class="hl-nolog pub-only" id="hlNoLogP" href="#hlSetup" hidden>📄 <b>Load the parks you've worked</b> (your logbook as an ADIF file) so the new-to-you ones light up. Tap here ›</a>
 <div class="hl-row hl-viewbar"><span class="hl-count" id="hlCount"></span><button type="button" class="hl-chip mem-only hl-logtog-m" data-qmode>☁ QRZ MODE</button><a href="#awModal" class="hl-chip hl-awq mem-only" title="What the badges on the spots mean">🏅 BADGES?</a><span class="hl-vt" role="group" aria-label="View"><button type="button" class="hl-chip" data-view="cards">▦ CARDS</button><button type="button" class="hl-chip" data-view="table">☰ TABLE</button></span></div>
 <div class="hl-grid" id="hlSpots"><div class="hl-empty">Loading spots…</div></div>
 <p class="hl-src" id="hlSrc"></p>
@@ -73,7 +73,7 @@
 </div>
 
 <section class="hl-sec hl-barsec" id="hlLog"><div class="hl-in">
-<a class="hl-bar" href="#lgModal">📒 <b>MY LOG FILES</b><span class="d">Download for QRZ · backup file · restore · my call &amp; grid</span><i>OPEN ▸</i></a>
+<a class="hl-bar" href="#lgModal">📒 <b>MY LOG FILES</b><span class="d">Download for QRZ · backup file · restore · my call &amp; grid</span><i>OPEN ▸</i></a><div class="hl-wbar" id="hlWbar"><span class="wl">🪟 EXTRA SPOT LISTS</span><button type="button" class="wbb" id="hlWB0" data-wt="0">＋ LIST 1</button><button type="button" class="wbb" id="hlWB1" data-wt="1">＋ LIST 2</button><span class="wh">tap to open or close · drag them anywhere</span></div>
 <div class="hl-modal" id="awModal" hidden role="dialog" aria-label="What the badges mean"><div class="hl-mbox"><button type="button" class="hl-mx" data-mclose aria-label="Close">✕</button>
 <h2 class="hl-h">🏅 What the badges on a spot mean</h2>
 <p class="hl-p">They show how close this contact gets you to a POTA hunter award. They come from your own POTA numbers, so tap ⭐ GET MY PARKS first (and again now and then to keep them fresh).</p>
@@ -139,7 +139,7 @@
  </ol></div>
  <p class="hl-p" style="margin-top:14px"><b>Or load a file:</b></p>
  <label class="hl-lab">Your call sign <input id="hCall" autocomplete="off" autocapitalize="characters" placeholder="Your call"></label>
- <div class="hl-drop" id="hDrop"><input type="file" id="hFile" accept=".csv,.txt,.adi,.adif,text/csv" multiple><b>📄 TAP TO PICK YOUR FILE</b><span>or drop it here · CSV or ADIF · POTA, WWFF and SOTA</span></div>
+ <div class="hl-drop" id="hDrop"><input type="file" id="hFile" accept=".csv,.txt,.adi,.adif,text/csv" multiple><b>📄 TAP TO PICK YOUR FILE</b><span>or drop it here · ADIF (or CSV) · POTA, WWFF and SOTA</span></div>
  <div class="hl-row"><label class="hl-chk"><input type="checkbox" id="hAdd"> Add to my list (don't replace it)</label></div>
  <p class="hl-msg" id="hMsg"></p>
  <div class="hl-progs" id="hProgs"></div>
@@ -149,12 +149,12 @@
 <div class="hl-card">
  <h3>Where do I get the file?</h3>
  <ul class="hl-how">
- <li><b>POTA:</b> <span class="mem-only">use the ⭐ bookmark on the left (pota.app's own CSV download is for activations only). Or </span>an ADIF from your logging program or your QRZ Logbook: the page reads the park numbers in it.</li>
- <li><b>WWFF / KFF:</b> your log from <a href="https://wwff.co/logsearch/" target="_blank" rel="noopener">WWFF Logsearch</a>, or any ADIF from your logger with WWFF numbers in it.</li>
- <li><b>SOTA:</b> sign in at <a href="https://www.sotadata.org.uk" target="_blank" rel="noopener">sotadata.org.uk</a> and download your chaser log as a CSV file.</li>
- <li>Any CSV or ADIF works: the page just looks for park, reference and summit numbers in it. Old POTA numbers like <b>K-1234</b> count as <b>US-1234</b>.</li>
+ <li><b>Best: your logbook as an ADIF file.</b> From your QRZ Logbook (Logbook → Settings → Export → ADIF) or your logging program. The page reads the POTA, WWFF / KFF and SOTA numbers saved on each contact, so it only knows the parks you logged with their number.</li>
+ <li><b>SOTA:</b> your chaser log from <a href="https://www.sotadata.org.uk" target="_blank" rel="noopener">sotadata.org.uk</a> (CSV) works too.</li>
+ <li><b>Logged here?</b> Contacts you log in this Lounge count right away, no file needed.</li>
+ <li>Old POTA numbers like <b>K-1234</b> count as <b>US-1234</b>.</li>
  </ul>
- <div class="hl-note"><b>Will it remember me?</b> Yes, on this phone or computer. Your list is saved in this web browser, not on GitHub or anywhere else, so it's still here when you come back in 4 days (or 4 months). It's gone if you clear your browser's data or use a private window, and a different phone needs its own upload. Your log only changes when you upload again, so do that every week or two. Tapping <b>✓ WORKED</b> on a spot adds that park right away.</div>
+ <div class="hl-note"><b>Will it remember me?</b> Yes, on this phone or computer. Your list is saved in this web browser, not on GitHub or anywhere else, so it's still here when you come back in 4 days (or 4 months). It's gone if you clear your browser's data or use a private window, and a different phone needs its own upload. Your log only changes when you upload again, so do that every week or two. Logging a contact here adds that park right away.</div>
 </div>
 </div>
 
@@ -201,4 +201,4 @@
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="kpc-ambient.js?v=20261017a"></script><script src="kpc-cat.js?v=20261018a"></script>
-<script src="kpc-hunt.js?v=20261018t"></script>
+<script src="kpc-hunt.js?v=20261018u"></script>

@@ -959,3 +959,11 @@ main#hl[data-public="1"] .hl-vipb{display:none}
 /* 📡 FT8 helper link on digital spots */
 main#hl a.ft8{display:inline-flex;align-items:center;gap:4px;font:900 11px Arial;letter-spacing:.6px;padding:5px 10px;border-radius:999px;background:rgba(80,170,255,.16);border:1px solid rgba(120,190,255,.6);color:#cfe8ff;text-decoration:none;margin-right:6px}
 main#hl a.ft8:hover{background:rgba(80,170,255,.3)}
+
+/* 🪟 extra spot lists: easy open/close buttons under MY LOG FILES (Brandon Oct 17: 'the + over the spot is not easy enough') */
+.hl-wbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:8px 0 0;padding:8px 12px;border-radius:14px;background:rgba(14,10,6,.82);border:1px solid rgba(240,201,107,.45)}
+.hl-wbar .wl{font:900 11px Arial;letter-spacing:1.4px;color:#f0c96b}
+.hl-wbar .wh{font:12px Arial;color:#cdbb95}
+.hl-wbar .wbb{font:900 12px Arial;letter-spacing:.6px;padding:8px 14px;border-radius:999px;border:1px solid rgba(240,201,107,.65);background:transparent;color:#f6d58a;cursor:pointer}
+.hl-wbar .wbb[aria-pressed="true"]{background:linear-gradient(90deg,#f6d58a,#d5a63a);color:#2a1a05}
+@media(max-width:1099px){.hl-wbar{display:none}}
