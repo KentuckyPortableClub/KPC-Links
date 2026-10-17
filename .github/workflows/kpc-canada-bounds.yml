@@ -1,0 +1,45 @@
+name: KPC Canada park boundaries
+# Monthly (and by hand): official outlines for Canadian POTA parks from CPCAD (Environment and Climate Change Canada)
+# -> data/canada-bounds/<REF>.json for the KPC US Trip Planner. Resumable: each run continues where the last one stopped.
+on:
+  schedule:
+    - cron: '29 8 9 * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'info = only print the service layers and fields'
+        required: false
+        default: ''
+      limit:
+        description: 'Only this many parks (0 = all)'
+        required: false
+        default: '0'
+      recheck:
+        description: '1 = look again at parks already saved'
+        required: false
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: kpc-canada-bounds
+  cancel-in-progress: false
+jobs:
+  bounds:
+    runs-on: ubuntu-latest
+    timeout-minutes: 175
+    steps:
+      - uses: actions/checkout@v5
+      - name: Find the outlines
+        env:
+          MODE: ${{ inputs.mode }}
+          LIMIT: ${{ inputs.limit }}
+          RECHECK: ${{ inputs.recheck }}
+          MINUTES: '160'
+        run: python3 .github/scripts/kpc_canada_bounds.py
+      - name: Save
+        if: ${{ inputs.mode != 'info' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/canada-bounds || true
+          if ! git diff --cached --quiet; then git commit -m 'Canada park boundaries (CPCAD)'; git pull --rebase --autostash || true; git push; fi
