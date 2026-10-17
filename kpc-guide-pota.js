@@ -346,7 +346,7 @@
     var D = STATE.D, G = STATE.G, C = STATE.C, P = STATE.P;
     if (GUEST) {
       var fs = document.getElementById('fers');
-      if (fs) fs.innerHTML = '<div class="g-kick">KENTUCKY POTA FIELD RESOURCE</div><h2>2-Fers &amp; 3-Fers</h2><div class="g-box g-keep" style="margin:12px 0"><h3>Coming soon!</h3><p>' + SOON + '</p></div>';
+      if (fs) fs.innerHTML = '<div class="g-kick" id="gKick2">KENTUCKY POTA FIELD RESOURCE</div><h2>2-Fers &amp; 3-Fers</h2><div class="g-box g-keep" style="margin:12px 0"><h3>Coming soon!</h3><p>' + SOON + '</p></div>';
       document.querySelectorAll('.g-bar a[href="#fers"]').forEach(function (a) { a.textContent = '2-FERS & 3-FERS: COMING SOON →'; });
       document.querySelectorAll('dt').forEach(function (dt) { if (/^2-FER$/.test(dt.textContent.trim())) { var dd = dt.nextElementSibling; if (dd && dd.tagName === 'DD') dd.textContent = SOON; } });
     } else {
