@@ -62,6 +62,7 @@ for st in STATES:
 # Canada + the rest of North America (Brandon Oct 17: 'Canadian cards'): one file per POTA program, data/parkinfo/<PREFIX>.json
 # {program, updated, sites:{province:site}, parks:{ref:[same 10 fields, province/state code]}}. Weekly runs do every program;
 # a manual run with only 'states' filled skips them; PROGS='CA MX' picks programs.
+OKSITE = re.compile(r'(park|parc|parque|\.gov(\.|$)|\.gob\.|\.go\.[a-z]{2}$|\.gc\.ca$|gouv\.qc\.ca$|gov\.[a-z]{2}\.ca$|^gov\.mb\.ca$|sepaq\.com$|^bnt\.bs$|^bvinpt\.org$)')
 NA_PROGS = 'CA MX GT BZ SV HN NI CR PA CU JM HT DO BS BB TT AG DM GD KN LC VC AI AW CW SX BQ MF BL GP MQ KY TC VG MS BM GL PM'.split()
 PROGS = (os.environ.get('PROGS') or ('' if os.environ.get('STATES') else ' '.join(NA_PROGS))).split()
 if PROGS:
@@ -98,6 +99,7 @@ for pre in PROGS:
             parks[ref] = [clean(p.get('name')), web, typ, act, acc, la, lo,
                           int(n_act) if str(n_act).isdigit() else None, int(n_try) if str(n_try).isdigit() else None, int(n_q) if str(n_q).isdigit() else None, sub]
         doms = collections.Counter(d for d in (urllib.parse.urlparse(v[1]).netloc.lower().replace('www.', '') for v in parks.values() if v[1] and v[10] == sub and re.search(r'Provincial Park|State Park|National Park', v[2] or '')) if '.' in d)
+        doms = collections.Counter({d: n for d, n in doms.items() if OKSITE.search(d)})   # only real park / government sites (not Wikipedia, APRS maps, tourism pages)
         if doms:
             dom, n = doms.most_common(1)[0]
             if n >= 3: sites[sub] = 'https://' + dom
