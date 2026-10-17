@@ -79,7 +79,7 @@
     if (port && writer) return true;
     try {
       const ps = await navigator.serial.getPorts(); // a radio this browser was allowed before (no question asked)
-      if (ps.length) return await openPort(ps[0]);
+      if (ps.length) return await openPort(ps[Math.min(+S.portIx || 0, ps.length - 1)]);
       if (!ask) return false;
       return await openPort(await navigator.serial.requestPort());
     } catch (e) { port = null; writer = null; say('Could not open the radio: ' + (e.message || e) + '. Close other radio programs (WSJT-X, flrig, the radio\'s own app) and try again.', false); return false; }
@@ -108,9 +108,30 @@
     if (fol) clearInterval(fol); fol = null; if (!fn) return; let last = '';
     fol = setInterval(async () => { if (!S.on || !S.follow || !port || document.hidden) return; const r = await read(); if (!r) return; const k = r.khz + '|' + r.mode; if (k !== last) { last = k; fn(r); } }, 2000);
   }
+  /* change the port (Brandon Oct 17: 'a menu to change port if someone selects the wrong one') */
+  const VEND = { 0x10C4: 'Silicon Labs CP210x (Icom, Yaesu, Xiegu, Elecraft cables)', 0x0403: 'FTDI (many CAT cables)', 0x067B: 'Prolific (older CAT cables)', 0x1A86: 'CH340 (QRP Labs, truSDX, cheap cables)', 0x0483: 'STMicro (QMX/QDX)', 0x2341: 'Arduino', 0x239A: 'Adafruit', 0x2E8A: 'Raspberry Pi Pico', 0x1FC9: 'NXP', 0x04D8: 'Microchip' };
+  async function ports() {
+    if (!('serial' in navigator)) return [];
+    const ps = await navigator.serial.getPorts();
+    return ps.map((p, i) => { const f = (p.getInfo && p.getInfo()) || {}, v = f.usbVendorId;
+      return { i, now: p === port, label: (v != null ? (VEND[v] || 'USB maker ' + v.toString(16).toUpperCase().padStart(4, '0')) : 'Serial port') + (f.usbProductId != null ? ' · product ' + f.usbProductId.toString(16).toUpperCase().padStart(4, '0') : '') }; });
+  }
+  async function usePort(i) { await disconnect(); S.portIx = i; SV('kpcCat', S); return connect(false); }
+  async function pickNew() {
+    if (!('serial' in navigator)) return false;
+    let p; try { p = await navigator.serial.requestPort(); } catch (e) { say('No port picked.', false); return false; }
+    await disconnect(); const ps = await navigator.serial.getPorts(); S.portIx = Math.max(0, ps.indexOf(p)); SV('kpcCat', S);
+    try { return await openPort(p); } catch (e) { port = writer = null; say('Could not open that port: ' + (e.message || e) + '. Close other radio programs and try again.', false); return false; }
+  }
+  async function forget(i) {
+    const ps = await navigator.serial.getPorts(), p = ps[i]; if (!p) return;
+    if (p === port) await disconnect();
+    try { if (p.forget) await p.forget(); } catch (e) {}
+    S.portIx = 0; SV('kpcCat', S); say(p.forget ? 'Port forgotten. Press PICK A DIFFERENT PORT to choose the right one.' : 'This browser can\'t forget ports: pick the right one with PICK A DIFFERENT PORT.', null);
+  }
   window.KPCCat = {
     get: () => Object.assign({}, S), set(o) { S = Object.assign({}, S, o || {}); SV('kpcCat', S); },
-    supported: () => 'serial' in navigator, connect, disconnect, connected: () => !!(port && writer), tune, read, follow,
+    supported: () => 'serial' in navigator, connect, disconnect, ports, usePort, pickNew, forget, connected: () => !!(port && writer), tune, read, follow,
     onStatus(fn) { subs.push(fn); }, kind, PROTOS: Object.keys(PROTOS)
   };
 

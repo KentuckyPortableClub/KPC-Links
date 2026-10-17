@@ -818,10 +818,16 @@ main#hl[data-nocx="1"] .hl-cx{display:none!important}
 .aw-leg p{margin:0;font:14px/1.45 Arial;color:#e8e1cf}
 @media(max-width:600px){.aw-leg>div{grid-template-columns:1fr;gap:6px}}
 @media(max-width:600px){main#hl .hl-tick .hl-bell{padding:0 7px}main#hl .hl-tick .hl-bell.hl-amb{padding:0 7px}}
-/* parks bar OFF (Brandon Oct 17: 'make rest of bar hide'): only a small row of the on/off buttons is left, not sticky */
-main#hl[data-noban="1"] .hl-tick{position:relative;top:auto!important;background:transparent!important;border:0;box-shadow:none;min-height:0;justify-content:flex-end;padding:6px 10px;gap:6px}
+/* parks bar OFF (Brandon Oct 17): the bar stays (same theme colours, nothing missing), the scrolling parks go and YOUR CALL SIGN sits in it, not moving */
 main#hl[data-noban="1"] .hl-tick-run,main#hl[data-noban="1"] .hl-na,main#hl[data-noban="1"] .hl-tick-k,main#hl[data-noban="1"] .hl-far{display:none!important}
-main#hl[data-noban="1"] .hl-tick .hl-bell{min-height:34px;border:1px solid rgba(240,201,107,.45);border-radius:999px;background:rgba(10,8,5,.75);font-size:11px}
+.hl-mycall{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:18px;padding:0 14px;align-self:stretch}
+.hl-mycall[hidden]{display:none}
+.hl-mycall b{font:900 clamp(22px,2.6vw,34px)/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:4px;background:linear-gradient(180deg,#fff3cf,#f6d58a 45%,#d5a63a);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 18px rgba(246,213,138,.25);white-space:nowrap}
+.hl-mycall .mc-k{font:900 11px Arial;letter-spacing:2.4px;color:var(--g2);opacity:.85;white-space:nowrap}
+.hl-mycall .mc-set{font:900 13px Arial;letter-spacing:1.6px;color:#ffe2a6;text-decoration:none;border:1px dashed rgba(240,201,107,.6);border-radius:999px;padding:7px 14px}
+main#hl[data-theme=night] .hl-mycall b{background:linear-gradient(180deg,#fff,#bfe3ff 50%,#7fb8ff);-webkit-background-clip:text;background-clip:text}
+main#hl[data-theme=dark] .hl-mycall b{background:linear-gradient(180deg,#ffd9b0,#ff9a3c 55%,#ff6a00);-webkit-background-clip:text;background-clip:text}
+@media(max-width:600px){.hl-mycall{gap:8px;padding:0 6px}.hl-mycall .mc-k{display:none}.hl-mycall b{font-size:20px;letter-spacing:2px}}
 /* extra spot windows (Brandon Oct 17): drag by the top bar, pull the ◢ corner to resize; computers only */
 .hl-split{position:relative}
 .hl-rtabs .rt-w{display:flex;gap:6px;margin-left:10px}
@@ -845,7 +851,7 @@ main#hl[data-noban="1"] .hl-tick .hl-bell{min-height:34px;border:1px solid rgba(
 .hw-lab{display:flex;gap:8px;align-items:center;font:900 10px Arial;letter-spacing:1.2px;color:var(--mu);margin:5px 0}
 .hw-lab input{flex:1;min-width:0}
 .hw-l{flex:1;overflow:auto;padding:2px 0}
-.hw-r{display:grid;grid-template-columns:62px minmax(64px,auto) 40px 1fr auto 34px;gap:6px;align-items:center;padding:5px 9px;border-bottom:1px solid rgba(255,255,255,.06);font:12px Arial;cursor:pointer;border-left:3px solid transparent}
+.hw-r{display:grid;grid-template-columns:62px minmax(64px,auto) 54px 1fr auto 42px;gap:6px;align-items:center;padding:5px 9px;border-bottom:1px solid rgba(255,255,255,.06);font:12px Arial;cursor:pointer;border-left:3px solid transparent}
 .hw-r:hover{background:rgba(240,201,107,.1)}
 .hw-r .f{font:700 12px ui-monospace,Menlo,monospace;color:#ffe2a6}
 .hw-r b{font:900 12.5px ui-monospace,Menlo,monospace;color:#fff;white-space:nowrap}
@@ -862,3 +868,18 @@ main#hl[data-noban="1"] .hl-tick .hl-bell{min-height:34px;border:1px solid rgba(
 .hw-rs{position:absolute;right:2px;bottom:0;width:20px;height:20px;cursor:nwse-resize;touch-action:none;color:var(--g2);font-size:13px;line-height:20px;text-align:center;user-select:none;opacity:.8}
 @media(max-width:1099px){.hl-win,.hl-rtabs .rt-w{display:none!important}}
 .hl-win.away{opacity:0;pointer-events:none}
+/* sort by tapping a heading (Brandon Oct 17) */
+.hl-st th.srt{cursor:pointer;user-select:none;white-space:nowrap}.hl-st th.srt:hover{color:#fff}.hl-st th.srt.on{color:var(--g2)}
+.hw-r.hw-hd{position:sticky;top:0;z-index:2;background:#1a120a;cursor:default;font:900 10px Arial;letter-spacing:1.2px;color:var(--mu);border-left-color:transparent;padding-top:6px;padding-bottom:6px}
+.hw-hd [data-wsrt]{cursor:pointer;user-select:none;white-space:nowrap}.hw-hd [data-wsrt]:hover{color:#fff}
+.hw-hd .t{text-align:right}
+/* ⧉ POP OUT: the main spots list as a window (Brandon Oct 17) */
+.rt-pop[aria-pressed="true"]{background:linear-gradient(180deg,#f6d58a,#d5a63a);color:#2a1a05;border-color:#f6d58a}
+main#hl .hl-spsec.hl-popped{position:fixed!important;z-index:61;display:flex!important;flex-direction:column;padding:0!important;background:rgba(12,9,6,.95);border:1px solid rgba(240,201,107,.6);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.6),0 0 18px rgba(240,201,107,.18);overflow:hidden;min-width:300px;min-height:200px}
+main#hl .hl-spsec.hl-popped>.hl-in{flex:1;overflow:auto;padding:8px 10px 16px;max-width:none}
+main#hl .hl-spsec.hl-popped .hl-grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+@media(max-width:1099px){.rt-pop{display:none!important}}
+main#hl .hl-spsec.hl-popped.away{opacity:0;pointer-events:none}
+main#hl .hl-spsec.hl-popped{transition:opacity .25s}
+main#hl[data-desk="1"] .hl-split>.hl-popph{grid-column:2;grid-row:2;order:2;display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;border:1px dashed rgba(240,201,107,.35);border-radius:14px;margin:10px 0 30px;color:var(--mu);font:13px Arial;text-align:center}
+.hl-popph{display:none}
