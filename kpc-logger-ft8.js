@@ -16,9 +16,10 @@
 
   const DIAL = {
     FT8: { '160m': 1840, '80m': 3573, '60m': 5357, '40m': 7074, '30m': 10136, '20m': 14074, '17m': 18100, '15m': 21074, '12m': 24915, '10m': 28074, '6m': 50313, '2m': 144174 },
+    CW: { '160m': 1810, '80m': 3530, '60m': 5332, '40m': 7030, '30m': 10110, '20m': 14060, '17m': 18080, '15m': 21060, '12m': 24910, '10m': 28060, '6m': 50090 },
     FT4: { '80m': 3575, '40m': 7047.5, '30m': 10140, '20m': 14080, '17m': 18104, '15m': 21140, '12m': 24919, '10m': 28180, '6m': 50318 }
   };
-  const S = Object.assign({ mode: 'FT8', band: '20m', inDev: '', outDev: '', ptt: 'vox', txHz: 1500, rxHz: 1500, hold: true, auto: true, first: true, even: true, keepCq: false, cqw: 'POTA', lvl: 0.3, deep: false, wd: 2, aPark: true, aState: false, aGrid: false, watch: '', mm: 'hear' }, get('kpcFt8', {}));
+  const S = Object.assign({ mode: 'FT8', band: '20m', inDev: '', outDev: '', ptt: 'vox', txHz: 1500, rxHz: 1500, hold: true, auto: true, first: true, even: true, keepCq: false, cqw: 'POTA', lvl: 0.3, deep: false, wd: 2, cwHz: 600, cwWpm: 20, cwVia: 'cat', cwBw: 'auto', cwMac: null, aPark: true, aState: false, aGrid: false, watch: '', mm: 'hear' }, get('kpcFt8', {}));
   const saveS = () => put('kpcFt8', S);
   const slotLen = () => S.mode === 'FT4' ? 7.5 : 15;
   const dialK = () => (DIAL[S.mode] || DIAL.FT8)[S.band] || DIAL.FT8['20m'];
@@ -34,7 +35,7 @@
   root.innerHTML = `
   <div class="f8-top">
     <button type="button" class="f8-back" id="f8Back">← LOGGER</button>
-    <div class="f8-modes" role="group" aria-label="Mode"><button type="button" data-f8m="FT8">FT8</button><button type="button" data-f8m="FT4">FT4</button></div>
+    <div class="f8-modes" role="group" aria-label="Mode"><button type="button" data-f8m="FT8">FT8</button><button type="button" data-f8m="FT4">FT4</button><button type="button" data-f8m="CW">CW</button></div>
     <select id="f8Band" aria-label="Band"></select>
     <b class="f8-dial" id="f8Dial">14.074 000</b>
     <span class="f8-clk"><b id="f8Utc">--:--:--</b><i class="f8-slot"><i id="f8SlotBar"></i></i></span>
@@ -42,6 +43,20 @@
   </div>
   <div class="f8-startbox" id="f8StartBox"><button type="button" class="f8-go" id="f8Start">🎧 START LISTENING</button><span>Plug your radio's audio into this phone or computer (USB sound card / Digirig / the radio's USB), then press START. The browser asks to use the "microphone": pick the radio's audio.</span></div>
   <div class="f8-wfw"><canvas id="f8Wf" height="150"></canvas><canvas id="f8Scale" height="18"></canvas></div>
+  <section class="cw-pane" id="cwPane" aria-label="CW decoder and keyboard">
+    <div class="cw-top"><b>CW</b> <span>PITCH <b id="cwHzT">600</b> Hz</span><span>SPEED <b id="cwWpmT">--</b> WPM</span><span>SIGNAL <b id="cwSnT">--</b></span>
+      <label class="ck"><input type="checkbox" id="cwAfc"> Follow the strongest signal</label>
+      <select id="cwBw" aria-label="Filter"><option value="auto">Filter: auto</option><option value="50">50 Hz</option><option value="100">100 Hz</option><option value="200">200 Hz</option></select>
+      <button type="button" class="f8-b" id="cwClr">CLEAR</button></div>
+    <div class="cw-rx" id="cwRx" aria-live="polite"></div>
+    <div class="cw-calls" id="cwCalls"></div>
+    <div class="cw-log"><label>THEIR CALL<input id="cwCall" autocapitalize="characters" spellcheck="false"></label><label>SENT<input id="cwRs" value="599" maxlength="3"></label><label>RCVD<input id="cwRr" value="599" maxlength="3"></label><label>THEIR PARK<input id="cwRef" autocapitalize="characters" spellcheck="false" placeholder="optional"></label><button type="button" class="f8-b tx" id="cwLog">⬆ LOG IT</button></div>
+    <div class="cw-mac" id="cwMac"></div>
+    <div class="cw-txl"><input id="cwTx" placeholder="Type here and press Enter to send it as CW" autocapitalize="characters" spellcheck="false" autocomplete="off"><button type="button" class="f8-b tx" id="cwSend">SEND</button><button type="button" class="f8-b halt" id="cwStop">STOP</button></div>
+    <div class="cw-set"><label>SEND SPEED<input type="number" id="cwWpm" min="8" max="45" value="20"> WPM</label>
+      <label>SEND WITH<select id="cwVia"><option value="cat">The radio's own keyer (CAT: Icom, Kenwood, Elecraft, QRP Labs)</option><option value="dtr">Key line DTR (Digirig and many cables)</option><option value="rts">Key line RTS</option><option value="audio">Audio tone (radio in USB/DATA, VOX or PTT)</option></select></label>
+      <span class="cw-sending" id="cwSending"></span></div>
+  </section>
   <div class="f8-lists">
     <section><h3>BAND ACTIVITY <small id="f8Cnt"></small><button type="button" class="f8-pf" id="f8PotaF" title="Show only park activators (POTA, WWFF, SOTA)">🌲 PARKS ONLY</button></h3><div class="f8-list" id="f8Band1"></div></section>
     <section><h3>RX FREQUENCY · MY QSO <small id="f8RxHz"></small></h3><div class="f8-list" id="f8Rx"></div></section>
@@ -90,8 +105,9 @@
   /* band + mode controls */
   function bandOpts() { $('f8Band').innerHTML = Object.keys(DIAL[S.mode]).map(b => `<option${b === S.band ? ' selected' : ''}>${b}</option>`).join(''); if (!DIAL[S.mode][S.band]) { S.band = '20m'; $('f8Band').value = '20m'; } }
   function showDial() { const k = dialK(); $('f8Dial').textContent = (k / 1000).toFixed(6).replace(/(\.\d{3})(\d{3})$/, '$1 $2'); document.querySelectorAll('[data-f8m]').forEach(b => b.classList.toggle('on', b.dataset.f8m === S.mode)); }
-  function radioTune() { if (window.KPCCat && KPCCat.get().on) KPCCat.tune(dialK(), 'DATA'); }
-  function setMode(m) { if (m === S.mode) return; S.mode = m; saveS(); bandOpts(); showDial(); radioTune(); resetEng(); gen(); slotSep(true); }
+  function radioTune() { if (window.KPCCat && KPCCat.get().on) KPCCat.tune(dialK(), S.mode === 'CW' ? 'CW' : 'DATA'); }
+  function setMode(m) { if (m === S.mode) return; S.mode = m; saveS(); bandOpts(); showDial(); radioTune(); resetEng(); gen(); slotSep(true); modeView(); }
+  function modeView() { CWON = S.mode === 'CW'; root.dataset.m = S.mode === 'CW' ? 'cw' : 'ft'; wfRange(); drawScale(); if (S.mode !== 'CW' && TXING && CWTX) cwHalt(); }
   bandOpts(); showDial();
   document.querySelectorAll('[data-f8m]').forEach(b => b.onclick = () => setMode(b.dataset.f8m));
   $('f8Band').onchange = () => { S.band = $('f8Band').value; saveS(); showDial(); radioTune(); slotSep(true); };
@@ -117,7 +133,7 @@
     for (let i = 0; i < buf.length; i++) {
       const v = buf[i]; if (Math.abs(v) > pk) pk = Math.abs(v);
       r.hist[r.hp] = v; r.hp = (r.hp + 1) % T; r.cnt++;
-      if (r.cnt >= r.pos) { let a = 0, j = r.hp; for (let k = 0; k < T; k++) { a += h[k] * r.hist[j]; j = (j + 1) % T; } ring[n12 % RING] = a; n12++; r.pos += r.ratio; }
+      if (r.cnt >= r.pos) { let a = 0, j = r.hp; for (let k = 0; k < T; k++) { a += h[k] * r.hist[j]; j = (j + 1) % T; } ring[n12 % RING] = a; n12++; r.pos += r.ratio; if (CWON) cwFeed(a); }
     }
     if (r.cnt > 1e9) { r.cnt -= 1e8; r.pos -= 1e8; }
     peak = Math.max(peak * 0.9, pk);
@@ -173,22 +189,24 @@
 
   /* ---------------- waterfall ---------------- */
   const wf = $('f8Wf'), sc = $('f8Scale'); let wfRow = null, lastSlotLine = 0;
-  const F0 = 100, F1 = 3100;
+  let F0 = 100, F1 = 3100;
+  function wfRange() { if (S.mode === 'CW') { F0 = 200; F1 = 1400; } else { F0 = 100; F1 = 3100; } }
   function wfSize() { const w = Math.max(300, Math.round(wf.clientWidth || 600)); if (wf.width !== w) { wf.width = w; sc.width = w; drawScale(); } }
   const hzToX = hz => (hz - F0) / (F1 - F0) * wf.width;
   const xToHz = x => Math.round(F0 + x / wf.width * (F1 - F0));
   function drawScale() {
     const g = sc.getContext('2d'); g.clearRect(0, 0, sc.width, sc.height); g.fillStyle = '#0b0805'; g.fillRect(0, 0, sc.width, sc.height);
     g.fillStyle = '#c9b48a'; g.font = '10px monospace'; g.strokeStyle = '#6b5a3a';
-    for (let hz = 500; hz < F1; hz += 500) { const x = hzToX(hz); g.beginPath(); g.moveTo(x, 0); g.lineTo(x, 5); g.stroke(); g.fillText(String(hz), x - 12, 15); }
+    for (let hz = Math.ceil(F0 / (F1 - F0 > 1500 ? 500 : 200)) * (F1 - F0 > 1500 ? 500 : 200); hz < F1; hz += F1 - F0 > 1500 ? 500 : 200) { if (hz <= F0) continue; const x = hzToX(hz); g.beginPath(); g.moveTo(x, 0); g.lineTo(x, 5); g.stroke(); g.fillText(String(hz), x - 12, 15); }
     const mark = (hz, c, w) => { const x = hzToX(hz), bw = (S.mode === 'FT4' ? 83 : 50) / (F1 - F0) * sc.width; g.fillStyle = c; g.fillRect(x, 0, Math.max(2, bw), w); };
+    if (S.mode === 'CW') { const x = hzToX(S.cwHz), bw = cwBwHz() / (F1 - F0) * sc.width; g.fillStyle = '#45e08f'; g.fillRect(x - bw / 2, 0, Math.max(3, bw), 5); return; }
     mark(S.rxHz, '#45e08f', 4); mark(S.txHz, '#ff5c5c', 3);
   }
   const COL = v => { v = Math.max(0, Math.min(1, v)); const r = v < .5 ? 0 : Math.round((v - .5) * 2 * 255), gg = v < .5 ? Math.round(v * 2 * 200) : 200 + Math.round((v - .5) * 110), b = v < .5 ? 90 + Math.round(v * 2 * 120) : Math.round(210 * (1 - (v - .5) * 2)); return [r, Math.min(255, gg), b]; };
   let wfT = 0;
   function wfLoop() {
     if (!RUN) return; requestAnimationFrame(wfLoop);
-    const t = performance.now(); if (t - wfT < (S.mode === 'FT4' ? 60 : 120) || document.hidden || root.hidden) return; wfT = t;
+    const t = performance.now(); if (t - wfT < (S.mode === 'FT4' ? 60 : S.mode === 'CW' ? 50 : 120) || document.hidden || root.hidden) return; wfT = t;
     wfSize(); const g = wf.getContext('2d'), W = wf.width, H = wf.height;
     const n = AN.frequencyBinCount, d = new Float32Array(n); AN.getFloatFrequencyData(d);
     const binHz = AC.sampleRate / AN.fftSize, row = g.createImageData(W, 1), vals = new Float32Array(W);
@@ -196,14 +214,114 @@
     const sorted = Array.from(vals).sort((a, b) => a - b), med = sorted[Math.floor(W * 0.4)] || -100;
     for (let x = 0; x < W; x++) { const [r, gg, b] = COL((vals[x] - med + 2) / 26); row.data[x * 4] = r; row.data[x * 4 + 1] = gg; row.data[x * 4 + 2] = b; row.data[x * 4 + 3] = 255; }
     g.drawImage(wf, 0, 0, W, H - 1, 0, 1, W, H - 1); g.putImageData(row, 0, 0);
-    const sl = Math.floor(nowS() / slotLen()); if (sl !== lastSlotLine) { lastSlotLine = sl; g.fillStyle = 'rgba(240,201,107,.75)'; g.fillRect(0, 0, W, 1); g.font = '10px monospace'; g.fillText(utc(sl * slotLen(), true), 4, 11); }
+    if (S.mode === 'CW') { cwWf(vals); } const sl = Math.floor(nowS() / slotLen()); if (S.mode !== 'CW' && sl !== lastSlotLine) { lastSlotLine = sl; g.fillStyle = 'rgba(240,201,107,.75)'; g.fillRect(0, 0, W, 1); g.font = '10px monospace'; g.fillText(utc(sl * slotLen(), true), 4, 11); }
     /* level meter (dB above full-scale silence) */
     const db = peak > 0 ? 20 * Math.log10(peak) + 90 : 0; $('f8Lvl').style.width = Math.max(0, Math.min(100, db)) + '%'; $('f8Lvl').className = db < 20 || db > 80 ? 'bad' : '';
     $('f8LvlT').textContent = Math.round(db) + ' dB ' + (db < 20 ? '(too low: turn the radio\'s audio up)' : db > 80 ? '(too high: turn it down)' : '(good)');
   }
-  wf.addEventListener('click', e => { const r = wf.getBoundingClientRect(), hz = xToHz((e.clientX - r.left) * wf.width / r.width); if (e.shiftKey) S.txHz = hz; else { S.rxHz = hz; if (!S.hold) S.txHz = hz; } saveS(); hzBoxes(); drawScale(); drawRx(); });
+  wf.addEventListener('click', e => { const r = wf.getBoundingClientRect(), hz = xToHz((e.clientX - r.left) * wf.width / r.width);
+    if (S.mode === 'CW') { cwPitch(snapPeak(hz)); return; }
+    if (e.shiftKey) S.txHz = hz; else { S.rxHz = hz; if (!S.hold) S.txHz = hz; } saveS(); hzBoxes(); drawScale(); drawRx(); });
   wf.addEventListener('contextmenu', e => { e.preventDefault(); const r = wf.getBoundingClientRect(); S.txHz = xToHz((e.clientX - r.left) * wf.width / r.width); saveS(); hzBoxes(); drawScale(); });
   addEventListener('resize', () => { if (!root.hidden) wfSize(); });
+
+  /* ---------------- CW: decoder + keyboard (Brandon Oct 17: 'cw decode and cw keyboard to cw') ----------------
+     Decoder: the 12 kHz audio is mixed down at the pitch, run through a 3-stage low-pass (the CW filter), and the envelope is
+     checked every 2 ms against a moving noise floor; mark / space lengths are timed against a learned dit length. */
+  const MORSE = { '.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E', '..-.': 'F', '--.': 'G', '....': 'H', '..': 'I', '.---': 'J', '-.-': 'K', '.-..': 'L', '--': 'M', '-.': 'N', '---': 'O', '.--.': 'P', '--.-': 'Q', '.-.': 'R', '...': 'S', '-': 'T', '..-': 'U', '...-': 'V', '.--': 'W', '-..-': 'X', '-.--': 'Y', '--..': 'Z',
+    '-----': '0', '.----': '1', '..---': '2', '...--': '3', '....-': '4', '.....': '5', '-....': '6', '--...': '7', '---..': '8', '----.': '9', '..--..': '?', '-..-.': '/', '.-.-.-': '.', '--..--': ',', '-...-': '=', '.-.-.': '+', '-....-': '-', '...-.-': '<SK>', '-.--.': '<KN>', '.-...': '<AS>' };
+  const TOM = {}; Object.entries(MORSE).forEach(([k, v]) => { if (v.length === 1) TOM[v] = k; });
+  let CWON = false, CWTX = false;
+  const C = { ph: 0, a: [0, 0, 0, 0, 0, 0], n: 0, env: 0, sig: 1e-6, flo: 1e-6, on: false, run: 0, mk: 0, sp: 0, dit: 60, cur: '', txt: '', spaced: true, snr: 0 };
+  const cwBwHz = () => S.cwBw === 'auto' ? Math.max(50, Math.min(160, 2.6 * 1200 / C.dit)) : +S.cwBw;
+  function cwFeed(v) {
+    const w = 2 * Math.PI * S.cwHz / R12; C.ph += w; if (C.ph > 6.283185307) C.ph -= 6.283185307;
+    let i = v * Math.cos(C.ph), q = v * Math.sin(C.ph); const fa = 1 - Math.exp(-2 * Math.PI * (cwBwHz() / 2 / 0.51) / R12), A = C.a;
+    A[0] += fa * (i - A[0]); A[1] += fa * (A[0] - A[1]); A[2] += fa * (A[1] - A[2]); A[3] += fa * (q - A[3]); A[4] += fa * (A[3] - A[4]); A[5] += fa * (A[4] - A[5]);
+    if (++C.n < 24) return; C.n = 0; /* every 2 ms */
+    const e = Math.sqrt(A[2] * A[2] + A[5] * A[5]); C.env = C.env * .6 + e * .4;
+    C.sig = Math.max(C.env, C.sig * 0.9995); C.flo = C.env < C.flo ? C.flo * .97 + C.env * .03 : C.flo * 1.0008 + 1e-9;
+    if (C.flo > C.sig * .6) C.flo = C.sig * .6;
+    const thHi = C.flo + (C.sig - C.flo) * .5, thLo = C.flo + (C.sig - C.flo) * .35, snr = C.sig / (C.flo || 1e-9);
+    C.snr = snr; const usable = snr > 2.2;
+    const now = C.on ? C.env > thLo : C.env > thHi;
+    if (now !== C.on) { if (++C.run < 3) { cwTime(); return; } C.run = 0;
+      if (C.on) { const d = C.mk; if (usable) cwMark(d); } C.on = now; C.mk = 0; C.sp = 0; }
+    else C.run = 0;
+    cwTime();
+  }
+  function cwTime() { if (C.on) C.mk += 2; else { C.sp += 2; const dit = C.dit;
+    if (C.cur && C.sp > 2.4 * dit) { cwChar(MORSE[C.cur] || (C.cur.length > 7 ? '' : '*')); C.cur = ''; }
+    if (!C.spaced && C.sp > 5.5 * dit) { cwChar(' '); C.spaced = true; } } }
+  function cwMark(d) { if (d < 12) return; const dit = C.dit;
+    if (d < 2 * dit) { C.cur += '.'; C.dit = Math.max(20, Math.min(240, dit * .8 + d * .2)); } else { C.cur += '-'; C.dit = Math.max(20, Math.min(240, dit * .85 + d / 3 * .15)); }
+    C.spaced = false; if (C.cur.length > 8) C.cur = ''; }
+  let cwBuf = '', cwDrawT = null;
+  function cwChar(ch) { if (ch === ' ' && / $/.test(C.txt)) return; C.txt = (C.txt + ch).slice(-4000); clearTimeout(cwDrawT); cwDrawT = setTimeout(cwDraw, 60); }
+  const CALLRE = /\b((?:[A-Z]{1,2}\d?\/)?[A-Z]{1,2}\d[A-Z]{1,4}(?:\/[A-Z0-9]{1,3})?)\b/g;
+  function cwDraw() {
+    const el = $('cwRx'), stick = el.scrollTop + el.clientHeight >= el.scrollHeight - 20;
+    el.innerHTML = esc(C.txt).replace(/&lt;(SK|KN|AS)&gt;/g, '<i>$1</i>') + '<span class="cw-cur">' + (C.cur ? esc(C.cur) : '▌') + '</span>';
+    if (stick) el.scrollTop = el.scrollHeight;
+    /* call signs heard: tap one to put it in THEIR CALL */
+    const me = myCall(), seen = []; let m; CALLRE.lastIndex = 0; const tail = C.txt.slice(-600);
+    while ((m = CALLRE.exec(tail))) { const c = m[1]; if (c !== me && !seen.includes(c) && /\d/.test(c) && c.length >= 4) seen.push(c); }
+    $('cwCalls').innerHTML = seen.slice(-8).reverse().map(c => { const sp = spotRef(c); return `<button type="button" data-cwc="${esc(c)}" class="${sp ? 'park' : ''}">${esc(c)}${sp ? ' 🌲 ' + esc(sp.reference) : ''}</button>`; }).join('');
+    $('cwWpmT').textContent = Math.round(1200 / C.dit); $('cwSnT').textContent = C.snr > 2.2 ? (C.snr > 6 ? 'GOOD' : 'WEAK') : 'TOO WEAK';
+  }
+  function cwPitch(hz) { S.cwHz = Math.max(250, Math.min(1300, Math.round(hz))); saveS(); $('cwHzT').textContent = S.cwHz; C.sig = 1e-6; C.flo = 1e-6; C.cur = ''; drawScale(); }
+  /* waterfall helpers: snap a tap to the nearest peak; AFC follows the strongest trace */
+  let lastVals = null;
+  function cwWf(vals) { lastVals = vals; if ($('cwAfc').checked && !CWTX) { const pk = peakIn(F0 + 50, F1 - 50); if (pk && Math.abs(pk - S.cwHz) > 25) { cwAfcN = (cwAfcN || 0) + 1; if (cwAfcN > 8) { cwPitch(pk); cwAfcN = 0; } } else cwAfcN = 0; } }
+  let cwAfcN = 0;
+  function peakIn(a, b) { if (!lastVals) return 0; let best = -1e9, bx = -1; const x0 = Math.max(0, Math.round(hzToX(a))), x1 = Math.min(lastVals.length - 1, Math.round(hzToX(b)));
+    for (let x = x0; x <= x1; x++) if (lastVals[x] > best) { best = lastVals[x]; bx = x; } const sorted = Array.from(lastVals).sort((p, q) => p - q), med = sorted[Math.floor(sorted.length / 2)];
+    return bx >= 0 && best - med > 8 ? xToHz(bx) : 0; }
+  function snapPeak(hz) { const pk = peakIn(hz - 40, hz + 40); return pk || hz; }
+  /* sending */
+  const MAC0 = h => [['CQ', h ? 'CQ CQ DE {MY} {MY} K' : 'CQ POTA DE {MY} {MY} K'], ['CALL', '{MY}'], ['REPORT', '{THEIR} TU 5NN {ST} {ST} BK'], ['TU', 'TU 73 DE {MY}'], ['QRZ', 'QRZ? DE {MY}'], ['AGN', 'AGN?'], ['P2P', '{THEIR} TU 5NN P2P {REF} BK'], ['73', '73 TU EE']];
+  function macros() { const L = LG(), hunt = L ? L.me().hunt : false; return S.cwMac || MAC0(hunt); }
+  function fill(t) { const L = LG(), me = L ? L.me() : {}; return String(t).replace(/\{MY\}/g, myCall() || 'K4TEST').replace(/\{THEIR\}/g, $('cwCall').value.trim().toUpperCase() || '').replace(/\{REF\}/g, (me.pota && me.pota[0]) || '').replace(/\{ST\}/g, stateOf(myGrid()) || '').replace(/\s+/g, ' ').trim(); }
+  function macDraw() { $('cwMac').innerHTML = macros().map((m, i) => `<button type="button" data-mac="${i}" title="${esc(m[1])}">F${i + 1} ${esc(m[0])}</button>`).join('') + '<button type="button" data-macedit>✏️ EDIT</button>'; }
+  function elems(t, wpm) { const u = 1200 / wpm, out = []; for (const w of t.split(' ')) { if (out.length) out.push([0, 4 * u]); [...w].forEach((ch, i) => { const k = TOM[ch]; if (!k) return; if (i) out.push([0, 2 * u]); [...k].forEach((e, j) => { if (j) out.push([0, u]); out.push([1, e === '.' ? u : 3 * u]); }); out.push([0, u]); }); } return out; }
+  let cwStopFlag = false;
+  async function cwSendText(t) {
+    t = fill(t).toUpperCase(); if (!t) return; if (!myCall()) { note('Put YOUR call in ⚙ STATION first: nothing was sent.', 4000); return; }
+    if (CWTX) { note('Still sending: wait or press STOP.', 2000); return; }
+    CWTX = true; TXING = true; stat(); cwStopFlag = false; const wpm = +S.cwWpm || 20, via = S.cwVia;
+    $('cwSending').textContent = '▶ ' + t; C.txt += '\n[TX] ' + t + '\n'; cwDraw();
+    try {
+      if (via === 'cat') { if (!window.KPCCat || !KPCCat.connected() || !KPCCat.cwCan()) { note('Radio keyer not available: connect the radio (CAT), or pick a key line / audio in SEND WITH.', 5000); return; }
+        await KPCCat.cw(t, wpm); await new Promise(r => setTimeout(r, elems(t, wpm).reduce((a, e) => a + e[1], 0) + 200)); }
+      else if (via === 'dtr' || via === 'rts') { if (!window.KPCCat || !(await KPCCat.connect(false))) { note('Connect the radio / cable first (📻 CONNECT MY RADIO in ⚙ SETTINGS).', 5000); return; }
+        let t1 = performance.now(); for (const [k, d] of elems(t, wpm)) { if (cwStopFlag) break; await KPCCat.keyLine(!!k, via); t1 += d; const w = t1 - performance.now(); if (w > 0) await new Promise(r => setTimeout(r, w)); } await KPCCat.keyLine(false, via); }
+      else { if (!AC) { await startAudio(); if (!AC) return; } const rate = AC.sampleRate, E = elems(t, wpm), tot = E.reduce((a, e) => a + e[1], 0) / 1000, buf = AC.createBuffer(1, Math.ceil((tot + .1) * rate), rate), d = buf.getChannelData(0), rise = Math.round(.005 * rate);
+        let n = 0; for (const [k, ms] of E) { const len = Math.round(ms / 1000 * rate); if (k) for (let i = 0; i < len; i++) { const env = Math.min(1, i / rise, (len - i) / rise); d[n + i] = Math.sin(2 * Math.PI * S.cwHz * (n + i) / rate) * env; } n += len; }
+        const g = AC.createGain(); g.gain.value = S.lvl; const src = AC.createBufferSource(); src.buffer = buf; src.connect(g); g.connect(AC.destination); TXSRC = src;
+        await ptt(true); await new Promise(r => { src.onended = r; src.start(AC.currentTime + .08); }); await ptt(false); TXSRC = null; }
+    } finally { CWTX = false; TXING = false; stat(); $('cwSending').textContent = ''; }
+  }
+  function cwHalt() { cwStopFlag = true; try { TXSRC && TXSRC.stop(); } catch (e) {} if (window.KPCCat) { KPCCat.cwStop(); if (S.cwVia === 'dtr' || S.cwVia === 'rts') KPCCat.keyLine(false, S.cwVia); } ptt(false); }
+  function cwInit() {
+    $('cwHzT').textContent = S.cwHz; $('cwWpm').value = S.cwWpm; $('cwVia').value = S.cwVia; $('cwBw').value = S.cwBw;
+    $('cwWpm').onchange = () => { S.cwWpm = Math.max(8, Math.min(45, +$('cwWpm').value || 20)); saveS(); };
+    $('cwVia').onchange = () => { S.cwVia = $('cwVia').value; saveS(); };
+    $('cwBw').onchange = () => { S.cwBw = $('cwBw').value; saveS(); drawScale(); };
+    $('cwClr').onclick = () => { C.txt = ''; cwDraw(); };
+    $('cwTx').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); const v = $('cwTx').value; $('cwTx').value = ''; cwSendText(v); } });
+    $('cwSend').onclick = () => { const v = $('cwTx').value; $('cwTx').value = ''; cwSendText(v); };
+    $('cwStop').onclick = cwHalt;
+    $('cwMac').addEventListener('click', e => { const b = e.target.closest('[data-mac]'); if (b) { cwSendText(macros()[+b.dataset.mac][1]); return; }
+      if (e.target.closest('[data-macedit]')) { const M = macros().map(m => m.slice()); for (let i = 0; i < M.length; i++) { const v = prompt(`F${i + 1} ${M[i][0]} (use {MY} {THEIR} {REF} {ST}; blank = keep, RESET = defaults)`, M[i][1]); if (v === null) break; if (v.trim().toUpperCase() === 'RESET') { S.cwMac = null; saveS(); macDraw(); return; } if (v.trim()) M[i][1] = v.trim().toUpperCase(); } S.cwMac = M; saveS(); macDraw(); } });
+    addEventListener('keydown', e => { if (root.hidden || S.mode !== 'CW' || !/^F[1-8]$/.test(e.key)) return; e.preventDefault(); const m = macros()[+e.key.slice(1) - 1]; if (m) cwSendText(m[1]); });
+    $('cwCalls').addEventListener('click', e => { const b = e.target.closest('[data-cwc]'); if (!b) return; $('cwCall').value = b.dataset.cwc; const sp = spotRef(b.dataset.cwc); if (sp) $('cwRef').value = sp.reference; });
+    $('cwCall').oninput = e => { e.target.value = e.target.value.toUpperCase().replace(/\s/g, ''); };
+    $('cwLog').onclick = () => { const L = LG(), call = $('cwCall').value.trim().toUpperCase(); if (!L || !call) { note('Type or tap their call first.'); return; }
+      const k = (L.freq && L.freq() && L.band(L.freq()) === S.band) ? L.freq() : dialK();
+      const r = L.add({ call, khz: k, mode: 'CW', rs: $('cwRs').value || '599', rr: $('cwRr').value || '599', ref: $('cwRef').value.trim() });
+      if (r && r.ok) { note(`✅ ${call} logged · ${S.band} CW${r.n ? ' · ' + r.n + (L.me().hunt ? ' today' : ' this activation') : ''}`, 3000, 'log'); $('cwCall').value = ''; $('cwRef').value = ''; } else note('⚠️ Not logged: ' + ((r && r.msg) || ''), 5000); };
+    macDraw(); setInterval(() => { if (CWON && !root.hidden) cwDraw(); }, 1000);
+  }
 
   /* ---------------- grids, distance, states (GridTracker ideas, Brandon Oct 17: map, alerts, who hears me, distance) ---------------- */
   function g2ll(g) { g = String(g || '').toUpperCase(); if (!/^[A-R]{2}\d{2}/.test(g)) return null; let lo = (g.charCodeAt(0) - 65) * 20 - 180 + (+g[2]) * 2, la = (g.charCodeAt(1) - 65) * 10 - 90 + (+g[3]);
@@ -239,6 +357,7 @@
   const MAXL = 400;
   function slotSep(force) { const sl = Math.floor(nowS() / slotLen()); if (force || !LINES.length || LINES[LINES.length - 1].sep !== sl) { /* separators come with each decode */ } }
   function tick() {
+    if (S.mode === 'CW') return;
     const t = nowS(), L = slotLen(), sl = Math.floor(t / L), into = t - sl * L;
     $('f8SlotBar').style.width = (into / L * 100) + '%';
     /* decode the slot that just ended (FT8 at 14.4 s, FT4 at 6.6 s into the slot) */
@@ -466,7 +585,7 @@
   $('f8Cat').onclick = async () => { if (!window.KPCCat || !KPCCat.supported()) { $('f8CatT').textContent = 'Radio control needs Chrome or Edge on a computer, or Chrome on a newer Android phone with a USB-C cable. On iPhone use VOX.'; return; }
     KPCCat.set({ on: true }); const ok = await KPCCat.connect(true); $('f8CatT').textContent = ok ? '✓ Radio connected. Pick the radio type on the Lounge CAT & QRZ tab if it doesn\'t follow.' : 'Not connected.'; if (ok) radioTune(); };
   if (window.KPCCat) { KPCCat.onStatus((t) => { if (!root.hidden) $('f8CatT').textContent = t; }); if (!KPCCat.supported()) $('f8Cat').disabled = true; }
-  hzBoxes(); gen(); nextTx(6); drawScale();
+  hzBoxes(); gen(); nextTx(6); cwInit(); modeView(); drawScale();
 
   /* little note that fades away (Brandon: 'nothing extreme, short message that goes away') */
   let nT = null;
@@ -475,9 +594,12 @@
   $('f8Note').onclick = () => { $('f8Note').hidden = true; };
 
   /* ---------------- open / close the tab ---------------- */
-  const main = $('lg');
-  function open() { root.hidden = false; main.setAttribute('data-ft8', ''); document.documentElement.classList.add('f8-open'); put('kpcFt8Open', 1); setTimeout(() => { wfSize(); drawScale(); drawBand(); drawRx(); }, 30); if (!myGrid()) note('Tip: put your grid square in ⚙ STATION so your messages carry it.', 4000); }
-  function back() { root.hidden = true; main.removeAttribute('data-ft8'); document.documentElement.classList.remove('f8-open'); put('kpcFt8Open', 0); }
+  const main = $('lg') || $('hl') || root.parentElement;
+  /* the free Hunters Lounge has no radio control (Brandon Oct 17: 'leave out qrz and cat control'): VOX and audio only there */
+  if (main && main.id === 'hl') { $('f8Back').textContent = '← SPOTS'; }
+  if (main && main.dataset.public === '1') { ['f8Ptt', 'cwVia'].forEach(id => { const el = $(id); if (el) [...el.options].forEach(o => { if (!/vox|audio/.test(o.value)) o.remove(); }); }); const cb = $('f8Cat'); if (cb) cb.parentElement.hidden = true; if (S.ptt !== 'vox') S.ptt = 'vox'; if (S.cwVia !== 'audio') S.cwVia = 'audio'; }
+  function open() { root.hidden = false; main.setAttribute('data-ft8', ''); document.documentElement.classList.add('f8-open'); put('kpcFt8Open:' + location.pathname, 1); setTimeout(() => { wfSize(); drawScale(); drawBand(); drawRx(); }, 30); if (!myGrid()) note(main && main.id === 'hl' ? 'Tip: put your grid square in MY LOG FILES so your messages carry it.' : 'Tip: put your grid square in ⚙ STATION so your messages carry it.', 4000); }
+  function back() { root.hidden = true; main.removeAttribute('data-ft8'); document.documentElement.classList.remove('f8-open'); put('kpcFt8Open:' + location.pathname, 0); }
   function tabDot() { document.querySelectorAll('[data-ft8open]').forEach(b => b.classList.toggle('live', RUN)); }
   $('f8Back').onclick = back;
   document.querySelectorAll('[data-ft8open]').forEach(b => b.onclick = open);
@@ -495,5 +617,5 @@
       drawRx();
     }
   };
-  if (get('kpcFt8Open', 0) && location.hash !== '#nofT8') { /* stay on the FT8 screen after a reload */ setTimeout(open, 50); }
+  if (get('kpcFt8Open:' + location.pathname, 0) && location.hash !== '#nofT8') { /* stay on the FT8 screen after a reload */ setTimeout(open, 50); }
 })();

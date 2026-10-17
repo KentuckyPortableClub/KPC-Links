@@ -13,6 +13,8 @@
   let port = null, writer = null, reader = null, rbuf = [], busy = Promise.resolve(), subs = [], fol = null;
   const say = (t, ok) => subs.forEach(f => { try { f(t, ok); } catch (e) {} });
   const sleep = ms => new Promise(r => setTimeout(r, ms));
+  /* Bluetooth serial (SPP) radios show in the port list too on Chrome for Android (IC-705's Bluetooth data, BT CAT dongles) */
+  const PICK = { allowedBluetoothServiceClassIds: ['00001101-0000-1000-8000-00805f9b34fb'] };
 
   /* ---- what each kind of radio wants ---- */
   const M = s => String(s || '').toUpperCase();
@@ -43,6 +45,12 @@
       tune(khz, k) { const md = { LSB: '1', USB: '2', CW: '3', FM: '4', AM: '5', DATA: S.data === 'data' ? 'C' : '2' }[k] || '2'; return [asc('FA' + pad(khz * 1000, 9) + ';'), asc('MD0' + md + ';')]; },
       ask: () => asc('FA;MD0;'),
       parse(t) { const f = /FA(\d{9});/.exec(t); const md = /MD0([0-9A-E]);/.exec(t); if (!f) return null;
+        return { khz: +f[1] / 1000, mode: md ? ({ 1: 'LSB', 2: 'USB', 3: 'CW', 4: 'FM', 5: 'AM', 6: 'DATA', 7: 'CW', 8: 'DATA', 9: 'DATA', C: 'DATA', B: 'FM' }[md[1]] || '') : '' }; }
+    },
+    yaesu8: { // older 'new CAT' Yaesu with 8-digit frequency: FT-450D, FT-950, FT-2000, FTDX1200, FTDX3000, FTDX5000
+      tune(khz, k) { const md = { LSB: '1', USB: '2', CW: '3', FM: '4', AM: '5', DATA: S.data === 'data' ? 'C' : '2' }[k] || '2'; return [asc('FA' + pad(khz * 1000, 8) + ';'), asc('MD0' + md + ';')]; },
+      ask: () => asc('FA;MD0;'),
+      parse(t) { const f = /FA(\d{8});/.exec(t); const md = /MD0([0-9A-E]);/.exec(t); if (!f) return null;
         return { khz: +f[1] / 1000, mode: md ? ({ 1: 'LSB', 2: 'USB', 3: 'CW', 4: 'FM', 5: 'AM', 6: 'DATA', 7: 'CW', 8: 'DATA', 9: 'DATA', C: 'DATA', B: 'FM' }[md[1]] || '') : '' }; }
     },
     yaesuold: { // FT-817 / FT-818 / FT-857 / FT-897 (5-byte binary commands)
@@ -81,7 +89,7 @@
       const ps = await navigator.serial.getPorts(); // a radio this browser was allowed before (no question asked)
       if (ps.length) return await openPort(ps[Math.min(+S.portIx || 0, ps.length - 1)]);
       if (!ask) return false;
-      return await openPort(await navigator.serial.requestPort());
+      return await openPort(await navigator.serial.requestPort(PICK));
     } catch (e) { port = null; writer = null; say('Could not open the radio: ' + (e.message || e) + '. Close other radio programs (WSJT-X, flrig, the radio\'s own app) and try again.', false); return false; }
   }
   async function disconnect() { try { if (reader) await reader.cancel(); } catch (e) {} try { if (writer) writer.releaseLock(); } catch (e) {} try { if (port) await port.close(); } catch (e) {} port = writer = reader = null; say('Radio disconnected.', false); }
@@ -105,7 +113,7 @@
     return busy;
   }
   /* PTT for the FT8 tab in the KPC Logger (Brandon Oct 17). via: 'cat' (radio command), 'rts' / 'dtr' (serial line, e.g. Digirig), 'vox' (nothing sent) */
-  const PTTC = { kenwood: on => [asc(on ? 'TX;' : 'RX;')], yaesu: on => [asc(on ? 'TX1;' : 'TX0;')], yaesuold: on => [new Uint8Array([0, 0, 0, 0, on ? 0x08 : 0x88])], icom: on => [icom([0x1C, 0x00, on ? 1 : 0])] };
+  const PTTC = { kenwood: on => [asc(on ? 'TX;' : 'RX;')], yaesu: on => [asc(on ? 'TX1;' : 'TX0;')], yaesu8: on => [asc(on ? 'TX1;' : 'TX0;')], yaesuold: on => [new Uint8Array([0, 0, 0, 0, on ? 0x08 : 0x88])], icom: on => [icom([0x1C, 0x00, on ? 1 : 0])] };
   function ptt(on, via) {
     via = via || S.ptt || 'cat'; if (via === 'vox') return Promise.resolve(true);
     busy = busy.then(async () => {
@@ -116,6 +124,53 @@
     }).catch(() => false);
     return busy;
   }
+  /* ---- CW from the keyboard (Brandon Oct 17: 'cw keyboard to cw') ----
+     The radio's own keyer sends the text: Kenwood / Elecraft / QRP Labs 'KY text;', Icom CI-V 0x17. Yaesu radios can't take free text
+     over CAT, so for them (or anything else) the page keys the DTR or RTS line itself (Digirig etc.: DTR = key). */
+  const CWOK = { kenwood: 1, icom: 1 };
+  function cwCan() { return !!CWOK[S.proto]; }
+  async function cwSpeed(wpm) { wpm = Math.max(6, Math.min(48, Math.round(wpm)));
+    if (S.proto === 'kenwood') await write(asc('KS' + pad(wpm, 3) + ';'));
+    if (S.proto === 'icom') { const lv = Math.round((wpm - 6) / 42 * 255), d = pad(lv, 4); await write(icom([0x14, 0x0C, parseInt(d.slice(0, 2), 16), parseInt(d.slice(2), 16)])); } }
+  function cw(text, wpm) {
+    text = String(text || '').toUpperCase().replace(/[^A-Z0-9 /?.,=+\-]/g, '');
+    busy = busy.then(async () => {
+      if (!await connect(false)) { say('Radio not connected.', false); return false; }
+      if (!cwCan()) { say('This radio type can\'t take typed CW over CAT: use the DTR or RTS key line, or audio.', false); return false; }
+      try { if (wpm) await cwSpeed(wpm);
+        if (S.proto === 'kenwood') { for (let i = 0; i < text.length; i += 24) await write(asc('KY ' + text.slice(i, i + 24).padEnd(24, ' ') + ';')); }
+        else { for (let i = 0; i < text.length; i += 30) await write(icom([0x17, ...asc(text.slice(i, i + 30))])); }
+        return true; }
+      catch (e) { say('CW did not send: ' + (e.message || e), false); return false; }
+    }).catch(() => false);
+    return busy;
+  }
+  async function cwStop() { try { if (!port || !writer) return; if (S.proto === 'kenwood') await write(asc('RX;'));
+    if (S.proto === 'icom') await write(icom([0x17, 0xFF])); } catch (e) {} }
+  /* key a serial line on and off (true = key down) */
+  async function keyLine(down, line) { if (!port) return false; try { await port.setSignals(line === 'rts' ? { requestToSend: !!down } : { dataTerminalReady: !!down }); return true; } catch (e) { return false; } }
+
+  /* every radio we know how to talk to (Brandon Oct 17: 'add all radios it can run cat on'); [id, label, proto, baud, CI-V, model] */
+  const RADIOS = [
+    ['Icom', [['ic705', 'IC-705', 'icom', 115200, 'A4'], ['ic7300', 'IC-7300', 'icom', 115200, '94'], ['ic7610', 'IC-7610', 'icom', 115200, '98'], ['ic9700', 'IC-9700', 'icom', 115200, 'A2'], ['ic905', 'IC-905', 'icom', 115200, 'AC'],
+      ['ic7100', 'IC-7100', 'icom', 19200, '88'], ['ic7851', 'IC-7851', 'icom', 19200, '8E'], ['ic7800', 'IC-7800', 'icom', 19200, '6A'], ['ic7700', 'IC-7700', 'icom', 19200, '74'], ['ic7600', 'IC-7600', 'icom', 19200, '7A'],
+      ['ic7410', 'IC-7410', 'icom', 19200, '80'], ['ic7200', 'IC-7200', 'icom', 19200, '76'], ['ic9100', 'IC-9100', 'icom', 19200, '7C'], ['ic7000', 'IC-7000', 'icom', 19200, '70'], ['ic746', 'IC-746 / 746PRO', 'icom', 19200, '66'],
+      ['ic756', 'IC-756PRO III', 'icom', 19200, '6E'], ['ic718', 'IC-718', 'icom', 9600, '5E'], ['ic703', 'IC-703', 'icom', 9600, '68']]],
+    ['Yaesu', [['ftx1', 'FTX-1', 'yaesu', 38400], ['ft710', 'FT-710', 'yaesu', 38400], ['ft891', 'FT-891', 'yaesu', 38400], ['ft991', 'FT-991 / 991A', 'yaesu', 38400], ['ftdx10', 'FTDX10', 'yaesu', 38400], ['ftdx101', 'FTDX101D / MP', 'yaesu', 38400],
+      ['ftdx3000', 'FTDX3000', 'yaesu8', 38400], ['ftdx1200', 'FTDX1200', 'yaesu8', 38400], ['ftdx5000', 'FTDX5000', 'yaesu8', 38400], ['ft950', 'FT-950', 'yaesu8', 38400], ['ft2000', 'FT-2000', 'yaesu8', 38400], ['ft450', 'FT-450 / 450D', 'yaesu8', 38400],
+      ['ft818', 'FT-818', 'yaesuold', 9600], ['ft817', 'FT-817', 'yaesuold', 9600], ['ft857', 'FT-857', 'yaesuold', 9600], ['ft897', 'FT-897', 'yaesuold', 9600]]],
+    ['Kenwood', [['ts990', 'TS-990', 'kenwood', 115200], ['ts890', 'TS-890', 'kenwood', 115200], ['ts590', 'TS-590S / SG', 'kenwood', 115200], ['ts480', 'TS-480', 'kenwood', 57600], ['ts2000', 'TS-2000', 'kenwood', 57600], ['ts570', 'TS-570', 'kenwood', 57600]]],
+    ['Elecraft', [['kx2', 'KX2', 'kenwood', 38400, '', 'elecraft'], ['kx3', 'KX3', 'kenwood', 38400, '', 'elecraft'], ['k4', 'K4', 'kenwood', 38400, '', 'elecraft'], ['k3', 'K3 / K3S', 'kenwood', 38400, '', 'elecraft'], ['k2', 'K2', 'kenwood', 4800, '', 'elecraft'], ['kh1', 'KH1', 'kenwood', 38400, '', 'elecraft']]],
+    ['Xiegu (CI-V)', [['g90', 'G90', 'icom', 19200, '70', 'xiegu'], ['x6100', 'X6100', 'icom', 19200, '70', 'xiegu'], ['x6200', 'X6200', 'icom', 19200, '70', 'xiegu'], ['g106', 'G106', 'icom', 19200, '70', 'xiegu'], ['x5105', 'X5105', 'icom', 19200, '70', 'xiegu']]],
+    ['QRP Labs & kits', [['qmx', 'QMX / QMX+', 'kenwood', 115200], ['qdx', 'QDX', 'kenwood', 115200], ['qcx', 'QCX / QCX mini (CAT)', 'kenwood', 38400], ['trusdx', '(tr)uSDX', 'kenwood', 115200]]],
+    ['Others', [['tx500', 'Lab599 TX-500', 'kenwood', 9600], ['discovery', 'Lab599 Discovery TX-500MP', 'kenwood', 9600], ['flex', 'FlexRadio (SmartSDR CAT port)', 'kenwood', 9600]]]
+  ];
+  const RADIO = {}; RADIOS.forEach(([g, L]) => L.forEach(r => { RADIO[r[0]] = { id: r[0], label: g.split(' ')[0] + ' ' + r[1], proto: r[2], baud: r[3], civ: r[4] || '', model: r[5] || '' }; }));
+  /* fill a <select> with every radio; pick(id) sets the right settings */
+  function fillSelect(sel) { if (!sel) return; const cur = S.radio || '';
+    sel.innerHTML = '<option value="">Pick your radio…</option>' + RADIOS.map(([g, L]) => `<optgroup label="${g}">` + L.map(r => `<option value="${r[0]}"${r[0] === cur ? ' selected' : ''}>${(g === 'QRP Labs & kits' || g === 'Others') ? '' : g.split(' ')[0] + ' '}${r[1]}</option>`).join('') + '</optgroup>').join('') + '<option value="other">Something else (pick the settings by hand)</option>'; }
+  function pickRadio(id) { const r = RADIO[id]; if (!r) { S.radio = id; SV('kpcCat', S); return null; } S = Object.assign({}, S, { radio: id, proto: r.proto, baud: r.baud, civ: r.civ || S.civ || '94', model: r.model }); SV('kpcCat', S); return r; }
+
   function follow(fn) {
     if (fol) clearInterval(fol); fol = null; if (!fn) return; let last = '';
     fol = setInterval(async () => { if (!S.on || !S.follow || !port || document.hidden) return; const r = await read(); if (!r) return; const k = r.khz + '|' + r.mode; if (k !== last) { last = k; fn(r); } }, 2000);
@@ -131,7 +186,7 @@
   async function usePort(i) { await disconnect(); S.portIx = i; SV('kpcCat', S); return connect(false); }
   async function pickNew() {
     if (!('serial' in navigator)) return false;
-    let p; try { p = await navigator.serial.requestPort(); } catch (e) { say('No port picked.', false); return false; }
+    let p; try { p = await navigator.serial.requestPort(PICK); } catch (e) { say('No port picked.', false); return false; }
     await disconnect(); const ps = await navigator.serial.getPorts(); S.portIx = Math.max(0, ps.indexOf(p)); SV('kpcCat', S);
     try { return await openPort(p); } catch (e) { port = writer = null; say('Could not open that port: ' + (e.message || e) + '. Close other radio programs and try again.', false); return false; }
   }
@@ -144,7 +199,7 @@
   window.KPCCat = {
     get: () => Object.assign({}, S), set(o) { S = Object.assign({}, S, o || {}); SV('kpcCat', S); },
     supported: () => 'serial' in navigator, connect, disconnect, ports, usePort, pickNew, forget, connected: () => !!(port && writer), tune, read, follow, ptt,
-    onStatus(fn) { subs.push(fn); }, kind, PROTOS: Object.keys(PROTOS)
+    onStatus(fn) { subs.push(fn); }, kind, PROTOS: Object.keys(PROTOS), RADIOS, RADIO, fillSelect, pickRadio, cw, cwCan, cwStop, keyLine
   };
 
   /* ---- QRZ logbook (ACTION=INSERT with the logbook's own API key; needs a QRZ XML/logbook subscription) ---- */

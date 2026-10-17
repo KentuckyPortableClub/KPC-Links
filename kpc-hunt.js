@@ -1712,6 +1712,25 @@
     setInterval(() => { document.querySelectorAll('.hs').length && draw(); }, 5 * 60e3);
   }
   /* VIP lock (kpc-vip.js): the members pages wait for the password before asking for spots */
+  /* ---- for the FT8 · CW tab (kpc-logger-ft8.js, shared with the KPC Logger; Brandon Oct 17: 'update all our versions… to have these features') ---- */
+  window.KPCLog = window.KPCLog || {
+    me: () => ({ call: CALL, station: CALL, grid: String(Q.grid || '').toUpperCase(), hunt: true, pota: [], wwff: '', sota: '' }),
+    add(o) {
+      const call = base(o.call); if (!call) return { msg: 'No call sign.' }; if (!CALL) return { msg: 'Put your call sign in MY LOG FILES first.' };
+      const k = +o.khz, band = bandOf(k); if (band === 'OTHER') return { msg: 'The frequency is not on a ham band.' };
+      const n = utc(new Date()), mode = String(o.mode || 'FT8').toUpperCase();
+      const rec = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: n.d, tm: n.t, f: (k / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, ''), band, mode, ref: String(o.ref || '').toUpperCase(),
+        name: '', st: '', rs: o.rs || '', rr: o.rr || '', note: '', my: CALL, grid: Q.grid, x: 0, t: Date.now(), tg: String(o.g || '').toUpperCase(), ft: 1 };
+      whoFill(rec, LKC[call] || null).catch(() => {}).then(() => afterLog(rec));
+      return { ok: true, q: rec, n: Q.q.filter(q => q.d === n.d).length + 1 };
+    },
+    band: bandOf, toast: m => toast(m),
+    worked: c => { const b = base(c); return Q.q.some(q => base(q.call) === b); },
+    qs: () => Q.q.map(q => ({ st: q.st, g: q.tg || '' })),
+    freq: () => { const v = parseFloat(String(($('dFreq') || {}).value || '').replace(',', '.')); return !v ? 0 : v < 1000 ? v * 1000 : v; },
+    spots: () => SP.map(s => ({ activator: s.call, reference: s.ref || '', mode: s.mode, prog: s.p })),
+    station: () => openModal('lgModal'), tab: () => {}
+  };
   (window.KPCVIP && !PUB ? window.KPCVIP.ready : Promise.resolve()).then(startApp);
   window.KPCHunt = { scan, nref, adif, parseAdif };
 })();
