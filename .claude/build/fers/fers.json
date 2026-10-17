@@ -150,25 +150,18 @@
    "county": "Letcher",
    "points": [
     {
-     "la": 37.09242,
-     "lo": -82.76977,
+     "la": 37.09737,
+     "lo": -82.76986,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 1.28-mile stretch of trail inside.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line. About 115 ft from the way in."
     },
     {
      "la": 37.09768,
      "lo": -82.76983,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
-    },
-    {
-     "la": 37.10414,
-     "lo": -82.75768,
-     "what": "On the trail",
-     "note": "Middle of a 0.25-mile stretch of trail inside.",
-     "q": "B"
+     "q": "B",
+     "what": "Way in: trail crosses the park line",
+     "note": "Often a road crossing or trailhead. Walk in along the trail to the setup pin."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park."
@@ -190,25 +183,18 @@
    "county": "Pike",
    "points": [
     {
-     "la": 37.20823,
-     "lo": -82.53577,
+     "la": 37.20985,
+     "lo": -82.53251,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 0.53-mile stretch of trail inside.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line. About 56 ft from the way in."
     },
     {
      "la": 37.20995,
      "lo": -82.53237,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
-    },
-    {
-     "la": 37.20991,
-     "lo": -82.53242,
-     "what": "On the trail",
-     "note": "On the trail, at least 100 ft inside the park line.",
-     "q": "B"
+     "q": "B",
+     "what": "Way in: trail crosses the park line",
+     "note": "Often a road crossing or trailhead. Walk in along the trail to the setup pin."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park. National forest land only: check the Forest Service ownership map."
@@ -234,14 +220,14 @@
      "lo": -83.57337,
      "q": "C",
      "what": "Target spot inside all three",
-     "note": "Closest point inside all three boundaries to that parking. Look on satellite view for a closer road or trail."
+     "note": "Closest point inside all three boundaries to that parking. Look on satellite view for a closer road or trail. No parking on file close by: check the satellite view for a road or trail in."
     },
     {
      "la": 37.81717,
      "lo": -83.55457,
      "q": "C",
      "what": "Middle of the overlap",
-     "note": "Center of the area inside all three boundaries."
+     "note": "Center of the area inside all three boundaries. No parking on file close by: check the satellite view for a road or trail in."
     }
    ],
    "note": "Wild river corridor and a second park overlapping on Forest Service-owned land. Stand inside all three boundaries; wild river corridors and the forest boundary include private land, so check the Forest Service ownership map. Wilderness rules: no motorized equipment, group size limits."
@@ -274,14 +260,14 @@
      "lo": -84.3063,
      "q": "C",
      "what": "Target spot inside all three",
-     "note": "Closest point inside all three boundaries to that parking. Look on satellite view for a closer road or trail."
+     "note": "Closest point inside all three boundaries to that parking. Look on satellite view for a closer road or trail. No parking on file close by: check the satellite view for a road or trail in."
     },
     {
      "la": 37.03691,
      "lo": -84.30355,
      "q": "C",
      "what": "Middle of the overlap",
-     "note": "Center of the area inside all three boundaries."
+     "note": "Center of the area inside all three boundaries. No parking on file close by: check the satellite view for a road or trail in."
     }
    ],
    "note": "Wild river corridor and a second park overlapping on Forest Service-owned land. Stand inside all three boundaries; check the Forest Service ownership map for private land."
@@ -303,18 +289,18 @@
    "county": "Bath",
    "points": [
     {
-     "la": 38.0905,
-     "lo": -83.56194,
+     "la": 38.09261,
+     "lo": -83.56503,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 1.00-mile stretch of trail inside.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line. About 223 ft from the way in."
     },
     {
      "la": 38.09262,
      "lo": -83.5658,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
+     "q": "B",
+     "what": "Way in: trail crosses the park line",
+     "note": "Often a road crossing or trailhead. Walk in along the trail to the setup pin."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park. National forest land only: check the Forest Service ownership map."
@@ -336,25 +322,18 @@
    "county": "Jackson",
    "points": [
     {
-     "la": 37.41235,
-     "lo": -84.06139,
+     "la": 37.42264,
+     "lo": -84.06142,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 4.23-mile stretch of trail inside.",
-     "q": "B"
-    },
-    {
-     "la": 37.43342,
-     "lo": -84.06604,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line. About 3 ft from the way in."
     },
     {
      "la": 37.42263,
      "lo": -84.06143,
+     "q": "B",
      "what": "Parking: Mill Creek WMA",
-     "note": "Parking only, not the setup spot. Parking on file right at the trail (within 100 ft).",
-     "q": "A"
+     "note": "Parking only. Walk to the trail pin, about 3 ft."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park. National forest land only: check the Forest Service ownership map."
@@ -376,25 +355,18 @@
    "county": "Laurel",
    "points": [
     {
-     "la": 37.02989,
-     "lo": -84.28306,
+     "la": 36.99812,
+     "lo": -84.28516,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 5.51-mile stretch of trail inside.",
-     "q": "B"
-    },
-    {
-     "la": 37.06739,
-     "lo": -84.28207,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line. About 249 ft from the way in."
     },
     {
      "la": 36.99752,
      "lo": -84.28476,
+     "q": "B",
      "what": "Parking: Cane Creek WMA",
-     "note": "Parking only, not the setup spot. Parking on file, 0.02 mi from this stretch of trail. Walk to the trail and set up within 100 ft of it. Parking may be just outside the park line.",
-     "q": "B"
+     "note": "Parking only. Walk to the trail pin, about 249 ft."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park. National forest land only: check the Forest Service ownership map."
@@ -416,25 +388,11 @@
    "county": "McCreary",
    "points": [
     {
-     "la": 36.61439,
-     "lo": -84.7299,
-     "what": "On the trail",
-     "note": "Middle of a 2.69-mile stretch of trail inside.",
-     "q": "B"
-    },
-    {
      "la": 36.62711,
      "lo": -84.72394,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
-    },
-    {
-     "la": 36.63278,
-     "lo": -84.71385,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 2.40-mile stretch of trail inside.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line, right at the way in."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park. National forest land only: check the Forest Service ownership map."
@@ -456,25 +414,11 @@
    "county": "Menifee",
    "points": [
     {
-     "la": 37.86004,
-     "lo": -83.59651,
-     "what": "On the trail",
-     "note": "Middle of a 3.48-mile stretch of trail inside.",
-     "q": "B"
-    },
-    {
      "la": 37.88159,
      "lo": -83.59334,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
-    },
-    {
-     "la": 37.88392,
-     "lo": -83.59397,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 0.33-mile stretch of trail inside.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line, right at the way in."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park. National forest land only: check the Forest Service ownership map."
@@ -496,25 +440,18 @@
    "county": "Whitley",
    "points": [
     {
-     "la": 36.84604,
-     "lo": -84.33176,
+     "la": 36.84594,
+     "lo": -84.33179,
+     "q": "C",
      "what": "On the trail",
-     "note": "On the trail, at least 100 ft inside the park line.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line. About 1.0 mi from the way in."
     },
     {
      "la": 36.85529,
      "lo": -84.31725,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
-    },
-    {
-     "la": 36.83756,
-     "lo": -84.33418,
-     "what": "On the trail",
-     "note": "Middle of a 1.05-mile stretch of trail inside.",
-     "q": "B"
+     "q": "B",
+     "what": "Way in: trail crosses the park line",
+     "note": "Often a road crossing or trailhead. Walk in along the trail to the setup pin."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park."
@@ -536,25 +473,18 @@
    "county": "Whitley",
    "points": [
     {
-     "la": 36.82099,
-     "lo": -84.34717,
+     "la": 36.8276,
+     "lo": -84.32962,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 2.25-mile stretch of trail inside.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line. About 3 ft from the way in."
     },
     {
      "la": 36.8276,
      "lo": -84.32962,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
-    },
-    {
-     "la": 36.86261,
-     "lo": -84.32003,
-     "what": "On the trail",
-     "note": "Middle of a 1.54-mile stretch of trail inside.",
-     "q": "B"
+     "q": "B",
+     "what": "Way in: trail crosses the park line",
+     "note": "Often a road crossing or trailhead. Walk in along the trail to the setup pin."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park. National forest land only: check the Forest Service ownership map."
@@ -890,25 +820,18 @@
    "county": "Letcher",
    "points": [
     {
-     "la": 37.09818,
-     "lo": -82.76967,
+     "la": 37.09933,
+     "lo": -82.76903,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 0.17-mile stretch of trail inside.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line. About 102 ft from the way in."
     },
     {
      "la": 37.09959,
      "lo": -82.76894,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
-    },
-    {
-     "la": 37.10477,
-     "lo": -82.76076,
-     "what": "On the trail",
-     "note": "Middle of a 0.07-mile stretch of trail inside.",
-     "q": "B"
+     "q": "B",
+     "what": "Way in: trail crosses the park line",
+     "note": "Often a road crossing or trailhead. Walk in along the trail to the setup pin."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park."
@@ -928,25 +851,18 @@
    "county": "Letcher",
    "points": [
     {
-     "la": 37.07908,
-     "lo": -82.80245,
+     "la": 37.08001,
+     "lo": -82.80112,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 0.38-mile stretch of trail inside.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line. About 259 ft from the way in."
     },
     {
      "la": 37.08023,
      "lo": -82.80027,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
-    },
-    {
-     "la": 37.08764,
-     "lo": -82.78619,
-     "what": "On the trail",
-     "note": "Middle of a 0.36-mile stretch of trail inside.",
-     "q": "B"
+     "q": "B",
+     "what": "Way in: trail crosses the park line",
+     "note": "Often a road crossing or trailhead. Walk in along the trail to the setup pin."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park."
@@ -966,25 +882,18 @@
    "county": "Pike",
    "points": [
     {
-     "la": 37.29103,
-     "lo": -82.33129,
+     "la": 37.29327,
+     "lo": -82.33913,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 1.05-mile stretch of trail inside.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line. About 62 ft from the way in."
     },
     {
      "la": 37.29327,
      "lo": -82.33935,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
-    },
-    {
-     "la": 37.28333,
-     "lo": -82.33311,
-     "what": "On the trail",
-     "note": "Middle of a 0.32-mile stretch of trail inside.",
-     "q": "B"
+     "q": "B",
+     "what": "Way in: trail crosses the park line",
+     "note": "Often a road crossing or trailhead. Walk in along the trail to the setup pin."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park."
@@ -1061,16 +970,16 @@
     {
      "la": 37.0676,
      "lo": -82.7719,
-     "what": "Parking: Bad Branch State Nature Preserve",
-     "note": "Parking only, not the setup spot. Nearest parking on file, about 242 ft from the overlap. Parking may be just outside the park line.",
-     "q": "B"
+     "q": "B",
+     "what": "Parking: Bad Branch",
+     "note": "Parking only, not the setup spot. About 404 ft from the setup pin."
     },
     {
-     "la": 37.06849,
-     "lo": -82.77149,
+     "la": 37.0687,
+     "lo": -82.77172,
+     "q": "A",
      "what": "Set up here",
-     "note": "Closest point inside every park to that parking. Moved to sit at least 100 ft inside every boundary line.",
-     "q": "B"
+     "note": "The closest spot to that parking that is inside every park, at least 100 ft inside each boundary line."
     }
    ],
    "note": "Stand where both boundaries overlap."
@@ -1092,16 +1001,16 @@
     {
      "la": 36.8889,
      "lo": -84.49403,
+     "q": "B",
      "what": "Parking: Beaver Creek WMA",
-     "note": "Parking only, not the setup spot. Nearest parking on file, about 226 ft from the overlap.",
-     "q": "B"
+     "note": "Parking only, not the setup spot. About 200 ft from the setup pin."
     },
     {
-     "la": 36.88879,
-     "lo": -84.49327,
+     "la": 36.8889,
+     "lo": -84.49334,
+     "q": "A",
      "what": "Set up here",
-     "note": "Closest point inside every park to that parking.",
-     "q": "B"
+     "note": "The closest spot to that parking that is inside every park, at least 100 ft inside each boundary line."
     }
    ],
    "note": "Stand where both boundaries overlap. National forest land only: the forest's outer boundary also holds private land, so check the Forest Service ownership map."
@@ -1124,7 +1033,7 @@
      "la": 36.66828,
      "lo": -84.52569,
      "what": "Target spot inside the overlap",
-     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line.",
+     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line. No parking on file close by: check the satellite view for a road or trail in.",
      "q": "C"
     }
    ],
@@ -1147,16 +1056,9 @@
     {
      "la": 37.16867,
      "lo": -83.70812,
-     "what": "Parking: Burchell-Beech Wildlife Management Area",
-     "note": "Parking only, not the setup spot. Nearest parking on file, 0.83 mi from the overlap.",
-     "q": "C"
-    },
-    {
-     "la": 37.16686,
-     "lo": -83.69334,
-     "what": "Target spot inside the overlap",
-     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line.",
-     "q": "C"
+     "q": "A",
+     "what": "Drive up: Burchell-Beech Creek WMA",
+     "note": "This parking spot is inside every park, at least 100 ft from each boundary line. Park here and set up nearby, staying inside the overlap."
     }
    ],
    "note": "Stand where both boundaries overlap. National forest land only: the forest's outer boundary also holds private land, so check the Forest Service ownership map."
@@ -1178,16 +1080,16 @@
     {
      "la": 36.99752,
      "lo": -84.28476,
+     "q": "B",
      "what": "Parking: Cane Creek WMA",
-     "note": "Parking only, not the setup spot. Nearest parking on file, about 113 ft from the overlap. Parking may be just outside the park line.",
-     "q": "B"
+     "note": "Parking only, not the setup spot. About 331 ft from the setup pin."
     },
     {
-     "la": 36.99811,
-     "lo": -84.28466,
+     "la": 36.99843,
+     "lo": -84.28478,
+     "q": "A",
      "what": "Set up here",
-     "note": "Closest point inside every park to that parking. Moved to sit at least 100 ft inside every boundary line.",
-     "q": "B"
+     "note": "The closest spot to that parking that is inside every park, at least 100 ft inside each boundary line."
     }
    ],
    "note": "Stand where both boundaries overlap. National forest land only: the forest's outer boundary also holds private land, so check the Forest Service ownership map."
@@ -1214,10 +1116,10 @@
      "q": "C"
     },
     {
-     "la": 37.0304,
-     "lo": -84.30614,
+     "la": 37.03041,
+     "lo": -84.30635,
      "what": "Target spot inside the overlap",
-     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off.",
+     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Rechecked Oct 17: moved to sit at least 100 ft inside every boundary line. No parking on file close by: check the satellite view for a road or trail in.",
      "q": "C"
     }
    ],
@@ -1240,16 +1142,16 @@
     {
      "la": 38.37736,
      "lo": -83.12278,
-     "what": "Parking: Carter Caves State Park",
-     "note": "Parking only, not the setup spot. Nearest parking on file, 0.19 mi from the overlap. Parking may be just outside the park line.",
-     "q": "B"
+     "q": "B",
+     "what": "Parking: Carter Caves (Bat Cave / Cascade Caverns)",
+     "note": "Parking only, not the setup spot. About 1,106 ft from the setup pin."
     },
     {
-     "la": 38.37721,
-     "lo": -83.12661,
+     "la": 38.37735,
+     "lo": -83.12665,
+     "q": "B",
      "what": "Set up here",
-     "note": "Closest point inside every park to that parking. Moved to sit at least 100 ft inside every boundary line.",
-     "q": "B"
+     "note": "The closest spot to that parking that is inside every park, at least 100 ft inside each boundary line."
     }
    ],
    "note": "Stand where both boundaries overlap."
@@ -1279,7 +1181,7 @@
      "la": 38.35767,
      "lo": -83.11229,
      "what": "Target spot inside the overlap",
-     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line.",
+     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line. No parking on file close by: check the satellite view for a road or trail in.",
      "q": "C"
     }
    ],
@@ -1327,7 +1229,7 @@
      "la": 37.16838,
      "lo": -84.29051,
      "what": "Target spot inside the overlap",
-     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line.",
+     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line. No parking on file close by: check the satellite view for a road or trail in.",
      "q": "C"
     }
    ],
@@ -1351,7 +1253,7 @@
      "la": 36.7043,
      "lo": -84.59324,
      "what": "Target spot inside the overlap",
-     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line.",
+     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line. No parking on file close by: check the satellite view for a road or trail in.",
      "q": "C"
     }
    ],
@@ -1375,7 +1277,7 @@
      "la": 36.87265,
      "lo": -84.32628,
      "what": "Target spot inside the overlap",
-     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line.",
+     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line. No parking on file close by: check the satellite view for a road or trail in.",
      "q": "C"
     }
    ],
@@ -1399,7 +1301,7 @@
      "la": 37.8686,
      "lo": -83.6226,
      "what": "Target spot inside the overlap",
-     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line.",
+     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line. No parking on file close by: check the satellite view for a road or trail in.",
      "q": "C"
     }
    ],
@@ -1423,7 +1325,7 @@
      "la": 37.82283,
      "lo": -83.57311,
      "what": "Target spot inside the overlap",
-     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off.",
+     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. No parking on file close by: check the satellite view for a road or trail in.",
      "q": "C"
     }
    ],
@@ -1447,7 +1349,7 @@
      "la": 37.05813,
      "lo": -83.48935,
      "what": "Target spot inside the overlap",
-     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line.",
+     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line. No parking on file close by: check the satellite view for a road or trail in.",
      "q": "C"
     }
    ],
@@ -1470,16 +1372,16 @@
     {
      "la": 37.18902,
      "lo": -86.10199,
-     "what": "Parking: Mammoth Cave National Park lot",
-     "note": "Parking only, not the setup spot. Nearest parking on file, about 414 ft from the overlap. Parking may be just outside the park line.",
-     "q": "B"
+     "q": "B",
+     "what": "Parking: NPS parking lot",
+     "note": "Parking only, not the setup spot. About 551 ft from the setup pin."
     },
     {
-     "la": 37.18841,
-     "lo": -86.10369,
+     "la": 37.1882,
+     "lo": -86.10359,
+     "q": "B",
      "what": "Set up here",
-     "note": "Closest point inside every park to that parking. Moved to sit at least 100 ft inside every boundary line.",
-     "q": "B"
+     "note": "The closest spot to that parking that is inside every park, at least 100 ft inside each boundary line."
     }
    ],
    "note": "Stand where both boundaries overlap."
@@ -1501,9 +1403,9 @@
     {
      "la": 37.42263,
      "lo": -84.06143,
-     "what": "Drive up: Mill Creek Wildlife Management Area",
-     "note": "Parking or entrance on file that sits inside every park.",
-     "q": "A"
+     "q": "A",
+     "what": "Drive up: Mill Creek WMA",
+     "note": "This parking spot is inside every park, at least 100 ft from each boundary line. Park here and set up nearby, staying inside the overlap."
     }
    ],
    "note": "Stand where both boundaries overlap. National forest land only: the forest's outer boundary also holds private land, so check the Forest Service ownership map."
@@ -1525,9 +1427,9 @@
     {
      "la": 38.04383,
      "lo": -83.57196,
-     "what": "Drive up: Pioneer Weapons Wildlife Management Area",
-     "note": "Parking or entrance on file that sits inside every park.",
-     "q": "A"
+     "q": "A",
+     "what": "Drive up: Pioneer Weapons WMA",
+     "note": "This parking spot is inside every park, at least 100 ft from each boundary line. Park here and set up nearby, staying inside the overlap."
     }
    ],
    "note": "Stand where both boundaries overlap. National forest land only: the forest's outer boundary also holds private land, so check the Forest Service ownership map."
@@ -1573,16 +1475,9 @@
     {
      "la": 37.10309,
      "lo": -83.53407,
-     "what": "Drive up: Redbird Wildlife Management Area",
-     "note": "Parking or entrance on file that sits inside every park.",
-     "q": "A"
-    },
-    {
-     "la": 37.14361,
-     "lo": -83.58006,
-     "what": "Drive up: Redbird Wildlife Management Area (Forest Service OHV trailhead)",
-     "note": "Parking or entrance on file that sits inside every park.",
-     "q": "A"
+     "q": "A",
+     "what": "Drive up: Redbird WMA",
+     "note": "This parking spot is inside every park, at least 100 ft from each boundary line. Park here and set up nearby, staying inside the overlap."
     }
    ],
    "note": "Stand where both boundaries overlap. National forest land only: the forest's outer boundary also holds private land, so check the Forest Service ownership map."
@@ -1604,16 +1499,9 @@
     {
      "la": 37.11544,
      "lo": -84.35099,
-     "what": "Parking: Rockcastle River WMA",
-     "note": "Parking only, not the setup spot. Nearest parking on file, 1.23 mi from the overlap.",
-     "q": "C"
-    },
-    {
-     "la": 37.10077,
-     "lo": -84.3382,
-     "what": "Target spot inside the overlap",
-     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off.",
-     "q": "C"
+     "q": "A",
+     "what": "Drive up: Rockcastle River WMA",
+     "note": "This parking spot is inside every park, at least 100 ft from each boundary line. Park here and set up nearby, staying inside the overlap."
     }
    ],
    "note": "Stand where both boundaries overlap. National forest land only: the forest's outer boundary also holds private land, so check the Forest Service ownership map."
@@ -1643,7 +1531,7 @@
      "la": 37.12046,
      "lo": -84.30007,
      "what": "Target spot inside the overlap",
-     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line.",
+     "note": "Closest point inside every park to that parking. Look on satellite view for a closer road or pull-off. Moved to sit at least 100 ft inside every boundary line. No parking on file close by: check the satellite view for a road or trail in.",
      "q": "C"
     }
    ],
@@ -1666,16 +1554,9 @@
     {
      "la": 38.2231,
      "lo": -83.38143,
-     "what": "Parking: Sunny Brook Wildlife Management Area",
-     "note": "Parking only, not the setup spot. Nearest parking on file, 0.31 mi from the overlap.",
-     "q": "B"
-    },
-    {
-     "la": 38.22019,
-     "lo": -83.37742,
-     "what": "Set up here",
-     "note": "Closest point inside every park to that parking. Moved to sit at least 100 ft inside every boundary line.",
-     "q": "B"
+     "q": "A",
+     "what": "Drive up: Sunnybrook WMA",
+     "note": "This parking spot is inside every park, at least 100 ft from each boundary line. Park here and set up nearby, staying inside the overlap."
     }
    ],
    "note": "Stand where both boundaries overlap. National forest land only: the forest's outer boundary also holds private land, so check the Forest Service ownership map."
@@ -1697,16 +1578,16 @@
     {
      "la": 38.09591,
      "lo": -83.49118,
-     "what": "Parking: Twin Knobs Campground Wildlife Management Area",
-     "note": "Parking only, not the setup spot. Nearest parking on file, about 137 ft from the overlap. Parking may be just outside the park line.",
-     "q": "B"
+     "q": "B",
+     "what": "Parking: Twin Knobs Campground",
+     "note": "Parking only, not the setup spot. About 174 ft from the setup pin."
     },
     {
-     "la": 38.09586,
-     "lo": -83.49165,
+     "la": 38.0959,
+     "lo": -83.49179,
+     "q": "A",
      "what": "Set up here",
-     "note": "Closest point inside every park to that parking.",
-     "q": "B"
+     "note": "The closest spot to that parking that is inside every park, at least 100 ft inside each boundary line."
     }
    ],
    "note": "Stand where both boundaries overlap. National forest land only: the forest's outer boundary also holds private land, so check the Forest Service ownership map."
@@ -1728,16 +1609,16 @@
     {
      "la": 38.07481,
      "lo": -83.49721,
-     "what": "Parking: Zilpo Campground Wildlife Management Area",
-     "note": "Parking only, not the setup spot. Nearest parking on file, about 148 ft from the overlap. Parking may be just outside the park line.",
-     "q": "B"
+     "q": "B",
+     "what": "Parking: Zilpo Campground",
+     "note": "Parking only, not the setup spot. About 125 ft from the setup pin."
     },
     {
-     "la": 38.07492,
-     "lo": -83.49671,
+     "la": 38.07503,
+     "lo": -83.49688,
+     "q": "A",
      "what": "Set up here",
-     "note": "Closest point inside every park to that parking.",
-     "q": "B"
+     "note": "The closest spot to that parking that is inside every park, at least 100 ft inside each boundary line."
     }
    ],
    "note": "Stand where both boundaries overlap. National forest land only: the forest's outer boundary also holds private land, so check the Forest Service ownership map."
@@ -1757,25 +1638,18 @@
    "county": "Laurel",
    "points": [
     {
-     "la": 37.10685,
-     "lo": -84.23693,
+     "la": 37.10699,
+     "lo": -84.23701,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 0.25-mile stretch of trail inside.",
-     "q": "B"
-    },
-    {
-     "la": 37.10847,
-     "lo": -84.23666,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line. About 52 ft from the way in."
     },
     {
      "la": 37.1071,
      "lo": -84.2369,
-     "what": "Parking: Sinking Creek State Natural Area",
-     "note": "Parking only, not the setup spot. Parking on file right at the trail (within 100 ft).",
-     "q": "A"
+     "q": "B",
+     "what": "Parking: Sinking Creek SNA",
+     "note": "Parking only. Walk to the trail pin, about 52 ft."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park."
@@ -1795,39 +1669,11 @@
    "county": "McCreary",
    "points": [
     {
-     "la": 36.725318,
-     "lo": -84.543018,
-     "what": "On the trail at Yamacraw (KY 92 bridge)",
-     "note": "On the Sheltowee Trace inside Big South Fork NRA near the KY 92 bridge over the Big South Fork. Not exact: walk to the trail and make sure you are within 100 ft of it and inside the NRA. This stretch is NOT in the Big South Fork Wild River park (US-10107), which runs from the Tennessee line to Blue Heron.",
-     "q": "B"
-    },
-    {
-     "la": 36.7255,
-     "lo": -84.5446,
-     "what": "Parking: Yamacraw river access (KDFWR)",
-     "note": "Unpaved lot, open all year. From Whitley City: KY 1651 south, KY 92 west to the bridge, left on KY 1363, then an immediate left on the road under the bridge. Parking only, about 450 ft from the trail spot.",
-     "q": "A"
-    },
-    {
-     "la": 36.76108,
-     "lo": -84.54755,
-     "what": "On the trail",
-     "note": "Middle of a 8.22-mile stretch of trail inside.",
-     "q": "B"
-    },
-    {
      "la": 36.7887,
      "lo": -84.52685,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
-    },
-    {
-     "la": 36.72151,
-     "lo": -84.54653,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 2.47-mile stretch of trail inside.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line, right at the way in."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park."
@@ -1850,8 +1696,8 @@
      "la": 36.62755,
      "lo": -84.72429,
      "what": "On the trail",
-     "note": "Middle of a 0.08-mile stretch of trail inside.",
-     "q": "B"
+     "note": "Middle of a 0.08-mile stretch of trail inside. No parking on file close by: check the satellite view for a road or trail in.",
+     "q": "C"
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park."
@@ -1871,25 +1717,11 @@
    "county": "Menifee",
    "points": [
     {
-     "la": 37.83566,
-     "lo": -83.62496,
-     "what": "On the trail",
-     "note": "Middle of a 10.92-mile stretch of trail inside.",
-     "q": "B"
-    },
-    {
      "la": 37.84829,
      "lo": -83.60261,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
-    },
-    {
-     "la": 38.04741,
-     "lo": -83.5908,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 9.43-mile stretch of trail inside.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line, right at the way in."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park. National forest land only: check the Forest Service ownership map."
@@ -1909,25 +1741,18 @@
    "county": "Powell",
    "points": [
     {
-     "la": 37.77428,
-     "lo": -83.67655,
+     "la": 37.78346,
+     "lo": -83.67109,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 1.62-mile stretch of trail inside.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line. About 118 ft from the way in."
     },
     {
      "la": 37.78337,
      "lo": -83.6707,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
-    },
-    {
-     "la": 37.76133,
-     "lo": -83.69786,
-     "what": "On the trail",
-     "note": "Middle of a 0.28-mile stretch of trail inside.",
-     "q": "B"
+     "q": "B",
+     "what": "Way in: trail crosses the park line",
+     "note": "Often a road crossing or trailhead. Walk in along the trail to the setup pin."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park."
@@ -1947,18 +1772,18 @@
    "county": "Whitley",
    "points": [
     {
-     "la": 36.8424,
-     "lo": -84.3374,
+     "la": 36.8441,
+     "lo": -84.33441,
+     "q": "A",
      "what": "On the trail",
-     "note": "Middle of a 0.61-mile stretch of trail inside.",
-     "q": "B"
+     "note": "On the trail, inside every park and at least 100 ft from each park line. About 3 ft from the way in."
     },
     {
      "la": 36.8441,
      "lo": -84.33441,
-     "what": "Trail crosses the park line (one end)",
-     "note": "Often a road crossing or trailhead. Walk a little way in along the trail before setting up.",
-     "q": "B"
+     "q": "B",
+     "what": "Way in: trail crosses the park line",
+     "note": "Often a road crossing or trailhead. Walk in along the trail to the setup pin."
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park."
@@ -1981,15 +1806,15 @@
      "la": 36.83549,
      "lo": -84.32338,
      "what": "On the trail",
-     "note": "Middle of a 0.12-mile stretch of trail inside.",
-     "q": "B"
+     "note": "Middle of a 0.12-mile stretch of trail inside. No parking on file close by: check the satellite view for a road or trail in.",
+     "q": "C"
     },
     {
      "la": 36.83179,
      "lo": -84.32067,
      "what": "On the trail",
-     "note": "Middle of a 0.04-mile stretch of trail inside.",
-     "q": "B"
+     "note": "Middle of a 0.04-mile stretch of trail inside. No parking on file close by: check the satellite view for a road or trail in.",
+     "q": "C"
     }
    ],
    "note": "Trail rule: you and your gear on public land within 100 ft of the trail, and inside the other park."
@@ -2359,7 +2184,8 @@
   "Wickliffe Mounds, Big Bone Lick and Golden Pond now cite the NPS \"Visitor Centers in Kentucky\" page for the Lewis & Clark trail.",
   "Lewis & Clark auto tour route: checked the NPS route for all of Kentucky. It runs along the edges of Big Bone Lick, Wickliffe Mounds, Otter Creek, Yellowbank WMA and Livingston County WMA; each now has a pin inside the park next to the signed route, and Livingston County WMA is a new possible Lewis & Clark 2-fer.",
   "Added US-0608 Ohio River Islands National Wildlife Refuge (Manchester islands, Lewis County, boat only) as a possible Lewis & Clark 2-fer.",
-  "Sheltowee Trace + Big South Fork NRA: added the Yamacraw trail spot (KY 92 bridge, 36.725318, -84.543018, suggested by KZ4CP) and the KDFWR Yamacraw river access parking. Checked: not a 3-fer, the Big South Fork Wild River (US-10107) runs only from the Tennessee line to Blue Heron (POTA park notes and KY GIS)."
+  "Sheltowee Trace + Big South Fork NRA: added the Yamacraw trail spot (KY 92 bridge, 36.725318, -84.543018, suggested by KZ4CP) and the KDFWR Yamacraw river access parking. Checked: not a 3-fer, the Big South Fork Wild River (US-10107) runs only from the Tennessee line to Blue Heron (POTA park notes and KY GIS).",
+  "Oct 17, 2026: Pins rechecked (Brandon: make sure they are in the overlap, as close as they can be to an access point): 31 spots updated; every overlap and trail pin is at least 100 ft inside every park line and as close as possible to parking, a trailhead or the trail crossing on file."
  ],
  "trips": [
   {
