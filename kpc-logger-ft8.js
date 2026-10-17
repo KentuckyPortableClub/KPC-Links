@@ -17,8 +17,16 @@
   const DIAL = {
     FT8: { '160m': 1840, '80m': 3573, '60m': 5357, '40m': 7074, '30m': 10136, '20m': 14074, '17m': 18100, '15m': 21074, '12m': 24915, '10m': 28074, '6m': 50313, '2m': 144174 },
     CW: { '160m': 1810, '80m': 3530, '60m': 5332, '40m': 7030, '30m': 10110, '20m': 14060, '17m': 18080, '15m': 21060, '12m': 24910, '10m': 28060, '6m': 50090 },
-    FT4: { '80m': 3575, '40m': 7047.5, '30m': 10140, '20m': 14080, '17m': 18104, '15m': 21140, '12m': 24919, '10m': 28180, '6m': 50318 }
+    FT4: { '80m': 3575, '40m': 7047.5, '30m': 10140, '20m': 14080, '17m': 18104, '15m': 21140, '12m': 24919, '10m': 28180, '6m': 50318 },
+    /* Oct 17 (Brandon: RTTY, PSK31, SSTV, WSPR; 'SSTV can have pre-programmed frequencies'). Dial = the radio's USB (LSB for SSTV on 80/40) */
+    RTTY: { '80m': 3580, '40m': 7080, '30m': 10140, '20m': 14085, '17m': 18100, '15m': 21080, '12m': 24920, '10m': 28080 },
+    PSK31: { '160m': 1838, '80m': 3580, '40m': 7070, '30m': 10142, '20m': 14070, '17m': 18100, '15m': 21070, '12m': 24920, '10m': 28120, '6m': 50290 },
+    SSTV: { '80m': 3845, '40m': 7171, '20m': 14230, '17m': 18160, '15m': 21340, '12m': 24975, '10m': 28680, '6m': 50680, '2m (ISS)': 145800 },
+    WSPR: { '160m': 1836.6, '80m': 3568.6, '60m': 5287.2, '40m': 7038.6, '30m': 10138.7, '20m': 14095.6, '17m': 18104.6, '15m': 21094.6, '12m': 24924.6, '10m': 28124.6, '6m': 50293, '2m': 144489 }
   };
+  const isFT = () => S.mode === 'FT8' || S.mode === 'FT4';
+  const isDG = () => /^(RTTY|PSK31|SSTV|WSPR)$/.test(S.mode);
+  const DG = () => window.KPCDigiUI || null;
   const S = Object.assign({ mode: 'FT8', band: '20m', inDev: '', outDev: '', ptt: 'vox', txHz: 1500, rxHz: 1500, hold: true, auto: true, first: true, even: true, keepCq: false, cqw: 'POTA', lvl: 0.3, deep: false, wd: 2, cwHz: 600, cwWpm: 20, cwVia: 'cat', cwBw: 'auto', cwMac: null, aPark: true, aState: false, aGrid: false, watch: '', mm: 'hear' }, get('kpcFt8', {}));
   const saveS = () => put('kpcFt8', S);
   const slotLen = () => S.mode === 'FT4' ? 7.5 : 15;
@@ -35,7 +43,7 @@
   root.innerHTML = `
   <div class="f8-top">
     <button type="button" class="f8-back" id="f8Back">← LOGGER</button>
-    <div class="f8-modes" role="group" aria-label="Mode"><button type="button" data-f8m="FT8">FT8</button><button type="button" data-f8m="FT4">FT4</button><button type="button" data-f8m="CW">CW</button></div>
+    <div class="f8-modes" role="group" aria-label="Mode"><button type="button" data-f8m="FT8">FT8</button><button type="button" data-f8m="FT4">FT4</button><button type="button" data-f8m="CW">CW</button><button type="button" data-f8m="RTTY">RTTY</button><button type="button" data-f8m="PSK31">PSK31</button><button type="button" data-f8m="SSTV">SSTV</button><button type="button" data-f8m="WSPR">WSPR</button></div>
     <select id="f8Band" aria-label="Band"></select>
     <b class="f8-dial" id="f8Dial">14.074 000</b>
     <span class="f8-clk"><b id="f8Utc">--:--:--</b><i class="f8-slot"><i id="f8SlotBar"></i></i></span>
@@ -104,10 +112,12 @@
 
   /* band + mode controls */
   function bandOpts() { $('f8Band').innerHTML = Object.keys(DIAL[S.mode]).map(b => `<option${b === S.band ? ' selected' : ''}>${b}</option>`).join(''); if (!DIAL[S.mode][S.band]) { S.band = '20m'; $('f8Band').value = '20m'; } }
-  function showDial() { const k = dialK(); $('f8Dial').textContent = (k / 1000).toFixed(6).replace(/(\.\d{3})(\d{3})$/, '$1 $2'); document.querySelectorAll('[data-f8m]').forEach(b => b.classList.toggle('on', b.dataset.f8m === S.mode)); }
-  function radioTune() { if (window.KPCCat && KPCCat.get().on) KPCCat.tune(dialK(), S.mode === 'CW' ? 'CW' : 'DATA'); }
+  function showDial() { const k = dialK(); $('f8Dial').textContent = (k / 1000).toFixed(6).replace(/(\.\d{3})(\d{3})$/, '$1 $2'); document.querySelectorAll('[data-f8m]').forEach(b => { b.classList.toggle('on', b.dataset.f8m === S.mode); if (b.dataset.f8m === S.mode && b.parentElement.scrollWidth > b.parentElement.clientWidth) b.parentElement.scrollLeft = b.offsetLeft - b.parentElement.clientWidth / 2 + b.offsetWidth / 2; }); }
+  const radioMode = () => S.mode === 'CW' ? 'CW' : S.mode === 'SSTV' ? (S.band === '2m (ISS)' ? 'FM' : dialK() < 10000 ? 'LSB' : 'USB') : 'DATA';
+  function radioTune() { if (window.KPCCat && KPCCat.get().on) KPCCat.tune(dialK(), radioMode()); }
   function setMode(m) { if (m === S.mode) return; S.mode = m; saveS(); bandOpts(); showDial(); radioTune(); resetEng(); gen(); slotSep(true); modeView(); }
-  function modeView() { CWON = S.mode === 'CW'; root.dataset.m = S.mode === 'CW' ? 'cw' : 'ft'; wfRange(); drawScale(); if (S.mode !== 'CW' && TXING && CWTX) cwHalt(); }
+  function modeView() { CWON = S.mode === 'CW'; root.dataset.m = S.mode === 'CW' ? 'cw' : isDG() ? S.mode.toLowerCase().replace('31', '') : 'ft'; if (S.mode !== 'CW' && TXING && CWTX) cwHalt(); if (DG()) DG().mode(S.mode); fftFit(); wfRange(); drawScale(); }
+  function fftFit() { if (AN && AC) { const want = S.mode === 'WSPR' ? 32768 : AC.sampleRate > 30000 ? 8192 : 4096; if (AN.fftSize !== want) AN.fftSize = want; } }
   bandOpts(); showDial();
   document.querySelectorAll('[data-f8m]').forEach(b => b.onclick = () => setMode(b.dataset.f8m));
   $('f8Band').onchange = () => { S.band = $('f8Band').value; saveS(); showDial(); radioTune(); slotSep(true); };
@@ -121,7 +131,7 @@
   let AC = null, SRC = null, NODE = null, AN = null, STREAM = null, RUN = false;
   const R12 = 12000, RING = R12 * 40; const ring = new Float32Array(RING); let n12 = 0, t0 = 0, peak = 0;
   /* resampler: windowed-sinc low-pass (5 kHz) + fractional step to 12 kHz */
-  let rs = null;
+  let rs = null; const dgb = new Float32Array(16384); let dgn = 0, DGON = false;
   function mkRs(rate) {
     const ratio = rate / R12, taps = Math.max(15, Math.round(12 * ratio) | 1), fc = 5000 / rate, h = new Float32Array(taps), mid = (taps - 1) / 2; let sum = 0;
     for (let i = 0; i < taps; i++) { const x = i - mid, w = 0.42 - 0.5 * Math.cos(2 * Math.PI * i / (taps - 1)) + 0.08 * Math.cos(4 * Math.PI * i / (taps - 1)); h[i] = (x === 0 ? 2 * fc : Math.sin(2 * Math.PI * fc * x) / (Math.PI * x)) * w; sum += h[i]; }
@@ -133,12 +143,13 @@
     for (let i = 0; i < buf.length; i++) {
       const v = buf[i]; if (Math.abs(v) > pk) pk = Math.abs(v);
       r.hist[r.hp] = v; r.hp = (r.hp + 1) % T; r.cnt++;
-      if (r.cnt >= r.pos) { let a = 0, j = r.hp; for (let k = 0; k < T; k++) { a += h[k] * r.hist[j]; j = (j + 1) % T; } ring[n12 % RING] = a; n12++; r.pos += r.ratio; if (CWON) cwFeed(a); }
+      if (r.cnt >= r.pos) { let a = 0, j = r.hp; for (let k = 0; k < T; k++) { a += h[k] * r.hist[j]; j = (j + 1) % T; } ring[n12 % RING] = a; n12++; r.pos += r.ratio; if (CWON) cwFeed(a); else if (DGON && dgn < dgb.length) dgb[dgn++] = a; }
     }
     if (r.cnt > 1e9) { r.cnt -= 1e8; r.pos -= 1e8; }
     peak = Math.max(peak * 0.9, pk);
     /* time of each 12 kHz sample: anchored to the clock, nudged slowly so it never jumps */
     const est = nowS() - n12 / R12 - 0.03; if (!t0 || Math.abs(est - t0) > 1) t0 = est; else t0 += (est - t0) * 0.02;
+    if (dgn) { const d = DG(); if (d) d.feed(dgb.subarray(0, dgn), t0 + (n12 - dgn) / R12); dgn = 0; }
     tick();
   }
   const WK = `class K extends AudioWorkletProcessor{constructor(){super();this.b=new Float32Array(2048);this.n=0}process(i){const c=i[0]&&i[0][0];if(c){for(let k=0;k<c.length;k++){this.b[this.n++]=c[k];if(this.n===2048){this.port.postMessage(this.b.slice(0));this.n=0}}}return true}}registerProcessor('kpc-ft8-in',K)`;
@@ -166,7 +177,7 @@
       NODE = AC.createScriptProcessor(4096, 1, 1); NODE.onaudioprocess = ev => pushIn(ev.inputBuffer.getChannelData(0).slice(0));
       const mute = AC.createGain(); mute.gain.value = 0; SRC.connect(NODE); NODE.connect(mute); mute.connect(AC.destination);
     }
-    RUN = true; $('f8StartBox').hidden = true; root.classList.add('run'); devices(); stat(); slotSep(true); wfLoop(); tabDot();
+    fftFit(); RUN = true; $('f8StartBox').hidden = true; root.classList.add('run'); devices(); stat(); slotSep(true); wfLoop(); tabDot();
     return true;
   }
   function stopAudio() {
@@ -190,7 +201,7 @@
   /* ---------------- waterfall ---------------- */
   const wf = $('f8Wf'), sc = $('f8Scale'); let wfRow = null, lastSlotLine = 0;
   let F0 = 100, F1 = 3100;
-  function wfRange() { if (S.mode === 'CW') { F0 = 200; F1 = 1400; } else { F0 = 100; F1 = 3100; } }
+  function wfRange() { DGON = isDG(); if (S.mode === 'CW') { F0 = 200; F1 = 1400; } else if (isDG() && DG()) { [F0, F1] = DG().range(); } else { F0 = 100; F1 = 3100; } }
   function wfSize() { const w = Math.max(300, Math.round(wf.clientWidth || 600)); if (wf.width !== w) { wf.width = w; sc.width = w; drawScale(); } }
   const hzToX = hz => (hz - F0) / (F1 - F0) * wf.width;
   const xToHz = x => Math.round(F0 + x / wf.width * (F1 - F0));
@@ -200,13 +211,14 @@
     for (let hz = Math.ceil(F0 / (F1 - F0 > 1500 ? 500 : 200)) * (F1 - F0 > 1500 ? 500 : 200); hz < F1; hz += F1 - F0 > 1500 ? 500 : 200) { if (hz <= F0) continue; const x = hzToX(hz); g.beginPath(); g.moveTo(x, 0); g.lineTo(x, 5); g.stroke(); g.fillText(String(hz), x - 12, 15); }
     const mark = (hz, c, w) => { const x = hzToX(hz), bw = (S.mode === 'FT4' ? 83 : 50) / (F1 - F0) * sc.width; g.fillStyle = c; g.fillRect(x, 0, Math.max(2, bw), w); };
     if (S.mode === 'CW') { const x = hzToX(S.cwHz), bw = cwBwHz() / (F1 - F0) * sc.width; g.fillStyle = '#45e08f'; g.fillRect(x - bw / 2, 0, Math.max(3, bw), 5); return; }
+    if (isDG()) { if (DG()) DG().marks((hz, bwHz, c, h) => { const x = hzToX(hz), bw = bwHz / (F1 - F0) * sc.width; g.fillStyle = c; g.fillRect(x - bw / 2, 0, Math.max(2, bw), h || 5); }); return; }
     mark(S.rxHz, '#45e08f', 4); mark(S.txHz, '#ff5c5c', 3);
   }
   const COL = v => { v = Math.max(0, Math.min(1, v)); const r = v < .5 ? 0 : Math.round((v - .5) * 2 * 255), gg = v < .5 ? Math.round(v * 2 * 200) : 200 + Math.round((v - .5) * 110), b = v < .5 ? 90 + Math.round(v * 2 * 120) : Math.round(210 * (1 - (v - .5) * 2)); return [r, Math.min(255, gg), b]; };
   let wfT = 0;
   function wfLoop() {
     if (!RUN) return; requestAnimationFrame(wfLoop);
-    const t = performance.now(); if (t - wfT < (S.mode === 'FT4' ? 60 : S.mode === 'CW' ? 50 : 120) || document.hidden || root.hidden) return; wfT = t;
+    const t = performance.now(); if (t - wfT < (S.mode === 'FT4' ? 60 : S.mode === 'CW' ? 50 : S.mode === 'WSPR' ? 500 : isDG() ? 70 : 120) || document.hidden || root.hidden) return; wfT = t;
     wfSize(); const g = wf.getContext('2d'), W = wf.width, H = wf.height;
     const n = AN.frequencyBinCount, d = new Float32Array(n); AN.getFloatFrequencyData(d);
     const binHz = AC.sampleRate / AN.fftSize, row = g.createImageData(W, 1), vals = new Float32Array(W);
@@ -214,15 +226,16 @@
     const sorted = Array.from(vals).sort((a, b) => a - b), med = sorted[Math.floor(W * 0.4)] || -100;
     for (let x = 0; x < W; x++) { const [r, gg, b] = COL((vals[x] - med + 2) / 26); row.data[x * 4] = r; row.data[x * 4 + 1] = gg; row.data[x * 4 + 2] = b; row.data[x * 4 + 3] = 255; }
     g.drawImage(wf, 0, 0, W, H - 1, 0, 1, W, H - 1); g.putImageData(row, 0, 0);
-    if (S.mode === 'CW') { cwWf(vals); } const sl = Math.floor(nowS() / slotLen()); if (S.mode !== 'CW' && sl !== lastSlotLine) { lastSlotLine = sl; g.fillStyle = 'rgba(240,201,107,.75)'; g.fillRect(0, 0, W, 1); g.font = '10px monospace'; g.fillText(utc(sl * slotLen(), true), 4, 11); }
+    lastVals = vals; if (S.mode === 'CW') { cwWf(vals); } else if (isDG() && DG()) DG().wf(vals); const sl = Math.floor(nowS() / slotLen()); if (isFT() && sl !== lastSlotLine) { lastSlotLine = sl; g.fillStyle = 'rgba(240,201,107,.75)'; g.fillRect(0, 0, W, 1); g.font = '10px monospace'; g.fillText(utc(sl * slotLen(), true), 4, 11); }
     /* level meter (dB above full-scale silence) */
     const db = peak > 0 ? 20 * Math.log10(peak) + 90 : 0; $('f8Lvl').style.width = Math.max(0, Math.min(100, db)) + '%'; $('f8Lvl').className = db < 20 || db > 80 ? 'bad' : '';
     $('f8LvlT').textContent = Math.round(db) + ' dB ' + (db < 20 ? '(too low: turn the radio\'s audio up)' : db > 80 ? '(too high: turn it down)' : '(good)');
   }
   wf.addEventListener('click', e => { const r = wf.getBoundingClientRect(), hz = xToHz((e.clientX - r.left) * wf.width / r.width);
     if (S.mode === 'CW') { cwPitch(snapPeak(hz)); return; }
+    if (isDG()) { if (DG()) DG().click(hz, e.shiftKey); return; }
     if (e.shiftKey) S.txHz = hz; else { S.rxHz = hz; if (!S.hold) S.txHz = hz; } saveS(); hzBoxes(); drawScale(); drawRx(); });
-  wf.addEventListener('contextmenu', e => { e.preventDefault(); const r = wf.getBoundingClientRect(); S.txHz = xToHz((e.clientX - r.left) * wf.width / r.width); saveS(); hzBoxes(); drawScale(); });
+  wf.addEventListener('contextmenu', e => { e.preventDefault(); if (!isFT()) return; const r = wf.getBoundingClientRect(); S.txHz = xToHz((e.clientX - r.left) * wf.width / r.width); saveS(); hzBoxes(); drawScale(); });
   addEventListener('resize', () => { if (!root.hidden) wfSize(); });
 
   /* ---------------- CW: decoder + keyboard (Brandon Oct 17: 'cw decode and cw keyboard to cw') ----------------
@@ -357,7 +370,7 @@
   const MAXL = 400;
   function slotSep(force) { const sl = Math.floor(nowS() / slotLen()); if (force || !LINES.length || LINES[LINES.length - 1].sep !== sl) { /* separators come with each decode */ } }
   function tick() {
-    if (S.mode === 'CW') return;
+    if (!isFT()) return;
     const t = nowS(), L = slotLen(), sl = Math.floor(t / L), into = t - sl * L;
     $('f8SlotBar').style.width = (into / L * 100) + '%';
     /* decode the slot that just ended (FT8 at 14.4 s, FT4 at 6.6 s into the slot) */
@@ -423,7 +436,7 @@
   ['f8Band1', 'f8Rx'].forEach(i => $(i).addEventListener('keydown', e => { if (e.key === 'Enter') { const r = e.target.closest('[data-l]'); if (r) pick(byId[r.dataset.l]); } }));
 
   /* ---------------- map: who I hear + who hears me ---------------- */
-  let MAP = null, ML = null, ME = null, HEARD = {}, mqC = null, mqFor = '', pskT = 0;
+  let MAP = null, ML = null, ME = null, HEARD = {}, mqC = null, mqFor = '', pskT = 0, XH = [], XM = [];
   function mapInit() { if (MAP || !window.L) return; MAP = L.map('f8Map', { worldCopyJump: true, zoomControl: true }).setView(myLL() || [37.8, -85.7], 4);
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 12, attribution: 'Esri' }).addTo(MAP);
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 12 }).addTo(MAP);
@@ -433,6 +446,10 @@
     const w = $('f8MapW'); if (!w.open || root.hidden) return; mapInit(); if (!MAP) { $('f8MapT').textContent = 'map needs signal to load'; return; }
     ML.clearLayers(); const me = myLL(), now = nowS(); let n = 0, m = 0;
     if (me) L.marker(me, { icon: L.divIcon({ className: 'f8-star', html: '★', iconSize: [22, 22] }) }).addTo(ML).bindTooltip('You · ' + myGrid());
+    if (S.mode === 'WSPR') { /* WSPR: stations I decoded (green) + stations that heard me on wspr.live (orange ▲) */
+      if (S.mm !== 'me') for (const x of XH) { const ll = g2ll(x.grid); if (!ll) continue; n++; L.circleMarker(ll, { radius: 5 + Math.max(0, Math.min(6, (x.snr + 30) / 5)), color: '#3ddc84', weight: 1, fillColor: '#3ddc84', fillOpacity: .8 }).addTo(ML).bindTooltip(`${x.call} ${x.snr} dB${me ? ' · ' + distB(me, ll).mi.toLocaleString() + ' mi' : ''}`); }
+      if (S.mm !== 'hear') for (const x of XM) { const ll = g2ll(x.grid); if (!ll) continue; m++; L.marker(ll, { icon: L.divIcon({ className: 'f8-tri', html: '▲', iconSize: [16, 16] }) }).addTo(ML).bindTooltip(`${x.call} heard you ${x.snr} dB${me ? ' · ' + distB(me, ll).mi.toLocaleString() + ' mi' : ''}`); }
+      $('f8MapT').textContent = (S.mm !== 'me' ? n + ' heard' : '') + (S.mm === 'both' ? ' · ' : '') + (S.mm !== 'hear' ? m + ' heard you (wspr.live)' : ''); return; }
     if (S.mm !== 'me') { const seen = {};
       for (let i = LINES.length - 1; i >= 0; i--) { const x = LINES[i]; if (x.sep != null || x.tx || !x.fr || seen[x.fr] || now - x.t > 1800 || /\.\.\./.test(x.fr)) continue; seen[x.fr] = 1;
         const ll = g2ll(x.grid || gridOf(x.fr)); if (!ll) continue; idOf(x); n++;
@@ -443,7 +460,7 @@
       L.marker(ll, { icon: L.divIcon({ className: 'f8-tri', html: '▲', iconSize: [16, 16] }) }).addTo(ML).bindTooltip(`${rc} heard you ${fmtDb(h.snr)}${me ? ' · ' + distB(me, ll).mi.toLocaleString() + ' mi' : ''} · ${utc(h.t)}z`); }
     $('f8MapT').textContent = (S.mm !== 'me' ? n + ' heard' : '') + (S.mm === 'both' ? ' · ' : '') + (S.mm !== 'hear' ? m + ' heard you' + (pskT ? '' : ' (after you transmit)') : '');
   }
-  $('f8MapW').addEventListener('toggle', () => { if ($('f8MapW').open) { setTimeout(() => { mapInit(); if (MAP) { MAP.invalidateSize(); mapDraw(); } }, 60); if (S.mm !== 'hear') psk(); } });
+  $('f8MapW').addEventListener('toggle', () => { if ($('f8MapW').open) { setTimeout(() => { mapInit(); if (MAP) { MAP.invalidateSize(); mapDraw(); } }, 60); if (S.mm !== 'hear' && S.mode !== 'WSPR') psk(); if (S.mode === 'WSPR' && DG()) DG().mapOpen(); } });
   document.querySelectorAll('[data-mm]').forEach(b => b.onclick = e => { e.preventDefault(); S.mm = b.dataset.mm; saveS(); document.querySelectorAll('[data-mm]').forEach(x => x.classList.toggle('on', x === b)); if (!$('f8MapW').open) $('f8MapW').open = true; if (S.mm !== 'hear') psk(); mapDraw(); });
   document.querySelectorAll('[data-mm]').forEach(x => x.classList.toggle('on', x.dataset.mm === S.mm));
   /* PSK Reporter's live feed (MQTT over a secure websocket, mqtt.pskreporter.info:1886): every station that hears my call */
@@ -606,8 +623,14 @@
   addEventListener('keydown', e => { if (root.hidden) return; if (e.key === 'Escape' && TXING) halt('Stopped.'); });
   window.KPCFT8UI = {
     open, back,
+    /* for kpc-digi-ui.js (RTTY / PSK31 / SSTV / WSPR) */
+    host: { S, saveS, note, ptt, startAudio, ac: () => AC, running: () => RUN, myCall, myGrid, LG, dialK, nowS, utc, esc, g2ll, distB, stateOf, spotRef, drawScale, root, main,
+      setTx(on) { TXING = !!on; stat(); }, txing: () => TXING, peak: (a, b) => peakIn(a, b), vals: () => lastVals, hzRange: () => [F0, F1], chime: () => chime(), xToHz: x => xToHz(x),
+      map(hear, me) { XH = hear || []; XM = me || []; mapDraw(); }, setMode(m) { setMode(m); }, refresh() { bandOpts(); showDial(); modeView(); }, mapOpen: () => $('f8MapW').open },
     /* from the logger's spot list: tab over, set the band + their audio spot, and get ready to call them */
     go(o) {
+      if (/^(RTTY|PSK31)$/.test(o.mode) && DG()) { open(); setMode(o.mode); const k = +o.khz; let best = null; for (const [b, f] of Object.entries(DIAL[S.mode])) { const off = (k - f) * 1000; if (off > -500 && off < 4000 && (!best || Math.abs(off - 1500) < Math.abs(best[1] - 1500))) best = [b, off]; }
+        if (best) { S.band = best[0]; $('f8Band').value = S.band; saveS(); showDial(); radioTune(); } DG().go(o, best ? best[1] : null); return; }
       open(); const m = o.mode === 'FT4' ? 'FT4' : 'FT8'; if (m !== S.mode) { S.mode = m; bandOpts(); }
       const k = +o.khz; let best = null; for (const [b, f] of Object.entries(DIAL[S.mode])) { const off = (k - f) * 1000; if (off > -500 && off < 4000 && (!best || Math.abs(off - 1500) < Math.abs(best[1] - 1500))) best = [b, off]; }
       if (best) { S.band = best[0]; $('f8Band').value = S.band; if (best[1] >= 200 && best[1] <= 3000) { S.rxHz = Math.round(best[1]); } }
