@@ -1,0 +1,138 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="kpc-logger.css?v=20261016a">
+@@HEADER@@
+<main id="lg" data-keep-light>
+<section class="lg-hero"><div class="lg-in">
+<p class="lg-eyebrow">KPC MEMBERS ROOM • ACTIVATOR LOGGER</p>
+<h1>KPC <span>Activator</span> Logger</h1>
+<p class="lg-copy">Log your activation from the park: tap a POTA spot to fill it in, look up every call, watch your contacts land on the map, keep an eye on your rate, spot yourself, and send POTA the right file when you're done.</p>
+<div class="lg-stats" id="lgStats">
+ <div class="clk"><b id="sUtc">--:--:--</b><span>UTC</span></div>
+ <div class="g"><b id="sAct">0</b><span>THIS ACTIVATION</span></div>
+ <div><b id="sRate">0</b><span>RATE (LAST 10, PER HOUR)</span></div>
+ <div><b id="sHr">0</b><span>LAST 60 MIN</span></div>
+</div>
+<div class="lg-goal"><div class="bar"><i id="sGoalBar"></i></div><span id="sGoal">10 contacts makes a valid POTA activation</span></div>
+</div></section>
+
+<div class="lg-wrap">
+
+<!-- 1 station -->
+<section class="lg-card" id="cStation"><h2><i>1</i> My station</h2>
+<div class="lg-f">
+ <label>My call<input id="myCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Your call"></label>
+ <label>My park number(s)<input id="myPark" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-1234 (2-fer: US-1234, US-5678)"></label>
+ <label>My grid<input id="myGrid" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="EM78"></label>
+ <label>Power (W)<input id="myPwr" inputmode="decimal" placeholder="100"></label>
+</div>
+<p class="lg-park" id="myParkInfo"></p>
+<div class="lg-row"><button type="button" class="lg-btn line sm" id="myGps">📍 GRID FROM MY GPS</button><span class="lg-mu" id="myGpsMsg"></span></div>
+</section>
+
+<div class="lg-main">
+<div class="lg-left">
+<!-- 2 entry -->
+<section class="lg-card lg-entry" id="cEntry"><h2><i>2</i> Log a contact <small id="eTime">time: now (UTC)</small></h2>
+<form id="eForm" autocomplete="off">
+<div class="lg-f e">
+ <label class="call">Their call<input id="eCall" autocapitalize="characters" spellcheck="false" placeholder="K4TEST" required></label>
+ <label>Freq (MHz or kHz)<input id="eFreq" inputmode="decimal" placeholder="14.285"></label>
+ <label>Band<input id="eBand" readonly tabindex="-1"></label>
+ <label>Mode<select id="eMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option><option>PSK31</option><option>JS8</option><option>OTHER</option></select></label>
+ <label>Sent<input id="eRs" placeholder="59"></label>
+ <label>Rcvd<input id="eRr" placeholder="59"></label>
+ <label>Their park (P2P)<input id="eRef" autocapitalize="characters" spellcheck="false" placeholder="US-0000"></label>
+ <label>Name<input id="eName"></label>
+ <label>State<input id="eSt" autocapitalize="characters" maxlength="3"></label>
+ <label class="wide">Note for this contact<input id="eNote"></label>
+</div>
+<div class="lg-who" id="eWho" aria-live="polite"></div>
+<div class="lg-row">
+ <button type="submit" class="lg-btn gold big" id="eLog">✓ LOG IT <small>(Enter)</small></button>
+ <button type="button" class="lg-btn line" id="eClear">CLEAR</button>
+ <label class="lg-chk"><input type="checkbox" id="eManual"> Set the time by hand</label>
+ <input id="eWhen" type="datetime-local" step="60" hidden>
+</div>
+</form>
+</section>
+
+<!-- log -->
+<section class="lg-card" id="cLog"><h2><i>3</i> My log <small id="lCount"></small></h2>
+<div class="lg-row">
+ <button type="button" class="lg-chip on" data-lv="act">THIS ACTIVATION</button>
+ <button type="button" class="lg-chip" data-lv="all">EVERYTHING</button>
+ <input type="search" id="lSearch" placeholder="Search call, park, state…">
+</div>
+<div class="lg-tw"><table class="lg-t"><thead><tr><th>UTC</th><th>Call</th><th>MHz</th><th class="hs">Mode</th><th class="hs">Sent / Rcvd</th><th>Their park</th><th class="hs">Name · State</th><th></th></tr></thead><tbody id="lBody"></tbody></table></div>
+<div class="lg-row lg-exp">
+ <button type="button" class="lg-btn gold" id="xPota">⬇ POTA FILE(S) FOR THIS ACTIVATION</button>
+ <button type="button" class="lg-btn line" id="xAll">⬇ EVERYTHING (ADIF)</button>
+ <button type="button" class="lg-btn line" id="xCsv">⬇ CSV</button>
+ <label class="lg-btn line" for="xLoad">⬆ RESTORE FROM FILE<input type="file" id="xLoad" accept=".adi,.adif,.txt" hidden></label>
+ <button type="button" class="lg-btn line" id="xNew">🏁 START A NEW ACTIVATION</button>
+</div>
+<p class="lg-safe" id="lSafe"></p>
+<p class="lg-mu">POTA wants one file per park: a 2-fer gets one file for each park number, named the way POTA asks (CALL@PARK-DATE.adi). Upload them at <a href="https://pota.app/#/user/logs" target="_blank" rel="noopener">pota.app → My Logs</a>.</p>
+</section>
+</div>
+
+<div class="lg-right">
+<!-- spots -->
+<section class="lg-card" id="cSpots"><h2><i>4</i> POTA spots <small id="pAge"></small></h2>
+<p class="lg-mu">Tap a spot to fill in the log (call, frequency, mode and their park for a park-to-park).</p>
+<div class="lg-row">
+ <select id="pBand"><option value="">All bands</option></select>
+ <select id="pMode"><option value="">All modes</option><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>DATA</option></select>
+ <label class="lg-chk"><input type="checkbox" id="pNoRbn" checked> Hide robot (RBN) spots</label>
+ <input type="search" id="pSearch" placeholder="Call, park, state…">
+</div>
+<div class="lg-spots" id="pList"><div class="lg-empty">Loading spots…</div></div>
+</section>
+
+<!-- self spot -->
+<section class="lg-card" id="cSpot"><h2><i>5</i> Spot myself on POTA</h2>
+<div class="lg-f">
+ <label>Freq (MHz or kHz)<input id="sFreq" inputmode="decimal" placeholder="14.285"></label>
+ <label>Mode<select id="sMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option></select></label>
+ <label class="wide">Comment<input id="sCm" maxlength="60" placeholder="QRV · 2-fer · QRT 22z"></label>
+</div>
+<div class="lg-row"><button type="button" class="lg-btn line sm" id="sCopy">USE MY LOG'S FREQ + MODE</button><button type="button" class="lg-btn gold" id="sSend">📣 SPOT ME</button></div>
+<p class="lg-msg" id="sMsg"></p>
+<p class="lg-mu">This posts a real, public spot on pota.app with your call and park number. One spot every 5 minutes, 4 an hour at most (the same guard as Spot Me).</p>
+</section>
+</div>
+</div>
+
+<!-- map + rate -->
+<div class="lg-two">
+<section class="lg-card" id="cMap"><h2><i>6</i> QSO map <small id="mInfo"></small></h2>
+<div id="mMap" role="region" aria-label="Map of contacts"></div>
+<div class="lg-row"><button type="button" class="lg-chip on" data-mv="act">THIS ACTIVATION</button><button type="button" class="lg-chip" data-mv="all">EVERYTHING</button><span class="lg-mu">Gold star = you · dots coloured by band · lines show the path.</span></div>
+<div class="lg-key" id="mKey"></div>
+</section>
+
+<section class="lg-card" id="cRate"><h2><i>7</i> Rates &amp; hours</h2>
+<div class="lg-tiles" id="rTiles"></div>
+<h3 class="lg-h3">Contacts each hour (UTC)</h3>
+<div class="lg-hours" id="rHours"></div>
+<h3 class="lg-h3">Bands &amp; modes</h3>
+<div class="lg-bm" id="rBm"></div>
+</section>
+</div>
+
+<!-- notes -->
+<section class="lg-card" id="cNotes"><h2><i>8</i> Activation notes</h2>
+<div class="lg-row"><label class="lg-chk"><input type="checkbox" id="nStamp"> Start my notes with my park number and today's date</label>
+<label class="lg-chk"><input type="checkbox" id="nCarry"> Add these notes to every contact I log</label></div>
+<p class="lg-stamp" id="nStampTxt" hidden></p>
+<textarea id="nText" rows="5" placeholder="Rig, antenna, weather, where you set up, who came by…"></textarea>
+<p class="lg-mu" id="nSaved">Notes save on this device as you type. With "every contact" ticked, they go into each new contact's notes (and the ADIF file).</p>
+</section>
+
+<p class="lg-mu lg-foot">Call sign details come from public FCC data (callook.info, HamDB). Your log stays on this device (two copies) until you download it. KPC is an independent ham radio club, not part of Parks on the Air®.</p>
+</div>
+<div class="lg-toast" id="lgToast" role="status" hidden></div>
+</main>
+@@FOOTER@@
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="kpc-logger.js?v=20261016a"></script>
