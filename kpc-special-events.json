@@ -1,23 +1,6 @@
 {
- "updated": "2026-10-15T11:58:31Z",
+ "updated": "2026-10-17T10:59:43Z",
  "stations": [
-  {
-   "title": "Continental Army Encampment at Towamencin PA",
-   "start": "2026-10-08",
-   "end": "2026-10-16",
-   "times": "0000Z-2359Z",
-   "call": "W3T",
-   "calls": [
-    "W3T"
-   ],
-   "where": "Harleysville, PA",
-   "st": "PA",
-   "by": "WV2M",
-   "freqs": "7.030 7.240 14.030 14.240",
-   "qsl": "QSL",
-   "url": "https://www.qrz.com/db/W3T",
-   "note": ", Harleysville, PA. WV2M. 7.030 7.240 14.030 14.240. QSL. Frank Gallo WV2M, 106 Tweed Way, Harleysville, PA 19438."
-  },
   {
    "title": "CACTUS",
    "start": "2026-10-09",
@@ -907,6 +890,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (49)"
+  "ARRL": "ok (48)"
  }
 }
