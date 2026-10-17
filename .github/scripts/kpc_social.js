@@ -351,9 +351,15 @@ tasks.recaps = async () => {
     let pic = null;
     try { execSync(`python3 .github/scripts/kpc_recap_map.py ${file}`, { input: JSON.stringify({ call: g.call, date: day, qsos: g.qsos, parks: ps }), stdio: ['pipe', 'ignore', 'inherit'] }); pic = file; }
     catch (e) { notice('Map picture failed: ' + e.message); }
-    const n = ps.length;
+    const n = ps.length, ago = dayDiff(localDate(), iso(g.date));
+    // the post goes out in the morning; POTA dates are UTC, so an evening activation can carry today's date: call it yesterday
+    const when = ago <= 1 ? 'yesterday' : 'on ' + day;
+    const hi = 'Good morning';
     const title = `📻 ${g.call} activated ${n > 1 ? n + ' parks' : ps[0].name}`;
-    const text = `**${g.call}** finished **${n} activation${n > 1 ? 's' : ''}** on ${day} with **${g.qsos} contacts** in the log.\n\n` + ps.map(p => `🌲 ${p.ref} · ${p.name}${p.co ? ` (${p.co} County)` : ''} · ${p.q} contacts`).join('\n') + '\n\nThanks to every hunter who worked them. Nice job!';
+    // Brandon Oct 17: a friendly note in the club's voice ('Good morning, call sign here had a good day yesterday…')
+    const text = `${hi}! **${g.call}** had a good day ${when} enjoying the parks: **${n} activation${n > 1 ? 's' : ''}** and **${g.qsos} contacts** in the log.\n\n` +
+      ps.map(p => `🌲 ${p.ref} · ${p.name}${p.co ? ` (${p.co} County)` : ''} · ${p.q} contacts`).join('\n') +
+      `\n\n${g.call} was happy to hear so many of you get in the log! We appreciate every hunter who called in. Hope to catch you next time.\n\n73,\nKPC`;
     await post({ title, text, link: `${SITE}kpc-park-notes.html#${ps[0].ref}`, file: pic || undefined });
     state.recaps.push(k); state.recaps = state.recaps.slice(-2000); save();
     await sleep(2000);
