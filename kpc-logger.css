@@ -637,3 +637,6 @@ main#lg #pList:has(.lg-st){background:rgba(14,10,6,.9)!important;border-radius:1
 .lg-wraps{margin:6px 0;font-weight:900}.lg-wraps.ok{color:#7dffb1}.lg-wraps.no{color:#ffcf7a}.lg-wrapd{margin:0 0 10px;color:#cdbf9e;font-size:13px}
 .lg-wrapl{margin:0;padding-left:22px}.lg-wrapl li{margin:8px 0}.lg-wrapl li[hidden]{display:none}.lg-wrapl li small{display:block;color:#a99c80;font-size:12px;margin-top:3px}
 .lg-wrapl li.done button::after{content:' ✓';color:#7dffb1}.lg-wrapl button{width:100%;justify-content:center}
+
+/* Installed app (Oct 18, Brandon: 'I downloaded the logger and got the whole website'): the app is only the logger, no site menu or footer */
+@media (display-mode: standalone){header.site-nav,footer.kpc-about-footer,.kpc-about-footer{display:none!important}main#lg{--hdr:0px}}

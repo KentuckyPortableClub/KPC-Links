@@ -3,12 +3,23 @@
   "short_name": "KPC Logger",
   "description": "Kentucky Portable Club activation logger: POTA spots, call lookups, QSO map, rates and POTA files.",
   "start_url": "kpc-logger.html",
-  "scope": "./",
+  "scope": "kpc-logger.html",
   "display": "standalone",
   "background_color": "#050b0f",
   "theme_color": "#050b0f",
   "icons": [
-    { "src": "kpc-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "kpc-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
-  ]
+    {
+      "src": "kpc-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "kpc-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "id": "kpc-logger.html"
 }
