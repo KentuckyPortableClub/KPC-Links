@@ -13,7 +13,7 @@ jobs:
           for f in $(grep -o 'src="[^"]*\.js"\|href="[^"]*\.js"' index.html | sed 's/.*="//;s/"//' | sort -u); do u=$f; case $u in http*) ;; /*) u=https://pota.app$u;; *) u=https://pota.app/$u;; esac; curl -sL "$u" -o "$(basename $f)"; done
           grep -oh '"[a-zA-Z0-9_./-]*\.js"' *.js | tr -d '"' | sort -u | head -400 > chunks.txt
           for c in $(cat chunks.txt); do b=$(basename $c); [ -f "$b" ] || curl -sfL "https://pota.app/js/$b" -o "$b" || curl -sfL "https://pota.app/$c" -o "$b" || true; done
-          { for n in UserAwardsProgress UserAwardsEarned UserAwardsGeographic UserStats; do f=$(grep -oh "\./$n-[A-Za-z0-9_-]*\.js" *.js | head -1); echo "######## $n $f"; [ -n "$f" ] && curl -sL "https://pota.app/js/${f#./}" -o "c_$n.js" || curl -sL "https://pota.app/assets/${f#./}" -o "c_$n.js"; wc -c "c_$n.js"; grep -oh 'https://api.pota.app[^"`]*' "c_$n.js" | sort -u; grep -oh '.\{250\}api.pota.app.\{700\}' "c_$n.js" | head -6; done
+          { for n in UserAwardsProgress UserAwardsEarned UserAwardsGeographic UserStats; do f=$(grep -oh "\./$n-[A-Za-z0-9_-]*\.js" *.js | head -1); echo "######## $n $f"; [ -n "$f" ] && curl -sL "https://pota.app/assets/${f#./}" -o "c_$n.js"; wc -c "c_$n.js"; grep -oh 'https://api.pota.app[^"`]*' "c_$n.js" | sort -u; grep -oh '.\{250\}api.pota.app.\{700\}' "c_$n.js" | head -6; done
             echo "####### base path"; grep -o 'src="[^"]*"' index.html | head
           } > ../awards2.txt
           cd ..; git config user.name x; git config user.email x@x; git add awards2.txt; git commit -qm ep; git push
