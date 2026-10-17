@@ -115,6 +115,56 @@
     const top = Math.max(...fs.map(f => f._s)); fs = fs.filter(f => f._s === top); const un = fs[0].properties.Unit_Nm;
     return fs.filter(f => f.properties.Unit_Nm === un).map(f => { f._nm = un; f._bb = bbox(f.geometry); return f; });
   }
+  /* ---------- Europe (Brandon Oct 17: 'europe next'): official outlines asked live from the European Environment Agency
+     (EEA, CORS ok for our site, checked Oct 17): Natura 2000 sites (EU Habitats + Birds directives) and the Nationally
+     designated areas inventory (NatDA, ex-CDDA: national parks, nature parks, reserves… for 38 countries; NOT the UK).
+     Point query at the pin (then ~1 km around it), best NAME match only (never a different place), outline by OBJECTID. ---------- */
+  const EEA = 'https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/';
+  const EUL = { n2k: EEA + 'Natura2000Sites/MapServer/2/query', nat: EEA + 'CDDA_Dyna_WM/MapServer/4/query' };
+  const inEurope = (la, lo) => la > 34 && la < 72 && lo > -32 && lo < 45;
+  const EUGEN = /\b(national|nationalpark|national park|nature|natural|naturale|natura|naturpark|naturschutzgebiet|landschaftsschutzgebiet|nsg|lsg|ffh|spa|sac|sci|park|parks|parc|parco|parque|park krajobrazowy|krajobrazowy|rezerwat|obszar|chronionego|krajobrazu|regional|régional|regionale|nazionale|nacional|national|reserve|réserve|riserva|reserva|naturreservat|nationalpark|area|site|zone|zona|sito|historic|historical|biological|recreation|protected|landscape|heritage|world|conservation|marine|other|monument|trail|the|of|and|de|del|della|di|du|des|la|le|les|der|die|das|von|im|am|en|et|y|e|i|och|og|san|saint|sankt|st)\b/g;
+  const deacc = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const euWords = s => deacc(s).replace(/["'„“”«»]/g, ' ').replace(/[^a-z0-9 ]/g, ' ').replace(/\b[a-z]{2}\d{4,}\b|\b\d+\b/g, ' ').replace(EUGEN, ' ').split(/\s+/).filter(w => w.length > 2);
+  const euSim = (a, b) => { const A = euWords(a), B = new Set(euWords(b)); if (!A.length || !B.size) return 0; const hit = A.filter(w => B.has(w) || [...B].some(x => x.length > 4 && w.length > 4 && (x.startsWith(w.slice(0, 5)) || w.startsWith(x.slice(0, 5))))).length; return hit / Math.max(A.length, B.size); };
+  async function euAt(url, la, lo, d, fields) {
+    const q = d ? { geometry: `${lo - d},${la - d},${lo + d},${la + d}`, geometryType: 'esriGeometryEnvelope' } : { geometry: `${lo},${la}`, geometryType: 'esriGeometryPoint' };
+    const j = await jget(url + '?' + new URLSearchParams(Object.assign(q, { inSR: 4326, spatialRel: 'esriSpatialRelIntersects', outFields: fields, returnGeometry: false, f: 'json' })), null, 25000).catch(() => null);
+    return (j && j.features || []).map(f => f.attributes);
+  }
+  async function euro(name, la, lo, o) {
+    o = o || {}; if (!inEurope(la, lo)) return [];
+    const N2F = 'OBJECTID,SITECODE,SITENAME,SITETYPE,Area_ha,MS', NAF = 'OBJECTID,siteName,designationTypeCode,iucnCategory,siteArea,countryCode,nationalId';
+    let C = [];
+    for (const d of [0, 0.01]) {
+      const [a, b] = await Promise.all([euAt(EUL.n2k, la, lo, d, N2F), euAt(EUL.nat, la, lo, d, NAF)]);
+      C = C.concat(a.map(x => ({ d, L: 'n2k', id: x.OBJECTID, nm: x.SITENAME, ha: +x.Area_ha || 0, code: x.SITECODE, info: 'Natura 2000 site ' + x.SITECODE + ' (' + ({ A: 'EU Birds Directive', B: 'EU Habitats Directive', C: 'EU Birds + Habitats Directives' }[x.SITETYPE] || 'EU nature network') + ')' }))
+        .concat(b.map(x => ({ d, L: 'nat', id: x.OBJECTID, nm: String(x.siteName || '').replace(/^(LSG|NSG|FFH)\s+/i, '').replace(/^"|"$/g, ''), ha: +x.siteArea || 0, code: x.nationalId, info: 'Nationally designated area' + (x.iucnCategory && !/notApplicable|notReported/i.test(x.iucnCategory) ? ' · IUCN category ' + x.iucnCategory : '') + (x.countryCode ? ' · ' + x.countryCode : '') }))));
+      if (o.small && C.length) break;
+      if (C.some(c => euSim(name, c.nm) >= .5 || (c.d === 0 && euWords(c.nm).length && euWords(c.nm).every(w => euWords(name).includes(w))))) break;
+    }
+    if (!C.length) return [];
+    let pick;
+    if (o.small) pick = C.sort((x, y) => (x.ha || 1e12) - (y.ha || 1e12))[0];   /* a summit: the smallest protected area it sits in */
+    else {
+      const wantN2k = /natura\s*2000/i.test(o.type || '');
+      const PW = new Set(euWords(name));
+      C.forEach(c => { const mw = euWords(c.nm); let s = euSim(name, c.nm); if (c.d === 0 && mw.length && mw.some(w => w.length > 4) && mw.every(w => PW.has(w))) s = Math.max(s, .6); c.s = s + (wantN2k === (c.L === 'n2k') ? .05 : 0); });
+      C.sort((x, y) => y.s - x.s || (x.ha || 1e12) - (y.ha || 1e12)); pick = C[0]; if (pick.s < .5) return [];
+    }
+    const off = pick.ha < 2000 ? 0.00005 : pick.ha < 50000 ? 0.0002 : 0.0005;
+    const g = await jget(EUL[pick.L] + '?' + new URLSearchParams({ objectIds: pick.id, outFields: 'OBJECTID', returnGeometry: true, outSR: 4326, maxAllowableOffset: off, geometryPrecision: 5, f: 'geojson' }), null, 30000).catch(() => null);
+    const fs = (g && g.features || []).filter(f => f.geometry);
+    return fs.map(f => { f._nm = pick.nm; f._bb = bbox(f.geometry); f._src = pick.L === 'n2k' ? 'EEA Natura 2000' : 'EEA Nationally designated areas'; f._info = pick.info; f._ha = pick.ha; f.properties = Object.assign(f.properties || {}, { NAME: pick.nm, SOURCE: f._src, CODE: pick.code }); return f; });
+  }
+  /* Canada: the official outline saved by kpc-canada-bounds.yml (CPCAD or the province's map) */
+  async function canada(ref) {
+    if (!/^CA-\d/.test(ref || '')) return [];
+    const j = await jget('data/canada-bounds/' + encodeURIComponent(ref) + '.json', null, 20000).catch(() => null); if (!j) return [];
+    const fs = (j.type === 'FeatureCollection' ? j.features : [j]).filter(f => f && f.geometry);
+    return fs.map(f => { const p = f.properties || {}; f._nm = p.cpcad || p.name || ref; f._bb = bbox(f.geometry); f._src = p.srcShort || 'CPCAD (Environment and Climate Change Canada)'; f._info = [p.type, p.manager].filter(Boolean).join(' · '); return f; });
+  }
+  /* any non-US official outline we know how to get: Canada file, then Europe */
+  async function worldByName(ref, name, la, lo, o) { const c = await canada(ref); if (c.length) return c; return euro(name, la, lo, o); }
   /* POTA parks near a point */
   async function potaNear(la, lo, d) {
     const j = await jget(`https://api.pota.app/park/grids/${(la - d).toFixed(3)}/${(lo - d).toFixed(3)}/${(la + d).toFixed(3)}/${(lo + d).toFixed(3)}/0`, null, 15000);
@@ -188,5 +238,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, euro, canada, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();
