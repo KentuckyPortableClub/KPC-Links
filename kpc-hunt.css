@@ -850,7 +850,7 @@ main#hl[data-theme=dark] .hl-mycall b{background:linear-gradient(180deg,#ffd9b0,
 .hw-g select,.hw-lab input{background:#0b0805;color:#fff;border:1px solid var(--ln);border-radius:8px;padding:5px 7px;font:12px Arial}
 .hw-lab{display:flex;gap:8px;align-items:center;font:900 10px Arial;letter-spacing:1.2px;color:var(--mu);margin:5px 0}
 .hw-lab input{flex:1;min-width:0}
-.hw-l{flex:1;overflow:auto;padding:2px 0}
+.hw-l{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:2px 0;scrollbar-width:thin;scrollbar-color:rgba(240,201,107,.7) rgba(0,0,0,.3)}
 .hw-r{display:grid;grid-template-columns:62px minmax(64px,auto) 54px 1fr auto 42px;gap:6px;align-items:center;padding:5px 9px;border-bottom:1px solid rgba(255,255,255,.06);font:12px Arial;cursor:pointer;border-left:3px solid transparent}
 .hw-r:hover{background:rgba(240,201,107,.1)}
 .hw-r .f{font:700 12px ui-monospace,Menlo,monospace;color:#ffe2a6}
@@ -876,7 +876,8 @@ main#hl[data-theme=dark] .hl-mycall b{background:linear-gradient(180deg,#ffd9b0,
 /* ⧉ POP OUT: the main spots list as a window (Brandon Oct 17) */
 .rt-pop[aria-pressed="true"]{background:linear-gradient(180deg,#f6d58a,#d5a63a);color:#2a1a05;border-color:#f6d58a}
 main#hl .hl-spsec.hl-popped{position:absolute!important;z-index:61;display:flex!important;flex-direction:column;padding:0!important;background:rgba(12,9,6,.95);border:1px solid rgba(240,201,107,.6);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.6),0 0 18px rgba(240,201,107,.18);overflow:hidden;min-width:300px;min-height:200px}
-main#hl .hl-spsec.hl-popped>.hl-in{flex:1;overflow:auto;padding:8px 10px 16px;max-width:none}
+main#hl .hl-spsec.hl-popped>.hl-in{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:8px 10px 16px;max-width:none;scrollbar-width:thin;scrollbar-color:rgba(240,201,107,.7) rgba(0,0,0,.3)}
+main#hl .hl-spsec.hl-popped>.hl-in::-webkit-scrollbar{width:10px}main#hl .hl-spsec.hl-popped>.hl-in::-webkit-scrollbar-thumb{background:rgba(240,201,107,.6);border-radius:8px}main#hl .hl-spsec.hl-popped>.hl-in::-webkit-scrollbar-track{background:rgba(0,0,0,.3)}
 main#hl .hl-spsec.hl-popped .hl-grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
 @media(max-width:1099px){.rt-pop{display:none!important}}
 main#hl .hl-spsec.hl-popped.away{opacity:0;pointer-events:none}
@@ -915,3 +916,6 @@ main#hl[data-nolog="1"] .hs-a .lg,main#hl[data-nolog="1"] .hl-st .a .lg{display:
 .dk-act .dk-rsp{background:rgba(255,180,60,.16);color:#ffd27a;border:1px solid rgba(255,180,60,.6)}
 .dk-act button[hidden]{display:none}
 @media(max-width:600px){.dk-act{justify-content:stretch}.dk-act button{flex:1;padding:8px 10px}#hlFlameW .t{display:none}}
+/* Oct 17 fix (Brandon: 'scroll bar for the main spotting page is gone'): the computer layout's display:block!important beat the popped window's flex column, so the list never got its own scroll bar */
+main#hl[data-desk="1"] .hl-split>.hl-spsec.hl-popped{display:flex!important;flex-direction:column}
+main#hl[data-desk="1"] .hl-split>.hl-spsec.hl-popped>.hl-in{flex:1 1 auto;min-height:0;overflow-y:auto}

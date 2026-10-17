@@ -246,7 +246,7 @@
     let ph = $('hlPopPh');
     if (on && !ph) {   /* first pop: it starts exactly where it was, then you drag it */
       const r0 = sec.getBoundingClientRect(), m = mainR();
-      if (POP.px == null && POP.x == null) { POP.fl = false; POP.px = Math.round(r0.left - m.left); POP.py = Math.round(r0.top - m.top); POP.w = Math.round(r0.width); POP.h = Math.min(Math.round(r0.height), Math.max(400, innerHeight - 200)); }
+      if (POP.px == null && POP.x == null) { POP.fl = false; POP.px = Math.round(r0.left - m.left); POP.py = Math.round(r0.top - m.top); POP.w = Math.round(r0.width); POP.h = Math.max(500, innerHeight - 220); }
       ph = document.createElement('div'); ph.id = 'hlPopPh'; ph.className = 'hl-popph'; ph.style.height = Math.max(400, sec.offsetHeight) + 'px'; ph.innerHTML = '<span>📡 The main spots list is popped out. Drag it by its top bar, or tap <b>⤓ PUT BACK</b>.</span>'; sec.after(ph); }
     if (!on && ph) ph.remove();
     sec.classList.toggle('hl-popped', on); b.setAttribute('aria-pressed', on); b.textContent = on ? '⤓ PUT BACK' : '⧉ POP OUT';
@@ -255,6 +255,7 @@
       const rs = document.createElement('span'); rs.className = 'hw-rs'; rs.id = 'hlPopR'; rs.textContent = '◢'; sec.appendChild(rs); wmDrag(sec, h, rs, POP, () => put('kpcHuntPop', POP)); }
     if (!on && h) { h.remove(); const r = $('hlPopR'); if (r) r.remove(); sec.removeAttribute('style'); sec.classList.remove('fl'); }
     wmFree();
+    if (on && POP.h < 300) POP.h = Math.max(500, innerHeight - 220);   /* too short to use (it was popped before the spots loaded) */
     if (on) { if (POP.fl && POP.x == null) { POP.w = POP.w || Math.min(760, innerWidth - 60); POP.h = POP.h || innerHeight - 200; POP.x = innerWidth - POP.w - 24; POP.y = winTop(); } wmApply(sec, POP); const lb = h.querySelector('[data-plock]'); if (lb) { lb.textContent = POP.fl ? '🪟' : '📌'; } }
     wmRoom(); winAway();
   }
