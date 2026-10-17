@@ -929,3 +929,9 @@ main#hl[data-desk="1"] .hl-split>.hl-spsec.hl-popped>.hl-in{flex:1 1 auto;min-he
 .hs-cb::after{content:' ✎';font-size:.55em;color:var(--g2);vertical-align:middle}
 .hl-st td.c .hs-cb{font:900 14px ui-monospace,Menlo,Consolas,monospace;text-shadow:none;border-bottom-width:1px}
 .hl-st td.c .hs-cb::after{content:''}
+/* QRZ / ADIF mode button + MY LOG FILES QRZ box (Oct 17) */
+#hlLtabs .lt-log[aria-pressed="true"],.hl-logtog-m[aria-pressed="true"]{background:linear-gradient(180deg,#5be39a,#22a861)!important;color:#05210f!important;border-color:#7ff0b0!important}
+#hlLtabs .lt-log[aria-pressed="false"],.hl-logtog-m[aria-pressed="false"]{background:rgba(240,201,107,.14)!important;color:#ffe2a6!important;border-color:rgba(240,201,107,.5)!important;flex:0 0 auto}
+.hl-qz{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0;padding:10px 12px;border:1px solid rgba(61,220,132,.45);border-radius:12px;background:rgba(61,220,132,.06)}
+.hl-qz>b{font:900 12px Arial;letter-spacing:1.4px;color:#7ff0b0}.hl-qz>span{font:12px Arial;color:var(--mu);margin-right:auto}
+.hl-qz .hl-src{flex-basis:100%;margin:0}

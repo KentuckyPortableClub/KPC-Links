@@ -107,7 +107,7 @@ body.field .page-jump-nav{display:none!important}
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261017f">
+<link rel="stylesheet" href="kpc-logger.css?v=20261018a">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -336,6 +336,13 @@ body.field .page-jump-nav{display:none!important}
  <label class="lg-btn line" for="xLoad">⬆ RESTORE FROM FILE<input type="file" id="xLoad" accept=".adi,.adif,.txt" hidden></label>
  <button type="button" class="lg-btn line" id="xNew">🏁 START A NEW ACTIVATION</button>
 </div>
+<div class="lg-qz" id="xQz">
+ <h3>☁ SEND TO MY QRZ LOGBOOK</h3>
+ <p class="lg-mu">When you're done, send your contacts straight to your QRZ logbook (works on phones too). It needs the <b>logbook API key</b> of the QRZ logbook for the call you were on (qrz.com → Logbook → that book → Settings → API key; QRZ's logbook API is part of a QRZ subscription). The key is kept only on this device.</p>
+ <div class="lg-row"><input type="password" id="xQzKey" autocomplete="off" placeholder="QRZ logbook API key (XXXX-XXXX-XXXX-XXXX)" style="flex:1;min-width:220px"><button type="button" class="lg-btn line" id="xQzSave">💾 SAVE KEY</button><button type="button" class="lg-btn line" id="xQzForget">🗑 FORGET</button></div>
+ <div class="lg-row"><button type="button" class="lg-btn gold" id="xQzAct">☁ SEND THIS ACTIVATION TO QRZ</button><button type="button" class="lg-btn line" id="xQzNew">☁ SEND ALL NOT SENT YET</button><button type="button" class="lg-btn line" id="xQzSee">🔎 SEE QRZ'S ANSWER</button></div>
+ <p class="lg-msg" id="xQzMsg"></p>
+</div>
 <p class="lg-safe" id="lSafe"></p>
 <p class="lg-mu">POTA wants one file per park (CALL@PARK-DATE.adi): upload at <a href="https://pota.app/#/user/logs" target="_blank" rel="noopener">pota.app → My Logs</a>. WWFF / KFF gets one ADIF file (CALL@KFF-0000 DATE.adi) for your WWFF log manager. SOTA gets the sotadata CSV: upload at <a href="https://www.sotadata.org.uk" target="_blank" rel="noopener">sotadata.org.uk</a>.</p>
 </section>
@@ -357,8 +364,8 @@ body.field .page-jump-nav{display:none!important}
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="kpc-fx.js?v=20261017a"></script>
-<script src="kpc-logger.js?v=20261017e"></script>
-<script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261017d" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script>
+<script src="kpc-cat.js?v=20261018a"></script><script src="kpc-logger.js?v=20261018a"></script>
+<script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261017d" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

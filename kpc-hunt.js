@@ -277,12 +277,38 @@
   }
   /* 📒 LOGGER ON/OFF (Brandon Oct 17: 'toggle the on screen logger off if people use the upload to qrz'): off = no log box,
      tap a spot to pick it, ✅ QSL logs it in one tap (and sends it to QRZ when that's on) */
-  let NOLOG = get('kpcHuntNoLog', false);
+  let NOLOG = false; put('kpcHuntNoLog', false);   /* the log box always shows now (Brandon Oct 17: 'logger off I meant QRZ mode or ADIF mode') */
   function logTog() {
     if (PUB) return; $('hl').dataset.nolog = NOLOG ? '1' : '';
     document.querySelectorAll('[data-logtog]').forEach(b => { b.setAttribute('aria-pressed', !NOLOG); b.innerHTML = NOLOG ? '📒 LOGGER: OFF' : '📒 LOGGER: ON'; b.title = NOLOG ? 'The log box is hidden: tap a spot to pick it, then ✅ QSL. Tap to show the log box again.' : 'Hide the log box (log with the ✅ QSL buttons instead)'; });
     if (NOLOG && DESKON() && RT !== 'map') rtab('map');
   }
+  /* ☁ QRZ MODE (each contact goes to QRZ as you log it) / 💾 ADIF MODE (kept on this device; send or download at the end) */
+  function qmode() {
+    if (PUB) return; const on = !!(window.KPCQrz && KPCQrz.get().on), key = !!(window.KPCQrz && KPCQrz.get().key);
+    document.querySelectorAll('[data-qmode]').forEach(b => { b.setAttribute('aria-pressed', on); b.innerHTML = on ? '☁ QRZ MODE' : '💾 ADIF MODE';
+      b.title = on ? 'QRZ mode: every contact goes to your QRZ logbook as you log it. Tap for ADIF mode (keep them here, send or download at the end).' : 'ADIF mode: contacts stay on this device; send them to QRZ or download an ADIF file from MY LOG FILES. Tap for QRZ mode.' + (key ? '' : ' (QRZ mode needs your QRZ key: 📻 CAT & QRZ tab)'); });
+    qzCount();
+  }
+  document.addEventListener('click', e => { const b = e.target.closest('[data-qmode]'); if (!b || !window.KPCQrz) return;
+    const Z = KPCQrz.get(); if (!Z.on && !Z.key) { toast('QRZ mode needs your QRZ logbook key: save it on the 📻 CAT & QRZ tab first.'); setTimeout(() => { location.href = 'kpc-hunt-cat.html#ctQrz'; }, 1600); return; }
+    KPCQrz.set({ on: !Z.on }); qmode(); toast(!Z.on ? '☁ QRZ mode: each contact goes to QRZ as you log it.' : '💾 ADIF mode: contacts stay here. Send them to QRZ or download them from MY LOG FILES when you are done.'); });
+  setTimeout(qmode, 0);
+  /* MY LOG FILES: send everything not yet in QRZ, one at a time (works on phones too) */
+  function qzCount() { const n = $('lgQzN'); if (!n || PUB) return; const k = Q.q.filter(q => !q.qz).length; n.textContent = k ? ` · ${k} not sent yet` : ' · all sent'; }
+  async function qzSendAll() {
+    if (!window.KPCQrz || !KPCQrz.get().key) { $('lgQzMsg').innerHTML = 'Save your QRZ logbook key on the <a href="kpc-hunt-cat.html#ctQrz">📻 CAT &amp; QRZ tab</a> first.'; return; }
+    const L = Q.q.filter(q => !q.qz).sort((a, b) => (a.d + a.tm).localeCompare(b.d + b.tm)); if (!L.length) { $('lgQzMsg').textContent = 'Everything in your log has been sent to QRZ already.'; return; }
+    let ok = 0, bad = 0, last = ''; const btn = $('lgQzSend'); btn.disabled = true;
+    for (let i = 0; i < L.length; i++) { $('lgQzMsg').textContent = `Sending ${i + 1} of ${L.length}…`; const a = adif([L[i]]), one = a.slice(a.indexOf('<EOH>') + 5).trim();
+      const r = await KPCQrz.send(one); if (r.ok) { ok++; L[i].qz = r.sure ? 2 : 1; } else { bad++; last = r.msg; } await new Promise(z => setTimeout(z, 350)); }
+    btn.disabled = false; await qSave(); qList(); qzCount(); try { lmDraw(); } catch (e) {}
+    $('lgQzMsg').innerHTML = `☁ Sent ${ok} contact${ok === 1 ? '' : 's'} to QRZ${bad ? ` · ${bad} did not go (${esc(last)})` : ''}.` + (await KPCQrz.relay() ? '' : ' QRZ doesn\'t let a web page see its reply, so tap <b>🔎 SEE QRZ\'S ANSWER</b> once (it should say OK or duplicate) or check your QRZ logbook.');
+  }
+  if ($('lgQzSend')) { $('lgQzSend').onclick = qzSendAll;
+    $('lgQzSee').onclick = () => { if (!window.KPCQrz || !KPCQrz.get().key) { $('lgQzMsg').innerHTML = 'Save your QRZ key on the <a href="kpc-hunt-cat.html#ctQrz">📻 CAT &amp; QRZ tab</a> first.'; return; }
+      const x = Q.q.slice().sort((a, b) => (b.d + b.tm).localeCompare(a.d + a.tm))[0]; if (!x) { $('lgQzMsg').textContent = 'No contacts yet.'; return; }
+      const a = adif([x]); KPCQrz.showAnswer('INSERT', a.slice(a.indexOf('<EOH>') + 5).trim()); $('lgQzMsg').innerHTML = `A new tab opened with QRZ's answer for <b>${esc(x.call)}</b>: <b>OK</b> = it's in, <b>duplicate</b> = it was already there, <b>FAIL</b> = the REASON says why.`; }; }
   document.addEventListener('click', e => { const b = e.target.closest('[data-logtog]'); if (!b) return; NOLOG = !NOLOG; put('kpcHuntNoLog', NOLOG); logTog(); if (!NOLOG && DESKON()) rtab('log');
     toast(NOLOG ? '📒 Log box off. Tap a spot to pick it, then ✅ QSL to log it (and send it to QRZ if that is on).' : '📒 Log box back on.'); });
   setTimeout(logTog, 0);
@@ -1484,11 +1510,11 @@
     const call = rec.call, ref = rec.ref;
     Q.q.push(rec); await qSave();
     ref.split(/[ ,]+/).filter(Boolean).forEach(r => { if (!WK.has(r)) { WK.add(r); MAN.add(r); } }); saveLog(); logInfo();
-    qList(); ticker(false); draw(); needDraw(); try { lmDraw(); } catch (e) {}
+    qList(); ticker(false); draw(); needDraw(); try { lmDraw(); } catch (e) {} try { qzCount(); } catch (e) {}
     toast(`✓ ${call} logged${ref ? ' at ' + ref : ''}.${!KPCQrzOn() && rec.qs ? ' (QRZ upload is off: turn it on in the CAT & QRZ tab.)' : ''}`, () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); draw(); try { lmDraw(); } catch (e) {} });
     if (opt.qrz && window.KPCQrz && !KPCQrz.get().key) toast('✓ Logged. To send to QRZ, save your QRZ key on the 📻 CAT & QRZ tab.');
     if (!PUB && (KPCQrzOn() || (opt.qrz && window.KPCQrz && KPCQrz.get().key))) { const a = adif([rec]); const one = a.slice(a.indexOf('<EOH>') + 5).trim();
-      KPCQrz.send(one).then(r => { if (r.ok) { rec.qz = r.sure ? 2 : 1; qSave(); } toast((r.ok ? '☁ QRZ: ' : '⚠ QRZ: ') + r.msg); }); }
+      KPCQrz.send(one).then(r => { if (r.ok) { rec.qz = r.sure ? 2 : 1; qSave(); try { qzCount(); } catch (e) {} } toast((r.ok ? '☁ QRZ: ' : '⚠ QRZ: ') + r.msg); }); }
     /* the effect flares only every 50 contacts or for DX outside North America (Brandon Oct 17) */
     const NAPRE = /^(A[A-L]|[KNW]|V[A-GOY]|C[F-KYZ]|X[A-O]|4[A-C]|6[D-J]|C[LMO]|T[GI]|H[O-RI]|YN|YS|V[23P]|J[3678]|8P|6Y|ZF|C6|FG|FM|FS|PJ|P4|HH|OX|XP|TO|FP|ZB)/;
     const dx = base(call).length > 2 && !NAPRE.test(base(call)), tot = Q.q.length;

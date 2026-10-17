@@ -586,3 +586,7 @@ main#lg .lg-fold:not(.open){padding-top:12px;padding-bottom:12px}
  main#lg[data-kb] #cLog .lg-list{height:calc(var(--vvh,100dvh) - 38px - var(--dock,200px))!important;min-height:90px}
 }
 html:has(main#lg[data-kb]) .lg-toast{bottom:auto;top:8px}
+/* ☁ send to QRZ box in Download & files (Oct 17) */
+.lg-qz{margin:14px 0;padding:12px 14px;border:1px solid rgba(61,220,132,.5);border-radius:14px;background:rgba(61,220,132,.07)}
+.lg-qz h3{margin:0 0 6px;font:900 13px Arial;letter-spacing:1.4px;color:#7ff0b0}
+.lg-qz input{background:#0b0805;color:#fff;border:1px solid rgba(240,201,107,.4);border-radius:10px;padding:9px 10px;font:14px ui-monospace,Menlo,monospace}

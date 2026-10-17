@@ -414,6 +414,27 @@
         if (So) F.push([`${fc}-${So.replace('/', '_')}-${d}.csv`, sotaCsv(Q, So, c), 'text/csv']); /* SOTA: sotadata.org.uk activator CSV (V2) */ });
       return { A, list: F, msg: `⬇ ${F.length} file${F.length > 1 ? 's' : ''} (${A.length} contacts)${short.length ? '. Not enough yet: ' + short.join(', ') : ''}.` };
     }
+    /* ☁ SEND TO QRZ at the end (Brandon Oct 17), one contact at a time; kpcQrz key shared with the Hunters Lounge */
+    if ($('xQz') && window.KPCQrz) {
+      const qm = h => { $('xQzMsg').innerHTML = h; };
+      const one = q => { const a = adif([q]); return a.slice(a.indexOf('<EOH>') + 5).trim(); };
+      const showKey = () => { const Z = KPCQrz.get(); $('xQzKey').value = Z.key || ''; const n = L.q.filter(q => !q.qz).length; qm(Z.key ? `Key saved. ${n ? n + ' contact' + (n === 1 ? '' : 's') + ' not sent to QRZ yet.' : 'Everything has been sent.'}` : 'No QRZ key saved on this device yet.'); };
+      $('xQzSave').onclick = () => { const k = $('xQzKey').value.trim(); if (!/^[A-Z0-9-]{8,}$/i.test(k)) { qm('That doesn\'t look like a QRZ logbook key.'); return; } KPCQrz.set({ key: k }); showKey(); };
+      $('xQzForget').onclick = () => { if (!confirm('Forget your QRZ key on this device?')) return; KPCQrz.set({ key: '', on: false }); showKey(); };
+      async function qzSend(list) {
+        if (!KPCQrz.get().key) { qm('Paste your QRZ logbook key and tap SAVE KEY first.'); return; }
+        if (!list.length) { qm('Nothing to send.'); return; }
+        if (list.some(q => q.qz) && !confirm(`${list.filter(q => q.qz).length} of these were sent before. Send them again? (QRZ will call them duplicates.)`)) list = list.filter(q => !q.qz);
+        let ok = 0, bad = 0, last = '';
+        for (let i = 0; i < list.length; i++) { qm(`Sending ${i + 1} of ${list.length}…`); const r = await KPCQrz.send(one(list[i])); if (r.ok) { ok++; list[i].qz = r.sure ? 2 : 1; } else { bad++; last = r.msg; } await new Promise(z => setTimeout(z, 350)); }
+        save(); qm(`☁ Sent ${ok} contact${ok === 1 ? '' : 's'} to QRZ${bad ? ` · ${bad} did not go (${last})` : ''}.` + (await KPCQrz.relay() ? '' : ' QRZ doesn\'t let a web page see its reply, so tap <b>🔎 SEE QRZ\'S ANSWER</b> once (OK or duplicate = it worked) or check your QRZ logbook.'));
+      }
+      $('xQzAct').onclick = () => qzSend(L.q.filter(inAct).sort((a, b) => a.t - b.t));
+      $('xQzNew').onclick = () => qzSend(L.q.filter(q => !q.qz).sort((a, b) => a.t - b.t));
+      $('xQzSee').onclick = () => { if (!KPCQrz.get().key) { qm('Save your QRZ key first.'); return; } const q = L.q.slice().sort((a, b) => b.t - a.t)[0]; if (!q) { qm('Nothing logged yet.'); return; }
+        KPCQrz.showAnswer('INSERT', one(q)); qm(`A new tab opened with QRZ's own answer for <b>${q.call}</b>: <b>OK</b> = it's in, <b>duplicate</b> = it was already there, <b>FAIL</b> = the REASON says why (often the key is for a different logbook than the call you were on).`); };
+      showKey();
+    }
     $('xAll').onclick = async () => { if (!L.q.length) { toast('Nothing logged yet.'); return; } const Q = L.q.slice().sort((a, b) => a.t - b.t); const ok = await files([[`KPC-activator-log-${myCall().replace(/\//g, '-') || 'mine'}-${ymd(new Date())}.adi`, adif(Q)]]); if (ok !== false) { Q.forEach(q => q.x = 1); save(); } };
     $('xCsv').onclick = () => { const h = 'date_utc,time_utc,call,freq_mhz,band,mode,rst_sent,rst_rcvd,their_park,name,qth,state,grid,my_call,my_park,note\n';
       files([[`KPC-activator-log-${myCall().replace(/\//g, '-') || 'mine'}.csv`, h + L.q.slice().sort((a, b) => a.t - b.t).map(q => [fD(q.d), fT(q.tm), q.call, q.f, q.band, q.mode, q.rs, q.rr, q.ref, q.name, q.qth, q.st, q.g, q.my, q.pk, q.note].map(v => '"' + String(v || '').replace(/"/g, '""') + '"').join(',')).join('\n'), 'text/csv']]); };

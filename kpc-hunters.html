@@ -106,7 +106,7 @@ body.field .page-jump-nav{display:none!important}
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261018h">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261018i">
 <header class="site-nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="KPC Home">
@@ -215,7 +215,7 @@ body.field .page-jump-nav{display:none!important}
   <div class="dk-r2"><label class="c">CALL<input id="dCall" autocapitalize="characters" spellcheck="false" enterkeyhint="go"></label><label>SENT<input id="dRs" inputmode="numeric"></label><label>RCVD<input id="dRr" inputmode="numeric"></label><label class="s">ST<input id="dSt" maxlength="2" autocapitalize="characters"></label><label class="w">NOTE<input id="dNote" maxlength="200"></label><button type="button" class="dk-x" id="dkClr" title="Clear">⌫</button><button type="submit" class="dk-go" id="dkLog">⬆ LOG</button></div>
  </form>
 </section>
-<div class="hl-ltabs mem-only" id="hlLtabs"><button type="button" data-rt="log">📒 MY LOG</button><button type="button" data-rt="map">🗺 LIVE MAP</button><button type="button" class="lt-log" data-logtog>📒 LOGGER: ON</button></div>
+<div class="hl-ltabs mem-only" id="hlLtabs"><button type="button" data-rt="log">📒 MY LOG</button><button type="button" data-rt="map">🗺 LIVE MAP</button><button type="button" class="lt-log" data-qmode>☁ QRZ MODE</button></div>
 <div class="hl-rtabs mem-only" id="hlRtabs"><span class="rt-lab">📡 SPOTS <i id="rtN"></i></span><span class="rt-w"><button type="button" class="rt-wb" id="hlWT0" data-wt="0" title="Turn this extra spot list on or off">🪟 LIST 2</button><button type="button" class="rt-wb" id="hlWT1" data-wt="1" title="Turn this extra spot list on or off">🪟 LIST 3</button></span><button type="button" class="rt-wb rt-pop" id="hlPop" title="Make the main spots list a window you can drag and size (computers)">⧉ POP OUT</button><button type="button" class="rt-f" id="hlFbtn" aria-expanded="false">⚙ FILTERS <i id="hlFbN"></i></button></div>
 <section class="hl-mapsec" id="hlMapSec"><div class="hl-in">
 <div class="hl-maphd"><b>🗺 LIVE MAP</b><span>Blinking green = new to you · gold = parks you’ve hunted · grey = other spots. Tap a dot for the station.</span><button type="button" class="hl-btn line sm" id="hlMapTog">HIDE MAP</button></div>
@@ -240,7 +240,7 @@ body.field .page-jump-nav{display:none!important}
 <div class="hl-row" id="favList"></div></details>
 <div id="hlFavs"></div>
 <a class="hl-nolog mem-only" id="hlNoLog" href="#hPota" hidden>⭐ <b>Load your hunted parks from POTA</b> so the new-to-you ones light up. Tap here ›</a><a class="hl-nolog pub-only" id="hlNoLogP" href="#hlSetup" hidden>📄 <b>Load the parks you've worked</b> (a CSV or ADIF file) so the new-to-you ones light up. Tap here ›</a>
-<div class="hl-row hl-viewbar"><span class="hl-count" id="hlCount"></span><button type="button" class="hl-chip mem-only hl-logtog-m" data-logtog>📒 LOGGER: ON</button><a href="#awModal" class="hl-chip hl-awq mem-only" title="What the badges on the spots mean">🏅 BADGES?</a><span class="hl-vt" role="group" aria-label="View"><button type="button" class="hl-chip" data-view="cards">▦ CARDS</button><button type="button" class="hl-chip" data-view="table">☰ TABLE</button></span></div>
+<div class="hl-row hl-viewbar"><span class="hl-count" id="hlCount"></span><button type="button" class="hl-chip mem-only hl-logtog-m" data-qmode>☁ QRZ MODE</button><a href="#awModal" class="hl-chip hl-awq mem-only" title="What the badges on the spots mean">🏅 BADGES?</a><span class="hl-vt" role="group" aria-label="View"><button type="button" class="hl-chip" data-view="cards">▦ CARDS</button><button type="button" class="hl-chip" data-view="table">☰ TABLE</button></span></div>
 <div class="hl-grid" id="hlSpots"><div class="hl-empty">Loading spots…</div></div>
 <p class="hl-src" id="hlSrc"></p>
 </div></section>
@@ -264,6 +264,7 @@ body.field .page-jump-nav{display:none!important}
 <p class="hl-p">Tap any spot card (or <b>📝 LOG IT</b>) and the contact fills itself in: call, frequency, band, mode, park and the time in UTC. Fix anything, tap <b>SAVE</b>. Every save is kept on this device right away, twice over (and in a backup file on computers that allow it), and the park is marked worked.</p>
 <div class="hl-safe" id="lgSafe"></div>
 <div class="hl-row"><button type="button" class="hl-btn gold sm" id="lgAdif">⬇ DOWNLOAD FOR QRZ (ADIF)</button><button type="button" class="hl-btn line sm" id="lgNew">⬇ ONLY THE NEW ONES</button><button type="button" class="hl-btn line sm" id="lgCsv">⬇ CSV</button><button type="button" class="hl-btn line sm" id="lgFile">💾 KEEP A BACKUP FILE</button><label class="hl-btn line sm" style="position:relative">↥ RESTORE FROM A FILE<input type="file" id="lgLoad" accept=".adi,.adif,.txt" style="position:absolute;inset:0;opacity:0;cursor:pointer"></label><button type="button" class="hl-btn line sm" id="lgAdd">＋ ADD ONE BY HAND</button></div>
+<div class="hl-qz mem-only"><b>☁ QRZ</b><span id="lgQzN"></span><button type="button" class="hl-btn gold sm" id="lgQzSend">☁ SEND THE ONES NOT IN QRZ YET</button><button type="button" class="hl-btn line sm" id="lgQzSee" title="Sends your newest contact again and opens QRZ's own answer in a new tab">🔎 SEE QRZ'S ANSWER</button><a class="hl-btn line sm" href="kpc-hunt-cat.html#ctQrz">🔑 MY QRZ KEY</a><p class="hl-src" id="lgQzMsg"></p></div>
 <div class="hl-row"><label class="hl-lab">My call <input id="lgMy" autocomplete="off" autocapitalize="characters" placeholder="Your call" style="width:130px"></label><label class="hl-lab">My grid <input id="lgGrid" autocomplete="off" maxlength="6" placeholder="EM77" style="width:100px"></label><input type="search" id="lgQ" placeholder="Search my log…" aria-label="Search my log"></div>
 <div class="hl-logwrap"><div id="lgList"><div class="hl-empty">No contacts logged on this device yet.</div></div></div>
 <p class="hl-src"><b>Putting it in QRZ:</b> tap DOWNLOAD FOR QRZ, then open your <a href="https://logbook.qrz.com" target="_blank" rel="noopener">QRZ Logbook</a> and use its ADIF import to add the file. The same file works in LoTW (through TQSL) and most logging programs. Hunters don't upload to POTA: your credit comes from the activator's log. <b>•</b> = not downloaded yet.</p>
@@ -370,7 +371,7 @@ body.field .page-jump-nav{display:none!important}
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="kpc-ambient.js?v=20261017a"></script><script src="kpc-cat.js?v=20261018a"></script>
-<script src="kpc-hunt.js?v=20261018h"></script>
+<script src="kpc-hunt.js?v=20261018i"></script>
 <script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261017d" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
