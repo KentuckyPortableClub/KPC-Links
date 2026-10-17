@@ -1,19 +1,14 @@
 name: zz probe
 on: push
-permissions:
-  contents: write
 jobs:
   p:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
       - run: |
-          mkdir -p pa && cd pa
-          curl -sL https://pota.app/ -o index.html
-          for f in $(grep -o 'src="[^"]*\.js"\|href="[^"]*\.js"' index.html | sed 's/.*="//;s/"//' | sort -u); do u=$f; case $u in http*) ;; /*) u=https://pota.app$u;; *) u=https://pota.app/$u;; esac; curl -sL "$u" -o "$(basename $f)"; done
-          grep -oh '"[a-zA-Z0-9_./-]*\.js"' *.js | tr -d '"' | sort -u | head -400 > chunks.txt
-          for c in $(cat chunks.txt); do b=$(basename $c); [ -f "$b" ] || curl -sfL "https://pota.app/js/$b" -o "$b" || curl -sfL "https://pota.app/$c" -o "$b" || true; done
-          { for n in UserAwardsProgress UserAwardsEarned UserAwardsGeographic UserStats; do f=$(grep -oh "\./$n-[A-Za-z0-9_-]*\.js" *.js | head -1); echo "######## $n $f"; [ -n "$f" ] && curl -sL "https://pota.app/assets/${f#./}" -o "c_$n.js"; wc -c "c_$n.js"; grep -oh 'https://api.pota.app[^"`]*' "c_$n.js" | sort -u; grep -oh '.\{250\}api.pota.app.\{700\}' "c_$n.js" | head -6; done
-            echo "####### base path"; grep -o 'src="[^"]*"' index.html | head
-          } > ../awards2.txt
-          cd ..; git config user.name x; git config user.email x@x; cp pa/c_*.js . ; git add awards2.txt c_*.js; git commit -qm ep; git push
+          for c in 5 100 1000 all; do curl -s -o /tmp/b -w "%{http_code} %{time_total}" "https://api.pota.app/park/leaderboard/US-1277?count=$c" > /tmp/h; python3 -c "
+          import json;d=json.load(open('/tmp/b'));print('::notice title=count $c::'+open('/tmp/h').read()+' '+str({k:len(v) for k,v in d.items()}))"; done
+          curl -s -o /tmp/b -w "%{http_code} %{time_total}" "https://api.pota.app/location/parks/US-KY" > /tmp/h; python3 -c "
+          import json;d=json.load(open('/tmp/b'));print('::notice title=locparks::'+open('/tmp/h').read()+' n='+str(len(d))+' keys='+str(list(d[0].keys())))"
+          curl -s -D - -o /dev/null -H 'Origin: https://kentuckyportableclub.github.io' https://api.pota.app/location/parks/US-KY | tr -d '\r' | grep -i 'access-control' | sed 's/^/::notice title=cors::/'
+          curl -s "https://spothole.app/api/v1/spots?limit=400&max_age=3600" -o /tmp/s; python3 -c "
+          import json,collections;d=json.load(open('/tmp/s'));d=d if isinstance(d,list) else d.get('spots',[]);print('::notice title=hole::'+str(collections.Counter((x.get('sig') or '-')+'/'+(x.get('source') or '-') for x in d).most_common(20)));print('::notice title=holekeys::'+str(sorted(d[0].keys())))"
