@@ -691,3 +691,49 @@ main#hl .hs-a .hc{color:#cfc6b4}
  main#hl[data-desk="1"] .dk-mapslot .hl-bigmap{margin:0;border-radius:0;border:0}
  main#hl[data-desk="1"] .dk-mapslot #hlLmap{height:calc(100vh - 470px);min-height:300px;max-height:none;border-radius:0}
 }
+
+/* ===== Oct 17 (Brandon: 'cleaner look'): page tabs, Parks I Need on its own page, log files + setup as pop-up bars,
+   a slim filtering bar, phones show the spots right after the banner ===== */
+.hl-ptabs{display:flex;justify-content:center;gap:4px;width:max-content;max-width:calc(100% - 20px);margin:10px auto 8px;padding:4px;border-radius:999px;background:rgba(10,7,4,.82);border:1px solid var(--ln);box-shadow:0 6px 20px rgba(0,0,0,.45);overflow-x:auto;scrollbar-width:none}
+.hl-ptabs::-webkit-scrollbar{display:none}
+.hl-ptabs a{flex:0 0 auto;padding:8px 14px;border-radius:999px;font:900 12px Arial;letter-spacing:1.1px;color:var(--mu);text-decoration:none;white-space:nowrap}
+.hl-ptabs a:hover{color:var(--tx);background:rgba(255,255,255,.06)}
+.hl-ptabs a[aria-current="page"]{background:linear-gradient(180deg,#f6d58a,#d5a63a);color:#2a1a05}
+@media(max-width:420px){.hl-ptabs a{padding:7px 10px;font-size:11px;letter-spacing:.6px}}
+/* the members Lounge leaves Parks I Need to its own page */
+main#hl:not([data-public="1"]):not([data-page]) #hlNeed{display:none}
+main#hl[data-page="need"] .hl-hero,main#hl[data-page="need"] .hl-tick,main#hl[data-page="need"] .hl-split,main#hl[data-page="need"] #hlLog,main#hl[data-page="need"] .hl-sheet{display:none!important}
+main#hl[data-page="need"] #hlNeed{padding-top:14px}
+main#hl[data-page="need"] #hlNeed h2{font-size:clamp(26px,4vw,40px)}
+/* pop-up bars */
+.hl-barsec{padding-top:10px!important;padding-bottom:10px!important}
+.hl-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px;border-radius:14px;border:1px solid var(--ln);background:linear-gradient(90deg,rgba(14,8,4,.9),rgba(14,8,4,.65)),url('hero-lodge.jpg') center 40%/cover;color:var(--tx);text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+.hl-bar:hover{border-color:var(--g)}
+.hl-bar b{font:900 14px Arial;letter-spacing:1.4px;color:var(--g2)}
+.hl-bar .d{font:13px Arial;color:#e4d6bb}
+.hl-bar i{margin-left:auto;font-style:normal;font:900 11.5px Arial;letter-spacing:1.2px;padding:6px 12px;border-radius:999px;background:var(--g);color:#1a1205}
+main#hl[data-public="1"] .hl-bar .mem-only{display:none}
+.hl-modal{position:fixed;inset:0;z-index:3000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.68);backdrop-filter:blur(3px)}
+.hl-modal[hidden]{display:none!important}
+.hl-mbox{position:relative;width:min(980px,100%);max-height:calc(100dvh - 32px);overflow:auto;border-radius:18px;border:1px solid var(--g);background:#120c07;box-shadow:0 30px 80px #000;padding:22px 20px 18px}
+.hl-mbox h2{margin-top:0}
+.hl-mx{position:sticky;top:0;float:right;margin:-8px -6px 0 10px;z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid var(--ln);background:#1d140b;color:var(--tx);font-size:18px;cursor:pointer}
+html.hl-noscroll{overflow:hidden}
+/* inside the log files box the long table isn't needed (the log list next to the spots has every contact) */
+main#hl:not([data-public="1"]) #lgModal .hl-logwrap,main#hl:not([data-public="1"]) #lgModal #lgQ{display:none}
+/* slim filtering bar */
+.hl-active{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:5px;margin:8px 0 0;padding:5px 8px;border-radius:999px}
+.hl-active::-webkit-scrollbar{display:none}
+.hl-active>b{margin:0 2px 0 4px;font-size:13px}
+.hl-active .hl-pill{flex:0 0 auto;padding:3px 9px;font-size:11px;white-space:nowrap}
+.hl-active .hl-btn{flex:0 0 auto;padding:4px 9px!important;font-size:10.5px!important;min-height:0;white-space:nowrap}
+.hl-active .hl-btn:first-of-type{margin-left:auto}
+/* phones (members): spots right after the banner, then the log, then the map */
+@media(max-width:1099px){
+ main#hl:not([data-public="1"]) .hl-split>.hl-spsec{order:1}
+ main#hl:not([data-public="1"]) .hl-dk{order:2}
+ main#hl:not([data-public="1"]) .hl-split>.hl-mapsec{order:3}
+}
+main#hl .hl-ptabs a{color:var(--mu)}
+main#hl .hl-ptabs a:hover{color:var(--tx)}
+main#hl .hl-ptabs a[aria-current="page"]{color:#2a1a05!important}

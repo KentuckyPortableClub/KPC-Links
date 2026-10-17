@@ -12,6 +12,17 @@
   'use strict';
   const $ = id => document.getElementById(id);
   const PUB = !!(document.getElementById('hl') && document.getElementById('hl').dataset.public === '1');
+  const PAGE = (document.getElementById('hl') && document.getElementById('hl').dataset.page) || 'lounge';   /* 'need' = kpc-hunt-need.html */
+  /* pop-up boxes (log files, get my parks): any link to #lgModal / #suModal, or to something inside them, opens the box (Brandon Oct 17) */
+  function openModal(id, inner) { const m = document.getElementById(id); if (!m) return; m.hidden = false; document.documentElement.classList.add('hl-noscroll');
+    const t = inner && document.getElementById(inner); setTimeout(() => { if (t && t !== m) t.scrollIntoView({ block: 'start', behavior: 'smooth' }); else m.querySelector('.hl-mbox').scrollTop = 0; }, 30); }
+  function closeModals() { document.querySelectorAll('.hl-modal').forEach(m => { m.hidden = true; }); document.documentElement.classList.remove('hl-noscroll'); }
+  document.addEventListener('click', e => {
+    if (e.target.closest('[data-mclose]') || e.target.classList.contains('hl-modal')) { closeModals(); return; }
+    const a = e.target.closest('a[href^="#"]'); if (!a) return; const id = a.getAttribute('href').slice(1); const el = id && document.getElementById(id); if (!el) return;
+    const m = el.classList.contains('hl-modal') ? el : el.closest('.hl-modal'); if (!m) return; e.preventDefault(); closeModals(); openModal(m.id, el === m ? null : id);
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModals(); });
   const DOCKON = () => !PUB && !!document.getElementById('hlDk');
   const DESKON = () => !PUB && !!document.getElementById('hlDk') && matchMedia('(min-width:1100px)').matches;   /* kpc-hunters.html = the public copy */
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -344,11 +355,11 @@
     if (t.dataset.g === 'p') { F.p = tog(F.p, t.dataset.v); if (!F.p.length) F.p = [t.dataset.v]; }
     else if (t.dataset.band) F.bands = tog(F.bands, t.dataset.band);
     else if (t.dataset.mode) F.modes = tog(F.modes, t.dataset.mode);
-    else if (t.dataset.where) { F.where = t.dataset.where; if (F.where === 'range' && !HOME) { $('hlSetup').scrollIntoView({ behavior: 'smooth' }); $('hHome').textContent = 'Set where you are first.'; } }
+    else if (t.dataset.where) { F.where = t.dataset.where; if (F.where === 'range' && !HOME) { openModal('suModal', 'hHome'); $('hHome').textContent = 'Set where you are first.'; } }
     else if ((t.id === 'fHide' || t.id === 'fNew') && !hasLog()) { toast('Load your worked parks first (' + (PUB ? '📄 LOAD MY WORKED PARKS' : '⭐ GET MY PARKS FROM POTA') + '): until then the page can’t tell which parks you’ve worked.'); return; }
     else if (t.id === 'fQrt') F.qrt = !F.qrt;
     else if (t.id === 'fCalls') { F.hc = !F.hc; if (F.hc && !callsToday().size) toast(PUB ? 'Tap 🙈 HIDE … TODAY (or ✓ I WORKED IT) on a spot and that call drops out of the list until 0000 UTC.' : 'Calls you log today (and ones you tap 🙈 on) drop out of the list until 0000 UTC.'); }
-    else if (t.id === 'fHide') F.hide = !F.hide; else if (t.id === 'fNew') F.nw = !F.nw; else if (t.id === 'fRange') { F.rg = !F.rg; if (F.rg && !HOME) { $('hlSetup').scrollIntoView({ behavior: 'smooth' }); $('hHome').textContent = 'Set where you are first.'; } }
+    else if (t.id === 'fHide') F.hide = !F.hide; else if (t.id === 'fNew') F.nw = !F.nw; else if (t.id === 'fRange') { F.rg = !F.rg; if (F.rg && !HOME) { openModal('suModal', 'hHome'); $('hHome').textContent = 'Set where you are first.'; } }
     saveF(); chips(); ticker(false); draw();
   });
   /* the box that shows what you're filtering, each with an ✕, plus CLEAR ALL */
@@ -371,7 +382,7 @@
     const fb = $('hlFbN'); if (fb) fb.textContent = it.length ? it.length + ' ON' : '';
     const ft = $('hlFtogN'); if (ft) ft.textContent = ($('hlFilters').classList.contains('open') ? 'CLOSE ▴' : 'TAP TO OPEN ▾') + (it.length ? ` · ${it.length} ON` : '');
     const b = $('hlActive'); b.hidden = !it.length;
-    b.innerHTML = it.length ? `<b>FILTERING:</b>${it.map(([k, t]) => `<button type="button" class="hl-pill" data-unf="${esc(k)}" title="Remove this filter">${esc(t)} ✕</button>`).join('')}<button type="button" class="hl-btn line sm" data-unf="def" title="POTA, phone, hide hunted parks and QRT">↺ DEFAULT</button><button type="button" class="hl-btn line sm" data-unf="*">CLEAR ALL FILTERS</button>` : '';
+    b.innerHTML = it.length ? `<b>⚙</b>${it.map(([k, t]) => `<button type="button" class="hl-pill" data-unf="${esc(k)}" title="Remove this filter">${esc(t)} ✕</button>`).join('')}<button type="button" class="hl-btn line sm" data-unf="def" title="Back to the usual filters: POTA, phone, hide hunted parks and QRT">↺ DEFAULT</button><button type="button" class="hl-btn line sm" data-unf="*" title="Clear all filters">✕ ALL</button>` : '';
   }
   document.addEventListener('click', e => {
     const c = e.target.closest('[data-cty]');
@@ -863,7 +874,7 @@
     box.innerHTML = `<div class="aw-g">${tiles}</div><div class="aw-cols">${was}${earned}${Object.keys(AWL).map(k => awList(k, A[k])).join('')}</div>
       <p class="hl-src">From POTA for ${esc(A.call || CALL || 'you')}, brought over ${new Date(A.t).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}. POTA updates achievements once a day, and hunters get credit only after the activator's log is in. Tap the ⭐ bookmark on pota.app again to refresh. <a href="https://pota.app/#/user/achievements/progress" target="_blank" rel="noopener">POTA ACHIEVEMENTS ↗</a></p>`;
   }
-  document.addEventListener('click', e => { const a = e.target.closest('[data-need]'); if (!a) return; e.preventDefault(); $('nSt').value = a.dataset.need; $('nSt').dataset.set = 1; needLoad(); $('hlNeed').scrollIntoView({ behavior: 'smooth' }); });
+  document.addEventListener('click', e => { const a = e.target.closest('[data-need]'); if (!a) return; e.preventDefault(); if (PAGE !== 'need' && !PUB) { location.href = 'kpc-hunt-need.html?st=' + encodeURIComponent(a.dataset.need); return; } $('nSt').value = a.dataset.need; $('nSt').dataset.set = 1; needLoad(); $('hlNeed').scrollIntoView({ behavior: 'smooth' }); });
 
   /* ---------------- the real map (Leaflet + Esri satellite + place names) ---------------- */
   let LM = null, LG = null, LMV = get('kpcHuntMz', 'na');
@@ -901,6 +912,7 @@
   function flameBtn() { const b = $('hlFlame'), f = FXL[FX] || FXL.flames; const dk = document.getElementById('hlDk'); if (dk) dk.dataset.fx = FX; b.setAttribute('aria-pressed', FX !== 'off'); b.dataset.fx = FX; b.innerHTML = f[0] + '<span class="t"> ' + f[1] + '</span>'; }
   $('hlFlame').onclick = () => { FX = FX === 'flames' ? 'fireworks' : FX === 'fireworks' ? 'stars' : FX === 'stars' ? 'off' : 'flames'; put('kpcHuntFx', FX); flameBtn(); if (FX !== 'off') fire(FX === 'flames' ? '🔥 Flames for new parks' : FX === 'fireworks' ? '🎆 Fireworks for new parks' : '🌠 Shooting stars for new parks'); else toast('No screen effects for new parks.'); };
   function fire(msg) {
+    if (PAGE === 'need') return;
     if (FX === 'off' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (FX === 'fireworks') return fireworks(msg);
     if (FX === 'stars') return shootingStars(msg);
@@ -1044,8 +1056,8 @@
     $('dSt').addEventListener('input', () => { $('dSt').value = $('dSt').value.toUpperCase(); });
     $('dkQ').oninput = () => dkList();
     $('dkClr').onclick = () => { dkClear(); $('dCall').focus(); };
-    $('dkBack').onclick = () => { const el = BACKK && document.querySelector(`#hlSpots [data-k="${CSS.escape(BACKK)}"]`);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); else scrollTo({ top: BACKY, behavior: 'smooth' }); };
+    $('dkBack').onclick = () => { const sp = document.querySelector('.hl-spsec'), tk = $('hlTick'); if (!sp) return;   /* back up to the top of the spots, right under the banner (Brandon Oct 17) */
+      const off = tk ? Math.max(0, tk.getBoundingClientRect().bottom) : 0; scrollTo({ top: sp.getBoundingClientRect().top + scrollY - off - 4, behavior: 'smooth' }); };
     $('dkRad').onclick = () => { const o = !$('hlDk').classList.contains('radio'); $('hlDk').classList.toggle('radio', o); $('dkRad').setAttribute('aria-expanded', o); if (o) $('dFreq').focus(); };
     ['dFreq', 'dRef'].forEach(id => $(id).addEventListener('input', dkRadT)); $('dMode').addEventListener('change', dkRadT); dkRadT();
     $('dkForm').addEventListener('submit', e => { e.preventDefault(); dkLog(); });
@@ -1151,6 +1163,8 @@
     $('fSt').innerHTML = '<option value="">Any state</option>' + stOpts('');
     $('hSt').innerHTML = '<option value="">…or pick your state</option>' + stOpts('');
     $('nSt').innerHTML = stOpts(st0); if ($('tSt')) $('tSt').innerHTML = stOpts(st0);
+    const qst = new URLSearchParams(location.search).get('st'); if (qst && ST[qst.toUpperCase()]) { $('nSt').value = qst.toUpperCase(); $('nSt').dataset.set = 1; }
+    document.querySelectorAll('.hl-ptabs [data-pt]').forEach(t => { if (t.dataset.pt === PAGE) t.setAttribute('aria-current', 'page'); });
     /* each part on its own, so one problem never stops the rest of the page */
     [stick, chips, viewChips, bell, flameBtn, lmInit, logInfo, homeInfo, mapOn, qsoInit, awDraw, fromPotaHash, load, needLoad, topDraw, myStats].forEach(f => { try { const r = f(); if (r && r.catch) r.catch(e => console.error(f.name, e)); } catch (e) { console.error(f.name, e); } });
     setInterval(() => {
