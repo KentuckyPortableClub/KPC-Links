@@ -640,3 +640,8 @@ main#lg #pList:has(.lg-st){background:rgba(14,10,6,.9)!important;border-radius:1
 
 /* Installed app (Oct 18, Brandon: 'I downloaded the logger and got the whole website'): the app is only the logger, no site menu or footer */
 @media (display-mode: standalone){header.site-nav,footer.kpc-about-footer,.kpc-about-footer{display:none!important}main#lg{--hdr:0px}}
+
+/* Oct 17: QRZ auto / manual switch + dock counter */
+main#lg .lg-qzm .lg-btn.on{background:linear-gradient(90deg,#f6d58a,#d5a63a);color:#2a1a05;border-color:#d5a63a}
+main#lg .dk-qz{padding:2px 8px;border-radius:999px;border:1px solid rgba(240,201,107,.55);background:rgba(0,0,0,.35);color:#9ff0b8;font:800 11px Arial;cursor:pointer;white-space:nowrap}
+main#lg .dk-qz.bad{color:#ffb4a8;border-color:#ff8f7a}

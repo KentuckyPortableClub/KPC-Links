@@ -80,7 +80,7 @@
     const AC = H.ac() || (await H.startAudio(), H.ac()); if (!AC) { H.note('Press START LISTENING first.'); return false; }
     if (!me()) { H.note('Put YOUR call in ⚙ STATION first: nothing was sent.', 4000); return false; }
     stopTx(); const b = AC.createBuffer(1, buf.length, AC.sampleRate); b.copyToChannel(buf, 0);
-    const g = AC.createGain(); g.gain.value = S.lvl; const src = AC.createBufferSource(); src.buffer = b; src.connect(g); g.connect(AC.destination); TXSRC = src;
+    const g = AC.createGain(); g.gain.value = S.lvl; (window.__kpcTxG = (window.__kpcTxG || []).slice(-6)).push(g); const src = AC.createBufferSource(); src.buffer = b; src.connect(g); g.connect(AC.destination); TXSRC = src;
     H.setTx(true); await H.ptt(true); src.start(AC.currentTime + 0.12);
     src.onended = () => { if (TXSRC === src) { TXSRC = null; H.ptt(false); H.setTx(false); if (done) done(); } };
     return true;
