@@ -313,9 +313,9 @@
     $('dRadio').onclick = () => { radioRow(!document.getElementById('lg').hasAttribute('data-radio')); if (document.getElementById('lg').hasAttribute('data-radio')) $('eFreq').focus(); };
     $('dMoreB').onclick = () => drawer($('eMore').hidden);
     document.querySelectorAll('[data-rt]').forEach(b => b.onclick = () => rtab(b.dataset.rt)); rtab(get('kpcLgRt', 'spots'));
-    $('dSta').onclick = () => { stationOpen(true); if (tabMode()) { tab('station'); return; } if (tabMode()) scrollTo({ top: $('cOp').getBoundingClientRect().top + scrollY - hdrH() - 8, behavior: 'smooth' }); else $('cOp').scrollIntoView({ behavior: 'smooth' }); };
+    $('dSta').onclick = () => { stationOpen($('cOp').hidden); return; if (tabMode()) scrollTo({ top: $('cOp').getBoundingClientRect().top + scrollY - hdrH() - 8, behavior: 'smooth' }); else $('cOp').scrollIntoView({ behavior: 'smooth' }); };
     document.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => tab(b.dataset.tab));
-    tab((!myCall() || (!isHunt() && !myParks().length && !myWwff() && !mySota())) && tabMode() ? 'station' : (({ stats: 'info', notes: 'log' })[get('kpcLgTab', 'log')] || get('kpcLgTab', 'log')), true);
+    tab(({ stats: 'info', notes: 'log', station: 'log' })[get('kpcLgTab', 'log')] || get('kpcLgTab', 'log'), true);
     ['eFreq', 'eMode'].forEach(i => $(i).addEventListener('input', radioTxt)); $('eMode').addEventListener('change', radioTxt); radioTxt();
     if (!kHzOf($('eFreq').value)) radioRow(true);
     if (window.ResizeObserver) new ResizeObserver(dockSize).observe($('cEntry')); addEventListener('resize', dockSize); setTimeout(dockSize, 100);
@@ -432,7 +432,7 @@
     let lastB = ''; const cnt = {}; R.forEach(x => { const b = bandOf(+x.frequency) || 'other'; cnt[b] = (cnt[b] || 0) + 1; });
     $('pList').innerHTML = R.length ? R.slice(0, 160).map(x => { const k = +x.frequency, b = bandOf(k) || 'other', w = worked.has(base(x.activator) + '|' + bandOf(k)), ago = Math.max(0, Math.round((Date.now() - Date.parse(x.spotTime + 'Z')) / 6e4));
       const fs = (k / 1000).toFixed(3).replace('.', ','), hd = b !== lastB ? `<div class="lg-sband">${esc(b)} · ${cnt[b]} spot${cnt[b] > 1 ? 's' : ''}</div>` : ''; lastB = b;
-      return `${hd}<button type="button" class="lg-sp${w ? ' wk' : ''}" data-sp="${x.spotId}"><span class="f">${fs}</span><span class="c">${esc(x.activator)}${w ? ' <i>✓</i>' : ''}</span><span class="a">${ago < 60 ? ago + 'm' : Math.floor(ago / 60) + 'h'} ago</span><span class="md">${esc(spMode(x) || '?')}</span><span class="n">🌲 ${esc(x.reference)}${x.locationDesc ? ': ' + esc(String(x.locationDesc).split(',')[0].replace(/^US-/, '')) : ''} · ${esc(x.name || '')}</span>${x.comments && !isRbn(x) ? `<span class="x">${esc(String(x.comments).slice(0, 80))}</span>` : ''}</button>`; }).join('')
+      return `${hd}<button type="button" class="lg-sp${w ? ' wk' : ''}" data-sp="${x.spotId}"><span class="f">${fs}</span><span class="c">${esc(x.activator)}${w ? ' <i>✓</i>' : ''}</span><span class="a">${ago < 60 ? ago + 'm' : Math.floor(ago / 60) + 'h'} ago</span><span class="md">${esc(spMode(x) || '?')}</span><span class="n">🌲 ${esc(x.reference)}${x.locationDesc ? ': ' + esc(String(x.locationDesc).split(',')[0].replace(/^US-/, '')) : ''} · ${esc(x.name || '')}</span>${x.comments && !isRbn(x) ? `<span class="x">${esc(String(x.comments).slice(0, 80))}</span>` : ''}<span class="rs" data-respot="${x.spotId}" role="button" tabindex="0">📣 RESPOT</span></button>`; }).join('')
       : `<div class="lg-empty">${SP.length ? 'No spots match these choices.' : 'Loading spots…'}</div>`;
   }
   function spotsInit() {
@@ -464,7 +464,8 @@
     const msg = (t, c) => { $('sMsg').className = 'lg-msg ' + (c || ''); $('sMsg').textContent = t; toast(t); };
     $('sQrt').onclick = () => sendSpot('qrt'); $('sQsy').onclick = () => sendSpot('qsy');
     $('sSend').onclick = () => sendSpot('');
-    $('dSpot').onclick = () => isHunt() ? spotThem() : sendSpot('');
+    $('dSpot').onclick = () => sendSpot('');
+    $('pList').addEventListener('click', e => { const b = e.target.closest('[data-respot]'); if (!b) return; e.stopPropagation(); const x = SP.find(s => String(s.spotId) === b.dataset.respot); if (x) respot(x); }, true);
     /* hunters: spot the activator in the call box (the POTA way to say thanks) */
     async function spotThem() {
       const them = $('eCall').value.toUpperCase().trim(), ref = byProg($('eRef').value).pota[0], k = kHzOf($('eFreq').value), mode = $('eMode').value === 'OTHER' ? '' : $('eMode').value;
@@ -478,8 +479,18 @@
         const body = await r.text().catch(() => ''); if (r.ok) { rlNote(); msg(`✓ Spotted ${them} at ${ref}.`, 'ok'); setTimeout(spots, 8000); } else msg('✗ POTA turned it down: ' + (String(body).replace(/^"|"$/g, '') || 'error ' + r.status), 'bad'); }
       catch (e) { msg('✗ POTA could not be reached. Check your signal.', 'bad'); }
     }
+    /* RESPOT a station from the spots list (hunters and activators alike): same frequency, mode and park, me as the spotter */
+    async function respot(x) {
+      const k = +x.frequency, mode = spMode(x), ref = x.reference;
+      if (!myCall()) { msg('Put your call in ⚙ first.', 'bad'); stationOpen(true); return; }
+      const wait = rlCheck(); if (wait) { msg(wait, 'bad'); return; }
+      const c0 = prompt(`Respot ${x.activator} at ${ref} on ${mhz(k)} ${mode}?\nComment (optional):`, $('sCm').value.trim() || 'Thanks!'); if (c0 === null) return; const cm = c0.slice(0, 60);
+      try { const r = await fetch('https://api.pota.app/spot/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ activator: x.activator, spotter: base(myCall()), frequency: String(k), reference: ref, mode, source: 'KPC Logger', comments: cm }) });
+        const body = await r.text().catch(() => ''); if (r.ok) { rlNote(); msg(`✓ Respotted ${x.activator} at ${ref}.`, 'ok'); setTimeout(spots, 8000); } else msg('✗ POTA turned it down: ' + (String(body).replace(/^"|"$/g, '') || 'error ' + r.status), 'bad'); }
+      catch (e) { msg('✗ POTA could not be reached. Check your signal.', 'bad'); }
+    }
     async function sendSpot(kind) {
-      if (isHunt()) return spotThem();
+      if (isHunt()) { msg('Hunting: use RESPOT on a spot in the SPOTS list to spot an activator.', 'bad'); return; }
       const call = stationCall(), P = myParks(), k = kHzOf($('eFreq').value), mode = $('eMode').value === 'OTHER' ? '' : $('eMode').value;
       if (!call) { msg('Put your call in ⚙ STATION first.', 'bad'); stationOpen(true); return; }
       if (!P.length) { msg('Put your park number in ⚙ STATION first.', 'bad'); stationOpen(true); return; }
@@ -590,13 +601,14 @@
     $('oN').textContent = n == null ? actList().length : n;
     $('lMini').innerHTML = `<b>${esc(sc || 'YOUR CALL')}</b> ${isHunt() ? '· 🎯 HUNTING' : '@ <i>' + esc(myRefsTxt() || 'NO PARK YET') + '</i>'}`;
   }
-  function stationOpen(open) { $('cStation').hidden = !open; $('oEdit').setAttribute('aria-expanded', open); $('oEdit').textContent = open ? '✓ DONE' : '⚙ STATION'; }
+  /* ⚙ = the station menu, folded above the entry (Brandon Oct 16) */
+  function stationOpen(open) { $('cOp').hidden = !open; $('dSta').classList.toggle('on', open); $('dSta').setAttribute('aria-expanded', open); dockSize(); if (open) { const t = !myCall() ? $('myCall') : null; if (t) setTimeout(() => t.focus(), 50); } }
   function night(on) { document.getElementById('lg').toggleAttribute('data-night', on); $('oNight').textContent = on ? '☀ DAY' : '🌙 NIGHT'; put('kpcLgNight', on); }
   function role(r) {
     SET.role = r === 'hunt' ? 'hunt' : 'act'; saveSet();
     document.querySelectorAll('[data-role]').forEach(b => b.classList.toggle('on', b.dataset.role === SET.role));
     document.getElementById('lg').dataset.role = SET.role;
-    $('dSpotT').textContent = isHunt() ? 'Spot them' : 'Spot me'; $('lvAct').textContent = isHunt() ? 'TODAY' : 'THIS ACTIVATION';
+    $('dSpot').hidden = isHunt(); $('lvAct').textContent = isHunt() ? 'TODAY' : 'THIS ACTIVATION';
     $('xPota').textContent = isHunt() ? '⬇ MY HUNTING LOG (TODAY, ADIF)' : '⬇ FILES FOR THIS ACTIVATION (POTA · WWFF · SOTA)';
     $('myParkL').firstChild.textContent = isHunt() ? 'My park numbers (only when you activate)' : 'My park numbers';
     drawAll();
@@ -605,7 +617,7 @@
     document.querySelectorAll('[data-role]').forEach(b => b.onclick = () => { role(b.dataset.role); toast(isHunt() ? '🎯 Hunting: no park number needed. Tap a spot, log it, and the park goes with the contact.' : '🏕 Activating: your park number goes on every contact.'); });
     role(SET.role);
     night(!!get('kpcLgNight', false)); $('oNight').onclick = () => night(!document.getElementById('lg').hasAttribute('data-night'));
-    $('oEdit').onclick = () => stationOpen($('cStation').hidden);
+    $('oEdit').onclick = () => stationOpen(false);
     stationOpen(!myCall() || (!isHunt() && !myParks().length && !myWwff() && !mySota()));
   }
 
