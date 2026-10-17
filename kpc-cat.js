@@ -2,7 +2,7 @@
    CAT uses the browser's Web Serial (Chrome / Edge on a computer, plugged in by USB). Settings live only in this browser
    (localStorage kpcCat). The QRZ logbook key lives only in this browser too (localStorage kpcQrz) and goes only to logbook.qrz.com.
 
-   window.KPCCat: get(), set(o), supported(), connect(ask), connected(), tune(kHz, mode) -> Promise<bool>, read() -> {khz, mode}|null,
+   window.KPCCat: get(), set(o), supported(), connect(ask), connected(), tune(kHz, mode) -> Promise<bool>, read() -> {khz, mode}|null, ptt(on, via) -> Promise<bool>,
                   test(), onStatus(fn), follow(fn) (poll the radio every 2 s while 'follow' is on)
    window.KPCQrz: get(), set(o), on(), send(adifRecord) -> Promise<{ok, sure, msg}>                                                     */
 (function () {
@@ -104,6 +104,18 @@
     }).catch(() => null);
     return busy;
   }
+  /* PTT for the FT8 tab in the KPC Logger (Brandon Oct 17). via: 'cat' (radio command), 'rts' / 'dtr' (serial line, e.g. Digirig), 'vox' (nothing sent) */
+  const PTTC = { kenwood: on => [asc(on ? 'TX;' : 'RX;')], yaesu: on => [asc(on ? 'TX1;' : 'TX0;')], yaesuold: on => [new Uint8Array([0, 0, 0, 0, on ? 0x08 : 0x88])], icom: on => [icom([0x1C, 0x00, on ? 1 : 0])] };
+  function ptt(on, via) {
+    via = via || S.ptt || 'cat'; if (via === 'vox') return Promise.resolve(true);
+    busy = busy.then(async () => {
+      if (!await connect(false)) { say('Radio not connected, so no PTT. Connect it, or use VOX.', false); return false; }
+      try { if (via === 'rts' || via === 'dtr') { await port.setSignals(via === 'rts' ? { requestToSend: !!on } : { dataTerminalReady: !!on }); return true; }
+        for (const b of (PTTC[S.proto] || PTTC.kenwood)(!!on)) await write(b); return true; }
+      catch (e) { say('PTT did not work: ' + (e.message || e), false); return false; }
+    }).catch(() => false);
+    return busy;
+  }
   function follow(fn) {
     if (fol) clearInterval(fol); fol = null; if (!fn) return; let last = '';
     fol = setInterval(async () => { if (!S.on || !S.follow || !port || document.hidden) return; const r = await read(); if (!r) return; const k = r.khz + '|' + r.mode; if (k !== last) { last = k; fn(r); } }, 2000);
@@ -131,7 +143,7 @@
   }
   window.KPCCat = {
     get: () => Object.assign({}, S), set(o) { S = Object.assign({}, S, o || {}); SV('kpcCat', S); },
-    supported: () => 'serial' in navigator, connect, disconnect, ports, usePort, pickNew, forget, connected: () => !!(port && writer), tune, read, follow,
+    supported: () => 'serial' in navigator, connect, disconnect, ports, usePort, pickNew, forget, connected: () => !!(port && writer), tune, read, follow, ptt,
     onStatus(fn) { subs.push(fn); }, kind, PROTOS: Object.keys(PROTOS)
   };
 

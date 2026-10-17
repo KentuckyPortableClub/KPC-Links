@@ -485,8 +485,8 @@
   const NAPRE = /^(A[A-L]|[KNW]|V[A-GOY]|C[F-KYZ]|X[A-O]|4[A-C]|6[D-J]|C[LMO]|T[GI]|H[O-RI]|YN|YS|V[23P]|J[3678]|8P|6Y|ZF|C6|FG|FM|FS|PJ|P4|HH|OX|XP|TO|FP|ZB)/;
   const isDX = c => { c = String(c || '').toUpperCase().split('/').reduce((a, b) => b.length > a.length ? b : a, ''); return c.length > 2 && !NAPRE.test(c); };
   /* ---------------- POTA spots ---------------- */
-  let SP = [], SPP = [], SPS = [], SPW = [], wwAt = 0, spT = null, spAt = 0;
-  const PICON = { POTA: '🌲', WWFF: '🌳', SOTA: '⛰' };
+  let SP = [], SPP = [], SPS = [], SPW = [], SPD = [], wwAt = 0, spT = null, spAt = 0;
+  const PICON = { POTA: '🌲', WWFF: '🌳', SOTA: '⛰', DX: '🌐' };
   async function spots() {
     /* POTA + SOTA every minute, WWFF (from Spothole, about 1 MB) every 3 minutes; all turned into the POTA spot shape (Brandon Oct 17) */
     const jg = (u, ms) => { const c = new AbortController(), t = setTimeout(() => c.abort(), ms); return fetch(u, { cache: 'no-store', signal: c.signal }).then(r => r.ok ? r.json() : Promise.reject(r.status)).finally(() => clearTimeout(t)); };
@@ -498,8 +498,11 @@
     if (Date.now() - wwAt > 175000) W = jg('https://spothole.app/api/v1/spots?max_age=2700', 60000).then(j => { const L = Array.isArray(j) ? j : (j && j.spots) || []; wwAt = Date.now();
       SPW = L.filter(x => /WWFF/i.test(x.sig || '') && !/RBN|SKIM/i.test(x.source || '')).map((x, i) => { const rr = x.sig_refs || []; const r0 = (Array.isArray(rr) ? rr : [rr]).map(v => typeof v === 'string' ? { id: v } : v)[0] || {};
         return { spotId: 'W' + (x.id || i + '-' + x.time), prog: 'WWFF', activator: String(x.dx_call || '').toUpperCase(), frequency: kh(x.freq != null ? x.freq : x.frequency), mode: x.mode || '', reference: String(r0.id || r0.ref || '').toUpperCase(), name: r0.name || '', locationDesc: x.dx_state ? 'US-' + x.dx_state : (x.dx_country || ''), _t: ms(x.time), comments: x.comment || '', spotter: x.de_call || '', source: '', latitude: x.dx_latitude, longitude: x.dx_longitude }; })
-        .filter(x => x.frequency && x.activator && x.reference); return 1; }).catch(() => 0);
-    const ok = await Promise.all([P, S, W]); SP = SPP.concat(SPW, SPS); if (ok.some(Boolean)) spAt = Date.now();
+        .filter(x => x.frequency && x.activator && x.reference);
+      /* DX cluster (Brandon Oct 17: 'add dx cluster option to spots on loggers'): every other Spothole spot with no program, skimmers / RBN / PSK Reporter left out */
+      SPD = L.filter(x => !x.sig && !/RBN|SKIM|PSK|WSPR|REVERSE/i.test(x.source || '') && !/-#$/.test(x.de_call || '')).map((x, i) => ({ spotId: 'D' + (x.id || i + '-' + x.time), prog: 'DX', activator: String(x.dx_call || '').toUpperCase(), frequency: kh(x.freq != null ? x.freq : x.frequency), mode: x.mode || '', reference: '', name: x.dx_country || '', locationDesc: x.dx_state ? 'US-' + x.dx_state : '', _t: ms(x.time), comments: x.comment || '', spotter: x.de_call || '', source: x.source || '', latitude: x.dx_latitude, longitude: x.dx_longitude }))
+        .filter(x => x.frequency && x.activator); return 1; }).catch(() => 0);
+    const ok = await Promise.all([P, S, W]); SP = SPP.concat(SPW, SPS, SPD); if (ok.some(Boolean)) spAt = Date.now();
     if (!SP.length && !ok.some(Boolean)) $('pList').innerHTML = '<div class="lg-empty">The spot sites are not answering right now (or no signal). Trying again in a minute.</div>';
     drawSpots(); clearTimeout(spT); spT = setTimeout(spots, 60000);
   }
@@ -507,8 +510,8 @@
   const isRbn = s => /RBN/i.test(s.source || '') || /-#$/.test(s.spotter || '');
   function drawSpots() {
     const b = $('pBand').value, m = $('pMode').value, nr = $('pNoRbn').checked, nw = $('pNoWk').checked, s = $('pSearch').value.trim().toUpperCase();
-    const pg = { POTA: $('pPota').checked, WWFF: $('pWwff').checked, SOTA: $('pSota').checked };
-    const nOn = [!!b, !!m, nw, !pg.POTA, !pg.WWFF, !pg.SOTA, !!s].filter(Boolean).length; $('pfN').textContent = nOn ? nOn + ' ON' : '';
+    const pg = { POTA: $('pPota').checked, WWFF: $('pWwff').checked, SOTA: $('pSota').checked, DX: $('pDx').checked };
+    const nOn = [!!b, !!m, nw, !pg.POTA, !pg.WWFF, !pg.SOTA, pg.DX, !!s].filter(Boolean).length; $('pfN').textContent = nOn ? nOn + ' ON' : '';
     const worked = new Set(actList().map(q => base(q.call) + '|' + q.band));
     let R = SP.filter(x => { const k = +x.frequency, md = spMode(x);
       if (!pg[x.prog || 'POTA']) return false; if (nr && isRbn(x)) return false; if (nw && worked.has(base(x.activator) + '|' + bandOf(k))) return false; if (b && bandOf(k) !== b) return false;
@@ -523,10 +526,10 @@
     const key = { when: x => AGE(x), call: x => base(x.activator), freq: x => +x.frequency, mode: x => spMode(x), park: x => String(x.reference || '') }[SO] || (x => +x.frequency);
     R.sort((a, c) => { const A = key(a), C = key(c); return (A < C ? -1 : A > C ? 1 : 0) * dir || (+a.frequency) - (+c.frequency); });
     const th = (k, n, c) => `<th class="srt${SO === k ? ' on' : ''}${c ? ' ' + c : ''}" data-srt="${k}" title="Sort by this">${n}${SO === k ? (dir > 0 ? ' ▴' : ' ▾') : ''}</th>`;
-    $('pList').innerHTML = R.length ? `<table class="lg-st"><thead><tr>${th('when', 'WHEN', 'hs')}${th('call', 'CALL')}${th('freq', 'MHz')}${th('mode', 'MODE', 'hs')}${th('park', 'PARK / REF')}<th></th></tr></thead><tbody>` + R.slice(0, 200).map(x => {
+    $('pList').innerHTML = R.length ? `<table class="lg-st"><thead><tr>${th('when', 'WHEN', 'hs')}${th('call', 'CALL')}${th('freq', 'MHz')}${th('mode', 'MODE', 'hs')}${th('park', 'PARK / REF / WHERE')}<th></th></tr></thead><tbody>` + R.slice(0, 200).map(x => {
       const k = +x.frequency, w = worked.has(base(x.activator) + '|' + bandOf(k)), ago = AGE(x);
       const st = x.locationDesc ? String(x.locationDesc).split(',')[0].replace(/^US-/, '') : '';
-      return `<tr class="sp${w ? ' wk' : ''}" data-sp="${x.spotId}"><td class="t hs">${ago < 60 ? ago + 'm' : Math.floor(ago / 60) + 'h'}</td><td class="c">${esc(x.activator)}${w ? ' <i>✓</i>' : ''}</td><td class="f">${(k / 1000).toFixed(3)}<small>${esc(bandOf(k))}</small></td><td class="hs">${esc(spMode(x) || '?')}</td><td class="r"><b>${PICON[x.prog] || '🌲'} ${esc(x.reference || '')}</b><small>${esc(x.name || '')}${st ? ' · ' + esc(st) : ''}</small>${x.comments && !isRbn(x) ? `<small class="x">${esc(String(x.comments).slice(0, 70))}</small>` : ''}</td><td class="a">${(x.prog || 'POTA') === 'POTA' ? `<span class="rs" data-respot="${x.spotId}" role="button" tabindex="0" title="Respot them on POTA">📣</span>` : ''}</td></tr>`; }).join('') + '</tbody></table>'
+      return `<tr class="sp${w ? ' wk' : ''}" data-sp="${x.spotId}"><td class="t hs">${ago < 60 ? ago + 'm' : Math.floor(ago / 60) + 'h'}</td><td class="c">${esc(x.activator)}${w ? ' <i>✓</i>' : ''}</td><td class="f">${(k / 1000).toFixed(3)}<small>${esc(bandOf(k))}</small></td><td class="hs">${esc(spMode(x) || '?')}</td><td class="r"><b>${PICON[x.prog] || '🌲'} ${esc(x.reference || (x.prog === 'DX' ? 'DX' : ''))}</b><small>${esc(x.name || '')}${st ? ' · ' + esc(st) : ''}</small>${x.comments && !isRbn(x) ? `<small class="x">${esc(String(x.comments).slice(0, 70))}</small>` : ''}</td><td class="a">${(x.prog || 'POTA') === 'POTA' ? `<span class="rs" data-respot="${x.spotId}" role="button" tabindex="0" title="Respot them on POTA">📣</span>` : ''}</td></tr>`; }).join('') + '</tbody></table>'
       : `<div class="lg-empty">${SP.length ? 'No spots match these choices.' : 'Loading spots…'}</div>`;
   }
   let SPSORT = Object.assign({ k: 'freq', d: 1 }, get('kpcLgSpSort', {}));
@@ -534,11 +537,13 @@
     SPSORT = SPSORT.k === k ? { k, d: -SPSORT.d } : { k, d: k === 'when' ? 1 : 1 }; put('kpcLgSpSort', SPSORT); drawSpots(); });
   function spotsInit() {
     $('pBand').innerHTML = '<option value="">All bands</option>' + BANDS.slice(0, 11).map(b => `<option>${b[0]}</option>`).join('');
-    ['pBand', 'pMode', 'pNoRbn', 'pNoWk', 'pPota', 'pWwff', 'pSota'].forEach(i => $(i).onchange = () => { put('kpcLgSpF', { b: $('pBand').value, m: $('pMode').value, r: $('pNoRbn').checked, w: $('pNoWk').checked, pp: $('pPota').checked, pw: $('pWwff').checked, ps: $('pSota').checked }); drawSpots(); });
-    const f = get('kpcLgSpF', null); if (f) { $('pBand').value = f.b || ''; $('pMode').value = f.m || ''; $('pNoRbn').checked = f.r !== false; $('pNoWk').checked = !!f.w; $('pPota').checked = f.pp !== false; $('pWwff').checked = f.pw !== false; $('pSota').checked = f.ps !== false; }
+    ['pBand', 'pMode', 'pNoRbn', 'pNoWk', 'pPota', 'pWwff', 'pSota', 'pDx'].forEach(i => $(i).onchange = () => { put('kpcLgSpF', { b: $('pBand').value, m: $('pMode').value, r: $('pNoRbn').checked, w: $('pNoWk').checked, pp: $('pPota').checked, pw: $('pWwff').checked, ps: $('pSota').checked, pd: $('pDx').checked }); if (i === 'pDx' && $('pDx').checked) wwAt = 0, spots(); drawSpots(); });
+    const f = get('kpcLgSpF', null); if (f) { $('pBand').value = f.b || ''; $('pMode').value = f.m || ''; $('pNoRbn').checked = f.r !== false; $('pNoWk').checked = !!f.w; $('pPota').checked = f.pp !== false; $('pWwff').checked = f.pw !== false; $('pSota').checked = f.ps !== false; $('pDx').checked = !!f.pd; }
     $('pSearch').oninput = drawSpots;
     $('pList').onclick = e => {
       const btn = e.target.closest('[data-sp]'); if (!btn) return; const x = SP.find(s => String(s.spotId) === btn.dataset.sp); if (!x) return;
+      /* an FT8 / FT4 station: tab over to the FT8 screen (Brandon Oct 17) */
+      if (/^(FT8|FT4)$/.test(spMode(x)) && window.KPCFT8UI) { window.KPCFT8UI.go({ call: String(x.activator || '').toUpperCase(), khz: +x.frequency, mode: spMode(x), ref: x.reference || '', prog: x.prog }); return; }
       clearForm(false); EDIT = null;
       $('eCall').value = String(x.activator || '').toUpperCase(); $('eFreq').value = mhz(+x.frequency);
       const md = spMode(x); $('eMode').value = [...$('eMode').options].some(o => o.value === md) ? md : 'OTHER';
@@ -861,6 +866,32 @@
     };
     const t = get('kpcLgSaved', 0); if (t && !$('aMsg').textContent) { $('aMsg').className = 'lg-msg ok'; $('aMsg').textContent = '✓ Saved for no signal on ' + new Date(t).toLocaleDateString([], { month: 'short', day: 'numeric' }) + '. Tap again to refresh it.'; }
   }
+
+  /* ---------------- for the FT8 tab (kpc-logger-ft8.js) ---------------- */
+  function quickLog(o) {
+    const call = String(o.call || '').toUpperCase().trim();
+    if (!okCall(call)) return { msg: 'That call sign does not look right.' };
+    if (!myCall()) return { msg: 'Put YOUR call in ⚙ STATION first.' };
+    if (!isHunt() && !myParks().length && !myWwff() && !mySota()) return { msg: 'Put your park number in ⚙ STATION first (or switch to 🎯 HUNTING).' };
+    const k = +o.khz, band = bandOf(k); if (!band) return { msg: 'The frequency is not on a ham band.' };
+    const when = new Date(), ll = fromGrid(o.g || '');
+    const q = { id: 'q' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: ymd(when), tm: iso(when).slice(11, 16).replace(':', ''), t: Date.now(),
+      f: mhz(k), band, mode: o.mode || 'FT8', rs: o.rs || '', rr: o.rr || '', ref: anyRefs(o.ref || '').join(','), name: '', st: '', qth: '', g: String(o.g || '').toUpperCase(), la: ll ? ll[0] : null, lo: ll ? ll[1] : null,
+      note: '', cn: SET.carry || SET.prev ? notesTxt() : '', role: isHunt() ? 'hunt' : 'act', my: stationCall(), op: curOp(), pk: isHunt() ? '' : myParks().join(','), wf: myWwff(), so: mySota(), mg: SET.grid, pw: SET.pwr, x: 0, ft: 1 };
+    L.q.push(q); NEWID = q.id; save(); drawAll(); try { radioTxt(); } catch (e) {}
+    look(call).then(x => { if (!x) return; const z = L.q.find(y => y.id === q.id); if (!z) return;
+      if (!z.name) z.name = (x.name || '').split(' ')[0]; if (!z.st && x.st) z.st = String(x.st).toUpperCase(); if (!z.qth) z.qth = x.qth || ''; if (!z.g) z.g = x.g || '';
+      if (z.la == null) { const l2 = x.la != null ? [x.la, x.lo] : fromGrid(x.g); if (l2) { z.la = l2[0]; z.lo = l2[1]; } } save(); drawAll(); }).catch(() => {});
+    return { ok: true, q, n: actList().filter(x => x.my === q.my).length };
+  }
+  window.KPCLog = {
+    me: () => ({ call: myCall(), station: stationCall(), grid: String(SET.grid || '').toUpperCase(), hunt: isHunt(), pota: myParks(), wwff: myWwff(), sota: mySota() }),
+    add: quickLog, band: bandOf, toast,
+    dupe: (call, band, mode) => dupeOf(call, band, mode, '').length > 0,
+    worked: call => { const b = base(call); return L.q.some(q => base(q.call) === b); },
+    spots: () => SP, station: () => stationOpen(true),
+    tab: t => { if (tabMode()) tab(t); else rtab(t); }
+  };
 
   async function start() {
     const parts = [() => { $('rShare').onclick = sharePic; $('hShare').onclick = sharePic; }, stationInit, opBarInit, opsInit, nearInit, entryInit, dockInit, logInit, expInit, spotsInit, spotInit, notesInit, appInit, mapInit];

@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261018c">
+<link rel="stylesheet" href="kpc-logger.css?v=20261018e">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -29,7 +29,7 @@
 
 <!-- phones and tablets: one part at a time, like Ham2K PoLo -->
 <nav class="lg-tabs" id="lgTabs" aria-label="Logger parts">
- <a class="lg-home" href="members.html" aria-label="Back to the Members Room"><img src="KPC-logo.png" alt=""></a> <button type="button" data-tab="log" class="on"><b id="tN">0</b> QSOs</button><button type="button" data-tab="spots">SPOTS</button><button type="button" data-tab="map">MAP</button><button type="button" data-tab="info">INFO</button><button type="button" data-tab="more">MORE</button>
+ <a class="lg-home" href="members.html" aria-label="Back to the Members Room"><img src="KPC-logo.png" alt=""></a> <button type="button" data-tab="log" class="on"><b id="tN">0</b> QSOs</button><button type="button" data-tab="spots">SPOTS</button><button type="button" class="lg-f8t" data-ft8open>FT8</button><button type="button" data-tab="map">MAP</button><button type="button" data-tab="info">INFO</button><button type="button" data-tab="more">MORE</button>
 </nav>
 
 <div class="lg-main">
@@ -120,10 +120,10 @@
 </div>
 
 <div class="lg-right">
-<nav class="lg-rtabs" id="lgRt" aria-label="Right side"><button type="button" data-rt="spots" class="on">SPOTS</button><button type="button" data-rt="map">MAP</button><button type="button" data-rt="info">INFO</button></nav>
-<section class="lg-card" id="cSpots" data-tabp="spots" data-rp="spots"><h2>Spots: POTA · WWFF · SOTA <small id="pAge"></small></h2>
+<nav class="lg-rtabs" id="lgRt" aria-label="Right side"><button type="button" data-rt="spots" class="on">SPOTS</button><button type="button" class="lg-f8t" data-ft8open>📡 FT8 / FT4</button><button type="button" data-rt="map">MAP</button><button type="button" data-rt="info">INFO</button></nav>
+<section class="lg-card" id="cSpots" data-tabp="spots" data-rp="spots"><h2>Spots: POTA · WWFF · SOTA · DX <small id="pAge"></small></h2>
 <details class="lg-spf" id="pFilt"><summary>⚙ FILTERS <i id="pfN"></i><span class="tip">Tap a spot to fill in the log</span></summary>
-<div class="lg-row lg-progs"><label class="lg-chk"><input type="checkbox" id="pPota" checked> 🌲 POTA</label><label class="lg-chk"><input type="checkbox" id="pWwff" checked> 🌳 WWFF / KFF</label><label class="lg-chk"><input type="checkbox" id="pSota" checked> ⛰ SOTA</label></div>
+<div class="lg-row lg-progs"><label class="lg-chk"><input type="checkbox" id="pPota" checked> 🌲 POTA</label><label class="lg-chk"><input type="checkbox" id="pWwff" checked> 🌳 WWFF / KFF</label><label class="lg-chk"><input type="checkbox" id="pSota" checked> ⛰ SOTA</label><label class="lg-chk"><input type="checkbox" id="pDx"> 🌐 DX CLUSTER</label></div>
 <div class="lg-row">
  <select id="pBand"><option value="">All bands</option></select>
  <select id="pMode"><option value="">All modes</option><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>DATA</option></select>
@@ -185,9 +185,10 @@
 
 <p class="lg-mu lg-foot">Call sign details come from public FCC data (callook.info, HamDB). Your log stays on this device (two copies) until you download it. KPC is an independent ham radio club, not part of Parks on the Air®.</p>
 </div>
+<section class="f8" id="cFt8" data-keep-light hidden aria-label="FT8 and FT4"></section>
 <div class="lg-toast" id="lgToast" role="status" hidden></div>
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="kpc-fx.js?v=20261017a"></script>
-<script src="kpc-cat.js?v=20261018a"></script><script src="kpc-logger.js?v=20261018b"></script>
+<script src="kpc-cat.js?v=20261018f"></script><script src="kpc-logger.js?v=20261018d"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261017a"></script>
