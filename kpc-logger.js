@@ -871,7 +871,7 @@
      also change bands modes frequency'). Uses kpc-cat.js (Web Serial: Chrome / Edge on a computer). Settings shared with the
      Lounge (localStorage kpcCat); the two ticks live in SET.catT / SET.catF. ---------------- */
   const CPRE = { ic705: ['icom', 115200, 'A4'], ic7300: ['icom', 115200, '94'], ic7610: ['icom', 115200, '98'], ic9700: ['icom', 115200, 'A2'], ic7100: ['icom', 19200, '88'], ic718: ['icom', 9600, '5E'],
-    g90: ['icom', 19200, '70', 'xiegu'], x6100: ['icom', 19200, '70', 'xiegu'], ft991: ['yaesu', 38400], ft891: ['yaesu', 38400], ft710: ['yaesu', 38400], ftdx10: ['yaesu', 38400], ft817: ['yaesuold', 9600], ft857: ['yaesuold', 9600],
+    g90: ['icom', 19200, '70', 'xiegu'], x6100: ['icom', 19200, '70', 'xiegu'], ft991: ['yaesu', 38400], ft891: ['yaesu', 38400], ft710: ['yaesu', 38400], ftdx10: ['yaesu', 38400], ftx1: ['yaesu', 38400], ft817: ['yaesuold', 9600], ft857: ['yaesuold', 9600],
     kx2: ['kenwood', 38400, '', 'elecraft'], kx3: ['kenwood', 38400, '', 'elecraft'], k3: ['kenwood', 38400, '', 'elecraft'], ts590: ['kenwood', 115200], ts480: ['kenwood', 57600], qmx: ['kenwood', 115200], trusdx: ['kenwood', 115200], tx500: ['kenwood', 9600] };
   let catBusy = false, catT = null;
   const catOk = () => !!(window.KPCCat && KPCCat.get().on && KPCCat.connected());
@@ -961,6 +961,7 @@
     add: quickLog, band: bandOf, toast,
     dupe: (call, band, mode) => dupeOf(call, band, mode, '').length > 0,
     worked: call => { const b = base(call); return L.q.some(q => base(q.call) === b); },
+    qs: () => L.q,
     spots: () => SP, station: () => stationOpen(true),
     tab: t => { if (tabMode()) tab(t); else rtab(t); }
   };
