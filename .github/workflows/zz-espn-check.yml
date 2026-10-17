@@ -1,0 +1,21 @@
+name: zz ESPN CORS check (temporary)
+on: workflow_dispatch
+jobs:
+  c:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for u in "https://site.web.api.espn.com/apis/site/v2/sports/football/college-football/teams/96/schedule" "https://site.web.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard" ; do
+            h=$(curl -s -D - -o /tmp/b -H 'Origin: https://kentuckyportableclub.github.io' "$u" | tr -d '\r' | grep -i 'access-control-allow-origin\|^HTTP' | tr '\n' ' ')
+            echo "::notice title=hdr::$u $h"
+          done
+          id=$(curl -s "https://site.web.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard" | python3 -c "import json,sys; j=json.load(sys.stdin); e=j['events'][0]; print(e['id'])")
+          u="https://site.web.api.espn.com/apis/site/v2/sports/football/college-football/summary?event=$id"
+          h=$(curl -s -D - -o /tmp/s -H 'Origin: https://kentuckyportableclub.github.io' "$u" | tr -d '\r' | grep -i 'access-control-allow-origin\|^HTTP' | tr '\n' ' ')
+          echo "::notice title=summary::$u $h $(python3 -c "import json; j=json.load(open('/tmp/s')); c=j['header']['competitions'][0]; print(c['status']['type']['state'], [(x['team']['abbreviation'], x.get('score')) for x in c['competitors']])")"
+          python3 - <<'P'
+          import json,urllib.request
+          j=json.load(urllib.request.urlopen("https://site.web.api.espn.com/apis/site/v2/sports/football/college-football/teams/96/schedule"))
+          for e in j['events'][-6:]:
+              c=e['competitions'][0]; print("::notice title=sched::", e['id'], c['date'], c['status']['type']['state'], [(x['team']['abbreviation'], x.get('score')) for x in c['competitors']])
+          P
