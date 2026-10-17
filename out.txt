@@ -1,6 +1,34 @@
-chrome UA + origin: 200 ACAO=None ACAM=None body=b'STATUS=AUTH&RESULT=AUTH&REASON=invalid api key\n&EXTENDED='
-chrome UA no origin: 200 ACAO=None ACAM=None body=b'STATUS=AUTH&RESULT=AUTH&REASON=API USER:  BOOK:  STATUS: AUTH REASON: invalid api key EXTENDED: &EXTENDED='
-app UA: 200 ACAO=None ACAM=None body=b'STATUS=AUTH&RESULT=AUTH&REASON=API USER:  BOOK:  STATUS: AUTH REASON: invalid api key EXTENDED: &EXTENDED='
-apps script UA: 200 ACAO=None ACAM=None body=b'STATUS=AUTH&RESULT=AUTH&REASON=API USER:  BOOK:  STATUS: AUTH REASON: invalid api key EXTENDED: &EXTENDED='
-OPTIONS: 200 ACAO=None ACAM=None body=b'STATUS=AUTH&RESULT=AUTH&REASON=API USER:  BOOK:  STATUS: AUTH REASON: invalid api key EXTENDED: &EXTENDED='
-text/plain: 200 ACAO=None ACAM=None body=b'STATUS=AUTH&RESULT=AUTH&REASON=API USER:  BOOK:  STATUS: AUTH REASON: invalid api key EXTENDED: &EXTENDED='
+
+## https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/12
+fields: DESIG_GR, DESIGNOM, TOPONYME, RESPONSABL, CORESPONSA, BIOME, UICN, HA_LEGAL, DA_CREATIO, DURE_RECON, LONDMS, LATDMS, MACODE, LIEN, note, DESIG_NO, OBJECTID, Shape | geom esriGeometryPolygon | geojson? JSON, geoJSON, PBF
+
+## https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/10
+fields: DESIG_GR, DESIGNOM, TOPONYME, RESPONSABL, CORESPONSA, BIOME, UICN, HA_LEGAL, DA_CREATIO, DURE_RECON, LONDMS, LATDMS, MACODE, LIEN, note, DESIG_NO, OBJECTID, Shape | geom esriGeometryPolygon | geojson? JSON, geoJSON, PBF
+
+## https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23
+fields: DESIG_GR, DESIGNOM, TOPONYME, RESPONSABL, CORESPONSA, BIOME, UICN, HA_LEGAL, DA_CREATIO, DURE_RECON, LONDMS, LATDMS, MACODE, LIEN, note, DESIG_NO, OBJECTID, Shape | geom esriGeometryPolygon | geojson? JSON, geoJSON, PBF
+
+## https://nsgiwa.novascotia.ca/arcgis/rest/services/ENV/ENV_NS_Prot_Area_Sys_UT83/MapServer
+layers: [[0, "ENV_NS_Prot_Area_Sys_UT83", "esriGeometryPolygon"]]
+
+## https://nsgiwa.novascotia.ca/arcgis/rest/services/PLAN/PLANCrownLandsWM84V1/MapServer
+layers: [[0, "Department of Natural Resources", "esriGeometryPolygon"]]
+
+## https://gis-erd-der.gnb.ca/server/rest/services/OpenData/PNAs/FeatureServer/0
+fields: OBJECTID, NAME, SOURCE, CLASS, SURVEY, NOM, GRP, HECTARES, OWNER, IUCN_CATEGORY, MANAGED_BY, YEAR_PROTECTED, YEAR_AMENDED, Shape__Area, Shape__Length, PNA_CODE | geom esriGeometryPolygon | geojson? JSON, geoJSON, PBF
+
+## https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Nature_Legacy_Protected_Areas/FeatureServer/0
+fields: OBJECTID, UID_, Shape__Area, Shape__Length, NAME, NOM, PROTECTION_DATE, PROTECTION_STATUS | geom esriGeometryPolygon | geojson? JSON, geoJSON, PBF
+
+## https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WildlifeRefuge/MapServer
+layers: [[0, "Wildlife Refuges", "esriGeometryPolygon"]]
+
+## https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer
+layers: [[0, "Refuges", "esriGeometryPolygon"], [1, "Special_Conservation_Areas", "esriGeometryPolygon"], [2, "Wildlife_Management_Areas", "esriGeometryPolygon"]]
+
+## https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/bdy_wildlife_mgmt_areas_py_shp/FeatureServer/0
+fields: FID, PARENT_ID, NAME_E, NOM_F, ZONE_ID, ZONEDESC_E, ZONEDESC_F, BIOME, JUR_ID, IUCN_CAT, O_AREA, LOC_E, LOC_F, TYPE_E, TYPE_F, MGMT_E, MGMT_F, LEGISL_E, LEGISL_F, STATUS_E, STATUS_F, PROTDATE, OWNER_E, OWNER_F, COMMENTS, URL, GIS_HA, YR_DESG, GAZDATE, D_OF_S, DS_RG_NM, US_RG_NM, US_RG_D, O_OF_M_D, MN_RG_NM, MN_RG_D, MN_GZ_D, UNIT_SUB, PROT_DATE, Shape_Leng, Shape_Area, Shape__Area, Shape__Length | geom esriGeometryPolygon | geojson? JSON, geoJSON, PBF
+
+sample /12: []
+
+sample /23: [{"DESIG_GR": "Refuge faunique", "DESIGNOM": "Refuge faunique", "TOPONYME": "Refuge faunique de Pointe-du-Lac", "RESPONSABL": "Ministère de l'Environnement, de la Lutte contre les changements climatiques, de la Faune et des Parcs", "CORESPONSA": null, "BIOME": "T", "UICN": "M", "HA_LEGAL": 261, "DA_CREATIO": "2005-05-25", "DURE_RECON": null, "LONDMS": "72° 41' 12,3\" O", "LATDMS": "46° 16' 27,8\" N", "MACODE": 6718, "LIEN": "https://www.quebec.ca/agriculture-environnement-et-ressources-naturelles/faune/territoires-fauniques#c247172", "note": null, "DESIG_NO": 24, "OBJECTID": 257}, {"DESIG_GR": "Habitat faunique", "DESIGNOM": "Aire de concentration d'oiseaux aquatiques", "TOPONYME": "Aire de concentration d'oiseaux aquatiques Pointe du Lac -Rivière Yamachiche", "RESPONSABL": "Ministère de l'Environnement, de la Lutte contre les changements climatiques, de la Faune et des Parcs", "CORESPONSA": null, "BIOME": "T", "UICN": "IV", "HA_LEGAL": 1125.03, "DA_CREATIO": "2005-05-12", "DURE_RECON": null, "LONDMS": "72° 44' 50,5\" O", "LATDMS": "46° 16' 29,5\" N", "MACODE": 6000, "LIEN": "https://www.quebec.ca/agriculture-environnement-et-ressources-naturelles/faune/gestion-faune-habitats-fauniques/habitats-fauniques/proteges-legalement", "note": null, "DESIG_NO": 15, "OBJECTID": 2573}, {"DESIG_GR": "Habitat faunique", "DESIGNOM": "Habitat du rat musqué", "TOPONYME": "Habitat du rat musqué du Lac Saint-Pierre S.-E.", "RESPONSABL": "Ministère de l'Environnement, de la Lutte contre les chan
