@@ -421,3 +421,28 @@ main#hl[data-theme=lodge] .hs.new{background:linear-gradient(180deg,rgba(255,170
 .hl-stats .clk b{font-size:24px;letter-spacing:1px}
 #hlFlame[data-fx=fireworks]{background:linear-gradient(180deg,#5b3cc4,#2a1866);color:#fff}
 #hlFlame[data-fx=off]{background:#22140a;color:#bba}
+/* 🌑 DARK + GHOST FLAMES (Oct 16, Brandon: a dark look for phones with moving ghost flames) */
+main#hl[data-theme=dark]{--g:#ff8a3d;--g2:#ffb072;--gr:#4cf0a0;--bg:#050505;--bg2:#0a0a0a;--card:rgba(18,18,18,.88);--ln:rgba(255,138,61,.28);--tx:#eeeeee;--mu:#9a9a9a;background:#030303}
+main#hl[data-theme=dark] .hl-hero{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.92)),#000 url('hero-lodge.jpg') center/cover no-repeat}
+@media(max-width:700px){main#hl[data-theme=dark] .hl-hero{background-image:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.92)),url('hero-lodge-mobile.jpg')}}
+main#hl[data-theme=dark] .hl-sec,main#hl[data-theme=dark] .hl-sec.alt{background:transparent}
+main#hl[data-theme=dark] .hs{background:linear-gradient(180deg,rgba(24,24,24,.92),rgba(12,12,12,.92))}
+main#hl[data-theme=dark] .hs.new{background:linear-gradient(180deg,rgba(255,120,40,.16),rgba(0,0,0,0) 60%),linear-gradient(180deg,rgba(26,22,20,.95),rgba(12,12,12,.95))}
+main#hl[data-theme=dark] .hl-tick{background:linear-gradient(180deg,#151010,#070505)}
+main#hl[data-theme=dark] .hl-tick-k{background:linear-gradient(180deg,#ff8a3d,#c2410c)}
+main#hl[data-theme=dark] input,main#hl[data-theme=dark] select{background:#0c0c0c!important}
+main#hl[data-theme=dark] .hl-sheet{background:#111}
+.hl-ghost{display:none}
+main#hl[data-theme=dark] .hl-ghost{display:block;position:fixed;left:0;right:0;bottom:0;height:70vh;pointer-events:none;z-index:0;overflow:hidden;mask-image:linear-gradient(0deg,#000 20%,transparent)}
+main#hl[data-theme=dark] .hl-ghost i{position:absolute;bottom:-160px;left:var(--x);width:calc(170px * var(--s));height:calc(260px * var(--s));border-radius:50% 50% 45% 45%/60% 60% 40% 40%;
+ background:radial-gradient(ellipse at 50% 70%,rgba(255,140,50,.55),rgba(255,70,20,.25) 40%,rgba(120,40,255,.08) 65%,transparent 72%);filter:blur(18px);opacity:.0;animation:hlGhost var(--t) ease-in-out var(--d) infinite}
+@keyframes hlGhost{0%{transform:translate(-50%,0) scale(.7);opacity:0}20%{opacity:.85}50%{transform:translate(calc(-50% + 30px),-25vh) scale(1.05) skewX(6deg);opacity:.55}80%{opacity:.25}100%{transform:translate(calc(-50% - 20px),-55vh) scale(.6) skewX(-6deg);opacity:0}}
+main#hl[data-theme=dark] #hlApp{position:relative;z-index:1}
+@media(prefers-reduced-motion:reduce){main#hl[data-theme=dark] .hl-ghost i{animation:none;opacity:.25;bottom:-60px}}
+
+/* phones: filters fold away behind one button */
+.hl-ftog{display:none}
+@media(max-width:700px){
+ .hl-ftog{display:flex;width:100%;justify-content:space-between;align-items:center;background:none;border:0;color:var(--g2);font:900 13px Arial;letter-spacing:1.5px;padding:4px 2px;cursor:pointer}
+ .hl-filters:not(.open)>*:not(.hl-ftog){display:none}
+}
