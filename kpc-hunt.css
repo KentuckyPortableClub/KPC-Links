@@ -747,3 +747,27 @@ main#hl .hl-ptabs a[aria-current="page"]{color:#2a1a05!important}
  html.hl-kb .hl-dk .dk-dock{padding:6px 10px 8px}
 }
 html.hl-kb .hl-toast{bottom:auto!important;top:8px!important}
+
+/* Oct 17 (Brandon: 'desktop only… a smaller scrolling bar with solar, weather and WSPR reports by band from where you are') */
+.hl-cx{display:none}
+@media(min-width:1100px){
+ .hl-cx{display:flex;align-items:stretch;min-height:34px;background:linear-gradient(180deg,#0f1410,#0a0d0a);border-bottom:1px solid rgba(240,201,107,.45);box-shadow:0 6px 16px rgba(0,0,0,.35);font:13px Arial;color:#e8e1cf}
+ .hl-cx-k{flex:0 0 auto;display:flex;align-items:center;padding:0 12px;font:900 11px Arial;letter-spacing:1.6px;color:#2a1a05;background:linear-gradient(180deg,#f6d58a,#d5a63a)}
+ .hl-cx-run{flex:1;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
+ .hl-cx-track{display:inline-flex;align-items:center;gap:0;white-space:nowrap;height:100%;padding-left:20px;animation:hlCx 90s linear infinite}
+ .hl-cx-run:hover .hl-cx-track{animation-play-state:paused}
+ @keyframes hlCx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+ .hl-cx .ci{display:inline-flex;align-items:center;gap:5px;padding:0 4px}
+ .hl-cx .ci b{color:#fff}
+ .hl-cx .cs{color:var(--g);padding:0 12px;opacity:.7}
+ .hl-cx i{font-style:normal;font-size:11px;font-weight:900;letter-spacing:.6px;padding:1px 6px;border-radius:99px}
+ .hl-cx i.ok{background:rgba(61,220,132,.18);color:#7ff0b0}.hl-cx i.meh{background:rgba(240,201,107,.2);color:#ffd27a}.hl-cx i.bad{background:rgba(255,107,90,.22);color:#ffb3a8}
+ .hl-cx .wb{display:inline-block;margin:0 3px;padding:1px 7px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+ .hl-cx .wb.hot{border-color:var(--g);background:rgba(240,201,107,.14)}
+ .hl-cx .wb.q{opacity:.5}
+ .hl-cx .wb small{color:var(--mu);font-size:11px}
+ .hl-cx-b{flex:0 0 auto;border:0;border-left:1px solid rgba(240,201,107,.35);background:transparent;color:var(--g2);font:900 11px Arial;letter-spacing:1px;padding:0 12px;cursor:pointer}
+ .hl-cx-b:hover{background:rgba(240,201,107,.1)}
+ main#hl[data-page="need"] .hl-cx{display:none}
+}
+@media(prefers-reduced-motion:reduce){.hl-cx-track{animation:none!important}.hl-cx-run{overflow-x:auto}}
