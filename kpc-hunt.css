@@ -972,3 +972,6 @@ main#hl a.ft8:hover{background:rgba(80,170,255,.3)}
 .rt-f8.live::after,.hl-f8m.live::after{content:'';position:absolute;top:3px;right:4px;width:7px;height:7px;border-radius:50%;background:#45e08f;box-shadow:0 0 6px #45e08f}
 @media(min-width:1100px){main#hl[data-desk="1"] .hl-f8m{display:none}}
 main#hl .f8{top:0}
+/* 🎯 chase list (Oct 17) */
+main#hl .fv.chs{opacity:.35;filter:grayscale(1)}main#hl .fv.chs.on{opacity:1;filter:none}
+main#hl .hl-pinbar.ch{background:linear-gradient(90deg,rgba(255,92,92,.28),rgba(240,201,107,.12));border-color:rgba(255,120,120,.6)}

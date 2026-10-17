@@ -275,6 +275,7 @@
     if (EDIT) { const i = L.q.findIndex(x => x.id === EDIT.id); if (i >= 0) L.q[i] = q; toast('✓ Contact updated.'); }
     else { L.q.push(q); const n = actList().filter(x => x.my === q.my).length; toast(isHunt() ? `✓ ${call}${q.ref ? ' at ' + q.ref.split(',')[0] : ''} logged (${n} today)` : `✓ ${call} logged${multi() ? ' by ' + q.op : ''} (${n} this activation${multi() && !SET.share ? ' for ' + q.my : ''})${n === 10 ? ': 🎉 that makes it a valid activation!' : ''}`, () => { L.q = L.q.filter(x => x.id !== q.id); save(); drawAll(); }); NEWID = q.id;
       /* the effect flares only for a milestone (every 50 contacts in my log) or DX outside North America (Brandon Oct 17) */
+      if (!isHunt() && myParks().length && actList().length === 10) { const m10 = `🎉 VALID ACTIVATION! 10 contacts at ${myParks().join(' + ')}. Keep going, or tap 🏁 WRAP UP when you're done.`; if (window.KPCFx && !document.getElementById('lg').hasAttribute('data-night')) KPCFx('fireworks', m10); toast(m10); }
       const tot = L.q.length, dx = isDX(call); if (tot % 50 === 0 || dx) { const fx = $('cEntry'); fx.classList.remove('pop'); void fx.offsetWidth; fx.classList.add('pop'); setTimeout(() => fx.classList.remove('pop'), 3200); const fm = dx ? `🌍 DX! ${call} is outside North America` : `🎉 ${tot} contacts in your log!`; if (window.KPCFx && !document.getElementById('lg').hasAttribute('data-night')) KPCFx(SET.fx, fm); else toast(fm); } }
     save(); clearForm(true); drawAll(); radioTxt(); $('eCall').focus();
     /* the look-up hadn't come back yet (typed fast): fill name / state / town / map spot in when it does */
@@ -418,6 +419,40 @@
   function dl(list) {
     list.forEach(([n, t, ty], i) => setTimeout(() => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([t], { type: ty || 'text/plain' })); a.download = n; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 2000); }, i * 600));
     return Promise.resolve(true);
+  }
+  /* 🏁 WRAP UP (Brandon Oct 17: 'a 0/10 progress bar, then one tap at the end that makes the POTA file, emails it to you and posts
+     your recap picture'): one pop-up with the summary and every end-of-activation step in order. */
+  function wrapInit() {
+    if (!$('dWrap')) return;
+    const box = document.createElement('div'); box.className = 'lg-wrapm'; box.id = 'cWrap'; box.hidden = true; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', 'Wrap up this activation');
+    box.innerHTML = '<div class="lg-wrapb"><button type="button" class="lg-btn line sm lg-wrapx" data-wrapx>✕</button><div id="wrSum"></div><ol class="lg-wrapl">'
+      + '<li><button type="button" class="lg-btn gold" data-wr="mail">✉️ EMAIL MY LOG FILES TO ME</button><small>Makes the POTA / WWFF / SOTA files and opens your email (on a phone: the share menu, pick your email app).</small></li>'
+      + '<li><button type="button" class="lg-btn line" data-wr="save">⬇ JUST SAVE THE FILES</button><small>Upload them at pota.app → My Logs when you have signal.</small></li>'
+      + '<li><button type="button" class="lg-btn line" data-wr="pic">📸 SHARE MY RECAP PICTURE</button><small>Facebook, Discord, a text… whatever your phone offers.</small></li>'
+      + '<li><button type="button" class="lg-btn line red" data-wr="qrt">🔴 SPOT ME QRT</button><small>Tells the hunters on POTA you\'re done.</small></li>'
+      + '<li id="wrQzL" hidden><button type="button" class="lg-btn line" data-wr="qrz">☁ SEND THIS ACTIVATION TO QRZ</button></li>'
+      + '<li><button type="button" class="lg-btn line" data-wr="new">🏁 START A NEW ACTIVATION</button><small>Your log stays on this device; this only starts counting from zero.</small></li></ol></div>';
+    document.body.appendChild(box);
+    const done = new Set();
+    function sum() {
+      const A = actList(), P = myParks(), n = A.length, T = A.map(tsOf).sort((a, b) => a - b), mins = T.length > 1 ? Math.round((T[T.length - 1] - T[0]) / 6e4) : 0;
+      const bands = [...new Set(A.map(q => q.band).filter(Boolean))], modes = [...new Set(A.map(q => q.mode).filter(Boolean))], st = new Set(A.map(q => q.st).filter(Boolean)), p2p = A.filter(q => q.ref).length;
+      const ok = isHunt() ? true : n >= 10, park = P.join(' + ') || myWwff() || mySota() || '';
+      $('wrSum').innerHTML = `<p class="lg-wrapk">🏁 WRAP UP ${isHunt() ? 'TODAY\'S HUNTING' : 'THIS ACTIVATION'}</p><h3>${esc(stationCall() || myCall() || '')} ${park ? '@ ' + esc(park) : ''}</h3>`
+        + `<p class="lg-wraps ${ok ? 'ok' : 'no'}">${isHunt() ? `🎯 ${n} contacts today` : ok ? `✅ Valid activation: ${n} contacts` : `⚠️ ${n} of 10 contacts: not a valid POTA activation yet (you can still send the log; POTA counts it as an attempt)`}</p>`
+        + `<p class="lg-wrapd">${mins >= 60 ? Math.floor(mins / 60) + ' h ' + (mins % 60) + ' min' : mins + ' min'} · ${bands.join(', ') || '-'} · ${modes.join(', ') || '-'} · ${st.size} state${st.size === 1 ? '' : 's'}${p2p ? ' · ' + p2p + ' P2P' : ''}</p>`;
+      box.querySelectorAll('[data-wr]').forEach(b => b.closest('li').classList.toggle('done', done.has(b.dataset.wr)));
+      $('wrQzL').hidden = !$('xQzAct'); box.querySelector('[data-wr="qrt"]').closest('li').hidden = isHunt();
+    }
+    $('dWrap').onclick = () => { sum(); box.hidden = false; };
+    box.addEventListener('click', async e => {
+      if (e.target === box || e.target.closest('[data-wrapx]')) { box.hidden = true; return; }
+      const b = e.target.closest('[data-wr]'); if (!b) return; const k = b.dataset.wr;
+      if (k === 'mail') $('xMail').click(); else if (k === 'save') $('xPota').click(); else if (k === 'pic') await sharePic();
+      else if (k === 'qrt') { if ($('sQrt')) $('sQrt').click(); } else if (k === 'qrz') { if ($('xQzAct')) $('xQzAct').click(); }
+      else if (k === 'new') { box.hidden = true; $('xNew').click(); done.clear(); return; }
+      done.add(k); sum(); });
+    addEventListener('keydown', e => { if (e.key === 'Escape' && !box.hidden) box.hidden = true; });
   }
   function expInit() {
     $('xPota').onclick = async () => { const F = buildFiles(); if (!F) return; const ok = await files(F.list); if (ok !== false) { F.A.forEach(q => q.x = 1); save(); toast(F.msg); } };
@@ -689,6 +724,7 @@
     $('sProg').innerHTML = pg.join('');
     drawOps();
     const g = Math.min(n, 10); $('sGoalBar').style.width = g * 10 + '%';
+    if ($('dGoal')) { const hunt = isHunt(), P0 = myParks(); $('dGoal').hidden = hunt || !P0.length; $('dGoalBar').style.width = g * 10 + '%'; $('dGoalT').textContent = n >= 10 ? '✓ ' + n : n + '/10'; $('dGoal').classList.toggle('done', n >= 10); $('dWrap').hidden = !n; }
     const P = myParks();
     $('sGoal').parentElement.classList.toggle('done', n >= 10);
     if (isHunt()) { $('sGoal').textContent = `🎯 Hunting today: ${n} contact${n === 1 ? '' : 's'}, ${new Set(A.map(q => q.ref).filter(Boolean)).size} parks`; $('sGoalBar').style.width = '100%'; }
@@ -872,7 +908,7 @@
       if (!window.caches) { m.className = 'lg-msg bad'; m.textContent = 'This browser can’t save pages for offline use.'; return; }
       try { await sw(); } catch (e) {}
       const strip = u => { const x = new URL(u, location.href); x.search = ''; x.hash = ''; return x.href; };
-      const urls = new Set([location.href, 'kpc-logger.html', 'kpc-logger.webmanifest', 'data/parkinfo/index.json', 'kpc-ky-data.json', 'kpc-icon-192.png', 'kpc-icon-512.png', 'kpc-icon-180.png', 'bg-group.jpg', 'bg-group-mobile.jpg', 'KPC26-Group-Photo.jpg', 'KPC26-Group-Photo-web.jpg', 'kpc-ft8.wasm?v=20261017a', 'kpc-ft8.js?v=20261017a', 'kpc-digi.js?v=20261018b', 'kpc-digi-ui.js?v=20261018b', 'kpc-us-states.json',
+      const urls = new Set([location.href, 'kpc-logger.html', 'kpc-logger.webmanifest', 'data/parkinfo/index.json', 'kpc-ky-data.json', 'kpc-icon-192.png', 'kpc-icon-512.png', 'kpc-icon-180.png', 'bg-group.jpg', 'bg-group-mobile.jpg', 'KPC26-Group-Photo.jpg', 'KPC26-Group-Photo-web.jpg', 'kpc-ft8.wasm?v=20261017a', 'kpc-ft8.js?v=20261017a', 'kpc-digi.js?v=20261018b', 'kpc-digi-ui.js?v=20261018b', 'kpc-voicekeyer.js?v=20261018a', 'kpc-us-states.json',
         'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js']);
       try { performance.getEntriesByType('resource').forEach(r => { const u = new URL(r.name); if (u.origin === location.origin) urls.add(r.name); }); } catch (e) {}
       const c = await caches.open('kpc-finder-v1'); let ok = 0, bad = 0;
@@ -984,7 +1020,7 @@
   };
 
   async function start() {
-    const parts = [() => { $('rShare').onclick = sharePic; $('hShare').onclick = sharePic; }, stationInit, opBarInit, opsInit, nearInit, entryInit, dockInit, logInit, expInit, spotsInit, spotInit, notesInit, appInit, mapInit, catInit, apInit];
+    const parts = [() => { $('rShare').onclick = sharePic; $('hShare').onclick = sharePic; }, stationInit, opBarInit, opsInit, nearInit, entryInit, dockInit, logInit, expInit, spotsInit, spotInit, notesInit, appInit, mapInit, catInit, apInit, wrapInit];
     parts.forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } });
     try { const o = await idbGet('log'); IDBok = true; if (o && Array.isArray(o.q) && ((o.u || 0) > (L.u || 0) || o.q.length > L.q.length)) { L = o; put(LK, L); } } catch (e) {}
     if (navigator.storage && navigator.storage.persisted) { try { PERSIST = await navigator.storage.persisted(); } catch (e) {} }
