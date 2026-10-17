@@ -217,3 +217,113 @@ main#lg[data-night] .lg-who .w{background:#140200;border-color:#4a0d07}
 main#lg[data-night] .lg-opn b,main#lg[data-night] .lg-stats .g b{color:#ff6b5a;text-shadow:none}
 main#lg[data-night] .lg-goal .bar i,main#lg[data-night] .lg-hours .h i{background:#c0392b}
 main#lg[data-night] img,main#lg[data-night] .lg-shareout{filter:brightness(.5) sepia(1) hue-rotate(-30deg) saturate(3)}
+/* Oct 16 v5 (Brandon): the things that don't change much on top (freq, band, mode, their park, name, note),
+   the contact itself on one line underneath: call · sent · rcvd · state */
+.lg-f.e.top{grid-template-columns:minmax(0,1.1fr) minmax(0,.7fr) minmax(0,.9fr) minmax(0,1.6fr) minmax(0,1fr) minmax(0,1.6fr);gap:8px;padding:10px;border-radius:12px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.08)}
+.lg-f.e.main{grid-template-columns:minmax(0,2.4fr) minmax(0,.8fr) minmax(0,.8fr) minmax(0,.8fr);gap:8px;margin-top:10px}
+.lg-f.e.main label.call{grid-column:auto}
+.lg-f.e.main input{font-size:22px;font-weight:700;font-family:ui-monospace,Menlo,Consolas,monospace;text-align:center}
+.lg-f.e.main #eCall{text-align:left}
+@media(max-width:700px){
+ .lg-f.e.top{grid-template-columns:repeat(3,minmax(0,1fr));padding:8px}
+ .lg-f.e.top label.ref,.lg-f.e.top label.note{grid-column:span 3}
+ .lg-f.e.top label{font-size:10px}
+ .lg-f.e.main{grid-template-columns:minmax(0,2.1fr) repeat(3,minmax(0,.75fr));gap:6px}
+ .lg-f.e.main label{font-size:10px;letter-spacing:.5px}
+ .lg-f.e.main input{font-size:18px;padding:10px 4px}
+ .lg-f.e.main #eCall{font-size:20px;padding:10px 8px;letter-spacing:1px}
+}
+/* ===== Oct 16 v6 (Brandon's Ham2K PoLo screenshot): log list on top, the entry docked under it, tabs on phones ===== */
+.lg-op{margin-top:16px}
+.lg-op .lg-opbar{margin:0}
+.lg-op .lg-station{margin:14px 0 0}
+.lg-op .lg-opsel{margin:12px 0 0}
+/* tabs (phones + tablets only) */
+.lg-tabs{display:none}
+@media(max-width:1099px){
+ .lg-tabs{display:flex;position:sticky;top:var(--hdr,0px);z-index:40;margin:12px -16px 0;background:#0b3a46;border-bottom:3px solid rgba(0,0,0,.35);overflow-x:auto;scrollbar-width:none}
+ .lg-tabs::-webkit-scrollbar{display:none}
+ .lg-tabs button{flex:1 0 auto;padding:14px 14px 12px;border:0;border-bottom:3px solid transparent;background:none;color:#cfe6ea;font:700 14.5px Arial,sans-serif;letter-spacing:.5px;cursor:pointer;white-space:nowrap}
+ .lg-tabs button.on{color:#fff;border-bottom-color:#fff}
+ .lg-tabs b{font-weight:700}
+ main#lg [data-tabp]{display:none!important}
+ main#lg[data-tab=log] [data-tabp=log],main#lg[data-tab=spots] [data-tabp=spots],main#lg[data-tab=map] [data-tabp=map],main#lg[data-tab=stats] [data-tabp=stats],main#lg[data-tab=notes] [data-tabp=notes],main#lg[data-tab=more] [data-tabp=more]{display:block!important}
+ main#lg{padding-bottom:calc(var(--dock,200px) + 16px)}
+ main#lg .lg-foot{display:none}
+}
+/* the log list (PoLo rows) */
+.lg-list{margin:12px -18px 0;max-height:62vh;overflow:auto;background:#101416;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+.lg-day{display:grid;grid-template-columns:auto auto 1fr;gap:14px;align-items:baseline;padding:8px 14px;background:#3a4246;border-top:3px solid #5b656a;font-size:16px}
+.lg-day b{font-size:17px;color:#fff}
+.lg-day span{color:#e3e8ea}
+.lg-day i{font-style:normal;text-align:right;color:#cdd5d8;font-size:13.5px}
+.lr{display:grid;grid-template-columns:4.4em 6.2em minmax(0,1.2fr) 2.2em minmax(0,1fr) 2.3em 2.2em 2.2em;gap:6px;align-items:center;padding:9px 14px;border-top:1px solid rgba(255,255,255,.07);font:16px ui-monospace,Menlo,Consolas,monospace;color:#e9edee;cursor:pointer}
+.lr:hover,.lr:focus{background:rgba(226,176,74,.12);outline:0}
+.lr.ed{background:rgba(226,176,74,.22)}
+.lr.new{animation:lgNew 2.4s ease-out}
+.lr .f{font-weight:700;color:#fff}.lr .f small{font-size:.72em;opacity:.7}
+.lr .c{font-weight:900;color:#fff;letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lr .c small{display:block;font:11px Arial;color:var(--mu);font-weight:400}
+.lr .s{font-family:Arial,sans-serif;color:#dfe5e6}
+.lr .n{font-family:Arial,sans-serif;color:#cfd7d9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lr .p{text-align:center;font-size:14px}
+.lr .r{text-align:right}
+.lg-tip{margin:8px 0 0}
+@media(max-width:1099px){.lg-list{margin:10px -12px 0;max-height:none}}
+@media(max-width:600px){.lr{grid-template-columns:3.4em 5.2em minmax(5.6em,1.5fr) 1.9em minmax(0,.7fr) 1.4em 1.7em 1.7em;gap:5px;padding:9px 10px;font-size:14.5px}.lg-day{padding:7px 10px}}
+@media(max-width:380px){.lr .n{display:none}.lr{grid-template-columns:3.4em 5.1em minmax(5.6em,1fr) 1.9em 1.4em 1.7em 1.7em}}
+/* the dock */
+.lg-dock{position:sticky;bottom:0;z-index:30;margin-top:0;padding:10px 14px 14px;background:linear-gradient(180deg,#8a4b1e,#6b3814);border:1px solid #b06a2e;border-radius:0 0 16px 16px;box-shadow:0 -10px 30px rgba(0,0,0,.45)}
+.lg-drawer{max-height:46vh;overflow:auto;margin:0 0 10px;padding:10px;border-radius:12px;background:rgba(0,0,0,.35)}
+.lg-drawer .lg-f.e.top{background:none;border:0;padding:0}
+.lg-drawer .lg-row{margin-top:8px}
+.lg-dchips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.lg-dchips::-webkit-scrollbar{display:none}
+.lg-dchips .dc{flex:0 0 auto;padding:11px 16px;border:0;border-radius:12px;background:#a2602a;color:#ffe2bf;font:700 15.5px Arial,sans-serif;cursor:pointer;white-space:nowrap}
+.lg-dchips .dc.on{background:#ffe2bf;color:#5a2d0c}
+.lg-dock .lg-who{margin-top:8px}
+.lg-dock .lg-who .w{background:rgba(0,0,0,.35);border-color:rgba(255,226,191,.35)}
+.lg-dstat{display:flex;flex-wrap:wrap;gap:4px 18px;margin:10px 2px 8px;color:#ffe2bf;font-size:15px}
+.lg-dstat b{color:#fff}
+.lg-dstat .ed{color:#fff;font-weight:900;letter-spacing:1px;font-size:12.5px;background:rgba(0,0,0,.35);padding:2px 8px;border-radius:6px}
+.lg-drow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:end}
+.lg-dock .lg-f.e.main{margin:0;grid-template-columns:minmax(0,2.4fr) repeat(3,minmax(0,.85fr));gap:8px}
+.lg-dock .lg-f.e.main label{position:relative;display:block;background:#15191b;border-bottom:3px solid #e2a35a;border-radius:8px 8px 2px 2px;padding:6px 10px 2px;font:400 13px Arial,sans-serif;letter-spacing:0;text-transform:none;color:#cfd5d7}
+.lg-dock .lg-f.e.main label:focus-within{border-bottom-color:#fff}
+main#lg .lg-dock .lg-f.e.main input{border:0;background:transparent;padding:2px 0 6px;font:700 24px ui-monospace,Menlo,Consolas,monospace;color:#fff;text-align:left;outline:0!important}
+main#lg .lg-dock #eCall{font-size:26px;letter-spacing:1px}
+.lg-dbtns{display:flex;align-items:center;gap:8px}
+.lg-clr{width:52px;height:52px;border-radius:12px;border:2px solid rgba(255,226,191,.55);background:transparent;color:#ffe2bf;font-size:24px;cursor:pointer}
+.lg-clr.del{border-color:#ff8a80;color:#ffb3a8}
+.lg-go{width:64px;height:64px;border-radius:50%;border:0;background:#b0723c;color:#fff;font-size:30px;font-weight:900;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.lg-go:active{transform:scale(.96)}
+@media(max-width:1099px){
+ .lg-dock{position:fixed;left:0;right:0;bottom:0;border-radius:16px 16px 0 0;padding:8px 10px calc(10px + env(safe-area-inset-bottom));z-index:1200}
+ .lg-dock .lg-f.e.main{grid-template-columns:minmax(0,2.2fr) repeat(3,minmax(0,.8fr));gap:6px}
+ .lg-dock .lg-f.e.main label{padding:5px 7px 1px;font-size:12px}
+ main#lg main#lg .lg-dock .lg-f.e.main input{font-size:20px}
+ main#lg .lg-dock #eCall{font-size:21px}
+ .lg-dbtns{flex-direction:column-reverse;gap:6px}
+ .lg-go{width:56px;height:56px;font-size:26px}
+ .lg-clr{width:44px;height:36px;font-size:18px}
+ .lg-dchips .dc{padding:9px 13px;font-size:14.5px}
+ .lg-dstat{font-size:13.5px;margin:7px 2px 6px}
+}
+@media(max-width:600px){.lg-drawer .lg-f.e.top{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* night mode for the new parts */
+main#lg[data-night] .lg-dock{background:#140000;border-color:#4a0d07}
+main#lg[data-night] .lg-dchips .dc{background:#2a0500;color:#ff8a80}
+main#lg[data-night] .lg-dchips .dc.on{background:#7a1a10;color:#ffd3cc}
+main#lg[data-night] .lg-dstat,main#lg[data-night] .lg-dstat b{color:#ff8a80}
+main#lg[data-night] .lg-dock .lg-f.e.main label{background:#000;border-bottom-color:#c0392b;color:#b85a50}
+main#lg[data-night] main#lg .lg-dock .lg-f.e.main input{color:#ff9c90;background:transparent;font-size:22px;padding:2px 0 6px}
+main#lg[data-night] .lg-go{background:#7a1a10}
+main#lg[data-night] .lg-list,main#lg[data-night] .lr{background:#050000;color:#ff9c90}
+main#lg[data-night] .lr .f,main#lg[data-night] .lr .c,main#lg[data-night] .lg-day b{color:#ff8a80}
+main#lg[data-night] .lg-day{background:#1a0300;border-top-color:#4a0d07}
+main#lg[data-night] .lg-tabs{background:#140000}
+main#lg[data-night] .lg-tabs button{color:#b85a50}
+main#lg[data-night] .lg-tabs button.on{color:#ff8a80;border-bottom-color:#ff6b5a}
+@media(max-width:1099px){.lg-drawer{max-height:34vh}}
+main#lg .lg-dock .lg-f.e.main input{border:0!important;background:transparent!important;box-shadow:none;width:100%}
+@media(max-width:1099px){.lg-toast{bottom:calc(var(--dock,200px) + 12px)}}

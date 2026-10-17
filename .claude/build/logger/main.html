@@ -1,10 +1,10 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261016d">
+<link rel="stylesheet" href="kpc-logger.css?v=20261016f">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
 @@HEADER@@
-<main id="lg" data-keep-light>
+<main id="lg" data-keep-light data-tab="log">
 <section class="lg-hero"><div class="lg-pic" role="img" aria-label="The four KPC founders operating at a campsite over the lake"></div><div class="lg-in">
 <p class="lg-eyebrow">KPC MEMBERS ROOM • BETA</p>
 <h1>KPC <span>Logger</span></h1>
@@ -24,10 +24,8 @@
 
 <div class="lg-wrap">
 
-<div class="lg-main">
-<div class="lg-left">
-<!-- station + entry together (like Ham2K PoLo: the operation on top, the contact under it) -->
-<section class="lg-card lg-entry" id="cEntry">
+<!-- the operation: who, where, how many (station details fold out) -->
+<section class="lg-card lg-op" id="cOp">
 <div class="lg-opbar">
  <div class="lg-opwho"><b id="oCall">YOUR CALL</b> <span>@</span> <b id="oPark" class="pk">PARK</b><div class="lg-opsub" id="oSub">Tap STATION to set your call and park</div></div>
  <div class="lg-opn"><b id="oN">0</b><span>QSOs</span></div>
@@ -49,53 +47,63 @@
 <div class="lg-near" id="myNear" hidden></div>
 </div>
 <div class="lg-opsel" id="eOps" hidden></div>
-<form id="eForm" autocomplete="off">
-<div class="lg-f e">
- <label class="call">Their call<input id="eCall" autocapitalize="characters" spellcheck="false" placeholder="K4TEST" required></label>
- <label>Freq (MHz or kHz)<input id="eFreq" inputmode="decimal" placeholder="14.285"></label>
- <label>Band<input id="eBand" readonly tabindex="-1"></label>
- <label>Mode<select id="eMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option><option>PSK31</option><option>JS8</option><option>OTHER</option></select></label>
- <label>Sent<input id="eRs" placeholder="59"></label>
- <label>Rcvd<input id="eRr" placeholder="59"></label>
- <label>Their park / ref (P2P)<input id="eRef" autocapitalize="characters" spellcheck="false" placeholder="US-0000, KFF-0000, W4K/EC-001"></label>
- <label>Name<input id="eName"></label>
- <label>State<input id="eSt" autocapitalize="characters" maxlength="3"></label>
- <label class="wide">Note for this contact<input id="eNote"></label>
-</div>
-<div class="lg-who" id="eWho" aria-live="polite"></div>
-<div class="lg-row">
- <button type="submit" class="lg-btn gold big" id="eLog">✓ LOG IT <small>(Enter)</small></button>
- <button type="button" class="lg-btn line" id="eClear">CLEAR</button>
- <label class="lg-chk"><input type="checkbox" id="eManual"> Set the time by hand</label>
- <input id="eWhen" type="datetime-local" step="60" hidden>
-</div>
-</form>
-<p class="lg-mu lg-time" id="eTime">Time: now (UTC)</p>
 </section>
 
-<!-- log -->
-<section class="lg-card" id="cLog"><h2>My log <small id="lCount"></small></h2>
+<!-- phones and tablets: one part at a time, like Ham2K PoLo -->
+<nav class="lg-tabs" id="lgTabs" aria-label="Logger parts">
+ <button type="button" data-tab="log" class="on"><b id="tN">0</b> QSOs</button><button type="button" data-tab="spots">SPOTS</button><button type="button" data-tab="map">MAP</button><button type="button" data-tab="stats">STATS</button><button type="button" data-tab="notes">NOTES</button><button type="button" data-tab="more">MORE</button>
+</nav>
+
+<div class="lg-main">
+<div class="lg-left">
+<section class="lg-card lg-logc" id="cLog" data-tabp="log"><h2>My log <small id="lCount"></small></h2>
 <div class="lg-row">
  <button type="button" class="lg-chip on" data-lv="act">THIS ACTIVATION</button>
  <button type="button" class="lg-chip" data-lv="all">EVERYTHING</button>
  <input type="search" id="lSearch" placeholder="Search call, park, state…">
 </div>
-<div class="lg-tw"><table class="lg-t"><thead><tr><th>UTC</th><th>Call</th><th>MHz</th><th class="hs">Mode</th><th class="hs">Sent / Rcvd</th><th>Their park</th><th class="hs">Name · State</th><th></th></tr></thead><tbody id="lBody"></tbody></table></div>
-<div class="lg-row lg-exp">
- <button type="button" class="lg-btn gold" id="xPota">⬇ FILES FOR THIS ACTIVATION (POTA · WWFF · SOTA)</button>
- <button type="button" class="lg-btn line" id="xAll">⬇ EVERYTHING (ADIF)</button>
- <button type="button" class="lg-btn line" id="xCsv">⬇ CSV</button>
- <label class="lg-btn line" for="xLoad">⬆ RESTORE FROM FILE<input type="file" id="xLoad" accept=".adi,.adif,.txt" hidden></label>
- <button type="button" class="lg-btn line" id="xNew">🏁 START A NEW ACTIVATION</button>
+<div class="lg-list" id="lList"></div>
+<p class="lg-mu lg-tip">Tap a contact to fix it or delete it.</p>
+</section>
+
+<!-- the log entry, docked under the log (phones: always at the bottom of the screen) -->
+<section class="lg-dock" id="cEntry" aria-label="Log a contact">
+<form id="eForm" autocomplete="off">
+<div class="lg-drawer" id="eMore" hidden>
+<div class="lg-f e top">
+ <label>Freq (MHz or kHz)<input id="eFreq" inputmode="decimal" placeholder="14.285"></label>
+ <label>Band<input id="eBand" readonly tabindex="-1"></label>
+ <label>Mode<select id="eMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option><option>PSK31</option><option>JS8</option><option>OTHER</option></select></label>
+ <label class="ref">Their park / ref (P2P)<input id="eRef" autocapitalize="characters" spellcheck="false" placeholder="US-0000, KFF-0000, W4K/EC-001"></label>
+ <label>Name<input id="eName"></label>
+ <label class="note">Note for this contact<input id="eNote"></label>
 </div>
-<p class="lg-safe" id="lSafe"></p>
-<p class="lg-mu">POTA wants one file per park (CALL@PARK-DATE.adi): upload at <a href="https://pota.app/#/user/logs" target="_blank" rel="noopener">pota.app → My Logs</a>. WWFF / KFF gets one ADIF file (CALL@KFF-0000 DATE.adi) for your WWFF log manager. SOTA gets the sotadata CSV: upload at <a href="https://www.sotadata.org.uk" target="_blank" rel="noopener">sotadata.org.uk</a>.</p>
+<div class="lg-row"><label class="lg-chk"><input type="checkbox" id="eManual"> Set the time by hand (UTC)</label><input id="eWhen" type="datetime-local" step="60" hidden><span class="lg-mu" id="eTime" style="margin:0">Time: now (UTC)</span></div>
+</div>
+<div class="lg-dchips">
+ <button type="button" class="dc" id="dRadio" aria-expanded="false">📻 <span id="dRadioT">set frequency</span> ▾</button>
+ <button type="button" class="dc" id="dSpot">📣 Spot</button>
+ <button type="button" class="dc" id="dMoreB">✏️ More</button>
+ <button type="button" class="dc" id="dSta" aria-label="Station">⚙</button>
+</div>
+<div class="lg-who" id="eWho" aria-live="polite"></div>
+<div class="lg-dstat"><span>⏱ <b id="dN">0</b> QSOs in <b id="dSpan">0m</b></span><span><b id="dRate">0</b> Q/h for last 10</span><span class="ed" id="dEdit" hidden>✏️ EDITING A SAVED CONTACT</span></div>
+<div class="lg-drow">
+ <div class="lg-f e main">
+  <label class="call">Their Call<input id="eCall" autocapitalize="characters" spellcheck="false" placeholder="K4TEST" required></label>
+  <label>Sent<input id="eRs" inputmode="numeric" placeholder="59"></label>
+  <label>Rcvd<input id="eRr" inputmode="numeric" placeholder="59"></label>
+  <label>State<input id="eSt" autocapitalize="characters" maxlength="3"></label>
+ </div>
+ <div class="lg-dbtns"><button type="button" class="lg-clr" id="eClear" aria-label="Clear">⌫</button><button type="button" class="lg-clr del" id="eDel" aria-label="Delete this contact" hidden>🗑</button><button type="submit" class="lg-go" id="eLog" aria-label="Log it">⬆</button></div>
+</div>
+</form>
 </section>
 </div>
 
 <div class="lg-right">
 <!-- spots -->
-<section class="lg-card" id="cSpots"><h2>POTA spots <small id="pAge"></small></h2>
+<section class="lg-card" id="cSpots" data-tabp="spots"><h2>POTA spots <small id="pAge"></small></h2>
 <p class="lg-mu">Tap a spot to fill in the log (call, frequency, mode and their park for a park-to-park).</p>
 <div class="lg-row">
  <select id="pBand"><option value="">All bands</option></select>
@@ -108,7 +116,7 @@
 </section>
 
 <!-- self spot -->
-<section class="lg-card" id="cSpot"><h2>Spot myself on POTA</h2>
+<section class="lg-card" id="cSpot" data-tabp="spots"><h2>Spot myself on POTA</h2>
 <div class="lg-f">
  <label>Freq (MHz or kHz)<input id="sFreq" inputmode="decimal" placeholder="14.285"></label>
  <label>Mode<select id="sMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option></select></label>
@@ -121,15 +129,27 @@
 </div>
 </div>
 
+<section class="lg-card" id="cFiles" data-tabp="more"><h2>Download &amp; files</h2>
+<div class="lg-row lg-exp">
+ <button type="button" class="lg-btn gold" id="xPota">⬇ FILES FOR THIS ACTIVATION (POTA · WWFF · SOTA)</button>
+ <button type="button" class="lg-btn line" id="xAll">⬇ EVERYTHING (ADIF)</button>
+ <button type="button" class="lg-btn line" id="xCsv">⬇ CSV</button>
+ <label class="lg-btn line" for="xLoad">⬆ RESTORE FROM FILE<input type="file" id="xLoad" accept=".adi,.adif,.txt" hidden></label>
+ <button type="button" class="lg-btn line" id="xNew">🏁 START A NEW ACTIVATION</button>
+</div>
+<p class="lg-safe" id="lSafe"></p>
+<p class="lg-mu">POTA wants one file per park (CALL@PARK-DATE.adi): upload at <a href="https://pota.app/#/user/logs" target="_blank" rel="noopener">pota.app → My Logs</a>. WWFF / KFF gets one ADIF file (CALL@KFF-0000 DATE.adi) for your WWFF log manager. SOTA gets the sotadata CSV: upload at <a href="https://www.sotadata.org.uk" target="_blank" rel="noopener">sotadata.org.uk</a>.</p>
+</section>
+
 <!-- map + rate -->
 <div class="lg-two">
-<section class="lg-card" id="cMap"><h2>QSO map <small id="mInfo"></small></h2>
+<section class="lg-card" id="cMap" data-tabp="map"><h2>QSO map <small id="mInfo"></small></h2>
 <div id="mMap" role="region" aria-label="Map of contacts"></div>
 <div class="lg-row"><button type="button" class="lg-chip on" data-mv="act">THIS ACTIVATION</button><button type="button" class="lg-chip" data-mv="all">EVERYTHING</button><button type="button" class="lg-chip" data-mb="sat">SATELLITE</button><button type="button" class="lg-chip" data-mb="street">STREET (WORKS WITH NO SIGNAL)</button><span class="lg-mu">Gold star = you · dots coloured by band · lines show the path.</span></div>
 <div class="lg-key" id="mKey"></div>
 </section>
 
-<section class="lg-card" id="cRate"><h2>Rates &amp; hours</h2>
+<section class="lg-card" id="cRate" data-tabp="stats"><h2>Rates &amp; hours</h2>
 <div class="lg-tiles" id="rTiles"></div>
 <h3 class="lg-h3">Contacts each hour (UTC)</h3>
 <div class="lg-hours" id="rHours"></div>
@@ -141,7 +161,7 @@
 </div>
 
 <!-- notes -->
-<section class="lg-card" id="cNotes"><h2>Activation notes</h2>
+<section class="lg-card" id="cNotes" data-tabp="notes"><h2>Activation notes</h2>
 <div class="lg-row"><label class="lg-chk"><input type="checkbox" id="nStamp"> Start my notes with my park number and today's date</label>
 <label class="lg-chk"><input type="checkbox" id="nCarry"> Add these notes to every contact I log</label></div>
 <p class="lg-stamp" id="nStampTxt" hidden></p>
@@ -150,7 +170,7 @@
 <p class="lg-mu" id="nSaved">Notes save on this device as you type. With "every contact" ticked, they go into each new contact's notes (and the ADIF file).</p>
 </section>
 
-<section class="lg-card" id="cApp"><h2>Install it · use it with no signal</h2>
+<section class="lg-card" id="cApp" data-tabp="more"><h2>Install it · use it with no signal</h2>
 <div class="lg-row"><button type="button" class="lg-btn gold" id="aInstall" hidden>📲 INSTALL THE LOGGER</button><button type="button" class="lg-btn gold" id="aSave">💾 SAVE FOR NO SIGNAL</button><span class="lg-msg" id="aMsg"></span></div>
 <div class="lg-how">
  <p><b>On a computer (Chrome or Edge):</b> tap 📲 INSTALL THE LOGGER above, or the install icon at the right end of the address bar. It opens in its own window like a program.</p>
@@ -166,4 +186,4 @@
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-logger.js?v=20261016e"></script>
+<script src="kpc-logger.js?v=20261016g"></script>
