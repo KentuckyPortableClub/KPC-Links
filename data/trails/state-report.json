@@ -778,36 +778,12 @@
    0.1
   ],
   [
-   "US-1766",
-   "Katy Trail State Park",
-   "MO",
-   "Missouri Department of Natural Resources | MSDISMizzou",
-   385,
-   0.2
-  ],
-  [
-   "US-7836",
-   "Ozark State Trail",
-   "MO",
-   "OpenStreetMap (not official)",
-   994,
-   0.0
-  ],
-  [
-   "US-2955",
-   "Wilson Cumberland Trail State Park",
-   "TN",
-   "TDEC_Bureau_of_Conservation",
-   386,
-   0.1
-  ],
-  [
-   "US-11181",
-   "Sheltowee Trace National Recreation Trail",
-   "TN",
+   "US-10258",
+   "Ouachita National National Recreation Trail",
+   "AR",
    "US Forest Service",
-   346,
-   0.5
+   219,
+   0.1
   ],
   [
    "US-9741",
@@ -958,8 +934,40 @@
    "Illinois and Michigan Canal State Trail",
    "IL",
    "OpenStreetMap (not official)",
-   139,
+   138,
    0.0
+  ],
+  [
+   "US-1766",
+   "Katy Trail State Park",
+   "MO",
+   "Missouri Department of Natural Resources | MSDISMizzou",
+   385,
+   0.2
+  ],
+  [
+   "US-7836",
+   "Ozark State Trail",
+   "MO",
+   "OpenStreetMap (not official)",
+   569,
+   0.0
+  ],
+  [
+   "US-2955",
+   "Wilson Cumberland Trail State Park",
+   "TN",
+   "TDEC_Bureau_of_Conservation",
+   386,
+   0.1
+  ],
+  [
+   "US-11181",
+   "Sheltowee Trace National Recreation Trail",
+   "TN",
+   "US Forest Service",
+   346,
+   0.5
   ],
   [
    "US-8313",
@@ -1002,27 +1010,11 @@
    0.0
   ],
   [
-   "US-10258",
-   "Ouachita National National Recreation Trail",
-   "AR",
-   "US Forest Service",
-   219,
-   0.1
-  ],
-  [
-   "US-12664",
-   "Pine Creek Rail Trail State Trail",
-   "PA",
-   "DCNR, birds, Pennsylvania Game Commission | FracTrackerAlliance",
-   99,
-   0.1
-  ],
-  [
    "US-1502",
    "Hart-Montague Trail State Park",
    "MI",
    "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
-   117,
+   44,
    0.0
   ],
   [
@@ -1030,7 +1022,7 @@
    "Kal-Haven Trail State Park",
    "MI",
    "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
-   218,
+   54,
    0.0
   ],
   [
@@ -1038,7 +1030,7 @@
    "Mike Levine Lakelands Trail State Park",
    "MI",
    "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
-   244,
+   68,
    0.0
   ],
   [
@@ -1046,7 +1038,7 @@
    "Van Buren Trail State Park",
    "MI",
    "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
-   125,
+   47,
    0.0
   ],
   [
@@ -1054,7 +1046,7 @@
    "White Pine Trail State Park",
    "MI",
    "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
-   614,
+   151,
    0.0
   ],
   [
@@ -1062,7 +1054,7 @@
    "Bay De Noc/Grand Island National Recreation Trail",
    "MI",
    "OpenStreetMap (not official)",
-   131,
+   70,
    0.0
   ],
   [
@@ -1070,7 +1062,7 @@
    "Betsie Valley State Trail",
    "MI",
    "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
-   213,
+   94,
    0.0
   ],
   [
@@ -1086,7 +1078,7 @@
    "North Eastern State Trail",
    "MI",
    "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
-   338,
+   113,
    0.1
   ],
   [
@@ -1094,7 +1086,7 @@
    "North Western State Trail",
    "MI",
    "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
-   374,
+   123,
    0.0
   ],
   [
@@ -1102,7 +1094,7 @@
    "Pere Marquette State Trail",
    "MI",
    "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
-   324,
+   176,
    0.1
   ],
   [
@@ -1118,8 +1110,16 @@
    "Iron Belle State Trail",
    "MI",
    "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
-   341,
+   193,
    0.0
+  ],
+  [
+   "US-12664",
+   "Pine Creek Rail Trail State Trail",
+   "PA",
+   "DCNR, birds, Pennsylvania Game Commission | FracTrackerAlliance",
+   99,
+   0.1
   ]
  ],
  "missing": [
@@ -1766,60 +1766,6 @@
    "no line found"
   ],
   [
-   "US-9753",
-   "Katy Trail Rock Island Spur State Park",
-   "MO",
-   "no line found"
-  ],
-  [
-   "US-8313",
-   "Mountains to Sea State Trail",
-   "TN",
-   "no line found"
-  ],
-  [
-   "US-9909",
-   "Little Stony Creek National Recreation Trail",
-   "VA",
-   "no line found"
-  ],
-  [
-   "US-9923",
-   "Virginia Creeper National Recreation Trail",
-   "VA",
-   "line found 10 km from the POTA pin: not used"
-  ],
-  [
-   "US-9933",
-   "Beaches to Bluegrass State Trail",
-   "VA",
-   "no line found"
-  ],
-  [
-   "US-9935",
-   "Virginia Bird & Wildlife State Trail",
-   "VA",
-   "no line found"
-  ],
-  [
-   "US-1002",
-   "Johnson Sauk Trail State Park",
-   "IL",
-   "no line found"
-  ],
-  [
-   "US-1007",
-   "Lincoln Trail State Park",
-   "IL",
-   "line found 41 km from the POTA pin: not used"
-  ],
-  [
-   "US-4098",
-   "Lincoln Trail Homestead State Park",
-   "IL",
-   "no line found"
-  ],
-  [
    "US-7435",
    "Civil War Trail State Trail",
    "AR",
@@ -1908,1466 +1854,1334 @@
    "Upper Illinois River Water Trail State Trail",
    "AR",
    "no line found"
+  ],
+  [
+   "US-9909",
+   "Little Stony Creek National Recreation Trail",
+   "VA",
+   "no line found"
+  ],
+  [
+   "US-9923",
+   "Virginia Creeper National Recreation Trail",
+   "VA",
+   "line found 10 km from the POTA pin: not used"
+  ],
+  [
+   "US-9933",
+   "Beaches to Bluegrass State Trail",
+   "VA",
+   "no line found"
+  ],
+  [
+   "US-9935",
+   "Virginia Bird & Wildlife State Trail",
+   "VA",
+   "no line found"
+  ],
+  [
+   "US-1002",
+   "Johnson Sauk Trail State Park",
+   "IL",
+   "no line found"
+  ],
+  [
+   "US-1007",
+   "Lincoln Trail State Park",
+   "IL",
+   "line found 41 km from the POTA pin: not used"
+  ],
+  [
+   "US-4098",
+   "Lincoln Trail Homestead State Park",
+   "IL",
+   "no line found"
+  ],
+  [
+   "US-9753",
+   "Katy Trail Rock Island Spur State Park",
+   "MO",
+   "no line found"
+  ],
+  [
+   "US-8313",
+   "Mountains to Sea State Trail",
+   "TN",
+   "no line found"
   ]
  ],
  "agency": [
   [
-   "Camden Expedition Scenic Highway State Trail",
+   "Katy Trail Rock Island Spur State Park",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Projects VIEW"
+   "geeknixta",
+   "Vail to Upper Missouri River Breaks Optimized Distance"
   ],
   [
-   "Camden Expedition Scenic Highway State Trail",
+   "Katy Trail Rock Island Spur State Park",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Land Records"
+   "City of Columbia, Missouri | IT/GIS Department of the City o",
+   "Park Trails  for City of Columbia, MO"
   ],
   [
-   "Camden Expedition Scenic Highway State Trail",
+   "Katy Trail Rock Island Spur State Park",
    "skip (not state/federal)",
-   "City of Pueblo, Colorado, Department of Information Technolo",
-   "Multi-Use Trails"
+   "ctabor_Republic",
+   "TAP_Grant_Trail"
   ],
   [
-   "Camden Expedition Scenic Highway State Trail",
+   "Katy Trail Rock Island Spur State Park",
    "skip (not state/federal)",
-   "rtcderek",
-   "ArkansasRiverTrailLine"
+   "CJCarsley2",
+   "Missouri_River_Response_WFL"
   ],
   [
-   "Camden Expedition Scenic Highway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments 2025"
+   "The Nature Conservancy |  | link.elmore@tnc.org_TNC",
+   "Ataya TN Trails TWRA public view"
   ],
   [
-   "Camden Expedition Scenic Highway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments view 2025"
+   "Shelby County 911 | Shelby County 911 | shelbycounty911",
+   "911 Trail Markers"
   ],
   [
-   "Camden Expedition Scenic Highway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailBuildPts"
+   "NTM718_IGTLab",
+   "TREC Tennessee Statewide Trails and Greenways SCTDD"
   ],
   [
-   "Camden Expedition Scenic Highway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Off_Street_Trails_Downtown"
+   "jace.swain-crowley",
+   "Greenways and Trails"
   ],
   [
-   "Camden Expedition Scenic Highway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Future Trails (Mature Support)"
+   "Jon Zetterberg | Jzett33",
+   "Mile Markers"
   ],
   [
-   "Camden Expedition Scenic Highway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Segments_for_Short-Term_Counts.gdb"
+   "NHunt73",
+   "Chattanooga Regional Trails"
   ],
   [
-   "Camden Expedition Scenic Highway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "rculpepp_UAGEOS",
-   "NWA AADB Final view"
+   "FontaineMaury",
+   "Scrum Branch"
   ],
   [
-   "Camden Expedition Scenic Highway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "SP 1 View"
+   "Derived from the 2016 USGS 3DEP LiDAR Collection. | WashCoTN",
+   "Five-Foot Contours of Washington County, Tennessee"
   ],
   [
-   "Camden Expedition Scenic Highway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 3 View"
+   "FontaineMaury",
+   "Sams Branch"
   ],
   [
-   "Camden Expedition Scenic Highway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 2 View"
+   "afrisbie_ATConservancy",
+   "Appalachian Trail Visitor Use Management"
   ],
   [
-   "Pig Trail Scenic Byway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "University of Arkansas, Center for Advanced Spatial Technolo",
-   "dataVIEW of NW Arkansas Trails 2026"
+   "ppurgiel_ucdd",
+   "Bigbee River Trail"
   ],
   [
-   "Pig Trail Scenic Byway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Parks and Trails"
+   "NCCC | geoace67",
+   "NChick_web1"
   ],
   [
-   "Pig Trail Scenic Byway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
-   "Fayetteville Trails"
+   "Collierville GIS | ColliervilleGIS",
+   "GreenbeltTrails"
   ],
   [
-   "Pig Trail Scenic Byway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "isaac.sims_craftontull",
-   "South Arkansas Trails_WFL1"
+   "monroeco",
+   "Trail Spots"
   ],
   [
-   "Pig Trail Scenic Byway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "gogeographics",
-   "Arkansas_Trails_Collected"
+   "bensmith252",
+   "Buffalo Mountain Hiking Trails 2_WFL1"
   ],
   [
-   "Pig Trail Scenic Byway State Trail",
+   "Wilson Cumberland Trail State Park",
    "skip (not state/federal)",
-   "Northwest Arkansas Regional Planning Commission |  | cscarla",
-   "Heritage_Trails_Lines"
+   "FontaineMaury",
+   "SavageGulfHikingEasy"
   ],
   [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails Connecting Bentonville"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "cscarlat04",
-   "NWA_CPRG_Proj_Plans_Trails"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Regional Equity Index"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "JPWalden@GarverUSA.com_Garver",
-   "Pulaski_Co_Trails_UNINCORP_ONLY"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Equity Index 2021"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Popups"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "wlgardnerjr",
-   "Magazine Trails and Waypoints_WFL1"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails HCH StoryMap"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailSystems"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | swindmiller_camsys",
-   "Trail_shp"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Selected_Segments_gdb"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Projects VIEW"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Land Records"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "City of Pueblo, Colorado, Department of Information Technolo",
-   "Multi-Use Trails"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "rtcderek",
-   "ArkansasRiverTrailLine"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments 2025"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments view 2025"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailBuildPts"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Off_Street_Trails_Downtown"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Future Trails (Mature Support)"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Segments_for_Short-Term_Counts.gdb"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "rculpepp_UAGEOS",
-   "NWA AADB Final view"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "SP 1 View"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 3 View"
-  ],
-  [
-   "Pig Trail Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 2 View"
-  ],
-  [
-   "West-Northwest State Trail",
-   "skip (not state/federal)",
-   "University of Arkansas, Center for Advanced Spatial Technolo",
-   "dataVIEW of NW Arkansas Trails 2026"
-  ],
-  [
-   "West-Northwest State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Parks and Trails"
-  ],
-  [
-   "West-Northwest State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
-   "Fayetteville Trails"
-  ],
-  [
-   "West-Northwest State Trail",
-   "skip (not state/federal)",
-   "isaac.sims_craftontull",
-   "South Arkansas Trails_WFL1"
-  ],
-  [
-   "West-Northwest State Trail",
-   "skip (not state/federal)",
-   "gogeographics",
-   "Arkansas_Trails_Collected"
+   "Wilson Cumberland Trail State Park",
+   "268 lines 0 km from pin",
+   "TDEC_Bureau_of_Conservation",
+   "arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Trails_(view)/FeatureServer/0 Park_Name"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "Northwest Arkansas Regional Planning Commission |  | cscarla",
-   "Heritage_Trails_Lines"
+   "The Nature Conservancy |  | link.elmore@tnc.org_TNC",
+   "Ataya TN Trails TWRA public view"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails Connecting Bentonville"
+   "Shelby County 911 | Shelby County 911 | shelbycounty911",
+   "911 Trail Markers"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "cscarlat04",
-   "NWA_CPRG_Proj_Plans_Trails"
+   "NTM718_IGTLab",
+   "TREC Tennessee Statewide Trails and Greenways SCTDD"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons"
+   "jace.swain-crowley",
+   "Greenways and Trails"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Regional Equity Index"
+   "Jon Zetterberg | Jzett33",
+   "Mile Markers"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
+   "NHunt73",
+   "Chattanooga Regional Trails"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "JPWalden@GarverUSA.com_Garver",
-   "Pulaski_Co_Trails_UNINCORP_ONLY"
+   "FontaineMaury",
+   "Scrum Branch"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Equity Index 2021"
+   "Derived from the 2016 USGS 3DEP LiDAR Collection. | WashCoTN",
+   "Five-Foot Contours of Washington County, Tennessee"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Popups"
+   "FontaineMaury",
+   "Sams Branch"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "wlgardnerjr",
-   "Magazine Trails and Waypoints_WFL1"
+   "afrisbie_ATConservancy",
+   "Appalachian Trail Visitor Use Management"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails HCH StoryMap"
+   "ppurgiel_ucdd",
+   "Bigbee River Trail"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailSystems"
+   "NCCC | geoace67",
+   "NChick_web1"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | swindmiller_camsys",
-   "Trail_shp"
+   "Collierville GIS | ColliervilleGIS",
+   "GreenbeltTrails"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Selected_Segments_gdb"
+   "monroeco",
+   "Trail Spots"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Projects VIEW"
+   "bensmith252",
+   "Buffalo Mountain Hiking Trails 2_WFL1"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Land Records"
+   "FontaineMaury",
+   "SavageGulfHikingEasy"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "City of Pueblo, Colorado, Department of Information Technolo",
-   "Multi-Use Trails"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Raleigh Greenway Trails"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "rtcderek",
-   "ArkansasRiverTrailLine"
+   "Catawba Lands Conservancy | MoonLight_User",
+   "Carolina Thread Trail"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments 2025"
+   "trn_gis3",
+   "North Carolina State University Greenways Network"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments view 2025"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Raleigh Greenway Mile Markers"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailBuildPts"
+   "nconemap",
+   "Coastal Plain Paddle Trails - (Points)"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Off_Street_Trails_Downtown"
+   "evan.saunderspearce_bmi",
+   "Carolina Thread Trail Status"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Future Trails (Mature Support)"
+   "City of Raleigh Parks, Recreation and Cultural Resources | R",
+   "Raleigh Greenway Trails (Structures Only)"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Segments_for_Short-Term_Counts.gdb"
+   "nconemap",
+   "Coastal Plain Paddle Trails (Lines)"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "rculpepp_UAGEOS",
-   "NWA AADB Final view"
+   "kzager1",
+   "First Broad River Trail"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "SP 1 View"
+   "nleprell",
+   "Trails"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 3 View"
+   "kzager1",
+   "Founders and Masons Bend Trails"
   ],
   [
-   "West-Northwest State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 2 View"
+   "kzager1",
+   "Kings Mtn Gateway Trail"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "University of Arkansas, Center for Advanced Spatial Technolo",
-   "dataVIEW of NW Arkansas Trails 2026"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Park and Greenway Damage Assessment"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Parks and Trails"
+   "kzager1",
+   "Marcia Cloninger Rail Trail"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
-   "Fayetteville Trails"
+   "Steven.Castongia@CharlotteNC.gov_charlotte",
+   "Cross Charlotte Trail"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "isaac.sims_craftontull",
-   "South Arkansas Trails_WFL1"
+   "kzager1",
+   "Lake Whelchel Trail"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "gogeographics",
-   "Arkansas_Trails_Collected"
+   "GCLMPO",
+   "CTT_CatawbaCrossing"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "Northwest Arkansas Regional Planning Commission |  | cscarla",
-   "Heritage_Trails_Lines"
+   "City of Charlotte |  | CharlotteNC",
+   "Urban Arboretum Trail Route"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails Connecting Bentonville"
+   "Wake County GIS | WakeCountyGovernment",
+   "Greenways in Wake County, NC"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "cscarlat04",
-   "NWA_CPRG_Proj_Plans_Trails"
+   "marisa.verbanic@raleighnc.gov_ral",
+   "School to Greenway Closest Features"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons"
+   "NCNERR | elizabeth.pinnix_ncdenr",
+   "mastersitemap_hikingtrails"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Regional Equity Index"
+   "City of Raleigh Parks, Recreation and Cultural Resources, GI",
+   "Raleigh Parks Asset Inventory"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
+   "Charlotte Dept. of Transportation and Mecklenburg County Par",
+   "Cross Charlotte Trail"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "JPWalden@GarverUSA.com_Garver",
-   "Pulaski_Co_Trails_UNINCORP_ONLY"
+   "NC Wildlife Resources Commission | anna.stefanowicz@ncwildli",
+   "NCWRC Game Land Trails Roads"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Equity Index 2021"
+   "City of Raleigh |  | RaleighPRCR",
+   "Raleigh Park Restrooms"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Popups"
+   "City of Charlotte | Mecklenburg County GIS | CharlotteNC",
+   "Greenway Masterplan"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "wlgardnerjr",
-   "Magazine Trails and Waypoints_WFL1"
+   "City of Charlotte | Mecklenburg County GIS. | CharlotteNC",
+   "Greenways"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails HCH StoryMap"
+   "Greg Kopsch | kobrien",
+   "CNTrails"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailSystems"
+   "kzager1",
+   "York Greenway"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | swindmiller_camsys",
-   "Trail_shp"
+   "UNCW Office of Sustainability \n | sustainability@uncw.edu",
+   "Tar Kiln Nature Trail: Initial Data Collection"
   ],
   [
-   "True Grit State Trail",
+   "Mountains to Sea State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Selected_Segments_gdb"
+   "Mecklenburg County GIS | MecklenburgCoNC",
+   "Nature Preserve Trails"
   ],
   [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Projects VIEW"
+   "Mountains to Sea State Trail",
+   "149 lines 0 km from pin",
+   "NC Division of Parks and Recreation, DNCR | NCStateParks_NCD",
+   "://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1 SYSTEMNAME"
   ],
   [
-   "True Grit State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Land Records"
+   "vmcnees",
+   "FFST Data Collection"
   ],
   [
-   "True Grit State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "City of Pueblo, Colorado, Department of Information Technolo",
-   "Multi-Use Trails"
+   "vmcnees",
+   "FFST Classification"
   ],
   [
-   "True Grit State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "rtcderek",
-   "ArkansasRiverTrailLine"
+   "sarah.chabaane_burkenc",
+   "FFST_System_FS"
   ],
   [
-   "True Grit State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments 2025"
+   "swhalen5",
+   "FFST Trailhead "
   ],
   [
-   "True Grit State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments view 2025"
+   "Keagan@dbdplanning",
+   "Fonta Flora Data Build 08_28_18_WFL1_ViewOnly"
   ],
   [
-   "True Grit State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailBuildPts"
+   "a.hester@precisionsafesidewalks.com",
+   "Morganton Condition Assessment_WFL1"
   ],
   [
-   "True Grit State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Off_Street_Trails_Downtown"
+   "a.hester@precisionsafesidewalks.com",
+   "Morganton Daxbot Condition Assessment_WFL1"
   ],
   [
-   "True Grit State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Future Trails (Mature Support)"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Raleigh Greenway Trails"
   ],
   [
-   "True Grit State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Segments_for_Short-Term_Counts.gdb"
+   "Catawba Lands Conservancy | MoonLight_User",
+   "Carolina Thread Trail"
   ],
   [
-   "True Grit State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "rculpepp_UAGEOS",
-   "NWA AADB Final view"
+   "trn_gis3",
+   "North Carolina State University Greenways Network"
   ],
   [
-   "True Grit State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "SP 1 View"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Raleigh Greenway Mile Markers"
   ],
   [
-   "True Grit State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 3 View"
+   "nconemap",
+   "Coastal Plain Paddle Trails - (Points)"
   ],
   [
-   "True Grit State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 2 View"
+   "evan.saunderspearce_bmi",
+   "Carolina Thread Trail Status"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "University of Arkansas, Center for Advanced Spatial Technolo",
-   "dataVIEW of NW Arkansas Trails 2026"
+   "City of Raleigh Parks, Recreation and Cultural Resources | R",
+   "Raleigh Greenway Trails (Structures Only)"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Parks and Trails"
+   "nconemap",
+   "Coastal Plain Paddle Trails (Lines)"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
-   "Fayetteville Trails"
+   "kzager1",
+   "First Broad River Trail"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "isaac.sims_craftontull",
-   "South Arkansas Trails_WFL1"
+   "nleprell",
+   "Trails"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "gogeographics",
-   "Arkansas_Trails_Collected"
+   "kzager1",
+   "Founders and Masons Bend Trails"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "Northwest Arkansas Regional Planning Commission |  | cscarla",
-   "Heritage_Trails_Lines"
+   "kzager1",
+   "Kings Mtn Gateway Trail"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails Connecting Bentonville"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Park and Greenway Damage Assessment"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "cscarlat04",
-   "NWA_CPRG_Proj_Plans_Trails"
+   "kzager1",
+   "Marcia Cloninger Rail Trail"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons"
+   "Steven.Castongia@CharlotteNC.gov_charlotte",
+   "Cross Charlotte Trail"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Regional Equity Index"
+   "kzager1",
+   "Lake Whelchel Trail"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
+   "GCLMPO",
+   "CTT_CatawbaCrossing"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "JPWalden@GarverUSA.com_Garver",
-   "Pulaski_Co_Trails_UNINCORP_ONLY"
+   "City of Charlotte |  | CharlotteNC",
+   "Urban Arboretum Trail Route"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Equity Index 2021"
+   "Wake County GIS | WakeCountyGovernment",
+   "Greenways in Wake County, NC"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Popups"
+   "marisa.verbanic@raleighnc.gov_ral",
+   "School to Greenway Closest Features"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "wlgardnerjr",
-   "Magazine Trails and Waypoints_WFL1"
+   "NCNERR | elizabeth.pinnix_ncdenr",
+   "mastersitemap_hikingtrails"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails HCH StoryMap"
+   "City of Raleigh Parks, Recreation and Cultural Resources, GI",
+   "Raleigh Parks Asset Inventory"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailSystems"
+   "Charlotte Dept. of Transportation and Mecklenburg County Par",
+   "Cross Charlotte Trail"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | swindmiller_camsys",
-   "Trail_shp"
+   "NC Wildlife Resources Commission | anna.stefanowicz@ncwildli",
+   "NCWRC Game Land Trails Roads"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Selected_Segments_gdb"
+   "City of Raleigh |  | RaleighPRCR",
+   "Raleigh Park Restrooms"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Projects VIEW"
+   "City of Charlotte | Mecklenburg County GIS | CharlotteNC",
+   "Greenway Masterplan"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Land Records"
+   "City of Charlotte | Mecklenburg County GIS. | CharlotteNC",
+   "Greenways"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "City of Pueblo, Colorado, Department of Information Technolo",
-   "Multi-Use Trails"
+   "Greg Kopsch | kobrien",
+   "CNTrails"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "rtcderek",
-   "ArkansasRiverTrailLine"
+   "kzager1",
+   "York Greenway"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments 2025"
+   "UNCW Office of Sustainability \n | sustainability@uncw.edu",
+   "Tar Kiln Nature Trail: Initial Data Collection"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Fonta-Flora State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments view 2025"
+   "Mecklenburg County GIS | MecklenburgCoNC",
+   "Nature Preserve Trails"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailBuildPts"
+   "Fonta-Flora State Trail",
+   "2 lines 5 km from pin",
+   "North Carolina Department of Transportation, Integrated Mobi",
+   "WFvHYDMVmmxMeM/arcgis/rest/services/NCDOT_Great_Trails_State_Plan_Network/FeatureServer/33 Plan_Name"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Off_Street_Trails_Downtown"
+   "Piedmont.Triad.Regional.Council",
+   "YRST_AccessPoints"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Future Trails (Mature Support)"
+   "Piedmont.Triad.Regional.Council",
+   "MileMarkerSigns"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Segments_for_Short-Term_Counts.gdb"
+   "Piedmont.Triad.Regional.Council",
+   "Blueway"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "rculpepp_UAGEOS",
-   "NWA AADB Final view"
+   "Piedmont.Triad.Regional.Council",
+   "MileMarkerSigns"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "SP 1 View"
+   "Piedmont.Triad.Regional.Council",
+   "YRST_AccessPoints"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 3 View"
+   "Piedmont.Triad.Regional.Council",
+   "Blueway"
   ],
   [
-   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 2 View"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Raleigh Greenway Trails"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "University of Arkansas, Center for Advanced Spatial Technolo",
-   "dataVIEW of NW Arkansas Trails 2026"
+   "Catawba Lands Conservancy | MoonLight_User",
+   "Carolina Thread Trail"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Parks and Trails"
+   "trn_gis3",
+   "North Carolina State University Greenways Network"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
-   "Fayetteville Trails"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Raleigh Greenway Mile Markers"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "isaac.sims_craftontull",
-   "South Arkansas Trails_WFL1"
+   "nconemap",
+   "Coastal Plain Paddle Trails - (Points)"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "gogeographics",
-   "Arkansas_Trails_Collected"
+   "evan.saunderspearce_bmi",
+   "Carolina Thread Trail Status"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "Northwest Arkansas Regional Planning Commission |  | cscarla",
-   "Heritage_Trails_Lines"
+   "City of Raleigh Parks, Recreation and Cultural Resources | R",
+   "Raleigh Greenway Trails (Structures Only)"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails Connecting Bentonville"
+   "nconemap",
+   "Coastal Plain Paddle Trails (Lines)"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "cscarlat04",
-   "NWA_CPRG_Proj_Plans_Trails"
+   "kzager1",
+   "First Broad River Trail"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons"
+   "nleprell",
+   "Trails"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Regional Equity Index"
+   "kzager1",
+   "Founders and Masons Bend Trails"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
+   "kzager1",
+   "Kings Mtn Gateway Trail"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "JPWalden@GarverUSA.com_Garver",
-   "Pulaski_Co_Trails_UNINCORP_ONLY"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Park and Greenway Damage Assessment"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Equity Index 2021"
+   "kzager1",
+   "Marcia Cloninger Rail Trail"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Popups"
+   "Steven.Castongia@CharlotteNC.gov_charlotte",
+   "Cross Charlotte Trail"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "wlgardnerjr",
-   "Magazine Trails and Waypoints_WFL1"
+   "kzager1",
+   "Lake Whelchel Trail"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails HCH StoryMap"
+   "GCLMPO",
+   "CTT_CatawbaCrossing"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailSystems"
+   "City of Charlotte |  | CharlotteNC",
+   "Urban Arboretum Trail Route"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | swindmiller_camsys",
-   "Trail_shp"
+   "Wake County GIS | WakeCountyGovernment",
+   "Greenways in Wake County, NC"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Selected_Segments_gdb"
+   "marisa.verbanic@raleighnc.gov_ral",
+   "School to Greenway Closest Features"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Projects VIEW"
+   "NCNERR | elizabeth.pinnix_ncdenr",
+   "mastersitemap_hikingtrails"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Land Records"
+   "City of Raleigh Parks, Recreation and Cultural Resources, GI",
+   "Raleigh Parks Asset Inventory"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "City of Pueblo, Colorado, Department of Information Technolo",
-   "Multi-Use Trails"
+   "Charlotte Dept. of Transportation and Mecklenburg County Par",
+   "Cross Charlotte Trail"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "rtcderek",
-   "ArkansasRiverTrailLine"
+   "NC Wildlife Resources Commission | anna.stefanowicz@ncwildli",
+   "NCWRC Game Land Trails Roads"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments 2025"
+   "City of Raleigh |  | RaleighPRCR",
+   "Raleigh Park Restrooms"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments view 2025"
+   "City of Charlotte | Mecklenburg County GIS | CharlotteNC",
+   "Greenway Masterplan"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailBuildPts"
+   "City of Charlotte | Mecklenburg County GIS. | CharlotteNC",
+   "Greenways"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Off_Street_Trails_Downtown"
+   "Greg Kopsch | kobrien",
+   "CNTrails"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Future Trails (Mature Support)"
+   "kzager1",
+   "York Greenway"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Segments_for_Short-Term_Counts.gdb"
+   "UNCW Office of Sustainability \n | sustainability@uncw.edu",
+   "Tar Kiln Nature Trail: Initial Data Collection"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Yadkin River State Trail",
    "skip (not state/federal)",
-   "rculpepp_UAGEOS",
-   "NWA AADB Final view"
+   "Mecklenburg County GIS | MecklenburgCoNC",
+   "Nature Preserve Trails"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "SP 1 View"
+   "Yadkin River State Trail",
+   "18 lines 0 km from pin",
+   "NC Division of Parks and Recreation, DNCR | NCStateParks_NCD",
+   "://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1 SYSTEMNAME"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 3 View"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Raleigh Greenway Trails"
   ],
   [
-   "Sylamore Scenic Byway State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 2 View"
+   "Catawba Lands Conservancy | MoonLight_User",
+   "Carolina Thread Trail"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "University of Arkansas, Center for Advanced Spatial Technolo",
-   "dataVIEW of NW Arkansas Trails 2026"
+   "trn_gis3",
+   "North Carolina State University Greenways Network"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Parks and Trails"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Raleigh Greenway Mile Markers"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
-   "Fayetteville Trails"
+   "nconemap",
+   "Coastal Plain Paddle Trails - (Points)"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "isaac.sims_craftontull",
-   "South Arkansas Trails_WFL1"
+   "evan.saunderspearce_bmi",
+   "Carolina Thread Trail Status"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "gogeographics",
-   "Arkansas_Trails_Collected"
+   "City of Raleigh Parks, Recreation and Cultural Resources | R",
+   "Raleigh Greenway Trails (Structures Only)"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "Northwest Arkansas Regional Planning Commission |  | cscarla",
-   "Heritage_Trails_Lines"
+   "nconemap",
+   "Coastal Plain Paddle Trails (Lines)"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails Connecting Bentonville"
+   "kzager1",
+   "First Broad River Trail"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "cscarlat04",
-   "NWA_CPRG_Proj_Plans_Trails"
+   "nleprell",
+   "Trails"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons"
+   "kzager1",
+   "Founders and Masons Bend Trails"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Regional Equity Index"
+   "kzager1",
+   "Kings Mtn Gateway Trail"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Park and Greenway Damage Assessment"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "JPWalden@GarverUSA.com_Garver",
-   "Pulaski_Co_Trails_UNINCORP_ONLY"
+   "kzager1",
+   "Marcia Cloninger Rail Trail"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Equity Index 2021"
+   "Steven.Castongia@CharlotteNC.gov_charlotte",
+   "Cross Charlotte Trail"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Popups"
+   "kzager1",
+   "Lake Whelchel Trail"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "wlgardnerjr",
-   "Magazine Trails and Waypoints_WFL1"
+   "GCLMPO",
+   "CTT_CatawbaCrossing"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails HCH StoryMap"
+   "City of Charlotte |  | CharlotteNC",
+   "Urban Arboretum Trail Route"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailSystems"
+   "Wake County GIS | WakeCountyGovernment",
+   "Greenways in Wake County, NC"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | swindmiller_camsys",
-   "Trail_shp"
+   "marisa.verbanic@raleighnc.gov_ral",
+   "School to Greenway Closest Features"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Selected_Segments_gdb"
+   "NCNERR | elizabeth.pinnix_ncdenr",
+   "mastersitemap_hikingtrails"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Projects VIEW"
+   "City of Raleigh Parks, Recreation and Cultural Resources, GI",
+   "Raleigh Parks Asset Inventory"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Land Records"
+   "Charlotte Dept. of Transportation and Mecklenburg County Par",
+   "Cross Charlotte Trail"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "City of Pueblo, Colorado, Department of Information Technolo",
-   "Multi-Use Trails"
+   "NC Wildlife Resources Commission | anna.stefanowicz@ncwildli",
+   "NCWRC Game Land Trails Roads"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "rtcderek",
-   "ArkansasRiverTrailLine"
+   "City of Raleigh |  | RaleighPRCR",
+   "Raleigh Park Restrooms"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments 2025"
+   "City of Charlotte | Mecklenburg County GIS | CharlotteNC",
+   "Greenway Masterplan"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments view 2025"
+   "City of Charlotte | Mecklenburg County GIS. | CharlotteNC",
+   "Greenways"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailBuildPts"
+   "Greg Kopsch | kobrien",
+   "CNTrails"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Off_Street_Trails_Downtown"
+   "kzager1",
+   "York Greenway"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "sfrank_TB",
-   "Future Trails (Mature Support)"
+   "UNCW Office of Sustainability \n | sustainability@uncw.edu",
+   "Tar Kiln Nature Trail: Initial Data Collection"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Deep River State Trail",
    "skip (not state/federal)",
-   "mvann_UNC",
-   "Segments_for_Short-Term_Counts.gdb"
+   "Mecklenburg County GIS | MecklenburgCoNC",
+   "Nature Preserve Trails"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "rculpepp_UAGEOS",
-   "NWA AADB Final view"
+   "Deep River State Trail",
+   "2 lines 65 km from pin",
+   "North Carolina Department of Transportation, Integrated Mobi",
+   "WFvHYDMVmmxMeM/arcgis/rest/services/NCDOT_Great_Trails_State_Plan_Network/FeatureServer/33 Plan_Name"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "SP 1 View"
+   "Deep River State Trail",
+   "2 lines 65 km from pin",
+   "North Carolina Department of Transportation, Integrated Mobi",
+   "WFvHYDMVmmxMeM/arcgis/rest/services/NCDOT_Great_Trails_State_Plan_Network/FeatureServer/33 Plan_Name"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 3 View"
+   "Deep River State Trail",
+   "25 lines 0 km from pin",
+   "NC Division of Parks and Recreation, DNCR | NCStateParks_NCD",
+   "://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1 SYSTEMNAME"
   ],
   [
-   "Upper Illinois River Water Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 2 View"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Raleigh Greenway Trails"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "hudson2018",
-   "Appalachian Trail Explored Pennsylvania"
+   "Catawba Lands Conservancy | MoonLight_User",
+   "Carolina Thread Trail"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "phlbikeco",
-   "Shared Use Paths in New Jersey and Pennsylvania"
+   "trn_gis3",
+   "North Carolina State University Greenways Network"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "hudson2018",
-   "East Brandywine Trails Downingtown Pennsylvania"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Raleigh Greenway Mile Markers"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "dhadjie1@students.towson.edu_TowsonU",
-   "Ricketts Glen Trails and Water Features"
+   "nconemap",
+   "Coastal Plain Paddle Trails - (Points)"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "County of Berks |  | bburkovich_berks",
-   "Berks County Existing Trails"
+   "evan.saunderspearce_bmi",
+   "Carolina Thread Trail Status"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "hudson2018",
-   "Dowlin Forge Park and Trails"
+   "City of Raleigh Parks, Recreation and Cultural Resources | R",
+   "Raleigh Greenway Trails (Structures Only)"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "RA_NRARCGIS",
-   "Pennsylvania State Park Trails"
+   "nconemap",
+   "Coastal Plain Paddle Trails (Lines)"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
+   "kzager1",
+   "First Broad River Trail"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "hudson2018",
-   "Springlawn Trail and Big Elk Creek"
+   "nleprell",
+   "Trails"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "bburkovich_berks",
-   "Trails SEADJCP"
+   "kzager1",
+   "Founders and Masons Bend Trails"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "County of Berks |  | BerksCountyGIS",
-   "Berks County Trail Gaps"
+   "kzager1",
+   "Kings Mtn Gateway Trail"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "Berks County Planning Commission | bburkovich_berks",
-   "Trails FMRJCP"
+   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
+   "Park and Greenway Damage Assessment"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "CCPA | gis_ccpa",
-   "Dams & Gauge - Yellow Breeches"
+   "kzager1",
+   "Marcia Cloninger Rail Trail"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "RA_NRARCGIS",
-   "All Trails in Pennsylvania from Explore PA Trails"
+   "Steven.Castongia@CharlotteNC.gov_charlotte",
+   "Cross Charlotte Trail"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "Created by Cathy Poppenwimer (former AMC GIS Scientist). | c",
-   "Protect the View - Threatened Trail Views - Use for Labels"
+   "kzager1",
+   "Lake Whelchel Trail"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "scrplan",
-   "Pennsylvania Trails"
+   "GCLMPO",
+   "CTT_CatawbaCrossing"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "Created by Cathy Poppenwimer (former AMC GIS Scientist). | c",
-   "Protect the View - Threatened Trail Views - Labels for Big W"
+   "City of Charlotte |  | CharlotteNC",
+   "Urban Arboretum Trail Route"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "pennshare",
-   "Pennsylvania Rail Lines"
+   "Wake County GIS | WakeCountyGovernment",
+   "Greenways in Wake County, NC"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "hudson2018",
-   "White Clay Creek Pennsylvania State Park and Preserve Hiking"
+   "marisa.verbanic@raleighnc.gov_ral",
+   "School to Greenway Closest Features"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "Created by Cathy Poppenwimer (former AMC GIS Scientist) and ",
-   "Protect the View - Threatened Trail Views - Focus Area Polyg"
+   "NCNERR | elizabeth.pinnix_ncdenr",
+   "mastersitemap_hikingtrails"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "hudson2018",
-   "Red Clay Trail"
+   "City of Raleigh Parks, Recreation and Cultural Resources, GI",
+   "Raleigh Parks Asset Inventory"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "hudson2018",
-   "Parrish Trail"
+   "Charlotte Dept. of Transportation and Mecklenburg County Par",
+   "Cross Charlotte Trail"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "thopper",
-   "ExplorePAtrails_Trails201805"
+   "NC Wildlife Resources Commission | anna.stefanowicz@ncwildli",
+   "NCWRC Game Land Trails Roads"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "ejr5801_pennstate",
-   "ExplorePA Trails"
+   "City of Raleigh |  | RaleighPRCR",
+   "Raleigh Park Restrooms"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "AYanezmorillo_clus",
-   "kr_Trails and Paths (needs review)"
+   "City of Charlotte | Mecklenburg County GIS | CharlotteNC",
+   "Greenway Masterplan"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "mwitmer",
-   "NEPA Trails"
+   "City of Charlotte | Mecklenburg County GIS. | CharlotteNC",
+   "Greenways"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "hudson2018",
-   "Appalachian Trail and Blue Rocks_ Pa"
+   "Greg Kopsch | kobrien",
+   "CNTrails"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "Selected downtown Uniontown place locations: \u00a9 OpenStreetMap",
-   "Sheepskin Trail Interactive Map_WFL1"
+   "kzager1",
+   "York Greenway"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "CCPA, PAFBC | gis_ccpa",
-   "Water_Trails"
+   "UNCW Office of Sustainability \n | sustainability@uncw.edu",
+   "Tar Kiln Nature Trail: Initial Data Collection"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Dan River State Trail",
    "skip (not state/federal)",
-   "HHSmith_clus",
-   "KR_Trails"
+   "Mecklenburg County GIS | MecklenburgCoNC",
+   "Nature Preserve Trails"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
-   "15 lines 0 km from pin",
-   "DCNR, birds, Pennsylvania Game Commission | FracTrackerAllia",
-   "tps://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/PA_BirdHab/FeatureServer/0 NAME01"
+   "Dan River State Trail",
+   "16 lines 0 km from pin",
+   "NC Division of Parks and Recreation, DNCR | NCStateParks_NCD",
+   "://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1 SYSTEMNAME"
   ],
   [
    "Hart-Montague Trail State Park",
@@ -4310,6 +4124,192 @@
    "69 lines 0 km from pin",
    "Michigan Department of Natural Resources | Michigan Departme",
    "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "hudson2018",
+   "Appalachian Trail Explored Pennsylvania"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "phlbikeco",
+   "Shared Use Paths in New Jersey and Pennsylvania"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "hudson2018",
+   "East Brandywine Trails Downingtown Pennsylvania"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "dhadjie1@students.towson.edu_TowsonU",
+   "Ricketts Glen Trails and Water Features"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "County of Berks |  | bburkovich_berks",
+   "Berks County Existing Trails"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "hudson2018",
+   "Dowlin Forge Park and Trails"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "RA_NRARCGIS",
+   "Pennsylvania State Park Trails"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "FTKaren",
+   "North Country Trail"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "hudson2018",
+   "Springlawn Trail and Big Elk Creek"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "bburkovich_berks",
+   "Trails SEADJCP"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "County of Berks |  | BerksCountyGIS",
+   "Berks County Trail Gaps"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "Berks County Planning Commission | bburkovich_berks",
+   "Trails FMRJCP"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "CCPA | gis_ccpa",
+   "Dams & Gauge - Yellow Breeches"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "RA_NRARCGIS",
+   "All Trails in Pennsylvania from Explore PA Trails"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "Created by Cathy Poppenwimer (former AMC GIS Scientist). | c",
+   "Protect the View - Threatened Trail Views - Use for Labels"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "scrplan",
+   "Pennsylvania Trails"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "Created by Cathy Poppenwimer (former AMC GIS Scientist). | c",
+   "Protect the View - Threatened Trail Views - Labels for Big W"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "pennshare",
+   "Pennsylvania Rail Lines"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "hudson2018",
+   "White Clay Creek Pennsylvania State Park and Preserve Hiking"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "Created by Cathy Poppenwimer (former AMC GIS Scientist) and ",
+   "Protect the View - Threatened Trail Views - Focus Area Polyg"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "hudson2018",
+   "Red Clay Trail"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "hudson2018",
+   "Parrish Trail"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "thopper",
+   "ExplorePAtrails_Trails201805"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "ejr5801_pennstate",
+   "ExplorePA Trails"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "AYanezmorillo_clus",
+   "kr_Trails and Paths (needs review)"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "mwitmer",
+   "NEPA Trails"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "hudson2018",
+   "Appalachian Trail and Blue Rocks_ Pa"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "Selected downtown Uniontown place locations: \u00a9 OpenStreetMap",
+   "Sheepskin Trail Interactive Map_WFL1"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "CCPA, PAFBC | gis_ccpa",
+   "Water_Trails"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "HHSmith_clus",
+   "KR_Trails"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "15 lines 0 km from pin",
+   "DCNR, birds, Pennsylvania Game Commission | FracTrackerAllia",
+   "tps://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/PA_BirdHab/FeatureServer/0 NAME01"
   ]
  ]
 }
