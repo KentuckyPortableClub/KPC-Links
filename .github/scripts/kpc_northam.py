@@ -92,7 +92,8 @@ for f in glob.glob('data/sota/t/*.json'):
         a = r[0].split('/')[0]
         if a.startswith(SOTA_NA) and not a.startswith(('VE', 'VA', 'VY', 'VO', 'W', 'K', 'N')) or a.startswith(('KP4', 'KP2')):
             if r[0] not in seen and in_na(r[4], r[5]):
-                seen.add(r[0]); rows.append(['SOTA', r[0], r[1], r[4], r[5], 'https://sotl.as/summits/' + r[0], r[3], r[6]])
+                seen.add(r[0]); nm = r[1] if r[1] and r[1] != r[0] else f'Unnamed summit, {r[3]:,} m ({r[2]:,} ft)'  # most Mexican summits have no name
+                rows.append(['SOTA', r[0], nm, r[4], r[5], 'https://sotl.as/summits/' + r[0], r[3], r[6]])
 
 json.dump({'updated': datetime.date.today().isoformat(), 'rows': rows}, open('data/northam.json', 'w'), separators=(',', ':'), ensure_ascii=False)
 note('North America pins', f"{len(pota)} POTA parks ({', '.join(f'{k} {v}' for k, v in sorted(byprog.items()))}), {nw} WWFF, {len(seen)} SOTA")
