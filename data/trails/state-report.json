@@ -26,14 +26,6 @@
    0.0
   ],
   [
-   "US-10258",
-   "Ouachita National National Recreation Trail",
-   "AR",
-   "US Forest Service",
-   219,
-   0.1
-  ],
-  [
    "US-7528",
    "Air Line State Trail",
    "CT",
@@ -968,6 +960,166 @@
    "OpenStreetMap (not official)",
    139,
    0.0
+  ],
+  [
+   "US-8313",
+   "Mountains to Sea State Trail",
+   "NC",
+   "NC Division of Parks and Recreation, DNCR | NCStateParks_NCDPR",
+   617,
+   0.0
+  ],
+  [
+   "US-11856",
+   "Fonta-Flora State Trail",
+   "NC",
+   "North Carolina Department of Transportation, Integrated Mobility Division | IMD.NCDOT.GOV",
+   8,
+   4.6
+  ],
+  [
+   "US-12320",
+   "Yadkin River State Trail",
+   "NC",
+   "NC Division of Parks and Recreation, DNCR | NCStateParks_NCDPR",
+   260,
+   0.0
+  ],
+  [
+   "US-12717",
+   "Deep River State Trail",
+   "NC",
+   "NC Division of Parks and Recreation, DNCR | NCStateParks_NCDPR",
+   182,
+   0.0
+  ],
+  [
+   "US-13002",
+   "Dan River State Trail",
+   "NC",
+   "NC Division of Parks and Recreation, DNCR | NCStateParks_NCDPR",
+   143,
+   0.0
+  ],
+  [
+   "US-10258",
+   "Ouachita National National Recreation Trail",
+   "AR",
+   "US Forest Service",
+   219,
+   0.1
+  ],
+  [
+   "US-12664",
+   "Pine Creek Rail Trail State Trail",
+   "PA",
+   "DCNR, birds, Pennsylvania Game Commission | FracTrackerAlliance",
+   99,
+   0.1
+  ],
+  [
+   "US-1502",
+   "Hart-Montague Trail State Park",
+   "MI",
+   "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
+   117,
+   0.0
+  ],
+  [
+   "US-1511",
+   "Kal-Haven Trail State Park",
+   "MI",
+   "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
+   218,
+   0.0
+  ],
+  [
+   "US-1513",
+   "Mike Levine Lakelands Trail State Park",
+   "MI",
+   "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
+   244,
+   0.0
+  ],
+  [
+   "US-1550",
+   "Van Buren Trail State Park",
+   "MI",
+   "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
+   125,
+   0.0
+  ],
+  [
+   "US-1555",
+   "White Pine Trail State Park",
+   "MI",
+   "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
+   614,
+   0.0
+  ],
+  [
+   "US-13170",
+   "Bay De Noc/Grand Island National Recreation Trail",
+   "MI",
+   "OpenStreetMap (not official)",
+   131,
+   0.0
+  ],
+  [
+   "US-13171",
+   "Betsie Valley State Trail",
+   "MI",
+   "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
+   213,
+   0.0
+  ],
+  [
+   "US-13172",
+   "North Central State Trail",
+   "MI",
+   "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
+   100,
+   0.0
+  ],
+  [
+   "US-13174",
+   "North Eastern State Trail",
+   "MI",
+   "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
+   338,
+   0.1
+  ],
+  [
+   "US-13176",
+   "North Western State Trail",
+   "MI",
+   "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
+   374,
+   0.0
+  ],
+  [
+   "US-13179",
+   "Pere Marquette State Trail",
+   "MI",
+   "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
+   324,
+   0.1
+  ],
+  [
+   "US-13182",
+   "Polly Ann State Trail",
+   "MI",
+   "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
+   12,
+   7.7
+  ],
+  [
+   "US-13184",
+   "Iron Belle State Trail",
+   "MI",
+   "Michigan Department of Natural Resources | Michigan Department of Natural Resources | MichiganDNR",
+   341,
+   0.0
   ]
  ],
  "missing": [
@@ -981,96 +1133,6 @@
    "US-11854",
    "Pinnell Mountain National Recreation Trail",
    "AK",
-   "no line found"
-  ],
-  [
-   "US-7435",
-   "Civil War Trail State Trail",
-   "AR",
-   "no line found"
-  ],
-  [
-   "US-7436",
-   "Southwest Trail State Trail",
-   "AR",
-   "line found 354 km from the POTA pin: not used"
-  ],
-  [
-   "US-8316",
-   "Scenic 7 Byway State Trail",
-   "AR",
-   "no line found"
-  ],
-  [
-   "US-8321",
-   "Talimena Scenic Byway State Trail",
-   "AR",
-   "no line found"
-  ],
-  [
-   "US-8322",
-   "Mount Magazine Scenic Byway State Trail",
-   "AR",
-   "no line found"
-  ],
-  [
-   "US-8323",
-   "Ozark Highlands Scenic Byway State Trail",
-   "AR",
-   "no line found"
-  ],
-  [
-   "US-9161",
-   "Butterfield State Trail",
-   "AR",
-   "line found 91 km from the POTA pin: not used"
-  ],
-  [
-   "US-9163",
-   "Saracen State Trail",
-   "AR",
-   "no line found"
-  ],
-  [
-   "US-9681",
-   "Camden Expedition Scenic Highway State Trail",
-   "AR",
-   "no line found"
-  ],
-  [
-   "US-10303",
-   "Pig Trail Scenic Byway State Trail",
-   "AR",
-   "no line found"
-  ],
-  [
-   "US-10426",
-   "West-Northwest State Trail",
-   "AR",
-   "no line found"
-  ],
-  [
-   "US-10715",
-   "True Grit State Trail",
-   "AR",
-   "no line found"
-  ],
-  [
-   "US-11127",
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "AR",
-   "no line found"
-  ],
-  [
-   "US-11393",
-   "Sylamore Scenic Byway State Trail",
-   "AR",
-   "no line found"
-  ],
-  [
-   "US-13461",
-   "Upper Illinois River Water Trail State Trail",
-   "AR",
    "no line found"
   ],
   [
@@ -1756,1814 +1818,2498 @@
    "Lincoln Trail Homestead State Park",
    "IL",
    "no line found"
+  ],
+  [
+   "US-7435",
+   "Civil War Trail State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-7436",
+   "Southwest Trail State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-8316",
+   "Scenic 7 Byway State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-8321",
+   "Talimena Scenic Byway State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-8322",
+   "Mount Magazine Scenic Byway State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-8323",
+   "Ozark Highlands Scenic Byway State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-9161",
+   "Butterfield State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-9163",
+   "Saracen State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-9681",
+   "Camden Expedition Scenic Highway State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-10303",
+   "Pig Trail Scenic Byway State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-10426",
+   "West-Northwest State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-10715",
+   "True Grit State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-11127",
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-11393",
+   "Sylamore Scenic Byway State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-13461",
+   "Upper Illinois River Water Trail State Trail",
+   "AR",
+   "no line found"
   ]
  ],
  "agency": [
   [
-   "North Bend Rail Trail State Trail",
+   "Camden Expedition Scenic Highway State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "Potomac Heritage National Scenic Trail of Northern Virginia"
+   "sfrank_TB",
+   "Active Transportation Infrastructure Projects VIEW"
   ],
   [
-   "North Bend Rail Trail State Trail",
+   "Camden Expedition Scenic Highway State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "Potomac Heritage National Scenic Trail of Northern Virginia "
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Land Records"
   ],
   [
-   "North Bend Rail Trail State Trail",
+   "Camden Expedition Scenic Highway State Trail",
    "skip (not state/federal)",
-   "WVatlas",
-   "Tourist Regions of West Virginia"
+   "City of Pueblo, Colorado, Department of Information Technolo",
+   "Multi-Use Trails"
   ],
   [
-   "North Bend Rail Trail State Trail",
+   "Camden Expedition Scenic Highway State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "Potomac River Water Access"
+   "rtcderek",
+   "ArkansasRiverTrailLine"
   ],
   [
-   "North Bend Rail Trail State Trail",
+   "Camden Expedition Scenic Highway State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "PHNST Climate Exposure"
+   "sfrank_TB",
+   "Join Features to Adopted Trail Segments 2025"
   ],
   [
-   "North Bend Rail Trail State Trail",
+   "Camden Expedition Scenic Highway State Trail",
    "skip (not state/federal)",
-   "DPMC_GIS",
-   "UEER_Recreation"
+   "sfrank_TB",
+   "Join Features to Adopted Trail Segments view 2025"
   ],
   [
-   "North Bend Rail Trail State Trail",
+   "Camden Expedition Scenic Highway State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "PHNST Amenities Recommendations"
+   "sfrank_TB",
+   "TrailBuildPts"
   ],
   [
-   "North Bend Rail Trail State Trail",
+   "Camden Expedition Scenic Highway State Trail",
    "skip (not state/federal)",
-   "Nortern Virginia Regional Commission | rboyd1@pwcgov.org",
-   "PHNST Trail"
+   "mvann_UNC",
+   "Off_Street_Trails_Downtown"
   ],
   [
-   "North Bend Rail Trail State Trail",
+   "Camden Expedition Scenic Highway State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "PHNST Wayfinding Recommendations"
+   "sfrank_TB",
+   "Future Trails (Mature Support)"
   ],
   [
-   "North Bend Rail Trail State Trail",
+   "Camden Expedition Scenic Highway State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | BBC Research & Cons",
-   "Broad Run and Goose Creek PHNST Segment"
+   "mvann_UNC",
+   "Segments_for_Short-Term_Counts.gdb"
   ],
   [
-   "North Bend Rail Trail State Trail",
+   "Camden Expedition Scenic Highway State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "PHNST Wayfinding & Amenities - Volunteer Assignments"
+   "rculpepp_UAGEOS",
+   "NWA AADB Final view"
   ],
   [
-   "North Bend Rail Trail State Trail",
+   "Camden Expedition Scenic Highway State Trail",
    "skip (not state/federal)",
-   "Jefferson County GIS/Addressing Office | jgormont",
-   "Jefferson County WV - Trails"
+   "vgurel_TB",
+   "SP 1 View"
   ],
   [
-   "North Bend Rail Trail State Trail",
+   "Camden Expedition Scenic Highway State Trail",
    "skip (not state/federal)",
-   "DPMC_GIS",
-   "DeerCreekProjectData_20221122"
+   "vgurel_TB",
+   "Down 3 View"
   ],
   [
-   "North Bend Rail Trail State Trail",
-   "3 lines 0 km from pin",
-   "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donald",
-   "m/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0 trailName"
+   "Camden Expedition Scenic Highway State Trail",
+   "skip (not state/federal)",
+   "vgurel_TB",
+   "Down 2 View"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "University of Arkansas, Center for Advanced Spatial Technolo",
+   "dataVIEW of NW Arkansas Trails 2026"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Parks and Trails"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
+   "Fayetteville Trails"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "isaac.sims_craftontull",
+   "South Arkansas Trails_WFL1"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "gogeographics",
+   "Arkansas_Trails_Collected"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "Northwest Arkansas Regional Planning Commission |  | cscarla",
+   "Heritage_Trails_Lines"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "vgurel_TB",
+   "Proposed Trails Connecting Bentonville"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "cscarlat04",
+   "NWA_CPRG_Proj_Plans_Trails"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "gogeographics",
+   "NW_Arkansas_Mountain_Bike_Polygons"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "Regional Equity Index"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "gogeographics",
+   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "JPWalden@GarverUSA.com_Garver",
+   "Pulaski_Co_Trails_UNINCORP_ONLY"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "Active Transportation Infrastructure Equity Index 2021"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Popups"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "wlgardnerjr",
+   "Magazine Trails and Waypoints_WFL1"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "vgurel_TB",
+   "Proposed Trails HCH StoryMap"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "TrailSystems"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "City of Fayetteville, AR | swindmiller_camsys",
+   "Trail_shp"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "mvann_UNC",
+   "Selected_Segments_gdb"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "Active Transportation Infrastructure Projects VIEW"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Land Records"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "City of Pueblo, Colorado, Department of Information Technolo",
+   "Multi-Use Trails"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "rtcderek",
+   "ArkansasRiverTrailLine"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "Join Features to Adopted Trail Segments 2025"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "Join Features to Adopted Trail Segments view 2025"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "TrailBuildPts"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "mvann_UNC",
+   "Off_Street_Trails_Downtown"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "Future Trails (Mature Support)"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "mvann_UNC",
+   "Segments_for_Short-Term_Counts.gdb"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "rculpepp_UAGEOS",
+   "NWA AADB Final view"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "vgurel_TB",
+   "SP 1 View"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "vgurel_TB",
+   "Down 3 View"
+  ],
+  [
+   "Pig Trail Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "vgurel_TB",
+   "Down 2 View"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "University of Arkansas, Center for Advanced Spatial Technolo",
+   "dataVIEW of NW Arkansas Trails 2026"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Parks and Trails"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
+   "Fayetteville Trails"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "isaac.sims_craftontull",
+   "South Arkansas Trails_WFL1"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "gogeographics",
+   "Arkansas_Trails_Collected"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "Northwest Arkansas Regional Planning Commission |  | cscarla",
+   "Heritage_Trails_Lines"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "vgurel_TB",
+   "Proposed Trails Connecting Bentonville"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "cscarlat04",
+   "NWA_CPRG_Proj_Plans_Trails"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "gogeographics",
+   "NW_Arkansas_Mountain_Bike_Polygons"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "Regional Equity Index"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "gogeographics",
+   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "JPWalden@GarverUSA.com_Garver",
+   "Pulaski_Co_Trails_UNINCORP_ONLY"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "Active Transportation Infrastructure Equity Index 2021"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Popups"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "wlgardnerjr",
+   "Magazine Trails and Waypoints_WFL1"
   ],
   [
-   "Greenbrier River Trail State Trail",
+   "West-Northwest State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "Potomac Heritage National Scenic Trail of Northern Virginia"
+   "vgurel_TB",
+   "Proposed Trails HCH StoryMap"
   ],
   [
-   "Greenbrier River Trail State Trail",
+   "West-Northwest State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "Potomac Heritage National Scenic Trail of Northern Virginia "
+   "sfrank_TB",
+   "TrailSystems"
   ],
   [
-   "Greenbrier River Trail State Trail",
+   "West-Northwest State Trail",
    "skip (not state/federal)",
-   "WVatlas",
-   "Tourist Regions of West Virginia"
+   "City of Fayetteville, AR | swindmiller_camsys",
+   "Trail_shp"
   ],
   [
-   "Greenbrier River Trail State Trail",
+   "West-Northwest State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "Potomac River Water Access"
+   "mvann_UNC",
+   "Selected_Segments_gdb"
   ],
   [
-   "Greenbrier River Trail State Trail",
+   "West-Northwest State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "PHNST Climate Exposure"
+   "sfrank_TB",
+   "Active Transportation Infrastructure Projects VIEW"
   ],
   [
-   "Greenbrier River Trail State Trail",
+   "West-Northwest State Trail",
    "skip (not state/federal)",
-   "DPMC_GIS",
-   "UEER_Recreation"
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Land Records"
   ],
   [
-   "Greenbrier River Trail State Trail",
+   "West-Northwest State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "PHNST Amenities Recommendations"
+   "City of Pueblo, Colorado, Department of Information Technolo",
+   "Multi-Use Trails"
   ],
   [
-   "Greenbrier River Trail State Trail",
+   "West-Northwest State Trail",
    "skip (not state/federal)",
-   "Nortern Virginia Regional Commission | rboyd1@pwcgov.org",
-   "PHNST Trail"
+   "rtcderek",
+   "ArkansasRiverTrailLine"
   ],
   [
-   "Greenbrier River Trail State Trail",
+   "West-Northwest State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "PHNST Wayfinding Recommendations"
+   "sfrank_TB",
+   "Join Features to Adopted Trail Segments 2025"
   ],
   [
-   "Greenbrier River Trail State Trail",
+   "West-Northwest State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | BBC Research & Cons",
-   "Broad Run and Goose Creek PHNST Segment"
+   "sfrank_TB",
+   "Join Features to Adopted Trail Segments view 2025"
   ],
   [
-   "Greenbrier River Trail State Trail",
+   "West-Northwest State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "PHNST Wayfinding & Amenities - Volunteer Assignments"
+   "sfrank_TB",
+   "TrailBuildPts"
   ],
   [
-   "Greenbrier River Trail State Trail",
+   "West-Northwest State Trail",
    "skip (not state/federal)",
-   "Jefferson County GIS/Addressing Office | jgormont",
-   "Jefferson County WV - Trails"
+   "mvann_UNC",
+   "Off_Street_Trails_Downtown"
   ],
   [
-   "Greenbrier River Trail State Trail",
+   "West-Northwest State Trail",
    "skip (not state/federal)",
-   "DPMC_GIS",
-   "DeerCreekProjectData_20221122"
+   "sfrank_TB",
+   "Future Trails (Mature Support)"
   ],
   [
-   "Greenbrier River Trail State Trail",
-   "3 lines 0 km from pin",
-   "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donald",
-   "m/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0 trailName"
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "mvann_UNC",
+   "Segments_for_Short-Term_Counts.gdb"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "rculpepp_UAGEOS",
+   "NWA AADB Final view"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "vgurel_TB",
+   "SP 1 View"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "vgurel_TB",
+   "Down 3 View"
+  ],
+  [
+   "West-Northwest State Trail",
+   "skip (not state/federal)",
+   "vgurel_TB",
+   "Down 2 View"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "University of Arkansas, Center for Advanced Spatial Technolo",
+   "dataVIEW of NW Arkansas Trails 2026"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Parks and Trails"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
+   "Fayetteville Trails"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "isaac.sims_craftontull",
+   "South Arkansas Trails_WFL1"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "gogeographics",
+   "Arkansas_Trails_Collected"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "Northwest Arkansas Regional Planning Commission |  | cscarla",
+   "Heritage_Trails_Lines"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "vgurel_TB",
+   "Proposed Trails Connecting Bentonville"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "cscarlat04",
+   "NWA_CPRG_Proj_Plans_Trails"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "gogeographics",
+   "NW_Arkansas_Mountain_Bike_Polygons"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "Regional Equity Index"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "gogeographics",
+   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "JPWalden@GarverUSA.com_Garver",
+   "Pulaski_Co_Trails_UNINCORP_ONLY"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "Active Transportation Infrastructure Equity Index 2021"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Popups"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "wlgardnerjr",
+   "Magazine Trails and Waypoints_WFL1"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "vgurel_TB",
+   "Proposed Trails HCH StoryMap"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "TrailSystems"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "City of Fayetteville, AR | swindmiller_camsys",
+   "Trail_shp"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "mvann_UNC",
+   "Selected_Segments_gdb"
+  ],
+  [
+   "True Grit State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "Active Transportation Infrastructure Projects VIEW"
   ],
   [
-   "Elk River Trail State Trail",
+   "True Grit State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "Potomac Heritage National Scenic Trail of Northern Virginia"
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Land Records"
   ],
   [
-   "Elk River Trail State Trail",
+   "True Grit State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "Potomac Heritage National Scenic Trail of Northern Virginia "
+   "City of Pueblo, Colorado, Department of Information Technolo",
+   "Multi-Use Trails"
   ],
   [
-   "Elk River Trail State Trail",
+   "True Grit State Trail",
    "skip (not state/federal)",
-   "WVatlas",
-   "Tourist Regions of West Virginia"
+   "rtcderek",
+   "ArkansasRiverTrailLine"
   ],
   [
-   "Elk River Trail State Trail",
+   "True Grit State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "Potomac River Water Access"
+   "sfrank_TB",
+   "Join Features to Adopted Trail Segments 2025"
   ],
   [
-   "Elk River Trail State Trail",
+   "True Grit State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "PHNST Climate Exposure"
+   "sfrank_TB",
+   "Join Features to Adopted Trail Segments view 2025"
   ],
   [
-   "Elk River Trail State Trail",
+   "True Grit State Trail",
    "skip (not state/federal)",
-   "DPMC_GIS",
-   "UEER_Recreation"
+   "sfrank_TB",
+   "TrailBuildPts"
   ],
   [
-   "Elk River Trail State Trail",
+   "True Grit State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "PHNST Amenities Recommendations"
+   "mvann_UNC",
+   "Off_Street_Trails_Downtown"
   ],
   [
-   "Elk River Trail State Trail",
+   "True Grit State Trail",
    "skip (not state/federal)",
-   "Nortern Virginia Regional Commission | rboyd1@pwcgov.org",
-   "PHNST Trail"
+   "sfrank_TB",
+   "Future Trails (Mature Support)"
   ],
   [
-   "Elk River Trail State Trail",
+   "True Grit State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "PHNST Wayfinding Recommendations"
+   "mvann_UNC",
+   "Segments_for_Short-Term_Counts.gdb"
   ],
   [
-   "Elk River Trail State Trail",
+   "True Grit State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | BBC Research & Cons",
-   "Broad Run and Goose Creek PHNST Segment"
+   "rculpepp_UAGEOS",
+   "NWA AADB Final view"
   ],
   [
-   "Elk River Trail State Trail",
+   "True Grit State Trail",
    "skip (not state/federal)",
-   "Northern Virginia Regional Commission  | Northern Virginia R",
-   "PHNST Wayfinding & Amenities - Volunteer Assignments"
+   "vgurel_TB",
+   "SP 1 View"
   ],
   [
-   "Elk River Trail State Trail",
+   "True Grit State Trail",
    "skip (not state/federal)",
-   "Jefferson County GIS/Addressing Office | jgormont",
-   "Jefferson County WV - Trails"
+   "vgurel_TB",
+   "Down 3 View"
   ],
   [
-   "Elk River Trail State Trail",
+   "True Grit State Trail",
    "skip (not state/federal)",
-   "DPMC_GIS",
-   "DeerCreekProjectData_20221122"
+   "vgurel_TB",
+   "Down 2 View"
   ],
   [
-   "Elk River Trail State Trail",
-   "3 lines 0 km from pin",
-   "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donald",
-   "m/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0 trailName"
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "skip (not state/federal)",
+   "University of Arkansas, Center for Advanced Spatial Technolo",
+   "dataVIEW of NW Arkansas Trails 2026"
+  ],
+  [
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "skip (not state/federal)",
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Parks and Trails"
+  ],
+  [
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "skip (not state/federal)",
+   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
+   "Fayetteville Trails"
+  ],
+  [
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "skip (not state/federal)",
+   "isaac.sims_craftontull",
+   "South Arkansas Trails_WFL1"
+  ],
+  [
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "skip (not state/federal)",
+   "gogeographics",
+   "Arkansas_Trails_Collected"
+  ],
+  [
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "skip (not state/federal)",
+   "Northwest Arkansas Regional Planning Commission |  | cscarla",
+   "Heritage_Trails_Lines"
+  ],
+  [
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "skip (not state/federal)",
+   "vgurel_TB",
+   "Proposed Trails Connecting Bentonville"
+  ],
+  [
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "skip (not state/federal)",
+   "cscarlat04",
+   "NWA_CPRG_Proj_Plans_Trails"
+  ],
+  [
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "skip (not state/federal)",
+   "gogeographics",
+   "NW_Arkansas_Mountain_Bike_Polygons"
+  ],
+  [
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "Regional Equity Index"
+  ],
+  [
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "skip (not state/federal)",
+   "gogeographics",
+   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
+  ],
+  [
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "skip (not state/federal)",
+   "JPWalden@GarverUSA.com_Garver",
+   "Pulaski_Co_Trails_UNINCORP_ONLY"
+  ],
+  [
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "Active Transportation Infrastructure Equity Index 2021"
   ],
   [
-   "High Bridge Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "Prince William County, Virginia | Prince William County Depa",
-   "Trails"
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Popups"
   ],
   [
-   "High Bridge Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
+   "wlgardnerjr",
+   "Magazine Trails and Waypoints_WFL1"
   ],
   [
-   "High Bridge Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "jkucenic_TOL_VA",
-   "Leesburg Bike Trails"
+   "vgurel_TB",
+   "Proposed Trails HCH StoryMap"
   ],
   [
-   "High Bridge Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "sfrank_TB",
+   "TrailSystems"
   ],
   [
-   "High Bridge Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "City of Fayetteville, AR | swindmiller_camsys",
+   "Trail_shp"
   ],
   [
-   "High Bridge Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "\u00a9 City of Virginia Beach | VBCGIS_OrgAcct1",
-   "Bikeways and Trails"
+   "mvann_UNC",
+   "Selected_Segments_gdb"
   ],
   [
-   "High Bridge Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "HRPDC, HRTPO, City of Norfolk | hrpdcgis",
-   "Hampton Roads Regional Trails"
+   "sfrank_TB",
+   "Active Transportation Infrastructure Projects VIEW"
   ],
   [
-   "High Bridge Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "gis.vdem",
-   "Virginia Creeper Trail Trestle Status EDITING VIEW"
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Land Records"
   ],
   [
-   "High Bridge Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "Recreational_Trails"
+   "City of Pueblo, Colorado, Department of Information Technolo",
+   "Multi-Use Trails"
   ],
   [
-   "High Bridge Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CASF_Trails"
+   "rtcderek",
+   "ArkansasRiverTrailLine"
   ],
   [
-   "High Bridge Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CUSF_Willis_River_Trail"
+   "sfrank_TB",
+   "Join Features to Adopted Trail Segments 2025"
   ],
   [
-   "High Bridge Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "County of Fairfax | Fairfax County, Virginia: Department of ",
-   "Bicycle Trails"
+   "sfrank_TB",
+   "Join Features to Adopted Trail Segments view 2025"
   ],
   [
-   "High Bridge Trail State Park",
-   "1 lines 0 km from pin",
-   "Department of Rail and Public Transportation | Virginia Depa",
-   "arcgis.com/9oDT7ErWemWCzvY7/arcgis/rest/services/Virginia_Rails_to_Trails/FeatureServer/23 Name"
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "TrailBuildPts"
   ],
   [
-   "New River Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "Prince William County, Virginia | Prince William County Depa",
-   "Trails"
+   "mvann_UNC",
+   "Off_Street_Trails_Downtown"
   ],
   [
-   "New River Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
+   "sfrank_TB",
+   "Future Trails (Mature Support)"
   ],
   [
-   "New River Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "jkucenic_TOL_VA",
-   "Leesburg Bike Trails"
+   "mvann_UNC",
+   "Segments_for_Short-Term_Counts.gdb"
   ],
   [
-   "New River Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "rculpepp_UAGEOS",
+   "NWA AADB Final view"
   ],
   [
-   "New River Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "vgurel_TB",
+   "SP 1 View"
   ],
   [
-   "New River Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "\u00a9 City of Virginia Beach | VBCGIS_OrgAcct1",
-   "Bikeways and Trails"
+   "vgurel_TB",
+   "Down 3 View"
   ],
   [
-   "New River Trail State Park",
+   "Arkansas Rocks! Mining & Mineral State Trail",
    "skip (not state/federal)",
-   "HRPDC, HRTPO, City of Norfolk | hrpdcgis",
-   "Hampton Roads Regional Trails"
+   "vgurel_TB",
+   "Down 2 View"
   ],
   [
-   "New River Trail State Park",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "gis.vdem",
-   "Virginia Creeper Trail Trestle Status EDITING VIEW"
+   "University of Arkansas, Center for Advanced Spatial Technolo",
+   "dataVIEW of NW Arkansas Trails 2026"
   ],
   [
-   "New River Trail State Park",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "Recreational_Trails"
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Parks and Trails"
   ],
   [
-   "New River Trail State Park",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CASF_Trails"
+   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
+   "Fayetteville Trails"
   ],
   [
-   "New River Trail State Park",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CUSF_Willis_River_Trail"
+   "isaac.sims_craftontull",
+   "South Arkansas Trails_WFL1"
   ],
   [
-   "New River Trail State Park",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "County of Fairfax | Fairfax County, Virginia: Department of ",
-   "Bicycle Trails"
+   "gogeographics",
+   "Arkansas_Trails_Collected"
   ],
   [
-   "New River Trail State Park",
-   "3 lines 0 km from pin",
-   "Department of Rail and Public Transportation | Virginia Depa",
-   "arcgis.com/9oDT7ErWemWCzvY7/arcgis/rest/services/Virginia_Rails_to_Trails/FeatureServer/23 Name"
+   "Sylamore Scenic Byway State Trail",
+   "skip (not state/federal)",
+   "Northwest Arkansas Regional Planning Commission |  | cscarla",
+   "Heritage_Trails_Lines"
   ],
   [
-   "First Landing National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Prince William County, Virginia | Prince William County Depa",
-   "Trails"
+   "vgurel_TB",
+   "Proposed Trails Connecting Bentonville"
   ],
   [
-   "First Landing National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
+   "cscarlat04",
+   "NWA_CPRG_Proj_Plans_Trails"
   ],
   [
-   "First Landing National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "jkucenic_TOL_VA",
-   "Leesburg Bike Trails"
+   "gogeographics",
+   "NW_Arkansas_Mountain_Bike_Polygons"
   ],
   [
-   "First Landing National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "sfrank_TB",
+   "Regional Equity Index"
   ],
   [
-   "First Landing National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "gogeographics",
+   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
   ],
   [
-   "First Landing National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "\u00a9 City of Virginia Beach | VBCGIS_OrgAcct1",
-   "Bikeways and Trails"
+   "JPWalden@GarverUSA.com_Garver",
+   "Pulaski_Co_Trails_UNINCORP_ONLY"
   ],
   [
-   "First Landing National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "HRPDC, HRTPO, City of Norfolk | hrpdcgis",
-   "Hampton Roads Regional Trails"
+   "sfrank_TB",
+   "Active Transportation Infrastructure Equity Index 2021"
   ],
   [
-   "First Landing National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "gis.vdem",
-   "Virginia Creeper Trail Trestle Status EDITING VIEW"
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Popups"
   ],
   [
-   "First Landing National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "Recreational_Trails"
+   "wlgardnerjr",
+   "Magazine Trails and Waypoints_WFL1"
   ],
   [
-   "First Landing National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CASF_Trails"
+   "vgurel_TB",
+   "Proposed Trails HCH StoryMap"
   ],
   [
-   "First Landing National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CUSF_Willis_River_Trail"
+   "sfrank_TB",
+   "TrailSystems"
   ],
   [
-   "First Landing National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "County of Fairfax | Fairfax County, Virginia: Department of ",
-   "Bicycle Trails"
+   "City of Fayetteville, AR | swindmiller_camsys",
+   "Trail_shp"
   ],
   [
-   "Little Stony Creek National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Prince William County, Virginia | Prince William County Depa",
-   "Trails"
+   "mvann_UNC",
+   "Selected_Segments_gdb"
   ],
   [
-   "Little Stony Creek National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
+   "sfrank_TB",
+   "Active Transportation Infrastructure Projects VIEW"
   ],
   [
-   "Little Stony Creek National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "jkucenic_TOL_VA",
-   "Leesburg Bike Trails"
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Land Records"
   ],
   [
-   "Little Stony Creek National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "City of Pueblo, Colorado, Department of Information Technolo",
+   "Multi-Use Trails"
   ],
   [
-   "Little Stony Creek National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "rtcderek",
+   "ArkansasRiverTrailLine"
   ],
   [
-   "Little Stony Creek National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "\u00a9 City of Virginia Beach | VBCGIS_OrgAcct1",
-   "Bikeways and Trails"
+   "sfrank_TB",
+   "Join Features to Adopted Trail Segments 2025"
   ],
   [
-   "Little Stony Creek National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "HRPDC, HRTPO, City of Norfolk | hrpdcgis",
-   "Hampton Roads Regional Trails"
+   "sfrank_TB",
+   "Join Features to Adopted Trail Segments view 2025"
   ],
   [
-   "Little Stony Creek National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "gis.vdem",
-   "Virginia Creeper Trail Trestle Status EDITING VIEW"
+   "sfrank_TB",
+   "TrailBuildPts"
   ],
   [
-   "Little Stony Creek National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "Recreational_Trails"
+   "mvann_UNC",
+   "Off_Street_Trails_Downtown"
   ],
   [
-   "Little Stony Creek National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CASF_Trails"
+   "sfrank_TB",
+   "Future Trails (Mature Support)"
   ],
   [
-   "Little Stony Creek National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CUSF_Willis_River_Trail"
+   "mvann_UNC",
+   "Segments_for_Short-Term_Counts.gdb"
   ],
   [
-   "Little Stony Creek National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "County of Fairfax | Fairfax County, Virginia: Department of ",
-   "Bicycle Trails"
+   "rculpepp_UAGEOS",
+   "NWA AADB Final view"
   ],
   [
-   "The Lion's Tale National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Prince William County, Virginia | Prince William County Depa",
-   "Trails"
+   "vgurel_TB",
+   "SP 1 View"
   ],
   [
-   "The Lion's Tale National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
+   "vgurel_TB",
+   "Down 3 View"
   ],
   [
-   "The Lion's Tale National Recreation Trail",
+   "Sylamore Scenic Byway State Trail",
    "skip (not state/federal)",
-   "jkucenic_TOL_VA",
-   "Leesburg Bike Trails"
+   "vgurel_TB",
+   "Down 2 View"
   ],
   [
-   "The Lion's Tale National Recreation Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "University of Arkansas, Center for Advanced Spatial Technolo",
+   "dataVIEW of NW Arkansas Trails 2026"
   ],
   [
-   "The Lion's Tale National Recreation Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Parks and Trails"
   ],
   [
-   "The Lion's Tale National Recreation Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "\u00a9 City of Virginia Beach | VBCGIS_OrgAcct1",
-   "Bikeways and Trails"
+   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
+   "Fayetteville Trails"
   ],
   [
-   "The Lion's Tale National Recreation Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "HRPDC, HRTPO, City of Norfolk | hrpdcgis",
-   "Hampton Roads Regional Trails"
+   "isaac.sims_craftontull",
+   "South Arkansas Trails_WFL1"
   ],
   [
-   "The Lion's Tale National Recreation Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "gis.vdem",
-   "Virginia Creeper Trail Trestle Status EDITING VIEW"
+   "gogeographics",
+   "Arkansas_Trails_Collected"
   ],
   [
-   "The Lion's Tale National Recreation Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "Recreational_Trails"
+   "Northwest Arkansas Regional Planning Commission |  | cscarla",
+   "Heritage_Trails_Lines"
   ],
   [
-   "The Lion's Tale National Recreation Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CASF_Trails"
+   "vgurel_TB",
+   "Proposed Trails Connecting Bentonville"
   ],
   [
-   "The Lion's Tale National Recreation Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CUSF_Willis_River_Trail"
+   "cscarlat04",
+   "NWA_CPRG_Proj_Plans_Trails"
   ],
   [
-   "The Lion's Tale National Recreation Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "County of Fairfax | Fairfax County, Virginia: Department of ",
-   "Bicycle Trails"
+   "gogeographics",
+   "NW_Arkansas_Mountain_Bike_Polygons"
   ],
   [
-   "The Lion's Tale National Recreation Trail",
-   "1 lines 0 km from pin",
-   "Cassandra.Patterson@vdot.virginia.gov_VDOT",
-   "rvices.arcgis.com/p5v98VHDX9Atv3l7/arcgis/rest/services/Federal_Trails_VA/FeatureServer/22 TRAIL_NAME"
+   "Upper Illinois River Water Trail State Trail",
+   "skip (not state/federal)",
+   "sfrank_TB",
+   "Regional Equity Index"
   ],
   [
-   "Beaches to Bluegrass State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "Prince William County, Virginia | Prince William County Depa",
-   "Trails"
+   "gogeographics",
+   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
   ],
   [
-   "Beaches to Bluegrass State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
+   "JPWalden@GarverUSA.com_Garver",
+   "Pulaski_Co_Trails_UNINCORP_ONLY"
   ],
   [
-   "Beaches to Bluegrass State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "jkucenic_TOL_VA",
-   "Leesburg Bike Trails"
+   "sfrank_TB",
+   "Active Transportation Infrastructure Equity Index 2021"
   ],
   [
-   "Beaches to Bluegrass State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Popups"
   ],
   [
-   "Beaches to Bluegrass State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "wlgardnerjr",
+   "Magazine Trails and Waypoints_WFL1"
   ],
   [
-   "Beaches to Bluegrass State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "\u00a9 City of Virginia Beach | VBCGIS_OrgAcct1",
-   "Bikeways and Trails"
+   "vgurel_TB",
+   "Proposed Trails HCH StoryMap"
   ],
   [
-   "Beaches to Bluegrass State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "HRPDC, HRTPO, City of Norfolk | hrpdcgis",
-   "Hampton Roads Regional Trails"
+   "sfrank_TB",
+   "TrailSystems"
   ],
   [
-   "Beaches to Bluegrass State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "gis.vdem",
-   "Virginia Creeper Trail Trestle Status EDITING VIEW"
+   "City of Fayetteville, AR | swindmiller_camsys",
+   "Trail_shp"
   ],
   [
-   "Beaches to Bluegrass State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "Recreational_Trails"
+   "mvann_UNC",
+   "Selected_Segments_gdb"
   ],
   [
-   "Beaches to Bluegrass State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CASF_Trails"
+   "sfrank_TB",
+   "Active Transportation Infrastructure Projects VIEW"
   ],
   [
-   "Beaches to Bluegrass State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CUSF_Willis_River_Trail"
+   "City of Fayetteville, AR | FayettevilleAR",
+   "Land Records"
   ],
   [
-   "Beaches to Bluegrass State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "County of Fairfax | Fairfax County, Virginia: Department of ",
-   "Bicycle Trails"
+   "City of Pueblo, Colorado, Department of Information Technolo",
+   "Multi-Use Trails"
   ],
   [
-   "James River Heritage State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "Prince William County, Virginia | Prince William County Depa",
-   "Trails"
+   "rtcderek",
+   "ArkansasRiverTrailLine"
   ],
   [
-   "James River Heritage State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
+   "sfrank_TB",
+   "Join Features to Adopted Trail Segments 2025"
   ],
   [
-   "James River Heritage State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "jkucenic_TOL_VA",
-   "Leesburg Bike Trails"
+   "sfrank_TB",
+   "Join Features to Adopted Trail Segments view 2025"
   ],
   [
-   "James River Heritage State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "sfrank_TB",
+   "TrailBuildPts"
   ],
   [
-   "James River Heritage State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "mvann_UNC",
+   "Off_Street_Trails_Downtown"
   ],
   [
-   "James River Heritage State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "\u00a9 City of Virginia Beach | VBCGIS_OrgAcct1",
-   "Bikeways and Trails"
+   "sfrank_TB",
+   "Future Trails (Mature Support)"
   ],
   [
-   "James River Heritage State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "HRPDC, HRTPO, City of Norfolk | hrpdcgis",
-   "Hampton Roads Regional Trails"
+   "mvann_UNC",
+   "Segments_for_Short-Term_Counts.gdb"
   ],
   [
-   "James River Heritage State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "gis.vdem",
-   "Virginia Creeper Trail Trestle Status EDITING VIEW"
+   "rculpepp_UAGEOS",
+   "NWA AADB Final view"
   ],
   [
-   "James River Heritage State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "Recreational_Trails"
+   "vgurel_TB",
+   "SP 1 View"
   ],
   [
-   "James River Heritage State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CASF_Trails"
+   "vgurel_TB",
+   "Down 3 View"
   ],
   [
-   "James River Heritage State Trail",
+   "Upper Illinois River Water Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CUSF_Willis_River_Trail"
+   "vgurel_TB",
+   "Down 2 View"
   ],
   [
-   "James River Heritage State Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "County of Fairfax | Fairfax County, Virginia: Department of ",
-   "Bicycle Trails"
+   "hudson2018",
+   "Appalachian Trail Explored Pennsylvania"
   ],
   [
-   "James River Heritage State Trail",
-   "2 lines 0 km from pin",
-   "Department of Rail and Public Transportation | Virginia Depa",
-   "arcgis.com/9oDT7ErWemWCzvY7/arcgis/rest/services/Virginia_Rails_to_Trails/FeatureServer/23 Name"
+   "Pine Creek Rail Trail State Trail",
+   "skip (not state/federal)",
+   "phlbikeco",
+   "Shared Use Paths in New Jersey and Pennsylvania"
   ],
   [
-   "Virginia Bird & Wildlife State Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "Prince William County, Virginia | Prince William County Depa",
-   "Trails"
+   "hudson2018",
+   "East Brandywine Trails Downingtown Pennsylvania"
   ],
   [
-   "Virginia Bird & Wildlife State Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
+   "dhadjie1@students.towson.edu_TowsonU",
+   "Ricketts Glen Trails and Water Features"
   ],
   [
-   "Virginia Bird & Wildlife State Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "jkucenic_TOL_VA",
-   "Leesburg Bike Trails"
+   "County of Berks |  | bburkovich_berks",
+   "Berks County Existing Trails"
   ],
   [
-   "Virginia Bird & Wildlife State Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "hudson2018",
+   "Dowlin Forge Park and Trails"
   ],
   [
-   "Virginia Bird & Wildlife State Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "RA_NRARCGIS",
+   "Pennsylvania State Park Trails"
   ],
   [
-   "Virginia Bird & Wildlife State Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "\u00a9 City of Virginia Beach | VBCGIS_OrgAcct1",
-   "Bikeways and Trails"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Virginia Bird & Wildlife State Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "HRPDC, HRTPO, City of Norfolk | hrpdcgis",
-   "Hampton Roads Regional Trails"
+   "hudson2018",
+   "Springlawn Trail and Big Elk Creek"
   ],
   [
-   "Virginia Bird & Wildlife State Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "gis.vdem",
-   "Virginia Creeper Trail Trestle Status EDITING VIEW"
+   "bburkovich_berks",
+   "Trails SEADJCP"
   ],
   [
-   "Virginia Bird & Wildlife State Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "Recreational_Trails"
+   "County of Berks |  | BerksCountyGIS",
+   "Berks County Trail Gaps"
   ],
   [
-   "Virginia Bird & Wildlife State Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CASF_Trails"
+   "Berks County Planning Commission | bburkovich_berks",
+   "Trails FMRJCP"
   ],
   [
-   "Virginia Bird & Wildlife State Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CUSF_Willis_River_Trail"
+   "CCPA | gis_ccpa",
+   "Dams & Gauge - Yellow Breeches"
   ],
   [
-   "Virginia Bird & Wildlife State Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "County of Fairfax | Fairfax County, Virginia: Department of ",
-   "Bicycle Trails"
+   "RA_NRARCGIS",
+   "All Trails in Pennsylvania from Explore PA Trails"
   ],
   [
-   "Rock Castle Gorge National Recreation Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "Prince William County, Virginia | Prince William County Depa",
-   "Trails"
+   "Created by Cathy Poppenwimer (former AMC GIS Scientist). | c",
+   "Protect the View - Threatened Trail Views - Use for Labels"
   ],
   [
-   "Rock Castle Gorge National Recreation Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
+   "scrplan",
+   "Pennsylvania Trails"
   ],
   [
-   "Rock Castle Gorge National Recreation Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "jkucenic_TOL_VA",
-   "Leesburg Bike Trails"
+   "Created by Cathy Poppenwimer (former AMC GIS Scientist). | c",
+   "Protect the View - Threatened Trail Views - Labels for Big W"
   ],
   [
-   "Rock Castle Gorge National Recreation Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "pennshare",
+   "Pennsylvania Rail Lines"
   ],
   [
-   "Rock Castle Gorge National Recreation Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "West Virginia Division of Natural Resources. 2020. West Virg",
-   "Bison Trails"
+   "hudson2018",
+   "White Clay Creek Pennsylvania State Park and Preserve Hiking"
   ],
   [
-   "Rock Castle Gorge National Recreation Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "\u00a9 City of Virginia Beach | VBCGIS_OrgAcct1",
-   "Bikeways and Trails"
+   "Created by Cathy Poppenwimer (former AMC GIS Scientist) and ",
+   "Protect the View - Threatened Trail Views - Focus Area Polyg"
   ],
   [
-   "Rock Castle Gorge National Recreation Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "HRPDC, HRTPO, City of Norfolk | hrpdcgis",
-   "Hampton Roads Regional Trails"
+   "hudson2018",
+   "Red Clay Trail"
   ],
   [
-   "Rock Castle Gorge National Recreation Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "gis.vdem",
-   "Virginia Creeper Trail Trestle Status EDITING VIEW"
+   "hudson2018",
+   "Parrish Trail"
   ],
   [
-   "Rock Castle Gorge National Recreation Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "Recreational_Trails"
+   "thopper",
+   "ExplorePAtrails_Trails201805"
   ],
   [
-   "Rock Castle Gorge National Recreation Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CASF_Trails"
+   "ejr5801_pennstate",
+   "ExplorePA Trails"
   ],
   [
-   "Rock Castle Gorge National Recreation Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "Thomas Zaebst, Michael Womack | geog467.redteam_JMU",
-   "CUSF_Willis_River_Trail"
+   "AYanezmorillo_clus",
+   "kr_Trails and Paths (needs review)"
   ],
   [
-   "Rock Castle Gorge National Recreation Trail",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "County of Fairfax | Fairfax County, Virginia: Department of ",
-   "Bicycle Trails"
+   "mwitmer",
+   "NEPA Trails"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "Cook County Department of Transportation and Highway | Cook_",
-   "Off-Street Bike Trails"
+   "hudson2018",
+   "Appalachian Trail and Blue Rocks_ Pa"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "Lake County Illinois GIS | Lake County, Illinois | LakeCount",
-   "Trail Centerlines"
+   "Selected downtown Uniontown place locations: \u00a9 OpenStreetMap",
+   "Sheepskin Trail Interactive Map_WFL1"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "Trails"
+   "CCPA, PAFBC | gis_ccpa",
+   "Water_Trails"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Pine Creek Rail Trail State Trail",
    "skip (not state/federal)",
-   "DuPage County Information Technology Department, GIS Divisio",
-   "2023_DuPagae_Bike_Trails"
+   "HHSmith_clus",
+   "KR_Trails"
+  ],
+  [
+   "Pine Creek Rail Trail State Trail",
+   "15 lines 0 km from pin",
+   "DCNR, birds, Pennsylvania Game Commission | FracTrackerAllia",
+   "tps://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/PA_BirdHab/FeatureServer/0 NAME01"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Hart-Montague Trail State Park",
    "skip (not state/federal)",
-   "Bi-State Regional Comission (2021) | kkeeney-mcgurk",
-   "IL Quad Cities Trails"
+   "National Oceanic and Atmospheric Administration (NOAA), Nati",
+   "Points of Interest Thunder Bay"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Hart-Montague Trail State Park",
    "skip (not state/federal)",
-   "City of Galesburg | Engineering Division, Public Works Depar",
-   "Galesburg Parks Recreation Trails"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Hart-Montague Trail State Park",
    "skip (not state/federal)",
-   "mebarret@illinois.edu_UnivofIllinois_1190444167",
-   "Forest Glen - River Ridge Backpack Trail"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Hart-Montague Trail State Park",
    "skip (not state/federal)",
-   "Villa Park, Illinois |  | VillaParkIL",
-   "Trails"
+   "boppmann@indtwp.com_oakgov",
+   "Independence Township Safety Paths"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Hart-Montague Trail State Park",
    "skip (not state/federal)",
-   "City of Galesburg | Engineering Division, Public Works Depar",
-   "Cabeen Multipurpose Trail"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT Great Lakes Maritime Heritage Trail"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Hart-Montague Trail State Park",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "TrailsPlanned_Public"
+   "Michigan Department of Agriculture and Rural Development (MD",
+   "Michigan Craft Beverage Businesses"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Hart-Montague Trail State Park",
    "skip (not state/federal)",
-   "monchakj",
-   "EPA Community Change Map_WFL1"
+   "ahoff_edu",
+   "Border to Border Bike Trail Between Washtenaw Community Coll"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Hart-Montague Trail State Park",
    "skip (not state/federal)",
-   "Engineering Division, Public Works Department, City of Gales",
-   "Galesburg Recreational Trail Distance Markers"
+   "Title: Map of Michigan State College bridle trails.\nPublishe",
+   "Map of Michigan State College bridle trails "
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Hart-Montague Trail State Park",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | nwmunic",
-   "Major Regional Trails in the NWMC"
+   "Little Traverse Conservancy | odalaigh",
+   "Little Traverse Conservancy Nature Preserve Trails"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Hart-Montague Trail State Park",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WFL1"
+   "City of Lansing | andrew.skelton_Lansing",
+   "Trails_AS"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Hart-Montague Trail State Park",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "Trails_Public"
+   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
+   "OC Cross-Country Ski Trails"
+  ],
+  [
+   "Hart-Montague Trail State Park",
+   "8 lines 0 km from pin",
+   "Michigan Department of Natural Resources | Michigan Departme",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Kal-Haven Trail State Park",
    "skip (not state/federal)",
-   "Vernon County | cfandel_carleton",
-   "Trails Driftless Area"
+   "National Oceanic and Atmospheric Administration (NOAA), Nati",
+   "Points of Interest Thunder Bay"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Kal-Haven Trail State Park",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | Mapwurk",
-   "CMAP Trails Plan"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Kal-Haven Trail State Park",
    "skip (not state/federal)",
-   "Bi-State Regional Commission (2023) | kkeeney-mcgurk",
-   "Quad Cities Regional Trails"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Kal-Haven Trail State Park",
    "skip (not state/federal)",
-   "least2@uis.edu_UnivofIllinois_1042916683",
-   "North Titan Trails"
+   "boppmann@indtwp.com_oakgov",
+   "Independence Township Safety Paths"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Kal-Haven Trail State Park",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | gispubl",
-   "RegionalGreenwaysTrailsPlan_Trails_CMAP_2016"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT Great Lakes Maritime Heritage Trail"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Kal-Haven Trail State Park",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WTL1"
+   "Michigan Department of Agriculture and Rural Development (MD",
+   "Michigan Craft Beverage Businesses"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Kal-Haven Trail State Park",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WTL2"
+   "ahoff_edu",
+   "Border to Border Bike Trail Between Washtenaw Community Coll"
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Kal-Haven Trail State Park",
    "skip (not state/federal)",
-   "City of O'Fallon, Illinois | City of O'Fallon, Illinois | OF",
-   "Parks"
+   "Title: Map of Michigan State College bridle trails.\nPublishe",
+   "Map of Michigan State College bridle trails "
   ],
   [
-   "Johnson Sauk Trail State Park",
+   "Kal-Haven Trail State Park",
    "skip (not state/federal)",
-   "jpilbeam",
-   "IllinoisMichiganCanalTrail"
+   "Little Traverse Conservancy | odalaigh",
+   "Little Traverse Conservancy Nature Preserve Trails"
   ],
   [
-   "Lincoln Trail State Park",
+   "Kal-Haven Trail State Park",
    "skip (not state/federal)",
-   "Cook County Department of Transportation and Highway | Cook_",
-   "Off-Street Bike Trails"
+   "City of Lansing | andrew.skelton_Lansing",
+   "Trails_AS"
   ],
   [
-   "Lincoln Trail State Park",
+   "Kal-Haven Trail State Park",
    "skip (not state/federal)",
-   "Lake County Illinois GIS | Lake County, Illinois | LakeCount",
-   "Trail Centerlines"
+   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
+   "OC Cross-Country Ski Trails"
   ],
   [
-   "Lincoln Trail State Park",
+   "Kal-Haven Trail State Park",
+   "16 lines 0 km from pin",
+   "Michigan Department of Natural Resources | Michigan Departme",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
+  ],
+  [
+   "Mike Levine Lakelands Trail State Park",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "Trails"
+   "National Oceanic and Atmospheric Administration (NOAA), Nati",
+   "Points of Interest Thunder Bay"
   ],
   [
-   "Lincoln Trail State Park",
+   "Mike Levine Lakelands Trail State Park",
    "skip (not state/federal)",
-   "DuPage County Information Technology Department, GIS Divisio",
-   "2023_DuPagae_Bike_Trails"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
   ],
   [
-   "Lincoln Trail State Park",
+   "Mike Levine Lakelands Trail State Park",
    "skip (not state/federal)",
-   "Bi-State Regional Comission (2021) | kkeeney-mcgurk",
-   "IL Quad Cities Trails"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Lincoln Trail State Park",
+   "Mike Levine Lakelands Trail State Park",
    "skip (not state/federal)",
-   "City of Galesburg | Engineering Division, Public Works Depar",
-   "Galesburg Parks Recreation Trails"
+   "boppmann@indtwp.com_oakgov",
+   "Independence Township Safety Paths"
   ],
   [
-   "Lincoln Trail State Park",
+   "Mike Levine Lakelands Trail State Park",
    "skip (not state/federal)",
-   "mebarret@illinois.edu_UnivofIllinois_1190444167",
-   "Forest Glen - River Ridge Backpack Trail"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT Great Lakes Maritime Heritage Trail"
   ],
   [
-   "Lincoln Trail State Park",
+   "Mike Levine Lakelands Trail State Park",
    "skip (not state/federal)",
-   "Villa Park, Illinois |  | VillaParkIL",
-   "Trails"
+   "Michigan Department of Agriculture and Rural Development (MD",
+   "Michigan Craft Beverage Businesses"
   ],
   [
-   "Lincoln Trail State Park",
+   "Mike Levine Lakelands Trail State Park",
    "skip (not state/federal)",
-   "City of Galesburg | Engineering Division, Public Works Depar",
-   "Cabeen Multipurpose Trail"
+   "ahoff_edu",
+   "Border to Border Bike Trail Between Washtenaw Community Coll"
   ],
   [
-   "Lincoln Trail State Park",
+   "Mike Levine Lakelands Trail State Park",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "TrailsPlanned_Public"
+   "Title: Map of Michigan State College bridle trails.\nPublishe",
+   "Map of Michigan State College bridle trails "
   ],
   [
-   "Lincoln Trail State Park",
+   "Mike Levine Lakelands Trail State Park",
    "skip (not state/federal)",
-   "monchakj",
-   "EPA Community Change Map_WFL1"
+   "Little Traverse Conservancy | odalaigh",
+   "Little Traverse Conservancy Nature Preserve Trails"
   ],
   [
-   "Lincoln Trail State Park",
+   "Mike Levine Lakelands Trail State Park",
    "skip (not state/federal)",
-   "Engineering Division, Public Works Department, City of Gales",
-   "Galesburg Recreational Trail Distance Markers"
+   "City of Lansing | andrew.skelton_Lansing",
+   "Trails_AS"
   ],
   [
-   "Lincoln Trail State Park",
+   "Mike Levine Lakelands Trail State Park",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | nwmunic",
-   "Major Regional Trails in the NWMC"
+   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
+   "OC Cross-Country Ski Trails"
+  ],
+  [
+   "Mike Levine Lakelands Trail State Park",
+   "27 lines 0 km from pin",
+   "Michigan Department of Natural Resources | Michigan Departme",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
   ],
   [
-   "Lincoln Trail State Park",
+   "Van Buren Trail State Park",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WFL1"
+   "National Oceanic and Atmospheric Administration (NOAA), Nati",
+   "Points of Interest Thunder Bay"
   ],
   [
-   "Lincoln Trail State Park",
+   "Van Buren Trail State Park",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "Trails_Public"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
   ],
   [
-   "Lincoln Trail State Park",
+   "Van Buren Trail State Park",
    "skip (not state/federal)",
-   "Vernon County | cfandel_carleton",
-   "Trails Driftless Area"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Lincoln Trail State Park",
+   "Van Buren Trail State Park",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | Mapwurk",
-   "CMAP Trails Plan"
+   "boppmann@indtwp.com_oakgov",
+   "Independence Township Safety Paths"
   ],
   [
-   "Lincoln Trail State Park",
+   "Van Buren Trail State Park",
    "skip (not state/federal)",
-   "Bi-State Regional Commission (2023) | kkeeney-mcgurk",
-   "Quad Cities Regional Trails"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT Great Lakes Maritime Heritage Trail"
   ],
   [
-   "Lincoln Trail State Park",
+   "Van Buren Trail State Park",
    "skip (not state/federal)",
-   "least2@uis.edu_UnivofIllinois_1042916683",
-   "North Titan Trails"
+   "Michigan Department of Agriculture and Rural Development (MD",
+   "Michigan Craft Beverage Businesses"
   ],
   [
-   "Lincoln Trail State Park",
+   "Van Buren Trail State Park",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | gispubl",
-   "RegionalGreenwaysTrailsPlan_Trails_CMAP_2016"
+   "ahoff_edu",
+   "Border to Border Bike Trail Between Washtenaw Community Coll"
   ],
   [
-   "Lincoln Trail State Park",
+   "Van Buren Trail State Park",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WTL1"
+   "Title: Map of Michigan State College bridle trails.\nPublishe",
+   "Map of Michigan State College bridle trails "
   ],
   [
-   "Lincoln Trail State Park",
+   "Van Buren Trail State Park",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WTL2"
+   "Little Traverse Conservancy | odalaigh",
+   "Little Traverse Conservancy Nature Preserve Trails"
   ],
   [
-   "Lincoln Trail State Park",
+   "Van Buren Trail State Park",
    "skip (not state/federal)",
-   "City of O'Fallon, Illinois | City of O'Fallon, Illinois | OF",
-   "Parks"
+   "City of Lansing | andrew.skelton_Lansing",
+   "Trails_AS"
   ],
   [
-   "Lincoln Trail State Park",
+   "Van Buren Trail State Park",
    "skip (not state/federal)",
-   "jpilbeam",
-   "IllinoisMichiganCanalTrail"
+   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
+   "OC Cross-Country Ski Trails"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "Van Buren Trail State Park",
+   "17 lines 0 km from pin",
+   "Michigan Department of Natural Resources | Michigan Departme",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
+  ],
+  [
+   "White Pine Trail State Park",
    "skip (not state/federal)",
-   "Cook County Department of Transportation and Highway | Cook_",
-   "Off-Street Bike Trails"
+   "National Oceanic and Atmospheric Administration (NOAA), Nati",
+   "Points of Interest Thunder Bay"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "White Pine Trail State Park",
    "skip (not state/federal)",
-   "Lake County Illinois GIS | Lake County, Illinois | LakeCount",
-   "Trail Centerlines"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "White Pine Trail State Park",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "Trails"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "White Pine Trail State Park",
    "skip (not state/federal)",
-   "DuPage County Information Technology Department, GIS Divisio",
-   "2023_DuPagae_Bike_Trails"
+   "boppmann@indtwp.com_oakgov",
+   "Independence Township Safety Paths"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "White Pine Trail State Park",
    "skip (not state/federal)",
-   "Bi-State Regional Comission (2021) | kkeeney-mcgurk",
-   "IL Quad Cities Trails"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT Great Lakes Maritime Heritage Trail"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "White Pine Trail State Park",
    "skip (not state/federal)",
-   "City of Galesburg | Engineering Division, Public Works Depar",
-   "Galesburg Parks Recreation Trails"
+   "Michigan Department of Agriculture and Rural Development (MD",
+   "Michigan Craft Beverage Businesses"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "White Pine Trail State Park",
    "skip (not state/federal)",
-   "mebarret@illinois.edu_UnivofIllinois_1190444167",
-   "Forest Glen - River Ridge Backpack Trail"
+   "ahoff_edu",
+   "Border to Border Bike Trail Between Washtenaw Community Coll"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "White Pine Trail State Park",
    "skip (not state/federal)",
-   "Villa Park, Illinois |  | VillaParkIL",
-   "Trails"
+   "Title: Map of Michigan State College bridle trails.\nPublishe",
+   "Map of Michigan State College bridle trails "
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "White Pine Trail State Park",
    "skip (not state/federal)",
-   "City of Galesburg | Engineering Division, Public Works Depar",
-   "Cabeen Multipurpose Trail"
+   "Little Traverse Conservancy | odalaigh",
+   "Little Traverse Conservancy Nature Preserve Trails"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "White Pine Trail State Park",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "TrailsPlanned_Public"
+   "City of Lansing | andrew.skelton_Lansing",
+   "Trails_AS"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "White Pine Trail State Park",
    "skip (not state/federal)",
-   "monchakj",
-   "EPA Community Change Map_WFL1"
+   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
+   "OC Cross-Country Ski Trails"
+  ],
+  [
+   "White Pine Trail State Park",
+   "1 lines 20 km from pin",
+   "Michigan Department of Natural Resources | Michigan Departme",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/7 SegmentName"
+  ],
+  [
+   "White Pine Trail State Park",
+   "1 lines 20 km from pin",
+   "Michigan Department of Natural Resources | Michigan Departme",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/7 SegmentName"
+  ],
+  [
+   "White Pine Trail State Park",
+   "50 lines 0 km from pin",
+   "Michigan Department of Natural Resources | Michigan Departme",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "Bay De Noc/Grand Island National Recreation Trail",
    "skip (not state/federal)",
-   "Engineering Division, Public Works Department, City of Gales",
-   "Galesburg Recreational Trail Distance Markers"
+   "National Oceanic and Atmospheric Administration (NOAA), Nati",
+   "Points of Interest Thunder Bay"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "Bay De Noc/Grand Island National Recreation Trail",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | nwmunic",
-   "Major Regional Trails in the NWMC"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "Bay De Noc/Grand Island National Recreation Trail",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WFL1"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "Bay De Noc/Grand Island National Recreation Trail",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "Trails_Public"
+   "boppmann@indtwp.com_oakgov",
+   "Independence Township Safety Paths"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "Bay De Noc/Grand Island National Recreation Trail",
    "skip (not state/federal)",
-   "Vernon County | cfandel_carleton",
-   "Trails Driftless Area"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT Great Lakes Maritime Heritage Trail"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "Bay De Noc/Grand Island National Recreation Trail",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | Mapwurk",
-   "CMAP Trails Plan"
+   "Michigan Department of Agriculture and Rural Development (MD",
+   "Michigan Craft Beverage Businesses"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "Bay De Noc/Grand Island National Recreation Trail",
    "skip (not state/federal)",
-   "Bi-State Regional Commission (2023) | kkeeney-mcgurk",
-   "Quad Cities Regional Trails"
+   "ahoff_edu",
+   "Border to Border Bike Trail Between Washtenaw Community Coll"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "Bay De Noc/Grand Island National Recreation Trail",
    "skip (not state/federal)",
-   "least2@uis.edu_UnivofIllinois_1042916683",
-   "North Titan Trails"
+   "Title: Map of Michigan State College bridle trails.\nPublishe",
+   "Map of Michigan State College bridle trails "
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "Bay De Noc/Grand Island National Recreation Trail",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | gispubl",
-   "RegionalGreenwaysTrailsPlan_Trails_CMAP_2016"
+   "Little Traverse Conservancy | odalaigh",
+   "Little Traverse Conservancy Nature Preserve Trails"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "Bay De Noc/Grand Island National Recreation Trail",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WTL1"
+   "City of Lansing | andrew.skelton_Lansing",
+   "Trails_AS"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "Bay De Noc/Grand Island National Recreation Trail",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WTL2"
+   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
+   "OC Cross-Country Ski Trails"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "Betsie Valley State Trail",
    "skip (not state/federal)",
-   "City of O'Fallon, Illinois | City of O'Fallon, Illinois | OF",
-   "Parks"
+   "National Oceanic and Atmospheric Administration (NOAA), Nati",
+   "Points of Interest Thunder Bay"
   ],
   [
-   "Lincoln Trail Homestead State Park",
+   "Betsie Valley State Trail",
    "skip (not state/federal)",
-   "jpilbeam",
-   "IllinoisMichiganCanalTrail"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
   ],
   [
-   "Tunnel Hill State Trail",
+   "Betsie Valley State Trail",
    "skip (not state/federal)",
-   "Cook County Department of Transportation and Highway | Cook_",
-   "Off-Street Bike Trails"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Tunnel Hill State Trail",
+   "Betsie Valley State Trail",
    "skip (not state/federal)",
-   "Lake County Illinois GIS | Lake County, Illinois | LakeCount",
-   "Trail Centerlines"
+   "boppmann@indtwp.com_oakgov",
+   "Independence Township Safety Paths"
   ],
   [
-   "Tunnel Hill State Trail",
+   "Betsie Valley State Trail",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "Trails"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT Great Lakes Maritime Heritage Trail"
   ],
   [
-   "Tunnel Hill State Trail",
+   "Betsie Valley State Trail",
    "skip (not state/federal)",
-   "DuPage County Information Technology Department, GIS Divisio",
-   "2023_DuPagae_Bike_Trails"
+   "Michigan Department of Agriculture and Rural Development (MD",
+   "Michigan Craft Beverage Businesses"
   ],
   [
-   "Tunnel Hill State Trail",
+   "Betsie Valley State Trail",
    "skip (not state/federal)",
-   "Bi-State Regional Comission (2021) | kkeeney-mcgurk",
-   "IL Quad Cities Trails"
+   "ahoff_edu",
+   "Border to Border Bike Trail Between Washtenaw Community Coll"
   ],
   [
-   "Tunnel Hill State Trail",
+   "Betsie Valley State Trail",
    "skip (not state/federal)",
-   "City of Galesburg | Engineering Division, Public Works Depar",
-   "Galesburg Parks Recreation Trails"
+   "Title: Map of Michigan State College bridle trails.\nPublishe",
+   "Map of Michigan State College bridle trails "
   ],
   [
-   "Tunnel Hill State Trail",
+   "Betsie Valley State Trail",
    "skip (not state/federal)",
-   "mebarret@illinois.edu_UnivofIllinois_1190444167",
-   "Forest Glen - River Ridge Backpack Trail"
+   "Little Traverse Conservancy | odalaigh",
+   "Little Traverse Conservancy Nature Preserve Trails"
   ],
   [
-   "Tunnel Hill State Trail",
+   "Betsie Valley State Trail",
    "skip (not state/federal)",
-   "Villa Park, Illinois |  | VillaParkIL",
-   "Trails"
+   "City of Lansing | andrew.skelton_Lansing",
+   "Trails_AS"
   ],
   [
-   "Tunnel Hill State Trail",
+   "Betsie Valley State Trail",
    "skip (not state/federal)",
-   "City of Galesburg | Engineering Division, Public Works Depar",
-   "Cabeen Multipurpose Trail"
+   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
+   "OC Cross-Country Ski Trails"
+  ],
+  [
+   "Betsie Valley State Trail",
+   "32 lines 0 km from pin",
+   "Michigan Department of Natural Resources | Michigan Departme",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Central State Trail",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "TrailsPlanned_Public"
+   "National Oceanic and Atmospheric Administration (NOAA), Nati",
+   "Points of Interest Thunder Bay"
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Central State Trail",
    "skip (not state/federal)",
-   "monchakj",
-   "EPA Community Change Map_WFL1"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Central State Trail",
    "skip (not state/federal)",
-   "Engineering Division, Public Works Department, City of Gales",
-   "Galesburg Recreational Trail Distance Markers"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Central State Trail",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | nwmunic",
-   "Major Regional Trails in the NWMC"
+   "boppmann@indtwp.com_oakgov",
+   "Independence Township Safety Paths"
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Central State Trail",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WFL1"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT Great Lakes Maritime Heritage Trail"
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Central State Trail",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "Trails_Public"
+   "Michigan Department of Agriculture and Rural Development (MD",
+   "Michigan Craft Beverage Businesses"
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Central State Trail",
    "skip (not state/federal)",
-   "Vernon County | cfandel_carleton",
-   "Trails Driftless Area"
+   "ahoff_edu",
+   "Border to Border Bike Trail Between Washtenaw Community Coll"
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Central State Trail",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | Mapwurk",
-   "CMAP Trails Plan"
+   "Title: Map of Michigan State College bridle trails.\nPublishe",
+   "Map of Michigan State College bridle trails "
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Central State Trail",
    "skip (not state/federal)",
-   "Bi-State Regional Commission (2023) | kkeeney-mcgurk",
-   "Quad Cities Regional Trails"
+   "Little Traverse Conservancy | odalaigh",
+   "Little Traverse Conservancy Nature Preserve Trails"
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Central State Trail",
    "skip (not state/federal)",
-   "least2@uis.edu_UnivofIllinois_1042916683",
-   "North Titan Trails"
+   "City of Lansing | andrew.skelton_Lansing",
+   "Trails_AS"
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Central State Trail",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | gispubl",
-   "RegionalGreenwaysTrailsPlan_Trails_CMAP_2016"
+   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
+   "OC Cross-Country Ski Trails"
+  ],
+  [
+   "North Central State Trail",
+   "4 lines 0 km from pin",
+   "Michigan Department of Natural Resources | Michigan Departme",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/7 SegmentName"
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Eastern State Trail",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WTL1"
+   "National Oceanic and Atmospheric Administration (NOAA), Nati",
+   "Points of Interest Thunder Bay"
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Eastern State Trail",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WTL2"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Eastern State Trail",
    "skip (not state/federal)",
-   "City of O'Fallon, Illinois | City of O'Fallon, Illinois | OF",
-   "Parks"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Tunnel Hill State Trail",
+   "North Eastern State Trail",
    "skip (not state/federal)",
-   "jpilbeam",
-   "IllinoisMichiganCanalTrail"
+   "boppmann@indtwp.com_oakgov",
+   "Independence Township Safety Paths"
   ],
   [
-   "Tunnel Hill State Trail",
-   "120 lines 0 km from pin",
-   "Illinois Department of Transportation (IDOT) | IDOTAdmin",
-   "rcgis.com/aIrBD8yn1TDTEXoz/arcgis/rest/services/BFISPublicEditingLayer_dev/FeatureServer/0 NAME"
+   "North Eastern State Trail",
+   "skip (not state/federal)",
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT Great Lakes Maritime Heritage Trail"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Eastern State Trail",
    "skip (not state/federal)",
-   "MODNR, DSP | jon.haslag",
-   "RI_End_Points"
+   "Michigan Department of Agriculture and Rural Development (MD",
+   "Michigan Craft Beverage Businesses"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Eastern State Trail",
    "skip (not state/federal)",
-   "Cook County Department of Transportation and Highway | Cook_",
-   "Off-Street Bike Trails"
+   "ahoff_edu",
+   "Border to Border Bike Trail Between Washtenaw Community Coll"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Eastern State Trail",
    "skip (not state/federal)",
-   "Lake County Illinois GIS | Lake County, Illinois | LakeCount",
-   "Trail Centerlines"
+   "Title: Map of Michigan State College bridle trails.\nPublishe",
+   "Map of Michigan State College bridle trails "
   ],
   [
-   "Rock Island Trail State Park",
+   "North Eastern State Trail",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "Trails"
+   "Little Traverse Conservancy | odalaigh",
+   "Little Traverse Conservancy Nature Preserve Trails"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Eastern State Trail",
    "skip (not state/federal)",
-   "DuPage County Information Technology Department, GIS Divisio",
-   "2023_DuPagae_Bike_Trails"
+   "City of Lansing | andrew.skelton_Lansing",
+   "Trails_AS"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Eastern State Trail",
    "skip (not state/federal)",
-   "Bi-State Regional Comission (2021) | kkeeney-mcgurk",
-   "IL Quad Cities Trails"
+   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
+   "OC Cross-Country Ski Trails"
+  ],
+  [
+   "North Eastern State Trail",
+   "12 lines 0 km from pin",
+   "Michigan Department of Natural Resources | Michigan Departme",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Western State Trail",
    "skip (not state/federal)",
-   "City of Galesburg | Engineering Division, Public Works Depar",
-   "Galesburg Parks Recreation Trails"
+   "National Oceanic and Atmospheric Administration (NOAA), Nati",
+   "Points of Interest Thunder Bay"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Western State Trail",
    "skip (not state/federal)",
-   "mebarret@illinois.edu_UnivofIllinois_1190444167",
-   "Forest Glen - River Ridge Backpack Trail"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Western State Trail",
    "skip (not state/federal)",
-   "Villa Park, Illinois |  | VillaParkIL",
-   "Trails"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Western State Trail",
    "skip (not state/federal)",
-   "City of Galesburg | Engineering Division, Public Works Depar",
-   "Cabeen Multipurpose Trail"
+   "boppmann@indtwp.com_oakgov",
+   "Independence Township Safety Paths"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Western State Trail",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "TrailsPlanned_Public"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT Great Lakes Maritime Heritage Trail"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Western State Trail",
    "skip (not state/federal)",
-   "monchakj",
-   "EPA Community Change Map_WFL1"
+   "Michigan Department of Agriculture and Rural Development (MD",
+   "Michigan Craft Beverage Businesses"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Western State Trail",
    "skip (not state/federal)",
-   "Engineering Division, Public Works Department, City of Gales",
-   "Galesburg Recreational Trail Distance Markers"
+   "ahoff_edu",
+   "Border to Border Bike Trail Between Washtenaw Community Coll"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Western State Trail",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | nwmunic",
-   "Major Regional Trails in the NWMC"
+   "Title: Map of Michigan State College bridle trails.\nPublishe",
+   "Map of Michigan State College bridle trails "
   ],
   [
-   "Rock Island Trail State Park",
+   "North Western State Trail",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WFL1"
+   "Little Traverse Conservancy | odalaigh",
+   "Little Traverse Conservancy Nature Preserve Trails"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Western State Trail",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "Trails_Public"
+   "City of Lansing | andrew.skelton_Lansing",
+   "Trails_AS"
   ],
   [
-   "Rock Island Trail State Park",
+   "North Western State Trail",
    "skip (not state/federal)",
-   "Vernon County | cfandel_carleton",
-   "Trails Driftless Area"
+   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
+   "OC Cross-Country Ski Trails"
+  ],
+  [
+   "North Western State Trail",
+   "59 lines 0 km from pin",
+   "Michigan Department of Natural Resources | Michigan Departme",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
   ],
   [
-   "Rock Island Trail State Park",
+   "Pere Marquette State Trail",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | Mapwurk",
-   "CMAP Trails Plan"
+   "National Oceanic and Atmospheric Administration (NOAA), Nati",
+   "Points of Interest Thunder Bay"
   ],
   [
-   "Rock Island Trail State Park",
+   "Pere Marquette State Trail",
    "skip (not state/federal)",
-   "Bi-State Regional Commission (2023) | kkeeney-mcgurk",
-   "Quad Cities Regional Trails"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
   ],
   [
-   "Rock Island Trail State Park",
+   "Pere Marquette State Trail",
    "skip (not state/federal)",
-   "least2@uis.edu_UnivofIllinois_1042916683",
-   "North Titan Trails"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Rock Island Trail State Park",
+   "Pere Marquette State Trail",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | gispubl",
-   "RegionalGreenwaysTrailsPlan_Trails_CMAP_2016"
+   "boppmann@indtwp.com_oakgov",
+   "Independence Township Safety Paths"
   ],
   [
-   "Rock Island Trail State Park",
+   "Pere Marquette State Trail",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WTL1"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT Great Lakes Maritime Heritage Trail"
   ],
   [
-   "Rock Island Trail State Park",
+   "Pere Marquette State Trail",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WTL2"
+   "Michigan Department of Agriculture and Rural Development (MD",
+   "Michigan Craft Beverage Businesses"
   ],
   [
-   "Rock Island Trail State Park",
+   "Pere Marquette State Trail",
    "skip (not state/federal)",
-   "City of O'Fallon, Illinois | City of O'Fallon, Illinois | OF",
-   "Parks"
+   "ahoff_edu",
+   "Border to Border Bike Trail Between Washtenaw Community Coll"
   ],
   [
-   "Rock Island Trail State Park",
+   "Pere Marquette State Trail",
    "skip (not state/federal)",
-   "jpilbeam",
-   "IllinoisMichiganCanalTrail"
+   "Title: Map of Michigan State College bridle trails.\nPublishe",
+   "Map of Michigan State College bridle trails "
   ],
   [
-   "Rock Island Trail State Park",
-   "2 lines 0 km from pin",
-   "Illinois Department of Transportation (IDOT) | IDOTAdmin",
-   "rcgis.com/aIrBD8yn1TDTEXoz/arcgis/rest/services/BFISPublicEditingLayer_dev/FeatureServer/0 NAME"
+   "Pere Marquette State Trail",
+   "skip (not state/federal)",
+   "Little Traverse Conservancy | odalaigh",
+   "Little Traverse Conservancy Nature Preserve Trails"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Pere Marquette State Trail",
    "skip (not state/federal)",
-   "Cook County Department of Transportation and Highway | Cook_",
-   "Off-Street Bike Trails"
+   "City of Lansing | andrew.skelton_Lansing",
+   "Trails_AS"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Pere Marquette State Trail",
    "skip (not state/federal)",
-   "Lake County Illinois GIS | Lake County, Illinois | LakeCount",
-   "Trail Centerlines"
+   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
+   "OC Cross-Country Ski Trails"
+  ],
+  [
+   "Pere Marquette State Trail",
+   "21 lines 0 km from pin",
+   "Michigan Department of Natural Resources | Michigan Departme",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Polly Ann State Trail",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "Trails"
+   "National Oceanic and Atmospheric Administration (NOAA), Nati",
+   "Points of Interest Thunder Bay"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Polly Ann State Trail",
    "skip (not state/federal)",
-   "DuPage County Information Technology Department, GIS Divisio",
-   "2023_DuPagae_Bike_Trails"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Polly Ann State Trail",
    "skip (not state/federal)",
-   "Bi-State Regional Comission (2021) | kkeeney-mcgurk",
-   "IL Quad Cities Trails"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Polly Ann State Trail",
    "skip (not state/federal)",
-   "City of Galesburg | Engineering Division, Public Works Depar",
-   "Galesburg Parks Recreation Trails"
+   "boppmann@indtwp.com_oakgov",
+   "Independence Township Safety Paths"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Polly Ann State Trail",
    "skip (not state/federal)",
-   "mebarret@illinois.edu_UnivofIllinois_1190444167",
-   "Forest Glen - River Ridge Backpack Trail"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT Great Lakes Maritime Heritage Trail"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Polly Ann State Trail",
    "skip (not state/federal)",
-   "Villa Park, Illinois |  | VillaParkIL",
-   "Trails"
+   "Michigan Department of Agriculture and Rural Development (MD",
+   "Michigan Craft Beverage Businesses"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Polly Ann State Trail",
    "skip (not state/federal)",
-   "City of Galesburg | Engineering Division, Public Works Depar",
-   "Cabeen Multipurpose Trail"
+   "ahoff_edu",
+   "Border to Border Bike Trail Between Washtenaw Community Coll"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Polly Ann State Trail",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "TrailsPlanned_Public"
+   "Title: Map of Michigan State College bridle trails.\nPublishe",
+   "Map of Michigan State College bridle trails "
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Polly Ann State Trail",
    "skip (not state/federal)",
-   "monchakj",
-   "EPA Community Change Map_WFL1"
+   "Little Traverse Conservancy | odalaigh",
+   "Little Traverse Conservancy Nature Preserve Trails"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Polly Ann State Trail",
    "skip (not state/federal)",
-   "Engineering Division, Public Works Department, City of Gales",
-   "Galesburg Recreational Trail Distance Markers"
+   "City of Lansing | andrew.skelton_Lansing",
+   "Trails_AS"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Polly Ann State Trail",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | nwmunic",
-   "Major Regional Trails in the NWMC"
+   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
+   "OC Cross-Country Ski Trails"
+  ],
+  [
+   "Polly Ann State Trail",
+   "4 lines 8 km from pin",
+   "Michigan Department of Natural Resources | Michigan Departme",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/7 SegmentName"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Iron Belle State Trail",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WFL1"
+   "National Oceanic and Atmospheric Administration (NOAA), Nati",
+   "Points of Interest Thunder Bay"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Iron Belle State Trail",
    "skip (not state/federal)",
-   "Lake County Forest Preserve District, 2017 | LakeCounty_Fore",
-   "Trails_Public"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Iron Belle State Trail",
    "skip (not state/federal)",
-   "Vernon County | cfandel_carleton",
-   "Trails Driftless Area"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Iron Belle State Trail",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | Mapwurk",
-   "CMAP Trails Plan"
+   "boppmann@indtwp.com_oakgov",
+   "Independence Township Safety Paths"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Iron Belle State Trail",
    "skip (not state/federal)",
-   "Bi-State Regional Commission (2023) | kkeeney-mcgurk",
-   "Quad Cities Regional Trails"
+   "National Oceanic and Atmospheric Administration (NOAA), Thun",
+   "DOT Great Lakes Maritime Heritage Trail"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Iron Belle State Trail",
    "skip (not state/federal)",
-   "least2@uis.edu_UnivofIllinois_1042916683",
-   "North Titan Trails"
+   "Michigan Department of Agriculture and Rural Development (MD",
+   "Michigan Craft Beverage Businesses"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Iron Belle State Trail",
    "skip (not state/federal)",
-   "CMAP, the Chicago Metropolitan Agency for Planning | gispubl",
-   "RegionalGreenwaysTrailsPlan_Trails_CMAP_2016"
+   "ahoff_edu",
+   "Border to Border Bike Trail Between Washtenaw Community Coll"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Iron Belle State Trail",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WTL1"
+   "Title: Map of Michigan State College bridle trails.\nPublishe",
+   "Map of Michigan State College bridle trails "
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Iron Belle State Trail",
    "skip (not state/federal)",
-   "nv6874pp",
-   "Dupage County Trails Analysis_WTL2"
+   "Little Traverse Conservancy | odalaigh",
+   "Little Traverse Conservancy Nature Preserve Trails"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Iron Belle State Trail",
    "skip (not state/federal)",
-   "City of O'Fallon, Illinois | City of O'Fallon, Illinois | OF",
-   "Parks"
+   "City of Lansing | andrew.skelton_Lansing",
+   "Trails_AS"
   ],
   [
-   "Illinois and Michigan Canal State Trail",
+   "Iron Belle State Trail",
    "skip (not state/federal)",
-   "jpilbeam",
-   "IllinoisMichiganCanalTrail"
+   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
+   "OC Cross-Country Ski Trails"
+  ],
+  [
+   "Iron Belle State Trail",
+   "69 lines 0 km from pin",
+   "Michigan Department of Natural Resources | Michigan Departme",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
   ]
  ]
 }
