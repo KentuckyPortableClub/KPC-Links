@@ -203,7 +203,7 @@ PAGES['kpc-wwff-room.html'] = ('WWFF / KFF Room | KPC', 'World Wide Flora & Faun
 
 # ================================================================== SOTA ROOM
 PAGES['kpc-sota-room.html'] = ('SOTA Room | KPC', 'Summits on the Air in plain words: what SOTA is, the rules (activation zone, 1 contact to log, 4 for points), how to activate and chase, Kentucky W4K guides and tools.', ''.join([
-    hero('hero-mast', 'KPC SOTA ROOM • SUMMITS ON THE AIR', 'SUMMITS ON', 'THE AIR',
+    hero('hero-summit', 'KPC SOTA ROOM • SUMMITS ON THE AIR', 'SUMMITS ON', 'THE AIR',
          'Hike to the top of a listed mountain, set up a small station and make contacts, or chase the people who do. Kentucky\'s summits are in the W4K association.',
          ['⛰ Activate', '🎯 Chase', '🥾 Kentucky W4K'],
          [('THE RULES ↓', '#rules'), ('HOW TO START ↓', '#how'), ('KENTUCKY GUIDES ↓', '#guides')]),
