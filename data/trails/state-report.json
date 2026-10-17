@@ -786,30 +786,6 @@
    0.1
   ],
   [
-   "US-9741",
-   "North Bend Rail Trail State Trail",
-   "WV",
-   "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donaldson@mail.wvu.edu.\n\nhttp://www.mapwv.gov/trails/ | WVDOT_Publisher",
-   112,
-   0.0
-  ],
-  [
-   "US-9742",
-   "Greenbrier River Trail State Trail",
-   "WV",
-   "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donaldson@mail.wvu.edu.\n\nhttp://www.mapwv.gov/trails/ | WVDOT_Publisher",
-   399,
-   0.0
-  ],
-  [
-   "US-10031",
-   "Elk River Trail State Trail",
-   "WV",
-   "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donaldson@mail.wvu.edu.\n\nhttp://www.mapwv.gov/trails/ | WVDOT_Publisher",
-   251,
-   0.0
-  ],
-  [
    "US-1301",
    "High Bridge Trail State Park",
    "VA",
@@ -1120,6 +1096,30 @@
    "DCNR, birds, Pennsylvania Game Commission | FracTrackerAlliance",
    99,
    0.1
+  ],
+  [
+   "US-9741",
+   "North Bend Rail Trail State Trail",
+   "WV",
+   "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donaldson@mail.wvu.edu.\n\nhttp://www.mapwv.gov/trails/ | WVDOT_Publisher",
+   112,
+   0.0
+  ],
+  [
+   "US-9742",
+   "Greenbrier River Trail State Trail",
+   "WV",
+   "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donaldson@mail.wvu.edu.\n\nhttp://www.mapwv.gov/trails/ | WVDOT_Publisher",
+   399,
+   0.0
+  ],
+  [
+   "US-10031",
+   "Elk River Trail State Trail",
+   "WV",
+   "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donaldson@mail.wvu.edu.\n\nhttp://www.mapwv.gov/trails/ | WVDOT_Publisher",
+   251,
+   0.0
   ]
  ],
  "missing": [
@@ -1912,2404 +1912,256 @@
  ],
  "agency": [
   [
-   "Katy Trail Rock Island Spur State Park",
+   "North Bend Rail Trail State Trail",
    "skip (not state/federal)",
-   "geeknixta",
-   "Vail to Upper Missouri River Breaks Optimized Distance"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "Potomac Heritage National Scenic Trail of Northern Virginia"
   ],
   [
-   "Katy Trail Rock Island Spur State Park",
+   "North Bend Rail Trail State Trail",
    "skip (not state/federal)",
-   "City of Columbia, Missouri | IT/GIS Department of the City o",
-   "Park Trails  for City of Columbia, MO"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "Potomac Heritage National Scenic Trail of Northern Virginia "
   ],
   [
-   "Katy Trail Rock Island Spur State Park",
+   "North Bend Rail Trail State Trail",
    "skip (not state/federal)",
-   "ctabor_Republic",
-   "TAP_Grant_Trail"
+   "WVatlas",
+   "Tourist Regions of West Virginia"
   ],
   [
-   "Katy Trail Rock Island Spur State Park",
+   "North Bend Rail Trail State Trail",
    "skip (not state/federal)",
-   "CJCarsley2",
-   "Missouri_River_Response_WFL"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "Potomac River Water Access"
   ],
   [
-   "Wilson Cumberland Trail State Park",
+   "North Bend Rail Trail State Trail",
    "skip (not state/federal)",
-   "The Nature Conservancy |  | link.elmore@tnc.org_TNC",
-   "Ataya TN Trails TWRA public view"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "PHNST Climate Exposure"
   ],
   [
-   "Wilson Cumberland Trail State Park",
+   "North Bend Rail Trail State Trail",
    "skip (not state/federal)",
-   "Shelby County 911 | Shelby County 911 | shelbycounty911",
-   "911 Trail Markers"
+   "DPMC_GIS",
+   "UEER_Recreation"
   ],
   [
-   "Wilson Cumberland Trail State Park",
+   "North Bend Rail Trail State Trail",
    "skip (not state/federal)",
-   "NTM718_IGTLab",
-   "TREC Tennessee Statewide Trails and Greenways SCTDD"
+   "Nortern Virginia Regional Commission | rboyd1@pwcgov.org",
+   "PHNST Trail"
   ],
   [
-   "Wilson Cumberland Trail State Park",
+   "North Bend Rail Trail State Trail",
    "skip (not state/federal)",
-   "jace.swain-crowley",
-   "Greenways and Trails"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "PHNST Amenities Recommendations"
   ],
   [
-   "Wilson Cumberland Trail State Park",
+   "North Bend Rail Trail State Trail",
    "skip (not state/federal)",
-   "Jon Zetterberg | Jzett33",
-   "Mile Markers"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "PHNST Wayfinding Recommendations"
   ],
   [
-   "Wilson Cumberland Trail State Park",
+   "North Bend Rail Trail State Trail",
    "skip (not state/federal)",
-   "NHunt73",
-   "Chattanooga Regional Trails"
+   "Northern Virginia Regional Commission  | BBC Research & Cons",
+   "Broad Run and Goose Creek PHNST Segment"
   ],
   [
-   "Wilson Cumberland Trail State Park",
+   "North Bend Rail Trail State Trail",
    "skip (not state/federal)",
-   "FontaineMaury",
-   "Scrum Branch"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "PHNST Wayfinding & Amenities - Volunteer Assignments"
   ],
   [
-   "Wilson Cumberland Trail State Park",
+   "North Bend Rail Trail State Trail",
    "skip (not state/federal)",
-   "Derived from the 2016 USGS 3DEP LiDAR Collection. | WashCoTN",
-   "Five-Foot Contours of Washington County, Tennessee"
+   "Jefferson County GIS/Addressing Office | jgormont",
+   "Jefferson County WV - Trails"
   ],
   [
-   "Wilson Cumberland Trail State Park",
+   "North Bend Rail Trail State Trail",
    "skip (not state/federal)",
-   "FontaineMaury",
-   "Sams Branch"
+   "DPMC_GIS",
+   "DeerCreekProjectData_20221122"
   ],
   [
-   "Wilson Cumberland Trail State Park",
-   "skip (not state/federal)",
-   "afrisbie_ATConservancy",
-   "Appalachian Trail Visitor Use Management"
-  ],
-  [
-   "Wilson Cumberland Trail State Park",
-   "skip (not state/federal)",
-   "ppurgiel_ucdd",
-   "Bigbee River Trail"
-  ],
-  [
-   "Wilson Cumberland Trail State Park",
-   "skip (not state/federal)",
-   "NCCC | geoace67",
-   "NChick_web1"
-  ],
-  [
-   "Wilson Cumberland Trail State Park",
-   "skip (not state/federal)",
-   "Collierville GIS | ColliervilleGIS",
-   "GreenbeltTrails"
-  ],
-  [
-   "Wilson Cumberland Trail State Park",
-   "skip (not state/federal)",
-   "monroeco",
-   "Trail Spots"
-  ],
-  [
-   "Wilson Cumberland Trail State Park",
-   "skip (not state/federal)",
-   "bensmith252",
-   "Buffalo Mountain Hiking Trails 2_WFL1"
-  ],
-  [
-   "Wilson Cumberland Trail State Park",
-   "skip (not state/federal)",
-   "FontaineMaury",
-   "SavageGulfHikingEasy"
-  ],
-  [
-   "Wilson Cumberland Trail State Park",
-   "268 lines 0 km from pin",
-   "TDEC_Bureau_of_Conservation",
-   "arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Trails_(view)/FeatureServer/0 Park_Name"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "The Nature Conservancy |  | link.elmore@tnc.org_TNC",
-   "Ataya TN Trails TWRA public view"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "Shelby County 911 | Shelby County 911 | shelbycounty911",
-   "911 Trail Markers"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "NTM718_IGTLab",
-   "TREC Tennessee Statewide Trails and Greenways SCTDD"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "jace.swain-crowley",
-   "Greenways and Trails"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "Jon Zetterberg | Jzett33",
-   "Mile Markers"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "NHunt73",
-   "Chattanooga Regional Trails"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "FontaineMaury",
-   "Scrum Branch"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "Derived from the 2016 USGS 3DEP LiDAR Collection. | WashCoTN",
-   "Five-Foot Contours of Washington County, Tennessee"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "FontaineMaury",
-   "Sams Branch"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "afrisbie_ATConservancy",
-   "Appalachian Trail Visitor Use Management"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "ppurgiel_ucdd",
-   "Bigbee River Trail"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "NCCC | geoace67",
-   "NChick_web1"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "Collierville GIS | ColliervilleGIS",
-   "GreenbeltTrails"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "monroeco",
-   "Trail Spots"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "bensmith252",
-   "Buffalo Mountain Hiking Trails 2_WFL1"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "FontaineMaury",
-   "SavageGulfHikingEasy"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Raleigh Greenway Trails"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "Catawba Lands Conservancy | MoonLight_User",
-   "Carolina Thread Trail"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "trn_gis3",
-   "North Carolina State University Greenways Network"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Raleigh Greenway Mile Markers"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "nconemap",
-   "Coastal Plain Paddle Trails - (Points)"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "evan.saunderspearce_bmi",
-   "Carolina Thread Trail Status"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh Parks, Recreation and Cultural Resources | R",
-   "Raleigh Greenway Trails (Structures Only)"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "nconemap",
-   "Coastal Plain Paddle Trails (Lines)"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "First Broad River Trail"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "nleprell",
-   "Trails"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Founders and Masons Bend Trails"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Kings Mtn Gateway Trail"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Park and Greenway Damage Assessment"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Marcia Cloninger Rail Trail"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "Steven.Castongia@CharlotteNC.gov_charlotte",
-   "Cross Charlotte Trail"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Lake Whelchel Trail"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "GCLMPO",
-   "CTT_CatawbaCrossing"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte |  | CharlotteNC",
-   "Urban Arboretum Trail Route"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "Wake County GIS | WakeCountyGovernment",
-   "Greenways in Wake County, NC"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "marisa.verbanic@raleighnc.gov_ral",
-   "School to Greenway Closest Features"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "NCNERR | elizabeth.pinnix_ncdenr",
-   "mastersitemap_hikingtrails"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh Parks, Recreation and Cultural Resources, GI",
-   "Raleigh Parks Asset Inventory"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "Charlotte Dept. of Transportation and Mecklenburg County Par",
-   "Cross Charlotte Trail"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "NC Wildlife Resources Commission | anna.stefanowicz@ncwildli",
-   "NCWRC Game Land Trails Roads"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh |  | RaleighPRCR",
-   "Raleigh Park Restrooms"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte | Mecklenburg County GIS | CharlotteNC",
-   "Greenway Masterplan"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte | Mecklenburg County GIS. | CharlotteNC",
-   "Greenways"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "Greg Kopsch | kobrien",
-   "CNTrails"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "York Greenway"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "UNCW Office of Sustainability \n | sustainability@uncw.edu",
-   "Tar Kiln Nature Trail: Initial Data Collection"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "skip (not state/federal)",
-   "Mecklenburg County GIS | MecklenburgCoNC",
-   "Nature Preserve Trails"
-  ],
-  [
-   "Mountains to Sea State Trail",
-   "149 lines 0 km from pin",
-   "NC Division of Parks and Recreation, DNCR | NCStateParks_NCD",
-   "://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1 SYSTEMNAME"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "vmcnees",
-   "FFST Data Collection"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "vmcnees",
-   "FFST Classification"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "sarah.chabaane_burkenc",
-   "FFST_System_FS"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "swhalen5",
-   "FFST Trailhead "
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "Keagan@dbdplanning",
-   "Fonta Flora Data Build 08_28_18_WFL1_ViewOnly"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "a.hester@precisionsafesidewalks.com",
-   "Morganton Condition Assessment_WFL1"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "a.hester@precisionsafesidewalks.com",
-   "Morganton Daxbot Condition Assessment_WFL1"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Raleigh Greenway Trails"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "Catawba Lands Conservancy | MoonLight_User",
-   "Carolina Thread Trail"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "trn_gis3",
-   "North Carolina State University Greenways Network"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Raleigh Greenway Mile Markers"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "nconemap",
-   "Coastal Plain Paddle Trails - (Points)"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "evan.saunderspearce_bmi",
-   "Carolina Thread Trail Status"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh Parks, Recreation and Cultural Resources | R",
-   "Raleigh Greenway Trails (Structures Only)"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "nconemap",
-   "Coastal Plain Paddle Trails (Lines)"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "First Broad River Trail"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "nleprell",
-   "Trails"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Founders and Masons Bend Trails"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Kings Mtn Gateway Trail"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Park and Greenway Damage Assessment"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Marcia Cloninger Rail Trail"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "Steven.Castongia@CharlotteNC.gov_charlotte",
-   "Cross Charlotte Trail"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Lake Whelchel Trail"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "GCLMPO",
-   "CTT_CatawbaCrossing"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte |  | CharlotteNC",
-   "Urban Arboretum Trail Route"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "Wake County GIS | WakeCountyGovernment",
-   "Greenways in Wake County, NC"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "marisa.verbanic@raleighnc.gov_ral",
-   "School to Greenway Closest Features"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "NCNERR | elizabeth.pinnix_ncdenr",
-   "mastersitemap_hikingtrails"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh Parks, Recreation and Cultural Resources, GI",
-   "Raleigh Parks Asset Inventory"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "Charlotte Dept. of Transportation and Mecklenburg County Par",
-   "Cross Charlotte Trail"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "NC Wildlife Resources Commission | anna.stefanowicz@ncwildli",
-   "NCWRC Game Land Trails Roads"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh |  | RaleighPRCR",
-   "Raleigh Park Restrooms"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte | Mecklenburg County GIS | CharlotteNC",
-   "Greenway Masterplan"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte | Mecklenburg County GIS. | CharlotteNC",
-   "Greenways"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "Greg Kopsch | kobrien",
-   "CNTrails"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "York Greenway"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "UNCW Office of Sustainability \n | sustainability@uncw.edu",
-   "Tar Kiln Nature Trail: Initial Data Collection"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "skip (not state/federal)",
-   "Mecklenburg County GIS | MecklenburgCoNC",
-   "Nature Preserve Trails"
-  ],
-  [
-   "Fonta-Flora State Trail",
-   "2 lines 5 km from pin",
-   "North Carolina Department of Transportation, Integrated Mobi",
-   "WFvHYDMVmmxMeM/arcgis/rest/services/NCDOT_Great_Trails_State_Plan_Network/FeatureServer/33 Plan_Name"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "Piedmont.Triad.Regional.Council",
-   "YRST_AccessPoints"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "Piedmont.Triad.Regional.Council",
-   "MileMarkerSigns"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "Piedmont.Triad.Regional.Council",
-   "Blueway"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "Piedmont.Triad.Regional.Council",
-   "MileMarkerSigns"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "Piedmont.Triad.Regional.Council",
-   "YRST_AccessPoints"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "Piedmont.Triad.Regional.Council",
-   "Blueway"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Raleigh Greenway Trails"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "Catawba Lands Conservancy | MoonLight_User",
-   "Carolina Thread Trail"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "trn_gis3",
-   "North Carolina State University Greenways Network"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Raleigh Greenway Mile Markers"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "nconemap",
-   "Coastal Plain Paddle Trails - (Points)"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "evan.saunderspearce_bmi",
-   "Carolina Thread Trail Status"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh Parks, Recreation and Cultural Resources | R",
-   "Raleigh Greenway Trails (Structures Only)"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "nconemap",
-   "Coastal Plain Paddle Trails (Lines)"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "First Broad River Trail"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "nleprell",
-   "Trails"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Founders and Masons Bend Trails"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Kings Mtn Gateway Trail"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Park and Greenway Damage Assessment"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Marcia Cloninger Rail Trail"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "Steven.Castongia@CharlotteNC.gov_charlotte",
-   "Cross Charlotte Trail"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Lake Whelchel Trail"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "GCLMPO",
-   "CTT_CatawbaCrossing"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte |  | CharlotteNC",
-   "Urban Arboretum Trail Route"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "Wake County GIS | WakeCountyGovernment",
-   "Greenways in Wake County, NC"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "marisa.verbanic@raleighnc.gov_ral",
-   "School to Greenway Closest Features"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "NCNERR | elizabeth.pinnix_ncdenr",
-   "mastersitemap_hikingtrails"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh Parks, Recreation and Cultural Resources, GI",
-   "Raleigh Parks Asset Inventory"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "Charlotte Dept. of Transportation and Mecklenburg County Par",
-   "Cross Charlotte Trail"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "NC Wildlife Resources Commission | anna.stefanowicz@ncwildli",
-   "NCWRC Game Land Trails Roads"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh |  | RaleighPRCR",
-   "Raleigh Park Restrooms"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte | Mecklenburg County GIS | CharlotteNC",
-   "Greenway Masterplan"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte | Mecklenburg County GIS. | CharlotteNC",
-   "Greenways"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "Greg Kopsch | kobrien",
-   "CNTrails"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "York Greenway"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "UNCW Office of Sustainability \n | sustainability@uncw.edu",
-   "Tar Kiln Nature Trail: Initial Data Collection"
-  ],
-  [
-   "Yadkin River State Trail",
-   "skip (not state/federal)",
-   "Mecklenburg County GIS | MecklenburgCoNC",
-   "Nature Preserve Trails"
-  ],
-  [
-   "Yadkin River State Trail",
-   "18 lines 0 km from pin",
-   "NC Division of Parks and Recreation, DNCR | NCStateParks_NCD",
-   "://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1 SYSTEMNAME"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Raleigh Greenway Trails"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "Catawba Lands Conservancy | MoonLight_User",
-   "Carolina Thread Trail"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "trn_gis3",
-   "North Carolina State University Greenways Network"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Raleigh Greenway Mile Markers"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "nconemap",
-   "Coastal Plain Paddle Trails - (Points)"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "evan.saunderspearce_bmi",
-   "Carolina Thread Trail Status"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh Parks, Recreation and Cultural Resources | R",
-   "Raleigh Greenway Trails (Structures Only)"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "nconemap",
-   "Coastal Plain Paddle Trails (Lines)"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "First Broad River Trail"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "nleprell",
-   "Trails"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Founders and Masons Bend Trails"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Kings Mtn Gateway Trail"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Park and Greenway Damage Assessment"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Marcia Cloninger Rail Trail"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "Steven.Castongia@CharlotteNC.gov_charlotte",
-   "Cross Charlotte Trail"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Lake Whelchel Trail"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "GCLMPO",
-   "CTT_CatawbaCrossing"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte |  | CharlotteNC",
-   "Urban Arboretum Trail Route"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "Wake County GIS | WakeCountyGovernment",
-   "Greenways in Wake County, NC"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "marisa.verbanic@raleighnc.gov_ral",
-   "School to Greenway Closest Features"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "NCNERR | elizabeth.pinnix_ncdenr",
-   "mastersitemap_hikingtrails"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh Parks, Recreation and Cultural Resources, GI",
-   "Raleigh Parks Asset Inventory"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "Charlotte Dept. of Transportation and Mecklenburg County Par",
-   "Cross Charlotte Trail"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "NC Wildlife Resources Commission | anna.stefanowicz@ncwildli",
-   "NCWRC Game Land Trails Roads"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh |  | RaleighPRCR",
-   "Raleigh Park Restrooms"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte | Mecklenburg County GIS | CharlotteNC",
-   "Greenway Masterplan"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte | Mecklenburg County GIS. | CharlotteNC",
-   "Greenways"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "Greg Kopsch | kobrien",
-   "CNTrails"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "York Greenway"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "UNCW Office of Sustainability \n | sustainability@uncw.edu",
-   "Tar Kiln Nature Trail: Initial Data Collection"
-  ],
-  [
-   "Deep River State Trail",
-   "skip (not state/federal)",
-   "Mecklenburg County GIS | MecklenburgCoNC",
-   "Nature Preserve Trails"
-  ],
-  [
-   "Deep River State Trail",
-   "2 lines 65 km from pin",
-   "North Carolina Department of Transportation, Integrated Mobi",
-   "WFvHYDMVmmxMeM/arcgis/rest/services/NCDOT_Great_Trails_State_Plan_Network/FeatureServer/33 Plan_Name"
-  ],
-  [
-   "Deep River State Trail",
-   "2 lines 65 km from pin",
-   "North Carolina Department of Transportation, Integrated Mobi",
-   "WFvHYDMVmmxMeM/arcgis/rest/services/NCDOT_Great_Trails_State_Plan_Network/FeatureServer/33 Plan_Name"
-  ],
-  [
-   "Deep River State Trail",
-   "25 lines 0 km from pin",
-   "NC Division of Parks and Recreation, DNCR | NCStateParks_NCD",
-   "://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1 SYSTEMNAME"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Raleigh Greenway Trails"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "Catawba Lands Conservancy | MoonLight_User",
-   "Carolina Thread Trail"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "trn_gis3",
-   "North Carolina State University Greenways Network"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Raleigh Greenway Mile Markers"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "nconemap",
-   "Coastal Plain Paddle Trails - (Points)"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "evan.saunderspearce_bmi",
-   "Carolina Thread Trail Status"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh Parks, Recreation and Cultural Resources | R",
-   "Raleigh Greenway Trails (Structures Only)"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "nconemap",
-   "Coastal Plain Paddle Trails (Lines)"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "First Broad River Trail"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "nleprell",
-   "Trails"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Founders and Masons Bend Trails"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Kings Mtn Gateway Trail"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh | City of Raleigh Parks, Recreation and Cult",
-   "Park and Greenway Damage Assessment"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Marcia Cloninger Rail Trail"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "Steven.Castongia@CharlotteNC.gov_charlotte",
-   "Cross Charlotte Trail"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "Lake Whelchel Trail"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "GCLMPO",
-   "CTT_CatawbaCrossing"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte |  | CharlotteNC",
-   "Urban Arboretum Trail Route"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "Wake County GIS | WakeCountyGovernment",
-   "Greenways in Wake County, NC"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "marisa.verbanic@raleighnc.gov_ral",
-   "School to Greenway Closest Features"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "NCNERR | elizabeth.pinnix_ncdenr",
-   "mastersitemap_hikingtrails"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh Parks, Recreation and Cultural Resources, GI",
-   "Raleigh Parks Asset Inventory"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "Charlotte Dept. of Transportation and Mecklenburg County Par",
-   "Cross Charlotte Trail"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "NC Wildlife Resources Commission | anna.stefanowicz@ncwildli",
-   "NCWRC Game Land Trails Roads"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "City of Raleigh |  | RaleighPRCR",
-   "Raleigh Park Restrooms"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte | Mecklenburg County GIS | CharlotteNC",
-   "Greenway Masterplan"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "City of Charlotte | Mecklenburg County GIS. | CharlotteNC",
-   "Greenways"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "Greg Kopsch | kobrien",
-   "CNTrails"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "kzager1",
-   "York Greenway"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "UNCW Office of Sustainability \n | sustainability@uncw.edu",
-   "Tar Kiln Nature Trail: Initial Data Collection"
-  ],
-  [
-   "Dan River State Trail",
-   "skip (not state/federal)",
-   "Mecklenburg County GIS | MecklenburgCoNC",
-   "Nature Preserve Trails"
-  ],
-  [
-   "Dan River State Trail",
-   "16 lines 0 km from pin",
-   "NC Division of Parks and Recreation, DNCR | NCStateParks_NCD",
-   "://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1 SYSTEMNAME"
-  ],
-  [
-   "Hart-Montague Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Nati",
-   "Points of Interest Thunder Bay"
-  ],
-  [
-   "Hart-Montague Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
-  ],
-  [
-   "Hart-Montague Trail State Park",
-   "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
-  ],
-  [
-   "Hart-Montague Trail State Park",
-   "skip (not state/federal)",
-   "boppmann@indtwp.com_oakgov",
-   "Independence Township Safety Paths"
-  ],
-  [
-   "Hart-Montague Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT Great Lakes Maritime Heritage Trail"
-  ],
-  [
-   "Hart-Montague Trail State Park",
-   "skip (not state/federal)",
-   "Michigan Department of Agriculture and Rural Development (MD",
-   "Michigan Craft Beverage Businesses"
-  ],
-  [
-   "Hart-Montague Trail State Park",
-   "skip (not state/federal)",
-   "ahoff_edu",
-   "Border to Border Bike Trail Between Washtenaw Community Coll"
-  ],
-  [
-   "Hart-Montague Trail State Park",
-   "skip (not state/federal)",
-   "Title: Map of Michigan State College bridle trails.\nPublishe",
-   "Map of Michigan State College bridle trails "
-  ],
-  [
-   "Hart-Montague Trail State Park",
-   "skip (not state/federal)",
-   "Little Traverse Conservancy | odalaigh",
-   "Little Traverse Conservancy Nature Preserve Trails"
-  ],
-  [
-   "Hart-Montague Trail State Park",
-   "skip (not state/federal)",
-   "City of Lansing | andrew.skelton_Lansing",
-   "Trails_AS"
-  ],
-  [
-   "Hart-Montague Trail State Park",
-   "skip (not state/federal)",
-   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
-   "OC Cross-Country Ski Trails"
-  ],
-  [
-   "Hart-Montague Trail State Park",
-   "8 lines 0 km from pin",
-   "Michigan Department of Natural Resources | Michigan Departme",
-   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
-  ],
-  [
-   "Kal-Haven Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Nati",
-   "Points of Interest Thunder Bay"
-  ],
-  [
-   "Kal-Haven Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
-  ],
-  [
-   "Kal-Haven Trail State Park",
-   "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
-  ],
-  [
-   "Kal-Haven Trail State Park",
-   "skip (not state/federal)",
-   "boppmann@indtwp.com_oakgov",
-   "Independence Township Safety Paths"
-  ],
-  [
-   "Kal-Haven Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT Great Lakes Maritime Heritage Trail"
-  ],
-  [
-   "Kal-Haven Trail State Park",
-   "skip (not state/federal)",
-   "Michigan Department of Agriculture and Rural Development (MD",
-   "Michigan Craft Beverage Businesses"
-  ],
-  [
-   "Kal-Haven Trail State Park",
-   "skip (not state/federal)",
-   "ahoff_edu",
-   "Border to Border Bike Trail Between Washtenaw Community Coll"
-  ],
-  [
-   "Kal-Haven Trail State Park",
-   "skip (not state/federal)",
-   "Title: Map of Michigan State College bridle trails.\nPublishe",
-   "Map of Michigan State College bridle trails "
-  ],
-  [
-   "Kal-Haven Trail State Park",
-   "skip (not state/federal)",
-   "Little Traverse Conservancy | odalaigh",
-   "Little Traverse Conservancy Nature Preserve Trails"
-  ],
-  [
-   "Kal-Haven Trail State Park",
-   "skip (not state/federal)",
-   "City of Lansing | andrew.skelton_Lansing",
-   "Trails_AS"
-  ],
-  [
-   "Kal-Haven Trail State Park",
-   "skip (not state/federal)",
-   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
-   "OC Cross-Country Ski Trails"
-  ],
-  [
-   "Kal-Haven Trail State Park",
-   "16 lines 0 km from pin",
-   "Michigan Department of Natural Resources | Michigan Departme",
-   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
-  ],
-  [
-   "Mike Levine Lakelands Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Nati",
-   "Points of Interest Thunder Bay"
-  ],
-  [
-   "Mike Levine Lakelands Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
-  ],
-  [
-   "Mike Levine Lakelands Trail State Park",
-   "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
-  ],
-  [
-   "Mike Levine Lakelands Trail State Park",
-   "skip (not state/federal)",
-   "boppmann@indtwp.com_oakgov",
-   "Independence Township Safety Paths"
-  ],
-  [
-   "Mike Levine Lakelands Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT Great Lakes Maritime Heritage Trail"
-  ],
-  [
-   "Mike Levine Lakelands Trail State Park",
-   "skip (not state/federal)",
-   "Michigan Department of Agriculture and Rural Development (MD",
-   "Michigan Craft Beverage Businesses"
-  ],
-  [
-   "Mike Levine Lakelands Trail State Park",
-   "skip (not state/federal)",
-   "ahoff_edu",
-   "Border to Border Bike Trail Between Washtenaw Community Coll"
-  ],
-  [
-   "Mike Levine Lakelands Trail State Park",
-   "skip (not state/federal)",
-   "Title: Map of Michigan State College bridle trails.\nPublishe",
-   "Map of Michigan State College bridle trails "
-  ],
-  [
-   "Mike Levine Lakelands Trail State Park",
-   "skip (not state/federal)",
-   "Little Traverse Conservancy | odalaigh",
-   "Little Traverse Conservancy Nature Preserve Trails"
-  ],
-  [
-   "Mike Levine Lakelands Trail State Park",
-   "skip (not state/federal)",
-   "City of Lansing | andrew.skelton_Lansing",
-   "Trails_AS"
-  ],
-  [
-   "Mike Levine Lakelands Trail State Park",
-   "skip (not state/federal)",
-   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
-   "OC Cross-Country Ski Trails"
-  ],
-  [
-   "Mike Levine Lakelands Trail State Park",
-   "27 lines 0 km from pin",
-   "Michigan Department of Natural Resources | Michigan Departme",
-   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
-  ],
-  [
-   "Van Buren Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Nati",
-   "Points of Interest Thunder Bay"
-  ],
-  [
-   "Van Buren Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
-  ],
-  [
-   "Van Buren Trail State Park",
-   "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
-  ],
-  [
-   "Van Buren Trail State Park",
-   "skip (not state/federal)",
-   "boppmann@indtwp.com_oakgov",
-   "Independence Township Safety Paths"
-  ],
-  [
-   "Van Buren Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT Great Lakes Maritime Heritage Trail"
-  ],
-  [
-   "Van Buren Trail State Park",
-   "skip (not state/federal)",
-   "Michigan Department of Agriculture and Rural Development (MD",
-   "Michigan Craft Beverage Businesses"
-  ],
-  [
-   "Van Buren Trail State Park",
-   "skip (not state/federal)",
-   "ahoff_edu",
-   "Border to Border Bike Trail Between Washtenaw Community Coll"
-  ],
-  [
-   "Van Buren Trail State Park",
-   "skip (not state/federal)",
-   "Title: Map of Michigan State College bridle trails.\nPublishe",
-   "Map of Michigan State College bridle trails "
-  ],
-  [
-   "Van Buren Trail State Park",
-   "skip (not state/federal)",
-   "Little Traverse Conservancy | odalaigh",
-   "Little Traverse Conservancy Nature Preserve Trails"
-  ],
-  [
-   "Van Buren Trail State Park",
-   "skip (not state/federal)",
-   "City of Lansing | andrew.skelton_Lansing",
-   "Trails_AS"
-  ],
-  [
-   "Van Buren Trail State Park",
-   "skip (not state/federal)",
-   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
-   "OC Cross-Country Ski Trails"
-  ],
-  [
-   "Van Buren Trail State Park",
-   "17 lines 0 km from pin",
-   "Michigan Department of Natural Resources | Michigan Departme",
-   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
-  ],
-  [
-   "White Pine Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Nati",
-   "Points of Interest Thunder Bay"
-  ],
-  [
-   "White Pine Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
-  ],
-  [
-   "White Pine Trail State Park",
-   "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
-  ],
-  [
-   "White Pine Trail State Park",
-   "skip (not state/federal)",
-   "boppmann@indtwp.com_oakgov",
-   "Independence Township Safety Paths"
-  ],
-  [
-   "White Pine Trail State Park",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT Great Lakes Maritime Heritage Trail"
-  ],
-  [
-   "White Pine Trail State Park",
-   "skip (not state/federal)",
-   "Michigan Department of Agriculture and Rural Development (MD",
-   "Michigan Craft Beverage Businesses"
-  ],
-  [
-   "White Pine Trail State Park",
-   "skip (not state/federal)",
-   "ahoff_edu",
-   "Border to Border Bike Trail Between Washtenaw Community Coll"
-  ],
-  [
-   "White Pine Trail State Park",
-   "skip (not state/federal)",
-   "Title: Map of Michigan State College bridle trails.\nPublishe",
-   "Map of Michigan State College bridle trails "
-  ],
-  [
-   "White Pine Trail State Park",
-   "skip (not state/federal)",
-   "Little Traverse Conservancy | odalaigh",
-   "Little Traverse Conservancy Nature Preserve Trails"
-  ],
-  [
-   "White Pine Trail State Park",
-   "skip (not state/federal)",
-   "City of Lansing | andrew.skelton_Lansing",
-   "Trails_AS"
-  ],
-  [
-   "White Pine Trail State Park",
-   "skip (not state/federal)",
-   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
-   "OC Cross-Country Ski Trails"
-  ],
-  [
-   "White Pine Trail State Park",
-   "1 lines 20 km from pin",
-   "Michigan Department of Natural Resources | Michigan Departme",
-   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/7 SegmentName"
-  ],
-  [
-   "White Pine Trail State Park",
-   "1 lines 20 km from pin",
-   "Michigan Department of Natural Resources | Michigan Departme",
-   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/7 SegmentName"
-  ],
-  [
-   "White Pine Trail State Park",
-   "50 lines 0 km from pin",
-   "Michigan Department of Natural Resources | Michigan Departme",
-   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
-  ],
-  [
-   "Bay De Noc/Grand Island National Recreation Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Nati",
-   "Points of Interest Thunder Bay"
-  ],
-  [
-   "Bay De Noc/Grand Island National Recreation Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
-  ],
-  [
-   "Bay De Noc/Grand Island National Recreation Trail",
-   "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
-  ],
-  [
-   "Bay De Noc/Grand Island National Recreation Trail",
-   "skip (not state/federal)",
-   "boppmann@indtwp.com_oakgov",
-   "Independence Township Safety Paths"
-  ],
-  [
-   "Bay De Noc/Grand Island National Recreation Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT Great Lakes Maritime Heritage Trail"
-  ],
-  [
-   "Bay De Noc/Grand Island National Recreation Trail",
-   "skip (not state/federal)",
-   "Michigan Department of Agriculture and Rural Development (MD",
-   "Michigan Craft Beverage Businesses"
-  ],
-  [
-   "Bay De Noc/Grand Island National Recreation Trail",
-   "skip (not state/federal)",
-   "ahoff_edu",
-   "Border to Border Bike Trail Between Washtenaw Community Coll"
-  ],
-  [
-   "Bay De Noc/Grand Island National Recreation Trail",
-   "skip (not state/federal)",
-   "Title: Map of Michigan State College bridle trails.\nPublishe",
-   "Map of Michigan State College bridle trails "
-  ],
-  [
-   "Bay De Noc/Grand Island National Recreation Trail",
-   "skip (not state/federal)",
-   "Little Traverse Conservancy | odalaigh",
-   "Little Traverse Conservancy Nature Preserve Trails"
-  ],
-  [
-   "Bay De Noc/Grand Island National Recreation Trail",
-   "skip (not state/federal)",
-   "City of Lansing | andrew.skelton_Lansing",
-   "Trails_AS"
-  ],
-  [
-   "Bay De Noc/Grand Island National Recreation Trail",
-   "skip (not state/federal)",
-   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
-   "OC Cross-Country Ski Trails"
-  ],
-  [
-   "Betsie Valley State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Nati",
-   "Points of Interest Thunder Bay"
-  ],
-  [
-   "Betsie Valley State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
-  ],
-  [
-   "Betsie Valley State Trail",
-   "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
-  ],
-  [
-   "Betsie Valley State Trail",
-   "skip (not state/federal)",
-   "boppmann@indtwp.com_oakgov",
-   "Independence Township Safety Paths"
-  ],
-  [
-   "Betsie Valley State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT Great Lakes Maritime Heritage Trail"
-  ],
-  [
-   "Betsie Valley State Trail",
-   "skip (not state/federal)",
-   "Michigan Department of Agriculture and Rural Development (MD",
-   "Michigan Craft Beverage Businesses"
-  ],
-  [
-   "Betsie Valley State Trail",
-   "skip (not state/federal)",
-   "ahoff_edu",
-   "Border to Border Bike Trail Between Washtenaw Community Coll"
-  ],
-  [
-   "Betsie Valley State Trail",
-   "skip (not state/federal)",
-   "Title: Map of Michigan State College bridle trails.\nPublishe",
-   "Map of Michigan State College bridle trails "
-  ],
-  [
-   "Betsie Valley State Trail",
-   "skip (not state/federal)",
-   "Little Traverse Conservancy | odalaigh",
-   "Little Traverse Conservancy Nature Preserve Trails"
-  ],
-  [
-   "Betsie Valley State Trail",
-   "skip (not state/federal)",
-   "City of Lansing | andrew.skelton_Lansing",
-   "Trails_AS"
-  ],
-  [
-   "Betsie Valley State Trail",
-   "skip (not state/federal)",
-   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
-   "OC Cross-Country Ski Trails"
-  ],
-  [
-   "Betsie Valley State Trail",
-   "32 lines 0 km from pin",
-   "Michigan Department of Natural Resources | Michigan Departme",
-   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
-  ],
-  [
-   "North Central State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Nati",
-   "Points of Interest Thunder Bay"
-  ],
-  [
-   "North Central State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
-  ],
-  [
-   "North Central State Trail",
-   "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
-  ],
-  [
-   "North Central State Trail",
-   "skip (not state/federal)",
-   "boppmann@indtwp.com_oakgov",
-   "Independence Township Safety Paths"
-  ],
-  [
-   "North Central State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT Great Lakes Maritime Heritage Trail"
-  ],
-  [
-   "North Central State Trail",
-   "skip (not state/federal)",
-   "Michigan Department of Agriculture and Rural Development (MD",
-   "Michigan Craft Beverage Businesses"
-  ],
-  [
-   "North Central State Trail",
-   "skip (not state/federal)",
-   "ahoff_edu",
-   "Border to Border Bike Trail Between Washtenaw Community Coll"
-  ],
-  [
-   "North Central State Trail",
-   "skip (not state/federal)",
-   "Title: Map of Michigan State College bridle trails.\nPublishe",
-   "Map of Michigan State College bridle trails "
-  ],
-  [
-   "North Central State Trail",
-   "skip (not state/federal)",
-   "Little Traverse Conservancy | odalaigh",
-   "Little Traverse Conservancy Nature Preserve Trails"
-  ],
-  [
-   "North Central State Trail",
-   "skip (not state/federal)",
-   "City of Lansing | andrew.skelton_Lansing",
-   "Trails_AS"
-  ],
-  [
-   "North Central State Trail",
-   "skip (not state/federal)",
-   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
-   "OC Cross-Country Ski Trails"
-  ],
-  [
-   "North Central State Trail",
-   "4 lines 0 km from pin",
-   "Michigan Department of Natural Resources | Michigan Departme",
-   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/7 SegmentName"
-  ],
-  [
-   "North Eastern State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Nati",
-   "Points of Interest Thunder Bay"
-  ],
-  [
-   "North Eastern State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
-  ],
-  [
-   "North Eastern State Trail",
-   "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
-  ],
-  [
-   "North Eastern State Trail",
-   "skip (not state/federal)",
-   "boppmann@indtwp.com_oakgov",
-   "Independence Township Safety Paths"
-  ],
-  [
-   "North Eastern State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT Great Lakes Maritime Heritage Trail"
-  ],
-  [
-   "North Eastern State Trail",
-   "skip (not state/federal)",
-   "Michigan Department of Agriculture and Rural Development (MD",
-   "Michigan Craft Beverage Businesses"
-  ],
-  [
-   "North Eastern State Trail",
-   "skip (not state/federal)",
-   "ahoff_edu",
-   "Border to Border Bike Trail Between Washtenaw Community Coll"
-  ],
-  [
-   "North Eastern State Trail",
-   "skip (not state/federal)",
-   "Title: Map of Michigan State College bridle trails.\nPublishe",
-   "Map of Michigan State College bridle trails "
-  ],
-  [
-   "North Eastern State Trail",
-   "skip (not state/federal)",
-   "Little Traverse Conservancy | odalaigh",
-   "Little Traverse Conservancy Nature Preserve Trails"
-  ],
-  [
-   "North Eastern State Trail",
-   "skip (not state/federal)",
-   "City of Lansing | andrew.skelton_Lansing",
-   "Trails_AS"
-  ],
-  [
-   "North Eastern State Trail",
-   "skip (not state/federal)",
-   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
-   "OC Cross-Country Ski Trails"
-  ],
-  [
-   "North Eastern State Trail",
-   "12 lines 0 km from pin",
-   "Michigan Department of Natural Resources | Michigan Departme",
-   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
-  ],
-  [
-   "North Western State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Nati",
-   "Points of Interest Thunder Bay"
-  ],
-  [
-   "North Western State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
-  ],
-  [
-   "North Western State Trail",
-   "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
-  ],
-  [
-   "North Western State Trail",
-   "skip (not state/federal)",
-   "boppmann@indtwp.com_oakgov",
-   "Independence Township Safety Paths"
-  ],
-  [
-   "North Western State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT Great Lakes Maritime Heritage Trail"
-  ],
-  [
-   "North Western State Trail",
-   "skip (not state/federal)",
-   "Michigan Department of Agriculture and Rural Development (MD",
-   "Michigan Craft Beverage Businesses"
-  ],
-  [
-   "North Western State Trail",
-   "skip (not state/federal)",
-   "ahoff_edu",
-   "Border to Border Bike Trail Between Washtenaw Community Coll"
+   "North Bend Rail Trail State Trail",
+   "3 lines 0 km from pin",
+   "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donald",
+   "m/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0 trailName"
   ],
   [
-   "North Western State Trail",
+   "Greenbrier River Trail State Trail",
    "skip (not state/federal)",
-   "Title: Map of Michigan State College bridle trails.\nPublishe",
-   "Map of Michigan State College bridle trails "
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "Potomac Heritage National Scenic Trail of Northern Virginia"
   ],
   [
-   "North Western State Trail",
+   "Greenbrier River Trail State Trail",
    "skip (not state/federal)",
-   "Little Traverse Conservancy | odalaigh",
-   "Little Traverse Conservancy Nature Preserve Trails"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "Potomac Heritage National Scenic Trail of Northern Virginia "
   ],
   [
-   "North Western State Trail",
+   "Greenbrier River Trail State Trail",
    "skip (not state/federal)",
-   "City of Lansing | andrew.skelton_Lansing",
-   "Trails_AS"
+   "WVatlas",
+   "Tourist Regions of West Virginia"
   ],
   [
-   "North Western State Trail",
+   "Greenbrier River Trail State Trail",
    "skip (not state/federal)",
-   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
-   "OC Cross-Country Ski Trails"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "Potomac River Water Access"
   ],
   [
-   "North Western State Trail",
-   "59 lines 0 km from pin",
-   "Michigan Department of Natural Resources | Michigan Departme",
-   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
-  ],
-  [
-   "Pere Marquette State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Nati",
-   "Points of Interest Thunder Bay"
-  ],
-  [
-   "Pere Marquette State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
-  ],
-  [
-   "Pere Marquette State Trail",
-   "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
-  ],
-  [
-   "Pere Marquette State Trail",
-   "skip (not state/federal)",
-   "boppmann@indtwp.com_oakgov",
-   "Independence Township Safety Paths"
-  ],
-  [
-   "Pere Marquette State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT Great Lakes Maritime Heritage Trail"
-  ],
-  [
-   "Pere Marquette State Trail",
-   "skip (not state/federal)",
-   "Michigan Department of Agriculture and Rural Development (MD",
-   "Michigan Craft Beverage Businesses"
-  ],
-  [
-   "Pere Marquette State Trail",
-   "skip (not state/federal)",
-   "ahoff_edu",
-   "Border to Border Bike Trail Between Washtenaw Community Coll"
-  ],
-  [
-   "Pere Marquette State Trail",
-   "skip (not state/federal)",
-   "Title: Map of Michigan State College bridle trails.\nPublishe",
-   "Map of Michigan State College bridle trails "
-  ],
-  [
-   "Pere Marquette State Trail",
-   "skip (not state/federal)",
-   "Little Traverse Conservancy | odalaigh",
-   "Little Traverse Conservancy Nature Preserve Trails"
-  ],
-  [
-   "Pere Marquette State Trail",
-   "skip (not state/federal)",
-   "City of Lansing | andrew.skelton_Lansing",
-   "Trails_AS"
-  ],
-  [
-   "Pere Marquette State Trail",
-   "skip (not state/federal)",
-   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
-   "OC Cross-Country Ski Trails"
-  ],
-  [
-   "Pere Marquette State Trail",
-   "21 lines 0 km from pin",
-   "Michigan Department of Natural Resources | Michigan Departme",
-   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
-  ],
-  [
-   "Polly Ann State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Nati",
-   "Points of Interest Thunder Bay"
-  ],
-  [
-   "Polly Ann State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
-  ],
-  [
-   "Polly Ann State Trail",
-   "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
-  ],
-  [
-   "Polly Ann State Trail",
-   "skip (not state/federal)",
-   "boppmann@indtwp.com_oakgov",
-   "Independence Township Safety Paths"
-  ],
-  [
-   "Polly Ann State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT Great Lakes Maritime Heritage Trail"
-  ],
-  [
-   "Polly Ann State Trail",
-   "skip (not state/federal)",
-   "Michigan Department of Agriculture and Rural Development (MD",
-   "Michigan Craft Beverage Businesses"
-  ],
-  [
-   "Polly Ann State Trail",
-   "skip (not state/federal)",
-   "ahoff_edu",
-   "Border to Border Bike Trail Between Washtenaw Community Coll"
-  ],
-  [
-   "Polly Ann State Trail",
-   "skip (not state/federal)",
-   "Title: Map of Michigan State College bridle trails.\nPublishe",
-   "Map of Michigan State College bridle trails "
-  ],
-  [
-   "Polly Ann State Trail",
-   "skip (not state/federal)",
-   "Little Traverse Conservancy | odalaigh",
-   "Little Traverse Conservancy Nature Preserve Trails"
-  ],
-  [
-   "Polly Ann State Trail",
+   "Greenbrier River Trail State Trail",
    "skip (not state/federal)",
-   "City of Lansing | andrew.skelton_Lansing",
-   "Trails_AS"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "PHNST Climate Exposure"
   ],
   [
-   "Polly Ann State Trail",
+   "Greenbrier River Trail State Trail",
    "skip (not state/federal)",
-   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
-   "OC Cross-Country Ski Trails"
+   "DPMC_GIS",
+   "UEER_Recreation"
   ],
   [
-   "Polly Ann State Trail",
-   "4 lines 8 km from pin",
-   "Michigan Department of Natural Resources | Michigan Departme",
-   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/7 SegmentName"
-  ],
-  [
-   "Iron Belle State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Nati",
-   "Points of Interest Thunder Bay"
-  ],
-  [
-   "Iron Belle State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT_Great_Lakes_Maritime_Heritage_Trail_Photos"
-  ],
-  [
-   "Iron Belle State Trail",
-   "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
-  ],
-  [
-   "Iron Belle State Trail",
-   "skip (not state/federal)",
-   "boppmann@indtwp.com_oakgov",
-   "Independence Township Safety Paths"
-  ],
-  [
-   "Iron Belle State Trail",
-   "skip (not state/federal)",
-   "National Oceanic and Atmospheric Administration (NOAA), Thun",
-   "DOT Great Lakes Maritime Heritage Trail"
-  ],
-  [
-   "Iron Belle State Trail",
-   "skip (not state/federal)",
-   "Michigan Department of Agriculture and Rural Development (MD",
-   "Michigan Craft Beverage Businesses"
-  ],
-  [
-   "Iron Belle State Trail",
-   "skip (not state/federal)",
-   "ahoff_edu",
-   "Border to Border Bike Trail Between Washtenaw Community Coll"
-  ],
-  [
-   "Iron Belle State Trail",
-   "skip (not state/federal)",
-   "Title: Map of Michigan State College bridle trails.\nPublishe",
-   "Map of Michigan State College bridle trails "
-  ],
-  [
-   "Iron Belle State Trail",
-   "skip (not state/federal)",
-   "Little Traverse Conservancy | odalaigh",
-   "Little Traverse Conservancy Nature Preserve Trails"
-  ],
-  [
-   "Iron Belle State Trail",
-   "skip (not state/federal)",
-   "City of Lansing | andrew.skelton_Lansing",
-   "Trails_AS"
-  ],
-  [
-   "Iron Belle State Trail",
+   "Greenbrier River Trail State Trail",
    "skip (not state/federal)",
-   "Oakland County, Michigan | Oakland County, Michigan | OCAGOA",
-   "OC Cross-Country Ski Trails"
+   "Nortern Virginia Regional Commission | rboyd1@pwcgov.org",
+   "PHNST Trail"
   ],
   [
-   "Iron Belle State Trail",
-   "69 lines 0 km from pin",
-   "Michigan Department of Natural Resources | Michigan Departme",
-   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21 Name"
-  ],
-  [
-   "Pine Creek Rail Trail State Trail",
-   "skip (not state/federal)",
-   "hudson2018",
-   "Appalachian Trail Explored Pennsylvania"
-  ],
-  [
-   "Pine Creek Rail Trail State Trail",
-   "skip (not state/federal)",
-   "phlbikeco",
-   "Shared Use Paths in New Jersey and Pennsylvania"
-  ],
-  [
-   "Pine Creek Rail Trail State Trail",
-   "skip (not state/federal)",
-   "hudson2018",
-   "East Brandywine Trails Downingtown Pennsylvania"
-  ],
-  [
-   "Pine Creek Rail Trail State Trail",
-   "skip (not state/federal)",
-   "dhadjie1@students.towson.edu_TowsonU",
-   "Ricketts Glen Trails and Water Features"
-  ],
-  [
-   "Pine Creek Rail Trail State Trail",
-   "skip (not state/federal)",
-   "County of Berks |  | bburkovich_berks",
-   "Berks County Existing Trails"
-  ],
-  [
-   "Pine Creek Rail Trail State Trail",
-   "skip (not state/federal)",
-   "hudson2018",
-   "Dowlin Forge Park and Trails"
-  ],
-  [
-   "Pine Creek Rail Trail State Trail",
-   "skip (not state/federal)",
-   "RA_NRARCGIS",
-   "Pennsylvania State Park Trails"
-  ],
-  [
-   "Pine Creek Rail Trail State Trail",
-   "skip (not state/federal)",
-   "FTKaren",
-   "North Country Trail"
-  ],
-  [
-   "Pine Creek Rail Trail State Trail",
-   "skip (not state/federal)",
-   "hudson2018",
-   "Springlawn Trail and Big Elk Creek"
-  ],
-  [
-   "Pine Creek Rail Trail State Trail",
-   "skip (not state/federal)",
-   "bburkovich_berks",
-   "Trails SEADJCP"
-  ],
-  [
-   "Pine Creek Rail Trail State Trail",
+   "Greenbrier River Trail State Trail",
    "skip (not state/federal)",
-   "County of Berks |  | BerksCountyGIS",
-   "Berks County Trail Gaps"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "PHNST Amenities Recommendations"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Greenbrier River Trail State Trail",
    "skip (not state/federal)",
-   "Berks County Planning Commission | bburkovich_berks",
-   "Trails FMRJCP"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "PHNST Wayfinding Recommendations"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Greenbrier River Trail State Trail",
    "skip (not state/federal)",
-   "CCPA | gis_ccpa",
-   "Dams & Gauge - Yellow Breeches"
+   "Northern Virginia Regional Commission  | BBC Research & Cons",
+   "Broad Run and Goose Creek PHNST Segment"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Greenbrier River Trail State Trail",
    "skip (not state/federal)",
-   "RA_NRARCGIS",
-   "All Trails in Pennsylvania from Explore PA Trails"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "PHNST Wayfinding & Amenities - Volunteer Assignments"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Greenbrier River Trail State Trail",
    "skip (not state/federal)",
-   "Created by Cathy Poppenwimer (former AMC GIS Scientist). | c",
-   "Protect the View - Threatened Trail Views - Use for Labels"
+   "Jefferson County GIS/Addressing Office | jgormont",
+   "Jefferson County WV - Trails"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Greenbrier River Trail State Trail",
    "skip (not state/federal)",
-   "scrplan",
-   "Pennsylvania Trails"
+   "DPMC_GIS",
+   "DeerCreekProjectData_20221122"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
-   "skip (not state/federal)",
-   "Created by Cathy Poppenwimer (former AMC GIS Scientist). | c",
-   "Protect the View - Threatened Trail Views - Labels for Big W"
+   "Greenbrier River Trail State Trail",
+   "3 lines 0 km from pin",
+   "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donald",
+   "m/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0 trailName"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Elk River Trail State Trail",
    "skip (not state/federal)",
-   "pennshare",
-   "Pennsylvania Rail Lines"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "Potomac Heritage National Scenic Trail of Northern Virginia"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Elk River Trail State Trail",
    "skip (not state/federal)",
-   "hudson2018",
-   "White Clay Creek Pennsylvania State Park and Preserve Hiking"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "Potomac Heritage National Scenic Trail of Northern Virginia "
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Elk River Trail State Trail",
    "skip (not state/federal)",
-   "Created by Cathy Poppenwimer (former AMC GIS Scientist) and ",
-   "Protect the View - Threatened Trail Views - Focus Area Polyg"
+   "WVatlas",
+   "Tourist Regions of West Virginia"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Elk River Trail State Trail",
    "skip (not state/federal)",
-   "hudson2018",
-   "Red Clay Trail"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "Potomac River Water Access"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Elk River Trail State Trail",
    "skip (not state/federal)",
-   "hudson2018",
-   "Parrish Trail"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "PHNST Climate Exposure"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Elk River Trail State Trail",
    "skip (not state/federal)",
-   "thopper",
-   "ExplorePAtrails_Trails201805"
+   "DPMC_GIS",
+   "UEER_Recreation"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Elk River Trail State Trail",
    "skip (not state/federal)",
-   "ejr5801_pennstate",
-   "ExplorePA Trails"
+   "Nortern Virginia Regional Commission | rboyd1@pwcgov.org",
+   "PHNST Trail"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Elk River Trail State Trail",
    "skip (not state/federal)",
-   "AYanezmorillo_clus",
-   "kr_Trails and Paths (needs review)"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "PHNST Amenities Recommendations"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Elk River Trail State Trail",
    "skip (not state/federal)",
-   "mwitmer",
-   "NEPA Trails"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "PHNST Wayfinding Recommendations"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Elk River Trail State Trail",
    "skip (not state/federal)",
-   "hudson2018",
-   "Appalachian Trail and Blue Rocks_ Pa"
+   "Northern Virginia Regional Commission  | BBC Research & Cons",
+   "Broad Run and Goose Creek PHNST Segment"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Elk River Trail State Trail",
    "skip (not state/federal)",
-   "Selected downtown Uniontown place locations: \u00a9 OpenStreetMap",
-   "Sheepskin Trail Interactive Map_WFL1"
+   "Northern Virginia Regional Commission  | Northern Virginia R",
+   "PHNST Wayfinding & Amenities - Volunteer Assignments"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Elk River Trail State Trail",
    "skip (not state/federal)",
-   "CCPA, PAFBC | gis_ccpa",
-   "Water_Trails"
+   "Jefferson County GIS/Addressing Office | jgormont",
+   "Jefferson County WV - Trails"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
+   "Elk River Trail State Trail",
    "skip (not state/federal)",
-   "HHSmith_clus",
-   "KR_Trails"
+   "DPMC_GIS",
+   "DeerCreekProjectData_20221122"
   ],
   [
-   "Pine Creek Rail Trail State Trail",
-   "15 lines 0 km from pin",
-   "DCNR, birds, Pennsylvania Game Commission | FracTrackerAllia",
-   "tps://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/PA_BirdHab/FeatureServer/0 NAME01"
+   "Elk River Trail State Trail",
+   "3 lines 0 km from pin",
+   "WVGISTC, WVDOT\nKurt Donaldson at the WVGISTC via kurt.donald",
+   "m/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0 trailName"
   ]
  ]
 }
