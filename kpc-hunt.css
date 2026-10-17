@@ -923,3 +923,9 @@ main#hl[data-desk="1"] .hl-split>.hl-spsec.hl-popped>.hl-in{flex:1 1 auto;min-he
 .hb.td{background:linear-gradient(180deg,#5be39a,#22a861);color:#05210f;font-weight:900}
 .hl-st .a .wk.on{background:rgba(255,255,255,.06)!important;color:#9da59f!important;border-color:rgba(255,255,255,.2)!important}
 .hs-a .wk.on{background:rgba(255,255,255,.06)!important;color:#c9cfca!important;border-color:rgba(255,255,255,.22)!important}
+/* tap the call = send it to the log box (Oct 17) */
+.hs-cb{background:none;border:0;padding:0;margin:0;font:inherit;color:#fff;cursor:pointer;text-shadow:0 0 14px rgba(255,190,90,.6);border-bottom:2px dashed rgba(240,201,107,.55);line-height:1.1}
+.hs-cb:hover,.hs-cb:focus-visible{color:#ffe2a6;border-bottom-color:#f6d58a;outline:none}
+.hs-cb::after{content:' ✎';font-size:.55em;color:var(--g2);vertical-align:middle}
+.hl-st td.c .hs-cb{font:900 14px ui-monospace,Menlo,Consolas,monospace;text-shadow:none;border-bottom-width:1px}
+.hl-st td.c .hs-cb::after{content:''}
