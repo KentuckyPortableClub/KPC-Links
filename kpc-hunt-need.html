@@ -107,7 +107,7 @@ body.field .page-jump-nav{display:none!important}
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261017p">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261017q">
 <header class="site-nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="KPC Home">
@@ -198,7 +198,7 @@ body.field .page-jump-nav{display:none!important}
  <div class="hl-tick-k"><span class="dot"></span>NEW TO YOU</div>
  <button type="button" class="hl-na" id="hlNa" aria-label="Map of new parks on the air (tap to enlarge)"><svg viewBox="0 0 480 305" id="hlNaSvg" aria-hidden="true"></svg><span class="hl-na-cap">Blinking green = new to you in your range · blue = new but far · grey = other spots · gold ring = home. Tap to close.</span></button>
  <div class="hl-tick-run"><div class="hl-tick-track" id="hlTickT"><span class="hl-wait">Waiting for a park that's new to you…</span></div></div>
- <button type="button" class="hl-bell" id="hlFlame" aria-pressed="true" title="What happens on screen when a new park comes on: flames, fireworks or nothing (tap to change)">🔥 FLAMES</button><button type="button" class="hl-bell" id="hlBell" aria-pressed="false" title="Alert me">🔕 ALERT OFF</button><button type="button" class="hl-bell" id="hlBan" aria-pressed="true" title="Turn the scrolling banners (new parks + conditions) on or off">🎞<span class="t"> BANNERS ON</span></button>
+ <button type="button" class="hl-bell" id="hlFlame" aria-pressed="true" title="What happens on screen when a new park comes on: flames, fireworks or nothing (tap to change)">🔥 FLAMES</button><button type="button" class="hl-bell" id="hlBell" aria-pressed="false" title="Alert me">🔕 ALERT OFF</button><button type="button" class="hl-bell" id="hlBan" aria-pressed="true" title="Turn the scrolling new-parks bar on or off">🎞<span class="t"> PARKS BAR ON</span></button><button type="button" class="hl-bell" id="hlCxBan" aria-pressed="true" title="Turn the scrolling conditions bar (sun, weather, WSPR) on or off">📡<span class="t"> CONDITIONS ON</span></button>
 </section>
 <div class="hl-cx" id="hlCx" aria-label="Solar, weather and band conditions"><span class="hl-cx-k" id="hlCxK">📡 CONDITIONS</span><div class="hl-cx-run"><div class="hl-cx-track" id="hlCxT"><span>Checking the sun, your weather and WSPR reports near you…</span></div></div><button type="button" class="hl-cx-b" id="hlCxLoc" title="Use my location for the weather and band reports">📍 MY SPOT</button></div>
 
@@ -240,7 +240,7 @@ body.field .page-jump-nav{display:none!important}
 <div class="hl-row" id="favList"></div></details>
 <div id="hlFavs"></div>
 <a class="hl-nolog mem-only" id="hlNoLog" href="#hPota" hidden>⭐ <b>Load your hunted parks from POTA</b> so the new-to-you ones light up. Tap here ›</a><a class="hl-nolog pub-only" id="hlNoLogP" href="#hlSetup" hidden>📄 <b>Load the parks you've worked</b> (a CSV or ADIF file) so the new-to-you ones light up. Tap here ›</a>
-<div class="hl-row hl-viewbar"><span class="hl-count" id="hlCount"></span><span class="hl-vt" role="group" aria-label="View"><button type="button" class="hl-chip" data-view="cards">▦ CARDS</button><button type="button" class="hl-chip" data-view="table">☰ TABLE</button></span></div>
+<div class="hl-row hl-viewbar"><span class="hl-count" id="hlCount"></span><a href="#awModal" class="hl-chip hl-awq mem-only" title="What the badges on the spots mean">🏅 BADGES?</a><span class="hl-vt" role="group" aria-label="View"><button type="button" class="hl-chip" data-view="cards">▦ CARDS</button><button type="button" class="hl-chip" data-view="table">☰ TABLE</button></span></div>
 <div class="hl-grid" id="hlSpots"><div class="hl-empty">Loading spots…</div></div>
 <p class="hl-src" id="hlSrc"></p>
 </div></section>
@@ -248,6 +248,17 @@ body.field .page-jump-nav{display:none!important}
 
 <section class="hl-sec hl-barsec" id="hlLog"><div class="hl-in">
 <a class="hl-bar" href="#lgModal">📒 <b>MY LOG FILES</b><span class="d">Download for QRZ · backup file · restore · my call &amp; grid</span><i>OPEN ▸</i></a>
+<div class="hl-modal" id="awModal" hidden role="dialog" aria-label="What the badges mean"><div class="hl-mbox"><button type="button" class="hl-mx" data-mclose aria-label="Close">✕</button>
+<h2 class="hl-h">🏅 What the badges on a spot mean</h2>
+<p class="hl-p">They show how close this contact gets you to a POTA hunter award. They come from your own POTA numbers, so tap ⭐ GET MY PARKS first (and again now and then to keep them fresh).</p>
+<div class="aw-leg">
+<div><span class="ac">🔁 Park 14/20</span><p><b>Repeat Offender.</b> You've worked this park 14 times; the award comes every 20 contacts with the same park. Working it now makes 15.</p></div>
+<div><span class="ac">🤝 K4TEST 37/50</span><p><b>Operator to Operator.</b> You've worked this activator 37 times (at any park); the award comes every 50 contacts with the same person.</p></div>
+<div><span class="ac near">📶 NEW BAND 4/10</span><p><b>N1CC.</b> You've worked this park on 4 bands and this spot is on a band you don't have there yet. The award is one park on 10 bands.</p></div>
+<div><span class="ac near">🔁 Park 17/20 · ALMOST</span><p><b>Glowing gold = almost there.</b> Within 5 of the next Repeat Offender level, within 10 of the next Op to Op level, or any new N1CC band.</p></div>
+</div>
+<p class="hl-p" style="font-size:12px;opacity:.8">On the table view the numbers show without the words. POTA decides the awards; these are just a heads-up.</p>
+</div></div>
 <div class="hl-modal" id="lgModal" hidden role="dialog" aria-label="My log files"><div class="hl-mbox"><button type="button" class="hl-mx" data-mclose aria-label="Close">✕</button>
 <p class="hl-k">YOUR CONTACTS</p><h2>📝 My hunting log</h2>
 <p class="hl-p">Tap any spot card (or <b>📝 LOG IT</b>) and the contact fills itself in: call, frequency, band, mode, park and the time in UTC. Fix anything, tap <b>SAVE</b>. Every save is kept on this device right away, twice over (and in a backup file on computers that allow it), and the park is marked worked.</p>
@@ -359,7 +370,7 @@ body.field .page-jump-nav{display:none!important}
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="kpc-ambient.js?v=20261017a"></script><script src="kpc-cat.js?v=20261017a"></script>
-<script src="kpc-hunt.js?v=20261017n"></script>
+<script src="kpc-hunt.js?v=20261017o"></script>
 <script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261017d" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');

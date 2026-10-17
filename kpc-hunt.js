@@ -220,10 +220,19 @@
   }
   function bell() { const b = $('hlBell'); b.setAttribute('aria-pressed', BELL); b.innerHTML = (BELL ? '🔔' : '🔕') + '<span class="t"> ALERT ' + (BELL ? 'ON' : 'OFF') + '</span>'; }
   $('hlBell').onclick = () => { BELL = !BELL; put('kpcHuntBell', BELL); bell(); if (BELL) chime(); };
-  /* scrolling banners on/off (Brandon Oct 17): the new-park ticker + the conditions bar; the buttons stay so you can turn them back on */
-  let BAN = get('kpcHuntBanner', true);
-  function ban() { const b = $('hlBan'); if (!b) return; $('hl').dataset.noban = BAN ? '' : '1'; b.setAttribute('aria-pressed', BAN); b.innerHTML = '🎞<span class="t"> BANNERS ' + (BAN ? 'ON' : 'OFF') + '</span>'; }
-  if ($('hlBan')) { $('hlBan').onclick = () => { BAN = !BAN; put('kpcHuntBanner', BAN); ban(); toast(BAN ? 'Scrolling banners on.' : 'Scrolling banners off. Tap 🎞 to bring them back.'); }; ban(); }
+  /* scrolling bars on/off, each on its own (Brandon Oct 17): the new-parks ticker and the conditions bar; the buttons stay */
+  let BAN = get('kpcHuntBanner', true), CXB = get('kpcHuntCxBar', true);
+  function ban() {
+    const b = $('hlBan'), c = $('hlCxBan');
+    $('hl').dataset.noban = BAN ? '' : '1'; $('hl').dataset.nocx = CXB ? '' : '1';
+    if (b) { b.setAttribute('aria-pressed', BAN); b.innerHTML = '🎞<span class="t"> PARKS BAR ' + (BAN ? 'ON' : 'OFF') + '</span>'; }
+    if (c) { c.setAttribute('aria-pressed', CXB); c.innerHTML = '📡<span class="t"> CONDITIONS ' + (CXB ? 'ON' : 'OFF') + '</span>'; }
+  }
+  if ($('hlBan')) $('hlBan').onclick = () => { BAN = !BAN; put('kpcHuntBanner', BAN); ban(); toast(BAN ? 'New-parks bar on.' : 'New-parks bar off. Tap 🎞 to bring it back.'); };
+  if ($('hlCxBan')) $('hlCxBan').onclick = () => { CXB = !CXB; put('kpcHuntCxBar', CXB); ban(); toast(CXB ? 'Conditions bar on.' : 'Conditions bar off. Tap 📡 to bring it back.'); };
+  ban();
+  /* tap any award badge = the badge legend (Brandon Oct 17) */
+  document.addEventListener('click', e => { const a = e.target.closest('.ac'); if (!a || a.closest('#awModal')) return; e.preventDefault(); e.stopPropagation(); openModal('awModal'); }, true);
   document.addEventListener('click', e => {
     const it = e.target.closest('.hl-tick-track .it'); if (!it) return;
     const c = document.querySelector(`.hs[data-k="${CSS.escape(it.dataset.k)}"]`);
@@ -241,7 +250,7 @@
     if (!CNT || s.p !== 'POTA') return '';
     const out = [], pc = (CNT.pc || {})[s.ref] || 0, ac = (CNT.ac || {})[base(s.call)] || (CNT.ac || {})[s.call] || 0, n1 = (CNT.n1 || {})[s.ref];
     const lvl = (v, step) => (Math.floor(v / step) + 1) * step;
-    if (pc) { const n = lvl(pc, 20), near = n - pc <= 5; out.push(`<span class="ac${near ? ' near' : ''}" title="Repeat Offender: every 20 QSOs with a park">🔁 ${short ? '' : 'Park '}${pc}/${n}${near ? ' · ALMOST' : ''}</span>`); }
+    if (pc) { const n = lvl(pc, 20), near = n - pc <= 5; out.push(`<span class="ac${near ? ' near' : ''}" title="Repeat Offender: every 20 QSOs with a park (tap for what the badges mean)">🔁 ${short ? '' : 'Park '}${pc}/${n}${near ? ' · ALMOST' : ''}</span>`); }
     if (ac) { const n = lvl(ac, 50), near = n - ac <= 10; out.push(`<span class="ac${near ? ' near' : ''}" title="Operator to Operator: every 50 QSOs with the same activator">🤝 ${short ? '' : base(s.call) + ' '}${ac}/${n}${near ? ' · ALMOST' : ''}</span>`); }
     if (n1 != null) { const L = n1.toUpperCase().split(',').filter(Boolean), b = bandOf(s.khz).toUpperCase(); if (L.length < 10 && !L.includes(b)) out.push(`<span class="ac near" title="N1CC: this park on 10 different bands">📶 NEW BAND ${L.length}/10</span>`); }
     return out.join('');
