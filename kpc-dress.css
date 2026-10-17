@@ -2,7 +2,9 @@
    Info Finder and Park Commander like the KPC US Trip Planner).
    Use: <body class="kd" style="--kd-bg:url('bg-lake-camp.jpg');--kd-bgm:url('bg-lake-camp-mobile.jpg')">
    A soft, darkened picture sits behind the page (fixed); content sits on cream cards (.panel, .kd-card, .note). */
-body.kd{background:#0b120e}
+/* dark mode paints html + body; keep the colour on html only so the picture (body::before) is never covered */
+html:has(body.kd){background:#0b120e!important}
+body.kd{background:transparent!important}
 body.kd::before{content:"";position:fixed;inset:0;z-index:-1;background:#0b120e var(--kd-bg) center/cover no-repeat}
 @media(max-width:700px){body.kd::before{background-image:var(--kd-bgm,var(--kd-bg))}}
 body.kd main,body.kd .section{background:transparent}
