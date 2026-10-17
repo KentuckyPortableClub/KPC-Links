@@ -4,6 +4,8 @@ National Recreation Trail ...) or a State Park whose name says Trail (rail-trail
 Scenic / Historic Trails are left out (kpc_us_trails.py draws those from the NPS).
 Line sources, best first:
   1. US Forest Service trails (EDW TrailNFS_Publish) by trail name, for National Recreation Trails on forest land
+  1b. (Oct 18) official agency layers: NPS Public Trails, then ArcGIS Online services found by the trail's name / '<State> trails'
+      that were published by that STATE's agency or a federal agency (org name checked; county/city/club layers don't count)
   2. OpenStreetMap route relations (Overpass) with the trail's name inside the state; labelled NOT OFFICIAL
 Each line must pass near the POTA pin (CHECK_KM) or it is not used: wrong-place matches are worse than none.
 Writes data/trails/<REF>.json (same format as the national trails) + data/trails/index-state.json
@@ -62,7 +64,82 @@ def forest(name, la, lo):
         return lines or None
     except Exception as e:
         note('Forest Service', f'{name}: {str(e)[:120]}'); return None
-# ---------------------------------------------------------------- 2. OpenStreetMap
+# ---------------------------------------------------------------- 2. official agency layers (Oct 18, Brandon: 'look state first etc then unofficial last')
+STN = {'AL':'Alabama','AR':'Arkansas','AZ':'Arizona','CA':'California','CO':'Colorado','CT':'Connecticut','DE':'Delaware','FL':'Florida','GA':'Georgia','IA':'Iowa','ID':'Idaho','IL':'Illinois',
+       'IN':'Indiana','KS':'Kansas','KY':'Kentucky','LA':'Louisiana','MA':'Massachusetts','MD':'Maryland','ME':'Maine','MI':'Michigan','MN':'Minnesota','MO':'Missouri','MS':'Mississippi','MT':'Montana',
+       'NC':'North Carolina','ND':'North Dakota','NE':'Nebraska','NH':'New Hampshire','NJ':'New Jersey','NM':'New Mexico','NV':'Nevada','NY':'New York','OH':'Ohio','OK':'Oklahoma','OR':'Oregon',
+       'PA':'Pennsylvania','RI':'Rhode Island','SC':'South Carolina','SD':'South Dakota','TN':'Tennessee','TX':'Texas','UT':'Utah','VA':'Virginia','VT':'Vermont','WA':'Washington','WI':'Wisconsin',
+       'WV':'West Virginia','WY':'Wyoming','AK':'Alaska','HI':'Hawaii','DC':'District of Columbia'}
+FED = r'forest service|usda|national park service|\bnps\b|fish (and|&) wildlife|bureau of land|army corps|federal highway|department of the interior'
+AGW = r'department|dept|division|office|commission|conservation|natural resources|\bdnr\b|\bdcr\b|parks|forestry|transportation|\bdot\b|wildlife|environment|gis|geographic|state of|commonwealth'
+ORG = {}
+STS = {}
+def org_name(oid):
+    if oid not in ORG:
+        try: ORG[oid] = (get(f'https://www.arcgis.com/sharing/rest/portals/{oid}?f=json', t=40) or {}).get('name', '') or ''
+        except Exception: ORG[oid] = ''
+    return ORG[oid]
+def official_org(org, st):
+    o = org.lower()
+    if re.search(FED, o): return True
+    sn = STN.get(st, '').lower()
+    if re.search(r'\b(county|city|town|village|township|university|college|club|association|alliance|friends|conservancy|council)\b', o): return False
+    return bool(sn) and bool(re.search(r'(?<!west )\b' + re.escape(sn) + r'\b', o)) and bool(re.search(AGW, o))
+NPS_TRAILS = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Public_Trails/FeatureServer/0'
+def lyr_lines(url, where, la, lo, d=1.0):
+    out, off = [], 0
+    for _ in range(6):
+        q = {'where': where, 'geometry': f'{lo-d},{la-d},{lo+d},{la+d}', 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
+             'outFields': '', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 1000}
+        j = get(url + '/query?' + urllib.parse.urlencode(q), t=90)
+        if 'error' in j: raise Exception(str(j['error'])[:150])
+        fs = j.get('features', [])
+        out += [[[round(x, 5), round(y, 5)] for x, y in p[:]] for f in fs for p in (f.get('geometry') or {}).get('paths', [])]
+        if not j.get('exceededTransferLimit') or not fs: break
+        off += len(fs)
+    return out
+def likes(fld, w):
+    """PAD-US style firewalls hate long wheres: one LIKE, words joined by %, tried as Title Case and UPPER."""
+    return [f"{fld} LIKE '%{'%'.join(x.title() for x in w)}%'", f"{fld} LIKE '%{'%'.join(x.upper() for x in w)}%'"]
+def agency(name, st, la, lo):
+    """ArcGIS Online search for the trail's name; only services published by a STATE agency of that state or a federal
+    agency count; then a polyline layer in it with a name field LIKE the trail, near the pin. Returns (lines, by) or (None, '')."""
+    w = words(name)
+    if not w: return None, ''
+    tries = [(NPS_TRAILS, 'National Park Service', ['TRLNAME', 'TRLALTNAME'])]
+    try:
+        qq = f'"{name}" (type:"Feature Service" OR type:"Map Service")'
+        sr = get('https://www.arcgis.com/sharing/rest/search?' + urllib.parse.urlencode({'q': qq, 'f': 'json', 'num': 25}), t=60)
+        res = sr.get('results', [])
+        if st not in STS:
+            STS[st] = get('https://www.arcgis.com/sharing/rest/search?' + urllib.parse.urlencode({'q': f'{STN.get(st, st)} trails (type:"Feature Service" OR type:"Map Service")', 'f': 'json', 'num': 40}), t=60).get('results', [])
+        res += STS[st]
+    except Exception as e: note('ArcGIS search', f'{name}: {str(e)[:120]}'); res = []
+    seen = set()
+    for it in res:
+        u = (it.get('url') or '').rstrip('/')
+        if not u or u in seen or not re.search(r'/(Feature|Map)Server(/\d+)?$', u): continue
+        seen.add(u)
+        org = org_name(it.get('orgId', '')) if it.get('orgId') else ''
+        if not official_org(org, st): continue
+        tries.append((u, org, None))
+    for u, org, flds in tries[:14]:
+        try:
+            lays = [u] if re.search(r'/\d+$', u) else [f"{u}/{l['id']}" for l in (get(u + '?f=json', t=40).get('layers') or [])[:8]]
+            for lu in lays:
+                meta = get(lu + '?f=json', t=40)
+                if meta.get('geometryType') != 'esriGeometryPolyline': continue
+                F = [x['name'] for x in meta.get('fields', []) if x.get('type') == 'esriFieldTypeString' and (flds is None and re.search(r'name|trail|trl|label|title', x['name'], re.I) or flds and x['name'] in flds)]
+                for fld in F[:4]:
+                    for wh in likes(fld, w):
+                        try: L = lyr_lines(lu, wh, la, lo)
+                        except Exception: continue
+                        if L and min(km(la, lo, p[1], p[0]) for l in L for p in l) <= CHECK_KM:
+                            return L, org
+        except Exception as e:
+            note('Agency layer', f'{name} @ {org}: {str(e)[:100]}')
+    return None, ''
+# ---------------------------------------------------------------- 3. OpenStreetMap
 OVP = 'https://overpass-api.de/api/interpreter'
 def words(name):  # Oct 17: letters/numbers only, so "Alene's", "Ka‘ena" and "Estacada- Boring" still match OpenStreetMap
     return [x for x in re.split(r'[^0-9a-z]+', core(name)) if len(x) > 2]
@@ -136,6 +213,9 @@ for st, cand in jobs():
         lines, by, off = None, '', False
         if 'National Recreation' in typ:
             lines = forest(name, la, lo); by, off = ('US Forest Service', True) if lines else ('', False)
+        if not lines and iso.startswith('US-'):
+            lines, org = agency(name, stc, la, lo)
+            if lines: by, off = org, True
         if not lines:
             lines, on = osm(name, iso, la, lo); by = 'OpenStreetMap (not official)' if lines else ''
         if not lines: report['missing'].append([ref, name, stc, 'no line found']); continue

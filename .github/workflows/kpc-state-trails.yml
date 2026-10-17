@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       states:
-        description: 'States (blank = TN IN OH WV VA MO IL NC GA AL MI PA)'
+        description: 'States (blank = TN IN OH WV VA MO IL NC GA AL MI PA). Oct 18: official agency layers come before OpenStreetMap'
         default: ''
 permissions:
   contents: write
