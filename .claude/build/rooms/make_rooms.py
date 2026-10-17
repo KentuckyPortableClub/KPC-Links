@@ -106,7 +106,7 @@ PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain wor
     '<p class="kb-lead"><b>Activators</b> set up a station inside a park on the POTA list and make contacts. <b>Hunters</b> work them from home, the car or another park. '
     'Every park has a number like <b>US-1277</b>. Kentucky has state parks, wildlife management areas, nature preserves, national forest land, wildlife refuges, historic sites and trails on the list.</p>'
     + nums([('10', 'contacts in one UTC day = a full activation'), ('100%', 'of you and your gear inside the park boundary'), ('ADIF', 'log uploaded at pota.app after you finish'), ('0', 'logs for hunters: activator logs give you credit')]) + '</div></section>',
-    rules('THE RULES', '📜 The Main Rules', 'From the official POTA rules. Read them in full before your first activation.', [
+    rules('THE RULES', '📜 The Main Rules', 'Our plain-words summary of the official POTA rules (KPC wrote it; it is not official). Read the real rules before your first activation.', [
         '<b>Make an account</b> at pota.app (activators need one; it\'s free).',
         '<b>10 contacts in one UTC day</b> make a full activation. The UTC day starts at midnight UTC: <b>8 PM Eastern / 7 PM Central</b> in summer, <b>7 PM Eastern / 6 PM Central</b> in winter. Contacts after that count toward the next day.',
         '<b>You and all of your equipment must be inside the park boundary.</b> The yellow dots on the POTA map are only approximate. Check the official boundary (our <a href="kpc-in-park.html">Am I in the Park?</a> does this).',
@@ -162,7 +162,7 @@ PAGES['kpc-wwff-room.html'] = ('WWFF / KFF Room | KPC', 'World Wide Flora & Faun
     '<p class="kb-lead">WWFF stands for <b>World Wide Flora &amp; Fauna</b>. It\'s about operating from protected nature areas. Each country runs its own program; '
     'the USA\'s is <b>KFF</b>, and its references look like <b>KFF-1277</b>. It works a lot like POTA, but the numbers and logging are different.</p>'
     + nums([('44', 'contacts for WWFF activator awards (can add up over several visits)'), ('100%', 'of your equipment inside the area boundary'), ('1', 'reference at a time'), ('0', 'QSL cards needed')]) + '</div></section>',
-    rules('THE RULES', '📜 The Main Rules', 'From the WWFF Global Rules. KFF (the US program) can have its own extra rules: check wwff.us.', [
+    rules('THE RULES', '📜 The Main Rules', 'Our plain-words summary of the WWFF Global Rules (KPC wrote it; it is not official). KFF (the US program) can have its own extra rules: check wwff.us.', [
         '<b>44 contacts</b> count an activation toward WWFF activator awards. They don\'t have to happen in one visit: you can add them up over several trips to the same reference. National programs like KFF may accept fewer for their own awards.',
         '<b>All of your equipment must be inside the area\'s boundary.</b> Part of the station inside isn\'t enough.',
         '<b>One reference at a time.</b> Where two WWFF areas overlap, pick one; you can start a new activity under the other one after you finish the first.',
@@ -211,7 +211,7 @@ PAGES['kpc-sota-room.html'] = ('SOTA Room | KPC', 'Summits on the Air in plain w
     '<p class="kb-lead"><b>Activators</b> carry a station to a listed summit and make contacts from the top. <b>Chasers</b> work them. Every summit has a reference like <b>W4K/EC-001</b> '
     'and a points value set by its height. Summits are picked by how much they stand out from the land around them, not just how high they are.</p>'
     + nums([('25 m', '(80 ft) below the top: the activation zone'), ('1', 'contact logs an activation'), ('4', 'contacts earn the summit\'s points'), ('0', 'cars: no operating from or next to a vehicle')]) + '</div></section>',
-    rules('THE RULES', '📜 The Main Rules', 'Plain-language summary. Read the SOTA General Rules and the W4K (Kentucky) Association Reference Manual before you go.', [
+    rules('THE RULES', '📜 The Main Rules', 'Our plain-words summary (KPC wrote it; it is not official). Read the SOTA General Rules and the W4K (Kentucky) Association Reference Manual before you go.', [
         '<b>Activation zone:</b> you must be within <b>25 m (about 80 ft)</b> of height below the very top of the summit.',
         '<b>1 contact</b> is enough to log an activation; <b>4 contacts</b> are needed to earn the summit\'s points. Making more doesn\'t add points.',
         '<b>No vehicles:</b> you can\'t operate from or close to a vehicle, and the trip up has to be on foot (or under your own power). Use legitimate access routes and follow the local land rules.',
