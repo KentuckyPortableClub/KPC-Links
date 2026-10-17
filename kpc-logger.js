@@ -46,7 +46,7 @@
   const miles = (a, b) => { const R = 3958.8, r = Math.PI / 180, dl = (b[0] - a[0]) * r, dn = (b[1] - a[1]) * r, x = Math.sin(dl / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(dn / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(x)); };
 
   /* ---------------- settings + log storage ---------------- */
-  const SET = Object.assign({ call: get('kpcMyCall', '') || '', park: '', grid: '', pwr: '', stamp: false, carry: false, notes: '', act: 0, pinfo: {}, me: null }, get('kpcLgSet', {}));
+  const SET = Object.assign({ call: get('kpcMyCall', '') || '', park: '', grid: '', pwr: '', stamp: false, carry: false, notes: '', act: 0, pinfo: {}, me: null, ops: '', op: '', share: false }, get('kpcLgSet', {}));
   const saveSet = () => put('kpcLgSet', SET);
   const LK = 'kpcLogger';
   let L = get(LK, null); if (!L || !Array.isArray(L.q)) L = { v: 1, u: 0, q: [] };
@@ -73,9 +73,15 @@
   /* ---------------- my station ---------------- */
   const myParks = () => refsOf(SET.park);
   const myCall = () => String(SET.call || '').toUpperCase().trim();
+  /* operators (Brandon Oct 16: 'add several people to log with'): my call + the other calls typed in. Each operator logs
+     under their own call (own POTA file + credit) unless 'one station call' is ticked. */
+  const opsList = () => [...new Set([myCall(), ...String(SET.ops || '').toUpperCase().split(/[\s,;]+/).filter(okCall)].filter(Boolean))];
+  const curOp = () => { const L0 = opsList(); return L0.includes(SET.op) ? SET.op : (L0[0] || myCall()); };
+  const stationCall = () => SET.share ? myCall() : curOp();
+  const multi = () => opsList().length > 1;
   function inAct(q) {
-    const P = myParks().join(','), today = ymd(new Date());
-    return q.pk === P && q.my === myCall() && q.d === today && (!SET.act || q.t >= SET.act);
+    const P = myParks().join(','), today = ymd(new Date()), team = opsList();
+    return q.pk === P && (team.includes(q.my) || team.includes(q.op)) && q.d === today && (!SET.act || q.t >= SET.act);
   }
   const actList = () => L.q.filter(inAct).sort((a, b) => a.t - b.t);
   function meLL() {
@@ -139,7 +145,7 @@
   }
   function titleCase(s) { s = String(s || '').trim(); if (!s || /[a-z]/.test(s)) return s; return s.toLowerCase().replace(/\b([a-z])/g, m => m.toUpperCase()).replace(/\b(Ii|Iii|Iv)\b/g, m => m.toUpperCase()); }
   let lkT, lkN = 0, WHO = null, SPOTLL = null;
-  function dupeOf(call, band, mode) { const b = base(call); return actList().filter(q => base(q.call) === b && (!band || q.band === band) && (!mode || q.mode === mode)); }
+  function dupeOf(call, band, mode) { const b = base(call), me = stationCall(); return actList().filter(q => q.my === me && base(q.call) === b && (!band || q.band === band) && (!mode || q.mode === mode)); }
   async function who() {
     const call = $('eCall').value.toUpperCase().trim(), n = ++lkN;
     if (!okCall(call)) { $('eWho').innerHTML = ''; WHO = null; return; }
@@ -193,9 +199,9 @@
     const q = { id: EDIT ? EDIT.id : 'q' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: ymd(when), tm: iso(when).slice(11, 16).replace(':', ''), t: EDIT ? EDIT.t : Date.now(),
       f: mhz(k), band, mode, rs: $('eRs').value.trim() || rstDef(mode), rr: $('eRr').value.trim() || rstDef(mode), ref: refsOf($('eRef').value).join(','), name: $('eName').value.trim(), st: $('eSt').value.trim().toUpperCase(),
       qth: r.qth || (EDIT && EDIT.qth) || '', g: r.g || (EDIT && EDIT.g) || '', la: there ? there[0] : (EDIT ? EDIT.la : null), lo: there ? there[1] : (EDIT ? EDIT.lo : null), note: EDIT ? $('eNote').value.trim() : note,
-      my: EDIT ? EDIT.my : myCall(), pk: EDIT ? EDIT.pk : myParks().join(','), mg: EDIT ? EDIT.mg : SET.grid, pw: EDIT ? EDIT.pw : SET.pwr, x: 0 };
+      my: EDIT ? EDIT.my : stationCall(), op: EDIT ? (EDIT.op || EDIT.my) : curOp(), pk: EDIT ? EDIT.pk : myParks().join(','), mg: EDIT ? EDIT.mg : SET.grid, pw: EDIT ? EDIT.pw : SET.pwr, x: 0 };
     if (EDIT) { const i = L.q.findIndex(x => x.id === EDIT.id); if (i >= 0) L.q[i] = q; toast('✓ Contact updated.'); }
-    else { L.q.push(q); const n = actList().length; toast(`✓ ${call} logged (${n} this activation)${n === 10 ? ': 🎉 that makes it a valid activation!' : ''}`, () => { L.q = L.q.filter(x => x.id !== q.id); save(); drawAll(); }); NEWID = q.id; }
+    else { L.q.push(q); const n = actList().filter(x => x.my === q.my).length; toast(`✓ ${call} logged${multi() ? ' by ' + q.op : ''} (${n} this activation${multi() && !SET.share ? ' for ' + q.my : ''})${n === 10 ? ': 🎉 that makes it a valid activation!' : ''}`, () => { L.q = L.q.filter(x => x.id !== q.id); save(); drawAll(); }); NEWID = q.id; }
     save(); clearForm(true); drawAll(); $('eCall').focus();
   }
   let NEWID = null;
@@ -207,7 +213,7 @@
     let R = (LV === 'act' ? actList() : L.q.slice()).sort((a, b) => b.t - a.t);
     if (s) R = R.filter(q => [q.call, q.ref, q.name, q.st, q.qth, q.pk, q.band, q.mode].join(' ').toUpperCase().includes(s));
     $('lCount').textContent = `${R.length} shown · ${L.q.length} in all`;
-    $('lBody').innerHTML = R.length ? R.slice(0, 500).map(q => `<tr data-id="${q.id}"${q.id === NEWID ? ' class="new"' : ''}><td class="m">${LV === 'all' ? esc(fD(q.d).slice(5)) + ' ' : ''}${fT(q.tm)}</td><td class="c">${esc(q.call)}</td><td class="m">${esc(q.f)}</td><td class="hs">${esc(q.mode)}</td><td class="hs m">${esc(q.rs)} / ${esc(q.rr)}</td><td>${q.ref ? `<span class="p2p">${esc(q.ref)}</span>` : ''}${LV === 'all' ? `<div class="lg-mu" style="margin:0">at ${esc(q.pk)}</div>` : ''}</td><td class="hs">${esc([q.name, q.st].filter(Boolean).join(' · '))}</td><td><button type="button" data-ed="${q.id}" aria-label="Edit">✏️</button><button type="button" data-del="${q.id}" aria-label="Delete">🗑</button></td></tr>`).join('')
+    $('lBody').innerHTML = R.length ? R.slice(0, 500).map(q => `<tr data-id="${q.id}"${q.id === NEWID ? ' class="new"' : ''}><td class="m">${LV === 'all' ? esc(fD(q.d).slice(5)) + ' ' : ''}${fT(q.tm)}</td><td class="c">${esc(q.call)}${multi() || (q.op && q.op !== q.my) ? `<div class="lg-mu" style="margin:0;font:11px Arial">by ${esc(q.op || q.my)}</div>` : ''}</td><td class="m">${esc(q.f)}</td><td class="hs">${esc(q.mode)}</td><td class="hs m">${esc(q.rs)} / ${esc(q.rr)}</td><td>${q.ref ? `<span class="p2p">${esc(q.ref)}</span>` : ''}${LV === 'all' ? `<div class="lg-mu" style="margin:0">at ${esc(q.pk)}</div>` : ''}</td><td class="hs">${esc([q.name, q.st].filter(Boolean).join(' · '))}</td><td><button type="button" data-ed="${q.id}" aria-label="Edit">✏️</button><button type="button" data-del="${q.id}" aria-label="Delete">🗑</button></td></tr>`).join('')
       : `<tr><td colspan="8"><div class="lg-empty">${LV === 'act' ? (myParks().length ? 'No contacts in this activation yet. Tap a spot or type a call above.' : 'Put your park number in "My station", then log away.') : 'Nothing logged yet.'}</div></td></tr>`;
     NEWID = null;
   }
@@ -234,7 +240,7 @@
       const [md, sm] = adMode(q.mode), their = refsOf(q.ref), mine = onePark ? [onePark] : refsOf(q.pk), p0 = mine[0] || '', pi = SET.pinfo[p0] || {};
       const myst = (String(pi.st || '').match(/^US-([A-Z]{2})$/) || [])[1] || '';
       o += af('CALL', q.call) + af('QSO_DATE', q.d) + af('TIME_ON', q.tm) + af('BAND', q.band) + af('FREQ', q.f) + af('MODE', md) + af('SUBMODE', sm) + af('RST_SENT', q.rs) + af('RST_RCVD', q.rr)
-        + af('STATION_CALLSIGN', q.my) + af('OPERATOR', base(q.my)) + af('MY_SIG', p0 ? 'POTA' : '') + af('MY_SIG_INFO', p0) + af('MY_POTA_REF', mine.join(',')) + af('MY_GRIDSQUARE', q.mg) + af('MY_STATE', myst) + af('TX_PWR', q.pw)
+        + af('STATION_CALLSIGN', q.my) + af('OPERATOR', base(q.op || q.my)) + af('MY_SIG', p0 ? 'POTA' : '') + af('MY_SIG_INFO', p0) + af('MY_POTA_REF', mine.join(',')) + af('MY_GRIDSQUARE', q.mg) + af('MY_STATE', myst) + af('TX_PWR', q.pw)
         + (their.length ? af('SIG', 'POTA') + af('SIG_INFO', their[0]) + af('POTA_REF', their.join(',')) : '')
         + af('NAME', q.name) + af('QTH', q.qth) + af('STATE', /^[A-Z]{2}$/.test(q.st) ? q.st : '') + af('GRIDSQUARE', q.g)
         + af('COMMENT', [their.length ? 'P2P ' + their.join(' ') : '', q.name].filter(Boolean).join(' ').slice(0, 120)) + af('NOTES', q.note) + '<EOR>\n';
@@ -270,9 +276,10 @@
     $('xPota').onclick = async () => {
       const A = actList(); if (!A.length) { toast('No contacts in this activation yet.'); return; }
       const P = myParks(); if (!P.length) { toast('Put your park number in "My station" first.'); return; }
-      const fc = myCall().replace(/\//g, '-'), d = A[0].d;
-      const ok = await files(P.map(p => [`${fc}@${p}-${d}.adi`, adif(A, p)]));
-      if (ok !== false) { A.forEach(q => q.x = 1); save(); toast(`⬇ ${P.length} POTA file${P.length > 1 ? 's' : ''} (${A.length} contacts${A.length < 10 ? ', fewer than 10 so it won\'t count as a full activation yet' : ''}).`); }
+      const d = A[0].d, calls = [...new Set(A.map(q => q.my))], F = [], short = [];
+      calls.forEach(c => { const Q = A.filter(q => q.my === c); if (Q.length < 10) short.push(c + ' ' + Q.length); P.forEach(p => F.push([`${c.replace(/\//g, '-')}@${p}-${d}.adi`, adif(Q, p)])); });
+      const ok = await files(F);
+      if (ok !== false) { A.forEach(q => q.x = 1); save(); toast(`⬇ ${F.length} POTA file${F.length > 1 ? 's' : ''} (${A.length} contacts)${short.length ? '. Under 10 so far: ' + short.join(', ') : ''}.`); }
     };
     $('xAll').onclick = async () => { if (!L.q.length) { toast('Nothing logged yet.'); return; } const Q = L.q.slice().sort((a, b) => a.t - b.t); const ok = await files([[`KPC-activator-log-${myCall().replace(/\//g, '-') || 'mine'}-${ymd(new Date())}.adi`, adif(Q)]]); if (ok !== false) { Q.forEach(q => q.x = 1); save(); } };
     $('xCsv').onclick = () => { const h = 'date_utc,time_utc,call,freq_mhz,band,mode,rst_sent,rst_rcvd,their_park,name,qth,state,grid,my_call,my_park,note\n';
@@ -342,7 +349,7 @@
     $('sCopy').onclick = () => { $('sFreq').value = $('eFreq').value; const m = $('eMode').value; if ([...$('sMode').options].some(o => o.value === m)) $('sMode').value = m; };
     if (!$('sFreq').value) $('sFreq').value = $('eFreq').value;
     $('sSend').onclick = async () => {
-      const call = myCall(), P = myParks(), k = kHzOf($('sFreq').value), mode = $('sMode').value;
+      const call = stationCall(), P = myParks(), k = kHzOf($('sFreq').value), mode = $('sMode').value;
       if (!call) { msg('Put your call in "My station" first.', 'bad'); return; }
       if (!P.length) { msg('Put your park number in "My station" first.', 'bad'); return; }
       if (!k || !bandOf(k)) { msg('Type the frequency you are on (like 14.285).', 'bad'); return; }
@@ -404,6 +411,10 @@
     const last10 = T.slice(-10), r10 = last10.length > 1 ? Math.round((last10.length - 1) / Math.max((last10[last10.length - 1] - last10[0]) / 36e5, 1 / 60)) : 0;
     const hr = T.filter(t => now - t <= 36e5).length;
     $('sAct').textContent = n; $('sRate').textContent = r10; $('sHr').textContent = hr;
+    if (multi() && !SET.share) { $('sOps').innerHTML = opsList().map(c => { const k2 = A.filter(q => q.my === c).length; return `<span class="${k2 >= 10 ? 'ok' : ''}">${esc(c)} ${k2 >= 10 ? '✓ ' + k2 : k2 + '/10'}</span>`; }).join(''); }
+    else if (multi()) { $('sOps').innerHTML = opsList().map(c => `<span>${esc(c)} ${A.filter(q => (q.op || q.my) === c).length} logged</span>`).join(''); }
+    else $('sOps').innerHTML = '';
+    drawOps();
     const g = Math.min(n, 10); $('sGoalBar').style.width = g * 10 + '%';
     const P = myParks();
     $('sGoal').parentElement.classList.toggle('done', n >= 10);
@@ -426,8 +437,92 @@
 
   function drawAll() { drawLog(); rates(); drawMap(); drawSpots(); }
 
+  /* ---------------- operators ---------------- */
+  function drawOps() {
+    const L0 = opsList(), A = actList();
+    $('myShareL').hidden = L0.length < 2; $('eOps').hidden = L0.length < 2;
+    if (L0.length < 2) return;
+    const cur = curOp();
+    $('eOps').innerHTML = '<b>ON THE RADIO NOW:</b>' + L0.map(c => `<button type="button" data-op="${esc(c)}" class="${c === cur ? 'on' : ''}">${esc(c)}<small>${A.filter(q => (q.op || q.my) === c).length}</small></button>`).join('');
+  }
+  function opsInit() {
+    $('myOps').value = SET.ops || ''; $('myShare').checked = !!SET.share;
+    $('myOps').oninput = e => { e.target.value = e.target.value.toUpperCase(); SET.ops = e.target.value; saveSet(); drawAll(); };
+    $('myShare').onchange = e => { SET.share = e.target.checked; saveSet(); drawAll(); toast(SET.share ? 'Everyone logs under ' + (myCall() || 'my call') + ' (one POTA file per park).' : 'Each operator logs under their own call (their own POTA files).'); };
+    $('eOps').onclick = e => { const b = e.target.closest('[data-op]'); if (!b) return; SET.op = b.dataset.op; saveSet(); drawOps(); who(); toast('🎙 ' + SET.op + ' is on the radio.'); $('eCall').focus(); };
+  }
+
+  /* ---------------- parks near me (GPS; works with no signal once saved) ---------------- */
+  let PK = null;
+  async function parkList() {
+    if (PK) return PK; const out = [];
+    try { const ix = await fetch('data/parkinfo/index.json').then(r => r.json()); (ix.rows || []).forEach(r => { if (r[3] != null) out.push([r[0], r[1], 'US-' + r[2], +r[3], +r[4]]); }); } catch (e) {}
+    try { const ky = await fetch('kpc-ky-data.json').then(r => r.json()); (ky.parks || []).forEach(p => { if (p.la != null) out.push([p.c, p.n, 'US-KY', +p.la, +p.lo]); }); } catch (e) {}
+    if (out.length) PK = out; return out;
+  }
+  function nearInit() {
+    $('myNearB').onclick = () => {
+      if (!navigator.geolocation) { $('myGpsMsg').textContent = 'This browser has no GPS.'; return; }
+      $('myGpsMsg').textContent = 'Finding you…';
+      navigator.geolocation.getCurrentPosition(async pos => {
+        const me = [pos.coords.latitude, pos.coords.longitude]; SET.me = me; SET.grid = toGrid(me[0], me[1]); $('myGrid').value = SET.grid; saveSet();
+        const all = await parkList();
+        if (!all.length) { $('myGpsMsg').textContent = 'The park list could not load (no signal, and it was not saved yet).'; return; }
+        const R = all.map(p => [p, miles(me, [p[3], p[4]])]).sort((a, b) => a[1] - b[1]).slice(0, 8);
+        $('myGpsMsg').textContent = `✓ You're at ${SET.grid}. Nearest parks:`;
+        $('myNear').hidden = false;
+        $('myNear').innerHTML = R.map(([p, d]) => `<div class="np"><div><b>${esc(p[0])}</b> <span>${esc(p[1])}</span> <em>${esc(p[2].slice(3))} · ${d < 0.2 ? 'you are here or very close' : d.toFixed(1) + ' mi'}</em></div><button type="button" class="lg-btn gold sm" data-use="${esc(p[0])}">USE THIS PARK</button><button type="button" class="lg-btn line sm" data-add="${esc(p[0])}">+ ADD (2-FER)</button></div>`).join('') + '<p class="lg-mu">The park pin is not the boundary: make sure you are inside the park (Am I in the Park? checks the official line).</p>';
+        drawMap(true);
+      }, e => { $('myGpsMsg').textContent = 'Could not get your location (' + (e.message || 'blocked') + ').'; }, { enableHighAccuracy: true, timeout: 20000 });
+    };
+    $('myNear').onclick = e => {
+      const u = e.target.closest('[data-use]'), a = e.target.closest('[data-add]'); if (!u && !a) return;
+      const ref = (u || a).dataset.use || (u || a).dataset.add, p = (PK || []).find(x => x[0] === ref);
+      if (p && !SET.pinfo[ref]) SET.pinfo[ref] = { n: p[1], st: p[2], la: p[3], lo: p[4], g: toGrid(p[3], p[4]), t: Date.now() - 6 * 864e5 };
+      const cur = myParks(); SET.park = u ? ref : [...new Set(cur.concat(ref))].join(', ');
+      $('myPark').value = SET.park; saveSet(); parkInfo(); if (SET.stamp) stampOn();
+      $('myNear').hidden = true; toast(`✓ ${SET.park} is your park now. Every contact you log gets it.`);
+    };
+  }
+
+  /* ---------------- notes onto contacts already logged ---------------- */
+  function notesAllInit() {
+    $('nAll').onclick = () => {
+      const t = ($('nText').value || '').trim().replace(/\s*\n\s*/g, ' · '); if (!t) { toast('Type some notes first.'); return; }
+      const A = actList(); if (!A.length) { toast('No contacts in this activation yet.'); return; }
+      let n = 0; A.forEach(q => { if (!(q.note || '').includes(t)) { q.note = [q.note, t].filter(Boolean).join(' · ').slice(0, 900); q.x = 0; n++; } });
+      save(); drawAll(); toast(n ? `✓ Notes added to ${n} contact${n > 1 ? 's' : ''}.` : 'Those contacts already have these notes.');
+    };
+  }
+
+  /* ---------------- install + no signal ---------------- */
+  let PROMPT = null;
+  function appInit() {
+    const sw = () => { try { if ('serviceWorker' in navigator && window.isSecureContext) return navigator.serviceWorker.register('kpc-finder-sw.js'); } catch (e) {} return Promise.resolve(null); };
+    sw();
+    window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); PROMPT = e; $('aInstall').hidden = false; });
+    window.addEventListener('appinstalled', () => { $('aInstall').hidden = true; $('aMsg').className = 'lg-msg ok'; $('aMsg').textContent = '✓ Installed. Open it from your home screen or apps.'; });
+    if (matchMedia('(display-mode: standalone)').matches || navigator.standalone) { $('aMsg').className = 'lg-msg ok'; $('aMsg').textContent = '✓ Running as an installed app.'; }
+    $('aInstall').onclick = async () => { if (!PROMPT) return; PROMPT.prompt(); try { await PROMPT.userChoice; } catch (e) {} PROMPT = null; $('aInstall').hidden = true; };
+    $('aSave').onclick = async () => {
+      const m = $('aMsg'); m.className = 'lg-msg'; m.textContent = 'Saving…';
+      if (!window.caches) { m.className = 'lg-msg bad'; m.textContent = 'This browser can’t save pages for offline use.'; return; }
+      try { await sw(); } catch (e) {}
+      const strip = u => { const x = new URL(u, location.href); x.search = ''; x.hash = ''; return x.href; };
+      const urls = new Set([location.href, 'kpc-logger.html', 'kpc-logger.webmanifest', 'data/parkinfo/index.json', 'kpc-ky-data.json', 'kpc-icon-192.png', 'kpc-icon-512.png', 'kpc-icon-180.png', 'bg-group.jpg', 'bg-group-mobile.jpg', 'KPC26-Group-Photo.jpg', 'KPC26-Group-Photo-web.jpg',
+        'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js']);
+      try { performance.getEntriesByType('resource').forEach(r => { const u = new URL(r.name); if (u.origin === location.origin) urls.add(r.name); }); } catch (e) {}
+      const c = await caches.open('kpc-finder-v1'); let ok = 0, bad = 0;
+      for (const u of urls) { try { const abs = new URL(u, location.href); const r = await fetch(abs.href, { cache: 'no-cache' }); if (r.ok) { await c.put(abs.origin === location.origin ? strip(abs.href) : abs.href, r.clone()); ok++; } else bad++; } catch (e) { bad++; } }
+      PK = null; parkList();
+      m.className = 'lg-msg ' + (bad && !ok ? 'bad' : 'ok'); m.textContent = ok ? `✓ Saved (${ok} files). The logger now opens and works with no signal on this device.${bad ? ' ' + bad + ' extra file(s) could not be saved.' : ''}` : 'Could not save (no signal?). Try again with signal.';
+      put('kpcLgSaved', Date.now());
+    };
+    const t = get('kpcLgSaved', 0); if (t && !$('aMsg').textContent) { $('aMsg').className = 'lg-msg ok'; $('aMsg').textContent = '✓ Saved for no signal on ' + new Date(t).toLocaleDateString([], { month: 'short', day: 'numeric' }) + '. Tap again to refresh it.'; }
+  }
+
   async function start() {
-    const parts = [stationInit, entryInit, logInit, expInit, spotsInit, spotInit, notesInit, mapInit];
+    const parts = [stationInit, opsInit, nearInit, entryInit, logInit, expInit, spotsInit, spotInit, notesInit, notesAllInit, appInit, mapInit];
     parts.forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } });
     try { const o = await idbGet('log'); IDBok = true; if (o && Array.isArray(o.q) && ((o.u || 0) > (L.u || 0) || o.q.length > L.q.length)) { L = o; put(LK, L); } } catch (e) {}
     if (navigator.storage && navigator.storage.persisted) { try { PERSIST = await navigator.storage.persisted(); } catch (e) {} }
