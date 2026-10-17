@@ -41,8 +41,9 @@
   let WK = new Set(LOG.r), MAN = new Set(LOG.m || []);
   const saveLog = () => { LOG.r = [...WK]; LOG.m = [...MAN]; put('kpcHuntLog', LOG); };
   const hasLog = () => WK.size > 0;
-  let F = Object.assign({ v: 2, view: 'cards', p: ['POTA', 'WWFF', 'SOTA', 'DXPED', 'EVENT', 'DX'], hide: false, nw: false, rg: false, bands: [], modes: [], where: 'all', st: '', q: '', sort: 'new' }, get('kpcHuntF', {}));
-  if (!F.v || F.v < 2) { ['DXPED', 'EVENT', 'DX'].forEach(x => { if (!F.p.includes(x)) F.p.push(x); }); F.v = 2; }
+  let F = Object.assign({ v: 3, view: 'cards', p: ['POTA'], hide: true, qrt: true, nw: false, rg: false, bands: [], modes: ['PHONE'], where: 'all', st: '', q: '', sort: 'new' }, get('kpcHuntF', {}));
+  /* Brandon Oct 16: everyone starts on POTA, phone (SSB), hiding hunted parks and QRT (once, then their own picks stick) */
+  if (!F.v || F.v < 3) { Object.assign(F, { p: ['POTA'], hide: true, qrt: true, modes: ['PHONE'], v: 3 }); }
   F.rg = false; if (F.where === 'range') F.where = 'all'; if (F.sort === 'far') F.sort = 'new'; if (!Array.isArray(F.xc)) F.xc = [];
   const saveF = () => put('kpcHuntF', F);
   /* 'normal range' was removed Oct 16 (Brandon): no home, no far-away ticker */
@@ -350,7 +351,7 @@
     F.xc.forEach(c => it.push(['xc:' + c, '🚫 ' + c]));
     const ft = $('hlFtogN'); if (ft) ft.textContent = ($('hlFilters').classList.contains('open') ? 'CLOSE ▴' : 'TAP TO OPEN ▾') + (it.length ? ` · ${it.length} ON` : '');
     const b = $('hlActive'); b.hidden = !it.length;
-    b.innerHTML = it.length ? `<b>FILTERING:</b>${it.map(([k, t]) => `<button type="button" class="hl-pill" data-unf="${esc(k)}" title="Remove this filter">${esc(t)} ✕</button>`).join('')}<button type="button" class="hl-btn line sm" data-unf="*">CLEAR ALL FILTERS</button>` : '';
+    b.innerHTML = it.length ? `<b>FILTERING:</b>${it.map(([k, t]) => `<button type="button" class="hl-pill" data-unf="${esc(k)}" title="Remove this filter">${esc(t)} ✕</button>`).join('')}<button type="button" class="hl-btn line sm" data-unf="def" title="POTA, phone, hide hunted parks and QRT">↺ DEFAULT</button><button type="button" class="hl-btn line sm" data-unf="*">CLEAR ALL FILTERS</button>` : '';
   }
   document.addEventListener('click', e => {
     const c = e.target.closest('[data-cty]');
@@ -358,6 +359,7 @@
     const u = e.target.closest('[data-unf]'); if (!u) return;
     const k = u.dataset.unf;
     if (k === '*') Object.assign(F, JSON.parse(JSON.stringify(F0)));
+    else if (k === 'def') Object.assign(F, JSON.parse(JSON.stringify(F0)), { p: ['POTA'], hide: true, qrt: true, modes: ['PHONE'] });
     else if (k === 'p') F.p = F0.p.slice(); else if (k === 'hide') F.hide = false; else if (k === 'qrt') F.qrt = false; else if (k === 'nw') F.nw = false; else if (k === 'where') F.where = 'all'; else if (k === 'st') F.st = ''; else if (k === 'q') F.q = '';
     else if (k.startsWith('band:')) F.bands = F.bands.filter(x => x !== k.slice(5)); else if (k.startsWith('mode:')) F.modes = F.modes.filter(x => x !== k.slice(5)); else if (k.startsWith('xc:')) F.xc = F.xc.filter(x => x !== k.slice(3));
     saveF(); chips(); ticker(false); draw();
@@ -737,11 +739,22 @@
   dev(DEV0);
   document.addEventListener('click', e => { const b = e.target.closest('[data-dev]'); if (b) dev(b.dataset.dev); });
   document.addEventListener('click', async e => { if (!e.target.closest('[data-bmcopy]')) return; try { await navigator.clipboard.writeText(BMURL); toast('✓ Copied. Now paste it as the bookmark’s web address.'); } catch (x) { prompt('Copy this, then paste it as the bookmark’s web address:', BMURL); } });
-  function fromPotaHash() {
+  async function fromPotaHash() {
     let m = location.hash.match(/[#&]pota=([^&]*)/), A = null;
-    if (!m && /kpcpota/.test(location.hash) && String(window.name).startsWith('KPCPOTA:')) {
-      try { const P = JSON.parse(window.name.slice(8)); m = [0, P.refs]; A = P.aw; } catch (e) {}
+    if (!m && /kpcpota/.test(location.hash)) {
+      let P = null;
+      const z = location.hash.match(/[#&]z=([A-Za-z0-9_-]+)/);
+      if (z && window.DecompressionStream) {
+        try {
+          const b = atob(z[1].replace(/-/g, '+').replace(/_/g, '/')), u = new Uint8Array(b.length);
+          for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i);
+          P = JSON.parse(await new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text());
+        } catch (e) { P = null; }
+      }
+      if (!P && String(window.name).startsWith('KPCPOTA:')) { try { P = JSON.parse(window.name.slice(8)); } catch (e) {} }
       window.name = '';
+      if (!P) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} toast('The park list from POTA didn’t arrive. Update this browser, or try the bookmark on a computer.'); return; }
+      m = [0, P.refs]; A = P.aw;
     }
     if (!m) return;
     if (!A) { const a = location.hash.match(/[#&]aw=([^&]*)/); if (a) try { A = JSON.parse(decodeURIComponent(a[1])); } catch (e) {} }
