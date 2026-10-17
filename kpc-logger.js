@@ -506,15 +506,33 @@
     if (!SP.length && !ok.some(Boolean)) $('pList').innerHTML = '<div class="lg-empty">The spot sites are not answering right now (or no signal). Trying again in a minute.</div>';
     drawSpots(); clearTimeout(spT); spT = setTimeout(spots, 60000);
   }
+  /* POTA Plus style extras (Brandon Oct 17: 'add the pota plus options'): the hunted-park list + award counts that the
+     VIP Hunters Lounge's ⭐ GET MY PARKS bookmark brought from pota.app (same site, so the same browser storage) */
+  const HLOG = () => { const L0 = get('kpcHuntLog', null); return new Set(L0 && Array.isArray(L0.r) ? L0.r : []); };
+  const HCNT = () => get('kpcHuntCounts', null);
+  const lvlOf = (v, step) => (Math.floor(v / step) + 1) * step;
+  function plus(x) {
+    if ((x.prog || 'POTA') !== 'POTA' || !x.reference) return '';
+    const WK = HLOG(), C = HCNT(), out = [];
+    if (WK.size && !WK.has(x.reference)) out.push('<span class="ac new" title="A park you have never hunted">🆕 NEW PARK</span>');
+    if (C) { const pc = (C.pc || {})[x.reference] || 0, ac = (C.ac || {})[base(x.activator)] || 0, n1 = (C.n1 || {})[x.reference];
+      if (pc) { const n = lvlOf(pc, 20), near = n - pc <= 5; out.push(`<span class="ac${near ? ' flash' : ''}" title="Repeat Offender: every 20 QSOs with a park">🔁 ${pc}/${n}</span>`); }
+      if (ac) { const n = lvlOf(ac, 50), near = n - ac <= 5; out.push(`<span class="ac${near ? ' flash' : ''}" title="Operator to Operator: every 50 QSOs with the same activator">🤝 ${ac}/${n}</span>`); }
+      if (n1 != null) { const L0 = String(n1).toUpperCase().split(',').filter(Boolean), b = bandOf(+x.frequency).toUpperCase(); if (L0.length < 10 && !L0.includes(b)) out.push(`<span class="ac${L0.length >= 8 ? ' flash' : ''}" title="N1CC: this park on 10 bands">📶 NEW BAND ${L0.length}/10</span>`); } }
+    return out.length ? '<span class="lg-plus">' + out.join('') + '</span>' : '';
+  }
+  const isQrt = x => /\bQRT\b/i.test(x.comments || '');
   const spMode = s => { const m = String(s.mode || '').toUpperCase(); return /^(USB|LSB|SSB|PHONE)$/.test(m) ? 'SSB' : m; };
   const isRbn = s => /RBN/i.test(s.source || '') || /-#$/.test(s.spotter || '');
   function drawSpots() {
-    const b = $('pBand').value, m = $('pMode').value, nr = $('pNoRbn').checked, nw = $('pNoWk').checked, s = $('pSearch').value.trim().toUpperCase();
+    const b = $('pBand').value, m = $('pMode').value, nr = $('pNoRbn').checked, nw = $('pNoWk').checked, s = $('pSearch').value.trim().toUpperCase(), onlyNew = $('pNew').checked, noQrt = $('pQrt').checked, WKP = HLOG();
+    $('pPlusT').innerHTML = WKP.size ? `⭐ Your POTA hunted list: <b>${WKP.size.toLocaleString()}</b> parks${HCNT() ? ' + award counts' : ''} (from the VIP Hunters Lounge). <a href="kpc-hunt.html#hPota">Refresh it ›</a>` : '⭐ Want 🆕 NEW PARK and award badges (Repeat Offender, Op to Op, N1CC) like POTA Plus? <a href="kpc-hunt.html#hPota">Load your POTA hunted parks in the VIP Hunters Lounge ›</a>';
     const pg = { POTA: $('pPota').checked, WWFF: $('pWwff').checked, SOTA: $('pSota').checked, DX: $('pDx').checked };
-    const nOn = [!!b, !!m, nw, !pg.POTA, !pg.WWFF, !pg.SOTA, pg.DX, !!s].filter(Boolean).length; $('pfN').textContent = nOn ? nOn + ' ON' : '';
+    const nOn = [!!b, !!m, nw, !pg.POTA, !pg.WWFF, !pg.SOTA, pg.DX, !!s, onlyNew, noQrt].filter(Boolean).length; $('pfN').textContent = nOn ? nOn + ' ON' : '';
     const worked = new Set(actList().map(q => base(q.call) + '|' + q.band));
     let R = SP.filter(x => { const k = +x.frequency, md = spMode(x);
-      if (!pg[x.prog || 'POTA']) return false; if (nr && isRbn(x)) return false; if (nw && worked.has(base(x.activator) + '|' + bandOf(k))) return false; if (b && bandOf(k) !== b) return false;
+      if (!pg[x.prog || 'POTA']) return false; if (nr && isRbn(x)) return false; if (noQrt && isQrt(x)) return false;
+      if (onlyNew && (!WKP.size || (x.prog || 'POTA') !== 'POTA' || WKP.has(x.reference))) return false; if (nw && worked.has(base(x.activator) + '|' + bandOf(k))) return false; if (b && bandOf(k) !== b) return false;
       if (m && !(m === 'DATA' ? DIGI.test(md) || /DATA|RTTY|PSK/.test(md) : md === m)) return false;
       if (s && ![x.activator, x.reference, x.name, x.locationDesc, x.comments].join(' ').toUpperCase().includes(s)) return false; return true; });
     const BO = BANDS.map(b => b[0]); R.sort((a, c) => BO.indexOf(bandOf(+a.frequency)) - BO.indexOf(bandOf(+c.frequency)) || (+a.frequency) - (+c.frequency));
@@ -529,7 +547,7 @@
     $('pList').innerHTML = R.length ? `<table class="lg-st"><thead><tr>${th('when', 'WHEN', 'hs')}${th('call', 'CALL')}${th('freq', 'MHz')}${th('mode', 'MODE', 'hs')}${th('park', 'PARK / REF / WHERE')}<th></th></tr></thead><tbody>` + R.slice(0, 200).map(x => {
       const k = +x.frequency, w = worked.has(base(x.activator) + '|' + bandOf(k)), ago = AGE(x);
       const st = x.locationDesc ? String(x.locationDesc).split(',')[0].replace(/^US-/, '') : '';
-      return `<tr class="sp${w ? ' wk' : ''}" data-sp="${x.spotId}"><td class="t hs">${ago < 60 ? ago + 'm' : Math.floor(ago / 60) + 'h'}</td><td class="c">${esc(x.activator)}${w ? ' <i>✓</i>' : ''}</td><td class="f">${(k / 1000).toFixed(3)}<small>${esc(bandOf(k))}</small></td><td class="hs">${esc(spMode(x) || '?')}</td><td class="r"><b>${PICON[x.prog] || '🌲'} ${esc(x.reference || (x.prog === 'DX' ? 'DX' : ''))}</b><small>${esc(x.name || '')}${st ? ' · ' + esc(st) : ''}</small>${x.comments && !isRbn(x) ? `<small class="x">${esc(String(x.comments).slice(0, 70))}</small>` : ''}</td><td class="a">${(x.prog || 'POTA') === 'POTA' ? `<span class="rs" data-respot="${x.spotId}" role="button" tabindex="0" title="Respot them on POTA">📣</span>` : ''}</td></tr>`; }).join('') + '</tbody></table>'
+      return `<tr class="sp${w ? ' wk' : ''}" data-sp="${x.spotId}"><td class="t hs">${ago < 60 ? ago + 'm' : Math.floor(ago / 60) + 'h'}</td><td class="c">${esc(x.activator)}${w ? ' <i>✓</i>' : ''}</td><td class="f">${(k / 1000).toFixed(3)}<small>${esc(bandOf(k))}</small></td><td class="hs">${esc(spMode(x) || '?')}</td><td class="r"><b>${PICON[x.prog] || '🌲'} ${esc(x.reference || (x.prog === 'DX' ? 'DX' : ''))}</b><small>${esc(x.name || '')}${st ? ' · ' + esc(st) : ''}</small>${plus(x)}${x.comments && !isRbn(x) ? `<small class="x">${esc(String(x.comments).slice(0, 70))}</small>` : ''}</td><td class="a">${(x.prog || 'POTA') === 'POTA' ? `<span class="rs" data-respot="${x.spotId}" role="button" tabindex="0" title="Respot them on POTA">📣</span>` : ''}</td></tr>`; }).join('') + '</tbody></table>'
       : `<div class="lg-empty">${SP.length ? 'No spots match these choices.' : 'Loading spots…'}</div>`;
   }
   let SPSORT = Object.assign({ k: 'freq', d: 1 }, get('kpcLgSpSort', {}));
@@ -537,8 +555,8 @@
     SPSORT = SPSORT.k === k ? { k, d: -SPSORT.d } : { k, d: k === 'when' ? 1 : 1 }; put('kpcLgSpSort', SPSORT); drawSpots(); });
   function spotsInit() {
     $('pBand').innerHTML = '<option value="">All bands</option>' + BANDS.slice(0, 11).map(b => `<option>${b[0]}</option>`).join('');
-    ['pBand', 'pMode', 'pNoRbn', 'pNoWk', 'pPota', 'pWwff', 'pSota', 'pDx'].forEach(i => $(i).onchange = () => { put('kpcLgSpF', { b: $('pBand').value, m: $('pMode').value, r: $('pNoRbn').checked, w: $('pNoWk').checked, pp: $('pPota').checked, pw: $('pWwff').checked, ps: $('pSota').checked, pd: $('pDx').checked }); if (i === 'pDx' && $('pDx').checked) wwAt = 0, spots(); drawSpots(); });
-    const f = get('kpcLgSpF', null); if (f) { $('pBand').value = f.b || ''; $('pMode').value = f.m || ''; $('pNoRbn').checked = f.r !== false; $('pNoWk').checked = !!f.w; $('pPota').checked = f.pp !== false; $('pWwff').checked = f.pw !== false; $('pSota').checked = f.ps !== false; $('pDx').checked = !!f.pd; }
+    ['pBand', 'pMode', 'pNoRbn', 'pNoWk', 'pPota', 'pWwff', 'pSota', 'pDx', 'pNew', 'pQrt'].forEach(i => $(i).onchange = () => { put('kpcLgSpF', { b: $('pBand').value, m: $('pMode').value, r: $('pNoRbn').checked, w: $('pNoWk').checked, pp: $('pPota').checked, pw: $('pWwff').checked, ps: $('pSota').checked, pd: $('pDx').checked, nn: $('pNew').checked, nq: $('pQrt').checked }); if (i === 'pDx' && $('pDx').checked) wwAt = 0, spots(); drawSpots(); });
+    const f = get('kpcLgSpF', null); if (f) { $('pBand').value = f.b || ''; $('pMode').value = f.m || ''; $('pNoRbn').checked = f.r !== false; $('pNoWk').checked = !!f.w; $('pPota').checked = f.pp !== false; $('pWwff').checked = f.pw !== false; $('pSota').checked = f.ps !== false; $('pDx').checked = !!f.pd; $('pNew').checked = !!f.nn; $('pQrt').checked = !!f.nq; }
     $('pSearch').oninput = drawSpots;
     $('pList').onclick = e => {
       const btn = e.target.closest('[data-sp]'); if (!btn) return; const x = SP.find(s => String(s.spotId) === btn.dataset.sp); if (!x) return;
@@ -854,7 +872,7 @@
       if (!window.caches) { m.className = 'lg-msg bad'; m.textContent = 'This browser can’t save pages for offline use.'; return; }
       try { await sw(); } catch (e) {}
       const strip = u => { const x = new URL(u, location.href); x.search = ''; x.hash = ''; return x.href; };
-      const urls = new Set([location.href, 'kpc-logger.html', 'kpc-logger.webmanifest', 'data/parkinfo/index.json', 'kpc-ky-data.json', 'kpc-icon-192.png', 'kpc-icon-512.png', 'kpc-icon-180.png', 'bg-group.jpg', 'bg-group-mobile.jpg', 'KPC26-Group-Photo.jpg', 'KPC26-Group-Photo-web.jpg',
+      const urls = new Set([location.href, 'kpc-logger.html', 'kpc-logger.webmanifest', 'data/parkinfo/index.json', 'kpc-ky-data.json', 'kpc-icon-192.png', 'kpc-icon-512.png', 'kpc-icon-180.png', 'bg-group.jpg', 'bg-group-mobile.jpg', 'KPC26-Group-Photo.jpg', 'KPC26-Group-Photo-web.jpg', 'kpc-ft8.wasm?v=20261017a', 'kpc-ft8.js?v=20261017a', 'kpc-us-states.json',
         'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js']);
       try { performance.getEntriesByType('resource').forEach(r => { const u = new URL(r.name); if (u.origin === location.origin) urls.add(r.name); }); } catch (e) {}
       const c = await caches.open('kpc-finder-v1'); let ok = 0, bad = 0;
@@ -959,6 +977,7 @@
     dupe: (call, band, mode) => dupeOf(call, band, mode, '').length > 0,
     worked: call => { const b = base(call); return L.q.some(q => base(q.call) === b); },
     qs: () => L.q,
+    newPark: ref => { const W = HLOG(); return !!(ref && W.size && !W.has(ref)); },
     freq: () => kHzOf($('eFreq').value),
     spots: () => SP, station: () => stationOpen(true),
     tab: t => { if (tabMode()) tab(t); else rtab(t); }

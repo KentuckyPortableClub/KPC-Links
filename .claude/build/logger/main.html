@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261018m"><link rel="stylesheet" href="kpc-ft8.css?v=20261018m">
+<link rel="stylesheet" href="kpc-logger.css?v=20261018p"><link rel="stylesheet" href="kpc-ft8.css?v=20261018m">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -142,9 +142,12 @@
  <select id="pMode"><option value="">All modes</option><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>DATA</option></select>
  <label class="lg-chk"><input type="checkbox" id="pNoRbn" checked> Hide robot (RBN) spots</label>
  <label class="lg-chk"><input type="checkbox" id="pNoWk"> Hide stations I've already logged</label>
+ <label class="lg-chk"><input type="checkbox" id="pNew"> 🆕 Only parks I've never hunted</label>
+ <label class="lg-chk"><input type="checkbox" id="pQrt"> Hide QRT</label>
  <input type="search" id="pSearch" placeholder="Call, park, state…">
 </div>
 </details>
+<p class="lg-plust" id="pPlusT"></p>
 <div class="lg-spots" id="pList"><div class="lg-empty">Loading spots…</div></div>
 </section>
 
@@ -204,4 +207,4 @@
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="kpc-fx.js?v=20261017a"></script>
-<script src="kpc-cat.js?v=20261018k"></script><script src="kpc-logger.js?v=20261018m"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261018n"></script>
+<script src="kpc-cat.js?v=20261018k"></script><script src="kpc-logger.js?v=20261018p"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261018p"></script>
