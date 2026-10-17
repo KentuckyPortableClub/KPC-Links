@@ -9,6 +9,7 @@ import json, os, time, datetime, urllib.request, concurrent.futures as CF
 ST = (os.environ.get('STATES') or 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY').split()
 C, OUT = '.cache/leaders', 'data/leaders'; os.makedirs(C, exist_ok=True); os.makedirs(OUT, exist_ok=True)
 UA = {'User-Agent': 'KPC state leaders (kentuckyportableclub.github.io)'}
+YEAR = str(datetime.date.today().year)
 T0 = time.time(); BUDGET = float(os.environ.get('BUDGET_MIN', '300')) * 60
 def note(t, m): print(f'::notice title={t}::{m}', flush=True)
 def get(u):
@@ -23,7 +24,7 @@ def park(ref, n):
     f = f'{C}/{ref}.json'
     try:
         d = json.load(open(f))
-        if d.get('n') == n and 'h' in d: return d['a'], d['h'], False
+        if d.get('n') == n and d.get('v') == 2: return d['a'], d['h'], False
     except Exception: pass
     a, h = {}, {}
     # hunters: POTA only shares each park's top 10 hunters (park/leaderboard caps at 10)
@@ -37,8 +38,12 @@ def park(ref, n):
         if q < 10: continue
         c = base(x.get('activeCallsign') or x.get('activatorCallsign') or x.get('callsign'))
         if not c: continue
-        v = a.setdefault(c, [0, 0]); v[0] += 1; v[1] += q
-    json.dump({'n': n, 'a': a, 'h': h}, open(f, 'w'), separators=(',', ':'))
+        d = str(x.get('qso_date') or '')[:8]
+        v = a.setdefault(c, [0, 0, d, d, {}]); v[0] += 1; v[1] += q
+        if d and (not v[2] or d < v[2]): v[2] = d
+        if d and d > v[3]: v[3] = d
+        y = v[4].setdefault(d[:4] or '?', [0, 0]); y[0] += 1; y[1] += q
+    json.dump({'v': 2, 'n': n, 'a': a, 'h': h}, open(f, 'w'), separators=(',', ':'))
     return a, h, True
 try: IDX = json.load(open(f'{OUT}/index.json'))
 except Exception: IDX = {}
@@ -55,19 +60,29 @@ for st in ST:
             try: a, h, new = f.result()
             except Exception: bad += 1; continue
             fetched += new
-            for c, (k, q) in a.items():
-                v = tot.setdefault(c, [0, 0, 0]); v[0] += k; v[1] += 1; v[2] += q
+            for c, (k, q, d1, d2, yy) in a.items():
+                v = tot.setdefault(c, [0, 0, 0, '', '', 0, 0, 0]); v[0] += k; v[1] += 1; v[2] += q
+                if d1 and (not v[3] or d1 < v[3]): v[3] = d1
+                if d2 and d2 > v[4]: v[4] = d2
+                y = yy.get(YEAR)
+                if y: v[5] += y[0]; v[6] += 1; v[7] += y[1]
             for c, q in h.items():
                 v = hun.setdefault(c, [0, 0]); v[0] += q; v[1] += 1
     if bad > len(fut) * .2: note(f'US-{st}', f'{bad} parks failed: kept last week'); continue
     rows = [[c] + v for c, v in tot.items()]
+    # row = [call, activations, parks, qsos, first date, last date, activations this year, parks this year, qsos this year]
     acts = sorted(rows, key=lambda r: (-r[1], -r[2], r[0]))[:50]
     uniq = sorted(rows, key=lambda r: (-r[2], -r[1], r[0]))[:50]
+    qsos = sorted(rows, key=lambda r: (-r[3], -r[1], r[0]))[:50]
+    yacts = sorted([r for r in rows if r[6]], key=lambda r: (-r[6], -r[7], r[0]))[:50]
+    yuniq = sorted([r for r in rows if r[7]], key=lambda r: (-r[7], -r[6], r[0]))[:50]
+    yqsos = sorted([r for r in rows if r[8]], key=lambda r: (-r[8], -r[6], r[0]))[:50]
     today = datetime.date.today().isoformat()
     hr = [[c] + v for c, v in hun.items()]
     hunt = sorted(hr, key=lambda r: (-r[1], -r[2], r[0]))[:50]
     huntp = sorted(hr, key=lambda r: (-r[2], -r[1], r[0]))[:50]
-    json.dump({'updated': today, 'st': st, 'parks': len(P), 'activated': len(fut), 'activators': len(rows), 'acts': acts, 'uniq': uniq, 'hunt': hunt, 'huntp': huntp},
+    json.dump({'v': 2, 'updated': today, 'year': YEAR, 'st': st, 'parks': len(P), 'activated': len(fut), 'activators': len(rows), 'yactivators': sum(1 for r in rows if r[6]),
+               'acts': acts, 'uniq': uniq, 'qsos': qsos, 'yacts': yacts, 'yuniq': yuniq, 'yqsos': yqsos, 'hunt': hunt, 'huntp': huntp},
               open(f'{OUT}/US-{st}.json', 'w'), separators=(',', ':'))
     IDX[st] = [today, len(P)]; done.append(st)
     note(f'US-{st}', f'{len(P)} parks, {len(rows)} activators; {fetched} parks re-read; top: {acts[0][0] if acts else "-"}')
