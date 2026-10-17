@@ -7,7 +7,7 @@ python3 .claude/build/assemble.py .claude/build/hunt/main.html kpc-hunt.html "VI
 python3 - <<'P'
 s=open('kpc-hunt.html').read()
 if 'noindex' not in s: s=s.replace('<meta charset="UTF-8">','<meta charset="UTF-8">\n<meta name="robots" content="noindex,nofollow">',1)
-if 'kpc-vip.js' not in s: s=s.replace('<meta name="robots" content="noindex,nofollow">','<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018b"></script>',1)
+if 'kpc-vip.js' not in s: s=s.replace('<meta name="robots" content="noindex,nofollow">','<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018c"></script>',1)
 open('kpc-hunt.html','w').write(s)
 P
 sed 's/<main id="hl" data-keep-light data-theme="lodge">/<main id="hl" data-keep-light data-theme="lodge" data-public="1">/' .claude/build/hunt/main.html > /tmp/kpc-hunters-main.html
@@ -21,12 +21,11 @@ python3 - <<'P'
 for f in ('kpc-hunt-need.html',):
     s=open(f).read()
     if 'noindex' not in s: s=s.replace('<meta charset="UTF-8">','<meta charset="UTF-8">\n<meta name="robots" content="noindex,nofollow">',1)
-    if 'kpc-vip.js' not in s: s=s.replace('<meta name="robots" content="noindex,nofollow">','<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018b"></script>',1)
+    if 'kpc-vip.js' not in s: s=s.replace('<meta name="robots" content="noindex,nofollow">','<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018c"></script>',1)
     open(f,'w').write(s)
 s=open('kpc-hunters.html').read()
-# BETA lock (Brandon Oct 17) — remove these two lines when he releases it
+# members only since Oct 17 (kpc-gate.js locks it; keep it out of search engines)
 if 'noindex' not in s: s=s.replace('<meta charset="UTF-8">','<meta charset="UTF-8">\n<meta name="robots" content="noindex,nofollow">',1)
-if 'kpc-vip.js' not in s: s=s.replace('<meta name="robots" content="noindex,nofollow">','<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018b" data-lock="beta"></script>',1)
 if 'href="kpc-hunters.html" aria-current' not in s: s=s.replace('href="kpc-hunters.html"','href="kpc-hunters.html" aria-current="page"',1)
 open('kpc-hunters.html','w').write(s)
 P
@@ -35,6 +34,6 @@ python3 .claude/build/assemble.py .claude/build/hunt-cat/main.html kpc-hunt-cat.
 python3 - <<'P'
 s=open('kpc-hunt-cat.html').read()
 if 'noindex' not in s: s=s.replace('<meta charset="UTF-8">','<meta charset="UTF-8">\n<meta name="robots" content="noindex,nofollow">',1)
-if 'kpc-vip.js' not in s: s=s.replace('<meta name="robots" content="noindex,nofollow">','<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018b"></script>',1)
+if 'kpc-vip.js' not in s: s=s.replace('<meta name="robots" content="noindex,nofollow">','<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018c"></script>',1)
 open('kpc-hunt-cat.html','w').write(s)
 P

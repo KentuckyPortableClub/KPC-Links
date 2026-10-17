@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="kpc-boards.css?v=20261017a">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style id="pc-look">
+main#pc .pc-wrap{max-width:1240px;margin:0 auto;padding:18px 16px 40px}
+main#pc .pc-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+main#pc .pc-search{position:relative;flex:1 1 280px}
+main#pc .pc-search input{width:100%;box-sizing:border-box;min-height:46px;padding:10px 14px;border:1px solid #c9b48a;border-radius:10px;font-size:16px;background:#fffdf7;color:#1b1307}
+main#pc .pc-sug{position:absolute;z-index:1500;left:0;right:0;top:100%;margin-top:4px;background:#fffdf7;border:1px solid #c9b48a;border-radius:10px;box-shadow:0 10px 26px rgba(0,0,0,.25);max-height:320px;overflow:auto}
+main#pc .pc-sug button{display:block;width:100%;text-align:left;padding:9px 12px;border:0;border-bottom:1px solid #eee3cc;background:none;font:14px Arial;color:#1b1307;cursor:pointer}
+main#pc .pc-sug button b{font-family:monospace;color:#7a5410;margin-right:6px}main#pc .pc-sug button small{color:#6b6252;margin-left:6px}
+main#pc .pc-sug button:hover,main#pc .pc-sug button.on{background:#f6ecd4}
+main#pc .pc-chip{padding:9px 13px;border-radius:999px;border:1px solid #c9b48a;background:#fffdf7;color:#3a2a10;font:900 12px Arial;letter-spacing:.6px;cursor:pointer}
+main#pc .pc-chip.on{background:linear-gradient(90deg,#f6d58a,#d5a63a);border-color:#d5a63a;color:#2a1a05}
+main#pc .pc-chip .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px;border:1px solid rgba(0,0,0,.3)}
+main#pc .pc-grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px;align-items:start}
+main#pc #pcMap{height:min(72vh,640px);border-radius:14px;border:1px solid #c9b48a;box-shadow:0 8px 24px rgba(0,0,0,.18);isolation:isolate;z-index:0;background:#1b2a1a}
+main#pc .pc-side{display:flex;flex-direction:column;gap:12px}
+main#pc .pc-card{background:#fffdf7;border:1px solid #c9b48a;border-radius:14px;padding:14px 16px;box-shadow:0 6px 18px rgba(0,0,0,.12);color:#1b1307}
+main#pc .pc-card h3{margin:0 0 4px;font:700 20px/1.2 Georgia,serif}main#pc .pc-k{font:900 11px Arial;letter-spacing:1.4px;color:#7a5410}
+main#pc .pc-meta{margin:4px 0 8px;color:#5a503f;font-size:13.5px}main#pc .pc-ref{font-family:monospace;font-weight:900;color:#1f6b3a}
+main#pc .pc-acts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+main#pc .pc-acts a,main#pc .pc-acts button{display:inline-flex;align-items:center;padding:8px 11px;border-radius:999px;border:1px solid #c9b48a;background:#fff;color:#3a2a10;font:900 11.5px Arial;letter-spacing:.4px;text-decoration:none;cursor:pointer}
+main#pc .pc-acts .gold{background:linear-gradient(90deg,#f6d58a,#d5a63a);border-color:#d5a63a;color:#2a1a05}
+main#pc .pc-list{margin:6px 0 0;padding:0;list-style:none;font-size:13.5px}main#pc .pc-list li{padding:5px 0;border-top:1px dashed #e2d6bb;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+main#pc .pc-list a{color:#7a5410;font-weight:700}main#pc .pc-empty{color:#6b6252;font-size:14px}
+main#pc .pc-trip ol{margin:6px 0 8px 20px;padding:0;font-size:14px}main#pc .pc-trip li{margin:4px 0}main#pc .pc-trip li button{margin-left:6px;border:0;background:none;color:#a33;font-weight:900;cursor:pointer}
+main#pc .pc-note{font-size:12.5px;color:#6b6252;margin:8px 0 0}
+main#pc .pc-tag{display:inline-block;padding:2px 8px;border-radius:999px;font:900 10.5px Arial;letter-spacing:.5px;background:#e9f5ec;color:#1f6b3a;border:1px solid #a9d3b4}
+.pc-pin{width:14px;height:14px}
+@media(max-width:900px){main#pc .pc-grid{grid-template-columns:1fr}main#pc #pcMap{height:62vh}}
+html[data-theme=dark] main#pc .pc-card,html[data-theme=dark] main#pc .pc-search input,html[data-theme=dark] main#pc .pc-sug,html[data-theme=dark] main#pc .pc-chip:not(.on){background:#17130c!important;color:#f3e6c8!important;border-color:#5a4a2a!important}
+html[data-theme=dark] main#pc .pc-acts a:not(.gold),html[data-theme=dark] main#pc .pc-acts button:not(.gold),html[data-theme=dark] main#pc .pc-sug button{background:#221b10!important;color:#f3e6c8!important}
+</style>
+@@HEADER@@
+<main class="kb" id="pc" data-keep-light>
+<section class="kb-hero" style="--pic:url('hero-statepark.jpg');--picm:url('hero-statepark-mobile.jpg')"><div class="kb-hero-in">
+<p class="kb-eyebrow">KENTUCKY PORTABLE CLUB • POTA • KFF • SOTA</p>
+<h1>KENTUCKY <span>PARK CONTROL</span></h1>
+<p class="kb-copy">Every Kentucky POTA park, KFF (WWFF) reference and W4K SOTA summit on one map. Search by name, number or town, tap a dot for directions, official links, parking and park tips, and put a trip together.</p>
+<div class="kb-chips"><span>🌲 191 POTA parks</span><span>🌳 KFF references</span><span>⛰ 216 SOTA summits</span><span>🧭 Trip list</span></div>
+</div></section>
+<section class="kb-sec"><div class="pc-wrap">
+<div class="pc-bar">
+  <div class="pc-search"><input id="pcQ" type="search" placeholder="Park name, US-1234, KFF-0001, W4K/… or a Kentucky town" autocomplete="off" aria-label="Search Kentucky parks"><div class="pc-sug" id="pcSug" hidden></div></div>
+  <button type="button" class="pc-chip" id="pcNear">📍 NEAR ME</button>
+</div>
+<div class="pc-bar" role="group" aria-label="Show on the map">
+  <button type="button" class="pc-chip" data-pg="pota"><span class="dot" style="background:#2e9e52"></span>POTA PARKS</button>
+  <button type="button" class="pc-chip" data-pg="kff"><span class="dot" style="background:#1aa6a0"></span>KFF (WWFF)</button>
+  <button type="button" class="pc-chip" data-pg="sota"><span class="dot" style="background:#e07a1c"></span>SOTA SUMMITS</button>
+  <span class="pc-note" id="pcCount"></span>
+</div>
+<div class="pc-grid">
+  <div id="pcMap" role="region" aria-label="Map of Kentucky parks"></div>
+  <div class="pc-side">
+    <div class="pc-card" id="pcInfo"><div class="pc-k">PICK A PARK</div><p class="pc-empty">Tap a dot on the map or search above. Green = POTA park, teal = KFF reference, orange = SOTA summit.</p></div>
+    <div class="pc-card pc-trip" id="pcTrip"><div class="pc-k">🧭 MY TRIP</div><div id="pcTripL"><p class="pc-empty">Tap <b>+ ADD TO MY TRIP</b> on a park to start a trip.</p></div></div>
+  </div>
+</div>
+<p class="pc-note">Pins and outlines are guides only. Confirm every boundary on the official map before you set up. Kentucky only: KPC's checked Kentucky data (official websites, maps, parking points from the land managers). Park tips and places to stay come from KPC members.</p>
+</div></section>
+</main>
+<script src="kpc-bounds.js?v=20261017a" defer></script>
+<script src="kpc-map-tools.js?v=20261016f" defer></script>
+<script src="kpc-park-control.js?v=20261018a" defer></script>
+@@FOOTER@@

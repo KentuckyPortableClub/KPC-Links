@@ -7,9 +7,9 @@
    uses its own password (SHA-256 of 'kpc-beta:' + password) and localStorage kpcBetaOK. A VIP unlock also opens the beta page. */
 (function () {
   var BETA = !!(document.currentScript && document.currentScript.getAttribute('data-lock') === 'beta');
-  var VIPH = '1c98fe8c74bed6bc1d39200459508faa9126ea623c8d5062946caebe906a9f9f';
+  var VIPH = '2053c7c0ae91be40fd2816d87b55adca15e478c076973648e9e0bb42ffedf8b2', MEMH = '2925a56a5048f6d5dabbe552f8abb71e7c8b4dfc8b42b29cd76f9083c226a540'; /* Oct 17: one member password for every lock */
   var HASH = BETA ? '754c4f28bd19b9a46d2e23ee7126a19d08f13054ef7b03e78f48ac4373d6e121' : VIPH, KEY = BETA ? 'kpcBetaOK' : 'kpcVipOK', SALT = BETA ? 'kpc-beta:' : 'kpc-vip:';
-  var ok = false; try { ok = localStorage.getItem(KEY) === HASH || (BETA && localStorage.getItem('kpcVipOK') === VIPH); } catch (e) {}
+  var ok = false; try { ok = localStorage.getItem(KEY) === HASH || (BETA && localStorage.getItem('kpcVipOK') === VIPH) || localStorage.getItem('kpcMember') === MEMH; } catch (e) {}
   var done; var ready = new Promise(function (r) { done = r; });
   window.KPCVIP = { ready: ready, ok: function () { return ok; } };
   if (ok) { done(); return; }
