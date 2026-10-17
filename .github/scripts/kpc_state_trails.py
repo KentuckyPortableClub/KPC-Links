@@ -133,6 +133,11 @@ def agency(name, st, la, lo):
         if st not in STS:
             STS[st] = get('https://www.arcgis.com/sharing/rest/search?' + urllib.parse.urlencode({'q': f'{STN.get(st, st)} trails (type:"Feature Service" OR type:"Map Service")', 'f': 'json', 'num': 40}), t=60).get('results', [])
         res += STS[st]
+        # Oct 18 (Brandon: 'go for it'): scenic byways come from the national / state byway maps, BLM trails from BLM's own maps
+        for key, q in (('byway', 'scenic byways'), ('blm', 'BLM trails routes'), ('blm', 'Bureau of Land Management trails')):
+            if key in name.lower():
+                if q not in STS: STS[q] = get('https://www.arcgis.com/sharing/rest/search?' + urllib.parse.urlencode({'q': q + ' (type:"Feature Service" OR type:"Map Service")', 'f': 'json', 'num': 40}), t=60).get('results', [])
+                res += STS[q]
     except Exception as e: note('ArcGIS search', f'{name}: {str(e)[:120]}'); res = []
     seen = set()
     for it in res:
@@ -142,7 +147,7 @@ def agency(name, st, la, lo):
         org = ((org_name(it.get('orgId', '')) if it.get('orgId') else '') + ' | ' + (it.get('accessInformation') or '') + ' | ' + (it.get('owner') or '')).strip(' |')
         if not official_org(org, st): ALOG.append([name, 'skip (not state/federal)', org[:60], it.get('title', '')[:60]]); continue
         tries.append((u, org, None))
-    for u, org, flds in tries[:14]:
+    for u, org, flds in tries[:22]:
         try:
             lays = [u] if re.search(r'/\d+$', u) else [f"{u}/{l['id']}" for l in (get(u + '?f=json', t=40).get('layers') or [])[:8]]
             for lu in lays:
@@ -163,7 +168,8 @@ def agency(name, st, la, lo):
 # ---------------------------------------------------------------- 3. OpenStreetMap
 OVP = 'https://overpass-api.de/api/interpreter'
 def words(name):  # Oct 17: letters/numbers only, so "Alene's", "Ka‘ena" and "Estacada- Boring" still match OpenStreetMap
-    return [x for x in re.split(r'[^0-9a-z]+', core(name)) if len(x) > 2]
+    # Oct 18: POTA's type words ('BLM', 'Byway', 'Geologic'...) are not in the map names ('Burr Trail BLM Historic Trail' = 'Burr Trail')
+    return [x for x in re.split(r'[^0-9a-z]+', core(name)) if len(x) > 2 and x not in ('blm', 'byway', 'byways', 'geologic', 'wayside', 'state', 'water')]
 def osm(name, iso, la, lo):
     """Oct 17 (Brandon: 'readdress the missing trails'): route relations of any kind (foot, bike, horse, canoe for water
     trails, road for scenic byways) AND plain named paths/cycleways/tracks (many rail-trails are just ways); every match
