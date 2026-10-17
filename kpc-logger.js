@@ -244,7 +244,7 @@
       qth: r.qth || (EDIT && EDIT.qth) || '', g: r.g || (EDIT && EDIT.g) || '', la: there ? there[0] : (EDIT ? EDIT.la : null), lo: there ? there[1] : (EDIT ? EDIT.lo : null), note, cn: EDIT ? (EDIT.cn || '') : cn, role: EDIT ? (EDIT.role || 'act') : (isHunt() ? 'hunt' : 'act'),
       my: EDIT ? EDIT.my : stationCall(), op: EDIT ? (EDIT.op || EDIT.my) : curOp(), pk: EDIT ? EDIT.pk : (isHunt() ? '' : myParks().join(',')), wf: EDIT ? (EDIT.wf || '') : myWwff(), so: EDIT ? (EDIT.so || '') : mySota(), mg: EDIT ? EDIT.mg : SET.grid, pw: EDIT ? EDIT.pw : SET.pwr, x: 0 };
     if (EDIT) { const i = L.q.findIndex(x => x.id === EDIT.id); if (i >= 0) L.q[i] = q; toast('✓ Contact updated.'); }
-    else { L.q.push(q); const n = actList().filter(x => x.my === q.my).length; toast(isHunt() ? `✓ ${call}${q.ref ? ' at ' + q.ref.split(',')[0] : ''} logged (${n} today)` : `✓ ${call} logged${multi() ? ' by ' + q.op : ''} (${n} this activation${multi() && !SET.share ? ' for ' + q.my : ''})${n === 10 ? ': 🎉 that makes it a valid activation!' : ''}`, () => { L.q = L.q.filter(x => x.id !== q.id); save(); drawAll(); }); NEWID = q.id; }
+    else { L.q.push(q); const n = actList().filter(x => x.my === q.my).length; toast(isHunt() ? `✓ ${call}${q.ref ? ' at ' + q.ref.split(',')[0] : ''} logged (${n} today)` : `✓ ${call} logged${multi() ? ' by ' + q.op : ''} (${n} this activation${multi() && !SET.share ? ' for ' + q.my : ''})${n === 10 ? ': 🎉 that makes it a valid activation!' : ''}`, () => { L.q = L.q.filter(x => x.id !== q.id); save(); drawAll(); }); NEWID = q.id; const fx = $('cEntry'); fx.classList.remove('pop'); void fx.offsetWidth; fx.classList.add('pop'); setTimeout(() => fx.classList.remove('pop'), 1600); }
     save(); clearForm(true); drawAll(); radioTxt(); $('eCall').focus();
     /* the look-up hadn't come back yet (typed fast): fill name / state / town / map spot in when it does */
     if (!r.call) look(call).then(x => { if (!x) return; const z = L.q.find(y => y.id === q.id); if (!z) return;
@@ -621,6 +621,9 @@
   function opBarInit() {
     document.querySelectorAll('[data-role]').forEach(b => b.onclick = () => { role(b.dataset.role); toast(isHunt() ? '🎯 Hunting: no park number needed. Tap a spot, log it, and the park goes with the contact.' : '🏕 Activating: your park number goes on every contact.'); });
     role(SET.role);
+    const FXL = { flames: '🔥 FLAMES', fireworks: '🎆 FIREWORKS', stars: '🌠 STARS', off: '🚫 PLAIN' };
+    const fxSet = f => { SET.fx = FXL[f] ? f : 'flames'; saveSet(); $('cEntry').dataset.fx = SET.fx; $('oFx').textContent = FXL[SET.fx]; };
+    fxSet(SET.fx || 'flames'); $('oFx').onclick = () => fxSet(({ flames: 'fireworks', fireworks: 'stars', stars: 'off', off: 'flames' })[SET.fx]);
     night(!!get('kpcLgNight', false)); $('oNight').onclick = () => night(!document.getElementById('lg').hasAttribute('data-night'));
     $('oEdit').onclick = () => stationOpen(false);
     stationOpen(!myCall() || (!isHunt() && !myParks().length && !myWwff() && !mySota()));
