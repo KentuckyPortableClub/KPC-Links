@@ -1423,15 +1423,12 @@
     ['dCall', 'dRef', 'dName', 'dSt', 'dNote'].forEach(id => { $(id).value = ''; }); dkWN++; DKWHO = null; $('dkWho').innerHTML = '';
     $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value); $('dkDupe').hidden = true;
   }
-  /* buttons above the name box (Brandon Oct 17): ✅ QSL → QRZ = log it, send it to QRZ, clear the boxes; 📣 RESPOT only for POTA parks */
+  /* button above the name box (Brandon Oct 17): ✅ QSL → QRZ = log it, send it to QRZ, clear the boxes (RESPOT stays on the spot list only) */
   function dkActSet() { const r = $('dkRsp'); if (!r) return; const pr = String($('dRef').value || '').toUpperCase().split(/[ ,]+/).map(nref).find(x => progOf(x) === 'POTA');
     r.hidden = !(pr && $('dCall').value.trim()); r.dataset.ref = pr || ''; }
   if ($('dkQsl')) {
     ['dRef', 'dCall'].forEach(id => $(id).addEventListener('input', dkActSet));
     $('dkQsl').onclick = () => { if (!$('dCall').value.trim()) { toast('Tap a spot first (or type the call).'); $('dCall').focus(); return; } dkLog({ qrz: true }); };
-    $('dkRsp').onclick = () => { const k = Math.round(parseFloat($('dFreq').value) * 1000), ref = $('dkRsp').dataset.ref, call = $('dCall').value.trim().toUpperCase();
-      if (!k || !ref || !call) { toast('Respot needs the call, the frequency and a POTA park number.'); return; }
-      respot({ call, ref, khz: k, mode: $('dMode').value === 'OTHER' ? '' : $('dMode').value }); };
   }
   async function dkLog(opt) {
     const call = $('dCall').value.trim().toUpperCase(); if (!call) { $('dCall').focus(); return; }
