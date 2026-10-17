@@ -292,7 +292,8 @@
     const rec = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call: s.call, d: n.d, tm: n.t, f: (s.khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, ''), band, mode, ref,
       name: s.name || '', st: s.st || '', rs: rstFor(mode), rr: rstFor(mode), note: '', my: CALL, grid: Q.grid, x: 0, t: Date.now(), qs: 1 };
     if (isFinite(s.la) && isFinite(s.lo)) { rec.la = s.la; rec.lo = s.lo; }
-    const w = LKC[base(s.call)]; if (w) { rec.on = w.name || ''; rec.qth = [w.qth, w.st].filter(Boolean).join(', '); rec.tg = w.g || ''; }
+    if (s.cty) rec.cty = s.cty;
+    await whoFill(rec, LKC[base(s.call)] || null);
     SELK = keyOf(s); await afterLog(rec);
   }
   /* 📣 RESPOT (POTA spots): POST to POTA with you as the spotter; same spam guard as Spot Me and the KPC Logger */
@@ -879,6 +880,26 @@
   /* ---------- ADIF ---------- */
   const enc = new TextEncoder();
   const af = (k, v) => { v = String(v == null ? '' : v).replace(/[<>]/g, ''); return v === '' ? '' : `<${k}:${enc.encode(v).length}>${v} `; };
+  /* ADIF LAT/LON look like N037 30.000 (Oct 17) */
+  const adLL = (v, p, n) => { const a = Math.abs(v), d = Math.floor(a), m = (a - d) * 60; return (v < 0 ? n : p) + String(d).padStart(3, '0') + ' ' + m.toFixed(3).padStart(6, '0'); };
+  /* my grid square: the Lounge setting, else the KPC Logger's, else the spot the conditions bar uses (GPS), so MY_GRIDSQUARE is filled */
+  function myGrid() {
+    if (Q && Q.grid) return Q.grid;
+    try { const s = JSON.parse(localStorage.getItem('kpcLgSet') || '{}'); if (s.grid) return s.grid; } catch (e) {}
+    try { const c = JSON.parse(localStorage.getItem('kpcHuntCx') || 'null'); if (c && c.g) return c.g; const la = c && +c.la, lo = c && +c.lo; if (isFinite(la) && isFinite(lo)) { const A = 'ABCDEFGHIJKLMNOPQR', a = 'abcdefghijklmnopqrstuvwx', x = lo + 180, y = la + 90;
+      return A[Math.floor(x / 20)] + A[Math.floor(y / 10)] + Math.floor((x % 20) / 2) + Math.floor(y % 10) + a[Math.floor((x % 2) * 12)] + a[Math.floor((y % 1) * 24)]; } } catch (e) {}
+    return '';
+  }
+  /* fill name / town / grid / country from the call look-up (waits up to 3 s so ✅ QSL and a fast Enter don't miss it) */
+  const gridOf = (la, lo) => { const A = 'ABCDEFGHIJKLMNOPQR', a = 'abcdefghijklmnopqrstuvwx', x = lo + 180, y = la + 90; return A[Math.floor(x / 20)] + A[Math.floor(y / 10)] + Math.floor((x % 20) / 2) + Math.floor(y % 10) + a[Math.floor((x % 2) * 12)] + a[Math.floor((y % 1) * 24)]; };
+  async function whoFill(rec, w) {
+    if (!w) { try { w = await Promise.race([lookCall(rec.call), new Promise(r => setTimeout(() => r(null), 3000))]); } catch (e) { w = null; } }
+    if (w) { rec.on = rec.on || w.name || ''; rec.cty = rec.cty || w.cty || ''; }
+    /* at a park or summit, QTH and grid are WHERE THEY ARE (the park), not their home address */
+    if (rec.ref && isFinite(rec.la) && isFinite(rec.lo)) { rec.tg = gridOf(rec.la, rec.lo); rec.qth = [rec.name, rec.st].filter(Boolean).join(', ') || rec.ref; }
+    else if (w) { rec.qth = rec.qth || [w.qth, w.st].filter(Boolean).join(', '); rec.tg = rec.tg || w.g || ''; if (!rec.st && w.st) rec.st = w.st; }
+    return rec;
+  }
   function adMode(m) { m = String(m || '').toUpperCase(); if (m === 'FT4') return ['MFSK', 'FT4']; if (m === 'JS8') return ['MFSK', 'JS8']; if (m === 'PSK31') return ['PSK', 'PSK31']; if (/^(USB|LSB)$/.test(m)) return ['SSB', m]; if (m === 'OTHER' || !m) return ['SSB', '']; return [m, '']; }
   function adif(L) {
     let o = `KPC Hunters Lounge log\n${af('ADIF_VER', '3.1.4')}${af('PROGRAMID', 'KPC Hunters Lounge')}${af('CREATED_TIMESTAMP', new Date().toISOString().replace(/[-:]/g, '').replace('T', ' ').slice(0, 15))}<EOH>\n`;
@@ -886,10 +907,10 @@
       const [md, sm] = adMode(q.mode), refs = String(q.ref || '').toUpperCase().split(/[ ,]+/).filter(Boolean);
       const pota = refs.filter(r => progOf(r) === 'POTA'), wwff = refs.filter(r => progOf(r) === 'WWFF'), sota = refs.filter(r => progOf(r) === 'SOTA');
       o += af('CALL', q.call) + af('QSO_DATE', q.d) + af('TIME_ON', q.tm) + af('FREQ', q.f) + af('BAND', q.band) + af('MODE', md) + af('SUBMODE', sm) + af('RST_SENT', q.rs) + af('RST_RCVD', q.rr)
-        + af('STATION_CALLSIGN', q.my || CALL) + af('OPERATOR', q.my || CALL) + af('MY_GRIDSQUARE', q.grid || Q.grid)
+        + af('TIME_OFF', q.tm) + af('STATION_CALLSIGN', q.my || CALL) + af('OPERATOR', q.my || CALL) + af('MY_GRIDSQUARE', q.grid || myGrid())
         + af('POTA_REF', pota.join(',')) + af('WWFF_REF', wwff[0] || '') + af('SOTA_REF', sota[0] || '')
         + (pota.length ? af('SIG', 'POTA') + af('SIG_INFO', pota[0]) : wwff.length ? af('SIG', 'WWFF') + af('SIG_INFO', wwff[0]) : '')
-        + af('NAME', q.on || '') + af('QTH', q.qth || '') + af('GRIDSQUARE', q.tg || '') + af('STATE', /^[A-Z]{2}$/.test(q.st || '') && ST[q.st] ? q.st : '') + af('COMMENT', [refs.join(' '), q.name].filter(Boolean).join(' ').slice(0, 120)) + af('NOTES', q.note) + '<EOR>\n';
+        + af('NAME', q.on || '') + af('QTH', q.qth || '') + af('GRIDSQUARE', q.tg || '') + af('COUNTRY', q.cty || '') + (isFinite(q.la) && isFinite(q.lo) ? af('LAT', adLL(q.la, 'N', 'S')) + af('LON', adLL(q.lo, 'E', 'W')) : '') + af('STATE', /^[A-Z]{2}$/.test(q.st || '') && ST[q.st] ? q.st : '') + af('COMMENT', [refs.join(' '), q.name].filter(Boolean).join(' ').slice(0, 120)) + af('NOTES', q.note) + '<EOR>\n';
     });
     return o;
   }
@@ -1438,8 +1459,8 @@
     const f = $('dFreq').value.trim();
     const rec = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: n.d, tm: n.t, f, band: $('dBand').value, mode: $('dMode').value, ref,
       name: $('dName').value.trim(), st: $('dSt').value.trim().toUpperCase(), rs: $('dRs').value.trim(), rr: $('dRr').value.trim(), note: $('dNote').value.trim(), my: CALL, grid: Q.grid, x: 0, t: Date.now() };
-    const w = DKWHO && DKWHO.call === base(call) ? DKWHO : (LKC[base(call)] || null); if (w) { rec.on = w.name || ''; rec.qth = [w.qth, w.st].filter(Boolean).join(', '); rec.tg = w.g || ''; }
-    if (DKS && base(DKS.call) === base(call) && isFinite(DKS.la) && isFinite(DKS.lo)) { rec.la = DKS.la; rec.lo = DKS.lo; }
+    if (DKS && base(DKS.call) === base(call)) { if (isFinite(DKS.la) && isFinite(DKS.lo)) { rec.la = DKS.la; rec.lo = DKS.lo; } if (DKS.cty) rec.cty = DKS.cty; }
+    await whoFill(rec, DKWHO && DKWHO.call === base(call) ? DKWHO : (LKC[base(call)] || null));
     await afterLog(rec, opt);
     dkClear(); dkActSet(); $('dCall').focus({ preventScroll: true });
   }
