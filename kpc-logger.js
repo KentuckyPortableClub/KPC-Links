@@ -295,9 +295,11 @@
   }
 
   /* ---------------- the docked entry: radio chip, More drawer, tabs ---------------- */
-  function radioTxt() { const k = kHzOf($('eFreq').value), b = bandOf(k); $('dRadioT').textContent = `${b ? mhz(k) + ' · ' + b : 'Band???'} · ${$('eMode').value}`; $('dRadio').classList.toggle('bad', !b); }
-  function drawer(open) { $('eMore').hidden = !open; $('dMoreB').classList.toggle('on', open); dockSize(); }
-  function radioRow(open) { const m = document.getElementById('lg'); m.toggleAttribute('data-radio', open); $('dRadio').setAttribute('aria-expanded', open); $('dRadio').classList.toggle('on', open); dockSize(); }
+  function radioTxt() { const k = kHzOf($('eFreq').value), b = bandOf(k); $('dRadioT').textContent = tabMode() ? `${b ? mhz(k) : 'Band???'} ${$('eMode').value}` : `${b ? mhz(k) + ' · ' + b : 'Band???'} · ${$('eMode').value}`; $('dRadio').classList.toggle('bad', !b); }
+  /* phones: the radio row, More and ⚙ Station are pop-up menus over the log, one at a time (Brandon Oct 16) */
+  function popOnly(w) { if (!tabMode()) return; if (w !== 'more' && !$('eMore').hidden) drawer(false); if (w !== 'radio' && document.getElementById('lg').hasAttribute('data-radio')) radioRow(false); if (w !== 'sta' && !$('cOp').hidden) stationOpen(false); }
+  function drawer(open) { if (open) popOnly('more'); $('eMore').hidden = !open; $('dMoreB').classList.toggle('on', open); dockSize(); }
+  function radioRow(open) { if (open) popOnly('radio'); const m = document.getElementById('lg'); m.toggleAttribute('data-radio', open); $('dRadio').setAttribute('aria-expanded', open); $('dRadio').classList.toggle('on', open); dockSize(); }
   const tabMode = () => matchMedia('(max-width:1099px)').matches;
   function rtab(t) { const m = document.getElementById('lg'); m.dataset.rt = t; put('kpcLgRt', t); document.querySelectorAll('[data-rt]').forEach(b => b.classList.toggle('on', b.dataset.rt === t)); if (t === 'map' && MAP) setTimeout(() => { MAP.invalidateSize(); drawMap(true); }, 60); }
   function tab(t, quiet) {
@@ -317,7 +319,10 @@
     document.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => tab(b.dataset.tab));
     tab(({ stats: 'info', notes: 'log', station: 'log' })[get('kpcLgTab', 'log')] || get('kpcLgTab', 'log'), true);
     ['eFreq', 'eMode'].forEach(i => $(i).addEventListener('input', radioTxt)); $('eMode').addEventListener('change', radioTxt); radioTxt();
-    if (!kHzOf($('eFreq').value)) radioRow(true);
+    if (!kHzOf($('eFreq').value) && !tabMode()) radioRow(true);
+    document.addEventListener('click', e => { const x = e.target.closest('[data-popx]'); if (x) { if (x.dataset.popx === 'radio') radioRow(false); else drawer(false); return; }
+      if (tabMode() && !e.target.closest('#cEntry') && !e.target.closest('.lg-toast')) popOnly(''); });
+    $('dRole').onclick = () => { role(isHunt() ? 'act' : 'hunt'); toast(isHunt() ? '🎯 Hunting: no park number needed. Tap a spot, log it, and the park goes with the contact.' : '🏕 Activating: your park number goes on every contact.'); };
     if (window.ResizeObserver) new ResizeObserver(dockSize).observe($('cEntry')); addEventListener('resize', dockSize); setTimeout(dockSize, 100);
   }
 
@@ -602,13 +607,13 @@
     $('lMini').innerHTML = `<b>${esc(sc || 'YOUR CALL')}</b> ${isHunt() ? '· 🎯 HUNTING' : '@ <i>' + esc(myRefsTxt() || 'NO PARK YET') + '</i>'}`;
   }
   /* ⚙ = the station menu, folded above the entry (Brandon Oct 16) */
-  function stationOpen(open) { $('cOp').hidden = !open; $('dSta').classList.toggle('on', open); $('dSta').setAttribute('aria-expanded', open); dockSize(); if (open) { const t = !myCall() ? $('myCall') : null; if (t) setTimeout(() => t.focus(), 50); } }
+  function stationOpen(open) { if (open) popOnly('sta'); $('cOp').hidden = !open; $('dSta').classList.toggle('on', open); $('dSta').setAttribute('aria-expanded', open); dockSize(); if (open) { const t = !myCall() ? $('myCall') : null; if (t) setTimeout(() => t.focus(), 50); } }
   function night(on) { document.getElementById('lg').toggleAttribute('data-night', on); $('oNight').textContent = on ? '☀ DAY' : '🌙 NIGHT'; put('kpcLgNight', on); }
   function role(r) {
     SET.role = r === 'hunt' ? 'hunt' : 'act'; saveSet();
     document.querySelectorAll('[data-role]').forEach(b => b.classList.toggle('on', b.dataset.role === SET.role));
     document.getElementById('lg').dataset.role = SET.role;
-    $('dSpot').hidden = isHunt(); $('lvAct').textContent = isHunt() ? 'TODAY' : 'THIS ACTIVATION';
+    $('dSpot').hidden = isHunt(); $('dRole').textContent = tabMode() ? (isHunt() ? '🎯 HUNT' : '🏕 ACT') : (isHunt() ? '🎯 HUNTING' : '🏕 ACTIVATING'); $('dRole').classList.toggle('hunt', isHunt()); $('lvAct').textContent = isHunt() ? 'TODAY' : 'THIS ACTIVATION';
     $('xPota').textContent = isHunt() ? '⬇ MY HUNTING LOG (TODAY, ADIF)' : '⬇ FILES FOR THIS ACTIVATION (POTA · WWFF · SOTA)';
     $('myParkL').firstChild.textContent = isHunt() ? 'My park numbers (only when you activate)' : 'My park numbers';
     drawAll();
@@ -761,7 +766,7 @@
     try { const o = await idbGet('log'); IDBok = true; if (o && Array.isArray(o.q) && ((o.u || 0) > (L.u || 0) || o.q.length > L.q.length)) { L = o; put(LK, L); } } catch (e) {}
     if (navigator.storage && navigator.storage.persisted) { try { PERSIST = await navigator.storage.persisted(); } catch (e) {} }
     drawAll(); safe();
-    setInterval(() => { const u = iso(new Date()).slice(11, 19); $('sUtc').textContent = u; $('dClk').textContent = '🕒 ' + u + 'z'; }, 1000);
+    setInterval(() => { const u = iso(new Date()).slice(11, 19); $('sUtc').textContent = u; $('dClk').textContent = (tabMode() ? '' : '🕒 ') + u + 'z'; }, 1000);
     setInterval(rates, 30000);
     window.addEventListener('storage', e => { if (e.key === LK) { L = get(LK, L); drawAll(); } });
   }

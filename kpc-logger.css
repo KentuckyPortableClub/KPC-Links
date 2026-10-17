@@ -458,3 +458,22 @@ main#lg #nText{min-height:0;margin:0;height:auto;resize:none}
  .lg-stpanel .lg-opn b{font-size:22px}
  .lg-sp .rs{font-size:10.5px}
 }
+
+/* ===== Oct 16 late (Brandon's phone picture): on phones the radio row, ✏️ More and ⚙ Station are POP-UP menus that float
+   over the log, so the dock stays small and the log stays in view. One open at a time; ✓ DONE or a tap on the log closes. ===== */
+.lg-pophd{display:none}
+.lg-dchips .dc#dRole{background:#2f6b3a;color:#e6ffe9}
+.lg-dchips .dc#dRole.hunt{background:#1f4f8a;color:#e3efff}
+@media(max-width:1099px){
+ main#lg #cOp:not([hidden]),main#lg[data-radio] #eRadio,main#lg #eMore:not([hidden]){position:fixed;left:8px;right:8px;bottom:calc(var(--dock) + 8px);z-index:1300;margin:0;max-height:calc(100dvh - var(--dock) - 64px);overflow:auto;border-radius:14px;box-shadow:0 -12px 44px rgba(0,0,0,.75),0 0 0 1px rgba(255,226,191,.35)}
+ main#lg #eMore:not([hidden]){background:#3b1f0c;padding:10px 12px 12px}
+ main#lg[data-radio] #eRadio{padding:8px 10px 10px;align-content:start}
+ .lg-pophd{display:flex;grid-column:1/-1;align-items:center;justify-content:space-between;gap:10px;margin:0 0 8px;font:900 12.5px Arial,sans-serif;letter-spacing:1.4px;color:#ffe2bf}
+ .lg-popx{border:0;border-radius:9px;background:#ffe2bf;color:#5a2d0c;font:900 12.5px Arial,sans-serif;letter-spacing:1px;padding:8px 13px;cursor:pointer}
+ /* all the chips fit on one line */
+ main#lg .lg-dchips{gap:5px}
+ main#lg .lg-dchips .dc{padding:7px 8px;font-size:12.5px;border-radius:9px}
+ main#lg .lg-dchips .dc .tx,main#lg #dSpotT{display:none}
+}
+main#lg[data-night] .lg-popx{background:#7a1a10;color:#ffd3cc}
+main#lg[data-night] #eMore:not([hidden]){background:#140000}
