@@ -107,7 +107,7 @@ body.field .page-jump-nav{display:none!important}
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261018e">
+<link rel="stylesheet" href="kpc-logger.css?v=20261018g">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -248,6 +248,24 @@ body.field .page-jump-nav{display:none!important}
 <p class="lg-park" id="myParkInfo"></p>
 <div class="lg-row"><button type="button" class="lg-btn gold sm" id="myNearB">📍 PARKS NEAR ME (GPS)</button><button type="button" class="lg-btn line sm" id="myGps">GRID FROM MY GPS</button><span class="lg-mu" id="myGpsMsg"></span></div>
 <div class="lg-near" id="myNear" hidden></div>
+<div class="lg-cat" id="myCat">
+ <h3>📻 RADIO CONTROL (CAT) <small id="catSt">off</small></h3>
+ <div class="lg-f">
+  <label>My radio<select id="catRadio"><option value="">Pick your radio…</option>
+   <optgroup label="Icom (CI-V)"><option value="ic705">Icom IC-705</option><option value="ic7300">Icom IC-7300</option><option value="ic7610">Icom IC-7610</option><option value="ic9700">Icom IC-9700</option><option value="ic7100">Icom IC-7100</option><option value="ic718">Icom IC-718</option></optgroup>
+   <optgroup label="Xiegu (CI-V)"><option value="g90">Xiegu G90</option><option value="x6100">Xiegu X6100</option></optgroup>
+   <optgroup label="Yaesu"><option value="ft991">Yaesu FT-991A</option><option value="ft891">Yaesu FT-891</option><option value="ft710">Yaesu FT-710</option><option value="ftdx10">Yaesu FTDX10 / FTDX101</option><option value="ft817">Yaesu FT-817 / 818</option><option value="ft857">Yaesu FT-857 / 897</option></optgroup>
+   <optgroup label="Elecraft"><option value="kx2">Elecraft KX2</option><option value="kx3">Elecraft KX3</option><option value="k3">Elecraft K3 / K3S / K4</option></optgroup>
+   <optgroup label="Kenwood"><option value="ts590">Kenwood TS-590 / 890 / 990</option><option value="ts480">Kenwood TS-480</option></optgroup>
+   <optgroup label="Others"><option value="qmx">QRP Labs QMX / QDX</option><option value="trusdx">(tr)uSDX</option><option value="tx500">Lab599 TX-500</option></optgroup></select></label>
+ </div>
+ <div class="lg-row">
+  <button type="button" class="lg-btn gold sm" id="catGo">🔌 CONNECT MY RADIO</button>
+  <label class="lg-chk"><input type="checkbox" id="catTune" checked> Tune the radio when I tap a spot or change band, mode or frequency</label>
+  <label class="lg-chk"><input type="checkbox" id="catFollow" checked> Fill in the frequency and mode from my radio's dial</label>
+ </div>
+ <p class="lg-mu" id="catMsg">Works in Chrome or Edge on a computer with the radio plugged in by USB. Other radio types and the speed / CI-V settings are on the VIP Hunters Lounge CAT &amp; QRZ tab (same settings).</p>
+</div>
 </div>
 <div class="lg-opsel" id="eOps" hidden></div>
 </div>
@@ -266,7 +284,7 @@ body.field .page-jump-nav{display:none!important}
   <label class="wide">Note for this contact<input id="eNote"></label>
   <label class="wide">Spot comment<input id="sCm" maxlength="60" placeholder="QRV · 2-fer · QRT 22z"></label>
  </div>
- <div class="lg-row"><button type="button" class="lg-btn gold sm" id="sSend">📣 SPOT ME</button><button type="button" class="lg-btn line sm" id="sQsy">↪ I MOVED: SPOT MY NEW FREQ</button><button type="button" class="lg-btn line red sm" id="sQrt">🔴 QRT SPOT</button>
+ <div class="lg-row"><button type="button" class="lg-btn gold sm" id="sSend">📣 SPOT ME</button><button type="button" class="lg-btn line sm" id="sQsy">↪ I MOVED: SPOT MY NEW FREQ</button><button type="button" class="lg-btn line red sm" id="sQrt">🔴 QRT SPOT</button><button type="button" class="lg-btn line sm" id="sAp" title="APSPOT: a text message spots you when the internet will not work">📵 NO SIGNAL? TEXT MY SPOT</button>
   <label class="lg-chk"><input type="checkbox" id="eManual"> Set the time by hand (UTC)</label><input id="eWhen" type="datetime-local" step="60" hidden><span class="lg-mu" id="eTime" style="margin:0">Time: now (UTC)</span></div>
  <p class="lg-msg" id="sMsg"></p>
 </div>
@@ -275,6 +293,7 @@ body.field .page-jump-nav{display:none!important}
  <button type="button" class="dc" id="dRadio" aria-expanded="false">📻 <span id="dRadioT">Band??? · SSB</span></button>
  <button type="button" class="dc" id="dRole" title="Activating or hunting (tap to switch)">🏕 ACTIVATING</button>
  <button type="button" class="dc" id="dSpot">📣 <span id="dSpotT">Spot me</span></button>
+ <button type="button" class="dc" id="dCat" hidden title="Radio control">📻 <span class="tx">CAT</span></button>
  <button type="button" class="dc" id="dMoreB">✏️ <span class="tx">More</span></button>
  <button type="button" class="dc" id="dSta" aria-label="Station">⚙ <span class="tx">Station</span></button>
 </div>
@@ -365,7 +384,7 @@ body.field .page-jump-nav{display:none!important}
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="kpc-fx.js?v=20261017a"></script>
-<script src="kpc-cat.js?v=20261018f"></script><script src="kpc-logger.js?v=20261018d"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261017a"></script>
+<script src="kpc-cat.js?v=20261018f"></script><script src="kpc-logger.js?v=20261018g"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261018g"></script>
 <script src="kpc-search.js?v=20261017x" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261017d" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');

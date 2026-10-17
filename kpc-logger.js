@@ -549,7 +549,7 @@
       const md = spMode(x); $('eMode').value = [...$('eMode').options].some(o => o.value === md) ? md : 'OTHER';
       $('eRef').value = x.reference || ''; bandSet(); modeSet(); put('kpcLgRadio', { f: $('eFreq').value, m: $('eMode').value });
       SPOTLL = x.latitude != null ? [+x.latitude, +x.longitude] : null;
-      radioTxt(); who(); if (tabMode()) tab('log'); if ($('eRadio').offsetParent === null && tabMode()) { /* phone: radio row folded */ }
+      radioTxt(); who(); catTune(true); if (tabMode()) tab('log'); if ($('eRadio').offsetParent === null && tabMode()) { /* phone: radio row folded */ }
       setTimeout(() => $('eRs').focus(), 350);
     };
     spots();
@@ -867,6 +867,78 @@
     const t = get('kpcLgSaved', 0); if (t && !$('aMsg').textContent) { $('aMsg').className = 'lg-msg ok'; $('aMsg').textContent = '✓ Saved for no signal on ' + new Date(t).toLocaleDateString([], { month: 'short', day: 'numeric' }) + '. Tap again to refresh it.'; }
   }
 
+  /* ---------------- radio control (CAT), like the Hunters Lounge (Brandon Oct 17: 'build cat control… for ssb, cw etc
+     also change bands modes frequency'). Uses kpc-cat.js (Web Serial: Chrome / Edge on a computer). Settings shared with the
+     Lounge (localStorage kpcCat); the two ticks live in SET.catT / SET.catF. ---------------- */
+  const CPRE = { ic705: ['icom', 115200, 'A4'], ic7300: ['icom', 115200, '94'], ic7610: ['icom', 115200, '98'], ic9700: ['icom', 115200, 'A2'], ic7100: ['icom', 19200, '88'], ic718: ['icom', 9600, '5E'],
+    g90: ['icom', 19200, '70', 'xiegu'], x6100: ['icom', 19200, '70', 'xiegu'], ft991: ['yaesu', 38400], ft891: ['yaesu', 38400], ft710: ['yaesu', 38400], ftdx10: ['yaesu', 38400], ft817: ['yaesuold', 9600], ft857: ['yaesuold', 9600],
+    kx2: ['kenwood', 38400, '', 'elecraft'], kx3: ['kenwood', 38400, '', 'elecraft'], k3: ['kenwood', 38400, '', 'elecraft'], ts590: ['kenwood', 115200], ts480: ['kenwood', 57600], qmx: ['kenwood', 115200], trusdx: ['kenwood', 115200], tx500: ['kenwood', 9600] };
+  let catBusy = false, catT = null;
+  const catOk = () => !!(window.KPCCat && KPCCat.get().on && KPCCat.connected());
+  function catDraw() {
+    if (!window.KPCCat) return; const on = catOk(), C = KPCCat.get();
+    $('catSt').textContent = on ? '✓ connected' : C.on ? 'not connected' : 'off'; $('catSt').className = on ? 'ok' : '';
+    $('catGo').textContent = on ? '⏏ DISCONNECT' : '🔌 CONNECT MY RADIO';
+    $('dCat').hidden = !C.on; $('dCat').classList.toggle('bad', !on); $('dCat').classList.toggle('on', on);
+  }
+  /* send the dock's frequency + mode to the radio (not when the change came from the radio itself) */
+  function catTune(now) {
+    if (catBusy || !catOk() || SET.catT === false) return;
+    clearTimeout(catT); catT = setTimeout(() => { const k = kHzOf($('eFreq').value); if (k && bandOf(k)) KPCCat.tune(k, $('eMode').value === 'OTHER' ? 'USB' : $('eMode').value); }, now ? 0 : 350);
+  }
+  function catFromRadio(r) {
+    if (!r || !r.khz || SET.catF === false) return; catBusy = true;
+    try {
+      const cur = $('eMode').value, rm = String(r.mode || '').toUpperCase();
+      const m = /USB|LSB/.test(rm) ? (DIGI.test(cur) && false ? cur : 'SSB') : rm === 'CW' ? 'CW' : rm === 'FM' ? 'FM' : rm === 'AM' ? 'AM' : rm === 'DATA' ? (DIGI.test(cur) || /RTTY|PSK|FT2/.test(cur) ? cur : 'FT8') : cur;
+      /* a digital mode on plain USB: keep the digital mode the dock already has */
+      const mode = (rm === 'USB' && /^(FT8|FT4|FT2|JS8|PSK31|RTTY)$/.test(cur)) ? cur : m;
+      if (Math.abs(kHzOf($('eFreq').value) - r.khz) > 0.05 || mode !== cur) {
+        $('eFreq').value = mhz(Math.round(r.khz * 10) / 10); if ([...$('eMode').options].some(o => o.value === mode)) $('eMode').value = mode;
+        bandSet(); modeSet(); put('kpcLgRadio', { f: $('eFreq').value, m: $('eMode').value }); radioTxt();
+      }
+    } finally { setTimeout(() => { catBusy = false; }, 50); }
+  }
+  function catInit() {
+    if (!window.KPCCat) { $('myCat').hidden = true; return; }
+    const C = KPCCat.get(); $('catRadio').value = C.radio || '';
+    $('catTune').checked = SET.catT !== false; $('catFollow').checked = SET.catF !== false;
+    $('catTune').onchange = () => { SET.catT = $('catTune').checked; saveSet(); };
+    $('catFollow').onchange = () => { SET.catF = $('catFollow').checked; saveSet(); KPCCat.set({ follow: SET.catF }); };
+    $('catRadio').onchange = () => { const p = CPRE[$('catRadio').value]; if (!p) return; KPCCat.set({ radio: $('catRadio').value, proto: p[0], baud: p[1], civ: p[2] || '94', model: p[3] || '' });
+      $('catMsg').textContent = 'Settings filled in for your radio. Now press CONNECT MY RADIO.' + (p[0] === 'yaesu' ? ' Set the radio\'s CAT RATE menu to ' + p[1] + '.' : p[0] === 'icom' ? ' The radio\'s CI-V address should be ' + p[2] + '.' : ''); };
+    if (!KPCCat.supported()) { $('catGo').disabled = true; $('catMsg').textContent = 'This browser can\'t talk to a radio. Use Chrome or Edge on a computer, with the radio plugged in by USB.'; }
+    $('catGo').onclick = async () => {
+      if (catOk()) { await KPCCat.disconnect(); KPCCat.set({ on: false }); catDraw(); return; }
+      if (!KPCCat.get().proto || !$('catRadio').value && !KPCCat.get().radio) { $('catMsg').textContent = 'Pick your radio first.'; return; }
+      KPCCat.set({ on: true, follow: SET.catF !== false }); const ok = await KPCCat.connect(true); catDraw();
+      if (ok) { $('catMsg').textContent = '✓ Radio connected. Tap a spot or change the band and the radio follows; turn the radio\'s dial and the log follows.'; if (SET.catF !== false) KPCCat.read().then(catFromRadio); }
+    };
+    $('dCat').onclick = () => { if (catOk()) { KPCCat.read().then(r => { catFromRadio(r); toast(r ? '📻 Radio: ' + mhz(r.khz) + ' ' + (r.mode || '') : 'The radio did not answer.'); }); } else { stationOpen(true); setTimeout(() => $('myCat').scrollIntoView({ block: 'center' }), 80); } };
+    KPCCat.onStatus(t => { $('catMsg').textContent = t; catDraw(); });
+    ['eFreq', 'eMode', 'eBand'].forEach(i => $(i).addEventListener('change', () => catTune()));
+    $('eFreq').addEventListener('keydown', e => { if (e.key === 'Enter') catTune(true); });
+    KPCCat.follow(r => catFromRadio(r));
+    if (C.on && SET.catF !== false) KPCCat.set({ follow: true });
+    if (C.on) KPCCat.connect(false).then(catDraw); catDraw();
+  }
+
+  /* ---------------- no cell signal: APSPOT text message (Brandon Oct 17: 'ap spots style… getting spotted… no cell signal') ---------------- */
+  function apInit() {
+    $('sAp').onclick = () => {
+      const call = stationCall(), k = kHzOf($('eFreq').value), mode = $('eMode').value === 'OTHER' ? '' : $('eMode').value;
+      if (isHunt()) { toast('Hunting: TEXT MY SPOT is for spotting yourself at a park.'); return; }
+      if (!call) { toast('Put your call in ⚙ STATION first.'); stationOpen(true); return; }
+      const R = [].concat(myParks().slice(0, 1).map(r => ['POTA', r]), myWwff() ? [['WWFF', myWwff()]] : [], mySota() ? [['SOTA', mySota()]] : []);
+      if (!R.length) { toast('Put your park number in ⚙ STATION first.'); stationOpen(true); return; }
+      if (!k || !bandOf(k)) { toast('Type the frequency you are on first (like 14.285).'); drawer(true); return; }
+      const cm = $('sCm').value.trim().slice(0, 40), M = R.map(r => `! ${r[0]} ${r[1]} ${(k / 1000).toFixed(3)} ${mode}${cm ? ' ' + cm : ''}`);
+      const box = $('sMsg'); box.className = 'lg-msg';
+      box.innerHTML = `<b>📵 Spot yourself by text message (APSPOT)</b><br>A text message often gets out when the internet won't. Tap TEXT IT, pick your saved <b>APSPOT</b> contact (its number is on <a href="https://apspot.radio" target="_blank" rel="noopener">apspot.radio</a>; save it before you leave home) and send. APSPOT puts the spot on POTA${R.length > 1 ? ', WWFF and SOTA (one message each)' : ''} for you. No signal at all? Leave it as a draft: it sends when one bar shows up.` +
+        M.map((m, i) => `<div class="lg-ap"><code>${esc(m)}</code><a class="lg-btn gold sm" href="sms:?&body=${encodeURIComponent(m)}">📱 TEXT IT${M.length > 1 ? ' (' + R[i][0] + ')' : ''}</a></div>`).join('');
+    };
+  }
+
   /* ---------------- for the FT8 tab (kpc-logger-ft8.js) ---------------- */
   function quickLog(o) {
     const call = String(o.call || '').toUpperCase().trim();
@@ -894,7 +966,7 @@
   };
 
   async function start() {
-    const parts = [() => { $('rShare').onclick = sharePic; $('hShare').onclick = sharePic; }, stationInit, opBarInit, opsInit, nearInit, entryInit, dockInit, logInit, expInit, spotsInit, spotInit, notesInit, appInit, mapInit];
+    const parts = [() => { $('rShare').onclick = sharePic; $('hShare').onclick = sharePic; }, stationInit, opBarInit, opsInit, nearInit, entryInit, dockInit, logInit, expInit, spotsInit, spotInit, notesInit, appInit, mapInit, catInit, apInit];
     parts.forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } });
     try { const o = await idbGet('log'); IDBok = true; if (o && Array.isArray(o.q) && ((o.u || 0) > (L.u || 0) || o.q.length > L.q.length)) { L = o; put(LK, L); } } catch (e) {}
     if (navigator.storage && navigator.storage.persisted) { try { PERSIST = await navigator.storage.persisted(); } catch (e) {} }
