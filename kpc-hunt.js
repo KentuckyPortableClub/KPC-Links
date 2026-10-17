@@ -23,8 +23,8 @@
     const m = el.classList.contains('hl-modal') ? el : el.closest('.hl-modal'); if (!m) return; e.preventDefault(); closeModals(); openModal(m.id, el === m ? null : id);
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModals(); });
-  const DOCKON = () => !PUB && !!document.getElementById('hlDk');
-  const DESKON = () => !PUB && !!document.getElementById('hlDk') && matchMedia('(min-width:1100px)').matches;   /* kpc-hunters.html = the public copy */
+  const DOCKON = () => !!document.getElementById('hlDk');
+  const DESKON = () => !!document.getElementById('hlDk') && matchMedia('(min-width:1100px)').matches;   /* kpc-hunters.html = the public copy */
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const get = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
   const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
@@ -348,7 +348,7 @@
      tap a spot to pick it, ✅ QSL logs it in one tap (and sends it to QRZ when that's on) */
   let NOLOG = false; put('kpcHuntNoLog', false);   /* the log box always shows now (Brandon Oct 17: 'logger off I meant QRZ mode or ADIF mode') */
   function logTog() {
-    if (PUB) return; $('hl').dataset.nolog = NOLOG ? '1' : '';
+    $('hl').dataset.nolog = NOLOG ? '1' : '';
     document.querySelectorAll('[data-logtog]').forEach(b => { b.setAttribute('aria-pressed', !NOLOG); b.innerHTML = NOLOG ? '📒 LOGGER: OFF' : '📒 LOGGER: ON'; b.title = NOLOG ? 'The log box is hidden: tap a spot to pick it, then ✅ QSL. Tap to show the log box again.' : 'Hide the log box (log with the ✅ QSL buttons instead)'; });
     if (NOLOG && DESKON() && RT !== 'map') rtab('map');
   }
@@ -410,7 +410,7 @@
   }
   /* tap the CALL = it goes into the log box; log it there (⬆ / Enter) or ✅ QSL → QRZ (Brandon Oct 17) */
   document.addEventListener('click', e => {
-    const c = e.target.closest('[data-tolog]'); if (!c || PUB) return; e.preventDefault(); e.stopPropagation();
+    const c = e.target.closest('[data-tolog]'); if (!c) return; e.preventDefault(); e.stopPropagation();
     const s = SP.find(x => keyOf(x) === c.dataset.tolog); if (!s) { toast('That spot is gone.'); return; }
     if (NOLOG) { NOLOG = false; put('kpcHuntNoLog', false); logTog(); if (DESKON()) rtab('log'); }
     openSheet(s);
@@ -455,7 +455,7 @@
      plus, on the members page, every call in today's hunting log. Starts fresh at 0000 UTC. */
   let HC = get('kpcHuntCallsDay', null);
   const hcFix = () => { if (!HC || HC.d !== today()) HC = { d: today(), c: [] }; };
-  function callsToday() { hcFix(); const S = new Set(HC.c); try { if (!PUB && typeof Q !== 'undefined') Q.q.forEach(q => { if (q.d === today()) S.add(base(q.call)); }); } catch (e) {} return S; }
+  function callsToday() { hcFix(); const S = new Set(HC.c); try { if (typeof Q !== 'undefined') Q.q.forEach(q => { if (q.d === today()) S.add(base(q.call)); }); } catch (e) {} return S; }
   function hideCall(c) { hcFix(); c = base(c); if (!HC.c.includes(c)) HC.c.push(c); put('kpcHuntCallsDay', HC); }
   const isFav = s => FAV.has(base(s.call));
   const favHunted = s => { const c = base(s.call), d = today(); return FDONE.has(c + '|' + d) || Q.q.some(q => base(q.call) === c && q.d === d); };
@@ -479,7 +479,7 @@
     favFirst = false;
   }
   /* this CALL is in my log today (UTC) — different from 'park hunted before' (Brandon Oct 17) */
-  const wkToday = s => { if (PUB) return false; const d = utc(new Date()).d, c = base(s.call); return Q.q.some(q => q.d === d && base(q.call) === c); };
+  const wkToday = s => { const d = utc(new Date()).d, c = base(s.call); return Q.q.some(q => q.d === d && base(q.call) === c); };
   function card(s) {
     const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), d = dist(s), k = keyOf(s);
     const b = [`<span class="hb prog">${PL[s.p] || s.p}${s.label ? ' · ' + esc(s.label) : ''}</span>`];
@@ -490,22 +490,22 @@
     if (isQrt(s)) b.push('<span class="hb qrt">QRT</span>');
     b.push(`<span class="hb">${bandOf(s.khz)}</span>`, `<span class="hb">${esc(s.mode || '?')}</span>`);
     return `<article class="hs p-${s.p}${n ? ' new' : ''}${w ? ' worked' : ''}${isQrt(s) ? ' qrt' : ''}${selCls(s)}" data-k="${esc(k)}">
- <div class="hs-top"><div class="hs-call"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}" title="${isFav(s) ? 'Remove from favorites' : 'Add to favorite activators'}">${isFav(s) ? '★' : '☆'}</button>${PUB ? `<a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">${esc(s.call)}</a>` : `<button type="button" class="hs-cb" data-tolog="${esc(k)}" title="Send ${esc(s.call)} to my log">${esc(s.call)}</button>`}</div><div class="hs-f"><b>${(s.khz / 1000).toFixed(3)}</b><span>MHz · ${esc(s.mode || '')}</span></div></div>
+ <div class="hs-top"><div class="hs-call"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}" title="${isFav(s) ? 'Remove from favorites' : 'Add to favorite activators'}">${isFav(s) ? '★' : '☆'}</button>${`<button type="button" class="hs-cb" data-tolog="${esc(k)}" title="Send ${esc(s.call)} to my log">${esc(s.call)}</button>`}</div><div class="hs-f"><b>${(s.khz / 1000).toFixed(3)}</b><span>MHz · ${esc(s.mode || '')}</span></div></div>
  <div class="hs-park">${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener">${esc(s.ref)}</a>` : ''}${esc(s.name || '')}</div>
  <div class="hs-meta">${esc(s.st ? (ST[s.st] || s.st) : s.loc)}${d != null ? ' · ' + Math.round(d) + ' mi' : ''} · ${ago(s.t)}${s.by ? ' · spotted by ' + esc(s.by) : ''}</div>
  ${s.com ? `<div class="hs-com">“${esc(String(s.com).slice(0, 140))}”</div>` : ''}
  ${awardChips(s) ? `<div class="hs-aw">${awardChips(s)}</div>` : ''}
  <div class="hs-b">${b.join('')}</div>
- <div class="hs-a">${!PUB && s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(k)}" title="Spot them again on POTA, with you as the spotter">📣 RESPOT</button>` : ''}<button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call until 0000 UTC">🙈 HIDE ${esc(base(s.call))} TODAY</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" data-wc="${esc(s.call)}">${w ? '✓ HUNTED BEFORE' : '＋ I WORKED IT'}</button><a href="${pageOf(s)}" target="_blank" rel="noopener">${s.p === 'SOTA' ? 'SOTLAS' : s.p} PAGE ↗</a>${s.p === 'POTA' && s.us ? `<a href="kpc-planner-us.html?q=${encodeURIComponent(s.ref)}">ON THE MAP</a>` : ''}<a href="kpc-park-info.html?ref=${encodeURIComponent(s.ref)}">PARK INFO</a>` : `<a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">QRZ ↗</a><a href="https://www.dxsummit.fi/#/?dx_calls=${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">DX SUMMIT ↗</a>`}</div>
+ <div class="hs-a">${s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(k)}" title="Spot them again on POTA, with you as the spotter">📣 RESPOT</button>` : ''}<button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call until 0000 UTC">🙈 HIDE ${esc(base(s.call))} TODAY</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" data-wc="${esc(s.call)}">${w ? '✓ HUNTED BEFORE' : '＋ I WORKED IT'}</button><a href="${pageOf(s)}" target="_blank" rel="noopener">${s.p === 'SOTA' ? 'SOTLAS' : s.p} PAGE ↗</a>${s.p === 'POTA' && s.us ? `<a href="kpc-planner-us.html?q=${encodeURIComponent(s.ref)}">ON THE MAP</a>` : ''}<a href="kpc-park-info.html?ref=${encodeURIComponent(s.ref)}">PARK INFO</a>` : `<a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">QRZ ↗</a><a href="https://www.dxsummit.fi/#/?dx_calls=${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">DX SUMMIT ↗</a>`}</div>
 </article>`;
   }
   function row(s) {
     const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), d = dist(s);
     const tag = (n ? '<span class="hb new">NEW</span>' : w ? '<span class="hb wk" title="You have hunted this PARK before (from your POTA list). It does not mean you worked this station.">HUNTED BEFORE</span>' : '') + (wkToday(s) ? '<span class="hb td" title="This call is in your log today (UTC)">✅ IN MY LOG TODAY</span>' : '');
     const rare = s.acts === 0 ? '<span class="hb atno">1ST</span>' : s.acts != null && s.acts <= 5 ? `<span class="hb rare">RARE ${s.acts}</span>` : '';
-    return `<tr class="hr${n ? ' new' : ''}${w ? ' worked' : ''}${selCls(s)}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}">${isFav(s) ? '★' : '☆'}</button>${PUB ? esc(s.call) : `<button type="button" class="hs-cb" data-tolog="${esc(keyOf(s))}" title="Send ${esc(s.call)} to my log">${esc(s.call)}</button>`}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
+    return `<tr class="hr${n ? ' new' : ''}${w ? ' worked' : ''}${selCls(s)}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}">${isFav(s) ? '★' : '☆'}</button>${`<button type="button" class="hs-cb" data-tolog="${esc(keyOf(s))}" title="Send ${esc(s.call)} to my log">${esc(s.call)}</button>`}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
 <td><span class="pg">${PL[s.p] || s.p}</span> ${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener" class="r">${esc(s.ref)}</a> ` : ''}${esc(s.name || '')} ${tag}${rare} ${awardChips(s, true)}</td><td class="hide-s">${esc(s.st || '')}</td><td class="hide-s">${d != null ? Math.round(d) : ''}</td>
-<td class="a">${!PUB && s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(keyOf(s))}" title="Respot them on POTA">📣</button>` : ''}<button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call today">🙈</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" title="${w ? 'You have hunted this park before. Tap to take it off your hunted list.' : 'Mark this park as hunted'}">✓</button>` : ''}</td></tr>`;
+<td class="a">${s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(keyOf(s))}" title="Respot them on POTA">📣</button>` : ''}<button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call today">🙈</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" title="${w ? 'You have hunted this park before. Tap to take it off your hunted list.' : 'Mark this park as hunted'}">✓</button>` : ''}</td></tr>`;
   }
   function draw() {
     const q = F.q.trim().toUpperCase();
@@ -649,7 +649,6 @@
   const wrow = s => { const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref);
     return `<div class="hw-r p-${s.p}${n ? ' new' : ''}${w ? ' worked' : ''}${selCls(s)}" data-k="${esc(keyOf(s))}" title="Tap to log it"><span class="f">${(s.khz / 1000).toFixed(3)}</span><b>${esc(s.call)}</b><span class="m">${esc(s.mode || '')}</span><span class="r">${s.ref ? esc(s.ref) + ' ' : ''}<small>${esc(s.name || s.loc || '')}${s.st ? ' · ' + esc(s.st) : ''}</small></span>${n ? '<i class="hb new">NEW</i>' : ''}<span class="t">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</span></div>`; };
   function winDraw() {
-    if (PUB) return;
     const on = winOn(); wmFree();
     WIN.forEach((w, i) => {
       const t = $('hlWT' + i); if (t) { t.setAttribute('aria-pressed', w.on); t.textContent = (w.on ? '🪟 ' : '＋ ') + winLabel(w); t.title = (w.on ? 'Turn off' : 'Turn on') + ' the list showing ' + winLabel(w); }
@@ -1093,7 +1092,6 @@
   }
   function setNow() { const n = utc(new Date()); $('fDate').value = fmtD(n.d); $('fTime').value = fmtT(n.t); dupe(); }
   function openSheet(s, x) {
-    if (PUB) return;
     if (!x && NOLOG && s) { pickSpot(s); return; }
     if (!x && DOCKON()) { dkFill(s || {}); if (!DESKON()) dkGo(); return; }   /* members: the spot fills the log dock (left pane on computers, under the spots on phones) */
     EDIT = x || null;
@@ -1148,7 +1146,7 @@
   document.addEventListener('click', e => {
     const lg = e.target.closest('[data-log]');
     const c = lg ? lg.closest('.hs, tr.hr') : (!e.target.closest('a,button,input,select,label') && e.target.closest('#hlSpots .hs, #hlSpots tr.hr'));
-    if (!c || PUB) return; const s = SP.find(x => x.p + '|' + x.call + '|' + x.ref === c.dataset.k); if (s) openSheet(s);
+    if (!c) return; const s = SP.find(x => x.p + '|' + x.call + '|' + x.ref === c.dataset.k); if (s) openSheet(s);
   });
 
 
@@ -1281,7 +1279,7 @@
   function lmDraw() {
     lmInit(); if (!LM) return; LG.clearLayers();
     document.querySelectorAll('[data-mm]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mm === MAPM));
-    const today0 = utc(new Date()).d, TQ = PUB ? [] : Q.q.filter(q => q.d === today0); if ($('hlMmN')) $('hlMmN').textContent = TQ.length ? TQ.length : '';
+    const today0 = utc(new Date()).d, TQ = Q.q.filter(q => q.d === today0); if ($('hlMmN')) $('hlMmN').textContent = TQ.length ? TQ.length : '';
     if (MAPM === 'today') {
       const pts = [];
       TQ.forEach(q => { let p = isFinite(q.la) && isFinite(q.lo) ? [q.la, q.lo] : null; const r1 = String(q.ref || '').split(/[ ,]+/)[0];
@@ -1448,7 +1446,7 @@
     document.querySelectorAll('#hlLtabs [data-rt]').forEach(b => b.setAttribute('aria-pressed', b.dataset.rt === v));
     if (v === 'map') { lmInit(); setTimeout(() => { if (LM) { LM.invalidateSize(); lmZoom(LMV); } draw(); }, 60); }
   }
-  if (!PUB && $('hlRtabs')) {
+  if ($('hlRtabs')) {
     $('hlLtabs').addEventListener('click', e => { const b = e.target.closest('[data-rt]'); if (!b) return; rtab(b.dataset.rt);
       const y = $('hlLtabs').getBoundingClientRect().top + scrollY - 150; if (scrollY > y + 5) scrollTo({ top: y, behavior: 'smooth' }); });
     $('hlFbtn').onclick = e => { e.stopPropagation(); $('hlFtog').click(); fPlace(); };
@@ -1522,7 +1520,7 @@
   /* phones: keyboard up while typing in the log = hide the extras so a few contacts show above the entry line (Brandon Oct 17) */
   let VVMAX = 0;
   function dkKb() {
-    const vv = window.visualViewport, h = document.documentElement; if (!vv || PUB || DESKON() || !$('hlDk')) { h.classList.remove('hl-kb'); return; }
+    const vv = window.visualViewport, h = document.documentElement; if (!vv || DESKON() || !$('hlDk')) { h.classList.remove('hl-kb'); return; }
     VVMAX = Math.max(VVMAX, vv.height); const ae = document.activeElement, inDk = ae && ae.closest && ae.closest('#dkForm') && /^(INPUT|SELECT)$/.test(ae.tagName);
     const kb = !!inDk && vv.height < VVMAX - 120, was = h.classList.contains('hl-kb'); h.classList.toggle('hl-kb', kb);
     h.style.setProperty('--vvh', Math.round(vv.height) + 'px'); h.style.setProperty('--dkd', $('dkForm').offsetHeight + 'px');
@@ -1591,7 +1589,7 @@
   }
   const KPCQrzOn = () => !!(window.KPCQrz && KPCQrz.on());
   function dkList() {
-    const el = $('dkList'); if (!el || PUB) return;
+    const el = $('dkList'); if (!el) return;
     const q = ($('dkQ').value || '').trim().toUpperCase(), today = utc(new Date()).d;
     const L = Q.q.filter(x => !q || [x.call, x.ref, x.name, x.st, x.band, x.mode, x.note].join(' ').toUpperCase().includes(q)).sort((a, b) => (b.d + b.tm).localeCompare(a.d + a.tm));
     const nt = Q.q.filter(x => x.d === today).length;
@@ -1708,7 +1706,7 @@
     setInterval(() => {
       const s = Math.max(0, Math.round((next - Date.now()) / 1000)); $('hsAge').textContent = next ? s + 's' : '–'; if (next && Date.now() >= next) { next = 0; load(); }
       const u = new Date(); $('hsUtc').textContent = u.toISOString().slice(11, 19);
-      const n = Q.q.filter(q => q.d === today()).length; $('hsUtcL').textContent = PUB ? 'UTC' : `UTC · ${n} LOGGED TODAY`;
+      const n = Q.q.filter(q => q.d === today()).length; $('hsUtcL').textContent = `UTC · ${n} LOGGED TODAY`;
     }, 1000);
     setInterval(() => { document.querySelectorAll('.hs').length && draw(); }, 5 * 60e3);
   }
