@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261017b">
+<link rel="stylesheet" href="kpc-logger.css?v=20261017c">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -121,8 +121,9 @@
 
 <div class="lg-right">
 <nav class="lg-rtabs" id="lgRt" aria-label="Right side"><button type="button" data-rt="spots" class="on">SPOTS</button><button type="button" data-rt="map">MAP</button><button type="button" data-rt="info">INFO</button></nav>
-<section class="lg-card" id="cSpots" data-tabp="spots" data-rp="spots"><h2>POTA spots <small id="pAge"></small></h2>
-<p class="lg-mu">Tap a spot to fill in the log: call, frequency, mode and their park.</p>
+<section class="lg-card" id="cSpots" data-tabp="spots" data-rp="spots"><h2>Spots: POTA · WWFF · SOTA <small id="pAge"></small></h2>
+<details class="lg-spf" id="pFilt"><summary>⚙ FILTERS <i id="pfN"></i><span class="tip">Tap a spot to fill in the log</span></summary>
+<div class="lg-row lg-progs"><label class="lg-chk"><input type="checkbox" id="pPota" checked> 🌲 POTA</label><label class="lg-chk"><input type="checkbox" id="pWwff" checked> 🌳 WWFF / KFF</label><label class="lg-chk"><input type="checkbox" id="pSota" checked> ⛰ SOTA</label></div>
 <div class="lg-row">
  <select id="pBand"><option value="">All bands</option></select>
  <select id="pMode"><option value="">All modes</option><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>DATA</option></select>
@@ -130,6 +131,7 @@
  <label class="lg-chk"><input type="checkbox" id="pNoWk"> Hide stations I've already logged</label>
  <input type="search" id="pSearch" placeholder="Call, park, state…">
 </div>
+</details>
 <div class="lg-spots" id="pList"><div class="lg-empty">Loading spots…</div></div>
 </section>
 
@@ -180,4 +182,4 @@
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-logger.js?v=20261017b"></script>
+<script src="kpc-logger.js?v=20261017c"></script>
