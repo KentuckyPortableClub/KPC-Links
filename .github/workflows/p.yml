@@ -1,11 +1,23 @@
 name: zz probe
 on: push
+permissions:
+  contents: write
 jobs:
   p:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - run: |
-          for u in location/US-KY location/leaderboard/US-KY leaderboard/location/US-KY location/stats/US-KY stats/location/US-KY "park/leaderboard/US-1277?count=5" "location/activators/US-KY" "location/hunters/US-KY" profile/KZ4CP stats/user/KZ4CP "user/stats/KZ4CP" "leaderboard/activator" "stats/leaderboard" "park/stats/US-1277" "location/parks/US-KY"; do
-            h=$(curl -s -D - -o /tmp/b -H 'Origin: https://kentuckyportableclub.github.io' "https://api.pota.app/$u" | tr -d '\r' | grep -i '^HTTP\|access-control-allow-origin' | tr '\n' ' ')
-            echo "::notice title=$u::$h $(head -c 700 /tmp/b | tr '\n' ' ')"
-          done
+          npm i world-atlas@2 topojson-client@3 >/dev/null
+          node -e '
+          const t=require("world-atlas/countries-50m.json"),tc=require("topojson-client");
+          const f=tc.feature(t,t.objects.countries).features.filter(x=>["124","840","484","304"].includes(String(x.id)));
+          const X=lo=>(lo+170)*4, Y=la=>(75-la)*4*1.25;
+          const out={};
+          for(const g of f){const polys=g.geometry.type==="Polygon"?[g.geometry.coordinates]:g.geometry.coordinates;let d="";
+            for(const p of polys){const r=p[0].filter(([lo,la])=>lo<-50&&lo>-170&&la>14);if(r.length<8)continue;
+              let s="",last=null;for(const [lo,la] of r){const x=Math.round(X(lo)),y=Math.round(Y(la));const k=x+","+y;if(k===last)continue;last=k;s+=(s?"L":"M")+x+" "+y}
+              if((s.match(/L/g)||[]).length>=4)d+=s+"Z"}
+            out[g.id]=d}
+          require("fs").writeFileSync("na.json",JSON.stringify(out));console.log(Object.entries(out).map(([k,v])=>k+":"+v.length).join(" "))'
+          git config user.name x; git config user.email x@x; git add na.json; git commit -qm na; git push
