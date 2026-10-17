@@ -128,7 +128,7 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
     });
   }
   /* base maps + terrain: Street, Satellite, USGS Topo (US), Terrain (OpenTopoMap, worldwide), plus a Hillshade overlay */
-  function layers(map, first) {
+  function layers(map, first, lo) {   /* lo (Oct 17): {padKey, padOn} = its own PAD-US on/off memory + default */
     const B = {
       Street: L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }),
       Satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Imagery © Esri' }),
@@ -140,14 +140,14 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
       'Terrain (OpenTopoMap)': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { maxZoom: 17, subdomains: 'abc', attribution: '© OpenStreetMap, SRTM · OpenTopoMap (CC-BY-SA)' })
     };
     const O = { 'Hillshade (terrain shading)': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, opacity: .45, attribution: 'Hillshade © Esri' }) };
-    const pad = window.KPCPadMenu ? KPCPadMenu(map, B, O) : null;   /* official PAD-US boundaries (kpc-padus-layer.js) */
+    const pad = window.KPCPadMenu ? KPCPadMenu(map, B, O, lo && lo.padKey, lo && lo.padOn) : null;   /* official PAD-US boundaries (kpc-padus-layer.js) */
     if (pad && pad.legend && pad.legend.setPosition) pad.legend.setPosition('bottomleft');   /* key at the bottom (Brandon Oct 16) */
     let pick = 'Street'; try { const v = localStorage.getItem('kpcMapBase'); if (B[v]) pick = v; } catch (e) {}
     if (first && B[first]) pick = first;
     B[pick].addTo(map); if (pad && pick === pad.NAME) pad.layer.addTo(map);
     L.control.layers(B, O, { collapsed: true }).addTo(map);
     map.on('baselayerchange', e => { try { localStorage.setItem('kpcMapBase', e.name); } catch (x) {} });
-    return B[pick];
+    layers.pad = pad; return B[pick];
   }
   /* "where am I" button: blue dot + accuracy circle + your GPS numbers (tap again to refresh) */
   function locate(map) {
