@@ -99,6 +99,14 @@ EXTRA = [
     ('Québec protected areas register (MELCCFP)', 'arcgis', 'https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23', ['TOPONYME', 'DESIGNOM'], (-79.8, 44.9, -57.0, 62.7)),
     ('Saskatchewan Parks (Government of Saskatchewan)', 'arcgis', 'https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer', None, (-110.1, 48.9, -101.3, 60.1)),
     ('Manitoba Parks (Government of Manitoba)', 'arcgis', 'https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Parks/FeatureServer', None, (-102.2, 48.9, -88.9, 60.1)),
+    # Oct 17 (Brandon: 'Canada outlines'): more official provincial layers for the biggest groups of misses
+    ('Nova Scotia protected areas (NS Environment)', 'arcgis', 'https://nsgiwa.novascotia.ca/arcgis/rest/services/ENV/ENV_NS_Prot_Area_Sys_UT83/MapServer', None, (-66.5, 43.3, -59.6, 47.1)),
+    ('Nova Scotia Crown lands + provincial parks (NS Natural Resources)', 'arcgis', 'https://nsgiwa.novascotia.ca/arcgis/rest/services/PLAN/PLANCrownLandsWM84V1/MapServer', None, (-66.5, 43.3, -59.6, 47.1)),
+    ('New Brunswick protected natural areas (GNB)', 'arcgis', 'https://gis-erd-der.gnb.ca/server/rest/services/OpenData/PNAs/FeatureServer/0', ['NAME', 'NOM'], (-69.1, 44.5, -63.7, 48.1)),
+    ('New Brunswick Nature Legacy protected areas (GNB)', 'arcgis', 'https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Nature_Legacy_Protected_Areas/FeatureServer/0', ['NAME', 'NOM'], (-69.1, 44.5, -63.7, 48.1)),
+    ('New Brunswick wildlife refuges (GNB)', 'arcgis', 'https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WildlifeRefuge/MapServer', None, (-69.1, 44.5, -63.7, 48.1)),
+    ('Manitoba wildlife lands (Government of Manitoba)', 'arcgis', 'https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer', None, (-102.2, 48.9, -88.9, 60.1)),
+    ('Québec ecological reserves (MELCCFP)', 'arcgis', 'https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/10', ['TOPONYME', 'DESIGNOM'], (-79.8, 44.9, -57.0, 62.7)),
     ('BC Parks (BC Geographic Warehouse)', 'wfs', 'WHSE_TANTALIS.TA_PARK_ECORES_PA_SVW', ['PROTECTED_LANDS_NAME'], (-139.2, 48.2, -114.0, 60.1)),
     ('BC recreation sites (BC Geographic Warehouse)', 'wfs', 'WHSE_FOREST_TENURE.FTEN_RECREATION_POLY_SVW', ['PROJECT_NAME', 'SITE_NAME'], (-139.2, 48.2, -114.0, 60.1)),
 ]
