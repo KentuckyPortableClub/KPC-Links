@@ -784,6 +784,166 @@
    "OpenStreetMap (not official)",
    1,
    0.1
+  ],
+  [
+   "US-11181",
+   "Sheltowee Trace National Recreation Trail",
+   "TN",
+   "US Forest Service",
+   346,
+   0.5
+  ],
+  [
+   "US-9741",
+   "North Bend Rail Trail State Trail",
+   "WV",
+   "OpenStreetMap (not official)",
+   326,
+   0.0
+  ],
+  [
+   "US-9742",
+   "Greenbrier River Trail State Trail",
+   "WV",
+   "OpenStreetMap (not official)",
+   879,
+   0.0
+  ],
+  [
+   "US-10031",
+   "Elk River Trail State Trail",
+   "WV",
+   "OpenStreetMap (not official)",
+   758,
+   0.0
+  ],
+  [
+   "US-1301",
+   "High Bridge Trail State Park",
+   "VA",
+   "OpenStreetMap (not official)",
+   156,
+   0.1
+  ],
+  [
+   "US-9904",
+   "Apple Orchard Falls National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   5,
+   0.0
+  ],
+  [
+   "US-9905",
+   "Cascades National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   6,
+   0.0
+  ],
+  [
+   "US-9906",
+   "Cornelius Creek National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   6,
+   0.0
+  ],
+  [
+   "US-9907",
+   "First Landing National Recreation Trail",
+   "VA",
+   "OpenStreetMap (not official)",
+   0,
+   0.7
+  ],
+  [
+   "US-9908",
+   "Hoop Hole National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   14,
+   2.1
+  ],
+  [
+   "US-9910",
+   "Massanutten National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   141,
+   0.1
+  ],
+  [
+   "US-9920",
+   "Mount Rogers National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   8,
+   0.0
+  ],
+  [
+   "US-9925",
+   "Wild Oak National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   43,
+   0.0
+  ],
+  [
+   "US-9934",
+   "James River Heritage State Trail",
+   "VA",
+   "OpenStreetMap (not official)",
+   29,
+   0.0
+  ],
+  [
+   "US-10507",
+   "Rock Castle Gorge National Recreation Trail",
+   "VA",
+   "OpenStreetMap (not official)",
+   12,
+   2.4
+  ],
+  [
+   "US-1766",
+   "Katy Trail State Park",
+   "MO",
+   "OpenStreetMap (not official)",
+   851,
+   0.1
+  ],
+  [
+   "US-7836",
+   "Ozark State Trail",
+   "MO",
+   "OpenStreetMap (not official)",
+   994,
+   0.0
+  ],
+  [
+   "US-9893",
+   "Tunnel Hill State Trail",
+   "IL",
+   "OpenStreetMap (not official)",
+   179,
+   0.0
+  ],
+  [
+   "US-10093",
+   "Rock Island Trail State Park",
+   "IL",
+   "OpenStreetMap (not official)",
+   113,
+   0.0
+  ],
+  [
+   "US-10660",
+   "Illinois and Michigan Canal State Trail",
+   "IL",
+   "OpenStreetMap (not official)",
+   139,
+   0.0
   ]
  ],
  "missing": [
@@ -1517,6 +1677,78 @@
    "CA-4628",
    "Spruce Beetle Trail Recreation Site",
    "CA-YT",
+   "no line found"
+  ],
+  [
+   "US-2955",
+   "Wilson Cumberland Trail State Park",
+   "TN",
+   "no line found"
+  ],
+  [
+   "US-8313",
+   "Mountains to Sea State Trail",
+   "TN",
+   "no line found"
+  ],
+  [
+   "US-1310",
+   "New River Trail State Park",
+   "VA",
+   "no line found"
+  ],
+  [
+   "US-9909",
+   "Little Stony Creek National Recreation Trail",
+   "VA",
+   "no line found"
+  ],
+  [
+   "US-9922",
+   "The Lion's Tale National Recreation Trail",
+   "VA",
+   "no line found"
+  ],
+  [
+   "US-9923",
+   "Virginia Creeper National Recreation Trail",
+   "VA",
+   "line found 10 km from the POTA pin: not used"
+  ],
+  [
+   "US-9933",
+   "Beaches to Bluegrass State Trail",
+   "VA",
+   "no line found"
+  ],
+  [
+   "US-9935",
+   "Virginia Bird & Wildlife State Trail",
+   "VA",
+   "no line found"
+  ],
+  [
+   "US-9753",
+   "Katy Trail Rock Island Spur State Park",
+   "MO",
+   "no line found"
+  ],
+  [
+   "US-1002",
+   "Johnson Sauk Trail State Park",
+   "IL",
+   "no line found"
+  ],
+  [
+   "US-1007",
+   "Lincoln Trail State Park",
+   "IL",
+   "line found 41 km from the POTA pin: not used"
+  ],
+  [
+   "US-4098",
+   "Lincoln Trail Homestead State Park",
+   "IL",
    "no line found"
   ]
  ]
