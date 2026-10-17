@@ -1166,6 +1166,61 @@
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') { $('hlNa').classList.remove('big'); closeSheet(); } });
 
+
+  /* ---------------- computers only: a small scrolling CONDITIONS bar under the banner (Brandon Oct 17) ----------------
+     the sun (NOAA SWPC: solar flux, Kp, X-ray), the weather where you are (Open-Meteo) and WSPR signal reports by band
+     from the grid squares around you (db1.wspr.live, last 30 minutes). Where you are = GPS (only when tapped or already
+     allowed), else your log's grid, else the middle of Kentucky. Nothing about you is sent anywhere but those services. */
+  (function cxBar() {
+    const bar = $('hlCx'); if (!bar) return;
+    const wide = () => matchMedia('(min-width:1100px)').matches;
+    const g2ll = g => { g = String(g || '').toUpperCase(); if (!/^[A-R]{2}\d{2}/.test(g)) return null; const lo = (g.charCodeAt(0) - 65) * 20 - 180 + (+g[2]) * 2 + 1, la = (g.charCodeAt(1) - 65) * 10 - 90 + (+g[3]) + .5; return [la, lo]; };
+    const ll2g = (la, lo) => { lo += 180; la += 90; return String.fromCharCode(65 + Math.floor(lo / 20)) + String.fromCharCode(65 + Math.floor(la / 10)) + Math.floor((lo % 20) / 2) + Math.floor(la % 10); };
+    const around = g => { const c = g2ll(g); if (!c) return [g]; const o = new Set(); for (let a = -1; a <= 1; a++) for (let b = -1; b <= 1; b++) o.add(ll2g(c[0] + a, c[1] + b * 2)); return [...o]; };
+    let LOC = get('kpcHuntCx', null), busy = false, last = 0;
+    const WX = { 0: '☀️ Clear', 1: '🌤 Mostly clear', 2: '⛅ Partly cloudy', 3: '☁️ Cloudy', 45: '🌫 Fog', 48: '🌫 Fog', 51: '🌦 Drizzle', 53: '🌦 Drizzle', 55: '🌦 Drizzle', 61: '🌧 Rain', 63: '🌧 Rain', 65: '🌧 Heavy rain', 71: '🌨 Snow', 73: '🌨 Snow', 75: '🌨 Heavy snow', 80: '🌦 Showers', 81: '🌦 Showers', 82: '⛈ Heavy showers', 95: '⛈ Thunderstorms', 96: '⛈ Storms + hail', 99: '⛈ Storms + hail' };
+    const BN = [[1, '160m'], [3, '80m'], [5, '60m'], [7, '40m'], [10, '30m'], [14, '20m'], [18, '17m'], [21, '15m'], [24, '12m'], [28, '10m'], [50, '6m']];
+    async function where() {
+      if (LOC && LOC.src === 'gps' && Date.now() - LOC.t < 6 * 36e5) return LOC;
+      try { const p = navigator.permissions && await navigator.permissions.query({ name: 'geolocation' }); if (p && p.state === 'granted') return await gps(); } catch (e) {}
+      const g = (Q.grid || '').slice(0, 4).toUpperCase(); if (/^[A-R]{2}\d{2}$/.test(g)) { const c = g2ll(g); return { la: c[0], lo: c[1], g, src: 'grid' }; }
+      if (LOC) return LOC; return { la: 37.6, lo: -85.2, g: 'EM77', src: 'ky' };
+    }
+    function gps() { return new Promise((ok, no) => navigator.geolocation ? navigator.geolocation.getCurrentPosition(p => { const la = p.coords.latitude, lo = p.coords.longitude; LOC = { la, lo, g: ll2g(la, lo), src: 'gps', t: Date.now() }; put('kpcHuntCx', LOC); ok(LOC); }, no, { timeout: 12000, maximumAge: 6e5 }) : no()); }
+    const one = (u, ms) => jget(u, ms || 20000).catch(() => null);
+    async function load() {
+      if (busy || !wide()) return; busy = true; last = Date.now();
+      try {
+        const L = await where(), sq = around(L.g), IN = "('" + sq.join("','") + "')";
+        const sql = `SELECT band, count(*) AS c, max(distance) AS d FROM wspr.rx WHERE time > now() - INTERVAL 30 MINUTE AND band IN (${BN.map(b => b[0]).join(',')}) AND (substring(tx_loc,1,4) IN ${IN} OR substring(rx_loc,1,4) IN ${IN}) GROUP BY band ORDER BY band FORMAT JSON`;
+        const [ws, kp, sf, xr, wx] = await Promise.all([one('https://db1.wspr.live/?query=' + encodeURIComponent(sql), 25000), one('https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json'),
+          one('https://services.swpc.noaa.gov/products/summary/10cm-flux.json'), one('https://services.swpc.noaa.gov/json/goes/primary/xrays-6-hour.json'),
+          one(`https://api.open-meteo.com/v1/forecast?latitude=${L.la.toFixed(3)}&longitude=${L.lo.toFixed(3)}&current=temperature_2m,weather_code,wind_speed_10m,wind_gusts_10m&daily=sunrise,sunset&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=auto&forecast_days=1`)]);
+        const it = [];
+        const sfi = sf ? Number((Array.isArray(sf) ? sf[0] : sf).flux) : NaN, k = kp && kp.length ? Number(kp[kp.length - 1].Kp) : NaN;
+        if (isFinite(sfi)) it.push(`☀ Solar flux <b>${Math.round(sfi)}</b>`);
+        if (isFinite(k)) it.push(`🧲 Kp <b>${k.toFixed(k % 1 ? 1 : 0)}</b> ${k >= 5 ? '<i class="bad">STORM</i>' : k >= 4 ? '<i class="meh">unsettled</i>' : '<i class="ok">calm</i>'}`);
+        if (xr && xr.length) { const f = (xr.filter(x => x.energy === '0.1-0.8nm').pop() || {}).flux; if (f) { const c = f >= 1e-4 ? 'X' : f >= 1e-5 ? 'M' : f >= 1e-6 ? 'C' : f >= 1e-7 ? 'B' : 'A', m = (f / { X: 1e-4, M: 1e-5, C: 1e-6, B: 1e-7, A: 1e-8 }[c]).toFixed(1); it.push(`💥 X-ray <b>${c}${m}</b>${c === 'X' || c === 'M' ? ' <i class="bad">flare: low bands may fade</i>' : ''}`); } }
+        if (isFinite(sfi) && isFinite(k)) { const sc = (sfi >= 150 ? 3 : sfi >= 110 ? 2 : sfi >= 80 ? 1 : 0) - (k >= 5 ? 3 : k >= 4 ? 2 : k >= 3 ? 1 : 0); it.push(`📻 HF <b>${sc >= 3 ? 'GREAT' : sc >= 2 ? 'GOOD' : sc >= 1 ? 'FAIR' : sc >= 0 ? 'SO-SO' : 'ROUGH'}</b>`); }
+        const here = L.src === 'gps' ? 'at your spot' : L.src === 'grid' ? 'near ' + L.g : 'in Kentucky';
+        if (wx && wx.current) { const c = wx.current; it.push(`${WX[c.weather_code] || '🌡'} <b>${Math.round(c.temperature_2m)}°F</b> ${esc(here)} · wind ${Math.round(c.wind_speed_10m)} mph${c.wind_gusts_10m > 25 ? ` <i class="meh">gusts ${Math.round(c.wind_gusts_10m)}</i>` : ''}`);
+          const ft = v => { try { return new Date(v).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); } catch (e) { return ''; } };
+          if (wx.daily && wx.daily.sunrise) it.push(`🌅 Sunrise ${ft(wx.daily.sunrise[0])} · 🌇 sunset ${ft(wx.daily.sunset[0])}`); }
+        const rows = (ws && ws.data) || [], m = {}; rows.forEach(r => { m[Number(r.band)] = [Number(r.c), Number(r.d)]; });
+        const max = Math.max(0, ...rows.map(r => Number(r.c)));
+        if (ws) it.push(`📡 WSPR near ${esc(L.g)} (last 30 min): ` + BN.map(([b, n]) => { const v = m[b]; return v ? `<span class="wb${v[0] >= max * .6 ? ' hot' : ''}">${n} <b>${v[0].toLocaleString()}</b>${v[1] ? ` <small>to ${Math.round(v[1] * .621).toLocaleString()} mi</small>` : ''}</span>` : `<span class="wb q">${n} quiet</span>`; }).join(' '));
+        else it.push('📡 WSPR reports are not answering right now');
+        const html = it.map(x => `<span class="ci">${x}</span>`).join('<span class="cs">•</span>');
+        $('hlCxT').innerHTML = html + '<span class="cs">•</span>' + html;   /* twice, so the scroll loops with no gap */
+        $('hlCxT').style.animationDuration = Math.max(40, Math.round($('hlCxT').scrollWidth / 2 / 45)) + 's';
+        $('hlCxK').textContent = '📡 ' + (L.src === 'gps' ? 'YOUR SPOT' : L.g);
+        $('hlCxLoc').hidden = L.src === 'gps';
+      } catch (e) { console.error('cx', e); } finally { busy = false; }
+    }
+    $('hlCxLoc').onclick = () => gps().then(() => { last = 0; load(); }).catch(() => toast('Location is off for this site. Using your log\'s grid (MY LOG FILES › My grid) or Kentucky instead.'));
+    load(); setInterval(() => { if (Date.now() - last > 10 * 6e4 && !document.hidden) load(); }, 60000);
+    matchMedia('(min-width:1100px)').addEventListener('change', () => { if (wide() && !last) load(); });
+  })();
   /* ---------------- start (Members Room page, no password since Oct 16 evening) ---------------- */
   function startApp() {
     const home0 = (HOME && HOME.label && (HOME.label.match(/middle of (.+)$/) || [])[1]) || '';
