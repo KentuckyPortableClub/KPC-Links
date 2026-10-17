@@ -31,7 +31,7 @@ SECS=[('three','3-Fers','Three POTA parks at once','Trails through two overlappi
  ('water','Trail of Tears Water Route','Tennessee & Mississippi rivers','The Trail of Tears Water Route followed the Tennessee River (now Kentucky Lake) to Paducah, then the Ohio and Mississippi rivers. You must be inside the park AND within 100 ft of the water. On Kentucky Lake the NPS route line follows the old channel out in the lake, so these are a looser fit than the Ohio River banks. Pins are approximate.'),
  ('trail','Trail 2-Fers','A trail park through another park','Set up on public land within 100 ft of the trail, inside the other park.'),
  ('shared','Overlapping Boundaries','Two parks on the same ground','Boundaries overlap on land that belongs to both. National forest spots count only on Forest Service-owned land. Setup pins sit at least 100 ft inside every boundary line in our map data.')]
-BANNER='GPS PINS ARE GUIDES ONLY  •  DO YOUR OWN RESEARCH  •  CONFIRM EVERY BOUNDARY ON THE OFFICIAL MAP'
+BANNER='GPS PINS ARE GUIDES ONLY  •  DO YOUR OWN RESEARCH  •  CONFIRM EVERY BOUNDARY ON THE OFFICIAL MAP  •  THIS WILL GET YOU CLOSE. THE REST IS UP TO YOU.'
 c=canvas.Canvas(os.path.join(REPO,'KPC_Kentucky_POTA_2fers_3fers_Guide.pdf'),pagesize=(W,H))
 c.setTitle('KPC Kentucky POTA 2-Fers & 3-Fers');c.setAuthor('Kentucky Portable Club');c.setSubject('Multi-park POTA spots in Kentucky with GPS guide pins')
 page=[0]
@@ -49,7 +49,7 @@ def frame(section):
   spaced(M,H-36,'KENTUCKY POTA 2-FERS & 3-FERS  •  '+section.upper(),'CB',7,GREEN)
   c.drawImage(LOGO,W-M-30,H-52,30,30,mask='auto'); c.linkRect('',('find'),(W-M-30,H-52,W-M,H-22),relative=0)
   c.setFillColorRGB(*DARK);c.roundRect(M,H-80,CW,17,4,stroke=0,fill=1)
-  spaced(W/2,H-74.5,BANNER,'CB',6.3,GOLD,1,'c')
+  spaced(W/2,H-74.5,BANNER,'CB',5.1,GOLD,.45,'c')
   c.setFillColorRGB(*FOOT);c.rect(0,0,W,30,stroke=0,fill=1)
   spaced(W/2,12,'KPC KENTUCKY POTA 2-FERS & 3-FERS  •  GPS PINS ARE GUIDES ONLY. VERIFY RULES, ACCESS, MAPS, PERMITS AND SEASONS BEFORE TRAVEL.','CB',5.6,BG,.8,'c')
   c.setFont('CB',7);c.setFillColorRGB(*BG);c.drawRightString(W-M,12,str(page[0]))
@@ -141,7 +141,7 @@ def darkbox(y,title,body,fill=hx('1c3f2e'),tc=GOLD,bc=(1,1,1)):
   spaced(M+15,y-14,title,'CB',6.5,tc,1.2);para(M+15,y-27,body,'C',8.4,bc,CW-30,11);return y-h-10
 y=H-365
 y=darkbox(y,'GPS PINS ARE GUIDES ONLY','Every GPS point in this guide gets you to the AREA of a possible 2-fer or 3-fer. It is not a confirmed activation spot. When you get there, check that you and your gear are inside every park, and for trail and river parks within 100 ft of the trail or the water. Riverbank pins have not been checked against the actual water line. The four historic trail sites are not on the river or trail at all; they rely on National Park Service listings (cited on each card).')
-y=darkbox(y,'DO YOUR OWN RESEARCH','This guide is a planning tool put together by the Kentucky Portable Club from public map data. It has not been field-checked at every spot or approved by POTA. Boundaries can be out of date or slightly off and do not show private land, closures or hunting seasons. Confirm each boundary on the official agency map, make sure the land is public and open, and read the POTA Rules. You are responsible for making sure your activation is valid and legal.')
+y=darkbox(y,'DO YOUR OWN RESEARCH','This guide is a planning tool put together by the Kentucky Portable Club from public map data. It has not been field-checked at every spot. This will get you close; the rest is up to you. Boundaries can be out of date or slightly off and do not show private land, closures or hunting seasons. Confirm each boundary on the official agency map, and make sure the land is public and open. You are responsible for making sure your activation is valid and legal.')
 y=darkbox(y,'WHAT COUNTS AS A 2-FER','2-fer means two POTA parks only (KFF and SOTA are not 2-fers). You and all your gear must be on public land inside every park you log. Parks that only touch at a border do not count; the parks must overlap. Trails and rivers that are their own park: within 100 ft of the trail or the river\'s edge. National forests count only on Forest Service-owned land. One log per park.')
 c.setFillColorRGB(*GOLD);c.roundRect(M,y-78,CW,78,6,stroke=0,fill=1)
 c.setFont('S',12);c.setFillColorRGB(*hx('12291e'));c.drawString(M+15,y-20,'GPS GRADES ON EVERY SPOT')
