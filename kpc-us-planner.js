@@ -34,6 +34,19 @@ async function loadAll(){const NO={rows:[]},J=u=>fetch(u).then(r=>r.ok?r.json():
 function statesNear(la,lo,mi){const dLa=mi/69,dLo=mi/(69*Math.cos(la*Math.PI/180));const out=[];
  BORD.forEach(b=>{let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;b.p.forEach(pl=>pl[0].forEach(([x,y])=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}));
   if(lo+dLo>=x0&&lo-dLo<=x1&&la+dLa>=y0&&la-dLa<=y1)out.push(b.a)});return out}
+/* WORLD PINS (Brandon Oct 17: 'drop pins for all three programs for the world'): outside North America the dots come from
+   1-degree tiles near the spot you picked: POTA data/pota/t (monthly job), WWFF data/wwff/t + SOTA data/sota/t (Sundays) */
+if(window.KPCPlace)KPCPlace.world=true;   /* suggestions + search reach outside the US too */
+const WTILE={},inNA=(la,lo)=>la>=5&&la<=84&&lo>=-180&&lo<=-10;
+async function addWorld(la,lo,mi){const dLa=mi/69,dLo=mi/(69*Math.max(.15,Math.cos(la*Math.PI/180)));let keys=[];
+ for(let y=Math.floor(la-dLa);y<=Math.floor(la+dLa);y++)for(let x=Math.floor(lo-dLo);x<=Math.floor(lo+dLo);x++){const xx=((x+180)%360+360)%360-180;if(!inNA(y+.5,xx+.5))keys.push([y,xx,Math.hypot(y+.5-la,(xx+.5-lo)*Math.cos(la*Math.PI/180))])}
+ if(!keys.length)return 0;keys.sort((a,b)=>a[2]-b[2]);keys=keys.slice(0,120);let added=0;
+ const P={POTA:['data/pota/t/',r=>({c:r[0],n:r[1],la:r[2],lo:r[3],url:'https://pota.app/#/park/'+r[0]})],WWFF:['data/wwff/t/',r=>({c:r[0],n:r[1],la:r[2],lo:r[3],url:'https://wwff.co/directory/?showRef='+r[0]})],
+  SOTA:['data/sota/t/',r=>({c:r[0],n:r[1]&&r[1]!==r[0]?r[1]:`Unnamed summit, ${(+r[3]||0).toLocaleString()} m`,la:r[4],lo:r[5],url:'https://sotl.as/summits/'+r[0],m:+r[3]||0,pts:+r[6]||0})]};
+ await Promise.all(Object.keys(P).filter(p=>progs.includes(p)).flatMap(p=>keys.map(async([y,x])=>{const u=P[p][0]+y+'_'+x+'.json';
+  const L=await(WTILE[u]||(WTILE[u]=fetch(u).then(r=>r.ok?r.json():[]).catch(()=>[])));
+  (L||[]).forEach(r=>{const o=P[p][1](r),k=String(o.c).toUpperCase();if(BYREF[k]||!isFinite(o.la)||!isFinite(o.lo))return;const s=Object.assign({p,m:0,pts:0,world:1},o);ALL.push(s);BYREF[k]=s;added++})})));
+ return added}
 async function addLive(la,lo,mi){if(!progs.includes('POTA'))return 0;let added=0;
  const st=statesNear(la,lo,mi).filter(a=>!(a in liveStates)).slice(0,4);
  await Promise.all(st.map(async a=>{liveStates[a]=null;try{const c=new AbortController(),t=setTimeout(()=>c.abort(),12000);const r=await fetch('https://api.pota.app/location/parks/US-'+a,{signal:c.signal});clearTimeout(t);if(!r.ok)throw 0;const j=await r.json();
@@ -187,7 +200,7 @@ async function search(q){q=q.trim();if(!q)return;$('us-hits').style.display='non
  const ref=normRef(q);if(BYREF[ref]){const s=BYREF[ref];await go(s.la,s.lo,s.n);openSpot(s);return}
  const lq=q.toLowerCase();const parks=ALL.filter(s=>progs.includes(s.p)&&s.n.toLowerCase().includes(lq)).slice(0,8);
  status('Searching places…');let places=[];
- try{places=(await kpcGeocode(q)).map(g=>({lat:g.la,lon:g.lo,display_name:g.label}))}catch(e){}
+ try{places=(await kpcGeocode(q,{world:true})).map(g=>({lat:g.la,lon:g.lo,display_name:g.label}))}catch(e){}
  const items=[...places.map(p=>({t:'place',la:+p.lat,lo:+p.lon,n:p.display_name})),...parks.map(s=>({t:'spot',s}))];
  if(!items.length){status(`Nothing found for “${esc(q)}”. Try a town and state (“Berea KY”), a ZIP, or a park number.`);return}
  if(items.length===1){const i=items[0];if(i.t==='place')go(i.la,i.lo,i.n);else{await go(i.s.la,i.s.lo,i.s.n);openSpot(i.s)}return}
@@ -197,7 +210,7 @@ async function search(q){q=q.trim();if(!q)return;$('us-hits').style.display='non
 function openSpot(s){if(!map)return;let hit=null;dots.eachLayer(l=>{if(l.getPopup&&l.getPopup()&&l.getPopup()._kpc===s)hit=l});if(hit)hit.openPopup()}
 async function go(la,lo,label){clearRoute();center=[la,lo];radius=+$('usr').value;store.set('kpcUsLast',{la,lo,label,r:radius});
  status(`Loading spots near ${esc(label||'there')}…`);
- const added=await addLive(la,lo,radius);
+ const added=await addLive(la,lo,radius);try{await addWorld(la,lo,radius)}catch(e){}
  NEAR=ALL.filter(s=>progs.includes(s.p)).map(s=>({s,d:KPC.miles(la,lo,s.la,s.lo)})).filter(x=>x.d<=radius).sort((a,b)=>a.d-b.d).map(x=>x.s);
  const n={POTA:0,SOTA:0,WWFF:0};NEAR.forEach(s=>n[s.p]++);
  status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${radius} miles of ${esc(label||'there')}: ${progs.map(p=>n[p].toLocaleString()+' '+p).join(', ')}.${added?` (${added} newer POTA park${added===1?'':'s'} loaded live from POTA.)`:''}`);

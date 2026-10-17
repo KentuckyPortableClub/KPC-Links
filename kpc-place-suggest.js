@@ -27,13 +27,18 @@
     const j = await jget('https://geocoding-api.open-meteo.com/v1/search?count=10&language=en&format=json&countryCode=US&name=' + encodeURIComponent(name));
     const out = ((j && j.results) || []).map(r => ({ v: r.name + ', ' + (ST[r.admin1] || r.admin1 || ''), k: 'Town · ' + (ST[r.admin1] || r.admin1 || 'US') + (r.admin2 ? ' · ' + r.admin2.replace(/ County$/, '') + ' Co.' : ''), la: r.latitude, lo: r.longitude, st: ST[r.admin1] || '', town: 1 }))
       .filter(r => !st || r.st === st);
+    /* KPCPlace.world (US Trip Planner): add towns outside the US when the US has few matches and no state was typed */
+    if (P.world && !st && out.length < 4) {
+      const w = await jget('https://geocoding-api.open-meteo.com/v1/search?count=8&language=en&format=json&name=' + encodeURIComponent(name));
+      ((w && w.results) || []).filter(r => r.country_code !== 'US').slice(0, 6 - out.length).forEach(r => out.push({ v: r.name + ', ' + (r.country || ''), k: 'Town · ' + [r.admin1, r.country].filter(Boolean).join(', '), la: r.latitude, lo: r.longitude, st: '', town: 1 }));
+    }
     return (cache[key] = out);
   }
   async function parks(q) {
     if (q.trim().length < 3) return [];
     const key = 'p|' + q.toLowerCase(); if (cache[key]) return cache[key];
     const L = await jget('https://api.pota.app/lookup?search=' + encodeURIComponent(q.trim()) + '&size=60');
-    const out = (L || []).filter(x => x.type === 'park' && /^US-/.test(x.value)).slice(0, 12).map(x => ({ v: x.display.replace(/^\S+\s+/, ''), k: 'POTA park · ' + x.value, ref: x.value, park: 1 }));
+    const out = (L || []).filter(x => x.type === 'park' && (P.world || /^US-/.test(x.value))).slice(0, 12).map(x => ({ v: x.display.replace(/^\S+\s+/, ''), k: 'POTA park · ' + x.value, ref: x.value, park: 1 }));
     return (cache[key] = out);
   }
   async function park(ref) {
@@ -88,5 +93,5 @@
     document.addEventListener('click', e => { if (!host.contains(e.target)) b.hidden = true; });
     return { close: () => { b.hidden = true; } };
   }
-  window.KPCPlace = { towns, parks, park, box, ST };
+  const P = window.KPCPlace = Object.assign(window.KPCPlace || {}, { towns, parks, park, box, ST });
 })();
