@@ -1,4 +1,4 @@
-name: KPC park links (states around Kentucky)
+name: KPC park links (states around Kentucky + Canada / North America)
 # Weekly: official website, park type and activation methods for every POTA park in the states around Kentucky.
 on:
   schedule:
@@ -7,6 +7,9 @@ on:
     inputs:
       states:
         description: 'States (blank = every state but KY)'
+        default: ''
+      programs:
+        description: 'POTA programs outside the US, like CA MX (blank = all of North America when states is blank too)'
         default: ''
       recheck:
         description: 'Fetch every park page again'
@@ -26,6 +29,7 @@ jobs:
       - name: Build the state files
         env:
           STATES: ${{ inputs.states }}
+          PROGS: ${{ inputs.programs }}
           RECHECK: ${{ inputs.recheck && '1' || '' }}
         run: python3 .github/scripts/kpc_state_links.py
       - name: Save

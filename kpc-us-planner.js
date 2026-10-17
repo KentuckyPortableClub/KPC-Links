@@ -99,7 +99,8 @@ function stateAt(la,lo){const inR=(r)=>{let c=false;for(let i=0,j=r.length-1;i<r
  const b=BORD.find(b=>b.p.some(pl=>inR(pl[0])));return b?b.a:''}
 const ACT={Automobile:'car',Campground:'campground',Pedestrian:'on foot',Boat:'boat',Bicycle:'bike',Backpacking:'backpacking',Hiking:'hiking'};
 const CFED={},AGN={FS:'Forest Service',NPS:'National Park Service',USACE:'Army Corps',BLM:'BLM',FWS:'Fish & Wildlife',TVA:'TVA',BOR:'Reclamation'};
-const SOTAI={};let KFFROWS=null;
+const SOTAI={};let KFFROWS=null;const WWROWS={};
+const PROV={AB:'Alberta',BC:'British Columbia',MB:'Manitoba',NB:'New Brunswick',NL:'Newfoundland and Labrador',NS:'Nova Scotia',NT:'Northwest Territories',NU:'Nunavut',ON:'Ontario',PE:'Prince Edward Island',QC:'Québec',SK:'Saskatchewan',YT:'Yukon'};
 const hd=t=>`<div class="meta" style="margin:8px 0 3px;font-weight:800;letter-spacing:.5px">${t}</div>`;
 const ln=t=>`<div class="meta" style="margin:2px 0">${t}</div>`;
 const GENW=/\b(state|national|park|parks|forest|wildlife|management|area|recreation|historic|historical|site|refuge|preserve|nature|the|of|and|lake|river|scenic|wild|memorial|monument|conservation|wma|nwr|sp|np|nf)\b/g;
@@ -117,15 +118,24 @@ async function sotaFacts(s){const [a,r]=s.c.split('/');if(!(s.c in SOTAI))SOTAI[
  h+=`<div class="acts"><a href="kpc-in-park.html?ref=${encodeURIComponent(s.c)}">AM I IN THE ZONE?</a><a href="https://sotl.as/summits/${encodeURIComponent(s.c)}" target="_blank" rel="noopener">SOTLAS (ROUTES, PHOTOS) ↗</a></div>`;
  return h}
 /* WWFF (KFF) facts from our weekly copy of the WWFF directory (data/wwff/KFF.json) */
-async function wwffFacts(s){if(!KFFROWS)KFFROWS=fetch('data/wwff/KFF.json').then(r=>r.ok?r.json():[]).catch(()=>[]);
- const x=(await KFFROWS).find(r=>r[0]===s.c);let h='';
- if(x&&x[5]){const a=String(x[5]).replace(/^K-/,''),c=String(x[6]||'').replace(/^K-/,'');h+=ln(`WWFF (KFF) reference · ${esc(a)}${c&&c!==a?' · '+esc(c):''}`)}
- h+=ln('WWFF counts every contact you make there, and you can add up visits: 44 contacts for the WWFF award (KFF may accept fewer for its own awards; check wwff.us).');
+async function wwffFacts(s){const pf=String(s.c).split('-')[0];if(!(pf in WWROWS))WWROWS[pf]=fetch('data/wwff/'+pf+'.json').then(r=>r.ok?r.json():[]).catch(()=>[]);
+ const x=(await WWROWS[pf]).find(r=>r[0]===s.c);let h='';const kff=pf==='KFF';
+ if(x&&x[5]){const a=String(x[5]).replace(/^[A-Z0-9]{1,3}-/,''),c=String(x[6]||'').replace(/^[A-Z0-9]{1,3}-/,'');h+=ln(`WWFF (${esc(pf)}) reference · ${esc(PROV[a]||a)}${c&&c!==a?' · '+esc(c):''}`)}
+ else h+=ln(`WWFF (${esc(pf)}) reference`);
+ h+=ln(kff?'WWFF counts every contact you make there, and you can add up visits: 44 contacts for the WWFF award (KFF may accept fewer for its own awards; check wwff.us).':'WWFF counts every contact you make there, and you can add up visits: 44 contacts for the WWFF award.');
  if(x&&x[4])h+=`<div class="acts">${x&&x[4]?`<a href="${esc(x[4])}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}</div>`;
  return h}
 async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
  const P=s.p,sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);let h='';
- if(P==='POTA')for(const st of sts){if(!(st in PINFO))PINFO[st]=fetch('data/parkinfo/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+ const pre=String(s.c).split('-')[0];
+ /* Canada + the rest of North America (Brandon Oct 17): data/parkinfo/<PREFIX>.json, same fields + the province / area */
+ if(P==='POTA'&&pre!=='US'){if(!(pre in PINFO))PINFO[pre]=fetch('data/parkinfo/'+pre+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+  const d=await PINFO[pre],p=d&&d.parks&&d.parks[s.c];
+  if(p){const [,web,typ,act]=p,sub=p[10]||'',how=(act||'').split(',').map(x=>ACT[x.trim()]||x.trim().toLowerCase()).filter(Boolean),site=(d.sites||{})[sub],nm=(pre==='CA'?PROV:{})[sub]||sub;
+   h=`<div class="meta" style="margin:6px 0 2px">${[typ&&esc(typ),nm&&esc(nm),how.length&&'activate by '+esc(how.join(', '))].filter(Boolean).join(' · ')}</div>`+
+    (p[7]!=null?ln(p[7]?`Activated <b>${p[7].toLocaleString()}</b> time${p[7]===1?'':'s'}${p[7]<=5?' · <b style="color:#b45309">RARE</b>':''}`:'<b style="color:#c2410c">Never activated: an ATNO!</b>'):'')+
+    `<div class="acts">${web?`<a href="${esc(web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}${site&&/Provincial|State Park|National Park/i.test(typ)?`<a href="${esc(site)}" target="_blank" rel="noopener">${esc(nm.toUpperCase())} PARKS SITE ↗</a>`:''}</div>`}}
+ if(P==='POTA'&&pre==='US')for(const st of sts){if(!(st in PINFO))PINFO[st]=fetch('data/parkinfo/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await PINFO[st];const p=d&&d.parks&&d.parks[s.c];if(!p)continue;
   const [,web,typ,act]=p,how=(act||'').split(',').map(x=>ACT[x.trim()]||x.trim().toLowerCase()).filter(Boolean);
   h=`<div class="meta" style="margin:6px 0 2px">${typ?esc(typ):''}${how.length?(typ?' · ':'')+'activate by '+esc(how.join(', ')):''}</div>`+
