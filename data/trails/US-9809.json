@@ -1,1 +1,1 @@
-{"type":"Feature","properties":{"ref":"US-9809","name":"Oconto River State Trail"},"geometry":{"type":"MultiLineString","coordinates":[[[-88.04244,44.88403],[-88.02024,44.88675],[-88.0102,44.88533]],[[-88.0102,44.88533],[-88.0094,44.88518]],[[-88.0094,44.88518],[-87.99252,44.8822],[-87.95842,44.88208],[-87.90282,44.89172]]]}}
+{"type":"Feature","properties":{"ref":"US-9809","name":"Oconto River State Trail"},"geometry":{"type":"MultiLineString","coordinates":[[[-88.04243,44.88399],[-88.02001,44.88676],[-87.99177,44.88211],[-87.95697,44.8822],[-87.88391,44.89495]]]}}
