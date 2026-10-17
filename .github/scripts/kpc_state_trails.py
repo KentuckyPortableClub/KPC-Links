@@ -74,6 +74,7 @@ FED = r'forest service|usda|national park service|\bnps\b|fish (and|&) wildlife|
 AGW = r'department|dept|division|office|commission|conservation|natural resources|\bdnr\b|\bdcr\b|parks|forestry|transportation|\bdot\b|wildlife|environment|gis|geographic|state of|commonwealth'
 ORG = {}
 STS = {}
+ALOG = []  # Oct 18: what the agency search looked at (written to state-report.json 'agency')
 def org_name(oid):
     if oid not in ORG:
         try: ORG[oid] = (get(f'https://www.arcgis.com/sharing/rest/portals/{oid}?f=json', t=40) or {}).get('name', '') or ''
@@ -121,7 +122,7 @@ def agency(name, st, la, lo):
         if not u or u in seen or not re.search(r'/(Feature|Map)Server(/\d+)?$', u): continue
         seen.add(u)
         org = org_name(it.get('orgId', '')) if it.get('orgId') else ''
-        if not official_org(org, st): continue
+        if not official_org(org, st): ALOG.append([name, 'skip (not state/federal)', org[:60], it.get('title', '')[:60]]); continue
         tries.append((u, org, None))
     for u, org, flds in tries[:14]:
         try:
@@ -134,10 +135,12 @@ def agency(name, st, la, lo):
                     for wh in likes(fld, w):
                         try: L = lyr_lines(lu, wh, la, lo)
                         except Exception: continue
-                        if L and min(km(la, lo, p[1], p[0]) for l in L for p in l) <= CHECK_KM:
-                            return L, org
+                        if L:
+                            nk = min(km(la, lo, p[1], p[0]) for l in L for p in l)
+                            ALOG.append([name, f'{len(L)} lines {nk:.0f} km from pin', org[:60], lu[-90:] + ' ' + fld])
+                            if nk <= CHECK_KM: return L, org
         except Exception as e:
-            note('Agency layer', f'{name} @ {org}: {str(e)[:100]}')
+            ALOG.append([name, 'error ' + str(e)[:80], org[:60], u[-90:]])
     return None, ''
 # ---------------------------------------------------------------- 3. OpenStreetMap
 OVP = 'https://overpass-api.de/api/interpreter'
@@ -232,5 +235,6 @@ for st, cand in jobs():
         report['found'].append([ref, name, stc, by, round(total), round(near, 1)]); got += 1
     note(st if st == 'CANADA' else f'US-{st}', f'{got} of {len(cand)} trail parks drawn')
 json.dump(sorted(IDX.values(), key=lambda x: (x['st'], x['name'])), open(f'{OUT}/index-state.json', 'w'), separators=(',', ':'))
+report['agency'] = ALOG[-400:]
 json.dump(report, open(f'{OUT}/state-report.json', 'w'), indent=1)
 note('State trails done', f"{len(report['found'])} drawn, {len(report['missing'])} not drawn (see data/trails/state-report.json)")
