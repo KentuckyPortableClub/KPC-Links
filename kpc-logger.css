@@ -327,3 +327,66 @@ main#lg[data-night] .lg-tabs button.on{color:#ff8a80;border-bottom-color:#ff6b5a
 @media(max-width:1099px){.lg-drawer{max-height:34vh}}
 main#lg .lg-dock .lg-f.e.main input{border:0!important;background:transparent!important;box-shadow:none;width:100%}
 @media(max-width:1099px){.lg-toast{bottom:calc(var(--dock,200px) + 12px)}}
+/* ===== Oct 16 v7 (Brandon's PoLo computer screenshot): role switch + small notes on top, one park box,
+   radio row always showing on computers, chips with the UTC clock, band-grouped spots, right-side tabs ===== */
+.lg-oprow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center;margin-top:12px}
+.lg-role{display:inline-flex;border:1px solid var(--ln);border-radius:12px;overflow:hidden}
+.lg-role button{padding:11px 16px;border:0;background:rgba(0,0,0,.35);color:#dbe3dd;font:900 13px Arial,sans-serif;letter-spacing:1px;cursor:pointer;white-space:nowrap}
+.lg-role button.on{background:linear-gradient(180deg,var(--g2),var(--g));color:#1a1205}
+.lg-notes{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;min-width:0}
+main#lg .lg-notes input#nText{flex:1 1 260px;width:auto;padding:9px 12px;font-size:15px}
+.lg-notes .lg-chk{font-size:13.5px}
+.lg-f label.wide2{grid-column:span 2}
+@media(max-width:700px){.lg-oprow{grid-template-columns:1fr}.lg-role{display:flex}.lg-role button{flex:1}.lg-f label.wide2{grid-column:1/-1}}
+/* the radio row (frequency · band · mode · their park · name): always on computers, folds behind 📻 on phones */
+.lg-radio{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.7fr) minmax(0,.9fr) minmax(0,1.5fr) minmax(0,1fr);gap:8px;margin:0 0 10px;padding:8px;border-radius:12px;background:#5a2d0c}
+.lg-radio label{display:block;background:#fff8ee;border-radius:7px;padding:5px 9px 2px;font:400 12.5px Arial,sans-serif;color:#6b4a2e;letter-spacing:0;text-transform:none}
+main#lg .lg-radio input,main#lg .lg-radio select{border:0!important;background:transparent!important;color:#1d1209;padding:2px 0 5px;font:700 18px Arial,sans-serif;width:100%;outline:0}
+main#lg .lg-radio #eFreq{font-family:ui-monospace,Menlo,Consolas,monospace}
+main#lg .lg-radio #eBand{color:#8a4b1e}
+@media(max-width:1099px){.lg-radio{display:none}main#lg[data-radio] .lg-radio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}main#lg[data-radio] .lg-radio label.ref{grid-column:span 2}}
+.lg-dchips .dc.clk{background:#f2c79a;color:#3b1f08;font-family:ui-monospace,Menlo,Consolas,monospace;cursor:default}
+.lg-dchips .dc.bad{background:#e0352b;color:#fff}
+.lg-drawer .lg-f{grid-template-columns:1fr 1fr}
+.lg-drawer .lg-msg{margin:6px 0 0;font-size:13px}
+@media(max-width:600px){.lg-drawer .lg-f{grid-template-columns:1fr}}
+/* right side: tabs on computers */
+.lg-rtabs{display:none}
+@media(min-width:1100px){
+ .lg-main{grid-template-columns:minmax(0,1.25fr) minmax(400px,1fr);gap:0 16px}
+ .lg-rtabs{display:flex;margin-top:16px;border-radius:16px 16px 0 0;overflow:hidden;background:#0b3a46}
+ .lg-rtabs button{flex:1;padding:14px;border:0;border-bottom:3px solid transparent;background:none;color:#cfe6ea;font:700 14.5px Arial,sans-serif;letter-spacing:1px;cursor:pointer}
+ .lg-rtabs button.on{color:#fff;border-bottom-color:#fff}
+ .lg-right [data-rp]{display:none;margin-top:0;border-radius:0 0 16px 16px}
+ main#lg[data-rt=spots] .lg-right [data-rp=spots],main#lg[data-rt=map] .lg-right [data-rp=map],main#lg[data-rt=info] .lg-right [data-rp=info]{display:block}
+ .lg-right .lg-spots{max-height:calc(100vh - 330px);min-height:420px}
+ #mMap{height:calc(100vh - 330px);min-height:440px}
+ .lg-logc .lg-list{height:calc(100vh - 560px);min-height:300px;max-height:none}
+ .lg-logc{border-radius:16px 16px 0 0;margin-bottom:0}
+ .lg-dock{position:relative;border-radius:0 0 16px 16px}
+}
+/* spots like PoLo: grouped by band */
+.lg-spots{gap:0;padding:0;border-radius:12px;overflow:auto;background:#fff8ee}
+.lg-sband{position:sticky;top:0;z-index:2;padding:7px 12px;background:#dfe3e5;border-bottom:3px solid #8f979b;font:700 15px Arial,sans-serif;color:#1d2427}
+.lg-sp{display:grid;grid-template-columns:5.6em minmax(0,1fr) auto;gap:2px 12px;padding:9px 12px;border:0;border-bottom:1px solid #e6dccd;border-radius:0;background:#fff;color:#1d2427}
+.lg-sp:hover,.lg-sp:focus{background:#fff1dc;border-color:#e6dccd}
+.lg-sp .f{order:0;font:700 16px ui-monospace,Menlo,Consolas,monospace;color:#1d2427;text-align:right}
+.lg-sp .c{font:900 16px ui-monospace,Menlo,Consolas,monospace;color:#10181b}
+.lg-sp .c i{font-style:normal;color:#1a9c55}
+.lg-sp .a{font-size:13px;color:#5c6468;text-align:right}
+.lg-sp .md{grid-column:1;background:none;padding:0;color:#5c6468;font:700 12.5px Arial,sans-serif;text-align:right;justify-self:end}
+.lg-sp .n{grid-column:2/-1;font-size:14px;color:#2b3438}
+.lg-sp .x{grid-column:2/-1;font-size:12px;color:#7b8387}
+.lg-sp.wk{opacity:.5}
+.lg-sp.wk .md::after{content:''}
+main#lg[data-night] .lg-spots,main#lg[data-night] .lg-sp{background:#050000;color:#ff9c90;border-color:#2a0500}
+main#lg[data-night] .lg-sband{background:#1a0300;color:#ff8a80;border-color:#4a0d07}
+main#lg[data-night] .lg-sp .f,main#lg[data-night] .lg-sp .c,main#lg[data-night] .lg-sp .n{color:#ff8a80}
+main#lg[data-night] .lg-radio{background:#140000}
+main#lg[data-night] .lg-radio label{background:#000;color:#b85a50}
+main#lg[data-night] main#lg .lg-radio input,main#lg[data-night] .lg-radio input,main#lg[data-night] .lg-radio select{color:#ff9c90!important}
+main#lg[data-night] .lg-role button.on{background:#7a1a10;color:#ffd3cc}
+main#lg[data-night] .lg-dchips .dc.clk{background:#2a0500;color:#ff8a80}
+@media(max-width:1099px){main#lg .lg-radio{gap:6px;padding:6px;margin-bottom:8px}main#lg .lg-radio label{padding:3px 8px 1px;font-size:11.5px}main#lg .lg-radio input,main#lg .lg-radio select{font-size:16px;padding:1px 0 3px}
+ .lg-dock .lg-who .w{padding:7px 10px;font-size:13px;gap:3px 10px}.lg-dock .lg-who .w b{font-size:14.5px}}
+main#lg #nText{min-height:0;margin:0;height:auto;resize:none}
