@@ -57,7 +57,8 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);   /* streets + names above the boundary outlines (zIndex 6) */
  const OFF='Satellite + Streets + Official Boundaries';
  /* the old 'Satellite + Park Lines (Beta)' map was removed Oct 16 (Brandon); anyone who had it gets the official boundaries map */
- const base={'Street':street,'Terrain':terrain,'Satellite':sat,'Satellite + Streets':hyb,[OFF]:offi};let want=store.get('kpcUsBase',pad?OFF:'Street');if(want==='Satellite + Official Boundaries'||/Park Lines/.test(want))want=pad?OFF:'Satellite + Streets';(base[want]||street).addTo(map);
+ const base={'Street':street,'Terrain':terrain,'Satellite':sat,'Satellite + Streets':hyb,[OFF]:offi};let want=store.get('kpcUsBase',pad?OFF:'Street');if(want==='Satellite + Official Boundaries'||/Park Lines/.test(want))want=pad?OFF:'Satellite + Streets';if(window.KPCTripOffline&&KPCTripOffline.offline())want='Street';   /* no signal: the saved street map */
+ (base[want]||street).addTo(map);
  if(pad){if(store.get('kpcUsPad',true)||want===OFF)pad.layer.addTo(map);
   map.on('baselayerchange',e=>{if(e.name===OFF&&!map.hasLayer(pad.layer))pad.layer.addTo(map)});
   map.on('overlayadd',e=>{if(e.layer===pad.layer)store.set('kpcUsPad',true)});map.on('overlayremove',e=>{if(e.layer===pad.layer)store.set('kpcUsPad',false)})}
@@ -354,7 +355,15 @@ $('near-body').onclick=e=>{const a=e.target.closest('[data-i]'),o=e.target.close
  if(o){e.preventDefault();const s=LIST[+o.dataset.o];map&&map.setView([s.la,s.lo],Math.max(map.getZoom(),11));setTimeout(()=>openSpot(s),300);$('usmap').scrollIntoView({behavior:'smooth',block:'center'})}};
 $('trip-list').onclick=e=>{const b=e.target.closest('button');if(!b)return;const i=+(b.dataset.u??b.dataset.d??b.dataset.x);
  if(b.dataset.x!=null)return removeStop(trip[i].c);const j=b.dataset.u!=null?i-1:i+1;if(j<0||j>=trip.length)return;[trip[i],trip[j]]=[trip[j],trip[i]];saveTrip();drawTrip()};
-$('t-order').onclick=bestOrder;$('t-road').onclick=drawRoad;$('t-gpx').onclick=gpx;$('t-share').onclick=share;$('t-fromme').onchange=drawTrip;
+$('t-order').onclick=bestOrder;
+/* 📴 SAVE TRIP FOR NO SIGNAL (kpc-trip-offline.js): page, data for the stops' states and the street map around each stop */
+if($('t-off'))$('t-off').onclick=()=>{if(!window.KPCTripOffline)return;const stops=trip.filter(s=>isFinite(s.la)&&isFinite(s.lo));
+ if(!stops.length){$('t-offmsg').textContent='Add some stops first.';return}
+ const st=[...new Set(stops.flatMap(s=>[stateAt(s.la,s.lo),...statesNear(s.la,s.lo,10)]).filter(Boolean))];
+ const files=['locations.json','kpc-us-states.json','kpc-park-notes.json','kpc-park-notes-us.json','data/trails/index.json','KPC-logo.png'].concat(st.flatMap(x=>['data/parkinfo/US-'+x+'.json','data/campfed/US-'+x+'.json']));
+ KPCTripOffline.save({stops,files,msg:$('t-offmsg'),btn:$('t-off'),key:'kpcUsTripSaved'})};
+if(window.KPCTripOffline&&KPCTripOffline.offline())setTimeout(()=>status('📴 <b>No signal.</b> Showing your saved trip. The Street map works around the stops you saved; searching and live POTA info come back with signal.'),1500);
+$('t-road').onclick=drawRoad;$('t-gpx').onclick=gpx;$('t-share').onclick=share;$('t-fromme').onchange=drawTrip;
 $('t-clear').onclick=()=>{if(confirm('Clear all stops from this trip?')){trip=[];saveTrip();if(road){road.remove();road=null}drawTrip();drawDots();drawNear()}};
 [...$('us-progs').querySelectorAll('[data-p]')].forEach(x=>x.setAttribute('aria-pressed',progs.includes(x.dataset.p)));
 initMap();

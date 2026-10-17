@@ -7,8 +7,9 @@ const APP = 'kpc-finder-v1';
 const TILES = 'kpc-tiles-v1';
 const MAX_TILES = 2500; // about 40–60 MB of map tiles at most
 const SAME = /\/(finder\.html|finder\.css|finder\.js|gis-overlays\.js|kpc-offline\.js|kpc-map-extras\.js|kpc-my-parks\.js|kpc-us-states\.json|locations(?:-ky)?\.json|official-[a-z0-9-]+\.json|wwff-unmapped\.json|kpc-ky-data\.json|ky-trail-parks\.json|ky-[a-z-]+\.geojson|KPC-logo\.png|kpc-icon-(?:32|180)\.png|kpc-kit\.html|kpc-kit\.js|kpc-in-park\.html|kpc-in-park\.js|kpc-bounds\.js|kpc-map-tools\.js|kpc-padus-layer\.js|kpc-place-suggest\.js|kpc-trails-layer\.js|kpc-tools\.css|kpc-theme\.js|kpc-search\.js|kpc-conditions\.json|kpc-park-notes\.json|kpc-campgrounds\.json|data\/(?:wwff|sota)\/t\/-?\d+_-?\d+\.json)$/; /* Oct 15: + Activation Kit / Am I in the Park? */
-const CDN = /^https:\/\/unpkg\.com\/leaflet@1\.9\.4\/dist\//;
-const TILE = /^https:\/\/tile\.openstreetmap\.org\/\d+\/\d+\/\d+\.png$/;
+const CDN = /^https:\/\/(?:unpkg\.com\/leaflet@1\.9\.4\/dist\/|cdnjs\.cloudflare\.com\/ajax\/libs\/leaflet\/1\.9\.4\/)/;   /* Oct 16: + cdnjs copy used by the trip planners */
+const TILE = /^https:\/\/(?:[abc]\.)?tile\.openstreetmap\.org\/\d+\/\d+\/\d+\.png$/;
+const tileKey = h => h.replace(/^https:\/\/[abc]\.tile\./, 'https://tile.');   /* a./b./c. tiles share one saved copy */
 
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', e => e.waitUntil((async () => {
@@ -50,9 +51,12 @@ self.addEventListener('fetch', e => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin === self.location.origin) {
-    if (SAME.test(url.pathname)) e.respondWith(networkFirst(req, APP, req.mode === 'navigate' ? 6000 : 8000, keyFor(req)));
+    if (SAME.test(url.pathname)) { e.respondWith(networkFirst(req, APP, req.mode === 'navigate' ? 6000 : 8000, keyFor(req))); return; }
+    /* Oct 16 (trip planners' SAVE MY TRIP FOR NO SIGNAL): any other file of ours goes to the network as normal and
+       only falls back to a saved copy when there is no signal at all */
+    e.respondWith(fetch(req).catch(async () => (await (await caches.open(APP)).match(keyFor(req))) || offline(req)));
     return;
   }
   if (CDN.test(url.href)) { e.respondWith(networkFirst(req, APP, 8000, url.href)); return; }
-  if (TILE.test(url.href)) { e.respondWith(networkFirst(req, TILES, 5000, url.href)); return; }
+  if (TILE.test(url.href)) { e.respondWith(networkFirst(req, TILES, 5000, tileKey(url.href))); return; }
 });
