@@ -327,3 +327,32 @@ main#hl[data-theme=lodge] .hl-stmap .st{fill:#3b2716;stroke:#8a6440}
 @media(max-width:600px){.hl-st td.f small{display:block}}
 .hl-st tr.fresh td{animation:hlRowIn 1.2s}
 @keyframes hlRowIn{from{background:rgba(240,201,107,.35)}}
+/* Oct 16 late: filter box, hidden countries, spots + map side by side, compact hero on computers */
+.hl-active{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0 0;padding:10px 12px;border-radius:12px;border:1px solid var(--g);background:rgba(240,201,107,.1)}
+.hl-active>b{font:900 11px Arial;letter-spacing:1.5px;color:var(--g2);margin-right:4px}
+.hl-pill{border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.35);color:var(--tx);border-radius:999px;padding:5px 10px;font:700 12.5px Arial;cursor:pointer}
+.hl-pill:hover{border-color:var(--red);color:#fff}
+.hl-active .hl-btn{margin-left:auto}
+.hl-chip.off{background:rgba(255,107,90,.18);border-color:var(--red);color:#ffd2cc;text-decoration:line-through}
+.hl-chip small{opacity:.7;font-weight:700;margin-left:3px}
+#fCty{max-height:260px;overflow:auto}
+@media(min-width:1100px){
+ .hl-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,34%);gap:0 18px;width:min(1500px,100%);margin:auto;padding:0 22px;align-items:start}
+ .hl-split>.hl-sec{grid-column:1;grid-row:1;padding:18px 0 30px;background:transparent!important}
+ .hl-split>.hl-mapsec{grid-column:2;grid-row:1;position:sticky;top:150px;padding:18px 0 0}
+ .hl-split .hl-in{width:100%}
+ .hl-split .hl-bigmap svg{max-height:none}
+ .hl-split .hl-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+ /* compact hero: picture on the left, words + numbers on the right, so the spots show on the first screen */
+ main#hl .hl-hero .hl-in{padding:22px 22px 18px}
+ main#hl .hl-hero h1{font-size:46px}
+ main#hl .hl-copy{font-size:15px;margin-top:8px}
+ main#hl .hl-stats{margin-top:12px}
+ main#hl .hl-stats b{font-size:22px}
+ main#hl .hl-acts{margin-top:12px}
+ main#hl .hl-acts .hl-btn{min-height:38px;padding:7px 13px;font-size:12px}
+ main#hl .hl-theme{margin-top:10px}
+ main#hl[data-theme=lodge] .hl-hero{display:flex;align-items:stretch}
+ main#hl[data-theme=lodge] .hl-hero::before{flex:0 0 min(46%,620px);width:auto;align-self:center}
+ main#hl[data-theme=lodge] .hl-hero .hl-in{flex:1;margin:0;padding:16px 26px}
+}

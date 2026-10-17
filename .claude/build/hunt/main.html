@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="kpc-hunt.css?v=20261016h">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261016i">
 @@HEADER@@
 <main id="hl" data-keep-light data-theme="lodge">
 <div id="hlApp">
@@ -25,25 +25,29 @@
  <button type="button" class="hl-bell" id="hlBell" aria-pressed="false" title="Alert me">🔕 ALERT OFF</button>
 </section>
 
+<div class="hl-split">
 <section class="hl-mapsec" id="hlMapSec"><div class="hl-in">
-<div class="hl-maphd"><b>🗺 LIVE MAP</b><span>Blinking green = new to you in your range · blue = new but far · grey = other spots · gold ring = home. Tap a dot to jump to it.</span><button type="button" class="hl-btn line sm" id="hlMapTog">HIDE MAP</button></div>
+<div class="hl-maphd"><b>🗺 LIVE MAP</b><span>Blinking green = new to you · grey = other spots. Tap a dot to jump to it.</span><button type="button" class="hl-btn line sm" id="hlMapTog">HIDE MAP</button></div>
 <div class="hl-bigmap" id="hlBigMap"><svg viewBox="0 0 480 305" id="hlBigSvg" role="img" aria-label="Map of spots across North America"></svg></div>
 </div></section>
 
 <section class="hl-sec"><div class="hl-in">
 <div class="hl-filters">
  <div class="hl-row" role="group" aria-label="Program"><button type="button" class="hl-chip" data-g="p" data-v="POTA">POTA</button><button type="button" class="hl-chip" data-g="p" data-v="WWFF">WWFF / KFF</button><button type="button" class="hl-chip" data-g="p" data-v="SOTA">SOTA</button><button type="button" class="hl-chip" data-g="p" data-v="DXPED">DXPEDITIONS</button><button type="button" class="hl-chip" data-g="p" data-v="EVENT">SPECIAL EVENTS</button><button type="button" class="hl-chip" data-g="p" data-v="DX">DX CLUSTER</button></div>
- <div class="hl-row" role="group" aria-label="Show"><button type="button" class="hl-chip big" id="fHide" aria-pressed="false">🙈 HIDE PARKS I'VE WORKED</button><button type="button" class="hl-chip big" id="fNew" aria-pressed="false">✨ NEW TO ME ONLY</button><button type="button" class="hl-chip big" id="fRange" aria-pressed="false">📏 IN MY RANGE ONLY</button></div>
+ <div class="hl-row" role="group" aria-label="Show"><button type="button" class="hl-chip big" id="fHide" aria-pressed="false">🙈 HIDE PARKS I'VE WORKED</button><button type="button" class="hl-chip big" id="fNew" aria-pressed="false">✨ NEW TO ME ONLY</button><button type="button" class="hl-chip big" id="fRange" aria-pressed="false" hidden>📏 IN MY RANGE ONLY</button></div>
  <details class="hl-dd"><summary>BAND <i id="sBand">ALL</i></summary><div class="hl-row" id="fBands"></div></details>
  <details class="hl-dd"><summary>MODE <i id="sMode">ALL</i></summary><div class="hl-row" id="fModes"></div></details>
+ <details class="hl-dd"><summary>HIDE COUNTRIES <i id="sCty">NONE</i></summary><div class="hl-row" id="fCty"></div><p class="hl-src" style="margin:4px 0 0">Tap a country to hide its spots (tap again to bring them back). Only countries on the air right now are listed.</p></details>
  <details class="hl-dd"><summary>WHERE <i id="sWhere">EVERYWHERE</i></summary><div class="hl-row" id="fWhere"></div><label class="hl-lab">State <select id="fSt"><option value="">Any state</option></select></label></details>
- <div class="hl-row"><input type="search" id="fQ" placeholder="Search call, park, number, state…" aria-label="Search spots"><select id="fSort" aria-label="Sort"><option value="new">Newest first</option><option value="mine">New to me first</option><option value="freq">By frequency</option><option value="far">Closest first</option></select></div>
+ <div class="hl-row"><input type="search" id="fQ" placeholder="Search call, park, number, state…" aria-label="Search spots"><select id="fSort" aria-label="Sort"><option value="new">Newest first</option><option value="mine">New to me first</option><option value="freq">By frequency</option></select></div>
 </div>
+<div class="hl-active" id="hlActive" hidden></div>
 <a class="hl-nolog" id="hlNoLog" href="#hPota" hidden>⭐ <b>Load your hunted parks from POTA</b> so the new-to-you ones light up. Tap here ›</a>
 <div class="hl-row hl-viewbar"><span class="hl-count" id="hlCount"></span><span class="hl-vt" role="group" aria-label="View"><button type="button" class="hl-chip" data-view="cards">▦ CARDS</button><button type="button" class="hl-chip" data-view="table">☰ TABLE</button></span></div>
 <div class="hl-grid" id="hlSpots"><div class="hl-empty">Loading spots…</div></div>
 <p class="hl-src" id="hlSrc"></p>
 </div></section>
+</div>
 
 <section class="hl-sec" id="hlLog"><div class="hl-in">
 <p class="hl-k">YOUR CONTACTS</p><h2>📝 My hunting log</h2>
@@ -79,6 +83,7 @@
  <div class="hl-row"><label class="hl-chk"><input type="checkbox" id="hAdd"> Add to my list (don't replace it)</label></div>
  <p class="hl-msg" id="hMsg"></p>
  <div class="hl-progs" id="hProgs"></div>
+ <label class="hl-chk"><input type="checkbox" id="hNotify"> When a new-to-you park comes on (with 🔔 ALERT on), also pop up a phone/computer notice while this page is open</label>
  <div class="hl-row"><button type="button" class="hl-btn line sm" id="hClear">CLEAR MY LIST</button></div>
 </div>
 <div class="hl-card">
@@ -93,14 +98,14 @@
 </div>
 </div>
 
-<p class="hl-k" style="margin-top:28px">STEP 2</p><h2>📏 Your normal range</h2>
+<div hidden>
 <div class="hl-card">
  <p class="hl-p">Far-away new parks are harder to work, so they can go to the small ticker at the very top instead of the big one. Set where you are and how far you usually hear.</p>
  <div class="hl-row"><button type="button" class="hl-btn green sm" id="hGps">📍 USE MY LOCATION</button><select id="hSt" aria-label="Home state"><option value="">…or pick your state</option></select><input id="hGrid" placeholder="…or grid (EM77)" maxlength="6" style="width:150px" aria-label="Grid square"></div>
  <p class="hl-msg" id="hHome"></p>
  <div class="hl-row" role="group" aria-label="Range" id="hRange"></div>
  <label class="hl-chk"><input type="checkbox" id="hFarMode" checked> Far-away new parks go to the small ticker at the top only (no alert)</label>
- <label class="hl-chk"><input type="checkbox" id="hNotify"> Also pop up a phone/computer notice while this page is open</label>
+ </div>
 </div>
 </div></section>
 
@@ -143,4 +148,4 @@
 </form></div></div>
 </main>
 @@FOOTER@@
-<script src="kpc-hunt.js?v=20261016h"></script>
+<script src="kpc-hunt.js?v=20261016i"></script>
