@@ -144,6 +144,7 @@ Voice.prototype.play = function (text) {
   this.cancel();
   if (!AC) return Promise.resolve();
   const tl = timeline(text, this.wpm, this.eff, this.jit), t0 = AC.currentTime + 0.06, g = this.env.gain;
+  try { window.__cwPlay = { t: Date.now(), wpm: this.wpm, ms: tl.length ? tl[tl.length - 1][1] * 1000 : 2000 }; } catch (e) {}   /* speed flames (kpc-cw-flames.js) */
   if (this.bug) { // a bug (semi-automatic key): machine dits, hand-made dahs that run long
     const u = 1.2 / this.wpm; let sh = 0;
     tl.marks = tl.marks.map(m => { const len = m[1] - m[0], s0 = m[0] + sh, l2 = len > 2 * u ? len * (1 + this.bug) : len; sh += l2 - len; return [s0, s0 + l2]; }); tl.total += sh;
@@ -675,6 +676,7 @@ function fistMeter() {
   const av = a => a.reduce((x, y) => x + y, 0) / a.length;
   const sd = a => { const v = av(a); return Math.sqrt(av(a.map(x => (x - v) * (x - v)))) / v; };
   const d = av(dits), h = av(dahs), ratio = h / d, wpm = Math.round(1200 / d);
+  try { window.__cwSend = { t: Date.now(), wpm }; } catch (e) {}
   const steady = Math.round(100 - Math.min(60, (sd(dits) + sd(dahs)) * 100));
   const rc = Math.abs(ratio - 3) < 0.45 ? 'good' : Math.abs(ratio - 3) < 0.9 ? 'ok' : 'bad';
   e.innerHTML = `<div><b>${wpm}</b><span>WPM (from your dits)</span></div><div class="${rc}"><b>${ratio.toFixed(1)} : 1</b><span>dah : dit (aim for 3)</span></div><div class="${steady > 80 ? 'good' : steady > 65 ? 'ok' : 'bad'}"><b>${steady}%</b><span>steadiness</span></div>` + fistDoctor(d, h, dits);
