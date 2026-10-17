@@ -106,7 +106,7 @@ body.field .page-jump-nav{display:none!important}
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261017g">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261017i">
 <header class="site-nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="KPC Home">
@@ -175,6 +175,7 @@ body.field .page-jump-nav{display:none!important}
   </div>
 </header>
 <main id="hl" data-keep-light data-theme="lodge" data-public="1">
+<nav class="hl-ptabs mem-only" aria-label="Hunters Lounge pages"><a href="kpc-hunt.html" data-pt="lounge">🎯 SPOTS &amp; LOG</a><a href="kpc-hunt-need.html" data-pt="need">📋 PARKS I NEED</a><a href="kpc-top50.html" data-pt="top50">🏆 TOP 50</a></nav>
 <div id="hlApp">
 <div class="hl-far" id="hlFar" hidden><span class="hl-far-k">FAR AWAY NEW ONES</span><div class="hl-far-run"><div class="hl-far-track" id="hlFarT"></div></div></div>
 
@@ -188,7 +189,7 @@ body.field .page-jump-nav{display:none!important}
  <div class="clk"><b id="hsUtc">--:--</b><span id="hsUtcL">UTC</span></div>
  <div><b id="hsAge">–</b><span>NEXT CHECK</span></div>
 </div>
-<div class="hl-acts"><a class="hl-btn gold mem-only" href="#hPota">⭐ GET MY PARKS FROM POTA</a><a class="hl-btn gold pub-only" href="#hlSetup">📄 LOAD MY WORKED PARKS</a><a class="hl-btn ghost" href="#hlNeed">🎯 PARKS I NEED</a><a class="hl-btn ghost mem-only" href="kpc-top50.html">🏆 TOP 50 BY STATE</a></div>
+<div class="hl-acts"><a class="hl-btn gold mem-only" href="#hPota">⭐ GET MY PARKS FROM POTA</a><a class="hl-btn gold pub-only" href="#hlSetup">📄 LOAD MY WORKED PARKS</a><a class="hl-btn ghost mem-only" href="kpc-hunt-need.html">🎯 PARKS I NEED</a><a class="hl-btn ghost pub-only" href="#hlNeed">🎯 PARKS I NEED</a><a class="hl-btn ghost mem-only" href="kpc-top50.html">🏆 TOP 50 BY STATE</a></div>
 <div class="hl-theme" role="group" aria-label="Look">LOOK: <button type="button" class="hl-chip" data-theme-pick="lodge">🔥 CABIN LODGE</button><button type="button" class="hl-chip" data-theme-pick="night">🌌 NIGHT SKY</button><button type="button" class="hl-chip" data-theme-pick="dark">🌑 DARK + GHOST FLAMES</button></div>
 </div></section>
 
@@ -201,7 +202,7 @@ body.field .page-jump-nav{display:none!important}
 
 <div class="hl-split">
 <section class="hl-dk mem-only" id="hlDk" aria-label="My hunting log">
- <div class="dk-hd"><b>📒 MY LOG</b><button type="button" class="dk-back" id="dkBack">↑ BACK TO SPOTS</button><span id="dkN"></span><input type="search" id="dkQ" placeholder="Search my log…" aria-label="Search my log"><a href="#hlLog" class="dk-files" title="Download for QRZ, backups, restore">⬇ FILES</a></div>
+ <div class="dk-hd"><b>📒 MY LOG</b><button type="button" class="dk-back" id="dkBack">↑ BACK TO SPOTS</button><span id="dkN"></span><input type="search" id="dkQ" placeholder="Search my log…" aria-label="Search my log"><a href="#lgModal" class="dk-files" title="Download for QRZ, backups, restore">⬇ FILES</a></div>
  <div class="dk-list" id="dkList"></div>
  <div class="dk-mapslot" id="dkMapSlot"></div>
  <form class="dk-dock" id="dkForm" autocomplete="off">
@@ -243,7 +244,9 @@ body.field .page-jump-nav{display:none!important}
 </div></section>
 </div>
 
-<section class="hl-sec" id="hlLog"><div class="hl-in">
+<section class="hl-sec hl-barsec" id="hlLog"><div class="hl-in">
+<a class="hl-bar" href="#lgModal">📒 <b>MY LOG FILES</b><span class="d">Download for QRZ · backup file · restore · my call &amp; grid</span><i>OPEN ▸</i></a>
+<div class="hl-modal" id="lgModal" hidden role="dialog" aria-label="My log files"><div class="hl-mbox"><button type="button" class="hl-mx" data-mclose aria-label="Close">✕</button>
 <p class="hl-k">YOUR CONTACTS</p><h2>📝 My hunting log</h2>
 <p class="hl-p">Tap any spot card (or <b>📝 LOG IT</b>) and the contact fills itself in: call, frequency, band, mode, park and the time in UTC. Fix anything, tap <b>SAVE</b>. Every save is kept on this device right away, twice over (and in a backup file on computers that allow it), and the park is marked worked.</p>
 <div class="hl-safe" id="lgSafe"></div>
@@ -251,6 +254,7 @@ body.field .page-jump-nav{display:none!important}
 <div class="hl-row"><label class="hl-lab">My call <input id="lgMy" autocomplete="off" autocapitalize="characters" placeholder="Your call" style="width:130px"></label><label class="hl-lab">My grid <input id="lgGrid" autocomplete="off" maxlength="6" placeholder="EM77" style="width:100px"></label><input type="search" id="lgQ" placeholder="Search my log…" aria-label="Search my log"></div>
 <div class="hl-logwrap"><div id="lgList"><div class="hl-empty">No contacts logged on this device yet.</div></div></div>
 <p class="hl-src"><b>Putting it in QRZ:</b> tap DOWNLOAD FOR QRZ, then open your <a href="https://logbook.qrz.com" target="_blank" rel="noopener">QRZ Logbook</a> and use its ADIF import to add the file. The same file works in LoTW (through TQSL) and most logging programs. Hunters don't upload to POTA: your credit comes from the activator's log. <b>•</b> = not downloaded yet.</p>
+</div></div>
 </div></section>
 
 
@@ -263,7 +267,9 @@ body.field .page-jump-nav{display:none!important}
 <div class="hl-list" id="nList"><div class="hl-empty">Pick a state.</div></div>
 </div></section>
 
-<section class="hl-sec" id="hlSetup"><div class="hl-in">
+<section class="hl-sec hl-barsec" id="hlSetup"><div class="hl-in">
+<a class="hl-bar" href="#suModal"><span class="mem-only">⭐ <b>GET MY PARKS FROM POTA</b></span><span class="pub-only">📄 <b>LOAD MY WORKED PARKS</b></span><span class="d">Load your log so the new-to-you parks light up · alerts</span><i>OPEN ▸</i></a>
+<div class="hl-modal" id="suModal" hidden role="dialog" aria-label="Get my parks"><div class="hl-mbox"><button type="button" class="hl-mx" data-mclose aria-label="Close">✕</button>
 <p class="hl-k">STEP 1</p><h2>📥 Your log</h2>
 <div class="hl-two">
 <div class="hl-card">
@@ -321,6 +327,7 @@ body.field .page-jump-nav{display:none!important}
  <label class="hl-chk"><input type="checkbox" id="hFarMode" checked> Far-away new parks go to the small ticker at the top only (no alert)</label>
  </div>
 </div>
+</div></div>
 </div></section>
 
 </div>
@@ -349,7 +356,7 @@ body.field .page-jump-nav{display:none!important}
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-hunt.js?v=20261017f"></script>
+<script src="kpc-hunt.js?v=20261017g"></script>
 <script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');

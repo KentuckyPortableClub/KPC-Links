@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
 <script src="kpc-theme.js?v=20261016z"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Top 50 by State | KPC</title>
 <!-- KPC icons & share preview -->
@@ -175,6 +176,21 @@ body.field .page-jump-nav{display:none!important}
   </div>
 </header>
 <main class="kb" id="t50">
+<nav class="hl-ptabs" aria-label="Hunters Lounge pages" data-keep-light><a href="kpc-hunt.html">🎯 SPOTS &amp; LOG</a><a href="kpc-hunt-need.html">📋 PARKS I NEED</a><a href="kpc-top50.html" aria-current="page">🏆 TOP 50</a></nav>
+<style id="t50-lodge">
+/* Oct 17 (Brandon): the Hunters Lounge cabin-lodge look carries over, with the page tabs at the top */
+html:has(main#t50){background:#1a100a!important}
+html:has(main#t50) body{background:transparent!important}
+main#t50{position:relative;isolation:isolate}
+main#t50::before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,11,5,.35),rgba(20,11,5,.75)),#1a100a url('bg-lodge.jpg') center/cover no-repeat}
+@media(max-width:700px){main#t50::before{background-image:linear-gradient(180deg,rgba(20,11,5,.35),rgba(20,11,5,.75)),url('bg-lodge-mobile.jpg')}}
+main#t50 .kb-hero{--pic:url('hero-lodge.jpg')!important;--picm:url('hero-lodge.jpg')!important}
+main#t50 .hl-ptabs{display:flex;justify-content:center;gap:4px;width:max-content;max-width:calc(100% - 20px);margin:10px auto 8px;padding:4px;border-radius:999px;background:rgba(10,7,4,.85);border:1px solid rgba(227,162,74,.38);box-shadow:0 6px 20px rgba(0,0,0,.45);overflow-x:auto;scrollbar-width:none;position:relative;z-index:5}
+main#t50 .hl-ptabs a{flex:0 0 auto;padding:8px 14px;border-radius:999px;font:900 12px Arial;letter-spacing:1.1px;color:#c6a988;text-decoration:none;white-space:nowrap}
+main#t50 .hl-ptabs a:hover{color:#f6e9d6;background:rgba(255,255,255,.06)}
+main#t50 .hl-ptabs a[aria-current="page"]{background:linear-gradient(180deg,#f6d58a,#d5a63a);color:#2a1a05!important}
+@media(max-width:420px){main#t50 .hl-ptabs a{padding:7px 10px;font-size:11px;letter-spacing:.6px}}
+</style>
 <section class="kb-hero" style="--pic:url('hero-lake-camp.jpg');--picm:url('hero-lake-camp-mobile.jpg')"><div class="kb-hero-in">
 <p class="kb-eyebrow">KPC MEMBERS ROOM • POTA LEADERS BY STATE</p>
 <h1>TOP <span>50</span></h1>
