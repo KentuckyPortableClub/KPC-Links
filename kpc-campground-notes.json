@@ -1,4 +1,50 @@
 {
- "updated": "2026-10-14",
- "notes": []
+ "updated": "2026-10-17",
+ "notes": [
+  {
+   "id": "ea0ca6025b59",
+   "place": "otter-creek-ora-campground",
+   "call": "K4ZSR",
+   "rating": 5,
+   "text": "Great place to camp, the host is fantastic. Good rates, large tent sites, plenty of room for antennas. The RV spots are tight - not the best for antennas. But the park has other places to operate from.",
+   "site": "D19; C14; C",
+   "stayed": "10/10/2026",
+   "date": "Oct 2026",
+   "photos": [
+    "photos/campgrounds/ea0ca6025b59-1.jpg",
+    "photos/campgrounds/ea0ca6025b59-2.jpg",
+    "photos/campgrounds/ea0ca6025b59-3.jpg"
+   ],
+   "facts": [
+    [
+     "Restrooms",
+     "Flush"
+    ],
+    [
+     "Showers",
+     "Hot"
+    ],
+    [
+     "Cell signal",
+     "Decent (Verizon and Mint)"
+    ],
+    [
+     "RF noise",
+     "Some"
+    ],
+    [
+     "Room for antennas",
+     "Plenty of trees and space"
+    ],
+    [
+     "Shade",
+     "Lots"
+    ],
+    [
+     "Amenities",
+     "Dump station, Drinking water"
+    ]
+   ]
+  }
+ ]
 }
