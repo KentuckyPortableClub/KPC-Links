@@ -692,3 +692,6 @@ main#lg .f8 label{margin:0}
 .lg-dchips .dc.on{background:#1f7a46;color:#eafff2}
 .lg-ap{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}.lg-ap code{flex:1 1 220px;padding:8px 10px;border-radius:8px;background:#05070a;color:#7dffb1;font:700 13px monospace;word-break:break-all}
 .f8-mic{margin:0 0 8px;padding:8px 10px;border-radius:8px;background:rgba(240,201,107,.1);color:#e2d2ae;font-size:12.5px}main#lg .f8-mic[hidden]{display:none}
+.f8-l.park{box-shadow:inset 5px 0 0 #1f9d55}.f8-l.park:not(.cq):not(.cqp):not(.me){background:#d9f7e6}
+.f8-l .ref{padding:0 5px;border-radius:5px;background:#1f9d55;color:#fff!important;font-size:11px}
+.f8-pf{float:right;margin:-2px 0 0;padding:2px 9px;border-radius:999px;border:1px solid #2f6f4a;background:#0f2a1b;color:#9ff0c2;font:900 10px Arial;letter-spacing:.6px;cursor:pointer}.f8-pf.on{background:#1f9d55;color:#fff}

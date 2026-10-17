@@ -75,7 +75,7 @@
     catch (e) {} finally { try { reader.releaseLock(); } catch (e) {} }
   }
   async function connect(ask) {
-    if (!('serial' in navigator)) { say('This browser can\'t talk to a radio. Use Chrome or Edge on a computer.', false); return false; }
+    if (!('serial' in navigator)) { say('This browser can\'t talk to a radio. Use Chrome or Edge on a computer, or Chrome on an Android phone (newer versions, with a USB-C cable). iPhones can\'t do this yet.', false); return false; }
     if (port && writer) return true;
     try {
       const ps = await navigator.serial.getPorts(); // a radio this browser was allowed before (no question asked)

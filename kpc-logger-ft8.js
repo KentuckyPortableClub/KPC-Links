@@ -43,7 +43,7 @@
   <div class="f8-startbox" id="f8StartBox"><button type="button" class="f8-go" id="f8Start">🎧 START LISTENING</button><span>Plug your radio's audio into this phone or computer (USB sound card / Digirig / the radio's USB), then press START. The browser asks to use the "microphone": pick the radio's audio.</span></div>
   <div class="f8-wfw"><canvas id="f8Wf" height="150"></canvas><canvas id="f8Scale" height="18"></canvas></div>
   <div class="f8-lists">
-    <section><h3>BAND ACTIVITY <small id="f8Cnt"></small></h3><div class="f8-list" id="f8Band1"></div></section>
+    <section><h3>BAND ACTIVITY <small id="f8Cnt"></small><button type="button" class="f8-pf" id="f8PotaF" title="Show only park activators (POTA, WWFF, SOTA)">🌲 PARKS ONLY</button></h3><div class="f8-list" id="f8Band1"></div></section>
     <section><h3>RX FREQUENCY · MY QSO <small id="f8RxHz"></small></h3><div class="f8-list" id="f8Rx"></div></section>
   </div>
   <div class="f8-ctl">
@@ -236,11 +236,13 @@
     drawBand(); drawRx(); seq(sl, D);
   }
   function clockHint() { if (dtAvg.length < 3) return; const m = dtAvg.slice().sort((a, b) => a - b)[Math.floor(dtAvg.length / 2)]; if (Math.abs(m) > 1) note(`⏱ Most stations show DT ${m > 0 ? '+' : ''}${m.toFixed(1)} s: your clock is about ${Math.abs(m).toFixed(1)} s ${m > 0 ? 'slow' : 'fast'}. Turn on "set time automatically" or FT8 contacts may fail.`, 8000, 'clk'); }
-  const spotRef = call => { const L = LG(); if (!L) return null; const s = (L.spots() || []).find(x => x.activator === call && x.reference && /FT8|FT4/i.test(x.mode || '')); return s || null; };
+  /* is this station a park activator right now? (on the POTA / WWFF / SOTA spot lists; FT8/FT4 spots first) — Brandon Oct 17: 'highlight other pota stations' */
+  const spotRef = call => { const L = LG(); if (!L || !call) return null; const A = (L.spots() || []).filter(x => x.activator === call && x.reference); return A.find(x => /FT8|FT4/i.test(x.mode || '')) || A[0] || null; };
   function lineHtml(x) {
     if (x.sep != null) return `<div class="f8-sep">${utc(x.t, true).replace(/(\d\d)(\d\d)(\d\d)/, '$1:$2:$3')} ── ${x.mode}</div>`;
-    const L = LG(), wk = L && x.fr && L.worked(x.fr), sp = x.cq ? spotRef(x.fr) : null, cls = x.tx ? 'tx' : x.me ? 'me' : x.cq ? (x.cqw ? 'cqp' : 'cq') : '';
-    return `<div class="f8-l ${cls}${wk ? ' wk' : ''}" data-l="${x.id || ''}" role="button" tabindex="0"><span class="tm">${x.tx ? utc(x.t, true) : utc(x.t, true)}</span><span class="db">${x.tx ? 'Tx' : fmtDb(x.db)}</span><span class="dt">${x.tx ? '' : (x.dt >= 0 ? ' ' : '') + x.dt.toFixed(1)}</span><span class="hz">${x.hz}</span><span class="tx">${x.tx ? '~' : '~'}</span><span class="m">${esc(x.text)}${sp ? ` <i class="ref">🌲 ${esc(sp.reference)}</i>` : ''}${wk ? ' <i class="wkd">✓</i>' : ''}</span></div>`;
+    const L = LG(), wk = L && x.fr && L.worked(x.fr), sp = x.tx ? null : spotRef(x.fr) || (x.cq ? null : spotRef(x.to)), park = sp || /^(POTA|SOTA|WWFF)$/.test(x.cqw), cls = x.tx ? 'tx' : x.me ? 'me' : x.cq ? (x.cqw ? 'cqp' : 'cq') : '';
+    if (S.potaOnly && !park && !x.tx && !x.me) return '';
+    return `<div class="f8-l ${cls}${wk ? ' wk' : ''}${park ? ' park' : ''}" data-l="${x.id || ''}" role="button" tabindex="0"><span class="tm">${x.tx ? utc(x.t, true) : utc(x.t, true)}</span><span class="db">${x.tx ? 'Tx' : fmtDb(x.db)}</span><span class="dt">${x.tx ? '' : (x.dt >= 0 ? ' ' : '') + x.dt.toFixed(1)}</span><span class="hz">${x.hz}</span><span class="tx">${x.tx ? '~' : '~'}</span><span class="m">${esc(x.text)}${sp ? ` <i class="ref">${sp.prog === 'SOTA' ? '⛰' : sp.prog === 'WWFF' ? '🌳' : '🌲'} ${esc(sp.reference)}${sp.activator !== x.fr ? ' (' + esc(sp.activator) + ')' : ''}</i>` : ''}${wk ? ' <i class="wkd">✓</i>' : ''}</span></div>`;
   }
   let lid = 0; const byId = {};
   function idOf(x) { if (!x.id) { x.id = ++lid; byId[x.id] = x; } return x.id; }
@@ -384,12 +386,13 @@
   Object.keys(CK).forEach(id => { $(id).checked = !!S[CK[id]]; $(id).onchange = () => { S[CK[id]] = $(id).checked; saveS(); }; });
   $('f8Pwr').value = S.lvl; $('f8Pwr').oninput = () => { S.lvl = +$('f8Pwr').value; saveS(); };
   $('f8Ptt').value = S.ptt; $('f8Ptt').onchange = () => { S.ptt = $('f8Ptt').value; saveS(); if (S.ptt !== 'vox' && window.KPCCat && !KPCCat.connected()) $('f8CatT').textContent = 'Connect the radio for this PTT choice.'; };
+  const pf = () => { $('f8PotaF').classList.toggle('on', !!S.potaOnly); }; pf(); $('f8PotaF').onclick = () => { S.potaOnly = !S.potaOnly; saveS(); pf(); drawBand(); };
   $('f8Wd').value = String(S.wd || 2); $('f8Wd').onchange = () => { S.wd = +$('f8Wd').value; saveS(); };
   /* no interface: the phone's own mic + speaker held next to the radio (Brandon Oct 17) */
   $('f8Mic').onclick = async () => { S.inDev = ''; S.outDev = ''; S.ptt = 'vox'; S.lvl = Math.max(S.lvl, 0.8); saveS(); $('f8Ptt').value = 'vox'; $('f8Pwr').value = S.lvl; $('f8MicT').hidden = false;
     if (RUN) { stopAudio(); } await startAudio(); devices(); note('🎤 Using this phone\'s mic and speaker. Radio VOX on, phone next to the radio.', 4000); };
   $('f8Cqw').value = S.cqw; $('f8Cqw').onchange = () => { S.cqw = $('f8Cqw').value; saveS(); gen(); };
-  $('f8Cat').onclick = async () => { if (!window.KPCCat || !KPCCat.supported()) { $('f8CatT').textContent = 'Radio control needs Chrome or Edge on a computer. Use VOX on phones.'; return; }
+  $('f8Cat').onclick = async () => { if (!window.KPCCat || !KPCCat.supported()) { $('f8CatT').textContent = 'Radio control needs Chrome or Edge on a computer, or Chrome on a newer Android phone with a USB-C cable. On iPhone use VOX.'; return; }
     KPCCat.set({ on: true }); const ok = await KPCCat.connect(true); $('f8CatT').textContent = ok ? '✓ Radio connected. Pick the radio type on the Lounge CAT & QRZ tab if it doesn\'t follow.' : 'Not connected.'; if (ok) radioTune(); };
   if (window.KPCCat) { KPCCat.onStatus((t) => { if (!root.hidden) $('f8CatT').textContent = t; }); if (!KPCCat.supported()) $('f8Cat').disabled = true; }
   hzBoxes(); gen(); nextTx(6); drawScale();
