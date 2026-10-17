@@ -87,6 +87,7 @@
     return `<div class="ks-g${g.live ? ' live' : ''}" data-sp="${g.sp}"><div class="ks-h"><span>${SP[g.sp].icon} ${esc(SP[g.sp].name)}</span><span>${statusTxt(g)}</span></div>` +
       g.side.map(row).join('') +
       (g.tv ? '<div class="ks-tv">📺 ' + esc(g.tv) + '</div>' : '') + `<div class="ks-f"><span class="ks-b">${L ? `<a href="${VARSITY}" target="_blank" rel="noopener" title="Live radio for ${esc(home.ky.n)} streams in the free Varsity Network app (pick ${esc(home.ky.n)} in the app)">🎧 LISTEN</a><a href="${esc(L)}" target="_blank" rel="noopener" title="${esc(home.ky.n)} radio stations (over the air)">📻 STATIONS</a>` : ''}` +
+      (home && home.ky && home.ky.radio ? `<a href="https://tunein.com/search/?query=${encodeURIComponent(home.ky.radio)}" target="_blank" rel="noopener" title="No app: look for the team's network or a station that carries it on TuneIn (some games are blocked online)">🌐 TUNEIN</a>` : '') +
       (L2 ? `<a href="${esc(L2)}" target="_blank" rel="noopener" title="${esc(other.ky.n)} radio stations">📻 ${esc(other.ky.k)}</a>` : '') +
       `<a href="${esc(g.url)}" target="_blank" rel="noopener" title="Play-by-play on ESPN">ESPN ↗</a></span></div></div>`;
   }
