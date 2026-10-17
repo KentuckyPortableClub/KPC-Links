@@ -69,3 +69,20 @@ body.kd-wrap .pl-ihead,body.kd-wrap #trailfinder>h2{--kw-pic:url('hero-mast.jpg'
 body.kd-wrap #finder-about>h2{--kw-pic:url('hero-map.jpg')}
 body.kd-wrap.kd-dark section.panel[aria-label="Cross-program planning"]>h2{--kw-pic:url('hero-solar.jpg')}
 @media(max-width:600px){body.kd-wrap .kd-h,body.kd-wrap .kd-brand,body.kd-wrap .pl-thead,body.kd-wrap .pl-ihead,body.kd-wrap.kd-dark .panel>h2,body.kd-wrap.kd-dark .resultshead{padding:11px 13px}}
+
+/* Oct 17 (Brandon: 'the areas that are not used be wrapped with an image'): the empty space INSIDE each box shows a soft,
+   blurred club picture (light: cream veil over it; dark mode / Park Commander: dark veil). Inputs, lists and the map keep their own colours. */
+body.kd-wrap .panel:not(.dark),body.kd-wrap .kd-card{background-image:linear-gradient(rgba(255,250,240,.7),rgba(255,250,240,.8)),var(--kw-bg,url('bg-lake-camp.jpg'))!important;background-size:cover!important;background-position:center!important}
+html[data-theme=dark] body.kd-wrap .panel,html[data-theme=dark] body.kd-wrap .kd-card,body.kd-wrap .panel.dark,body.kd-wrap.kd-dark .panel{background-image:linear-gradient(rgba(12,10,7,.55),rgba(12,10,7,.72)),var(--kw-bg,url('bg-lake-camp.jpg'))!important;background-size:cover!important;background-position:center!important}
+body.kd-wrap #plan,body.kd-wrap #finder-search{--kw-bg:url('bg-lake-camp.jpg')}
+body.kd-wrap .kd-card:has(.kd-brand),body.kd-wrap #finder-map,body.kd-wrap #finder-about{--kw-bg:url('bg-map.jpg')}
+body.kd-wrap #tripPanel,body.kd-wrap #finder-results{--kw-bg:url('bg-river-camp.jpg')}
+body.kd-wrap #parkInfo,body.kd-wrap.kd-dark section.panel[aria-label="Cross-program planning"]{--kw-bg:url('bg-solar.jpg')}
+body.kd-wrap .kd-card:has(#list),body.kd-wrap #trailfinder{--kw-bg:url('bg-lodge.jpg')}
+@media(max-width:700px){
+ body.kd-wrap #plan,body.kd-wrap #finder-search{--kw-bg:url('bg-lake-camp-mobile.jpg')}
+ body.kd-wrap .kd-card:has(.kd-brand),body.kd-wrap #finder-map,body.kd-wrap #finder-about{--kw-bg:url('bg-map-mobile.jpg')}
+ body.kd-wrap #tripPanel,body.kd-wrap #finder-results{--kw-bg:url('bg-river-camp-mobile.jpg')}
+ body.kd-wrap #parkInfo,body.kd-wrap.kd-dark section.panel[aria-label="Cross-program planning"]{--kw-bg:url('bg-solar-mobile.jpg')}
+ body.kd-wrap .kd-card:has(#list),body.kd-wrap #trailfinder{--kw-bg:url('bg-lodge-mobile.jpg')}
+}

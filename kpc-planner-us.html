@@ -40,6 +40,16 @@ body.usp .usp-two>.usp-card:first-child>.usp-h{--kw-pic:url('hero-river-camp.jpg
 body.usp .usp-two>.usp-card:last-child>.usp-h{--kw-pic:url('hero-solar.jpg')}
 body.usp .usp-about>.usp-h{--kw-pic:url('hero-ky-flag.jpg')}
 @media(max-width:600px){body.usp .usp-card>.usp-h,body.usp .usp-maphead{padding:11px 13px}}
+/* the empty space inside each box shows a soft, blurred club picture (cream veil; dark veil in dark mode) */
+body.usp .usp-card{background-image:linear-gradient(rgba(255,250,240,.7),rgba(255,250,240,.8)),var(--kw-bg,url('bg-map.jpg'))!important;background-size:cover!important;background-position:center!important}
+html[data-theme=dark] body.usp .usp-card{background-image:linear-gradient(rgba(12,10,7,.55),rgba(12,10,7,.72)),var(--kw-bg,url('bg-map.jpg'))!important}
+body.usp #plan{--kw-bg:url('bg-map.jpg')}
+body.usp .usp-card:nth-of-type(2){--kw-bg:url('bg-lake-camp.jpg')}
+body.usp .usp-card:has(.usp-maphead){--kw-bg:url('bg-solar.jpg')}
+body.usp .usp-two>.usp-card:first-child{--kw-bg:url('bg-river-camp.jpg')}
+body.usp .usp-two>.usp-card:last-child{--kw-bg:url('bg-lodge.jpg')}
+body.usp .usp-about{--kw-bg:url('bg-night.jpg')}
+@media(max-width:700px){body.usp .usp-card{--kw-bg:url('bg-map-mobile.jpg')}body.usp .usp-two>.usp-card:first-child{--kw-bg:url('bg-river-camp-mobile.jpg')}body.usp .usp-two>.usp-card:last-child{--kw-bg:url('bg-lodge-mobile.jpg')}body.usp .usp-card:has(.usp-maphead){--kw-bg:url('bg-solar-mobile.jpg')}}
 </style>
 </head>
 <body class="usp">
