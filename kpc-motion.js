@@ -73,7 +73,27 @@
     const host = document.querySelector('.kb-hero .kb-actions') || document.querySelector('.kb-hero-in'); if (!host) return;
     const s = document.createElement('script'); s.src = 'kpc-ambient.js?v=20261017a'; s.onload = () => window.KPCAmbient && KPCAmbient.button(host, 'creek'); document.head.appendChild(s);
   }
-  const go = () => { [heroes, logo, cards, sounds].forEach(f => { try { f(); } catch (e) {} }); };
+  /* still pictures behind the page (Oct 17, Brandon: yes): the page's own picture, blurred, stays put while the sections scroll over it */
+  const FIX = { 'kpc-pota-room.html': 'statepark', 'kpc-wwff-room.html': 'wildlife', 'kpc-sota-room.html': 'summit', 'kpc-map-room.html': 'map',
+    'kpc-kids.html': 'kids', 'kpc-campgrounds.html': 'campsite', 'kpc-park-notes.html': 'journal', 'kpc-park-notes-us.html': 'journal' };
+  function still() {
+    const k = FIX[P]; if (!k) return;
+    const st = document.createElement('style');
+    st.textContent = `html.kpm-fix{background:#0b0b0b!important}html.kpm-fix body{background:transparent!important}
+html.kpm-fix body::before{content:"";position:fixed;inset:0;z-index:-1;background:#0b0b0b url('bg-${k}.jpg') center/cover no-repeat}
+@media(max-width:700px){html.kpm-fix body::before{background-image:url('bg-${k}-mobile.jpg')}}
+html.kpm-fix main{background:transparent!important}@media print{html.kpm-fix body::before{display:none}}`;
+    document.head.appendChild(st); H.classList.add('kpm-fix');
+    const see = () => document.querySelectorAll('main > section, main > div, body > section').forEach(el => {
+      if (el.closest('header,footer') || el.matches('.kb-hero,.hero,#kpc-cx,#kzFx,.kzfx')) return;
+      const cs = getComputedStyle(el); if (/sticky|fixed/.test(cs.position)) return;
+      const c = cs.backgroundColor, m = c.match(/rgba?\(([^)]+)\)/); if (!m) return;
+      const v = m[1].split(/[ ,/]+/).map(Number); if (v.length > 3 && v[3] < .3) return;
+      el.style.setProperty('background-color', `rgba(${v[0]},${v[1]},${v[2]},.9)`, 'important');
+    });
+    see(); setTimeout(see, 900); new MutationObserver(() => setTimeout(see, 700)).observe(H, { attributes: true, attributeFilter: ['data-theme'] });
+  }
+  const go = () => { [still, heroes, logo, cards, sounds].forEach(f => { try { f(); } catch (e) {} }); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
   addEventListener('load', () => { try { heroes(); } catch (e) {} });
 })();
