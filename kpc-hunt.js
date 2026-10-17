@@ -1726,6 +1726,7 @@
     },
     band: bandOf, toast: m => toast(m),
     worked: c => { const b = base(c); return Q.q.some(q => base(q.call) === b); },
+    newPark: ref => !!(ref && WK.size && !WK.has(ref)),
     qs: () => Q.q.map(q => ({ st: q.st, g: q.tg || '' })),
     freq: () => { const v = parseFloat(String(($('dFreq') || {}).value || '').replace(',', '.')); return !v ? 0 : v < 1000 ? v * 1000 : v; },
     spots: () => SP.map(s => ({ activator: s.call, reference: s.ref || '', mode: s.mode, prog: s.p })),
