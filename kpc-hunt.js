@@ -333,7 +333,118 @@
     if ($('rtN')) $('rtN').textContent = L.length;
     $('hlCount').textContent = `${L.length} spot${L.length === 1 ? '' : 's'} shown${hid ? ` · ${hid} hidden by your filters` : ''}${hasLog() ? '' : ' · load your log to see which are new to you'}`;
     $('hsLive').textContent = SP.length; $('hlSrc').textContent = src; $('hlNoLog').hidden = hasLog(); if ($('hlNoLogP')) $('hlNoLogP').hidden = hasLog();
+    try { winDraw(); } catch (e) { console.error('winDraw', e); }
   }
+  /* ---------------- extra spot windows (Brandon Oct 17): two more spot lists on computers, each with its own
+     filters, on/off, and you can drag them anywhere and pull the corner to any size. Members page, 1100 px and wider. */
+  const WDEF = [
+    { on: true, name: 'CW SPOTS', p: ['POTA', 'WWFF', 'SOTA'], bands: [], modes: ['CW'], where: 'all', st: '', q: '', nw: false, hide: false, qrt: true, bell: false },
+    { on: true, name: 'SOTA + WWFF', p: ['SOTA', 'WWFF'], bands: [], modes: [], where: 'all', st: '', q: '', nw: false, hide: false, qrt: true, bell: false }];
+  let WIN = get('kpcHuntWin', null);
+  if (!Array.isArray(WIN) || WIN.length !== 2) WIN = WDEF.map(w => Object.assign({}, w));
+  WIN.forEach((w, i) => { for (const k in WDEF[i]) if (!(k in w)) w[k] = WDEF[i][k]; });
+  const winSave = () => put('kpcHuntWin', WIN);
+  const WSEEN = [null, null];
+  const winOn = () => DESKON() && !!document.querySelector('.hl-split');
+  function winPass(w, s) {
+    const q = String(w.q || '').toUpperCase().split(/[,;]+/).map(x => x.trim()).filter(Boolean);
+    return w.p.includes(s.p) && (!w.bands.length || w.bands.includes(bandOf(s.khz))) && (!w.modes.length || w.modes.includes(modeOf(s.mode)))
+      && (!w.qrt || !isQrt(s)) && (!w.nw || isNew(s)) && (!w.hide || !WK.has(s.ref))
+      && (w.where === 'all' || (w.where === 'us' && s.us) || (w.where === 'usca' && (s.us || s.ca))) && (!w.st || s.st === w.st)
+      && (!q.length || q.some(x => [s.call, s.ref, s.name, s.st, ST[s.st] || '', s.loc, s.com].join(' ').toUpperCase().includes(x)));
+  }
+  function winBox(i) {
+    let el = $('hlWin' + i); if (el) return el;
+    el = document.createElement('section'); el.className = 'hl-win'; el.id = 'hlWin' + i; el.dataset.i = i;
+    el.innerHTML = `<header class="hw-h" title="Drag me anywhere"><span class="hw-grip">⠿</span><b class="hw-n"></b><i class="hw-c"></i><button type="button" class="hw-b" data-wbell title="Chime when a new spot shows up in this list">🔕</button><button type="button" class="hw-b" data-wf title="Filters for this list">⚙</button><button type="button" class="hw-b" data-wx title="Turn this list off">✕</button></header>
+<div class="hw-f" hidden></div><div class="hw-l"></div><span class="hw-rs" title="Drag to resize">◢</span>`;
+    $('hl').appendChild(el);
+    winDrag(el, i); return el;
+  }
+  function winPlace(el, i) {
+    const w = WIN[i], dk = $('hlDk'); if (!dk) return;
+    if (w.x == null || w.auto) {   /* until you drag it: side by side on the screen, under the log box (which stays put while you scroll) */
+      const d = dk.getBoundingClientRect(), top = (parseFloat(getComputedStyle(dk).top) || 150) + dk.offsetHeight + 12, half = Math.floor((d.width - 12) / 2);
+      w.x = Math.round(d.left + i * (half + 12)); w.y = Math.round(top); if (!w.mw) { w.w = half; w.h = Math.max(220, innerHeight - top - 16); } w.auto = true;
+    }
+    w.x = Math.max(0, Math.min(innerWidth - 120, w.x)); w.y = Math.max(60, Math.min(innerHeight - 60, w.y));
+    Object.assign(el.style, { left: w.x + 'px', top: w.y + 'px', width: w.w + 'px', height: Math.min(w.h, innerHeight - w.y - 6) + 'px' });
+  }
+  function winAway() {   /* the windows only show while the spots are on the screen (not over the picture at the top) */
+    const sp = document.querySelector('.hl-split'); if (!sp) return; const r = sp.getBoundingClientRect(), away = r.top > innerHeight * .55 || r.bottom < 260;
+    document.querySelectorAll('.hl-win').forEach(el => el.classList.toggle('away', away));
+  }
+  addEventListener('scroll', () => { if (!winAway.q) winAway.q = requestAnimationFrame(() => { winAway.q = 0; winAway(); }); }, { passive: true });
+  function winRoom() {}
+  function winDrag(el, i) {
+    const h = el.querySelector('.hw-h'), rs = el.querySelector('.hw-rs');
+    const go = (e, mode) => {
+      if (mode === 'move' && e.target.closest('button')) return;
+      e.preventDefault(); const w = WIN[i], sx = e.clientX, sy = e.clientY, x0 = w.x, y0 = w.y, w0 = w.w, h0 = parseFloat(el.style.height) || w.h;
+      el.classList.add('drag'); el.style.zIndex = 60 + (++winZ);
+      const mv = ev => {
+        const dx = ev.clientX - sx, dy = ev.clientY - sy;
+        if (mode === 'move') { w.auto = false; w.x = Math.max(0, Math.min(innerWidth - 120, x0 + dx)); w.y = Math.max(60, Math.min(innerHeight - 50, y0 + dy)); }
+        else { w.mw = 1; w.w = Math.max(240, Math.min(innerWidth - w.x - 4, w0 + dx)); w.h = Math.max(160, Math.min(innerHeight - w.y - 6, h0 + dy)); }
+        Object.assign(el.style, { left: w.x + 'px', top: w.y + 'px', width: w.w + 'px', height: Math.min(w.h, innerHeight - w.y - 6) + 'px' });
+      };
+      const up = () => { removeEventListener('pointermove', mv); removeEventListener('pointerup', up); el.classList.remove('drag'); winSave(); };
+      addEventListener('pointermove', mv); addEventListener('pointerup', up);
+    };
+    h.addEventListener('pointerdown', e => go(e, 'move')); rs.addEventListener('pointerdown', e => go(e, 'size'));
+  }
+  let winZ = 0;
+  function winFilt(i) {
+    const w = WIN[i], c = (k, v, on, t) => `<button type="button" class="hl-chip" data-wk-${k}="${v}" aria-pressed="${on}">${t || v}</button>`;
+    return `<label class="hw-lab">NAME <input data-wname value="${esc(w.name)}" maxlength="24"></label>
+<div class="hw-g"><span>SHOW</span>${Object.keys(PL).map(p => c('p', p, w.p.includes(p), PL[p])).join('')}</div>
+<div class="hw-g"><span>BAND</span>${BANDS.map(b => b[0]).concat(['OTHER']).map(b => c('band', b, w.bands.includes(b), b.toUpperCase())).join('')}</div>
+<div class="hw-g"><span>MODE</span>${['PHONE', 'CW', 'DIGITAL', 'OTHER'].map(m => c('mode', m, w.modes.includes(m))).join('')}</div>
+<div class="hw-g"><span>WHERE</span>${WHERE.map(x => c('where', x[0], w.where === x[0], x[1])).join('')}<select data-wst><option value="">Any state</option>${stOpts(w.st)}</select></div>
+<div class="hw-g"><span>ONLY</span>${c('flag', 'nw', w.nw, '✨ NEW TO ME')}${c('flag', 'hide', w.hide, 'HIDE PARKS I’VE HUNTED')}${c('flag', 'qrt', w.qrt, 'HIDE QRT')}</div>
+<label class="hw-lab">WATCH FOR <input data-wq value="${esc(w.q)}" placeholder="calls, park numbers or words, with commas"></label>
+<div class="hw-g"><button type="button" class="hl-btn sm" data-wreset title="Filters, size and place back to how they started">↺ RESET THIS LIST</button><button type="button" class="hl-btn gold sm" data-wf>✓ DONE</button></div>`;
+  }
+  const wrow = s => { const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref);
+    return `<div class="hw-r p-${s.p}${n ? ' new' : ''}${w ? ' worked' : ''}" data-k="${esc(keyOf(s))}" title="Tap to log it"><span class="f">${(s.khz / 1000).toFixed(3)}</span><b>${esc(s.call)}</b><span class="m">${esc(s.mode || '')}</span><span class="r">${s.ref ? esc(s.ref) + ' ' : ''}<small>${esc(s.name || s.loc || '')}${s.st ? ' · ' + esc(s.st) : ''}</small></span>${n ? '<i class="hb new">NEW</i>' : ''}<span class="t">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</span></div>`; };
+  function winDraw() {
+    if (PUB) return;
+    const on = winOn();
+    WIN.forEach((w, i) => {
+      const t = $('hlWT' + i); if (t) { t.setAttribute('aria-pressed', w.on); t.textContent = (w.on ? '🪟 ' : '＋ ') + w.name; }
+      if (!on || !w.on) { const el = $('hlWin' + i); if (el) el.hidden = true; return; }
+      const el = winBox(i); el.hidden = false; winPlace(el, i);
+      const L = SP.filter(s => winPass(w, s)).sort((a, b) => (b.t || 0) - (a.t || 0));
+      el.querySelector('.hw-n').textContent = w.name; el.querySelector('.hw-c').textContent = L.length;
+      el.querySelector('[data-wbell]').textContent = w.bell ? '🔔' : '🔕';
+      const ks = new Set(L.map(keyOf)), fresh = WSEEN[i] ? L.filter(s => !WSEEN[i].has(keyOf(s))) : [];
+      el.querySelector('.hw-l').innerHTML = L.length ? L.slice(0, 200).map(wrow).join('') : `<div class="hw-e">${SP.length ? 'Nothing on the air matches this list right now.' : 'Waiting for spots…'}</div>`;
+      fresh.forEach(s => { const r = el.querySelector(`.hw-r[data-k="${CSS.escape(keyOf(s))}"]`); if (r) r.classList.add('fresh'); });
+      if (fresh.length && w.bell) chime();
+      WSEEN[i] = ks;
+    });
+    winAway();
+  }
+  document.addEventListener('click', e => {
+    const tg = e.target.closest('[data-wt]'); if (tg) { const w = WIN[+tg.dataset.wt]; w.on = !w.on; winSave(); winDraw(); return; }
+    const el = e.target.closest('.hl-win'); if (!el) return; const i = +el.dataset.i, w = WIN[i];
+    if (e.target.closest('[data-wx]')) { w.on = false; winSave(); winDraw(); toast(`${w.name} is off. Turn it back on with the 🪟 buttons over the spots.`); return; }
+    if (e.target.closest('[data-wbell]')) { w.bell = !w.bell; winSave(); if (w.bell) chime(); winDraw(); return; }
+    if (e.target.closest('[data-wreset]')) { WIN[i] = Object.assign({}, WDEF[i]); winSave(); el.querySelector('.hw-f').innerHTML = winFilt(i); winDraw(); return; }
+    if (e.target.closest('[data-wf]')) { const f = el.querySelector('.hw-f'); f.hidden = !f.hidden; if (!f.hidden) f.innerHTML = winFilt(i); return; }
+    const b = e.target.closest('.hw-f .hl-chip'); if (b) {
+      const d = b.dataset, tog = (a, v) => { const k = a.indexOf(v); if (k < 0) a.push(v); else a.splice(k, 1); };
+      if (d.wkP) tog(w.p, d.wkP); else if (d.wkBand) tog(w.bands, d.wkBand); else if (d.wkMode) tog(w.modes, d.wkMode); else if (d.wkWhere) w.where = d.wkWhere; else if (d.wkFlag) w[d.wkFlag] = !w[d.wkFlag];
+      winSave(); el.querySelector('.hw-f').innerHTML = winFilt(i); winDraw(); return;
+    }
+    const r = e.target.closest('.hw-r'); if (r) { const s = SP.find(x => keyOf(x) === r.dataset.k); if (s) openSheet(s); }
+  });
+  document.addEventListener('input', e => {
+    const el = e.target.closest('.hl-win'); if (!el) return; const w = WIN[+el.dataset.i];
+    if (e.target.matches('[data-wname]')) w.name = e.target.value.trim() || 'MY LIST'; else if (e.target.matches('[data-wq]')) w.q = e.target.value; else if (e.target.matches('[data-wst]')) w.st = e.target.value; else return;
+    winSave(); winDraw();
+  });
+  addEventListener('resize', () => { clearTimeout(winDraw.t); winDraw.t = setTimeout(winDraw, 200); });
   document.addEventListener('click', e => {
     const h = e.target.closest('[data-hc]'); if (!h) return;
     const c = base(h.dataset.hc); hideCall(c); const was = F.hc; F.hc = true; saveF(); chips(); draw();
