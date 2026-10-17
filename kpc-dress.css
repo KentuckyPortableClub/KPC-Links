@@ -46,3 +46,26 @@ body.kd.kd-dark .kynotice{background:rgba(28,27,22,.92);border-radius:12px;box-s
 body.kd.kd-dark .finder-jump a{background:rgba(28,27,22,.9);box-shadow:0 6px 16px rgba(0,0,0,.35)}
 body.kd.kd-dark #map{border-radius:12px;overflow:hidden}
 body.kd.kd-dark .kpc-disclaim>div{box-shadow:0 12px 30px rgba(0,0,0,.4)}
+
+/* Oct 17 (Brandon: 'wrap the images on some boxes… no effects or themes on the 3 major mapping tools… a little more touch'):
+   body.kd-wrap (Park Commander, KY Trip Planner; the US planner has the same in its own <style id="kpc-wrap-pics">):
+   each box's heading sits on a picture with a dark fade, gold edge and a soft glow on the box */
+body.kd-wrap .kd-h,body.kd-wrap .kd-brand,body.kd-wrap .pl-thead,body.kd-wrap .pl-ihead,body.kd-wrap.kd-dark .panel>h2,body.kd-wrap.kd-dark .resultshead{
+ position:relative;border-radius:12px;padding:13px 16px;margin-bottom:14px;border:1px solid rgba(240,201,107,.55);border-bottom:2px solid #d5a63a;
+ background:linear-gradient(90deg,rgba(10,7,4,.93),rgba(10,7,4,.62) 55%,rgba(10,7,4,.28)),var(--kw-pic,url('hero-lake-camp.jpg')) center 42%/cover no-repeat;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+body.kd-wrap .kd-h h2,body.kd-wrap.kd-dark .panel>h2,body.kd-wrap.kd-dark .resultshead h2{color:#fff!important;text-shadow:0 2px 10px #000}
+body.kd-wrap .kd-h small{color:#eadfc8!important}
+body.kd-wrap .kd-h .n{background:rgba(0,0,0,.55);box-shadow:0 0 12px rgba(240,180,80,.45)}
+body.kd-wrap .kd-brand{color:#f0c96b}body.kd-wrap .kd-brand b{color:#eadfc8}
+body.kd-wrap .pl-thead,body.kd-wrap .pl-ihead{color:#fff}
+body.kd-wrap.kd-dark .resultshead{margin:0 0 12px}
+body.kd-wrap.kd-dark .resultshead #count{color:#f0c96b}
+body.kd-wrap .panel:not(.dark),body.kd-wrap .kd-card,body.kd-wrap.kd-dark .panel{box-shadow:0 18px 44px rgba(0,0,0,.42),0 0 28px rgba(240,180,80,.12);border-color:rgba(240,201,107,.55)}
+/* a different picture for each box */
+body.kd-wrap #plan .kd-h,body.kd-wrap #finder-search>h2{--kw-pic:url('hero-lake-camp.jpg')}
+body.kd-wrap .kd-brand{--kw-pic:url('hero-map.jpg')}
+body.kd-wrap .pl-thead,body.kd-wrap #finder-results .resultshead{--kw-pic:url('hero-river-camp.jpg')}
+body.kd-wrap .pl-ihead,body.kd-wrap #trailfinder>h2{--kw-pic:url('hero-mast.jpg')}
+body.kd-wrap #finder-about>h2{--kw-pic:url('hero-map.jpg')}
+body.kd-wrap.kd-dark section.panel[aria-label="Cross-program planning"]>h2{--kw-pic:url('hero-solar.jpg')}
+@media(max-width:600px){body.kd-wrap .kd-h,body.kd-wrap .kd-brand,body.kd-wrap .pl-thead,body.kd-wrap .pl-ihead,body.kd-wrap.kd-dark .panel>h2,body.kd-wrap.kd-dark .resultshead{padding:11px 13px}}

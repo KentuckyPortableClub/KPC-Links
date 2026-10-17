@@ -33,6 +33,8 @@ Use this recipe for any new tool/app page (it lives in the KPC Logger kpc-logger
 - **Page tabs** for related pages: small centred pill strip at the top (.hl-ptabs: SPOTS & LOG · PARKS I NEED · TOP 50), current one gold.
 - **Phones:** spots first after the banner, '↑ BACK TO SPOTS' button (only the button scrolls back), keyboard mode (visualViewport) hides extras so several contacts stay visible above the entry line, toasts move to the top while typing, chips fit one line at 390 px.
 
+- **Picture-wrapped box headings (Oct 17, Brandon: 'just wrap the images… no effects or themes on the 3 major mapping tools')**: Park Commander (finder.html) + KY Trip Planner (kpc-planner.html) have body class kd-wrap (rules at the end of kpc-dress.css); the US Trip Planner has the same in <style id="kpc-wrap-pics">. Each box heading (.kd-h / .kd-brand / .pl-thead / .pl-ihead / Park Commander .panel>h2 + .resultshead / US .usp-h + .usp-maphead) sits on a hero picture (--kw-pic: lake camp, map, river camp, mast, solar, KY flag) with a dark left-to-right fade, gold edge and glow; boxes get a soft gold glow. No effects or looks on these pages.
+
 ## How pages are built
 - Plain static HTML/CSS/JS, no build system. Every page carries the same header, menu ("More" menu) and footer copied from news.html. A menu change means updating all ~65 pages.
 - New pages: the main file MUST include @@HEADER@@ before <main> and @@FOOTER@@ after </main> (Oct 14 the kids pages and kpc-ssb.html were first built without them and had no menu). Write the main content to a scratch file, then from the repo root run

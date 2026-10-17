@@ -23,6 +23,24 @@
 <link rel="stylesheet" href="kpc-tools.css?v=20261015a">
 <script src="kpc-tools.js?v=20261016b"></script>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
+<style id="kpc-wrap-pics">
+/* Oct 17 (Brandon): each box's heading sits on a picture with a dark fade, gold edge and a soft glow on the box (no effects or themes) */
+body.usp .usp-card>.usp-h,body.usp .usp-maphead{position:relative;border-radius:12px;padding:13px 16px;margin-bottom:14px;border:1px solid rgba(240,201,107,.55);border-bottom:2px solid #d5a63a;
+ background:linear-gradient(90deg,rgba(10,7,4,.93),rgba(10,7,4,.62) 55%,rgba(10,7,4,.28)),var(--kw-pic,url('hero-map.jpg')) center 42%/cover no-repeat;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+body.usp .usp-card>.usp-h h2{color:#fff!important;text-shadow:0 2px 10px #000}
+body.usp .usp-card>.usp-h small{color:#eadfc8!important}
+body.usp .usp-card>.usp-h .n{background:rgba(0,0,0,.55);box-shadow:0 0 12px rgba(240,180,80,.45)}
+body.usp .usp-maphead .usp-brand,body.usp .usp-maphead .usp-brand div{color:#f6ecd8}
+body.usp .usp-maphead b{color:#f0c96b}
+body.usp .usp-card{box-shadow:0 18px 44px rgba(0,0,0,.42),0 0 28px rgba(240,180,80,.12);border-color:rgba(240,201,107,.55)}
+body.usp #plan>.usp-h{--kw-pic:url('hero-map.jpg')}
+body.usp .usp-card:nth-of-type(2)>.usp-h{--kw-pic:url('hero-lake-camp.jpg')}
+body.usp .usp-maphead{--kw-pic:url('hero-mast.jpg')}
+body.usp .usp-two>.usp-card:first-child>.usp-h{--kw-pic:url('hero-river-camp.jpg')}
+body.usp .usp-two>.usp-card:last-child>.usp-h{--kw-pic:url('hero-solar.jpg')}
+body.usp .usp-about>.usp-h{--kw-pic:url('hero-ky-flag.jpg')}
+@media(max-width:600px){body.usp .usp-card>.usp-h,body.usp .usp-maphead{padding:11px 13px}}
+</style>
 </head>
 <body class="usp">
 <header class="site-nav">
