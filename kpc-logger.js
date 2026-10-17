@@ -626,7 +626,11 @@
     $('lMini').innerHTML = `<b>${esc(sc || 'YOUR CALL')}</b> ${isHunt() ? '· 🎯 HUNTING' : '@ <i>' + esc(myRefsTxt() || 'NO PARK YET') + '</i>'}`;
   }
   /* ⚙ = the station menu, folded above the entry (Brandon Oct 16) */
-  function stationOpen(open) { if (open) popOnly('sta'); $('cOp').hidden = !open; $('dSta').classList.toggle('on', open); $('dSta').setAttribute('aria-expanded', open); dockSize(); if (open) { const t = !myCall() ? $('myCall') : null; if (t) setTimeout(() => t.focus(), 50); } }
+  /* Download & files + Install fold into bars (Brandon Oct 17) */
+  ['cFiles', 'cApp'].forEach(id => { const c = document.getElementById(id); if (!c) return; c.classList.add('lg-fold'); const h = c.querySelector('h2'); h.setAttribute('role', 'button'); h.tabIndex = 0;
+    const tg = () => { c.classList.toggle('open'); h.setAttribute('aria-expanded', c.classList.contains('open')); }; h.onclick = tg; h.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tg(); } }; });
+  document.addEventListener('click', e => { const a = e.target.closest('a[href="#cApp"],a[href="#cFiles"]'); if (!a) return; const c = document.getElementById(a.getAttribute('href').slice(1)); if (c) c.classList.add('open'); });
+  function stationOpen(open) { if (open) popOnly('sta'); $('cOp').hidden = !open; $('dSta').classList.toggle('on', open); $('dSta').setAttribute('aria-expanded', open); dockSize(); if (open) { const t = !myCall() ? $('myCall') : null; if (t) setTimeout(() => t.focus({ preventScroll: true }), 50); } }
   function night(on) { document.getElementById('lg').toggleAttribute('data-night', on); $('oNight').textContent = on ? '☀ DAY' : '🌙 NIGHT'; put('kpcLgNight', on); }
   function role(r) {
     SET.role = r === 'hunt' ? 'hunt' : 'act'; saveSet();
