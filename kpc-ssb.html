@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<script src="kpc-theme.js?v=20261016z"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="kpc-theme.js?v=20261017a"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Voice Pileup Practice (Beta) | KPC</title>
 <!-- KPC icons & share preview -->
 <link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
@@ -219,7 +219,7 @@ body.vb-hunt .act-only{display:none!important}body:not(.vb-hunt) .hunt-only{disp
 @media(max-width:760px){.hero{background:linear-gradient(180deg,rgba(7,7,7,.45) 0%,rgba(7,7,7,.78) 40%,rgba(7,7,7,.9) 100%),var(--black) url("parks-mobile.png") center/cover no-repeat}}
 </style>
 <main>
-<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • VOICE (SSB) • BETA</p><h1>VOICE PILEUP <span>PRACTICE</span></h1><p class="hero-copy">Be the activator: stations call you, you copy their calls, give reports and keep a clean log. Or be a hunter: pick a station off the spots page and get through the pileup. POTA, KFF, SOTA, or regular contacts.</p></div></section>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • VOICE (SSB) • BETA</p><h1>VOICE PILEUP <span>PRACTICE</span></h1><p class="hero-copy">Be the activator: stations call you, you copy their calls, give reports and keep a clean log. Or be a hunter: pick a station off the spots page and get through the pileup. POTA, KFF, SOTA, or regular contacts.</p></div></section><div id="kpc-looks"></div>
 <section class="vb"><div class="vb-in">
 <div class="vb-beta"><b>No license yet?</b> Leave YOUR CALL blank and you'll be <b>K4TEST</b>, a practice call sign. US call signs never have 4 letters after the number, so it can never belong to a real ham.<br><b>Beta test.</b> The voices are your browser's built-in voices, so they talk one at a time (a pileup here is callers stacked back to back). Works best in Chrome or Edge on a computer; phones work too. Practice only: nothing here is a real contact.</div>
 <div class="vb-mode"><button type="button" id="vbModeAct" class="on" aria-pressed="true">🏕 I'M THE ACTIVATOR<small>they call me</small></button><button type="button" id="vbModeHunt" aria-pressed="false">🎯 I'M A HUNTER<small>I call them off the spots</small></button></div>
@@ -294,7 +294,7 @@ body.vb-hunt .act-only{display:none!important}body:not(.vb-hunt) .hunt-only{disp
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 <script src="kpc-ssb.js?v=20261015c"></script>
-<script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017a" defer></script><script>
+<script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017b" defer></script><script src="kpc-looks.js?v=20261017a" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

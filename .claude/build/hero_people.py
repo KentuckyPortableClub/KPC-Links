@@ -11,7 +11,7 @@ P={
  'kpc-weather.html': ('hero-n4bdw',     'center 30%','calc(-29vw)',    ('Brent','N4BDW')),
  'kpc-community.html':('hero-kq4hzk',   'center 45%','calc(-34vw)',    ('Aaron','KQ4HZK')),
  'members.html':     ('hero-ky-flag',   'center 45%','center 40%', None),
- 'kpc-campgrounds.html':('hero-lake-camp','center 62%','center 62%', None),
+ 'kpc-campgrounds.html':('hero-campsite','center 58%','center 60%', None),
  'kpc-park-notes.html':('hero-river-camp','center 58%','center 55%', None),
 }
 for f,(img,pd,pm,who) in P.items():
@@ -30,7 +30,10 @@ for f,(img,pd,pm,who) in P.items():
     else:
         mob=('@media(max-width:760px){.hero{min-height:460px;background:linear-gradient(180deg,rgba(7,7,7,.35) 0%%,rgba(7,7,7,.55) 45%%,rgba(7,7,7,.88) 100%%),url("%s-mobile.jpg") %s/cover no-repeat #070707}}'%(img,pm))
     css=(BADGE_CSS if who else '')+desk+mob
-    s=s.replace('</head>','<style id="kpc-hero-pic">'+css+'</style>\n</head>',1)
+    blk='<style id="kpc-hero-pic">'+css+'</style>\n'
+    if '</head>' in s: s=s.replace('</head>',blk+'</head>',1)
+    else:   # pages rebuilt by assemble.py have no </head>: put it just before the hero
+        m=re.search(r'<(section|header) class="hero">',s); s=s[:m.start()]+blk+s[m.start():]
     if who:
         m=re.search(r'<(section|header) class="hero">',s)
         s=s[:m.end()]+'<span class="kpc-who">%s · <b>%s</b></span>'%who+s[m.end():]
