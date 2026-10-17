@@ -60,14 +60,14 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
   /* Add 'Satellite + Streets + Official Boundaries' to a page's map choices and 'Official boundaries' as a checkbox.
      base / over are the objects handed to L.control.layers. Returns the KPCPad result (or null). */
   const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/';
-  window.KPCPadMenu = function (map, base, over, key) {
+  window.KPCPadMenu = function (map, base, over, key, dflt) {   /* dflt (Oct 17): on when this key was never set (Kentucky Park Control) */
     if (!window.L || !window.KPCPad) return null;
     const pad = window.KPCPad(map), NAME = 'Satellite + Streets + Official Boundaries';
     base[NAME] = L.layerGroup([L.tileLayer(ESRI + 'World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics' }),
       L.tileLayer(ESRI + 'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, zIndex: 8 }),
       kpcPlaceLabels(9)]);
     over['Official boundaries (PAD-US)'] = pad.layer;
-    const k = key || 'kpcPadOn'; let on = false; try { on = localStorage.getItem(k) === '1'; } catch (e) {}
+    const k = key || 'kpcPadOn'; let on = !!dflt; try { const v = localStorage.getItem(k); if (v !== null) on = v === '1'; } catch (e) {}
     map.whenReady(() => { if (on && !map.hasLayer(pad.layer)) pad.layer.addTo(map); });
     map.on('baselayerchange', e => { if (e.name === NAME && !map.hasLayer(pad.layer)) pad.layer.addTo(map); });
     map.on('overlayadd', e => { if (e.layer === pad.layer) try { localStorage.setItem(k, '1'); } catch (x) {} });

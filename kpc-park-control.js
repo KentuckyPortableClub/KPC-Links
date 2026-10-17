@@ -21,16 +21,22 @@
     { ref: 'US-4572', f: 'data/trails/US-4572.json', col: '#5bd5ec', by: 'National Park Service', lab: 'route (Ohio River)' },
     { ref: 'US-4572', f: 'ky-lecl-auto.geojson', col: '#2f9fb8', by: 'National Park Service', lab: 'auto tour route (signed roads)', dash: '7 6' }];
   const TL = {}; let TP = {}, trP = null, hi = null;
-  let D = null, CG = {}, NOTES = {}, map = null, LAY = {}, outline = null, sel = null, ALL = [];
+  let PAD = null; const PCS = { ref: '', html: '' }; let D = null, CG = {}, NOTES = {}, map = null, LAY = {}, outline = null, sel = null, ALL = [];
   let TRIP = get('kpcPcTrip', []);
   /* Oct 17 (Brandon): guests get 'coming soon' instead of 2-fer / 3-fer information; members see it all */
   const GUEST = !!(window.KPCGate && !window.KPCGate.member()), SOON = '2-fer and 3-fer information coming soon!';
   const isPin = t => /^PIN/.test(t.c);
 
+  /* outline colour by the layer the piece came from (kpc-bounds.js KY list) */
+  const PIECE = f => { const k = f._L && f._L.k;
+    return k === 'bwma' ? { color: '#4ade80', dashArray: '8 5', who: 'Fish & Wildlife (WMA) land' } : k === 'bsnp' || k === 'bsna' ? { color: '#2dd4bf', who: 'Nature preserve land' }
+      : k === 'bnps' ? { color: '#60a5fa', who: 'National Park Service' } : k === 'bfws' ? { color: '#5ab0ff', dashArray: '6 4', who: 'U.S. Fish & Wildlife' }
+      : k === 'bdbnf' ? { color: '#a3e635', dashArray: '3 5', who: 'National Forest outer line' } : k === 'bwild' ? { color: '#16b3c0', dashArray: '2 4', who: 'Wild River corridor' }
+      : k === 'bwilder' ? { color: '#c6e03a', who: 'Wilderness area' } : k === 'bkpc' ? { color: '#ffd400', dashArray: '12 5 2 5', who: 'approximate (KPC-drawn)' } : { color: '#f0c96b', who: 'State park land' }; };
   function kindOf(x) { return /^US-/.test(x.c) ? 'pota' : /^KFF-/.test(x.c) ? 'kff' : 'sota'; }
   function init() {
     map = L.map('pcMap', { zoomControl: true, preferCanvas: true }).setView([37.75, -85.7], 7);
-    if (window.KPCLayers) KPCLayers(map); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
+    if (window.KPCLayers) { KPCLayers(map, null, { padKey: 'kpcPcPad', padOn: true }); PAD = KPCLayers.pad; } else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
     if (window.KPCLocate) KPCLocate(map); if (window.KPCFull) KPCFull(map);
     /* drop a pin anywhere: street view, directions, copy GPS, add the spot to the trip */
     if (window.KPCPin) KPCPin(map, { extra: (la, lo) => `<button type="button" data-pctrip="${la},${lo}" style="margin-top:6px;width:100%;padding:8px;border-radius:8px;border:1px solid #d5a63a;background:#fff6dd;font:900 12px Arial;cursor:pointer">+ ADD THIS SPOT TO MY TRIP</button>`,
@@ -43,6 +49,9 @@
       const m = L.circleMarker([x.la, x.lo], { radius: k === 'sota' ? 5 : 6.5, bubblingMouseEvents: false, color: '#fff', weight: 1.4, fillColor: COL[k], fillOpacity: .92 });
       m.bindTooltip(`${x.c} · ${x.n}`); m.on('click', () => pick(x, false)); m.addTo(LAY[k]); x.m = m; }
     count(); chips();
+    const lb = $('pcPad'); if (lb) { if (!PAD) lb.hidden = true; else { const sync = () => { const on = map.hasLayer(PAD.layer); lb.classList.toggle('on', on); lb.setAttribute('aria-pressed', on); };
+      lb.onclick = () => { const on = !map.hasLayer(PAD.layer); if (on) PAD.layer.addTo(map); else map.removeLayer(PAD.layer); put('kpcPcPad', on ? 1 : 0); sync(); };
+      map.on('overlayadd overlayremove layeradd layerremove', sync); map.whenReady(() => setTimeout(sync, 50)); } }
   }
   function count() { const n = ALL.filter(x => SHOW[kindOf(x)]).length; $('pcCount').textContent = n + ' on the map' + (SHOW.trails ? ' + ' + new Set(TR.map(t => t.ref)).size + ' trails' : ''); }
   /* lines: keep only the stretches inside Kentucky */
@@ -79,7 +88,10 @@
     info(x); try { history.replaceState(null, '', '?ref=' + encodeURIComponent(x.c)); } catch (e) {}
     if (k !== 'sota' && window.KPCB && KPCB.kyFor) {
       try { const ref = k === 'kff' && x.p ? x.p : x.c, F = await KPCB.kyFor(ref); if (sel !== x || !F || !F.length) return;
-        outline = L.geoJSON({ type: 'FeatureCollection', features: F }, { style: { color: '#f0c96b', weight: 2.5, fill: false }, interactive: false }).addTo(map);
+        /* Oct 17 (Brandon: Taylorsville Lake 'hard to tell what is what'): each piece in its own colour, by whose land it is */
+        outline = L.geoJSON({ type: 'FeatureCollection', features: F }, { style: f => Object.assign({ weight: 3, fill: false }, PIECE(f)), interactive: false }).addTo(map);
+        const seen = {}, key = F.map(f => { const P = PIECE(f), nm = (f.properties || {}).NAME || (f._L && f._L.name) || ''; if (seen[nm]) return ''; seen[nm] = 1; return `<li><i style="display:inline-block;width:22px;height:0;border-top:3px ${P.dashArray ? 'dashed' : 'solid'} ${P.color};vertical-align:middle;margin-right:6px"></i>${esc(nm)} <span class="pc-tag">${esc(P.who)}</span></li>`; }).join('');
+        PCS.ref = x.c; PCS.html = `<div class="pc-k" style="margin-top:8px">🗺 THE OUTLINE ON THE MAP</div><ul class="pc-list">${key}</ul>${PAD ? '<p class="pc-note">Orange outline = Army Corps of Engineers land, from the official boundaries layer (usually NOT part of a POTA park unless a state agency runs it). Turn it off or on with the 🗺 LAND OWNERS chip.</p>' : ''}`; const box = document.getElementById('pcPieces'); if (box) box.innerHTML = PCS.html;
         if (fly !== false) { const b = outline.getBounds(); if (b.isValid()) map.fitBounds(b.pad(.1), { maxZoom: 14 }); } } catch (e) {} }
   }
   function info(x) {
@@ -102,6 +114,7 @@
       <a href="${page}" target="_blank" rel="noopener">${k === 'pota' ? 'POTA' : k === 'kff' ? 'WWFF' : 'SOTLAS'} PAGE ↗</a>
       <a href="kpc-park-notes.html#${encodeURIComponent(tipsRef)}">📝 PARK TIPS${tips ? ' (' + tips + ')' : ''}</a>${cg ? `<a href="kpc-campgrounds.html#park-${esc(park.c)}">⛺ PLACES TO STAY</a>` : ''}</div>
       ${also.length ? `<div class="pc-k" style="margin-top:8px">ALSO HERE</div><ul class="pc-list">${also.map(a => `<li><a href="?ref=${encodeURIComponent(a[0])}" data-ref="${esc(a[0])}">${esc(a[0])}</a> ${esc(a[1])} <span class="pc-tag">${esc(a[2])}</span></li>`).join('')}</ul>` : ''}
+      <div id="pcPieces">${PCS.ref === x.c ? PCS.html : ''}</div>
       ${trailBox}
       ${ap.length ? `<div class="pc-k" style="margin-top:8px">🅿 PARKING &amp; ACCESS POINTS (FROM THE LAND MANAGER)</div><ul class="pc-list">${ap.slice(0, 8).map(p => `<li>${esc(p[2] || 'Access point')} · <a href="${dirUrl(p[0], p[1])}" target="_blank" rel="noopener">DIRECTIONS</a></li>`).join('')}</ul>` : ''}
       <p class="pc-note">GPS ${x.la.toFixed(5)}, ${x.lo.toFixed(5)}${k === 'sota' ? ' · activation zone = within 25 m (82 ft) of the top, no vehicle' : ' · the pin is a guide; the official boundary decides'}</p>`;
