@@ -1,42 +1,6 @@
-by country (matched, total): {"DE": [11, 20], "FR": [6, 20], "IT": [18, 20], "ES": [17, 20], "PL": [20, 20], "SE": [18, 20], "NL": [7, 20], "CZ": [15, 20], "AT": [15, 20], "PT": [10, 20], "FI": [19, 20], "GB": [0, 20]}
-by type: {"Natura 2000": [78, 84], "Nature Reserve": [35, 36], "Biological Reserve": [3, 16], "Nature Park": [5, 9], "National Nature Reserve": [2, 8], "Provincial Park": [5, 7], "National Park": [3, 6], "National Scenic Trail": [0, 5], "Protected Landscape Area": [3, 5], "National Recreation Trail": [0, 5], "Recreation Park": [0, 4], "Park": [0, 4], "Natural Monument": [3, 4], "Landscape Reserve": [2, 3], "Marine Protected Area": [0, 3], "Nature Monument": [3, 3], "National Forest": [0, 3], "State Nature Preserve": [3, 3], "Conservation Area": [0, 3], "National Historic Trail": [0, 2], "Biosphere Reserve": [1, 2], "Other Conservation Area": [1, 2], "World Heritage Site": [0, 2], "National Heritage Area": [2, 2], "National Reserve": [2, 2], "Geopark": [1, 2], "Forest Reserve": [0, 2], "Country Park": [0, 2], "UNESCO Biosphere Reserve": [1, 1], "Historic Site": [0, 1], "National Historic Site": [0, 1], "Regional Park": [1, 1], "Protected Landscape": [0, 1], "UNESCO Geopark": [0, 1], "National Monument": [1, 1], "Flora and Fauna Reserve": [1, 1], "Protected Area": [0, 1], "RSPB Reserve": [0, 1], "Site of Significant Scientific Interest": [0, 1]}
-DE-0744 Ludwigspark Recreation Park [Recreation Park] best='' 0.00
-DE-0449 Landschaftsgebiet Bockwitzer See Landscape Reserve [Landscape Reserve] best='Bergbaufolgelandschaft Bockwitz' 0.25
-DE-0883 Mittelerzgebirgische Basaltberge Natura 2000 [Natura 2000] best='' 0.00
-DE-0858 Via Sancti Martini National Historic Trail [National Historic Trail] best='' 0.00
-DE-0817 Elberadweg National Scenic Trail [National Scenic Trail] best='' 0.00
-DE-0706 Clara-Zetkin-Park Recreation Park [Recreation Park] best='' 0.00
-DE-0649 Neue Harth Recreation Park [Recreation Park] best='' 0.00
-DE-1015 Saar-Hunsrück-Steig National Scenic Trail [National Scenic Trail] best='' 0.00
-DE-0875 Linkselbische Fels- und Waldgebiete Natura 2000 [Natura 2000] best='' 0.00
-FR-4963 Marais de Bovinens Biological Reserve [Biological Reserve] best='' 0.00
-FR-10351 MARAIS DE MAGOAR - PENVERN - GUERNEVAN Biological Reserve [Biological Reserve] best='Landes Et Marais De Glomel' 0.20
-FR-14438 Plateau de Concoules Biological Reserve [Biological Reserve] best='' 0.00
-FR-10706 Pelouse seche et boisement thermophile de Bel-Air Biological Reserve [Biological Reserve] best='' 0.00
-FR-15521 ENSEMBLE DE ZONES HUMIDES DE SAINT JEAN DE CHEVELU Biological Reserve [Biological Reserve] best='Lacs Et Marais De Saint-Jean De Chevelu' 0.43
-FR-12170 FORET DE VILLECARTIER Biological Reserve [Biological Reserve] best='' 0.00
-FR-11007 ALLIER PONT DE MIREFLEURS - DALLET Biological Reserve [Biological Reserve] best="Val d'Allier - Alagnon" 0.20
-FR-15186 La Douze et milieux annexes Biological Reserve [Biological Reserve] best='' 0.00
-FR-10558 Prairie de fauche des Cadorats Biological Reserve [Biological Reserve] best='' 0.00
-FR-3006 LE SALAGOU FR9112002 Natura 2000 [Natura 2000] best='Le Salagou' 0.33
-FR-16336 versant rocheux sous villard-notre-dame Biological Reserve [Biological Reserve] best="Plaine de Bourg d'Oisans et ses versants" 0.14
-FR-16552 site a chauves-souris : mine d'or de la celle-dunoise Biological Reserve [Biological Reserve] best='' 0.00
-FR-12495 Pic de Benal Biological Reserve [Biological Reserve] best='' 0.00
-FR-12833 BOIS MAL Biological Reserve [Biological Reserve] best='' 0.00
-IT-0378 Parco del Castello di Miramare Historic Site [Historic Site] best='Miramare' 0.33
-IT-1329 Biotopo Magredi di San Quirino Other Conservation Area [Other Conservation Area] best='Magredi di S. Quirino' 0.33
-ES-2355 Caminos de Santiago de Compostela: Camino francés y Caminos del Norte de España World Heritage Site [World Heritage Site] best='' 0.00
-ES-1469 Palacio Real de La Almudaina National Historic Site [National Historic Site] best='' 0.00
-ES-1984 Camino de la Vera Cruz National Historic Trail [National Historic Trail] best='' 0.00
-SE-2056 Komosse (västra) Natura 2000 [Natura 2000] best='Komosse' 0.33
-SE-2164 Lilla Vickleby Protected Landscape [Protected Landscape] best='' 0.00
-NL-0023 Speulder en Sprielderbos Nature Park [Nature Park] best='' 0.00
-NL-0045 Deelerwoud Provincial Park [Provincial Park] best='' 0.00
-NL-0264 Zuiderzeepad (LAW 8) National Recreation Trail [National Recreation Trail] best='' 0.00
-NL-0065 Westerwolde -Overdiep Provincial Park [Provincial Park] best='' 0.00
-NL-0027 Kootwijkerzand Park [Park] best='' 0.00
-NL-0074 Rosendael Bos Park [Park] best='' 0.00
-NL-0235 Schakerloopolder Marine Protected Area [Marine Protected Area] best='' 0.00
-NL-0309 Natuur- en recreatiegebied Engbergen Recreation Park [Recreation Park] best='' 0.00
-NL-0260 Pieterpad (LAW 9) National Recreation Trail [National Recreation Trail] best='' 0.00
-NL-0211 Grebbelinie National Park [National Park] best='' 0.00
+chrome UA + origin: 200 ACAO=None ACAM=None body=b'STATUS=AUTH&RESULT=AUTH&REASON=invalid api key\n&EXTENDED='
+chrome UA no origin: 200 ACAO=None ACAM=None body=b'STATUS=AUTH&RESULT=AUTH&REASON=API USER:  BOOK:  STATUS: AUTH REASON: invalid api key EXTENDED: &EXTENDED='
+app UA: 200 ACAO=None ACAM=None body=b'STATUS=AUTH&RESULT=AUTH&REASON=API USER:  BOOK:  STATUS: AUTH REASON: invalid api key EXTENDED: &EXTENDED='
+apps script UA: 200 ACAO=None ACAM=None body=b'STATUS=AUTH&RESULT=AUTH&REASON=API USER:  BOOK:  STATUS: AUTH REASON: invalid api key EXTENDED: &EXTENDED='
+OPTIONS: 200 ACAO=None ACAM=None body=b'STATUS=AUTH&RESULT=AUTH&REASON=API USER:  BOOK:  STATUS: AUTH REASON: invalid api key EXTENDED: &EXTENDED='
+text/plain: 200 ACAO=None ACAM=None body=b'STATUS=AUTH&RESULT=AUTH&REASON=API USER:  BOOK:  STATUS: AUTH REASON: invalid api key EXTENDED: &EXTENDED='
