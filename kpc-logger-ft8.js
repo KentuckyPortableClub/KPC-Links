@@ -635,7 +635,10 @@
   /* the free Hunters Lounge has no radio control (Brandon Oct 17: 'leave out qrz and cat control'): VOX and audio only there */
   if (main && main.id === 'hl') { $('f8Back').textContent = '← SPOTS'; }
   if (main && main.dataset.public === '1') { ['f8Ptt', 'cwVia'].forEach(id => { const el = $(id); if (el) [...el.options].forEach(o => { if (!/vox|audio/.test(o.value)) o.remove(); }); }); const cb = $('f8Cat'); if (cb) cb.parentElement.hidden = true; if (S.ptt !== 'vox') S.ptt = 'vox'; if (S.cwVia !== 'audio') S.cwVia = 'audio'; }
-  function open() { root.hidden = false; main.setAttribute('data-ft8', ''); document.documentElement.classList.add('f8-open'); put('kpcFt8Open:' + location.pathname, 1); setTimeout(() => { wfSize(); drawScale(); drawBand(); drawRx(); }, 30); if (!myGrid()) note(main && main.id === 'hl' ? 'Tip: put your grid square in MY LOG FILES so your messages carry it.' : 'Tip: put your grid square in ⚙ STATION so your messages carry it.', 4000); }
+  /* Oct 17 (Brandon: the logger's hero text showed over the FT8 window): the panel starts right under the site header wherever the page is scrolled */
+  function topFix() { const h = document.querySelector('header.site-nav'), b = h && !(main && getComputedStyle(main).position === 'fixed') ? Math.max(0, Math.round(h.getBoundingClientRect().bottom)) : 0; root.style.top = b + 'px'; }
+  addEventListener('resize', () => { if (!root.hidden) topFix(); });
+  function open() { root.hidden = false; topFix(); setTimeout(topFix, 80); main.setAttribute('data-ft8', ''); document.documentElement.classList.add('f8-open'); put('kpcFt8Open:' + location.pathname, 1); setTimeout(() => { wfSize(); drawScale(); drawBand(); drawRx(); }, 30); if (!myGrid()) note(main && main.id === 'hl' ? 'Tip: put your grid square in MY LOG FILES so your messages carry it.' : 'Tip: put your grid square in ⚙ STATION so your messages carry it.', 4000); }
   function back() { root.hidden = true; main.removeAttribute('data-ft8'); document.documentElement.classList.remove('f8-open'); put('kpcFt8Open:' + location.pathname, 0); }
   function tabDot() { document.querySelectorAll('[data-ft8open]').forEach(b => b.classList.toggle('live', RUN)); }
   $('f8Back').onclick = back;
