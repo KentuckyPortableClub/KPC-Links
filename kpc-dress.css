@@ -38,3 +38,9 @@ body.kd .ip-card,body.kd .ip-know,body.kd .pi-search,body.kd .pi-res,body.kd #pi
 body.kd .ip-card,body.kd .pi-search{border-top:4px solid #d5a63a}
 body.kd #piOut>.pi-msg{padding:14px 18px;margin-top:18px}
 body.kd #ipMap,body.kd #piMap{border-radius:12px;overflow:hidden}
+/* Park Commander (finder.html): a dark page, so the cards are dark glass instead of cream */
+body.kd.kd-dark .panel,body.kd.kd-dark .results,body.kd.kd-dark .mapwrap{background:rgba(16,16,14,.9);border:1px solid rgba(213,166,58,.45);border-radius:16px;box-shadow:0 18px 44px rgba(0,0,0,.5);backdrop-filter:blur(3px)}
+body.kd.kd-dark .kynotice{background:rgba(28,27,22,.92);border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+body.kd.kd-dark .finder-jump a{background:rgba(28,27,22,.9);box-shadow:0 6px 16px rgba(0,0,0,.35)}
+body.kd.kd-dark #map{border-radius:12px;overflow:hidden}
+body.kd.kd-dark .kpc-disclaim>div{box-shadow:0 12px 30px rgba(0,0,0,.4)}
