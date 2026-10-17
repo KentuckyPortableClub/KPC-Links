@@ -27,9 +27,10 @@ const vis=()=>KM&&KM.filtering()?NEAR.filter(s=>KM.show(s.c)):NEAR;
 const kmBadge=s=>KM&&s.p!=='PIN'?KM.badge(s.c):'';
 
 /* ---------- data ---------- */
-async function loadAll(){const[L,B,CA]=await Promise.all([fetch('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[]),fetch('data/canada.json').then(r=>r.ok?r.json():{rows:[]}).catch(()=>({rows:[]}))]);BORD=B;
+async function loadAll(){const NO={rows:[]},J=u=>fetch(u).then(r=>r.ok?r.json():NO).catch(()=>NO);const[L,B,CA,NA]=await Promise.all([fetch('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[]),J('data/canada.json'),J('data/northam.json')]);BORD=B;
  /* Canada (Brandon Oct 16: pins now, boundaries later): CA- POTA parks, VEFF WWFF, VE/VA/VY/VO SOTA from data/canada.json */
- L.concat((CA&&CA.rows)||[]).forEach(r=>{if(!['POTA','SOTA','WWFF'].includes(r[0]))return;if(r[0]==='POTA'&&!/^(US|CA)-/.test(r[1]))return;if(BYREF[String(r[1]).toUpperCase()])return;const s={p:r[0],c:r[1],n:r[2],la:r[3],lo:r[4],url:r[5]||'',m:r[0]==='SOTA'?+r[6]||0:0,pts:r[0]==='SOTA'?+(String(r[7]||'').match(/\d+/)||[0])[0]:0};ALL.push(s);BYREF[s.c.toUpperCase()]=s})}
+ /* + the rest of North America (Brandon Oct 17: Mexico, Central America, Caribbean, Greenland) from data/northam.json */
+ const nL=L.length;L.concat((CA&&CA.rows)||[],(NA&&NA.rows)||[]).forEach((r,i)=>{if(!['POTA','SOTA','WWFF'].includes(r[0]))return;if(r[0]==='POTA'&&i<nL&&!/^(US|CA)-/.test(r[1]))return;if(BYREF[String(r[1]).toUpperCase()])return;const s={p:r[0],c:r[1],n:r[2],la:r[3],lo:r[4],url:r[5]||'',m:r[0]==='SOTA'?+r[6]||0:0,pts:r[0]==='SOTA'?+(String(r[7]||'').match(/\d+/)||[0])[0]:0};ALL.push(s);BYREF[s.c.toUpperCase()]=s})}
 function statesNear(la,lo,mi){const dLa=mi/69,dLo=mi/(69*Math.cos(la*Math.PI/180));const out=[];
  BORD.forEach(b=>{let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;b.p.forEach(pl=>pl[0].forEach(([x,y])=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}));
   if(lo+dLo>=x0&&lo-dLo<=x1&&la+dLa>=y0&&la-dLa<=y1)out.push(b.a)});return out}
