@@ -1223,6 +1223,34 @@
     load(); setInterval(() => { if (Date.now() - last > 10 * 6e4 && !document.hidden) load(); }, 60000);
     matchMedia('(min-width:1100px)').addEventListener('change', () => { if (wide() && !last) load(); });
   })();
+  /* ---------------- Kentucky hunting season badge (Brandon Oct 17: 'a bow for archery and a gun for gun season, automatically') ----------------
+     Dates follow KDFWR's usual pattern: deer archery = 1st Saturday of September to the 3rd Monday of January; early muzzleloader =
+     3rd Saturday of October + Sunday; modern gun = 2nd Saturday of November for 16 days; late muzzleloader = 2nd Saturday of
+     December for 9 days; spring turkey = 2nd Saturday of April for 23 days. Gun beats archery when both are open. */
+  (function seasonBadge() {
+    const hero = document.querySelector('.hl-hero .hl-acts'); if (!hero) return;
+    const nth = (y, m, wd, n) => { const d = new Date(y, m, 1); d.setDate(1 + ((wd - d.getDay() + 7) % 7) + (n - 1) * 7); return d; };
+    const add = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+    const now = new Date(), day = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const S = [];
+    for (const y of [now.getFullYear() - 1, now.getFullYear()]) {
+      S.push(['archery', nth(y, 8, 6, 1), nth(y + 1, 0, 1, 3)]);
+      S.push(['muzzle', nth(y, 9, 6, 3), add(nth(y, 9, 6, 3), 1)]);
+      S.push(['gun', nth(y, 10, 6, 2), add(nth(y, 10, 6, 2), 15)]);
+      S.push(['muzzle', nth(y, 11, 6, 2), add(nth(y, 11, 6, 2), 8)]);
+      S.push(['turkey', nth(y + 1, 3, 6, 2), add(nth(y + 1, 3, 6, 2), 22)]);
+    }
+    const open = S.filter(([, a, b]) => day >= a && day <= b), rank = { gun: 0, muzzle: 1, turkey: 2, archery: 3 };
+    if (!open.length) return; open.sort((x, y) => rank[x[0]] - rank[y[0]]);
+    const [k, , end] = open[0], fd = d => d.toLocaleDateString([], { month: 'short', day: 'numeric' });
+    const RIFLE = '<svg viewBox="0 0 64 20" width="46" height="15" aria-hidden="true"><path fill="currentColor" d="M1 9h30l3-3h9l1 2h14l5-1v4l-5 1H44l-2 2h-4l-1 5h-6l1-5h-3l-2 2H17l-3-2H1z"/></svg>';
+    const T = { gun: [RIFLE, 'MODERN GUN DEER SEASON IN KENTUCKY'], muzzle: [RIFLE, 'MUZZLELOADER DEER SEASON IN KENTUCKY'],
+      archery: ['<span class="em">🏹</span>', 'ARCHERY DEER SEASON IN KENTUCKY'], turkey: ['<span class="em">🦃</span>', 'SPRING TURKEY SEASON IN KENTUCKY'] }[k];
+    const b = document.createElement('a'); b.className = 'hl-season s-' + k; b.href = 'https://fw.ky.gov'; b.target = '_blank'; b.rel = 'noopener';
+    b.title = 'Hunters are in the woods. Dates follow KDFWR\'s usual pattern; check fw.ky.gov for the exact dates and rules.';
+    b.innerHTML = `<i>${T[0]}</i><span><b>${T[1]}</b><small>until about ${fd(end)} · hunters are out: wear blaze orange in WMAs and forests, stay near roads and parking</small></span>`;
+    hero.parentNode.insertBefore(b, hero);
+  })();
   /* ---------------- start (Members Room page, no password since Oct 16 evening) ---------------- */
   function startApp() {
     const home0 = (HOME && HOME.label && (HOME.label.match(/middle of (.+)$/) || [])[1]) || '';
