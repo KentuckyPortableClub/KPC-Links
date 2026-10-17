@@ -97,7 +97,7 @@ NPS_TRAILS = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services
 def lyr_lines(url, where, la, lo, d=1.0, fld=None, want=''):
     out, off = [], 0
     NAMES.clear()
-    nowater = not re.search(r'water|river|canoe|paddl|blueway', want or '', re.I)
+    nowater = not re.search(r'water ?trail|canoe|paddl|blueway', want or '', re.I)  # 'Elk River Trail' is a LAND trail
     for _ in range(6):
         q = {'where': where, 'geometry': f'{lo-d},{la-d},{lo+d},{la+d}', 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
              'outFields': '*' if fld else '', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 1000}
@@ -105,7 +105,9 @@ def lyr_lines(url, where, la, lo, d=1.0, fld=None, want=''):
         if 'error' in j: raise Exception(str(j['error'])[:150])
         fs = j.get('features', [])
         for f in fs:  # Oct 18: 'Greenbrier River Trail' must not pick up the 'Greenbrier River Water Trail' (the river itself)
-            nm = str((f.get('attributes') or {}).get(fld, '') if fld else '')
+            A = f.get('attributes') or {}; nm = str(A.get(fld, '') if fld else '')
+            # WV-style layers mark the river line with surface = Water (named just like the rail-trail)
+            if nowater and any(re.search(r'surf|type|use|class', str(k), re.I) and str(v).strip().lower() in ('water', 'water trail', 'paddle', 'blueway') for k, v in A.items()): continue
             if nowater and re.search(r'water ?trail|blueway|paddl|canoe', nm, re.I) and not re.search(r'water ?trail|blueway', want or '', re.I): continue
             # a land trail's piece must be named like a trail (the river 'Greenbrier River' is not the 'Greenbrier River Trail')
             if nowater and nm and re.search(r'\btrail\b', want or '', re.I) and not re.search(r'trail|path|greenway|rail|bikeway|route|\btr\b', nm, re.I): continue
