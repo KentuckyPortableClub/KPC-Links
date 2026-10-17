@@ -1,26 +1,24 @@
 import urllib.request, json, urllib.parse
 out=[]
-def g(u, hdr=None):
+B='https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/'
+def g(u):
     try:
-        r=urllib.request.urlopen(urllib.request.Request(u, headers=dict({'User-Agent':'KPC probe','Origin':'https://kentuckyportableclub.github.io'}, **(hdr or {}))), timeout=40)
-        b=r.read(); return r.status, dict(r.headers), b
-    except Exception as e:
-        return 'ERR', {}, str(e).encode()
-for base in ['https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites?f=json',
-             'https://bio.discomap.eea.europa.eu/arcgis/rest/services?f=json',
-             'https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer?f=json',
-             'https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer?f=json']:
-    s,h,b=g(base); out.append(f'== {base}\n{s} CORS={h.get("Access-Control-Allow-Origin")} {b[:1500].decode("utf-8","replace")}\n')
-# POTA: european programs + how many parks
-s,h,b=g('https://api.pota.app/programs')
-try:
-    P=json.loads(b); out.append('programs '+str(len(P))+' sample '+json.dumps(P[:3]))
-except Exception as e: out.append('programs err '+str(e))
-s,h,b=g('https://api.pota.app/locations')
-try:
-    L=json.loads(b); out.append('loc keys '+str(list(L[0].keys()))); 
-    tot={}
-    for l in L: tot[l.get('entityName','?')+'|'+l['locationDesc'].split('-')[0]]=tot.get(l.get('entityName','?')+'|'+l['locationDesc'].split('-')[0],0)+(l.get('parks') or 0)
-    out.append('by entity '+json.dumps(sorted(tot.items(), key=lambda x:-x[1])[:60]))
-except Exception as e: out.append('loc err '+str(e))
+        r=urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent':'KPC probe','Origin':'https://kentuckyportableclub.github.io'}), timeout=60)
+        return r.status, r.headers.get('Access-Control-Allow-Origin'), r.read()
+    except Exception as e: return 'ERR', None, str(e).encode()
+for svc in ['CDDA_Dyna_WM','NatDAv22_Dyna_WM','Natura2000Sites']:
+    s,c,b=g(B+svc+'/MapServer?f=json')
+    try: j=json.loads(b); out.append(f'{svc} layers: '+json.dumps([(l['id'],l['name']) for l in j.get('layers',[])]))
+    except Exception: out.append(svc+' '+str(s)+' '+b[:200].decode('utf-8','replace'))
+for svc,lay in [('CDDA_Dyna_WM',0),('NatDAv22_Dyna_WM',0),('Natura2000Sites',2),('Natura2000Sites',0)]:
+    s,c,b=g(B+f'{svc}/MapServer/{lay}?f=json')
+    try: j=json.loads(b); out.append(f'{svc}/{lay} {j.get("name")} fields: '+', '.join(f["name"] for f in j.get('fields',[])) + f' maxRecord {j.get("maxRecordCount")}')
+    except Exception: out.append(f'{svc}/{lay} '+str(s)+' '+b[:200].decode('utf-8','replace'))
+# point queries: Bayerischer Wald NP (48.95,13.42), Doñana (37.0,-6.45), Hoge Veluwe (52.07,5.82)
+for la,lo in [(48.95,13.42),(37.0,-6.45),(52.07,5.82),(54.45,-3.08)]:
+    for svc,lay in [('CDDA_Dyna_WM',0),('NatDAv22_Dyna_WM',0),('Natura2000Sites',2),('Natura2000Sites',0),('Natura2000Sites',1)]:
+        q=urllib.parse.urlencode({'geometry':f'{lo},{la}','geometryType':'esriGeometryPoint','inSR':4326,'spatialRel':'esriSpatialRelIntersects','outFields':'*','returnGeometry':'false','f':'json'})
+        s,c,b=g(B+f'{svc}/MapServer/{lay}/query?'+q)
+        try: j=json.loads(b); out.append(f'PT {la},{lo} {svc}/{lay}: {s} cors={c} '+json.dumps([f['attributes'] for f in j.get('features',[])][:3], ensure_ascii=False)[:700] + (' ERR '+json.dumps(j.get('error')) if j.get('error') else ''))
+        except Exception: out.append(f'PT {svc}/{lay} {s} '+b[:300].decode('utf-8','replace'))
 open('out.txt','w').write('\n'.join(out))
