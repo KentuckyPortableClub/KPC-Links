@@ -259,6 +259,6 @@ if __name__ == '__main__':
         tail = ''
         if page in CX:
             body = body.replace('</div></div></section>', '</div></div></section><div id="kpc-cx"></div>', 1)
-            tail = '<script src="kpc-cx.js?v=20261017a" defer></script>\n'
-        open(mf, 'w', encoding='utf-8').write('<link rel="stylesheet" href="kpc-boards.css?v=20261016b"><link rel="stylesheet" href="kpc-rooms.css?v=20261016a">\n@@HEADER@@\n<main class="kb rm">' + body + '</main>\n@@FOOTER@@\n' + tail)
+            tail = '<script src="kpc-cx.js?v=20261017b" defer></script>\n'
+        open(mf, 'w', encoding='utf-8').write('<link rel="stylesheet" href="kpc-boards.css?v=20261017a"><link rel="stylesheet" href="kpc-rooms.css?v=20261016a">\n@@HEADER@@\n<main class="kb rm">' + body + '</main>\n@@FOOTER@@\n' + tail)
         subprocess.run(['python3', os.path.join(REPO, '.claude/build/assemble.py'), mf, page, title, desc], cwd=REPO, check=True)
