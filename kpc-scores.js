@@ -24,6 +24,11 @@
     { k: 'NKU', n: 'Northern Kentucky', radio: 'Northern Kentucky Norse', id: { mb: 94, wb: 94, bb: 410 }, site: 'https://nkunorse.com' },
     { k: 'BELL', n: 'Bellarmine', radio: 'Bellarmine Knights', id: { mb: 91, wb: 91, bb: 1143 }, site: 'https://athletics.bellarmine.edu' }
   ];
+  /* Oct 17 (Brandon: 'cant hear any of the links'): the schools' radio networks stream live games only in the free official
+     Varsity Network app (Sidearm/Learfield; UK says 'exclusive streaming is on the Varsity App'), not on a web page.
+     So 🎧 LISTEN opens the app (store page on the phone you're on); 📻 STATIONS = the school's page of radio stations. */
+  const iOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1), AND = /Android/i.test(navigator.userAgent);
+  const VARSITY = iOS ? 'https://apps.apple.com/us/app/the-varsity-network/id1574519982' : AND ? 'https://play.google.com/store/apps/details?id=com.sidearmsports.varsitynetwork.audio' : 'https://play.google.com/store/apps/details?id=com.sidearmsports.varsitynetwork.audio';
   const listenUrl = (t, sp) => t.listen ? t.listen(sp) : t.site + '/sports/' + SP[sp].slug + '/schedule';
   const KYID = {}; TEAMS.forEach(t => Object.keys(t.id).forEach(sp => KYID[sp + ':' + t.id[sp]] = t));
   let games = {}, filt = 'all', timer = null;
@@ -81,9 +86,8 @@
       `<span>${s.rank ? '<small>' + s.rank + '</small> ' : ''}${esc(s.name)}</span><b>${g.live || g.done ? esc(s.score == null ? '' : s.score) : ''}</b></div>`;
     return `<div class="ks-g${g.live ? ' live' : ''}" data-sp="${g.sp}"><div class="ks-h"><span>${SP[g.sp].icon} ${esc(SP[g.sp].name)}</span><span>${statusTxt(g)}</span></div>` +
       g.side.map(row).join('') +
-      (g.tv ? '<div class="ks-tv">📺 ' + esc(g.tv) + '</div>' : '') + `<div class="ks-f"><span class="ks-b">${L ? `<a href="${esc(L)}" target="_blank" rel="noopener" title="${esc(home.ky.n)} radio and audio">🎧 LISTEN</a>` : ''}` +
-      (home && home.ky && home.ky.radio ? `<a href="https://tunein.com/search/?query=${encodeURIComponent(home.ky.radio)}" target="_blank" rel="noopener" title="Backup: find the radio broadcast on TuneIn">📻 RADIO</a>` : '') +
-      (L2 ? `<a href="${esc(L2)}" target="_blank" rel="noopener" title="${esc(other.ky.n)} radio and audio">🎧 ${esc(other.ky.k)}</a>` : '') +
+      (g.tv ? '<div class="ks-tv">📺 ' + esc(g.tv) + '</div>' : '') + `<div class="ks-f"><span class="ks-b">${L ? `<a href="${VARSITY}" target="_blank" rel="noopener" title="Live radio for ${esc(home.ky.n)} streams in the free Varsity Network app (pick ${esc(home.ky.n)} in the app)">🎧 LISTEN</a><a href="${esc(L)}" target="_blank" rel="noopener" title="${esc(home.ky.n)} radio stations (over the air)">📻 STATIONS</a>` : ''}` +
+      (L2 ? `<a href="${esc(L2)}" target="_blank" rel="noopener" title="${esc(other.ky.n)} radio stations">📻 ${esc(other.ky.k)}</a>` : '') +
       `<a href="${esc(g.url)}" target="_blank" rel="noopener" title="Play-by-play on ESPN">ESPN ↗</a></span></div></div>`;
   }
   function draw() {
@@ -100,7 +104,7 @@
     if (live.length || up.some(g => g.t < now() + 15 * 6e4)) timer = setTimeout(() => load(new Set(live.concat(up.filter(g => g.t < now() + 15 * 6e4)).flatMap(g => g.side.filter(s => s.ky).map(s => g.sp + ':' + s.ky.id[g.sp])))), 60000);
   }
   box.innerHTML = '<div class="ks-head"><div><b>🏟️ KENTUCKY COLLEGE SCOREBOARD</b><span class="ks-sub">Loading…</span></div><div class="ks-chips"></div></div>' +
-    '<div class="ks-track" tabindex="0" aria-label="Scores and upcoming games, swipe sideways"></div><p class="ks-note">Scores and times from ESPN. 🎧 LISTEN opens the home Kentucky school\'s radio / audio page; 📻 RADIO is a backup that finds the team\'s radio network on TuneIn. Some games are TV or ESPN+ only.</p>';
+    '<div class="ks-track" tabindex="0" aria-label="Scores and upcoming games, swipe sideways"></div><p class="ks-note">Scores and times from ESPN. 🎧 LISTEN opens the free Varsity Network app, where the schools stream their radio calls live (pick your team in the app); 📻 STATIONS lists the radio stations that carry it over the air. Some schools also stream on their own app. Some games are TV or ESPN+ only.</p>';
   box.querySelector('.ks-chips').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; filt = b.dataset.f; try { localStorage.setItem('kpcScoreF', filt); } catch (x) {} draw(); });
   // gentle auto-scroll ("rolling"); stops while a finger or mouse is on it, and for people who asked for less motion
   const track = box.querySelector('.ks-track');
