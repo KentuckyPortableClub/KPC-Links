@@ -2,380 +2,1168 @@
  "updated": "2026-10-17",
  "found": [
   [
-   "US-11181",
-   "Sheltowee Trace National Recreation Trail",
-   "TN",
+   "US-11122",
+   "General Crook National Recreation Trail",
+   "AZ",
    "US Forest Service",
-   346,
-   0.5
-  ],
-  [
-   "US-1990",
-   "Scioto Trail State Park",
-   "OH",
-   "OpenStreetMap (not official)",
-   93,
-   1.6
-  ],
-  [
-   "US-9741",
-   "North Bend Rail Trail State Trail",
-   "WV",
-   "OpenStreetMap (not official)",
-   110,
+   159,
    0.0
   ],
   [
-   "US-9742",
-   "Greenbrier River Trail State Trail",
-   "WV",
-   "OpenStreetMap (not official)",
-   124,
+   "US-11123",
+   "Highline National Recreation Trail",
+   "AZ",
+   "US Forest Service",
+   69,
    0.0
   ],
   [
-   "US-10031",
-   "Elk River Trail State Trail",
-   "WV",
+   "US-13594",
+   "Black Canyon National Recreation Trail",
+   "AZ",
    "OpenStreetMap (not official)",
-   115,
+   149,
    0.0
   ],
   [
-   "US-1301",
-   "High Bridge Trail State Park",
-   "VA",
-   "OpenStreetMap (not official)",
-   52,
+   "US-10258",
+   "Ouachita National National Recreation Trail",
+   "AR",
+   "US Forest Service",
+   219,
    0.1
   ],
   [
-   "US-1310",
-   "New River Trail State Park",
-   "VA",
+   "US-7528",
+   "Air Line State Trail",
+   "CT",
    "OpenStreetMap (not official)",
-   88,
+   91,
    0.0
   ],
   [
-   "US-9904",
-   "Apple Orchard Falls National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   5,
+   "US-7532",
+   "Hop River State Trail",
+   "CT",
+   "OpenStreetMap (not official)",
+   40,
+   0.2
+  ],
+  [
+   "US-7533",
+   "Larkin State Trail",
+   "CT",
+   "OpenStreetMap (not official)",
+   17,
    0.0
   ],
   [
-   "US-9905",
-   "Cascades National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   6,
+   "US-7535",
+   "Moosup Valley State Trail",
+   "CT",
+   "OpenStreetMap (not official)",
+   9,
    0.0
   ],
   [
-   "US-9906",
-   "Cornelius Creek National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   6,
-   0.0
-  ],
-  [
-   "US-9908",
-   "Hoop Hole National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   14,
-   2.1
-  ],
-  [
-   "US-9910",
-   "Massanutten National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   141,
-   0.1
-  ],
-  [
-   "US-9920",
-   "Mount Rogers National Recreation Trail",
-   "VA",
-   "US Forest Service",
+   "US-7544",
+   "Windsor Locks Canal State Trail",
+   "CT",
+   "OpenStreetMap (not official)",
    8,
    0.0
   ],
   [
-   "US-9925",
-   "Wild Oak National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   43,
+   "US-9877",
+   "Junction and Breakwater National Recreation Trail",
+   "DE",
+   "OpenStreetMap (not official)",
+   11,
    0.0
   ],
   [
-   "US-9934",
-   "James River Heritage State Trail",
-   "VA",
+   "US-9878",
+   "Northern Delaware Greenway National Recreation Trail",
+   "DE",
    "OpenStreetMap (not official)",
-   15,
+   12,
+   0.2
+  ],
+  [
+   "US-9881",
+   "Pomeroy and Newark National Recreation Trail",
+   "DE",
+   "OpenStreetMap (not official)",
+   7,
+   0.2
+  ],
+  [
+   "US-3608",
+   "Blackwater Heritage State Trail",
+   "FL",
+   "OpenStreetMap (not official)",
+   13,
    0.0
   ],
   [
-   "US-1766",
-   "Katy Trail State Park",
-   "MO",
+   "US-3620",
+   "Florida Keys Overseas Heritage Trail State Park",
+   "FL",
    "OpenStreetMap (not official)",
-   385,
+   138,
+   0.0
+  ],
+  [
+   "US-3624",
+   "Gainesville-Hawthorne State Trail",
+   "FL",
+   "OpenStreetMap (not official)",
+   24,
+   0.0
+  ],
+  [
+   "US-3667",
+   "Withlacoochee State Trail",
+   "FL",
+   "OpenStreetMap (not official)",
+   74,
+   0.0
+  ],
+  [
+   "US-4584",
+   "Ashton-Tetonia Trail State Park",
+   "ID",
+   "OpenStreetMap (not official)",
+   48,
+   0.0
+  ],
+  [
+   "US-2350",
+   "Prairie Spirit Trail State Trail",
+   "KS",
+   "OpenStreetMap (not official)",
+   84,
+   0.0
+  ],
+  [
+   "US-8394",
+   "Ashuwillticook Rail Trail State Trail",
+   "MA",
+   "OpenStreetMap (not official)",
+   22,
    0.1
   ],
   [
-   "US-7836",
-   "Ozark State Trail",
-   "MO",
+   "US-8395",
+   "Cape Cod Rail Trail State Trail",
+   "MA",
    "OpenStreetMap (not official)",
-   355,
-   0.0
+   329,
+   0.1
   ],
   [
-   "US-9893",
-   "Tunnel Hill State Trail",
-   "IL",
+   "US-8396",
+   "Nashua River Rail Trail State Trail",
+   "MA",
    "OpenStreetMap (not official)",
-   89,
-   0.0
+   20,
+   0.3
   ],
   [
-   "US-10093",
-   "Rock Island Trail State Park",
-   "IL",
+   "US-8398",
+   "Southern New England Trunkline Trail State Trail",
+   "MA",
+   "OpenStreetMap (not official)",
+   35,
+   0.3
+  ],
+  [
+   "US-8095",
+   "Gitchi Gami State Trail",
+   "MN",
    "OpenStreetMap (not official)",
    58,
    0.0
   ],
   [
-   "US-10660",
-   "Illinois and Michigan Canal State Trail",
-   "IL",
+   "US-9373",
+   "Paul Bunyan State Trail",
+   "MN",
    "OpenStreetMap (not official)",
-   100,
+   180,
    0.0
   ],
   [
-   "US-1502",
-   "Hart-Montague Trail State Park",
-   "MI",
+   "US-9374",
+   "Root River State Trail",
+   "MN",
    "OpenStreetMap (not official)",
-   37,
+   67,
    0.0
   ],
   [
-   "US-1511",
-   "Kal-Haven Trail State Park",
-   "MI",
-   "OpenStreetMap (not official)",
-   55,
-   0.0
-  ],
-  [
-   "US-1513",
-   "Mike Levine Lakelands Trail State Park",
-   "MI",
-   "OpenStreetMap (not official)",
-   64,
-   0.0
-  ],
-  [
-   "US-1550",
-   "Van Buren Trail State Park",
-   "MI",
+   "US-9375",
+   "Harmony-Preston State Trail",
+   "MN",
    "OpenStreetMap (not official)",
    28,
    0.0
   ],
   [
-   "US-1555",
-   "White Pine Trail State Park",
-   "MI",
+   "US-9376",
+   "Shooting Star State Trail",
+   "MN",
    "OpenStreetMap (not official)",
-   154,
-   0.0
-  ],
-  [
-   "US-13171",
-   "Betsie Valley State Trail",
-   "MI",
-   "OpenStreetMap (not official)",
-   62,
-   0.0
-  ],
-  [
-   "US-13174",
-   "North Eastern State Trail",
-   "MI",
-   "OpenStreetMap (not official)",
-   113,
-   0.0
-  ],
-  [
-   "US-13176",
-   "North Western State Trail",
-   "MI",
-   "OpenStreetMap (not official)",
-   51,
+   52,
    0.1
   ],
   [
-   "US-13179",
-   "Pere Marquette State Trail",
-   "MI",
+   "US-9377",
+   "Blazing Star State Trail",
+   "MN",
    "OpenStreetMap (not official)",
-   90,
+   9,
+   0.1
+  ],
+  [
+   "US-9379",
+   "Sakatah Singing Hills State Trail",
+   "MN",
+   "OpenStreetMap (not official)",
+   64,
    0.0
   ],
   [
-   "US-13182",
-   "Polly Ann State Trail",
-   "MI",
+   "US-9381",
+   "Douglas State Trail",
+   "MN",
+   "OpenStreetMap (not official)",
+   20,
+   0.0
+  ],
+  [
+   "US-9382",
+   "Great River Ridge State Trail",
+   "MN",
+   "OpenStreetMap (not official)",
+   21,
+   0.0
+  ],
+  [
+   "US-9387",
+   "Luce Line State Trail",
+   "MN",
+   "OpenStreetMap (not official)",
+   106,
+   0.0
+  ],
+  [
+   "US-9388",
+   "Glacial Lakes State Trail",
+   "MN",
    "OpenStreetMap (not official)",
    59,
    0.0
   ],
   [
-   "US-12664",
-   "Pine Creek Rail Trail State Trail",
-   "PA",
+   "US-9389",
+   "Central Lakes State Trail",
+   "MN",
    "OpenStreetMap (not official)",
-   100,
+   89,
    0.1
+  ],
+  [
+   "US-11151",
+   "Cuyuna Lakes State Trail",
+   "MN",
+   "OpenStreetMap (not official)",
+   10,
+   0.1
+  ],
+  [
+   "US-11152",
+   "Heartland State Trail",
+   "MN",
+   "OpenStreetMap (not official)",
+   96,
+   0.0
+  ],
+  [
+   "US-11904",
+   "Migizi National Recreation Trail",
+   "MN",
+   "US Forest Service",
+   0,
+   4.6
+  ],
+  [
+   "US-8396",
+   "Nashua River Rail Trail State Trail",
+   "NH",
+   "OpenStreetMap (not official)",
+   20,
+   0.3
+  ],
+  [
+   "US-12375",
+   "Catharine Valley State Trail",
+   "NY",
+   "OpenStreetMap (not official)",
+   21,
+   0.0
+  ],
+  [
+   "US-12382",
+   "WAG State Trail",
+   "NY",
+   "OpenStreetMap (not official)",
+   16,
+   0.0
+  ],
+  [
+   "US-10258",
+   "Ouachita National National Recreation Trail",
+   "OK",
+   "US Forest Service",
+   219,
+   0.1
+  ],
+  [
+   "US-9155",
+   "Historic Columbia River Highway State Trail",
+   "OR",
+   "OpenStreetMap (not official)",
+   109,
+   0.0
+  ],
+  [
+   "US-9524",
+   "Angel's Rest State Trail",
+   "OR",
+   "OpenStreetMap (not official)",
+   7,
+   0.0
+  ],
+  [
+   "US-9528",
+   "Banks-Vernonia State Trail",
+   "OR",
+   "OpenStreetMap (not official)",
+   36,
+   0.0
+  ],
+  [
+   "US-10007",
+   "Oregon Coast State Trail",
+   "OR",
+   "OpenStreetMap (not official)",
+   664,
+   0.0
+  ],
+  [
+   "US-10011",
+   "OC&E Woods Line State Trail",
+   "OR",
+   "OpenStreetMap (not official)",
+   102,
+   0.0
+  ],
+  [
+   "US-10355",
+   "I-205 Multi-Use State Trail",
+   "OR",
+   "OpenStreetMap (not official)",
+   28,
+   0.3
+  ],
+  [
+   "US-8164",
+   "George S. Mickelson State Trail",
+   "SD",
+   "OpenStreetMap (not official)",
+   179,
+   0.0
+  ],
+  [
+   "US-11905",
+   "Centennial Trail State Trail",
+   "SD",
+   "OpenStreetMap (not official)",
+   187,
+   0.0
+  ],
+  [
+   "US-5913",
+   "Historic Union Pacific Rail Trail State Park",
+   "UT",
+   "OpenStreetMap (not official)",
+   42,
+   0.0
+  ],
+  [
+   "US-3171",
+   "Spokane River Centennial State Trail",
+   "WA",
+   "OpenStreetMap (not official)",
+   63,
+   0.2
+  ],
+  [
+   "US-3203",
+   "Palouse to Cascades State Park State Trail",
+   "WA",
+   "OpenStreetMap (not official)",
+   399,
+   0.0
+  ],
+  [
+   "US-10407",
+   "Columbia Plateau State Park Trail State Trail",
+   "WA",
+   "OpenStreetMap (not official)",
+   190,
+   5.8
+  ],
+  [
+   "US-10411",
+   "Willapa Hills State Park Trail State Trail",
+   "WA",
+   "OpenStreetMap (not official)",
+   91,
+   0.0
+  ],
+  [
+   "US-10706",
+   "Klickitat State Park State Trail",
+   "WA",
+   "OpenStreetMap (not official)",
+   45,
+   0.0
+  ],
+  [
+   "US-8221",
+   "Chippewa River State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   58,
+   0.0
+  ],
+  [
+   "US-8222",
+   "Red Cedar State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   24,
+   0.0
+  ],
+  [
+   "US-8223",
+   "Old Abe State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   53,
+   0.0
+  ],
+  [
+   "US-8672",
+   "Great River State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   38,
+   0.0
+  ],
+  [
+   "US-8673",
+   "La Crosse River State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   35,
+   0.0
+  ],
+  [
+   "US-9762",
+   "400 State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   35,
+   0.0
+  ],
+  [
+   "US-9766",
+   "Badger State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   65,
+   0.0
+  ],
+  [
+   "US-9768",
+   "Bearskin State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   42,
+   0.0
+  ],
+  [
+   "US-9771",
+   "Buffalo River State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   58,
+   0.8
+  ],
+  [
+   "US-9773",
+   "Capital City State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   27,
+   0.0
+  ],
+  [
+   "US-9783",
+   "Elroy-Sparta State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   52,
+   0.0
+  ],
+  [
+   "US-9785",
+   "Fox River State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   40,
+   0.0
+  ],
+  [
+   "US-9790",
+   "Gandy Dancer State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   141,
+   0.2
+  ],
+  [
+   "US-9792",
+   "Glacial Drumlin State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   87,
+   0.0
+  ],
+  [
+   "US-9794",
+   "Great Sauk State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   25,
+   0.0
+  ],
+  [
+   "US-9796",
+   "Green Circle State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   47,
+   0.0
+  ],
+  [
+   "US-9800",
+   "Hank Aaron State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   27,
+   0.0
+  ],
+  [
+   "US-9804",
+   "Military Ridge State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   64,
+   0.0
+  ],
+  [
+   "US-9805",
+   "Mound View State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   8,
+   1.8
+  ],
+  [
+   "US-9806",
+   "Mountain-Bay State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   130,
+   0.0
+  ],
+  [
+   "US-9807",
+   "Newton Blackmour State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   35,
+   0.0
+  ],
+  [
+   "US-9809",
+   "Oconto River State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   11,
+   0.0
+  ],
+  [
+   "US-9813",
+   "Stower Seven Lakes State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   21,
+   0.1
+  ],
+  [
+   "US-9814",
+   "Sugar River State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   35,
+   0.0
+  ],
+  [
+   "US-9815",
+   "Tomorrow River State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   47,
+   0.0
+  ],
+  [
+   "US-9816",
+   "Tuscobia State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   119,
+   0.0
+  ],
+  [
+   "US-9819",
+   "Wild Rivers State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   38,
+   3.8
+  ],
+  [
+   "US-9821",
+   "Wolf River State Trail",
+   "WI",
+   "OpenStreetMap (not official)",
+   71,
+   0.0
   ]
  ],
  "missing": [
   [
-   "US-2955",
-   "Wilson Cumberland Trail State Park",
-   "TN",
+   "US-7245",
+   "Juneau State Trail",
+   "AK",
    "no line found"
   ],
   [
-   "US-8313",
-   "Mountains to Sea State Trail",
-   "TN",
-   "line found 378 km from the POTA pin: not used"
-  ],
-  [
-   "US-9907",
-   "First Landing National Recreation Trail",
-   "VA",
+   "US-11854",
+   "Pinnell Mountain National Recreation Trail",
+   "AK",
    "no line found"
   ],
   [
-   "US-9909",
-   "Little Stony Creek National Recreation Trail",
-   "VA",
-   "line found 406 km from the POTA pin: not used"
-  ],
-  [
-   "US-9922",
-   "The Lion's Tale National Recreation Trail",
-   "VA",
+   "US-7435",
+   "Civil War Trail State Trail",
+   "AR",
    "no line found"
   ],
   [
-   "US-9923",
-   "Virginia Creeper National Recreation Trail",
-   "VA",
-   "line found 10 km from the POTA pin: not used"
+   "US-7436",
+   "Southwest Trail State Trail",
+   "AR",
+   "line found 354 km from the POTA pin: not used"
   ],
   [
-   "US-9933",
-   "Beaches to Bluegrass State Trail",
-   "VA",
+   "US-8316",
+   "Scenic 7 Byway State Trail",
+   "AR",
    "no line found"
   ],
   [
-   "US-9935",
-   "Virginia Bird & Wildlife State Trail",
-   "VA",
+   "US-8321",
+   "Talimena Scenic Byway State Trail",
+   "AR",
    "no line found"
   ],
   [
-   "US-10507",
-   "Rock Castle Gorge National Recreation Trail",
-   "VA",
+   "US-8322",
+   "Mount Magazine Scenic Byway State Trail",
+   "AR",
    "no line found"
   ],
   [
-   "US-9753",
-   "Katy Trail Rock Island Spur State Park",
-   "MO",
+   "US-8323",
+   "Ozark Highlands Scenic Byway State Trail",
+   "AR",
    "no line found"
   ],
   [
-   "US-1002",
-   "Johnson Sauk Trail State Park",
-   "IL",
+   "US-9161",
+   "Butterfield State Trail",
+   "AR",
+   "line found 91 km from the POTA pin: not used"
+  ],
+  [
+   "US-9163",
+   "Saracen State Trail",
+   "AR",
    "no line found"
   ],
   [
-   "US-1007",
-   "Lincoln Trail State Park",
-   "IL",
-   "line found 119 km from the POTA pin: not used"
-  ],
-  [
-   "US-4098",
-   "Lincoln Trail Homestead State Park",
-   "IL",
+   "US-9681",
+   "Camden Expedition Scenic Highway State Trail",
+   "AR",
    "no line found"
   ],
   [
-   "US-8313",
-   "Mountains to Sea State Trail",
-   "NC",
-   "line found 16 km from the POTA pin: not used"
-  ],
-  [
-   "US-11856",
-   "Fonta-Flora State Trail",
-   "NC",
+   "US-10303",
+   "Pig Trail Scenic Byway State Trail",
+   "AR",
    "no line found"
   ],
   [
-   "US-12320",
-   "Yadkin River State Trail",
-   "NC",
-   "line found 82 km from the POTA pin: not used"
-  ],
-  [
-   "US-12717",
-   "Deep River State Trail",
-   "NC",
+   "US-10426",
+   "West-Northwest State Trail",
+   "AR",
    "no line found"
   ],
   [
-   "US-13002",
-   "Dan River State Trail",
-   "NC",
+   "US-10715",
+   "True Grit State Trail",
+   "AR",
    "no line found"
   ],
   [
-   "US-13170",
-   "Bay De Noc/Grand Island National Recreation Trail",
-   "MI",
+   "US-11127",
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "AR",
    "no line found"
   ],
   [
-   "US-13172",
-   "North Central State Trail",
-   "MI",
+   "US-11393",
+   "Sylamore Scenic Byway State Trail",
+   "AR",
    "no line found"
   ],
   [
-   "US-13184",
-   "Iron Belle State Trail",
-   "MI",
-   "line found 14 km from the POTA pin: not used"
+   "US-13461",
+   "Upper Illinois River Water Trail State Trail",
+   "AR",
+   "no line found"
+  ],
+  [
+   "US-10400",
+   "Trona Pinnacles National Geologic Trail",
+   "CA",
+   "no line found"
+  ],
+  [
+   "US-12173",
+   "Tabeguache BLM Historic Trail",
+   "CO",
+   "no line found"
+  ],
+  [
+   "US-9879",
+   "Pinelands Nature National Recreation Trail",
+   "DE",
+   "no line found"
+  ],
+  [
+   "US-3627",
+   "General James A. Van Fleet State Trail",
+   "FL",
+   "no line found"
+  ],
+  [
+   "US-3640",
+   "Nature Coast State Trail",
+   "FL",
+   "line found 11 km from the POTA pin: not used"
+  ],
+  [
+   "US-3644",
+   "Palatka-St. Augustine State Trail",
+   "FL",
+   "no line found"
+  ],
+  [
+   "US-3645",
+   "Palatka-to-Lake Butler State Trail",
+   "FL",
+   "no line found"
+  ],
+  [
+   "US-3660",
+   "Suwannee River Wilderness State Trail",
+   "FL",
+   "no line found"
+  ],
+  [
+   "US-3661",
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "FL",
+   "no line found"
+  ],
+  [
+   "US-2216",
+   "Makapu\u02bbu  Point Wayside State Trail",
+   "HI",
+   "no line found"
+  ],
+  [
+   "US-10912",
+   "'Ualaka'a State Trail",
+   "HI",
+   "no line found"
+  ],
+  [
+   "US-10913",
+   "Diamond Head Summit State Trail",
+   "HI",
+   "no line found"
+  ],
+  [
+   "US-10914",
+   "Ka\u2018ena Point State Trail",
+   "HI",
+   "no line found"
+  ],
+  [
+   "US-10915",
+   "Nakoa State Trail",
+   "HI",
+   "no line found"
+  ],
+  [
+   "US-10916",
+   "Kapa\u02bbele\u02bbele State Trail",
+   "HI",
+   "no line found"
+  ],
+  [
+   "US-10917",
+   "\u02bbAiea Loop State Trail",
+   "HI",
+   "no line found"
+  ],
+  [
+   "US-10918",
+   "Wa\u02bbahila Ridge State Trail",
+   "HI",
+   "no line found"
+  ],
+  [
+   "US-10919",
+   "Na Ala Hele State Trail",
+   "HI",
+   "no line found"
+  ],
+  [
+   "US-3424",
+   "Ice Age Floods National Geologic Trail",
+   "ID",
+   "no line found"
+  ],
+  [
+   "US-7366",
+   "Trail of the Coeur d'Alene's State Trail",
+   "ID",
+   "no line found"
+  ],
+  [
+   "US-10006",
+   "Idaho Centennial Trail State Trail",
+   "ID",
+   "line found 386 km from the POTA pin: not used"
+  ],
+  [
+   "US-11305",
+   "Wapsipinicon River Water State Trail",
+   "IA",
+   "no line found"
+  ],
+  [
+   "US-5718",
+   "Flint Hills Trail State Park",
+   "KS",
+   "line found 26 km from the POTA pin: not used"
+  ],
+  [
+   "US-8292",
+   "Lagrange to Medford State Trail",
+   "ME",
+   "no line found"
+  ],
+  [
+   "US-8437",
+   "Kennebec Highlands State Trail",
+   "ME",
+   "no line found"
+  ],
+  [
+   "US-8397",
+   "Norwottuck Rail Trail State Trail",
+   "MA",
+   "no line found"
+  ],
+  [
+   "US-7759",
+   "David Dill Arrowhead State Trail",
+   "MN",
+   "no line found"
+  ],
+  [
+   "US-9378",
+   "Casey Jones State Trail",
+   "MN",
+   "line found 24 km from the POTA pin: not used"
+  ],
+  [
+   "US-9380",
+   "Mills Town State Trail",
+   "MN",
+   "no line found"
+  ],
+  [
+   "US-9383",
+   "Goodhue-Pioneer State Trail",
+   "MN",
+   "no line found"
+  ],
+  [
+   "US-9384",
+   "Minnesota Valley State Trail",
+   "MN",
+   "no line found"
+  ],
+  [
+   "US-9385",
+   "Gateway Overview State Trail",
+   "MN",
+   "no line found"
+  ],
+  [
+   "US-9386",
+   "Browns Creek State Trail",
+   "MN",
+   "no line found"
+  ],
+  [
+   "US-9390",
+   "Williard Munger State Trail",
+   "MN",
+   "no line found"
+  ],
+  [
+   "US-11014",
+   "David Dill/Taconite and Taconite State Trails State Trail",
+   "MN",
+   "no line found"
+  ],
+  [
+   "US-11150",
+   "CJ Ramstad North Shore State Trail",
+   "MN",
+   "line found 108 km from the POTA pin: not used"
+  ],
+  [
+   "US-11153",
+   "Matthew Lourey State Trail",
+   "MN",
+   "no line found"
+  ],
+  [
+   "US-11154",
+   "Taconite State Trail",
+   "MN",
+   "no line found"
+  ],
+  [
+   "US-3424",
+   "Ice Age Floods National Geologic Trail",
+   "MT",
+   "no line found"
+  ],
+  [
+   "US-13195",
+   "Jumbo Grade Trailhead BLM Historic Trail",
+   "NV",
+   "no line found"
+  ],
+  [
+   "US-13595",
+   "Northern Recreational State Trail",
+   "NH",
+   "no line found"
+  ],
+  [
+   "US-6544",
+   "New Jersey Coastal State Trail",
+   "NJ",
+   "no line found"
+  ],
+  [
+   "US-8617",
+   "Perea Nature National Recreation Trail",
+   "NM",
+   "no line found"
+  ],
+  [
+   "US-8618",
+   "White Ridge National Recreation Trail",
+   "NM",
+   "no line found"
+  ],
+  [
+   "US-2152",
+   "Trail View State Park",
+   "NY",
+   "line found 32 km from the POTA pin: not used"
+  ],
+  [
+   "US-8098",
+   "Empire State Trail",
+   "NY",
+   "line found 54 km from the POTA pin: not used"
+  ],
+  [
+   "US-10076",
+   "Black River State Trail",
+   "NY",
+   "line found 73 km from the POTA pin: not used"
+  ],
+  [
+   "US-8321",
+   "Talimena Scenic Byway State Trail",
+   "OK",
+   "no line found"
+  ],
+  [
+   "US-11018",
+   "Osage National Heritage State Trail",
+   "OK",
+   "no line found"
+  ],
+  [
+   "US-3424",
+   "Ice Age Floods National Geologic Trail",
+   "OR",
+   "no line found"
+  ],
+  [
+   "US-9980",
+   "Willamette River Greenway and Water State Trail",
+   "OR",
+   "no line found"
+  ],
+  [
+   "US-10009",
+   "Row River National Recreation Trail",
+   "OR",
+   "no line found"
+  ],
+  [
+   "US-10506",
+   "Estacada- Boring State Trail",
+   "OR",
+   "no line found"
+  ],
+  [
+   "US-10733",
+   "Bolt Mountain BLM Historic Trail",
+   "OR",
+   "no line found"
+  ],
+  [
+   "US-10734",
+   "East Applegate Ridge Trail BLM Historic Trail",
+   "OR",
+   "no line found"
+  ],
+  [
+   "US-10757",
+   "Sterling Mine Ditch Trail BLM Historic Trail",
+   "OR",
+   "no line found"
+  ],
+  [
+   "US-5788",
+   "Slickrock Bike National Recreation Trail",
+   "UT",
+   "no line found"
+  ],
+  [
+   "US-5804",
+   "Corona Arch BLM National Recreation Trail",
+   "UT",
+   "no line found"
+  ],
+  [
+   "US-5809",
+   "Little Red Mountain BLM Historic Trail",
+   "UT",
+   "no line found"
+  ],
+  [
+   "US-5872",
+   "Burr Trail BLM Historic Trail",
+   "UT",
+   "no line found"
+  ],
+  [
+   "US-5906",
+   "Burr Trail Scenic Byway BLM Historic Trail",
+   "UT",
+   "no line found"
+  ],
+  [
+   "US-10965",
+   "Great Western Trail BLM Historic Trail",
+   "UT",
+   "no line found"
+  ],
+  [
+   "US-11001",
+   "Gooseberry Mesa National Recreation Trail",
+   "UT",
+   "no line found"
+  ],
+  [
+   "US-3222",
+   "Lewis and Clark Trail State Park",
+   "WA",
+   "line found 336 km from the POTA pin: not used"
+  ],
+  [
+   "US-3424",
+   "Ice Age Floods National Geologic Trail",
+   "WA",
+   "no line found"
+  ],
+  [
+   "US-9778",
+   "Devil\u2019s River State Trail",
+   "WI",
+   "no line found"
   ]
  ]
 }
