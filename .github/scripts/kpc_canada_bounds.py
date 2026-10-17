@@ -13,7 +13,7 @@ the line), best name match after dropping generic words, ties to the area that h
 Resumable: parks already saved are skipped unless RECHECK=1; misses are retried after 30 days.
 MODE=info prints the service's layers and fields only (use it first if the service changes).
 """
-import json, os, re, sys, time, urllib.parse, urllib.request, concurrent.futures as cf, datetime as dt
+import json, os, re, sys, time, unicodedata, urllib.parse, urllib.request, concurrent.futures as cf, datetime as dt
 
 SVC = os.environ.get('CPCAD_URL', 'https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer')
 OUT = 'data/canada-bounds'
@@ -43,7 +43,8 @@ def get(url, params=None, tries=3, timeout=60):
 
 
 def words(s):
-    s = re.sub(r'[^a-z0-9 ]+', ' ', str(s or '').lower().replace('’', "'").replace("'", ''))
+    s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode()   # Île -> Ile, é -> e
+    s = re.sub(r'[^a-z0-9 ]+', ' ', s.lower().replace('’', "'").replace("'", ''))
     return [w for w in s.split() if w and w not in GENERIC]
 
 
@@ -116,11 +117,16 @@ def main():
         d = 0.03
         q = {'f': 'json', 'geometry': f'{lo - d},{la - d},{lo + d},{la + d}', 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
              'spatialRel': 'esriSpatialRelIntersects', 'outFields': outf, 'returnGeometry': 'false'}
-        try:
-            j = get(url, q)
-        except Exception as e:
-            return ref, None, 'err ' + str(e)[:80]
-        cands = [f['attributes'] for f in j.get('features') or []]
+        cands = []
+        for d in (0.03, 0.12):   # widen to about 13 km when nothing is near the pin
+            q['geometry'] = f'{lo - d},{la - d},{lo + d},{la + d}'
+            try:
+                j = get(url, q)
+            except Exception as e:
+                return ref, None, 'err ' + str(e)[:80]
+            cands = [f['attributes'] for f in j.get('features') or []]
+            if any(sim(nm, a.get(F['name'])) >= 0.5 for a in cands):
+                break
         if not cands:
             return ref, None, 'none'
         # does the pin sit inside? (one extra point query, only when there is a choice)
