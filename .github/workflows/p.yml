@@ -1,15 +1,17 @@
 name: zz probe
 on: push
+permissions:
+  contents: write
 jobs:
   p:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - run: |
-          curl -s https://api.pota.app/programs -o /tmp/p; python3 -c "
-          import json;d=json.load(open('/tmp/p'));print('::notice title=programs::'+str(len(d))+' '+json.dumps(d[:3])[:600])"
-          curl -s -D /tmp/h -o /dev/null -H 'Origin: https://x.github.io' https://api.pota.app/programs; grep -i access-control /tmp/h | sed 's/^/::notice title=cors::/'
-          curl -s https://api2.sota.org.uk/api/associations -o /tmp/s; python3 -c "
-          import json;d=json.load(open('/tmp/s'));print('::notice title=sota::'+str(len(d))+' '+json.dumps(d[:2])[:700])"
-          curl -s -D /tmp/h2 -o /dev/null -H 'Origin: https://x.github.io' https://api2.sota.org.uk/api/associations; grep -i access-control /tmp/h2 | sed 's/^/::notice title=sotacors::/'
-          curl -s https://api.pota.app/spot/activator -o /tmp/a; python3 -c "
-          import json;d=json.load(open('/tmp/a'));print('::notice title=spot::'+json.dumps(d[0])[:600])"
+          mkdir -p pa && cd pa
+          curl -sL https://pota.app/ -o index.html
+          for f in $(grep -o 'src="[^"]*\.js"\|href="[^"]*\.js"' index.html | sed 's/.*="//;s/"//' | sort -u); do curl -sL "https://pota.app$f" -o "$(basename $f)"; done
+          grep -oh '"\./[A-Za-z0-9_-]*\.js"' *.js | tr -d '"' | sort -u > chunks.txt
+          for c in $(cat chunks.txt); do b=$(basename $c); [ -f "$b" ] || curl -sfL "https://pota.app/assets/$b" -o "$b" || true; done
+          { for k in activatorContactCounts parkHuntCounts; do echo "== $k"; grep -oh ".\{250\}$k\[.\{250\}\|.\{250\}$k\.[a-z].\{200\}\|.\{150\}$k)\{0,1\}\[[a-zA-Z.]*\].\{200\}" *.js | head -6; done; } > ../counts.txt
+          cd ..; git config user.name x; git config user.email x@x; git add counts.txt; git commit -qm c; git push
