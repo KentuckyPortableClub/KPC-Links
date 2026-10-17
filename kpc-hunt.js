@@ -1683,6 +1683,7 @@
     }, 1000);
     setInterval(() => { document.querySelectorAll('.hs').length && draw(); }, 5 * 60e3);
   }
-  startApp();
+  /* VIP lock (kpc-vip.js): the members pages wait for the password before asking for spots */
+  (window.KPCVIP && !PUB ? window.KPCVIP.ready : Promise.resolve()).then(startApp);
   window.KPCHunt = { scan, nref, adif, parseAdif };
 })();
