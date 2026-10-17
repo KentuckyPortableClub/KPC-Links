@@ -737,3 +737,13 @@ main#hl:not([data-public="1"]) #lgModal .hl-logwrap,main#hl:not([data-public="1"
 main#hl .hl-ptabs a{color:var(--mu)}
 main#hl .hl-ptabs a:hover{color:var(--tx)}
 main#hl .hl-ptabs a[aria-current="page"]{color:#2a1a05!important}
+
+/* Oct 17 (Brandon): phones, keyboard up in the log = room for a few contacts (html.hl-kb set by dkKb()) */
+@media(max-width:1099px){
+ html.hl-kb header.site-nav,html.hl-kb .hl-tick,html.hl-kb .hl-dk .dk-hd,html.hl-kb .hl-dk .dk-top,html.hl-kb .hl-dk .dk-r2 label.w,html.hl-kb .hl-dk .dk-day{display:none!important}
+ html.hl-kb .hl-dk .dk-list{max-height:calc(var(--vvh,400px) - var(--dkd,120px) - 14px)!important;min-height:80px}
+ html.hl-kb .hl-dk .dk-q{padding:5px 10px}
+ html.hl-kb .hl-dk{margin-bottom:6px}
+ html.hl-kb .hl-dk .dk-dock{padding:6px 10px 8px}
+}
+html.hl-kb .hl-toast{bottom:auto!important;top:8px!important}

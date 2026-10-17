@@ -246,7 +246,7 @@
     if (EDIT) { const i = L.q.findIndex(x => x.id === EDIT.id); if (i >= 0) L.q[i] = q; toast('✓ Contact updated.'); }
     else { L.q.push(q); const n = actList().filter(x => x.my === q.my).length; toast(isHunt() ? `✓ ${call}${q.ref ? ' at ' + q.ref.split(',')[0] : ''} logged (${n} today)` : `✓ ${call} logged${multi() ? ' by ' + q.op : ''} (${n} this activation${multi() && !SET.share ? ' for ' + q.my : ''})${n === 10 ? ': 🎉 that makes it a valid activation!' : ''}`, () => { L.q = L.q.filter(x => x.id !== q.id); save(); drawAll(); }); NEWID = q.id;
       /* the effect flares only for a milestone (every 50 contacts in my log) or DX outside North America (Brandon Oct 17) */
-      const tot = L.q.length, dx = isDX(call); if (tot % 50 === 0 || dx) { const fx = $('cEntry'); fx.classList.remove('pop'); void fx.offsetWidth; fx.classList.add('pop'); setTimeout(() => fx.classList.remove('pop'), 3200); setTimeout(() => toast(dx ? `🌍 DX! ${call} is outside North America.` : `🎉 ${tot} contacts in your log!`), 1800); } }
+      const tot = L.q.length, dx = isDX(call); if (tot % 50 === 0 || dx) { const fx = $('cEntry'); fx.classList.remove('pop'); void fx.offsetWidth; fx.classList.add('pop'); setTimeout(() => fx.classList.remove('pop'), 3200); const fm = dx ? `🌍 DX! ${call} is outside North America` : `🎉 ${tot} contacts in your log!`; if (window.KPCFx && !document.getElementById('lg').hasAttribute('data-night')) KPCFx(SET.fx, fm); else toast(fm); } }
     save(); clearForm(true); drawAll(); radioTxt(); $('eCall').focus();
     /* the look-up hadn't come back yet (typed fast): fill name / state / town / map spot in when it does */
     if (!r.call) look(call).then(x => { if (!x) return; const z = L.q.find(y => y.id === q.id); if (!z) return;
@@ -313,6 +313,19 @@
   }
   const hdrH = () => { const h = document.querySelector('header.site-nav, header'); return h ? Math.max(0, h.getBoundingClientRect().bottom) : 0; };
   function dockSize() { const m = document.getElementById('lg'); m.style.setProperty('--dock', $('cEntry').offsetHeight + 'px'); m.style.setProperty('--hdr', hdrH() + 'px'); }
+  /* phones: when the keyboard is up, give the log the room (Brandon Oct 17 picture): fit the app to the visible part of the
+     screen, hide the extras, newest contacts right above the entry line */
+  let VVMAX = 0;
+  function vvFit() {
+    const vv = window.visualViewport, m = document.getElementById('lg'); if (!vv) return;
+    if (!tabMode()) { m.removeAttribute('data-kb'); return; }
+    VVMAX = Math.max(VVMAX, vv.height); const ae = document.activeElement, typing = ae && /^(INPUT|SELECT|TEXTAREA)$/.test(ae.tagName) && ae.type !== 'checkbox';
+    const kb = typing && vv.height < VVMAX - 120, was = m.hasAttribute('data-kb'); m.toggleAttribute('data-kb', kb);
+    m.style.setProperty('--vvh', Math.round(vv.height) + 'px'); m.style.setProperty('--vvt', Math.round(vv.offsetTop) + 'px');
+    m.style.setProperty('--kbb', Math.max(0, Math.round(innerHeight - vv.height - vv.offsetTop)) + 'px');
+    dockSize(); if (kb && !was) { const l = document.querySelector('#cLog .lg-list'); if (l) setTimeout(() => { l.scrollTop = l.scrollHeight; }, 60); }
+  }
+  if (window.visualViewport) { visualViewport.addEventListener('resize', vvFit); visualViewport.addEventListener('scroll', vvFit); addEventListener('orientationchange', () => { VVMAX = 0; setTimeout(vvFit, 400); }); document.addEventListener('focusin', () => setTimeout(vvFit, 350)); document.addEventListener('focusout', () => setTimeout(vvFit, 350)); }
   function dockInit() {
     $('dRadio').onclick = () => { radioRow(!document.getElementById('lg').hasAttribute('data-radio')); if (document.getElementById('lg').hasAttribute('data-radio')) $('eFreq').focus(); };
     $('dMoreB').onclick = () => drawer($('eMore').hidden);
