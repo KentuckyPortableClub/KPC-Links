@@ -98,7 +98,7 @@ PAGES['kpc-map-room.html'] = ('Map Room | KPC', 'Every Kentucky Portable Club ma
 
 # ================================================================== POTA ROOM
 PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain words: what POTA is, the rules (10 contacts in one UTC day), how to activate and hunt, Kentucky guides and tools.', ''.join([
-    hero('hero-lake-camp', 'KPC POTA ROOM • PARKS ON THE AIR', 'PARKS ON', 'THE AIR',
+    hero('hero-statepark', 'KPC POTA ROOM • PARKS ON THE AIR', 'PARKS ON', 'THE AIR',
          'Take a radio to a public park and make contacts, or hunt the people who do. Here are the rules in plain words, our Kentucky guides, and every tool you need.',
          ['📻 Activate', '🎯 Hunt', '🌲 Kentucky parks'],
          [('THE RULES ↓', '#rules'), ('HOW TO START ↓', '#how'), ('KENTUCKY GUIDES ↓', '#guides')]),
@@ -154,7 +154,7 @@ PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain wor
 
 # ================================================================== WWFF ROOM
 PAGES['kpc-wwff-room.html'] = ('WWFF / KFF Room | KPC', 'World Wide Flora & Fauna (KFF in the USA) in plain words: what it is, the rules (44 contacts for WWFF awards), how to activate and hunt, Kentucky guides and tools.', ''.join([
-    hero('hero-river-camp', 'KPC WWFF ROOM • WORLD WIDE FLORA &amp; FAUNA', 'WWFF', '&amp; KFF',
+    hero('hero-wildlife', 'KPC WWFF ROOM • WORLD WIDE FLORA &amp; FAUNA', 'WWFF', '&amp; KFF',
          'WWFF is a worldwide program for nature areas. In the USA it\'s called KFF, and many Kentucky POTA parks also have a KFF number, so you can often do both on one trip.',
          ['🌿 Nature areas', '🌎 Worldwide', '🦌 KFF = USA'],
          [('THE RULES ↓', '#rules'), ('HOW TO START ↓', '#how'), ('KENTUCKY GUIDES ↓', '#guides')]),
