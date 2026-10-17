@@ -1,11 +1,16 @@
 name: zz probe
 on: push
+permissions:
+  contents: write
 jobs:
   p:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - run: |
-          for u in "https://spothole.app/api/v1/spots?limit=1000&max_age=3600" "https://spothole.app/api/v1/spots?limit=2000&max_age=3600" "https://spothole.app/api/v1/spots"; do
-          curl -s -D /tmp/h -o /tmp/b -w "%{http_code} %{size_download} %{time_total}" -H 'Origin: https://kentuckyportableclub.github.io' "$u" > /tmp/c; echo "::notice title=$u::$(cat /tmp/c) $(grep -i 'access-control\|content-type' /tmp/h | tr -d '\r' | tr '\n' ' ') $(head -c 300 /tmp/b)"; done
-          python3 -c "
-          import json,time;d=json.load(open('/tmp/b'));d=d if isinstance(d,list) else d.get('spots',d);print('::notice title=times::',type(d).__name__,len(d),[ (x.get('time'),x.get('source'),x.get('sig')) for x in d[:5]], time.time())"
+          curl -s "https://spothole.app/api/v1/spots?limit=1000&max_age=3600" -o hole.json
+          curl -s "https://api.pota.app/spot/activator" -o pota.json
+          curl -s "https://api2.sota.org.uk/api/spots/50/all" -o sota.json
+          curl -s "https://api.pota.app/programs" -o programs.json
+          curl -s "https://api2.sota.org.uk/api/associations" -o assoc.json
+          git config user.name x; git config user.email x@x; git add *.json; git commit -qm d; git push
