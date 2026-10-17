@@ -25,3 +25,10 @@ s=open('kpc-hunters.html').read()
 if 'href="kpc-hunters.html" aria-current' not in s: s=s.replace('href="kpc-hunters.html"','href="kpc-hunters.html" aria-current="page"',1)
 open('kpc-hunters.html','w').write(s)
 P
+# kpc-hunt-cat.html = CAT (radio control) + QRZ auto-send settings (members, noindex; Brandon Oct 17), own source
+python3 .claude/build/assemble.py .claude/build/hunt-cat/main.html kpc-hunt-cat.html "Radio Control & QRZ | KPC" "KPC members: let the Hunters Lounge tune your radio when you click a spot, and send each contact to your QRZ logbook."
+python3 - <<'P'
+s=open('kpc-hunt-cat.html').read()
+if 'noindex' not in s: s=s.replace('<meta charset="UTF-8">','<meta charset="UTF-8">\n<meta name="robots" content="noindex,nofollow">',1)
+open('kpc-hunt-cat.html','w').write(s)
+P
