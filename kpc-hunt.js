@@ -864,12 +864,13 @@
 
   /* ---------------- 🔥 flames up from the bottom when a new park shows up (Brandon Oct 16) ---------------- */
   let FX = get('kpcHuntFx', get('kpcHuntFlame', true) === false ? 'off' : 'flames'), fireT = 0; const FLAME = true;
-  const FXL = { flames: ['🔥', 'FLAMES'], fireworks: ['🎆', 'FIREWORKS'], off: ['🚫', 'NO EFFECTS'] };
+  const FXL = { flames: ['🔥', 'FLAMES'], fireworks: ['🎆', 'FIREWORKS'], stars: ['🌠', 'SHOOTING STARS'], off: ['🚫', 'NO EFFECTS'] };
   function flameBtn() { const b = $('hlFlame'), f = FXL[FX] || FXL.flames; b.setAttribute('aria-pressed', FX !== 'off'); b.dataset.fx = FX; b.innerHTML = f[0] + '<span class="t"> ' + f[1] + '</span>'; }
-  $('hlFlame').onclick = () => { FX = FX === 'flames' ? 'fireworks' : FX === 'fireworks' ? 'off' : 'flames'; put('kpcHuntFx', FX); flameBtn(); if (FX !== 'off') fire(FX === 'flames' ? '🔥 Flames for new parks' : '🎆 Fireworks for new parks'); else toast('No screen effects for new parks.'); };
+  $('hlFlame').onclick = () => { FX = FX === 'flames' ? 'fireworks' : FX === 'fireworks' ? 'stars' : FX === 'stars' ? 'off' : 'flames'; put('kpcHuntFx', FX); flameBtn(); if (FX !== 'off') fire(FX === 'flames' ? '🔥 Flames for new parks' : FX === 'fireworks' ? '🎆 Fireworks for new parks' : '🌠 Shooting stars for new parks'); else toast('No screen effects for new parks.'); };
   function fire(msg) {
     if (FX === 'off' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (FX === 'fireworks') return fireworks(msg);
+    if (FX === 'stars') return shootingStars(msg);
     const cv = $('hlFire'), cx = cv.getContext('2d'), W = cv.width = innerWidth, H = cv.height = Math.round(innerHeight * .55); cv.style.height = '';
     const P = [], t0 = performance.now(), DUR = 3800;
     if (msg) { const m = $('hlFireMsg'); m.textContent = msg; m.classList.remove('on'); void m.offsetWidth; m.classList.add('on'); }
@@ -886,6 +887,34 @@
         cx.fillStyle = g; cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, 6.283); cx.fill();
       }
       if (el < DUR || P.length) fireT = requestAnimationFrame(step); else { cv.classList.remove('on'); cx.clearRect(0, 0, W, H); }
+    };
+    fireT = requestAnimationFrame(step);
+  }
+  /* 🌠 shooting stars: bright streaks with glowing tails race across the screen from the top */
+  function shootingStars(msg) {
+    const cv = $('hlFire'), cx = cv.getContext('2d'), W = cv.width = innerWidth, H = cv.height = innerHeight;
+    cv.style.height = '100vh';
+    if (msg) { const m = $('hlFireMsg'); m.textContent = msg.replace(/^🔥/, '🌠'); m.classList.remove('on'); void m.offsetWidth; m.classList.add('on'); }
+    cv.classList.add('on'); cancelAnimationFrame(fireT);
+    const S = [], SP2 = [], t0 = performance.now(), DUR = 4200; let made = 0;
+    for (let i = 0; i < 70; i++) SP2.push({ x: Math.random() * W, y: Math.random() * H * .7, r: Math.random() * 1.3 + .3, p: Math.random() * 6.28 });
+    const step = now => {
+      const el = now - t0;
+      if (el < DUR - 1200 && made < Math.round(el / 230) + 1) { made++; const a = (20 + Math.random() * 25) * Math.PI / 180, v = 14 + Math.random() * 12, left = Math.random() < .5;
+        S.push({ x: left ? -40 + Math.random() * W * .5 : W * .5 + Math.random() * W * .5, y: -20 + Math.random() * H * .35, vx: (left ? 1 : -1) * Math.cos(a) * v, vy: Math.sin(a) * v, life: 0, max: 45 + Math.random() * 30, len: 14 + Math.random() * 10 }); }
+      cx.clearRect(0, 0, W, H);
+      const fade = Math.max(0, Math.min(1, el / 400, (DUR - el) / 600));
+      SP2.forEach(st => { cx.globalAlpha = fade * (.35 + .35 * Math.sin(el / 300 + st.p)); cx.fillStyle = '#fff'; cx.beginPath(); cx.arc(st.x, st.y, st.r, 0, 6.283); cx.fill(); });
+      cx.globalAlpha = 1;
+      for (let i = S.length - 1; i >= 0; i--) {
+        const s = S[i]; s.life++; s.x += s.vx; s.y += s.vy; const k = s.life / s.max;
+        if (k >= 1) { S.splice(i, 1); continue; }
+        const tx = s.x - s.vx * s.len, ty = s.y - s.vy * s.len, g = cx.createLinearGradient(s.x, s.y, tx, ty);
+        g.addColorStop(0, `rgba(255,255,255,${1 - k})`); g.addColorStop(.25, `rgba(180,215,255,${.7 * (1 - k)})`); g.addColorStop(1, 'rgba(120,160,255,0)');
+        cx.strokeStyle = g; cx.lineWidth = 3; cx.lineCap = 'round'; cx.beginPath(); cx.moveTo(s.x, s.y); cx.lineTo(tx, ty); cx.stroke();
+        cx.fillStyle = `rgba(255,255,255,${1 - k})`; cx.shadowColor = '#bcd6ff'; cx.shadowBlur = 14; cx.beginPath(); cx.arc(s.x, s.y, 2.6, 0, 6.283); cx.fill(); cx.shadowBlur = 0;
+      }
+      if (el < DUR || S.length) fireT = requestAnimationFrame(step); else { cv.classList.remove('on'); cx.clearRect(0, 0, W, H); cv.style.height = ''; }
     };
     fireT = requestAnimationFrame(step);
   }
