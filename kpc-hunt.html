@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="kpc-theme.js?v=20261014kz"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hunters Lounge | KPC</title>
+<!-- KPC icons & share preview -->
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link rel="apple-touch-icon" href="kpc-icon-180.png">
+<meta property="og:site_name" content="Kentucky Portable Club">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hunters Lounge | KPC">
+<meta property="og:description" content="Live POTA, WWFF and SOTA spots for hunters: load your log, hide parks you've worked, and new-to-you parks roll across the screen. Parks you still need by state and top activators.">
+<meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-hunt.html">
+<meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /KPC icons -->
+<meta name="description" content="Live POTA, WWFF and SOTA spots for hunters: load your log, hide parks you've worked, and new-to-you parks roll across the screen. Parks you still need by state and top activators.">
+<style>
+:root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
+.site-nav{position:sticky;top:0;z-index:1000;background:#070707;border-bottom:1px solid rgba(213,166,58,.55);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.nav-inner{width:min(var(--max),100%);min-height:var(--nav-height);margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}.brand-text{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:18px;line-height:1.1}.brand-text small{display:block;margin-top:4px;color:var(--gold-light);font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:900;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:5px}.nav-links a{color:#fff;padding:11px 10px;font-size:13px;font-weight:800;letter-spacing:.7px;border-bottom:2px solid transparent;transition:.2s}.nav-links a:hover,.nav-links a[aria-current=page]{color:var(--gold-light);border-bottom-color:var(--gold)}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(213,166,58,.55);border-radius:8px;background:var(--black-2);color:#fff;cursor:pointer;font-size:22px}
+.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:var(--black) url("parks.png") center/cover no-repeat;color:#fff;border-bottom:1px solid rgba(213,166,58,.45)}
+.hero:before{content:"";position:absolute;width:620px;height:620px;right:-170px;top:-180px;border:1px solid rgba(213,166,58,.35);border-radius:50%;box-shadow:0 0 0 55px rgba(213,166,58,.035),0 0 0 110px rgba(213,166,58,.025)}
+.hero:after{content:none}
+.hero-inner{position:relative;z-index:2;width:min(var(--max),100%);margin:auto;padding:90px 24px 84px}.hero-logo{width:min(360px,78vw);margin-bottom:24px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45))}.eyebrow{margin:0 0 12px;color:var(--gold-light);font-size:13px;font-weight:900;letter-spacing:4px}.hero h1{max-width:800px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,6.2vw,76px);line-height:1.02;letter-spacing:-1.8px}.hero h1 span{color:var(--gold-light)}.hero-copy{max-width:720px;margin:22px 0 0;color:#eee9dd;font-size:clamp(16px,2vw,20px)}
+.section{padding:82px 24px}.section-inner{width:min(var(--max),100%);margin:auto}.section-heading{text-align:center;margin-bottom:42px}.kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:4px}.section h2{margin:7px 0 12px;color:var(--black);font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,4vw,48px);line-height:1.08}.section-heading p{max-width:760px;margin:0 auto;color:var(--muted);font-size:17px}
+.intro{background:var(--cream);border-bottom:1px solid #d9cfbd}.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}.intro-copy h2{margin:7px 0 18px}.intro-copy p{color:var(--muted);font-size:18px;margin:0}.intro-panel{padding:34px;background:var(--black);border:1px solid var(--gold);box-shadow:12px 12px 0 var(--gold);color:#fff;position:relative;overflow:hidden}.intro-panel:after{content:"";position:absolute;width:230px;height:230px;right:-90px;top:-90px;border:1px solid rgba(213,166,58,.45);border-radius:50%}.intro-panel .mark{position:relative;z-index:1;color:var(--gold-light);font-size:12px;font-weight:900;letter-spacing:3px}.intro-panel h3{position:relative;z-index:1;margin:10px 0 10px;font:700 30px/1.1 Georgia,serif}.intro-panel p{position:relative;z-index:1;margin:0;color:#c9c5bc}.intro-panel .line{position:relative;z-index:1;width:70px;height:3px;background:var(--gold);margin:20px 0}
+.features{background:#fffaf0}.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.card{min-height:285px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid #d8cfbf;background:#fff;color:var(--ink);box-shadow:0 12px 28px rgba(0,0,0,.07);transition:.2s;position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;width:6px;height:100%;background:var(--gold)}.card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.12);border-color:var(--gold)}.card-top{position:relative;z-index:1}.card-num{color:var(--green);font-size:12px;font-weight:900;letter-spacing:3px}.card h3{margin:8px 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:28px;line-height:1.1}.card p{margin:0;color:var(--muted);font-size:15px;max-width:520px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:1px;background:var(--gold);color:#0b0b0b;transition:.2s;align-self:flex-start;margin-top:24px}.btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.dark{background:var(--black);color:#fff;border-top:1px solid rgba(213,166,58,.45);border-bottom:1px solid rgba(213,166,58,.45)}.dark .section-heading p{color:#bcb8ae}.dark h2{color:#fff}.dark .card{background:#151515;border-color:#363636;color:#fff}.dark .card p{color:#bcb8ae}.dark .card h3{color:#fff}.dark .card:before{background:var(--gold)}
+.map-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.map-box{padding:30px;border:1px solid #363636;background:#151515}.map-box h3{margin:8px 0 10px;color:#fff;font:700 25px/1.1 Georgia,serif}.map-box p{margin:0;color:#bcb8ae}.map-box .btn{margin-top:22px}
+.pota-card{min-height:310px}
+.pdf-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pdf-actions .btn{margin-top:0}.pdf-actions .alt{background:#fff;border:1px solid var(--gold);color:#171717}
+.warning{background:var(--cream-2);border-top:1px solid #d1c6b3}.warning-box{border-left:6px solid var(--gold);background:#fff;padding:30px;box-shadow:0 10px 24px rgba(0,0,0,.06)}.warning-box h3{margin:0 0 10px;font:700 28px/1.1 Georgia,serif}.warning-box p{margin:0;color:var(--muted)}
+.final{padding:76px 24px;text-align:center;background:var(--cream-2)}.final h2{margin:0;color:var(--black);font-family:Georgia,serif;font-size:clamp(30px,4vw,44px)}.final p{margin:10px 0 24px;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:2px}
+footer{padding:28px 24px;text-align:center;background:#050505;color:#9b978e;border-top:1px solid #292929;font-size:13px}footer strong{color:var(--gold-light)}
+@media(min-width:901px){.hero-logo{position:absolute;left:-400px;top:calc(50% - 22px);transform:translateY(-50%);justify-self:auto;margin-bottom:0}}
+@media(max-width:1000px){.nav-links a{padding-inline:7px;font-size:12px}.intro-grid{gap:38px}}
+@media(max-width:900px){.hero-logo{display:block;width:min(290px,58vw);margin-left:auto;margin-right:auto}}
+@media(max-width:760px){:root{--nav-height:70px}.nav-inner{min-height:70px;padding:8px 18px}.brand img{width:52px;height:52px}.menu-toggle{display:block}.nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:10px 18px 16px;background:#070707;border-bottom:1px solid rgba(213,166,58,.45);box-shadow:0 15px 25px rgba(0,0,0,.22)}.nav-links.open{display:flex}.nav-links a{padding:13px 5px;border-bottom:1px solid #292929}.nav-links a:last-child{border-bottom:0}.hero{min-height:500px;background:url("parks-mobile.png") center/cover no-repeat}.hero-inner{padding:70px 20px 55px}.hero-logo{width:min(290px,58vw)}.section{padding:68px 20px}.intro-grid,.map-grid{grid-template-columns:1fr}.intro-panel{max-width:520px;margin:auto}.card-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-logo{width:min(250px,64vw)}}
+@media(max-width:520px){.hero h1{font-size:42px}.hero-copy{font-size:16px}.card{min-height:300px}.card h3{font-size:25px}.pdf-actions{flex-direction:column}.pdf-actions .btn{width:100%}}
+@media(max-width:380px){.brand-text small{display:none}}
+
+/* Added official trail and Wild River resource sections */
+.resource-note{background:#fff7df;border-left:5px solid var(--gold);padding:18px 22px;margin:0 0 28px;color:#332c1f}
+.resource-note p{margin:0}.resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.resource-item{padding:26px;border:1px solid #d8cfbf;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.045)}
+.resource-item h3{font:700 25px/1.18 Georgia,serif;margin:8px 0 12px}.resource-item p{color:#5f5a51;margin:0 0 12px}
+.resource-item .meta{font-size:12px;font-weight:900;letter-spacing:1.4px;color:var(--green)}
+.resource-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.resource-actions .btn{margin:0;font-size:11px;min-height:40px}
+.resource-actions .secondary{background:#f8f4eb;border:1px solid #c9ad6b}
+.river-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:25px 0}
+.river-list article{padding:18px 20px;background:#fff;border:1px solid #d8cfbf}.river-list strong{display:block;font:700 20px Georgia,serif}.river-list span{display:block;margin-top:7px;color:#5f5a51;font-size:14px}
+@media(max-width:760px){.resource-grid,.river-list{grid-template-columns:1fr}}
+/* Quick jump links, trail cards, map files */
+.jump{background:var(--black);border-bottom:1px solid rgba(213,166,58,.45);position:sticky;top:var(--nav-height);z-index:900}
+.jump-inner{width:min(var(--max),100%);margin:auto;padding:10px 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.jump-inner::-webkit-scrollbar{display:none}
+.jump a{flex:0 0 auto;padding:8px 14px;border:1px solid #3a3a3a;border-radius:999px;color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;transition:.2s}
+.jump a:hover{border-color:var(--gold);color:var(--gold-light)}
+section[id]{scroll-margin-top:calc(var(--nav-height) + 60px)}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn-row .btn{margin-top:0}
+.trail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.trail-grid .resource-item:last-child:nth-child(odd){grid-column:1/-1}
+.twofer{margin:14px 0 0;padding:12px 14px;background:#fff7df;border-left:4px solid var(--gold);font-size:14px;color:#332c1f}
+.twofer b{color:var(--green);letter-spacing:1px;font-size:12px}
+.files-card .pdf-actions .btn{min-width:0}
+.file-group{margin-top:16px}.file-group .card-num{margin-bottom:8px}
+.warning-box .btn-row .btn{font-size:11px;min-height:40px}
+@media(max-width:760px){.jump{top:70px}.trail-grid{grid-template-columns:1fr}.btn-row{flex-direction:column}.btn-row .btn{width:100%}}
+.dark .kicker,.dark .card-num{color:var(--gold-light)}
+/* On The Air Now bar */
+.onair{background:#0d2419;border-bottom:1px solid rgba(213,166,58,.45);color:#fff}
+.onair-inner{width:min(var(--max),100%);margin:auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.onair-title{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:3px;color:var(--gold-light);white-space:nowrap}
+.onair .dot{width:10px;height:10px;border-radius:50%;background:#3ecf6e;animation:pulse 1.8s infinite}
+.onair .dot.off{background:#8a8a8a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.6)}70%{box-shadow:0 0 0 9px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.onair-count{font-size:14px;color:#e9eee9}.onair-count b{color:#fff}
+.onair-list{display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}.onair-list::-webkit-scrollbar{display:none}
+.onair-chip{flex:0 0 auto;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;white-space:nowrap}
+.onair-chip b{color:var(--gold-light)}.onair-chip.club{border-color:var(--gold);background:rgba(213,166,58,.14)}
+.onair .btn{margin:0;min-height:38px;padding:8px 14px;font-size:11px;white-space:nowrap}
+@media(max-width:760px){.onair-inner{padding:12px 18px;gap:8px 10px}.onair-title{order:1}.onair .btn{order:2;margin-left:auto}.onair-count{order:3;flex-basis:100%}.onair-list{order:4;flex-basis:100%}}
+
+/* KPC shared About-style footer and below-hero page links */
+.page-jump-nav{background:#101010;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+.page-jump-nav a{display:inline-block;color:#fff;text-decoration:none;padding:10px 13px;border:1px solid rgba(255,255,255,.29);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.7px;line-height:1.3;transition:background .2s,border-color .2s}
+.page-jump-nav a:hover,.page-jump-nav a:focus-visible{background:#3c321a;border-color:#d6b96c;color:#fff}
+section[id]{scroll-margin-top:100px}
+footer.kpc-about-footer{padding:38px 24px!important;background:#070707!important;color:#fff!important;display:flex!important;justify-content:space-between!important;gap:24px!important;align-items:center!important;text-align:left!important;font-family:inherit!important}
+footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}
+footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px;letter-spacing:normal}
+footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}
+footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-actions a:focus-visible{border-color:#e5c87b;color:#e5c87b}
+@media(max-width:600px){footer.kpc-about-footer{flex-direction:column!important;align-items:flex-start!important}.page-jump-nav{padding:10px 12px;gap:7px}.page-jump-nav a{padding:9px 10px;font-size:10px}}
+body.field .page-jump-nav{display:none!important}
+
+</style>
+<link rel="stylesheet" href="kpc-nav.css?v=20261015a">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261016a">
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="KPC Home">
+      <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
+      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
+    <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="campout.html">Campout</a>
+      <a href="parks.html">Parks</a>
+      <a href="events.html">Events</a>
+      <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
+      <div class="nav-more" id="kpcNavMore">
+        <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Parks &amp; Activations</div>
+            <a href="kpc-map-room.html" role="menuitem"><span class="ni">&#128506;</span>Map Room (every map tool)</a>
+            <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Find It</a>
+            <a href="kpc-spot-me.html" role="menuitem"><span class="ni">&#128227;</span>Spot Me (post your spot)</a>
+            <a href="kpc-kit.html" role="menuitem"><span class="ni">&#127890;</span>Activation Kit (all the info in one tap)</a>
+            <a href="kpc-activations.html" role="menuitem"><span class="ni">&#128203;</span>Activation Board (plans &amp; park requests)</a>
+            <a href="kpc-hunt.html" role="menuitem" aria-current="page"><span class="ni">&#127919;</span>Hunters Lounge (live spots, parks I need)</a>
+            <a href="kpc-park-sheet.html" role="menuitem"><span class="ni">&#128424;</span>Printable Park Sheet</a>
+            <a href="kpc-park-notes.html" role="menuitem"><span class="ni">&#128221;</span>Park Notes (tips)</a>
+            <a href="kpc-park-notes-us.html" role="menuitem"><span class="ni">&#128221;</span>Park Notes: Other States</a>
+            <a href="kpc-campgrounds.html" role="menuitem"><span class="ni">&#127957;</span>Campgrounds &amp; Cabins</a>
+            <a href="kpc-community.html" role="menuitem"><span class="ni">&#129309;</span>Community (setups &amp; tips)</a>
+            <a href="photos.html#member-photos" role="menuitem"><span class="ni">&#128247;</span>Member Field Photos</a>
+            <a href="kpc-guestbook.html" role="menuitem"><span class="ni">&#9997;&#65039;</span>Guestbook (sign it!)</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Field Reference</div>
+            <a href="kpc-pota-room.html" role="menuitem"><span class="ni">&#127794;</span>POTA Room (rules, guides &amp; tools)</a>
+            <a href="kpc-wwff-room.html" role="menuitem"><span class="ni">&#129420;</span>WWFF / KFF Room</a>
+            <a href="kpc-sota-room.html" role="menuitem"><span class="ni">&#9968;&#65039;</span>SOTA Room</a>
+            <a href="kpc-band-plan.html" role="menuitem"><span class="ni">&#128225;</span>Band Plan by License</a>
+            <a href="kpc-cw.html" role="menuitem"><span class="ni">&#127911;</span>CW Practice Room</a>
+            <a href="kpc-cw-info.html" role="menuitem"><span class="ni">&#128214;</span>CW Info &amp; Links</a>
+            <a href="kpc-kids.html" role="menuitem"><span class="ni">&#129490;</span>Kids Room (games &amp; guides)</a>
+            <a href="kpc-space-weather.html" role="menuitem"><span class="ni">&#128246;</span>Radio Conditions &amp; Propagation</a>
+            <a href="kpc-weather.html" role="menuitem"><span class="ni">&#127783;</span>Weather</a>
+            <a href="antennas.html" role="menuitem"><span class="ni">&#128251;</span>Antenna Guides</a>
+            <a href="kpc-antenna.html" role="menuitem"><span class="ni">&#128208;</span>Antenna Calculator</a>
+            <a href="kpc-battery.html" role="menuitem"><span class="ni">&#128267;</span>Battery Guide</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Resources</div>
+            <a href="resources.html" role="menuitem"><span class="ni">&#128218;</span>Resources</a>
+            <a href="toolbox.html" role="menuitem"><span class="ni">&#128296;</span>Tool Box</a>
+            <a href="news.html" role="menuitem"><span class="ni">&#128240;</span>News</a>
+          </div>
+          <div class="nav-drop-section">
+            <div class="nav-drop-label">Club</div>
+            <a href="about.html" role="menuitem"><span class="ni">&#128075;</span>About KPC</a>
+            <a href="join.html" role="menuitem"><span class="ni">&#9993;</span>Join KPC</a>
+            <a href="members.html" role="menuitem"><span class="ni">&#128101;</span>Members</a>
+            <a href="contact.html" role="menuitem"><span class="ni">&#128172;</span>Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<main id="hl" data-keep-light>
+<div class="hl-far" id="hlFar" hidden><span class="hl-far-k">FAR AWAY NEW ONES</span><div class="hl-far-run"><div class="hl-far-track" id="hlFarT"></div></div></div>
+
+<section class="hl-hero"><div class="hl-in">
+<p class="hl-eyebrow">KPC HUNTERS LOUNGE • POTA • WWFF • SOTA</p>
+<h1>HUNTERS <span>LOUNGE</span></h1>
+<p class="hl-copy">Live spots with the parks you've already worked tucked out of the way. Load your log once, and every park that's new to you lights up and rolls across the screen.</p>
+<div class="hl-stats">
+ <div><b id="hsLive">–</b><span>SPOTS ON THE AIR</span></div>
+ <div class="g"><b id="hsNew">–</b><span>NEW TO YOU</span></div>
+ <div><b id="hsLog">0</b><span>IN YOUR LOG</span></div>
+ <div><b id="hsAge">–</b><span>NEXT CHECK</span></div>
+</div>
+<div class="hl-acts"><a class="hl-btn gold" href="#hlSetup">📥 LOAD MY LOG</a><a class="hl-btn ghost" href="#hlNeed">🎯 PARKS I NEED</a><a class="hl-btn ghost" href="#hlTop">🏆 TOP ACTIVATORS</a></div>
+</div></section>
+
+<section class="hl-tick" id="hlTick" aria-live="polite">
+ <div class="hl-tick-k"><span class="dot"></span>NEW TO YOU</div>
+ <div class="hl-tick-run"><div class="hl-tick-track" id="hlTickT"><span class="hl-wait">Waiting for a park that's new to you…</span></div></div>
+ <button type="button" class="hl-bell" id="hlBell" aria-pressed="false" title="Alert me">🔕 ALERT OFF</button>
+</section>
+
+<section class="hl-sec"><div class="hl-in">
+<div class="hl-filters">
+ <div class="hl-row" role="group" aria-label="Program"><button type="button" class="hl-chip" data-g="p" data-v="POTA">POTA</button><button type="button" class="hl-chip" data-g="p" data-v="WWFF">WWFF / KFF</button><button type="button" class="hl-chip" data-g="p" data-v="SOTA">SOTA</button></div>
+ <div class="hl-row" role="group" aria-label="Show"><button type="button" class="hl-chip big" id="fHide" aria-pressed="false">🙈 HIDE PARKS I'VE WORKED</button><button type="button" class="hl-chip big" id="fNew" aria-pressed="false">✨ NEW TO ME ONLY</button><button type="button" class="hl-chip big" id="fRange" aria-pressed="false">📏 IN MY RANGE ONLY</button></div>
+ <details class="hl-dd"><summary>BAND <i id="sBand">ALL</i></summary><div class="hl-row" id="fBands"></div></details>
+ <details class="hl-dd"><summary>MODE <i id="sMode">ALL</i></summary><div class="hl-row" id="fModes"></div></details>
+ <details class="hl-dd"><summary>WHERE <i id="sWhere">EVERYWHERE</i></summary><div class="hl-row" id="fWhere"></div><label class="hl-lab">State <select id="fSt"><option value="">Any state</option></select></label></details>
+ <div class="hl-row"><input type="search" id="fQ" placeholder="Search call, park, number, state…" aria-label="Search spots"><select id="fSort" aria-label="Sort"><option value="new">Newest first</option><option value="mine">New to me first</option><option value="freq">By frequency</option><option value="far">Closest first</option></select></div>
+</div>
+<p class="hl-count" id="hlCount"></p>
+<div class="hl-grid" id="hlSpots"><div class="hl-empty">Loading spots…</div></div>
+<p class="hl-src" id="hlSrc"></p>
+</div></section>
+
+<section class="hl-sec alt" id="hlSetup"><div class="hl-in">
+<p class="hl-k">STEP 1</p><h2>📥 Your log</h2>
+<div class="hl-two">
+<div class="hl-card">
+ <h3>Load the parks you've worked</h3>
+ <label class="hl-lab">Your call sign <input id="hCall" autocomplete="off" autocapitalize="characters" placeholder="Your call"></label>
+ <div class="hl-drop" id="hDrop"><input type="file" id="hFile" accept=".csv,.txt,.adi,.adif,text/csv" multiple><b>📄 TAP TO PICK YOUR FILE</b><span>or drop it here · CSV or ADIF · POTA, WWFF and SOTA</span></div>
+ <div class="hl-row"><label class="hl-chk"><input type="checkbox" id="hAdd"> Add to my list (don't replace it)</label></div>
+ <p class="hl-msg" id="hMsg"></p>
+ <div class="hl-progs" id="hProgs"></div>
+ <div class="hl-row"><button type="button" class="hl-btn line sm" id="hClear">CLEAR MY LIST</button></div>
+</div>
+<div class="hl-card">
+ <h3>Where do I get the file?</h3>
+ <ul class="hl-how">
+ <li><b>POTA:</b> sign in at <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a>, open your stats, and download your <b>hunted parks</b> list as a CSV file.</li>
+ <li><b>WWFF / KFF:</b> your log from <a href="https://wwff.co/logsearch/" target="_blank" rel="noopener">WWFF Logsearch</a>, or any ADIF from your logger with WWFF numbers in it.</li>
+ <li><b>SOTA:</b> sign in at <a href="https://www.sotadata.org.uk" target="_blank" rel="noopener">sotadata.org.uk</a> and download your chaser log as a CSV file.</li>
+ <li>Any CSV or ADIF works: the page just looks for park, reference and summit numbers in it. Old POTA numbers like <b>K-1234</b> count as <b>US-1234</b>.</li>
+ </ul>
+ <div class="hl-note"><b>Will it remember me?</b> Yes, on this phone or computer. Your list is saved in this web browser, not on GitHub or anywhere else, so it's still here when you come back in 4 days (or 4 months). It's gone if you clear your browser's data or use a private window, and a different phone needs its own upload. Your log only changes when you upload again, so do that every week or two. Tapping <b>✓ WORKED</b> on a spot adds that park right away.</div>
+</div>
+</div>
+
+<p class="hl-k" style="margin-top:28px">STEP 2</p><h2>📏 Your normal range</h2>
+<div class="hl-card">
+ <p class="hl-p">Far-away new parks are harder to work, so they can go to the small ticker at the very top instead of the big one. Set where you are and how far you usually hear.</p>
+ <div class="hl-row"><button type="button" class="hl-btn green sm" id="hGps">📍 USE MY LOCATION</button><select id="hSt" aria-label="Home state"><option value="">…or pick your state</option></select><input id="hGrid" placeholder="…or grid (EM77)" maxlength="6" style="width:150px" aria-label="Grid square"></div>
+ <p class="hl-msg" id="hHome"></p>
+ <div class="hl-row" role="group" aria-label="Range" id="hRange"></div>
+ <label class="hl-chk"><input type="checkbox" id="hFarMode" checked> Far-away new parks go to the small ticker at the top only (no alert)</label>
+ <label class="hl-chk"><input type="checkbox" id="hNotify"> Also pop up a phone/computer notice while this page is open</label>
+</div>
+</div></section>
+
+<section class="hl-sec" id="hlNeed"><div class="hl-in">
+<p class="hl-k">STATE BY STATE</p><h2>🎯 Parks I still need</h2>
+<div class="hl-row"><select id="nSt" aria-label="State"></select><input type="search" id="nQ" placeholder="Search parks…" aria-label="Search parks"><select id="nSort" aria-label="Sort"><option value="rare">Rarest first</option><option value="name">A to Z</option><option value="ref">By number</option><option value="busy">Most activated first</option></select><label class="hl-chk"><input type="checkbox" id="nAir"> On the air now</label></div>
+<div class="hl-prog" id="nBar"></div>
+<div class="hl-list" id="nList"><div class="hl-empty">Pick a state.</div></div>
+</div></section>
+
+<section class="hl-sec alt" id="hlTop"><div class="hl-in">
+<p class="hl-k">WHO'S PUTTING THEM ON THE AIR</p><h2>🏆 Top 20 activators</h2>
+<div class="hl-row"><select id="tSt" aria-label="State"></select><button type="button" class="hl-chip" data-t="acts" aria-pressed="true">MOST ACTIVATIONS</button><button type="button" class="hl-chip" data-t="uniq" aria-pressed="false">MOST DIFFERENT PARKS</button></div>
+<div class="hl-top" id="tList"><div class="hl-empty">Loading…</div></div>
+<p class="hl-src" id="tSrc"></p>
+<h3 class="hl-h3">📊 My numbers</h3>
+<div id="mStats"><div class="hl-empty">Put your call sign in Step 1.</div></div>
+</div></section>
+</main>
+<footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
+<script src="kpc-hunt.js?v=20261016a"></script>
+<script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+  var more=document.getElementById('kpcNavMore');
+  if(more){var mb=more.querySelector('.nav-more-btn');mb.addEventListener('click',function(e){e.stopPropagation();var o=more.classList.toggle('open');mb.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!more.contains(e.target)){more.classList.remove('open');mb.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+<script src="kpc-announce.js?v=20261016a" defer></script>
+</body></html>
