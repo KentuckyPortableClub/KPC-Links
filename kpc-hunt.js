@@ -12,6 +12,7 @@
   'use strict';
   const $ = id => document.getElementById(id);
   const PUB = !!(document.getElementById('hl') && document.getElementById('hl').dataset.public === '1');
+  const DOCKON = () => !PUB && !!document.getElementById('hlDk');
   const DESKON = () => !PUB && !!document.getElementById('hlDk') && matchMedia('(min-width:1100px)').matches;   /* kpc-hunters.html = the public copy */
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const get = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
@@ -694,7 +695,7 @@
   function setNow() { const n = utc(new Date()); $('fDate').value = fmtD(n.d); $('fTime').value = fmtT(n.t); dupe(); }
   function openSheet(s, x) {
     if (PUB) return;
-    if (!x && DESKON()) { dkFill(s || {}); return; }   /* computers (members): the spot fills the log dock on the left instead */
+    if (!x && DOCKON()) { dkFill(s || {}); if (!DESKON()) dkGo(); return; }   /* members: the spot fills the log dock (left pane on computers, under the spots on phones) */
     EDIT = x || null;
     $('lgTitle').textContent = x ? '✏️ Edit this contact' : '📝 Log this contact';
     if (x) {
@@ -897,7 +898,7 @@
   /* ---------------- 🔥 flames up from the bottom when a new park shows up (Brandon Oct 16) ---------------- */
   let FX = get('kpcHuntFx', get('kpcHuntFlame', true) === false ? 'off' : 'flames'), fireT = 0; const FLAME = true;
   const FXL = { flames: ['🔥', 'FLAMES'], fireworks: ['🎆', 'FIREWORKS'], stars: ['🌠', 'SHOOTING STARS'], off: ['🚫', 'NO EFFECTS'] };
-  function flameBtn() { const b = $('hlFlame'), f = FXL[FX] || FXL.flames; b.setAttribute('aria-pressed', FX !== 'off'); b.dataset.fx = FX; b.innerHTML = f[0] + '<span class="t"> ' + f[1] + '</span>'; }
+  function flameBtn() { const b = $('hlFlame'), f = FXL[FX] || FXL.flames; const dk = document.getElementById('hlDk'); if (dk) dk.dataset.fx = FX; b.setAttribute('aria-pressed', FX !== 'off'); b.dataset.fx = FX; b.innerHTML = f[0] + '<span class="t"> ' + f[1] + '</span>'; }
   $('hlFlame').onclick = () => { FX = FX === 'flames' ? 'fireworks' : FX === 'fireworks' ? 'stars' : FX === 'stars' ? 'off' : 'flames'; put('kpcHuntFx', FX); flameBtn(); if (FX !== 'off') fire(FX === 'flames' ? '🔥 Flames for new parks' : FX === 'fireworks' ? '🎆 Fireworks for new parks' : '🌠 Shooting stars for new parks'); else toast('No screen effects for new parks.'); };
   function fire(msg) {
     if (FX === 'off' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -1038,19 +1039,28 @@
     $('dSt').addEventListener('input', () => { $('dSt').value = $('dSt').value.toUpperCase(); });
     $('dkQ').oninput = () => dkList();
     $('dkClr').onclick = () => { dkClear(); $('dCall').focus(); };
+    $('dkBack').onclick = () => { const el = BACKK && document.querySelector(`#hlSpots [data-k="${CSS.escape(BACKK)}"]`);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); else scrollTo({ top: BACKY, behavior: 'smooth' }); };
+    $('dkRad').onclick = () => { const o = !$('hlDk').classList.contains('radio'); $('hlDk').classList.toggle('radio', o); $('dkRad').setAttribute('aria-expanded', o); if (o) $('dFreq').focus(); };
+    ['dFreq', 'dRef'].forEach(id => $(id).addEventListener('input', dkRadT)); $('dMode').addEventListener('change', dkRadT); dkRadT();
     $('dkForm').addEventListener('submit', e => { e.preventDefault(); dkLog(); });
     const clk = () => { const n = new Date(); $('dkClk').textContent = n.toISOString().slice(11, 19) + ' UTC'; };
     clk(); setInterval(clk, 1000);
     if (!$('dRs').value) $('dMode').onchange();
     deskSet(); window.addEventListener('load', deskSet);
   }
+  let BACKY = 0, BACKK = '';
+  function dkRadT() { const f = $('dFreq').value.trim(), r = $('dRef').value.trim(); $('dkRadT').textContent = (f || 'FREQ?') + ' ' + $('dMode').value + (r ? ' · ' + r : ''); $('dkRad').classList.toggle('bad', !f); }
+  /* phones: jump down to the log; ↑ BACK TO SPOTS (only that button) goes back up */
+  function dkGo() { BACKY = scrollY; setTimeout(() => $('hlDk').scrollIntoView({ behavior: 'smooth', block: 'end' }), 30); }
   function dkFill(s) {
     if (!$('dCall')) return;
+    BACKK = s.call ? s.p + '|' + s.call + '|' + s.ref : '';
     $('dCall').value = s.call || ''; $('dFreq').value = s.khz ? (s.khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, '') : $('dFreq').value;
     if (s.mode) $('dMode').value = modePick(s.mode);
     $('dRef').value = s.ref || ''; $('dName').value = s.name || ''; $('dSt').value = s.st || ''; $('dNote').value = '';
     $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value);
-    $('dFreq').dispatchEvent(new Event('input'));
+    $('dFreq').dispatchEvent(new Event('input')); dkRadT();
     const d = $('dkForm'); d.classList.remove('flash'); void d.offsetWidth; d.classList.add('flash');
     (s.call ? $('dRr') : $('dCall')).focus({ preventScroll: true }); if (s.call) $('dRr').select();
   }
@@ -1069,7 +1079,8 @@
     ref.split(/[ ,]+/).filter(Boolean).forEach(r => { if (!WK.has(r)) { WK.add(r); MAN.add(r); } }); saveLog(); logInfo();
     qList(); ticker(false); draw(); needDraw();
     toast(`✓ ${call} logged${ref ? ' at ' + ref : ''}.`, () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); draw(); });
-    dkClear(); $('dCall').focus();
+    dkClear(); $('dCall').focus({ preventScroll: true });
+    const fx = $('dkForm'); fx.classList.remove('pop'); void fx.offsetWidth; fx.classList.add('pop'); setTimeout(() => fx.classList.remove('pop'), 1600);
   }
   function dkList() {
     const el = $('dkList'); if (!el || PUB) return;
