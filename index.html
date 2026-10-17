@@ -700,6 +700,7 @@ body.field .page-jump-nav{display:none!important}
 <script src="kpc-events.js?v=20261013"></script>
 <script id="kpc-campcount-js">
 (function(){var el=document.getElementById('kpcCampCount');if(!el||!window.KPCEvents)return;
+if(Date.now()<Date.parse('2026-10-21T22:00:00Z')&&!/[?&]preview=1/.test(location.search))return; // shows from the Oct 21 go-live (5 PM Central)
 var c=KPCEvents.EVENTS.filter(function(e){return e.tags.indexOf('CAMPOUT')>=0}).map(function(e){return e}).sort(function(a,b){return a.start<b.start?-1:1});
 var now=new Date(),t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
 var camp=c.filter(function(e){return KPCEvents.pd(e.end||e.start)>=t0})[0];if(!camp)return;
