@@ -118,16 +118,18 @@ window.kpcGeocode=window.kpcGeocode||(function(){let lastNom=0,seq=0;
   window[cb]=j=>{const m=((j&&j.result&&j.result.addressMatches)||[]).map(a=>({la:+a.coordinates.y,lo:+a.coordinates.x,label:String(a.matchedAddress||q)})).filter(a=>isFinite(a.la)&&isFinite(a.lo));end(m)};
   s.onerror=()=>end([]);setTimeout(()=>end([]),12000);
   s.src='https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=jsonp&callback='+cb+'&address='+encodeURIComponent(q);document.head.appendChild(s)})}
- async function nominatim(q,ky){const out=[];const base='https://nominatim.openstreetmap.org/search?format=jsonv2&countrycodes=us&limit=5&q='+encodeURIComponent(q);
+ async function nominatim(q,ky,world){const out=[];const base='https://nominatim.openstreetmap.org/search?format=jsonv2'+(world?'':'&countrycodes=us')+'&limit=5&q='+encodeURIComponent(q);
   for(const u of ky?[base+'&viewbox=-89.6,39.2,-81.9,36.4&bounded=1',base]:[base]){const w=1100-(Date.now()-lastNom);if(w>0)await wait(w);lastNom=Date.now();
    try{const r=await fetch(u,{headers:{'Accept-Language':'en'}});if(r.ok){const j=await r.json();(j||[]).forEach(p=>out.push({la:+p.lat,lo:+p.lon,label:String(p.display_name||q).split(',').slice(0,3).join(',')}))}}catch(e){}
    if(out.length)break}return out}
- async function photon(q){try{const r=await fetch('https://photon.komoot.io/api/?limit=5&lang=en&q='+encodeURIComponent(q));if(!r.ok)return[];const j=await r.json();
-  return(j.features||[]).filter(f=>f.properties&&/^us$/i.test(f.properties.countrycode||'')).map(f=>{const p=f.properties;return{la:+f.geometry.coordinates[1],lo:+f.geometry.coordinates[0],label:[[p.housenumber,p.street].filter(Boolean).join(' ')||p.name,p.city||p.county,p.state].filter(Boolean).join(', ')}})}catch(e){return[]}}
+ async function photon(q,world){try{const r=await fetch('https://photon.komoot.io/api/?limit=5&lang=en&q='+encodeURIComponent(q));if(!r.ok)return[];const j=await r.json();
+  return(j.features||[]).filter(f=>f.properties&&(world||/^us$/i.test(f.properties.countrycode||''))).map(f=>{const p=f.properties;return{la:+f.geometry.coordinates[1],lo:+f.geometry.coordinates[0],label:[[p.housenumber,p.street].filter(Boolean).join(' ')||p.name,p.city||p.county,p.state,world&&!/^us$/i.test(p.countrycode||'')?p.country:''].filter(Boolean).join(', ')}})}catch(e){return[]}}
  const strip=q=>q.replace(/\b(apt|apartment|unit|suite|ste|lot|#)\s*[\w-]+/gi,'').replace(/(\d{5})-\d{4}/,'$1').replace(/\s+,/g,',').replace(/\s{2,}/g,' ').trim();
  return async function(q,opts){q=String(q||'').trim();if(!q)return[];opts=opts||{};const addr=/^\d+[A-Za-z]?\s+\S+/.test(q),c=strip(q);
   const steps=addr?[()=>census(c),()=>nominatim(c,opts.ky),()=>photon(c)]:[()=>nominatim(q,opts.ky),()=>photon(q)];
-  for(const st of steps){const r=await st();if(r&&r.length)return r}return[]}})();
+  for(const st of steps){const r=await st();if(r&&r.length)return r}
+  /* opts.world (US Trip Planner, Brandon Oct 17 world pins): nothing in the US, so look anywhere */
+  if(opts.world){for(const st of [()=>nominatim(q,false,true),()=>photon(q,true)]){const r=await st();if(r&&r.length)return r}}return[]}})();
 /* "Show where I am" map button (shared by both trip planners): live blue dot + accuracy ring. First tap finds you and
    centers the map; tap again to re-center when you have panned away, or to turn it off when you are in view. */
 window.kpcLocate=window.kpcLocate||function(map,opts){opts=opts||{};if(!window.L||!map||!map.getContainer)return null;
