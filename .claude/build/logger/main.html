@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261018x"><link rel="stylesheet" href="kpc-ft8.css?v=20261018e">
+<link rel="stylesheet" href="kpc-logger.css?v=20261018y"><link rel="stylesheet" href="kpc-ft8.css?v=20261018f">
 <link rel="manifest" href="kpc-logger.webmanifest?v=2">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -119,7 +119,7 @@
  <button type="button" class="dc" id="dSta" aria-label="Station">⚙ <span class="tx">Station</span></button>
 </div>
 <div class="lg-who" id="eWho" aria-live="polite"></div>
-<div class="lg-dstat"><span class="dk-goal" id="dGoal" title="Contacts toward a valid POTA activation"><i><b id="dGoalBar"></b></i><em id="dGoalT">0/10</em></span><button type="button" class="dk-wrap" id="dWrap">🏁 WRAP UP</button><span>⏱ <b id="dN">0</b> QSOs in <b id="dSpan">0m</b></span><span><b id="dRate">0</b> Q/h for last 10</span><span class="ed" id="dEdit" hidden>✏️ EDITING A SAVED CONTACT</span></div>
+<div class="lg-dstat"><span class="dk-goal" id="dGoal" title="Contacts toward a valid POTA activation"><i><b id="dGoalBar"></b></i><em id="dGoalT">0/10</em></span><button type="button" class="dk-wrap" id="dWrap">🏁 WRAP UP</button><button type="button" class="dk-qz" id="dQz" hidden title="Contacts sent to QRZ / not sent yet (tap for the QRZ box)">☁ QRZ</button><span>⏱ <b id="dN">0</b> QSOs in <b id="dSpan">0m</b></span><span><b id="dRate">0</b> Q/h for last 10</span><span class="ed" id="dEdit" hidden>✏️ EDITING A SAVED CONTACT</span></div>
 <div class="lg-drow">
  <div class="lg-f e main">
   <label class="call">Their Call<input id="eCall" enterkeyhint="go" autocapitalize="characters" spellcheck="false" placeholder="K4TEST" required></label>
@@ -184,6 +184,8 @@
  <h3>☁ SEND TO MY QRZ LOGBOOK</h3>
  <p class="lg-mu">When you're done, send your contacts straight to your QRZ logbook (works on phones too). It needs the <b>logbook API key</b> of the QRZ logbook for the call you were on (qrz.com → Logbook → that book → Settings → API key; QRZ's logbook API is part of a QRZ subscription). The key is kept only on this device.</p>
  <div class="lg-row"><input type="password" id="xQzKey" autocomplete="off" placeholder="QRZ logbook API key (XXXX-XXXX-XXXX-XXXX)" style="flex:1;min-width:220px"><button type="button" class="lg-btn line" id="xQzSave">💾 SAVE KEY</button><button type="button" class="lg-btn line" id="xQzForget">🗑 FORGET</button></div>
+ <div class="lg-row lg-qzm" role="group" aria-label="How contacts go to QRZ"><button type="button" class="lg-btn line" data-qzm="auto">☁ AUTO: SEND EACH CONTACT AS I LOG IT</button><button type="button" class="lg-btn line" data-qzm="man">✋ MANUAL: I'LL SEND THEM</button></div>
+ <p class="lg-msg" id="xQzCnt"></p>
  <div class="lg-row"><button type="button" class="lg-btn gold" id="xQzAct">☁ SEND THIS ACTIVATION TO QRZ</button><button type="button" class="lg-btn line" id="xQzNew">☁ SEND ALL NOT SENT YET</button><button type="button" class="lg-btn line" id="xQzSee">🔎 SEE QRZ'S ANSWER</button></div>
  <p class="lg-msg" id="xQzMsg"></p>
 </div>
@@ -209,4 +211,4 @@
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="kpc-fx.js?v=20261017a"></script>
-<script src="kpc-cat.js?v=20261018k"></script><script src="kpc-logger.js?v=20261018w"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261018e"></script><script src="kpc-digi.js?v=20261018b"></script><script src="kpc-digi-ui.js?v=20261018b"></script><script src="kpc-voicekeyer.js?v=20261018a"></script><script src="kpc-gdrive.js?v=20261018a"></script>
+<script src="kpc-cat.js?v=20261018k"></script><script src="kpc-logger.js?v=20261018x"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261018f"></script><script src="kpc-digi.js?v=20261018b"></script><script src="kpc-digi-ui.js?v=20261018c"></script><script src="kpc-voicekeyer.js?v=20261018a"></script><script src="kpc-gdrive.js?v=20261018a"></script>

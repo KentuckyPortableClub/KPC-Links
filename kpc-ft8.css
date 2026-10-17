@@ -148,3 +148,8 @@ html.f8-open,html.f8-open body{overflow:hidden}
 @media(max-width:700px){.dg-rx{font-size:14px;height:min(30vh,220px)}.dg-set{gap:6px 10px}#dgCv{width:100%}}
 .f8-modes{max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.f8-modes::-webkit-scrollbar{display:none}.f8-modes button{flex:0 0 auto}
 @media(max-width:700px){.f8-modes button{padding:6px 10px}}
+
+/* Oct 17: TX level − / slider / + in 0.5 dB steps */
+:is(#lg,#hl) .f8 .f8-pwr,:is(#lg,#hl) .f8-pwr{display:flex;align-items:center;gap:6px}
+:is(#lg,#hl) .f8-pwr input[type=range]{flex:1;min-width:120px}
+:is(#lg,#hl) .f8-pwr .f8-b{min-width:34px;padding:4px 8px;font-size:16px;line-height:1}

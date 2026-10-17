@@ -62,6 +62,8 @@
     <div class="cw-mac" id="cwMac"></div>
     <div class="cw-txl"><input id="cwTx" placeholder="Type here and press Enter to send it as CW" autocapitalize="characters" spellcheck="false" autocomplete="off"><button type="button" class="f8-b tx" id="cwSend">SEND</button><button type="button" class="f8-b halt" id="cwStop">STOP</button></div>
     <div class="cw-set"><label>SEND SPEED<input type="number" id="cwWpm" min="8" max="45" value="20"> WPM</label>
+      <label>TONE<input type="number" id="cwTone" min="300" max="1200" step="10" placeholder="same"> Hz <small>(audio-tone way; blank = the pitch you're listening to, so you land on their frequency)</small></label>
+      <label class="ck"><input type="checkbox" id="cwAbbr"> ✂ Shorthand: turn words into CW short forms (THANK YOU → TU, YOUR → UR, PLEASE → PSE…)</label>
       <label>SEND WITH<select id="cwVia"><option value="cat">The radio's own keyer (CAT: Icom, Kenwood, Elecraft, QRP Labs)</option><option value="dtr">Key line DTR (Digirig and many cables)</option><option value="rts">Key line RTS</option><option value="audio">Audio tone (radio in USB/DATA, VOX or PTT)</option></select></label>
       <span class="cw-sending" id="cwSending"></span></div>
   </section>
@@ -95,7 +97,7 @@
       <label>RADIO AUDIO IN<select id="f8In"><option value="">Default input</option></select></label>
       <label>RX LEVEL<span class="f8-meter"><i id="f8Lvl"></i></span><small id="f8LvlT">aim for 30-60 dB</small></label>
       <label>RADIO AUDIO OUT<select id="f8Out"><option value="">Default output</option></select><small id="f8OutT"></small></label>
-      <label>TX LEVEL<input type="range" id="f8Pwr" min="0.02" max="1" step="0.01"><small>turn it down until the radio's ALC barely moves</small></label>
+      <label>TX LEVEL <b id="f8PwrT"></b><span class="f8-pwr"><button type="button" class="f8-b" id="f8PwrD" title="0.5 dB down">−</button><input type="range" id="f8Pwr" min="-40" max="0" step="0.5" aria-label="TX level in dB"><button type="button" class="f8-b" id="f8PwrU" title="0.5 dB up">+</button></span><small>Press TUNE, then − / + (0.5 dB steps; changes right away) until the radio's ALC barely moves</small></label>
       <label>PTT (KEYING THE RADIO)<select id="f8Ptt"><option value="vox">VOX (radio or interface keys on the audio)</option><option value="cat">CAT command (radio connected by USB)</option><option value="rts">RTS line (Digirig and many cables)</option><option value="dtr">DTR line</option></select></label>
       <label>CQ<select id="f8Cqw"><option value="">CQ</option><option value="POTA">CQ POTA</option><option value="SOTA">CQ SOTA</option><option value="WWFF">CQ WWFF</option></select></label>
       <label>STOP CALLING AFTER (NO ANSWER)<select id="f8Wd"><option value="1">1 minute</option><option value="2">2 minutes</option><option value="3">3 minutes</option><option value="5">5 minutes</option><option value="10">10 minutes</option></select></label>
@@ -298,8 +300,13 @@
   function macDraw() { $('cwMac').innerHTML = macros().map((m, i) => `<button type="button" data-mac="${i}" title="${esc(m[1])}">F${i + 1} ${esc(m[0])}</button>`).join('') + '<button type="button" data-macedit>✏️ EDIT</button>'; }
   function elems(t, wpm) { const u = 1200 / wpm, out = []; for (const w of t.split(' ')) { if (out.length) out.push([0, 4 * u]); [...w].forEach((ch, i) => { const k = TOM[ch]; if (!k) return; if (i) out.push([0, 2 * u]); [...k].forEach((e, j) => { if (j) out.push([0, u]); out.push([1, e === '.' ? u : 3 * u]); }); out.push([0, u]); }); } return out; }
   let cwStopFlag = false;
+  /* Oct 17 (Brandon: 'will it make cw short hand if I type it out?'): optional, off by default */
+  const CWAB = [['THANK YOU VERY MUCH', 'TNX FER'], ['THANK YOU', 'TU'], ['THANKS', 'TNX'], ['PLEASE', 'PSE'], ['YOUR', 'UR'], ['YOU ARE', 'UR'], ['YOU', 'U'], ['ARE', 'R'], ['GOOD MORNING', 'GM'], ['GOOD AFTERNOON', 'GA'], ['GOOD EVENING', 'GE'], ['GOOD NIGHT', 'GN'],
+    ['NAME IS', 'NAME'], ['MY NAME', 'NAME'], ['REPORT', 'RPT'], ['SIGNAL', 'SIG'], ['WEATHER', 'WX'], ['ANTENNA', 'ANT'], ['RADIO', 'RIG'], ['AGAIN', 'AGN'], ['ROGER', 'R'], ['FOR', 'FER'], ['AND', 'ES'], ['BEST REGARDS', '73'], ['REGARDS', '73'], ['GOODBYE', '73'], ['BYE', '73'],
+    ['THE', ''], ['POWER', 'PWR'], ['WATTS', 'W'], ['HERE', 'HR'], ['THERE', 'THR'], ['VERY', 'VY'], ['GOOD', 'GUD'], ['NICE', 'NICE'], ['STATE', 'ST'], ['PARK', 'PARK'], ['NUMBER', 'NR'], ['QUESTION', '?'], ['OLD MAN', 'OM'], ['FINE BUSINESS', 'FB'], ['WORKED', 'WKD'], ['ABOUT', 'ABT'], ['AFTER', 'AFTR'], ['BEFORE', 'B4'], ['COPY', 'CPY'], ['RECEIVED', 'RCVD'], ['LISTENING', 'QRL?']];
+  function cwShort(t) { let x = ' ' + t.replace(/\s+/g, ' ') + ' '; for (const [a, b] of CWAB) x = x.split(' ' + a + ' ').join(b ? ' ' + b + ' ' : ' '); return x.replace(/\s+/g, ' ').trim(); }
   async function cwSendText(t) {
-    t = fill(t).toUpperCase(); if (!t) return; if (!myCall()) { note('Put YOUR call in ⚙ STATION first: nothing was sent.', 4000); return; }
+    t = fill(t).toUpperCase(); if (S.cwAbbr) t = cwShort(t); if (!t) return; if (!myCall()) { note('Put YOUR call in ⚙ STATION first: nothing was sent.', 4000); return; }
     if (CWTX) { note('Still sending: wait or press STOP.', 2000); return; }
     CWTX = true; TXING = true; stat(); cwStopFlag = false; const wpm = +S.cwWpm || 20, via = S.cwVia;
     $('cwSending').textContent = '▶ ' + t; C.txt += '\n[TX] ' + t + '\n'; cwDraw();
@@ -309,8 +316,8 @@
       else if (via === 'dtr' || via === 'rts') { if (!window.KPCCat || !(await KPCCat.connect(false))) { note('Connect the radio / cable first (📻 CONNECT MY RADIO in ⚙ SETTINGS).', 5000); return; }
         let t1 = performance.now(); for (const [k, d] of elems(t, wpm)) { if (cwStopFlag) break; await KPCCat.keyLine(!!k, via); t1 += d; const w = t1 - performance.now(); if (w > 0) await new Promise(r => setTimeout(r, w)); } await KPCCat.keyLine(false, via); }
       else { if (!AC) { await startAudio(); if (!AC) return; } const rate = AC.sampleRate, E = elems(t, wpm), tot = E.reduce((a, e) => a + e[1], 0) / 1000, buf = AC.createBuffer(1, Math.ceil((tot + .1) * rate), rate), d = buf.getChannelData(0), rise = Math.round(.005 * rate);
-        let n = 0; for (const [k, ms] of E) { const len = Math.round(ms / 1000 * rate); if (k) for (let i = 0; i < len; i++) { const env = Math.min(1, i / rise, (len - i) / rise); d[n + i] = Math.sin(2 * Math.PI * S.cwHz * (n + i) / rate) * env; } n += len; }
-        const g = AC.createGain(); g.gain.value = S.lvl; const src = AC.createBufferSource(); src.buffer = buf; src.connect(g); g.connect(AC.destination); TXSRC = src;
+        let n = 0; for (const [k, ms] of E) { const len = Math.round(ms / 1000 * rate); if (k) for (let i = 0; i < len; i++) { const env = Math.min(1, i / rise, (len - i) / rise); d[n + i] = Math.sin(2 * Math.PI * (S.cwTone || S.cwHz) * (n + i) / rate) * env; } n += len; }
+        const g = AC.createGain(); g.gain.value = S.lvl; (window.__kpcTxG = (window.__kpcTxG || []).filter(x => x.context === g.context).slice(-6)).push(g); const src = AC.createBufferSource(); src.buffer = buf; src.connect(g); g.connect(AC.destination); TXSRC = src;
         await ptt(true); await new Promise(r => { src.onended = r; src.start(AC.currentTime + .08); }); await ptt(false); TXSRC = null; }
     } finally { CWTX = false; TXING = false; stat(); $('cwSending').textContent = ''; }
   }
@@ -318,6 +325,8 @@
   function cwInit() {
     $('cwHzT').textContent = S.cwHz; $('cwWpm').value = S.cwWpm; $('cwVia').value = S.cwVia; $('cwBw').value = S.cwBw;
     $('cwWpm').onchange = () => { S.cwWpm = Math.max(8, Math.min(45, +$('cwWpm').value || 20)); saveS(); };
+    $('cwTone').value = S.cwTone || ''; $('cwTone').onchange = () => { const v = +$('cwTone').value; S.cwTone = v ? Math.max(300, Math.min(1200, v)) : 0; $('cwTone').value = S.cwTone || ''; saveS(); };
+    $('cwAbbr').checked = !!S.cwAbbr; $('cwAbbr').onchange = () => { S.cwAbbr = $('cwAbbr').checked; saveS(); };
     $('cwVia').onchange = () => { S.cwVia = $('cwVia').value; saveS(); };
     $('cwBw').onchange = () => { S.cwBw = $('cwBw').value; saveS(); drawScale(); };
     $('cwClr').onclick = () => { C.txt = ''; cwDraw(); };
@@ -477,7 +486,14 @@
   /* ---------------- messages + sequencer ---------------- */
   const QS = { dx: '', grid: '', rs: '-10', rr: '', state: 'idle', next: 6, logged: false, tries: 0, since: 0, ref: '', cq: false };
   function myCall() { const L = LG(); return L ? String(L.me().station || L.me().call || '').toUpperCase() : ''; }
-  function myGrid() { const L = LG(); return L ? String(L.me().grid || '').slice(0, 4).toUpperCase() : ''; }
+  /* Oct 17 (Brandon: 'it does not enter my grid square… like it should, auto location'): station grid, else the park's pin, else this device's GPS */
+  let GPSG = get('kpcFt8Gps', null), gpsAsk = 0;
+  const ll2g = (la, lo) => { const x = lo + 180, y = la + 90; return String.fromCharCode(65 + Math.floor(x / 20), 65 + Math.floor(y / 10)) + Math.floor((x % 20) / 2) + Math.floor(y % 10); };
+  function myGrid() { const L = LG(), me = L ? L.me() : {}; const g = String(me.grid || me.pgrid || '').slice(0, 4).toUpperCase(); if (/^[A-R]{2}\d\d$/.test(g)) return g;
+    if (GPSG && GPSG.g && Date.now() - GPSG.t < 6 * 3600e3) return GPSG.g; gpsGrid(); return GPSG && GPSG.g || ''; }
+  function gpsGrid() { if (!navigator.geolocation || Date.now() - gpsAsk < 120e3) return; gpsAsk = Date.now();
+    navigator.geolocation.getCurrentPosition(p => { const g = ll2g(p.coords.latitude, p.coords.longitude), was = GPSG && GPSG.g; GPSG = { g, t: Date.now() }; put('kpcFt8Gps', GPSG);
+      if (was !== g) { try { gen(); } catch (e) {} note('📍 Your grid ' + g + ' (from this device\'s GPS) is in your messages now.', 4000); } }, () => {}, { enableHighAccuracy: false, timeout: 15000, maximumAge: 600000 }); }
   function cqWord() { const L = LG(), me = L ? L.me() : {}; if (S.cqw === 'POTA' && me.hunt) return ''; return S.cqw; }
   function gen() {
     const me = myCall() || 'K4TEST', g = myGrid(), dx = (QS.dx || 'DXCALL'), r = QS.rs || '-10', rr = QS.rr ? QS.rr : r;
@@ -564,7 +580,7 @@
     const into0 = nowS() - sl * slotLen(); /* started late = skip the part already gone, like WSJT-X */
     const skip = Math.max(0, Math.round((into0 - 0.5 + wait) * rate));
     const b = AC.createBuffer(1, au.length, rate); b.copyToChannel(au, 0);
-    const g = AC.createGain(); g.gain.value = S.lvl; const src = AC.createBufferSource(); src.buffer = b; src.connect(g); g.connect(AC.destination); TXSRC = src;
+    const g = AC.createGain(); g.gain.value = S.lvl; (window.__kpcTxG = (window.__kpcTxG || []).filter(x => x.context === g.context).slice(-6)).push(g); const src = AC.createBufferSource(); src.buffer = b; src.connect(g); g.connect(AC.destination); TXSRC = src;
     await ptt(true);
     const at = AC.currentTime + Math.max(0.05, wait);
     src.start(at, skip / rate);
@@ -579,7 +595,7 @@
   }
   function stopTx() { try { TXSRC && TXSRC.stop(); } catch (e) {} TXSRC = null; TUNE = null; TXING = false; clearTimeout(txStopT); setTimeout(() => ptt(false), 80); stat(); }
   async function startTone() {
-    if (!AC) return; TXING = true; const o = AC.createOscillator(), g = AC.createGain(); o.frequency.value = S.txHz; g.gain.value = S.lvl; o.connect(g); g.connect(AC.destination);
+    if (!AC) return; TXING = true; const o = AC.createOscillator(), g = AC.createGain(); o.frequency.value = S.txHz; g.gain.value = S.lvl; (window.__kpcTxG = (window.__kpcTxG || []).filter(x => x.context === g.context).slice(-6)).push(g); o.connect(g); g.connect(AC.destination);
     await ptt(true); o.start(); TUNE = o; TXSRC = o; stat(); clearTimeout(txStopT); txStopT = setTimeout(() => { if (TXSRC === o) stopTx(); }, 10000); note('TUNE: a steady tone for 10 s. Tap TUNE again to stop.', 2500);
   }
 
@@ -589,14 +605,18 @@
   $('f8RxHzIn').onchange = () => { S.rxHz = Math.max(200, Math.min(3000, +$('f8RxHzIn').value || 1500)); if (!S.hold) S.txHz = S.rxHz; saveS(); hzBoxes(); drawScale(); drawRx(); };
   const CK = { f8Auto: 'auto', f8First: 'first', f8Even: 'even', f8Hold: 'hold', f8Keep: 'keepCq', f8Deep: 'deep' };
   Object.keys(CK).forEach(id => { $(id).checked = !!S[CK[id]]; $(id).onchange = () => { S[CK[id]] = $(id).checked; saveS(); }; });
-  $('f8Pwr').value = S.lvl; $('f8Pwr').oninput = () => { S.lvl = +$('f8Pwr').value; saveS(); };
+  /* TX level in dB, 0.5 dB steps, applied LIVE to whatever is playing (TUNE, FT8, CW tone, RTTY/PSK/SSTV/WSPR) so the ALC can be set while tuning */
+  const lvlDb = () => Math.round(20 * Math.log10(Math.max(0.01, S.lvl)) * 2) / 2;
+  function setLvl(db) { db = Math.max(-40, Math.min(0, Math.round(db * 2) / 2)); S.lvl = Math.pow(10, db / 20); saveS(); $('f8Pwr').value = db; $('f8PwrT').textContent = (db > 0 ? '+' : '') + db.toFixed(1) + ' dB';
+    (window.__kpcTxG || []).forEach(g => { try { g.gain.setTargetAtTime(S.lvl, g.context.currentTime, 0.02); } catch (e) {} }); }
+  setLvl(lvlDb()); $('f8Pwr').oninput = () => setLvl(+$('f8Pwr').value); $('f8PwrD').onclick = () => setLvl(lvlDb() - 0.5); $('f8PwrU').onclick = () => setLvl(lvlDb() + 0.5);
   $('f8Ptt').value = S.ptt; $('f8Ptt').onchange = () => { S.ptt = $('f8Ptt').value; saveS(); if (S.ptt !== 'vox' && window.KPCCat && !KPCCat.connected()) $('f8CatT').textContent = 'Connect the radio for this PTT choice.'; };
   const pf = () => { $('f8PotaF').classList.toggle('on', !!S.potaOnly); }; pf(); $('f8PotaF').onclick = () => { S.potaOnly = !S.potaOnly; saveS(); pf(); drawBand(); };
   ['aPark', 'aState', 'aGrid'].forEach(k => { const el = $('f8' + k); el.checked = !!S[k]; el.onchange = () => { S[k] = el.checked; saveS(); }; });
   $('f8Watch').value = S.watch || ''; $('f8Watch').onchange = () => { S.watch = $('f8Watch').value.toUpperCase(); $('f8Watch').value = S.watch; saveS(); };
   $('f8Wd').value = String(S.wd || 2); $('f8Wd').onchange = () => { S.wd = +$('f8Wd').value; saveS(); };
   /* no interface: the phone's own mic + speaker held next to the radio (Brandon Oct 17) */
-  $('f8Mic').onclick = async () => { S.inDev = ''; S.outDev = ''; S.ptt = 'vox'; S.lvl = Math.max(S.lvl, 0.8); saveS(); $('f8Ptt').value = 'vox'; $('f8Pwr').value = S.lvl; $('f8MicT').hidden = false;
+  $('f8Mic').onclick = async () => { S.inDev = ''; S.outDev = ''; S.ptt = 'vox'; S.lvl = Math.max(S.lvl, 0.8); saveS(); $('f8Ptt').value = 'vox'; setLvl(lvlDb()); $('f8MicT').hidden = false;
     if (RUN) { stopAudio(); } await startAudio(); devices(); note('🎤 Using this phone\'s mic and speaker. Radio VOX on, phone next to the radio.', 4000); };
   $('f8Cqw').value = S.cqw; $('f8Cqw').onchange = () => { S.cqw = $('f8Cqw').value; saveS(); gen(); };
   $('f8Cat').onclick = async () => { if (!window.KPCCat || !KPCCat.supported()) { $('f8CatT').textContent = 'Radio control needs Chrome or Edge on a computer, or Chrome on a newer Android phone with a USB-C cable. On iPhone use VOX.'; return; }

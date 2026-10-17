@@ -39,6 +39,10 @@
     clearTimeout(tT); tT = setTimeout(() => { t.hidden = true; }, undo ? 7000 : 3500);
   }
   /* grid squares */
+  let QZC = null, QZONE = null; const QZW = [];
+  /* auto-send to QRZ ~4 s after logging (the call look-up has filled name / state by then); one at a time */
+  function qzLater(q) { setTimeout(() => { if (QZC) QZC(); if (!QZONE) return; QZW.push(q.id); if (QZW.length === 1) qzRun(); }, 4000); }
+  async function qzRun() { while (QZW.length) { const id = QZW[0], q = L.q.find(y => y.id === id); if (q && QZONE) await QZONE(q); QZW.shift(); await new Promise(z => setTimeout(z, 400)); } }
   function toGrid(la, lo) {
     lo += 180; la += 90; const A = 'ABCDEFGHIJKLMNOPQRSTUVWX';
     return A[Math.floor(lo / 20)] + A[Math.floor(la / 10)] + Math.floor(lo % 20 / 2) + Math.floor(la % 10) + A[Math.floor(lo % 2 * 12)].toLowerCase() + A[Math.floor(la % 1 * 24)].toLowerCase();
@@ -273,7 +277,7 @@
       qth: r.qth || (EDIT && EDIT.qth) || '', g: r.g || (EDIT && EDIT.g) || '', la: there ? there[0] : (EDIT ? EDIT.la : null), lo: there ? there[1] : (EDIT ? EDIT.lo : null), note, cn: EDIT ? (EDIT.cn || '') : cn, role: EDIT ? (EDIT.role || 'act') : (isHunt() ? 'hunt' : 'act'),
       my: EDIT ? EDIT.my : stationCall(), op: EDIT ? (EDIT.op || EDIT.my) : curOp(), pk: EDIT ? EDIT.pk : (isHunt() ? '' : myParks().join(',')), wf: EDIT ? (EDIT.wf || '') : myWwff(), so: EDIT ? (EDIT.so || '') : mySota(), mg: EDIT ? EDIT.mg : SET.grid, pw: EDIT ? EDIT.pw : SET.pwr, x: 0 };
     if (EDIT) { const i = L.q.findIndex(x => x.id === EDIT.id); if (i >= 0) L.q[i] = q; toast('✓ Contact updated.'); }
-    else { L.q.push(q); const n = actList().filter(x => x.my === q.my).length; toast(isHunt() ? `✓ ${call}${q.ref ? ' at ' + q.ref.split(',')[0] : ''} logged (${n} today)` : `✓ ${call} logged${multi() ? ' by ' + q.op : ''} (${n} this activation${multi() && !SET.share ? ' for ' + q.my : ''})${n === 10 ? ': 🎉 that makes it a valid activation!' : ''}`, () => { L.q = L.q.filter(x => x.id !== q.id); save(); drawAll(); }); NEWID = q.id;
+    else { L.q.push(q); qzLater(q); const n = actList().filter(x => x.my === q.my).length; toast(isHunt() ? `✓ ${call}${q.ref ? ' at ' + q.ref.split(',')[0] : ''} logged (${n} today)` : `✓ ${call} logged${multi() ? ' by ' + q.op : ''} (${n} this activation${multi() && !SET.share ? ' for ' + q.my : ''})${n === 10 ? ': 🎉 that makes it a valid activation!' : ''}`, () => { L.q = L.q.filter(x => x.id !== q.id); save(); drawAll(); }); NEWID = q.id;
       /* the effect flares only for a milestone (every 50 contacts in my log) or DX outside North America (Brandon Oct 17) */
       if (!isHunt() && myParks().length && actList().length === 10) { const m10 = `🎉 VALID ACTIVATION! 10 contacts at ${myParks().join(' + ')}. Keep going, or tap 🏁 WRAP UP when you're done.`; if (window.KPCFx && !document.getElementById('lg').hasAttribute('data-night')) KPCFx('fireworks', m10); toast(m10); }
       const tot = L.q.length, dx = isDX(call); if (tot % 50 === 0 || dx) { const fx = $('cEntry'); fx.classList.remove('pop'); void fx.offsetWidth; fx.classList.add('pop'); setTimeout(() => fx.classList.remove('pop'), 3200); const fm = dx ? `🌍 DX! ${call} is outside North America` : `🎉 ${tot} contacts in your log!`; if (window.KPCFx && !document.getElementById('lg').hasAttribute('data-night')) KPCFx(SET.fx, fm); else toast(fm); } }
@@ -481,6 +485,18 @@
     /* ☁ SEND TO QRZ at the end (Brandon Oct 17), one contact at a time; kpcQrz key shared with the Hunters Lounge */
     if ($('xQz') && window.KPCQrz) {
       const qm = h => { $('xQzMsg').innerHTML = h; };
+      /* Oct 17 (Brandon: 'qrz make auto with a count of what it sent and did not send… selectable auto or manual'): AUTO = each contact goes
+         to QRZ a few seconds after it's logged (after the call look-up fills the name); MANUAL = the buttons below. Same switch as the Lounge's QRZ MODE. */
+      const qzCount = () => { const Z = KPCQrz.get(), sent = L.q.filter(q => q.qz).length, wait = L.q.length - sent, auto = !!(Z.on && Z.key);
+        document.querySelectorAll('[data-qzm]').forEach(b => b.classList.toggle('on', (b.dataset.qzm === 'auto') === auto));
+        if ($('xQzCnt')) $('xQzCnt').innerHTML = `<b>${sent}</b> sent to QRZ · <b>${wait}</b> not sent yet${auto ? ' · new contacts go by themselves' : ' · MANUAL: use the buttons below'}`;
+        const c = $('dQz'); if (c) { c.hidden = !Z.key; c.textContent = `☁ QRZ ${sent}✓${wait ? ' · ' + wait + ' waiting' : ''}${auto ? '' : ' (manual)'}`; c.classList.toggle('bad', !!wait && !auto); } };
+      QZC = qzCount;
+      document.querySelectorAll('[data-qzm]').forEach(b => b.onclick = () => { const Z = KPCQrz.get(); if (b.dataset.qzm === 'auto' && !Z.key) { qm('Paste your QRZ logbook key and tap SAVE KEY first.'); return; }
+        KPCQrz.set({ on: b.dataset.qzm === 'auto' }); qzCount(); if (b.dataset.qzm === 'auto') { const n = L.q.filter(q => !q.qz).length; qm(`AUTO is on: each new contact goes to QRZ by itself.${n ? ` ${n} older contact${n === 1 ? '' : 's'} not sent yet: tap ☁ SEND ALL NOT SENT YET to send ${n === 1 ? 'it' : 'them'} too.` : ''}`); } else qm('MANUAL: nothing goes to QRZ until you tap a send button.'); });
+      if ($('dQz')) $('dQz').onclick = () => { const f = $('cFiles'); if (f && f.classList.contains('lg-fold') && !f.classList.contains('open')) { const h = f.querySelector('h2'); h && h.click(); } (f || $('xQz')).scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+      QZONE = async q => { const Z = KPCQrz.get(); if (!Z.on || !Z.key || q.qz) return; const r = await KPCQrz.send(one(q)).catch(e => ({ ok: false, msg: String(e && e.message || e) }));
+        const z = L.q.find(y => y.id === q.id); if (z && r.ok) { z.qz = r.sure ? 2 : 1; save(); } else if (!r.ok) toast('⚠ QRZ: ' + (r.msg || 'did not go') + ' (it stays in your log; send it later from Download & files).'); qzCount(); };
       const one = q => { const a = adif([q]); return a.slice(a.indexOf('<EOH>') + 5).trim(); };
       const showKey = () => { const Z = KPCQrz.get(); $('xQzKey').value = Z.key || ''; const n = L.q.filter(q => !q.qz).length; qm(Z.key ? `Key saved. ${n ? n + ' contact' + (n === 1 ? '' : 's') + ' not sent to QRZ yet.' : 'Everything has been sent.'}` : 'No QRZ key saved on this device yet.'); };
       $('xQzSave').onclick = () => { const k = $('xQzKey').value.trim(); if (!/^[A-Z0-9-]{8,}$/i.test(k)) { qm('That doesn\'t look like a QRZ logbook key.'); return; } KPCQrz.set({ key: k }); showKey(); };
@@ -491,13 +507,13 @@
         if (list.some(q => q.qz) && !confirm(`${list.filter(q => q.qz).length} of these were sent before. Send them again? (QRZ will call them duplicates.)`)) list = list.filter(q => !q.qz);
         let ok = 0, bad = 0, last = '';
         for (let i = 0; i < list.length; i++) { qm(`Sending ${i + 1} of ${list.length}…`); const r = await KPCQrz.send(one(list[i])); if (r.ok) { ok++; list[i].qz = r.sure ? 2 : 1; } else { bad++; last = r.msg; } await new Promise(z => setTimeout(z, 350)); }
-        save(); qm(`☁ Sent ${ok} contact${ok === 1 ? '' : 's'} to QRZ${bad ? ` · ${bad} did not go (${last})` : ''}.` + (await KPCQrz.relay() ? '' : ' QRZ doesn\'t let a web page see its reply, so tap <b>🔎 SEE QRZ\'S ANSWER</b> once (OK or duplicate = it worked) or check your QRZ logbook.'));
+        save(); qzCount(); qm(`☁ Sent ${ok} contact${ok === 1 ? '' : 's'} to QRZ${bad ? ` · ${bad} did not go (${last})` : ''}.` + (await KPCQrz.relay() ? '' : ' QRZ doesn\'t let a web page see its reply, so tap <b>🔎 SEE QRZ\'S ANSWER</b> once (OK or duplicate = it worked) or check your QRZ logbook.'));
       }
       $('xQzAct').onclick = () => qzSend(L.q.filter(inAct).sort((a, b) => a.t - b.t));
       $('xQzNew').onclick = () => qzSend(L.q.filter(q => !q.qz).sort((a, b) => a.t - b.t));
       $('xQzSee').onclick = () => { if (!KPCQrz.get().key) { qm('Save your QRZ key first.'); return; } const q = L.q.slice().sort((a, b) => b.t - a.t)[0]; if (!q) { qm('Nothing logged yet.'); return; }
         KPCQrz.showAnswer('INSERT', one(q)); qm(`A new tab opened with QRZ's own answer for <b>${q.call}</b>: <b>OK</b> = it's in, <b>duplicate</b> = it was already there, <b>FAIL</b> = the REASON says why (often the key is for a different logbook than the call you were on).`); };
-      showKey();
+      showKey(); qzCount();
     }
     $('xAll').onclick = async () => { if (!L.q.length) { toast('Nothing logged yet.'); return; } const Q = L.q.slice().sort((a, b) => a.t - b.t); const ok = await files([[`KPC-activator-log-${myCall().replace(/\//g, '-') || 'mine'}-${ymd(new Date())}.adi`, adif(Q)]]); if (ok !== false) { Q.forEach(q => q.x = 1); save(); } };
     $('xCsv').onclick = () => { const h = 'date_utc,time_utc,call,freq_mhz,band,mode,rst_sent,rst_rcvd,their_park,name,qth,state,grid,my_call,my_park,note\n';
@@ -745,7 +761,7 @@
     $('rBm').innerHTML = Object.entries(B).sort((a, b) => b[1] - a[1]).map(([k, v]) => `<span><i style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${BCOL[k] || '#ddd'};margin-right:5px"></i>${esc(k)} <b>${v}</b></span>`).join('') + Object.entries(M).sort((a, b) => b[1] - a[1]).map(([k, v]) => `<span>${esc(k)} <b>${v}</b></span>`).join('');
   }
 
-  function drawAll() { drawLog(); rates(); drawMap(); drawSpots(); }
+  function drawAll() { drawLog(); rates(); drawMap(); drawSpots(); if (QZC) try { QZC(); } catch (e) {} }
 
   /* ---------------- the operation bar on top of the log card (PoLo style) ---------------- */
   function opBar(n) {
@@ -1001,14 +1017,14 @@
     const q = { id: 'q' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: ymd(when), tm: iso(when).slice(11, 16).replace(':', ''), t: Date.now(),
       f: mhz(k), band, mode: o.mode || 'FT8', rs: o.rs || '', rr: o.rr || '', ref: anyRefs(o.ref || '').join(','), name: '', st: '', qth: '', g: String(o.g || '').toUpperCase(), la: ll ? ll[0] : null, lo: ll ? ll[1] : null,
       note: '', cn: SET.carry || SET.prev ? notesTxt() : '', role: isHunt() ? 'hunt' : 'act', my: stationCall(), op: curOp(), pk: isHunt() ? '' : myParks().join(','), wf: myWwff(), so: mySota(), mg: SET.grid, pw: SET.pwr, x: 0, ft: 1 };
-    L.q.push(q); NEWID = q.id; save(); drawAll(); try { radioTxt(); } catch (e) {}
+    L.q.push(q); qzLater(q); NEWID = q.id; save(); drawAll(); try { radioTxt(); } catch (e) {}
     look(call).then(x => { if (!x) return; const z = L.q.find(y => y.id === q.id); if (!z) return;
       if (!z.name) z.name = (x.name || '').split(' ')[0]; if (!z.st && x.st) z.st = String(x.st).toUpperCase(); if (!z.qth) z.qth = x.qth || ''; if (!z.g) z.g = x.g || '';
       if (z.la == null) { const l2 = x.la != null ? [x.la, x.lo] : fromGrid(x.g); if (l2) { z.la = l2[0]; z.lo = l2[1]; } } save(); drawAll(); }).catch(() => {});
     return { ok: true, q, n: actList().filter(x => x.my === q.my).length };
   }
   window.KPCLog = {
-    me: () => ({ call: myCall(), station: stationCall(), grid: String(SET.grid || '').toUpperCase(), hunt: isHunt(), pota: myParks(), wwff: myWwff(), sota: mySota() }),
+    me: () => ({ call: myCall(), station: stationCall(), grid: String(SET.grid || '').toUpperCase(), pgrid: (() => { const p = myParks()[0], pi = p && SET.pinfo[p]; return pi ? String(pi.g || (isFinite(pi.la) ? toGrid(pi.la, pi.lo) : '')).toUpperCase() : ''; })(), hunt: isHunt(), pota: myParks(), wwff: myWwff(), sota: mySota() }),
     add: quickLog, band: bandOf, toast,
     dupe: (call, band, mode) => dupeOf(call, band, mode, '').length > 0,
     worked: call => { const b = base(call); return L.q.some(q => base(q.call) === b); },
