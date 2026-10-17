@@ -208,7 +208,8 @@
     if (far.length) { FT.innerHTML = far.map(s => `<span>✨ <b>${esc(s.ref)}</b> ${esc(s.name)} ${esc(s.st || '')} · ${esc(s.call)} ${(s.khz / 1000).toFixed(3)} ${esc(s.mode)} · ${Math.round(dist(s))} mi</span>`).join(''); FT.style.setProperty('--dur', Math.max(25, FT.textContent.length * .16) + 's'); }
     if (alert && fresh.length) {
       const t = $('hlTick'); t.classList.remove('flash'); void t.offsetWidth; t.classList.add('flash');
-      fire(`🔥 NEW PARK: ${fresh[0].ref} ${fresh[0].name || ''} · ${fresh[0].call} ${(fresh[0].khz / 1000).toFixed(3)}${fresh.length > 1 ? ` (+${fresh.length - 1} more)` : ''}`);
+      const fxL = FLALL ? fresh : fresh.filter(isNA);   /* flames: North America only unless 🌍 ALL is picked (Brandon Oct 17) */
+      if (fxL.length) fire(`🔥 NEW PARK: ${fxL[0].ref} ${fxL[0].name || ''} · ${fxL[0].call} ${(fxL[0].khz / 1000).toFixed(3)}${fxL.length > 1 ? ` (+${fxL.length - 1} more)` : ''}`);
       if (BELL) chime();
       if (NOTE && 'Notification' in window && Notification.permission === 'granted') {
         try { const s = fresh[0]; new Notification('New park for you: ' + s.ref, { body: `${s.name || ''} ${s.st || ''}\n${s.call} on ${(s.khz / 1000).toFixed(3)} ${s.mode}${fresh.length > 1 ? `\n+${fresh.length - 1} more` : ''}`, icon: 'kpc-icon-180.png', tag: 'kpc-hunt' }); } catch (e) {}
@@ -300,11 +301,11 @@
   function rlNote() { const L0 = (get('kpcSpotMeSent', []) || []).filter(x => Date.now() - x < 36e5); L0.push(Date.now()); put('kpcSpotMeSent', L0); }
   async function respot(s) {
     if (!CALL) { toast('Put your call sign in MY LOG FILES first.'); openModal('lgModal'); return; }
-    const wait = rlCheck(); if (wait) { toast('⏳ ' + wait); return; }
+    const dk = s.call + '|' + s.ref; if (respot.last === dk && Date.now() - respot.t < 1e4) { toast('📣 Already respotted ' + s.call + ' a moment ago.'); return; }
     const mode = /SSB|USB|LSB/.test(s.mode || '') ? 'SSB' : (s.mode || '');
-    const c0 = prompt(`Respot ${s.call} at ${s.ref} on ${(s.khz / 1000).toFixed(3)} ${mode}?\nComment (optional):`, 'Thanks! 73'); if (c0 === null) return;
+    const c0 = s.ask === false ? 'Thanks! 73' : prompt(`Respot ${s.call} at ${s.ref} on ${(s.khz / 1000).toFixed(3)} ${mode}?\nComment (optional):`, 'Thanks! 73'); if (c0 === null) return;
     try { const r = await fetch('https://api.pota.app/spot/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ activator: s.call, spotter: CALL, frequency: String(Math.round(s.khz * 10) / 10), reference: s.ref, mode, source: 'KPC Hunters Lounge', comments: c0.slice(0, 60) }) });
-      const body = await r.text().catch(() => ''); if (r.ok) { rlNote(); toast(`📣 Respotted ${s.call} at ${s.ref}.`); setTimeout(load, 8000); } else toast('✗ POTA turned it down: ' + (String(body).replace(/^"|"$/g, '').slice(0, 120) || 'error ' + r.status)); }
+      const body = await r.text().catch(() => ''); if (r.ok) { respot.last = dk; respot.t = Date.now(); rlNote(); toast(`📣 Respotted ${s.call} at ${s.ref}.`); setTimeout(load, 8000); } else toast('✗ POTA turned it down: ' + (String(body).replace(/^"|"$/g, '').slice(0, 120) || 'error ' + r.status)); }
     catch (e) { toast('✗ POTA could not be reached. Check your signal.'); }
   }
   document.addEventListener('click', e => {
@@ -438,6 +439,19 @@
       && (w.where === 'all' || (w.where === 'us' && s.us) || (w.where === 'usca' && (s.us || s.ca))) && (!w.st || s.st === w.st)
       && (!q.length || q.some(x => [s.call, s.ref, s.name, s.st, ST[s.st] || '', s.loc, s.com].join(' ').toUpperCase().includes(x)));
   }
+  /* the window's title says what it's set to show (Brandon Oct 17: 'take away the names… example dx, 40m pota') */
+  function winLabel(w) {
+    const SH = { POTA: 'POTA', WWFF: 'WWFF', SOTA: 'SOTA', DX: 'DX', DXPED: 'DXPEDITIONS', EVENT: 'SPECIAL EVENTS' }, all = Object.keys(PL);
+    const parts = [];
+    if (w.bands.length) parts.push(w.bands.map(x => x.toUpperCase()).join(' '));
+    if (w.modes.length) parts.push(w.modes.map(m => ({ PHONE: 'SSB', DIGITAL: 'DIGITAL' }[m] || m)).join(' '));
+    const pr = w.p.filter(x => all.includes(x)); parts.push(!pr.length ? 'NOTHING PICKED' : pr.length === all.length ? 'ALL PROGRAMS' : pr.map(x => SH[x] || x).join(' + '));
+    if (w.where === 'us') parts.push('USA'); else if (w.where === 'usca') parts.push('USA + CANADA');
+    if (w.st) parts.push(w.st);
+    if (w.nw) parts.push('NEW TO ME');
+    if (String(w.q || '').trim()) parts.push('“' + String(w.q).trim().slice(0, 18) + '”');
+    return parts.join(' · ');
+  }
   function winBox(i) {
     let el = $('hlWin' + i); if (el) return el;
     el = document.createElement('section'); el.className = 'hl-win'; el.id = 'hlWin' + i; el.dataset.i = i;
@@ -510,8 +524,7 @@
   let winZ = 0;
   function winFilt(i) {
     const w = WIN[i], c = (k, v, on, t) => `<button type="button" class="hl-chip" data-wk-${k}="${v}" aria-pressed="${on}">${t || v}</button>`;
-    return `<label class="hw-lab">NAME <input data-wname value="${esc(w.name)}" maxlength="24"></label>
-<div class="hw-g"><span>SHOW</span>${Object.keys(PL).map(p => c('p', p, w.p.includes(p), PL[p])).join('')}</div>
+    return `<div class="hw-g"><span>SHOW</span>${Object.keys(PL).map(p => c('p', p, w.p.includes(p), PL[p])).join('')}</div>
 <div class="hw-g"><span>BAND</span>${BANDS.map(b => b[0]).concat(['OTHER']).map(b => c('band', b, w.bands.includes(b), b.toUpperCase())).join('')}</div>
 <div class="hw-g"><span>MODE</span>${['PHONE', 'CW', 'DIGITAL', 'OTHER'].map(m => c('mode', m, w.modes.includes(m))).join('')}</div>
 <div class="hw-g"><span>WHERE</span>${WHERE.map(x => c('where', x[0], w.where === x[0], x[1])).join('')}<select data-wst><option value="">Any state</option>${stOpts(w.st)}</select></div>
@@ -525,11 +538,11 @@
     if (PUB) return;
     const on = winOn(); wmFree();
     WIN.forEach((w, i) => {
-      const t = $('hlWT' + i); if (t) { t.setAttribute('aria-pressed', w.on); t.textContent = (w.on ? '🪟 ' : '＋ ') + w.name; }
+      const t = $('hlWT' + i); if (t) { t.setAttribute('aria-pressed', w.on); t.textContent = (w.on ? '🪟 ' : '＋ ') + winLabel(w); t.title = (w.on ? 'Turn off' : 'Turn on') + ' the list showing ' + winLabel(w); }
       if (!on || !w.on) { const el = $('hlWin' + i); if (el) el.hidden = true; return; }
       const el = winBox(i); el.hidden = false; winPlace(el, i);
       const so = w.sort || 'new', L = SP.filter(s => winPass(w, s)).sort(WSORT[so] || WSORT.new);
-      el.querySelector('.hw-n').textContent = w.name; el.querySelector('.hw-c').textContent = L.length;
+      el.querySelector('.hw-n').textContent = winLabel(w); el.querySelector('.hw-c').textContent = L.length;
       el.querySelector('[data-wbell]').textContent = w.bell ? '🔔' : '🔕';
       const ks = new Set(L.map(keyOf)), fresh = WSEEN[i] ? L.filter(s => !WSEEN[i].has(keyOf(s))) : [];
       const hdr = `<div class="hw-r hw-hd">${[['f', 'MHz', 'freq', 'freqd'], ['c', 'CALL', 'call'], ['m', 'MODE', 'mode'], ['r', 'PARK', 'park'], ['x', ''], ['t', 'TIME', 'new', 'old']].map(([c, n, s1, s2]) => s1 ? `<span class="${c}" data-wsrt="${so === s1 && s2 ? s2 : s1}" title="Sort by this">${n}${so === s1 ? ' ▾' : so === s2 ? ' ▴' : ''}</span>` : '<span></span>').join('')}</div>`;
@@ -544,7 +557,7 @@
     const tg = e.target.closest('[data-wt]'); if (tg) { const w = WIN[+tg.dataset.wt]; w.on = !w.on; winSave(); winDraw(); return; }
     const el = e.target.closest('.hl-win'); if (!el) return; const i = +el.dataset.i, w = WIN[i];
     if (e.target.closest('[data-wlock]')) { wmLock(el, w, winSave); return; }
-    if (e.target.closest('[data-wx]')) { w.on = false; winSave(); winDraw(); toast(`${w.name} is off. Turn it back on with the 🪟 buttons over the spots.`); return; }
+    if (e.target.closest('[data-wx]')) { w.on = false; winSave(); winDraw(); toast(`The ${winLabel(w)} list is off. Turn it back on with the ＋ buttons over the spots.`); return; }
     if (e.target.closest('[data-wbell]')) { w.bell = !w.bell; winSave(); if (w.bell) chime(); winDraw(); return; }
     if (e.target.closest('[data-wreset]')) { WIN[i] = Object.assign({}, WDEF[i], { auto: true }); winSave(); el.querySelector('.hw-f').innerHTML = winFilt(i); winDraw(); return; }
     if (e.target.closest('[data-wf]')) { const f = el.querySelector('.hw-f'); f.hidden = !f.hidden; if (!f.hidden) f.innerHTML = winFilt(i); return; }
@@ -558,7 +571,7 @@
   });
   document.addEventListener('input', e => {
     const el = e.target.closest('.hl-win'); if (!el) return; const w = WIN[+el.dataset.i];
-    if (e.target.matches('[data-wname]')) w.name = e.target.value.trim() || 'MY LIST'; else if (e.target.matches('[data-wq]')) w.q = e.target.value; else if (e.target.matches('[data-wst]')) w.st = e.target.value; else return;
+    if (e.target.matches('[data-wq]')) w.q = e.target.value; else if (e.target.matches('[data-wst]')) w.st = e.target.value; else return;
     winSave(); winDraw();
   });
   addEventListener('resize', () => { clearTimeout(winDraw.t); winDraw.t = setTimeout(winDraw, 200); });
@@ -1163,6 +1176,19 @@
   /* ---------------- 🔥 flames up from the bottom when a new park shows up (Brandon Oct 16) ---------------- */
   let FX = get('kpcHuntFx', get('kpcHuntFlame', true) === false ? 'off' : 'flames'), fireT = 0; const FLAME = true;
   const FXL = { flames: ['🔥', 'FLAMES'], fireworks: ['🎆', 'FIREWORKS'], stars: ['🌠', 'SHOOTING STARS'], off: ['🚫', 'NO EFFECTS'] };
+  /* where the flames go off: 🌎 NORTH AMERICA (default) or 🌍 ALL (Brandon Oct 17) */
+  let FLALL = get('kpcHuntFlameAll', false);
+  const NAPOTA = /^(US|CA|MX|GT|BZ|SV|HN|NI|CR|PA|CU|JM|HT|DO|PR|VI|BS|BB|TT|AG|DM|GD|KN|LC|VC|AI|AW|CW|SX|BQ|MF|BL|GP|MQ|KY|TC|VG|MS|BM|GL|PM)-/;
+  const NASOTA = /^(W\d|K[HL]?\d|N\d|VE|VA|VY|VO|XE|TI|TG|HR|YN|YS|HP|V3|CO|HI|KP4|C6|8P|9Y|J[3678]|V[24]|FG|FM|PJ|VP[259]|OX|FP|ZF|P4|HH)/;
+  function isNA(s) {
+    if (s.us || s.ca) return true;
+    if (s.p === 'POTA' && s.ref) return NAPOTA.test(s.ref);
+    if (s.p === 'SOTA' && s.ref) return NASOTA.test(s.ref);
+    if (s.p === 'WWFF' && s.ref) return /^(KFF|VEFF|XEFF|TGFF|V3FF|YSFF|HRFF|YNFF|TIFF|HPFF|COFF|6YFF|HHFF|HIFF|C6FF|8PFF|V2FF|J7FF|V4FF|J6FF|P4FF|ZFFF|VPFF|FFF)-/.test(s.ref) && (!isFinite(s.lo) || s.lo < -50);
+    return isFinite(s.la) && isFinite(s.lo) && s.la > 5 && s.lo > -170 && s.lo < -50;
+  }
+  function flameWBtn() { const b = $('hlFlameW'); if (!b) return; b.setAttribute('aria-pressed', FLALL); b.innerHTML = FLALL ? '🌍<span class="t"> ALL</span>' : '🌎<span class="t"> N. AMERICA</span>'; b.title = FLALL ? 'Flames go off for new parks anywhere in the world. Tap for North America only.' : 'Flames go off only for new parks in North America. Tap to include the whole world.'; }
+  if ($('hlFlameW')) { $('hlFlameW').onclick = () => { FLALL = !FLALL; put('kpcHuntFlameAll', FLALL); flameWBtn(); toast(FLALL ? '🌍 Flames for new parks anywhere in the world.' : '🌎 Flames only for new parks in North America.'); }; setTimeout(flameWBtn, 0); }
   function flameBtn() { const b = $('hlFlame'), f = FXL[FX] || FXL.flames; const dk = document.getElementById('hlDk'); if (dk) dk.dataset.fx = FX; b.setAttribute('aria-pressed', FX !== 'off'); b.dataset.fx = FX; b.innerHTML = f[0] + '<span class="t"> ' + f[1] + '</span>'; }
   $('hlFlame').onclick = () => { FX = FX === 'flames' ? 'fireworks' : FX === 'fireworks' ? 'stars' : FX === 'stars' ? 'off' : 'flames'; put('kpcHuntFx', FX); flameBtn(); if (FX !== 'off') fire(FX === 'flames' ? '🔥 Flames for new parks' : FX === 'fireworks' ? '🎆 Fireworks for new parks' : '🌠 Shooting stars for new parks'); else toast('No screen effects for new parks.'); };
   function fire(msg) {
@@ -1374,6 +1400,7 @@
     $('dCall').value = s.call || ''; $('dFreq').value = s.khz ? (s.khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, '') : $('dFreq').value;
     if (s.mode) $('dMode').value = modePick(s.mode);
     if (s.call) { DKS = s; SELK = keyOf(s); markSel(); }
+    setTimeout(dkActSet, 0);
     $('dRef').value = s.ref || ''; $('dName').value = s.name || ''; $('dSt').value = s.st || ''; $('dNote').value = '';
     $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value);
     $('dFreq').dispatchEvent(new Event('input')); dkRadT(); dkWho();
@@ -1396,7 +1423,17 @@
     ['dCall', 'dRef', 'dName', 'dSt', 'dNote'].forEach(id => { $(id).value = ''; }); dkWN++; DKWHO = null; $('dkWho').innerHTML = '';
     $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value); $('dkDupe').hidden = true;
   }
-  async function dkLog() {
+  /* buttons above the name box (Brandon Oct 17): ✅ QSL → QRZ = log it, send it to QRZ, clear the boxes; 📣 RESPOT only for POTA parks */
+  function dkActSet() { const r = $('dkRsp'); if (!r) return; const pr = String($('dRef').value || '').toUpperCase().split(/[ ,]+/).map(nref).find(x => progOf(x) === 'POTA');
+    r.hidden = !(pr && $('dCall').value.trim()); r.dataset.ref = pr || ''; }
+  if ($('dkQsl')) {
+    ['dRef', 'dCall'].forEach(id => $(id).addEventListener('input', dkActSet));
+    $('dkQsl').onclick = () => { if (!$('dCall').value.trim()) { toast('Tap a spot first (or type the call).'); $('dCall').focus(); return; } dkLog({ qrz: true }); };
+    $('dkRsp').onclick = () => { const k = Math.round(parseFloat($('dFreq').value) * 1000), ref = $('dkRsp').dataset.ref, call = $('dCall').value.trim().toUpperCase();
+      if (!k || !ref || !call) { toast('Respot needs the call, the frequency and a POTA park number.'); return; }
+      respot({ call, ref, khz: k, mode: $('dMode').value === 'OTHER' ? '' : $('dMode').value }); };
+  }
+  async function dkLog(opt) {
     const call = $('dCall').value.trim().toUpperCase(); if (!call) { $('dCall').focus(); return; }
     const n = utc(new Date());
     const ref = $('dRef').value.toUpperCase().split(/[ ,]+/).filter(Boolean).map(nref).join(', ');
@@ -1405,16 +1442,18 @@
       name: $('dName').value.trim(), st: $('dSt').value.trim().toUpperCase(), rs: $('dRs').value.trim(), rr: $('dRr').value.trim(), note: $('dNote').value.trim(), my: CALL, grid: Q.grid, x: 0, t: Date.now() };
     const w = DKWHO && DKWHO.call === base(call) ? DKWHO : (LKC[base(call)] || null); if (w) { rec.on = w.name || ''; rec.qth = [w.qth, w.st].filter(Boolean).join(', '); rec.tg = w.g || ''; }
     if (DKS && base(DKS.call) === base(call) && isFinite(DKS.la) && isFinite(DKS.lo)) { rec.la = DKS.la; rec.lo = DKS.lo; }
-    await afterLog(rec);
-    dkClear(); $('dCall').focus({ preventScroll: true });
+    await afterLog(rec, opt);
+    dkClear(); dkActSet(); $('dCall').focus({ preventScroll: true });
   }
-  async function afterLog(rec) {
+  async function afterLog(rec, opt) {
+    opt = opt || {};
     const call = rec.call, ref = rec.ref;
     Q.q.push(rec); await qSave();
     ref.split(/[ ,]+/).filter(Boolean).forEach(r => { if (!WK.has(r)) { WK.add(r); MAN.add(r); } }); saveLog(); logInfo();
     qList(); ticker(false); draw(); needDraw(); try { lmDraw(); } catch (e) {}
     toast(`✓ ${call} logged${ref ? ' at ' + ref : ''}.${!KPCQrzOn() && rec.qs ? ' (QRZ upload is off: turn it on in the CAT & QRZ tab.)' : ''}`, () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); draw(); try { lmDraw(); } catch (e) {} });
-    if (!PUB && KPCQrzOn()) { const a = adif([rec]); const one = a.slice(a.indexOf('<EOH>') + 5).trim();
+    if (opt.qrz && window.KPCQrz && !KPCQrz.get().key) toast('✓ Logged. To send to QRZ, save your QRZ key on the 📻 CAT & QRZ tab.');
+    if (!PUB && (KPCQrzOn() || (opt.qrz && window.KPCQrz && KPCQrz.get().key))) { const a = adif([rec]); const one = a.slice(a.indexOf('<EOH>') + 5).trim();
       KPCQrz.send(one).then(r => { if (r.ok) { rec.qz = r.sure ? 2 : 1; qSave(); } toast((r.ok ? '☁ QRZ: ' : '⚠ QRZ: ') + r.msg); }); }
     /* the effect flares only every 50 contacts or for DX outside North America (Brandon Oct 17) */
     const NAPRE = /^(A[A-L]|[KNW]|V[A-GOY]|C[F-KYZ]|X[A-O]|4[A-C]|6[D-J]|C[LMO]|T[GI]|H[O-RI]|YN|YS|V[23P]|J[3678]|8P|6Y|ZF|C6|FG|FM|FS|PJ|P4|HH|OX|XP|TO|FP|ZB)/;
