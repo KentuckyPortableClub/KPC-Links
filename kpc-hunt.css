@@ -214,7 +214,7 @@ main#hl[data-theme=lodge]::before{content:"";position:fixed;inset:0;z-index:-1;b
 main#hl[data-theme=lodge]{background:transparent}
 main#hl[data-theme=lodge] .hl-hero{background:#120a05;border-bottom:3px solid var(--g)}
 main#hl[data-theme=lodge] .hl-hero::before{content:"";display:block;width:100%;aspect-ratio:2157/729;background:url('hero-lodge.jpg') center/cover no-repeat}
-@media(max-width:700px){main#hl[data-theme=lodge] .hl-hero::before{aspect-ratio:900/516;background-image:url('hero-lodge-mobile.jpg')}}
+/* phones show the whole wide cabin picture too, info underneath (Brandon Oct 16: 'like this on desktop and mobile') */
 main#hl[data-theme=lodge] .hl-hero .hl-in{padding:22px 22px 30px}
 main#hl[data-theme=lodge] .hl-hero .hl-eyebrow,main#hl[data-theme=lodge] .hl-hero h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 main#hl[data-theme=lodge] .hl-copy{margin-top:0;color:#f3e2c8}
@@ -424,7 +424,6 @@ main#hl[data-theme=lodge] .hs.new{background:linear-gradient(180deg,rgba(255,170
 /* 🌑 DARK + GHOST FLAMES (Oct 16, Brandon: a dark look for phones with moving ghost flames) */
 main#hl[data-theme=dark]{--g:#ff8a3d;--g2:#ffb072;--gr:#4cf0a0;--bg:#050505;--bg2:#0a0a0a;--card:rgba(18,18,18,.88);--ln:rgba(255,138,61,.28);--tx:#eeeeee;--mu:#9a9a9a;background:#030303}
 main#hl[data-theme=dark] .hl-hero{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.92)),#000 url('hero-lodge.jpg') center/cover no-repeat}
-@media(max-width:700px){main#hl[data-theme=dark] .hl-hero{background-image:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.92)),url('hero-lodge-mobile.jpg')}}
 main#hl[data-theme=dark] .hl-sec,main#hl[data-theme=dark] .hl-sec.alt{background:transparent}
 main#hl[data-theme=dark] .hs{background:linear-gradient(180deg,rgba(24,24,24,.92),rgba(12,12,12,.92))}
 main#hl[data-theme=dark] .hs.new{background:linear-gradient(180deg,rgba(255,120,40,.16),rgba(0,0,0,0) 60%),linear-gradient(180deg,rgba(26,22,20,.95),rgba(12,12,12,.95))}
@@ -446,3 +445,11 @@ main#hl[data-theme=dark] #hlApp{position:relative;z-index:1}
  .hl-ftog{display:flex;width:100%;justify-content:space-between;align-items:center;background:none;border:0;color:var(--g2);font:900 13px Arial;letter-spacing:1.5px;padding:4px 2px;cursor:pointer}
  .hl-filters:not(.open)>*:not(.hl-ftog){display:none}
 }
+
+/* dark look: same full cabin picture on top, info under it */
+main#hl[data-theme=dark] .hl-hero{background:#000;border-bottom:3px solid var(--g)}
+main#hl[data-theme=dark] .hl-hero::before{content:"";display:block;width:100%;aspect-ratio:2157/729;background:url('hero-lodge.jpg') center/cover no-repeat;filter:brightness(.8) saturate(.9)}
+main#hl[data-theme=dark] .hl-hero .hl-in{padding:22px 22px 30px}
+main#hl[data-theme=dark] .hl-hero .hl-eyebrow,main#hl[data-theme=dark] .hl-hero h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(max-width:700px){main#hl[data-theme=lodge] .hl-hero .hl-in,main#hl[data-theme=dark] .hl-hero .hl-in{padding:16px 16px 22px}main#hl .hl-hero .hl-copy{font-size:14.5px}}
+@media(max-width:600px){main#hl .hl-stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}main#hl .hl-stats div{padding:8px 6px}main#hl .hl-stats b{font-size:17px}main#hl .hl-stats .clk b{font-size:14px;letter-spacing:0}main#hl .hl-stats span{font-size:8.5px;letter-spacing:.4px;line-height:1.25;display:block}}
