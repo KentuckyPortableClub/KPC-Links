@@ -1,0 +1,67 @@
+@@HEADER@@
+<main id="ft8" data-keep-light>
+<style>
+main#ft8{--g:#f0c96b;max-width:760px;margin:0 auto;padding:22px 16px 50px;color:#f3e6c8;font:16px/1.5 Arial,sans-serif}
+html:has(main#ft8),html:has(main#ft8) body{background:#0e0a06}
+main#ft8 .f-card{background:rgba(24,16,8,.92);border:1px solid rgba(240,201,107,.55);border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 0 22px rgba(240,201,107,.12)}
+main#ft8 h1{font:900 28px Georgia,serif;margin:4px 0;color:#fff}main#ft8 h2{font:900 13px Arial;letter-spacing:1.6px;color:var(--g);margin:0 0 10px}
+main#ft8 .k{font:900 12px Arial;letter-spacing:1.4px;color:#c9b48a}
+main#ft8 .big{font:900 44px/1.1 ui-monospace,Menlo,monospace;color:#fff;letter-spacing:2px}
+main#ft8 .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+main#ft8 .tile{flex:1 1 150px;background:#120c06;border:1px solid rgba(240,201,107,.3);border-radius:12px;padding:12px}
+main#ft8 .tile b{display:block;font:900 22px ui-monospace,Menlo,monospace;color:#fff}
+main#ft8 .btn{margin:0!important;display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:999px;border:0;background:linear-gradient(90deg,#f6d58a,#d5a63a);color:#2a1a05;font:900 13px Arial;letter-spacing:.8px;text-decoration:none;cursor:pointer}
+main#ft8 .btn.ghost{background:transparent;border:1px solid rgba(240,201,107,.6);color:#f6d58a}
+main#ft8 ol{margin:6px 0 0 20px;padding:0}main#ft8 li{margin:6px 0}main#ft8 code{font:700 15px ui-monospace,Menlo,monospace;color:#fff;background:#000;padding:1px 6px;border-radius:5px}
+main#ft8 .note{font-size:13px;color:#cdbb95}main#ft8 .ok{color:#8fe3a1;font-weight:900;min-height:20px}
+@media(max-width:600px){main#ft8 .big{font-size:36px}}
+</style>
+<div class="f-card"><div class="k">📡 FT8 HELPER</div><h1 id="fTitle">Work a digital station</h1><div class="big" id="fCall">—</div><div id="fPark" class="note"></div>
+<div class="row" style="margin-top:12px"><button type="button" class="btn" id="fCopy">📋 COPY THE CALL</button><a class="btn ghost" id="fPsk" target="_blank" rel="noopener">🌎 WHERE THEY'RE HEARD</a><a class="btn ghost" id="fQrz" target="_blank" rel="noopener">QRZ</a></div><div class="ok" id="fMsg"></div></div>
+
+<div class="f-card"><h2>WHERE TO TUNE</h2><div class="row">
+<div class="tile"><span class="k">SPOTTED ON</span><b id="fSpot">—</b></div>
+<div class="tile"><span class="k">SET YOUR DIAL TO</span><b id="fDial">—</b></div>
+<div class="tile"><span class="k">THEIR AUDIO OFFSET</span><b id="fOff">—</b></div></div>
+<p class="note" id="fNote">The dial is the standard frequency for this mode on this band. The offset is worked out from the spot, so it is only right when the spotter gave their exact frequency. Look for the call in your decode window.</p></div>
+
+<div class="f-card"><h2>💻 ON A COMPUTER (WSJT-X)</h2><ol>
+<li>Set WSJT-X to <code id="fMode2">FT8</code> and the dial to <code id="fDial2">—</code> (Band box, or your radio).</li>
+<li>Wait for <code id="fCall2">—</code> to show up in the Band Activity list (one 15-second cycle, sometimes a few).</li>
+<li><b>Double-click their CQ line.</b> WSJT-X fills in the DX Call, makes the messages and starts calling them.</li>
+<li>No CQ line yet? Paste the call into the <b>DX Call</b> box, press <b>Generate Std Msgs</b>, put your TX tone on a quiet spot (not on top of them) and turn on <b>Enable Tx</b>.</li>
+<li>When the contact finishes, log it in WSJT-X (or tap back to the Lounge tab and log it there).</li></ol>
+<p class="note">A web page can't control WSJT-X itself (it only listens to programs on your own computer), so this page gives you everything to type in. If the Lounge's radio control (CAT) is on, turn it off first: WSJT-X needs the radio's port to itself.</p></div>
+
+<div class="f-card"><h2>📱 ON A PHONE</h2>
+<p>WSJT-X doesn't run on phones. Phone FT8 apps work the same way: tune to the dial frequency above and tap their CQ when it decodes. On Android, <b>FT8CN</b> is a popular free one; on an iPhone, search the App Store for FT8. Your phone needs an audio cable or interface to the radio.</p>
+<p class="note">A KPC FT8 program for phones in the field is on our to-do list.</p></div>
+<p class="note">KPC is an independent ham radio club, not part of Parks on the Air®, SOTA or WWFF.</p>
+</main>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search), $ = function (i) { return document.getElementById(i); };
+  var call = (q.get('call') || '').toUpperCase().replace(/[^A-Z0-9\/]/g, ''), khz = parseFloat(q.get('khz')), mode = (q.get('mode') || 'FT8').toUpperCase(), ref = q.get('ref') || '', name = q.get('name') || '';
+  var FT8 = { '160m': 1840, '80m': 3573, '60m': 5357, '40m': 7074, '30m': 10136, '20m': 14074, '17m': 18100, '15m': 21074, '12m': 24915, '10m': 28074, '6m': 50313, '2m': 144174 };
+  var FT4 = { '80m': 3575, '40m': 7047.5, '30m': 10140, '20m': 14080, '17m': 18104, '15m': 21140, '12m': 24919, '10m': 28180, '6m': 50318, '2m': 144170 };
+  var B = [['160m', 1800, 2000], ['80m', 3500, 4000], ['60m', 5330, 5410], ['40m', 7000, 7300], ['30m', 10100, 10150], ['20m', 14000, 14350], ['17m', 18068, 18168], ['15m', 21000, 21450], ['12m', 24890, 24990], ['10m', 28000, 29700], ['6m', 50000, 54000], ['2m', 144000, 148000]];
+  var band = ''; B.forEach(function (b) { if (khz >= b[1] && khz <= b[2]) band = b[0]; });
+  var T = mode === 'FT4' ? FT4 : FT8, dial = T[band];
+  var m = /FT4/.test(mode) ? 'FT4' : /FT8/.test(mode) ? 'FT8' : mode;
+  $('fCall').textContent = call || '—'; $('fCall2').textContent = call || 'their call'; $('fMode2').textContent = m;
+  $('fTitle').textContent = 'Work ' + (call || 'a digital station') + ' on ' + m;
+  $('fPark').textContent = [ref, name].filter(Boolean).join(' · ');
+  $('fSpot').textContent = isFinite(khz) ? (khz / 1000).toFixed(4) + ' MHz' : '—';
+  if (dial && (m === 'FT8' || m === 'FT4')) {
+    $('fDial').textContent = $('fDial2').textContent = (dial / 1000).toFixed(3) + ' MHz USB';
+    var off = Math.round((khz - dial) * 1000);
+    $('fOff').textContent = off > 100 && off < 3200 ? '≈ ' + off + ' Hz' : 'look for the call';
+  } else { $('fDial').textContent = $('fDial2').textContent = isFinite(khz) ? (khz / 1000).toFixed(3) + ' MHz' : '—'; $('fOff').textContent = '—'; $('fNote').textContent = 'This is not FT8 or FT4, so tune to the spotted frequency and use your digital program the usual way.'; }
+  if (call) { $('fPsk').href = 'https://pskreporter.info/pskmap.html?preset&callsign=' + encodeURIComponent(call) + '&timerange=1800&txrx=tx'; $('fQrz').href = 'https://www.qrz.com/db/' + encodeURIComponent(call); document.title = call + ' on ' + m + ' | KPC'; }
+  else { $('fPsk').hidden = true; $('fQrz').hidden = true; }
+  $('fCopy').onclick = function () { var done = function () { $('fMsg').textContent = '✓ ' + call + ' copied. Paste it into the DX Call box.'; };
+    if (navigator.clipboard) navigator.clipboard.writeText(call).then(done, function () { prompt('Copy the call:', call); });
+    else prompt('Copy the call:', call); };
+})();
+</script>
+@@FOOTER@@
