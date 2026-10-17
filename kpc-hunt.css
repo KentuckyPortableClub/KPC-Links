@@ -672,3 +672,22 @@ main#hl .hs-a .hc{color:#cfc6b4}
  main#hl[data-desk="1"] .hl-dk[data-fx=fireworks] .dk-go{background:radial-gradient(circle at 35% 30%,#ffd1dc,#ef476f 60%,#8e1838);color:#fff}
  main#hl[data-desk="1"] .dk-clk{font-size:14px}
 }
+
+/* Oct 17 (Brandon: 'what happened where we could switch from logger to map?'): computers, members = LEFT pane switches
+   📒 MY LOG / 🗺 LIVE MAP (the map moves into the pane; the entry box stays under either), spots always on the right */
+.hl-ltabs,.dk-mapslot{display:none}
+@media(min-width:1100px){
+ main#hl[data-desk="1"] .hl-split>.hl-mapsec{display:none!important}
+ main#hl[data-desk="1"] .hl-split>.hl-spsec{display:block!important;grid-column:2;grid-row:2}
+ main#hl[data-desk="1"] .hl-ltabs{display:flex;grid-column:1;grid-row:1;gap:6px;position:sticky;top:150px;z-index:30;background:#0a0d0b;box-shadow:0 -14px 0 4px #0a0d0b;border:1px solid var(--ln);border-radius:12px;padding:6px}
+ main#hl[data-desk="1"] .hl-ltabs button{flex:1 1 0;font:900 13px Arial;letter-spacing:1.2px;padding:10px 16px;border-radius:9px;border:1px solid transparent;background:transparent;color:var(--mu);cursor:pointer}
+ main#hl[data-desk="1"] .hl-ltabs button:hover{color:var(--tx);background:rgba(255,255,255,.06)}
+ main#hl[data-desk="1"] .hl-ltabs button[aria-pressed="true"]{background:var(--g);color:#1a1205}
+ main#hl[data-desk="1"] .hl-dk{grid-row:2;top:212px;max-height:calc(100vh - 228px)}
+ main#hl[data-desk="1"] .hl-rtabs .rt-lab{font:900 13px Arial;letter-spacing:1.2px;color:var(--g2);padding:10px 12px}
+ main#hl[data-desk="1"] .hl-rtabs .rt-lab i{font-style:normal;font-size:11px;opacity:.75;margin-left:4px}
+ main#hl[data-desk="1"][data-rt="map"] .dk-list{display:none}
+ main#hl[data-desk="1"][data-rt="map"] .dk-mapslot{display:block}
+ main#hl[data-desk="1"] .dk-mapslot .hl-bigmap{margin:0;border-radius:0;border:0}
+ main#hl[data-desk="1"] .dk-mapslot #hlLmap{height:calc(100vh - 470px);min-height:300px;max-height:none;border-radius:0}
+}

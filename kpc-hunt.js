@@ -1007,18 +1007,21 @@
   function deskSet() {
     const m = $('hl'), on = DESKON();
     if (on) m.dataset.desk = '1'; else delete m.dataset.desk;
+    /* computers: the live map moves INTO the log pane (map or log list, the entry box stays under either) */
+    const bm = $('hlBigMap'), slot = $('dkMapSlot'), home = $('hlMapSec') && $('hlMapSec').querySelector('.hl-in');
+    if (bm && slot && home) { const want = on ? slot : home; if (bm.parentNode !== want) { want.appendChild(bm); if (LM) setTimeout(() => LM.invalidateSize(), 60); } }
     if (on) { rtab(RT); dkList(); } else { const f = $('hlFilters'); if (f) f.classList.remove('desk-pop'); }
     mapOn();
   }
-  let RT = get('kpcHuntRt', 'spots'); if (RT !== 'map') RT = 'spots';
+  let RT = get('kpcHuntRt', 'log'); if (RT !== 'map') RT = 'log';   /* left pane: my log OR the live map (Brandon Oct 17); spots always on the right */
   function rtab(v) {
     RT = v; put('kpcHuntRt', v); $('hl').dataset.rt = v;
-    document.querySelectorAll('#hlRtabs [data-rt]').forEach(b => b.setAttribute('aria-pressed', b.dataset.rt === v));
+    document.querySelectorAll('#hlLtabs [data-rt]').forEach(b => b.setAttribute('aria-pressed', b.dataset.rt === v));
     if (v === 'map') { lmInit(); setTimeout(() => { if (LM) { LM.invalidateSize(); lmZoom(LMV); } draw(); }, 60); }
   }
   if (!PUB && $('hlRtabs')) {
-    $('hlRtabs').addEventListener('click', e => { const b = e.target.closest('[data-rt]'); if (!b) return; rtab(b.dataset.rt);
-      const y = $('hlDk').getBoundingClientRect().top + scrollY - 150; if (scrollY > y + 5) scrollTo({ top: y, behavior: 'smooth' }); });
+    $('hlLtabs').addEventListener('click', e => { const b = e.target.closest('[data-rt]'); if (!b) return; rtab(b.dataset.rt);
+      const y = $('hlLtabs').getBoundingClientRect().top + scrollY - 150; if (scrollY > y + 5) scrollTo({ top: y, behavior: 'smooth' }); });
     $('hlFbtn').onclick = e => { e.stopPropagation(); $('hlFtog').click(); fPlace(); };
     function fPlace() { const f = $('hlFilters'), r = $('hlFbtn').getBoundingClientRect(), t = $('hlTick') ? $('hlTick').getBoundingClientRect().bottom : 0; const top = Math.max(r.bottom, t) + 8; f.style.top = top + 'px'; f.style.maxHeight = (innerHeight - top - 16) + 'px'; }
     addEventListener('scroll', () => { if (DESKON() && $('hlFilters').classList.contains('open')) fPlace(); }, { passive: true });
