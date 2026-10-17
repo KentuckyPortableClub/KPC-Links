@@ -21,6 +21,7 @@ UA = {'User-Agent': 'KPC-Links/1.0 (Kentucky Portable Club ham radio site; githu
 TODAY = dt.date.today().isoformat()
 LIMIT = int(os.environ.get('LIMIT', '0') or 0)          # 0 = every park
 RECHECK = os.environ.get('RECHECK') == '1'
+MISSES = os.environ.get('MISSES') == '1'   # look again only at the parks that were not matched
 DEADLINE = time.time() + float(os.environ.get('MINUTES', '150')) * 60   # stop cleanly before the job's time limit
 GENERIC = set('park parks provincial national territorial area areas reserve reserves conservation protected ecological wildlife wilderness heritage historic site sites marine natural regional recreation recreational the of de du des la le les et and parc reserve-naturelle'.split())
 
@@ -48,6 +49,10 @@ def words(s):
     return [w for w in s.split() if w and w not in GENERIC]
 
 
+def simb(nm, a, F):
+    return max(sim(nm, a.get(F['name'])), sim(nm, a.get(F.get('namef')) if F.get('namef') else ''))
+
+
 def sim(a, b):
     A, B = set(words(a)), set(words(b))
     if not A or not B:
@@ -72,6 +77,7 @@ def layer_info():
     F = {
         'oid': info.get('objectIdField') or pick('OBJECTID', 'FID'),
         'name': pick('NAME_E', 'NAME_EN', 'NAME', 'ENG_NAME', 'PA_NAME'),
+        'namef': pick('NAME_F', 'NAME_FR'),
         'type': pick('TYPE_E', 'TYPE_EN', 'TYPE'),
         'owner': pick('OWNER_E', 'OWNER_EN', 'OWNER'),
         'mgr': pick('MGMT_E', 'MGMT_EN', 'MANAGEMENT_E', 'MGMT'),
@@ -102,13 +108,15 @@ def main():
         if not RECHECK and ref in idx['found'] and os.path.exists(os.path.join(OUT, ref + '.json')):
             continue
         m = idx['miss'].get(ref)
-        if not RECHECK and m and (dt.date.today() - dt.date.fromisoformat(m)).days < 30:
+        if not RECHECK and not MISSES and m and (dt.date.today() - dt.date.fromisoformat(m)).days < 30:
+            continue
+        if MISSES and not m:
             continue
         todo.append(r)
     if LIMIT:
         todo = todo[:LIMIT]
     note('Canada boundaries', f'{len(parks)} Canadian POTA parks; {len(idx["found"])} already saved; checking {len(todo)} now')
-    outf = ','.join(x for x in [F['oid'], F['name'], F['type'], F['owner'], F['mgr'], F['loc']] if x)
+    outf = ','.join(x for x in [F['oid'], F['name'], F.get('namef'), F['type'], F['owner'], F['mgr'], F['loc']] if x)
 
     def one(r):
         if time.time() > DEADLINE:
@@ -118,14 +126,14 @@ def main():
         q = {'f': 'json', 'geometry': f'{lo - d},{la - d},{lo + d},{la + d}', 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
              'spatialRel': 'esriSpatialRelIntersects', 'outFields': outf, 'returnGeometry': 'false'}
         cands = []
-        for d in (0.03, 0.12):   # widen to about 13 km when nothing is near the pin
+        for d in (0.03, 0.12, 0.3):   # widen to about 13 km when nothing is near the pin
             q['geometry'] = f'{lo - d},{la - d},{lo + d},{la + d}'
             try:
                 j = get(url, q)
             except Exception as e:
                 return ref, None, 'err ' + str(e)[:80]
             cands = [f['attributes'] for f in j.get('features') or []]
-            if any(sim(nm, a.get(F['name'])) >= 0.5 for a in cands):
+            if any(simb(nm, a, F) >= 0.5 for a in cands):
                 break
         if not cands:
             return ref, None, 'none'
@@ -138,9 +146,9 @@ def main():
                 inside = {f['attributes'][F['oid']] for f in jp.get('features') or []}
             except Exception:
                 pass
-        scored = sorted(cands, key=lambda a: (sim(nm, a.get(F['name'])), a.get(F['oid']) in inside), reverse=True)
+        scored = sorted(cands, key=lambda a: (simb(nm, a, F), a.get(F['oid']) in inside), reverse=True)
         best = scored[0]
-        s = sim(nm, best.get(F['name']))
+        s = simb(nm, best, F)
         if s < 0.5 and not (best.get(F['oid']) in inside and len(words(nm)) == 0):
             return ref, None, f'no name match (closest: {best.get(F["name"])})'
         oid = best[F['oid']]
