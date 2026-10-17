@@ -561,7 +561,7 @@
     $('pList').onclick = e => {
       const btn = e.target.closest('[data-sp]'); if (!btn) return; const x = SP.find(s => String(s.spotId) === btn.dataset.sp); if (!x) return;
       /* an FT8 / FT4 station: tab over to the FT8 screen (Brandon Oct 17) */
-      if (/^(FT8|FT4)$/.test(spMode(x)) && window.KPCFT8UI) { window.KPCFT8UI.go({ call: String(x.activator || '').toUpperCase(), khz: +x.frequency, mode: spMode(x), ref: x.reference || '', prog: x.prog }); return; }
+      if (/^(FT8|FT4|RTTY|PSK31)$/.test(spMode(x)) && window.KPCFT8UI) { window.KPCFT8UI.go({ call: String(x.activator || '').toUpperCase(), khz: +x.frequency, mode: spMode(x), ref: x.reference || '', prog: x.prog }); return; }
       clearForm(false); EDIT = null;
       $('eCall').value = String(x.activator || '').toUpperCase(); $('eFreq').value = mhz(+x.frequency);
       const md = spMode(x); $('eMode').value = [...$('eMode').options].some(o => o.value === md) ? md : 'OTHER';
@@ -872,7 +872,7 @@
       if (!window.caches) { m.className = 'lg-msg bad'; m.textContent = 'This browser can’t save pages for offline use.'; return; }
       try { await sw(); } catch (e) {}
       const strip = u => { const x = new URL(u, location.href); x.search = ''; x.hash = ''; return x.href; };
-      const urls = new Set([location.href, 'kpc-logger.html', 'kpc-logger.webmanifest', 'data/parkinfo/index.json', 'kpc-ky-data.json', 'kpc-icon-192.png', 'kpc-icon-512.png', 'kpc-icon-180.png', 'bg-group.jpg', 'bg-group-mobile.jpg', 'KPC26-Group-Photo.jpg', 'KPC26-Group-Photo-web.jpg', 'kpc-ft8.wasm?v=20261017a', 'kpc-ft8.js?v=20261017a', 'kpc-us-states.json',
+      const urls = new Set([location.href, 'kpc-logger.html', 'kpc-logger.webmanifest', 'data/parkinfo/index.json', 'kpc-ky-data.json', 'kpc-icon-192.png', 'kpc-icon-512.png', 'kpc-icon-180.png', 'bg-group.jpg', 'bg-group-mobile.jpg', 'KPC26-Group-Photo.jpg', 'KPC26-Group-Photo-web.jpg', 'kpc-ft8.wasm?v=20261017a', 'kpc-ft8.js?v=20261017a', 'kpc-digi.js?v=20261018b', 'kpc-digi-ui.js?v=20261018b', 'kpc-us-states.json',
         'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js']);
       try { performance.getEntriesByType('resource').forEach(r => { const u = new URL(r.name); if (u.origin === location.origin) urls.add(r.name); }); } catch (e) {}
       const c = await caches.open('kpc-finder-v1'); let ok = 0, bad = 0;
