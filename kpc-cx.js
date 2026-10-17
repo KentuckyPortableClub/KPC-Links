@@ -10,7 +10,7 @@
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const css = document.createElement('style');
   css.textContent = `
-.kcx{display:flex;align-items:stretch;min-height:34px;background:linear-gradient(180deg,#0f1410,#0a0d0a);border-top:1px solid rgba(240,201,107,.35);border-bottom:1px solid rgba(240,201,107,.45);box-shadow:0 6px 16px rgba(0,0,0,.35);font:13px Arial,Helvetica,sans-serif;color:#e8e1cf;position:relative;z-index:5}
+.kcx{position:sticky!important;top:var(--kcx-top,0px);z-index:900!important;display:flex;align-items:stretch;min-height:34px;background:linear-gradient(180deg,#0f1410,#0a0d0a);border-top:1px solid rgba(240,201,107,.35);border-bottom:1px solid rgba(240,201,107,.45);box-shadow:0 6px 16px rgba(0,0,0,.35);font:13px Arial,Helvetica,sans-serif;color:#e8e1cf}
 .kcx-k{flex:0 0 auto;display:flex;align-items:center;padding:0 12px;font:900 11px Arial;letter-spacing:1.6px;color:#2a1a05;background:linear-gradient(180deg,#f6d58a,#d5a63a)}
 .kcx-run{flex:1;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
 .kcx-track{display:inline-flex;align-items:center;white-space:nowrap;height:100%;padding-left:20px;animation:kcxRun 90s linear infinite}
@@ -29,6 +29,9 @@
   document.head.appendChild(css);
   mount.className = 'kcx'; mount.setAttribute('data-keep-light', ''); mount.setAttribute('aria-label', 'Solar, weather and band conditions');
   mount.innerHTML = '<span class="kcx-k" id="kcxK">📡 CONDITIONS</span><div class="kcx-run"><div class="kcx-track" id="kcxT"><span>Checking the sun, your weather and WSPR reports near you…</span></div></div><button type="button" class="kcx-b" id="kcxLoc" title="Use my location for the weather and band reports">📍 MY SPOT</button>';
+  /* under the hero, and once you scroll it sticks right under the site header (Brandon Oct 17) */
+  const hdr = () => { const h = document.querySelector('header.site-nav') || document.querySelector('header'); if (!h) return 0; const cs = getComputedStyle(h); return /sticky|fixed/.test(cs.position) ? Math.max(0, Math.round(h.getBoundingClientRect().height)) : 0; };
+  const topSet = () => mount.style.setProperty('--kcx-top', hdr() + 'px'); topSet(); addEventListener('resize', topSet); addEventListener('load', topSet);
   const $ = id => document.getElementById(id);
   const jget = async (u, ms) => { const c = new AbortController(), t = setTimeout(() => c.abort(), ms || 20000); try { const r = await fetch(u, { cache: 'no-store', signal: c.signal }); if (!r.ok) throw Error(r.status); return await r.json(); } finally { clearTimeout(t); } };
   const one = (u, ms) => jget(u, ms).catch(() => null);
