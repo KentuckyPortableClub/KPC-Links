@@ -12,7 +12,8 @@ import json, os, re, time, math, urllib.request, urllib.parse, datetime
 STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL NC GA AL MI PA').split()
 OUT = 'data/trails'; os.makedirs(OUT, exist_ok=True)
 UA = {'User-Agent': 'KPC trails (kentuckyportableclub.github.io)'}
-CHECK_KM = 8.0
+CHECK_KM = 8.0   # the drawn line must come this close to the POTA pin
+MATCH_KM = 60.0  # pieces with the right name are collected from this far around the pin (long trails come in sections)
 # parks named 'Trail' that are NOT trails (a line there would mislead): Scioto Trail SP is a forest park
 SKIP = {'US-1990'}
 def note(t, m): print(f'::notice title={t}::' + str(m).replace('\n', ' ')[:900])
@@ -63,21 +64,36 @@ def forest(name, la, lo):
         note('Forest Service', f'{name}: {str(e)[:120]}'); return None
 # ---------------------------------------------------------------- 2. OpenStreetMap
 OVP = 'https://overpass-api.de/api/interpreter'
-def osm(name, st):
-    w = [x for x in core(name).split() if len(x) > 2]
+def words(name):  # Oct 17: letters/numbers only, so "Alene's", "Ka‘ena" and "Estacada- Boring" still match OpenStreetMap
+    return [x for x in re.split(r'[^0-9a-z]+', core(name)) if len(x) > 2]
+def osm(name, st, la, lo):
+    """Oct 17 (Brandon: 'readdress the missing trails'): route relations of any kind (foot, bike, horse, canoe for water
+    trails, road for scenic byways) AND plain named paths/cycleways/tracks (many rail-trails are just ways); every match
+    within MATCH_KM of the POTA pin is kept (trails come in sections), not just the longest one anywhere in the state."""
+    w = words(name)
     if not w: return None, ''
     rx = '.*'.join(re.escape(x) for x in w)
-    q = f'''[out:json][timeout:120];area["ISO3166-2"="US-{st}"]->.a;
-(relation["route"~"hiking|foot|bicycle|mtb|horse|inline_skates"]["name"~"{rx}",i](area.a););out geom;'''
-    try: j = get(OVP, data=urllib.parse.urlencode({'data': q}).encode(), t=180)
+    road = re.search(r'byway|highway|scenic drive', name, re.I)
+    water = re.search(r'water|river|canoe|paddl', name, re.I)
+    rt = 'hiking|foot|bicycle|mtb|horse|inline_skates|running|canoe|boat' + ('|road' if road else '')
+    hw = '' if road else f'way["highway"~"path|cycleway|footway|track|bridleway"]["name"~"{rx}",i](area.a);'
+    wt = f'way["waterway"~"river|stream|canal"]["name"~"{rx}",i](area.a);' if water else ''
+    q = (f'[out:json][timeout:150];area["ISO3166-2"="US-{st}"]->.a;'
+         f'(relation["route"~"{rt}"]["name"~"{rx}",i](area.a);{hw}{wt});out geom;')
+    try: j = get(OVP, data=urllib.parse.urlencode({'data': q}).encode(), t=200)
     except Exception as e: note('Overpass', f'{name}: {str(e)[:120]}'); return None, ''
-    best, bn = [], ''
+    keep, names = [], set()
     for el in j.get('elements', []):
-        lines = [[[round(p['lon'], 5), round(p['lat'], 5)] for p in m.get('geometry', [])] for m in el.get('members', []) if m.get('type') == 'way' and m.get('geometry')]
+        if el.get('type') == 'relation':
+            lines = [[[round(p['lon'], 5), round(p['lat'], 5)] for p in m.get('geometry', [])] for m in el.get('members', []) if m.get('type') == 'way' and m.get('geometry')]
+        else:
+            lines = [[[round(p['lon'], 5), round(p['lat'], 5)] for p in el.get('geometry', [])]]
         lines = [l for l in lines if len(l) > 1]
-        if sum(seglen(l) for l in lines) > sum(seglen(l) for l in best): best, bn = lines, el.get('tags', {}).get('name', '')
+        if not lines: continue
+        near = min(km(la, lo, p[1], p[0]) for l in lines for p in l)
+        if near <= MATCH_KM: keep += lines; names.add(el.get('tags', {}).get('name', ''))
     time.sleep(2)
-    return (best or None), bn
+    return (keep or None), ', '.join(sorted(n for n in names if n))[:120]
 # ---------------------------------------------------------------- run
 try: IDX = {x['ref']: x for x in json.load(open(f'{OUT}/index-state.json'))}
 except Exception: IDX = {}
@@ -89,6 +105,10 @@ try:
         if r[0] == 'POTA': LOC[r[1]] = (r[3], r[4])
 except Exception: pass
 report = {'updated': datetime.date.today().isoformat(), 'found': [], 'missing': []}
+try:  # keep last run's rows for the states not run this time (Oct 17), so the report covers every state
+    _old = json.load(open(f'{OUT}/state-report.json'))
+    report['found'] = [x for x in _old.get('found', []) if x[2] not in STATES]; report['missing'] = [x for x in _old.get('missing', []) if x[2] not in STATES]
+except Exception: pass
 for st in STATES:
     try: d = json.load(open(f'data/parkinfo/US-{st}.json'))
     except Exception: note(f'US-{st}', 'no park file'); continue
@@ -105,7 +125,7 @@ for st in STATES:
         if 'National Recreation' in typ:
             lines = forest(name, la, lo); by, off = ('US Forest Service', True) if lines else ('', False)
         if not lines:
-            lines, on = osm(name, st); by = 'OpenStreetMap (not official)' if lines else ''
+            lines, on = osm(name, st, la, lo); by = 'OpenStreetMap (not official)' if lines else ''
         if not lines: report['missing'].append([ref, name, st, 'no line found']); continue
         near = min(km(la, lo, p[1], p[0]) for l in lines for p in l)
         if near > CHECK_KM: report['missing'].append([ref, name, st, f'line found {near:.0f} km from the POTA pin: not used']); continue
