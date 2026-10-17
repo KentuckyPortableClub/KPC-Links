@@ -308,10 +308,10 @@
   const spMode = s => { const m = String(s.mode || '').toUpperCase(); return /^(USB|LSB|SSB|PHONE)$/.test(m) ? 'SSB' : m; };
   const isRbn = s => /RBN/i.test(s.source || '') || /-#$/.test(s.spotter || '');
   function drawSpots() {
-    const b = $('pBand').value, m = $('pMode').value, nr = $('pNoRbn').checked, s = $('pSearch').value.trim().toUpperCase();
+    const b = $('pBand').value, m = $('pMode').value, nr = $('pNoRbn').checked, nw = $('pNoWk').checked, s = $('pSearch').value.trim().toUpperCase();
     const worked = new Set(actList().map(q => base(q.call) + '|' + q.band));
     let R = SP.filter(x => { const k = +x.frequency, md = spMode(x);
-      if (nr && isRbn(x)) return false; if (b && bandOf(k) !== b) return false;
+      if (nr && isRbn(x)) return false; if (nw && worked.has(base(x.activator) + '|' + bandOf(k))) return false; if (b && bandOf(k) !== b) return false;
       if (m && !(m === 'DATA' ? DIGI.test(md) || /DATA|RTTY|PSK/.test(md) : md === m)) return false;
       if (s && ![x.activator, x.reference, x.name, x.locationDesc, x.comments].join(' ').toUpperCase().includes(s)) return false; return true; });
     R.sort((a, c) => String(c.spotTime).localeCompare(String(a.spotTime)));
@@ -322,8 +322,8 @@
   }
   function spotsInit() {
     $('pBand').innerHTML = '<option value="">All bands</option>' + BANDS.slice(0, 11).map(b => `<option>${b[0]}</option>`).join('');
-    ['pBand', 'pMode', 'pNoRbn'].forEach(i => $(i).onchange = () => { put('kpcLgSpF', { b: $('pBand').value, m: $('pMode').value, r: $('pNoRbn').checked }); drawSpots(); });
-    const f = get('kpcLgSpF', null); if (f) { $('pBand').value = f.b || ''; $('pMode').value = f.m || ''; $('pNoRbn').checked = f.r !== false; }
+    ['pBand', 'pMode', 'pNoRbn', 'pNoWk'].forEach(i => $(i).onchange = () => { put('kpcLgSpF', { b: $('pBand').value, m: $('pMode').value, r: $('pNoRbn').checked, w: $('pNoWk').checked }); drawSpots(); });
+    const f = get('kpcLgSpF', null); if (f) { $('pBand').value = f.b || ''; $('pMode').value = f.m || ''; $('pNoRbn').checked = f.r !== false; $('pNoWk').checked = !!f.w; }
     $('pSearch').oninput = drawSpots;
     $('pList').onclick = e => {
       const btn = e.target.closest('[data-sp]'); if (!btn) return; const x = SP.find(s => String(s.spotId) === btn.dataset.sp); if (!x) return;

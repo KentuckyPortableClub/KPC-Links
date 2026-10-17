@@ -498,3 +498,4 @@ main#hl[data-theme=lodge] .hl-copy,main#hl[data-theme=dark] .hl-copy{text-shadow
 main#hl:not([data-public="1"]) .pub-only{display:none!important}
 main#hl[data-public="1"] .mem-only,main#hl[data-public="1"] #hPota,main#hl[data-public="1"] #hlLog,main#hl[data-public="1"] [data-log],main#hl[data-public="1"] [data-logk]{display:none!important}
 main#hl[data-public="1"] #hlSpots .hs{cursor:default}
+main#hl .hs-a .hc{color:#cfc6b4}

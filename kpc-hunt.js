@@ -232,6 +232,12 @@
   /* ⭐ favorite activators (Brandon Oct 16): pinned to the top while on the air, until you've worked them today */
   let FAV = new Set(get('kpcHuntFav', [])), FDONE = new Set(get('kpcHuntFavDone', [])), SEENFAV = new Set(), favFirst = true;
   const today = () => new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  /* calls hunted today (Brandon Oct 16: 'hide someone you've done hunted'): hidden by hand (🙈 on a card, or ✓ I WORKED IT)
+     plus, on the members page, every call in today's hunting log. Starts fresh at 0000 UTC. */
+  let HC = get('kpcHuntCallsDay', null);
+  const hcFix = () => { if (!HC || HC.d !== today()) HC = { d: today(), c: [] }; };
+  function callsToday() { hcFix(); const S = new Set(HC.c); try { if (!PUB && typeof Q !== 'undefined') Q.q.forEach(q => { if (q.d === today()) S.add(base(q.call)); }); } catch (e) {} return S; }
+  function hideCall(c) { hcFix(); c = base(c); if (!HC.c.includes(c)) HC.c.push(c); put('kpcHuntCallsDay', HC); }
   const isFav = s => FAV.has(base(s.call));
   const favHunted = s => { const c = base(s.call), d = today(); return FDONE.has(c + '|' + d) || Q.q.some(q => base(q.call) === c && q.d === d); };
   const favPinned = s => isFav(s) && !favHunted(s);
@@ -268,7 +274,7 @@
  ${s.com ? `<div class="hs-com">“${esc(String(s.com).slice(0, 140))}”</div>` : ''}
  ${awardChips(s) ? `<div class="hs-aw">${awardChips(s)}</div>` : ''}
  <div class="hs-b">${b.join('')}</div>
- <div class="hs-a"><button type="button" class="lg" data-log="1">📝 LOG IT</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}">${w ? '✓ WORKED' : '＋ I WORKED IT'}</button><a href="${pageOf(s)}" target="_blank" rel="noopener">${s.p === 'SOTA' ? 'SOTLAS' : s.p} PAGE ↗</a>${s.p === 'POTA' && s.us ? `<a href="kpc-planner-us.html?q=${encodeURIComponent(s.ref)}">ON THE MAP</a>` : ''}<a href="kpc-park-info.html?ref=${encodeURIComponent(s.ref)}">PARK INFO</a>` : `<a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">QRZ ↗</a><a href="https://www.dxsummit.fi/#/?dx_calls=${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">DX SUMMIT ↗</a>`}</div>
+ <div class="hs-a"><button type="button" class="lg" data-log="1">📝 LOG IT</button><button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call until 0000 UTC">🙈 HIDE ${esc(base(s.call))} TODAY</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" data-wc="${esc(s.call)}">${w ? '✓ WORKED' : '＋ I WORKED IT'}</button><a href="${pageOf(s)}" target="_blank" rel="noopener">${s.p === 'SOTA' ? 'SOTLAS' : s.p} PAGE ↗</a>${s.p === 'POTA' && s.us ? `<a href="kpc-planner-us.html?q=${encodeURIComponent(s.ref)}">ON THE MAP</a>` : ''}<a href="kpc-park-info.html?ref=${encodeURIComponent(s.ref)}">PARK INFO</a>` : `<a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">QRZ ↗</a><a href="https://www.dxsummit.fi/#/?dx_calls=${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">DX SUMMIT ↗</a>`}</div>
 </article>`;
   }
   function row(s) {
@@ -277,11 +283,12 @@
     const rare = s.acts === 0 ? '<span class="hb atno">1ST</span>' : s.acts != null && s.acts <= 5 ? `<span class="hb rare">RARE ${s.acts}</span>` : '';
     return `<tr class="hr${n ? ' new' : ''}${w ? ' worked' : ''}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}">${isFav(s) ? '★' : '☆'}</button>${esc(s.call)}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
 <td><span class="pg">${PL[s.p] || s.p}</span> ${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener" class="r">${esc(s.ref)}</a> ` : ''}${esc(s.name || '')} ${tag}${rare} ${awardChips(s, true)}</td><td class="hide-s">${esc(s.st || '')}</td><td class="hide-s">${d != null ? Math.round(d) : ''}</td>
-<td class="a"><button type="button" class="lg" data-log="1" title="Log it">📝</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" title="Mark worked">✓</button>` : ''}</td></tr>`;
+<td class="a"><button type="button" class="lg" data-log="1" title="Log it">📝</button><button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call today">🙈</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" title="Mark worked">✓</button>` : ''}</td></tr>`;
   }
   function draw() {
     const q = F.q.trim().toUpperCase();
-    let L = SP.filter(s => passPBM(s) && (!F.hide || !WK.has(s.ref)) && (!F.nw || isNew(s)) && (!F.rg || !isFar(s))
+    const CT = F.hc ? callsToday() : null;
+    let L = SP.filter(s => passPBM(s) && (!CT || !CT.has(base(s.call))) && (!F.hide || !WK.has(s.ref)) && (!F.nw || isNew(s)) && (!F.rg || !isFar(s))
       && (F.where === 'all' || (F.where === 'us' && s.us) || (F.where === 'usca' && (s.us || s.ca)) || (F.where === 'range' && dist(s) != null && !isFar(s)))
       && (!F.st || s.st === F.st)
       && (!q || [s.call, s.ref, s.name, s.st, ST[s.st] || '', s.loc, s.com].join(' ').toUpperCase().includes(q)));
@@ -301,16 +308,21 @@
     $('hsLive').textContent = SP.length; $('hlSrc').textContent = src; $('hlNoLog').hidden = hasLog(); if ($('hlNoLogP')) $('hlNoLogP').hidden = hasLog();
   }
   document.addEventListener('click', e => {
+    const h = e.target.closest('[data-hc]'); if (!h) return;
+    const c = base(h.dataset.hc); hideCall(c); const was = F.hc; F.hc = true; saveF(); chips(); draw();
+    toast(`🙈 ${c} is hidden until 0000 UTC (HIDE CALLS I'VE WORKED TODAY is on).`, () => { HC.c = HC.c.filter(x => x !== c); put('kpcHuntCallsDay', HC); F.hc = was; saveF(); chips(); draw(); });
+  });
+  document.addEventListener('click', e => {
     const b = e.target.closest('[data-wk]'); if (!b) return;
     const r = b.dataset.wk;
-    if (WK.has(r) && MAN.has(r)) { WK.delete(r); MAN.delete(r); } else if (!WK.has(r)) { WK.add(r); MAN.add(r); if (!LOG.t) LOG.t = Date.now(); }
+    if (WK.has(r) && MAN.has(r)) { WK.delete(r); MAN.delete(r); } else if (!WK.has(r)) { WK.add(r); MAN.add(r); if (!LOG.t) LOG.t = Date.now(); if (b.dataset.wc) hideCall(b.dataset.wc); }
     saveLog(); logInfo(); ticker(false); draw(); needDraw();
   });
 
   /* ---------------- filters ---------------- */
   function chips() {
     document.querySelectorAll('[data-g=p]').forEach(b => b.setAttribute('aria-pressed', F.p.includes(b.dataset.v)));
-    $('fHide').setAttribute('aria-pressed', F.hide); $('fQrt').setAttribute('aria-pressed', !!F.qrt); $('fNew').setAttribute('aria-pressed', F.nw); $('fRange').setAttribute('aria-pressed', F.rg);
+    $('fHide').setAttribute('aria-pressed', F.hide); $('fQrt').setAttribute('aria-pressed', !!F.qrt); $('fCalls').setAttribute('aria-pressed', !!F.hc); $('fNew').setAttribute('aria-pressed', F.nw); $('fRange').setAttribute('aria-pressed', F.rg);
     $('fBands').innerHTML = BANDS.map(b => b[0]).concat(['OTHER']).map(b => `<button type="button" class="hl-chip" data-band="${b}" aria-pressed="${F.bands.includes(b)}">${b.toUpperCase()}</button>`).join('');
     $('fModes').innerHTML = ['PHONE', 'CW', 'DIGITAL', 'OTHER'].map(m => `<button type="button" class="hl-chip" data-mode="${m}" aria-pressed="${F.modes.includes(m)}">${m === 'PHONE' ? 'PHONE (SSB/FM)' : m}</button>`).join('');
     $('fWhere').innerHTML = WHERE.map(w => `<button type="button" class="hl-chip" data-where="${w[0]}" aria-pressed="${F.where === w[0]}">${w[1]}</button>`).join('');
@@ -332,11 +344,12 @@
     else if (t.dataset.where) { F.where = t.dataset.where; if (F.where === 'range' && !HOME) { $('hlSetup').scrollIntoView({ behavior: 'smooth' }); $('hHome').textContent = 'Set where you are first.'; } }
     else if ((t.id === 'fHide' || t.id === 'fNew') && !hasLog()) { toast('Load your worked parks first (' + (PUB ? '📄 LOAD MY WORKED PARKS' : '⭐ GET MY PARKS FROM POTA') + '): until then the page can’t tell which parks you’ve worked.'); return; }
     else if (t.id === 'fQrt') F.qrt = !F.qrt;
+    else if (t.id === 'fCalls') { F.hc = !F.hc; if (F.hc && !callsToday().size) toast(PUB ? 'Tap 🙈 HIDE … TODAY (or ✓ I WORKED IT) on a spot and that call drops out of the list until 0000 UTC.' : 'Calls you log today (and ones you tap 🙈 on) drop out of the list until 0000 UTC.'); }
     else if (t.id === 'fHide') F.hide = !F.hide; else if (t.id === 'fNew') F.nw = !F.nw; else if (t.id === 'fRange') { F.rg = !F.rg; if (F.rg && !HOME) { $('hlSetup').scrollIntoView({ behavior: 'smooth' }); $('hHome').textContent = 'Set where you are first.'; } }
     saveF(); chips(); ticker(false); draw();
   });
   /* the box that shows what you're filtering, each with an ✕, plus CLEAR ALL */
-  const F0 = { p: ['POTA', 'WWFF', 'SOTA', 'DXPED', 'EVENT', 'DX'], qrt: false, hide: false, nw: false, bands: [], modes: [], where: 'all', st: '', q: '', xc: [] };
+  const F0 = { p: ['POTA', 'WWFF', 'SOTA', 'DXPED', 'EVENT', 'DX'], qrt: false, hc: false, hide: false, nw: false, bands: [], modes: [], where: 'all', st: '', q: '', xc: [] };
   function activeBox() {
     const it = [];
     const PN = { POTA: 'POTA', WWFF: 'WWFF / KFF', SOTA: 'SOTA', DXPED: 'DXPEDITIONS', EVENT: 'SPECIAL EVENTS', DX: 'DX CLUSTER' };
@@ -344,6 +357,7 @@
     if (pOff.length || pOn.length) it.push(['p', 'Showing: ' + F.p.map(x => PN[x]).join(', ')]);
     if (F.hide) it.push(['hide', '🙈 Hiding parks I’ve hunted']);
     if (F.qrt) it.push(['qrt', '🚫 Hiding QRT']);
+    if (F.hc) it.push(['hc', `🙋 Hiding calls I've worked today (${callsToday().size})`]);
     if (F.nw) it.push(['nw', '✨ New to me only']);
     F.bands.forEach(b => it.push(['band:' + b, 'Band ' + b]));
     F.modes.forEach(m => it.push(['mode:' + m, 'Mode ' + m]));
@@ -362,7 +376,7 @@
     const k = u.dataset.unf;
     if (k === '*') Object.assign(F, JSON.parse(JSON.stringify(F0)));
     else if (k === 'def') Object.assign(F, JSON.parse(JSON.stringify(F0)), { p: ['POTA'], hide: true, qrt: true, modes: ['PHONE'] });
-    else if (k === 'p') F.p = F0.p.slice(); else if (k === 'hide') F.hide = false; else if (k === 'qrt') F.qrt = false; else if (k === 'nw') F.nw = false; else if (k === 'where') F.where = 'all'; else if (k === 'st') F.st = ''; else if (k === 'q') F.q = '';
+    else if (k === 'p') F.p = F0.p.slice(); else if (k === 'hide') F.hide = false; else if (k === 'qrt') F.qrt = false; else if (k === 'hc') F.hc = false; else if (k === 'nw') F.nw = false; else if (k === 'where') F.where = 'all'; else if (k === 'st') F.st = ''; else if (k === 'q') F.q = '';
     else if (k.startsWith('band:')) F.bands = F.bands.filter(x => x !== k.slice(5)); else if (k.startsWith('mode:')) F.modes = F.modes.filter(x => x !== k.slice(5)); else if (k.startsWith('xc:')) F.xc = F.xc.filter(x => x !== k.slice(3));
     saveF(); chips(); ticker(false); draw();
   });
@@ -486,7 +500,7 @@
     setTimeout(() => NM.invalidateSize(), 30);
     NMG.clearLayers();
     const gj = { type: 'MultiPolygon', coordinates: b.p.map(pl => pl.map(r => r.map(([x, y]) => [x, y]))) };
-    const out = L.geoJSON(gj, { style: { color: '#ffcf7a', weight: 2.5, fill: true, fillColor: '#000', fillOpacity: .12 } }).addTo(NMG);
+    const out = L.geoJSON(gj);   /* not drawn (Brandon Oct 16: the satellite map already shows state lines); only used to fit the view */
     let bb = out.getBounds(); if (a === 'AK') bb = L.latLngBounds([51, -179], [71.5, -129]);
     NM.fitBounds(bb, { padding: [12, 12] });
     NP.filter(p => isFinite(p.la) && isFinite(p.lo)).forEach(p => {

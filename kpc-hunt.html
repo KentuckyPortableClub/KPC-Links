@@ -107,7 +107,7 @@ body.field .page-jump-nav{display:none!important}
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261016x">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261016y">
 <header class="site-nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="KPC Home">
@@ -210,7 +210,7 @@ body.field .page-jump-nav{display:none!important}
 <div class="hl-filters" id="hlFilters">
  <button type="button" class="hl-ftog" id="hlFtog" aria-expanded="false"><span>⚙ FILTERS</span><span id="hlFtogN">TAP TO OPEN ▾</span></button>
  <div class="hl-row" role="group" aria-label="Program"><button type="button" class="hl-chip" data-g="p" data-v="POTA">POTA</button><button type="button" class="hl-chip" data-g="p" data-v="WWFF">WWFF / KFF</button><button type="button" class="hl-chip" data-g="p" data-v="SOTA">SOTA</button><button type="button" class="hl-chip" data-g="p" data-v="DXPED">DXPEDITIONS</button><button type="button" class="hl-chip" data-g="p" data-v="EVENT">SPECIAL EVENTS</button><button type="button" class="hl-chip" data-g="p" data-v="DX">DX CLUSTER</button></div>
- <div class="hl-row" role="group" aria-label="Show"><button type="button" class="hl-chip big" id="fHide" aria-pressed="false">🙈 HIDE PARKS I'VE HUNTED</button><button type="button" class="hl-chip big" id="fQrt" aria-pressed="false">🚫 HIDE QRT</button><button type="button" class="hl-chip big" id="fNew" aria-pressed="false">✨ NEW TO ME ONLY</button><button type="button" class="hl-chip big" id="fRange" aria-pressed="false" hidden>📏 IN MY RANGE ONLY</button></div>
+ <div class="hl-row" role="group" aria-label="Show"><button type="button" class="hl-chip big" id="fHide" aria-pressed="false">🙈 HIDE PARKS I'VE HUNTED</button><button type="button" class="hl-chip big" id="fQrt" aria-pressed="false">🚫 HIDE QRT</button><button type="button" class="hl-chip big" id="fCalls" aria-pressed="false">🙋 HIDE CALLS I'VE WORKED TODAY</button><button type="button" class="hl-chip big" id="fNew" aria-pressed="false">✨ NEW TO ME ONLY</button><button type="button" class="hl-chip big" id="fRange" aria-pressed="false" hidden>📏 IN MY RANGE ONLY</button></div>
  <details class="hl-dd"><summary>BAND <i id="sBand">ALL</i></summary><div class="hl-row" id="fBands"></div></details>
  <details class="hl-dd"><summary>MODE <i id="sMode">ALL</i></summary><div class="hl-row" id="fModes"></div></details>
  <details class="hl-dd"><summary>HIDE COUNTRIES <i id="sCty">NONE</i></summary><div class="hl-row" id="fCty"></div><p class="hl-src" style="margin:4px 0 0">Tap a country to hide its spots (tap again to bring them back). Only countries on the air right now are listed.</p></details>
@@ -336,7 +336,7 @@ body.field .page-jump-nav{display:none!important}
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-hunt.js?v=20261016v"></script>
+<script src="kpc-hunt.js?v=20261016w"></script>
 <script src="kpc-search.js?v=20261016l" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
