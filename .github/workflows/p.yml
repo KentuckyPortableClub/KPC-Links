@@ -1,17 +1,11 @@
 name: zz probe
 on: push
-permissions:
-  contents: write
 jobs:
   p:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
       - run: |
-          mkdir -p pa && cd pa
-          curl -sL https://pota.app/ -o index.html
-          for f in $(grep -o 'src="[^"]*\.js"\|href="[^"]*\.js"' index.html | sed 's/.*="//;s/"//' | sort -u); do curl -sL "https://pota.app$f" -o "$(basename $f)"; done
-          grep -oh '"\./[A-Za-z0-9_-]*\.js"' *.js | tr -d '"' | sort -u > chunks.txt
-          for c in $(cat chunks.txt); do b=$(basename $c); [ -f "$b" ] || curl -sfL "https://pota.app/assets/$b" -o "$b" || true; done
-          { for k in activatorContactCounts parkHuntCounts; do echo "== $k"; grep -oh ".\{250\}$k\[.\{250\}\|.\{250\}$k\.[a-z].\{200\}\|.\{150\}$k)\{0,1\}\[[a-zA-Z.]*\].\{200\}" *.js | head -6; done; } > ../counts.txt
-          cd ..; git config user.name x; git config user.email x@x; git add counts.txt; git commit -qm c; git push
+          for u in "https://spothole.app/api/v1/spots?limit=1000&max_age=3600" "https://spothole.app/api/v1/spots?limit=2000&max_age=3600" "https://spothole.app/api/v1/spots"; do
+          curl -s -D /tmp/h -o /tmp/b -w "%{http_code} %{size_download} %{time_total}" -H 'Origin: https://kentuckyportableclub.github.io' "$u" > /tmp/c; echo "::notice title=$u::$(cat /tmp/c) $(grep -i 'access-control\|content-type' /tmp/h | tr -d '\r' | tr '\n' ' ') $(head -c 300 /tmp/b)"; done
+          python3 -c "
+          import json,time;d=json.load(open('/tmp/b'));d=d if isinstance(d,list) else d.get('spots',d);print('::notice title=times::',type(d).__name__,len(d),[ (x.get('time'),x.get('source'),x.get('sig')) for x in d[:5]], time.time())"
