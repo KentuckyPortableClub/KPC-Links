@@ -18,7 +18,13 @@
   const rstDef = m => PHONE.test(m) ? '59' : CWISH.test(m) ? '599' : '';
   const REF = /^[A-Z0-9]{1,4}-\d{4,5}$/;
   const nref = r => { r = String(r || '').trim().toUpperCase().replace(/^K-/, 'US-'); if (/^\d{3,5}$/.test(r)) r = 'US-' + r; const m = r.match(/^([A-Z0-9]{1,4})-(\d{1,5})$/); return m ? m[1] + '-' + m[2].padStart(4, '0') : r; };
-  const refsOf = s => [...new Set(String(s || '').toUpperCase().split(/[\s,;+&]+/).map(nref).filter(r => REF.test(r)))];
+  const refsOf = s => [...new Set(String(s || '').toUpperCase().split(/[\s,;+&]+/).map(nref).filter(r => REF.test(r) && !/FF-/.test(r)))];   /* POTA only */
+  const sotaN = r => { const m = String(r || '').trim().toUpperCase().match(/^([A-Z0-9]{1,4}\/[A-Z0-9]{2})-(\d{1,3})$/); return m ? m[1] + '-' + m[2].padStart(3, '0') : ''; };
+  const wwffN = r => { const m = String(r || '').trim().toUpperCase().match(/^([A-Z0-9]{1,3}FF)-(\d{1,4})$/); return m ? m[1] + '-' + m[2].padStart(4, '0') : ''; };
+  const progOf = r => sotaN(r) ? 'SOTA' : wwffN(r) ? 'WWFF' : 'POTA';
+  /* any program's numbers (their P2P park, KFF, summit): POTA US-1234, WWFF KFF-1234, SOTA W4K/EC-001 */
+  const anyRefs = s => [...new Set(String(s || '').toUpperCase().split(/[\s,;+&]+/).filter(Boolean).map(t => sotaN(t) || wwffN(t) || nref(t)).filter(r => sotaN(r) || wwffN(r) || REF.test(r)))];
+  const byProg = s => { const A = anyRefs(s); return { pota: A.filter(r => progOf(r) === 'POTA'), wwff: A.filter(r => progOf(r) === 'WWFF'), sota: A.filter(r => progOf(r) === 'SOTA') }; };
   const base = c => { c = String(c || '').toUpperCase().trim(); const p = c.split('/'); return p.length > 1 ? p.reduce((a, b) => (b.length > a.length ? b : a)) : c; };
   const okCall = c => /^[A-Z0-9/]{3,14}$/.test(c) && /\d/.test(c) && /[A-Z]/.test(c);
   const iso = d => d.toISOString();
@@ -46,7 +52,7 @@
   const miles = (a, b) => { const R = 3958.8, r = Math.PI / 180, dl = (b[0] - a[0]) * r, dn = (b[1] - a[1]) * r, x = Math.sin(dl / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(dn / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(x)); };
 
   /* ---------------- settings + log storage ---------------- */
-  const SET = Object.assign({ call: get('kpcMyCall', '') || '', park: '', grid: '', pwr: '', stamp: false, carry: false, notes: '', act: 0, pinfo: {}, me: null, ops: '', op: '', share: false }, get('kpcLgSet', {}));
+  const SET = Object.assign({ call: get('kpcMyCall', '') || '', park: '', grid: '', pwr: '', stamp: false, carry: false, notes: '', act: 0, pinfo: {}, me: null, ops: '', op: '', share: false, wf: '', so: '' }, get('kpcLgSet', {}));
   const saveSet = () => put('kpcLgSet', SET);
   const LK = 'kpcLogger';
   let L = get(LK, null); if (!L || !Array.isArray(L.q)) L = { v: 1, u: 0, q: [] };
@@ -72,6 +78,9 @@
 
   /* ---------------- my station ---------------- */
   const myParks = () => refsOf(SET.park);
+  const myWwff = () => wwffN(SET.wf);
+  const mySota = () => sotaN(SET.so);
+  const myRefsTxt = () => [myParks().join(' + '), myWwff(), mySota()].filter(Boolean).join(' · ');
   const myCall = () => String(SET.call || '').toUpperCase().trim();
   /* operators (Brandon Oct 16: 'add several people to log with'): my call + the other calls typed in. Each operator logs
      under their own call (own POTA file + credit) unless 'one station call' is ticked. */
@@ -80,8 +89,9 @@
   const stationCall = () => SET.share ? myCall() : curOp();
   const multi = () => opsList().length > 1;
   function inAct(q) {
-    const P = myParks().join(','), today = ymd(new Date()), team = opsList();
-    return q.pk === P && (team.includes(q.my) || team.includes(q.op)) && q.d === today && (!SET.act || q.t >= SET.act);
+    const P = myParks().join(','), W = myWwff(), So = mySota(), today = ymd(new Date()), team = opsList();
+    const same = P ? q.pk === P : W ? q.wf === W : So ? q.so === So : !q.pk && !q.wf && !q.so;
+    return same && (team.includes(q.my) || team.includes(q.op)) && q.d === today && (!SET.act || q.t >= SET.act);
   }
   const actList = () => L.q.filter(inAct).sort((a, b) => a.t - b.t);
   function meLL() {
@@ -90,7 +100,7 @@
     if (SET.me) return SET.me;
     return fromGrid(SET.grid);
   }
-  let pT;
+  let pT, KYD = null;
   async function parkInfo() {
     const P = myParks(), out = [];
     if (!P.length) { $('myParkInfo').innerHTML = SET.park ? '<span class="bad">Type a park number like US-1234.</span>' : ''; drawAll(); return; }
@@ -105,6 +115,9 @@
       }
       out.push(pi ? `<b>${esc(r)}</b> ${esc(pi.n)} <span class="lg-mu">(${esc(pi.st)}${pi.g ? ' · ' + esc(pi.g) : ''})</span>` : `<b>${esc(r)}</b> <span class="bad">POTA didn't know this number (or no signal)</span>`);
     }
+    /* a Kentucky park that is also a KFF reference fills in the WWFF box (never the SOTA box: you must be on the summit) */
+    try { if (!SET.wf) { KYD = KYD || await fetch('kpc-ky-data.json').then(r => r.json()); const kp = (KYD.parks || []).find(x => x.c === P[0]);
+      if (kp && kp.kff && kp.kff.length === 1) { SET.wf = kp.kff[0]; $('myWwff').value = SET.wf; saveSet(); toast(`✓ ${P[0]} is also ${SET.wf} (WWFF / KFF): filled in for you.`); } } } catch (e) {}
     const p0 = SET.pinfo[P[0]];
     if (p0 && p0.g && !SET.grid) { SET.grid = p0.g; $('myGrid').value = p0.g; saveSet(); }
     $('myParkInfo').innerHTML = out.join(' &nbsp;·&nbsp; ') + (P.length > 1 ? ' <span class="lg-mu">· a ' + P.length + '-fer: every contact counts for each park</span>' : '');
@@ -115,6 +128,10 @@
     $('myCall').oninput = e => { SET.call = e.target.value.toUpperCase().trim(); e.target.value = SET.call; put('kpcMyCall', base(SET.call)); saveSet(); drawAll(); };
     $('myPark').oninput = e => { SET.park = e.target.value.toUpperCase(); e.target.value = SET.park; saveSet(); clearTimeout(pT); pT = setTimeout(parkInfo, 700); };
     $('myGrid').oninput = e => { SET.grid = e.target.value.trim(); SET.me = null; saveSet(); drawMap(); opBar(); };
+    const refSet = (key, norm) => e => { const before = actList(); e.target.value = e.target.value.toUpperCase(); SET[key] = e.target.value; saveSet();
+      const v = norm(SET[key]); if (v) before.forEach(q => { q[key] = v; }); if (before.length && v) save(); drawAll(); };
+    $('myWwff').value = SET.wf || ''; $('mySota').value = SET.so || '';
+    $('myWwff').oninput = refSet('wf', wwffN); $('mySota').oninput = refSet('so', sotaN);
     $('myPwr').oninput = e => { SET.pwr = e.target.value.trim(); saveSet(); opBar(); };
     $('myGps').onclick = () => {
       if (!navigator.geolocation) { $('myGpsMsg').textContent = 'This browser has no GPS.'; return; }
@@ -152,7 +169,8 @@
     const band = $('eBand').value, mode = $('eMode').value;
     const d = dupeOf(call, band, mode), before = L.q.filter(q => base(q.call) === base(call)).length;
     const dTxt = d.length ? `<span class="t">⚠ ALREADY IN THIS ACTIVATION ON ${esc(band || 'THIS BAND')} ${esc(mode)} AT ${fT(d[d.length - 1].tm)}Z</span>` : '';
-    const bTxt = before ? `<span class="lg-mu">worked ${before}× before in your log</span>` : '';
+    const prev = L.q.filter(q => base(q.call) === base(call) && !inAct(q)).sort((a, b) => b.t - a.t), lp = prev[0];
+    const bTxt = prev.length ? `<span class="lg-prev">🔁 worked ${prev.length}× before · last ${esc(fD(lp.d))} at ${esc([lp.pk, lp.wf, lp.so].filter(Boolean).join(' ') || 'a park')} (${esc(lp.band)} ${esc(lp.mode)})${lp.name ? ' · ' + esc(lp.name) : ''}</span>` : (L.q.length && !before ? '<span class="lg-prev new">🆕 first time in your log</span>' : '');
     $('eWho').innerHTML = `<div class="w ${d.length ? 'dupe' : 'none'}"><b>${esc(call)}</b>${dTxt}${bTxt}<span class="lg-mu">looking up…</span></div>`;
     const r = await look(call); if (n !== lkN) return; WHO = r;
     const link = `<a href="https://www.qrz.com/db/${encodeURIComponent(base(call))}" target="_blank" rel="noopener">QRZ ›</a>`;
@@ -166,10 +184,13 @@
   /* ---------------- entry form ---------------- */
   let EDIT = null;
   function bandSet() { const k = kHzOf($('eFreq').value); $('eBand').value = bandOf(k); }
-  function modeSet() { const m = $('eMode').value, d = rstDef(m); $('eRs').placeholder = d || 'report'; $('eRr').placeholder = d || 'report'; }
+  /* reports are filled in (59 phone, 599 CW) unless you change them (Brandon Oct 16: 'everyone is 59 unless we change it') */
+  function modeSet() { const m = $('eMode').value, d = rstDef(m);
+    ['eRs', 'eRr'].forEach(i => { const el = $(i); el.placeholder = d || 'report'; if (!el.value || el.value === el.dataset.def) el.value = d; el.dataset.def = d; }); }
   function clearForm(keepRadio) {
     ['eCall', 'eRef', 'eName', 'eSt', 'eNote', 'eRs', 'eRr'].forEach(i => $(i).value = '');
     if (!keepRadio) { $('eFreq').value = ''; $('eBand').value = ''; }
+    modeSet();
     $('eWho').innerHTML = ''; WHO = null; SPOTLL = null; EDIT = null; $('eLog').innerHTML = '✓ LOG IT <small>(Enter)</small>';
   }
   function entryInit() {
@@ -178,7 +199,7 @@
     $('eCall').oninput = e => { const p = e.target.selectionStart; e.target.value = e.target.value.toUpperCase().replace(/\s/g, ''); try { e.target.setSelectionRange(p, p); } catch (x) {} clearTimeout(lkT); lkT = setTimeout(who, 450); };
     $('eFreq').oninput = () => { bandSet(); put('kpcLgRadio', { f: $('eFreq').value, m: $('eMode').value }); };
     $('eMode').onchange = () => { modeSet(); put('kpcLgRadio', { f: $('eFreq').value, m: $('eMode').value }); who(); };
-    $('eRef').onblur = e => { e.target.value = refsOf(e.target.value).join(', ') || e.target.value.toUpperCase(); };
+    $('eRef').onblur = e => { e.target.value = anyRefs(e.target.value).join(', ') || e.target.value.toUpperCase(); };
     $('eSt').oninput = e => { e.target.value = e.target.value.toUpperCase(); };
     $('eClear').onclick = () => { clearForm(true); $('eCall').focus(); };
     $('eManual').onchange = e => { $('eWhen').hidden = !e.target.checked; if (e.target.checked && !$('eWhen').value) $('eWhen').value = iso(new Date()).slice(0, 16); $('eTime').textContent = e.target.checked ? 'Time: typed by hand (UTC)' : 'Time: now (UTC)'; };
@@ -188,6 +209,7 @@
     const call = $('eCall').value.toUpperCase().trim();
     if (!okCall(call)) { toast('Type their call sign first.'); $('eCall').focus(); return; }
     if (!myCall()) { toast('Put YOUR call in ⚙ STATION first.'); stationOpen(true); $('myCall').focus(); return; }
+    if (!myParks().length && !myWwff() && !mySota()) { toast('Put your park, WWFF or summit number in ⚙ STATION first.'); stationOpen(true); $('myPark').focus(); return; }
     const k = kHzOf($('eFreq').value), band = bandOf(k);
     if (!k || !band) { toast('Type the frequency (like 14.285 or 14285).'); $('eFreq').focus(); return; }
     const mode = $('eMode').value;
@@ -197,9 +219,9 @@
     const note = [$('eNote').value.trim(), SET.carry && SET.notes.trim() ? SET.notes.trim().replace(/\s*\n\s*/g, ' · ') : ''].filter(Boolean).join(' · ').slice(0, 600);
     const r = WHO || {}, there = r.la != null ? [r.la, r.lo] : SPOTLL || fromGrid(r.g);
     const q = { id: EDIT ? EDIT.id : 'q' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: ymd(when), tm: iso(when).slice(11, 16).replace(':', ''), t: EDIT ? EDIT.t : Date.now(),
-      f: mhz(k), band, mode, rs: $('eRs').value.trim() || rstDef(mode), rr: $('eRr').value.trim() || rstDef(mode), ref: refsOf($('eRef').value).join(','), name: $('eName').value.trim(), st: $('eSt').value.trim().toUpperCase(),
+      f: mhz(k), band, mode, rs: $('eRs').value.trim() || rstDef(mode), rr: $('eRr').value.trim() || rstDef(mode), ref: anyRefs($('eRef').value).join(','), name: $('eName').value.trim(), st: $('eSt').value.trim().toUpperCase(),
       qth: r.qth || (EDIT && EDIT.qth) || '', g: r.g || (EDIT && EDIT.g) || '', la: there ? there[0] : (EDIT ? EDIT.la : null), lo: there ? there[1] : (EDIT ? EDIT.lo : null), note: EDIT ? $('eNote').value.trim() : note,
-      my: EDIT ? EDIT.my : stationCall(), op: EDIT ? (EDIT.op || EDIT.my) : curOp(), pk: EDIT ? EDIT.pk : myParks().join(','), mg: EDIT ? EDIT.mg : SET.grid, pw: EDIT ? EDIT.pw : SET.pwr, x: 0 };
+      my: EDIT ? EDIT.my : stationCall(), op: EDIT ? (EDIT.op || EDIT.my) : curOp(), pk: EDIT ? EDIT.pk : myParks().join(','), wf: EDIT ? (EDIT.wf || '') : myWwff(), so: EDIT ? (EDIT.so || '') : mySota(), mg: EDIT ? EDIT.mg : SET.grid, pw: EDIT ? EDIT.pw : SET.pwr, x: 0 };
     if (EDIT) { const i = L.q.findIndex(x => x.id === EDIT.id); if (i >= 0) L.q[i] = q; toast('✓ Contact updated.'); }
     else { L.q.push(q); const n = actList().filter(x => x.my === q.my).length; toast(`✓ ${call} logged${multi() ? ' by ' + q.op : ''} (${n} this activation${multi() && !SET.share ? ' for ' + q.my : ''})${n === 10 ? ': 🎉 that makes it a valid activation!' : ''}`, () => { L.q = L.q.filter(x => x.id !== q.id); save(); drawAll(); }); NEWID = q.id; }
     save(); clearForm(true); drawAll(); $('eCall').focus();
@@ -234,18 +256,25 @@
   const enc = new TextEncoder();
   const af = (k, v) => { v = String(v == null ? '' : v).replace(/[<>]/g, ''); return v === '' ? '' : `<${k}:${enc.encode(v).length}>${v} `; };
   function adMode(m) { m = String(m || '').toUpperCase(); if (m === 'FT4') return ['MFSK', 'FT4']; if (m === 'JS8') return ['MFSK', 'JS8']; if (m === 'PSK31') return ['PSK', 'PSK31']; if (m === 'OTHER') return ['', '']; return [m, '']; }
-  function adif(Q, onePark) {
+  function adif(Q, onePark, prog) {
     let o = `KPC Activator Logger\n${af('ADIF_VER', '3.1.4')}${af('PROGRAMID', 'KPC Activator Logger')}${af('CREATED_TIMESTAMP', iso(new Date()).replace(/[-:]/g, '').replace('T', ' ').slice(0, 15))}<EOH>\n`;
     Q.forEach(q => {
-      const [md, sm] = adMode(q.mode), their = refsOf(q.ref), mine = onePark ? [onePark] : refsOf(q.pk), p0 = mine[0] || '', pi = SET.pinfo[p0] || {};
+      const [md, sm] = adMode(q.mode), T = byProg(q.ref), their = T.pota, mine = onePark ? [onePark] : refsOf(q.pk), p0 = prog === 'WWFF' ? '' : (mine[0] || ''), pi = SET.pinfo[mine[0]] || {};
+      const mySig = prog === 'WWFF' ? ['WWFF', q.wf] : p0 ? ['POTA', p0] : q.wf ? ['WWFF', q.wf] : ['', ''];
+      const thSig = prog === 'WWFF' ? (T.wwff[0] ? ['WWFF', T.wwff[0]] : ['', '']) : their[0] ? ['POTA', their[0]] : T.wwff[0] ? ['WWFF', T.wwff[0]] : ['', ''];
       const myst = (String(pi.st || '').match(/^US-([A-Z]{2})$/) || [])[1] || '';
       o += af('CALL', q.call) + af('QSO_DATE', q.d) + af('TIME_ON', q.tm) + af('BAND', q.band) + af('FREQ', q.f) + af('MODE', md) + af('SUBMODE', sm) + af('RST_SENT', q.rs) + af('RST_RCVD', q.rr)
-        + af('STATION_CALLSIGN', q.my) + af('OPERATOR', base(q.op || q.my)) + af('MY_SIG', p0 ? 'POTA' : '') + af('MY_SIG_INFO', p0) + af('MY_POTA_REF', mine.join(',')) + af('MY_GRIDSQUARE', q.mg) + af('MY_STATE', myst) + af('TX_PWR', q.pw)
-        + (their.length ? af('SIG', 'POTA') + af('SIG_INFO', their[0]) + af('POTA_REF', their.join(',')) : '')
+        + af('STATION_CALLSIGN', q.my) + af('OPERATOR', base(q.op || q.my)) + af('MY_SIG', mySig[0]) + af('MY_SIG_INFO', mySig[1]) + af('MY_POTA_REF', prog === 'WWFF' ? '' : mine.join(',')) + af('MY_WWFF_REF', q.wf) + af('MY_SOTA_REF', q.so) + af('MY_GRIDSQUARE', q.mg) + af('MY_STATE', myst) + af('TX_PWR', q.pw)
+        + af('SIG', thSig[0]) + af('SIG_INFO', thSig[1]) + af('POTA_REF', their.join(',')) + af('WWFF_REF', T.wwff[0] || '') + af('SOTA_REF', T.sota[0] || '')
         + af('NAME', q.name) + af('QTH', q.qth) + af('STATE', /^[A-Z]{2}$/.test(q.st) ? q.st : '') + af('GRIDSQUARE', q.g)
-        + af('COMMENT', [their.length ? 'P2P ' + their.join(' ') : '', q.name].filter(Boolean).join(' ').slice(0, 120)) + af('NOTES', q.note) + '<EOR>\n';
+        + af('COMMENT', [anyRefs(q.ref).length ? 'P2P ' + anyRefs(q.ref).join(' ') : '', q.name].filter(Boolean).join(' ').slice(0, 120)) + af('NOTES', q.note) + '<EOR>\n';
     });
     return o;
+  }
+  /* SOTA activator CSV for sotadata.org.uk: V2,my call,my summit,dd/mm/yy,HHMM,frequency,mode,their call,their summit,notes */
+  function sotaCsv(Q, so, c) {
+    return Q.map(q => { const ts = byProg(q.ref).sota[0] || '', dt = q.d.slice(6, 8) + '/' + q.d.slice(4, 6) + '/' + q.d.slice(2, 4);
+      return ['V2', c, so, dt, q.tm, q.f + 'MHz', String(q.mode || '').replace(/^OTHER$/, 'Other'), q.call, ts, String(q.note || '').replace(/[,\n\r]/g, ' ').slice(0, 120)].join(','); }).join('\r\n') + '\r\n';
   }
   function parseAdif(t) {
     const out = []; t = String(t || ''); const h = t.search(/<eoh>/i); if (h >= 0) t = t.slice(h + 5);
@@ -255,8 +284,8 @@
       if (!r.CALL || !r.QSO_DATE || !r.TIME_ON) return;
       const k = kHzOf(r.FREQ), g = r.GRIDSQUARE || '', ll = fromGrid(g);
       out.push({ id: 'i' + Math.random().toString(36).slice(2, 10), call: r.CALL.toUpperCase(), d: r.QSO_DATE, tm: String(r.TIME_ON).slice(0, 4), t: 0, f: k ? mhz(k) : '', band: (r.BAND || bandOf(k)).toLowerCase(), mode: r.SUBMODE || r.MODE || '',
-        rs: r.RST_SENT || '', rr: r.RST_RCVD || '', ref: refsOf(r.POTA_REF || (r.SIG === 'POTA' ? r.SIG_INFO : '')).join(','), name: r.NAME || '', st: r.STATE || '', qth: r.QTH || '', g, la: ll ? ll[0] : null, lo: ll ? ll[1] : null,
-        note: r.NOTES || '', my: (r.STATION_CALLSIGN || r.OPERATOR || myCall()).toUpperCase(), pk: refsOf(r.MY_POTA_REF || r.MY_SIG_INFO).join(','), mg: r.MY_GRIDSQUARE || '', pw: r.TX_PWR || '', x: 1 });
+        rs: r.RST_SENT || '', rr: r.RST_RCVD || '', ref: anyRefs([r.POTA_REF, r.WWFF_REF, r.SOTA_REF, /^(POTA|WWFF)$/.test(r.SIG || '') ? r.SIG_INFO : ''].filter(Boolean).join(',')).join(','), wf: wwffN(r.MY_WWFF_REF || (r.MY_SIG === 'WWFF' ? r.MY_SIG_INFO : '')), so: sotaN(r.MY_SOTA_REF || ''), name: r.NAME || '', st: r.STATE || '', qth: r.QTH || '', g, la: ll ? ll[0] : null, lo: ll ? ll[1] : null,
+        note: r.NOTES || '', my: (r.STATION_CALLSIGN || r.OPERATOR || myCall()).toUpperCase(), pk: refsOf(r.MY_POTA_REF || (r.MY_SIG === 'POTA' || !r.MY_SIG ? r.MY_SIG_INFO : '')).join(','), mg: r.MY_GRIDSQUARE || '', pw: r.TX_PWR || '', x: 1 });
     });
     out.forEach(q => q.t = tsOf(q));
     return out;
@@ -275,11 +304,15 @@
   function expInit() {
     $('xPota').onclick = async () => {
       const A = actList(); if (!A.length) { toast('No contacts in this activation yet.'); return; }
-      const P = myParks(); if (!P.length) { toast('Put your park number in ⚙ STATION first.'); return; }
+      const P = myParks(), W = myWwff(), So = mySota(); if (!P.length && !W && !So) { toast('Put your park, WWFF or summit number in ⚙ STATION first.'); return; }
       const d = A[0].d, calls = [...new Set(A.map(q => q.my))], F = [], short = [];
-      calls.forEach(c => { const Q = A.filter(q => q.my === c); if (Q.length < 10) short.push(c + ' ' + Q.length); P.forEach(p => F.push([`${c.replace(/\//g, '-')}@${p}-${d}.adi`, adif(Q, p)])); });
+      calls.forEach(c => { const Q = A.filter(q => q.my === c), fc = c.replace(/\//g, '-');
+        if (P.length && Q.length < 10) short.push(`${c} POTA ${Q.length}/10`); if (W && Q.length < 44) short.push(`${c} WWFF ${Q.length}/44`);
+        P.forEach(p => F.push([`${fc}@${p}-${d}.adi`, adif(Q, p)]));                                   /* POTA: one file per park, CALL@PARK-YYYYMMDD.adi */
+        if (W) F.push([`${fc}@${W} ${d}.adi`, adif(Q, null, 'WWFF')]);                                 /* WWFF: CALL@REF YYYYMMDD.adi, for your WWFF log manager */
+        if (So) F.push([`${fc}-${So.replace('/', '_')}-${d}.csv`, sotaCsv(Q, So, c), 'text/csv']); /* SOTA: sotadata.org.uk activator CSV (V2) */ });
       const ok = await files(F);
-      if (ok !== false) { A.forEach(q => q.x = 1); save(); toast(`⬇ ${F.length} POTA file${F.length > 1 ? 's' : ''} (${A.length} contacts)${short.length ? '. Under 10 so far: ' + short.join(', ') : ''}.`); }
+      if (ok !== false) { A.forEach(q => q.x = 1); save(); toast(`⬇ ${F.length} file${F.length > 1 ? 's' : ''} (${A.length} contacts)${short.length ? '. Not enough yet: ' + short.join(', ') : ''}.`); }
     };
     $('xAll').onclick = async () => { if (!L.q.length) { toast('Nothing logged yet.'); return; } const Q = L.q.slice().sort((a, b) => a.t - b.t); const ok = await files([[`KPC-activator-log-${myCall().replace(/\//g, '-') || 'mine'}-${ymd(new Date())}.adi`, adif(Q)]]); if (ok !== false) { Q.forEach(q => q.x = 1); save(); } };
     $('xCsv').onclick = () => { const h = 'date_utc,time_utc,call,freq_mhz,band,mode,rst_sent,rst_rcvd,their_park,name,qth,state,grid,my_call,my_park,note\n';
@@ -340,7 +373,8 @@
   }
 
   /* ---------------- self spot ---------------- */
-  function rlCheck() { const t = Date.now(), Q = (get('kpcSpotMeSent', []) || []).filter(x => t - x < 36e5);
+  function rlCheck(kind) { const t = Date.now(), Q = (get('kpcSpotMeSent', []) || []).filter(x => t - x < 36e5);
+    if (kind === 'qrt') { if (Q.length && t - Q[Q.length - 1] < 6e4) return 'Wait a minute after your last spot.'; if (Q.length >= 6) return 'Too many spots this hour.'; return ''; }
     if (Q.length && t - Q[Q.length - 1] < 3e5) return 'Please wait ' + Math.ceil((3e5 - (t - Q[Q.length - 1])) / 6e4) + ' more minute(s): one POTA spot every 5 minutes.';
     if (Q.length >= 4) return 'That\'s 4 POTA spots this hour. Try again in ' + Math.ceil((36e5 - (t - Q[0])) / 6e4) + ' minute(s).'; return ''; }
   function rlNote() { const Q = (get('kpcSpotMeSent', []) || []).filter(x => Date.now() - x < 36e5); Q.push(Date.now()); put('kpcSpotMeSent', Q); }
@@ -348,13 +382,16 @@
     const msg = (t, c) => { $('sMsg').className = 'lg-msg ' + (c || ''); $('sMsg').textContent = t; };
     $('sCopy').onclick = () => { $('sFreq').value = $('eFreq').value; const m = $('eMode').value; if ([...$('sMode').options].some(o => o.value === m)) $('sMode').value = m; };
     if (!$('sFreq').value) $('sFreq').value = $('eFreq').value;
-    $('sSend').onclick = async () => {
+    $('sQrt').onclick = () => sendSpot('qrt'); $('sQsy').onclick = () => { $('sCopy').onclick(); sendSpot('qsy'); };
+    $('sSend').onclick = () => sendSpot('');
+    async function sendSpot(kind) {
       const call = stationCall(), P = myParks(), k = kHzOf($('sFreq').value), mode = $('sMode').value;
       if (!call) { msg('Put your call in ⚙ STATION first.', 'bad'); return; }
       if (!P.length) { msg('Put your park number in ⚙ STATION first.', 'bad'); return; }
       if (!k || !bandOf(k)) { msg('Type the frequency you are on (like 14.285).', 'bad'); return; }
-      const wait = rlCheck(); if (wait) { msg(wait, 'bad'); return; }
-      let cm = $('sCm').value.trim(); if (P.length > 1 && !/fer|US-|\d{4}/i.test(cm)) cm = (P.length + '-fer: ' + P.slice(1).join(' ') + ' ' + cm).trim();
+      const wait = rlCheck(kind); if (wait) { msg(wait, 'bad'); return; }
+      let cm = kind === 'qrt' ? 'QRT · thanks all, 73!' : kind === 'qsy' ? ('QSY · now on ' + mhz(k) + ' ' + $('sCm').value.trim()).trim() : $('sCm').value.trim();
+      if (kind !== 'qrt' && P.length > 1 && !/fer|US-|\d{4}/i.test(cm)) cm = (P.length + '-fer: ' + P.slice(1).join(' ') + ' ' + cm).trim();
       if (!confirm(`This posts a real, public spot on POTA:\n\n${call} at ${P[0]} on ${mhz(k)} MHz ${mode}${cm ? '\n' + cm : ''}\n\nOnly send it when you're on the air. Send it?`)) return;
       msg('Sending…');
       try {
@@ -363,7 +400,7 @@
         if (r.ok) { rlNote(); msg(`✓ Spot sent: ${call} at ${P[0]} on ${mhz(k)} ${mode}. It shows on pota.app within a minute. Next spot can go in 5 minutes.`, 'ok'); setTimeout(spots, 8000); }
         else msg('✗ POTA turned it down: ' + (String(body).replace(/^"|"$/g, '') || 'error ' + r.status) + '. Nothing was sent.', 'bad');
       } catch (e) { msg('✗ POTA could not be reached. Check your signal and try again.', 'bad'); }
-    };
+    }
   }
 
   /* ---------------- notes ---------------- */
@@ -383,8 +420,13 @@
     document.querySelectorAll('[data-mv]').forEach(b => b.onclick = () => { MV = b.dataset.mv; document.querySelectorAll('[data-mv]').forEach(x => x.classList.toggle('on', x === b)); drawMap(true); });
     if (!window.L) { $('mMap').innerHTML = '<div class="lg-empty">The map could not load (no signal?).</div>'; return; }
     MAP = window.L.map('mMap', { worldCopyJump: true, zoomControl: true }).setView([37.8, -85.7], 5);
-    window.L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics' }).addTo(MAP);
-    window.L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18 }).addTo(MAP);
+    const SAT = window.L.layerGroup([window.L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics' }),
+      window.L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18 })]);
+    const STR = window.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' });
+    const base = b => { [SAT, STR].forEach(l => MAP.removeLayer(l)); (b === 'street' ? STR : SAT).addTo(MAP); document.querySelectorAll('[data-mb]').forEach(x => x.classList.toggle('on', x.dataset.mb === b)); };
+    document.querySelectorAll('[data-mb]').forEach(x => x.onclick = () => { put('kpcLgBase', x.dataset.mb); base(x.dataset.mb); });
+    base(navigator.onLine === false ? 'street' : get('kpcLgBase', 'sat'));
+    window.addEventListener('offline', () => base('street'));
     ML = window.L.layerGroup().addTo(MAP);
   }
   let lastFit = '';
@@ -414,11 +456,15 @@
     if (multi() && !SET.share) { $('sOps').innerHTML = opsList().map(c => { const k2 = A.filter(q => q.my === c).length; return `<span class="${k2 >= 10 ? 'ok' : ''}">${esc(c)} ${k2 >= 10 ? '✓ ' + k2 : k2 + '/10'}</span>`; }).join(''); }
     else if (multi()) { $('sOps').innerHTML = opsList().map(c => `<span>${esc(c)} ${A.filter(q => (q.op || q.my) === c).length} logged</span>`).join(''); }
     else $('sOps').innerHTML = '';
+    const W = myWwff(), So = mySota(), pg = [];
+    if (W) pg.push(`<span class="${n >= 44 ? 'ok' : ''}">WWFF ${esc(W)} ${n >= 44 ? '✓ ' + n : n + '/44'}</span>`);
+    if (So) pg.push(`<span class="${n >= 4 ? 'ok' : ''}">SOTA ${esc(So)} ${n >= 4 ? '✓ ' + n + ' (points count)' : n + '/4'}</span>`);
+    $('sProg').innerHTML = pg.join('');
     drawOps();
     const g = Math.min(n, 10); $('sGoalBar').style.width = g * 10 + '%';
     const P = myParks();
     $('sGoal').parentElement.classList.toggle('done', n >= 10);
-    $('sGoal').textContent = !P.length ? 'Add your park number in ⚙ STATION to start an activation' : n >= 10 ? `✓ Valid activation at ${P.join(' + ')} (${n} contacts). Keep going!` : `${n} of 10 contacts for a valid POTA activation at ${P.join(' + ')}`;
+    $('sGoal').textContent = !P.length ? (myWwff() || mySota() ? 'POTA: no park number set (WWFF / SOTA below)' : 'Add your park number in ⚙ STATION to start an activation') : n >= 10 ? `✓ Valid activation at ${P.join(' + ')} (${n} contacts). Keep going!` : `${n} of 10 contacts for a valid POTA activation at ${P.join(' + ')}`;
     const calls = new Set(A.map(q => base(q.call))).size, p2p = A.filter(q => q.ref).length, sts = new Set(A.map(q => q.st).filter(s => /^[A-Z]{2}$/.test(s))).size;
     const me = meLL(); let far = null; A.forEach(q => { if (me && q.la != null) { const m = miles(me, [q.la, q.lo]); if (!far || m > far[0]) far = [m, q.call]; } });
     const span = T.length > 1 ? (T[T.length - 1] - T[0]) / 36e5 : 0, avg = span > 0.05 ? Math.round((n - 1) / span) : 0;
@@ -440,13 +486,15 @@
   /* ---------------- the operation bar on top of the log card (PoLo style) ---------------- */
   function opBar(n) {
     const P = myParks(), sc = stationCall();
-    $('oCall').textContent = sc || 'YOUR CALL'; $('oPark').textContent = P.length ? P.join(' + ') : 'NO PARK YET';
+    $('oCall').textContent = sc || 'YOUR CALL'; $('oPark').textContent = myRefsTxt() || 'NO PARK YET';
     const nm = P.map(r => SET.pinfo[r] && SET.pinfo[r].n).filter(Boolean).join(' + ');
-    $('oSub').textContent = !sc || !P.length ? 'Tap ⚙ STATION to set your call and park' : [nm, SET.grid, SET.pwr ? SET.pwr + ' W' : '', multi() ? opsList().length + ' operators' : ''].filter(Boolean).join(' · ');
+    $('oSub').textContent = !sc || !myRefsTxt() ? 'Tap ⚙ STATION to set your call and park' : [nm, SET.grid, SET.pwr ? SET.pwr + ' W' : '', multi() ? opsList().length + ' operators' : ''].filter(Boolean).join(' · ');
     $('oN').textContent = n == null ? actList().length : n;
   }
   function stationOpen(open) { $('cStation').hidden = !open; $('oEdit').setAttribute('aria-expanded', open); $('oEdit').textContent = open ? '✓ DONE' : '⚙ STATION'; }
+  function night(on) { document.getElementById('lg').toggleAttribute('data-night', on); $('oNight').textContent = on ? '☀ DAY' : '🌙 NIGHT'; put('kpcLgNight', on); }
   function opBarInit() {
+    night(!!get('kpcLgNight', false)); $('oNight').onclick = () => night(!document.getElementById('lg').hasAttribute('data-night'));
     $('oEdit').onclick = () => stationOpen($('cStation').hidden);
     stationOpen(!myCall() || !myParks().length);
   }
@@ -509,6 +557,64 @@
     };
   }
 
+  function tileList(bb, z) { const n = 2 ** z, X = lo => Math.floor((lo + 180) / 360 * n), Y = la => { const r = la * Math.PI / 180; return Math.floor((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * n); };
+    const out = []; const x0 = Math.max(0, X(bb[0])), x1 = Math.min(n - 1, X(bb[2])), y0 = Math.max(0, Y(bb[3])), y1 = Math.min(n - 1, Y(bb[1]));
+    for (let x = x0; x <= x1; x++) for (let y = y0; y <= y1; y++) out.push(`https://tile.openstreetmap.org/${z}/${x}/${y}.png`); return out; }
+  async function saveTiles(m) {
+    const me = meLL(); if (!me) return 0; const [la, lo] = me;
+    let T = tileList([-180, -70, 180, 75], 2).concat(tileList([-130, 15, -60, 55], 3), tileList([-128, 22, -64, 51], 4), tileList([lo - 12, la - 7, lo + 12, la + 7], 5), tileList([lo - 6, la - 3.5, lo + 6, la + 3.5], 6));
+    [[7, 1.5], [8, .8], [9, .4], [10, .2], [11, .1], [12, .05], [13, .03]].forEach(([z, d]) => { T = T.concat(tileList([lo - d * 1.4, la - d, lo + d * 1.4, la + d], z)); });
+    T = [...new Set(T)].slice(0, 1200);
+    const c = await caches.open('kpc-tiles-v1'); let done = 0;
+    for (let i = 0; i < T.length; i += 6) {
+      await Promise.all(T.slice(i, i + 6).map(async u => { try { if (await c.match(u)) { done++; return; } const r = await fetch(u, { mode: 'cors' }); if (r.ok) { await c.put(u, r); done++; } } catch (e) {} }));
+      m.textContent = `Saving the map around you… ${Math.min(100, Math.round((i + 6) / T.length * 100))}%`;
+    }
+    return done;
+  }
+
+  /* ---------------- 📸 share my activation (a picture for Facebook / Discord / texts) ---------------- */
+  const img = src => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = src; });
+  let STATES = null;
+  async function sharePic() {
+    const A = actList(); if (!A.length) { toast('Log some contacts first.'); return; }
+    const W = 1080, H = 1350, cv = document.createElement('canvas'); cv.width = W; cv.height = H; const x = cv.getContext('2d');
+    x.fillStyle = '#050b0f'; x.fillRect(0, 0, W, H);
+    try { const h = await img('hero-founders.jpg'); x.drawImage(h, 0, 0, W, W * h.height / h.width); } catch (e) {}
+    const g = x.createLinearGradient(0, 230, 0, 420); g.addColorStop(0, 'rgba(5,11,15,0)'); g.addColorStop(1, 'rgba(5,11,15,1)'); x.fillStyle = g; x.fillRect(0, 230, W, 200);
+    x.fillStyle = '#45e08f'; x.font = '900 26px Arial'; x.fillText('KPC LOGGER · ACTIVATION REPORT', 50, 440);
+    x.fillStyle = '#fff'; x.font = '900 64px Menlo, Consolas, monospace'; x.fillText(stationCall() || myCall(), 50, 515);
+    x.fillStyle = '#ffd27a'; x.font = '900 46px Menlo, Consolas, monospace'; x.fillText(myRefsTxt().slice(0, 36), 50, 575);
+    const nm = myParks().map(r => SET.pinfo[r] && SET.pinfo[r].n).filter(Boolean).join(' + ');
+    x.fillStyle = '#dbe3dd'; x.font = '30px Arial'; x.fillText((nm || '').slice(0, 52), 50, 620); x.fillText(fD(A[0].d) + ' · ' + fT(A[0].tm) + '–' + fT(A[A.length - 1].tm) + ' UTC', 50, 660);
+    const me = meLL(), sts = new Set(A.map(q => q.st).filter(s => /^[A-Z]{2}$/.test(s))).size, p2p = A.filter(q => q.ref).length, bands = [...new Set(A.map(q => q.band))];
+    let far = 0; A.forEach(q => { if (me && q.la != null) far = Math.max(far, miles(me, [q.la, q.lo])); });
+    const tiles = [[A.length, 'CONTACTS'], [sts, 'STATES'], [p2p, 'PARK-TO-PARK'], [far ? Math.round(far).toLocaleString() : '-', 'MILES, FARTHEST']];
+    tiles.forEach(([v, l], i) => { const tx = 50 + i * 248; x.fillStyle = 'rgba(255,255,255,.07)'; x.fillRect(tx, 690, 228, 130); x.strokeStyle = 'rgba(226,176,74,.5)'; x.strokeRect(tx, 690, 228, 130);
+      x.fillStyle = i ? '#fff' : '#45e08f'; x.font = '900 54px Menlo, Consolas, monospace'; x.fillText(String(v), tx + 18, 760); x.fillStyle = '#9fb0ad'; x.font = '900 18px Arial'; x.fillText(l, tx + 18, 800); });
+    /* little map: states + lines from you */
+    const mx = 50, my = 850, mw = 980, mh = 400;
+    x.fillStyle = '#08131a'; x.fillRect(mx, my, mw, mh);
+    const pts = A.filter(q => q.la != null).map(q => [q.la, q.lo, q.band]); const all = pts.map(p => [p[0], p[1]]).concat(me ? [me] : []);
+    if (all.length) {
+      let la0 = Math.min(...all.map(p => p[0])), la1 = Math.max(...all.map(p => p[0])), lo0 = Math.min(...all.map(p => p[1])), lo1 = Math.max(...all.map(p => p[1]));
+      const pad = Math.max(2, (la1 - la0) * .12); la0 -= pad; la1 += pad; lo0 -= pad * 1.3; lo1 += pad * 1.3;
+      const sc = Math.min(mw / (lo1 - lo0) / Math.cos((la0 + la1) / 2 * Math.PI / 180), mh / (la1 - la0)), kx = sc * Math.cos((la0 + la1) / 2 * Math.PI / 180);
+      const cx = mx + (mw - (lo1 - lo0) * kx) / 2, cy = my + (mh - (la1 - la0) * sc) / 2, P = (la, lo) => [cx + (lo - lo0) * kx, cy + (la1 - la) * sc];
+      x.save(); x.beginPath(); x.rect(mx, my, mw, mh); x.clip();
+      try { STATES = STATES || await fetch('kpc-us-states.json').then(r => r.json()); x.strokeStyle = 'rgba(226,176,74,.35)'; x.lineWidth = 1.2;
+        STATES.forEach(s => (s.p || []).forEach(poly => poly.forEach(ring => { x.beginPath(); ring.forEach(([lo, la], i) => { const [a, b] = P(la, lo); i ? x.lineTo(a, b) : x.moveTo(a, b); }); x.closePath(); x.stroke(); }))); } catch (e) {}
+      pts.forEach(([la, lo, b]) => { const c = BCOL[b] || '#ddd'; if (me) { const [a1, b1] = P(me[0], me[1]), [a2, b2] = P(la, lo); x.strokeStyle = c; x.globalAlpha = .7; x.lineWidth = 2; x.beginPath(); x.moveTo(a1, b1); x.lineTo(a2, b2); x.stroke(); x.globalAlpha = 1; } });
+      pts.forEach(([la, lo, b]) => { const [a, bb] = P(la, lo); x.fillStyle = BCOL[b] || '#ddd'; x.beginPath(); x.arc(a, bb, 8, 0, 6.283); x.fill(); x.strokeStyle = '#fff'; x.lineWidth = 2; x.stroke(); });
+      if (me) { const [a, b] = P(me[0], me[1]); x.fillStyle = '#ffd27a'; x.font = '44px Arial'; x.textAlign = 'center'; x.fillText('⭐', a, b + 15); x.textAlign = 'left'; }
+      x.restore();
+    }
+    x.fillStyle = '#9fb0ad'; x.font = '22px Arial'; x.fillText(bands.join(' · ') + '  ·  Kentucky Portable Club', 50, 1300);
+    const blob = await new Promise(r => cv.toBlob(r, 'image/png'));
+    $('rShareOut').innerHTML = `<img src="${URL.createObjectURL(blob)}" alt="Activation report picture">`;
+    files([[`KPC-${(stationCall() || 'activation').replace(/\//g, '-')}-${(myParks()[0] || myWwff() || mySota() || 'park').replace('/', '_')}-${A[0].d}.png`, blob, 'image/png']]);
+  }
+
   /* ---------------- install + no signal ---------------- */
   let PROMPT = null;
   function appInit() {
@@ -529,14 +635,15 @@
       const c = await caches.open('kpc-finder-v1'); let ok = 0, bad = 0;
       for (const u of urls) { try { const abs = new URL(u, location.href); const r = await fetch(abs.href, { cache: 'no-cache' }); if (r.ok) { await c.put(abs.origin === location.origin ? strip(abs.href) : abs.href, r.clone()); ok++; } else bad++; } catch (e) { bad++; } }
       PK = null; parkList();
-      m.className = 'lg-msg ' + (bad && !ok ? 'bad' : 'ok'); m.textContent = ok ? `✓ Saved (${ok} files). The logger now opens and works with no signal on this device.${bad ? ' ' + bad + ' extra file(s) could not be saved.' : ''}` : 'Could not save (no signal?). Try again with signal.';
+      let tl = 0; try { tl = await saveTiles(m); } catch (e) {}
+      m.className = 'lg-msg ' + (bad && !ok ? 'bad' : 'ok'); m.textContent = ok ? `✓ Saved (${ok} files${tl ? ' and ' + tl + ' map pieces around ' + (myParks()[0] || 'you') : ''}). The logger now opens and works with no signal on this device.${bad ? ' ' + bad + ' extra file(s) could not be saved.' : ''}` : 'Could not save (no signal?). Try again with signal.';
       put('kpcLgSaved', Date.now());
     };
     const t = get('kpcLgSaved', 0); if (t && !$('aMsg').textContent) { $('aMsg').className = 'lg-msg ok'; $('aMsg').textContent = '✓ Saved for no signal on ' + new Date(t).toLocaleDateString([], { month: 'short', day: 'numeric' }) + '. Tap again to refresh it.'; }
   }
 
   async function start() {
-    const parts = [stationInit, opBarInit, opsInit, nearInit, entryInit, logInit, expInit, spotsInit, spotInit, notesInit, notesAllInit, appInit, mapInit];
+    const parts = [() => { $('rShare').onclick = sharePic; $('hShare').onclick = sharePic; }, stationInit, opBarInit, opsInit, nearInit, entryInit, logInit, expInit, spotsInit, spotInit, notesInit, notesAllInit, appInit, mapInit];
     parts.forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } });
     try { const o = await idbGet('log'); IDBok = true; if (o && Array.isArray(o.q) && ((o.u || 0) > (L.u || 0) || o.q.length > L.q.length)) { L = o; put(LK, L); } } catch (e) {}
     if (navigator.storage && navigator.storage.persisted) { try { PERSIST = await navigator.storage.persisted(); } catch (e) {} }

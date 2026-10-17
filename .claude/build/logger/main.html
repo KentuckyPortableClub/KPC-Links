@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261016c">
+<link rel="stylesheet" href="kpc-logger.css?v=20261016d">
 <link rel="manifest" href="kpc-logger.webmanifest">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -18,7 +18,8 @@
 </div>
 <div class="lg-goal"><div class="bar"><i id="sGoalBar"></i></div><span id="sGoal">10 contacts makes a valid POTA activation</span></div>
 <div class="lg-ops-goal" id="sOps"></div>
-<div class="lg-hacts"><a class="lg-btn line sm" href="#cApp">📲 INSTALL / USE WITH NO SIGNAL</a><a class="lg-btn line sm" href="#cNotes">📝 NOTES</a></div>
+<div class="lg-ops-goal" id="sProg"></div>
+<div class="lg-hacts"><a class="lg-btn line sm" href="#cApp">📲 INSTALL / USE WITH NO SIGNAL</a><a class="lg-btn line sm" href="#cNotes">📝 NOTES</a><button type="button" class="lg-btn line sm" id="hShare">📸 SHARE MY ACTIVATION</button></div>
 </div></section>
 
 <div class="lg-wrap">
@@ -30,12 +31,14 @@
 <div class="lg-opbar">
  <div class="lg-opwho"><b id="oCall">YOUR CALL</b> <span>@</span> <b id="oPark" class="pk">PARK</b><div class="lg-opsub" id="oSub">Tap STATION to set your call and park</div></div>
  <div class="lg-opn"><b id="oN">0</b><span>QSOs</span></div>
- <button type="button" class="lg-btn line sm" id="oEdit" aria-expanded="false">⚙ STATION</button>
+ <div class="lg-opb"><button type="button" class="lg-btn line sm" id="oEdit" aria-expanded="false">⚙ STATION</button><button type="button" class="lg-btn line sm" id="oNight">🌙 NIGHT</button></div>
 </div>
 <div class="lg-station" id="cStation" hidden>
 <div class="lg-f">
  <label>My call<input id="myCall" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Your call"></label>
  <label>My park number(s)<input id="myPark" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-1234 (2-fer: US-1234, US-5678)"></label>
+ <label>My WWFF / KFF (optional)<input id="myWwff" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="KFF-0000"></label>
+ <label>My SOTA summit (optional)<input id="mySota" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="W4K/EC-001"></label>
  <label>My grid<input id="myGrid" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="EM78"></label>
  <label>Power (W)<input id="myPwr" inputmode="decimal" placeholder="100"></label>
  <label class="wide">Other operators logging with you (optional)<input id="myOps" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Their calls, like K4TEST, W4KIDS"></label>
@@ -54,7 +57,7 @@
  <label>Mode<select id="eMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option><option>PSK31</option><option>JS8</option><option>OTHER</option></select></label>
  <label>Sent<input id="eRs" placeholder="59"></label>
  <label>Rcvd<input id="eRr" placeholder="59"></label>
- <label>Their park (P2P)<input id="eRef" autocapitalize="characters" spellcheck="false" placeholder="US-0000"></label>
+ <label>Their park / ref (P2P)<input id="eRef" autocapitalize="characters" spellcheck="false" placeholder="US-0000, KFF-0000, W4K/EC-001"></label>
  <label>Name<input id="eName"></label>
  <label>State<input id="eSt" autocapitalize="characters" maxlength="3"></label>
  <label class="wide">Note for this contact<input id="eNote"></label>
@@ -79,14 +82,14 @@
 </div>
 <div class="lg-tw"><table class="lg-t"><thead><tr><th>UTC</th><th>Call</th><th>MHz</th><th class="hs">Mode</th><th class="hs">Sent / Rcvd</th><th>Their park</th><th class="hs">Name · State</th><th></th></tr></thead><tbody id="lBody"></tbody></table></div>
 <div class="lg-row lg-exp">
- <button type="button" class="lg-btn gold" id="xPota">⬇ POTA FILE(S) FOR THIS ACTIVATION</button>
+ <button type="button" class="lg-btn gold" id="xPota">⬇ FILES FOR THIS ACTIVATION (POTA · WWFF · SOTA)</button>
  <button type="button" class="lg-btn line" id="xAll">⬇ EVERYTHING (ADIF)</button>
  <button type="button" class="lg-btn line" id="xCsv">⬇ CSV</button>
  <label class="lg-btn line" for="xLoad">⬆ RESTORE FROM FILE<input type="file" id="xLoad" accept=".adi,.adif,.txt" hidden></label>
  <button type="button" class="lg-btn line" id="xNew">🏁 START A NEW ACTIVATION</button>
 </div>
 <p class="lg-safe" id="lSafe"></p>
-<p class="lg-mu">POTA wants one file per park: a 2-fer gets one file for each park number, named the way POTA asks (CALL@PARK-DATE.adi). Upload them at <a href="https://pota.app/#/user/logs" target="_blank" rel="noopener">pota.app → My Logs</a>.</p>
+<p class="lg-mu">POTA wants one file per park (CALL@PARK-DATE.adi): upload at <a href="https://pota.app/#/user/logs" target="_blank" rel="noopener">pota.app → My Logs</a>. WWFF / KFF gets one ADIF file (CALL@KFF-0000 DATE.adi) for your WWFF log manager. SOTA gets the sotadata CSV: upload at <a href="https://www.sotadata.org.uk" target="_blank" rel="noopener">sotadata.org.uk</a>.</p>
 </section>
 </div>
 
@@ -111,7 +114,7 @@
  <label>Mode<select id="sMode"><option>SSB</option><option>CW</option><option>FT8</option><option>FT4</option><option>FM</option><option>AM</option><option>RTTY</option></select></label>
  <label class="wide">Comment<input id="sCm" maxlength="60" placeholder="QRV · 2-fer · QRT 22z"></label>
 </div>
-<div class="lg-row"><button type="button" class="lg-btn line sm" id="sCopy">USE MY LOG'S FREQ + MODE</button><button type="button" class="lg-btn gold" id="sSend">📣 SPOT ME</button></div>
+<div class="lg-row"><button type="button" class="lg-btn line sm" id="sCopy">USE MY LOG'S FREQ + MODE</button><button type="button" class="lg-btn gold" id="sSend">📣 SPOT ME</button><button type="button" class="lg-btn line" id="sQsy">↪ I MOVED: SPOT MY NEW FREQ</button><button type="button" class="lg-btn line red" id="sQrt">🔴 QRT SPOT (I'M DONE)</button></div>
 <p class="lg-msg" id="sMsg"></p>
 <p class="lg-mu">This posts a real, public spot on pota.app with your call and park number. One spot every 5 minutes, 4 an hour at most (the same guard as Spot Me).</p>
 </section>
@@ -122,7 +125,7 @@
 <div class="lg-two">
 <section class="lg-card" id="cMap"><h2>QSO map <small id="mInfo"></small></h2>
 <div id="mMap" role="region" aria-label="Map of contacts"></div>
-<div class="lg-row"><button type="button" class="lg-chip on" data-mv="act">THIS ACTIVATION</button><button type="button" class="lg-chip" data-mv="all">EVERYTHING</button><span class="lg-mu">Gold star = you · dots coloured by band · lines show the path.</span></div>
+<div class="lg-row"><button type="button" class="lg-chip on" data-mv="act">THIS ACTIVATION</button><button type="button" class="lg-chip" data-mv="all">EVERYTHING</button><button type="button" class="lg-chip" data-mb="sat">SATELLITE</button><button type="button" class="lg-chip" data-mb="street">STREET (WORKS WITH NO SIGNAL)</button><span class="lg-mu">Gold star = you · dots coloured by band · lines show the path.</span></div>
 <div class="lg-key" id="mKey"></div>
 </section>
 
@@ -132,6 +135,8 @@
 <div class="lg-hours" id="rHours"></div>
 <h3 class="lg-h3">Bands &amp; modes</h3>
 <div class="lg-bm" id="rBm"></div>
+<div class="lg-row"><button type="button" class="lg-btn gold" id="rShare">📸 SHARE MY ACTIVATION (PICTURE)</button></div>
+<div class="lg-shareout" id="rShareOut"></div>
 </section>
 </div>
 
@@ -151,7 +156,7 @@
  <p><b>On a computer (Chrome or Edge):</b> tap 📲 INSTALL THE LOGGER above, or the install icon at the right end of the address bar. It opens in its own window like a program.</p>
  <p><b>On an iPhone or iPad (Safari):</b> tap Share (on newer iPhones •••, then Share) → <b>Add to Home Screen</b> → Add.</p>
  <p><b>On Android (Chrome):</b> tap 📲 INSTALL THE LOGGER above, or ⋮ → <b>Add to Home screen</b> / <b>Install app</b>.</p>
- <p><b>No signal at the park?</b> Tap 💾 SAVE FOR NO SIGNAL at home first (it also saves the park list for PARKS NEAR ME). With no signal you can still log, see your rate and notes, find nearby parks by GPS and download your POTA files. Spots, call look-ups, self-spotting and the map pictures need signal; calls you've looked up before are remembered.</p>
+ <p><b>No signal at the park?</b> Tap 💾 SAVE FOR NO SIGNAL first, with your park set (it also saves the park list for PARKS NEAR ME and the street map around your park). With no signal you can still log, see your rate and notes, find nearby parks by GPS and download your POTA files. Spots, call look-ups, self-spotting and the map pictures need signal; calls you've looked up before are remembered.</p>
 </div>
 </section>
 
@@ -161,4 +166,4 @@
 </main>
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-logger.js?v=20261016d"></script>
+<script src="kpc-logger.js?v=20261016e"></script>
