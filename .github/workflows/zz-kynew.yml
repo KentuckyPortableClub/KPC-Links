@@ -1,0 +1,23 @@
+name: zz ky new parks probe
+on: push
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: |
+          python3 - <<'P'
+          import json,urllib.request
+          H={'User-Agent':'KPC-Links'}
+          g=lambda u: json.load(urllib.request.urlopen(urllib.request.Request(u,headers=H),timeout=60))
+          L=g('https://api.pota.app/location/parks/US-KY')
+          have={p['c'] for p in json.load(open('kpc-ky-data.json'))['parks']}
+          new=[p for p in L if p['reference'] not in have]
+          print(f"::notice title=count::POTA US-KY {len(L)} parks, ours {len(have)}, new {len(new)}")
+          out=[]
+          for p in new:
+            d=g('https://api.pota.app/park/'+p['reference'])
+            out.append({'list':p,'park':d})
+            print("::notice title="+p['reference']+"::"+json.dumps({k:d.get(k) for k in ['name','parktypeDesc','latitude','longitude','grid6','website','locationName','firstActivator','firstActivationDate','activeDate']})[:900])
+          gone=sorted(have-{p['reference'] for p in L}); print("::notice title=gone::"+json.dumps(gone))
+          P
