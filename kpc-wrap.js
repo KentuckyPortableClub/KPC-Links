@@ -7,7 +7,7 @@
   if (/^kpc-guide-/.test(P) || /[?&](print|pdf)=/.test(location.search) || H.hasAttribute('data-no-wrap')) return;
   const SEL = '.card,.kb-card,.link-card,.feature-card,.panel,.kd-card,.cw-card,.nw-card,.fx-card,.kz-card,.mr-card,.lv-card,.enc-card,.trailcard,.learn-card,.sm-card,.kg2-card,.vb-card,.hm-card,.scale-card,.kr-card,.usp-card,.intro-panel,.tool-card,.hub-card';
   const SKIP = '#hl,#lg,.leaflet-container,header,footer,[data-no-wrap],.kd-wrap,.usp,.hero,.kb-hero';
-  const PICS = ['lake-camp', 'river-camp', 'campsite', 'journal', 'wildlife', 'board', 'solar', 'map', 'lodge', 'night'];
+  const PICS = ['lake-camp', 'river-camp', 'campsite', 'journal', 'wildlife', 'board', 'summit', 'solar', 'map', 'lodge', 'night'];
   const st = document.createElement('style');
   st.textContent = '@media screen{[data-kw]{background-size:cover!important;background-position:center!important;box-shadow:0 14px 34px rgba(0,0,0,.18),0 0 22px rgba(240,180,80,.10)}[data-kw]:hover{box-shadow:0 16px 38px rgba(0,0,0,.24),0 0 26px rgba(240,180,80,.2)}}@media print{[data-kw]{background-image:none!important}}';
   document.head.appendChild(st);
