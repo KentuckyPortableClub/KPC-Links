@@ -10,7 +10,7 @@ import json, glob, time, urllib.request, datetime
 
 UA = {'User-Agent': 'KPC North America pins (kentuckyportableclub.github.io)'}
 # POTA program prefixes (ISO codes since POTA's 2025 change) for North America outside US + Canada
-POTA_NA = ('MX GT BZ SV HN NI CR PA CU JM HT DO PR VI BS BB TT AG DM GD KN LC VC AI AW CW SX BQ MF BL GP MQ KY TC VG MS BM GL PM UM').split()
+POTA_NA = ('MX GT BZ SV HN NI CR PA CU JM HT DO PR VI BS BB TT AG DM GD KN LC VC AI AW CW SX BQ MF BL GP MQ KY TC VG MS BM GL PM').split()
 # WWFF programs that are wholly North American, and mixed ones filtered to the NA box
 WWFF_NA = 'XEFF TGFF V3FF YSFF HRFF YNFF TIFF HPFF COFF 6YFF HHFF HIFF C6FF 8PFF V2FF J7FF V4FF J6FF P4FF ZFFF'.split()
 WWFF_MIX = 'VPFF FFF OZFF PAFF'.split()
