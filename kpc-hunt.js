@@ -288,6 +288,7 @@
     if (PUB) return; const on = !!(window.KPCQrz && KPCQrz.get().on), key = !!(window.KPCQrz && KPCQrz.get().key);
     document.querySelectorAll('[data-qmode]').forEach(b => { b.setAttribute('aria-pressed', on); b.innerHTML = on ? '☁ QRZ MODE' : '💾 ADIF MODE';
       b.title = on ? 'QRZ mode: every contact goes to your QRZ logbook as you log it. Tap for ADIF mode (keep them here, send or download at the end).' : 'ADIF mode: contacts stay on this device; send them to QRZ or download an ADIF file from MY LOG FILES. Tap for QRZ mode.' + (key ? '' : ' (QRZ mode needs your QRZ key: 📻 CAT & QRZ tab)'); });
+    const lb = document.getElementById('dkLog'); if (lb) { lb.innerHTML = on ? '⬆ LOG + QRZ' : '⬆ LOG'; lb.title = on ? 'Log it and send it to your QRZ logbook (Enter does the same)' : 'Log it on this device (Enter does the same)'; }
     qzCount();
   }
   document.addEventListener('click', e => { const b = e.target.closest('[data-qmode]'); if (!b || !window.KPCQrz) return;
@@ -1486,13 +1487,9 @@
     ['dCall', 'dRef', 'dName', 'dSt', 'dNote'].forEach(id => { $(id).value = ''; }); dkWN++; DKWHO = null; $('dkWho').innerHTML = '';
     $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value); $('dkDupe').hidden = true;
   }
-  /* button above the name box (Brandon Oct 17): ✅ QSL → QRZ = log it, send it to QRZ, clear the boxes (RESPOT stays on the spot list only) */
+  /* (the ✅ QSL → QRZ button above the name box was removed Oct 17, Brandon: Enter / ⬆ logs, and in ☁ QRZ MODE it also goes to QRZ) */
   function dkActSet() { const r = $('dkRsp'); if (!r) return; const pr = String($('dRef').value || '').toUpperCase().split(/[ ,]+/).map(nref).find(x => progOf(x) === 'POTA');
     r.hidden = !(pr && $('dCall').value.trim()); r.dataset.ref = pr || ''; }
-  if ($('dkQsl')) {
-    ['dRef', 'dCall'].forEach(id => $(id).addEventListener('input', dkActSet));
-    $('dkQsl').onclick = () => { if (!$('dCall').value.trim()) { toast('Tap a spot first (or type the call).'); $('dCall').focus(); return; } dkLog({ qrz: true }); };
-  }
   async function dkLog(opt) {
     const call = $('dCall').value.trim().toUpperCase(); if (!call) { $('dCall').focus(); return; }
     const n = utc(new Date());
