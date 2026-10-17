@@ -950,3 +950,7 @@ main#hl[data-desk="1"] .hl-split>.hl-spsec.hl-popped>.hl-in{flex:1 1 auto;min-he
 #afModal .af-ck{display:flex;gap:8px;align-items:flex-start;margin:10px 0;font:700 13px Arial;color:#f3e6c8;cursor:pointer}
 #afModal .af-ck input{margin-top:2px;accent-color:#d5a63a;width:17px;height:17px}
 #afModal .af-now{margin-top:12px;color:#e8d8b4}
+
+/* ⭐ VIP (Brandon Oct 17) */
+.hl-vipb{display:inline-flex;align-items:center;font:900 12px Arial;letter-spacing:2px;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg,#f6d58a,#d5a63a);color:#2a1a05;box-shadow:0 0 14px rgba(246,213,138,.45)}
+main#hl[data-public="1"] .hl-vipb{display:none}
