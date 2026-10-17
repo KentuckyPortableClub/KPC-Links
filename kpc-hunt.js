@@ -371,11 +371,12 @@
   function awardChips(s, short) {
     if (PUB) return '';
     if (!CNT || s.p !== 'POTA') return '';
+    /* FLASH (Brandon Oct 17): blinks when you're within 5 contacts of the next Repeat Offender / Op to Op level, or 2 bands from N1CC */
     const out = [], pc = (CNT.pc || {})[s.ref] || 0, ac = (CNT.ac || {})[base(s.call)] || (CNT.ac || {})[s.call] || 0, n1 = (CNT.n1 || {})[s.ref];
     const lvl = (v, step) => (Math.floor(v / step) + 1) * step;
-    if (pc) { const n = lvl(pc, 20), near = n - pc <= 5; out.push(`<span class="ac${near ? ' near' : ''}" title="Repeat Offender: every 20 QSOs with a park (tap for what the badges mean)">🔁 ${short ? '' : 'Park '}${pc}/${n}${near ? ' · ALMOST' : ''}</span>`); }
-    if (ac) { const n = lvl(ac, 50), near = n - ac <= 10; out.push(`<span class="ac${near ? ' near' : ''}" title="Operator to Operator: every 50 QSOs with the same activator">🤝 ${short ? '' : base(s.call) + ' '}${ac}/${n}${near ? ' · ALMOST' : ''}</span>`); }
-    if (n1 != null) { const L = n1.toUpperCase().split(',').filter(Boolean), b = bandOf(s.khz).toUpperCase(); if (L.length < 10 && !L.includes(b)) out.push(`<span class="ac near" title="N1CC: this park on 10 different bands">📶 NEW BAND ${L.length}/10</span>`); }
+    if (pc) { const n = lvl(pc, 20), near = n - pc <= 5; out.push(`<span class="ac${near ? ' near flash' : ''}" title="Repeat Offender: every 20 QSOs with a park (tap for what the badges mean)">🔁 ${short ? '' : 'Park '}${pc}/${n}${near ? ' · ALMOST' : ''}</span>`); }
+    if (ac) { const n = lvl(ac, 50), near = n - ac <= 5; out.push(`<span class="ac${near ? ' near flash' : ''}" title="Operator to Operator: every 50 QSOs with the same activator">🤝 ${short ? '' : base(s.call) + ' '}${ac}/${n}${near ? ' · ALMOST' : ''}</span>`); }
+    if (n1 != null) { const L = n1.toUpperCase().split(',').filter(Boolean), b = bandOf(s.khz).toUpperCase(); if (L.length < 10 && !L.includes(b)) out.push(`<span class="ac near${L.length >= 8 ? ' flash' : ''}" title="N1CC: this park on 10 different bands">📶 NEW BAND ${L.length}/10${L.length >= 8 ? ' · ALMOST' : ''}</span>`); }
     return out.join('');
   }
   /* ⭐ favorite activators (Brandon Oct 16): pinned to the top while on the air, until you've worked them today */

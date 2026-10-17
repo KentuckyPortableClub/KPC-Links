@@ -936,3 +936,8 @@ main#hl[data-desk="1"] .hl-split>.hl-spsec.hl-popped>.hl-in{flex:1 1 auto;min-he
 .hl-qz>b{font:900 12px Arial;letter-spacing:1.4px;color:#7ff0b0}.hl-qz>span{font:12px Arial;color:var(--mu);margin-right:auto}
 .hl-qz .hl-src{flex-basis:100%;margin:0}
 .hl-toast[hidden]{display:none!important}
+
+/* award badges blink when within 5 of the next level (Brandon Oct 17) */
+@keyframes hlAwFlash{0%,100%{opacity:1;filter:brightness(1);box-shadow:0 0 6px rgba(255,190,90,.5)}50%{opacity:.55;filter:brightness(1.5);box-shadow:0 0 18px rgba(255,210,120,.95)}}
+.ac.flash{animation:hlAwFlash 1.1s ease-in-out infinite!important}
+@media (prefers-reduced-motion:reduce){.ac.flash{animation:none!important}}
