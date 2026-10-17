@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="kpc-boards.css?v=20261016a">
+<link rel="stylesheet" href="kpc-top50.css?v=20261016a">
+@@HEADER@@
+<main class="kb" id="t50">
+<section class="kb-hero" style="--pic:url('hero-lake-camp.jpg');--picm:url('hero-lake-camp-mobile.jpg')"><div class="kb-hero-in">
+<p class="kb-eyebrow">KPC MEMBERS ROOM • POTA LEADERS BY STATE</p>
+<h1>TOP <span>50</span></h1>
+<p class="kb-copy">The busiest POTA activators and hunters in every state: all time or this year, with activations, parks, QSOs and when they were last out.</p>
+<div class="kb-chips"><span>🏆 Activators</span><span>🎯 Hunters</span><span>🗓 All time or this year</span></div>
+</div></section>
+
+<section class="kb-sec"><div class="kb-in">
+<div class="t5-bar">
+ <label>STATE <select id="tSt" aria-label="State"></select></label>
+ <div class="t5-seg" role="group" aria-label="When"><button type="button" class="kb-chip" data-per="all">ALL TIME</button><button type="button" class="kb-chip" data-per="year" id="tYearBtn">THIS YEAR</button></div>
+ <input type="search" id="tQ" placeholder="Find a call…" aria-label="Find a call">
+</div>
+<div class="t5-seg t5-lists" role="group" aria-label="List"><button type="button" class="kb-chip" data-l="acts">🏆 MOST ACTIVATIONS</button><button type="button" class="kb-chip" data-l="uniq">🏞 MOST PARKS</button><button type="button" class="kb-chip" data-l="qsos">📻 MOST QSOS</button><button type="button" class="kb-chip" data-l="hunt">🎯 TOP HUNTERS</button><button type="button" class="kb-chip" data-l="huntp">🎯 HUNTERS BY PARKS</button></div>
+<div class="t5-tiles" id="tTiles"></div>
+<div class="t5-podium" id="tPod"></div>
+<div class="t5-wrap"><div id="tList"><div class="kb-empty">Loading…</div></div></div>
+<p class="kb-small" id="tSrc"></p>
+</div></section>
+</main>
+@@FOOTER@@
+<script src="kpc-top50.js?v=20261016a"></script>

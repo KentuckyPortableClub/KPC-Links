@@ -372,7 +372,7 @@
   /* ---------------- your log ---------------- */
   function logInfo() {
     const c = { POTA: 0, WWFF: 0, SOTA: 0 }; WK.forEach(r => c[progOf(r)]++);
-    $('hsLog').textContent = WK.size;
+    
     $('hProgs').innerHTML = WK.size ? Object.entries(c).map(([k, v]) => `<span>${k} <b>${v}</b></span>`).join('') : '';
     const when = LOG.t ? new Date(LOG.t).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' }) : '';
     const old = LOG.t && Date.now() - LOG.t > 14 * 864e5;
@@ -465,18 +465,30 @@
     } catch (e) { $('nList').innerHTML = '<div class="hl-empty">Something went wrong drawing this list: ' + esc(e.message) + '</div>'; }
   }
   /* state view: the state's outline with every park as a dot (gold = still needed, green = worked, pulsing = on the air now) */
+  let NM = null, NMG = null;
   async function stateMap(a, air) {
     const box = $('nMap');
     try { BORDERS = BORDERS || await fetch('kpc-us-states.json').then(r => r.json()); } catch (e) { box.innerHTML = '<div class="hl-empty">Couldn’t load the state map.</div>'; return; }
-    const b = BORDERS.find(x => x.a === a); if (!b) { box.innerHTML = ''; return; }
-    let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
-    b.p.forEach(pl => pl[0].forEach(([x, y]) => { x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }));
-    if (a === 'AK') { x1 = Math.min(x1, -129); x0 = Math.max(x0, -180); }
-    const k = Math.cos((y0 + y1) / 2 * Math.PI / 180), W = 640, sc = Math.min(W / ((x1 - x0) * k || 1), 380 / ((y1 - y0) || 1)), H = Math.round((y1 - y0) * sc) + 20;
-    const X = lo => ((lo - x0) * k * sc + 10).toFixed(1), Y = la => ((y1 - la) * sc + 10).toFixed(1);
-    const path = b.p.map(pl => pl.map(r => 'M' + r.map(([x, y]) => X(x) + ' ' + Y(y)).join('L') + 'Z').join('')).join('');
-    const dots = NP.filter(p => isFinite(p.la) && isFinite(p.lo) && p.lo >= x0 - .5 && p.lo <= x1 + .5).map(p => { const w = WK.has(p.r), o = air.get(p.r); return `<circle class="${o ? 'on' : w ? 'wk' : 'nd'}" cx="${X(p.lo)}" cy="${Y(p.la)}" r="${o ? 6 : 4}" data-pr="${esc(p.r)}"><title>${esc(p.r + ' ' + p.n + (w ? ' (worked)' : ' (still needed)') + (o ? ' · ON THE AIR ' + o.call : ''))}</title></circle>`; });
-    box.innerHTML = `<svg viewBox="0 0 ${W + 20} ${H}" role="img" aria-label="${esc(ST[a])} parks"><path class="st" d="${path}"/>${dots.join('')}</svg><p class="hl-src">Gold = still needed · green = worked · pulsing = on the air now. Tap a dot for the park.</p><p class="hl-msg" id="nPick"></p>`;
+    const b = BORDERS.find(x => x.a === a); if (!b || !window.L) { box.innerHTML = '<div class="hl-empty">The map couldn’t load here.</div>'; return; }
+    if (!NM) {
+      box.innerHTML = '<div id="nLmap"></div><p class="hl-src">🟡 gold = still needed · 🟢 green = hunted · 🔴 pulsing red = on the air now. Tap a dot for the park.</p><p class="hl-msg" id="nPick"></p>';
+      NM = L.map('nLmap', { zoomSnap: .25 });
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics' }).addTo(NM);
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, opacity: .9 }).addTo(NM);
+      NMG = L.layerGroup().addTo(NM);
+    }
+    setTimeout(() => NM.invalidateSize(), 30);
+    NMG.clearLayers();
+    const gj = { type: 'MultiPolygon', coordinates: b.p.map(pl => pl.map(r => r.map(([x, y]) => [x, y]))) };
+    const out = L.geoJSON(gj, { style: { color: '#ffcf7a', weight: 2.5, fill: true, fillColor: '#000', fillOpacity: .12 } }).addTo(NMG);
+    let bb = out.getBounds(); if (a === 'AK') bb = L.latLngBounds([51, -179], [71.5, -129]);
+    NM.fitBounds(bb, { padding: [12, 12] });
+    NP.filter(p => isFinite(p.la) && isFinite(p.lo)).forEach(p => {
+      const w = WK.has(p.r), o = air.get(p.r);
+      const m = o ? L.marker([p.la, p.lo], { icon: L.divIcon({ className: 'hl-pin red', html: '<span></span>', iconSize: [22, 22], iconAnchor: [11, 11] }), zIndexOffset: 1000 })
+        : L.circleMarker([p.la, p.lo], { radius: w ? 4.5 : 6, color: '#1a1208', weight: 1.2, fillColor: w ? '#3ddc84' : '#ffcf7a', fillOpacity: w ? .75 : .95 });
+      m.bindPopup(`<div class="hl-pop"><span class="r">${esc(p.r)}</span> ${esc(p.n)}<br>${p.a ? p.a + ' activations' : 'never activated'}${p.a > 0 && p.a <= 5 ? ' · RARE' : ''} · ${w ? '<span class="pw">✓ hunted</span>' : '<b>still needed</b>'}${o ? `<br><span class="pn">📡 ON THE AIR: ${esc(o.call)} ${(o.khz / 1000).toFixed(3)} ${esc(o.mode)}</span>` : ''}<div class="hl-popb"><a href="https://pota.app/#/park/${encodeURIComponent(p.r)}" target="_blank" rel="noopener">POTA PAGE</a><a href="kpc-planner-us.html?q=${encodeURIComponent(p.r)}">TRIP PLANNER</a></div></div>`, { maxWidth: 260 }).addTo(NMG);
+    });
   }
   document.addEventListener('click', e => { const c = e.target.closest('[data-pr]'); if (!c) return; const p = NP.find(x => x.r === c.dataset.pr); if (p) $('nPick').innerHTML = `<a href="https://pota.app/#/park/${encodeURIComponent(p.r)}" target="_blank" rel="noopener"><b>${esc(p.r)}</b></a> ${esc(p.n)} · ${p.a ? p.a + ' activations' : 'never activated'} · ${WK.has(p.r) ? '✓ worked' : 'still needed'} · <a href="kpc-planner-us.html?q=${encodeURIComponent(p.r)}">trip planner</a>`; });
   /* all states at a glance: worked / total in every state (our weekly park list + Kentucky's own file) */
@@ -496,6 +508,7 @@
   /* ---------------- top activators + my numbers ---------------- */
   let TT = 'acts', TD = {};
   async function topDraw() {
+    if (!$('tList')) return;   /* the Top section moved to its own Members Room page, kpc-top50.html (Oct 16) */
     const a = $('tSt').value;
     if (!TD[a]) { $('tList').innerHTML = '<div class="hl-empty">Loading…</div>'; TD[a] = await fetch('data/leaders/US-' + a + '.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).catch(() => null) || { none: 1 }; }
     const d = TD[a];
@@ -511,8 +524,9 @@
       : `${esc(ST[a])}: ${d.activators.toLocaleString()} activators across ${d.activated.toLocaleString()} activated parks (${d.parks.toLocaleString()} parks in all). Added up by KPC from POTA’s public activation lists (10+ contacts counts, calls like K4TEST/P count as K4TEST). Updated ${esc(d.updated)}, weekly.${CALL && me < 0 ? ` ${esc(CALL)} isn’t in this state’s top 50 yet.` : ''}`;
   }
   document.addEventListener('click', e => { const b = e.target.closest('[data-t]'); if (!b) return; TT = b.dataset.t; document.querySelectorAll('[data-t]').forEach(x => x.setAttribute('aria-pressed', x === b)); topDraw(); });
-  $('tSt').onchange = topDraw;
+  if ($('tSt')) $('tSt').onchange = topDraw;
   async function myStats() {
+    if (!$('mStats')) return;
     const box = $('mStats'); const c = { POTA: 0, WWFF: 0, SOTA: 0 }; WK.forEach(r => c[progOf(r)]++);
     const logBits = hasLog() ? `<div class="g"><b>${c.POTA.toLocaleString()}</b><span>POTA IN YOUR LOG</span></div><div><b>${c.WWFF.toLocaleString()}</b><span>WWFF IN YOUR LOG</span></div><div><b>${c.SOTA.toLocaleString()}</b><span>SOTA IN YOUR LOG</span></div>` : '';
     if (!CALL) { box.innerHTML = logBits ? `<div class="hm">${logBits}</div>` : '<div class="hl-empty">Put your call sign in Step 1.</div>'; return; }
@@ -880,12 +894,14 @@
   });
 
   /* ---------------- 🔥 flames up from the bottom when a new park shows up (Brandon Oct 16) ---------------- */
-  let FLAME = get('kpcHuntFlame', true), fireT = 0;
-  function flameBtn() { const b = $('hlFlame'); b.setAttribute('aria-pressed', FLAME); b.innerHTML = '🔥<span class="t"> FLAMES ' + (FLAME ? 'ON' : 'OFF') + '</span>'; }
-  $('hlFlame').onclick = () => { FLAME = !FLAME; put('kpcHuntFlame', FLAME); flameBtn(); if (FLAME) fire('🔥 Flames are on'); };
+  let FX = get('kpcHuntFx', get('kpcHuntFlame', true) === false ? 'off' : 'flames'), fireT = 0; const FLAME = true;
+  const FXL = { flames: ['🔥', 'FLAMES'], fireworks: ['🎆', 'FIREWORKS'], off: ['🚫', 'NO EFFECTS'] };
+  function flameBtn() { const b = $('hlFlame'), f = FXL[FX] || FXL.flames; b.setAttribute('aria-pressed', FX !== 'off'); b.dataset.fx = FX; b.innerHTML = f[0] + '<span class="t"> ' + f[1] + '</span>'; }
+  $('hlFlame').onclick = () => { FX = FX === 'flames' ? 'fireworks' : FX === 'fireworks' ? 'off' : 'flames'; put('kpcHuntFx', FX); flameBtn(); if (FX !== 'off') fire(FX === 'flames' ? '🔥 Flames for new parks' : '🎆 Fireworks for new parks'); else toast('No screen effects for new parks.'); };
   function fire(msg) {
-    if (!FLAME || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const cv = $('hlFire'), cx = cv.getContext('2d'), W = cv.width = innerWidth, H = cv.height = Math.round(innerHeight * .55);
+    if (FX === 'off' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (FX === 'fireworks') return fireworks(msg);
+    const cv = $('hlFire'), cx = cv.getContext('2d'), W = cv.width = innerWidth, H = cv.height = Math.round(innerHeight * .55); cv.style.height = '';
     const P = [], t0 = performance.now(), DUR = 3800;
     if (msg) { const m = $('hlFireMsg'); m.textContent = msg; m.classList.remove('on'); void m.offsetWidth; m.classList.add('on'); }
     cv.classList.add('on'); cancelAnimationFrame(fireT);
@@ -901,6 +917,32 @@
         cx.fillStyle = g; cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, 6.283); cx.fill();
       }
       if (el < DUR || P.length) fireT = requestAnimationFrame(step); else { cv.classList.remove('on'); cx.clearRect(0, 0, W, H); }
+    };
+    fireT = requestAnimationFrame(step);
+  }
+  /* 🎆 fireworks: rockets climb from the bottom and burst into colour */
+  function fireworks(msg) {
+    const cv = $('hlFire'), cx = cv.getContext('2d'), W = cv.width = innerWidth, H = cv.height = innerHeight;
+    cv.style.height = '100vh';
+    if (msg) { const m = $('hlFireMsg'); m.textContent = msg.replace(/^🔥/, '🎆'); m.classList.remove('on'); void m.offsetWidth; m.classList.add('on'); }
+    cv.classList.add('on'); cancelAnimationFrame(fireT);
+    const R = [], P = [], t0 = performance.now(), DUR = 4200, COL = ['#ffd76a', '#ff6b5a', '#3ddc84', '#8fb7ff', '#ff6fa8', '#ffffff', '#c08bff'];
+    let launched = 0;
+    const step = now => {
+      const el = now - t0;
+      if (el < DUR - 1400 && launched < Math.round(el / 260) + 1) { launched++; R.push({ x: W * (.12 + Math.random() * .76), y: H + 5, vy: -(H / 75 + Math.random() * H / 140), tY: H * (.18 + Math.random() * .3), c: COL[Math.floor(Math.random() * COL.length)] }); }
+      cx.globalCompositeOperation = 'destination-out'; cx.fillStyle = 'rgba(0,0,0,.28)'; cx.fillRect(0, 0, W, H); cx.globalCompositeOperation = 'lighter';
+      for (let i = R.length - 1; i >= 0; i--) {
+        const r = R[i]; r.y += r.vy; r.vy *= .985;
+        cx.fillStyle = r.c; cx.beginPath(); cx.arc(r.x, r.y, 2.4, 0, 6.283); cx.fill();
+        if (r.y <= r.tY || r.vy > -1.5) { R.splice(i, 1); const k = 70 + Math.random() * 50; for (let j = 0; j < k; j++) { const a = Math.random() * 6.283, v = 1.5 + Math.random() * 5.5; P.push({ x: r.x, y: r.y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 0, max: 50 + Math.random() * 35, c: Math.random() < .2 ? '#fff' : r.c }); } }
+      }
+      for (let i = P.length - 1; i >= 0; i--) {
+        const p = P[i]; p.life++; p.x += p.vx; p.y += p.vy; p.vx *= .97; p.vy = p.vy * .97 + .06;
+        const k = p.life / p.max; if (k >= 1) { P.splice(i, 1); continue; }
+        cx.globalAlpha = 1 - k; cx.fillStyle = p.c; cx.beginPath(); cx.arc(p.x, p.y, 2.2 * (1 - k * .6), 0, 6.283); cx.fill(); cx.globalAlpha = 1;
+      }
+      if (el < DUR || P.length || R.length) fireT = requestAnimationFrame(step); else { cv.classList.remove('on'); cx.clearRect(0, 0, W, H); cv.style.height = ''; }
     };
     fireT = requestAnimationFrame(step);
   }
@@ -942,10 +984,14 @@
     const st0 = Object.keys(ST).find(k => ST[k] === home0) || 'KY';
     $('fSt').innerHTML = '<option value="">Any state</option>' + stOpts('');
     $('hSt').innerHTML = '<option value="">…or pick your state</option>' + stOpts('');
-    $('nSt').innerHTML = stOpts(st0); $('tSt').innerHTML = stOpts(st0);
+    $('nSt').innerHTML = stOpts(st0); if ($('tSt')) $('tSt').innerHTML = stOpts(st0);
     /* each part on its own, so one problem never stops the rest of the page */
     [stick, chips, viewChips, bell, flameBtn, lmInit, logInfo, homeInfo, mapOn, qsoInit, awDraw, fromPotaHash, load, needLoad, topDraw, myStats].forEach(f => { try { const r = f(); if (r && r.catch) r.catch(e => console.error(f.name, e)); } catch (e) { console.error(f.name, e); } });
-    setInterval(() => { const s = Math.max(0, Math.round((next - Date.now()) / 1000)); $('hsAge').textContent = next ? s + 's' : '–'; if (next && Date.now() >= next) { next = 0; load(); } }, 1000);
+    setInterval(() => {
+      const s = Math.max(0, Math.round((next - Date.now()) / 1000)); $('hsAge').textContent = next ? s + 's' : '–'; if (next && Date.now() >= next) { next = 0; load(); }
+      const u = new Date(); $('hsUtc').textContent = u.toISOString().slice(11, 19);
+      const n = Q.q.filter(q => q.d === today()).length; $('hsUtcL').textContent = `UTC · ${n} LOGGED TODAY`;
+    }, 1000);
     setInterval(() => { document.querySelectorAll('.hs').length && draw(); }, 5 * 60e3);
   }
   startApp();
