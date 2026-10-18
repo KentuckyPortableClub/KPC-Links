@@ -68,7 +68,7 @@ KINDS = [('wma', r'wildlife management area|\bwma\b|wildlife area|game lands?|ga
          ('hist', r'historic(al)? (site|park|area)|\bshs\b'),
          ('sp', r'state (resort )?park|\bsrp\b|recreation(al)? area|state beach|state seashore'),
          ('nf', r'national forest|national grassland'), ('sf', r'state forest'),
-         ('nwr', r'wildlife refuge|\bnwr\b'), ('nfh', r'hatchery|\bnfh\b'),
+         ('nwr', r'wildlife refuge|\bnwr\b'), ('nfh', r'hatchery|\bnfh\b|\bfh\b'),
          ('nps', r'national (park|monument|preserve|seashore|lakeshore|battlefield|military park|river|scenic river|parkway)'),
          ('wild', r'wilderness(?! study)'), ('wsa', r'wilderness study area|\bwsa\b'),
          ('hma', r'herd (management )?area|\bhma\b'),
