@@ -1,0 +1,163 @@
+# IL: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **128 of 219** parks joined to official land (same name + same kind of place). **0** to check by hand, **91** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+
+## Nothing found in PAD-US
+
+- US-0526 Wildcat Hollow State Nature Preserve (State Nature Preserve)
+- US-0571 Lincoln Log Cabin State Historic Site (State Historic Site)
+- US-0980 Beall Woods State Park (State Park)
+- US-0983 Campbell's Island State Park (State Park)
+- US-0986 Chain-O-Lakes State Park (State Park)
+- US-0989 Dixon Springs State Park (State Park)
+- US-0990 Donnelley/DePue State Park (State Park)
+- US-0998 Horseshoe Lake State Park (State Park)
+- US-1000 Illinois Beach State Park (State Park)
+- US-1001 James Pate Philip State Park (State Park)
+- US-10090 Mackinaw River State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-10094 Spring Lake State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-1010 Mississippi Palisades State Park (State Park)
+- US-1012 Moraine Hills State Park (State Park)
+- US-1013 Morrison-Rockwood State Park (State Park)
+- US-1020 Sam Parr State Park (State Park)
+- US-1021 Sangchris Lake State Park (State Park)
+- US-10241 Kincaid Mounds State Historic Site (State Historic Site)
+- US-1028 Walnut Point State Park (State Park)
+- US-1029 Wayne Fitzgerrell State Park (State Park)
+- US-10391 Kishwaukee River State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-10623 Shawneetown Bank State Historic Site (State Historic Site)
+- US-10661 Oakwood Bottoms USFS Recreation Area (USFS Recreation Area)
+- US-10729 Pekin Lake State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-10786 Siloam Springs Buckhorn Unit State Park (State Park)
+- US-10787 Weinberg-King Scripps Unit State Park (State Park)
+- US-10788 Ray Norbut East Hannibal Unit State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-11043 Burning Star State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-11144 Jarrot Mansion State Historic Site (State Historic Site)
+- US-11236 Carl Sandburg State Historic Site (State Historic Site)
+- US-11351 Weinberg-King Spunky Bottoms Unit State Park (State Park)
+- US-11781 Bishop Hill State Historic Site (State Historic Site)
+- US-11793 Revis Spring Hill Prairie State Nature Preserve (State Nature Preserve)
+- US-11844 Lusk Creek Canyon State Nature Preserve (State Nature Preserve)
+- US-11959 Metamora Courthouse Historic Site (Historic Site)
+- US-12080 Kaskaskia Bell Memonial State Historic Site (State Historic Site)
+- US-12110 Rend Lake State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-12217 Sandy Ford State Natural Reserve (State Natural Reserve)
+- US-12367 Freeman Mine State Wildlife Area (State Wildlife Area)
+- US-12368 Hooper Branch Savanna State Nature Preserve (State Nature Preserve)
+- US-12387 Rall Woods State Reserve (State Reserve)
+- US-12617 Postville Courthouse State Historic Site (State Historic Site)
+- US-12640 Rauchfuss Hill State Recreation Area (State Recreation Area)
+- US-12641 David Davis Mansion State Historic Site (State Historic Site)
+- US-13298 North Point Marina State Recreation Area (State Recreation Area)
+- US-13310 Foley Sand Prairie National Preserve (National Preserve)
+- US-13353 Maytown Pheasant Habitat Protection Area (Habitat Protection Area)
+- US-3791 Trail of Tears National Historic Trail (National Historic Trail)
+- US-4092 Salem Unit of Apple River Canyon State Park (State Park)
+- US-4093 Clinton Lake State Recreation Area (State Recreation Area)
+- US-4094 Eagle Creek State Park (State Park)
+- US-4096 Golconda Marina State Recreation Area (State Recreation Area)
+- US-4099 Moraine View State Recreation Area (State Recreation Area)
+- US-4105 Washington County State Recreation Area (State Recreation Area)
+- US-4106 Weinberg-King State Park (State Park)
+- US-4107 William W. Powers State Recreation Area (State Recreation Area)
+- US-4109 Big Bend State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4111 Bohm Woods State Nature Preserve (State Nature Preserve)
+- US-4118 Copperhead Hollow State Wildlife Area (State Wildlife Area)
+- US-4122 Fall Creek Overlook State Natural Area (State Natural Area)
+- US-4128 Henderson County State Conservation Area (State Conservation Area)
+- US-4136 Kinkaid Lake State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4138 Manito PHA State Park (State Park)
+- US-4139 Marseilles State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4147 Newton Lake State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4153 Kaskaskia unit of Shelbyville State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4154 West Okaw unit of Shelbyville State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4157 Trail of Tears State Forest (State Forest)
+- US-4159 Union County State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4236 Upper Mississippi River National Wildlife Refuge (National Wildlife Refuge)
+- US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
+- US-4573 Mormon Pioneer National Historic Trail (National Historic Trail)
+- US-7256 Midewin National Grassland (National Grassland)
+- US-7257 Saline County State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-7258 Pierre Menard Home State Historic Site (State Historic Site)
+- US-7259 Fort Kaskaskia State Historic Site (State Historic Site)
+- US-7367 Fort de Chartres National Historic Site (National Historic Site)
+- US-7368 Cahokia Mounds State Historic Site (State Historic Site)
+- US-7371 Sam Dale Lake State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-7372 Halfway Tavern State Historic Site (State Historic Site)
+- US-7373 Lincoln Trail Memorial State Historic Site (State Historic Site)
+- US-7839 Santa Fe Prairie State Nature Preserve (State Nature Preserve)
+- US-7871 Martin T Snyder Memorial State Nature Preserve (State Nature Preserve)
+- US-8267 World Shooting Complex State Recreation Area (State Recreation Area)
+- US-8294 Vandalia State House State Historic Site (State Historic Site)
+- US-8306 Lincoln's New Salem State Historic Site (State Historic Site)
+- US-8320 Lincoln Tomb State Historic Site (State Historic Site)
+- US-8380 Sahara Woods State Recreation Area (State Recreation Area)
+- US-9802 Black Hawk Historic Site (Historic Site)
+- US-9893 Tunnel Hill State Trail (State Trail)
+- US-9989 Lewis and Clark Memorial State Historic Site (State Historic Site)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- Ms Rv Pools 11-22 Recreation Area · REC · Rock Island · ~45,941 ac
+- Midewin Other · NF · Forest Service Region 09 Eastern · ~18,225 ac
+- Upper Mississippi River National Wildlife And Fish Refuge · NWR · Upper Mississippi River National Wildlife And Fish Refuge · ~12,512 ac
+- Upper Mississippi River National Wildlife And Fish Refuge · NWR · UPPER MISSISSIPPI RIVER NATIONAL WILDLIFE AND FISH REFUGE · ~12,471 ac
+- Chain O'Lakes State Park · SP · Illinois Department of Conservation · ~5,124 ac
+- Sahara Woods State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~4,059 ac
+- Horshoe Lake State Park · SP · Dept of Natural Resources State of Illinois · ~3,339 ac
+- Adeline Jay Geo-Karis Illinois Beach State Park · SP · STATE OF ILLINOIS DEPT OF CONSERVATION · ~3,186 ac
+- Sangchris Lake State Resource Area · SREC · Illinois Department of Natural Resources · ~3,071 ac
+- Pool No. 26 - Stump Lake · SP · Illinois Department of Natural Resources · ~2,972 ac
+- Prairie Ridge-Jasper State Natural Area · SCA · Illinois Department of Natural Resources · ~2,666 ac
+- Recreation Area · SREC · Illinois Department of Natural Resources · ~2,294 ac
+- Lake DePue State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~2,231 ac
+- Embarras River Bottoms State Habitat Area · SCA · Illinois Department of Natural Resources · ~2,179 ac
+- Spring Lake · SREC · State of Illinois · ~2,123 ac
+- Cahokia Mounds State Historical Site · SP · Illinois state of · ~2,016 ac
+- Robert Allerton Park · SCA · University of Illinois · ~1,808 ac
+- Piatt County Unit State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~1,753 ac
+- Moraine View State Recreational Area · SREC · Illinois Department of Natural Resources · ~1,652 ac
+- Morraine Hills State Park · SP · STATE OF ILLINOIS DEPT OF NATURAL RESOURCES · ~1,619 ac
+- Richland County Wildlife Management Area · SCA · Unknown · ~1,547 ac
+- Weinberg-King State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~1,529 ac
+- Sand Prairie-Scrub Oak State Natural Area · SCA · Illinois Department of Natural Resources · ~1,509 ac
+- Washington County State Natural Area · SCA · Illinois Department of Natural Resources · ~1,465 ac
+- 12 Mile Island Wildlife Management Area - Glades · SCA · Illinois Department of Natural Resources · ~1,419 ac
+- Sam Dale Lake State Conservation Area · SCA · Illinois Department of Natural Resources · ~1,324 ac
+- Witkowsky State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~1,323 ac
+- Saline County State Conservation Area · SCA · Illinois Department of Natural Resources · ~1,273 ac
+- Red's Landing · SCA · Unknown · ~1,189 ac
+- Sam Parr State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~1,164 ac
+- Pekin Lake · SREC · State of Illinois · ~1,095 ac
+- Cypress Pond State Natural Area · SCA · Illinois Department of Natural Resources · ~1,056 ac
+- Red Wing Slough · SCA · State of Illinois · ~1,001 ac
+- Mackinaw River · SREC · Other State Land · ~972 ac
+- Tunnel Hill · SREC · Other State Land · ~917 ac
+- Piasa Island Wildlife Management Area · SCA · Illinois Department of Natural Resources · ~912 ac
+- Gabaret Island Open Space · SOTH · State of Illinois Dept of Natural Resources · ~863 ac
+- Weinberg-King State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~862 ac
+- Mosenthein Island · SREC · State of Illinois Dept of Natural Resources · ~860 ac
+- Hanover Bluff State Natural Area · SCA · Illinois Department of Natural Resources · ~802 ac
+- Wildcat Hollow State Habitat Area · SCA · Illinois Department of Natural Resources · ~748 ac
+- Farmdale Dam Recreation Area · REC · Rock Island · ~702 ac
+- Momencee Wetlands State Natural Area · SCA · Illinois Department of Natural Resources · ~667 ac
+- Chauncey Marsh State Natural Area · SCA · Illinois Department of Natural Resources · ~652 ac
+- Saybrook State Habitat Area · SCA · Illinois Department of Natural Resources · ~649 ac
+- Sibley State Habitat Area · UNK · Illinois Department of Natural Resources · ~633 ac
+- Sangamon Valley Greenway · SREC · State of IL · ~584 ac
+- Lewis & Clark State Historic Site · SHCA · Illinois Historic Preservation Agency · ~562 ac
+- Donnelley State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~561 ac
+- Lincolns New Salem State Park · SP · State of Illinois · ~560 ac
+- Kishwaukee River State Natural Area · UNK · Illinois Department of Natural Resources · ~546 ac
+- Campbell Pond State Habitat Area · SCA · Illinois Department of Natural Resources · ~529 ac
+- Mississippi River State Forest Wildlife Area - Mortland · SCA · Illinois Department of Natural Resources · ~526 ac
+- Cretaceous Hills State Natural Area · SCA · Illinois Department of Natural Resources · ~511 ac
+- Vermilion River Observatory · UNK · University of Illinois · ~502 ac
+- Nardi Hills · SOTH · Illinois Department of Natural Resources · ~491 ac
+- Revis Hill Prairie State Natural Area · SCA · Illinois Department of Natural Resources · ~423 ac
+- East Fork Management Unit State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~403 ac
+- Wilmington Shrub Prairie State Natural Area · SCA · Illinois Department of Natural Resources · ~390 ac
+- Hurricane Creek State Habitat Area · SCA · Illinois Department of Natural Resources · ~385 ac

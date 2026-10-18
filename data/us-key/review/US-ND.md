@@ -1,0 +1,153 @@
+# ND: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **74 of 155** parks joined to official land (same name + same kind of place). **23** to check by hand, **58** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+- **US-0425** Devils Lake Wetland Management District (Wetland Management District) → Devils Lake (~97,667 ac, similar name); Ramsey County Waterfowl Production Area (~9,159 ac, the POTA pin is inside it (different name)); Ramsey County Waterfowl Production Area (~9,159 ac, the POTA pin is inside it (different name))
+- **US-0428** J. Clark Salyer Wetland Management District (Wetland Management District) → J. Clark Salyer National Wildlife Refuge (~55,029 ac, similar name); J. Clark Salyer National Wildlife Refuge (~55,027 ac, similar name)
+- **US-0437** White Horse Hill Game Preserve (Game Preserve) → Sullys Hill National Game Preserve (~1,630 ac, similar name); White Horse Hill National Game Preserve (~1,630 ac, similar name)
+- **US-4239** North Country Trail National Scenic Trail (National Scenic Trail) → Sakakawea Recreation Area (~478,564 ac, the POTA pin is inside it (different name)); Lake Sakakawea State Park (~733 ac, the POTA pin is inside it (different name))
+- **US-5741** Turtle Mountain State Forest (State Forest) → North Dakota State Forest Service Land (~14,517 ac, the POTA pin is inside it (different name))
+- **US-5742** Homen State Forest (State Forest) → North Dakota State Forest Service Land (~14,517 ac, the POTA pin is inside it (different name))
+- **US-7702** Lone Tree Wildlife Management Area (Wildlife Management Area) → Lonetree (~32,248 ac, the POTA pin is inside it (different name))
+- **US-7703** Buffalo Lake Wildlife Management Area (Wildlife Management Area) → Buffalo Lake (~813 ac, same name, different kind of place)
+- **US-7707** Maclean Bottoms Wildlife Management Area (Wildlife Management Area) → Oaha Recreation Area (~90,626 ac, the POTA pin is inside it (different name)); Oahe Wildlife Management Area (~16,734 ac, the POTA pin is inside it (different name))
+- **US-8563** Apple Creek Bottoms Wildlife Management Area (Wildlife Management Area) → Oahe Wildlife Management Area (~16,734 ac, the POTA pin is inside it (different name))
+- **US-8564** Armourdale Lake Wildlife Management Area (Wildlife Management Area) → Armourdale Lake (~23 ac, same name, different kind of place)
+- **US-8565** Arroda Lake Wildlife Management Area (Wildlife Management Area) → Arroda Lake (~380 ac, same name, different kind of place)
+- **US-8578** Erie Dam/Brewer Lake Wildlife Management Area (Wildlife Management Area) → Erie Dam (~1,018 ac, similar name)
+- **US-8580** Harmony Lake Wildlife Management Area (Wildlife Management Area) → Harmony Lake (~492 ac, same name, different kind of place)
+- **US-8583** Horsehead Lake Wildlife Management Area (Wildlife Management Area) → Horsehead Lake (~453 ac, same name, different kind of place)
+- **US-8589** Kimball Bottoms Wildlife Management Area (Wildlife Management Area) → Oaha Recreation Area (~90,626 ac, the POTA pin is inside it (different name)); Oahe Wildlife Management Area (~16,734 ac, the POTA pin is inside it (different name))
+- **US-8596** Ochs Point Wildlife Management Area (Wildlife Management Area) → Ochs (~971 ac, similar name)
+- **US-8601** Rice Lake Wildlife Management Area (Wildlife Management Area) → Rice Lake (~996 ac, same name, different kind of place)
+- **US-8604** Smishek Lake Wildlife Management Area (Wildlife Management Area) → Smishek Lake (~159 ac, same name, different kind of place)
+- **US-8606** Swan Lake Wildlife Management Area (Wildlife Management Area) → Swan Lake (~293 ac, same name, different kind of place)
+- **US-8607** Sweet Briar Lake Wildlife Management Area (Wildlife Management Area) → Sweetbriar Lake (~875 ac, the POTA pin is inside it (different name))
+- **US-8608** Thompson Lake Wildlife Management Area (Wildlife Management Area) → Thompson Lake (~802 ac, same name, different kind of place)
+- **US-8612** Wild Prairie Wildlife Management Area (Wildlife Management Area) → Wild Prairie (~1,819 ac, same name, different kind of place)
+
+## Nothing found in PAD-US
+
+- US-0421 Arrowwood Wetland Management District (Wetland Management District)
+- US-0430 Kulm Wetland Management District (Wetland Management District)
+- US-0440 Valley City Wetland Management District (Wetland Management District)
+- US-12782 Camp Arnold State Historic Site (State Historic Site)
+- US-12783 Camp Corning State Historic Site (State Historic Site)
+- US-12784 Camp Grant State Historic Site (State Historic Site)
+- US-2767 Rough Rider State Park (State Park)
+- US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
+- US-5639 Writing Rock State Historic Site (State Historic Site)
+- US-5743 Mouse River State Forest (State Forest)
+- US-5744 Tetrault Woods State Forest (State Forest)
+- US-5745 Nowesta Memorial Grove State Forest (State Forest)
+- US-5746 Sheyenne River State Forest (State Forest)
+- US-5747 Crow Flies High State Recreation Area (State Recreation Area)
+- US-5748 Fort Abercrombie State Historic Site (State Historic Site)
+- US-7143 International Peace Garden Park (Park)
+- US-7509 Pembina Gorge State Recreation Area (State Recreation Area)
+- US-7510 Turtle Mountain State Recreation Area (State Recreation Area)
+- US-7511 Little Metigoshe State Recreation Area (State Recreation Area)
+- US-8524 Bismarck-Deadwood Stage Trail State Historic Site (State Historic Site)
+- US-8526 Camp Atchison State Historic Site (State Historic Site)
+- US-8527 Camp Buell State Historic Site (State Historic Site)
+- US-8528 Camp Hancock State Historic Site (State Historic Site)
+- US-8531 Cannonball Stage Station State Historic Site (State Historic Site)
+- US-8532 Chateau De Mores State Historic Site (State Historic Site)
+- US-8534 David Thompson State Historic Site (State Historic Site)
+- US-8535 Double Ditch Indian Village State Historic Site (State Historic Site)
+- US-8536 Fort Buford State Historic Site (State Historic Site)
+- US-8537 Fort Clark State Historic Site (State Historic Site)
+- US-8538 Fort Dilts State Historic Site (State Historic Site)
+- US-8539 Fort Mandan Overlook State Historic Site (State Historic Site)
+- US-8540 Fort Rice State Historic Site (State Historic Site)
+- US-8541 Fort Totten State Historic Site (State Historic Site)
+- US-8542 Gingras Trading Post State Historic Site (State Historic Site)
+- US-8543 Hudson Townsite State Historic Site (State Historic Site)
+- US-8544 Huff Indian Village State Historic Site (State Historic Site)
+- US-8545 Killdeer Mountain Battlefield State Historic Site (State Historic Site)
+- US-8546 Lake Jessie State Historic Site (State Historic Site)
+- US-8547 Lake Johnson State Historic Site (State Historic Site)
+- US-8548 Maple Creek Crossing State Historic Site (State Historic Site)
+- US-8549 Menoken Indian Village State Historic Site (State Historic Site)
+- US-8550 Missouri-Yellowstone Confluence Interpretive Center State Historic Site (State Historic Site)
+- US-8552 November 33 Launch Facility State Historic Site (State Historic Site)
+- US-8553 Oak Lawn Church State Historic Site (State Historic Site)
+- US-8554 Pembina State Museum State Historic Site (State Historic Site)
+- US-8555 Oscar-Zero Missile Alert Facility State Historic Site (State Historic Site)
+- US-8557 Steamboat Warehouse State Historic Site (State Historic Site)
+- US-8558 Wadeson Cabin State Historic Site (State Historic Site)
+- US-8559 Welk Homestead State Historic Site (State Historic Site)
+- US-8560 Whitestone Hill State Historic Site (State Historic Site)
+- US-8561 Missouri River State Natural Area (State Natural Area)
+- US-8562 Adam and Teresa Raab Wildlife Management Area (Wildlife Management Area)
+- US-8567 Barron Wildlife Management Area (Wildlife Management Area)
+- US-8568 Big Oxbow Wildlife Management Area (Wildlife Management Area)
+- US-8569 Blacktail Dam Wildlife Management Area (Wildlife Management Area)
+- US-8573 Coal Lake Wildlife Management Area (Wildlife Management Area)
+- US-8597 Olson Wildlife Management Area (Wildlife Management Area)
+- US-8611 Van Hook Wildlife Management Area (Wildlife Management Area)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- Nd State Lands - Surface Ownership · SRMA · Unknown · ~712,367 ac
+- Sakakawea Recreation Area · REC · Omaha · ~478,564 ac
+- Devils Lake · RMA · Unknown · ~97,667 ac
+- Oaha Recreation Area · REC · Omaha · ~90,626 ac
+- North Dakota Field Office · PUB · BLM · ~58,891 ac
+- Lonetree · SCA · Unknown · ~32,248 ac
+- Stutsman County Waterfowl Production Area · RMA · STUTSMAN COUNTY WATERFOWL PRODUCTION AREA · ~27,734 ac
+- Stutsman County Waterfowl Production Area · RMA · Stutsman County Waterfowl Production Area · ~27,730 ac
+- Mcintosh County Waterfowl Production Area · RMA · MCINTOSH COUNTY WATERFOWL PRODUCTION AREA · ~17,391 ac
+- Mcintosh County Waterfowl Production Area · RMA · Mcintosh County Waterfowl Production Area · ~17,391 ac
+- Oahe Wildlife Management Area · SCA · Unknown · ~16,734 ac
+- North Dakota State Forest Service Land · SRMA · Unknown · ~14,517 ac
+- Sheridan County Waterfowl Production Area Of Nd · RMA · SHERIDAN COUNTY WATERFOWL PRODUCTION AREA OF ND · ~12,399 ac
+- Sheridan County Waterfowl Production Area Of Nd · RMA · Sheridan County Waterfowl Production Area Of Nd · ~12,399 ac
+- Cavalier County Waterfowl Production Area · RMA · Cavalier County Waterfowl Production Area · ~12,278 ac
+- Mclean County Waterfowl Production Area · RMA · MCLEAN COUNTY WATERFOWL PRODUCTION AREA · ~12,161 ac
+- Mclean County Waterfowl Production Area · RMA · Mclean County Waterfowl Production Area · ~12,161 ac
+- Logan County Waterfowl Production Area · RMA · LOGAN COUNTY WATERFOWL PRODUCTION AREA · ~12,070 ac
+- Logan County Waterfowl Production Area · RMA · Logan County Waterfowl Production Area · ~12,069 ac
+- Burleigh County Waterfowl Production Area · RMA · BURLEIGH COUNTY WATERFOWL PRODUCTION AREA · ~11,923 ac
+- Burleigh County Waterfowl Production Area · RMA · Burleigh County Waterfowl Production Area · ~11,923 ac
+- Pierce County Waterfowl Production Area · RMA · PIERCE COUNTY WATERFOWL PRODUCTION AREA · ~11,770 ac
+- Pierce County Waterfowl Production Area · RMA · Pierce County Waterfowl Production Area · ~11,720 ac
+- Wells County Waterfowl Production Area · RMA · WELLS COUNTY WATERFOWL PRODUCTION AREA · ~10,828 ac
+- Wells County Waterfowl Production Area · RMA · Wells County Waterfowl Production Area · ~10,828 ac
+- Lake Tschida · REC · Unknown · ~10,763 ac
+- Cavalier County Waterfowl Production Area · RMA · CAVALIER COUNTY WATERFOWL PRODUCTION AREA · ~10,737 ac
+- Divide County Waterfowl Production Area · RMA · DIVIDE COUNTY WATERFOWL PRODUCTION AREA · ~10,734 ac
+- Divide County Waterfowl Production Area · RMA · Divide County Waterfowl Production Area · ~10,734 ac
+- Mountrail County Waterfowl Production Area · RMA · MOUNTRAIL COUNTY WATERFOWL PRODUCTION AREA · ~10,631 ac
+- Mountrail County Waterfowl Production Area · RMA · Mountrail County Waterfowl Production Area · ~10,631 ac
+- Dickey County Waterfowl Production Area · RMA · Dickey County Waterfowl Production Area · ~10,043 ac
+- Dickey County Waterfowl Production Area · RMA · DICKEY COUNTY WATERFOWL PRODUCTION AREA · ~10,042 ac
+- Benson County Waterfowl Production Area · RMA · BENSON COUNTY WATERFOWL PRODUCTION AREA · ~9,271 ac
+- Benson County Waterfowl Production Area · RMA · Benson County Waterfowl Production Area · ~9,271 ac
+- Ramsey County Waterfowl Production Area · RMA · RAMSEY COUNTY WATERFOWL PRODUCTION AREA · ~9,159 ac
+- Ramsey County Waterfowl Production Area · RMA · Ramsey County Waterfowl Production Area · ~9,159 ac
+- Kidder County Waterfowl Production Area · RMA · KIDDER COUNTY WATERFOWL PRODUCTION AREA · ~8,163 ac
+- Kidder County Waterfowl Production Area · RMA · Kidder County Waterfowl Production Area · ~8,163 ac
+- Bowman Haley Recreation Area · REC · Omaha · ~7,839 ac
+- Pipestem Recreation Area · REC · Omaha · ~7,499 ac
+- Barnes County Waterfowl Production Area · RMA · Barnes County Waterfowl Production Area · ~7,239 ac
+- Grand Forks County Waterfowl Production Area · RMA · GRAND FORKS COUNTY WATERFOWL PRODUCTION AREA · ~7,207 ac
+- Grand Forks County Waterfowl Production Area · RMA · Grand Forks County Waterfowl Production Area · ~7,207 ac
+- Barnes County Waterfowl Production Area · RMA · BARNES COUNTY WATERFOWL PRODUCTION AREA · ~7,078 ac
+- Wakopa · SCA · Unknown · ~7,039 ac
+- Towner County Waterfowl Production Area · RMA · TOWNER COUNTY WATERFOWL PRODUCTION AREA · ~6,857 ac
+- Towner County Waterfowl Production Area · RMA · Towner County Waterfowl Production Area · ~6,857 ac
+- Ward County Waterfowl Production Area · RMA · Ward County Waterfowl Production Area · ~6,623 ac
+- Richland County Waterfowl Production Area · RMA · Richland County Waterfowl Production Area · ~6,485 ac
+- Richland County Waterfowl Production Area · RMA · RICHLAND COUNTY WATERFOWL PRODUCTION AREA · ~6,484 ac
+- Ward County Waterfowl Production Area · RMA · WARD COUNTY WATERFOWL PRODUCTION AREA · ~6,308 ac
+- Rolette County Waterfowl Production Area · RMA · ROLETTE COUNTY WATERFOWL PRODUCTION AREA · ~5,884 ac
+- Mchenry County Waterfowl Production Area · RMA · MCHENRY COUNTY WATERFOWL PRODUCTION AREA · ~5,882 ac
+- Mchenry County Waterfowl Production Area · RMA · Mchenry County Waterfowl Production Area · ~5,882 ac
+- Rolette County Waterfowl Production Area · RMA · Rolette County Waterfowl Production Area · ~5,870 ac
+- Lamoure County Waterfowl Production Area · RMA · LAMOURE COUNTY WATERFOWL PRODUCTION AREA · ~5,466 ac
+- Lamoure County Waterfowl Production Area · RMA · Lamoure County Waterfowl Production Area · ~5,466 ac
+- Pembina Hills · SCA · Unknown · ~5,292 ac
+- Sargent County Waterfowl Production Area · RMA · SARGENT COUNTY WATERFOWL PRODUCTION AREA · ~4,856 ac

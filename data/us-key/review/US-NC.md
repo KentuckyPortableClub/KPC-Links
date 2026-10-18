@@ -1,0 +1,174 @@
+# NC: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **151 of 253** parks joined to official land (same name + same kind of place). **0** to check by hand, **102** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+
+## Nothing found in PAD-US
+
+- US-10259 NC Vietnam Veteran's Memorial Historic Site (Historic Site)
+- US-10260 Birkhead Mountains Wilderness Area (Wilderness Area)
+- US-10262 Linville Gorge Wilderness Area (Wilderness Area)
+- US-10263 Bonner House Historic Site (Historic Site)
+- US-10388 Palmer Marsh House Historic Site (Historic Site)
+- US-10389 Hiwassee Dam Recreation Park (Recreation Park)
+- US-10397 Southern Nantahala Wilderness Area (Wilderness Area)
+- US-10398 Chatuge Dam Trail Recreation Park (Recreation Park)
+- US-10399 Apalachia Reservoir Recreation Park (Recreation Park)
+- US-10406 Lake Rim Fishing & Boating Multiple Use Area (Multiple Use Area)
+- US-10511 Jessups Mill Pond State Game Land (State Game Land)
+- US-11019 Shining Rock Wilderness Area (Wilderness Area)
+- US-11020 Middle Prong Wilderness Area (Wilderness Area)
+- US-11238 Micken's Branch Multiple Use Area (Multiple Use Area)
+- US-11271 Joyce Kilmer-Slickrock Wilderness Area (Wilderness Area)
+- US-12119 Moses H. Cone National Park (National Park)
+- US-12175 Vance State Game Land (State Game Land)
+- US-12320 Yadkin River State Trail (State Trail)
+- US-12371 Julian Price National Park (National Park)
+- US-12414 Doughton Recreation Park (Recreation Park)
+- US-12662 Harmon Den Wildlife Management Area (Wildlife Management Area)
+- US-13002 Dan River State Trail (State Trail)
+- US-3378 Blue Ridge National Parkway (National Parkway)
+- US-3791 Trail of Tears National Historic Trail (National Historic Trail)
+- US-3843 Haw River at Iron Ore Access Belt State Park (State Park)
+- US-3846 Mount Jefferson Natural State Conservation Area (State Conservation Area)
+- US-3847 Occoneechee Mountain Natural State Conservation Area (State Conservation Area)
+- US-3849 Bald Head Woods Reserve State Conservation Area (State Conservation Area)
+- US-3850 Bird Island Reserve State Conservation Area (State Conservation Area)
+- US-3851 Brumley Forest State Nature Preserve (State Nature Preserve)
+- US-3852 Buxton Woods State Reserve (State Reserve)
+- US-3853 Emily and Richardson Preyer Buckridge State Reserve (State Reserve)
+- US-3854 Flower Hill State Nature Preserve (State Nature Preserve)
+- US-3857 Horton Grove State Nature Preserve (State Nature Preserve)
+- US-3859 Johnston Mill State Nature Preserve (State Nature Preserve)
+- US-3860 Kitty Hawk Woods State Preserve (State Preserve)
+- US-3861 Little River Natural State Conservation Area (State Conservation Area)
+- US-3862 Nags Head Woods Ecological State Preserve (State Preserve)
+- US-3863 Palmetto-Peartree State Preserve (State Preserve)
+- US-3864 Permuda Island State Reserve (State Reserve)
+- US-3866 Ward State Nature Preserve (State Nature Preserve)
+- US-3867 Swift Creek Bluffs State Nature Preserve (State Nature Preserve)
+- US-3868 Theodore Roosevelt State Conservation Area (State Conservation Area)
+- US-3871 White Pines State Nature Preserve (State Nature Preserve)
+- US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
+- US-4577 Overmountain Victory National Historic Trail (National Historic Trail)
+- US-4854 DuPont State Recreational Forest State Forest (State Forest)
+- US-4856 Holmes Educational State Forest (State Forest)
+- US-4858 Mountain Island Educational State Forest (State Forest)
+- US-4859 Rendezvous Mountain State Park (State Park)
+- US-4860 Turnbull Creek Educational State Forest (State Forest)
+- US-4861 Tuttle Educational State Forest (State Forest)
+- US-6831 Battleship North Carolina State Historic Site (State Historic Site)
+- US-6834 Brunswick Town/Ft. Anderson State Historic Site (State Historic Site)
+- US-6835 Charles B Aycock Birthplace State Historic Site (State Historic Site)
+- US-6836 Charlotte Hawkins Brown Museum State Historic Site (State Historic Site)
+- US-6837 CSS Neuse Civil War Interpretive Center State Historic Site (State Historic Site)
+- US-6845 Horne Creek Living Historical Farm State Historic Site (State Historic Site)
+- US-6847 NC Transportation Museum State Historic Site (State Historic Site)
+- US-6848 President James K. Polk State Historic Site (State Historic Site)
+- US-6852 State Capitol State Historic Site (State Historic Site)
+- US-6856 Zebulon B. Vance Birthplace State Historic Site (State Historic Site)
+- US-6877 Yadkin River State Game Land (State Game Land)
+- US-6880 Bachelor Bay State Game Land (State Game Land)
+- US-6882 Bladen Lakes State Game Land (State Game Land)
+- US-6884 Buckhorn State Game Land (State Game Land)
+- US-6885 Buckridge State Game Land (State Game Land)
+- US-6888 Butner-Falls of the Neuse State Game Land (State Game Land)
+- US-6889 Buxton Woods State Game Land (State Game Land)
+- US-6892 Chatham State Game Land (State Game Land)
+- US-6900 Dare State Game Land (State Game Land)
+- US-6901 Dover Bay State Game Land (State Game Land)
+- US-6902 Dupont State Game Land (State Game Land)
+- US-6903 Elk Knob State Game Land (State Game Land)
+- US-6909 Harris State Game Land (State Game Land)
+- US-6910 Headwaters State Game Land (State Game Land)
+- US-6913 Hyco State Game Land (State Game Land)
+- US-6918 Kerr Scott State Game Land (State Game Land)
+- US-6920 Lee State Game Land (State Game Land)
+- US-6924 Lower Roanoke River State Game Land (State Game Land)
+- US-6925 Mayo State Game Land (State Game Land)
+- US-6935 Perkins State Game Land (State Game Land)
+- US-6941 Little Fork Forest State Game Land (State Game Land)
+- US-6944 Rockfish Creek State Game Land (State Game Land)
+- US-6945 Rocky Run State Game Land (State Game Land)
+- US-6946 Sampson State Game Land (State Game Land)
+- US-6955 Sutton Lake State Game Land (State Game Land)
+- US-6957 Texas Plantation State Game Land (State Game Land)
+- US-6961 Upper Roanoke River State Game Land (State Game Land)
+- US-6963 Nutbush Wildlife Management Area (Wildlife Management Area)
+- US-8005 Fontana TVA Dam National Recreation Area (National Recreation Area)
+- US-8006 Rachel Carson State Reserve (State Reserve)
+- US-8008 Armstrong State Fish Hatchery (State Fish Hatchery)
+- US-8009 Marion State Fish Hatchery (State Fish Hatchery)
+- US-8010 McKinney Lake State Fish Hatchery (State Fish Hatchery)
+- US-8011 Bobby N. Setzer State Fish Hatchery (State Fish Hatchery)
+- US-8012 Table Rock State Fish Hatchery (State Fish Hatchery)
+- US-8013 Watha State Fish Hatchery (State Fish Hatchery)
+- US-8226 Upchurch Lake State Fishing Lake (State Fishing Lake)
+- US-8313 Mountains to Sea State Trail (State Trail)
+- US-9372 Governor Caswell Memorial State Historic Site (State Historic Site)
+- US-9758 Chattooga National Wild and Scenic River (National Wild and Scenic River)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- Fort Bragg Military Reservation · MIL · UNK · ~154,608 ac
+- Camp Lejeune · MIL · UNK · ~126,459 ac
+- Blue Ridge Parkway · SDA · NPS · ~52,757 ac
+- Dare County Air Force Range · MIL · UNK · ~46,244 ac
+- B. Everett Jordan Dam and Lake · UNK · UNK · ~45,366 ac
+- Emily and Richardson Preyer Buckridge Coastal Reserve · SOTH · UNK · ~28,772 ac
+- Kerr Reservoir · UNK · UNK · ~25,497 ac
+- NC Department of Transportation Mitigation Site · SOTH · UNK · ~24,566 ac
+- Roanoke River Wetlands Game Land · SCA · UNK · ~20,543 ac
+- Lake Phelps State Lake · SP · UNK · ~15,917 ac
+- NC Department of Transportation Mitigation Site · SOTH · UNK · ~13,953 ac
+- Marine Corps Air Station Cherry Point - Piney Island · MIL · UNK · ~11,989 ac
+- Dupont State Forest · SRMA · UNK · ~11,803 ac
+- Marine Corps Air Station Cherry Point - Main Air Station · MIL · UNK · ~11,288 ac
+- Military Ocean Terminal Sunny Point · MIL · UNK · ~10,885 ac
+- Camp Mackall Military Reservation · MIL · UNK · ~7,940 ac
+- Caledonia Correctional Institution · SOTH · UNK · ~6,847 ac
+- Boiling Spring Lakes Plant Conservation Preserve · SOTH · UNK · ~6,829 ac
+- Bear Garden Tract · SCA · NC Wildlife Resources Commission · ~6,278 ac
+- Bushy Lake State Natural Area · SP · UNK · ~6,180 ac
+- NC Submerged Lands · SOTH · UNK · ~6,064 ac
+- Chowan Swamp State Natural Area · SP · UNK · ~6,030 ac
+- Bull Neck Swamp · SOTH · UNK · ~5,984 ac
+- Bald Head Island State Natural Area · SP · UNK · ~5,968 ac
+- Umstead Research Farm · SOTH · UNK · ~5,152 ac
+- Camp Butner National Guard Training Center · SOTH · UNK · ~4,980 ac
+- Masonboro Island Component of the North Carolina National Estuarine Research Reserve · SOTH · UNK · ~4,740 ac
+- Great Coharie Creek Tract · SOTH · UNK · ~4,705 ac
+- W. Kerr Scott Reservoir · UNK · UNK · ~4,533 ac
+- Croatan Mitigation Site · SOTH · UNK · ~4,199 ac
+- Roanoke River Delta Islands · PCON · The Nature Conservancy · ~3,988 ac
+- Yellow Mountain State Natural Area · SP · UNK · ~3,805 ac
+- Bobs Creek State Natural Area · SP · UNK · ~3,706 ac
+- NCDA Forest Research Station · SOTH · UNK · ~3,291 ac
+- Beef Cattle Field Laboratory · SOTH · UNK · ~3,171 ac
+- Seymour Johnson Air Force Base · MIL · UNK · ~3,120 ac
+- Sandy Run Savannas State Natural Area · SP · UNK · ~3,042 ac
+- Harvey Point Defense Testing Activity Facility · MIL · UNK · ~3,019 ac
+- Howell Woods Environmental Learning Center · SOTH · UNK · ~2,990 ac
+- Hill Demonstration Forest · SOTH · UNK · ~2,428 ac
+- North Carolina State University Agricultural Research Land · SOTH · UNK · ~2,378 ac
+- Rachel Carson Component of the North Carolina National Estuarine Research Reserve · SOTH · UNK · ~2,315 ac
+- Cherry Research Farm · SOTH · UNK · ~2,185 ac
+- McCain Tract Forest Management Area · SOTH · UNK · ~2,161 ac
+- North Carolina Zoological Park · SOTH · UNK · ~2,143 ac
+- Pondberry Bay Plant Conservation Preserve · SOTH · UNK · ~2,105 ac
+- Rendezvous Mountain Educational State Forest · SRMA · UNK · ~1,902 ac
+- Tidewater Research Station · SOTH · UNK · ~1,621 ac
+- Tater Hill Plant Conservation Preserve · SOTH · UNK · ~1,588 ac
+- Bird Island Coastal Reserve · SOTH · UNK · ~1,523 ac
+- Haw River State Park · SP · UNK · ~1,481 ac
+- Zekes Island Component of the North Carolina National Estuarine Research Reserve · SOTH · UNK · ~1,471 ac
+- Marine Corps Air Station Cherry Point - Atlantic Airfield · MIL · UNK · ~1,454 ac
+- Kitty Hawk Woods Coastal Reserve · SOTH · UNK · ~1,438 ac
+- Eagles Island Dredge Disposal Area · UNK · UNK · ~1,418 ac
+- Salmon Creek State Natural Area · SP · UNK · ~1,305 ac
+- Goodwin State Forest · SRMA · UNK · ~1,245 ac
+- Mount Jefferson State Natural Area · SP · UNK · ~1,176 ac
+- Odom Correctional Institution · SOTH · UNK · ~1,108 ac
+- Lower Haw River State Natural Area · SP · UNK · ~1,105 ac

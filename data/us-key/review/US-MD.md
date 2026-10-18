@@ -1,0 +1,136 @@
+# MD: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **122 of 186** parks joined to official land (same name + same kind of place). **0** to check by hand, **64** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+
+## Nothing found in PAD-US
+
+- US-0334 Patuxent National Wildlife Refuge (National Wildlife Refuge)
+- US-0928 Fort McHenry National Monument (National Monument)
+- US-10732 Hickory Point Cypress Swamp Natural Area (Natural Area)
+- US-10751 Idylwild Natural Area (Natural Area)
+- US-10756 Skimmer Island Natural Area (Natural Area)
+- US-10758 North End Natural Area (Natural Area)
+- US-10759 Green Run Woods Natural Area (Natural Area)
+- US-10762 Furnace Natural Area (Natural Area)
+- US-10763 Fishing Bay Marshes Natural Area (Natural Area)
+- US-10764 Andover Flatwoods Natural Area (Natural Area)
+- US-10765 Millington Natural Area (Natural Area)
+- US-10766 Swallow Falls Natural Area (Natural Area)
+- US-10767 Lostland Run Natural Area (Natural Area)
+- US-10768 South Savage Mountain Natural Area (Natural Area)
+- US-10769 Monroe Run Natural Area (Natural Area)
+- US-10770 Bear Pen Run Natural Area (Natural Area)
+- US-10771 Cat Rock and Bob's Hill Natural Area (Natural Area)
+- US-10773 Masemore Hemlock Ravines Natural Area (Natural Area)
+- US-10774 Plum Creek Natural Area (Natural Area)
+- US-10775 Black Marsh Natural Area (Natural Area)
+- US-10779 Mattawoman Creek Natural Area (Natural Area)
+- US-10780 Allens Fresh Natural Area (Natural Area)
+- US-10781 Calvert Cliffs Natural Area (Natural Area)
+- US-11231 Sideling Hill Creek State Park (State Park)
+- US-13377 Freedman's State Park (State Park)
+- US-13564 Savage Highlands State Park (State Park)
+- US-1561 Bill Burton Fishing Pier State Park (State Park)
+- US-1567 Dans Mountain State Park (State Park)
+- US-1572 Franklin Point State Park (State Park)
+- US-1582 Martinak State Park (State Park)
+- US-4365 North Point Battlefield State Park (State Park)
+- US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
+- US-4564 Potomac Heritage Trail National Scenic Trail (National Scenic Trail)
+- US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail)
+- US-4581 Star-Spangled Banner National Historic Trail (National Historic Trail)
+- US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
+- US-4767 Pocomoke State Forest (State Forest)
+- US-6387 Fair Hill State Natural Area (State Natural Area)
+- US-6388 Helen Avalynne Tawes Garden State Park (State Park)
+- US-6389 Jefferson Patterson Park and Museum State Park (State Park)
+- US-6390 South Mountain State Battlefield State Park (State Park)
+- US-6391 Merkle Wildlife Sanctuary State Natural Area (State Natural Area)
+- US-6392 Monocacy River Natural Resources Management Area State Natural Area (State Natural Area)
+- US-6393 Morgan Run State Natural Area (State Natural Area)
+- US-6395 Sassafras Natural Resources Management Area State Natural Area (State Natural Area)
+- US-6396 Soldier's Delight Natural Area (Natural Area)
+- US-6398 Woodmont State Natural Area (State Natural Area)
+- US-6399 Wye Island State Conservation Area (State Conservation Area)
+- US-6400 Youghiogheny Wild River State Natural Area (State Natural Area)
+- US-7725 Browns Branch Wildlife Management Area (Wildlife Management Area)
+- US-7730 McKee-Breshers Wildlife Management Area (Wildlife Management Area)
+- US-7733 Strider Wildlife Management Area (Wildlife Management Area)
+- US-7760 Nanjemoy Creek Wildlife Management Area (Wildlife Management Area)
+- US-7762 Popes Creek Wildlife Management Area (Wildlife Management Area)
+- US-7768 Frederick City Watershed Cooperative Wildlife Management Area (Wildlife Management Area)
+- US-7769 Heaters Island Wildlife Management Area (Wildlife Management Area)
+- US-7773 Ridenour Swamp Wildlife Management Area (Wildlife Management Area)
+- US-7776 Oxon Cove Park & Farm National Historical Park (National Historical Park)
+- US-7777 Dierssen Wildlife Management Area (Wildlife Management Area)
+- US-7782 Ben Doane Parcel of Nanjemoy Wildlife Management Area (Wildlife Management Area)
+- US-7973 Baltimore-Washington National Parkway (National Parkway)
+- US-7974 Harmony Hall National Heritage Site (National Heritage Site)
+- US-7975 Glen Echo National Heritage Site (National Heritage Site)
+- US-9901 Civil War Defenses of Washington National Historic Trail (National Historic Trail)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- Chesapeake Forest Lands · SRMA ·   · ~58,595 ac
+- Patuxent Research Refuge · NWR · Patuxent Research Refuge · ~12,837 ac
+- Patuxent Research Refuge · NWR · PATUXENT RESEARCH REFUGE · ~12,824 ac
+- Jennings Randolph Recreation Area · REC · Baltimore · ~11,973 ac
+- Rock Creek Stream Valley Park · SOTH ·   · ~4,925 ac
+- Chesapeake Forest Lands · SRMA · MD Department of Natural Resources · ~4,780 ac
+- Pocomoke River State Forest · SRMA · MD Department of Natural Resources · ~4,198 ac
+- Youghiogheny Wild River Nea · SP ·   · ~3,640 ac
+- Woodmont Nrma · SP ·   · ~3,192 ac
+- Litttle Bennett Regional Park · SOTH ·   · ~2,935 ac
+- Northwest Branch Park · SOTH ·   · ~2,827 ac
+- Wye Island Nrma · SP ·   · ~2,487 ac
+- Mckee Beshers Wma · SCA ·   · ~1,971 ac
+- SAVAGE RIVER SF - Middle Fork Wildland · SRMA ·   · ~1,920 ac
+- Soldiers Delight Nea · SP ·   · ~1,909 ac
+- Pocomoke River State Forest · SRMA · MD Department of Natural Resources · ~1,866 ac
+- CEDAR ISLAND Wildlife Management Area - Cedar Island Wildland · SCA ·   · ~1,838 ac
+- Doncaster Demonstration Sf · SRMA ·   · ~1,793 ac
+- Piscataway Creek Stream Valley Park · SOTH ·   · ~1,779 ac
+- Merkle Nrma · SP ·   · ~1,677 ac
+- Mattawoman Natural Environment Area · SCA · MD Department of Natural Resources · ~1,598 ac
+- Freedom Forest · LOTH ·   · ~1,568 ac
+- Appalachian National Scenic Trail · NT · NPS · ~1,565 ac
+- Black Hill Regional Park · SOTH ·   · ~1,558 ac
+- Chesapeake Forest Lands · SRMA · MD Department of Natural Resources · ~1,438 ac
+- Pocomoke River State Forest · SRMA ·   · ~1,418 ac
+- POTOMAC SF - Backbone Mountain Wildland · SRMA ·   · ~1,380 ac
+- Chesapeake Forest Lands · SRMA ·   · ~1,371 ac
+- Morgan Run Nea · SP ·   · ~1,365 ac
+- Chapman Residual · SREC · MD Department of Natural Resources · ~1,360 ac
+- Kings Landing Nrma · SP ·   · ~1,286 ac
+- Wicomico Demonstration Forest · SRMA ·   · ~1,254 ac
+- GREEN RIDGE SF - Potomac Bends Wildland · SRMA ·   · ~1,186 ac
+- Paint Branch Park · SOTH ·   · ~1,115 ac
+- Chesapeake Forest Lands · SRMA · MD Department of Natural Resources · ~1,022 ac
+- Elms Property · SOTH ·   · ~1,016 ac
+- Chesapeake Forest Lands · SRMA · MD Department of Natural Resources · ~980 ac
+- Sassafrass Nrma · SP ·   · ~971 ac
+- County Land · LOTH ·   · ~938 ac
+- CEDAR ISLAND Wildlife Management Area - Cedar Island Wildland · SCA ·   · ~888 ac
+- Patuxent River Wastershed Conservation Park · SOTH ·   · ~870 ac
+- Cabin John Regional Park · SOTH ·   · ~846 ac
+- Mattawoman Natural Environment Area · SCA · MD Department of Natural Resources · ~826 ac
+- Chesapeake Forest Lands · SRMA · MD Department of Natural Resources · ~823 ac
+- Fair Hill Natural Resource Management Area · SRMA · MD Department of Natural Resources · ~798 ac
+- Parker Creek Wildlife Management Area · SCA ·   · ~775 ac
+- Chesapeake Forest Lands · SRMA ·   · ~738 ac
+- Pocomoke River State Forest · SRMA · MD Department of Natural Resources · ~725 ac
+- Henson Creek Stream Valley Park · SOTH ·   · ~718 ac
+- Enterprise Gofl Course · LOTH ·   · ~676 ac
+- Maxwell Hall Nrma · SP ·   · ~671 ac
+- Spice Creek Nrma · SP ·   · ~649 ac
+- Pocomoke River State Forest · SRMA · MD Department of Natural Resources · ~599 ac
+- Rock Creek Park · SOTH ·   · ~586 ac
+- POTOMAC SF - Maple Lick Run Wildland · SRMA ·   · ~582 ac
+- Unknown Park · PUB · USA · ~574 ac
+- Pocomoke River State Forest · SRMA · MD Department of Natural Resources · ~573 ac
+- PARKERS CREEK Wildlife Management Area - Parkers Creek Wildlands · SCA ·   · ~550 ac
+- Lower Potomac River230 · NCA · Bureau of Land Management · ~550 ac
+- Indian Creek Stream Valley Park · SOTH ·   · ~540 ac

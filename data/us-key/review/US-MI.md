@@ -1,0 +1,310 @@
+# MI: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined to official land (same name + same kind of place). **0** to check by hand, **238** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+
+## Nothing found in PAD-US
+
+- US-0350 Michigan Wetland Management District (Wetland Management District)
+- US-10063 Crystal Waters State Game Land (State Game Land)
+- US-10087 Windsor Township State Game Land (State Game Land)
+- US-10088 Headquarters Lake Flooding State Wildlife Area (State Wildlife Area)
+- US-10716 McCormick Wilderness Area (Wilderness Area)
+- US-10717 Sylvania Wilderness Area (Wilderness Area)
+- US-10718 Sturgeon River Gorge Wilderness Area (Wilderness Area)
+- US-11392 Paw Paw State Game Land (State Game Land)
+- US-11967 Potterville State Game Land (State Game Land)
+- US-12786 Au Sable National Wild and Scenic River (National Wild and Scenic River)
+- US-12787 Bear Creek National Wild and Scenic River (National Wild and Scenic River)
+- US-12788 Black River National Wild and Scenic River (National Wild and Scenic River)
+- US-12789 Carp National Wild and Scenic River (National Wild and Scenic River)
+- US-12790 East Branch of the Taquamenon National Wild and Scenic River (National Wild and Scenic River)
+- US-12791 Indian National Wild and Scenic River (National Wild and Scenic River)
+- US-12792 Manistee National Wild and Scenic River (National Wild and Scenic River)
+- US-12793 Ontonagon National Wild and Scenic River (National Wild and Scenic River)
+- US-12794 Paint National Wild and Scenic River (National Wild and Scenic River)
+- US-12795 Pere Marquette National Wild and Scenic River (National Wild and Scenic River)
+- US-12796 Pine National Wild and Scenic River (National Wild and Scenic River)
+- US-12797 Presque Isle National Wild and Scenic River (National Wild and Scenic River)
+- US-12798 Sturgeon (Hiawatha) National Wild and Scenic River (National Wild and Scenic River)
+- US-12799 Sturgeon (Ottawa) National Wild and Scenic River (National Wild and Scenic River)
+- US-12800 Whitefish National Wild and Scenic River (National Wild and Scenic River)
+- US-12801 Yellow Dog National Wild and Scenic River (National Wild and Scenic River)
+- US-12802 Norwich State Game Land (State Game Land)
+- US-13166 Black River National Recreation Area (National Recreation Area)
+- US-13167 Grand Island National Recreation Area (National Recreation Area)
+- US-13168 Lake Michigan National Recreation Area (National Recreation Area)
+- US-13169 Lake Ottawa National Recreation Area (National Recreation Area)
+- US-13170 Bay De Noc/Grand Island National Recreation Trail (National Recreation Trail)
+- US-13171 Betsie Valley State Trail (State Trail)
+- US-13172 North Central State Trail (State Trail)
+- US-13174 North Eastern State Trail (State Trail)
+- US-13176 North Western State Trail (State Trail)
+- US-13179 Pere Marquette State Trail (State Trail)
+- US-13182 Polly Ann State Trail (State Trail)
+- US-13184 Iron Belle State Trail (State Trail)
+- US-13565 Flint State Park (State Park)
+- US-13566 Houghton-Douglass Falls and Veterans Memorial Scenic Site (Scenic Site)
+- US-13570 Gladwin Field Trial Wildlife Management Area (Wildlife Management Area)
+- US-13576 Seneca State Game Land (State Game Land)
+- US-1487 Belle Isle State Park (State Park)
+- US-1502 Hart-Montague Trail State Park (State Park)
+- US-1505 Historic Mill Discovery State Park (State Park)
+- US-1512 Lake Gogebic State Park (State Park)
+- US-1513 Mike Levine Lakelands Trail State Park (State Park)
+- US-1517 Mackinac Island State Park (State Park)
+- US-1522 Milliken State Park (State Park)
+- US-1527 Newaygo State Park (State Park)
+- US-1543 Straits State Park (State Park)
+- US-1547 Traverse City State Park (State Park)
+- US-3304 Bass River State Recreation Area (State Recreation Area)
+- US-3307 Cambridge Junction State Historical Park (State Historical Park)
+- US-3308 Father Marquette Memorial National Memorial (National Memorial)
+- US-3310 Fort Custer State Recreation Area (State Recreation Area)
+- US-3318 Lime Island State Recreation Area (State Recreation Area)
+- US-3329 Tippy Dam State Recreation Area (State Recreation Area)
+- US-3330 Wagner Falls Scenic Site (Scenic Site)
+- US-3332 Watkins Lake State Park (State Park)
+- US-3383 Bald Mountain State Recreation Area (State Recreation Area)
+- US-4239 North Country Trail National Scenic Trail (National Scenic Trail)
+- US-4262 Pemene Falls Unit of Menominee River State Recreation Area (State Recreation Area)
+- US-4263 Piers Gorge Unit of Menominee River State Recreation Area (State Recreation Area)
+- US-4264 Quiver Falls Unit of Menominee River State Recreation Area (State Recreation Area)
+- US-4774 Au Sable State Forest (State Forest)
+- US-4775 Copper Country State Forest (State Forest)
+- US-4776 Escanaba River State Forest (State Forest)
+- US-4777 Lake Superior State Forest (State Forest)
+- US-4778 Mackinaw State Forest (State Forest)
+- US-6613 Adams Township State Game Land (State Game Land)
+- US-6615 Allegan State Game Land (State Game Land)
+- US-6616 Almer Township State Game Land (State Game Land)
+- US-6618 Backus Creek State Game Land (State Game Land)
+- US-6619 Bakale Wildlife Management Area (Wildlife Management Area)
+- US-6620 Baraga Plains Wildlife Management Area (Wildlife Management Area)
+- US-6621 Barry State Game Land (State Game Land)
+- US-6623 Beaver Islands Wildlife Management Area (Wildlife Management Area)
+- US-6625 Betsie River State Game Land (State Game Land)
+- US-6626 Bill Rollo Memorial State Game Land (State Game Land)
+- US-6628 Blendon Township State Game Land (State Game Land)
+- US-6631 Blue Bill Creek State Game Land (State Game Land)
+- US-6632 Bluff Creek / US-10 / M-18 Floodings Wildlife Management Area (Wildlife Management Area)
+- US-6634 Brookfield Township State Game Land (State Game Land)
+- US-6635 Brookfield Township  II State Game Land (State Game Land)
+- US-6638 Cannon Creek Floodings Wildlife Management Area (Wildlife Management Area)
+- US-6640 Cannonsburg State Game Land (State Game Land)
+- US-6641 Cass City State Game Land (State Game Land)
+- US-6642 Cedar River State Game Land (State Game Land)
+- US-6643 Chelsea State Game Land (State Game Land)
+- US-6644 Chesterfield Township State Game Land (State Game Land)
+- US-6645 Clark Lake State Game Land (State Game Land)
+- US-6646 Columbia Township State Game Land (State Game Land)
+- US-6647 Connors Marsh Wildlife Management Area (Wildlife Management Area)
+- US-6648 Cornish State Game Land (State Game Land)
+- US-6649 Cranberry Lake Wildlife Management Area (Wildlife Management Area)
+- US-6650 Crane Pond State Game Land (State Game Land)
+- US-6651 Crow Island State Game Land (State Game Land)
+- US-6652 Cusino Wildlife Management Area (Wildlife Management Area)
+- US-6653 Dansville State Game Land (State Game Land)
+- US-6654 Davisburg State Game Land (State Game Land)
+- US-6657 Deford State Game Land (State Game Land)
+- US-6658 Denmark Township State Game Land (State Game Land)
+- US-6660 Devils Lake Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6664 Drummond Island State Game Land (State Game Land)
+- US-6665 Pigeon Cove Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6666 Edger Waterfowl National Wildlife Management Area (National Wildlife Management Area)
+- US-6667 Edmore State Game Land (State Game Land)
+- US-6668 Elmwood Township State Game Land (State Game Land)
+- US-6669 Erie State Game Land (State Game Land)
+- US-6670 Fabius State Game Land (State Game Land)
+- US-6673 Flat River State Game Land (State Game Land)
+- US-6674 Flynn Township State Game Land (State Game Land)
+- US-6675 Fraser State Game Land (State Game Land)
+- US-6676 Fraser Township  No.2 State Game Land (State Game Land)
+- US-6677 French Farm Lake Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6678 Fuller Woods State Game Land (State Game Land)
+- US-6679 Fulton State Game Land (State Game Land)
+- US-6680 Gagetown State Game Land (State Game Land)
+- US-6681 Garden Grade State Game Land (State Game Land)
+- US-6683 Gladwin State Game Land (State Game Land)
+- US-6684 Gold Mine State Game Land (State Game Land)
+- US-6685 Goose Creek Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6686 Goose Lake State Game Land (State Game Land)
+- US-6687 Gordon Guyer - Augusta Creek Wildlife Management Area (Wildlife Management Area)
+- US-6688 Gourdneck State Game Land (State Game Land)
+- US-6689 Grand Haven State Game Land (State Game Land)
+- US-6690 Grand River Gale Road State Game Land (State Game Land)
+- US-6693 Grass Lake State Game Land (State Game Land)
+- US-6694 Gratiot-Saginaw State Game Land (State Game Land)
+- US-6695 Greasy Creek State Game Land (State Game Land)
+- US-6696 Gregory State Game Land (State Game Land)
+- US-6698 Halifax State Game Land (State Game Land)
+- US-6701 Haymarsh Lake State Game Land (State Game Land)
+- US-6702 Hayward Lake to North Lake Floodings Wildlife Management Area (Wildlife Management Area)
+- US-6703 Hazel Swamp State Game Land (State Game Land)
+- US-6704 Hillcrest State Game Land (State Game Land)
+- US-6705 Holly Wildlife Unit of Holly State Recreation Area (State Recreation Area)
+- US-6706 Horseshoe Lake State Game Land (State Game Land)
+- US-6708 Houghton Lake Flats South Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6709 Houghton Lake Wildlife Management Area (Wildlife Management Area)
+- US-6710 Hubbard Lake State Game Land (State Game Land)
+- US-6712 Keeler State Game Land (State Game Land)
+- US-6713 Kinney Waterfowl National Wildlife Management Area (National Wildlife Management Area)
+- US-6715 Lake Interstate State Game Land (State Game Land)
+- US-6716 Lake LaVasseur Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6717 Lame Duck Area State Game Land (State Game Land)
+- US-6718 Langston State Game Land (State Game Land)
+- US-6719 Lapeer State Game Land (State Game Land)
+- US-6720 Lee Grande Ranch State Game Land (State Game Land)
+- US-6721 Leidy  Lake State Game Land (State Game Land)
+- US-6722 Little Betsie State Game Land (State Game Land)
+- US-6723 Little Fox River Flooding / Stanley Lake Wildlife Management Area (Wildlife Management Area)
+- US-6725 Lost Nation State Game Land (State Game Land)
+- US-6726 Malan Waterfowl National Wildlife Management Area (National Wildlife Management Area)
+- US-6727 Manistee River State Game Land (State Game Land)
+- US-6728 Manitou Island Group Wildlife Management Area (Wildlife Management Area)
+- US-6729 Gratiot-Saginaw Connector State Game Land (State Game Land)
+- US-6730 Maple River State Game Land (State Game Land)
+- US-6731 Mark Knee Memorial State Game Land (State Game Land)
+- US-6732 Marsh Creek / Beaver Lake Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6733 Martiny Lake State Game Land (State Game Land)
+- US-6734 Melstrand State Game Land (State Game Land)
+- US-6735 Middleville State Game Land (State Game Land)
+- US-6736 Minden City State Game Land (State Game Land)
+- US-6737 Molasses River Flooding No 1 Wildlife Management Area (Wildlife Management Area)
+- US-6738 Mosinee State Game Land (State Game Land)
+- US-6739 Munuscong Bay Wildlife Management Area (Wildlife Management Area)
+- US-6740 Murphy Lake State Game Land (State Game Land)
+- US-6741 Muskegon State Game Land (State Game Land)
+- US-6742 Muskrat Lake State Game Land (State Game Land)
+- US-6745 Net River Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6746 Oak Grove State Game Land (State Game Land)
+- US-6747 Old Fur Farm Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6748 Olive Township State Game Land (State Game Land)
+- US-6749 Oliver Township State Game Land (State Game Land)
+- US-6750 O'Neal Lake Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6751 Onsted State Game Land (State Game Land)
+- US-6753 Pentwater River State Game Land (State Game Land)
+- US-6755 Petersburg State Game Land (State Game Land)
+- US-6756 Peterson Pond Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6757 Petobego State Game Land (State Game Land)
+- US-6759 Pinconning Township (Cody-Esty Road) State Game Land (State Game Land)
+- US-6761 Pointe Mouillee State Game Land (State Game Land)
+- US-6762 Port Huron State Game Land (State Game Land)
+- US-6764 Portland State Game Land (State Game Land)
+- US-6765 Potagannissing Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6767 Rainy River Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6768 Ralph State Game Land (State Game Land)
+- US-6770 Rogue River State Game Land (State Game Land)
+- US-6772 Rush Lake State Game Land (State Game Land)
+- US-6773 Sage Lakes Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6775 Sand River/Jeske Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6776 Sandusky State Game Land (State Game Land)
+- US-6777 Sanilac State Game Land (State Game Land)
+- US-6778 Saranac-Lowell State Game Land (State Game Land)
+- US-6779 Schlee Waterfowl National Wildlife Management Area (National Wildlife Management Area)
+- US-6780 Schoonover Waterfowl National Wildlife Management Area (National Wildlife Management Area)
+- US-6781 Sharonville State Game Land (State Game Land)
+- US-6782 Shiawassee River State Game Land (State Game Land)
+- US-6784 Somerset State Game Land (State Game Land)
+- US-6785 Sportsmans Lake/Pond Wildlife Management Area (Wildlife Management Area)
+- US-6788 St. Clair Township State Game Land (State Game Land)
+- US-6790 Stanton State Game Land (State Game Land)
+- US-6792 Strickler State Game Land (State Game Land)
+- US-6794 Tamarack Lake (Sunfield Township) State Game Land (State Game Land)
+- US-6795 Three Rivers State Game Land (State Game Land)
+- US-6796 Tobico Marsh Wildlife Management Area (Wildlife Management Area)
+- US-6797 Tomahawk Creek Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6798 Townline Creek Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6799 Tuscola State Game Land (State Game Land)
+- US-6801 Vassar State Game Land (State Game Land)
+- US-6802 Verona State Game Land (State Game Land)
+- US-6803 Vestaburg State Game Land (State Game Land)
+- US-6808 Cedar River State Harbor (State Harbor)
+- US-6809 Copper Harbor State Harbor (State Harbor)
+- US-6810 DeTour State Harbor (State Harbor)
+- US-6811 Eagle Harbor State Harbor (State Harbor)
+- US-6812 East Tawas State Harbor (State Harbor)
+- US-6813 Hammond Bay State Harbor (State Harbor)
+- US-6814 Lac LaBelle State Harbor (State Harbor)
+- US-6815 Lexington State Harbor (State Harbor)
+- US-6816 Lime Island State Harbor (State Harbor)
+- US-6817 Little Lake State Harbor (State Harbor)
+- US-6818 Mackinac Island State Harbor (State Harbor)
+- US-6819 Port Austin State Harbor (State Harbor)
+- US-6820 Presque Isle State Harbor (State Harbor)
+- US-6821 Straits State Harbor (State Harbor)
+- US-6822 Whitefish Point State Harbor (State Harbor)
+- US-6823 William G. Milliken State Harbor (State Harbor)
+- US-6824 Harrietta State State Fish Hatchery (State Fish Hatchery)
+- US-6825 Marquette State State Fish Hatchery (State Fish Hatchery)
+- US-6826 Oden State State Fish Hatchery (State Fish Hatchery)
+- US-6827 Platte River State Fish Hatchery (State Fish Hatchery)
+- US-7854 Molasses River Flooding No 2 Wildlife Management Area (Wildlife Management Area)
+- US-7855 Molasses River Flooding No 3 Wildlife Management Area (Wildlife Management Area)
+- US-7856 Molasses River Flooding No 5 Wildlife Management Area (Wildlife Management Area)
+- US-7857 Grand River State Game Land (State Game Land)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- Shingleton State Foreset Area · SCA · MIDNR Forest Resources Division · ~368,105 ac
+- Newberry State Forest Area · SCA · MIDNR Forest Resources Division · ~348,461 ac
+- Crystal Falls State Forest Area · SCA · MIDNR Forest Resources Division · ~300,717 ac
+- Atlanta State Forest Area · SCA · MIDNR Forest Resources Division · ~261,158 ac
+- Cadillac State Forest Area · SCA · MIDNR Forest Resources Division · ~221,994 ac
+- Baraga State Forest Area · SCA · MIDNR Forest Resources Division · ~120,323 ac
+- Pigeon River Country State Forest Area · SCA · MIDNR Forest Resources Division · ~103,170 ac
+- Allegan State Game Area · SCA · MIDNR Wildlife Division · ~50,591 ac
+- Kirtland Warbler Unit Clear Lake · SCA · MIDNR Forest Resources Division · ~19,202 ac
+- Beaver Islands State Wildlife Research Area · SCA · MIDNR Wildlife Division · ~17,058 ac
+- Gratiot-Saginaw State Game Area · SCA · MIDNR Wildlife Division · ~16,698 ac
+- Barry State Game Area · SCA · MIDNR Wildlife Division · ~16,580 ac
+- Muskegon State Game Area · SCA · MIDNR Wildlife Division · ~15,349 ac
+- Munuscong State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~14,165 ac
+- Bullock Ranch State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~13,392 ac
+- Houghton Lake State Wildlife Research Area · SCA · MIDNR Wildlife Division · ~11,988 ac
+- Natural Area Dead Stream Swamp · SCA · MIDNR Forest Resources Division · ~11,547 ac
+- Flat River State Game Area · SCA · MIDNR Wildlife Division · ~11,297 ac
+- Muskegon County Wastewater System Management Area · SCA · MIDNR Wildlife Division · ~11,189 ac
+- Deford State Game Area · SCA · MIDNR Wildlife Division · ~10,395 ac
+- University of Michigan Biological Station · SCA · University of Michigan · ~9,973 ac
+- Kirtland Warbler Unit Lovells · SCA · MIDNR Forest Resources Division · ~9,902 ac
+- Shiawassee River State Game Area · SCA · MIDNR Wildlife Division · ~9,873 ac
+- Maple River State Game Area · SCA · MIDNR Wildlife Division · ~9,258 ac
+- Tuscola State Game Area · SCA · MIDNR Wildlife Division · ~9,100 ac
+- Lapeer State Game Area · SCA · MIDNR Wildlife Division · ~8,555 ac
+- Minden City State Game Area · SCA · MIDNR Wildlife Division · ~7,852 ac
+- Verona State Game Area · SCA · MIDNR Wildlife Division · ~7,527 ac
+- Kirtland Warbler Unit Manistee · SCA · MIDNR Forest Resources Division · ~6,930 ac
+- Camp Grayling Military Reservation · SOTH · U.S. Department of Defense · ~6,834 ac
+- Haymarsh Lake State Game Area · SCA · MIDNR Wildlife Division · ~6,765 ac
+- Port Huron State Game Area · SCA · MIDNR Wildlife Division · ~6,676 ac
+- Martiny Lake State Game Area · SCA · MIDNR Wildlife Division · ~6,310 ac
+- Groveland Mine Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~6,238 ac
+- Rogue River State Game Area · SCA · MIDNR Wildlife Division · ~6,207 ac
+- Hardwood State Forest Wilderness Area · SCA · MIDNR Parks and Recreation Division · ~5,188 ac
+- Dansville State Game Area · SCA · MIDNR Wildlife Division · ~4,755 ac
+- Gladwin Game Unit and Field Trial Area of State Forest · SREC · MIDNR Wildlife Division · ~4,754 ac
+- Stanton State Game Area · SCA · MIDNR Wildlife Division · ~4,729 ac
+- Middleville State Game Area · SCA · MIDNR Wildlife Division · ~4,426 ac
+- Sharonville State Game Area · SCA · MIDNR Wildlife Division · ~4,330 ac
+- Forest Reserve · SCA · Michigan Department of Transportation (MDOT) · ~4,230 ac
+- Crane Pond State Game Area · SCA · MIDNR Wildlife Division · ~4,096 ac
+- Hart-Montague Bicycle Trail Park · SREC · Michigan Department of Natural Resources · ~3,973 ac
+- Manistee River State Game Area · SCA · MIDNR Wildlife Division · ~3,920 ac
+- Pointe Mouillee State Game Area · SCA · State of Michigan · ~3,914 ac
+- Crow Island State Game Area · SCA · MIDNR Wildlife Division · ~3,641 ac
+- Huron Purchase Unit · NF · Forest Service Region 09 Eastern · ~3,628 ac
+- Natural Area High Island · SCA · MIDNR Wildlife Division · ~3,584 ac
+- Edmore State Game Area · SCA · MIDNR Wildlife Division · ~3,568 ac
+- Genes Pond Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~3,453 ac
+- Backus Creek State Game Area · SCA · MIDNR Wildlife Division · ~3,420 ac
+- Vassar State Game Area · SCA · MIDNR Wildlife Division · ~3,391 ac
+- Langston State Game Area · SCA · MIDNR Wildlife Division · ~3,259 ac
+- Erie State Game Area · SCA · MIDNR Wildlife Division · ~3,215 ac
+- Molasses River Flooding No.1 State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~3,153 ac
+- French Farm Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~2,947 ac
+- Vestaburg State Game Area · SCA · MIDNR Wildlife Division · ~2,936 ac
+- Murphy Lake State Game Area · SCA · MIDNR Wildlife Division · ~2,697 ac
+- Gregory State Game Area · SCA · MIDNR Wildlife Division · ~2,691 ac

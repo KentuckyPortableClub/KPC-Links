@@ -1,0 +1,309 @@
+# WA: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **299 of 536** parks joined to official land (same name + same kind of place). **112** to check by hand, **125** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+- **US-0061** San Juan Island American Camp National Historical Park (National Historical Park) → San Juan Island National Historical Park (~2,099 ac, similar name); San Juan Islands National Wildlife Refuge (~456 ac, similar name); San Juan Islands National Wildlife Refuge (~456 ac, similar name)
+- **US-0582** Julia Butler Hansen National Wildlife Refuge (National Wildlife Refuge) → Julia Butler Hansen Refuge For The Columbian White-Tailed Deer (~2,808 ac, similar name); Julia Butler Hansen Refuge For The Columbian White-Tailed Deer (~2,808 ac, similar name)
+- **US-0694** Ebey's Landing Reserve National Conservation Area (National Conservation Area) → Ebey's Landing National Historical Reserve (~1,093 ac, similar name); Ebey's Landing (~46 ac, similar name)
+- **US-0727** Lake Lenore Caves State Park (State Park) → Lake Lenore Caves State Park Heritage Site (~191 ac, similar name); Sun Lakes-Dry Falls (~4,234 ac, the POTA pin is inside it (different name))
+- **US-10408** Horse Heaven Hills Recreation Area BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
+- **US-10409** Jackson House State Park Heritage State Historic Site (State Historic Site) → Jackson House (~1 ac, similar name)
+- **US-10627** 4-0 Ranch Wildlife Area (Wildlife Area) → 4-O Ranch - Dec 2014 (~2,568 ac, similar name); 4-O Ranch - March 2014 (~2,147 ac, similar name); 4-O Ranch 2013 (~1,573 ac, similar name)
+- **US-10665** Rustler Gulch Wildlife Area (Wildlife Area) → Swanson Lakes-Sherman Creek Wildlife Area Complex (~31,846 ac, the POTA pin is inside it (different name)); Rustler's Gulch (~2,795 ac, the POTA pin is inside it (different name))
+- **US-10694** Sun Lakes Wildlife Area (Wildlife Area) → Sun Lakes-Dry Falls (~4,234 ac, similar name)
+- **US-10706** Klickitat State Park State Trail (State Trail) → Klickitat Trail (~325 ac, similar name)
+- **US-10709** Klickitat National Wild & Scenic River (National Wild & Scenic River) → Fisher Hill (~499 ac, the POTA pin is inside it (different name))
+- **US-10711** Marckworth State Forest (State Forest) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-11145** Naneum Ridge State Forest (State Forest) → Washington State Department of Fish & Wildlife Trust Land (~91,115 ac, the POTA pin is inside it (different name))
+- **US-11903** San Juan Island English Camp National Historical Park (National Historical Park) → San Juan Island National Historical Park (~2,099 ac, similar name); San Juan Islands National Wildlife Refuge (~456 ac, similar name); San Juan Islands National Wildlife Refuge (~456 ac, similar name)
+- **US-12239** Waikiki Springs Wildlife Area Unit State Fish and Wildlife Area (State Fish and Wildlife Area) → Waikiki Springs (~116 ac, similar name)
+- **US-12241** LeClerc Wildlife Area State Fish and Wildlife Area (State Fish and Wildlife Area) → LeClerc (~617 ac, similar name)
+- **US-12243** Sherman Creek Wildlife Area State Fish and Wildlife Area (State Fish and Wildlife Area) → Swanson Lakes-Sherman Creek Wildlife Area Complex (~31,846 ac, similar name); Sherman Creek Game Range (~557 ac, similar name); Sherman Creek Game Range (~557 ac, similar name)
+- **US-12244** Swanson Lakes Wildlife Area State Fish and Wildlife Area (State Fish and Wildlife Area) → Swanson Lakes-Sherman Creek Wildlife Area Complex (~31,846 ac, similar name)
+- **US-12245** Twin Lakes BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
+- **US-12246** Pacific Lake Recreation Site - Lakeview Ranch BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
+- **US-12248** Desert Wildlife Area State Fish and Wildlife Area (State Fish and Wildlife Area) → Desert (~62,338 ac, similar name); Columbia Basin Wildlife Area Complex (~41,205 ac, the POTA pin is inside it (different name))
+- **US-12254** Crab Creek - Rocky Ford Area BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
+- **US-12255** Rock Creek BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
+- **US-12256** Bailie Wildlife Area State Fish and Wildlife Area (State Fish and Wildlife Area) → Bailie (~3,927 ac, similar name)
+- **US-12258** Byron Wildlife Area State Fish and Wildlife Area (State Fish and Wildlife Area) → Byron (~970 ac, similar name)
+- **US-12260** Glover Wildlife Area State Fish and Wildlife Area (State Fish and Wildlife Area) → Glover (~51 ac, similar name)
+- **US-12267** Thornton Wildlife Area State Fish and Wildlife Area (State Fish and Wildlife Area) → Thornton (~2,114 ac, similar name); Sunnyside-Snake River Wildlife Area Complex (~12,762 ac, the POTA pin is inside it (different name))
+- **US-12271** Telford BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
+- **US-12275** Okanogan Wildlife Area State Fish and Wildlife Area (State Fish and Wildlife Area) → Okanogan (~86 ac, similar name)
+- **US-12278** Boundary Reservoir BLM Recreation Management Area (BLM Recreation Management Area) → Colville National Forest (~957,248 ac, the POTA pin is inside it (different name))
+- **US-12279** South Huckleberry Mountains BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
+- **US-12280** Juniper Dunes OHV Area BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
+- **US-12284** Camas Meadows Natural Area State Preserve (State Preserve) → Camas Meadows Natural Area Preserve (~1,924 ac, similar name)
+- **US-12287** Vancouver Lake Wildlife Area State Wildlife Area (State Wildlife Area) → Mount Saint Helens-Shillapoo Wildlife Area Complex (~10,476 ac, the POTA pin is inside it (different name))
+- **US-12295** Rattlesnake Mountain Area Scenic Reserve (Scenic Reserve) → Rattlesnake Mountain Scenic Area Natural Resources Conservation Area (~1,836 ac, similar name)
+- **US-12296** Raging River State Forest (State Forest) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-12309** Haley State Park (State Park) → Haley property (~216 ac, similar name)
+- **US-12316** Sherry Creek State Recreation Site (State Recreation Site) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-12317** Rocky Lake State Recreation Site (State Recreation Site) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-12318** Dishman Hills State Conservation Area (State Conservation Area) → Dishman Hills Natural Resources Conservation Area (~69 ac, similar name)
+- **US-12344** White Salmon Oak State Natural Area (State Natural Area) → White Salmon Oak Natural Resources Conservation Area (~552 ac, similar name)
+- **US-12400** Lyons Ferry National Fish Hatchery (National Fish Hatchery) → Lyons Ferry Fish Hatchery (~114 ac, similar name); Lyons Ferry Fish Hatchery (~102 ac, similar name)
+- **US-12401** Tucannon National Fish Hatchery (National Fish Hatchery) → Tucannon Fish Hatchery (~17 ac, similar name); Tucannon Fish Hatchery (~12 ac, similar name); W.T. Wooten (~16,717 ac, the POTA pin is inside it (different name))
+- **US-12402** Rocky Ford State Fish Hatchery (State Fish Hatchery) → Rocky Ford (~1,494 ac, similar name)
+- **US-12403** Columbia Basin Hatchery Creek State Fish Hatchery (State Fish Hatchery) → Columbia Basin Wildlife Area Complex (~41,205 ac, similar name)
+- **US-12404** Folsom Farm Interpretive BLM Interpretive Site (BLM Interpretive Site) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
+- **US-12413** Spokane Plains Battlefield State Heritage Area (State Heritage Area) → Spokane Plains Battlefield (~1 ac, similar name)
+- **US-12426** Hog Canyon State Fishing Lake (State Fishing Lake) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
+- **US-12427** Liberty State Fishing Lake (State Fishing Lake) → Liberty Lake Water Access Site (~2 ac, similar name)
+- **US-12461** San Juan Islands BLM National Monument (National Monument) → San Juan Island National Historical Park (~2,099 ac, same name, different kind of place); San Juan Islands National Wildlife Refuge (~456 ac, same name, different kind of place); San Juan Islands National Wildlife Refuge (~456 ac, same name, different kind of place)
+- **US-12479** Jameson State Fishing Lake (State Fishing Lake) → Spokane Wenatchee Field Office (~254,416 ac, the POTA pin is inside it (different name))
+- **US-12481** Nisqually State Wildlife Area (State Wildlife Area) → Billy Frank Jr. Nisqually National Wildlife Refuge (~5,558 ac, similar name); Billy Frank Jr. Nisqually National Wildlife Refuge (~5,534 ac, similar name); Olympic-Willapa Hills-South Puget Sound Wildlife Area Complex (~16,950 ac, the POTA pin is inside it (different name))
+- **US-12483** Beebe Springs State Wildlife Area (State Wildlife Area) → BeeBe Wildlife Area Complex (~179 ac, the POTA pin is inside it (different name))
+- **US-12485** Chelan Butte State Wildlife Area (State Wildlife Area) → Wells-Chelan-Sagebrush Flats Wildlife Area Complex (~40,934 ac, the POTA pin is inside it (different name))
+- **US-12488** Columbia Basin Upland Restoration State Wildlife Area (State Wildlife Area) → Columbia Basin Wildlife Area Complex (~41,205 ac, similar name); Upland Restoration (~1,437 ac, similar name)
+- **US-12499** Soda Springs State Wildlife Area (State Wildlife Area) → Klickitat Wildlife Area Complex (~13,679 ac, the POTA pin is inside it (different name))
+- **US-12512** Kress State Fishing Lake (State Fishing Lake) → Kress Lake (~56 ac, similar name)
+- **US-12519** Dungeness State Wildlife Area (State Wildlife Area) → Lower Dungeness (~52 ac, similar name); Dungeness National Wildlife Refuge (~465 ac, same name, different kind of place); Dungeness National Wildlife Refuge (~465 ac, same name, different kind of place)
+- **US-12524** Olympic State Wildlife Area (State Wildlife Area) → Olympic-Willapa Hills-South Puget Sound Wildlife Area Complex (~16,950 ac, similar name); Olympic National Forest (~631,799 ac, same name, different kind of place)
+- **US-12552** Skagit Bay Estuary State Wildlife Area (State Wildlife Area) → Skagit-Snoqualmie Wildlife Area Complex (~15,194 ac, the POTA pin is inside it (different name))
+- **US-12553** Skagit Headquarters State Wildlife Area (State Wildlife Area) → Skagit-Snoqualmie Wildlife Area Complex (~15,194 ac, the POTA pin is inside it (different name))
+- **US-12563** Douglas Creek BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Wenatchee Field Office (~254,416 ac, the POTA pin is inside it (different name))
+- **US-12564** South Puget Sound State Wildlife Area (State Wildlife Area) → Olympic-Willapa Hills-South Puget Sound Wildlife Area Complex (~16,950 ac, similar name)
+- **US-12565** Skookum Creek State Recreation Area (State Recreation Area) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-12566** Sheep Creek State Recreation Area (State Recreation Area) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-12567** Douglas Falls State Recreation Area (State Recreation Area) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-12570** Starvation Lake State Recreation Area (State Recreation Area) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-12573** Elk River State Natural Area (State Natural Area) → Elk River Natural Resources Conservation Area (~4,537 ac, similar name); Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-12574** Elk River State Wildlife Area (State Wildlife Area) → Elk River - 103.17 Acres (~101 ac, similar name); Elk River -27.9 Acres (~28 ac, similar name)
+- **US-12578** Clearwater Corridor State Natural Area (State Natural Area) → Clearwater Corridor Natural Resources Conservation Area (~2,312 ac, similar name); Washington State Department of Natural Resources (WADNR) State Resource Management Area (~268,553 ac, the POTA pin is inside it (different name))
+- **US-12815** Sagebrush Flat State Wildlife Area (State Wildlife Area) → Wells-Chelan-Sagebrush Flats Wildlife Area Complex (~40,934 ac, the POTA pin is inside it (different name))
+- **US-12829** Duffy Creek BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Wenatchee Field Office (~254,416 ac, the POTA pin is inside it (different name))
+- **US-12830** Old Ruby State Park State Heritage Area (State Heritage Area) → Old Ruby (~7 ac, similar name); Spokane Wenatchee Field Office (~254,416 ac, the POTA pin is inside it (different name))
+- **US-12831** Ruby BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Spokane Wenatchee Field Office (~254,416 ac, the POTA pin is inside it (different name))
+- **US-12832** The Two-Steppe State Natural Reserve (State Natural Reserve) → The Two-Steppe Natural Area Preserve (~395 ac, similar name)
+- **US-12956** Forth of July State Fishing Lake (State Fishing Lake) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-13346** Voights Creek State Fish Hatchery (State Fish Hatchery) → Voights Creek FH (~29 ac, similar name)
+- **US-13347** Clarks Creek State Forest Park (State Forest Park) → Clark's Creek Forest (~162 ac, similar name)
+- **US-13374** Loon Lake State Fishing Lake (State Fishing Lake) → Rustler's Gulch (~2,795 ac, the POTA pin is inside it (different name))
+- **US-13397** Modrow Bridge State Recreation Site (State Recreation Site) → Modrow Bridge Water Access Site (~1 ac, similar name)
+- **US-13398** Beginner's Hole State Recreation Site (State Recreation Site) → Beginners Hole Water Access Site (~1 ac, similar name)
+- **US-13404** Palix River State Recreation Site (State Recreation Site) → Palix (~379 ac, similar name)
+- **US-13419** Chambers Lake State Fishing Lake (State Fishing Lake) → Chambers Lake Trailhead Park (~2 ac, similar name)
+- **US-13431** Haven Lake State Fishing Lake (State Fishing Lake) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-13441** Lake Desire State Fishing Lake (State Fishing Lake) → Lake Desire Public Access Area (~1 ac, similar name)
+- **US-3157** Bayview State Park (State Park) → Bay View (~66 ac, the POTA pin is inside it (different name))
+- **US-3170** Cape Disappointment State Park (State Park) → Lewis and Clark National Historical Park (~2,056 ac, the POTA pin is inside it (different name))
+- **US-3171** Spokane River Centennial State Trail (State Trail) → Riverside (~8,735 ac, the POTA pin is inside it (different name))
+- **US-3181** Doe Island Marine State Park (State Park) → Doe Island (~10 ac, similar name)
+- **US-3197** Griffiths-Priday Ocean State Park (State Park) → Griffith-Priday (~496 ac, the POTA pin is inside it (different name))
+- **US-3225** Lyons Ferry State Park (State Park) → Lyons Ferry Fish Hatchery (~114 ac, similar name); Lyons Ferry Fish Hatchery (~102 ac, similar name)
+- **US-3229** Matia Island Marine State Park (State Park) → San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name)); San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name))
+- **US-3276** Steptoe Battlefield State Park (State Park) → Steptoe Battlefield (~3 ac, same name, different kind of place)
+- **US-3283** Turn Island Marine State Park (State Park) → San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name)); San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name))
+- **US-3385** Mt. St. Helens National Monument (National Monument) → Mount Saint Helens-Shillapoo Wildlife Area Complex (~10,476 ac, similar name); Gifford Pinchot National Forest (~1,275,125 ac, the POTA pin is inside it (different name))
+- **US-3875** Mill Creek/Bennington Lake National Recreation Area (National Recreation Area) → Mill Creek/Bennington Lake Recreational Area (~589 ac, similar name)
+- **US-4555** Hanford Reach National Monument (National Monument) → Hanford Site (~211,071 ac, the POTA pin is inside it (different name))
+- **US-4562** Pacific Crest Trail National Scenic Trail (National Scenic Trail) → Snoqualmie National Forest (~659,968 ac, the POTA pin is inside it (different name))
+- **US-4563** Pacific Northwest National Scenic Trail (National Scenic Trail) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-5565** Ahtanum State Forest (State Forest) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-5566** Blanchard State Forest (State Forest) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-5567** Capitol State Forest (State Forest) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-5568** Elbe Hills-Tahoma State Forest (State Forest) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-5569** Green Mountain-Tahuya State Forest (State Forest) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-5571** Loomis-Loup Loup State Forest (State Forest) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-5572** Olympic Peninsula State Forest (State Forest) → Olympic National Park (~910,275 ac, similar name); Olympic National Forest (~631,799 ac, similar name)
+- **US-5574** Tiger Mountain State Forest (State Forest) → West Tiger Mountain Natural Resources Conservation Area (~3,880 ac, similar name)
+- **US-5575** Klickitat Canyon State Forest (State Forest) → Klickitat Canyon Community Forest (~2,489 ac, similar name)
+- **US-5576** Yacolt Burn State Forest (State Forest) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-6473** Chief Joesph State Wildlife Area (State Wildlife Area) → Chief Joseph (~11,467 ac, the POTA pin is inside it (different name))
+- **US-8664** Fishtrap National Recreation Area (National Recreation Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
+- **US-8666** Whatcom Wildlife Area/Lake Terrell State Wildlife Area (State Wildlife Area) → Lake Terrell (~1,178 ac, similar name); Whatcom Wildlife Area Complex (~2,661 ac, the POTA pin is inside it (different name))
+
+## Nothing found in PAD-US
+
+- US-0591 Saddle Mountain National Wildlife Refuge (National Wildlife Refuge)
+- US-0731 Columbia River Gorge National Forest (National Forest)
+- US-0849 Minidoka National Historic Site (National Historic Site)
+- US-10421 International Selkirk Loop National Scenic Byway National Parkway (National Parkway)
+- US-10695 Coffeepot Lake Nature Recreation Area (Nature Recreation Area)
+- US-12238 Audubon Lake Wildlife Area Unit State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-12265 Sunnyside Wildlife Area State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-12281 North Huckleberry Mountains BLM Recreation Management Area (BLM Recreation Management Area)
+- US-12285 Shillapoo South Wildlife Area State Wildlife Area (State Wildlife Area)
+- US-12286 Shillapoo North Wildlife Area State Wildlife Area (State Wildlife Area)
+- US-12315 Dragoon Creek State Recreation Site (State Recreation Site)
+- US-12343 White Salmon National Wild and Scenic River (National Wild and Scenic River)
+- US-12399 Spokane State Fish Hatchery (State Fish Hatchery)
+- US-12422 Silver State Fishing Lake (State Fishing Lake)
+- US-12423 Williams State Fishing Lake (State Fishing Lake)
+- US-12424 Badger State Fishing Lake (State Fishing Lake)
+- US-12425 Amber State Fishing Lake (State Fishing Lake)
+- US-12428 Newman State Fishing Lake (State Fishing Lake)
+- US-12429 Eloika State Fishing Lake (State Fishing Lake)
+- US-12430 Deer State Fishing Lake (State Fishing Lake)
+- US-12431 Sacheen State Fishing Lake (State Fishing Lake)
+- US-12432 Davis State Fishing Lake (State Fishing Lake)
+- US-12433 Diamond State Fishing Lake (State Fishing Lake)
+- US-12434 Waitts State Fishing Lake (State Fishing Lake)
+- US-12435 Horseshoe State Fishing Lake (State Fishing Lake)
+- US-12466 Jump Off Joe State Fishing Lake (State Fishing Lake)
+- US-12477 Aeneas State Fishing Lake (State Fishing Lake)
+- US-12478 Blue State Fishing Lake (State Fishing Lake)
+- US-12480 Govan BLM Recreation Management Area (BLM Recreation Management Area)
+- US-12484 Fuller Bridge State Recreation Area (State Recreation Area)
+- US-12493 Mossyrock State Wildlife Area (State Wildlife Area)
+- US-12515 Chimacum State Wildlife Area (State Wildlife Area)
+- US-12520 Morrowstone State Wildlife Area (State Wildlife Area)
+- US-12532 Black River State Wildlife Area (State Wildlife Area)
+- US-12545 Cottonwood Island Wildlife Area (Wildlife Area)
+- US-12556 Skokomish State Wildlife Area (State Wildlife Area)
+- US-12569 Beverly Dunes State Recreation Site (State Recreation Site)
+- US-12576 Nemah River-Estuary State Wildlife Area (State Wildlife Area)
+- US-12577 North Willapa Bay State Wildlife Area (State Wildlife Area)
+- US-12599 Twin Rivers State Wildlife Area (State Wildlife Area)
+- US-12602 Cowlitz River State Wildlife Area (State Wildlife Area)
+- US-12745 Wallace River State Fish Hatchery (State Fish Hatchery)
+- US-12828 Packer Creek BLM Recreation Management Area (BLM Recreation Management Area)
+- US-12942 Clear Lake State Fishing Lake (State Fishing Lake)
+- US-12943 West Medical State Fishing Lake (State Fishing Lake)
+- US-12955 Fishtrap State Fishing Lake (State Fishing Lake)
+- US-13341 Peking Ferry State Recreation Area (State Recreation Area)
+- US-13348 Puyallup State Fish Hatchery (State Fish Hatchery)
+- US-13349 Bonney State Fishing Lake (State Fishing Lake)
+- US-13350 Clear State Fishing Lake (State Fishing Lake)
+- US-13351 Tanwax State Fishing Lake (State Fishing Lake)
+- US-13352 Lake Kapowsin State Fishing Lake (State Fishing Lake)
+- US-13355 Mineral State Fishing Lake (State Fishing Lake)
+- US-13356 American State Fishing Lake (State Fishing Lake)
+- US-13357 Bay State Fishing Lake (State Fishing Lake)
+- US-13358 Jackson State Fishing Lake (State Fishing Lake)
+- US-13359 Lake Cassidy State Fishing Lake (State Fishing Lake)
+- US-13360 Lake Washington State Fishing Lake (State Fishing Lake)
+- US-13361 Lake Stevens State Fishing Lake (State Fishing Lake)
+- US-13373 Fan Lake State Fishing Lake (State Fishing Lake)
+- US-13375 Rock Lake State Fishing Lake (State Fishing Lake)
+- US-13382 Langlois State Fishing Lake (State Fishing Lake)
+- US-13383 Big Eddy Water Access State Recreation Site (State Recreation Site)
+- US-13384 Jonker Water Access State Recreation Site (State Recreation Site)
+- US-13385 Harts Lake State Fishing Lake (State Fishing Lake)
+- US-13386 Rapjohn State Fishing Lake (State Fishing Lake)
+- US-13387 Lake Lawrence State Fishing Lake (State Fishing Lake)
+- US-13388 Ohop State Fishing Lake (State Fishing Lake)
+- US-13389 Lake Whitman State Fishing Lake (State Fishing Lake)
+- US-13390 Silver Lake State Fishing Lake (State Fishing Lake)
+- US-13391 Olequa Crossing State Recreation Site (State Recreation Site)
+- US-13392 Massey Bar State Recreation Site (State Recreation Site)
+- US-13393 Woodland Bar State Recreation Site (State Recreation Site)
+- US-13394 Three Mile State Recreation Site (State Recreation Site)
+- US-13395 County Line State Recreation Site (State Recreation Site)
+- US-13396 Steel Bridge State Recreation Site (State Recreation Site)
+- US-13399 Hand State Recreation Site (State Recreation Site)
+- US-13400 Puget Island State Recreation Site (State Recreation Site)
+- US-13401 Deep River State Recreation Site (State Recreation Site)
+- US-13402 Highway 4 State Recreation Site (State Recreation Site)
+- US-13416 Black Lake State Fishing Lake (State Fishing Lake)
+- US-13417 Munn Lake State Fishing Lake (State Fishing Lake)
+- US-13418 Ward Lake State Fishing Lake (State Fishing Lake)
+- US-13420 Hicks Lake State Fishing Lake (State Fishing Lake)
+- US-13421 Long Lake State Fishing Lake (State Fishing Lake)
+- US-13422 Pattison Lake State Fishing Lake (State Fishing Lake)
+- US-13423 Lake Saint Clair State Fishing Lake (State Fishing Lake)
+- US-13424 Offutt Lake State Fishing Lake (State Fishing Lake)
+- US-13425 McIntosh Lake State Fishing Lake (State Fishing Lake)
+- US-13426 Plummer Lake State Fishing Lake (State Fishing Lake)
+- US-13427 Swofford Pond State Fishing Lake (State Fishing Lake)
+- US-13428 Maggie Lake State Fishing Lake (State Fishing Lake)
+- US-13429 Cady Lake State Fishing Lake (State Fishing Lake)
+- US-13430 Tee Lake State Fishing Lake (State Fishing Lake)
+- US-13432 Lake Wooten State Fishing Lake (State Fishing Lake)
+- US-13435 Lake Margaret State Fishing Lake (State Fishing Lake)
+- US-13436 Lake Alice State Fishing Lake (State Fishing Lake)
+- US-13437 Fish Lake State Fishing Lake (State Fishing Lake)
+- US-13438 Spring Lake State Fishing Lake (State Fishing Lake)
+- US-13439 Bass Lake State Fishing Lake (State Fishing Lake)
+- US-13440 Beaver Lake State Fishing Lake (State Fishing Lake)
+- US-13442 Panther State Fishing Lake (State Fishing Lake)
+- US-13443 Lake Morton State Fishing Lake (State Fishing Lake)
+- US-13444 Lake Number 12 State Fishing Lake (State Fishing Lake)
+- US-13445 Lake Dollof State Fishing Lake (State Fishing Lake)
+- US-13446 North Lake State Fishing Lake (State Fishing Lake)
+- US-13471 Violet Prairie State Wildlife Area (State Wildlife Area)
+- US-13516 Horseshoe -Kitsap- State Fishing Lake (State Fishing Lake)
+- US-13531 Beebe Bridge State Park (State Park)
+- US-13550 Lake Killarney State Fishing Lake (State Fishing Lake)
+- US-13551 Lake Geneva State Fishing Lake (State Fishing Lake)
+- US-2441 Scooteney Reservoir State Park (State Park)
+- US-3188 Fort Casey State Park (State Park)
+- US-3203 Palouse to Cascades State Park State Trail (State Trail)
+- US-3424 Ice Age Floods National Geologic Trail (National Geologic Trail)
+- US-4376 Manhattan Project National Historical Park (National Historical Park)
+- US-4385 Umatilla National Forest (National Forest)
+- US-4477 Idaho Panhandle National Forest (National Forest)
+- US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
+- US-4576 Oregon National Historic Trail (National Historic Trail)
+- US-5570 Little Pend Oreille State Forest (State Forest)
+- US-5573 Teanaway State Forest (State Forest)
+- US-6227 Snake River National Wild & Scenic River (National Wild & Scenic River)
+- US-8662 Chestnut Beach National Recreation Area (National Recreation Area)
+- US-8663 Plymouth Park National Recreation Area (National Recreation Area)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- Washington State Department of Natural Resources (WADNR) State Resource Management Area · SRMA · Unknown · ~2,562,869 ac
+- Snoqualmie National Forest · NF · Forest Service Region 06 Pacific Northwest · ~530,399 ac
+- Okanogan National Forest · NF · Forest Service Region 06 Pacific Northwest · ~383,032 ac
+- Umatilla National Forest · NF · Forest Service Region 06 Pacific Northwest · ~311,020 ac
+- Washington State Department of Natural Resources (WADNR) State Resource Management Area · SRMA · Unknown · ~268,553 ac
+- Spokane Wenatchee Field Office · PUB · BLM · ~254,416 ac
+- Hanford Site · FOTH · Department of Energy (DOE) · ~211,071 ac
+- Spokane Border Field Office · PUB · BLM · ~168,544 ac
+- Kaniksu National Forest · NF · Forest Service Region 01 Northern · ~119,756 ac
+- Washington State Department of Fish & Wildlife Trust Land · SRMA · Washington State Department of Fish & Wildlife · ~91,115 ac
+- Snoqualmie National Forest · NF · Forest Service Region 06 Pacific Northwest · ~82,394 ac
+- Desert · SCA · Washington Department of Fish & Wildlife · ~62,338 ac
+- Columbia Basin Wildlife Area Complex · SCA · Unknown · ~41,205 ac
+- Wells-Chelan-Sagebrush Flats Wildlife Area Complex · SCA · Unknown · ~40,934 ac
+- Morning Star Natural Resources Conservation Area · SCA · Unknown · ~33,700 ac
+- Swanson Lakes-Sherman Creek Wildlife Area Complex · SCA · Unknown · ~31,846 ac
+- Loomis Natural Resources Conservation Area · SCA · Unknown · ~24,721 ac
+- Olympic-Willapa Hills-South Puget Sound Wildlife Area Complex · SCA · Unknown · ~16,950 ac
+- Skagit-Snoqualmie Wildlife Area Complex · SCA · Unknown · ~15,194 ac
+- Vale Baker Field Office · PUB · BLM · ~14,204 ac
+- Klickitat Wildlife Area Complex · SCA · Unknown · ~13,679 ac
+- Sunnyside-Snake River Wildlife Area Complex · SCA · Unknown · ~12,762 ac
+- Chief Joseph · SCA · Washington Department of Fish & Wildlife · ~11,467 ac
+- Mount Saint Helens-Shillapoo Wildlife Area Complex · SCA · Unknown · ~10,476 ac
+- Lenore Game Range · NCA · LENORE GAME RANGE · ~6,170 ac
+- Lenore Game Range · NCA · Lenore Game Range · ~6,170 ac
+- Billy Frank Jr. Nisqually National Wildlife Refuge · NWR · Billy Frank Jr. Nisqually National Wildlife Refuge · ~5,558 ac
+- Billy Frank Jr. Nisqually National Wildlife Refuge · NWR · BILLY FRANK JR. NISQUALLY NATIONAL WILDLIFE REFUGE · ~5,534 ac
+- Colockum Game Range · NCA · COLOCKUM GAME RANGE · ~4,927 ac
+- Colockum Game Range · NCA · Colockum Game Range · ~4,927 ac
+- Elk River Natural Resources Conservation Area · SCA · Unknown · ~4,537 ac
+- Charles Lathrop Pack Experimental and Demonstration Forest · SRMA · STATE OF WASHINGTON · ~4,419 ac
+- Kachess Lake · RMA · Unknown · ~4,109 ac
+- Bailie · SCA · Washington Department of Fish & Wildlife · ~3,927 ac
+- West Tiger Mountain Natural Resources Conservation Area · SCA · Unknown · ~3,880 ac
+- Hoffstadt · SCA · Washington Department of Fish & Wildlife · ~3,721 ac
+- Methow Winter Range And Wildlife Refuge · NCA · METHOW WINTER RANGE AND WILDLIFE REFUGE · ~3,029 ac
+- Methow Winter Range And Wildlife Refuge · NCA · Methow Winter Range And Wildlife Refuge · ~3,029 ac
+- Mudflow · SCA · Washington Department of Fish & Wildlife · ~2,861 ac
+- Table Mountain/Greenleaf Peak Natural Resources Conservation Area · SCA · Unknown · ~2,856 ac
+- Sinlahekin Deer Winter Range And Wildlife Refuge · NCA · SINLAHEKIN DEER WINTER RANGE AND WILDLIFE REFUGE · ~2,828 ac
+- Sinlahekin Deer Winter Range And Wildlife Refuge · NCA · Sinlahekin Deer Winter Range And Wildlife Refuge · ~2,828 ac
+- Julia Butler Hansen Refuge For The Columbian White-Tailed Deer · NWR · JULIA BUTLER HANSEN REFUGE FOR THE COLUMBIAN WHITE-TAILED DEER · ~2,808 ac
+- Julia Butler Hansen Refuge For The Columbian White-Tailed Deer · NWR · Julia Butler Hansen Refuge For The Columbian White-Tailed Deer · ~2,808 ac
+- Rustler's Gulch · SCA · Washington Department of Fish & Wildlife · ~2,795 ac
+- Chopaka Mountain Natural Area Preserve · SCA · Unknown · ~2,757 ac
+- Bone River Natural Area Preserve · SCA · Unknown · ~2,729 ac
+- Cypress Island Natural Resources Conservation Area · SCA · Unknown · ~2,716 ac
+- Cle Elum Lake · RMA · Unknown · ~2,680 ac
+- Whatcom Wildlife Area Complex · SCA · Unknown · ~2,661 ac
+- Oak Creek 2014 - 2588.27 Acre Parcel · SCA · Washington Department of Fish and Wildlife · ~2,589 ac
+- 4-O Ranch - Dec 2014 · SCA · Washington Department of Fish and Wildlife · ~2,568 ac
+- Klickitat Canyon Community Forest · SRMA · STATE OF WASHINGTON · ~2,489 ac
+- South Nemah Natural Resources Conservation Area · SCA · Unknown · ~2,427 ac
+- Riffe Buffer · SCA · Washington Department of Fish & Wildlife · ~2,351 ac
+- Stavis Creek Natural Resources Conservation Area · SCA · Unknown · ~2,341 ac
+- Iron Horse · SP · Unknown · ~2,334 ac
+- Clearwater Corridor Natural Resources Conservation Area · SCA · Unknown · ~2,312 ac
+- Rimrock Lake · RMA · Unknown · ~2,250 ac
+- 4-O Ranch - March 2014 · SCA · Washington Department of Fish and Wildlife · ~2,147 ac
