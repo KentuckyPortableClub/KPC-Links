@@ -40,8 +40,8 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
   const GROUPS = {
     fed: { name: 'Federal land (national forests, parks, refuges, BLM…)', col: [255, 214, 51], on: true },
     state: { name: 'State land (state parks, wildlife areas, forests…)', col: [56, 232, 255], on: true },
-    usace: { name: 'Army Corps of Engineers (usually NOT a POTA park)', col: [255, 140, 56], on: true },
-    other: { name: 'City, county, private, military (not POTA)', col: [255, 110, 216], on: false }
+    usace: { name: 'Army Corps of Engineers (usually no park number)', col: [255, 140, 56], on: true },
+    other: { name: 'City, county, private, military (no park number)', col: [255, 110, 216], on: false }
   };
   const GK = Object.keys(GROUPS);
   const store = {
@@ -51,6 +51,31 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
   const saved = store.get(); if (saved) GK.forEach(k => { if (k in saved) GROUPS[k].on = !!saved[k]; });
   const css = c => `rgb(${c.join(',')})`;
 
+  const GI = {}; GK.forEach((k, i) => GI[k] = i + 1);
+  /* does this browser change pixels read back from a canvas? (checked once) */
+  let noisy = null;
+  const NOISY = () => {
+    if (noisy !== null) return noisy;
+    try {
+      const c = document.createElement('canvas'); c.width = c.height = 16; const x = c.getContext('2d');
+      x.fillStyle = 'rgb(163,146,222)'; x.fillRect(0, 0, 16, 16); x.fillStyle = 'rgb(99,221,255)'; x.fillRect(4, 4, 8, 8);
+      const d = x.getImageData(0, 0, 16, 16).data; let bad = 0;
+      for (let i = 0; i < d.length; i += 4) { const inn = (i / 4 % 16) >= 4 && (i / 4 % 16) < 12 && Math.floor(i / 64) >= 4 && Math.floor(i / 64) < 12, w = inn ? [99, 221, 255] : [163, 146, 222];
+        if (d[i] !== w[0] || d[i + 1] !== w[1] || d[i + 2] !== w[2] || d[i + 3] !== 255) bad++; }
+      noisy = bad > 0;
+    } catch (e) { noisy = true; }
+    return noisy;
+  };
+  function smooth(cat, S) {
+    const o = new Uint8Array(S * S), n = new Uint16Array(GK.length + 1);
+    for (let y = 0; y < S; y++) for (let xx = 0; xx < S; xx++) {
+      n.fill(0);
+      for (let dy = -1; dy <= 1; dy++) { const yy = y + dy; if (yy < 0 || yy >= S) continue;
+        for (let dx = -1; dx <= 1; dx++) { const x2 = xx + dx; if (x2 < 0 || x2 >= S) continue; n[cat[yy * S + x2]]++; } }
+      let b = 0; for (let k = 1; k < n.length; k++) if (n[k] > n[b]) b = k; o[y * S + xx] = b;
+    }
+    return o;
+  }
   function classify(r, g, b) {
     let best = 0, bd = 1e9;
     for (let i = 0; i < CAT.length; i++) { const c = CAT[i][0], d = (r - c[0]) ** 2 + (g - c[1]) ** 2 + (b - c[2]) ** 2; if (d < bd) { bd = d; best = i; } }
@@ -111,11 +136,14 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
           const x = t.getContext('2d'); x.drawImage(img, 0, 0, S, S);
           if (raw) { if (opts.skipKY) cutKY(x, c, S, kyRings); return; }
           let d; try { d = x.getImageData(0, 0, S, S); } catch (e) { x.clearRect(0, 0, S, S); x.globalAlpha = .45; x.drawImage(img, 0, 0, S, S); return; }
-          const p = d.data, cat = new Uint8Array(S * S);
+          const p = d.data; let cat = new Uint8Array(S * S);
           for (let i = 0, j = 0; j < cat.length; i += 4, j++) {
             if (p[i + 3] < 60) continue;
-            const k = classify(p[i], p[i + 1], p[i + 2]); if (GROUPS[CAT[k - 1][1]].on) cat[j] = k;
+            const k = classify(p[i], p[i + 1], p[i + 2]); if (GROUPS[CAT[k - 1][1]].on) cat[j] = GI[CAT[k - 1][1]];   // compare by group, not by legend colour
           }
+          /* Oct 18 (Brandon's phone: whole areas painted solid): some phone browsers add 'privacy noise' to pictures read
+             from a canvas, so every pixel looked like an edge. Smooth the groups first (3x3 majority) when the read-back is noisy. */
+          if (NOISY()) cat = smooth(cat, S);
           /* outline = pixels within R of a change in owner (two quick passes instead of checking a box round every pixel) */
           const R = 3, e = new Uint8Array(S * S);
           for (let y = 0; y < S; y++) for (let xx = 0; xx < S; xx++) {
@@ -127,9 +155,13 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
           for (let y = 0; y < S; y++) { let last = -99; for (let xx = 0; xx < S; xx++) { if (e[y * S + xx]) last = xx; if (xx - last <= R) h[y * S + xx] = 1; } last = 1e9; for (let xx = S - 1; xx >= 0; xx--) { if (e[y * S + xx]) last = xx; if (last - xx <= R) h[y * S + xx] = 1; } }
           const v = new Uint8Array(S * S);
           for (let xx = 0; xx < S; xx++) { let last = -99; for (let y = 0; y < S; y++) { if (h[y * S + xx]) last = y; if (y - last <= R) v[y * S + xx] = 1; } last = 1e9; for (let y = S - 1; y >= 0; y--) { if (h[y * S + xx]) last = y; if (last - y <= R) v[y * S + xx] = 1; } }
+          /* safety: an outline tile is mostly empty inside. If over half the land pixels came out as 'edge', the picture was
+             noisy: draw nothing rather than a solid blob. */
+          let land = 0, edge = 0; for (let j = 0; j < cat.length; j++) if (cat[j]) { land++; if (v[j]) edge++; }
+          if (land > 3000 && edge > land * .5) { x.clearRect(0, 0, S, S); return; }
           for (let j = 0, i = 0; j < cat.length; j++, i += 4) {
             const k = cat[j]; if (!k) { p[i + 3] = 0; continue; }
-            const col = GROUPS[CAT[k - 1][1]].col;
+            const col = GROUPS[GK[k - 1]].col;
             p[i] = col[0]; p[i + 1] = col[1]; p[i + 2] = col[2]; p[i + 3] = v[j] ? 255 : 0;   // outline only, inside left clear (Brandon Oct 16)
           }
           x.putImageData(d, 0, 0);
@@ -157,7 +189,7 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
       let open = false; try { open = localStorage.getItem('kpcPadKeyOpen') === '1'; } catch (e) {}
       d.classList.toggle('open', open);
       d.innerHTML = '<button type="button" class="kpc-pad-tg" aria-expanded="' + open + '"><i class="sw"></i>BOUNDARIES <span>' + (open ? '▾' : '▸') + '</span></button><div class="kpc-pad-body"><b>OFFICIAL BOUNDARIES (USGS PAD-US)</b>' + GK.map(k => `<label><input type="checkbox" data-g="${k}"${GROUPS[k].on ? ' checked' : ''}><i style="border-color:${css(GROUPS[k].col)};background:${css(GROUPS[k].col)}33"></i>${GROUPS[k].name}</label>`).join('') +
-        '<small>Public land from the US government\'s map of protected areas. A park\'s POTA boundary can differ: check the park\'s own map before you set up.</small></div><small class="kpc-pad-st"></small>';
+        '<small>Public land from the US government\'s map of protected areas. A park\'s own map can differ: check it before you set up.</small></div><small class="kpc-pad-st"></small>';
       statusEl = d.querySelector('.kpc-pad-st'); tellStatus();
       const tg = d.querySelector('.kpc-pad-tg');
       tg.onclick = () => { open = !open; d.classList.toggle('open', open); tg.setAttribute('aria-expanded', open); tg.querySelector('span').textContent = open ? '▾' : '▸'; try { localStorage.setItem('kpcPadKeyOpen', open ? '1' : '0'); } catch (e) {} };
