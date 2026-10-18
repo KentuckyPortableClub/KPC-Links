@@ -51,7 +51,7 @@ const T = {
  lewisauto:{name:'Lewis & Clark auto tour route (signed roads)', file:'ky-lecl-auto.geojson', color:'#2f9fb8', ref:'US-4572'},
  lewis:{name:'Lewis & Clark (NPS)', url:'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Lewis_and_Clark_National_Historic_Trail_Congressionally_Designated_Route/FeatureServer/0/query'+NPSQ, color:'#5bd5ec', ref:'US-4572'}
 };
-const ALIAS = {"Clifty Wilderness":["US-3801"],"Big South Fork National River and Recreation Area":["US-0686"],"Bad Branch Wild River":["US-10112"],"Big South Fork Wild River":["US-10107"],"Cumberland River Wild River":["US-10103"],"Green River Wild River":["US-10105"],"Rock Creek Wild River":["US-10111"],"Red River Wild River":["US-10104"],"Rockcastle River Wild River":["US-10106"],"Little South Fork Wild River":["US-7962"],"Mammoth Cave National Park":["US-0050"],"Abraham Lincoln Birthplace National Historical Park":["US-0724"],"Camp Nelson National Monument":["US-7950"],"Mill Springs Battlefield National Monument":["US-7708"],"Cumberland Gap National Historical Park":["US-0019"],"Fort Donelson National Battlefield":["US-0703","US-3790"],"Jefferson National Forest":["US-4526"],"Pine Mountain State Scenic Trail":["US-10102"],"Daniel Boone National Forest":["US-4484"]};
+const ALIAS = {"Knobs State Forest and WMA":["US-4690"],"Little South Fork State Natural Area (Steele Hollow SNA)":["US-7962"],"Clifty Wilderness":["US-3801"],"Big South Fork National River and Recreation Area":["US-0686"],"Bad Branch Wild River":["US-10112"],"Big South Fork Wild River":["US-10107"],"Cumberland River Wild River":["US-10103"],"Green River Wild River":["US-10105"],"Rock Creek Wild River":["US-10111"],"Red River Wild River":["US-10104"],"Rockcastle River Wild River":["US-10106"],"Mammoth Cave National Park":["US-0050"],"Abraham Lincoln Birthplace National Historical Park":["US-0724"],"Camp Nelson National Monument":["US-7950"],"Mill Springs Battlefield National Monument":["US-7708"],"Cumberland Gap National Historical Park":["US-0019"],"Fort Donelson National Battlefield":["US-0703","US-3790"],"Jefferson National Forest":["US-4526"],"Pine Mountain State Scenic Trail":["US-10102"],"Daniel Boone National Forest":["US-4484"]};
 const bData = {}, bLay = {}, tData = {};
 const norm = s => String(s||'').toLowerCase().replace(/wildlife management area|state nature preserve|state natural area|state resort park|state historic site|state park|national forest|wma|snp|sna|the |[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
 const ringsOf = g => !g ? [] : g.type==='Polygon' ? [g.coordinates] : g.type==='MultiPolygon' ? g.coordinates : [];
@@ -63,13 +63,16 @@ function edgeKm(lat,lon,g){let b=Infinity;for(const p of ringsOf(g))for(const r 
 function bbox(g){let a=[180,90,-180,-90];const add=([x,y])=>{if(x<a[0])a[0]=x;if(y<a[1])a[1]=y;if(x>a[2])a[2]=x;if(y>a[3])a[3]=y};for(const p of ringsOf(g))for(const r of p)r.forEach(add);for(const l of linesOf(g))l.forEach(add);return a}
 const fmtMi = km => {const m=km*0.621371;return m<0.1?Math.round(m*5280)+' ft':m.toFixed(m<10?1:0)+' mi'};
 const fName = f => (f.properties&&(f.properties.NAME||f.properties.Name||f.properties.name||f.properties.UNIT_NAME||f.properties.TRAIL_NAME))||'';
+/* Oct 17 (Brandon): a name match needs the same kind of place (Yatesville Lake WMA is not Yatesville Lake State Park); outlines with no POTA park of their own NAME are drawn red dotted = NOT A POTA PARK */
+const kOf=s=>{s=String(s||'').toLowerCase();if(/state (resort )?park state nature preserve/.test(s))return 'sp';return /wildlife management area|\bwma\b|hunting area/.test(s)?'wma':/nature preserve|natural area|\bsnp\b|\bsna\b/.test(s)?'snp':/state (resort )?park|recreation(al)? area/.test(s)?'sp':/state forest/.test(s)?'sf':/wild river|scenic river/.test(s)?'wr':''},kSame=(a,b)=>{const x=kOf(a),y=kOf(b);return !x||!y||x===y};
+const NOTPARK={color:'#ff2a2a',dashArray:'2 6'};
 function potaFor(f){ // POTA parks matched to a boundary: alias, reference point inside, or name match
- if(f._pota)return f._pota;const nm=norm(fName(f)),b=f._bb||(f._bb=bbox(f.geometry)),out=new Map();
+ if(f._pota)return f._pota;const nm=norm(fName(f)),b=f._bb||(f._bb=bbox(f.geometry)),out=new Map(),NM=new Set();
  (ALIAS[fName(f)]||[]).forEach(r=>{const p=D.parks.find(x=>x.c===r);if(p)out.set(r,p)});
  for(const p of D.parks){if(out.has(p.c))continue;
   if(p.lo>=b[0]-.02&&p.lo<=b[2]+.02&&p.la>=b[1]-.02&&p.la<=b[3]+.02&&inside(p.la,p.lo,f.geometry)){out.set(p.c,p);continue}
-  const dn=norm(p.n);if(nm.length>4&&dn&&p.lo>=b[0]-.5&&p.lo<=b[2]+.5&&p.la>=b[1]-.5&&p.la<=b[3]+.5){const sh=dn.length<nm.length?dn:nm,lg=dn.length<nm.length?nm:dn;if(dn===nm||(sh.length>6&&lg.startsWith(sh)&&sh.length/lg.length>=.7))out.set(p.c,p)}}
- return (f._pota=[...out.values()])}
+  const dn=norm(p.n);if(nm.length>4&&dn&&kSame(p.n,fName(f))&&p.lo>=b[0]-.5&&p.lo<=b[2]+.5&&p.la>=b[1]-.5&&p.la<=b[3]+.5){const sh=dn.length<nm.length?dn:nm,lg=dn.length<nm.length?nm:dn;if(dn===nm||(sh.length>6&&lg.startsWith(sh)&&sh.length/lg.length>=.7)){out.set(p.c,p);NM.add(p.c)}}}
+ f._named=[...out.values()].filter(p=>NM.has(p.c)||(ALIAS[fName(f)]||[]).includes(p.c)).length>0;return (f._pota=[...out.values()])}
 const refTxt = ps => ps.length ? ps.slice(0,4).map(p=>p.c).join(', ')+(ps.length>4?' +'+(ps.length-4):'') : '';
 
 /* where is a point? inside which boundaries, near which trails */
@@ -106,7 +109,7 @@ function setShown(k,v){try{const o=JSON.parse(localStorage.getItem('kpcPlanLayer
 /* line weights follow the shared "Thick boundaries" switch (kpc-map-extras.js) */
 const LW=w=>window.KPCX&&KPCX.lw?KPCX.lw(w):w,FO=f=>window.KPCX&&KPCX.fo?KPCX.fo(f):f;
 function drawB(k){const s=B[k];canvasR=canvasR||bRend();
- bLay[k]=L.geoJSON(bData[k],{renderer:canvasR,pane:'bndp',style:f=>{if(s.kpc)return{color:s.color,weight:LW(3),opacity:1,dashArray:'12 5 2 5',fill:true,fillOpacity:0};const has=potaFor(f).length>0;return{color:s.color,weight:LW(has?3:2),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(k==='bdbnf'?.03:(has?.07:.04))   /* lighter inside (Brandon Oct 16: 'could use little less shading') */}},
+ bLay[k]=L.geoJSON(bData[k],{renderer:canvasR,pane:'bndp',style:f=>{if(s.kpc)return{color:s.color,weight:LW(3),opacity:1,dashArray:'12 5 2 5',fill:true,fillOpacity:0};potaFor(f);if(!f._named)return{color:NOTPARK.color,weight:LW(2.5),opacity:1,dashArray:NOTPARK.dashArray,fill:true,fillOpacity:0};const has=true;return{color:s.color,weight:LW(has?3:2),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(k==='bdbnf'?.03:(has?.07:.04))   /* lighter inside (Brandon Oct 16: 'could use little less shading') */}},
   onEachFeature:(f,l)=>{l.on('click',e=>{if(adding)return;L.popup({maxWidth:290}).setLatLng(e.latlng).setContent(bPopup(f,s,e.latlng)).openOn(map)})}});
  if(shown(k))bLay[k].addTo(map);order()}
 function drawT(k){const s=T[k];
@@ -120,7 +123,7 @@ if(window.KPCX&&KPCX.onLook)KPCX.onLook((lk,k)=>{if(k!=='thick')return;Object.va
 function order(){if(bLay.bdbnf&&map.hasLayer(bLay.bdbnf))bLay.bdbnf.bringToBack()}
 function bPopup(f,s,ll){const p=f.properties||{},refs=potaFor(f);
  return `<b>${esc(fName(f)||s.name)}</b><div style="font-size:12px;color:#555">${esc(p.TYPE||s.name)}${p.ACCESS?' · access: '+esc(p.ACCESS):''}</div>`+
- (refs.length?`<div style="margin-top:6px"><b>POTA:</b> ${refs.slice(0,5).map(r=>`<a href="${KPC.links.pota(r.c)}" target="_blank" rel="noopener">${r.c}</a> ${esc(r.n)}`).join('<br>')}</div>`:'<div style="margin-top:6px">No POTA reference matched to this outline.</div>')+
+ (!f._named?'<div style="margin-top:6px;padding:6px 8px;border-radius:8px;background:#ffe3e3;color:#8a0f0f;font-size:12.5px;font-weight:800">🚫 NOT A POTA PARK: this public land has no POTA number of its own. Contacts made here do not count unless you are also inside a real POTA park’s own boundary.</div>'+(refs.length?`<div style="margin-top:6px"><b>POTA park inside it:</b> ${refs.slice(0,5).map(r=>`<a href="${KPC.links.pota(r.c)}" target="_blank" rel="noopener">${r.c}</a> ${esc(r.n)}`).join('<br>')}<div style="font-size:12px">Only that park’s own land counts.</div></div>`:''):(refs.length?`<div style="margin-top:6px"><b>POTA:</b> ${refs.slice(0,5).map(r=>`<a href="${KPC.links.pota(r.c)}" target="_blank" rel="noopener">${r.c}</a> ${esc(r.n)}`).join('<br>')}</div>`:'<div style="margin-top:6px">No POTA reference matched to this outline.</div>'))+
  (s.note?`<div style="margin-top:6px;font-size:12px;font-weight:700">⚠ ${esc(s.note)}</div>`:'')+(p.URL?`<div style="margin-top:6px"><a href="${esc(p.URL)}" target="_blank" rel="noopener">Official page ↗</a></div>`:'')+(s.kpc?`<div style="margin-top:6px;font-size:11px;color:#666">${p.NOTE?esc(p.NOTE)+' ':''}Outline source: ${esc(p.SOURCE||'KPC')}. Map data © OpenStreetMap contributors.</div>`:'')+
  `<div style="margin-top:8px"><button type="button" class="btn sm" data-drop="${ll.lat},${ll.lng}">📍 ADD A SPOT HERE</button></div>`}
 
