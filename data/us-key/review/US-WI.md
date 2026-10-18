@@ -1,15 +1,13 @@
 # WI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 348** parks joined to official land (same name + same kind of place). **94** to check by hand, **22** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **267 of 348** parks joined to official land (same name + same kind of place). **60** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0604** St. Croix Wetland Management District (Wetland Management District) → St. Croix County Waterfowl Production Area (~6,418 ac, the POTA pin is inside it (different name)); St. Croix County Waterfowl Production Area (~6,140 ac, the POTA pin is inside it (different name))
 - **US-0673** Saint Croix National Wild and Scenic River (National Wild and Scenic River) → Saint Croix National Scenic Riverway (~17,484 ac, similar name); St. Croix National Scenic Riverway (~1,631 ac, similar name); St. Croix National Scenic Riverway (~892 ac, similar name)
-- **US-10054** Plover River State Fish and Wildlife Area (State Fish and Wildlife Area) → Plover River Fishery Area (~1,472 ac, similar name)
 - **US-10183** Emerald Valley State Wildlife Area (State Wildlife Area) → Emerald Valley State Habitat Area-Western Prairie Habitat Restoration Area (~155 ac, similar name)
 - **US-10184** Johnson State Wildlife Area (State Wildlife Area) → Western Prairie Habitat Restoration (~938 ac, the POTA pin is inside it (different name)); Deer Park State Habitat Area-Western Prairie Habitat Restoration Area (~210 ac, the POTA pin is inside it (different name))
-- **US-10186** Kinnickinnic River State Fish and Wildlife Area (State Fish and Wildlife Area) → Kinnickinnic River Fishery Area (~1,218 ac, similar name); Stream Bank Protection Fee Program (~5,131 ac, the POTA pin is inside it (different name))
 - **US-10189** Lundy Pond State Wildlife Area (State Wildlife Area) → Lundy Pond State Habitat Area-Western Prairie Habitat Restoration Area (~35 ac, similar name)
 - **US-10190** Nagel State Wildlife Area (State Wildlife Area) → Nagel State Habitat Area-Western Prairie Habitat Restoration Area (~208 ac, similar name)
 - **US-10191** Oden State Wildlife Area (State Wildlife Area) → Oden State Habitat Area-Western Prairie Habitat Restoration Area (~249 ac, similar name)
@@ -17,50 +15,18 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 348** parks joined
 - **US-10197** Star Prairie Seed Farm State Wildlife Area (State Wildlife Area) → Star Prairie Seed Farm State Habitat Area-Western Prairie Habitat Restoration Area (~58 ac, similar name); St. Croix County Waterfowl Production Area (~6,418 ac, the POTA pin is inside it (different name)); St. Croix County Waterfowl Production Area (~6,140 ac, the POTA pin is inside it (different name))
 - **US-10199** Ten Mile Creek State Wildlife Area (State Wildlife Area) → Ten Mile Creek State Habitat Area-Western Prairie Habitat Restoration Area (~216 ac, similar name); Statewide Wildlife Habitat (~2,774 ac, the POTA pin is inside it (different name))
 - **US-10200** Willow River State Wildlife Area (State Wildlife Area) → Willow River State Habitat Area-Western Prairie Habitat Restoration Area (~818 ac, similar name)
-- **US-10558** Black Earth Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Black Earth Creek Fishery Area (~409 ac, similar name)
 - **US-10642** Big Spring Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Rem-Big Spring Creek (~282 ac, similar name)
 - **US-10643** Blue River State Fish and Wildlife Area (State Fish and Wildlife Area) → Rem-Blue River (~242 ac, similar name)
-- **US-10645** Trout Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Trout Creek Fishery Area-Iowa (~954 ac, similar name)
-- **US-10646** Willow Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Willow Creek Fishery Area (~527 ac, similar name); Willow Creek Fishery Area (~87 ac, similar name)
 - **US-10647** Anthony Branch State Fish and Wildlife Area (State Fish and Wildlife Area) → Anthony Branch Streambank Protection Area (~685 ac, similar name)
-- **US-10648** Cherokee Marsh State Fish and Wildlife Area (State Fish and Wildlife Area) → Cherokee Marsh Fishery Area (~986 ac, similar name)
-- **US-10649** Mount Vernon Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Mount Vernon Creek Fishery Area (~379 ac, similar name)
-- **US-10651** Hinkson Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Hinkson Creek Fishery Area (~235 ac, similar name)
-- **US-10652** Lodi Spring Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Lodi Spring Creek Fishery Area (~47 ac, similar name)
-- **US-10653** Rocky Run Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Rocky Run Creek Fishery Area (~726 ac, similar name)
-- **US-10654** Rowan Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Rowan Creek Fishery Area (~645 ac, similar name)
-- **US-10783** Bear Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Bear Creek Fishery Area (~761 ac, similar name)
+- **US-10650** Nevin Springs State Fish and Wildlife Area (State Fish and Wildlife Area) → Nevin Hatchery (~331 ac, similar name)
 - **US-11230** Hallie Marsh State Wildlife Area (State Wildlife Area) → Statewide Wildlife Habitat - Wd (~1,573 ac, the POTA pin is inside it (different name))
-- **US-11927** Upper Wolf River State Fish and Wildlife Area (State Fish and Wildlife Area) → Upper Wolf River Fishery Area (~8,941 ac, similar name); Wolf River State Trail (~519 ac, similar name)
-- **US-11928** McCann Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Mccann Creek Fishery Area (~320 ac, similar name); McCann Creek Fishery Area (~318 ac, similar name)
-- **US-11929** Duncan Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Duncan Creek Fishery Area (~241 ac, similar name)
-- **US-11930** Sand Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Sand Creek Fishery Area (~215 ac, similar name)
-- **US-11931** Emmons Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Emmons Creek Fishery Area (~1,472 ac, similar name); Emmons Creek Fishery Area 2 (~5 ac, similar name)
-- **US-11932** Radley Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Radley Creek Fishery Area (~1,437 ac, similar name); Rem-North Fork Radley Creek (~188 ac, similar name); Radley Creek Fishery Area 3 (~27 ac, similar name)
-- **US-11933** Richard Hemp State Fish and Wildlife Area (State Fish and Wildlife Area) → Richard A Hemp Fishery Area (~1,348 ac, similar name)
-- **US-11934** Little Wolf River State Fish and Wildlife Area (State Fish and Wildlife Area) → Little Wolf River Fishery Area (~2,343 ac, similar name)
-- **US-11935** La Budde Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → La Budde Creek Fishery Area (~392 ac, similar name)
-- **US-11937** Mecan River State Fish and Wildlife Area (State Fish and Wildlife Area) → Mecan River Fishery Area (~6,706 ac, similar name)
-- **US-11956** Pine River State Fish and Wildlife Area (State Fish and Wildlife Area) → Pine River System Fishery Area (~2,054 ac, similar name)
-- **US-11957** Willow Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Willow Creek Fishery Area (~2,142 ac, similar name)
 - **US-11961** Lyons State Wildlife Area (State Wildlife Area) → Lyons State Habitat Area (~134 ac, similar name)
-- **US-11976** Prairie River State Fish and Wildlife Area (State Fish and Wildlife Area) → Prairie River Fishery Area (~1,942 ac, similar name)
 - **US-12029** Alta State Fish and Wildlife Area (State Fish and Wildlife Area) → Alta Springs Fishery Area (~139 ac, similar name)
-- **US-12065** South Branch Oconto River State Fish and Wildlife Area (State Fish and Wildlife Area) → S. Branch Oconto River Fish Area (~641 ac, similar name); South Branch Oconto River Fishery Area (~582 ac, same name, different kind of place)
-- **US-12066** Evergreen River State Fish and Wildlife Area (State Fish and Wildlife Area) → Evergreen River Fishery Area (~1,140 ac, similar name)
-- **US-12067** Woods Flowage State Fish and Wildlife Area (State Fish and Wildlife Area) → Woods Flowage Fishery Area (~1,217 ac, similar name)
-- **US-12068** Big Rib River State Fish and Wildlife Area (State Fish and Wildlife Area) → Big Rib River Fishery Area (~728 ac, similar name)
-- **US-12081** Spring Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Spring Lake Fishery Area (~277 ac, similar name)
 - **US-12213** Andrew Krakow Memorial State Fish and Wildlife Area (State Fish and Wildlife Area) → Andrew Krakow Public Access And Fishery Area (~22 ac, similar name)
 - **US-12358** Pinnacle Rock State Fish and Wildlife Area (State Fish and Wildlife Area) → Pinnacle Rock Rearing Station (~55 ac, similar name)
-- **US-12606** Waupaca River State Fish and Wildlife Area (State Fish and Wildlife Area) → Waupaca River Fishery Area (~69 ac, similar name)
 - **US-12621** Whitcomb Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Rem-Whitcomb Creek (~482 ac, similar name)
-- **US-12776** Trout-Nace Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Trout-Nace Creek Fishery Area (~45 ac, similar name)
 - **US-13273** Dover State Wildlife Area (State Wildlife Area) → Dover State Habitat Area (~79 ac, similar name)
-- **US-13472** La Crosse River State Fish and Wildlife Area (State Fish and Wildlife Area) → La Crosse River Fishery Area (~463 ac, similar name)
-- **US-13515** Eagle Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Eagle Lake Fishery Area (~97 ac, similar name)
 - **US-13534** Camp Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Rem-Camp Creek (~375 ac, similar name)
-- **US-13535** La Crosse Area Comprehensive State Fish and Wildlife Area (State Fish and Wildlife Area) → La Crosse Area Comprehensive Fishery Area (~1,365 ac, same name, different kind of place)
 - **US-1458** Kohler-Andrae State Park (State Park) → John Michael Kohler State Park (~751 ac, the POTA pin is inside it (different name))
 - **US-4236** Upper Mississippi River National Wildlife Refuge (National Wildlife Refuge) → Upper Mississippi River National Wildlife And Fish Refuge (~52,855 ac, similar name); Upper Mississippi River National Wildlife And Fish Refuge (~52,514 ac, similar name)
 - **US-4238** Ice Age National Scenic Trail (National Scenic Trail) → Ice Age Trail (~5,793 ac, similar name); Ice Age Trail - Wd (~2,453 ac, similar name); Ice Age Trail - Lm (~974 ac, similar name)
@@ -79,14 +45,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 348** parks joined
 - **US-4264** Quiver Falls Unit of Menominee River State Recreation Area (State Recreation Area) → Menominee River State Recreation Area (~4,785 ac, similar name); Menominee River State Park & Recreation Area 2 (~2,701 ac, similar name)
 - **US-4288** Germania Marsh State Wildlife Area (State Wildlife Area) → Germania Wildlife Area (~2,354 ac, similar name)
 - **US-4294** Horicon Marsh State Wildlife Area (State Wildlife Area) → Horicon National Wildlife Refuge (~21,964 ac, similar name); Horicon National Wildlife Refuge (~21,958 ac, similar name); Horicon Wildlife Area (~11,169 ac, similar name)
-- **US-4296** Kickapoo River State Wildlife Area (State Wildlife Area) → Kickapoo Wildlife Area (~3,634 ac, similar name)
 - **US-4309** McMillan Marsh State Wildlife Area (State Wildlife Area) → Mcmillan Wildlife Area (~4,173 ac, similar name); Mc Millan Wildlife Area (~4,138 ac, the POTA pin is inside it (different name))
 - **US-4332** Theresa Marsh State Wildlife Area (State Wildlife Area) → Theresa Wildlife Area (~5,333 ac, similar name)
 - **US-4339** Waunakee Marsh State Wildlife Area (State Wildlife Area) → Waunakee Wildlife Area (~481 ac, similar name)
 - **US-4342** Herb Behnke Unit of Wolf River Bottoms State Wildlife Area (State Wildlife Area) → Wolf River Bottoms Wildlife Area (~3,141 ac, similar name)
+- **US-5578** Coulee Experimental State Forest (State Forest) → Coulee Experimental Forest (~2,965 ac, same name, different kind of place)
 - **US-5579** Havenwoods State Forest (State Forest) → Havenwoods Forest Preserve And Nature Center (~215 ac, similar name)
 - **US-8209** Dewey Marsh State Natural Area (State Natural Area) → Dewey Marsh Wildlife Area (~6,048 ac, same name, different kind of place)
-- **US-8216** Osceola Bedrock Glades State Natural Area (State Natural Area) → Osceola Hatchery (~351 ac, the POTA pin is inside it (different name))
+- **US-8216** Osceola Bedrock Glades State Natural Area (State Natural Area) → Osceola Hatchery (~351 ac, similar name)
 - **US-8217** Casey Lake State Wildlife Area (State Wildlife Area) → Casey Lake State Habitat Area-Western Prairie Habitat Restoration Area (~360 ac, similar name)
 - **US-8219** Jackson Marsh State Natural Area (State Natural Area) → Jackson Marsh Wildlife Area (~2,472 ac, same name, different kind of place)
 - **US-8220** Turtle Flambeau Flowage State Wilderness Area (State Wilderness Area) → Turtle Flambeau Scenic Waters Area (~35,976 ac, similar name); Turtle Flambeau Scenic Waters Area (~1 ac, similar name)
@@ -99,6 +65,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 348** parks joined
 - **US-9846** Hook Lake Bog - Grass Lake State Wildlife Area (State Wildlife Area) → Hook Lake/Grass Lake Wildlife And Natural Area (~860 ac, similar name)
 - **US-9848** Jefferson Marsh State Wildlife Area (State Wildlife Area) → Jefferson Marsh State Wildlife And Natural Area (~3,326 ac, same name, different kind of place)
 
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
+
 ## Nothing found in PAD-US
 
 - US-0602 Leopold Wetland Management District (Wetland Management District)
@@ -106,7 +75,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 348** parks joined
 - US-10195 Sette State Wildlife Area (State Wildlife Area)
 - US-10198 Swinging Gate State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-10644 Love and Strutt Creeks State Fish and Wildlife Area (State Fish and Wildlife Area)
-- US-10650 Nevin Springs State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-11955 Genoa National Fish Hatchery (National Fish Hatchery)
 - US-4239 North Country Trail National Scenic Trail (National Scenic Trail)
 - US-4242 Fenley State Recreation Area (State Recreation Area)
@@ -146,11 +114,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 348** parks joined
 - Glacial Habitat Restoration · SCA · Unknown · ~9,591 ac
 - Glacial Habitat Restoration - Lm · SREC · Wisconsin Department of Natural Resources · ~9,349 ac
 - Waterloo - Mud Lake Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~9,261 ac
-- Upper Wolf River Fishery Area · SREC · Wisconsin Department of Natural Resources · ~8,941 ac
 - Scattered Forest Lands · SRMA · Unknown · ~7,832 ac
 - Whisker Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,434 ac
 - Rainbow Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,175 ac
-- Mecan River Fishery Area · SREC · Wisconsin Department of Natural Resources · ~6,706 ac
 - St Louis River Streambank Protection Area · SREC · Wisconsin Department of Natural Resources · ~6,676 ac
 - Quincy Bluff And Wetlands Natural Area · SCA · Wisconsin Department of Natural Resources · ~6,606 ac
 - Spread Eagle Barrens State Natural Area · SCA · Wisconsin Department of Natural Resources · ~6,451 ac
@@ -165,7 +131,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 348** parks joined
 - Theresa Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~5,333 ac
 - Stream Bank Protection Fee Program · SCA · Unknown · ~5,131 ac
 - Pike Wild River · SCA · Wisconsin Department of Natural Resources · ~4,736 ac
-- White River Fishery Area-Bayfield · SREC · Wisconsin Department of Natural Resources · ~4,352 ac
 - Porcupine Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,306 ac
 - Scattered Forest Land - Nw · SREC · Wisconsin Department of Natural Resources · ~4,189 ac
 - Mcmillan Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~4,173 ac
@@ -176,13 +141,16 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 348** parks joined
 - Lower Wolf River Bottomlands Natural Resource Area · SREC · Wisconsin Department of Natural Resources · ~3,641 ac
 - Kickapoo Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~3,634 ac
 - Scattered Wildlife - Wd · SREC · Wisconsin Department of Natural Resources · ~3,605 ac
-- White River Fishery Area-Waushara · SREC · Wisconsin Department of Natural Resources · ~3,461 ac
 - Extensive Wl Habitat - Sd · SREC · Wisconsin Department of Natural Resources · ~3,451 ac
 - Jefferson Marsh State Wildlife And Natural Area · SREC · Wisconsin Department of Natural Resources · ~3,326 ac
 - Gift Lands · UNK · Unknown · ~3,152 ac
+- Coulee Experimental Forest · SRMA · Wisconsin Department of Natural Resources · ~2,965 ac
 - Statewide Wildlife Habitat · SCA · Unknown · ~2,774 ac
 - Rush Creek Natural Area · SCA · Wisconsin Department of Natural Resources · ~2,698 ac
 - Ice Age Trail - Nw · SP · Wisconsin Department of Natural Resources · ~2,697 ac
 - Northeastern States District Office · PUB · BLM · ~2,691 ac
 - Lake Mills Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~2,664 ac
 - Clam River Fishery Area · SREC · Wisconsin Department of Natural Resources · ~2,554 ac
+- Totogatic Wild River · SCA · Wisconsin Department of Natural Resources · ~2,489 ac
+- Jackson Marsh Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~2,472 ac
+- Lower Saint Croix National Scenic Riverway · WSR · NPS · ~2,470 ac

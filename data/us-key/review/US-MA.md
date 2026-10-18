@@ -1,6 +1,6 @@
 # MA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 421** parks joined to official land (same name + same kind of place). **43** to check by hand, **44** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **365 of 421** parks joined to official land (same name + same kind of place). **13** to check by hand, **43** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -12,41 +12,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 421** parks joined
 - **US-11683** Pickerel Cove Wildlife Management Area (Wildlife Management Area) → Wakeby Pond (~17 ac, the POTA pin is inside it (different name))
 - **US-2423** Gardner State Park (State Park) → C.M. Gardner State Park (~44 ac, similar name); C.M. Gardner State Park (~40 ac, similar name)
 - **US-4723** Ashmere Lake State Forest (State Forest) → Ashmere Lake State Park (~198 ac, same name, different kind of place); Ashmere Lake State Park (~7 ac, same name, different kind of place)
-- **US-5635** Mount Greylock State Reserve (State Reserve) → Mount Greylock State Reservation (~7,029 ac, similar name); Mount Greylock State Reservation (~3,271 ac, similar name); Mount Greylock State Reservation (~2,613 ac, similar name); Mount Greylock State Reservation (~746 ac, similar name); Mount Greylock State Reservation (~568 ac, similar name); Mount Greylock State Reservation (~564 ac, similar name)
 - **US-7971** Blackstone River Valley National Historical Park (National Historical Park) → Blackstone River and Canal Heritage State Park (~61 ac, similar name); Blackstone River and Canal Heritage State Park (~25 ac, similar name); Blackstone River and Canal Heritage State Park (~8 ac, similar name); Blackstone River and Canal Heritage State Park (~0 ac, similar name); Blackstone River and Canal Heritage State Park (~0 ac, similar name)
+- **US-8386** Fort Revere Park State Park (State Park) → Fort Revere (~2 ac, same name, different kind of place); Fort Revere (~1 ac, same name, different kind of place); Fort Revere (~1 ac, same name, different kind of place); Fort Revere (~1 ac, same name, different kind of place); Fort Revere (~0 ac, same name, different kind of place); Fort Revere (~0 ac, same name, different kind of place)
 - **US-8387** Francis D. Martini Memorial Shell Park and Moynihan State Recreation Area (State Recreation Area) → Neponset River Reservation (~68 ac, the POTA pin is inside it (different name))
 - **US-8391** Quabbin State Park (State Park) → Quabbin Reservoir Watershed (~4,135 ac, similar name); Quabbin Reservoir Watershed (~3,206 ac, similar name); Quabbin Reservoir (~174 ac, similar name); Quabbin Reservoir Watershed (~53 ac, similar name)
-- **US-8399** Alewife Brook State Reserve (State Reserve) → Alewife Brook Reservation (~79 ac, similar name); Alewife Brook Reservation (~30 ac, similar name); Alewife Brook Reservation (~27 ac, similar name)
-- **US-8400** Beaver Brook State Reserve (State Reserve) → Beaver Brook North Reservation (~156 ac, similar name); Beaver Brook Reservation (~58 ac, similar name); Beaver Brook Reservation (~13 ac, similar name); Beaver Brook Reservation (~3 ac, similar name); Beaver Brook North Reservation (~2 ac, similar name)
-- **US-8401** Belle Isle Marsh State Reserve (State Reserve) → Belle Isle Marsh Reservation (~23 ac, similar name); Belle Isle Marsh Reservation (~22 ac, similar name); Belle Isle Marsh Reservation (~2 ac, similar name); Belle Isle Marsh Reservation (~2 ac, similar name)
-- **US-8402** Blue Hills State Reserve (State Reserve) → Blue Hills Reservation (~2,452 ac, similar name); Blue Hills Reservation (~850 ac, similar name); Blue Hills Reservation (~275 ac, similar name); Blue Hills Reservation (~246 ac, similar name); Blue Hills Reservation (~231 ac, similar name); Blue Hills Reservation (~193 ac, similar name)
-- **US-8404** Bristol Blake State State Reserve (State Reserve) → Bristol Blake State Reservation (~1 ac, similar name)
-- **US-8405** Charles River State Reserve (State Reserve) → Charles River Reservation (~376 ac, similar name); Charles River Reservation (~84 ac, similar name); Charles River Reservation (~1 ac, similar name)
-- **US-8406** Chestnut Hill State Reserve (State Reserve) → Chestnut Hill Reservation (~23 ac, similar name); Chestnut Hill Reservation (~12 ac, similar name); Chestnut Hill Reservation (~5 ac, similar name)
-- **US-8407** Cutler Park State Reserve (State Reserve) → Cutler Park Reservation (~461 ac, similar name); Cutler Park Reservation (~182 ac, similar name); Cutler Park Reservation (~97 ac, similar name)
-- **US-8408** Elm Bank State Reserve (State Reserve) → Elm Bank Reservation (~114 ac, similar name); Elm Bank Reservation (~1 ac, similar name)
-- **US-8409** Fort Phoenix State Reserve (State Reserve) → Fort Phoenix State Reservation (~22 ac, similar name); Fort Phoenix State Reservation (~6 ac, similar name); Fort Phoenix State Reservation (~4 ac, similar name); Fort Phoenix State Reservation (~1 ac, similar name)
-- **US-8410** Hammond Pond State Reserve (State Reserve) → Hammond Pond Reservation (~57 ac, similar name); Hammond Pond Parkway (~26 ac, similar name); Hammond Pond Reservation (~2 ac, similar name)
-- **US-8412** Horseneck Beach State Reserve (State Reserve) → Horseneck Beach State Reservation (~385 ac, similar name); Horseneck Beach State Reservation (~112 ac, similar name); Horseneck Beach State Reservation (~110 ac, similar name); Horseneck Beach State Reservation (~75 ac, similar name); Horseneck Beach State Reservation (~59 ac, similar name); Horseneck Beach State Reservation (~29 ac, similar name)
-- **US-8413** Jug End WMA State Reserve (State Reserve) → Cedar Mountain/Jug End (Jug End Corp.) (~665 ac, similar name); Cedar Mountain/Jug End (Jug End Corp.) (~372 ac, similar name); Jug End Fen Wildlife Management Area (~103 ac, similar name); Jug End Fen Wildlife Management Area (~55 ac, similar name); Jug End Fen Wildlife Management Area (~39 ac, similar name); Jug End Fen Wildlife Management Area (~21 ac, similar name)
-- **US-8414** Middlesex Fells State Reserve (State Reserve) → Middlesex Fells Reservation (~955 ac, similar name); Middlesex Fells Reservation (~803 ac, similar name); Middlesex Fells Reservation (~266 ac, similar name); Middlesex Fells Reservation (~103 ac, similar name); Middlesex Fells Reservation (~22 ac, similar name); Middlesex Fells Reservation (~10 ac, similar name)
-- **US-8415** Mount Everett State Reserve (State Reserve) → Mount Everett State Reservation (~1,047 ac, similar name); Mount Everett State Reservation (~530 ac, similar name); Mount Everett State Reservation (~121 ac, similar name); Mount Everett State Reservation (~83 ac, similar name); Mount Everett State Reservation (~54 ac, similar name); Mount Everett State Reservation (~28 ac, similar name)
-- **US-8417** Mount Tom State Reserve (State Reserve) → Mount Tom State Reservation (~1,272 ac, similar name); Mount Tom State Reservation (~349 ac, similar name); Mount Tom State Reservation (~187 ac, similar name); Mount Tom State Reservation (~142 ac, similar name); Mount Tom State Reservation (~12 ac, similar name); Mount Tom State Reservation (~2 ac, similar name)
-- **US-8418** Mystic River State Reserve (State Reserve) → Mystic River Reservation (~214 ac, similar name); Mystic River Reservation (~30 ac, similar name); Mystic River Reservation (~2 ac, similar name); Mystic River Reservation (~2 ac, similar name); Mystic River Reservation (~0 ac, similar name); Mystic River Reservation (~0 ac, similar name)
-- **US-8419** Nantasket Beach State Reserve (State Reserve) → Nantasket Beach Reservation (~3 ac, similar name)
-- **US-8420** Nasketucket Bay State Reserve (State Reserve) → Nasketucket Bay State Reservation (~210 ac, similar name); Nasketucket Bay State Reservation (~63 ac, similar name); Nasketucket Bay State Reservation (~56 ac, similar name); Nasketucket Bay State Reservation (~1 ac, similar name)
-- **US-8421** Neponset River State Reserve (State Reserve) → Neponset River Reservation (~146 ac, similar name); Neponset River Reservation (~110 ac, similar name); Neponset River Reservation (~110 ac, similar name); Neponset River Reservation (~68 ac, similar name); Neponset River Reservation (~54 ac, similar name); Neponset River Reservation (~45 ac, similar name)
-- **US-8423** Purgatory Chasm State Reserve (State Reserve) → Purgatory Chasm State Reservation (~51 ac, similar name); Purgatory Chasm State Reservation (~36 ac, similar name); Purgatory Chasm State Reservation (~24 ac, similar name); Purgatory Chasm State Reservation (~15 ac, similar name); Purgatory Chasm State Reservation (~10 ac, similar name); Purgatory Chasm State Reservation (~5 ac, similar name)
 - **US-8424** Quincy Quarries State Reserve (State Reserve) → Blue Hills Reservation (~40 ac, the POTA pin is inside it (different name))
-- **US-8425** Quincy Shores State Reserve (State Reserve) → Quincy Shores Reservation (~9 ac, similar name); Quincy Shores Reservation (~2 ac, similar name); Quincy Shores Reservation (~1 ac, similar name); Quincy Shores Reservation (~0 ac, similar name); Quincy Shores Reservation (~0 ac, similar name); Quincy Shores Reservation (~0 ac, similar name)
-- **US-8426** Revere Beach State Reserve (State Reserve) → Revere Beach Reservation (~11 ac, similar name); Revere Beach Reservation (~1 ac, similar name); Revere Beach Parkway (~0 ac, similar name)
-- **US-8427** Rumney Marsh State Reserve (State Reserve) → Rumney Marsh Reservation (~216 ac, similar name); Rumney Marsh Reservation (~150 ac, similar name); Rumney Marsh Reservation (~141 ac, similar name); Rumney Marsh Reservation (~101 ac, similar name); Rumney Marsh Reservation (~92 ac, similar name); Rumney Marsh Reservation (~80 ac, similar name)
-- **US-8428** Salisbury Beach State Reserve (State Reserve) → Salisbury Beach State Reservation (~255 ac, similar name); Salisbury Beach State Reservation (~202 ac, similar name); Salisbury Beach State Reservation (~15 ac, similar name); Salisbury Beach State Reservation (~5 ac, similar name); Salisbury Beach State Reservation (~2 ac, similar name); Salisbury Beach State Reservation (~1 ac, similar name)
-- **US-8429** Sandy Point State Reserve (State Reserve) → Sandy Point State Reservation (~115 ac, similar name); Sandy Point State Reservation (~2 ac, similar name); Sandy Point State Reservation (~1 ac, similar name); Sandy Point State Reservation (~0 ac, similar name); Sandy Point State Reservation (~0 ac, similar name); Sandy Point State Reservation (~0 ac, similar name)
-- **US-8430** Scusset Beach State Reserve (State Reserve) → Scusset Beach State Reservation (~74 ac, similar name)
-- **US-8431** Stony Brook State Reserve (State Reserve) → Stony Brook Reservation (~485 ac, similar name); Stony Brook Reservation (~18 ac, similar name); Stony Brook Reservation (~18 ac, similar name); Stony Brook Reservation (~13 ac, similar name); Stony Brook Reservation (~6 ac, similar name); Stony Brook Reservation (~5 ac, similar name)
-- **US-8432** Walden Pond State Reserve (State Reserve) → Walden Pond State Reservation (~200 ac, similar name); Walden Pond State Reservation (~46 ac, similar name); Walden Pond State Reservation (~27 ac, similar name); Walden Pond State Reservation (~26 ac, similar name); Walden Pond State Reservation (~22 ac, similar name); Walden Pond State Reservation (~7 ac, similar name)
-- **US-8433** Winthrop Shore State Reserve (State Reserve) → Winthrop Shore Reservation (~5 ac, similar name); Winthrop Shore Reservation (~1 ac, similar name)
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
 
 ## Nothing found in PAD-US
 
@@ -90,7 +63,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 421** parks joined
 - US-8385 Farnham-Connolly State Park (State Park)
 - US-8388 Great Falls Discovery Center State Recreation Area (State Recreation Area)
 - US-8389 Lake Dennison State Recreation Area (State Recreation Area)
-- US-8403 Breakheart State Reserve (State Reserve)
 - US-8411 Hemlock Gorge State Reserve (State Reserve)
 - US-8416 Mount Sugarloaf State Reserve (State Reserve)
 - US-8422 Pope John Paul II Park State Reserve (State Reserve)
@@ -101,7 +73,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 421** parks joined
 - Quabbin Reservoir Watershed · WPA ·   · ~11,522 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~8,856 ac
 - Camp Edwards Wildlife Management Area · SCA ·   · ~8,715 ac
-- Mount Greylock State Reservation · SP ·   · ~7,029 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~5,687 ac
 - Camp Edwards Wildlife Management Area · SCA ·   · ~5,617 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~5,331 ac
@@ -109,12 +80,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 421** parks joined
 - George D. Aiken Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,800 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~4,135 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~3,694 ac
-- Mount Greylock State Reservation · SRMA · DCR - Division of State Parks and Recreation · ~3,271 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~3,206 ac
 - DCR  Division of Water Supply Protection 1 · WPA · DCR  Division of Water Supply Protection · ~2,772 ac
-- Mount Greylock State Reservation · SP ·   · ~2,613 ac
 - Ware River Watershed · WPA ·   · ~2,605 ac
-- Blue Hills Reservation · SP ·   · ~2,452 ac
 - Cookson State Forest · SRMA ·   · ~2,295 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~2,101 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~2,044 ac
@@ -124,29 +92,22 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 421** parks joined
 - Ware River Watershed · WPA ·   · ~1,545 ac
 - West Lake And Abbey Pond Flood Control Site · SOTH ·   · ~1,333 ac
 - Ware River Watershed · WPA ·   · ~1,286 ac
-- Mount Tom State Reservation · SP ·   · ~1,272 ac
 - Silvio O. Conte National Fish And Wildlife Refuge · NWR · SILVIO O. CONTE NATIONAL FISH AND WILDLIFE REFUGE · ~1,268 ac
 - Sudbury Reservoir · WPA · DCR  Division of Water Supply Protection · ~1,264 ac
 - East Mountain State Forest · SRMA ·   · ~1,251 ac
 - Acushnet Cedar Swamp State Reservation · SP ·   · ~1,245 ac
 - Ware River Watershed · WPA ·   · ~1,240 ac
 - Ware River Watershed · WPA ·   · ~1,229 ac
-- Greylock Glen · SOTH ·   · ~1,070 ac
-- Mount Everett State Reservation · SCA ·   · ~1,047 ac
 - Ware River Watershed · WPA ·   · ~978 ac
-- Middlesex Fells Reservation · SP ·   · ~955 ac
 - Wachusett Reservoir Watershed · WPA ·   · ~942 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~924 ac
 - Ware River Watershed · WPA ·   · ~921 ac
 - Florida State Forest · SRMA ·   · ~915 ac
 - Sudbury Reservoir Watershed · WPA ·   · ~859 ac
 - Wachusett Reservoir Watershed · WPA ·   · ~854 ac
-- Blue Hills Reservation · SCA ·   · ~850 ac
 - Arthur Wharton Swann State Forest · SRMA ·   · ~850 ac
 - DOC Land Use Change Area · SOTH ·   · ~804 ac
-- Middlesex Fells Reservation · SP ·   · ~803 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~769 ac
-- Mount Greylock State Reservation · SRMA · DCR Division of State Parks and Recreation · ~746 ac
 - Wachusett Reservoir Watershed · WPA ·   · ~734 ac
 - Bridgewater Correctional Complex · SOTH ·   · ~729 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~717 ac
@@ -157,3 +118,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 421** parks joined
 - Quabbin Reservoir Watershed · WPA ·   · ~617 ac
 - Becket State Forest · SRMA ·   · ~611 ac
 - Boxford State Forest · SRMA ·   · ~605 ac
+- Quabbin Reservoir Watershed · WPA ·   · ~603 ac
+- Wequaquet Lake · SRMA · Commonwealth of Massachusetts · ~594 ac
+- Lake Cochichewick · SRMA · Commonwealth of Massachusetts · ~585 ac
+- Orange State Forest · SRMA ·   · ~580 ac
+- Wachusett Reservoir Watershed · WPA ·   · ~568 ac
+- Freetown Swamp Wma · SCA · Department of Fish and Game · ~563 ac
+- Quabbin Reservoir Watershed · WPA ·   · ~560 ac
+- Taconic Trail State Park · SP ·   · ~559 ac
+- Appalachian Trail Corridor · SCA ·   · ~547 ac
+- Ware River Watershed · WPA ·   · ~534 ac
+- Wachusett Reservoir Watershed · WPA ·   · ~524 ac
