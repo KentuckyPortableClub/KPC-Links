@@ -97,8 +97,7 @@
     if (fly !== false) map.setView([x.la, x.lo], Math.max(map.getZoom(), k === 'sota' ? 13 : 12));
     info(x); try { history.replaceState(null, '', '?ref=' + encodeURIComponent(x.c)); } catch (e) {}
     if (k !== 'sota' && window.KPCB && KPCB.kyFor) {
-      try { const ref = k === 'kff' && x.p ? x.p : x.c, F = await KPCB.kyFor(ref); if (sel !== x) return;
-        if (!F || !F.length) { const y = k === 'kff' && x.p ? byRef(x.p) : x; if (y && y.nob) { PCS.ref = x.c; PCS.html = `<p class="pc-note" style="margin-top:8px">🗺 ${esc(y.nob)}</p>`; const bx = document.getElementById('pcPieces'); if (bx) bx.innerHTML = PCS.html; } return; }
+      try { const ref = k === 'kff' && x.p ? x.p : x.c, F = await KPCB.kyFor(ref); if (sel !== x || !F || !F.length) return;
         /* Oct 17 (Brandon: Taylorsville Lake 'hard to tell what is what'): each piece in its own colour, by whose land it is */
         outline = L.geoJSON({ type: 'FeatureCollection', features: F }, { style: f => Object.assign({ weight: 3, fill: false }, PIECE(f)), interactive: false }).addTo(map);
         const seen = {}, key = F.map(f => { const P = PIECE(f), nm = (f.properties || {}).NAME || (f._L && f._L.name) || ''; if (seen[nm]) return ''; seen[nm] = 1; return `<li><i style="display:inline-block;width:22px;height:0;border-top:3px ${P.dashArray ? 'dashed' : 'solid'} ${P.color};vertical-align:middle;margin-right:6px"></i>${esc(nm)} <span class="pc-tag">${esc(P.who)}</span></li>`; }).join('');

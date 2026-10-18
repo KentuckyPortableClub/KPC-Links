@@ -81,7 +81,7 @@
     } else if (T) {
       const th = rows.filter(r => r.in && (r.tgt || r.refs.some(x => x.ref === T.ref))), tn = rows.filter(r => !r.in && (r.tgt || r.refs.some(x => x.ref === T.ref))).sort((a, b) => a.e.km - b.e.km);
       const head = `<div class="ip-t">Checking: <b>${esc(T.ref)} ${esc(T.name)}</b></div>`;
-      if (!th.length && !tn.length) v = ['maybe', head + `<h2>NO OFFICIAL BOUNDARY FOUND</h2><p>${T.nob ? esc(T.nob) : `We could not find a boundary file for ${esc(T.ref)}. Use the park's own map.`} ${T.la ? `Its ${esc(T.prog)} pin is about <b>${B.dist(B.km(la, lo, T.la, T.lo))}</b> ${B.dir(la, lo, T.la, T.lo)} of you.` : ''}</p>`];
+      if (!th.length && !tn.length) v = ['maybe', head + `<h2>NO OFFICIAL BOUNDARY FOUND</h2><p>We could not find a boundary file for ${esc(T.ref)}. Use the park's own map. ${T.la ? `Its ${esc(T.prog)} pin is about <b>${B.dist(B.km(la, lo, T.la, T.lo))}</b> ${B.dir(la, lo, T.la, T.lo)} of you.` : ''}</p>`];
       else if (th.length) { const best = th.sort((a, b) => b.e.km - a.e.km)[0]; v = best.e.km > margin && good(best) ? ['yes', head + `<h2>✓ YOU'RE INSIDE</h2><p>About <b>${B.dist(best.e.km)}</b> from the nearest boundary line (${esc(best.L.src)}).</p>`] : ['edge', head + `<h2>ON THE EDGE</h2><p>You're inside, but only about <b>${B.dist(best.e.km)}</b> from the line${best.e.km <= accKm ? ', closer than your GPS can tell' : ''}. Move farther in to be sure.</p>`]; }
       else { const n = tn[0]; v = ['no', head + `<h2>✕ NOT INSIDE</h2><p>The boundary is about <b>${B.dist(n.e.km)}</b> to the <b>${B.dir(la, lo, n.e.lat, n.e.lon)}</b>.${n.e.km <= accKm ? ' That is within your GPS error, so move a bit and check again.' : ''}</p>`]; }
     } else if (progHits.length) {
@@ -195,7 +195,7 @@
     try {
       await B.ky(); const KD = B.kyData();
       const kp = KD.parks.find(p => p.c === q), kk = KD.kff.find(p => p.c === q), ks = KD.summits.find(p => p.c === q);
-      if (kp) T = { prog: 'POTA', ref: q, name: kp.n, la: kp.la, lo: kp.lo, nob: kp.nob, feats: await B.kyFor(q) };
+      if (kp) T = { prog: 'POTA', ref: q, name: kp.n, la: kp.la, lo: kp.lo, feats: await B.kyFor(q) };
       else if (kk) T = { prog: 'WWFF', ref: q, name: kk.n, la: kk.la, lo: kk.lo, feats: kk.p ? await B.kyFor(kk.p) : [] };
       else if (ks) T = { prog: 'SOTA', ref: q, name: ks.n, la: ks.la, lo: ks.lo, ft: ks.ft, feats: [] };
       if (!T || (!T.feats.length && T.prog !== 'SOTA')) {

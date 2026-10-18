@@ -51,9 +51,8 @@ def build(stats, updated, parks):
     """stats: {ref: (activations, qsos, attempts or None)}; parks: kpc-ky-data.json parks list."""
     rows = []
     for p in parks:
-        s = stats.get(p['c'])
-        if not s:
-            continue
+        # a brand-new park is not in POTA's stats list for a while: count it as 0 so it ranks with the rarest (Brandon Oct 18)
+        s = stats.get(p['c']) or (0, 0, None)
         a, q, t = s
         row = {'c': p['c'], 'n': p['n'], 'co': p.get('co', ''), 'la': p.get('la'), 'lo': p.get('lo'), 'a': a, 'q': q}
         if t is not None:
