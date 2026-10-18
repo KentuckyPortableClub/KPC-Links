@@ -152,10 +152,10 @@
 <div class="panel">
 <form class="controls" id="fh" autocomplete="off">
 <label class="field" style="flex:1 1 180px">CALLSIGN (OPTIONAL)<input id="hcall" placeholder="For the file name" autocapitalize="characters" spellcheck="false"></label>
-<label class="field" style="flex:2 1 260px">YOUR POTA HUNTER CSV<span class="filepick"><input id="hfile" type="file" accept=".adi,.adif,.csv,.txt,.adx,text/plain,text/csv"><span class="btn alt" aria-hidden="true">CHOOSE FILE</span><span id="hfname">No file chosen</span></span></label>
+<label class="field" style="flex:2 1 260px">YOUR LOGBOOK (ADIF) OR A CSV<span class="filepick"><input id="hfile" type="file" accept=".adi,.adif,.csv,.txt,.adx,text/plain,text/csv"><span class="btn alt" aria-hidden="true">CHOOSE FILE</span><span id="hfname">No file chosen</span></span></label>
 <button class="btn" type="submit" style="align-self:flex-end">CHECK HUNTS</button>
 </form>
-<div class="hunt-how"><b>Hunters: you need your hunter CSV file from POTA.</b> POTA doesn't share hunter logs publicly, so the checker reads the file you download from POTA:<ol><li>Log in at <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a> and open <b>My Stats</b>.</li><li>Download your <b>hunter parks list as a CSV</b>.</li><li>Tap <b>CHOOSE FILE</b> here and pick that CSV.</li></ol>You'll see every park you've hunted in the state you picked and every one you still need, on the map and in a list. Your file stays on your device.</div>
+<div class="hunt-how"><b>Hunters: use your logbook file.</b> POTA doesn't share hunter logs publicly (and pota.app no longer offers a hunter CSV), so the checker reads your own log:<ol><li><b>Best:</b> export your logbook as an <b>ADIF</b> file (QRZ Logbook → Settings → <b>Export</b> → ADIF; Log4OM, N1MM, HRD, WSJT-X and most loggers can too). Park numbers in POTA_REF, SIG_INFO or the comments are all found.</li><li>Or any <b>CSV</b> that has the park numbers in it.</li><li>Tap <b>CHOOSE FILE</b> here and pick that file.</li></ol>You'll see every park you've hunted in the state you picked and every one you still need, on the map and in a list. Your file stays on your device.</div>
 <div class="progress" id="hprog"><div class="bar"><i style="width:0"></i></div><small></small></div>
 </div>
 
@@ -175,7 +175,7 @@
 <div class="tablewrap" style="max-height:420px"><table class="list"><thead><tr><th>PARK</th><th>COUNTY</th><th id="hcol3">FIRST HUNT</th><th id="hcol4">QSOs</th></tr></thead><tbody id="htbody"></tbody></table></div>
 </div></div>
 </div>
-<div class="note" id="huntNote">Hunter mode needs the hunter CSV you download from POTA. It's read right here in your browser — nothing is uploaded, saved or shared. Old K-#### references are matched to today's US-#### numbers. Checks the 191 Kentucky parks in the KPC guide.</div>
+<div class="note" id="huntNote">Hunter mode reads your logbook file (ADIF from QRZ or your logger, or a CSV). It's read right here in your browser — nothing is uploaded, saved or shared. Old K-#### references are matched to today's US-#### numbers. Checks the 191 Kentucky parks in the KPC guide.</div>
 </div><!-- /pane-hunt -->
 
 </div></section>
@@ -226,7 +226,7 @@ function stateNotes(Dd){const nm=stName(ST),n=Dd?Dd.parks.length:0;
  $('stateNote').innerHTML=isKY()?'Kentucky uses the full KPC guide: counties, park types and trails.':`<b>Lite version</b> for ${KPC.esc(nm)}: park names and map only.${Dd?` ${n.toLocaleString()} POTA parks${Dd.src==='file'?'. Parks right on a state line may show under the neighboring state.':', live from POTA.'}`:' Loading park list…'}`;
  $('actNote').textContent=isKY()?"Uses POTA's public activation records for the 191 Kentucky parks in the KPC guide. A park counts as activated with 10 or more QSOs in one activation. Nothing you type is saved or shared — the callsign is only used to filter POTA's public data in your browser."
   :`Uses POTA's public activation records for ${n?n.toLocaleString()+' ':''}${nm} parks. A park counts as activated with 10 or more QSOs in one activation. Nothing you type is saved or shared.`;
- $('huntNote').textContent=`Hunter mode needs the hunter CSV you download from POTA. It's read right here in your browser — nothing is uploaded, saved or shared. Old K-#### references are matched to today's US-#### numbers. Checks ${isKY()?'the 191 Kentucky parks in the KPC guide':(n?n.toLocaleString()+' ':'the ')+nm+' POTA parks'}.`}
+ $('huntNote').textContent=`Hunter mode reads your logbook file (ADIF from QRZ or your logger, or a CSV). It's read right here in your browser — nothing is uploaded, saved or shared. Old K-#### references are matched to today's US-#### numbers. Checks ${isKY()?'the 191 Kentucky parks in the KPC guide':(n?n.toLocaleString()+' ':'the ')+nm+' POTA parks'}.`}
 function initStates(){const sel=$('stateSel');
  sel.innerHTML=Object.entries(STN).sort((a,b)=>a[1].localeCompare(b[1])).map(([a,n])=>`<option value="${a}"${a===ST?' selected':''}>${n}${a==='KY'?' (full KPC guide)':''}</option>`).join('');
  sel.onchange=async()=>{ST=sel.value;try{localStorage.setItem('kpcCheckState',ST)}catch(e){}
