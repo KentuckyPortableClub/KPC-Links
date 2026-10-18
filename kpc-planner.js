@@ -64,6 +64,17 @@ function edgeKm(lat,lon,g){let b=Infinity;for(const p of ringsOf(g))for(const r 
 function bbox(g){let a=[180,90,-180,-90];const add=([x,y])=>{if(x<a[0])a[0]=x;if(y<a[1])a[1]=y;if(x>a[2])a[2]=x;if(y>a[3])a[3]=y};for(const p of ringsOf(g))for(const r of p)r.forEach(add);for(const l of linesOf(g))l.forEach(add);return a}
 const fmtMi = km => {const m=km*0.621371;return m<0.1?Math.round(m*5280)+' ft':m.toFixed(m<10?1:0)+' mi'};
 const fName = f => (f.properties&&(f.properties.NAME||f.properties.Name||f.properties.name||f.properties.UNIT_NAME||f.properties.TRAIL_NAME))||'';
+
+/* Oct 17 (Brandon: 'these apps do 3 programs'): for an outline with no POTA park of its own, look for KFF (WWFF) and SOTA refs too */
+const nmEq=(a,b)=>{a=norm(a);b=norm(b);if(!a||!b)return false;const s=a.length<b.length?a:b,l=a.length<b.length?b:a;return a===b||(s.length>6&&l.startsWith(s))};
+function otherRefs(f,D,nm,ins){const o={kn:[],ki:[],so:[]};if(!D)return o;const b=f._bb||(f._bb=bbox(f.geometry)),inB=(la,lo)=>lo>=b[0]&&lo<=b[2]&&la>=b[1]&&la<=b[3]&&ins(la,lo,f.geometry);
+ for(const k of D.kff||[]){if(!k.p&&nmEq(k.n,nm))o.kn.push(k);else if(inB(k.la,k.lo))o.ki.push(k)}
+ for(const s of D.summits||[])if(inB(s.la,s.lo))o.so.push(s);return o}
+function noNumBox(o,esc){const L=a=>a.slice(0,6).map(x=>esc(x.c)+' '+esc(x.n||'')).join('<br>')+(a.length>6?'<br>…and '+(a.length-6)+' more':'');
+ if(o.kn.length)return '<div style="margin-top:6px;padding:6px 8px;border-radius:8px;background:#e3f6f4;color:#0d5a55;font-size:12.5px;font-weight:800">🌳 KFF (WWFF) REFERENCE, NO POTA NUMBER:<br>'+L(o.kn)+'<div style="font-weight:600">This land counts for KFF / WWFF. It is not a POTA park.</div></div>';
+ return '<div style="margin-top:6px;padding:6px 8px;border-radius:8px;background:#ffe3e3;color:#8a0f0f;font-size:12.5px;font-weight:800">🚫 NO PARK NUMBER: this public land has no POTA or KFF (WWFF) number of its own. Contacts here count for those programs only if you are also inside a real park’s own outline.</div>'+
+  (o.ki.length?'<div style="margin-top:6px;font-size:12.5px"><b>KFF pin inside it:</b><br>'+L(o.ki)+'<div style="font-size:12px">That reference covers its own park, not all of this land.</div></div>':'')+
+  (o.so.length?'<div style="margin-top:6px;font-size:12.5px"><b>⛰ SOTA summits on this land:</b><br>'+L(o.so)+'<div style="font-size:12px">SOTA goes by the summit’s activation zone (within 82 ft of the top), not park lines, so these still count for SOTA.</div></div>':'')}
 /* Oct 17 (Brandon): a name match needs the same kind of place (Yatesville Lake WMA is not Yatesville Lake State Park); outlines with no POTA park of their own NAME are drawn red dotted = NOT A POTA PARK */
 const kOf=s=>{s=String(s||'').toLowerCase();const k=[];if(/wildlife management area|\bwma\b|hunting area/.test(s))k.push('wma');if(/nature preserve|natural area|\bsnp\b|\bsna\b/.test(s))k.push('snp');if(/state (resort )?park|recreation(al)? area/.test(s))k.push('sp');if(/state forest/.test(s))k.push('sf');if(/wild river|scenic river/.test(s))k.push('wr');return k},kSame=(a,b)=>{const x=kOf(a),y=kOf(b);return !x.length||!y.length||x.some(v=>y.includes(v))};
 const NOTPARK={color:'#ff2a2a',dashArray:'2 6'};
@@ -73,7 +84,7 @@ function potaFor(f){ // POTA parks matched to a boundary: alias, reference point
  for(const p of D.parks){if(out.has(p.c))continue;
   if(p.lo>=b[0]-.02&&p.lo<=b[2]+.02&&p.la>=b[1]-.02&&p.la<=b[3]+.02&&inside(p.la,p.lo,f.geometry)){out.set(p.c,p);continue}
   const dn=norm(p.n);if(nm.length>4&&dn&&kSame(p.n,fName(f))&&p.lo>=b[0]-.5&&p.lo<=b[2]+.5&&p.la>=b[1]-.5&&p.la<=b[3]+.5){const sh=dn.length<nm.length?dn:nm,lg=dn.length<nm.length?nm:dn;if(dn===nm||(sh.length>6&&lg.startsWith(sh)&&sh.length/lg.length>=.7)){out.set(p.c,p);NM.add(p.c)}}}
- f._named=[...out.values()].filter(p=>NM.has(p.c)||(ALIAS[fName(f)]||[]).includes(p.c)).length>0;return (f._pota=[...out.values()])}
+ f._named=[...out.values()].filter(p=>NM.has(p.c)||(ALIAS[fName(f)]||[]).includes(p.c)).length>0;if(!f._named&&D&&otherRefs(f,D,fName(f),inside).kn.length)f._named=true;return (f._pota=[...out.values()])}
 const refTxt = ps => ps.length ? ps.slice(0,4).map(p=>p.c).join(', ')+(ps.length>4?' +'+(ps.length-4):'') : '';
 
 /* where is a point? inside which boundaries, near which trails */
@@ -124,7 +135,7 @@ if(window.KPCX&&KPCX.onLook)KPCX.onLook((lk,k)=>{if(k!=='thick')return;Object.va
 function order(){if(bLay.bdbnf&&map.hasLayer(bLay.bdbnf))bLay.bdbnf.bringToBack()}
 function bPopup(f,s,ll){const p=f.properties||{},refs=potaFor(f);
  return `<b>${esc(fName(f)||s.name)}</b><div style="font-size:12px;color:#555">${esc(p.TYPE||s.name)}${p.ACCESS?' · access: '+esc(p.ACCESS):''}</div>`+
- (s.corps?'':!f._named?'<div style="margin-top:6px;padding:6px 8px;border-radius:8px;background:#ffe3e3;color:#8a0f0f;font-size:12.5px;font-weight:800">🚫 NOT A POTA PARK: this public land has no POTA number of its own. Contacts made here do not count unless you are also inside a real POTA park’s own boundary.</div>'+(refs.length?`<div style="margin-top:6px"><b>POTA park inside it:</b> ${refs.slice(0,5).map(r=>`<a href="${KPC.links.pota(r.c)}" target="_blank" rel="noopener">${r.c}</a> ${esc(r.n)}`).join('<br>')}<div style="font-size:12px">Only that park’s own land counts.</div></div>`:''):(refs.length?`<div style="margin-top:6px"><b>POTA:</b> ${refs.slice(0,5).map(r=>`<a href="${KPC.links.pota(r.c)}" target="_blank" rel="noopener">${r.c}</a> ${esc(r.n)}`).join('<br>')}</div>`:'<div style="margin-top:6px">No POTA reference matched to this outline.</div>'))+
+ (s.corps?'':!f._named?noNumBox(otherRefs(f,D,fName(f),inside),esc)+(refs.length?`<div style="margin-top:6px"><b>POTA park pin inside it:</b> ${refs.slice(0,5).map(r=>`<a href="${KPC.links.pota(r.c)}" target="_blank" rel="noopener">${r.c}</a> ${esc(r.n)}`).join('<br>')}<div style="font-size:12px">Only that park’s own land counts.</div></div>`:''):(refs.length?`<div style="margin-top:6px"><b>POTA:</b> ${refs.slice(0,5).map(r=>`<a href="${KPC.links.pota(r.c)}" target="_blank" rel="noopener">${r.c}</a> ${esc(r.n)}`).join('<br>')}</div>`:'<div style="margin-top:6px">No POTA reference matched to this outline.</div>'))+
  (s.note?`<div style="margin-top:6px;font-size:12px;font-weight:700">⚠ ${esc(s.note)}</div>`:'')+(p.URL?`<div style="margin-top:6px"><a href="${esc(p.URL)}" target="_blank" rel="noopener">Official page ↗</a></div>`:'')+(s.kpc?`<div style="margin-top:6px;font-size:11px;color:#666">${p.NOTE?esc(p.NOTE)+' ':''}Outline source: ${esc(p.SOURCE||'KPC')}. Map data © OpenStreetMap contributors.</div>`:'')+
  `<div style="margin-top:8px"><button type="button" class="btn sm" data-drop="${ll.lat},${ll.lng}">📍 ADD A SPOT HERE</button></div>`}
 
