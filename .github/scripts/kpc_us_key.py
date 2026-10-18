@@ -35,7 +35,7 @@ def get(params, tries=5):
 
 
 # ---------------- names + kinds (same idea as kpc-bounds.js, with other states' words) ----------------
-GEN = (r"fishing access site|access site|state game lands? number|designated state natural area|designated|public hunting area|hunting area|state fishing lake|fishing lake|state wilderness area|wilderness area|natural state conservation area|waterfowl refuge|wildlife refuge|refuge|state natural area|natural area preserve|state nature preserve|nature preserve|natural area|fish and wildlife area|state wildlife area|"
+GEN = (r"blm herd management area|herd management area|herd area|blm special recreation management area|special recreation management area|extensive recreation management area|blm recreation management area|recreation management area|wilderness study area|hma|srma|erma|blm|fishing access site|access site|state game lands? number|designated state natural area|designated|public hunting area|hunting area|state fishing lake|fishing lake|state wilderness area|wilderness area|natural state conservation area|waterfowl refuge|wildlife refuge|refuge|state natural area|natural area preserve|state nature preserve|nature preserve|natural area|fish and wildlife area|state wildlife area|"
        r"wildlife management area|wildlife area|state game lands?|game lands?|game areas?|game management area|conservation area|state conservation area|"
        r"state resort park|state historic site|state historical park|state historic park|historic site|state recreation area|recreation area|"
        r"state beach|state seashore|national wildlife refuge|national recreation area|national historical park|national historic site|"
@@ -68,7 +68,9 @@ KINDS = [('wma', r'wildlife management area|\bwma\b|wildlife area|game lands?|ga
          ('nf', r'national forest|national grassland'), ('sf', r'state forest'),
          ('nwr', r'wildlife refuge|\bnwr\b'), ('nfh', r'hatchery|\bnfh\b'),
          ('nps', r'national (park|monument|preserve|seashore|lakeshore|battlefield|military park|river|scenic river|parkway)'),
-         ('wild', r'wilderness')]
+         ('wild', r'wilderness(?! study)'), ('wsa', r'wilderness study area|\bwsa\b'),
+         ('hma', r'herd (management )?area|\bhma\b'),
+         ('rma', r'recreation management area|\bs?rma\b|\berma\b|campground|recreation site|day use area')]
 def kinds(s):
     s = str(s or '').lower(); return {k for k, r in KINDS if re.search(r, s)}
 DES = {'SP': 'sp', 'SREC': 'sp', 'SHCA': 'hist', 'NWR': 'nwr', 'NF': 'nf', 'NG': 'nf', 'NP': 'nps', 'NM': 'nps', 'NRA': 'nps', 'NHS': 'hist', 'WA': 'wild'}
@@ -220,6 +222,49 @@ def fws_state(st, have):
     return out
 
 
+# Official maps of the agencies themselves (Oct 18, Brandon: 'anything you can be working on in the US trip planner'): PAD-US stores wilderness,
+# BLM herd areas and BLM recreation areas only as the forest / BLM office around them, so those parks never matched by name.
+XS = [  # prefix, query url, name field, acres field, kinds
+    ('wld', 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_Wilderness_02/MapServer/0/query', 'wildernessname', 'gis_acres', {'wild'}, 'National Wilderness Preservation System (Forest Service map)'),
+    ('hma', 'https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/0/query', 'HMA_NAME', 'BLM_ACRES', {'hma'}, 'BLM herd management areas'),
+    ('rma', 'https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9/query', 'FET_NAME', 'GIS_ACRES', {'rma'}, 'BLM recreation areas'),
+    ('rst', 'https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query', 'FET_NAME', 'GIS_ACRES', {'rma'}, 'BLM recreation sites'),
+    ('nca', 'https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query', 'NCA_NAME', '', set(), 'BLM national monuments / conservation areas'),
+]
+XCOUNT = {}
+def extra_state(st, have):
+    box = st_box(st)
+    if not box: return []
+    out = []
+    for pre, url, nf, af, kk, label in XS:
+        off, n = 0, 0
+        while True:
+            q = {'where': '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
+                 'outFields': ','.join(x for x in ('OBJECTID' if pre != 'wld' else 'objectid', nf, af) if x), 'returnGeometry': 'true', 'outSR': 4326,
+                 'maxAllowableOffset': 0.01, 'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 500}
+            try:
+                req = urllib.request.Request(url + '?' + urllib.parse.urlencode(q), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
+                j = json.loads(urllib.request.urlopen(req, timeout=180).read().decode('utf-8', 'replace'))
+                if j.get('error'): raise RuntimeError(str(j['error'])[:150])
+            except Exception as e:  # noqa: BLE001
+                notice(f'US key {st}', f'{label} not read ({e})'); break
+            fs = j.get('features', [])
+            for f in fs:
+                a = {k.lower(): v for k, v in (f.get('attributes') or {}).items()}
+                nm = (a.get(nf.lower()) or '').strip()
+                if not nm: continue
+                k = kinds(nm) | kk
+                if (norm(nm), frozenset(k)) in have: continue
+                g = f.get('geometry') or {}
+                out.append({'OBJECTID': pre + str(a.get('objectid')), 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': 'FED', 'Mang_Type': 'FED', 'Mang_Name': pre.upper(),
+                            'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': (a.get(af.lower()) if af else 0) or 0, 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k})
+                n += 1
+            if not fs or (not j.get('exceededTransferLimit') and len(fs) < 500): break
+            off += len(fs); time.sleep(.5)
+        XCOUNT[pre] = XCOUNT.get(pre, 0) + n
+    return out
+
+
 def out_date(): return time.strftime('%Y-%m-%d')
 
 
@@ -243,6 +288,7 @@ def run(st):
     except Exception: notice(f'US key {st}', 'no park file, skipped'); return None  # noqa: BLE001
     recs, seen = pad_state(st)
     recs += fws_state(st, {norm(a.get('Unit_Nm') or '') for a in recs if a.get('Mang_Name') == 'FWS'})
+    recs += extra_state(st, {(norm(a.get('Unit_Nm') or ''), frozenset(a['_k'])) for a in recs})
     parks, used = {}, set()
     for ref, r in sorted(P.items()):
         name, typ, la, lo = r[0], r[2] if len(r) > 2 else '', r[5] if len(r) > 5 else None, r[6] if len(r) > 6 else None
@@ -308,4 +354,5 @@ for st in STATES:
         print(f"{st}: {c['parks']} parks, {c['matched']} joined, {c['check']} to check, {c['none']} nothing found, {c['nonum']} places with no POTA park", flush=True)
     json.dump({'updated': time.strftime('%Y-%m-%d'), 'states': idx}, open(OUT / 'index.json', 'w'), separators=(',', ':'))
 tot = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none')}
+notice('US key extra maps', ', '.join(f'{k}: {v}' for k, v in XCOUNT.items()))
 notice('US answer key', f"{len(done)} states this run ({' '.join(done)}). All states so far: {tot['parks']} parks, {tot['matched']} joined, {tot['check']} to check, {tot['none']} nothing found")

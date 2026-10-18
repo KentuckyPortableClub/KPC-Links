@@ -132,6 +132,13 @@
      (or USFWS 'fws<oid>') records that match it by NAME and KIND. Returns {state:'none'} when the key knows the park but
      nothing is joined (unsure ones wait on the check list), null when no key file has the park. */
   const FWSQ = 'https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer/0/query';
+  /* answer-key id prefix -> [query url, name field, source label] (other agencies' own maps, Oct 18) */
+  const XMAP = { fws: [FWSQ, 'ORGNAME', 'U.S. Fish & Wildlife Service'],
+    wld: ['https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_Wilderness_02/MapServer/0/query', 'wildernessname', 'National Wilderness Preservation System'],
+    hma: ['https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/0/query', 'HMA_NAME', 'Bureau of Land Management'],
+    rma: ['https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9/query', 'FET_NAME', 'Bureau of Land Management'],
+    rst: ['https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query', 'FET_NAME', 'Bureau of Land Management'],
+    nca: ['https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query', 'NCA_NAME', 'Bureau of Land Management'] };
   const keyCache = {};
   async function usKey(ref, states) {
     let hit = null, known = false;
@@ -144,10 +151,10 @@
     const seen = new Set(), m = hit.m.filter(x => !seen.has(String(x[0])) && seen.add(String(x[0])));
     const off = a => a < 20000 ? 0.00004 : a < 200000 ? 0.00015 : a < 1000000 ? 0.0003 : 0.0008;
     const groups = {};
-    m.forEach(x => { const fws = /^fws/.test(String(x[0])), id = String(x[0]).replace(/^fws/, ''), o = off(+x[2] || 0), g = (fws ? 'f' : 'p') + o; (groups[g] = groups[g] || { fws, o, ids: [] }).ids.push(id); });
+    m.forEach(x => { const s = String(x[0]), pre = (s.match(/^[a-z]+/) || [''])[0], id = s.slice(pre.length), o = off(+x[2] || 0), g = pre + o; (groups[g] = groups[g] || { pre, o, ids: [] }).ids.push(id); });
     const jobs = [];
-    Object.values(groups).forEach(g => { for (let i = 0; i < g.ids.length; i += 40) { const ids = g.ids.slice(i, i + 40).join(',');
-      jobs.push(g.fws ? jget(FWSQ + '?' + new URLSearchParams({ objectIds: ids, outFields: 'ORGNAME', returnGeometry: true, outSR: 4326, maxAllowableOffset: g.o, geometryPrecision: 5, f: 'geojson' }), null, 30000).then(j => (j.features || []).map(f => (f._src = 'U.S. Fish & Wildlife Service', f))).catch(() => [])
+    Object.values(groups).forEach(g => { for (let i = 0; i < g.ids.length; i += 40) { const ids = g.ids.slice(i, i + 40).join(','), X = XMAP[g.pre];
+      jobs.push(X ? jget(X[0] + '?' + new URLSearchParams({ objectIds: ids, outFields: X[1], returnGeometry: true, outSR: 4326, maxAllowableOffset: g.o, geometryPrecision: 5, f: 'geojson' }), null, 30000).then(j => (j.features || []).map(f => { f._src = X[2]; const p = f.properties || {}; f.properties = Object.assign({ Unit_Nm: p[X[1]] }, p); return f; })).catch(() => [])
         : padus({ objectIds: ids, returnGeometry: true, geometryPrecision: 5, maxAllowableOffset: g.o }).then(j => (j.features || []).map(f => (f._src = 'USGS PAD-US', f))).catch(() => [])); } });
     const fs = (await Promise.all(jobs)).flat().filter(f => f.geometry);
     if (!fs.length) return { state: 'error', n: hit.n, m };
