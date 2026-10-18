@@ -10,7 +10,7 @@
   const iOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
   const dirUrl = (la, lo) => iOS ? `https://maps.apple.com/?daddr=${la},${lo}` : `https://www.google.com/maps/dir/?api=1&destination=${la},${lo}`;
   const COL = { pota: '#2e9e52', kff: '#1aa6a0', sota: '#e07a1c' };
-  const SHOW = Object.assign({ pota: true, kff: false, sota: false, trails: true }, get('kpcPcShow', {}));
+  const SHOW = Object.assign({ pota: true, kff: false, sota: false, trails: true, parking: false }, get('kpcPcShow', {}));
   /* Kentucky trail parks (Brandon Oct 18: 'park control needs the trails'): official lines (Forest Service / State Parks / NPS), Kentucky part only */
   const KYB = [-89.6, 36.45, -81.9, 39.2], inKY = (lo, la) => lo >= KYB[0] && lo <= KYB[2] && la >= KYB[1] && la <= KYB[3];
   const TR = [
@@ -21,7 +21,7 @@
     { ref: 'US-4572', f: 'data/trails/US-4572.json', col: '#5bd5ec', by: 'National Park Service', lab: 'route (Ohio River)' },
     { ref: 'US-4572', f: 'ky-lecl-auto.geojson', col: '#2f9fb8', by: 'National Park Service', lab: 'auto tour route (signed roads)', dash: '7 6' }];
   const TL = {}; let TP = {}, trP = null, hi = null;
-  let PAD = null; const PCS = { ref: '', html: '' }; let D = null, CG = {}, NOTES = {}, map = null, LAY = {}, outline = null, sel = null, ALL = [];
+  let PAD = null; const PCS = { ref: '', html: '' }; let D = null, CG = {}, NOTES = {}, map = null, LAY = {}, outline = null, sel = null, ALL = [], APL = null, APM = [];
   let TRIP = get('kpcPcTrip', []);
   /* Oct 17 (Brandon): guests get 'coming soon' instead of 2-fer / 3-fer information; members see it all */
   const GUEST = !!(window.KPCGate && !window.KPCGate.member()), SOON = '2-fer and 3-fer information coming soon!';
@@ -44,7 +44,7 @@
         if (nm === null) return; TRIP.push({ c: 'PIN-' + Date.now().toString(36), n: nm || 'Dropped pin', la, lo }); if (TRIP.length > 10) TRIP.shift(); put('kpcPcTrip', TRIP); trip(); b.textContent = '✓ ON MY TRIP'; }) });
     if (window.KPCHere) KPCHere(map, { piece: PIECE, onRef: r => { const y = byRef(r); if (y) pick(y); } });   /* Oct 17 (Brandon: 'drops pins way too easy'): a tap says what land is here; pins = long-press / right-click / DROP A PIN */
     $('pcDrop').onclick = () => { const c = map.getCenter(); map.fire('contextmenu', { latlng: c }); $('pcMap').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
-    for (const k of ['pota', 'kff', 'sota', 'trails']) { LAY[k] = L.layerGroup(); if (SHOW[k]) LAY[k].addTo(map); }
+    for (const k of ['pota', 'kff', 'sota', 'trails', 'parking']) { LAY[k] = L.layerGroup(); if (SHOW[k]) LAY[k].addTo(map); }
     if (SHOW.trails) trails();
     for (const x of ALL) { const k = kindOf(x);
       const m = L.circleMarker([x.la, x.lo], { radius: k === 'sota' ? 5 : 6.5, bubblingMouseEvents: false, color: '#fff', weight: 1.4, fillColor: COL[k], fillOpacity: .92 });
@@ -88,6 +88,7 @@
     sel = x; const k = kindOf(x); if (!SHOW[k]) { SHOW[k] = true; put('kpcPcShow', SHOW); LAY[k].addTo(map); chips(); count(); }
     if (hi) { map.removeLayer(hi); hi = null; }
     if (outline) { map.removeLayer(outline); outline = null; }
+    apShow(x);
     if (TR.some(t => t.ref === x.c)) { /* a trail park: light up its line instead of an outline */
       if (!SHOW.trails) { SHOW.trails = true; put('kpcPcShow', SHOW); LAY.trails.addTo(map); chips(); }
       await trails(); if (sel !== x) return; info(x); try { history.replaceState(null, '', '?ref=' + encodeURIComponent(x.c)); } catch (e) {}
@@ -104,6 +105,22 @@
         PCS.ref = x.c; PCS.html = `<div class="pc-k" style="margin-top:8px">🗺 THE OUTLINE ON THE MAP</div><ul class="pc-list">${key}</ul>${PAD ? '<p class="pc-note">Orange outline = land the Army Corps of Engineers OWNS (USGS PAD-US), even where Kentucky runs it (usually NOT part of a POTA park unless a state agency runs it). Turn it off or on with the 🗺 LAND OWNERS chip.</p>' : ''}`; const box = document.getElementById('pcPieces'); if (box) box.innerHTML = PCS.html;
         if (fly !== false) { const b = outline.getBounds(); if (b.isValid()) map.fitBounds(b.pad(.1), { maxZoom: 14 }); } } catch (e) {} }
   }
+  /* Oct 18 (Brandon: 'add the parking spots you gathered tonight in Park Control'): the park's `ap` points as map markers */
+  function apIcon(t) {
+    const fc = /KPC field check/i.test(t), ic = fc ? '✅' : /trailhead/i.test(t) ? '🥾' : /boat|ramp|fishing|carry-down|bridge/i.test(t) ? '⛵' : /road|enters|end of|closest/i.test(t) ? '🛣' : /kiosk|office|visitor|lodge|museum|info/i.test(t) ? 'ℹ' : 'P';
+    const bg = fc ? '#d5a63a' : /road|enters|end of|closest/i.test(t) ? '#6b7280' : '#1d5fbf';
+    return L.divIcon({ className: 'pc-ap', html: `<span style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:${bg};color:#fff;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.5);font:800 12px/1 system-ui">${ic}</span>`, iconSize: [24, 24], iconAnchor: [12, 12], popupAnchor: [0, -12] });
+  }
+  function apShow(x) {
+    if (APL) { LAY.parking.removeLayer(APL); APL = null; } APM = [];
+    const k = kindOf(x), park = k === 'pota' ? x : k === 'kff' && x.p ? byRef(x.p) : null, ap = (park && park.ap) || [];
+    if (!ap.length) return;
+    APL = L.layerGroup().addTo(LAY.parking);
+    ap.forEach((p, i) => { const m = L.marker([p[0], p[1]], { icon: apIcon(p[2] || ''), bubblingMouseEvents: false, zIndexOffset: 500 })
+      .bindPopup(`<b>${esc(p[2] || 'Access point')}</b><br><span style="font-family:ui-monospace,monospace">${(+p[0]).toFixed(5)}, ${(+p[1]).toFixed(5)}</span><br><a href="${dirUrl(p[0], p[1])}" target="_blank" rel="noopener">🚗 DIRECTIONS</a> · <a href="#" data-cpg="${p[0]},${p[1]}">COPY GPS</a>`)
+      .addTo(APL); APM[i] = m; });
+  }
+  document.addEventListener('click', e => { const a = e.target.closest('[data-cpg]'); if (!a) return; e.preventDefault(); const t = a.dataset.cpg; (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => { a.textContent = '✓ COPIED'; }).catch(() => prompt('GPS', t)); });
   function info(x) {
     const k = kindOf(x), lab = { pota: 'POTA PARK', kff: 'KFF (WWFF) REFERENCE', sota: 'SOTA SUMMIT' }[k];
     const page = k === 'pota' ? `https://pota.app/#/park/${x.c}` : k === 'kff' ? `https://wwff.co/directory/?showRef=${x.c}` : `https://sotl.as/summits/${x.c}`;
@@ -126,10 +143,11 @@
       ${also.length ? `<div class="pc-k" style="margin-top:8px">ALSO HERE</div><ul class="pc-list">${also.map(a => `<li><a href="?ref=${encodeURIComponent(a[0])}" data-ref="${esc(a[0])}">${esc(a[0])}</a> ${esc(a[1])} <span class="pc-tag">${esc(a[2])}</span></li>`).join('')}</ul>` : ''}
       <div id="pcPieces">${PCS.ref === x.c ? PCS.html : ''}</div>
       ${trailBox}
-      ${ap.length ? `<div class="pc-k" style="margin-top:8px">🅿 PARKING &amp; ACCESS POINTS (FROM THE LAND MANAGER)</div><ul class="pc-list">${ap.slice(0, 8).map(p => `<li>${esc(p[2] || 'Access point')} · <a href="${dirUrl(p[0], p[1])}" target="_blank" rel="noopener">DIRECTIONS</a></li>`).join('')}</ul>` : ''}
+      ${ap.length ? `<div class="pc-k" style="margin-top:8px">🅿 PARKING &amp; ACCESS POINTS </div><ul class="pc-list">${ap.map((p, i) => `<li><a href="#" data-ap="${i}">📍 ${esc(p[2] || 'Access point')}</a> · <a href="${dirUrl(p[0], p[1])}" target="_blank" rel="noopener">DIRECTIONS</a></li>`).join('')}</ul><p class="pc-note">✅ gold = checked in the field by a KPC member · P / ℹ / 🥾 / ⛵ blue = from the land manager's own maps (KDFWR, State Parks, Forest Service) · 🛣 grey = from the state road map (where a road enters the park): check the satellite view. Turn them on or off with the 🅿 PARKING chip above the map; tapping one turns them on.</p>` : ''}
       <p class="pc-note">GPS ${x.la.toFixed(5)}, ${x.lo.toFixed(5)}${k === 'sota' ? ' · activation zone = within 25 m (82 ft) of the top, no vehicle' : ' · the pin is a guide; the official boundary decides'}</p>`;
     $('pcAdd').onclick = () => { if (!TRIP.some(t => t.c === x.c)) { TRIP.push({ c: x.c, n: x.n, la: x.la, lo: x.lo }); if (TRIP.length > 10) TRIP.shift(); put('kpcPcTrip', TRIP); } trip(); info(x); };
     $('pcInfo').querySelectorAll('[data-ref]').forEach(a => a.onclick = e => { e.preventDefault(); const y = byRef(a.dataset.ref); if (y) pick(y); });
+    $('pcInfo').querySelectorAll('[data-ap]').forEach(a => a.onclick = e => { e.preventDefault(); const m = APM[+a.dataset.ap]; if (!m) return; if (!SHOW.parking) { SHOW.parking = true; put('kpcPcShow', SHOW); LAY.parking.addTo(map); chips(); } map.setView(m.getLatLng(), Math.max(map.getZoom(), 16)); m.openPopup(); const el = document.getElementById('pcMap') || map.getContainer(); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
     /* Oct 17 (Brandon: the card's name hid under the header): scroll so the card's top sits just below the site header */
     if (matchMedia('(max-width:900px)').matches) { const hd = document.querySelector('header.site-nav'), h = hd ? hd.getBoundingClientRect().height : 0; window.scrollTo({ top: $('pcInfo').getBoundingClientRect().top + window.scrollY - h - 12, behavior: 'smooth' }); }
   }
