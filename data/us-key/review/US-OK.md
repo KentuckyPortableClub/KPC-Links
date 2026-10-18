@@ -1,6 +1,6 @@
 # OK: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **49 of 205** parks joined to official land (same name + same kind of place). **38** to check by hand, **118** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **52 of 205** parks joined to official land (same name + same kind of place). **35** to check by hand, **118** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -18,9 +18,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **49 of 205** parks joined 
 - **US-12739** Skipout Lake Recreation Site (Recreation Site) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name)); Black Kettle National Grassland (~30,688 ac, the POTA pin is inside it (different name))
 - **US-13105** Field Station State Fishing Lake (State Fishing Lake) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
 - **US-2774** Boiling Springs State Park (State Park) → Boiling State Parkrings State Park (~775 ac, the POTA pin is inside it (different name))
-- **US-2781** Gloss Mountain State Park (State Park) → Glass Mountains State Park (~559 ac, the POTA pin is inside it (different name))
-- **US-2783** Salt Plains State Park (State Park) → Great Salt Plains State Park (~756 ac, similar name); Salt Plains National Wildlife Refuge (~21,182 ac, same name, different kind of place); Salt Plains National Wildlife Refuge (~21,182 ac, same name, different kind of place)
-- **US-2789** Lake Eufaula State Park (State Park) → Lake Eufula State Park (~3,241 ac, the POTA pin is inside it (different name))
 - **US-2793** Lake Wister State Park (State Park) → Wister Wildlife Management Area & Waterfowl Refuge (~35,425 ac, similar name); Wister State Park (~3,377 ac, similar name)
 - **US-2806** Talimena State Park (State Park) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name))
 - **US-2807** Tenkiller State Park (State Park) → Lake Tenkiller State Park (~514 ac, similar name)
@@ -176,16 +173,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **49 of 205** parks joined 
 - Okmulgee Public Hunting Areaa · SCA · Department of Wildlife Conservation · ~3,497 ac
 - Wister State Park · SP · Unknown · ~3,377 ac
 - Hochatown State Park · SP · Unknown · ~3,325 ac
-- Lake Eufula State Park · SP · Unknown · ~3,241 ac
 - Western Hills Guest Ranch/sequoya Sp State Resort · SP · Unknown · ~2,822 ac
 - Oklahoma Field Office · PUB · BLM · ~1,945 ac
 - Walnut Creek State Park · SP · Unknown · ~1,163 ac
 - Boiling State Parkrings State Park · SP · Unknown · ~775 ac
 - Twin Points Recreation Area · PUB · US Army Corps of Engineers · ~760 ac
-- Great Salt Plains State Park · SP · Unknown · ~756 ac
 - Dog Iron Ranch & Will Rogers Birthplace · SP · Unknown · ~574 ac
 - Arcadia Conservation Education Area · SCA · Department of Wildlife Conservation · ~568 ac
-- Glass Mountains State Park · SP · Unknown · ~559 ac
 - Okmulgee/dripping State Park · SP · Unknown · ~523 ac
 - Lake Tenkiller State Park · SP · Unknown · ~514 ac
 - Selman Cave System · SCA · Unknown · ~327 ac

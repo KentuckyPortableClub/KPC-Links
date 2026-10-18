@@ -1,6 +1,6 @@
 # OH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 276** parks joined to official land (same name + same kind of place). **19** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **233 of 276** parks joined to official land (same name + same kind of place). **18** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -15,7 +15,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 276** parks joined
 - **US-9401** Cooperrider-Kent Bog State Nature Preserve (State Nature Preserve) → Kent Bog (~44 ac, similar name)
 - **US-9408** Gallagher Fen State Nature Preserve (State Nature Preserve) → Gallagher / Springfield Fen (~212 ac, similar name)
 - **US-9411** Halls Creek Woods State Nature Preserve (State Nature Preserve) → Halls Creek Dedicated Nature Preserve (~273 ac, similar name)
-- **US-9426** Owens Fen State Nature Preserve (State Nature Preserve) → Liberty/Owens Fen Dedicated Nature Preserve (~18 ac, similar name)
 - **US-9427** Rhododendron Cove State Nature Preserve (State Nature Preserve) → Wahkeena Nature Preserve (~184 ac, the POTA pin is inside it (different name))
 - **US-9442** Acadia Cliffs State Wildlife Area (State Wildlife Area) → Acadia Cliffs Dedicated Nature Preserve (~271 ac, similar name); Acadia Cliffs Dedicated Nature Preserve (~4 ac, similar name)
 - **US-9451** Charles O. Trump State Wildlife Area (State Wildlife Area) → The Trump Wildlife Area (~129 ac, similar name)

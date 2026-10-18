@@ -1,6 +1,6 @@
 # AZ: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **63 of 123** parks joined to official land (same name + same kind of place). **47** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **68 of 123** parks joined to official land (same name + same kind of place). **42** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,7 +8,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **63 of 123** parks joined 
 - **US-10514** San Pedro Riparian BLM National Conservation Area (BLM National Conservation Area) → Tucson Field Office (~634,855 ac, the POTA pin is inside it (different name))
 - **US-1052** Alamo Lake State Park (State Park) → Lake Havasu Field Office (~1,268,987 ac, the POTA pin is inside it (different name))
 - **US-1055** Catalina State Park (State Park) → Coronado National Forest (~1,652,117 ac, the POTA pin is inside it (different name))
-- **US-1058** Homolovi State Park (State Park) → Homolovi Ruins State Park (~740 ac, similar name)
 - **US-1061** Lost Dutchman State Park (State Park) → Lower Sonoran Field Office (~1,404,336 ac, the POTA pin is inside it (different name))
 - **US-1069** Tonto Natural Bridge State Park (State Park) → Tonto National Forest (~2,866,817 ac, similar name)
 - **US-10995** Sunshine Loop and Dutchman Mountain Bike Trails BLM Recreation Management Area (BLM Recreation Management Area) → Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name))
@@ -20,7 +19,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **63 of 123** parks joined 
 - **US-11123** Highline National Recreation Trail (National Recreation Trail) → Tonto National Forest (~2,866,817 ac, the POTA pin is inside it (different name))
 - **US-11942** Wabayuma Peak BLM Wilderness Area (BLM Wilderness Area) → Kingman Field Office (~2,476,668 ac, the POTA pin is inside it (different name))
 - **US-11944** Dankworth Pond State Park (State Park) → Roper Lake State Park (~81 ac, the POTA pin is inside it (different name))
-- **US-11945** Page Springs State Fish Hatchery (State Fish Hatchery) → Page Springs Hatchery (~124 ac, similar name)
 - **US-11971** Virgin River Canyon BLM Recreation Management Area (BLM Recreation Management Area) → Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name))
 - **US-11975** Table Mesa BLM Recreation Management Area (BLM Recreation Management Area) → Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name))
 - **US-11979** Allen Severson State Wildlife Area (State Wildlife Area) → Sitgreaves National Forest (~820,490 ac, the POTA pin is inside it (different name))
@@ -31,14 +29,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **63 of 123** parks joined 
 - **US-12160** Hot Well Dunes BLM Recreation Management Area (BLM Recreation Management Area) → Safford Field Office (~1,397,557 ac, the POTA pin is inside it (different name))
 - **US-12161** Round Mountain Rockhound BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Safford Field Office (~1,397,557 ac, the POTA pin is inside it (different name))
 - **US-12162** Sears Point BLM Historic Preservation Site (BLM Historic Preservation Site) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name))
-- **US-13331** Lamar Haines Memorial State Wildlife Area (State Wildlife Area) → Lamar Haines Wildlife Area (~155 ac, similar name)
 - **US-13335** Saddleback Mountain BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name))
 - **US-13337** Church Camp Road BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name))
 - **US-13339** Baldy Mountain BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name))
 - **US-13593** Boulders OHV Staging Area BLM Recreation Management Area (BLM Recreation Management Area) → Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name))
 - **US-13594** Black Canyon National Recreation Trail (National Recreation Trail) → Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name))
 - **US-3672** Fool Hollow Lake State Recreation Area (State Recreation Area) → Sitgreaves National Forest (~820,490 ac, the POTA pin is inside it (different name))
-- **US-4427** Apache-Sitgreaves National Forest (National Forest) → Sitgreaves National Forest (~820,490 ac, similar name)
 - **US-4433** Agua Fria National Monument (National Monument) → Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name))
 - **US-4434** Ironwood Forest National Monument (National Monument) → Tucson Field Office (~634,855 ac, the POTA pin is inside it (different name))
 - **US-4435** Sonoran Desert National Monument (National Monument) → Lower Sonoran Field Office (~1,404,336 ac, the POTA pin is inside it (different name))
@@ -48,7 +44,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **63 of 123** parks joined 
 - **US-6090** Beaver Dam Mountain Wilderness Area (Wilderness Area) → Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name))
 - **US-7381** Las Cienegas National Conservation Area (National Conservation Area) → State Trust Land (~7,977,759 ac, the POTA pin is inside it (different name))
 - **US-7383** Tonto State Fish Hatchery (State Fish Hatchery) → Tonto National Forest (~2,866,817 ac, similar name)
-- **US-7887** Grand Canyon-Parashant National Monument (National Monument) → Grand Canyon National Park (~1,177,837 ac, similar name); Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name))
 - **US-8297** Muggins Mountain Wilderness Area (Wilderness Area) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name))
 - **US-8312** Gila Box Riparian National Conservation Area (National Conservation Area) → Safford Field Office (~1,397,557 ac, the POTA pin is inside it (different name))
 
@@ -79,7 +74,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **63 of 123** parks joined 
 - Apache National Forest · NF · Forest Service Region 03 Southwestern · ~1,195,287 ac
 - Yuma Field Office · PUB · BLM · ~1,190,046 ac
 - Hassayampa Field Office · PUB · BLM · ~970,921 ac
-- Sitgreaves National Forest · NF · Forest Service Region 03 Southwestern · ~820,490 ac
 - Tucson Field Office · PUB · BLM · ~634,855 ac
 - State Trust Land · SRMA · Unknown · ~597,182 ac
 - State Trust Land · SRMA · Marana, Town of · ~596,450 ac
@@ -101,10 +95,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **63 of 123** parks joined 
 - SARA Park · LREC · Mojave County · ~1,041 ac
 - 47-Ranch · SCA · Unknown · ~968 ac
 - Silver Creek Hatchery · SOTH · Unknown · ~851 ac
-- Homolovi Ruins State Park · SP · Arizona State Parks · ~740 ac
 - Mohave County Shooting Range · SREC · Unknown · ~724 ac
 - Chevelon Creek Wildlife Area · SCA · Unknown · ~674 ac
-- Homolovi Ruins State Park · SP · Arizona State Parks · ~643 ac
 - Cibola Valley Conservation and Wildlife Area · SCA · Unknown · ~629 ac
 - Sierra Vista Shooting Range · SREC · Unknown · ~624 ac
 - Quigley Wildlife Area · SCA · Unknown · ~610 ac
@@ -122,11 +114,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **63 of 123** parks joined 
 - Springerville Marsh Wildlife Area · SCA · Unknown · ~163 ac
 - Northern Arizona Shooting Range · SREC · Unknown · ~159 ac
 - Chevelon Canyon Ranches Wildlife Area · SCA · Unknown · ~157 ac
-- Lamar Haines Wildlife Area · SCA · Unknown · ~155 ac
 - Green Tract · SCA · Unknown · ~150 ac
 - Colorado River Nature Center Wildlife Area · SCA · Unknown · ~141 ac
-- Page Springs Hatchery · SOTH · Unknown · ~124 ac
 - Yarbrough · SCA · Unknown · ~122 ac
 - Picacho State Recreation Area · SREC · California Department of Parks and Recreation · ~116 ac
 - Cunningham Tracts · SCA · Unknown · ~104 ac
 - Lee Valley Land · SCA · Unknown · ~73 ac
+- Kanab Field Office · PUB · BLM · ~63 ac
+- Tucson Headquarters · SCA · Unknown · ~60 ac
+- Sheep Drive Multi-Use Trail · LP · City of Apache Junction · ~58 ac
+- Picacho Reservoir · SREC · Unknown · ~49 ac
+- Willow Beach National Fish Hatchery · FOTH · WILLOW BEACH NATIONAL FISH HATCHERY · ~48 ac

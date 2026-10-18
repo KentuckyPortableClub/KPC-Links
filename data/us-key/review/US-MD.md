@@ -1,16 +1,15 @@
 # MD: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 186** parks joined to official land (same name + same kind of place). **34** to check by hand, **29** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **127 of 186** parks joined to official land (same name + same kind of place). **31** to check by hand, **28** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0334** Patuxent National Wildlife Refuge (National Wildlife Refuge) → Patuxent Research Refuge (~12,837 ac, similar name); Patuxent Research Refuge (~12,824 ac, similar name)
-- **US-0928** Fort McHenry National Monument (National Monument) → Fort McHenry National Monument and Historic Shrine (~47 ac, similar name)
 - **US-10751** Idylwild Natural Area (Natural Area) → Idylwild Wildlife Management Area (~88 ac, same name, different kind of place)
 - **US-10758** North End Natural Area (Natural Area) → Assateague Island National Seashore (~26,977 ac, the POTA pin is inside it (different name))
 - **US-10759** Green Run Woods Natural Area (Natural Area) → Assateague Island National Seashore (~26,977 ac, the POTA pin is inside it (different name))
 - **US-10762** Furnace Natural Area (Natural Area) → Pocomoke River Sf (~12,739 ac, the POTA pin is inside it (different name)); Pocomoke River State Forest (~4,198 ac, the POTA pin is inside it (different name))
-- **US-10763** Fishing Bay Marshes Natural Area (Natural Area) → Fishing Bay Wma (~28,873 ac, similar name); Fishing Bay Wildlife Management Area (~5,588 ac, similar name); Fishing Bay Wma (~239 ac, similar name); Fishing Bay Wma (~50 ac, similar name)
+- **US-10763** Fishing Bay Marshes Natural Area (Natural Area) → Fishing Bay Wma (~28,873 ac, same name, different kind of place); Fishing Bay Wildlife Management Area (~5,588 ac, same name, different kind of place); Fishing Bay Wma (~239 ac, same name, different kind of place); Fishing Bay Wma (~50 ac, same name, different kind of place)
 - **US-10765** Millington Natural Area (Natural Area) → Millington Wma (~3,759 ac, same name, different kind of place); Millington Wildlife Management Area (~132 ac, same name, different kind of place)
 - **US-10766** Swallow Falls Natural Area (Natural Area) → Swallow Falls Sp (~399 ac, same name, different kind of place)
 - **US-10767** Lostland Run Natural Area (Natural Area) → Potomac Sf (~8,558 ac, the POTA pin is inside it (different name))
@@ -23,7 +22,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 186** parks joined
 - **US-10781** Calvert Cliffs Natural Area (Natural Area) → Calvert Cliffs Sp (~1,167 ac, same name, different kind of place); Calvert Cliffs Sp (~146 ac, same name, different kind of place)
 - **US-11231** Sideling Hill Creek State Park (State Park) → Sideling Hill Wma (~3,384 ac, same name, different kind of place); Sideling Hill Wma (~60 ac, same name, different kind of place)
 - **US-1567** Dans Mountain State Park (State Park) → Dans Mountain Wma (~9,847 ac, same name, different kind of place)
-- **US-4365** North Point Battlefield State Park (State Park) → North Point Sb (~9 ac, similar name)
 - **US-4767** Pocomoke State Forest (State Forest) → Pocomoke River Sf (~12,739 ac, similar name); Pocomoke River State Forest (~4,198 ac, similar name)
 - **US-6387** Fair Hill State Natural Area (State Natural Area) → Fair Hill Nrma (~1 ac, same name, different kind of place)
 - **US-6391** Merkle Wildlife Sanctuary State Natural Area (State Natural Area) → Merkle Nrma (~1,677 ac, the POTA pin is inside it (different name))
@@ -33,7 +31,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 186** parks joined
 - **US-6398** Woodmont State Natural Area (State Natural Area) → Woodmont Nrma (~3,192 ac, same name, different kind of place)
 - **US-6399** Wye Island State Conservation Area (State Conservation Area) → Wye Island Nrma (~2,487 ac, same name, different kind of place)
 - **US-6400** Youghiogheny Wild River State Natural Area (State Natural Area) → Youghiogheny River Natural Environment Area (~34 ac, similar name); Youghiogheny Wild River Nea (~3,640 ac, same name, different kind of place)
-- **US-7730** McKee-Breshers Wildlife Management Area (Wildlife Management Area) → Mckee Beshers Wma (~1,971 ac, the POTA pin is inside it (different name))
 - **US-7769** Heaters Island Wildlife Management Area (Wildlife Management Area) → ISLANDS OF THE POTOMAC Wildlife Management Area - Islands of the Potomac Wildland (~322 ac, the POTA pin is inside it (different name))
 - **US-7776** Oxon Cove Park & Farm National Historical Park (National Historical Park) → George Washington Memorial Parkway (~2,364 ac, the POTA pin is inside it (different name))
 - **US-7777** Dierssen Wildlife Management Area (Wildlife Management Area) → Chesapeake and Ohio Canal National Historical Park (~13,211 ac, the POTA pin is inside it (different name))
@@ -49,7 +46,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 186** parks joined
 - US-10774 Plum Creek Natural Area (Natural Area)
 - US-13377 Freedman's State Park (State Park)
 - US-13564 Savage Highlands State Park (State Park)
-- US-1561 Bill Burton Fishing Pier State Park (State Park)
 - US-1572 Franklin Point State Park (State Park)
 - US-1582 Martinak State Park (State Park)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
@@ -85,11 +81,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 186** parks joined
 - Litttle Bennett Regional Park · SOTH ·   · ~2,935 ac
 - Northwest Branch Park · SOTH ·   · ~2,827 ac
 - Wye Island Nrma · SP ·   · ~2,487 ac
-- Mckee Beshers Wma · SCA ·   · ~1,971 ac
 - SAVAGE RIVER SF - Middle Fork Wildland · SRMA ·   · ~1,920 ac
 - Soldiers Delight Nea · SP ·   · ~1,909 ac
 - Pocomoke River State Forest · SRMA · MD Department of Natural Resources · ~1,866 ac
-- CEDAR ISLAND Wildlife Management Area - Cedar Island Wildland · SCA ·   · ~1,838 ac
 - Doncaster Demonstration Sf · SRMA ·   · ~1,793 ac
 - Piscataway Creek Stream Valley Park · SOTH ·   · ~1,779 ac
 - Merkle Nrma · SP ·   · ~1,677 ac
@@ -112,13 +106,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 186** parks joined
 - Chesapeake Forest Lands · SRMA · MD Department of Natural Resources · ~980 ac
 - Sassafrass Nrma · SP ·   · ~971 ac
 - County Land · LOTH ·   · ~938 ac
-- CEDAR ISLAND Wildlife Management Area - Cedar Island Wildland · SCA ·   · ~888 ac
 - Patuxent River Wastershed Conservation Park · SOTH ·   · ~870 ac
 - Cabin John Regional Park · SOTH ·   · ~846 ac
 - Mattawoman Natural Environment Area · SCA · MD Department of Natural Resources · ~826 ac
 - Chesapeake Forest Lands · SRMA · MD Department of Natural Resources · ~823 ac
 - Fair Hill Natural Resource Management Area · SRMA · MD Department of Natural Resources · ~798 ac
-- Parker Creek Wildlife Management Area · SCA ·   · ~775 ac
 - Chesapeake Forest Lands · SRMA ·   · ~738 ac
 - Pocomoke River State Forest · SRMA · MD Department of Natural Resources · ~725 ac
 - Henson Creek Stream Valley Park · SOTH ·   · ~718 ac
@@ -130,6 +122,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 186** parks joined
 - POTOMAC SF - Maple Lick Run Wildland · SRMA ·   · ~582 ac
 - Unknown Park · PUB · USA · ~574 ac
 - Pocomoke River State Forest · SRMA · MD Department of Natural Resources · ~573 ac
-- PARKERS CREEK Wildlife Management Area - Parkers Creek Wildlands · SCA ·   · ~550 ac
 - Lower Potomac River230 · NCA · Bureau of Land Management · ~550 ac
 - Indian Creek Stream Valley Park · SOTH ·   · ~540 ac
+- Fred W Besley Demonstration Forest · SRMA ·   · ~530 ac
+- Belt Woods Heritage Conservation · SCA · MD Department of Natural Resources · ~511 ac
+- Fred W Besley Demonstration Forest · SRMA ·   · ~510 ac
+- Boys Village - Cheltenham · SOTH ·   · ~501 ac
+- Aaron Straus Heritage Conservation · SCA · MD Department of Natural Resources · ~495 ac

@@ -1,6 +1,6 @@
 # WV: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **148 of 172** parks joined to official land (same name + same kind of place). **12** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 172** parks joined to official land (same name + same kind of place). **10** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -14,8 +14,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **148 of 172** parks joined
 - **US-12441** Otter Creek Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
 - **US-12442** Roaring Plains West Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
 - **US-12443** Spice Run Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
-- **US-5584** Camp Creek State Park and Forest State Park (State Park) → Camp Creek State Forest (~5,312 ac, similar name); Camp Creek State Park (~559 ac, similar name)
-- **US-7032** Valley Bend Wildlife Management Area (Wildlife Management Area) → Valley Bend Wetlands Wildlife Management Area (~32 ac, similar name)
 
 ## Nothing found in PAD-US
 
@@ -50,7 +48,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **148 of 172** parks joined
 - Byrd Pool Recreation Area · REC · Huntington · ~681 ac
 - Andrew Rowan Wildlife Management Area · SCA ·   · ~620 ac
 - Andrew Rowan Wildlife Management Area · SCA · WV Division of Natural Resources · ~620 ac
-- Camp Creek State Park · SP · WV Division of Natural Resources · ~559 ac
 - Jackson's Mill · SOTH ·   · ~548 ac
 - Jackson's Mill · SREC · WV Division of Natural Resources · ~548 ac
 - National Conservation Training Center · FOTH · NATIONAL CONSERVATION TRAINING CENTER · ~538 ac
@@ -72,8 +69,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **148 of 172** parks joined
 - Valley Park · LP · Public Land Corp of WV · ~61 ac
 - Coopers Rock State Park (Mont Chateau??) · SP · WV Geological and Economic Survey · ~38 ac
 - London Pool Recreation Area · REC · Huntington · ~37 ac
-- Slaty Fork Wildlife Management Area · SCA ·   · ~37 ac
-- Valley Bend Wetlands Wildlife Management Area · SCA · WV Division of Natural Resources · ~32 ac
 - Woodpecker Woods Wildlife Sanctuary · SCA · WV Division of Natural Resources · ~31 ac
 - West Virginia State Capitol Grounds · LP · State of West Virginia · ~30 ac
 - Cotton Hill Wildlife Management Area · SCA · WV Division of Natural Resources · ~29 ac
@@ -94,3 +89,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **148 of 172** parks joined
 - Wheeling Jesuit University Camp · SREC · WV Division of Natural Resources · ~4 ac
 - North Branch Potomac Fish Management Area · SRMA · MD Department of Natural Resources · ~3 ac
 - Kanawha Falls · SRMA · WV Division of Natural Resources · ~3 ac
+- Wayne National Forest · NF · Forest Service Region 09 Eastern · ~2 ac
+- Grave Creek Mound State Park · SP · WV State Parks · ~2 ac
+- 35th Street Ball Field · LP ·   · ~2 ac

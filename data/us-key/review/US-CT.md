@@ -1,37 +1,23 @@
 # CT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **95 of 157** parks joined to official land (same name + same kind of place). **29** to check by hand, **33** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **111 of 157** parks joined to official land (same name + same kind of place). **15** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-11712** Cromwell Meadows WMA Wildlife Management Area (Wildlife Management Area) → Unknown (~517 ac, the POTA pin is inside it (different name))
 - **US-12460** Suffield Wildlife Management Area (Wildlife Management Area) → Unspecified (~195 ac, the POTA pin is inside it (different name))
 - **US-12620** Old New-Gate Prison & Copper Mine Historical Reserve (Historical Reserve) → Old Newgate Prison and Copper Mine (~26 ac, similar name); Old Newgate Prison and Copper Mine (~19 ac, similar name)
-- **US-13483** Humaston Brook State Park (State Park) → Humaston Brook State Park Scenic Reserve (~17 ac, similar name)
-- **US-1645** Above All State Park (State Park) → Above All State Park Scenic Reserve (~23 ac, similar name)
-- **US-1646** Beaver Brook State Park (State Park) → Beaver Brook State Park Scenic Reserve (~254 ac, similar name); Beaver Brook State Park Scenic Reserve (~63 ac, similar name); Beaver Brook State Park Scenic Reserve (~5 ac, similar name)
-- **US-1660** Day Pond State Park (State Park) → Day Pond State Park and Salmon River State Forest (~958 ac, similar name)
-- **US-1688** Killingly Pond State Park (State Park) → Killingly Pond State Park Scenic Reserve (~73 ac, similar name); Killingly Pond State Park Scenic Reserve (~45 ac, similar name); Killingly Pond State Park Scenic Reserve (~38 ac, similar name); Killingly Pond State Park Scenic Reserve (~5 ac, similar name); Killingly Pond State Park Scenic Reserve (~3 ac, similar name); Killingly Pond State Park Scenic Reserve (~0 ac, similar name)
-- **US-1691** Lovers Leap State Park (State Park) → Lovers Leap State Park Scenic Reserve (~115 ac, similar name); Lovers Leap State Park Scenic Reserve (~74 ac, similar name)
 - **US-1694** Mansfield Hollow State Park (State Park) → Mansfield Hollow Wildlife Management Area (~2,387 ac, same name, different kind of place)
-- **US-1697** Millers Pond State Park (State Park) → Millers Pond State Park Scenic Reserve (~178 ac, similar name); Millers Pond State Park Scenic Reserve (~107 ac, similar name); Millers Pond State Park Scenic Reserve (~8 ac, similar name); Millers Pond State Park Scenic Reserve (~1 ac, similar name)
-- **US-1698** Minnie Island State Park (State Park) → Minnie Island State Park Scenic Reserve (~1 ac, similar name); Gardner Lake (~528 ac, the POTA pin is inside it (different name))
 - **US-1699** Mohawk Mountain State Park (State Park) → Mohawk State Forest (~3,251 ac, similar name); Mohawk State Forest (~252 ac, similar name)
-- **US-1701** Mount Bushnell State Park (State Park) → Mount Bushnell State Park Scenic Reserve (~68 ac, similar name); Mount Bushnell State Park Scenic Reserve (~29 ac, similar name); Mount Bushnell State Park Scenic Reserve (~23 ac, similar name)
-- **US-1702** Mount Riga State Park (State Park) → Mount Riga State Park Scenic Reserve (~293 ac, similar name); Mount Riga State Park Scenic Reserve (~43 ac, similar name)
 - **US-1725** Trimountain State Park (State Park) → Trimountain State Park Scenic Reserve (~153 ac, similar name)
 - **US-1728** Wharton Brook State Park (State Park) → Wharton Brook Natural Area Preserve (~24 ac, same name, different kind of place)
 - **US-6858** Beckett Hill Park Reserve (Park Reserve) → Beckett Hill State Park Scenic Reserve (~262 ac, similar name); Nehantic State Forest (~1,844 ac, the POTA pin is inside it (different name))
 - **US-6860** Ferry Landing State Park (State Park) → Marine District Headquarters (~7 ac, the POTA pin is inside it (different name))
 - **US-6861** Great Pond / Massacoe State Forest (State Forest) → Massacoe State Forest (~142 ac, similar name)
-- **US-6864** Mono Pond State Park Preserve (State Park Preserve) → Mono Pond (~282 ac, similar name)
 - **US-6870** Quinebaug Lake State Park (State Park) → Quinebaug Wildlife Area (~22 ac, same name, different kind of place)
-- **US-6871** Rocky Glen State Park (State Park) → Rocky Glen State Park Scenic Reserve (~4 ac, similar name); Rocky Glen State Park Scenic Reserve (~4 ac, similar name)
 - **US-6872** Salt Rock State Forest (State Forest) → Salt Rock State Park (~65 ac, same name, different kind of place); Salt Rock State Park (~43 ac, same name, different kind of place); Salt Rock State Park (~30 ac, same name, different kind of place); Salt Rock State Park (~12 ac, same name, different kind of place)
-- **US-7539** Platt Hill State Park (State Park) → Platt Hill State Park Scenic Reserve (~162 ac, similar name)
 - **US-7540** Pomeroy State Reserve (State Reserve) → Pomeroy State Park Scenic Reserve (~87 ac, similar name); Pomeroy State Park Scenic Reserve (~38 ac, similar name); Pomeroy State Park Scenic Reserve (~33 ac, similar name); Pomeroy State Park Scenic Reserve (~23 ac, similar name); Pomeroy State Park Scenic Reserve (~15 ac, similar name); Pomeroy State Park Scenic Reserve (~2 ac, similar name)
 - **US-7542** Satan's Kingdom State Recreation Area (State Recreation Area) → Farmington River Water Access (~8 ac, the POTA pin is inside it (different name))
-- **US-7545** Wooster Mountain State Park (State Park) → Wooster Mountain State Park Scenic Reserve (~121 ac, similar name); Wooster Mountain State Park Scenic Reserve (~39 ac, similar name); Wooster Mountain State Park Scenic Reserve (~10 ac, similar name); Wooster Mountain State Park Scenic Reserve (~6 ac, similar name); Wooster Mountain State Park Scenic Reserve (~5 ac, similar name); Wooster Mountain State Park Scenic Reserve (~0 ac, similar name)
 - **US-7652** Franklin Wildlife Management Area (Wildlife Management Area) → Franklin Swamp Wildlife Area (~646 ac, similar name)
 
 ## Nothing found in PAD-US
@@ -51,8 +37,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **95 of 157** parks joined 
 - US-1673 Haddam Island State Park (State Park)
 - US-1680 Hopemead State Park (State Park)
 - US-1690 Lamentation Mountain State Park (State Park)
-- US-1696 Mianus River State Park (State Park)
-- US-1705 Osborndale State Park (State Park)
 - US-1710 River Highlands State Park (State Park)
 - US-1711 Rocky Neck State Park (State Park)
 - US-1716 Silver Sands State Park (State Park)
@@ -72,7 +56,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **95 of 157** parks joined 
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- Patchaug State Forest · SRMA ·   · ~8,233 ac
 - Appalachian National Scenic Trail · NT · NPS · ~5,541 ac
 - Mohawk State Forest · SRMA ·   · ~3,251 ac
 - Housatonic State Forest · SRMA ·   · ~2,887 ac
@@ -83,9 +66,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **95 of 157** parks joined 
 - Canaan Mountain Natural Area Preserve · SCA ·   · ~1,153 ac
 - Robbins Swamp Wildlife Area · SCA ·   · ~1,122 ac
 - Silvio O. Conte National Fish And Wildlife Refuge · NWR · Silvio O. Conte National Fish And Wildlife Refuge · ~1,075 ac
-- Meshomasic State Forest and Gay City State Park · SRMA ·   · ~1,031 ac
 - Silvio O. Conte National Fish And Wildlife Refuge · NWR · SILVIO O. CONTE NATIONAL FISH AND WILDLIFE REFUGE · ~973 ac
-- Day Pond State Park and Salmon River State Forest · SRMA ·   · ~958 ac
 - Housatonic State Forest · SRMA ·   · ~934 ac
 - Hammonasset Natural Area Preserve · SCA ·   · ~886 ac
 - Goshen Wildlife Area · SCA ·   · ~841 ac
@@ -128,7 +109,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **95 of 157** parks joined 
 - Trout Brook Valley · SOTH ·   · ~304 ac
 - Housatonic State Forest · SRMA ·   · ~298 ac
 - Mashapaug Pond · SREC ·   · ~295 ac
-- Mount Riga State Park Scenic Reserve · SP ·   · ~293 ac
 - Quinnipiac River Marsh Wildlife Area · SCA ·   · ~286 ac
 - Burrville Fire Training, Paugnut State Forest · SRMA ·   · ~285 ac
 - North Branch Park River Flood Control Site 1 · SOTH ·   · ~285 ac
+- Unknown · SOTH ·   · ~284 ac
+- State Park · SP ·   · ~277 ac
+- Unknown · SOTH ·   · ~268 ac
+- Housatonic State Forest · SRMA ·   · ~267 ac

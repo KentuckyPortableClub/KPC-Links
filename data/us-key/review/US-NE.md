@@ -1,12 +1,11 @@
 # NE: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **105 of 190** parks joined to official land (same name + same kind of place). **21** to check by hand, **64** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **106 of 190** parks joined to official land (same name + same kind of place). **20** to check by hand, **64** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0675** Missouri National Recreational River National Wild & Scenic River (National Wild & Scenic River) → Lewis And Clark Recreation Area (~26,286 ac, the POTA pin is inside it (different name))
 - **US-12736** Gifford Point Wildlife Management Area (Wildlife Management Area) → Gifford Wildlife Management Area (~1,531 ac, similar name); Gifford Wildlife Management Area (~1,480 ac, similar name)
-- **US-13205** Dr. Bruce Cowgill Wildlife Management Area (Wildlife Management Area) → Bruce Cowgill Wildlife Management Area (~233 ac, similar name)
 - **US-13329** Plum Creek State Recreation Area (State Recreation Area) → Plum Creek Wildlife Management Area (~4 ac, same name, different kind of place)
 - **US-2608** Ashfall Fossil Beds State Historical Park (State Historical Park) → Ashfall State Historical Park (~357 ac, similar name)
 - **US-2609** Ash Hollow State Park (State Park) → Ash Hollow State Historical Park (~1,050 ac, same name, different kind of place)

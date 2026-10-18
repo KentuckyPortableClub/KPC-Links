@@ -1,6 +1,6 @@
 # WY: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **67 of 298** parks joined to official land (same name + same kind of place). **156** to check by hand, **75** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **68 of 298** parks joined to official land (same name + same kind of place). **155** to check by hand, **75** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -100,7 +100,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **67 of 298** parks joined 
 - **US-6144** Trail End State Historic Site (State Historic Site) → Trail End (~3 ac, same name, different kind of place)
 - **US-6146** Cloud Peak Wilderness Area (Wilderness Area) → Bighorn National Forest (~1,105,122 ac, the POTA pin is inside it (different name))
 - **US-6147** Independence Rock State Historic Site (State Historic Site) → Independence Rock (~125 ac, same name, different kind of place); Independence Rock (~14 ac, same name, different kind of place)
-- **US-6148** Connor Battlefield State Historic Site (State Historic Site) → Conner Battlefield (~14 ac, the POTA pin is inside it (different name))
 - **US-6150** Medicine Lodge Archaeological Site State Park (State Park) → Medicine Lodge Wildlife Habitat Management Area (~12,311 ac, the POTA pin is inside it (different name))
 - **US-6153** Lone Tree Trail BLM Recreation Management Area (BLM Recreation Management Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name))
 - **US-6155** Big Cedar Ridge Fossil Site BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name))
@@ -260,7 +259,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **67 of 298** parks joined 
 - Glendo Reservoir State Park · SP · Wyoming Department of Parks and Cultural Resouces · ~21,949 ac
 - Pathfinder Reservoir · RMA · Unknown · ~20,704 ac
 - Keyhole Reservoir State Park · SP · Wyoming Department of Parks and Cultural Resouces · ~15,844 ac
-- Buffalo Bill Reservoir State Park · SP · US Bureau of Reclamation · ~13,571 ac
 - Whiskey Basin Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~12,843 ac
 - Newcastle Field Office · PUB · BLM · ~8,871 ac
 - Guernsey Reservoir State Park · SP · Wyoming Department of Parks and Cultural Resouces · ~8,521 ac
@@ -301,3 +299,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **67 of 298** parks joined 
 - Fort Phil Kearny · SP · Wyoming State Parks, Historic Sites & Trails · ~697 ac
 - State Lands 1111117046 · SRMA · Unknown · ~696 ac
 - State Lands 1111120398 · SRMA · Unknown · ~696 ac
+- State Lands 1111117557 · SRMA · Unknown · ~694 ac

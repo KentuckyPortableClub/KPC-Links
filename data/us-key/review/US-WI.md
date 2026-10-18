@@ -1,6 +1,6 @@
 # WI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **225 of 348** parks joined to official land (same name + same kind of place). **100** to check by hand, **23** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 348** parks joined to official land (same name + same kind of place). **94** to check by hand, **22** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -62,7 +62,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **225 of 348** parks joined
 - **US-13534** Camp Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Rem-Camp Creek (~375 ac, similar name)
 - **US-13535** La Crosse Area Comprehensive State Fish and Wildlife Area (State Fish and Wildlife Area) → La Crosse Area Comprehensive Fishery Area (~1,365 ac, same name, different kind of place)
 - **US-1458** Kohler-Andrae State Park (State Park) → John Michael Kohler State Park (~751 ac, the POTA pin is inside it (different name))
-- **US-1477** Straight Lake State Park (State Park) → Straight Lake Wilderness State Park (~1,692 ac, similar name)
 - **US-4236** Upper Mississippi River National Wildlife Refuge (National Wildlife Refuge) → Upper Mississippi River National Wildlife And Fish Refuge (~52,855 ac, similar name); Upper Mississippi River National Wildlife And Fish Refuge (~52,514 ac, similar name)
 - **US-4238** Ice Age National Scenic Trail (National Scenic Trail) → Ice Age Trail (~5,793 ac, similar name); Ice Age Trail - Wd (~2,453 ac, similar name); Ice Age Trail - Lm (~974 ac, similar name)
 - **US-4244** Big Bay Sand Spit and Bog State Natural Area (State Natural Area) → Big Bay State Park (~2,514 ac, similar name); Big Bay State Park 4 (~40 ac, similar name)
@@ -85,9 +84,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **225 of 348** parks joined
 - **US-4332** Theresa Marsh State Wildlife Area (State Wildlife Area) → Theresa Wildlife Area (~5,333 ac, similar name)
 - **US-4339** Waunakee Marsh State Wildlife Area (State Wildlife Area) → Waunakee Wildlife Area (~481 ac, similar name)
 - **US-4342** Herb Behnke Unit of Wolf River Bottoms State Wildlife Area (State Wildlife Area) → Wolf River Bottoms Wildlife Area (~3,141 ac, similar name)
-- **US-4343** LaSage Unit of Wolf River Bottoms State Wildlife Area (State Wildlife Area) → Wolf River Bottoms Wildlife Area (~3,141 ac, similar name)
 - **US-5579** Havenwoods State Forest (State Forest) → Havenwoods Forest Preserve And Nature Center (~215 ac, similar name)
-- **US-7260** Northern Highland American Legion State Forest (State Forest) → Northern Highland State Forest (~176,363 ac, similar name); American Legion State Forest (~60,899 ac, similar name)
 - **US-8209** Dewey Marsh State Natural Area (State Natural Area) → Dewey Marsh Wildlife Area (~6,048 ac, same name, different kind of place)
 - **US-8216** Osceola Bedrock Glades State Natural Area (State Natural Area) → Osceola Hatchery (~351 ac, the POTA pin is inside it (different name))
 - **US-8217** Casey Lake State Wildlife Area (State Wildlife Area) → Casey Lake State Habitat Area-Western Prairie Habitat Restoration Area (~360 ac, similar name)
@@ -96,14 +93,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **225 of 348** parks joined
 - **US-8363** Gibraltar Rock State Natural Area (State Natural Area) → Ice Age Trail - Sd (~892 ac, the POTA pin is inside it (different name))
 - **US-8667** Haskell Noyes Memorial Woods State Natural Area (State Natural Area) → Kettle Moraine State Forest-Northern Unit-Iansr (~30,180 ac, the POTA pin is inside it (different name))
 - **US-8668** Waterloo Prairie State Natural Area (State Natural Area) → Waterloo Wildlife Area (~4,186 ac, similar name)
-- **US-9826** Blackhawk Lake State Recreation Area (State Recreation Area) → Blackhawk Lake Recreational Area (~2,049 ac, similar name)
 - **US-9827** Willow Flowage State Wilderness Area (State Wilderness Area) → Willow Flowage Scenic Waters Area (~25,929 ac, similar name); Willow Flowage Scenic Waters Area (~18,148 ac, similar name); Willow Flowage Scenic Waters Area 15 (~1,575 ac, similar name); Willow Flowage Scenic Waters Area 18 (~1,096 ac, similar name)
 - **US-9831** Allenton Marsh State Wildlife Area (State Wildlife Area) → Allenton Wildlife Area (~1,160 ac, similar name)
 - **US-9834** Bloomfield State Wildlife Area (State Wildlife Area) → Bloomfield State Habitat Area (~1,226 ac, similar name)
-- **US-9837** Buzz Besadny State Fish and Wildlife Area (State Fish and Wildlife Area) → C.D. (Buzz) Besadny Fish And Wildlife Area (~2,703 ac, similar name); C.D. (Buzz) Besadny Fish And Wildlife Area 6 (~18 ac, similar name); C.D. (Buzz) Besadny Fish And Wildlife Area (~4 ac, similar name)
 - **US-9846** Hook Lake Bog - Grass Lake State Wildlife Area (State Wildlife Area) → Hook Lake/Grass Lake Wildlife And Natural Area (~860 ac, similar name)
 - **US-9848** Jefferson Marsh State Wildlife Area (State Wildlife Area) → Jefferson Marsh State Wildlife And Natural Area (~3,326 ac, same name, different kind of place)
-- **US-9872** White River State Wildlife Area (State Wildlife Area) → White River Wildlife Area-Ashland (~1,271 ac, similar name); White River Wildlife Area-Ashland (~40 ac, similar name)
 
 ## Nothing found in PAD-US
 
@@ -122,7 +116,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **225 of 348** parks joined
 - US-8213 Belden Swamp State Natural Area (State Natural Area)
 - US-8214 Empire Swamp State Natural Area (State Natural Area)
 - US-8215 Ericson Creek Forest and Wetlands State Natural Area (State Natural Area)
-- US-8225 Badfish Creek State Wildlife Area (State Wildlife Area)
 - US-8669 Scuppernong Prairie State Natural Area (State Natural Area)
 - US-9704 Lizard Mound State Park (State Park)
 - US-9766 Badger State Trail (State Trail)
@@ -134,8 +127,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **225 of 348** parks joined
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Nicolet National Forest · NF · Forest Service Region 09 Eastern · ~662,660 ac
-- Northern Highland State Forest · SRMA · Wisconsin Department of Natural Resources · ~176,363 ac
-- American Legion State Forest · SRMA · Wisconsin Department of Natural Resources · ~60,899 ac
 - Necedah Wildlife Management Area · NCA · NECEDAH WILDLIFE MANAGEMENT AREA · ~54,211 ac
 - Necedah Wildlife Management Area · NCA · Necedah Wildlife Management Area · ~54,211 ac
 - Upper Mississippi River National Wildlife And Fish Refuge · NWR · Upper Mississippi River National Wildlife And Fish Refuge · ~52,855 ac
@@ -181,10 +172,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **225 of 348** parks joined
 - Extensive Wl Habitat - Sd · SREC · Wisconsin Department of Natural Resources · ~3,451 ac
 - Jefferson Marsh State Wildlife And Natural Area · SREC · Wisconsin Department of Natural Resources · ~3,326 ac
 - Gift Lands · UNK · Unknown · ~3,152 ac
-- Wolf River Bottoms Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~3,141 ac
-- Lima Marsh - Storrs Lake Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~2,870 ac
 - Statewide Wildlife Habitat · SCA · Unknown · ~2,774 ac
-- C.D. (Buzz) Besadny Fish And Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~2,703 ac
 - Rush Creek Natural Area · SCA · Wisconsin Department of Natural Resources · ~2,698 ac
 - Ice Age Trail - Nw · SP · Wisconsin Department of Natural Resources · ~2,697 ac
 - Northeastern States District Office · PUB · BLM · ~2,691 ac
@@ -193,3 +181,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **225 of 348** parks joined
 - Totogatic Wild River · SCA · Wisconsin Department of Natural Resources · ~2,489 ac
 - Jackson Marsh Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~2,472 ac
 - Lower Saint Croix National Scenic Riverway · WSR · NPS · ~2,470 ac
+- Winnebago County Waterfowl Production Area Of Wi · RMA · Winnebago County Waterfowl Production Area Of Wi · ~2,462 ac
+- Ice Age Trail - Wd · SP · Wisconsin Department of Natural Resources · ~2,453 ac
+- Winnebago County Waterfowl Production Area · RMA · WINNEBAGO COUNTY WATERFOWL PRODUCTION AREA · ~2,426 ac
+- Germania Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~2,354 ac
+- Little Wolf River Fishery Area · SREC · Wisconsin Department of Natural Resources · ~2,343 ac

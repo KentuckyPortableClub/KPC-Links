@@ -1,25 +1,18 @@
 # IN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **142 of 229** parks joined to official land (same name + same kind of place). **56** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **154 of 229** parks joined to official land (same name + same kind of place). **45** to check by hand, **30** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0782** Lincoln Boyhood Home National Memorial (National Memorial) → Lincoln State Park (~1,736 ac, similar name); Lincoln Boyhood National Memorial (~184 ac, similar name); Lincoln State Park (addition) (~10 ac, similar name)
 - **US-10179** Ten O' Clock Line State Nature Preserve (State Nature Preserve) → Brown County State Park (~12,705 ac, the POTA pin is inside it (different name))
-- **US-10204** Bob Kern State Nature Preserve (State Nature Preserve) → Bob Kern Wetlands Nature Preserve (~169 ac, similar name)
 - **US-10237** Mongoquinong State Nature Preserve (State Nature Preserve) → Pigeon River Fish And Wildlife Area (~11,604 ac, the POTA pin is inside it (different name))
-- **US-10239** McCloskey's Burr Oak Savanna State Nature Preserve (State Nature Preserve) → Mccloskey Burr Oak Savanna Addition (~31 ac, similar name)
-- **US-10244** Donaldson's Woods State Nature Preserve (State Nature Preserve) → Spring Mill State Park (~682 ac, the POTA pin is inside it (different name))
-- **US-10248** Warbler Woods State Nature Preserve (State Nature Preserve) → Fort Benjamin Harrison State Park (~981 ac, the POTA pin is inside it (different name))
 - **US-10280** Barnes State Nature Preserve (State Nature Preserve) → Barnes (Bill) Nature Preserve (~243 ac, similar name); Willow Slough Fish And Wildlife Area (~9,699 ac, the POTA pin is inside it (different name))
-- **US-10283** Glacial Esker State Nature Preserve (State Nature Preserve) → Glacial Esker Nature Preserve - Glacial Esker (~622 ac, similar name)
-- **US-10404** Galena Wetland Conservation Area (Conservation Area) → Galena (Springfield Fen) Wetland Conservation Area (~121 ac, similar name)
 - **US-10561** Indiana War Memorial Plaza National Historical Site (National Historical Site) → Indiana War Memorial (~5 ac, similar name); Veteran's Memorial Plaza (~5 ac, similar name)
 - **US-11818** Martindale State Fishing Lake (State Fishing Lake) → Martindale Public Fishing Area (~24 ac, similar name)
 - **US-11996** Adams Mill State Fishing Lake (State Fishing Lake) → Adams Mill Public Access Site/Public Fishing Area (~11 ac, similar name)
 - **US-11998** Lake Wawasee State Fishing Lake (State Fishing Lake) → Wawasee Public Fishing Area (~12 ac, the POTA pin is inside it (different name))
 - **US-12002** Williams Dam State Fishing Lake (State Fishing Lake) → Williams Dam Public Fishing Area (~38 ac, similar name)
-- **US-12016** Round Lake State Nature Preserve (State Nature Preserve) → Round Lake Wetland Nature Preserve (~138 ac, similar name)
 - **US-12020** Prophetstown Fen State Nature Preserve (State Nature Preserve) → Prophetstown State Park (~2,204 ac, same name, different kind of place)
 - **US-12026** Pine Creek State Game Land (State Game Land) → Pine Creek Bottoms Gamebird Habitat Area (~809 ac, similar name)
 - **US-12312** Busseron Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Minnehana Fish and Wildlife Area (~12,889 ac, the POTA pin is inside it (different name))
@@ -27,7 +20,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **142 of 229** parks joined
 - **US-13100** Driftwood State Fishing Lake (State Fishing Lake) → Driftwood Public Fishing Area (~893 ac, similar name)
 - **US-13103** Hindostan Falls State Fishing Lake (State Fishing Lake) → Hindostan Falls Public Fishing Area (~139 ac, similar name)
 - **US-13104** Three Rivers State Fishing Lake (State Fishing Lake) → Martinsville (Sycamore Creek) Public Fishing Area (~17 ac, the POTA pin is inside it (different name))
-- **US-2256** Fort Harrison State Park (State Park) → Fort Benjamin Harrison State Park (~981 ac, similar name); Fort Benjamin Harrison State Park Nature Preserve (~27 ac, similar name); Fort Benjamin Harrison State Park - Harrison Inn (~6 ac, similar name)
 - **US-2275** Whitewater Memorial State Park (State Park) → Whitewater State Park (~1,436 ac, similar name)
 - **US-4161** Quakertown on Brookville Lake State Recreation Area (State Recreation Area) → Brookville Recreation Area (~17,185 ac, similar name); Brookville Lake Public Fishing Area (~2 ac, similar name)
 - **US-4162** Mounds on Brookville Lake State Recreation Area (State Recreation Area) → Brookville Recreation Area (~17,185 ac, similar name)
@@ -39,10 +31,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **142 of 229** parks joined
 - **US-4180** Mt Hope on Salamonie Lake State Recreation Area (State Recreation Area) → Salamonie State Forest (~956 ac, similar name)
 - **US-4182** Trine at Pokagon State Recreation Area (State Recreation Area) → Pokagon State Park (~939 ac, similar name); Trine State Recreation Area (~183 ac, similar name)
 - **US-4186** Big Walnut - Tall Timbers Trail State Nature Preserve (State Nature Preserve) → Big Walnut Addition Nature Preserve (~739 ac, similar name); Big Walnut Natural Area (~389 ac, similar name); Big Walnut Nature Preserve - Tract 1 (~286 ac, similar name)
-- **US-4202** Hall Woods State Nature Preserve (State Nature Preserve) → Hall (Oscar and Ruth) Woods Nature Preserve (~99 ac, similar name); Oscar and Ruth Hall Woods Addition Nature Preserve (~21 ac, similar name)
 - **US-4208** J. E. Roush Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → J. Edward Roush Recreation Area (~8,533 ac, the POTA pin is inside it (different name))
-- **US-4220** Pipewort Pond Lieber Memorial State Nature Preserve (State Nature Preserve) → Pipewort Pond Nature Preserve (~132 ac, similar name)
-- **US-4221** Pisgah Marsh Area State Fish and Wildlife Area (State Fish and Wildlife Area) → Pisgah Marsh Nongame Area And Boardwalk (~801 ac, similar name)
 - **US-4223** Reynolds Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Reynold's Creek Gamebird Habitat Area (~1,254 ac, similar name)
 - **US-4224** Salamonie River and Frances Slocum State Forest (State Forest) → Salamonie State Forest (~956 ac, similar name)
 - **US-5680** Indian-Celina State Recreation Area (State Recreation Area) → Hoosier National Forest (~204,291 ac, the POTA pin is inside it (different name))
@@ -64,7 +53,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **142 of 229** parks joined
 ## Nothing found in PAD-US
 
 - US-0288 Big Oaks National Wildlife Refuge (National Wildlife Refuge)
-- US-10180 Fourteenmile Creek State Nature Preserve (State Nature Preserve)
 - US-10230 Bell-Croft Woods State Nature Preserve (State Nature Preserve)
 - US-10232 White Oak Cemetery State Nature Preserve (State Nature Preserve)
 - US-10256 JD Marshall State Nature Preserve (State Nature Preserve)
@@ -110,16 +98,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **142 of 229** parks joined
 - Reynold's Creek Gamebird Habitat Area · SCA · Indiana DNR, Fish and Wildlife Division · ~1,254 ac
 - Pedestal Rock Nature Preserve · SCA · Indiana DNR, State Parks and Reservoirs Division · ~1,183 ac
 - Menominee Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~1,008 ac
-- Fort Benjamin Harrison State Park · SP · Indiana DNR, State Parks and Reservoirs Division · ~981 ac
 - Salamonie State Forest · SRMA · Indiana DNR, Forestry Division · ~956 ac
 - Bloomfield Barrens Managed Area · SCA · Indiana DNR, Nature Preserve Division · ~946 ac
 - Cedar Lake (Marsh) Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~933 ac
 - Whipporwill Woods Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~899 ac
 - Driftwood Public Fishing Area · SCA · Indiana DNR, Fish and Wildlife Division · ~893 ac
 - Tern Bar Slough · SCA · Indiana DNR, Fish and Wildlife Division · ~843 ac
-- Fourteen Mile Creek Nature Preserve · SCA · Indiana DNR, State Parks and Reservoirs Division · ~830 ac
 - Pine Creek Bottoms Gamebird Habitat Area · SCA · Indiana DNR, Fish and Wildlife Division · ~809 ac
-- Pisgah Marsh Nongame Area And Boardwalk · SCA · Indiana DNR, Fish and Wildlife Division · ~801 ac
 - Leavenworth Barrens Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~748 ac
 - Fourteen Mile Creek Nature Preserve Addition · SP · Indiana DNR, State Parks and Reservoirs Division · ~743 ac
 - Big Walnut Addition Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~739 ac
@@ -128,7 +113,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **142 of 229** parks joined
 - Wabash Lowlands Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~672 ac
 - Marsh Lake Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~662 ac
 - Beaver Lake Nature Preserve · SCA · Indiana DNR, Fish and Wildlife Division · ~656 ac
-- Glacial Esker Nature Preserve - Glacial Esker · SCA · Indiana DNR, State Parks and Reservoirs Division · ~622 ac
 - Randolph Wildlife Management Area · SCA · Indiana DNR, Fish and Wildlife Division · ~505 ac
 - Kankakee River Swampland · SCA · Indiana DNR, Fish and Wildlife Division · ~454 ac
 - Aukiki Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~451 ac
@@ -146,7 +130,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **142 of 229** parks joined
 - Pine Station Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~258 ac
 - Purdue Golf · LREC · Purdue Research Foundation · ~251 ac
 - Deam (Charles C.) Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~249 ac
-- Section Six Southern Flatwoods Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~244 ac
 - Barnes (Bill) Nature Preserve · SCA · Indiana DNR, Fish and Wildlife Division · ~243 ac
 - Fish Lake Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~234 ac
 - Farm Service Agency Interest Of In · NWR · FARM SERVICE AGENCY INTEREST OF IN · ~231 ac
@@ -157,3 +140,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **142 of 229** parks joined
 - Manitou (Lake) Islands Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~214 ac
 - Blue River Gravel Wash Barrens · SCA · Indiana DNR, Nature Preserve Division · ~213 ac
 - Indiana State Fairgrounds · SREC · Unknown · ~207 ac
+- Vallonia State Nursery · SRMA · Indiana DNR, Forestry Division · ~191 ac
+- Wabash Healthy Rivers Initiative · SCA · Indiana DNR, Fish and Wildlife Division · ~189 ac
+- The Pfau Course at Indiana University  · LREC · Indiana University · ~186 ac
+- Lincoln Boyhood National Memorial · HCA · NPS · ~184 ac
+- Big Spring Farm Forest Legacy Area · SRMA · Indiana DNR, Forestry Division · ~184 ac

@@ -1,6 +1,6 @@
 # ID: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 361** parks joined to official land (same name + same kind of place). **156** to check by hand, **119** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **97 of 361** parks joined to official land (same name + same kind of place). **146** to check by hand, **118** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -34,13 +34,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 361** parks joined 
 - **US-10429** Middle Fork Clearwater River National Wild & Scenic River (National Wild & Scenic River) → Nezperce National Forest (~2,109,873 ac, the POTA pin is inside it (different name))
 - **US-10430** St Joe River National Wild and Scenic River (National Wild and Scenic River) → St. Joe National Forest (~724,439 ac, similar name)
 - **US-10433** Eagle State Fish Hatchery (State Fish Hatchery) → Eagle Fish Health Laboratory (~1 ac, similar name); Eagle Fish Health Laboratory (~1 ac, similar name)
-- **US-10435** Nampa State Fish Hatchery (State Fish Hatchery) → Nampa Hatchery (~11 ac, similar name)
-- **US-10436** Hayspur State Fish Hatchery (State Fish Hatchery) → Hayspur Hatchery (~113 ac, similar name)
-- **US-10438** American Falls State Fish Hatchery (State Fish Hatchery) → American Falls Hatchery (~102 ac, similar name); American Falls Hatchery (~6 ac, similar name)
-- **US-10439** Grace State Fish Hatchery (State Fish Hatchery) → Grace Hatchery (~17 ac, similar name); Grace Hatchery (~1 ac, similar name)
-- **US-10440** Henrys Lake State Fish Hatchery (State Fish Hatchery) → Henrys Lake Hatchery (~3 ac, similar name); Henrys Lake Hatchery (~1 ac, similar name)
-- **US-10441** Springfield State Fish Hatchery (State Fish Hatchery) → Springfield Hatchery & Fishing Access Site (~73 ac, similar name); Springfield Hatchery & Fishing Access Site (~2 ac, similar name)
-- **US-10442** Mackay State Fish Hatchery (State Fish Hatchery) → Mackay Hatchery (~40 ac, similar name); Challis Field Office (~792,074 ac, the POTA pin is inside it (different name))
 - **US-10445** Dworshak National Fish Hatchery (National Fish Hatchery) → Clearwater Fish Hatchery (~18 ac, similar name); Clearwater Fish Hatchery (~18 ac, similar name)
 - **US-10536** Roswell Marsh Wildlife Habitat Area Habitat Protection Area (Habitat Protection Area) → Roswell Marsh Wildlife Habitat Area (~556 ac, similar name); Roswell Marsh Wildlife Habitat Area (~151 ac, similar name)
 - **US-10657** Milner Historic Recreation Area BLM Historic Area (BLM Historic Area) → Burley Field Office (~834,935 ac, the POTA pin is inside it (different name))
@@ -132,8 +125,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 361** parks joined 
 - **US-2230** Castle Rocks State Park (State Park) → Burley Field Office (~834,935 ac, the POTA pin is inside it (different name))
 - **US-2232** Dworshak State Park (State Park) → St. Joe National Forest (~143,489 ac, the POTA pin is inside it (different name))
 - **US-2244** Mary M. McCroskey State Park (State Park) → Mary Minerva McCroskey State Park (~4,680 ac, similar name); Mary Minerva McCroskey State Park (~80 ac, similar name)
-- **US-4477** Idaho Panhandle National Forest (National Forest) → Kaniksu National Forest (~898,213 ac, the POTA pin is inside it (different name))
-- **US-4478** Nez Perce National Forest (National Forest) → Payette National Forest (~2,287,258 ac, the POTA pin is inside it (different name))
 - **US-4665** Floodwood State Forest (State Forest) → Idaho Department of Lands (~1,982,653 ac, the POTA pin is inside it (different name))
 - **US-4666** Priest Lake State Forest (State Forest) → Idaho Department of Lands (~1,982,653 ac, the POTA pin is inside it (different name))
 - **US-5602** Deer Parks Wildlife Management Area (Wildlife Management Area) → Upper Snake Field Office (~1,813,172 ac, the POTA pin is inside it (different name))
@@ -148,7 +139,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 361** parks joined 
 - **US-7812** Copper Basin Airstrip State Recreation Area (State Recreation Area) → Challis National Forest (~2,197,868 ac, the POTA pin is inside it (different name))
 - **US-7813** Cox's Well Airstrip State Recreation Area (State Recreation Area) → Upper Snake Field Office (~1,813,172 ac, the POTA pin is inside it (different name))
 - **US-7815** Grasmere Airstrip State Recreation Area (State Recreation Area) → Bruneau Field Office (~1,448,603 ac, the POTA pin is inside it (different name))
-- **US-7816** Henrys Lake Airstrip State Recreation Area (State Recreation Area) → Henrys Lake State Park (~607 ac, similar name)
 - **US-7817** Hollow Top Airstrip State Recreation Area (State Recreation Area) → Shoshone Field Office (~1,723,598 ac, the POTA pin is inside it (different name))
 - **US-7819** Laidlaw Corrals Airstrip State Recreation Area (State Recreation Area) → Shoshone Field Office (~1,723,598 ac, the POTA pin is inside it (different name))
 - **US-7820** Magee Airstrip State Recreation Area (State Recreation Area) → Coeur d'Alene National Forest (~727,061 ac, the POTA pin is inside it (different name))
@@ -240,7 +230,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 361** parks joined 
 - US-12232 Horseshoe Bend Mill Pond State Fishing Lake (State Fishing Lake)
 - US-12233 CJ Strike Reservoir State Fishing Lake (State Fishing Lake)
 - US-12289 Old Lucile Recreation Site BLM Recreation Management Area (BLM Recreation Management Area)
-- US-12291 Sawyers Pond State Fishing Lake (State Fishing Lake)
 - US-12292 Dick Knox Pond State Fishing Lake (State Fishing Lake)
 - US-12298 Gamlin Lake Recreation Site BLM Recreation Management Area (BLM Recreation Management Area)
 - US-12299 Mineral Ridge Scenic Area BLM Recreation Management Area (BLM Recreation Management Area)
@@ -285,7 +274,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 361** parks joined 
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- Nezperce National Forest · NF · Forest Service Region 01 Northern · ~2,109,873 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~1,982,653 ac
 - Upper Snake Field Office · PUB · BLM · ~1,813,172 ac
 - Shoshone Field Office · PUB · BLM · ~1,723,598 ac
@@ -293,7 +281,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 361** parks joined 
 - Jarbidge Field Office · PUB · BLM · ~1,321,755 ac
 - Owyhee Field Office · PUB · BLM · ~1,259,662 ac
 - Four Rivers Field Office · PUB · BLM · ~1,255,575 ac
-- Kaniksu National Forest · NF · Forest Service Region 01 Northern · ~898,213 ac
 - Burley Field Office · PUB · BLM · ~834,935 ac
 - Challis Field Office · PUB · BLM · ~792,074 ac
 - Coeur d'Alene National Forest · NF · Forest Service Region 01 Northern · ~727,061 ac
@@ -345,3 +332,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 361** parks joined 
 - Lolo National Forest · NF · Forest Service Region 01 Northern · ~369 ac
 - Elk Creek Reservoir Access Site · SREC · Idaho Department of Fish and Game · ~365 ac
 - Cougar Bar Purchase Unit · NF · Forest Service Region 06 Pacific Northwest · ~363 ac
+- Little Wood Reservoir · RMA · Unknown · ~360 ac
+- Carey Lake Migratory Bird Management Area · NCA · CAREY LAKE MIGRATORY BIRD MANAGEMENT AREA · ~325 ac

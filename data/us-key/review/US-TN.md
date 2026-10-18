@@ -1,6 +1,6 @@
 # TN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 277** parks joined to official land (same name + same kind of place). **28** to check by hand, **43** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **213 of 277** parks joined to official land (same name + same kind of place). **22** to check by hand, **42** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -12,22 +12,16 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 277** parks joined
 - **US-12663** Ocoee River State Park (State Park) → Cherokee National Forest (~660,606 ac, the POTA pin is inside it (different name))
 - **US-13364** Cherokee Trail of Tears State Park (State Park) → Hiwassee Refuge (~8,192 ac, the POTA pin is inside it (different name))
 - **US-2928** Bicentennial Capitol Mall State Park (State Park) → Bicentennial (~22 ac, similar name)
-- **US-2937** Cordell Hull Birthplace State Park (State Park) → Cordell Hull (~53 ac, similar name)
-- **US-2955** Wilson Cumberland Trail State Park (State Park) → Cumberland Trail (~11,893 ac, similar name)
 - **US-2957** Meeman-Shelby Forest State Park (State Park) → Meeman-Shelby Forest Wildlife Management Area (~9,433 ac, same name, different kind of place)
-- **US-2976** Sgt. Alvin C. York State Park (State Park) → Alvin C York (~336 ac, similar name)
 - **US-3923** Bone Cave Natural State Conservation Area (State Conservation Area) → Big Bone Cave Designaed State Natural Area (~334 ac, similar name)
-- **US-3928** Bridgestone/firestone Centennial Wilderness Wildlife Management Area (Wildlife Management Area) → Bridgestone/Firestone Wildlife Management Area (~4,433 ac, similar name)
 - **US-3949** Kyker Bottoms Wildlife Refuge (Wildlife Refuge) → Kyker Bottoms Wildlife Management Area (~579 ac, same name, different kind of place)
 - **US-3950** Lauderdale Waterfowl Wildlife Management Area (Wildlife Management Area) → Lake Lauderdale Refuge (~652 ac, the POTA pin is inside it (different name))
 - **US-3961** South Fork Waterfowl State Wildlife Area (State Wildlife Area) → South Fork Waterfowl Refuge (~776 ac, similar name)
 - **US-5493** Franklin-Marion State Forest (State Forest) → Franklin State Forest (~4,825 ac, similar name)
 - **US-6237** Mr. and Mrs. Harry Lee Carter State Natural Area (State Natural Area) → Sherwood Forest State Natural Area (~4,061 ac, the POTA pin is inside it (different name))
 - **US-6241** Devil's Backbone State Park (State Park) → Natchez Trace Parkway (~11,301 ac, the POTA pin is inside it (different name))
-- **US-6244** Flat Rock Cedar Glade State Natural Area (State Natural Area) → Flat Rock Cedar Barren And Glade Designated State Natural Area (~848 ac, similar name)
 - **US-6248** Honey Creek State Natural Area (State Natural Area) → Big South Fork National River and Recreation Area (~83,326 ac, the POTA pin is inside it (different name))
 - **US-6251** John Noel at Bon Aqua State Natural Area (State Natural Area) → Bon Aqua Woods Designated State Natural Area (~35 ac, similar name)
-- **US-6262** Powell River State Natural Area (State Natural Area) → Powell River TNC Preserve Designated State Natural Area (~17 ac, similar name)
 - **US-6264** Roundtop Mountain State Natural Area (State Natural Area) → Great Smoky Mountains National Park (~241,082 ac, the POTA pin is inside it (different name))
 - **US-6272** Twin Arches State Natural Area (State Natural Area) → Big South Fork National River and Recreation Area (~83,326 ac, the POTA pin is inside it (different name))
 - **US-7618** Rankin Wildlife Management Area (Wildlife Management Area) → Rankin Bottom Wildlife Management Area (~1,609 ac, similar name)
@@ -72,7 +66,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 277** parks joined
 - US-6279 William B. Clark State Natural Area (State Natural Area)
 - US-6280 Windows Cliffs State Natural Area (State Natural Area)
 - US-7565 AEDC and Woods Reservoir Wildlife Management Area (Wildlife Management Area)
-- US-7570 Beaverdam Creek Wildlife Management Area (Wildlife Management Area)
 - US-7576 Chambers Creek Wildlife Management Area (Wildlife Management Area)
 - US-7577 Charlotte Ann Finnel Neal Wildlife Management Area (Wildlife Management Area)
 - US-7607 Nolichucky Wildlife Management Area (Wildlife Management Area)
@@ -89,17 +82,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 277** parks joined
 - Old Hickory Recreation Area · REC · Nashville · ~29,862 ac
 - Cordell Hull Recreation Area · REC · Nashville · ~29,264 ac
 - Barkley Recreation Area · REC · Nashville · ~17,136 ac
-- Cumberland Trail · SP · OTHS · ~11,893 ac
 - Meeman-Shelby Forest Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~9,433 ac
 - Kentucky Reservoir · ND · Tennessee Valley Authority (TVA) · ~8,201 ac
-- Bridgestone/Firestone Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~7,731 ac
 - North Chickamauga Creek Gorge Designated State Natural Area · SCA · SDC · ~7,107 ac
 - Cheatham Lock And Dam Recreation Area · REC · Nashville · ~6,915 ac
-- Beaver Dam Creek Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~6,615 ac
-- Centennial Wilderness Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~5,967 ac
 - South Cumberland · SP · OTHS · ~5,047 ac
 - Franklin State Forest · SRMA · OTHS · ~4,825 ac
-- Bridgestone/Firestone Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~4,433 ac
 - Dry Creek Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~4,055 ac
 - Enterprise South Park Wildlife Management Area · SCA · SFW · ~3,845 ac
 - Three Bend Scenic & Wildlife Refuge · SCA · Tennessee Wildlife Resources Agency · ~3,204 ac
@@ -113,8 +101,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 277** parks joined
 - Turkey Scratch · SOTH · TDEC · ~1,131 ac
 - Cummings Cove Wildlife Management Area · SCA · SFW · ~1,113 ac
 - South Cherokee Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~1,036 ac
-- Bear Hollow Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~1,012 ac
-- Flat Rock Cedar Barren And Glade Designated State Natural Area · SCA · Unknown · ~848 ac
 - Mullican · SOTH · TDEC · ~839 ac
 - The Hermitage · SHCA · Tennessee Department of Environment and Conservation · ~787 ac
 - Cumberland Trail · SP · Tennessee Department of Environment and Conservation · ~776 ac
@@ -138,6 +124,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 277** parks joined
 - Glen Springs Lake State Forest · SRMA · Tennessee Wildlife Resources Agency · ~358 ac
 - Hicks Gap Designated State Natural Area · SCA · OTHS · ~343 ac
 - Parkers Crossroads · SHCA · Tennessee Department of Environment and Conservation · ~341 ac
-- Alvin C York · SP · Tennessee Department of Environment and Conservation · ~336 ac
 - Lock 5 Refuge · SCA · Tennessee Wildlife Resources Agency · ~334 ac
 - Big Bone Cave Designaed State Natural Area · SCA · Unknown · ~334 ac
+- Pardue Pond Refuge · SCA · Tennessee Wildlife Resources Agency · ~328 ac
+- Cherokee Purchase Unit · NF · Forest Service Region 08 Southern · ~325 ac
+- Herb Parsons Lake State Forest · SRMA · Tennessee Wildlife Resources Agency · ~297 ac
+- Walker Branch Hills Designated State Natural Area · SCA · Unknown · ~281 ac
+- Tellico Lake - Chota Unit · NCA · Tennessee Valley Authority (TVA) · ~262 ac
+- Henderson Island Refuge · SCA · Tennessee Wildlife Resources Agency · ~243 ac
+- Humboldt Hatchery · SOTH · Tennessee Wildlife Resources Agency · ~240 ac
+- Phipps Bend Wildlife Refuge · SCA · Tennessee Wildlife Resources Agency · ~233 ac
