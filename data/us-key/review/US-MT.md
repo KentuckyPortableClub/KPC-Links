@@ -1,35 +1,38 @@
 # MT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **118 of 254** parks joined to official land (same name + same kind of place). **115** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **124 of 254** parks joined to official land (same name + same kind of place). **117** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0054** Nez Perce National Historical Park (National Historical Park) → Clearwater River (~44,818 ac, the POTA pin is inside it (different name))
 - **US-0400** Halfbreed Lake National Wildlife Refuge (National Wildlife Refuge) → Grass Lake National Wildlife Refuge (~3,394 ac, the POTA pin is inside it (different name)); Grass Lake National Wildlife Refuge (~3,394 ac, the POTA pin is inside it (different name))
 - **US-0883** Flathead National Wild and Scenic River (National Wild and Scenic River) → Flathead National Forest (~2,414,171 ac, similar name)
-- **US-10526** Devils Elbow (BLM) Recreation Site (Recreation Site) → Butte Field Office (~323,091 ac, the POTA pin is inside it (different name))
-- **US-10528** Shepherd Ah Nei BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Billings Field Office (~429,680 ac, the POTA pin is inside it (different name))
+- **US-10524** Acton (BLM) Recreation Site (Recreation Site) → Acton Recreation Area (~3,698 ac, similar name)
+- **US-10526** Devils Elbow (BLM) Recreation Site (Recreation Site) → Butte Field Office (~323,091 ac, the POTA pin is inside it (different name)); Hauser Lake (~16,467 ac, the POTA pin is inside it (different name))
+- **US-10527** Judith Landing (BLM) Recreation Site (Recreation Site) → Upper Missouri River Breaks National Monument (~0 ac, the POTA pin is inside it (different name))
+- **US-10528** Shepherd Ah Nei BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Shepherd Recreation Area (~4,680 ac, similar name); Billings Field Office (~429,680 ac, the POTA pin is inside it (different name))
+- **US-10529** Sundance Lodge (BLM) Recreation Site (Recreation Site) → Sundance Recreation Area (~391 ac, similar name)
 - **US-11146** Somers Beach State Park (State Park) → Somers Fishing Access Site (~2 ac, similar name)
 - **US-11216** Big Springs Trout State Fish Hatchery (State Fish Hatchery) → Hatchery Fishing Access Site (~3 ac, similar name)
 - **US-11217** Bluewater Springs Trout State Fish Hatchery (State Fish Hatchery) → Bluewater Springs Fishing Access Site (~40 ac, similar name)
 - **US-11218** Fort Peck State Fish Hatchery (State Fish Hatchery) → Fort Peck Recreation Area (~623,432 ac, similar name)
 - **US-11219** Jacko River Trout State Fish Hatchery (State Fish Hatchery) → Montana Fish, Wildlife and Parks (~315 ac, the POTA pin is inside it (different name))
-- **US-11242** Scratchgravel Hills BLM Recreation Management Area (BLM Recreation Management Area) → Butte Field Office (~323,091 ac, the POTA pin is inside it (different name))
-- **US-12630** Upper Missouri River BLM Wild and Scenic River (BLM Wild and Scenic River) → Havre Field Office (~395,379 ac, the POTA pin is inside it (different name))
+- **US-12630** Upper Missouri River BLM Wild and Scenic River (BLM Wild and Scenic River) → Upper Missouri River Breaks National Monument Field Office (~374,614 ac, similar name); Upper Missouri River Breaks National Monument (~0 ac, similar name); Havre Field Office (~395,379 ac, the POTA pin is inside it (different name))
 - **US-12631** Terry Badlands BLM Wilderness Area (BLM Wilderness Area) → Miles City Field Office (~2,757,930 ac, the POTA pin is inside it (different name))
-- **US-12632** Sleeping Giant BLM Wilderness Area (BLM Wilderness Area) → Butte Field Office (~323,091 ac, the POTA pin is inside it (different name))
-- **US-12633** Sheep Creek BLM Wilderness Area (BLM Wilderness Area) → Butte Field Office (~323,091 ac, the POTA pin is inside it (different name))
-- **US-12634** Axolotl Lakes BLM Wilderness Area (BLM Wilderness Area) → Dillon Field Office (~905,631 ac, the POTA pin is inside it (different name))
-- **US-12635** Humbug Spires BLM Wilderness Area (BLM Wilderness Area) → Butte Field Office (~323,091 ac, the POTA pin is inside it (different name))
+- **US-12632** Sleeping Giant BLM Wilderness Area (BLM Wilderness Area) → Sleeping Giant (~30,921 ac, same name, different kind of place); Butte Field Office (~323,091 ac, the POTA pin is inside it (different name))
+- **US-12633** Sheep Creek BLM Wilderness Area (BLM Wilderness Area) → Butte Field Office (~323,091 ac, the POTA pin is inside it (different name)); Sleeping Giant (~30,921 ac, the POTA pin is inside it (different name))
+- **US-12634** Axolotl Lakes BLM Wilderness Area (BLM Wilderness Area) → Axolotl Lakes (~8,327 ac, same name, different kind of place); Dillon Field Office (~905,631 ac, the POTA pin is inside it (different name))
+- **US-12635** Humbug Spires BLM Wilderness Area (BLM Wilderness Area) → Humbug Spires (~8,660 ac, same name, different kind of place); Butte Field Office (~323,091 ac, the POTA pin is inside it (different name))
 - **US-12818** Arod Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Arod Lake Fishing Access Site (~41 ac, same name, different kind of place)
 - **US-12819** Bearpaw Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Bearpaw Lake Fishing Access Site (~186 ac, same name, different kind of place)
 - **US-12820** Big Pine State Fish and Wildlife Area (State Fish and Wildlife Area) → Big Pine Fishing Access Site (~19 ac, same name, different kind of place)
 - **US-12821** Big Rock State Fish and Wildlife Area (State Fish and Wildlife Area) → Big Rock Fishing Access Site (~76 ac, same name, different kind of place)
 - **US-12822** Big Horn State Fish and Wildlife Area (State Fish and Wildlife Area) → Bighorn Fishing Access Site (~72 ac, the POTA pin is inside it (different name))
-- **US-12823** Bonfield State Fish and Wildlife Area (State Fish and Wildlife Area) → Bonfield Fishing Access Site (~56 ac, same name, different kind of place); Montana State Trust Lands (~5,186,683 ac, the POTA pin is inside it (different name))
+- **US-12823** Bonfield State Fish and Wildlife Area (State Fish and Wildlife Area) → Bonfield Fishing Access Site (~56 ac, same name, different kind of place); Montana State Trust Lands (~5,186,683 ac, the POTA pin is inside it (different name)); Lewis and Clark Trail (~240,750 ac, the POTA pin is inside it (different name))
 - **US-12824** Boulder Forks State Fish and Wildlife Area (State Fish and Wildlife Area) → Boulder Forks Fishing Access Site (~72 ac, same name, different kind of place)
 - **US-12825** Bratten State Fish and Wildlife Area (State Fish and Wildlife Area) → Bratten Fishing Access Site (~93 ac, same name, different kind of place)
 - **US-12826** Brown's Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Brown's Lake Fishing Access Site (~72 ac, same name, different kind of place)
-- **US-12827** Brownes Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Brownes Bridge Fishing Access Site (~10 ac, the POTA pin is inside it (different name))
+- **US-12827** Brownes Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Lower Big Hole River (~3,329 ac, the POTA pin is inside it (different name)); Brownes Bridge Fishing Access Site (~10 ac, the POTA pin is inside it (different name))
 - **US-12847** Buffalo Jump State Fish and Wildlife Area (State Fish and Wildlife Area) → Buffalo Jump Fishing Access Site (~7 ac, same name, different kind of place)
 - **US-12849** Bynum Reservoir State Fish and Wildlife Area (State Fish and Wildlife Area) → Bynum Reservoir Fishing Access Site (~287 ac, same name, different kind of place)
 - **US-12850** Captain Clark State Fish and Wildlife Area (State Fish and Wildlife Area) → Captain Clark Fishing Access Site (~149 ac, same name, different kind of place)
@@ -46,9 +49,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **118 of 254** parks joined
 - **US-12863** Dearborn State Fish and Wildlife Area (State Fish and Wildlife Area) → Dearborn Fishing Access Site (~1 ac, same name, different kind of place)
 - **US-12864** Ennis State Fish and Wildlife Area (State Fish and Wildlife Area) → Ennis Fishing Access Site (~49 ac, same name, different kind of place)
 - **US-12865** Eureka Reservoir State Fish and Wildlife Area (State Fish and Wildlife Area) → Eureka Reservoir Fishing Access Site (~35 ac, same name, different kind of place)
-- **US-12866** Fallon Bridge State Fish and Wildlife Area (State Fish and Wildlife Area) → Fallon Bridge Fishing Access Site (~6 ac, same name, different kind of place)
-- **US-12867** Far West State Fish and Wildlife Area (State Fish and Wildlife Area) → Far West Fishing Access Site (~34 ac, same name, different kind of place)
-- **US-12868** Fishtrap Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Fishtrap Creek Fishing Access Site (~82 ac, same name, different kind of place)
+- **US-12866** Fallon Bridge State Fish and Wildlife Area (State Fish and Wildlife Area) → Fallon Bridge Fishing Access Site (~6 ac, same name, different kind of place); Lewis and Clark Trail (~240,750 ac, the POTA pin is inside it (different name))
+- **US-12867** Far West State Fish and Wildlife Area (State Fish and Wildlife Area) → Far West Fishing Access Site (~34 ac, same name, different kind of place); Lewis and Clark Trail (~240,750 ac, the POTA pin is inside it (different name))
+- **US-12868** Fishtrap Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Fishtrap Creek Fishing Access Site (~82 ac, same name, different kind of place); Upper Big Hole River (~56,847 ac, the POTA pin is inside it (different name))
 - **US-12869** Forest Grove State Fish and Wildlife Area (State Fish and Wildlife Area) → Forest Grove Fishing Access Site (~6 ac, same name, different kind of place); Montana State Trust Lands (~5,186,683 ac, the POTA pin is inside it (different name))
 - **US-12871** Forks State Fish and Wildlife Area (State Fish and Wildlife Area) → Forks Fishing Access Site (~6 ac, same name, different kind of place); Montana State Trust Lands (~5,186,683 ac, the POTA pin is inside it (different name))
 - **US-12872** General Custer State Fish and Wildlife Area (State Fish and Wildlife Area) → Custer National Forest (~1,115,748 ac, similar name); General Custer Fishing Access Site (~34 ac, same name, different kind of place)
@@ -62,11 +65,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **118 of 254** parks joined
 - **US-12882** Harry Morgan State Fish and Wildlife Area (State Fish and Wildlife Area) → Harry Morgan Fishing Access Site (~64 ac, same name, different kind of place)
 - **US-12883** Horsethief Station State Fish and Wildlife Area (State Fish and Wildlife Area) → Horsethief Station Fishing Access Site (~84 ac, same name, different kind of place)
 - **US-12884** Indian Fort State Fish and Wildlife Area (State Fish and Wildlife Area) → Indian Fort Fishing Access Site (~19 ac, same name, different kind of place)
-- **US-12885** Intake Dam State Fish and Wildlife Area (State Fish and Wildlife Area) → Intake Dam Fishing Access Site (~560 ac, same name, different kind of place); Miles City Field Office (~2,757,930 ac, the POTA pin is inside it (different name))
+- **US-12885** Intake Dam State Fish and Wildlife Area (State Fish and Wildlife Area) → Intake Dam Fishing Access Site (~560 ac, same name, different kind of place); Miles City Field Office (~2,757,930 ac, the POTA pin is inside it (different name)); Lewis and Clark Trail (~240,750 ac, the POTA pin is inside it (different name))
 - **US-12886** Island Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Island Lake Fishing Access Site (~43 ac, same name, different kind of place)
-- **US-12887** Lichen Cliff State Fish and Wildlife Area (State Fish and Wildlife Area) → Lichen Cliff Fishing Access Site (~1 ac, same name, different kind of place)
+- **US-12887** Lichen Cliff State Fish and Wildlife Area (State Fish and Wildlife Area) → Lichen Cliff Fishing Access Site (~1 ac, same name, different kind of place); Sleeping Giant (~30,921 ac, the POTA pin is inside it (different name))
 - **US-12888** Loch Leven State Fish and Wildlife Area (State Fish and Wildlife Area) → Loch Leven Fishing Access Site (~76 ac, same name, different kind of place)
-- **US-12889** Maidenrock State Fish and Wildlife Area (State Fish and Wildlife Area) → Maidenrock Fishing Access Site (~196 ac, same name, different kind of place)
+- **US-12889** Maidenrock State Fish and Wildlife Area (State Fish and Wildlife Area) → Maidenrock Fishing Access Site (~196 ac, same name, different kind of place); Upper Big Hole River (~56,847 ac, the POTA pin is inside it (different name))
 - **US-12890** Mallard's Landing State Fish and Wildlife Area (State Fish and Wildlife Area) → Mallard's Landing Fishing Access Site (~43 ac, same name, different kind of place)
 - **US-12891** Mallard's Rest State Fish and Wildlife Area (State Fish and Wildlife Area) → Mallard's Rest Fishing Access Site (~17 ac, same name, different kind of place)
 - **US-12892** Manuel Lisa State Fish and Wildlife Area (State Fish and Wildlife Area) → Manuel Lisa Fishing Access Site (~33 ac, same name, different kind of place)
@@ -76,7 +79,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **118 of 254** parks joined
 - **US-12896** Monture Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Monture Creek Fishing Access Site (~112 ac, same name, different kind of place)
 - **US-12897** Moraine State Fish and Wildlife Area (State Fish and Wildlife Area) → Moraine Fishing Access Site (~60 ac, same name, different kind of place)
 - **US-12898** Mountain Palace State Fish and Wildlife Area (State Fish and Wildlife Area) → Mountain Palace Fishing Access Site (~3 ac, same name, different kind of place)
-- **US-12899** Myers Bridge State Fish and Wildlife Area (State Fish and Wildlife Area) → Myer's Bridge Fishing Access Site (~49 ac, same name, different kind of place)
+- **US-12899** Myers Bridge State Fish and Wildlife Area (State Fish and Wildlife Area) → Myer's Bridge Fishing Access Site (~49 ac, same name, different kind of place); Lewis and Clark Trail (~240,750 ac, the POTA pin is inside it (different name)); Howrey Island (~592 ac, the POTA pin is inside it (different name))
 - **US-12900** Newlan Creek Reservoir State Fish and Wildlife Area (State Fish and Wildlife Area) → Newlan Creek Reservoir Fishing Access Site (~156 ac, same name, different kind of place)
 - **US-12901** Nilan Reservoir State Fish and Wildlife Area (State Fish and Wildlife Area) → Nilan Reservoir Fishing Access Site (~10 ac, same name, different kind of place); Montana State Trust Lands (~5,186,683 ac, the POTA pin is inside it (different name))
 - **US-12903** Ninemile Prairie State Fish and Wildlife Area (State Fish and Wildlife Area) → Ninemile Prairie Fishing Access Site (~14 ac, same name, different kind of place)
@@ -84,16 +87,16 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **118 of 254** parks joined
 - **US-12905** Pelican State Fish and Wildlife Area (State Fish and Wildlife Area) → Pelican Fishing Access Site (~122 ac, same name, different kind of place)
 - **US-12906** Pelican Point State Fish and Wildlife Area (State Fish and Wildlife Area) → Pelican Point Fishing Access Site (~94 ac, same name, different kind of place)
 - **US-12908** Prewitt Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Prewett Creek Fishing Access Site (~2 ac, same name, different kind of place)
-- **US-12909** Prickly Pear State Fish and Wildlife Area (State Fish and Wildlife Area) → Prickly Pear Fishing Access Site (~0 ac, same name, different kind of place); Butte Field Office (~323,091 ac, the POTA pin is inside it (different name))
+- **US-12909** Prickly Pear State Fish and Wildlife Area (State Fish and Wildlife Area) → Prickly Pear Fishing Access Site (~0 ac, same name, different kind of place); Butte Field Office (~323,091 ac, the POTA pin is inside it (different name)); Sleeping Giant (~30,921 ac, the POTA pin is inside it (different name))
 - **US-12910** Raynold's Pass State Fish and Wildlife Area (State Fish and Wildlife Area) → Raynolds' Pass Fishing Access Site (~170 ac, same name, different kind of place)
 - **US-12911** River Junction State Fish and Wildlife Area (State Fish and Wildlife Area) → River Junction Fishing Access Site (~179 ac, same name, different kind of place)
 - **US-12912** Rock Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Rock Creek Fishing Access Site (~467 ac, same name, different kind of place); Fort Peck Recreation Area (~623,432 ac, the POTA pin is inside it (different name))
-- **US-12913** Rosebud East State Fish and Wildlife Area (State Fish and Wildlife Area) → Rosebud East Fishing Access Site (~26 ac, same name, different kind of place)
+- **US-12913** Rosebud East State Fish and Wildlife Area (State Fish and Wildlife Area) → Rosebud East Fishing Access Site (~26 ac, same name, different kind of place); Lewis and Clark Trail (~240,750 ac, the POTA pin is inside it (different name))
 - **US-12914** Rosebud Isle State Fish and Wildlife Area (State Fish and Wildlife Area) → Rosebud Isle Fishing Access Site (~11 ac, same name, different kind of place)
 - **US-12915** Russell Gates Memorial State Fish and Wildlife Area (State Fish and Wildlife Area) → Russell Gates Memorial Fishing Access Site (~43 ac, same name, different kind of place)
 - **US-12916** Salmon Fly State Fish and Wildlife Area (State Fish and Wildlife Area) → Salmon Fly Fishing Access Site (~12 ac, same name, different kind of place)
 - **US-12917** Selkirk State Fish and Wildlife Area (State Fish and Wildlife Area) → Selkirk Fishing Access Site (~265 ac, same name, different kind of place)
-- **US-12919** Snowden Bridge State Fish and Wildlife Area (State Fish and Wildlife Area) → Snowden Bridge Fishing Access Site (~12 ac, same name, different kind of place)
+- **US-12919** Snowden Bridge State Fish and Wildlife Area (State Fish and Wildlife Area) → Snowden Bridge Fishing Access Site (~12 ac, same name, different kind of place); Lewis and Clark Trail (~240,750 ac, the POTA pin is inside it (different name))
 - **US-12920** South Sandstone State Fish and Wildlife Area (State Fish and Wildlife Area) → South Sandstone Fishing Access Site (~582 ac, same name, different kind of place)
 - **US-12921** Spite Hill State Fish and Wildlife Area (State Fish and Wildlife Area) → Spite Hill Fishing Access Site (~14 ac, same name, different kind of place)
 - **US-12922** Stickney Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Stickney Creek Fishing Access Site (~1 ac, same name, different kind of place)
@@ -109,100 +112,91 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **118 of 254** parks joined
 - **US-12933** Water Birch State Fish and Wildlife Area (State Fish and Wildlife Area) → Water Birch Fishing Access Site (~77 ac, same name, different kind of place)
 - **US-12934** Whitebird State Fish and Wildlife Area (State Fish and Wildlife Area) → Whitebird Fishing Access Site (~23 ac, same name, different kind of place)
 - **US-12936** Wolf Creek Bridge State Fish and Wildlife Area (State Fish and Wildlife Area) → Wolf Creek Bridge Fishing Access Site (~2 ac, same name, different kind of place)
-- **US-12937** York's Islands State Fish and Wildlife Area (State Fish and Wildlife Area) → Yorks Islands Fishing Access Site (~16 ac, same name, different kind of place)
+- **US-12937** York's Islands State Fish and Wildlife Area (State Fish and Wildlife Area) → Yorks Islands Fishing Access Site (~16 ac, same name, different kind of place); Uppermost Missouri River (~82,354 ac, the POTA pin is inside it (different name))
+- **US-12941** Judith Landing State Park (State Park) → Upper Missouri River Breaks National Monument (~0 ac, the POTA pin is inside it (different name))
 - **US-2557** Anaconda Smelter Stack State Park (State Park) → Anaconda Smoke Stack State Park (~13 ac, similar name)
 - **US-2566** Cooney Reservoir State Park (State Park) → Cooney State Park (~354 ac, similar name)
 - **US-2603** Wayfarers State Park (State Park) → Flathead Lake/Wayfarers State Park (~64 ac, similar name)
 - **US-4574** Nez Perce National Historic Trail (National Historic Trail) → Lolo National Forest (~2,265,532 ac, the POTA pin is inside it (different name))
-- **US-6209** Absaroka-Beartooth Wilderness Area (Wilderness Area) → Gallatin National Forest (~1,850,408 ac, the POTA pin is inside it (different name))
-- **US-7990** Lee Metcalf BLM Wilderness Area (BLM Wilderness Area) → Dillon Field Office (~905,631 ac, the POTA pin is inside it (different name))
-- **US-7994** Selway-Bitterroot Wilderness Area (Wilderness Area) → Bitterroot National Forest (~1,127,056 ac, similar name); Bitterroot National Forest (~45 ac, similar name)
+- **US-6443** Lowry Bridge State Recreation Area (State Recreation Area) → Lowry Bridge (~82 ac, same name, different kind of place); Lowry Bridge (~82 ac, same name, different kind of place)
 - **US-8002** Ninepipe National Wildlife Refuge (National Wildlife Refuge) → Ninepipe Wildlife Management Area (~4,152 ac, same name, different kind of place)
 - **US-8003** Pablo National Wildlife Refuge (National Wildlife Refuge) → Pablo Wildlife Management Area (~195 ac, same name, different kind of place)
 
 ## Nothing found in PAD-US
 
-- US-0054 Nez Perce National Historical Park (National Historical Park)
 - US-0405 CSKT Bison Range Protected Area (Protected Area)
 - US-10521 Garnet Ghost Town BLM Historic Preservation Site (BLM Historic Preservation Site)
-- US-10524 Acton (BLM) Recreation Site (Recreation Site)
-- US-10525 Coal Banks Landing (BLM) Recreation Site (Recreation Site)
-- US-10527 Judith Landing (BLM) Recreation Site (Recreation Site)
-- US-10529 Sundance Lodge (BLM) Recreation Site (Recreation Site)
 - US-11215 Bear Paw Battlefield National Monument (National Monument)
 - US-11221 Washoe Park Trout State Fish Hatchery (State Fish Hatchery)
 - US-12696 Bighorn Viewing Wildlife Management Area (Wildlife Management Area)
-- US-12941 Judith Landing State Park (State Park)
 - US-2576 Grey Cliff Prairie Dog State Park (State Park)
 - US-3424 Ice Age Floods National Geologic Trail (National Geologic Trail)
 - US-4475 Caribou-Targhee National Forest (National Forest)
 - US-4477 Idaho Panhandle National Forest (National Forest)
-- US-4548 Pompeys Pillar National Monument (National Monument)
 - US-4558 Continental Divide Trail National Scenic Trail (National Scenic Trail)
 - US-4563 Pacific Northwest National Scenic Trail (National Scenic Trail)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
-- US-6443 Lowry Bridge State Recreation Area (State Recreation Area)
 - US-8001 Lamesteer National Wildlife Refuge (National Wildlife Refuge)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Montana State Trust Lands · SRMA · UNK · ~5,186,683 ac
 - Miles City Field Office · PUB · BLM · ~2,757,930 ac
+- Frank Church-River of No Return Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~2,365,708 ac
 - Gallatin National Forest · NF · Forest Service Region 01 Northern · ~1,850,408 ac
+- Bob Marshall Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~1,064,092 ac
 - Malta Field Office · PUB · BLM · ~1,029,455 ac
 - Glasgow Field Office · PUB · BLM · ~1,013,226 ac
 - Dillon Field Office · PUB · BLM · ~905,631 ac
+- Washakie Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~693,934 ac
 - Lewistown Field Office · PUB · BLM · ~641,345 ac
 - Fort Peck Recreation Area · REC · Omaha · ~623,432 ac
 - Billings Field Office · PUB · BLM · ~429,680 ac
 - Havre Field Office · PUB · BLM · ~395,379 ac
+- North Absaroka Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~346,320 ac
 - Butte Field Office · PUB · BLM · ~323,091 ac
+- Great Bear Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~287,012 ac
+- Newcastle Field Office ERMA ·  · BLM recreation sites · ~273,309 ac
+- Scapegoat Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~259,785 ac
+- Lewis and Clark Trail ·  · BLM recreation sites · ~240,750 ac
+- Powder River Basin ERMA ·  · BLM recreation sites · ~224,080 ac
+- Badlands SRMA ·  · BLM recreation sites · ~211,695 ac
+- Gospel-Hump Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~205,657 ac
+- Cloud Peak Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~191,914 ac
+- West Slope SRMA ·  · BLM recreation sites · ~190,622 ac
+- Challis ·  · BLM herd management areas · ~177,813 ac
 - Missoula Field Office · PUB · BLM · ~175,579 ac
+- McCullough Peaks SRMA ·  · BLM recreation sites · ~159,811 ac
+- Anaconda Pintler Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~158,754 ac
+- West Slope SRMA ·  · BLM recreation sites · ~129,768 ac
+- McCullough Peaks ·  · BLM herd management areas · ~114,304 ac
+- Upper Salmon River ·  · BLM recreation sites · ~108,152 ac
+- Cabinet Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~93,766 ac
+- Uppermost Missouri River ·  · BLM recreation sites · ~82,354 ac
+- Mission Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~76,145 ac
 - Mount Haggin Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 3 · ~58,853 ac
+- Upper Big Hole River ·  · BLM recreation sites · ~56,847 ac
+- Silver Valley ·  · BLM recreation sites · ~53,188 ac
 - Agricultural Research Service (ARS) · REA · Agricultural Research Service (ARS) · ~52,321 ac
+- Clearwater River ·  · BLM recreation sites · ~44,818 ac
 - Spotted Dog Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 2 · ~37,774 ac
+- Rocky Hills ·  · BLM recreation sites · ~35,863 ac
+- Rattlesnake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~34,313 ac
+- Lewis-Clark Nat Hist Trail ·  · BLM recreation sites · ~32,612 ac
 - Deer Lodge State Prison Ranch · SCA · Montana Correctional Enterprises · ~32,459 ac
+- Centennial Mountains ·  · BLM recreation sites · ~31,880 ac
+- Sleeping Giant ·  · BLM recreation sites · ~30,921 ac
 - Lolo National Forest · NF · Forest Service Region 01 Northern · ~30,299 ac
+- Gates of the Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~28,460 ac
 - Kaniksu National Forest · NF · Forest Service Region 01 Northern · ~28,249 ac
+- Welcome Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~28,247 ac
 - Robb-Ledford Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 3 · ~28,234 ac
+- Ruby Mountains ·  · BLM recreation sites · ~26,195 ac
+- Lower Salmon Recreational ·  · BLM recreation sites · ~25,701 ac
+- PRYOR MOUNTAIN WILD HORSE RANGE ·  · BLM herd management areas · ~23,815 ac
+- PRYOR MOUNTAIN WILD HORSE RANGE ·  · BLM herd management areas · ~23,815 ac
 - Hungry Horse Reservoir · RMA · Unknown · ~22,929 ac
 - State of Montana · ND · Unknown · ~21,189 ac
 - Lubrecht State Experimental Forest · SCA · University of Montana, College of Forestry and Conservation · ~20,393 ac
-- Lake Elwell · REC · Unknown · ~18,831 ac
-- Blacktail Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 3 · ~17,961 ac
-- Montana University System · ND · Unknown · ~11,418 ac
-- Sheridan County Waterfowl Production Area Of Mt · RMA · Sheridan County Waterfowl Production Area Of Mt · ~10,750 ac
-- Sheridan County Waterfowl Production Area Of Mt · RMA · SHERIDAN COUNTY WATERFOWL PRODUCTION AREA OF MT · ~10,749 ac
-- Garrity Mountain Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 2 · ~10,116 ac
-- Judith River Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 4 · ~9,409 ac
-- Gallatin Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 3 · ~8,654 ac
-- Phillips County Waterfowl Production Area · RMA · PHILLIPS COUNTY WATERFOWL PRODUCTION AREA · ~8,129 ac
-- Phillips County Waterfowl Production Area · RMA · Phillips County Waterfowl Production Area · ~8,129 ac
-- Wall Creek Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 3 · ~7,709 ac
-- Fleecer Mountain Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 3 · ~7,597 ac
-- Beckman Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 4 · ~6,647 ac
-- Nelson Reservoir · RMA · Unknown · ~5,879 ac
-- Flathead County Waterfowl Production Area · RMA · Flathead County Waterfowl Production Area · ~5,327 ac
-- Flathead County Waterfowl Production Area · RMA · FLATHEAD COUNTY WATERFOWL PRODUCTION AREA · ~5,070 ac
-- Clark Canyon Reservoir · RMA · Unknown · ~4,976 ac
-- Powell County Waterfowl Production Area · RMA · POWELL COUNTY WATERFOWL PRODUCTION AREA · ~4,947 ac
-- Powell County Waterfowl Production Area · RMA · Powell County Waterfowl Production Area · ~4,947 ac
-- Dome Mountain Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 3 · ~4,867 ac
-- Toole County Waterfowl Production Area · RMA · TOOLE COUNTY WATERFOWL PRODUCTION AREA · ~4,586 ac
-- Toole County Waterfowl Production Area · RMA · Toole County Waterfowl Production Area · ~4,586 ac
-- Yellowstone Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 5 · ~4,411 ac
-- Ninepipe Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 1 · ~4,152 ac
-- Lost River Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 6 · ~3,706 ac
-- Lake County Waterfowl Production Area Of Mt · RMA · LAKE COUNTY WATERFOWL PRODUCTION AREA OF MT · ~3,557 ac
-- Lake County Waterfowl Production Area Of Mt · RMA · Lake County Waterfowl Production Area Of Mt · ~3,557 ac
-- University of Montana Land - Bandy Ranch · SCA · University of Montana, College of Forestry and Conservation · ~3,504 ac
-- Bear Creek Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 3 · ~3,469 ac
-- Grass Lake National Wildlife Refuge · NWR · GRASS LAKE NATIONAL WILDLIFE REFUGE · ~3,394 ac
-- Grass Lake National Wildlife Refuge · NWR · Grass Lake National Wildlife Refuge · ~3,394 ac
-- Smith River Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 4 · ~3,386 ac
-- Big Lake Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 5 · ~3,258 ac
-- Blaine County Waterfowl Production Area · RMA · BLAINE COUNTY WATERFOWL PRODUCTION AREA · ~2,441 ac
-- Blaine County Waterfowl Production Area · RMA · Blaine County Waterfowl Production Area · ~2,441 ac
-- Rookery Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 6 · ~2,294 ac
-- Chouteau County Waterfowl Production Area · RMA · CHOUTEAU COUNTY WATERFOWL PRODUCTION AREA · ~2,076 ac
-- Chouteau County Waterfowl Production Area · RMA · Chouteau County Waterfowl Production Area · ~2,076 ac
+- Lolo Creek ·  · BLM recreation sites · ~19,283 ac
+- South Pioneers ·  · BLM recreation sites · ~18,966 ac

@@ -51,11 +51,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **135 of 167** parks joined
 - Belle W. Baruch Institute for Marine and Coastal Sciences · REA · Unknown · ~15,955 ac
 - Little Pee Dee Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~10,168 ac
 - Pee Dee National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,661 ac
+- Ellicott Rock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,300 ac
 - Clemson Forest · SRMA · Unknown · ~7,519 ac
 - Sparkleberry Swamp · SOTH · Unknown · ~6,792 ac
 - South Carolina Penitentiary State Farm Number One · SOTH · State Department of Natural Resources · ~5,336 ac
 - Saint Helena Sound Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~5,107 ac
 - Morgan Island · SCA · Unknown · ~4,969 ac
+- Little Wambaw Swamp Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,949 ac
+- Wambaw Swamp Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,755 ac
 - Moultrie Hunt Unit Wildlife Management Area · SCA · Unknown · ~4,374 ac
 - Saint Helena Sound Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~3,244 ac
 - Wadboo Wildlife Management Area · SCA · Unknown · ~3,157 ac
@@ -63,10 +66,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **135 of 167** parks joined
 - North Williman Island · SOTH · Unknown · ~2,588 ac
 - Saint Helena Sound Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~2,279 ac
 - Capers Island Heritage Preserve · SHCA · Unknown · ~2,171 ac
+- Hell Hole Bay Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~2,122 ac
 - Saint Helena Sound Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~2,087 ac
 - Saint Helena Sound Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~2,042 ac
 - Catawba River Wildlife Management Area - McDowell Tract · SCA · Unknown · ~1,878 ac
 - Saint Helena Sound Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~1,863 ac
+- Wambaw Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~1,832 ac
 - Saint Helena Sound Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~1,831 ac
 - Turtle Island Wildlife Management Area · SCA · Unknown · ~1,646 ac
 - Catawba-Pee Dee Region - Liberty Hill · SCA · Unknown · ~1,630 ac
@@ -97,8 +102,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **135 of 167** parks joined
 - Tom Yawkey Wildlife Center Heritage Preserve · SHCA · Unknown · ~525 ac
 - Moultrie Hunt Unit Wildlife Management Area · SCA · Unknown · ~480 ac
 - Woods Bay Heritage Preserve · SHCA · Unknown · ~472 ac
-- Stumphouse Mountain Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~438 ac
-- Henderson Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~429 ac
-- Calhoun Falls Wildlife Management Area · SCA · Unknown · ~426 ac
-- Moultrie Hunt Unit Wildlife Management Area · SCA · Unknown · ~410 ac
-- Slann Island Marshland · SCA · State Fish and Wildlife · ~409 ac

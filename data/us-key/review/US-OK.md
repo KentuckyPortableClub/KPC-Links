@@ -162,8 +162,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **55 of 205** parks joined 
 
 - CLO Lands · SRMA · The Commissioners of the Land Office · ~3,238,968 ac
 - Ouachita National Forest · NF · Forest Service Region 08 Southern · ~353,440 ac
+- Black Fork Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,466 ac
 - Canton Wildlife Management Area & Waterfowl Refuge Portion · SCA · Department of Wildlife Conservation · ~11,476 ac
 - Hagerman National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,298 ac
+- Upper Kiamichi River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,799 ac
+- Cross Bar Recreation Area ·  · BLM recreation sites · ~9,856 ac
 - Buffalo Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,718 ac
 - Southwestern Livestock And Forage Research Station · REA · Agricultural Research Service (ARS) · ~6,565 ac
 - Muleshoe National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,552 ac

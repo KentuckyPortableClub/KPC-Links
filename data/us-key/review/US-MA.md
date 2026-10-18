@@ -97,6 +97,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 421** parks joined
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Glastenbury Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~22,330 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~11,522 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~8,856 ac
 - Camp Edwards Wildlife Management Area · SCA ·   · ~8,715 ac
@@ -105,6 +106,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 421** parks joined
 - Camp Edwards Wildlife Management Area · SCA ·   · ~5,617 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~5,331 ac
 - Appalachian National Scenic Trail · NT · NPS · ~5,294 ac
+- George D. Aiken Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,800 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~4,135 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~3,694 ac
 - Mount Greylock State Reservation · SRMA · DCR - Division of State Parks and Recreation · ~3,271 ac
@@ -155,5 +157,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 421** parks joined
 - Quabbin Reservoir Watershed · WPA ·   · ~617 ac
 - Becket State Forest · SRMA ·   · ~611 ac
 - Boxford State Forest · SRMA ·   · ~605 ac
-- Quabbin Reservoir Watershed · WPA ·   · ~603 ac
-- Wequaquet Lake · SRMA · Commonwealth of Massachusetts · ~594 ac

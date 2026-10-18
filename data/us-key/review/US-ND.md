@@ -92,6 +92,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 155** parks joined 
 
 - Nd State Lands - Surface Ownership · SRMA · Unknown · ~712,367 ac
 - Sakakawea Recreation Area · REC · Omaha · ~478,564 ac
+- Lewis and Clark Trail ·  · BLM recreation sites · ~240,750 ac
 - Devils Lake · RMA · Unknown · ~97,667 ac
 - Oaha Recreation Area · REC · Omaha · ~90,626 ac
 - North Dakota Field Office · PUB · BLM · ~58,891 ac
@@ -149,4 +150,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 155** parks joined 
 - Lamoure County Waterfowl Production Area · RMA · Lamoure County Waterfowl Production Area · ~5,466 ac
 - Pembina Hills · SCA · Unknown · ~5,292 ac
 - Sargent County Waterfowl Production Area · RMA · SARGENT COUNTY WATERFOWL PRODUCTION AREA · ~4,856 ac
-- Sargent County Waterfowl Production Area · RMA · Sargent County Waterfowl Production Area · ~4,856 ac

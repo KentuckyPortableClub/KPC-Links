@@ -134,9 +134,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 348** parks joined
 - Turtle Flambeau Scenic Waters Area · SCA · Wisconsin Department of Natural Resources · ~35,976 ac
 - Kettle Moraine State Forest-Northern Unit-Iansr · SRMA · Wisconsin Department of Natural Resources · ~30,180 ac
 - Willow Flowage Scenic Waters Area · SCA · Wisconsin Department of Natural Resources · ~25,929 ac
+- Headwaters Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~22,080 ac
 - Kettle Moraine State Forest-Southern Unit · SRMA · Wisconsin Department of Natural Resources · ~21,492 ac
+- Sylvania Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,440 ac
 - Willow Flowage Scenic Waters Area · SREC · Unknown · ~18,148 ac
 - Saint Croix National Scenic Riverway · WSR · NPS · ~17,484 ac
+- McCormick Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~17,184 ac
+- Sturgeon River Gorge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,725 ac
 - Pine-Popple Wild Rivers · SP · Wisconsin Department of Natural Resources · ~11,409 ac
 - Horicon Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~11,169 ac
 - Glacial Habitat Restoration · SCA · Unknown · ~9,591 ac
@@ -144,6 +148,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 348** parks joined
 - Waterloo - Mud Lake Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~9,261 ac
 - Upper Wolf River Fishery Area · SREC · Wisconsin Department of Natural Resources · ~8,941 ac
 - Scattered Forest Lands · SRMA · Unknown · ~7,832 ac
+- Whisker Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,434 ac
+- Rainbow Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,175 ac
 - Mecan River Fishery Area · SREC · Wisconsin Department of Natural Resources · ~6,706 ac
 - St Louis River Streambank Protection Area · SREC · Wisconsin Department of Natural Resources · ~6,676 ac
 - Quincy Bluff And Wetlands Natural Area · SCA · Wisconsin Department of Natural Resources · ~6,606 ac
@@ -153,12 +159,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 348** parks joined
 - South Shore Lake Superior Fish · SCA · Unknown · ~6,177 ac
 - St. Croix County Waterfowl Production Area · RMA · ST. CROIX COUNTY WATERFOWL PRODUCTION AREA · ~6,140 ac
 - Ms Rv Pools 11-22 Recreation Area · REC · Rock Island · ~6,084 ac
+- Blackjack Springs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,917 ac
 - Ice Age Trail · SREC · Unknown · ~5,793 ac
 - Spread Eagle Barrens Natural Area · SCA · Unknown · ~5,549 ac
 - Theresa Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~5,333 ac
 - Stream Bank Protection Fee Program · SCA · Unknown · ~5,131 ac
 - Pike Wild River · SCA · Wisconsin Department of Natural Resources · ~4,736 ac
 - White River Fishery Area-Bayfield · SREC · Wisconsin Department of Natural Resources · ~4,352 ac
+- Porcupine Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,306 ac
 - Scattered Forest Land - Nw · SREC · Wisconsin Department of Natural Resources · ~4,189 ac
 - Mcmillan Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~4,173 ac
 - Mc Millan Wildlife Area · SCA · Unknown · ~4,138 ac
@@ -178,11 +186,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 348** parks joined
 - Northeastern States District Office · PUB · BLM · ~2,691 ac
 - Lake Mills Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~2,664 ac
 - Clam River Fishery Area · SREC · Wisconsin Department of Natural Resources · ~2,554 ac
-- Totogatic Wild River · SCA · Wisconsin Department of Natural Resources · ~2,489 ac
-- Jackson Marsh Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~2,472 ac
-- Lower Saint Croix National Scenic Riverway · WSR · NPS · ~2,470 ac
-- Winnebago County Waterfowl Production Area Of Wi · RMA · Winnebago County Waterfowl Production Area Of Wi · ~2,462 ac
-- Ice Age Trail - Wd · SP · Wisconsin Department of Natural Resources · ~2,453 ac
-- Winnebago County Waterfowl Production Area · RMA · WINNEBAGO COUNTY WATERFOWL PRODUCTION AREA · ~2,426 ac
-- Germania Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~2,354 ac
-- Little Wolf River Fishery Area · SREC · Wisconsin Department of Natural Resources · ~2,343 ac

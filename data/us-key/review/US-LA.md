@@ -57,9 +57,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 123** parks joined 
 - Hillside National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,948 ac
 - State Wildlife Refuge · SCA · Unknown · ~14,813 ac
 - Camp Beauregard Wildlife Management Area · SCA · Unknown · ~12,606 ac
+- Indian Mounds Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,224 ac
 - State Lands · SOTH · Unknown · ~11,466 ac
 - Ouachita Wildlife Management Area · SCA · Unknown · ~10,403 ac
 - Calcasieu River · SCA · Unknown · ~9,174 ac
+- Kisatchie Hills Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,701 ac
 - Texas Point National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,336 ac
 - State Lands · SOTH · Unknown · ~7,733 ac
 - Sicily Island Hills Wildlife Management Area · SCA · Unknown · ~7,489 ac
@@ -67,6 +69,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 123** parks joined 
 - Chicot State Park District II · SP · Unknown · ~6,315 ac
 - Theodore Roosevelt National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,252 ac
 - Farm Service Agency Interest Of La · NWR · Farm Service Agency Interest Of La · ~6,039 ac
+- Black Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,084 ac
 - Atchafalaya Land Exchange · SOTH · Unknown · ~4,843 ac
 - Tchefuncte River And Its Tributaries · SCA · Unknown · ~3,355 ac
 - Farm Service Agency Interest Of La · NWR · FARM SERVICE AGENCY INTEREST OF LA · ~3,298 ac
@@ -100,6 +103,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 123** parks joined 
 - Blind River · SCA · Unknown · ~740 ac
 - Black Lake Bayou · SREC · Unknown · ~726 ac
 - Raccourci Island Batture Lands · SOTH · Unknown · ~723 ac
-- Lsu Research Station · REA · Unknown · ~719 ac
-- Department Of Transportation Area · SREC · Unknown · ~711 ac
-- Panther Swamp National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~643 ac

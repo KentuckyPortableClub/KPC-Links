@@ -1,19 +1,12 @@
 # WV: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 172** parks joined to official land (same name + same kind of place). **10** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **157 of 172** parks joined to official land (same name + same kind of place). **3** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0697** Bluestone National Wild and Scenic River (National Wild and Scenic River) → Bluestone Recreation Area (~22,147 ac, similar name)
 - **US-12034** Daniels Ridge Wildlife Management Area (Wildlife Management Area) → Daniels Ridge Wilidlife Management Area (~3,379 ac, similar name)
-- **US-12436** Big Draft Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
-- **US-12437** Cranberry Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
-- **US-12438** Dolly Sods Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
-- **US-12439** North Laurel Fork Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
-- **US-12440** South Laurel Fork Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
-- **US-12441** Otter Creek Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
-- **US-12442** Roaring Plains West Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
-- **US-12443** Spice Run Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
+- **US-12437** Cranberry Wilderness Area (Wilderness Area) → Cranberry Wilderness (~47,742 ac, similar name); Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
 
 ## Nothing found in PAD-US
 
@@ -34,15 +27,31 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 172** parks joined
 
 - Wardensville Wildlife Management Area · SCA · WV Division of Natural Resources · ~54,942 ac
 - Shenandoah Wildlife Management Area · SCA · WV Division of Natural Resources · ~50,719 ac
+- Cranberry Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~47,742 ac
 - East Lynn Recreation Area · REC · Huntington · ~24,834 ac
 - R.D. Bailey Recreation Area · REC · Huntington · ~19,158 ac
 - Potts Creek Wildlife Management Area · SCA · WV Division of Natural Resources · ~18,472 ac
+- Mountain Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,585 ac
 - Burnsville Recreation Area · REC · Huntington · ~13,269 ac
 - Sutton Recreation Area · REC · Huntington · ~12,634 ac
+- Saint Mary's Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,826 ac
+- Rough Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,327 ac
+- James River Face Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,850 ac
 - Jennings Randolph Recreation Area · REC · Baltimore · ~8,124 ac
+- Ramseys Draft Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,577 ac
+- Rich Hole Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,532 ac
+- Kimberling Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,092 ac
+- Priest Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,991 ac
+- Shawvers Run Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,773 ac
+- Barbours Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,507 ac
 - Camp Creek State Forest · SRMA · WV Division of Forestry · ~5,312 ac
+- Brush Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,795 ac
+- Three Ridges Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,607 ac
+- Peters Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,520 ac
+- Brush Mountain East Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,745 ac
 - Daniels Ridge Wilidlife Management Area · SCA · WV Division of Natural Resources · ~3,379 ac
 - Bluestone National Scenic River · WSR · NPS · ~3,035 ac
+- Thunder Ridge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~2,427 ac
 - Appalachian National Scenic Trail · NT · NPS · ~2,021 ac
 - Briery Mountain Wildlife Management Area · SCA · WV State Armory Board · ~1,252 ac
 - Byrd Pool Recreation Area · REC · Huntington · ~681 ac
@@ -76,19 +85,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 172** parks joined
 - David Harris Riverfront Park · LP · Greater Huntington Park and Recreation District · ~25 ac
 - Kanawha Falls Park · SREC · State of West Virginia · ~21 ac
 - Dillon Property · SOTH ·   · ~15 ac
-- Elkins Operations Center · SRMA · WV Division of Natural Resources · ~14 ac
-- Cacapon River Public River Access · SRMA · WV Division of Natural Resources · ~12 ac
-- North Branch Potomac Fma Pfa · SCA ·   · ~12 ac
-- Gathright Wildlife Management Area · SCA ·   · ~7 ac
-- Fort Frederick State Park · SP · MD Department of Natural Resources · ~6 ac
-- Hilltop Park · LP · State Road Commission · ~6 ac
-- Coal River Access · SRMA · WV Division of Natural Resources · ~4 ac
-- Wolf Den Run Sp · SP ·   · ~4 ac
-- Wheeling Jesuit University Camp · SOTH ·   · ~4 ac
-- Raymond J. Lane Park · LP · WEST VIRGINIA UNIVERSITY & BOARD OF GOVERNORS · ~4 ac
-- Wheeling Jesuit University Camp · SREC · WV Division of Natural Resources · ~4 ac
-- North Branch Potomac Fish Management Area · SRMA · MD Department of Natural Resources · ~3 ac
-- Kanawha Falls · SRMA · WV Division of Natural Resources · ~3 ac
-- Wayne National Forest · NF · Forest Service Region 09 Eastern · ~2 ac
-- Grave Creek Mound State Park · SP · WV State Parks · ~2 ac
-- 35th Street Ball Field · LP ·   · ~2 ac

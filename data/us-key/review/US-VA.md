@@ -1,6 +1,6 @@
 # VA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 184** parks joined to official land (same name + same kind of place). **42** to check by hand, **23** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 184** parks joined to official land (same name + same kind of place). **24** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -11,40 +11,22 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 184** parks joined
 - **US-9897** Jamestowne National Historical Site (National Historical Site) → Colonial National Historical Park (~7,881 ac, the POTA pin is inside it (different name))
 - **US-9898** Mount Vernon National Historic Trail (National Historic Trail) → George Washington Memorial Parkway (~2,776 ac, the POTA pin is inside it (different name))
 - **US-9902** Colonial National Parkway (National Parkway) → Colonial National Historical Park (~7,881 ac, similar name)
-- **US-9903** Mount Rogers National Recreation Area (National Recreation Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
+- **US-9903** Mount Rogers National Recreation Area (National Recreation Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name)); Lewis Fork Wilderness (~6,075 ac, the POTA pin is inside it (different name))
 - **US-9904** Apple Orchard Falls National Recreation Trail (National Recreation Trail) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
 - **US-9906** Cornelius Creek National Recreation Trail (National Recreation Trail) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name)); Blue Ridge Parkway (~35,237 ac, the POTA pin is inside it (different name))
 - **US-9907** First Landing National Recreation Trail (National Recreation Trail) → First Landing State Park (~2,916 ac, similar name); First Landing State Park (~2,916 ac, similar name)
 - **US-9909** Little Stony Creek National Recreation Trail (National Recreation Trail) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
 - **US-9910** Massanutten National Recreation Trail (National Recreation Trail) → George Washington National Forest (~961,006 ac, the POTA pin is inside it (different name))
-- **US-9920** Mount Rogers National Recreation Trail (National Recreation Trail) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
+- **US-9920** Mount Rogers National Recreation Trail (National Recreation Trail) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name)); Lewis Fork Wilderness (~6,075 ac, the POTA pin is inside it (different name))
 - **US-9922** The Lion's Tale National Recreation Trail (National Recreation Trail) → George Washington National Forest (~961,006 ac, the POTA pin is inside it (different name))
 - **US-9925** Wild Oak National Recreation Trail (National Recreation Trail) → George Washington National Forest (~961,006 ac, the POTA pin is inside it (different name))
 - **US-9932** The Channels State Natural Area (State Natural Area) → The Channels State Natural Area Preserve (~721 ac, similar name); The Channels State Forest (~4,836 ac, same name, different kind of place); The Channels State Forest (~4,115 ac, same name, different kind of place)
 - **US-9933** Beaches to Bluegrass State Trail (State Trail) → Staunton River State Park (~1,612 ac, the POTA pin is inside it (different name)); Staunton River State Park (~1,526 ac, the POTA pin is inside it (different name))
 - **US-9935** Virginia Bird & Wildlife State Trail (State Trail) → Lake Anna State Park (~2,156 ac, the POTA pin is inside it (different name)); Lake Anna State Park (~1,624 ac, the POTA pin is inside it (different name))
 - **US-9937** Meadowood BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Southeastern States District Office (~804 ac, the POTA pin is inside it (different name))
-- **US-9938** Barbours Creek Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9939** Beartown Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9941** Brush Mountain East Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9942** Garden Mountain Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9943** Hunting Camp Creek Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9944** James River Face Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9945** Kimberling Creek Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9946** Lewis Fork Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9947** Little Dry Run Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9948** Little Wilson Creek Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9949** Mountain Lake Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9951** Priest Wilderness Area (Wilderness Area) → George Washington National Forest (~961,006 ac, the POTA pin is inside it (different name))
-- **US-9952** Raccoon Branch Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9953** Ramseys Draft Wilderness Area (Wilderness Area) → George Washington National Forest (~961,006 ac, the POTA pin is inside it (different name))
-- **US-9954** Rich Hole Wilderness Area (Wilderness Area) → George Washington National Forest (~961,006 ac, the POTA pin is inside it (different name))
-- **US-9955** St. Mary's Wilderness Area (Wilderness Area) → George Washington National Forest (~961,006 ac, the POTA pin is inside it (different name))
-- **US-9956** Shawvers Run Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
+- **US-9939** Beartown Wilderness Area (Wilderness Area) → Beartown Wilderness (~5,613 ac, similar name); Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
+- **US-9951** Priest Wilderness Area (Wilderness Area) → Priest Wilderness (~5,991 ac, similar name); George Washington National Forest (~961,006 ac, the POTA pin is inside it (different name))
 - **US-9957** Shenandoah Wilderness Area (Wilderness Area) → Shenandoah National Park (~195,790 ac, same name, different kind of place)
-- **US-9958** Stone Mountain Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9959** Three Ridges Wilderness Area (Wilderness Area) → George Washington National Forest (~961,006 ac, the POTA pin is inside it (different name))
-- **US-9960** Thunder Ridge Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
 - **US-9961** Dyke Marsh Wildlife Reserve (Wildlife Reserve) → George Washington Memorial Parkway (~2,776 ac, the POTA pin is inside it (different name))
 
 ## Nothing found in PAD-US
@@ -70,11 +52,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 184** parks joined
 - US-9923 Virginia Creeper National Recreation Trail (National Recreation Trail)
 - US-9931 Frontier Culture Museum State Historic Site (State Historic Site)
 - US-9934 James River Heritage State Trail (State Trail)
-- US-9940 Brush Mountain Wilderness Area (Wilderness Area)
-- US-9950 Peters Mountain Wilderness Area (Wilderness Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Cranberry Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~47,742 ac
 - Fort Pickett Military Reservation · FOTH ·   · ~41,156 ac
 - Fort Pickett Military Reservation · MIL · VA Army National Guard · ~41,156 ac
 - Blue Ridge Parkway · SDA · NPS · ~35,237 ac
@@ -85,14 +66,18 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 184** parks joined
 - Tidal Lands · SOTH ·   · ~26,120 ac
 - Clinch Mountain Wildlife Management Area · SCA ·   · ~22,276 ac
 - Clinch Mountain Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~22,276 ac
+- Otter Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~20,705 ac
 - Canaan Valley National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~18,957 ac
+- Dolly Sods Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~17,777 ac
 - Appalachian National Scenic Trail · NT · NPS · ~17,671 ac
 - Bombay Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~15,346 ac
 - Highland Wildlife Management Area · SCA ·   · ~13,720 ac
 - Highland Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~13,715 ac
+- Clifty Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,551 ac
 - Gathright Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~10,609 ac
 - Patuxent Research Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~10,548 ac
 - Gathright Wildlife Management Area · SCA ·   · ~10,516 ac
+- Rough Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,327 ac
 - Prime Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~9,238 ac
 - John W Flannagan Recreation Area · REC · Huntington · ~8,139 ac
 - Fredericksburg and Spotsylvania County Battlefields Memorial National Military Park · HCA · NPS · ~7,640 ac
@@ -103,10 +88,17 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 184** parks joined
 - Rapidan Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~7,343 ac
 - Havens Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~7,339 ac
 - DCR Holding · SOTH · VA Dept of Conservation and Recreation · ~7,326 ac
+- Roaring Plains West Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,794 ac
 - Hidden Valley Wildlife Management Area · SCA ·   · ~6,239 ac
 - Hidden Valley Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~6,239 ac
+- Laurel Fork North Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,048 ac
+- Spice Run Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,037 ac
+- Priest Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,991 ac
+- Laurel Fork South Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,840 ac
+- Beartown Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,613 ac
 - Saxis Wildlife Management Area · SCA ·   · ~5,534 ac
 - Saxis Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~5,534 ac
+- Big Draft Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,147 ac
 - Fairystone Farms Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~5,087 ac
 - Fairystone Farms Wildlife Management Area · SCA ·   · ~5,046 ac
 - Smith Mountain Cooperative Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~4,997 ac
@@ -123,15 +115,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 184** parks joined
 - Currituck National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,810 ac
 - Cavalier Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~3,770 ac
 - False Cape State Natural Area Preserve · SCA ·   · ~3,603 ac
-- False Cape State Natural Area Preserve · SCA · VA Dept of Conservation and Recreation · ~3,603 ac
-- North Landing River State Natural Area Preserve · SCA · VA Dept of Conservation and Recreation · ~3,532 ac
-- Thompson Wildlife Management Area · SCA ·   · ~3,396 ac
-- Ohio River Islands National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,354 ac
-- Rapidan Wildlife Management Area · SCA ·   · ~3,170 ac
-- Briery Creek Wildlife Management Area · SCA ·   · ~3,130 ac
-- Briery Creek Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~3,130 ac
-- Plum Tree Island National Wildlife Refuge · NWR · PLUM TREE ISLAND NATIONAL WILDLIFE REFUGE · ~3,065 ac
-- Plum Tree Island National Wildlife Refuge · NWR · Plum Tree Island National Wildlife Refuge · ~3,065 ac
-- Doc · SOTH ·   · ~3,019 ac
-- Horsepen Lake Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~2,957 ac
-- Oakley Forest Wildlife Management Area · SCA ·   · ~2,900 ac

@@ -56,6 +56,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **465 of 494** parks joined
 - Sgl 110 · SREC · Pennsylvania Game Commission · ~9,868 ac
 - Sgl 106 · SREC · Pennsylvania Game Commission · ~9,616 ac
 - Elk State Forest - Bucktail State Park Natural Area · SRMA ·   · ~9,131 ac
+- Hickory Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,633 ac
 - Sgl 217 · SREC · Pennsylvania Game Commission · ~8,494 ac
 - Montage Tract · SRMA · Bureau of Forestry · ~7,554 ac
 - Wolf Run Wild Area · SW · Bureau of Forestry · ~7,526 ac
@@ -98,4 +99,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **465 of 494** parks joined
 - Asaph Wild Area · SW · Bureau of Forestry · ~2,783 ac
 - Clear Shade Wild Area · SW · Bureau of Forestry · ~2,764 ac
 - Penrose Swamp Barrens · SRMA · Bureau of Forestry · ~2,734 ac
-- Delaware State Forest - Stairway Wild Area · SRMA ·   · ~2,706 ac

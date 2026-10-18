@@ -1,6 +1,6 @@
 # WA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **329 of 536** parks joined to official land (same name + same kind of place). **85** to check by hand, **122** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **332 of 536** parks joined to official land (same name + same kind of place). **83** to check by hand, **121** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,18 +9,17 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **329 of 536** parks joined
 - **US-10408** Horse Heaven Hills Recreation Area BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
 - **US-10627** 4-0 Ranch Wildlife Area (Wildlife Area) → 4-O Ranch - Dec 2014 (~2,568 ac, similar name); 4-O Ranch - March 2014 (~2,147 ac, similar name); 4-O Ranch 2013 (~1,573 ac, similar name)
 - **US-10694** Sun Lakes Wildlife Area (Wildlife Area) → Sun Lakes-Dry Falls (~4,234 ac, similar name)
+- **US-10695** Coffeepot Lake Nature Recreation Area (Nature Recreation Area) → Coffeepot Lake Public Fishing Access (~6 ac, similar name); Coffeepot Lake Public Fishing Access (~6 ac, similar name)
 - **US-10709** Klickitat National Wild & Scenic River (National Wild & Scenic River) → Fisher Hill (~499 ac, the POTA pin is inside it (different name))
 - **US-10711** Marckworth State Forest (State Forest) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
 - **US-11145** Naneum Ridge State Forest (State Forest) → Washington State Department of Fish & Wildlife Trust Land (~91,115 ac, the POTA pin is inside it (different name))
-- **US-12245** Twin Lakes BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
-- **US-12246** Pacific Lake Recreation Site - Lakeview Ranch BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
+- **US-12246** Pacific Lake Recreation Site - Lakeview Ranch BLM Recreation Management Area (BLM Recreation Management Area) → Pacific Lake (~37 ac, similar name); Pacific Lake (~37 ac, similar name); Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
 - **US-12254** Crab Creek - Rocky Ford Area BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
 - **US-12255** Rock Creek BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
 - **US-12265** Sunnyside Wildlife Area State Fish and Wildlife Area (State Fish and Wildlife Area) → Sunnyside-Snake River Wildlife Area Complex (~12,762 ac, similar name)
 - **US-12271** Telford BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
 - **US-12278** Boundary Reservoir BLM Recreation Management Area (BLM Recreation Management Area) → Colville National Forest (~957,248 ac, the POTA pin is inside it (different name))
 - **US-12279** South Huckleberry Mountains BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
-- **US-12280** Juniper Dunes OHV Area BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
 - **US-12287** Vancouver Lake Wildlife Area State Wildlife Area (State Wildlife Area) → Mount Saint Helens-Shillapoo Wildlife Area Complex (~10,476 ac, the POTA pin is inside it (different name))
 - **US-12295** Rattlesnake Mountain Area Scenic Reserve (Scenic Reserve) → Rattlesnake Mountain Scenic Area Natural Resources Conservation Area (~1,836 ac, similar name)
 - **US-12296** Raging River State Forest (State Forest) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
@@ -30,10 +29,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **329 of 536** parks joined
 - **US-12344** White Salmon Oak State Natural Area (State Natural Area) → White Salmon Oak Natural Resources Conservation Area (~552 ac, similar name)
 - **US-12402** Rocky Ford State Fish Hatchery (State Fish Hatchery) → Rocky Ford (~1,494 ac, similar name)
 - **US-12403** Columbia Basin Hatchery Creek State Fish Hatchery (State Fish Hatchery) → Columbia Basin Wildlife Area Complex (~41,205 ac, similar name)
-- **US-12404** Folsom Farm Interpretive BLM Interpretive Site (BLM Interpretive Site) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
+- **US-12404** Folsom Farm Interpretive BLM Interpretive Site (BLM Interpretive Site) → Folsom Farm Interpretive Site (~37 ac, similar name); Folsom Farm Interpretive Site (~37 ac, similar name); Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
 - **US-12426** Hog Canyon State Fishing Lake (State Fishing Lake) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
 - **US-12427** Liberty State Fishing Lake (State Fishing Lake) → Liberty Lake Water Access Site (~2 ac, similar name)
-- **US-12461** San Juan Islands BLM National Monument (National Monument) → San Juan Island National Historical Park (~2,099 ac, same name, different kind of place); San Juan Islands National Wildlife Refuge (~456 ac, same name, different kind of place); San Juan Islands National Wildlife Refuge (~456 ac, same name, different kind of place)
 - **US-12479** Jameson State Fishing Lake (State Fishing Lake) → Spokane Wenatchee Field Office (~254,416 ac, the POTA pin is inside it (different name))
 - **US-12481** Nisqually State Wildlife Area (State Wildlife Area) → Billy Frank Jr. Nisqually National Wildlife Refuge (~5,558 ac, similar name); Billy Frank Jr. Nisqually National Wildlife Refuge (~5,534 ac, similar name); Olympic-Willapa Hills-South Puget Sound Wildlife Area Complex (~16,950 ac, the POTA pin is inside it (different name))
 - **US-12483** Beebe Springs State Wildlife Area (State Wildlife Area) → BeeBe Wildlife Area Complex (~179 ac, the POTA pin is inside it (different name))
@@ -54,7 +52,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **329 of 536** parks joined
 - **US-12574** Elk River State Wildlife Area (State Wildlife Area) → Elk River - 103.17 Acres (~101 ac, similar name); Elk River -27.9 Acres (~28 ac, similar name)
 - **US-12578** Clearwater Corridor State Natural Area (State Natural Area) → Clearwater Corridor Natural Resources Conservation Area (~2,312 ac, similar name); Washington State Department of Natural Resources (WADNR) State Resource Management Area (~268,553 ac, the POTA pin is inside it (different name))
 - **US-12829** Duffy Creek BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Wenatchee Field Office (~254,416 ac, the POTA pin is inside it (different name))
-- **US-12831** Ruby BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Spokane Wenatchee Field Office (~254,416 ac, the POTA pin is inside it (different name))
+- **US-12831** Ruby BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Old Ruby (~7 ac, similar name); Spokane Wenatchee Field Office (~254,416 ac, the POTA pin is inside it (different name))
 - **US-12832** The Two-Steppe State Natural Reserve (State Natural Reserve) → The Two-Steppe Natural Area Preserve (~395 ac, similar name)
 - **US-12956** Forth of July State Fishing Lake (State Fishing Lake) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
 - **US-13346** Voights Creek State Fish Hatchery (State Fish Hatchery) → Voights Creek FH (~29 ac, similar name)
@@ -69,9 +67,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **329 of 536** parks joined
 - **US-3157** Bayview State Park (State Park) → Bay View (~66 ac, the POTA pin is inside it (different name))
 - **US-3170** Cape Disappointment State Park (State Park) → Lewis and Clark National Historical Park (~2,056 ac, the POTA pin is inside it (different name))
 - **US-3225** Lyons Ferry State Park (State Park) → Lyons Ferry Fish Hatchery (~114 ac, similar name); Lyons Ferry Fish Hatchery (~102 ac, similar name)
-- **US-3229** Matia Island Marine State Park (State Park) → San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name)); San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name))
+- **US-3229** Matia Island Marine State Park (State Park) → San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name)); San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name)); San Juan Islands National Monument (~0 ac, the POTA pin is inside it (different name))
 - **US-3276** Steptoe Battlefield State Park (State Park) → Steptoe Battlefield (~3 ac, same name, different kind of place)
-- **US-3283** Turn Island Marine State Park (State Park) → San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name)); San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name))
+- **US-3283** Turn Island Marine State Park (State Park) → San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name)); San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name)); San Juan Islands National Monument (~0 ac, the POTA pin is inside it (different name))
 - **US-3385** Mt. St. Helens National Monument (National Monument) → Mount Saint Helens-Shillapoo Wildlife Area Complex (~10,476 ac, similar name); Gifford Pinchot National Forest (~1,275,125 ac, the POTA pin is inside it (different name))
 - **US-4555** Hanford Reach National Monument (National Monument) → Hanford Site (~211,071 ac, the POTA pin is inside it (different name))
 - **US-4562** Pacific Crest Trail National Scenic Trail (National Scenic Trail) → Snoqualmie National Forest (~659,968 ac, the POTA pin is inside it (different name))
@@ -95,7 +93,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **329 of 536** parks joined
 - US-0731 Columbia River Gorge National Forest (National Forest)
 - US-0849 Minidoka National Historic Site (National Historic Site)
 - US-10421 International Selkirk Loop National Scenic Byway National Parkway (National Parkway)
-- US-10695 Coffeepot Lake Nature Recreation Area (Nature Recreation Area)
 - US-12238 Audubon Lake Wildlife Area Unit State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-12281 North Huckleberry Mountains BLM Recreation Management Area (BLM Recreation Management Area)
 - US-12285 Shillapoo South Wildlife Area State Wildlife Area (State Wildlife Area)
@@ -218,62 +215,62 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **329 of 536** parks joined
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Washington State Department of Natural Resources (WADNR) State Resource Management Area · SRMA · Unknown · ~2,562,869 ac
+- Glacier Peak Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~566,328 ac
+- Pasayten Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~531,325 ac
 - Snoqualmie National Forest · NF · Forest Service Region 06 Pacific Northwest · ~530,399 ac
+- Alpine Lakes Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~415,203 ac
 - Okanogan National Forest · NF · Forest Service Region 06 Pacific Northwest · ~383,032 ac
 - Umatilla National Forest · NF · Forest Service Region 06 Pacific Northwest · ~311,020 ac
 - Washington State Department of Natural Resources (WADNR) State Resource Management Area · SRMA · Unknown · ~268,553 ac
 - Spokane Wenatchee Field Office · PUB · BLM · ~254,416 ac
 - Hanford Site · FOTH · Department of Energy (DOE) · ~211,071 ac
+- Wenaha-Tucannon Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~176,785 ac
+- William O. Douglas Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~168,954 ac
 - Spokane Border Field Office · PUB · BLM · ~168,544 ac
+- Lake Chelan-Sawtooth Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~153,153 ac
+- Mount Baker Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~120,271 ac
 - Kaniksu National Forest · NF · Forest Service Region 01 Northern · ~119,756 ac
+- Goat Rocks Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~108,196 ac
+- Wild Sky Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~107,094 ac
+- Henry M. Jackson Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~103,240 ac
 - Washington State Department of Fish & Wildlife Trust Land · SRMA · Washington State Department of Fish & Wildlife · ~91,115 ac
 - Snoqualmie National Forest · NF · Forest Service Region 06 Pacific Northwest · ~82,394 ac
+- Mark O. Hatfield Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~65,434 ac
+- Coeur d'Alene Lake ·  · BLM recreation sites · ~64,584 ac
+- Norse Peak Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~52,297 ac
+- Boulder River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~49,249 ac
+- Mount Adams Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~47,123 ac
+- Clearwater River ·  · BLM recreation sites · ~44,818 ac
+- Buckhorn Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~44,270 ac
+- Salmo-Priest Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~41,307 ac
 - Morning Star Natural Resources Conservation Area · SCA · Unknown · ~33,700 ac
 - Loomis Natural Resources Conservation Area · SCA · Unknown · ~24,721 ac
+- Indian Heaven Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~20,784 ac
+- North Fork Umatilla Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~20,213 ac
 - Olympic-Willapa Hills-South Puget Sound Wildlife Area Complex · SCA · Unknown · ~16,950 ac
+- The Brothers Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,297 ac
+- Tatoosh Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~15,776 ac
 - Skagit-Snoqualmie Wildlife Area Complex · SCA · Unknown · ~15,194 ac
+- Clearwater Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~14,616 ac
+- Noisy-Diobsud Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~14,266 ac
 - Vale Baker Field Office · PUB · BLM · ~14,204 ac
 - Klickitat Wildlife Area Complex · SCA · Unknown · ~13,679 ac
+- Mount Skokomish Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,278 ac
 - Lewis And Clark National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~13,080 ac
 - Sunnyside-Snake River Wildlife Area Complex · SCA · Unknown · ~12,762 ac
+- Colonel Bob Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,854 ac
 - Chief Joseph · SCA · Washington Department of Fish & Wildlife · ~11,467 ac
 - Mount Saint Helens-Shillapoo Wildlife Area Complex · SCA · Unknown · ~10,476 ac
 - Lenore Game Range · NCA · LENORE GAME RANGE · ~6,170 ac
 - Lenore Game Range · NCA · Lenore Game Range · ~6,170 ac
 - Julia Butler Hansen Refuge For The Columbian White Tail Deer ·  · U.S. Fish & Wildlife Service (own map) · ~5,968 ac
+- Trapper Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,963 ac
 - Billy Frank Jr. Nisqually National Wildlife Refuge · NWR · Billy Frank Jr. Nisqually National Wildlife Refuge · ~5,558 ac
 - Billy Frank Jr. Nisqually National Wildlife Refuge · NWR · BILLY FRANK JR. NISQUALLY NATIONAL WILDLIFE REFUGE · ~5,534 ac
 - Colockum Game Range · NCA · COLOCKUM GAME RANGE · ~4,927 ac
 - Colockum Game Range · NCA · Colockum Game Range · ~4,927 ac
 - Elk River Natural Resources Conservation Area · SCA · Unknown · ~4,537 ac
 - Charles Lathrop Pack Experimental and Demonstration Forest · SRMA · STATE OF WASHINGTON · ~4,419 ac
+- NA ·  · BLM recreation sites · ~4,324 ac
 - Kachess Lake · RMA · Unknown · ~4,109 ac
-- West Tiger Mountain Natural Resources Conservation Area · SCA · Unknown · ~3,880 ac
-- Hoffstadt · SCA · Washington Department of Fish & Wildlife · ~3,721 ac
-- Methow Winter Range And Wildlife Refuge · NCA · METHOW WINTER RANGE AND WILDLIFE REFUGE · ~3,029 ac
-- Methow Winter Range And Wildlife Refuge · NCA · Methow Winter Range And Wildlife Refuge · ~3,029 ac
-- Mudflow · SCA · Washington Department of Fish & Wildlife · ~2,861 ac
-- Table Mountain/Greenleaf Peak Natural Resources Conservation Area · SCA · Unknown · ~2,856 ac
-- Sinlahekin Deer Winter Range And Wildlife Refuge · NCA · SINLAHEKIN DEER WINTER RANGE AND WILDLIFE REFUGE · ~2,828 ac
-- Sinlahekin Deer Winter Range And Wildlife Refuge · NCA · Sinlahekin Deer Winter Range And Wildlife Refuge · ~2,828 ac
-- Julia Butler Hansen Refuge For The Columbian White-Tailed Deer · NWR · JULIA BUTLER HANSEN REFUGE FOR THE COLUMBIAN WHITE-TAILED DEER · ~2,808 ac
-- Julia Butler Hansen Refuge For The Columbian White-Tailed Deer · NWR · Julia Butler Hansen Refuge For The Columbian White-Tailed Deer · ~2,808 ac
-- Chopaka Mountain Natural Area Preserve · SCA · Unknown · ~2,757 ac
-- Bone River Natural Area Preserve · SCA · Unknown · ~2,729 ac
-- Cypress Island Natural Resources Conservation Area · SCA · Unknown · ~2,716 ac
-- Cold Springs National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,685 ac
-- Cle Elum Lake · RMA · Unknown · ~2,680 ac
-- Whatcom Wildlife Area Complex · SCA · Unknown · ~2,661 ac
-- Oak Creek 2014 - 2588.27 Acre Parcel · SCA · Washington Department of Fish and Wildlife · ~2,589 ac
-- 4-O Ranch - Dec 2014 · SCA · Washington Department of Fish and Wildlife · ~2,568 ac
-- Klickitat Canyon Community Forest · SRMA · STATE OF WASHINGTON · ~2,489 ac
-- South Nemah Natural Resources Conservation Area · SCA · Unknown · ~2,427 ac
-- Riffe Buffer · SCA · Washington Department of Fish & Wildlife · ~2,351 ac
-- Stavis Creek Natural Resources Conservation Area · SCA · Unknown · ~2,341 ac
-- Iron Horse · SP · Unknown · ~2,334 ac
-- Clearwater Corridor Natural Resources Conservation Area · SCA · Unknown · ~2,312 ac
-- Rimrock Lake · RMA · Unknown · ~2,250 ac
-- 4-O Ranch - March 2014 · SCA · Washington Department of Fish and Wildlife · ~2,147 ac
-- Cadman · SCA · STATE FOREST BOARD · ~2,085 ac
-- Charley Creek Natural Area Preserve · SCA · Unknown · ~2,023 ac
-- Entiat Slopes Natural Area Preserve · SCA · Unknown · ~1,964 ac
+- NA ·  · BLM recreation sites · ~4,011 ac

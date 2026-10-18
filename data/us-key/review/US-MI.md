@@ -1,13 +1,12 @@
 # MI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **246 of 388** parks joined to official land (same name + same kind of place). **61** to check by hand, **81** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **247 of 388** parks joined to official land (same name + same kind of place). **60** to check by hand, **81** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0350** Michigan Wetland Management District (Wetland Management District) → Jackson County Waterfowl Production Area (~298 ac, the POTA pin is inside it (different name))
 - **US-10088** Headquarters Lake Flooding State Wildlife Area (State Wildlife Area) → Headquarters Lake Impoundment State Wildlife Management Area (~424 ac, similar name)
-- **US-10716** McCormick Wilderness Area (Wilderness Area) → Ottawa National Forest (~994,695 ac, the POTA pin is inside it (different name))
-- **US-10718** Sturgeon River Gorge Wilderness Area (Wilderness Area) → Ottawa National Forest (~994,695 ac, the POTA pin is inside it (different name))
+- **US-10716** McCormick Wilderness Area (Wilderness Area) → McCormick Wilderness (~17,184 ac, similar name); Ottawa National Forest (~994,695 ac, the POTA pin is inside it (different name))
 - **US-12786** Au Sable National Wild and Scenic River (National Wild and Scenic River) → Huron National Forest (~436,312 ac, the POTA pin is inside it (different name))
 - **US-12787** Bear Creek National Wild and Scenic River (National Wild and Scenic River) → Manistee National Forest (~538,905 ac, the POTA pin is inside it (different name))
 - **US-12789** Carp National Wild and Scenic River (National Wild and Scenic River) → Hiawatha National Forest (~899,303 ac, the POTA pin is inside it (different name))
@@ -20,7 +19,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **246 of 388** parks joined
 - **US-12798** Sturgeon (Hiawatha) National Wild and Scenic River (National Wild and Scenic River) → Hiawatha National Forest (~899,303 ac, similar name)
 - **US-12799** Sturgeon (Ottawa) National Wild and Scenic River (National Wild and Scenic River) → Ottawa National Forest (~994,695 ac, similar name)
 - **US-12800** Whitefish National Wild and Scenic River (National Wild and Scenic River) → Hiawatha National Forest (~899,303 ac, the POTA pin is inside it (different name))
-- **US-12801** Yellow Dog National Wild and Scenic River (National Wild and Scenic River) → Ottawa National Forest (~994,695 ac, the POTA pin is inside it (different name))
+- **US-12801** Yellow Dog National Wild and Scenic River (National Wild and Scenic River) → Ottawa National Forest (~994,695 ac, the POTA pin is inside it (different name)); McCormick Wilderness (~17,184 ac, the POTA pin is inside it (different name))
 - **US-12802** Norwich State Game Land (State Game Land) → Ottawa National Forest (~994,695 ac, the POTA pin is inside it (different name))
 - **US-13167** Grand Island National Recreation Area (National Recreation Area) → Hiawatha National Forest (~899,303 ac, the POTA pin is inside it (different name))
 - **US-13169** Lake Ottawa National Recreation Area (National Recreation Area) → Ottawa National Forest (~994,695 ac, similar name)
@@ -152,6 +151,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **246 of 388** parks joined
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Boundary Waters Canoe Area Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~1,097,112 ac
 - Shingleton State Foreset Area · SCA · MIDNR Forest Resources Division · ~368,105 ac
 - Newberry State Forest Area · SCA · MIDNR Forest Resources Division · ~348,461 ac
 - Crystal Falls State Forest Area · SCA · MIDNR Forest Resources Division · ~300,717 ac
@@ -162,27 +162,38 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **246 of 388** parks joined
 - Upper Mississippi River National Wildlife And Fish Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~64,584 ac
 - Necedah Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~54,219 ac
 - Necedah National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~44,040 ac
+- Headwaters Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~22,080 ac
 - Horicon National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~21,973 ac
 - Kirtland Warbler Unit Clear Lake · SCA · MIDNR Forest Resources Division · ~19,202 ac
+- Sylvania Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,440 ac
 - Upper Mississippi River National Wildlife And Fish Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~17,259 ac
+- McCormick Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~17,184 ac
 - Beaver Islands State Wildlife Research Area · SCA · MIDNR Wildlife Division · ~17,058 ac
 - Bullock Ranch State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~13,392 ac
 - Houghton Lake State Wildlife Research Area · SCA · MIDNR Wildlife Division · ~11,988 ac
+- Delirium Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,951 ac
 - Upper Mississippi River National Wildlife And Fish Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,691 ac
 - Natural Area Dead Stream Swamp · SCA · MIDNR Forest Resources Division · ~11,547 ac
+- Mackinac Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,426 ac
 - Muskegon County Wastewater System Management Area · SCA · MIDNR Wildlife Division · ~11,189 ac
 - University of Michigan Biological Station · SCA · University of Michigan · ~9,973 ac
 - Kirtland Warbler Unit Lovells · SCA · MIDNR Forest Resources Division · ~9,902 ac
+- Whisker Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,434 ac
 - Kirtland Warbler Unit Manistee · SCA · MIDNR Forest Resources Division · ~6,930 ac
 - Camp Grayling Military Reservation · SOTH · U.S. Department of Defense · ~6,834 ac
 - Upper Mississippi River National Wildlife And Fish Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,504 ac
 - Groveland Mine Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~6,238 ac
+- Blackjack Springs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,917 ac
+- Big Island Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,728 ac
+- Rock River Canyon Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,263 ac
 - Hardwood State Forest Wilderness Area · SCA · MIDNR Parks and Recreation Division · ~5,188 ac
 - Gladwin Game Unit and Field Trial Area of State Forest · SREC · MIDNR Wildlife Division · ~4,754 ac
 - Forest Reserve · SCA · Michigan Department of Transportation (MDOT) · ~4,230 ac
+- Horseshoe Bay Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,879 ac
 - Huron Purchase Unit · NF · Forest Service Region 09 Eastern · ~3,628 ac
 - Natural Area High Island · SCA · MIDNR Wildlife Division · ~3,584 ac
 - Genes Pond Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~3,453 ac
+- Nordhouse Dunes Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,336 ac
 - Natural Area South Branch AuSable River · SCA · MIDNR Forest Resources Division · ~2,640 ac
 - MNRTF Parcel · SCA · Michigan Department of Natural Resources · ~2,627 ac
 - Kirtland Warbler Unit N Branch · SCA · MIDNR Forest Resources Division · ~2,598 ac
@@ -200,15 +211,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **246 of 388** parks joined
 - Backus Lake Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~1,657 ac
 - Jordan River Natural Area · SCA · MIDNR Forest Resources Division · ~1,569 ac
 - Cusino State Wildlife Research Area · SCA · Michigan DNR Wildlife Division · ~1,562 ac
-- Natural Area Shakey Lakes · SCA · MIDNR Forest Resources Division · ~1,517 ac
-- State Forest · PCON · Michigan College of Mining and Technology · ~1,501 ac
-- Hardwood Reservoir Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~1,393 ac
-- Michigan State University · PREC · Michigan State University · ~1,391 ac
-- Green Bay National Wildlife Refuge · NWR · GREEN BAY NATIONAL WILDLIFE REFUGE · ~1,334 ac
-- Green Bay National Wildlife Refuge · NWR · Green Bay National Wildlife Refuge · ~1,334 ac
-- Edwin S. George Biological Station · SCA · University of Michigan · ~1,295 ac
-- Lux Arbor Reserve · SCA · Michigan State University · ~1,236 ac
-- State Forest · PCON · Michigan College of Mining and Technology · ~1,216 ac
-- Hackmatack National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,169 ac
-- Natural Area McMahon Lake Strangmoor · SCA · MIDNR Forest Resources Division · ~1,091 ac
-- Conners Marsh Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~1,052 ac
