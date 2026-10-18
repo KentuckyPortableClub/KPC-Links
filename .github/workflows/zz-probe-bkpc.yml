@@ -1,0 +1,39 @@
+name: zz probe bkpc
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v5
+      - run: |
+          python3 - <<'PY' || true
+          import json,urllib.request,urllib.parse
+          Q='https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query'
+          g=json.load(open('ky-kpc-drawn.geojson'));out={}
+          for f in g['features']:
+            ref=f['properties']['ref']
+            xs=[];ys=[]
+            def walk(c):
+              if isinstance(c[0],(int,float)): xs.append(c[0]);ys.append(c[1])
+              else: [walk(z) for z in c]
+            walk(f['geometry']['coordinates'])
+            b=[min(xs)-.004,min(ys)-.004,max(xs)+.004,max(ys)+.004]
+            q={'where':"State_Nm='KY'",'geometry':','.join(map(str,b)),'geometryType':'esriGeometryEnvelope','inSR':4326,'spatialRel':'esriSpatialRelIntersects',
+               'outFields':'OBJECTID,Unit_Nm,Loc_Nm,Own_Type,Own_Name,Mang_Type,Mang_Name,Category,GIS_Acres,Des_Tp,Pub_Access','returnGeometry':'true','outSR':4326,'geometryPrecision':6,'f':'geojson'}
+            try:
+              j=json.loads(urllib.request.urlopen(urllib.request.Request(Q+'?'+urllib.parse.urlencode(q),headers={'User-Agent':'KPC'}),timeout=120).read())
+              fs=[x for x in j.get('features',[]) if x['properties'].get('OBJECTID') not in [y['properties']['OBJECTID'] for y in out.get(ref,[])]]
+              out.setdefault(ref,[]).extend(fs)
+              print('::notice title=%s::%s'%(ref,'; '.join('%s/%s %s %s %s ac'%(x['properties'].get('Unit_Nm'),x['properties'].get('Loc_Nm'),x['properties'].get('Own_Type'),x['properties'].get('Mang_Name'),round(x['properties'].get('GIS_Acres') or 0)) for x in fs)[:900] or 'none'))
+            except Exception as e: print('::notice title=%s err::%s'%(ref,e))
+          json.dump(out,open('/tmp/probe.json','w'))
+          PY
+          git config user.name bot; git config user.email bot@x
+          git checkout -B zz-padus || true
+          cp /tmp/probe.json kpc-bkpc-probe.json || true
+          git add kpc-bkpc-probe.json || true
+          git commit -qm probe || true
+          git push -f origin zz-padus || true
