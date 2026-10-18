@@ -155,6 +155,21 @@ def pad_state(st):
 def out_date(): return time.strftime('%Y-%m-%d')
 
 
+PIN = {}
+def pins():
+    # 20 state park files have no lat/lon (older format): fall back to the site index, then locations.json
+    if PIN: return PIN
+    try:
+        for r in json.load(open('data/parkinfo/index.json')).get('rows', []):
+            if len(r) > 4 and r[3] is not None: PIN[r[0]] = (r[3], r[4])
+    except Exception: pass  # noqa: BLE001
+    try:
+        for r in json.load(open('locations.json')):
+            if r[0] == 'POTA' and r[1] not in PIN: PIN[r[1]] = (r[3], r[4])
+    except Exception: pass  # noqa: BLE001
+    return PIN
+
+
 def run(st):
     try: P = json.load(open(f'data/parkinfo/US-{st}.json'))['parks']
     except Exception: notice(f'US key {st}', 'no park file, skipped'); return None  # noqa: BLE001
@@ -162,6 +177,7 @@ def run(st):
     parks, used = {}, set()
     for ref, r in sorted(P.items()):
         name, typ, la, lo = r[0], r[2] if len(r) > 2 else '', r[5] if len(r) > 5 else None, r[6] if len(r) > 6 else None
+        if la is None and ref in pins(): la, lo = pins()[ref]
         kp = kinds(name) | kinds(typ)
         m, c = [], []
         for a in recs:

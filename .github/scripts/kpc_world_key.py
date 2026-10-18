@@ -49,11 +49,12 @@ GEN = {
     'DE': r"nationalpark|naturpark|naturschutzgebiet|landschaftsschutzgebiet|biospharenreservat|biospharengebiet|nationales naturmonument|ffh gebiet|"
           r"vogelschutzgebiet|europaisches vogelschutzgebiet|fauna flora habitat gebiet|schutzgebiet|gebiet|nsg|lsg|ffh|spa|und|im|am|an|der|die|das|des|von|bei|zum|zur",
     'GB': r"national nature reserve|local nature reserve|site of special scientific interest|sssi|nnr|lnr|country park|national park|regional park|nature reserve|"
-          r"area of outstanding natural beauty|national landscape|aonb|reserve|park|area",
+          r"area of outstanding natural beauty|national landscape|aonb|conservation reserve|protected area|natural area|special area of conservation|"
+          r"special protection area|sac|spa|ramsar|rspb|inc|reserve|park|area",
     'JP': r"quasi national park|national park|prefectural natural park|natural park|kokuritsu koen|kokutei koen|park",
 }
 KINDS = {
-    'AU': [('np', r'national park'), ('cp', r'conservation park|conservation reserve|conservation area'), ('nr', r'nature reserve|flora reserve|game reserve'),
+    'AU': [('np', r'national park'), ('cp', r'conservation park|conservation reserve|conservation area|n\.\s?c\.\s?r|\bc\.\s?a\.'), ('nr', r'nature reserve|flora reserve|game reserve|\bn\.\s?r\.|f\.\s?f\.\s?r'),
            ('sf', r'state forest|forest reserve'), ('rp', r'regional park|recreation'), ('hist', r'historic'), ('mp', r'marine')],
     'DE': [('np', r'nationalpark'), ('nat', r'naturpark'), ('nsg', r'naturschutzgebiet|\bnsg\b'), ('lsg', r'landschaftsschutzgebiet|\blsg\b'),
            ('br', r'biospharen'), ('ffh', r'\bffh\b|fauna flora habitat'), ('spa', r'vogelschutz'), ('nnm', r'naturmonument')],
@@ -63,12 +64,36 @@ KINDS = {
 }
 
 
+ABBR = [(r'\bn\.\s?c\.\s?r\b\.?', ' nature conservation reserve '), (r'\bf\.\s?f\.\s?r\b\.?', ' flora fauna reserve '),
+        (r'\bn\.\s?r\b\.?', ' nature reserve '), (r'\bc\.\s?a\b\.', ' conservation area '), (r'\bs\.\s?f\b\.', ' state forest '),
+        (r'\bb\.\s?r\b\.', ' bushland reserve '), (r'\bh\.\s?r\b\.', ' historic reserve ')]
+
+
 def norm(cc, s):
     s = flat(s).replace('&', ' and ')
+    if cc == 'AU':
+        for a, b in ABBR: s = re.sub(a, b, s)
     s = re.sub(r'\(.*?\)', ' ', s); s = re.sub(r"[’'`.]", '', s); s = re.sub(r'[-/,]', ' ', s)
     s = re.sub(r'[^a-z0-9 ]', ' ', s)
     s = re.sub(r'\b(' + GEN[cc] + r'|the|of|and)\b', ' ', s)
-    return re.sub(r'\s+', ' ', s).strip()
+    s = re.sub(r'\s+', ' ', s).strip()
+    if cc == 'JP':
+        s = s.replace(' ', '')
+        for a, b in (('ou', 'o'), ('oo', 'o'), ('uu', 'u'), ('aa', 'a'), ('ii', 'i'), ('nm', 'mm'), ('nb', 'mb'), ('np', 'mp')): s = s.replace(a, b)
+    return s
+
+
+KKS = None
+def romaji(t):
+    # Japanese layer names → Hepburn romaji so they can meet POTA's English names (pykakasi, installed in the workflow)
+    global KKS
+    if not re.search(r'[\u3040-\u30ff\u4e00-\u9fff]', t or ''): return t
+    if KKS is None:
+        try:
+            import pykakasi; KKS = pykakasi.kakasi()
+        except Exception: KKS = False  # noqa: BLE001
+    if not KKS: return t
+    return ' '.join(x['hepburn'] for x in KKS.convert(t))
 
 
 def kinds(cc, s): s = flat(s) + ' ' + str(s or ''); return {k for k, r in KINDS[cc] if re.search(r, s)}
@@ -131,12 +156,23 @@ def pull_arcgis(label, url):
     return recs
 
 
+FMT, TOLD = {}, set()
 def pull_wfs(label, url, typ):
     recs, start, step = [], 0, 1000
     while True:
         q = {'SERVICE': 'WFS', 'VERSION': '2.0.0', 'REQUEST': 'GetFeature', 'TYPENAMES': typ, 'OUTPUTFORMAT': 'application/json', 'SRSNAME': 'EPSG:4326',
              'COUNT': step, 'STARTINDEX': start}
-        j = fetch(url + '?' + urllib.parse.urlencode(q))
+        j = None
+        for fmt in ([FMT[url]] if url in FMT else ['application/json', 'application/geo+json', 'json', 'geojson', 'application/json; subtype=geojson']):
+            q['OUTPUTFORMAT'] = fmt
+            try:
+                j = fetch(url + '?' + urllib.parse.urlencode(q), tries=2); FMT[url] = fmt; break
+            except Exception as e:  # noqa: BLE001
+                try:
+                    with urllib.request.urlopen(urllib.request.Request(url + '?' + urllib.parse.urlencode(q), headers=UA), timeout=120) as rr: body = rr.read(400)
+                except Exception as e2: body = str(e2).encode()  # noqa: BLE001
+                if (url, fmt) not in TOLD: TOLD.add((url, fmt)); notice(f'WFS {fmt}', body.decode('utf-8', 'replace'))
+        if j is None: raise RuntimeError('no JSON output format worked')
         fs = j.get('features', [])
         for f in fs:
             p = f.get('properties') or {}; rs = rings_of(f.get('geometry'))
@@ -163,15 +199,21 @@ for cc in COUNTRIES:
         except Exception as e:  # noqa: BLE001
             notice(f'World key {cc}', f'{s[0]} FAILED: {e}')
     if not recs: continue
-    for r in recs: r['_k'] = kinds(cc, r['n']) | kinds(cc, r['ty']) | kinds(cc, r['src'])
+    if cc == 'JP':
+        for r in recs:
+            r['_k0'] = kinds(cc, r['n']) | kinds(cc, r['ty'])
+            if r['n']: r['nj'], r['n'] = r['n'], romaji(r['n'])
+        notice('World key JP sample', '; '.join(f"{r.get('nj')} → {r['n']} [{r['ty']}]" for r in recs[:12]) + ' | fields: ' + ', '.join(list(recs[0]['_a'].keys())[:30]))
+    for r in recs: r['_k'] = kinds(cc, r['n']) | kinds(cc, r['ty']) | kinds(cc, r['src']) | r.get('_k0', set())
     parks = {}
     for ref, x in sorted(P.items()):
         name, typ, la, lo = x[0], x[2], x[5], x[6]
         kp = kinds(cc, name) | kinds(cc, typ)
         m, c = [], []
+        cand = [name] + ([q for q in re.split(r'\s+-\s+', name) if q.strip()] if cc == 'GB' and ' - ' in name else [])
         for r in recs:
             if la is not None and not near(la, lo, r['_bb'], .6): continue
-            if r['n'] and same_name(cc, name, r['n']) and (not kp or not r['_k'] or kp & r['_k']):
+            if r['n'] and any(same_name(cc, q, r['n']) for q in cand) and (not kp or not r['_k'] or kp & r['_k']):
                 m.append([r['id'], r['n'], r['src'], 'name'])
         if not m and la is not None:
             for r in recs:
