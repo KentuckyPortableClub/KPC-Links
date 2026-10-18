@@ -1,0 +1,23 @@
+name: zz probe ky parks layers
+on: workflow_dispatch
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python3 - <<'P'
+          import urllib.request,urllib.parse,json
+          H={'User-Agent':'Mozilla/5.0'}
+          def j(u): return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers=H),timeout=90).read())
+          B='https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer'
+          s=j(B+'?f=json')
+          print('::notice title=layers::'+' | '.join(f"{l['id']} {l['name']}" for l in s['layers']))
+          for l in s['layers']:
+            try:
+              m=j(f"{B}/{l['id']}?f=json")
+              print(f"::notice title=L{l['id']} {l['name']}::{m.get('geometryType')} "+' '.join(f['name'] for f in m.get('fields',[]))[:600])
+              q=j(f"{B}/{l['id']}/query?"+urllib.parse.urlencode({'where':'1=1','geometry':'-85.36,37.98,-85.20,38.08','geometryType':'esriGeometryEnvelope','inSR':4326,'spatialRel':'esriSpatialRelIntersects','outFields':'*','returnGeometry':'false','f':'json','resultRecordCount':60}))
+              f=q.get('features',[])
+              print(f"::notice title=L{l['id']} Taylorsville n={len(f)}::"+json.dumps([x['attributes'] for x in f[:12]])[:1800])
+            except Exception as e: print(f"::notice title=L{l['id']} err::{e}")
+          P
