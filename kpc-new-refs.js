@@ -18,7 +18,7 @@
 #kpcNewRefs .nr-m{font-size:.8rem;opacity:.75;margin-top:2px}#kpcNewRefs .nr-l{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 #kpcNewRefs .nr-l a{font-size:.74rem;font-weight:800;letter-spacing:.05em;text-decoration:none;border:1px solid #c9a24a;border-radius:999px;padding:3px 9px;color:#2a1a05;background:#fff6dc}
 #kpcNewRefs .nr-more{margin-top:10px;font:inherit;font-weight:800;border:0;background:none;color:#8a5a00;cursor:pointer;text-decoration:underline}
-#kpcNewRefs .nr-st{font:inherit;font-weight:900;font-size:.85rem;letter-spacing:.06em;border:0;border-radius:8px;padding:3px 9px;background:#2a1a05;color:#f6d58a;cursor:pointer}#kpcNewRefs .nr-refs{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}#kpcNewRefs .nr-refs a{font-size:.8rem;text-decoration:none;border:1px solid #e4d3a6;border-radius:8px;padding:3px 8px;color:#2a1a05;background:#fffaf0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#kpcNewRefs .nr-back{font:inherit;font-weight:800;border:0;background:none;color:#8a5a00;cursor:pointer;margin:0 0 8px;padding:0}#kpcNewRefs .nr-none{margin:0;font-size:.9rem;opacity:.8}`;
+#kpcNewRefs .nr-st{font:inherit;font-weight:900;font-size:.85rem;letter-spacing:.06em;border:0;border-radius:8px;padding:3px 9px;background:#2a1a05;color:#f6d58a;cursor:pointer}#kpcNewRefs .nr-refs{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}#kpcNewRefs .nr-refs a{font-size:.8rem;text-decoration:none;border:1px solid #e4d3a6;border-radius:8px;padding:3px 8px;color:#2a1a05;background:#fffaf0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#kpcNewRefs .nr-plus{font-size:.74rem;padding:3px 9px}#kpcNewRefs ul{max-height:none}#kpcNewRefs .nr-back{font:inherit;font-weight:800;border:0;background:none;color:#8a5a00;cursor:pointer;margin:0 0 8px;padding:0}#kpcNewRefs .nr-none{margin:0;font-size:.9rem;opacity:.8}`;
   const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
   const ago = d => { const n = Math.round((Date.parse(new Date().toISOString().slice(0, 10)) - Date.parse(d)) / 864e5); return n <= 0 ? 'found today' : n === 1 ? 'found yesterday' : `found ${n} days ago`; };
   function links(i) {
@@ -30,7 +30,7 @@
     if (!KY) { L.push([`kpc-park-notes-us.html?ref=${r}`, '📝 ADD A TIP']); L.push([`kpc-planner-us.html?q=${r}`, 'TRIP PLANNER']); }
     return L.map(([h, t]) => `<a href="${h}"${/^https/.test(h) ? ' target="_blank" rel="noopener"' : ''}>${t}</a>`).join('');
   }
-  let ALL = [], prog = '', state = '', shown = 12;
+  let ALL = [], prog = '', state = '', shown = 12, stShown = 8;
   function draw() {
     const list = ALL.filter(i => (!prog || i.prog === prog) && (!state || (i.st || []).includes(state)));
     const progs = [...new Set(ALL.map(i => i.prog))];
@@ -45,10 +45,13 @@
       /* Oct 18 (Brandon): other states as a summary by state: 'GA · 7 new POTA parks: US-0096 …'; tap a state for the full cards */
       const by = {}; list.forEach(i => (i.st && i.st.length ? i.st : ['?']).forEach(st => (by[st] = by[st] || []).push(i)));
       const WORD = { pota: ['new POTA park', 'new POTA parks'], kff: ['new KFF reference', 'new KFF references'], sota: ['new SOTA summit', 'new SOTA summits'] };
-      h += '<ul>' + Object.keys(by).sort((x, y) => by[y].length - by[x].length || x.localeCompare(y)).map(st => {
+      /* Oct 18 (Brandon: 'make sure it doesn't get too big'): 8 states at a time + SHOW MORE STATES, 8 park chips per state + '+N more' */
+      const keys = Object.keys(by).sort((x, y) => by[y].length - by[x].length || x.localeCompare(y));
+      h += '<ul>' + keys.slice(0, stShown).map(st => {
         const g = by[st], parts = ['pota', 'kff', 'sota'].map(p => { const n = g.filter(i => i.prog === p).length; return n ? `${n} ${WORD[p][n > 1 ? 1 : 0]}` : ''; }).filter(Boolean).join(' · ');
-        return `<li><div class="nr-t"><button type="button" class="nr-st" data-st="${esc(st)}">${esc(st === '?' ? 'STATE NOT LISTED' : st)}</button><b>${esc(parts)}</b></div><div class="nr-refs">${g.map(i => `<a href="kpc-park-notes-us.html?ref=${encodeURIComponent(i.ref)}" title="${esc(i.name)}"><span class="nr-ref">${esc(i.ref)}</span> ${esc(i.name)}</a>`).join('')}</div></li>`;
+        return `<li><div class="nr-t"><button type="button" class="nr-st" data-st="${esc(st)}">${esc(st === '?' ? 'STATE NOT LISTED' : st)}</button><b>${esc(parts)}</b></div><div class="nr-refs">${g.slice(0, 8).map(i => `<a href="kpc-park-notes-us.html?ref=${encodeURIComponent(i.ref)}" title="${esc(i.name)}"><span class="nr-ref">${esc(i.ref)}</span> ${esc(i.name)}</a>`).join('')}${g.length > 8 ? `<button type="button" class="nr-st nr-plus" data-st="${esc(st)}">+${g.length - 8} MORE ›</button>` : ''}</div></li>`;
       }).join('') + '</ul>';
+      if (keys.length > stShown) h += `<button type="button" class="nr-more nr-mst">SHOW MORE STATES (${keys.length - stShown} left)</button>`;
     }
     else {
       if (!KY && state) h += `<button type="button" class="nr-back">← ALL STATES</button>`;
@@ -60,6 +63,7 @@
   }
   box.addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
+    if (b.classList.contains('nr-mst')) { stShown += 8; draw(); return; }
     if (b.classList.contains('nr-more')) { shown += 12; draw(); return; }
     if (b.dataset.st) { state = b.dataset.st === '?' ? '' : b.dataset.st; shown = 12; draw(); box.scrollIntoView({ block: 'start' }); return; }
     if (b.classList.contains('nr-back')) { state = ''; draw(); return; }
