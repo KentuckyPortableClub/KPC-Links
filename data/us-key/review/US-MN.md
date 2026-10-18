@@ -1,6 +1,6 @@
 # MN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **211 of 294** parks joined to official land (same name + same kind of place). **31** to check by hand, **52** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **205 of 294** parks joined to official land (same name + same kind of place). **34** to check by hand, **55** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -17,6 +17,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **211 of 294** parks joined
 - **US-10727** Pine Bend Bluffs SNA Scenic Reserve (Scenic Reserve) → Pine Bend Bluffs State Scientific and Natural Area (~316 ac, similar name)
 - **US-10728** Grey Cloud Dunes SNA Scenic Reserve (Scenic Reserve) → Grey Cloud Dunes State Scientific and Natural Area (~291 ac, similar name)
 - **US-11153** Matthew Lourey State Trail (State Trail) → Chengwatana State Forest (~17,023 ac, the POTA pin is inside it (different name))
+- **US-11788** Toad River AMA State Conservation Area (State Conservation Area) → Toad River State Aquatic Management Area (Becker/Otter Tail) (~46 ac, similar name)
 - **US-11872** Lost 40 SNA State Natural Area (State Natural Area) → Big Fork State Forest (~45,218 ac, the POTA pin is inside it (different name))
 - **US-12388** Caribou Falls Unique Area (Unique Area) → Caribou Falls State Wayside (~91 ac, similar name)
 - **US-12390** Flood Bay Unique Area (Unique Area) → Flood Bay State Wayside (~19 ac, similar name)
@@ -24,6 +25,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **211 of 294** parks joined
 - **US-12393** Kodonce River Unique Area (Unique Area) → Kodonce River State Wayside (~130 ac, similar name)
 - **US-12394** Ray Berglund Unique Area (Unique Area) → Ray Berglund (~47 ac, similar name)
 - **US-12395** St. Croix Boom Site Unique Area (Unique Area) → Saint Croix Islands (~12 ac, similar name)
+- **US-12463** Pool #4 Wildlife Management Area (Wildlife Management Area) → Pool 4 State Wildlife Management Area (~142 ac, similar name)
 - **US-13548** Knife River Marine Protected Area (Marine Protected Area) → Knife River State Aquatic Management Area (Lake/St. Louis) (~345 ac, similar name)
 - **US-2506** Lake Vermilion State Park (State Park) → Lake Vermilion-Soudan Underground Mine State Park (~4,094 ac, similar name)
 - **US-2517** St. Croix State Park (State Park) → Saint Croix National Scenic Riverway (~3,345 ac, similar name)
@@ -34,7 +36,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **211 of 294** parks joined
 - **US-4824** St. Croix State Forest (State Forest) → Saint Croix National Scenic Riverway (~3,345 ac, similar name)
 - **US-7145** Minnesota Valley State Recreation Area (State Recreation Area) → Minnesota Valley National Wildlife Refuge (~10,329 ac, same name, different kind of place); Minnesota Valley National Wildlife Refuge (~10,063 ac, same name, different kind of place)
 - **US-7148** Lake Vermilion Soudan Iron Mine State Park (State Park) → Lake Vermilion-Soudan Underground Mine State Park (~4,094 ac, similar name); Miscellaneous (~737,854 ac, the POTA pin is inside it (different name))
+- **US-9384** Minnesota Valley State Trail (State Trail) → Minnesota Valley National Wildlife Refuge (~10,329 ac, same name, different kind of place); Minnesota Valley National Wildlife Refuge (~10,063 ac, same name, different kind of place)
 - **US-9386** Browns Creek State Trail (State Trail) → Brown's Creek State Aquatic Management Area (Washington) (~22 ac, similar name)
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
 
 ## Nothing found in PAD-US
 
@@ -78,6 +84,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **211 of 294** parks joined
 - US-7147 Centennial State Forest (State Forest)
 - US-7759 David Dill Arrowhead State Trail (State Trail)
 - US-8095 Gitchi Gami State Trail (State Trail)
+- US-9373 Paul Bunyan State Trail (State Trail)
+- US-9374 Root River State Trail (State Trail)
 - US-9375 Harmony-Preston State Trail (State Trail)
 - US-9376 Shooting Star State Trail (State Trail)
 - US-9377 Blazing Star State Trail (State Trail)
@@ -88,6 +96,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **211 of 294** parks joined
 - US-9382 Great River Ridge State Trail (State Trail)
 - US-9383 Goodhue-Pioneer State Trail (State Trail)
 - US-9385 Gateway Overview State Trail (State Trail)
+- US-9388 Glacial Lakes State Trail (State Trail)
 - US-9389 Central Lakes State Trail (State Trail)
 - US-9390 Williard Munger State Trail (State Trail)
 

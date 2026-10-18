@@ -1,6 +1,6 @@
 # MT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 254** parks joined to official land (same name + same kind of place). **113** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **126 of 254** parks joined to official land (same name + same kind of place). **110** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -82,7 +82,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 254** parks joined
 - **US-12904** Otter Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Otter Creek Fishing Access Site (~29 ac, same name, different kind of place)
 - **US-12905** Pelican State Fish and Wildlife Area (State Fish and Wildlife Area) → Pelican Fishing Access Site (~122 ac, same name, different kind of place)
 - **US-12906** Pelican Point State Fish and Wildlife Area (State Fish and Wildlife Area) → Pelican Point Fishing Access Site (~94 ac, same name, different kind of place)
-- **US-12907** Pishkin Reservoir State Fish and Wildlife Area (State Fish and Wildlife Area) → Pishkun Reservoir Fishing Access Site (~1,650 ac, same name, different kind of place); Pishkun Reservoir (~397 ac, same name, different kind of place)
 - **US-12908** Prewitt Creek State Fish and Wildlife Area (State Fish and Wildlife Area) → Prewett Creek Fishing Access Site (~2 ac, same name, different kind of place)
 - **US-12909** Prickly Pear State Fish and Wildlife Area (State Fish and Wildlife Area) → Prickly Pear Fishing Access Site (~0 ac, same name, different kind of place); Butte Field Office (~323,091 ac, the POTA pin is inside it (different name)); Sleeping Giant (~30,921 ac, the POTA pin is inside it (different name))
 - **US-12910** Raynold's Pass State Fish and Wildlife Area (State Fish and Wildlife Area) → Raynolds' Pass Fishing Access Site (~170 ac, same name, different kind of place)
@@ -112,8 +111,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 254** parks joined
 - **US-12937** York's Islands State Fish and Wildlife Area (State Fish and Wildlife Area) → Yorks Islands Fishing Access Site (~16 ac, same name, different kind of place); Uppermost Missouri River (~82,354 ac, the POTA pin is inside it (different name))
 - **US-12941** Judith Landing State Park (State Park) → Upper Missouri River Breaks National Monument (~0 ac, the POTA pin is inside it (different name))
 - **US-2557** Anaconda Smelter Stack State Park (State Park) → Anaconda Smoke Stack State Park (~13 ac, similar name)
-- **US-2566** Cooney Reservoir State Park (State Park) → Cooney State Park (~354 ac, similar name)
-- **US-2603** Wayfarers State Park (State Park) → Flathead Lake/Wayfarers State Park (~64 ac, similar name)
 - **US-6443** Lowry Bridge State Recreation Area (State Recreation Area) → Lowry Bridge (~82 ac, same name, different kind of place); Lowry Bridge (~82 ac, same name, different kind of place)
 - **US-8002** Ninepipe National Wildlife Refuge (National Wildlife Refuge) → Ninepipe Wildlife Management Area (~4,152 ac, same name, different kind of place)
 - **US-8003** Pablo National Wildlife Refuge (National Wildlife Refuge) → Pablo Wildlife Management Area (~195 ac, same name, different kind of place)

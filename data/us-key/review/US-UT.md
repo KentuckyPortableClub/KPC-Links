@@ -1,6 +1,6 @@
 # UT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **208 of 690** parks joined to official land (same name + same kind of place). **169** to check by hand, **87** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **213 of 690** parks joined to official land (same name + same kind of place). **164** to check by hand, **87** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -65,14 +65,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **208 of 690** parks joined
 - **US-12236** Provo River Delta - Utah State Fish and Wildlife Area (State Fish and Wildlife Area) → Salt Lake  Field Office (~3,284,358 ac, the POTA pin is inside it (different name))
 - **US-12998** Cache Valley Public Shooting Range Utah DWR State Recreation Site (State Recreation Site) → Cache National Forest (~436,715 ac, similar name)
 - **US-13488** Pando - "I Spread" - Aspen Clone Site of Significant Scientific Interest (Site of Significant Scientific Interest) → Fishlake National Forest (~1,455,499 ac, the POTA pin is inside it (different name))
-- **US-3070** Escalante Petrified Forest State Park (State Park) → Escalante (~22,795 ac, similar name); Escalante State Park (~1,330 ac, similar name)
 - **US-3072** Frontier Homestead State Park (State Park) → Utah State Department of Wildlife Resources 62 (~1 ac, the POTA pin is inside it (different name))
 - **US-3075** Great Salt Lake State Park (State Park) → Salt Lake  Field Office (~3,284,358 ac, similar name)
 - **US-3092** Fred Hayes at Starvation State Park (State Park) → Starvation State Park (~7,370 ac, similar name)
 - **US-5753** Fort Deseret State Historic Site (State Historic Site) → Fort Deseret State Park (~10 ac, same name, different kind of place)
 - **US-5755** Westwater Canyon BLM National Conservation Area (BLM National Conservation Area) → Westwater Canyon (~0 ac, same name, different kind of place); Westwater Canyon (~0 ac, same name, different kind of place); Moab Field Office (~1,860,872 ac, the POTA pin is inside it (different name)); Two Rivers (~28,787 ac, the POTA pin is inside it (different name))
 - **US-5756** Browns Park National Wildlife Management Area (National Wildlife Management Area) → Browns Park (~18,490 ac, similar name)
-- **US-5757** John Wesley Powell BLM National Conservation Area (BLM National Conservation Area) → John Wesley Powell (~0 ac, same name, different kind of place); Vernal Field Office (~1,665,188 ac, the POTA pin is inside it (different name))
 - **US-5761** La Sal Mountain National Forest (National Forest) → State Trust Lands North La Sal Block (~18,182 ac, the POTA pin is inside it (different name))
 - **US-5768** Bonanza BLM Herd Management Area (BLM Herd Management Area) → Vernal Field Office (~1,665,188 ac, the POTA pin is inside it (different name))
 - **US-5769** Utah Field House of Natural History State Park (State Park) → Utah Field House Natuarl History State Park (~2 ac, similar name)
@@ -93,8 +91,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **208 of 690** parks joined
 - **US-5817** Lone Mesa Viewpoint BLM Wilderness Area (Wilderness Area) → Moab Field Office (~1,860,872 ac, the POTA pin is inside it (different name)); Labyrinth Rims / Gemini Bridges (~299,971 ac, the POTA pin is inside it (different name))
 - **US-5819** Gemini Bridges Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → Labyrinth Rims / Gemini Bridges (~299,971 ac, similar name); State of Utah Deptartment of Transportation 5356 (~29 ac, the POTA pin is inside it (different name))
 - **US-5821** Mountain Meadows Massacre National Historic Site (National Historic Site) → Dixie National Forest (~1,632,927 ac, the POTA pin is inside it (different name))
-- **US-5822** Pariette Wetlands BLM National Conservation Area (BLM National Conservation Area) → Pariette Wetlands Overlook (~0 ac, similar name); Pariette Wetlands Overlook (~0 ac, similar name); Pariette Wetlands (~1 ac, same name, different kind of place); Pariette Wetlands (~1 ac, same name, different kind of place); Vernal Field Office (~1,665,188 ac, the POTA pin is inside it (different name))
-- **US-5824** Floy Canyon BLM National Conservation Area (BLM National Conservation Area) → Floy Canyon (~0 ac, similar name); Moab Field Office (~1,860,872 ac, the POTA pin is inside it (different name))
+- **US-5822** Pariette Wetlands BLM National Conservation Area (BLM National Conservation Area) → Pariette Wetlands (~1 ac, same name, different kind of place); Pariette Wetlands (~1 ac, same name, different kind of place); Pariette Wetlands Overlook (~0 ac, same name, different kind of place); Pariette Wetlands Overlook (~0 ac, same name, different kind of place); Vernal Field Office (~1,665,188 ac, the POTA pin is inside it (different name))
+- **US-5824** Floy Canyon BLM National Conservation Area (BLM National Conservation Area) → Floy Canyon (~0 ac, same name, different kind of place); Moab Field Office (~1,860,872 ac, the POTA pin is inside it (different name))
 - **US-5833** Horseshoe Canyon (North) BLM Wilderness Area (Wilderness Area) → Price Field Office (~2,480,295 ac, the POTA pin is inside it (different name)); Labyrinth Canyon (~37,203 ac, the POTA pin is inside it (different name)); Labyrinth Canyon (~0 ac, the POTA pin is inside it (different name))
 - **US-5836** Jack Canyon BLM Wilderness Area (Wilderness Area) → Jack Canyon (~0 ac, same name, different kind of place); Price Field Office (~2,480,295 ac, the POTA pin is inside it (different name))
 - **US-5837** Labrynth Canyon BLM Wilderness Area (Wilderness Area) → Price Field Office (~2,480,295 ac, the POTA pin is inside it (different name)); Labyrinth Canyon (~0 ac, the POTA pin is inside it (different name))
@@ -149,7 +147,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **208 of 690** parks joined
 - **US-6025** Willis Creek BLM Wild and Scenic River (BLM Wild and Scenic River) → St. George Field Office (~629,088 ac, the POTA pin is inside it (different name))
 - **US-6032** Spring Creek Canyon BLM Wilderness Area (Wilderness Area) → Spring Creek Canyon (~0 ac, same name, different kind of place); The State of Utah School and Institutional Trust Lands Administration 932 (~679 ac, the POTA pin is inside it (different name))
 - **US-6035** Zion NPS Wilderness Area (Wilderness Area) → Zion National Park (~145,304 ac, similar name)
-- **US-6045** Swasey Mountain BLM Herd Management Area (BLM Herd Management Area) → Swasey (~128,183 ac, similar name); Swasey Mountain (~33,506 ac, same name, different kind of place); Swasey Mountain (~0 ac, same name, different kind of place); Swasey Mountain (~0 ac, same name, different kind of place); Swasey Mountain (~0 ac, same name, different kind of place); Fillmore Field Office (~4,420,134 ac, the POTA pin is inside it (different name))
 - **US-6046** Swasey Mountain BLM Wilderness Area (Wilderness Area) → Swasey (~128,183 ac, similar name); Swasey Mountain (~33,506 ac, same name, different kind of place); Swasey Mountain (~0 ac, same name, different kind of place); Swasey Mountain (~0 ac, same name, different kind of place); Fillmore Field Office (~4,420,134 ac, the POTA pin is inside it (different name))
 - **US-6048** Notch Peak Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → Notch Peak (~0 ac, similar name); Notch Peak (~0 ac, similar name); Notch Peak (~0 ac, similar name); Fillmore Field Office (~4,420,134 ac, the POTA pin is inside it (different name))
 - **US-6049** Howell Peak BLM Wilderness Area (Wilderness Area) → Howell Peak (~0 ac, same name, different kind of place); Howell Peak (~0 ac, same name, different kind of place); Howell Peak (~0 ac, same name, different kind of place); Fillmore Field Office (~4,420,134 ac, the POTA pin is inside it (different name))
@@ -162,13 +159,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **208 of 690** parks joined
 - **US-6073** King Top BLM Recreation Management Area (BLM Recreation Management Area) → King Top (~0 ac, same name, different kind of place); King Top (~0 ac, same name, different kind of place); Fillmore Field Office (~4,420,134 ac, the POTA pin is inside it (different name)); Kingtop (~161,575 ac, the POTA pin is inside it (different name))
 - **US-6074** King Top Mountains BLM Herd Management Area (BLM Herd Management Area) → King Top (~0 ac, similar name); King Top (~0 ac, similar name); Fillmore Field Office (~4,420,134 ac, the POTA pin is inside it (different name)); Kingtop (~161,575 ac, the POTA pin is inside it (different name))
 - **US-6075** Wah Wah Mountains BLM Wilderness Area (Wilderness Area) → Wah Wah Mountains (~0 ac, same name, different kind of place); Wah Wah Mountains (~0 ac, same name, different kind of place); Cedar City Field Office (~2,093,236 ac, the POTA pin is inside it (different name))
-- **US-6077** Red Cliffs BLM National Conservation Area (BLM National Conservation Area) → Red Cliffs SRMA (~61,251 ac, similar name); Red Cliffs Recreation Area (~873 ac, similar name); Red Cliffs Recreation Area (~873 ac, similar name); Red Cliffs (~0 ac, similar name); St. George Field Office (~629,088 ac, the POTA pin is inside it (different name))
 - **US-6078** Fort Pearce BLM National Historic Site (National Historic Site) → St. George Field Office (~629,088 ac, the POTA pin is inside it (different name)); Sand Mountain (~41,054 ac, the POTA pin is inside it (different name))
 - **US-6080** Conger Mountain One Day Ride BLM Recreation Management Area (BLM Recreation Management Area) → Conger (~151,620 ac, similar name); Fillmore Field Office (~4,420,134 ac, the POTA pin is inside it (different name))
 - **US-6085** Conger Mountain BLM Wilderness Area (Wilderness Area) → Conger (~151,620 ac, similar name); Conger Mountain (~0 ac, same name, different kind of place); Fillmore Field Office (~4,420,134 ac, the POTA pin is inside it (different name))
 - **US-6086** Conger BLM Herd Management Area (BLM Herd Management Area) → Cedar City Field Office (~2,093,236 ac, the POTA pin is inside it (different name))
 - **US-6092** Joshua Tree National Landmark BLM National Conservation Area (BLM National Conservation Area) → Joshua Tree National Natural Landmark (~1,048 ac, similar name); Joshua Tree National Natural Landmark (~1,048 ac, similar name); St. George Field Office (~629,088 ac, the POTA pin is inside it (different name)); Beaver Dam Wash SRMA (~63,478 ac, the POTA pin is inside it (different name)); Beaver Dam Wash - Designated Road Area (~0 ac, the POTA pin is inside it (different name))
-- **US-6096** Beaver Dam Wash National Conservation Area (National Conservation Area) → Beaver Dam Wash - Designated Road Area (~0 ac, similar name); Beaver Dam Wash SRMA (~63,478 ac, same name, different kind of place); Beaver Dam Wash (~0 ac, same name, different kind of place); St. George Field Office (~629,088 ac, the POTA pin is inside it (different name))
 - **US-6097** North Hills Wild Horse Territory USFS and BLM Herd Management Area (BLM Herd Management Area) → North Hills (~50,065 ac, similar name); North Hills (~61 ac, similar name); Cedar City Field Office (~2,093,236 ac, the POTA pin is inside it (different name))
 - **US-6098** Sulphur BLM Herd Management Area (BLM Herd Management Area) → Sulpher (~230,177 ac, the POTA pin is inside it (different name))
 - **US-6106** Gandy Caves BLM Wilderness Area (Wilderness Area) → Gandy Mountain Caves (~1,137 ac, similar name); Fillmore Field Office (~4,420,134 ac, the POTA pin is inside it (different name))
@@ -520,7 +515,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **208 of 690** parks joined
 - White Mountain ·  · BLM herd management areas · ~207,372 ac
 - Kingtop ·  · BLM herd management areas · ~161,575 ac
 - Conger ·  · BLM herd management areas · ~151,620 ac
-- Swasey ·  · BLM herd management areas · ~128,183 ac
 - MCNCA SRMA ·  · BLM recreation sites · ~123,593 ac
 - North Desert ·  · BLM recreation sites · ~107,928 ac
 - State Trust Lands Parker Mountain Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~105,403 ac
@@ -555,3 +549,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **208 of 690** parks joined
 - Labyrinth Canyon ·  · BLM recreation sites · ~37,203 ac
 - 'Unnamed' Cross Canyons ·  · BLM recreation sites · ~37,090 ac
 - State Trust Lands I-80 Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~35,309 ac
+- Gateway ·  · BLM recreation sites · ~35,084 ac

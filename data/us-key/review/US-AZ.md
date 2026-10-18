@@ -1,43 +1,37 @@
 # AZ: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **78 of 123** parks joined to official land (same name + same kind of place). **34** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **87 of 123** parks joined to official land (same name + same kind of place). **17** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-10510** Dos Cabezas Mountains Wilderness Area (Wilderness Area) → Safford Field Office (~1,397,557 ac, the POTA pin is inside it (different name))
 - **US-1052** Alamo Lake State Park (State Park) → Alamo (~189,084 ac, similar name); Lake Havasu Field Office (~1,268,987 ac, the POTA pin is inside it (different name))
 - **US-1055** Catalina State Park (State Park) → Coronado National Forest (~1,652,117 ac, the POTA pin is inside it (different name))
 - **US-1061** Lost Dutchman State Park (State Park) → Lower Sonoran Field Office (~1,404,336 ac, the POTA pin is inside it (different name))
 - **US-1069** Tonto Natural Bridge State Park (State Park) → Tonto National Forest (~2,866,817 ac, similar name)
-- **US-10995** Sunshine Loop and Dutchman Mountain Bike Trails BLM Recreation Management Area (BLM Recreation Management Area) → Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name))
-- **US-11045** Painted Rock Petroglyph Site National Historical Site (National Historical Site) → Lower Sonoran Field Office (~1,404,336 ac, the POTA pin is inside it (different name))
-- **US-11046** Eagletail Mountains Wilderness Area (Wilderness Area) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name))
-- **US-11047** Trigo Mountain Wilderness Area (Wilderness Area) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name)); Cibola-Trigo (~152,337 ac, the POTA pin is inside it (different name))
-- **US-11049** New Water Mountains Wilderness Area (Wilderness Area) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name))
 - **US-11122** General Crook National Recreation Trail (National Recreation Trail) → Sitgreaves National Forest (~820,490 ac, the POTA pin is inside it (different name))
 - **US-11123** Highline National Recreation Trail (National Recreation Trail) → Tonto National Forest (~2,866,817 ac, the POTA pin is inside it (different name))
-- **US-11942** Wabayuma Peak BLM Wilderness Area (BLM Wilderness Area) → Kingman Field Office (~2,476,668 ac, the POTA pin is inside it (different name))
 - **US-11944** Dankworth Pond State Park (State Park) → Roper Lake State Park (~81 ac, the POTA pin is inside it (different name))
-- **US-11971** Virgin River Canyon BLM Recreation Management Area (BLM Recreation Management Area) → Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name))
-- **US-11975** Table Mesa BLM Recreation Management Area (BLM Recreation Management Area) → Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name))
 - **US-11979** Allen Severson State Wildlife Area (State Wildlife Area) → Sitgreaves National Forest (~820,490 ac, the POTA pin is inside it (different name))
 - **US-11981** Arivaca Lake State Wildlife Area (State Wildlife Area) → Arivaca Land and Lake (~208 ac, similar name)
-- **US-11984** Quigley-Achee State Wildlife Area (State Wildlife Area) → Quigley Wildlife Area (~610 ac, similar name)
 - **US-11987** White Mountain State Wildlife Area (State Wildlife Area) → State Trust Land (~7,977,759 ac, the POTA pin is inside it (different name))
 - **US-12142** Dominguez-Escalante Site National Historic Site (National Historic Site) → Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name)); Baaj Nwaavjo I'tah Kukveni - Ancestral Footprints of the Grand Canyon (~0 ac, the POTA pin is inside it (different name))
-- **US-12161** Round Mountain Rockhound BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Safford Field Office (~1,397,557 ac, the POTA pin is inside it (different name))
-- **US-12162** Sears Point BLM Historic Preservation Site (BLM Historic Preservation Site) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name))
 - **US-13337** Church Camp Road BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Church Camp Facility Area (~16 ac, similar name); Church Camp Facility Area (~16 ac, similar name); Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name)); Lake Pleasant (~60,836 ac, the POTA pin is inside it (different name))
-- **US-13593** Boulders OHV Staging Area BLM Recreation Management Area (BLM Recreation Management Area) → Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name)); Lake Pleasant (~60,836 ac, the POTA pin is inside it (different name))
 - **US-13594** Black Canyon National Recreation Trail (National Recreation Trail) → Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name))
 - **US-3672** Fool Hollow Lake State Recreation Area (State Recreation Area) → Sitgreaves National Forest (~820,490 ac, the POTA pin is inside it (different name))
 - **US-4557** Arizona Trail National Scenic Trail (National Scenic Trail) → Coronado National Forest (~1,652,117 ac, the POTA pin is inside it (different name))
-- **US-6071** Little Black Mountain Petroglyph Site State Historic Site (State Historic Site) → Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name))
-- **US-6090** Beaver Dam Mountain Wilderness Area (Wilderness Area) → Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name))
-- **US-7381** Las Cienegas National Conservation Area (National Conservation Area) → Las Cienegas (~0 ac, similar name); State Trust Land (~7,977,759 ac, the POTA pin is inside it (different name))
-- **US-7383** Tonto State Fish Hatchery (State Fish Hatchery) → Tonto National Forest (~2,866,817 ac, similar name)
-- **US-8297** Muggins Mountain Wilderness Area (Wilderness Area) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name))
+- **US-7383** Tonto State Fish Hatchery (State Fish Hatchery) → Tonto National Forest (~2,866,817 ac, same name, different kind of place)
 - **US-8298** Mittry Lake Wildlife Area (Wildlife Area) → Cibola-Trigo (~152,337 ac, the POTA pin is inside it (different name))
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
+- US-10995 Sunshine Loop and Dutchman Mountain Bike Trails BLM Recreation Management Area (BLM Recreation Management Area) → on Arizona Strip Field Office (~2,766,023 ac)
+- US-11045 Painted Rock Petroglyph Site National Historical Site (National Historical Site) → on Lower Sonoran Field Office (~1,404,336 ac)
+- US-11971 Virgin River Canyon BLM Recreation Management Area (BLM Recreation Management Area) → on Arizona Strip Field Office (~2,766,023 ac)
+- US-11975 Table Mesa BLM Recreation Management Area (BLM Recreation Management Area) → on Hassayampa Field Office (~970,921 ac)
+- US-12161 Round Mountain Rockhound BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Safford Field Office (~1,397,557 ac)
+- US-12162 Sears Point BLM Historic Preservation Site (BLM Historic Preservation Site) → on Yuma Field Office (~1,190,046 ac)
+- US-13593 Boulders OHV Staging Area BLM Recreation Management Area (BLM Recreation Management Area) → on Lake Pleasant (~60,836 ac); Hassayampa Field Office (~970,921 ac)
+- US-6071 Little Black Mountain Petroglyph Site State Historic Site (State Historic Site) → on Arizona Strip Field Office (~2,766,023 ac)
 
 ## Nothing found in PAD-US
 

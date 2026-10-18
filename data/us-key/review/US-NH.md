@@ -1,19 +1,20 @@
 # NH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 205** parks joined to official land (same name + same kind of place). **10** to check by hand, **66** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 205** parks joined to official land (same name + same kind of place). **7** to check by hand, **67** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0450** Lake Umbagog National Wildlife Refuge (National Wildlife Refuge) → Umbagog National Wildlife Refuge (~21,882 ac, similar name); Umbagog National Wildlife Refuge (~21,882 ac, similar name)
+- **US-11848** Temple Mountain State Reservation State Natural Reserve (State Natural Reserve) → Temple Mountain State Reservation (~345 ac, similar name)
 - **US-11849** Wantastiquet Mt Natural Area State Natural Site (State Natural Site) → Wantastiquet Mountain Natural Area (~913 ac, the POTA pin is inside it (different name))
 - **US-13486** Bellamy River Wildlife Management Area - East Wildlife Management Area (Wildlife Management Area) → Bellamy River Wildlife Management Area - West - Lot 2 (~34 ac, similar name); Bellamy River Access (~34 ac, similar name)
 - **US-13541** Magalloway Mountain Fire Tower State Preserve (State Preserve) → Magalloway Mountain (~2 ac, similar name)
-- **US-2650** Eisenhower Memorial Wayside State Park (State Park) → White Mountain Purchase Unit (~29,310 ac, the POTA pin is inside it (different name))
-- **US-2666** Mount Sunapee State Park (State Park) → Sunapee State Park (~2,362 ac, similar name); Sunapee State Park (~133 ac, similar name); Sunapee State Park (~3 ac, similar name)
-- **US-2679** Umbagog Lake State Park (State Park) → Umbagog National Wildlife Refuge (~21,882 ac, similar name); Umbagog National Wildlife Refuge (~21,882 ac, similar name); Umbagog State Park (~1,185 ac, similar name); Umbagog State Park (~257 ac, similar name); Umbagog State Park (~27 ac, similar name); Umbagog State Park (~14 ac, similar name)
 - **US-4926** Lovewell Mountain State Forest (State Forest) → Pillsbury State Park (~5,398 ac, the POTA pin is inside it (different name))
 - **US-8021** Gov. Wentworth State Historic Site (State Historic Site) → Wentworth State Park (~52 ac, similar name)
 - **US-8029** Sculptured Rocks State Natural Area (State Natural Area) → Sculptured Rocks Geologic Site (~264 ac, similar name)
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
+- US-2650 Eisenhower Memorial Wayside State Park (State Park) → on White Mountain Purchase Unit (~29,310 ac)
 
 ## Nothing found in PAD-US
 
@@ -61,6 +62,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 205** parks joined
 - US-4927 Low State Forest (State Forest)
 - US-4930 Mast Yard State Forest (State Forest)
 - US-4931 Max Israel State Forest (State Forest)
+- US-4936 Nash Stream Forest State Forest (State Forest)
 - US-4939 Opechee Bay State Forest (State Forest)
 - US-4941 Page's Corner State Forest (State Forest)
 - US-4946 Powwow River State Forest (State Forest)
@@ -90,8 +92,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 205** parks joined
 - Sandwich Range Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~35,299 ac
 - Presidential Range-Dry River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~27,645 ac
 - Wild River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,032 ac
-- Umbagog National Wildlife Refuge · NWR · UMBAGOG NATIONAL WILDLIFE REFUGE · ~21,882 ac
-- Umbagog National Wildlife Refuge · NWR · Umbagog National Wildlife Refuge · ~21,882 ac
 - Appalachian National Scenic Trail · NT · NPS · ~14,264 ac
 - Caribou-Speckled Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,250 ac
 - Missisquoi National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,342 ac
@@ -99,7 +99,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 205** parks joined
 - Parker River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~4,572 ac
 - Enfield Wildlife Management Area · SCA ·   · ~3,025 ac
 - Murphy Dam / Lake Francis · SOTH ·   · ~2,801 ac
-- Sunapee State Park · SP ·   · ~2,362 ac
 - 13 Mile Woods Community Forest · SOTH ·   · ~1,918 ac
 - William B. Ruger Wildlife Management Area - South · SCA ·   · ~1,905 ac
 - Surry Mountain Recreation Area · REC · New England · ~1,683 ac
@@ -107,7 +106,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 205** parks joined
 - Heath Pond Bog Natural Area · SCA ·   · ~1,369 ac
 - Mt Kelsey Wildlife Management Area · SCA ·   · ~1,281 ac
 - William B. Ruger Wildlife Management Area - North · SCA ·   · ~1,272 ac
-- Umbagog State Park · SP ·   · ~1,185 ac
 - Kearsarge Wildlife Management Area · SCA ·   · ~1,036 ac
 - Pontook - Lease Area · WPA ·   · ~993 ac
 - Greenough Ponds Wildlife Management Area · SCA ·   · ~936 ac
@@ -136,6 +134,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 205** parks joined
 - Milton Mills Wildlife Management Area · SCA ·   · ~366 ac
 - UNH - Jones Property · REA ·   · ~351 ac
 - Tunis District Conservation Area - GP · SOTH · NH Department of Environmental Services · ~350 ac
+- Temple Mountain State Reservation · SRMA ·   · ~345 ac
 - UNH - Kingman Farm · REA ·   · ~341 ac
 - Pine Road Site · SCA ·   · ~333 ac
 - NH Department of Transportation Mitigation · SOTH ·   · ~332 ac
@@ -146,3 +145,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 205** parks joined
 - Twitchell Environmental Study Area · REA ·   · ~309 ac
 - Merrymeeting Marsh Wildlife Management Area · SCA ·   · ~297 ac
 - Upper Merrimack Oxbow Project · SREC · NH Fish & Game · ~292 ac
+- Carpenters Marsh Wildlife Management Area · SCA ·   · ~291 ac
+- Perkins Pond Wildlife Management Area · SCA ·   · ~291 ac
+- Fort Hill Wildlife Management Area · SCA ·   · ~276 ac

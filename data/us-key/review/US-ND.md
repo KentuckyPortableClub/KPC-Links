@@ -1,6 +1,6 @@
 # ND: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 155** parks joined to official land (same name + same kind of place). **22** to check by hand, **58** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **74 of 155** parks joined to official land (same name + same kind of place). **23** to check by hand, **58** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -15,6 +15,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 155** parks joined 
 - **US-8563** Apple Creek Bottoms Wildlife Management Area (Wildlife Management Area) → Oahe Wildlife Management Area (~16,734 ac, the POTA pin is inside it (different name))
 - **US-8564** Armourdale Lake Wildlife Management Area (Wildlife Management Area) → Armourdale Lake (~23 ac, same name, different kind of place)
 - **US-8565** Arroda Lake Wildlife Management Area (Wildlife Management Area) → Arroda Lake (~380 ac, same name, different kind of place)
+- **US-8576** Deepwater Creek Wildlife Management Area (Wildlife Management Area) → Deepwater (~2,344 ac, same name, different kind of place); Sakakawea Recreation Area (~478,564 ac, the POTA pin is inside it (different name))
 - **US-8578** Erie Dam/Brewer Lake Wildlife Management Area (Wildlife Management Area) → Erie Dam (~1,018 ac, similar name)
 - **US-8580** Harmony Lake Wildlife Management Area (Wildlife Management Area) → Harmony Lake (~492 ac, same name, different kind of place)
 - **US-8583** Horsehead Lake Wildlife Management Area (Wildlife Management Area) → Horsehead Lake (~453 ac, same name, different kind of place)
@@ -26,6 +27,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 155** parks joined 
 - **US-8607** Sweet Briar Lake Wildlife Management Area (Wildlife Management Area) → Sweetbriar Lake (~875 ac, same name, different kind of place)
 - **US-8608** Thompson Lake Wildlife Management Area (Wildlife Management Area) → Thompson Lake (~802 ac, same name, different kind of place)
 - **US-8612** Wild Prairie Wildlife Management Area (Wildlife Management Area) → Wild Prairie (~1,819 ac, same name, different kind of place)
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
 
 ## Nothing found in PAD-US
 
@@ -91,7 +95,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 155** parks joined 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Nd State Lands - Surface Ownership · SRMA · Unknown · ~712,367 ac
-- Sakakawea Recreation Area · REC · Omaha · ~478,564 ac
 - Lewis and Clark Trail ·  · BLM recreation sites · ~240,750 ac
 - Devils Lake · RMA · Unknown · ~97,667 ac
 - Oaha Recreation Area · REC · Omaha · ~90,626 ac
@@ -150,3 +153,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 155** parks joined 
 - Lamoure County Waterfowl Production Area · RMA · Lamoure County Waterfowl Production Area · ~5,466 ac
 - Pembina Hills · SCA · Unknown · ~5,292 ac
 - Sargent County Waterfowl Production Area · RMA · SARGENT COUNTY WATERFOWL PRODUCTION AREA · ~4,856 ac
+- Sargent County Waterfowl Production Area · RMA · Sargent County Waterfowl Production Area · ~4,856 ac

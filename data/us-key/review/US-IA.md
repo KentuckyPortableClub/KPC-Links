@@ -1,19 +1,20 @@
 # IA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **162 of 181** parks joined to official land (same name + same kind of place). **10** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **164 of 181** parks joined to official land (same name + same kind of place). **8** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0270** Iowa Wetland Management District (Wetland Management District) → Union Slough National Wildlife Refuge (~2,834 ac, the POTA pin is inside it (different name)); Union Slough National Wildlife Refuge (~2,834 ac, the POTA pin is inside it (different name))
 - **US-10174** Marble Beach State Recreation Area (State Recreation Area) → Templar State Recreation Area (~61 ac, the POTA pin is inside it (different name))
-- **US-10318** Chichaqua Wildlife Area (Wildlife Area) → Chichaqua Bottoms Wildlife Management Area (~1,557 ac, similar name); Chichaqua Bottoms Wildlife Management Area (~1,148 ac, similar name); Chichaqua Bottoms Wildlife Management Area (~776 ac, similar name)
 - **US-11305** Wapsipinicon River Water State Trail (State Trail) → Gambril Access (~5 ac, the POTA pin is inside it (different name))
 - **US-11877** La Soya Wildlife Area (Wildlife Area) → Lasoya Wildlife Management Area (~78 ac, the POTA pin is inside it (different name))
-- **US-2309** Okamanpedan (Tuttle) State Park (State Park) → Okamanpedan State Park (~27 ac, similar name)
-- **US-4656** Barkley Memorial State Forest (State Forest) → Barkley State Forest (~209 ac, similar name)
 - **US-5730** Blood Run State Historic Site (State Historic Site) → Blood Run/Rock Island National Landmark (~167 ac, similar name); Blood Run National Historic Landmark Area Tcf Tract (~7 ac, similar name)
 - **US-9311** Keg Creek lake Wildlife Management Area (Wildlife Management Area) → Keg Creek I-29 Wildlife Management Area (~107 ac, similar name)
-- **US-9312** Rosenow Timber Wildlife Management Area (Wildlife Management Area) → Rosenow Timber County Park (~123 ac, similar name)
+- **US-9312** Rosenow Timber Wildlife Management Area (Wildlife Management Area) → Rosenow Timber County Park (~123 ac, same name, different kind of place)
+- **US-9330** Deweys Pasture Wildlife Management Area (Wildlife Management Area) → Dewey's Pasture Complex (~2,359 ac, same name, different kind of place)
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
 
 ## Nothing found in PAD-US
 
@@ -70,6 +71,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **162 of 181** parks joined
 - Ringgold Wildlife Management Area · SCA · DNR - Wildlife · ~2,521 ac
 - Stephens State Forest · SRMA · DNR - Forestry · ~2,503 ac
 - Emmet County Waterfowl Production Area · RMA · EMMET COUNTY WATERFOWL PRODUCTION AREA · ~2,443 ac
+- Dewey's Pasture Complex · SCA · DNR - Wildlife · ~2,359 ac
 - Dekalb Wildlife Management Area · SCA · DNR - Wildlife · ~2,169 ac
 - Waterloo Creek Wildlife Management Area · SCA · DNR - Wildlife · ~1,981 ac
 - Lansing Wildlife Management Area · SCA · DNR - Wildlife · ~1,952 ac
@@ -83,7 +85,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **162 of 181** parks joined
 - French Creek Wildlife Management Area · SCA · DNR - Wildlife · ~1,675 ac
 - Red Rock Wildlife Management Area · SCA · DNR - Wildlife · ~1,634 ac
 - Worth County Waterfowl Production Area · RMA · Worth County Waterfowl Production Area · ~1,608 ac
-- Chichaqua Bottoms Wildlife Management Area · SCA · DNR - Wildlife · ~1,557 ac
 - Winnebago County Waterfowl Production Area Of Ia · RMA · Winnebago County Waterfowl Production Area Of Ia · ~1,547 ac
 - Twelve Mile Lake (Union) Wildlife Management Area · SCA · DNR - Wildlife · ~1,484 ac
 - Worth County Waterfowl Production Area · RMA · WORTH COUNTY WATERFOWL PRODUCTION AREA · ~1,483 ac

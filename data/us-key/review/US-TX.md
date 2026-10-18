@@ -1,6 +1,6 @@
 # TX: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **180 of 222** parks joined to official land (same name + same kind of place). **23** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **182 of 222** parks joined to official land (same name + same kind of place). **20** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -18,15 +18,16 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **180 of 222** parks joined
 - **US-3507** Lost Maples Natural State Conservation Area (State Conservation Area) → Lost Maples State Natural Area (~2,878 ac, same name, different kind of place)
 - **US-4370** Caddo National Grasslands Wildlife Management Area (Wildlife Management Area) → Caddo National Grassland (~17,722 ac, similar name)
 - **US-4419** I.D. Farichild State Forest (State Forest) → I.D. FairChild State Forest (~1,727 ac, the POTA pin is inside it (different name))
-- **US-4421** Masterson State Forest (State Forest) → Paul N. Masterson Memorial State Forest (~520 ac, similar name)
 - **US-4514** Cibola National Forest (National Forest) → Sandia Mountain Wilderness (~37,690 ac, the POTA pin is inside it (different name))
 - **US-6538** Barrington Plantation State Historic Site (State Historic Site) → Washington-on-the-Brazos State Historic Site (~295 ac, the POTA pin is inside it (different name))
-- **US-6550** Cooper Wildlife Management Area (Wildlife Management Area) → Cooper Reservoir Wildlife Management Area (~18,384 ac, similar name); Cooper Lake State Park - South Sulphur Unit (~2,727 ac, similar name); Cooper Recreation Area (~32,045 ac, same name, different kind of place)
 - **US-6572** Las Palomas , Lower Rio Grande Valley Units Wildlife Management Area (Wildlife Management Area) → Lower Rio Grande Valley National Wildlife Refuge (~89,898 ac, similar name); Lower Rio Grande Valley National Wildlife Refuge (~88,266 ac, similar name); Las Palomas Wildlife Management Area (~601 ac, similar name); Las Palomas Wildlife Management Area (~220 ac, similar name); Las Palomas Wildlife Management Area (~122 ac, similar name)
 - **US-6580** Matagorda Island Wildlife Management Area (Wildlife Management Area) → Aransas National Wildlife Refuge (~90,764 ac, the POTA pin is inside it (different name)); Aransas National Wildlife Refuge (~90,764 ac, the POTA pin is inside it (different name))
 - **US-6581** McClellan Creek National Nature Reserve (National Nature Reserve) → McClellan Creek National Grassland (~1,402 ac, similar name)
 - **US-6608** W.A. Pat Murphy Unit Wildlife Management Area (Wildlife Management Area) → Gene Howe Wildlife Management Area (~890 ac, the POTA pin is inside it (different name))
-- **US-9757** Butterfield Overland National Historic Trail (National Historic Trail) → Guadalupe Mountains National Park (~86,840 ac, the POTA pin is inside it (different name))
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
+- US-9757 Butterfield Overland National Historic Trail (National Historic Trail) → on Guadalupe Mountains National Park (~86,840 ac)
 
 ## Nothing found in PAD-US
 
@@ -84,9 +85,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **180 of 222** parks joined
 - Indio Ranch · REA · University of Texas at El Paso · ~34,445 ac
 - Red Sands OHV ·  · BLM recreation areas · ~33,872 ac
 - Red Sands OHV ·  · BLM recreation sites · ~33,872 ac
-- Cooper Recreation Area · REC · Forth Worth · ~32,045 ac
 - East Side ·  · BLM recreation sites · ~31,903 ac
-- Somerville Recreation Area · REC · Forth Worth · ~29,940 ac
 - Lake O' The Pines Recreation Area · REC · Forth Worth · ~29,416 ac
 - West Santa Fe ·  · BLM recreation sites · ~28,353 ac
 - Chama ·  · BLM recreation sites · ~27,533 ac
@@ -100,7 +99,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **180 of 222** parks joined
 - Rio Grande Rim/Copper Hill ·  · BLM recreation sites · ~19,870 ac
 - Sabinoso Primitive Area ·  · BLM recreation sites · ~19,798 ac
 - Devils River State Natural Area · SCA · Unknown · ~19,761 ac
-- Cooper Reservoir Wildlife Management Area · SCA · TPWD · ~18,384 ac
 - O.C. Fisher Recreation Area · REC · Forth Worth · ~17,940 ac
 - Caddo National Grassland · NG · Forest Service Region 08 Southern · ~17,722 ac
 - Devils River State Natural Area · SRMA · SPR · ~17,641 ac
@@ -112,3 +110,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **180 of 222** parks joined
 - W. F. Ramsey Unit · SOTH · TDCJ Correctional Institutions Division · ~15,988 ac
 - Grapevine Recreation Area · REC · Forth Worth · ~15,673 ac
 - Waco Recreation Area · REC · Forth Worth · ~15,427 ac
+- Joe Pool Recreation Area · REC · Forth Worth · ~15,286 ac
+- Stillhouse Recreation Area · REC · Forth Worth · ~15,217 ac
+- Caney Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~14,262 ac
