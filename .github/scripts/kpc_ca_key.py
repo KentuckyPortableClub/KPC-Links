@@ -30,7 +30,7 @@ def get(url, params, tries=5):
 def flat(s): return ''.join(c for c in unicodedata.normalize('NFKD', str(s or '')) if not unicodedata.combining(c)).lower()
 
 
-GEN = (r"natural area under private stewardship|under private stewardship|parc nature|campground|national historic site of canada|national historic site|lieu historique national du canada|lieu historique national|historic site|lieu historique|"
+GEN = (r"habitat protection area|habitat protection|special management area|game preserve|area of outstanding natural beauty|conservation park|and district|district|natural area under private stewardship|under private stewardship|parc nature|campground|national historic site of canada|national historic site|lieu historique national du canada|lieu historique national|historic site|lieu historique|"
        r"national marine park of canada|national marine park|national wildlife area|reserve nationale de faune|migratory bird sanctuary|refuge d oiseaux migrateurs|bird sanctuary|wildlife management area|"
        r"wildlife refuge|wildlife area|reserve faunique|refuge faunique|national park reserve|national park of canada|parc national du canada|national park|parc national|"
        r"national marine conservation area|marine park|provincial park|parc provincial|territorial park|parc territorial|regional park|parc regional|"
@@ -43,7 +43,8 @@ ABBR = {'st': 'saint', 'ste': 'sainte', 'mt': 'mount', 'pt': 'point', 'lk': 'lak
 
 def norm(s):
     s = flat(s).replace('&', ' and ')
-    s = re.sub(r'\(.*?\)', ' ', s)
+    s = re.sub(r'\(.*?\)|\[.*?\]', ' ', s)
+    s = re.sub(r'\b0+(\d)', r'\1', s)
     s = re.sub(r"\b([dlj]|qu)[’'`]", r'\1 ', s)   # French d'/l' must not glue onto the next word (d'Anticosti → d anticosti)
     s = re.sub(r"[’'`.]", '', s)
     s = re.sub(r'[-/]', ' ', s)
@@ -59,7 +60,7 @@ KINDS = [('pp', r'provincial park|parc provincial|territorial park|parc territor
          ('wma', r'wildlife|faune|faunique|bird sanctuary|oiseaux migrateurs|game'),
          ('ca', r'conservation (area|reserve)|aire de conservation|conservancy'),
          ('eco', r'ecological reserve|reserve ecologique|nature reserve|reserve naturelle|natural area|protected natural area|nature preserve'),
-         ('rec', r'recreation|loisirs'), ('rp', r'regional park|parc regional'), ('mp', r'marine park|marine conservation'),
+         ('rec', r'recreation|loisirs'), ('rp', r'regional park|parc regional'), ('mp', r'marine (provincial )?park|marine conservation'),
          ('wild', r'wilderness'), ('pf', r'provincial forest|foret')]
 def kinds(s):
     s = flat(s); return {k for k, r in KINDS if re.search(r, s)}
@@ -70,7 +71,7 @@ def _sing(s): return ' '.join(w[:-1] if len(w) > 3 and w.endswith('s') else w fo
 
 def variants(s):
     # Oct 18 review: plurals ('Munroes' = 'Munroe'), 'and' between two names, a leading Ile/Isle ('Ile d'Anticosti' = 'Anticosti')
-    v = {norm(s)}
+    v = {norm(s)} | {norm(x) for x in re.split(r'\s*/\s*', str(s or '')) if len(x.strip()) > 3}   # 'Indigenous name / English name'
     v |= {_sing(x) for x in v} | {re.sub(r'\b(and|et)\b', ' ', x) for x in v}
     v |= {re.sub(r'^(iles?|isles?|islands?) ', '', x) for x in v}
     return {re.sub(r'\s+', ' ', x).strip() for x in v if x.strip()}
@@ -89,7 +90,8 @@ def same_name(a, b, exact=False):
     return not exact and any(_pre(x, y) for x in va for y in vb)
 
 
-def same_kind(ka, kb): return not ka or not kb or bool(ka & kb)
+COMPAT = [{'rec', 'pp'}, {'mp', 'pp'}, {'rp', 'rec'}]   # Manitoba recreation parks became provincial parks; BC marine parks are provincial parks
+def same_kind(ka, kb): return not ka or not kb or bool(ka & kb) or any(ka & c and kb & c and (ka | kb) & c == c for c in COMPAT)
 def words(s): return set(w for w in norm(s).split() if len(w) > 2)
 def rings(g): return (g or {}).get('rings') or []
 def bbox(g):
