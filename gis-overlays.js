@@ -82,7 +82,7 @@
  function boundaryPopup(f,s){const nm=getName(f)||s.name,m=matchPota(f);
   const P=f.properties||{};return `<strong>${safe(nm)}</strong><br><span style="font-size:13px">${safe(P.TYPE||s.name)} • ${safe(s.agency)}${P.ACCESS?' • access: '+safe(P.ACCESS):''}</span>${P.URL?`<br><a href="${safe(P.URL)}" target="_blank" rel="noopener">Official page ↗</a>`:''}${s.corps?(m.length?`<div style="margin-top:6px;font-weight:800">Park pin inside this Corps land:</div>${refLinks(m)}`:''):!m.some(x=>x.why.startsWith('name'))?noNumBox(otherRefs(f,KYD,nm,inside),safe)+(m.length?`<div style="margin-top:6px;font-weight:800">Park pin inside it:</div>${refLinks(m)}`:''):m.length?`<div style="margin-top:6px;font-weight:800">POTA reference${m.length>1?'s':''}:</div>${refLinks(m)}`:'<div style="margin-top:6px">No POTA reference matched to this boundary.</div>'}${s.note?`<div style="margin-top:8px;font-size:12px;font-weight:700">⚠ ${safe(s.note)}</div>`:''}${s.kpc&&P.NOTE?`<div style="margin-top:6px;font-size:12px">${safe(P.NOTE)}</div>`:''}${s.kpc?`<div style="margin-top:6px;font-size:11px;color:#68635a">Outline source: ${safe(P.SOURCE||'KPC')}. Map data © OpenStreetMap contributors.</div>`:''}<div style="margin-top:8px;font-size:12px">GIS boundaries can be out of date — confirm on the agency’s official map before activating. <a href="${s.info}" target="_blank" rel="noopener">Agency info ↗</a></div>`}
  async function getBoundary(k){if(bData[k])return bData[k];const s=bounds[k];let j=null,src='KPC copy';
-  try{const r=await fetch(s.file,{cache:'force-cache'});if(r.ok)j=await r.json()}catch(_){}
+  try{const r=await fetch(s.file+'?v=20261018q',{cache:'force-cache'});if(r.ok)j=await r.json()}catch(_){}
   if(!j||!Array.isArray(j.features)){src='live from state GIS';const ctrl=new AbortController(),t=setTimeout(()=>ctrl.abort(),25000);try{const r=await fetch(s.live,{signal:ctrl.signal});if(!r.ok)throw Error('HTTP '+r.status);j=await r.json();if(j.error)throw Error(j.error.message||'GIS error')}finally{clearTimeout(t)}}
   j.features=(j.features||[]).filter(f=>f.geometry&&ringsOf(f.geometry).length);j._src=src;bData[k]=j;return j}
  /* line weights follow the shared "Thick boundaries" switch (kpc-map-extras.js) */
@@ -193,7 +193,7 @@ function candidates(){const host=$('gis-candidates');if(!host)return;const done=
  let busy=false,again=false;
  const fileTrail={};let trailParks=null,tpP=null;
  function loadTrailParks(){return tpP||(tpP=fetch('ky-trail-parks.json?v=20261013b').then(t=>t.ok?t.json():{}).catch(()=>({})).then(j=>{trailParks=j;return j}))}
- async function bundled(k){const s=sources[k];if(fileTrail[k])return fileTrail[k];try{const r=await fetch(s.file,{cache:'force-cache'});if(!r.ok)throw 0;const j=await r.json();if(!Array.isArray(j.features))throw 0;
+ async function bundled(k){const s=sources[k];if(fileTrail[k])return fileTrail[k];try{const r=await fetch(s.file+'?v=20261018q',{cache:'force-cache'});if(!r.ok)throw 0;const j=await r.json();if(!Array.isArray(j.features))throw 0;
    await loadTrailParks();
    const render=draw(j,s);fileTrail[k]=render;return render}catch(_){return null}}
  async function load(){if(typeof map==='undefined'||!map){setAll('status','Map unavailable.');return}

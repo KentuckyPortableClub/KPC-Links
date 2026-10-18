@@ -113,8 +113,8 @@ const bRend = () => L.canvas({pane:'bndp', padding:.4, tolerance:6});
 let canvasR=null;
 async function loadBoundaries(){
  const stat=$('lyrStat');let n=0;const keys=Object.keys(B);
- await Promise.all(keys.map(async k=>{try{const r=await fetch(B[k].file,{cache:'force-cache'});if(!r.ok)throw 0;const j=await r.json();j.features=(j.features||[]).filter(f=>f.geometry&&ringsOf(f.geometry).length);bData[k]=j;drawB(k)}catch(e){}if(stat)stat.textContent=`Loading boundaries… ${++n} of ${keys.length}`}));
- const tk=Object.keys(T);await Promise.all(tk.map(async k=>{try{const r=await fetch(T[k].file||T[k].url,T[k].file?{cache:'force-cache'}:{});if(!r.ok)throw 0;const j=await r.json();if(!Array.isArray(j.features))throw 0;j.features=j.features.filter(f=>f.geometry&&linesOf(f.geometry).length);tData[k]=j;drawT(k)}catch(e){}}));
+ await Promise.all(keys.map(async k=>{try{const r=await fetch(B[k].file+'?v=20261018q',{cache:'force-cache'});if(!r.ok)throw 0;const j=await r.json();j.features=(j.features||[]).filter(f=>f.geometry&&ringsOf(f.geometry).length);bData[k]=j;drawB(k)}catch(e){}if(stat)stat.textContent=`Loading boundaries… ${++n} of ${keys.length}`}));
+ const tk=Object.keys(T);await Promise.all(tk.map(async k=>{try{const r=await fetch(T[k].file?T[k].file+'?v=20261018q':T[k].url,T[k].file?{cache:'force-cache'}:{});if(!r.ok)throw 0;const j=await r.json();if(!Array.isArray(j.features))throw 0;j.features=j.features.filter(f=>f.geometry&&linesOf(f.geometry).length);tData[k]=j;drawT(k)}catch(e){}}));
  bReady=true;if(stat)stat.textContent=`${Object.keys(bData).length} boundary layers and ${Object.keys(tData).length} trails loaded.`;
  tripLayer.eachLayer(m=>{if(m._stop&&m.isPopupOpen&&m.isPopupOpen())m.setPopupContent(spotPopup(m._stop))});renderTrip()}
 function shown(k){try{const o=JSON.parse(localStorage.getItem('kpcPlanLayers')||'{}');return o[k]!==false}catch(e){return true}}
