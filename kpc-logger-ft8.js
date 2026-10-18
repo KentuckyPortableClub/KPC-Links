@@ -511,13 +511,22 @@
   $('f8MapW').addEventListener('toggle', () => { if ($('f8MapW').open) { setTimeout(() => { mapInit(); if (MAP) { MAP.invalidateSize(); mapDraw(); } }, 60); if (S.mm !== 'hear' && S.mode !== 'WSPR') psk(); if (S.mode === 'WSPR' && DG()) DG().mapOpen(); } });
   document.querySelectorAll('[data-mm]').forEach(b => b.onclick = e => { e.preventDefault(); S.mm = b.dataset.mm; saveS(); document.querySelectorAll('[data-mm]').forEach(x => x.classList.toggle('on', x === b)); if (!$('f8MapW').open) $('f8MapW').open = true; if (S.mm !== 'hear') psk(); mapDraw(); });
   document.querySelectorAll('[data-mm]').forEach(x => x.classList.toggle('on', x.dataset.mm === S.mm));
+  /* Oct 18 (Brandon: 'showed no one heard me'): say how long since we listened / last report, and link PSK Reporter's own map to double-check */
+  let pskSince = 0;
+  function pskSay() { const n = Object.keys(HEARD).length, me = myCall(); if (!pskSince) pskSince = nowS();
+    const mins = Math.round((nowS() - pskSince) / 60), last = pskT ? Math.round((nowS() - pskT) / 60) : null;
+    $('f8PskT').innerHTML = `· PSK Reporter live: ${n ? n + ' station' + (n > 1 ? 's' : '') + ' heard you' + (last != null ? ', last ' + (last < 1 ? 'just now' : last + ' min ago') : '') : 'listening ' + mins + ' min, nobody yet (reports can take 5-10 min to arrive)'}` +
+      (me ? ` · <a href="https://pskreporter.info/pskmap.html?preset&callsign=${encodeURIComponent(me)}&timerange=3600&txrx=tx" target="_blank" rel="noopener">CHECK ON PSK REPORTER ›</a>` : ''); }
+  setInterval(() => { if (mqC && mqC.connected && !root.hidden) pskSay(); }, 60000);
   /* PSK Reporter's live feed (MQTT over a secure websocket, mqtt.pskreporter.info:1886): every station that hears my call */
   function psk() {
     const me = myCall(); if (!me || mqFor === me) return;
     const go = () => { try { if (mqC) mqC.end(true); mqFor = me;
       mqC = window.mqtt.connect('wss://mqtt.pskreporter.info:1886', { reconnectPeriod: 30000, connectTimeout: 15000 });
-      mqC.on('connect', () => { mqC.subscribe(`pskr/filter/v2/+/+/${me}/#`); $('f8PskT').textContent = '· PSK Reporter live'; });
-      mqC.on('message', (t, b) => { try { const j = JSON.parse(new TextDecoder().decode(b)); if (!j.rc || !j.rl) return; pskT = nowS(); HEARD[j.rc] = { g: j.rl, snr: +j.rp || 0, t: +j.t || nowS(), f: j.f, md: j.md }; if ($('f8MapW').open) mapDraw(); } catch (e) {} });
+      mqC.on('connect', () => { mqC.subscribe(`pskr/filter/v2/+/+/${me}/#`); pskSay(); });
+      mqC.on('error', () => { $('f8PskT').textContent = '· PSK Reporter live feed not answering'; });
+      mqC.on('offline', () => { $('f8PskT').textContent = '· PSK Reporter live feed offline (no signal?)'; });
+      mqC.on('message', (t, b) => { try { const j = JSON.parse(new TextDecoder().decode(b)); if (!j.rc || !j.rl) return; pskT = nowS(); HEARD[j.rc] = { g: j.rl, snr: +j.rp || 0, t: +j.t || nowS(), f: j.f, md: j.md }; pskSay(); if ($('f8MapW').open) mapDraw(); } catch (e) {} });
     } catch (e) { mqFor = ''; } };
     if (window.mqtt) go(); else { const sc = document.createElement('script'); sc.src = 'https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js'; sc.onload = go; sc.onerror = () => { mqFor = ''; $('f8PskT').textContent = '· PSK Reporter could not load (no signal?)'; }; document.head.appendChild(sc); }
   }
