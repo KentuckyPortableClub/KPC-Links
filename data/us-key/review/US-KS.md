@@ -1,11 +1,10 @@
 # KS: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **88 of 145** parks joined to official land (same name + same kind of place). **22** to check by hand, **35** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **89 of 145** parks joined to official land (same name + same kind of place). **21** to check by hand, **35** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0292** Kirwin National Wildlife Refuge (National Wildlife Refuge) → Kirwin Reservoir (~1,157 ac, similar name)
-- **US-0803** Brown vs. Board of Education National Historic Site (National Historic Site) → Brown v. Board of Education National Historical Park (~2 ac, similar name)
 - **US-12398** Olathe Prairie Center State Preserve (State Preserve) → Prairie Center (~302 ac, similar name)
 - **US-2334** Cross Timbers State Park (State Park) → Toronto State Park (~1,292 ac, the POTA pin is inside it (different name))
 - **US-2335** Eisenhower State Park (State Park) → Melvern Recreation Area (~23,490 ac, the POTA pin is inside it (different name))

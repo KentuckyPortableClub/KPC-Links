@@ -1,6 +1,6 @@
 # MN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 294** parks joined to official land (same name + same kind of place). **36** to check by hand, **52** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **211 of 294** parks joined to official land (same name + same kind of place). **31** to check by hand, **52** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -17,10 +17,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 294** parks joined
 - **US-10727** Pine Bend Bluffs SNA Scenic Reserve (Scenic Reserve) → Pine Bend Bluffs State Scientific and Natural Area (~316 ac, similar name)
 - **US-10728** Grey Cloud Dunes SNA Scenic Reserve (Scenic Reserve) → Grey Cloud Dunes State Scientific and Natural Area (~291 ac, similar name)
 - **US-11153** Matthew Lourey State Trail (State Trail) → Chengwatana State Forest (~17,023 ac, the POTA pin is inside it (different name))
-- **US-11698** Seminary Fen SNA State Sanctuary (State Sanctuary) → Seminary Fen State Scientific and Natural Area (~73 ac, similar name)
-- **US-11699** Savage FEN SNA State Sanctuary (State Sanctuary) → Savage Fen State Scientific and Natural Area (~290 ac, similar name)
-- **US-11700** Wolsfeld Woods SNA State Sanctuary (State Sanctuary) → Wolsfeld Woods State Scientific and Natural Area (~222 ac, similar name)
-- **US-11701** Wood-Rill SNA State Sanctuary (State Sanctuary) → Wood-Rill State Scientific and Natural Area (~147 ac, similar name)
 - **US-11872** Lost 40 SNA State Natural Area (State Natural Area) → Big Fork State Forest (~45,218 ac, the POTA pin is inside it (different name))
 - **US-12388** Caribou Falls Unique Area (Unique Area) → Caribou Falls State Wayside (~91 ac, similar name)
 - **US-12390** Flood Bay Unique Area (Unique Area) → Flood Bay State Wayside (~19 ac, similar name)
@@ -29,7 +25,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 294** parks joined
 - **US-12394** Ray Berglund Unique Area (Unique Area) → Ray Berglund (~47 ac, similar name)
 - **US-12395** St. Croix Boom Site Unique Area (Unique Area) → Saint Croix Islands (~12 ac, similar name)
 - **US-13548** Knife River Marine Protected Area (Marine Protected Area) → Knife River State Aquatic Management Area (Lake/St. Louis) (~345 ac, similar name)
-- **US-13561** Vermillion Highlands Wildlife Management Area (Wildlife Management Area) → Vermillion Highlands Research Recreation and State Wildlife Management Area (~2,840 ac, similar name)
 - **US-2506** Lake Vermilion State Park (State Park) → Lake Vermilion-Soudan Underground Mine State Park (~4,094 ac, similar name)
 - **US-2517** St. Croix State Park (State Park) → Saint Croix National Scenic Riverway (~3,345 ac, similar name)
 - **US-4236** Upper Mississippi River National Wildlife Refuge (National Wildlife Refuge) → Upper Mississippi River National Wildlife And Fish Refuge (~19,819 ac, similar name); Upper Mississippi River National Wildlife And Fish Refuge (~19,679 ac, similar name)

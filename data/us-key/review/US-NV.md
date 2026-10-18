@@ -1,6 +1,6 @@
 # NV: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **37 of 367** parks joined to official land (same name + same kind of place). **238** to check by hand, **92** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **39 of 367** parks joined to official land (same name + same kind of place). **236** to check by hand, **92** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -184,7 +184,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **37 of 367** parks joined 
 - **US-13525** Echo Bay Airport BLM Backcountry Airstrip (BLM Backcountry Airstrip) → Lake Mead National Recreation Area (~581,651 ac, the POTA pin is inside it (different name))
 - **US-13526** Duckwater Airport BLM Backcountry Airstrip (BLM Backcountry Airstrip) → Bristlecone Field Office (~5,647,647 ac, the POTA pin is inside it (different name))
 - **US-13580** Bog Hot BLM Backcountry Airstrip (BLM Backcountry Airstrip) → Black Rock Field Office (~2,358,385 ac, the POTA pin is inside it (different name))
-- **US-2625** Beaver Dam-Nevada State Park (State Park) → Beaver Dam State Park (~2,022 ac, similar name)
 - **US-2626** Berlin-Ichthyosaur State Park (State Park) → Toiyabe National Forest (~3,206,430 ac, the POTA pin is inside it (different name))
 - **US-2631** Fort Churchill State Park (State Park) → Fort Churchill State Historic Park (~3,468 ac, same name, different kind of place)
 - **US-2634** Mormon Station State Park (State Park) → Mormon Station State Historic Park (~4 ac, same name, different kind of place)
@@ -194,7 +193,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **37 of 367** parks joined 
 - **US-4438** Buckland Station State Park (State Park) → Fort Churchill State Historic Park (~3,468 ac, the POTA pin is inside it (different name))
 - **US-4441** Lahontan State Recreation Area (State Recreation Area) → Lake Lahontan State Recreation Area (~1,976 ac, similar name)
 - **US-4443** Old Las Vegas Mormon Fort State Park (State Park) → Old Las Vegas Mormon Fort State Historic Park (~5 ac, same name, different kind of place)
-- **US-4446** Wild Horse State Recreation Area (State Recreation Area) → Wild Horse Reservoir State Recreation Area (~120 ac, similar name)
 - **US-7494** Red Rock Canyon National Conservation Area (National Conservation Area) → Red Rock/Sloan Field Office (~245,885 ac, the POTA pin is inside it (different name))
 - **US-8303** Sloan Canyon National Conservation Area (National Conservation Area) → Red Rock/Sloan Field Office (~245,885 ac, the POTA pin is inside it (different name))
 - **US-9235** Arrow Canyon BLM Wilderness Area (BLM Wilderness Area) → Las Vegas Field Office (~2,378,020 ac, the POTA pin is inside it (different name))
@@ -378,7 +376,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **37 of 367** parks joined 
 - Arizona Strip Field Office · PUB · BLM · ~2,813 ac
 - Whittell Forest And Wildlife Management Area · SCA · Unknown · ~2,670 ac
 - Floyd Lamb State Park · SP · Unknown · ~2,179 ac
-- Beaver Dam State Park · SP · Nevada State Parks · ~2,022 ac
 - Lake Lahontan State Recreation Area · SREC · Nevada State Parks · ~1,976 ac
 - State Trust Land · SRMA · Unknown · ~1,817 ac
 - Central Nevada Test Site Base Camp · FOTH · Department of Energy (DOE) · ~1,683 ac
@@ -400,3 +397,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **37 of 367** parks joined 
 - University Of Nevada - Las Vegas · SOTH · Unknown · ~297 ac
 - Truckee Storage · FOTH · Unknown · ~281 ac
 - Anaho Island National Wildlife Refuge · NWR · Anaho Island National Wildlife Refuge · ~251 ac
+- Fallon Naval Air Station · MIL · Unknown · ~235 ac

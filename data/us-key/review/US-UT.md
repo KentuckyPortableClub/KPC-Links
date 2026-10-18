@@ -1,6 +1,6 @@
 # UT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **93 of 690** parks joined to official land (same name + same kind of place). **486** to check by hand, **111** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **98 of 690** parks joined to official land (same name + same kind of place). **482** to check by hand, **110** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -95,7 +95,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **93 of 690** parks joined 
 - **US-11200** Calao CCC Camp BLM Recreation Management Area (BLM Recreation Management Area) → Fillmore Field Office (~4,420,134 ac, the POTA pin is inside it (different name))
 - **US-11202** Black Hill Wildlife Management Area (Wildlife Management Area) → Pigeon Hollow State Wildlife Area (~1,669 ac, the POTA pin is inside it (different name))
 - **US-11203** Huntington Wildlife Management Area (Wildlife Management Area) → Huntington State Park (~386 ac, same name, different kind of place)
-- **US-11205** Manti Face Wildlife Management Area (Wildlife Management Area) → Mainti Face State Wildlife Area (~2,533 ac, the POTA pin is inside it (different name))
 - **US-11206** Six Mile Wildlife Management Area (Wildlife Management Area) → 6-Mile State Wildlife Area (~2,808 ac, similar name)
 - **US-11207** Elliott Mesa Wildlife Management Area (Wildlife Management Area) → Price Field Office (~2,480,295 ac, the POTA pin is inside it (different name))
 - **US-11209** Gunnison River Day Use Site BLM Recreation Management Area (BLM Recreation Management Area) → Richfield Field Office (~2,127,022 ac, the POTA pin is inside it (different name))
@@ -129,7 +128,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **93 of 690** parks joined 
 - **US-11666** Hell's Revenge BLM Recreation Management Area (BLM Recreation Management Area) → Moab Field Office (~1,860,872 ac, the POTA pin is inside it (different name))
 - **US-11667** Fivehole Arch BLM Recreation Management Area (BLM Recreation Management Area) → Price Field Office (~2,480,295 ac, the POTA pin is inside it (different name))
 - **US-11668** Segars Hole Viewpoint BLM Recreation Management Area (BLM Recreation Management Area) → Price Field Office (~2,480,295 ac, the POTA pin is inside it (different name))
-- **US-11702** Santaquin West Hills Wildlife Management Area (Wildlife Management Area) → Santaquin State Wildlife Area (~4,854 ac, similar name); West Hills State Wildlife Area (~755 ac, similar name)
 - **US-11704** William's Bottom BLM Recreation Management Area (BLM Recreation Management Area) → The State of Utah School and Institutional Trust Lands Administration 1918 (~509 ac, the POTA pin is inside it (different name))
 - **US-11706** Mineral Bottom BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Moab Field Office (~1,860,872 ac, the POTA pin is inside it (different name))
 - **US-11707** Amasa Back Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → Moab Field Office (~1,860,872 ac, the POTA pin is inside it (different name))
@@ -149,7 +147,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **93 of 690** parks joined 
 - **US-11734** Bridger Jack Mesa BLM Wilderness Area (BLM Wilderness Area) → Monticello Field Office (~1,787,477 ac, the POTA pin is inside it (different name))
 - **US-11736** Deer Creek Campground BLM Recreation Management Area (BLM Recreation Management Area) → National Public Lands (~1,004,450 ac, the POTA pin is inside it (different name))
 - **US-11737** Starr Spring BLM Recreation Management Area (BLM Recreation Management Area) → Richfield Field Office (~2,127,022 ac, the POTA pin is inside it (different name))
-- **US-11738** Parowon Front Wildlife Management Area (Wildlife Management Area) → Parowan Front State Wildlife Area (~6,838 ac, the POTA pin is inside it (different name))
 - **US-11739** Three Peaks RC Track BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Cedar City Field Office (~2,093,236 ac, the POTA pin is inside it (different name))
 - **US-11740** Calf Creek Recreation Area Day Use Site BLM Special Recreation Management Area (BLM Special Recreation Management Area) → National Public Lands (~1,004,450 ac, the POTA pin is inside it (different name))
 - **US-11743** Upper Valley Granary Wayside BLM Recreation Management Area (BLM Recreation Management Area) → Kanab Field Office (~1,416,246 ac, the POTA pin is inside it (different name))
@@ -191,7 +188,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **93 of 690** parks joined 
 - **US-13586** Taylor Flat BLM Backcountry Airstrip (BLM Backcountry Airstrip) → Vernal Field Office (~1,665,188 ac, the POTA pin is inside it (different name))
 - **US-13587** Simplot/Funky BLM Backcountry Airstrip (BLM Backcountry Airstrip) → Richfield Field Office (~2,127,022 ac, the POTA pin is inside it (different name))
 - **US-13592** Locomotive Springs Back Country Airstrip State Recreation Site (State Recreation Site) → Utah State Department of Wildlife Resources 205 (~5,300 ac, the POTA pin is inside it (different name))
-- **US-3064** Camp Floyd/Stagecoach Inn State Park (State Park) → Camp Floyd State Park (~41 ac, similar name); Stagecoach Inn State Park (~3 ac, similar name)
 - **US-3070** Escalante Petrified Forest State Park (State Park) → Escalante State Park (~1,330 ac, similar name)
 - **US-3072** Frontier Homestead State Park (State Park) → Utah State Department of Wildlife Resources 62 (~1 ac, the POTA pin is inside it (different name))
 - **US-3075** Great Salt Lake State Park (State Park) → Salt Lake  Field Office (~3,284,358 ac, similar name)
@@ -494,7 +490,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **93 of 690** parks joined 
 ## Nothing found in PAD-US
 
 - US-10061 Pine Canyon WMA State Conservation Area (Conservation Area)
-- US-10067 Lower Hobble Creek WMA State Wildlife Area (State Wildlife Area)
 - US-10068 Powell Slough WMA State Wildlife Area (State Wildlife Area)
 - US-10069 Jordan River Fishing Access WMA State Wildlife Area (State Wildlife Area)
 - US-10966 K-Hill Trail BLM Recreation Management Area (BLM Recreation Management Area)

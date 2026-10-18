@@ -1,24 +1,16 @@
 # GA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **187 of 237** parks joined to official land (same name + same kind of place). **34** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **198 of 237** parks joined to official land (same name + same kind of place). **23** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0952** Ocmulgee National Monument (National Monument) → Ocmulgee Mounds National Historical Park (~1,748 ac, similar name)
 - **US-12416** Little River (GA) Wildlife Management Area (Wildlife Management Area) → Cedar Creek Wildlife Management Area (~40,488 ac, the POTA pin is inside it (different name)); 117-001 (~1,534 ac, the POTA pin is inside it (different name))
 - **US-12418** Tallulah Gorge Wildlife Management Area (Wildlife Management Area) → Tallulah Gorge State Park (~2,296 ac, same name, different kind of place); Tallulah Gorge State Park (~486 ac, same name, different kind of place); Tallulah Gorge State Park (~50 ac, same name, different kind of place)
-- **US-12768** Bowens Mill State Fish Hatchery (State Fish Hatchery) → Bowens Mill Hatchery (~174 ac, similar name)
-- **US-12769** Cordele State Fish Hatchery (State Fish Hatchery) → Cordele Hatchery (~178 ac, similar name)
-- **US-12770** Richmond Hill State Fish Hatchery (State Fish Hatchery) → Richmond Hill Hatchery (~88 ac, similar name)
 - **US-2182** Jack Hill State Park (State Park) → Gordonia Alatamaha State Park (~212 ac, the POTA pin is inside it (different name))
-- **US-2187** James H. (Sloppy) Floyd State Park (State Park) → James H. "Sloppy" Floyd State Park (~581 ac, similar name)
-- **US-2199** Smithgall Woods State Park (State Park) → Smithgall Woods-Dukes Creek State Park (~4,260 ac, similar name)
 - **US-2200** Okefenokee State Park (State Park) → Okefenokee National Wildlife Refuge (~404,154 ac, same name, different kind of place); Okefenokee National Wildlife Refuge (~403,528 ac, same name, different kind of place); Stephen C. Foster State Park (~135 ac, the POTA pin is inside it (different name))
-- **US-3715** Etowah Indian Mounds State Historic Site (State Historic Site) → Etowah Mounds Historic Site (~62 ac, similar name)
-- **US-3723** Pickett's Mill Battlefield State Historic Site (State Historic Site) → Picketts Mill Historic Site (~763 ac, similar name)
 - **US-3724** Roosevelts Little White House State Historic Site (State Historic Site) → F. D. Roosevelt State Park (~9,995 ac, the POTA pin is inside it (different name))
 - **US-3727** Hart State Park (State Park) → Hart Outdoor Recreation Area (~155 ac, similar name); Hartwell Recreation Area (~27,785 ac, the POTA pin is inside it (different name))
-- **US-3729** Rocky Mountain State Recreation Area (State Recreation Area) → Rocky Mountain Recreation & Public Fishing Area (~4,751 ac, similar name)
 - **US-4556** Appalachian Trail National Scenic Trail (National Scenic Trail) → Chattahoochee National Forest (~750,991 ac, the POTA pin is inside it (different name))
 - **US-4648** Bartram Educational State Forest (State Forest) → Baldwin State Forest (~2,153 ac, the POTA pin is inside it (different name)); Bartram Forest Wildlife Management Area (~2,063 ac, the POTA pin is inside it (different name))
 - **US-4649** Hitchiti State Forest (State Forest) → Oconee National Forest (~116,196 ac, the POTA pin is inside it (different name))
@@ -26,15 +18,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **187 of 237** parks joined
 - **US-4651** Dixon Memorial State Forest (State Forest) → Dixon Memorial Wildlife Management Area (~35,041 ac, same name, different kind of place)
 - **US-7140** Charlie Elliot Wildlife Management Area (Wildlife Management Area) → Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area (~6,273 ac, the POTA pin is inside it (different name))
 - **US-7141** Clybel Wildlife Management Area (Wildlife Management Area) → Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area (~6,273 ac, similar name)
-- **US-7456** Dahlonega Gold Museum State Historic Site (State Historic Site) → Dahlonega Museum Historic Site (~1 ac, similar name)
 - **US-7467** Marben State Fishing Lake (State Fishing Lake) → Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area (~6,273 ac, similar name)
 - **US-7468** McDuffie State Fishing Lake (State Fishing Lake) → McDuffie Public Fishing Area & Hatchery (~565 ac, similar name)
 - **US-7471** Allatoona Pass Battlefield State Historic Site (State Historic Site) → Allatoona Recreation Area (~38,047 ac, similar name); Allatoona Wildlife Management Area (~7,488 ac, similar name)
 - **US-7472** Griswoldville Battlefield State Historic Site (State Historic Site) → Griswoldville Historic Site (~18 ac, similar name)
 - **US-7473** DeSoto Falls National Recreation Area (National Recreation Area) → Chattahoochee National Forest (~750,991 ac, the POTA pin is inside it (different name)); Chestatee Wildlife Management Area (~19,724 ac, the POTA pin is inside it (different name))
 - **US-7861** Suwannee River Eco-Lodge State Park (State Park) → Stephen C. Foster State Park (~320 ac, the POTA pin is inside it (different name))
-- **US-7882** Doerun Pitcherplant Bog Wildlife Management Area (Wildlife Management Area) → Doerun Pitcher Plant Bog Wildlife Management Area (~742 ac, similar name)
-- **US-7899** Carter's Lake Wildlife Management Area (Wildlife Management Area) → Carters Recreation Area (~8,777 ac, similar name); Coosawattee-Carters Lake Wildlife Management Area (~4,132 ac, similar name)
 - **US-7902** Walton Wildlife Management Area (Wildlife Management Area) → Walton Public Dove Field & Hatchery (~248 ac, similar name)
 - **US-9758** Chattooga National Wild and Scenic River (National Wild and Scenic River) → Chattahoochee National Forest (~750,991 ac, the POTA pin is inside it (different name))
 - **US-9793** Ball's Ferry Property Wildlife Management Area (Wildlife Management Area) → Balls Ferry State Park (~525 ac, similar name)
@@ -75,9 +64,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **187 of 237** parks joined
 - 091-001 · SCA · Department of Transportation · ~7,221 ac
 - Ogeechee Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~6,647 ac
 - Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area · SCA · Georgia Department of Natural Resources · ~6,273 ac
-- Rocky Mountain Recreation & Public Fishing Area · SREC · Georgia Department of Natural Resources · ~4,751 ac
-- Smithgall Woods-Dukes Creek State Park · SCA · Georgia Department of Natural Resources · ~4,260 ac
-- Coosawattee-Carters Lake Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~4,132 ac
 - Alaphaha Research Farm · SOTH · Board of Regents · ~2,794 ac
 - Fall Line Sandhills Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~2,649 ac
 - Wheatley Forest · SCA · Board of Regents · ~2,396 ac
@@ -114,9 +100,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **187 of 237** parks joined
 - Little Hogan Island Tract · SCA · Georgia Department of Natural Resources · ~856 ac
 - Whitehall Forest · SCA · Board of Regents · ~828 ac
 - Bush Head Shoals State Park · SP · Georgia Department of Natural Resources · ~811 ac
-- Picketts Mill Historic Site · SHCA · Georgia Department of Natural Resources · ~763 ac
-- Doerun Pitcher Plant Bog Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~742 ac
 - 133-001 · SCA · Department of Transportation · ~735 ac
 - Fall Line Sandhills Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~733 ac
 - Old Rope Mill Park & Blankets Creek Mountain Bike Trail · LP · Cherokee County · ~690 ac
 - Gordonia-Alatamaha State Park · SP · Georgia Department of Natural Resources · ~684 ac
+- Bobby Brown Outdoor Recreation Area · SREC · Georgia Department of Natural Resources · ~681 ac
+- Jerico River Tract · SCA · Georgia Department of Natural Resources · ~632 ac
+- 014-001 · SREC · Department of Transportation · ~628 ac
+- Uga Dairy Farm · REA · Georgia Board of Regents · ~602 ac
+- 080-002 · SREC · Department of Transportation · ~599 ac

@@ -1,26 +1,21 @@
 # MA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **329 of 421** parks joined to official land (same name + same kind of place). **48** to check by hand, **44** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 421** parks joined to official land (same name + same kind of place). **43** to check by hand, **44** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0330** Thatcher Island National Wildlife Refuge (National Wildlife Refuge) → Thacher Island National Wildlife Refuge (~17 ac, the POTA pin is inside it (different name)); Thacher Island National Wildlife Refuge (~17 ac, the POTA pin is inside it (different name))
 - **US-0802** Boston African American National Historic Site (National Historic Site) → Boston National Historical Park (~38 ac, similar name)
-- **US-0843** Longfellow House National Historic Site (National Historic Site) → Longfellow House-Washington's Headquarters National Historic Site (~2 ac, similar name)
 - **US-11430** Karner Brook Wildlife Management Area (Wildlife Management Area) → Jug End Fen Wildlife Management Area (~21 ac, the POTA pin is inside it (different name))
 - **US-11586** Boxborough Wildlife Management Area (Wildlife Management Area) → Boxborough Station Wildlife Management Area (~26 ac, similar name)
 - **US-11589** Delaney Wildlife Management Area (Wildlife Management Area) → Delaney Flood Control Site (~317 ac, similar name); Delaney Flood Control Site (~166 ac, similar name); Delaney Flood Control Site (~125 ac, similar name); Delaney Flood Control Site (~49 ac, similar name)
-- **US-11628** Francis A. Crane Wildlife Management Area (Wildlife Management Area) → Frances A. Crane Wildlife Management Area (~1,020 ac, the POTA pin is inside it (different name))
 - **US-11638** Marconi Wildlife Management Area (Wildlife Management Area) → Cape Cod National Seashore (~27,298 ac, the POTA pin is inside it (different name))
 - **US-11683** Pickerel Cove Wildlife Management Area (Wildlife Management Area) → Wakeby Pond (~17 ac, the POTA pin is inside it (different name))
 - **US-2423** Gardner State Park (State Park) → C.M. Gardner State Park (~44 ac, similar name); C.M. Gardner State Park (~40 ac, similar name)
 - **US-4723** Ashmere Lake State Forest (State Forest) → Ashmere Lake State Park (~198 ac, same name, different kind of place); Ashmere Lake State Park (~7 ac, same name, different kind of place)
 - **US-5635** Mount Greylock State Reserve (State Reserve) → Mount Greylock State Reservation (~7,029 ac, similar name); Mount Greylock State Reservation (~3,271 ac, similar name); Mount Greylock State Reservation (~2,613 ac, similar name); Mount Greylock State Reservation (~746 ac, similar name); Mount Greylock State Reservation (~568 ac, similar name); Mount Greylock State Reservation (~564 ac, similar name)
-- **US-6876** Castle Island State Park (State Park) → Strandway/Castle Island (~48 ac, similar name)
 - **US-7971** Blackstone River Valley National Historical Park (National Historical Park) → Blackstone River and Canal Heritage State Park (~61 ac, similar name); Blackstone River and Canal Heritage State Park (~25 ac, similar name); Blackstone River and Canal Heritage State Park (~8 ac, similar name); Blackstone River and Canal Heritage State Park (~0 ac, similar name); Blackstone River and Canal Heritage State Park (~0 ac, similar name)
 - **US-8387** Francis D. Martini Memorial Shell Park and Moynihan State Recreation Area (State Recreation Area) → Neponset River Reservation (~68 ac, the POTA pin is inside it (different name))
 - **US-8391** Quabbin State Park (State Park) → Quabbin Reservoir Watershed (~4,135 ac, similar name); Quabbin Reservoir Watershed (~3,206 ac, similar name); Quabbin Reservoir (~174 ac, similar name); Quabbin Reservoir Watershed (~53 ac, similar name)
-- **US-8393** Stodder's Neck & Abigail Adams State Park (State Park) → Abigail Adams State Park (~5 ac, similar name); Abigail Adams State Park (~5 ac, similar name); Stodders Neck (~1 ac, similar name); Abigail Adams State Park (~1 ac, similar name); Stodders Neck (~0 ac, similar name)
 - **US-8399** Alewife Brook State Reserve (State Reserve) → Alewife Brook Reservation (~79 ac, similar name); Alewife Brook Reservation (~30 ac, similar name); Alewife Brook Reservation (~27 ac, similar name)
 - **US-8400** Beaver Brook State Reserve (State Reserve) → Beaver Brook North Reservation (~156 ac, similar name); Beaver Brook Reservation (~58 ac, similar name); Beaver Brook Reservation (~13 ac, similar name); Beaver Brook Reservation (~3 ac, similar name); Beaver Brook North Reservation (~2 ac, similar name)
 - **US-8401** Belle Isle Marsh State Reserve (State Reserve) → Belle Isle Marsh Reservation (~23 ac, similar name); Belle Isle Marsh Reservation (~22 ac, similar name); Belle Isle Marsh Reservation (~2 ac, similar name); Belle Isle Marsh Reservation (~2 ac, similar name)
@@ -135,7 +130,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **329 of 421** parks joined
 - Ware River Watershed · WPA ·   · ~1,229 ac
 - Greylock Glen · SOTH ·   · ~1,070 ac
 - Mount Everett State Reservation · SCA ·   · ~1,047 ac
-- Frances A. Crane Wildlife Management Area · SCA ·   · ~1,020 ac
 - Ware River Watershed · WPA ·   · ~978 ac
 - Middlesex Fells Reservation · SP ·   · ~955 ac
 - Wachusett Reservoir Watershed · WPA ·   · ~942 ac
@@ -162,3 +156,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **329 of 421** parks joined
 - Boxford State Forest · SRMA ·   · ~605 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~603 ac
 - Wequaquet Lake · SRMA · Commonwealth of Massachusetts · ~594 ac
+- Lake Cochichewick · SRMA · Commonwealth of Massachusetts · ~585 ac

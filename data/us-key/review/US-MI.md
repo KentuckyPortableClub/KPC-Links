@@ -1,6 +1,6 @@
 # MI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **238 of 388** parks joined to official land (same name + same kind of place). **69** to check by hand, **81** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **246 of 388** parks joined to official land (same name + same kind of place). **61** to check by hand, **81** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -26,13 +26,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **238 of 388** parks joined
 - **US-13169** Lake Ottawa National Recreation Area (National Recreation Area) → Ottawa National Forest (~994,695 ac, similar name)
 - **US-13170** Bay De Noc/Grand Island National Recreation Trail (National Recreation Trail) → Hiawatha National Forest (~899,303 ac, the POTA pin is inside it (different name))
 - **US-13570** Gladwin Field Trial Wildlife Management Area (Wildlife Management Area) → Gladwin Game Unit and Field Trial Area of State Forest (~4,754 ac, similar name)
-- **US-1502** Hart-Montague Trail State Park (State Park) → Hart-Montague Bicycle Trail Park (~3,973 ac, similar name)
 - **US-1505** Historic Mill Discovery State Park (State Park) → Old Mill Historic Park (~574 ac, similar name)
 - **US-1513** Mike Levine Lakelands Trail State Park (State Park) → Pinckney Recreation Area (~11,061 ac, the POTA pin is inside it (different name))
 - **US-1517** Mackinac Island State Park (State Park) → Mackinac State Park (~1,840 ac, similar name)
 - **US-1522** Milliken State Park (State Park) → Tricentennial State Park And Harbor (~27 ac, the POTA pin is inside it (different name))
 - **US-1543** Straits State Park (State Park) → Father Marquette National Memorial (~188 ac, the POTA pin is inside it (different name))
-- **US-1547** Traverse City State Park (State Park) → Charters Traverse City State Park (~80 ac, similar name)
 - **US-3307** Cambridge Junction State Historical Park (State Historical Park) → Cambridge State Historic Park (~64 ac, similar name)
 - **US-3308** Father Marquette Memorial National Memorial (National Memorial) → Father Marquette National Memorial (~188 ac, similar name)
 - **US-3330** Wagner Falls Scenic Site (Scenic Site) → Wagner Falls State Park (~6 ac, similar name)
@@ -45,15 +43,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **238 of 388** parks joined
 - **US-6623** Beaver Islands Wildlife Management Area (Wildlife Management Area) → Beaver Islands State Wildlife Research Area (~17,058 ac, similar name); Beaver Island State Wildlife Research Area Beaver Islands Group (~55 ac, similar name); Beaver Islands State Wildlife Research Area (~0 ac, similar name)
 - **US-6631** Blue Bill Creek State Game Land (State Game Land) → Ottawa National Forest (~994,695 ac, the POTA pin is inside it (different name))
 - **US-6635** Brookfield Township  II State Game Land (State Game Land) → Brookfield Township No. 2 State Game Area (~39 ac, similar name)
-- **US-6638** Cannon Creek Floodings Wildlife Management Area (Wildlife Management Area) → Cannon Creek Flooding No. 1 State Wildlife Management Area (~156 ac, similar name); Cannon Creek Flooding No. 2 State Wildlife Management Area (~93 ac, similar name); Cadillac State Forest Area (~221,994 ac, the POTA pin is inside it (different name))
 - **US-6647** Connors Marsh Wildlife Management Area (Wildlife Management Area) → Conners Marsh Flooding State Wildlife Management Area (~1,052 ac, the POTA pin is inside it (different name))
 - **US-6652** Cusino Wildlife Management Area (Wildlife Management Area) → Cusino State Wildlife Research Area (~1,562 ac, similar name)
-- **US-6660** Devils Lake Flooding Wildlife Management Area (Wildlife Management Area) → Devil's Lake and River Flooding State Wildlife Management Area (~911 ac, similar name)
 - **US-6670** Fabius State Game Land (State Game Land) → Fabius Township State Game Area (~143 ac, similar name)
 - **US-6675** Fraser State Game Land (State Game Land) → Fraser Township No. 1 State Game Area (~45 ac, similar name)
-- **US-6677** French Farm Lake Flooding Wildlife Management Area (Wildlife Management Area) → French Farm Flooding State Wildlife Management Area (~2,947 ac, similar name)
 - **US-6681** Garden Grade State Game Land (State Game Land) → Shingleton State Foreset Area (~368,105 ac, the POTA pin is inside it (different name))
-- **US-6687** Gordon Guyer - Augusta Creek Wildlife Management Area (Wildlife Management Area) → Augusta Creek State Fish & Wildlife Area (~390 ac, similar name)
 - **US-6698** Halifax State Game Land (State Game Land) → Newberry State Forest Area (~348,461 ac, the POTA pin is inside it (different name))
 - **US-6703** Hazel Swamp State Game Land (State Game Land) → Baraga State Forest Area (~120,323 ac, the POTA pin is inside it (different name))
 - **US-6708** Houghton Lake Flats South Flooding Wildlife Management Area (Wildlife Management Area) → Houghton Lake Flats North Flooding State Wildlife Management Area (~1,721 ac, similar name)
@@ -66,12 +60,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **238 of 388** parks joined
 - **US-6750** O'Neal Lake Flooding Wildlife Management Area (Wildlife Management Area) → Hardwood State Forest Wilderness Area (~5,188 ac, the POTA pin is inside it (different name))
 - **US-6767** Rainy River Flooding Wildlife Management Area (Wildlife Management Area) → Atlanta State Forest Area (~261,158 ac, the POTA pin is inside it (different name))
 - **US-6768** Ralph State Game Land (State Game Land) → Crystal Falls State Forest Area (~300,717 ac, the POTA pin is inside it (different name))
-- **US-6773** Sage Lakes Flooding Wildlife Management Area (Wildlife Management Area) → Sage Lakes State Wildlife Management Area (~248 ac, similar name); Atlanta State Forest Area (~261,158 ac, the POTA pin is inside it (different name))
 - **US-6779** Schlee Waterfowl National Wildlife Management Area (National Wildlife Management Area) → Jackson County Waterfowl Production Area Of Mi (~298 ac, the POTA pin is inside it (different name))
 - **US-6797** Tomahawk Creek Flooding Wildlife Management Area (Wildlife Management Area) → Kirtland Warbler Unit Clear Lake (~19,202 ac, the POTA pin is inside it (different name))
 - **US-6818** Mackinac Island State Harbor (State Harbor) → Mackinac State Park (~1,840 ac, similar name)
 - **US-6823** William G. Milliken State Harbor (State Harbor) → Tricentennial State Park And Harbor (~27 ac, the POTA pin is inside it (different name))
-- **US-6826** Oden State State Fish Hatchery (State Fish Hatchery) → Oden State Fish Hatchery and Visitor Center (~102 ac, similar name); Oden State Fish Hatchery and Visitor Center (~15 ac, similar name)
 - **US-7854** Molasses River Flooding No 2 Wildlife Management Area (Wildlife Management Area) → Molasses River Flooding No.1 State Wildlife Management Area (~3,153 ac, similar name)
 
 ## Nothing found in PAD-US
@@ -181,11 +173,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **238 of 388** parks joined
 - Hardwood State Forest Wilderness Area · SCA · MIDNR Parks and Recreation Division · ~5,188 ac
 - Gladwin Game Unit and Field Trial Area of State Forest · SREC · MIDNR Wildlife Division · ~4,754 ac
 - Forest Reserve · SCA · Michigan Department of Transportation (MDOT) · ~4,230 ac
-- Hart-Montague Bicycle Trail Park · SREC · Michigan Department of Natural Resources · ~3,973 ac
 - Huron Purchase Unit · NF · Forest Service Region 09 Eastern · ~3,628 ac
 - Natural Area High Island · SCA · MIDNR Wildlife Division · ~3,584 ac
 - Genes Pond Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~3,453 ac
-- French Farm Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~2,947 ac
 - Natural Area South Branch AuSable River · SCA · MIDNR Forest Resources Division · ~2,640 ac
 - MNRTF Parcel · SCA · Michigan Department of Natural Resources · ~2,627 ac
 - Kirtland Warbler Unit N Branch · SCA · MIDNR Forest Resources Division · ~2,598 ac
@@ -217,6 +207,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **238 of 388** parks joined
 - Lake-36 Floodings State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~987 ac
 - River Bend Township Park · SP · State Department of Natural Resources · ~977 ac
 - MNRTF Parcel · SCA · Michigan Department of Natural Resources · ~974 ac
-- Devil's Lake and River Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~911 ac
 - MNRTF Parcel · SCA · Michigan Department of Natural Resources · ~870 ac
 - Fayette State Park · SP · Michigan Department of Natural Resources · ~838 ac
+- Michigan Islands National Wildlife Refuge · NWR · MICHIGAN ISLANDS NATIONAL WILDLIFE REFUGE · ~834 ac
+- Michigan Islands National Wildlife Refuge · NWR · Michigan Islands National Wildlife Refuge · ~834 ac
+- Michigan State University State Farm · PREC · Michigan State University · ~819 ac

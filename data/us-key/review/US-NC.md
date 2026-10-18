@@ -1,6 +1,6 @@
 # NC: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **155 of 253** parks joined to official land (same name + same kind of place). **60** to check by hand, **38** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **159 of 253** parks joined to official land (same name + same kind of place). **56** to check by hand, **38** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -35,13 +35,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **155 of 253** parks joined
 - **US-4859** Rendezvous Mountain State Park (State Park) → Rendezvous Mountain Educational State Forest (~1,902 ac, same name, different kind of place)
 - **US-4860** Turnbull Creek Educational State Forest (State Forest) → Bladen Lakes State Forest (~33,153 ac, the POTA pin is inside it (different name))
 - **US-4861** Tuttle Educational State Forest (State Forest) → Tuttle State Forest (~126 ac, similar name)
-- **US-6831** Battleship North Carolina State Historic Site (State Historic Site) → USS North Carolina Battleship Memorial (~79 ac, similar name)
-- **US-6834** Brunswick Town/Ft. Anderson State Historic Site (State Historic Site) → Brunswick Town State Historic Site (~129 ac, similar name)
-- **US-6835** Charles B Aycock Birthplace State Historic Site (State Historic Site) → Aycock Birthplace State Historic Site (~16 ac, similar name)
 - **US-6836** Charlotte Hawkins Brown Museum State Historic Site (State Historic Site) → Charlotte Hawkins Brown Memorial State Historic Site (~36 ac, similar name)
 - **US-6845** Horne Creek Living Historical Farm State Historic Site (State Historic Site) → Horne Creek State Historic Site (~111 ac, similar name)
 - **US-6848** President James K. Polk State Historic Site (State Historic Site) → Polk Memorial State Historic Site (~20 ac, the POTA pin is inside it (different name))
-- **US-6856** Zebulon B. Vance Birthplace State Historic Site (State Historic Site) → Vance Birthplace State Historic Site (~5 ac, similar name)
 - **US-6882** Bladen Lakes State Game Land (State Game Land) → Bladen Lakes State Forest (~33,153 ac, same name, different kind of place)
 - **US-6885** Buckridge State Game Land (State Game Land) → Emily and Richardson Preyer Buckridge Coastal Reserve (~28,772 ac, similar name)
 - **US-6888** Butner-Falls of the Neuse State Game Land (State Game Land) → Falls Lake (~37,454 ac, the POTA pin is inside it (different name))

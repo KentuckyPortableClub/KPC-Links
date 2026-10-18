@@ -1,6 +1,6 @@
 # IA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **155 of 181** parks joined to official land (same name + same kind of place). **12** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **162 of 181** parks joined to official land (same name + same kind of place). **10** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -12,10 +12,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **155 of 181** parks joined
 - **US-2309** Okamanpedan (Tuttle) State Park (State Park) → Okamanpedan State Park (~27 ac, similar name)
 - **US-4656** Barkley Memorial State Forest (State Forest) → Barkley State Forest (~209 ac, similar name)
 - **US-5730** Blood Run State Historic Site (State Historic Site) → Blood Run/Rock Island National Landmark (~167 ac, similar name); Blood Run National Historic Landmark Area Tcf Tract (~7 ac, similar name)
-- **US-9299** Hawthorne Lake Wildlife Management Area (Wildlife Management Area) → Hawthorn Lake Wildlife Management Area (~1,775 ac, the POTA pin is inside it (different name))
 - **US-9311** Keg Creek lake Wildlife Management Area (Wildlife Management Area) → Keg Creek I-29 Wildlife Management Area (~107 ac, similar name)
 - **US-9312** Rosenow Timber Wildlife Management Area (Wildlife Management Area) → Rosenow Timber County Park (~123 ac, similar name)
-- **US-9326** Waterman Prarie Complex Wildlife Management Area (Wildlife Management Area) → Waterman Prairie Complex (~1,575 ac, similar name)
 
 ## Nothing found in PAD-US
 
@@ -23,15 +21,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **155 of 181** parks joined
 - US-11875 Blackburn State Park (State Park)
 - US-12376 Blackburn Wildlife Management Area (Wildlife Management Area)
 - US-12623 Nicholson Ford Wildlife Area (Wildlife Area)
-- US-2282 Blackhawk State Park (State Park)
-- US-2329 Wild Cat Den State Park (State Park)
 - US-4236 Upper Mississippi River National Wildlife Refuge (National Wildlife Refuge)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-4573 Mormon Pioneer National Historic Trail (National Historic Trail)
-- US-5732 Emerson Bay State Recreation Area (State Recreation Area)
 - US-8283 Glenwood Archaeological State Historic Site (State Historic Site)
-- US-9307 Forney's Lake Wildlife Management Area (Wildlife Management Area)
-- US-9333 Barringers Slough Wildlife Management Area (Wildlife Management Area)
 - US-9334 Teal Basins State Waterfowl Management Area (State Waterfowl Management Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
@@ -82,11 +75,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **155 of 181** parks joined
 - East Okoboji Lake · SOTH · DNR - Fisheries · ~1,830 ac
 - Dudgeon Lake Wildlife Management Area · SCA · DNR - Wildlife · ~1,819 ac
 - West Fork Wildlife Management Area · SCA · DNR - Wildlife · ~1,792 ac
-- Hawthorn Lake Wildlife Management Area · SCA · DNR - Wildlife · ~1,775 ac
 - French Creek Wildlife Management Area · SCA · DNR - Wildlife · ~1,675 ac
 - Red Rock Wildlife Management Area · SCA · DNR - Wildlife · ~1,634 ac
 - Worth County Waterfowl Production Area · RMA · Worth County Waterfowl Production Area · ~1,608 ac
-- Waterman Prairie Complex · SCA · DNR - Wildlife · ~1,575 ac
 - Chichaqua Bottoms Wildlife Management Area · SCA · DNR - Wildlife · ~1,557 ac
 - Winnebago County Waterfowl Production Area Of Ia · RMA · Winnebago County Waterfowl Production Area Of Ia · ~1,547 ac
 - Twelve Mile Lake (Union) Wildlife Management Area · SCA · DNR - Wildlife · ~1,484 ac
@@ -96,3 +87,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **155 of 181** parks joined
 - Auldon Bar Wildlife Management Area · SCA · DNR - Wildlife · ~1,369 ac
 - Aldo Leopold Wildlife Management Area · SCA · DNR - Wildlife · ~1,357 ac
 - Millrace Flats Wildlife Management Area · SCA · DNR - Wildlife · ~1,346 ac
+- Middle Raccoon River Wildlife Management Area · SCA · DNR - Wildlife · ~1,306 ac
+- M U Payne Wildlife Area · SCA · DNR - Wildlife · ~1,292 ac

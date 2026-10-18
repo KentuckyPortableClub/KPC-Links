@@ -1,6 +1,6 @@
 # FL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **239 of 460** parks joined to official land (same name + same kind of place). **61** to check by hand, **160** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 460** parks joined to official land (same name + same kind of place). **52** to check by hand, **160** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -13,24 +13,16 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **239 of 460** parks joined
 - **US-1836** Barnacle State Park (State Park) → The Barnacle Historic State Park (~9 ac, similar name)
 - **US-1858** Dr. Von D. Mizell-Eula Johnson State Park (State Park) → John U. Lloyd Beach State Park (~311 ac, the POTA pin is inside it (different name))
 - **US-1863** Egmont Key State Park (State Park) → Egmont Key National Wildlife Refuge (~331 ac, same name, different kind of place); Egmont Key National Wildlife Refuge (~331 ac, same name, different kind of place)
-- **US-1879** Homosassa Springs Wildlife State Park (State Park) → Ellie Schiller Homosassa Springs Wildlife State Park (~201 ac, similar name)
-- **US-1896** Letchworth-Love Mounds State Park (State Park) → Letchworth-Love Mounds Archaeological State Park (~190 ac, similar name)
 - **US-1915** Silver Springs State Park (State Park) → Silver Springs Conservation Area (~331 ac, same name, different kind of place)
 - **US-1918** St. Joseph Peninsula State Park (State Park) → T. H. Stone Memorial St. Joseph Peninsula State Park (~2,791 ac, similar name)
 - **US-1922** Three Rivers State Park (State Park) → Seminole Recreation Area (~17,724 ac, the POTA pin is inside it (different name))
 - **US-3607** Beker-Wingate Creek State Park (State Park) → Beker (~1,743 ac, similar name)
-- **US-3616** Dudley Farm State Park (State Park) → Dudley Farm Historic State Park (~333 ac, similar name)
 - **US-3621** Fort Foster State Historic Site (State Historic Site) → Hillsborough River State Park (~3,319 ac, the POTA pin is inside it (different name))
-- **US-3622** Fort Mose State Park (State Park) → Fort Mose Historic State Park (~41 ac, similar name)
 - **US-3625** Gamble Plantation State Park (State Park) → Judah P. Benjamin Confederate Memorial at Gamble Plantation Historic State Park (~33 ac, similar name)
 - **US-3626** Gamble Rogers Memorial State Recreation Area (State Recreation Area) → Gamble Rogers Memorial State Recreation Area at Flagler Beach (~134 ac, similar name)
-- **US-3630** Indian Key State Park (State Park) → Indian Key Historic State Park (~111 ac, similar name); Lignumvitae Channel / Indian Key Channel Park (~5 ac, similar name); Lignumvitae Key Botanical State Park (~10,724 ac, the POTA pin is inside it (different name))
-- **US-3635** Madira Bickel Mound State Historic Site (State Historic Site) → Madira Bickel Mound State Archaeological Site (~10 ac, similar name); Maderia Bickle Archaeological State Park (~7 ac, the POTA pin is inside it (different name))
 - **US-3641** Okeechobee Battlefield State Park (State Park) → Okeechobee Battlefield (~145 ac, same name, different kind of place)
 - **US-3642** Olustee Battlefield State Park (State Park) → Osceola National Forest (~160,054 ac, the POTA pin is inside it (different name))
-- **US-3643** Orman House State Park (State Park) → Orman House Historic State Park (~10 ac, similar name)
 - **US-3644** Palatka-St. Augustine State Trail (State Trail) → Palatka-to-St. Augustine State Trail (~40 ac, similar name)
-- **US-3646** Paynes Creek State Park (State Park) → Paynes Creek Historic State Park (~399 ac, similar name)
 - **US-3656** Beker - South Fork State Park (State Park) → Beker (~1,743 ac, similar name)
 - **US-3658** Ney Landrum State Park (State Park) → St. Marks River Preserve State Park (~2,590 ac, the POTA pin is inside it (different name))
 - **US-5520** Chassahowitzka River and Coastal Swamp State Conservation Area (State Conservation Area) → Chassahowitzka National Wildlife Refuge (~28,266 ac, similar name); Chassahowitzka National Wildlife Refuge (~28,266 ac, similar name); Chassahowitzka Wildlife Management Area (~27,521 ac, similar name)
@@ -41,7 +33,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **239 of 460** parks joined
 - **US-6294** Branan Field Wildlife Area (Wildlife Area) → Branan Field Mitigation Park Wildlife and Environmental Area (~386 ac, similar name)
 - **US-6297** Chinsegut Wildlife Area (Wildlife Area) → Chinsegut Wildlife and Environmental Area (~821 ac, similar name); Chinsegut Hill Conference Center (~115 ac, similar name)
 - **US-6298** Crooked Lake Wildlife Area (Wildlife Area) → Crooked Lake Wildlife and Environmental Area (~1,147 ac, similar name)
-- **US-6300** Escribano Point Wildlife Management Area (Wildlife Management Area) → Yellow River Wildlife Management Area - Escribano Point (~2,708 ac, similar name)
 - **US-6303** Florida Keys Wildlife Area (Wildlife Area) → Florida Keys Wildlife and Environmental Area (~3,962 ac, similar name); Florida Keys Overseas Heritage State Trail (~732 ac, similar name)
 - **US-6304** Fort White Wildlife Area (Wildlife Area) → Fort White Mitigation Park Wildlife and Environmental Area (~1,638 ac, similar name)
 - **US-6308** Hickey Creek Wildlife Management Area (Wildlife Management Area) → Hickey Creek Mitigation Park Wildlife and Environmental Area (~785 ac, similar name)
@@ -231,7 +222,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **239 of 460** parks joined
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- Big Cypress National Preserve Addition · NCA · NPS · ~142,186 ac
 - Tortugas Ecological Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~116,088 ac
 - Apalachicola National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~114,616 ac
 - Everglades National Park Expansion · NP · NPS · ~109,347 ac
@@ -267,7 +257,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **239 of 460** parks joined
 - Tate's Hell Wildlife Management Area · SCA · FL Fish and Wildlife Conservation Commission · ~2,899 ac
 - T. H. Stone Memorial St. Joseph Peninsula State Park · SP · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~2,791 ac
 - GTMNERR - Guana River Site · SOTH · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~2,720 ac
-- Yellow River Wildlife Management Area - Escribano Point · SCA · FL Fish and Wildlife Conservation Commission · ~2,708 ac
 - Curry Island (LOHA) · POTH · Lake Okeechobee Habitat Alliance, Inc. · ~2,681 ac
 - Weedon Island Preserve · SCA · Pinellas County · ~2,618 ac
 - St. Marks River Preserve State Park · SP · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~2,590 ac
@@ -291,3 +280,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **239 of 460** parks joined
 - Peace River Settlement · SCA · BOARD OF TRUSTEES OF IITF/STATE OF FL · ~1,700 ac
 - Schewe Ranch . South · SREC · State of Florida · ~1,691 ac
 - Fort White Mitigation Park Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~1,638 ac
+- Bower Tract Preserve · SCA · Hillsborough County · ~1,585 ac
+- Spring Hammock Preserve · SCA · Seminole County · ~1,505 ac

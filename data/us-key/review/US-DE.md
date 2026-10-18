@@ -1,6 +1,6 @@
 # DE: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **59 of 89** parks joined to official land (same name + same kind of place). **16** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **63 of 89** parks joined to official land (same name + same kind of place). **15** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -12,7 +12,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **59 of 89** parks joined t
 - **US-4366** Auburn Valley State Park (State Park) → Auburn Heights (~189 ac, the POTA pin is inside it (different name)); Auburn Heights (~4 ac, the POTA pin is inside it (different name))
 - **US-5719** Ted Harvey State Conservation Area (State Conservation Area) → Ted Harvey Wildlife Area (~2,733 ac, same name, different kind of place)
 - **US-7648** Chesapeake and Delaware Canal Conservation Area (Conservation Area) → C&D Canal Conservation Area (~4,814 ac, similar name); C&D Canal Wildlife Area (~3,319 ac, similar name)
-- **US-7653** Tony Florio Woodland Beach State Wildlife Area (State Wildlife Area) → Woodland Beach Wildlife Area (~6,338 ac, similar name); Woodland Beach Wildlife Area (~904 ac, similar name); Woodland Beach Wildlife Area (~173 ac, similar name)
 - **US-9877** Junction and Breakwater National Recreation Trail (National Recreation Trail) → Cape Henlopen State Park (~964 ac, the POTA pin is inside it (different name))
 - **US-9879** Pinelands Nature National Recreation Trail (National Recreation Trail) → Cape Henlopen State Park (~3,641 ac, the POTA pin is inside it (different name)); Cape Henlopen State Park (~562 ac, the POTA pin is inside it (different name))
 - **US-9881** Pomeroy and Newark National Recreation Trail (National Recreation Trail) → White Clay Creek State Park (~3,520 ac, the POTA pin is inside it (different name))
@@ -23,11 +22,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **59 of 89** parks joined t
 
 ## Nothing found in PAD-US
 
-- US-10670 Chipmans Pond State Fishing Lake (State Fishing Lake)
-- US-10680 Ingrams Pond State Fishing Lake (State Fishing Lake)
 - US-10683 Millsboro Pond State Fishing Lake (State Fishing Lake)
 - US-10687 Trussum Pond State Fishing Lake (State Fishing Lake)
-- US-10688 Tubmill Pond State Fishing Lake (State Fishing Lake)
 - US-11811 Records Pond State Fishing Lake (State Fishing Lake)
 - US-12938 Laurel Industrial Forest Land State Wildlife Area (State Wildlife Area)
 - US-12939 Barr Industrial Forest Land State Wildlife Area (State Wildlife Area)
@@ -40,13 +36,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **59 of 89** parks joined t
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- Woodland Beach Wildlife Area · SOTH · DE Division of Fish and Wildlife · ~6,338 ac
 - C&D Canal Conservation Area · SCA ·   · ~4,814 ac
 - C&D Canal Wildlife Area · SW · DE Division of Fish and Wildlife · ~3,319 ac
 - Ted Harvey Wildlife Area · SOTH · DE Division of Fish and Wildlife · ~2,733 ac
 - Great Marsh Preserve · SP · DE Division of Parks and Recreation · ~1,184 ac
 - Route 1 Corridor Open Space · SOTH · DE Department of Transportation · ~1,053 ac
-- Woodland Beach Wildlife Area · SOTH ·   · ~904 ac
 - Doe Bridge Nature Preserve · SCA ·   · ~839 ac
 - Midlands Wa - Delaware Technical & Community College Ed. Found. · SREC · DE DNREC - Division of Fish and Wildlife · ~662 ac
 - Angola Neck Nature Preserve · SP ·   · ~580 ac
@@ -69,7 +63,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **59 of 89** parks joined t
 - Auburn Heights · SP · DE Division of Parks and Recreation · ~189 ac
 - Blackbird Reserve Wildlife Area · SOTH ·   · ~185 ac
 - Milford Millponds Nature Preserve · SOTH · DE Division of Fish and Wildlife · ~181 ac
-- Woodland Beach Wildlife Area · SOTH ·   · ~173 ac
 - Garrisons Lake Golf Club · SP ·   · ~161 ac
 - Doe Bridge Nature Preserve · SP ·   · ~159 ac
 - Deerfield Golf and Tennis Club · SP ·   · ~147 ac
@@ -93,10 +86,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **59 of 89** parks joined t
 - Leipsic Road Open Space · SOTH · DE Department of Transportation · ~100 ac
 - Haven Lake · SOTH ·   · ~98 ac
 - Marian R. Okie Memorial Wildlife Preserve · SOTH ·   · ~97 ac
-- Chipman Pond · SOTH ·   · ~96 ac
 - Delaware River Open Space · SOTH · DE Division of Fish and Wildlife · ~95 ac
-- Ingram Pond · SOTH ·   · ~91 ac
 - West North Street Open Space · SOTH · DE Department of Transportation · ~90 ac
 - Other Division Lands - Foskey Tract · SCA ·   · ~85 ac
 - DE National Estuarine Research Reserve Blackbird Creek Reserve · SOTH ·   · ~84 ac
 - Cedar Creek Nature Preserve · SP · DE Division of Parks and Recreation · ~84 ac
+- Saint Jones Reserve · SOTH ·   · ~83 ac
+- Tappahanna Wildlife Area- Urban Tract · SOTH ·   · ~82 ac
+- Route 13 Open Space · SOTH · DE Department of Transportation · ~82 ac
+- Glenville · SOTH · DE Department of Transportation · ~79 ac
+- Auburn Heights · SP ·   · ~75 ac

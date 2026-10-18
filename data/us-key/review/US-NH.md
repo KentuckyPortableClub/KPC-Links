@@ -1,10 +1,9 @@
 # NH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 205** parks joined to official land (same name + same kind of place). **15** to check by hand, **67** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 205** parks joined to official land (same name + same kind of place). **10** to check by hand, **66** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0329** Silvio O Conte National Wildlife Refuge (National Wildlife Refuge) → Silvio O. Conte National Fish And Wildlife Refuge (~7,893 ac, similar name); Silvio O. Conte National Fish And Wildlife Refuge (~7,496 ac, similar name)
 - **US-0450** Lake Umbagog National Wildlife Refuge (National Wildlife Refuge) → Umbagog National Wildlife Refuge (~21,882 ac, similar name); Umbagog National Wildlife Refuge (~21,882 ac, similar name)
 - **US-11849** Wantastiquet Mt Natural Area State Natural Site (State Natural Site) → Wantastiquet Mountain Natural Area (~913 ac, the POTA pin is inside it (different name))
 - **US-13486** Bellamy River Wildlife Management Area - East Wildlife Management Area (Wildlife Management Area) → Bellamy River Wildlife Management Area - West - Lot 2 (~34 ac, similar name); Bellamy River Access (~34 ac, similar name)
@@ -12,12 +11,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 205** parks joined
 - **US-2650** Eisenhower Memorial Wayside State Park (State Park) → White Mountain Purchase Unit (~29,310 ac, the POTA pin is inside it (different name))
 - **US-2666** Mount Sunapee State Park (State Park) → Sunapee State Park (~2,362 ac, similar name); Sunapee State Park (~133 ac, similar name); Sunapee State Park (~3 ac, similar name)
 - **US-2679** Umbagog Lake State Park (State Park) → Umbagog National Wildlife Refuge (~21,882 ac, similar name); Umbagog National Wildlife Refuge (~21,882 ac, similar name); Umbagog State Park (~1,185 ac, similar name); Umbagog State Park (~257 ac, similar name); Umbagog State Park (~27 ac, similar name); Umbagog State Park (~14 ac, similar name)
-- **US-4879** Blue Job Mountain State Forest (State Forest) → Blue Job State Forest (~175 ac, similar name); Blue Job State Forest (~116 ac, similar name)
 - **US-4926** Lovewell Mountain State Forest (State Forest) → Pillsbury State Park (~5,398 ac, the POTA pin is inside it (different name))
-- **US-4944** Pine River State Forest (State Forest) → Little Pine River State Forest (~81 ac, similar name)
-- **US-4979** West Iron Works Road State Forest (State Forest) → West Iron Works Read State Forest (~46 ac, similar name)
 - **US-8021** Gov. Wentworth State Historic Site (State Historic Site) → Wentworth State Park (~52 ac, similar name)
-- **US-8026** White Island State Historic Site (State Historic Site) → White Island Historical Site (~4 ac, similar name)
 - **US-8029** Sculptured Rocks State Natural Area (State Natural Area) → Sculptured Rocks Geologic Site (~264 ac, similar name)
 
 ## Nothing found in PAD-US
@@ -51,7 +46,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 205** parks joined
 - US-2685 Winslow State Park (State Park)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4862 Abbott State Forest (State Forest)
-- US-4870 Ashenden State Forest (State Forest)
 - US-4872 Ballard State Forest (State Forest)
 - US-4874 Belknap Mountain State Forest (State Forest)
 - US-4880 Bowditch-Runnells State Forest (State Forest)
@@ -95,8 +89,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 205** parks joined
 - Umbagog National Wildlife Refuge · NWR · UMBAGOG NATIONAL WILDLIFE REFUGE · ~21,882 ac
 - Umbagog National Wildlife Refuge · NWR · Umbagog National Wildlife Refuge · ~21,882 ac
 - Appalachian National Scenic Trail · NT · NPS · ~14,264 ac
-- Silvio O. Conte National Fish And Wildlife Refuge · NWR · Silvio O. Conte National Fish And Wildlife Refuge · ~7,893 ac
-- Silvio O. Conte National Fish And Wildlife Refuge · NWR · SILVIO O. CONTE NATIONAL FISH AND WILDLIFE REFUGE · ~7,496 ac
 - Enfield Wildlife Management Area · SCA ·   · ~3,025 ac
 - Murphy Dam / Lake Francis · SOTH ·   · ~2,801 ac
 - Sunapee State Park · SP ·   · ~2,362 ac
@@ -152,3 +144,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 205** parks joined
 - UNH - Saddleback Mountain · REA ·   · ~265 ac
 - Sculptured Rocks Geologic Site · SOTH ·   · ~264 ac
 - Beaver Brook Wildlife Management Area · SCA ·   · ~258 ac
+- Umbagog State Park · SP ·   · ~257 ac
+- Long Mountain · SCA ·   · ~249 ac

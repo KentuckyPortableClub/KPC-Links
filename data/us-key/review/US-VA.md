@@ -1,12 +1,11 @@
 # VA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **114 of 184** parks joined to official land (same name + same kind of place). **47** to check by hand, **23** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 184** parks joined to official land (same name + same kind of place). **42** to check by hand, **23** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0692** Wolf Trap National Park (National Park) → Wolf Trap National Park for the Performing Arts (~119 ac, similar name)
 - **US-12716** Hayfields State Park (State Park) → VOF Holding (~1,101 ac, the POTA pin is inside it (different name)); Virginia Outdoors Foundation Holding (~1,101 ac, the POTA pin is inside it (different name))
-- **US-1317** Shot Tower State Park (State Park) → Shot Tower Historic State Park (~8 ac, similar name); Shot Tower Historic State Park (~8 ac, similar name)
 - **US-5517** Matthews State Forest (State Forest) → Judge Matthews State Forest (~569 ac, similar name); Judge Matthews State Forest (~404 ac, similar name); Judge Matthews State Forest (~165 ac, similar name)
 - **US-7804** Great Falls Park (Park) → George Washington Memorial Parkway (~3,477 ac, the POTA pin is inside it (different name))
 - **US-9897** Jamestowne National Historical Site (National Historical Site) → Colonial National Historical Park (~7,881 ac, the POTA pin is inside it (different name))
@@ -47,10 +46,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **114 of 184** parks joined
 - **US-9959** Three Ridges Wilderness Area (Wilderness Area) → George Washington National Forest (~961,006 ac, the POTA pin is inside it (different name))
 - **US-9960** Thunder Ridge Wilderness Area (Wilderness Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
 - **US-9961** Dyke Marsh Wildlife Reserve (Wildlife Reserve) → George Washington Memorial Parkway (~2,776 ac, the POTA pin is inside it (different name))
-- **US-9966** Vic Thomas Striped Bass State Fish Hatchery (State Fish Hatchery) → Vic Thomas Fish Hatchery (~238 ac, similar name); Vic Thomas Fish Hatchery (~238 ac, similar name)
-- **US-9970** Marion Trout State Fish Hatchery (State Fish Hatchery) → Marion Fish Hatchery (~176 ac, similar name); Marion Fish Hatchery (~105 ac, similar name); Marion Fish Hatchery (~71 ac, similar name)
-- **US-9972** Coursey Spring State Fish Hatchery (State Fish Hatchery) → Coursey Springs Fish Hatchery (~20 ac, similar name); Coursey Springs Fish Hatchery (~20 ac, similar name); Coursey Springs Fish Hatchery (~18 ac, similar name); Coursey Springs Fish Hatchery (~18 ac, similar name)
-- **US-9973** Wytheville Trout State Fish Hatchery (State Fish Hatchery) → Wytheville Fish Hatchery (~13 ac, similar name); Wytheville Fish Hatchery (~13 ac, similar name)
 
 ## Nothing found in PAD-US
 

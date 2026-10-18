@@ -1,47 +1,37 @@
 # IL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 219** parks joined to official land (same name + same kind of place). **38** to check by hand, **52** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined to official land (same name + same kind of place). **28** to check by hand, **52** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0526** Wildcat Hollow State Nature Preserve (State Nature Preserve) → Wildcat Hollow State Habitat Area (~748 ac, similar name)
-- **US-0986** Chain-O-Lakes State Park (State Park) → Chain O'Lakes State Park (~5,124 ac, the POTA pin is inside it (different name))
 - **US-1000** Illinois Beach State Park (State Park) → Adeline Jay Geo-Karis Illinois Beach State Park (~3,186 ac, similar name)
 - **US-10090** Mackinaw River State Fish and Wildlife Area (State Fish and Wildlife Area) → Mackinaw River (~972 ac, same name, different kind of place)
 - **US-10094** Spring Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Spring Lake (~2,123 ac, same name, different kind of place)
-- **US-1012** Moraine Hills State Park (State Park) → Disconnected land along river south of Moraine Hills State Park (~4 ac, similar name)
 - **US-1020** Sam Parr State Park (State Park) → Sam Parr State Fish and Wildlife Area (~1,164 ac, same name, different kind of place)
-- **US-1021** Sangchris Lake State Park (State Park) → Sangchris Lake State Resource Area (~3,071 ac, similar name)
 - **US-10391** Kishwaukee River State Fish and Wildlife Area (State Fish and Wildlife Area) → Kishwaukee River State Natural Area (~546 ac, same name, different kind of place)
 - **US-10661** Oakwood Bottoms USFS Recreation Area (USFS Recreation Area) → Shawnee National Forest (~273,706 ac, the POTA pin is inside it (different name))
 - **US-10729** Pekin Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Pekin Lake (~1,095 ac, same name, different kind of place)
-- **US-10786** Siloam Springs Buckhorn Unit State Park (State Park) → Siloam Springs State Park (~5,854 ac, similar name)
 - **US-10787** Weinberg-King Scripps Unit State Park (State Park) → Weinberg-King State Fish and Wildlife Area (~1,529 ac, similar name)
 - **US-10788** Ray Norbut East Hannibal Unit State Fish and Wildlife Area (State Fish and Wildlife Area) → Miscellaneous Property (~104 ac, the POTA pin is inside it (different name))
 - **US-11351** Weinberg-King Spunky Bottoms Unit State Park (State Park) → Weinberg-King State Fish and Wildlife Area (~862 ac, similar name)
 - **US-11781** Bishop Hill State Historic Site (State Historic Site) → Bishop Hill Park (~7 ac, same name, different kind of place)
-- **US-11793** Revis Spring Hill Prairie State Nature Preserve (State Nature Preserve) → Revis Hill Prairie State Natural Area (~423 ac, similar name)
 - **US-12217** Sandy Ford State Natural Reserve (State Natural Reserve) → Sandy Ford State Natural Area (~203 ac, similar name)
 - **US-12367** Freeman Mine State Wildlife Area (State Wildlife Area) → Freeman Mine State Habitat Area (~178 ac, similar name)
 - **US-12368** Hooper Branch Savanna State Nature Preserve (State Nature Preserve) → Iroquois County State Fish and Wildlife Area (~2,842 ac, the POTA pin is inside it (different name))
 - **US-12387** Rall Woods State Reserve (State Reserve) → Rall Woods State Natural Area (~281 ac, similar name)
 - **US-13310** Foley Sand Prairie National Preserve (National Preserve) → Foley Sand Prairie State Natural Area (~14 ac, same name, different kind of place)
 - **US-13353** Maytown Pheasant Habitat Protection Area (Habitat Protection Area) → Maytown State Habitat Area (~154 ac, similar name)
-- **US-4092** Salem Unit of Apple River Canyon State Park (State Park) → Apple River Canyon State Park (~1,931 ac, similar name)
 - **US-4094** Eagle Creek State Park (State Park) → Recreation Area (~2,294 ac, the POTA pin is inside it (different name))
-- **US-4099** Moraine View State Recreation Area (State Recreation Area) → Moraine View State Recreational Area (~1,652 ac, similar name)
 - **US-4105** Washington County State Recreation Area (State Recreation Area) → Washington County State Natural Area (~1,465 ac, same name, different kind of place)
 - **US-4106** Weinberg-King State Park (State Park) → Weinberg-King State Fish and Wildlife Area (~1,529 ac, same name, different kind of place)
-- **US-4122** Fall Creek Overlook State Natural Area (State Natural Area) → Fall Creek Scenic Overlook State Natural Area (~214 ac, similar name)
 - **US-4128** Henderson County State Conservation Area (State Conservation Area) → Henderson County State Fish and Wildlife Area (~91 ac, same name, different kind of place)
 - **US-7256** Midewin National Grassland (National Grassland) → Midewin Other (~18,225 ac, similar name)
 - **US-7257** Saline County State Fish and Wildlife Area (State Fish and Wildlife Area) → Saline County State Conservation Area (~1,273 ac, same name, different kind of place)
-- **US-7368** Cahokia Mounds State Historic Site (State Historic Site) → Cahokia Mounds State Historical Site (~2,016 ac, similar name)
 - **US-7371** Sam Dale Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Sam Dale Lake State Conservation Area (~1,324 ac, same name, different kind of place)
 - **US-7871** Martin T Snyder Memorial State Nature Preserve (State Nature Preserve) → Hanging Rock Sandstone Cliff State Natural Area (~94 ac, the POTA pin is inside it (different name))
 - **US-8306** Lincoln's New Salem State Historic Site (State Historic Site) → Lincolns New Salem State Park (~560 ac, same name, different kind of place)
 - **US-8380** Sahara Woods State Recreation Area (State Recreation Area) → Sahara Woods State Fish and Wildlife Area (~4,059 ac, same name, different kind of place)
-- **US-9989** Lewis and Clark Memorial State Historic Site (State Historic Site) → Lewis & Clark State Historic Site (~562 ac, similar name)
 
 ## Nothing found in PAD-US
 
@@ -104,12 +94,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 219** parks joined
 - Midewin Other · NF · Forest Service Region 09 Eastern · ~18,225 ac
 - Upper Mississippi River National Wildlife And Fish Refuge · NWR · Upper Mississippi River National Wildlife And Fish Refuge · ~12,512 ac
 - Upper Mississippi River National Wildlife And Fish Refuge · NWR · UPPER MISSISSIPPI RIVER NATIONAL WILDLIFE AND FISH REFUGE · ~12,471 ac
-- Chain O'Lakes State Park · SP · Illinois Department of Conservation · ~5,124 ac
 - Sahara Woods State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~4,059 ac
 - Middle Mississippi Purchase Unit · NF · Forest Service Region 09 Eastern · ~3,877 ac
 - Horshoe Lake State Park · SP · Dept of Natural Resources State of Illinois · ~3,339 ac
 - Adeline Jay Geo-Karis Illinois Beach State Park · SP · STATE OF ILLINOIS DEPT OF CONSERVATION · ~3,186 ac
-- Sangchris Lake State Resource Area · SREC · Illinois Department of Natural Resources · ~3,071 ac
 - Pool No. 26 - Stump Lake · SP · Illinois Department of Natural Resources · ~2,972 ac
 - Prairie Ridge-Jasper State Natural Area · SCA · Illinois Department of Natural Resources · ~2,666 ac
 - Great River National Wildlife Refuge · NWR · GREAT RIVER NATIONAL WILDLIFE REFUGE · ~2,493 ac
@@ -118,11 +106,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 219** parks joined
 - Lake DePue State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~2,231 ac
 - Embarras River Bottoms State Habitat Area · SCA · Illinois Department of Natural Resources · ~2,179 ac
 - Spring Lake · SREC · State of Illinois · ~2,123 ac
-- Cahokia Mounds State Historical Site · SP · Illinois state of · ~2,016 ac
 - Robert Allerton Park · SCA · University of Illinois · ~1,808 ac
 - Piatt County Unit State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~1,753 ac
-- Moraine View State Recreational Area · SREC · Illinois Department of Natural Resources · ~1,652 ac
-- Morraine Hills State Park · SP · STATE OF ILLINOIS DEPT OF NATURAL RESOURCES · ~1,619 ac
 - Richland County Wildlife Management Area · SCA · Unknown · ~1,547 ac
 - Weinberg-King State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~1,529 ac
 - Sand Prairie-Scrub Oak State Natural Area · SCA · Illinois Department of Natural Resources · ~1,509 ac
@@ -150,7 +135,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 219** parks joined
 - Saybrook State Habitat Area · SCA · Illinois Department of Natural Resources · ~649 ac
 - Sibley State Habitat Area · UNK · Illinois Department of Natural Resources · ~633 ac
 - Sangamon Valley Greenway · SREC · State of IL · ~584 ac
-- Lewis & Clark State Historic Site · SHCA · Illinois Historic Preservation Agency · ~562 ac
 - Donnelley State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~561 ac
 - Lincolns New Salem State Park · SP · State of Illinois · ~560 ac
 - Kishwaukee River State Natural Area · UNK · Illinois Department of Natural Resources · ~546 ac
@@ -158,5 +142,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 219** parks joined
 - Cretaceous Hills State Natural Area · SCA · Illinois Department of Natural Resources · ~511 ac
 - Vermilion River Observatory · UNK · University of Illinois · ~502 ac
 - Nardi Hills · SOTH · Illinois Department of Natural Resources · ~491 ac
-- Revis Hill Prairie State Natural Area · SCA · Illinois Department of Natural Resources · ~423 ac
 - East Fork Management Unit State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~403 ac
+- Wilmington Shrub Prairie State Natural Area · SCA · Illinois Department of Natural Resources · ~390 ac
+- Hurricane Creek State Habitat Area · SCA · Illinois Department of Natural Resources · ~385 ac
+- Black Crown Marsh State Natural Area · SCA · Illinois Department of Natural Resources · ~374 ac
+- Sparks Pond State Natural Area · SCA · Illinois Department of Natural Resources · ~373 ac
+- Ward's Grove State Natural Area · SCA · Illinois Department of Natural Resources · ~337 ac
+- Farm Service Agency Interest Of Il · NWR · Farm Service Agency Interest Of Il · ~335 ac
+- Meredosia Lake State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~333 ac

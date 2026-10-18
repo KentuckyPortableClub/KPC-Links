@@ -1,6 +1,6 @@
 # AL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **85 of 155** parks joined to official land (same name + same kind of place). **36** to check by hand, **34** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **88 of 155** parks joined to official land (same name + same kind of place). **33** to check by hand, **34** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -15,12 +15,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **85 of 155** parks joined 
 - **US-12410** TVA Flint Creek Access National Park (National Park) → Wheeler Reservoir Retained Land (~16,536 ac, the POTA pin is inside it (different name))
 - **US-12411** TVA Second Creek Access Area National Park (National Park) → Joe Wheeler State Park (~2,144 ac, the POTA pin is inside it (different name))
 - **US-12412** TVA Rockpile Recreation Area National Park (National Park) → Pickwick Reservoir Retained Land (~8,930 ac, the POTA pin is inside it (different name))
-- **US-12965** Dale Country State Public Fishing Lake (State Public Fishing Lake) → Dale County Public Fishing Lake (~84 ac, similar name)
 - **US-13003** TVA Little Bear Creek Dam Multiple Use Area (Multiple Use Area) → Little Bear Creek Reservoir Retained Land (~1,138 ac, the POTA pin is inside it (different name))
 - **US-13004** TVA Cedar Creek Dam Multiple Use Area (Multiple Use Area) → Cedar Creek Reservoir Retained Land (~2,716 ac, the POTA pin is inside it (different name))
 - **US-13005** TVA Big Bear Creek Dam Multiple Use Area (Multiple Use Area) → Bear Creek Reservoir Retained Land (~2,327 ac, the POTA pin is inside it (different name))
 - **US-13311** TVA Upper Bear Creek Dam Resource Management Area (Resource Management Area) → Upper Bear Creek Reservoir Retained Land (~3,216 ac, the POTA pin is inside it (different name))
-- **US-13342** Bibb Country State Public Fishing Lake (State Public Fishing Lake) → Bibb County Public Fishing Lake (~95 ac, similar name)
 - **US-3678** Roland Cooper State Park (State Park) → Millers Ferry Lock Recreation Area (~15,105 ac, the POTA pin is inside it (different name))
 - **US-3681** Blowing Springs Cave Preserve State Conservation Area (State Conservation Area) → Blowing Springs Cave Tract (~60 ac, similar name)
 - **US-3682** Cheaha Wilderness Area (Wilderness Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
@@ -34,7 +32,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **85 of 155** parks joined 
 - **US-3703** Ruffner Mountain Preserve State Conservation Area (State Conservation Area) → Ruffner Mountain Nature Center (~226 ac, similar name)
 - **US-3706** Sipsey Wilderness Wilderness Area (Wilderness Area) → William B. Bankhead National Forest (~182,015 ac, the POTA pin is inside it (different name))
 - **US-3711** Weeks Bay Reserve National Conservation Area (National Conservation Area) → Weeks Bay National Estuarine Research Reserve (~933 ac, similar name); Weeks Bay National Estuarine Research Reserve (~470 ac, similar name); Weeks Bay National Estuarine Research Reserve (~123 ac, similar name); Weeks Bay National Estuarine Research Reserve (~113 ac, similar name)
-- **US-6460** Fort Toulouse National Historical Park (National Historical Park) → Fort Toulouse National Historic Park (~256 ac, similar name)
 - **US-9875** Raccoon Creek Management Area (Management Area) → Jackson County Waterfowl Area And Refuge (~16,198 ac, the POTA pin is inside it (different name))
 - **US-9876** Crow Creek Management Area (Management Area) → Jackson County Waterfowl Area And Refuge (~16,198 ac, the POTA pin is inside it (different name))
 - **US-9911** Boggy Hollow Wildlife Management Area (Wildlife Management Area) → Conecuh National Forest (~84,808 ac, the POTA pin is inside it (different name))

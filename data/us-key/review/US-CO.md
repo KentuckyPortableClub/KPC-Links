@@ -1,6 +1,6 @@
 # CO: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 276** parks joined to official land (same name + same kind of place). **54** to check by hand, **41** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **187 of 276** parks joined to official land (same name + same kind of place). **50** to check by hand, **39** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -27,12 +27,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 276** parks joined
 - **US-12138** Charlie Meyers State Wildlife Area (State Wildlife Area) → Spinney Mountain State Wildlife Area (~1,086 ac, the POTA pin is inside it (different name))
 - **US-12173** Tabeguache BLM Historic Trail (BLM Historic Trail) → Uncompahgre Field Office (~880,205 ac, the POTA pin is inside it (different name))
 - **US-12177** Almont Triangle State Wildlife Area (State Wildlife Area) → Gunnison National Forest (~1,666,811 ac, the POTA pin is inside it (different name))
-- **US-12187** Roaring Fork State Wildlife Area (State Wildlife Area) → Roaring Fork State Wildlife Area - Wheeler Parcel (~3 ac, similar name)
 - **US-12189** Buena Vista State Wildlife Area (State Wildlife Area) → Buena Vista Hay Barn (~162 ac, similar name); Royal Gorge Field Office (~670,237 ac, the POTA pin is inside it (different name))
 - **US-12353** Roaring Judy State Fish Hatchery (State Fish Hatchery) → Roaring Judy SFU (~789 ac, similar name)
 - **US-1243** State Forest State Park (State Park) → State Forest State Park (~71,228 ac, the POTA pin is inside it (different name))
 - **US-12455** Mt. Shavano State Fish Hatchery (State Fish Hatchery) → Mount Shavano State Wildlife Area (~84 ac, similar name); Mount Shavano SFU (~48 ac, similar name)
-- **US-1250** Yampa River State Park (State Park) → Yampa River State Park - Double Bridges (~70 ac, similar name)
 - **US-12758** La Jara Creek State Wildlife Area (State Wildlife Area) → La Jara State Wildlife Area (~3,088 ac, similar name)
 - **US-13106** Penitente Canyon Recreation Site (Recreation Site) → San Luis Valley Field Office (~500,459 ac, the POTA pin is inside it (different name))
 - **US-13573** Shriver-Wright State Wildlife Area (State Wildlife Area) → Rio Grande State Wildlife Area (~11 ac, the POTA pin is inside it (different name))
@@ -48,7 +46,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 276** parks joined
 - **US-9601** 63 Ranch State Wildlife Area (State Wildlife Area) → Antero Lease-63 Ranch (~881 ac, similar name)
 - **US-9606** Andrews Lake State Wildlife Area (State Wildlife Area) → San Juan National Forest (~1,865,751 ac, the POTA pin is inside it (different name))
 - **US-9614** Big Meadows Reservoir State Wildlife Area (State Wildlife Area) → Rio Grande National Forest (~1,838,796 ac, the POTA pin is inside it (different name))
-- **US-9619** Blue River State Wildlife Area (State Wildlife Area) → Blue River State Wildlife Area - Blue River Unit (~93 ac, similar name)
 - **US-9629** Cherokee State Wildlife Area (State Wildlife Area) → Cherokee State Wildlife Area - Lone Pine Unit (~6,663 ac, similar name); Cherokee State Wildlife Area - Roy Brown Unit (~5,670 ac, similar name)
 - **US-9630** Clear Creek Reservoir State Wildlife Area (State Wildlife Area) → Royal Gorge Field Office (~670,237 ac, the POTA pin is inside it (different name))
 - **US-9632** Cochetopa State Wildlife Area (State Wildlife Area) → Gunnison National Forest (~1,666,811 ac, the POTA pin is inside it (different name))
@@ -57,7 +54,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 276** parks joined
 - **US-9650** Four Mile State Wildlife Area (State Wildlife Area) → Pike National Forest (~1,096,884 ac, the POTA pin is inside it (different name))
 - **US-9658** Hot Sulfur Springs State Wildlife Area (State Wildlife Area) → Hot Sulphur Springs State Wildlife Area (~1,200 ac, similar name)
 - **US-9666** Rosemont State Wildlife Area (State Wildlife Area) → Rosemont Reservoir State Wildlife Area (~356 ac, similar name); Pike National Forest (~1,096,884 ac, the POTA pin is inside it (different name))
-- **US-9675** Two Buttes State Wildlife Area (State Wildlife Area) → Two Buttes Reservoir State Wildlife Area (~4,328 ac, similar name); Two Buttes Reservoir State Wildlife Area (~4,228 ac, similar name); Two Buttes Reservoir State Wildlife Area (~956 ac, similar name)
 
 ## Nothing found in PAD-US
 
@@ -71,7 +67,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 276** parks joined
 - US-12139 Cline Ranch State Wildlife Area (State Wildlife Area)
 - US-12170 Teter-Michigan Creek State Wildlife Area (State Wildlife Area)
 - US-12176 Frank State Wildlife Area (State Wildlife Area)
-- US-12185 Grand Junction: West Lake State Wildlife Area (State Wildlife Area)
 - US-12186 Bob Terrell State Wildlife Area (State Wildlife Area)
 - US-12188 Brush Prairie Ponds State Wildlife Area (State Wildlife Area)
 - US-12321 Red Hill BLM Special Recreation Management Area (BLM Special Recreation Management Area)
@@ -98,7 +93,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 276** parks joined
 - US-9652 Grenada State Wildlife Area (State Wildlife Area)
 - US-9667 Runyon/Fountain State Wildlife Area (State Wildlife Area)
 - US-9671 Smith Reservoir State Wildlife Area (State Wildlife Area)
-- US-9672 Terrace Reservoir State Wildlife Area (State Wildlife Area)
 - US-9674 Totten Reservoir State Wildlife Area (State Wildlife Area)
 - US-9678 Windy Gap Watchable State Wildlife Area (State Wildlife Area)
 - US-9683 Amache National Historic Site (National Historic Site)
@@ -147,9 +141,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 276** parks joined
 - Little Snake State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,855 ac
 - Cherokee State Wildlife Area - Upper Unit State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,826 ac
 - Tamarack Ranch State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,603 ac
-- Two Buttes Reservoir State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,328 ac
 - Granada State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,266 ac
-- Two Buttes Reservoir State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,228 ac
 - Pueblo Reservoir State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,045 ac
 - Radium State Wildlife Area - Blacktail Unit · SCA · Colorado Parks & Wildlife · ~4,016 ac
 - Lone Mesa State Park · SP · Colorado Parks & Wildlife · ~3,850 ac
@@ -165,3 +157,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 276** parks joined
 - NeeSoPah · SREC · Colorado State Land Board · ~2,247 ac
 - Miramonte Meadows · SRMA · Colorado State Land Board · ~2,189 ac
 - Oak Ridge State Wildlife Area - Lake Avery Unit · SCA · Colorado Parks & Wildlife · ~2,173 ac
+- Escalante State Wildlife Area - Lower Roubideau Tract · SCA · Colorado Parks & Wildlife · ~2,171 ac
+- Carter Lake · LP · Larimer County · ~2,138 ac

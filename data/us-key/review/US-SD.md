@@ -1,20 +1,17 @@
 # SD: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **93 of 120** parks joined to official land (same name + same kind of place). **17** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **96 of 120** parks joined to official land (same name + same kind of place). **14** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0675** Missouri National Recreational River National Wild & Scenic River (National Wild & Scenic River) → Lewis And Clark Recreation Area (~25,792 ac, the POTA pin is inside it (different name))
 - **US-10319** South Scalp Creek State Recreation Area (State Recreation Area) → S. Scalp Creek Recreation Area (~305 ac, similar name)
-- **US-10325** West Shore State Recreation Area (State Recreation Area) → Oahe West Shore Recreation Area (~67 ac, similar name); Oaha Recreation Area (~314,305 ac, the POTA pin is inside it (different name))
 - **US-10331** Bailey State Recreation Area (State Recreation Area) → Bailey (s. Angostura) Recreation Area (~719 ac, similar name); South Dakota Field Office (~275,364 ac, the POTA pin is inside it (different name))
 - **US-10363** DeGray State Recreation Area (State Recreation Area) → Sharpe Recreation Area (~78,431 ac, the POTA pin is inside it (different name)); Degrey Recreation Area (~25 ac, the POTA pin is inside it (different name))
 - **US-10372** Spillway (Ft. Randall) State Recreation Area (State Recreation Area) → Francis Case Recreation Area (~102,941 ac, the POTA pin is inside it (different name))
-- **US-10373** East Whitelock State Recreation Area (State Recreation Area) → East Whitlock Recreation Area (~98 ac, the POTA pin is inside it (different name))
 - **US-10374** Bob's Landing State Recreation Area (State Recreation Area) → Oaha Recreation Area (~314,305 ac, the POTA pin is inside it (different name)); Bob's Resort (~7 ac, the POTA pin is inside it (different name))
 - **US-10375** Dodge Draw State Vehicle Recreational Area (State Vehicle Recreational Area) → Dodge Draw Recreation Area (~76 ac, similar name); Oaha Recreation Area (~314,305 ac, the POTA pin is inside it (different name))
 - **US-10376** Le Beau State Recreation Area (State Recreation Area) → Oaha Recreation Area (~314,305 ac, the POTA pin is inside it (different name)); Lebeau Recreation Area (~46 ac, the POTA pin is inside it (different name))
-- **US-5645** Spirit Mound Historic Prairie State Park (State Park) → Spirit Mound (~318 ac, similar name)
 - **US-8156** Beaver Creek State Natural Area (State Natural Area) → Beaver Creek Nature Area (~150 ac, similar name)
 - **US-8158** Big Stone Island State Recreation Area (State Recreation Area) → Big Stone Island Nature Area (~105 ac, similar name); Big Stone Ponds Game Production Area (~53 ac, similar name); Big Stone Lake (~36 ac, similar name)
 - **US-8168** Lake Cochrane State Recreation Area (State Recreation Area) → Cochrane (~29 ac, similar name)

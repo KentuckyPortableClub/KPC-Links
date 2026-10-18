@@ -1,10 +1,9 @@
 # VT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **73 of 109** parks joined to official land (same name + same kind of place). **23** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 109** parks joined to official land (same name + same kind of place). **21** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0329** Silvio O Conte National Wildlife Refuge (National Wildlife Refuge) → Silvio O. Conte National Fish And Wildlife Refuge (~27,090 ac, similar name); Silvio O. Conte National Fish And Wildlife Refuge (~27,090 ac, similar name)
 - **US-10299** South Stream State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → South Stream Wildlife Management Area (~127 ac, similar name); South Stream Wildlife Management Area (~17 ac, similar name)
 - **US-10301** Gale Meadows State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Gale Meadows Wildlife Management Area (~266 ac, similar name); Gale Meadows Wildlife Management Area (~12 ac, similar name); Gale Meadows Wildlife Management Area (~9 ac, similar name)
 - **US-10302** Atherton Meadows State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Atherton Meadows Wildlife Management Area (~761 ac, similar name); Atherton Meadows Wildlife Management Area (~150 ac, similar name); Atherton Meadows Wildlife Management Area (~87 ac, similar name); Atherton Meadows Wildlife Management Area (~38 ac, similar name)
@@ -23,7 +22,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **73 of 109** parks joined 
 - **US-5530** Dorand State Forest (State Forest) → J.J. Dorand SF (~512 ac, similar name)
 - **US-5531** William C. Putnam State Forest (State Forest) → W.C. Putnam State Forest (~148 ac, similar name)
 - **US-5541** Calvin Coolidge State Forest (State Forest) → Coolidge State Forest (~1,218 ac, similar name); Coolidge State Forest (~373 ac, similar name); Coolidge State Forest (~92 ac, similar name); Coolidge State Forest (~37 ac, similar name)
-- **US-5547** Granville Gulf Reservation State Forest (State Forest) → Granville Reservation State Forest (~569 ac, similar name); Granville Reservation State Forest (~556 ac, similar name); Granville Reservation State Forest (~12 ac, similar name)
 - **US-5551** Jones State Forest (State Forest) → L.R. Jones State Forest (~346 ac, similar name); L.R. Jones State Forest (~97 ac, similar name); L.R. Jones State Forest (~84 ac, similar name); L.R. Jones State Forest (~48 ac, similar name); L.R. Jones State Forest (~45 ac, similar name); L.R. Jones State Forest (~18 ac, similar name)
 - **US-5554** Putnam State Forest (State Forest) → C.C. Putnam State Forest (~4,724 ac, similar name); C.C. Putnam State Forest (~3,085 ac, similar name); C.C. Putnam State Forest (~2,745 ac, similar name); C.C. Putnam State Forest (~1,034 ac, similar name); C.C. Putnam State Forest (~139 ac, similar name)
 - **US-5564** Essex Nursery State Forest (State Forest) → State Tree Nursery (~10 ac, the POTA pin is inside it (different name))
@@ -46,8 +44,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **73 of 109** parks joined 
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- Silvio O. Conte National Fish And Wildlife Refuge · NWR · SILVIO O. CONTE NATIONAL FISH AND WILDLIFE REFUGE · ~27,090 ac
-- Silvio O. Conte National Fish And Wildlife Refuge · NWR · Silvio O. Conte National Fish And Wildlife Refuge · ~27,090 ac
 - Steam Mill Brook Wildlife Management Area · SCA ·   · ~9,925 ac
 - Appalachian National Scenic Trail · NT · NPS · ~9,867 ac
 - Arthur Davis Wildlife Management Area · SCA ·   · ~7,562 ac
@@ -106,3 +102,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **73 of 109** parks joined 
 - Groton Forest Legacy Initiative Molly's Falls Pond · SCA · Vermont Department of Forests, Parks and Recreation · ~628 ac
 - Middlesex Notch Wildlife Management Area · SCA ·   · ~625 ac
 - Coolidge State Forest · SRMA ·   · ~609 ac
+- Roaring Brook Wildlife Management Area · SCA · VT Department of Fish and Wildlife · ~565 ac
+- Coolidge State Forest · SRMA ·   · ~564 ac

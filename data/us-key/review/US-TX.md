@@ -1,13 +1,12 @@
 # TX: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **175 of 222** parks joined to official land (same name + same kind of place). **26** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **179 of 222** parks joined to official land (same name + same kind of place). **22** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0689** Big Thicket Preserve National Conservation Area (National Conservation Area) → Big Thicket National Preserve (~108,722 ac, similar name)
 - **US-10276** Star of the Republic Museum State Historic Site (State Historic Site) → Washington-on-the-Brazos State Historic Site (~295 ac, the POTA pin is inside it (different name))
 - **US-2984** Atlanta State Park (State Park) → Wright Patman Recreation Area (~81,011 ac, the POTA pin is inside it (different name))
-- **US-3025** Lake Casa Blanca International State Park (State Park) → Lake Casa Blanca State Park (~328 ac, similar name)
 - **US-3032** Lake Whitney State Park (State Park) → Whitney Point Recreation Area (~45,028 ac, the POTA pin is inside it (different name))
 - **US-3044** Old Tunnel State Park (State Park) → Old Tunnel Wildlife Management Area (~17 ac, same name, different kind of place)
 - **US-3497** Devil's Sinkhole State Conservation Area (State Conservation Area) → Devil's Sink State Natural Area (~1,864 ac, same name, different kind of place)
@@ -21,13 +20,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **175 of 222** parks joined
 - **US-4419** I.D. Farichild State Forest (State Forest) → I.D. FairChild State Forest (~1,727 ac, the POTA pin is inside it (different name))
 - **US-4421** Masterson State Forest (State Forest) → Paul N. Masterson Memorial State Forest (~520 ac, similar name)
 - **US-6538** Barrington Plantation State Historic Site (State Historic Site) → Washington-on-the-Brazos State Historic Site (~295 ac, the POTA pin is inside it (different name))
-- **US-6545** Candy Cain Abshier Wildlife Management Area (Wildlife Management Area) → Candy Abshier Wildlife Management Area (~207 ac, similar name)
 - **US-6550** Cooper Wildlife Management Area (Wildlife Management Area) → Cooper Reservoir Wildlife Management Area (~18,384 ac, similar name); Cooper Lake State Park - South Sulphur Unit (~2,727 ac, similar name); Cooper Recreation Area (~32,045 ac, same name, different kind of place)
 - **US-6572** Las Palomas , Lower Rio Grande Valley Units Wildlife Management Area (Wildlife Management Area) → Lower Rio Grande Valley National Wildlife Refuge (~89,898 ac, similar name); Lower Rio Grande Valley National Wildlife Refuge (~88,266 ac, similar name); Las Palomas Wildlife Management Area (~601 ac, similar name); Las Palomas Wildlife Management Area (~220 ac, similar name); Las Palomas Wildlife Management Area (~122 ac, similar name)
 - **US-6580** Matagorda Island Wildlife Management Area (Wildlife Management Area) → Aransas National Wildlife Refuge (~90,764 ac, the POTA pin is inside it (different name)); Aransas National Wildlife Refuge (~90,764 ac, the POTA pin is inside it (different name))
 - **US-6581** McClellan Creek National Nature Reserve (National Nature Reserve) → McClellan Creek National Grassland (~1,402 ac, similar name)
-- **US-6593** Playa Lakes, Dimmitt Unit Wildlife Management Area (Wildlife Management Area) → Playa Lakes Wildlife Management Area (~419 ac, similar name)
-- **US-6594** Playa Lakes, Taylor Lakes Unit Wildlife Management Area (Wildlife Management Area) → Playa Lakes Wildlife Management Area (~526 ac, similar name)
 - **US-6608** W.A. Pat Murphy Unit Wildlife Management Area (Wildlife Management Area) → Gene Howe Wildlife Management Area (~890 ac, the POTA pin is inside it (different name))
 - **US-9757** Butterfield Overland National Historic Trail (National Historic Trail) → Guadalupe Mountains National Park (~86,840 ac, the POTA pin is inside it (different name))
 

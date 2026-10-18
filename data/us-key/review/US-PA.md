@@ -1,10 +1,9 @@
 # PA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **462 of 494** parks joined to official land (same name + same kind of place). **17** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **465 of 494** parks joined to official land (same name + same kind of place). **14** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0512** John Heinz National Wildlife Refuge (National Wildlife Refuge) → John Heinz National Wildlife Refuge At Tinicum (~1,011 ac, similar name); John Heinz National Wildlife Refuge At Tinicum (~1,011 ac, similar name)
 - **US-0624** Roaring Run State Conservation Area (State Conservation Area) → Roaring Run Natural Area (~3,531 ac, same name, different kind of place)
 - **US-0625** Mount Davis State Conservation Area (State Conservation Area) → Mt Davis Natural Area (~599 ac, same name, different kind of place); Forbes State Forest (~47,901 ac, the POTA pin is inside it (different name))
 - **US-0626** Sweet Root State Conservation Area (State Conservation Area) → Sweet Root Natural Area (~1,526 ac, same name, different kind of place)
@@ -19,8 +18,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **462 of 494** parks joined
 - **US-4356** Boyd Big Tree State Preserve (State Preserve) → Boyd Big Tree Conservation Area (~1,044 ac, similar name)
 - **US-4358** Jacobsburg Environmental State Park (State Park) → Jacobsburg Environmental Education Center (~1,165 ac, similar name); Jacobsburg Environmental Education Center (~1,164 ac, similar name)
 - **US-4359** Jennings Environmental State Park (State Park) → Jennings Environmental Education Center (~299 ac, similar name)
-- **US-4361** Kings Gap Environmental State Park (State Park) → Kings Gap Environmental Education Center (~2,324 ac, similar name); Kings Gap State Park (~1,458 ac, similar name); Kings Gap State Park (~1,034 ac, similar name); Kings Gap Forest Pools Area (~68 ac, similar name); Kings Gap Environmental Education Center (~66 ac, similar name)
-- **US-6432** Washington Crossing State Historical Park (State Historical Park) → Washington Crossing Historic Park (~484 ac, similar name); Washington Crossing Historic Park (~483 ac, similar name)
 
 ## Nothing found in PAD-US
 
