@@ -33,7 +33,7 @@
     return k === 'bwma' ? { color: '#4ade80', dashArray: '8 5', who: 'Fish & Wildlife (WMA) land' } : k === 'bsnp' || k === 'bsna' ? { color: '#2dd4bf', who: 'Nature preserve land' }
       : k === 'bnps' ? { color: '#60a5fa', who: 'National Park Service' } : k === 'bfws' ? { color: '#5ab0ff', dashArray: '6 4', who: 'U.S. Fish & Wildlife' }
       : k === 'bdbnf' ? { color: '#a3e635', dashArray: '3 5', who: 'National Forest outer line' } : k === 'bwild' ? { color: '#16b3c0', dashArray: '2 4', who: 'Wild River corridor' }
-      : k === 'bwilder' ? { color: '#c6e03a', who: 'Wilderness area' } : k === 'bkpc' ? { color: '#ffd400', dashArray: '12 5 2 5', who: 'approximate (KPC-drawn)' } : { color: '#f0c96b', who: 'State park land' }; };
+      : k === 'bwilder' ? { color: '#c6e03a', who: 'Wilderness area' } : k === 'bpad' ? { color: '#e8b04a', who: 'Official outline (USGS PAD-US)' } : k === 'bkpc' ? { color: '#ffd400', dashArray: '12 5 2 5', who: 'approximate (KPC-drawn)' } : { color: '#f0c96b', who: 'State park land' }; };
   function kindOf(x) { return /^US-/.test(x.c) ? 'pota' : /^KFF-/.test(x.c) ? 'kff' : 'sota'; }
   function init() {
     map = L.map('pcMap', { zoomControl: true, preferCanvas: true }).setView([37.75, -85.7], 7);
