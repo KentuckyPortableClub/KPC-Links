@@ -78,22 +78,39 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **213 of 277** parks joined
 - Tackett Creek Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~45,542 ac
 - Dale Hollow Recreation Area · REC · Nashville · ~44,125 ac
 - Center Hill Recreation Area · REC · Nashville · ~40,398 ac
+- Cohutta Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~37,039 ac
 - J. Percy Priest Recreation Area · REC · Nashville · ~33,737 ac
 - Old Hickory Recreation Area · REC · Nashville · ~29,862 ac
 - Cordell Hull Recreation Area · REC · Nashville · ~29,264 ac
+- Southern Nantahala Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~23,604 ac
+- Joyce Kilmer-Slickrock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~19,247 ac
+- Shining Rock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,478 ac
 - Barkley Recreation Area · REC · Nashville · ~17,136 ac
+- Citico Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,213 ac
+- Linville Gorge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,948 ac
 - Big Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,001 ac
+- Sampson Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,896 ac
+- Big Laurel Branch Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,764 ac
 - Meeman-Shelby Forest Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~9,433 ac
+- Upper Bald River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,037 ac
+- Big Frog Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,502 ac
 - Wapanocca National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,464 ac
+- Ellicott Rock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,300 ac
 - Kentucky Reservoir · ND · Tennessee Valley Authority (TVA) · ~8,201 ac
+- Middle Prong Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,482 ac
 - North Chickamauga Creek Gorge Designated State Natural Area · SCA · SDC · ~7,107 ac
+- Pond Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,930 ac
 - Cheatham Lock And Dam Recreation Area · REC · Nashville · ~6,915 ac
+- Little Frog Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,635 ac
 - South Cumberland · SP · OTHS · ~5,047 ac
 - Franklin State Forest · SRMA · OTHS · ~4,825 ac
+- Unaka Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,463 ac
 - Dry Creek Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~4,055 ac
 - Enterprise South Park Wildlife Management Area · SCA · SFW · ~3,845 ac
+- Bald River Gorge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,791 ac
 - Three Bend Scenic & Wildlife Refuge · SCA · Tennessee Wildlife Resources Agency · ~3,204 ac
 - Obed Wild and Scenic River · WSR · NPS · ~3,160 ac
+- Gee Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~2,580 ac
 - Dry Branch Designated State Natural Area · SCA · Unknown · ~2,174 ac
 - Buffalo Ridge Refuge · SCA · Tennessee Wildlife Resources Agency · ~1,814 ac
 - Alpine Mountain Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~1,709 ac
@@ -117,20 +134,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **213 of 277** parks joined
 - Charlotte Anne Finnell Neal Wildlife Management Area · SCA · SFW · ~496 ac
 - Johnsonville State Historic Park · HCA · Tennessee Valley Authority (TVA) · ~495 ac
 - Tfb · SOTH · TDEC · ~481 ac
-- Joachim Bible Refuge · SCA · Tennessee Wildlife Resources Agency · ~472 ac
-- Williams Island · SHCA · OTHS · ~445 ac
-- Dyson Ditch Refuge · SCA · Tennessee Wildlife Resources Agency · ~421 ac
-- Middle Fork Forked Deer Refuge · SCA · Tennessee Wildlife Resources Agency · ~416 ac
-- Mckinley Branch · SCA · SFW · ~413 ac
-- Mcgee Carson Peninsula State Historic Park · HCA · Tennessee Valley Authority (TVA) · ~411 ac
-- Glen Springs Lake State Forest · SRMA · Tennessee Wildlife Resources Agency · ~358 ac
-- Hicks Gap Designated State Natural Area · SCA · OTHS · ~343 ac
-- Parkers Crossroads · SHCA · Tennessee Department of Environment and Conservation · ~341 ac
-- Lock 5 Refuge · SCA · Tennessee Wildlife Resources Agency · ~334 ac
-- Big Bone Cave Designaed State Natural Area · SCA · Unknown · ~334 ac
-- Pardue Pond Refuge · SCA · Tennessee Wildlife Resources Agency · ~328 ac
-- Cherokee Purchase Unit · NF · Forest Service Region 08 Southern · ~325 ac
-- Herb Parsons Lake State Forest · SRMA · Tennessee Wildlife Resources Agency · ~297 ac
-- Walker Branch Hills Designated State Natural Area · SCA · Unknown · ~281 ac
-- Tellico Lake - Chota Unit · NCA · Tennessee Valley Authority (TVA) · ~262 ac
-- Henderson Island Refuge · SCA · Tennessee Wildlife Resources Agency · ~243 ac

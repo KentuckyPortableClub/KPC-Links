@@ -44,13 +44,23 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 109** parks joined 
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Pemigewasset Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~45,809 ac
+- Sandwich Range Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~35,299 ac
+- Breadloaf Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,985 ac
+- Glastenbury Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~22,330 ac
+- Lye Brook Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,122 ac
+- Joseph Battell Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,336 ac
 - Steam Mill Brook Wildlife Management Area · SCA ·   · ~9,925 ac
 - Appalachian National Scenic Trail · NT · NPS · ~9,867 ac
+- Peru Peak Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,796 ac
 - Arthur Davis Wildlife Management Area · SCA ·   · ~7,562 ac
+- Big Branch Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,625 ac
 - Bill Sladyk Wildlife Management Area · SCA ·   · ~6,337 ac
 - Les Newell Wildlife Management Area · SCA ·   · ~5,987 ac
+- George D. Aiken Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,800 ac
 - C.C. Putnam State Forest · SRMA ·   · ~4,724 ac
 - Coolidge State Forest · SRMA ·   · ~4,237 ac
+- Bristol Cliffs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,750 ac
 - C.C. Putnam State Forest · SRMA ·   · ~3,085 ac
 - Coolidge State Forest · SRMA ·   · ~2,821 ac
 - Dead Creek Wildlife Management Area · SCA · VT Department of Fish and Wildlife · ~2,796 ac
@@ -94,13 +104,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 109** parks joined 
 - Steam Mill Brook Wildlife Management Area · SCA ·   · ~758 ac
 - Robbins Mountain Wildlife Management Area · SCA ·   · ~753 ac
 - C.C. Putnam State Forest · SRMA ·   · ~728 ac
-- Blueberry Hill Wildlife Management Area · SCA ·   · ~699 ac
-- Lewis Creek Wildlife Management Area · SCA ·   · ~681 ac
-- Tinmouth Channel Wildlife Management Area · SCA ·   · ~643 ac
-- White River Wildlife Management Area · SCA ·   · ~638 ac
-- Coolidge State Forest · SRMA ·   · ~636 ac
-- Bird Mountain Wildlife Management Area · SCA ·   · ~630 ac
-- Groton Forest Legacy Initiative Molly's Falls Pond · SCA · Vermont Department of Forests, Parks and Recreation · ~628 ac
-- Middlesex Notch Wildlife Management Area · SCA ·   · ~625 ac
-- Coolidge State Forest · SRMA ·   · ~609 ac
-- Roaring Brook Wildlife Management Area · SCA · VT Department of Fish and Wildlife · ~565 ac

@@ -233,14 +233,19 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 460** parks joined
 - Apalachicola River Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~62,955 ac
 - Guana Tolomato Matanzas National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~41,218 ac
 - Lake Okeechobee Sanctuaries · PCON · National Audubon Society, Inc. · ~26,290 ac
+- Bradwell Bay Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,222 ac
 - Raiford Wildlife Management Area · PCON · PRIDE Enterprises, Inc. · ~17,793 ac
 - Seminole Recreation Area · REC · Mobile · ~17,724 ac
 - John C. and Mariana Jones/Hungryland Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~17,059 ac
 - Timucuan Ecological and Historic Preserve · NCA · NPS · ~16,646 ac
 - Lake Wales Ridge Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~15,446 ac
 - Yucca Pens Unit · SCA · FL Fish and Wildlife Conservation Commission · ~15,044 ac
+- Juniper Prairie Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~14,298 ac
+- Big Gum Swamp Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,835 ac
 - Snipe Island Unit · SCA · FL Fish and Wildlife Conservation Commission · ~11,751 ac
 - Ordway-Swisher Biological Station · SCA · University of Florida · ~9,141 ac
+- Mud Swamp/New River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,075 ac
+- Alexander Springs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,888 ac
 - Tenoroc Fish Management Area · SCA · FL Fish and Wildlife Conservation Commission · ~7,528 ac
 - Everglades Headwaters National Wildlife Refuge And Conservation Area · NWR · Everglades Headwaters National Wildlife Refuge And Conservation Area · ~7,031 ac
 - T. M. Goodwin Waterfowl Management Area · SCA · FL Fish and Wildlife Conservation Commission · ~6,526 ac
@@ -254,7 +259,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 460** parks joined
 - Everglades Headwaters National Wildlife Refuge And Conservation Area · NWR · EVERGLADES HEADWATERS NATIONAL WILDLIFE REFUGE AND CONSERVATION AREA · ~3,855 ac
 - Okefenokee National Wildlife Refuge · NWR · OKEFENOKEE NATIONAL WILDLIFE REFUGE · ~3,533 ac
 - Okefenokee National Wildlife Refuge · NWR · Okefenokee National Wildlife Refuge · ~3,526 ac
+- Billies Bay Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,064 ac
 - Tate's Hell Wildlife Management Area · SCA · FL Fish and Wildlife Conservation Commission · ~2,899 ac
+- Little Lake George Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~2,827 ac
 - T. H. Stone Memorial St. Joseph Peninsula State Park · SP · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~2,791 ac
 - GTMNERR - Guana River Site · SOTH · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~2,720 ac
 - Curry Island (LOHA) · POTH · Lake Okeechobee Habitat Alliance, Inc. · ~2,681 ac
@@ -275,10 +282,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 460** parks joined
 - L. Kirk Edwards Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~1,783 ac
 - Split Oak Forest Mitigation Park Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~1,772 ac
 - Shell Key Preserve · SCA · Pinellas County · ~1,754 ac
-- Beker · SOTH · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~1,743 ac
-- Micco Scrub Sanctuary · SCA · Brevard County · ~1,724 ac
-- Peace River Settlement · SCA · BOARD OF TRUSTEES OF IITF/STATE OF FL · ~1,700 ac
-- Schewe Ranch . South · SREC · State of Florida · ~1,691 ac
-- Fort White Mitigation Park Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~1,638 ac
-- Bower Tract Preserve · SCA · Hillsborough County · ~1,585 ac
-- Spring Hammock Preserve · SCA · Seminole County · ~1,505 ac

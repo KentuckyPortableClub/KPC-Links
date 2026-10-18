@@ -1,6 +1,6 @@
 # GA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **199 of 237** parks joined to official land (same name + same kind of place). **23** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **200 of 237** parks joined to official land (same name + same kind of place). **23** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -30,7 +30,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **199 of 237** parks joined
 
 ## Nothing found in PAD-US
 
-- US-10397 Southern Nantahala Wilderness Area (Wilderness Area)
 - US-12419 Tallapoosa River Wildlife Management Area (Wildlife Management Area)
 - US-12420 Treat Mountain Wildlife Management Area (Wildlife Management Area)
 - US-12421 Cochrans Creek Wildlife Management Area (Wildlife Management Area)
@@ -52,14 +51,25 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **199 of 237** parks joined
 - J. Strom Thurmond Recreation Area · REC · Savannah · ~100,445 ac
 - Sidney Lanier Recreation Area · REC · Mobile · ~56,718 ac
 - Allatoona Recreation Area · REC · Mobile · ~38,047 ac
+- Cohutta Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~37,039 ac
 - Hartwell Recreation Area · REC · Savannah · ~27,785 ac
 - Walter F. George Recreation Area · REC · Mobile · ~26,765 ac
 - West Point Recreation Area · REC · Mobile · ~22,863 ac
+- Mark Trail Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,618 ac
 - Pine Log Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~14,468 ac
+- Big Gum Swamp Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,835 ac
+- Brasstown Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,925 ac
 - Rayonier Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~12,443 ac
+- Rich Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,791 ac
+- Tray Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,343 ac
 - King Tract Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~9,610 ac
+- Raven Cliffs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,240 ac
 - Little Tybee-Cabbage Island Tract · SCA · Georgia Department of Natural Resources · ~8,985 ac
+- Dugger Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,947 ac
 - Carters Recreation Area · REC · Mobile · ~8,777 ac
+- Big Frog Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,502 ac
+- Ellicott Rock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,300 ac
+- Blood Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,742 ac
 - 091-001 · SCA · Department of Transportation · ~7,221 ac
 - Ogeechee Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~6,647 ac
 - Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area · SCA · Georgia Department of Natural Resources · ~6,273 ac
@@ -97,14 +107,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **199 of 237** parks joined
 - Beef Cattle Research Farm · SRMA · Georgia Board of Regents · ~882 ac
 - Savannah River Tract · SCA · Georgia Department of Natural Resources · ~860 ac
 - Little Hogan Island Tract · SCA · Georgia Department of Natural Resources · ~856 ac
-- Whitehall Forest · SCA · Board of Regents · ~828 ac
-- Bush Head Shoals State Park · SP · Georgia Department of Natural Resources · ~811 ac
-- 133-001 · SCA · Department of Transportation · ~735 ac
-- Fall Line Sandhills Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~733 ac
-- Old Rope Mill Park & Blankets Creek Mountain Bike Trail · LP · Cherokee County · ~690 ac
-- Gordonia-Alatamaha State Park · SP · Georgia Department of Natural Resources · ~684 ac
-- Bobby Brown Outdoor Recreation Area · SREC · Georgia Department of Natural Resources · ~681 ac
-- Tybee National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~678 ac
-- Jerico River Tract · SCA · Georgia Department of Natural Resources · ~632 ac
-- 014-001 · SREC · Department of Transportation · ~628 ac
-- Uga Dairy Farm · REA · Georgia Board of Regents · ~602 ac

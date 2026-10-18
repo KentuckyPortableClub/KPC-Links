@@ -1,6 +1,6 @@
 # AR: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 304** parks joined to official land (same name + same kind of place). **68** to check by hand, **97** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **140 of 304** parks joined to official land (same name + same kind of place). **67** to check by hand, **97** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -16,7 +16,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 304** parks joined
 - **US-11155** White Rock Mountain State Recreation Area (State Recreation Area) → Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
 - **US-1116** Plumb Bayou Mounds Archeological State Park (State Park) → Toltec Mounds Archeological State Park (~176 ac, similar name)
 - **US-11165** Chalk Bluff Battlefield Park Recreation Park (Recreation Park) → Chalk Bluff Natural Area (~55 ac, similar name)
-- **US-11294** Caney Creek Wilderness Area Wilderness Zone (Wilderness Zone) → Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name))
 - **US-11353** Kirk Dupps Beaver Lake Wildlife Management Area (Wildlife Management Area) → Beaver Recreation Area (~38,135 ac, similar name)
 - **US-11354** Fred Berry Crooked Creek Nature Center State Natural Site (State Natural Site) → Kelly's Slab (~378 ac, the POTA pin is inside it (different name))
 - **US-11355** Cook’s Lake Nature Center Nature Recreation Area (Nature Recreation Area) → Dale Bumpers White River National Wildlife Refuge (~156,927 ac, the POTA pin is inside it (different name)); Dale Bumpers White River National Wildlife Refuge (~156,769 ac, the POTA pin is inside it (different name))
@@ -31,7 +30,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 304** parks joined
 - **US-7266** Blue Mountain Wildlife Management Area (Wildlife Management Area) → Blue Mountain Recreation Area (~17,282 ac, same name, different kind of place)
 - **US-7267** Dr Lester Stizes III Bois d'Arc Wildlife Management Area (Wildlife Management Area) → Bois D'arc (~5,890 ac, similar name)
 - **US-7271** Camp Robinson Wildlife Management Area (Wildlife Management Area) → Camp Robinson Wildlife Demonstration Area (~4,211 ac, similar name)
-- **US-7272** Caney Creek Wildlife Management Area (Wildlife Management Area) → Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name))
+- **US-7272** Caney Creek Wildlife Management Area (Wildlife Management Area) → Caney Creek Wilderness (~14,262 ac, similar name); Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name))
 - **US-7274** Cedar Creek Wildlife Management Area (Wildlife Management Area) → Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name))
 - **US-7275** Cedar Mountain Wildlife Management Area (Wildlife Management Area) → Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name))
 - **US-7277** Crossett Experimental Forest Wildlife Management Area (Wildlife Management Area) → Crossett Experimental Area (~1,685 ac, similar name)
@@ -185,22 +184,32 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 304** parks joined
 - Ozark Recreation Area · REC · Little Rock · ~17,698 ac
 - Henry Gray/hurricane Lake · SREC · Unknown · ~17,503 ac
 - Gene Rush/buffalo River · SCA · Unknown · ~17,011 ac
+- Leatherwood Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,791 ac
+- Hurricane Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~15,333 ac
 - Hillside National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,948 ac
 - Lafayette Wildlife Management Area · SCA · Unknown · ~14,703 ac
 - Little River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,236 ac
 - Madison County · SCA · Unknown · ~14,195 ac
+- Black Fork Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,466 ac
 - Yazoo National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~13,042 ac
 - Lower Hatchie National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~12,272 ac
 - Pine Tree Wildlife Demonstration Area · SCA · Unknown · ~12,238 ac
 - Hobbs State Park / Conservation Management Area · SP · Unknown · ~12,157 ac
+- Upper Buffalo Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,057 ac
+- Richland Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,674 ac
+- Poteau Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,141 ac
 - Wilbur D. Mills Pool Recreation Area · REC · Little Rock · ~11,133 ac
 - Big Lake · SREC · Unknown · ~10,804 ac
+- Upper Kiamichi River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,799 ac
+- East Fork Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,585 ac
+- Flatside Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,142 ac
 - Dahomey National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~9,537 ac
 - Choctaw Island · SCA · Unknown · ~9,044 ac
 - Gillham Recreation Area · REC · Little Rock · ~8,514 ac
 - Ed Gordon/pt. Remove · SCA · Unknown · ~8,429 ac
 - Morgan Brake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,569 ac
 - Dequeen Recreation Area · REC · Little Rock · ~7,432 ac
+- Dry Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,301 ac
 - Theodore Roosevelt National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,252 ac
 - Murray Pool Recreation Area · REC · Little Rock · ~5,685 ac
 - Chickasaw National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~5,369 ac
@@ -225,13 +234,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 304** parks joined
 - Holt Collier National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,543 ac
 - Stumpy Point Purchase Unit · NF · Forest Service Region 08 Southern · ~1,519 ac
 - Farm Service Agency Interest Of Ms ·  · U.S. Fish & Wildlife Service (own map) · ~1,417 ac
-- Holt Collier National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,397 ac
-- De Gray State Park · SP · Unknown · ~1,277 ac
-- Southeastern States District Office · PUB · BLM · ~1,152 ac
-- Jamestown · SCA · Unknown · ~1,091 ac
-- Robert Hankins/mud Creek Wildlife Demonstration Area · SCA · Unknown · ~1,052 ac
-- Pool 4 (Ark. Rv) Recreation Area · REC · Little Rock · ~880 ac
-- Maumelle Water Excellence - Canterbury Parcel · UNK · Unknown · ~741 ac
-- Farm Service Agency Interest Of Ms ·  · U.S. Fish & Wildlife Service (own map) · ~732 ac
-- Farm Service Agency Interest Of Ms ·  · U.S. Fish & Wildlife Service (own map) · ~672 ac
-- Farm Service Agency Interest Of Ar · NWR · FARM SERVICE AGENCY INTEREST OF AR · ~663 ac

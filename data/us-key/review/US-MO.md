@@ -133,15 +133,23 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **443 of 561** parks joined
 - Bull Shoals Recreation Area · REC · Little Rock · ~37,464 ac
 - Smithville Recreation Area · REC · Kansas City · ~19,839 ac
 - Clearwater Recreation Area · REC · Little Rock · ~18,714 ac
+- Leatherwood Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,791 ac
+- Irish Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,509 ac
 - Cypress Creek National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~13,024 ac
 - August A. Busch Jr. Mem Wetlands At Four Rivers Conservation Area · SCA · Unknown · ~12,602 ac
+- Hercules-Glades Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,425 ac
 - Logan Creek Conservation Area · SCA · Unknown · ~11,985 ac
 - Clearwater Conservation Area · SCA · Unknown · ~11,562 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~11,436 ac
+- Bell Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,183 ac
+- Piney Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,184 ac
 - Reelfoot National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,817 ac
+- Paddy Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,080 ac
+- Devils Backbone Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,691 ac
 - Caney Mountain Conservation Area · SCA · Unknown · ~6,486 ac
 - Drury-Mincy Conservation Area · SCA · Unknown · ~6,309 ac
 - Two Rivers National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,227 ac
+- Bald Knob Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,817 ac
 - Sunklands Natural Area · SCA · Unknown · ~5,602 ac
 - Birch Creek Conservation Area · SCA · Unknown · ~5,582 ac
 - Saint Francois Mountains Natural Area · SCA · Unknown · ~5,474 ac
@@ -149,9 +157,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **443 of 561** parks joined
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~5,001 ac
 - Longview Recreation Area · REC · Kansas City · ~4,762 ac
 - Chautauqua National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~4,758 ac
+- Clear Springs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,667 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~4,580 ac
 - Ozark Plateau National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~4,457 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~4,308 ac
+- Rockpile Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,281 ac
 - Stegall Mountain Natural Area · SCA · Unknown · ~4,242 ac
 - Perry (R. And M.) Memorial Conservation Area · SCA · Unknown · ~4,203 ac
 - Shanks (Ted) Conservation Area · SCA · Unknown · ~4,161 ac
@@ -178,13 +188,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **443 of 561** parks joined
 - Huckleberry Ridge Conservation Area · SCA · Unknown · ~2,066 ac
 - Middle Mississippi River National Wildlife Refuge · NWR · MIDDLE MISSISSIPPI RIVER NATIONAL WILDLIFE REFUGE · ~2,027 ac
 - Middle Mississippi River National Wildlife Refuge · NWR · Middle Mississippi River National Wildlife Refuge · ~2,025 ac
-- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~1,973 ac
-- Rockwoods Reservation · SCA · Unknown · ~1,924 ac
-- Linscomb Wildlife Area · SCA · Unknown · ~1,917 ac
-- Tyson Research Center · LP · WASHINGTON UNIVERSITY · ~1,904 ac
-- Lincoln Hills Natural Area · SCA · Unknown · ~1,903 ac
-- Lake Isom National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,813 ac
-- Logan (William R.) Conservation Area · SCA · Unknown · ~1,800 ac
-- Farm Service Agency Interest Of Mo · NWR · Farm Service Agency Interest Of Mo · ~1,616 ac
-- Elk River Breaks Woodland Natural Area · SCA · Unknown · ~1,602 ac
-- Big Buffalo Creek Natural Area · SCA · Unknown · ~1,516 ac

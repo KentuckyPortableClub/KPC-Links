@@ -86,10 +86,16 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 205** parks joined
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Pemigewasset Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~45,809 ac
+- Sandwich Range Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~35,299 ac
+- Presidential Range-Dry River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~27,645 ac
+- Wild River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,032 ac
 - Umbagog National Wildlife Refuge · NWR · UMBAGOG NATIONAL WILDLIFE REFUGE · ~21,882 ac
 - Umbagog National Wildlife Refuge · NWR · Umbagog National Wildlife Refuge · ~21,882 ac
 - Appalachian National Scenic Trail · NT · NPS · ~14,264 ac
+- Caribou-Speckled Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,250 ac
 - Missisquoi National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,342 ac
+- Great Gulf Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,658 ac
 - Parker River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~4,572 ac
 - Enfield Wildlife Management Area · SCA ·   · ~3,025 ac
 - Murphy Dam / Lake Francis · SOTH ·   · ~2,801 ac
@@ -140,9 +146,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 205** parks joined
 - Twitchell Environmental Study Area · REA ·   · ~309 ac
 - Merrymeeting Marsh Wildlife Management Area · SCA ·   · ~297 ac
 - Upper Merrimack Oxbow Project · SREC · NH Fish & Game · ~292 ac
-- Carpenters Marsh Wildlife Management Area · SCA ·   · ~291 ac
-- Perkins Pond Wildlife Management Area · SCA ·   · ~291 ac
-- Fort Hill Wildlife Management Area · SCA ·   · ~276 ac
-- Horne Brook Wildlife Management Area · SCA ·   · ~275 ac
-- UNH - Saddleback Mountain · REA ·   · ~265 ac
-- Sculptured Rocks Geologic Site · SOTH ·   · ~264 ac

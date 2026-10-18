@@ -94,8 +94,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **106 of 190** parks joined
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Casper Field Officer ERMA ·  · BLM recreation sites · ~1,343,359 ac
 - Roman L. Hruska U.s. Animal Meat Research Center · REA · Agricultural Research Service (ARS) · ~34,541 ac
 - Harlan County Recreation Area · REC · Kansas City · ~31,020 ac
+- Soldier Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,833 ac
 - Clay County Waterfowl Production Area Of Ne · RMA · Clay County Waterfowl Production Area Of Ne · ~7,011 ac
 - Clay County Waterfowl Production Area Of Ne · RMA · CLAY COUNTY WATERFOWL PRODUCTION AREA OF NE · ~6,943 ac
 - Newcastle Field Office · PUB · BLM · ~5,144 ac
@@ -152,5 +154,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **106 of 190** parks joined
 - Thomas Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,138 ac
 - Buffalo Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,124 ac
 - Twin Oaks Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,117 ac
-- Petersen Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,084 ac
-- Ash Hollow State Historical Park · SHCA · Nebraska Game and Parks Commission’ · ~1,050 ac

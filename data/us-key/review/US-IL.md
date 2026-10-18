@@ -1,6 +1,6 @@
 # IL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined to official land (same name + same kind of place). **28** to check by hand, **52** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined to official land (same name + same kind of place). **29** to check by hand, **51** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -16,6 +16,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined
 - **US-10788** Ray Norbut East Hannibal Unit State Fish and Wildlife Area (State Fish and Wildlife Area) → Miscellaneous Property (~104 ac, the POTA pin is inside it (different name))
 - **US-11351** Weinberg-King Spunky Bottoms Unit State Park (State Park) → Weinberg-King State Fish and Wildlife Area (~862 ac, similar name)
 - **US-11781** Bishop Hill State Historic Site (State Historic Site) → Bishop Hill Park (~7 ac, same name, different kind of place)
+- **US-11844** Lusk Creek Canyon State Nature Preserve (State Nature Preserve) → Lusk Creek Wilderness (~6,636 ac, similar name)
 - **US-12217** Sandy Ford State Natural Reserve (State Natural Reserve) → Sandy Ford State Natural Area (~203 ac, similar name)
 - **US-12367** Freeman Mine State Wildlife Area (State Wildlife Area) → Freeman Mine State Habitat Area (~178 ac, similar name)
 - **US-12368** Hooper Branch Savanna State Nature Preserve (State Nature Preserve) → Iroquois County State Fish and Wildlife Area (~2,842 ac, the POTA pin is inside it (different name))
@@ -52,7 +53,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined
 - US-11043 Burning Star State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-11144 Jarrot Mansion State Historic Site (State Historic Site)
 - US-11236 Carl Sandburg State Historic Site (State Historic Site)
-- US-11844 Lusk Creek Canyon State Nature Preserve (State Nature Preserve)
 - US-11959 Metamora Courthouse Historic Site (Historic Site)
 - US-12080 Kaskaskia Bell Memonial State Historic Site (State Historic Site)
 - US-12110 Rend Lake State Fish and Wildlife Area (State Fish and Wildlife Area)
@@ -96,14 +96,22 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined
 - Upper Mississippi River National Wildlife And Fish Refuge · NWR · Upper Mississippi River National Wildlife And Fish Refuge · ~12,512 ac
 - Upper Mississippi River National Wildlife And Fish Refuge · NWR · UPPER MISSISSIPPI RIVER NATIONAL WILDLIFE AND FISH REFUGE · ~12,471 ac
 - Clarks River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,857 ac
+- Bell Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,183 ac
+- Lusk Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,636 ac
+- Bald Knob Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,817 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~5,279 ac
+- Clear Springs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,667 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~4,580 ac
+- Rockpile Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,281 ac
 - Sahara Woods State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~4,059 ac
+- Garden of the Gods Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,896 ac
 - Middle Mississippi Purchase Unit · NF · Forest Service Region 09 Eastern · ~3,877 ac
+- Burden Falls Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,740 ac
 - Horshoe Lake State Park · SP · Dept of Natural Resources State of Illinois · ~3,339 ac
 - Adeline Jay Geo-Karis Illinois Beach State Park · SP · STATE OF ILLINOIS DEPT OF CONSERVATION · ~3,186 ac
 - Lake Odessa Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~3,171 ac
 - Pool No. 26 - Stump Lake · SP · Illinois Department of Natural Resources · ~2,972 ac
+- Bay Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~2,760 ac
 - Prairie Ridge-Jasper State Natural Area · SCA · Illinois Department of Natural Resources · ~2,666 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~2,599 ac
 - Green Island Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~2,580 ac
@@ -134,6 +142,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined
 - Pekin Lake · SREC · State of Illinois · ~1,095 ac
 - Cypress Pond State Natural Area · SCA · Illinois Department of Natural Resources · ~1,056 ac
 - Red Wing Slough · SCA · State of Illinois · ~1,001 ac
+- Panther Den Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~988 ac
 - Mackinaw River · SREC · Other State Land · ~972 ac
 - Piasa Island Wildlife Management Area · SCA · Illinois Department of Natural Resources · ~912 ac
 - Gabaret Island Open Space · SOTH · State of Illinois Dept of Natural Resources · ~863 ac
@@ -141,12 +150,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined
 - Mosenthein Island · SREC · State of Illinois Dept of Natural Resources · ~860 ac
 - Hanover Bluff State Natural Area · SCA · Illinois Department of Natural Resources · ~802 ac
 - Princeton Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~753 ac
-- Wildcat Hollow State Habitat Area · SCA · Illinois Department of Natural Resources · ~748 ac
-- Farmdale Dam Recreation Area · REC · Rock Island · ~702 ac
-- Momencee Wetlands State Natural Area · SCA · Illinois Department of Natural Resources · ~667 ac
-- Chauncey Marsh State Natural Area · SCA · Illinois Department of Natural Resources · ~652 ac
-- Saybrook State Habitat Area · SCA · Illinois Department of Natural Resources · ~649 ac
-- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~641 ac
-- Sibley State Habitat Area · UNK · Illinois Department of Natural Resources · ~633 ac
-- Big Muddy National Fish And Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~588 ac
-- Sangamon Valley Greenway · SREC · State of IL · ~584 ac

@@ -1,6 +1,6 @@
 # SD: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **96 of 120** parks joined to official land (same name + same kind of place). **14** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **96 of 120** parks joined to official land (same name + same kind of place). **15** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -14,6 +14,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **96 of 120** parks joined 
 - **US-10376** Le Beau State Recreation Area (State Recreation Area) → Oaha Recreation Area (~314,305 ac, the POTA pin is inside it (different name)); Lebeau Recreation Area (~46 ac, the POTA pin is inside it (different name))
 - **US-8156** Beaver Creek State Natural Area (State Natural Area) → Beaver Creek Nature Area (~150 ac, similar name)
 - **US-8158** Big Stone Island State Recreation Area (State Recreation Area) → Big Stone Island Nature Area (~105 ac, similar name); Big Stone Ponds Game Production Area (~53 ac, similar name); Big Stone Lake (~36 ac, similar name)
+- **US-8164** George S. Mickelson State Trail (State Trail) → Exemption Area (~22,459 ac, the POTA pin is inside it (different name))
 - **US-8168** Lake Cochrane State Recreation Area (State Recreation Area) → Cochrane (~29 ac, similar name)
 - **US-8177** Mina Lake State Recreation Area (State Recreation Area) → Mina (~302 ac, similar name); Mina (~72 ac, similar name)
 - **US-8192** Shadehill State Recreation Area (State Recreation Area) → Shadehill Reservoir Game Production Area (~6,206 ac, similar name); Shadehill Reservoir (~5,335 ac, similar name); Shadehill Reservoir Recreation Area (~892 ac, similar name)
@@ -29,28 +30,33 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **96 of 120** parks joined 
 - US-4501 Custer Gallatin National Forest (National Forest)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-7844 Adams Homestead State Nature Preserve (State Nature Preserve)
-- US-8164 George S. Mickelson State Trail (State Trail)
 - US-8195 Spearfish Canyon Nature Recreation Area (Nature Recreation Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Casper Field Officer ERMA ·  · BLM recreation sites · ~1,343,359 ac
 - Sd Public Land · SRMA · Unknown · ~595,248 ac
 - Oaha Recreation Area · REC · Omaha · ~314,305 ac
 - South Dakota Field Office · PUB · BLM · ~275,364 ac
+- Newcastle Field Office ERMA ·  · BLM recreation sites · ~273,309 ac
 - State Lands · SRMA · Unknown · ~229,003 ac
 - Francis Case Recreation Area · REC · Omaha · ~102,941 ac
 - Sharpe Recreation Area · REC · Omaha · ~78,431 ac
 - Custer National Forest · NF · Forest Service Region 01 Northern · ~73,890 ac
 - Valentine National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~72,350 ac
+- Exemption Area ·  · BLM recreation sites · ~22,459 ac
 - Mcpherson County Waterfowl Production Area · RMA · MCPHERSON COUNTY WATERFOWL PRODUCTION AREA · ~20,999 ac
 - Mcpherson County Waterfowl Production Area · RMA · Mcpherson County Waterfowl Production Area · ~20,999 ac
 - Fort Niobrara National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~19,093 ac
+- Stateline SRMA ·  · BLM recreation sites · ~15,870 ac
 - Belle Fourche Reservoir · RMA · Unknown · ~14,167 ac
+- Black Elk Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,534 ac
 - Big Stone National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,657 ac
 - Marshall County Waterfowl Production Area · RMA · Marshall County Waterfowl Production Area · ~11,269 ac
 - Marshall County Waterfowl Production Area · RMA · MARSHALL COUNTY WATERFOWL PRODUCTION AREA · ~11,268 ac
 - Edmunds County Waterfowl Production Area · RMA · EDMUNDS COUNTY WATERFOWL PRODUCTION AREA · ~9,246 ac
 - Edmunds County Waterfowl Production Area · RMA · Edmunds County Waterfowl Production Area · ~9,246 ac
+- Soldier Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,833 ac
 - Beadle County Waterfowl Production Area · RMA · BEADLE COUNTY WATERFOWL PRODUCTION AREA · ~7,777 ac
 - Beadle County Waterfowl Production Area · RMA · Beadle County Waterfowl Production Area · ~7,535 ac
 - Day County Waterfowl Production Area · RMA · DAY COUNTY WATERFOWL PRODUCTION AREA · ~7,318 ac
@@ -59,6 +65,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **96 of 120** parks joined 
 - Kingsbury County Waterfowl Production Area · RMA · Kingsbury County Waterfowl Production Area · ~7,052 ac
 - Brookings County Waterfowl Production Area · RMA · Brookings County Waterfowl Production Area · ~6,641 ac
 - Brookings County Waterfowl Production Area · RMA · BROOKINGS COUNTY WATERFOWL PRODUCTION AREA · ~6,640 ac
+- Fort Meade Recreation Area ACEC ·  · BLM recreation sites · ~6,569 ac
 - Shadehill Reservoir Game Production Area · SREC · Unknown · ~6,206 ac
 - Clark County Waterfowl Production Area · RMA · CLARK COUNTY WATERFOWL PRODUCTION AREA · ~6,172 ac
 - Clark County Waterfowl Production Area · RMA · Clark County Waterfowl Production Area · ~6,172 ac
@@ -87,10 +94,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **96 of 120** parks joined 
 - Hand County Waterfowl Production Area · RMA · HAND COUNTY WATERFOWL PRODUCTION AREA · ~4,034 ac
 - Hand County Waterfowl Production Area · RMA · Hand County Waterfowl Production Area · ~4,034 ac
 - Pactola Reservoir · RMA · Unknown · ~3,528 ac
-- Mccook County Waterfowl Production Area · RMA · MCCOOK COUNTY WATERFOWL PRODUCTION AREA · ~3,490 ac
-- Mccook County Waterfowl Production Area · RMA · Mccook County Waterfowl Production Area · ~3,490 ac
-- Hamlin County Waterfowl Production Area · RMA · HAMLIN COUNTY WATERFOWL PRODUCTION AREA · ~3,400 ac
-- Hamlin County Waterfowl Production Area · RMA · Hamlin County Waterfowl Production Area · ~3,400 ac
-- Deuel County Waterfowl Production Area · RMA · DEUEL COUNTY WATERFOWL PRODUCTION AREA · ~3,209 ac
-- Deuel County Waterfowl Production Area · RMA · Deuel County Waterfowl Production Area · ~3,209 ac
-- Moody County Waterfowl Production Area · RMA · MOODY COUNTY WATERFOWL PRODUCTION AREA · ~3,173 ac

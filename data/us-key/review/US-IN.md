@@ -88,6 +88,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **155 of 229** parks joined
 - Brookville Recreation Area · REC · Louisville · ~17,185 ac
 - Mississinewa Recreation Area · REC · Louisville · ~15,067 ac
 - Minnehana Fish and Wildlife Area · SCA · Indiana Department of Natural Resources Fish and Wildlife · ~12,889 ac
+- Charles C. Deam Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,538 ac
 - J. Edward Roush Recreation Area · REC · Louisville · ~8,533 ac
 - 10 O'clock Line Nature Preserve · SCA · Indiana DNR, State Parks and Reservoirs Division · ~3,341 ac
 - Gibson Lake Recreation Area · SREC · Unknown State · ~2,908 ac
@@ -143,4 +144,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **155 of 229** parks joined
 - Vallonia State Nursery · SRMA · Indiana DNR, Forestry Division · ~191 ac
 - Wabash Healthy Rivers Initiative · SCA · Indiana DNR, Fish and Wildlife Division · ~189 ac
 - The Pfau Course at Indiana University  · LREC · Indiana University · ~186 ac
-- Lincoln Boyhood National Memorial · HCA · NPS · ~184 ac

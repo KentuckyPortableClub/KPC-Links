@@ -42,6 +42,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **120 of 148** parks joined
 - Appalachian National Scenic Trail · NT · NPS · ~32,624 ac
 - Nahmakanta Unit · SRMA · Maine Bureau of Parks and Lands · ~32,502 ac
 - Baxter State Park Scientific Management Area · SP · Baxter State Park Authority · ~24,639 ac
+- Wild River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,032 ac
 - Round Pond · LOTH · Maine Bureau of Parks and Lands · ~20,810 ac
 - Eagle Lake · LOTH · Maine Bureau of Parks and Lands · ~19,424 ac
 - Nahmakanta · LOTH · Maine Bureau of Parks and Lands · ~19,025 ac
@@ -51,6 +52,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **120 of 148** parks joined
 - Nahmakanta · LOTH · Maine Bureau of Parks and Lands · ~13,029 ac
 - Seboomook · LOTH · Maine Bureau of Parks and Lands · ~12,154 ac
 - Duck Lake · SOTH ·   · ~11,848 ac
+- Caribou-Speckled Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,250 ac
 - Umbagog National Wildlife Refuge · NWR · Umbagog National Wildlife Refuge · ~11,239 ac
 - Umbagog National Wildlife Refuge · NWR · UMBAGOG NATIONAL WILDLIFE REFUGE · ~11,219 ac
 - Nahmakanta Unit Ecological Reserve · SCA · Maine Bureau of Parks and Lands · ~11,122 ac
@@ -96,5 +98,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **120 of 148** parks joined
 - Great North Woods, LLC · SOTH · Maine Department of Conservation · ~4,039 ac
 - Big Spencer Ecological Reserve · LOTH · Maine Bureau of Parks and Lands · ~4,039 ac
 - Crocker Mountain · LOTH · Maine Bureau of Parks and Lands · ~3,990 ac
-- Crocker Mountain Ecological Reserve · SCA ·   · ~3,967 ac
-- Dead River · LOTH · Maine Bureau of Parks and Lands · ~3,958 ac
