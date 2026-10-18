@@ -56,6 +56,7 @@
     <span class="f8-clk"><b id="f8Utc">--:--:--</b><i class="f8-slot"><i id="f8SlotBar"></i></i></span>
     <span class="f8-st" id="f8St">OFF</span>
   </div>
+  <div class="f8-bandr" id="f8BandR" role="group" aria-label="Jump to a band"></div>
   <div class="f8-tunr" id="f8TuneR"><span>MY DIAL</span><button type="button" class="f8-b" data-f8st="-1">−1</button><button type="button" class="f8-b" data-f8st="-0.1">−.1</button><input id="f8Khz" inputmode="decimal" aria-label="Dial frequency in kHz" placeholder="kHz"><b>kHz</b><button type="button" class="f8-b" data-f8st="0.1">+.1</button><button type="button" class="f8-b" data-f8st="1">+1</button><button type="button" class="f8-b" id="f8Std" title="Back to the usual frequency for this mode and band">↺ USUAL</button><small id="f8TuneT">Type a frequency, or turn the radio's knob (CAT connected) and it follows.</small></div>
   <div class="f8-startbox" id="f8StartBox"><button type="button" class="f8-go" id="f8Start">🎧 START LISTENING</button><span>Plug your radio's audio into this phone or computer (USB sound card / Digirig / the radio's USB), then press START. The browser asks to use the "microphone": that is how the radio's audio comes in.<label class="f8-in0">RADIO AUDIO IN <select id="f8In0"><option value="">Default input</option></select></label></span></div>
   <div class="f8-wfw"><canvas id="f8Wf" height="150"></canvas><canvas id="f8Scale" height="18"></canvas></div>
@@ -104,8 +105,9 @@
     <div class="f8-sg">
       <label>RADIO AUDIO IN<select id="f8In"><option value="">Default input</option></select></label>
       <label>RX LEVEL<span class="f8-meter"><i id="f8Lvl"></i></span><small id="f8LvlT">aim for 30-60 dB</small></label>
+      <label>RX GAIN <b id="f8RxgT"></b><span class="f8-pwr"><button type="button" class="f8-b" id="f8RxgD" title="2 dB down">−</button><input type="range" id="f8Rxg" min="-30" max="20" step="1" aria-label="RX gain in dB"><button type="button" class="f8-b" id="f8RxgU" title="2 dB up">+</button></span><small>Turns the radio's sound up or down in here. Best: set the radio's USB audio out level so RX LEVEL reads good at 0 dB.</small></label>
       <label>RADIO AUDIO OUT<select id="f8Out"><option value="">Default output</option></select><small id="f8OutT"></small></label>
-      <label>TX LEVEL <b id="f8PwrT"></b><span class="f8-pwr"><button type="button" class="f8-b" id="f8PwrD" title="0.5 dB down">−</button><input type="range" id="f8Pwr" min="-40" max="0" step="0.5" aria-label="TX level in dB"><button type="button" class="f8-b" id="f8PwrU" title="0.5 dB up">+</button></span><small>Press TUNE, then − / + (0.5 dB steps; changes right away) until the radio's ALC barely moves</small></label>
+      <label>TX LEVEL <b id="f8PwrT"></b><span class="f8-pwr"><button type="button" class="f8-b" id="f8PwrD" title="0.5 dB down">−</button><input type="range" id="f8Pwr" min="-40" max="3" step="0.5" aria-label="TX level in dB"><button type="button" class="f8-b" id="f8PwrU" title="0.5 dB up">+</button></span><small>Press TUNE, then − / + (0.5 dB steps; changes right away) until the radio's ALC barely moves. Not enough at 0 dB? Turn this tablet / phone's media volume all the way up, then the radio's USB / DATA MOD GAIN (above 0 dB the tone can start to distort).</small></label>
       <label>PTT (KEYING THE RADIO)<select id="f8Ptt"><option value="vox">VOX (radio or interface keys on the audio)</option><option value="cat">CAT command (radio connected by USB)</option><option value="rts">RTS line (Digirig and many cables)</option><option value="dtr">DTR line</option></select></label>
       <label>CQ<select id="f8Cqw"><option value="">CQ</option><option value="POTA">CQ POTA</option><option value="SOTA">CQ SOTA</option><option value="WWFF">CQ WWFF</option></select></label>
       <label>STOP CALLING AFTER (NO ANSWER)<select id="f8Wd"><option value="1">1 minute</option><option value="2">2 minutes</option><option value="3">3 minutes</option><option value="5">5 minutes</option><option value="10">10 minutes</option></select></label>
@@ -121,8 +123,10 @@
   <div class="f8-note" id="f8Note" hidden></div>`;
 
   /* band + mode controls */
-  function bandOpts() { const B = Object.keys(DIAL[S.mode]); if (!DIAL[S.mode][S.band]) { S.band = B.includes('20m') ? '20m' : B.includes('40m') ? '40m' : B[0]; saveS(); } $('f8Band').innerHTML = B.map(b => `<option${b === S.band ? ' selected' : ''}>${b}</option>`).join(''); }
-  function showDial() { const k = dialK(); $('f8Dial').textContent = (k / 1000).toFixed(6).replace(/(\.\d{3})(\d{3})$/, '$1 $2'); $('f8Dial').classList.toggle('ov', !!(S.ov && S.ov[ovKey()])); if (document.activeElement !== $('f8Khz')) $('f8Khz').value = (+k.toFixed(3)).toString(); $('f8Std').hidden = !(S.ov && S.ov[ovKey()]); document.querySelectorAll('[data-f8m]').forEach(b => { b.classList.toggle('on', b.dataset.f8m === S.mode); if (b.dataset.f8m === S.mode && b.parentElement.scrollWidth > b.parentElement.clientWidth) b.parentElement.scrollLeft = b.offsetLeft - b.parentElement.clientWidth / 2 + b.offsetWidth / 2; }); }
+  function bandOpts() { const B = Object.keys(DIAL[S.mode]); if (!DIAL[S.mode][S.band]) { S.band = B.includes('20m') ? '20m' : B.includes('40m') ? '40m' : B[0]; saveS(); } $('f8Band').innerHTML = B.map(b => `<option${b === S.band ? ' selected' : ''}>${b}</option>`).join(''); bandChips(); }
+  function bandChips() { const B = Object.keys(DIAL[S.mode]); $('f8BandR').innerHTML = B.map(b => `<button type="button" data-f8b="${b}"${b === S.band ? ' class="on"' : ''}>${b.replace(' (ISS)', ' ISS')}</button>`).join(''); }
+  function goBand(b) { if (!DIAL[S.mode][b]) return; S.band = b; saveS(); $('f8Band').value = b; bandChips(); showDial(); radioTune(); slotSep(true); }
+  function showDial() { const k = dialK(); $('f8Dial').textContent = (k / 1000).toFixed(6).replace(/(\.\d{3})(\d{3})$/, '$1 $2'); $('f8Dial').classList.toggle('ov', !!(S.ov && S.ov[ovKey()])); if (document.activeElement !== $('f8Khz')) $('f8Khz').value = (+k.toFixed(3)).toString(); $('f8Std').hidden = !(S.ov && S.ov[ovKey()]); document.querySelectorAll('#f8BandR [data-f8b]').forEach(b => b.classList.toggle('on', b.dataset.f8b === S.band)); document.querySelectorAll('[data-f8m]').forEach(b => { b.classList.toggle('on', b.dataset.f8m === S.mode); if (b.dataset.f8m === S.mode && b.parentElement.scrollWidth > b.parentElement.clientWidth) b.parentElement.scrollLeft = b.offsetLeft - b.parentElement.clientWidth / 2 + b.offsetWidth / 2; }); }
   const radioMode = () => S.mode === 'CW' ? 'CW' : S.mode === 'SSTV' ? (S.band === '2m (ISS)' ? 'FM' : dialK() < 10000 ? 'LSB' : 'USB') : 'DATA';
   let tunedAt = 0;
   function radioTune() { if (window.KPCCat && KPCCat.get().on) { tunedAt = Date.now(); KPCCat.tune(dialK(), radioMode()); } }
@@ -146,7 +150,8 @@
   function fftFit() { if (AN && AC) { const want = S.mode === 'WSPR' ? 32768 : AC.sampleRate > 30000 ? 8192 : 4096; if (AN.fftSize !== want) AN.fftSize = want; } }
   bandOpts(); showDial();
   document.querySelectorAll('[data-f8m]').forEach(b => b.onclick = () => setMode(b.dataset.f8m));
-  $('f8Band').onchange = () => { S.band = $('f8Band').value; saveS(); showDial(); radioTune(); slotSep(true); };
+  $('f8Band').onchange = () => goBand($('f8Band').value);
+  $('f8BandR').addEventListener('click', e => { const b = e.target.closest('[data-f8b]'); if (b) goBand(b.dataset.f8b); });
 
   /* ---------------- decoder engine ---------------- */
   let ENG = null, engP = null;
@@ -154,7 +159,7 @@
   function resetEng() { /* the engine is started fresh for every slot */ }
 
   /* ---------------- audio ---------------- */
-  let AC = null, SRC = null, NODE = null, AN = null, STREAM = null, RUN = false;
+  let AC = null, SRC = null, RXG = null, NODE = null, AN = null, STREAM = null, RUN = false;
   const R12 = 12000, RING = R12 * 40; const ring = new Float32Array(RING); let n12 = 0, t0 = 0, peak = 0;
   /* resampler: windowed-sinc low-pass (5 kHz) + fractional step to 12 kHz */
   let rs = null; const dgb = new Float32Array(16384); let dgn = 0, DGON = false;
@@ -194,14 +199,15 @@
     if (S.outDev && AC.setSinkId) { try { await AC.setSinkId(S.outDev); } catch (e) {} }
     rs = mkRs(AC.sampleRate); n12 = 0; t0 = 0;
     SRC = AC.createMediaStreamSource(STREAM);
-    AN = AC.createAnalyser(); AN.fftSize = AC.sampleRate > 30000 ? 8192 : 4096; AN.smoothingTimeConstant = 0; SRC.connect(AN);
+    RXG = AC.createGain(); RXG.gain.value = Math.pow(10, (+S.rxg || 0) / 20); SRC.connect(RXG);
+    AN = AC.createAnalyser(); AN.fftSize = AC.sampleRate > 30000 ? 8192 : 4096; AN.smoothingTimeConstant = 0; RXG.connect(AN);
     try {
       await AC.audioWorklet.addModule(URL.createObjectURL(new Blob([WK], { type: 'text/javascript' })));
       NODE = new AudioWorkletNode(AC, 'kpc-ft8-in'); NODE.port.onmessage = e => pushIn(e.data);
-      const mute = AC.createGain(); mute.gain.value = 0; SRC.connect(NODE); NODE.connect(mute); mute.connect(AC.destination);
+      const mute = AC.createGain(); mute.gain.value = 0; RXG.connect(NODE); NODE.connect(mute); mute.connect(AC.destination);
     } catch (e) {
       NODE = AC.createScriptProcessor(4096, 1, 1); NODE.onaudioprocess = ev => pushIn(ev.inputBuffer.getChannelData(0).slice(0));
-      const mute = AC.createGain(); mute.gain.value = 0; SRC.connect(NODE); NODE.connect(mute); mute.connect(AC.destination);
+      const mute = AC.createGain(); mute.gain.value = 0; RXG.connect(NODE); NODE.connect(mute); mute.connect(AC.destination);
     }
     fftFit(); RUN = true; $('f8StartBox').hidden = true; root.classList.add('run'); stat(); slotSep(true); wfLoop(); tabDot();
     /* Oct 18 (Brandon's tablet + FT-710: 'in and out are default'): names only show after the first allow, so list again now and pick the radio's USB sound by itself */
@@ -210,7 +216,7 @@
     return true;
   }
   function stopAudio() {
-    RUN = false; try { STREAM && STREAM.getTracks().forEach(t => t.stop()); } catch (e) {} try { NODE && NODE.disconnect(); SRC && SRC.disconnect(); } catch (e) {}
+    RUN = false; try { STREAM && STREAM.getTracks().forEach(t => t.stop()); } catch (e) {} try { NODE && NODE.disconnect(); SRC && SRC.disconnect(); RXG && RXG.disconnect(); } catch (e) {}
     STREAM = SRC = NODE = null; $('f8StartBox').hidden = false; root.classList.remove('run'); stat(); tabDot();
   }
   const USBRE = /usb|codec|digirig|cm1\d\d|pcm29|ft-?\d|ftdx|ic-?\d|yaesu|icom|kenwood|elecraft|signalink|rigblaster|qdx|qmx|trusdx|xiegu/i;
@@ -263,7 +269,7 @@
     lastVals = vals; if (S.mode === 'CW') { cwWf(vals); } else if (isDG() && DG()) DG().wf(vals); const sl = Math.floor(nowS() / slotLen()); if (isFT() && sl !== lastSlotLine) { lastSlotLine = sl; g.fillStyle = 'rgba(240,201,107,.75)'; g.fillRect(0, 0, W, 1); g.font = '10px monospace'; g.fillText(utc(sl * slotLen(), true), 4, 11); }
     /* level meter (dB above full-scale silence) */
     const db = peak > 0 ? 20 * Math.log10(peak) + 90 : 0; $('f8Lvl').style.width = Math.max(0, Math.min(100, db)) + '%'; $('f8Lvl').className = db < 20 || db > 80 ? 'bad' : '';
-    $('f8LvlT').textContent = Math.round(db) + ' dB ' + (db < 20 ? '(too low: turn the radio\'s audio up)' : db > 80 ? '(too high: turn it down)' : '(good)');
+    $('f8LvlT').textContent = Math.round(db) + ' dB ' + (db < 20 ? '(too low: turn the radio\'s audio up)' : db > 80 ? '(too high: turn RX GAIN down in ⚙ settings)' : '(good)');
   }
   wf.addEventListener('click', e => { const r = wf.getBoundingClientRect(), hz = xToHz((e.clientX - r.left) * wf.width / r.width);
     if (S.mode === 'CW') { cwPitch(snapPeak(hz)); return; }
@@ -462,7 +468,8 @@
     $('f8RxHz').textContent = S.rxHz + ' Hz';
   }
   function pick(x) {
-    if (!x || x.tx || x.sep != null) return;
+    if (!x || x.sep != null) return;
+    if (x.tx) { const c = clean(String(x.text || '').split(/\s+/)[0]); if (c && c !== 'CQ' && c !== 'DXCALL') { QS.dx = c; $('f8Dx').value = c; gen(); note('📞 ' + c + ' is back in DX CALL.', 2000); } return; }
     const me = myCall(); const other = x.me ? x.fr : (x.cq ? x.fr : (x.fr && x.fr !== me ? x.fr : x.to));
     if (!other || other === '...' || /\.\.\./.test(other)) { note('That call is hidden (a long or odd call sign). Wait for them to send their full call.'); return; }
     const keepG = QS.dx === other ? QS.grid : ''; QS.dx = other; QS.grid = x.grid || keepG; QS.rs = fmtDb(x.db); QS.rr = ''; QS.state = 'call'; QS.logged = false; QS.tries = 0; QS.since = nowS(); QS.ref = (spotRef(other) || {}).reference || QS.ref || '';
@@ -471,7 +478,7 @@
     gen();
     /* answering them: if they're already calling me, jump ahead like WSJT-X */
     let n = 1; if (x.me) { const tk = x.text.split(/\s+/), last = tk[tk.length - 1]; if (isRpt(last)) { QS.rr = last; n = 3; } else if (isRRpt(last)) { QS.rr = last.slice(1); n = 4; } else if (last === 'RR73' || last === 'RRR') n = 5; else n = 2; }
-    nextTx(n); txOn(true); hzBoxes(); drawScale(); drawRx(); chk();
+    QS.cq = false; nextTx(n); txOn(true); hzBoxes(); drawScale(); drawRx(); chk(); note('📞 Calling ' + other + ' (Tx' + n + ')', 2000);
   }
   ['f8Band1', 'f8Rx'].forEach(i => $(i).addEventListener('click', e => { const r = e.target.closest('[data-l]'); if (r) pick(byId[r.dataset.l]); }));
   ['f8Band1', 'f8Rx'].forEach(i => $(i).addEventListener('keydown', e => { if (e.key === 'Enter') { const r = e.target.closest('[data-l]'); if (r) pick(byId[r.dataset.l]); } }));
@@ -601,7 +608,8 @@
     if (into > (S.mode === 'FT4' ? 3 : 8)) return;
     if (!myCall()) { halt(); note('Put YOUR call in ⚙ STATION first: nothing was sent.', 5000); return; }
     lastTxSlot = sl; NOWTX = false;
-    const n = QS.next || 6, m = msgOf(n); if (!m) return;
+    const n = QS.next || 6; let m = msgOf(n); if (!m) return;
+    if (/DXCALL/.test(m) && clean($('f8Dx').value)) { QS.dx = clean($('f8Dx').value); gen(); m = msgOf(n); }
     if (/DXCALL/.test(m)) { note('Pick a station first (tap a line), or press 📣 CQ.'); halt(); return; }
     const tones = ENG.tones(m, S.mode === 'FT4'); if (!tones) { note('⚠️ That message can\'t be sent in ' + S.mode + ': ' + m, 5000); halt(); return; }
     sendTones(tones, sl, Math.max(0, 0.5 - into), m, n);
@@ -639,8 +647,11 @@
   Object.keys(CK).forEach(id => { $(id).checked = !!S[CK[id]]; $(id).onchange = () => { S[CK[id]] = $(id).checked; saveS(); }; });
   /* TX level in dB, 0.5 dB steps, applied LIVE to whatever is playing (TUNE, FT8, CW tone, RTTY/PSK/SSTV/WSPR) so the ALC can be set while tuning */
   const lvlDb = () => Math.round(20 * Math.log10(Math.max(0.01, S.lvl)) * 2) / 2;
-  function setLvl(db) { db = Math.max(-40, Math.min(0, Math.round(db * 2) / 2)); S.lvl = Math.pow(10, db / 20); saveS(); $('f8Pwr').value = db; $('f8PwrT').textContent = (db > 0 ? '+' : '') + db.toFixed(1) + ' dB';
+  function setLvl(db) { db = Math.max(-40, Math.min(3, Math.round(db * 2) / 2)); S.lvl = Math.pow(10, db / 20); saveS(); $('f8Pwr').value = db; $('f8PwrT').textContent = (db > 0 ? '+' : '') + db.toFixed(1) + ' dB';
     (window.__kpcTxG || []).forEach(g => { try { g.gain.setTargetAtTime(S.lvl, g.context.currentTime, 0.02); } catch (e) {} }); }
+  function setRxg(db) { db = Math.max(-30, Math.min(20, Math.round(db))); S.rxg = db; saveS(); $('f8Rxg').value = db; $('f8RxgT').textContent = (db > 0 ? '+' : '') + db + ' dB';
+    if (RXG) try { RXG.gain.setTargetAtTime(Math.pow(10, db / 20), RXG.context.currentTime, 0.05); } catch (e) {} }
+  setRxg(+S.rxg || 0); $('f8Rxg').oninput = () => setRxg(+$('f8Rxg').value); $('f8RxgD').onclick = () => setRxg((+S.rxg || 0) - 2); $('f8RxgU').onclick = () => setRxg((+S.rxg || 0) + 2);
   setLvl(lvlDb()); $('f8Pwr').oninput = () => setLvl(+$('f8Pwr').value); $('f8PwrD').onclick = () => setLvl(lvlDb() - 0.5); $('f8PwrU').onclick = () => setLvl(lvlDb() + 0.5);
   $('f8Ptt').value = S.ptt; $('f8Ptt').onchange = () => { S.ptt = $('f8Ptt').value; saveS(); if (S.ptt !== 'vox' && window.KPCCat && !KPCCat.connected()) $('f8CatT').textContent = 'Connect the radio for this PTT choice.'; };
   const pf = () => { $('f8PotaF').classList.toggle('on', !!S.potaOnly); }; pf(); $('f8PotaF').onclick = () => { S.potaOnly = !S.potaOnly; saveS(); pf(); drawBand(); };
