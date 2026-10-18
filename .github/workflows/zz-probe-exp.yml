@@ -6,22 +6,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          pip install pillow >/dev/null
           mkdir out && cd out
           python3 - <<'P'
-          import math,urllib.request
-          from PIL import Image
-          from collections import Counter
+          import math,urllib.request,urllib.parse,json
+          H={'User-Agent':'Mozilla/5.0','Origin':'https://kentuckyportableclub.github.io'}
+          def get(u):
+            r=urllib.request.urlopen(urllib.request.Request(u,headers=H),timeout=60); return r.status,dict(r.headers),r.read()
+          B='https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer'
+          s,h,d=get(B+'?f=json'); j=json.loads(d)
+          print('::notice title=svc::'+json.dumps({k:j.get(k) for k in ('supportsDynamicLayers','maxImageHeight','capabilities')}))
+          s,h,d=get(B+'/0?f=json'); j=json.loads(d)
+          print('::notice title=fields::'+' '.join(f['name'] for f in j['fields'])[:900])
           EXT=20037508.342789244
           la,lo=37.2656,-85.1488
-          for z in (12,13,14,15,16):
+          ol=lambda c:{"type":"esriSFS","style":"esriSFSNull","color":[0,0,0,0],"outline":{"type":"esriSLS","style":"esriSLSSolid","color":c,"width":1.5}}
+          dl=[{"id":0,"source":{"type":"mapLayer","mapLayerId":0},"drawingInfo":{"renderer":{"type":"uniqueValue","field1":"Mang_Type","defaultSymbol":None,"uniqueValueInfos":[{"value":"FED","symbol":ol([255,214,51,255])},{"value":"STAT","symbol":ol([56,232,255,255])}]}}},
+              {"id":1,"source":{"type":"mapLayer","mapLayerId":0},"drawingInfo":{"renderer":{"type":"uniqueValue","field1":"Mang_Name","defaultSymbol":None,"uniqueValueInfos":[{"value":"USACE","symbol":ol([255,140,56,255])}]}}}]
+          for z in (12,15,16):
             n=2**z; x=int((lo+180)/360*n); r=math.radians(la); y=int((1-math.log(math.tan(r)+1/math.cos(r))/math.pi)/2*n)
             w=2*EXT/n; x0=-EXT+x*w; y1=EXT-y*w
-            u=f"https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/export?bbox={x0},{y1-w},{x0+w},{y1}&bboxSR=3857&imageSR=3857&size=512,512&dpi=192&format=png32&transparent=true&f=image"
-            d=urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'Mozilla/5.0'}),timeout=60).read()
-            open(f'z{z}.png','wb').write(d)
-            im=Image.open(f'z{z}.png').convert('RGBA'); c=Counter(p for p in im.getdata() if p[3]>=60)
-            print(f"::notice title=z{z}::"+' '.join(f"{k}:{v}" for k,v in c.most_common(8)))
+            u=f"{B}/export?bbox={x0},{y1-w},{x0+w},{y1}&bboxSR=3857&imageSR=3857&size=512,512&dpi=192&format=png32&transparent=true&f=image&dynamicLayers="+urllib.parse.quote(json.dumps(dl,separators=(',',':')))
+            try:
+              s,h,d=get(u); open(f'd{z}.png','wb').write(d); print(f"::notice title=dyn z{z}::{s} {h.get('Content-Type')} {len(d)} cors={h.get('Access-Control-Allow-Origin')} urllen={len(u)}")
+            except Exception as e: print(f"::notice title=dyn z{z} ERR::{e} urllen={len(u)}")
           P
           git init -q; git config user.email a@b; git config user.name bot
           git add . && git commit -qm t && git push -qf https://x-access-token:${{ github.token }}@github.com/${{ github.repository }} HEAD:zz-padus
