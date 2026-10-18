@@ -1,0 +1,17 @@
+name: zz KY new parks check (temporary)
+on: workflow_dispatch
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: |
+          python3 - <<'PY'
+          import json,urllib.request
+          L=json.loads(urllib.request.urlopen(urllib.request.Request('https://api.pota.app/location/parks/US-KY',headers={'User-Agent':'KPC'}),timeout=90).read())
+          ours={p['c'] for p in json.load(open('kpc-ky-data.json'))['parks']}
+          theirs={p['reference']:p for p in L}
+          new=[f"{r} {p['name']} {p.get('latitude')},{p.get('longitude')}" for r,p in theirs.items() if r not in ours]
+          gone=sorted(ours-set(theirs))
+          print(f"::notice title=KY parks::POTA {len(theirs)} · ours {len(ours)} · new: {'; '.join(new) or 'none'} · not in POTA list: {', '.join(gone) or 'none'}")
+          PY
