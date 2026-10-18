@@ -1,6 +1,6 @@
 # TX: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **179 of 222** parks joined to official land (same name + same kind of place). **22** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **180 of 222** parks joined to official land (same name + same kind of place). **22** to check by hand, **20** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -29,7 +29,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **179 of 222** parks joined
 
 ## Nothing found in PAD-US
 
-- US-0540 Jocelyn Nungaray National Wildlife Refuge (National Wildlife Refuge)
 - US-0548 Hagerman National Wildlife Refuge (National Wildlife Refuge)
 - US-10272 Bush Family Home State Historic Site (State Historic Site)
 - US-10273 Charles and Mary Ann Goodnight Ranch State Historic Site (State Historic Site)
@@ -54,10 +53,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **179 of 222** parks joined
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Permanent University Fund · SRMA · Texas General Land Office - School Land Board · ~1,324,218 ac
+- Sevilleta National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~227,850 ac
+- Sabine National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~123,814 ac
 - Sam Rayburn Recreation Area · REC · Forth Worth · ~116,718 ac
 - Big Thicket National Preserve · NCA · NPS · ~108,722 ac
 - Wright Patman Recreation Area · REC · Forth Worth · ~81,011 ac
 - Permanent University Fund · SRMA · Texas General Land Office - School Land Board · ~65,497 ac
+- Wichita Mountains Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~59,021 ac
+- San Andres National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~57,331 ac
 - Lewisville Recreation Area · REC · Forth Worth · ~46,194 ac
 - Whitney Point Recreation Area · REC · Forth Worth · ~45,028 ac
 - Anahuac National Wildlife Refuge · NWR · Anahuac National Wildlife Refuge · ~37,735 ac
@@ -68,20 +71,25 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **179 of 222** parks joined
 - Cooper Recreation Area · REC · Forth Worth · ~32,045 ac
 - Somerville Recreation Area · REC · Forth Worth · ~29,940 ac
 - Lake O' The Pines Recreation Area · REC · Forth Worth · ~29,416 ac
+- Pond Creek National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~27,457 ac
 - Belton Recreation Area · REC · Forth Worth · ~25,863 ac
+- Bitter Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~24,901 ac
 - H. H. Coffield Unit · SOTH · TDCJ Correctional Institutions Division · ~22,254 ac
+- Sequoyah National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~20,917 ac
 - Boggy Slough · PCON · US Forest Service · ~19,891 ac
 - Devils River State Natural Area · SCA · Unknown · ~19,761 ac
 - Cooper Reservoir Wildlife Management Area · SCA · TPWD · ~18,384 ac
 - O.C. Fisher Recreation Area · REC · Forth Worth · ~17,940 ac
 - Caddo National Grassland · NG · Forest Service Region 08 Southern · ~17,722 ac
 - Devils River State Natural Area · SRMA · SPR · ~17,641 ac
+- Tishomingo National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~16,467 ac
 - Eastham unit · SOTH · TDCJ Correctional Institutions Division · ~16,272 ac
 - W. F. Ramsey Unit · SOTH · TDCJ Correctional Institutions Division · ~15,988 ac
 - Grapevine Recreation Area · REC · Forth Worth · ~15,673 ac
 - Waco Recreation Area · REC · Forth Worth · ~15,427 ac
 - Joe Pool Recreation Area · REC · Forth Worth · ~15,286 ac
 - Stillhouse Recreation Area · REC · Forth Worth · ~15,217 ac
+- Little River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,236 ac
 - Lake Texana · REC · Unknown · ~13,738 ac
 - Granger Recreation Area · REC · Forth Worth · ~13,609 ac
 - Oklahoma Field Office · PUB · BLM · ~12,029 ac
@@ -89,27 +97,18 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **179 of 222** parks joined
 - Navarro Mills Recreation Area · REC · Forth Worth · ~11,023 ac
 - Sierra Diablo Wildlife Management Area · SCA · Unknown · ~10,914 ac
 - Twin Buttes Reservoir · RMA · Unknown · ~10,672 ac
+- Deep Fork National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~10,556 ac
 - Cullen Park (Lease) · LP · City of Houston · ~10,491 ac
 - Aquilla Recreation Area · REC · Forth Worth · ~10,298 ac
 - U.S. Atomic Energy Commission-pantex Plant · FOTH · Department of Energy (DOE) · ~10,172 ac
 - Christmas Mountains Ranch · REA · Unknown · ~9,605 ac
 - Proctor Recreation Area · REC · Forth Worth · ~9,124 ac
+- Las Vegas National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,713 ac
 - O.B. Ellis Unit · SOTH · TDCJ Correctional Institutions Division · ~8,166 ac
 - Benbrook Recreation Area · REC · Forth Worth · ~8,124 ac
+- Washita National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,102 ac
 - Clemens Unit · SOTH · TDCJ Correctional Institutions Division · ~7,542 ac
 - Bardwell Recreation Area · REC · Fort Worth · ~7,529 ac
+- Red River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,217 ac
 - W. J. "Jim" Estelle Unit · SOTH · TDCJ Correctional Institutions Division · ~7,071 ac
 - Darrington unit · SOTH · TDCJ Correctional Institutions Division · ~6,805 ac
-- Retrieve unit · SOTH · TDCJ Correctional Institutions Division · ~6,378 ac
-- Turkey Creek Forest Legacy Project · SRMA · Univeristy of Texas A & M · ~6,049 ac
-- Christmas Bay Coastal Preserve · SCA · Texas Parks and Wildlife Department · ~5,533 ac
-- Longleaf Ridge · PPRK · Texas A&M Forest Service · ~5,511 ac
-- Roger R Fawcett Wildlife Management Area · SCA · SPR · ~5,458 ac
-- Matagorda Peninsula · SCA · Unknown · ~5,425 ac
-- Hill Country State Natural Area · SCA · Unknown · ~5,385 ac
-- Georgetown Recreation Area · REC · Forth Worth · ~5,328 ac
-- San Angelo Project · FOTH · San Angelo, City of · ~4,472 ac
-- Parrie Haynes Ranch · SOTH · Texas Juvenile Justice Department · ~4,422 ac
-- Albert and Bessie Kronkosky State Natural Area · SCA · Unknown · ~3,763 ac
-- North Padre Island · SCA · Unknown · ~3,751 ac
-- Fennessey Ranch (Mission-Aransas NERR) · PCON · University of Texas at Austin · ~3,538 ac

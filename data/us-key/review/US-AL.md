@@ -1,6 +1,6 @@
 # AL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **88 of 155** parks joined to official land (same name + same kind of place). **33** to check by hand, **34** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **89 of 155** parks joined to official land (same name + same kind of place). **34** to check by hand, **32** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -18,6 +18,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **88 of 155** parks joined 
 - **US-13003** TVA Little Bear Creek Dam Multiple Use Area (Multiple Use Area) → Little Bear Creek Reservoir Retained Land (~1,138 ac, the POTA pin is inside it (different name))
 - **US-13004** TVA Cedar Creek Dam Multiple Use Area (Multiple Use Area) → Cedar Creek Reservoir Retained Land (~2,716 ac, the POTA pin is inside it (different name))
 - **US-13005** TVA Big Bear Creek Dam Multiple Use Area (Multiple Use Area) → Bear Creek Reservoir Retained Land (~2,327 ac, the POTA pin is inside it (different name))
+- **US-13088** Choctaw Nation Wildlife Refuge National Wildlife Area (National Wildlife Area) → Choctaw National Wildlife Refuge (~3,975 ac, similar name)
 - **US-13311** TVA Upper Bear Creek Dam Resource Management Area (Resource Management Area) → Upper Bear Creek Reservoir Retained Land (~3,216 ac, the POTA pin is inside it (different name))
 - **US-3678** Roland Cooper State Park (State Park) → Millers Ferry Lock Recreation Area (~15,105 ac, the POTA pin is inside it (different name))
 - **US-3681** Blowing Springs Cave Preserve State Conservation Area (State Conservation Area) → Blowing Springs Cave Tract (~60 ac, similar name)
@@ -42,7 +43,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **88 of 155** parks joined 
 
 - US-0025 Fort Morgan National Historic Site (National Historic Site)
 - US-0042 Fort Gaines National Historic Site (National Historic Site)
-- US-0138 Choctaw National Wildlife Refuge (National Wildlife Refuge)
 - US-0642 Natchez Trace Parkway National Parkway (National Parkway)
 - US-1039 De Soto State Park (State Park)
 - US-11025 Uchee Creek Conservation Area (Conservation Area)
@@ -58,7 +58,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **88 of 155** parks joined 
 - US-12996 Fowl River Access Site BLM Recreation Management Area (BLM Recreation Management Area)
 - US-13081 Fort Toulouse Forever Wild Tract State Wildlife Area (State Wildlife Area)
 - US-13083 TVA Wheeler Dam Public Park National Recreation Area (National Recreation Area)
-- US-13088 Choctaw Nation Wildlife Refuge National Wildlife Area (National Wildlife Area)
 - US-13473 Old Cahawba Archaeological Park State Historical Park (State Historical Park)
 - US-13533 Brierfield Ironworks Historial State Park State Historical Park (State Historical Park)
 - US-13558 St. Stephens State Historical Park (State Historical Park)

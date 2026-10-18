@@ -26,8 +26,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **118 of 134** parks joined
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Bombay Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~15,346 ac
 - Franklin Parker Preserve · PCON · New Jersey Conservation Foundation · ~8,931 ac
 - Franklin Parker Preserve · SCA ·   · ~7,500 ac
+- Cherry Valley National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~5,803 ac
 - Maple Lake Wildlife Management Area · SCA · Division of Fish and Wildlife · ~2,904 ac
 - Six Mile Run Reservoir Site · SP · Division of Parks and Forestry · ~2,294 ac
 - Fortescue Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,983 ac
@@ -52,6 +54,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **118 of 134** parks joined
 - Great Egg Harbor River Wildlife Management Area · SCA ·   · ~1,024 ac
 - Great Egg Harbor River Wildlife Management Area · SCA · Division of Fish and Wildlife · ~1,024 ac
 - Bear Creek Preserve · SCA · New Jersey Natural Lands Trust · ~1,014 ac
+- John Heinz National Wildlife Refuge At Tinicum ·  · U.S. Fish & Wildlife Service (own map) · ~1,011 ac
 - Fortescue Wildlife Management Area · SCA · Division of Fish and Wildlife · ~970 ac
 - Baldpate Mountain · SCA · NJ Department of Environmental Protection · ~919 ac
 - Manahawkin Wildlife Management Area · SCA · Division of Fish and Wildlife · ~918 ac
@@ -83,6 +86,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **118 of 134** parks joined
 - White Lake Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~548 ac
 - Sussex Branch Trail · SREC · NJ Division of Parks and Forestry · ~546 ac
 - Columbia Wildlife Management Area · SCA · Division of Fish and Wildlife · ~542 ac
-- Great Egg Harbor River Wildlife Management Area · SCA · Division of Fish and Wildlife · ~542 ac
-- Prospertown Lake Wildlife Management Area · SCA · Division of Fish and Wildlife · ~517 ac
-- Hamilton Preserve · SCA · New Jersey Natural Lands Trust · ~506 ac

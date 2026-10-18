@@ -1,6 +1,6 @@
 # ID: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **97 of 361** parks joined to official land (same name + same kind of place). **146** to check by hand, **118** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **98 of 361** parks joined to official land (same name + same kind of place). **145** to check by hand, **118** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -34,7 +34,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **97 of 361** parks joined 
 - **US-10429** Middle Fork Clearwater River National Wild & Scenic River (National Wild & Scenic River) → Nezperce National Forest (~2,109,873 ac, the POTA pin is inside it (different name))
 - **US-10430** St Joe River National Wild and Scenic River (National Wild and Scenic River) → St. Joe National Forest (~724,439 ac, similar name)
 - **US-10433** Eagle State Fish Hatchery (State Fish Hatchery) → Eagle Fish Health Laboratory (~1 ac, similar name); Eagle Fish Health Laboratory (~1 ac, similar name)
-- **US-10445** Dworshak National Fish Hatchery (National Fish Hatchery) → Clearwater Fish Hatchery (~18 ac, similar name); Clearwater Fish Hatchery (~18 ac, similar name)
 - **US-10536** Roswell Marsh Wildlife Habitat Area Habitat Protection Area (Habitat Protection Area) → Roswell Marsh Wildlife Habitat Area (~556 ac, similar name); Roswell Marsh Wildlife Habitat Area (~151 ac, similar name)
 - **US-10657** Milner Historic Recreation Area BLM Historic Area (BLM Historic Area) → Burley Field Office (~834,935 ac, the POTA pin is inside it (different name))
 - **US-11089** Ted Trueblood Wildlife Habitat Area State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Four Rivers Field Office (~1,255,575 ac, the POTA pin is inside it (different name))
@@ -296,41 +295,41 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **97 of 361** parks joined 
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~72,714 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~58,529 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~53,342 ac
+- Red Rock Lakes National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~50,502 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~33,427 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~31,168 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~28,801 ac
 - Boise National Forest · NF · Forest Service Region 04 Intermountain · ~22,984 ac
 - Minidoka Project · FOTH · Unknown · ~15,268 ac
 - Cascade Reservoir · RMA · Unknown · ~14,820 ac
+- Benton Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~12,343 ac
 - City of Rocks National Reserve · NCA · NPS · ~10,102 ac
+- Red Rock Lakes National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,967 ac
+- Lost Trail National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,902 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~6,673 ac
 - Mary Minerva McCroskey State Park · SP · Idaho Parks and Recreation · ~4,680 ac
 - Redbird Canyon · SOTH · Idaho Department of Fish and Game · ~2,849 ac
+- Lee Metcalf National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,818 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~2,754 ac
 - Idaho Department of Corrections · SOTH · Idaho Department of Corrections · ~2,719 ac
 - North Lake Wildlife Management Area · NCA · NORTH LAKE WILDLIFE MANAGEMENT AREA · ~2,711 ac
 - North Lake Wildlife Management Area · NCA · North Lake Wildlife Management Area · ~2,711 ac
+- Flathead County Waterfowl Production Area ·  · U.S. Fish & Wildlife Service (own map) · ~2,465 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~2,218 ac
+- Toole County Waterfowl Production Area ·  · U.S. Fish & Wildlife Service (own map) · ~2,006 ac
+- Swan River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,933 ac
+- Flathead County Waterfowl Production Area ·  · U.S. Fish & Wildlife Service (own map) · ~1,931 ac
+- Powell County Waterfowl Production Area ·  · U.S. Fish & Wildlife Service (own map) · ~1,926 ac
 - Oxford Slough Waterfowl Production Area · RMA · OXFORD SLOUGH WATERFOWL PRODUCTION AREA · ~1,865 ac
 - Oxford Slough Waterfowl Production Area · RMA · Oxford Slough Waterfowl Production Area · ~1,865 ac
+- Powell County Waterfowl Production Area ·  · U.S. Fish & Wildlife Service (own map) · ~1,861 ac
+- Flathead County Waterfowl Production Area ·  · U.S. Fish & Wildlife Service (own map) · ~1,583 ac
+- Lake County Waterfowl Production Area ·  · U.S. Fish & Wildlife Service (own map) · ~1,533 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~1,523 ac
 - Minidoka Project - American Falls Reservoir · RMA · Unknown · ~1,314 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~1,289 ac
 - Idaho Department of Health and Welfare · SOTH · Idaho Department of Health and Welfare · ~1,199 ac
+- Powell County Waterfowl Production Area ·  · U.S. Fish & Wildlife Service (own map) · ~1,172 ac
+- Lost Trail National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,036 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~1,010 ac
 - Farm Service Agency Interest Of Id · NWR · FARM SERVICE AGENCY INTEREST OF ID · ~1,004 ac
-- Farm Service Agency Interest Of Id · NWR · Farm Service Agency Interest Of Id · ~1,004 ac
-- Trail of the Coeur d' Alenes · SREC · Idaho Parks and Recreation · ~787 ac
-- City of Rocks Natural Reserve · SCA · Idaho Parks and Recreation · ~650 ac
-- Idaho Department of Lands · SRMA · Idaho Department of Lands · ~610 ac
-- Black Canyon Reservoir · RMA · Unknown · ~594 ac
-- Roswell Marsh Wildlife Habitat Area · SCA · Idaho Department of Fish and Game · ~556 ac
-- State of Idaho · SOTH · Mis - State of Idhao · ~517 ac
-- Idaho Department of Lands · SRMA · Idaho Department of Lands · ~461 ac
-- Chamberlain Basin Backcountry Ranches · SCA · Idaho Department of Fish and Game · ~407 ac
-- South Fork Clearwater River Wildlife Habitat Area · SCA · Idaho Department of Fish and Game · ~375 ac
-- Lolo National Forest · NF · Forest Service Region 01 Northern · ~369 ac
-- Elk Creek Reservoir Access Site · SREC · Idaho Department of Fish and Game · ~365 ac
-- Cougar Bar Purchase Unit · NF · Forest Service Region 06 Pacific Northwest · ~363 ac
-- Little Wood Reservoir · RMA · Unknown · ~360 ac
-- Carey Lake Migratory Bird Management Area · NCA · CAREY LAKE MIGRATORY BIRD MANAGEMENT AREA · ~325 ac

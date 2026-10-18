@@ -41,9 +41,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **96 of 120** parks joined 
 - Francis Case Recreation Area · REC · Omaha · ~102,941 ac
 - Sharpe Recreation Area · REC · Omaha · ~78,431 ac
 - Custer National Forest · NF · Forest Service Region 01 Northern · ~73,890 ac
+- Valentine National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~72,350 ac
 - Mcpherson County Waterfowl Production Area · RMA · MCPHERSON COUNTY WATERFOWL PRODUCTION AREA · ~20,999 ac
 - Mcpherson County Waterfowl Production Area · RMA · Mcpherson County Waterfowl Production Area · ~20,999 ac
+- Fort Niobrara National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~19,093 ac
 - Belle Fourche Reservoir · RMA · Unknown · ~14,167 ac
+- Big Stone National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,657 ac
 - Marshall County Waterfowl Production Area · RMA · Marshall County Waterfowl Production Area · ~11,269 ac
 - Marshall County Waterfowl Production Area · RMA · MARSHALL COUNTY WATERFOWL PRODUCTION AREA · ~11,268 ac
 - Edmunds County Waterfowl Production Area · RMA · EDMUNDS COUNTY WATERFOWL PRODUCTION AREA · ~9,246 ac
@@ -91,6 +94,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **96 of 120** parks joined 
 - Deuel County Waterfowl Production Area · RMA · DEUEL COUNTY WATERFOWL PRODUCTION AREA · ~3,209 ac
 - Deuel County Waterfowl Production Area · RMA · Deuel County Waterfowl Production Area · ~3,209 ac
 - Moody County Waterfowl Production Area · RMA · MOODY COUNTY WATERFOWL PRODUCTION AREA · ~3,173 ac
-- Moody County Waterfowl Production Area · RMA · Moody County Waterfowl Production Area · ~3,173 ac
-- Bitter Lake · SREC · Unknown · ~3,116 ac
-- Battle Mountain Game Production Area · SCA · Unknown · ~3,066 ac

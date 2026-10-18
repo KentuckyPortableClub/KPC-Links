@@ -50,6 +50,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **135 of 167** parks joined
 - Sparkleberry Swamp · SOTH · Unknown · ~16,816 ac
 - Belle W. Baruch Institute for Marine and Coastal Sciences · REA · Unknown · ~15,955 ac
 - Little Pee Dee Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~10,168 ac
+- Pee Dee National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,661 ac
 - Clemson Forest · SRMA · Unknown · ~7,519 ac
 - Sparkleberry Swamp · SOTH · Unknown · ~6,792 ac
 - South Carolina Penitentiary State Farm Number One · SOTH · State Department of Natural Resources · ~5,336 ac
@@ -88,6 +89,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **135 of 167** parks joined
 - Pine Island · SOTH · Unknown · ~742 ac
 - Moultrie Hunt Unit Wildlife Management Area · SCA · Unknown · ~735 ac
 - Bennett's Bay Heritage Preserve · SHCA · Unknown · ~679 ac
+- Tybee National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~678 ac
 - Calhoun Falls Wildlife Management Area · SCA · Unknown · ~677 ac
 - Lake Paul Wallace · SREC · Unknown · ~662 ac
 - Keowee Wildlife Management Area · SCA · Unknown · ~624 ac
@@ -100,5 +102,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **135 of 167** parks joined
 - Calhoun Falls Wildlife Management Area · SCA · Unknown · ~426 ac
 - Moultrie Hunt Unit Wildlife Management Area · SCA · Unknown · ~410 ac
 - Slann Island Marshland · SCA · State Fish and Wildlife · ~409 ac
-- Middle Ground Island · SOTH · Unknown · ~402 ac
-- State of South Carolina Marshland 8 · SOTH · Unknown · ~392 ac

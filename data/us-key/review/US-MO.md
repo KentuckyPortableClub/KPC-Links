@@ -1,6 +1,6 @@
 # MO: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **443 of 561** parks joined to official land (same name + same kind of place). **66** to check by hand, **52** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **443 of 561** parks joined to official land (same name + same kind of place). **67** to check by hand, **51** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -61,6 +61,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **443 of 561** parks joined
 - **US-7677** Pigeon Hill Conservation Reserve (Conservation Reserve) → Pigeon Hill Conservation Area (~460 ac, similar name)
 - **US-7678** Lick Creek Conservation Reserve (Conservation Reserve) → Lick Creek Conservation Area (~295 ac, similar name)
 - **US-7679** Moniteau Creek Conservation Reserve (Conservation Reserve) → Moniteau Creek Conservation Area (~751 ac, similar name)
+- **US-7680** Upper Mississippi Conservation Reserve (Conservation Reserve) → Mississippi River Wildlife Management Area (~3,773 ac, the POTA pin is inside it (different name))
 - **US-7681** William R Logan Conservation Reserve (Conservation Reserve) → Logan (William R.) Conservation Area (~1,800 ac, similar name)
 - **US-8229** Brickyard Hill State Conservation Area (State Conservation Area) → Brickyard Hill Natural Area (~2,178 ac, same name, different kind of place); Brickyard Hill Natural Area (~118 ac, same name, different kind of place)
 - **US-8235** Wolf Creek Bend State Conservation Area (State Conservation Area) → Payne Landing Access (~5 ac, the POTA pin is inside it (different name))
@@ -115,7 +116,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **443 of 561** parks joined
 - US-6472 Anita B Gorman Discovery Center State Conservation Area (State Conservation Area)
 - US-6527 Thomas Hill Reservoir State Conservation Area (State Conservation Area)
 - US-7674 Maple Woods Natural Area (Natural Area)
-- US-7680 Upper Mississippi Conservation Reserve (Conservation Reserve)
 - US-7836 Ozark State Trail (State Trail)
 - US-7875 Aspinwall Bend State Conservation Area (State Conservation Area)
 - US-7984 St Genevieve (Beauvais House) National Historical Park (National Historical Park)
@@ -129,29 +129,44 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **443 of 561** parks joined
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Ozark National Scenic Riverways · WSR · NPS · ~53,180 ac
+- Crab Orchard National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~45,498 ac
 - Bull Shoals Recreation Area · REC · Little Rock · ~37,464 ac
 - Smithville Recreation Area · REC · Kansas City · ~19,839 ac
 - Clearwater Recreation Area · REC · Little Rock · ~18,714 ac
+- Cypress Creek National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~13,024 ac
 - August A. Busch Jr. Mem Wetlands At Four Rivers Conservation Area · SCA · Unknown · ~12,602 ac
 - Logan Creek Conservation Area · SCA · Unknown · ~11,985 ac
 - Clearwater Conservation Area · SCA · Unknown · ~11,562 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~11,436 ac
+- Reelfoot National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,817 ac
 - Caney Mountain Conservation Area · SCA · Unknown · ~6,486 ac
 - Drury-Mincy Conservation Area · SCA · Unknown · ~6,309 ac
+- Two Rivers National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,227 ac
 - Sunklands Natural Area · SCA · Unknown · ~5,602 ac
 - Birch Creek Conservation Area · SCA · Unknown · ~5,582 ac
 - Saint Francois Mountains Natural Area · SCA · Unknown · ~5,474 ac
 - Norfork Recreation Area · REC · Little Rock · ~5,107 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~5,001 ac
 - Longview Recreation Area · REC · Kansas City · ~4,762 ac
+- Chautauqua National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~4,758 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~4,580 ac
+- Ozark Plateau National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~4,457 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~4,308 ac
 - Stegall Mountain Natural Area · SCA · Unknown · ~4,242 ac
 - Perry (R. And M.) Memorial Conservation Area · SCA · Unknown · ~4,203 ac
 - Shanks (Ted) Conservation Area · SCA · Unknown · ~4,161 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~4,065 ac
 - Flag Spring Conservation Area · SCA · Unknown · ~3,990 ac
 - Nodaway Valley Conservation Area · SCA · Unknown · ~3,913 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~3,773 ac
+- Meredosia National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,698 ac
 - Graves Mountain Conservation Area · SCA · Unknown · ~3,234 ac
 - Ms Rv Pools 11-22 Recreation Area · REC · Rock Island · ~3,110 ac
 - Little Lost Creek Conservation Area · SCA · Unknown · ~2,907 ac
 - Davisdale Conservation Area · SCA · Unknown · ~2,785 ac
+- Emiquon National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,710 ac
 - Riverside Conservation Area · SCA · Unknown · ~2,696 ac
+- Reelfoot National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,618 ac
 - Helton (The Wayne) Mem Wa · SCA · Unknown · ~2,540 ac
 - Atlanta Conservation Area · SCA · Unknown · ~2,381 ac
 - Fort Crowder Conservation Area · SCA · Unknown · ~2,324 ac
@@ -163,28 +178,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **443 of 561** parks joined
 - Huckleberry Ridge Conservation Area · SCA · Unknown · ~2,066 ac
 - Middle Mississippi River National Wildlife Refuge · NWR · MIDDLE MISSISSIPPI RIVER NATIONAL WILDLIFE REFUGE · ~2,027 ac
 - Middle Mississippi River National Wildlife Refuge · NWR · Middle Mississippi River National Wildlife Refuge · ~2,025 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~1,973 ac
 - Rockwoods Reservation · SCA · Unknown · ~1,924 ac
 - Linscomb Wildlife Area · SCA · Unknown · ~1,917 ac
 - Tyson Research Center · LP · WASHINGTON UNIVERSITY · ~1,904 ac
 - Lincoln Hills Natural Area · SCA · Unknown · ~1,903 ac
+- Lake Isom National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,813 ac
 - Logan (William R.) Conservation Area · SCA · Unknown · ~1,800 ac
 - Farm Service Agency Interest Of Mo · NWR · Farm Service Agency Interest Of Mo · ~1,616 ac
 - Elk River Breaks Woodland Natural Area · SCA · Unknown · ~1,602 ac
 - Big Buffalo Creek Natural Area · SCA · Unknown · ~1,516 ac
-- Caney Mountain Natural Area · SCA · Unknown · ~1,491 ac
-- Saint Francois Mountains Natural Area · SCA · Unknown · ~1,453 ac
-- Seven Island Conservation Area · SCA · Unknown · ~1,423 ac
-- Reifsnider (Frank) State Forest · SRMA · Unknown · ~1,378 ac
-- Mudlick Mountain Natural Area · SCA · Unknown · ~1,376 ac
-- Horton Bottoms Natural Area · SCA · Unknown · ~1,357 ac
-- Taberville Prairie Natural Area · SCA · Unknown · ~1,351 ac
-- Dupont Reservation Conservation Area · SCA · Unknown · ~1,269 ac
-- White (Robert M., II) Conservation Area · SCA · Unknown · ~1,164 ac
-- Edward "ted" And Pat Jones-confluence Point State Park · SP · Unknown · ~1,117 ac
-- Anderson (Edward) Conservation Area · SCA · Unknown · ~1,067 ac
-- Mudpuppy Conservation Area · SCA · Unknown · ~1,024 ac
-- Flatwoods Conservation Area · SCA · Unknown · ~942 ac
-- Lost Valley Fish Hatchery · SOTH · Unknown · ~938 ac
-- Razor Hollow Natural Area · SCA · Unknown · ~932 ac
-- Ha Ha Tonka Savanna Natural Area · SCA · Unknown · ~931 ac
-- Mark Twain Purchase Unit · NF · Forest Service Region 09 Eastern · ~910 ac

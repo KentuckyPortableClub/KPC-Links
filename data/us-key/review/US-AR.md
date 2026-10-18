@@ -1,6 +1,6 @@
 # AR: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **137 of 304** parks joined to official land (same name + same kind of place). **70** to check by hand, **97** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 304** parks joined to official land (same name + same kind of place). **68** to check by hand, **97** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -24,8 +24,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **137 of 304** parks joined
 - **US-11951** J.B. and Johnelle Hunt Family Ozark Highlands Nature Center State Natural Reserve (State Natural Reserve) → Ozark National Forest (~1,132,752 ac, similar name)
 - **US-11953** St. Francis Scenic Byway National Scenic Trail (National Scenic Trail) → St. Francis National Forest (~21,307 ac, similar name)
 - **US-12078** Peppers Pond State Recreation Site (State Recreation Site) → Camp Robinson Wildlife Demonstration Area (~4,211 ac, the POTA pin is inside it (different name))
-- **US-12330** Greers Ferry National Fish Hatchery (National Fish Hatchery) → Greers Ferry Recreation Area (~41,234 ac, similar name)
-- **US-12760** Norfork National Fish Hatchery (National Fish Hatchery) → Norfork Recreation Area (~49,604 ac, similar name)
 - **US-12765** Logoly State Natural Area (State Natural Area) → Logoly State Park (~140 ac, same name, different kind of place)
 - **US-13313** Freddie Black Choctaw Island WMA and Deer Research Area East Unit Watchable Wildlife Trails Wildlife Management Area (Wildlife Management Area) → Choctaw Island (~9,044 ac, similar name)
 - **US-13461** Upper Illinois River Water Trail State Trail (State Trail) → Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
@@ -180,60 +178,60 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **137 of 304** parks joined
 - Dardanelle Recreation Area · REC · Little Rock · ~57,103 ac
 - Norfork Recreation Area · REC · Little Rock · ~49,604 ac
 - Beaver Recreation Area · REC · Little Rock · ~38,135 ac
+- Panther Swamp National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~34,139 ac
 - Bayou Meto · SCA · Unknown · ~32,023 ac
 - Nimrod Recreation Area · REC · Little Rock · ~25,542 ac
+- Chickasaw National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~21,528 ac
 - Ozark Recreation Area · REC · Little Rock · ~17,698 ac
 - Henry Gray/hurricane Lake · SREC · Unknown · ~17,503 ac
 - Gene Rush/buffalo River · SCA · Unknown · ~17,011 ac
+- Hillside National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,948 ac
 - Lafayette Wildlife Management Area · SCA · Unknown · ~14,703 ac
+- Little River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,236 ac
 - Madison County · SCA · Unknown · ~14,195 ac
+- Yazoo National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~13,042 ac
+- Lower Hatchie National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~12,272 ac
 - Pine Tree Wildlife Demonstration Area · SCA · Unknown · ~12,238 ac
 - Hobbs State Park / Conservation Management Area · SP · Unknown · ~12,157 ac
 - Wilbur D. Mills Pool Recreation Area · REC · Little Rock · ~11,133 ac
 - Big Lake · SREC · Unknown · ~10,804 ac
+- Dahomey National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~9,537 ac
 - Choctaw Island · SCA · Unknown · ~9,044 ac
 - Gillham Recreation Area · REC · Little Rock · ~8,514 ac
 - Ed Gordon/pt. Remove · SCA · Unknown · ~8,429 ac
+- Morgan Brake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,569 ac
 - Dequeen Recreation Area · REC · Little Rock · ~7,432 ac
+- Theodore Roosevelt National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,252 ac
 - Murray Pool Recreation Area · REC · Little Rock · ~5,685 ac
+- Chickasaw National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~5,369 ac
 - Nimrod State Game Management Area · SCA · Unknown · ~5,090 ac
 - Pool 5 (Ark. Rv) Recreation Area · REC · Little Rock · ~4,874 ac
 - J.P. Hammerschmidt Recreation Area · REC · Little Rock · ~4,491 ac
+- Ozark Plateau National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~4,457 ac
 - Camp Robinson Wildlife Demonstration Area · SCA · Unknown · ~4,211 ac
+- Tallahatchie National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~4,182 ac
 - Dierks Recreation Area · REC · Little Rock · ~4,169 ac
 - William Brewer/scatter Creek · SCA · Unknown · ~4,004 ac
 - Table Rock Recreation Area · REC · Little Rock · ~3,022 ac
+- Farm Service Agency Interest Of Ms ·  · U.S. Fish & Wildlife Service (own map) · ~2,541 ac
+- Coldwater River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,514 ac
+- Farm Service Agency Interest Of Ms ·  · U.S. Fish & Wildlife Service (own map) · ~2,513 ac
+- Mathews Brake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,363 ac
 - Felsenthal National Wildlife Refuge · NWR · FELSENTHAL NATIONAL WILDLIFE REFUGE · ~2,259 ac
 - Felsenthal National Wildlife Refuge · NWR · Felsenthal National Wildlife Refuge · ~2,259 ac
 - Pool 3 (Ark. Rv) Recreation Area · REC · Little Rock · ~1,930 ac
+- Lower Hatchie National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,857 ac
 - Crossett Experimental Area · NF · Forest Service Region 08 Southern · ~1,685 ac
+- Holt Collier National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,543 ac
 - Stumpy Point Purchase Unit · NF · Forest Service Region 08 Southern · ~1,519 ac
+- Farm Service Agency Interest Of Ms ·  · U.S. Fish & Wildlife Service (own map) · ~1,417 ac
+- Holt Collier National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,397 ac
 - De Gray State Park · SP · Unknown · ~1,277 ac
 - Southeastern States District Office · PUB · BLM · ~1,152 ac
 - Jamestown · SCA · Unknown · ~1,091 ac
 - Robert Hankins/mud Creek Wildlife Demonstration Area · SCA · Unknown · ~1,052 ac
 - Pool 4 (Ark. Rv) Recreation Area · REC · Little Rock · ~880 ac
 - Maumelle Water Excellence - Canterbury Parcel · UNK · Unknown · ~741 ac
+- Farm Service Agency Interest Of Ms ·  · U.S. Fish & Wildlife Service (own map) · ~732 ac
+- Farm Service Agency Interest Of Ms ·  · U.S. Fish & Wildlife Service (own map) · ~672 ac
 - Farm Service Agency Interest Of Ar · NWR · FARM SERVICE AGENCY INTEREST OF AR · ~663 ac
-- Farm Service Agency Interest Of Ar · NWR · Farm Service Agency Interest Of Ar · ~663 ac
-- Holland Bottoms Willow Oak Forest Preserve · SCA · Unknown · ~638 ac
-- Nacatoch Ravines Natural Area · SCA · Unknown · ~636 ac
-- Little River · SCA · Unknown · ~565 ac
-- National Center For Toxicological Research · REA · Unknown · ~493 ac
-- Terry Pool (Ark. Rv) Recreation Area · REC · Little Rock · ~484 ac
-- Smoke Hole Natural Area · SCA · Unknown · ~455 ac
-- Kelly's Slab · SCA · Unknown · ~378 ac
-- Bona Dea Trails And Sanctuary · NCA · USA · ~293 ac
-- Big Creek Wildlife Management Area · SCA · Unknown · ~284 ac
-- Hell Creek Natural Area · SCA · Unknown · ~224 ac
-- Railroad Prairie Natural Area · SCA · Unknown · ~210 ac
-- Wittsburg Natural Area · SCA · Unknown · ~192 ac
-- Murray Park · LP · U S Engineering · ~190 ac
-- Toltec Mounds Archeological State Park · SP · Unknown · ~176 ac
-- Toad Suck Ferry Pool Recreation Area · REC · Little Rock · ~153 ac
-- Stateline Sand Ponds Natural Area · SCA · Unknown · ~144 ac
-- Stone Road Glade Natural Area · SCA · Unknown · ~108 ac
-- Point Remove Park · LP · City of Morrilton · ~89 ac
-- Cat Tail Marsh · SCA · Unknown · ~78 ac
-- Toad Suck Park · LP · US Army Corps of Engineers · ~73 ac
-- Middle Fork 2 · SCA · Arkansas Natural Heritage Commission · ~72 ac

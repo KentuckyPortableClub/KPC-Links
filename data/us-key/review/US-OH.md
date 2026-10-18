@@ -55,16 +55,19 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **233 of 276** parks joined
 
 - Clarence J. Brown Recreation Area · REC · Louisville · ~4,146 ac
 - Vinton Furnace Wildlife Area · SCA · Ohio Department of Natural Resources · ~3,533 ac
+- Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,284 ac
 - Fort Hill State Memorial · SHCA · Arc of Appalachia Preserve System, Ohio History Connection · ~1,165 ac
 - Fernald Preserve · PUB · USA · ~1,045 ac
 - Mosquito Creek State Park · SP · Ohio Department of Natural Resources · ~802 ac
 - Knox Lake Wildlife Area · SCA · Ohio Department of Natural Resources · ~762 ac
 - Berlin Lake Wildlife Area · SCA · Ohio Department of Natural Resources · ~716 ac
+- Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~645 ac
 - Berlin Lake Wildlife Area · SCA · Ohio Department of Natural Resources · ~568 ac
 - Zeppernick Lake Wildlife Area · SCA · Ohio Department of Natural Resources · ~527 ac
 - Dysart Woods · PHCA · Ohio University · ~471 ac
 - Ohio Department Of Natural Resources Sf · SRMA · Ohio Department Of Natural Resources · ~365 ac
 - Missionary Island Wildlife Area · SCA · Ohio Department of Natural Resources · ~297 ac
+- Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~286 ac
 - Halls Creek Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~273 ac
 - Acadia Cliffs Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~271 ac
 - Adena State Memorial · SP · State of Ohio · ~271 ac
@@ -72,13 +75,16 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **233 of 276** parks joined
 - Jay D Proctor Wildlife Education Center · SOTH · Ohio Department of Natural Resources · ~265 ac
 - Little Rocky Hollow Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~255 ac
 - East Reservoir State Park · SP · Ohio Department of Natural Resources · ~255 ac
+- Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~242 ac
 - Hebron Fish Hatchery · SOTH · Ohio Department of Natural Resources · ~235 ac
 - Kroger Hills State Reserve · SCA · State of Ohio · ~225 ac
 - Pymatuning Creek Wetlands Nature Preserve · SCA · Ohio Department of Natural Resources · ~224 ac
+- Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~224 ac
 - Kendrick Woods Nature Preserve · SCA · Ohio Department of Natural Resources · ~217 ac
 - Kincaid Springs State Fish Hatchery · SOTH · Ohio Department of Natural Resources · ~213 ac
 - Gallagher / Springfield Fen · SREC · STATE OF OHIO DEPARTMENT OF NATURAL · ~212 ac
 - Sandusky - Heck Bridge SR · SREC · Ohio Department of Natural Resources · ~210 ac
+- Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~210 ac
 - Turkeyfoot Lake State Park · SP · Ohio Department of Natural Resources · ~206 ac
 - Buffalo Fork Wildlife Area · SCA · Ohio Department of Natural Resources · ~199 ac
 - Zanesville State Forest · SOTH · Ohio Department of Natural Resources · ~197 ac
@@ -100,16 +106,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **233 of 276** parks joined
 - Little Miami Deerfield Gorge · ACC · Ohio Department Of Natural Resources · ~133 ac
 - Siebenthaler Wetlands #1 · SCA · STATE OF OHIO DEPT OF NATURAL RESOURCES · ~132 ac
 - The Trump Wildlife Area · SCA · Ohio Department of Natural Resources · ~129 ac
+- Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~126 ac
 - Boord Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~124 ac
 - Green Springs State Forest · SCA · Ohio Department of Natural Resources · ~120 ac
 - Wildlife Production Area 1 · SCA · Ohio Department of Natural Resources · ~119 ac
 - State of Ohio Land · SCA · State of Ohio · ~118 ac
 - Delaware Strine Wildlife Area · SCA · Ohio Department of Natural Resources · ~117 ac
 - Dupont Marsh Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~117 ac
-- Castalia Fish Hatchery · SOTH · Ohio Department of Natural Resources · ~117 ac
-- Wildlife Production Area 4 · SCA · Ohio Department of Natural Resources · ~112 ac
-- Morris Woods Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~107 ac
-- Rome Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~106 ac
-- Conneaut Cr SR · SREC · Ohio Department of Natural Resources · ~106 ac
-- Seymour Woods NA · SCA · Ohio Department of Natural Resources · ~104 ac
-- West Reservoir State Park · SP · Ohio Department of Natural Resources · ~103 ac

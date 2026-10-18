@@ -635,6 +635,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **98 of 690** parks joined 
 - State Trust Lands Bear Lake Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~27,963 ac
 - State Trust Lands Natural Buttes Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~27,066 ac
 - State Trust Lands Lakeside Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~26,765 ac
+- Seedskadee National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~25,897 ac
 - State Trust Lands Tintic Valley Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~19,831 ac
 - State Trust Lands Lake Mountain Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~19,018 ac
 - State Trust Lands North La Sal Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~18,182 ac
@@ -661,4 +662,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **98 of 690** parks joined 
 - State Trust Lands Potash Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~9,036 ac
 - State Trust Lands Clay Hills Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~8,346 ac
 - State Trust Lands Cinnamon Creek Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~8,119 ac
-- State Trust Lands Holliday Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~7,949 ac

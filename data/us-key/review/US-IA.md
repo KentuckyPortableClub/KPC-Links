@@ -47,12 +47,15 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **162 of 181** parks joined
 - Sedan Bottoms Wildlife Management Area · SCA · DNR - Wildlife · ~5,994 ac
 - Coralville Lake · REC · Army Corps of Engineers · ~5,787 ac
 - Mississippi River Islands Wildlife Management Area · SCA · DNR - Wildlife · ~5,359 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~5,279 ac
 - Rathbun Lake · REC · Army Corps of Engineers · ~5,220 ac
 - Lake Odessa Wildlife Management Area · SCA · DNR - Wildlife · ~4,107 ac
+- Boyer Chute National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,970 ac
 - West Okoboji Lake · SOTH · DNR - Fisheries · ~3,875 ac
 - Kossuth County Waterfowl Production Area · RMA · KOSSUTH COUNTY WATERFOWL PRODUCTION AREA · ~3,555 ac
 - Kossuth County Waterfowl Production Area · RMA · Kossuth County Waterfowl Production Area · ~3,555 ac
 - Otter Creek Marsh Wildlife Management Area · SCA · DNR - Wildlife · ~3,508 ac
+- Lake Odessa Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~3,171 ac
 - Storm Lake · SOTH · DNR - Fisheries · ~3,108 ac
 - Coralville Lake · REC · Army Corps of Engineers · ~3,068 ac
 - Lake Red Rock · REC · Army Corps of Engineers · ~2,890 ac
@@ -60,7 +63,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **162 of 181** parks joined
 - Cerro Gordo County Waterfowl Production Area · RMA · CERRO GORDO COUNTY WATERFOWL PRODUCTION AREA · ~2,719 ac
 - Cerro Gordo County Waterfowl Production Area · RMA · Cerro Gordo County Waterfowl Production Area · ~2,719 ac
 - Spring Run Wetland Complex · SCA · DNR - Wildlife · ~2,708 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~2,599 ac
 - Elk Creek Marsh Wildlife Management Area · SCA · DNR - Wildlife · ~2,566 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~2,564 ac
 - Emmet County Waterfowl Production Area · RMA · Emmet County Waterfowl Production Area · ~2,540 ac
 - Ringgold Wildlife Management Area · SCA · DNR - Wildlife · ~2,521 ac
 - Stephens State Forest · SRMA · DNR - Forestry · ~2,503 ac
@@ -84,8 +89,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **162 of 181** parks joined
 - Worth County Waterfowl Production Area · RMA · WORTH COUNTY WATERFOWL PRODUCTION AREA · ~1,483 ac
 - Winnebago County Waterfowl Production Area · RMA · WINNEBAGO COUNTY WATERFOWL PRODUCTION AREA · ~1,470 ac
 - Hawk Valley Wildlife Management Area · SCA · DNR - Wildlife · ~1,450 ac
-- Auldon Bar Wildlife Management Area · SCA · DNR - Wildlife · ~1,369 ac
-- Aldo Leopold Wildlife Management Area · SCA · DNR - Wildlife · ~1,357 ac
-- Millrace Flats Wildlife Management Area · SCA · DNR - Wildlife · ~1,346 ac
-- Middle Raccoon River Wildlife Management Area · SCA · DNR - Wildlife · ~1,306 ac
-- M U Payne Wildlife Area · SCA · DNR - Wildlife · ~1,292 ac

@@ -1,10 +1,10 @@
 # WA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **328 of 536** parks joined to official land (same name + same kind of place). **85** to check by hand, **123** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **329 of 536** parks joined to official land (same name + same kind of place). **85** to check by hand, **122** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0582** Julia Butler Hansen National Wildlife Refuge (National Wildlife Refuge) → Julia Butler Hansen Refuge For The Columbian White-Tailed Deer (~2,808 ac, similar name); Julia Butler Hansen Refuge For The Columbian White-Tailed Deer (~2,808 ac, similar name)
+- **US-0582** Julia Butler Hansen National Wildlife Refuge (National Wildlife Refuge) → Julia Butler Hansen Refuge For The Columbian White Tail Deer (~5,968 ac, similar name); Julia Butler Hansen Refuge For The Columbian White-Tailed Deer (~2,808 ac, similar name); Julia Butler Hansen Refuge For The Columbian White-Tailed Deer (~2,808 ac, similar name)
 - **US-0694** Ebey's Landing Reserve National Conservation Area (National Conservation Area) → Ebey's Landing National Historical Reserve (~1,093 ac, similar name); Ebey's Landing (~46 ac, similar name)
 - **US-10408** Horse Heaven Hills Recreation Area BLM Recreation Management Area (BLM Recreation Management Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
 - **US-10627** 4-0 Ranch Wildlife Area (Wildlife Area) → 4-O Ranch - Dec 2014 (~2,568 ac, similar name); 4-O Ranch - March 2014 (~2,147 ac, similar name); 4-O Ranch 2013 (~1,573 ac, similar name)
@@ -92,7 +92,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **328 of 536** parks joined
 
 ## Nothing found in PAD-US
 
-- US-0591 Saddle Mountain National Wildlife Refuge (National Wildlife Refuge)
 - US-0731 Columbia River Gorge National Forest (National Forest)
 - US-0849 Minidoka National Historic Site (National Historic Site)
 - US-10421 International Selkirk Loop National Scenic Byway National Parkway (National Parkway)
@@ -235,11 +234,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **328 of 536** parks joined
 - Skagit-Snoqualmie Wildlife Area Complex · SCA · Unknown · ~15,194 ac
 - Vale Baker Field Office · PUB · BLM · ~14,204 ac
 - Klickitat Wildlife Area Complex · SCA · Unknown · ~13,679 ac
+- Lewis And Clark National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~13,080 ac
 - Sunnyside-Snake River Wildlife Area Complex · SCA · Unknown · ~12,762 ac
 - Chief Joseph · SCA · Washington Department of Fish & Wildlife · ~11,467 ac
 - Mount Saint Helens-Shillapoo Wildlife Area Complex · SCA · Unknown · ~10,476 ac
 - Lenore Game Range · NCA · LENORE GAME RANGE · ~6,170 ac
 - Lenore Game Range · NCA · Lenore Game Range · ~6,170 ac
+- Julia Butler Hansen Refuge For The Columbian White Tail Deer ·  · U.S. Fish & Wildlife Service (own map) · ~5,968 ac
 - Billy Frank Jr. Nisqually National Wildlife Refuge · NWR · Billy Frank Jr. Nisqually National Wildlife Refuge · ~5,558 ac
 - Billy Frank Jr. Nisqually National Wildlife Refuge · NWR · BILLY FRANK JR. NISQUALLY NATIONAL WILDLIFE REFUGE · ~5,534 ac
 - Colockum Game Range · NCA · COLOCKUM GAME RANGE · ~4,927 ac
@@ -260,6 +261,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **328 of 536** parks joined
 - Chopaka Mountain Natural Area Preserve · SCA · Unknown · ~2,757 ac
 - Bone River Natural Area Preserve · SCA · Unknown · ~2,729 ac
 - Cypress Island Natural Resources Conservation Area · SCA · Unknown · ~2,716 ac
+- Cold Springs National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,685 ac
 - Cle Elum Lake · RMA · Unknown · ~2,680 ac
 - Whatcom Wildlife Area Complex · SCA · Unknown · ~2,661 ac
 - Oak Creek 2014 - 2588.27 Acre Parcel · SCA · Washington Department of Fish and Wildlife · ~2,589 ac
@@ -275,6 +277,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **328 of 536** parks joined
 - Cadman · SCA · STATE FOREST BOARD · ~2,085 ac
 - Charley Creek Natural Area Preserve · SCA · Unknown · ~2,023 ac
 - Entiat Slopes Natural Area Preserve · SCA · Unknown · ~1,964 ac
-- Rattlesnake Mountain Scenic Area Natural Resources Conservation Area · SCA · Unknown · ~1,836 ac
-- Methow Watershed 13 · SOTH · Washington Department of Fish and Wildlife · ~1,667 ac
-- Keechelus Lake · RMA · Unknown · ~1,625 ac

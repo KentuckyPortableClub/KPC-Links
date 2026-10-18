@@ -117,6 +117,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 421** parks joined
 - Quabbin Reservoir Watershed · WPA ·   · ~2,101 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~2,044 ac
 - Ware River Watershed · WPA ·   · ~1,823 ac
+- Wapack National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,648 ac
 - Silvio O. Conte National Fish And Wildlife Refuge · NWR · Silvio O. Conte National Fish And Wildlife Refuge · ~1,565 ac
 - Ware River Watershed · WPA ·   · ~1,545 ac
 - West Lake And Abbey Pond Flood Control Site · SOTH ·   · ~1,333 ac
@@ -156,4 +157,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 421** parks joined
 - Boxford State Forest · SRMA ·   · ~605 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~603 ac
 - Wequaquet Lake · SRMA · Commonwealth of Massachusetts · ~594 ac
-- Lake Cochichewick · SRMA · Commonwealth of Massachusetts · ~585 ac

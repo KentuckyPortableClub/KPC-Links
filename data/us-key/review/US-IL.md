@@ -91,21 +91,31 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Ms Rv Pools 11-22 Recreation Area · REC · Rock Island · ~45,941 ac
+- Mingo National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~21,618 ac
 - Midewin Other · NF · Forest Service Region 09 Eastern · ~18,225 ac
 - Upper Mississippi River National Wildlife And Fish Refuge · NWR · Upper Mississippi River National Wildlife And Fish Refuge · ~12,512 ac
 - Upper Mississippi River National Wildlife And Fish Refuge · NWR · UPPER MISSISSIPPI RIVER NATIONAL WILDLIFE AND FISH REFUGE · ~12,471 ac
+- Clarks River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,857 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~5,279 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~4,580 ac
 - Sahara Woods State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~4,059 ac
 - Middle Mississippi Purchase Unit · NF · Forest Service Region 09 Eastern · ~3,877 ac
 - Horshoe Lake State Park · SP · Dept of Natural Resources State of Illinois · ~3,339 ac
 - Adeline Jay Geo-Karis Illinois Beach State Park · SP · STATE OF ILLINOIS DEPT OF CONSERVATION · ~3,186 ac
+- Lake Odessa Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~3,171 ac
 - Pool No. 26 - Stump Lake · SP · Illinois Department of Natural Resources · ~2,972 ac
 - Prairie Ridge-Jasper State Natural Area · SCA · Illinois Department of Natural Resources · ~2,666 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~2,599 ac
+- Green Island Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~2,580 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~2,564 ac
 - Great River National Wildlife Refuge · NWR · GREAT RIVER NATIONAL WILDLIFE REFUGE · ~2,493 ac
 - Great River National Wildlife Refuge · NWR · Great River National Wildlife Refuge · ~2,493 ac
 - Recreation Area · SREC · Illinois Department of Natural Resources · ~2,294 ac
 - Lake DePue State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~2,231 ac
+- Green River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,197 ac
 - Embarras River Bottoms State Habitat Area · SCA · Illinois Department of Natural Resources · ~2,179 ac
 - Spring Lake · SREC · State of Illinois · ~2,123 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~1,973 ac
 - Robert Allerton Park · SCA · University of Illinois · ~1,808 ac
 - Piatt County Unit State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~1,753 ac
 - Richland County Wildlife Management Area · SCA · Unknown · ~1,547 ac
@@ -113,6 +123,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined
 - Sand Prairie-Scrub Oak State Natural Area · SCA · Illinois Department of Natural Resources · ~1,509 ac
 - Washington County State Natural Area · SCA · Illinois Department of Natural Resources · ~1,465 ac
 - 12 Mile Island Wildlife Management Area - Glades · SCA · Illinois Department of Natural Resources · ~1,419 ac
+- Elsberry Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~1,386 ac
+- Big Muddy National Fish And Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,358 ac
 - Sam Dale Lake State Conservation Area · SCA · Illinois Department of Natural Resources · ~1,324 ac
 - Witkowsky State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~1,323 ac
 - Saline County State Conservation Area · SCA · Illinois Department of Natural Resources · ~1,273 ac
@@ -128,25 +140,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined
 - Weinberg-King State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~862 ac
 - Mosenthein Island · SREC · State of Illinois Dept of Natural Resources · ~860 ac
 - Hanover Bluff State Natural Area · SCA · Illinois Department of Natural Resources · ~802 ac
+- Princeton Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~753 ac
 - Wildcat Hollow State Habitat Area · SCA · Illinois Department of Natural Resources · ~748 ac
 - Farmdale Dam Recreation Area · REC · Rock Island · ~702 ac
 - Momencee Wetlands State Natural Area · SCA · Illinois Department of Natural Resources · ~667 ac
 - Chauncey Marsh State Natural Area · SCA · Illinois Department of Natural Resources · ~652 ac
 - Saybrook State Habitat Area · SCA · Illinois Department of Natural Resources · ~649 ac
+- Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~641 ac
 - Sibley State Habitat Area · UNK · Illinois Department of Natural Resources · ~633 ac
+- Big Muddy National Fish And Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~588 ac
 - Sangamon Valley Greenway · SREC · State of IL · ~584 ac
-- Donnelley State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~561 ac
-- Lincolns New Salem State Park · SP · State of Illinois · ~560 ac
-- Kishwaukee River State Natural Area · UNK · Illinois Department of Natural Resources · ~546 ac
-- Campbell Pond State Habitat Area · SCA · Illinois Department of Natural Resources · ~529 ac
-- Cretaceous Hills State Natural Area · SCA · Illinois Department of Natural Resources · ~511 ac
-- Vermilion River Observatory · UNK · University of Illinois · ~502 ac
-- Nardi Hills · SOTH · Illinois Department of Natural Resources · ~491 ac
-- East Fork Management Unit State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~403 ac
-- Wilmington Shrub Prairie State Natural Area · SCA · Illinois Department of Natural Resources · ~390 ac
-- Hurricane Creek State Habitat Area · SCA · Illinois Department of Natural Resources · ~385 ac
-- Black Crown Marsh State Natural Area · SCA · Illinois Department of Natural Resources · ~374 ac
-- Sparks Pond State Natural Area · SCA · Illinois Department of Natural Resources · ~373 ac
-- Ward's Grove State Natural Area · SCA · Illinois Department of Natural Resources · ~337 ac
-- Farm Service Agency Interest Of Il · NWR · Farm Service Agency Interest Of Il · ~335 ac
-- Meredosia Lake State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~333 ac

@@ -100,7 +100,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **211 of 294** parks joined
 - Roseau River State Wildlife Management Area · SCA · DNR Wildlife · ~75,144 ac
 - Kabetogama Purchase Unit · NF · Forest Service Region 09 Eastern · ~68,258 ac
 - Thief Lake State Wildlife Management Area · SCA · DNR Wildlife · ~54,940 ac
+- Necedah Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~54,219 ac
 - R J D Memorial Hardwood State Forest · SRMA · DNR Forestry · ~48,804 ac
+- Necedah National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~44,040 ac
 - Wapiti State Wildlife Management Area · SCA · DNR Wildlife · ~31,757 ac
 - Beaches Lake State Wildlife Management Area · SCA · DNR Wildlife · ~30,598 ac
 - Otter Tail County Waterfowl Production Area · RMA · Otter Tail County Waterfowl Production Area · ~24,232 ac
@@ -143,6 +145,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **211 of 294** parks joined
 - North Black River Peatland · SCA · Bureau of Land Management · ~8,541 ac
 - Swift County Waterfowl Production Area · RMA · SWIFT COUNTY WATERFOWL PRODUCTION AREA · ~8,317 ac
 - Skull Lake State Wildlife Management Area · SCA · DNR Wildlife · ~7,444 ac
+- Trempealeau National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,929 ac
 - Mahnomen County Waterfowl Production Area · RMA · Mahnomen County Waterfowl Production Area · ~6,789 ac
 - Mahnomen County Waterfowl Production Area · RMA · MAHNOMEN COUNTY WATERFOWL PRODUCTION AREA · ~6,734 ac
 - Huntly State Wildlife Management Area · SCA · DNR Wildlife · ~6,502 ac
@@ -150,6 +153,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **211 of 294** parks joined
 - South Black River Peatland State Scientific and Natural Area · SCA · DNR Ecologic and Water Resources · ~5,877 ac
 - Meadow Brook State Wildlife Management Area · SCA · DNR Wildlife · ~5,774 ac
 - Northeastern States District Office · PUB · BLM · ~5,555 ac
-- Mulligan Lake Peatland State Scientific and Natural Area · SCA · DNR Ecologic and Water Resources · ~5,478 ac
-- Meeker County Waterfowl Production Area · RMA · Meeker County Waterfowl Production Area · ~5,354 ac
-- Jackson County Waterfowl Production Area Of Mn · RMA · Jackson County Waterfowl Production Area Of Mn · ~5,271 ac

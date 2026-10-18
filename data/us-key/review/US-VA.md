@@ -80,15 +80,20 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 184** parks joined
 - Blue Ridge Parkway · SDA · NPS · ~35,237 ac
 - Goshen and Little North Mountain Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~33,315 ac
 - Goshen and Little North Mountain Wildlife Management Area · SCA ·   · ~33,231 ac
+- Blackwater National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~31,495 ac
 - Tidal Lands · SRMA · VA Marine Resources Commission · ~26,163 ac
 - Tidal Lands · SOTH ·   · ~26,120 ac
 - Clinch Mountain Wildlife Management Area · SCA ·   · ~22,276 ac
 - Clinch Mountain Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~22,276 ac
+- Canaan Valley National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~18,957 ac
 - Appalachian National Scenic Trail · NT · NPS · ~17,671 ac
+- Bombay Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~15,346 ac
 - Highland Wildlife Management Area · SCA ·   · ~13,720 ac
 - Highland Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~13,715 ac
 - Gathright Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~10,609 ac
+- Patuxent Research Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~10,548 ac
 - Gathright Wildlife Management Area · SCA ·   · ~10,516 ac
+- Prime Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~9,238 ac
 - John W Flannagan Recreation Area · REC · Huntington · ~8,139 ac
 - Fredericksburg and Spotsylvania County Battlefields Memorial National Military Park · HCA · NPS · ~7,640 ac
 - The Big Survey Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~7,437 ac
@@ -115,11 +120,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 184** parks joined
 - Rapidan Wildlife Management Area · SCA ·   · ~4,119 ac
 - C.F. Phelps Wildlife Management Area · SCA ·   · ~4,084 ac
 - Thompson Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~3,964 ac
+- Currituck National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,810 ac
 - Cavalier Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~3,770 ac
 - False Cape State Natural Area Preserve · SCA ·   · ~3,603 ac
 - False Cape State Natural Area Preserve · SCA · VA Dept of Conservation and Recreation · ~3,603 ac
 - North Landing River State Natural Area Preserve · SCA · VA Dept of Conservation and Recreation · ~3,532 ac
 - Thompson Wildlife Management Area · SCA ·   · ~3,396 ac
+- Ohio River Islands National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,354 ac
 - Rapidan Wildlife Management Area · SCA ·   · ~3,170 ac
 - Briery Creek Wildlife Management Area · SCA ·   · ~3,130 ac
 - Briery Creek Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~3,130 ac
@@ -128,10 +135,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 184** parks joined
 - Doc · SOTH ·   · ~3,019 ac
 - Horsepen Lake Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~2,957 ac
 - Oakley Forest Wildlife Management Area · SCA ·   · ~2,900 ac
-- Oakley Forest Wildlife Management Area · SCA · VA Dept of Wildlife Resources · ~2,900 ac
-- Horsepen Lake Wildlife Management Area · SCA ·   · ~2,861 ac
-- South Quay Sandhills State Natural Area Preserve · SCA ·   · ~2,851 ac
-- South Quay Sandhills State Natural Area Preserve · SCA · VA Dept of Conservation and Recreation · ~2,851 ac
-- US Government NW Radio Station · FOTH · US Government · ~2,791 ac
-- North Fork Of Pound Rv Recreation Area · REC · Huntington · ~2,777 ac
-- Featherfin Farm Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~2,756 ac

@@ -64,6 +64,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 109** parks joined 
 - Plymsbury Wildlife Management Area · SCA ·   · ~1,933 ac
 - C.C. Putnam State Forest · SRMA ·   · ~1,755 ac
 - Green Mountain Other · NF · Forest Service Region 09 Eastern · ~1,696 ac
+- Wapack National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,648 ac
 - Sandbar Wildlife Management Area · SCA ·   · ~1,557 ac
 - Coolidge State Forest · SRMA ·   · ~1,550 ac
 - Huntington Gap Wildlife Management Area · SCA ·   · ~1,474 ac
@@ -103,4 +104,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 109** parks joined 
 - Middlesex Notch Wildlife Management Area · SCA ·   · ~625 ac
 - Coolidge State Forest · SRMA ·   · ~609 ac
 - Roaring Brook Wildlife Management Area · SCA · VT Department of Fish and Wildlife · ~565 ac
-- Coolidge State Forest · SRMA ·   · ~564 ac

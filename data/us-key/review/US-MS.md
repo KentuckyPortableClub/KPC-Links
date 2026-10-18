@@ -85,32 +85,45 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 155** parks joined 
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Dale Bumpers White River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~157,095 ac
+- Tensas River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~77,861 ac
+- Cache River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~74,347 ac
 - Gulf Islands National Seashore · NLS · NPS · ~57,793 ac
 - Sam D. Hamilton Noxubee National Wildlife Refuge · NWR · SAM D. HAMILTON NOXUBEE NATIONAL WILDLIFE REFUGE · ~48,330 ac
 - Sam D. Hamilton Noxubee National Wildlife Refuge · NWR · Sam D. Hamilton Noxubee National Wildlife Refuge · ~48,330 ac
 - Natchez Trace Parkway · SDA · NPS · ~31,527 ac
+- Big Branch Marsh National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~18,409 ac
 - Hancock County Marsh Coastal Reserve · SCA · Unknown · ~18,067 ac
+- Atchafalaya National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~15,768 ac
+- Bayou Cocodrie National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~15,177 ac
 - Pascagoula River Coastal Reserve · SCA · Unknown · ~13,775 ac
+- Overflow National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~13,542 ac
+- Cat Island National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,359 ac
 - Farm Service Agency Interest Of Ms · NWR · Farm Service Agency Interest Of Ms · ~10,214 ac
 - Farm Service Agency Interest Of Ms · NWR · FARM SERVICE AGENCY INTEREST OF MS · ~9,530 ac
 - Bogue Chitto National Wildlife Refuge · NWR · BOGUE CHITTO NATIONAL WILDLIFE REFUGE · ~7,316 ac
 - Bogue Chitto National Wildlife Refuge · NWR · Bogue Chitto National Wildlife Refuge · ~7,287 ac
+- Bon Secour National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,849 ac
 - Copiah Wma · SCA · Unknown · ~6,594 ac
 - Theodore Roosevelt National Wildlife Refuge · NWR · Theodore Roosevelt National Wildlife Refuge · ~6,277 ac
 - Theodore Roosevelt National Wildlife Refuge · NWR · THEODORE ROOSEVELT NATIONAL WILDLIFE REFUGE · ~6,178 ac
 - Jourdan River Coastal Reserve · SCA · Unknown · ~4,311 ac
+- Choctaw National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,975 ac
 - Biloxi River Coastal Reserve · SCA · Unknown · ~2,479 ac
 - Wolf River Coastal Reserve · SCA · Unknown · ~2,156 ac
 - Greentree · SCA · Unknown · ~1,918 ac
 - Pickwick Reservoir · ND · Tennessee Valley Authority (TVA) · ~1,915 ac
 - Graveline Bay Coastal Reserve · SCA · Unknown · ~1,879 ac
 - Bellefontaine Point Coastal Reserve · SCA · Unknown · ~1,262 ac
+- Farm Service Agency Interest Of La ·  · U.S. Fish & Wildlife Service (own map) · ~1,206 ac
 - Stock And Washington Muscadine · SCA · Unknown · ~1,186 ac
 - Old Fort Bayou Coastal Reserve · SCA · Unknown · ~1,134 ac
 - Bayou Lacroix Coastal Reserve · SCA · Unknown · ~1,081 ac
 - Wolf River Conservation Society · SCA · Mississippi Department of Wildlife, Fisheries and Parks · ~1,046 ac
+- Big Branch Marsh National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,045 ac
 - Red Creek Purchase Unit · NF · Forest Service Region 08 Southern · ~1,035 ac
 - Indianola Wildlife Management Area · SCA · Unknown · ~1,019 ac
+- Farm Service Agency Interest Of La ·  · U.S. Fish & Wildlife Service (own map) · ~982 ac
 - Theodore A. Mars, Jr. Memorial Wildlife Refuge · SCA · Unknown · ~897 ac
 - Bayou Portage Coastal Reserve · SCA · Unknown · ~764 ac
 - Refuge · SCA · Unknown · ~764 ac
@@ -119,6 +132,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 155** parks joined 
 - Legion Lake State Park · SP · Unknown · ~431 ac
 - Grand Bayou Coastal Reserve · SCA · Unknown · ~309 ac
 - Southeastern States District Office · PUB · BLM · ~284 ac
+- Farm Service Agency Interest Of La ·  · U.S. Fish & Wildlife Service (own map) · ~267 ac
 - Handicap Area · SOTH · Unknown · ~244 ac
 - De Soto Purchase Unit · NF · Forest Service Region 08 Southern · ~234 ac
 - Polutken Area 2 Muscadine · SCA · Unknown · ~231 ac
@@ -131,17 +145,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 155** parks joined 
 - Wolf River Marshes (Feb 2008) · SCA · Mississippi Department of Marine Resources · ~105 ac
 - Florewood River Plantation State Park · SP · Unknown · ~99 ac
 - Homochitto Purchase Unit · NF · Forest Service Region 08 Southern · ~66 ac
-- Crosby Arboretum · LCA · Mississippi State University · ~66 ac
-- Charlie Capps · SREC · Unknown · ~66 ac
-- Restricted · SCA · Unknown · ~62 ac
-- Polutken Area 1 Muscadine · SCA · Unknown · ~43 ac
-- Meridian Soccer Complex · SREC · State of Mississippi · ~36 ac
-- Private John Allen National Fish Hatchery · FOTH · PRIVATE JOHN ALLEN NATIONAL FISH HATCHERY · ~31 ac
-- Private John Allen National Fish Hatchery · FOTH · Private John Allen National Fish Hatchery · ~31 ac
-- Lakeland Youth Baseball Field · SREC · State of Mississippi · ~19 ac
-- Forest Hydro. Lab. Experimental Area · NF · Forest Service Region 08 Southern · ~15 ac
-- The Grove · LP · Ole MIss University · ~10 ac
-- Pride Field · LP · University of Southern Mississippi · ~9 ac
-- Alll-American Rose Garden Park · LP · University of Southern MIssissippi · ~7 ac
-- University Soccer Fields · LREC · University of Southern Mississippi · ~7 ac
-- Campus Square · LP · Mississippi State University · ~6 ac

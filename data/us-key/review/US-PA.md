@@ -66,6 +66,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **465 of 494** parks joined
 - Penns Creek Wild Area · SW · Bureau of Forestry · ~6,291 ac
 - Sgl 040 · SREC · Pennsylvania Game Commission · ~6,191 ac
 - Quebec Run Wild Area · SW · Bureau of Forestry · ~6,069 ac
+- Wallkill River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,004 ac
 - Blue Marsh Recreation Area · REC · Philadelphia · ~5,704 ac
 - Catawissa Recreation Area · SREC · Bureau of Forestry · ~5,625 ac
 - Square Timber Wild Area · SW · Bureau of Forestry · ~5,615 ac
@@ -98,4 +99,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **465 of 494** parks joined
 - Clear Shade Wild Area · SW · Bureau of Forestry · ~2,764 ac
 - Penrose Swamp Barrens · SRMA · Bureau of Forestry · ~2,734 ac
 - Delaware State Forest - Stairway Wild Area · SRMA ·   · ~2,706 ac
-- Stairway Wild Area · SW · Bureau of Forestry · ~2,706 ac
