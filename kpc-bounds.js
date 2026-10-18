@@ -62,7 +62,7 @@
     if (!kyData) kyData = await jget('kpc-ky-data.json').catch(() => ({ parks: [], kff: [], summits: [] }));
     if (kyFeat) return kyFeat;
     const out = [];
-    await Promise.all(KY.map(async L => { try { const j = await jget(L.file, { cache: 'force-cache' }); (j.features || []).forEach(f => { if (!ringsOf(f.geometry).length) return; f._L = L; f._bb = bbox(f.geometry); f._nm = (f.properties || {}).NAME || L.name; out.push(f); }); } catch (e) {} }));
+    await Promise.all(KY.map(async L => { try { const j = await jget(L.file + '?v=20261018q', { cache: 'force-cache' }); (j.features || []).forEach(f => { if (!ringsOf(f.geometry).length) return; f._L = L; f._bb = bbox(f.geometry); f._nm = (f.properties || {}).NAME || L.name; out.push(f); }); } catch (e) {} }));
     kyFeat = out; byName = null; return out;
   }
   /* which POTA refs a KY boundary belongs to: by name (or KPC's alias list) first; "the park's pin is inside it" only
