@@ -47,7 +47,9 @@ GEN = {
           r"state forest|forest reserve|historic site|historical reserve|game reserve|karst conservation reserve|aboriginal area|recreation park|recreation area|"
           r"indigenous protected area|marine park|reserve|park|area",
     'DE': r"nationalpark|naturpark|naturschutzgebiet|landschaftsschutzgebiet|biospharenreservat|biospharengebiet|nationales naturmonument|ffh gebiet|"
-          r"vogelschutzgebiet|europaisches vogelschutzgebiet|fauna flora habitat gebiet|schutzgebiet|gebiet|nsg|lsg|ffh|spa|und|im|am|an|der|die|das|des|von|bei|zum|zur",
+          r"vogelschutzgebiet|europaisches vogelschutzgebiet|fauna flora habitat gebiet|schutzgebiet|gebiet|nsg|lsg|ffh|spa|und|im|am|an|der|die|das|des|von|bei|zum|zur|"
+          r"national park|nature park|nature reserve|biosphere reserve|landscape protection area|flora and fauna reserve|flora fauna reserve|recreation park|natura 2000|"
+          r"special protection area|bird sanctuary|national natural monument|protected area|reserve|park|area",
     'GB': r"national nature reserve|local nature reserve|site of special scientific interest|sssi|nnr|lnr|country park|national park|regional park|nature reserve|"
           r"area of outstanding natural beauty|national landscape|aonb|conservation reserve|protected area|natural area|special area of conservation|"
           r"special protection area|sac|spa|ramsar|rspb|inc|reserve|park|area",
@@ -56,8 +58,10 @@ GEN = {
 KINDS = {
     'AU': [('np', r'national park'), ('cp', r'conservation park|conservation reserve|conservation area|n\.\s?c\.\s?r|\bc\.\s?a\.'), ('nr', r'nature reserve|flora reserve|game reserve|\bn\.\s?r\.|f\.\s?f\.\s?r'),
            ('sf', r'state forest|forest reserve'), ('rp', r'regional park|recreation'), ('hist', r'historic'), ('mp', r'marine')],
-    'DE': [('np', r'nationalpark'), ('nat', r'naturpark'), ('nsg', r'naturschutzgebiet|\bnsg\b'), ('lsg', r'landschaftsschutzgebiet|\blsg\b'),
-           ('br', r'biospharen'), ('ffh', r'\bffh\b|fauna flora habitat'), ('spa', r'vogelschutz'), ('nnm', r'naturmonument')],
+    'DE': [('np', r'nationalpark|national park'), ('nat', r'naturpark|nature park'), ('nsg', r'naturschutzgebiet|\bnsg\b|nature reserve'),
+           ('lsg', r'landschaftsschutzgebiet|\blsg\b|landscape protection'), ('br', r'biospharen|biosphere'),
+           ('ffh', r'\bffh\b|fauna flora habitat|flora and fauna|natura 2000'), ('spa', r'vogelschutz|special protection area|bird sanctuary|natura 2000'),
+           ('nnm', r'naturmonument|natural monument')],
     'GB': [('nnr', r'national nature reserve|\bnnr\b'), ('lnr', r'local nature reserve|\blnr\b'), ('cp', r'country park'), ('sssi', r'scientific interest|\bsssi\b'),
            ('np', r'national park'), ('rp', r'regional park')],
     'JP': [('np', r'(?<!quasi )national park|国立公園'), ('qnp', r'quasi national park|国定公園'), ('pnp', r'prefectural|県立')],
@@ -73,6 +77,8 @@ def norm(cc, s):
     s = flat(s).replace('&', ' and ')
     if cc == 'AU':
         for a, b in ABBR: s = re.sub(a, b, s)
+    if cc == 'DE':
+        for a, b in (('ae', 'a'), ('oe', 'o'), ('ue', 'u')): s = s.replace(a, b)   # Schwaebisch = Schwäbisch
     s = re.sub(r'\(.*?\)', ' ', s); s = re.sub(r"[’'`.]", '', s); s = re.sub(r'[-/,]', ' ', s)
     s = re.sub(r'[^a-z0-9 ]', ' ', s)
     s = re.sub(r'\b(' + GEN[cc] + r'|the|of|and)\b', ' ', s)
