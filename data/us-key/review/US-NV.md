@@ -1,6 +1,6 @@
 # NV: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **186 of 367** parks joined to official land (same name + same kind of place). **40** to check by hand, **79** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **188 of 367** parks joined to official land (same name + same kind of place). **38** to check by hand, **79** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -11,7 +11,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **186 of 367** parks joined
 - **US-11913** Bad Lands BLM Wilderness Area (BLM Wilderness Area) → Wells Field Office (~4,243,298 ac, the POTA pin is inside it (different name))
 - **US-13010** Dry Valley BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Dry Valley Rim Wilderness Study Area (~0 ac, same name, different kind of place); Twin Peaks (~635,356 ac, the POTA pin is inside it (different name)); Eagle Lake Field Office (~310,176 ac, the POTA pin is inside it (different name))
 - **US-13020** Smoke Creek BLM National Conservation Area (BLM National Conservation Area) → Black Rock Field Office (~2,358,385 ac, the POTA pin is inside it (different name)); Buffalo Hills (~133,437 ac, the POTA pin is inside it (different name)); Poodle Mountain (~0 ac, the POTA pin is inside it (different name)); Poodle Mountain Wilderness Study Area (~0 ac, the POTA pin is inside it (different name))
-- **US-13039** Owyhee River Wilderness Area (Wilderness Area) → Owyhee (~340,969 ac, similar name); South Fork Owyhee River (~14,511 ac, similar name); Tuscarora Field Office (~3,199,984 ac, the POTA pin is inside it (different name))
 - **US-13136** Marietta Wild Burro Range BLM Herd Management Area (BLM Herd Management Area) → Marietta (~66,694 ac, similar name); Stillwater Field Office (~3,582,451 ac, the POTA pin is inside it (different name))
 - **US-13177** Rhyolite Historic Area-Nevada BLM Historic Area (BLM Historic Area) → Rhyolite Historic Townsite (~342 ac, similar name); Bullfrog (~158,185 ac, the POTA pin is inside it (different name))
 - **US-13178** Mt. Irish Archaeological Site Archeological Reserve (Archeological Reserve) → Mount Irish (~0 ac, similar name); Basin And Range Nm Field Office (~703,784 ac, the POTA pin is inside it (different name)); Basin and Range (~0 ac, the POTA pin is inside it (different name))
@@ -38,7 +37,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **186 of 367** parks joined
 - **US-2634** Mormon Station State Park (State Park) → Mormon Station State Historic Park (~4 ac, same name, different kind of place)
 - **US-2639** Ward Charcoal Ovens State Park (State Park) → Ward Charcoal Ovens State Historic Park (~564 ac, same name, different kind of place)
 - **US-4438** Buckland Station State Park (State Park) → Fort Churchill State Historic Park (~3,468 ac, the POTA pin is inside it (different name))
-- **US-4441** Lahontan State Recreation Area (State Recreation Area) → Lake Lahontan State Recreation Area (~1,976 ac, similar name)
 - **US-4443** Old Las Vegas Mormon Fort State Park (State Park) → Las Vegas Valley (~89,327 ac, similar name); Old Las Vegas Mormon Fort State Historic Park (~5 ac, same name, different kind of place)
 - **US-9238** Big Rocks BLM National Conservation Area (National Conservation Area) → Big Rocks (~0 ac, same name, different kind of place); Caliente Field Office (~5,063,883 ac, the POTA pin is inside it (different name))
 - **US-9239** Black Rock Desert - High Rock Canyon Emigrant Trails National Conservation Area (National Conservation Area) → Black Rock SRMA (~1,222,806 ac, similar name); Black Rock Desert / High Rock Canyon (~0 ac, same name, different kind of place); Black Rock Field Office (~2,358,385 ac, the POTA pin is inside it (different name)); Front Country Zone (~119,553 ac, the POTA pin is inside it (different name)); Black Rock OHV Open Area (~104,545 ac, the POTA pin is inside it (different name)); Black Rock OHV Open Area (~104,545 ac, the POTA pin is inside it (different name))
@@ -221,7 +219,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **186 of 367** parks joined
 - Twin Peaks ·  · BLM herd management areas · ~635,356 ac
 - Black Mountain ·  · BLM herd management areas · ~567,084 ac
 - Nevada Test Site · FOTH · Department of Energy (DOE) · ~530,691 ac
-- Little Owyhee ·  · BLM herd management areas · ~463,133 ac
 - Beaty Butte ·  · BLM herd management areas · ~399,447 ac
 - Nevada Test Site · FOTH · Department of Energy (DOE) · ~337,512 ac
 - Rustic Zone ·  · BLM recreation sites · ~331,560 ac
@@ -254,3 +251,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **186 of 367** parks joined
 - Inyo National Forest · NF · Forest Service Region 05 Pacific Southwest · ~113,755 ac
 - Emigrant Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~112,782 ac
 - Jarbidge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~110,513 ac
+- Black Rock OHV Open Area ·  · BLM recreation areas · ~104,545 ac

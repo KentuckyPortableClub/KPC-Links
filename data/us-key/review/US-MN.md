@@ -1,6 +1,6 @@
 # MN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **207 of 294** parks joined to official land (same name + same kind of place). **32** to check by hand, **55** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 294** parks joined to official land (same name + same kind of place). **33** to check by hand, **55** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -35,7 +35,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **207 of 294** parks joined
 - **US-4824** St. Croix State Forest (State Forest) → Saint Croix National Scenic Riverway (~3,345 ac, similar name)
 - **US-7145** Minnesota Valley State Recreation Area (State Recreation Area) → Minnesota Valley National Wildlife Refuge (~10,329 ac, same name, different kind of place); Minnesota Valley National Wildlife Refuge (~10,063 ac, same name, different kind of place)
 - **US-7148** Lake Vermilion Soudan Iron Mine State Park (State Park) → Lake Vermilion-Soudan Underground Mine State Park (~4,094 ac, similar name); Miscellaneous (~737,854 ac, the POTA pin is inside it (different name))
-- **US-9386** Browns Creek State Trail (State Trail) → Brown's Creek State Aquatic Management Area (Washington) (~22 ac, same name, different kind of place)
+- **US-9384** Minnesota Valley State Trail (State Trail) → Minnesota Valley National Wildlife Refuge (~10,329 ac, same name, different kind of place); Minnesota Valley National Wildlife Refuge (~10,063 ac, same name, different kind of place)
+- **US-9386** Browns Creek State Trail (State Trail) → Brown's Creek State Aquatic Management Area (Washington) (~22 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 

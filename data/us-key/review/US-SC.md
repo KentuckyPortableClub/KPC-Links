@@ -46,7 +46,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **135 of 167** parks joined
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Savannah River Site · FOTH · Department of Energy (DOE) · ~195,398 ac
-- Hartwell Recreation Area · REC · Savannah · ~52,107 ac
 - J. Strom Thurmond Recreation Area · REC · Savannah · ~44,111 ac
 - Richard B. Russell Recreation Area · REC · Savannah · ~27,763 ac
 - Tom Yawkey Wildlife Center Heritage Preserve · SHCA · Unknown · ~19,761 ac
@@ -105,3 +104,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **135 of 167** parks joined
 - Moultrie Hunt Unit Wildlife Management Area · SCA · Unknown · ~480 ac
 - Woods Bay Heritage Preserve · SHCA · Unknown · ~472 ac
 - Stumphouse Mountain Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~438 ac
+- Henderson Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~429 ac

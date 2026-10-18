@@ -1,10 +1,9 @@
 # AL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **99 of 155** parks joined to official land (same name + same kind of place). **22** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **101 of 155** parks joined to official land (same name + same kind of place). **20** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-1037** Cheaha Resort State Park (State Park) → Cheaha State Park (~3,610 ac, similar name)
 - **US-10396** Black Warrior Wildlife Management Area (Wildlife Management Area) → William B. Bankhead National Forest (~182,015 ac, the POTA pin is inside it (different name))
 - **US-1040** Lake Jackson RV Park at Florala State Park (State Park) → Florala State Park (~65 ac, similar name)
 - **US-10428** Walls of Jericho State Natural Area (State Natural Area) → James D. Martin - Skyline Wildlife Management Area (~24,451 ac, the POTA pin is inside it (different name))
@@ -17,7 +16,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **99 of 155** parks joined 
 - **US-12412** TVA Rockpile Recreation Area National Park (National Park) → Pickwick Reservoir Retained Land (~8,930 ac, the POTA pin is inside it (different name))
 - **US-13311** TVA Upper Bear Creek Dam Resource Management Area (Resource Management Area) → Upper Bear Creek Reservoir Retained Land (~3,216 ac, the POTA pin is inside it (different name))
 - **US-3678** Roland Cooper State Park (State Park) → Millers Ferry Lock Recreation Area (~15,105 ac, the POTA pin is inside it (different name))
-- **US-3682** Cheaha Wilderness Area (Wilderness Area) → Cheaha Wilderness (~7,400 ac, similar name); Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
 - **US-3683** Choccolocco Wildlife Management Area (Wildlife Management Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
 - **US-3692** Heron Bay and Portersville Bay State Fish and Wildlife Area (State Fish and Wildlife Area) → The Heron Bay Wetlands Tract (~463 ac, similar name)
 - **US-3693** Hollins Wildlife Management Area (Wildlife Management Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
@@ -77,13 +75,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **99 of 155** parks joined 
 - Millers Ferry Lock Recreation Area · REC · Mobile · ~15,105 ac
 - State-owned Submerged Lands · SRMA · SDNR · ~9,783 ac
 - Pickwick Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~8,930 ac
-- Cheaha Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,400 ac
 - Claiborne Recreation Area · REC · Mobile · ~6,816 ac
 - Solon Dixon Forestry Education Center · SCA · State Land Board · ~5,399 ac
 - Riverton Community Hunting Area · SCA · Alabama Department of Conservation and Natural Resources · ~5,282 ac
 - Natchez Trace Parkway · SDA · NPS · ~4,118 ac
 - Coldwater Mountain · SREC · Alabama Department of Conservation and Natural Resources · ~3,816 ac
-- Cheaha State Park · SP · ADCNR, State Parks Division · ~3,610 ac
 - W. L. Holland Wildlife Management Area · SCA · Alabama Department of Conservation and Natural Resources · ~3,537 ac
 - Upper Bear Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~3,216 ac
 - Old Cahawba Prairie Tract · SREC · Alabama Department of Conservation and Natural Resources · ~3,024 ac
@@ -129,3 +125,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **99 of 155** parks joined 
 - Sipsey River Complex · SCA · Alabama Department of Conservation and Natural Resources · ~279 ac
 - Moundville Archeological Park · LHCA · University of Alabama · ~271 ac
 - Live Oak Landing · SREC · Alabama Department of Conservation and Natural Resources · ~253 ac
+- W. L. Holland Wildlife Management Area · SCA · Alabama Department of Conservation and Natural Resources · ~241 ac
+- Baldwin State Forest · SRMA · Alabama Forestry Commission · ~239 ac

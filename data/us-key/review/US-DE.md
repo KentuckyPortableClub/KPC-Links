@@ -89,10 +89,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **66 of 89** parks joined t
 - DE National Estuarine Research Reserve Blackbird Creek Reserve · SOTH ·   · ~84 ac
 - Cedar Creek Nature Preserve · SP · DE Division of Parks and Recreation · ~84 ac
 - Saint Jones Reserve · SOTH ·   · ~83 ac
-- Tappahanna Wildlife Area- Urban Tract · SOTH ·   · ~82 ac
 - Route 13 Open Space · SOTH · DE Department of Transportation · ~82 ac
 - Glenville · SOTH · DE Department of Transportation · ~79 ac
 - Auburn Heights · SP ·   · ~75 ac
 - Belltown Run And Woods · SOTH · DE Division of Historical and Cultural Affairs · ~74 ac
 - I-95 Corridor Open Space · SOTH · DE Department of Transportation · ~71 ac
 - Pepper Tract · SOTH ·   · ~69 ac
+- De National Estuarine Research Reserve Blackbird Creek Reserve · SOTH · State of Delaware · ~69 ac

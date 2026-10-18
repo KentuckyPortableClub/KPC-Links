@@ -1,6 +1,6 @@
 # MT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **125 of 254** parks joined to official land (same name + same kind of place). **111** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **126 of 254** parks joined to official land (same name + same kind of place). **110** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -111,7 +111,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **125 of 254** parks joined
 - **US-12937** York's Islands State Fish and Wildlife Area (State Fish and Wildlife Area) → Yorks Islands Fishing Access Site (~16 ac, same name, different kind of place); Uppermost Missouri River (~82,354 ac, the POTA pin is inside it (different name))
 - **US-12941** Judith Landing State Park (State Park) → Upper Missouri River Breaks National Monument (~0 ac, the POTA pin is inside it (different name))
 - **US-2557** Anaconda Smelter Stack State Park (State Park) → Anaconda Smoke Stack State Park (~13 ac, similar name)
-- **US-2603** Wayfarers State Park (State Park) → Flathead Lake/Wayfarers State Park (~64 ac, similar name)
 - **US-6443** Lowry Bridge State Recreation Area (State Recreation Area) → Lowry Bridge (~82 ac, same name, different kind of place); Lowry Bridge (~82 ac, same name, different kind of place)
 - **US-8002** Ninepipe National Wildlife Refuge (National Wildlife Refuge) → Ninepipe Wildlife Management Area (~4,152 ac, same name, different kind of place)
 - **US-8003** Pablo National Wildlife Refuge (National Wildlife Refuge) → Pablo Wildlife Management Area (~195 ac, same name, different kind of place)

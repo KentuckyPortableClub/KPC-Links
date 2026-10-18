@@ -1,6 +1,6 @@
 # AZ: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 123** parks joined to official land (same name + same kind of place). **18** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **87 of 123** parks joined to official land (same name + same kind of place). **17** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -13,7 +13,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 123** parks joined 
 - **US-11944** Dankworth Pond State Park (State Park) → Roper Lake State Park (~81 ac, the POTA pin is inside it (different name))
 - **US-11979** Allen Severson State Wildlife Area (State Wildlife Area) → Sitgreaves National Forest (~820,490 ac, the POTA pin is inside it (different name))
 - **US-11981** Arivaca Lake State Wildlife Area (State Wildlife Area) → Arivaca Land and Lake (~208 ac, similar name)
-- **US-11984** Quigley-Achee State Wildlife Area (State Wildlife Area) → Quigley Wildlife Area (~610 ac, similar name)
 - **US-11987** White Mountain State Wildlife Area (State Wildlife Area) → State Trust Land (~7,977,759 ac, the POTA pin is inside it (different name))
 - **US-12142** Dominguez-Escalante Site National Historic Site (National Historic Site) → Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name)); Baaj Nwaavjo I'tah Kukveni - Ancestral Footprints of the Grand Canyon (~0 ac, the POTA pin is inside it (different name))
 - **US-13337** Church Camp Road BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Church Camp Facility Area (~16 ac, similar name); Church Camp Facility Area (~16 ac, similar name); Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name)); Lake Pleasant (~60,836 ac, the POTA pin is inside it (different name))

@@ -1,10 +1,9 @@
 # MD: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **127 of 186** parks joined to official land (same name + same kind of place). **31** to check by hand, **28** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 186** parks joined to official land (same name + same kind of place). **29** to check by hand, **27** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0334** Patuxent National Wildlife Refuge (National Wildlife Refuge) → Patuxent Research Refuge (~12,837 ac, similar name); Patuxent Research Refuge (~12,824 ac, similar name)
 - **US-10751** Idylwild Natural Area (Natural Area) → Idylwild Wildlife Management Area (~88 ac, same name, different kind of place)
 - **US-10758** North End Natural Area (Natural Area) → Assateague Island National Seashore (~26,977 ac, the POTA pin is inside it (different name))
 - **US-10759** Green Run Woods Natural Area (Natural Area) → Assateague Island National Seashore (~26,977 ac, the POTA pin is inside it (different name))
@@ -22,7 +21,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **127 of 186** parks joined
 - **US-10781** Calvert Cliffs Natural Area (Natural Area) → Calvert Cliffs Sp (~1,167 ac, same name, different kind of place); Calvert Cliffs Sp (~146 ac, same name, different kind of place)
 - **US-11231** Sideling Hill Creek State Park (State Park) → Sideling Hill Wma (~3,384 ac, same name, different kind of place); Sideling Hill Wma (~60 ac, same name, different kind of place)
 - **US-1567** Dans Mountain State Park (State Park) → Dans Mountain Wma (~9,847 ac, same name, different kind of place)
-- **US-4767** Pocomoke State Forest (State Forest) → Pocomoke River Sf (~12,739 ac, similar name); Pocomoke River State Forest (~4,198 ac, similar name)
 - **US-6387** Fair Hill State Natural Area (State Natural Area) → Fair Hill Nrma (~1 ac, same name, different kind of place)
 - **US-6391** Merkle Wildlife Sanctuary State Natural Area (State Natural Area) → Merkle Nrma (~1,677 ac, the POTA pin is inside it (different name))
 - **US-6393** Morgan Run State Natural Area (State Natural Area) → Morgan Run Nea (~1,365 ac, same name, different kind of place); Morgan Run Nea (~372 ac, same name, different kind of place); Morgan Run Nea (~160 ac, same name, different kind of place); Morgan Run Nea (~20 ac, same name, different kind of place)
@@ -61,7 +59,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **127 of 186** parks joined
 - US-6392 Monocacy River Natural Resources Management Area State Natural Area (State Natural Area)
 - US-7725 Browns Branch Wildlife Management Area (Wildlife Management Area)
 - US-7733 Strider Wildlife Management Area (Wildlife Management Area)
-- US-7760 Nanjemoy Creek Wildlife Management Area (Wildlife Management Area)
 - US-7762 Popes Creek Wildlife Management Area (Wildlife Management Area)
 - US-7768 Frederick City Watershed Cooperative Wildlife Management Area (Wildlife Management Area)
 - US-7773 Ridenour Swamp Wildlife Management Area (Wildlife Management Area)
@@ -76,8 +73,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **127 of 186** parks joined
 - Canaan Valley National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~18,957 ac
 - Dolly Sods Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~17,777 ac
 - Bombay Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~15,346 ac
-- Patuxent Research Refuge · NWR · Patuxent Research Refuge · ~12,837 ac
-- Patuxent Research Refuge · NWR · PATUXENT RESEARCH REFUGE · ~12,824 ac
 - Jennings Randolph Recreation Area · REC · Baltimore · ~11,973 ac
 - Saint Mary's Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,826 ac
 - Prime Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~9,238 ac
@@ -85,7 +80,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **127 of 186** parks joined
 - Ramseys Draft Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,577 ac
 - Rock Creek Stream Valley Park · SOTH ·   · ~4,925 ac
 - Chesapeake Forest Lands · SRMA · MD Department of Natural Resources · ~4,780 ac
-- Pocomoke River State Forest · SRMA · MD Department of Natural Resources · ~4,198 ac
 - Youghiogheny Wild River Nea · SP ·   · ~3,640 ac
 - Supawna Meadows National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,445 ac
 - Patuxent River Park · SOTH ·   · ~3,398 ac
@@ -95,7 +89,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **127 of 186** parks joined
 - Wye Island Nrma · SP ·   · ~2,487 ac
 - SAVAGE RIVER SF - Middle Fork Wildland · SRMA ·   · ~1,920 ac
 - Soldiers Delight Nea · SP ·   · ~1,909 ac
-- Pocomoke River State Forest · SRMA · MD Department of Natural Resources · ~1,866 ac
 - Rappahannock River Valley National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,833 ac
 - Doncaster Demonstration Sf · SRMA ·   · ~1,793 ac
 - Piscataway Creek Stream Valley Park · SOTH ·   · ~1,779 ac
@@ -110,7 +103,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **127 of 186** parks joined
 - POTOMAC SF - Backbone Mountain Wildland · SRMA ·   · ~1,380 ac
 - Chesapeake Forest Lands · SRMA ·   · ~1,371 ac
 - Morgan Run Nea · SP ·   · ~1,365 ac
-- Chapman Residual · SREC · MD Department of Natural Resources · ~1,360 ac
 - Kings Landing Nrma · SP ·   · ~1,286 ac
 - Wicomico Demonstration Forest · SRMA ·   · ~1,254 ac
 - GREEN RIDGE SF - Potomac Bends Wildland · SRMA ·   · ~1,186 ac
@@ -132,3 +124,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **127 of 186** parks joined
 - Pocomoke River State Forest · SRMA · MD Department of Natural Resources · ~725 ac
 - Henson Creek Stream Valley Park · SOTH ·   · ~718 ac
 - Enterprise Gofl Course · LOTH ·   · ~676 ac
+- Maxwell Hall Nrma · SP ·   · ~671 ac
+- Spice Creek Nrma · SP ·   · ~649 ac
+- Occoquan Bay National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~634 ac
+- Rock Creek Park · SOTH ·   · ~586 ac
+- POTOMAC SF - Maple Lick Run Wildland · SRMA ·   · ~582 ac

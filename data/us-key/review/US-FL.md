@@ -1,6 +1,6 @@
 # FL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **249 of 460** parks joined to official land (same name + same kind of place). **51** to check by hand, **160** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **251 of 460** parks joined to official land (same name + same kind of place). **50** to check by hand, **159** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -25,6 +25,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **249 of 460** parks joined
 - **US-3644** Palatka-St. Augustine State Trail (State Trail) → Palatka-to-St. Augustine State Trail (~40 ac, similar name)
 - **US-3656** Beker - South Fork State Park (State Park) → Beker (~1,743 ac, similar name)
 - **US-3658** Ney Landrum State Park (State Park) → St. Marks River Preserve State Park (~2,590 ac, the POTA pin is inside it (different name))
+- **US-3660** Suwannee River Wilderness State Trail (State Trail) → Suwannee River Greenway at Branford (~77 ac, similar name)
 - **US-5520** Chassahowitzka River and Coastal Swamp State Conservation Area (State Conservation Area) → Chassahowitzka National Wildlife Refuge (~28,266 ac, similar name); Chassahowitzka National Wildlife Refuge (~28,266 ac, similar name); Chassahowitzka Wildlife Management Area (~27,521 ac, similar name)
 - **US-6281** Loxahatchee River National Wild and Scenic River (National Wild and Scenic River) → Jonathan Dickinson State Park (~11,466 ac, the POTA pin is inside it (different name))
 - **US-6287** Apalachee Wildlife Management Area (Wildlife Management Area) → Seminole Recreation Area (~17,724 ac, the POTA pin is inside it (different name))
@@ -45,8 +46,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **249 of 460** parks joined
 - **US-6320** Platt Branch Wildlife Area (Wildlife Area) → Platt Branch Mitigation Park Wildlife and Environmental Area (~1,972 ac, similar name)
 - **US-6324** Split Oak Forest Wildlife Area (Wildlife Area) → Split Oak Forest Mitigation Park Wildlife and Environmental Area (~1,772 ac, similar name)
 - **US-6325** Suwannee Ridge Wildlife Area (Wildlife Area) → Suwannee Ridge Mitigation Park Wildlife and Environmental Area (~1,428 ac, similar name)
-- **US-6326** T.M. Goodwin Wildlife Management Area (Wildlife Management Area) → T. M. Goodwin Waterfowl Management Area (~6,526 ac, similar name)
-- **US-6327** Tenoroc Wildlife Area (Wildlife Area) → Tenoroc Fish Management Area (~7,528 ac, similar name)
 - **US-6331** Watermelon Pond Wildlife Area (Wildlife Area) → Watermelon Pond Mitigation Park Wildlife and Environmental Area (~1,288 ac, similar name)
 - **US-7879** Citrus Wildlife Management Area (Wildlife Management Area) → Withlacoochee State Forest (~165,562 ac, the POTA pin is inside it (different name))
 - **US-8326** Apalachicola River State Conservation Area (State Conservation Area) → Apalachicola National Forest (~576,062 ac, same name, different kind of place)
@@ -113,7 +112,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **249 of 460** parks joined
 - US-1852 Dagny Johnson Key Largo Hammock Botanical State Park (State Park)
 - US-3612 Charlotte Harbor Preserve State Park (State Park)
 - US-3637 Marjorie Harris Carr Cross State Park (State Park)
-- US-3660 Suwannee River Wilderness State Trail (State Trail)
 - US-4559 Florida Trail National Scenic Trail (National Scenic Trail)
 - US-5118 Edward W. Chance Reserve State Conservation Area (State Conservation Area)
 - US-5220 Flying Eagle Preserve State Conservation Area (State Conservation Area)
@@ -226,7 +224,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **249 of 460** parks joined
 
 - Tortugas Ecological Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~116,088 ac
 - Apalachicola National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~114,616 ac
-- Everglades National Park Expansion · NP · NPS · ~109,347 ac
 - Water Conservation Area 3B · SRMA · UNK · ~101,526 ac
 - Pinhook Purchase Unit · NF · Forest Service Region 08 Southern · ~89,284 ac
 - Rookery Bay National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~87,948 ac
@@ -247,9 +244,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **249 of 460** parks joined
 - Ordway-Swisher Biological Station · SCA · University of Florida · ~9,141 ac
 - Mud Swamp/New River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,075 ac
 - Alexander Springs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,888 ac
-- Tenoroc Fish Management Area · SCA · FL Fish and Wildlife Conservation Commission · ~7,528 ac
 - Everglades Headwaters National Wildlife Refuge And Conservation Area · NWR · Everglades Headwaters National Wildlife Refuge And Conservation Area · ~7,031 ac
-- T. M. Goodwin Waterfowl Management Area · SCA · FL Fish and Wildlife Conservation Commission · ~6,526 ac
 - St. Johns National Wildlife Refuge · NWR · ST. JOHNS NATIONAL WILDLIFE REFUGE · ~6,431 ac
 - St. Johns National Wildlife Refuge · NWR · St. Johns National Wildlife Refuge · ~6,431 ac
 - Osprey Unit · SCA · FL Fish and Wildlife Conservation Commission · ~6,103 ac
@@ -284,3 +279,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **249 of 460** parks joined
 - Split Oak Forest Mitigation Park Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~1,772 ac
 - Shell Key Preserve · SCA · Pinellas County · ~1,754 ac
 - Beker · SOTH · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~1,743 ac
+- Micco Scrub Sanctuary · SCA · Brevard County · ~1,724 ac
+- Peace River Settlement · SCA · BOARD OF TRUSTEES OF IITF/STATE OF FL · ~1,700 ac
+- Schewe Ranch . South · SREC · State of Florida · ~1,691 ac

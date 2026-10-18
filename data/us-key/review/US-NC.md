@@ -1,6 +1,6 @@
 # NC: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **166 of 253** parks joined to official land (same name + same kind of place). **46** to check by hand, **38** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **167 of 253** parks joined to official land (same name + same kind of place). **44** to check by hand, **39** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -23,11 +23,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **166 of 253** parks joined
 - **US-3864** Permuda Island State Reserve (State Reserve) → Permuda Island Coastal Reserve (~63 ac, similar name)
 - **US-3866** Ward State Nature Preserve (State Nature Preserve) → Selma Cornelison Ward Nature Preserve (~324 ac, similar name); North Carolina Zoological Park (~2,143 ac, the POTA pin is inside it (different name))
 - **US-3868** Theodore Roosevelt State Conservation Area (State Conservation Area) → Theodore Roosevelt State Natural Area (~281 ac, same name, different kind of place)
-- **US-4854** DuPont State Recreational Forest State Forest (State Forest) → Dupont State Forest (~11,803 ac, similar name)
 - **US-4856** Holmes Educational State Forest (State Forest) → Holmes State Forest (~263 ac, similar name)
 - **US-4859** Rendezvous Mountain State Park (State Park) → Rendezvous Mountain Educational State Forest (~1,902 ac, same name, different kind of place)
 - **US-4860** Turnbull Creek Educational State Forest (State Forest) → Bladen Lakes State Forest (~33,153 ac, the POTA pin is inside it (different name))
-- **US-4861** Tuttle Educational State Forest (State Forest) → Tuttle State Forest (~126 ac, similar name)
 - **US-6836** Charlotte Hawkins Brown Museum State Historic Site (State Historic Site) → Charlotte Hawkins Brown Memorial State Historic Site (~36 ac, similar name)
 - **US-6845** Horne Creek Living Historical Farm State Historic Site (State Historic Site) → Horne Creek State Historic Site (~111 ac, similar name)
 - **US-6848** President James K. Polk State Historic Site (State Historic Site) → Polk Memorial State Historic Site (~20 ac, the POTA pin is inside it (different name))
@@ -67,6 +65,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **166 of 253** parks joined
 - US-12320 Yadkin River State Trail (State Trail)
 - US-12414 Doughton Recreation Park (Recreation Park)
 - US-12717 Deep River State Trail (State Trail)
+- US-13002 Dan River State Trail (State Trail)
 - US-3791 Trail of Tears National Historic Trail (National Historic Trail)
 - US-3851 Brumley Forest State Nature Preserve (State Nature Preserve)
 - US-3854 Flower Hill State Nature Preserve (State Nature Preserve)
@@ -114,7 +113,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **166 of 253** parks joined
 - NC Department of Transportation Mitigation Site · SOTH · UNK · ~13,953 ac
 - Brasstown Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,925 ac
 - Marine Corps Air Station Cherry Point - Piney Island · MIL · UNK · ~11,989 ac
-- Dupont State Forest · SRMA · UNK · ~11,803 ac
 - Pocosin Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,802 ac
 - Marine Corps Air Station Cherry Point - Main Air Station · MIL · UNK · ~11,288 ac
 - Sampson Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,896 ac
@@ -160,3 +158,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **166 of 253** parks joined
 - Rachel Carson Component of the North Carolina National Estuarine Research Reserve · SOTH · UNK · ~2,315 ac
 - Cherry Research Farm · SOTH · UNK · ~2,185 ac
 - McCain Tract Forest Management Area · SOTH · UNK · ~2,161 ac
+- North Carolina Zoological Park · SOTH · UNK · ~2,143 ac

@@ -1,6 +1,6 @@
 # NM: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **81 of 122** parks joined to official land (same name + same kind of place). **19** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **82 of 122** parks joined to official land (same name + same kind of place). **18** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -20,9 +20,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **81 of 122** parks joined 
 - **US-8273** Angel Peak Scenic National Recreation Area (National Recreation Area) → Angel Peak Scenic Area (~10,216 ac, same name, different kind of place); Farmington Field Office (~1,425,067 ac, the POTA pin is inside it (different name))
 - **US-8617** Perea Nature National Recreation Trail (National Recreation Trail) → Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name))
 - **US-8619** San Ysidro Trials Area BLM Recreation Management Area (BLM Recreation Management Area) → San Ysidro Trails Area (~4,439 ac, similar name); Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name))
-- **US-8620** Ojito Wilderness Area (Wilderness Area) → Ojito Wilderness (~0 ac, similar name); Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name))
 - **US-8621** Cabezon Wilderness Area (Wilderness Area) → Cabezon (~0 ac, same name, different kind of place); Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name)); Boca del Oso (~14,531 ac, the POTA pin is inside it (different name))
-- **US-9679** Pecos Canyon State Park (State Park) → Santa Fe National Forest (~1,545,017 ac, the POTA pin is inside it (different name))
+- **US-9679** Pecos Canyon State Park (State Park) → Pecos Wilderness (~221,835 ac, similar name); Santa Fe National Forest (~1,545,017 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 

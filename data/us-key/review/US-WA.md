@@ -13,7 +13,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **333 of 536** parks joined
 - **US-10711** Marckworth State Forest (State Forest) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
 - **US-11145** Naneum Ridge State Forest (State Forest) → Washington State Department of Fish & Wildlife Trust Land (~91,115 ac, the POTA pin is inside it (different name))
 - **US-12246** Pacific Lake Recreation Site - Lakeview Ranch BLM Recreation Management Area (BLM Recreation Management Area) → Pacific Lake (~37 ac, similar name); Pacific Lake (~37 ac, similar name); Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
-- **US-12265** Sunnyside Wildlife Area State Fish and Wildlife Area (State Fish and Wildlife Area) → Sunnyside-Snake River Wildlife Area Complex (~12,762 ac, similar name)
 - **US-12287** Vancouver Lake Wildlife Area State Wildlife Area (State Wildlife Area) → Mount Saint Helens-Shillapoo Wildlife Area Complex (~10,476 ac, the POTA pin is inside it (different name))
 - **US-12295** Rattlesnake Mountain Area Scenic Reserve (Scenic Reserve) → Rattlesnake Mountain Scenic Area Natural Resources Conservation Area (~1,836 ac, similar name)
 - **US-12296** Raging River State Forest (State Forest) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
@@ -21,6 +20,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **333 of 536** parks joined
 - **US-12343** White Salmon National Wild and Scenic River (National Wild and Scenic River) → White Salmon Oak Natural Resources Conservation Area (~552 ac, similar name)
 - **US-12344** White Salmon Oak State Natural Area (State Natural Area) → White Salmon Oak Natural Resources Conservation Area (~552 ac, similar name)
 - **US-12399** Spokane State Fish Hatchery (State Fish Hatchery) → Spokane Border Field Office (~168,544 ac, similar name)
+- **US-12402** Rocky Ford State Fish Hatchery (State Fish Hatchery) → Rocky Ford (~1,494 ac, same name, different kind of place)
 - **US-12403** Columbia Basin Hatchery Creek State Fish Hatchery (State Fish Hatchery) → Columbia Basin Wildlife Area Complex (~41,205 ac, same name, different kind of place)
 - **US-12404** Folsom Farm Interpretive BLM Interpretive Site (BLM Interpretive Site) → Folsom Farm Interpretive Site (~37 ac, similar name); Folsom Farm Interpretive Site (~37 ac, similar name); Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
 - **US-12413** Spokane Plains Battlefield State Heritage Area (State Heritage Area) → Spokane Plains Battlefield (~1 ac, same name, different kind of place)
@@ -47,6 +47,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **333 of 536** parks joined
 - **US-12831** Ruby BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Old Ruby (~7 ac, similar name); Spokane Wenatchee Field Office (~254,416 ac, the POTA pin is inside it (different name))
 - **US-12832** The Two-Steppe State Natural Reserve (State Natural Reserve) → The Two-Steppe Natural Area Preserve (~395 ac, similar name)
 - **US-12956** Forth of July State Fishing Lake (State Fishing Lake) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
+- **US-13346** Voights Creek State Fish Hatchery (State Fish Hatchery) → Voights Creek FH (~29 ac, same name, different kind of place)
 - **US-13374** Loon Lake State Fishing Lake (State Fishing Lake) → Rustler's Gulch (~2,795 ac, the POTA pin is inside it (different name))
 - **US-13397** Modrow Bridge State Recreation Site (State Recreation Site) → Modrow Bridge Water Access Site (~1 ac, similar name)
 - **US-13398** Beginner's Hole State Recreation Site (State Recreation Site) → Beginners Hole Water Access Site (~1 ac, similar name)
@@ -77,7 +78,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **333 of 536** parks joined
 - **US-5576** Yacolt Burn State Forest (State Forest) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
 - **US-6473** Chief Joesph State Wildlife Area (State Wildlife Area) → Chief Joseph (~11,467 ac, the POTA pin is inside it (different name))
 - **US-8664** Fishtrap National Recreation Area (National Recreation Area) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
-- **US-8666** Whatcom Wildlife Area/Lake Terrell State Wildlife Area (State Wildlife Area) → Lake Terrell (~1,178 ac, similar name); Whatcom Wildlife Area Complex (~2,661 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -259,7 +259,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **333 of 536** parks joined
 - Klickitat Wildlife Area Complex · SCA · Unknown · ~13,679 ac
 - Mount Skokomish Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,278 ac
 - Lewis And Clark National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~13,080 ac
-- Sunnyside-Snake River Wildlife Area Complex · SCA · Unknown · ~12,762 ac
 - Colonel Bob Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,854 ac
 - Chief Joseph · SCA · Washington Department of Fish & Wildlife · ~11,467 ac
 - Mount Saint Helens-Shillapoo Wildlife Area Complex · SCA · Unknown · ~10,476 ac
@@ -276,3 +275,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **333 of 536** parks joined
 - NA ·  · BLM recreation sites · ~4,324 ac
 - Kachess Lake · RMA · Unknown · ~4,109 ac
 - NA ·  · BLM recreation sites · ~4,011 ac
+- West Tiger Mountain Natural Resources Conservation Area · SCA · Unknown · ~3,880 ac

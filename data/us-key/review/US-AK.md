@@ -1,6 +1,6 @@
 # AK: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **71 of 179** parks joined to official land (same name + same kind of place). **24** to check by hand, **54** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **72 of 179** parks joined to official land (same name + same kind of place). **23** to check by hand, **54** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -11,7 +11,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **71 of 179** parks joined 
 - **US-0893** Tlikakila National Wild and Scenic River (National Wild and Scenic River) → Lake Clark National Park (~2,487,856 ac, the POTA pin is inside it (different name))
 - **US-11244** Knik River Public Use Area State Recreation Area (State Recreation Area) → Knik SRMA (~79,498 ac, similar name); State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
 - **US-11798** Tangle Lakes Archeological Reserve (Archeological Reserve) → Glennallen Field Office (~4,244,135 ac, the POTA pin is inside it (different name)); Denali Highway SRMA (~557,672 ac, the POTA pin is inside it (different name))
-- **US-11804** Gulkana BLM Wild and Scenic River (BLM Wild and Scenic River) → Gulkana River SRMA (~94,513 ac, similar name); Glennallen Field Office (~89,450 ac, the POTA pin is inside it (different name))
 - **US-11854** Pinnell Mountain National Recreation Trail (National Recreation Trail) → State Tentatively Approved (tad) (~43,045,454 ac, the POTA pin is inside it (different name))
 - **US-12381** Delta BLM Wild and Scenic River (BLM Wild and Scenic River) → Delta River SRMA (~43,744 ac, similar name); Glennallen Field Office (~36,210 ac, the POTA pin is inside it (different name))
 - **US-12678** Little Nelchina State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
@@ -174,10 +173,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **71 of 179** parks joined 
 - State Patented · SOTH · Unknown · ~102,494 ac
 - Endicott River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~98,396 ac
 - Gulkana River SRMA ·  · BLM recreation sites · ~94,513 ac
-- Glennallen Field Office · PUB · BLM · ~89,450 ac
 - South Prince of Wales Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~87,034 ac
 - Delta Junction Bison Range Area · SRMA · Unknown · ~86,914 ac
 - South Etolin Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~83,430 ac
 - Yakataga State Game Refuge · SCA · Unknown · ~80,615 ac
 - Knik SRMA ·  · BLM recreation sites · ~79,498 ac
 - Toolik Lake RNA ·  · BLM recreation areas · ~78,034 ac
+- Toolik Lake RNA ·  · BLM recreation sites · ~78,034 ac

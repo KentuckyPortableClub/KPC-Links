@@ -1,6 +1,6 @@
 # OH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **233 of 276** parks joined to official land (same name + same kind of place). **18** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **234 of 276** parks joined to official land (same name + same kind of place). **17** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -18,7 +18,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **233 of 276** parks joined
 - **US-9427** Rhododendron Cove State Nature Preserve (State Nature Preserve) → Wahkeena Nature Preserve (~184 ac, the POTA pin is inside it (different name))
 - **US-9442** Acadia Cliffs State Wildlife Area (State Wildlife Area) → Acadia Cliffs Dedicated Nature Preserve (~271 ac, similar name); Acadia Cliffs Dedicated Nature Preserve (~4 ac, similar name)
 - **US-9451** Charles O. Trump State Wildlife Area (State Wildlife Area) → The Trump Wildlife Area (~129 ac, similar name)
-- **US-9456** Delaware State Wildlife Area (State Wildlife Area) → Delaware Recreation Area (~9,191 ac, same name, different kind of place)
 - **US-9457** Della Gates & Edward Charles Bott State Wildlife Area (State Wildlife Area) → Bott Wildlife Area (~167 ac, similar name); Bott Wildlife Area (~1 ac, similar name)
 - **US-9458** Dillon State Wildlife Area (State Wildlife Area) → Dillon Recreation Area (~16,547 ac, same name, different kind of place)
 - **US-9522** Zepernick State Wildlife Area (State Wildlife Area) → Zeppernick Lake Wildlife Area (~527 ac, the POTA pin is inside it (different name))
@@ -114,5 +113,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **233 of 276** parks joined
 - Green Springs State Forest · SCA · Ohio Department of Natural Resources · ~120 ac
 - Wildlife Production Area 1 · SCA · Ohio Department of Natural Resources · ~119 ac
 - State of Ohio Land · SCA · State of Ohio · ~118 ac
-- Delaware Strine Wildlife Area · SCA · Ohio Department of Natural Resources · ~117 ac
 - Dupont Marsh Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~117 ac
+- Castalia Fish Hatchery · SOTH · Ohio Department of Natural Resources · ~117 ac

@@ -1,6 +1,6 @@
 # CO: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **205 of 276** parks joined to official land (same name + same kind of place). **39** to check by hand, **29** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 276** parks joined to official land (same name + same kind of place). **38** to check by hand, **29** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -37,7 +37,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **205 of 276** parks joined
 - **US-9601** 63 Ranch State Wildlife Area (State Wildlife Area) → Antero Lease-63 Ranch (~881 ac, similar name)
 - **US-9606** Andrews Lake State Wildlife Area (State Wildlife Area) → San Juan National Forest (~1,865,751 ac, the POTA pin is inside it (different name))
 - **US-9614** Big Meadows Reservoir State Wildlife Area (State Wildlife Area) → Rio Grande National Forest (~1,838,796 ac, the POTA pin is inside it (different name))
-- **US-9629** Cherokee State Wildlife Area (State Wildlife Area) → Cherokee State Wildlife Area - Lone Pine Unit (~6,663 ac, similar name); Cherokee State Wildlife Area - Roy Brown Unit (~5,670 ac, similar name)
 - **US-9630** Clear Creek Reservoir State Wildlife Area (State Wildlife Area) → Royal Gorge Field Office (~670,237 ac, the POTA pin is inside it (different name)); Arkansas River SRMA (~4,165 ac, the POTA pin is inside it (different name))
 - **US-9632** Cochetopa State Wildlife Area (State Wildlife Area) → Gunnison National Forest (~1,666,811 ac, the POTA pin is inside it (different name))
 - **US-9637** Cowdrey Lake State Wildlife Area (State Wildlife Area) → Kremmling Field Office (~377,575 ac, the POTA pin is inside it (different name))

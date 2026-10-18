@@ -1,6 +1,6 @@
 # NJ: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **118 of 134** parks joined to official land (same name + same kind of place). **7** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **120 of 134** parks joined to official land (same name + same kind of place). **6** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,7 +8,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **118 of 134** parks joined
 - **US-0888** Musconetcong River National Wild and Scenic River (National Wild and Scenic River) → Musconetcong River Wildlife Management Area (~285 ac, same name, different kind of place); Musconetcong River Wildlife Management Area (~268 ac, same name, different kind of place); Musconetcong River Wildlife Management Area (~211 ac, same name, different kind of place); Musconetcong River Wildlife Management Area (~104 ac, same name, different kind of place); Musconetcong River Wildlife Management Area (~102 ac, same name, different kind of place); Musconetcong River Wildlife Management Area (~85 ac, same name, different kind of place)
 - **US-11992** Whiting State Conservation Area (State Conservation Area) → Whiting Wildlife Management Area (~1,188 ac, same name, different kind of place)
 - **US-13150** Belvidere Access Wildlife Management Area (Wildlife Management Area) → Belvidere Fishing Access (~7 ac, similar name); Belvidere Fishing Access (~5 ac, similar name); Belvidere Fishing Access (~2 ac, similar name); Belvidere Fishing Access (~0 ac, similar name)
-- **US-1615** Thomas Edison Memorial State Park (State Park) → Edison State Park (~36 ac, similar name); Edison State Park (~2 ac, similar name); Edison State Park (~1 ac, similar name); Edison State Park (~0 ac, similar name)
 - **US-6544** New Jersey Coastal State Trail (State Trail) → Gateway National Recreation Area (~1,810 ac, the POTA pin is inside it (different name))
 - **US-6609** Pinelands Preserve National Conservation Area (National Conservation Area) → Wharton State Forest (~72,322 ac, the POTA pin is inside it (different name)); Wharton State Forest (~2,845 ac, the POTA pin is inside it (different name))
 
@@ -25,7 +24,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **118 of 134** parks joined
 - US-6462 Garret Mountain Reservation State Park (State Park)
 - US-7507 Warren Grove State Recreation Area (State Recreation Area)
 - US-8061 Ellis Island National Historic Site (National Historic Site)
-- US-8319 Palisades Interstate Park (Park)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 

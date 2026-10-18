@@ -1,11 +1,10 @@
 # IA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **166 of 181** parks joined to official land (same name + same kind of place). **6** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **167 of 181** parks joined to official land (same name + same kind of place). **5** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0270** Iowa Wetland Management District (Wetland Management District) → Union Slough National Wildlife Refuge (~2,834 ac, the POTA pin is inside it (different name)); Union Slough National Wildlife Refuge (~2,834 ac, the POTA pin is inside it (different name))
-- **US-10318** Chichaqua Wildlife Area (Wildlife Area) → Chichaqua Bottoms Wildlife Management Area (~1,557 ac, similar name); Chichaqua Bottoms Wildlife Management Area (~1,148 ac, similar name); Chichaqua Bottoms Wildlife Management Area (~776 ac, similar name)
 - **US-11305** Wapsipinicon River Water State Trail (State Trail) → Gambril Access (~5 ac, the POTA pin is inside it (different name))
 - **US-11877** La Soya Wildlife Area (Wildlife Area) → Lasoya Wildlife Management Area (~78 ac, the POTA pin is inside it (different name))
 - **US-5730** Blood Run State Historic Site (State Historic Site) → Blood Run/Rock Island National Landmark (~167 ac, similar name); Blood Run National Historic Landmark Area Tcf Tract (~7 ac, similar name)
@@ -82,9 +81,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **166 of 181** parks joined
 - French Creek Wildlife Management Area · SCA · DNR - Wildlife · ~1,675 ac
 - Red Rock Wildlife Management Area · SCA · DNR - Wildlife · ~1,634 ac
 - Worth County Waterfowl Production Area · RMA · Worth County Waterfowl Production Area · ~1,608 ac
-- Chichaqua Bottoms Wildlife Management Area · SCA · DNR - Wildlife · ~1,557 ac
 - Winnebago County Waterfowl Production Area Of Ia · RMA · Winnebago County Waterfowl Production Area Of Ia · ~1,547 ac
 - Twelve Mile Lake (Union) Wildlife Management Area · SCA · DNR - Wildlife · ~1,484 ac
 - Worth County Waterfowl Production Area · RMA · WORTH COUNTY WATERFOWL PRODUCTION AREA · ~1,483 ac
 - Winnebago County Waterfowl Production Area · RMA · WINNEBAGO COUNTY WATERFOWL PRODUCTION AREA · ~1,470 ac
 - Hawk Valley Wildlife Management Area · SCA · DNR - Wildlife · ~1,450 ac
+- Auldon Bar Wildlife Management Area · SCA · DNR - Wildlife · ~1,369 ac

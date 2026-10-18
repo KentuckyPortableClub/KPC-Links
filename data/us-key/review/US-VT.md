@@ -1,6 +1,6 @@
 # VT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 109** parks joined to official land (same name + same kind of place). **17** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **82 of 109** parks joined to official land (same name + same kind of place). **14** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,7 +8,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 109** parks joined 
 - **US-3109** Coolidge State Park (State Park) → President Calvin Coolidge State Historic Site (~405 ac, similar name); Coolidge State Forest (~4,237 ac, same name, different kind of place); Coolidge State Forest (~1,550 ac, same name, different kind of place); Coolidge State Forest (~1,095 ac, same name, different kind of place); Coolidge State Forest (~179 ac, same name, different kind of place); Coolidge State Forest (~30 ac, same name, different kind of place)
 - **US-3118** Halfmoon Pond State Park (State Park) → Bomoseen State Park (~296 ac, the POTA pin is inside it (different name))
 - **US-3122** Kettle Pond State Park (State Park) → Groton State Forest (~5,952 ac, the POTA pin is inside it (different name))
-- **US-3128** Lake Shaftsbury State Park (State Park) → Shaftsbury State Park (~86 ac, similar name); Shaftsbury State Park (~18 ac, similar name); Shaftsbury State Park (~1 ac, similar name)
 - **US-3131** Maidstone State Park (State Park) → Maidstone Lake Access (~1 ac, similar name); Maidstone State Forest (~294 ac, same name, different kind of place); Maidstone State Forest (~119 ac, same name, different kind of place); Maidstone State Forest (~23 ac, same name, different kind of place)
 - **US-3135** New Discovery State Park (State Park) → Groton State Forest (~4,664 ac, the POTA pin is inside it (different name))
 - **US-3139** Ricker Pond State Park (State Park) → Groton State Forest (~5,952 ac, the POTA pin is inside it (different name))
@@ -17,9 +16,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 109** parks joined 
 - **US-3149** Underhill State Park (State Park) → Mt. Mansfield State Forest (~369 ac, the POTA pin is inside it (different name))
 - **US-5530** Dorand State Forest (State Forest) → J.J. Dorand SF (~512 ac, similar name)
 - **US-5531** William C. Putnam State Forest (State Forest) → W.C. Putnam State Forest (~148 ac, similar name)
-- **US-5541** Calvin Coolidge State Forest (State Forest) → Coolidge State Forest (~1,218 ac, similar name); Coolidge State Forest (~373 ac, similar name); Coolidge State Forest (~92 ac, similar name); Coolidge State Forest (~37 ac, similar name)
 - **US-5551** Jones State Forest (State Forest) → L.R. Jones State Forest (~346 ac, similar name); L.R. Jones State Forest (~97 ac, similar name); L.R. Jones State Forest (~84 ac, similar name); L.R. Jones State Forest (~48 ac, similar name); L.R. Jones State Forest (~45 ac, similar name); L.R. Jones State Forest (~18 ac, similar name)
-- **US-5554** Putnam State Forest (State Forest) → C.C. Putnam State Forest (~4,724 ac, similar name); C.C. Putnam State Forest (~3,085 ac, similar name); C.C. Putnam State Forest (~2,745 ac, similar name); C.C. Putnam State Forest (~1,034 ac, similar name); C.C. Putnam State Forest (~139 ac, similar name)
 - **US-5564** Essex Nursery State Forest (State Forest) → State Tree Nursery (~10 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -57,13 +54,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 109** parks joined 
 - Bill Sladyk Wildlife Management Area · SCA ·   · ~6,337 ac
 - Les Newell Wildlife Management Area · SCA ·   · ~5,987 ac
 - George D. Aiken Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,800 ac
-- C.C. Putnam State Forest · SRMA ·   · ~4,724 ac
-- Coolidge State Forest · SRMA ·   · ~4,237 ac
 - Bristol Cliffs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,750 ac
-- C.C. Putnam State Forest · SRMA ·   · ~3,085 ac
-- Coolidge State Forest · SRMA ·   · ~2,821 ac
 - Dead Creek Wildlife Management Area · SCA · VT Department of Fish and Wildlife · ~2,796 ac
-- C.C. Putnam State Forest · SRMA ·   · ~2,745 ac
 - Bill Sladyk Wildlife Management Area · SCA ·   · ~2,703 ac
 - Victory Basin Wildlife Management Area · SCA ·   · ~2,617 ac
 - Hawks Mountain Wildlife Management Area · SCA ·   · ~2,282 ac
@@ -71,22 +63,17 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 109** parks joined 
 - Wenlock Wildlife Management Area · SCA ·   · ~2,192 ac
 - Pine Mountain Wildlife Management Area · SCA ·   · ~1,979 ac
 - Plymsbury Wildlife Management Area · SCA ·   · ~1,933 ac
-- C.C. Putnam State Forest · SRMA ·   · ~1,755 ac
 - Green Mountain Other · NF · Forest Service Region 09 Eastern · ~1,696 ac
 - Wapack National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,648 ac
 - Sandbar Wildlife Management Area · SCA ·   · ~1,557 ac
-- Coolidge State Forest · SRMA ·   · ~1,550 ac
 - Huntington Gap Wildlife Management Area · SCA ·   · ~1,474 ac
 - Roy Mountain Wildlife Management Area · SCA · VT Department of Fish and Wildlife · ~1,355 ac
-- Coolidge State Forest · SRMA ·   · ~1,218 ac
 - South Bay Wildlife Management Area · SCA ·   · ~1,163 ac
-- Coolidge State Forest · SRMA ·   · ~1,095 ac
 - Fairfield Swamp Wildlife Management Area · SCA ·   · ~1,084 ac
 - Lewis Creek Wildlife Management Area · SCA ·   · ~1,084 ac
 - Otter Creek Wildlife Management Area · SCA ·   · ~1,067 ac
 - Fred Johnson Wildlife Management Area · SCA ·   · ~1,062 ac
 - Bald Hill Wildlife Management Area · SCA ·   · ~1,042 ac
-- C.C. Putnam State Forest · SRMA ·   · ~1,034 ac
 - Little Otter Creek Wildlife Management Area · SCA ·   · ~1,002 ac
 - Snake Mountain Wildlife Management Area · SCA ·   · ~1,002 ac
 - Mud Creek Wildlife Management Area · SCA ·   · ~999 ac
@@ -96,10 +83,20 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 109** parks joined 
 - Cornwall Swamp Wildlife Management Area · SCA ·   · ~874 ac
 - Windsor Prison Wildlife Management Area · SCA ·   · ~849 ac
 - Roaring Brook Wildlife Management Area · SCA ·   · ~761 ac
-- C.C. Putnam State Forest · SRMA · Stowe Land Trust, VHCB · ~760 ac
 - Steam Mill Brook Wildlife Management Area · SCA ·   · ~758 ac
 - Robbins Mountain Wildlife Management Area · SCA ·   · ~753 ac
-- C.C. Putnam State Forest · SRMA ·   · ~728 ac
 - Blueberry Hill Wildlife Management Area · SCA ·   · ~699 ac
 - Lewis Creek Wildlife Management Area · SCA ·   · ~681 ac
 - Tinmouth Channel Wildlife Management Area · SCA ·   · ~643 ac
+- White River Wildlife Management Area · SCA ·   · ~638 ac
+- Bird Mountain Wildlife Management Area · SCA ·   · ~630 ac
+- Groton Forest Legacy Initiative Molly's Falls Pond · SCA · Vermont Department of Forests, Parks and Recreation · ~628 ac
+- Middlesex Notch Wildlife Management Area · SCA ·   · ~625 ac
+- Roaring Brook Wildlife Management Area · SCA · VT Department of Fish and Wildlife · ~565 ac
+- Coolidge State Forest · SRMA ·   · ~564 ac
+- West Mountain Wildlife Management Area · SCA ·   · ~536 ac
+- J.J. Dorand SF · SRMA ·   · ~512 ac
+- Coolidge State Forest · SRMA ·   · ~510 ac
+- Clover Hill Wildlife Management Area · SCA ·   · ~499 ac
+- Tinmouth Channel Wildlife Management Area · SCA ·   · ~499 ac
+- Lower Otter Creek Wildlife Management Area · SCA ·   · ~498 ac
