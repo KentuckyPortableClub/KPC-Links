@@ -1,21 +1,22 @@
 name: zz probe ArcGIS experience (temporary)
 on: workflow_dispatch
+permissions: {contents: write}
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - run: |
           python3 - <<'PY'
-          import json,urllib.request,urllib.parse,collections
-          def g(u):
-              return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=90).read())
-          for B in ['https://services5.arcgis.com/RMHPuOW5MJ6iyTV6/arcgis/rest/services/WMA_Management_Public_View/FeatureServer','https://services5.arcgis.com/RMHPuOW5MJ6iyTV6/arcgis/rest/services/public_hunting_areas_service/FeatureServer']:
-              root=g(B+'?f=json')
-              for l in root.get('layers',[]):
-                  i=g(f"{B}/{l['id']}?f=json"); f=[x['name'] for x in i.get('fields',[])]
-                  c=g(f"{B}/{l['id']}/query?where=1%3D1&returnCountOnly=true&f=json").get('count')
-                  rows=[x['attributes'] for x in g(f"{B}/{l['id']}/query?"+urllib.parse.urlencode({'where':'1=1','outFields':'*','returnGeometry':'false','resultRecordCount':2000,'f':'json'})).get('features',[])]
-                  tf=[k for k in f if any(w in k.upper() for w in ('TYPE','CAT','FEAT','CLASS','NAME','ASSET','INFRA'))][:4]
-                  cnt={k:collections.Counter(str(r.get(k)) for r in rows).most_common(15) for k in tf}
-                  print(f"::notice title={B.split('/')[-2]} {l['id']} {l['name']} ({i.get('geometryType')}) n={c}::fields={f[:30]} | "+json.dumps(cnt)[:2500])
+          import json,urllib.request,urllib.parse
+          B='https://services5.arcgis.com/RMHPuOW5MJ6iyTV6/arcgis/rest/services/public_hunting_areas_service/FeatureServer'
+          def q(l,ff):
+              u=f"{B}/{l}/query?"+urllib.parse.urlencode({'where':'1=1','outFields':ff,'returnGeometry':'true','outSR':4326,'resultRecordCount':2000,'f':'json'})
+              return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=90).read())['features']
+          lots=[[round(f['geometry']['y'],5),round(f['geometry']['x'],5),f['attributes'].get('Type'),(f['attributes'].get('Name') or '').strip(),f['attributes'].get('WMANAME')] for f in q(1,'Name,Type,WMANAME,PUBDISPLAY') if f.get('geometry') and f['attributes'].get('PUBDISPLAY')!='No']
+          ent=[[round(f['geometry']['y'],5),round(f['geometry']['x'],5),'Entrance','',f['attributes'].get('AREANAME')] for f in q(0,'AREANAME') if f.get('geometry')]
+          json.dump({'source':'KDFWR public_hunting_areas_service (WMA Explorer), layers 0 entrances + 1 Parking Lots and Kiosk','rows':ent+lots},open('data/ky-wma-parking.json','w'))
+          print('::notice title=WMA parking::%d lots/kiosks, %d entrances'%(len(lots),len(ent)))
           PY
+          git config user.name kpc-bot; git config user.email kpc-bot@users.noreply.github.com
+          git add data/ky-wma-parking.json; git commit -qm "KDFWR WMA parking lots + entrances (official)"; git pull -q --rebase; git push -q
