@@ -31,9 +31,8 @@ jobs:
             except Exception as e: print('::notice title=%s err::%s'%(ref,e))
           json.dump(out,open('/tmp/probe.json','w'))
           PY
-          git config user.name bot; git config user.email bot@x
-          git checkout -B zz-padus || true
-          cp /tmp/probe.json kpc-bkpc-probe.json || true
-          git add kpc-bkpc-probe.json || true
-          git commit -qm probe || true
-          git push -f origin zz-padus || true
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          mkdir -p .claude/build/ap; cp /tmp/probe.json .claude/build/ap/padus-bkpc.json || true
+          git add .claude/build/ap/padus-bkpc.json || true
+          git commit -qm 'PAD-US land under the KPC-drawn outlines (probe)' || true
+          git pull -q --rebase || true; git push -q || true
