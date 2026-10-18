@@ -37,7 +37,7 @@
   function kindOf(x) { return /^US-/.test(x.c) ? 'pota' : /^KFF-/.test(x.c) ? 'kff' : 'sota'; }
   function init() {
     map = L.map('pcMap', { zoomControl: true, preferCanvas: true }).setView([37.75, -85.7], 7);
-    if (window.KPCLayers) { KPCLayers(map, null, { padKey: 'kpcPcPad', padOn: true }); PAD = KPCLayers.pad; } else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
+    if (window.KPCLayers) { KPCLayers(map, null, { padKey: 'kpcPcPad2', padOn: false }); PAD = KPCLayers.pad; } else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
     if (window.KPCLocate) KPCLocate(map); if (window.KPCFull) KPCFull(map);
     /* drop a pin anywhere: street view, directions, copy GPS, add the spot to the trip */
     if (window.KPCPin) KPCPin(map, { on: 'contextmenu', extra: (la, lo) => `<button type="button" data-pctrip="${la},${lo}" style="margin-top:6px;width:100%;padding:8px;border-radius:8px;border:1px solid #d5a63a;background:#fff6dd;font:900 12px Arial;cursor:pointer">+ ADD THIS SPOT TO MY TRIP</button>`,
@@ -52,11 +52,11 @@
       m.bindTooltip(`${x.c} · ${x.n}`); m.on('click', () => pick(x, false)); m.addTo(LAY[k]); x.m = m; }
     count(); chips();
     const lb = $('pcPad'); if (lb) { if (!PAD) lb.hidden = true; else { const sync = () => { const on = map.hasLayer(PAD.layer); lb.classList.toggle('on', on); lb.setAttribute('aria-pressed', on); };
-      lb.onclick = () => { const on = !map.hasLayer(PAD.layer); if (on) PAD.layer.addTo(map); else map.removeLayer(PAD.layer); put('kpcPcPad', on ? 1 : 0); sync(); };
+      lb.onclick = () => { const on = !map.hasLayer(PAD.layer); if (on) PAD.layer.addTo(map); else map.removeLayer(PAD.layer); put('kpcPcPad2', on ? 1 : 0); sync(); };
       map.on('overlayadd overlayremove layeradd layerremove', sync); map.whenReady(() => setTimeout(sync, 50));
       /* Oct 17 (Brandon: 'all state parks next to CoE land … same color as around US-1271'): the PAD-US pictures colour land by who RUNS it, so Corps
          land run by Kentucky (lake WMAs, some park land) looked like state land. ky-usace.geojson = land the Corps OWNS: always the same orange outline. */
-      let CO = null, coP = null; const coSync = () => { const on = map.hasLayer(PAD.layer);
+      let CO = null, coP = null; const coSync = () => { const on = true;   /* Oct 18 (Brandon: the cyan PAD-US bits were confusing): land-owner picture OFF by default, Army Corps outline always on */
         if (on && !CO && !coP) coP = fetch('ky-usace.geojson').then(r => r.ok ? r.json() : null).then(j => { if (!j) return; map.createPane('pcCorps').style.zIndex = 395;
           CO = L.geoJSON(j, { pane: 'pcCorps', renderer: L.svg({ pane: 'pcCorps' }), style: () => ({ color: '#ff8c38', weight: 2.6, opacity: 1, fill: true, fillOpacity: 0 }),
             onEachFeature: (f, l) => { const p = f.properties || {}; l.bindTooltip(`<b>Army Corps of Engineers land</b><br>${esc(p.NAME || '')}${p.MANAGER ? '<br>Run by: ' + esc(p.MANAGER) : ''}`, { sticky: true }); } });
