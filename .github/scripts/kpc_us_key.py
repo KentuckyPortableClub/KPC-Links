@@ -93,12 +93,37 @@ def inside(la, lo, g): return sum(1 for r in rings(g) if in_ring(lo, la, r)) % 2
 def near(la, lo, b, pad): return b and b[0] - pad <= lo <= b[2] + pad and b[1] - pad <= la <= b[3] + pad
 
 
+FIELDS = None
+def fields():
+    global FIELDS
+    if FIELDS is None:
+        try:
+            req = urllib.request.Request(Q.rsplit('/', 1)[0] + '?f=json', headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
+            have = {f['name'] for f in json.loads(urllib.request.urlopen(req, timeout=120).read()).get('fields', [])}
+        except Exception: have = set()  # noqa: BLE001
+        want = 'OBJECTID,Unit_Nm,Loc_Nm,Own_Type,Mang_Type,Mang_Name,Loc_Mang,Des_Tp,d_Des_Tp,Pub_Access,GIS_Acres,Category'.split(',')
+        FIELDS = ','.join(w for w in want if not have or w in have)
+        notice('PAD-US fields', FIELDS + (' (field list not read)' if not have else ''))
+    return FIELDS
+
+
+GEO = [{'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01, 'geometryPrecision': 3},
+       {'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01}, {'returnGeometry': 'true', 'outSR': 4326}]
+GI = [0]
+def page(st, off):
+    while True:
+        q = {'where': "State_Nm='%s'" % st, 'outFields': fields(), 'f': 'json', 'resultOffset': off, 'resultRecordCount': 500, 'orderByFields': 'OBJECTID'}
+        q.update(GEO[GI[0]])
+        try: return get(q, tries=3)
+        except Exception as e:  # noqa: BLE001
+            if GI[0] + 1 >= len(GEO): raise
+            notice('PAD-US', f'query shape {GI[0]} refused ({e}); trying a simpler one'); GI[0] += 1
+
+
 def pad_state(st):
     recs, off = [], 0
     while True:
-        j = get({'where': "State_Nm='%s'" % st, 'outFields': 'OBJECTID,Unit_Nm,Loc_Nm,Own_Type,Mang_Type,Mang_Name,Loc_Mang,Des_Tp,d_Des_Tp,Pub_Access,GIS_Acres,Category',
-                 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01, 'geometryPrecision': 3, 'f': 'json',
-                 'resultOffset': off, 'resultRecordCount': 1000, 'orderByFields': 'OBJECTID'})
+        j = page(st, off)
         fs = j.get('features', [])
         for f in fs:
             a = f.get('attributes') or {}
@@ -108,7 +133,7 @@ def pad_state(st):
             a['_bb'] = bbox(g); a['_g'] = g
             a['_k'] = kinds(a.get('Unit_Nm')) | kinds(a.get('Loc_Nm')) | ({DES[a['Des_Tp']]} if a.get('Des_Tp') in DES else set())
             recs.append(a)
-        if not fs or (not j.get('exceededTransferLimit') and len(fs) < 1000): break
+        if not fs or (not j.get('exceededTransferLimit') and len(fs) < 500): break
         off += len(fs); time.sleep(.6)
     return recs, off + len(fs)
 
