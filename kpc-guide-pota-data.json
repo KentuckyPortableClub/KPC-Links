@@ -10320,6 +10320,214 @@
    ],
    "mapRegion": "Bluegrass",
    "short": "Guist Creek Lake"
+  },
+  "US-13606": {
+   "pdfName": "Bullock Pen",
+   "counties": "Grant",
+   "type": "State Fishing Lake",
+   "nameUrl": "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=51",
+   "btns": [
+    [
+     "OFFICIAL MAP",
+     null
+    ],
+    [
+     "GPS",
+     null
+    ],
+    [
+     "OSM BOUNDARY",
+     null
+    ],
+    [
+     "WEBSITE",
+     "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=51"
+    ],
+    [
+     "ENTRANCE",
+     "https://www.google.com/maps/search/?api=1&query=38.79905,-84.63941"
+    ],
+    [
+     "WEATHER",
+     null
+    ],
+    [
+     "NEARBY ›",
+     null
+    ]
+   ],
+   "gps": [
+    38.7987,
+    -84.6395
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR access site — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "Idle speed only on boats over 10 hp. Boat ramp off Violet Rd (I-75 exit 166). Some shoreline may be next to private lots: set up at the ramp or public parking."
+    }
+   ],
+   "mapRegion": "Northern Kentucky",
+   "short": "Bullock Pen"
+  },
+  "US-13607": {
+   "pdfName": "Boltz",
+   "counties": "Grant",
+   "type": "State Fishing Lake",
+   "nameUrl": "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=50",
+   "btns": [
+    [
+     "OFFICIAL MAP",
+     null
+    ],
+    [
+     "GPS",
+     null
+    ],
+    [
+     "OSM BOUNDARY",
+     null
+    ],
+    [
+     "WEBSITE",
+     "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=50"
+    ],
+    [
+     "ENTRANCE",
+     "https://www.google.com/maps/search/?api=1&query=38.7064,-84.62043"
+    ],
+    [
+     "WEATHER",
+     null
+    ],
+    [
+     "NEARBY ›",
+     null
+    ]
+   ],
+   "gps": [
+    38.7061,
+    -84.6207
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR access site — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "Named for Kentucky's first conservation officer. Ramp on Boltz Lake Rd off KY 467 (Dry Ridge exit 159). Some shoreline may be next to private lots: set up at the ramp or public parking."
+    }
+   ],
+   "mapRegion": "Northern Kentucky",
+   "short": "Boltz"
+  },
+  "US-13604": {
+   "pdfName": "Lake Linville",
+   "counties": "Rockcastle",
+   "type": "State Fishing Lake",
+   "nameUrl": "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=312",
+   "btns": [
+    [
+     "OFFICIAL MAP",
+     null
+    ],
+    [
+     "GPS",
+     null
+    ],
+    [
+     "OSM BOUNDARY",
+     null
+    ],
+    [
+     "WEBSITE",
+     "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=312"
+    ],
+    [
+     "ENTRANCE",
+     "https://www.google.com/maps/search/?api=1&query=37.40156,-84.34963"
+    ],
+    [
+     "WEATHER",
+     null
+    ],
+    [
+     "NEARBY ›",
+     null
+    ]
+   ],
+   "gps": [
+    37.402,
+    -84.3496
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR access site — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "Campground, ramp, dock and splash pad near Renfro Valley (US 25 N of Mt. Vernon, KY 2793). KDFWR listed a ramp closure for rebuilding starting Oct 27: check before you go. Some shoreline may be next to private lots: set up at the ramp or public parking."
+    }
+   ],
+   "mapRegion": "Eastern Kentucky",
+   "short": "Lake Linville"
+  },
+  "US-13605": {
+   "pdfName": "Wood Creek",
+   "counties": "Laurel",
+   "type": "State Fishing Lake",
+   "nameUrl": "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=102",
+   "btns": [
+    [
+     "OFFICIAL MAP",
+     null
+    ],
+    [
+     "GPS",
+     null
+    ],
+    [
+     "OSM BOUNDARY",
+     null
+    ],
+    [
+     "WEBSITE",
+     "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=102"
+    ],
+    [
+     "ENTRANCE",
+     "https://www.google.com/maps/search/?api=1&query=37.18575,-84.17688"
+    ],
+    [
+     "WEATHER",
+     null
+    ],
+    [
+     "NEARBY ›",
+     null
+    ]
+   ],
+   "gps": [
+    37.1866,
+    -84.178
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR access site — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "Biggest of the bunch. Ramp off Wood Creek Lake Rd (KY 80 W of London to Bernstadt, Swiss Colony Rd). Slot limit on bass. Some shoreline may be next to private lots: set up at the ramp or public parking."
+    }
+   ],
+   "mapRegion": "Eastern Kentucky",
+   "short": "Wood Creek"
   }
  },
  "wildIntro": {
