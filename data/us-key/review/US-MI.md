@@ -1,12 +1,11 @@
 # MI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 388** parks joined to official land (same name + same kind of place). **59** to check by hand, **81** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **252 of 388** parks joined to official land (same name + same kind of place). **56** to check by hand, **80** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0350** Michigan Wetland Management District (Wetland Management District) → Jackson County Waterfowl Production Area (~298 ac, the POTA pin is inside it (different name))
 - **US-10088** Headquarters Lake Flooding State Wildlife Area (State Wildlife Area) → Headquarters Lake Impoundment State Wildlife Management Area (~424 ac, similar name)
-- **US-10716** McCormick Wilderness Area (Wilderness Area) → McCormick Wilderness (~17,184 ac, similar name); Ottawa National Forest (~994,695 ac, the POTA pin is inside it (different name))
 - **US-12786** Au Sable National Wild and Scenic River (National Wild and Scenic River) → Huron National Forest (~436,312 ac, the POTA pin is inside it (different name))
 - **US-12787** Bear Creek National Wild and Scenic River (National Wild and Scenic River) → Manistee National Forest (~538,905 ac, the POTA pin is inside it (different name))
 - **US-12789** Carp National Wild and Scenic River (National Wild and Scenic River) → Hiawatha National Forest (~899,303 ac, the POTA pin is inside it (different name))
@@ -29,7 +28,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 388** parks joined
 - **US-1513** Mike Levine Lakelands Trail State Park (State Park) → Pinckney Recreation Area (~11,061 ac, the POTA pin is inside it (different name))
 - **US-1522** Milliken State Park (State Park) → Tricentennial State Park And Harbor (~27 ac, the POTA pin is inside it (different name))
 - **US-1543** Straits State Park (State Park) → Father Marquette National Memorial (~188 ac, the POTA pin is inside it (different name))
-- **US-3307** Cambridge Junction State Historical Park (State Historical Park) → Cambridge State Historic Park (~64 ac, similar name)
 - **US-3308** Father Marquette Memorial National Memorial (National Memorial) → Father Marquette National Memorial (~188 ac, similar name)
 - **US-3330** Wagner Falls Scenic Site (Scenic Site) → Wagner Falls State Park (~6 ac, similar name)
 - **US-4263** Piers Gorge Unit of Menominee River State Recreation Area (State Recreation Area) → Menominee River State Recreation Area (~1 ac, similar name)
@@ -44,7 +42,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 388** parks joined
 - **US-6647** Connors Marsh Wildlife Management Area (Wildlife Management Area) → Conners Marsh Flooding State Wildlife Management Area (~1,052 ac, the POTA pin is inside it (different name))
 - **US-6652** Cusino Wildlife Management Area (Wildlife Management Area) → Cusino State Wildlife Research Area (~1,562 ac, similar name)
 - **US-6670** Fabius State Game Land (State Game Land) → Fabius Township State Game Area (~143 ac, similar name)
-- **US-6675** Fraser State Game Land (State Game Land) → Fraser Township No. 1 State Game Area (~45 ac, similar name)
 - **US-6681** Garden Grade State Game Land (State Game Land) → Shingleton State Foreset Area (~368,105 ac, the POTA pin is inside it (different name))
 - **US-6698** Halifax State Game Land (State Game Land) → Newberry State Forest Area (~348,461 ac, the POTA pin is inside it (different name))
 - **US-6703** Hazel Swamp State Game Land (State Game Land) → Baraga State Forest Area (~120,323 ac, the POTA pin is inside it (different name))
@@ -70,7 +67,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 388** parks joined
 ## Nothing found in PAD-US
 
 - US-10063 Crystal Waters State Game Land (State Game Land)
-- US-10717 Sylvania Wilderness Area (Wilderness Area)
 - US-11392 Paw Paw State Game Land (State Game Land)
 - US-11967 Potterville State Game Land (State Game Land)
 - US-12788 Black River National Wild and Scenic River (National Wild and Scenic River)
@@ -167,9 +163,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 388** parks joined
 - Headwaters Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~22,080 ac
 - Horicon National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~21,973 ac
 - Kirtland Warbler Unit Clear Lake · SCA · MIDNR Forest Resources Division · ~19,202 ac
-- Sylvania Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,440 ac
 - Upper Mississippi River National Wildlife And Fish Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~17,259 ac
-- McCormick Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~17,184 ac
 - Beaver Islands State Wildlife Research Area · SCA · MIDNR Wildlife Division · ~17,058 ac
 - Bullock Ranch State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~13,392 ac
 - Houghton Lake State Wildlife Research Area · SCA · MIDNR Wildlife Division · ~11,988 ac
@@ -213,3 +207,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 388** parks joined
 - Cusino State Wildlife Research Area · SCA · Michigan DNR Wildlife Division · ~1,562 ac
 - Natural Area Shakey Lakes · SCA · MIDNR Forest Resources Division · ~1,517 ac
 - State Forest · PCON · Michigan College of Mining and Technology · ~1,501 ac
+- Hardwood Reservoir Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~1,393 ac
+- Michigan State University · PREC · Michigan State University · ~1,391 ac

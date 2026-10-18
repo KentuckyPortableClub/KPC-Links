@@ -1,19 +1,18 @@
 # SD: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **100 of 120** parks joined to official land (same name + same kind of place). **11** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **101 of 120** parks joined to official land (same name + same kind of place). **10** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0675** Missouri National Recreational River National Wild & Scenic River (National Wild & Scenic River) → Lewis And Clark Recreation Area (~25,792 ac, the POTA pin is inside it (different name))
 - **US-10363** DeGray State Recreation Area (State Recreation Area) → Sharpe Recreation Area (~78,431 ac, the POTA pin is inside it (different name)); Degrey Recreation Area (~25 ac, the POTA pin is inside it (different name))
 - **US-10372** Spillway (Ft. Randall) State Recreation Area (State Recreation Area) → Francis Case Recreation Area (~102,941 ac, the POTA pin is inside it (different name))
-- **US-10374** Bob's Landing State Recreation Area (State Recreation Area) → Oaha Recreation Area (~314,305 ac, the POTA pin is inside it (different name)); Bob's Resort (~7 ac, the POTA pin is inside it (different name))
+- **US-10374** Bob's Landing State Recreation Area (State Recreation Area) → Bob's Resort (~7 ac, similar name); Oaha Recreation Area (~314,305 ac, the POTA pin is inside it (different name))
 - **US-10376** Le Beau State Recreation Area (State Recreation Area) → Oaha Recreation Area (~314,305 ac, the POTA pin is inside it (different name)); Lebeau Recreation Area (~46 ac, the POTA pin is inside it (different name))
 - **US-8156** Beaver Creek State Natural Area (State Natural Area) → Beaver Creek Nature Area (~150 ac, similar name)
 - **US-8158** Big Stone Island State Recreation Area (State Recreation Area) → Big Stone Island Nature Area (~105 ac, similar name); Big Stone Ponds Game Production Area (~53 ac, similar name); Big Stone Lake (~36 ac, similar name)
 - **US-8164** George S. Mickelson State Trail (State Trail) → Exemption Area (~22,459 ac, the POTA pin is inside it (different name))
 - **US-8166** LaFramboise Island State Natural Area (State Natural Area) → Laframboise Island Nature Area (~587 ac, same name, different kind of place); Sharpe Recreation Area (~78,431 ac, the POTA pin is inside it (different name))
-- **US-8168** Lake Cochrane State Recreation Area (State Recreation Area) → Cochrane (~29 ac, similar name)
 - **US-8193** Sheps Canyon State Recreation Area (State Recreation Area) → Angostura Reservoir (~4,841 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -65,7 +64,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **100 of 120** parks joined
 - Brookings County Waterfowl Production Area · RMA · Brookings County Waterfowl Production Area · ~6,641 ac
 - Brookings County Waterfowl Production Area · RMA · BROOKINGS COUNTY WATERFOWL PRODUCTION AREA · ~6,640 ac
 - Fort Meade Recreation Area ACEC ·  · BLM recreation sites · ~6,569 ac
-- Shadehill Reservoir Game Production Area · SREC · Unknown · ~6,206 ac
 - Clark County Waterfowl Production Area · RMA · CLARK COUNTY WATERFOWL PRODUCTION AREA · ~6,172 ac
 - Clark County Waterfowl Production Area · RMA · Clark County Waterfowl Production Area · ~6,172 ac
 - Lake County Waterfowl Production Area Of Sd · RMA · LAKE COUNTY WATERFOWL PRODUCTION AREA OF SD · ~6,090 ac
@@ -93,3 +91,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **100 of 120** parks joined
 - Hand County Waterfowl Production Area · RMA · HAND COUNTY WATERFOWL PRODUCTION AREA · ~4,034 ac
 - Hand County Waterfowl Production Area · RMA · Hand County Waterfowl Production Area · ~4,034 ac
 - Pactola Reservoir · RMA · Unknown · ~3,528 ac
+- Mccook County Waterfowl Production Area · RMA · MCCOOK COUNTY WATERFOWL PRODUCTION AREA · ~3,490 ac
