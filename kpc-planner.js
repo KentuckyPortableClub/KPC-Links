@@ -71,10 +71,10 @@ function otherRefs(f,D,nm,ins){const o={kn:[],ki:[],so:[]};if(!D)return o;const 
  for(const k of D.kff||[]){if(!k.p&&nmEq(k.n,nm))o.kn.push(k);else if(inB(k.la,k.lo))o.ki.push(k)}
  for(const s of D.summits||[])if(inB(s.la,s.lo))o.so.push(s);return o}
 function noNumBox(o,esc){const L=a=>a.slice(0,6).map(x=>esc(x.c)+' '+esc(x.n||'')).join('<br>')+(a.length>6?'<br>…and '+(a.length-6)+' more':'');
- if(o.kn.length)return '<div style="margin-top:6px;padding:6px 8px;border-radius:8px;background:#e3f6f4;color:#0d5a55;font-size:12.5px;font-weight:800">🌳 KFF (WWFF) REFERENCE, NO POTA NUMBER:<br>'+L(o.kn)+'<div style="font-weight:600">This land counts for KFF / WWFF. It is not a POTA park.</div></div>';
- return '<div style="margin-top:6px;padding:6px 8px;border-radius:8px;background:#ffe3e3;color:#8a0f0f;font-size:12.5px;font-weight:800">🚫 GOVERNMENT LAND · NO PARK NUMBER: it has no POTA or KFF (WWFF) number of its own, and it may not be open to the public (military bases, closed areas). POTA / KFF contacts only count inside a real park’s own outline.</div>'+
-  (o.ki.length?'<div style="margin-top:6px;font-size:12.5px"><b>KFF pin inside it:</b><br>'+L(o.ki)+'<div style="font-size:12px">That reference covers its own park, not all of this land.</div></div>':'')+
-  (o.so.length?'<div style="margin-top:6px;font-size:12.5px"><b>⛰ SOTA summits on this land:</b><br>'+L(o.so)+'<div style="font-size:12px">SOTA goes by the summit’s activation zone (within 82 ft of the top), not park lines, so these still count for SOTA.</div></div>':'')}
+ if(o.kn.length)return '<div style="margin-top:6px;padding:6px 8px;border-radius:8px;background:#e3f6f4;color:#0d5a55;font-size:12.5px;font-weight:800">🌳 KFF (WWFF):<br>'+L(o.kn)+'</div>';
+ return ''+
+  (o.ki.length?'<div style="margin-top:6px;font-size:12.5px"><b>KFF pin inside it:</b><br>'+L(o.ki)+'</div>':'')+
+  (o.so.length?'<div style="margin-top:6px;font-size:12.5px"><b>⛰ SOTA summits on this land:</b><br>'+L(o.so)+'</div>':'')}
 /* Oct 17 (Brandon): a name match needs the same kind of place (Yatesville Lake WMA is not Yatesville Lake State Park); outlines with no POTA park of their own NAME are drawn red dotted = NOT A POTA PARK */
 const kOf=s=>{s=String(s||'').toLowerCase();const k=[];if(/wildlife management area|\bwma\b|hunting area/.test(s))k.push('wma');if(/nature preserve|natural area|\bsnp\b|\bsna\b/.test(s))k.push('snp');if(/state (resort )?park|recreation(al)? area/.test(s))k.push('sp');if(/state forest/.test(s))k.push('sf');if(/wild river|scenic river/.test(s))k.push('wr');return k},kSame=(a,b)=>{const x=kOf(a),y=kOf(b);return !x.length||!y.length||x.some(v=>y.includes(v))};
 const NOTPARK={color:'#ff2a2a',dashArray:'2 6'};
@@ -135,7 +135,7 @@ if(window.KPCX&&KPCX.onLook)KPCX.onLook((lk,k)=>{if(k!=='thick')return;Object.va
 function order(){if(bLay.bdbnf&&map.hasLayer(bLay.bdbnf))bLay.bdbnf.bringToBack()}
 function bPopup(f,s,ll){const p=f.properties||{},refs=potaFor(f);
  return `<b>${esc(fName(f)||s.name)}</b><div style="font-size:12px;color:#555">${esc(p.TYPE||s.name)}${p.ACCESS?' · access: '+esc(p.ACCESS):''}</div>`+
- (s.corps?'':!f._named?noNumBox(otherRefs(f,D,fName(f),inside),esc)+(refs.length?`<div style="margin-top:6px"><b>POTA park pin inside it:</b> ${refs.slice(0,5).map(r=>`<a href="${KPC.links.pota(r.c)}" target="_blank" rel="noopener">${r.c}</a> ${esc(r.n)}`).join('<br>')}<div style="font-size:12px">Only that park’s own land counts.</div></div>`:''):(refs.length?`<div style="margin-top:6px"><b>POTA:</b> ${refs.slice(0,5).map(r=>`<a href="${KPC.links.pota(r.c)}" target="_blank" rel="noopener">${r.c}</a> ${esc(r.n)}`).join('<br>')}</div>`:'<div style="margin-top:6px">No POTA reference matched to this outline.</div>'))+
+ (s.corps?'':!f._named?noNumBox(otherRefs(f,D,fName(f),inside),esc)+(refs.length?`<div style="margin-top:6px"><b>Park pin inside it:</b> ${refs.slice(0,5).map(r=>`<a href="${KPC.links.pota(r.c)}" target="_blank" rel="noopener">${r.c}</a> ${esc(r.n)}`).join('<br>')}</div>`:''):(refs.length?`<div style="margin-top:6px"><b>POTA:</b> ${refs.slice(0,5).map(r=>`<a href="${KPC.links.pota(r.c)}" target="_blank" rel="noopener">${r.c}</a> ${esc(r.n)}`).join('<br>')}</div>`:''))+
  (s.note?`<div style="margin-top:6px;font-size:12px;font-weight:700">⚠ ${esc(s.note)}</div>`:'')+(p.URL?`<div style="margin-top:6px"><a href="${esc(p.URL)}" target="_blank" rel="noopener">Official page ↗</a></div>`:'')+(s.kpc?`<div style="margin-top:6px;font-size:11px;color:#666">${p.NOTE?esc(p.NOTE)+' ':''}Outline source: ${esc(p.SOURCE||'KPC')}. Map data © OpenStreetMap contributors.</div>`:'')+
  `<div style="margin-top:8px"><button type="button" class="btn sm" data-drop="${ll.lat},${ll.lng}">📍 ADD A SPOT HERE</button></div>`}
 

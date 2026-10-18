@@ -208,16 +208,16 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
     const A = A0.filter(a => a.numbered).concat(A0.filter(a => !a.numbered)).slice(0, 5);
     tapL = L.geoJSON({ type: 'FeatureCollection', features: A.map(a => a.f) }, { interactive: false,
       style: f => { const a = A.find(x => x.f === f); return a && a.numbered ? Object.assign({ weight: 4, fill: true, fillOpacity: .08 }, PIECE(f)) : { color: '#ff2a2a', weight: 3, dashArray: '2 6', fill: false }; } }).addTo(map);
-    const st = a => a.own.length ? a.own.map(r => r.ref).join(', ') : a.kff.length ? a.kff.map(r => r.ref).join(', ') + ' (KFF only)' : 'no park number';
+    const st = a => a.own.length ? a.own.map(r => r.ref).join(', ') : a.kff.length ? a.kff.map(r => r.ref).join(', ') + ' (KFF only)' : (a.props.TYPE || a.layer || '');
     const top = A[0];
-    const label = top ? `<b>${esc(top.name)}</b> · <span style="color:${top.numbered ? '#1f6b3a' : '#a01818'};font-weight:800">${esc(st(top))}</span>${A.length > 1 ? ` · +${A.length - 1} more here` : ''}`
+    const label = top ? `<b>${esc(top.name)}</b> · <span style="color:${top.numbered ? '#1f6b3a' : '#5b5243'};font-weight:800">${esc(st(top))}</span>${A.length > 1 ? ` · +${A.length - 1} more here` : ''}`
       : `<b>Army Corps of Engineers land</b>`;
     const li = (a, i) => a.slice(0, 6).map(r => `<li><a href="?ref=${encodeURIComponent(r.ref)}" data-pcref="${esc(r.ref)}">${esc(r.ref)}</a> ${esc(r.name || '')}${i ? ' <span class="pc-tag">' + esc(i(r)) + '</span>' : ''}</li>`).join('');
     const box = a => {
       let h = `<div style="margin:8px 0 2px;font:700 15px/1.25 Georgia,serif">${esc(a.name)}</div><div class="pc-note" style="margin:0">${esc(a.layer)}${a.onLine ? ' · you tapped right on its line' : ''}</div>`;
       if (a.own.length) h += `<ul class="pc-list"><li><b>🌲 POTA:</b></li>${li(a.own)}</ul>`;
-      else if (a.kff.length) h += `<p class="pc-note" style="color:#0d5a55;font-weight:800">🌳 KFF (WWFF) reference, no POTA number:</p><ul class="pc-list">${li(a.kff)}</ul>`;
-      else h += `<p class="pc-note" style="color:#a01818;font-weight:800;margin:4px 0">🚫 Government land · no park number (may not be open to the public).</p>` + (a.pins.length ? `<div class="pc-note">POTA park pin inside it (only that park’s own land counts):</div><ul class="pc-list">${li(a.pins)}</ul>` : '');
+      else if (a.kff.length) h += `<p class="pc-note" style="color:#0d5a55;font-weight:800">🌳 KFF (WWFF):</p><ul class="pc-list">${li(a.kff)}</ul>`;
+      else h += (a.props.MANAGER ? `<p class="pc-note" style="margin:4px 0">Run by ${esc(a.props.MANAGER)}.</p>` : '') + (a.pins.length ? `<div class="pc-note">Park pin inside it:</div><ul class="pc-list">${li(a.pins)}</ul>` : '');
       const kin = a.kffIn.filter(k => !a.kff.some(x => x.ref === k.ref));
       if (kin.length && a.numbered) h += `<div class="pc-note"><b>🌳 KFF here:</b></div><ul class="pc-list">${li(kin)}</ul>`;
       if (a.sota.length) h += `<div class="pc-note"><b>⛰ SOTA summits on this land</b> (SOTA goes by the summit, so these count):</div><ul class="pc-list">${li(a.sota, r => r.ft ? Number(r.ft).toLocaleString() + ' ft' : '')}</ul>`;

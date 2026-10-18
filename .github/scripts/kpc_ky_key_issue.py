@@ -34,6 +34,8 @@ if found:
     num = str(found[0]['number']); gh('issue', 'edit', num, '--title', title, '--body-file', '-', inp=body)
 else:
     num = gh('issue', 'create', '--title', title, '--label', LABEL, '--body-file', '-', inp=body).strip().rsplit('/', 1)[-1]
-if res.get('changes'):
+real = [c for c in res.get('changes', []) if c.startswith('NEW PARK') and ': 0 outline' in c or ' → 0' in c]   # Brandon Oct 18: email only for real problems (a park lost / has no outline)
+if real:
+    res = dict(res, changes=real)
     gh('issue', 'comment', num, '--body-file', '-', inp='**What changed:**\n\n' + '\n'.join('- ' + c for c in res['changes']))
 print(f'::notice title=KY answer key::{len(res.get("changes", []))} change(s); issue #{num}')
