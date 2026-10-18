@@ -21,7 +21,10 @@ SRC = {
     'GB': [('Natural England ' + n, 'arcgis', f'https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/{s}/FeatureServer/0') for n, s in
            (('NNR', 'National_Nature_Reserves_England'), ('LNR', 'Local_Nature_Reserves_England'), ('Country Parks', 'Country_Parks_England'), ('SSSI', 'SSSI_England'),
             ('National Parks', 'National_Parks_England'), ('National Landscapes', 'Areas_of_Outstanding_Natural_Beauty_England'))]
-          + [('NatureScot ' + t, 'wfs', 'https://ogc.nature.scot/geoserver/protectedareas/wfs', 'protectedareas:' + t) for t in ('cpk', 'nnr', 'lnr', 'sssi', 'npk', 'rp')],
+          + [('NatureScot ' + t, 'wfs', 'https://ogc.nature.scot/geoserver/protectedareas/wfs', 'protectedareas:' + t) for t in ('cpk', 'nnr', 'lnr', 'sssi', 'rp', 'sac', 'spa')]
+          + [('NRW Wales ' + n, 'wfs', 'https://datamap.gov.wales/geoserver/ows', t) for n, t in
+             (('SSSI', 'inspire-nrw:NRW_SSSI'), ('NNR', 'inspire-nrw:NRW_NNR'), ('LNR', 'inspire-nrw:NRW_LNR'), ('National Parks', 'inspire-nrw:NRW_NATIONAL_PARK'),
+              ('National Landscapes', 'inspire-nrw:NRW_AONB'), ('Country Parks', 'geonode:country_parks'), ('SAC', 'inspire-nrw:NRW_SAC'), ('SPA', 'inspire-nrw:NRW_SPA'))],
     'JP': [('Ministry of the Environment national parks (Esri Japan)', 'arcgis', 'https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/nps_all/FeatureServer/0')],
 }
 COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP').upper().split()
@@ -44,7 +47,7 @@ def flat(s): return ''.join(c for c in unicodedata.normalize('NFKD', str(s or ''
 
 
 GEN = {
-    'AU': r"national park|state park|regional park|conservation park|conservation reserve|state conservation area|conservation area|nature reserve|flora reserve|"
+    'AU': r"nature conservation reserve|flora and fauna reserve|flora fauna reserve|nature recreation area|state recreation area|marine national park|national park|state park|wilderness park|wildlife reserve|state reserve|regional reserve|nature refuge|nature park|bushland reserve|historic reserve|resources reserve|resources area|coastal reserve|scenic reserve|regional park|conservation park|conservation reserve|state conservation area|conservation area|nature reserve|flora reserve|"
           r"state forest|forest reserve|historic site|historical reserve|game reserve|karst conservation reserve|aboriginal area|recreation park|recreation area|"
           r"indigenous protected area|marine park|reserve|park|area",
     'DE': r"nationalpark|naturpark|naturschutzgebiet|landschaftsschutzgebiet|biospharenreservat|biospharengebiet|nationales naturmonument|ffh gebiet|"
@@ -64,7 +67,7 @@ KINDS = {
            ('ffh', r'\bffh\b|fauna flora habitat|flora and fauna|natura 2000'), ('spa', r'vogelschutz|special protection area|bird sanctuary|natura 2000'),
            ('nnm', r'naturmonument|natural monument')],
     'GB': [('nnr', r'national nature reserve|\bnnr\b'), ('lnr', r'local nature reserve|\blnr\b'), ('cp', r'country park'), ('sssi', r'scientific interest|\bsssi\b'),
-           ('np', r'national park'), ('rp', r'regional park'), ('aonb', r'national landscape|outstanding natural beauty|\baonb\b')],
+           ('np', r'national park'), ('rp', r'regional park'), ('aonb', r'national landscape|outstanding natural beauty|\baonb\b'), ('sac', r'special area of conservation|\bsac\b'), ('spa', r'special protection area|\bspa\b')],
     'JP': [('np', r'(?<!quasi )national park|国立公園'), ('qnp', r'quasi national park|国定公園'), ('pnp', r'prefectural|県立')],
 }
 
@@ -78,6 +81,8 @@ def norm(cc, s):
     s = flat(s).replace('&', ' and ')
     if cc == 'AU':
         for a, b in ABBR: s = re.sub(a, b, s)
+        s = re.sub(r'\bmt\b\.?', 'mount', s); s = re.sub(r'\bst\b\.?', 'saint', s)
+        s = re.sub(r'\b[a-z]\d{1,4}\b', ' ', s)   # map codes like 'H57' (Victoria bushland reserves)
     if cc == 'DE':
         for a, b in (('ae', 'a'), ('oe', 'o'), ('ue', 'u')): s = s.replace(a, b)   # Schwaebisch = Schwäbisch
     s = re.sub(r'\(.*?\)', ' ', s); s = re.sub(r"[’'`.]", '', s); s = re.sub(r'[-/,]', ' ', s)
@@ -144,6 +149,13 @@ def pick(a, names):
         for k in a:
             if k.lower() == n.lower() and a[k] not in (None, ''): return str(a[k])
     return ''
+def pick_name(a):
+    # known name fields first; else any English-looking *name* field (Welsh layers: SSSI_Name / Name_Welsh…)
+    v = pick(a, NAMEF)
+    if v: return v
+    for k in a:
+        if re.search(r'name|enw', k, re.I) and not re.search(r'welsh|cymraeg|_cy$|^cy_|enw', k, re.I) and a[k] not in (None, ''): return str(a[k])
+    return ''
 
 
 def pull_arcgis(label, url):
@@ -157,7 +169,7 @@ def pull_arcgis(label, url):
         fs = j.get('features', [])
         for f in fs:
             a = f.get('attributes') or {}; rs = rings_of(f.get('geometry'))
-            recs.append({'id': a.get(oidf), 'n': pick(a, NAMEF), 'ty': pick(a, TYPEF), 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': a})
+            recs.append({'id': a.get(oidf), 'n': pick_name(a), 'ty': pick(a, TYPEF), 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': a})
         if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
         off += len(fs); time.sleep(.5)
     return recs
@@ -185,7 +197,7 @@ def pull_wfs(label, url, typ):
             p = f.get('properties') or {}; rs = rings_of(f.get('geometry'))
             # EPSG:4326 in WFS 2.0 can come back lat,lon: swap when the 'x' looks like a latitude for this country
             if rs and abs(rs[0][0][0]) > 40 and abs(rs[0][0][1]) < 20: rs = [[[q2[1], q2[0]] for q2 in r] for r in rs]
-            recs.append({'id': f.get('id'), 'n': pick(p, NAMEF), 'ty': pick(p, TYPEF) or label, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': p})
+            recs.append({'id': f.get('id'), 'n': pick_name(p), 'ty': pick(p, TYPEF) or label, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': p})
         if len(fs) < step: break
         start += step; time.sleep(.5)
     if recs and not any(r['n'] for r in recs[:50]): notice(f'{label} name field?', ', '.join(list(recs[0]['_a'].keys())[:40]))
@@ -220,7 +232,7 @@ for cc in COUNTRIES:
         cand = [name] + ([q for q in re.split(r'\s+-\s+', name) if q.strip()] if cc == 'GB' and ' - ' in name else [])
         for r in recs:
             if la is not None and not near(la, lo, r['_bb'], .6): continue
-            if r['n'] and any(same_name(cc, q, r['n']) for q in cand) and (not kp or not r['_k'] or kp & r['_k']):
+            if r['n'] and any(same_name(cc, q, r['n']) for q in cand) and (not kp or (kp & r['_k']) or (not r['_k'] and not (cc == 'AU' and r.get('ty')))):
                 m.append([r['id'], r['n'], r['src'], 'name'])
         if not m and la is not None:
             for r in recs:
