@@ -1,0 +1,28 @@
+name: zz water edge (temporary)
+on: workflow_dispatch
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python3 - <<'PY'
+          import json,urllib.request,urllib.parse,math
+          def g(u):
+              try: return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=90).read())
+              except Exception as e: return {'err':str(e)[:150]}
+          for P in [(-89.151998,37.073387),(-89.15224,37.07351)]:
+              q={'geometry':f'{P[0]},{P[1]}','geometryType':'esriGeometryPoint','inSR':4326,'distance':600,'units':'esriSRUnit_Meter','spatialRel':'esriSpatialRelIntersects','outFields':'ftype','returnGeometry':'true','outSR':4326,'f':'json'}
+              j=g('https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/9/query?'+urllib.parse.urlencode(q))
+              kx=111320*math.cos(math.radians(P[1]));ky=110570;best=(1e9,None);inside=False
+              for f in j.get('features',[]):
+                  for r in f['geometry']['rings']:
+                      c=False
+                      for a,b in zip(r,r[1:]):
+                          if (a[1]>P[1])!=(b[1]>P[1]) and P[0]<(b[0]-a[0])*(P[1]-a[1])/(b[1]-a[1])+a[0]: c=not c
+                          ax,ay=(a[0]-P[0])*kx,(a[1]-P[1])*ky;bx,by=(b[0]-P[0])*kx,(b[1]-P[1])*ky;dx,dy=bx-ax,by-ay;L=dx*dx+dy*dy
+                          t=max(0,min(1,-(ax*dx+ay*dy)/L)) if L else 0
+                          d=math.hypot(ax+t*dx,ay+t*dy)
+                          if d<best[0]: best=(d,(round(a[0]+t*(b[0]-a[0]),6),round(a[1]+t*(b[1]-a[1]),6)))
+                      inside=inside or c
+              print('::notice title=%s::river area within 600 m: %d; in the water: %s; nearest edge %.0f m at %s'%(P,len(j.get('features',[])),inside,best[0],best[1]))
+          PY
