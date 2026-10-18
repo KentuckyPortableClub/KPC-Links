@@ -1,6 +1,6 @@
 # NJ: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **113 of 134** parks joined to official land (same name + same kind of place). **9** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **114 of 134** parks joined to official land (same name + same kind of place). **8** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -12,7 +12,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **113 of 134** parks joined
 - **US-1615** Thomas Edison Memorial State Park (State Park) → Edison State Park (~36 ac, similar name); Edison State Park (~2 ac, similar name); Edison State Park (~1 ac, similar name); Edison State Park (~0 ac, similar name)
 - **US-6544** New Jersey Coastal State Trail (State Trail) → Gateway National Recreation Area (~1,810 ac, the POTA pin is inside it (different name))
 - **US-6609** Pinelands Preserve National Conservation Area (National Conservation Area) → Wharton State Forest (~72,322 ac, the POTA pin is inside it (different name)); Wharton State Forest (~2,845 ac, the POTA pin is inside it (different name))
-- **US-7506** Tall Pines Preserve State Conservation Area (State Conservation Area) → Tall Pines State Preserve (~109 ac, similar name)
 
 ## Nothing found in PAD-US
 

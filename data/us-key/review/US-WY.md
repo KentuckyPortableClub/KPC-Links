@@ -1,20 +1,13 @@
 # WY: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **53 of 298** parks joined to official land (same name + same kind of place). **170** to check by hand, **75** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **67 of 298** parks joined to official land (same name + same kind of place). **156** to check by hand, **75** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0698** John D. Rockefeller Jr. National Parkway (National Parkway) → John D. Rockefeller, Jr., Memorial Parkway (~23,622 ac, similar name)
-- **US-10790** Laramie Peak State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Laramie Peak Wildlife Habitat Management Area (~37,046 ac, similar name)
-- **US-10793** Jelm State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Jelm Wildlife Habitat Management Area (~638 ac, similar name)
 - **US-10795** Shoshone Cavern AKA Spirit Mtn Cave BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Shoshone National Forest (~2,439,182 ac, similar name); Cody Field Office (~1,090,720 ac, the POTA pin is inside it (different name)); Buffalo Bill Reservoir State Park (~13,571 ac, the POTA pin is inside it (different name))
-- **US-10797** Half Moon State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Half Moon Wildlife Habitat Management Area (~3,765 ac, similar name)
 - **US-10799** Ellis State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name))
-- **US-10800** Red Rim - Daley State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Red Rim-Daley Wildlife Habitat Management Area (~25,957 ac, similar name)
-- **US-10804** Chain Lakes State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Chain Lakes Wildlife Habitat Management Area (~62,521 ac, similar name); Rawlins Field Office (~3,531,790 ac, the POTA pin is inside it (different name))
 - **US-10805** Sinks Canyon State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Sinks Canyon (~79 ac, similar name)
-- **US-10806** Sunshine State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Sunshine Wildlife Habitat Management Area (~4,620 ac, similar name)
-- **US-10808** Soda Lake State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Soda Lake Wildlife Habitat Management Area (~3,806 ac, similar name)
 - **US-10811** Lost Creek BLM Herd Management Area (BLM Herd Management Area) → Rawlins Field Office (~3,531,790 ac, the POTA pin is inside it (different name))
 - **US-10822** Daniel State Fish Hatchery (State Fish Hatchery) → State Lands 1111115411 (~639 ac, the POTA pin is inside it (different name))
 - **US-10823** Dubois State Fish Hatchery (State Fish Hatchery) → State Lands 1111116312 (~159 ac, the POTA pin is inside it (different name))
@@ -82,8 +75,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **53 of 298** parks joined 
 - **US-12724** Prospect Mountain WSA State Wilderness Area (State Wilderness Area) → Rawlins Field Office (~3,531,790 ac, the POTA pin is inside it (different name))
 - **US-12725** Sweetwater Rocks (Lankin Dome) State Wilderness Area (State Wilderness Area) → Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name))
 - **US-12726** Camp Creek State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Teton National Forest (~1,660,590 ac, the POTA pin is inside it (different name))
-- **US-12728** Fall Creek State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Fall Creek Wildlife Habitat Management Area (~687 ac, similar name)
-- **US-12729** Spence & Moriarity State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Spence & Moriarity Wildlife Habitat Management Area (~35,167 ac, similar name)
 - **US-12730** Dubois Badlands BLM Wilderness Area (BLM Wilderness Area) → Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name))
 - **US-12731** Adobe Town BLM Wilderness Area (BLM Wilderness Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name))
 - **US-12733** Sheep Mountain BLM Wilderness Area (BLM Wilderness Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name))
@@ -112,7 +103,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **53 of 298** parks joined 
 - **US-6148** Connor Battlefield State Historic Site (State Historic Site) → Conner Battlefield (~14 ac, the POTA pin is inside it (different name))
 - **US-6150** Medicine Lodge Archaeological Site State Park (State Park) → Medicine Lodge Wildlife Habitat Management Area (~12,311 ac, the POTA pin is inside it (different name))
 - **US-6153** Lone Tree Trail BLM Recreation Management Area (BLM Recreation Management Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name))
-- **US-6154** Renner State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Renner Wildlife Habitat Management Area (~15,526 ac, similar name)
 - **US-6155** Big Cedar Ridge Fossil Site BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name))
 - **US-6157** Split Rock BLM Interpretive Site (BLM Interpretive Site) → Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name))
 - **US-6159** Castle Gardens Petroglyph Site BLM Historic Preservation Site (BLM Historic Preservation Site) → Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name))
@@ -130,7 +120,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **53 of 298** parks joined 
 - **US-6172** Antelope Hills BLM Herd Management Area (BLM Herd Management Area) → Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name))
 - **US-6174** Fifteenmile BLM Herd Management Area (BLM Herd Management Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name))
 - **US-6178** Legend Rock State Petroglyph Site State Historic Site (State Historic Site) → Legend Rock (~31 ac, similar name); Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name))
-- **US-6180** Red Canyon State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Red Canyon Wildlife Habitat Management Area (~1,837 ac, similar name)
 - **US-6181** Divide Basin BLM Herd Management Area (BLM Herd Management Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name))
 - **US-6182** Miner's Delight BLM Historic Preservation Site (BLM Historic Preservation Site) → Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name))
 - **US-6183** McCullough Peaks BLM Herd Management Area (BLM Herd Management Area) → Cody Field Office (~1,090,720 ac, the POTA pin is inside it (different name))
@@ -151,8 +140,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **53 of 298** parks joined 
 - **US-6201** Bridger Wilderness Area (Wilderness Area) → Bridger National Forest (~1,734,322 ac, same name, different kind of place); Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name))
 - **US-6203** Pilot Butte Wild Horse Scenic Tour BLM Recreation Management Area (BLM Recreation Management Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name))
 - **US-6204** Little Colorado BLM Herd Management Area (BLM Herd Management Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name))
-- **US-6205** Kirk Inberg/ Kevin Roy State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Spence & Moriarity Wildlife Habitat Management Area (~35,167 ac, similar name); Kirk Inberg/Kevin Roy Wildlife Habitat Management Area (~17,312 ac, similar name)
-- **US-6206** Spence/ Moriarity State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Spence & Moriarity Wildlife Habitat Management Area (~35,167 ac, similar name)
 - **US-6207** Clarks Fork of the Yellowstone National Wild & Scenic River (National Wild & Scenic River) → Shoshone National Forest (~2,439,182 ac, the POTA pin is inside it (different name))
 - **US-6208** Sunlight State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Sunlight Basin Wildlife Habitat Management Area (~1,412 ac, similar name)
 - **US-6210** Teton Wilderness Area (Wilderness Area) → Teton National Forest (~1,660,590 ac, same name, different kind of place)
@@ -171,7 +158,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **53 of 298** parks joined 
 - **US-6226** Jedediah Smith Wilderness Area (Wilderness Area) → Targhee National Forest (~294,438 ac, the POTA pin is inside it (different name))
 - **US-6227** Snake River National Wild & Scenic River (National Wild & Scenic River) → Teton National Forest (~1,660,590 ac, the POTA pin is inside it (different name))
 - **US-6228** Piedmont Charcoal Kilns State Historic Site (State Historic Site) → Piedmont Kilns (~1 ac, similar name)
-- **US-6229** South Park State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → South Park Wildlife Habitat Management Area (~1,230 ac, similar name)
 - **US-6230** Cumberland Wildlife Management Area (Wildlife Management Area) → Kemmerer Field Office (~1,421,062 ac, the POTA pin is inside it (different name))
 - **US-6231** Fort Bonneville State Historic Site (State Historic Site) → Fort Bonneville (~1 ac, same name, different kind of place)
 
@@ -266,43 +252,32 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **53 of 298** parks joined 
 - Buffalo Field Office · PUB · BLM · ~779,089 ac
 - Usbr · FOTH · Unknown · ~735,338 ac
 - Newcastle Field Office · PUB · BLM · ~279,233 ac
-- Chain Lakes Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~62,521 ac
 - Flaming Gorge Reservoir National Recreation Area · REC · Forest Service (USFS) · ~44,237 ac
 - Wasatch National Forest · NF · Forest Service Region 04 Intermountain · ~37,820 ac
 - Targhee National Forest · NF · Forest Service Region 04 Intermountain · ~37,247 ac
-- Laramie Peak Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~37,046 ac
-- Spence & Moriarity Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~35,167 ac
 - Seminoe Reservoir State Park · SP · Wyoming Department of Parks and Cultural Resouces · ~34,202 ac
-- Red Rim-Daley Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~25,957 ac
 - John D. Rockefeller, Jr., Memorial Parkway · SDA · NPS · ~23,622 ac
 - Glendo Reservoir State Park · SP · Wyoming Department of Parks and Cultural Resouces · ~21,949 ac
 - Pathfinder Reservoir · RMA · Unknown · ~20,704 ac
-- Kirk Inberg/Kevin Roy Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~17,312 ac
 - Keyhole Reservoir State Park · SP · Wyoming Department of Parks and Cultural Resouces · ~15,844 ac
-- Renner Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~15,526 ac
 - Buffalo Bill Reservoir State Park · SP · US Bureau of Reclamation · ~13,571 ac
 - Whiskey Basin Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~12,843 ac
 - Newcastle Field Office · PUB · BLM · ~8,871 ac
 - Guernsey Reservoir State Park · SP · Wyoming Department of Parks and Cultural Resouces · ~8,521 ac
 - Fontenelle Reservoir · RMA · Unknown · ~8,131 ac
 - McGuire Ranch - Pasture · SOTH · Unknown · ~5,584 ac
-- Sunshine Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~4,620 ac
 - Laramie Research & Extension Center · SOTH · Unknown · ~3,834 ac
 - Bull Lake · RMA · Wind River Reservation · ~3,822 ac
-- Soda Lake Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~3,806 ac
-- Half Moon Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~3,765 ac
 - Alcova Reservoir · RMA · Unknown · ~2,835 ac
 - James C. Hageman Sustainable Agriculture Research and Extension Center (SAREC) Research & Extension Center · SOTH · Unknown · ~2,817 ac
 - Mortenson Lake National Wildlife Refuge · NWR · MORTENSON LAKE NATIONAL WILDLIFE REFUGE · ~2,561 ac
 - Mortenson Lake National Wildlife Refuge · NWR · Mortenson Lake National Wildlife Refuge · ~2,561 ac
 - Boysen Reservoir · SRMA · Wyoming Department of Parks and Cultural Resouces · ~2,284 ac
 - Big Sandy Reservoir · RMA · Unknown · ~2,108 ac
-- Red Canyon Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~1,837 ac
 - Mexican Creek Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~1,688 ac
 - State Lands 1111128489 · SRMA · Unknown · ~1,440 ac
 - Sunlight Basin Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~1,412 ac
 - State Lands 1111127393 · SRMA · Unknown · ~1,298 ac
-- South Park Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~1,230 ac
 - Eden Reservoir · RMA · Unknown · ~1,210 ac
 - Buffalo Field Office · PUB · BLM · ~1,086 ac
 - Wick/Buemee Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~1,055 ac
@@ -315,3 +290,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **53 of 298** parks joined 
 - State Lands 1111113424 · SRMA · Unknown · ~763 ac
 - State Lands 1111117150 · SRMA · Unknown · ~732 ac
 - State Lands 1111114502 · SRMA · Unknown · ~723 ac
+- State Lands 1111112559 · SRMA · Unknown · ~722 ac
+- State Lands 1111130118 · SRMA · Unknown · ~718 ac
+- State Lands 1111121385 · SRMA · Unknown · ~714 ac
+- State Lands 1111118667 · SRMA · Unknown · ~713 ac
+- State Lands 1111123245 · SRMA · Unknown · ~703 ac
+- State Lands 1111127516 · SRMA · Unknown · ~703 ac
+- State Lands 1111111902 · SRMA · Unknown · ~702 ac
+- State Lands 1111113362 · SRMA · Unknown · ~701 ac
+- Fort Phil Kearny · SP · Wyoming State Parks, Historic Sites & Trails · ~697 ac
+- State Lands 1111117046 · SRMA · Unknown · ~696 ac
+- State Lands 1111120398 · SRMA · Unknown · ~696 ac

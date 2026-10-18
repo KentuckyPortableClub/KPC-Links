@@ -1,6 +1,6 @@
 # NE: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **106 of 190** parks joined to official land (same name + same kind of place). **0** to check by hand, **84** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **105 of 190** parks joined to official land (same name + same kind of place). **0** to check by hand, **85** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -33,6 +33,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **106 of 190** parks joined
 - US-3484 Peterson National Waterfowl Production Area (National Waterfowl Production Area)
 - US-3485 Jensen Lagoon National Waterfowl Production Area (National Waterfowl Production Area)
 - US-3486 Moger National Waterfowl Production Area (National Waterfowl Production Area)
+- US-3487 DeSoto (NE) National Wildlife Refuge (National Wildlife Refuge)
 - US-3488 Alberding Lagoon National Wildlife Management Area (National Wildlife Management Area)
 - US-3489 Massie National Waterfowl Production Area (National Waterfowl Production Area)
 - US-3490 Smith Lagoon National Waterfowl Production Area (National Waterfowl Production Area)
@@ -102,6 +103,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **106 of 190** parks joined
 - Swanson Lake · RMA · Unknown · ~4,972 ac
 - Phelps County Waterfowl Production Area · RMA · PHELPS COUNTY WATERFOWL PRODUCTION AREA · ~4,677 ac
 - Phelps County Waterfowl Production Area · RMA · Phelps County Waterfowl Production Area · ~4,677 ac
+- Desoto National Wildlife Refuge · NWR · Desoto National Wildlife Refuge · ~4,377 ac
+- Desoto National Wildlife Refuge · NWR · DESOTO NATIONAL WILDLIFE REFUGE · ~4,258 ac
 - Ponderosa Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~4,155 ac
 - Buffalo Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~4,001 ac
 - Fillmore County Waterfowl Production Area · RMA · Fillmore County Waterfowl Production Area · ~3,622 ac
@@ -152,5 +155,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **106 of 190** parks joined
 - Twin Oaks Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,117 ac
 - Petersen Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,084 ac
 - Ash Hollow State Historical Park · SHCA · Nebraska Game and Parks Commission’ · ~1,050 ac
-- Niobrara Confluence Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,034 ac
-- Hamilton County Waterfowl Production Area · RMA · HAMILTON COUNTY WATERFOWL PRODUCTION AREA · ~1,026 ac

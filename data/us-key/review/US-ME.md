@@ -1,6 +1,6 @@
 # ME: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **113 of 148** parks joined to official land (same name + same kind of place). **27** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **116 of 148** parks joined to official land (same name + same kind of place). **24** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -12,11 +12,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **113 of 148** parks joined
 - **US-8290** Frye Mountain Wildlife Management Area (Wildlife Management Area) → Gene Letourneau (Frye Mountain) Wildlife Management Area (~5,110 ac, the POTA pin is inside it (different name))
 - **US-8292** Lagrange to Medford State Trail (State Trail) → Lagrange to Medford Rail Trail (~116 ac, similar name); Medford to Lagrange Rail Trail (~33 ac, similar name)
 - **US-8434** Big Spencer Mountain Ecological Reserve (Ecological Reserve) → Big Spencer Ecological Reserve (~4,039 ac, similar name); Big Spencer Mountain (~632 ac, similar name); Great North Woods, LLC (~4,039 ac, the POTA pin is inside it (different name))
-- **US-8435** Bigelow State Preserve (State Preserve) → Bigelow Preserve (~5,069 ac, similar name); Bigelow Preserve (~2,845 ac, similar name); Bigelow Preserve (~1,604 ac, similar name); Bigelow Preserve (~1,502 ac, similar name); Bigelow Preserve (~936 ac, similar name); Wyman East (~935 ac, the POTA pin is inside it (different name))
-- **US-8436** Bald Mountain Rangeley State Preserve (State Preserve) → Bald Mountain Rangeley (~1,946 ac, similar name)
 - **US-8438** Days Academy State Preserve (State Preserve) → Days Academy Grant (~7,487 ac, similar name)
-- **US-8439** Donnell Pond State Preserve (State Preserve) → Donnell Pond (~2,466 ac, similar name); Donnell Pond (~2,446 ac, similar name); Donnell Pond (~2,211 ac, similar name); Donnell Pond (~1,342 ac, similar name)
-- **US-8440** Chamberlain Lake State Preserve (State Preserve) → Chamberlain Lake (~2,573 ac, similar name)
+- **US-8439** Donnell Pond State Preserve (State Preserve) → Donnell Pond (~2,466 ac, similar name); Donnell Pond (~2,446 ac, similar name); Donnell Pond (~2,211 ac, similar name); Donnell Pond Ecological Reserve (~1,945 ac, similar name); Donnell Pond (~1,342 ac, similar name)
 - **US-8441** Gero Island State Preserve (State Preserve) → Gero Island (~1,945 ac, similar name); Gero Island (~740 ac, similar name); Gero Island (~653 ac, similar name); Gero Island (~585 ac, similar name)
 - **US-8442** Lobster Lake Property State Preserve (State Preserve) → Lobster Lake (~2,249 ac, similar name)
 - **US-8443** Seboomook Lake Property State Preserve (State Preserve) → Seboomook (~16,392 ac, similar name); Seboomook (~12,154 ac, similar name); West Branch Penobscot Headwaters (~41,582 ac, the POTA pin is inside it (different name))
@@ -26,7 +23,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **113 of 148** parks joined
 - **US-8451** Major Gregory Sanborn Wildlife Management Area (Wildlife Management Area) → Maj. Gregory Sanborn (Brownfield Bog) Wildlife Management Area (~1,414 ac, similar name); Maj. Gregory Sanborn (Brownfield Bog) Wildlife Management Area (~1,398 ac, similar name); Maj. Gregory Sanborn (Brownfield Bog) Wildlife Management Area (~1,169 ac, similar name); Maj. Gregory Sanborn (Brownfield Bog) Wildlife Management Area (~404 ac, similar name); Maj. Gregory Sanborn (Brownfield Bog) Wildlife Management Area (~276 ac, similar name); Maj. Gregory Sanborn (Brownfield Bog) Wildlife Management Area (~167 ac, similar name)
 - **US-8457** Cambridge Mainstream Wildlife Management Area (Wildlife Management Area) → Mainstream Wildlife Management Area (~501 ac, similar name); Mainstream Wildlife Management Area (~246 ac, similar name); Mainstream Wildlife Management Area (~246 ac, similar name); Mainstream Wildlife Management Area (~148 ac, similar name); Mainstream Wildlife Management Area (~117 ac, similar name); Mainstream Wildlife Management Area (~113 ac, similar name)
 - **US-8459** Erle R. Kelley (Dresden Bog) Wildlife Management Area (Wildlife Management Area) → Earle R. Kelly (Dresden Bog) Wildlife Management Area (~497 ac, the POTA pin is inside it (different name))
-- **US-8485** Francis D. Dunn (Sawtelle Deadwater) Wildlife Management Area (Wildlife Management Area) → Francis Dunn (Sawtelle Deadwater) Wildlife Management Area (~181 ac, similar name)
+- **US-8477** Stump (Bauds) Pond Wildlife Management Area (Wildlife Management Area) → Stump Pond Wildlife Management Area (~33 ac, similar name)
 - **US-9170** Machias River Corridor State Conservation Area (State Conservation Area) → Machias River Watershed - MDOC (~6,131 ac, similar name); Machias River Phase I (~5,939 ac, similar name)
 - **US-9171** St. John Ponds Ecological Reserve (Ecological Reserve) → Upper St John River Watershed Ecological Reserve (~3,884 ac, similar name)
 - **US-9172** Salmon Brook Lake Bog Ecological Reserve (Ecological Reserve) → Salmon Brook Lake Bog (~982 ac, similar name); Salmon Brook Lake Bog (~466 ac, similar name); Salmon Brook Lake Bog (~255 ac, similar name); Salmon Brook Lake Bog (~26 ac, similar name); Salmon Brook Lake Bog (~16 ac, similar name)
@@ -64,7 +61,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **113 of 148** parks joined
 - Scraggly Lake · LOTH · Maine Bureau of Parks and Lands · ~9,846 ac
 - Richardson Lake · LOTH · Maine Bureau of Parks and Lands · ~9,614 ac
 - Cutler Coast · LOTH · Maine Bureau of Parks and Lands · ~9,355 ac
-- Bigelow Preserve · LOTH · Maine Bureau of Parks and Lands · ~9,286 ac
 - Cutler Coast Ecological Reserve · SCA · Maine Bureau of Parks and Lands · ~9,282 ac
 - Cold Stream Forest · LOTH · Maine Bureau of Parks and Lands · ~8,184 ac
 - Mahoosucs · LOTH · Maine Bureau of Parks and Lands · ~8,106 ac
@@ -88,13 +84,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **113 of 148** parks joined
 - Duck Lake · LOTH · Maine Bureau of Parks and Lands · ~5,245 ac
 - Gene Letourneau (Frye Mountain) Wildlife Management Area · SCA · Maine Department of Inland Fisheries and Wildlife · ~5,110 ac
 - Seboeis · LOTH · Maine Bureau of Parks and Lands · ~5,075 ac
-- Bigelow Preserve · LOTH · Maine Bureau of Parks and Lands · ~5,069 ac
 - Millinockett Forest · LOTH · Maine Bureau of Parks and Lands · ~5,060 ac
 - Amherst Mountains · LOTH · Maine Bureau of Parks and Lands · ~4,984 ac
 - Lower Penobscot Forest · SRMA · Maine Bureau of Parks and Lands · ~4,981 ac
 - Millinocket Forest · SOTH ·   · ~4,943 ac
 - Cutler Coast Ecological Reserve · SCA ·   · ~4,936 ac
-- Bigelow Preserve · LOTH · Maine Bureau of Parks and Lands · ~4,915 ac
 - Duck Lake · LOTH · Maine Bureau of Parks and Lands · ~4,855 ac
 - Little Moose Unit · LOTH · Maine Bureau of Parks and Lands · ~4,849 ac
 - Mahoosucs · LOTH · Maine Bureau of Parks and Lands · ~4,803 ac
@@ -103,5 +97,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **113 of 148** parks joined
 - Great Heath · LOTH · Maine Bureau of Parks and Lands · ~4,482 ac
 - Great Heath Ecological Reserve · SCA ·   · ~4,479 ac
 - Moose River-Number 5 Bog · SCA · Maine Bureau of Parks and Lands · ~4,275 ac
-- Bigelow Preserve · LOTH · Maine Bureau of Parks and Lands · ~4,203 ac
 - Duck Lake Ecological Reserve · SCA ·   · ~4,105 ac
+- Great North Woods, LLC · SOTH · Maine Department of Conservation · ~4,039 ac
+- Big Spencer Ecological Reserve · LOTH · Maine Bureau of Parks and Lands · ~4,039 ac
+- Crocker Mountain · LOTH · Maine Bureau of Parks and Lands · ~3,990 ac
+- Crocker Mountain Ecological Reserve · SCA ·   · ~3,967 ac

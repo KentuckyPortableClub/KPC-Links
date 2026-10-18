@@ -1,6 +1,6 @@
 # MI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined to official land (same name + same kind of place). **0** to check by hand, **238** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **173 of 388** parks joined to official land (same name + same kind of place). **0** to check by hand, **215** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,7 +9,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined
 
 - US-0350 Michigan Wetland Management District (Wetland Management District)
 - US-10063 Crystal Waters State Game Land (State Game Land)
-- US-10087 Windsor Township State Game Land (State Game Land)
 - US-10088 Headquarters Lake Flooding State Wildlife Area (State Wildlife Area)
 - US-10716 McCormick Wilderness Area (Wilderness Area)
 - US-10717 Sylvania Wilderness Area (Wilderness Area)
@@ -42,8 +41,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined
 - US-13172 North Central State Trail (State Trail)
 - US-13174 North Eastern State Trail (State Trail)
 - US-13176 North Western State Trail (State Trail)
-- US-13179 Pere Marquette State Trail (State Trail)
-- US-13182 Polly Ann State Trail (State Trail)
 - US-13184 Iron Belle State Trail (State Trail)
 - US-13565 Flint State Park (State Park)
 - US-13566 Houghton-Douglass Falls and Veterans Memorial Scenic Site (Scenic Site)
@@ -87,19 +84,15 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined
 - US-6623 Beaver Islands Wildlife Management Area (Wildlife Management Area)
 - US-6625 Betsie River State Game Land (State Game Land)
 - US-6626 Bill Rollo Memorial State Game Land (State Game Land)
-- US-6628 Blendon Township State Game Land (State Game Land)
 - US-6631 Blue Bill Creek State Game Land (State Game Land)
 - US-6632 Bluff Creek / US-10 / M-18 Floodings Wildlife Management Area (Wildlife Management Area)
-- US-6634 Brookfield Township State Game Land (State Game Land)
 - US-6635 Brookfield Township  II State Game Land (State Game Land)
 - US-6638 Cannon Creek Floodings Wildlife Management Area (Wildlife Management Area)
 - US-6640 Cannonsburg State Game Land (State Game Land)
 - US-6641 Cass City State Game Land (State Game Land)
 - US-6642 Cedar River State Game Land (State Game Land)
 - US-6643 Chelsea State Game Land (State Game Land)
-- US-6644 Chesterfield Township State Game Land (State Game Land)
 - US-6645 Clark Lake State Game Land (State Game Land)
-- US-6646 Columbia Township State Game Land (State Game Land)
 - US-6647 Connors Marsh Wildlife Management Area (Wildlife Management Area)
 - US-6648 Cornish State Game Land (State Game Land)
 - US-6649 Cranberry Lake Wildlife Management Area (Wildlife Management Area)
@@ -109,19 +102,16 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined
 - US-6653 Dansville State Game Land (State Game Land)
 - US-6654 Davisburg State Game Land (State Game Land)
 - US-6657 Deford State Game Land (State Game Land)
-- US-6658 Denmark Township State Game Land (State Game Land)
 - US-6660 Devils Lake Flooding Wildlife Management Area (Wildlife Management Area)
 - US-6664 Drummond Island State Game Land (State Game Land)
 - US-6665 Pigeon Cove Flooding Wildlife Management Area (Wildlife Management Area)
 - US-6666 Edger Waterfowl National Wildlife Management Area (National Wildlife Management Area)
 - US-6667 Edmore State Game Land (State Game Land)
-- US-6668 Elmwood Township State Game Land (State Game Land)
 - US-6669 Erie State Game Land (State Game Land)
 - US-6670 Fabius State Game Land (State Game Land)
 - US-6673 Flat River State Game Land (State Game Land)
 - US-6674 Flynn Township State Game Land (State Game Land)
 - US-6675 Fraser State Game Land (State Game Land)
-- US-6676 Fraser Township  No.2 State Game Land (State Game Land)
 - US-6677 French Farm Lake Flooding Wildlife Management Area (Wildlife Management Area)
 - US-6678 Fuller Woods State Game Land (State Game Land)
 - US-6679 Fulton State Game Land (State Game Land)
@@ -134,9 +124,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined
 - US-6687 Gordon Guyer - Augusta Creek Wildlife Management Area (Wildlife Management Area)
 - US-6688 Gourdneck State Game Land (State Game Land)
 - US-6689 Grand Haven State Game Land (State Game Land)
-- US-6690 Grand River Gale Road State Game Land (State Game Land)
 - US-6693 Grass Lake State Game Land (State Game Land)
-- US-6694 Gratiot-Saginaw State Game Land (State Game Land)
 - US-6695 Greasy Creek State Game Land (State Game Land)
 - US-6696 Gregory State Game Land (State Game Land)
 - US-6698 Halifax State Game Land (State Game Land)
@@ -151,7 +139,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined
 - US-6710 Hubbard Lake State Game Land (State Game Land)
 - US-6712 Keeler State Game Land (State Game Land)
 - US-6713 Kinney Waterfowl National Wildlife Management Area (National Wildlife Management Area)
-- US-6715 Lake Interstate State Game Land (State Game Land)
 - US-6716 Lake LaVasseur Flooding Wildlife Management Area (Wildlife Management Area)
 - US-6717 Lame Duck Area State Game Land (State Game Land)
 - US-6718 Langston State Game Land (State Game Land)
@@ -172,9 +159,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined
 - US-6734 Melstrand State Game Land (State Game Land)
 - US-6735 Middleville State Game Land (State Game Land)
 - US-6736 Minden City State Game Land (State Game Land)
-- US-6737 Molasses River Flooding No 1 Wildlife Management Area (Wildlife Management Area)
 - US-6738 Mosinee State Game Land (State Game Land)
-- US-6739 Munuscong Bay Wildlife Management Area (Wildlife Management Area)
 - US-6740 Murphy Lake State Game Land (State Game Land)
 - US-6741 Muskegon State Game Land (State Game Land)
 - US-6742 Muskrat Lake State Game Land (State Game Land)
@@ -182,15 +167,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined
 - US-6746 Oak Grove State Game Land (State Game Land)
 - US-6747 Old Fur Farm Flooding Wildlife Management Area (Wildlife Management Area)
 - US-6748 Olive Township State Game Land (State Game Land)
-- US-6749 Oliver Township State Game Land (State Game Land)
 - US-6750 O'Neal Lake Flooding Wildlife Management Area (Wildlife Management Area)
 - US-6751 Onsted State Game Land (State Game Land)
-- US-6753 Pentwater River State Game Land (State Game Land)
 - US-6755 Petersburg State Game Land (State Game Land)
 - US-6756 Peterson Pond Flooding Wildlife Management Area (Wildlife Management Area)
 - US-6757 Petobego State Game Land (State Game Land)
-- US-6759 Pinconning Township (Cody-Esty Road) State Game Land (State Game Land)
-- US-6761 Pointe Mouillee State Game Land (State Game Land)
 - US-6762 Port Huron State Game Land (State Game Land)
 - US-6764 Portland State Game Land (State Game Land)
 - US-6765 Potagannissing Flooding Wildlife Management Area (Wildlife Management Area)
@@ -206,10 +187,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined
 - US-6779 Schlee Waterfowl National Wildlife Management Area (National Wildlife Management Area)
 - US-6780 Schoonover Waterfowl National Wildlife Management Area (National Wildlife Management Area)
 - US-6781 Sharonville State Game Land (State Game Land)
-- US-6782 Shiawassee River State Game Land (State Game Land)
 - US-6784 Somerset State Game Land (State Game Land)
-- US-6785 Sportsmans Lake/Pond Wildlife Management Area (Wildlife Management Area)
-- US-6788 St. Clair Township State Game Land (State Game Land)
 - US-6790 Stanton State Game Land (State Game Land)
 - US-6792 Strickler State Game Land (State Game Land)
 - US-6794 Tamarack Lake (Sunfield Township) State Game Land (State Game Land)
@@ -243,7 +221,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined
 - US-6827 Platte River State Fish Hatchery (State Fish Hatchery)
 - US-7854 Molasses River Flooding No 2 Wildlife Management Area (Wildlife Management Area)
 - US-7855 Molasses River Flooding No 3 Wildlife Management Area (Wildlife Management Area)
-- US-7856 Molasses River Flooding No 5 Wildlife Management Area (Wildlife Management Area)
 - US-7857 Grand River State Game Land (State Game Land)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
@@ -258,10 +235,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined
 - Allegan State Game Area · SCA · MIDNR Wildlife Division · ~50,591 ac
 - Kirtland Warbler Unit Clear Lake · SCA · MIDNR Forest Resources Division · ~19,202 ac
 - Beaver Islands State Wildlife Research Area · SCA · MIDNR Wildlife Division · ~17,058 ac
-- Gratiot-Saginaw State Game Area · SCA · MIDNR Wildlife Division · ~16,698 ac
 - Barry State Game Area · SCA · MIDNR Wildlife Division · ~16,580 ac
 - Muskegon State Game Area · SCA · MIDNR Wildlife Division · ~15,349 ac
-- Munuscong State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~14,165 ac
 - Bullock Ranch State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~13,392 ac
 - Houghton Lake State Wildlife Research Area · SCA · MIDNR Wildlife Division · ~11,988 ac
 - Natural Area Dead Stream Swamp · SCA · MIDNR Forest Resources Division · ~11,547 ac
@@ -270,7 +245,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined
 - Deford State Game Area · SCA · MIDNR Wildlife Division · ~10,395 ac
 - University of Michigan Biological Station · SCA · University of Michigan · ~9,973 ac
 - Kirtland Warbler Unit Lovells · SCA · MIDNR Forest Resources Division · ~9,902 ac
-- Shiawassee River State Game Area · SCA · MIDNR Wildlife Division · ~9,873 ac
 - Maple River State Game Area · SCA · MIDNR Wildlife Division · ~9,258 ac
 - Tuscola State Game Area · SCA · MIDNR Wildlife Division · ~9,100 ac
 - Lapeer State Game Area · SCA · MIDNR Wildlife Division · ~8,555 ac
@@ -293,7 +267,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined
 - Crane Pond State Game Area · SCA · MIDNR Wildlife Division · ~4,096 ac
 - Hart-Montague Bicycle Trail Park · SREC · Michigan Department of Natural Resources · ~3,973 ac
 - Manistee River State Game Area · SCA · MIDNR Wildlife Division · ~3,920 ac
-- Pointe Mouillee State Game Area · SCA · State of Michigan · ~3,914 ac
 - Crow Island State Game Area · SCA · MIDNR Wildlife Division · ~3,641 ac
 - Huron Purchase Unit · NF · Forest Service Region 09 Eastern · ~3,628 ac
 - Natural Area High Island · SCA · MIDNR Wildlife Division · ~3,584 ac
@@ -303,8 +276,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **150 of 388** parks joined
 - Vassar State Game Area · SCA · MIDNR Wildlife Division · ~3,391 ac
 - Langston State Game Area · SCA · MIDNR Wildlife Division · ~3,259 ac
 - Erie State Game Area · SCA · MIDNR Wildlife Division · ~3,215 ac
-- Molasses River Flooding No.1 State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~3,153 ac
 - French Farm Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~2,947 ac
 - Vestaburg State Game Area · SCA · MIDNR Wildlife Division · ~2,936 ac
 - Murphy Lake State Game Area · SCA · MIDNR Wildlife Division · ~2,697 ac
 - Gregory State Game Area · SCA · MIDNR Wildlife Division · ~2,691 ac
+- Natural Area South Branch AuSable River · SCA · MIDNR Forest Resources Division · ~2,640 ac
+- MNRTF Parcel · SCA · Michigan Department of Natural Resources · ~2,627 ac
+- Kirtland Warbler Unit N Branch · SCA · MIDNR Forest Resources Division · ~2,598 ac
+- Little Fox River / Stanley Lake Flooding State Willdlife Management Area · SCA · MIDNR Wildlife Division · ~2,551 ac
+- Lost Nation State Game Area · SCA · MIDNR Wildlife Division · ~2,471 ac

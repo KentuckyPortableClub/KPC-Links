@@ -1,6 +1,6 @@
 # WI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **227 of 348** parks joined to official land (same name + same kind of place). **0** to check by hand, **121** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **228 of 348** parks joined to official land (same name + same kind of place). **0** to check by hand, **120** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -48,7 +48,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **227 of 348** parks joined
 - US-11933 Richard Hemp State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-11934 Little Wolf River State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-11935 La Budde Creek State Fish and Wildlife Area (State Fish and Wildlife Area)
-- US-11936 White River State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-11937 Mecan River State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-11955 Genoa National Fish Hatchery (National Fish Hatchery)
 - US-11956 Pine River State Fish and Wildlife Area (State Fish and Wildlife Area)

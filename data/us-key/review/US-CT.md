@@ -1,6 +1,6 @@
 # CT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 157** parks joined to official land (same name + same kind of place). **33** to check by hand, **34** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **95 of 157** parks joined to official land (same name + same kind of place). **29** to check by hand, **33** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -11,7 +11,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 157** parks joined 
 - **US-1645** Above All State Park (State Park) → Above All State Park Scenic Reserve (~23 ac, similar name)
 - **US-1646** Beaver Brook State Park (State Park) → Beaver Brook State Park Scenic Reserve (~254 ac, similar name); Beaver Brook State Park Scenic Reserve (~63 ac, similar name); Beaver Brook State Park Scenic Reserve (~5 ac, similar name)
 - **US-1660** Day Pond State Park (State Park) → Day Pond State Park and Salmon River State Forest (~958 ac, similar name)
-- **US-1671** George Waldo State Park (State Park) → George C. Waldo State Park (~153 ac, similar name)
 - **US-1688** Killingly Pond State Park (State Park) → Killingly Pond State Park Scenic Reserve (~73 ac, similar name); Killingly Pond State Park Scenic Reserve (~45 ac, similar name); Killingly Pond State Park Scenic Reserve (~38 ac, similar name); Killingly Pond State Park Scenic Reserve (~5 ac, similar name); Killingly Pond State Park Scenic Reserve (~3 ac, similar name); Killingly Pond State Park Scenic Reserve (~0 ac, similar name)
 - **US-1691** Lovers Leap State Park (State Park) → Lovers Leap State Park Scenic Reserve (~115 ac, similar name); Lovers Leap State Park Scenic Reserve (~74 ac, similar name)
 - **US-1694** Mansfield Hollow State Park (State Park) → Mansfield Hollow Wildlife Management Area (~2,387 ac, same name, different kind of place)
@@ -29,9 +28,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 157** parks joined 
 - **US-6870** Quinebaug Lake State Park (State Park) → Quinebaug Wildlife Area (~22 ac, same name, different kind of place)
 - **US-6871** Rocky Glen State Park (State Park) → Rocky Glen State Park Scenic Reserve (~4 ac, similar name); Rocky Glen State Park Scenic Reserve (~4 ac, similar name)
 - **US-6872** Salt Rock State Forest (State Forest) → Salt Rock State Park (~65 ac, same name, different kind of place); Salt Rock State Park (~43 ac, same name, different kind of place); Salt Rock State Park (~30 ac, same name, different kind of place); Salt Rock State Park (~12 ac, same name, different kind of place)
-- **US-7532** Hop River State Trail (State Trail) → Hop River State Park (~34 ac, similar name); Hop River State Park Trail (~21 ac, similar name); Hop River State Park Trail (~17 ac, similar name); Hop River State Park (~10 ac, similar name); Hop River State Park Trail (~6 ac, similar name)
-- **US-7533** Larkin State Trail (State Trail) → Larkin State Park Trail (~16 ac, similar name); Larkin State Park Trail (~3 ac, similar name); Larkin State Park Trail (~0 ac, similar name)
-- **US-7535** Moosup Valley State Trail (State Trail) → Moosup Valley State Park Trail (~17 ac, similar name)
 - **US-7539** Platt Hill State Park (State Park) → Platt Hill State Park Scenic Reserve (~162 ac, similar name)
 - **US-7540** Pomeroy State Reserve (State Reserve) → Pomeroy State Park Scenic Reserve (~87 ac, similar name); Pomeroy State Park Scenic Reserve (~38 ac, similar name); Pomeroy State Park Scenic Reserve (~33 ac, similar name); Pomeroy State Park Scenic Reserve (~23 ac, similar name); Pomeroy State Park Scenic Reserve (~15 ac, similar name); Pomeroy State Park Scenic Reserve (~2 ac, similar name)
 - **US-7542** Satan's Kingdom State Recreation Area (State Recreation Area) → Farmington River Water Access (~8 ac, the POTA pin is inside it (different name))
@@ -69,7 +65,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 157** parks joined 
 - US-6862 Horse Guard State Park (State Park)
 - US-6873 Stoddard Hill State Park (State Park)
 - US-6875 The Preserve Essex Land Trust State Park Preserve (State Park Preserve)
-- US-7528 Air Line State Trail (State Trail)
 - US-7529 Beckley Iron Furnace State Park (State Park)
 - US-7536 Nassahegon State Forest (State Forest)
 - US-7544 Windsor Locks Canal State Trail (State Trail)

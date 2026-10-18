@@ -1,6 +1,6 @@
 # MD: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **122 of 186** parks joined to official land (same name + same kind of place). **0** to check by hand, **64** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 186** parks joined to official land (same name + same kind of place). **0** to check by hand, **63** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -47,7 +47,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **122 of 186** parks joined
 - US-6387 Fair Hill State Natural Area (State Natural Area)
 - US-6388 Helen Avalynne Tawes Garden State Park (State Park)
 - US-6389 Jefferson Patterson Park and Museum State Park (State Park)
-- US-6390 South Mountain State Battlefield State Park (State Park)
 - US-6391 Merkle Wildlife Sanctuary State Natural Area (State Natural Area)
 - US-6392 Monocacy River Natural Resources Management Area State Natural Area (State Natural Area)
 - US-6393 Morgan Run State Natural Area (State Natural Area)

@@ -1,6 +1,6 @@
 # NH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **122 of 205** parks joined to official land (same name + same kind of place). **16** to check by hand, **67** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 205** parks joined to official land (same name + same kind of place). **15** to check by hand, **67** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -16,7 +16,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **122 of 205** parks joined
 - **US-4926** Lovewell Mountain State Forest (State Forest) → Pillsbury State Park (~5,398 ac, the POTA pin is inside it (different name))
 - **US-4944** Pine River State Forest (State Forest) → Little Pine River State Forest (~81 ac, similar name)
 - **US-4979** West Iron Works Road State Forest (State Forest) → West Iron Works Read State Forest (~46 ac, similar name)
-- **US-4981** William Thomas State Forest (State Forest) → William H Thomas State Forest (~1,639 ac, similar name); William H Thomas State Forest (~22 ac, similar name)
 - **US-8021** Gov. Wentworth State Historic Site (State Historic Site) → Wentworth State Park (~52 ac, similar name)
 - **US-8026** White Island State Historic Site (State Historic Site) → White Island Historical Site (~4 ac, similar name)
 - **US-8029** Sculptured Rocks State Natural Area (State Natural Area) → Sculptured Rocks Geologic Site (~264 ac, similar name)
@@ -104,7 +103,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **122 of 205** parks joined
 - 13 Mile Woods Community Forest · SOTH ·   · ~1,918 ac
 - William B. Ruger Wildlife Management Area - South · SCA ·   · ~1,905 ac
 - Surry Mountain Recreation Area · REC · New England · ~1,683 ac
-- William H Thomas State Forest · SRMA ·   · ~1,639 ac
 - Ellis R. Hatch Jr. Wildlife Management Area · SCA ·   · ~1,517 ac
 - Heath Pond Bog Natural Area · SCA ·   · ~1,369 ac
 - Mt Kelsey Wildlife Management Area · SCA ·   · ~1,281 ac
@@ -153,3 +151,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **122 of 205** parks joined
 - Horne Brook Wildlife Management Area · SCA ·   · ~275 ac
 - UNH - Saddleback Mountain · REA ·   · ~265 ac
 - Sculptured Rocks Geologic Site · SOTH ·   · ~264 ac
+- Beaver Brook Wildlife Management Area · SCA ·   · ~258 ac

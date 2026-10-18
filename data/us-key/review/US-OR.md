@@ -1,6 +1,6 @@
 # OR: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 440** parks joined to official land (same name + same kind of place). **207** to check by hand, **110** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **137 of 440** parks joined to official land (same name + same kind of place). **194** to check by hand, **109** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -10,7 +10,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 440** parks joined
 - **US-0500** Hart Mountain National Wildlife Refuge (National Wildlife Refuge) → Hart Mountain National Antelope Refuge (~276,247 ac, similar name); Hart Mountain National Antelope Refuge (~276,227 ac, similar name)
 - **US-0582** Julia Butler Hansen National Wildlife Refuge (National Wildlife Refuge) → Julia Butler Hansen Refuge For The Columbian White-Tailed Deer (~3,109 ac, similar name); Julia Butler Hansen Refuge For The Columbian White-Tailed Deer (~3,109 ac, similar name)
 - **US-0953** Oregon Caves National Monument (National Monument) → Oregon Caves National Monument and Preserve (~4,531 ac, similar name)
-- **US-10003** Phillip W. Schneider State Fish and Wildlife Area (State Fish and Wildlife Area) → Phillip P. Schneider Wildlife Area (~38,879 ac, similar name)
 - **US-10010** Fishermen's Bend BLM Recreation Management Area (BLM Recreation Management Area) → Nw Oregon Cascades Field Office (~172,607 ac, the POTA pin is inside it (different name))
 - **US-10012** Peter Skene Ogden State Park (State Park) → Peter Skene Ogden State Scenic Viewpoint (~78 ac, similar name)
 - **US-10017** Quartzville Creek BLM Wild and Scenic River (BLM Wild and Scenic River) → Nw Oregon Cascades Field Office (~172,607 ac, the POTA pin is inside it (different name))
@@ -108,16 +107,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 440** parks joined
 - **US-12844** Bastendorff Beach BLM Recreation Management Area (BLM Recreation Management Area) → Coos Bay Umpqua Field Office (~188,796 ac, the POTA pin is inside it (different name))
 - **US-12845** Hult Dam & Reservoir BLM Recreation Management Area (BLM Recreation Management Area) → Nw Oregon Siuslaw Field Office (~157,518 ac, the POTA pin is inside it (different name))
 - **US-12881** Diamond Craters Outstanding BLM Recreation Management Area (BLM Recreation Management Area) → Burns Three Rivers Field Office (~1,661,825 ac, the POTA pin is inside it (different name))
-- **US-12949** Klamath State Fish and Wildlife Area (State Fish and Wildlife Area) → Klamath Wildlife Area (~3,286 ac, similar name)
-- **US-12953** Rogers State Fish and Wildlife Area (State Fish and Wildlife Area) → Rogers Wildlife Area (~98 ac, similar name)
-- **US-12954** Wenaha State Fish and Wildlife Area (State Fish and Wildlife Area) → Wenaha Wildlife Area (~9,592 ac, similar name)
 - **US-12958** Yellowbottom BLM Recreation Management Area (BLM Recreation Management Area) → Nw Oregon Cascades Field Office (~172,607 ac, the POTA pin is inside it (different name))
 - **US-12960** Dogwood BLM Recreation Management Area (BLM Recreation Management Area) → Nw Oregon Cascades Field Office (~172,607 ac, the POTA pin is inside it (different name))
 - **US-12976** Fall River State Fish Hatchery (State Fish Hatchery) → Deschutes National Forest (~1,612,322 ac, the POTA pin is inside it (different name))
 - **US-12978** Willamette State Fish Hatchery (State Fish Hatchery) → Willamette National Forest (~1,681,108 ac, similar name)
-- **US-12982** Irrigon State Fish Hatchery (State Fish Hatchery) → Irrigon Fish Hatchery (~69 ac, similar name); Irrigon Fish Hatchery (~50 ac, similar name)
 - **US-12983** Gnat Creek State Fish Hatchery (State Fish Hatchery) → Forest Development Fund (Board Of Forestry) (~627,317 ac, the POTA pin is inside it (different name))
-- **US-12989** Wallowa State Fish Hatchery (State Fish Hatchery) → Wallowa National Forest (~995,134 ac, similar name); Irrigon Fish Hatchery (~69 ac, similar name); Wallowa Fish Hatchery (~8 ac, similar name)
 - **US-12991** Marion Forks State Fish Hatchery (State Fish Hatchery) → Willamette National Forest (~1,681,108 ac, the POTA pin is inside it (different name))
 - **US-13065** Leslie Gulch BLM Recreation Management Area (BLM Recreation Management Area) → Vale Malheur Field Office (~4,641,633 ac, the POTA pin is inside it (different name))
 - **US-13066** Upper Leslie Gulch BLM Wilderness Area (BLM Wilderness Area) → Vale Malheur Field Office (~4,641,633 ac, the POTA pin is inside it (different name))
@@ -134,10 +128,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 440** parks joined
 - **US-13098** Neptune South Wayside State Recreation Site (State Recreation Site) → Siuslaw National Forest (~630,552 ac, the POTA pin is inside it (different name))
 - **US-13099** Neptune North Wayside State Recreation Site (State Recreation Site) → Siuslaw National Forest (~630,552 ac, the POTA pin is inside it (different name))
 - **US-13528** Gold Nugget BLM Recreation Management Area (BLM Recreation Management Area) → Medford Butte Falls Field Office (~202,060 ac, the POTA pin is inside it (different name))
-- **US-2810** Alderwood Wayside State Park (State Park) → Alderwood State Wayside (~80 ac, similar name)
 - **US-2815** Brian Booth State Park (State Park) → Ona Beach State Park (~238 ac, the POTA pin is inside it (different name))
-- **US-2823** Chandler Wayside State Park (State Park) → Chandler State Wayside (~95 ac, similar name)
-- **US-2834** Hoffman Memorial State Park (State Park) → Hoffman Memorial State Wayside (~4 ac, similar name)
 - **US-2846** Oregon State Capitol State Park (State Park) → State Capitol State Park (~27 ac, similar name)
 - **US-2857** The Cove Palisades State Park (State Park) → Crooked River National Grassland (~112,057 ac, the POTA pin is inside it (different name))
 - **US-2858** Tub Springs State Park (State Park) → Tub Springs State Wayside (~40 ac, similar name)
@@ -174,7 +165,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 440** parks joined
 - **US-9547** Geisel Monument State Historic Site (State Historic Site) → Geisel Monument State Heritage Site (~3 ac, similar name)
 - **US-9548** Gleneden Beach State Recreation Area (State Recreation Area) → Gleneden Beach State Recreation Site (~12 ac, similar name)
 - **US-9549** Golden Townsite State Historic Site (State Historic Site) → Golden Townsite State Heritage Site (~7 ac, similar name)
-- **US-9552** Governor Patterson Memorial State Recreation Area (State Recreation Area) → Governor Patterson Memorial State Recreation Site (~49 ac, similar name)
 - **US-9555** Iwetemlaykin State Historic Site (State Historic Site) → Iwetemlaykin State Heritage Site (~59 ac, similar name)
 - **US-9556** Jackson F. Kimball State Recreation Area (State Recreation Area) → Jackson F. Kimball State Recreation Site (~19 ac, similar name)
 - **US-9557** Jasper State Recreation Area (State Recreation Area) → Jasper State Recreation Site (~73 ac, similar name); Jasper Bridge Access Willamette River Greenway (~2 ac, similar name)
@@ -187,10 +177,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 440** parks joined
 - **US-9567** Neskowin Beach State Recreation Area (State Recreation Area) → Neskowin Beach State Recreation Site (~9 ac, similar name)
 - **US-9569** Oceanside Beach State Recreation Area (State Recreation Area) → Oceanside Beach State Recreation Site (~9 ac, similar name)
 - **US-9571** Paradise Point State Recreation Area (State Recreation Area) → Paradise Point State Recreation Site (~15 ac, similar name)
-- **US-9572** Pete French Round Barn State Historic Site (State Historic Site) → Pete French Round Barn State Heritage Site (~2 ac, similar name)
 - **US-9573** Seal Rock State Recreation Area (State Recreation Area) → Seal Rock State Recreation Site (~7 ac, similar name)
 - **US-9574** Seven Devils State Recreation Area (State Recreation Area) → Seven Devils State Recreation Site (~53 ac, similar name)
-- **US-9578** Sumpter Valley Dredge State Historic Site (State Historic Site) → Sumpter Valley Dredge State Heritage Area (~97 ac, similar name)
 - **US-9581** Tolovana Beach State Recreation Area (State Recreation Area) → Tolovana Beach State Recreation Site (~3 ac, similar name)
 - **US-9583** W.B. Nelson State Park (State Park) → W.B. Nelson State Recreation Site (~2 ac, similar name)
 - **US-9584** Willamette Stone State Historic Site (State Historic Site) → Willamette Stone State Heritage Site (~2 ac, similar name)
@@ -210,7 +198,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 440** parks joined
 - **US-9992** Nestucca River National Wild and Scenic River (National Wild and Scenic River) → Nw Oregon Tillamook Field Office (~104,132 ac, the POTA pin is inside it (different name))
 - **US-9993** Nestucca River OHV BLM Recreation Management Area (BLM Recreation Management Area) → Nw Oregon Tillamook Field Office (~104,132 ac, the POTA pin is inside it (different name))
 - **US-9995** Alsea Falls BLM Recreation Management Area (BLM Recreation Management Area) → Nw Oregon Marys Peak Field Office (~128,244 ac, the POTA pin is inside it (different name))
-- **US-9997** Irrigon State Fish and Wildlife Area (State Fish and Wildlife Area) → Irrigon Wildlife Area (~827 ac, similar name)
 
 ## Nothing found in PAD-US
 
@@ -320,7 +307,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 440** parks joined
 - US-9586 Yachats State Recreation Area (State Recreation Area)
 - US-9587 Yachats Ocean Road State Natural Area (State Natural Area)
 - US-9977 Floras Lake State Natural Area (State Natural Area)
-- US-9980 Willamette River Greenway and Water State Trail (State Trail)
 - US-9984 Tualatin River Water National Scenic Trail (National Scenic Trail)
 - US-9991 Redmond Caves BLM Recreation Management Area (BLM Recreation Management Area)
 - US-9994 Dean Creek Elk Viewing BLM Recreation Management Area (BLM Recreation Management Area)
@@ -354,14 +340,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 440** parks joined
 - Coos Bay Myrtlewood Field Office · PUB · BLM · ~123,224 ac
 - Federal Railroad Administration (Common School Lands) · SOTH · Oregon Department of Forestry · ~121,000 ac
 - Nw Oregon Tillamook Field Office · PUB · BLM · ~104,132 ac
-- Phillip P. Schneider Wildlife Area · SCA · Oregon Department of Fish and Wildlife · ~38,879 ac
 - Rangeland · SRMA · Unknown · ~22,956 ac
 - Gilchrist Forest (East, Match Tracts 2,3,4) · SCA · Oregon Department of Forestry · ~20,484 ac
 - McDonald-Dunn Research Forest · SRMA · Unknown · ~13,643 ac
 - State Trust Land · SRMA · Oregon State Land Board · ~12,332 ac
 - Owyhee Reservoir · RMA · Unknown · ~10,732 ac
 - Wickiup Reservoir · RMA · Unknown · ~10,028 ac
-- Wenaha Wildlife Area · SCA · Oregon Department of Fish and Wildlife · ~9,592 ac
 - Forest · SRMA · Unknown · ~8,160 ac
 - Board Of Forestry/County Land Use Resolution · SRMA · Oregon Department of Forestry · ~7,693 ac
 - Summer Lake Migratory Waterfowl And Game Management Area · NCA · SUMMER LAKE MIGRATORY WATERFOWL AND GAME MANAGEMENT AREA · ~7,135 ac
@@ -376,7 +360,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 440** parks joined
 - Warm Springs Reservoir · RMA · Unknown · ~3,633 ac
 - Gerber Reservoir · RMA · Unknown · ~3,504 ac
 - Crane Prairie Reservoir · RMA · Unknown · ~3,402 ac
-- Klamath Wildlife Area · SCA · Oregon Department of Fish and Wildlife · ~3,286 ac
 - Julia Butler Hansen Refuge For The Columbian White-Tailed Deer · NWR · JULIA BUTLER HANSEN REFUGE FOR THE COLUMBIAN WHITE-TAILED DEER · ~3,109 ac
 - Julia Butler Hansen Refuge For The Columbian White-Tailed Deer · NWR · Julia Butler Hansen Refuge For The Columbian White-Tailed Deer · ~3,109 ac
 - Wanaket Wildlife Area · NCA · Department of Interior · ~2,909 ac
@@ -387,3 +370,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 440** parks joined
 - Rangeland · SRMA · Unknown · ~2,154 ac
 - Blue Mountain Forest State Scenic Corridor · SREC · Oregon Parks and Recreation Department · ~2,132 ac
 - Denman Wildlife Area · SCA · Oregon Department of Fish and Wildlife · ~2,088 ac
+- SPC Stewardship · SOTH · State Land Board · ~1,908 ac
+- State Trust Land · SRMA · Oregon State Land Board · ~1,823 ac
+- County Park Management · LP · Oregon Department of Forestry · ~1,743 ac

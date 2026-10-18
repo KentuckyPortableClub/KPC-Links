@@ -1,18 +1,15 @@
 # NY: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **775 of 850** parks joined to official land (same name + same kind of place). **51** to check by hand, **24** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **779 of 850** parks joined to official land (same name + same kind of place). **47** to check by hand, **24** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0474** Elizabeth A. Morton National Wildlife Refuge (National Wildlife Refuge) → Elizabeth Alexandra Morton National Wildlife Refuge (~177 ac, similar name); Elizabeth Alexandra Morton National Wildlife Refuge (~177 ac, similar name)
 - **US-0681** Upper Delaware National Wild and Scenic River (National Wild and Scenic River) → Upper Delaware Scenic and Recreational River (~10 ac, similar name)
-- **US-10076** Black River State Trail (State Trail) → Black River Trail (~44 ac, similar name)
 - **US-10292** Watson's East Triangle Complex State Preserve (State Preserve) → Watson'S East Triangle Wild Forest (~13,472 ac, similar name)
 - **US-10294** Pigeon Lake Wilderness Area (Wilderness Area) → Pigeon Lake Wilderness (~50,875 ac, similar name)
 - **US-11861** Nick’s Lake Campground and Day Use State Recreation Site (State Recreation Site) → Nicks Lake Campground (~687 ac, similar name)
 - **US-12060** Crystal Lake State Forest (State Forest) → Crystal Lake Wild Forest (~502 ac, similar name)
-- **US-12375** Catharine Valley State Trail (State Trail) → Catharine Valley Trail (~167 ac, similar name)
-- **US-12382** WAG State Trail (State Trail) → Wag Trail (~74 ac, similar name)
 - **US-2006** Artpark State Park (State Park) → Earl W. Brydges Artpark (~162 ac, similar name)
 - **US-2024** Caleb Smith State Park (State Park) → Caleb Smith State Park Preserve (~548 ac, similar name)
 - **US-2057** Franny Reese State Park (State Park) → Franny Reese Preserve State Park (~251 ac, similar name)
@@ -24,6 +21,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **775 of 850** parks joined
 - **US-2137** Schunnemunk Mountain State Park (State Park) → Schunnemunk State Park (~4,458 ac, similar name)
 - **US-2147** Sunken Meadow State Park (State Park) → Alfred E. Smith/Sunken Meadow State Park (~3,117 ac, similar name)
 - **US-5036** Gould Corners State Forest (State Forest) → Gould'S Corners State Forest (~2,066 ac, the POTA pin is inside it (different name))
+- **US-5060** Hogsback (Lewis County) State Forest (State Forest) → Hogsback State Forest (~1,747 ac, similar name)
 - **US-5121** Big Buck Mountain Unique Area (Unique Area) → Big Buck Mountain Multiple Use Area (~181 ac, similar name)
 - **US-5146** Burt Hill State Forest (State Forest) → Burt Hill Multiple Use Area (~398 ac, similar name)
 - **US-5197** Dannemora State Forest (State Forest) → Chazy Highlands State Forest (~5,544 ac, the POTA pin is inside it (different name))
@@ -43,18 +41,16 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **775 of 850** parks joined
 - **US-8062** Kenneth L. Wilson State Recreation Area (State Recreation Area) → Kenneth L. Wilson Campground (~594 ac, similar name)
 - **US-8063** North-South Lake State Recreation Area (State Recreation Area) → North/South Lake Campground (~1,108 ac, similar name)
 - **US-8064** Barcelona Neck Cooperative State Forest (State Forest) → Linda Gronlund Memorial Nature Preserve (~289 ac, the POTA pin is inside it (different name)); Sag Harbor Golf Course State Park (~49 ac, the POTA pin is inside it (different name))
-- **US-8067** Clay Pit Ponds State Preserve (State Preserve) → Clay Pit Ponds State Park Preserve (~259 ac, similar name)
 - **US-8084** Breezy Point Tip State Recreation Area (State Recreation Area) → Gateway National Recreation Area (~18,548 ac, the POTA pin is inside it (different name))
 - **US-8089** Great Kills Park State Recreation Area (State Recreation Area) → Gateway National Recreation Area (~18,548 ac, the POTA pin is inside it (different name))
 - **US-8093** David A. Sarnoff Pine Barrens State Forest (State Forest) → David A. Sarnoff  Preserve (~2,689 ac, similar name)
 - **US-8622** Carlton Hill Multiple Use Area (Multiple Use Area) → Carlton Hill Mua (~2,499 ac, similar name)
-- **US-8629** Ludlow Creek Tidal Wetland State Recreation Area (State Recreation Area) → Ludlow Creek State Tidal Wetland (~133 ac, similar name)
 - **US-9052** Harwood Lake Multiple Use Area (Multiple Use Area) → Harwood Lake Mua (~301 ac, similar name)
 - **US-9060** Watts Flats Wildlife Management Area (Wildlife Management Area) → Watts Wma (~1,392 ac, similar name)
 - **US-9068** Little John Wildlife Management Area (Wildlife Management Area) → Littlejohn Wma (~7,926 ac, the POTA pin is inside it (different name))
 - **US-9092** NY Fish Creek Wildlife Management Area (Wildlife Management Area) → Fish Creek Wma (~4,559 ac, similar name)
 - **US-9124** Charles Flood Wildlife Management Area (Wildlife Management Area) → Charles Flood Wma At The Empire Brickyard (~590 ac, similar name)
-- **US-9128** Louise Keir Wildlife Management Area (Wildlife Management Area) → Louise E. Keir Wma (~188 ac, similar name)
+- **US-9141** Hogsback (Oneida County) State Forest (State Forest) → Hogsback State Forest (~1,747 ac, similar name)
 
 ## Nothing found in PAD-US
 

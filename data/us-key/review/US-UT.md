@@ -1,6 +1,6 @@
 # UT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **92 of 690** parks joined to official land (same name + same kind of place). **487** to check by hand, **111** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **93 of 690** parks joined to official land (same name + same kind of place). **486** to check by hand, **111** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -48,7 +48,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **92 of 690** parks joined 
 - **US-11090** Kamas Utah State Fish Hatchery (State Fish Hatchery) → Kamas State Wildlife Area (~1,136 ac, similar name)
 - **US-11091** Lee Kay Public Shooting Grounds Utah DWR State Recreation Area (State Recreation Area) → Lee Kay State Wildlife Center (~1,136 ac, the POTA pin is inside it (different name))
 - **US-11095** DWR Wahweap Warm Water State Fish Hatchery (State Fish Hatchery) → Utah State Department of Wildlife Resources 57 (~264 ac, the POTA pin is inside it (different name))
-- **US-11096** Whiterocks State Fish Hatchery (State Fish Hatchery) → Whiterocks Fish Hatchery (~14 ac, similar name)
 - **US-11097** Mammoth Creek State Fish Hatchery (State Fish Hatchery) → State Trust Lands Hatch Block (~13,911 ac, the POTA pin is inside it (different name))
 - **US-11098** Burning Hills WSA BLM Wilderness Area (Wilderness Area) → National Public Lands (~1,004,450 ac, the POTA pin is inside it (different name))
 - **US-11100** North Escalante Canyons/The Gulch BLM Recreation Management Area (BLM Recreation Management Area) → National Public Lands (~1,004,450 ac, the POTA pin is inside it (different name))

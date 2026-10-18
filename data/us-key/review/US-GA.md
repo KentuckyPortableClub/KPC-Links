@@ -1,6 +1,6 @@
 # GA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 237** parks joined to official land (same name + same kind of place). **0** to check by hand, **56** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **187 of 237** parks joined to official land (same name + same kind of place). **0** to check by hand, **50** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -18,13 +18,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 237** parks joined
 - US-12768 Bowens Mill State Fish Hatchery (State Fish Hatchery)
 - US-12769 Cordele State Fish Hatchery (State Fish Hatchery)
 - US-12770 Richmond Hill State Fish Hatchery (State Fish Hatchery)
-- US-12771 Summerville State Fish Hatchery (State Fish Hatchery)
 - US-12772 Georgia National Fairgrounds State Recreation Area (State Recreation Area)
-- US-2173 F.D. Roosevelt State Park (State Park)
-- US-2180 George T. Bagby State Park (State Park)
 - US-2182 Jack Hill State Park (State Park)
 - US-2187 James H. (Sloppy) Floyd State Park (State Park)
-- US-2188 Laura S. Walker State Park (State Park)
 - US-2199 Smithgall Woods State Park (State Park)
 - US-2200 Okefenokee State Park (State Park)
 - US-3715 Etowah Indian Mounds State Historic Site (State Historic Site)
@@ -32,7 +28,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 237** parks joined
 - US-3724 Roosevelts Little White House State Historic Site (State Historic Site)
 - US-3727 Hart State Park (State Park)
 - US-3729 Rocky Mountain State Recreation Area (State Recreation Area)
-- US-3756 J.L. Lester Wildlife Management Area (Wildlife Management Area)
 - US-3791 Trail of Tears National Historic Trail (National Historic Trail)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4648 Bartram Educational State Forest (State Forest)
@@ -52,7 +47,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 237** parks joined
 - US-7473 DeSoto Falls National Recreation Area (National Recreation Area)
 - US-7838 Gaither Wildlife Management Area (Wildlife Management Area)
 - US-7858 Dames Ferry Campground State Park (State Park)
-- US-7860 Buford Trout Hatchery State Fish Hatchery (State Fish Hatchery)
 - US-7861 Suwannee River Eco-Lodge State Park (State Park)
 - US-7882 Doerun Pitcherplant Bog Wildlife Management Area (Wildlife Management Area)
 - US-7893 Augusta Canal National Heritage Area (National Heritage Area)
@@ -75,7 +69,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 237** parks joined
 - West Point Recreation Area · REC · Mobile · ~22,863 ac
 - Pine Log Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~14,468 ac
 - Rayonier Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~12,443 ac
-- F. D. Roosevelt State Park · SP · Georgia Department of Natural Resources · ~9,995 ac
 - King Tract Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~9,610 ac
 - Little Tybee-Cabbage Island Tract · SCA · Georgia Department of Natural Resources · ~8,985 ac
 - Carters Recreation Area · REC · Mobile · ~8,777 ac
@@ -126,3 +119,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 237** parks joined
 - 133-001 · SCA · Department of Transportation · ~735 ac
 - Fall Line Sandhills Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~733 ac
 - Old Rope Mill Park & Blankets Creek Mountain Bike Trail · LP · Cherokee County · ~690 ac
+- Gordonia-Alatamaha State Park · SP · Georgia Department of Natural Resources · ~684 ac

@@ -1,6 +1,6 @@
 # AR: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **117 of 304** parks joined to official land (same name + same kind of place). **0** to check by hand, **187** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **118 of 304** parks joined to official land (same name + same kind of place). **0** to check by hand, **186** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -118,7 +118,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **117 of 304** parks joined
 - US-7288 Gene Rush Wildlife Management Area (Wildlife Management Area)
 - US-7289 Greers Ferry Wildlife Management Area (Wildlife Management Area)
 - US-7290 Gum Flats Wildlife Management Area (Wildlife Management Area)
-- US-7291 Harold E Alexander Spring River Wildlife Management Area (Wildlife Management Area)
 - US-7293 Hobbs State Park Wildlife Management Area (Wildlife Management Area)
 - US-7297 Jack Mountain Wildlife Management Area (Wildlife Management Area)
 - US-7298 Jamestown Independence County Wildlife Management Area (Wildlife Management Area)
@@ -208,7 +207,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **117 of 304** parks joined
 - Gene Rush/buffalo River · SCA · Unknown · ~17,011 ac
 - Lafayette Wildlife Management Area · SCA · Unknown · ~14,703 ac
 - Madison County · SCA · Unknown · ~14,195 ac
-- Harold Alexander/spring River Wildlife Management Area · SCA · Unknown · ~13,134 ac
 - Gulf Mtn Wildlife Management Area · SCA · Unknown · ~12,308 ac
 - Pine Tree Wildlife Demonstration Area · SCA · Unknown · ~12,238 ac
 - Hobbs State Park / Conservation Management Area · SP · Unknown · ~12,157 ac
@@ -257,3 +255,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **117 of 304** parks joined
 - Murray Park · LP · U S Engineering · ~190 ac
 - Toltec Mounds Archeological State Park · SP · Unknown · ~176 ac
 - Old Davidsonville State Park · SP · Unknown · ~160 ac
+- Toad Suck Ferry Pool Recreation Area · REC · Little Rock · ~153 ac

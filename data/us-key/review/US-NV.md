@@ -1,6 +1,6 @@
 # NV: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **36 of 367** parks joined to official land (same name + same kind of place). **240** to check by hand, **91** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **37 of 367** parks joined to official land (same name + same kind of place). **238** to check by hand, **92** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -155,7 +155,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **36 of 367** parks joined 
 - **US-13369** Potosi Nevada State Historical Monument (State Historical Monument) → Red Rock/Sloan Field Office (~245,885 ac, the POTA pin is inside it (different name))
 - **US-13370** Searchlight Nevada State Historical Monument (State Historical Monument) → Las Vegas Field Office (~2,378,020 ac, the POTA pin is inside it (different name))
 - **US-13408** Toquima Cave State Historical Monument (State Historical Monument) → Mount Lewis Field Office (~4,383,120 ac, the POTA pin is inside it (different name))
-- **US-13409** Belmont Nevada State Historical Monument (State Historical Monument) → Belmont Courthouse State Historical Site (~2 ac, similar name)
 - **US-13412** Silver Peak State Historical Monument (State Historical Monument) → Tonopah Field Office (~6,073,247 ac, the POTA pin is inside it (different name))
 - **US-13414** Button Point State Historic Site (State Historic Site) → Humboldt River Field Office (~6,081,514 ac, the POTA pin is inside it (different name))
 - **US-13415** Nevada Test Site State Historical Monument (State Historical Monument) → Nevada Test Site (~530,691 ac, similar name)
@@ -198,7 +197,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **36 of 367** parks joined 
 - **US-4446** Wild Horse State Recreation Area (State Recreation Area) → Wild Horse Reservoir State Recreation Area (~120 ac, similar name)
 - **US-7494** Red Rock Canyon National Conservation Area (National Conservation Area) → Red Rock/Sloan Field Office (~245,885 ac, the POTA pin is inside it (different name))
 - **US-8303** Sloan Canyon National Conservation Area (National Conservation Area) → Red Rock/Sloan Field Office (~245,885 ac, the POTA pin is inside it (different name))
-- **US-8311** Humboldt State Wildlife Management Area (Wildlife Management Area) → The Humboldt Wildlife Management Area (Humboldt Toulon Wildlife Area) (~8,444 ac, similar name); Humoldt Wildlife Management Area (~27,413 ac, the POTA pin is inside it (different name))
 - **US-9235** Arrow Canyon BLM Wilderness Area (BLM Wilderness Area) → Las Vegas Field Office (~2,378,020 ac, the POTA pin is inside it (different name))
 - **US-9236** Bald Mountain Wilderness Area (Wilderness Area) → Humboldt National Forest (~2,400,994 ac, the POTA pin is inside it (different name))
 - **US-9237** Becky Peak BLM Wilderness Area (BLM Wilderness Area) → Bristlecone Field Office (~5,647,647 ac, the POTA pin is inside it (different name))
@@ -305,6 +303,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **36 of 367** parks joined 
 - US-13405 Kingsbury Grade State Historical Monument (State Historical Monument)
 - US-13406 Luther Canyon (Fay Canyon) State Historical Monument (State Historical Monument)
 - US-13407 Courthouse Site (1865-1907) State Historical Monument (State Historical Monument)
+- US-13409 Belmont Nevada State Historical Monument (State Historical Monument)
 - US-13410 Fort McDermitt State Historical Monument (State Historical Monument)
 - US-13411 Unionville (Pershing County) State Historical Monument (State Historical Monument)
 - US-13413 Chinatown State Historical Monument (State Historical Monument)
@@ -367,8 +366,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **36 of 367** parks joined 
 - Jarbidge Field Office · PUB · BLM · ~44,028 ac
 - Humoldt Wildlife Management Area · NCA · Unknown · ~27,413 ac
 - Robert B. Griffith Water Project · FOTH · Unknown · ~10,537 ac
-- The Humboldt Wildlife Management Area (Humboldt Toulon Wildlife Area) · PCON · Nevada Department of Wildlife (NDOW) · ~9,479 ac
-- The Humboldt Wildlife Management Area (Humboldt Toulon Wildlife Area) · SCA · Nevada Department of Wildlife (NDOW) · ~8,444 ac
 - Bruneau Field Office · PUB · BLM · ~7,868 ac
 - Snowstorm Wildlife Management Unit · SCA · Nevada Department of Wildlife (NDOW) · ~7,248 ac
 - Stillwater Wildlife Management Area · SCA · Nevada Department of Wildlife (NDOW) · ~5,979 ac
@@ -390,7 +387,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **36 of 367** parks joined 
 - Applegate Field Office · PUB · BLM · ~957 ac
 - Black Rock Field Office · PUB · BLM · ~658 ac
 - Marble Bluff Fish Research & Control Station · FOTH · MARBLE BLUFF FISH RESEARCH & CONTROL STATION · ~647 ac
-- The Humboldt Wildlife Management Area (Humboldt Toulon Wildlife Area) · PCON · Nevada Department of Wildlife (NDOW) · ~628 ac
 - Hd Summit 2 · SOTH · Nevada Department of Wildlife · ~571 ac
 - Ward Charcoal Ovens State Historic Park · SHCA · Unknown · ~564 ac
 - Lake Tahoe Nevada State Park · SP · Nevada State Parks · ~557 ac
@@ -401,3 +397,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **36 of 367** parks joined 
 - Nye County Grant Lands · SRMA · State of Nevada · ~423 ac
 - Barstow Field Office · PUB · BLM · ~334 ac
 - Tule Springs Archaeology Site · SHCA · Nevada State Parks · ~324 ac
+- University Of Nevada - Las Vegas · SOTH · Unknown · ~297 ac
+- Truckee Storage · FOTH · Unknown · ~281 ac
+- Anaho Island National Wildlife Refuge · NWR · Anaho Island National Wildlife Refuge · ~251 ac

@@ -1,12 +1,12 @@
 # ID: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 361** parks joined to official land (same name + same kind of place). **161** to check by hand, **121** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 361** parks joined to official land (same name + same kind of place). **156** to check by hand, **119** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0664** City of Rocks Reserve National Conservation Area (National Conservation Area) → City of Rocks National Reserve (~10,102 ac, similar name)
 - **US-0890** Salmon National Wild and Scenic River (National Wild and Scenic River) → Nezperce National Forest (~2,109,873 ac, the POTA pin is inside it (different name))
-- **US-10005** Steck Park BLM Recreation Management Area (BLM Recreation Management Area) → Steck Park Access Site (~60 ac, the POTA pin is inside it (different name))
+- **US-10005** Steck Park BLM Recreation Management Area (BLM Recreation Management Area) → Steck Park Access Site (~60 ac, similar name)
 - **US-10006** Idaho Centennial Trail State Trail (State Trail) → Jarbidge Field Office (~1,321,755 ac, the POTA pin is inside it (different name))
 - **US-10070** Menan Buttes (BLM) Natural Monument (Natural Monument) → Upper Snake Field Office (~1,813,172 ac, the POTA pin is inside it (different name))
 - **US-10071** Hell's Half Acre (BLM) Natural Monument (Natural Monument) → Upper Snake Field Office (~1,813,172 ac, the POTA pin is inside it (different name))
@@ -33,16 +33,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 361** parks joined 
 - **US-10427** Thomas Creek Airstrip State Recreation Area (State Recreation Area) → Boise National Forest (~336,671 ac, the POTA pin is inside it (different name))
 - **US-10429** Middle Fork Clearwater River National Wild & Scenic River (National Wild & Scenic River) → Nezperce National Forest (~2,109,873 ac, the POTA pin is inside it (different name))
 - **US-10430** St Joe River National Wild and Scenic River (National Wild and Scenic River) → St. Joe National Forest (~724,439 ac, similar name)
-- **US-10432** Clearwater State Fish Hatchery (State Fish Hatchery) → Clearwater National Forest (~1,682,090 ac, similar name); Clearwater Fish Hatchery (~18 ac, similar name); Clearwater Fish Hatchery (~18 ac, similar name)
-- **US-10434** McCall State Fish Hatchery (State Fish Hatchery) → Mccall Fish Hatchery (~8 ac, similar name); Mccall Fish Hatchery (~8 ac, similar name)
+- **US-10433** Eagle State Fish Hatchery (State Fish Hatchery) → Eagle Fish Health Laboratory (~1 ac, similar name); Eagle Fish Health Laboratory (~1 ac, similar name)
 - **US-10435** Nampa State Fish Hatchery (State Fish Hatchery) → Nampa Hatchery (~11 ac, similar name)
 - **US-10436** Hayspur State Fish Hatchery (State Fish Hatchery) → Hayspur Hatchery (~113 ac, similar name)
-- **US-10437** Magic Valley State Fish Hatchery (State Fish Hatchery) → Magic Valley Hatchery (~25 ac, similar name); Magic Valley Fish Hatchery (~25 ac, similar name)
 - **US-10438** American Falls State Fish Hatchery (State Fish Hatchery) → American Falls Hatchery (~102 ac, similar name); American Falls Hatchery (~6 ac, similar name)
 - **US-10439** Grace State Fish Hatchery (State Fish Hatchery) → Grace Hatchery (~17 ac, similar name); Grace Hatchery (~1 ac, similar name)
 - **US-10440** Henrys Lake State Fish Hatchery (State Fish Hatchery) → Henrys Lake Hatchery (~3 ac, similar name); Henrys Lake Hatchery (~1 ac, similar name)
+- **US-10441** Springfield State Fish Hatchery (State Fish Hatchery) → Springfield Hatchery & Fishing Access Site (~73 ac, similar name); Springfield Hatchery & Fishing Access Site (~2 ac, similar name)
 - **US-10442** Mackay State Fish Hatchery (State Fish Hatchery) → Mackay Hatchery (~40 ac, similar name); Challis Field Office (~792,074 ac, the POTA pin is inside it (different name))
-- **US-10443** Sawtooth State Fish Hatchery (State Fish Hatchery) → Sawtooth National Forest (~1,626,534 ac, similar name); Sawtooth Fish Hatchery (~72 ac, similar name); Sawtooth Fish Hatchery (~72 ac, similar name)
 - **US-10445** Dworshak National Fish Hatchery (National Fish Hatchery) → Clearwater Fish Hatchery (~18 ac, similar name); Clearwater Fish Hatchery (~18 ac, similar name)
 - **US-10536** Roswell Marsh Wildlife Habitat Area Habitat Protection Area (Habitat Protection Area) → Roswell Marsh Wildlife Habitat Area (~556 ac, similar name); Roswell Marsh Wildlife Habitat Area (~151 ac, similar name)
 - **US-10657** Milner Historic Recreation Area BLM Historic Area (BLM Historic Area) → Burley Field Office (~834,935 ac, the POTA pin is inside it (different name))
@@ -54,7 +52,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 361** parks joined 
 - **US-11250** Thorn Creek Reservoir BLM Recreation Management Area (BLM Recreation Management Area) → Shoshone Field Office (~1,723,598 ac, the POTA pin is inside it (different name))
 - **US-11252** GrasmereReservoir State Fishing Lake (State Fishing Lake) → Bruneau Field Office (~1,448,603 ac, the POTA pin is inside it (different name))
 - **US-11255** Weiser Dunes Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → Four Rivers Field Office (~1,255,575 ac, the POTA pin is inside it (different name))
-- **US-11258** Mormon Reservoir State Fishing Lake (State Fishing Lake) → Shoshone Field Office (~1,723,598 ac, the POTA pin is inside it (different name))
 - **US-11259** Silver City Recreation Area BLM Recreation Management Area (BLM Recreation Management Area) → Owyhee Field Office (~1,259,662 ac, the POTA pin is inside it (different name))
 - **US-11260** North Fork Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → Owyhee Field Office (~1,259,662 ac, the POTA pin is inside it (different name))
 - **US-11261** Big Cottonwood BLM Recreation Management Area (BLM Recreation Management Area) → Jarbidge Field Office (~1,321,755 ac, the POTA pin is inside it (different name))
@@ -99,7 +96,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 361** parks joined 
 - **US-11464** Blacks Creek Reservoir State Fishing Lake (State Fishing Lake) → Blacks Creek Rifle Range (~61 ac, similar name); Four Rivers Field Office (~1,255,575 ac, the POTA pin is inside it (different name))
 - **US-11517** American Falls Reservoir State Fishing Lake (State Fishing Lake) → American Falls Hatchery (~102 ac, similar name); American Falls Hatchery (~6 ac, similar name)
 - **US-11526** Deyo Reservoir State Fishing Lake (State Fishing Lake) → Deyo Pond Access Site (~91 ac, the POTA pin is inside it (different name))
-- **US-11527** Foster Reservoir State Fishing Lake (State Fishing Lake) → Foster Reservoir Access Site (~3 ac, similar name)
 - **US-11528** Tripod Reservoir State Fishing Lake (State Fishing Lake) → Idaho Department of Lands (~1,982,653 ac, the POTA pin is inside it (different name))
 - **US-11530** Hells Canyon Reservoir State Fishing Lake (State Fishing Lake) → Payette National Forest (~2,287,258 ac, the POTA pin is inside it (different name))
 - **US-11538** Moose Creek Reservoir State Fishing Lake (State Fishing Lake) → Idaho Department of Lands (~58,529 ac, the POTA pin is inside it (different name))
@@ -110,12 +106,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 361** parks joined 
 - **US-12112** Little Payette Lake State Fishing Lake (State Fishing Lake) → Payette National Forest (~2,287,258 ac, similar name)
 - **US-12155** Blue Creek Bay BLM Recreation Management Area (BLM Recreation Management Area) → Coeur D'Alene Field Office (~99,793 ac, the POTA pin is inside it (different name))
 - **US-12157** Poison Creek Picnic Area BLM Recreation Management Area (BLM Recreation Management Area) → Bruneau Field Office (~1,448,603 ac, the POTA pin is inside it (different name))
-- **US-12174** Jim Moore Pond State Fishing Lake (State Fishing Lake) → Jim Moore Access Site (~52 ac, similar name)
 - **US-12180** Owyhee Front BLM Recreation Management Area (BLM Recreation Management Area) → Owyhee Field Office (~1,259,662 ac, the POTA pin is inside it (different name))
 - **US-12210** Jump Creek Falls BLM Scenic Site (Scenic Site) → Owyhee Field Office (~1,259,662 ac, the POTA pin is inside it (different name))
 - **US-12211** Bruneau Canyon Scenic Overlook BLM Scenic Site (Scenic Site) → Jarbidge Field Office (~1,321,755 ac, the POTA pin is inside it (different name))
 - **US-12212** Black Magic Canyon BLM Scenic Site (Scenic Site) → Shoshone Field Office (~1,723,598 ac, the POTA pin is inside it (different name))
-- **US-12214** Claytonia Pond Wildlife Area (Wildlife Area) → Claytonia Pond Access Site (~36 ac, similar name)
+- **US-12214** Claytonia Pond Wildlife Area (Wildlife Area) → Claytonia Pond Access Site (~36 ac, same name, different kind of place)
 - **US-12219** Juniper Grove Campground BLM Recreation Management Area (BLM Recreation Management Area) → Jarbidge Field Office (~1,321,755 ac, the POTA pin is inside it (different name))
 - **US-12220** The Forks Campground BLM Recreation Management Area (BLM Recreation Management Area) → Jarbidge Field Office (~1,321,755 ac, the POTA pin is inside it (different name))
 - **US-12221** Lud Drexler Park BLM Recreation Management Area (BLM Recreation Management Area) → Burley Field Office (~834,935 ac, the POTA pin is inside it (different name))
@@ -123,9 +118,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 361** parks joined 
 - **US-12227** Crane Falls Lake State Fishing Lake (State Fishing Lake) → C.J. Strike Wildlife Management Area (~119 ac, the POTA pin is inside it (different name))
 - **US-12228** Cove Arm Lake State Fishing Lake (State Fishing Lake) → Four Rivers Field Office (~1,255,575 ac, the POTA pin is inside it (different name))
 - **US-12229** Blackwell Island Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → Coeur D'Alene Field Office (~99,793 ac, the POTA pin is inside it (different name))
-- **US-12231** Portneuf Gap River Access BLM Recreation Management Area (BLM Recreation Management Area) → Portneuf (Lower) Access Site (~53 ac, similar name)
 - **US-12290** Skookumchuck Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → Cottonwood Field Office (~131,336 ac, the POTA pin is inside it (different name))
-- **US-12301** Hayden Lake Sportsman's Park State Fish and Wildlife Area (State Fish and Wildlife Area) → Hayden Lake Sportsman's Park Access Site (~11 ac, similar name); Hayden Lake Sportsman's Park Access Site (~0 ac, similar name); Hayden Lake Sportsman's Park Access Site (~0 ac, similar name); Hayden Lake Sportsman's Park Access Site (~0 ac, similar name); Hayden Lake Sportsman's Park Access Site (~0 ac, similar name)
+- **US-12301** Hayden Lake Sportsman's Park State Fish and Wildlife Area (State Fish and Wildlife Area) → Hayden Lake Sportsman's Park Access Site (~11 ac, same name, different kind of place); Hayden Lake Sportsman's Park Access Site (~0 ac, same name, different kind of place); Hayden Lake Sportsman's Park Access Site (~0 ac, same name, different kind of place); Hayden Lake Sportsman's Park Access Site (~0 ac, same name, different kind of place); Hayden Lake Sportsman's Park Access Site (~0 ac, same name, different kind of place)
+- **US-12303** Wilson Springs Pond Complex State Fishing Lake (State Fishing Lake) → Wilson Springs Access Site (~40 ac, similar name); Wilson Springs Access Site (~15 ac, similar name)
 - **US-12363** Jackass Flats BLM Recreation Management Area (BLM Recreation Management Area) → Cottonwood Field Office (~131,336 ac, the POTA pin is inside it (different name))
 - **US-12364** Blackhawk Bar BLM Recreation Management Area (BLM Recreation Management Area) → Cottonwood Field Office (~131,336 ac, the POTA pin is inside it (different name))
 - **US-13107** Borah Earthquake Interpretive Site BLM Interpretive Site (BLM Interpretive Site) → Challis National Forest (~2,197,868 ac, the POTA pin is inside it (different name))
@@ -174,8 +169,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 361** parks joined 
 - US-10420 Pioneer Historic National Scenic Byway National Parkway (National Parkway)
 - US-10421 International Selkirk Loop National Scenic Byway National Parkway (National Parkway)
 - US-10431 Cabinet Gorge State Fish Hatchery (State Fish Hatchery)
-- US-10433 Eagle State Fish Hatchery (State Fish Hatchery)
-- US-10441 Springfield State Fish Hatchery (State Fish Hatchery)
 - US-11251 Magic Reservoir BLM Recreation Management Area (BLM Recreation Management Area)
 - US-11253 Fish Creek Reservoir BLM Recreation Management Area (BLM Recreation Management Area)
 - US-11254 Silver Creek North and South BLM Recreation Management Area (BLM Recreation Management Area)
@@ -243,6 +236,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 361** parks joined 
 - US-12224 Bruneau River Access BLM Wild and Scenic River (BLM Wild and Scenic River)
 - US-12226 Bruneau Arm Reservoir State Fishing Lake (State Fishing Lake)
 - US-12230 South Fork Snake River Access State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-12231 Portneuf Gap River Access BLM Recreation Management Area (BLM Recreation Management Area)
 - US-12232 Horseshoe Bend Mill Pond State Fishing Lake (State Fishing Lake)
 - US-12233 CJ Strike Reservoir State Fishing Lake (State Fishing Lake)
 - US-12289 Old Lucile Recreation Site BLM Recreation Management Area (BLM Recreation Management Area)
@@ -252,7 +246,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 361** parks joined 
 - US-12299 Mineral Ridge Scenic Area BLM Recreation Management Area (BLM Recreation Management Area)
 - US-12300 Cougar Bay Preserve BLM Recreation Management Area (BLM Recreation Management Area)
 - US-12302 Sun Peak Picnic Area BLM Recreation Management Area (BLM Recreation Management Area)
-- US-12303 Wilson Springs Pond Complex State Fishing Lake (State Fishing Lake)
 - US-12349 Owyhee Uplands Back Country Byway National Parkway (National Parkway)
 - US-12379 Harpers Bend Recreation Site BLM Recreation Management Area (BLM Recreation Management Area)
 - US-12622 Blackrock Canyon Recreation Site BLM Recreation Management Area (BLM Recreation Management Area)
@@ -333,8 +326,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 361** parks joined 
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~2,218 ac
 - Oxford Slough Waterfowl Production Area · RMA · OXFORD SLOUGH WATERFOWL PRODUCTION AREA · ~1,865 ac
 - Oxford Slough Waterfowl Production Area · RMA · Oxford Slough Waterfowl Production Area · ~1,865 ac
-- C. J. Strike Wildlife Management Area · NCA · C. J. STRIKE WILDLIFE MANAGEMENT AREA · ~1,549 ac
-- C. J. Strike Wildlife Management Area · NCA · C. J. Strike Wildlife Management Area · ~1,549 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~1,523 ac
 - Minidoka Project - American Falls Reservoir · RMA · Unknown · ~1,314 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~1,289 ac
@@ -352,3 +343,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 361** parks joined 
 - Chamberlain Basin Backcountry Ranches · SCA · Idaho Department of Fish and Game · ~407 ac
 - South Fork Clearwater River Wildlife Habitat Area · SCA · Idaho Department of Fish and Game · ~375 ac
 - Lolo National Forest · NF · Forest Service Region 01 Northern · ~369 ac
+- Elk Creek Reservoir Access Site · SREC · Idaho Department of Fish and Game · ~365 ac
+- Cougar Bar Purchase Unit · NF · Forest Service Region 06 Pacific Northwest · ~363 ac

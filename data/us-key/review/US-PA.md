@@ -1,6 +1,6 @@
 # PA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **155 of 494** parks joined to official land (same name + same kind of place). **0** to check by hand, **339** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **156 of 494** parks joined to official land (same name + same kind of place). **0** to check by hand, **338** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -42,7 +42,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **155 of 494** parks joined
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
 - US-6432 Washington Crossing State Historical Park (State Historical Park)
-- US-6433 White Clay Creek State Preserve (State Preserve)
 - US-8722 PA 012 State Game Land (State Game Land)
 - US-8723 PA 013 State Game Land (State Game Land)
 - US-8724 PA 014 State Game Land (State Game Land)
