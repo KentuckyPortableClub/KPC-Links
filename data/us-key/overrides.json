@@ -66,6 +66,79 @@
     "Powhatan Courthouse State Park"
    ],
    "why": "different park"
+  },
+  "US-7468": {
+   "join": [
+    "McDuffie Public Fishing Area & Hatchery"
+   ],
+   "why": "Oct 18 review: same place"
+  },
+  "US-9192": {
+   "join": [
+    "Henderson Heritage Preserve / Wildlife Management Area"
+   ],
+   "why": "Oct 18 review: same place"
+  },
+  "US-9209": {
+   "join": [
+    "Ashmore Heritage Preserve / Wildlife Management Area"
+   ],
+   "why": "Oct 18 review: same place"
+  },
+  "US-1658": {
+   "join": [
+    "Connecticut Valley Railroad State Park Trail"
+   ],
+   "why": "Oct 18 review: same place"
+  },
+  "US-12402": {
+   "join": [
+    "Rocky Ford"
+   ],
+   "why": "Oct 18 review: same place"
+  },
+  "US-13346": {
+   "join": [
+    "Voights Creek FH"
+   ],
+   "why": "Oct 18 review: same place"
+  },
+  "US-10027": {
+   "join": [
+    "Millican Valley OHV Trail System"
+   ],
+   "why": "Oct 18 review: same place"
+  },
+  "US-10356": {
+   "join": [
+    "Mountain of the Rogue"
+   ],
+   "why": "Oct 18 review: same place"
+  },
+  "US-11996": {
+   "join": [
+    "Adams Mill Public Access Site/Public Fishing Area"
+   ],
+   "why": "Oct 18 review: same place"
+  },
+  "US-8437": {
+   "join": [
+    "Kennebec Highlands"
+   ],
+   "why": "Oct 18 review: same place"
+  },
+  "US-11530": {
+   "no": [
+    "Hells Canyon Wilderness"
+   ],
+   "why": "Oct 18 review: the reservoir is not the wilderness"
+  },
+  "US-5852": {
+   "no": [
+    "Mexican Mountain"
+   ],
+   "site": true,
+   "why": "Oct 18 review: an airstrip, not the study area"
   }
  }
 }
