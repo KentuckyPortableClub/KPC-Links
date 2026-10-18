@@ -18,11 +18,18 @@
    "county": "Ballard",
    "points": [
     {
+     "la": 37.169117,
+     "lo": -89.068913,
+     "q": "A",
+     "what": "Park on the shore here (KPC field check)",
+     "note": "Brandon KZ4CP checked this spot: park here and walk a little to your right to the water. The Ohio River level changes: at high water parts of this shore flood, and at normal pool the water can be farther out. You must be inside Ballard WMA and within 100 ft of the water."
+    },
+    {
      "la": 37.1918,
      "lo": -89.03754,
      "q": "C",
      "what": "Riverbank area (approximate)",
-     "note": "Pin is on the river side of the park in our map data, not checked against the water line. Walk to the water and set up inside the park within 100 ft of the water."
+     "note": "Pin is on the river side of the park in our map data, not checked against the water line. Walk to the water and set up inside the park within 100 ft of the water. (Older map pin; use the field-checked spot above.)"
     },
     {
      "la": 37.18213,
@@ -2185,7 +2192,8 @@
   "Lewis & Clark auto tour route: checked the NPS route for all of Kentucky. It runs along the edges of Big Bone Lick, Wickliffe Mounds, Otter Creek, Yellowbank WMA and Livingston County WMA; each now has a pin inside the park next to the signed route, and Livingston County WMA is a new possible Lewis & Clark 2-fer.",
   "Added US-0608 Ohio River Islands National Wildlife Refuge (Manchester islands, Lewis County, boat only) as a possible Lewis & Clark 2-fer.",
   "Sheltowee Trace + Big South Fork NRA: added the Yamacraw trail spot (KY 92 bridge, 36.725318, -84.543018, suggested by KZ4CP) and the KDFWR Yamacraw river access parking. Checked: not a 3-fer, the Big South Fork Wild River (US-10107) runs only from the Tennessee line to Blue Heron (POTA park notes and KY GIS).",
-  "Oct 17, 2026: Pins rechecked (Brandon: make sure they are in the overlap, as close as they can be to an access point): 31 spots updated; every overlap and trail pin is at least 100 ft inside every park line and as close as possible to parking, a trailhead or the trail crossing on file."
+  "Oct 17, 2026: Pins rechecked (Brandon: make sure they are in the overlap, as close as they can be to an access point): 31 spots updated; every overlap and trail pin is at least 100 ft inside every park line and as close as possible to parking, a trailhead or the trail crossing on file.",
+  "Oct 18, 2026: Ballard WMA 3-fer (Lewis & Clark + Trail of Tears on the Ohio): Brandon KZ4CP's field-checked shore spot 37.169117, -89.068913 added as the first pin (park on the shore, walk right a little to the water; the shore floods at times)."
  ],
  "trips": [
   {
