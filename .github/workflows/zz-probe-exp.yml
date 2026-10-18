@@ -6,20 +6,16 @@ jobs:
     steps:
       - run: |
           python3 - <<'PY'
-          import json,urllib.request,re
+          import json,urllib.request,urllib.parse,collections
           def g(u):
               return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=90).read())
-          I='6b260e7012e94623970589ce28813e0c'; S='https://www.arcgis.com/sharing/rest/content/items/'
-          it=g(S+I+'?f=json'); print('::notice title=item::'+json.dumps({k:it.get(k) for k in ('title','owner','orgId','snippet','type','access')}))
-          d=g(S+I+'/data?f=json'); txt=json.dumps(d)
-          urls=sorted(set(re.findall(r'https?://[^"\\]+(?:MapServer|FeatureServer)[^"\\]*',txt)))
-          ids=sorted(set(re.findall(r'"itemId": ?"([0-9a-f]{32})"',txt)))
-          print('::notice title=services::'+' | '.join(urls)[:3500])
-          for i in ids[:12]:
-              try:
-                  x=g(S+i+'?f=json'); print('::notice title=item '+i+'::'+json.dumps({k:x.get(k) for k in ('title','type','owner','url')})[:400])
-                  if x.get('type') in ('Web Map',):
-                      w=g(S+i+'/data?f=json'); ls=[(l.get('title'),l.get('url')) for l in w.get('operationalLayers',[])]
-                      print('::notice title=webmap layers::'+json.dumps(ls)[:3500])
-              except Exception as e: print('::notice title=err::'+str(e))
+          for B in ['https://services5.arcgis.com/RMHPuOW5MJ6iyTV6/arcgis/rest/services/WMA_Management_Public_View/FeatureServer','https://services5.arcgis.com/RMHPuOW5MJ6iyTV6/arcgis/rest/services/public_hunting_areas_service/FeatureServer']:
+              root=g(B+'?f=json')
+              for l in root.get('layers',[]):
+                  i=g(f"{B}/{l['id']}?f=json"); f=[x['name'] for x in i.get('fields',[])]
+                  c=g(f"{B}/{l['id']}/query?where=1%3D1&returnCountOnly=true&f=json").get('count')
+                  rows=[x['attributes'] for x in g(f"{B}/{l['id']}/query?"+urllib.parse.urlencode({'where':'1=1','outFields':'*','returnGeometry':'false','resultRecordCount':2000,'f':'json'})).get('features',[])]
+                  tf=[k for k in f if any(w in k.upper() for w in ('TYPE','CAT','FEAT','CLASS','NAME','ASSET','INFRA'))][:4]
+                  cnt={k:collections.Counter(str(r.get(k)) for r in rows).most_common(15) for k in tf}
+                  print(f"::notice title={B.split('/')[-2]} {l['id']} {l['name']} ({i.get('geometryType')}) n={c}::fields={f[:30]} | "+json.dumps(cnt)[:2500])
           PY
