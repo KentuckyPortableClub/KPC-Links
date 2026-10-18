@@ -111,14 +111,15 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
   function pin(map, opts) {
     let m = null;
     const ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    map.on('click', e => {
+    const EV = (opts && opts.on) || 'click';   /* Oct 17: Park Control drops pins on long-press / right-click only ('contextmenu') */
+    map.on(EV, e => {
       if (opts && opts.skip && opts.skip(e)) return;
       const la = e.latlng.lat.toFixed(6), lo = e.latlng.lng.toFixed(6);
       if (m) m.remove();
       const dir = ios ? `https://maps.apple.com/?daddr=${la},${lo}` : `https://www.google.com/maps/dir/?api=1&destination=${la},${lo}`;
       const html = `<div class="kpin-pop"><b>Dropped pin</b>${la}, ${lo}<a class="g" href="${dir}" target="_blank" rel="noopener">DIRECTIONS (MAP APP) ↗</a><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${la},${lo}" target="_blank" rel="noopener">STREET VIEW ↗</a>${ios ? `<a href="https://www.google.com/maps/dir/?api=1&destination=${la},${lo}" target="_blank" rel="noopener">GOOGLE MAPS ↗</a>` : ''}<button type="button" data-copy="${la}, ${lo}">COPY GPS</button><button type="button" data-rm="1">REMOVE PIN</button></div>`;
       m = L.marker(e.latlng, { draggable: true }).addTo(map).bindPopup(opts && opts.extra ? html.replace(/<\/div>$/, opts.extra(la, lo) + '</div>') : html).openPopup();
-      m.on('dragend', () => { const p = m.getLatLng(); m.remove(); m = null; map.fire('click', { latlng: p }); });
+      m.on('dragend', () => { const p = m.getLatLng(); m.remove(); m = null; map.fire(EV, { latlng: p }); });
     });
     map.on('popupopen', ev => {
       const el = ev.popup.getElement(); if (!el) return;
