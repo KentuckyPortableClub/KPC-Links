@@ -121,6 +121,7 @@ function kyExtras(d,kp,links,card){
  const dest=(la,lo)=>`https://www.google.com/maps/dir/?api=1&destination=${la},${lo}&travelmode=driving`;
  let aps=(d[0]==='POTA'&&kp&&Array.isArray(kp.ap))?kp.ap.filter(a=>Number.isFinite(Number(a[0]))&&Number.isFinite(Number(a[1]))):[];
  if(aps.length&&center)aps=aps.slice().sort((a,b)=>miles(center[0],center[1],a[0],a[1])-miles(center[0],center[1],b[0],b[1]));
+ aps=aps.filter(a=>/KPC field check/i.test(a[2]||'')).concat(aps.filter(a=>!/KPC field check/i.test(a[2]||'')));
  const cnt={},tot={};aps.forEach(a=>{const k=String(a[2]||'access point').trim();tot[k]=(tot[k]||0)+1});const nm=a=>{const k=String(a[2]||'access point').replace(/\s+/g,' ').trim().slice(0,32),kk=String(a[2]||'access point').trim();if(tot[kk]>1){cnt[kk]=(cnt[kk]||0)+1;return k+' #'+cnt[kk]}return k};
  if(aps.length){links.append(link('Directions: '+nm(aps[0]),dest(aps[0][0],aps[0][1])));if(Math.abs(aps[0][0]-d[3])>.002||Math.abs(aps[0][1]-d[4])>.002)links.append(link('Directions: park center',dest(d[3],d[4])))}
  else links.append(link('Directions',dest(d[3],d[4])));
