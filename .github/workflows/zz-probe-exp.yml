@@ -1,0 +1,29 @@
+name: zz probe ky hunting live
+on: workflow_dispatch
+permissions: { contents: write }
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir out && cd out
+          python3 - <<'P'
+          import urllib.request,urllib.parse,json
+          H={'User-Agent':'Mozilla/5.0'}
+          def get(base,where='1=1'):
+            feats=[];off=0
+            while True:
+              u=base+'/query?'+urllib.parse.urlencode({'where':where,'outFields':'*','returnGeometry':'true','outSR':4326,'f':'geojson','resultOffset':off,'resultRecordCount':500,'maxAllowableOffset':0.0001})
+              j=json.loads(urllib.request.urlopen(urllib.request.Request(u,headers=H),timeout=120).read())
+              f=j.get('features',[]); feats+=f
+              if len(f)<500: break
+              off+=500
+            return feats
+          for nm,base in (('kdfwr3','https://services5.arcgis.com/RMHPuOW5MJ6iyTV6/arcgis/rest/services/public_hunting_areas_service/FeatureServer/3'),):
+            try:
+              f=get(base); json.dump({'type':'FeatureCollection','features':f},open(nm+'.geojson','w'))
+              print(f"::notice title={nm}::{len(f)} {list((f[0]['properties'] if f else {}).keys())}")
+            except Exception as e: print(f"::notice title={nm} err::{e}")
+          P
+          git init -q; git config user.email a@b; git config user.name bot
+          git add . && git commit -qm t && git push -qf https://x-access-token:${{ github.token }}@github.com/${{ github.repository }} HEAD:zz-padus
