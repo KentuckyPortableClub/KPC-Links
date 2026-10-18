@@ -163,3 +163,12 @@ html.f8-open,html.f8-open body{overflow:hidden}
 .f8 .dg-only-hell{display:none!important}.f8[data-m=hell] .dg-only-hell{display:inline-flex!important}.f8[data-m=hell] div.dg-only-hell{display:block!important}
 .f8[data-m=hell] .dg-kb label.ck{display:none}
 .f8 .dg-hell canvas{width:100%;height:auto;max-height:46vh;display:block;background:#0b0d10;border:1px solid #2b3036;border-radius:8px;image-rendering:pixelated}
+/* Oct 18: my-dial tune row (tap the dial; always shown in CW) + audio picker in the start box */
+.f8 .f8-dial{cursor:pointer}.f8 .f8-dial.ov{color:#ffd56b;border-color:#6b5520}
+.f8 .f8-tunr{display:none;flex-wrap:wrap;align-items:center;gap:5px;margin:6px 0;padding:6px 8px;border:1px solid #1d3d2a;border-radius:8px;background:#06110b}
+.f8 .f8-tunr.open,.f8[data-m=cw] .f8-tunr{display:flex}
+.f8 .f8-tunr>span{font:800 11px system-ui;letter-spacing:1px;color:#9fd8b4}
+.f8 .f8-tunr input{width:9.5em;font:800 16px monospace;padding:4px 6px;border-radius:6px;border:1px solid #2c5a3e;background:#020403;color:#7dffb1}
+.f8 .f8-tunr small{flex-basis:100%;color:#9fb8a8;font-size:11px}
+.f8 .f8-in0{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px;font:800 11px system-ui;letter-spacing:1px}
+.f8 .f8-in0 select{max-width:100%;font-size:14px;padding:4px}

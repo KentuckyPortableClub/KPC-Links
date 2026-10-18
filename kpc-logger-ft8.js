@@ -32,7 +32,12 @@
   const S = Object.assign({ mode: 'FT8', band: '20m', inDev: '', outDev: '', ptt: 'vox', txHz: 1500, rxHz: 1500, hold: true, auto: true, first: true, even: true, keepCq: false, cqw: 'POTA', lvl: 0.3, deep: false, wd: 2, cwHz: 600, cwWpm: 20, cwVia: 'cat', cwBw: 'auto', cwMac: null, aPark: true, aState: false, aGrid: false, watch: '', mm: 'hear' }, get('kpcFt8', {}));
   const saveS = () => put('kpcFt8', S);
   const slotLen = () => S.mode === 'FT4' ? 7.5 : 15;
-  const dialK = () => (DIAL[S.mode] || DIAL.FT8)[S.band] || DIAL.FT8['20m'];
+  const stdK = () => (DIAL[S.mode] || DIAL.FT8)[S.band] || DIAL.FT8['20m'];
+  /* Oct 18 (Brandon: 'cw decoder no way to change frequency'): your own dial per mode + band (S.ov), set by the tune row or read from the radio's knob */
+  const ovKey = () => S.mode + '|' + S.band;
+  const dialK = () => (S.ov && S.ov[ovKey()]) || stdK();
+  const BANDR = [['160m', 1800, 2000], ['80m', 3500, 4000], ['60m', 5330, 5410], ['40m', 7000, 7300], ['30m', 10100, 10150], ['20m', 14000, 14350], ['17m', 18068, 18168], ['15m', 21000, 21450], ['12m', 24890, 24990], ['10m', 28000, 29700], ['6m', 50000, 54000], ['2m', 144000, 148000]];
+  const bandOfK = k => { const b = BANDR.find(r => k >= r[1] && k <= r[2]); return b ? b[0] : null; };
   const nowS = () => Date.now() / 1000;
   const utc = (t, sec) => { const d = new Date(t * 1000); const p = n => String(n).padStart(2, '0'); return p(d.getUTCHours()) + p(d.getUTCMinutes()) + (sec ? p(d.getUTCSeconds()) : ''); };
   const clean = c => String(c || '').replace(/[<>]/g, '').toUpperCase();
@@ -51,7 +56,8 @@
     <span class="f8-clk"><b id="f8Utc">--:--:--</b><i class="f8-slot"><i id="f8SlotBar"></i></i></span>
     <span class="f8-st" id="f8St">OFF</span>
   </div>
-  <div class="f8-startbox" id="f8StartBox"><button type="button" class="f8-go" id="f8Start">🎧 START LISTENING</button><span>Plug your radio's audio into this phone or computer (USB sound card / Digirig / the radio's USB), then press START. The browser asks to use the "microphone": pick the radio's audio.</span></div>
+  <div class="f8-tunr" id="f8TuneR"><span>MY DIAL</span><button type="button" class="f8-b" data-f8st="-1">−1</button><button type="button" class="f8-b" data-f8st="-0.1">−.1</button><input id="f8Khz" inputmode="decimal" aria-label="Dial frequency in kHz" placeholder="kHz"><b>kHz</b><button type="button" class="f8-b" data-f8st="0.1">+.1</button><button type="button" class="f8-b" data-f8st="1">+1</button><button type="button" class="f8-b" id="f8Std" title="Back to the usual frequency for this mode and band">↺ USUAL</button><small id="f8TuneT">Type a frequency, or turn the radio's knob (CAT connected) and it follows.</small></div>
+  <div class="f8-startbox" id="f8StartBox"><button type="button" class="f8-go" id="f8Start">🎧 START LISTENING</button><span>Plug your radio's audio into this phone or computer (USB sound card / Digirig / the radio's USB), then press START. The browser asks to use the "microphone": that is how the radio's audio comes in.<label class="f8-in0">RADIO AUDIO IN <select id="f8In0"><option value="">Default input</option></select></label></span></div>
   <div class="f8-wfw"><canvas id="f8Wf" height="150"></canvas><canvas id="f8Scale" height="18"></canvas></div>
   <section class="cw-pane" id="cwPane" aria-label="CW decoder and keyboard">
     <div class="cw-top"><b>CW</b> <span>PITCH <b id="cwHzT">600</b> Hz</span><span>SPEED <b id="cwWpmT">--</b> WPM</span><span>SIGNAL <b id="cwSnT">--</b></span>
@@ -115,10 +121,26 @@
   <div class="f8-note" id="f8Note" hidden></div>`;
 
   /* band + mode controls */
-  function bandOpts() { $('f8Band').innerHTML = Object.keys(DIAL[S.mode]).map(b => `<option${b === S.band ? ' selected' : ''}>${b}</option>`).join(''); if (!DIAL[S.mode][S.band]) { S.band = '20m'; $('f8Band').value = '20m'; } }
-  function showDial() { const k = dialK(); $('f8Dial').textContent = (k / 1000).toFixed(6).replace(/(\.\d{3})(\d{3})$/, '$1 $2'); document.querySelectorAll('[data-f8m]').forEach(b => { b.classList.toggle('on', b.dataset.f8m === S.mode); if (b.dataset.f8m === S.mode && b.parentElement.scrollWidth > b.parentElement.clientWidth) b.parentElement.scrollLeft = b.offsetLeft - b.parentElement.clientWidth / 2 + b.offsetWidth / 2; }); }
+  function bandOpts() { const B = Object.keys(DIAL[S.mode]); if (!DIAL[S.mode][S.band]) { S.band = B.includes('20m') ? '20m' : B.includes('40m') ? '40m' : B[0]; saveS(); } $('f8Band').innerHTML = B.map(b => `<option${b === S.band ? ' selected' : ''}>${b}</option>`).join(''); }
+  function showDial() { const k = dialK(); $('f8Dial').textContent = (k / 1000).toFixed(6).replace(/(\.\d{3})(\d{3})$/, '$1 $2'); $('f8Dial').classList.toggle('ov', !!(S.ov && S.ov[ovKey()])); if (document.activeElement !== $('f8Khz')) $('f8Khz').value = (+k.toFixed(3)).toString(); $('f8Std').hidden = !(S.ov && S.ov[ovKey()]); document.querySelectorAll('[data-f8m]').forEach(b => { b.classList.toggle('on', b.dataset.f8m === S.mode); if (b.dataset.f8m === S.mode && b.parentElement.scrollWidth > b.parentElement.clientWidth) b.parentElement.scrollLeft = b.offsetLeft - b.parentElement.clientWidth / 2 + b.offsetWidth / 2; }); }
   const radioMode = () => S.mode === 'CW' ? 'CW' : S.mode === 'SSTV' ? (S.band === '2m (ISS)' ? 'FM' : dialK() < 10000 ? 'LSB' : 'USB') : 'DATA';
-  function radioTune() { if (window.KPCCat && KPCCat.get().on) KPCCat.tune(dialK(), radioMode()); }
+  let tunedAt = 0;
+  function radioTune() { if (window.KPCCat && KPCCat.get().on) { tunedAt = Date.now(); KPCCat.tune(dialK(), radioMode()); } }
+  /* set my own dial (kHz); a frequency on another band switches the band when this mode has it */
+  function setDial(k, fromRadio) {
+    k = +k; if (!isFinite(k) || k <= 0) return; if (k < 1000) k *= 1000; k = Math.round(k * 1000) / 1000;
+    const b = bandOfK(k); if (!b) { if (!fromRadio) note('That frequency is not on a ham band.'); showDial(); return; }
+    if (b !== S.band) { if (!DIAL[S.mode][b]) { if (!fromRadio) note(`${S.mode} has no ${b} setting here.`); showDial(); return; } S.band = b; $('f8Band').value = b; slotSep(true); }
+    S.ov = S.ov || {}; if (Math.abs(k - stdK()) < 0.0005) delete S.ov[ovKey()]; else S.ov[ovKey()] = k; saveS(); showDial(); if (!fromRadio) radioTune();
+  }
+  $('f8Dial').onclick = () => $('f8TuneR').classList.toggle('open'); $('f8Dial').title = 'Tap to change the frequency';
+  $('f8TuneR').addEventListener('click', e => { const b = e.target.closest('[data-f8st]'); if (b) setDial(dialK() + +b.dataset.f8st); });
+  $('f8Khz').onchange = () => setDial($('f8Khz').value.replace(',', '.'));
+  $('f8Khz').onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); $('f8Khz').blur(); } };
+  $('f8Std').onclick = () => { if (S.ov) delete S.ov[ovKey()]; saveS(); showDial(); radioTune(); };
+  /* follow the radio's knob while CAT is connected (not right after we tuned it) */
+  setInterval(async () => { if (root.hidden || document.hidden || !window.KPCCat || !KPCCat.get().on || !KPCCat.connected() || Date.now() - tunedAt < 4000 || document.activeElement === $('f8Khz') || TXING) return;
+    try { const r = await KPCCat.read(); if (r && r.khz && Math.abs(r.khz - dialK()) > 0.02 && Date.now() - tunedAt >= 4000) setDial(r.khz, true); } catch (e) {} }, 2500);
   function setMode(m) { if (m === S.mode) return; S.mode = m; saveS(); bandOpts(); showDial(); radioTune(); resetEng(); gen(); slotSep(true); modeView(); }
   function modeView() { CWON = S.mode === 'CW'; root.dataset.m = S.mode === 'CW' ? 'cw' : isDG() ? S.mode.toLowerCase().replace('31', '') : 'ft'; if (S.mode !== 'CW' && TXING && CWTX) cwHalt(); if (DG()) DG().mode(S.mode); fftFit(); wfRange(); drawScale(); }
   function fftFit() { if (AN && AC) { const want = S.mode === 'WSPR' ? 32768 : AC.sampleRate > 30000 ? 8192 : 4096; if (AN.fftSize !== want) AN.fftSize = want; } }
@@ -181,24 +203,32 @@
       NODE = AC.createScriptProcessor(4096, 1, 1); NODE.onaudioprocess = ev => pushIn(ev.inputBuffer.getChannelData(0).slice(0));
       const mute = AC.createGain(); mute.gain.value = 0; SRC.connect(NODE); NODE.connect(mute); mute.connect(AC.destination);
     }
-    fftFit(); RUN = true; $('f8StartBox').hidden = true; root.classList.add('run'); devices(); stat(); slotSep(true); wfLoop(); tabDot();
+    fftFit(); RUN = true; $('f8StartBox').hidden = true; root.classList.add('run'); stat(); slotSep(true); wfLoop(); tabDot();
+    /* Oct 18 (Brandon's tablet + FT-710: 'in and out are default'): names only show after the first allow, so list again now and pick the radio's USB sound by itself */
+    const L = await devices(); if (!S.inDev && !S.mic && L) { const u = L.find(x => x.kind === 'audioinput' && USBRE.test(x.label)); if (u && !TXING) { S.inDev = u.deviceId; saveS(); note('🎧 Using ' + u.label + ' (change it in ⚙ settings).', 4000); stopAudio(); return startAudio(); } }
+    clearTimeout(quietT); quietT = setTimeout(() => { if (RUN && peak < 0.0008) note('⚠️ No sound coming in from the radio. Pick the radio under RADIO AUDIO IN (⚙ settings), and check the radio sends audio out its USB (Yaesu menu: USB OUT LEVEL / DATA OUT LEVEL about 50).', 9000); }, 6000);
     return true;
   }
   function stopAudio() {
     RUN = false; try { STREAM && STREAM.getTracks().forEach(t => t.stop()); } catch (e) {} try { NODE && NODE.disconnect(); SRC && SRC.disconnect(); } catch (e) {}
     STREAM = SRC = NODE = null; $('f8StartBox').hidden = false; root.classList.remove('run'); stat(); tabDot();
   }
+  const USBRE = /usb|codec|digirig|cm1\d\d|pcm29|ft-?\d|ftdx|ic-?\d|yaesu|icom|kenwood|elecraft|signalink|rigblaster|qdx|qmx|trusdx|xiegu/i;
+  let quietT = 0;
   async function devices() {
-    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) return;
+    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) return null;
     const d = await navigator.mediaDevices.enumerateDevices();
     const opt = (k, sel) => d.filter(x => x.kind === k).map((x, i) => `<option value="${esc(x.deviceId)}"${x.deviceId === sel ? ' selected' : ''}>${esc(x.label || (k === 'audioinput' ? 'Input ' : 'Output ') + (i + 1))}</option>`).join('');
-    $('f8In').innerHTML = '<option value="">Default input</option>' + opt('audioinput', S.inDev);
+    $('f8In').innerHTML = $('f8In0').innerHTML = '<option value="">Default input</option>' + opt('audioinput', S.inDev);
     const outs = opt('audiooutput', S.outDev);
     $('f8Out').innerHTML = '<option value="">Default output</option>' + outs;
     const can = AC ? !!AC.setSinkId : !!(window.AudioContext && AudioContext.prototype.setSinkId);
-    $('f8Out').disabled = !can; $('f8OutT').textContent = can ? '' : 'This browser plays through the phone / computer\'s default output: pick the radio there (iPhone: plug in the interface).';
+    $('f8Out').disabled = !can; $('f8OutT').textContent = can ? '' : 'This browser always plays through the default output. Android and iPhone send it to the radio\'s USB sound by themselves while it is plugged in.';
+    return d;
   }
-  $('f8In').onchange = async () => { S.inDev = $('f8In').value; saveS(); if (RUN) { stopAudio(); await startAudio(); } };
+  devices(); if (navigator.mediaDevices && navigator.mediaDevices.addEventListener) navigator.mediaDevices.addEventListener('devicechange', () => devices());
+  $('f8In0').onchange = async () => { S.inDev = $('f8In0').value; S.mic = false; saveS(); $('f8In').value = S.inDev; };
+  $('f8In').onchange = async () => { S.inDev = $('f8In').value; S.mic = false; saveS(); if (RUN) { stopAudio(); await startAudio(); } };
   $('f8Out').onchange = async () => { S.outDev = $('f8Out').value; saveS(); if (AC && AC.setSinkId) { try { await AC.setSinkId(S.outDev); } catch (e) { note('Could not use that output.'); } } };
   $('f8Start').onclick = startAudio;
 
@@ -341,7 +371,7 @@
     $('cwCalls').addEventListener('click', e => { const b = e.target.closest('[data-cwc]'); if (!b) return; $('cwCall').value = b.dataset.cwc; const sp = spotRef(b.dataset.cwc); if (sp) $('cwRef').value = sp.reference; });
     $('cwCall').oninput = e => { e.target.value = e.target.value.toUpperCase().replace(/\s/g, ''); };
     $('cwLog').onclick = () => { const L = LG(), call = $('cwCall').value.trim().toUpperCase(); if (!L || !call) { note('Type or tap their call first.'); return; }
-      const k = (L.freq && L.freq() && L.band(L.freq()) === S.band) ? L.freq() : dialK();
+      const k = (!(S.ov && S.ov[ovKey()]) && L.freq && L.freq() && L.band(L.freq()) === S.band) ? L.freq() : dialK();
       const r = L.add({ call, khz: k, mode: 'CW', rs: $('cwRs').value || '599', rr: $('cwRr').value || '599', ref: $('cwRef').value.trim() });
       if (r && r.ok) { note(`✅ ${call} logged · ${S.band} CW${r.n ? ' · ' + r.n + (L.me().hunt ? ' today' : ' this activation') : ''}`, 3000, 'log'); $('cwCall').value = ''; $('cwRef').value = ''; } else note('⚠️ Not logged: ' + ((r && r.msg) || ''), 5000); };
     macDraw(); setInterval(() => { if (CWON && !root.hidden) cwDraw(); }, 1000);
@@ -618,7 +648,7 @@
   $('f8Watch').value = S.watch || ''; $('f8Watch').onchange = () => { S.watch = $('f8Watch').value.toUpperCase(); $('f8Watch').value = S.watch; saveS(); };
   $('f8Wd').value = String(S.wd || 2); $('f8Wd').onchange = () => { S.wd = +$('f8Wd').value; saveS(); };
   /* no interface: the phone's own mic + speaker held next to the radio (Brandon Oct 17) */
-  $('f8Mic').onclick = async () => { S.inDev = ''; S.outDev = ''; S.ptt = 'vox'; S.lvl = Math.max(S.lvl, 0.8); saveS(); $('f8Ptt').value = 'vox'; setLvl(lvlDb()); $('f8MicT').hidden = false;
+  $('f8Mic').onclick = async () => { S.inDev = ''; S.outDev = ''; S.mic = true; S.ptt = 'vox'; S.lvl = Math.max(S.lvl, 0.8); saveS(); $('f8Ptt').value = 'vox'; setLvl(lvlDb()); $('f8MicT').hidden = false;
     if (RUN) { stopAudio(); } await startAudio(); devices(); note('🎤 Using this phone\'s mic and speaker. Radio VOX on, phone next to the radio.', 4000); };
   $('f8Cqw').value = S.cqw; $('f8Cqw').onchange = () => { S.cqw = $('f8Cqw').value; saveS(); gen(); };
   $('f8Cat').onclick = async () => { if (!window.KPCCat || !KPCCat.supported()) { $('f8CatT').textContent = 'Radio control needs Chrome or Edge on a computer, or Chrome on a newer Android phone with a USB-C cable. On iPhone use VOX.'; return; }
