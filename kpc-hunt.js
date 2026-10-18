@@ -362,7 +362,7 @@
     qzCount();
   }
   document.addEventListener('click', e => { const b = e.target.closest('[data-qmode]'); if (!b || !window.KPCQrz) return;
-    const Z = KPCQrz.get(); if (!Z.on && !Z.key) { toast('QRZ mode needs your QRZ logbook key: save it on the 📻 CAT & QRZ tab first.'); setTimeout(() => { location.href = 'kpc-hunt-cat.html#ctQrz'; }, 1600); return; }
+    const Z = KPCQrz.get(); if (!Z.on && !Z.key) { toast('QRZ mode needs your QRZ logbook key: save it on the 📻 CAT & QRZ tab first.'); setTimeout(() => { location.href = (window.KPCRoom ? KPCRoom.map : x => x)('kpc-hunt-cat.html#ctQrz'); }, 1600); return; }
     KPCQrz.set({ on: !Z.on }); qmode(); toast(!Z.on ? '☁ QRZ mode: each contact goes to QRZ as you log it.' : '💾 ADIF mode: contacts stay here. Send them to QRZ or download them from MY LOG FILES when you are done.'); });
   setTimeout(qmode, 0);
   /* MY LOG FILES: send everything not yet in QRZ, one at a time (works on phones too) */
@@ -1190,7 +1190,7 @@
   /* The bookmark is a tiny loader for kpc-pota-bm.js (that file holds the real code), so it is short enough for phones
      and never has to be copied again when the code changes. */
   const BMSRC = new URL('kpc-pota-bm.js', location.href).href.split('?')[0];
-  const BM = `(function(){var s=document.createElement('script');s.src='${BMSRC}?t='+Date.now();s.onerror=function(){alert('KPC: could not load the bookmark code. Check your signal and try again.')};document.head.appendChild(s)})()`;
+  const BM = `(function(){var s=document.createElement('script');s.src='${BMSRC}?${window.KPCRoom ? 'back=kpc-beta-room.html&' : ''}t='+Date.now();s.onerror=function(){alert('KPC: could not load the bookmark code. Check your signal and try again.')};document.head.appendChild(s)})()`;
   const BMURL = 'javascript:' + encodeURI(BM);
   $('hBm').href = BMURL;
   $('hBm').onclick = e => { e.preventDefault(); toast('Drag this button to your bookmarks bar, then use it on pota.app.'); };
@@ -1293,7 +1293,7 @@
     box.innerHTML = `<div class="aw-g">${tiles}</div><div class="aw-cols">${was}${earned}${Object.keys(AWL).map(k => awList(k, A[k])).join('')}</div>
       <p class="hl-src">From POTA for ${esc(A.call || CALL || 'you')}, brought over ${new Date(A.t).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}. POTA updates achievements once a day, and hunters get credit only after the activator's log is in. Tap the ⭐ bookmark on pota.app again to refresh. <a href="https://pota.app/#/user/achievements/progress" target="_blank" rel="noopener">POTA ACHIEVEMENTS ↗</a></p>`;
   }
-  document.addEventListener('click', e => { const a = e.target.closest('[data-need]'); if (!a) return; e.preventDefault(); if (PAGE !== 'need' && !PUB) { location.href = 'kpc-hunt-need.html?st=' + encodeURIComponent(a.dataset.need); return; } $('nSt').value = a.dataset.need; $('nSt').dataset.set = 1; needLoad(); $('hlNeed').scrollIntoView({ behavior: 'smooth' }); });
+  document.addEventListener('click', e => { const a = e.target.closest('[data-need]'); if (!a) return; e.preventDefault(); if (PAGE !== 'need' && !PUB) { location.href = (window.KPCRoom ? KPCRoom.map : x => x)('kpc-hunt-need.html') + '?st=' + encodeURIComponent(a.dataset.need); return; } $('nSt').value = a.dataset.need; $('nSt').dataset.set = 1; needLoad(); $('hlNeed').scrollIntoView({ behavior: 'smooth' }); });
 
   /* ---------------- the real map (Leaflet + Esri satellite + place names) ---------------- */
   let LM = null, LG = null, LMV = get('kpcHuntMz', 'na');
@@ -1579,7 +1579,7 @@
   if (!PUB && window.KPCCat) {
     KPCCat.onStatus(() => catChip()); catChip();
     if (KPCCat.get().on) KPCCat.connect(false).then(catChip); // a radio this browser was allowed before reconnects by itself
-    $('dkCat') && $('dkCat').addEventListener('click', async e => { if (!KPCCat.connected() && KPCCat.supported()) { e.preventDefault(); if (await KPCCat.connect(true)) toast('📻 Radio connected.'); else location.href = 'kpc-hunt-cat.html'; catChip(); } });
+    $('dkCat') && $('dkCat').addEventListener('click', async e => { if (!KPCCat.connected() && KPCCat.supported()) { e.preventDefault(); if (await KPCCat.connect(true)) toast('📻 Radio connected.'); else location.href = (window.KPCRoom ? KPCRoom.map : x => x)('kpc-hunt-cat.html'); catChip(); } });
     KPCCat.follow(r => { if (r.khz && Math.abs(r.khz - DIAL) > .05) { DIAL = r.khz; markSel(); } if (!$('dFreq') || !r.khz || NOLOG) return; $('dFreq').value = (r.khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, ''); if (r.mode) { const m = r.mode === 'DATA' ? 'FT8' : /SB$/.test(r.mode) ? 'SSB' : r.mode; if ([...$('dMode').options].some(o => o.value === m)) $('dMode').value = m; }
       $('dFreq').dispatchEvent(new Event('input')); dkRadT(); });
   }

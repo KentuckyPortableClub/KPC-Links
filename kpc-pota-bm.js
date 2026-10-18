@@ -5,7 +5,8 @@
    counts with pota.app's own sign-in, and hands just those numbers to kpc-hunt.html through window.name. */
 (function () {
   var me = document.currentScript && document.currentScript.src;
-  var HERE = me ? new URL('kpc-hunt.html', me).href.split('?')[0] : 'https://kentuckyportableclub.github.io/KPC-Links/kpc-hunt.html';
+  var back = 'kpc-hunt.html'; try { var bq = me && new URL(me).searchParams.get('back'); if (bq && /^kpc-[a-z0-9-]+\.html$/.test(bq)) back = bq; } catch (e) {}   /* beta test room: come back to the room */
+  var HERE = me ? new URL(back, me).href.split('?')[0] : 'https://kentuckyportableclub.github.io/KPC-Links/' + back;
   function kpcPotaBM(HERE) {
     (async () => {
       try {

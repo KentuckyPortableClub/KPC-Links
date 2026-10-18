@@ -62,7 +62,7 @@
     for (const x of ALL) { const k = kindOf(x);
       const m = L.circleMarker([x.la, x.lo], { radius: k === 'sota' ? 5 : 6.5, bubblingMouseEvents: false, color: '#fff', weight: 1.4, fillColor: COL[k], fillOpacity: .92 });
       m.bindTooltip(`${x.c} · ${x.n}`); m.on('click', () => pick(x, false)); m.addTo(LAY[k]); x.m = m; }
-    count(); chips();
+    count(); chips(); mineInit();
     const lb = $('pcPad'); if (lb) { if (!PAD) lb.hidden = true; else { const sync = () => { const on = map.hasLayer(PAD.layer); lb.classList.toggle('on', on); lb.setAttribute('aria-pressed', on); };
       lb.onclick = () => { const on = !map.hasLayer(PAD.layer); if (on) PAD.layer.addTo(map); else map.removeLayer(PAD.layer); put('kpcPcPad2', on ? 1 : 0); sync(); };
       map.on('overlayadd overlayremove layeradd layerremove', sync); map.whenReady(() => setTimeout(sync, 50));
@@ -76,7 +76,35 @@
         if (CO) { if (on && !map.hasLayer(CO)) CO.addTo(map); if (!on && map.hasLayer(CO)) map.removeLayer(CO); } };
       map.on('layeradd layerremove', e => { if (e.layer === PAD.layer) coSync(); }); map.whenReady(() => setTimeout(coSync, 80)); } }
   }
-  function count() { const n = ALL.filter(x => SHOW[kindOf(x)]).length; $('pcCount').textContent = n + ' on the map' + (SHOW.trails ? ' + ' + new Set(TR.map(t => t.ref)).size + ' trails' : ''); }
+  /* Oct 18 (Brandon: 'add a spot to enter call sign and show me new to me parks'): the shared call sign panel (kpc-my-parks.js, same call as the
+     other map tools). Faded dot = you activated it, orange ring = nobody has; NEW TO ME / ATNO / RARE hide the rest; list = Kentucky parks still new to you. */
+  const mineOk = x => { if (!window.KPCMine || !KPCMine.filtering()) return true; const k = kindOf(x); return k === 'kff' ? (x.p ? KPCMine.show(x.p) : false) : KPCMine.show(x.c); };
+  function minePaint() {
+    if (!window.KPCMine || !map) return;
+    for (const x of ALL) { if (!x.m) continue; const k = kindOf(x), ok = mineOk(x), on = LAY[k].hasLayer(x.m);
+      if (ok && !on) x.m.addTo(LAY[k]); if (!ok && on) LAY[k].removeLayer(x.m);
+      const mk = k === 'kff' ? (x.p ? KPCMine.mark(x.p) : {}) : KPCMine.mark(x.c);
+      x.m.setStyle({ fillOpacity: mk.done ? .3 : .92, opacity: mk.done ? .5 : 1, color: mk.atno ? '#c2410c' : mk.rare ? '#e08a2c' : '#fff', weight: mk.atno || mk.rare ? 3 : 1.4 }); }
+    count();
+    const box = $('pcMineL'); if (!box) return; const call = KPCMine.call();
+    if (!call) { box.innerHTML = ''; return; }
+    const parks = ALL.filter(x => kindOf(x) === 'pota'), st = parks.map(x => [x, KPCMine.status(x.c)]);
+    const known = st.filter(([, s]) => s.mine != null), nw = known.filter(([, s]) => s.mine !== 2).sort((a, b) => (a[1].acts ?? 1e9) - (b[1].acts ?? 1e9) || a[0].n.localeCompare(b[0].n));
+    if (known.length < parks.length * .9) { box.innerHTML = `<p class="pc-note">Checking ${esc(call)}'s Kentucky parks… ${known.length} of ${parks.length}</p>`; return; }
+    box.innerHTML = `<p class="pc-note" style="margin:6px 0 4px"><b>${nw.length}</b> of ${parks.length} Kentucky parks are still new to ${esc(call)} (rarest first):</p>
+      <ul class="pc-list">${nw.map(([x, s], i) => `<li${i >= 10 ? ' class="pc-mnx" hidden' : ''}><a href="?ref=${encodeURIComponent(x.c)}" data-mref="${esc(x.c)}">${esc(x.c)}</a> ${esc(x.n)}${s.acts === 0 ? ' <span class="pc-tag" style="background:#c2410c;color:#fff">ATNO</span>' : s.acts != null && s.acts <= 5 ? ' <span class="pc-tag">RARE · ' + s.acts + '</span>' : ''}${s.mine === 1 ? ' <span class="pc-tag">TRIED</span>' : ''}</li>`).join('')}</ul>
+      ${nw.length > 10 ? `<button type="button" class="pc-more" id="pcMnMore">SHOW ALL ${nw.length} ▾</button>` : ''}`;
+    box.querySelectorAll('[data-mref]').forEach(a => a.onclick = e => { e.preventDefault(); const y = byRef(a.dataset.mref); if (y) pick(y); });
+    const mm = $('pcMnMore'); if (mm) mm.onclick = () => { box.querySelectorAll('.pc-mnx').forEach(li => li.hidden = false); mm.remove(); };
+  }
+  function mineInit() {
+    if (!window.KPCMine || !$('pcMine')) return;
+    KPCMine.bar($('pcMine'));
+    const spots = () => ALL.filter(x => kindOf(x) !== 'kff').map(x => ({ ref: x.c, la: x.la, lo: x.lo }));
+    let t = 0; window.addEventListener('kpcmine', () => { clearTimeout(t); t = setTimeout(() => { minePaint(); const b = document.querySelector('#pcInfo .pc-mineb'); if (b && sel && kindOf(sel) !== 'kff') b.innerHTML = KPCMine.badge(sel.c); }, 150); });
+    KPCMine.ensure(spots()); minePaint();
+  }
+  function count() { const n = ALL.filter(x => SHOW[kindOf(x)] && mineOk(x)).length; $('pcCount').textContent = n + ' on the map' + (SHOW.trails ? ' + ' + new Set(TR.map(t => t.ref)).size + ' trails' : ''); }
   /* lines: keep only the stretches inside Kentucky */
   function kyLines(g) { const out = []; const add = l => { let run = []; for (const p of l) { if (inKY(p[0], p[1])) run.push([p[1], p[0]]); else { if (run.length > 1) out.push(run); run = []; } } if (run.length > 1) out.push(run); };
     const geo = gg => { if (!gg) return; if (gg.type === 'LineString') add(gg.coordinates); else if (gg.type === 'MultiLineString') gg.coordinates.forEach(add); else if (gg.type === 'GeometryCollection') gg.geometries.forEach(geo); };
@@ -148,7 +176,7 @@
       (GUEST ? `<p class="pc-note">${SOON}</p>` : '') + (!GUEST && tp && tp.parks && tp.parks.length ? `<div class="pc-k" style="margin-top:8px">THE TRAIL PASSES THROUGH (POSSIBLE 2-FER / 3-FER: VERIFY)</div><ul class="pc-list">${tp.parks.map(p => `<li>${(p.refs || []).map((r, i) => `<a href="?ref=${encodeURIComponent(r)}" data-ref="${esc(r)}">${esc(r)}</a> ${esc((p.names || [])[i] || '')}`).join(' + ')} <span class="pc-tag">${esc(p.type || '2-fer')}${p.how ? ' · ' + esc(p.how) : ''}</span></li>`).join('')}</ul><p class="pc-note">Stand on the trail inside the other park. Check both maps.</p>` : '') : '';
     const ap = (park && park.ap) || [];
     $('pcInfo').innerHTML = `<div class="pc-k">${lab}</div><h3>${esc(x.n)}</h3>
-      <div class="pc-meta"><span class="pc-ref">${esc(x.c)}</span>${x.co ? ' · ' + esc(x.co) + ' County' : ''}${x.t ? ' · ' + esc(x.t) : ''}${x.ft ? ' · ' + Number(x.ft).toLocaleString() + ' ft' + (x.pts ? ' · ' + x.pts + ' pts' : '') : ''}</div>
+      ${window.KPCMine && k !== 'kff' ? `<div class="pc-mineb">${KPCMine.badge(x.c)}</div>` : ''}<div class="pc-meta"><span class="pc-ref">${esc(x.c)}</span>${x.co ? ' · ' + esc(x.co) + ' County' : ''}${x.t ? ' · ' + esc(x.t) : ''}${x.ft ? ' · ' + Number(x.ft).toLocaleString() + ' ft' + (x.pts ? ' · ' + x.pts + ' pts' : '') : ''}</div>
       <div class="pc-acts"><a class="gold" href="${dirUrl(x.la, x.lo)}" target="_blank" rel="noopener">🚗 DIRECTIONS</a><button type="button" id="pcAdd">${TRIP.some(t => t.c === x.c) ? '✓ ON MY TRIP' : '+ ADD TO MY TRIP'}</button>
       ${park && park.web ? `<a href="${esc(park.web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>` : ''}${park && park.off ? `<a href="${esc(park.off)}" target="_blank" rel="noopener">OFFICIAL MAP ↗</a>` : ''}${park && park.camp ? `<a href="${esc(park.camp)}" target="_blank" rel="noopener">CAMPING ↗</a>` : ''}
       <a href="${page}" target="_blank" rel="noopener">${k === 'pota' ? 'POTA' : k === 'kff' ? 'WWFF' : 'SOTLAS'} PAGE ↗</a>
