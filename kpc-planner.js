@@ -40,7 +40,7 @@ const B = {
  bwild:{name:'Wild river corridors', file:'ky-wild-rivers.geojson', color:'#16b3c0', note:'Much of the land along wild rivers is private. Check access first.'},
  bwilder:{name:'Wilderness areas', file:'ky-wilderness.geojson', color:'#c6e03a', note:'Designated wilderness: no motorized equipment, and group size limits apply.'},
  bfws:{name:'Wildlife refuges & fish hatcheries', file:'ky-fws.geojson', color:'#5ab0ff', note:'U.S. Fish & Wildlife Service land. Some refuge areas close seasonally; check the refuge page.'},
- busace:{name:'Army Corps of Engineers land', file:'ky-usace.geojson', color:'#ff8c38', corps:true, note:'Land the Army Corps of Engineers OWNS (USGS PAD-US), even where a Kentucky agency runs it. Usually NOT part of a POTA park unless a state agency runs it; check the park’s own map.'},
+ busace:{name:'Army Corps of Engineers land', file:'ky-usace.geojson', color:'#ff8c38', corps:true, note:'Land the Army Corps of Engineers owns (USGS PAD-US).'},
  bkpc:{name:'KPC-drawn boundaries (approximate)', file:'ky-kpc-drawn.geojson', color:'#ffd400', kpc:true, note:'Approximate outline drawn by KPC (mostly from OpenStreetMap), not an official boundary. These parks have no official GIS map, and some land around them is private. Check the park’s own map before you set up.'}
 };
 const NPSQ = '?where=1%3D1&geometry=-89.6%2C36.4%2C-81.9%2C39.2&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&outSR=4326&geometryPrecision=5&f=geojson';

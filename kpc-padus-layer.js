@@ -40,7 +40,7 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
   const GROUPS = {
     fed: { name: 'Federal land (national forests, parks, refuges, BLM…)', col: [255, 214, 51], on: true },
     state: { name: 'State land (state parks, wildlife areas, forests…)', col: [56, 232, 255], on: true },
-    usace: { name: 'Army Corps of Engineers (usually no park number)', col: [255, 140, 56], on: true },
+    usace: { name: 'Army Corps of Engineers', col: [255, 140, 56], on: true },
     other: { name: 'City, county, private, military (no park number)', col: [255, 110, 216], on: false }
   };
   const GK = Object.keys(GROUPS);
