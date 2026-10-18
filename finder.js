@@ -130,7 +130,6 @@ function kyExtras(d,kp,links,card){
  const info=[TYPENAME[kp.t]||kp.t];if(kp.acc)info.push(kp.acc+' access point'+(kp.acc>1?'s':'')+' on record');
  if(kp.camp)info.push('Camping available');
  card.append(node('div','meta','KPC guide: '+info.join(' · ')));
- if(kp.nob)card.append(node('div','meta','🗺 '+kp.nob));
  const seen=new Set([d[5]]);
  if(kp.web&&!seen.has(kp.web)){seen.add(kp.web);links.append(link(hostLabel(kp.web,'Official park page'),kp.web))}
  if(kp.camp&&!seen.has(kp.camp)){seen.add(kp.camp);links.append(link(genericCamp(kp.camp)?'Camping & reservations (state page)':'Campground page',kp.camp));if(genericCamp(kp.camp))card.append(node('div','meta','The camping link opens the statewide Kentucky State Parks camping page. Pick this park there, or use the park page above.'))}
