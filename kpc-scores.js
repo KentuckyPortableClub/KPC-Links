@@ -24,24 +24,15 @@
     { k: 'NKU', n: 'Northern Kentucky', radio: 'Northern Kentucky Norse', id: { mb: 94, wb: 94, bb: 410 }, site: 'https://nkunorse.com' },
     { k: 'BELL', n: 'Bellarmine', radio: 'Bellarmine Knights', id: { mb: 91, wb: 91, bb: 1143 }, site: 'https://athletics.bellarmine.edu' }
   ];
-  /* Oct 17 (Brandon: 'cant hear any of the links'): the schools' radio networks stream live games only in the free official
-     Varsity Network app (Sidearm/Learfield; UK says 'exclusive streaming is on the Varsity App'), not on a web page.
-     So 🎧 LISTEN opens the app (store page on the phone you're on); 📻 STATIONS = the school's page of radio stations. */
-  const iOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1), AND = /Android/i.test(navigator.userAgent);
-  const VARSITY = iOS ? 'https://apps.apple.com/us/app/the-varsity-network/id1574519982' : AND ? 'https://play.google.com/store/apps/details?id=com.sidearmsports.varsitynetwork.audio' : 'https://play.google.com/store/apps/details?id=com.sidearmsports.varsitynetwork.audio';
-  /* Oct 17 (looked up per school, Brandon: 'yes look up'): free ways to hear the game WITHOUT the Varsity app, only where a
-     current school or station page says so. EKU: every game free at EKUSports.com 'Listen Live' (Colonel All Access, Aug 2025);
-     Morehead: 'Stream at MSUEagles.com' (Dec 2025 game notes); Murray: Racer Radio on Froggy 103.7, the school's 'Listen' link =
-     the station's own player (Nov 2025); UK: radio 'also available for streaming on the UK Athletics App' (2025-26 lineup);
-     WKU: the WKU Hilltoppers app (2026-27 radio network page). UL / NKU / Bellarmine: no confirmed station stream. */
-  const FREE = {
-    EKU: () => ['🎧 FREE ON EKUSPORTS.COM', 'https://ekusports.com/'],
-    MORE: sp => ['🎧 FREE ON MSUEAGLES.COM', 'https://msueagles.com/sports/' + SP[sp].slug + '/schedule'],
-    MUR: () => ['🎧 FROGGY 103.7 LIVE', 'https://player.amperwave.net/2845'],
-    UK: () => ['🎧 UK ATHLETICS APP', iOS ? 'https://apps.apple.com/us/app/uk-athletics/id1273401353' : 'https://ukathletics.com/uk-sports-network/'],
-    WKU: () => ['🎧 WKU HILLTOPPERS APP', iOS ? 'https://apps.apple.com/app/id486897217' : 'https://wkusports.com/sports/2017/6/8/ot-radio-affiliates-html']
+  /* Oct 17 (Brandon: 'remove all the ones that dont work… link just to a local station that has a play now button'):
+     one 📻 button per Kentucky team = the flagship station's own site with its play button (station sites from Wikipedia /
+     the school pages, Oct 17). EKU has no station: its games stream on EKUSports.com ('Listen Live'). */
+  const STATION = {
+    UK: ['WLAP 630', 'https://wlap.iheart.com/'], UL: ['93.9 THE VILLE', 'https://www.939theville.com/'], WKU: ['WKLX 100.7', 'https://bighitsbg.com/'],
+    EKU: ['EKU LISTEN LIVE', 'https://ekusports.com/'], MUR: ['FROGGY 103.7', 'https://player.amperwave.net/2845'], MORE: ['WIVY 96.3', 'https://wivyradio.com/'],
+    NKU: ['ESPN 1530', 'https://espn1530.iheart.com/'], BELL: ['ESPN 680', 'https://v7player.wostreaming.net/8860']
   };
-  const freeBtn = (t, sp) => { const f = FREE[t.k] && FREE[t.k](sp); return f ? `<a href="${f[1]}" target="_blank" rel="noopener" title="Free official audio for ${t.n}, no Varsity app needed">${f[0]}</a>` : ''; };
+  const stBtn = t => { const x = STATION[t.k]; return x ? `<a href="${x[1]}" target="_blank" rel="noopener" title="${esc(t.n)}: the station's live stream (press play there)">📻 ${x[0]}</a>` : ''; };
   const listenUrl = (t, sp) => t.listen ? t.listen(sp) : t.site + '/sports/' + SP[sp].slug + '/schedule';
   const KYID = {}; TEAMS.forEach(t => Object.keys(t.id).forEach(sp => KYID[sp + ':' + t.id[sp]] = t));
   let games = {}, filt = 'all', timer = null;
@@ -99,10 +90,7 @@
       `<span>${s.rank ? '<small>' + s.rank + '</small> ' : ''}${esc(s.name)}</span><b>${g.live || g.done ? esc(s.score == null ? '' : s.score) : ''}</b></div>`;
     return `<div class="ks-g${g.live ? ' live' : ''}" data-sp="${g.sp}"><div class="ks-h"><span>${SP[g.sp].icon} ${esc(SP[g.sp].name)}</span><span>${statusTxt(g)}</span></div>` +
       g.side.map(row).join('') +
-      (g.tv ? '<div class="ks-tv">📺 ' + esc(g.tv) + '</div>' : '') + `<div class="ks-f"><span class="ks-b">${L ? `<a href="${VARSITY}" target="_blank" rel="noopener" title="Live radio for ${esc(home.ky.n)} streams in the free Varsity Network app (pick ${esc(home.ky.n)} in the app)">🎧 LISTEN</a><a href="${esc(L)}" target="_blank" rel="noopener" title="${esc(home.ky.n)} radio stations (over the air)">📻 STATIONS</a>` : ''}` +
-      (home && home.ky && home.ky.radio ? `<a href="https://tunein.com/search/?query=${encodeURIComponent(home.ky.radio)}" target="_blank" rel="noopener" title="No app: look for the team's network or a station that carries it on TuneIn (some games are blocked online)">🌐 TUNEIN</a>` : '') +
-      (home && home.ky ? freeBtn(home.ky, g.sp) : '') + (other ? freeBtn(other.ky, g.sp) : '') +
-      (L2 ? `<a href="${esc(L2)}" target="_blank" rel="noopener" title="${esc(other.ky.n)} radio stations">📻 ${esc(other.ky.k)}</a>` : '') +
+      (g.tv ? '<div class="ks-tv">📺 ' + esc(g.tv) + '</div>' : '') + `<div class="ks-f"><span class="ks-b">${home && home.ky ? stBtn(home.ky) : ''}${other ? stBtn(other.ky) : ''}` +
       `<a href="${esc(g.url)}" target="_blank" rel="noopener" title="Play-by-play on ESPN">ESPN ↗</a></span></div></div>`;
   }
   function draw() {
@@ -119,7 +107,7 @@
     if (live.length || up.some(g => g.t < now() + 15 * 6e4)) timer = setTimeout(() => load(new Set(live.concat(up.filter(g => g.t < now() + 15 * 6e4)).flatMap(g => g.side.filter(s => s.ky).map(s => g.sp + ':' + s.ky.id[g.sp])))), 60000);
   }
   box.innerHTML = '<div class="ks-head"><div><b>🏟️ KENTUCKY COLLEGE SCOREBOARD</b><span class="ks-sub">Loading…</span></div><div class="ks-chips"></div></div>' +
-    '<div class="ks-track" tabindex="0" aria-label="Scores and upcoming games, swipe sideways"></div><p class="ks-note">Scores and times from ESPN. 🎧 LISTEN opens the free Varsity Network app (pick your team). No app? EKU and Morehead stream free on their own websites, Murray State on the Froggy 103.7 player, UK in the UK Athletics app, WKU in the WKU Hilltoppers app; 📻 STATIONS lists the radio stations that carry it over the air. Some games are TV or ESPN+ only.</p>';
+    '<div class="ks-track" tabindex="0" aria-label="Scores and upcoming games, swipe sideways"></div><p class="ks-note">Scores and times from ESPN. 📻 opens the Kentucky school\'s radio station so you can press play (some games may be blocked online). Some games are TV or ESPN+ only.</p>';
   box.querySelector('.ks-chips').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; filt = b.dataset.f; try { localStorage.setItem('kpcScoreF', filt); } catch (x) {} draw(); });
   // gentle auto-scroll ("rolling"); stops while a finger or mouse is on it, and for people who asked for less motion
   const track = box.querySelector('.ks-track');
