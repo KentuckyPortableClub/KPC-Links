@@ -109,7 +109,13 @@ def romaji(t):
 
 
 def kinds(cc, s): s = flat(s) + ' ' + str(s or ''); return {k for k, r in KINDS[cc] if re.search(r, s)}
+def codes(s): return set(re.findall(r'\b[a-z]\d{1,4}\b', flat(s)))
+
+
 def same_name(cc, a, b):
+    if cc == 'AU':
+        ca, cb = codes(a), codes(b)
+        if ca and cb and not (ca & cb): return False      # 'Nullan I106' is not 'Nullan I108' (Oct 18 review)
     a, b = norm(cc, a), norm(cc, b)
     if not a or not b: return False
     if a == b: return True
