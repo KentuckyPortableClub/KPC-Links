@@ -309,22 +309,35 @@ async function showBoundary(s,btn){
    const kpc=fs.every(f=>f._L&&f._L.kpc);btn.textContent=kpc?'HIDE OUTLINE (APPROXIMATE)':'HIDE OUTLINE';btn.disabled=false;
    try{map.fitBounds(bound.getBounds(),{maxZoom:14,padding:[20,20]})}catch(e){}
    status(kpc?`Approximate outline drawn by KPC (no official map has this park yet). Check the park's own map.`:`Official Kentucky boundary shown (${fs.length} piece${fs.length>1?'s':''}, from the state and federal map files KPC keeps). Check the park's own map too.`);return}}catch(e){}}
- /* official first: USGS PAD-US by the park's name near its pin (kpc-bounds.js), then OpenStreetMap */
- if(window.KPCB&&s.p!=='SOTA'){try{const fs=await KPCB.padusByName(s.n,s.la,s.lo);if(fs&&fs.length){
+ /* Oct 18 (Brandon: 'yes for sure'): every other US park uses the bot's checked list (data/us-key, same name AND same kind
+    of place, every tract); parks the key doesn't know fall back to the PAD-US name search. Nothing official = no outline,
+    but a separate 'SHOW UNOFFICIAL OUTLINE' button (OpenStreetMap) as a last resort. */
+ if(window.KPCB&&s.p!=='SOTA'&&/^(US|KFF)-/.test(s.c)){let fs=null,src='USGS PAD-US',none=false;
+  try{const sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);const k=KPCB.usKey?await KPCB.usKey(s.c,sts):null;
+   if(k&&k.state==='ok'){fs=k.fs;const u=[...new Set(fs.map(f=>f._src))];src=u.join(' + ')}else if(k&&k.state==='none')none=true}catch(e){}
+  if(!fs&&!none){try{const g=await KPCB.padusByName(s.n,s.la,s.lo);if(g&&g.length)fs=g}catch(e){}}
+  if(fs&&fs.length){
    bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.15}}).addTo(map);
-   const nm=fs[0]._nm||s.n;btn.textContent='HIDE OUTLINE ('+String(nm).toUpperCase().slice(0,28)+')';btn.disabled=false;
+   const nm=fs[0]._nm||s.n;btn.textContent='HIDE OUTLINE';btn.disabled=false;
    try{map.fitBounds(bound.getBounds(),{maxZoom:14,padding:[20,20]})}catch(e){}
-   status(`Official boundary shown: <b>${esc(nm)}</b> (USGS PAD-US). POTA goes by the official boundary; check the park's own map too.`);return}}catch(e){}}
+   status(`Official boundary shown: <b>${esc(nm)}</b>${fs.length>1?` (${fs.length} pieces)`:''} (${esc(src)}). POTA goes by the official boundary; check the park's own map too.`);return}
+  btn.textContent='NO OFFICIAL OUTLINE ON FILE';btn.disabled=false;boundRef='';
+  const pop=btn.closest('.us-pop')||btn.parentNode;if(pop&&!pop.querySelector('[data-a="osm"]')){const o=document.createElement('button');o.type='button';o.dataset.a='osm';o.textContent='SHOW UNOFFICIAL OUTLINE';o.title='Last resort: OpenStreetMap, a volunteer map';o.onclick=ev=>{ev.preventDefault();osmBoundary(s,o)};btn.after(o)}
+  status('No official boundary on file for this park yet. Check the park’s own map, or tap <b>SHOW UNOFFICIAL OUTLINE</b> (OpenStreetMap, a volunteer map: can be off).');return}
+ return osmBoundary(s,btn)}
+async function osmBoundary(s,btn){
+ if(bound&&boundRef===s.c){bound.remove();bound=null;boundRef='';btn.textContent='SHOW UNOFFICIAL OUTLINE';status('Outline hidden.');return}
+ if(bound){bound.remove();bound=null}boundRef=s.c;btn.textContent='LOOKING…';btn.disabled=true;
  const bb=`${(s.la-.3).toFixed(4)},${(s.lo-.4).toFixed(4)},${(s.la+.3).toFixed(4)},${(s.lo+.4).toFixed(4)}`; /* outline kept to ~20 miles around the park: much less data than a whole forest */
  const q=`[out:json][timeout:20];is_in(${s.la},${s.lo})->.a;(way(pivot.a)["boundary"~"protected_area|national_park"];rel(pivot.a)["boundary"~"protected_area|national_park"];way(pivot.a)["leisure"~"park|nature_reserve"];rel(pivot.a)["leisure"~"park|nature_reserve"];);out geom(${bb});`;
- try{const j=await overpass(q,s.c);const els=(j.elements||[]).filter(e=>e.tags);if(!els.length){btn.textContent='NO OUTLINE IN OPENSTREETMAP';return}
+ try{const j=await overpass(q,s.c);const els=(j.elements||[]).filter(e=>e.tags);if(!els.length){btn.textContent='NO OUTLINE IN OPENSTREETMAP EITHER';btn.disabled=false;boundRef='';return}
   const area=e=>{const g=e.type==='way'?e.geometry:(e.members||[]).flatMap(m=>m.geometry||[]);if(!g||!g.length)return 1e9;let a=1e9,c=-1e9,d=1e9,f=-1e9;g.forEach(p=>{if(!p)return;a=Math.min(a,p.lat);c=Math.max(c,p.lat);d=Math.min(d,p.lon);f=Math.max(f,p.lon)});return(c-a)*(f-d)};
   els.sort((x,y)=>(sim(s.n,y.tags.name||'')-sim(s.n,x.tags.name||''))||(area(x)-area(y)));const e=els[0];
   const lines=[];if(e.type==='way'&&e.geometry)lines.push(e.geometry.filter(Boolean).map(p=>[p.lat,p.lon]));
   else(e.members||[]).forEach(m=>{if(m.type==='way'&&m.geometry)lines.push(m.geometry.filter(Boolean).map(p=>[p.lat,p.lon]))});
   bound=L.featureGroup(lines.filter(l=>l.length>1).map(l=>{const closed=l.length>3&&l[0][0]===l[l.length-1][0]&&l[0][1]===l[l.length-1][1];return closed?L.polygon(l,{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.12,interactive:false}):L.polyline(l,{color:'#f0c96b',weight:3,interactive:false})})).addTo(map);
-  btn.textContent='HIDE OUTLINE (NOT OFFICIAL)';btn.disabled=false;status(`No official boundary found, so this outline is from OpenStreetMap (a volunteer map, not official): <b>${esc(e.tags.name||'unnamed area')}</b>${sim(s.n,e.tags.name||'')<.5?' (closest match: it may not be the exact POTA park area)':''}.`)}
- catch(err){btn.textContent='BOUNDARY NOT AVAILABLE, TAP TO TRY AGAIN';{const pop=btn.closest('.us-pop');if(pop){let w=pop.querySelector('.bwhy');if(!w){w=document.createElement('div');w.className='bwhy';w.style.cssText='font-size:11px;color:#b5452b;margin-top:6px;line-height:1.4';pop.appendChild(w)}w.textContent='Why: '+(err.why||[err.message]).join(' \u2022 ')}}status('Boundary lookup failed. What each server said: <b>'+esc((err.why||[err.message]).join(' \u2022 '))+'</b>. Send a screenshot of this to the site admin. Meanwhile try the <b>Satellite + Park Lines (Beta)</b> map in the layers button.');btn.disabled=false;return}btn.disabled=false}
+  btn.textContent='HIDE UNOFFICIAL OUTLINE';btn.disabled=false;status(`UNOFFICIAL outline from OpenStreetMap (a volunteer map, not official): <b>${esc(e.tags.name||'unnamed area')}</b>${sim(s.n,e.tags.name||'')<.5?' (closest match: it may not be the exact POTA park area)':''}.`)}
+ catch(err){btn.textContent='BOUNDARY NOT AVAILABLE, TAP TO TRY AGAIN';{const pop=btn.closest('.us-pop');if(pop){let w=pop.querySelector('.bwhy');if(!w){w=document.createElement('div');w.className='bwhy';w.style.cssText='font-size:11px;color:#b5452b;margin-top:6px;line-height:1.4';pop.appendChild(w)}w.textContent='Why: '+(err.why||[err.message]).join(' \u2022 ')}}status('Boundary lookup failed. What each server said: <b>'+esc((err.why||[err.message]).join(' \u2022 '))+'</b>. Send a screenshot of this to the site admin.');btn.disabled=false;return}btn.disabled=false}
 
 /* ---------- trip ---------- */
 const inTrip=c=>trip.some(s=>s.c===c);

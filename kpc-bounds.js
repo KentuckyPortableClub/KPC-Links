@@ -128,6 +128,32 @@
     const parts = await Promise.all(tiers.map(([list, off, box]) => list.length ? padus(Object.assign({ objectIds: list.map(p => p.OBJECTID).join(','), returnGeometry: true, geometryPrecision: 5, maxAllowableOffset: off }, box ? { geometry: env, geometryType: 'esriGeometryEnvelope' } : {})).then(j => j.features || []) : []));
     return parts.flat().filter(f => f.geometry).map(f => { f._nm = f.properties.Unit_Nm || f.properties.Loc_Nm || 'Public land'; f._bb = bbox(f.geometry); return f; });
   }
+  /* US answer key (Oct 18, Brandon: 'use the checked outlines'): data/us-key/US-XX.json lists, per park, the PAD-US
+     (or USFWS 'fws<oid>') records that match it by NAME and KIND. Returns {state:'none'} when the key knows the park but
+     nothing is joined (unsure ones wait on the check list), null when no key file has the park. */
+  const FWSQ = 'https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer/0/query';
+  const keyCache = {};
+  async function usKey(ref, states) {
+    let hit = null, known = false;
+    for (const st of states || []) {
+      if (!(st in keyCache)) keyCache[st] = fetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
+      const k = await keyCache[st]; const p = k && k.parks && k.parks[ref];
+      if (p) { known = true; if (p.m && p.m.length) { hit = hit || { n: p.n, m: [] }; hit.m.push(...p.m); } }
+    }
+    if (!hit) return known ? { state: 'none' } : null;
+    const seen = new Set(), m = hit.m.filter(x => !seen.has(String(x[0])) && seen.add(String(x[0])));
+    const off = a => a < 20000 ? 0.00004 : a < 200000 ? 0.00015 : a < 1000000 ? 0.0003 : 0.0008;
+    const groups = {};
+    m.forEach(x => { const fws = /^fws/.test(String(x[0])), id = String(x[0]).replace(/^fws/, ''), o = off(+x[2] || 0), g = (fws ? 'f' : 'p') + o; (groups[g] = groups[g] || { fws, o, ids: [] }).ids.push(id); });
+    const jobs = [];
+    Object.values(groups).forEach(g => { for (let i = 0; i < g.ids.length; i += 40) { const ids = g.ids.slice(i, i + 40).join(',');
+      jobs.push(g.fws ? jget(FWSQ + '?' + new URLSearchParams({ objectIds: ids, outFields: 'ORGNAME', returnGeometry: true, outSR: 4326, maxAllowableOffset: g.o, geometryPrecision: 5, f: 'geojson' }), null, 30000).then(j => (j.features || []).map(f => (f._src = 'U.S. Fish & Wildlife Service', f))).catch(() => [])
+        : padus({ objectIds: ids, returnGeometry: true, geometryPrecision: 5, maxAllowableOffset: g.o }).then(j => (j.features || []).map(f => (f._src = 'USGS PAD-US', f))).catch(() => [])); } });
+    const fs = (await Promise.all(jobs)).flat().filter(f => f.geometry);
+    if (!fs.length) return { state: 'error', n: hit.n, m };
+    fs.forEach(f => { const p = f.properties || {}; f._nm = p.Unit_Nm || p.ORGNAME || hit.n; f._bb = bbox(f.geometry); });
+    return { state: 'ok', n: hit.n, m, fs };
+  }
   const words = n => String(n || '').replace(/\b(state|national|park|parks|forest|wildlife|management|area|recreation|recreational|nature|preserve|refuge|historic|historical|site|reserve|natural|lake|wma|nwr|the|of|and)\b/gi, ' ').replace(/[^A-Za-z0-9' ]/g, ' ').trim().split(/\s+/).filter(w => w.length > 2);
   async function padusByName(name, la, lo) {
     const w = words(name), d = 0.35; if (!w.length) return [];
@@ -265,5 +291,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, euro, canada, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, euro, canada, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();
