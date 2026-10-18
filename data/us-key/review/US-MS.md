@@ -1,18 +1,44 @@
 # MS: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **81 of 155** parks joined to official land (same name + same kind of place). **0** to check by hand, **74** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 155** parks joined to official land (same name + same kind of place). **29** to check by hand, **46** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0390** Noxubee National Wildlife Refuge (National Wildlife Refuge) → Sam D. Hamilton Noxubee National Wildlife Refuge (~48,330 ac, similar name); Sam D. Hamilton Noxubee National Wildlife Refuge (~48,330 ac, similar name); John W. Starr Wma (~8,268 ac, the POTA pin is inside it (different name))
+- **US-0642** Natchez Trace Parkway National Parkway (National Parkway) → Natchez Trace Parkway (~31,527 ac, similar name)
+- **US-11882** Grand Village of the Natchez State Historic Site (State Historic Site) → Natchez National Historical Park (~98 ac, similar name)
+- **US-11883** Emerald Mound National Historical Site (National Historical Site) → Natchez Trace Parkway (~31,527 ac, the POTA pin is inside it (different name))
+- **US-2534** Florewood State Park (State Park) → Florewood River Plantation State Park (~99 ac, similar name)
+- **US-2545** Legion State Park (State Park) → Legion Lake State Park (~431 ac, similar name)
+- **US-4560** Natchez Trace Trail National Scenic Trail (National Scenic Trail) → Natchez Trace Parkway (~31,527 ac, similar name)
+- **US-7073** William C. Deviney Wildlife Management Area (Wildlife Management Area) → Indianola Wildlife Management Area (~1,019 ac, the POTA pin is inside it (different name))
+- **US-7088** Choctaw Wildlife Management Area (Wildlife Management Area) → Tombigbee National Forest (~67,449 ac, the POTA pin is inside it (different name))
+- **US-7097** Chickasaw Wildlife Management Area (Wildlife Management Area) → Tombigbee National Forest (~67,449 ac, the POTA pin is inside it (different name))
+- **US-7100** Upper Sardis Wildlife Management Area (Wildlife Management Area) → Holly Springs National Forest (~156,210 ac, the POTA pin is inside it (different name))
+- **US-7104** Chickasawhay Wildlife Management Area (Wildlife Management Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
+- **US-7105** Mason Creek Wildlife Management Area (Wildlife Management Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
+- **US-7106** Leaf River Wildlife Management Area (Wildlife Management Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
+- **US-7107** Theodore Mars Wildlife Management Area (Wildlife Management Area) → Theodore A. Mars, Jr. Memorial Wildlife Refuge (~897 ac, similar name)
+- **US-7110** Little Biloxi Wildlife Management Area (Wildlife Management Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
+- **US-7111** Red Creek Wildlife Management Area (Wildlife Management Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
+- **US-7114** Bienville Wildlife Management Area (Wildlife Management Area) → Bienville National Forest (~180,227 ac, same name, different kind of place)
+- **US-7116** Caney Creek Wildlife Management Area (Wildlife Management Area) → Bienville National Forest (~180,227 ac, the POTA pin is inside it (different name))
+- **US-7118** Copiah County Wildlife Management Area (Wildlife Management Area) → Copiah Wma (~6,594 ac, similar name)
+- **US-7119** Natchez Wildlife Management Area (Wildlife Management Area) → Natchez Trace Parkway (~31,527 ac, similar name); Natchez State Park (~3,428 ac, same name, different kind of place); Natchez State Park (~3,425 ac, same name, different kind of place)
+- **US-7121** Sandy Creek Wildlife Management Area (Wildlife Management Area) → Homochitto National Forest (~191,846 ac, the POTA pin is inside it (different name))
+- **US-7134** Holcut Memorial State Recreation Area (State Recreation Area) → Divide Section (~16,145 ac, the POTA pin is inside it (different name))
+- **US-7629** Davis Lake State Recreation Area (State Recreation Area) → Tombigbee National Forest (~67,449 ac, the POTA pin is inside it (different name))
+- **US-7630** Chewalla Lake State Recreation Area (State Recreation Area) → Holly Springs National Forest (~156,210 ac, the POTA pin is inside it (different name))
+- **US-7632** Pvt. John Allen National Fish Hatchery (National Fish Hatchery) → Private John Allen National Fish Hatchery (~31 ac, similar name); Private John Allen National Fish Hatchery (~31 ac, similar name)
+- **US-7633** Turkey Fork Lake State Recreation Area (State Recreation Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
+- **US-7634** Ashe Lake State Recreation Area (State Recreation Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
+- **US-7635** Airey Lake State Recreation Area (State Recreation Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
 
 ## Nothing found in PAD-US
 
-- US-0390 Noxubee National Wildlife Refuge (National Wildlife Refuge)
-- US-0642 Natchez Trace Parkway National Parkway (National Parkway)
+- US-0661 Gulf Islands National Seashore (National Seashore)
 - US-10297 Old Trace Park Recreation Park (Recreation Park)
 - US-11881 Dancing Rabbit Creek Treaty State Historic Site (State Historic Site)
-- US-11882 Grand Village of the Natchez State Historic Site (State Historic Site)
-- US-11883 Emerald Mound National Historical Site (National Historical Site)
 - US-12193 Lake Claude Bennett State Fishing Lake (State Fishing Lake)
 - US-12194 Lake Lamar Bruce State Fishing Lake (State Fishing Lake)
 - US-12195 Elvis Presley State Fishing Lake (State Fishing Lake)
@@ -30,31 +56,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **81 of 155** parks joined 
 - US-12208 Lake Perry State Fishing Lake (State Fishing Lake)
 - US-12638 Bobby Cleveland Park State Recreation Site (State Recreation Site)
 - US-12639 Pelahatchie Shore State Recreation Area (State Recreation Area)
-- US-2534 Florewood State Park (State Park)
-- US-2545 Legion State Park (State Park)
-- US-4560 Natchez Trace Trail National Scenic Trail (National Scenic Trail)
 - US-7072 Riverfront Wildlife Management Area (Wildlife Management Area)
-- US-7073 William C. Deviney Wildlife Management Area (Wildlife Management Area)
 - US-7080 Sunflower Wildlife Management Area (Wildlife Management Area)
 - US-7084 Phil Bryant Wildlife Management Area (Wildlife Management Area)
-- US-7088 Choctaw Wildlife Management Area (Wildlife Management Area)
-- US-7097 Chickasaw Wildlife Management Area (Wildlife Management Area)
 - US-7098 Graham Waterfowl Wildlife Management Area (Wildlife Management Area)
-- US-7100 Upper Sardis Wildlife Management Area (Wildlife Management Area)
-- US-7104 Chickasawhay Wildlife Management Area (Wildlife Management Area)
-- US-7105 Mason Creek Wildlife Management Area (Wildlife Management Area)
-- US-7106 Leaf River Wildlife Management Area (Wildlife Management Area)
-- US-7107 Theodore Mars Wildlife Management Area (Wildlife Management Area)
 - US-7109 Old River Wildlife Management Area (Wildlife Management Area)
-- US-7110 Little Biloxi Wildlife Management Area (Wildlife Management Area)
-- US-7111 Red Creek Wildlife Management Area (Wildlife Management Area)
-- US-7114 Bienville Wildlife Management Area (Wildlife Management Area)
 - US-7115 Tallahala Wildlife Management Area (Wildlife Management Area)
-- US-7116 Caney Creek Wildlife Management Area (Wildlife Management Area)
-- US-7118 Copiah County Wildlife Management Area (Wildlife Management Area)
-- US-7119 Natchez Wildlife Management Area (Wildlife Management Area)
 - US-7120 Caston Creek Wildlife Management Area (Wildlife Management Area)
-- US-7121 Sandy Creek Wildlife Management Area (Wildlife Management Area)
 - US-7124 Arkabutla Lake State Recreation Area (State Recreation Area)
 - US-7125 Enid Lake State Recreation Area (State Recreation Area)
 - US-7126 Grenada Lake State Recreation Area (State Recreation Area)
@@ -64,14 +72,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **81 of 155** parks joined 
 - US-7131 Bay Springs Lake State Recreation Area (State Recreation Area)
 - US-7132 Jamie Whitten Historical Center State Recreation Area (State Recreation Area)
 - US-7133 Amory Recreation Area State Recreation Area (State Recreation Area)
-- US-7134 Holcut Memorial State Recreation Area (State Recreation Area)
-- US-7629 Davis Lake State Recreation Area (State Recreation Area)
-- US-7630 Chewalla Lake State Recreation Area (State Recreation Area)
 - US-7631 Owl Creek Mounds Archeological Reserve (Archeological Reserve)
-- US-7632 Pvt. John Allen National Fish Hatchery (National Fish Hatchery)
-- US-7633 Turkey Fork Lake State Recreation Area (State Recreation Area)
-- US-7634 Ashe Lake State Recreation Area (State Recreation Area)
-- US-7635 Airey Lake State Recreation Area (State Recreation Area)
 - US-8513 Archusa Creek State Recreation Area (State Recreation Area)
 - US-8514 Big Creek State Recreation Area (State Recreation Area)
 - US-8515 Dry Creek State Recreation Area (State Recreation Area)
@@ -84,6 +85,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **81 of 155** parks joined 
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Gulf Islands National Seashore · NLS · NPS · ~57,793 ac
 - Sam D. Hamilton Noxubee National Wildlife Refuge · NWR · SAM D. HAMILTON NOXUBEE NATIONAL WILDLIFE REFUGE · ~48,330 ac
 - Sam D. Hamilton Noxubee National Wildlife Refuge · NWR · Sam D. Hamilton Noxubee National Wildlife Refuge · ~48,330 ac
 - Natchez Trace Parkway · SDA · NPS · ~31,527 ac
@@ -143,4 +145,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **81 of 155** parks joined 
 - Alll-American Rose Garden Park · LP · University of Southern MIssissippi · ~7 ac
 - University Soccer Fields · LREC · University of Southern Mississippi · ~7 ac
 - Campus Square · LP · Mississippi State University · ~6 ac
-- University Open Space · LP · Mississippi State University · ~6 ac

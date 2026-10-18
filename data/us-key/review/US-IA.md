@@ -1,35 +1,36 @@
 # IA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **156 of 181** parks joined to official land (same name + same kind of place). **0** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **155 of 181** parks joined to official land (same name + same kind of place). **12** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0270** Iowa Wetland Management District (Wetland Management District) → Union Slough National Wildlife Refuge (~2,834 ac, the POTA pin is inside it (different name)); Union Slough National Wildlife Refuge (~2,834 ac, the POTA pin is inside it (different name))
+- **US-10174** Marble Beach State Recreation Area (State Recreation Area) → Templar State Recreation Area (~61 ac, the POTA pin is inside it (different name))
+- **US-10318** Chichaqua Wildlife Area (Wildlife Area) → Chichaqua Bottoms Wildlife Management Area (~1,557 ac, similar name); Chichaqua Bottoms Wildlife Management Area (~1,148 ac, similar name); Chichaqua Bottoms Wildlife Management Area (~776 ac, similar name)
+- **US-11305** Wapsipinicon River Water State Trail (State Trail) → Gambril Access (~5 ac, the POTA pin is inside it (different name))
+- **US-11877** La Soya Wildlife Area (Wildlife Area) → Lasoya Wildlife Management Area (~78 ac, the POTA pin is inside it (different name))
+- **US-2309** Okamanpedan (Tuttle) State Park (State Park) → Okamanpedan State Park (~27 ac, similar name)
+- **US-4656** Barkley Memorial State Forest (State Forest) → Barkley State Forest (~209 ac, similar name)
+- **US-5730** Blood Run State Historic Site (State Historic Site) → Blood Run/Rock Island National Landmark (~167 ac, similar name); Blood Run National Historic Landmark Area Tcf Tract (~7 ac, similar name)
+- **US-9299** Hawthorne Lake Wildlife Management Area (Wildlife Management Area) → Hawthorn Lake Wildlife Management Area (~1,775 ac, the POTA pin is inside it (different name))
+- **US-9311** Keg Creek lake Wildlife Management Area (Wildlife Management Area) → Keg Creek I-29 Wildlife Management Area (~107 ac, similar name)
+- **US-9312** Rosenow Timber Wildlife Management Area (Wildlife Management Area) → Rosenow Timber County Park (~123 ac, similar name)
+- **US-9326** Waterman Prarie Complex Wildlife Management Area (Wildlife Management Area) → Waterman Prairie Complex (~1,575 ac, similar name)
 
 ## Nothing found in PAD-US
 
-- US-0270 Iowa Wetland Management District (Wetland Management District)
-- US-10174 Marble Beach State Recreation Area (State Recreation Area)
-- US-10318 Chichaqua Wildlife Area (Wildlife Area)
-- US-11305 Wapsipinicon River Water State Trail (State Trail)
+- US-0367 Northern Tallgrass Prairie National Wildlife Refuge (National Wildlife Refuge)
 - US-11875 Blackburn State Park (State Park)
-- US-11877 La Soya Wildlife Area (Wildlife Area)
 - US-12376 Blackburn Wildlife Management Area (Wildlife Management Area)
 - US-12623 Nicholson Ford Wildlife Area (Wildlife Area)
 - US-2282 Blackhawk State Park (State Park)
-- US-2309 Okamanpedan (Tuttle) State Park (State Park)
 - US-2329 Wild Cat Den State Park (State Park)
 - US-4236 Upper Mississippi River National Wildlife Refuge (National Wildlife Refuge)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-4573 Mormon Pioneer National Historic Trail (National Historic Trail)
-- US-4656 Barkley Memorial State Forest (State Forest)
-- US-5730 Blood Run State Historic Site (State Historic Site)
 - US-5732 Emerson Bay State Recreation Area (State Recreation Area)
 - US-8283 Glenwood Archaeological State Historic Site (State Historic Site)
-- US-9299 Hawthorne Lake Wildlife Management Area (Wildlife Management Area)
 - US-9307 Forney's Lake Wildlife Management Area (Wildlife Management Area)
-- US-9311 Keg Creek lake Wildlife Management Area (Wildlife Management Area)
-- US-9312 Rosenow Timber Wildlife Management Area (Wildlife Management Area)
-- US-9326 Waterman Prarie Complex Wildlife Management Area (Wildlife Management Area)
 - US-9333 Barringers Slough Wildlife Management Area (Wildlife Management Area)
 - US-9334 Teal Basins State Waterfowl Management Area (State Waterfowl Management Area)
 
@@ -69,6 +70,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **156 of 181** parks joined
 - Elk Creek Marsh Wildlife Management Area · SCA · DNR - Wildlife · ~2,566 ac
 - Emmet County Waterfowl Production Area · RMA · Emmet County Waterfowl Production Area · ~2,540 ac
 - Ringgold Wildlife Management Area · SCA · DNR - Wildlife · ~2,521 ac
+- Stephens State Forest · SRMA · DNR - Forestry · ~2,503 ac
 - Emmet County Waterfowl Production Area · RMA · EMMET COUNTY WATERFOWL PRODUCTION AREA · ~2,443 ac
 - Dekalb Wildlife Management Area · SCA · DNR - Wildlife · ~2,169 ac
 - Waterloo Creek Wildlife Management Area · SCA · DNR - Wildlife · ~1,981 ac
@@ -94,4 +96,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **156 of 181** parks joined
 - Auldon Bar Wildlife Management Area · SCA · DNR - Wildlife · ~1,369 ac
 - Aldo Leopold Wildlife Management Area · SCA · DNR - Wildlife · ~1,357 ac
 - Millrace Flats Wildlife Management Area · SCA · DNR - Wildlife · ~1,346 ac
-- Middle Raccoon River Wildlife Management Area · SCA · DNR - Wildlife · ~1,306 ac
