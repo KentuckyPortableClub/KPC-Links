@@ -1,6 +1,6 @@
 # Canada BC: POTA parks vs official land (CPCAD)
 
-Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **1089 of 1254** joined (same name + same kind). **32** to check, **131** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **1088 of 1254** joined (same name + same kind). **33** to check, **131** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -22,6 +22,7 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **1089 of 1254** joined (sa
 - **CA-3701** Klewnugget Inlet Marine Park (Marine Park) → KLEWNUGGIT INLET MARINE PARK (~3,726 ac, the POTA pin is inside it (different name))
 - **CA-3714** Ksi X'anmaas Conservation Area (Conservation Area) → KSI X' ANMAAS CONSERVANCY (~82,489 ac, the POTA pin is inside it (different name))
 - **CA-3816** Monckton Nii Luutiksm Conservation Area (Conservation Area) → MONCKTON NII ŁUUTIKSM CONSERVANCY (~54,983 ac, similar name); MONCKTON NII ŁUUTIKSM CONSERVANCY (~6,237 ac, similar name)
+- **CA-3833** Mount Elliot Ecological Reserve (Ecological Reserve) → MOUNT ELLIOTT ECOLOGICAL RESERVE (~801 ac, the POTA pin is inside it (different name))
 - **CA-3992** Puntzi Island Provincial Park (Provincial Park) → PUNTI ISLAND PARK (~30 ac, the POTA pin is inside it (different name))
 - **CA-4074** Sgaan Kinghlas-Bowie Seamount Marine Protected Area (Marine Protected Area) → SG̲áan K̲ínghlas-Bowie Marine Protected Area (~1,507,990 ac, similar name)
 - **CA-4179** Takla Lake Marine Provincial Park (Provincial Park) → TAKLA LAKE MARINE PARK (~1,359 ac, similar name)
