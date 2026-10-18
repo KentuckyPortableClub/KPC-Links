@@ -1,0 +1,899 @@
+{
+ "AU": {
+  "direct": [
+   {
+    "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/MapServer?f=json",
+    "status": 200,
+    "info": "layers: 0:Protected Areas (CAPAD), 1:Marine Protected Areas (CAPAD)"
+   },
+   {
+    "url": "https://gis.environment.gov.au/gispubmap/rest/services?f=json",
+    "status": 200,
+    "info": "layers: "
+   }
+  ],
+  "search": [
+   {
+    "q": "CAPAD terrestrial",
+    "title": "GPT Stormwater Infrastructure and Hydrology Public",
+    "owner": "Harley_TL",
+    "url": "https://services6.arcgis.com/6cWkEIAYsIBPrRMb/arcgis/rest/services/GPT_Stormwater_Infrastructure_and_Hydrology_Public/FeatureServer",
+    "views": 73875
+   },
+   {
+    "q": "CAPAD terrestrial",
+    "title": "Collaborative Australian Protected Areas Database (CAPAD) 2024 - Terrestrial  ",
+    "owner": "DCCEEW_Geospatial",
+    "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/0",
+    "views": 67098
+   },
+   {
+    "q": "CAPAD terrestrial",
+    "title": "IBRA7.1 with protection coverage percentages",
+    "owner": "DCCEEW_Geospatial",
+    "url": "https://services1.arcgis.com/gtRkYQyUQLMTM1uS/arcgis/rest/services/IBRA7_1_/FeatureServer",
+    "views": 63248
+   },
+   {
+    "q": "CAPAD terrestrial",
+    "title": "Collaborative Australian Protected Areas Database (CAPAD) 2024 - Marine",
+    "owner": "DCCEEW_Geospatial",
+    "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/1",
+    "views": 55609
+   },
+   {
+    "q": "CAPAD terrestrial",
+    "title": "Collaborative Australian Protected Areas Database (CAPAD) 2024",
+    "owner": "DCCEEW_Geospatial",
+    "url": "https://services1.arcgis.com/gtRkYQyUQLMTM1uS/arcgis/rest/services/CAPAD2024_terrestrial_ExcSensitive_incGAZ_YEAR_20250117/FeatureServer",
+    "views": 33993
+   },
+   {
+    "q": "CAPAD terrestrial",
+    "title": "RTBC_Story_Map",
+    "owner": "pkoch_sagov",
+    "url": "https://services5.arcgis.com/ULv86JkyrywnrlnW/arcgis/rest/services/RTBC_Story_Map/FeatureServer",
+    "views": 17832
+   },
+   {
+    "q": "CAPAD terrestrial",
+    "title": "Collaborative Australian Protected Areas Database (CAPAD) – Terrestrial",
+    "owner": "aus_digitalatlas",
+    "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/0",
+    "views": 15297
+   },
+   {
+    "q": "CAPAD terrestrial",
+    "title": "CAPAD2024_terrestrial_IncSensitiveAgg_incGAZ_YEAR",
+    "owner": "DCCEEW_Geospatial",
+    "url": "https://services1.arcgis.com/gtRkYQyUQLMTM1uS/arcgis/rest/services/CAPAD2024_terrestrial_IncSensitiveAgg_incGAZ_YEAR/FeatureServer",
+    "views": 13977
+   },
+   {
+    "q": "Collaborative Australian Protected Areas Database",
+    "title": "GPT Stormwater Infrastructure and Hydrology Public",
+    "owner": "Harley_TL",
+    "url": "https://services6.arcgis.com/6cWkEIAYsIBPrRMb/arcgis/rest/services/GPT_Stormwater_Infrastructure_and_Hydrology_Public/FeatureServer",
+    "views": 73875
+   },
+   {
+    "q": "Collaborative Australian Protected Areas Database",
+    "title": "Collaborative Australian Protected Areas Database (CAPAD) 2024 - Terrestrial  ",
+    "owner": "DCCEEW_Geospatial",
+    "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/0",
+    "views": 67098
+   },
+   {
+    "q": "Collaborative Australian Protected Areas Database",
+    "title": "IBRA7.1 with protection coverage percentages",
+    "owner": "DCCEEW_Geospatial",
+    "url": "https://services1.arcgis.com/gtRkYQyUQLMTM1uS/arcgis/rest/services/IBRA7_1_/FeatureServer",
+    "views": 63248
+   },
+   {
+    "q": "Collaborative Australian Protected Areas Database",
+    "title": "Collaborative Australian Protected Areas Database (CAPAD) 2024 - Marine",
+    "owner": "DCCEEW_Geospatial",
+    "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/1",
+    "views": 55609
+   },
+   {
+    "q": "Collaborative Australian Protected Areas Database",
+    "title": "Collaborative Australian Protected Areas Database (CAPAD) 2024",
+    "owner": "DCCEEW_Geospatial",
+    "url": "https://services1.arcgis.com/gtRkYQyUQLMTM1uS/arcgis/rest/services/CAPAD2024_terrestrial_ExcSensitive_incGAZ_YEAR_20250117/FeatureServer",
+    "views": 33993
+   },
+   {
+    "q": "Collaborative Australian Protected Areas Database",
+    "title": "Realm Protection Points",
+    "owner": "MatthewTuffield",
+    "url": "https://services1.arcgis.com/gtRkYQyUQLMTM1uS/arcgis/rest/services/Realm_Protection_points(MT)/FeatureServer",
+    "views": 26071
+   },
+   {
+    "q": "Collaborative Australian Protected Areas Database",
+    "title": "IBRA Regional Descriptors",
+    "owner": "DCCEEW_Geospatial",
+    "url": "https://services1.arcgis.com/gtRkYQyUQLMTM1uS/arcgis/rest/services/IBRA_Regional_Descriptors/FeatureServer",
+    "views": 25056
+   },
+   {
+    "q": "Collaborative Australian Protected Areas Database",
+    "title": "CAPAD Dashboard IUCN Categories Look-up",
+    "owner": "DCCEEW_Geospatial",
+    "url": "https://services1.arcgis.com/gtRkYQyUQLMTM1uS/arcgis/rest/services/IUCN_Categories/FeatureServer",
+    "views": 23997
+   }
+  ]
+ },
+ "DE": {
+  "direct": [
+   {
+    "url": "https://geodienste.bfn.de/ogc/wfs/schutzgebiet?SERVICE=WFS&REQUEST=GetCapabilities",
+    "status": 200,
+    "info": "types: schutzgebiet:Nationale_Naturmonumente, schutzgebiet:Fauna_Flora_Habitat_Gebiete, schutzgebiet:Vogelschutzgebiete, schutzgebiet:Biosphaerenreservate, schutzgebiet:Biosphaerenreservate_Zonierung, schutzgebiet:Nationalparke, schutzgebiet:Naturparke, schutzgebiet:Naturschutzgebiete, schutzgebiet:Landschaftsschutzgebiete"
+   },
+   {
+    "url": "https://geodienste.bfn.de/ogc/wms/schutzgebiet?SERVICE=WMS&REQUEST=GetCapabilities",
+    "status": 200,
+    "info": "types: WMS, Landschaftsschutzgebiete, default, Naturschutzgebiete, default, Naturparke, default, Nationalparke, default, Biosphaerenreservate_Zonierung, default, Biosphaerenreservate, default, Vogelschutzgebiete, default, Fauna_Flora_Habitat_Gebiete, default, Nationale_Naturmonumente, default"
+   }
+  ],
+  "search": [
+   {
+    "q": "Naturschutzgebiete Deutschland",
+    "title": "Schutzgebiete Deutschland",
+    "owner": "esri_DE_content",
+    "url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/Schutzgebiete/FeatureServer",
+    "views": 1222775
+   },
+   {
+    "q": "Naturschutzgebiete Deutschland",
+    "title": "Schutzgebiete - Brandenburg",
+    "owner": "esri_DE_content",
+    "url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/Schutzgebiete_Brandenburg/FeatureServer",
+    "views": 50194
+   },
+   {
+    "q": "Naturschutzgebiete Deutschland",
+    "title": "Schutzgebiete - Bayern",
+    "owner": "esri_DE_content",
+    "url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/schutzgebiete_bayern/FeatureServer",
+    "views": 21973
+   },
+   {
+    "q": "Naturschutzgebiete Deutschland",
+    "title": "Basis DLM NRW Objektarten",
+    "owner": "ceey_sandbox_esridech",
+    "url": "https://services-eu1.arcgis.com/a0sEkylFYspuWdKh/arcgis/rest/services/Basis_DLM_NRW_WFL1/FeatureServer",
+    "views": 19620
+   },
+   {
+    "q": "Naturschutzgebiete Deutschland",
+    "title": "Feldblöcke - Berlin-Brandenburg",
+    "owner": "esri_DE_content",
+    "url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/Feldbloecke_BB/FeatureServer",
+    "views": 8780
+   },
+   {
+    "q": "Naturschutzgebiete Deutschland",
+    "title": "Gebiete mit besonderen umweltspezifischen Einschränkungen - NRW",
+    "owner": "esri_DE_content",
+    "url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/Gebiete_mit_besonderen_umweltspezifischen_Einschränkungen/FeatureServer",
+    "views": 6020
+   },
+   {
+    "q": "Naturschutzgebiete Deutschland",
+    "title": "Gebiete mit umweltspezifischen Einschränkungen - NRW",
+    "owner": "esri_DE_content",
+    "url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/Gebiete_mit_umweltspezifischen_Einschränkungen/FeatureServer",
+    "views": 2313
+   },
+   {
+    "q": "Naturschutzgebiete Deutschland",
+    "title": "Vogelschutzgebiete (2019, marinen Schutzgebiete in Deutschland) ",
+    "owner": "WWF_Globil",
+    "url": "https://services1.arcgis.com/RTK5Unh1Z71JKIiR/arcgis/rest/services/Vogelschutzgebiete/FeatureServer",
+    "views": 2304
+   },
+   {
+    "q": "Schutzgebiete BfN",
+    "title": "Schutzgebiete Deutschland",
+    "owner": "esri_DE_content",
+    "url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/Schutzgebiete/FeatureServer",
+    "views": 1222775
+   },
+   {
+    "q": "Schutzgebiete BfN",
+    "title": "Moorflächen nach Eignung zur Paludikultur in Deutschland",
+    "owner": "esri_DE_content",
+    "url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/Paludikulturflaechen_Bereinigt/FeatureServer",
+    "views": 27470
+   },
+   {
+    "q": "Schutzgebiete BfN",
+    "title": "Lebensräume im Biotopverbund in Deutschland",
+    "owner": "esri_DE_content",
+    "url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/Biotopverbund_Lebensräume/FeatureServer",
+    "views": 13087
+   },
+   {
+    "q": "Schutzgebiete BfN",
+    "title": "Digitale Daten WWF Bericht (2016): Wo die Krabben gefischt werden (KRAFI)",
+    "owner": "WWF_Globil",
+    "url": "https://services1.arcgis.com/RTK5Unh1Z71JKIiR/arcgis/rest/services/Daten_aus_KRAFI_Projekt_2014/FeatureServer",
+    "views": 7933
+   },
+   {
+    "q": "Schutzgebiete BfN",
+    "title": "§30 Gesetzlich geschützte Biotope im Landkreis Stade",
+    "owner": "LK-Stade",
+    "url": "https://services1.arcgis.com/gj4UKoDigJC9AuBF/arcgis/rest/services/§30_Biotope/FeatureServer",
+    "views": 5563
+   },
+   {
+    "q": "Landschaftsschutzgebiete",
+    "title": "Schutzgebiete Deutschland",
+    "owner": "esri_DE_content",
+    "url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/Schutzgebiete/FeatureServer",
+    "views": 1222775
+   },
+   {
+    "q": "Landschaftsschutzgebiete",
+    "title": "Umweltdaten_LRA_ZAK_WGS84_PCS_gdb",
+    "owner": "gislrazak",
+    "url": "https://services3.arcgis.com/5oPkDqFNiQRoI8BR/arcgis/rest/services/Umweltdaten_LRA_ZAK_WGS84_PCS_gdb/FeatureServer",
+    "views": 229869
+   },
+   {
+    "q": "Landschaftsschutzgebiete",
+    "title": "WebGIS alle Layer 220825_feature_layer",
+    "owner": "stefan.franzkowiak_tuv",
+    "url": "https://services-eu1.arcgis.com/vxIaAc4jWN9L5Mzy/arcgis/rest/services/WebGIS_alle_Layer_220825_feature_layer/FeatureServer",
+    "views": 95060
+   },
+   {
+    "q": "Landschaftsschutzgebiete",
+    "title": "Schutzgebiete - Brandenburg",
+    "owner": "esri_DE_content",
+    "url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/Schutzgebiete_Brandenburg/FeatureServer",
+    "views": 50194
+   },
+   {
+    "q": "Landschaftsschutzgebiete",
+    "title": "LRP 2014 Landkreis Stade Karte 5 Maßnahmen zur Umsetzung des Biotopverbund und Zielkonzept",
+    "owner": "LK-Stade",
+    "url": "https://services1.arcgis.com/gj4UKoDigJC9AuBF/arcgis/rest/services/Karte_5_Maßnahmen_zur_Umsetzung_des_Biotopverbund_und_Zielkonzept/FeatureServer",
+    "views": 45412
+   },
+   {
+    "q": "Landschaftsschutzgebiete",
+    "title": "A075_Gesamtkarte_WFL1",
+    "owner": "sweiss",
+    "url": "https://services-eu1.arcgis.com/T5VkjxPvXZijyg8n/arcgis/rest/services/A075_Gesamtkarte_WFL1/FeatureServer",
+    "views": 43661
+   },
+   {
+    "q": "Landschaftsschutzgebiete",
+    "title": "A600C_WebGIS_Basis_231207_Stand20240108_V2",
+    "owner": "stefan.franzkowiak_tuv",
+    "url": "https://services-eu1.arcgis.com/vxIaAc4jWN9L5Mzy/arcgis/rest/services/A600C_WebGIS_Basis_231207_Stand20240108_V2/FeatureServer",
+    "views": 42517
+   },
+   {
+    "q": "Landschaftsschutzgebiete",
+    "title": "WWK_Ahaus_Eduard_Online",
+    "owner": "Ge_Komm@424",
+    "url": "https://services7.arcgis.com/4wb809ueqXZ3RjH7/arcgis/rest/services/WWK_Ahaus_Eduard_Online/FeatureServer",
+    "views": 34761
+   }
+  ]
+ },
+ "PL": {
+  "direct": [
+   {
+    "url": "https://sdi.gdos.gov.pl/wfs?SERVICE=WFS&REQUEST=GetCapabilities",
+    "status": 403,
+    "info": ""
+   },
+   {
+    "url": "https://sdi.gdos.gov.pl/wms?SERVICE=WMS&REQUEST=GetCapabilities",
+    "status": 403,
+    "info": ""
+   }
+  ],
+  "search": [
+   {
+    "q": "parki krajobrazowe",
+    "title": "szlaki_turystyczne_aplikacja",
+    "owner": "WBPP_Poznan",
+    "url": "https://services7.arcgis.com/cq6TttBUyMCs7zzH/arcgis/rest/services/szlaki_turystyczne_aplikacja/FeatureServer",
+    "views": 111089
+   },
+   {
+    "q": "parki krajobrazowe",
+    "title": "Obszary chronione",
+    "owner": "wwfpolska",
+    "url": "https://services1.arcgis.com/RTK5Unh1Z71JKIiR/arcgis/rest/services/Obszary_chronione/FeatureServer",
+    "views": 110038
+   },
+   {
+    "q": "parki krajobrazowe",
+    "title": "MODEL SFP SRCPK listopad 2025",
+    "owner": "mariusz.pawluc",
+    "url": "https://services-eu1.arcgis.com/PrhumA1kWjAUlawA/arcgis/rest/services/MODEL_SFP_SRCPK_listopad_2025/FeatureServer",
+    "views": 69913
+   },
+   {
+    "q": "parki krajobrazowe",
+    "title": "zasoby_naturalne",
+    "owner": "gis-expert-pl",
+    "url": "https://services1.arcgis.com/mQcAehnytds8jMvo/arcgis/rest/services/zasoby_naturalne/FeatureServer",
+    "views": 50535
+   },
+   {
+    "q": "parki krajobrazowe",
+    "title": "Parki_narodowe",
+    "owner": "EduEsriPL",
+    "url": "https://services.arcgis.com/G295WI0RtbsgPOE4/arcgis/rest/services/Parki_narodowe/FeatureServer",
+    "views": 45519
+   },
+   {
+    "q": "parki krajobrazowe",
+    "title": "Parki_krajobrazowe",
+    "owner": "EduEsriPL",
+    "url": "https://services.arcgis.com/G295WI0RtbsgPOE4/arcgis/rest/services/Parki_krajobrazowe/FeatureServer",
+    "views": 41186
+   },
+   {
+    "q": "parki krajobrazowe",
+    "title": "Rezerwaty_przyrody",
+    "owner": "EduEsriPL",
+    "url": "https://services.arcgis.com/G295WI0RtbsgPOE4/arcgis/rest/services/Rezerwaty_przyrody/FeatureServer",
+    "views": 30112
+   },
+   {
+    "q": "parki krajobrazowe",
+    "title": "MPV_Pomorskie_Wejheroweo_Choczewo_v2_1_WFL1",
+    "owner": "UPWINmaps",
+    "url": "https://services8.arcgis.com/H1DBZSEmjr2F6tbS/arcgis/rest/services/MPV_Pomorskie_Wejheroweo_Choczewo_v2_1_WFL1/FeatureServer",
+    "views": 19033
+   },
+   {
+    "q": "formy ochrony przyrody",
+    "title": "Parki_narodowe",
+    "owner": "EduEsriPL",
+    "url": "https://services.arcgis.com/G295WI0RtbsgPOE4/arcgis/rest/services/Parki_narodowe/FeatureServer",
+    "views": 45519
+   },
+   {
+    "q": "formy ochrony przyrody",
+    "title": "Parki_krajobrazowe",
+    "owner": "EduEsriPL",
+    "url": "https://services.arcgis.com/G295WI0RtbsgPOE4/arcgis/rest/services/Parki_krajobrazowe/FeatureServer",
+    "views": 41186
+   },
+   {
+    "q": "formy ochrony przyrody",
+    "title": "Rezerwaty_przyrody",
+    "owner": "EduEsriPL",
+    "url": "https://services.arcgis.com/G295WI0RtbsgPOE4/arcgis/rest/services/Rezerwaty_przyrody/FeatureServer",
+    "views": 30112
+   },
+   {
+    "q": "formy ochrony przyrody",
+    "title": "rekomendowane_formy_ochrony_przyrody",
+    "owner": "marcin.koziel_umwl",
+    "url": "https://services-eu1.arcgis.com/Jrk6MTETXto4qYGo/arcgis/rest/services/rekomendowane_formy_ochrony_przyrody/FeatureServer",
+    "views": 3295
+   },
+   {
+    "q": "formy ochrony przyrody",
+    "title": "Formy Ochrony Przyrody_WFL1",
+    "owner": "krzysztof.maczynski_wigwat",
+    "url": "https://services5.arcgis.com/uID8wkC2Vn7MxK6S/arcgis/rest/services/Formy_Ochrony_Przyrody_WFL1/FeatureServer",
+    "views": 1707
+   },
+   {
+    "q": "formy ochrony przyrody",
+    "title": "rekomendowane_formy_ochrony_przyrody_1",
+    "owner": "marcin.koziel_umwl",
+    "url": "https://services-eu1.arcgis.com/Jrk6MTETXto4qYGo/arcgis/rest/services/rekomendowane_formy_ochrony_przyrody_1/FeatureServer",
+    "views": 1538
+   },
+   {
+    "q": "formy ochrony przyrody",
+    "title": "Pomniki przyrody",
+    "owner": "data.umORN",
+    "url": "https://services7.arcgis.com/8OIpZT9A6ob75W19/arcgis/rest/services/Pomniki_przyr/FeatureServer",
+    "views": 1245
+   },
+   {
+    "q": "formy ochrony przyrody",
+    "title": "ochrona_przyrody",
+    "owner": "liliana.janik_UJ",
+    "url": "https://services6.arcgis.com/JUmUgCafSWdOK8hF/arcgis/rest/services/ochrona_przyrody/FeatureServer",
+    "views": 920
+   }
+  ]
+ },
+ "GB": {
+  "direct": [
+   {
+    "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services?f=json",
+    "status": 200,
+    "info": "layers: "
+   },
+   {
+    "url": "https://environment.data.gov.uk/spatialdata/national-nature-reserves-england/wfs?SERVICE=WFS&REQUEST=GetCapabilities",
+    "status": 200,
+    "info": "types: dataset-ff213e4c-423a-4d7e-9e6f-b220600a8db3:National_Nature_Reserves_England"
+   },
+   {
+    "url": "https://ogc.nature.scot/geoserver/protectedareas/wfs?SERVICE=WFS&REQUEST=GetCapabilities",
+    "status": 200,
+    "info": "types: protectedareas:pa30x30, protectedareas:biogen, protectedareas:biosph, protectedareas:cpk, protectedareas:mpadr, protectedareas:eda, protectedareas:gcr, protectedareas:lnr, protectedareas:mca, protectedareas:mpa, protectedareas:nnr, protectedareas:nature30, protectedareas:ramsar, protectedareas:rp, protectedareas:sssi, protectedareas:infdec_sssi, protectedareas:sac, protectedareas:spa, protectedareas:whs"
+   }
+  ],
+  "search": [
+   {
+    "q": "National Nature Reserves England",
+    "title": "ARUP Data Freeze Combined with Public Data",
+    "owner": "katharina.lorenz_ewrco",
+    "url": "https://services-eu1.arcgis.com/HE8B1AbmVMa7XVqO/arcgis/rest/services/ARUP_Data_Freeze_Combined_with_Public_Data/FeatureServer",
+    "views": 3319833
+   },
+   {
+    "q": "National Nature Reserves England",
+    "title": "Internet_Local_Plan_Proposed_Modifications",
+    "owner": "THArcGISOnline",
+    "url": "https://services1.arcgis.com/KZuCGRSe2K5BiG1Z/arcgis/rest/services/Internet_Local_Plan_Proposed_Modifications/FeatureServer",
+    "views": 1898851
+   },
+   {
+    "q": "National Nature Reserves England",
+    "title": "Local Nature Reserves",
+    "owner": "sarah.noakes@cornwall.gov.uk_cornwallcouncil",
+    "url": "https://map.cornwall.gov.uk/arcgis/rest/services/CCmap/MapServer/131",
+    "views": 1865779
+   },
+   {
+    "q": "National Nature Reserves England",
+    "title": "Local Nature Reserves (England)",
+    "owner": "Opendata_NE",
+    "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Local_Nature_Reserves_England/FeatureServer",
+    "views": 1822822
+   },
+   {
+    "q": "National Nature Reserves England",
+    "title": "Consolidated Cities",
+    "owner": "Esri_US_Federal_Data",
+    "url": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Consolidated_Cities_v1/FeatureServer",
+    "views": 1740614
+   },
+   {
+    "q": "National Nature Reserves England",
+    "title": "National Nature Reserves (England)",
+    "owner": "Opendata_NE",
+    "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/National_Nature_Reserves_England/FeatureServer",
+    "views": 1564364
+   },
+   {
+    "q": "National Nature Reserves England",
+    "title": "Adopted Policies Map_WFL1",
+    "owner": "kdodd@lancaster.gov.uk_lancaster",
+    "url": "https://services8.arcgis.com/BIbIT39XnVeg2ywe/arcgis/rest/services/Adopted_Policies_Map_WFL1/FeatureServer",
+    "views": 1437131
+   },
+   {
+    "q": "National Nature Reserves England",
+    "title": "Incorporated Places",
+    "owner": "layermanager",
+    "url": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/TIGERweb_Incorporated_Places_v1/FeatureServer",
+    "views": 1265778
+   },
+   {
+    "q": "Country Parks England",
+    "title": "ARUP Data Freeze Combined with Public Data",
+    "owner": "katharina.lorenz_ewrco",
+    "url": "https://services-eu1.arcgis.com/HE8B1AbmVMa7XVqO/arcgis/rest/services/ARUP_Data_Freeze_Combined_with_Public_Data/FeatureServer",
+    "views": 3319833
+   },
+   {
+    "q": "Country Parks England",
+    "title": "Country Parks (England)",
+    "owner": "Opendata_NE",
+    "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Country_Parks_England/FeatureServer",
+    "views": 471694
+   },
+   {
+    "q": "Country Parks England",
+    "title": "20Q1 _ Foundation Environmental Consideration Layers",
+    "owner": "katharina.lorenz_ewrco",
+    "url": "https://services-eu1.arcgis.com/HE8B1AbmVMa7XVqO/arcgis/rest/services/20Q1___Foundation_Environmental_Consideration_Layers/FeatureServer",
+    "views": 425997
+   },
+   {
+    "q": "Country Parks England",
+    "title": "Map2_WFL1",
+    "owner": "v1chemmi",
+    "url": "https://services8.arcgis.com/7L75T5PDROpCazRR/arcgis/rest/services/Map2_WFL1/FeatureServer",
+    "views": 332664
+   },
+   {
+    "q": "Country Parks England",
+    "title": "Access Network Mapping (England)",
+    "owner": "Opendata_NE",
+    "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Access_Network_Mapping_England/FeatureServer",
+    "views": 175977
+   },
+   {
+    "q": "Country Parks England",
+    "title": "12058_Static_Designations",
+    "owner": "Katherine.Horton@landuse.co.uk_LUC",
+    "url": "https://services2.arcgis.com/HLiFKZKUbLetDDpP/arcgis/rest/services/Designations/FeatureServer",
+    "views": 155205
+   },
+   {
+    "q": "Country Parks England",
+    "title": "ONS Postcode Directory (February 2026) for the UK (Hosted Table)",
+    "owner": "ONSGeography_data",
+    "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ONS_Postcode_Directory_(February_2026)_for_the_UK_(Hosted_Table)/FeatureServer",
+    "views": 144915
+   },
+   {
+    "q": "Country Parks England",
+    "title": "esri_tpo_woodland",
+    "owner": "exmoornpa_matt",
+    "url": "https://services-eu1.arcgis.com/nvL9EDc30lviBdlc/arcgis/rest/services/esri_tpo_woodland/FeatureServer",
+    "views": 109478
+   },
+   {
+    "q": "Sites of Special Scientific Interest England",
+    "title": "National Heritage List for England (NHLE)",
+    "owner": "gis_historicengland",
+    "url": "https://services-eu1.arcgis.com/ZOdPfBS3aqqDYPUQ/arcgis/rest/services/National_Heritage_List_for_England_NHLE_v02_VIEW/FeatureServer",
+    "views": 5835899
+   },
+   {
+    "q": "Sites of Special Scientific Interest England",
+    "title": "Sites of Special Scientific Interest (England)",
+    "owner": "Opendata_NE",
+    "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/SSSI_England/FeatureServer",
+    "views": 3825233
+   },
+   {
+    "q": "Sites of Special Scientific Interest England",
+    "title": "ARUP Data Freeze Combined with Public Data",
+    "owner": "katharina.lorenz_ewrco",
+    "url": "https://services-eu1.arcgis.com/HE8B1AbmVMa7XVqO/arcgis/rest/services/ARUP_Data_Freeze_Combined_with_Public_Data/FeatureServer",
+    "views": 3319833
+   },
+   {
+    "q": "Sites of Special Scientific Interest England",
+    "title": "Sites of special scientific interest impact risk zones",
+    "owner": "sarah.noakes@cornwall.gov.uk_cornwallcouncil",
+    "url": "https://map.cornwall.gov.uk/arcgis/rest/services/CCmap/MapServer/168",
+    "views": 1874634
+   },
+   {
+    "q": "Sites of Special Scientific Interest England",
+    "title": "WFD Cycle 3 Lake water body classifications",
+    "owner": "grant.mcmellin_environment",
+    "url": "https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/WFD_Cycle_3_Lake_water_body_classifications_point/FeatureServer",
+    "views": 1108040
+   },
+   {
+    "q": "Sites of Special Scientific Interest England",
+    "title": "Sites of Special Scientific Interest Units (England)",
+    "owner": "Opendata_NE",
+    "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/SSSI_Units_England/FeatureServer",
+    "views": 930306
+   },
+   {
+    "q": "Sites of Special Scientific Interest England",
+    "title": "SSSI Impact Risk Zones (England)",
+    "owner": "Opendata_NE",
+    "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/SSSI_Impact_Risk_Zones_England/FeatureServer",
+    "views": 778600
+   },
+   {
+    "q": "Sites of Special Scientific Interest England",
+    "title": "Map2_WFL1",
+    "owner": "v1chemmi",
+    "url": "https://services8.arcgis.com/7L75T5PDROpCazRR/arcgis/rest/services/Map2_WFL1/FeatureServer",
+    "views": 332664
+   },
+   {
+    "q": "NatureScot protected areas",
+    "title": "Map2_WFL1",
+    "owner": "v1chemmi",
+    "url": "https://services8.arcgis.com/7L75T5PDROpCazRR/arcgis/rest/services/Map2_WFL1/FeatureServer",
+    "views": 332664
+   },
+   {
+    "q": "NatureScot protected areas",
+    "title": "LDPdesignation",
+    "owner": "carolinehogan_pkc",
+    "url": "https://services-eu1.arcgis.com/WD0cvOmDKf7CA0Xy/arcgis/rest/services/LDPdesignation/FeatureServer",
+    "views": 169976
+   },
+   {
+    "q": "NatureScot protected areas",
+    "title": "GeMS___Scottish_Priority_Marine_Features",
+    "owner": "SNH_Maps",
+    "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/arcgis/rest/services/GeMS___Scottish_Priority_Marine_Features/FeatureServer",
+    "views": 141878
+   },
+   {
+    "q": "NatureScot protected areas",
+    "title": "Geological_Conservation_Review_sites",
+    "owner": "SNH_Maps",
+    "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/arcgis/rest/services/Geological_Conservation_Review_sites/FeatureServer",
+    "views": 89457
+   },
+   {
+    "q": "NatureScot protected areas",
+    "title": "Special Protection Areas  (NatureScot AGOL Layer)",
+    "owner": "hcgisadmin",
+    "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/arcgis/rest/services/Special_Protection_Areas/FeatureServer/0",
+    "views": 72212
+   },
+   {
+    "q": "NatureScot protected areas",
+    "title": "Sites of Special Scientific Interest (NatureScot AGOL Layer)",
+    "owner": "hcgisadmin",
+    "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/arcgis/rest/services/Sites_of_Special_Scientific_Interest/FeatureServer/0",
+    "views": 71606
+   },
+   {
+    "q": "NatureScot protected areas",
+    "title": "Core Data Non WMS",
+    "owner": "BlakemanB_GoBe",
+    "url": "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/arcgis/rest/services/Core_Data_Non_WMS/FeatureServer",
+    "views": 62827
+   },
+   {
+    "q": "NatureScot protected areas",
+    "title": "World Heritage Sites (NatureScot AGOL Layer)",
+    "owner": "hcgisadmin",
+    "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/arcgis/rest/services/World_Heritage_Sites/FeatureServer/0",
+    "views": 59650
+   },
+   {
+    "q": "Natural Resources Wales protected",
+    "title": "LDP 2019",
+    "owner": "ken.campbell@dundeecity.gov.uk_dundeecity",
+    "url": "https://services.arcgis.com/GlZ1P6ksdiXNYhvC/arcgis/rest/services/LDP_2019/FeatureServer",
+    "views": 590616
+   },
+   {
+    "q": "Natural Resources Wales protected",
+    "title": "LDP2019 feature layers",
+    "owner": "gis_dundeecity",
+    "url": "https://services.arcgis.com/GlZ1P6ksdiXNYhvC/arcgis/rest/services/LDP2019_WFL1/FeatureServer",
+    "views": 182951
+   },
+   {
+    "q": "Natural Resources Wales protected",
+    "title": "HSP Policies Map_WFL1",
+    "owner": "paddyr.user",
+    "url": "https://services7.arcgis.com/4pYX6HSMPnnNGMxL/arcgis/rest/services/HSP_Policies_Map_WFL1/FeatureServer",
+    "views": 76707
+   },
+   {
+    "q": "Natural Resources Wales protected",
+    "title": "GPT Stormwater Infrastructure and Hydrology Public",
+    "owner": "Harley_TL",
+    "url": "https://services6.arcgis.com/6cWkEIAYsIBPrRMb/arcgis/rest/services/GPT_Stormwater_Infrastructure_and_Hydrology_Public/FeatureServer",
+    "views": 73875
+   },
+   {
+    "q": "Natural Resources Wales protected",
+    "title": "Core Data Non WMS",
+    "owner": "BlakemanB_GoBe",
+    "url": "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/arcgis/rest/services/Core_Data_Non_WMS/FeatureServer",
+    "views": 62827
+   },
+   {
+    "q": "Natural Resources Wales protected",
+    "title": "HDWHistoryStoryMap_WFL1",
+    "owner": "FLWC_GIS2",
+    "url": "https://services6.arcgis.com/r6oiZlMlrZIl4SUx/arcgis/rest/services/HDWHistoryStoryMap_WFL1/FeatureServer",
+    "views": 29479
+   },
+   {
+    "q": "Natural Resources Wales protected",
+    "title": "Clydesdale Way Master Map v4_WFL1",
+    "owner": "Mara.Shepherd@stantec.com_stantec",
+    "url": "https://services.arcgis.com/DN2fPfpggEPlLhP6/arcgis/rest/services/Clydesdale_Way_Master_Map_v4_WFL1/FeatureServer",
+    "views": 26663
+   },
+   {
+    "q": "Natural Resources Wales protected",
+    "title": "WTL Daintree Catchment",
+    "owner": "sharleneb",
+    "url": "https://services3.arcgis.com/EksqEpNbvM07IZjR/arcgis/rest/services/Daintree_Catchment_new/FeatureServer",
+    "views": 19057
+   }
+  ]
+ },
+ "JP": {
+  "direct": [
+   {
+    "url": "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v3_1.html",
+    "status": 200,
+    "info": "﻿ 国土数値情報 | 自然公園地域データ (function (w, d, s, l, i) { w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl "
+   },
+   {
+    "url": "https://www.biodic.go.jp/trialSystem/top.html",
+    "status": 0,
+    "info": ""
+   }
+  ],
+  "search": [
+   {
+    "q": "Japan national parks boundary",
+    "title": "World Street Map",
+    "owner": "esri",
+    "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
+    "views": 141037990
+   },
+   {
+    "q": "Japan national parks boundary",
+    "title": "2016 Census Ward Boundary 2018_2022",
+    "owner": "shahir.alam@peelregion.ca_RegionofPeel",
+    "url": "https://services6.arcgis.com/ONZht79c8QWuX759/arcgis/rest/services/2016_Census_Ward_Boundary_2018_2022/FeatureServer",
+    "views": 34736
+   },
+   {
+    "q": "Japan national parks boundary",
+    "title": "Japanese relocation center boundaries",
+    "owner": "StoryMaps",
+    "url": "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/Japanese_relocation_center_boundaries/FeatureServer",
+    "views": 31961
+   },
+   {
+    "q": "Japan national parks boundary",
+    "title": "World_Topo_Map",
+    "owner": "baltimore",
+    "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
+    "views": 14946
+   },
+   {
+    "q": "Japan national parks boundary",
+    "title": "PA Elk Hunting Maps",
+    "owner": "scott.deitrich",
+    "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
+    "views": 4623
+   },
+   {
+    "q": "Japan national parks boundary",
+    "title": "World Street Map - Kopie",
+    "owner": "gabrielsenn",
+    "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
+    "views": 107
+   },
+   {
+    "q": "Japan national parks boundary",
+    "title": "World Street Map",
+    "owner": "srbetts",
+    "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
+    "views": 95
+   },
+   {
+    "q": "国立公園",
+    "title": "屋外広告物規制図__",
+    "owner": "izunokuni_admin",
+    "url": "https://services9.arcgis.com/YedtcQ0sfEZGPHzD/arcgis/rest/services/屋外広告物規制図__/FeatureServer",
+    "views": 380344
+   },
+   {
+    "q": "国立公園",
+    "title": "再生可能エネルギー抑制区域図__",
+    "owner": "izunokuni_admin",
+    "url": "https://services9.arcgis.com/YedtcQ0sfEZGPHzD/arcgis/rest/services/再生可能エネルギー抑制区域図__/FeatureServer",
+    "views": 321440
+   },
+   {
+    "q": "国立公園",
+    "title": "国立公園区域等",
+    "owner": "Esri_JP_Content",
+    "url": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/nps_all/FeatureServer",
+    "views": 47446
+   },
+   {
+    "q": "国立公園",
+    "title": "Numberof_NationalParkUsers",
+    "owner": "Esri_Japan",
+    "url": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/Numberof_NationalParkUsers/FeatureServer",
+    "views": 34870
+   },
+   {
+    "q": "国立公園",
+    "title": "NationalParkofJapan_area",
+    "owner": "Esri_Japan",
+    "url": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/NationalParkofJapan_area/FeatureServer",
+    "views": 18414
+   },
+   {
+    "q": "国立公園",
+    "title": "R7更新_屋外広告物規制図",
+    "owner": "izunokuni_admin",
+    "url": "https://services9.arcgis.com/YedtcQ0sfEZGPHzD/arcgis/rest/services/R7更新_屋外広告物規制図/FeatureServer",
+    "views": 16322
+   },
+   {
+    "q": "国立公園",
+    "title": "砂防指定地",
+    "owner": "tochigigisadmin",
+    "url": "https://services7.arcgis.com/oAgoy3LKmUpvdTfh/arcgis/rest/services/砂防指定地/FeatureServer",
+    "views": 15951
+   },
+   {
+    "q": "国立公園",
+    "title": "NationalParkofJapan",
+    "owner": "Esri_Japan",
+    "url": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/NationalParkofJapan/FeatureServer",
+    "views": 12847
+   },
+   {
+    "q": "自然公園地域",
+    "title": "日野市都市計画図",
+    "owner": "tosikei",
+    "url": "https://services5.arcgis.com/akSheMdmUZiKa4BM/arcgis/rest/services/日野市都市計画図_テスト4_WFL1/FeatureServer",
+    "views": 611109
+   },
+   {
+    "q": "自然公園地域",
+    "title": "自然公園地域",
+    "owner": "g02h00cr001",
+    "url": "https://services9.arcgis.com/n65w8AXGaYPTqFYI/arcgis/rest/services/埼玉県自然公園地域/FeatureServer",
+    "views": 65082
+   },
+   {
+    "q": "自然公園地域",
+    "title": "KinmenGIS_Map_WFL1",
+    "owner": "renhany_MA3005",
+    "url": "https://services.arcgis.com/u2U1mw0cjHo9B2A5/arcgis/rest/services/KinmenGIS_Map_WFL1/FeatureServer",
+    "views": 58536
+   },
+   {
+    "q": "自然公園地域",
+    "title": "地価公示（国土数値情報 令和 8 年）",
+    "owner": "Esri_JP_Content",
+    "url": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/ksj_landprice/FeatureServer",
+    "views": 52843
+   },
+   {
+    "q": "自然公園地域",
+    "title": "地価公示（国土数値情報）",
+    "owner": "Esri_JP_Content",
+    "url": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/LandPrice/FeatureServer",
+    "views": 49190
+   },
+   {
+    "q": "自然公園地域",
+    "title": "国立公園区域等",
+    "owner": "Esri_JP_Content",
+    "url": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/nps_all/FeatureServer",
+    "views": 47446
+   },
+   {
+    "q": "自然公園地域",
+    "title": "R05都市計画総括図",
+    "owner": "aac_chikuzen0",
+    "url": "https://services8.arcgis.com/Q1GxUV2fMs0qBp5r/arcgis/rest/services/R05都市計画総括図/FeatureServer",
+    "views": 46974
+   },
+   {
+    "q": "自然公園地域",
+    "title": "KokuteikoenTokubetsuHogoku_view",
+    "owner": "fukukshien",
+    "url": "https://services1.arcgis.com/UzywP0SobSWMx2Pl/arcgis/rest/services/KokuteikoenTokubetsuHogoku_view/FeatureServer",
+    "views": 38090
+   }
+  ]
+ }
+}
