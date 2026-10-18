@@ -1,6 +1,6 @@
 # Canada NU: POTA parks vs official land (CPCAD)
 
-Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **16 of 48** joined (same name + same kind). **14** to check, **18** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **18 of 48** joined (same name + same kind). **12** to check, **18** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -16,8 +16,6 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **16 of 48** joined (same n
 - **CA-4587** Queen Maud Gulf (Ahiak) Migratory Bird Sanctuary (Bird Sanctuary) → Ahiak Migratory Bird Sanctuary (~13,930,505 ac, the POTA pin is inside it (different name))
 - **CA-4589** Seymour Island Migratory Bird Sanctuary (Bird Sanctuary) → Naujavaat Migratory Bird Sanctuary (~425 ac, the POTA pin is inside it (different name))
 - **CA-4590** Soper Heritage River National Heritage Area (National Heritage Area) → Katannilik Territorial Park (~361,253 ac, the POTA pin is inside it (different name))
-- **CA-4594** Tallurutiup Imanga / Lancaster Sound NMCA National Marine Area (National Marine Area) → Tallurutiup Imanga National Marine Conservation Area (~26,669,054 ac, the POTA pin is inside it (different name))
-- **CA-4599** Twin Islands  Sanctuary Wilderness Preserve (Wilderness Preserve) → Twin Islands Wildlife Sanctuary (~327,365 ac, similar name)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 

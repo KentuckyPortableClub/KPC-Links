@@ -1,15 +1,11 @@
 # Canada NT: POTA parks vs official land (CPCAD)
 
-Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **10 of 68** joined (same name + same kind). **7** to check, **50** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **14 of 68** joined (same name + same kind). **3** to check, **50** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
-- **CA-0125** Pingo National Landmark Natural Area (Natural Area) → Pingo Canadian Landmark (~2,669 ac, similar name); Pingo Canadian Landmark (~1,280 ac, similar name)
-- **CA-4320** Banks Island Migratory No.1 Bird Sanctuary (Bird Sanctuary) → Banks Island Migratory Bird Sanctuary No. 1 (~4,787,317 ac, similar name)
-- **CA-4321** Banks Island Migratory No.2 Bird Sanctuary (Bird Sanctuary) → Banks Island Migratory Bird Sanctuary No. 2 (~27,118 ac, similar name); Aulavik National Park Of Canada (~2,990,712 ac, the POTA pin is inside it (different name))
 - **CA-4346** Wehexlaxodiale Protected Area (Protected Area) → Dè Wexèlahodı ha-le (~154,194 ac, the POTA pin is inside it (different name))
 - **CA-4347** Whooping Crane Summer Range Ramsar Site (Ramsar Site) → Wood Buffalo National Park Of Canada (~2,257,603 ac, the POTA pin is inside it (different name))
-- **CA-4605** Ezodziti Habitat Protection Area (Habitat Protection Area) → Ezǫdzìtì (~339,769 ac, similar name)
 - **CA-5477** Kittigazuit Archaeological Sites National Historic Site (National Historic Site) → Tarium Niryutait Marine Protected Area (~114,795 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger land (no outline of their own; the land around the pin)

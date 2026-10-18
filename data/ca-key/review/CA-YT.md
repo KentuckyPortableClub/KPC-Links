@@ -1,24 +1,12 @@
 # Canada YT: POTA parks vs official land (CPCAD)
 
-Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **12 of 112** joined (same name + same kind). **17** to check, **77** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **25 of 112** joined (same name + same kind). **5** to check, **76** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
-- **CA-0849** Tagish River Habitat Protection Area (Habitat Protection Area) → Tagish River (~1,112 ac, similar name); Tagish Narrows (~0 ac, the POTA pin is inside it (different name))
-- **CA-0850** Tatchun Lake Recreation Park (Recreation Park) → Tatchun Lake (~138 ac, same name, different kind of place)
 - **CA-4600** Alsek River National Heritage Area (National Heritage Area) → Kluane National Park Reserve Of Canada (~5,451,383 ac, the POTA pin is inside it (different name)); Kluane (~0 ac, the POTA pin is inside it (different name))
 - **CA-4601** Bonnet Plume River National Heritage Area (National Heritage Area) → Peel Watershed LMU 8 (~4,724,008 ac, the POTA pin is inside it (different name))
-- **CA-4603** Devils' Elbow / Big Island Habitat Protection Area (Habitat Protection Area) → Devil's Elbow (~18,558 ac, similar name); Devil's Elbow (~0 ac, similar name)
-- **CA-4604** Ddhaw Ghro Habitat Protection Area (Habitat Protection Area) → Ddhaw Ghro (~397,839 ac, similar name); Ddhaw Ghro (~0 ac, similar name)
-- **CA-4609** Nuna K’óhonete Yédäk Tah’é (Horseshoe Slough) Habitat Protection Area (Habitat Protection Area) → Nuna K’óhonete Yédäk Tah’é (Horseshoe Slough) (~19,027 ac, similar name); Horseshoe Slough (~0 ac, the POTA pin is inside it (different name))
-- **CA-4611** Lewes Marsh Habitat Protection Area (Habitat Protection Area) → Lewes Marsh (~5,016 ac, similar name); Lewes Marsh (~0 ac, similar name)
-- **CA-4612** Lhutsaw (Lutsaw) Wetland Habitat Protection Area (Habitat Protection Area) → Lhutsaw Wetland (~0 ac, similar name)
-- **CA-4621** Nordenskiold Wetlands Habitat Protection Area (Habitat Protection Area) → Nordenskiold (~0 ac, similar name); Tsâwnjik Chu (Nordenskiold) (~19,126 ac, the POTA pin is inside it (different name))
-- **CA-4625** Pickhandle Lake Habitat Protection Area (Habitat Protection Area) → Pickhandle Lake (~0 ac, similar name)
-- **CA-4629** Ta'Tla Mun Special Management Area Habitat Protection Area (Habitat Protection Area) → Ta'Tla Mun (~0 ac, similar name)
 - **CA-4631** Tatshenshini River National Heritage Area (National Heritage Area) → Kluane (~0 ac, the POTA pin is inside it (different name))
-- **CA-4635** Tombstone Natural Habitat Protection Area (Habitat Protection Area) → Tombstone (~505,700 ac, similar name); Tombstone (~0 ac, similar name)
-- **CA-4637** Ch'ihilii Chik (Whitefish Wetland) Habitat Protection Area (Habitat Protection Area) → Ch’ihilii Chìk (~117,276 ac, similar name)
 - **CA-6261** Tombstone Mountain Campground Recreation Site (Recreation Site) → Tombstone (~505,700 ac, similar name); Tombstone (~0 ac, similar name); Tombstone (~0 ac, similar name)
 - **CA-6280** Kusawa Lake Campground Recreation Site (Recreation Site) → Kusawa (~758,341 ac, similar name); Kusawa (~0 ac, similar name)
 
@@ -43,7 +31,6 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **12 of 112** joined (same 
 - CA-4615 Morley River Recreation Park (Recreation Park)
 - CA-4616 Nisutlin River Recreation Site (Recreation Site)
 - CA-4619 T'aw Ta'ar National Historic Site (National Historic Site)
-- CA-4623 Old Crow Flats Special Management Area Habitat Protection Area (Habitat Protection Area)
 - CA-4624 Otter Falls Recreation Park (Recreation Park)
 - CA-4626 Rampart House Habitat Protection Area (Habitat Protection Area)
 - CA-4627 Rancheria Falls Recreation Site (Recreation Site)

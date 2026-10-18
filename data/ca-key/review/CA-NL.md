@@ -1,13 +1,10 @@
 # Canada NL: POTA parks vs official land (CPCAD)
 
-Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **62 of 134** joined (same name + same kind). **7** to check, **65** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **65 of 134** joined (same name + same kind). **4** to check, **65** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
-- **CA-0823** Mealy Mountains / Akami-uapishku-KakKasuak National Park Reserve (National Park Reserve) → Akami-Uapishku - Kakkasuak - Mealy Mountains National Park Reserve Of Canada (~2,644,024 ac, similar name)
 - **CA-4556** Little Grand Lake  Reserve Wildlife Reserve (Wildlife Reserve) → Little Grand Lake Provisional Ecological Reserve (~171,236 ac, similar name)
-- **CA-4557** Main River Heritage River National Heritage Area (National Heritage Area) → Main River Waterway Provincial Park (~37,508 ac, similar name); Main River Special Management Area (~605 ac, similar name)
-- **CA-4560** Salmonier Nature Park Wilderness Preserve (Wilderness Preserve) → Salmonier Nature Park (~3,595 ac, similar name)
 - **CA-4820** Kitjigattalik - Ramah Chert Quarries National Historic Site (National Historic Site) → Torngat Mountains National Park Of Canada (~2,396,918 ac, the POTA pin is inside it (different name))
 - **CA-6115** Bay du Nord Heritage River National Heritage Area (National Heritage Area) → Bay du Nord Wilderness Reserve (~719,184 ac, similar name)
 - **CA-6166** Cape St. Mary's Lighthouse National Heritage Site (National Heritage Site) → Cape St. Mary's Ecological Reserve (~13,344 ac, similar name); Cape St. Mary's Ecological Reserve (~2,471 ac, similar name)
