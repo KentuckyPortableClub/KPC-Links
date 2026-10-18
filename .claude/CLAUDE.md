@@ -416,6 +416,7 @@ named paths). report data/trails/state-report.json: found / missing / noline / a
   end), NOLINE / NOLINE_PARK → report 'noline' (not counted as missing), okina/accent-safe names, OSM child relations (Empire State Trail).
   Then: rerun every state with misses, check a sample on the US Trip Planner per region (official / OSM labels, file sizes), and give the
   'noline' parks a pin note on the planner ('a driving route / area: no single line').
+- **Result Oct 18 (rerun B finished):** US 178 trails drawn (120 from official agency maps, 58 OpenStreetMap), 27 'no single line' parks, only 12 real misses left: Beaches to Bluegrass (VA), Little Red Mountain + Gooseberry Mesa (UT), Bolt Mountain + Sterling Mine Ditch (OR), Makapuʻu Point / ʻUalakaʻa / Kapaʻeleʻele (HI), Suwannee River Wilderness (FL), Mountains to Sea (TN), White Ridge (NM), Trail of the Coeur d'Alenes (ID). Canada first pass in the same report: 15 of 54 drawn, all OSM (0 official yet).
 - **STEP 2 — Canada:** run states=CANADA (province job in jobs(); needs provincial 'official' words: 'Government of', 'Ministry', 'Parks Canada',
   'Gouvernement du Québec', province names) + finish kpc-canada-bounds.yml until every CA- park is tried, recheck the misses.
 - **STEP 3 — the rest of the world ONLY where it's busy:** Brandon isn't sure it's worth it (little activity). Before any Europe/world work, rank
