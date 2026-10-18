@@ -15,6 +15,16 @@ STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL NC GA AL MI PA').spl
 OUT = 'data/trails'; os.makedirs(OUT, exist_ok=True)
 UA = {'User-Agent': 'KPC trails (kentuckyportableclub.github.io)'}
 CHECK_KM = 8.0   # the drawn line must come this close to the POTA pin
+CHECK_KM_TRAIL = 35.0  # Oct 18: a real trail (not a park named 'Trail') may have its POTA pin at one end, away from the mapped line
+# Oct 18 (finishing the US): other names the maps use for these POTA trail parks
+ALIAS = {'US-3627': ['Van Fleet'], 'US-9909': ['Little Stony'], 'US-9922': ["Lion's Tale", 'Lions Tale'], 'US-9923': ['Virginia Creeper'],
+         'US-9753': ['Rock Island Spur', 'Rock Island Trail'], 'US-9380': ['Mill Towns'], 'US-9385': ['Gateway'], 'US-9390': ['Willard Munger', 'Munger'],
+         'US-11014': ['Taconite'], 'US-13595': ['Northern Rail Trail', 'Northern Rail'], 'US-10506': ['Cazadero'], 'US-2216': ['Makapuu Point Lighthouse', 'Makapuu'],
+         'US-10918': ['Waahila Ridge', 'Waahila'], 'US-5788': ['Slickrock'], 'US-5872': ['Burr Trail', 'Burr'], 'US-5809': ['Little Red Mountain'], 'US-11001': ['Gooseberry Mesa'],
+         'US-10757': ['Sterling Mine Ditch'], 'US-8618': ['White Ridge'], 'US-13195': ['Jumbo Grade'], 'US-8313': ['Mountains to Sea'], 'US-9933': ['Beaches to Bluegrass']}
+# Oct 18: POTA trail parks that are NOT a line to draw (driving routes, areas, water trails, ordinary parks named 'Trail'): listed under 'noline'
+NOLINE = re.compile(r'Byway|Scenic Highway|Heritage|Geologic|Bird & Wildlife|Mining|Civil War Trail|Southwest Trail|Butterfield State|Saracen|West-Northwest|True Grit|Camden Expedition|Water State Trail|Water Trail|Coastal State Trail|Na Ala Hele', re.I)
+NOLINE_PARK = {'US-1002', 'US-1007', 'US-4098', 'US-3222', 'US-2152'}
 MATCH_KM = 60.0  # pieces with the right name are collected from this far around the pin (long trails come in sections)
 # parks named 'Trail' that are NOT trails (a line there would mislead): Scioto Trail SP is a forest park
 SKIP = {'US-1990'}
@@ -40,7 +50,11 @@ def dp(pts, eps):
     if dm > eps: return dp(pts[:i + 1], eps)[:-1] + dp(pts[i:], eps)
     return [a, b]
 GEN = r'\b(state|national|recreation|trail|trails|park|scenic|historic|rail|the|and|of)\b'
-def core(n): return re.sub(r'\s+', ' ', re.sub(GEN, ' ', n.lower())).strip()
+import unicodedata
+def core(n):  # Oct 18: Hawaiian okina / accents dropped ('Makapuʻu' = 'makapuu')
+    n = unicodedata.normalize('NFD', str(n)).replace('ʻ', '').replace('‘', '').replace('’', '').replace("'", '')
+    n = ''.join(c for c in n if unicodedata.category(c) != 'Mn')
+    return re.sub(r'\s+', ' ', re.sub(GEN, ' ', n.lower())).strip()
 def kind(t, n):
     if 'National Recreation Trail' in t: return 'NRT'
     if 'Trail' in t: return 'ST'
@@ -120,7 +134,8 @@ def lyr_lines(url, where, la, lo, d=1.0, fld=None, want=''):
 def likes(fld, w):
     """PAD-US style firewalls hate long wheres: one LIKE, words joined by %, tried as Title Case and UPPER."""
     return [f"{fld} LIKE '%{'%'.join(x.title() for x in w)}%'", f"{fld} LIKE '%{'%'.join(x.upper() for x in w)}%'"]
-def agency(name, st, la, lo):
+def agency(name, st, la, lo, lim=None):
+    lim = lim or CHECK_KM
     """ArcGIS Online search for the trail's name; only services published by a STATE agency of that state or a federal
     agency count; then a polyline layer in it with a name field LIKE the trail, near the pin. Returns (lines, by) or (None, '')."""
     w = words(name)
@@ -165,7 +180,7 @@ def agency(name, st, la, lo):
                         if L:
                             nk = min(km(la, lo, p[1], p[0]) for l in L for p in l)
                             ALOG.append([name, f'{len(L)} lines {nk:.0f} km from pin', org[:60], lu[-90:] + ' ' + fld, {k: [round(v[0]), v[1]] for k, v in list(NAMES.items())[:8]}])
-                            if nk <= CHECK_KM: return L, org
+                            if nk <= lim: return L, org
         except Exception as e:
             ALOG.append([name, 'error ' + str(e)[:80], org[:60], u[-90:]])
     return None, ''
@@ -181,13 +196,13 @@ def osm(name, iso, la, lo):
     w = words(name)
     if not w: return None, ''
     rx = '.*'.join(re.escape(x) for x in w)
-    road = re.search(r'byway|highway|scenic drive', name, re.I)
+    road = re.search(r'byway|highway|scenic drive|blm historic', name, re.I)
     water = re.search(r'water|river|canoe|paddl', name, re.I)
     rt = 'hiking|foot|bicycle|mtb|horse|inline_skates|running|canoe|boat' + ('|road' if road else '')
     hw = '' if road else f'way["highway"~"path|cycleway|footway|track|bridleway"]["name"~"{rx}",i](area.a);'
     wt = f'way["waterway"~"river|stream|canal"]["name"~"{rx}",i](area.a);' if water else ''
     q = (f'[out:json][timeout:150];area["ISO3166-2"="{iso}"]->.a;'
-         f'(relation["route"~"{rt}"]["name"~"{rx}",i](area.a);{hw}{wt});out geom;')
+         f'(relation["route"~"{rt}"]["name"~"{rx}",i](area.a);{hw}{wt})->.m;(.m;rel(r.m););out geom;')
     try: j = get(OVP, data=urllib.parse.urlencode({'data': q}).encode(), t=200)
     except Exception as e: note('Overpass', f'{name}: {str(e)[:120]}'); return None, ''
     keep, names = [], set()
@@ -217,6 +232,7 @@ _ran = lambda s: s in STATES or ('CANADA' in [z.upper() for z in STATES] and str
 try:  # keep last run's rows for the states not run this time (Oct 17), so the report covers every state
     _old = json.load(open(f'{OUT}/state-report.json'))
     report['found'] = [x for x in _old.get('found', []) if not _ran(x[2])]; report['missing'] = [x for x in _old.get('missing', []) if not _ran(x[2])]
+    report['noline'] = [x for x in _old.get('noline', []) if not _ran(x[2])]
 except Exception: pass
 def jobs():
     """(label, [(ref, row, iso)]) per state; 'CANADA' (Oct 17, Brandon: 'Canada outlines and trail') = every CA- POTA park
@@ -241,22 +257,31 @@ for st, cand in jobs():
         name, typ = v[0], v[2] or ''
         la, lo = (v[5], v[6]) if len(v) > 6 and v[5] is not None else LOC.get(ref, (None, None))
         if la is None: report['missing'].append([ref, name, stc, 'no pin']); continue
-        lines, by, off = None, '', False
-        if 'National Recreation' in typ:
-            lines = forest(name, la, lo); by, off = ('US Forest Service', True) if lines else ('', False)
-        if not lines and iso.startswith('US-'):
-            lines, org = agency(name, stc, la, lo)
-            if lines: by, off = org, True
-            # Oct 17: an agency layer that only has a tiny piece (Empire State Trail 4 km) loses to a much longer OpenStreetMap line
-            if lines and sum(seglen(l) for l in lines) < 8:
-                ol, on = osm(name, iso, la, lo)
-                if ol and sum(seglen(l) for l in ol) > 3 * sum(seglen(l) for l in lines) and min(km(la, lo, p[1], p[0]) for l in ol for p in l) <= CHECK_KM:
-                    lines, by, off = ol, 'OpenStreetMap (not official)', False
+        lim = CHECK_KM if kind(typ, name) == 'TP' else CHECK_KM_TRAIL
+        lines, by, off, near = None, '', False, 1e9
+        for nm in [name] + ALIAS.get(ref, []):   # Oct 18: also the other names the maps use
+            if 'National Recreation' in typ:
+                lines = forest(nm, la, lo); by, off = ('US Forest Service', True) if lines else ('', False)
+            if not lines and iso.startswith('US-'):
+                lines, org = agency(nm, stc, la, lo, lim)
+                if lines: by, off = org, True
+                # Oct 17: an agency layer that only has a tiny piece (Empire State Trail 4 km) loses to a much longer OpenStreetMap line
+                if lines and sum(seglen(l) for l in lines) < 8:
+                    ol, on = osm(nm, iso, la, lo)
+                    if ol and sum(seglen(l) for l in ol) > 3 * sum(seglen(l) for l in lines) and min(km(la, lo, p[1], p[0]) for l in ol for p in l) <= lim:
+                        lines, by, off = ol, 'OpenStreetMap (not official)', False
+            if not lines:
+                lines, on = osm(nm, iso, la, lo); by = 'OpenStreetMap (not official)' if lines else ''
+            if lines:
+                near = min(km(la, lo, p[1], p[0]) for l in lines for p in l)
+                if near <= lim: break
+                lines = None
         if not lines:
-            lines, on = osm(name, iso, la, lo); by = 'OpenStreetMap (not official)' if lines else ''
-        if not lines: report['missing'].append([ref, name, stc, 'no line found']); continue
-        near = min(km(la, lo, p[1], p[0]) for l in lines for p in l)
-        if near > CHECK_KM: report['missing'].append([ref, name, stc, f'line found {near:.0f} km from the POTA pin: not used']); continue
+            why = 'line found too far from the POTA pin: not used' if near < 1e9 else 'no line found'
+            if ref in NOLINE_PARK: report.setdefault('noline', []).append([ref, name, stc, 'a park with Trail in its name, not a trail'])
+            elif NOLINE.search(name): report.setdefault('noline', []).append([ref, name, stc, 'a driving route, area or water trail: no single line to draw'])
+            else: report['missing'].append([ref, name, stc, why])
+            continue
         # Oct 18: agency layers often hold the same line 2-4 times (one per surface / year / direction): keep one copy
         _u, _seen = [], set()
         for l in lines:
