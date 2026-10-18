@@ -1,29 +1,46 @@
-name: zz probe roads (temporary)
+name: zz pull KY access points (temporary)
 on: workflow_dispatch
+permissions: {contents: write}
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - run: |
           python3 - <<'PY'
-          import json,urllib.request,urllib.parse
+          import json,urllib.request,urllib.parse,re
           def g(u):
-              try: return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=90).read())
+              try: return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=120).read())
               except Exception as e: return {'err':str(e)[:100]}
           def n(t,m): print('::notice title=%s::%s'%(t,str(m).replace('\n','%0A')[:3800]))
-          w=g('https://www.arcgis.com/sharing/rest/content/items/72afc8e76b8d46c2917182c11218d9de/data?f=json')
-          out=[]
-          def walk(ls,d=0):
-              for l in ls or []:
-                  out.append('  '*d+str(l.get('title'))+' | '+str(l.get('url') or l.get('itemId') or ''))
-                  walk(l.get('layers'),d+1)
-          walk(w.get('operationalLayers')); n('webmap layers','\n'.join(out))
-          r=g('https://services5.arcgis.com/RMHPuOW5MJ6iyTV6/arcgis/rest/services?f=json')
-          n('kdfwr services',', '.join(s['name'] for s in r.get('services',[])))
-          s=g('https://www.arcgis.com/sharing/rest/search?'+urllib.parse.urlencode({'q':'owner:kdfwr@1kfwis','num':100,'f':'json'}))
-          n('kdfwr items','\n'.join(f"{x['type']} | {x['title']} | {x.get('url')}" for x in s.get('results',[])))
-          for f in ['WGS84WM_Services','Transportation','Basemaps']:
-              r=g(f'https://kygisserver.ky.gov/arcgis/rest/services/{f}?f=json')
-              n('kygis '+f,', '.join(x['name'] for x in r.get('services',[])) or str(r)[:200])
-          r=g('https://kygisserver.ky.gov/arcgis/rest/services?f=json'); n('kygis root',str(r.get('folders'))+' '+', '.join(x['name'] for x in r.get('services',[])))
+          K='https://services5.arcgis.com/RMHPuOW5MJ6iyTV6/arcgis/rest/services/'
+          G='https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/'
+          SRC={'fishing':K+'Fishing_Access_Sites/FeatureServer','wmapts':K+'WMA_Map_Points/FeatureServer','elkwma':K+'Elk_WMA_Access_Points/FeatureServer','elkreg':K+'Elk_Regulated_Access_Points/FeatureServer','trail':K+'Trail_Workgroup_Public_View/FeatureServer','fedth':G+'Ky_Federal_Trailheads_WGS84WM/MapServer','bridge':G+'Ky_Bridge_Points_WGS84WM/MapServer','other':K+'KDFWR_Other_properties/FeatureServer'}
+          KEEP=re.compile(r'name|type|desc|label|feat|road|route|stream|cross|site|area|wma|park|access|class|facil|ramp|park',re.I)
+          DROP=re.compile(r'globalid|date|shape|objectid|creat|edit|user',re.I)
+          out={}
+          for k,B in SRC.items():
+              root=g(B+'?f=json')
+              if 'err' in root or 'error' in root: n('fail '+k,str(root)[:300]); continue
+              for l in root.get('layers',[]):
+                  i=g(f"{B}/{l['id']}?f=json")
+                  if i.get('geometryType')!='esriGeometryPoint': continue
+                  fl=[f['name'] for f in i.get('fields',[])]
+                  rows=[];off=0
+                  while True:
+                      r=g(f"{B}/{l['id']}/query?"+urllib.parse.urlencode({'where':'1=1','outFields':'*','returnGeometry':'true','outSR':4326,'resultOffset':off,'resultRecordCount':1000,'f':'json'}))
+                      fs=r.get('features',[])
+                      for f in fs:
+                          ge=f.get('geometry') or {}
+                          if 'x' not in ge or ge['x'] is None: continue
+                          a={kk:v for kk,v in f['attributes'].items() if v not in (None,'',' ') and KEEP.search(kk) and not DROP.search(kk)}
+                          rows.append([round(ge['y'],5),round(ge['x'],5),a])
+                      if len(fs)<1000 or not r.get('exceededTransferLimit',len(fs)==1000): break
+                      off+=1000
+                  out[f"{k}/{l['id']} {l['name']}"]=rows
+                  n(f"{k}/{l['id']} {l['name']} n={len(rows)}",'fields='+','.join(fl[:40])+' | sample '+json.dumps(rows[:2])[:1500])
+          json.dump({'source':SRC,'layers':out},open('data/ky-access-extra.json','w'),separators=(',',':'))
           PY
+          ls -la data/ky-access-extra.json
+          git config user.name kpc-bot; git config user.email kpc-bot@users.noreply.github.com
+          git add data/ky-access-extra.json; git commit -qm "KY official access points (KDFWR + KY GIS)"; git pull -q --rebase; git push -q
