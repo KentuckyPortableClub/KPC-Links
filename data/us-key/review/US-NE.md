@@ -1,29 +1,25 @@
 # NE: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **106 of 190** parks joined to official land (same name + same kind of place). **20** to check by hand, **64** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **113 of 190** parks joined to official land (same name + same kind of place). **13** to check by hand, **64** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0675** Missouri National Recreational River National Wild & Scenic River (National Wild & Scenic River) → Lewis And Clark Recreation Area (~26,286 ac, the POTA pin is inside it (different name))
-- **US-12736** Gifford Point Wildlife Management Area (Wildlife Management Area) → Gifford Wildlife Management Area (~1,531 ac, similar name); Gifford Wildlife Management Area (~1,480 ac, similar name)
 - **US-13329** Plum Creek State Recreation Area (State Recreation Area) → Plum Creek Wildlife Management Area (~4 ac, same name, different kind of place)
-- **US-2608** Ashfall Fossil Beds State Historical Park (State Historical Park) → Ashfall State Historical Park (~357 ac, similar name)
 - **US-2609** Ash Hollow State Park (State Park) → Ash Hollow State Historical Park (~1,050 ac, same name, different kind of place)
-- **US-3377** Schilling Wildlife Management Area (Wildlife Management Area) → Randall W. Schilling Wildlife Management Area (~1,784 ac, similar name); Randall W. Schilling Wildlife Management Area (~1,308 ac, similar name); Randall W. Schilling Wildlife Management Area (~459 ac, similar name)
 - **US-3483** Atlanta National Waterfowl Production Area (National Waterfowl Production Area) → Phelps County Waterfowl Production Area (~4,677 ac, similar name); Phelps County Waterfowl Production Area (~4,677 ac, similar name)
 - **US-3484** Peterson National Waterfowl Production Area (National Waterfowl Production Area) → Gosper County Waterfowl Production Area (~1,451 ac, similar name); Gosper County Waterfowl Production Area (~1,451 ac, similar name)
 - **US-3485** Jensen Lagoon National Waterfowl Production Area (National Waterfowl Production Area) → Kearney County Waterfowl Production Area (~2,891 ac, similar name); Kearney County Waterfowl Production Area (~2,891 ac, similar name)
 - **US-3486** Moger National Waterfowl Production Area (National Waterfowl Production Area) → Clay County Waterfowl Production Area Of Ne (~7,011 ac, similar name); Clay County Waterfowl Production Area Of Ne (~6,943 ac, similar name)
-- **US-3487** DeSoto (NE) National Wildlife Refuge (National Wildlife Refuge) → Desoto National Wildlife Refuge (~4,377 ac, similar name); Desoto National Wildlife Refuge (~4,258 ac, similar name)
 - **US-3489** Massie National Waterfowl Production Area (National Waterfowl Production Area) → Clay County Waterfowl Production Area Of Ne (~7,011 ac, similar name); Clay County Waterfowl Production Area Of Ne (~6,943 ac, similar name)
 - **US-3490** Smith Lagoon National Waterfowl Production Area (National Waterfowl Production Area) → Clay County Waterfowl Production Area Of Ne (~7,011 ac, similar name); Clay County Waterfowl Production Area Of Ne (~6,943 ac, similar name)
 - **US-4031** Big Indian State Recreation Area (State Recreation Area) → Big Indian Wildlife Management Area (~123 ac, same name, different kind of place); Big Indian Wildlife Management Area (~123 ac, same name, different kind of place)
 - **US-5622** Niobrara National Wild and Scenic River (National Wild and Scenic River) → Niobrara National Scenic River (~185 ac, similar name)
 - **US-5642** Swanson Reservoir State Recreation Area (State Recreation Area) → Swanson Lake (~4,972 ac, the POTA pin is inside it (different name))
-- **US-5658** Lake Zorinsky State Park (State Park) → Zorinsky Recreation Area (~1,004 ac, similar name)
 - **US-5673** Red Willow Reservoir State Recreation Area (State Recreation Area) → Hugh Butler Lake (~1,565 ac, the POTA pin is inside it (different name))
-- **US-5678** Verdon Lake State Recreation Area (State Recreation Area) → Verdon State Recreation Area (~54 ac, similar name)
 - **US-9363** Medicine Creek State Recreation Area (State Recreation Area) → Harry Strunk Lake (~1,745 ac, the POTA pin is inside it (different name))
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
 
 ## Nothing found in PAD-US
 
@@ -104,8 +100,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **106 of 190** parks joined
 - Swanson Lake · RMA · Unknown · ~4,972 ac
 - Phelps County Waterfowl Production Area · RMA · PHELPS COUNTY WATERFOWL PRODUCTION AREA · ~4,677 ac
 - Phelps County Waterfowl Production Area · RMA · Phelps County Waterfowl Production Area · ~4,677 ac
-- Desoto National Wildlife Refuge · NWR · Desoto National Wildlife Refuge · ~4,377 ac
-- Desoto National Wildlife Refuge · NWR · DESOTO NATIONAL WILDLIFE REFUGE · ~4,258 ac
 - Ponderosa Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~4,155 ac
 - Buffalo Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~4,001 ac
 - Fillmore County Waterfowl Production Area · RMA · Fillmore County Waterfowl Production Area · ~3,622 ac
@@ -130,7 +124,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **106 of 190** parks joined
 - Branched Oak Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,948 ac
 - Wapiti Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,863 ac
 - Wood Duck Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,831 ac
-- Randall W. Schilling Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,784 ac
 - Bordeaux Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,769 ac
 - Williams Gap Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,765 ac
 - Harry Strunk Lake · RMA · Unknown · ~1,745 ac
@@ -138,13 +131,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **106 of 190** parks joined
 - Ballards Marsh Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,589 ac
 - Hugh Butler Lake · RMA · Unknown · ~1,565 ac
 - Glenn Cunningham Recreation Area · REC · Omaha · ~1,543 ac
-- Gifford Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,531 ac
 - Gilbert-baker Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,507 ac
-- Gifford Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,480 ac
 - Gosper County Waterfowl Production Area · RMA · GOSPER COUNTY WATERFOWL PRODUCTION AREA · ~1,451 ac
 - Gosper County Waterfowl Production Area · RMA · Gosper County Waterfowl Production Area · ~1,451 ac
 - Sacramento-wilcox Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,413 ac
-- Randall W. Schilling Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,308 ac
 - Plum Creek Valley Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,307 ac
 - Petersen Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,279 ac
 - Bighorn Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,270 ac
@@ -154,3 +144,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **106 of 190** parks joined
 - Thomas Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,138 ac
 - Buffalo Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,124 ac
 - Twin Oaks Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,117 ac
+- Petersen Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,084 ac
+- Ash Hollow State Historical Park · SHCA · Nebraska Game and Parks Commission’ · ~1,050 ac
+- Niobrara Confluence Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,034 ac
+- Hamilton County Waterfowl Production Area · RMA · HAMILTON COUNTY WATERFOWL PRODUCTION AREA · ~1,026 ac
+- Hamilton County Waterfowl Production Area · RMA · Hamilton County Waterfowl Production Area · ~1,026 ac
+- Darr Strip Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,019 ac

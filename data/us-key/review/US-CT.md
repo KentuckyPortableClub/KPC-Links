@@ -1,30 +1,30 @@
 # CT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **111 of 157** parks joined to official land (same name + same kind of place). **15** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **114 of 157** parks joined to official land (same name + same kind of place). **13** to check by hand, **30** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0882** Farmington National Wild and Scenic River (National Wild and Scenic River) → Farmington River Water Access (~138 ac, similar name); Farmington River Water Access (~8 ac, similar name); Farmington River Water Access (~2 ac, similar name); Farmington River Water Access (~1 ac, similar name); Farmington River Water Access (~0 ac, similar name)
 - **US-11712** Cromwell Meadows WMA Wildlife Management Area (Wildlife Management Area) → Unknown (~517 ac, the POTA pin is inside it (different name))
 - **US-12460** Suffield Wildlife Management Area (Wildlife Management Area) → Unspecified (~195 ac, the POTA pin is inside it (different name))
 - **US-12620** Old New-Gate Prison & Copper Mine Historical Reserve (Historical Reserve) → Old Newgate Prison and Copper Mine (~26 ac, similar name); Old Newgate Prison and Copper Mine (~19 ac, similar name)
 - **US-1694** Mansfield Hollow State Park (State Park) → Mansfield Hollow Wildlife Management Area (~2,387 ac, same name, different kind of place)
 - **US-1699** Mohawk Mountain State Park (State Park) → Mohawk State Forest (~3,251 ac, similar name); Mohawk State Forest (~252 ac, similar name)
-- **US-1725** Trimountain State Park (State Park) → Trimountain State Park Scenic Reserve (~153 ac, similar name)
 - **US-1728** Wharton Brook State Park (State Park) → Wharton Brook Natural Area Preserve (~24 ac, same name, different kind of place)
 - **US-6858** Beckett Hill Park Reserve (Park Reserve) → Beckett Hill State Park Scenic Reserve (~262 ac, similar name); Nehantic State Forest (~1,844 ac, the POTA pin is inside it (different name))
 - **US-6860** Ferry Landing State Park (State Park) → Marine District Headquarters (~7 ac, the POTA pin is inside it (different name))
-- **US-6861** Great Pond / Massacoe State Forest (State Forest) → Massacoe State Forest (~142 ac, similar name)
 - **US-6870** Quinebaug Lake State Park (State Park) → Quinebaug Wildlife Area (~22 ac, same name, different kind of place)
 - **US-6872** Salt Rock State Forest (State Forest) → Salt Rock State Park (~65 ac, same name, different kind of place); Salt Rock State Park (~43 ac, same name, different kind of place); Salt Rock State Park (~30 ac, same name, different kind of place); Salt Rock State Park (~12 ac, same name, different kind of place)
 - **US-7540** Pomeroy State Reserve (State Reserve) → Pomeroy State Park Scenic Reserve (~87 ac, similar name); Pomeroy State Park Scenic Reserve (~38 ac, similar name); Pomeroy State Park Scenic Reserve (~33 ac, similar name); Pomeroy State Park Scenic Reserve (~23 ac, similar name); Pomeroy State Park Scenic Reserve (~15 ac, similar name); Pomeroy State Park Scenic Reserve (~2 ac, similar name)
 - **US-7542** Satan's Kingdom State Recreation Area (State Recreation Area) → Farmington River Water Access (~8 ac, the POTA pin is inside it (different name))
-- **US-7652** Franklin Wildlife Management Area (Wildlife Management Area) → Franklin Swamp Wildlife Area (~646 ac, similar name)
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
 
 ## Nothing found in PAD-US
 
 - US-0329 Silvio O Conte National Wildlife Refuge (National Wildlife Refuge)
 - US-0881 Eightmile National Wild and Scenic River (National Wild and Scenic River)
-- US-0882 Farmington National Wild and Scenic River (National Wild and Scenic River)
 - US-12459 Housatonic River Southern Fields Wildlife Management Area (Wildlife Management Area)
 - US-13487 Seth Low Pierrepont State Park (State Park)
 - US-1647 Bennett's Pond State Park (State Park)
@@ -76,7 +76,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **111 of 157** parks joined
 - Unknown · SOTH ·   · ~762 ac
 - Housatonic State Forest · SRMA ·   · ~663 ac
 - Housatonic State Forest · SRMA ·   · ~647 ac
-- Franklin Swamp Wildlife Area · SCA ·   · ~646 ac
 - Goshen Wildlife Area · SOTH ·   · ~631 ac
 - Assekonk Swamp West · SOTH ·   · ~602 ac
 - Furnace Brook-middle River Flood Control Site 5 · SOTH ·   · ~543 ac
@@ -104,7 +103,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **111 of 157** parks joined
 - Moodus Reservoir · WPA ·   · ~349 ac
 - RT 8 South ROW · SOTH ·   · ~334 ac
 - Unknown · SOTH ·   · ~333 ac
-- Quaddick Reservoir · SREC ·   · ~332 ac
 - Unknown · SOTH ·   · ~322 ac
 - Quinnipiac River Marsh Wildlife Area · SCA ·   · ~316 ac
 - Trout Brook Valley · SOTH ·   · ~304 ac
@@ -116,3 +114,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **111 of 157** parks joined
 - Unknown · SOTH ·   · ~284 ac
 - State Park · SP ·   · ~277 ac
 - Unknown · SOTH ·   · ~268 ac
+- Housatonic State Forest · SRMA ·   · ~267 ac
+- Beach Pond · SREC ·   · ~263 ac

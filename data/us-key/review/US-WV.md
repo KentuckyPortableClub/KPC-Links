@@ -1,12 +1,13 @@
 # WV: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **157 of 172** parks joined to official land (same name + same kind of place). **3** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **159 of 172** parks joined to official land (same name + same kind of place). **1** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0697** Bluestone National Wild and Scenic River (National Wild and Scenic River) → Bluestone Recreation Area (~22,147 ac, similar name)
-- **US-12034** Daniels Ridge Wildlife Management Area (Wildlife Management Area) → Daniels Ridge Wilidlife Management Area (~3,379 ac, similar name)
-- **US-12437** Cranberry Wilderness Area (Wilderness Area) → Cranberry Wilderness (~47,742 ac, similar name); Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
+- **US-0697** Bluestone National Wild and Scenic River (National Wild and Scenic River) → Bluestone Recreation Area (~22,147 ac, same name, different kind of place)
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
 
 ## Nothing found in PAD-US
 
@@ -27,7 +28,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **157 of 172** parks joined
 
 - Wardensville Wildlife Management Area · SCA · WV Division of Natural Resources · ~54,942 ac
 - Shenandoah Wildlife Management Area · SCA · WV Division of Natural Resources · ~50,719 ac
-- Cranberry Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~47,742 ac
 - East Lynn Recreation Area · REC · Huntington · ~24,834 ac
 - R.D. Bailey Recreation Area · REC · Huntington · ~19,158 ac
 - Potts Creek Wildlife Management Area · SCA · WV Division of Natural Resources · ~18,472 ac
@@ -49,7 +49,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **157 of 172** parks joined
 - Three Ridges Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,607 ac
 - Peters Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,520 ac
 - Brush Mountain East Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,745 ac
-- Daniels Ridge Wilidlife Management Area · SCA · WV Division of Natural Resources · ~3,379 ac
 - Bluestone National Scenic River · WSR · NPS · ~3,035 ac
 - Thunder Ridge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~2,427 ac
 - Appalachian National Scenic Trail · NT · NPS · ~2,021 ac
@@ -85,3 +84,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **157 of 172** parks joined
 - David Harris Riverfront Park · LP · Greater Huntington Park and Recreation District · ~25 ac
 - Kanawha Falls Park · SREC · State of West Virginia · ~21 ac
 - Dillon Property · SOTH ·   · ~15 ac
+- Elkins Operations Center · SRMA · WV Division of Natural Resources · ~14 ac
+- Cacapon River Public River Access · SRMA · WV Division of Natural Resources · ~12 ac

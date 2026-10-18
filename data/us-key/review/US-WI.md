@@ -1,6 +1,6 @@
 # WI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **267 of 348** parks joined to official land (same name + same kind of place). **60** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **268 of 348** parks joined to official land (same name + same kind of place). **59** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -49,7 +49,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **267 of 348** parks joined
 - **US-4332** Theresa Marsh State Wildlife Area (State Wildlife Area) → Theresa Wildlife Area (~5,333 ac, similar name)
 - **US-4339** Waunakee Marsh State Wildlife Area (State Wildlife Area) → Waunakee Wildlife Area (~481 ac, similar name)
 - **US-4342** Herb Behnke Unit of Wolf River Bottoms State Wildlife Area (State Wildlife Area) → Wolf River Bottoms Wildlife Area (~3,141 ac, similar name)
-- **US-5578** Coulee Experimental State Forest (State Forest) → Coulee Experimental Forest (~2,965 ac, same name, different kind of place)
 - **US-5579** Havenwoods State Forest (State Forest) → Havenwoods Forest Preserve And Nature Center (~215 ac, similar name)
 - **US-8209** Dewey Marsh State Natural Area (State Natural Area) → Dewey Marsh Wildlife Area (~6,048 ac, same name, different kind of place)
 - **US-8216** Osceola Bedrock Glades State Natural Area (State Natural Area) → Osceola Hatchery (~351 ac, similar name)
@@ -144,7 +143,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **267 of 348** parks joined
 - Extensive Wl Habitat - Sd · SREC · Wisconsin Department of Natural Resources · ~3,451 ac
 - Jefferson Marsh State Wildlife And Natural Area · SREC · Wisconsin Department of Natural Resources · ~3,326 ac
 - Gift Lands · UNK · Unknown · ~3,152 ac
-- Coulee Experimental Forest · SRMA · Wisconsin Department of Natural Resources · ~2,965 ac
 - Statewide Wildlife Habitat · SCA · Unknown · ~2,774 ac
 - Rush Creek Natural Area · SCA · Wisconsin Department of Natural Resources · ~2,698 ac
 - Ice Age Trail - Nw · SP · Wisconsin Department of Natural Resources · ~2,697 ac
@@ -154,3 +152,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **267 of 348** parks joined
 - Totogatic Wild River · SCA · Wisconsin Department of Natural Resources · ~2,489 ac
 - Jackson Marsh Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~2,472 ac
 - Lower Saint Croix National Scenic Riverway · WSR · NPS · ~2,470 ac
+- Winnebago County Waterfowl Production Area Of Wi · RMA · Winnebago County Waterfowl Production Area Of Wi · ~2,462 ac

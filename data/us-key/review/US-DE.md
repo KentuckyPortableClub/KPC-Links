@@ -1,14 +1,19 @@
 # DE: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **63 of 89** parks joined to official land (same name + same kind of place). **15** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **58 of 89** parks joined to official land (same name + same kind of place). **20** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0898** White Clay Creek National Wild and Scenic River (National Wild and Scenic River) → White Clay Creek State Park (~3,520 ac, similar name); White Clay Creek Preserve (~4 ac, similar name); White Clay Creek Preserve (~4 ac, similar name); White Clay Creek Preserve (~4 ac, similar name)
+- **US-0898** White Clay Creek National Wild and Scenic River (National Wild and Scenic River) → White Clay Creek State Park (~3,520 ac, same name, different kind of place); White Clay Creek Preserve (~4 ac, same name, different kind of place); White Clay Creek Preserve (~4 ac, same name, different kind of place); White Clay Creek Preserve (~4 ac, same name, different kind of place)
+- **US-10659** Augustine State Beach (State Beach) → Augustine Beach (~3,148 ac, same name, different kind of place); Augustine Wildlife Area (~1,750 ac, same name, different kind of place); Augustine Beach (~111 ac, same name, different kind of place)
 - **US-10668** Andrews State Fishing Lake (State Fishing Lake) → Andrews Lake (~41 ac, similar name); Andrews Lake (~10 ac, similar name)
+- **US-10675** Garrisons State Fishing Lake (State Fishing Lake) → Garrisons Lake Golf Club (~161 ac, similar name); Garrisons Lake (~91 ac, same name, different kind of place); Garrisons Lake (~4 ac, same name, different kind of place)
+- **US-10676** Griffith State Fishing Lake (State Fishing Lake) → Griffith Lake (~53 ac, same name, different kind of place); Griffith Lake (~52 ac, same name, different kind of place)
 - **US-10677** Haven State Fishing Lake (State Fishing Lake) → Haven Lake (~122 ac, similar name); Haven Lake (~98 ac, similar name)
 - **US-10681** Masseys Millpond State Fishing Lake (State Fishing Lake) → Masseys Pond (~38 ac, the POTA pin is inside it (different name))
 - **US-10684** Moores State Fishing Lake (State Fishing Lake) → Moores Lake (~51 ac, similar name); Moores Lake (~24 ac, similar name)
+- **US-11812** Trap Pond State Fishing Lake (State Fishing Lake) → Trap Pond State Park (~2,118 ac, same name, different kind of place); Trap Pond State Park (~153 ac, same name, different kind of place)
+- **US-1735** Fenwick Island State Park (State Park) → Fenwick Island Beach (~6 ac, same name, different kind of place)
 - **US-4366** Auburn Valley State Park (State Park) → Auburn Heights (~189 ac, the POTA pin is inside it (different name)); Auburn Heights (~4 ac, the POTA pin is inside it (different name))
 - **US-5719** Ted Harvey State Conservation Area (State Conservation Area) → Ted Harvey Wildlife Area (~2,733 ac, same name, different kind of place)
 - **US-7648** Chesapeake and Delaware Canal Conservation Area (Conservation Area) → C&D Canal Conservation Area (~4,814 ac, similar name); C&D Canal Wildlife Area (~3,319 ac, similar name)
@@ -17,8 +22,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **63 of 89** parks joined t
 - **US-9881** Pomeroy and Newark National Recreation Trail (National Recreation Trail) → White Clay Creek State Park (~3,520 ac, the POTA pin is inside it (different name))
 - **US-9883** Port Penn Interpretive Center State Historic Site (State Historic Site) → Port Penn Natural Area (~2 ac, similar name); Port Penn Natural Area (~0 ac, similar name); Port Penn Interpretive Center (~0 ac, same name, different kind of place); Port Penn Interpretive Center (~0 ac, same name, different kind of place)
 - **US-9886** Dupont Nature Center State Conservation Area (State Conservation Area) → Milford Neck Wildlife Area (~5,131 ac, the POTA pin is inside it (different name))
-- **US-9891** Blackbird Creek National Reserve (National Reserve) → DNERR Blackbird Creek Reserve (~520 ac, similar name); Blackbird Reserve Wildlife Area (~511 ac, similar name); DE National Estuarine Research Reserve Blackbird Creek Reserve (~210 ac, similar name); DE National Estuarine Research Reserve Blackbird Creek Reserve (~84 ac, similar name); De National Estuarine Research Reserve Blackbird Creek Reserve (~69 ac, similar name); DE National Estuarine Research Reserve Blackbird Creek Reserve (~61 ac, similar name)
+- **US-9891** Blackbird Creek National Reserve (National Reserve) → DNERR Blackbird Creek Reserve (~520 ac, similar name); DE National Estuarine Research Reserve Blackbird Creek Reserve (~210 ac, similar name); DE National Estuarine Research Reserve Blackbird Creek Reserve (~84 ac, similar name); De National Estuarine Research Reserve Blackbird Creek Reserve (~69 ac, similar name); DE National Estuarine Research Reserve Blackbird Creek Reserve (~61 ac, similar name); DE National Estuarine Research Reserve Blackbird Creek Reserve (~51 ac, similar name)
 - **US-9892** St. Jones National Reserve (National Reserve) → Saint Jones Reserve (~431 ac, similar name); Saint Jones Reserve (~83 ac, similar name)
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
 
 ## Nothing found in PAD-US
 
@@ -38,6 +46,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **63 of 89** parks joined t
 
 - C&D Canal Conservation Area · SCA ·   · ~4,814 ac
 - C&D Canal Wildlife Area · SW · DE Division of Fish and Wildlife · ~3,319 ac
+- Augustine Beach · SW · DE Division of Fish and Wildlife · ~3,148 ac
 - Ted Harvey Wildlife Area · SOTH · DE Division of Fish and Wildlife · ~2,733 ac
 - Great Marsh Preserve · SP · DE Division of Parks and Recreation · ~1,184 ac
 - Route 1 Corridor Open Space · SOTH · DE Department of Transportation · ~1,053 ac
@@ -69,13 +78,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **63 of 89** parks joined t
 - Flint Woods Nature Preserve · SP · DE Division of Parks and Recreation · ~142 ac
 - Sunshine Builders Tract · SOTH ·   · ~141 ac
 - Fortney Tract · SOTH ·   · ~136 ac
-- Brandywine Park · SP · DE Division of Parks and Recreation · ~134 ac
 - Isaacs Branch · SOTH · DE Department of Natural Resources and Env Control · ~132 ac
 - Murderkill River Nature Preserve · SP · DE Division of Parks and Recreation · ~131 ac
 - Oversee Property · SP · DE Division of Parks and Recreation · ~123 ac
 - Haven Lake · SOTH · DE Division of Fish and Wildlife · ~122 ac
 - Ashland Nature Center · SCA · Delaware Nature Society · ~120 ac
 - John Dickinson Plantation · SOTH ·   · ~117 ac
+- Augustine Beach · SOTH ·   · ~111 ac
 - Hawkey Branch Road Open Space · SOTH · DE Department of Transportation · ~108 ac
 - Patriots Way Open Space · SRMA · DE Department of Transportation · ~107 ac
 - Leipsic River Open Space · SOTH · DE Department of Transportation · ~106 ac
@@ -87,12 +96,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **63 of 89** parks joined t
 - Haven Lake · SOTH ·   · ~98 ac
 - Marian R. Okie Memorial Wildlife Preserve · SOTH ·   · ~97 ac
 - Delaware River Open Space · SOTH · DE Division of Fish and Wildlife · ~95 ac
+- Garrisons Lake · SOTH · DE Division of Fish and Wildlife · ~91 ac
 - West North Street Open Space · SOTH · DE Department of Transportation · ~90 ac
 - Other Division Lands - Foskey Tract · SCA ·   · ~85 ac
 - DE National Estuarine Research Reserve Blackbird Creek Reserve · SOTH ·   · ~84 ac
 - Cedar Creek Nature Preserve · SP · DE Division of Parks and Recreation · ~84 ac
 - Saint Jones Reserve · SOTH ·   · ~83 ac
-- Tappahanna Wildlife Area- Urban Tract · SOTH ·   · ~82 ac
 - Route 13 Open Space · SOTH · DE Department of Transportation · ~82 ac
 - Glenville · SOTH · DE Department of Transportation · ~79 ac
-- Auburn Heights · SP ·   · ~75 ac

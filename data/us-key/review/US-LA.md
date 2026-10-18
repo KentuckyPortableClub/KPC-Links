@@ -1,6 +1,6 @@
 # LA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 123** parks joined to official land (same name + same kind of place). **11** to check by hand, **22** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 123** parks joined to official land (same name + same kind of place). **10** to check by hand, **22** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,13 +8,16 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 123** parks joined 
 - **US-10448** Centenary State Historic Site (State Historic Site) → Centenary And Jackson State Historic Sites (~3 ac, similar name)
 - **US-10456** Esler Field Wildlife Management Area (Wildlife Management Area) → Camp Beauregard Wildlife Management Area (~12,606 ac, the POTA pin is inside it (different name))
 - **US-10563** Fort Johnson-Vernon Wildlife Management Area (Wildlife Management Area) → Kisatchie National Forest (~607,492 ac, the POTA pin is inside it (different name))
-- **US-2359** Chicot State Park (State Park) → Chicot State Park District II (~6,315 ac, similar name)
+- **US-12489** Bogue Chitto Wildlife Management Area (Wildlife Management Area) → Bogue Chitto State Scenic River (~1,109 ac, similar name)
 - **US-2365** Jimmie Davis State Park (State Park) → Caney Creek Lake State Park (~312 ac, the POTA pin is inside it (different name))
 - **US-2373** Poverty Point Reservoir State Park (State Park) → State Lands (~7,733 ac, the POTA pin is inside it (different name))
 - **US-4061** J. C. 'Sonny' Gilbert Wildlife Management Area (Wildlife Management Area) → Sicily Island Hills Wildlife Management Area (~7,489 ac, the POTA pin is inside it (different name))
 - **US-4075** Richard K. Yancey Wildlife Management Area (Wildlife Management Area) → Red River Wildlife Management Area (~45,140 ac, the POTA pin is inside it (different name))
-- **US-4568** El Camino Real de los Tejas National Historic Trail (National Historic Trail) → Los Adaes State Historic Site (~15 ac, the POTA pin is inside it (different name))
 - **US-6445** St. Tammany Wildlife Refuge (Wildlife Refuge) → Big Branch Marsh National Wildlife Refuge (~18,319 ac, the POTA pin is inside it (different name)); Big Branch Marsh National Wildlife Refuge (~18,316 ac, the POTA pin is inside it (different name))
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
+- US-4568 El Camino Real de los Tejas National Historic Trail (National Historic Trail) → on Los Adaes State Historic Site (~15 ac)
 
 ## Nothing found in PAD-US
 
@@ -64,9 +67,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 123** parks joined 
 - Kisatchie Hills Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,701 ac
 - Texas Point National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,336 ac
 - State Lands · SOTH · Unknown · ~7,733 ac
+- Maurepas Swamp - Parcel 2, Octavia · SOTH · Lousiana Department of Wildlife and Fisheries · ~7,546 ac
 - Sicily Island Hills Wildlife Management Area · SCA · Unknown · ~7,489 ac
 - Panther Swamp National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,008 ac
-- Chicot State Park District II · SP · Unknown · ~6,315 ac
 - Theodore Roosevelt National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,252 ac
 - Farm Service Agency Interest Of La · NWR · Farm Service Agency Interest Of La · ~6,039 ac
 - Black Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,084 ac
@@ -88,6 +91,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 123** parks joined 
 - West Pearl River · SCA · Unknown · ~1,370 ac
 - Tangipahoa River · SCA · Unknown · ~1,245 ac
 - Lsu Research Station · REA · Unknown · ~1,148 ac
+- Bogue Chitto State Scenic River · SCA · Unknown · ~1,109 ac
 - Ouachita River · SCA · Unknown · ~1,059 ac
 - Russell Sage Wildlife Management Area - Portion In Morehouse · SCA · Unknown · ~1,026 ac
 - Bayou Dorcheat · SCA · Unknown · ~1,012 ac
@@ -102,4 +106,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 123** parks joined 
 - Lsu Research Station · REA · Unknown · ~755 ac
 - Blind River · SCA · Unknown · ~740 ac
 - Black Lake Bayou · SREC · Unknown · ~726 ac
-- Raccourci Island Batture Lands · SOTH · Unknown · ~723 ac

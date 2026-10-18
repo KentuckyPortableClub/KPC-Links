@@ -1,19 +1,15 @@
 # MA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **365 of 421** parks joined to official land (same name + same kind of place). **13** to check by hand, **43** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **369 of 421** parks joined to official land (same name + same kind of place). **9** to check by hand, **43** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0802** Boston African American National Historic Site (National Historic Site) → Boston National Historical Park (~38 ac, similar name)
 - **US-11430** Karner Brook Wildlife Management Area (Wildlife Management Area) → Jug End Fen Wildlife Management Area (~21 ac, the POTA pin is inside it (different name))
-- **US-11586** Boxborough Wildlife Management Area (Wildlife Management Area) → Boxborough Station Wildlife Management Area (~26 ac, similar name)
 - **US-11589** Delaney Wildlife Management Area (Wildlife Management Area) → Delaney Flood Control Site (~317 ac, similar name); Delaney Flood Control Site (~166 ac, similar name); Delaney Flood Control Site (~125 ac, similar name); Delaney Flood Control Site (~49 ac, similar name)
 - **US-11638** Marconi Wildlife Management Area (Wildlife Management Area) → Cape Cod National Seashore (~27,298 ac, the POTA pin is inside it (different name))
 - **US-11683** Pickerel Cove Wildlife Management Area (Wildlife Management Area) → Wakeby Pond (~17 ac, the POTA pin is inside it (different name))
-- **US-2423** Gardner State Park (State Park) → C.M. Gardner State Park (~44 ac, similar name); C.M. Gardner State Park (~40 ac, similar name)
 - **US-4723** Ashmere Lake State Forest (State Forest) → Ashmere Lake State Park (~198 ac, same name, different kind of place); Ashmere Lake State Park (~7 ac, same name, different kind of place)
 - **US-7971** Blackstone River Valley National Historical Park (National Historical Park) → Blackstone River and Canal Heritage State Park (~61 ac, similar name); Blackstone River and Canal Heritage State Park (~25 ac, similar name); Blackstone River and Canal Heritage State Park (~8 ac, similar name); Blackstone River and Canal Heritage State Park (~0 ac, similar name); Blackstone River and Canal Heritage State Park (~0 ac, similar name)
-- **US-8386** Fort Revere Park State Park (State Park) → Fort Revere (~2 ac, same name, different kind of place); Fort Revere (~1 ac, same name, different kind of place); Fort Revere (~1 ac, same name, different kind of place); Fort Revere (~1 ac, same name, different kind of place); Fort Revere (~0 ac, same name, different kind of place); Fort Revere (~0 ac, same name, different kind of place)
 - **US-8387** Francis D. Martini Memorial Shell Park and Moynihan State Recreation Area (State Recreation Area) → Neponset River Reservation (~68 ac, the POTA pin is inside it (different name))
 - **US-8391** Quabbin State Park (State Park) → Quabbin Reservoir Watershed (~4,135 ac, similar name); Quabbin Reservoir Watershed (~3,206 ac, similar name); Quabbin Reservoir (~174 ac, similar name); Quabbin Reservoir Watershed (~53 ac, similar name)
 - **US-8424** Quincy Quarries State Reserve (State Reserve) → Blue Hills Reservation (~40 ac, the POTA pin is inside it (different name))

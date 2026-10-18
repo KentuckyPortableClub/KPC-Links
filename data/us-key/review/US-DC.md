@@ -1,11 +1,10 @@
 # DC: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **12 of 34** parks joined to official land (same name + same kind of place). **14** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **13 of 34** parks joined to official land (same name + same kind of place). **13** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0657** President's Park (White House) Park (Park) → National Capital Parks (~3,908 ac, the POTA pin is inside it (different name))
-- **US-0776** Franklin Delano Roosevelt National Memorial (National Memorial) → Franklin Delano Roosevelt Memorial (~8 ac, similar name); National Capital Parks (~3,908 ac, the POTA pin is inside it (different name))
 - **US-0780** Korean War Veterans National Memorial (National Memorial) → World War II Memorial (~9 ac, similar name); Korean War Veterans Memorial (~2 ac, similar name); Vietnam Veterans Memorial (~2 ac, similar name); World War I Memorial (~2 ac, similar name); National Capital Parks (~3,908 ac, the POTA pin is inside it (different name))
 - **US-0783** Lincoln National Memorial (National Memorial) → Lincoln Memorial (~7 ac, similar name)
 - **US-0785** Martin Luther King Jr. National Memorial (National Memorial) → Martin Luther King, Jr., Memorial (~3 ac, similar name); National Capital Parks (~3,908 ac, the POTA pin is inside it (different name))
@@ -18,6 +17,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **12 of 34** parks joined t
 - **US-13543** US National Arboretum Botanical Gardens (Botanical Gardens) → National Arboretum (~380 ac, similar name)
 - **US-7499** Dwight D. Eisenhower National Memorial (National Memorial) → Dwight D. Eisenhower Memorial (~1 ac, similar name)
 - **US-7891** African American Civil War National Memorial (National Memorial) → World War I Memorial (~2 ac, similar name)
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
 
 ## Nothing found in PAD-US
 
@@ -42,7 +44,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **12 of 34** parks joined t
 - White House · SDA · NPS · ~18 ac
 - Fort Lincoln · LP · US Federal · ~17 ac
 - World War II Memorial · HCA · NPS · ~9 ac
-- Franklin Delano Roosevelt Memorial · HCA · NPS · ~8 ac
 - Fletcher-Johnson · LP · US Federal · ~8 ac
 - Lincoln Memorial · HCA · NPS · ~7 ac
 - U.S. Botanic Garden · LHCA · U.S. Botanic Garden · ~7 ac
@@ -92,3 +93,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **12 of 34** parks joined t
 - Median Michigan Rd At Warder Street Nw · FOTH · US Federal · ~0 ac
 - Median Nash Place At Pope Streets Se · FOTH · US Federal · ~0 ac
 - Median Newton Street At Rhode Island Avenue Ne · FOTH · US Federal · ~0 ac
+- Median North Portal Drive At East Beach Dr Nw · FOTH · US Federal · ~0 ac

@@ -1,49 +1,19 @@
 # WY: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **126 of 298** parks joined to official land (same name + same kind of place). **114** to check by hand, **58** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 298** parks joined to official land (same name + same kind of place). **55** to check by hand, **58** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0698** John D. Rockefeller Jr. National Parkway (National Parkway) → John D. Rockefeller, Jr., Memorial Parkway (~23,622 ac, similar name)
 - **US-10795** Shoshone Cavern AKA Spirit Mtn Cave BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Shoshone National Forest (~2,439,182 ac, similar name); Cody Field Office (~1,090,720 ac, the POTA pin is inside it (different name)); Buffalo Bill Reservoir State Park (~13,571 ac, the POTA pin is inside it (different name))
 - **US-10799** Ellis State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name)); Middle Fork of the Powder River SRMA (~14,905 ac, the POTA pin is inside it (different name))
 - **US-10805** Sinks Canyon State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Sinks Canyon (~79 ac, similar name)
-- **US-10822** Daniel State Fish Hatchery (State Fish Hatchery) → State Lands 1111115411 (~639 ac, the POTA pin is inside it (different name))
-- **US-10823** Dubois State Fish Hatchery (State Fish Hatchery) → State Lands 1111116312 (~159 ac, the POTA pin is inside it (different name))
-- **US-10824** Ten Sleep State Fish Hatchery (State Fish Hatchery) → Bighorn National Forest (~1,105,122 ac, the POTA pin is inside it (different name))
-- **US-10825** Tillett Springs State Fish Hatchery (State Fish Hatchery) → Cody Field Office (~1,090,720 ac, the POTA pin is inside it (different name))
+- **US-10823** Dubois State Fish Hatchery (State Fish Hatchery) → Dubois Badlands (~0 ac, similar name); State Lands 1111116312 (~159 ac, the POTA pin is inside it (different name))
 - **US-10830** Wagon Box Fight National Battlefield (National Battlefield) → Wagon Box (~1 ac, same name, different kind of place)
-- **US-10837** Little Sandy Crossing BLM Historic Area (BLM Historic Area) → Usbr (~735,338 ac, the POTA pin is inside it (different name))
-- **US-10840** Gebo - Causley Historic Mining District BLM Interpretive Site (BLM Interpretive Site) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name))
-- **US-10842** Boar's Tusk BLM Recreation Management Area (BLM Recreation Management Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Sand Dunes (~0 ac, the POTA pin is inside it (different name))
-- **US-10845** Bobcat-Houlihan Trail BLM Recreation Management Area (BLM Recreation Management Area) → Rivers SRMA (~6,059 ac, the POTA pin is inside it (different name))
-- **US-10848** Castle Gardens Scenic Area BLM Recreation Management Area (BLM Recreation Management Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name))
-- **US-10850** Cedar Canyon Petroglyphs BLM Recreation Management Area (BLM Recreation Management Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name))
-- **US-10853** Cody Canal BLM Recreation Management Area (BLM Recreation Management Area) → Cody Field Office (~1,090,720 ac, the POTA pin is inside it (different name))
-- **US-10854** Corral Creek Campground BLM Recreation Management Area (BLM Recreation Management Area) → Rawlins Field Office (~3,531,790 ac, the POTA pin is inside it (different name)); North Platte River SRMA (~7,095 ac, the POTA pin is inside it (different name))
-- **US-10855** Deep Gulch BLM Recreation Management Area (BLM Recreation Management Area) → Rawlins Field Office (~3,531,790 ac, the POTA pin is inside it (different name)); Western Rawlins Field Office ERMA (~1,904,417 ac, the POTA pin is inside it (different name))
-- **US-10856** Dome Rock BLM Recreation Management Area (BLM Recreation Management Area) → Rawlins Field Office (~3,531,790 ac, the POTA pin is inside it (different name)); Eastern Rawlins Field Office ERMA (~1,582,142 ac, the POTA pin is inside it (different name))
-- **US-10857** Dugway Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → Rawlins Field Office (~3,531,790 ac, the POTA pin is inside it (different name))
 - **US-10862** Gooseberry Badlands Scenic Overlook Trail BLM Recreation Management Area (BLM Recreation Management Area) → Badlands SRMA (~211,695 ac, similar name); Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name))
-- **US-10863** Green River/Warrne Bridge River Access Area BLM Recreation Management Area (BLM Recreation Management Area) → Pinedale Field Office (~925,688 ac, the POTA pin is inside it (different name)); Green and New Fork Rivers SRMA (Warren Bridge) (~7,189 ac, the POTA pin is inside it (different name))
-- **US-10876** Lone Tree Trail BLM Recreation Management Area (BLM Recreation Management Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name)); West Slope SRMA (~190,622 ac, the POTA pin is inside it (different name))
 - **US-10878** McCullough Peaks BLM Wilderness Area (Wilderness Area) → McCullough Peaks SRMA (~159,811 ac, same name, different kind of place); McCullough Peaks (~114,304 ac, same name, different kind of place); McCullough Peaks (~0 ac, same name, different kind of place); McCullough Peaks (~0 ac, same name, different kind of place); Cody Field Office (~1,090,720 ac, the POTA pin is inside it (different name))
-- **US-10882** Prior Flat Campground BLM Recreation Management Area (BLM Recreation Management Area) → Rawlins Field Office (~3,531,790 ac, the POTA pin is inside it (different name)); Shirley Mountains SRMA (~37,894 ac, the POTA pin is inside it (different name))
-- **US-10884** Red Gulch/Alkali Backcountry Byway BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name)); West Slope SRMA (~190,622 ac, the POTA pin is inside it (different name))
-- **US-10885** Rim Lake BLM Recreation Management Area (BLM Recreation Management Area) → Rawlins Field Office (~3,531,790 ac, the POTA pin is inside it (different name)); Continental Divide National Scenic Trail SRMA (~10,181 ac, the POTA pin is inside it (different name))
-- **US-10886** Salt Lick Trail BLM Recreation Management Area (BLM Recreation Management Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name)); West Slope SRMA (~190,622 ac, the POTA pin is inside it (different name))
-- **US-10888** Shirley Basin Reservoir BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Rawlins Field Office (~3,531,790 ac, the POTA pin is inside it (different name)); Eastern Rawlins Field Office ERMA (~1,582,142 ac, the POTA pin is inside it (different name))
-- **US-10890** Sinks Canyon BLM Recreation Management Area (BLM Recreation Management Area) → Shoshone National Forest (~2,439,182 ac, the POTA pin is inside it (different name))
-- **US-10891** Teton Reservoir BLM Recreation Management Area (BLM Recreation Management Area) → Rawlins Field Office (~3,531,790 ac, the POTA pin is inside it (different name)); Eastern Rawlins Field Office ERMA (~1,582,142 ac, the POTA pin is inside it (different name))
-- **US-10892** The Redds Day Use Area BLM Recreation Management Area (BLM Recreation Management Area) → Casper Field Office (~1,361,339 ac, the POTA pin is inside it (different name)); Trapper's Route SRMA (~3,421 ac, the POTA pin is inside it (different name))
-- **US-10896** Wild Horse Point BLM Recreation Management Area (BLM Recreation Management Area) → Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name)); Green Mountain ERMA (~129,578 ac, the POTA pin is inside it (different name)); Green Mountain (~99,363 ac, the POTA pin is inside it (different name))
 - **US-10897** Greater Sand Dunes BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Killpecker Sand Dunes SRMA (~39,245 ac, similar name); Killpecker Sand Dunes Open Play Area (~12,832 ac, similar name); Killpecker Sand Dunes Open Play Area (~12,832 ac, similar name); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name)); State Lands 1111121891 (~640 ac, the POTA pin is inside it (different name))
-- **US-10898** Lake Hattie BLM Recreation Management Area (BLM Recreation Management Area) → Rawlins Field Office (~3,531,790 ac, the POTA pin is inside it (different name))
-- **US-10929** Cottonwood Creek Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → Cody Field Office (~1,090,720 ac, the POTA pin is inside it (different name)); West Slope SRMA (~129,768 ac, the POTA pin is inside it (different name))
 - **US-11741** Palisades WSA USFS Recreation Area (USFS Recreation Area) → Targhee National Forest (~37,247 ac, the POTA pin is inside it (different name))
 - **US-12704** Bear River Divide State HMA Wildlife Area (Wildlife Area) → Kemmerer Field Office (~1,421,062 ac, the POTA pin is inside it (different name)); Kemmerer Field Office ERMA (~1,290,770 ac, the POTA pin is inside it (different name))
-- **US-12722** Wheatland Reservoir #3 BLM Recreation Management Area (BLM Recreation Management Area) → Eastern Rawlins Field Office ERMA (~1,582,142 ac, the POTA pin is inside it (different name))
-- **US-12723** Whitetail Day Use BLM Recreation Management Area (BLM Recreation Management Area) → Casper Field Office (~1,361,339 ac, the POTA pin is inside it (different name)); Trapper's Route SRMA (~3,421 ac, the POTA pin is inside it (different name))
 - **US-12725** Sweetwater Rocks (Lankin Dome) State Wilderness Area (State Wilderness Area) → Sweetwater Rocks Undeveloped SRMA (~41,761 ac, similar name); Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name)); Lankin Dome (~0 ac, the POTA pin is inside it (different name))
 - **US-12726** Camp Creek State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Teton National Forest (~1,660,590 ac, the POTA pin is inside it (different name))
 - **US-12730** Dubois Badlands BLM Wilderness Area (BLM Wilderness Area) → Dubois Badlands (~0 ac, same name, different kind of place); Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name))
@@ -52,65 +22,36 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **126 of 298** parks joined
 - **US-12733** Sheep Mountain BLM Wilderness Area (BLM Wilderness Area) → Sheep Mountain (~0 ac, same name, different kind of place); Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name)); Badlands SRMA (~211,695 ac, the POTA pin is inside it (different name))
 - **US-12734** Sweetwater Canyon BLM Wilderness Area (BLM Wilderness Area) → Sweetwater Canyon Undeveloped SRMA (~9,154 ac, similar name); Sweetwater Canyon (~0 ac, same name, different kind of place); Sweetwater Canyon (~0 ac, same name, different kind of place); Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name))
 - **US-13245** Flaming Gorge - Green River Basin Scenic Byway - All-American Road National Parkway (National Parkway) → Flaming Gorge Reservoir National Recreation Area (~44,237 ac, similar name)
-- **US-3297** Glendo State Park (State Park) → Glendo Reservoir State Park (~21,949 ac, similar name)
-- **US-3300** Keyhole State Park (State Park) → Keyhole Reservoir State Park (~15,844 ac, similar name)
-- **US-3301** Seminoe State Park (State Park) → Seminoe Reservoir State Park (~34,202 ac, similar name)
 - **US-6111** Register Cliff State Historic Site (State Historic Site) → Register Cliff (~0 ac, same name, different kind of place)
 - **US-6114** Oregon Trail Ruts State Historic Site (State Historic Site) → Oregon Trail Ruts (~40 ac, same name, different kind of place)
 - **US-6121** Fort Fetterman State Historic Site (State Historic Site) → Fort Fetterman (~62 ac, same name, different kind of place)
 - **US-6124** Old Fort Reno State Historic Site (State Historic Site) → Fort Reno (~15 ac, similar name)
 - **US-6128** Muddy Mountain BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Muddy Mountain Environmental Education Area SRMA (~1,436 ac, similar name)
 - **US-6129** National Historic Trails Interpretive Center National Historic Site (National Historic Site) → National Historic Trails SRMA (~217 ac, similar name)
-- **US-6131** Bessemer Bend BLM Historic Preservation Site (BLM Historic Preservation Site) → Casper Field Office (~1,361,339 ac, the POTA pin is inside it (different name)); Trapper's Route SRMA (~3,421 ac, the POTA pin is inside it (different name))
 - **US-6132** Dry Creek Petrified Tree BLM Interpretive Site (BLM Interpretive Site) → Dry Creek Petrified Tree SRMA (~2,553 ac, similar name); Buffalo Field Office (~779,089 ac, the POTA pin is inside it (different name))
 - **US-6136** Encampment River Canyon BLM Recreation Management Area (BLM Recreation Management Area) → Encampment River Canyon (~0 ac, same name, different kind of place); Rawlins Field Office (~3,531,790 ac, the POTA pin is inside it (different name)); Eastern Rawlins Field Office ERMA (~1,582,142 ac, the POTA pin is inside it (different name))
 - **US-6137** Fort Phil Kearny State Historic Site (State Historic Site) → Fort Phil Kearny (~697 ac, same name, different kind of place)
 - **US-6142** Fort Fred Steele State Historic Site (State Historic Site) → Fort Fred Steele (~166 ac, same name, different kind of place)
-- **US-6143** Outlaw Cave Trail BLM Recreation Management Area (BLM Recreation Management Area) → Buffalo Field Office (~779,089 ac, the POTA pin is inside it (different name)); Middle Fork Powder River SRMA (~10,084 ac, the POTA pin is inside it (different name))
 - **US-6144** Trail End State Historic Site (State Historic Site) → Trail End (~3 ac, same name, different kind of place)
 - **US-6147** Independence Rock State Historic Site (State Historic Site) → Independence Rock (~125 ac, same name, different kind of place); Independence Rock (~14 ac, same name, different kind of place)
 - **US-6150** Medicine Lodge Archaeological Site State Park (State Park) → Medicine Lodge (~0 ac, similar name); Medicine Lodge (~0 ac, similar name); Medicine Lodge Wildlife Habitat Management Area (~12,311 ac, the POTA pin is inside it (different name))
-- **US-6153** Lone Tree Trail BLM Recreation Management Area (BLM Recreation Management Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name)); West Slope SRMA (~190,622 ac, the POTA pin is inside it (different name))
-- **US-6155** Big Cedar Ridge Fossil Site BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name))
 - **US-6157** Split Rock BLM Interpretive Site (BLM Interpretive Site) → Split Rock (~0 ac, similar name); Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name)); National Historic Trails Destination SRMA (~59,924 ac, the POTA pin is inside it (different name))
-- **US-6159** Castle Gardens Petroglyph Site BLM Historic Preservation Site (BLM Historic Preservation Site) → Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name))
 - **US-6161** Continental Peak BLM Herd Management Area (BLM Herd Management Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name))
-- **US-6162** Red Gulch Dinosaur Tracksite BLM Recreation Management Area (BLM Recreation Management Area) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name))
-- **US-6164** Duck Swamp Interpretive Area BLM Interpretive Site (BLM Interpretive Site) → Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name)); Bighorn River ERMA (~1,915 ac, the POTA pin is inside it (different name))
 - **US-6165** Triangle BLM Herd Management Area (BLM Herd Management Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Wind River Front SRMA (~258,170 ac, the POTA pin is inside it (different name))
 - **US-6169** Lake Cameahwait State Recreation Area (State Recreation Area) → Sand Mesa Wildlife Habitat Management Area (~21,133 ac, the POTA pin is inside it (different name))
-- **US-6177** Johnny Behind the Rocks BLM Recreation Management Area (BLM Recreation Management Area) → Lander Valley Community SRMA (~6,169 ac, the POTA pin is inside it (different name))
 - **US-6178** Legend Rock State Petroglyph Site State Historic Site (State Historic Site) → Legend Rock (~31 ac, similar name); Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name))
 - **US-6181** Divide Basin BLM Herd Management Area (BLM Herd Management Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name)); South Pinnacles (~0 ac, the POTA pin is inside it (different name))
-- **US-6182** Miner's Delight BLM Historic Preservation Site (BLM Historic Preservation Site) → Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name))
-- **US-6184** The Pinnacles Geologic Site BLM Recreation Management Area (BLM Recreation Management Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name))
 - **US-6185** South Pass Historic Landmark National Historic Site (National Historic Site) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name)); Oregon-California-Mormon Pioneer NHTs SRMA (~824 ac, the POTA pin is inside it (different name))
-- **US-6186** Atlantic City/South Pass BLM Recreation Management Area (BLM Recreation Management Area) → Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name)); CDNST Destination SRMA (~82,586 ac, the POTA pin is inside it (different name))
 - **US-6188** Point of Rocks Cemetery State Historic Site (State Historic Site) → Point of Rocks Stage Station (~1 ac, similar name); Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name))
 - **US-6189** South Pass City State Historic Site (State Historic Site) → South Pass City (~275 ac, same name, different kind of place); Lander Field Office (~2,388,958 ac, the POTA pin is inside it (different name)); CDNST Destination SRMA (~82,586 ac, the POTA pin is inside it (different name))
-- **US-6191** Tri-Territory Site BLM Historic Preservation Site (BLM Historic Preservation Site) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name))
-- **US-6192** Superior Mail Arrow BLM Historic Preservation Site (BLM Historic Preservation Site) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name))
-- **US-6193** South Pass Overlook BLM Interpretive Site (BLM Interpretive Site) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name))
-- **US-6194** False Parting of the Ways BLM Interpretive Site (BLM Interpretive Site) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name))
-- **US-6195** Crookston Ranch Cultural Site BLM Historic Preservation Site (BLM Historic Preservation Site) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name)); Killpecker Sand Dunes Open Play Area (~12,832 ac, the POTA pin is inside it (different name)); Killpecker Sand Dunes Open Play Area (~12,832 ac, the POTA pin is inside it (different name))
 - **US-6196** Rock Springs BLM Herd Management Area (BLM Herd Management Area) → Rock Springs Field Office (~3,606,721 ac, similar name); Rock Springs Field Office ERMA (~3,308,154 ac, similar name)
 - **US-6197** Popo Agie Wilderness Area (Wilderness Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Wind River Front SRMA (~258,170 ac, the POTA pin is inside it (different name))
 - **US-6198** Salt Wells Creek BLM Herd Management Area (BLM Herd Management Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name))
 - **US-6199** White Mountain Petroglyphs BLM Historic Preservation Site (BLM Historic Preservation Site) → White Mountain (~207,372 ac, similar name); Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name))
-- **US-6200** Overland Stage BLM Interpretive Site (BLM Interpretive Site) → White Mountain (~207,372 ac, the POTA pin is inside it (different name))
-- **US-6201** Bridger Wilderness Area (Wilderness Area) → Bridger Wilderness (~426,751 ac, similar name); Bridger National Forest (~1,734,322 ac, same name, different kind of place); Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Wind River Front SRMA (~258,170 ac, the POTA pin is inside it (different name))
-- **US-6203** Pilot Butte Wild Horse Scenic Tour BLM Recreation Management Area (BLM Recreation Management Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name)); White Mountain (~207,372 ac, the POTA pin is inside it (different name))
 - **US-6207** Clarks Fork of the Yellowstone National Wild & Scenic River (National Wild & Scenic River) → Shoshone National Forest (~2,439,182 ac, the POTA pin is inside it (different name))
-- **US-6208** Sunlight State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Sunlight Basin Wildlife Habitat Management Area (~1,412 ac, similar name)
 - **US-6210** Teton Wilderness Area (Wilderness Area) → Teton Wilderness (~584,733 ac, similar name); Teton National Forest (~1,660,590 ac, same name, different kind of place)
-- **US-6211** Washakie Wilderness Area (Wilderness Area) → Washakie Wilderness (~693,934 ac, similar name); Shoshone National Forest (~2,439,182 ac, the POTA pin is inside it (different name))
 - **US-6212** Whiskey Basin/ Little Red Creek Wildlife Management Area (Wildlife Management Area) → Whiskey Basin Wildlife Habitat Management Area (~12,843 ac, the POTA pin is inside it (different name))
-- **US-6215** Simpsons Hollow BLM Recreation Management Area (BLM Recreation Management Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Little Colorado (~525,421 ac, the POTA pin is inside it (different name))
-- **US-6216** Pilot Butte Overlook BLM Interpretive Site (BLM Interpretive Site) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name)); Little Colorado (~525,421 ac, the POTA pin is inside it (different name))
-- **US-6217** Fitzpatrick Wilderness Area (Wilderness Area) → Fitzpatrick Wilderness (~198,906 ac, similar name); Shoshone National Forest (~2,439,182 ac, the POTA pin is inside it (different name))
 - **US-6219** Lombard Ferry State Historic Site (State Historic Site) → Seedskadee National Wildlife Refuge (~25,985 ac, the POTA pin is inside it (different name)); Seedskadee National Wildlife Refuge (~25,985 ac, the POTA pin is inside it (different name))
-- **US-6220** NHT Auto Tour Route BLM Interpretive Site (BLM Interpretive Site) → Seedskadee National Wildlife Refuge (~25,985 ac, the POTA pin is inside it (different name)); Seedskadee National Wildlife Refuge (~25,985 ac, the POTA pin is inside it (different name))
-- **US-6221** Fontenelle Creek BLM Recreation Management Area (BLM Recreation Management Area) → Usbr (~735,338 ac, the POTA pin is inside it (different name))
 - **US-6222** Names Hill State Historic Site (State Historic Site) → Names Hill (~3 ac, same name, different kind of place)
 - **US-6224** Fort Bridger State Historic Site (State Historic Site) → Fort Bridger (~41 ac, same name, different kind of place)
 - **US-6225** Fort Supply State Historic Site (State Historic Site) → Fort Supply (~0 ac, same name, different kind of place)
@@ -118,6 +59,60 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **126 of 298** parks joined
 - **US-6228** Piedmont Charcoal Kilns State Historic Site (State Historic Site) → Piedmont Kilns (~1 ac, similar name)
 - **US-6230** Cumberland Wildlife Management Area (Wildlife Management Area) → Kemmerer Field Office (~1,421,062 ac, the POTA pin is inside it (different name)); Kemmerer Field Office ERMA (~1,290,770 ac, the POTA pin is inside it (different name))
 - **US-6231** Fort Bonneville State Historic Site (State Historic Site) → Fort Bonneville (~1 ac, same name, different kind of place)
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
+- US-10822 Daniel State Fish Hatchery (State Fish Hatchery) → on State Lands 1111115411 (~639 ac)
+- US-10824 Ten Sleep State Fish Hatchery (State Fish Hatchery) → on Bighorn National Forest (~1,105,122 ac)
+- US-10825 Tillett Springs State Fish Hatchery (State Fish Hatchery) → on Cody Field Office (~1,090,720 ac)
+- US-10837 Little Sandy Crossing BLM Historic Area (BLM Historic Area) → on Usbr (~735,338 ac)
+- US-10840 Gebo - Causley Historic Mining District BLM Interpretive Site (BLM Interpretive Site) → on Worland Field Office (~2,099,390 ac)
+- US-10842 Boar's Tusk BLM Recreation Management Area (BLM Recreation Management Area) → on Sand Dunes (~0 ac); Rock Springs Field Office (~3,606,721 ac)
+- US-10845 Bobcat-Houlihan Trail BLM Recreation Management Area (BLM Recreation Management Area) → on Rivers SRMA (~6,059 ac)
+- US-10848 Castle Gardens Scenic Area BLM Recreation Management Area (BLM Recreation Management Area) → on Worland Field Office (~2,099,390 ac)
+- US-10850 Cedar Canyon Petroglyphs BLM Recreation Management Area (BLM Recreation Management Area) → on Rock Springs Field Office ERMA (~3,308,154 ac); Rock Springs Field Office (~3,606,721 ac)
+- US-10853 Cody Canal BLM Recreation Management Area (BLM Recreation Management Area) → on Cody Field Office (~1,090,720 ac)
+- US-10854 Corral Creek Campground BLM Recreation Management Area (BLM Recreation Management Area) → on North Platte River SRMA (~7,095 ac); Rawlins Field Office (~3,531,790 ac)
+- US-10855 Deep Gulch BLM Recreation Management Area (BLM Recreation Management Area) → on Western Rawlins Field Office ERMA (~1,904,417 ac); Rawlins Field Office (~3,531,790 ac)
+- US-10856 Dome Rock BLM Recreation Management Area (BLM Recreation Management Area) → on Eastern Rawlins Field Office ERMA (~1,582,142 ac); Rawlins Field Office (~3,531,790 ac)
+- US-10857 Dugway Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Rawlins Field Office (~3,531,790 ac)
+- US-10863 Green River/Warrne Bridge River Access Area BLM Recreation Management Area (BLM Recreation Management Area) → on Green and New Fork Rivers SRMA (Warren Bridge) (~7,189 ac); Pinedale Field Office (~925,688 ac)
+- US-10876 Lone Tree Trail BLM Recreation Management Area (BLM Recreation Management Area) → on West Slope SRMA (~190,622 ac); Worland Field Office (~2,099,390 ac)
+- US-10882 Prior Flat Campground BLM Recreation Management Area (BLM Recreation Management Area) → on Shirley Mountains SRMA (~37,894 ac); Rawlins Field Office (~3,531,790 ac)
+- US-10884 Red Gulch/Alkali Backcountry Byway BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on West Slope SRMA (~190,622 ac); Worland Field Office (~2,099,390 ac)
+- US-10885 Rim Lake BLM Recreation Management Area (BLM Recreation Management Area) → on Continental Divide National Scenic Trail SRMA (~10,181 ac); Rawlins Field Office (~3,531,790 ac)
+- US-10886 Salt Lick Trail BLM Recreation Management Area (BLM Recreation Management Area) → on West Slope SRMA (~190,622 ac); Worland Field Office (~2,099,390 ac)
+- US-10888 Shirley Basin Reservoir BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Eastern Rawlins Field Office ERMA (~1,582,142 ac); Rawlins Field Office (~3,531,790 ac)
+- US-10890 Sinks Canyon BLM Recreation Management Area (BLM Recreation Management Area) → on Shoshone National Forest (~2,439,182 ac)
+- US-10891 Teton Reservoir BLM Recreation Management Area (BLM Recreation Management Area) → on Eastern Rawlins Field Office ERMA (~1,582,142 ac); Rawlins Field Office (~3,531,790 ac)
+- US-10892 The Redds Day Use Area BLM Recreation Management Area (BLM Recreation Management Area) → on Trapper's Route SRMA (~3,421 ac); Casper Field Office (~1,361,339 ac)
+- US-10896 Wild Horse Point BLM Recreation Management Area (BLM Recreation Management Area) → on Green Mountain (~99,363 ac); Green Mountain ERMA (~129,578 ac)
+- US-10898 Lake Hattie BLM Recreation Management Area (BLM Recreation Management Area) → on Rawlins Field Office (~3,531,790 ac)
+- US-10929 Cottonwood Creek Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → on West Slope SRMA (~129,768 ac); Cody Field Office (~1,090,720 ac)
+- US-12722 Wheatland Reservoir #3 BLM Recreation Management Area (BLM Recreation Management Area) → on Eastern Rawlins Field Office ERMA (~1,582,142 ac)
+- US-12723 Whitetail Day Use BLM Recreation Management Area (BLM Recreation Management Area) → on Trapper's Route SRMA (~3,421 ac); Casper Field Office (~1,361,339 ac)
+- US-6131 Bessemer Bend BLM Historic Preservation Site (BLM Historic Preservation Site) → on Trapper's Route SRMA (~3,421 ac); Casper Field Office (~1,361,339 ac)
+- US-6143 Outlaw Cave Trail BLM Recreation Management Area (BLM Recreation Management Area) → on Middle Fork Powder River SRMA (~10,084 ac); Buffalo Field Office (~779,089 ac)
+- US-6153 Lone Tree Trail BLM Recreation Management Area (BLM Recreation Management Area) → on West Slope SRMA (~190,622 ac); Worland Field Office (~2,099,390 ac)
+- US-6155 Big Cedar Ridge Fossil Site BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Worland Field Office (~2,099,390 ac)
+- US-6159 Castle Gardens Petroglyph Site BLM Historic Preservation Site (BLM Historic Preservation Site) → on Lander Field Office (~2,388,958 ac)
+- US-6162 Red Gulch Dinosaur Tracksite BLM Recreation Management Area (BLM Recreation Management Area) → on Worland Field Office (~2,099,390 ac)
+- US-6164 Duck Swamp Interpretive Area BLM Interpretive Site (BLM Interpretive Site) → on Bighorn River ERMA (~1,915 ac); Worland Field Office (~2,099,390 ac)
+- US-6177 Johnny Behind the Rocks BLM Recreation Management Area (BLM Recreation Management Area) → on Lander Valley Community SRMA (~6,169 ac)
+- US-6182 Miner's Delight BLM Historic Preservation Site (BLM Historic Preservation Site) → on Lander Field Office (~2,388,958 ac)
+- US-6184 The Pinnacles Geologic Site BLM Recreation Management Area (BLM Recreation Management Area) → on Rock Springs Field Office ERMA (~3,308,154 ac); Rock Springs Field Office (~3,606,721 ac)
+- US-6186 Atlantic City/South Pass BLM Recreation Management Area (BLM Recreation Management Area) → on CDNST Destination SRMA (~82,586 ac); Lander Field Office (~2,388,958 ac)
+- US-6191 Tri-Territory Site BLM Historic Preservation Site (BLM Historic Preservation Site) → on Rock Springs Field Office ERMA (~3,308,154 ac); Rock Springs Field Office (~3,606,721 ac)
+- US-6192 Superior Mail Arrow BLM Historic Preservation Site (BLM Historic Preservation Site) → on Rock Springs Field Office ERMA (~3,308,154 ac); Rock Springs Field Office (~3,606,721 ac)
+- US-6193 South Pass Overlook BLM Interpretive Site (BLM Interpretive Site) → on Rock Springs Field Office ERMA (~3,308,154 ac); Rock Springs Field Office (~3,606,721 ac)
+- US-6194 False Parting of the Ways BLM Interpretive Site (BLM Interpretive Site) → on Rock Springs Field Office ERMA (~3,308,154 ac); Rock Springs Field Office (~3,606,721 ac)
+- US-6195 Crookston Ranch Cultural Site BLM Historic Preservation Site (BLM Historic Preservation Site) → on Killpecker Sand Dunes Open Play Area (~12,832 ac); Killpecker Sand Dunes Open Play Area (~12,832 ac)
+- US-6200 Overland Stage BLM Interpretive Site (BLM Interpretive Site) → on White Mountain (~207,372 ac)
+- US-6203 Pilot Butte Wild Horse Scenic Tour BLM Recreation Management Area (BLM Recreation Management Area) → on White Mountain (~207,372 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
+- US-6215 Simpsons Hollow BLM Recreation Management Area (BLM Recreation Management Area) → on Little Colorado (~525,421 ac); Rock Springs Field Office (~3,606,721 ac)
+- US-6216 Pilot Butte Overlook BLM Interpretive Site (BLM Interpretive Site) → on Little Colorado (~525,421 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
+- US-6220 NHT Auto Tour Route BLM Interpretive Site (BLM Interpretive Site) → on Seedskadee National Wildlife Refuge (~25,985 ac); Seedskadee National Wildlife Refuge (~25,985 ac)
+- US-6221 Fontenelle Creek BLM Recreation Management Area (BLM Recreation Management Area) → on Usbr (~735,338 ac)
 
 ## Nothing found in PAD-US
 
@@ -198,16 +193,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **126 of 298** parks joined
 - Pinedale Field Office ERMA ·  · BLM recreation sites · ~892,883 ac
 - Buffalo Field Office · PUB · BLM · ~779,089 ac
 - Usbr · FOTH · Unknown · ~735,338 ac
-- Washakie Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~693,934 ac
 - Teton Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~584,733 ac
-- Bridger Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~426,751 ac
 - North Absaroka Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~346,320 ac
 - Newcastle Field Office · PUB · BLM · ~279,233 ac
 - Newcastle Field Office ERMA ·  · BLM recreation sites · ~273,309 ac
 - Wind River Front SRMA ·  · BLM recreation sites · ~258,170 ac
 - Powder River Basin ERMA ·  · BLM recreation sites · ~224,080 ac
 - Badlands SRMA ·  · BLM recreation sites · ~211,695 ac
-- Fitzpatrick Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~198,906 ac
 - West Slope SRMA ·  · BLM recreation sites · ~190,622 ac
 - McCullough Peaks SRMA ·  · BLM recreation sites · ~159,811 ac
 - West Slope SRMA ·  · BLM recreation sites · ~129,768 ac
@@ -227,7 +219,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **126 of 298** parks joined
 - Wasatch National Forest · NF · Forest Service Region 04 Intermountain · ~37,820 ac
 - Targhee National Forest · NF · Forest Service Region 04 Intermountain · ~37,247 ac
 - Face of the Bighorns/North Fork ERMA ·  · BLM recreation sites · ~34,487 ac
-- Seminoe Reservoir State Park · SP · Wyoming Department of Parks and Cultural Resouces · ~34,202 ac
 - Dempsey Ridge SRMA ·  · BLM recreation sites · ~33,330 ac
 - Raymond Mountain SRMA ·  · BLM recreation sites · ~32,842 ac
 - National Historic Trails ERMA ·  · BLM recreation sites · ~31,289 ac
@@ -235,10 +226,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **126 of 298** parks joined
 - South Bighorns ERMA ·  · BLM recreation sites · ~25,550 ac
 - PRYOR MOUNTAIN WILD HORSE RANGE ·  · BLM herd management areas · ~23,815 ac
 - PRYOR MOUNTAIN WILD HORSE RANGE ·  · BLM herd management areas · ~23,815 ac
-- John D. Rockefeller, Jr., Memorial Parkway · SDA · NPS · ~23,622 ac
-- Glendo Reservoir State Park · SP · Wyoming Department of Parks and Cultural Resouces · ~21,949 ac
 - Pathfinder Reservoir · RMA · Unknown · ~20,704 ac
 - Rock Creek ·  · BLM herd management areas · ~19,107 ac
 - Stateline SRMA ·  · BLM recreation sites · ~15,870 ac
-- Keyhole Reservoir State Park · SP · Wyoming Department of Parks and Cultural Resouces · ~15,844 ac
 - Whiskey Basin Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~12,843 ac
+- Whiskey Mountain/East Fork ERMA ·  · BLM recreation sites · ~12,659 ac
+- Winegar Hole Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,662 ac
+- Continental Divide National Scenic Trail SRMA ·  · BLM recreation sites · ~10,181 ac
+- Sweetwater Canyon Undeveloped SRMA ·  · BLM recreation sites · ~9,154 ac
+- Newcastle Field Office · PUB · BLM · ~8,871 ac
+- Red Canyon Creek ERMA ·  · BLM recreation sites · ~8,426 ac
+- Fontenelle Reservoir · RMA · Unknown · ~8,131 ac

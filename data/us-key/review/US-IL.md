@@ -1,11 +1,10 @@
 # IL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined to official land (same name + same kind of place). **29** to check by hand, **51** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **141 of 219** parks joined to official land (same name + same kind of place). **27** to check by hand, **51** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0526** Wildcat Hollow State Nature Preserve (State Nature Preserve) → Wildcat Hollow State Habitat Area (~748 ac, similar name)
-- **US-1000** Illinois Beach State Park (State Park) → Adeline Jay Geo-Karis Illinois Beach State Park (~3,186 ac, similar name)
 - **US-10090** Mackinaw River State Fish and Wildlife Area (State Fish and Wildlife Area) → Mackinaw River (~972 ac, same name, different kind of place)
 - **US-10094** Spring Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Spring Lake (~2,123 ac, same name, different kind of place)
 - **US-1020** Sam Parr State Park (State Park) → Sam Parr State Fish and Wildlife Area (~1,164 ac, same name, different kind of place)
@@ -20,19 +19,21 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined
 - **US-12217** Sandy Ford State Natural Reserve (State Natural Reserve) → Sandy Ford State Natural Area (~203 ac, similar name)
 - **US-12367** Freeman Mine State Wildlife Area (State Wildlife Area) → Freeman Mine State Habitat Area (~178 ac, similar name)
 - **US-12368** Hooper Branch Savanna State Nature Preserve (State Nature Preserve) → Iroquois County State Fish and Wildlife Area (~2,842 ac, the POTA pin is inside it (different name))
-- **US-12387** Rall Woods State Reserve (State Reserve) → Rall Woods State Natural Area (~281 ac, similar name)
 - **US-13310** Foley Sand Prairie National Preserve (National Preserve) → Foley Sand Prairie State Natural Area (~14 ac, same name, different kind of place)
 - **US-13353** Maytown Pheasant Habitat Protection Area (Habitat Protection Area) → Maytown State Habitat Area (~154 ac, similar name)
 - **US-4094** Eagle Creek State Park (State Park) → Recreation Area (~2,294 ac, the POTA pin is inside it (different name))
 - **US-4105** Washington County State Recreation Area (State Recreation Area) → Washington County State Natural Area (~1,465 ac, same name, different kind of place)
 - **US-4106** Weinberg-King State Park (State Park) → Weinberg-King State Fish and Wildlife Area (~1,529 ac, same name, different kind of place)
 - **US-4128** Henderson County State Conservation Area (State Conservation Area) → Henderson County State Fish and Wildlife Area (~91 ac, same name, different kind of place)
-- **US-7256** Midewin National Grassland (National Grassland) → Midewin Other (~18,225 ac, similar name)
 - **US-7257** Saline County State Fish and Wildlife Area (State Fish and Wildlife Area) → Saline County State Conservation Area (~1,273 ac, same name, different kind of place)
 - **US-7371** Sam Dale Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Sam Dale Lake State Conservation Area (~1,324 ac, same name, different kind of place)
 - **US-7871** Martin T Snyder Memorial State Nature Preserve (State Nature Preserve) → Hanging Rock Sandstone Cliff State Natural Area (~94 ac, the POTA pin is inside it (different name))
 - **US-8306** Lincoln's New Salem State Historic Site (State Historic Site) → Lincolns New Salem State Park (~560 ac, same name, different kind of place)
 - **US-8380** Sahara Woods State Recreation Area (State Recreation Area) → Sahara Woods State Fish and Wildlife Area (~4,059 ac, same name, different kind of place)
+- **US-9893** Tunnel Hill State Trail (State Trail) → Tunnel Hill (~917 ac, same name, different kind of place)
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
 
 ## Nothing found in PAD-US
 
@@ -92,7 +93,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined
 
 - Ms Rv Pools 11-22 Recreation Area · REC · Rock Island · ~45,941 ac
 - Mingo National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~21,618 ac
-- Midewin Other · NF · Forest Service Region 09 Eastern · ~18,225 ac
 - Upper Mississippi River National Wildlife And Fish Refuge · NWR · Upper Mississippi River National Wildlife And Fish Refuge · ~12,512 ac
 - Upper Mississippi River National Wildlife And Fish Refuge · NWR · UPPER MISSISSIPPI RIVER NATIONAL WILDLIFE AND FISH REFUGE · ~12,471 ac
 - Clarks River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,857 ac
@@ -108,7 +108,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined
 - Middle Mississippi Purchase Unit · NF · Forest Service Region 09 Eastern · ~3,877 ac
 - Burden Falls Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,740 ac
 - Horshoe Lake State Park · SP · Dept of Natural Resources State of Illinois · ~3,339 ac
-- Adeline Jay Geo-Karis Illinois Beach State Park · SP · STATE OF ILLINOIS DEPT OF CONSERVATION · ~3,186 ac
 - Lake Odessa Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~3,171 ac
 - Pool No. 26 - Stump Lake · SP · Illinois Department of Natural Resources · ~2,972 ac
 - Bay Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~2,760 ac
@@ -140,10 +139,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 219** parks joined
 - Red's Landing · SCA · Unknown · ~1,189 ac
 - Sam Parr State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~1,164 ac
 - Pekin Lake · SREC · State of Illinois · ~1,095 ac
+- Illinois and Michigan Canal State Trail · SREC · Illinois Department of Natural Resources · ~1,080 ac
 - Cypress Pond State Natural Area · SCA · Illinois Department of Natural Resources · ~1,056 ac
 - Red Wing Slough · SCA · State of Illinois · ~1,001 ac
 - Panther Den Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~988 ac
 - Mackinaw River · SREC · Other State Land · ~972 ac
+- Tunnel Hill · SREC · Other State Land · ~917 ac
 - Piasa Island Wildlife Management Area · SCA · Illinois Department of Natural Resources · ~912 ac
 - Gabaret Island Open Space · SOTH · State of Illinois Dept of Natural Resources · ~863 ac
 - Weinberg-King State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~862 ac

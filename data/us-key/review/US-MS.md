@@ -1,15 +1,12 @@
 # MS: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 155** parks joined to official land (same name + same kind of place). **29** to check by hand, **46** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **84 of 155** parks joined to official land (same name + same kind of place). **25** to check by hand, **46** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0390** Noxubee National Wildlife Refuge (National Wildlife Refuge) → Sam D. Hamilton Noxubee National Wildlife Refuge (~48,330 ac, similar name); Sam D. Hamilton Noxubee National Wildlife Refuge (~48,330 ac, similar name); John W. Starr Wma (~8,268 ac, the POTA pin is inside it (different name))
 - **US-0642** Natchez Trace Parkway National Parkway (National Parkway) → Natchez Trace Parkway (~31,527 ac, similar name)
-- **US-11882** Grand Village of the Natchez State Historic Site (State Historic Site) → Natchez National Historical Park (~98 ac, similar name)
 - **US-11883** Emerald Mound National Historical Site (National Historical Site) → Natchez Trace Parkway (~31,527 ac, the POTA pin is inside it (different name))
-- **US-2534** Florewood State Park (State Park) → Florewood River Plantation State Park (~99 ac, similar name)
-- **US-2545** Legion State Park (State Park) → Legion Lake State Park (~431 ac, similar name)
+- **US-12204** Calling Panther State Fishing Lake (State Fishing Lake) → Calling Panther Lake (~1,482 ac, same name, different kind of place)
 - **US-4560** Natchez Trace Trail National Scenic Trail (National Scenic Trail) → Natchez Trace Parkway (~31,527 ac, similar name)
 - **US-7073** William C. Deviney Wildlife Management Area (Wildlife Management Area) → Indianola Wildlife Management Area (~1,019 ac, the POTA pin is inside it (different name))
 - **US-7088** Choctaw Wildlife Management Area (Wildlife Management Area) → Tombigbee National Forest (~67,449 ac, the POTA pin is inside it (different name))
@@ -23,7 +20,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 155** parks joined 
 - **US-7111** Red Creek Wildlife Management Area (Wildlife Management Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
 - **US-7114** Bienville Wildlife Management Area (Wildlife Management Area) → Bienville National Forest (~180,227 ac, same name, different kind of place)
 - **US-7116** Caney Creek Wildlife Management Area (Wildlife Management Area) → Bienville National Forest (~180,227 ac, the POTA pin is inside it (different name))
-- **US-7118** Copiah County Wildlife Management Area (Wildlife Management Area) → Copiah Wma (~6,594 ac, similar name)
 - **US-7119** Natchez Wildlife Management Area (Wildlife Management Area) → Natchez Trace Parkway (~31,527 ac, similar name); Natchez State Park (~3,428 ac, same name, different kind of place); Natchez State Park (~3,425 ac, same name, different kind of place)
 - **US-7121** Sandy Creek Wildlife Management Area (Wildlife Management Area) → Homochitto National Forest (~191,846 ac, the POTA pin is inside it (different name))
 - **US-7134** Holcut Memorial State Recreation Area (State Recreation Area) → Divide Section (~16,145 ac, the POTA pin is inside it (different name))
@@ -33,6 +29,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 155** parks joined 
 - **US-7633** Turkey Fork Lake State Recreation Area (State Recreation Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
 - **US-7634** Ashe Lake State Recreation Area (State Recreation Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
 - **US-7635** Airey Lake State Recreation Area (State Recreation Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
 
 ## Nothing found in PAD-US
 
@@ -89,8 +88,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 155** parks joined 
 - Tensas River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~77,861 ac
 - Cache River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~74,347 ac
 - Gulf Islands National Seashore · NLS · NPS · ~57,793 ac
-- Sam D. Hamilton Noxubee National Wildlife Refuge · NWR · SAM D. HAMILTON NOXUBEE NATIONAL WILDLIFE REFUGE · ~48,330 ac
-- Sam D. Hamilton Noxubee National Wildlife Refuge · NWR · Sam D. Hamilton Noxubee National Wildlife Refuge · ~48,330 ac
 - Natchez Trace Parkway · SDA · NPS · ~31,527 ac
 - Big Branch Marsh National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~18,409 ac
 - Hancock County Marsh Coastal Reserve · SCA · Unknown · ~18,067 ac
@@ -104,7 +101,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 155** parks joined 
 - Bogue Chitto National Wildlife Refuge · NWR · BOGUE CHITTO NATIONAL WILDLIFE REFUGE · ~7,316 ac
 - Bogue Chitto National Wildlife Refuge · NWR · Bogue Chitto National Wildlife Refuge · ~7,287 ac
 - Bon Secour National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,849 ac
-- Copiah Wma · SCA · Unknown · ~6,594 ac
 - Theodore Roosevelt National Wildlife Refuge · NWR · Theodore Roosevelt National Wildlife Refuge · ~6,277 ac
 - Theodore Roosevelt National Wildlife Refuge · NWR · THEODORE ROOSEVELT NATIONAL WILDLIFE REFUGE · ~6,178 ac
 - Black Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,084 ac
@@ -115,11 +111,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 155** parks joined 
 - Greentree · SCA · Unknown · ~1,918 ac
 - Pickwick Reservoir · ND · Tennessee Valley Authority (TVA) · ~1,915 ac
 - Graveline Bay Coastal Reserve · SCA · Unknown · ~1,879 ac
+- Calling Panther Lake · SCA · Mississippi Department of Wildlife, Fisheries and Parks · ~1,482 ac
 - Bellefontaine Point Coastal Reserve · SCA · Unknown · ~1,262 ac
 - Farm Service Agency Interest Of La ·  · U.S. Fish & Wildlife Service (own map) · ~1,206 ac
 - Stock And Washington Muscadine · SCA · Unknown · ~1,186 ac
 - Old Fort Bayou Coastal Reserve · SCA · Unknown · ~1,134 ac
 - Bayou Lacroix Coastal Reserve · SCA · Unknown · ~1,081 ac
+- Pascagoula River Marshes (Feb 2003) · SCA · MS DEPARTMENT OF MARINE RESOURCES · ~1,065 ac
 - Wolf River Conservation Society · SCA · Mississippi Department of Wildlife, Fisheries and Parks · ~1,046 ac
 - Big Branch Marsh National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,045 ac
 - Red Creek Purchase Unit · NF · Forest Service Region 08 Southern · ~1,035 ac
@@ -131,7 +129,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 155** parks joined 
 - Refuge · SCA · Unknown · ~764 ac
 - Davis Bayou Coastal Reserve · SCA · Unknown · ~744 ac
 - Muscadine Driftwood · SCA · Unknown · ~708 ac
-- Legion Lake State Park · SP · Unknown · ~431 ac
 - Grand Bayou Coastal Reserve · SCA · Unknown · ~309 ac
 - Southeastern States District Office · PUB · BLM · ~284 ac
 - Farm Service Agency Interest Of La ·  · U.S. Fish & Wildlife Service (own map) · ~267 ac
@@ -141,7 +138,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 155** parks joined 
 - Waterfowl Area · UNK · Unknown · ~228 ac
 - Refuge · SCA · Unknown · ~193 ac
 - Mchenry Range · SCA · Mississippi Department of Wildlife, Fisheries and Parks · ~175 ac
+- Pascagoula River Marshes (June 2001) · SCA · MS DEPARTMENT OF MARINE RESOURCES · ~162 ac
 - Private · SCA · Unknown · ~133 ac
 - Cat Island · SREC · State of Mississippi · ~123 ac
 - Meridian National Fish Hatchery · FOTH · MERIDIAN NATIONAL FISH HATCHERY · ~106 ac
 - Wolf River Marshes (Feb 2008) · SCA · Mississippi Department of Marine Resources · ~105 ac
+- Pascagoula River Marshes (Sept 2002) · SCA · MS DEPARTMENT OF MARINE RESOURCES · ~79 ac

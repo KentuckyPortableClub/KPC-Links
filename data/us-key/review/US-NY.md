@@ -1,30 +1,23 @@
 # NY: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **792 of 850** parks joined to official land (same name + same kind of place). **35** to check by hand, **23** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **798 of 850** parks joined to official land (same name + same kind of place). **29** to check by hand, **23** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0474** Elizabeth A. Morton National Wildlife Refuge (National Wildlife Refuge) → Elizabeth Alexandra Morton National Wildlife Refuge (~177 ac, similar name); Elizabeth Alexandra Morton National Wildlife Refuge (~177 ac, similar name)
 - **US-0681** Upper Delaware National Wild and Scenic River (National Wild and Scenic River) → Upper Delaware Scenic and Recreational River (~10 ac, similar name)
 - **US-10292** Watson's East Triangle Complex State Preserve (State Preserve) → Watson'S East Triangle Wild Forest (~13,472 ac, similar name)
 - **US-11861** Nick’s Lake Campground and Day Use State Recreation Site (State Recreation Site) → Nicks Lake Campground (~687 ac, similar name)
-- **US-12060** Crystal Lake State Forest (State Forest) → Crystal Lake Wild Forest (~502 ac, similar name)
-- **US-2006** Artpark State Park (State Park) → Earl W. Brydges Artpark (~162 ac, similar name)
+- **US-12060** Crystal Lake State Forest (State Forest) → Crystal Lake Wild Forest (~502 ac, same name, different kind of place)
+- **US-12166** Edgewood Oak Brush Plains State Forest (State Forest) → Edgewood Oak Brush Plains  Preserve (~807 ac, same name, different kind of place)
 - **US-2081** Iona Island Wildlife Management Area (Wildlife Management Area) → Bear Mountain State Park (~5,477 ac, the POTA pin is inside it (different name))
-- **US-2095** Lakeside State Park (State Park) → Lakeside Beach State Park (~705 ac, similar name)
 - **US-2097** Lock 32 Canal State Park (State Park) → Canal Park at Lock 32 (Pittsford) (~13 ac, similar name); Erie Canal (~17,563 ac, the POTA pin is inside it (different name))
-- **US-2137** Schunnemunk Mountain State Park (State Park) → Schunnemunk State Park (~4,458 ac, similar name)
-- **US-2147** Sunken Meadow State Park (State Park) → Alfred E. Smith/Sunken Meadow State Park (~3,117 ac, similar name)
-- **US-5060** Hogsback (Lewis County) State Forest (State Forest) → Hogsback State Forest (~1,747 ac, similar name)
 - **US-5121** Big Buck Mountain Unique Area (Unique Area) → Big Buck Mountain Multiple Use Area (~181 ac, similar name)
 - **US-5146** Burt Hill State Forest (State Forest) → Burt Hill Multiple Use Area (~398 ac, similar name)
 - **US-5197** Dannemora State Forest (State Forest) → Chazy Highlands State Forest (~5,544 ac, the POTA pin is inside it (different name))
-- **US-5203** Dobbins State Forest (State Forest) → Dobbins Memorial State Forest (~1,102 ac, similar name)
 - **US-5218** Nutten Hook State Conservation Area (State Conservation Area) → Nutten Hook State Tidal Wetland (~823 ac, similar name)
-- **US-5258** Pochuck State Forest (State Forest) → Pochuck Mountain State Forest (~490 ac, similar name)
-- **US-5265** Raecher State Forest (State Forest) → Raecher Hill State Forest (~841 ac, similar name)
 - **US-5270** Reinstein Woods State Nature Preserve (State Nature Preserve) → Reinstein Woods Nature Preserve And Environmental Education Center (~284 ac, similar name); Reinstein Woods Nature Preserve And Environmental Education Center (~8 ac, similar name)
-- **US-5308** Split Rock State Forest (State Forest) → Split Rock Wild Forest (~3,543 ac, similar name)
+- **US-5308** Split Rock State Forest (State Forest) → Split Rock Wild Forest (~3,543 ac, same name, different kind of place)
+- **US-5315** Stid Hill Wildlife Management Area (Wildlife Management Area) → Stid Hill Mua (~1,035 ac, same name, different kind of place)
 - **US-5338** Tibbetts State Forest (State Forest) → Tibbitts State Forest (~847 ac, the POTA pin is inside it (different name))
 - **US-5361** Wellman State Forest (State Forest) → Wellman Multiple Use Area (~445 ac, similar name)
 - **US-5376** Witch's Hole Multiple Use Area (Multiple Use Area) → Witch'S Hole State Forest (~592 ac, similar name)
@@ -35,10 +28,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **792 of 850** parks joined
 - **US-8089** Great Kills Park State Recreation Area (State Recreation Area) → Gateway National Recreation Area (~18,548 ac, the POTA pin is inside it (different name))
 - **US-8093** David A. Sarnoff Pine Barrens State Forest (State Forest) → David A. Sarnoff  Preserve (~2,689 ac, similar name)
 - **US-8622** Carlton Hill Multiple Use Area (Multiple Use Area) → Carlton Hill Mua (~2,499 ac, similar name)
+- **US-9038** Birch Run Ponds Wildlife Management Area (Wildlife Management Area) → Birch Run Ponds Fwma (~39 ac, same name, different kind of place)
+- **US-9040** Cazenovia Creek Wildlife Management Area (Wildlife Management Area) → Cazenovia Creek Fwma (~127 ac, same name, different kind of place); West Seneca State Developmental Center (~416 ac, the POTA pin is inside it (different name))
 - **US-9052** Harwood Lake Multiple Use Area (Multiple Use Area) → Harwood Lake Mua (~301 ac, similar name)
 - **US-9060** Watts Flats Wildlife Management Area (Wildlife Management Area) → Watts Wma (~1,392 ac, similar name)
 - **US-9124** Charles Flood Wildlife Management Area (Wildlife Management Area) → Charles Flood Wma At The Empire Brickyard (~590 ac, similar name)
-- **US-9141** Hogsback (Oneida County) State Forest (State Forest) → Hogsback State Forest (~1,747 ac, similar name)
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
 
 ## Nothing found in PAD-US
 
