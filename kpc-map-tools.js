@@ -190,5 +190,50 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
     new C().addTo(map);
   }
   /* Oct 17: KPCPin(map, {extra(la, lo) → more popup html, onPop(el, marker)}) (Kentucky Park Control: + ADD THIS SPOT TO MY TRIP) */
-  window.KPCTA = { attach }; window.KPCPin = pin; window.KPCLayers = layers; window.KPCLocate = locate; window.KPCFull = full;
+  /* ---- Oct 17: KPCHere(map, {piece, onRef}) = tap an outline (zoom 10+) → 'What land is here?' (KY: KPCB.landAt + Army Corps land) ---- */
+  /* Oct 17 (Brandon: 'click on a boundary… tell you Name here WMA tract etc.'): tap the map = every outline at that spot, for all three programs */
+  let corpsF = null;
+  const corps = () => corpsF ? Promise.resolve(corpsF) : fetch('ky-usace.geojson').then(r => r.ok ? r.json() : { features: [] }).then(j => (corpsF = (j.features || []).map(f => (f._bb = KPCB.bbox(f.geometry), f)))).catch(() => (corpsF = []));
+  const HCSS = '.pc-here .pc-note{font-size:12.5px;color:#6b6252;margin:6px 0 0}.pc-here .pc-list{margin:4px 0 0;padding:0;list-style:none;font-size:13px}.pc-here .pc-list li{padding:3px 0}.pc-here .pc-list a{color:#7a5410;font-weight:700}.pc-here .pc-tag{display:inline-block;padding:1px 6px;border-radius:999px;font:900 10px Arial;background:#e9f5ec;color:#1f6b3a;border:1px solid #a9d3b4}.pc-here .pc-acts button{margin-top:8px;padding:7px 10px;border-radius:999px;border:1px solid #c9b48a;background:#fff;font:900 11.5px Arial;cursor:pointer}';
+  function here(map, opts) { if (!document.getElementById('kpc-here-css')) { const s = document.createElement('style'); s.id = 'kpc-here-css'; s.textContent = HCSS; document.head.appendChild(s); } opts = opts || {}; let tapL = null; const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const PIECE = opts.piece || (() => ({ color: '#f0c96b' }));
+    map.on('click', async e => { const t = e.originalEvent && e.originalEvent.target; if (t && (!t.isConnected || (t.closest && t.closest('.leaflet-popup')))) return; const ll = e.latlng;
+    /* Oct 17 (Brandon: 'a little too easy to pull up'): only when zoomed in to county level or closer, only on an outline (empty land = nothing),
+       a one-line label first ('name · status · more ›'), the full box only on 'more'; real park numbers listed first */
+    if (!window.KPCB || !KPCB.landAt || map.getZoom() < 10) return;
+    const [A0, C] = await Promise.all([KPCB.landAt(ll.lat, ll.lng), corps()]);
+    const co = C.filter(f => { const b = f._bb; return ll.lng >= b[0] && ll.lng <= b[2] && ll.lat >= b[1] && ll.lat <= b[3] && KPCB.inside(ll.lat, ll.lng, f.geometry); });
+    if (tapL) { map.removeLayer(tapL); tapL = null; }
+    if (!A0.length && !co.length) return;
+    const A = A0.filter(a => a.numbered).concat(A0.filter(a => !a.numbered)).slice(0, 5);
+    tapL = L.geoJSON({ type: 'FeatureCollection', features: A.map(a => a.f) }, { interactive: false,
+      style: f => { const a = A.find(x => x.f === f); return a && a.numbered ? Object.assign({ weight: 4, fill: true, fillOpacity: .08 }, PIECE(f)) : { color: '#ff2a2a', weight: 3, dashArray: '2 6', fill: false }; } }).addTo(map);
+    const st = a => a.own.length ? a.own.map(r => r.ref).join(', ') : a.kff.length ? a.kff.map(r => r.ref).join(', ') + ' (KFF only)' : 'no park number';
+    const top = A[0];
+    const label = top ? `<b>${esc(top.name)}</b> · <span style="color:${top.numbered ? '#1f6b3a' : '#a01818'};font-weight:800">${esc(st(top))}</span>${A.length > 1 ? ` · +${A.length - 1} more here` : ''}`
+      : `<b>Army Corps of Engineers land</b>`;
+    const li = (a, i) => a.slice(0, 6).map(r => `<li><a href="?ref=${encodeURIComponent(r.ref)}" data-pcref="${esc(r.ref)}">${esc(r.ref)}</a> ${esc(r.name || '')}${i ? ' <span class="pc-tag">' + esc(i(r)) + '</span>' : ''}</li>`).join('');
+    const box = a => {
+      let h = `<div style="margin:8px 0 2px;font:700 15px/1.25 Georgia,serif">${esc(a.name)}</div><div class="pc-note" style="margin:0">${esc(a.layer)}${a.onLine ? ' · you tapped right on its line' : ''}</div>`;
+      if (a.own.length) h += `<ul class="pc-list"><li><b>🌲 POTA:</b></li>${li(a.own)}</ul>`;
+      else if (a.kff.length) h += `<p class="pc-note" style="color:#0d5a55;font-weight:800">🌳 KFF (WWFF) reference, no POTA number:</p><ul class="pc-list">${li(a.kff)}</ul>`;
+      else h += `<p class="pc-note" style="color:#a01818;font-weight:800;margin:4px 0">🚫 Government land · no park number (may not be open to the public).</p>` + (a.pins.length ? `<div class="pc-note">POTA park pin inside it (only that park’s own land counts):</div><ul class="pc-list">${li(a.pins)}</ul>` : '');
+      const kin = a.kffIn.filter(k => !a.kff.some(x => x.ref === k.ref));
+      if (kin.length && a.numbered) h += `<div class="pc-note"><b>🌳 KFF here:</b></div><ul class="pc-list">${li(kin)}</ul>`;
+      if (a.sota.length) h += `<div class="pc-note"><b>⛰ SOTA summits on this land</b> (SOTA goes by the summit, so these count):</div><ul class="pc-list">${li(a.sota, r => r.ft ? Number(r.ft).toLocaleString() + ' ft' : '')}</ul>`;
+      return h; };
+    const full = () => '<div style="font:900 11px Arial;letter-spacing:1.4px;color:#7a5410">WHAT LAND IS HERE?</div>' + A.map(box).join('<hr style="border:0;border-top:1px dashed #e2d6bb;margin:8px 0">') +
+      co.map(f => { const p = f.properties || {}; return `<p class="pc-note" style="border-left:4px solid #ff8c38;padding-left:6px"><b>Army Corps of Engineers land</b>${p.MANAGER ? ', run by ' + esc(p.MANAGER) : ''}.</p>`; }).join('') +
+      `<div class="pc-acts"><button type="button" data-pcpin="1">📌 DROP A PIN HERE</button></div><p class="pc-note" style="margin:2px 0 0">Outlines are guides. The official map decides.</p>`;
+    const pop = L.popup({ maxWidth: 300, maxHeight: 300, className: 'pc-here' }).setLatLng(ll)
+      .setContent(`<div style="font:13px/1.35 Arial">${label} <a href="#" data-pcmore="1" style="font-weight:800;color:#7a5410;white-space:nowrap">more ›</a></div>`).openOn(map);
+    const wire = () => { const el = pop.getElement(); if (!el) return;
+      const mo = el.querySelector('[data-pcmore]'); if (mo) mo.onclick = e => { e.preventDefault(); e.stopPropagation(); setTimeout(() => { pop.setContent(full()); wire(); }, 0); };
+      el.querySelectorAll('[data-pcref]').forEach(a => a.onclick = e => { e.preventDefault(); map.closePopup(); if (opts.onRef) opts.onRef(a.dataset.pcref); else location.href = '?ref=' + encodeURIComponent(a.dataset.pcref); });
+      const pb = el.querySelector('[data-pcpin]'); if (pb) pb.onclick = () => { map.closePopup(); map.fire('contextmenu', { latlng: ll }); }; };
+    wire();
+    map.once('popupclose', () => { if (tapL) { map.removeLayer(tapL); tapL = null; } });
+    });
+  }
+  window.KPCTA = { attach }; window.KPCPin = pin; window.KPCHere = here; window.KPCLayers = layers; window.KPCLocate = locate; window.KPCFull = full;
 })();

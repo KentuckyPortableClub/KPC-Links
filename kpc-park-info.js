@@ -93,7 +93,7 @@
     if (!window.L || !isFinite(o.la)) { $('piMap').innerHTML = '<p class="pi-msg">Map unavailable.</p>'; return; }
     map = L.map('piMap', { zoomControl: true }).setView([o.la, o.lo], 13);
     if (window.KPCLayers) KPCLayers(map); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
-    if (window.KPCPin) KPCPin(map);
+    if (window.KPCPin) KPCPin(map, { on: 'contextmenu' }); if (window.KPCHere) KPCHere(map, { onRef: r => { location.href = 'kpc-park-info.html?ref=' + encodeURIComponent(r); } });
     if (window.KPCLocate) KPCLocate(map);
     if (window.KPCFull) KPCFull(map);
     L.marker([o.la, o.lo]).addTo(map).bindPopup(esc(o.ref + ' ' + o.name));
