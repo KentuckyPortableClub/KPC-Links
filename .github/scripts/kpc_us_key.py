@@ -35,17 +35,17 @@ def get(params, tries=5):
 
 
 # ---------------- names + kinds (same idea as kpc-bounds.js, with other states' words) ----------------
-GEN = (r"blm herd management area|herd management area|herd area|blm special recreation management area|special recreation management area|extensive recreation management area|blm recreation management area|recreation management area|wilderness study area|wsa|hma|srma|erma|blm|fishing access site|access site|state game lands? number|designated state natural area|designated|public hunting area|hunting area|state fishing lake|fishing lake|state wilderness area|wilderness area|natural state conservation area|waterfowl refuge|wildlife refuge|refuge|state natural area|natural area preserve|state nature preserve|nature preserve|natural area|fish and wildlife area|state wildlife area|"
+GEN = (r"national wild and scenic river|wild and scenic river|national recreational river|state vehicle recreation area|vehicle recreation area|state reservation|reservation|state reserve|national reserve|national fish hatchery|state fish hatchery|fish hatchery|hatchery|fh|fishery area|state fishery area|blm herd management area|herd management area|herd area|blm special recreation management area|special recreation management area|extensive recreation management area|blm recreation management area|recreation management area|wilderness study area|wsa|hma|srma|erma|blm|fishing access site|access site|state game lands? number|designated state natural area|designated|public hunting area|hunting area|state fishing lake|fishing lake|state wilderness area|wilderness area|natural state conservation area|waterfowl refuge|wildlife refuge|refuge|state natural area|natural area preserve|state nature preserve|nature preserve|natural area|fish and wildlife area|state wildlife area|"
        r"wildlife management area|wildlife area|state game lands?|game lands?|game areas?|game management area|conservation area|state conservation area|"
        r"state resort park|state historic site|state historical park|state historic park|historic site|state recreation area|recreation area|"
        r"state beach|state seashore|national wildlife refuge|national recreation area|national historical park|national historic site|"
        r"national park|national forest|national grassland|national monument|national seashore|national lakeshore|national battlefield|"
-       r"national military park|national preserve|national river|state park|state forest|wma|nwr|nra|sp|sf|sgl|state|number|no|the|of|and")
-ABBR = {'col': 'colonel', 'sgt': 'sergeant', 'mt': 'mount', 'ft': 'fort', 'st': 'saint', 'pt': 'point', 'lk': 'lake', 'cr': 'creek', 'mtn': 'mountain'}
+       r"national military park|national preserve|national river|state park|state forest|management area|wma|nwr|nra|sp|sf|sgl|state|number|no|the|of|and")
+ABBR = {'sulphur': 'sulfur', 'vehicular': 'vehicle', 'recreational': 'recreation', '1': 'one', '2': 'two', '3': 'three', '4': 'four', '5': 'five', '6': 'six', '7': 'seven', '8': 'eight', '9': 'nine', '10': 'ten', '11': 'eleven', '12': 'twelve', 'col': 'colonel', 'sgt': 'sergeant', 'mt': 'mount', 'ft': 'fort', 'st': 'saint', 'pt': 'point', 'lk': 'lake', 'cr': 'creek', 'mtn': 'mountain'}
 def norm(s, drop1=False):
     s = str(s or '')
     s = re.sub(r'^([A-Za-z-]+) \(([^)]+)\)', r'\2 \1', s)   # 'Busch (August A.) Memorial' = 'August A. Busch Memorial'
-    s = re.sub(r'&', ' and ', s.lower())
+    s = re.sub(r'&', ' and ', s.lower()).replace('-', ' ')
     s = re.sub(r'\(.*?\)', ' ', s)                       # '(2021 Addition)'
     s = re.sub(r"[’'`]", '', s)                           # Chimney's = Chimneys
     s = re.sub(r'\.', ' ', s)
@@ -60,7 +60,8 @@ def norm(s, drop1=False):
     return re.sub(r'\s+', ' ', s).strip()
 
 
-KINDS = [('wma', r'wildlife management area|\bwma\b|wildlife area|game lands?|game areas?|game management area|hunting area|fish and wildlife area|public hunting'),
+KINDS = [('wma', r'wildlife management area|\bwma\b|wildlife area|game lands?|game areas?|game management area|hunting area|fish and wildlife area|public hunting|fishery area|(?<!recreation )(?<!herd )(?<!conservation )management area'),
+         ('wsr', r'wild (and|&) scenic river|recreational river'),
          ('ca', r'conservation area|\baccess$'),          # Missouri: 'Kings Prairie Access' = Kings Prairie Access State Conservation Area
          ('snp', r'nature preserve|natural area|\bsnp\b|\bsna\b|natural heritage'),
          ('hist', r'historic(al)? (site|park|area)|\bshs\b'),
@@ -76,12 +77,30 @@ def kinds(s):
 DES = {'SP': 'sp', 'SREC': 'sp', 'SHCA': 'hist', 'NWR': 'nwr', 'NF': 'nf', 'NG': 'nf', 'NP': 'nps', 'NM': 'nps', 'NRA': 'nps', 'NHS': 'hist', 'WA': 'wild'}
 
 
+def variants(s):
+    # other ways of writing the same name: no middle initial, bracket words left out ('Reifsnider (Frank)'), no leading 'Mount'
+    v = {norm(s), norm(s, True), norm(re.sub(r'\(.*?\)', ' ', str(s or '')))}
+    v |= {re.sub(r'^mount ', '', x) for x in v}
+    return {x for x in v if x}
+
+
 def same_name(a, b):
     a1, b1 = norm(a), norm(b)
-    if _same(a1, b1) or _same(norm(a, True), norm(b, True)): return True
+    if _same(a1, b1) or any(_same(x, y) for x in variants(a) for y in variants(b)): return True
     sa, sb = _sing(a1), _sing(b1)                          # McCloskey's = McCloskey, Glades = Glade
     if _same(sa, sb): return True
     return len(sa) >= 8 and len(sb) >= 8 and not re.search(r'\d', sa + sb) and _ed1(sa, sb)   # one-letter typos in PAD-US ('Horshoe', 'Morraine')
+
+
+def exact_name(a, b):
+    # no 'starts with' allowance: used when only one of the two names says what kind of place it is
+    va, vb = variants(a), variants(b)
+    return bool(va & vb) or bool({_sing(x) for x in va} & {_sing(x) for x in vb})
+
+
+def name_ok(a, b, ka, kb):
+    if not same_kind(ka, kb): return False
+    return exact_name(a, b) if (bool(ka) != bool(kb)) else same_name(a, b)
 
 
 def _sing(s): return ' '.join(w[:-1] if len(w) > 3 and w.endswith('s') else w for w in s.split())
@@ -97,7 +116,7 @@ def _ed1(a, b):
 
 def wset(s):
     # every word, keeping words in brackets ('Cash (Ben) Memorial' = Ben Cash Memorial)
-    return set(_sing(norm(str(s or '').replace('(', ' ').replace(')', ' '))).split())
+    return set(w for w in _sing(norm(str(s or '').replace('(', ' ').replace(')', ' '))).split() if len(w) > 1)
 
 
 def same_words(a, b, ka, kb):
@@ -232,6 +251,7 @@ XS = [  # prefix, query url, name field, acres field, kinds
     ('nca', 'https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query', 'NCA_NAME', '', set(), 'BLM national monuments / conservation areas'),
     # Oct 18: layer id + name field looked up at run time ('?' = find it); found by probe 2
     ('wsa', 'svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study', '?', '?', {'wsa'}, 'BLM wilderness study areas'),
+    ('wbl', 'svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|^(?!.*study).*wilderness', '?', '?', {'wild'}, 'BLM wilderness'),
     ('odw', 'svc:https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer|.', '?', '?', {'wma'}, 'Oklahoma Dept. of Wildlife Conservation WMA map', 'STAT', {'OK'}),
 ]
 RESOLVED = {}
@@ -295,6 +315,19 @@ def extra_state(st, have):
 def out_date(): return time.strftime('%Y-%m-%d')
 
 
+# Sites (Oct 18 review): an airstrip, trailhead, hatchery, byway, BLM recreation site… has no outline of its own in any official map;
+# when the only official land found is the bigger place AROUND its pin, it is not a 'check' case: we keep that land as 'a' (sits on), never joined.
+SITE = re.compile(r'airstrip|interpretive site|historic preservation site|trail ?head|day use|recreation site|\bohv\b|off.highway|byway|backway|historic(al)? trail|'
+                  r'historical monument|multiple use area|hatchery|historic area|designated routes?|desigated|desingated|staging area|camping area|campground|boat (ramp|launch)|'
+                  r'rock ?hounding|petroglyph|kilns|^blm |\bblm\b.*recreation management area|scenic drive|overlook|wayside|picnic', re.I)
+
+# Reviewed by hand (Oct 18 on): data/us-key/overrides.json {ref: {join: [objectid or exact name], no: [objectid or exact name], why: '...'}}.
+# 'join' adds that official land (it must be within ~0.6° of the pin), 'no' keeps a piece out; the bot follows it on every rerun.
+try: OVR = json.load(open(OUT / 'overrides.json')).get('parks', {})
+except Exception: OVR = {}  # noqa: BLE001
+def _oid(a): return str(a['OBJECTID'])
+
+
 PIN = {}
 def pins():
     # 20 state park files have no lat/lon (older format): fall back to the site index, then locations.json
@@ -326,11 +359,21 @@ def run(st):
             nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
             close = la is None or near(la, lo, a['_bb'], .6)
             if not close: continue
-            if (same_name(name, nm) or (a.get('Loc_Nm') and same_name(name, a['Loc_Nm']))) and same_kind(kp, a['_k']):
+            if name_ok(name, nm, kp, a['_k']) or (a.get('Loc_Nm') and name_ok(name, a['Loc_Nm'], kp, a['_k'])):
                 m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'name'])
             elif near(la, lo, a['_bb'], .1) if la is not None else False:
                 if same_words(name, nm, kp, a['_k']) or (a.get('Loc_Nm') and same_words(name, a['Loc_Nm'], kp, a['_k'])):
                     m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'words'])
+        ov = OVR.get(ref) or {}
+        if ov:
+            no = {str(x) for x in ov.get('no', [])}
+            m = [x for x in m if str(x[0]) not in no and x[1] not in no]
+            for want in ov.get('join', []):
+                for a in recs:
+                    nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
+                    if (_oid(a) == str(want) or nm == want) and (la is None or near(la, lo, a['_bb'], .6)) and not any(str(x[0]) == _oid(a) for x in m):
+                        m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'reviewed'])
+        site = []
         if not m and la is not None:
             # unsure: not joined, only listed so a person can look
             for a in recs:
@@ -344,12 +387,16 @@ def run(st):
                 else: continue
                 c.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), why])
             c.sort(key=lambda x: (x[3] != 'similar name', x[3] != 'same name, different kind of place', -x[2])); c = c[:6]
+            if c and SITE.search(name + ' ' + typ) and all(x[3].startswith('the POTA pin is inside') for x in c):
+                site = sorted(c, key=lambda x: x[2])[:2]; c = []
+            if ov.get('site'): site, c = sorted(c, key=lambda x: x[2])[:2] or site, []
         for x in m: used.add(x[0])
         parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda x: -x[2]), 'c': c}
+        if site: parks[ref]['a'] = site
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
-              'none': sum(1 for p in parks.values() if not p['m'] and not p['c']), 'nonum': len(nonum), 'padus': len(recs), 'read': seen}
+              'none': sum(1 for p in parks.values() if not p['m'] and not p['c'] and not p.get('a')), 'site': sum(1 for p in parks.values() if p.get('a')), 'nonum': len(nonum), 'padus': len(recs), 'read': seen}
     out = {'updated': time.strftime('%Y-%m-%d'), 'st': st, 'note': 'Built by .github/scripts/kpc_us_key.py from USGS PAD-US (fed + state fee land) and POTA. m = joined (same name + same kind), c = check by hand (NOT joined).',
            'counts': counts, 'parks': parks, 'nonum': nonum[:300]}
     # plain-words review page for this state (GitHub shows .md files nicely)
@@ -358,7 +405,8 @@ def run(st):
          f"(same name + same kind of place). **{counts['check']}** to check by hand, **{counts['none']}** with nothing found. Nothing below is joined until a person checks it.", '']
     chk = [(r, p) for r, p in parks.items() if not p['m'] and p['c']]
     L += ['## To check (not joined)', ''] + [f"- **{r}** {p['n']} ({p['t']}) → " + '; '.join(f"{x[1]} (~{x[2]:,} ac, {x[3]})" for x in p['c']) for r, p in chk] + ['']
-    L += ['## Nothing found in PAD-US', ''] + [f"- {r} {p['n']} ({p['t']})" for r, p in parks.items() if not p['m'] and not p['c']] + ['']
+    L += ['## Sites on bigger public land (no outline of their own; the land around the pin)', ''] + [f"- {r} {p['n']} ({p['t']}) → on " + '; '.join(f"{x[1]} (~{x[2]:,} ac)" for x in p['a']) for r, p in parks.items() if p.get('a')] + ['']
+    L += ['## Nothing found in PAD-US', ''] + [f"- {r} {p['n']} ({p['t']})" for r, p in parks.items() if not p['m'] and not p['c'] and not p.get('a')] + ['']
     L += ['## Biggest federal / state places with no POTA park joined (first 60)', ''] + [f"- {x[1]} · {x[2]} · {x[3]} · ~{x[4]:,} ac" for x in nonum[:60]]
     (R / f'US-{st}.md').write_text('\n'.join(L) + '\n', encoding='utf-8')
     (OUT / f'US-{st}.json').write_text(json.dumps(out, separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
@@ -380,6 +428,6 @@ for st in STATES:
         idx[st] = c; done.append(st)
         print(f"{st}: {c['parks']} parks, {c['matched']} joined, {c['check']} to check, {c['none']} nothing found, {c['nonum']} places with no POTA park", flush=True)
     json.dump({'updated': time.strftime('%Y-%m-%d'), 'states': idx}, open(OUT / 'index.json', 'w'), separators=(',', ':'))
-tot = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none')}
+tot = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none', 'site')}
 notice('US key extra maps', ', '.join(f'{k}: {v}' for k, v in XCOUNT.items()))
-notice('US answer key', f"{len(done)} states this run ({' '.join(done)}). All states so far: {tot['parks']} parks, {tot['matched']} joined, {tot['check']} to check, {tot['none']} nothing found")
+notice('US answer key', f"{len(done)} states this run ({' '.join(done)}). All states so far: {tot['parks']} parks, {tot['matched']} joined, {tot['check']} to check, {tot['site']} sites on bigger land, {tot['none']} nothing found")
