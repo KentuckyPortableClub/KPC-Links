@@ -996,3 +996,10 @@ main#hl .hl-tkmore{display:none}
  main#hl .hl-tick:not(.tk-open) > .hl-bell{display:none!important}
  main#hl .hl-tick.tk-open > .hl-tick-run{display:none}
 }
+/* Oct 18 (Brandon: 'two different gear wrenches'): on phones the two filter gears get a short word under them */
+@media (max-width:700px){
+ main#hl .hl-tick.tk-open > .hl-bell{padding:0 9px}
+ main#hl #hlBellF,main#hl #hlBanF{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;gap:2px}
+ main#hl #hlBellF::after,main#hl #hlBanF::after{font:900 8.5px Arial,sans-serif;letter-spacing:.06em}
+ main#hl #hlBellF::after{content:"ALERT"} main#hl #hlBanF::after{content:"BAR"}
+}
