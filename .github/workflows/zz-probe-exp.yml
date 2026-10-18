@@ -1,0 +1,25 @@
+name: zz probe ArcGIS experience (temporary)
+on: workflow_dispatch
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python3 - <<'PY'
+          import json,urllib.request,re
+          def g(u):
+              return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=90).read())
+          I='6b260e7012e94623970589ce28813e0c'; S='https://www.arcgis.com/sharing/rest/content/items/'
+          it=g(S+I+'?f=json'); print('::notice title=item::'+json.dumps({k:it.get(k) for k in ('title','owner','orgId','snippet','type','access')}))
+          d=g(S+I+'/data?f=json'); txt=json.dumps(d)
+          urls=sorted(set(re.findall(r'https?://[^"\\]+(?:MapServer|FeatureServer)[^"\\]*',txt)))
+          ids=sorted(set(re.findall(r'"itemId": ?"([0-9a-f]{32})"',txt)))
+          print('::notice title=services::'+' | '.join(urls)[:3500])
+          for i in ids[:12]:
+              try:
+                  x=g(S+i+'?f=json'); print('::notice title=item '+i+'::'+json.dumps({k:x.get(k) for k in ('title','type','owner','url')})[:400])
+                  if x.get('type') in ('Web Map',):
+                      w=g(S+i+'/data?f=json'); ls=[(l.get('title'),l.get('url')) for l in w.get('operationalLayers',[])]
+                      print('::notice title=webmap layers::'+json.dumps(ls)[:3500])
+              except Exception as e: print('::notice title=err::'+str(e))
+          PY
