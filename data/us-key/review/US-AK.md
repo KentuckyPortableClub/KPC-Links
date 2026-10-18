@@ -1,6 +1,6 @@
 # AK: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **58 of 179** parks joined to official land (same name + same kind of place). **61** to check by hand, **60** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **64 of 179** parks joined to official land (same name + same kind of place). **55** to check by hand, **60** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -36,7 +36,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **58 of 179** parks joined 
 - **US-12708** Kenai River State Conservation Area (State Conservation Area) → Kenai National Wildlife Refuge (~1,939,526 ac, similar name); Kenai National Wildlife Refuge (~1,938,670 ac, similar name); Kenai River Special Management Area (~1,404 ac, similar name)
 - **US-12750** Shoup Bay State Marine Reserve (State Marine Reserve) → Shoup Bay State Marine Park (~3,809 ac, similar name)
 - **US-13462** Sportsman's Angler Access State Recreation Site (State Recreation Site) → Chugach National Forest (~5,401,397 ac, the POTA pin is inside it (different name))
-- **US-3392** Kachemak Bay Wilderness State Park (State Park) → Kachemak Bay State Wilderness Park (~198,064 ac, similar name); Kachemak Bay State Park (~116,387 ac, similar name); Kachemak Bay State Park (~403 ac, similar name); Kachemak Bay State Wilderness Park (~184 ac, similar name)
 - **US-4537** Admiralty Island National Monument (National Monument) → Tongass National Forest (~16,739,631 ac, the POTA pin is inside it (different name))
 - **US-4585** Walrus Islands State Game Land (State Game Land) → Walrus Islands State Game Sanctuary (~162,340 ac, similar name)
 - **US-4592** Haines State Forest (State Forest) → Haines State Forest Resource Management Area (~304,424 ac, similar name)
@@ -54,17 +53,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **58 of 179** parks joined 
 - **US-7234** Harding Lake State Recreation Site (State Recreation Site) → State Land Disposals - Other Than Municipal (~1,165,571 ac, the POTA pin is inside it (different name))
 - **US-7235** Lower Chatanika State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
 - **US-7237** Quartz Lake State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
-- **US-7240** Alaska Chilkat Bald Eagle State Preserve (State Preserve) → Alaska Chilkat Bald Eagle Preserve (~6,670 ac, similar name)
 - **US-7241** Chilkoot Lake State Recreation Site (State Recreation Site) → Haines State Forest Resource Management Area (~304,424 ac, the POTA pin is inside it (different name))
 - **US-7242** Portage Cove State Recreation Site (State Recreation Site) → State Land Disposals - Other Than Municipal (~1,165,571 ac, the POTA pin is inside it (different name))
 - **US-7248** Settler's Cove State Recreation Site (State Recreation Site) → State Land Disposals - Other Than Municipal (~26,625 ac, the POTA pin is inside it (different name))
 - **US-7252** Halibut Point State Recreation Site (State Recreation Site) → Halibut Point State Recreation Park (~22 ac, similar name)
 - **US-7253** Old Sitka State Park (State Park) → Old Sitka State Historic Park & Boat Ramp (~5 ac, similar name)
 - **US-7884** Kenai Mountains-Turnagain Arm National Heritage Area (National Heritage Area) → State Land Disposals - Municipal Purposes (~676,504 ac, the POTA pin is inside it (different name))
-- **US-9698** Goose Bay Wildlife Refuge (Wildlife Refuge) → Goose Bay State Game Refuge (~4,495 ac, similar name)
-- **US-9700** Minto Flats Wildlife Refuge (Wildlife Refuge) → Minto Flats State Game Refuge (~480,573 ac, similar name)
-- **US-9701** Palmer Hay Flats Wildlife Refuge (Wildlife Refuge) → Palmer Hay Flats State Game Refuge (~22,839 ac, similar name)
-- **US-9702** Susitna Flats Wildlife Refuge (Wildlife Refuge) → Susitna Flats State Game Refuge (~296,685 ac, similar name)
 
 ## Nothing found in PAD-US
 
@@ -148,14 +142,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **58 of 179** parks joined 
 - Eastern Interior Field Office · PUB · BLM · ~932,728 ac
 - State Land Disposals - Municipal Purposes · SOTH · Unknown · ~676,504 ac
 - Copper River Delta Critical Habitat Area · SCA · Unknown · ~543,173 ac
-- Minto Flats State Game Refuge · SCA · Unknown · ~480,573 ac
 - Alaska Maritime National Wildlife Refuge · NWR · ALASKA MARITIME NATIONAL WILDLIFE REFUGE · ~478,341 ac
 - Alaska Maritime National Wildlife Refuge · NWR · ALASKA MARITIME NATIONAL WILDLIFE REFUGE · ~464,348 ac
 - Alaska Maritime National Wildlife Refuge · NWR · ALASKA MARITIME NATIONAL WILDLIFE REFUGE · ~391,378 ac
 - Haines State Forest Resource Management Area · SRMA · Unknown · ~304,424 ac
-- Susitna Flats State Game Refuge · SCA · Unknown · ~296,685 ac
 - Eastern Interior Field Office · PUB · BLM · ~241,991 ac
-- Kachemak Bay State Wilderness Park · SCA · Unknown · ~198,064 ac
 - Redoubt Bay Critical Habitat Area · SCA · Unknown · ~170,861 ac
 - Walrus Islands State Game Sanctuary · SCA · Unknown · ~162,340 ac
 - Trading Bay State Game Refuge · SCA · Unknown · ~161,885 ac
@@ -189,5 +180,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **58 of 179** parks joined 
 - State Land Disposals - Other Than Municipal · SOTH · Unknown · ~26,625 ac
 - Cinder River Critical Habitat Area · SCA · Unknown · ~25,106 ac
 - Pilot Point Critical Habitat Area · SCA · Unknown · ~24,870 ac
-- Palmer Hay Flats State Game Refuge · SCA · Unknown · ~22,839 ac
 - Willow Mountain Critical Habitat Area · SCA · Unknown · ~22,540 ac
+- State Tentatively Approved (ta) · SOTH · Unknown · ~22,261 ac
+- Alexander Creek Recreation River · SREC · Unknown · ~21,599 ac
+- State Land Disposals - Other Than Municipal · SOTH · Unknown · ~19,644 ac
+- State Patented · SOTH · Unknown · ~16,183 ac

@@ -1,6 +1,6 @@
 # HI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **53 of 102** parks joined to official land (same name + same kind of place). **30** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **57 of 102** parks joined to official land (same name + same kind of place). **26** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -12,11 +12,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **53 of 102** parks joined 
 - **US-10917** ʻAiea Loop State Trail (State Trail) → Keaiwa Heiau State Recreation Area (~385 ac, the POTA pin is inside it (different name))
 - **US-10924** Kuaokala Game Reserve (Game Reserve) → Kuaokala Game Management Area (~1,719 ac, similar name); Kuaokala Forest Reserve / Kuaokala Game Management (~364 ac, similar name); Kuaokala Forest Reserve (~9 ac, similar name)
 - **US-10925** HI State Game Reserve (Game Reserve) → Mokuleia Forest Reserve (~2,960 ac, the POTA pin is inside it (different name)); Kaala Natural Area Reserve (~1,087 ac, the POTA pin is inside it (different name))
-- **US-2213** Kaumahina Wayside State Park (State Park) → Kaumahina State Wayside (~7 ac, similar name)
 - **US-2216** Makapuʻu  Point Wayside State Trail (State Trail) → Makapuu Point State Wayside (~39 ac, similar name)
-- **US-2218** Nu'uanu Pali Wayside State Park (State Park) → Nuuanu Pali State Wayside (~1 ac, similar name)
-- **US-2221** Puaa Kaa Wayside State Park (State Park) → Pua'a Ka'a State Wayside (~2 ac, similar name)
-- **US-2227** Wailua Valley Wayside State Park (State Park) → Wailua Valley State Wayside (~1 ac, similar name); State Department of Land State Resource Management Area (~249,706 ac, the POTA pin is inside it (different name))
 - **US-4565** Ala Kahakai National Historic Trail (National Historic Trail) → Kaloko-Honokohau National Historical Park (~631 ac, the POTA pin is inside it (different name))
 - **US-6402** Lava Tree State Park (State Park) → Lava Tree State Monument (~18 ac, similar name)
 - **US-6408** Ahukini State Recreation Area (State Recreation Area) → Ahukini State Recreation Pier (~1 ac, similar name)
@@ -26,7 +22,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **53 of 102** parks joined 
 - **US-6419** Hulihe'e Palace State Park (State Park) → Hulihe'E Palace (~1 ac, same name, different kind of place)
 - **US-6420** Kiholo  Reserve State Reserve (State Reserve) → Pu'u Wa'awa'a Cooperative Game Management Area (~50,795 ac, the POTA pin is inside it (different name))
 - **US-6421** Kohala Historical Sites State Preserve (State Preserve) → Kohala Historical Sites State Monument (~7 ac, similar name)
-- **US-6423** Manuka State Preserve (State Preserve) → Manuka State Wayside (~13 ac, similar name); Manuka Natural Area Reserve (~25,701 ac, the POTA pin is inside it (different name))
+- **US-6423** Manuka State Preserve (State Preserve) → Manuka Natural Area Reserve (~25,701 ac, the POTA pin is inside it (different name))
 - **US-6424** Pāʻulaʻula State Historic Site (State Historic Site) → Russian Fort Elizabeth State Historical Park (~19 ac, the POTA pin is inside it (different name))
 - **US-6425** Diamond Head State Preserve (State Preserve) → Diamond Head State Monument (~503 ac, similar name)
 - **US-6427** Kaiwi State Scenic Site (Scenic Site) → Kaiwi State Scenic Shoreline (~324 ac, similar name)

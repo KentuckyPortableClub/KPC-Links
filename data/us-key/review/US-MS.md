@@ -1,6 +1,6 @@
 # MS: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 155** parks joined to official land (same name + same kind of place). **0** to check by hand, **76** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **81 of 155** parks joined to official land (same name + same kind of place). **0** to check by hand, **74** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -31,9 +31,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 155** parks joined 
 - US-12638 Bobby Cleveland Park State Recreation Site (State Recreation Site)
 - US-12639 Pelahatchie Shore State Recreation Area (State Recreation Area)
 - US-2534 Florewood State Park (State Park)
-- US-2541 J P Coleman State Park (State Park)
 - US-2545 Legion State Park (State Park)
-- US-2549 Percy E Quin State Park (State Park)
 - US-4560 Natchez Trace Trail National Scenic Trail (National Scenic Trail)
 - US-7072 Riverfront Wildlife Management Area (Wildlife Management Area)
 - US-7073 William C. Deviney Wildlife Management Area (Wildlife Management Area)
@@ -105,9 +103,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 155** parks joined 
 - Pickwick Reservoir · ND · Tennessee Valley Authority (TVA) · ~1,915 ac
 - Graveline Bay Coastal Reserve · SCA · Unknown · ~1,879 ac
 - Bellefontaine Point Coastal Reserve · SCA · Unknown · ~1,262 ac
-- Percy Quinn State Park · SP · Unknown · ~1,224 ac
 - Stock And Washington Muscadine · SCA · Unknown · ~1,186 ac
-- J.P. Coleman State Park · SP · Tennessee Valley Authority (TVA) · ~1,174 ac
 - Old Fort Bayou Coastal Reserve · SCA · Unknown · ~1,134 ac
 - Bayou Lacroix Coastal Reserve · SCA · Unknown · ~1,081 ac
 - Wolf River Conservation Society · SCA · Mississippi Department of Wildlife, Fisheries and Parks · ~1,046 ac
@@ -146,3 +142,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **79 of 155** parks joined 
 - Pride Field · LP · University of Southern Mississippi · ~9 ac
 - Alll-American Rose Garden Park · LP · University of Southern MIssissippi · ~7 ac
 - University Soccer Fields · LREC · University of Southern Mississippi · ~7 ac
+- Campus Square · LP · Mississippi State University · ~6 ac
+- University Open Space · LP · Mississippi State University · ~6 ac

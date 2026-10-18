@@ -1,6 +1,6 @@
 # IN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 229** parks joined to official land (same name + same kind of place). **0** to check by hand, **90** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **143 of 229** parks joined to official land (same name + same kind of place). **0** to check by hand, **86** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,7 +9,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 229** parks joined
 
 - US-0288 Big Oaks National Wildlife Refuge (National Wildlife Refuge)
 - US-0782 Lincoln Boyhood Home National Memorial (National Memorial)
-- US-10178 Selma N. Steele State Nature Preserve (State Nature Preserve)
 - US-10179 Ten O' Clock Line State Nature Preserve (State Nature Preserve)
 - US-10180 Fourteenmile Creek State Nature Preserve (State Nature Preserve)
 - US-10204 Bob Kern State Nature Preserve (State Nature Preserve)
@@ -20,7 +19,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 229** parks joined
 - US-10244 Donaldson's Woods State Nature Preserve (State Nature Preserve)
 - US-10248 Warbler Woods State Nature Preserve (State Nature Preserve)
 - US-10256 JD Marshall State Nature Preserve (State Nature Preserve)
+- US-10280 Barnes State Nature Preserve (State Nature Preserve)
 - US-10283 Glacial Esker State Nature Preserve (State Nature Preserve)
+- US-10404 Galena Wetland Conservation Area (Conservation Area)
 - US-10405 Wabash River Conservation Area (Conservation Area)
 - US-10561 Indiana War Memorial Plaza National Historical Site (National Historical Site)
 - US-11996 Adams Mill State Fishing Lake (State Fishing Lake)
@@ -62,20 +63,15 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 229** parks joined
 - US-4186 Big Walnut - Tall Timbers Trail State Nature Preserve (State Nature Preserve)
 - US-4187 Blue Grass State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-4188 Bryan Woods State Nature Preserve (State Nature Preserve)
-- US-4190 Chinook State Fish and Wildlife Area (State Fish and Wildlife Area)
-- US-4193 Crosley State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-4194 Deer Creek State Fish and Wildlife Area (State Fish and Wildlife Area)
-- US-4197 Fairbanks Landing State Fish and Wildlife Area (State Fish and Wildlife Area)
-- US-4199 Glendale State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4202 Hall Woods State Nature Preserve (State Nature Preserve)
 - US-4205 Hillenbrand State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-4208 J. E. Roush Lake State Fish and Wildlife Area (State Fish and Wildlife Area)
-- US-4211 Kankakee State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-4220 Pipewort Pond Lieber Memorial State Nature Preserve (State Nature Preserve)
 - US-4221 Pisgah Marsh Area State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-4223 Reynolds Creek State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-4224 Salamonie River and Frances Slocum State Forest (State Forest)
 - US-4231 Wabashiki State Fish and Wildlife Area (State Fish and Wildlife Area)
-- US-4234 Winamac State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-4667 Spencer County State Forest (State Forest)
 - US-5680 Indian-Celina State Recreation Area (State Recreation Area)
@@ -105,14 +101,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 229** parks joined
 - Mississinewa Recreation Area · REC · Louisville · ~15,067 ac
 - Minnehana Fish and Wildlife Area · SCA · Indiana Department of Natural Resources Fish and Wildlife · ~12,889 ac
 - J. Edward Roush Recreation Area · REC · Louisville · ~8,533 ac
-- Glendale Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~8,127 ac
-- Winamac Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~4,853 ac
-- Kankakee Fish and Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~4,410 ac
-- Crosley Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~4,250 ac
 - 10 O'clock Line Nature Preserve · SCA · Indiana DNR, State Parks and Reservoirs Division · ~3,341 ac
 - Gibson Lake Recreation Area · SREC · Unknown State · ~2,908 ac
 - Bradford Woods · SRMA · Indiana University · ~2,375 ac
-- Chinook Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~2,134 ac
 - Brush Creek Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~1,869 ac
 - Whitewater State Park · SP · Indiana DNR, State Parks and Reservoirs Division · ~1,436 ac
 - Reynold's Creek Gamebird Habitat Area · SCA · Indiana DNR, Fish and Wildlife Division · ~1,254 ac
@@ -155,8 +146,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 229** parks joined
 - Purdue Golf · LREC · Purdue Research Foundation · ~251 ac
 - Deam (Charles C.) Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~249 ac
 - Section Six Southern Flatwoods Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~244 ac
+- Barnes (Bill) Nature Preserve · SCA · Indiana DNR, Fish and Wildlife Division · ~243 ac
 - Fish Lake Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~234 ac
 - Farm Service Agency Interest Of In · NWR · FARM SERVICE AGENCY INTEREST OF IN · ~231 ac
 - Farm Service Agency Interest Of In · NWR · Farm Service Agency Interest Of In · ~231 ac
 - Little Grassy (Grassie) Pond Game Management Area · SCA · Indiana DNR, Fish and Wildlife Division · ~224 ac
 - Brock - Sampson Addition Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~222 ac
+- Province Pond Wildlife Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~215 ac
+- Manitou (Lake) Islands Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~214 ac
+- Blue River Gravel Wash Barrens · SCA · Indiana DNR, Nature Preserve Division · ~213 ac
+- Indiana State Fairgrounds · SREC · Unknown · ~207 ac

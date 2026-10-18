@@ -1,6 +1,6 @@
 # AL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **71 of 155** parks joined to official land (same name + same kind of place). **0** to check by hand, **84** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **85 of 155** parks joined to official land (same name + same kind of place). **0** to check by hand, **70** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -31,15 +31,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **71 of 155** parks joined 
 - US-12412 TVA Rockpile Recreation Area National Park (National Park)
 - US-12517 Confederate Memorial Park Historic Site (Historic Site)
 - US-12740 Hinds Road Outcrop Forever Wild Tract State Conservation Area (State Conservation Area)
-- US-12803 Lee County State Public Fishing Lake (State Public Fishing Lake)
 - US-12962 TVA Veterans Park Regional Park (Regional Park)
-- US-12963 Washington County State Public Fishing Lake (State Public Fishing Lake)
-- US-12964 Dallas County State Public Fishing Lake (State Public Fishing Lake)
 - US-12965 Dale Country State Public Fishing Lake (State Public Fishing Lake)
-- US-12966 Geneva County State Public Fishing Lake (State Public Fishing Lake)
-- US-12967 Chambers County State Public Fishing Lake (State Public Fishing Lake)
-- US-12968 Walker County State Public Fishing Lake (State Public Fishing Lake)
-- US-12969 Marion County State Public Fishing Lake (State Public Fishing Lake)
 - US-12970 Madison County Public State Fishing Lake (State Fishing Lake)
 - US-12996 Fowl River Access Site BLM Recreation Management Area (BLM Recreation Management Area)
 - US-13003 TVA Little Bear Creek Dam Multiple Use Area (Multiple Use Area)
@@ -49,14 +42,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **71 of 155** parks joined 
 - US-13083 TVA Wheeler Dam Public Park National Recreation Area (National Recreation Area)
 - US-13088 Choctaw Nation Wildlife Refuge National Wildlife Area (National Wildlife Area)
 - US-13311 TVA Upper Bear Creek Dam Resource Management Area (Resource Management Area)
-- US-13317 Coffee County State Public Fishing Lake (State Public Fishing Lake)
-- US-13318 Pike County State Public Fishing Lake (State Public Fishing Lake)
-- US-13338 Clay County State Public Fishing Lake (State Public Fishing Lake)
-- US-13340 DeKalb County State Public Fishing Lake (State Public Fishing Lake)
 - US-13342 Bibb Country State Public Fishing Lake (State Public Fishing Lake)
-- US-13343 Fayette County State Public Fishing Lake (State Public Fishing Lake)
-- US-13344 Lamar County State Public Fishing Lake (State Public Fishing Lake)
-- US-13345 Monroe County State Public Fishing Lake (State Public Fishing Lake)
 - US-13473 Old Cahawba Archaeological Park State Historical Park (State Historical Park)
 - US-13533 Brierfield Ironworks Historial State Park State Historical Park (State Historical Park)
 - US-13558 St. Stephens State Historical Park (State Historical Park)

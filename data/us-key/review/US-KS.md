@@ -80,7 +80,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **89 of 145** parks joined 
 - Toronto State Park · SP · Kansas Department of Wildlife, Parks, and Tourism (KDWPT) · ~1,292 ac
 - Cedar Bluff Reservoir · RMA · Unknown · ~1,230 ac
 - Kirwin Reservoir · RMA · Unknown · ~1,157 ac
-- Tuttle Creek State Parks · SP · State Park & Recreation · ~1,082 ac
 - South Fork Wildlife Area · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~1,005 ac
 - Slate Creek Wetlands · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~944 ac
 - Finney State Fishing Lake And Wildlife Area · SREC · State Fish and Wildlife · ~831 ac
@@ -93,7 +92,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **89 of 145** parks joined 
 - St. Francis Wildlife Area · SCA · State Fish and Wildlife · ~484 ac
 - Isabel Wetlands Wildlife Area · SCA · State Fish and Wildlife · ~442 ac
 - Spring River Wildlife Area · SCA · State Fish and Wildlife · ~441 ac
-- Crawford Fishing Lake Number One · SP · STATE OF KANSAS LANDON STATE OFFICE BLDG · ~419 ac
 - Louisburg-middlecreek Wildlife Management Area & Fishing Lake · SCA · State Fish and Wildlife · ~401 ac
 - Big Hill Wildlife Area · SCA · State Fish and Wildlife · ~393 ac
 - Woodson Diversion Wildlife Area · SCA · Kansas Department of Wildlife, Parks, and Tourism (KDWPT) · ~335 ac
@@ -126,3 +124,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **89 of 145** parks joined 
 - Cottonwood Flats Wildlife Area · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~88 ac
 - Rice Woodland · SHCA · University of Kansas · ~81 ac
 - Green Wildlife Area · SCA · State Fish and Wildlife · ~80 ac
+- Nebo State Lake Wildlife Area · SCA · Kansas Department of Wildlife, Parks, and Tourism (KDWPT) · ~78 ac
+- Rutlander Wildlife Area · SCA · State Fish and Wildlife · ~73 ac

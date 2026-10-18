@@ -1,6 +1,6 @@
 # OH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 276** parks joined to official land (same name + same kind of place). **0** to check by hand, **44** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **233 of 276** parks joined to official land (same name + same kind of place). **0** to check by hand, **43** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -11,7 +11,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 276** parks joined
 - US-11673 Great Council State Park (State Park)
 - US-12057 Lawrence Woods State Wildlife Area (State Wildlife Area)
 - US-13539 Fernald National Preserve (National Preserve)
-- US-1931 A.W. Marion State Park (State Park)
 - US-1972 Little Miami State Park (State Park)
 - US-1978 Mosquito Lake State Park (State Park)
 - US-1994 Strouds Run State Park (State Park)
@@ -64,7 +63,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 276** parks joined
 - Berlin Lake Wildlife Area · SCA · Ohio Department of Natural Resources · ~568 ac
 - Zeppernick Lake Wildlife Area · SCA · Ohio Department of Natural Resources · ~527 ac
 - Dysart Woods · PHCA · Ohio University · ~471 ac
-- A W Marion State Park · SCA · Ohio Department of Natural Resources · ~458 ac
 - Ohio Department Of Natural Resources Sf · SRMA · Ohio Department Of Natural Resources · ~365 ac
 - Missionary Island Wildlife Area · SCA · Ohio Department of Natural Resources · ~297 ac
 - Halls Creek Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~273 ac
@@ -114,3 +112,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **232 of 276** parks joined
 - Rome Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~106 ac
 - Conneaut Cr SR · SREC · Ohio Department of Natural Resources · ~106 ac
 - Seymour Woods NA · SCA · Ohio Department of Natural Resources · ~104 ac
+- West Reservoir State Park · SP · Ohio Department of Natural Resources · ~103 ac

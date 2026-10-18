@@ -1,6 +1,6 @@
 # NC: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **151 of 253** parks joined to official land (same name + same kind of place). **0** to check by hand, **102** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **157 of 253** parks joined to official land (same name + same kind of place). **0** to check by hand, **96** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -28,7 +28,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **151 of 253** parks joined
 - US-12371 Julian Price National Park (National Park)
 - US-12414 Doughton Recreation Park (Recreation Park)
 - US-12662 Harmon Den Wildlife Management Area (Wildlife Management Area)
-- US-13002 Dan River State Trail (State Trail)
 - US-3378 Blue Ridge National Parkway (National Parkway)
 - US-3791 Trail of Tears National Historic Trail (National Historic Trail)
 - US-3843 Haw River at Iron Ore Access Belt State Park (State Park)
@@ -99,14 +98,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **151 of 253** parks joined
 - US-6963 Nutbush Wildlife Management Area (Wildlife Management Area)
 - US-8005 Fontana TVA Dam National Recreation Area (National Recreation Area)
 - US-8006 Rachel Carson State Reserve (State Reserve)
-- US-8008 Armstrong State Fish Hatchery (State Fish Hatchery)
-- US-8009 Marion State Fish Hatchery (State Fish Hatchery)
 - US-8010 McKinney Lake State Fish Hatchery (State Fish Hatchery)
 - US-8011 Bobby N. Setzer State Fish Hatchery (State Fish Hatchery)
-- US-8012 Table Rock State Fish Hatchery (State Fish Hatchery)
-- US-8013 Watha State Fish Hatchery (State Fish Hatchery)
 - US-8226 Upchurch Lake State Fishing Lake (State Fishing Lake)
-- US-8313 Mountains to Sea State Trail (State Trail)
 - US-9372 Governor Caswell Memorial State Historic Site (State Historic Site)
 - US-9758 Chattooga National Wild and Scenic River (National Wild and Scenic River)
 

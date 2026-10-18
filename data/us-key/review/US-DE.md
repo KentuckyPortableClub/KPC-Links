@@ -1,6 +1,6 @@
 # DE: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **58 of 89** parks joined to official land (same name + same kind of place). **17** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **59 of 89** parks joined to official land (same name + same kind of place). **16** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,7 +9,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **58 of 89** parks joined t
 - **US-10677** Haven State Fishing Lake (State Fishing Lake) → Haven Lake (~122 ac, similar name); Haven Lake (~98 ac, similar name)
 - **US-10681** Masseys Millpond State Fishing Lake (State Fishing Lake) → Masseys Pond (~38 ac, the POTA pin is inside it (different name))
 - **US-10684** Moores State Fishing Lake (State Fishing Lake) → Moores Lake (~51 ac, similar name); Moores Lake (~24 ac, similar name)
-- **US-1744** Wilmington State Park (State Park) → Wilmington State Parks (~0 ac, similar name); Wilmington State Parks (~0 ac, similar name)
 - **US-4366** Auburn Valley State Park (State Park) → Auburn Heights (~189 ac, the POTA pin is inside it (different name)); Auburn Heights (~4 ac, the POTA pin is inside it (different name))
 - **US-5719** Ted Harvey State Conservation Area (State Conservation Area) → Ted Harvey Wildlife Area (~2,733 ac, same name, different kind of place)
 - **US-7648** Chesapeake and Delaware Canal Conservation Area (Conservation Area) → C&D Canal Conservation Area (~4,814 ac, similar name); C&D Canal Wildlife Area (~3,319 ac, similar name)

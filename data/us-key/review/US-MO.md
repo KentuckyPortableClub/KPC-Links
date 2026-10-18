@@ -1,6 +1,6 @@
 # MO: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **339 of 561** parks joined to official land (same name + same kind of place). **0** to check by hand, **222** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **355 of 561** parks joined to official land (same name + same kind of place). **0** to check by hand, **206** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -14,7 +14,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **339 of 561** parks joined
 - US-10143 Lake City Range State Recreation Site (State Recreation Site)
 - US-10152 Perry Tower Site State Conservation Area (State Conservation Area)
 - US-10212 Mon-Shon State Conservation Area (State Conservation Area)
-- US-10216 Robert E. Talbot State Conservation Area (State Conservation Area)
 - US-10217 Ben Cash State Conservation Area (State Conservation Area)
 - US-10218 The Lewis Family, Dean, Anna Mae and David D. Lewis State Conservation Area (State Conservation Area)
 - US-10219 Delaware Town Access State Conservation Area (State Conservation Area)
@@ -24,17 +23,18 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **339 of 561** parks joined
 - US-10266 Valley View Glades State Conservation Area (State Conservation Area)
 - US-10267 Mammoth Access State Conservation Area (State Conservation Area)
 - US-10270 Myron and Sonya Glassberg Family State Conservation Area (State Conservation Area)
-- US-10310 Roger V. and Viola Wachal Smith State Conservation Area (State Conservation Area)
 - US-10386 Compton Hollow State Recreation Area (State Recreation Area)
 - US-10387 Joe Crighton Beach Access State Conservation Area (State Conservation Area)
 - US-10457 Rocky Mount Tower Site State Conservation Area (State Conservation Area)
-- US-10557 Dale Sare State Conservation Area (State Conservation Area)
 - US-10575 Walnut Woods State Conservation Area (State Conservation Area)
 - US-10576 Rush Creek State Conservation Area (State Conservation Area)
 - US-10577 Pigg's Landing Access State Conservation Area (State Conservation Area)
 - US-10578 Schimmel City Access State Conservation Area (State Conservation Area)
-- US-10579 Dr. Frederick Marshall State Conservation Area (State Conservation Area)
+- US-10580 Wagner State Conservation Area (State Conservation Area)
 - US-10581 La Due Bottoms State Conservation Area (State Conservation Area)
+- US-10582 Kearn Memorial State Conservation Area (State Conservation Area)
+- US-10585 Kneib Memorial State Conservation Area (State Conservation Area)
+- US-10586 Youngdahl Urban State Conservation Area (State Conservation Area)
 - US-10589 Friendly Prairie State Conservation Area (State Conservation Area)
 - US-10595 Knob Lick State Conservation Area (State Conservation Area)
 - US-10597 Roselle Access State Conservation Area (State Conservation Area)
@@ -42,12 +42,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **339 of 561** parks joined
 - US-10599 Thompson Ford Access State Conservation Area (State Conservation Area)
 - US-10698 Tolona Access State Conservation Area (State Conservation Area)
 - US-10700 White Oak Bend Access State Conservation Area (State Conservation Area)
-- US-10701 Ella Ewing Lake State Conservation Area (State Conservation Area)
-- US-10705 Charlie Heath Memorial State Conservation Area (State Conservation Area)
 - US-10867 Wayne Helton Memorial State Conservation Area (State Conservation Area)
-- US-10872 Woodson K Woods Memorial State Conservation Area (State Conservation Area)
-- US-10874 Gerhild and Graham Brown State Conservation Area (State Conservation Area)
-- US-10903 Robert H. Thompson State Conservation Area (State Conservation Area)
 - US-10950 Cephas Ford Access State Conservation Area (State Conservation Area)
 - US-10954 Saint Stanislaus State Conservation Area (State Conservation Area)
 - US-10955 Old Plantation Access State Conservation Area (State Conservation Area)
@@ -55,36 +50,30 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **339 of 561** parks joined
 - US-10957 Block Hole Access State Conservation Area (State Conservation Area)
 - US-10958 Tywappity Community Lake State Conservation Area (State Conservation Area)
 - US-11015 Harry S Truman Home National Historical Site (National Historical Site)
-- US-11029 Marguerite Bray State Conservation Area (State Conservation Area)
 - US-11034 Blue Jay Trail Access State Conservation Area (State Conservation Area)
 - US-11035 Miami Access State Conservation Area (State Conservation Area)
-- US-11040 Caroline Sheridan Logan Memorial Wildlife Area (Wildlife Area)
 - US-11042 Kahrs-Boger State Conservation Area (State Conservation Area)
 - US-11052 Twin Borrow Pits State Conservation Area (State Conservation Area)
 - US-11055 Frisbee Cutoff Access State Conservation Area (State Conservation Area)
 - US-11056 Calk Bluff Trail Access State Conservation Area (State Conservation Area)
 - US-11059 Corry Flatrocks State Conservation Area (State Conservation Area)
-- US-11060 Wade & June Shelton Memorial State Conservation Area (State Conservation Area)
+- US-11062 Sloan State Conservation Area (State Conservation Area)
 - US-11064 William E. Crawford State Conservation Area (State Conservation Area)
-- US-11068 J. Thad Ray Memorial Wildlife Area (Wildlife Area)
+- US-11067 Steyermark Woods State Conservation Area (State Conservation Area)
 - US-11069 Elmslie State Conservation Area (State Conservation Area)
 - US-11075 Fiddler's Ford Access State Conservation Area (State Conservation Area)
 - US-11076 Tipton Ford Access State Conservation Area (State Conservation Area)
 - US-11077 Allen Bridge Access State Conservation Area (State Conservation Area)
 - US-11078 John Alva Fuson MD State Conservation Area (State Conservation Area)
-- US-11079 Wilbur Allen Memorial State Conservation Area (State Conservation Area)
 - US-11081 Alfred Newton Gossett State Conservation Area (State Conservation Area)
 - US-11082 Big John Access State Conservation Area (State Conservation Area)
 - US-11084 Charity Access State Conservation Area (State Conservation Area)
-- US-11085 Mary Lawson State Conservation Area (State Conservation Area)
 - US-11129 Long Ford Access State Conservation Area (State Conservation Area)
 - US-11130 Drynob Access State Conservation Area (State Conservation Area)
 - US-11131 Odin Access State Conservation Area (State Conservation Area)
 - US-11132 Buzzard Bluff Access State Conservation Area (State Conservation Area)
 - US-11133 Lamberson Memorial State Conservation Area (State Conservation Area)
-- US-11134 P.F. Barnes State Conservation Area (State Conservation Area)
 - US-11135 Piney River Narrows Natural Area (Natural Area)
-- US-11137 Peter A. Eck State Conservation Area (State Conservation Area)
 - US-11139 Cowskin Access State Conservation Area (State Conservation Area)
 - US-11140 Mount Shira Access State Conservation Area (State Conservation Area)
 - US-11141 Deep Ford Access State Conservation Area (State Conservation Area)
@@ -97,17 +86,16 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **339 of 561** parks joined
 - US-11266 August G Beckmeier State Conservation Area (State Conservation Area)
 - US-11267 Kessler Memorial State Wildlife Area (State Wildlife Area)
 - US-11329 Bellefontaine State Conservation Area (State Conservation Area)
-- US-11362 Eva N. Davis Memorial State Conservation Area (State Conservation Area)
 - US-11365 Bruns Tract State Conservation Area (State Conservation Area)
 - US-11367 River 'Round State Conservation Area (State Conservation Area)
 - US-11373 Harriman Hill Access State Conservation Area (State Conservation Area)
 - US-11374 Roberts Bluff Access State Conservation Area (State Conservation Area)
+- US-11773 Vandyke State Conservation Area (State Conservation Area)
 - US-11774 Mockingbird Hill Access State Conservation Area (State Conservation Area)
 - US-11775 Archangel Access State Conservation Area (State Conservation Area)
 - US-11776 Holmes Bend Access State Conservation Area (State Conservation Area)
 - US-11777 Wabash Crossing Access State Conservation Area (State Conservation Area)
 - US-11857 Chouteau Claim Access State Conservation Area (State Conservation Area)
-- US-11901 Dean Davis State Conservation Area (State Conservation Area)
 - US-11922 Powder Valley Nature Center State Conservation Area (State Conservation Area)
 - US-12084 Weldon Springs National Historical Park (National Historical Park)
 - US-12117 Dan River Access State Conservation Area (State Conservation Area)
@@ -117,7 +105,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **339 of 561** parks joined
 - US-12350 Cooper Creek Access State Conservation Area (State Conservation Area)
 - US-12351 H L Kerr Access State Conservation Area (State Conservation Area)
 - US-12357 Harviell Access State Conservation Area (State Conservation Area)
-- US-12415 William Lowe State Conservation Area (State Conservation Area)
 - US-12582 Syenite Access State Conservation Area (State Conservation Area)
 - US-12583 Merrill Horse Access State Conservation Area (State Conservation Area)
 - US-12584 Bootleg Access State Conservation Area (State Conservation Area)
@@ -155,34 +142,32 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **339 of 561** parks joined
 - US-4579 Santa Fe National Historic Trail (National Historic Trail)
 - US-4591 World War I Museum National Memorial (National Memorial)
 - US-4839 Lester R. Davis Memorial State Forest (State Forest)
+- US-4840 Reifsnider State Forest (State Forest)
+- US-5636 White Nursery State Forest (State Forest)
 - US-5697 Atlanta Wildlife Area (Wildlife Area)
-- US-5699 August A. Busch Memorial State Conservation Area (State Conservation Area)
 - US-5707 Lost Valley State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-5709 Nodaway State Conservation Area (State Conservation Area)
-- US-5712 James A. Reed Memorial Wildlife Area (Wildlife Area)
 - US-5713 Jay Nixon State Park (State Park)
 - US-5714 Shepherd of the Hills State Park (State Park)
 - US-5715 Roger Pryor Pioneer Backcountry State Park (State Park)
 - US-5716 Bruce R. Watkins Cultural Heritage Center State Park (State Park)
 - US-6472 Anita B Gorman Discovery Center State Conservation Area (State Conservation Area)
-- US-6474 Guy B Park State Conservation Area (State Conservation Area)
+- US-6475 Kendzora State Conservation Area (State Conservation Area)
 - US-6480 Poague Haysler State Conservation Area (State Conservation Area)
 - US-6505 Diggs-Marshall State Conservation Area (State Conservation Area)
 - US-6514 Big Buffalo Creek State Conservation Area (State Conservation Area)
-- US-6515 Bob Brown State Conservation Area (State Conservation Area)
-- US-6522 Emmett and Leah Seat Memorial State Conservation Area (State Conservation Area)
-- US-6526 Rudolf Bennitt State Conservation Area (State Conservation Area)
+- US-6523 Thurnau State Conservation Area (State Conservation Area)
 - US-6527 Thomas Hill Reservoir State Conservation Area (State Conservation Area)
 - US-6529 Truman Reservoir Management Lands State Park (State Park)
+- US-6530 Sever Lake State Conservation Area (State Conservation Area)
 - US-7189 Beaver Creek State Recreation Area (State Recreation Area)
 - US-7502 A. Busch Jr at Four Rivers Wetland Reserve (Wetland Reserve)
+- US-7515 Schifferdecker Memorial State Conservation Area (State Conservation Area)
 - US-7516 White Memorial State Conservation Area (State Conservation Area)
 - US-7519 Bridger State Conservation Area (State Conservation Area)
 - US-7604 Rochester Falls State Conservation Area (State Conservation Area)
 - US-7654 Hazel Hill Lake State Conservation Area (State Conservation Area)
-- US-7655 J.N. Turkey Kearn Memorial Wildlife Area (Wildlife Area)
 - US-7656 Ralph and Martha Perry Memorial State Wildlife Area (State Wildlife Area)
-- US-7657 Connor O. Fewel State Conservation Area (State Conservation Area)
 - US-7658 Flight Lake Conservation Reserve (Conservation Reserve)
 - US-7659 Huckleberry Ridge Conservation Reserve (Conservation Reserve)
 - US-7660 Fort Crowder Conservation Reserve (Conservation Reserve)
@@ -208,7 +193,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **339 of 561** parks joined
 - US-7680 Upper Mississippi Conservation Reserve (Conservation Reserve)
 - US-7681 William R Logan Conservation Reserve (Conservation Reserve)
 - US-7836 Ozark State Trail (State Trail)
-- US-7874 Arthur Dupree Memorial State Conservation Area (State Conservation Area)
 - US-7875 Aspinwall Bend State Conservation Area (State Conservation Area)
 - US-7984 St Genevieve (Beauvais House) National Historical Park (National Historical Park)
 - US-8229 Brickyard Hill State Conservation Area (State Conservation Area)
@@ -216,23 +200,22 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **339 of 561** parks joined
 - US-8232 Lower Hamburg Bend State Conservation Area (State Conservation Area)
 - US-8233 Rush Bottoms State Conservation Area (State Conservation Area)
 - US-8235 Wolf Creek Bend State Conservation Area (State Conservation Area)
-- US-8236 B.K. Leach Memorial State Conservation Area (State Conservation Area)
 - US-8244 Caney State Conservation Area (State Conservation Area)
+- US-8249 Girvin State Conservation Area (State Conservation Area)
 - US-8254 Mincy State Conservation Area (State Conservation Area)
 - US-8259 Pelican Island State Conservation Area (State Conservation Area)
 - US-8263 Treaty Line State Conservation Area (State Conservation Area)
 - US-8268 Nishnabotna State Conservation Area (State Conservation Area)
+- US-8274 Risch State Conservation Area (State Conservation Area)
 - US-8275 Stoney Point Prairie State Conservation Area (State Conservation Area)
 - US-8301 Ripgut Prairie State Conservation Area (State Conservation Area)
 - US-8302 Old Town Access State Conservation Area (State Conservation Area)
 - US-8309 Dr Harry and Lina Berrier Memorial State Conservation Area (State Conservation Area)
-- US-8510 Ruth and Paul Henning Conservation Area State Conservation Area (State Conservation Area)
 - US-9753 Katy Trail Rock Island Spur State Park (State Park)
 - US-9757 Butterfield Overland National Historic Trail (National Historic Trail)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- Harry Truman Recreation Area · REC · Kansas City · ~165,658 ac
 - Ozark National Scenic Riverways · WSR · NPS · ~53,180 ac
 - Bull Shoals Recreation Area · REC · Little Rock · ~37,464 ac
 - Smithville Recreation Area · REC · Kansas City · ~19,839 ac
@@ -242,28 +225,20 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **339 of 561** parks joined
 - Clearwater Conservation Area · SCA · Unknown · ~11,562 ac
 - Big Muddy National Fish And Wildlife Refuge · NWR · Big Muddy National Fish And Wildlife Refuge · ~10,949 ac
 - Big Muddy National Fish And Wildlife Refuge · NWR · BIG MUDDY NATIONAL FISH AND WILDLIFE REFUGE · ~10,926 ac
-- Busch (August A.) Memorial Conservation Area · SCA · Unknown · ~7,006 ac
 - Caney Mountain Conservation Area · SCA · Unknown · ~6,486 ac
 - Drury-Mincy Conservation Area · SCA · Unknown · ~6,309 ac
-- Woods (Woodson K.) Memorial Conservation Area · SCA · Unknown · ~5,716 ac
 - Sunklands Natural Area · SCA · Unknown · ~5,602 ac
 - Birch Creek Conservation Area · SCA · Unknown · ~5,582 ac
 - Saint Francois Mountains Natural Area · SCA · Unknown · ~5,474 ac
 - Norfork Recreation Area · REC · Little Rock · ~5,107 ac
 - Longview Recreation Area · REC · Kansas City · ~4,762 ac
-- Talbot (Robert E) Conservation Area · SCA · Unknown · ~4,350 ac
-- Leach (B.K.) Memorial Conservation Area · SCA · Unknown · ~4,322 ac
 - Stegall Mountain Natural Area · SCA · Unknown · ~4,242 ac
 - Perry (R. And M.) Memorial Conservation Area · SCA · Unknown · ~4,203 ac
 - Shanks (Ted) Conservation Area · SCA · Unknown · ~4,161 ac
 - Flag Spring Conservation Area · SCA · Unknown · ~3,990 ac
 - Nodaway Valley Conservation Area · SCA · Unknown · ~3,913 ac
-- Bennitt (Rudolf) Conservation Area · SCA · Unknown · ~3,565 ac
-- Seat (Emmett And Leah) Memorial Conservation Area · SCA · Unknown · ~3,485 ac
-- Brown (Bob) Conservation Area · SCA · Unknown · ~3,364 ac
 - Graves Mountain Conservation Area · SCA · Unknown · ~3,234 ac
 - Ms Rv Pools 11-22 Recreation Area · REC · Rock Island · ~3,110 ac
-- Reed (James A.) Memorial Wildlife Area · SCA · Unknown · ~3,094 ac
 - Little Lost Creek Conservation Area · SCA · Unknown · ~2,907 ac
 - Davisdale Conservation Area · SCA · Unknown · ~2,785 ac
 - Riverside Conservation Area · SCA · Unknown · ~2,696 ac
@@ -284,11 +259,20 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **339 of 561** parks joined
 - Tyson Research Center · LP · WASHINGTON UNIVERSITY · ~1,904 ac
 - Lincoln Hills Natural Area · SCA · Unknown · ~1,903 ac
 - Logan (William R.) Conservation Area · SCA · Unknown · ~1,800 ac
-- Kearn (J. N. Turkey) Memorial Wildife Area · SCA · Unknown · ~1,699 ac
-- Heath (Charlie) Memorial Conservation Area · SCA · Unknown · ~1,650 ac
 - Farm Service Agency Interest Of Mo · NWR · Farm Service Agency Interest Of Mo · ~1,616 ac
 - Elk River Breaks Woodland Natural Area · SCA · Unknown · ~1,602 ac
 - Fuson (John Alva, Md) Conservation Area · SCA · Unknown · ~1,517 ac
 - Big Buffalo Creek Natural Area · SCA · Unknown · ~1,516 ac
 - Caney Mountain Natural Area · SCA · Unknown · ~1,491 ac
 - Saint Francois Mountains Natural Area · SCA · Unknown · ~1,453 ac
+- Seven Island Conservation Area · SCA · Unknown · ~1,423 ac
+- Reifsnider (Frank) State Forest · SRMA · Unknown · ~1,378 ac
+- Mudlick Mountain Natural Area · SCA · Unknown · ~1,376 ac
+- Horton Bottoms Natural Area · SCA · Unknown · ~1,357 ac
+- Taberville Prairie Natural Area · SCA · Unknown · ~1,351 ac
+- Dupont Reservation Conservation Area · SCA · Unknown · ~1,269 ac
+- White (Robert M., II) Conservation Area · SCA · Unknown · ~1,164 ac
+- Edward "ted" And Pat Jones-confluence Point State Park · SP · Unknown · ~1,117 ac
+- Sever (Henry) Lake Conservation Area · SCA · Unknown · ~1,093 ac
+- Anderson (Edward) Conservation Area · SCA · Unknown · ~1,067 ac
+- Diggs (Marshall I.) Conservation Area · SCA · Unknown · ~1,032 ac

@@ -6,6 +6,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **82 of 123** parks joined 
 
 - **US-0040** Jean Lafitte National Historical Park (National Historical Park) → Jean Lafitte National Historical Park and Preserve (~16,609 ac, similar name)
 - **US-0307** D'Arbonne National Wildlife Refuge (National Wildlife Refuge) → D'arbonne Bayou (~437 ac, similar name); D 'Arbonne National Wildlife Refuge (~17,639 ac, the POTA pin is inside it (different name)); D 'Arbonne National Wildlife Refuge (~17,639 ac, the POTA pin is inside it (different name))
+- **US-10109** State Wildlife Refuge (Wildlife Refuge) → State Wildlife Refuge (~14,813 ac, the POTA pin is inside it (different name))
 - **US-10352** Floy Ward McElroy Wildlife Management Area (Wildlife Management Area) → Floy Mcelroy Wildlife Management Area (~689 ac, similar name)
 - **US-10353** Isle Dernieres Barrier Islands Wildlife Refuge (Wildlife Refuge) → Isles Dernieres Barrier Islands Refuge (~1,745 ac, similar name)
 - **US-10448** Centenary State Historic Site (State Historic Site) → Centenary And Jackson State Historic Sites (~3 ac, similar name)
@@ -17,7 +18,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **82 of 123** parks joined 
 - **US-2369** Lake D'Arbonne State Park (State Park) → New Lake D'arbonne State Park (~659 ac, similar name)
 - **US-2373** Poverty Point Reservoir State Park (State Park) → State Lands (~7,733 ac, the POTA pin is inside it (different name))
 - **US-2375** Sam Houston Jones State Park (State Park) → Sam Houston Jones State Park District II (~1,054 ac, similar name)
-- **US-4056** Dewey Wills Wildlife Management Area (Wildlife Management Area) → Dewey W Wills Wildlife Management Area (~64,316 ac, similar name)
 - **US-4061** J. C. 'Sonny' Gilbert Wildlife Management Area (Wildlife Management Area) → Sicily Island Hills Wildlife Management Area (~7,489 ac, the POTA pin is inside it (different name))
 - **US-4064** Lake Ramsey Savannah Wildlife Management Area (Wildlife Management Area) → Lake Ramsay Savannah Wildlife Management Area (~838 ac, similar name)
 - **US-4075** Richard K. Yancey Wildlife Management Area (Wildlife Management Area) → Red River Wildlife Management Area (~45,140 ac, the POTA pin is inside it (different name))
@@ -51,7 +51,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **82 of 123** parks joined 
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- Dewey W Wills Wildlife Management Area · SCA · Unknown · ~64,316 ac
 - Dow Donation · SOTH · Unknown · ~50,072 ac
 - Red River Wildlife Management Area · SCA · Unknown · ~45,140 ac
 - Three Rivers Wildlife Management Area · SCA · Unknown · ~30,086 ac
@@ -62,6 +61,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **82 of 123** parks joined 
 - D 'Arbonne National Wildlife Refuge · NWR · D 'Arbonne National Wildlife Refuge · ~17,639 ac
 - Jean Lafitte National Historical Park and Preserve · HCA · NPS · ~16,609 ac
 - Division Of State Lands · SRMA · Unknown · ~15,672 ac
+- State Wildlife Refuge · SCA · Unknown · ~14,813 ac
 - Camp Beauregard Wildlife Management Area · SCA · Unknown · ~12,606 ac
 - State Lands · SOTH · Unknown · ~11,466 ac
 - Ouachita Wildlife Management Area · SCA · Unknown · ~10,403 ac

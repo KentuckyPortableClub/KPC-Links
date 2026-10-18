@@ -1,6 +1,6 @@
 # NM: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **57 of 122** parks joined to official land (same name + same kind of place). **46** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **58 of 122** parks joined to official land (same name + same kind of place). **45** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -35,7 +35,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **57 of 122** parks joined 
 - **US-13186** Lincoln Tract BLM Recreation Management Area (BLM Recreation Management Area) → Lincoln National Forest (~1,095,525 ac, similar name)
 - **US-13498** Chosa Campground BLM Recreation Management Area (BLM Recreation Management Area) → Carlsbad Field Office (~2,091,256 ac, the POTA pin is inside it (different name))
 - **US-2699** Fenton Lake State Park (State Park) → Fenton Lake Fishing Area (and Dam) (~260 ac, similar name); Santa Fe National Forest (~1,545,017 ac, the POTA pin is inside it (different name))
-- **US-2708** Oasis State Park (State Park) → Oasis State State Park (~178 ac, similar name)
 - **US-2709** Oliver Lee Memorial State Park (State Park) → Oliver Lee State Park (~720 ac, similar name)
 - **US-2713** Rock Hound State Park (State Park) → Rockhound State Park (~234 ac, the POTA pin is inside it (different name))
 - **US-4552** Prehistoric Trackways National Monument (National Monument) → Las Cruces District Office (~5,375,972 ac, the POTA pin is inside it (different name))

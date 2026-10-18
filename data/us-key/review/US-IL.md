@@ -1,6 +1,6 @@
 # IL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **128 of 219** parks joined to official land (same name + same kind of place). **0** to check by hand, **91** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 219** parks joined to official land (same name + same kind of place). **0** to check by hand, **89** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -87,7 +87,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **128 of 219** parks joined
 - US-7368 Cahokia Mounds State Historic Site (State Historic Site)
 - US-7371 Sam Dale Lake State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-7372 Halfway Tavern State Historic Site (State Historic Site)
-- US-7373 Lincoln Trail Memorial State Historic Site (State Historic Site)
 - US-7839 Santa Fe Prairie State Nature Preserve (State Nature Preserve)
 - US-7871 Martin T Snyder Memorial State Nature Preserve (State Nature Preserve)
 - US-8267 World Shooting Complex State Recreation Area (State Recreation Area)
@@ -96,7 +95,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **128 of 219** parks joined
 - US-8320 Lincoln Tomb State Historic Site (State Historic Site)
 - US-8380 Sahara Woods State Recreation Area (State Recreation Area)
 - US-9802 Black Hawk Historic Site (Historic Site)
-- US-9893 Tunnel Hill State Trail (State Trail)
 - US-9989 Lewis and Clark Memorial State Historic Site (State Historic Site)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
@@ -135,7 +133,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **128 of 219** parks joined
 - Cypress Pond State Natural Area · SCA · Illinois Department of Natural Resources · ~1,056 ac
 - Red Wing Slough · SCA · State of Illinois · ~1,001 ac
 - Mackinaw River · SREC · Other State Land · ~972 ac
-- Tunnel Hill · SREC · Other State Land · ~917 ac
 - Piasa Island Wildlife Management Area · SCA · Illinois Department of Natural Resources · ~912 ac
 - Gabaret Island Open Space · SOTH · State of Illinois Dept of Natural Resources · ~863 ac
 - Weinberg-King State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~862 ac
@@ -153,7 +150,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **128 of 219** parks joined
 - Lincolns New Salem State Park · SP · State of Illinois · ~560 ac
 - Kishwaukee River State Natural Area · UNK · Illinois Department of Natural Resources · ~546 ac
 - Campbell Pond State Habitat Area · SCA · Illinois Department of Natural Resources · ~529 ac
-- Mississippi River State Forest Wildlife Area - Mortland · SCA · Illinois Department of Natural Resources · ~526 ac
 - Cretaceous Hills State Natural Area · SCA · Illinois Department of Natural Resources · ~511 ac
 - Vermilion River Observatory · UNK · University of Illinois · ~502 ac
 - Nardi Hills · SOTH · Illinois Department of Natural Resources · ~491 ac
@@ -161,3 +157,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **128 of 219** parks joined
 - East Fork Management Unit State Fish and Wildlife Area · SCA · Illinois Department of Natural Resources · ~403 ac
 - Wilmington Shrub Prairie State Natural Area · SCA · Illinois Department of Natural Resources · ~390 ac
 - Hurricane Creek State Habitat Area · SCA · Illinois Department of Natural Resources · ~385 ac
+- Black Crown Marsh State Natural Area · SCA · Illinois Department of Natural Resources · ~374 ac
+- Sparks Pond State Natural Area · SCA · Illinois Department of Natural Resources · ~373 ac

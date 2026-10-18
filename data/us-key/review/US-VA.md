@@ -1,6 +1,6 @@
 # VA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **112 of 184** parks joined to official land (same name + same kind of place). **0** to check by hand, **72** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **116 of 184** parks joined to official land (same name + same kind of place). **0** to check by hand, **68** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -72,13 +72,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **112 of 184** parks joined
 - US-9960 Thunder Ridge Wilderness Area (Wilderness Area)
 - US-9961 Dyke Marsh Wildlife Reserve (Wildlife Reserve)
 - US-9966 Vic Thomas Striped Bass State Fish Hatchery (State Fish Hatchery)
-- US-9967 King and Queen State Fish Hatchery (State Fish Hatchery)
-- US-9968 Buller State Fish Hatchery (State Fish Hatchery)
-- US-9969 Front Royal State Fish Hatchery (State Fish Hatchery)
 - US-9970 Marion Trout State Fish Hatchery (State Fish Hatchery)
 - US-9972 Coursey Spring State Fish Hatchery (State Fish Hatchery)
 - US-9973 Wytheville Trout State Fish Hatchery (State Fish Hatchery)
-- US-9974 Paint Bank State Fish Hatchery (State Fish Hatchery)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 

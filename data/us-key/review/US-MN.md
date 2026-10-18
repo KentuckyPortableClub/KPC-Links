@@ -1,6 +1,6 @@
 # MN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **199 of 294** parks joined to official land (same name + same kind of place). **39** to check by hand, **56** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 294** parks joined to official land (same name + same kind of place). **36** to check by hand, **52** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -12,6 +12,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **199 of 294** parks joined
 - **US-0673** Saint Croix National Wild and Scenic River (National Wild and Scenic River) → Saint Croix National Scenic Riverway (~3,345 ac, similar name)
 - **US-10721** Brown's Creek AMA Aquatic Reserve (Aquatic Reserve) → Brown's Creek State Aquatic Management Area (Washington) (~22 ac, similar name)
 - **US-10722** Lost Valley Prairie SNA Scenic Reserve (Scenic Reserve) → Lost Valley Prairie State Scientific and Natural Area (~322 ac, similar name)
+- **US-10724** Falls Creek SNA Scenic Reserve (Scenic Reserve) → Falls Creek State Scientific and Natural Area (~139 ac, similar name)
 - **US-10725** St. Croix Savanna SNA Scenic Reserve (Scenic Reserve) → St. Croix Savanna State Scientific and Natural Area (~147 ac, similar name)
 - **US-10727** Pine Bend Bluffs SNA Scenic Reserve (Scenic Reserve) → Pine Bend Bluffs State Scientific and Natural Area (~316 ac, similar name)
 - **US-10728** Grey Cloud Dunes SNA Scenic Reserve (Scenic Reserve) → Grey Cloud Dunes State Scientific and Natural Area (~291 ac, similar name)
@@ -21,27 +22,23 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **199 of 294** parks joined
 - **US-11700** Wolsfeld Woods SNA State Sanctuary (State Sanctuary) → Wolsfeld Woods State Scientific and Natural Area (~222 ac, similar name)
 - **US-11701** Wood-Rill SNA State Sanctuary (State Sanctuary) → Wood-Rill State Scientific and Natural Area (~147 ac, similar name)
 - **US-11872** Lost 40 SNA State Natural Area (State Natural Area) → Big Fork State Forest (~45,218 ac, the POTA pin is inside it (different name))
-- **US-12388** Caribou Falls Unique Area (Unique Area) → Caribou Falls State Wayside (~91 ac, the POTA pin is inside it (different name))
-- **US-12390** Flood Bay Unique Area (Unique Area) → Flood Bay State Wayside (~19 ac, the POTA pin is inside it (different name))
-- **US-12392** Joseph R. Brown Unique Area (Unique Area) → Joseph R. Brown State Wayside (~3 ac, the POTA pin is inside it (different name))
-- **US-12393** Kodonce River Unique Area (Unique Area) → Kodonce River State Wayside (~130 ac, the POTA pin is inside it (different name))
+- **US-12388** Caribou Falls Unique Area (Unique Area) → Caribou Falls State Wayside (~91 ac, similar name)
+- **US-12390** Flood Bay Unique Area (Unique Area) → Flood Bay State Wayside (~19 ac, similar name)
+- **US-12392** Joseph R. Brown Unique Area (Unique Area) → Joseph R. Brown State Wayside (~3 ac, similar name)
+- **US-12393** Kodonce River Unique Area (Unique Area) → Kodonce River State Wayside (~130 ac, similar name)
 - **US-12394** Ray Berglund Unique Area (Unique Area) → Ray Berglund (~47 ac, similar name)
 - **US-12395** St. Croix Boom Site Unique Area (Unique Area) → Saint Croix Islands (~12 ac, similar name)
 - **US-13548** Knife River Marine Protected Area (Marine Protected Area) → Knife River State Aquatic Management Area (Lake/St. Louis) (~345 ac, similar name)
 - **US-13561** Vermillion Highlands Wildlife Management Area (Wildlife Management Area) → Vermillion Highlands Research Recreation and State Wildlife Management Area (~2,840 ac, similar name)
-- **US-2485** George Crosby Manitou State Park (State Park) → George H. Crosby Manitou State Park (~6,143 ac, similar name)
-- **US-2497** Judge C.R. Magney State Park (State Park) → Judge C. R. Magney State Park (~4,240 ac, similar name)
 - **US-2506** Lake Vermilion State Park (State Park) → Lake Vermilion-Soudan Underground Mine State Park (~4,094 ac, similar name)
 - **US-2517** St. Croix State Park (State Park) → Saint Croix National Scenic Riverway (~3,345 ac, similar name)
 - **US-4236** Upper Mississippi River National Wildlife Refuge (National Wildlife Refuge) → Upper Mississippi River National Wildlife And Fish Refuge (~19,819 ac, similar name); Upper Mississippi River National Wildlife And Fish Refuge (~19,679 ac, similar name)
 - **US-4783** Beltrami Island State Forest (State Forest) → Beltrami Wildlife Management Area (~86,982 ac, similar name); Beltrami Wildlife Management Area (~86,741 ac, similar name)
 - **US-4786** Blackduck State Forest (State Forest) → Chippewa National Forest (~672,038 ac, the POTA pin is inside it (different name))
-- **US-4798** General C. C. Andrews State Forest (State Forest) → General C.C. Andrews State Forest (~5,730 ac, similar name)
 - **US-4822** Richard J. Dorer Memorial Hardwood State Forest (State Forest) → R J D Memorial Hardwood State Forest (~48,804 ac, similar name)
 - **US-4824** St. Croix State Forest (State Forest) → Saint Croix National Scenic Riverway (~3,345 ac, similar name)
 - **US-7145** Minnesota Valley State Recreation Area (State Recreation Area) → Minnesota Valley National Wildlife Refuge (~10,329 ac, same name, different kind of place); Minnesota Valley National Wildlife Refuge (~10,063 ac, same name, different kind of place)
 - **US-7148** Lake Vermilion Soudan Iron Mine State Park (State Park) → Lake Vermilion-Soudan Underground Mine State Park (~4,094 ac, similar name); Miscellaneous (~737,854 ac, the POTA pin is inside it (different name))
-- **US-9384** Minnesota Valley State Trail (State Trail) → Minnesota Valley National Wildlife Refuge (~10,329 ac, similar name); Minnesota Valley National Wildlife Refuge (~10,063 ac, similar name)
 - **US-9386** Browns Creek State Trail (State Trail) → Brown's Creek State Aquatic Management Area (Washington) (~22 ac, similar name)
 
 ## Nothing found in PAD-US
@@ -50,7 +47,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **199 of 294** parks joined
 - US-0359 Fergus Falls Wetland Management District (Wetland Management District)
 - US-10720 Forest Lake AMA Aquatic Reserve (Aquatic Reserve)
 - US-10723 Crystal Spring SNA Scenic Reserve (Scenic Reserve)
-- US-10724 Falls Creek SNA Scenic Reserve (Scenic Reserve)
 - US-11014 David Dill/Taconite and Taconite State Trails State Trail (State Trail)
 - US-11150 CJ Ramstad North Shore State Trail (State Trail)
 - US-11151 Cuyuna Lakes State Trail (State Trail)
@@ -87,7 +83,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **199 of 294** parks joined
 - US-7147 Centennial State Forest (State Forest)
 - US-7759 David Dill Arrowhead State Trail (State Trail)
 - US-8095 Gitchi Gami State Trail (State Trail)
-- US-9373 Paul Bunyan State Trail (State Trail)
 - US-9375 Harmony-Preston State Trail (State Trail)
 - US-9376 Shooting Star State Trail (State Trail)
 - US-9377 Blazing Star State Trail (State Trail)
@@ -98,8 +93,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **199 of 294** parks joined
 - US-9382 Great River Ridge State Trail (State Trail)
 - US-9383 Goodhue-Pioneer State Trail (State Trail)
 - US-9385 Gateway Overview State Trail (State Trail)
-- US-9387 Luce Line State Trail (State Trail)
-- US-9388 Glacial Lakes State Trail (State Trail)
 - US-9389 Central Lakes State Trail (State Trail)
 - US-9390 Williard Munger State Trail (State Trail)
 
@@ -159,9 +152,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **199 of 294** parks joined
 - Mahnomen County Waterfowl Production Area · RMA · MAHNOMEN COUNTY WATERFOWL PRODUCTION AREA · ~6,734 ac
 - Huntly State Wildlife Management Area · SCA · DNR Wildlife · ~6,502 ac
 - Eckvoll State Wildlife Management Area · SCA · DNR Wildlife · ~6,497 ac
-- George H. Crosby Manitou State Park · SP · DNR Parks and Trails · ~6,143 ac
 - South Black River Peatland State Scientific and Natural Area · SCA · DNR Ecologic and Water Resources · ~5,877 ac
 - Meadow Brook State Wildlife Management Area · SCA · DNR Wildlife · ~5,774 ac
-- General C.C. Andrews State Forest · SRMA · DNR Forestry · ~5,730 ac
 - Northeastern States District Office · PUB · BLM · ~5,555 ac
 - Mulligan Lake Peatland State Scientific and Natural Area · SCA · DNR Ecologic and Water Resources · ~5,478 ac
+- Meeker County Waterfowl Production Area · RMA · Meeker County Waterfowl Production Area · ~5,354 ac
+- Jackson County Waterfowl Production Area Of Mn · RMA · Jackson County Waterfowl Production Area Of Mn · ~5,271 ac

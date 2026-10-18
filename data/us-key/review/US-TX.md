@@ -1,6 +1,6 @@
 # TX: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **174 of 222** parks joined to official land (same name + same kind of place). **27** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **175 of 222** parks joined to official land (same name + same kind of place). **26** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -24,7 +24,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **174 of 222** parks joined
 - **US-6545** Candy Cain Abshier Wildlife Management Area (Wildlife Management Area) → Candy Abshier Wildlife Management Area (~207 ac, similar name)
 - **US-6550** Cooper Wildlife Management Area (Wildlife Management Area) → Cooper Reservoir Wildlife Management Area (~18,384 ac, similar name); Cooper Lake State Park - South Sulphur Unit (~2,727 ac, similar name); Cooper Recreation Area (~32,045 ac, same name, different kind of place)
 - **US-6572** Las Palomas , Lower Rio Grande Valley Units Wildlife Management Area (Wildlife Management Area) → Lower Rio Grande Valley National Wildlife Refuge (~89,898 ac, similar name); Lower Rio Grande Valley National Wildlife Refuge (~88,266 ac, similar name); Las Palomas Wildlife Management Area (~601 ac, similar name); Las Palomas Wildlife Management Area (~220 ac, similar name); Las Palomas Wildlife Management Area (~122 ac, similar name)
-- **US-6575** M.O. Neasloney Wildlife Management Area (Wildlife Management Area) → M. O. Neasloney Wildlife Management Area (~98 ac, similar name)
 - **US-6580** Matagorda Island Wildlife Management Area (Wildlife Management Area) → Aransas National Wildlife Refuge (~90,764 ac, the POTA pin is inside it (different name)); Aransas National Wildlife Refuge (~90,764 ac, the POTA pin is inside it (different name))
 - **US-6581** McClellan Creek National Nature Reserve (National Nature Reserve) → McClellan Creek National Grassland (~1,402 ac, similar name)
 - **US-6593** Playa Lakes, Dimmitt Unit Wildlife Management Area (Wildlife Management Area) → Playa Lakes Wildlife Management Area (~419 ac, similar name)
