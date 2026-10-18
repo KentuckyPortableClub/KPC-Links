@@ -80,7 +80,7 @@ def variants(s):
 def _pre(a, b):
     if a == b: return True
     sh, lo = (a, b) if len(a) < len(b) else (b, a)
-    return len(sh) > 5 and lo.startswith(sh) and len(sh) / len(lo) >= 0.6
+    return len(sh) > 5 and lo.startswith(sh) and lo[len(sh):len(sh) + 1] == ' ' and len(sh) / len(lo) >= 0.6
 
 
 def same_name(a, b, exact=False):
