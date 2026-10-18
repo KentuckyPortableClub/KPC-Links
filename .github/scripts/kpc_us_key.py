@@ -61,9 +61,9 @@ def norm(s, drop1=False):
 
 
 KINDS = [('wma', r'wildlife management area|\bwma\b|wildlife area|game lands?|game areas?|game management area|hunting area|fish and wildlife area|public hunting'),
-         ('ca', r'conservation area'),
+         ('ca', r'conservation area|\baccess$'),          # Missouri: 'Kings Prairie Access' = Kings Prairie Access State Conservation Area
          ('snp', r'nature preserve|natural area|\bsnp\b|\bsna\b|natural heritage'),
-         ('hist', r'historic site|historical park|historic park|historic area|\bshs\b'),
+         ('hist', r'historic(al)? (site|park|area)|\bshs\b'),
          ('sp', r'state (resort )?park|\bsrp\b|recreation(al)? area|state beach|state seashore'),
          ('nf', r'national forest|national grassland'), ('sf', r'state forest'),
          ('nwr', r'wildlife refuge|\bnwr\b'), ('nfh', r'hatchery|\bnfh\b'),
@@ -75,7 +75,35 @@ DES = {'SP': 'sp', 'SREC': 'sp', 'SHCA': 'hist', 'NWR': 'nwr', 'NF': 'nf', 'NG':
 
 
 def same_name(a, b):
-    return _same(norm(a), norm(b)) or _same(norm(a, True), norm(b, True))
+    a1, b1 = norm(a), norm(b)
+    if _same(a1, b1) or _same(norm(a, True), norm(b, True)): return True
+    sa, sb = _sing(a1), _sing(b1)                          # McCloskey's = McCloskey, Glades = Glade
+    if _same(sa, sb): return True
+    return len(sa) >= 8 and len(sb) >= 8 and not re.search(r'\d', sa + sb) and _ed1(sa, sb)   # one-letter typos in PAD-US ('Horshoe', 'Morraine')
+
+
+def _sing(s): return ' '.join(w[:-1] if len(w) > 3 and w.endswith('s') else w for w in s.split())
+
+
+def _ed1(a, b):
+    if a == b: return True
+    if abs(len(a) - len(b)) > 1: return False
+    if len(a) == len(b): return sum(x != y for x, y in zip(a, b)) == 1
+    if len(a) > len(b): a, b = b, a
+    return any(a == b[:i] + b[i + 1:] for i in range(len(b)))
+
+
+def wset(s):
+    # every word, keeping words in brackets ('Cash (Ben) Memorial' = Ben Cash Memorial)
+    return set(_sing(norm(str(s or '').replace('(', ' ').replace(')', ' '))).split())
+
+
+def same_words(a, b, ka, kb):
+    # all words of the shorter name are in the longer one, at most 2 extra words, and BOTH names say the same kind of place
+    if not (ka and kb and ka & kb): return False
+    w1, w2 = wset(a), wset(b)
+    s, l = (w1, w2) if len(w1) <= len(w2) else (w2, w1)
+    return len([w for w in s if len(w) > 2]) >= 2 and s <= l and len(l - s) <= 2
 
 
 def _same(a, b):
@@ -186,6 +214,9 @@ def run(st):
             if not close: continue
             if (same_name(name, nm) or (a.get('Loc_Nm') and same_name(name, a['Loc_Nm']))) and same_kind(kp, a['_k']):
                 m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'name'])
+            elif near(la, lo, a['_bb'], .1) if la is not None else False:
+                if same_words(name, nm, kp, a['_k']) or (a.get('Loc_Nm') and same_words(name, a['Loc_Nm'], kp, a['_k'])):
+                    m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'words'])
         if not m and la is not None:
             # unsure: not joined, only listed so a person can look
             for a in recs:
