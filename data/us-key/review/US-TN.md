@@ -1,0 +1,170 @@
+# TN: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **179 of 277** parks joined to official land (same name + same kind of place). **54** to check by hand, **44** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+- **US-0685** Obed National Wild and Scenic River (National Wild and Scenic River) → Obed Wild and Scenic River (~3,160 ac, similar name)
+- **US-11858** Middle Fork Bottoms State Park (State Park) → Middle Fork Forked Deer Refuge (~416 ac, similar name)
+- **US-12064** Henderson Swamp State Wilderness Area (State Wilderness Area) → Henderson Swamp Public Hunting Area (~24 ac, similar name)
+- **US-12070** Garrett Lake State Fishing Lake (State Fishing Lake) → Garrett Lake State Forest (~291 ac, similar name)
+- **US-12071** Whiteville Lake State Fishing Lake (State Fishing Lake) → Whiteville Lake Wildlife Management Area (~334 ac, similar name)
+- **US-12072** Bedford Lake State Fishing Lake (State Fishing Lake) → Bedford Lake (~308 ac, similar name)
+- **US-12361** Scott's Gulf Wilderness State Park (State Park) → Bridgestone/Firestone Wildlife Management Area (~4,433 ac, the POTA pin is inside it (different name))
+- **US-12369** Lake Graham State Fishing Lake (State Fishing Lake) → Tennessee Wildlife Resources Ageny Region 1 Office (~157 ac, the POTA pin is inside it (different name))
+- **US-12663** Ocoee River State Park (State Park) → Cherokee National Forest (~660,606 ac, the POTA pin is inside it (different name))
+- **US-12715** Gibson County State Fishing Lake (State Fishing Lake) → Gibson County State Forest (~270 ac, similar name)
+- **US-13364** Cherokee Trail of Tears State Park (State Park) → Hiwassee Refuge (~8,192 ac, the POTA pin is inside it (different name))
+- **US-2928** Bicentennial Capitol Mall State Park (State Park) → Bicentennial (~22 ac, similar name)
+- **US-2937** Cordell Hull Birthplace State Park (State Park) → Cordell Hull (~53 ac, similar name)
+- **US-2955** Wilson Cumberland Trail State Park (State Park) → Cumberland Trail (~11,893 ac, similar name)
+- **US-2957** Meeman-Shelby Forest State Park (State Park) → Meeman-Shelby Forest Wildlife Management Area (~9,433 ac, same name, different kind of place)
+- **US-2976** Sgt. Alvin C. York State Park (State Park) → Alvin C York (~336 ac, similar name)
+- **US-2981** T.O. Fuller State Park (State Park) → To Fuller (~1,004 ac, similar name); TO Fuller State Park (2021 Addition) (~144 ac, similar name)
+- **US-3923** Bone Cave Natural State Conservation Area (State Conservation Area) → Big Bone Cave Designaed State Natural Area (~334 ac, similar name)
+- **US-3928** Bridgestone/firestone Centennial Wilderness Wildlife Management Area (Wildlife Management Area) → Bridgestone/Firestone Wildlife Management Area (~4,433 ac, similar name)
+- **US-3936** Cowan Marsh State Wildlife Area (State Wildlife Area) → Cowan Marsh Public Hunting Area (~51 ac, similar name)
+- **US-3945** Hop-in Wildlife Refuge (Wildlife Refuge) → Hop-In Refuge (~653 ac, similar name); Obion River Wildlife Management Area (~8,996 ac, the POTA pin is inside it (different name))
+- **US-3949** Kyker Bottoms Wildlife Refuge (Wildlife Refuge) → Kyker Bottoms Wildlife Management Area (~579 ac, similar name)
+- **US-3950** Lauderdale Waterfowl Wildlife Management Area (Wildlife Management Area) → Lake Lauderdale Refuge (~652 ac, the POTA pin is inside it (different name))
+- **US-3952** M.T.S.U. Wildlife Management Area (Wildlife Management Area) → MTSU Wildlife Management Area (~795 ac, the POTA pin is inside it (different name))
+- **US-3965** White Lake Wildlife Refuge (Wildlife Refuge) → White Lake Refuge (~1,220 ac, similar name)
+- **US-3967** Whites Mill Wildlife Refuge (Wildlife Refuge) → Whites Mill Refuge (~52 ac, similar name)
+- **US-3969** Wolf River Wildlife Management Area (Wildlife Management Area) → Wolf River Wildlife Management Area Unit 1 (~4,599 ac, similar name); Ghost River Designated State Natural Area (~2,084 ac, the POTA pin is inside it (different name))
+- **US-5493** Franklin-Marion State Forest (State Forest) → Franklin State Forest (~4,825 ac, similar name)
+- **US-6234** Bays Mountain State Natural Area (State Natural Area) → Bays Mountain Park Designated State Natural Area (~3,048 ac, similar name)
+- **US-6237** Mr. and Mrs. Harry Lee Carter State Natural Area (State Natural Area) → Sherwood Forest State Natural Area (~4,061 ac, the POTA pin is inside it (different name))
+- **US-6238** Chimneys State Natural Area (State Natural Area) → Chimney's Designated State Natural Area (~33 ac, similar name)
+- **US-6239** Colditz Cove State Natural Area (State Natural Area) → Colditz Cove Designated State Natural Area (~161 ac, similar name)
+- **US-6241** Devil's Backbone State Park (State Park) → Natchez Trace Parkway (~11,301 ac, the POTA pin is inside it (different name))
+- **US-6244** Flat Rock Cedar Glade State Natural Area (State Natural Area) → Flat Rock Cedar Barren And Glade Designated State Natural Area (~848 ac, similar name)
+- **US-6245** Ghost River State Natural Area (State Natural Area) → Ghost River Designated State Natural Area (~2,084 ac, similar name); Wolf River Wildlife Management Area Unit 1 (~4,599 ac, the POTA pin is inside it (different name))
+- **US-6248** Honey Creek State Natural Area (State Natural Area) → Big South Fork National River and Recreation Area (~83,326 ac, the POTA pin is inside it (different name))
+- **US-6249** House Mountain State Natural Area (State Natural Area) → House Mountain Designated State Natural Area (~527 ac, similar name)
+- **US-6252** Laurel Snow State Natural Area (State Natural Area) → Laurel Snow Pocket Designated State Natural Area (~2,234 ac, similar name)
+- **US-6255** May Prairie State Natural Area (State Natural Area) → May Prairie Designated State Natural Area (~353 ac, similar name)
+- **US-6260** Piney Falls State Natural Area (State Natural Area) → Piney Falls Designated State Natural Area (~438 ac, similar name)
+- **US-6262** Powell River State Natural Area (State Natural Area) → Powell River TNC Preserve Designated State Natural Area (~17 ac, similar name)
+- **US-6263** Riverwoods State Natural Area (State Natural Area) → Riverwoods Designated State Natural Area (~21 ac, similar name)
+- **US-6264** Roundtop Mountain State Natural Area (State Natural Area) → Great Smoky Mountains National Park (~241,082 ac, the POTA pin is inside it (different name))
+- **US-6265** Rugby State Natural Area (State Natural Area) → Rugby Designated State Natural Area (~717 ac, similar name)
+- **US-6266** Savage Gulf State Natural Area (State Natural Area) → Savage Gulf Designated State Natural Area (~30 ac, similar name)
+- **US-6268** Short Springs State Natural Area (State Natural Area) → Short Springs Designated State Natural Area (~405 ac, similar name)
+- **US-6270** Stinging Fork Falls State Natural Area (State Natural Area) → Stinging Fork Designated State Natural Area (~776 ac, similar name)
+- **US-6271** Sunk Lake State Natural Area (State Natural Area) → Sunk Lake Designated State Natural Area (~1,873 ac, similar name)
+- **US-6272** Twin Arches State Natural Area (State Natural Area) → Big South Fork National River and Recreation Area (~83,326 ac, the POTA pin is inside it (different name))
+- **US-6275** Walls of Jericho State Natural Area (State Natural Area) → Bear Hollow Mountain Wildlife Management Area (~14,805 ac, the POTA pin is inside it (different name))
+- **US-7579** Colonel Forrest V Durand Wildlife Management Area (Wildlife Management Area) → Col. Forrest V. Durand Wildlife Management Area (~389 ac, similar name)
+- **US-7581** Cordell Hull Waterfowl Refuge Wildlife Management Area (Wildlife Management Area) → Cordell Hull Recreation Area (~29,264 ac, similar name); Cordell Hull Wildlife Management Area (~14,523 ac, similar name); Cordell Hull Refuge (~2,603 ac, similar name)
+- **US-7618** Rankin Wildlife Management Area (Wildlife Management Area) → Rankin Bottom Wildlife Management Area (~1,609 ac, similar name)
+- **US-9718** Savage Gulf State Park (State Park) → Savage Gulf Designated State Natural Area (~30 ac, similar name)
+
+## Nothing found in PAD-US
+
+- US-0642 Natchez Trace Parkway National Parkway (National Parkway)
+- US-11181 Sheltowee Trace National Recreation Trail (National Recreation Trail)
+- US-11357 Sellars Farm State Archeological Reserve (Archeological Reserve)
+- US-11869 Jim Cummings Park (Park)
+- US-12360 Wolf River State Forest (State Forest)
+- US-12713 Fiery Gizzard State Park (State Park)
+- US-12714 Head of the Crow State Park (State Park)
+- US-12775 Davy Crockett State Fishing Lake (State Fishing Lake)
+- US-13501 Fort Southwest Point State Historical Park (State Historical Park)
+- US-13514 Lake Halford State Fishing Lake (State Fishing Lake)
+- US-13567 Clinch River Valley State Park (State Park)
+- US-2972 Roan Mountain State Park (State Park)
+- US-2974 Rocky Fork State Park (State Park)
+- US-3791 Trail of Tears National Historic Trail (National Historic Trail)
+- US-3927 Bogota Wildlife Management Area (Wildlife Management Area)
+- US-3940 Gooch Wildlife Management Area (Wildlife Management Area)
+- US-3941 Grundy Forest State Natural Area (State Natural Area)
+- US-3956 Murfree Springs State Wildlife Area (State Wildlife Area)
+- US-4376 Manhattan Project National Historical Park (National Historical Park)
+- US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
+- US-4560 Natchez Trace Trail National Scenic Trail (National Scenic Trail)
+- US-4577 Overmountain Victory National Historic Trail (National Historic Trail)
+- US-5497 Martha Sundquist State Forest (State Forest)
+- US-6235 Beaman Park State Natural Area (State Natural Area)
+- US-6242 Elsie Quarterman Cedar Glade State Natural Area (State Natural Area)
+- US-6246 Hampton Creek Cove State Natural Area (State Natural Area)
+- US-6247 Hawkins Cove State Natural Area (State Natural Area)
+- US-6251 John Noel at Bon Aqua State Natural Area (State Natural Area)
+- US-6254 Lucius E. Burch, Jr. State Natural Area (State Natural Area)
+- US-6258 Old Forest State Natural Area (State Natural Area)
+- US-6259 Ozone Falls State Natural Area (State Natural Area)
+- US-6261 Pogue Creek Canyon State Natural Area (State Natural Area)
+- US-6269 Stillhouse Hollow Falls State Natural Area (State Natural Area)
+- US-6273 Vine Cedar Glade State Natural Area (State Natural Area)
+- US-6277 Washmorgan Hollow State Natural Area (State Natural Area)
+- US-6279 William B. Clark State Natural Area (State Natural Area)
+- US-6280 Windows Cliffs State Natural Area (State Natural Area)
+- US-7565 AEDC and Woods Reservoir Wildlife Management Area (Wildlife Management Area)
+- US-7570 Beaverdam Creek Wildlife Management Area (Wildlife Management Area)
+- US-7576 Chambers Creek Wildlife Management Area (Wildlife Management Area)
+- US-7577 Charlotte Ann Finnel Neal Wildlife Management Area (Wildlife Management Area)
+- US-7607 Nolichucky Wildlife Management Area (Wildlife Management Area)
+- US-7620 Skinner Mountain Wildlife Management Area (Wildlife Management Area)
+- US-8313 Mountains to Sea State Trail (State Trail)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- Tennessee Valley Authority (TVA) · ND · Tennessee Valley Authority (TVA) · ~142,556 ac
+- Tackett Creek Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~45,542 ac
+- Dale Hollow Recreation Area · REC · Nashville · ~44,125 ac
+- Center Hill Recreation Area · REC · Nashville · ~40,398 ac
+- J. Percy Priest Recreation Area · REC · Nashville · ~33,737 ac
+- Old Hickory Recreation Area · REC · Nashville · ~29,862 ac
+- Cordell Hull Recreation Area · REC · Nashville · ~29,264 ac
+- Barkley Recreation Area · REC · Nashville · ~17,136 ac
+- Cumberland Trail · SP · OTHS · ~11,893 ac
+- Meeman-Shelby Forest Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~9,433 ac
+- Kentucky Reservoir · ND · Tennessee Valley Authority (TVA) · ~8,201 ac
+- Bridgestone/Firestone Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~7,731 ac
+- North Chickamauga Creek Gorge Designated State Natural Area · SCA · SDC · ~7,107 ac
+- Cheatham Lock And Dam Recreation Area · REC · Nashville · ~6,915 ac
+- Beaver Dam Creek Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~6,615 ac
+- Centennial Wilderness Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~5,967 ac
+- South Cumberland · SP · OTHS · ~5,047 ac
+- Franklin State Forest · SRMA · OTHS · ~4,825 ac
+- Wolf River Wildlife Management Area Unit 1 · SCA · Tennessee Wildlife Resources Agency · ~4,599 ac
+- Bridgestone/Firestone Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~4,433 ac
+- Dry Creek Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~4,055 ac
+- Enterprise South Park Wildlife Management Area · SCA · SFW · ~3,845 ac
+- Wolf River Wildlife Management Area Unit 2 · SCA · Tennessee Wildlife Resources Agency · ~3,413 ac
+- Three Bend Scenic & Wildlife Refuge · SCA · Tennessee Wildlife Resources Agency · ~3,204 ac
+- Obed Wild and Scenic River · WSR · NPS · ~3,160 ac
+- Bays Mountain Park Designated State Natural Area · SCA · Unknown · ~3,048 ac
+- Laurel Snow Pocket Designated State Natural Area · SCA · SPR · ~2,234 ac
+- Dry Branch Designated State Natural Area · SCA · Unknown · ~2,174 ac
+- Ghost River Designated State Natural Area · SCA · Unknown · ~2,084 ac
+- Sunk Lake Designated State Natural Area · SCA · Unknown · ~1,873 ac
+- Buffalo Ridge Refuge · SCA · Tennessee Wildlife Resources Agency · ~1,814 ac
+- Alpine Mountain Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~1,709 ac
+- Gallatin Steam Plant Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~1,620 ac
+- Rankin Bottom Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~1,609 ac
+- Fort Loudoun Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~1,243 ac
+- White Lake Refuge · SCA · Tennessee Wildlife Resources Agency · ~1,220 ac
+- Turkey Scratch · SOTH · TDEC · ~1,131 ac
+- Cummings Cove Wildlife Management Area · SCA · SFW · ~1,113 ac
+- South Cherokee Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~1,036 ac
+- Bear Hollow Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~1,012 ac
+- To Fuller · SP · Tennessee Department of Environment and Conservation · ~1,004 ac
+- Flat Rock Cedar Barren And Glade Designated State Natural Area · SCA · Unknown · ~848 ac
+- Mullican · SOTH · TDEC · ~839 ac
+- MTSU Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~795 ac
+- The Hermitage · SHCA · Tennessee Department of Environment and Conservation · ~787 ac
+- Cumberland Trail · SP · Tennessee Department of Environment and Conservation · ~776 ac
+- Stinging Fork Designated State Natural Area · SCA · SDC · ~776 ac
+- Hiwassee Refuge - Rivers Meet · FOTH · Tennessee Valley Authority (TVA) · ~758 ac
+- Walls of Jericho Designated State Natural Area · SCA · Unknown · ~740 ac
+- Rugby Designated State Natural Area · SCA · Unknown · ~717 ac
+- Dog Cove State Natural Area · SCA · OTHS · ~680 ac
+- Hop-In Refuge · SCA · Tennessee Wildlife Resources Agency · ~653 ac
+- Lake Lauderdale Refuge · SCA · Tennessee Wildlife Resources Agency · ~652 ac
+- Kyker Bottoms Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~579 ac
+- Kingston Refuge Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~556 ac
+- Cardwell · FOTH · Cherokee NF · ~534 ac
+- House Mountain Designated State Natural Area · SCA · Unknown · ~527 ac
+- Fort Loudon State Historic Park · HCA · Tennessee Valley Authority (TVA) · ~512 ac
+- Charlotte Anne Finnell Neal Wildlife Management Area · SCA · SFW · ~496 ac
+- Johnsonville State Historic Park · HCA · Tennessee Valley Authority (TVA) · ~495 ac
