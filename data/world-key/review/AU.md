@@ -1,6 +1,6 @@
 # AU: POTA parks vs official land
 
-Built 2026-10-18 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW). **5828 of 10272** joined (same name + same kind), **1384** to check, **3060** nothing found. Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW). **5821 of 10272** joined (same name + same kind), **1389** to check, **3062** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -618,6 +618,7 @@ Built 2026-10-18 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW). **5
 - **AU-4180** Bung Bong Streamside Reserve (Reserve) → Bung Bong SS.R. (CAPAD (DCCEEW), similar name); Bung Bong N.C.R. (CAPAD (DCCEEW), similar name)
 - **AU-4196** Bunyip G13 Streamside Reserve (Reserve) → Bunyip G212 B.R. (CAPAD (DCCEEW), similar name); Bunyip G13 SS.R. (CAPAD (DCCEEW), the POTA pin is inside it (different name))
 - **AU-4198** Burbank Creek Streamside Reserve (Reserve) → Burbank Creek SS.R. (CAPAD (DCCEEW), similar name)
+- **AU-4199** Burgoyne G132 Bushland Reserve (Reserve) → Burgoyne G133 B.R. (CAPAD (DCCEEW), similar name); Burgoyne G133 B.R. (CAPAD (DCCEEW), similar name)
 - **AU-4202** Burke Streamside Reserve (Reserve) → Burke SS.R (CAPAD (DCCEEW), the POTA pin is inside it (different name))
 - **AU-4217** Campaspe River K39 Streamside Reserve (Reserve) → Campaspe River, Axedale SS.R. (CAPAD (DCCEEW), similar name); Campaspe River K39 SS.R. (CAPAD (DCCEEW), similar name)
 - **AU-4218** Campaspe River K40 Streamside Reserve (Reserve) → Campaspe River K41 SS.R. (CAPAD (DCCEEW), similar name); Campaspe River K39 SS.R. (CAPAD (DCCEEW), similar name); Campaspe River K40 SS.R. (CAPAD (DCCEEW), similar name)
@@ -668,6 +669,7 @@ Built 2026-10-18 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW). **5
 - **AU-4517** Edgecombe Streamside Reserve (Reserve) → Edgecombe SS.R. (CAPAD (DCCEEW), the POTA pin is inside it (different name))
 - **AU-4518** Eganstown Streamside Reserve (Reserve) → Eganstown SS.R. (CAPAD (DCCEEW), the POTA pin is inside it (different name))
 - **AU-4519** Eildon Bushland Reserve (Reserve) → Lake Eildon NP (Thornton) (CAPAD (DCCEEW), similar name); Lake Eildon (CAPAD (DCCEEW), similar name)
+- **AU-4526** Eltham G137 Bushland Reserve (Reserve) → Eltham G136 B.R (CAPAD (DCCEEW), similar name)
 - **AU-4533** English Bridge Streamside Reserve (Reserve) → English Bridge SS.R. (CAPAD (DCCEEW), similar name)
 - **AU-4544** Everard Park Streamside Reserve (Reserve) → Yarra River (CAPAD (DCCEEW), the POTA pin is inside it (different name))
 - **AU-4550** Faux Bridge Streamside Reserve (Reserve) → Faux Bridge SS.R. (CAPAD (DCCEEW), similar name)
@@ -745,6 +747,8 @@ Built 2026-10-18 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW). **5
 - **AU-5029** Little River, Ripley Streamside Reserve (Reserve) → Little River, Ripley SS.R. (CAPAD (DCCEEW), similar name)
 - **AU-5030** Livingstone Creek Natural Features & Scenic Reserve (Reserve) → Livingstone Creek N.F.S.R. (CAPAD (DCCEEW), similar name)
 - **AU-5040** Longford Natural Features Reserve (Natural Features Reserve) → Longford N.F.R (CAPAD (DCCEEW), the POTA pin is inside it (different name))
+- **AU-5052** Lurg I67 Bushland Reserve (Reserve) → Lurg I67 B.R (CAPAD (DCCEEW), similar name)
+- **AU-5053** Lurg I68 Bushland Reserve (Reserve) → Lurg I68 B.R (CAPAD (DCCEEW), similar name)
 - **AU-5058** Macalister Gorge Natural Features & Scenic Reserve (Reserve) → Macalister Gorge N.F.S.R. (CAPAD (DCCEEW), similar name)
 - **AU-5059** Macalister River Streamside Reserve (Reserve) → Macalister River SS.R. (CAPAD (DCCEEW), similar name)
 - **AU-5060** Macfarlane Lookout Natural Features & Scenic Reserve (Reserve) → Macfarlane Lookout N.F.S.R. (CAPAD (DCCEEW), similar name)
@@ -898,6 +902,7 @@ Built 2026-10-18 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW). **5
 - **AU-5926** Wimmera River, Marma Streamside Reserve (Reserve) → Marma I94 B.R (CAPAD (DCCEEW), similar name); Wimmera River, Marma SS.R. (CAPAD (DCCEEW), similar name)
 - **AU-5937** Woady Yallock River, Pitfield Streamside Reserve (Reserve) → Woady Yallock River, Pitfield SS.R. (CAPAD (DCCEEW), similar name)
 - **AU-5949** Wongarra Bushland Natural Features Reserve (Natural Features Reserve) → Wongarra B.R. (CAPAD (DCCEEW), similar name)
+- **AU-5951** Wonthaggi G238 Bushland Reserve (Reserve) → Wonthaggi Wetlands Reserve (CAPAD (DCCEEW), similar name); Wonthaggi G243 B.R. (CAPAD (DCCEEW), similar name); Wonthaggi G244 B.R. (CAPAD (DCCEEW), similar name); Wonthaggi G239 B.R. (CAPAD (DCCEEW), similar name); Wonthaggi G242 B.R. (CAPAD (DCCEEW), similar name); Wonthaggi G237 B.R. (CAPAD (DCCEEW), similar name)
 - **AU-5981** Woori Yallock Creek Streamside Reserve (Reserve) → Woori Yallock G161 B.R. (CAPAD (DCCEEW), similar name); Woori Yallock Creek SS.R. (CAPAD (DCCEEW), similar name)
 - **AU-6032** Yandoit K47 Streamside Reserve (Reserve) → Yandoit K47 SS.R. (CAPAD (DCCEEW), the POTA pin is inside it (different name))
 - **AU-6052** Yea G116 Bushland Reserve (Reserve) → Yea G116 B.R (CAPAD (DCCEEW), similar name); Yea G54 B.R (CAPAD (DCCEEW), similar name); Yea G117 B.R (CAPAD (DCCEEW), similar name)
@@ -2441,6 +2446,7 @@ Built 2026-10-18 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW). **5
 - AU-4566 Franklinford Streamside Reserve (Reserve)
 - AU-4571 Freeburgh Streamside Reserve (Reserve)
 - AU-4682 Grassy Flat Reservoir Bushland Reserve (Reserve)
+- AU-4728 Healesville G158 Bushland Reserve (Reserve)
 - AU-4764 Big Brook State Forest (State Forest)
 - AU-4767 Huntly Natural Features Reserve (Natural Features Reserve)
 - AU-4903 Kyneton Streamside Reserve (Reserve)
@@ -2475,6 +2481,7 @@ Built 2026-10-18 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW). **5
 - AU-6425 Gregory State Forest (State Forest)
 - AU-6716 Mersea State Forest (State Forest)
 - AU-6894 The Reserve Wildlife Reserve (Wildlife Reserve)
+- AU-6907 Watchupga I294 Bushland Reserve (Reserve)
 - AU-6913 Armidale State Forest (State Forest)
 - AU-6915 Bagawa State Forest (State Forest)
 - AU-6918 Beaury State Forest (State Forest)
