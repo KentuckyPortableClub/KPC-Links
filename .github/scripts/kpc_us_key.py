@@ -180,6 +180,46 @@ def pad_state(st):
     return recs, off + len(fs)
 
 
+FWS = 'https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer/0/query'
+STB = None
+def st_box(st):
+    global STB
+    if STB is None:
+        try: STB = json.load(open('kpc-us-states.json'))
+        except Exception: STB = []  # noqa: BLE001
+    x = next((b for b in STB if b.get('a') == st), None)
+    if not x: return None
+    xs = [q[0] for pl in x['p'] for q in pl[0]]; ys = [q[1] for pl in x['p'] for q in pl[0]]
+    return [min(xs), min(ys), max(xs), max(ys)]
+
+
+def fws_state(st, have):
+    # USFWS's own land layer: PAD-US misses some refuges (Oklahoma: Sequoyah, Optima, Tishomingo NWR are not in it)
+    box = st_box(st)
+    if not box: return []
+    out, off = [], 0
+    while True:
+        q = {'where': "INTTYPE1<>'E'", 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
+             'outFields': 'OBJECTID,ORGNAME,RSL_TYPE,SUM_GISACRES', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01, 'geometryPrecision': 3,
+             'f': 'json', 'resultOffset': off, 'resultRecordCount': 500}
+        try:
+            req = urllib.request.Request(FWS + '?' + urllib.parse.urlencode(q), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
+            j = json.loads(urllib.request.urlopen(req, timeout=180).read().decode('utf-8', 'replace'))
+        except Exception as e:  # noqa: BLE001
+            notice(f'US key {st}', f'USFWS land not read ({e})'); return out
+        fs = j.get('features', [])
+        for f in fs:
+            a = f.get('attributes') or {}; nm = (a.get('ORGNAME') or '').title()
+            if not nm or norm(nm) in have: continue
+            g = f.get('geometry') or {}
+            out.append({'OBJECTID': 'fws' + str(a.get('OBJECTID')), 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': 'FED', 'Mang_Type': 'FED', 'Mang_Name': 'FWS',
+                        'Loc_Mang': 'U.S. Fish & Wildlife Service (own map)', 'Des_Tp': '', 'GIS_Acres': a.get('SUM_GISACRES') or 0, 'Category': 'Fee',
+                        '_bb': bbox(g), '_g': g, '_k': kinds(nm) | kinds(a.get('RSL_TYPE')) | {'nwr'}})
+        if not fs or (not j.get('exceededTransferLimit') and len(fs) < 500): break
+        off += len(fs); time.sleep(.5)
+    return out
+
+
 def out_date(): return time.strftime('%Y-%m-%d')
 
 
@@ -202,6 +242,7 @@ def run(st):
     try: P = json.load(open(f'data/parkinfo/US-{st}.json'))['parks']
     except Exception: notice(f'US key {st}', 'no park file, skipped'); return None  # noqa: BLE001
     recs, seen = pad_state(st)
+    recs += fws_state(st, {norm(a.get('Unit_Nm') or '') for a in recs if a.get('Mang_Name') == 'FWS'})
     parks, used = {}, set()
     for ref, r in sorted(P.items()):
         name, typ, la, lo = r[0], r[2] if len(r) > 2 else '', r[5] if len(r) > 5 else None, r[6] if len(r) > 6 else None
