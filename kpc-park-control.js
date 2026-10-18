@@ -28,7 +28,8 @@
   const isPin = t => /^PIN/.test(t.c);
 
   /* outline colour by the layer the piece came from (kpc-bounds.js KY list) */
-  const PIECE = f => { const k = f._L && f._L.k;
+  const PIECE = f => { const k = f._L && f._L.k, nm = (f.properties || {}).NAME || (f._L && f._L.name) || f._nm || '';
+    if (k !== 'bkpc' && /state (resort )?park/i.test(nm)) return { color: '#f0c96b', who: 'State park land' };   // a state park piece kept in another layer (e.g. the WMA file) is still the park
     return k === 'bwma' ? { color: '#4ade80', dashArray: '8 5', who: 'Fish & Wildlife (WMA) land' } : k === 'bsnp' || k === 'bsna' ? { color: '#2dd4bf', who: 'Nature preserve land' }
       : k === 'bnps' ? { color: '#60a5fa', who: 'National Park Service' } : k === 'bfws' ? { color: '#5ab0ff', dashArray: '6 4', who: 'U.S. Fish & Wildlife' }
       : k === 'bdbnf' ? { color: '#a3e635', dashArray: '3 5', who: 'National Forest outer line' } : k === 'bwild' ? { color: '#16b3c0', dashArray: '2 4', who: 'Wild River corridor' }
@@ -107,8 +108,8 @@
   }
   /* Oct 18 (Brandon: 'add the parking spots you gathered tonight in Park Control'): the park's `ap` points as map markers */
   function apIcon(t) {
-    const fc = /KPC field check/i.test(t), ic = fc ? '✅' : /trailhead/i.test(t) ? '🥾' : /boat|ramp|fishing|carry-down|bridge/i.test(t) ? '⛵' : /road|enters|end of|closest/i.test(t) ? '🛣' : /kiosk|office|visitor|lodge|museum|info/i.test(t) ? 'ℹ' : 'P';
-    const bg = fc ? '#d5a63a' : /road|enters|end of|closest/i.test(t) ? '#6b7280' : '#1d5fbf';
+    const fc = /KPC field check/i.test(t), ic = fc ? '✅' : /trailhead/i.test(t) ? '🥾' : /picnic shelter/i.test(t) ? '🧺' : /^campground/i.test(t) ? '⛺' : /boat|ramp|fishing|carry-down|bridge|marina|dock/i.test(t) ? '⛵' : /enters the park|^end of|closest (road|point)/i.test(t) ? '🛣' : /kiosk|office|visitor|lodge|museum|info/i.test(t) ? 'ℹ' : 'P';
+    const bg = fc ? '#d5a63a' : /enters the park|^end of|closest (road|point)/i.test(t) ? '#6b7280' : '#1d5fbf';
     return L.divIcon({ className: 'pc-ap', html: `<span style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:${bg};color:#fff;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.5);font:800 12px/1 system-ui">${ic}</span>`, iconSize: [24, 24], iconAnchor: [12, 12], popupAnchor: [0, -12] });
   }
   function apShow(x) {
@@ -143,7 +144,7 @@
       ${also.length ? `<div class="pc-k" style="margin-top:8px">ALSO HERE</div><ul class="pc-list">${also.map(a => `<li><a href="?ref=${encodeURIComponent(a[0])}" data-ref="${esc(a[0])}">${esc(a[0])}</a> ${esc(a[1])} <span class="pc-tag">${esc(a[2])}</span></li>`).join('')}</ul>` : ''}
       <div id="pcPieces">${PCS.ref === x.c ? PCS.html : ''}</div>
       ${trailBox}
-      ${ap.length ? `<div class="pc-k" style="margin-top:8px">🅿 PARKING &amp; ACCESS POINTS </div><ul class="pc-list">${ap.map((p, i) => `<li${i >= 8 ? ' class="pc-apx" hidden' : ''}><a href="#" data-ap="${i}">📍 ${esc(p[2] || 'Access point')}</a> · <a href="${dirUrl(p[0], p[1])}" target="_blank" rel="noopener">DIRECTIONS</a></li>`).join('')}</ul>${ap.length > 8 ? `<button type="button" class="pc-more" id="pcApMore">SHOW ALL ${ap.length} ▾</button>` : ''}<p class="pc-note">✅ gold = KPC field check · blue = land manager's map · 🛣 grey = road map, check the satellite. 🅿 PARKING shows them on the map.</p>` : ''}
+      ${ap.length ? `<div class="pc-k" style="margin-top:8px">🅿 PARKING &amp; ACCESS POINTS </div><ul class="pc-list">${ap.map((p, i) => `<li${i >= 8 ? ' class="pc-apx" hidden' : ''}><a href="#" data-ap="${i}">📍 ${esc(p[2] || 'Access point')}</a> · <a href="${dirUrl(p[0], p[1])}" target="_blank" rel="noopener">DIRECTIONS</a></li>`).join('')}</ul>${ap.length > 8 ? `<button type="button" class="pc-more" id="pcApMore">SHOW ALL ${ap.length} ▾</button>` : ''}<p class="pc-note">✅ gold = KPC field check · blue = official maps (🧺 picnic shelter, ⛺ campground, ⛵ ramp/dock, 🥾 trailhead, ℹ office). 🅿 PARKING shows them on the map.</p>` : ''}
       <p class="pc-note">GPS ${x.la.toFixed(5)}, ${x.lo.toFixed(5)}${k === 'sota' ? ' · activation zone = within 25 m (82 ft) of the top, no vehicle' : ' · the pin is a guide; the official boundary decides'}</p>`;
     $('pcAdd').onclick = () => { if (!TRIP.some(t => t.c === x.c)) { TRIP.push({ c: x.c, n: x.n, la: x.la, lo: x.lo }); if (TRIP.length > 10) TRIP.shift(); put('kpcPcTrip', TRIP); } trip(); info(x); };
     $('pcInfo').querySelectorAll('[data-ref]').forEach(a => a.onclick = e => { e.preventDefault(); const y = byRef(a.dataset.ref); if (y) pick(y); });
