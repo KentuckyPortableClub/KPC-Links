@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-17",
+ "updated": "2026-10-18",
  "found": [
   [
    "CA-5344",
@@ -970,38 +970,6 @@
    0.4
   ],
   [
-   "US-8098",
-   "Empire State Trail",
-   "NY",
-   "NYS OPRHP | New York State Office of Parks, Recreation, and Historic Preservation GIS Section | Christina.Croll@parks.ny.gov_nysparks",
-   4,
-   0.0
-  ],
-  [
-   "US-10076",
-   "Black River State Trail",
-   "NY",
-   "OpenStreetMap (not official)",
-   170,
-   0.0
-  ],
-  [
-   "US-12375",
-   "Catharine Valley State Trail",
-   "NY",
-   "OpenStreetMap (not official)",
-   22,
-   0.0
-  ],
-  [
-   "US-12382",
-   "WAG State Trail",
-   "NY",
-   "OpenStreetMap (not official)",
-   16,
-   0.0
-  ],
-  [
    "US-7759",
    "David Dill Arrowhead State Trail",
    "MN",
@@ -1440,6 +1408,38 @@
    "OpenStreetMap (not official)",
    59,
    0.0
+  ],
+  [
+   "US-8098",
+   "Empire State Trail",
+   "NY",
+   "NYS OPRHP | New York State Office of Parks, Recreation, and Historic Preservation GIS Section | Christina.Croll@parks.ny.gov_nysparks",
+   4,
+   0.0
+  ],
+  [
+   "US-10076",
+   "Black River State Trail",
+   "NY",
+   "OpenStreetMap (not official)",
+   170,
+   0.0
+  ],
+  [
+   "US-12375",
+   "Catharine Valley State Trail",
+   "NY",
+   "OpenStreetMap (not official)",
+   22,
+   0.0
+  ],
+  [
+   "US-12382",
+   "WAG State Trail",
+   "NY",
+   "OpenStreetMap (not official)",
+   16,
+   0.0
   ]
  ],
  "missing": [
@@ -1786,12 +1786,6 @@
    "no line found"
   ],
   [
-   "US-2152",
-   "Trail View State Park",
-   "NY",
-   "line found 12 km from the POTA pin: not used"
-  ],
-  [
    "US-9380",
    "Mills Town State Trail",
    "MN",
@@ -1988,2482 +1982,1190 @@
    "Ice Age Floods National Geologic Trail",
    "WA",
    "no line found"
+  ],
+  [
+   "US-2152",
+   "Trail View State Park",
+   "NY",
+   "line found 12 km from the POTA pin: not used"
   ]
  ],
  "agency": [
   [
-   "Row River National Recreation Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "ODF State Forests GIS | State.Forests_ODF",
-   "AOP Planned Recreation Projects - Public"
+   "esmathers",
+   "New York State Waterfalls Trail Heads"
   ],
   [
-   "Row River National Recreation Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "dff416_UofMD",
-   "PCT Trail Map"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Row River National Recreation Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "Data: Pacific Crest Trail Association. Attributes: Pacific C",
-   "Pacific Crest Trail Center Line "
+   "CutterL",
+   "Recreation Trails"
   ],
   [
-   "OC&E Woods Line State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "Greater_Applegate_Trails view"
+   "akrouse",
+   "Warren Highlands Trail "
   ],
   [
-   "OC&E Woods Line State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "ODF, State Forests, 12/2020 | State.Forests_ODF",
-   "StateForests_RecreationPtsOregonGOVcsv_PublicView"
+   "ATConservancey",
+   "Tread Deficiencies and Prescribed Features"
   ],
   [
-   "OC&E Woods Line State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "City of Boise | emwing",
-   "Boise Oregon Trail Monuments Layer"
+   "srvDECGISPub@srv_cld.ny.gov_nysdec",
+   "Fishing Pier or Platform"
   ],
   [
-   "OC&E Woods Line State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "Metro Data Resource Center              drc@oregonmetro.gov ",
+   "Mohonk Preserve, Shawangunk Ridge Biodiversity Partnership, ",
+   "Shawangunk Ridge Trails and Carriage Roads"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "jchamberlin_FulCoNY",
+   "DECPointsofInterest_FC_HC"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "NYS ITS Geospatial Services, Saratoga County PLAN | NYSGIS_G",
+   "Saratoga County Trails"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "North Country Trail Association | jack.norland@ndsu.edu_NDSU",
+   "hem23"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "North Country Trail Association | Field_Programs_CDTC",
+   "North Country NST Shapefile"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "This layer was created by the Monroe County Department of En",
+   "Rochester NY Trails"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "Kellyn.Johnson@parks.ny.gov_nysparks",
+   "2025_2026_Snowmobile_Data view"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "NYS OPRHP | Kellyn.Johnson@parks.ny.gov_nysparks",
+   "Greenway Trails Error Reporter Data"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "This layer was created by the Monroe County Department of En",
    "Trails"
   ],
   [
-   "OC&E Woods Line State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "Recreation Areas view"
+   "This layer was created by the Monroe County Department of En",
+   "Trail_Access_Point"
   ],
   [
-   "OC&E Woods Line State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "River Recreation view"
+   "Norton",
+   "Snowmobile Trails"
   ],
   [
-   "OC&E Woods Line State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "DTSC_Admin",
-   "PCT_Trail"
+   "knoyes_oswegocounty",
+   "nys_trails_service"
   ],
   [
-   "OC&E Woods Line State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "HollowayM_OIT",
-   "OHV Trails in Oregon"
+   "afrisbie_ATConservancy",
+   "Appalachian Trail Visitor Use Management"
   ],
   [
-   "OC&E Woods Line State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "philip.woods_DLCD",
-   "Shoreline Access Inventory"
+   "Westcheser County Department of Planning,\nPaul Gisondo, GISP",
+   "WC Trail System"
   ],
   [
-   "OC&E Woods Line State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "ODF State Forests GIS | State.Forests_ODF",
-   "AOP Planned Recreation Projects - Public"
+   "Warren County, New Jersey |  | akrouse",
+   "Federal Owned Property"
   ],
   [
-   "OC&E Woods Line State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "dff416_UofMD",
-   "PCT Trail Map"
+   "Naqiy90",
+   "Albany Parks and Trails Access"
   ],
   [
-   "OC&E Woods Line State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "Data: Pacific Crest Trail Association. Attributes: Pacific C",
-   "Pacific Crest Trail Center Line "
+   "DianaREYES5",
+   "GIS_Garlic_Mus_DR_WFL1"
   ],
   [
-   "I-205 Multi-Use State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "Greater_Applegate_Trails view"
+   "\u00a9 National Geographic Society | ericjanota",
+   "1923 United States Map (Web Mercator)"
   ],
   [
-   "I-205 Multi-Use State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "ODF, State Forests, 12/2020 | State.Forests_ODF",
-   "StateForests_RecreationPtsOregonGOVcsv_PublicView"
+   "Zachary Hart, Eillen Allen, David Franzi, Mark Lesser | mles",
+   "Geospatial_Database_for_the_Altona_Flat_Rock"
   ],
   [
-   "I-205 Multi-Use State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "City of Boise | emwing",
-   "Boise Oregon Trail Monuments Layer"
+   "gjimerson",
+   "Pennsy Trail Survey"
   ],
   [
-   "I-205 Multi-Use State Trail",
+   "Trail View State Park",
    "skip (not state/federal)",
-   "Metro Data Resource Center              drc@oregonmetro.gov ",
+   "Mohonk Preserve Staff | epestone@mohonkpreserve.org",
+   "Mohonk Preserve: Trails and Carriage Roads"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "NYS ITS GIS Program Office based on input from the NYS Legis",
+   "NY_Legislative_911trail"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "NYS ITS GIS Program Office based on input from the NYS Legis",
+   "NY_Senate_911trail"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "Naqiy90",
+   "New York Transit Near Parks and Trails"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "\u00a9 National Geographic Society | ericjanota",
+   "1923 United States Map"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "mauryt_havredegracemd",
+   "911 Trail"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "Naqiy90",
+   "New York Transit Near Parks and Trails_Clustered"
+  ],
+  [
+   "Trail View State Park",
+   "skip (not state/federal)",
+   "GBNRTC, GObike Buffalo | Jim_GObike",
+   "Cycling Facility"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "Empire State Trail - Small Scale (Public View)"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "Empire State Trail - Large Scale (Public View)"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "Empire State Trail (For Public Use)"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "Empire State Trail Closures (Public View)"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "Capital Region Transportation Council MPO | CDTC_MAPS",
+   "Empire_State_Trail_On_Road"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "Empire State Trail Town Services"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "EST Campgrounds (Survey)"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "Empire State Trail"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "Camping (Public View)"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "EST_TRAIL_MASTER"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "Erie Canalway Trail Camping Features"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "ECT_Trail_5_29_22"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "Trail Town Businesses and Amenities"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "KJKucharski",
+   "Empire State Trail"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "EST_Campgrounds"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "Lockport City Boundary"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "Putnam_County_NY",
+   "Trailway"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "Christina.Croll@parks.ny.gov_nysparks",
+   "GreenwaysEST_PEJA"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ParksTrailsNewYork",
+   "Erie and Champlain Canalway Trails for CT Connections"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "KJKucharski",
+   "Camping Hudson Valley"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "cara@wallkillvalleyLT.org",
+   "Wallkill Valley Rail Trail_WFL1"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "NewPaltzEnCB",
+   "Cultural Resources"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "esmathers",
+   "New York State Waterfalls Trail Heads"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "FTKaren",
+   "North Country Trail"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "CutterL",
+   "Recreation Trails"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "akrouse",
+   "Warren Highlands Trail "
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "ATConservancey",
+   "Tread Deficiencies and Prescribed Features"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "srvDECGISPub@srv_cld.ny.gov_nysdec",
+   "Fishing Pier or Platform"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "Mohonk Preserve, Shawangunk Ridge Biodiversity Partnership, ",
+   "Shawangunk Ridge Trails and Carriage Roads"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "jchamberlin_FulCoNY",
+   "DECPointsofInterest_FC_HC"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "NYS ITS Geospatial Services, Saratoga County PLAN | NYSGIS_G",
+   "Saratoga County Trails"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "North Country Trail Association | jack.norland@ndsu.edu_NDSU",
+   "hem23"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "North Country Trail Association | Field_Programs_CDTC",
+   "North Country NST Shapefile"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "This layer was created by the Monroe County Department of En",
+   "Rochester NY Trails"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "Kellyn.Johnson@parks.ny.gov_nysparks",
+   "2025_2026_Snowmobile_Data view"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "NYS OPRHP | Kellyn.Johnson@parks.ny.gov_nysparks",
+   "Greenway Trails Error Reporter Data"
+  ],
+  [
+   "Empire State Trail",
+   "skip (not state/federal)",
+   "This layer was created by the Monroe County Department of En",
    "Trails"
   ],
   [
-   "I-205 Multi-Use State Trail",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "Recreation Areas view"
+   "This layer was created by the Monroe County Department of En",
+   "Trail_Access_Point"
   ],
   [
-   "I-205 Multi-Use State Trail",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "River Recreation view"
+   "Norton",
+   "Snowmobile Trails"
   ],
   [
-   "I-205 Multi-Use State Trail",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "DTSC_Admin",
-   "PCT_Trail"
+   "knoyes_oswegocounty",
+   "nys_trails_service"
   ],
   [
-   "I-205 Multi-Use State Trail",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "HollowayM_OIT",
-   "OHV Trails in Oregon"
+   "afrisbie_ATConservancy",
+   "Appalachian Trail Visitor Use Management"
   ],
   [
-   "I-205 Multi-Use State Trail",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "philip.woods_DLCD",
-   "Shoreline Access Inventory"
+   "Westcheser County Department of Planning,\nPaul Gisondo, GISP",
+   "WC Trail System"
   ],
   [
-   "I-205 Multi-Use State Trail",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "ODF State Forests GIS | State.Forests_ODF",
-   "AOP Planned Recreation Projects - Public"
+   "Warren County, New Jersey |  | akrouse",
+   "Federal Owned Property"
   ],
   [
-   "I-205 Multi-Use State Trail",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "dff416_UofMD",
-   "PCT Trail Map"
+   "Naqiy90",
+   "Albany Parks and Trails Access"
   ],
   [
-   "I-205 Multi-Use State Trail",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "Data: Pacific Crest Trail Association. Attributes: Pacific C",
-   "Pacific Crest Trail Center Line "
+   "DianaREYES5",
+   "GIS_Garlic_Mus_DR_WFL1"
   ],
   [
-   "I-205 Multi-Use State Trail",
-   "10 lines 0 km from pin",
-   "This database and GIS data are made available under the Open",
-   "rcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Portland_Metro_Trails_OREG/FeatureServer/0 TRAILNAME",
-   {
-    "I-205 Multi-Use Path - Connector": [
-     0,
-     "SYSTEMNAME=  SHAREDNAME=  SYSTEMTYPE=Other STATUS=Open TRLSURFACE=Hard Surface WIDTH=10-14 ACCESSIBLE=Not Evaluated HIKE=Yes ROADBIKE=Yes MTNBIKE=N/A EQUESTRIAN"
-    ],
-    "I-205 Multi-Use Path": [
-     0,
-     "SYSTEMNAME=  SHAREDNAME=  SYSTEMTYPE=Regional STATUS=Open TRLSURFACE=Hard Surface WIDTH=6-9 ACCESSIBLE=Not Evaluated HIKE=Yes ROADBIKE=Yes MTNBIKE=N/A EQUESTRIA"
-    ]
-   }
-  ],
-  [
-   "Estacada- Boring State Trail",
-   "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "Greater_Applegate_Trails view"
-  ],
-  [
-   "Estacada- Boring State Trail",
-   "skip (not state/federal)",
-   "ODF, State Forests, 12/2020 | State.Forests_ODF",
-   "StateForests_RecreationPtsOregonGOVcsv_PublicView"
-  ],
-  [
-   "Estacada- Boring State Trail",
-   "skip (not state/federal)",
-   "City of Boise | emwing",
-   "Boise Oregon Trail Monuments Layer"
-  ],
-  [
-   "Estacada- Boring State Trail",
-   "skip (not state/federal)",
-   "Metro Data Resource Center              drc@oregonmetro.gov ",
-   "Trails"
-  ],
-  [
-   "Estacada- Boring State Trail",
-   "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "Recreation Areas view"
-  ],
-  [
-   "Estacada- Boring State Trail",
-   "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "River Recreation view"
-  ],
-  [
-   "Estacada- Boring State Trail",
-   "skip (not state/federal)",
-   "DTSC_Admin",
-   "PCT_Trail"
-  ],
-  [
-   "Estacada- Boring State Trail",
-   "skip (not state/federal)",
-   "HollowayM_OIT",
-   "OHV Trails in Oregon"
-  ],
-  [
-   "Estacada- Boring State Trail",
-   "skip (not state/federal)",
-   "philip.woods_DLCD",
-   "Shoreline Access Inventory"
-  ],
-  [
-   "Estacada- Boring State Trail",
-   "skip (not state/federal)",
-   "ODF State Forests GIS | State.Forests_ODF",
-   "AOP Planned Recreation Projects - Public"
-  ],
-  [
-   "Estacada- Boring State Trail",
-   "skip (not state/federal)",
-   "dff416_UofMD",
-   "PCT Trail Map"
-  ],
-  [
-   "Estacada- Boring State Trail",
-   "skip (not state/federal)",
-   "Data: Pacific Crest Trail Association. Attributes: Pacific C",
-   "Pacific Crest Trail Center Line "
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "Greater_Applegate_Trails view"
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "ODF, State Forests, 12/2020 | State.Forests_ODF",
-   "StateForests_RecreationPtsOregonGOVcsv_PublicView"
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "City of Boise | emwing",
-   "Boise Oregon Trail Monuments Layer"
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "Metro Data Resource Center              drc@oregonmetro.gov ",
-   "Trails"
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "Recreation Areas view"
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "River Recreation view"
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "DTSC_Admin",
-   "PCT_Trail"
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "HollowayM_OIT",
-   "OHV Trails in Oregon"
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "philip.woods_DLCD",
-   "Shoreline Access Inventory"
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "ODF State Forests GIS | State.Forests_ODF",
-   "AOP Planned Recreation Projects - Public"
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "dff416_UofMD",
-   "PCT Trail Map"
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "Data: Pacific Crest Trail Association. Attributes: Pacific C",
-   "Pacific Crest Trail Center Line "
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "Eric Allen - GIS Specialist | WildWorkshop",
-   "WRFO_Travel_Management_Routes"
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "WildWorkshop",
-   "BLM_Travel20130304_intsct_Lst"
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Bureau of Land Management Trails"
-  ],
-  [
-   "Bolt Mountain BLM Historic Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS |  | NJDEPBGIS",
-   "Wildlife Management Area Roads in New Jersey"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "Greater_Applegate_Trails view"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "ODF, State Forests, 12/2020 | State.Forests_ODF",
-   "StateForests_RecreationPtsOregonGOVcsv_PublicView"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "City of Boise | emwing",
-   "Boise Oregon Trail Monuments Layer"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "Metro Data Resource Center              drc@oregonmetro.gov ",
-   "Trails"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "Recreation Areas view"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "River Recreation view"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "DTSC_Admin",
-   "PCT_Trail"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "HollowayM_OIT",
-   "OHV Trails in Oregon"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "philip.woods_DLCD",
-   "Shoreline Access Inventory"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "ODF State Forests GIS | State.Forests_ODF",
-   "AOP Planned Recreation Projects - Public"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "dff416_UofMD",
-   "PCT Trail Map"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "Data: Pacific Crest Trail Association. Attributes: Pacific C",
-   "Pacific Crest Trail Center Line "
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "Eric Allen - GIS Specialist | WildWorkshop",
-   "WRFO_Travel_Management_Routes"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "WildWorkshop",
-   "BLM_Travel20130304_intsct_Lst"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Bureau of Land Management Trails"
-  ],
-  [
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS |  | NJDEPBGIS",
-   "Wildlife Management Area Roads in New Jersey"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "Greater_Applegate_Trails view"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "ODF, State Forests, 12/2020 | State.Forests_ODF",
-   "StateForests_RecreationPtsOregonGOVcsv_PublicView"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "City of Boise | emwing",
-   "Boise Oregon Trail Monuments Layer"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "Metro Data Resource Center              drc@oregonmetro.gov ",
-   "Trails"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "Recreation Areas view"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "A Greater Applegate & Cartohawk LLC | megan@agreaterapplegat",
-   "River Recreation view"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "DTSC_Admin",
-   "PCT_Trail"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "HollowayM_OIT",
-   "OHV Trails in Oregon"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "philip.woods_DLCD",
-   "Shoreline Access Inventory"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "ODF State Forests GIS | State.Forests_ODF",
-   "AOP Planned Recreation Projects - Public"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "dff416_UofMD",
-   "PCT Trail Map"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "Data: Pacific Crest Trail Association. Attributes: Pacific C",
-   "Pacific Crest Trail Center Line "
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "Eric Allen - GIS Specialist | WildWorkshop",
-   "WRFO_Travel_Management_Routes"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "WildWorkshop",
-   "BLM_Travel20130304_intsct_Lst"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Bureau of Land Management Trails"
-  ],
-  [
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS |  | NJDEPBGIS",
-   "Wildlife Management Area Roads in New Jersey"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "lindseygordon",
-   "Nevada County Trails PUBLIC VL"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "County of Nevada, California | Nevada County GIS | CountyofN",
-   "Trails"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "South Yuba River Citizens League | CountyofNevada",
-   "SYRCL Trail Markers"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "lindseygordon",
-   "Nevada County Recreation Points PUBLIC VL"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "Nevada County GIS | weseconanalysis",
-   "Trail_NevCo_20221222"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "Nevada County GIS | CountyofNevada",
-   "Trails_Data_Updates_20230124"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "Bear Yuba Land Trust, 2023 | Jason@bylt.org",
-   "BYLT & Other Trails in Nevada County"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "This data is fictitious and was created by Esri for educatio",
-   "Sierra Nevada Snow and Ice Climbs"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "CountyofNevada",
-   "Trails_Data_Updates_20230124_DisplayPublicly_NoSnow"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "james.langehough.ctr_flh",
-   "Nez Perce Trail_WFL1"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "Idaho Department of Parks and Recreation | hbrookins_idpr",
-   "Idaho Centennial Trail Maintenance view"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "Idaho Department of Parks and Recreation | State_of_Idaho",
-   "Idaho Centennial Trail_View (Official Route)"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "Nevada County Arts Council | culturemap",
-   "Walks and Trails"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "Bear_Yuba_Land_Trust",
-   "BYLT_Other_Trails_in_Nevada_County_Sept2025"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "Eric Allen - GIS Specialist | WildWorkshop",
-   "WRFO_Travel_Management_Routes"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "WildWorkshop",
-   "BLM_Travel20130304_intsct_Lst"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Bureau of Land Management Trails"
-  ],
-  [
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS |  | NJDEPBGIS",
-   "Wildlife Management Area Roads in New Jersey"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "STRI GIS Office 2025 | stridataportal",
-   "Barro Colorado Island Trail System - 2025"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "STRI GIS Office 2025 | stridataportal",
-   "Barro Colorado Island Trail Marker System - 2025"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "JCOS_Admin",
-   "Colorado the Beautiful Trails"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "Original infrastructure data were obtained from the City of ",
-   "Recreational Trails \u2014 Colorado Springs"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "City of Pueblo, Colorado, Department of Information Technolo",
-   "Pueblo Area Multi Use Trail Mile Markers"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "Boulder County | Boulder County | BoulderCountyAdmin",
-   "BCPOS Trail Segment Closures (Public)"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "JCOS_Admin",
-   "Trails"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "This project was funded, in part, by the FHWA and/or FTA, DR",
-   "Trails Centerline"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "Pueblo Area Council of Governments. 211 E \"D\" Street, Pueblo",
-   "Pueblo Area Regional Multi Use Trail Network"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "TOW_ADMIN",
-   "Bike Map"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "Jefferson County Open Space (JCOS) | NatRes_Botany2",
-   "JCOS_Trails__Single_Symbol_test"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "Boulder County | Boulder County | BoulderCountyAdmin",
-   "BCPOS Managed Trail Segments (Public, Offline)"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "Elbert County, CO USA | ElbertCountyCO",
-   "Trails of Elbert County Colorado"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "City of Aurora - GIS Editing Group and Esri Training Service",
-   "Aurora High Line Canal Trail VL"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "Eric Allen - GIS Specialist | WildWorkshop",
-   "WRFO_Travel_Management_Routes"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "WildWorkshop",
-   "BLM_Travel20130304_intsct_Lst"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Bureau of Land Management Trails"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS |  | NJDEPBGIS",
-   "Wildlife Management Area Roads in New Jersey"
-  ],
-  [
-   "Tabeguache BLM Historic Trail",
-   "18 lines 6 km from pin",
-   "Colorado Parks and Wildlife, Natural Atlas | POS_bouldercoun",
-   "//services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15 name",
-   {
-    "Tabeguache Trail": [
-     75,
-     "feature_id=29783 name_1=  name_2=  name_3=  trail_num=  surface=dirt oneway=  type=Trail hiking=yes horse=yes bike=yes motorcycle=yes atv=no ohv_gt_50=no highwa"
-    ],
-    "Tabeguache (25 Mesa) Trail": [
-     6,
-     "feature_id=138569 name_1=Tabeguache Trail name_2=  name_3=  trail_num=544.1A surface=dirt oneway=  type=Trail hiking=yes horse=yes bike=yes motorcycle=no atv=no"
-    ]
-   }
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "El Camino Real de Tierra Adentro National Historic Trail"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe Watershed Trails"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe Trails Bus Stop Locations"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
-   "Multi Use Path Trails"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Las Campanas Sunset Golf Course Cart Trail"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe Country Club Cart Trail"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Marty Sanchez Links de Santa Fe Cart Trail"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Marty Sanchez Links de Santa Fe Great 28 Cart Trail"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
-   "Trails"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "US Forest Service Trails East"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "nmdot",
-   "Trails"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
-   "Trail Systems"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "NWS.EPZ_noaa",
-   "New Mexico Search and Rescue Boundaries"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Bureau of Land Management Trails"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "US Forest Service Trails"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Old Spanish National Historic Trail 2018"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe National Historic Trail"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe National Forest Trails"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Nature Conservation Trail Points"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe Trails Bus Route Time Points"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Trail System Tunnels"
-  ],
-  [
-   "Perea Nature National Recreation Trail",
-   "skip (not state/federal)",
-   "EMcRae_NMCDC",
-   "Continental Divide Trail in New Mexico"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "El Camino Real de Tierra Adentro National Historic Trail"
-  ],
-  [
-   "White Ridge National Recreation Trail",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe Watershed Trails"
+   "\u00a9 National Geographic Society | ericjanota",
+   "1923 United States Map (Web Mercator)"
   ],
   [
-   "White Ridge National Recreation Trail",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe Trails Bus Stop Locations"
+   "Zachary Hart, Eillen Allen, David Franzi, Mark Lesser | mles",
+   "Geospatial_Database_for_the_Altona_Flat_Rock"
   ],
   [
-   "White Ridge National Recreation Trail",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
-   "Multi Use Path Trails"
+   "gjimerson",
+   "Pennsy Trail Survey"
   ],
   [
-   "White Ridge National Recreation Trail",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Las Campanas Sunset Golf Course Cart Trail"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe Country Club Cart Trail"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Marty Sanchez Links de Santa Fe Cart Trail"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Marty Sanchez Links de Santa Fe Great 28 Cart Trail"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
-   "Trails"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "US Forest Service Trails East"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "nmdot",
-   "Trails"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
-   "Trail Systems"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "NWS.EPZ_noaa",
-   "New Mexico Search and Rescue Boundaries"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Bureau of Land Management Trails"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "US Forest Service Trails"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Old Spanish National Historic Trail 2018"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe National Historic Trail"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe National Forest Trails"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Nature Conservation Trail Points"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe Trails Bus Route Time Points"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Trail System Tunnels"
-  ],
-  [
-   "White Ridge National Recreation Trail",
-   "skip (not state/federal)",
-   "EMcRae_NMCDC",
-   "Continental Divide Trail in New Mexico"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "Yosemite National Park GIS | YOSE_GIS",
-   "Yosemite National Park - Trails - Open Data"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "City of Shasta Lake |  | dhedemark_shastalake",
-   "Regional Trails Network (Public View)"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "Mariposa County GIS | MariposaCounty",
-   "Canyon Creek Trail"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "Trinity County Resource Conservation District, Weaver Basin ",
-   "WBTS_Trails"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "rtcderek",
-   "Bay Area Trails Collaborative (BATC) Regional Trail Network"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "lindseygordon",
-   "Nevada County Trails PUBLIC VL"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "County of Nevada, California | Nevada County GIS | CountyofN",
-   "Trails"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "Sustainability & Resilience and Parks and Recreation, City o",
-   "Lower Mission Creek Loop v1_WFL2"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "Nathanial.Wigington",
-   "North Grove Trail Markers"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "Coastwalk California | CCTA | ben_CCTA",
-   "California Coastal Trail"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "South Yuba River Citizens League | CountyofNevada",
-   "SYRCL Trail Markers"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "DTSC_Admin",
-   "PCT_Trail"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Washington Geological Suvey | OpenData_WGS_wadnr",
-   "Ice_Age_Floods_National_Geologic_Trail_and_Sites"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "hbonawitz_ewu_eagles",
-   "Ice Age Floors National Geologic Trail_WFL1"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "C_Mertens_EWU",
-   "Carter Mertens Ice age Trails_WFL1"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Idaho Trails Association, Go West GIS | pam.i.bond",
-   "ITA Trail Reports (View)"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "james.langehough.ctr_flh",
-   "Nez Perce Trail_WFL1"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Idaho Trails Association, Go West GIS | pam.i.bond",
-   "ITA Trail Reporter Layer"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Josh Taylor, a local Eagle Scout, is credited for spawning t",
-   "Boise Greenbelt Mile Markers Barber Park to Ann Morrison Par"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Washington State Parks and Recreation Commission (WSPRC) GIS",
-   "Trail Mileposts (Public View)"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "hbrookins_idpr",
-   "Idaho Park N' Ski (View Only)"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "bannockcounty",
-   "Snow Trails"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "error <urlopen error timed out>",
-   "Idaho Department of Parks and Recreation | allison.radmall",
-   "https://gis2.idaho.gov/arcgis/rest/services/DPR/Idaho_Trails_Map/MapServer"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "error <urlopen error timed out>",
-   "Idaho Department of Parks & Recreation | Idaho_Department_of",
-   "https://gis2.idaho.gov/arcgis/rest/services/DPR/2017_Idaho_USFS_Trails/MapServer"
+   "Mohonk Preserve Staff | epestone@mohonkpreserve.org",
+   "Mohonk Preserve: Trails and Carriage Roads"
   ],
   [
-   "Ashton-Tetonia Trail State Park",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "Idaho Trails Association, Go West GIS | pam.i.bond",
-   "ITA Trail Reports (View)"
+   "NYS ITS GIS Program Office based on input from the NYS Legis",
+   "NY_Legislative_911trail"
   ],
   [
-   "Ashton-Tetonia Trail State Park",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "james.langehough.ctr_flh",
-   "Nez Perce Trail_WFL1"
+   "NYS ITS GIS Program Office based on input from the NYS Legis",
+   "NY_Senate_911trail"
   ],
   [
-   "Ashton-Tetonia Trail State Park",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "Idaho Trails Association, Go West GIS | pam.i.bond",
-   "ITA Trail Reporter Layer"
+   "Naqiy90",
+   "New York Transit Near Parks and Trails"
   ],
   [
-   "Ashton-Tetonia Trail State Park",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "Josh Taylor, a local Eagle Scout, is credited for spawning t",
-   "Boise Greenbelt Mile Markers Barber Park to Ann Morrison Par"
+   "\u00a9 National Geographic Society | ericjanota",
+   "1923 United States Map"
   ],
   [
-   "Ashton-Tetonia Trail State Park",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "Washington State Parks and Recreation Commission (WSPRC) GIS",
-   "Trail Mileposts (Public View)"
+   "mauryt_havredegracemd",
+   "911 Trail"
   ],
   [
-   "Ashton-Tetonia Trail State Park",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "hbrookins_idpr",
-   "Idaho Park N' Ski (View Only)"
+   "Naqiy90",
+   "New York Transit Near Parks and Trails_Clustered"
   ],
   [
-   "Ashton-Tetonia Trail State Park",
+   "Empire State Trail",
    "skip (not state/federal)",
-   "bannockcounty",
-   "Snow Trails"
+   "GBNRTC, GObike Buffalo | Jim_GObike",
+   "Cycling Facility"
   ],
   [
-   "Ashton-Tetonia Trail State Park",
+   "Empire State Trail",
    "2 lines 0 km from pin",
-   "State of Idaho | Idaho Parks and Recreation Department, Unit",
-   "arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer/128 NAME",
+   "NYS OPRHP | New York State Office of Parks, Recreation, and ",
+   "tps://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/EST_Public/FeatureServer/4 ParentLegName",
    {
-    "Ashton-Tetonia Trail": [
-     46,
-     "ID=2F JURISDICTION=Idaho Department of Parks & Recreation OFFICE=Harriman State Park PHONE=(208) 558-7368 Narrative=E-Bikes up to Class 2 allowed. One of two se"
+    "Empire State Trail (Cohoes to Watervliet) / Mohawk Hudson Bike Hike Trail (Albany to Peebles Island State Park)": [
+     4,
+     "Type=On Road Surface=Asphalt ParentLegID=CV01,EC28 UID={515dc8d7-0afa-4cc2-9120-b15b6ba1e1a2} GlobalID=0e2316a6-ca9b-47b9-af97-64052de7a380"
     ]
    }
   ],
   [
-   "Trail of the Coeur d'Alene's State Trail",
+   "Black River State Trail",
    "skip (not state/federal)",
-   "Idaho Trails Association, Go West GIS | pam.i.bond",
-   "ITA Trail Reports (View)"
+   "esmathers",
+   "New York State Waterfalls Trail Heads"
   ],
   [
-   "Trail of the Coeur d'Alene's State Trail",
+   "Black River State Trail",
    "skip (not state/federal)",
-   "james.langehough.ctr_flh",
-   "Nez Perce Trail_WFL1"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Trail of the Coeur d'Alene's State Trail",
+   "Black River State Trail",
    "skip (not state/federal)",
-   "Idaho Trails Association, Go West GIS | pam.i.bond",
-   "ITA Trail Reporter Layer"
+   "CutterL",
+   "Recreation Trails"
   ],
   [
-   "Trail of the Coeur d'Alene's State Trail",
+   "Black River State Trail",
    "skip (not state/federal)",
-   "Josh Taylor, a local Eagle Scout, is credited for spawning t",
-   "Boise Greenbelt Mile Markers Barber Park to Ann Morrison Par"
+   "akrouse",
+   "Warren Highlands Trail "
   ],
   [
-   "Trail of the Coeur d'Alene's State Trail",
+   "Black River State Trail",
    "skip (not state/federal)",
-   "Washington State Parks and Recreation Commission (WSPRC) GIS",
-   "Trail Mileposts (Public View)"
+   "ATConservancey",
+   "Tread Deficiencies and Prescribed Features"
   ],
   [
-   "Trail of the Coeur d'Alene's State Trail",
+   "Black River State Trail",
    "skip (not state/federal)",
-   "hbrookins_idpr",
-   "Idaho Park N' Ski (View Only)"
+   "srvDECGISPub@srv_cld.ny.gov_nysdec",
+   "Fishing Pier or Platform"
   ],
   [
-   "Trail of the Coeur d'Alene's State Trail",
+   "Black River State Trail",
    "skip (not state/federal)",
-   "bannockcounty",
-   "Snow Trails"
+   "Mohonk Preserve, Shawangunk Ridge Biodiversity Partnership, ",
+   "Shawangunk Ridge Trails and Carriage Roads"
   ],
   [
-   "Trail of the Coeur d'Alene's State Trail",
-   "6 lines 0 km from pin",
-   "State of Idaho | Idaho Parks and Recreation Department, Unit",
-   "arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer/128 NAME",
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "jchamberlin_FulCoNY",
+   "DECPointsofInterest_FC_HC"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "NYS ITS Geospatial Services, Saratoga County PLAN | NYSGIS_G",
+   "Saratoga County Trails"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "North Country Trail Association | jack.norland@ndsu.edu_NDSU",
+   "hem23"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "North Country Trail Association | Field_Programs_CDTC",
+   "North Country NST Shapefile"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "This layer was created by the Monroe County Department of En",
+   "Rochester NY Trails"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "Kellyn.Johnson@parks.ny.gov_nysparks",
+   "2025_2026_Snowmobile_Data view"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "NYS OPRHP | Kellyn.Johnson@parks.ny.gov_nysparks",
+   "Greenway Trails Error Reporter Data"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "This layer was created by the Monroe County Department of En",
+   "Trails"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "This layer was created by the Monroe County Department of En",
+   "Trail_Access_Point"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "Norton",
+   "Snowmobile Trails"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "knoyes_oswegocounty",
+   "nys_trails_service"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "afrisbie_ATConservancy",
+   "Appalachian Trail Visitor Use Management"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "Westcheser County Department of Planning,\nPaul Gisondo, GISP",
+   "WC Trail System"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "Warren County, New Jersey |  | akrouse",
+   "Federal Owned Property"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "Naqiy90",
+   "Albany Parks and Trails Access"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "DianaREYES5",
+   "GIS_Garlic_Mus_DR_WFL1"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "\u00a9 National Geographic Society | ericjanota",
+   "1923 United States Map (Web Mercator)"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "Zachary Hart, Eillen Allen, David Franzi, Mark Lesser | mles",
+   "Geospatial_Database_for_the_Altona_Flat_Rock"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "gjimerson",
+   "Pennsy Trail Survey"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "Mohonk Preserve Staff | epestone@mohonkpreserve.org",
+   "Mohonk Preserve: Trails and Carriage Roads"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "NYS ITS GIS Program Office based on input from the NYS Legis",
+   "NY_Legislative_911trail"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "NYS ITS GIS Program Office based on input from the NYS Legis",
+   "NY_Senate_911trail"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "Naqiy90",
+   "New York Transit Near Parks and Trails"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "\u00a9 National Geographic Society | ericjanota",
+   "1923 United States Map"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "mauryt_havredegracemd",
+   "911 Trail"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "Naqiy90",
+   "New York Transit Near Parks and Trails_Clustered"
+  ],
+  [
+   "Black River State Trail",
+   "skip (not state/federal)",
+   "GBNRTC, GObike Buffalo | Jim_GObike",
+   "Cycling Facility"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "esmathers",
+   "New York State Waterfalls Trail Heads"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "FTKaren",
+   "North Country Trail"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "CutterL",
+   "Recreation Trails"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "akrouse",
+   "Warren Highlands Trail "
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "ATConservancey",
+   "Tread Deficiencies and Prescribed Features"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "srvDECGISPub@srv_cld.ny.gov_nysdec",
+   "Fishing Pier or Platform"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "Mohonk Preserve, Shawangunk Ridge Biodiversity Partnership, ",
+   "Shawangunk Ridge Trails and Carriage Roads"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "jchamberlin_FulCoNY",
+   "DECPointsofInterest_FC_HC"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "NYS ITS Geospatial Services, Saratoga County PLAN | NYSGIS_G",
+   "Saratoga County Trails"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "North Country Trail Association | jack.norland@ndsu.edu_NDSU",
+   "hem23"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "North Country Trail Association | Field_Programs_CDTC",
+   "North Country NST Shapefile"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "This layer was created by the Monroe County Department of En",
+   "Rochester NY Trails"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "Kellyn.Johnson@parks.ny.gov_nysparks",
+   "2025_2026_Snowmobile_Data view"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "NYS OPRHP | Kellyn.Johnson@parks.ny.gov_nysparks",
+   "Greenway Trails Error Reporter Data"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "This layer was created by the Monroe County Department of En",
+   "Trails"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "This layer was created by the Monroe County Department of En",
+   "Trail_Access_Point"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "Norton",
+   "Snowmobile Trails"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "knoyes_oswegocounty",
+   "nys_trails_service"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "afrisbie_ATConservancy",
+   "Appalachian Trail Visitor Use Management"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "Westcheser County Department of Planning,\nPaul Gisondo, GISP",
+   "WC Trail System"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "Warren County, New Jersey |  | akrouse",
+   "Federal Owned Property"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "Naqiy90",
+   "Albany Parks and Trails Access"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "DianaREYES5",
+   "GIS_Garlic_Mus_DR_WFL1"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "\u00a9 National Geographic Society | ericjanota",
+   "1923 United States Map (Web Mercator)"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "Zachary Hart, Eillen Allen, David Franzi, Mark Lesser | mles",
+   "Geospatial_Database_for_the_Altona_Flat_Rock"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "gjimerson",
+   "Pennsy Trail Survey"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "Mohonk Preserve Staff | epestone@mohonkpreserve.org",
+   "Mohonk Preserve: Trails and Carriage Roads"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "NYS ITS GIS Program Office based on input from the NYS Legis",
+   "NY_Legislative_911trail"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "NYS ITS GIS Program Office based on input from the NYS Legis",
+   "NY_Senate_911trail"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "Naqiy90",
+   "New York Transit Near Parks and Trails"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "\u00a9 National Geographic Society | ericjanota",
+   "1923 United States Map"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "mauryt_havredegracemd",
+   "911 Trail"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "Naqiy90",
+   "New York Transit Near Parks and Trails_Clustered"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "skip (not state/federal)",
+   "GBNRTC, GObike Buffalo | Jim_GObike",
+   "Cycling Facility"
+  ],
+  [
+   "Catharine Valley State Trail",
+   "1 lines 7 km from pin",
+   "New York State Department of Environmental Conservation |  |",
+   "ps://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/DEC_Trails/FeatureServer/1 NAME",
    {
-    "Trail of The Coeur D' Alenes": [
-     233,
-     "JURISDICTION=Idaho Department of Parks & Recreation OFFICE=Trail of the Coeur d' Alenes PHONE=(208) 682-3814 Narrative=Harrison--Cataldo segment; E-Bikes up to "
+    "Catharine Valley Trail ": [
+     2,
+     "FACILITY=Catharine Creek WMA ASSET=FOOT TRAIL UNIT=Schuyler 98 ATV=N FOOT=Y HORSE=N BIKE=Y XC=Y MOTORV=N SNOWMB=N ADMIN=Y ACCESSIBLE=Y MAPPWD=N DESCRIP=Part Of "
     ]
    }
   ],
   [
-   "Idaho Centennial Trail State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Idaho Trails Association, Go West GIS | pam.i.bond",
-   "ITA Trail Reports (View)"
+   "esmathers",
+   "New York State Waterfalls Trail Heads"
   ],
   [
-   "Idaho Centennial Trail State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "james.langehough.ctr_flh",
-   "Nez Perce Trail_WFL1"
+   "FTKaren",
+   "North Country Trail"
   ],
   [
-   "Idaho Centennial Trail State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Idaho Trails Association, Go West GIS | pam.i.bond",
-   "ITA Trail Reporter Layer"
+   "CutterL",
+   "Recreation Trails"
   ],
   [
-   "Idaho Centennial Trail State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Josh Taylor, a local Eagle Scout, is credited for spawning t",
-   "Boise Greenbelt Mile Markers Barber Park to Ann Morrison Par"
+   "akrouse",
+   "Warren Highlands Trail "
   ],
   [
-   "Idaho Centennial Trail State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Washington State Parks and Recreation Commission (WSPRC) GIS",
-   "Trail Mileposts (Public View)"
+   "ATConservancey",
+   "Tread Deficiencies and Prescribed Features"
   ],
   [
-   "Idaho Centennial Trail State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "hbrookins_idpr",
-   "Idaho Park N' Ski (View Only)"
+   "srvDECGISPub@srv_cld.ny.gov_nysdec",
+   "Fishing Pier or Platform"
   ],
   [
-   "Idaho Centennial Trail State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "bannockcounty",
-   "Snow Trails"
+   "Mohonk Preserve, Shawangunk Ridge Biodiversity Partnership, ",
+   "Shawangunk Ridge Trails and Carriage Roads"
   ],
   [
-   "Idaho Centennial Trail State Trail",
-   "34 lines 0 km from pin",
-   "Idaho Department of Parks and Recreation | State_of_Idaho",
-   "l65jCX8/arcgis/rest/services/Idaho_Centennial_Trail_(Official_Route)_view/FeatureServer/52 Name",
-   {
-    "Idaho Centennial Trail": [
-     1477,
-     ""
-    ]
-   }
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Washington Geological Suvey | OpenData_WGS_wadnr",
-   "Ice_Age_Floods_National_Geologic_Trail_and_Sites"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "hbonawitz_ewu_eagles",
-   "Ice Age Floors National Geologic Trail_WFL1"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "C_Mertens_EWU",
-   "Carter Mertens Ice age Trails_WFL1"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Phillip Pearson: phillippearsonboz@gmail.com Nick Pombo: npo",
-   "Bridger Ridge Trail Online Map"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Thank you to MSL, MDT, County Govts, Federal, Tribal | DPHHS",
-   "Montana Transportation Framework"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Glacier National Park GIS Program | CN0401@mt.gov_MTDNRC",
-   "Glacier National Park Trails"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Phillip Pearson: phillippearsonboz@gmail.com Nick Pombo: npo",
-   "Final Bridger Ridge Trail Service Learning"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "james.langehough.ctr_flh",
-   "Nez Perce Trail_WFL1"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "dwallace_Lake_County_MT",
-   "Railroads_Adjacent_Counties"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Colesworthy",
-   "Teton_Bridges"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Colesworthy",
-   "Teton_Co_Railroads"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "cody_sifford_SKC",
-   "RoadsFlathead"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Stillwater_DES",
-   "Bridges"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Stillwater_DES",
-   "Major Hwy "
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Stillwater_DES",
-   "Primary Route"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Stillwater_DES",
-   "Interstate Hwy"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Stillwater_DES",
-   "Secondary Route"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Hyalite_Eng",
-   "PJA Roads"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Hyalite_Eng",
-   "PJA_Roads_PairwiseErase"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "error URL can't contain control characters. '/yhIfgvwxY3mhZjvt/arcgis/rest/services/Ye",
-   "National Park Service, Intermountain Region, Yellowstone Nat",
-   "gis.com/yhIfgvwxY3mhZjvt/arcgis/rest/services/Yellowstone Trails Geodatabase/FeatureServer"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "Ben_Donatelle_wa_rco",
-   "WA RCO Trails Database Public View"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "awelsh_avenuecon",
-   "Washington Dome Base Layers"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "Loudoun County GIS | Loudoun County, Virginia | LoudounCount",
-   "Loudoun Sidewalks & Trails"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "marysvillewa_gis",
-   "Marysville Parks, Recreation Areas, Amenities, and Trails"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "King County | King County | KingCounty",
-   "Trails in King County"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "King County | King County | KingCounty",
-   "Generalized Regional Trails for Online Park Map (ParkFinder)"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Historic_Trails"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "https://www.culturaltourismdc.org | DCGISopendata",
-   "Heritage Trails"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Pipes"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Sections"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "District Department of Transportation | DCGISopendata",
-   "Bike Trails"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Amenities"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Fences_and_Gates"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Other_Signs"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "tmcketta_msvl",
-   "Marysville Bikeable Routes"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Furniture"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Traffic_Signs"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "Washington County | dcbrand",
-   "Trails2024"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "CSI_TEAM",
-   "GWNF_Trails_near_ShenMtn"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "This layer was digitized from a source PDF created by Michae",
-   "Trail System"
-  ],
-  [
-   "Spokane River Centennial State Trail",
-   "skip (not state/federal)",
-   "https://www.culturaltourismdc.org | DCGISopendata",
-   "Heritage Trail Signs and Plaques"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "Ben_Donatelle_wa_rco",
-   "WA RCO Trails Database Public View"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "awelsh_avenuecon",
-   "Washington Dome Base Layers"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "Loudoun County GIS | Loudoun County, Virginia | LoudounCount",
-   "Loudoun Sidewalks & Trails"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "marysvillewa_gis",
-   "Marysville Parks, Recreation Areas, Amenities, and Trails"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "King County | King County | KingCounty",
-   "Trails in King County"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "King County | King County | KingCounty",
-   "Generalized Regional Trails for Online Park Map (ParkFinder)"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Historic_Trails"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "https://www.culturaltourismdc.org | DCGISopendata",
-   "Heritage Trails"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Pipes"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Sections"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "District Department of Transportation | DCGISopendata",
-   "Bike Trails"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Amenities"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Fences_and_Gates"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Other_Signs"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "tmcketta_msvl",
-   "Marysville Bikeable Routes"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Furniture"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Traffic_Signs"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "Washington County | dcbrand",
-   "Trails2024"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "CSI_TEAM",
-   "GWNF_Trails_near_ShenMtn"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "This layer was digitized from a source PDF created by Michae",
-   "Trail System"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "skip (not state/federal)",
-   "https://www.culturaltourismdc.org | DCGISopendata",
-   "Heritage Trail Signs and Plaques"
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "2 lines 29 km from pin",
-   "Washington State Parks and Recreation | Washington State Par",
-   ".com/4LKAHwqnBooVDUlX/arcgis/rest/services/Winter_Rec_Non_Motorized_Trails/FeatureServer/0 NAME",
-   {
-    "Palouse to Cascades Trail": [
-     12,
-     "DIFFICULTY=Easiest Comment=shared with sled dogs groomfunds=State Parks Rd_Tr_ID=  AreaCode=Crystal Springs NM GlobalID=14c1588c-bbac-4a0f-8f1d-9cdd415417ca"
-    ]
-   }
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "2 lines 29 km from pin",
-   "Washington State Parks and Recreation | Washington State Par",
-   ".com/4LKAHwqnBooVDUlX/arcgis/rest/services/Winter_Rec_Non_Motorized_Trails/FeatureServer/0 NAME",
-   {
-    "Palouse to Cascades Trail": [
-     12,
-     "DIFFICULTY=Easiest Comment=shared with sled dogs groomfunds=State Parks Rd_Tr_ID=  AreaCode=Crystal Springs NM GlobalID=14c1588c-bbac-4a0f-8f1d-9cdd415417ca"
-    ]
-   }
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "1 lines 36 km from pin",
-   "Washington State Parks and Recreation | Washington State Par",
-   "m/4LKAHwqnBooVDUlX/arcgis/rest/services/PARKS__Winter_Rec_Motorized_Trails/FeatureServer/0 ProperName",
-   {
-    "Palouse to Cascades Trail": [
-     10,
-     "Name=JOHN Type_of_Tr=Multipurpose Groomed AreaCode=Crystal Springs CommonName=Palouse to Cascades Trail Comments=  Owner=  GlobalID=5ceda722-195c-4589-9d71-ca1c"
-    ]
-   }
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "1 lines 36 km from pin",
-   "Washington State Parks and Recreation | Washington State Par",
-   "m/4LKAHwqnBooVDUlX/arcgis/rest/services/PARKS__Winter_Rec_Motorized_Trails/FeatureServer/0 ProperName",
-   {
-    "Palouse to Cascades Trail": [
-     10,
-     "Name=JOHN Type_of_Tr=Multipurpose Groomed AreaCode=Crystal Springs CommonName=Palouse to Cascades Trail Comments=  Owner=  GlobalID=5ceda722-195c-4589-9d71-ca1c"
-    ]
-   }
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "1 lines 36 km from pin",
-   "Washington State Parks and Recreation | Washington State Par",
-   "m/4LKAHwqnBooVDUlX/arcgis/rest/services/PARKS__Winter_Rec_Motorized_Trails/FeatureServer/0 CommonName",
-   {
-    "Palouse to Cascades Trail": [
-     10,
-     "Name=JOHN Type_of_Tr=Multipurpose Groomed AreaCode=Crystal Springs ProperName=Palouse to Cascades Trail Comments=  Owner=  GlobalID=5ceda722-195c-4589-9d71-ca1c"
-    ]
-   }
-  ],
-  [
-   "Palouse to Cascades State Park State Trail",
-   "1 lines 36 km from pin",
-   "Washington State Parks and Recreation | Washington State Par",
-   "m/4LKAHwqnBooVDUlX/arcgis/rest/services/PARKS__Winter_Rec_Motorized_Trails/FeatureServer/0 CommonName",
-   {
-    "Palouse to Cascades Trail": [
-     10,
-     "Name=JOHN Type_of_Tr=Multipurpose Groomed AreaCode=Crystal Springs ProperName=Palouse to Cascades Trail Comments=  Owner=  GlobalID=5ceda722-195c-4589-9d71-ca1c"
-    ]
-   }
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "Ben_Donatelle_wa_rco",
-   "WA RCO Trails Database Public View"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "awelsh_avenuecon",
-   "Washington Dome Base Layers"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "Loudoun County GIS | Loudoun County, Virginia | LoudounCount",
-   "Loudoun Sidewalks & Trails"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "marysvillewa_gis",
-   "Marysville Parks, Recreation Areas, Amenities, and Trails"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "King County | King County | KingCounty",
-   "Trails in King County"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "King County | King County | KingCounty",
-   "Generalized Regional Trails for Online Park Map (ParkFinder)"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Historic_Trails"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "https://www.culturaltourismdc.org | DCGISopendata",
-   "Heritage Trails"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Pipes"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Sections"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "District Department of Transportation | DCGISopendata",
-   "Bike Trails"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Amenities"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Fences_and_Gates"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Other_Signs"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "tmcketta_msvl",
-   "Marysville Bikeable Routes"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Furniture"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Traffic_Signs"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "Washington County | dcbrand",
-   "Trails2024"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "CSI_TEAM",
-   "GWNF_Trails_near_ShenMtn"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "This layer was digitized from a source PDF created by Michae",
-   "Trail System"
-  ],
-  [
-   "Lewis and Clark Trail State Park",
-   "skip (not state/federal)",
-   "https://www.culturaltourismdc.org | DCGISopendata",
-   "Heritage Trail Signs and Plaques"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Washington Geological Suvey | OpenData_WGS_wadnr",
-   "Ice_Age_Floods_National_Geologic_Trail_and_Sites"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "hbonawitz_ewu_eagles",
-   "Ice Age Floors National Geologic Trail_WFL1"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "C_Mertens_EWU",
-   "Carter Mertens Ice age Trails_WFL1"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Ben_Donatelle_wa_rco",
-   "WA RCO Trails Database Public View"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "awelsh_avenuecon",
-   "Washington Dome Base Layers"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Loudoun County GIS | Loudoun County, Virginia | LoudounCount",
-   "Loudoun Sidewalks & Trails"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "marysvillewa_gis",
-   "Marysville Parks, Recreation Areas, Amenities, and Trails"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "King County | King County | KingCounty",
-   "Trails in King County"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "King County | King County | KingCounty",
-   "Generalized Regional Trails for Online Park Map (ParkFinder)"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Historic_Trails"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "https://www.culturaltourismdc.org | DCGISopendata",
-   "Heritage Trails"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Pipes"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Sections"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "District Department of Transportation | DCGISopendata",
-   "Bike Trails"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Amenities"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Fences_and_Gates"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Other_Signs"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "tmcketta_msvl",
-   "Marysville Bikeable Routes"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Furniture"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Traffic_Signs"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Washington County | dcbrand",
-   "Trails2024"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "CSI_TEAM",
-   "GWNF_Trails_near_ShenMtn"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "This layer was digitized from a source PDF created by Michae",
-   "Trail System"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "https://www.culturaltourismdc.org | DCGISopendata",
-   "Heritage Trail Signs and Plaques"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Ben_Donatelle_wa_rco",
-   "WA RCO Trails Database Public View"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "awelsh_avenuecon",
-   "Washington Dome Base Layers"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Loudoun County GIS | Loudoun County, Virginia | LoudounCount",
-   "Loudoun Sidewalks & Trails"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "marysvillewa_gis",
-   "Marysville Parks, Recreation Areas, Amenities, and Trails"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "King County | King County | KingCounty",
-   "Trails in King County"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "King County | King County | KingCounty",
-   "Generalized Regional Trails for Online Park Map (ParkFinder)"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Historic_Trails"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "https://www.culturaltourismdc.org | DCGISopendata",
-   "Heritage Trails"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Pipes"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Sections"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "District Department of Transportation | DCGISopendata",
-   "Bike Trails"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Amenities"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Fences_and_Gates"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Other_Signs"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "tmcketta_msvl",
-   "Marysville Bikeable Routes"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Furniture"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Traffic_Signs"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Washington County | dcbrand",
-   "Trails2024"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "CSI_TEAM",
-   "GWNF_Trails_near_ShenMtn"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "This layer was digitized from a source PDF created by Michae",
-   "Trail System"
-  ],
-  [
-   "Columbia Plateau State Park Trail State Trail",
-   "skip (not state/federal)",
-   "https://www.culturaltourismdc.org | DCGISopendata",
-   "Heritage Trail Signs and Plaques"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Ben_Donatelle_wa_rco",
-   "WA RCO Trails Database Public View"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "awelsh_avenuecon",
-   "Washington Dome Base Layers"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Loudoun County GIS | Loudoun County, Virginia | LoudounCount",
-   "Loudoun Sidewalks & Trails"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "marysvillewa_gis",
-   "Marysville Parks, Recreation Areas, Amenities, and Trails"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "King County | King County | KingCounty",
-   "Trails in King County"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "King County | King County | KingCounty",
-   "Generalized Regional Trails for Online Park Map (ParkFinder)"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Historic_Trails"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "https://www.culturaltourismdc.org | DCGISopendata",
-   "Heritage Trails"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Pipes"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Sections"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "District Department of Transportation | DCGISopendata",
-   "Bike Trails"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Amenities"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Fences_and_Gates"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Other_Signs"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "tmcketta_msvl",
-   "Marysville Bikeable Routes"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
-   "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Furniture"
-  ],
-  [
-   "Willapa Hills State Park Trail State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Traffic_Signs"
+   "jchamberlin_FulCoNY",
+   "DECPointsofInterest_FC_HC"
   ],
   [
-   "Willapa Hills State Park Trail State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Washington County | dcbrand",
-   "Trails2024"
+   "NYS ITS Geospatial Services, Saratoga County PLAN | NYSGIS_G",
+   "Saratoga County Trails"
   ],
   [
-   "Willapa Hills State Park Trail State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "CSI_TEAM",
-   "GWNF_Trails_near_ShenMtn"
+   "North Country Trail Association | jack.norland@ndsu.edu_NDSU",
+   "hem23"
   ],
   [
-   "Willapa Hills State Park Trail State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "This layer was digitized from a source PDF created by Michae",
-   "Trail System"
+   "North Country Trail Association | Field_Programs_CDTC",
+   "North Country NST Shapefile"
   ],
   [
-   "Willapa Hills State Park Trail State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "https://www.culturaltourismdc.org | DCGISopendata",
-   "Heritage Trail Signs and Plaques"
+   "This layer was created by the Monroe County Department of En",
+   "Rochester NY Trails"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Town of Leesburg, VA | jkucenic_TOL_VA",
-   "Washington and Old Dominion Trail"
+   "Kellyn.Johnson@parks.ny.gov_nysparks",
+   "2025_2026_Snowmobile_Data view"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Ben_Donatelle_wa_rco",
-   "WA RCO Trails Database Public View"
+   "NYS OPRHP | Kellyn.Johnson@parks.ny.gov_nysparks",
+   "Greenway Trails Error Reporter Data"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "awelsh_avenuecon",
-   "Washington Dome Base Layers"
+   "This layer was created by the Monroe County Department of En",
+   "Trails"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Loudoun County GIS | Loudoun County, Virginia | LoudounCount",
-   "Loudoun Sidewalks & Trails"
+   "This layer was created by the Monroe County Department of En",
+   "Trail_Access_Point"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "marysvillewa_gis",
-   "Marysville Parks, Recreation Areas, Amenities, and Trails"
+   "Norton",
+   "Snowmobile Trails"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "King County | King County | KingCounty",
-   "Trails in King County"
+   "knoyes_oswegocounty",
+   "nys_trails_service"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "King County | King County | KingCounty",
-   "Generalized Regional Trails for Online Park Map (ParkFinder)"
+   "afrisbie_ATConservancy",
+   "Appalachian Trail Visitor Use Management"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Historic_Trails"
+   "Westcheser County Department of Planning,\nPaul Gisondo, GISP",
+   "WC Trail System"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "https://www.culturaltourismdc.org | DCGISopendata",
-   "Heritage Trails"
+   "Warren County, New Jersey |  | akrouse",
+   "Federal Owned Property"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Pipes"
+   "Naqiy90",
+   "Albany Parks and Trails Access"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Sections"
+   "DianaREYES5",
+   "GIS_Garlic_Mus_DR_WFL1"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "District Department of Transportation | DCGISopendata",
-   "Bike Trails"
+   "\u00a9 National Geographic Society | ericjanota",
+   "1923 United States Map (Web Mercator)"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Amenities"
+   "Zachary Hart, Eillen Allen, David Franzi, Mark Lesser | mles",
+   "Geospatial_Database_for_the_Altona_Flat_Rock"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Fences_and_Gates"
+   "gjimerson",
+   "Pennsy Trail Survey"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Other_Signs"
+   "Mohonk Preserve Staff | epestone@mohonkpreserve.org",
+   "Mohonk Preserve: Trails and Carriage Roads"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "tmcketta_msvl",
-   "Marysville Bikeable Routes"
+   "NYS ITS GIS Program Office based on input from the NYS Legis",
+   "NY_Legislative_911trail"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Furniture"
+   "NYS ITS GIS Program Office based on input from the NYS Legis",
+   "NY_Senate_911trail"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Pierce County, Washington |  | PCWA_OpenData",
-   "Foothills_Trail_Traffic_Signs"
+   "Naqiy90",
+   "New York Transit Near Parks and Trails"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "Washington County | dcbrand",
-   "Trails2024"
+   "\u00a9 National Geographic Society | ericjanota",
+   "1923 United States Map"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "CSI_TEAM",
-   "GWNF_Trails_near_ShenMtn"
+   "mauryt_havredegracemd",
+   "911 Trail"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "This layer was digitized from a source PDF created by Michae",
-   "Trail System"
+   "Naqiy90",
+   "New York Transit Near Parks and Trails_Clustered"
   ],
   [
-   "Klickitat State Park State Trail",
+   "WAG State Trail",
    "skip (not state/federal)",
-   "https://www.culturaltourismdc.org | DCGISopendata",
-   "Heritage Trail Signs and Plaques"
+   "GBNRTC, GObike Buffalo | Jim_GObike",
+   "Cycling Facility"
   ]
  ]
 }
