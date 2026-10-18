@@ -1,12 +1,11 @@
 # FL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 460** parks joined to official land (same name + same kind of place). **52** to check by hand, **160** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **249 of 460** parks joined to official land (same name + same kind of place). **51** to check by hand, **160** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0245** Lake Wales Ridge Wildlife Management Area (Wildlife Management Area) → Lake Wales Ridge Wildlife and Environmental Area (~15,446 ac, similar name); Lake Wales Ridge National Wildlife Refuge (~1,898 ac, same name, different kind of place); Lake Wales Ridge National Wildlife Refuge (~1,893 ac, same name, different kind of place)
 - **US-0635** St. George State Park (State Park) → Dr. Julian G. Bruce St. George Island State Park (~2,024 ac, similar name)
-- **US-0658** Timucuan Preserve National Conservation Area (National Conservation Area) → Timucuan Ecological and Historic Preserve (~16,646 ac, similar name)
 - **US-0896** Wekiva National Wild and Scenic River (National Wild and Scenic River) → Lower Wekiva River Preserve State Park (~17,220 ac, similar name); Seminole State Forest (~29,027 ac, the POTA pin is inside it (different name))
 - **US-10594** Manatee Springs South State Conservation Area (State Conservation Area) → Manatee Springs State Park (~2,442 ac, same name, different kind of place)
 - **US-12133** Catfish Creek State Conservation Area (State Conservation Area) → Allen David Broussard Catfish Creek Preserve State Park (~8,329 ac, similar name)
@@ -17,7 +16,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 460** parks joined
 - **US-1918** St. Joseph Peninsula State Park (State Park) → T. H. Stone Memorial St. Joseph Peninsula State Park (~2,791 ac, similar name)
 - **US-1922** Three Rivers State Park (State Park) → Seminole Recreation Area (~17,724 ac, the POTA pin is inside it (different name))
 - **US-3607** Beker-Wingate Creek State Park (State Park) → Beker (~1,743 ac, similar name)
-- **US-3611** Cedar Key Scrub Reserve State Conservation Area (State Conservation Area) → Cedar Key Scrub State Reserve (~5,033 ac, same name, different kind of place)
 - **US-3621** Fort Foster State Historic Site (State Historic Site) → Hillsborough River State Park (~3,319 ac, the POTA pin is inside it (different name))
 - **US-3624** Gainesville-Hawthorne State Trail (State Trail) → Paynes Prairie Preserve State Park (~21,659 ac, the POTA pin is inside it (different name))
 - **US-3625** Gamble Plantation State Park (State Park) → Judah P. Benjamin Confederate Memorial at Gamble Plantation Historic State Park (~33 ac, similar name)
@@ -47,8 +45,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 460** parks joined
 - **US-6320** Platt Branch Wildlife Area (Wildlife Area) → Platt Branch Mitigation Park Wildlife and Environmental Area (~1,972 ac, similar name)
 - **US-6324** Split Oak Forest Wildlife Area (Wildlife Area) → Split Oak Forest Mitigation Park Wildlife and Environmental Area (~1,772 ac, similar name)
 - **US-6325** Suwannee Ridge Wildlife Area (Wildlife Area) → Suwannee Ridge Mitigation Park Wildlife and Environmental Area (~1,428 ac, similar name)
+- **US-6326** T.M. Goodwin Wildlife Management Area (Wildlife Management Area) → T. M. Goodwin Waterfowl Management Area (~6,526 ac, similar name)
+- **US-6327** Tenoroc Wildlife Area (Wildlife Area) → Tenoroc Fish Management Area (~7,528 ac, similar name)
 - **US-6331** Watermelon Pond Wildlife Area (Wildlife Area) → Watermelon Pond Mitigation Park Wildlife and Environmental Area (~1,288 ac, similar name)
-- **US-6744** Terra Ceia Preserve Frog Creek State Conservation Area (State Conservation Area) → Terra Ceia Preserve State Park (~1,948 ac, same name, different kind of place)
 - **US-7879** Citrus Wildlife Management Area (Wildlife Management Area) → Withlacoochee State Forest (~165,562 ac, the POTA pin is inside it (different name))
 - **US-8326** Apalachicola River State Conservation Area (State Conservation Area) → Apalachicola National Forest (~576,062 ac, same name, different kind of place)
 - **US-8327** Blackwater River State Conservation Area (State Conservation Area) → Blackwater River State Forest (~206,192 ac, same name, different kind of place)
@@ -227,6 +226,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 460** parks joined
 
 - Tortugas Ecological Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~116,088 ac
 - Apalachicola National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~114,616 ac
+- Everglades National Park Expansion · NP · NPS · ~109,347 ac
 - Water Conservation Area 3B · SRMA · UNK · ~101,526 ac
 - Pinhook Purchase Unit · NF · Forest Service Region 08 Southern · ~89,284 ac
 - Rookery Bay National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~87,948 ac
@@ -239,7 +239,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 460** parks joined
 - Raiford Wildlife Management Area · PCON · PRIDE Enterprises, Inc. · ~17,793 ac
 - Seminole Recreation Area · REC · Mobile · ~17,724 ac
 - John C. and Mariana Jones/Hungryland Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~17,059 ac
-- Timucuan Ecological and Historic Preserve · NCA · NPS · ~16,646 ac
 - Lake Wales Ridge Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~15,446 ac
 - Yucca Pens Unit · SCA · FL Fish and Wildlife Conservation Commission · ~15,044 ac
 - Juniper Prairie Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~14,298 ac
@@ -248,13 +247,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 460** parks joined
 - Ordway-Swisher Biological Station · SCA · University of Florida · ~9,141 ac
 - Mud Swamp/New River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,075 ac
 - Alexander Springs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,888 ac
+- Tenoroc Fish Management Area · SCA · FL Fish and Wildlife Conservation Commission · ~7,528 ac
 - Everglades Headwaters National Wildlife Refuge And Conservation Area · NWR · Everglades Headwaters National Wildlife Refuge And Conservation Area · ~7,031 ac
+- T. M. Goodwin Waterfowl Management Area · SCA · FL Fish and Wildlife Conservation Commission · ~6,526 ac
 - St. Johns National Wildlife Refuge · NWR · ST. JOHNS NATIONAL WILDLIFE REFUGE · ~6,431 ac
 - St. Johns National Wildlife Refuge · NWR · St. Johns National Wildlife Refuge · ~6,431 ac
 - Osprey Unit · SCA · FL Fish and Wildlife Conservation Commission · ~6,103 ac
 - St. Joseph Bay State Buffer Preserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~5,589 ac
 - Balm-Boyette Scrub · LOTH · Hillsborough County · ~5,439 ac
-- Cedar Key Scrub State Reserve · SCA · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~5,033 ac
 - Silver River State Park · SP · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~4,419 ac
 - Florida Keys Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~3,962 ac
 - Everglades Headwaters National Wildlife Refuge And Conservation Area · NWR · EVERGLADES HEADWATERS NATIONAL WILDLIFE REFUGE AND CONSERVATION AREA · ~3,855 ac
@@ -284,4 +284,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **248 of 460** parks joined
 - Split Oak Forest Mitigation Park Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~1,772 ac
 - Shell Key Preserve · SCA · Pinellas County · ~1,754 ac
 - Beker · SOTH · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~1,743 ac
-- Micco Scrub Sanctuary · SCA · Brevard County · ~1,724 ac

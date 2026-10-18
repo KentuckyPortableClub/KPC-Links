@@ -4,7 +4,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **182 of 222** parks joined
 
 ## To check (not joined)
 
-- **US-0689** Big Thicket Preserve National Conservation Area (National Conservation Area) → Big Thicket National Preserve (~108,722 ac, similar name)
 - **US-10276** Star of the Republic Museum State Historic Site (State Historic Site) → Washington-on-the-Brazos State Historic Site (~295 ac, the POTA pin is inside it (different name))
 - **US-2984** Atlanta State Park (State Park) → Wright Patman Recreation Area (~81,011 ac, the POTA pin is inside it (different name))
 - **US-3032** Lake Whitney State Park (State Park) → Whitney Point Recreation Area (~45,028 ac, the POTA pin is inside it (different name))
@@ -18,6 +17,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **182 of 222** parks joined
 - **US-3507** Lost Maples Natural State Conservation Area (State Conservation Area) → Lost Maples State Natural Area (~2,878 ac, same name, different kind of place)
 - **US-4370** Caddo National Grasslands Wildlife Management Area (Wildlife Management Area) → Caddo National Grassland (~17,722 ac, similar name)
 - **US-4419** I.D. Farichild State Forest (State Forest) → I.D. FairChild State Forest (~1,727 ac, the POTA pin is inside it (different name))
+- **US-4421** Masterson State Forest (State Forest) → Paul N. Masterson Memorial State Forest (~520 ac, similar name)
 - **US-4514** Cibola National Forest (National Forest) → Sandia Mountain Wilderness (~37,690 ac, the POTA pin is inside it (different name))
 - **US-6538** Barrington Plantation State Historic Site (State Historic Site) → Washington-on-the-Brazos State Historic Site (~295 ac, the POTA pin is inside it (different name))
 - **US-6572** Las Palomas , Lower Rio Grande Valley Units Wildlife Management Area (Wildlife Management Area) → Lower Rio Grande Valley National Wildlife Refuge (~89,898 ac, similar name); Lower Rio Grande Valley National Wildlife Refuge (~88,266 ac, similar name); Las Palomas Wildlife Management Area (~601 ac, similar name); Las Palomas Wildlife Management Area (~220 ac, similar name); Las Palomas Wildlife Management Area (~122 ac, similar name)
@@ -60,7 +60,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **182 of 222** parks joined
 - Taos Plateau ·  · BLM recreation sites · ~186,840 ac
 - Sabine National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~123,814 ac
 - Sam Rayburn Recreation Area · REC · Forth Worth · ~116,718 ac
-- Big Thicket National Preserve · NCA · NPS · ~108,722 ac
 - Wright Patman Recreation Area · REC · Forth Worth · ~81,011 ac
 - Ojo Caliente ·  · BLM recreation sites · ~72,019 ac
 - Permanent University Fund · SRMA · Texas General Land Office - School Land Board · ~65,497 ac
@@ -86,6 +85,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **182 of 222** parks joined
 - Red Sands OHV ·  · BLM recreation areas · ~33,872 ac
 - Red Sands OHV ·  · BLM recreation sites · ~33,872 ac
 - East Side ·  · BLM recreation sites · ~31,903 ac
+- Somerville Recreation Area · REC · Forth Worth · ~29,940 ac
 - Lake O' The Pines Recreation Area · REC · Forth Worth · ~29,416 ac
 - West Santa Fe ·  · BLM recreation sites · ~28,353 ac
 - Chama ·  · BLM recreation sites · ~27,533 ac

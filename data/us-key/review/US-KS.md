@@ -1,6 +1,6 @@
 # KS: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 145** parks joined to official land (same name + same kind of place). **24** to check by hand, **35** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **94 of 145** parks joined to official land (same name + same kind of place). **16** to check by hand, **35** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,18 +8,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 145** parks joined 
 - **US-2334** Cross Timbers State Park (State Park) → Toronto State Park (~1,292 ac, the POTA pin is inside it (different name))
 - **US-2335** Eisenhower State Park (State Park) → Melvern Recreation Area (~23,490 ac, the POTA pin is inside it (different name))
 - **US-2352** Historic Lake Scott State Park (State Park) → Scott State Park (~1,088 ac, similar name); Scott Wildlife Area (~160 ac, similar name)
-- **US-3673** Tallgrass Prairie Preserve National Conservation Area (National Conservation Area) → Tallgrass Prairie National Preserve (~33 ac, same name, different kind of place)
-- **US-7392** Middle Creek State Fishing Lake (State Fishing Lake) → Middle Creek Lake Park (~8 ac, same name, different kind of place); Louisburg-middlecreek Wildlife Management Area & Fishing Lake (~401 ac, the POTA pin is inside it (different name))
 - **US-7393** Milford State Fish Hatchery (State Fish Hatchery) → Milford Recreation Area (~45,289 ac, same name, different kind of place)
-- **US-7394** Nebo State Fishing Lake (State Fishing Lake) → Nebo State Lake Wildlife Area (~78 ac, similar name)
 - **US-7399** Tuttle Creek Willow State Fishing Lake (State Fishing Lake) → Tuttle Creek State Parks (~1,082 ac, similar name); Tuttle Creek Recreation Area (~34,548 ac, same name, different kind of place)
 - **US-7405** Melvern River State Fishing Lake (State Fishing Lake) → Melvern Recreation Area (~23,490 ac, similar name)
-- **US-7406** Mined Land State Fishing Lake (State Fishing Lake) → Mined Land Wildlife Area (~515 ac, same name, different kind of place)
-- **US-7418** Jewell State Fishing Lake (State Fishing Lake) → Jewell State Lake Wildlife Area (~163 ac, similar name)
 - **US-7428** Ford County State Fishing Lake (State Fishing Lake) → Ford State Fishing Lake and Wildlife Area (~314 ac, similar name)
-- **US-7429** Goodman State Fishing Lake (State Fishing Lake) → Goodman State Lake and Wildlife Area (~264 ac, similar name)
-- **US-7433** Meade State Fishing Lake (State Fishing Lake) → Meade Wildlife Area (~811 ac, same name, different kind of place); Meade State Park (~427 ac, same name, different kind of place)
-- **US-7434** Scott State Fishing Lake (State Fishing Lake) → Scott State Park (~1,088 ac, same name, different kind of place); Scott Wildlife Area (~160 ac, same name, different kind of place)
 - **US-7925** El Dorado State Wildlife Area (State Wildlife Area) → El Dorado State Park (~4,133 ac, same name, different kind of place)
 - **US-7929** Hillsdale State Wildlife Area (State Wildlife Area) → Hillsdale Recreation Area (~13,176 ac, same name, different kind of place)
 - **US-7932** Kansas Veterans State Wildlife Area (State Wildlife Area) → Sherman State Fishing Lake And Wildlife Area (~1,542 ac, the POTA pin is inside it (different name))
@@ -73,26 +65,18 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 145** parks joined 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Melvern Recreation Area · REC · Kansas City · ~23,490 ac
-- Glen Elder Reservoir · RMA · Unknown · ~10,606 ac
 - Jeffery Energy Center Wildlife Area · SCA · State Fish and Wildlife · ~9,737 ac
 - Finney Game Refuge · SCA · State Fish and Wildlife · ~3,622 ac
-- Neosho Wildlife Area · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~2,999 ac
 - Arkalon Park · SREC · Kansas Department of Wildlife, Parks, and Tourism (KDWPT) · ~2,697 ac
 - Maxwell Wildlife Refuge · SCA · State Fish and Wildlife · ~2,223 ac
 - La Cygne Wildlife Area · SCA · State Fish and Wildlife · ~1,965 ac
-- Lovewell Reservoir · RMA · Unknown · ~1,934 ac
 - Big Basin Prairie Preserve · SCA · State Cultural Affairs · ~1,827 ac
 - Kansas Ecological Reserves · SCA · State Land Board · ~1,430 ac
 - Berentz-Dick Wildlife Area · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~1,357 ac
 - Toronto State Park · SP · Kansas Department of Wildlife, Parks, and Tourism (KDWPT) · ~1,292 ac
-- Cedar Bluff Reservoir · RMA · Unknown · ~1,230 ac
-- Kirwin Reservoir · RMA · Unknown · ~1,157 ac
-- Scott State Park · SP · State Park & Recreation · ~1,088 ac
-- Clark Wildlife Area · SCA · State Fish and Wildlife · ~1,012 ac
 - South Fork Wildlife Area · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~1,005 ac
 - Slate Creek Wetlands · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~944 ac
 - Finney State Fishing Lake And Wildlife Area · SREC · State Fish and Wildlife · ~831 ac
-- Meade Wildlife Area · SCA · State Fish and Wildlife · ~811 ac
 - Elwood Bottoms · SOTH · KDWP · ~800 ac
 - Francis Wachs Wildlife Area · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~785 ac
 - Kansas Wildlife and Parks Area #1 · LREC · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~714 ac
@@ -113,17 +97,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 145** parks joined 
 - Prairie Center · SCA · State Fish and Wildlife · ~302 ac
 - Elwood Bottoms · SOTH · KDWP · ~272 ac
 - Neosho Wildlife Area - South Unit · SCA · Kansas Department of Wildlife, Parks, and Tourism (KDWPT) · ~267 ac
-- Goodman State Lake and Wildlife Area · SCA · Kansas Department of Wildlife Parks and Tourism (KDWPT) · ~264 ac
-- Bourbon Wildlife Area · SCA · State Fish and Wildlife · ~246 ac
 - Duck Creek Wildlife Area · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~246 ac
 - Louisburg-middlecreek State Fishing Lake · SREC · State Park & Recreation · ~237 ac
 - Cedar Crest · SHCA · State of Kansas · ~215 ac
 - Dove Flats Wildlife Area · SCA · Kansas Department of Wildlife, Parks, and Tourism (KDWPT) · ~210 ac
-- Leavenworth Wildlife Area · SCA · State Fish and Wildlife · ~209 ac
 - Dove Flats Wildlife Area · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~206 ac
 - Ross Natural History Reservation · SHCA · State Land Board · ~178 ac
-- Jewell State Lake Wildlife Area · SCA · Kansas Department of Wildlife, Parks, and Tourism (KDWPT) · ~163 ac
-- Scott Wildlife Area · SCA · State Fish and Wildlife · ~160 ac
+- Pottawatomie State Fishing Lake No. 1 And Wildlife · SREC · State Fish and Wildlife · ~170 ac
 - Big Hill Wildlife Area · SCA · State Fish and Wildlife · ~159 ac
 - McColl Nature Reserve · PCON · University of Kansas · ~159 ac
 - Washington Marlatt Memorial Park · LP · Kansas State University · ~156 ac
@@ -132,3 +112,15 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **86 of 145** parks joined 
 - Hall Nature Reserve · PCON · University of Kansas · ~117 ac
 - Farm Service Agency Interest Of Ks · NWR · FARM SERVICE AGENCY INTEREST OF KS · ~116 ac
 - Farm Service Agency Interest Of Ks · NWR · Farm Service Agency Interest Of Ks · ~116 ac
+- Hamilton State Fishing Lake · SREC · State Park & Recreation · ~99 ac
+- Warren Park · SCA · State of Kansas · ~98 ac
+- Breidenthal Biological Reserve · PCON · University of Kansas · ~91 ac
+- Cottonwood Flats Wildlife Area · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~88 ac
+- Rice Woodland · SHCA · University of Kansas · ~81 ac
+- Green Wildlife Area · SCA · State Fish and Wildlife · ~80 ac
+- Rutlander Wildlife Area · SCA · State Fish and Wildlife · ~73 ac
+- Lakewood Park Natural Area · LREC · Salina Department of Parks and Recreation · ~72 ac
+- Rutlander Wildlife Area · SCA · State Fish and Wildlife · ~59 ac
+- Barber State Fishing Lake-south Pool · SREC · State Park & Recreation · ~45 ac
+- Lane Wildlife Area · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~45 ac
+- Karlyle Woods · SCA · Washburn University · ~37 ac

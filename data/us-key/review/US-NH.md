@@ -1,9 +1,10 @@
 # NH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 205** parks joined to official land (same name + same kind of place). **7** to check by hand, **67** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 205** parks joined to official land (same name + same kind of place). **8** to check by hand, **67** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0450** Lake Umbagog National Wildlife Refuge (National Wildlife Refuge) → Umbagog National Wildlife Refuge (~21,882 ac, similar name); Umbagog National Wildlife Refuge (~21,882 ac, similar name)
 - **US-11848** Temple Mountain State Reservation State Natural Reserve (State Natural Reserve) → Temple Mountain State Reservation (~345 ac, similar name)
 - **US-11849** Wantastiquet Mt Natural Area State Natural Site (State Natural Site) → Wantastiquet Mountain Natural Area (~913 ac, the POTA pin is inside it (different name))
 - **US-13486** Bellamy River Wildlife Management Area - East Wildlife Management Area (Wildlife Management Area) → Bellamy River Wildlife Management Area - West - Lot 2 (~34 ac, similar name); Bellamy River Access (~34 ac, similar name)
@@ -92,6 +93,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 205** parks joined
 - Sandwich Range Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~35,299 ac
 - Presidential Range-Dry River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~27,645 ac
 - Wild River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,032 ac
+- Umbagog National Wildlife Refuge · NWR · UMBAGOG NATIONAL WILDLIFE REFUGE · ~21,882 ac
+- Umbagog National Wildlife Refuge · NWR · Umbagog National Wildlife Refuge · ~21,882 ac
 - Appalachian National Scenic Trail · NT · NPS · ~14,264 ac
 - Caribou-Speckled Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,250 ac
 - Missisquoi National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,342 ac
@@ -146,5 +149,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 205** parks joined
 - Merrymeeting Marsh Wildlife Management Area · SCA ·   · ~297 ac
 - Upper Merrimack Oxbow Project · SREC · NH Fish & Game · ~292 ac
 - Carpenters Marsh Wildlife Management Area · SCA ·   · ~291 ac
-- Perkins Pond Wildlife Management Area · SCA ·   · ~291 ac
-- Fort Hill Wildlife Management Area · SCA ·   · ~276 ac

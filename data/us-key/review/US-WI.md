@@ -112,7 +112,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **268 of 348** parks joined
 - Horicon Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~11,169 ac
 - Glacial Habitat Restoration · SCA · Unknown · ~9,591 ac
 - Glacial Habitat Restoration - Lm · SREC · Wisconsin Department of Natural Resources · ~9,349 ac
-- Waterloo - Mud Lake Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~9,261 ac
 - Scattered Forest Lands · SRMA · Unknown · ~7,832 ac
 - Whisker Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,434 ac
 - Rainbow Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,175 ac
@@ -153,3 +152,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **268 of 348** parks joined
 - Jackson Marsh Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~2,472 ac
 - Lower Saint Croix National Scenic Riverway · WSR · NPS · ~2,470 ac
 - Winnebago County Waterfowl Production Area Of Wi · RMA · Winnebago County Waterfowl Production Area Of Wi · ~2,462 ac
+- Ice Age Trail - Wd · SP · Wisconsin Department of Natural Resources · ~2,453 ac

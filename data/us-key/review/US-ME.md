@@ -1,21 +1,20 @@
 # ME: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 148** parks joined to official land (same name + same kind of place). **17** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 148** parks joined to official land (same name + same kind of place). **16** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-2402** Penobscot River Corridor - Katahdin Woods and Waters National Monument (National Monument) → Katahdin Woods and Waters National Monument (~89,562 ac, similar name)
 - **US-4772** Durham State Forest (State Forest) → Northport aka Durham Forest (~101 ac, similar name); Northport aka Durham Forest (~5 ac, similar name)
-- **US-8292** Lagrange to Medford State Trail (State Trail) → Lagrange to Medford Rail Trail (~116 ac, similar name); Medford to Lagrange Rail Trail (~33 ac, similar name)
 - **US-8434** Big Spencer Mountain Ecological Reserve (Ecological Reserve) → Big Spencer Ecological Reserve (~4,039 ac, similar name); Big Spencer Mountain (~632 ac, similar name); Great North Woods, LLC (~4,039 ac, the POTA pin is inside it (different name))
 - **US-8438** Days Academy State Preserve (State Preserve) → Days Academy Grant (~7,487 ac, similar name)
-- **US-8439** Donnell Pond State Preserve (State Preserve) → Donnell Pond (~2,466 ac, similar name); Donnell Pond (~2,446 ac, similar name); Donnell Pond (~2,211 ac, similar name); Donnell Pond Ecological Reserve (~1,945 ac, similar name); Donnell Pond (~1,342 ac, similar name)
-- **US-8441** Gero Island State Preserve (State Preserve) → Gero Island (~1,945 ac, similar name); Gero Island (~740 ac, similar name); Gero Island (~653 ac, similar name); Gero Island (~585 ac, similar name)
 - **US-8442** Lobster Lake Property State Preserve (State Preserve) → Lobster Lake (~2,249 ac, similar name)
 - **US-8443** Seboomook Lake Property State Preserve (State Preserve) → Seboomook (~16,392 ac, similar name); Seboomook (~12,154 ac, similar name); West Branch Penobscot Headwaters (~41,582 ac, the POTA pin is inside it (different name))
 - **US-8444** Moxie Falls Property State Preserve (State Preserve) → Moxie Falls (~229 ac, similar name); Moxie Gore (~450 ac, the POTA pin is inside it (different name))
+- **US-8445** Spectacle Pond - Delano Wildlife Management Area (Wildlife Management Area) → Delano Wildlife Management Area (~595 ac, similar name)
 - **US-8449** Little Ossippee Wildlife Management Area (Wildlife Management Area) → Killick Pond Wildlife Management Area (~2,060 ac, the POTA pin is inside it (different name)); Little Ossipee River Wildlife Management Area (~1,091 ac, the POTA pin is inside it (different name))
 - **US-8451** Major Gregory Sanborn Wildlife Management Area (Wildlife Management Area) → Maj. Gregory Sanborn (Brownfield Bog) Wildlife Management Area (~1,414 ac, similar name); Maj. Gregory Sanborn (Brownfield Bog) Wildlife Management Area (~1,398 ac, similar name); Maj. Gregory Sanborn (Brownfield Bog) Wildlife Management Area (~1,169 ac, similar name); Maj. Gregory Sanborn (Brownfield Bog) Wildlife Management Area (~404 ac, similar name); Maj. Gregory Sanborn (Brownfield Bog) Wildlife Management Area (~276 ac, similar name); Maj. Gregory Sanborn (Brownfield Bog) Wildlife Management Area (~167 ac, similar name)
+- **US-8457** Cambridge Mainstream Wildlife Management Area (Wildlife Management Area) → Mainstream Wildlife Management Area (~501 ac, similar name); Mainstream Wildlife Management Area (~246 ac, similar name); Mainstream Wildlife Management Area (~246 ac, similar name); Mainstream Wildlife Management Area (~148 ac, similar name); Mainstream Wildlife Management Area (~117 ac, similar name); Mainstream Wildlife Management Area (~113 ac, similar name)
 - **US-8459** Erle R. Kelley (Dresden Bog) Wildlife Management Area (Wildlife Management Area) → Earle R. Kelly (Dresden Bog) Wildlife Management Area (~497 ac, the POTA pin is inside it (different name))
 - **US-9170** Machias River Corridor State Conservation Area (State Conservation Area) → Machias River Watershed - MDOC (~6,131 ac, similar name); Machias River Phase I (~5,939 ac, similar name)
 - **US-9171** St. John Ponds Ecological Reserve (Ecological Reserve) → Upper St John River Watershed Ecological Reserve (~3,884 ac, similar name)
@@ -29,6 +28,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 148** parks joined
 ## Nothing found in PAD-US
 
 - US-0337 Carlton Pond Wetland Management District (Wetland Management District)
+- US-0450 Lake Umbagog National Wildlife Refuge (National Wildlife Refuge)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-7976 Maine Acadian Culture National Heritage Site (National Heritage Site)
 - US-7977 Roosevelt Campobello International Park (International Park)
@@ -53,6 +53,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 148** parks joined
 - Seboomook · LOTH · Maine Bureau of Parks and Lands · ~12,154 ac
 - Duck Lake · SOTH ·   · ~11,848 ac
 - Caribou-Speckled Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,250 ac
+- Umbagog National Wildlife Refuge · NWR · Umbagog National Wildlife Refuge · ~11,239 ac
+- Umbagog National Wildlife Refuge · NWR · UMBAGOG NATIONAL WILDLIFE REFUGE · ~11,219 ac
 - Nahmakanta Unit Ecological Reserve · SCA · Maine Bureau of Parks and Lands · ~11,122 ac
 - Scraggly Lake · LOTH · Maine Bureau of Parks and Lands · ~9,846 ac
 - Richardson Lake · LOTH · Maine Bureau of Parks and Lands · ~9,614 ac
@@ -96,5 +98,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **123 of 148** parks joined
 - Great North Woods, LLC · SOTH · Maine Department of Conservation · ~4,039 ac
 - Big Spencer Ecological Reserve · LOTH · Maine Bureau of Parks and Lands · ~4,039 ac
 - Crocker Mountain · LOTH · Maine Bureau of Parks and Lands · ~3,990 ac
-- Crocker Mountain Ecological Reserve · SCA ·   · ~3,967 ac
-- Dead River · LOTH · Maine Bureau of Parks and Lands · ~3,958 ac
