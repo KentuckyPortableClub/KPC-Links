@@ -1,6 +1,6 @@
 # NY: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **803 of 850** parks joined to official land (same name + same kind of place). **25** to check by hand, **22** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **801 of 850** parks joined to official land (same name + same kind of place). **27** to check by hand, **22** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -15,6 +15,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **803 of 850** parks joined
 - **US-5197** Dannemora State Forest (State Forest) → Chazy Highlands State Forest (~5,544 ac, the POTA pin is inside it (different name))
 - **US-5218** Nutten Hook State Conservation Area (State Conservation Area) → Nutten Hook State Tidal Wetland (~823 ac, similar name)
 - **US-5270** Reinstein Woods State Nature Preserve (State Nature Preserve) → Reinstein Woods Nature Preserve And Environmental Education Center (~284 ac, similar name); Reinstein Woods Nature Preserve And Environmental Education Center (~8 ac, similar name)
+- **US-5277** Roeliff Jansen Kill Multiple Use Area (Multiple Use Area) → Lafayetteville Multiple Use Area (~718 ac, similar name); Roeliff Jansenkill Multiple Use Area (~119 ac, similar name)
 - **US-5308** Split Rock State Forest (State Forest) → Split Rock Wild Forest (~3,543 ac, same name, different kind of place)
 - **US-5338** Tibbetts State Forest (State Forest) → Tibbitts State Forest (~847 ac, the POTA pin is inside it (different name))
 - **US-5361** Wellman State Forest (State Forest) → Wellman Multiple Use Area (~445 ac, similar name)
@@ -28,6 +29,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **803 of 850** parks joined
 - **US-8622** Carlton Hill Multiple Use Area (Multiple Use Area) → Carlton Hill Mua (~2,499 ac, similar name)
 - **US-9052** Harwood Lake Multiple Use Area (Multiple Use Area) → Harwood Lake Mua (~301 ac, similar name)
 - **US-9060** Watts Flats Wildlife Management Area (Wildlife Management Area) → Watts Wma (~1,392 ac, similar name)
+- **US-9068** Little John Wildlife Management Area (Wildlife Management Area) → Littlejohn Wma (~7,926 ac, the POTA pin is inside it (different name))
 - **US-9124** Charles Flood Wildlife Management Area (Wildlife Management Area) → Charles Flood Wma At The Empire Brickyard (~590 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -99,7 +101,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **803 of 850** parks joined
 - William C. Whitney Wilderness · SW · NYS Department of Environmental Conservation · ~20,362 ac
 - Saint Regis Canoe Area · SCA · NYS Department of Environmental Conservation · ~18,979 ac
 - Lye Brook Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,122 ac
-- Erie Canal · SREC · New York State · ~17,563 ac
 - Indian Head Wilderness · SW · NYS Department of Environmental Conservation · ~17,365 ac
 - Horseshoe Lake Wild Forest · SCA · NYS Department of Environmental Conservation · ~17,197 ac
 - Windham-Blackhead Range Wilderness · SW · NYS Department of Environmental Conservation · ~17,046 ac
@@ -118,5 +119,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **803 of 850** parks joined
 - Hickory Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,633 ac
 - Kaaterskill Wild Forest · SCA · NYS Department of Environmental Conservation · ~8,104 ac
 - Appalachian National Scenic Trail · NT · NPS · ~8,085 ac
+- Littlejohn Wma · SRMA · NYS Department of Environmental Conservation · ~7,926 ac
 - Jay Mountain Wilderness · SW · NYS Department of Environmental Conservation · ~7,868 ac
 - Great Swamp National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,853 ac

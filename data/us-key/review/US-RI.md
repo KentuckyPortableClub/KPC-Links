@@ -1,16 +1,13 @@
 # RI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **34 of 61** parks joined to official land (same name + same kind of place). **7** to check by hand, **20** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **38 of 61** parks joined to official land (same name + same kind of place). **4** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-10544** Jerimoth Hill State Recreation Area (State Recreation Area) → Jerimoth Hill - Brown U / Jerimoth Hill (~6 ac, similar name); Mosley/Jerimoth Hill (~5 ac, similar name)
 - **US-10545** Hillsdale Preserve Management Area (Management Area) → Beaver River - deCoppett (~1,825 ac, the POTA pin is inside it (different name)); Decoppet Estate (~1,825 ac, the POTA pin is inside it (different name))
 - **US-2877** Haines Memorial State Park (State Park) → East Bay Bikepath (~84 ac, the POTA pin is inside it (different name))
-- **US-5483** Lincoln Woods State Forest (State Forest) → Lincoln Woods (~25 ac, same name, different kind of place); Lincoln Woods State Park (~5 ac, same name, different kind of place); Lincoln Woods State Park (~2 ac, same name, different kind of place)
-- **US-5484** George Washington Memorial State Forest (State Forest) → George Washington Management Area (~3,202 ac, same name, different kind of place); George Washington Management Area (~195 ac, same name, different kind of place); George Washington Management Area (~36 ac, same name, different kind of place)
 - **US-6992** JL Curran State Park (State Park) → John L. Curran Fishing Area (~41 ac, similar name)
-- **US-7865** East State Beach (State Beach) → East Beach (~160 ac, similar name); East Beach (~68 ac, similar name); East Beach (~15 ac, similar name); East Beach (~0 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -22,7 +19,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **34 of 61** parks joined t
 - US-10543 Patriots Park State Historic Site (State Historic Site)
 - US-10547 Silver Spring State Recreation Area (State Recreation Area)
 - US-10548 Barber Pond State Recreation Area (State Recreation Area)
-- US-2873 Fishermen's Memorial State Park (State Park)
 - US-2875 Fort Wetherill State Park (State Park)
 - US-2876 Goddard Memorial State Park (State Park)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
@@ -70,7 +66,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **34 of 61** parks joined t
 - Wood River Barrens Macrosite · SRMA ·   · ~179 ac
 - Burlingame Management Area · SRMA ·   · ~176 ac
 - Burlingame Management Area · SRMA ·   · ~165 ac
-- East Beach · SP ·   · ~160 ac
 - Wood River Barrens · SRMA ·   · ~158 ac
 - Succotash Marsh Management Area · SRMA ·   · ~149 ac
 - Bay Islands · SRMA ·   · ~131 ac
@@ -79,7 +74,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **34 of 61** parks joined t
 - Thompson Trail · SCA · Rhode Island Water Resources Board · ~125 ac
 - Ponaganset River/HMP · SRMA ·   · ~120 ac
 - Tiverton Rod & Gun Club · SCA ·   · ~120 ac
-- Block Island · SP ·   · ~118 ac
 - Pawcatuck River Sandbarrens · SRMA ·   · ~111 ac
 - Harrisville Quarries · SRMA · Rhode Island Department of Environmental Management - Division of Fish and Wildlife · ~109 ac
 - Emerson (North) · SREC · Rhode Island Department of Environmental Management - Division of Fish and Wildlife · ~107 ac
@@ -93,10 +87,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **34 of 61** parks joined t
 - East Bay Bikepath · SP ·   · ~84 ac
 - Newton Swamp Management Area · SRMA ·   · ~83 ac
 - South Shore Management Area · SRMA ·   · ~82 ac
-- Fisherman's · SP ·   · ~80 ac
 - Pulaski/GW Management Area · SRMA ·   · ~80 ac
 - Greene / Frying Pan Pond · SCA ·   · ~79 ac
 - Sayles Finishing · SP · State of Rhode Island · ~76 ac
 - Ponaganset River / Hopkins Mil · SRMA ·   · ~75 ac
 - Arcadia Barrens · SRMA ·   · ~72 ac
 - Bay Islands · SRMA ·   · ~72 ac
+- Gravelly Hill Road · SRMA ·   · ~72 ac
+- Ashville Corp · SCA · Fish & Wildlife · ~71 ac
+- Ponagansett River (Carpenter) · SCA ·   · ~71 ac

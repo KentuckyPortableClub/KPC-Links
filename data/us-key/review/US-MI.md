@@ -1,6 +1,6 @@
 # MI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **252 of 388** parks joined to official land (same name + same kind of place). **56** to check by hand, **80** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **253 of 388** parks joined to official land (same name + same kind of place). **55** to check by hand, **80** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -28,7 +28,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **252 of 388** parks joined
 - **US-1513** Mike Levine Lakelands Trail State Park (State Park) → Pinckney Recreation Area (~11,061 ac, the POTA pin is inside it (different name))
 - **US-1522** Milliken State Park (State Park) → Tricentennial State Park And Harbor (~27 ac, the POTA pin is inside it (different name))
 - **US-1543** Straits State Park (State Park) → Father Marquette National Memorial (~188 ac, the POTA pin is inside it (different name))
-- **US-3308** Father Marquette Memorial National Memorial (National Memorial) → Father Marquette National Memorial (~188 ac, similar name)
 - **US-3330** Wagner Falls Scenic Site (Scenic Site) → Wagner Falls State Park (~6 ac, similar name)
 - **US-4263** Piers Gorge Unit of Menominee River State Recreation Area (State Recreation Area) → Menominee River State Recreation Area (~1 ac, similar name)
 - **US-4264** Quiver Falls Unit of Menominee River State Recreation Area (State Recreation Area) → Menominee River State Recreation Area (~1 ac, similar name)

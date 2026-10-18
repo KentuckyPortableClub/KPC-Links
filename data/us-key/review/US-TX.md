@@ -1,6 +1,6 @@
 # TX: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **183 of 222** parks joined to official land (same name + same kind of place). **19** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **189 of 222** parks joined to official land (same name + same kind of place). **13** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,13 +8,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **183 of 222** parks joined
 - **US-2984** Atlanta State Park (State Park) → Wright Patman Recreation Area (~81,011 ac, the POTA pin is inside it (different name))
 - **US-3032** Lake Whitney State Park (State Park) → Whitney Point Recreation Area (~45,028 ac, the POTA pin is inside it (different name))
 - **US-3044** Old Tunnel State Park (State Park) → Old Tunnel Wildlife Management Area (~17 ac, same name, different kind of place)
-- **US-3497** Devil's Sinkhole State Conservation Area (State Conservation Area) → Devil's Sink State Natural Area (~1,864 ac, same name, different kind of place)
-- **US-3498** Devils River Natural State Conservation Area (State Conservation Area) → Devils River State Natural Area (~19,761 ac, same name, different kind of place)
-- **US-3499** Enchanted Rock Natural State Conservation Area (State Conservation Area) → Enchanted Rock State Natural Area (~1,644 ac, same name, different kind of place)
 - **US-3502** Goliad State Historic Site (State Historic Site) → Goliad State Park (~275 ac, same name, different kind of place)
-- **US-3504** Hill Country Natural State Conservation Area (State Conservation Area) → Hill Country State Natural Area (~5,385 ac, same name, different kind of place)
-- **US-3505** Honey Creek Natural State Conservation Area (State Conservation Area) → Honey Creek State Natural Area (~2,281 ac, same name, different kind of place); Guadalupe River State Park (~1,901 ac, the POTA pin is inside it (different name))
-- **US-3507** Lost Maples Natural State Conservation Area (State Conservation Area) → Lost Maples State Natural Area (~2,878 ac, same name, different kind of place)
 - **US-4370** Caddo National Grasslands Wildlife Management Area (Wildlife Management Area) → Caddo National Grassland (~17,722 ac, similar name)
 - **US-4419** I.D. Farichild State Forest (State Forest) → I.D. FairChild State Forest (~1,727 ac, the POTA pin is inside it (different name))
 - **US-4514** Cibola National Forest (National Forest) → Sandia Mountain Wilderness (~37,690 ac, the POTA pin is inside it (different name))
@@ -96,10 +90,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **183 of 222** parks joined
 - Boggy Slough · PCON · US Forest Service · ~19,891 ac
 - Rio Grande Rim/Copper Hill ·  · BLM recreation sites · ~19,870 ac
 - Sabinoso Primitive Area ·  · BLM recreation sites · ~19,798 ac
-- Devils River State Natural Area · SCA · Unknown · ~19,761 ac
 - O.C. Fisher Recreation Area · REC · Forth Worth · ~17,940 ac
 - Caddo National Grassland · NG · Forest Service Region 08 Southern · ~17,722 ac
-- Devils River State Natural Area · SRMA · SPR · ~17,641 ac
 - Rio Grande Gorge Recreation Area ·  · BLM recreation sites · ~16,948 ac
 - Sombrillo ·  · BLM recreation sites · ~16,898 ac
 - Bordo Atravesado ·  · BLM herd management areas · ~16,492 ac
@@ -112,3 +104,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **183 of 222** parks joined
 - Stillhouse Recreation Area · REC · Forth Worth · ~15,217 ac
 - Caney Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~14,262 ac
 - Little River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,236 ac
+- Rio Embudo ·  · BLM recreation sites · ~13,894 ac
+- Lake Texana · REC · Unknown · ~13,738 ac

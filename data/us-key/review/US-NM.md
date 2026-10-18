@@ -15,12 +15,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **82 of 122** parks joined 
 - **US-13001** Kilbourne Hole Volcanic Crater BLM National Conservation Area (BLM National Conservation Area) → Las Cruces District Office (~5,375,972 ac, the POTA pin is inside it (different name)); Organ Mountains - Desert Peaks National Monument (~0 ac, the POTA pin is inside it (different name))
 - **US-13159** Quebradas Backcountry Byway BLM Wilderness Area (BLM Wilderness Area) → Quebradas Backcountry Byway (~3,834 ac, same name, different kind of place); Socorro Field Office (~1,508,543 ac, the POTA pin is inside it (different name))
 - **US-13186** Lincoln Tract BLM Recreation Management Area (BLM Recreation Management Area) → Lincoln National Forest (~1,095,525 ac, similar name)
+- **US-2713** Rock Hound State Park (State Park) → Rockhound State Park (~234 ac, the POTA pin is inside it (different name))
 - **US-4558** Continental Divide Trail National Scenic Trail (National Scenic Trail) → Las Cruces District Office (~5,375,972 ac, the POTA pin is inside it (different name))
 - **US-7878** Red Sands National Recreation Area (National Recreation Area) → Red Sands OHV (~33,872 ac, same name, different kind of place); Red Sands OHV (~33,872 ac, same name, different kind of place); Las Cruces District Office (~5,375,972 ac, the POTA pin is inside it (different name))
 - **US-8273** Angel Peak Scenic National Recreation Area (National Recreation Area) → Angel Peak Scenic Area (~10,216 ac, same name, different kind of place); Farmington Field Office (~1,425,067 ac, the POTA pin is inside it (different name))
 - **US-8617** Perea Nature National Recreation Trail (National Recreation Trail) → Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name))
 - **US-8619** San Ysidro Trials Area BLM Recreation Management Area (BLM Recreation Management Area) → San Ysidro Trails Area (~4,439 ac, similar name); Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name))
-- **US-8621** Cabezon Wilderness Area (Wilderness Area) → Cabezon (~0 ac, same name, different kind of place); Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name)); Boca del Oso (~14,531 ac, the POTA pin is inside it (different name))
 - **US-9679** Pecos Canyon State Park (State Park) → Pecos Wilderness (~221,835 ac, similar name); Santa Fe National Forest (~1,545,017 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)

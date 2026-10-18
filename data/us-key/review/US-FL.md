@@ -1,10 +1,9 @@
 # FL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **251 of 460** parks joined to official land (same name + same kind of place). **50** to check by hand, **159** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **271 of 460** parks joined to official land (same name + same kind of place). **30** to check by hand, **159** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0245** Lake Wales Ridge Wildlife Management Area (Wildlife Management Area) → Lake Wales Ridge Wildlife and Environmental Area (~15,446 ac, similar name); Lake Wales Ridge National Wildlife Refuge (~1,898 ac, same name, different kind of place); Lake Wales Ridge National Wildlife Refuge (~1,893 ac, same name, different kind of place)
 - **US-0635** St. George State Park (State Park) → Dr. Julian G. Bruce St. George Island State Park (~2,024 ac, similar name)
 - **US-0896** Wekiva National Wild and Scenic River (National Wild and Scenic River) → Lower Wekiva River Preserve State Park (~17,220 ac, similar name); Seminole State Forest (~29,027 ac, the POTA pin is inside it (different name))
 - **US-10594** Manatee Springs South State Conservation Area (State Conservation Area) → Manatee Springs State Park (~2,442 ac, same name, different kind of place)
@@ -20,7 +19,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **251 of 460** parks joined
 - **US-3624** Gainesville-Hawthorne State Trail (State Trail) → Paynes Prairie Preserve State Park (~21,659 ac, the POTA pin is inside it (different name))
 - **US-3625** Gamble Plantation State Park (State Park) → Judah P. Benjamin Confederate Memorial at Gamble Plantation Historic State Park (~33 ac, similar name)
 - **US-3626** Gamble Rogers Memorial State Recreation Area (State Recreation Area) → Gamble Rogers Memorial State Recreation Area at Flagler Beach (~134 ac, similar name)
-- **US-3641** Okeechobee Battlefield State Park (State Park) → Okeechobee Battlefield (~145 ac, same name, different kind of place)
 - **US-3642** Olustee Battlefield State Park (State Park) → Osceola National Forest (~160,054 ac, the POTA pin is inside it (different name))
 - **US-3644** Palatka-St. Augustine State Trail (State Trail) → Palatka-to-St. Augustine State Trail (~40 ac, similar name)
 - **US-3656** Beker - South Fork State Park (State Park) → Beker (~1,743 ac, similar name)
@@ -29,24 +27,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **251 of 460** parks joined
 - **US-5520** Chassahowitzka River and Coastal Swamp State Conservation Area (State Conservation Area) → Chassahowitzka National Wildlife Refuge (~28,266 ac, similar name); Chassahowitzka National Wildlife Refuge (~28,266 ac, similar name); Chassahowitzka Wildlife Management Area (~27,521 ac, similar name)
 - **US-6281** Loxahatchee River National Wild and Scenic River (National Wild and Scenic River) → Jonathan Dickinson State Park (~11,466 ac, the POTA pin is inside it (different name))
 - **US-6287** Apalachee Wildlife Management Area (Wildlife Management Area) → Seminole Recreation Area (~17,724 ac, the POTA pin is inside it (different name))
-- **US-6288** Apalachicola River Wildlife Area (Wildlife Area) → Apalachicola River Wildlife and Environmental Area (~62,955 ac, similar name); Apalachicola National Forest (~576,062 ac, same name, different kind of place)
-- **US-6290** Bell Ridge Longleaf Wildlife Area (Wildlife Area) → Bell Ridge Longleaf Mitigation Park Wildlife and Environmental Area (~722 ac, similar name)
-- **US-6294** Branan Field Wildlife Area (Wildlife Area) → Branan Field Mitigation Park Wildlife and Environmental Area (~386 ac, similar name)
-- **US-6297** Chinsegut Wildlife Area (Wildlife Area) → Chinsegut Wildlife and Environmental Area (~821 ac, similar name); Chinsegut Hill Conference Center (~115 ac, similar name)
-- **US-6298** Crooked Lake Wildlife Area (Wildlife Area) → Crooked Lake Wildlife and Environmental Area (~1,147 ac, similar name)
-- **US-6303** Florida Keys Wildlife Area (Wildlife Area) → Florida Keys Wildlife and Environmental Area (~3,962 ac, similar name); Florida Keys Overseas Heritage State Trail (~732 ac, similar name)
-- **US-6304** Fort White Wildlife Area (Wildlife Area) → Fort White Mitigation Park Wildlife and Environmental Area (~1,638 ac, similar name)
-- **US-6308** Hickey Creek Wildlife Management Area (Wildlife Management Area) → Hickey Creek Mitigation Park Wildlife and Environmental Area (~785 ac, similar name)
-- **US-6313** John C. and Mariana Jones/Hungryland Wildlife Area (Wildlife Area) → John C. and Mariana Jones/Hungryland Wildlife and Environmental Area (~17,059 ac, similar name)
-- **US-6314** L. Kirk Edwards Wildlife Area (Wildlife Area) → L. Kirk Edwards Wildlife and Environmental Area (~1,783 ac, similar name)
-- **US-6315** Lafayette Forest Wildlife Area (Wildlife Area) → Lafayette Forest Mitigation Park Wildlife and Environmental Area (~2,136 ac, similar name)
-- **US-6316** Little Gator Creek Wildlife Area (Wildlife Area) → Little Gator Creek Wildlife and Environmental Area (~574 ac, similar name)
-- **US-6317** Moody Branch Wildlife Area (Wildlife Area) → Moody Branch Mitigation Park Wildlife and Environmental Area (~959 ac, similar name)
-- **US-6319** Perry Oldenburg Wildlife Area (Wildlife Area) → Perry Oldenburg Mitigation Park Wildlife and Environmental Area (~369 ac, similar name)
-- **US-6320** Platt Branch Wildlife Area (Wildlife Area) → Platt Branch Mitigation Park Wildlife and Environmental Area (~1,972 ac, similar name)
-- **US-6324** Split Oak Forest Wildlife Area (Wildlife Area) → Split Oak Forest Mitigation Park Wildlife and Environmental Area (~1,772 ac, similar name)
-- **US-6325** Suwannee Ridge Wildlife Area (Wildlife Area) → Suwannee Ridge Mitigation Park Wildlife and Environmental Area (~1,428 ac, similar name)
-- **US-6331** Watermelon Pond Wildlife Area (Wildlife Area) → Watermelon Pond Mitigation Park Wildlife and Environmental Area (~1,288 ac, similar name)
 - **US-7879** Citrus Wildlife Management Area (Wildlife Management Area) → Withlacoochee State Forest (~165,562 ac, the POTA pin is inside it (different name))
 - **US-8326** Apalachicola River State Conservation Area (State Conservation Area) → Apalachicola National Forest (~576,062 ac, same name, different kind of place)
 - **US-8327** Blackwater River State Conservation Area (State Conservation Area) → Blackwater River State Forest (~206,192 ac, same name, different kind of place)
@@ -229,14 +209,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **251 of 460** parks joined
 - Rookery Bay National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~87,948 ac
 - Babcock Ranch Preserve · PCON · Babcock Ranch Management, LLC · ~73,239 ac
 - Camp Blanding Military Reservation · MIL · FL Dept. of Military Affairs · ~71,599 ac
-- Apalachicola River Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~62,955 ac
 - Guana Tolomato Matanzas National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~41,218 ac
 - Lake Okeechobee Sanctuaries · PCON · National Audubon Society, Inc. · ~26,290 ac
 - Bradwell Bay Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,222 ac
 - Raiford Wildlife Management Area · PCON · PRIDE Enterprises, Inc. · ~17,793 ac
 - Seminole Recreation Area · REC · Mobile · ~17,724 ac
-- John C. and Mariana Jones/Hungryland Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~17,059 ac
-- Lake Wales Ridge Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~15,446 ac
 - Yucca Pens Unit · SCA · FL Fish and Wildlife Conservation Commission · ~15,044 ac
 - Juniper Prairie Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~14,298 ac
 - Big Gum Swamp Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,835 ac
@@ -251,7 +228,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **251 of 460** parks joined
 - St. Joseph Bay State Buffer Preserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~5,589 ac
 - Balm-Boyette Scrub · LOTH · Hillsborough County · ~5,439 ac
 - Silver River State Park · SP · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~4,419 ac
-- Florida Keys Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~3,962 ac
 - Everglades Headwaters National Wildlife Refuge And Conservation Area · NWR · EVERGLADES HEADWATERS NATIONAL WILDLIFE REFUGE AND CONSERVATION AREA · ~3,855 ac
 - Okefenokee National Wildlife Refuge · NWR · OKEFENOKEE NATIONAL WILDLIFE REFUGE · ~3,533 ac
 - Okefenokee National Wildlife Refuge · NWR · Okefenokee National Wildlife Refuge · ~3,526 ac
@@ -267,18 +243,22 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **251 of 460** parks joined
 - Doris Leeper Spruce Creek Preserve · SCA · Volusia County · ~2,439 ac
 - Cape St. George State Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~2,385 ac
 - Loxahatchee Slough Research Natural Area · SCA · FL-Trustees of the Internal Improvement Trust Fund · ~2,324 ac
-- Lafayette Forest Mitigation Park Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~2,136 ac
 - Apalachee Correctional Institution · PCON · PRIDE Enterprises, Inc. · ~2,108 ac
 - Austin Cary Memorial Forest · SHCA · University of Florida · ~2,076 ac
 - Dr. Julian G. Bruce St. George Island State Park · SP · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~2,024 ac
-- Platt Branch Mitigation Park Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~1,972 ac
 - Homeland · SHCA · FL Dept. of Environmental Protection, Div. of Water Resource Management, Bureau of Mining and Minerals Regulation · ~1,927 ac
 - Lake Wales Ridge National Wildlife Refuge · NWR · Lake Wales Ridge National Wildlife Refuge · ~1,898 ac
 - Lake Wales Ridge National Wildlife Refuge · NWR · LAKE WALES RIDGE NATIONAL WILDLIFE REFUGE · ~1,893 ac
-- L. Kirk Edwards Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~1,783 ac
-- Split Oak Forest Mitigation Park Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~1,772 ac
 - Shell Key Preserve · SCA · Pinellas County · ~1,754 ac
 - Beker · SOTH · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~1,743 ac
 - Micco Scrub Sanctuary · SCA · Brevard County · ~1,724 ac
 - Peace River Settlement · SCA · BOARD OF TRUSTEES OF IITF/STATE OF FL · ~1,700 ac
 - Schewe Ranch . South · SREC · State of Florida · ~1,691 ac
+- Bower Tract Preserve · SCA · Hillsborough County · ~1,585 ac
+- Spring Hammock Preserve · SCA · Seminole County · ~1,505 ac
+- Valkaria Expansion · LOTH · Brevard County · ~1,436 ac
+- Clear Springs · SHCA · FL Dept. of Environmental Protection, Div. of Water Resource Management, Bureau of Mining and Minerals Regulation · ~1,426 ac
+- North Thousand Islands · LOTH · Cocoa Beach, City of · ~1,347 ac
+- Grissom Parkway · SREC · FL Fish and Wildlife Conservation Commission · ~1,281 ac
+- Golden Aster Scrub Nature Preserve · SCA · Hillsborough County · ~1,182 ac
+- Alderman's Ford Preserve · SCA · Hillsborough County · ~983 ac

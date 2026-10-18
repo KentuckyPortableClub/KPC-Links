@@ -17,10 +17,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **203 of 237** parks joined
 - **US-7140** Charlie Elliot Wildlife Management Area (Wildlife Management Area) → Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area (~6,273 ac, the POTA pin is inside it (different name))
 - **US-7141** Clybel Wildlife Management Area (Wildlife Management Area) → Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area (~6,273 ac, similar name)
 - **US-7467** Marben State Fishing Lake (State Fishing Lake) → Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area (~6,273 ac, similar name)
-- **US-7468** McDuffie State Fishing Lake (State Fishing Lake) → McDuffie Public Fishing Area & Hatchery (~565 ac, same name, different kind of place)
 - **US-7471** Allatoona Pass Battlefield State Historic Site (State Historic Site) → Allatoona Recreation Area (~38,047 ac, similar name); Allatoona Wildlife Management Area (~7,488 ac, similar name)
 - **US-7473** DeSoto Falls National Recreation Area (National Recreation Area) → Chattahoochee National Forest (~750,991 ac, the POTA pin is inside it (different name)); Chestatee Wildlife Management Area (~19,724 ac, the POTA pin is inside it (different name))
 - **US-7861** Suwannee River Eco-Lodge State Park (State Park) → Stephen C. Foster State Park (~320 ac, the POTA pin is inside it (different name))
+- **US-7882** Doerun Pitcherplant Bog Wildlife Management Area (Wildlife Management Area) → Doerun Pitcher Plant Bog Wildlife Management Area (~742 ac, similar name)
 - **US-7902** Walton Wildlife Management Area (Wildlife Management Area) → Walton Public Dove Field & Hatchery (~248 ac, similar name)
 - **US-9758** Chattooga National Wild and Scenic River (National Wild and Scenic River) → Chattahoochee National Forest (~750,991 ac, the POTA pin is inside it (different name))
 - **US-9793** Ball's Ferry Property Wildlife Management Area (Wildlife Management Area) → Balls Ferry State Park (~525 ac, similar name)
@@ -106,4 +106,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **203 of 237** parks joined
 - Little Hogan Island Tract · SCA · Georgia Department of Natural Resources · ~856 ac
 - Whitehall Forest · SCA · Board of Regents · ~828 ac
 - Bush Head Shoals State Park · SP · Georgia Department of Natural Resources · ~811 ac
-- 133-001 · SCA · Department of Transportation · ~735 ac
+- Doerun Pitcher Plant Bog Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~742 ac

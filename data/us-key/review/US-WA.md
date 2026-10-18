@@ -1,11 +1,10 @@
 # WA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **333 of 536** parks joined to official land (same name + same kind of place). **74** to check by hand, **119** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **339 of 536** parks joined to official land (same name + same kind of place). **68** to check by hand, **119** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0582** Julia Butler Hansen National Wildlife Refuge (National Wildlife Refuge) → Julia Butler Hansen Refuge For The Columbian White Tail Deer (~5,968 ac, similar name); Julia Butler Hansen Refuge For The Columbian White-Tailed Deer (~2,808 ac, similar name); Julia Butler Hansen Refuge For The Columbian White-Tailed Deer (~2,808 ac, similar name)
-- **US-0694** Ebey's Landing Reserve National Conservation Area (National Conservation Area) → Ebey's Landing National Historical Reserve (~1,093 ac, similar name); Ebey's Landing (~46 ac, same name, different kind of place)
 - **US-10627** 4-0 Ranch Wildlife Area (Wildlife Area) → 4-O Ranch - Dec 2014 (~2,568 ac, similar name); 4-O Ranch - March 2014 (~2,147 ac, similar name); 4-O Ranch 2013 (~1,573 ac, similar name)
 - **US-10694** Sun Lakes Wildlife Area (Wildlife Area) → Sun Lakes-Dry Falls (~4,234 ac, similar name)
 - **US-10695** Coffeepot Lake Nature Recreation Area (Nature Recreation Area) → Coffeepot Lake Public Fishing Access (~6 ac, similar name); Coffeepot Lake Public Fishing Access (~6 ac, similar name)
@@ -20,14 +19,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **333 of 536** parks joined
 - **US-12343** White Salmon National Wild and Scenic River (National Wild and Scenic River) → White Salmon Oak Natural Resources Conservation Area (~552 ac, similar name)
 - **US-12344** White Salmon Oak State Natural Area (State Natural Area) → White Salmon Oak Natural Resources Conservation Area (~552 ac, similar name)
 - **US-12399** Spokane State Fish Hatchery (State Fish Hatchery) → Spokane Border Field Office (~168,544 ac, similar name)
-- **US-12402** Rocky Ford State Fish Hatchery (State Fish Hatchery) → Rocky Ford (~1,494 ac, same name, different kind of place)
 - **US-12403** Columbia Basin Hatchery Creek State Fish Hatchery (State Fish Hatchery) → Columbia Basin Wildlife Area Complex (~41,205 ac, same name, different kind of place)
 - **US-12404** Folsom Farm Interpretive BLM Interpretive Site (BLM Interpretive Site) → Folsom Farm Interpretive Site (~37 ac, similar name); Folsom Farm Interpretive Site (~37 ac, similar name); Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
 - **US-12413** Spokane Plains Battlefield State Heritage Area (State Heritage Area) → Spokane Plains Battlefield (~1 ac, same name, different kind of place)
 - **US-12426** Hog Canyon State Fishing Lake (State Fishing Lake) → Spokane Border Field Office (~168,544 ac, the POTA pin is inside it (different name))
 - **US-12427** Liberty State Fishing Lake (State Fishing Lake) → Liberty Lake Water Access Site (~2 ac, similar name)
 - **US-12479** Jameson State Fishing Lake (State Fishing Lake) → Spokane Wenatchee Field Office (~254,416 ac, the POTA pin is inside it (different name))
-- **US-12481** Nisqually State Wildlife Area (State Wildlife Area) → Billy Frank Jr. Nisqually National Wildlife Refuge (~5,558 ac, similar name); Billy Frank Jr. Nisqually National Wildlife Refuge (~5,534 ac, similar name); Olympic-Willapa Hills-South Puget Sound Wildlife Area Complex (~16,950 ac, the POTA pin is inside it (different name))
 - **US-12483** Beebe Springs State Wildlife Area (State Wildlife Area) → BeeBe Wildlife Area Complex (~179 ac, the POTA pin is inside it (different name))
 - **US-12485** Chelan Butte State Wildlife Area (State Wildlife Area) → Wells-Chelan-Sagebrush Flats Wildlife Area Complex (~40,934 ac, the POTA pin is inside it (different name))
 - **US-12499** Soda Springs State Wildlife Area (State Wildlife Area) → Klickitat Wildlife Area Complex (~13,679 ac, the POTA pin is inside it (different name))
@@ -45,9 +42,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **333 of 536** parks joined
 - **US-12574** Elk River State Wildlife Area (State Wildlife Area) → Elk River - 103.17 Acres (~101 ac, similar name); Elk River -27.9 Acres (~28 ac, similar name)
 - **US-12578** Clearwater Corridor State Natural Area (State Natural Area) → Clearwater Corridor Natural Resources Conservation Area (~2,312 ac, similar name); Washington State Department of Natural Resources (WADNR) State Resource Management Area (~268,553 ac, the POTA pin is inside it (different name))
 - **US-12831** Ruby BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Old Ruby (~7 ac, similar name); Spokane Wenatchee Field Office (~254,416 ac, the POTA pin is inside it (different name))
-- **US-12832** The Two-Steppe State Natural Reserve (State Natural Reserve) → The Two-Steppe Natural Area Preserve (~395 ac, similar name)
 - **US-12956** Forth of July State Fishing Lake (State Fishing Lake) → Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
-- **US-13346** Voights Creek State Fish Hatchery (State Fish Hatchery) → Voights Creek FH (~29 ac, same name, different kind of place)
 - **US-13374** Loon Lake State Fishing Lake (State Fishing Lake) → Rustler's Gulch (~2,795 ac, the POTA pin is inside it (different name))
 - **US-13397** Modrow Bridge State Recreation Site (State Recreation Site) → Modrow Bridge Water Access Site (~1 ac, similar name)
 - **US-13398** Beginner's Hole State Recreation Site (State Recreation Site) → Beginners Hole Water Access Site (~1 ac, similar name)
@@ -60,7 +55,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **333 of 536** parks joined
 - **US-3171** Spokane River Centennial State Trail (State Trail) → Riverside (~8,735 ac, the POTA pin is inside it (different name))
 - **US-3225** Lyons Ferry State Park (State Park) → Lyons Ferry Fish Hatchery (~114 ac, same name, different kind of place); Lyons Ferry Fish Hatchery (~102 ac, same name, different kind of place)
 - **US-3229** Matia Island Marine State Park (State Park) → San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name)); San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name)); San Juan Islands National Monument (~0 ac, the POTA pin is inside it (different name))
-- **US-3276** Steptoe Battlefield State Park (State Park) → Steptoe Battlefield (~3 ac, same name, different kind of place)
 - **US-3283** Turn Island Marine State Park (State Park) → San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name)); San Juan Islands National Wildlife Refuge (~456 ac, the POTA pin is inside it (different name)); San Juan Islands National Monument (~0 ac, the POTA pin is inside it (different name))
 - **US-3385** Mt. St. Helens National Monument (National Monument) → Mount Saint Helens-Shillapoo Wildlife Area Complex (~10,476 ac, same name, different kind of place); Gifford Pinchot National Forest (~1,275,125 ac, the POTA pin is inside it (different name))
 - **US-4555** Hanford Reach National Monument (National Monument) → Hanford Site (~211,071 ac, the POTA pin is inside it (different name))

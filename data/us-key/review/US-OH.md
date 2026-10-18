@@ -1,10 +1,9 @@
 # OH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **234 of 276** parks joined to official land (same name + same kind of place). **17** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **235 of 276** parks joined to official land (same name + same kind of place). **16** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0787** Perry's Victory and International Peace National Memorial (National Memorial) → Perry's Victory and International Peace Memorial (~24 ac, similar name)
 - **US-12057** Lawrence Woods State Wildlife Area (State Wildlife Area) → Lawrence Woods Dedicated Nature Preserve (~1,036 ac, similar name)
 - **US-13539** Fernald National Preserve (National Preserve) → Fernald Preserve (~1,045 ac, similar name)
 - **US-1972** Little Miami State Park (State Park) → Little Miami Corwin Mill SR (~3 ac, similar name)

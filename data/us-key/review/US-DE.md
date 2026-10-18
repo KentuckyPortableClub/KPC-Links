@@ -1,6 +1,6 @@
 # DE: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **66 of 89** parks joined to official land (same name + same kind of place). **12** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **67 of 89** parks joined to official land (same name + same kind of place). **10** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -12,10 +12,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **66 of 89** parks joined t
 - **US-9877** Junction and Breakwater National Recreation Trail (National Recreation Trail) → Cape Henlopen State Park (~964 ac, the POTA pin is inside it (different name))
 - **US-9879** Pinelands Nature National Recreation Trail (National Recreation Trail) → Cape Henlopen State Park (~3,641 ac, the POTA pin is inside it (different name)); Cape Henlopen State Park (~562 ac, the POTA pin is inside it (different name))
 - **US-9881** Pomeroy and Newark National Recreation Trail (National Recreation Trail) → White Clay Creek State Park (~3,520 ac, the POTA pin is inside it (different name))
-- **US-9883** Port Penn Interpretive Center State Historic Site (State Historic Site) → Port Penn Natural Area (~2 ac, similar name); Port Penn Natural Area (~0 ac, similar name); Port Penn Interpretive Center (~0 ac, same name, different kind of place); Port Penn Interpretive Center (~0 ac, same name, different kind of place)
 - **US-9886** Dupont Nature Center State Conservation Area (State Conservation Area) → Milford Neck Wildlife Area (~5,131 ac, the POTA pin is inside it (different name))
 - **US-9891** Blackbird Creek National Reserve (National Reserve) → DNERR Blackbird Creek Reserve (~520 ac, similar name); DE National Estuarine Research Reserve Blackbird Creek Reserve (~210 ac, similar name); DE National Estuarine Research Reserve Blackbird Creek Reserve (~84 ac, similar name); De National Estuarine Research Reserve Blackbird Creek Reserve (~69 ac, similar name); DE National Estuarine Research Reserve Blackbird Creek Reserve (~61 ac, similar name); DE National Estuarine Research Reserve Blackbird Creek Reserve (~51 ac, similar name)
-- **US-9892** St. Jones National Reserve (National Reserve) → Saint Jones Reserve (~431 ac, similar name); Saint Jones Reserve (~83 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -24,6 +22,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **66 of 89** parks joined t
 
 - US-10683 Millsboro Pond State Fishing Lake (State Fishing Lake)
 - US-10687 Trussum Pond State Fishing Lake (State Fishing Lake)
+- US-10688 Tubmill Pond State Fishing Lake (State Fishing Lake)
 - US-11811 Records Pond State Fishing Lake (State Fishing Lake)
 - US-12938 Laurel Industrial Forest Land State Wildlife Area (State Wildlife Area)
 - US-12939 Barr Industrial Forest Land State Wildlife Area (State Wildlife Area)
@@ -47,7 +46,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **66 of 89** parks joined t
 - DNERR Blackbird Creek Reserve · SCA · Delaware National Estuarine Research Reserve · ~520 ac
 - Blackbird Reserve Wildlife Area · SOTH ·   · ~511 ac
 - John Dickinson Plantation · SOTH · DE Division of Historical and Cultural Affairs · ~446 ac
-- Saint Jones Reserve · SOTH · DE Division of Fish and Wildlife · ~431 ac
 - I-95 Corridor Wetlands · SOTH · DE Department of Transportation · ~392 ac
 - Sunset Lake · SP · DE Division of Parks and Recreation · ~305 ac
 - Blackbird Reserve Wildlife Area · SOTH ·   · ~297 ac
@@ -88,7 +86,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **66 of 89** parks joined t
 - Other Division Lands - Foskey Tract · SCA ·   · ~85 ac
 - DE National Estuarine Research Reserve Blackbird Creek Reserve · SOTH ·   · ~84 ac
 - Cedar Creek Nature Preserve · SP · DE Division of Parks and Recreation · ~84 ac
-- Saint Jones Reserve · SOTH ·   · ~83 ac
 - Route 13 Open Space · SOTH · DE Department of Transportation · ~82 ac
 - Glenville · SOTH · DE Department of Transportation · ~79 ac
 - Auburn Heights · SP ·   · ~75 ac
@@ -96,3 +93,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **66 of 89** parks joined t
 - I-95 Corridor Open Space · SOTH · DE Department of Transportation · ~71 ac
 - Pepper Tract · SOTH ·   · ~69 ac
 - De National Estuarine Research Reserve Blackbird Creek Reserve · SOTH · State of Delaware · ~69 ac
+- Bay Road Open Space · SOTH · DE Department of Transportation · ~68 ac
+- Abbotts Mill Nature Center · SCA · DE Division of Historical and Cultural Affairs · ~68 ac

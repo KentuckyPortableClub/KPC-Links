@@ -1,6 +1,6 @@
 # CT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **113 of 157** parks joined to official land (same name + same kind of place). **13** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **116 of 157** parks joined to official land (same name + same kind of place). **11** to check by hand, **30** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -11,11 +11,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **113 of 157** parks joined
 - **US-1694** Mansfield Hollow State Park (State Park) → Mansfield Hollow Wildlife Management Area (~2,387 ac, same name, different kind of place)
 - **US-1699** Mohawk Mountain State Park (State Park) → Mohawk State Forest (~3,251 ac, similar name); Mohawk State Forest (~252 ac, similar name)
 - **US-1728** Wharton Brook State Park (State Park) → Wharton Brook Natural Area Preserve (~24 ac, same name, different kind of place)
-- **US-6858** Beckett Hill Park Reserve (Park Reserve) → Beckett Hill State Park Scenic Reserve (~262 ac, similar name); Nehantic State Forest (~1,844 ac, the POTA pin is inside it (different name))
 - **US-6860** Ferry Landing State Park (State Park) → Marine District Headquarters (~7 ac, the POTA pin is inside it (different name))
 - **US-6870** Quinebaug Lake State Park (State Park) → Quinebaug Wildlife Area (~22 ac, same name, different kind of place)
 - **US-6872** Salt Rock State Forest (State Forest) → Salt Rock State Park (~65 ac, same name, different kind of place); Salt Rock State Park (~43 ac, same name, different kind of place); Salt Rock State Park (~30 ac, same name, different kind of place); Salt Rock State Park (~12 ac, same name, different kind of place)
-- **US-7540** Pomeroy State Reserve (State Reserve) → Pomeroy State Park Scenic Reserve (~87 ac, similar name); Pomeroy State Park Scenic Reserve (~38 ac, similar name); Pomeroy State Park Scenic Reserve (~33 ac, similar name); Pomeroy State Park Scenic Reserve (~23 ac, similar name); Pomeroy State Park Scenic Reserve (~15 ac, similar name); Pomeroy State Park Scenic Reserve (~2 ac, similar name)
 - **US-7542** Satan's Kingdom State Recreation Area (State Recreation Area) → Farmington River Water Access (~8 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -30,7 +28,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **113 of 157** parks joined
 - US-1647 Bennett's Pond State Park (State Park)
 - US-1652 Brainard Homestead State Park (State Park)
 - US-1657 Collis P. Huntington State Park (State Park)
-- US-1658 Connecticut Valley Railroad State Park (State Park)
 - US-1659 Dart Island State Park (State Park)
 - US-1664 Eagle Landing State Park (State Park)
 - US-1666 Fort Griswold Battlefield State Park (State Park)
@@ -73,7 +70,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **113 of 157** parks joined
 - Hammonasset Natural Area Preserve · SCA ·   · ~886 ac
 - Goshen Wildlife Area · SCA ·   · ~841 ac
 - Unknown · SOTH ·   · ~796 ac
-- Pachaug Pond · SREC ·   · ~787 ac
 - Unknown · SOTH ·   · ~762 ac
 - Housatonic State Forest · SRMA ·   · ~663 ac
 - Housatonic State Forest · SRMA ·   · ~647 ac
@@ -117,3 +113,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **113 of 157** parks joined
 - Unknown · SOTH ·   · ~268 ac
 - Housatonic State Forest · SRMA ·   · ~267 ac
 - Beach Pond · SREC ·   · ~263 ac
+- Housatonic State Forest · SRMA ·   · ~261 ac

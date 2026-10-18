@@ -55,6 +55,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **91 of 123** parks joined 
 - Northwest Louisiana Game And Fish Preserve/clear Lake · SCA · Unknown · ~23,235 ac
 - Wlf - Lake Anacoco / Lake Vernon · SREC · Unknown · ~22,731 ac
 - Lsu Research Station · REA · Unknown · ~19,236 ac
+- D 'Arbonne National Wildlife Refuge · NWR · D 'ARBONNE NATIONAL WILDLIFE REFUGE · ~17,639 ac
+- D 'Arbonne National Wildlife Refuge · NWR · D 'Arbonne National Wildlife Refuge · ~17,639 ac
 - Division Of State Lands · SRMA · Unknown · ~15,672 ac
 - Hillside National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,948 ac
 - Camp Beauregard Wildlife Management Area · SCA · Unknown · ~12,606 ac
@@ -103,5 +105,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **91 of 123** parks joined 
 - Southeastern States District Office · PUB · BLM · ~762 ac
 - Lsu Research Station · REA · Unknown · ~755 ac
 - Blind River · SCA · Unknown · ~740 ac
-- Black Lake Bayou · SREC · Unknown · ~726 ac
-- Raccourci Island Batture Lands · SOTH · Unknown · ~723 ac

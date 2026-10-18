@@ -4,11 +4,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 205** parks joined
 
 ## To check (not joined)
 
-- **US-11848** Temple Mountain State Reservation State Natural Reserve (State Natural Reserve) → Temple Mountain State Reservation (~345 ac, similar name)
 - **US-11849** Wantastiquet Mt Natural Area State Natural Site (State Natural Site) → Wantastiquet Mountain Natural Area (~913 ac, the POTA pin is inside it (different name))
 - **US-13486** Bellamy River Wildlife Management Area - East Wildlife Management Area (Wildlife Management Area) → Bellamy River Wildlife Management Area - West - Lot 2 (~34 ac, similar name); Bellamy River Access (~34 ac, similar name)
 - **US-13541** Magalloway Mountain Fire Tower State Preserve (State Preserve) → Magalloway Mountain (~2 ac, similar name)
 - **US-4926** Lovewell Mountain State Forest (State Forest) → Pillsbury State Park (~5,398 ac, the POTA pin is inside it (different name))
+- **US-4979** West Iron Works Road State Forest (State Forest) → West Iron Works Read State Forest (~46 ac, similar name)
 - **US-8021** Gov. Wentworth State Historic Site (State Historic Site) → Wentworth State Park (~52 ac, similar name)
 - **US-8029** Sculptured Rocks State Natural Area (State Natural Area) → Sculptured Rocks Geologic Site (~264 ac, similar name)
 
@@ -134,7 +134,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 205** parks joined
 - Milton Mills Wildlife Management Area · SCA ·   · ~366 ac
 - UNH - Jones Property · REA ·   · ~351 ac
 - Tunis District Conservation Area - GP · SOTH · NH Department of Environmental Services · ~350 ac
-- Temple Mountain State Reservation · SRMA ·   · ~345 ac
 - UNH - Kingman Farm · REA ·   · ~341 ac
 - Pine Road Site · SCA ·   · ~333 ac
 - NH Department of Transportation Mitigation · SOTH ·   · ~332 ac
@@ -148,3 +147,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 205** parks joined
 - Carpenters Marsh Wildlife Management Area · SCA ·   · ~291 ac
 - Perkins Pond Wildlife Management Area · SCA ·   · ~291 ac
 - Fort Hill Wildlife Management Area · SCA ·   · ~276 ac
+- Horne Brook Wildlife Management Area · SCA ·   · ~275 ac

@@ -1,10 +1,11 @@
 # VA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **143 of 184** parks joined to official land (same name + same kind of place). **18** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **142 of 184** parks joined to official land (same name + same kind of place). **19** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0692** Wolf Trap National Park (National Park) → Wolf Trap National Park for the Performing Arts (~119 ac, similar name)
+- **US-0717** Fredericksburg and Spotsylvania National Military Park (National Military Park) → Fredericksburg and Spotsylvania County Battlefields Memorial National Military Park (~7,640 ac, similar name)
 - **US-12716** Hayfields State Park (State Park) → VOF Holding (~1,101 ac, the POTA pin is inside it (different name)); Virginia Outdoors Foundation Holding (~1,101 ac, the POTA pin is inside it (different name))
 - **US-7804** Great Falls Park (Park) → George Washington Memorial Parkway (~3,477 ac, the POTA pin is inside it (different name))
 - **US-9897** Jamestowne National Historical Site (National Historical Site) → Colonial National Historical Park (~7,881 ac, the POTA pin is inside it (different name))

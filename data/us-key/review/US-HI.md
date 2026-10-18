@@ -1,19 +1,19 @@
 # HI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **65 of 102** parks joined to official land (same name + same kind of place). **17** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **68 of 102** parks joined to official land (same name + same kind of place). **17** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-10908** Pupukea Forest Reserve (Forest Reserve) → Pupukea-paumalu Forest Reserve (~848 ac, similar name)
-- **US-10909** Kuliʻouʻou Forest Reserve (Forest Reserve) → Kuliouou Forest Reserve (~215 ac, similar name)
 - **US-10913** Diamond Head Summit State Trail (State Trail) → Diamond Head State Monument (~503 ac, similar name)
+- **US-10914** Ka‘ena Point State Trail (State Trail) → Kaena Point State Park (~1,138 ac, same name, different kind of place)
 - **US-10915** Nakoa State Trail (State Trail) → Ahupuaa O Kahana State Park (~5,195 ac, the POTA pin is inside it (different name))
 - **US-10916** Kapaʻeleʻele State Trail (State Trail) → Ahupuaa O Kahana State Park (~5,195 ac, the POTA pin is inside it (different name))
 - **US-10917** ʻAiea Loop State Trail (State Trail) → Keaiwa Heiau State Recreation Area (~385 ac, the POTA pin is inside it (different name))
+- **US-10918** Waʻahila Ridge State Trail (State Trail) → Waahila Ridge State Recreation Area (~72 ac, same name, different kind of place)
 - **US-10925** HI State Game Reserve (Game Reserve) → Mokuleia Forest Reserve (~2,960 ac, the POTA pin is inside it (different name)); Kaala Natural Area Reserve (~1,087 ac, the POTA pin is inside it (different name))
 - **US-2216** Makapuʻu  Point Wayside State Trail (State Trail) → Makapuu Point State Wayside (~39 ac, similar name)
 - **US-6402** Lava Tree State Park (State Park) → Lava Tree State Monument (~18 ac, similar name)
-- **US-6419** Hulihe'e Palace State Park (State Park) → Hulihe'E Palace (~1 ac, same name, different kind of place)
 - **US-6420** Kiholo  Reserve State Reserve (State Reserve) → Pu'u Wa'awa'a Cooperative Game Management Area (~50,795 ac, the POTA pin is inside it (different name))
 - **US-6421** Kohala Historical Sites State Preserve (State Preserve) → Kohala Historical Sites State Monument (~7 ac, similar name)
 - **US-6424** Pāʻulaʻula State Historic Site (State Historic Site) → Russian Fort Elizabeth State Historical Park (~19 ac, the POTA pin is inside it (different name))
@@ -33,14 +33,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **65 of 102** parks joined 
 - US-0971 World War II Valor in the Pacific National Monument (National Monument)
 - US-10905 Honolulu Watershed Forest Reserve (Forest Reserve)
 - US-10912 'Ualaka'a State Trail (State Trail)
-- US-10914 Ka‘ena Point State Trail (State Trail)
-- US-10918 Waʻahila Ridge State Trail (State Trail)
 - US-10919 Na Ala Hele State Trail (State Trail)
 - US-10920 Kawainui Marsh Wildlife Reserve (Wildlife Reserve)
 - US-10921 Hawaii Capital National Historic District (National Historic District)
 - US-10922 Marconi Wireless Telegraphy Station Kahuku National Historic Site (National Historic Site)
 - US-10923 Artillery District of Honolulu Historic Site (Historic Site)
-- US-2222 Pu'u 'Ualakaa State Park (State Park)
 - US-6410 Iao Valley State Preserve (State Preserve)
 - US-6426 Iolani Palace State Preserve (State Preserve)
 - US-6429 Pu'u O Mahuka Heiau State Historic Site (State Historic Site)

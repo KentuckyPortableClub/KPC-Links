@@ -77,6 +77,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **159 of 172** parks joined
 - Valley Park · LP · Public Land Corp of WV · ~61 ac
 - Coopers Rock State Park (Mont Chateau??) · SP · WV Geological and Economic Survey · ~38 ac
 - London Pool Recreation Area · REC · Huntington · ~37 ac
+- Slaty Fork Wildlife Management Area · SCA ·   · ~37 ac
 - Woodpecker Woods Wildlife Sanctuary · SCA · WV Division of Natural Resources · ~31 ac
 - West Virginia State Capitol Grounds · LP · State of West Virginia · ~30 ac
 - Cotton Hill Wildlife Management Area · SCA · WV Division of Natural Resources · ~29 ac
@@ -85,4 +86,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **159 of 172** parks joined
 - Kanawha Falls Park · SREC · State of West Virginia · ~21 ac
 - Dillon Property · SOTH ·   · ~15 ac
 - Elkins Operations Center · SRMA · WV Division of Natural Resources · ~14 ac
-- Cacapon River Public River Access · SRMA · WV Division of Natural Resources · ~12 ac
