@@ -1,10 +1,9 @@
 # OK: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **52 of 205** parks joined to official land (same name + same kind of place). **35** to check by hand, **118** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **55 of 205** parks joined to official land (same name + same kind of place). **35** to check by hand, **115** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0487** Optima National Wildlife Refuge (National Wildlife Refuge) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
 - **US-10658** Lake Carl Blackwell Wildlife Management Area (Wildlife Management Area) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
 - **US-10951** Cherokee Strip Regional Heritage Center Historic Site (Historic Site) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
 - **US-11321** Winding Stair Mountain National Recreation Area (National Recreation Area) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name))
@@ -35,6 +34,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **52 of 205** parks joined 
 - **US-8120** Evans Chambers State Fishing Lake (State Fishing Lake) → Evans Chambers Public Fishing Area (~204 ac, similar name); CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
 - **US-8129** Nanih Waiya State Fishing Lake (State Fishing Lake) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
 - **US-8133** Sans Bois Wildlife Management Area (Wildlife Management Area) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
+- **US-8135** Optima Wildlife Management Area (Wildlife Management Area) → Optima National Wildlife Refuge (~4,341 ac, same name, different kind of place)
 - **US-8139** Grassy Slough Wildlife Management Area (Wildlife Management Area) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
 - **US-8141** Whitegrass Flats Wildlife Management Area (Wildlife Management Area) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
 - **US-8143** Boggy Depot National Historical Site (National Historical Site) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
@@ -42,8 +42,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **52 of 205** parks joined 
 
 ## Nothing found in PAD-US
 
-- US-0490 Sequoyah National Wildlife Refuge (National Wildlife Refuge)
-- US-0491 Tishomingo National Wildlife Refuge (National Wildlife Refuge)
 - US-0822 Fort Smith National Historic Site (National Historic Site)
 - US-10223 Dewey County Wildlife Management Area (Wildlife Management Area)
 - US-10258 Ouachita National National Recreation Trail (National Recreation Trail)
@@ -131,7 +129,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **52 of 205** parks joined 
 - US-8131 Ozzie Cobb State Fishing Lake (State Fishing Lake)
 - US-8132 Sandhills Wildlife Management Area (Wildlife Management Area)
 - US-8134 Sardis State Fishing Lake (State Fishing Lake)
-- US-8135 Optima Wildlife Management Area (Wildlife Management Area)
 - US-8136 Stringtown Wildlife Management Area (Wildlife Management Area)
 - US-8137 Arbuckle Springs Wildlife Management Area (Wildlife Management Area)
 - US-8138 Yourman Wildlife Management Area (Wildlife Management Area)
@@ -166,7 +163,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **52 of 205** parks joined 
 - CLO Lands · SRMA · The Commissioners of the Land Office · ~3,238,968 ac
 - Ouachita National Forest · NF · Forest Service Region 08 Southern · ~353,440 ac
 - Canton Wildlife Management Area & Waterfowl Refuge Portion · SCA · Department of Wildlife Conservation · ~11,476 ac
+- Hagerman National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,298 ac
+- Buffalo Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,718 ac
 - Southwestern Livestock And Forage Research Station · REA · Agricultural Research Service (ARS) · ~6,565 ac
+- Muleshoe National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,552 ac
 - Ozark Plateau National Wildlife Refuge · NWR · Ozark Plateau National Wildlife Refuge · ~4,338 ac
 - Southern Plains Experimental Range · REA · Agricultural Research Service (ARS) · ~4,325 ac
 - Ozark Plateau National Wildlife Refuge · NWR · OZARK PLATEAU NATIONAL WILDLIFE REFUGE · ~3,824 ac
@@ -176,6 +176,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **52 of 205** parks joined 
 - Western Hills Guest Ranch/sequoya Sp State Resort · SP · Unknown · ~2,822 ac
 - Oklahoma Field Office · PUB · BLM · ~1,945 ac
 - Walnut Creek State Park · SP · Unknown · ~1,163 ac
+- Muleshoe National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,141 ac
+- Farm Service Agency Interest Of Tx ·  · U.S. Fish & Wildlife Service (own map) · ~822 ac
 - Boiling State Parkrings State Park · SP · Unknown · ~775 ac
 - Twin Points Recreation Area · PUB · US Army Corps of Engineers · ~760 ac
 - Dog Iron Ranch & Will Rogers Birthplace · SP · Unknown · ~574 ac

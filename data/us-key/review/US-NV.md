@@ -1,10 +1,9 @@
 # NV: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **39 of 367** parks joined to official land (same name + same kind of place). **236** to check by hand, **92** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **40 of 367** parks joined to official land (same name + same kind of place). **235** to check by hand, **92** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0465** Desert National Wildlife Refuge (National Wildlife Refuge) → Desert National Wildlife Range (~1,512,944 ac, similar name); Desert National Wildlife Range (~1,512,682 ac, similar name)
 - **US-10345** Carson Lake and Pasture Wildlife Management Area (Wildlife Management Area) → Usbr (~139,499 ac, the POTA pin is inside it (different name))
 - **US-10466** Blue Wing Mountains BLM Herd Management Area (BLM Herd Management Area) → Humboldt River Field Office (~6,081,514 ac, the POTA pin is inside it (different name))
 - **US-10469** McGee Mountain BLM Herd Management Area (BLM Herd Management Area) → Humboldt River Field Office (~6,081,514 ac, the POTA pin is inside it (different name))
@@ -363,8 +362,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **39 of 367** parks joined 
 - Inyo National Forest · NF · Forest Service Region 05 Pacific Southwest · ~113,755 ac
 - Jarbidge Field Office · PUB · BLM · ~44,028 ac
 - Humoldt Wildlife Management Area · NCA · Unknown · ~27,413 ac
+- Kern National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,236 ac
 - Robert B. Griffith Water Project · FOTH · Unknown · ~10,537 ac
 - Bruneau Field Office · PUB · BLM · ~7,868 ac
+- Pixley National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,494 ac
 - Snowstorm Wildlife Management Unit · SCA · Nevada Department of Wildlife (NDOW) · ~7,248 ac
 - Stillwater Wildlife Management Area · SCA · Nevada Department of Wildlife (NDOW) · ~5,979 ac
 - Toiyabe National Forest · NF · Forest Service Region 04 Intermountain · ~4,896 ac
@@ -382,6 +383,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **39 of 367** parks joined 
 - Vya Area Grant Lands · SRMA · Unknown · ~1,345 ac
 - Nevada State Medium Security Prison · SOTH · Unknown · ~1,179 ac
 - Applegate Field Office · PUB · BLM · ~957 ac
+- Blue Ridge National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~908 ac
 - Black Rock Field Office · PUB · BLM · ~658 ac
 - Marble Bluff Fish Research & Control Station · FOTH · MARBLE BLUFF FISH RESEARCH & CONTROL STATION · ~647 ac
 - Hd Summit 2 · SOTH · Nevada Department of Wildlife · ~571 ac
@@ -395,6 +397,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **39 of 367** parks joined 
 - Barstow Field Office · PUB · BLM · ~334 ac
 - Tule Springs Archaeology Site · SHCA · Nevada State Parks · ~324 ac
 - University Of Nevada - Las Vegas · SOTH · Unknown · ~297 ac
-- Truckee Storage · FOTH · Unknown · ~281 ac
-- Anaho Island National Wildlife Refuge · NWR · Anaho Island National Wildlife Refuge · ~251 ac
-- Fallon Naval Air Station · MIL · Unknown · ~235 ac
