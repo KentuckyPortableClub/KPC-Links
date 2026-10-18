@@ -1,37 +1,39 @@
 # DC: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **13 of 34** parks joined to official land (same name + same kind of place). **0** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **12 of 34** parks joined to official land (same name + same kind of place). **14** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0657** President's Park (White House) Park (Park) → National Capital Parks (~3,908 ac, the POTA pin is inside it (different name))
+- **US-0776** Franklin Delano Roosevelt National Memorial (National Memorial) → Franklin Delano Roosevelt Memorial (~8 ac, similar name); National Capital Parks (~3,908 ac, the POTA pin is inside it (different name))
+- **US-0780** Korean War Veterans National Memorial (National Memorial) → World War II Memorial (~9 ac, similar name); Korean War Veterans Memorial (~2 ac, similar name); Vietnam Veterans Memorial (~2 ac, similar name); World War I Memorial (~2 ac, similar name); National Capital Parks (~3,908 ac, the POTA pin is inside it (different name))
+- **US-0783** Lincoln National Memorial (National Memorial) → Lincoln Memorial (~7 ac, similar name)
+- **US-0785** Martin Luther King Jr. National Memorial (National Memorial) → Martin Luther King, Jr., Memorial (~3 ac, similar name); National Capital Parks (~3,908 ac, the POTA pin is inside it (different name))
+- **US-0791** Theodore Roosevelt Island National Memorial (National Memorial) → Theodore Roosevelt Island (~100 ac, similar name)
+- **US-0792** Thomas Jefferson National Memorial (National Memorial) → Thomas Jefferson Memorial (~20 ac, similar name)
+- **US-0793** Vietnam Veterans National Memorial (National Memorial) → Vietnam Veterans Memorial (~2 ac, similar name); Constitution Gardens (~43 ac, the POTA pin is inside it (different name))
+- **US-0794** Washington Monument National Memorial (National Memorial) → Washington Monument (~104 ac, similar name)
+- **US-0795** World War I National Memorial (National Memorial) → World War II Memorial (~9 ac, similar name); World War I Memorial (~2 ac, similar name); Pennsylvania Avenue National Historic Site (~18 ac, the POTA pin is inside it (different name))
+- **US-0796** World War II National Memorial (National Memorial) → World War II Memorial (~9 ac, similar name); World War I Memorial (~2 ac, similar name)
+- **US-13543** US National Arboretum Botanical Gardens (Botanical Gardens) → National Arboretum (~380 ac, similar name)
+- **US-7499** Dwight D. Eisenhower National Memorial (National Memorial) → Dwight D. Eisenhower Memorial (~1 ac, similar name)
+- **US-7891** African American Civil War National Memorial (National Memorial) → World War I Memorial (~2 ac, similar name)
 
 ## Nothing found in PAD-US
 
-- US-0657 President's Park (White House) Park (Park)
-- US-0776 Franklin Delano Roosevelt National Memorial (National Memorial)
-- US-0780 Korean War Veterans National Memorial (National Memorial)
-- US-0783 Lincoln National Memorial (National Memorial)
-- US-0785 Martin Luther King Jr. National Memorial (National Memorial)
-- US-0791 Theodore Roosevelt Island National Memorial (National Memorial)
-- US-0792 Thomas Jefferson National Memorial (National Memorial)
-- US-0793 Vietnam Veterans National Memorial (National Memorial)
-- US-0794 Washington Monument National Memorial (National Memorial)
-- US-0795 World War I National Memorial (National Memorial)
-- US-0796 World War II National Memorial (National Memorial)
-- US-13543 US National Arboretum Botanical Gardens (Botanical Gardens)
+- US-0015 Chesapeake and Ohio Canal National Historical Park (National Historical Park)
 - US-13597 George Mason National Memorial (National Memorial)
 - US-4564 Potomac Heritage Trail National Scenic Trail (National Scenic Trail)
 - US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail)
 - US-4581 Star-Spangled Banner National Historic Trail (National Historic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
-- US-7499 Dwight D. Eisenhower National Memorial (National Memorial)
-- US-7891 African American Civil War National Memorial (National Memorial)
 - US-9898 Mount Vernon National Historic Trail (National Historic Trail)
 - US-9901 Civil War Defenses of Washington National Historic Trail (National Historic Trail)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - National Arboretum · FOTH · US Department of Agriculture · ~380 ac
+- Chesapeake and Ohio Canal National Historical Park · HCA · NPS · ~323 ac
 - Washington Monument · HCA · NPS · ~104 ac
 - Theodore Roosevelt Island · HCA · NPS · ~100 ac
 - Captial Grounds · LP · Architect of the Capital · ~94 ac
@@ -90,4 +92,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **13 of 34** parks joined t
 - Median Michigan Rd At Warder Street Nw · FOTH · US Federal · ~0 ac
 - Median Nash Place At Pope Streets Se · FOTH · US Federal · ~0 ac
 - Median Newton Street At Rhode Island Avenue Ne · FOTH · US Federal · ~0 ac
-- Median North Portal Drive At East Beach Dr Nw · FOTH · US Federal · ~0 ac

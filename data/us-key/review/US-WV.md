@@ -1,32 +1,32 @@
 # WV: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **148 of 172** parks joined to official land (same name + same kind of place). **0** to check by hand, **24** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **148 of 172** parks joined to official land (same name + same kind of place). **12** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0697** Bluestone National Wild and Scenic River (National Wild and Scenic River) → Bluestone Recreation Area (~22,147 ac, similar name)
+- **US-12034** Daniels Ridge Wildlife Management Area (Wildlife Management Area) → Daniels Ridge Wilidlife Management Area (~3,379 ac, similar name)
+- **US-12436** Big Draft Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
+- **US-12437** Cranberry Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
+- **US-12438** Dolly Sods Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
+- **US-12439** North Laurel Fork Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
+- **US-12440** South Laurel Fork Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
+- **US-12441** Otter Creek Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
+- **US-12442** Roaring Plains West Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
+- **US-12443** Spice Run Wilderness Area (Wilderness Area) → Monongahela National Forest (~921,100 ac, the POTA pin is inside it (different name))
+- **US-5584** Camp Creek State Park and Forest State Park (State Park) → Camp Creek State Forest (~5,312 ac, similar name); Camp Creek State Park (~559 ac, similar name)
+- **US-7032** Valley Bend Wildlife Management Area (Wildlife Management Area) → Valley Bend Wetlands Wildlife Management Area (~32 ac, similar name)
 
 ## Nothing found in PAD-US
 
-- US-0697 Bluestone National Wild and Scenic River (National Wild and Scenic River)
 - US-10031 Elk River Trail State Trail (State Trail)
-- US-12034 Daniels Ridge Wildlife Management Area (Wildlife Management Area)
 - US-12052 Bowden State Fish Hatchery (State Fish Hatchery)
 - US-12053 Edray State Fish Hatchery (State Fish Hatchery)
 - US-12054 Ridge State Fish Hatchery (State Fish Hatchery)
 - US-12055 Petersburg State Fish Hatchery (State Fish Hatchery)
 - US-12056 Apple Grove State Fish Hatchery (State Fish Hatchery)
-- US-12436 Big Draft Wilderness Area (Wilderness Area)
-- US-12437 Cranberry Wilderness Area (Wilderness Area)
-- US-12438 Dolly Sods Wilderness Area (Wilderness Area)
-- US-12439 North Laurel Fork Wilderness Area (Wilderness Area)
-- US-12440 South Laurel Fork Wilderness Area (Wilderness Area)
-- US-12441 Otter Creek Wilderness Area (Wilderness Area)
-- US-12442 Roaring Plains West Wilderness Area (Wilderness Area)
-- US-12443 Spice Run Wilderness Area (Wilderness Area)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
-- US-5584 Camp Creek State Park and Forest State Park (State Park)
-- US-7032 Valley Bend Wildlife Management Area (Wildlife Management Area)
 - US-9739 Forks of the Coal State Natural Area (State Natural Area)
 - US-9741 North Bend Rail Trail State Trail (State Trail)
 - US-9742 Greenbrier River Trail State Trail (State Trail)
