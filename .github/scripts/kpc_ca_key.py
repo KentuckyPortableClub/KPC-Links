@@ -186,7 +186,6 @@ for e in _ns['EXTRA']:
 # Oct 18 review: more official layers found by a probe from GitHub (POTA Québec 'Nature Reserve' parks are the province's
 # recognized nature reserves, which CPCAD files as private stewardship; the government register has them by name)
 MORE = [('Québec recognized nature reserves (MELCCFP)', 'https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/12', ['TOPONYME', 'DESIGNOM']),
-        ('Québec recreation territories (MRNF)', 'https://servicescarto.mern.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer', None),
         ('Saskatchewan regional parks (Government of Saskatchewan)', 'https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/6', None),
         ('Yukon parks and protected areas (Government of Yukon)', 'https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/3', None),
         ('Yukon campgrounds and parks (Government of Yukon)', 'https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/0', None),
