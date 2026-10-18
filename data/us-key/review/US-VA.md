@@ -1,0 +1,144 @@
+# VA: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **112 of 184** parks joined to official land (same name + same kind of place). **0** to check by hand, **72** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+
+## Nothing found in PAD-US
+
+- US-0692 Wolf Trap National Park (National Park)
+- US-10015 Accotink Bay Wildlife Refuge (Wildlife Refuge)
+- US-10507 Rock Castle Gorge National Recreation Trail (National Recreation Trail)
+- US-11719 Culpeper Battlefield State Park (State Park)
+- US-12716 Hayfields State Park (State Park)
+- US-1317 Shot Tower State Park (State Park)
+- US-3378 Blue Ridge National Parkway (National Parkway)
+- US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
+- US-4564 Potomac Heritage Trail National Scenic Trail (National Scenic Trail)
+- US-4577 Overmountain Victory National Historic Trail (National Historic Trail)
+- US-4581 Star-Spangled Banner National Historic Trail (National Historic Trail)
+- US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
+- US-5508 Chesterfield State Forest (State Forest)
+- US-5517 Matthews State Forest (State Forest)
+- US-7804 Great Falls Park (Park)
+- US-8203 Cape Henry National Memorial (National Memorial)
+- US-8204 Yorktown National Battlefield (National Battlefield)
+- US-9897 Jamestowne National Historical Site (National Historical Site)
+- US-9898 Mount Vernon National Historic Trail (National Historic Trail)
+- US-9899 Fort Hunt National Historical Site (National Historical Site)
+- US-9900 Fort Marcy National Historical Site (National Historical Site)
+- US-9901 Civil War Defenses of Washington National Historic Trail (National Historic Trail)
+- US-9902 Colonial National Parkway (National Parkway)
+- US-9903 Mount Rogers National Recreation Area (National Recreation Area)
+- US-9904 Apple Orchard Falls National Recreation Trail (National Recreation Trail)
+- US-9905 Cascades National Recreation Trail (National Recreation Trail)
+- US-9906 Cornelius Creek National Recreation Trail (National Recreation Trail)
+- US-9907 First Landing National Recreation Trail (National Recreation Trail)
+- US-9908 Hoop Hole National Recreation Trail (National Recreation Trail)
+- US-9909 Little Stony Creek National Recreation Trail (National Recreation Trail)
+- US-9910 Massanutten National Recreation Trail (National Recreation Trail)
+- US-9920 Mount Rogers National Recreation Trail (National Recreation Trail)
+- US-9922 The Lion's Tale National Recreation Trail (National Recreation Trail)
+- US-9923 Virginia Creeper National Recreation Trail (National Recreation Trail)
+- US-9925 Wild Oak National Recreation Trail (National Recreation Trail)
+- US-9931 Frontier Culture Museum State Historic Site (State Historic Site)
+- US-9932 The Channels State Natural Area (State Natural Area)
+- US-9933 Beaches to Bluegrass State Trail (State Trail)
+- US-9934 James River Heritage State Trail (State Trail)
+- US-9935 Virginia Bird & Wildlife State Trail (State Trail)
+- US-9937 Meadowood BLM Special Recreation Management Area (BLM Special Recreation Management Area)
+- US-9938 Barbours Creek Wilderness Area (Wilderness Area)
+- US-9939 Beartown Wilderness Area (Wilderness Area)
+- US-9940 Brush Mountain Wilderness Area (Wilderness Area)
+- US-9941 Brush Mountain East Wilderness Area (Wilderness Area)
+- US-9942 Garden Mountain Wilderness Area (Wilderness Area)
+- US-9943 Hunting Camp Creek Wilderness Area (Wilderness Area)
+- US-9945 Kimberling Creek Wilderness Area (Wilderness Area)
+- US-9946 Lewis Fork Wilderness Area (Wilderness Area)
+- US-9947 Little Dry Run Wilderness Area (Wilderness Area)
+- US-9948 Little Wilson Creek Wilderness Area (Wilderness Area)
+- US-9949 Mountain Lake Wilderness Area (Wilderness Area)
+- US-9950 Peters Mountain Wilderness Area (Wilderness Area)
+- US-9951 Priest Wilderness Area (Wilderness Area)
+- US-9952 Raccoon Branch Wilderness Area (Wilderness Area)
+- US-9953 Ramseys Draft Wilderness Area (Wilderness Area)
+- US-9954 Rich Hole Wilderness Area (Wilderness Area)
+- US-9955 St. Mary's Wilderness Area (Wilderness Area)
+- US-9956 Shawvers Run Wilderness Area (Wilderness Area)
+- US-9957 Shenandoah Wilderness Area (Wilderness Area)
+- US-9958 Stone Mountain Wilderness Area (Wilderness Area)
+- US-9959 Three Ridges Wilderness Area (Wilderness Area)
+- US-9960 Thunder Ridge Wilderness Area (Wilderness Area)
+- US-9961 Dyke Marsh Wildlife Reserve (Wildlife Reserve)
+- US-9966 Vic Thomas Striped Bass State Fish Hatchery (State Fish Hatchery)
+- US-9967 King and Queen State Fish Hatchery (State Fish Hatchery)
+- US-9968 Buller State Fish Hatchery (State Fish Hatchery)
+- US-9969 Front Royal State Fish Hatchery (State Fish Hatchery)
+- US-9970 Marion Trout State Fish Hatchery (State Fish Hatchery)
+- US-9972 Coursey Spring State Fish Hatchery (State Fish Hatchery)
+- US-9973 Wytheville Trout State Fish Hatchery (State Fish Hatchery)
+- US-9974 Paint Bank State Fish Hatchery (State Fish Hatchery)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- Fort Pickett Military Reservation · FOTH ·   · ~41,156 ac
+- Fort Pickett Military Reservation · MIL · VA Army National Guard · ~41,156 ac
+- Blue Ridge Parkway · SDA · NPS · ~35,237 ac
+- Goshen and Little North Mountain Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~33,315 ac
+- Goshen and Little North Mountain Wildlife Management Area · SCA ·   · ~33,231 ac
+- Tidal Lands · SRMA · VA Marine Resources Commission · ~26,163 ac
+- Tidal Lands · SOTH ·   · ~26,120 ac
+- Clinch Mountain Wildlife Management Area · SCA ·   · ~22,276 ac
+- Clinch Mountain Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~22,276 ac
+- Appalachian National Scenic Trail · NT · NPS · ~17,671 ac
+- Highland Wildlife Management Area · SCA ·   · ~13,720 ac
+- Highland Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~13,715 ac
+- Gathright Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~10,609 ac
+- Gathright Wildlife Management Area · SCA ·   · ~10,516 ac
+- John W Flannagan Recreation Area · REC · Huntington · ~8,139 ac
+- Fredericksburg and Spotsylvania County Battlefields Memorial National Military Park · HCA · NPS · ~7,640 ac
+- The Big Survey Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~7,437 ac
+- The Big Survey Wildlife Management Area · SCA ·   · ~7,410 ac
+- Mockhorn Wildlife Management Area · SCA ·   · ~7,378 ac
+- Mockhorn Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~7,378 ac
+- Rapidan Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~7,343 ac
+- Havens Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~7,339 ac
+- DCR Holding · SOTH · VA Dept of Conservation and Recreation · ~7,326 ac
+- Hidden Valley Wildlife Management Area · SCA ·   · ~6,239 ac
+- Hidden Valley Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~6,239 ac
+- Saxis Wildlife Management Area · SCA ·   · ~5,534 ac
+- Saxis Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~5,534 ac
+- Fairystone Farms Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~5,087 ac
+- Fairystone Farms Wildlife Management Area · SCA ·   · ~5,046 ac
+- Smith Mountain Cooperative Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~4,997 ac
+- Chickahominy Wildlife Management Area · SCA ·   · ~4,658 ac
+- Chickahominy Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~4,658 ac
+- Powhatan Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~4,555 ac
+- C.F. Phelps Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~4,543 ac
+- Powhatan Wildlife Management Area · SCA ·   · ~4,483 ac
+- Short Hills Wildlife Management Area · SCA ·   · ~4,233 ac
+- Short Hills Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~4,233 ac
+- Rapidan Wildlife Management Area · SCA ·   · ~4,119 ac
+- C.F. Phelps Wildlife Management Area · SCA ·   · ~4,084 ac
+- Thompson Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~3,964 ac
+- Cavalier Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~3,770 ac
+- False Cape State Natural Area Preserve · SCA ·   · ~3,603 ac
+- False Cape State Natural Area Preserve · SCA · VA Dept of Conservation and Recreation · ~3,603 ac
+- North Landing River State Natural Area Preserve · SCA · VA Dept of Conservation and Recreation · ~3,532 ac
+- Thompson Wildlife Management Area · SCA ·   · ~3,396 ac
+- Rapidan Wildlife Management Area · SCA ·   · ~3,170 ac
+- Briery Creek Wildlife Management Area · SCA ·   · ~3,130 ac
+- Briery Creek Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~3,130 ac
+- Plum Tree Island National Wildlife Refuge · NWR · PLUM TREE ISLAND NATIONAL WILDLIFE REFUGE · ~3,065 ac
+- Plum Tree Island National Wildlife Refuge · NWR · Plum Tree Island National Wildlife Refuge · ~3,065 ac
+- Doc · SOTH ·   · ~3,019 ac
+- Horsepen Lake Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~2,957 ac
+- Oakley Forest Wildlife Management Area · SCA ·   · ~2,900 ac
+- Oakley Forest Wildlife Management Area · SCA · VA Dept of Wildlife Resources · ~2,900 ac
+- Horsepen Lake Wildlife Management Area · SCA ·   · ~2,861 ac
+- South Quay Sandhills State Natural Area Preserve · SCA ·   · ~2,851 ac
+- South Quay Sandhills State Natural Area Preserve · SCA · VA Dept of Conservation and Recreation · ~2,851 ac
+- US Government NW Radio Station · FOTH · US Government · ~2,791 ac
+- North Fork Of Pound Rv Recreation Area · REC · Huntington · ~2,777 ac
+- Featherfin Farm Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~2,756 ac

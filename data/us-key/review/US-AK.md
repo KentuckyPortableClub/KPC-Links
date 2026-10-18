@@ -1,0 +1,193 @@
+# AK: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **58 of 179** parks joined to official land (same name + same kind of place). **61** to check by hand, **60** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+- **US-0878** Aniakchak National Wild and Scenic River (National Wild and Scenic River) → Aniakchak National Preserve (~458,884 ac, similar name)
+- **US-0879** Charley National Wild and Scenic River (National Wild and Scenic River) → Yukon-Charley Rivers National Preserve (~2,194,982 ac, the POTA pin is inside it (different name))
+- **US-0880** Chilikadrotna National Wild and Scenic River (National Wild and Scenic River) → Lake Clark National Park (~2,487,856 ac, the POTA pin is inside it (different name))
+- **US-0889** Noatak National Wild and Scenic River (National Wild and Scenic River) → Noatak National Preserve (~6,542,343 ac, similar name)
+- **US-0893** Tlikakila National Wild and Scenic River (National Wild and Scenic River) → Lake Clark National Park (~2,487,856 ac, the POTA pin is inside it (different name))
+- **US-11244** Knik River Public Use Area State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
+- **US-11494** Campbell Tract Special Recreation Management Area BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Anchorage Field Office (~23,502,891 ac, the POTA pin is inside it (different name)); State Land Disposals - Municipal Purposes (~676,504 ac, the POTA pin is inside it (different name))
+- **US-11798** Tangle Lakes Archeological Reserve (Archeological Reserve) → Glennallen Field Office (~4,244,135 ac, the POTA pin is inside it (different name))
+- **US-11799** Tangle Lakes Recreation Site (Recreation Site) → Glennallen Field Office (~36,210 ac, the POTA pin is inside it (different name))
+- **US-11800** Delta Wild and Scenic River Wayside Recreation Site (Recreation Site) → Glennallen Field Office (~36,210 ac, the POTA pin is inside it (different name))
+- **US-11802** Brushkana Creek Campground Recreation Site (Recreation Site) → Glennallen Field Office (~4,244,135 ac, the POTA pin is inside it (different name))
+- **US-11803** Paxson Lake Campground Recreation Site (Recreation Site) → Glennallen Field Office (~4,244,135 ac, the POTA pin is inside it (different name))
+- **US-11804** Gulkana BLM Wild and Scenic River (BLM Wild and Scenic River) → Glennallen Field Office (~89,450 ac, the POTA pin is inside it (different name))
+- **US-11805** Sourdough Creek Campground Recreation Site (Recreation Site) → Glennallen Field Office (~4,244,135 ac, the POTA pin is inside it (different name))
+- **US-11825** Eagle Campground BLM Recreation Management Area (BLM Recreation Management Area) → Eastern Interior Field Office (~3,811,553 ac, the POTA pin is inside it (different name))
+- **US-11826** Walker Fork Campground BLM Recreation Management Area (BLM Recreation Management Area) → Eastern Interior Field Office (~241,991 ac, the POTA pin is inside it (different name))
+- **US-11830** Five Mile Campground BLM Recreation Management Area (BLM Recreation Management Area) → Central Yukon Field Office (~12,497,870 ac, the POTA pin is inside it (different name)); James Dalton Highway Corridor (~2,252,606 ac, the POTA pin is inside it (different name))
+- **US-11831** Arctic Circle Campground BLM Recreation Management Area (BLM Recreation Management Area) → Central Yukon Field Office (~12,497,870 ac, the POTA pin is inside it (different name)); James Dalton Highway Corridor (~2,252,606 ac, the POTA pin is inside it (different name))
+- **US-11832** Marion Creek Campground BLM Recreation Management Area (BLM Recreation Management Area) → James Dalton Highway Corridor (~2,252,606 ac, the POTA pin is inside it (different name))
+- **US-11833** Galbraith Lake Campground BLM Recreation Management Area (BLM Recreation Management Area) → Central Yukon Field Office (~12,497,870 ac, the POTA pin is inside it (different name))
+- **US-11835** Little Susitna Public Use Facility State Recreation Site (State Recreation Site) → Susitna Flats State Game Refuge (~296,685 ac, the POTA pin is inside it (different name))
+- **US-11836** Fred Blixt Cabin BLM Recreation Management Area (BLM Recreation Management Area) → State Tentatively Approved (tad) (~43,045,454 ac, the POTA pin is inside it (different name))
+- **US-11850** Mount Prindle Campground BLM Recreation Management Area (BLM Recreation Management Area) → Eastern Interior Field Office (~932,728 ac, the POTA pin is inside it (different name))
+- **US-11851** Ophir Creek Campground BLM Recreation Management Area (BLM Recreation Management Area) → Eastern Interior Field Office (~932,728 ac, the POTA pin is inside it (different name))
+- **US-11853** Cripple Creek Campground BLM Recreation Management Area (BLM Recreation Management Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
+- **US-11854** Pinnell Mountain National Recreation Trail (National Recreation Trail) → State Tentatively Approved (tad) (~43,045,454 ac, the POTA pin is inside it (different name))
+- **US-12381** Delta BLM Wild and Scenic River (BLM Wild and Scenic River) → Glennallen Field Office (~36,210 ac, the POTA pin is inside it (different name))
+- **US-12678** Little Nelchina State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
+- **US-12679** Fort Egbert BLM Historic Area (BLM Historic Area) → Eastern Interior Field Office (~3,811,553 ac, the POTA pin is inside it (different name))
+- **US-12708** Kenai River State Conservation Area (State Conservation Area) → Kenai National Wildlife Refuge (~1,939,526 ac, similar name); Kenai National Wildlife Refuge (~1,938,670 ac, similar name); Kenai River Special Management Area (~1,404 ac, similar name)
+- **US-12750** Shoup Bay State Marine Reserve (State Marine Reserve) → Shoup Bay State Marine Park (~3,809 ac, similar name)
+- **US-13462** Sportsman's Angler Access State Recreation Site (State Recreation Site) → Chugach National Forest (~5,401,397 ac, the POTA pin is inside it (different name))
+- **US-3392** Kachemak Bay Wilderness State Park (State Park) → Kachemak Bay State Wilderness Park (~198,064 ac, similar name); Kachemak Bay State Park (~116,387 ac, similar name); Kachemak Bay State Park (~403 ac, similar name); Kachemak Bay State Wilderness Park (~184 ac, similar name)
+- **US-4537** Admiralty Island National Monument (National Monument) → Tongass National Forest (~16,739,631 ac, the POTA pin is inside it (different name))
+- **US-4585** Walrus Islands State Game Land (State Game Land) → Walrus Islands State Game Sanctuary (~162,340 ac, similar name)
+- **US-4592** Haines State Forest (State Forest) → Haines State Forest Resource Management Area (~304,424 ac, similar name)
+- **US-4593** Southeast State Forest (State Forest) → State Tentatively Approved (ta) (~42,740 ac, the POTA pin is inside it (different name))
+- **US-6332** Hatcher Pass State Natural Area (State Natural Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
+- **US-7192** Blueberry Lake State Recreation Site (State Recreation Site) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
+- **US-7195** Clam Gulch State Recreation Area (State Recreation Area) → Clam Gulch Critical Habitat Area (~3,853 ac, similar name)
+- **US-7204** Worthington Glacier State Recreation Site (State Recreation Site) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
+- **US-7210** Dry Creek State Recreation Site (State Recreation Site) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
+- **US-7216** Lake Louise State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
+- **US-7221** Porcupine Creek State Recreation Site (State Recreation Site) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name)); Glennallen Field Office (~4,244,135 ac, the POTA pin is inside it (different name))
+- **US-7224** Summit Lake State Recreation Site (State Recreation Site) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
+- **US-7227** Birch Lake State Recreation Site (State Recreation Site) → State Land Disposals - Municipal Purposes (~676,504 ac, the POTA pin is inside it (different name))
+- **US-7232** Eagle Trail State Recreation Site (State Recreation Site) → Tanana Valley State Forest (~1,754,914 ac, the POTA pin is inside it (different name))
+- **US-7234** Harding Lake State Recreation Site (State Recreation Site) → State Land Disposals - Other Than Municipal (~1,165,571 ac, the POTA pin is inside it (different name))
+- **US-7235** Lower Chatanika State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
+- **US-7237** Quartz Lake State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
+- **US-7240** Alaska Chilkat Bald Eagle State Preserve (State Preserve) → Alaska Chilkat Bald Eagle Preserve (~6,670 ac, similar name)
+- **US-7241** Chilkoot Lake State Recreation Site (State Recreation Site) → Haines State Forest Resource Management Area (~304,424 ac, the POTA pin is inside it (different name))
+- **US-7242** Portage Cove State Recreation Site (State Recreation Site) → State Land Disposals - Other Than Municipal (~1,165,571 ac, the POTA pin is inside it (different name))
+- **US-7248** Settler's Cove State Recreation Site (State Recreation Site) → State Land Disposals - Other Than Municipal (~26,625 ac, the POTA pin is inside it (different name))
+- **US-7252** Halibut Point State Recreation Site (State Recreation Site) → Halibut Point State Recreation Park (~22 ac, similar name)
+- **US-7253** Old Sitka State Park (State Park) → Old Sitka State Historic Park & Boat Ramp (~5 ac, similar name)
+- **US-7884** Kenai Mountains-Turnagain Arm National Heritage Area (National Heritage Area) → State Land Disposals - Municipal Purposes (~676,504 ac, the POTA pin is inside it (different name))
+- **US-9698** Goose Bay Wildlife Refuge (Wildlife Refuge) → Goose Bay State Game Refuge (~4,495 ac, similar name)
+- **US-9700** Minto Flats Wildlife Refuge (Wildlife Refuge) → Minto Flats State Game Refuge (~480,573 ac, similar name)
+- **US-9701** Palmer Hay Flats Wildlife Refuge (Wildlife Refuge) → Palmer Hay Flats State Game Refuge (~22,839 ac, similar name)
+- **US-9702** Susitna Flats Wildlife Refuge (Wildlife Refuge) → Susitna Flats State Game Refuge (~296,685 ac, similar name)
+
+## Nothing found in PAD-US
+
+- US-0877 Alatna National Wild and Scenic River (National Wild and Scenic River)
+- US-0887 Mulchatna National Wild and Scenic River (National Wild and Scenic River)
+- US-0892 Tinayguk National Wild and Scenic River (National Wild and Scenic River)
+- US-10281 White Mountains National Recreation Area BLM Recreation Management Area (BLM Recreation Management Area)
+- US-10464 Chena Wayside State Recreation Site (Recreation Site)
+- US-11801 Clearwater Creek Wayside Recreation Site (Recreation Site)
+- US-11827 West Fork Campground BLM Recreation Management Area (BLM Recreation Management Area)
+- US-11828 Fortymile BLM Wild and Scenic River (BLM Wild and Scenic River)
+- US-11829 Upper Chatanika River State Recreation Site (State Recreation Site)
+- US-11834 Susitna Landing (Kashwitna) State Recreation Site (State Recreation Site)
+- US-11839 Chena Pump Wayside State Recreation Site (State Recreation Site)
+- US-11846 Bing's Landing Campground and Day Use Area State Recreation Site (State Recreation Site)
+- US-11852 Beaver Creek BLM Wild and Scenic River (BLM Wild and Scenic River)
+- US-11862 Juneau Channel Islands State Park (State Park)
+- US-12709 Funny River Campground State Recreation Site (State Recreation Site)
+- US-12710 Izaak Walton Campground State Recreation Site (State Recreation Site)
+- US-12711 Morgan’s Landing Campground State Recreation Site (State Recreation Site)
+- US-12751 Mineral Creek State Recreation Site (State Recreation Site)
+- US-1639 Afognak Island State Park (State Park)
+- US-3382 John National Wild and Scenic River (National Wild and Scenic River)
+- US-4538 Misty Fjords National Monument (National Monument)
+- US-4570 Iditarod National Historic Trail (National Historic Trail)
+- US-7191 Anchor River State Recreation Area (State Recreation Area)
+- US-7196 Crooked Creek State Recreation Site (State Recreation Site)
+- US-7197 Deep Creek State Recreation Area (State Recreation Area)
+- US-7198 Eveline State Recreation Site (State Recreation Site)
+- US-7199 Johnson Lake State Recreation Area (State Recreation Area)
+- US-7200 Kasilof River State Recreation Site (State Recreation Site)
+- US-7201 Lowell Point State Recreation Site (State Recreation Site)
+- US-7202 Ninilchik State Recreation Area (State Recreation Area)
+- US-7203 Starski State Recreation Site (State Recreation Site)
+- US-7205 Buskin River State Recreation Site (State Recreation Site)
+- US-7207 Pasagshak State Recreation Site (State Recreation Site)
+- US-7208 Big Lake North State Recreation Site (State Recreation Site)
+- US-7209 Big Lake South State Recreation Site (State Recreation Site)
+- US-7211 Finger Lake State Recreation Site (State Recreation Site)
+- US-7214 King Mountain State Recreation Site (State Recreation Site)
+- US-7215 Liberty Falls State Recreation Site (State Recreation Site)
+- US-7217 Matanuska Glacier State Recreation Site (State Recreation Site)
+- US-7218 Matanuska Lakes State Recreation Area (State Recreation Area)
+- US-7219 Montana Creek State Recreation Site (State Recreation Site)
+- US-7222 Rocky Lake State Recreation Site (State Recreation Site)
+- US-7223 Squirrel Creek State Recreation Site (State Recreation Site)
+- US-7226 Big Delta State Historical Park (State Historical Park)
+- US-7229 Clearwater State Recreation Site (State Recreation Site)
+- US-7230 Delta State Recreation Site (State Recreation Site)
+- US-7231 Donnelly Creek State Recreation Site (State Recreation Site)
+- US-7233 Fielding Lake State Recreation Site (State Recreation Site)
+- US-7236 Moon Lake State Recreation Site (State Recreation Site)
+- US-7238 Salcha River State Recreation Area (State Recreation Area)
+- US-7239 Tok River State Recreation Area (State Recreation Area)
+- US-7243 Eagle Beach State Recreation Area (State Recreation Area)
+- US-7244 Ernest Gruening State Historical Park (State Historical Park)
+- US-7245 Juneau State Trail (State Trail)
+- US-7246 Wickersham State Historic Site (State Historic Site)
+- US-7251 Fort Rousseau Causeway State Historical Park (State Historical Park)
+- US-7254 Petroglyph Beach State Historic Site (State Historic Site)
+- US-7255 Lake Aleknagik State Recreation Site (State Recreation Site)
+- US-7862 Aleutian Islands WW2 National Historic Site (National Historic Site)
+- US-7885 Inupiat National Heritage Site (National Heritage Site)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- State Tentatively Approved (tad) · SOTH · Unknown · ~43,045,454 ac
+- State Patented · SOTH · Unknown · ~34,779,418 ac
+- Anchorage Field Office · PUB · BLM · ~23,502,891 ac
+- Arctic District Office · PUB · BLM · ~20,188,675 ac
+- Central Yukon Field Office · PUB · BLM · ~12,497,870 ac
+- Glennallen Field Office · PUB · BLM · ~4,244,135 ac
+- Eastern Interior Field Office · PUB · BLM · ~3,811,553 ac
+- Arctic District Office · PUB · BLM · ~2,335,070 ac
+- Nelchina Public Use Area · SREC · Unknown · ~2,322,387 ac
+- James Dalton Highway Corridor · SCA · Unknown · ~2,252,606 ac
+- Togiak National Wildlife Refuge · NWR · TOGIAK NATIONAL WILDLIFE REFUGE · ~1,849,824 ac
+- Denali National Preserve · NCA · NPS · ~1,311,169 ac
+- State Land Disposals - Other Than Municipal · SOTH · Unknown · ~1,165,571 ac
+- Bristol Bay Fisheries Reserve · SCA · Unknown · ~1,114,445 ac
+- Eastern Interior Field Office · PUB · BLM · ~932,728 ac
+- State Land Disposals - Municipal Purposes · SOTH · Unknown · ~676,504 ac
+- Copper River Delta Critical Habitat Area · SCA · Unknown · ~543,173 ac
+- Minto Flats State Game Refuge · SCA · Unknown · ~480,573 ac
+- Alaska Maritime National Wildlife Refuge · NWR · ALASKA MARITIME NATIONAL WILDLIFE REFUGE · ~478,341 ac
+- Alaska Maritime National Wildlife Refuge · NWR · ALASKA MARITIME NATIONAL WILDLIFE REFUGE · ~464,348 ac
+- Alaska Maritime National Wildlife Refuge · NWR · ALASKA MARITIME NATIONAL WILDLIFE REFUGE · ~391,378 ac
+- Haines State Forest Resource Management Area · SRMA · Unknown · ~304,424 ac
+- Susitna Flats State Game Refuge · SCA · Unknown · ~296,685 ac
+- Eastern Interior Field Office · PUB · BLM · ~241,991 ac
+- Kachemak Bay State Wilderness Park · SCA · Unknown · ~198,064 ac
+- Redoubt Bay Critical Habitat Area · SCA · Unknown · ~170,861 ac
+- Walrus Islands State Game Sanctuary · SCA · Unknown · ~162,340 ac
+- Trading Bay State Game Refuge · SCA · Unknown · ~161,885 ac
+- State Patented · SOTH · Unknown · ~150,671 ac
+- Mcneil River State Game Refuge · SCA · Unknown · ~140,581 ac
+- Mcneil River State Game Sanctuary · SCA · Unknown · ~136,370 ac
+- Tugidak Island Critical Habitat Area · SCA · Unknown · ~116,780 ac
+- State Patented · SOTH · Unknown · ~114,229 ac
+- Matanuska Valley Moose Range · SRMA · Unknown · ~110,813 ac
+- State Patented · SOTH · Unknown · ~102,494 ac
+- Glennallen Field Office · PUB · BLM · ~89,450 ac
+- Delta Junction Bison Range Area · SRMA · Unknown · ~86,914 ac
+- Yakataga State Game Refuge · SCA · Unknown · ~80,615 ac
+- Port Moller Critical Habitat Area · SCA · Unknown · ~77,681 ac
+- Kroto And Moose Creek Recreation River · SREC · Unknown · ~71,275 ac
+- Eastern Interior Field Office · PUB · BLM · ~67,123 ac
+- Eastern Interior Field Office · PUB · BLM · ~66,593 ac
+- Kachemak Bay Oil And Gas Closure · SOTH · Unknown · ~62,659 ac
+- Lake Creek Recreation River · SREC · Unknown · ~58,227 ac
+- Talachulitna Recreation River · SREC · Unknown · ~51,517 ac
+- Port Heiden Critical Habitat Area · SCA · Unknown · ~46,680 ac
+- Anchorage Field Office · PUB · BLM · ~45,695 ac
+- State Tentatively Approved (ta) · SOTH · Unknown · ~42,740 ac
+- Tugidak Island Critical Habitat Area · SCA · Unknown · ~41,647 ac
+- Glennallen Field Office · PUB · BLM · ~36,210 ac
+- Togiak National Wildlife Refuge · NWR · TOGIAK NATIONAL WILDLIFE REFUGE · ~33,684 ac
+- State Land Disposals - Municipal Purposes · SOTH · Unknown · ~30,293 ac
+- State Land Disposals - Municipal Entitlements, Mun · SOTH · Unknown · ~29,524 ac
+- Talkeetna Recreation River · SREC · Unknown · ~27,653 ac
+- Forrester Island Refuge · SCA · Unknown · ~27,602 ac
+- State Land Disposals - Other Than Municipal · SOTH · Unknown · ~26,625 ac
+- Cinder River Critical Habitat Area · SCA · Unknown · ~25,106 ac
+- Pilot Point Critical Habitat Area · SCA · Unknown · ~24,870 ac
+- Palmer Hay Flats State Game Refuge · SCA · Unknown · ~22,839 ac
+- Willow Mountain Critical Habitat Area · SCA · Unknown · ~22,540 ac

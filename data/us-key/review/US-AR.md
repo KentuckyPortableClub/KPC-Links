@@ -1,0 +1,259 @@
+# AR: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **117 of 304** parks joined to official land (same name + same kind of place). **0** to check by hand, **187** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+
+## Nothing found in PAD-US
+
+- US-0637 Mills Park State Conservation Area (State Conservation Area)
+- US-0646 Buffalo National Wild and Scenic River (National Wild and Scenic River)
+- US-0854 William Jefferson Clinton Birthplace National Historic Site (National Historic Site)
+- US-10236 Lake Sylvia State Park (State Park)
+- US-10258 Ouachita National National Recreation Trail (National Recreation Trail)
+- US-10303 Pig Trail Scenic Byway State Trail (State Trail)
+- US-10332 Plantation Agriculture Museum State Historical Park (State Historical Park)
+- US-10424 Upper White Oak Lake Recreation Area State Fishing Lake (State Fishing Lake)
+- US-10425 Goat's Beard Bluff State Natural Area (State Natural Area)
+- US-10426 West-Northwest State Trail (State Trail)
+- US-10508 Ozark Highlands Trail (OHT) National Historic Trail (National Historic Trail)
+- US-1070 Arkansas Museam of Natural Resources State Park (State Park)
+- US-1071 Arkansas Post Museam State Park (State Park)
+- US-10715 True Grit State Trail (State Trail)
+- US-1074 Conway Cemetery State Park (State Park)
+- US-1079 Davidsonville Historic (Old) State Park (State Park)
+- US-1080 DeGray Lake Resort State Park (State Park)
+- US-1081 Delta Heritage Trails State Park (State Park)
+- US-1083 Hampson Museum State Park (State Park)
+- US-1085 Hobbs State Park (State Park)
+- US-1097 Louisiana Purchase State Park (State Park)
+- US-1102 Mississippi River State Park (State Park)
+- US-1104 Mount Magazine State Park (State Park)
+- US-1106 Historic Washington State Park (State Park)
+- US-1107 Ozark Folk Center State Park (State Park)
+- US-11088 Frierson Wildlife Management Area (Wildlife Management Area)
+- US-1111 Poison Springs Battleground State Park (State Park)
+- US-1112 Powhatan State Park (State Park)
+- US-11127 Arkansas Rocks! Mining & Mineral State Trail (State Trail)
+- US-1114 Queen Wilhelmina State Park (State Park)
+- US-1115 South Arkansas Arboretum State Park (State Park)
+- US-11155 White Rock Mountain State Recreation Area (State Recreation Area)
+- US-1116 Plumb Bayou Mounds Archeological State Park (State Park)
+- US-11164 Crowley’s Ridge Parkway National Scenic Byway National Parkway (National Parkway)
+- US-11165 Chalk Bluff Battlefield Park Recreation Park (Recreation Park)
+- US-1120 Woolly Hollow State Park (State Park)
+- US-11213 Bragg Lake State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-11214 Highway 7 Rec Area State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-11233 Rohwer Relocation Center Memorial Cemetery National Historical Site (National Historical Site)
+- US-11294 Caney Creek Wilderness Area Wilderness Zone (Wilderness Zone)
+- US-11352 Rattlesnake Ridge National Heritage Area (National Heritage Area)
+- US-11353 Kirk Dupps Beaver Lake Wildlife Management Area (Wildlife Management Area)
+- US-11354 Fred Berry Crooked Creek Nature Center State Natural Site (State Natural Site)
+- US-11355 Cook’s Lake Nature Center Nature Recreation Area (Nature Recreation Area)
+- US-11356 Ponca Nature Center Nature Recreation Area (Nature Recreation Area)
+- US-11393 Sylamore Scenic Byway State Trail (State Trail)
+- US-11394 Muddy Creek WMA Wildlife Management Area (Wildlife Management Area)
+- US-11870 Lake Wilhelmina State Fishing Lake (State Fishing Lake)
+- US-11873 Iron Fork Reservoir State Fishing Lake (State Fishing Lake)
+- US-11874 Tates Bluff Rec area State Recreation Area (State Recreation Area)
+- US-11951 J.B. and Johnelle Hunt Family Ozark Highlands Nature Center State Natural Reserve (State Natural Reserve)
+- US-11953 St. Francis Scenic Byway National Scenic Trail (National Scenic Trail)
+- US-11960 Janet Huckabee Arkansas River Valley Nature Center State Natural Reserve (State Natural Reserve)
+- US-11970 Greenlee Lake Recreation Area State Recreation Area (State Recreation Area)
+- US-12078 Peppers Pond State Recreation Site (State Recreation Site)
+- US-12086 Old State House Museum National Monument (National Monument)
+- US-12093 Sugarloaf Mountain State Recreation Area (State Recreation Area)
+- US-12096 Great River Road National Scenic Byway National Historic Trail (National Historic Trail)
+- US-12330 Greers Ferry National Fish Hatchery (National Fish Hatchery)
+- US-12331 Greers Ferry Lake Tailwater State Recreation Area (State Recreation Area)
+- US-12753 Joe Hogan State Conservation Area (State Conservation Area)
+- US-12754 Andrew H. Hulsey State Fish Hatchery (State Fish Hatchery)
+- US-12760 Norfork National Fish Hatchery (National Fish Hatchery)
+- US-12762 Charlie Craig State Fish Hatchery (State Fish Hatchery)
+- US-12764 Jim Hinkle Spring River State Fish Hatchery (State Fish Hatchery)
+- US-12765 Logoly State Natural Area (State Natural Area)
+- US-12766 Saratoga Blackland Prairie State Natural Area (State Natural Area)
+- US-12767 Moro Creek Bottoms State Natural Area (State Natural Area)
+- US-13229 Arkansas River Water Trail Recreation Park (Recreation Park)
+- US-13313 Freddie Black Choctaw Island WMA and Deer Research Area East Unit Watchable Wildlife Trails Wildlife Management Area (Wildlife Management Area)
+- US-13461 Upper Illinois River Water Trail State Trail (State Trail)
+- US-13542 Healing Springs State Natural Area (State Natural Area)
+- US-13553 Sugar Loaf Lake State Fishing Lake (State Fishing Lake)
+- US-13554 Lake Atkins State Fishing Lake (State Fishing Lake)
+- US-13556 Lake June State Fishing Lake (State Fishing Lake)
+- US-3791 Trail of Tears National Historic Trail (National Historic Trail)
+- US-7151 Byrd Lake State Natural Area (State Natural Area)
+- US-7154 Louisiana Purchase State Natural Area (State Natural Area)
+- US-7156 Baker Prairie State Natural Area (State Natural Area)
+- US-7161 Chesney Prairie State Natural Area (State Natural Area)
+- US-7163 Cutoff Creek State Natural Area (State Natural Area)
+- US-7165 Devil's Knob State Natural Area (State Natural Area)
+- US-7166 Holloway State Natural Area (State Natural Area)
+- US-7169 Rock Creek State Natural Area (State Natural Area)
+- US-7175 Foushee Cave State Natural Area (State Natural Area)
+- US-7176 Garrett Hollow State Natural Area (State Natural Area)
+- US-7178 Flanagan Prairie State Natural Area (State Natural Area)
+- US-7179 Hall Creek State Natural Area (State Natural Area)
+- US-7182 Kingsland Prairie State Natural Area (State Natural Area)
+- US-7183 Longview Saline State Natural Area (State Natural Area)
+- US-7184 Moro Big Pine State Natural Area (State Natural Area)
+- US-7261 Bayou Des Arc Wildlife Management Area (Wildlife Management Area)
+- US-7264 Beryl Anthony Lower Ouachita Wildlife Management Area (Wildlife Management Area)
+- US-7265 Big Lake Wildlife Management Area (Wildlife Management Area)
+- US-7266 Blue Mountain Wildlife Management Area (Wildlife Management Area)
+- US-7267 Dr Lester Stizes III Bois d'Arc Wildlife Management Area (Wildlife Management Area)
+- US-7268 Brewer Lake Wildlife Management Area (Wildlife Management Area)
+- US-7271 Camp Robinson Wildlife Management Area (Wildlife Management Area)
+- US-7272 Caney Creek Wildlife Management Area (Wildlife Management Area)
+- US-7273 Casey Jones Wildlife Management Area (Wildlife Management Area)
+- US-7274 Cedar Creek Wildlife Management Area (Wildlife Management Area)
+- US-7275 Cedar Mountain Wildlife Management Area (Wildlife Management Area)
+- US-7276 Cherokee Wildlife Management Area (Wildlife Management Area)
+- US-7277 Crossett Experimental Forest Wildlife Management Area (Wildlife Management Area)
+- US-7280 Dardanelle Wildlife Management Area (Wildlife Management Area)
+- US-7283 DeQueen Lake Wildlife Management Area (Wildlife Management Area)
+- US-7285 Ed Gordon Pt Remove Wildlife Management Area (Wildlife Management Area)
+- US-7286 Fort Chaffee Wildlife Management Area (Wildlife Management Area)
+- US-7288 Gene Rush Wildlife Management Area (Wildlife Management Area)
+- US-7289 Greers Ferry Wildlife Management Area (Wildlife Management Area)
+- US-7290 Gum Flats Wildlife Management Area (Wildlife Management Area)
+- US-7291 Harold E Alexander Spring River Wildlife Management Area (Wildlife Management Area)
+- US-7293 Hobbs State Park Wildlife Management Area (Wildlife Management Area)
+- US-7297 Jack Mountain Wildlife Management Area (Wildlife Management Area)
+- US-7298 Jamestown Independence County Wildlife Management Area (Wildlife Management Area)
+- US-7299 Jim Kress Wildlife Management Area (Wildlife Management Area)
+- US-7300 Lafayette County Wildlife Management Area (Wildlife Management Area)
+- US-7302 Lake Overcup Wildlife Management Area (Wildlife Management Area)
+- US-7303 Maumelle River Wildlife Management Area (Wildlife Management Area)
+- US-7304 McIlroy Madison County Wildlife Management Area (Wildlife Management Area)
+- US-7305 Mike Freeze Wattensaw Wildlife Management Area (Wildlife Management Area)
+- US-7306 Mount Magazine Wildlife Management Area (Wildlife Management Area)
+- US-7307 Muddy Creek Wildlife Management Area (Wildlife Management Area)
+- US-7308 Nacatosh Ravines Wildlife Management Area (Wildlife Management Area)
+- US-7309 Nimrod Lloyd Millwood Wildlife Management Area (Wildlife Management Area)
+- US-7310 Norfolk Lake Wildlife Management Area (Wildlife Management Area)
+- US-7313 Palmetto Flats Wildlife Management Area (Wildlife Management Area)
+- US-7315 Piney Creeks Wildlife Management Area (Wildlife Management Area)
+- US-7317 Provo Wildlife Management Area (Wildlife Management Area)
+- US-7318 Rainey Wildlife Management Area (Wildlife Management Area)
+- US-7320 Rick Evans Grandview Prarie Wildlife Management Area (Wildlife Management Area)
+- US-7323 Robert H hankins Mud Creek Wildlife Management Area (Wildlife Management Area)
+- US-7324 Scott Henderson Gulf Mountain Wildlife Management Area (Wildlife Management Area)
+- US-7326 Stateline Sand Ponds Wildlife Management Area (Wildlife Management Area)
+- US-7327 Stone Prarie Wildlife Management Area (Wildlife Management Area)
+- US-7329 Sweden Creek Falls Wildlife Management Area (Wildlife Management Area)
+- US-7330 U of A Pine Tree Wildlife Management Area (Wildlife Management Area)
+- US-7331 W E Brewer Scatter Creek Wildlife Management Area (Wildlife Management Area)
+- US-7332 Wedington Wildlife Management Area (Wildlife Management Area)
+- US-7333 White Rock Wildlife Management Area (Wildlife Management Area)
+- US-7334 Whitehall Wildlife Management Area (Wildlife Management Area)
+- US-7335 Winona Wildlife Management Area (Wildlife Management Area)
+- US-7336 Bearcat Hollow Wildlife Management Area (Wildlife Management Area)
+- US-7340 Frog Bayou Wildlife Management Area (Wildlife Management Area)
+- US-7341 George H Dunklin Jr Bayou Meto Wildlife Management Area (Wildlife Management Area)
+- US-7342 Henry Gray Hurricane Lake Wildlife Management Area (Wildlife Management Area)
+- US-7343 J Perry Mikles Blue Mountain Wildlife Management Area (Wildlife Management Area)
+- US-7348 Longview Saline Wildlife Management Area (Wildlife Management Area)
+- US-7349 Ozark Lake Wildlife Management Area (Wildlife Management Area)
+- US-7351 Railroad Prairie Wildlife Management Area (Wildlife Management Area)
+- US-7352 Roth Prairie Wildlife Management Area (Wildlife Management Area)
+- US-7353 Sandhills Natural Area Wildlife Management Area (Wildlife Management Area)
+- US-7357 Sylamore Wildlife Management Area (Wildlife Management Area)
+- US-7359 Two Bayou Creek Wildlife Management Area (Wildlife Management Area)
+- US-7435 Civil War Trail State Trail (State Trail)
+- US-7436 Southwest Trail State Trail (State Trail)
+- US-7437 Little Missouri River Access State Recreation Area (State Recreation Area)
+- US-7438 Gurdon Lake State Recreation Area (State Recreation Area)
+- US-7440 Big Timber Wildlife Management Area (Wildlife Management Area)
+- US-7441 Gulpha Gorge National Recreation Area (National Recreation Area)
+- US-7442 Blanchard Springs State Recreation Area (State Recreation Area)
+- US-7443 DeGray Lower Lake State Recreation Area (State Recreation Area)
+- US-7444 Nimrood Lake River Road State Recreation Area (State Recreation Area)
+- US-7445 Cove Lake State Recreation Area (State Recreation Area)
+- US-7522 Cherokee State Recreation Area (State Recreation Area)
+- US-7523 DeGray Wildlife Management Area (Wildlife Management Area)
+- US-7524 Lake Greeson National Recreation Area (National Recreation Area)
+- US-7525 Mike Huckabee Delta Rivers Nature Park (Nature Park)
+- US-7526 Forest Wood Nature Park (Nature Park)
+- US-7712 Dardanelle Rock Natural Area (Natural Area)
+- US-8316 Scenic 7 Byway State Trail (State Trail)
+- US-8317 Village Creek Wildlife Management Area (Wildlife Management Area)
+- US-8321 Talimena Scenic Byway State Trail (State Trail)
+- US-8322 Mount Magazine Scenic Byway State Trail (State Trail)
+- US-8323 Ozark Highlands Scenic Byway State Trail (State Trail)
+- US-9161 Butterfield State Trail (State Trail)
+- US-9162 Lower White Oak Lake State Recreation Area (State Recreation Area)
+- US-9163 Saracen State Trail (State Trail)
+- US-9164 Lake Conway State Recreation Area (State Recreation Area)
+- US-9165 Cox Creek Lake State Recreation Area (State Recreation Area)
+- US-9166 Lake Elmdale State Recreation Area (State Recreation Area)
+- US-9167 Lake Hinkle State Recreation Area (State Recreation Area)
+- US-9168 Lake Jack Nolen State Recreation Area (State Recreation Area)
+- US-9169 Huckabee Lake State Recreation Area (State Recreation Area)
+- US-9680 Blue Mountain Natural Area (Natural Area)
+- US-9681 Camden Expedition Scenic Highway State Trail (State Trail)
+- US-9757 Butterfield Overland National Historic Trail (National Historic Trail)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- Dardanelle Recreation Area · REC · Little Rock · ~57,103 ac
+- Norfork Recreation Area · REC · Little Rock · ~49,604 ac
+- Greers Ferry Recreation Area · REC · Little Rock · ~41,234 ac
+- Beaver Recreation Area · REC · Little Rock · ~38,135 ac
+- Bayou Meto · SCA · Unknown · ~32,023 ac
+- Nimrod Recreation Area · REC · Little Rock · ~25,542 ac
+- Ozark Recreation Area · REC · Little Rock · ~17,698 ac
+- Henry Gray/hurricane Lake · SREC · Unknown · ~17,503 ac
+- Gene Rush/buffalo River · SCA · Unknown · ~17,011 ac
+- Lafayette Wildlife Management Area · SCA · Unknown · ~14,703 ac
+- Madison County · SCA · Unknown · ~14,195 ac
+- Harold Alexander/spring River Wildlife Management Area · SCA · Unknown · ~13,134 ac
+- Gulf Mtn Wildlife Management Area · SCA · Unknown · ~12,308 ac
+- Pine Tree Wildlife Demonstration Area · SCA · Unknown · ~12,238 ac
+- Hobbs State Park / Conservation Management Area · SP · Unknown · ~12,157 ac
+- Wilbur D. Mills Pool Recreation Area · REC · Little Rock · ~11,133 ac
+- Big Lake · SREC · Unknown · ~10,804 ac
+- Choctaw Island · SCA · Unknown · ~9,044 ac
+- Gillham Recreation Area · REC · Little Rock · ~8,514 ac
+- Ed Gordon/pt. Remove · SCA · Unknown · ~8,429 ac
+- Dequeen Recreation Area · REC · Little Rock · ~7,432 ac
+- Murray Pool Recreation Area · REC · Little Rock · ~5,685 ac
+- Nimrod State Game Management Area · SCA · Unknown · ~5,090 ac
+- Rick Evans/grandview Prairie · SCA · Unknown · ~4,907 ac
+- Pool 5 (Ark. Rv) Recreation Area · REC · Little Rock · ~4,874 ac
+- J.P. Hammerschmidt Recreation Area · REC · Little Rock · ~4,491 ac
+- Camp Robinson Wildlife Demonstration Area · SCA · Unknown · ~4,211 ac
+- Dierks Recreation Area · REC · Little Rock · ~4,169 ac
+- William Brewer/scatter Creek · SCA · Unknown · ~4,004 ac
+- Table Rock Recreation Area · REC · Little Rock · ~3,022 ac
+- Pool 3 (Ark. Rv) Recreation Area · REC · Little Rock · ~1,930 ac
+- Crossett Experimental Area · NF · Forest Service Region 08 Southern · ~1,685 ac
+- De Gray State Park · SP · Unknown · ~1,277 ac
+- Southeastern States District Office · PUB · BLM · ~1,152 ac
+- Jamestown · SCA · Unknown · ~1,091 ac
+- Robert Hankins/mud Creek Wildlife Demonstration Area · SCA · Unknown · ~1,052 ac
+- Bayou Desarc · SCA · Unknown · ~948 ac
+- Pool 4 (Ark. Rv) Recreation Area · REC · Little Rock · ~880 ac
+- Maumelle Water Excellence - Canterbury Parcel · UNK · Unknown · ~741 ac
+- Farm Service Agency Interest Of Ar · NWR · FARM SERVICE AGENCY INTEREST OF AR · ~663 ac
+- Farm Service Agency Interest Of Ar · NWR · Farm Service Agency Interest Of Ar · ~663 ac
+- Holland Bottoms Willow Oak Forest Preserve · SCA · Unknown · ~638 ac
+- Nacatoch Ravines Natural Area · SCA · Unknown · ~636 ac
+- Little River · SCA · Unknown · ~565 ac
+- Devil's Knob - Devil's Backbone Natural Area · SCA · Unknown · ~501 ac
+- National Center For Toxicological Research · REA · Unknown · ~493 ac
+- Terry Pool (Ark. Rv) Recreation Area · REC · Little Rock · ~484 ac
+- Queen Wihelmina State Park · SP · Unknown · ~472 ac
+- Smoke Hole Natural Area · SCA · Unknown · ~455 ac
+- Wooly Hollow State Park · SP · Unknown · ~392 ac
+- Kelly's Slab · SCA · Unknown · ~378 ac
+- Bona Dea Trails And Sanctuary · NCA · USA · ~293 ac
+- Big Creek Wildlife Management Area · SCA · Unknown · ~284 ac
+- H.E. Flanagan Prairie Natural Area · SCA · Unknown · ~257 ac
+- Hell Creek Natural Area · SCA · Unknown · ~224 ac
+- Railroad Prairie Natural Area · SCA · Unknown · ~210 ac
+- Wittsburg Natural Area · SCA · Unknown · ~192 ac
+- Murray Park · LP · U S Engineering · ~190 ac
+- Toltec Mounds Archeological State Park · SP · Unknown · ~176 ac
+- Old Davidsonville State Park · SP · Unknown · ~160 ac

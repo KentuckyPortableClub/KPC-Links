@@ -1,0 +1,219 @@
+# OK: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **51 of 205** parks joined to official land (same name + same kind of place). **0** to check by hand, **154** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+
+## Nothing found in PAD-US
+
+- US-0487 Optima National Wildlife Refuge (National Wildlife Refuge)
+- US-0490 Sequoyah National Wildlife Refuge (National Wildlife Refuge)
+- US-0491 Tishomingo National Wildlife Refuge (National Wildlife Refuge)
+- US-0822 Fort Smith National Historic Site (National Historic Site)
+- US-10223 Dewey County Wildlife Management Area (Wildlife Management Area)
+- US-10258 Ouachita National National Recreation Trail (National Recreation Trail)
+- US-10305 Lake Carl Etling Conservation Area (Conservation Area)
+- US-10658 Lake Carl Blackwell Wildlife Management Area (Wildlife Management Area)
+- US-10951 Cherokee Strip Regional Heritage Center Historic Site (Historic Site)
+- US-11018 Osage National Heritage State Trail (State Trail)
+- US-11182 James A Manning State Fish Hatchery (State Fish Hatchery)
+- US-11222 Stinchcomb Wildlife Refuge (Wildlife Refuge)
+- US-11245 Byron State Fish Hatchery (State Fish Hatchery)
+- US-11321 Winding Stair Mountain National Recreation Area (National Recreation Area)
+- US-11322 Beech Creek National Scenic Reserve (Scenic Reserve)
+- US-11640 Scipio Trail and Recreation Site (Recreation Site)
+- US-11669 Cedar Lake National Recreation Area (National Recreation Area)
+- US-11670 Spring Creek Recreation Site (Recreation Site)
+- US-11671 Black Kettle Recreation Site (Recreation Site)
+- US-11714 Ozark Plateau National Wildlife Management Area (National Wildlife Management Area)
+- US-11715 Lower Illinois River Game Preserve (Game Preserve)
+- US-11768 Arcadia Round Barn National Historic Site (National Historic Site)
+- US-11769 Ozark Trail Obelisk Historic Site (Historic Site)
+- US-11778 Fort Sill National Historic Site (National Historic Site)
+- US-11820 Miller Brothers 101 Ranch Historic Site (Historic Site)
+- US-11837 Smallest National Park Historic Site (Historic Site)
+- US-11842 Fred and Addie Drummond State Historic Site (State Historic Site)
+- US-11864 Cherokee Hills Scenic Byway Scenic Site (Scenic Site)
+- US-11994 Schooler State Fishing Lake (State Fishing Lake)
+- US-12027 Altus-Lugert State Fishing Lake (State Fishing Lake)
+- US-12028 Barren Fork Wildlife Management Area (Wildlife Management Area)
+- US-12085 Pawnee Bill Ranch State Historic Site (State Historic Site)
+- US-12154 Standing Bear State Historic Site (State Historic Site)
+- US-12167 Fort Cobb Wildlife Management Area (Wildlife Management Area)
+- US-12352 Selman Wildlife Management Area (Wildlife Management Area)
+- US-12684 Indian Nations National Wildlife Area (National Wildlife Area)
+- US-12735 Saline Courthouse State Historic Site (State Historic Site)
+- US-12738 Little Niagara Falls National Nature Reserve (National Nature Reserve)
+- US-12739 Skipout Lake Recreation Site (Recreation Site)
+- US-13077 Southern Plaines Indian Historic Site (Historic Site)
+- US-13105 Field Station State Fishing Lake (State Fishing Lake)
+- US-2774 Boiling Springs State Park (State Park)
+- US-2778 Little Blue area at Grand Lake State Park (State Park)
+- US-2781 Gloss Mountain State Park (State Park)
+- US-2783 Salt Plains State Park (State Park)
+- US-2789 Lake Eufaula State Park (State Park)
+- US-2793 Lake Wister State Park (State Park)
+- US-2805 Spavinaw State Park (State Park)
+- US-2806 Talimena State Park (State Park)
+- US-2807 Tenkiller State Park (State Park)
+- US-3791 Trail of Tears National Historic Trail (National Historic Trail)
+- US-4579 Santa Fe National Historic Trail (National Historic Trail)
+- US-6333 Fort Gibson Wildlife Management Area (Wildlife Management Area)
+- US-6335 Cabin Creek Battlefield State Historic Site (State Historic Site)
+- US-6336 Honey Springs Battlefield State Historic Site (State Historic Site)
+- US-6337 Fort Towson State Historic Site (State Historic Site)
+- US-6339 Atoka Wildlife Management Area (Wildlife Management Area)
+- US-6340 Black Kettle Wildlife Management Area (Wildlife Management Area)
+- US-6341 Broken Bow Wildlife Management Area (Wildlife Management Area)
+- US-6342 Camp Gruber Wildlife Management Area (Wildlife Management Area)
+- US-6343 Canton Wildlife Management Area (Wildlife Management Area)
+- US-6344 Cherokee Wildlife Management Area (Wildlife Management Area)
+- US-6345 Cookson Wildlife Management Area (Wildlife Management Area)
+- US-6346 Hal and Fern Cooper Wildlife Management Area (Wildlife Management Area)
+- US-6348 Cross Timbers Wildlife Management Area (Wildlife Management Area)
+- US-6349 Deep Fork Wildlife Management Area (Wildlife Management Area)
+- US-6350 Eufaula Wildlife Management Area (Wildlife Management Area)
+- US-6351 Hackberry Flat Wildlife Management Area (Wildlife Management Area)
+- US-6352 Honobia Creek Wildlife Management Area (Wildlife Management Area)
+- US-6353 Hugo Wildlife Management Area (Wildlife Management Area)
+- US-6354 James Collins Wildlife Management Area (Wildlife Management Area)
+- US-6355 Kaw Wildlife Management Area (Wildlife Management Area)
+- US-6357 Lexington Wildlife Management Area (Wildlife Management Area)
+- US-6358 Love Valley Wildlife Management Area (Wildlife Management Area)
+- US-6359 McClellan-Kerr Wildlife Management Area (Wildlife Management Area)
+- US-6360 McCurtain County Wildlife Management Area (Wildlife Management Area)
+- US-6361 McGee Creek Wildlife Management Area (Wildlife Management Area)
+- US-6362 Mountain Park Wildlife Management Area (Wildlife Management Area)
+- US-6363 Okmulgee Wildlife Management Area (Wildlife Management Area)
+- US-6364 Oologah Wildlife Management Area (Wildlife Management Area)
+- US-6365 Osage Wildlife Management Area (Wildlife Management Area)
+- US-6366 Ouachita Leflore Unit Wildlife Management Area (Wildlife Management Area)
+- US-6367 Ouachita McCurtain Unit Wildlife Management Area (Wildlife Management Area)
+- US-6368 Packsaddle Wildlife Management Area (Wildlife Management Area)
+- US-6369 Pine Creek Wildlife Management Area (Wildlife Management Area)
+- US-6370 Pushmataha Wildlife Management Area (Wildlife Management Area)
+- US-6371 Red Slough Wildlife Management Area (Wildlife Management Area)
+- US-6372 Rita Blanca Wildlife Management Area (Wildlife Management Area)
+- US-6373 Robbers Cave Wildlife Management Area (Wildlife Management Area)
+- US-6374 Sandy Sanders Wildlife Management Area (Wildlife Management Area)
+- US-6375 Skiatook Wildlife Management Area (Wildlife Management Area)
+- US-6376 Spavinaw Wildlife Management Area (Wildlife Management Area)
+- US-6377 Three Rivers Wildlife Management Area (Wildlife Management Area)
+- US-6378 Texoma Washita Arm Wildlife Management Area (Wildlife Management Area)
+- US-6379 Waurika Wildlife Management Area (Wildlife Management Area)
+- US-6381 Hickory Creek Wildlife Management Area (Wildlife Management Area)
+- US-7682 Lake Vanderwork State Fishing Lake (State Fishing Lake)
+- US-7684 Blue River State Fishing Lake (State Fishing Lake)
+- US-7685 American Horse State Fishing Lake (State Fishing Lake)
+- US-7686 Lake Elmer State Fishing Lake (State Fishing Lake)
+- US-7687 Drummond Flats Wildlife Management Area (Wildlife Management Area)
+- US-7688 Lake Louis Burtschi State Fishing Lake (State Fishing Lake)
+- US-7689 Arcadia Conservation Reserve (Conservation Reserve)
+- US-8115 Oklahoma City National Memorial (National Memorial)
+- US-8116 Candy Creek Wildlife Management Area (Wildlife Management Area)
+- US-8118 Cimarron Hills Wildlife Management Area (Wildlife Management Area)
+- US-8119 Doc Hollis State Fishing Lake (State Fishing Lake)
+- US-8120 Evans Chambers State Fishing Lake (State Fishing Lake)
+- US-8121 Fobb Bottom Wildlife Management Area (Wildlife Management Area)
+- US-8123 Hall State Fishing Lake (State Fishing Lake)
+- US-8124 Heyburn Wildlife Management Area (Wildlife Management Area)
+- US-8125 Hulah Wildlife Management Area (Wildlife Management Area)
+- US-8126 Jap Beaver State Fishing Lake (State Fishing Lake)
+- US-8127 John Dahl Wildlife Management Area (Wildlife Management Area)
+- US-8128 Lloyd Vincent State Fishing Lake (State Fishing Lake)
+- US-8129 Nanih Waiya State Fishing Lake (State Fishing Lake)
+- US-8130 Neosho Wildlife Management Area (Wildlife Management Area)
+- US-8131 Ozzie Cobb State Fishing Lake (State Fishing Lake)
+- US-8132 Sandhills Wildlife Management Area (Wildlife Management Area)
+- US-8133 Sans Bois Wildlife Management Area (Wildlife Management Area)
+- US-8134 Sardis State Fishing Lake (State Fishing Lake)
+- US-8135 Optima Wildlife Management Area (Wildlife Management Area)
+- US-8136 Stringtown Wildlife Management Area (Wildlife Management Area)
+- US-8137 Arbuckle Springs Wildlife Management Area (Wildlife Management Area)
+- US-8138 Yourman Wildlife Management Area (Wildlife Management Area)
+- US-8139 Grassy Slough Wildlife Management Area (Wildlife Management Area)
+- US-8140 Gary Sherrer Wildlife Management Area (Wildlife Management Area)
+- US-8141 Whitegrass Flats Wildlife Management Area (Wildlife Management Area)
+- US-8142 Fort Washita National Historical Site (National Historical Site)
+- US-8143 Boggy Depot National Historical Site (National Historical Site)
+- US-8272 Holdenville State Fish Hatchery (State Fish Hatchery)
+- US-8321 Talimena Scenic Byway State Trail (State Trail)
+- US-8639 Birch State Fishing Lake (State Fishing Lake)
+- US-8640 Lake Watonga State Fishing Lake (State Fishing Lake)
+- US-8641 Cherokee Strip Museum State Historic Site (State Historic Site)
+- US-8642 Museum of the Western Prairie State Historic Site (State Historic Site)
+- US-8643 Oklahoma History Center State Historic Site (State Historic Site)
+- US-8644 Oklahoma Route 66 Museum State Historic Site (State Historic Site)
+- US-8645 Oklahoma Territorial Museum State Historic Site (State Historic Site)
+- US-8646 Pioneer Woman Museum State Historic Site (State Historic Site)
+- US-8647 Sod House Museum State Historic Site (State Historic Site)
+- US-8648 Spiro Mounds Archaeological Center State Historic Site (State Historic Site)
+- US-8649 Tom Mix Museum State Historic Site (State Historic Site)
+- US-8650 White Hair Memorial State Historic Site (State Historic Site)
+- US-8651 Will Rogers State Historic Site (State Historic Site)
+- US-8652 Altus Lugert Wildlife Management Area (Wildlife Management Area)
+- US-8653 Ellis County Wildlife Management Area (Wildlife Management Area)
+- US-8654 Gist Wildlife Management Area (Wildlife Management Area)
+- US-8655 Grady County Wildlife Management Area (Wildlife Management Area)
+- US-8658 Shorb Wildlife Management Area (Wildlife Management Area)
+- US-8659 Sparrow Hawk Wildlife Management Area (Wildlife Management Area)
+- US-8660 Thomas A. Bamberger Sr. Wildlife Management Area (Wildlife Management Area)
+- US-8661 Washita County Wildlife Management Area (Wildlife Management Area)
+- US-9757 Butterfield Overland National Historic Trail (National Historic Trail)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- CLO Lands · SRMA · The Commissioners of the Land Office · ~3,238,968 ac
+- Canton Wildlife Management Area & Waterfowl Refuge Portion · SCA · Department of Wildlife Conservation · ~11,476 ac
+- Southwestern Livestock And Forage Research Station · REA · Agricultural Research Service (ARS) · ~6,565 ac
+- Ozark Plateau National Wildlife Refuge · NWR · Ozark Plateau National Wildlife Refuge · ~4,338 ac
+- Southern Plains Experimental Range · REA · Agricultural Research Service (ARS) · ~4,325 ac
+- Ozark Plateau National Wildlife Refuge · NWR · OZARK PLATEAU NATIONAL WILDLIFE REFUGE · ~3,824 ac
+- Okmulgee Public Hunting Areaa · SCA · Department of Wildlife Conservation · ~3,497 ac
+- Wister State Park · SP · Unknown · ~3,377 ac
+- Hochatown State Park · SP · Unknown · ~3,325 ac
+- Lake Eufula State Park · SP · Unknown · ~3,241 ac
+- Western Hills Guest Ranch/sequoya Sp State Resort · SP · Unknown · ~2,822 ac
+- Oklahoma Field Office · PUB · BLM · ~1,945 ac
+- Walnut Creek State Park · SP · Unknown · ~1,163 ac
+- Boiling State Parkrings State Park · SP · Unknown · ~775 ac
+- Twin Points Recreation Area · PUB · US Army Corps of Engineers · ~760 ac
+- Great Salt Plains State Park · SP · Unknown · ~756 ac
+- Dog Iron Ranch & Will Rogers Birthplace · SP · Unknown · ~574 ac
+- Arcadia Conservation Education Area · SCA · Department of Wildlife Conservation · ~568 ac
+- Glass Mountains State Park · SP · Unknown · ~559 ac
+- Okmulgee/dripping State Park · SP · Unknown · ~523 ac
+- Lake Tenkiller State Park · SP · Unknown · ~514 ac
+- Selman Cave System · SCA · Unknown · ~327 ac
+- Pawnee Bill Museum State Park · SP · Unknown · ~269 ac
+- Ozark Plateau National Wildlife Refuge · NWR · OZARK PLATEAU NATIONAL WILDLIFE REFUGE · ~258 ac
+- Ozark Plateau National Wildlife Refuge · NWR · Ozark Plateau National Wildlife Refuge · ~258 ac
+- Crowder Lake State Park · SP · Unknown · ~253 ac
+- Sutton Wilderness · SREC · Dept of Mental Health and Substance & Abuse Serv · ~210 ac
+- Evans Chambers Public Fishing Area · SCA · Department of Wildlife Conservation · ~204 ac
+- Spring Creek Park · PUB · Tulsa District Corps of Engineers · ~192 ac
+- Pawnee Cove Recreation Area · PUB · Unites States of America · ~190 ac
+- Griffin Memorial · SP · Dept of Mental Health and Substance & Abuse Serv · ~153 ac
+- Edmond Park · PUB · Tulsa District Corps of Engineers · ~131 ac
+- Oliver's Woods · SCA · Unknown · ~78 ac
+- Unknown Park · PUB · United States of America · ~56 ac
+- Black Dog Park · PUB · US Army Corps of Engineers · ~56 ac
+- Rogers Landing Public Use Area · PUB · US Government · ~49 ac
+- Boswell State Park · SP · Unknown · ~49 ac
+- Snowdale State Park · SP · Unknown · ~39 ac
+- Murrel Home Park · SHCA · OKLAHOMA HISTORICAL SOCIETY & (MURRELL HOME) · ~37 ac
+- Community Center Park · LP · City of Mannford · ~34 ac
+- Comanche National Grassland · NG · Forest Service Region 02 Rocky Mountain · ~31 ac
+- State Parkavinaw State Park · SP · Unknown · ~30 ac
+- New Mannford Recreation Area · PUB · United States of America · ~28 ac
+- Heatherridge Park · LP · OKLAHOMA TURNPIKE AUTHORITY · ~19 ac
+- Osage Recreation Area · PUB · US Army Corps of Engineers · ~16 ac
+- Frances Cate · SP · Dept of Mental Health and Substance & Abuse Serv · ~16 ac
+- Ozark National Forest · NF · Forest Service Region 08 Southern · ~13 ac
+- Disney State Park · SP · Unknown · ~10 ac
+- Colorado State Land Board State Land Board · SRMA · Colorado State Land Board · ~8 ac
+- Caddo National Grassland · NG · Forest Service Region 08 Southern · ~5 ac
+- Veterans Memorial Park · LP · Twin Cities VFW · ~3 ac
+- North Oval · LP · University of Oklahoma · ~2 ac
+- South Loop Trail - Off Garnett Park · SOTH · OKLAHOMA TURNPIKE AUTHORITY · ~0 ac

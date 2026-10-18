@@ -1,0 +1,163 @@
+# CA: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **319 of 410** parks joined to official land (same name + same kind of place). **65** to check by hand, **26** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+- **US-0197** Kern National Wild and Scenic River (National Wild and Scenic River) → Sequoia National Forest (~1,114,950 ac, the POTA pin is inside it (different name))
+- **US-0201** Merced National Wild and Scenic River (National Wild and Scenic River) → Mother Lode Field Office (~230,415 ac, the POTA pin is inside it (different name))
+- **US-0650** Mojave Preserve National Conservation Area (National Conservation Area) → Mojave National Preserve (~1,497,876 ac, similar name)
+- **US-0894** Tuolumne National Wild and Scenic River (National Wild and Scenic River) → Stanislaus National Forest (~899,802 ac, the POTA pin is inside it (different name))
+- **US-10400** Trona Pinnacles National Geologic Trail (National Geologic Trail) → Ridgecrest Field Office (~1,797,315 ac, the POTA pin is inside it (different name))
+- **US-10401** Merced National Wildlife Area (National Wildlife Area) → Merced National Wildlife Refuge (~3,821 ac, similar name); Merced National Wildlife Refuge (~3,821 ac, similar name)
+- **US-10402** Cow Mountain BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Ukiah Field Office (~267,019 ac, the POTA pin is inside it (different name))
+- **US-10633** Carnegie State Recreation Area (State Recreation Area) → Carnegie State Vehicular Recreation Area (~3,807 ac, similar name); Carnegie State Vehicular Recreation Area (~1,157 ac, similar name)
+- **US-11017** Little Picacho Wilderness Area (Wilderness Area) → El Centro Field Office (~1,338,851 ac, the POTA pin is inside it (different name))
+- **US-11336** Rainbow Basin Natural Area (Natural Area) → Barstow Field Office (~2,723,972 ac, the POTA pin is inside it (different name))
+- **US-1144** D L Bliss State Park (State Park) → D.L. Bliss State Park (~1,162 ac, similar name); D.L. Bliss State Park (~393 ac, similar name); Eldorado National Forest (~88,559 ac, the POTA pin is inside it (different name))
+- **US-11580** Red Hills BLM Recreation Management Area (BLM Recreation Management Area) → Mother Lode Field Office (~230,415 ac, the POTA pin is inside it (different name))
+- **US-11582** Griswold Hills BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Central Coast Field Office (~288,263 ac, the POTA pin is inside it (different name))
+- **US-11583** Tumey Hills BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Central Coast Field Office (~288,263 ac, the POTA pin is inside it (different name))
+- **US-11584** Panoche Hills BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Central Coast Field Office (~288,263 ac, the POTA pin is inside it (different name))
+- **US-1174** Montana de Oro State Park (State Park) → Montaña de Oro State Park (~10,251 ac, the POTA pin is inside it (different name))
+- **US-12115** Sáttítla Highlands Natural Monument (Natural Monument) → Modoc National Forest (~1,679,076 ac, the POTA pin is inside it (different name))
+- **US-12957** Stoddard Valley BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Barstow Field Office (~2,723,972 ac, the POTA pin is inside it (different name))
+- **US-13087** Imperial Sand Dunes BLM Special Recreation Management Area (BLM Special Recreation Management Area) → El Centro Field Office (~1,338,851 ac, the POTA pin is inside it (different name))
+- **US-13137** Montgomery Pass BLM Herd Management Area (BLM Herd Management Area) → Blm (~4,621 ac, similar name)
+- **US-13581** Clear Creek BLM Recreation Management Area (BLM Recreation Management Area) → Central Coast Field Office (~288,263 ac, the POTA pin is inside it (different name))
+- **US-3396** Antelope Valley Poppy Reserve State Conservation Area (State Conservation Area) → Antelope Valley California Poppy Reserve (~1,772 ac, similar name)
+- **US-3398** Armstrong Redwoods Reserve State Conservation Area (State Conservation Area) → Armstrong Redwoods State Natural Reserve (~764 ac, similar name)
+- **US-3399** Asilomar State State Beach (State Beach) → Asilomar State Beach (~60 ac, similar name); Asilomar State Beach (~46 ac, similar name)
+- **US-3402** Azalea Reserve State Conservation Area (State Conservation Area) → Azalea State Natural Reserve (~35 ac, similar name)
+- **US-3405** Benbow Lake State Recreation Area (State Recreation Area) → Benbow State Recreation Area (~1,138 ac, similar name)
+- **US-3415** California State Railroad Museum State Park (State Park) → California State Capitol Museum (~6 ac, similar name); Old Sacramento State Historic Park (~15 ac, the POTA pin is inside it (different name))
+- **US-3417** Castro Adobe Historic Site (Historic Site) → Rancho San Andrés Castro Adobe (~1 ac, similar name)
+- **US-3420** Clay Pit State Vehicle Recreational Area (State Vehicle Recreational Area) → Clay Pit State Vehicular Recreation Area (~220 ac, similar name)
+- **US-3441** Hearst San Simeon State Historic Site (State Historic Site) → Hearst San Simeon State Historical Monument (~165 ac, similar name); Hearst San Simeon State Park (~1,234 ac, same name, different kind of place)
+- **US-3442** Heber Dunes State Vehicle Recreational Area (State Vehicle Recreational Area) → Heber Dunes State Vehicular Recreation Area (~325 ac, similar name)
+- **US-3443** Hollister Hills State Vehicle Recreational Area (State Vehicle Recreational Area) → Hollister Hills State Vehicular Recreation Area (~6,229 ac, similar name); Hollister Hills State Vehicular Recreation Area (~277 ac, similar name)
+- **US-3444** Hungry Valley State Vehicle Recreational Area (State Vehicle Recreational Area) → Hungry Valley State Vehicular Recreation Area (~19,656 ac, similar name)
+- **US-3449** John B. Dewitt Redwoods Reserve State Conservation Area (State Conservation Area) → John B. Dewitt Redwoods State Natural Reserve (~1,226 ac, similar name)
+- **US-3450** John Little Reserve State Conservation Area (State Conservation Area) → John Little State Reserve (~23 ac, similar name)
+- **US-3452** Kings Beach State Recreation Park (Recreation Park) → Kings Beach State Recreation Area (~16 ac, similar name)
+- **US-3453** Kruse Rhododendron Reserve State Conservation Area (State Conservation Area) → Kruse Rhododendron State Natural Reserve (~314 ac, similar name)
+- **US-3454** La Purisima Mission State Historical Park (State Historical Park) → La Purísima Mission State Historic Park (~1,926 ac, the POTA pin is inside it (different name))
+- **US-3458** Lake Valley State Recreation Area (State Recreation Area) → Washoe Meadows State Park (~861 ac, the POTA pin is inside it (different name))
+- **US-3464** Los Osos Oaks Reserve State Conservation Area (State Conservation Area) → Los Osos Oaks State Natural Reserve (~85 ac, similar name)
+- **US-3465** Mailliard Redwoods Reserve State Conservation Area (State Conservation Area) → Mailliard Redwoods State Natural Reserve (~249 ac, similar name)
+- **US-3474** Mono Lake Tufa Reserve State Conservation Area (State Conservation Area) → Mono Lake Tufa State Reserve (~47,314 ac, similar name); Inyo National Forest (~1,842,174 ac, the POTA pin is inside it (different name))
+- **US-3475** Montara Beach and McNee Ranch State Beach (State Beach) → Montara State Beach (~891 ac, similar name); Montara State Beach (~74 ac, similar name)
+- **US-3478** Montgomery Woods Reserve State Conservation Area (State Conservation Area) → Montgomery Woods State Natural Reserve (~2,690 ac, similar name)
+- **US-3523** Oceano Dunes State Recreation Area (State Recreation Area) → Pismo State Beach (~1,405 ac, the POTA pin is inside it (different name))
+- **US-3524** Ocotillo Wells State Vehicle Recreational Area (State Vehicle Recreational Area) → Ocotillo Wells State Vehicular Recreation Area (~53,215 ac, similar name)
+- **US-3534** Pio Pico State Historical Park (State Historical Park) → Pío Pico State Historic Park (~6 ac, similar name)
+- **US-3536** Point Cabrillo Lighthouse State Historical Park (State Historical Park) → Point Cabrillo Light Station (~309 ac, similar name)
+- **US-3539** Point Lobos Reserve State Conservation Area (State Conservation Area) → Point Lobos Ranch (~1,116 ac, similar name); Point Lobos State Natural Reserve (~772 ac, similar name); Point Lobos State Natural Reserve (~760 ac, similar name)
+- **US-3544** Prairie City State Vehicle Recreational Area (State Vehicle Recreational Area) → Prairie City State Vehicular Recreation Area (~1,277 ac, similar name)
+- **US-3547** Reynolds Wayside Campground Park (Park) → Reynolds Wayside Campgrounds (~68 ac, similar name)
+- **US-3550** Robert W. Crown Memorial State Beach (State Beach) → Crown Memorial Regional Shoreline (~133 ac, similar name)
+- **US-3572** State Indian Museum State Park (State Park) → State Indian Museum State Historic Park (~0 ac, same name, different kind of place)
+- **US-3578** Tijuana Estuary Reserve State Conservation Area (State Conservation Area) → Tijuana Slough National Wildlife Refuge (~1,059 ac, the POTA pin is inside it (different name)); Tijuana Slough National Wildlife Refuge (~474 ac, the POTA pin is inside it (different name))
+- **US-3581** Torrey Pines Reserve State Conservation Area (State Conservation Area) → Torrey Pines State Reserve (~1,442 ac, similar name); Torrey Pines State Beach (~8 ac, same name, different kind of place)
+- **US-3583** Tule Elk Reserve State Conservation Area (State Conservation Area) → Tule Elk State Reserve (~989 ac, similar name)
+- **US-3586** Verdugo Mountains State Park (State Park) → Verdugo Mountains Park Property (~252 ac, similar name); Verdugo Mountains Open Space Preserve (~250 ac, similar name)
+- **US-3587** Ward Creek State Park (State Park) → Ward Creek Property (~183 ac, similar name)
+- **US-4383** Rogue River-Siskiyou National Forest (National Forest) → Siskiyou National Forest (~31,543 ac, similar name); Six Rivers National Forest (~977,951 ac, the POTA pin is inside it (different name))
+- **US-4541** Carrizo Plain National Monument (National Monument) → Bakersfield Field Office (~618,467 ac, the POTA pin is inside it (different name))
+- **US-4543** Mojave Trails National Monument (National Monument) → Needles Field Office (~3,289,455 ac, the POTA pin is inside it (different name))
+- **US-4544** San Gabriel Mountains National Monument (National Monument) → Angeles National Forest (~651,783 ac, the POTA pin is inside it (different name))
+- **US-6448** William Randolph Hearst Memorial State Beach (State Beach) → Hearst San Simeon State Park (~7 ac, the POTA pin is inside it (different name))
+- **US-7888** Alcatraz Island National Historic Site (National Historic Site) → Golden Gate National Recreation Area (~34,888 ac, the POTA pin is inside it (different name))
+- **US-7889** Presidio of SF National Historic Site (National Historic Site) → Golden Gate National Recreation Area (~34,888 ac, the POTA pin is inside it (different name))
+
+## Nothing found in PAD-US
+
+- US-0198 Kesterson National Wildlife Refuge (National Wildlife Refuge)
+- US-0754 Rosie the Riveter WWII Home Front National Historical Park (National Historical Park)
+- US-0884 Kings River National Wild and Scenic River (National Wild and Scenic River)
+- US-0915 Cesar E. Chavez National Monument (National Monument)
+- US-11912 El Mirage BLM Special Recreation Management Area (BLM Special Recreation Management Area)
+- US-12616 Black Butte Lake Park (Park)
+- US-13334 Sacramento River Bend BLM Recreation Management Area (BLM Recreation Management Area)
+- US-13499 Swasey Mule Mountain BLM Recreation Management Area (BLM Recreation Management Area)
+- US-13513 Laguna Mountain Area BLM Recreation Management Area (BLM Recreation Management Area)
+- US-2638 Van Sickle Bi State Park (State Park)
+- US-3597 Woodland Opera House State Historical Park (State Historical Park)
+- US-4539 Berryessa Snow Mountain National Monument (National Monument)
+- US-4540 California Coastal National Monument (National Monument)
+- US-4542 Fort Ord National Monument (National Monument)
+- US-4545 Sand to Snow National Monument (National Monument)
+- US-4562 Pacific Crest Trail National Scenic Trail (National Scenic Trail)
+- US-4566 California National Historic Trail (National Historic Trail)
+- US-4571 Juan Bautista de Anza National Historic Trail (National Historic Trail)
+- US-4575 Old Spanish National Historic Trail (National Historic Trail)
+- US-4578 Pony Express National Historic Trail (National Historic Trail)
+- US-6451 Casper Headlands State Beach (State Beach)
+- US-6454 El Capitan State Beach (State Beach)
+- US-7375 Cowell Ranch State Beach (State Beach)
+- US-7379 King Range National Conservation Area (National Conservation Area)
+- US-8300 Alabama Hills Scenic National Recreation Area (National Recreation Area)
+- US-9757 Butterfield Overland National Historic Trail (National Historic Trail)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- Needles Field Office · PUB · BLM · ~3,289,455 ac
+- Barstow Field Office · PUB · BLM · ~2,723,972 ac
+- Ridgecrest Field Office · PUB · BLM · ~1,797,315 ac
+- Palm Springs/S. Coast Field Office · PUB · BLM · ~1,694,214 ac
+- Mojave National Preserve · NCA · NPS · ~1,497,876 ac
+- El Centro Field Office · PUB · BLM · ~1,338,851 ac
+- Bishop Field Office · PUB · BLM · ~751,921 ac
+- Eagle Lake Field Office · PUB · BLM · ~700,622 ac
+- Applegate Field Office · PUB · BLM · ~684,641 ac
+- Bakersfield Field Office · PUB · BLM · ~618,467 ac
+- Central Coast Field Office · PUB · BLM · ~288,263 ac
+- Ukiah Field Office · PUB · BLM · ~267,019 ac
+- California State Lands Commission · SRMA · California State Lands Commission · ~265,889 ac
+- Redding Field Office · PUB · BLM · ~252,406 ac
+- Mother Lode Field Office · PUB · BLM · ~230,415 ac
+- Arcata Field Office · PUB · BLM · ~203,580 ac
+- California State Lands Commission · SRMA · California State Lands Commission · ~191,868 ac
+- Salton Sea - Bureau of Rec · FOTH · United States Bureau of Reclamation · ~66,409 ac
+- Santa Rosa Wildlife Area · SCA · California Department of Fish and Wildlife · ~66,126 ac
+- Ocotillo Wells State Vehicular Recreation Area · SREC · California Department of Parks and Recreation · ~53,215 ac
+- Rogue River National Forest · NF · Forest Service Region 06 Pacific Northwest · ~51,948 ac
+- Mono Lake Tufa State Reserve · SCA · California Department of Parks and Recreation · ~47,314 ac
+- Marble Mountains Wildlife Area · SCA · California Department of Fish and Wildlife · ~46,859 ac
+- Sierra Front Field Office · PUB · BLM · ~46,265 ac
+- Tehama Wildlife Area · SCA · California Department of Fish and Wildlife · ~43,680 ac
+- Lake Havasu Field Office · PUB · BLM · ~42,218 ac
+- Yuma Field Office · PUB · BLM · ~40,231 ac
+- Carrizo Plains Ecological Reserve · SCA · California Department of Fish and Wildlife · ~39,106 ac
+- Gray Davis Dye Creek Preserve · SCA · The Nature Conservancy · ~37,917 ac
+- United States Bureau of Reclamation · FOTH · United States Bureau of Reclamation · ~32,270 ac
+- Siskiyou National Forest · NF · Forest Service Region 06 Pacific Northwest · ~31,543 ac
+- Lake Berryessa · RMA · United States Bureau of Reclamation · ~24,314 ac
+- New Melones · RMA · United States Bureau of Reclamation · ~23,621 ac
+- Santa Rosa Wildlife Area · SCA · California Department of Fish and Wildlife · ~23,546 ac
+- New Melones · REC · Unknown · ~22,110 ac
+- Knoxville Wildlife Area · SCA · California Department of Fish and Wildlife · ~20,772 ac
+- Ocotillo Wells State Vehicular Recreation Area · SREC · California Department of Parks and Recreation · ~19,733 ac
+- Hungry Valley State Vehicular Recreation Area · SREC · California Department of Parks and Recreation · ~19,656 ac
+- Lake Berryessa · REC · Unknown · ~18,964 ac
+- West Mojave Desert Ecological Reserve · SCA · California Department of Fish and Wildlife · ~18,333 ac
+- San Jacinto Wildlife Area · SCA · California Department of Fish and Wildlife · ~18,331 ac
+- Unnamed site - Coachella Valley Mountains Conservancy · SOTH · Coachella Valley Mountains Conservancy · ~17,993 ac
+- San Felipe Valley Wildlife Area · SCA · California Department of Fish and Wildlife · ~17,761 ac
+- Semitropic Ecological Reserve · SCA · California Department of Fish and Wildlife · ~16,685 ac
+- Grasslands Wildlife Management Area · NCA · Grasslands Wildlife Management Area · ~15,101 ac
+- Grasslands Wildlife Management Area · NCA · GRASSLANDS WILDLIFE MANAGEMENT AREA · ~15,028 ac
+- Lassen National Forest · NF · Forest Service Region 05 Pacific Southwest · ~14,889 ac
+- Ash Creek Wildlife Area · SCA · California Department of Fish and Wildlife · ~14,681 ac
+- Hallelujah Junction Wildlife Area · SCA · California Department of Fish and Wildlife · ~13,362 ac
+- Butte Valley Wildlife Area · SCA · California Department of Fish and Wildlife · ~13,325 ac
+- Clear Lake National Wildlife Refuge · NWR · CLEAR LAKE NATIONAL WILDLIFE REFUGE · ~13,022 ac
+- Clear Lake National Wildlife Refuge · NWR · Clear Lake National Wildlife Refuge · ~13,022 ac
+- Mendota Wildlife Area · SCA · California Department of Fish and Wildlife · ~11,392 ac
+- San Pablo Bay Wildlife Area · SCA · California Department of Fish and Wildlife · ~10,545 ac
+- Doyle Wildlife Area · SCA · California Department of Fish and Wildlife · ~10,529 ac
+- Montaña de Oro State Park · SP · California Department of Parks and Recreation · ~10,251 ac
+- Upper Butte Basin Wildlife Area · SCA · California Department of Fish and Wildlife · ~10,031 ac
+- Cachuma Lake Recreation Area · LREC · Santa Barbara, County of · ~9,563 ac
+- Sherman Island · SOTH · California Department of Water Resources · ~9,209 ac
+- Clear Lake National Wildlife Refuge · NWR · United States Bureau of Reclamation · ~9,158 ac

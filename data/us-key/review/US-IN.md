@@ -1,0 +1,162 @@
+# IN: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 229** parks joined to official land (same name + same kind of place). **0** to check by hand, **90** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+
+## Nothing found in PAD-US
+
+- US-0288 Big Oaks National Wildlife Refuge (National Wildlife Refuge)
+- US-0782 Lincoln Boyhood Home National Memorial (National Memorial)
+- US-10178 Selma N. Steele State Nature Preserve (State Nature Preserve)
+- US-10179 Ten O' Clock Line State Nature Preserve (State Nature Preserve)
+- US-10180 Fourteenmile Creek State Nature Preserve (State Nature Preserve)
+- US-10204 Bob Kern State Nature Preserve (State Nature Preserve)
+- US-10230 Bell-Croft Woods State Nature Preserve (State Nature Preserve)
+- US-10232 White Oak Cemetery State Nature Preserve (State Nature Preserve)
+- US-10237 Mongoquinong State Nature Preserve (State Nature Preserve)
+- US-10239 McCloskey's Burr Oak Savanna State Nature Preserve (State Nature Preserve)
+- US-10244 Donaldson's Woods State Nature Preserve (State Nature Preserve)
+- US-10248 Warbler Woods State Nature Preserve (State Nature Preserve)
+- US-10256 JD Marshall State Nature Preserve (State Nature Preserve)
+- US-10283 Glacial Esker State Nature Preserve (State Nature Preserve)
+- US-10405 Wabash River Conservation Area (Conservation Area)
+- US-10561 Indiana War Memorial Plaza National Historical Site (National Historical Site)
+- US-11996 Adams Mill State Fishing Lake (State Fishing Lake)
+- US-11998 Lake Wawasee State Fishing Lake (State Fishing Lake)
+- US-12002 Williams Dam State Fishing Lake (State Fishing Lake)
+- US-12012 Thomastown Bottoms State Nature Preserve (State Nature Preserve)
+- US-12013 Kramer Original Woods State Nature Preserve (State Nature Preserve)
+- US-12016 Round Lake State Nature Preserve (State Nature Preserve)
+- US-12020 Prophetstown Fen State Nature Preserve (State Nature Preserve)
+- US-12025 Goose Creek State Game Land (State Game Land)
+- US-12026 Pine Creek State Game Land (State Game Land)
+- US-12312 Busseron Creek State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-12454 Province Pond Wetlands Conservation Area (Conservation Area)
+- US-13100 Driftwood State Fishing Lake (State Fishing Lake)
+- US-13101 Westercamp Wildlife Management Area (Wildlife Management Area)
+- US-13102 Deniston State Natural Area (State Natural Area)
+- US-13103 Hindostan Falls State Fishing Lake (State Fishing Lake)
+- US-13104 Three Rivers State Fishing Lake (State Fishing Lake)
+- US-2256 Fort Harrison State Park (State Park)
+- US-2275 Whitewater Memorial State Park (State Park)
+- US-4161 Quakertown on Brookville Lake State Recreation Area (State Recreation Area)
+- US-4162 Mounds on Brookville Lake State Recreation Area (State Recreation Area)
+- US-4163 Cagles Mill Lake National Recreation Area (National Recreation Area)
+- US-4167 Interlake State Recreation Area (State Recreation Area)
+- US-4168 Frances Slocum on Mississinewa Lake State Recreation Area (State Recreation Area)
+- US-4169 Miami on Mississinewa Lake State Recreation Area (State Recreation Area)
+- US-4170 Hardin Ridge on Monroe Lake State Recreation Area (State Recreation Area)
+- US-4171 Paynetown on Monroe Lake State Recreation Area (State Recreation Area)
+- US-4172 Jackson on Patoka Lake State Recreation Area (State Recreation Area)
+- US-4173 Lick Fork on Patoka Lake State Recreation Area (State Recreation Area)
+- US-4174 Newton-Stewart on Patoka Lake State Recreation Area (State Recreation Area)
+- US-4175 Tillery Hill on Patoka Lake State Recreation Area (State Recreation Area)
+- US-4176 Redbird State Recreation Area (State Recreation Area)
+- US-4177 Dora-New Holland on Salamonie Lake State Recreation Area (State Recreation Area)
+- US-4178 Lost Bridge on Salamonie Lake State Recreation Area (State Recreation Area)
+- US-4179 Mt Etna on Salamonie Lake State Recreation Area (State Recreation Area)
+- US-4180 Mt Hope on Salamonie Lake State Recreation Area (State Recreation Area)
+- US-4182 Trine at Pokagon State Recreation Area (State Recreation Area)
+- US-4186 Big Walnut - Tall Timbers Trail State Nature Preserve (State Nature Preserve)
+- US-4187 Blue Grass State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4188 Bryan Woods State Nature Preserve (State Nature Preserve)
+- US-4190 Chinook State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4193 Crosley State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4194 Deer Creek State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4197 Fairbanks Landing State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4199 Glendale State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4205 Hillenbrand State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4208 J. E. Roush Lake State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4211 Kankakee State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4220 Pipewort Pond Lieber Memorial State Nature Preserve (State Nature Preserve)
+- US-4221 Pisgah Marsh Area State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4223 Reynolds Creek State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4224 Salamonie River and Frances Slocum State Forest (State Forest)
+- US-4231 Wabashiki State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4234 Winamac State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
+- US-4667 Spencer County State Forest (State Forest)
+- US-5680 Indian-Celina State Recreation Area (State Recreation Area)
+- US-5681 Little Turtle State Recreation Area (State Recreation Area)
+- US-5682 Moores Creek State Recreation Area (State Recreation Area)
+- US-5683 Kil-So-Quah State Recreation Area (State Recreation Area)
+- US-5684 Allens Creek State Recreation Area (State Recreation Area)
+- US-5685 Lieber State Recreation Area (State Recreation Area)
+- US-5686 Fairfax State Recreation Area (State Recreation Area)
+- US-5688 Salt Creek State Recreation Area (State Recreation Area)
+- US-5689 Pine Grove State Recreation Area (State Recreation Area)
+- US-5690 Crooked Creek State Recreation Area (State Recreation Area)
+- US-5692 Cartop State Recreation Area (State Recreation Area)
+- US-6972 Historic New Harmony State Historic Site (State Historic Site)
+- US-6973 Lanier Mansion State Historic Site (State Historic Site)
+- US-6974 Levi Coffin House State Historic Site (State Historic Site)
+- US-7369 Mountain Tea State Forest (State Forest)
+- US-7370 Ravinia Woods State Forest (State Forest)
+- US-7713 Loblolly Marsh State Nature Preserve (State Nature Preserve)
+- US-7842 Red Bridge State Recreation Area (State Recreation Area)
+- US-7843 Pearson Mill State Recreation Area (State Recreation Area)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- Monroe Recreation Area · REC · Louisville · ~25,720 ac
+- Brookville Recreation Area · REC · Louisville · ~17,185 ac
+- Mississinewa Recreation Area · REC · Louisville · ~15,067 ac
+- Minnehana Fish and Wildlife Area · SCA · Indiana Department of Natural Resources Fish and Wildlife · ~12,889 ac
+- J. Edward Roush Recreation Area · REC · Louisville · ~8,533 ac
+- Glendale Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~8,127 ac
+- Winamac Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~4,853 ac
+- Kankakee Fish and Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~4,410 ac
+- Crosley Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~4,250 ac
+- 10 O'clock Line Nature Preserve · SCA · Indiana DNR, State Parks and Reservoirs Division · ~3,341 ac
+- Gibson Lake Recreation Area · SREC · Unknown State · ~2,908 ac
+- Bradford Woods · SRMA · Indiana University · ~2,375 ac
+- Chinook Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~2,134 ac
+- Brush Creek Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~1,869 ac
+- Whitewater State Park · SP · Indiana DNR, State Parks and Reservoirs Division · ~1,436 ac
+- Reynold's Creek Gamebird Habitat Area · SCA · Indiana DNR, Fish and Wildlife Division · ~1,254 ac
+- Pedestal Rock Nature Preserve · SCA · Indiana DNR, State Parks and Reservoirs Division · ~1,183 ac
+- Menominee Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~1,008 ac
+- Fort Benjamin Harrison State Park · SP · Indiana DNR, State Parks and Reservoirs Division · ~981 ac
+- Salamonie State Forest · SRMA · Indiana DNR, Forestry Division · ~956 ac
+- Bloomfield Barrens Managed Area · SCA · Indiana DNR, Nature Preserve Division · ~946 ac
+- Cedar Lake (Marsh) Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~933 ac
+- Whipporwill Woods Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~899 ac
+- Driftwood Public Fishing Area · SCA · Indiana DNR, Fish and Wildlife Division · ~893 ac
+- Tern Bar Slough · SCA · Indiana DNR, Fish and Wildlife Division · ~843 ac
+- Fourteen Mile Creek Nature Preserve · SCA · Indiana DNR, State Parks and Reservoirs Division · ~830 ac
+- Pine Creek Bottoms Gamebird Habitat Area · SCA · Indiana DNR, Fish and Wildlife Division · ~809 ac
+- Pisgah Marsh Nongame Area And Boardwalk · SCA · Indiana DNR, Fish and Wildlife Division · ~801 ac
+- Leavenworth Barrens Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~748 ac
+- Fourteen Mile Creek Nature Preserve Addition · SP · Indiana DNR, State Parks and Reservoirs Division · ~743 ac
+- Big Walnut Addition Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~739 ac
+- Mallard Roost Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~699 ac
+- Elk Creek Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~694 ac
+- Wabash Lowlands Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~672 ac
+- Marsh Lake Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~662 ac
+- Beaver Lake Nature Preserve · SCA · Indiana DNR, Fish and Wildlife Division · ~656 ac
+- Glacial Esker Nature Preserve - Glacial Esker · SCA · Indiana DNR, State Parks and Reservoirs Division · ~622 ac
+- Randolph Wildlife Management Area · SCA · Indiana DNR, Fish and Wildlife Division · ~505 ac
+- Kankakee River Swampland · SCA · Indiana DNR, Fish and Wildlife Division · ~454 ac
+- Aukiki Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~451 ac
+- Orange Co. (Jordan) Game Management Area · SCA · Indiana DNR, Fish and Wildlife Division · ~434 ac
+- Nehrt Tract Forest Legacy Area · PCON · Indiana DNR, Forestry Division · ~394 ac
+- Big Walnut Natural Area · SCA · Indiana DNR, Nature Preserve Division · ~389 ac
+- Brock - Sampson Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~387 ac
+- Gray Estate Cypress Slough (Gray Woods) · SCA · Indiana DNR, Fish and Wildlife Division · ~386 ac
+- Moriane Natural Area · SCA · Indiana DNR, Nature Preserve Division · ~365 ac
+- Buffalo Pond Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~358 ac
+- Lost Hill Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~356 ac
+- Yellow Birch Ravine Nature Preserve Addition · SCA · Indiana DNR, Nature Preserve Division · ~289 ac
+- Big Walnut Nature Preserve - Tract 1 · SCA · Indiana DNR, Nature Preserve Division · ~286 ac
+- Perry County Wildlife Habitat Area · SCA · Indiana DNR, Fish and Wildlife Division · ~265 ac
+- Pine Station Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~258 ac
+- Purdue Golf · LREC · Purdue Research Foundation · ~251 ac
+- Deam (Charles C.) Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~249 ac
+- Section Six Southern Flatwoods Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~244 ac
+- Fish Lake Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~234 ac
+- Farm Service Agency Interest Of In · NWR · FARM SERVICE AGENCY INTEREST OF IN · ~231 ac
+- Farm Service Agency Interest Of In · NWR · Farm Service Agency Interest Of In · ~231 ac
+- Little Grassy (Grassie) Pond Game Management Area · SCA · Indiana DNR, Fish and Wildlife Division · ~224 ac
+- Brock - Sampson Addition Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~222 ac

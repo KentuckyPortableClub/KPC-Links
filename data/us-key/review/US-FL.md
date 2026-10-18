@@ -1,0 +1,298 @@
+# FL: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **234 of 460** parks joined to official land (same name + same kind of place). **66** to check by hand, **160** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+- **US-0243** J.N. Ding Darling National Wildlife Refuge (National Wildlife Refuge) → J. N. Ding Darling National Wildlife Refuge (~5,458 ac, similar name); J. N. Ding Darling National Wildlife Refuge (~5,421 ac, similar name)
+- **US-0245** Lake Wales Ridge Wildlife Management Area (Wildlife Management Area) → Lake Wales Ridge Wildlife and Environmental Area (~15,446 ac, similar name); Lake Wales Ridge National Wildlife Refuge (~1,898 ac, same name, different kind of place); Lake Wales Ridge National Wildlife Refuge (~1,893 ac, same name, different kind of place)
+- **US-0635** St. George State Park (State Park) → Dr. Julian G. Bruce St. George Island State Park (~2,024 ac, similar name)
+- **US-0658** Timucuan Preserve National Conservation Area (National Conservation Area) → Timucuan Ecological and Historic Preserve (~16,646 ac, similar name)
+- **US-0896** Wekiva National Wild and Scenic River (National Wild and Scenic River) → Seminole State Forest (~29,027 ac, the POTA pin is inside it (different name)); Lower Wekiva River Preserve State Park (~17,220 ac, the POTA pin is inside it (different name))
+- **US-10594** Manatee Springs South State Conservation Area (State Conservation Area) → Manatee Springs State Park (~2,442 ac, same name, different kind of place)
+- **US-12133** Catfish Creek State Conservation Area (State Conservation Area) → Allen David Broussard Catfish Creek Preserve State Park (~8,329 ac, similar name)
+- **US-1830** Alfred B.Maclay Gardens State Park (State Park) → Alfred B. Maclay Gardens State Park (~1,180 ac, similar name)
+- **US-1836** Barnacle State Park (State Park) → The Barnacle Historic State Park (~9 ac, similar name)
+- **US-1858** Dr. Von D. Mizell-Eula Johnson State Park (State Park) → John U. Lloyd Beach State Park (~311 ac, the POTA pin is inside it (different name))
+- **US-1863** Egmont Key State Park (State Park) → Egmont Key National Wildlife Refuge (~331 ac, same name, different kind of place); Egmont Key National Wildlife Refuge (~331 ac, same name, different kind of place)
+- **US-1879** Homosassa Springs Wildlife State Park (State Park) → Ellie Schiller Homosassa Springs Wildlife State Park (~201 ac, similar name)
+- **US-1896** Letchworth-Love Mounds State Park (State Park) → Letchworth-Love Mounds Archaeological State Park (~190 ac, similar name)
+- **US-1915** Silver Springs State Park (State Park) → Silver Springs Conservation Area (~331 ac, same name, different kind of place)
+- **US-1918** St. Joseph Peninsula State Park (State Park) → T. H. Stone Memorial St. Joseph Peninsula State Park (~2,791 ac, similar name)
+- **US-1922** Three Rivers State Park (State Park) → Seminole Recreation Area (~17,724 ac, the POTA pin is inside it (different name))
+- **US-3607** Beker-Wingate Creek State Park (State Park) → Beker (~1,743 ac, similar name)
+- **US-3611** Cedar Key Scrub Reserve State Conservation Area (State Conservation Area) → Cedar Key Scrub State Reserve (~5,033 ac, similar name)
+- **US-3616** Dudley Farm State Park (State Park) → Dudley Farm Historic State Park (~333 ac, similar name)
+- **US-3620** Florida Keys Overseas Heritage Trail State Park (State Park) → Florida Keys Overseas Heritage State Trail (~732 ac, similar name)
+- **US-3621** Fort Foster State Historic Site (State Historic Site) → Hillsborough River State Park (~3,319 ac, the POTA pin is inside it (different name))
+- **US-3622** Fort Mose State Park (State Park) → Fort Mose Historic State Park (~41 ac, similar name)
+- **US-3625** Gamble Plantation State Park (State Park) → Judah P. Benjamin Confederate Memorial at Gamble Plantation Historic State Park (~33 ac, similar name)
+- **US-3626** Gamble Rogers Memorial State Recreation Area (State Recreation Area) → Gamble Rogers Memorial State Recreation Area at Flagler Beach (~134 ac, similar name)
+- **US-3630** Indian Key State Park (State Park) → Indian Key Historic State Park (~111 ac, similar name); Lignumvitae Channel / Indian Key Channel Park (~5 ac, similar name); Lignumvitae Key Botanical State Park (~10,724 ac, the POTA pin is inside it (different name))
+- **US-3635** Madira Bickel Mound State Historic Site (State Historic Site) → Madira Bickel Mound State Archaeological Site (~10 ac, similar name); Maderia Bickle Archaeological State Park (~7 ac, the POTA pin is inside it (different name))
+- **US-3641** Okeechobee Battlefield State Park (State Park) → Okeechobee Battlefield (~145 ac, same name, different kind of place)
+- **US-3642** Olustee Battlefield State Park (State Park) → Osceola National Forest (~160,054 ac, the POTA pin is inside it (different name))
+- **US-3643** Orman House State Park (State Park) → Orman House Historic State Park (~10 ac, similar name)
+- **US-3644** Palatka-St. Augustine State Trail (State Trail) → Palatka-to-St. Augustine State Trail (~40 ac, similar name)
+- **US-3646** Paynes Creek State Park (State Park) → Paynes Creek Historic State Park (~399 ac, similar name)
+- **US-3650** Rock Springs Run State Park (State Park) → Rock Springs Run State Reserve (~14,165 ac, similar name)
+- **US-3656** Beker - South Fork State Park (State Park) → Beker (~1,743 ac, similar name)
+- **US-3658** Ney Landrum State Park (State Park) → St. Marks River Preserve State Park (~2,590 ac, the POTA pin is inside it (different name))
+- **US-5520** Chassahowitzka River and Coastal Swamp State Conservation Area (State Conservation Area) → Chassahowitzka National Wildlife Refuge (~28,266 ac, similar name); Chassahowitzka National Wildlife Refuge (~28,266 ac, similar name); Chassahowitzka Wildlife Management Area (~27,521 ac, similar name)
+- **US-6281** Loxahatchee River National Wild and Scenic River (National Wild and Scenic River) → Jonathan Dickinson State Park (~11,466 ac, the POTA pin is inside it (different name))
+- **US-6287** Apalachee Wildlife Management Area (Wildlife Management Area) → Seminole Recreation Area (~17,724 ac, the POTA pin is inside it (different name))
+- **US-6288** Apalachicola River Wildlife Area (Wildlife Area) → Apalachicola River Wildlife and Environmental Area (~62,955 ac, similar name); Apalachicola National Forest (~576,062 ac, same name, different kind of place)
+- **US-6290** Bell Ridge Longleaf Wildlife Area (Wildlife Area) → Bell Ridge Longleaf Mitigation Park Wildlife and Environmental Area (~722 ac, similar name)
+- **US-6294** Branan Field Wildlife Area (Wildlife Area) → Branan Field Mitigation Park Wildlife and Environmental Area (~386 ac, similar name)
+- **US-6297** Chinsegut Wildlife Area (Wildlife Area) → Chinsegut Wildlife and Environmental Area (~821 ac, similar name); Chinsegut Hill Conference Center (~115 ac, similar name)
+- **US-6298** Crooked Lake Wildlife Area (Wildlife Area) → Crooked Lake Wildlife and Environmental Area (~1,147 ac, similar name)
+- **US-6300** Escribano Point Wildlife Management Area (Wildlife Management Area) → Yellow River Wildlife Management Area - Escribano Point (~2,708 ac, similar name)
+- **US-6303** Florida Keys Wildlife Area (Wildlife Area) → Florida Keys Wildlife and Environmental Area (~3,962 ac, similar name); Florida Keys Overseas Heritage State Trail (~732 ac, similar name)
+- **US-6304** Fort White Wildlife Area (Wildlife Area) → Fort White Mitigation Park Wildlife and Environmental Area (~1,638 ac, similar name)
+- **US-6308** Hickey Creek Wildlife Management Area (Wildlife Management Area) → Hickey Creek Mitigation Park Wildlife and Environmental Area (~785 ac, similar name)
+- **US-6313** John C. and Mariana Jones/Hungryland Wildlife Area (Wildlife Area) → John C. and Mariana Jones/Hungryland Wildlife and Environmental Area (~17,059 ac, similar name)
+- **US-6314** L. Kirk Edwards Wildlife Area (Wildlife Area) → L. Kirk Edwards Wildlife and Environmental Area (~1,783 ac, similar name)
+- **US-6315** Lafayette Forest Wildlife Area (Wildlife Area) → Lafayette Forest Mitigation Park Wildlife and Environmental Area (~2,136 ac, similar name)
+- **US-6316** Little Gator Creek Wildlife Area (Wildlife Area) → Little Gator Creek Wildlife and Environmental Area (~574 ac, similar name)
+- **US-6317** Moody Branch Wildlife Area (Wildlife Area) → Moody Branch Mitigation Park Wildlife and Environmental Area (~959 ac, similar name)
+- **US-6319** Perry Oldenburg Wildlife Area (Wildlife Area) → Perry Oldenburg Mitigation Park Wildlife and Environmental Area (~369 ac, similar name)
+- **US-6320** Platt Branch Wildlife Area (Wildlife Area) → Platt Branch Mitigation Park Wildlife and Environmental Area (~1,972 ac, similar name)
+- **US-6324** Split Oak Forest Wildlife Area (Wildlife Area) → Split Oak Forest Mitigation Park Wildlife and Environmental Area (~1,772 ac, similar name)
+- **US-6325** Suwannee Ridge Wildlife Area (Wildlife Area) → Suwannee Ridge Mitigation Park Wildlife and Environmental Area (~1,428 ac, similar name)
+- **US-6326** T.M. Goodwin Wildlife Management Area (Wildlife Management Area) → T. M. Goodwin Waterfowl Management Area (~6,526 ac, similar name)
+- **US-6327** Tenoroc Wildlife Area (Wildlife Area) → Tenoroc Fish Management Area (~7,528 ac, similar name)
+- **US-6331** Watermelon Pond Wildlife Area (Wildlife Area) → Watermelon Pond Mitigation Park Wildlife and Environmental Area (~1,288 ac, similar name)
+- **US-6744** Terra Ceia Preserve Frog Creek State Conservation Area (State Conservation Area) → Terra Ceia Preserve State Park (~1,948 ac, same name, different kind of place)
+- **US-7879** Citrus Wildlife Management Area (Wildlife Management Area) → Withlacoochee State Forest (~165,562 ac, the POTA pin is inside it (different name))
+- **US-8326** Apalachicola River State Conservation Area (State Conservation Area) → Apalachicola National Forest (~576,062 ac, same name, different kind of place)
+- **US-8327** Blackwater River State Conservation Area (State Conservation Area) → Blackwater River State Forest (~206,192 ac, same name, different kind of place)
+- **US-8344** Dunns Creek State Conservation Area (State Conservation Area) → Dunns Creek State Park (~6,319 ac, same name, different kind of place)
+- **US-8372** Stokes Landing State Conservation Area (State Conservation Area) → Guana Tolomato Matanzas National Estuarine Research Reserve (~41,218 ac, the POTA pin is inside it (different name))
+- **US-8699** Sandlin Bay State Conservation Area (State Conservation Area) → Pinhook Purchase Unit (~89,284 ac, the POTA pin is inside it (different name))
+- **US-8705** Stephen Foster State Conservation Area (State Conservation Area) → Stephen Foster Folk Culture Center State Park (~909 ac, similar name)
+
+## Nothing found in PAD-US
+
+- US-10462 DuPuis State Conservation Area (State Conservation Area)
+- US-10550 Scanlon State Conservation Area (State Conservation Area)
+- US-10551 Falling Creek State Conservation Area (State Conservation Area)
+- US-10552 Fox Trail State Conservation Area (State Conservation Area)
+- US-10553 Guaranto State Conservation Area (State Conservation Area)
+- US-10554 Suwannee Street State Conservation Area (State Conservation Area)
+- US-10559 Camp Branch State Conservation Area (State Conservation Area)
+- US-10565 Stuart's Landing North State Conservation Area (State Conservation Area)
+- US-10566 Stuart's Landing South State Conservation Area (State Conservation Area)
+- US-10567 Hatchbend State Conservation Area (State Conservation Area)
+- US-10568 Trillium Slopes State Conservation Area (State Conservation Area)
+- US-10569 Hunter Creek State Conservation Area (State Conservation Area)
+- US-10570 Belmont State Conservation Area (State Conservation Area)
+- US-10571 Avoca State Conservation Area (State Conservation Area)
+- US-10588 Branford-Bend State Conservation Area (State Conservation Area)
+- US-10590 Lake Alto State Conservation Area (State Conservation Area)
+- US-10591 Steinhatchee Rise State Conservation Area (State Conservation Area)
+- US-10592 Big Pine Tract State Conservation Area (State Conservation Area)
+- US-10593 New Pine Landing State Conservation Area (State Conservation Area)
+- US-10601 Suwannee Springs Park State Conservation Area (State Conservation Area)
+- US-10602 Linville State Conservation Area (State Conservation Area)
+- US-10603 Rocky Creek State Conservation Area (State Conservation Area)
+- US-10604 Blue Sink State Conservation Area (State Conservation Area)
+- US-10614 Roline State Conservation Area (State Conservation Area)
+- US-10615 Cypress Creek South State Conservation Area (State Conservation Area)
+- US-10616 Tyree State Conservation Area (State Conservation Area)
+- US-10617 Alapaha Bluffs State Conservation Area (State Conservation Area)
+- US-10618 Wolf Creek State Conservation Area (State Conservation Area)
+- US-10619 Little River Wildlife Management Area (Wildlife Management Area)
+- US-10620 Jerry Branch State Conservation Area (State Conservation Area)
+- US-11223 Ruth B. Kirby Gilchrist Blue Springs State Park (State Park)
+- US-12097 Hickory Hammock Wildlife Management Area (Wildlife Management Area)
+- US-12121 Lower Reedy Creek: Rough Island North and South, and Johnson Island State Conservation Area (State Conservation Area)
+- US-12122 S-65E Impoundment and Paradise Run State Conservation Area (State Conservation Area)
+- US-12123 Oak Creek, No Name Slough and Starvation Slough State Conservation Area (State Conservation Area)
+- US-12124 Harold A. Campbell Public Use and STA 3/4 State Conservation Area (State Conservation Area)
+- US-12125 Seaboard Marsh, Telex Marsh and Yates Marsh State Conservation Area (State Conservation Area)
+- US-12126 Stormwater Treatment Area 5/6 State Conservation Area (State Conservation Area)
+- US-12127 Stormwater Treatment Area 1 West State Conservation Area (State Conservation Area)
+- US-12128 Stormwater Treatment Area 1 East State Conservation Area (State Conservation Area)
+- US-12129 Shingle Creek State Conservation Area (State Conservation Area)
+- US-12130 Nubbin Slough Stormwater Treatment Area State Conservation Area (State Conservation Area)
+- US-12131 Loxahatchee River/Cypress Creek Management Area State Conservation Area (State Conservation Area)
+- US-12132 Chandler Slough State Conservation Area (State Conservation Area)
+- US-12134 A-1 Flow Equalization Basin State Conservation Area (State Conservation Area)
+- US-12135 Myakka River — Flatford Swamp State Conservation Area (State Conservation Area)
+- US-12136 Deep Creek Preserve Desoto County State Conservation Area (State Conservation Area)
+- US-13011 Shoal River Headwaters State Park (State Park)
+- US-1847 Collier-Seminole State Park (State Park)
+- US-1852 Dagny Johnson Key Largo Hammock Botanical State Park (State Park)
+- US-3612 Charlotte Harbor Preserve State Park (State Park)
+- US-3637 Marjorie Harris Carr Cross State Park (State Park)
+- US-3660 Suwannee River Wilderness State Trail (State Trail)
+- US-4559 Florida Trail National Scenic Trail (National Scenic Trail)
+- US-5118 Edward W. Chance Reserve State Conservation Area (State Conservation Area)
+- US-5220 Flying Eagle Preserve State Conservation Area (State Conservation Area)
+- US-5250 Annutteliga Hammock State Conservation Area (State Conservation Area)
+- US-5330 Green Swamp Wilderness Park Reserve (Park Reserve)
+- US-5513 Halpata Tatanaki Preserve State Conservation Area (State Conservation Area)
+- US-5524 Chito Branch Reserve State Conservation Area (State Conservation Area)
+- US-5624 Jack Creek State Conservation Area (State Conservation Area)
+- US-5670 Lake Panasoffkee State Conservation Area (State Conservation Area)
+- US-6283 Plank Road State Forest (State Forest)
+- US-6444 Conner Preserve State Conservation Area (State Conservation Area)
+- US-6455 Panasoffkee Outlet State Conservation Area (State Conservation Area)
+- US-6639 Potts Preserve State Conservation Area (State Conservation Area)
+- US-6656 Prairie/Shell Creek State Conservation Area (State Conservation Area)
+- US-6682 RV Griffin Reserve State Conservation Area (State Conservation Area)
+- US-6700 Sawgrass Lake Park State Conservation Area (State Conservation Area)
+- US-7155 Upper Hillsborough Preserve State Conservation Area (State Conservation Area)
+- US-7374 Wysong Park State Conservation Area (State Conservation Area)
+- US-7389 Cypress Creek Preserve State Conservation Area (State Conservation Area)
+- US-7475 Starkey Wilderness/Serenova Preserve State Conservation Area (State Conservation Area)
+- US-8328 Chipola River Water Management Area (Water Management Area)
+- US-8329 Choctawhatchee & Holmes Creek State Conservation Area (State Conservation Area)
+- US-8330 Econfina Creek Water Management Area (Water Management Area)
+- US-8332 Escambia River State Conservation Area (State Conservation Area)
+- US-8333 Garcon Point State Conservation Area (State Conservation Area)
+- US-8334 Perdido River State Conservation Area (State Conservation Area)
+- US-8335 Yellow River Water Management Area (Water Management Area)
+- US-8336 Bayard State Conservation Area (State Conservation Area)
+- US-8337 Black Creek Ravines State Conservation Area (State Conservation Area)
+- US-8338 Blue Cypress State Conservation Area (State Conservation Area)
+- US-8339 Buck Lake State Conservation Area (State Conservation Area)
+- US-8340 Canaveral Marshes State Conservation Area (State Conservation Area)
+- US-8341 Clark Bay State Conservation Area (State Conservation Area)
+- US-8342 Crescent Lake State Conservation Area (State Conservation Area)
+- US-8343 Deep Creek State Conservation Area (State Conservation Area)
+- US-8345 Econlockhatchee Sandhills State Conservation Area (State Conservation Area)
+- US-8346 Emeralda Marsh State Conservation Area (State Conservation Area)
+- US-8347 Fellsmere Water Management Area State Conservation Area (State Conservation Area)
+- US-8348 Fort Drum Marsh State Conservation Area (State Conservation Area)
+- US-8349 Gourd Island State Conservation Area (State Conservation Area)
+- US-8351 Heart Island State Conservation Area (State Conservation Area)
+- US-8352 Julington-Durbin Preserve State Conservation Area (State Conservation Area)
+- US-8353 Lake Apopka North Shore State Conservation Area (State Conservation Area)
+- US-8354 Lake George State Conservation Area (State Conservation Area)
+- US-8356 Lake Monroe State Conservation Area (State Conservation Area)
+- US-8357 Lake Norris State Conservation Area (State Conservation Area)
+- US-8358 Lochloosa Wildlife State Conservation Area (State Conservation Area)
+- US-8360 Micco Water Management Area State Conservation Area (State Conservation Area)
+- US-8361 Moses Creek State Conservation Area (State Conservation Area)
+- US-8362 Murphy Creek State Conservation Area (State Conservation Area)
+- US-8364 Ocklawaha Prairie Restoration Area State Conservation Area (State Conservation Area)
+- US-8365 Orange Creek Restoration Area State Conservation Area (State Conservation Area)
+- US-8366 Palm Bluff State Conservation Area (State Conservation Area)
+- US-8367 Pellicer Creek State Conservation Area (State Conservation Area)
+- US-8368 Rice Creek State Conservation Area (State Conservation Area)
+- US-8369 River Lakes State Conservation Area (State Conservation Area)
+- US-8370 Seminole Ranch State Conservation Area (State Conservation Area)
+- US-8373 Sunnyhill Restoration Area State Conservation Area (State Conservation Area)
+- US-8374 Thomas Creek State Conservation Area (State Conservation Area)
+- US-8375 Three Forks State Conservation Area (State Conservation Area)
+- US-8376 Twelve Mile Swamp State Conservation Area (State Conservation Area)
+- US-8674 47 Bridge State Conservation Area (State Conservation Area)
+- US-8675 Alapahoochee State Conservation Area (State Conservation Area)
+- US-8676 Cabbage Creek State Conservation Area (State Conservation Area)
+- US-8677 Christian State Conservation Area (State Conservation Area)
+- US-8678 Cuba Bay State Conservation Area (State Conservation Area)
+- US-8679 Devil's Hammock State Conservation Area (State Conservation Area)
+- US-8680 Bell Springs State Conservation Area (State Conservation Area)
+- US-8681 Falmouth Spring State Conservation Area (State Conservation Area)
+- US-8682 Allardt State Conservation Area (State Conservation Area)
+- US-8683 Log Landing State Conservation Area (State Conservation Area)
+- US-8684 Grady State Conservation Area (State Conservation Area)
+- US-8685 Holton Creek State Conservation Area (State Conservation Area)
+- US-8686 Bay Creek State Conservation Area (State Conservation Area)
+- US-8687 Jennings Bluff State Conservation Area (State Conservation Area)
+- US-8688 Lindsey State Conservation Area (State Conservation Area)
+- US-8689 Little Creek, McAlpin Landing State Conservation Area (State Conservation Area)
+- US-8690 Mallory Swamp State Conservation Area (State Conservation Area)
+- US-8691 Mattair Springs State Conservation Area (State Conservation Area)
+- US-8692 Lamont, Mt. Gilead State Conservation Area (State Conservation Area)
+- US-8693 Mud Swamp State Conservation Area (State Conservation Area)
+- US-8694 Natural Well Branch State Conservation Area (State Conservation Area)
+- US-8695 Peacock Slough State Conservation Area (State Conservation Area)
+- US-8696 Purvis Landing, Otter Springs, Shingle Lndg State Conservation Area (State Conservation Area)
+- US-8697 R.O Ranch State Conservation Area (State Conservation Area)
+- US-8698 Ruth-Springs State Conservation Area (State Conservation Area)
+- US-8700 Santa Fe Swamp State Conservation Area (State Conservation Area)
+- US-8701 Shelly, Duck Pond, Hartsfield State Conservation Area (State Conservation Area)
+- US-8702 Sneads Lake State Conservation Area (State Conservation Area)
+- US-8703 Steinhatchee Falls State Conservation Area (State Conservation Area)
+- US-8704 Steinhatchee Springs State Conservation Area (State Conservation Area)
+- US-8706 Sunnyvale State Conservation Area (State Conservation Area)
+- US-8707 Sugar Creek State Conservation Area (State Conservation Area)
+- US-8708 Swift Creek State Conservation Area (State Conservation Area)
+- US-8709 Turner Bridge State Conservation Area (State Conservation Area)
+- US-8710 Osteen State Conservation Area (State Conservation Area)
+- US-8711 Owens Spring, Walker, Adams State Conservation Area (State Conservation Area)
+- US-8712 White Springs, Little Shoals, Gar Pond State Conservation Area (State Conservation Area)
+- US-8713 Withlacoochee Hills State Conservation Area (State Conservation Area)
+- US-8714 Withlacoochee Quail Farms State Conservation Area (State Conservation Area)
+- US-8715 Seven Bridges State Conservation Area (State Conservation Area)
+- US-8716 Woods Ferry State Conservation Area (State Conservation Area)
+- US-8717 Allapattah Flats State Conservation Area (State Conservation Area)
+- US-8718 Lakeside Ranch State Conservation Area (State Conservation Area)
+- US-8719 Horse Creek State Conservation Area (State Conservation Area)
+- US-8720 Frog Pond State Conservation Area (State Conservation Area)
+- US-8721 Taylor Creek State Conservation Area (State Conservation Area)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- Big Cypress National Preserve Addition · NCA · NPS · ~142,186 ac
+- Tortugas Ecological Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~116,088 ac
+- Apalachicola National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~114,616 ac
+- Everglades National Park Expansion · NP · NPS · ~109,347 ac
+- Water Conservation Area 3B · SRMA · UNK · ~101,526 ac
+- Pinhook Purchase Unit · NF · Forest Service Region 08 Southern · ~89,284 ac
+- Rookery Bay National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~87,948 ac
+- Babcock Ranch Preserve · PCON · Babcock Ranch Management, LLC · ~73,239 ac
+- Camp Blanding Military Reservation · MIL · FL Dept. of Military Affairs · ~71,599 ac
+- Apalachicola River Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~62,955 ac
+- Guana Tolomato Matanzas National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~41,218 ac
+- Lake Okeechobee Sanctuaries · PCON · National Audubon Society, Inc. · ~26,290 ac
+- Raiford Wildlife Management Area · PCON · PRIDE Enterprises, Inc. · ~17,793 ac
+- Seminole Recreation Area · REC · Mobile · ~17,724 ac
+- John C. and Mariana Jones/Hungryland Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~17,059 ac
+- Timucuan Ecological and Historic Preserve · NCA · NPS · ~16,646 ac
+- Lake Wales Ridge Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~15,446 ac
+- Yucca Pens Unit · SCA · FL Fish and Wildlife Conservation Commission · ~15,044 ac
+- Rock Springs Run State Reserve · SCA · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~14,165 ac
+- Snipe Island Unit · SCA · FL Fish and Wildlife Conservation Commission · ~11,751 ac
+- Ordway-Swisher Biological Station · SCA · University of Florida · ~9,141 ac
+- Tenoroc Fish Management Area · SCA · FL Fish and Wildlife Conservation Commission · ~7,528 ac
+- Everglades Headwaters National Wildlife Refuge And Conservation Area · NWR · Everglades Headwaters National Wildlife Refuge And Conservation Area · ~7,031 ac
+- T. M. Goodwin Waterfowl Management Area · SCA · FL Fish and Wildlife Conservation Commission · ~6,526 ac
+- St. Johns National Wildlife Refuge · NWR · ST. JOHNS NATIONAL WILDLIFE REFUGE · ~6,431 ac
+- St. Johns National Wildlife Refuge · NWR · St. Johns National Wildlife Refuge · ~6,431 ac
+- Osprey Unit · SCA · FL Fish and Wildlife Conservation Commission · ~6,103 ac
+- St. Joseph Bay State Buffer Preserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~5,589 ac
+- J. N. Ding Darling National Wildlife Refuge · NWR · J. N. Ding Darling National Wildlife Refuge · ~5,458 ac
+- Balm-Boyette Scrub · LOTH · Hillsborough County · ~5,439 ac
+- J. N. Ding Darling National Wildlife Refuge · NWR · J. N. DING DARLING NATIONAL WILDLIFE REFUGE · ~5,421 ac
+- Cedar Key Scrub State Reserve · SCA · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~5,033 ac
+- Silver River State Park · SP · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~4,419 ac
+- Florida Keys Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~3,962 ac
+- Everglades Headwaters National Wildlife Refuge And Conservation Area · NWR · EVERGLADES HEADWATERS NATIONAL WILDLIFE REFUGE AND CONSERVATION AREA · ~3,855 ac
+- Okefenokee National Wildlife Refuge · NWR · OKEFENOKEE NATIONAL WILDLIFE REFUGE · ~3,533 ac
+- Okefenokee National Wildlife Refuge · NWR · Okefenokee National Wildlife Refuge · ~3,526 ac
+- Tate's Hell Wildlife Management Area · SCA · FL Fish and Wildlife Conservation Commission · ~2,899 ac
+- T. H. Stone Memorial St. Joseph Peninsula State Park · SP · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~2,791 ac
+- GTMNERR - Guana River Site · SOTH · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~2,720 ac
+- Yellow River Wildlife Management Area - Escribano Point · SCA · FL Fish and Wildlife Conservation Commission · ~2,708 ac
+- Curry Island (LOHA) · POTH · Lake Okeechobee Habitat Alliance, Inc. · ~2,681 ac
+- Weedon Island Preserve · SCA · Pinellas County · ~2,618 ac
+- St. Marks River Preserve State Park · SP · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~2,590 ac
+- Grant Flatwoods Sanctuary · SCA · Brevard County · ~2,556 ac
+- Doris Leeper Spruce Creek Preserve · SCA · Volusia County · ~2,439 ac
+- Cape St. George State Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~2,385 ac
+- Loxahatchee Slough Research Natural Area · SCA · FL-Trustees of the Internal Improvement Trust Fund · ~2,324 ac
+- Lafayette Forest Mitigation Park Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~2,136 ac
+- Apalachee Correctional Institution · PCON · PRIDE Enterprises, Inc. · ~2,108 ac
+- Austin Cary Memorial Forest · SHCA · University of Florida · ~2,076 ac
+- Dr. Julian G. Bruce St. George Island State Park · SP · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~2,024 ac
+- Platt Branch Mitigation Park Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~1,972 ac
+- Homeland · SHCA · FL Dept. of Environmental Protection, Div. of Water Resource Management, Bureau of Mining and Minerals Regulation · ~1,927 ac
+- Lake Wales Ridge National Wildlife Refuge · NWR · Lake Wales Ridge National Wildlife Refuge · ~1,898 ac
+- Lake Wales Ridge National Wildlife Refuge · NWR · LAKE WALES RIDGE NATIONAL WILDLIFE REFUGE · ~1,893 ac
+- L. Kirk Edwards Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~1,783 ac
+- Split Oak Forest Mitigation Park Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~1,772 ac
+- Shell Key Preserve · SCA · Pinellas County · ~1,754 ac
+- Beker · SOTH · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~1,743 ac

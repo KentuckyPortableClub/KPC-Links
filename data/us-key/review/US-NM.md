@@ -1,0 +1,137 @@
+# NM: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **57 of 122** parks joined to official land (same name + same kind of place). **46** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+- **US-0678** Valles Caldera Preserve National Conservation Area (National Conservation Area) → Valles Caldera National Preserve (~88,967 ac, similar name)
+- **US-0961** Salinas Pueblo Missions, Gran Quivira Unit, National Monument (National Monument) → Salinas Pueblo Missions National Monument (~980 ac, similar name)
+- **US-11779** Bisti-De-Na-Zin Wilderness Area (Wilderness Area) → Farmington Field Office (~1,425,067 ac, the POTA pin is inside it (different name))
+- **US-11782** Dunes BLM Recreation Management Area (BLM Recreation Management Area) → Farmington Field Office (~1,425,067 ac, the POTA pin is inside it (different name))
+- **US-11783** Fort Craig BLM Historic Area (BLM Historic Area) → Socorro Field Office (~1,508,543 ac, the POTA pin is inside it (different name))
+- **US-11785** Fort Stanton Historic Site (Historic Site) → State Trust Land (~8,875,233 ac, the POTA pin is inside it (different name))
+- **US-11789** Fort Selden Historic Site (Historic Site) → Fort Selden State Park (~30 ac, same name, different kind of place)
+- **US-11791** Santa Cruz Lake BLM Recreation Management Area (BLM Recreation Management Area) → Santa Fe National Forest (~1,545,017 ac, similar name); Taos Field Office (~598,331 ac, the POTA pin is inside it (different name))
+- **US-11795** Lake Valley Townsite BLM Historic Preservation Site (BLM Historic Preservation Site) → State Trust Land (~8,875,233 ac, the POTA pin is inside it (different name)); Las Cruces District Office (~5,375,972 ac, the POTA pin is inside it (different name))
+- **US-11796** Socorro Natural Area (Natural Area) → Socorro Field Office (~1,508,543 ac, similar name)
+- **US-11806** Johnson (Gordy's) Hill BLM Recreation Management Area (BLM Recreation Management Area) → Socorro Field Office (~1,508,543 ac, the POTA pin is inside it (different name))
+- **US-11807** Simon Canyon ACEC BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Navajo Lake State Park (~17,438 ac, the POTA pin is inside it (different name))
+- **US-11815** La Cueva Non-Motorized Trail System Recreation Site (Recreation Site) → Carlsbad Field Office (~2,091,256 ac, the POTA pin is inside it (different name))
+- **US-11816** Hackberry Lake OHV Use Area BLM Recreation Management Area (BLM Recreation Management Area) → Carlsbad Field Office (~2,091,256 ac, the POTA pin is inside it (different name))
+- **US-11817** Haystack Mountain OHV Area BLM Recreation Management Area (BLM Recreation Management Area) → Roswell Field Office (~1,501,751 ac, the POTA pin is inside it (different name))
+- **US-11822** Jemez Historic Site (Historic Site) → Santa Fe National Forest (~1,545,017 ac, the POTA pin is inside it (different name))
+- **US-11838** The Box BLM Recreation Management Area (BLM Recreation Management Area) → Socorro Field Office (~1,508,543 ac, the POTA pin is inside it (different name))
+- **US-11859** Lincoln State Historic Site (State Historic Site) → Lincoln National Forest (~1,095,525 ac, same name, different kind of place)
+- **US-11866** Rio Bonito Acquired Lands: Salazar Tract, BLM Recreation Management Area (BLM Recreation Management Area) → Roswell Field Office (~1,501,751 ac, the POTA pin is inside it (different name))
+- **US-12111** Tortugas Mountain BLM Recreation Management Area (BLM Recreation Management Area) → Las Cruces District Office (~5,375,972 ac, the POTA pin is inside it (different name))
+- **US-12169** El Malpais BLM National Conservation Area (BLM National Conservation Area) → El Malpais National Monument (~109,249 ac, similar name); Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name))
+- **US-12590** Alien Run Mountain Bike Trail BLM Recreation Management Area (BLM Recreation Management Area) → Farmington Field Office (~1,425,067 ac, the POTA pin is inside it (different name))
+- **US-12591** Sunset Reef Campground BLM Recreation Management Area (BLM Recreation Management Area) → Carlsbad Field Office (~2,091,256 ac, the POTA pin is inside it (different name))
+- **US-12592** Parks Ranch Cave BLM Recreation Management Area (BLM Recreation Management Area) → Carlsbad Field Office (~2,091,256 ac, the POTA pin is inside it (different name))
+- **US-12593** Glade Run Recreation Area BLM Recreation Management Area (BLM Recreation Management Area) → Farmington Field Office (~1,425,067 ac, the POTA pin is inside it (different name))
+- **US-12746** Aden Hills Off-Highway Vehicle Area BLM Recreation Management Area (BLM Recreation Management Area) → Las Cruces District Office (~5,375,972 ac, the POTA pin is inside it (different name))
+- **US-13001** Kilbourne Hole Volcanic Crater BLM National Conservation Area (BLM National Conservation Area) → Las Cruces District Office (~5,375,972 ac, the POTA pin is inside it (different name))
+- **US-13159** Quebradas Backcountry Byway BLM Wilderness Area (BLM Wilderness Area) → Socorro Field Office (~1,508,543 ac, the POTA pin is inside it (different name))
+- **US-13186** Lincoln Tract BLM Recreation Management Area (BLM Recreation Management Area) → Lincoln National Forest (~1,095,525 ac, similar name)
+- **US-13498** Chosa Campground BLM Recreation Management Area (BLM Recreation Management Area) → Carlsbad Field Office (~2,091,256 ac, the POTA pin is inside it (different name))
+- **US-2699** Fenton Lake State Park (State Park) → Fenton Lake Fishing Area (and Dam) (~260 ac, similar name); Santa Fe National Forest (~1,545,017 ac, the POTA pin is inside it (different name))
+- **US-2708** Oasis State Park (State Park) → Oasis State State Park (~178 ac, similar name)
+- **US-2709** Oliver Lee Memorial State Park (State Park) → Oliver Lee State Park (~720 ac, similar name)
+- **US-2713** Rock Hound State Park (State Park) → Rockhound State Park (~234 ac, the POTA pin is inside it (different name))
+- **US-4552** Prehistoric Trackways National Monument (National Monument) → Las Cruces District Office (~5,375,972 ac, the POTA pin is inside it (different name))
+- **US-4558** Continental Divide Trail National Scenic Trail (National Scenic Trail) → Las Cruces District Office (~5,375,972 ac, the POTA pin is inside it (different name))
+- **US-7543** Mescalero Sands Recreation Site (Recreation Site) → Roswell Field Office (~1,501,751 ac, the POTA pin is inside it (different name))
+- **US-7877** Valley of Fires National Recreation Area (National Recreation Area) → Roswell Field Office (~1,501,751 ac, the POTA pin is inside it (different name))
+- **US-7878** Red Sands National Recreation Area (National Recreation Area) → Las Cruces District Office (~5,375,972 ac, the POTA pin is inside it (different name))
+- **US-8228** Fort Stanton Snowy River National Conservation Area (National Conservation Area) → Roswell Field Office (~1,501,751 ac, the POTA pin is inside it (different name))
+- **US-8273** Angel Peak Scenic National Recreation Area (National Recreation Area) → Farmington Field Office (~1,425,067 ac, the POTA pin is inside it (different name))
+- **US-8617** Perea Nature National Recreation Trail (National Recreation Trail) → Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name))
+- **US-8619** San Ysidro Trials Area BLM Recreation Management Area (BLM Recreation Management Area) → Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name))
+- **US-8620** Ojito Wilderness Area (Wilderness Area) → Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name))
+- **US-8621** Cabezon Wilderness Area (Wilderness Area) → Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name))
+- **US-9679** Pecos Canyon State Park (State Park) → Santa Fe National Forest (~1,545,017 ac, the POTA pin is inside it (different name))
+
+## Nothing found in PAD-US
+
+- US-11780 Datil Well Campground BLM Recreation Management Area (BLM Recreation Management Area)
+- US-11797 Los Luceros Historic Site (Historic Site)
+- US-11821 Bosque Redondo Memorial/Fort Sumner Historic Site (Historic Site)
+- US-11823 Coronado Historic Site (Historic Site)
+- US-11840 San Lorenzo Canyon BLM Recreation Management Area (BLM Recreation Management Area)
+- US-12737 Casamero Pueblo | New Mexico BLM Historic Area (BLM Historic Area)
+- US-13185 Dow Canyon Tract BLM Recreation Management Area (BLM Recreation Management Area)
+- US-2690 Cerrillos Hills State Park (State Park)
+- US-2719 Angel Fire Vietnam Veterans Memorial Park (Park)
+- US-4376 Manhattan Project National Historical Park (National Historical Park)
+- US-4551 Organ Mountains-Desert Peaks National Monument (National Monument)
+- US-4553 Rio Grande del Norte National Monument (National Monument)
+- US-4569 El Camino Real de Tierra Adentro National Historic Trail (National Historic Trail)
+- US-4575 Old Spanish National Historic Trail (National Historic Trail)
+- US-4579 Santa Fe National Historic Trail (National Historic Trail)
+- US-7563 Black River Recreation Site (Recreation Site)
+- US-7876 Three Rivers Petroglyphs National Historic Site (National Historic Site)
+- US-8618 White Ridge National Recreation Trail (National Recreation Trail)
+- US-9757 Butterfield Overland National Historic Trail (National Historic Trail)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- State Trust Land · SRMA · Unknown · ~8,875,233 ac
+- Las Cruces District Office · PUB · BLM · ~5,375,972 ac
+- Carlsbad Field Office · PUB · BLM · ~2,091,256 ac
+- Socorro Field Office · PUB · BLM · ~1,508,543 ac
+- Roswell Field Office · PUB · BLM · ~1,501,751 ac
+- Farmington Field Office · PUB · BLM · ~1,425,067 ac
+- Rio Puerco Field Office · PUB · BLM · ~992,719 ac
+- Taos Field Office · PUB · BLM · ~598,331 ac
+- Jornada Experimental Range · REA · Agricultural Research Service (ARS) · ~109,258 ac
+- Carson Other · NF · Forest Service Region 03 Southwestern · ~101,380 ac
+- Valles Caldera National Preserve · NCA · NPS · ~88,967 ac
+- Coronado National Forest · NF · Forest Service Region 03 Southwestern · ~68,124 ac
+- Usbr · FOTH · Unknown · ~57,247 ac
+- Colin Neblett Wildlife Management Area · SCA · Unknown · ~30,989 ac
+- Brantley Wildlife Area · SCA · Unknown · ~28,860 ac
+- Los Alamos National Laboratory · FOTH · Department of Energy (DOE) · ~26,247 ac
+- Edward Sargent Wildlife Management Area · SCA · Unknown · ~20,107 ac
+- Marquez Wildlife Management Area · SCA · Unknown · ~14,445 ac
+- Rio Chama Wildlife Management Area · SCA · Unknown · ~13,018 ac
+- Carlsbad Wildife Refuge · NCA · Unknown · ~11,566 ac
+- Urraca Wildlife Management Area · SCA · Unknown · ~9,896 ac
+- Milnesand · SCA · Unknown · ~7,250 ac
+- Elliott Barker Wildlife Management Area · SCA · Unknown · ~5,596 ac
+- William A. Humphries Wildlife Management Area · SCA · Unknown · ~5,314 ac
+- Sand Hills Prairie Conservation Area · SOTH · New Mexico Department of Game and Fish · ~5,281 ac
+- La Joya Waterfowl Management Area · SCA · Unknown · ~3,693 ac
+- Huey Wildlife Area · SCA · Unknown · ~3,192 ac
+- Usbr · FOTH · Unknown · ~2,796 ac
+- Water Canyon Wildlife Area · SCA · Unknown · ~2,538 ac
+- Crossroads · SCA · Unknown · ~2,154 ac
+- Bernalillo Waterfowl Management Area · SCA · Unknown · ~1,799 ac
+- Claudell · SCA · Unknown · ~1,760 ac
+- Gallinas Wells · SCA · Unknown · ~1,288 ac
+- North Bluitt · SCA · Unknown · ~1,274 ac
+- Black Hills · SCA · Unknown · ~1,230 ac
+- Red Rock Wildlife Management Area · SCA · Unknown · ~1,175 ac
+- City of Rocks - Phase 1 · SOTH · New Mexico State Parks · ~964 ac
+- Rio De Los Pinos Wildlife Area · SCA · Unknown · ~801 ac
+- Gallinas Wells · SCA · Unknown · ~794 ac
+- Broad Canyon - Fee Property · SOTH · New Mexico State Parks · ~790 ac
+- Jackson Lake Wildlife Management Area · SCA · Unknown · ~765 ac
+- Heart Bar Wildlife Management Area · SCA · Unknown · ~742 ac
+- Oliver Lee State Park · SP · Unknown · ~720 ac
+- Wagon Mound Wildlife Management Area · SCA · Unknown · ~698 ac
+- Crossroads · SCA · Unknown · ~643 ac
+- Dexter Nfh&Ftc · FOTH · DEXTER NFH&FTC · ~639 ac
+- Southwestern Native Aquatic Resources And Recovery Center · FOTH · Southwestern Native Aquatic Resources And Recovery Center · ~639 ac
+- South Bluitt · SCA · Unknown · ~639 ac
+- Liberty · SCA · Unknown · ~631 ac
+- City of Rocks - Phase 1 · SOTH · New Mexico State Parks · ~569 ac
+- Gallinas Wells · SCA · Unknown · ~568 ac
+- Dr. E. A. "Swede" Scholer Regional Recreation Complex · SCA · Bernalillo County · ~503 ac
+- Gallinas Wells · SCA · Unknown · ~486 ac
+- Casa Colorada Waterfowl Area · SCA · Unknown · ~443 ac
+- State Trust Land · SRMA · Unknown · ~412 ac
+- Farmers Home · SCA · Unknown · ~388 ac
+- Guadalupe Mountains National Park · NP · NPS · ~385 ac
+- Little Dipper · SCA · Unknown · ~385 ac
+- Antelope Flats · SCA · Unknown · ~332 ac
+- Marshall · SCA · Unknown · ~322 ac

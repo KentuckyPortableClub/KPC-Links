@@ -1,0 +1,156 @@
+# AL: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **71 of 155** parks joined to official land (same name + same kind of place). **0** to check by hand, **84** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+
+## Nothing found in PAD-US
+
+- US-0025 Fort Morgan National Historic Site (National Historic Site)
+- US-0042 Fort Gaines National Historic Site (National Historic Site)
+- US-0138 Choctaw National Wildlife Refuge (National Wildlife Refuge)
+- US-0642 Natchez Trace Parkway National Parkway (National Parkway)
+- US-1037 Cheaha Resort State Park (State Park)
+- US-1039 De Soto State Park (State Park)
+- US-10396 Black Warrior Wildlife Management Area (Wildlife Management Area)
+- US-1040 Lake Jackson RV Park at Florala State Park (State Park)
+- US-10428 Walls of Jericho State Natural Area (State Natural Area)
+- US-11025 Uchee Creek Conservation Area (Conservation Area)
+- US-11026 The Indian Mountain Conservation Area (Conservation Area)
+- US-11027 Big Canoe Creek Nature Reserve (Nature Reserve)
+- US-11032 Old Cahawba Prairie Conservation Reserve (Conservation Reserve)
+- US-11033 The Portland Landing Conservation Reserve (Conservation Reserve)
+- US-11272 Mulberry Fork Wildlife Management Area (Wildlife Management Area)
+- US-11376 USS Alabama Battleship Park (Park)
+- US-12311 Butler County State Wildlife Management Area (Wildlife Management Area)
+- US-12405 TVA Guntersville Dam 5(1)(g) Reserve (5(1)(g) Reserve)
+- US-12409 TVA Cave Mountain Small Wild Area National Park (National Park)
+- US-12410 TVA Flint Creek Access National Park (National Park)
+- US-12411 TVA Second Creek Access Area National Park (National Park)
+- US-12412 TVA Rockpile Recreation Area National Park (National Park)
+- US-12517 Confederate Memorial Park Historic Site (Historic Site)
+- US-12740 Hinds Road Outcrop Forever Wild Tract State Conservation Area (State Conservation Area)
+- US-12803 Lee County State Public Fishing Lake (State Public Fishing Lake)
+- US-12962 TVA Veterans Park Regional Park (Regional Park)
+- US-12963 Washington County State Public Fishing Lake (State Public Fishing Lake)
+- US-12964 Dallas County State Public Fishing Lake (State Public Fishing Lake)
+- US-12965 Dale Country State Public Fishing Lake (State Public Fishing Lake)
+- US-12966 Geneva County State Public Fishing Lake (State Public Fishing Lake)
+- US-12967 Chambers County State Public Fishing Lake (State Public Fishing Lake)
+- US-12968 Walker County State Public Fishing Lake (State Public Fishing Lake)
+- US-12969 Marion County State Public Fishing Lake (State Public Fishing Lake)
+- US-12970 Madison County Public State Fishing Lake (State Fishing Lake)
+- US-12996 Fowl River Access Site BLM Recreation Management Area (BLM Recreation Management Area)
+- US-13003 TVA Little Bear Creek Dam Multiple Use Area (Multiple Use Area)
+- US-13004 TVA Cedar Creek Dam Multiple Use Area (Multiple Use Area)
+- US-13005 TVA Big Bear Creek Dam Multiple Use Area (Multiple Use Area)
+- US-13081 Fort Toulouse Forever Wild Tract State Wildlife Area (State Wildlife Area)
+- US-13083 TVA Wheeler Dam Public Park National Recreation Area (National Recreation Area)
+- US-13088 Choctaw Nation Wildlife Refuge National Wildlife Area (National Wildlife Area)
+- US-13311 TVA Upper Bear Creek Dam Resource Management Area (Resource Management Area)
+- US-13317 Coffee County State Public Fishing Lake (State Public Fishing Lake)
+- US-13318 Pike County State Public Fishing Lake (State Public Fishing Lake)
+- US-13338 Clay County State Public Fishing Lake (State Public Fishing Lake)
+- US-13340 DeKalb County State Public Fishing Lake (State Public Fishing Lake)
+- US-13342 Bibb Country State Public Fishing Lake (State Public Fishing Lake)
+- US-13343 Fayette County State Public Fishing Lake (State Public Fishing Lake)
+- US-13344 Lamar County State Public Fishing Lake (State Public Fishing Lake)
+- US-13345 Monroe County State Public Fishing Lake (State Public Fishing Lake)
+- US-13473 Old Cahawba Archaeological Park State Historical Park (State Historical Park)
+- US-13533 Brierfield Ironworks Historial State Park State Historical Park (State Historical Park)
+- US-13558 St. Stephens State Historical Park (State Historical Park)
+- US-3678 Roland Cooper State Park (State Park)
+- US-3679 Charles D. Kelley Wildlife Management Area (Wildlife Management Area)
+- US-3681 Blowing Springs Cave Preserve State Conservation Area (State Conservation Area)
+- US-3682 Cheaha Wilderness Area (Wilderness Area)
+- US-3683 Choccolocco Wildlife Management Area (Wildlife Management Area)
+- US-3684 Coon Creek Preserve State Conservation Area (State Conservation Area)
+- US-3686 David K. Nelson Wildlife Management Area (Wildlife Management Area)
+- US-3687 Dugger Mountain Wilderness National Forest (National Forest)
+- US-3691 Grand Bay Savanna Complex Wildlife Management Area (Wildlife Management Area)
+- US-3692 Heron Bay and Portersville Bay State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-3693 Hollins Wildlife Management Area (Wildlife Management Area)
+- US-3702 Red Hills Wildlife Management Area (Wildlife Management Area)
+- US-3703 Ruffner Mountain Preserve State Conservation Area (State Conservation Area)
+- US-3704 Sam R Murphy Wildlife Management Area (Wildlife Management Area)
+- US-3706 Sipsey Wilderness Wilderness Area (Wilderness Area)
+- US-3711 Weeks Bay Reserve National Conservation Area (National Conservation Area)
+- US-3713 William R. Ireland, Sr. - Cahaba River Wildlife Management Area (Wildlife Management Area)
+- US-3791 Trail of Tears National Historic Trail (National Historic Trail)
+- US-4560 Natchez Trace Trail National Scenic Trail (National Scenic Trail)
+- US-6457 Elk River Lodge State Park (State Park)
+- US-6459 Kinterbish Wildlife Management Area (Wildlife Management Area)
+- US-6460 Fort Toulouse National Historical Park (National Historical Park)
+- US-9875 Raccoon Creek Management Area (Management Area)
+- US-9876 Crow Creek Management Area (Management Area)
+- US-9880 Crow Creek Nature Refuge (Nature Refuge)
+- US-9911 Boggy Hollow Wildlife Management Area (Wildlife Management Area)
+- US-9912 Blue Spring Wildlife Management Area (Wildlife Management Area)
+- US-9916 Blackwater River State Nature Preserve (State Nature Preserve)
+- US-9918 Thigpen Hill Nature Recreation Area (Nature Recreation Area)
+- US-9919 Dallas County Wildlife Management Area (Wildlife Management Area)
+- US-9924 Oakmulgee Wildlife Management Area (Wildlife Management Area)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- Guntersville Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~25,886 ac
+- Walter F. George Recreation Area · REC · Mobile · ~24,272 ac
+- W. L. Holland Wildlife Management Area · SCA · ADCNR, Division of Wildlife and Freshwater Fisheries · ~19,188 ac
+- Wheeler Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~16,536 ac
+- Jackson County Waterfowl Area And Refuge · NCA · Tennessee Valley Authority (TVA) · ~16,198 ac
+- Millers Ferry Lock Recreation Area · REC · Mobile · ~15,105 ac
+- State-owned Submerged Lands · SRMA · SDNR · ~9,783 ac
+- Pickwick Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~8,930 ac
+- Claiborne Recreation Area · REC · Mobile · ~6,816 ac
+- Solon Dixon Forestry Education Center · SCA · State Land Board · ~5,399 ac
+- Riverton Community Hunting Area · SCA · Alabama Department of Conservation and Natural Resources · ~5,282 ac
+- Natchez Trace Parkway · SDA · NPS · ~4,118 ac
+- Coldwater Mountain · SREC · Alabama Department of Conservation and Natural Resources · ~3,816 ac
+- Cheaha State Park · SP · ADCNR, State Parks Division · ~3,610 ac
+- W. L. Holland Wildlife Management Area · SCA · Alabama Department of Conservation and Natural Resources · ~3,537 ac
+- Upper Bear Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~3,216 ac
+- Old Cahawba Prairie Tract · SREC · Alabama Department of Conservation and Natural Resources · ~3,024 ac
+- W. L. Holland Wildlife Management Area · SCA · ADCNR, Division of Wildlife and Freshwater Fisheries · ~2,836 ac
+- Grand Bay Savanna Community Hunting Area · SCA · Alabama Department of Conservation and Natural Resources · ~2,791 ac
+- Cedar Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~2,716 ac
+- Red Hills Complex · SCA · Alabama Department of Conservation and Natural Resources · ~2,624 ac
+- Bear Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~2,327 ac
+- M. Barnett Lawley Forever Wild Field Trial Area · SREC · Alabama Department of Conservation and Natural Resources · ~2,055 ac
+- Wildlife Game Sanctuary · SCA · ADCNR, Division of Wildlife and Freshwater Fisheries · ~1,919 ac
+- W. L. Holland Wildlife Management Area · SCA · Alabama Department of Conservation and Natural Resources · ~1,911 ac
+- Little River Wildlife Management Area · SCA · SFW · ~1,872 ac
+- Red Hills Complex · SCA · Alabama Department of Conservation and Natural Resources · ~1,792 ac
+- W. L. Holland Wildlife Management Area · SCA · Alabama Department of Conservation and Natural Resources · ~1,783 ac
+- Grand Bay Savanna Community Hunting Area · SCA · Alabama Department of Conservation and Natural Resources · ~1,662 ac
+- Little River Wildlife Management Area · SCA · Alabama Department of Conservation and Natural Resources · ~1,506 ac
+- Catoma Creek (Trotman) · MIT · Alabama Department of Transportation · ~1,318 ac
+- Frey Tract · SOTH · ADCNR, State Lands Division · ~1,308 ac
+- M. Barnett Lawley Forever Wild Field Trial Area · SREC · Alabama Department of Conservation and Natural Resources · ~1,306 ac
+- Little Bear Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~1,138 ac
+- Tannehill Ironworks Historical State Park · SRMA · State Cultural Affairs · ~1,125 ac
+- DeSoto State Park · SP · SPR · ~1,059 ac
+- M. Barnett Lawley Forever Wild Field Trial Area · SREC · ADCNR, State Lands Division · ~1,000 ac
+- Weeks Bay National Estuarine Research Reserve · SCA · ADCNR, State Lands Division · ~933 ac
+- Raccoon Creek Wildlife Management Area · SCA · SDNR · ~903 ac
+- Fowl River · MIT · Alabama Department of Transportation · ~792 ac
+- Weeks Bay National Estuarine Research Reserve · SCA · Alabama Department of Conservation and Natural Resources · ~694 ac
+- W. L. Holland Wildlife Management Area · SCA · ADCNR, State Lands Division · ~671 ac
+- Grand Bay Savanna Community Hunting Area · SCA · Alabama Department of Conservation and Natural Resources · ~649 ac
+- Lillian · MIT · Alabama Department of Transportation · ~643 ac
+- Lillian Swamp Wetlands · SCA · Alabama Department of Conservation and Natural Resources · ~639 ac
+- Gopher Tortoise Conservation Area · SCA · Alabama Department of Transportation · ~637 ac
+- W. L. Holland Wildlife Management Area · SCA · ADCNR, State Lands Division · ~634 ac
+- Pea River · MIT · Alabama Department of Transportation · ~595 ac
+- Town Creek · MIT · Alabama Department of Transportation · ~570 ac
+- Raccoon Creek Wildlife Management Area · SCA · SDOL · ~569 ac
+- Dozier · MIT · Alabama Department of Transportation · ~518 ac
+- Indian Mountain Complex · SREC · Alabama Department of Conservation and Natural Resources · ~515 ac
+- Weeks Bay National Estuarine Research Reserve · SCA · ADCNR, State Lands Division · ~470 ac
+- The Heron Bay Wetlands Tract · SCA · Alabama Department of Conservation and Natural Resources · ~463 ac
+- Cahaba River - Shelby County Park · LREC · Alabama Department of Conservation and Natural Resources · ~463 ac
+- Crow Creek · MIT · OTHS · ~459 ac
+- Sipsey River · MIT · Alabama Department of Transportation · ~452 ac
+- Portersville Bay Wetlands Tract · SCA · Alabama Department of Conservation and Natural Resources · ~441 ac
+- W. L. Holland Wildlife Management Area · SCA · ADCNR, State Lands Division · ~424 ac
+- Isle Aux Herbes · SCA · ADCNR, State Lands Division · ~416 ac

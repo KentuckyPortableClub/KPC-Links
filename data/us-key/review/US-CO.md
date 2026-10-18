@@ -1,0 +1,167 @@
+# CO: POTA parks vs official land (USGS PAD-US)
+
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **181 of 276** parks joined to official land (same name + same kind of place). **54** to check by hand, **41** with nothing found. Nothing below is joined until a person checks it.
+
+## To check (not joined)
+
+- **US-0184** Ramah State Wildlife Area (State Wildlife Area) → Ramah Reservoir State Wildlife Area (~399 ac, similar name)
+- **US-0195** Ogden-Treat State Wildlife Area (State Wildlife Area) → Royal Gorge Field Office (~670,237 ac, the POTA pin is inside it (different name))
+- **US-10539** Rifle Falls State Fish Hatchery (State Fish Hatchery) → Rifle Falls SFU (~547 ac, similar name); Rifle Falls State Park (~52 ac, similar name); Rifle Falls State Park (~48 ac, similar name)
+- **US-10540** Bellevue-Watson State Fish Hatchery (State Fish Hatchery) → Watson Lake SFU (~142 ac, the POTA pin is inside it (different name))
+- **US-11884** The Palisade BLM Wilderness Area (BLM Wilderness Area) → Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
+- **US-11887** Sewemup Mesa BLM Wilderness Area (BLM Wilderness Area) → Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
+- **US-11896** Little Book Cliffs BLM Wilderness Area (BLM Wilderness Area) → Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
+- **US-11897** Beaver Creek BLM Wilderness Area (BLM Wilderness Area) → Beaver Creek State Wildlife Area (~2,242 ac, same name, different kind of place)
+- **US-11898** Adobe Badlands BLM Wilderness Area (BLM Wilderness Area) → Uncompahgre Field Office (~880,205 ac, the POTA pin is inside it (different name))
+- **US-11902** Camp Hale National Monument (National Monument) → White River National Forest (~2,289,410 ac, the POTA pin is inside it (different name))
+- **US-11906** Bangs BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
+- **US-11907** Calamity Camp BLM Historic Preservation Site (BLM Historic Preservation Site) → Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
+- **US-11908** North Fruita Desert BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
+- **US-11909** Canyon Pintado BLM Historic Area (BLM Historic Area) → White River Field Office (~1,450,231 ac, the POTA pin is inside it (different name))
+- **US-11911** Damaree BLM Wilderness Area (BLM Wilderness Area) → Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
+- **US-11915** Hubbard Mesa OHV BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Colorado River Valley Field Office (~570,728 ac, the POTA pin is inside it (different name))
+- **US-11916** Dolores River Canyon BLM Wilderness Area (BLM Wilderness Area) → Uncompahgre Field Office (~880,205 ac, the POTA pin is inside it (different name))
+- **US-11952** Dolores River Canyon BLM Recreation Management Area (BLM Recreation Management Area) → Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
+- **US-1208** Arkansas River Headwaters Recreation Park (Recreation Park) → Arkansas Headwaters (~1,286 ac, similar name)
+- **US-12106** Brainard Lake Recreation Area National Forest (National Forest) → Roosevelt National Forest (~814,009 ac, the POTA pin is inside it (different name))
+- **US-12138** Charlie Meyers State Wildlife Area (State Wildlife Area) → Spinney Mountain State Wildlife Area (~1,086 ac, the POTA pin is inside it (different name))
+- **US-12173** Tabeguache BLM Historic Trail (BLM Historic Trail) → Uncompahgre Field Office (~880,205 ac, the POTA pin is inside it (different name))
+- **US-12177** Almont Triangle State Wildlife Area (State Wildlife Area) → Gunnison National Forest (~1,666,811 ac, the POTA pin is inside it (different name))
+- **US-12187** Roaring Fork State Wildlife Area (State Wildlife Area) → Roaring Fork State Wildlife Area - Wheeler Parcel (~3 ac, similar name)
+- **US-12189** Buena Vista State Wildlife Area (State Wildlife Area) → Buena Vista Hay Barn (~162 ac, similar name); Royal Gorge Field Office (~670,237 ac, the POTA pin is inside it (different name))
+- **US-12353** Roaring Judy State Fish Hatchery (State Fish Hatchery) → Roaring Judy SFU (~789 ac, similar name)
+- **US-1243** State Forest State Park (State Park) → State Forest State Park (~71,228 ac, the POTA pin is inside it (different name))
+- **US-12455** Mt. Shavano State Fish Hatchery (State Fish Hatchery) → Mount Shavano State Wildlife Area (~84 ac, similar name); Mount Shavano SFU (~48 ac, similar name)
+- **US-1250** Yampa River State Park (State Park) → Yampa River State Park - Double Bridges (~70 ac, similar name)
+- **US-12758** La Jara Creek State Wildlife Area (State Wildlife Area) → La Jara State Wildlife Area (~3,088 ac, similar name)
+- **US-13106** Penitente Canyon Recreation Site (Recreation Site) → San Luis Valley Field Office (~500,459 ac, the POTA pin is inside it (different name))
+- **US-13573** Shriver-Wright State Wildlife Area (State Wildlife Area) → Rio Grande State Wildlife Area (~11 ac, the POTA pin is inside it (different name))
+- **US-4413** Chimney Rock National Monument (National Monument) → San Juan National Forest (~1,865,751 ac, the POTA pin is inside it (different name))
+- **US-9592** Powderhorn Wilderness National Conservation Area (National Conservation Area) → Gunnison Field Office (~659,389 ac, the POTA pin is inside it (different name))
+- **US-9593** Dominguez-Escalante BLM National Conservation Area (National Conservation Area) → Uncompahgre Field Office (~880,205 ac, the POTA pin is inside it (different name))
+- **US-9594** Gunnison Gorge BLM National Conservation Area (National Conservation Area) → Uncompahgre Field Office (~880,205 ac, the POTA pin is inside it (different name))
+- **US-9595** McInnis Canyons BLM National Conservation Area (National Conservation Area) → Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
+- **US-9596** North Sand Hills BLM National Recreation Area (National Recreation Area) → Kremmling Field Office (~377,575 ac, the POTA pin is inside it (different name))
+- **US-9598** Hardscrabble-East Eagle BLM National Recreation Area (National Recreation Area) → Colorado River Valley Field Office (~570,728 ac, the POTA pin is inside it (different name))
+- **US-9599** Wolford Mountain and Dam Site BLM National Recreation Area (National Recreation Area) → Kremmling Field Office (~377,575 ac, the POTA pin is inside it (different name))
+- **US-9600** Zapata Falls BLM National Recreation Area (National Recreation Area) → San Luis Valley Field Office (~500,459 ac, the POTA pin is inside it (different name))
+- **US-9601** 63 Ranch State Wildlife Area (State Wildlife Area) → Antero Lease-63 Ranch (~881 ac, similar name)
+- **US-9606** Andrews Lake State Wildlife Area (State Wildlife Area) → San Juan National Forest (~1,865,751 ac, the POTA pin is inside it (different name))
+- **US-9614** Big Meadows Reservoir State Wildlife Area (State Wildlife Area) → Rio Grande National Forest (~1,838,796 ac, the POTA pin is inside it (different name))
+- **US-9619** Blue River State Wildlife Area (State Wildlife Area) → Blue River State Wildlife Area - Blue River Unit (~93 ac, similar name)
+- **US-9629** Cherokee State Wildlife Area (State Wildlife Area) → Cherokee State Wildlife Area - Lone Pine Unit (~6,663 ac, similar name); Cherokee State Wildlife Area - Roy Brown Unit (~5,670 ac, similar name)
+- **US-9630** Clear Creek Reservoir State Wildlife Area (State Wildlife Area) → Royal Gorge Field Office (~670,237 ac, the POTA pin is inside it (different name))
+- **US-9632** Cochetopa State Wildlife Area (State Wildlife Area) → Gunnison National Forest (~1,666,811 ac, the POTA pin is inside it (different name))
+- **US-9637** Cowdrey Lake State Wildlife Area (State Wildlife Area) → Kremmling Field Office (~377,575 ac, the POTA pin is inside it (different name))
+- **US-9649** Fort Lyon State Wildlife Area (State Wildlife Area) → John Martin Reservoir State Wildlife Area (~19,313 ac, the POTA pin is inside it (different name))
+- **US-9650** Four Mile State Wildlife Area (State Wildlife Area) → Pike National Forest (~1,096,884 ac, the POTA pin is inside it (different name))
+- **US-9658** Hot Sulfur Springs State Wildlife Area (State Wildlife Area) → Hot Sulphur Springs State Wildlife Area (~1,200 ac, similar name)
+- **US-9666** Rosemont State Wildlife Area (State Wildlife Area) → Rosemont Reservoir State Wildlife Area (~356 ac, similar name); Pike National Forest (~1,096,884 ac, the POTA pin is inside it (different name))
+- **US-9675** Two Buttes State Wildlife Area (State Wildlife Area) → Two Buttes Reservoir State Wildlife Area (~4,328 ac, similar name); Two Buttes Reservoir State Wildlife Area (~4,228 ac, similar name); Two Buttes Reservoir State Wildlife Area (~956 ac, similar name)
+
+## Nothing found in PAD-US
+
+- US-0183 Penrose Commons National Recreation Area (National Recreation Area)
+- US-0191 Brush Hollow State Wildlife Area (State Wildlife Area)
+- US-11888 Horsethief Canyon State Wildlife Area (State Wildlife Area)
+- US-11894 Orchard Mesa State Wildlife Area (State Wildlife Area)
+- US-11910 Oil Spring Mountain BLM Wilderness Area (BLM Wilderness Area)
+- US-11914 Black Mountain BLM Wilderness Area (BLM Wilderness Area)
+- US-11924 Douglas Reservoir State Wildlife Area (State Wildlife Area)
+- US-12139 Cline Ranch State Wildlife Area (State Wildlife Area)
+- US-12170 Teter-Michigan Creek State Wildlife Area (State Wildlife Area)
+- US-12176 Frank State Wildlife Area (State Wildlife Area)
+- US-12185 Grand Junction: West Lake State Wildlife Area (State Wildlife Area)
+- US-12186 Bob Terrell State Wildlife Area (State Wildlife Area)
+- US-12188 Brush Prairie Ponds State Wildlife Area (State Wildlife Area)
+- US-12321 Red Hill BLM Special Recreation Management Area (BLM Special Recreation Management Area)
+- US-12586 Jean K Tool State Wildlife Area (State Wildlife Area)
+- US-12756 Mountain Home Reservoir State Wildlife Area (State Wildlife Area)
+- US-13111 Lake Beckwith State Wildlife Area (State Wildlife Area)
+- US-4397 Manti-La Sal National Forest (National Forest)
+- US-4411 Browns Canyon National Monument (National Monument)
+- US-4412 Canyons of the Ancients National Monument (National Monument)
+- US-4558 Continental Divide Trail National Scenic Trail (National Scenic Trail)
+- US-4566 California National Historic Trail (National Historic Trail)
+- US-4575 Old Spanish National Historic Trail (National Historic Trail)
+- US-4578 Pony Express National Historic Trail (National Historic Trail)
+- US-4579 Santa Fe National Historic Trail (National Historic Trail)
+- US-5749 Kokopelli's Trail National Recreation Area (National Recreation Area)
+- US-5750 Black Ridge Canyons Wilderness Area (Wilderness Area)
+- US-7845 Fisher's Peak State Park (State Park)
+- US-9591 Indian Peaks Wilderness National Conservation Area (National Conservation Area)
+- US-9597 Kremmling BLM National Recreation Area (National Recreation Area)
+- US-9603 Adobe Creek State Wildlife Area (State Wildlife Area)
+- US-9613 Bergen Peak State Wildlife Area (State Wildlife Area)
+- US-9621 Boedecker Reservoir State Wildlife Area (State Wildlife Area)
+- US-9642 Deweese Reservoir State Wildlife Area (State Wildlife Area)
+- US-9652 Grenada State Wildlife Area (State Wildlife Area)
+- US-9667 Runyon/Fountain State Wildlife Area (State Wildlife Area)
+- US-9671 Smith Reservoir State Wildlife Area (State Wildlife Area)
+- US-9672 Terrace Reservoir State Wildlife Area (State Wildlife Area)
+- US-9674 Totten Reservoir State Wildlife Area (State Wildlife Area)
+- US-9678 Windy Gap Watchable State Wildlife Area (State Wildlife Area)
+- US-9683 Amache National Historic Site (National Historic Site)
+
+## Biggest federal / state places with no POTA park joined (first 60)
+
+- Colorado State Land Board State Land Board · SRMA · Colorado State Land Board · ~1,779,576 ac
+- White River Field Office · PUB · BLM · ~1,450,231 ac
+- Little Snake Field Office · PUB · BLM · ~1,337,954 ac
+- Grand Junction Field Office · PUB · BLM · ~1,275,594 ac
+- Uncompahgre Field Office · PUB · BLM · ~880,205 ac
+- Royal Gorge Field Office · PUB · BLM · ~670,237 ac
+- Gunnison Field Office · PUB · BLM · ~659,389 ac
+- Tres Rios Field Office · PUB · BLM · ~632,194 ac
+- Colorado River Valley Field Office · PUB · BLM · ~570,728 ac
+- San Luis Valley Field Office · PUB · BLM · ~500,459 ac
+- Kremmling Field Office · PUB · BLM · ~377,575 ac
+- Colorado State Land Board State Land Board · SRMA · Colorado State Land Board · ~84,810 ac
+- State Forest State Park · SP · Colorado Parks & Wildlife · ~71,228 ac
+- Chico Basin · SRMA · Colorado State Land Board · ~59,852 ac
+- Chancellor Ranch · SRMA · Colorado State Land Board · ~51,436 ac
+- Bohart-Chico Basin · SRMA · Colorado State Land Board · ~29,268 ac
+- Manti-La Sal National Forest · NF · Forest Service Region 04 Intermountain · ~27,051 ac
+- Brett Gray Ranch · SRMA · Colorado State Land Board · ~26,262 ac
+- Lowry S. of Quincy · SRMA · Colorado State Land Board · ~21,725 ac
+- John Martin Reservoir State Wildlife Area · SCA · Colorado Parks & Wildlife · ~19,313 ac
+- Central Plains Experimental Range · FOTH · Agricultural Research Service (ARS) · ~14,674 ac
+- Twenty Mile · SRMA · Colorado State Land Board · ~14,456 ac
+- Chico Basin-Frost · SRMA · Colorado State Land Board · ~13,433 ac
+- Biedell Creek · SRMA · Colorado State Land Board · ~11,611 ac
+- Oak Ridge State Wildlife Area · SCA · Colorado Parks & Wildlife · ~9,465 ac
+- James M. John State Wildlife Area · SCA · Colorado Parks & Wildlife · ~8,345 ac
+- Maxwell Ranch - CSU Research Foundation · SOTH · Colorado State University · ~8,189 ac
+- Dome Rock State Wildlife Area · SCA · Colorado Parks & Wildlife · ~6,966 ac
+- Sapinero State Wildlife Area · SCA · Colorado Parks & Wildlife · ~6,927 ac
+- San Luis Valley Conservation Area · NCA · San Luis Valley Conservation Area · ~6,718 ac
+- Cherokee State Wildlife Area - Lone Pine Unit · SCA · Colorado Parks & Wildlife · ~6,663 ac
+- Pueblo Reservoir State Wildlife Area · SCA · Colorado Parks & Wildlife · ~6,645 ac
+- Tamarack Ranch State Wildlife Area · SCA · Colorado Parks & Wildlife · ~6,459 ac
+- Cimarron State Wildlife Area · SCA · Colorado Parks & Wildlife · ~6,452 ac
+- Lone Mesa State Park · SP · Colorado Parks & Wildlife · ~6,001 ac
+- Jensen State Wildlife Area · SCA · Colorado Parks & Wildlife · ~5,983 ac
+- Spanish Peaks State Wildlife Area · SCA · Colorado Parks & Wildlife · ~5,856 ac
+- Cherokee State Wildlife Area - Roy Brown Unit · SCA · Colorado Parks & Wildlife · ~5,670 ac
+- Jim Olterman/Lone Cone State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,947 ac
+- Little Snake State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,855 ac
+- Cherokee State Wildlife Area - Upper Unit State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,826 ac
+- Tamarack Ranch State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,603 ac
+- Two Buttes Reservoir State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,328 ac
+- Granada State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,266 ac
+- Two Buttes Reservoir State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,228 ac
+- Pueblo Reservoir State Wildlife Area · SCA · Colorado Parks & Wildlife · ~4,045 ac
+- Radium State Wildlife Area - Blacktail Unit · SCA · Colorado Parks & Wildlife · ~4,016 ac
+- Lone Mesa State Park · SP · Colorado Parks & Wildlife · ~3,850 ac
+- Brett Gray Ranch State Trust Lands · SRMA · Colorado State Land Board · ~3,710 ac
+- Saddle Mountain · SRMA · Colorado State Land Board · ~3,635 ac
+- Radium State Wildlife Area - Trail Creek Unit · SCA · Colorado Parks & Wildlife · ~3,594 ac
+- Horsetooth Reservoir · LOTH · Larimer County · ~3,568 ac
+- La Jara State Wildlife Area · SCA · Colorado Parks & Wildlife · ~3,088 ac
+- Colorado State Land Board State Land Board · SRMA · Colorado State Land Board · ~2,794 ac
+- Cherokee State Wildlife Area - Lower Unit · SCA · Colorado Parks & Wildlife · ~2,753 ac
+- Cherokee State Wildlife Area - Middle Unit State Wildlife Area · SCA · Colorado Parks & Wildlife · ~2,387 ac
+- Cherokee State Wildlife Area - Middle Unit State Wildlife Area · SCA · Colorado Parks & Wildlife · ~2,330 ac
+- NeeSoPah · SREC · Colorado State Land Board · ~2,247 ac
+- Miramonte Meadows · SRMA · Colorado State Land Board · ~2,189 ac
+- Oak Ridge State Wildlife Area - Lake Avery Unit · SCA · Colorado Parks & Wildlife · ~2,173 ac
