@@ -44,6 +44,18 @@
       onPop: el => el.querySelectorAll('[data-pctrip]').forEach(b => b.onclick = () => { const [la, lo] = b.dataset.pctrip.split(',').map(Number); const nm = prompt('Name this stop (optional):', 'Pin ' + la.toFixed(4) + ', ' + lo.toFixed(4));
         if (nm === null) return; TRIP.push({ c: 'PIN-' + Date.now().toString(36), n: nm || 'Dropped pin', la, lo }); if (TRIP.length > 10) TRIP.shift(); put('kpcPcTrip', TRIP); trip(); b.textContent = '✓ ON MY TRIP'; }) });
     if (window.KPCHere) KPCHere(map, { piece: PIECE, onRef: r => { const y = byRef(r); if (y) pick(y); } });   /* Oct 17 (Brandon: 'drops pins way too easy'): a tap says what land is here; pins = long-press / right-click / DROP A PIN */
+    /* Oct 18 (Brandon: 'turn on the zoom in boundaries'): zoomed in (11+) every official Kentucky outline in view shows thin and faint;
+       land with no park number fainter still; the picked park keeps its bold outline; zoomed out = pins only. Taps still go to 'what's here'. */
+    if (window.KPCB && KPCB.ky) { map.createPane('pcArea').style.zIndex = 380; let AREA = null, AF = null, at = 0;
+      const aStyle = f => { const st = PIECE(f); let num = true; try { num = KPCB.landInfo(f).numbered; } catch (e) {}
+        return { color: st.color, weight: 1.3, opacity: num ? .7 : .35, dashArray: st.dashArray, fill: false }; };
+      const areaSync = async () => { const z = map.getZoom();
+        if (z < 11) { if (AREA) { map.removeLayer(AREA); AREA = null; } return; }
+        if (!AF) AF = await KPCB.ky().catch(() => []); const b = map.getBounds().pad(.25), W = b.getWest(), E = b.getEast(), S = b.getSouth(), N = b.getNorth();
+        const vis = AF.filter(f => f._bb && !(f._L && (f._L.proc || f._L.k === 'bdbnf')) && !(f._bb[0] > E || f._bb[2] < W || f._bb[1] > N || f._bb[3] < S));
+        if (AREA) map.removeLayer(AREA);
+        AREA = L.geoJSON({ type: 'FeatureCollection', features: vis }, { pane: 'pcArea', style: aStyle, interactive: false }).addTo(map); };
+      map.on('moveend zoomend', () => { clearTimeout(at); at = setTimeout(areaSync, 250); }); }
     $('pcDrop').onclick = () => { const c = map.getCenter(); map.fire('contextmenu', { latlng: c }); $('pcMap').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
     for (const k of ['pota', 'kff', 'sota', 'trails', 'parking']) { LAY[k] = L.layerGroup(); if (SHOW[k]) LAY[k].addTo(map); }
     if (SHOW.trails) trails();
