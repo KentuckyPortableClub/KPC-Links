@@ -1,11 +1,10 @@
 # NE: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **114 of 190** parks joined to official land (same name + same kind of place). **12** to check by hand, **64** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **115 of 190** parks joined to official land (same name + same kind of place). **11** to check by hand, **64** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-13329** Plum Creek State Recreation Area (State Recreation Area) → Plum Creek Wildlife Management Area (~4 ac, same name, different kind of place)
-- **US-2609** Ash Hollow State Park (State Park) → Ash Hollow State Historical Park (~1,050 ac, same name, different kind of place)
 - **US-3483** Atlanta National Waterfowl Production Area (National Waterfowl Production Area) → Phelps County Waterfowl Production Area (~4,677 ac, similar name); Phelps County Waterfowl Production Area (~4,677 ac, similar name)
 - **US-3484** Peterson National Waterfowl Production Area (National Waterfowl Production Area) → Gosper County Waterfowl Production Area (~1,451 ac, similar name); Gosper County Waterfowl Production Area (~1,451 ac, similar name)
 - **US-3485** Jensen Lagoon National Waterfowl Production Area (National Waterfowl Production Area) → Kearney County Waterfowl Production Area (~2,891 ac, similar name); Kearney County Waterfowl Production Area (~2,891 ac, similar name)
@@ -143,9 +142,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **114 of 190** parks joined
 - Buffalo Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,124 ac
 - Twin Oaks Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,117 ac
 - Petersen Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,084 ac
-- Ash Hollow State Historical Park · SHCA · Nebraska Game and Parks Commission’ · ~1,050 ac
 - Niobrara Confluence Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,034 ac
 - Hamilton County Waterfowl Production Area · RMA · HAMILTON COUNTY WATERFOWL PRODUCTION AREA · ~1,026 ac
 - Hamilton County Waterfowl Production Area · RMA · Hamilton County Waterfowl Production Area · ~1,026 ac
 - Darr Strip Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,019 ac
 - Darr Strip Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,003 ac
+- Pine Glen Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~961 ac

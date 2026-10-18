@@ -1,6 +1,6 @@
 # CA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **353 of 410** parks joined to official land (same name + same kind of place). **35** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **358 of 410** parks joined to official land (same name + same kind of place). **29** to check by hand, **17** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -13,24 +13,18 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **353 of 410** parks joined
 - **US-10401** Merced National Wildlife Area (National Wildlife Area) → Merced National Wildlife Refuge (~3,821 ac, similar name); Merced National Wildlife Refuge (~3,821 ac, similar name)
 - **US-11336** Rainbow Basin Natural Area (Natural Area) → Barstow Field Office (~2,723,972 ac, the POTA pin is inside it (different name))
 - **US-11584** Panoche Hills BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Panoche Hills North Wilderness Study Area (~0 ac, same name, different kind of place); Central Coast Field Office (~288,263 ac, the POTA pin is inside it (different name))
+- **US-1174** Montana de Oro State Park (State Park) → Montaña de Oro State Park (~10,251 ac, the POTA pin is inside it (different name))
 - **US-12115** Sáttítla Highlands Natural Monument (Natural Monument) → Modoc National Forest (~1,679,076 ac, the POTA pin is inside it (different name))
 - **US-3396** Antelope Valley Poppy Reserve State Conservation Area (State Conservation Area) → Antelope Valley California Poppy Reserve (~1,772 ac, similar name)
-- **US-3398** Armstrong Redwoods Reserve State Conservation Area (State Conservation Area) → Armstrong Redwoods State Natural Reserve (~764 ac, similar name)
-- **US-3402** Azalea Reserve State Conservation Area (State Conservation Area) → Azalea State Natural Reserve (~35 ac, similar name)
 - **US-3415** California State Railroad Museum State Park (State Park) → California State Capitol Museum (~6 ac, similar name); Old Sacramento State Historic Park (~15 ac, the POTA pin is inside it (different name))
 - **US-3417** Castro Adobe Historic Site (Historic Site) → Rancho San Andrés Castro Adobe (~1 ac, similar name)
-- **US-3449** John B. Dewitt Redwoods Reserve State Conservation Area (State Conservation Area) → John B. Dewitt Redwoods State Natural Reserve (~1,226 ac, similar name)
 - **US-3452** Kings Beach State Recreation Park (Recreation Park) → Kings Beach State Recreation Area (~16 ac, similar name)
-- **US-3453** Kruse Rhododendron Reserve State Conservation Area (State Conservation Area) → Kruse Rhododendron State Natural Reserve (~314 ac, similar name)
+- **US-3454** La Purisima Mission State Historical Park (State Historical Park) → La Purísima Mission State Historic Park (~1,926 ac, the POTA pin is inside it (different name))
 - **US-3458** Lake Valley State Recreation Area (State Recreation Area) → Washoe Meadows State Park (~861 ac, the POTA pin is inside it (different name))
-- **US-3464** Los Osos Oaks Reserve State Conservation Area (State Conservation Area) → Los Osos Oaks State Natural Reserve (~85 ac, similar name)
-- **US-3465** Mailliard Redwoods Reserve State Conservation Area (State Conservation Area) → Mailliard Redwoods State Natural Reserve (~249 ac, similar name)
 - **US-3475** Montara Beach and McNee Ranch State Beach (State Beach) → Montara State Beach (~891 ac, similar name); Montara State Beach (~74 ac, similar name)
-- **US-3478** Montgomery Woods Reserve State Conservation Area (State Conservation Area) → Montgomery Woods State Natural Reserve (~2,690 ac, similar name)
+- **US-3534** Pio Pico State Historical Park (State Historical Park) → Pío Pico State Historic Park (~6 ac, similar name)
 - **US-3536** Point Cabrillo Lighthouse State Historical Park (State Historical Park) → Point Cabrillo Light Station (~309 ac, similar name)
-- **US-3539** Point Lobos Reserve State Conservation Area (State Conservation Area) → Point Lobos Ranch (~1,116 ac, similar name); Point Lobos State Natural Reserve (~772 ac, similar name); Point Lobos State Natural Reserve (~760 ac, similar name)
 - **US-3550** Robert W. Crown Memorial State Beach (State Beach) → Crown Memorial Regional Shoreline (~133 ac, similar name)
-- **US-3572** State Indian Museum State Park (State Park) → State Indian Museum State Historic Park (~0 ac, same name, different kind of place)
 - **US-3578** Tijuana Estuary Reserve State Conservation Area (State Conservation Area) → Tijuana Slough National Wildlife Refuge (~1,059 ac, the POTA pin is inside it (different name)); Tijuana Slough National Wildlife Refuge (~474 ac, the POTA pin is inside it (different name))
 - **US-3586** Verdugo Mountains State Park (State Park) → Verdugo Mountains Park Property (~252 ac, similar name); Verdugo Mountains Open Space Preserve (~250 ac, similar name)
 - **US-3587** Ward Creek State Park (State Park) → Ward Creek Property (~183 ac, similar name)
@@ -65,6 +59,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **353 of 410** parks joined
 - US-4571 Juan Bautista de Anza National Historic Trail (National Historic Trail)
 - US-4575 Old Spanish National Historic Trail (National Historic Trail)
 - US-4578 Pony Express National Historic Trail (National Historic Trail)
+- US-6454 El Capitan State Beach (State Beach)
 - US-7375 Cowell Ranch State Beach (State Beach)
 - US-9757 Butterfield Overland National Historic Trail (National Historic Trail)
 

@@ -1,12 +1,14 @@
 # MS: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **84 of 155** parks joined to official land (same name + same kind of place). **25** to check by hand, **46** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **82 of 155** parks joined to official land (same name + same kind of place). **27** to check by hand, **46** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0642** Natchez Trace Parkway National Parkway (National Parkway) → Natchez Trace Parkway (~31,527 ac, similar name)
+- **US-11882** Grand Village of the Natchez State Historic Site (State Historic Site) → Natchez National Historical Park (~98 ac, similar name)
 - **US-11883** Emerald Mound National Historical Site (National Historical Site) → Natchez Trace Parkway (~31,527 ac, the POTA pin is inside it (different name))
 - **US-2545** Legion State Park (State Park) → Legion Lake State Park (~431 ac, same name, different kind of place)
+- **US-2549** Percy E Quin State Park (State Park) → Percy Quinn State Park (~1,224 ac, the POTA pin is inside it (different name))
 - **US-4560** Natchez Trace Trail National Scenic Trail (National Scenic Trail) → Natchez Trace Parkway (~31,527 ac, similar name)
 - **US-7073** William C. Deviney Wildlife Management Area (Wildlife Management Area) → Indianola Wildlife Management Area (~1,019 ac, the POTA pin is inside it (different name))
 - **US-7088** Choctaw Wildlife Management Area (Wildlife Management Area) → Tombigbee National Forest (~67,449 ac, the POTA pin is inside it (different name))
@@ -15,7 +17,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **84 of 155** parks joined 
 - **US-7104** Chickasawhay Wildlife Management Area (Wildlife Management Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
 - **US-7105** Mason Creek Wildlife Management Area (Wildlife Management Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
 - **US-7106** Leaf River Wildlife Management Area (Wildlife Management Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
-- **US-7107** Theodore Mars Wildlife Management Area (Wildlife Management Area) → Theodore A. Mars, Jr. Memorial Wildlife Refuge (~897 ac, similar name)
+- **US-7107** Theodore Mars Wildlife Management Area (Wildlife Management Area) → Theodore A. Mars, Jr. Memorial Wildlife Refuge (~897 ac, same name, different kind of place)
 - **US-7110** Little Biloxi Wildlife Management Area (Wildlife Management Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
 - **US-7111** Red Creek Wildlife Management Area (Wildlife Management Area) → De Soto National Forest (~532,454 ac, the POTA pin is inside it (different name))
 - **US-7114** Bienville Wildlife Management Area (Wildlife Management Area) → Bienville National Forest (~180,227 ac, same name, different kind of place)
@@ -112,6 +114,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **84 of 155** parks joined 
 - Pickwick Reservoir · ND · Tennessee Valley Authority (TVA) · ~1,915 ac
 - Graveline Bay Coastal Reserve · SCA · Unknown · ~1,879 ac
 - Bellefontaine Point Coastal Reserve · SCA · Unknown · ~1,262 ac
+- Percy Quinn State Park · SP · Unknown · ~1,224 ac
 - Farm Service Agency Interest Of La ·  · U.S. Fish & Wildlife Service (own map) · ~1,206 ac
 - Stock And Washington Muscadine · SCA · Unknown · ~1,186 ac
 - Old Fort Bayou Coastal Reserve · SCA · Unknown · ~1,134 ac
@@ -143,4 +146,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **84 of 155** parks joined 
 - Cat Island · SREC · State of Mississippi · ~123 ac
 - Meridian National Fish Hatchery · FOTH · MERIDIAN NATIONAL FISH HATCHERY · ~106 ac
 - Wolf River Marshes (Feb 2008) · SCA · Mississippi Department of Marine Resources · ~105 ac
-- Pascagoula River Marshes (Sept 2002) · SCA · MS DEPARTMENT OF MARINE RESOURCES · ~79 ac

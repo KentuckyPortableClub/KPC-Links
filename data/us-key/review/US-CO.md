@@ -1,24 +1,16 @@
 # CO: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 276** parks joined to official land (same name + same kind of place). **38** to check by hand, **29** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **213 of 276** parks joined to official land (same name + same kind of place). **30** to check by hand, **30** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0183** Penrose Commons National Recreation Area (National Recreation Area) → Penrose Commons SRMA (~2,344 ac, same name, different kind of place)
 - **US-0195** Ogden-Treat State Wildlife Area (State Wildlife Area) → Royal Gorge Field Office (~670,237 ac, the POTA pin is inside it (different name))
 - **US-10539** Rifle Falls State Fish Hatchery (State Fish Hatchery) → Rifle Falls SFU (~547 ac, same name, different kind of place); Rifle Falls State Park (~52 ac, same name, different kind of place); Rifle Falls State Park (~48 ac, same name, different kind of place)
-- **US-11884** The Palisade BLM Wilderness Area (BLM Wilderness Area) → The Palisade (~0 ac, same name, different kind of place); Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
-- **US-11887** Sewemup Mesa BLM Wilderness Area (BLM Wilderness Area) → Sewemup Mesa (~0 ac, same name, different kind of place); Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
 - **US-11888** Horsethief Canyon State Wildlife Area (State Wildlife Area) → MCNCA - Urban/Wilderness Interface (~2,010 ac, the POTA pin is inside it (different name)); MCNCA - Urban/Wilderness Interface (~2,010 ac, the POTA pin is inside it (different name)); MCNCA - Urban/Wilderness Interface (~2,010 ac, the POTA pin is inside it (different name))
-- **US-11896** Little Book Cliffs BLM Wilderness Area (BLM Wilderness Area) → Little Book Cliffs (~35,178 ac, same name, different kind of place); Little Book Cliffs (~0 ac, same name, different kind of place); Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
-- **US-11897** Beaver Creek BLM Wilderness Area (BLM Wilderness Area) → Beaver Creek State Wildlife Area (~2,242 ac, same name, different kind of place); Beaver Creek (~0 ac, same name, different kind of place); Beaver Creek (~0 ac, same name, different kind of place)
-- **US-11898** Adobe Badlands BLM Wilderness Area (BLM Wilderness Area) → Adobe Badlands (~0 ac, same name, different kind of place); Uncompahgre Field Office (~880,205 ac, the POTA pin is inside it (different name))
 - **US-11902** Camp Hale National Monument (National Monument) → White River National Forest (~2,289,410 ac, the POTA pin is inside it (different name))
 - **US-11909** Canyon Pintado BLM Historic Area (BLM Historic Area) → Canyon Pintado National Historic District (~16,031 ac, similar name); Canyon Pintado National Historic District (~16,031 ac, similar name); White River Field Office (~1,450,231 ac, the POTA pin is inside it (different name))
-- **US-11910** Oil Spring Mountain BLM Wilderness Area (BLM Wilderness Area) → Oil Springs Mountain (~0 ac, same name, different kind of place)
 - **US-11911** Damaree BLM Wilderness Area (BLM Wilderness Area) → Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
-- **US-11914** Black Mountain BLM Wilderness Area (BLM Wilderness Area) → Black Mountain (~0 ac, same name, different kind of place)
-- **US-11916** Dolores River Canyon BLM Wilderness Area (BLM Wilderness Area) → Dolores River Canyon, Zone 2 (~8,451 ac, same name, different kind of place); Dolores River Canyon, Zone 1 (~4,952 ac, same name, different kind of place); Dolores River Canyon, Zone 3 (~20 ac, same name, different kind of place); Dolores River Canyon (~0 ac, same name, different kind of place); Uncompahgre Field Office (~880,205 ac, the POTA pin is inside it (different name))
 - **US-1208** Arkansas River Headwaters Recreation Park (Recreation Park) → Arkansas River SRMA (~4,165 ac, similar name); Arkansas Headwaters (~1,286 ac, similar name)
 - **US-12106** Brainard Lake Recreation Area National Forest (National Forest) → Roosevelt National Forest (~814,009 ac, the POTA pin is inside it (different name))
 - **US-12138** Charlie Meyers State Wildlife Area (State Wildlife Area) → Spinney Mountain State Wildlife Area (~1,086 ac, the POTA pin is inside it (different name))
@@ -59,6 +51,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 276** parks joined
 - US-12176 Frank State Wildlife Area (State Wildlife Area)
 - US-12186 Bob Terrell State Wildlife Area (State Wildlife Area)
 - US-12188 Brush Prairie Ponds State Wildlife Area (State Wildlife Area)
+- US-12585 Elliot State Wildlife Area (State Wildlife Area)
 - US-12586 Jean K Tool State Wildlife Area (State Wildlife Area)
 - US-12756 Mountain Home Reservoir State Wildlife Area (State Wildlife Area)
 - US-13111 Lake Beckwith State Wildlife Area (State Wildlife Area)

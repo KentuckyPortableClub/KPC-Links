@@ -1,6 +1,6 @@
 # NV: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **188 of 367** parks joined to official land (same name + same kind of place). **38** to check by hand, **79** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **193 of 367** parks joined to official land (same name + same kind of place). **33** to check by hand, **79** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,7 +8,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **188 of 367** parks joined
 - **US-10833** Hickison Summit Burro Range BLM Herd Management Area (BLM Herd Management Area) → Hickison (~57,634 ac, similar name); Mount Lewis Field Office (~4,383,120 ac, the POTA pin is inside it (different name))
 - **US-10851** East Pershing Complex BLM Herd Management Area (BLM Herd Management Area) → Stillwater Field Office (~3,582,451 ac, the POTA pin is inside it (different name))
 - **US-11050** Ice Age Fossils State Park (State Park) → Tule Springs Archaeology Site (~324 ac, the POTA pin is inside it (different name))
-- **US-11913** Bad Lands BLM Wilderness Area (BLM Wilderness Area) → Wells Field Office (~4,243,298 ac, the POTA pin is inside it (different name))
 - **US-13010** Dry Valley BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Dry Valley Rim Wilderness Study Area (~0 ac, same name, different kind of place); Twin Peaks (~635,356 ac, the POTA pin is inside it (different name)); Eagle Lake Field Office (~310,176 ac, the POTA pin is inside it (different name))
 - **US-13020** Smoke Creek BLM National Conservation Area (BLM National Conservation Area) → Black Rock Field Office (~2,358,385 ac, the POTA pin is inside it (different name)); Buffalo Hills (~133,437 ac, the POTA pin is inside it (different name)); Poodle Mountain (~0 ac, the POTA pin is inside it (different name)); Poodle Mountain Wilderness Study Area (~0 ac, the POTA pin is inside it (different name))
 - **US-13136** Marietta Wild Burro Range BLM Herd Management Area (BLM Herd Management Area) → Marietta (~66,694 ac, similar name); Stillwater Field Office (~3,582,451 ac, the POTA pin is inside it (different name))
@@ -33,11 +32,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **188 of 367** parks joined
 - **US-13453** Original Homesite of a Las Vegas Pioneer “Pop” Squires 1865-1958 State Historical Monument (State Historical Monument) → Las Vegas Valley (~89,327 ac, similar name)
 - **US-13475** Mount Rose Weather Observatory State Historical Monument (State Historical Monument) → Mt. Rose Wilderness (~31,311 ac, similar name); Toiyabe National Forest (~3,206,430 ac, the POTA pin is inside it (different name))
 - **US-2626** Berlin-Ichthyosaur State Park (State Park) → Toiyabe National Forest (~3,206,430 ac, the POTA pin is inside it (different name))
-- **US-2631** Fort Churchill State Park (State Park) → Fort Churchill State Historic Park (~3,468 ac, same name, different kind of place)
-- **US-2634** Mormon Station State Park (State Park) → Mormon Station State Historic Park (~4 ac, same name, different kind of place)
-- **US-2639** Ward Charcoal Ovens State Park (State Park) → Ward Charcoal Ovens State Historic Park (~564 ac, same name, different kind of place)
 - **US-4438** Buckland Station State Park (State Park) → Fort Churchill State Historic Park (~3,468 ac, the POTA pin is inside it (different name))
-- **US-4443** Old Las Vegas Mormon Fort State Park (State Park) → Las Vegas Valley (~89,327 ac, similar name); Old Las Vegas Mormon Fort State Historic Park (~5 ac, same name, different kind of place)
 - **US-9238** Big Rocks BLM National Conservation Area (National Conservation Area) → Big Rocks (~0 ac, same name, different kind of place); Caliente Field Office (~5,063,883 ac, the POTA pin is inside it (different name))
 - **US-9239** Black Rock Desert - High Rock Canyon Emigrant Trails National Conservation Area (National Conservation Area) → Black Rock SRMA (~1,222,806 ac, similar name); Black Rock Desert / High Rock Canyon (~0 ac, same name, different kind of place); Black Rock Field Office (~2,358,385 ac, the POTA pin is inside it (different name)); Front Country Zone (~119,553 ac, the POTA pin is inside it (different name)); Black Rock OHV Open Area (~104,545 ac, the POTA pin is inside it (different name)); Black Rock OHV Open Area (~104,545 ac, the POTA pin is inside it (different name))
 - **US-9288** Wee Thump Joshua Tree BLM National Conservation Area (National Conservation Area) → Wee Thump Joshua Tree (~0 ac, same name, different kind of place); Southern Nevada (~2,494,377 ac, the POTA pin is inside it (different name)); Las Vegas Field Office (~2,378,020 ac, the POTA pin is inside it (different name)); Avi Kwa Ame (~0 ac, the POTA pin is inside it (different name))

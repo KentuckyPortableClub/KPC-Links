@@ -1,6 +1,6 @@
 # MN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 294** parks joined to official land (same name + same kind of place). **33** to check by hand, **55** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **215 of 294** parks joined to official land (same name + same kind of place). **24** to check by hand, **55** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -10,20 +10,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **206 of 294** parks joined
 - **US-0366** Morris Wetland Management District (Wetland Management District) → Stevens County Waterfowl Production Area (~9,785 ac, the POTA pin is inside it (different name)); Stevens County Waterfowl Production Area (~9,785 ac, the POTA pin is inside it (different name))
 - **US-0373** Windom Wetland Management District (Wetland Management District) → Cottonwood County Waterfowl Production Area (~3,744 ac, the POTA pin is inside it (different name)); Cottonwood County Waterfowl Production Area (~3,454 ac, the POTA pin is inside it (different name))
 - **US-0673** Saint Croix National Wild and Scenic River (National Wild and Scenic River) → Saint Croix National Scenic Riverway (~3,345 ac, similar name)
+- **US-10278** Inspiration Peak State Wayside State Natural Site (State Natural Site) → Inspiration Peak State Wayside (~82 ac, similar name)
 - **US-10721** Brown's Creek AMA Aquatic Reserve (Aquatic Reserve) → Brown's Creek State Aquatic Management Area (Washington) (~22 ac, similar name)
-- **US-10722** Lost Valley Prairie SNA Scenic Reserve (Scenic Reserve) → Lost Valley Prairie State Scientific and Natural Area (~322 ac, similar name)
-- **US-10724** Falls Creek SNA Scenic Reserve (Scenic Reserve) → Falls Creek State Scientific and Natural Area (~139 ac, similar name)
-- **US-10725** St. Croix Savanna SNA Scenic Reserve (Scenic Reserve) → St. Croix Savanna State Scientific and Natural Area (~147 ac, similar name)
-- **US-10727** Pine Bend Bluffs SNA Scenic Reserve (Scenic Reserve) → Pine Bend Bluffs State Scientific and Natural Area (~316 ac, similar name)
-- **US-10728** Grey Cloud Dunes SNA Scenic Reserve (Scenic Reserve) → Grey Cloud Dunes State Scientific and Natural Area (~291 ac, similar name)
 - **US-11153** Matthew Lourey State Trail (State Trail) → Chengwatana State Forest (~17,023 ac, the POTA pin is inside it (different name))
 - **US-11788** Toad River AMA State Conservation Area (State Conservation Area) → Toad River State Aquatic Management Area (Becker/Otter Tail) (~46 ac, similar name)
 - **US-11872** Lost 40 SNA State Natural Area (State Natural Area) → Big Fork State Forest (~45,218 ac, the POTA pin is inside it (different name))
-- **US-12388** Caribou Falls Unique Area (Unique Area) → Caribou Falls State Wayside (~91 ac, similar name)
-- **US-12390** Flood Bay Unique Area (Unique Area) → Flood Bay State Wayside (~19 ac, similar name)
-- **US-12392** Joseph R. Brown Unique Area (Unique Area) → Joseph R. Brown State Wayside (~3 ac, similar name)
-- **US-12393** Kodonce River Unique Area (Unique Area) → Kodonce River State Wayside (~130 ac, similar name)
-- **US-12394** Ray Berglund Unique Area (Unique Area) → Ray Berglund (~47 ac, similar name)
 - **US-12395** St. Croix Boom Site Unique Area (Unique Area) → Saint Croix Islands (~12 ac, similar name)
 - **US-13548** Knife River Marine Protected Area (Marine Protected Area) → Knife River State Aquatic Management Area (Lake/St. Louis) (~345 ac, similar name)
 - **US-2506** Lake Vermilion State Park (State Park) → Lake Vermilion-Soudan Underground Mine State Park (~4,094 ac, similar name)

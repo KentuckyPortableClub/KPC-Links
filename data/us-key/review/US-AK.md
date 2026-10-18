@@ -1,6 +1,6 @@
 # AK: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **72 of 179** parks joined to official land (same name + same kind of place). **23** to check by hand, **54** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **74 of 179** parks joined to official land (same name + same kind of place). **21** to check by hand, **54** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -24,8 +24,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **72 of 179** parks joined 
 - **US-7216** Lake Louise State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
 - **US-7235** Lower Chatanika State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
 - **US-7237** Quartz Lake State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
-- **US-7252** Halibut Point State Recreation Site (State Recreation Site) → Halibut Point State Recreation Park (~22 ac, same name, different kind of place)
-- **US-7253** Old Sitka State Park (State Park) → Old Sitka State Historic Park & Boat Ramp (~5 ac, similar name)
 - **US-7884** Kenai Mountains-Turnagain Arm National Heritage Area (National Heritage Area) → State Land Disposals - Municipal Purposes (~676,504 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)

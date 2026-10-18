@@ -1,63 +1,38 @@
 # MO: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **455 of 561** parks joined to official land (same name + same kind of place). **55** to check by hand, **51** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **478 of 561** parks joined to official land (same name + same kind of place). **30** to check by hand, **53** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-10266** Valley View Glades State Conservation Area (State Conservation Area) → Valley View Glades Natural Area (~212 ac, same name, different kind of place)
 - **US-10386** Compton Hollow State Recreation Area (State Recreation Area) → Compton Hollow Conservation Area (~838 ac, same name, different kind of place)
+- **US-10457** Rocky Mount Tower Site State Conservation Area (State Conservation Area) → Rocky Mount Towersite (~50 ac, similar name)
 - **US-10595** Knob Lick State Conservation Area (State Conservation Area) → Knob Lick Towersite (~79 ac, similar name)
 - **US-10867** Wayne Helton Memorial State Conservation Area (State Conservation Area) → Helton (The Wayne) Mem Wa (~2,540 ac, same name, different kind of place)
 - **US-10958** Tywappity Community Lake State Conservation Area (State Conservation Area) → Tywappity Conservation Land (~119 ac, the POTA pin is inside it (different name))
 - **US-11015** Harry S Truman Home National Historical Site (National Historical Site) → Harry S Truman National Historic Site (~14 ac, similar name)
-- **US-11042** Kahrs-Boger State Conservation Area (State Conservation Area) → Kahrs-Boger Park (~106 ac, same name, different kind of place)
+- **US-11056** Calk Bluff Trail Access State Conservation Area (State Conservation Area) → Chalk Bluff Trail Access (~81 ac, similar name)
+- **US-11225** Blue Slip Tower Site State Conservation Area (State Conservation Area) → Blue Slip Towersite (~5 ac, similar name)
 - **US-11267** Kessler Memorial State Wildlife Area (State Wildlife Area) → Kessler Memorial Wildife Area (~155 ac, similar name)
+- **US-11367** River 'Round State Conservation Area (State Conservation Area) → River'Round Conservation Area (~314 ac, the POTA pin is inside it (different name))
 - **US-11922** Powder Valley Nature Center State Conservation Area (State Conservation Area) → Powder Valley Conservation Nature Center (~116 ac, similar name)
 - **US-12084** Weldon Springs National Historical Park (National Historical Park) → Weldon Spring Conservation Area (~7,991 ac, same name, different kind of place); Weldon Spring Hollow Natural Area (~367 ac, same name, different kind of place)
 - **US-1761** Ha Ha Tonka State Park (State Park) → Ha Ha Tonka Savanna Natural Area (~931 ac, similar name); Ha Ha Tonka Karst Natural Area (~50 ac, same name, different kind of place)
 - **US-1765** Jones-Confluence Point State Park (State Park) → Edward "ted" And Pat Jones-confluence Point State Park (~1,117 ac, similar name)
 - **US-3340** Battle of Pilot Knob State Historic Site (State Historic Site) → Pilot Knob National Wildlife Refuge (~96 ac, similar name); Pilot Knob National Wildlife Refuge (~96 ac, similar name); Fort Davidson State Historic Site (~48 ac, the POTA pin is inside it (different name))
 - **US-4009** Ozark National Wild and Scenic River (National Wild and Scenic River) → Ozark National Scenic Riverways (~53,180 ac, similar name)
-- **US-4839** Lester R. Davis Memorial State Forest (State Forest) → Davis (Lester R.) Memorial Forest (~79 ac, same name, different kind of place)
 - **US-5697** Atlanta Wildlife Area (Wildlife Area) → Atlanta Conservation Area (~2,381 ac, same name, different kind of place)
 - **US-5707** Lost Valley State Fish and Wildlife Area (State Fish and Wildlife Area) → Lost Valley Fish Hatchery (~938 ac, same name, different kind of place)
 - **US-5713** Jay Nixon State Park (State Park) → Saint Francois Mountains Natural Area (~1,453 ac, the POTA pin is inside it (different name))
-- **US-6514** Big Buffalo Creek State Conservation Area (State Conservation Area) → Big Buffalo Creek Natural Area (~1,516 ac, same name, different kind of place)
 - **US-6529** Truman Reservoir Management Lands State Park (State Park) → Harry Truman Recreation Area (~165,658 ac, the POTA pin is inside it (different name))
 - **US-7189** Beaver Creek State Recreation Area (State Recreation Area) → Bull Shoals Recreation Area (~37,464 ac, the POTA pin is inside it (different name))
 - **US-7502** A. Busch Jr at Four Rivers Wetland Reserve (Wetland Reserve) → August A. Busch Jr. Mem Wetlands At Four Rivers Conservation Area (~12,602 ac, similar name)
 - **US-7516** White Memorial State Conservation Area (State Conservation Area) → White (Wm. G. And E. P.) Memorial Wildlife Area (~821 ac, same name, different kind of place)
-- **US-7654** Hazel Hill Lake State Conservation Area (State Conservation Area) → Hazel Hill Lake (~504 ac, same name, different kind of place)
 - **US-7655** J.N. Turkey Kearn Memorial Wildlife Area (Wildlife Area) → Kearn (J. N. Turkey) Memorial Wildife Area (~1,699 ac, same name, different kind of place)
 - **US-7656** Ralph and Martha Perry Memorial State Wildlife Area (State Wildlife Area) → Perry (R. And M.) Memorial Conservation Area (~4,203 ac, similar name)
-- **US-7658** Flight Lake Conservation Reserve (Conservation Reserve) → Flight Lake Conservation Area (~154 ac, similar name)
-- **US-7659** Huckleberry Ridge Conservation Reserve (Conservation Reserve) → Huckleberry Ridge Conservation Area (~2,066 ac, similar name)
-- **US-7660** Fort Crowder Conservation Reserve (Conservation Reserve) → Fort Crowder Conservation Area (~2,324 ac, similar name); Neosho National Fish Hatchery (~263 ac, the POTA pin is inside it (different name)); Neosho National Fish Hatchery (~263 ac, the POTA pin is inside it (different name))
-- **US-7661** Douglas Branch Conservation Reserve (Conservation Reserve) → Douglas Branch Conservation Area (~522 ac, similar name)
-- **US-7662** James R. Harter Conservation Reserve (Conservation Reserve) → Harter (James R.) Conservation Area (~454 ac, similar name)
-- **US-7663** Edward Anderson Conservation Reserve (Conservation Reserve) → Anderson (Edward) Conservation Area (~1,067 ac, similar name)
-- **US-7664** Dupont Reservation Conservation Reserve (Conservation Reserve) → Dupont Reservation Conservation Area (~1,269 ac, similar name)
-- **US-7665** Ted Shanks Conservation Reserve (Conservation Reserve) → Shanks (Ted) Conservation Area (~4,161 ac, similar name)
-- **US-7666** Davisdale Conservation Reserve (Conservation Reserve) → Davisdale Conservation Area (~2,785 ac, similar name)
-- **US-7667** Wellsville Lake Conservation Reserve (Conservation Reserve) → Wellsville Lake Conservation Area (~130 ac, similar name)
-- **US-7668** Little Lost Creek Conservation Reserve (Conservation Reserve) → Little Lost Creek Conservation Area (~2,907 ac, similar name)
-- **US-7669** Flag Spring Conservation Reserve (Conservation Reserve) → Flag Spring Conservation Area (~3,990 ac, similar name)
-- **US-7670** Bittern Bottoms Conservation Reserve (Conservation Reserve) → Bittern Bottoms Conservation Area (~63 ac, similar name)
-- **US-7671** Dorsett Hill Prairie Conservation Reserve (Conservation Reserve) → Dorsett Hill Prairie Conservation Area (~76 ac, similar name)
-- **US-7672** Sni-A Bar Conservation Reserve (Conservation Reserve) → Sni-A-Bar Conservation Area (~76 ac, similar name)
-- **US-7673** Liberty Bend Conservation Reserve (Conservation Reserve) → Liberty Bend Conservation Area (~134 ac, similar name)
-- **US-7675** Foxglove Conservation Reserve (Conservation Reserve) → Foxglove Conservation Area (~56 ac, similar name)
-- **US-7676** Hardin Conservation Reserve (Conservation Reserve) → Hardin Conservation Area (~242 ac, similar name)
-- **US-7677** Pigeon Hill Conservation Reserve (Conservation Reserve) → Pigeon Hill Conservation Area (~460 ac, similar name)
-- **US-7678** Lick Creek Conservation Reserve (Conservation Reserve) → Lick Creek Conservation Area (~295 ac, similar name)
-- **US-7679** Moniteau Creek Conservation Reserve (Conservation Reserve) → Moniteau Creek Conservation Area (~751 ac, similar name)
 - **US-7680** Upper Mississippi Conservation Reserve (Conservation Reserve) → Mississippi River Wildlife Management Area (~3,773 ac, the POTA pin is inside it (different name))
-- **US-7681** William R Logan Conservation Reserve (Conservation Reserve) → Logan (William R.) Conservation Area (~1,800 ac, similar name)
-- **US-8229** Brickyard Hill State Conservation Area (State Conservation Area) → Brickyard Hill Natural Area (~2,178 ac, same name, different kind of place); Brickyard Hill Natural Area (~118 ac, same name, different kind of place)
 - **US-8235** Wolf Creek Bend State Conservation Area (State Conservation Area) → Payne Landing Access (~5 ac, the POTA pin is inside it (different name))
 - **US-8244** Caney State Conservation Area (State Conservation Area) → Caney Mountain Conservation Area (~6,486 ac, similar name); Caney Mountain Natural Area (~1,491 ac, similar name)
 - **US-8254** Mincy State Conservation Area (State Conservation Area) → Drury-Mincy Conservation Area (~6,309 ac, similar name)
-- **US-8301** Ripgut Prairie State Conservation Area (State Conservation Area) → Ripgut Prairie Natural Area (~280 ac, same name, different kind of place)
 - **US-9753** Katy Trail Rock Island Spur State Park (State Park) → Katy Trail (~191 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -67,10 +42,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **455 of 561** parks joined
 
 - US-10135 Blue Spring Branch State Conservation Area (State Conservation Area)
 - US-10143 Lake City Range State Recreation Site (State Recreation Site)
+- US-10152 Perry Tower Site State Conservation Area (State Conservation Area)
 - US-10218 The Lewis Family, Dean, Anna Mae and David D. Lewis State Conservation Area (State Conservation Area)
 - US-10270 Myron and Sonya Glassberg Family State Conservation Area (State Conservation Area)
 - US-10575 Walnut Woods State Conservation Area (State Conservation Area)
 - US-10576 Rush Creek State Conservation Area (State Conservation Area)
+- US-10581 La Due Bottoms State Conservation Area (State Conservation Area)
 - US-10589 Friendly Prairie State Conservation Area (State Conservation Area)
 - US-10954 Saint Stanislaus State Conservation Area (State Conservation Area)
 - US-10957 Block Hole Access State Conservation Area (State Conservation Area)
@@ -141,7 +118,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **455 of 561** parks joined
 - Drury-Mincy Conservation Area · SCA · Unknown · ~6,309 ac
 - Two Rivers National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,227 ac
 - Bald Knob Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,817 ac
-- Sunklands Natural Area · SCA · Unknown · ~5,602 ac
 - Birch Creek Conservation Area · SCA · Unknown · ~5,582 ac
 - Saint Francois Mountains Natural Area · SCA · Unknown · ~5,474 ac
 - Norfork Recreation Area · REC · Little Rock · ~5,107 ac
@@ -155,27 +131,28 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **455 of 561** parks joined
 - Rockpile Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,281 ac
 - Stegall Mountain Natural Area · SCA · Unknown · ~4,242 ac
 - Perry (R. And M.) Memorial Conservation Area · SCA · Unknown · ~4,203 ac
-- Shanks (Ted) Conservation Area · SCA · Unknown · ~4,161 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~4,065 ac
-- Flag Spring Conservation Area · SCA · Unknown · ~3,990 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~3,773 ac
 - Meredosia National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,698 ac
 - Graves Mountain Conservation Area · SCA · Unknown · ~3,234 ac
 - Ms Rv Pools 11-22 Recreation Area · REC · Rock Island · ~3,110 ac
-- Little Lost Creek Conservation Area · SCA · Unknown · ~2,907 ac
-- Davisdale Conservation Area · SCA · Unknown · ~2,785 ac
 - Emiquon National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,710 ac
 - Riverside Conservation Area · SCA · Unknown · ~2,696 ac
 - Reelfoot National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,618 ac
 - Helton (The Wayne) Mem Wa · SCA · Unknown · ~2,540 ac
 - Atlanta Conservation Area · SCA · Unknown · ~2,381 ac
-- Fort Crowder Conservation Area · SCA · Unknown · ~2,324 ac
 - Farm Service Agency Interest Of Mo · NWR · FARM SERVICE AGENCY INTEREST OF MO · ~2,290 ac
-- Brickyard Hill Natural Area · SCA · Unknown · ~2,178 ac
-- Donaldson Point Natural Area · SCA · Unknown · ~2,157 ac
 - Montauk Fish Hatchery/Trout Park · SOTH · Unknown · ~2,073 ac
-- Huckleberry Ridge Conservation Area · SCA · Unknown · ~2,066 ac
 - Middle Mississippi River National Wildlife Refuge · NWR · MIDDLE MISSISSIPPI RIVER NATIONAL WILDLIFE REFUGE · ~2,027 ac
 - Middle Mississippi River National Wildlife Refuge · NWR · Middle Mississippi River National Wildlife Refuge · ~2,025 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~1,973 ac
 - Linscomb Wildlife Area · SCA · Unknown · ~1,917 ac
+- Tyson Research Center · LP · WASHINGTON UNIVERSITY · ~1,904 ac
+- Lincoln Hills Natural Area · SCA · Unknown · ~1,903 ac
+- Lake Isom National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,813 ac
+- Kearn (J. N. Turkey) Memorial Wildife Area · SCA · Unknown · ~1,699 ac
+- Farm Service Agency Interest Of Mo · NWR · Farm Service Agency Interest Of Mo · ~1,616 ac
+- Elk River Breaks Woodland Natural Area · SCA · Unknown · ~1,602 ac
+- Caney Mountain Natural Area · SCA · Unknown · ~1,491 ac
+- Saint Francois Mountains Natural Area · SCA · Unknown · ~1,453 ac
+- Seven Island Conservation Area · SCA · Unknown · ~1,423 ac

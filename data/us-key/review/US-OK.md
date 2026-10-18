@@ -1,6 +1,6 @@
 # OK: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **136 of 205** parks joined to official land (same name + same kind of place). **21** to check by hand, **46** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 205** parks joined to official land (same name + same kind of place). **22** to check by hand, **47** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -16,6 +16,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **136 of 205** parks joined
 - **US-12684** Indian Nations National Wildlife Area (National Wildlife Area) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name)); Ouachita Wildlife Management Area - Leflore (~223,822 ac, the POTA pin is inside it (different name))
 - **US-13105** Field Station State Fishing Lake (State Fishing Lake) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
 - **US-2774** Boiling Springs State Park (State Park) → Boiling State Parkrings State Park (~775 ac, the POTA pin is inside it (different name))
+- **US-2781** Gloss Mountain State Park (State Park) → Glass Mountains State Park (~559 ac, the POTA pin is inside it (different name))
 - **US-2805** Spavinaw State Park (State Park) → Spavinaw Wildlife Management Area (~13,508 ac, same name, different kind of place)
 - **US-2806** Talimena State Park (State Park) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name))
 - **US-6365** Osage Wildlife Management Area (Wildlife Management Area) → Osage Wildlife Management Area - Rock Creek (~3,729 ac, similar name)
@@ -78,6 +79,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **136 of 205** parks joined
 - US-8649 Tom Mix Museum State Historic Site (State Historic Site)
 - US-8650 White Hair Memorial State Historic Site (State Historic Site)
 - US-8651 Will Rogers State Historic Site (State Historic Site)
+- US-8659 Sparrow Hawk Wildlife Management Area (Wildlife Management Area)
 - US-9757 Butterfield Overland National Historic Trail (National Historic Trail)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
@@ -115,6 +117,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **136 of 205** parks joined
 - Dog Iron Ranch & Will Rogers Birthplace · SP · Unknown · ~574 ac
 - Arcadia Conservation Education Area · SCA · Department of Wildlife Conservation · ~568 ac
 - Arcadia Conservation Education Area ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~568 ac
+- Sparrowhawk Wildlife Management Area ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~561 ac
+- Glass Mountains State Park · SP · Unknown · ~559 ac
 - Okmulgee/dripping State Park · SP · Unknown · ~523 ac
 - Hugo Wildlife Management Area - Hamden ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~469 ac
 - Hugo Wildlife Management Area - Sawyer ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~350 ac
@@ -140,5 +144,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **136 of 205** parks joined
 - Murrel Home Park · SHCA · OKLAHOMA HISTORICAL SOCIETY & (MURRELL HOME) · ~37 ac
 - Community Center Park · LP · City of Mannford · ~34 ac
 - Comanche National Grassland · NG · Forest Service Region 02 Rocky Mountain · ~31 ac
-- State Parkavinaw State Park · SP · Unknown · ~30 ac
-- New Mannford Recreation Area · PUB · United States of America · ~28 ac

@@ -1,14 +1,12 @@
 # AL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **101 of 155** parks joined to official land (same name + same kind of place). **20** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **103 of 155** parks joined to official land (same name + same kind of place). **18** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-10396** Black Warrior Wildlife Management Area (Wildlife Management Area) → William B. Bankhead National Forest (~182,015 ac, the POTA pin is inside it (different name))
 - **US-1040** Lake Jackson RV Park at Florala State Park (State Park) → Florala State Park (~65 ac, similar name)
 - **US-10428** Walls of Jericho State Natural Area (State Natural Area) → James D. Martin - Skyline Wildlife Management Area (~24,451 ac, the POTA pin is inside it (different name))
-- **US-11026** The Indian Mountain Conservation Area (Conservation Area) → Indian Mountain Complex (~515 ac, same name, different kind of place); Indian Mountain Complex (~80 ac, same name, different kind of place)
-- **US-11032** Old Cahawba Prairie Conservation Reserve (Conservation Reserve) → Old Cahawba Prairie Tract (~3,024 ac, similar name)
 - **US-11376** USS Alabama Battleship Park (Park) → Battleship Memorial Park (~81 ac, similar name)
 - **US-12405** TVA Guntersville Dam 5(1)(g) Reserve (5(1)(g) Reserve) → Wheeler Reservoir Retained Land (~16,536 ac, the POTA pin is inside it (different name))
 - **US-12410** TVA Flint Creek Access National Park (National Park) → Wheeler Reservoir Retained Land (~16,536 ac, the POTA pin is inside it (different name))
@@ -82,7 +80,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **101 of 155** parks joined
 - Coldwater Mountain · SREC · Alabama Department of Conservation and Natural Resources · ~3,816 ac
 - W. L. Holland Wildlife Management Area · SCA · Alabama Department of Conservation and Natural Resources · ~3,537 ac
 - Upper Bear Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~3,216 ac
-- Old Cahawba Prairie Tract · SREC · Alabama Department of Conservation and Natural Resources · ~3,024 ac
 - W. L. Holland Wildlife Management Area · SCA · ADCNR, Division of Wildlife and Freshwater Fisheries · ~2,836 ac
 - Cedar Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~2,716 ac
 - Bear Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~2,327 ac
@@ -96,7 +93,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **101 of 155** parks joined
 - Frey Tract · SOTH · ADCNR, State Lands Division · ~1,308 ac
 - M. Barnett Lawley Forever Wild Field Trial Area · SREC · Alabama Department of Conservation and Natural Resources · ~1,306 ac
 - Little Bear Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~1,138 ac
-- Tannehill Ironworks Historical State Park · SRMA · State Cultural Affairs · ~1,125 ac
 - DeSoto State Park · SP · SPR · ~1,059 ac
 - M. Barnett Lawley Forever Wild Field Trial Area · SREC · ADCNR, State Lands Division · ~1,000 ac
 - Weeks Bay National Estuarine Research Reserve · SCA · ADCNR, State Lands Division · ~933 ac
@@ -109,7 +105,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **101 of 155** parks joined
 - Pea River · MIT · Alabama Department of Transportation · ~595 ac
 - Town Creek · MIT · Alabama Department of Transportation · ~570 ac
 - Dozier · MIT · Alabama Department of Transportation · ~518 ac
-- Indian Mountain Complex · SREC · Alabama Department of Conservation and Natural Resources · ~515 ac
 - Weeks Bay National Estuarine Research Reserve · SCA · ADCNR, State Lands Division · ~470 ac
 - The Heron Bay Wetlands Tract · SCA · Alabama Department of Conservation and Natural Resources · ~463 ac
 - Cahaba River - Shelby County Park · LREC · Alabama Department of Conservation and Natural Resources · ~463 ac
@@ -127,3 +122,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **101 of 155** parks joined
 - Live Oak Landing · SREC · Alabama Department of Conservation and Natural Resources · ~253 ac
 - W. L. Holland Wildlife Management Area · SCA · Alabama Department of Conservation and Natural Resources · ~241 ac
 - Baldwin State Forest · SRMA · Alabama Forestry Commission · ~239 ac
+- Big Prairie Creek (prop) · MIT · Alabama Department of Transportation · ~235 ac
+- Ruffner Mountain Nature Center · REA · Alabama Department of Conservation and Natural Resources · ~226 ac
+- Stauffer Seed Orchard · SOTH · Alabama Forestry Commission · ~214 ac

@@ -1,6 +1,6 @@
 # ND: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 155** parks joined to official land (same name + same kind of place). **22** to check by hand, **58** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **84 of 155** parks joined to official land (same name + same kind of place). **13** to check by hand, **58** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,23 +9,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 155** parks joined 
 - **US-4239** North Country Trail National Scenic Trail (National Scenic Trail) → Sakakawea Recreation Area (~478,564 ac, the POTA pin is inside it (different name)); Lake Sakakawea State Park (~733 ac, the POTA pin is inside it (different name))
 - **US-5741** Turtle Mountain State Forest (State Forest) → North Dakota State Forest Service Land (~14,517 ac, the POTA pin is inside it (different name))
 - **US-5742** Homen State Forest (State Forest) → North Dakota State Forest Service Land (~14,517 ac, the POTA pin is inside it (different name))
-- **US-7703** Buffalo Lake Wildlife Management Area (Wildlife Management Area) → Buffalo Lake (~813 ac, same name, different kind of place)
+- **US-7702** Lone Tree Wildlife Management Area (Wildlife Management Area) → Lonetree (~32,248 ac, the POTA pin is inside it (different name))
 - **US-7707** Maclean Bottoms Wildlife Management Area (Wildlife Management Area) → Oaha Recreation Area (~90,626 ac, the POTA pin is inside it (different name)); Oahe Wildlife Management Area (~16,734 ac, the POTA pin is inside it (different name))
 - **US-8563** Apple Creek Bottoms Wildlife Management Area (Wildlife Management Area) → Oahe Wildlife Management Area (~16,734 ac, the POTA pin is inside it (different name))
-- **US-8564** Armourdale Lake Wildlife Management Area (Wildlife Management Area) → Armourdale Lake (~23 ac, same name, different kind of place)
-- **US-8565** Arroda Lake Wildlife Management Area (Wildlife Management Area) → Arroda Lake (~380 ac, same name, different kind of place)
 - **US-8576** Deepwater Creek Wildlife Management Area (Wildlife Management Area) → Deepwater (~2,344 ac, same name, different kind of place); Sakakawea Recreation Area (~478,564 ac, the POTA pin is inside it (different name))
 - **US-8578** Erie Dam/Brewer Lake Wildlife Management Area (Wildlife Management Area) → Erie Dam (~1,018 ac, similar name)
-- **US-8580** Harmony Lake Wildlife Management Area (Wildlife Management Area) → Harmony Lake (~492 ac, same name, different kind of place)
-- **US-8583** Horsehead Lake Wildlife Management Area (Wildlife Management Area) → Horsehead Lake (~453 ac, same name, different kind of place)
 - **US-8589** Kimball Bottoms Wildlife Management Area (Wildlife Management Area) → Oaha Recreation Area (~90,626 ac, the POTA pin is inside it (different name)); Oahe Wildlife Management Area (~16,734 ac, the POTA pin is inside it (different name))
 - **US-8596** Ochs Point Wildlife Management Area (Wildlife Management Area) → Ochs (~971 ac, similar name)
-- **US-8601** Rice Lake Wildlife Management Area (Wildlife Management Area) → Rice Lake (~996 ac, same name, different kind of place)
-- **US-8604** Smishek Lake Wildlife Management Area (Wildlife Management Area) → Smishek Lake (~159 ac, same name, different kind of place)
-- **US-8606** Swan Lake Wildlife Management Area (Wildlife Management Area) → Swan Lake (~293 ac, same name, different kind of place)
-- **US-8607** Sweet Briar Lake Wildlife Management Area (Wildlife Management Area) → Sweetbriar Lake (~875 ac, same name, different kind of place)
-- **US-8608** Thompson Lake Wildlife Management Area (Wildlife Management Area) → Thompson Lake (~802 ac, same name, different kind of place)
-- **US-8612** Wild Prairie Wildlife Management Area (Wildlife Management Area) → Wild Prairie (~1,819 ac, same name, different kind of place)
+- **US-8607** Sweet Briar Lake Wildlife Management Area (Wildlife Management Area) → Sweetbriar Lake (~875 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -98,6 +89,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 155** parks joined 
 - Devils Lake · RMA · Unknown · ~97,667 ac
 - Oaha Recreation Area · REC · Omaha · ~90,626 ac
 - North Dakota Field Office · PUB · BLM · ~58,891 ac
+- Lonetree · SCA · Unknown · ~32,248 ac
 - Stutsman County Waterfowl Production Area · RMA · STUTSMAN COUNTY WATERFOWL PRODUCTION AREA · ~27,734 ac
 - Stutsman County Waterfowl Production Area · RMA · Stutsman County Waterfowl Production Area · ~27,730 ac
 - Mcintosh County Waterfowl Production Area · RMA · MCINTOSH COUNTY WATERFOWL PRODUCTION AREA · ~17,391 ac
@@ -152,4 +144,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 155** parks joined 
 - Lamoure County Waterfowl Production Area · RMA · Lamoure County Waterfowl Production Area · ~5,466 ac
 - Pembina Hills · SCA · Unknown · ~5,292 ac
 - Sargent County Waterfowl Production Area · RMA · SARGENT COUNTY WATERFOWL PRODUCTION AREA · ~4,856 ac
-- Sargent County Waterfowl Production Area · RMA · Sargent County Waterfowl Production Area · ~4,856 ac

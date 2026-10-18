@@ -1,14 +1,12 @@
 # ME: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **124 of 148** parks joined to official land (same name + same kind of place). **16** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **127 of 148** parks joined to official land (same name + same kind of place). **13** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-2402** Penobscot River Corridor - Katahdin Woods and Waters National Monument (National Monument) → Katahdin Woods and Waters National Monument (~89,562 ac, similar name)
 - **US-4772** Durham State Forest (State Forest) → Northport aka Durham Forest (~101 ac, similar name); Northport aka Durham Forest (~5 ac, similar name)
 - **US-8292** Lagrange to Medford State Trail (State Trail) → Lagrange to Medford Rail Trail (~116 ac, similar name); Medford to Lagrange Rail Trail (~33 ac, similar name)
-- **US-8434** Big Spencer Mountain Ecological Reserve (Ecological Reserve) → Big Spencer Ecological Reserve (~4,039 ac, similar name); Big Spencer Mountain (~632 ac, similar name); Great North Woods, LLC (~4,039 ac, the POTA pin is inside it (different name))
-- **US-8437** Kennebec Highlands State Trail (State Trail) → Kennebec Highlands (~3,700 ac, same name, different kind of place); Kennebec Highlands (~1,936 ac, same name, different kind of place); Kennebec Highlands (~1,765 ac, same name, different kind of place); Kennebec Highlands (~1,529 ac, same name, different kind of place); Kennebec Highlands (~866 ac, same name, different kind of place); Kennebec Highlands (~518 ac, same name, different kind of place)
 - **US-8438** Days Academy State Preserve (State Preserve) → Days Academy Grant (~7,487 ac, similar name)
 - **US-8442** Lobster Lake Property State Preserve (State Preserve) → Lobster Lake (~2,249 ac, similar name)
 - **US-8443** Seboomook Lake Property State Preserve (State Preserve) → Seboomook (~16,392 ac, similar name); Seboomook (~12,154 ac, similar name); West Branch Penobscot Headwaters (~41,582 ac, the POTA pin is inside it (different name))
@@ -18,7 +16,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **124 of 148** parks joined
 - **US-8459** Erle R. Kelley (Dresden Bog) Wildlife Management Area (Wildlife Management Area) → Earle R. Kelly (Dresden Bog) Wildlife Management Area (~497 ac, the POTA pin is inside it (different name))
 - **US-9170** Machias River Corridor State Conservation Area (State Conservation Area) → Machias River Watershed - MDOC (~6,131 ac, similar name); Machias River Phase I (~5,939 ac, similar name)
 - **US-9171** St. John Ponds Ecological Reserve (Ecological Reserve) → Upper St John River Watershed Ecological Reserve (~3,884 ac, similar name)
-- **US-9172** Salmon Brook Lake Bog Ecological Reserve (Ecological Reserve) → Salmon Brook Lake Bog (~982 ac, similar name); Salmon Brook Lake Bog (~466 ac, similar name); Salmon Brook Lake Bog (~255 ac, similar name); Salmon Brook Lake Bog (~26 ac, similar name); Salmon Brook Lake Bog (~16 ac, similar name)
 - **US-9176** Mount Abraham Ecological Reserve (Ecological Reserve) → Mount Abraham (~3,065 ac, similar name); Mount Abraham (~1,163 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)

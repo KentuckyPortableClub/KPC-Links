@@ -1,14 +1,16 @@
 # MA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **370 of 421** parks joined to official land (same name + same kind of place). **8** to check by hand, **43** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **368 of 421** parks joined to official land (same name + same kind of place). **10** to check by hand, **43** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0802** Boston African American National Historic Site (National Historic Site) → Boston National Historical Park (~38 ac, similar name)
 - **US-11430** Karner Brook Wildlife Management Area (Wildlife Management Area) → Jug End Fen Wildlife Management Area (~21 ac, the POTA pin is inside it (different name))
 - **US-11589** Delaney Wildlife Management Area (Wildlife Management Area) → Delaney Flood Control Site (~317 ac, similar name); Delaney Flood Control Site (~166 ac, similar name); Delaney Flood Control Site (~125 ac, similar name); Delaney Flood Control Site (~49 ac, similar name)
 - **US-11638** Marconi Wildlife Management Area (Wildlife Management Area) → Cape Cod National Seashore (~27,298 ac, the POTA pin is inside it (different name))
 - **US-11683** Pickerel Cove Wildlife Management Area (Wildlife Management Area) → Wakeby Pond (~17 ac, the POTA pin is inside it (different name))
 - **US-4723** Ashmere Lake State Forest (State Forest) → Ashmere Lake State Park (~198 ac, same name, different kind of place); Ashmere Lake State Park (~7 ac, same name, different kind of place)
+- **US-4749** Lowell-Dracut-Tyngsboro State Forest (State Forest) → Lowell-Dracut-Tyngsborough State Forest (~393 ac, similar name); Lowell-Dracut-Tyngsborough State Forest (~317 ac, similar name); Lowell National Historical Park (~189 ac, similar name); Lowell-Dracut-Tyngsborough State Forest (~169 ac, similar name); Lowell-Dracut-Tyngsborough State Forest (~46 ac, similar name); Lowell-Dracut-Tyngsborough State Forest (~45 ac, similar name)
 - **US-7971** Blackstone River Valley National Historical Park (National Historical Park) → Blackstone River and Canal Heritage State Park (~61 ac, similar name); Blackstone River and Canal Heritage State Park (~25 ac, similar name); Blackstone River and Canal Heritage State Park (~8 ac, similar name); Blackstone River and Canal Heritage State Park (~0 ac, similar name); Blackstone River and Canal Heritage State Park (~0 ac, similar name)
 - **US-8387** Francis D. Martini Memorial Shell Park and Moynihan State Recreation Area (State Recreation Area) → Neponset River Reservation (~68 ac, the POTA pin is inside it (different name))
 - **US-8424** Quincy Quarries State Reserve (State Reserve) → Blue Hills Reservation (~40 ac, the POTA pin is inside it (different name))
