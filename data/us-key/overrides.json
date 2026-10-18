@@ -1,0 +1,12 @@
+{"note": "Reviewed by hand. join = official land names (or PAD-US object ids) that ARE this park; no = pieces that are not; site = no outline of its own. kpc_us_key.py follows this on every rerun.",
+ "parks": {
+  "US-0952": {"join": ["Ocmulgee Mounds National Historical Park"], "why": "renamed 2019 (was Ocmulgee National Monument)"},
+  "US-3727": {"join": ["Hart Outdoor Recreation Area"], "why": "Georgia renamed Hart State Park"},
+  "US-0782": {"join": ["Lincoln Boyhood National Memorial"], "why": "same NPS unit"},
+  "US-0776": {"join": ["Franklin Delano Roosevelt Memorial"], "why": "same NPS unit"},
+  "US-0698": {"join": ["John D. Rockefeller, Jr., Memorial Parkway"], "why": "same NPS unit"},
+  "US-2244": {"join": ["Mary Minerva McCroskey State Park"], "why": "middle name written out"},
+  "US-1000": {"join": ["Adeline Jay Geo-Karis Illinois Beach State Park"], "why": "official long name"},
+  "US-3297": {"join": ["Glendo Reservoir State Park"], "why": "official long name"},
+  "US-13088": {"join": ["Choctaw National Wildlife Refuge"], "why": "same refuge"}
+ }}
