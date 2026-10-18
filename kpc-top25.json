@@ -1,7 +1,7 @@
 {
  "updated": "2026-10-18",
  "source": "POTA public park statistics (api.pota.app), Kentucky parks from kpc-ky-data.json",
- "parks": 191,
+ "parks": 195,
  "qsos": [
   {
    "c": "US-13598",
