@@ -1,6 +1,6 @@
 # Canada BC: POTA parks vs official land (CPCAD)
 
-Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **998 of 1254** joined (same name + same kind). **119** to check, **137** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **999 of 1254** joined (same name + same kind). **118** to check, **137** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -12,7 +12,6 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **998 of 1254** joined (sam
 - **CA-3181** Allison Harbour Marine Provincial Park (Provincial Park) → ALLISON HARBOUR MARINE PARK (~220 ac, same name, different kind of place); ALLISON HARBOUR MARINE PARK (~106 ac, same name, different kind of place)
 - **CA-3182** Alty Conservation Area (Conservation Area) → ALTY CONSERVANCY (~20,912 ac, similar name)
 - **CA-3188** Brooks Peninsula Provincial Park (Provincial Park) → MᑫUQʷIN/BROOKS PENINSULA PARK (~88,970 ac, similar name); MᑫUQʷIN/BROOKS PENINSULA PARK (~9,714 ac, similar name)
-- **CA-3191** Atlin/Teix'gi Aan Tlein Provincial Park (Provincial Park) → ATLIN/A TEIX'GI AAN TLEIN PARK (~568,080 ac, similar name)
 - **CA-3198** Banks Nii Luutiksm Conservation Area (Conservation Area) → BANKS NII ŁUUTIKSM CONSERVANCY (~38,511 ac, similar name); BANKS NII ŁUUTIKSM CONSERVANCY (~8,738 ac, similar name)
 - **CA-3222** Big Bunsby Marine Provincial Park (Provincial Park) → BIG BUNSBY MARINE PARK (~870 ac, similar name); BIG BUNSBY MARINE PARK (~660 ac, similar name)
 - **CA-3232** Bligh Island Marine Provincial Park (Provincial Park) → BLIGH ISLAND MARINE PARK (~7,096 ac, same name, different kind of place); BLIGH ISLAND MARINE PARK (~3,914 ac, same name, different kind of place)
