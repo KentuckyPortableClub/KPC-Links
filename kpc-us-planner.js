@@ -303,6 +303,12 @@ async function showBoundary(s,btn){
    const nm=(f.properties&&f.properties.cpcad)||s.n;btn.textContent='HIDE OUTLINE ('+String(nm).toUpperCase().slice(0,28)+')';btn.disabled=false;
    try{map.fitBounds(bound.getBounds(),{maxZoom:14,padding:[20,20]})}catch(e){}
    status(`Official boundary shown: <b>${esc(nm)}</b> (${esc((f.properties&&f.properties.srcShort)||'Canadian Protected and Conserved Areas Database, Government of Canada')}, open government data). POTA goes by the official boundary; check the park's own map too.`);return}}catch(e){}}
+ /* Oct 18 (Brandon: 'make sure we show the official maps'): a Kentucky park uses KPC's checked Kentucky outlines (the same ones as Park Control) */
+ if(window.KPCB&&KPCB.kyFor&&KPCB.inKY&&KPCB.inKY(s.la,s.lo)&&/^(US|KFF)-/.test(s.c)){try{const fs=await KPCB.kyFor(s.c);if(fs&&fs.length){
+   bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:f=>{const kpc=f._L&&f._L.kpc;return{color:kpc?'#ffd400':'#f0c96b',weight:3,dashArray:kpc?'12 5 2 5':null,fillColor:'#f0c96b',fillOpacity:kpc?0:.15}}}).addTo(map);
+   const kpc=fs.every(f=>f._L&&f._L.kpc);btn.textContent=kpc?'HIDE OUTLINE (APPROXIMATE)':'HIDE OUTLINE';btn.disabled=false;
+   try{map.fitBounds(bound.getBounds(),{maxZoom:14,padding:[20,20]})}catch(e){}
+   status(kpc?`Approximate outline drawn by KPC (no official map has this park yet). Check the park's own map.`:`Official Kentucky boundary shown (${fs.length} piece${fs.length>1?'s':''}, from the state and federal map files KPC keeps). Check the park's own map too.`);return}}catch(e){}}
  /* official first: USGS PAD-US by the park's name near its pin (kpc-bounds.js), then OpenStreetMap */
  if(window.KPCB&&s.p!=='SOTA'){try{const fs=await KPCB.padusByName(s.n,s.la,s.lo);if(fs&&fs.length){
    bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.15}}).addTo(map);
