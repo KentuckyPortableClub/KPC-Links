@@ -35,15 +35,19 @@ def get(params, tries=5):
 
 
 # ---------------- names + kinds (same idea as kpc-bounds.js, with other states' words) ----------------
-GEN = (r"state natural area|natural area preserve|state nature preserve|nature preserve|natural area|fish and wildlife area|state wildlife area|"
+GEN = (r"designated state natural area|designated|public hunting area|hunting area|state fishing lake|fishing lake|state wilderness area|wilderness area|natural state conservation area|waterfowl refuge|wildlife refuge|refuge|state natural area|natural area preserve|state nature preserve|nature preserve|natural area|fish and wildlife area|state wildlife area|"
        r"wildlife management area|wildlife area|state game lands?|game lands?|game management area|conservation area|state conservation area|"
        r"state resort park|state historic site|state historical park|state historic park|historic site|state recreation area|recreation area|"
        r"state beach|state seashore|national wildlife refuge|national recreation area|national historical park|national historic site|"
        r"national park|national forest|national grassland|national monument|national seashore|national lakeshore|national battlefield|"
        r"national military park|national preserve|national river|state park|state forest|wma|nwr|nra|sp|sf|the|of|and")
+ABBR = {'col': 'colonel', 'sgt': 'sergeant', 'mt': 'mount', 'ft': 'fort', 'st': 'saint', 'pt': 'point', 'lk': 'lake', 'cr': 'creek', 'mtn': 'mountain'}
 def norm(s):
     s = re.sub(r'&', ' and ', str(s or '').lower())
-    s = re.sub(r"[’'`]", '', s)
+    s = re.sub(r'\(.*?\)', ' ', s)                       # '(2021 Addition)'
+    s = re.sub(r"[’'`.]", '', s)                          # M.T.S.U. = MTSU, T.O. = TO, Chimney's = Chimneys
+    s = re.sub(r'\b(unit|tract|parcel)\s+[0-9ivx]+\b', ' ', s)
+    s = ' '.join(ABBR.get(w, w) for w in s.split())
     s = re.sub(r'\b(' + GEN + r')\b', ' ', s)
     s = re.sub(r'[^a-z0-9 ]', ' ', s)
     return re.sub(r'\s+', ' ', s).strip()
