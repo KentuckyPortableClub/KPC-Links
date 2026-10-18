@@ -87,6 +87,27 @@
     }
     return [...out.values()].map(x => ({ ref: x.c, name: x.n, la: x.la, lo: x.lo }));
   }
+
+  /* Oct 17 (Brandon: 'click a boundary … tell you the name, WMA tract etc.'; the SHARED 'no park number' check for every tool):
+     landInfo(f) = what one KY outline is for all three programs; landAt(lat, lon) = every KY outline at a spot (inside, or within ~25 m of its line) */
+  function landInfo(f) {
+    nameIndex(); const D = kyData || {}, P = D.parks || [], b = f._bb;
+    const own = [...(f._names || [])].map(r => P.find(q => q.c === r)).filter(Boolean).map(x => ({ ref: x.c, name: x.n }));
+    const pins = own.length ? [] : kyRefs(f).filter(r => !own.some(o => o.ref === r.ref));
+    const inB = (la, lo) => lo >= b[0] && lo <= b[2] && la >= b[1] && la <= b[3] && inside(la, lo, f.geometry);
+    const kff = [], kffIn = [], sota = [];
+    (D.kff || []).forEach(k => { if (!k.p && sameName(k.n, f._nm)) kff.push({ ref: k.c, name: k.n }); else if (inB(k.la, k.lo)) kffIn.push({ ref: k.c, name: k.n, p: k.p }); });
+    (D.summits || []).forEach(x => { if (inB(x.la, x.lo)) sota.push({ ref: x.c, name: x.n, ft: x.ft }); });
+    return { name: f._nm, layer: f._L.name, k: f._L.k, own, pins, kff, kffIn, sota, numbered: own.length > 0 || kff.length > 0, props: f.properties || {} };
+  }
+  async function landAt(lat, lon) {
+    const F = await ky(), out = [];
+    for (const f of F) { const b = f._bb; if (lon < b[0] - .001 || lon > b[2] + .001 || lat < b[1] - .001 || lat > b[3] + .001) continue;
+      const inn = inside(lat, lon, f.geometry), e = inn ? null : edge(lat, lon, f.geometry);
+      if (inn || (e && e.km < .025)) out.push(Object.assign(landInfo(f), { f, onLine: !inn })); }
+    const area = x => (x.f._bb[2] - x.f._bb[0]) * (x.f._bb[3] - x.f._bb[1]);
+    return out.sort((a, b) => area(a) - area(b));
+  }
   /* KY features that belong to one POTA ref */
   async function kyFor(ref) { const F = await ky(); const N = nameIndex(); return N.has(ref) ? N.get(ref) : F.filter(f => kyRefs(f).some(r => r.ref === ref)); }
 
@@ -240,5 +261,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, euro, canada, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, euro, canada, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();

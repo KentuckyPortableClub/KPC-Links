@@ -39,10 +39,11 @@
     if (window.KPCLayers) { KPCLayers(map, null, { padKey: 'kpcPcPad', padOn: true }); PAD = KPCLayers.pad; } else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
     if (window.KPCLocate) KPCLocate(map); if (window.KPCFull) KPCFull(map);
     /* drop a pin anywhere: street view, directions, copy GPS, add the spot to the trip */
-    if (window.KPCPin) KPCPin(map, { extra: (la, lo) => `<button type="button" data-pctrip="${la},${lo}" style="margin-top:6px;width:100%;padding:8px;border-radius:8px;border:1px solid #d5a63a;background:#fff6dd;font:900 12px Arial;cursor:pointer">+ ADD THIS SPOT TO MY TRIP</button>`,
+    if (window.KPCPin) KPCPin(map, { on: 'contextmenu', extra: (la, lo) => `<button type="button" data-pctrip="${la},${lo}" style="margin-top:6px;width:100%;padding:8px;border-radius:8px;border:1px solid #d5a63a;background:#fff6dd;font:900 12px Arial;cursor:pointer">+ ADD THIS SPOT TO MY TRIP</button>`,
       onPop: el => el.querySelectorAll('[data-pctrip]').forEach(b => b.onclick = () => { const [la, lo] = b.dataset.pctrip.split(',').map(Number); const nm = prompt('Name this stop (optional):', 'Pin ' + la.toFixed(4) + ', ' + lo.toFixed(4));
         if (nm === null) return; TRIP.push({ c: 'PIN-' + Date.now().toString(36), n: nm || 'Dropped pin', la, lo }); if (TRIP.length > 10) TRIP.shift(); put('kpcPcTrip', TRIP); trip(); b.textContent = '✓ ON MY TRIP'; }) });
-    $('pcDrop').onclick = () => { const c = map.getCenter(); map.fire('click', { latlng: c }); $('pcMap').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+    map.on('click', e => here(e.latlng));   /* Oct 17 (Brandon: 'drops pins way too easy'): a tap says what land is here; pins = long-press / right-click / DROP A PIN */
+    $('pcDrop').onclick = () => { const c = map.getCenter(); map.fire('contextmenu', { latlng: c }); $('pcMap').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
     for (const k of ['pota', 'kff', 'sota', 'trails']) { LAY[k] = L.layerGroup(); if (SHOW[k]) LAY[k].addTo(map); }
     if (SHOW.trails) trails();
     for (const x of ALL) { const k = kindOf(x);
@@ -103,6 +104,35 @@
         PCS.ref = x.c; PCS.html = `<div class="pc-k" style="margin-top:8px">🗺 THE OUTLINE ON THE MAP</div><ul class="pc-list">${key}</ul>${PAD ? '<p class="pc-note">Orange outline = land the Army Corps of Engineers OWNS (USGS PAD-US), even where Kentucky runs it (usually NOT part of a POTA park unless a state agency runs it). Turn it off or on with the 🗺 LAND OWNERS chip.</p>' : ''}`; const box = document.getElementById('pcPieces'); if (box) box.innerHTML = PCS.html;
         if (fly !== false) { const b = outline.getBounds(); if (b.isValid()) map.fitBounds(b.pad(.1), { maxZoom: 14 }); } } catch (e) {} }
   }
+  /* Oct 17 (Brandon: 'click on a boundary… tell you Name here WMA tract etc.'): tap the map = every outline at that spot, for all three programs */
+  let tapL = null, corpsF = null;
+  const corps = () => corpsF ? Promise.resolve(corpsF) : fetch('ky-usace.geojson').then(r => r.ok ? r.json() : { features: [] }).then(j => (corpsF = (j.features || []).map(f => (f._bb = KPCB.bbox(f.geometry), f)))).catch(() => (corpsF = []));
+  async function here(ll) {
+    if (!window.KPCB || !KPCB.landAt) return;
+    const pop = L.popup({ maxWidth: 300, maxHeight: 300, className: 'pc-here' }).setLatLng(ll).setContent('<div class="pc-k">WHAT LAND IS HERE?</div><p class="pc-note">Looking…</p>').openOn(map);
+    const [A, C] = await Promise.all([KPCB.landAt(ll.lat, ll.lng), corps()]);
+    const co = C.filter(f => { const b = f._bb; return ll.lng >= b[0] && ll.lng <= b[2] && ll.lat >= b[1] && ll.lat <= b[3] && KPCB.inside(ll.lat, ll.lng, f.geometry); });
+    if (tapL) { map.removeLayer(tapL); tapL = null; }
+    tapL = L.geoJSON({ type: 'FeatureCollection', features: A.slice(0, 4).map(a => a.f) }, { interactive: false,
+      style: f => { const a = A.find(x => x.f === f); return a && a.numbered ? Object.assign({ weight: 4, fill: true, fillOpacity: .08 }, PIECE(f)) : { color: '#ff2a2a', weight: 3.5, dashArray: '2 6', fill: true, fillColor: '#ff2a2a', fillOpacity: .06 }; } }).addTo(map);
+    const li = (a, i) => a.slice(0, 6).map(r => `<li><a href="?ref=${encodeURIComponent(r.ref)}" data-pcref="${esc(r.ref)}">${esc(r.ref)}</a> ${esc(r.name || '')}${i ? ' <span class="pc-tag">' + esc(i(r)) + '</span>' : ''}</li>`).join('');
+    const box = a => {
+      let h = `<div style="margin:8px 0 2px;font:700 15px/1.25 Georgia,serif">${esc(a.name)}</div><div class="pc-note" style="margin:0">${esc(a.layer)}${a.onLine ? ' · you tapped right on its line' : ''}</div>`;
+      if (a.own.length) h += `<ul class="pc-list"><li><b>🌲 POTA:</b></li>${li(a.own)}</ul>`;
+      else if (a.kff.length) h += `<p class="pc-note" style="color:#0d5a55;font-weight:800">🌳 KFF (WWFF) reference, no POTA number:</p><ul class="pc-list">${li(a.kff)}</ul>`;
+      else h += `<p style="margin:6px 0;padding:6px 8px;border-radius:8px;background:#ffe3e3;color:#8a0f0f;font:800 12px/1.35 Arial">🚫 GOVERNMENT LAND · NO PARK NUMBER: no POTA or KFF number of its own, and it may not be open to the public. POTA / KFF contacts only count inside a real park’s own outline.</p>` + (a.pins.length ? `<div class="pc-note"><b>POTA park pin inside it</b> (only that park’s own land counts):</div><ul class="pc-list">${li(a.pins)}</ul>` : '');
+      const kin = a.kffIn.filter(k => !a.kff.some(x => x.ref === k.ref));
+      if (kin.length) h += `<div class="pc-note"><b>🌳 KFF pin inside</b> (covers its own park):</div><ul class="pc-list">${li(kin)}</ul>`;
+      if (a.sota.length) h += `<div class="pc-note"><b>⛰ SOTA summits on this land</b> (SOTA goes by the summit, so these count):</div><ul class="pc-list">${li(a.sota, r => r.ft ? Number(r.ft).toLocaleString() + ' ft' : '')}</ul>`;
+      return h; };
+    let html = '<div class="pc-k">WHAT LAND IS HERE?</div>' + (A.length ? A.slice(0, 4).map(box).join('<hr style="border:0;border-top:1px dashed #e2d6bb;margin:8px 0">') : '<p class="pc-note">No park outline on file right here. It may be private land, a town, or land we don’t have a map for.</p>');
+    co.forEach(f => { const p = f.properties || {}; html += `<p class="pc-note" style="border-left:4px solid #ff8c38;padding-left:6px"><b>Army Corps of Engineers land</b>${p.MANAGER ? ', run by ' + esc(p.MANAGER) : ''}.</p>`; });
+    html += `<div class="pc-acts"><button type="button" data-pcpin="1">📌 DROP A PIN HERE</button></div><p class="pc-note" style="margin:2px 0 0">Outlines are guides. The official map decides.</p>`;
+    pop.setContent(html);
+    const el = pop.getElement(); if (!el) return;
+    el.querySelectorAll('[data-pcref]').forEach(a => a.onclick = e => { e.preventDefault(); const y = byRef(a.dataset.pcref); map.closePopup(); if (y) pick(y); });
+    const pb = el.querySelector('[data-pcpin]'); if (pb) pb.onclick = () => { map.closePopup(); map.fire('contextmenu', { latlng: ll }); };
+  }
   function info(x) {
     const k = kindOf(x), lab = { pota: 'POTA PARK', kff: 'KFF (WWFF) REFERENCE', sota: 'SOTA SUMMIT' }[k];
     const page = k === 'pota' ? `https://pota.app/#/park/${x.c}` : k === 'kff' ? `https://wwff.co/directory/?showRef=${x.c}` : `https://sotl.as/summits/${x.c}`;
@@ -129,7 +159,8 @@
       <p class="pc-note">GPS ${x.la.toFixed(5)}, ${x.lo.toFixed(5)}${k === 'sota' ? ' · activation zone = within 25 m (82 ft) of the top, no vehicle' : ' · the pin is a guide; the official boundary decides'}</p>`;
     $('pcAdd').onclick = () => { if (!TRIP.some(t => t.c === x.c)) { TRIP.push({ c: x.c, n: x.n, la: x.la, lo: x.lo }); if (TRIP.length > 10) TRIP.shift(); put('kpcPcTrip', TRIP); } trip(); info(x); };
     $('pcInfo').querySelectorAll('[data-ref]').forEach(a => a.onclick = e => { e.preventDefault(); const y = byRef(a.dataset.ref); if (y) pick(y); });
-    if (matchMedia('(max-width:900px)').matches) $('pcInfo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    /* Oct 17 (Brandon: the card's name hid under the header): scroll so the card's top sits just below the site header */
+    if (matchMedia('(max-width:900px)').matches) { const hd = document.querySelector('header.site-nav'), h = hd ? hd.getBoundingClientRect().height : 0; window.scrollTo({ top: $('pcInfo').getBoundingClientRect().top + window.scrollY - h - 12, behavior: 'smooth' }); }
   }
   function trip() {
     const el = $('pcTripL'); if (!TRIP.length) { el.innerHTML = '<p class="pc-empty">Tap <b>+ ADD TO MY TRIP</b> on a park to start a trip.</p>'; return; }
