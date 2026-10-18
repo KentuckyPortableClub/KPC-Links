@@ -1,12 +1,11 @@
 # ND: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **74 of 155** parks joined to official land (same name + same kind of place). **23** to check by hand, **58** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **75 of 155** parks joined to official land (same name + same kind of place). **22** to check by hand, **58** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0425** Devils Lake Wetland Management District (Wetland Management District) → Devils Lake (~97,667 ac, similar name); Ramsey County Waterfowl Production Area (~9,159 ac, the POTA pin is inside it (different name)); Ramsey County Waterfowl Production Area (~9,159 ac, the POTA pin is inside it (different name))
 - **US-0428** J. Clark Salyer Wetland Management District (Wetland Management District) → J. Clark Salyer National Wildlife Refuge (~55,029 ac, similar name); J. Clark Salyer National Wildlife Refuge (~55,027 ac, similar name)
-- **US-0437** White Horse Hill Game Preserve (Game Preserve) → Sullys Hill National Game Preserve (~1,630 ac, similar name); White Horse Hill National Game Preserve (~1,630 ac, similar name)
 - **US-4239** North Country Trail National Scenic Trail (National Scenic Trail) → Sakakawea Recreation Area (~478,564 ac, the POTA pin is inside it (different name)); Lake Sakakawea State Park (~733 ac, the POTA pin is inside it (different name))
 - **US-5741** Turtle Mountain State Forest (State Forest) → North Dakota State Forest Service Land (~14,517 ac, the POTA pin is inside it (different name))
 - **US-5742** Homen State Forest (State Forest) → North Dakota State Forest Service Land (~14,517 ac, the POTA pin is inside it (different name))
@@ -95,6 +94,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **74 of 155** parks joined 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Nd State Lands - Surface Ownership · SRMA · Unknown · ~712,367 ac
+- Sakakawea Recreation Area · REC · Omaha · ~478,564 ac
 - Lewis and Clark Trail ·  · BLM recreation sites · ~240,750 ac
 - Devils Lake · RMA · Unknown · ~97,667 ac
 - Oaha Recreation Area · REC · Omaha · ~90,626 ac
@@ -153,4 +153,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **74 of 155** parks joined 
 - Lamoure County Waterfowl Production Area · RMA · Lamoure County Waterfowl Production Area · ~5,466 ac
 - Pembina Hills · SCA · Unknown · ~5,292 ac
 - Sargent County Waterfowl Production Area · RMA · SARGENT COUNTY WATERFOWL PRODUCTION AREA · ~4,856 ac
-- Sargent County Waterfowl Production Area · RMA · Sargent County Waterfowl Production Area · ~4,856 ac

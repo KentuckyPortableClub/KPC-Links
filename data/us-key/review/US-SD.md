@@ -13,7 +13,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **100 of 120** parks joined
 - **US-8158** Big Stone Island State Recreation Area (State Recreation Area) → Big Stone Island Nature Area (~105 ac, similar name); Big Stone Ponds Game Production Area (~53 ac, similar name); Big Stone Lake (~36 ac, similar name)
 - **US-8164** George S. Mickelson State Trail (State Trail) → Exemption Area (~22,459 ac, the POTA pin is inside it (different name))
 - **US-8166** LaFramboise Island State Natural Area (State Natural Area) → Laframboise Island Nature Area (~587 ac, same name, different kind of place); Sharpe Recreation Area (~78,431 ac, the POTA pin is inside it (different name))
-- **US-8177** Mina Lake State Recreation Area (State Recreation Area) → Mina (~302 ac, similar name); Mina (~72 ac, similar name)
+- **US-8168** Lake Cochrane State Recreation Area (State Recreation Area) → Cochrane (~29 ac, similar name)
 - **US-8193** Sheps Canyon State Recreation Area (State Recreation Area) → Angostura Reservoir (~4,841 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -65,6 +65,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **100 of 120** parks joined
 - Brookings County Waterfowl Production Area · RMA · Brookings County Waterfowl Production Area · ~6,641 ac
 - Brookings County Waterfowl Production Area · RMA · BROOKINGS COUNTY WATERFOWL PRODUCTION AREA · ~6,640 ac
 - Fort Meade Recreation Area ACEC ·  · BLM recreation sites · ~6,569 ac
+- Shadehill Reservoir Game Production Area · SREC · Unknown · ~6,206 ac
 - Clark County Waterfowl Production Area · RMA · CLARK COUNTY WATERFOWL PRODUCTION AREA · ~6,172 ac
 - Clark County Waterfowl Production Area · RMA · Clark County Waterfowl Production Area · ~6,172 ac
 - Lake County Waterfowl Production Area Of Sd · RMA · LAKE COUNTY WATERFOWL PRODUCTION AREA OF SD · ~6,090 ac
@@ -73,14 +74,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **100 of 120** parks joined
 - Codington County Waterfowl Production Area · RMA · Codington County Waterfowl Production Area · ~6,074 ac
 - Grant County Waterfowl Production Area · RMA · GRANT COUNTY WATERFOWL PRODUCTION AREA · ~5,371 ac
 - Grant County Waterfowl Production Area · RMA · Grant County Waterfowl Production Area · ~5,371 ac
-- Shadehill Reservoir · RMA · Unknown · ~5,335 ac
 - Lake Thompson Game Production Area · SCA · Unknown · ~5,280 ac
 - South Dakota Game Fish and Parks - Wildlife Division · SP · South Dakota Game Fish and Parks - Wildlife Division · ~4,920 ac
 - Aurora County Waterfowl Production Area · RMA · AURORA COUNTY WATERFOWL PRODUCTION AREA · ~4,884 ac
 - Aurora County Waterfowl Production Area · RMA · Aurora County Waterfowl Production Area · ~4,884 ac
 - Roberts County Waterfowl Production Area · RMA · Roberts County Waterfowl Production Area · ~4,870 ac
 - Roberts County Waterfowl Production Area · RMA · ROBERTS COUNTY WATERFOWL PRODUCTION AREA · ~4,869 ac
-- Angostura Reservoir · RMA · Unknown · ~4,841 ac
 - Buryanek Game Production Area · SCA · Unknown · ~4,839 ac
 - Minnehaha County Waterfowl Production Area · RMA · MINNEHAHA COUNTY WATERFOWL PRODUCTION AREA · ~4,746 ac
 - Minnehaha County Waterfowl Production Area · RMA · Minnehaha County Waterfowl Production Area · ~4,746 ac
@@ -93,3 +92,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **100 of 120** parks joined
 - Charles Mix County Waterfowl Production Area · RMA · Charles Mix County Waterfowl Production Area · ~4,378 ac
 - Hand County Waterfowl Production Area · RMA · HAND COUNTY WATERFOWL PRODUCTION AREA · ~4,034 ac
 - Hand County Waterfowl Production Area · RMA · Hand County Waterfowl Production Area · ~4,034 ac
+- Pactola Reservoir · RMA · Unknown · ~3,528 ac

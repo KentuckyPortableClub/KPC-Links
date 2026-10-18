@@ -1,6 +1,6 @@
 # CA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **349 of 410** parks joined to official land (same name + same kind of place). **39** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **353 of 410** parks joined to official land (same name + same kind of place). **35** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -20,13 +20,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **349 of 410** parks joined
 - **US-3415** California State Railroad Museum State Park (State Park) → California State Capitol Museum (~6 ac, similar name); Old Sacramento State Historic Park (~15 ac, the POTA pin is inside it (different name))
 - **US-3417** Castro Adobe Historic Site (Historic Site) → Rancho San Andrés Castro Adobe (~1 ac, similar name)
 - **US-3449** John B. Dewitt Redwoods Reserve State Conservation Area (State Conservation Area) → John B. Dewitt Redwoods State Natural Reserve (~1,226 ac, similar name)
-- **US-3450** John Little Reserve State Conservation Area (State Conservation Area) → John Little State Reserve (~23 ac, similar name)
 - **US-3452** Kings Beach State Recreation Park (Recreation Park) → Kings Beach State Recreation Area (~16 ac, similar name)
 - **US-3453** Kruse Rhododendron Reserve State Conservation Area (State Conservation Area) → Kruse Rhododendron State Natural Reserve (~314 ac, similar name)
 - **US-3458** Lake Valley State Recreation Area (State Recreation Area) → Washoe Meadows State Park (~861 ac, the POTA pin is inside it (different name))
 - **US-3464** Los Osos Oaks Reserve State Conservation Area (State Conservation Area) → Los Osos Oaks State Natural Reserve (~85 ac, similar name)
 - **US-3465** Mailliard Redwoods Reserve State Conservation Area (State Conservation Area) → Mailliard Redwoods State Natural Reserve (~249 ac, similar name)
-- **US-3474** Mono Lake Tufa Reserve State Conservation Area (State Conservation Area) → Mono Lake Tufa State Reserve (~47,314 ac, same name, different kind of place); Inyo National Forest (~1,842,174 ac, the POTA pin is inside it (different name))
 - **US-3475** Montara Beach and McNee Ranch State Beach (State Beach) → Montara State Beach (~891 ac, similar name); Montara State Beach (~74 ac, similar name)
 - **US-3478** Montgomery Woods Reserve State Conservation Area (State Conservation Area) → Montgomery Woods State Natural Reserve (~2,690 ac, similar name)
 - **US-3536** Point Cabrillo Lighthouse State Historical Park (State Historical Park) → Point Cabrillo Light Station (~309 ac, similar name)
@@ -34,8 +32,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **349 of 410** parks joined
 - **US-3550** Robert W. Crown Memorial State Beach (State Beach) → Crown Memorial Regional Shoreline (~133 ac, similar name)
 - **US-3572** State Indian Museum State Park (State Park) → State Indian Museum State Historic Park (~0 ac, same name, different kind of place)
 - **US-3578** Tijuana Estuary Reserve State Conservation Area (State Conservation Area) → Tijuana Slough National Wildlife Refuge (~1,059 ac, the POTA pin is inside it (different name)); Tijuana Slough National Wildlife Refuge (~474 ac, the POTA pin is inside it (different name))
-- **US-3581** Torrey Pines Reserve State Conservation Area (State Conservation Area) → Torrey Pines State Reserve (~1,442 ac, same name, different kind of place); Torrey Pines State Beach (~8 ac, same name, different kind of place)
-- **US-3583** Tule Elk Reserve State Conservation Area (State Conservation Area) → Tule Elk State Reserve (~989 ac, similar name)
 - **US-3586** Verdugo Mountains State Park (State Park) → Verdugo Mountains Park Property (~252 ac, similar name); Verdugo Mountains Open Space Preserve (~250 ac, similar name)
 - **US-3587** Ward Creek State Park (State Park) → Ward Creek Property (~183 ac, similar name)
 - **US-4544** San Gabriel Mountains National Monument (National Monument) → Angeles National Forest (~651,783 ac, the POTA pin is inside it (different name))
@@ -82,6 +78,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **349 of 410** parks joined
 - Ridgecrest Field Office · PUB · BLM · ~1,797,315 ac
 - Palm Springs/S. Coast Field Office · PUB · BLM · ~1,694,214 ac
 - Desert National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,512,970 ac
+- Mojave National Preserve · NCA · NPS · ~1,497,876 ac
 - El Centro Field Office · PUB · BLM · ~1,338,851 ac
 - Nevada Wild Horse Range ·  · BLM herd management areas · ~1,299,285 ac
 - Triple B ·  · BLM herd management areas · ~1,235,922 ac
@@ -133,4 +130,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **349 of 410** parks joined
 - Marble Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~225,301 ac
 - Sespe Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~219,548 ac
 - Jean - Roach Dry Lake ·  · BLM recreation sites · ~210,855 ac
-- Arcata Field Office · PUB · BLM · ~203,580 ac

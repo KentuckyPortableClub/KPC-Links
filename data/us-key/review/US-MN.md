@@ -1,6 +1,6 @@
 # MN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **205 of 294** parks joined to official land (same name + same kind of place). **34** to check by hand, **55** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **207 of 294** parks joined to official land (same name + same kind of place). **32** to check by hand, **55** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -25,7 +25,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **205 of 294** parks joined
 - **US-12393** Kodonce River Unique Area (Unique Area) → Kodonce River State Wayside (~130 ac, similar name)
 - **US-12394** Ray Berglund Unique Area (Unique Area) → Ray Berglund (~47 ac, similar name)
 - **US-12395** St. Croix Boom Site Unique Area (Unique Area) → Saint Croix Islands (~12 ac, similar name)
-- **US-12463** Pool #4 Wildlife Management Area (Wildlife Management Area) → Pool 4 State Wildlife Management Area (~142 ac, similar name)
 - **US-13548** Knife River Marine Protected Area (Marine Protected Area) → Knife River State Aquatic Management Area (Lake/St. Louis) (~345 ac, similar name)
 - **US-2506** Lake Vermilion State Park (State Park) → Lake Vermilion-Soudan Underground Mine State Park (~4,094 ac, similar name)
 - **US-2517** St. Croix State Park (State Park) → Saint Croix National Scenic Riverway (~3,345 ac, similar name)
@@ -36,8 +35,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **205 of 294** parks joined
 - **US-4824** St. Croix State Forest (State Forest) → Saint Croix National Scenic Riverway (~3,345 ac, similar name)
 - **US-7145** Minnesota Valley State Recreation Area (State Recreation Area) → Minnesota Valley National Wildlife Refuge (~10,329 ac, same name, different kind of place); Minnesota Valley National Wildlife Refuge (~10,063 ac, same name, different kind of place)
 - **US-7148** Lake Vermilion Soudan Iron Mine State Park (State Park) → Lake Vermilion-Soudan Underground Mine State Park (~4,094 ac, similar name); Miscellaneous (~737,854 ac, the POTA pin is inside it (different name))
-- **US-9384** Minnesota Valley State Trail (State Trail) → Minnesota Valley National Wildlife Refuge (~10,329 ac, same name, different kind of place); Minnesota Valley National Wildlife Refuge (~10,063 ac, same name, different kind of place)
-- **US-9386** Browns Creek State Trail (State Trail) → Brown's Creek State Aquatic Management Area (Washington) (~22 ac, similar name)
+- **US-9386** Browns Creek State Trail (State Trail) → Brown's Creek State Aquatic Management Area (Washington) (~22 ac, same name, different kind of place)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 

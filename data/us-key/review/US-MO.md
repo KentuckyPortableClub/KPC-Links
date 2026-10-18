@@ -1,6 +1,6 @@
 # MO: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **454 of 561** parks joined to official land (same name + same kind of place). **56** to check by hand, **51** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **453 of 561** parks joined to official land (same name + same kind of place). **57** to check by hand, **51** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -21,12 +21,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **454 of 561** parks joined
 - **US-4839** Lester R. Davis Memorial State Forest (State Forest) → Davis (Lester R.) Memorial Forest (~79 ac, same name, different kind of place)
 - **US-5697** Atlanta Wildlife Area (Wildlife Area) → Atlanta Conservation Area (~2,381 ac, same name, different kind of place)
 - **US-5707** Lost Valley State Fish and Wildlife Area (State Fish and Wildlife Area) → Lost Valley Fish Hatchery (~938 ac, same name, different kind of place)
+- **US-5709** Nodaway State Conservation Area (State Conservation Area) → Nodaway Valley Conservation Area (~3,913 ac, similar name)
 - **US-5713** Jay Nixon State Park (State Park) → Saint Francois Mountains Natural Area (~1,453 ac, the POTA pin is inside it (different name))
 - **US-6514** Big Buffalo Creek State Conservation Area (State Conservation Area) → Big Buffalo Creek Natural Area (~1,516 ac, same name, different kind of place)
 - **US-6529** Truman Reservoir Management Lands State Park (State Park) → Harry Truman Recreation Area (~165,658 ac, the POTA pin is inside it (different name))
 - **US-7189** Beaver Creek State Recreation Area (State Recreation Area) → Bull Shoals Recreation Area (~37,464 ac, the POTA pin is inside it (different name))
 - **US-7502** A. Busch Jr at Four Rivers Wetland Reserve (Wetland Reserve) → August A. Busch Jr. Mem Wetlands At Four Rivers Conservation Area (~12,602 ac, similar name)
 - **US-7516** White Memorial State Conservation Area (State Conservation Area) → White (Wm. G. And E. P.) Memorial Wildlife Area (~821 ac, same name, different kind of place)
+- **US-7519** Bridger State Conservation Area (State Conservation Area) → Bridger (Jim) Urban Conservation Area (~320 ac, similar name)
 - **US-7654** Hazel Hill Lake State Conservation Area (State Conservation Area) → Hazel Hill Lake (~504 ac, same name, different kind of place)
 - **US-7655** J.N. Turkey Kearn Memorial Wildlife Area (Wildlife Area) → Kearn (J. N. Turkey) Memorial Wildife Area (~1,699 ac, same name, different kind of place)
 - **US-7656** Ralph and Martha Perry Memorial State Wildlife Area (State Wildlife Area) → Perry (R. And M.) Memorial Conservation Area (~4,203 ac, similar name)
@@ -58,7 +60,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **454 of 561** parks joined
 - **US-8244** Caney State Conservation Area (State Conservation Area) → Caney Mountain Conservation Area (~6,486 ac, similar name); Caney Mountain Natural Area (~1,491 ac, similar name)
 - **US-8254** Mincy State Conservation Area (State Conservation Area) → Drury-Mincy Conservation Area (~6,309 ac, similar name)
 - **US-8301** Ripgut Prairie State Conservation Area (State Conservation Area) → Ripgut Prairie Natural Area (~280 ac, same name, different kind of place)
-- **US-8304** McGee Family State Conservation Area (State Conservation Area) → Mcgee Family Ca (~992 ac, same name, different kind of place)
 - **US-9753** Katy Trail Rock Island Spur State Park (State Park) → Katy Trail (~191 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -159,6 +160,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **454 of 561** parks joined
 - Shanks (Ted) Conservation Area · SCA · Unknown · ~4,161 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~4,065 ac
 - Flag Spring Conservation Area · SCA · Unknown · ~3,990 ac
+- Nodaway Valley Conservation Area · SCA · Unknown · ~3,913 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~3,773 ac
 - Meredosia National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,698 ac
 - Graves Mountain Conservation Area · SCA · Unknown · ~3,234 ac
@@ -175,7 +177,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **454 of 561** parks joined
 - Brickyard Hill Natural Area · SCA · Unknown · ~2,178 ac
 - Donaldson Point Natural Area · SCA · Unknown · ~2,157 ac
 - Montauk Fish Hatchery/Trout Park · SOTH · Unknown · ~2,073 ac
-- Black Island Ca (Stephen C Bradford Unit) · SCA · Unknown · ~2,070 ac
 - Huckleberry Ridge Conservation Area · SCA · Unknown · ~2,066 ac
 - Middle Mississippi River National Wildlife Refuge · NWR · MIDDLE MISSISSIPPI RIVER NATIONAL WILDLIFE REFUGE · ~2,027 ac
 - Middle Mississippi River National Wildlife Refuge · NWR · Middle Mississippi River National Wildlife Refuge · ~2,025 ac

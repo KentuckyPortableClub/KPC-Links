@@ -1,6 +1,6 @@
 # WY: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 298** parks joined to official land (same name + same kind of place). **55** to check by hand, **58** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **132 of 298** parks joined to official land (same name + same kind of place). **59** to check by hand, **57** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -48,10 +48,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 298** parks joined
 - **US-6197** Popo Agie Wilderness Area (Wilderness Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Wind River Front SRMA (~258,170 ac, the POTA pin is inside it (different name))
 - **US-6198** Salt Wells Creek BLM Herd Management Area (BLM Herd Management Area) → Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name))
 - **US-6199** White Mountain Petroglyphs BLM Historic Preservation Site (BLM Historic Preservation Site) → White Mountain (~207,372 ac, similar name); Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Rock Springs Field Office ERMA (~3,308,154 ac, the POTA pin is inside it (different name))
+- **US-6201** Bridger Wilderness Area (Wilderness Area) → Bridger Wilderness (~426,751 ac, similar name); Bridger National Forest (~1,734,322 ac, same name, different kind of place); Rock Springs Field Office (~3,606,721 ac, the POTA pin is inside it (different name)); Wind River Front SRMA (~258,170 ac, the POTA pin is inside it (different name))
 - **US-6207** Clarks Fork of the Yellowstone National Wild & Scenic River (National Wild & Scenic River) → Shoshone National Forest (~2,439,182 ac, the POTA pin is inside it (different name))
 - **US-6210** Teton Wilderness Area (Wilderness Area) → Teton Wilderness (~584,733 ac, similar name); Teton National Forest (~1,660,590 ac, same name, different kind of place)
+- **US-6211** Washakie Wilderness Area (Wilderness Area) → Washakie Wilderness (~693,934 ac, similar name); Shoshone National Forest (~2,439,182 ac, the POTA pin is inside it (different name))
 - **US-6212** Whiskey Basin/ Little Red Creek Wildlife Management Area (Wildlife Management Area) → Whiskey Basin Wildlife Habitat Management Area (~12,843 ac, the POTA pin is inside it (different name))
+- **US-6217** Fitzpatrick Wilderness Area (Wilderness Area) → Fitzpatrick Wilderness (~198,906 ac, similar name); Shoshone National Forest (~2,439,182 ac, the POTA pin is inside it (different name))
 - **US-6219** Lombard Ferry State Historic Site (State Historic Site) → Seedskadee National Wildlife Refuge (~25,985 ac, the POTA pin is inside it (different name)); Seedskadee National Wildlife Refuge (~25,985 ac, the POTA pin is inside it (different name))
+- **US-6221** Fontenelle Creek BLM Recreation Management Area (BLM Recreation Management Area) → Fontenelle Reservoir (~8,131 ac, same name, different kind of place); Usbr (~735,338 ac, the POTA pin is inside it (different name))
 - **US-6222** Names Hill State Historic Site (State Historic Site) → Names Hill (~3 ac, same name, different kind of place)
 - **US-6224** Fort Bridger State Historic Site (State Historic Site) → Fort Bridger (~41 ac, same name, different kind of place)
 - **US-6225** Fort Supply State Historic Site (State Historic Site) → Fort Supply (~0 ac, same name, different kind of place)
@@ -112,7 +116,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 298** parks joined
 - US-6215 Simpsons Hollow BLM Recreation Management Area (BLM Recreation Management Area) → on Little Colorado (~525,421 ac); Rock Springs Field Office (~3,606,721 ac)
 - US-6216 Pilot Butte Overlook BLM Interpretive Site (BLM Interpretive Site) → on Little Colorado (~525,421 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
 - US-6220 NHT Auto Tour Route BLM Interpretive Site (BLM Interpretive Site) → on Seedskadee National Wildlife Refuge (~25,985 ac); Seedskadee National Wildlife Refuge (~25,985 ac)
-- US-6221 Fontenelle Creek BLM Recreation Management Area (BLM Recreation Management Area) → on Usbr (~735,338 ac)
 
 ## Nothing found in PAD-US
 
@@ -162,7 +165,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 298** parks joined
 - US-4574 Nez Perce National Historic Trail (National Historic Trail)
 - US-4576 Oregon National Historic Trail (National Historic Trail)
 - US-4578 Pony Express National Historic Trail (National Historic Trail)
-- US-5793 Flaming Gorge National Recreation Area (National Recreation Area)
 - US-6107 Hawk Springs State Recreation Area (State Recreation Area)
 - US-6113 Grayrocks Reservoir State Recreation Area (State Recreation Area)
 - US-6117 Camp Douglas WW-II POW Officers' Club State Historic Site (State Historic Site)
@@ -193,13 +195,16 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 298** parks joined
 - Pinedale Field Office ERMA ·  · BLM recreation sites · ~892,883 ac
 - Buffalo Field Office · PUB · BLM · ~779,089 ac
 - Usbr · FOTH · Unknown · ~735,338 ac
+- Washakie Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~693,934 ac
 - Teton Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~584,733 ac
+- Bridger Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~426,751 ac
 - North Absaroka Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~346,320 ac
 - Newcastle Field Office · PUB · BLM · ~279,233 ac
 - Newcastle Field Office ERMA ·  · BLM recreation sites · ~273,309 ac
 - Wind River Front SRMA ·  · BLM recreation sites · ~258,170 ac
 - Powder River Basin ERMA ·  · BLM recreation sites · ~224,080 ac
 - Badlands SRMA ·  · BLM recreation sites · ~211,695 ac
+- Fitzpatrick Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~198,906 ac
 - West Slope SRMA ·  · BLM recreation sites · ~190,622 ac
 - McCullough Peaks SRMA ·  · BLM recreation sites · ~159,811 ac
 - West Slope SRMA ·  · BLM recreation sites · ~129,768 ac
@@ -211,7 +216,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 298** parks joined
 - Oregon Trail SRMA ·  · BLM recreation sites · ~61,253 ac
 - National Historic Trails Destination SRMA ·  · BLM recreation sites · ~59,924 ac
 - Gardner Mountain ERMA ·  · BLM recreation sites · ~55,153 ac
-- Flaming Gorge Reservoir National Recreation Area · REC · Forest Service (USFS) · ~44,237 ac
 - Absaroka Mountain Foothills SRMA ·  · BLM recreation sites · ~42,866 ac
 - Sweetwater Rocks Undeveloped SRMA ·  · BLM recreation sites · ~41,761 ac
 - Killpecker Sand Dunes SRMA ·  · BLM recreation sites · ~39,245 ac
@@ -226,7 +230,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 298** parks joined
 - South Bighorns ERMA ·  · BLM recreation sites · ~25,550 ac
 - PRYOR MOUNTAIN WILD HORSE RANGE ·  · BLM herd management areas · ~23,815 ac
 - PRYOR MOUNTAIN WILD HORSE RANGE ·  · BLM herd management areas · ~23,815 ac
-- Pathfinder Reservoir · RMA · Unknown · ~20,704 ac
 - Rock Creek ·  · BLM herd management areas · ~19,107 ac
 - Stateline SRMA ·  · BLM recreation sites · ~15,870 ac
 - Whiskey Basin Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~12,843 ac
@@ -236,4 +239,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 298** parks joined
 - Sweetwater Canyon Undeveloped SRMA ·  · BLM recreation sites · ~9,154 ac
 - Newcastle Field Office · PUB · BLM · ~8,871 ac
 - Red Canyon Creek ERMA ·  · BLM recreation sites · ~8,426 ac
-- Fontenelle Reservoir · RMA · Unknown · ~8,131 ac

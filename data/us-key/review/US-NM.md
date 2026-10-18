@@ -1,10 +1,9 @@
 # NM: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 122** parks joined to official land (same name + same kind of place). **20** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **81 of 122** parks joined to official land (same name + same kind of place). **19** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0678** Valles Caldera Preserve National Conservation Area (National Conservation Area) → Valles Caldera National Preserve (~88,967 ac, same name, different kind of place)
 - **US-0961** Salinas Pueblo Missions, Gran Quivira Unit, National Monument (National Monument) → Salinas Pueblo Missions National Monument (~980 ac, similar name)
 - **US-11785** Fort Stanton Historic Site (Historic Site) → Fort Stanton - Snowy River National Conservation Area (~0 ac, similar name); Fort Stanton (~24,654 ac, same name, different kind of place); State Trust Land (~8,875,233 ac, the POTA pin is inside it (different name))
 - **US-11789** Fort Selden Historic Site (Historic Site) → Fort Selden State Park (~30 ac, same name, different kind of place)
@@ -70,7 +69,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 122** parks joined 
 - Taos Plateau ·  · BLM recreation sites · ~186,840 ac
 - Jornada Experimental Range · REA · Agricultural Research Service (ARS) · ~109,258 ac
 - Carson Other · NF · Forest Service Region 03 Southwestern · ~101,380 ac
-- Valles Caldera National Preserve · NCA · NPS · ~88,967 ac
 - Ojo Caliente ·  · BLM recreation sites · ~72,019 ac
 - Coronado National Forest · NF · Forest Service Region 03 Southwestern · ~68,124 ac
 - Usbr · FOTH · Unknown · ~57,247 ac
@@ -108,6 +106,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **80 of 122** parks joined 
 - Sombrillo ·  · BLM recreation sites · ~16,898 ac
 - Bordo Atravesado ·  · BLM herd management areas · ~16,492 ac
 - Thomas Canyon ·  · BLM recreation sites · ~15,759 ac
+- Boca del Oso ·  · BLM recreation sites · ~14,531 ac
 - Boca del Oso ·  · BLM recreation sites · ~14,531 ac
 - Boca del Oso ·  · BLM recreation sites · ~14,531 ac
 - Boca del Oso ·  · BLM recreation sites · ~14,531 ac

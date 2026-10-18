@@ -1,6 +1,6 @@
 # AK: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **67 of 179** parks joined to official land (same name + same kind of place). **28** to check by hand, **54** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **71 of 179** parks joined to official land (same name + same kind of place). **24** to check by hand, **54** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -11,6 +11,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **67 of 179** parks joined 
 - **US-0893** Tlikakila National Wild and Scenic River (National Wild and Scenic River) → Lake Clark National Park (~2,487,856 ac, the POTA pin is inside it (different name))
 - **US-11244** Knik River Public Use Area State Recreation Area (State Recreation Area) → Knik SRMA (~79,498 ac, similar name); State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
 - **US-11798** Tangle Lakes Archeological Reserve (Archeological Reserve) → Glennallen Field Office (~4,244,135 ac, the POTA pin is inside it (different name)); Denali Highway SRMA (~557,672 ac, the POTA pin is inside it (different name))
+- **US-11804** Gulkana BLM Wild and Scenic River (BLM Wild and Scenic River) → Gulkana River SRMA (~94,513 ac, similar name); Glennallen Field Office (~89,450 ac, the POTA pin is inside it (different name))
 - **US-11854** Pinnell Mountain National Recreation Trail (National Recreation Trail) → State Tentatively Approved (tad) (~43,045,454 ac, the POTA pin is inside it (different name))
 - **US-12381** Delta BLM Wild and Scenic River (BLM Wild and Scenic River) → Delta River SRMA (~43,744 ac, similar name); Glennallen Field Office (~36,210 ac, the POTA pin is inside it (different name))
 - **US-12678** Little Nelchina State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
@@ -27,11 +28,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **67 of 179** parks joined 
 - **US-7252** Halibut Point State Recreation Site (State Recreation Site) → Halibut Point State Recreation Park (~22 ac, same name, different kind of place)
 - **US-7253** Old Sitka State Park (State Park) → Old Sitka State Historic Park & Boat Ramp (~5 ac, similar name)
 - **US-7884** Kenai Mountains-Turnagain Arm National Heritage Area (National Heritage Area) → State Land Disposals - Municipal Purposes (~676,504 ac, the POTA pin is inside it (different name))
-- **US-9698** Goose Bay Wildlife Refuge (Wildlife Refuge) → Goose Bay State Game Refuge (~4,495 ac, same name, different kind of place)
-- **US-9699** Mendenhall Wetlands Wildlife Refuge (Wildlife Refuge) → Mendenhall Wetlands State Game Refuge (~3,073 ac, same name, different kind of place)
-- **US-9700** Minto Flats Wildlife Refuge (Wildlife Refuge) → Minto Flats State Game Refuge (~480,573 ac, same name, different kind of place)
-- **US-9701** Palmer Hay Flats Wildlife Refuge (Wildlife Refuge) → Palmer Hay Flats State Game Refuge (~22,839 ac, same name, different kind of place)
-- **US-9702** Susitna Flats Wildlife Refuge (Wildlife Refuge) → Susitna Flats State Game Refuge (~296,685 ac, same name, different kind of place)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -151,7 +147,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **67 of 179** parks joined 
 - Denali Highway SRMA ·  · BLM recreation sites · ~557,672 ac
 - Copper River Delta Critical Habitat Area · SCA · Unknown · ~543,173 ac
 - Steese SRMA ·  · BLM recreation sites · ~539,040 ac
-- Minto Flats State Game Refuge · SCA · Unknown · ~480,573 ac
 - Alaska Maritime National Wildlife Refuge · NWR · ALASKA MARITIME NATIONAL WILDLIFE REFUGE · ~478,341 ac
 - Alaska Maritime National Wildlife Refuge · NWR · ALASKA MARITIME NATIONAL WILDLIFE REFUGE · ~464,348 ac
 - Stikine-LeConte Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~440,197 ac
@@ -159,7 +154,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **67 of 179** parks joined 
 - Russell Fjord Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~350,158 ac
 - South Baranof Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~315,851 ac
 - Haines State Forest Resource Management Area · SRMA · Unknown · ~304,424 ac
-- Susitna Flats State Game Refuge · SCA · Unknown · ~296,685 ac
 - Delta Range SRMA ·  · BLM recreation sites · ~276,621 ac
 - West Chichagof-Yakobi Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~272,004 ac
 - Haines ERMA ·  · BLM recreation sites · ~252,129 ac
@@ -180,8 +174,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **67 of 179** parks joined 
 - State Patented · SOTH · Unknown · ~102,494 ac
 - Endicott River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~98,396 ac
 - Gulkana River SRMA ·  · BLM recreation sites · ~94,513 ac
+- Glennallen Field Office · PUB · BLM · ~89,450 ac
 - South Prince of Wales Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~87,034 ac
 - Delta Junction Bison Range Area · SRMA · Unknown · ~86,914 ac
 - South Etolin Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~83,430 ac
 - Yakataga State Game Refuge · SCA · Unknown · ~80,615 ac
 - Knik SRMA ·  · BLM recreation sites · ~79,498 ac
+- Toolik Lake RNA ·  · BLM recreation areas · ~78,034 ac

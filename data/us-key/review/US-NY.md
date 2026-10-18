@@ -1,23 +1,24 @@
 # NY: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **798 of 850** parks joined to official land (same name + same kind of place). **29** to check by hand, **23** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **800 of 850** parks joined to official land (same name + same kind of place). **28** to check by hand, **22** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0681** Upper Delaware National Wild and Scenic River (National Wild and Scenic River) → Upper Delaware Scenic and Recreational River (~10 ac, similar name)
-- **US-10292** Watson's East Triangle Complex State Preserve (State Preserve) → Watson'S East Triangle Wild Forest (~13,472 ac, similar name)
 - **US-11861** Nick’s Lake Campground and Day Use State Recreation Site (State Recreation Site) → Nicks Lake Campground (~687 ac, similar name)
 - **US-12060** Crystal Lake State Forest (State Forest) → Crystal Lake Wild Forest (~502 ac, same name, different kind of place)
 - **US-12166** Edgewood Oak Brush Plains State Forest (State Forest) → Edgewood Oak Brush Plains  Preserve (~807 ac, same name, different kind of place)
+- **US-2006** Artpark State Park (State Park) → Earl W. Brydges Artpark (~162 ac, similar name)
 - **US-2081** Iona Island Wildlife Management Area (Wildlife Management Area) → Bear Mountain State Park (~5,477 ac, the POTA pin is inside it (different name))
+- **US-2095** Lakeside State Park (State Park) → Lakeside Beach State Park (~705 ac, similar name)
 - **US-2097** Lock 32 Canal State Park (State Park) → Canal Park at Lock 32 (Pittsford) (~13 ac, similar name); Erie Canal (~17,563 ac, the POTA pin is inside it (different name))
 - **US-5121** Big Buck Mountain Unique Area (Unique Area) → Big Buck Mountain Multiple Use Area (~181 ac, similar name)
 - **US-5146** Burt Hill State Forest (State Forest) → Burt Hill Multiple Use Area (~398 ac, similar name)
 - **US-5197** Dannemora State Forest (State Forest) → Chazy Highlands State Forest (~5,544 ac, the POTA pin is inside it (different name))
 - **US-5218** Nutten Hook State Conservation Area (State Conservation Area) → Nutten Hook State Tidal Wetland (~823 ac, similar name)
+- **US-5265** Raecher State Forest (State Forest) → Raecher Hill State Forest (~841 ac, similar name)
 - **US-5270** Reinstein Woods State Nature Preserve (State Nature Preserve) → Reinstein Woods Nature Preserve And Environmental Education Center (~284 ac, similar name); Reinstein Woods Nature Preserve And Environmental Education Center (~8 ac, similar name)
 - **US-5308** Split Rock State Forest (State Forest) → Split Rock Wild Forest (~3,543 ac, same name, different kind of place)
-- **US-5315** Stid Hill Wildlife Management Area (Wildlife Management Area) → Stid Hill Mua (~1,035 ac, same name, different kind of place)
 - **US-5338** Tibbetts State Forest (State Forest) → Tibbitts State Forest (~847 ac, the POTA pin is inside it (different name))
 - **US-5361** Wellman State Forest (State Forest) → Wellman Multiple Use Area (~445 ac, similar name)
 - **US-5376** Witch's Hole Multiple Use Area (Multiple Use Area) → Witch'S Hole State Forest (~592 ac, similar name)
@@ -28,8 +29,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **798 of 850** parks joined
 - **US-8089** Great Kills Park State Recreation Area (State Recreation Area) → Gateway National Recreation Area (~18,548 ac, the POTA pin is inside it (different name))
 - **US-8093** David A. Sarnoff Pine Barrens State Forest (State Forest) → David A. Sarnoff  Preserve (~2,689 ac, similar name)
 - **US-8622** Carlton Hill Multiple Use Area (Multiple Use Area) → Carlton Hill Mua (~2,499 ac, similar name)
-- **US-9038** Birch Run Ponds Wildlife Management Area (Wildlife Management Area) → Birch Run Ponds Fwma (~39 ac, same name, different kind of place)
-- **US-9040** Cazenovia Creek Wildlife Management Area (Wildlife Management Area) → Cazenovia Creek Fwma (~127 ac, same name, different kind of place); West Seneca State Developmental Center (~416 ac, the POTA pin is inside it (different name))
 - **US-9052** Harwood Lake Multiple Use Area (Multiple Use Area) → Harwood Lake Mua (~301 ac, similar name)
 - **US-9060** Watts Flats Wildlife Management Area (Wildlife Management Area) → Watts Wma (~1,392 ac, similar name)
 - **US-9124** Charles Flood Wildlife Management Area (Wildlife Management Area) → Charles Flood Wma At The Empire Brickyard (~590 ac, similar name)
@@ -40,7 +39,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **798 of 850** parks joined
 ## Nothing found in PAD-US
 
 - US-0778 Hamilton Grange National Memorial (National Memorial)
-- US-10293 Raquette Boreal Complex State Preserve (State Preserve)
 - US-12113 Blue Hill State Forest (State Forest)
 - US-13270 Otis Pike Pine Barrens State Forest (State Forest)
 - US-2001 Adirondack State Park (State Park)
@@ -69,7 +67,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **798 of 850** parks joined
 - West Canada Lake Wilderness · SW · NYS Department of Environmental Conservation · ~174,521 ac
 - Ferris Lake Wild Forest · SCA · NYS Department of Environmental Conservation · ~148,060 ac
 - Five Ponds Wilderness · SW · NYS Department of Environmental Conservation · ~131,269 ac
-- Black River Wild Forest · SCA · NYS Department of Environmental Conservation · ~128,247 ac
 - Wilcox Lake Wild Forest · SCA · NYS Department of Environmental Conservation · ~126,690 ac
 - Siamese Ponds Wilderness · SW · NYS Department of Environmental Conservation · ~115,123 ac
 - Silver Lake Wilderness · SW · NYS Department of Environmental Conservation · ~109,668 ac
@@ -118,10 +115,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **798 of 850** parks joined
 - Little Moose Wilderness · SW · NYS Department of Environmental Conservation · ~12,293 ac
 - Willowemoc Wild Forest · SREC · NYS Department of Environmental Conservation · ~11,487 ac
 - Round Lake Wilderness · SW · NYS Department of Environmental Conservation · ~11,415 ac
-- Raquette Boreal · SRMA · NY Department of Environmental Conservation · ~10,214 ac
 - White Hill Wild Forest · SCA · NYS Department of Environmental Conservation · ~9,719 ac
 - Dry Brook Ridge Wild Forest · SCA · NYS Department of Environmental Conservation · ~9,425 ac
 - Hickory Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,633 ac
 - Kaaterskill Wild Forest · SCA · NYS Department of Environmental Conservation · ~8,104 ac
 - Appalachian National Scenic Trail · NT · NPS · ~8,085 ac
 - Jay Mountain Wilderness · SW · NYS Department of Environmental Conservation · ~7,868 ac
+- Great Swamp National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,853 ac
+- Phoenicia - Mt. Tobias Wild Forest · SCA · NYS Department of Environmental Conservation · ~7,826 ac
