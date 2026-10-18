@@ -58,10 +58,17 @@
    "county": "Ballard",
    "points": [
     {
+     "la": 37.073505,
+     "lo": -89.151987,
+     "q": "A",
+     "what": "Set up here on the river bank (KPC field check)",
+     "note": "Brandon KZ4CP checked this spot: inside Boatwright WMA and on the river, about 50 ft from the water at normal level. The park line is close by, so stay on the river side. The Ohio floods here at times."
+    },
+    {
      "la": 37.07351,
      "lo": -89.15224,
      "q": "C",
-     "what": "Riverbank area (approximate)",
+     "what": "Backup: riverbank area (older map pin)",
      "note": "Pin is on the river side of the park in our map data, not checked against the water line. Walk to the water and set up inside the park within 100 ft of the water."
     },
     {
@@ -2193,7 +2200,8 @@
   "Added US-0608 Ohio River Islands National Wildlife Refuge (Manchester islands, Lewis County, boat only) as a possible Lewis & Clark 2-fer.",
   "Sheltowee Trace + Big South Fork NRA: added the Yamacraw trail spot (KY 92 bridge, 36.725318, -84.543018, suggested by KZ4CP) and the KDFWR Yamacraw river access parking. Checked: not a 3-fer, the Big South Fork Wild River (US-10107) runs only from the Tennessee line to Blue Heron (POTA park notes and KY GIS).",
   "Oct 17, 2026: Pins rechecked (Brandon: make sure they are in the overlap, as close as they can be to an access point): 31 spots updated; every overlap and trail pin is at least 100 ft inside every park line and as close as possible to parking, a trailhead or the trail crossing on file.",
-  "Oct 18, 2026: Ballard WMA 3-fer (Lewis & Clark + Trail of Tears on the Ohio): Brandon KZ4CP's field-checked shore spot 37.169117, -89.068913 added as the first pin (park on the shore, walk right a little to the water; the shore floods at times)."
+  "Oct 18, 2026: Ballard WMA 3-fer (Lewis & Clark + Trail of Tears on the Ohio): Brandon KZ4CP's field-checked shore spot 37.169117, -89.068913 added as the first pin (park on the shore, walk right a little to the water; the shore floods at times).",
+  "Oct 18, 2026: Boatwright WMA 3-fer (Lewis & Clark + Trail of Tears on the Ohio): Brandon KZ4CP's field-checked river-bank spot 37.073505, -89.151987 added as the main pin (inside the WMA, about 50 ft from the mapped water edge); the old pin, which sat on the park line, is kept as a backup."
  ],
  "trips": [
   {
