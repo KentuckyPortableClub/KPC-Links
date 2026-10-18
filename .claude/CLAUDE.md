@@ -421,4 +421,5 @@ named paths). report data/trails/state-report.json: found / missing / noline / a
 - **STEP 3 — the rest of the world ONLY where it's busy:** Brandon isn't sure it's worth it (little activity). Before any Europe/world work, rank
   POTA programs by recent activations (api.pota.app; e.g. per-location parks + activations) and only map the top areas. Europe outlines are already
   live (KPCB.euro) in Info Finder / Kit / In-Park; planner park cards + outlines for busy programs would come first; UK needs its own nature maps.
+- **POTA activity ranking (Oct 17, all-time activations per program from api.pota.app/location/parks, one-off Actions run):** US 1,605,481 · JP 175,273 (1,308 parks, all activated) · CA 126,549 · DE 52,822 · GB 42,967 · PL 38,373 · AU 21,149 (11,334 parks, 4,710 activated) · ES 17,538 · FR 17,500 · CH 12,348 · then AT 6.7k, NO 6.3k, NL 6.2k, PT 6.0k, RO 5.1k, CN 4.2k, SE 3.7k, KR 3.6k, CZ 3.2k, SI 3.0k, TH 3.0k; NZ 2.3k; MX only 623. So after Canada: JAPAN first (busiest by far), then Germany, UK, Poland, Australia (Brandon guessed JA + VK).
 
