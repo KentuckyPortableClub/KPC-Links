@@ -30,7 +30,7 @@ def get(url, params, tries=5):
 def flat(s): return ''.join(c for c in unicodedata.normalize('NFKD', str(s or '')) if not unicodedata.combining(c)).lower()
 
 
-GEN = (r"national historic site of canada|national historic site|lieu historique national du canada|lieu historique national|historic site|lieu historique|"
+GEN = (r"natural area under private stewardship|under private stewardship|parc nature|campground|national historic site of canada|national historic site|lieu historique national du canada|lieu historique national|historic site|lieu historique|"
        r"national wildlife area|reserve nationale de faune|migratory bird sanctuary|refuge d oiseaux migrateurs|bird sanctuary|wildlife management area|"
        r"wildlife refuge|wildlife area|reserve faunique|refuge faunique|national park reserve|national park of canada|parc national du canada|national park|parc national|"
        r"national marine conservation area|marine park|provincial park|parc provincial|territorial park|parc territorial|regional park|parc regional|"
@@ -121,6 +121,55 @@ notice('CPCAD read', f'{len(recs)} areas')
 if len(recs) < 3000: raise SystemExit('Too few CPCAD areas read; keeping the old files.')
 
 
+# ---------------- provincial + Parks Canada layers (the same official list kpc_canada_bounds.py uses), pulled whole ----------------
+_src = open('.github/scripts/kpc_canada_bounds.py', encoding='utf-8').read()
+_ns = {'re': re}; exec(_src[_src.index('CA = ('):_src.index('BCWFS =')], _ns)
+NAMEY = re.compile(r'(name|nom|toponym|title)', re.I)
+HINT = [('Ontario Parks', {'pp'}), ('conservation reserves', {'ca'}), ('ecological reserves', {'eco'}), ('wildlife', {'wma'})]
+
+
+def arc_pull(label, url, nf):
+    lays = []
+    if re.search(r'/(MapServer|FeatureServer)/\d+$', url): lays = [url]
+    else:
+        info = get(url, {'f': 'json'})
+        for l in info.get('layers') or []:
+            lays.append(f"{url}/{l['id']}")
+    got = []
+    for lu in lays:
+        try: li = get(lu, {'f': 'json'})
+        except Exception as e: notice('Canada extra', f'{label} {lu}: {e}'); continue  # noqa: BLE001
+        if 'Polygon' not in str(li.get('geometryType', '')): continue
+        fl = [f['name'] for f in li.get('fields', [])]
+        names = [n for n in (nf or []) if n in fl] or [f for f in fl if NAMEY.search(f) and not re.search(r'(file|url|link|code|id$)', f, re.I)][:3]
+        oidf = li.get('objectIdField') or 'OBJECTID'; mx = int(li.get('maxRecordCount') or 1000); off = 0
+        while True:
+            try:
+                j = get(f'{lu}/query', {'where': '1=1', 'outFields': ','.join([oidf] + names), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.02,
+                                        'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000), 'orderByFields': oidf}, tries=3)
+            except Exception as e: notice('Canada extra', f'{label}: {e}'); break  # noqa: BLE001
+            fs = j.get('features', [])
+            for f in fs:
+                a = f.get('attributes') or {}; g = f.get('geometry') or {}
+                nm = next((str(a[n]) for n in names if a.get(n)), '')
+                if not nm: continue
+                r = {'oid': f'{label[:12]}:{a.get(oidf)}', 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
+                r['_k'] = kinds(nm) | next((k for h, k in HINT if h.lower() in label.lower()), set())
+                got.append(r)
+            if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
+            off += len(fs); time.sleep(.4)
+    return got
+
+
+extra = 0
+for e in _ns['EXTRA']:
+    if e[1] != 'arcgis': continue
+    try: g = arc_pull(e[0], e[2], e[3]); recs += g; extra += len(g); print(f'{e[0]}: {len(g)}', flush=True)
+    except Exception as ex: notice('Canada extra', f'{e[0]} FAILED: {ex}')  # noqa: BLE001
+notice('Canada extra layers', f'{extra} areas from the provincial + Parks Canada maps')
+PRIV = re.compile(r'private|privately|stewardship|ncc \d|nature conservancy', re.I)
+
+
 def acres(r): return round((r['ha'] or 0) * 2.47105)
 
 
@@ -136,8 +185,9 @@ for pv, parks_in in sorted(by.items()):
         m, c = [], []
         for r in recs:
             if la is not None and not near(la, lo, r['_bb'], .6): continue
+            if PRIV.search(r['n'] + ' ' + str(r['ow'])): continue      # private stewardship land is never joined (only listed to check)
             if (same_name(name, r['n']) or (r['nf'] and same_name(name, r['nf']))) and same_kind(kp, r['_k']):
-                m.append([r['oid'], r['n'] or r['nf'], acres(r), 'name'])
+                m.append([r['oid'], r['n'] or r['nf'], acres(r), 'name' if not r.get('src') else 'name · ' + r['src']])
         if not m and la is not None:
             for r in recs:
                 if not near(la, lo, r['_bb'], .03): continue
@@ -154,7 +204,7 @@ for pv, parks_in in sorted(by.items()):
         parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda q: -q[2]), 'c': c}
     cnt = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
            'none': sum(1 for p in parks.values() if not p['m'] and not p['c'])}
-    out = {'updated': time.strftime('%Y-%m-%d'), 'prov': pv, 'source': 'CPCAD (Environment and Climate Change Canada), Open Government Licence - Canada',
+    out = {'updated': time.strftime('%Y-%m-%d'), 'prov': pv, 'source': 'CPCAD (Environment and Climate Change Canada) + provincial and Parks Canada maps, Open Government Licence',
            'note': 'm = joined (same name + same kind), c = check by hand (NOT joined).', 'counts': cnt, 'parks': parks}
     (OUT / f'CA-{pv}.json').write_text(json.dumps(out, separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
     R = OUT / 'review'; R.mkdir(exist_ok=True)
