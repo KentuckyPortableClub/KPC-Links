@@ -113,7 +113,7 @@
 "US-4688":{"n":"Kentenia State Forest","t":"State Forest","tracts":[["bwma","Kentenia State Forest",4060,"name",5]]},
 "US-4689":{"n":"Kentucky Ridge State Forest","t":"State Forest","tracts":[["bwma","Kentucky Ridge State Forest",11736,"name",6]]},
 "US-4690":{"n":"Knobs State Forest","t":"State Forest","tracts":[["bwma","Knobs State Forest and WMA",1530,"alias",2],["bwma","Knobs State Forest",493,"name",1]]},
-"US-4692":{"n":"Pennyrile State Forest","t":"State Forest","tracts":[["bwma","Pennyrile State Forest",16149,"name",8]]},
+"US-4692":{"n":"Pennyrile State Forest","t":"State Forest","tracts":[["bwma","Pennyrile State Forest",15226,"name",8]]},
 "US-4693":{"n":"Tygarts State Forest","t":"State Forest","tracts":[["bwma","Tygarts State Forest",1169,"name",3]]},
 "US-7708":{"n":"Mill Springs Battlefield National Monument","t":"National / NPS","tracts":[["bnps","Mill Springs Battlefield National Monument",1465,"name",4]]},
 "US-7890":{"n":"Isaac Shelby Cemetery State Historic Site","t":"Other","tracts":[["bstate","Isaac Shelby Cemetery State Historic Site",3,"name",1]]},
