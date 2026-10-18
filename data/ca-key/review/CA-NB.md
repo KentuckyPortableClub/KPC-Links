@@ -1,32 +1,27 @@
 # Canada NB: POTA parks vs official land (CPCAD)
 
-Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **250 of 562** joined (same name + same kind). **53** to check, **259** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **255 of 562** joined (same name + same kind). **46** to check, **260** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
 - **CA-0778** Ile-Aux-Foins (Hay Island) Recreation Park (Recreation Park) → Miramichi Bay Closure (~362,854 ac, the POTA pin is inside it (different name))
 - **CA-0789** Murray Beach Provincial Park (Provincial Park) → Scallop Buffer Zone (SFA 22) (~704,937 ac, the POTA pin is inside it (different name))
 - **CA-1227** Caughey-Taylor Nature Reserve (Nature Reserve) → Caughey-Taylor, Private Land Component (~455 ac, similar name); Caughey-Taylor, Private Land Component (~9 ac, similar name); Caughey-Taylor, Crown Land Component (~7 ac, similar name); Caughey-Taylor, Crown Land Component (~0 ac, similar name); Caughey-Taylor, Private Land Component (~0 ac, similar name); Caughey-Taylor, Crown Land Component (~0 ac, similar name)
+- **CA-1241** Irving Nature Nature Conservation Reserve (Nature Conservation Reserve) → Irving Nature Park (~557 ac, same name, different kind of place); Irving Nature Park (~228 ac, same name, different kind of place); Irving Nature Park (~46 ac, same name, different kind of place); Irving Nature Park (~5 ac, same name, different kind of place)
 - **CA-1250** Pokeshaw Protected Landscape Area (Protected Landscape Area) → Pokeshaw (~1 ac, similar name); Pokeshaw (~0 ac, similar name); Scallop Buffer Zone (SFA 21) (~117,886 ac, the POTA pin is inside it (different name))
-- **CA-1254** Seven Days Work Cliff Nature Reserve (Nature Reserve) → Seven Days Work Cliff Nature Preserve (~26 ac, similar name); Seven Days Work Cliff Nature Preserve (~25 ac, similar name); Seven Days Work Cliff Nature Preserve (~5 ac, similar name)
 - **CA-4419** Johnson's Mills Shorebird Protected Area (Protected Area) → Johnson's Mills (~362 ac, similar name); Johnson's Mills (~3 ac, similar name); Johnson's Mills (~0 ac, similar name)
 - **CA-4438** Martial Brook Protected Area (Protected Area) → Magaguadavic River (~5,213 ac, the POTA pin is inside it (different name)); Magaguadavic River (~0 ac, the POTA pin is inside it (different name))
-- **CA-4460** Bonar Law House Historic Site (Historic Site) → Scallop Buffer Zone (SFA 22) (~704,937 ac, the POTA pin is inside it (different name))
-- **CA-4516** South Wolf Island Nature Preserve Protected Area (Protected Area) → South Wolf Island (~91 ac, similar name)
 - **CA-4526** Tabusintac Lagoon and River Estuary Ramsar Site (Ramsar Site) → Miramichi Bay Closure (~362,854 ac, the POTA pin is inside it (different name))
 - **CA-4530** Wilson's Point (Enclosure) Park Historic Site (Historic Site) → Wilson's Point Wildlife Refuge (~0 ac, same name, different kind of place)
 - **CA-4808** Beaubears Island Shipbuilding National Historic Site (National Historic Site) → Beaubears Island - Site of Boishébert and Beaubears Island Shipbuilding National Historic Sites of Canada (~178 ac, similar name)
 - **CA-4809** Boishebert Refuge National Historic Site (National Historic Site) → Wilson's Point Wildlife Refuge (~0 ac, the POTA pin is inside it (different name))
-- **CA-4812** Fort Gaspareaux National Historic Site (National Historic Site) → Scallop Buffer Zone (SFA 22) (~704,937 ac, the POTA pin is inside it (different name))
 - **CA-5138** Odell Park and Odell Arboretum Recreation Park (Recreation Park) → O'dell Wildlife Refuge (~0 ac, similar name)
-- **CA-5150** Beardsley Hill Nature Reserve (Nature Reserve) → Beardsley Hill Nature Preserve (~158 ac, similar name)
 - **CA-5154** Cape Jourimain Lighthouse National Heritage Site (National Heritage Site) → Cape Jourimain National Wildlife Area (~690 ac, similar name); Cape Jourimain National Wildlife Area (~530 ac, similar name); Cape Jourimain (~19 ac, similar name); Scallop Buffer Zone (SFA 22) (~704,937 ac, the POTA pin is inside it (different name))
 - **CA-5161** Connors Bros. Preserve Nature Reserve (Nature Reserve) → Connors Bros. Nature Preserve at Pea Point (~76 ac, similar name); Connors Bros. Nature Preserve at Pea Point (~11 ac, similar name)
 - **CA-5162** Coronation Park Recreation Park (Recreation Park) → Scallop Buffer Zone (SFA 21) (~117,886 ac, the POTA pin is inside it (different name))
 - **CA-5173** Fredericton Military National Historic Site (National Historic Site) → Fredericton Wildlife Refuge (~0 ac, similar name)
 - **CA-5174** Fredericton Railway Bridge (Bill Thorpe Walking Bridge) Recreation Site (Recreation Site) → Fredericton Wildlife Refuge (~0 ac, similar name)
 - **CA-5192** Machias Seal Island Lighthouse National Historic Site (National Historic Site) → Machias Seal Island Migratory Bird Sanctuary (~2,559 ac, same name, different kind of place); Machias Seal Island Migratory Bird Sanctuary (~27 ac, same name, different kind of place)
-- **CA-5194** Manawagonish Island Protected Area (Protected Area) → Manawagonish Island Nature Preserve (~29 ac, similar name)
 - **CA-5196** Margeret (Coburn) Cameron Woods Protected Area (Protected Area) → Margaret (Colburn) Cameron Woods (~11 ac, similar name); Margaret (Colburn) Cameron Woods (~5 ac, similar name)
 - **CA-5201** Ministers Island National Historic Site (National Historic Site) → Minister's Island Wildlife Management Area (~0 ac, same name, different kind of place)
 - **CA-5202** Ministers Island Pre-contact Sites National Historic Site (National Historic Site) → Minister's Island Wildlife Management Area (~0 ac, similar name)
@@ -38,10 +33,8 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **250 of 562** joined (same
 - **CA-6161** Upper Restigouche (Listuguj) River National Heritage Area (National Heritage Area) → Restigouche Wilderness Waterway - Kedgwick River (~0 ac, similar name); Restigouche Wilderness Waterway - Restigouche River South (~0 ac, similar name)
 - **CA-6239** Old Bathurst Post Office Historic Site (Historic Site) → Scallop Buffer Zone (SFA 21) (~117,886 ac, the POTA pin is inside it (different name))
 - **CA-6377** MacDonald Farm Provincial Historic Site (Provincial Historic Site) → MacDonald Farm Wildlife Management Area (~0 ac, same name, different kind of place)
-- **CA-6389** Grande-Digue Nature Reserve (Nature Reserve) → Réserve Naturelle Grande-Digue Nature Preserve (~225 ac, similar name)
 - **CA-6393** Pointe-aux-Pères Historic Site (Historic Site) → Scallop Buffer Zone (SFA 21) (~117,886 ac, the POTA pin is inside it (different name))
 - **CA-6444** Point Escuminac Lighttower Historic Site (Historic Site) → Escuminac (~0 ac, similar name)
-- **CA-6455** Saltwater Pool and Bathhouse Historic Site (Historic Site) → Fundy National Park Of Canada (~50,879 ac, the POTA pin is inside it (different name))
 - **CA-6471** Nicolas Denys National Historic Site (Historic Site) → Scallop Buffer Zone (SFA 21) (~117,886 ac, the POTA pin is inside it (different name))
 - **CA-6472** Eastern Lowlands Ecological Area (Ecological Area) → 4000300 (~6,484 ac, the POTA pin is inside it (different name)); Kouchibouguacis River (~0 ac, the POTA pin is inside it (different name))
 - **CA-6480** Northern Uplands Ecological Area (Ecological Area) → 4015800 (~2,149 ac, the POTA pin is inside it (different name)); Popelogan Lake (~0 ac, the POTA pin is inside it (different name))
@@ -57,6 +50,10 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **250 of 562** joined (same
 - **CA-6550** New Brunswick #12 Wildlife Management Area (Wildlife Management Area) → Dungarvon Whooper Spring Woodlot (~10,099 ac, the POTA pin is inside it (different name)); Dungarvon Whooper Spring Woodlot (~0 ac, the POTA pin is inside it (different name))
 - **CA-6584** Grand Barachois Nature Reserve (Nature Reserve) → Scallop Buffer Zone (SFA 22) (~704,937 ac, the POTA pin is inside it (different name)); Privately Protected Area (NCC 120214) (~2 ac, the POTA pin is inside it (different name))
 - **CA-6597** Richibucto Watershed Ecological Area (Ecological Area) → Scallop Buffer Zone (SFA 22) (~704,937 ac, the POTA pin is inside it (different name))
+
+## Sites on bigger land (no outline of their own; the land around the pin)
+
+- CA-6455 Saltwater Pool and Bathhouse Historic Site (Historic Site) → on Fundy National Park Of Canada (~50,879 ac)
 
 ## Nothing found in CPCAD
 
@@ -86,13 +83,14 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **250 of 562** joined (same
 - CA-1255 Sugar Island Nature Reserve (Nature Reserve)
 - CA-1258 Val Comeau Recreation Site (Recreation Site)
 - CA-4355 Bantalor Protected Area (Protected Area)
-- CA-4420 Kingston Family Nature Preserve Protected Area (Protected Area)
 - CA-4444 McCoy Brook Protected Area (Protected Area)
+- CA-4460 Bonar Law House Historic Site (Historic Site)
 - CA-4463 Notre-Dame-de l'assompton Monument Historic Site (Historic Site)
 - CA-4493 Portage Lakes Protected Area (Protected Area)
 - CA-4522 Stony Brook Protected Area (Protected Area)
 - CA-4810 Carleton Martello Tower National Historic Site (National Historic Site)
 - CA-4811 Fort Beausejour & Fort Cumberland National Historic Site (National Historic Site)
+- CA-4812 Fort Gaspareaux National Historic Site (National Historic Site)
 - CA-4813 La Coupe Dry Dock National Historic Site (National Historic Site)
 - CA-4814 Monument-Lefebvre National Historic Site (National Historic Site)
 - CA-4815 St. Andrews Blockhouse National Historic Site (National Historic Site)

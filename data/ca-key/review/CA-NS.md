@@ -1,6 +1,6 @@
 # Canada NS: POTA parks vs official land (CPCAD)
 
-Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **255 of 489** joined (same name + same kind). **31** to check, **203** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **255 of 489** joined (same name + same kind). **24** to check, **208** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -8,7 +8,6 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **255 of 489** joined (same
 - **CA-0465** Lawrencetown Beach Provincial Park (Provincial Park) → Cole Harbour - Lawrencetown Provincial Park (~1,835 ac, the POTA pin is inside it (different name))
 - **CA-0467** Mavillette Beach Provincial Park (Provincial Park) → Mavilette Beach Provincial Park (~106 ac, the POTA pin is inside it (different name))
 - **CA-0485** Trout Brook Provincial Park (Provincial Park) → Trout Brook Wilderness Area Addition (~0 ac, similar name); Trout Brook Wilderness Area (~459 ac, same name, different kind of place); Trout Brook Wilderness Area (~105 ac, same name, different kind of place); Trout Brook Wilderness Area (~0 ac, same name, different kind of place)
-- **CA-0897** Caribou and Munroes Island Provincial Park (Provincial Park) → Caribou-Munroe Island Provincial Park (~340 ac, similar name)
 - **CA-1736** Calvary River Nature Reserve (Nature Reserve) → Calvary River Wilderness Area (~2,902 ac, same name, different kind of place); Calvary River Wilderness Area (~0 ac, same name, different kind of place)
 - **CA-1810** Northport Beach Provincial Park (Provincial Park) → Scallop Buffer Zone (SFA 22) (~704,937 ac, the POTA pin is inside it (different name))
 - **CA-1845** Cape Jack Beach Provincial Park (Provincial Park) → Scallop Buffer Zone (SFA 24) (~517,674 ac, the POTA pin is inside it (different name))
@@ -20,21 +19,20 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **255 of 489** joined (same
 - **CA-5426** Cole Harbour-Lawrencetown Coastal Heritage Park Nature Park (Nature Park) → Cole Harbour - Lawrencetown Provincial Park (~1,835 ac, similar name)
 - **CA-5441** Lake-O-Law Provincial Park (Provincial Park) → Middle River Wilderness Area (~1,633 ac, the POTA pin is inside it (different name)); Middle River Wilderness Area (~0 ac, the POTA pin is inside it (different name))
 - **CA-5448** Thinkers Lodge National Historic Site (National Historic Site) → Scallop Buffer Zone (SFA 24) (~517,674 ac, the POTA pin is inside it (different name))
-- **CA-5808** Enragée Point Lighthouse National Heritage Site (National Heritage Site) → Scallop Buffer Zone (SFA 24) (~517,674 ac, the POTA pin is inside it (different name)); Cape Breton Highlands National Park Of Canada (~234,256 ac, the POTA pin is inside it (different name)); Cape Breton Highlands National Park Of Canada (~0 ac, the POTA pin is inside it (different name))
 - **CA-5810** Five Islands Lighthouse Park National Heritage Area (National Heritage Area) → Five Islands Provincial Park (~873 ac, similar name); Five Islands Provincial Park (~389 ac, similar name); Five Islands Provincial Park (~0 ac, similar name); Five Islands Provincial Park (~0 ac, similar name)
 - **CA-6111** Swiss Air Memorial Peggys Cove Provincial Park (Provincial Park) → West Dover Provincial Park (~2,563 ac, the POTA pin is inside it (different name)); West Dover Provincial Park (~0 ac, the POTA pin is inside it (different name))
 - **CA-6176** Boars Head Lighthouse National Heritage Site (National Heritage Site) → Boar's Head Conservation Lands (~0 ac, similar name)
 - **CA-6177** Brier Island Lighthouse National Heritage Site (National Heritage Site) → Brier Island Conservation Lands (~0 ac, similar name); Brier Island Conservation Lands (~0 ac, similar name); Brier Island Conservation Lands (~0 ac, similar name); Brier Island Conservation Lands (~0 ac, similar name); Brier Island Conservation Lands (~0 ac, similar name); Brier Island Conservation Lands (~0 ac, similar name)
 - **CA-6178** Cape George Lighthouse National Heritage Site (National Heritage Site) → Cape George Provincial Park (~136 ac, similar name); Scallop Buffer Zone (SFA 24) (~517,674 ac, the POTA pin is inside it (different name))
-- **CA-6180** Coldspring Head Lighthouse National Heritage Site (National Heritage Site) → Scallop Buffer Zone (SFA 22) (~704,937 ac, the POTA pin is inside it (different name))
-- **CA-6185** Margaree Harbour Rear Range Lighthouse National Heritage Site (National Heritage Site) → Scallop Buffer Zone (SFA 24) (~517,674 ac, the POTA pin is inside it (different name))
-- **CA-6186** Margaree Harbour Front Range Lighthouse National Heritage Site (National Heritage Site) → Scallop Buffer Zone (SFA 24) (~517,674 ac, the POTA pin is inside it (different name))
-- **CA-6189** Peter Island Lighthouse National Heritage Site (National Heritage Site) → Peter's Island Conservation Lands (~8 ac, the POTA pin is inside it (different name)); Peter's Island Conservation Lands (~0 ac, the POTA pin is inside it (different name))
-- **CA-6191** Pictou Island South Lighthouse National Heritage Site (National Heritage Site) → Scallop Buffer Zone (SFA 24) (~517,674 ac, the POTA pin is inside it (different name))
 - **CA-6196** Terence Bay Lighthouse National Heritage Site (National Heritage Site) → Terence Bay Wilderness Area (~10,945 ac, similar name); Terence Bay Wilderness Area (~66 ac, similar name); Terence Bay Wilderness Area (~0 ac, similar name); Terence Bay Wilderness Area (~0 ac, similar name)
 - **CA-6325** Spencer's Island Lighthouse National Heritage Site (National Heritage Site) → Spencer's Island Conservation Lands (~0 ac, similar name)
 - **CA-6564** Blanche Provincial Park (Provincial Park) → Blanche Peninsula Conservation Lands (~254 ac, similar name); Blanche Peninsula Conservation Lands (~173 ac, similar name); Blanche Peninsula Conservation Lands (~164 ac, similar name); Blanche Peninsula Conservation Lands (~146 ac, similar name); Blanche Peninsula Conservation Lands (~122 ac, similar name); Blanche Peninsula Conservation Lands (~115 ac, similar name)
 - **CA-6567** Roseway Beach Provincial Park (Provincial Park) → Bowers Meadows Wilderness Area (~118 ac, the POTA pin is inside it (different name))
+
+## Sites on bigger land (no outline of their own; the land around the pin)
+
+- CA-5808 Enragée Point Lighthouse National Heritage Site (National Heritage Site) → on Cape Breton Highlands National Park Of Canada (~0 ac); Cape Breton Highlands National Park Of Canada (~234,256 ac)
+- CA-6189 Peter Island Lighthouse National Heritage Site (National Heritage Site) → on Peter's Island Conservation Lands (~0 ac); Peter's Island Conservation Lands (~8 ac)
 
 ## Nothing found in CPCAD
 
@@ -189,13 +187,18 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **255 of 489** joined (same
 - CA-6105 de Gannes-Cosby House National Historic Site (National Historic Site)
 - CA-6109 Truro Old Normal College National Historic Site (National Historic Site)
 - CA-6110 Old Town Lunenburg National Historic District (National Historic District)
+- CA-6137 Margaree River National Heritage Area (National Heritage Area)
 - CA-6179 Cape St. Mary's Lighthouse National Heritage Site (National Heritage Site)
+- CA-6180 Coldspring Head Lighthouse National Heritage Site (National Heritage Site)
 - CA-6182 Gillis Point Lighthouse National Heritage Site (National Heritage Site)
 - CA-6183 Grand Passage Lighthouse National Heritage Site (National Heritage Site)
 - CA-6184 Isaacs Harbour Lighthouse National Heritage Site (National Heritage Site)
+- CA-6185 Margaree Harbour Rear Range Lighthouse National Heritage Site (National Heritage Site)
+- CA-6186 Margaree Harbour Front Range Lighthouse National Heritage Site (National Heritage Site)
 - CA-6187 Margaretsville Lighthouse National Heritage Site (National Heritage Site)
 - CA-6188 Neil's Harbour Lighthouse National Heritage Site (National Heritage Site)
 - CA-6190 Port Mouton Lighthouse National Heritage Site (National Heritage Site)
+- CA-6191 Pictou Island South Lighthouse National Heritage Site (National Heritage Site)
 - CA-6192 Prim Point Lighthouse National Heritage Site (National Heritage Site)
 - CA-6193 Queensport Lighthouse National Heritage Site (National Heritage Site)
 - CA-6194 Schafner Point Lighthouse National Heritage Site (National Heritage Site)

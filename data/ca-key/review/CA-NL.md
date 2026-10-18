@@ -12,6 +12,9 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **62 of 134** joined (same 
 - **CA-6115** Bay du Nord Heritage River National Heritage Area (National Heritage Area) → Bay du Nord Wilderness Reserve (~719,184 ac, similar name)
 - **CA-6166** Cape St. Mary's Lighthouse National Heritage Site (National Heritage Site) → Cape St. Mary's Ecological Reserve (~13,344 ac, similar name); Cape St. Mary's Ecological Reserve (~2,471 ac, similar name)
 
+## Sites on bigger land (no outline of their own; the land around the pin)
+
+
 ## Nothing found in CPCAD
 
 - CA-4549 Grand Codroy Estuary Ramsar Site (Ramsar Site)

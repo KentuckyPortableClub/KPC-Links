@@ -1,6 +1,6 @@
 # Canada NT: POTA parks vs official land (CPCAD)
 
-Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **10 of 68** joined (same name + same kind). **8** to check, **50** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **10 of 68** joined (same name + same kind). **7** to check, **50** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -10,8 +10,11 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **10 of 68** joined (same n
 - **CA-4346** Wehexlaxodiale Protected Area (Protected Area) → Dè Wexèlahodı ha-le (~154,194 ac, the POTA pin is inside it (different name))
 - **CA-4347** Whooping Crane Summer Range Ramsar Site (Ramsar Site) → Wood Buffalo National Park Of Canada (~2,257,603 ac, the POTA pin is inside it (different name))
 - **CA-4605** Ezodziti Habitat Protection Area (Habitat Protection Area) → Ezǫdzìtì (~339,769 ac, similar name)
-- **CA-5474** Fort Reliance National Historic Site (National Historic Site) → Thaidene Nene National Park Reserve Of Canada (~3,476,767 ac, the POTA pin is inside it (different name))
 - **CA-5477** Kittigazuit Archaeological Sites National Historic Site (National Historic Site) → Tarium Niryutait Marine Protected Area (~114,795 ac, the POTA pin is inside it (different name))
+
+## Sites on bigger land (no outline of their own; the land around the pin)
+
+- CA-5474 Fort Reliance National Historic Site (National Historic Site) → on Thaidene Nene National Park Reserve Of Canada (~3,476,767 ac)
 
 ## Nothing found in CPCAD
 

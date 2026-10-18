@@ -21,6 +21,9 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **7 of 53** joined (same na
 - **CA-6595** Buffaloland Provincial Wildlife Area (Provincial Wildlife Area) → Harvey Moore Wildlife Management Area (~1,232 ac, the POTA pin is inside it (different name))
 - **CA-6596** Souris Beach Gateway Provincial Recreation Area (Provincial Recreation Area) → Scallop Buffer Zone (SFA 24) (~517,674 ac, the POTA pin is inside it (different name))
 
+## Sites on bigger land (no outline of their own; the land around the pin)
+
+
 ## Nothing found in CPCAD
 
 - CA-0851 Argyle Shore Provincial Park (Provincial Park)

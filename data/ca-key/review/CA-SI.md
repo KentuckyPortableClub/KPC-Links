@@ -5,5 +5,8 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **1 of 1** joined (same nam
 ## To check (not joined)
 
 
+## Sites on bigger land (no outline of their own; the land around the pin)
+
+
 ## Nothing found in CPCAD
 

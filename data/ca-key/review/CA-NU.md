@@ -19,6 +19,9 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **16 of 48** joined (same n
 - **CA-4594** Tallurutiup Imanga / Lancaster Sound NMCA National Marine Area (National Marine Area) → Tallurutiup Imanga National Marine Conservation Area (~26,669,054 ac, the POTA pin is inside it (different name))
 - **CA-4599** Twin Islands  Sanctuary Wilderness Preserve (Wilderness Preserve) → Twin Islands Wildlife Sanctuary (~327,365 ac, similar name)
 
+## Sites on bigger land (no outline of their own; the land around the pin)
+
+
 ## Nothing found in CPCAD
 
 - CA-0831 Inuujarvik Territorial Park (Territorial Park)
