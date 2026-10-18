@@ -35,7 +35,7 @@ def get(params, tries=5):
 
 
 # ---------------- names + kinds (same idea as kpc-bounds.js, with other states' words) ----------------
-GEN = (r"blm national conservation area|national conservation area|wildlife management area (and|&) public fishing area|public fishing area|fishing area|national wild and scenic river|wild and scenic river|national recreational river|state vehicle recreation area|vehicle recreation area|state reservation|reservation|state reserve|national reserve|national fish hatchery|state fish hatchery|fish hatchery|hatchery|fh|fishery area|state fishery area|blm herd management area|herd management area|herd area|blm special recreation management area|special recreation management area|extensive recreation management area|blm recreation management area|recreation management area|wilderness study area|wsa|hma|srma|erma|blm|fishing access site|access site|state game lands? number|designated state natural area|designated|public hunting area|hunting area|state fishing lake|fishing lake|state wilderness area|wilderness area|natural state conservation area|waterfowl refuge|wildlife refuge|refuge|state natural area|natural area preserve|state nature preserve|nature preserve|natural area|fish and wildlife area|state wildlife area|"
+GEN = (r"blm national conservation area|national conservation area|wildlife management area (and|&) public fishing area|public fishing area|fishing area|national wild and scenic river|wild and scenic river|national recreational river|state vehicle recreation area|vehicle recreation area|state reservation|reservation|state reserve|national reserve|national fish hatchery|state fish hatchery|fish hatchery|hatchery|fh|fishery area|state fishery area|blm herd management area|herd management area|herd area|blm special recreation management area|special recreation management area|extensive recreation management area|blm recreation management area|recreation management area|wilderness study area|wsa|hma|srma|erma|blm|fishing access site|access site|state game lands? number|designated state natural area|designated|public hunting area|hunting area|state fishing lake|fishing lake|state wilderness area|wilderness area|wilderness|resort|natural state conservation area|waterfowl refuge|wildlife refuge|refuge|state natural area|natural area preserve|state nature preserve|nature preserve|natural area|fish and wildlife area|state wildlife area|"
        r"wildlife management area|wildlife area|state game lands?|game lands?|game areas?|game management area|conservation area|state conservation area|"
        r"state resort park|state historic site|state historical park|state historic park|historic site|state recreation area|recreation area|"
        r"state beach|state seashore|national wildlife refuge|national recreation area|national historical park|national historic site|"
@@ -82,7 +82,7 @@ def variants(s):
     # other ways of writing the same name: no middle initial, bracket words left out ('Reifsnider (Frank)'), no leading 'Mount'
     v = {norm(s), norm(s, True), norm(re.sub(r'\(.*?\)', ' ', str(s or '')))}
     v |= {re.sub(r'^mount ', '', x) for x in v}
-    v |= {re.sub(r' (park|forest|pond|ponds|lake|reservoir|complex|trail)$', '', x) for x in v}         # 'Fort Revere Park' = Fort Revere, 'Coulee Experimental Forest'
+    v |= {re.sub(r' (park|forest|pond|ponds|lake|reservoir|complex)$', '', x) for x in v}         # 'Fort Revere Park' = Fort Revere, 'Coulee Experimental Forest'
     return {x for x in v if x}
 
 
@@ -96,7 +96,7 @@ def same_name(a, b):
 
 
 SOFT = {'preserve', 'reserve', 'beach', 'complex', 'game', 'mua', 'fwma', 'ca', 'pas', 'tract', 'tracts', 'addition', 'unit', 'area', 'lake', 'pond', 'ponds', 'reservoir',
-        'park', 'forest', 'trail', 'center', 'centre', 'site', 'lands', 'land'}
+        'park', 'forest', 'center', 'centre', 'site', 'lands', 'land'}
 def _soft(x): return ' '.join(w for w in x.split() if w not in SOFT and not re.fullmatch(r'(19|20)\d\d', w))
 
 
@@ -112,6 +112,8 @@ def exact_name(a, b):
 
 def name_ok(a, b, ka, kb):
     if not same_kind(ka, kb): return False
+    if ('nfh' in ka) != ('nfh' in kb): return False                      # a hatchery only joins a hatchery (Dworshak Reservoir is not the hatchery)
+    if bool(re.search(r'\btrail\b', str(a), re.I)) != bool(re.search(r'\btrail\b', str(b), re.I)): return False   # a trail only joins a trail
     return exact_name(a, b) if (bool(ka) != bool(kb)) else same_name(a, b)
 
 
@@ -134,11 +136,12 @@ def wset(s):
 def same_words(a, b, ka, kb):
     # all words of the shorter name are in the longer one, at most 2 extra words, and BOTH names say the same kind of place
     if not (ka and kb and ka & kb): return False
+    if ('nfh' in ka) != ('nfh' in kb) or bool(re.search(r'\btrail\b', str(a), re.I)) != bool(re.search(r'\btrail\b', str(b), re.I)): return False
     w1, w2 = wset(a), wset(b)
     s, l = (w1, w2) if len(w1) <= len(w2) else (w2, w1)
     big = [w for w in s if len(w) > 2]
-    if len(big) == 1:   # one long word only when the other name just adds a filler word ('Keyhole' = 'Keyhole Reservoir'; not 'Legion' = 'Legion Lake')
-        return len(big[0]) >= 6 and ka == kb and s <= l and (l - s) <= {'reservoir', 'mountain', 'memorial', 'station', 'bottoms', 'island'} and len(l - s) == 1
+    if len(big) == 1:   # one long word, same kind ('Keyhole' = 'Keyhole Reservoir'); wrong ones go in overrides.json 'no'
+        return len(big[0]) >= 6 and ka == kb and s <= l and len(l - s) <= 2
     return len(big) >= 2 and s <= l and len(l - s) <= 2
 
 
