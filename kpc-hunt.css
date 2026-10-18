@@ -988,3 +988,11 @@ main#hl:not([data-page=need]) > .hl-ptabs{position:absolute;top:12px;left:50%;tr
 @media(min-width:1921px){main#hl[data-theme=lodge] .hl-hero .hl-in,main#hl[data-theme=dark] .hl-hero .hl-in{padding-top:calc(33.8vw * .5)}}
 /* phones: the tabs would cover the sign, so they become a dark strip that joins the site menu above the picture */
 @media(max-width:700px){main#hl > .hl-ptabs{position:static!important;transform:none!important;width:100%!important;max-width:none!important;margin:0!important;border-radius:0!important;border:0!important;border-bottom:1px solid rgba(213,166,58,.35)!important;background:#070707!important;box-shadow:none!important;justify-content:flex-start;padding:6px 8px!important}}
+
+/* Oct 18: phones fold the parks bar buttons behind ⚙ (#hlTkMore) so the scrolling new parks can be read */
+main#hl .hl-tkmore{display:none}
+@media (max-width:700px){
+ main#hl .hl-tick .hl-tkmore{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-width:40px;align-self:stretch;margin:0;border:0;border-left:1px solid rgba(240,201,107,.45);background:rgba(20,13,6,.85);color:#f0c96b;font:900 18px Arial,sans-serif;cursor:pointer}
+ main#hl .hl-tick:not(.tk-open) > .hl-bell{display:none!important}
+ main#hl .hl-tick.tk-open > .hl-tick-run{display:none}
+}
