@@ -1,1 +1,816 @@
-{"note": "Reviewed by hand. join = official land names (or ids) that ARE this park; no = pieces that are not; site = no outline of its own. kpc_ca_key.py follows this on every rerun.", "parks": {}}
+{
+ "note": "Reviewed by hand. join = official land names (or ids) that ARE this park; no = pieces that are not; site = no outline of its own. kpc_ca_key.py follows this on every rerun.",
+ "parks": {
+  "CA-1342": {
+   "join": [
+    "Carlington Woods"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1350": {
+   "join": [
+    "Chapel Hill'S North Forest"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1425": {
+   "join": [
+    "Green's Creek"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1506": {
+   "join": [
+    "Mccarthy Woods"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1515": {
+   "join": [
+    "Mer Bleue Bog"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1579": {
+   "join": [
+    "Pine Grove Forest"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1581": {
+   "join": [
+    "Pinhey Forest"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1645": {
+   "join": [
+    "Stony Swamp"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1597": {
+   "join": [
+    "Rockcliffe Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-3055": {
+   "join": [
+    "Killarney-Reflex Lakes Heritage Rgeland Natural Area"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0032": {
+   "join": [
+    "Gwaii Haanas National Park Reserve Of Canada And Haida Heritage Site"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0823": {
+   "join": [
+    "Akami-Uapishku - Kakkasuak - Mealy Mountains National Park Reserve Of Canada"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0050": {
+   "join": [
+    "Lake Superior National Marine Conservation Area Of Canada",
+    "Lake Superior National Marine Conservation Area"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0125": {
+   "join": [
+    "Pingo Canadian Landmark"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4320": {
+   "join": [
+    "Banks Island Migratory Bird Sanctuary No. 1"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4321": {
+   "join": [
+    "Banks Island Migratory Bird Sanctuary No. 2"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0592": {
+   "join": [
+    "Cypress Hills Provincial Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0103": {
+   "join": [
+    "Tway National Wildlife Area"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1461": {
+   "join": [
+    "Kaladar Jackpine Barrens Conservation Reserve",
+    "KALADAR JACKPINE BARRENS CONSERVATION RESERVE"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-5363": {
+   "join": [
+    "Fletcher Creek Ecological Preserve"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-5090": {
+   "join": [
+    "Albion Hills Conservation Area"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-5554": {
+   "join": [
+    "Boyd Conservation Area"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-5559": {
+   "join": [
+    "Tommy Thompson Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-5562": {
+   "join": [
+    "Ken Whillans Resource Management Area"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-5671": {
+   "join": [
+    "Wilket Creek Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-5301": {
+   "join": [
+    "David Dunlap Observatory Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4599": {
+   "join": [
+    "Twin Islands Wildlife Sanctuary"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4605": {
+   "join": [
+    "Ezǫdzìtì"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4560": {
+   "join": [
+    "Salmonier Nature Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1901": {
+   "join": [
+    "Tusket River Wilderness Area"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-5161": {
+   "join": [
+    "Connors Bros. Nature Preserve at Pea Point"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-5196": {
+   "join": [
+    "Margaret (Colburn) Cameron Woods"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-5208": {
+   "join": [
+    "Nələkwənəkek / Noloqonokek"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1241": {
+   "join": [
+    "Irving Nature Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4419": {
+   "join": [
+    "Johnson's Mills"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-6534": {
+   "join": [
+    "Cape Enrage"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-5119": {
+   "join": [
+    "Assiniboine Forest"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1052": {
+   "join": [
+    "Hyland Provincial Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1073": {
+   "join": [
+    "Seton Provincial Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1081": {
+   "join": [
+    "Upper Fort Garry Heritage Provincial Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2379": {
+   "join": [
+    "Bell and Steeprock Canyons Protected Area"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2403": {
+   "join": [
+    "Douglas Marsh Protected Area"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2449": {
+   "join": [
+    "Little George Island Ecological Reserve / Asatiwisipe Aki Traditional Use Planning Area"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2474": {
+   "join": [
+    "Palsa Hazel Ecological Reserve / Grass River Provincial Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-3173": {
+   "join": [
+    "ADAMS LAKE MARINE PARK"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-3249": {
+   "join": [
+    "TĀ CH'ILĀ PARK [A.K.A. BOYA LAKE PARK]"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-3672": {
+   "join": [
+    "KHUTZEYMATEEN PARK [A.K.A. KHUTZEYMATEEN/K'TZIM-A-DEEN GRIZZLY SANCTUARY]"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4055": {
+   "join": [
+    "JÁJI7EM AND KW'ULH MARINE PARK [A.K.A. SANDY ISLAND MARINE PARK]"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4060": {
+   "join": [
+    "SAY NUTH KHAW YUM PARK [A.K.A. INDIAN ARM PARK]"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4074": {
+   "join": [
+    "SG̲áan K̲ínghlas-Bowie Marine Protected Area"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-3887": {
+   "join": [
+    "Nechako River Migratory Bird Sanctuary"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4258": {
+   "join": [
+    "Victoria Harbour Migratory Bird Sanctuary"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-3983": {
+   "join": [
+    "Princess Louisa Inlet"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-3354": {
+   "join": [
+    "CODVILLE LAGOON MARINE PARK"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4201": {
+   "join": [
+    "THURSTON BAY MARINE PARK"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4109": {
+   "join": [
+    "SMALL INLET MARINE PARK"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-3581": {
+   "join": [
+    "HALKETT BAY MARINE PARK"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-3188": {
+   "join": [
+    "MᑫUQʷIN/BROOKS PENINSULA PARK"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-3327": {
+   "join": [
+    "Sx̱ótsaqel / CHILLIWACK LAKE PARK"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-3477": {
+   "join": [
+    "Tplaqín / ENDERBY CLIFFS PARK"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-3641": {
+   "join": [
+    "ȽÁU,WELṈEW̱/JOHN DEAN PARK"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-3889": {
+   "join": [
+    "NENEIKEKH/NANIKA-KIDPRICE PARK"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-3170": {
+   "join": [
+    "I7LOQAW7/100 LAKES PLATEAU CONSERVANCY"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0493": {
+   "join": [
+    "Bois-de-l'île-Bizard Natural Area Under Private Stewardship"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0494": {
+   "join": [
+    "Bois-de-Liesse (inclut le Bois-Franc) Natural Area Under Private Stewardship"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0996": {
+   "join": [
+    "Anse-à-l'Orme Natural Area Under Private Stewardship"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0997": {
+   "join": [
+    "Pointe-aux-Prairies Natural Area Under Private Stewardship"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0998": {
+   "join": [
+    "Bois-de-Saraguay Natural Area Under Private Stewardship"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0999": {
+   "join": [
+    "Cap-Saint-Jacques Natural Area Under Private Stewardship"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1014": {
+   "join": [
+    "Parc-Régional-de-Val-David-Val-Morin (Sec. Dufresne) Nature Reserve",
+    "Parc-Régional-de-Val-David Val-Morin (Sec. Far Hills) Nature Reserve",
+    "Parc-Régional-de-Val-David-Val-Morin (Sec. CNQ) Nature Reserve"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2149": {
+   "join": [
+    "Mont-Saint-Grégoire (Se. CIME ) Nature Reserve",
+    "Mont-Saint-Grégoire (Sec. CIME-Haut-Richelieu-J.-P.-Deschênes) Nature Reserve"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0498": {
+   "join": [
+    "Gatineau Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-5004": {
+   "join": [
+    "Leamy lake park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0503": {
+   "join": [
+    "Jacques-Cartier Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2616": {
+   "join": [
+    "Cranberry Flats Conservation Area"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2639": {
+   "join": [
+    "E. B. Campbell"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2839": {
+   "join": [
+    "Scentgrass Lake"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-6171": {
+   "join": [
+    "Radisson Lake"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2879": {
+   "join": [
+    "Upper Rousay Lake"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2829": {
+   "join": [
+    "Nipekamew Sand Cliffs"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2894": {
+   "join": [
+    "Wascana"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2644": {
+   "join": [
+    "Elbow Harbour Recreation Site"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2870": {
+   "join": [
+    "Tazin Lake"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2552": {
+   "join": [
+    "Assiniboine Slopes"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2559": {
+   "join": [
+    "Basin Lake"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2570": {
+   "join": [
+    "Berube Lake"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2583": {
+   "join": [
+    "Boggy Creek"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2605": {
+   "join": [
+    "Charron Lake"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2651": {
+   "join": [
+    "Fairy Island"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2675": {
+   "join": [
+    "Great Sand Hills"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2689": {
+   "join": [
+    "Heglund Island"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2738": {
+   "join": [
+    "Marsden"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2747": {
+   "join": [
+    "Mclaren Lake"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2766": {
+   "join": [
+    "Nakuchi Lake"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2786": {
+   "join": [
+    "Outlook"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2825": {
+   "join": [
+    "Rice River Canyon"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2828": {
+   "join": [
+    "Rock Island"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2891": {
+   "join": [
+    "Wapawekka Hills"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2844": {
+   "join": [
+    "Shamrock Regional Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1104": {
+   "join": [
+    "Craik & District Regional Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1111": {
+   "join": [
+    "Ituna and District Regional Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1125": {
+   "join": [
+    "Manitou District Regional Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1134": {
+   "join": [
+    "Moosomin and District Regional Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1137": {
+   "join": [
+    "Nipawin and District Regional Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1147": {
+   "join": [
+    "Saltcoats District Regional Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1154": {
+   "join": [
+    "Sturgis & District Regional Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1157": {
+   "join": [
+    "Valley (Rosthern) Regional Park"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0074": {
+   "join": [
+    "Prairie Unit number 01"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-6173": {
+   "join": [
+    "Prairie Unit number 02"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-6174": {
+   "join": [
+    "Prairie Unit number 03"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-6175": {
+   "join": [
+    "Prairie Unit number 04"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-6200": {
+   "join": [
+    "Prairie Unit number 08"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-6201": {
+   "join": [
+    "Prairie Unit number 09"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-6202": {
+   "join": [
+    "Prairie Unit number 12"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0849": {
+   "join": [
+    "Tagish River"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0850": {
+   "join": [
+    "Tatchun Lake"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4603": {
+   "join": [
+    "Devil's Elbow"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4604": {
+   "join": [
+    "Ddhaw Ghro"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4609": {
+   "join": [
+    "Nuna K’óhonete Yédäk Tah’é (Horseshoe Slough)"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4611": {
+   "join": [
+    "Lewes Marsh"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4612": {
+   "join": [
+    "Lhutsaw Wetland"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4621": {
+   "join": [
+    "Nordenskiold"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4625": {
+   "join": [
+    "Pickhandle Lake"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4629": {
+   "join": [
+    "Ta'Tla Mun"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4635": {
+   "join": [
+    "Tombstone"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-4637": {
+   "join": [
+    "Ch’ihilii Chìk"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-2876": {
+   "join": [
+    "Waiparous Creek Group Camp"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-6587": {
+   "join": [
+    "Lusk Creek"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-6589": {
+   "join": [
+    "Snow Creek"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0215": {
+   "join": [
+    "Foy Property Provincial Park (Recreational Class)",
+    "FOY PROPERTY PROVINCIAL PARK (RECREATIONAL CLASS)"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0264": {
+   "join": [
+    "Lake On The Mountain Provincial Picnic Grounds (Recreational Class)",
+    "LAKE ON THE MOUNTAIN PROVINCIAL PICNIC GROUNDS (RECREATIONAL CLASS)"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-0364": {
+   "join": [
+    "Rideau Migratory Bird Sanctuary"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-5112": {
+   "join": [
+    "Palgrave Forest and Wildlife Centre"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  },
+  "CA-1698": {
+   "join": [
+    "Wawanosh Conservation Area"
+   ],
+   "why": "Oct 18 review: same place, name written differently"
+  }
+ }
+}
