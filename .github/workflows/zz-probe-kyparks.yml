@@ -1,0 +1,30 @@
+name: zz probe KY park features (temporary)
+on: workflow_dispatch
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python3 - <<'PY'
+          import json,urllib.request,urllib.parse,collections
+          B='https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer'
+          def g(u):
+              return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=90).read())
+          out=[]
+          for lid in [0,4,7,1,6]:
+              try:
+                  info=g(f'{B}/{lid}?f=json'); f=[x['name'] for x in info.get('fields',[])]
+                  c=g(f'{B}/{lid}/query?where=1%3D1&returnCountOnly=true&f=json').get('count')
+                  s=g(f'{B}/{lid}/query?'+urllib.parse.urlencode({'where':'1=1','outFields':'*','returnGeometry':'false','resultRecordCount':400,'f':'json'}))
+                  rows=[x['attributes'] for x in s.get('features',[])]
+                  tf=[k for k in f if any(w in k.upper() for w in ('TYPE','CAT','DESC','NAME','FEAT','CLASS','USE'))]
+                  cnt={k:collections.Counter(str(r.get(k)) for r in rows).most_common(12) for k in tf[:4]}
+                  out.append(f"L{lid} {info.get('name')} count={c} fields={f} | {json.dumps(cnt)[:1800]}")
+              except Exception as e: out.append(f'L{lid} ERR {e}')
+          # OuterSpatial public endpoints
+          for u in ['https://api.outerspatial.com/v2/organizations?search=kentucky','https://www.outerspatial.com/api/v2/organizations?search=kentucky','https://api.outerspatial.com/']:
+              try:
+                  r=urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=30); out.append(f'{u} {r.status} {r.read(300)!r}')
+              except Exception as e: out.append(f'{u} {e}')
+          for o in out: print('::notice title=probe::'+o.replace('%','%25'))
+          PY
