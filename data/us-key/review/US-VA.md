@@ -1,6 +1,6 @@
 # VA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 184** parks joined to official land (same name + same kind of place). **24** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **138 of 184** parks joined to official land (same name + same kind of place). **23** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,7 +9,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 184** parks joined
 - **US-5517** Matthews State Forest (State Forest) → Judge Matthews State Forest (~569 ac, similar name); Judge Matthews State Forest (~404 ac, similar name); Judge Matthews State Forest (~165 ac, similar name)
 - **US-7804** Great Falls Park (Park) → George Washington Memorial Parkway (~3,477 ac, the POTA pin is inside it (different name))
 - **US-9897** Jamestowne National Historical Site (National Historical Site) → Colonial National Historical Park (~7,881 ac, the POTA pin is inside it (different name))
-- **US-9898** Mount Vernon National Historic Trail (National Historic Trail) → George Washington Memorial Parkway (~2,776 ac, the POTA pin is inside it (different name))
 - **US-9902** Colonial National Parkway (National Parkway) → Colonial National Historical Park (~7,881 ac, similar name)
 - **US-9903** Mount Rogers National Recreation Area (National Recreation Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name)); Lewis Fork Wilderness (~6,075 ac, the POTA pin is inside it (different name))
 - **US-9904** Apple Orchard Falls National Recreation Trail (National Recreation Trail) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
@@ -23,11 +22,16 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 184** parks joined
 - **US-9932** The Channels State Natural Area (State Natural Area) → The Channels State Natural Area Preserve (~721 ac, similar name); The Channels State Forest (~4,836 ac, same name, different kind of place); The Channels State Forest (~4,115 ac, same name, different kind of place)
 - **US-9933** Beaches to Bluegrass State Trail (State Trail) → Staunton River State Park (~1,612 ac, the POTA pin is inside it (different name)); Staunton River State Park (~1,526 ac, the POTA pin is inside it (different name))
 - **US-9935** Virginia Bird & Wildlife State Trail (State Trail) → Lake Anna State Park (~2,156 ac, the POTA pin is inside it (different name)); Lake Anna State Park (~1,624 ac, the POTA pin is inside it (different name))
-- **US-9937** Meadowood BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Southeastern States District Office (~804 ac, the POTA pin is inside it (different name))
 - **US-9939** Beartown Wilderness Area (Wilderness Area) → Beartown Wilderness (~5,613 ac, similar name); Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
 - **US-9951** Priest Wilderness Area (Wilderness Area) → Priest Wilderness (~5,991 ac, similar name); George Washington National Forest (~961,006 ac, the POTA pin is inside it (different name))
 - **US-9957** Shenandoah Wilderness Area (Wilderness Area) → Shenandoah National Park (~195,790 ac, same name, different kind of place)
 - **US-9961** Dyke Marsh Wildlife Reserve (Wildlife Reserve) → George Washington Memorial Parkway (~2,776 ac, the POTA pin is inside it (different name))
+- **US-9970** Marion Trout State Fish Hatchery (State Fish Hatchery) → Marion Fish Hatchery (~176 ac, similar name); Marion Fish Hatchery (~105 ac, similar name); Marion Fish Hatchery (~71 ac, similar name)
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
+- US-9898 Mount Vernon National Historic Trail (National Historic Trail) → on George Washington Memorial Parkway (~2,776 ac)
+- US-9937 Meadowood BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Southeastern States District Office (~804 ac)
 
 ## Nothing found in PAD-US
 

@@ -1,6 +1,6 @@
 # OH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **233 of 276** parks joined to official land (same name + same kind of place). **18** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **229 of 276** parks joined to official land (same name + same kind of place). **22** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -10,18 +10,25 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **233 of 276** parks joined
 - **US-1972** Little Miami State Park (State Park) → Little Miami Corwin Mill SR (~3 ac, similar name)
 - **US-1997** Tinkers Creek State Park (State Park) → Tinkers Creek Dedicated Nature Preserve (~63 ac, similar name); Tinkers Creek Nature Preserve (~8 ac, same name, different kind of place)
 - **US-7850** Caesar Creek Lake State Wildlife Area (State Wildlife Area) → Caesar Creek Gorge Dedicated Nature Preserve (~501 ac, similar name); Caesar Creek Recreation Area (~10,632 ac, same name, different kind of place)
+- **US-8111** Tri-Valley State Wildlife Area (State Wildlife Area) → Tri-valley Wa (~15,080 ac, same name, different kind of place)
 - **US-8637** Deer Creek State Wildlife Area (State Wildlife Area) → Deer Creek Recreation Area (~7,631 ac, same name, different kind of place)
 - **US-9395** Boord State Nature Preserve (State Nature Preserve) → Boord Dedicated Nature Preserve (~124 ac, similar name)
 - **US-9401** Cooperrider-Kent Bog State Nature Preserve (State Nature Preserve) → Kent Bog (~44 ac, similar name)
 - **US-9408** Gallagher Fen State Nature Preserve (State Nature Preserve) → Gallagher / Springfield Fen (~212 ac, similar name)
 - **US-9411** Halls Creek Woods State Nature Preserve (State Nature Preserve) → Halls Creek Dedicated Nature Preserve (~273 ac, similar name)
+- **US-9416** Johnson Ridge State Nature Preserve (State Nature Preserve) → Johnson Ridge NA (~226 ac, same name, different kind of place)
 - **US-9427** Rhododendron Cove State Nature Preserve (State Nature Preserve) → Wahkeena Nature Preserve (~184 ac, the POTA pin is inside it (different name))
+- **US-9429** Scioto Brush Creek State Nature Preserve (State Nature Preserve) → Scioto Brush Creek NA (~36 ac, same name, different kind of place)
+- **US-9437** Swamp Cottonwood State Nature Preserve (State Nature Preserve) → Swamp Cottonwood NA (~20 ac, same name, different kind of place)
 - **US-9442** Acadia Cliffs State Wildlife Area (State Wildlife Area) → Acadia Cliffs Dedicated Nature Preserve (~271 ac, similar name); Acadia Cliffs Dedicated Nature Preserve (~4 ac, similar name)
 - **US-9451** Charles O. Trump State Wildlife Area (State Wildlife Area) → The Trump Wildlife Area (~129 ac, similar name)
 - **US-9456** Delaware State Wildlife Area (State Wildlife Area) → Delaware Recreation Area (~9,191 ac, same name, different kind of place)
 - **US-9457** Della Gates & Edward Charles Bott State Wildlife Area (State Wildlife Area) → Bott Wildlife Area (~167 ac, similar name); Bott Wildlife Area (~1 ac, similar name)
 - **US-9458** Dillon State Wildlife Area (State Wildlife Area) → Dillon Recreation Area (~16,547 ac, same name, different kind of place)
 - **US-9522** Zepernick State Wildlife Area (State Wildlife Area) → Zeppernick Lake Wildlife Area (~527 ac, the POTA pin is inside it (different name))
+
+## Sites on bigger public land (no outline of their own; the land around the pin)
+
 
 ## Nothing found in PAD-US
 
@@ -53,6 +60,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **233 of 276** parks joined
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Tri-valley Wa · SCA · Ohio Department Of Natural Resources · ~15,080 ac
 - Clarence J. Brown Recreation Area · REC · Louisville · ~4,146 ac
 - Vinton Furnace Wildlife Area · SCA · Ohio Department of Natural Resources · ~3,533 ac
 - Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,284 ac
@@ -77,6 +85,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **233 of 276** parks joined
 - East Reservoir State Park · SP · Ohio Department of Natural Resources · ~255 ac
 - Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~242 ac
 - Hebron Fish Hatchery · SOTH · Ohio Department of Natural Resources · ~235 ac
+- Johnson Ridge NA · SCA · Ohio Department of Natural Resources · ~226 ac
 - Kroger Hills State Reserve · SCA · State of Ohio · ~225 ac
 - Pymatuning Creek Wetlands Nature Preserve · SCA · Ohio Department of Natural Resources · ~224 ac
 - Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~224 ac
@@ -111,5 +120,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **233 of 276** parks joined
 - Green Springs State Forest · SCA · Ohio Department of Natural Resources · ~120 ac
 - Wildlife Production Area 1 · SCA · Ohio Department of Natural Resources · ~119 ac
 - State of Ohio Land · SCA · State of Ohio · ~118 ac
-- Delaware Strine Wildlife Area · SCA · Ohio Department of Natural Resources · ~117 ac
-- Dupont Marsh Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~117 ac
