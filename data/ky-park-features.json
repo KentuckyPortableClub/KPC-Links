@@ -1,0 +1,3071 @@
+{
+"source": "Kentucky State Parks GIS (kygisserver.ky.gov Ky_State_Parks_Features): State Park Trail Heads + Information Sites",
+"trailheads": [
+{
+"la": 38.88375,
+"lo": -84.7529,
+"NAME": "MUSEUM PARKING LOT",
+"TRAIL_NAME": "GOBBLERS TRACE / BISON TRACE",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": "<Null>"
+},
+{
+"la": 38.43168,
+"lo": -83.99415,
+"NAME": "LICKING RIVER TRAIL",
+"TRAIL_NAME": "LICKING RIVER",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.72603,
+"lo": -82.74278,
+"NAME": "JENNY WILEY AND ROAD",
+"TRAIL_NAME": "JENNY WILEY",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.69667,
+"lo": -82.72448,
+"NAME": "MOSS RIDGE",
+"TRAIL_NAME": "MOSS RIDGE",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.69232,
+"lo": -82.71327,
+"NAME": "LAKESHORE",
+"TRAIL_NAME": "LAKESHORE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.83886,
+"lo": -84.33841,
+"NAME": "LODGE FRONT TRAIL 4",
+"TRAIL_NAME": "CIVILIAN CONSERVATION CORPS MEMORIAL TRAIL 4",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.83895,
+"lo": -84.339,
+"NAME": "LODGE FRONT TRAIL 6",
+"TRAIL_NAME": "CUMBERLAND FALLS TRAIL 6",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "AT FRIENDSHIP GARDEN"
+},
+{
+"la": 36.84126,
+"lo": -84.33929,
+"NAME": "CLIFTY CAMPGROUND",
+"TRAIL_NAME": "WILDFLOWER LOOP TRAIL 12",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.83972,
+"lo": -84.34341,
+"NAME": "MOONBOW",
+"TRAIL_NAME": "MOONBOW TRAIL 1",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.88325,
+"lo": -87.55674,
+"NAME": "MUSEUM",
+"TRAIL_NAME": "MUSEUM",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.88229,
+"lo": -87.55729,
+"NAME": "KING BENSON",
+"TRAIL_NAME": "KING BENSON",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.88352,
+"lo": -87.54849,
+"NAME": "WILDERNESS LAKE",
+"TRAIL_NAME": "WILDERNESS LAKE",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.88373,
+"lo": -87.55852,
+"NAME": "EAGLE GLEN PET",
+"TRAIL_NAME": "EAGLE GLEN PET",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.97155,
+"lo": -89.0918,
+"NAME": "WOOD'S WALK",
+"TRAIL_NAME": "WOOD'S WALK",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.07512,
+"lo": -87.667,
+"NAME": "INDIAN BLUFF",
+"TRAIL_NAME": "INDIAN BLUFF",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.07423,
+"lo": -87.66535,
+"NAME": "CLIFTY CREEK",
+"TRAIL_NAME": "CLIFTY CREEK",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.07501,
+"lo": -87.66676,
+"NAME": "CLIFTY CREEK",
+"TRAIL_NAME": "CLIFTY CREEK",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.07379,
+"lo": -87.66351,
+"NAME": "INDIAN BLUFF/PENNYRILE NATURE TRAIL",
+"TRAIL_NAME": "INDIAN BLUFF",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.07505,
+"lo": -87.65531,
+"NAME": "CAMPERS TRACE",
+"TRAIL_NAME": "CAMPERS TRACE",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.7147,
+"lo": -82.73915,
+"NAME": "SASSAFRAS",
+"TRAIL_NAME": "SASSAFRAS",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.71483,
+"lo": -82.73972,
+"NAME": "SASSAFRAS SPUR",
+"TRAIL_NAME": "SASSAFRAS",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.72422,
+"lo": -84.28359,
+"NAME": "RECREATION",
+"TRAIL_NAME": "IRON WOOD & SPICE BUSH",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": "X"
+},
+{
+"la": 38.72358,
+"lo": -84.28166,
+"NAME": "CAMPGROUND",
+"TRAIL_NAME": "IRON WOOD & SPICE BUSH",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "X"
+},
+{
+"la": 37.61174,
+"lo": -86.50323,
+"NAME": "LODGE",
+"TRAIL_NAME": "MARINA",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "'RULES' SIGN; NO 'TRAIL DESCRIPTION' SIGN"
+},
+{
+"la": 36.83683,
+"lo": -84.34559,
+"NAME": "EAGLE FALLS",
+"TRAIL_NAME": "EAGLE FALLS TRAIL 9",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.84106,
+"lo": -84.32851,
+"NAME": "RIDGELINE CAMPGROUND",
+"TRAIL_NAME": "CAMPER'S PATH TRAIL 5",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": "BY CAMPGROUND"
+},
+{
+"la": 37.06996,
+"lo": -87.66532,
+"NAME": "LAKE",
+"TRAIL_NAME": "LAKE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.07,
+"lo": -87.66536,
+"NAME": "CANE",
+"TRAIL_NAME": "CANE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.43171,
+"lo": -83.99298,
+"NAME": "BUFFALO TRACE",
+"TRAIL_NAME": "BUFFALO TRACE",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.88021,
+"lo": -84.74543,
+"NAME": "CAMPGROUND",
+"TRAIL_NAME": "GOBBLERS TRACE",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.43447,
+"lo": -83.99669,
+"NAME": "INDIAN RUN TRAIL",
+"TRAIL_NAME": "INDIAN RUN",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.42943,
+"lo": -83.9924,
+"NAME": "BUFFALO TRACE TO NATURE CENTER",
+"TRAIL_NAME": "BUFFALO TRACE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "BY PARK ENTRANCE"
+},
+{
+"la": 38.42868,
+"lo": -83.99315,
+"NAME": "SAVANNAH AND LICKING RIVER",
+"TRAIL_NAME": "SAVANNAH",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "BY CAMP ENTRANCE"
+},
+{
+"la": 37.07011,
+"lo": -87.66065,
+"NAME": "BEACH",
+"TRAIL_NAME": "LAKE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.66926,
+"lo": -85.16497,
+"NAME": "GB1",
+"TRAIL_NAME": "BOY SCOUT / CEMETERY PATH",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "Located at end of service road behind Butler Mansion/Museum"
+},
+{
+"la": 38.67016,
+"lo": -85.16164,
+"NAME": "GB2",
+"TRAIL_NAME": "FOSSIL",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.67318,
+"lo": -85.15414,
+"NAME": "GB4",
+"TRAIL_NAME": "WOODLAND",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.67055,
+"lo": -85.15147,
+"NAME": "GB5",
+"TRAIL_NAME": "WOODLAND",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.66973,
+"lo": -85.15331,
+"NAME": "GB6",
+"TRAIL_NAME": "WOODLAND",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.89555,
+"lo": -84.26767,
+"NAME": "SHELTER 4",
+"TRAIL_NAME": "FORT",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "LOCATED AT SHELTER 4"
+},
+{
+"la": 37.71632,
+"lo": -82.7289,
+"NAME": "MOUNTAIN BIKE",
+"TRAIL_NAME": "SWITCHBACK/SHORTLOOP/BEGINNERS",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.8963,
+"lo": -84.26801,
+"NAME": "SHELTER 4 PARKING LOT",
+"TRAIL_NAME": "HALLEY HOME SITE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "LOCATED AT NORTHWEST SIDE OF SHELTER 4 PARKING LOT"
+},
+{
+"la": 37.88145,
+"lo": -87.56147,
+"NAME": "EAGLE GLEN PET",
+"TRAIL_NAME": "EAGLE GLEN PET",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.84893,
+"lo": -87.93411,
+"NAME": "FITNESS CENTER",
+"TRAIL_NAME": "FITNESS CENTER",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.65626,
+"lo": -85.28182,
+"NAME": "RANGER LOOP",
+"TRAIL_NAME": "RANGER LOOP",
+"PARKING": "No",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.65492,
+"lo": -85.2858,
+"NAME": "CAMPERS PATH",
+"TRAIL_NAME": "CAMPERS PATH",
+"PARKING": "No",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.67817,
+"lo": -85.70803,
+"NAME": "JACKSON CEMETERY",
+"TRAIL_NAME": "STONEWALL JACKSON",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.86305,
+"lo": -86.06764,
+"NAME": "BICYCLE",
+"TRAIL_NAME": "BICYCLE",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.76658,
+"lo": -89.11095,
+"NAME": "CONFEDERATE TRENCHES",
+"TRAIL_NAME": "TRENCH TRAIL",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": "NO MILEAGE"
+},
+{
+"la": 36.93113,
+"lo": -85.04271,
+"NAME": "OVERLOOK",
+"TRAIL_NAME": "LAKE BLUFF",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.7774,
+"lo": -83.67704,
+"NAME": "LAKESIDE",
+"TRAIL_NAME": "LAKESIDE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.77552,
+"lo": -83.67822,
+"NAME": "THE ORIGINAL",
+"TRAIL_NAME": "THE ORIGINAL",
+"PARKING": "Yes",
+"RESTROOMS": "YES",
+"AGENCY": "Parks",
+"DESCRIPTN": "NEEDS TRAIL NAME SIGN"
+},
+{
+"la": 37.77985,
+"lo": -83.67369,
+"NAME": "HENSON'S ARCH",
+"TRAIL_NAME": "HENSON'S ARCH",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.92935,
+"lo": -85.04089,
+"NAME": "CONFERENCE CENTER",
+"TRAIL_NAME": "LAKE BLUFF",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.92662,
+"lo": -85.04695,
+"NAME": "PUMPKIN CREEK LODGE",
+"TRAIL_NAME": "LAKE BLUFF",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.78154,
+"lo": -83.69115,
+"NAME": "HOOD'S BRANCH",
+"TRAIL_NAME": "HOOD'S BRANCH",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.78271,
+"lo": -83.67295,
+"NAME": "WHITTLETON",
+"TRAIL_NAME": "WHITTLETON",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.09938,
+"lo": -82.68383,
+"NAME": "HAUNTED TRAIL",
+"TRAIL_NAME": "HAUNTED",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.09716,
+"lo": -82.6836,
+"NAME": "R & R TRAIL",
+"TRAIL_NAME": "R & R",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.09772,
+"lo": -82.68646,
+"NAME": "R & R TRAIL",
+"TRAIL_NAME": "R & R",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.09622,
+"lo": -82.68941,
+"NAME": "SHORT TIMER TRAIL",
+"TRAIL_NAME": "SHORT TIMER",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.48094,
+"lo": -82.87207,
+"NAME": "FERN VALLEY - LODGE PARKING",
+"TRAIL_NAME": "FERN VALLEY",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.76034,
+"lo": -88.13974,
+"NAME": "CHEROKEE",
+"TRAIL_NAME": "CHEROKEE",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.76364,
+"lo": -88.14211,
+"NAME": "CHEROKEE",
+"TRAIL_NAME": "CHEROKEE",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.11726,
+"lo": -82.69436,
+"NAME": "MARY INGLES TRAIL SYSTEM",
+"TRAIL_NAME": "MARY INGLES TRAIL SYSTEM",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.99304,
+"lo": -82.97922,
+"NAME": "HORSESHOE",
+"TRAIL_NAME": "HORSESHOE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.74223,
+"lo": -83.74581,
+"NAME": "RIDGERUNNER",
+"TRAIL_NAME": "RIDGERUNNER",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.99178,
+"lo": -82.97917,
+"NAME": "LOG ROCK",
+"TRAIL_NAME": "LOG ROCK",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.99528,
+"lo": -82.9789,
+"NAME": "GROUNDHOG",
+"TRAIL_NAME": "GROUNDHOG",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.9977,
+"lo": -82.9815,
+"NAME": "SALTESS",
+"TRAIL_NAME": "SALTESS / PINE MOUNTAIN STATE SCENIC TRAIL",
+"PARKING": "YES",
+"RESTROOMS": "YES",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.99761,
+"lo": -82.98516,
+"NAME": "POSSUM",
+"TRAIL_NAME": "POSSUM",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.99722,
+"lo": -82.98231,
+"NAME": "TURKEY",
+"TRAIL_NAME": "TURKEY",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.09657,
+"lo": -82.68586,
+"NAME": "HIKE-IN SITES TRAIL",
+"TRAIL_NAME": "HIKE-IN SITES",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.0964,
+"lo": -82.68578,
+"NAME": "WILDCAT RIDGE TRAIL",
+"TRAIL_NAME": "WILDCAT RIDGE",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.09526,
+"lo": -82.68682,
+"NAME": "WILDCAT RIDGE TRAIL",
+"TRAIL_NAME": "WILDCAT RIDGE",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.74471,
+"lo": -83.7107,
+"NAME": "LONGHUNTER",
+"TRAIL_NAME": "LONGHUNTER",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.74771,
+"lo": -83.7119,
+"NAME": "ROCK HOTEL",
+"TRAIL_NAME": "ROCK HOTEL",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.72817,
+"lo": -83.72767,
+"NAME": "CLEAR CREEK HOLLOW",
+"TRAIL_NAME": "CLEAR CREEK HOLLOW",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.73425,
+"lo": -83.73873,
+"NAME": "HEMLOCK GARDEN",
+"TRAIL_NAME": "HEMLOCK GARDEN",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.73653,
+"lo": -83.7379,
+"NAME": "HEMLOCK GARDEN",
+"TRAIL_NAME": "HEMLOCK GARDEN",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.83649,
+"lo": -84.34528,
+"NAME": "BLUE BEND LOOP",
+"TRAIL_NAME": "BLUE BEND LOOP TRAIL 10",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.84471,
+"lo": -84.31757,
+"NAME": "PINNACLE KNOB FIRE TOWER",
+"TRAIL_NAME": "CUMBERLAND RIVER TRAIL 2",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.84402,
+"lo": -84.31642,
+"NAME": "CUMBERLAND RIVER",
+"TRAIL_NAME": "CUMBERLAND RIVER TRAIL 2",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.29317,
+"lo": -82.30816,
+"NAME": "GEOLOGICAL & RIDGE",
+"TRAIL_NAME": "GEOLOGICAL & RIDGE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 38.36678,
+"lo": -83.13032,
+"NAME": "BOAT RAMP ",
+"TRAIL_NAME": "4C'S",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "NEEDS TRAIL REGULATION/TRAILHEAD SIGNAGE"
+},
+{
+"la": 36.85565,
+"lo": -87.91908,
+"NAME": "WILDERNESS",
+"TRAIL_NAME": "WILDERNESS",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.2744,
+"lo": -85.31804,
+"NAME": "WINDY RIDGE",
+"TRAIL_NAME": "WINDY RIDGE",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": "NEED BETTER SIGN AND REGULATIONS"
+},
+{
+"la": 37.2775,
+"lo": -85.32135,
+"NAME": "WINDY RIDGE",
+"TRAIL_NAME": "WINDY RIDGE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "NEED BETTER SIGN AND REGULATIONS"
+},
+{
+"la": 36.84895,
+"lo": -87.93288,
+"NAME": "FITNESS CENTER",
+"TRAIL_NAME": "FITNESS CENTER",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.07636,
+"lo": -87.03794,
+"NAME": "WILDFLOWER",
+"TRAIL_NAME": "WILDFLOWER",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "Off the side of the main park road at park entrance"
+},
+{
+"la": 37.07453,
+"lo": -87.03777,
+"NAME": "WILDFLOWER",
+"TRAIL_NAME": "WILDFLOWER",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": "Near lower lake shelter"
+},
+{
+"la": 37.07393,
+"lo": -87.03802,
+"NAME": "LAUREL",
+"TRAIL_NAME": "LAUREL",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": "Near lower lake shelter. Also access point for Twisted Tree, Turkey Ridge, and Blue Heron"
+},
+{
+"la": 37.07494,
+"lo": -87.04085,
+"NAME": "LAUREL",
+"TRAIL_NAME": "LAUREL",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": "Next to campground office. Also access point for Twisted Tree, Turkey Ridge, and Blue Heron"
+},
+{
+"la": 37.07273,
+"lo": -87.65582,
+"NAME": "CAMPERS TRACE",
+"TRAIL_NAME": "CAMPERS TRACE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.07124,
+"lo": -87.65971,
+"NAME": "THOMPSONS HOLLOW",
+"TRAIL_NAME": "THOMPSONS HOLLOW",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.07071,
+"lo": -87.66061,
+"NAME": "THOMPSONS HOLLOW",
+"TRAIL_NAME": "THOMPSONS HOLLOW",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.07251,
+"lo": -87.66271,
+"NAME": "LODGE",
+"TRAIL_NAME": "LAKE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.06922,
+"lo": -87.65855,
+"NAME": "PENNYROYAL",
+"TRAIL_NAME": "PENNYROYAL",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.90153,
+"lo": -85.07476,
+"NAME": "BAUGH BRANCH",
+"TRAIL_NAME": "BAUGH BRANCH",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.30643,
+"lo": -83.44479,
+"NAME": "MOONSHINER'S HOLLOW AND LEATHERWOOD",
+"TRAIL_NAME": "MOONSHINER'S HOLLOW AND LEATHERWOOD",
+"PARKING": "Yes",
+"RESTROOMS": "YES",
+"AGENCY": "Parks",
+"DESCRIPTN": "Lodge parking lot"
+},
+{
+"la": 37.78213,
+"lo": -83.68937,
+"NAME": "LOW GAP",
+"TRAIL_NAME": "LOW GAP",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.49711,
+"lo": -82.92211,
+"NAME": "MICHAEL TYGART - BAYS RIDGE WEST",
+"TRAIL_NAME": "MICHAEL TYGART",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": ""
+},
+{
+"la": 38.50015,
+"lo": -82.91595,
+"NAME": "MICHAEL TYGART - BAYS RIDGE EAST",
+"TRAIL_NAME": "MICHAEL TYGART",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.48514,
+"lo": -82.88423,
+"NAME": "MICHAEL TYGART - MARINA",
+"TRAIL_NAME": "MICHAEL TYGART",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.48258,
+"lo": -82.88656,
+"NAME": "MICHAEL TYGART - MAIN RD EAST",
+"TRAIL_NAME": "MICHAEL TYGART",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.7367,
+"lo": -83.73723,
+"NAME": "HONEYMOON FALLS",
+"TRAIL_NAME": "HONEYMOON FALLS",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.73789,
+"lo": -83.74065,
+"NAME": "HONEYMOON FALLS",
+"TRAIL_NAME": "HONEYMOON FALLS",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.73856,
+"lo": -83.73847,
+"NAME": "HONEYMOON FALLS",
+"TRAIL_NAME": "HONEYMOON FALLS",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.73675,
+"lo": -83.73605,
+"NAME": "LOST",
+"TRAIL_NAME": "LOST",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.73714,
+"lo": -83.73697,
+"NAME": "FERN GARDEN/LIVING STAIRWAY",
+"TRAIL_NAME": "LOST",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.28663,
+"lo": -82.30477,
+"NAME": "OVERLOOK TRAIL",
+"TRAIL_NAME": "OVERLOOK",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 37.29256,
+"lo": -82.30778,
+"NAME": "RIDGE",
+"TRAIL_NAME": "RIDGE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 37.28619,
+"lo": -82.30342,
+"NAME": "TOWER TUNNEL",
+"TRAIL_NAME": "TOWER TUNNEL",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 37.2853,
+"lo": -82.29973,
+"NAME": "LOOP",
+"TRAIL_NAME": "LOOP",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 37.28699,
+"lo": -82.30111,
+"NAME": "COLD SPRING TRAIL",
+"TRAIL_NAME": "COLD SPRING",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 37.29578,
+"lo": -82.30185,
+"NAME": "GRASSY OVERLOOK TRAIL",
+"TRAIL_NAME": "GRASSY OVERLOOK",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 37.29273,
+"lo": -82.30805,
+"NAME": "OVERLOOK TRAIL",
+"TRAIL_NAME": "OVERLOOK",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 37.28748,
+"lo": -82.30547,
+"NAME": "OVERLOOK TRAIL",
+"TRAIL_NAME": "OVERLOOK",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 37.27146,
+"lo": -82.29488,
+"NAME": "CAMPBRANCH",
+"TRAIL_NAME": "CAMPBRANCH",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 37.28544,
+"lo": -82.29109,
+"NAME": "TOWERS OVERLOOK",
+"TRAIL_NAME": "TOWERS",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 37.28815,
+"lo": -82.2944,
+"NAME": "LAKE TRAIL",
+"TRAIL_NAME": "LAKE",
+"PARKING": "No",
+"RESTROOMS": "Yes",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 38.36829,
+"lo": -83.12607,
+"NAME": "SWIMMING POOL",
+"TRAIL_NAME": "THREE BRIDGES",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 38.37206,
+"lo": -83.11552,
+"NAME": "COTTAGES",
+"TRAIL_NAME": "THREE BRIDGES",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.99063,
+"lo": -82.98479,
+"NAME": "LAUREL",
+"TRAIL_NAME": "LAUREL",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.73902,
+"lo": -83.73744,
+"NAME": "LIVING STAIRWAY/FERN GARDEN",
+"TRAIL_NAME": "LIVING STAIRWAY",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.84779,
+"lo": -87.93322,
+"NAME": "BLUE SPRINGS",
+"TRAIL_NAME": "BLUE SPRINGS",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.84688,
+"lo": -87.93384,
+"NAME": "BLUE SPRINGS",
+"TRAIL_NAME": "BLUE SPRINGS",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.84411,
+"lo": -87.91364,
+"NAME": "STABLE",
+"TRAIL_NAME": "STABLE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "NEED MORE SIGNAGE"
+},
+{
+"la": 36.84927,
+"lo": -87.93054,
+"NAME": "LENA MADESIN/WILDERNESS/CEDAR GROVE",
+"TRAIL_NAME": "LENA MADESIN",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.85526,
+"lo": -87.92501,
+"NAME": "CEDAR GROVE",
+"TRAIL_NAME": "CEDAR GROVE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.85695,
+"lo": -87.92305,
+"NAME": "WAGON WHEEL",
+"TRAIL_NAME": "WAGON WHEEL",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.85551,
+"lo": -87.91903,
+"NAME": "WAGON WHEEL",
+"TRAIL_NAME": "WAGON WHEEL",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.83804,
+"lo": -84.3408,
+"NAME": "CABINS",
+"TRAIL_NAME": "LAUREL TRAIL 3",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "GOES FROM COTTAGES TO FALLS PARKING LOT"
+},
+{
+"la": 36.84302,
+"lo": -84.3389,
+"NAME": "DANCE PAVILLION",
+"TRAIL_NAME": "WILDFLOWER LOOP TRAIL 12",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "ACROSS FROM GROUP CAMPSITE 5"
+},
+{
+"la": 36.84179,
+"lo": -84.33439,
+"NAME": "HILLTOP SPUR",
+"TRAIL_NAME": "HILLTOP SPUR TRAIL 8",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.76369,
+"lo": -88.14154,
+"NAME": "CHICKASAW",
+"TRAIL_NAME": "CHICKASAW",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.76811,
+"lo": -88.13955,
+"NAME": "CHICKASAW",
+"TRAIL_NAME": "CHICKASAW",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.99709,
+"lo": -82.98959,
+"NAME": "NATURE HAVEN",
+"TRAIL_NAME": "NATURE HAVEN",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.98909,
+"lo": -82.98396,
+"NAME": "LOG ROCK",
+"TRAIL_NAME": "LOG ROCK",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.99448,
+"lo": -82.97927,
+"NAME": "PINE",
+"TRAIL_NAME": "PINE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.09478,
+"lo": -82.68994,
+"NAME": "BLUE",
+"TRAIL_NAME": "BLUE",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "NEEDS SIGN"
+},
+{
+"la": 38.09977,
+"lo": -82.6836,
+"NAME": "HAUNTED TRAIL",
+"TRAIL_NAME": "HAUNTED",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.09921,
+"lo": -82.69004,
+"NAME": "HAUNTED TRAIL",
+"TRAIL_NAME": "HAUNTED",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.09828,
+"lo": -82.68779,
+"NAME": "HAUNTED TRAIL",
+"TRAIL_NAME": "HAUNTED",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.64618,
+"lo": -85.2948,
+"NAME": "EAGLE POINT AND BOOM RIDGE CONNECTOR",
+"TRAIL_NAME": "EAGLE POINT AND BOOM RIDGE CONNECTOR",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "NO TRAIL NAME SIGN"
+},
+{
+"la": 36.64426,
+"lo": -85.28915,
+"NAME": "EAGLE POINT",
+"TRAIL_NAME": "EAGLE POINT",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.72824,
+"lo": -83.72754,
+"NAME": "CLEAR CREEK HOLLOW",
+"TRAIL_NAME": "CLEAR CREEK HOLLOW",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.7544,
+"lo": -83.70364,
+"NAME": "CHAINED ROCK",
+"TRAIL_NAME": "CHAINED ROCK",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.74349,
+"lo": -83.70582,
+"NAME": "LAUREL COVE",
+"TRAIL_NAME": "LAUREL COVE",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.74347,
+"lo": -83.70351,
+"NAME": "AZALEA",
+"TRAIL_NAME": "AZALEA",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.69214,
+"lo": -82.71302,
+"NAME": "STEVE BRACKETT",
+"TRAIL_NAME": "STEVE BRACKETT",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.19918,
+"lo": -83.02413,
+"NAME": "BEECH HEMLOCK",
+"TRAIL_NAME": "BEECH HEMLOCK",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.20139,
+"lo": -83.02955,
+"NAME": "LICK FALLS LOOP",
+"TRAIL_NAME": "LICK FALLS LOOP",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "NEEDS TRAIL NAME SIGN, COULD BE MORE VISIBLE"
+},
+{
+"la": 36.83855,
+"lo": -84.33645,
+"NAME": "FALLS PICNIC AREA",
+"TRAIL_NAME": "CUMBERLAND RIVER TRAIL 2",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.83665,
+"lo": -84.34077,
+"NAME": "FALLS PARKING LOT",
+"TRAIL_NAME": "SHELTOWEE TRACE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.29328,
+"lo": -82.29484,
+"NAME": "DEER",
+"TRAIL_NAME": "DEER",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 37.29307,
+"lo": -82.29472,
+"NAME": "MAIN",
+"TRAIL_NAME": "MAIN",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 37.29487,
+"lo": -82.29367,
+"NAME": "MAIN",
+"TRAIL_NAME": "MAIN",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "KY_VA",
+"DESCRIPTN": " "
+},
+{
+"la": 36.74346,
+"lo": -83.69135,
+"NAME": "NARROWS OVERLOOK",
+"TRAIL_NAME": "NARROWS OVERLOOK",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.88991,
+"lo": -87.53984,
+"NAME": "WETLANDS",
+"TRAIL_NAME": "WETLANDS",
+"PARKING": "Yes",
+"RESTROOMS": " ",
+"AGENCY": "Parks",
+"DESCRIPTN": ""
+},
+{
+"la": 37.7847,
+"lo": -82.83628,
+"NAME": "JENNY'S CREEK",
+"TRAIL_NAME": "DAWKINS LINE RAIL TRAIL",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": "Trail mile 3.8. Road access from KY 825 near Collista"
+},
+{
+"la": 37.73689,
+"lo": -82.90031,
+"NAME": "SWAMP BRANCH",
+"TRAIL_NAME": "DAWKINS LINE RAIL TRAIL",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "Trail mile 8.3. Road access from KY 825 at Swamp Branch"
+},
+{
+"la": 37.67643,
+"lo": -83.02133,
+"NAME": "ROYALTON",
+"TRAIL_NAME": "DAWKINS LINE RAIL TRAIL",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "Trail mile 18.2. Road access from Post Office Road at Royalton"
+},
+{
+"la": 37.68117,
+"lo": -83.03248,
+"NAME": "JANE BESHEAR",
+"TRAIL_NAME": "DAWKINS LINE RAIL TRAIL",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": "Trail mile 18.9. Road access from KY 7 at Royalton"
+},
+{
+"la": 37.29528,
+"lo": -82.3378,
+"NAME": "RUSSELL FORK",
+"TRAIL_NAME": "PINE MOUNTAIN STATE SCENIC TRAIL",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "Trail mile 0. Road access from Carson Island Road at Elkhorn City"
+},
+{
+"la": 36.772,
+"lo": -88.13779,
+"NAME": "COACH LESTER MIMMS CAMPGROUND",
+"TRAIL_NAME": "COACH LESTER MIMMS",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": ""
+},
+{
+"la": 36.78753,
+"lo": -88.14321,
+"NAME": "COACH LESTER MIMMS CHEROKEE",
+"TRAIL_NAME": "COACH LESTER MIMMS",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": ""
+},
+{
+"la": 38.48066,
+"lo": -82.87232,
+"NAME": "FERN VALLEY - LODGE SERVICE AREA",
+"TRAIL_NAME": "FERN VALLEY",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.48255,
+"lo": -82.88692,
+"NAME": "MICHAEL TYGART - MAIN RD WEST",
+"TRAIL_NAME": "MICHAEL TYGART",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.67547,
+"lo": -85.162,
+"NAME": "GB7",
+"TRAIL_NAME": "FOSSIL",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.67233,
+"lo": -85.14837,
+"NAME": "GB8",
+"TRAIL_NAME": "",
+"PARKING": " ",
+"RESTROOMS": " ",
+"AGENCY": "Parks",
+"DESCRIPTN": ""
+},
+{
+"la": 38.66395,
+"lo": -85.15032,
+"NAME": "GB9",
+"TRAIL_NAME": "",
+"PARKING": " ",
+"RESTROOMS": " ",
+"AGENCY": "Parks",
+"DESCRIPTN": ""
+},
+{
+"la": 38.66479,
+"lo": -85.14976,
+"NAME": "GB10",
+"TRAIL_NAME": "",
+"PARKING": " ",
+"RESTROOMS": " ",
+"AGENCY": "Parks",
+"DESCRIPTN": ""
+},
+{
+"la": 38.66645,
+"lo": -85.14702,
+"NAME": "GB11",
+"TRAIL_NAME": "",
+"PARKING": " ",
+"RESTROOMS": " ",
+"AGENCY": "Parks",
+"DESCRIPTN": ""
+},
+{
+"la": 38.66979,
+"lo": -85.14628,
+"NAME": "GB12",
+"TRAIL_NAME": "",
+"PARKING": " ",
+"RESTROOMS": " ",
+"AGENCY": "Parks",
+"DESCRIPTN": ""
+},
+{
+"la": 38.66863,
+"lo": -85.1486,
+"NAME": "GB13",
+"TRAIL_NAME": "",
+"PARKING": " ",
+"RESTROOMS": " ",
+"AGENCY": "Parks",
+"DESCRIPTN": ""
+},
+{
+"la": 38.66499,
+"lo": -85.14744,
+"NAME": "GB14",
+"TRAIL_NAME": "",
+"PARKING": " ",
+"RESTROOMS": " ",
+"AGENCY": "Parks",
+"DESCRIPTN": ""
+},
+{
+"la": 36.6774,
+"lo": -85.70777,
+"NAME": "JACKSON CEMETERY",
+"TRAIL_NAME": "STONEWALL JACKSON",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "other trailhead "
+},
+{
+"la": 36.67682,
+"lo": -85.70791,
+"NAME": "JACKSON CEMETERY",
+"TRAIL_NAME": "STONEWALL JACKSON",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "other trailhead "
+},
+{
+"la": 38.66619,
+"lo": -85.14588,
+"NAME": "GB15",
+"TRAIL_NAME": "",
+"PARKING": " ",
+"RESTROOMS": " ",
+"AGENCY": "Parks",
+"DESCRIPTN": ""
+},
+{
+"la": 38.88448,
+"lo": -84.75276,
+"NAME": "MUSEUM",
+"TRAIL_NAME": "BIG BONE CREEK",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 38.27848,
+"lo": -85.55337,
+"NAME": "VERNAL POND",
+"TRAIL_NAME": "VERNAL POND",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.66823,
+"lo": -84.97222,
+"NAME": "2",
+"TRAIL_NAME": "Jones ",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 37.6663,
+"lo": -84.97531,
+"NAME": "5",
+"TRAIL_NAME": "Russel House",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 37.67749,
+"lo": -84.97534,
+"NAME": "6",
+"TRAIL_NAME": "Final Line",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 37.66376,
+"lo": -84.9566,
+"NAME": "8",
+"TRAIL_NAME": "Dye House",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 37.6728,
+"lo": -84.97705,
+"NAME": "11",
+"TRAIL_NAME": "Highwater Mark",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 37.89395,
+"lo": -84.27163,
+"NAME": "FORT PARKING LOT",
+"TRAIL_NAME": "FORT",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "LOCATED AT FORT PARKING LOT"
+},
+{
+"la": 37.89753,
+"lo": -84.26831,
+"NAME": "CAMPGROUND",
+"TRAIL_NAME": "PIONEER FORAGE",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "LOCATED ALONG KY 388 ACROSS FROM CAMPGROUND ENTRANCE"
+},
+{
+"la": 37.97172,
+"lo": -84.53926,
+"NAME": "WAVELAND LOOP",
+"TRAIL_NAME": "WAVELAND LOOP",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 37.2706,
+"lo": -85.31551,
+"NAME": "MARINA/MAIN",
+"TRAIL_NAME": "MAIN",
+"PARKING": "Yes",
+"RESTROOMS": "YES",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.27673,
+"lo": -85.32805,
+"NAME": "BIKE",
+"TRAIL_NAME": "LAKESHORE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 37.28265,
+"lo": -85.34617,
+"NAME": "HORSE",
+"TRAIL_NAME": "WILDCAT",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 36.9899,
+"lo": -88.29277,
+"NAME": "LAKESHORE",
+"TRAIL_NAME": "LAKESHORE",
+"PARKING": "NO",
+"RESTROOMS": "NO",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 36.9902,
+"lo": -88.2927,
+"NAME": "SAIL",
+"TRAIL_NAME": "SAIL",
+"PARKING": "NO",
+"RESTROOMS": "NO",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 36.98391,
+"lo": -88.29412,
+"NAME": "BO BECKETT MEMORIAL",
+"TRAIL_NAME": "BO BECKETT MEMORIAL",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.98481,
+"lo": -88.29419,
+"NAME": "LAKESHORE",
+"TRAIL_NAME": "LAKESHORE",
+"PARKING": "NO",
+"RESTROOMS": "NO",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 36.99412,
+"lo": -88.29044,
+"NAME": "SAIL",
+"TRAIL_NAME": "SAIL",
+"PARKING": "NO",
+"RESTROOMS": "NO",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 36.99969,
+"lo": -88.28912,
+"NAME": "CALVERT CITY GREENWAY",
+"TRAIL_NAME": "CALVERT CITY GREENWAY",
+"PARKING": "YES",
+"RESTROOMS": "YES",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 36.86253,
+"lo": -86.06763,
+"NAME": "CONNELL",
+"TRAIL_NAME": "CONNELL",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.85786,
+"lo": -86.06442,
+"NAME": "TBD",
+"TRAIL_NAME": "TBD",
+"PARKING": "NO",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.30406,
+"lo": -83.44213,
+"NAME": "AUTUMN LOOP",
+"TRAIL_NAME": "AUTUMN LOOP",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "300 feet northeast of mini golf course"
+},
+{
+"la": 37.30652,
+"lo": -83.44006,
+"NAME": "MOONSHINER'S HOLLOW",
+"TRAIL_NAME": "MOONSHINER'S HOLLOW",
+"PARKING": "Yes",
+"RESTROOMS": "YES",
+"AGENCY": "Parks",
+"DESCRIPTN": "Recreation Center parking lot"
+},
+{
+"la": 36.76612,
+"lo": -89.11017,
+"NAME": "COLUMBUS-BELMONT",
+"TRAIL_NAME": "Nature Trail",
+"PARKING": "YES",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 36.83814,
+"lo": -84.33861,
+"NAME": "LODGE BACK TRAIL 4",
+"TRAIL_NAME": "CIVILIAN CONSERVATION CORPS MEMORIAL TRAIL 4",
+"PARKING": "YES",
+"RESTROOMS": "YES",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 38.02849,
+"lo": -85.25565,
+"NAME": "LITTLE BEECH",
+"TRAIL_NAME": "Little Beech",
+"PARKING": "NO",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 38.03127,
+"lo": -85.2624,
+"NAME": "GAZEBO",
+"TRAIL_NAME": "Gazebo",
+"PARKING": "NO",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 36.84555,
+"lo": -87.9125,
+"NAME": "WILDERNESS",
+"TRAIL_NAME": "WILDERNESS",
+"PARKING": "NO",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 36.84427,
+"lo": -87.91359,
+"NAME": "WILDERNESS",
+"TRAIL_NAME": "WILDERNESS",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.8816,
+"lo": -87.55283,
+"NAME": "WILDERNESS LAKE",
+"TRAIL_NAME": "WILDERNESS LAKE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.88227,
+"lo": -87.54734,
+"NAME": "BACKCOUNTRY",
+"TRAIL_NAME": "BACKCOUNTRY",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.88243,
+"lo": -87.55615,
+"NAME": "KENTUCKY COFFEE TREE",
+"TRAIL_NAME": "KENTUCKY COFFEE TREE",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.97358,
+"lo": -84.59855,
+"NAME": "SHELTER 1",
+"TRAIL_NAME": "POINT ISABEL",
+"PARKING": "NO",
+"RESTROOMS": " ",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 36.98004,
+"lo": -84.60051,
+"NAME": "SHELTER 2",
+"TRAIL_NAME": "POINT ISABEL",
+"PARKING": "YES",
+"RESTROOMS": " ",
+"AGENCY": "Parks ",
+"DESCRIPTN": null
+},
+{
+"la": 38.03391,
+"lo": -85.25795,
+"NAME": "Horse Camp Trail Access 1",
+"TRAIL_NAME": "Horse Camp Trail Access 1",
+"PARKING": "NO",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 38.03183,
+"lo": -85.25774,
+"NAME": "Horse Camp Trail Access 2",
+"TRAIL_NAME": "Horse Camp Trail Access 2",
+"PARKING": "NO",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 38.03341,
+"lo": -85.25593,
+"NAME": "Primitive Camp Access",
+"TRAIL_NAME": "Primitive Access",
+"PARKING": "NO",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 37.15372,
+"lo": -82.63196,
+"NAME": "POUND GAP",
+"TRAIL_NAME": "PINE MOUNTAIN STATE SCENIC TRAIL",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "Trail mile 26. Road access from US 23 between Jenkins KY and Pound VA"
+},
+{
+"la": 38.02521,
+"lo": -85.26513,
+"NAME": "BIG BEECH",
+"TRAIL_NAME": "Big Beech",
+"PARKING": "NO",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 38.02986,
+"lo": -85.24836,
+"NAME": "WILDLIFE VIEWING LOOP",
+"TRAIL_NAME": "Wildlife Viewing Loop",
+"PARKING": "YES",
+"RESTROOMS": "NO",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 38.35551,
+"lo": -83.11177,
+"NAME": "CASCADE CAVE",
+"TRAIL_NAME": "BOX CANYON",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": "G:\\KY_DOP Trails\\CCaves\\Trailheads\\Img20081126T1519593583.jpg"
+},
+{
+"la": 38.37754,
+"lo": -83.12253,
+"NAME": "X CAVE",
+"TRAIL_NAME": "4C'S / HORN HOLLOW",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": "G:\\KY_DOP Trails\\CCaves\\Trailheads\\Img20081125T1622183493.jpg"
+},
+{
+"la": 38.37698,
+"lo": -83.12349,
+"NAME": "SALTPETER CAVE",
+"TRAIL_NAME": "THREE BRIDGES",
+"PARKING": "YES",
+"RESTROOMS": "YES",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.36991,
+"lo": -83.12397,
+"NAME": "LODGE UPPER",
+"TRAIL_NAME": "THREE BRIDGES",
+"PARKING": "YES",
+"RESTROOMS": "YES",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.37521,
+"lo": -83.12582,
+"NAME": "MINI GOLF",
+"TRAIL_NAME": "THREE BRIDGES",
+"PARKING": "Yes",
+"RESTROOMS": "NO",
+"AGENCY": "Parks",
+"DESCRIPTN": "G:\\KY_DOP Trails\\CCaves\\Trailheads\\Img20081126T0817363516.jpg"
+},
+{
+"la": 38.36977,
+"lo": -83.12323,
+"NAME": "MULLIGAN",
+"TRAIL_NAME": "MULLIGAN",
+"PARKING": "YES",
+"RESTROOMS": "YES",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.3771,
+"lo": -83.13382,
+"NAME": "HORSE CAMPGROUND",
+"TRAIL_NAME": "KISER HOLLOW",
+"PARKING": "Yes",
+"RESTROOMS": "YES",
+"AGENCY": "Parks",
+"DESCRIPTN": "G:\\KY_DOP Trails\\CCaves\\Trailheads\\Img20081126T1339052149.jpg"
+},
+{
+"la": 38.37488,
+"lo": -83.11526,
+"NAME": "LAUREL CAVE",
+"TRAIL_NAME": "LAUREL CAVE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.37741,
+"lo": -83.12338,
+"NAME": "WELCOME CENTER",
+"TRAIL_NAME": "NATURAL BRIDGE",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.36901,
+"lo": -83.12281,
+"NAME": "LODGE LOWER",
+"TRAIL_NAME": "RAVEN BRIDGE / THREE BRIDGES",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.64922,
+"lo": -85.29372,
+"NAME": "BOOM RIDGE ",
+"TRAIL_NAME": "BOOM RIDGE",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.66513,
+"lo": -84.96897,
+"NAME": "12",
+"TRAIL_NAME": "Sleetown-Buckner's Adv",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 37.67138,
+"lo": -84.96072,
+"NAME": "7",
+"TRAIL_NAME": "Confederate Artillery & Hicklen Nature",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 37.66564,
+"lo": -84.9703,
+"NAME": "13",
+"TRAIL_NAME": "Doctor's Creek #2",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 37.66675,
+"lo": -84.97188,
+"NAME": "3",
+"TRAIL_NAME": "Slaughter Pen",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 36.84346,
+"lo": -84.33082,
+"NAME": "CCC GAZEBO",
+"TRAIL_NAME": "ANVIL BRANCH TRAIL 11",
+"PARKING": "NO",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 37.97203,
+"lo": -84.53767,
+"NAME": "WAVELAND LOOP",
+"TRAIL_NAME": "WAVELAND LOOP",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.6569,
+"lo": -84.96112,
+"NAME": "",
+"TRAIL_NAME": "Old Mackville Road",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 38.12028,
+"lo": -82.68923,
+"NAME": "ADA TRAIL",
+"TRAIL_NAME": "ADA",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "USACE",
+"DESCRIPTN": "NEEDS TRAIL NAME SIGN"
+},
+{
+"la": 38.42671,
+"lo": -83.9945,
+"NAME": "BEHIND CAMPSITE 23",
+"TRAIL_NAME": "HERITAGE",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.27716,
+"lo": -85.55424,
+"NAME": "BIKING ",
+"TRAIL_NAME": "BIKING ",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 38.28548,
+"lo": -85.55707,
+"NAME": "FITNESS",
+"TRAIL_NAME": "FITNESS",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": "CRUSHED LIMESTONE FITNESS LOOP"
+},
+{
+"la": 38.67357,
+"lo": -85.15551,
+"NAME": "GB3",
+"TRAIL_NAME": "FOSSIL",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.28359,
+"lo": -85.56039,
+"NAME": "GOOSE CREEK TRAIL",
+"TRAIL_NAME": "GOOSE CREEK TRAIL",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "NEED SIGNAGE"
+},
+{
+"la": 38.27991,
+"lo": -85.56509,
+"NAME": "GOOSE CREEK TRAIL (HURSTBOURNE SIDE)",
+"TRAIL_NAME": "GOOSE CREEK TRAIL",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.77645,
+"lo": -83.68099,
+"NAME": "HEMLOCK LODGE ACCESS TO ORIGINAL",
+"TRAIL_NAME": "HEMLOCK LODGE ACCESS TO ORIGINAL",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": "NEEDS TRAIL NAME SIGNAGE"
+},
+{
+"la": 38.42574,
+"lo": -83.99242,
+"NAME": "HERITAGE",
+"TRAIL_NAME": "HERITAGE",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "BY HIGHWAY"
+},
+{
+"la": 37.71288,
+"lo": -82.74232,
+"NAME": "JENNY WILEY CAMP 2",
+"TRAIL_NAME": "JENNY WILEY",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.7126,
+"lo": -82.74196,
+"NAME": "JENNY WILEY CAMP",
+"TRAIL_NAME": "JENNY WILEY",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.11711,
+"lo": -82.69488,
+"NAME": "LAKESIDE LOOP",
+"TRAIL_NAME": "LAKESIDE LOOP",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.60271,
+"lo": -86.50744,
+"NAME": "COTTAGES",
+"TRAIL_NAME": "MARINA",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.28192,
+"lo": -85.55568,
+"NAME": "NONE",
+"TRAIL_NAME": "FITNESS TRAIL",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "MERGES W ROAD"
+},
+{
+"la": 37.61248,
+"lo": -86.50255,
+"NAME": "MINI GOLF",
+"TRAIL_NAME": "WALKING",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": "TRAIL SEEMS TO DEADEND/ FOLLOWING TRACE FROM HERE"
+},
+{
+"la": 36.98242,
+"lo": -84.6042,
+"NAME": "CAMPGROUND",
+"TRAIL_NAME": "POINT ISABEL",
+"PARKING": "YES",
+"RESTROOMS": " ",
+"AGENCY": "Parks ",
+"DESCRIPTN": ".10 miles"
+},
+{
+"la": 38.09872,
+"lo": -82.6837,
+"NAME": "R & R TRAIL",
+"TRAIL_NAME": "R & R",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.74415,
+"lo": -83.73823,
+"NAME": "RIDGERUNNER",
+"TRAIL_NAME": "RIDGERUNNER",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.83512,
+"lo": -84.34,
+"NAME": "CUMBERLAND RIVER BRIDGE",
+"TRAIL_NAME": "BLUE BEND LOOP TRAIL 10",
+"PARKING": "No",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.09647,
+"lo": -82.68839,
+"NAME": "SHORT TIMER TRAIL",
+"TRAIL_NAME": "SHORT TIMER",
+"PARKING": "No",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 38.03127,
+"lo": -85.24528,
+"NAME": "DAY USE AREA",
+"TRAIL_NAME": "Possum Ridge Loop/Snyder Hollow",
+"PARKING": "YES",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 38.02474,
+"lo": -85.26346,
+"NAME": "OLD HILL CLIMB",
+"TRAIL_NAME": "Old Hill Climb",
+"PARKING": "YES",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 38.03206,
+"lo": -85.24315,
+"NAME": "SNYDER HOLLOW",
+"TRAIL_NAME": "Snyder Hollow",
+"PARKING": "YES",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 37.07631,
+"lo": -82.81034,
+"NAME": "US 119",
+"TRAIL_NAME": "PINE MOUNTAIN STATE SCENIC TRAIL",
+"PARKING": "Yes",
+"RESTROOMS": "YES",
+"AGENCY": "Parks",
+"DESCRIPTN": "Trail mile 42. Road access from US 119 between Whitesburg KY and Oven Fork KY"
+},
+{
+"la": 37.29803,
+"lo": -86.21328,
+"NAME": "WATERFALL HIKING TRAIL",
+"TRAIL_NAME": "WATERFALL HIKING TRAIL",
+"PARKING": "Yes",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.67386,
+"lo": -84.96936,
+"NAME": "1",
+"TRAIL_NAME": "Confederate Right ",
+"PARKING": "Yes",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": null
+},
+{
+"la": 38.42749,
+"lo": -83.99708,
+"NAME": "BOAT RAMP",
+"TRAIL_NAME": "LICKING RIVER",
+"PARKING": "YES",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 38.42074,
+"lo": -83.99356,
+"NAME": "TANNER'S STATION",
+"TRAIL_NAME": "HERITAGE",
+"PARKING": "YES",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 36.63924,
+"lo": -85.29954,
+"NAME": " ",
+"TRAIL_NAME": " ",
+"PARKING": "YES",
+"RESTROOMS": "NO",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 36.9219,
+"lo": -85.04207,
+"NAME": "PERCH ",
+"TRAIL_NAME": " ",
+"PARKING": "YES",
+"RESTROOMS": "YES",
+"AGENCY": " ",
+"DESCRIPTN": null
+},
+{
+"la": 36.99772,
+"lo": -82.98292,
+"NAME": "12 O'CLOCK",
+"TRAIL_NAME": "12 O'CLOCK / PINE MOUNTAIN STATE SCENIC TRAIL",
+"PARKING": "NO",
+"RESTROOMS": "No",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 37.69282,
+"lo": -82.72442,
+"NAME": "MOSS RIDGE",
+"TRAIL_NAME": "MOSS RIDGE",
+"PARKING": "No",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+},
+{
+"la": 36.65624,
+"lo": -85.28472,
+"NAME": "GROCERY",
+"TRAIL_NAME": "EAGLE POINT",
+"PARKING": "No",
+"RESTROOMS": "Yes",
+"AGENCY": "Parks",
+"DESCRIPTN": " "
+}
+],
+"info": [
+{
+"la": 37.28614,
+"lo": -82.29438,
+"PARK_NAME": "Breaks Interstate",
+"BL_NAME": "Rhododendron Lodge"
+},
+{
+"la": 36.67824,
+"lo": -85.70484,
+"PARK_NAME": "Old Mulkey Meetinghouse",
+"BL_NAME": "Park Office"
+},
+{
+"la": 37.07702,
+"lo": -87.04371,
+"PARK_NAME": "Lake Malone",
+"BL_NAME": "Park Office"
+},
+{
+"la": 37.2972,
+"lo": -86.21225,
+"PARK_NAME": "Nolin Lake",
+"BL_NAME": "Park Office"
+},
+{
+"la": 37.27676,
+"lo": -85.33862,
+"PARK_NAME": "Green River Lake",
+"BL_NAME": "Park Office"
+},
+{
+"la": 37.75351,
+"lo": -85.21277,
+"PARK_NAME": "Lincoln Homestead",
+"BL_NAME": "Park Office"
+},
+{
+"la": 38.0301,
+"lo": -85.25231,
+"PARK_NAME": "Taylorsville Lake",
+"BL_NAME": "Park Office"
+},
+{
+"la": 37.76202,
+"lo": -84.84755,
+"PARK_NAME": "Old Fort Harrod",
+"BL_NAME": "Park Office"
+},
+{
+"la": 36.84185,
+"lo": -87.3001,
+"PARK_NAME": "Jefferson Davis",
+"BL_NAME": "Visitor Center"
+},
+{
+"la": 36.97163,
+"lo": -84.6051,
+"PARK_NAME": "General Burnside Island",
+"BL_NAME": "Park Office"
+},
+{
+"la": 37.88322,
+"lo": -87.55699,
+"PARK_NAME": "John James Audubon",
+"BL_NAME": "Museum"
+},
+{
+"la": 37.67422,
+"lo": -84.97053,
+"PARK_NAME": "Perryville Battlefield",
+"BL_NAME": "Museum"
+},
+{
+"la": 37.80654,
+"lo": -85.4548,
+"PARK_NAME": "My Old Kentucky Home",
+"BL_NAME": "Visitor Center"
+},
+{
+"la": 38.88425,
+"lo": -84.75218,
+"PARK_NAME": "Big Bone Lick",
+"BL_NAME": "Museum"
+},
+{
+"la": 37.56644,
+"lo": -84.78389,
+"PARK_NAME": "Isaac Shelby Cemetery",
+"BL_NAME": "Monument"
+},
+{
+"la": 36.8396,
+"lo": -83.91904,
+"PARK_NAME": "Dr. Thomas Walker",
+"BL_NAME": "Park Office"
+},
+{
+"la": 36.98963,
+"lo": -82.98465,
+"PARK_NAME": "Kingdom Come",
+"BL_NAME": "Information Center"
+},
+{
+"la": 37.23233,
+"lo": -83.0016,
+"PARK_NAME": "Carr Creek",
+"BL_NAME": "Park Office"
+},
+{
+"la": 38.20686,
+"lo": -83.02487,
+"PARK_NAME": "Grayson Lake",
+"BL_NAME": "Park Office"
+},
+{
+"la": 37.84191,
+"lo": -82.87859,
+"PARK_NAME": "Paintsville Lake",
+"BL_NAME": "Park Office"
+},
+{
+"la": 38.09711,
+"lo": -82.68435,
+"PARK_NAME": "Yatesville Lake",
+"BL_NAME": "Park Office"
+},
+{
+"la": 36.99691,
+"lo": -88.28575,
+"PARK_NAME": "Kentucky Dam Village",
+"BL_NAME": "Village Inn Lodge"
+},
+{
+"la": 36.75975,
+"lo": -88.13841,
+"PARK_NAME": "Kenlake",
+"BL_NAME": "Kenlake Lodge"
+},
+{
+"la": 36.84999,
+"lo": -87.93213,
+"PARK_NAME": "Lake Barkley",
+"BL_NAME": "Lake Barkley Lodge"
+},
+{
+"la": 37.07254,
+"lo": -87.66349,
+"PARK_NAME": "Pennyrile Forest",
+"BL_NAME": "Pennyrile Lodge"
+},
+{
+"la": 37.61007,
+"lo": -86.50216,
+"PARK_NAME": "Rough River Dam",
+"BL_NAME": "Rough River Dam Lodge"
+},
+{
+"la": 36.86543,
+"lo": -86.06928,
+"PARK_NAME": "Barren River Lake",
+"BL_NAME": "Louie B. Nunn Lodge"
+},
+{
+"la": 36.63872,
+"lo": -85.29833,
+"PARK_NAME": "Dale Hollow Lake",
+"BL_NAME": "Mary Ray Oaken Lodge"
+},
+{
+"la": 36.83862,
+"lo": -84.33834,
+"PARK_NAME": "Cumberland Falls",
+"BL_NAME": "Dupont Lodge"
+},
+{
+"la": 38.43207,
+"lo": -83.9958,
+"PARK_NAME": "Blue Licks Battlefield",
+"BL_NAME": "P. Worthington Lodge"
+},
+{
+"la": 37.30631,
+"lo": -83.4461,
+"PARK_NAME": "Buckhorn Lake",
+"BL_NAME": "Buckhorn Lodge"
+},
+{
+"la": 38.48068,
+"lo": -82.87332,
+"PARK_NAME": "Greenbo Lake",
+"BL_NAME": "Jesse Stuart Lodge"
+},
+{
+"la": 38.36901,
+"lo": -83.12397,
+"PARK_NAME": "Carter Caves",
+"BL_NAME": "Lewis Caveland Lodge"
+},
+{
+"la": 36.73611,
+"lo": -83.73813,
+"PARK_NAME": "Pine Mountain",
+"BL_NAME": "Herndon J. Evans Lodge"
+},
+{
+"la": 37.69792,
+"lo": -82.72471,
+"PARK_NAME": "Jenny Wiley",
+"BL_NAME": "May Lodge"
+},
+{
+"la": 36.93023,
+"lo": -85.04012,
+"PARK_NAME": "Lake Cumberland",
+"BL_NAME": "Lure Lodge"
+},
+{
+"la": 37.77717,
+"lo": -83.68069,
+"PARK_NAME": "Natural Bridge",
+"BL_NAME": "Hemlock Lodge"
+},
+{
+"la": 36.97104,
+"lo": -89.09247,
+"PARK_NAME": "Wickliffe Mounds",
+"BL_NAME": "Welcome Center"
+},
+{
+"la": 38.2863,
+"lo": -85.55822,
+"PARK_NAME": "E.P. \"Tom\" Sawyer",
+"BL_NAME": "Activities Building"
+},
+{
+"la": 37.06268,
+"lo": -88.08806,
+"PARK_NAME": "Mineral Mound",
+"BL_NAME": "Park Office"
+},
+{
+"la": 38.67043,
+"lo": -85.15386,
+"PARK_NAME": "General Butler",
+"BL_NAME": "General Butler Lodge"
+},
+{
+"la": 37.7847,
+"lo": -82.83628,
+"PARK_NAME": "Dawkins Line Rail Trail",
+"BL_NAME": "Jenny's Creek Trailhead"
+},
+{
+"la": 37.73689,
+"lo": -82.90031,
+"PARK_NAME": "Dawkins Line Rail Trail",
+"BL_NAME": "Swamp Branch Trailhead"
+},
+{
+"la": 37.67643,
+"lo": -83.02133,
+"PARK_NAME": "Dawkins Line Rail Trail",
+"BL_NAME": "Royalton Trailhead"
+},
+{
+"la": 37.68117,
+"lo": -83.03248,
+"PARK_NAME": "Dawkins Line Rail Trail",
+"BL_NAME": "Jane Beshear Trailhead"
+},
+{
+"la": 37.29528,
+"lo": -82.3378,
+"PARK_NAME": "Pine Mountain State Scenic Trail",
+"BL_NAME": "Russell Fork Trailhead"
+},
+{
+"la": 37.15506,
+"lo": -82.63296,
+"PARK_NAME": "Pine Mountain State Scenic Trail",
+"BL_NAME": "Pound Gap Trailhead"
+},
+{
+"la": 37.0764,
+"lo": -82.81,
+"PARK_NAME": "Pine Mountain State Scenic Trail",
+"BL_NAME": "US 119 Trailhead"
+},
+{
+"la": 36.76457,
+"lo": -89.11091,
+"PARK_NAME": "Columbus-Belmont",
+"BL_NAME": "Museum"
+},
+{
+"la": 38.2879,
+"lo": -85.55336,
+"PARK_NAME": "E.P. \"Tom\" Sawyer",
+"BL_NAME": "Park Office"
+},
+{
+"la": 38.43197,
+"lo": -83.99257,
+"PARK_NAME": "Blue Licks Battlefield",
+"BL_NAME": "Museum"
+},
+{
+"la": 38.37754,
+"lo": -83.12319,
+"PARK_NAME": "Carter Caves",
+"BL_NAME": "Visitor Center"
+},
+{
+"la": 36.83811,
+"lo": -84.34374,
+"PARK_NAME": "Cumberland Falls",
+"BL_NAME": "Visitor Center"
+},
+{
+"la": 37.89363,
+"lo": -84.2698,
+"PARK_NAME": "Fort Boonesborough",
+"BL_NAME": "Fort Boonesborough"
+},
+{
+"la": 36.99869,
+"lo": -88.29058,
+"PARK_NAME": "Kentucky Dam Village",
+"BL_NAME": "Park Office"
+},
+{
+"la": 38.72286,
+"lo": -84.28943,
+"PARK_NAME": "Kincaid Lake",
+"BL_NAME": "Park Office"
+},
+{
+"la": 36.92221,
+"lo": -85.04225,
+"PARK_NAME": "Lake Cumberland",
+"BL_NAME": "Country Store"
+},
+{
+"la": 36.65318,
+"lo": -85.29152,
+"PARK_NAME": "Dale Hollow Lake",
+"BL_NAME": "Campground Store"
+},
+{
+"la": 37.97163,
+"lo": -84.53706,
+"PARK_NAME": "Waveland",
+"BL_NAME": "Park Office"
+}
+]
+}
