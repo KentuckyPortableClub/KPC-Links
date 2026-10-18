@@ -1,0 +1,17 @@
+name: zz padus at point (temporary)
+on: workflow_dispatch
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python3 - <<'PY'
+          import json,urllib.request,urllib.parse
+          def g(u):
+              try: return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=90).read())
+              except Exception as e: return {'err':str(e)[:150]}
+          for lid in [0,1,2,3,4,5,6,7,8,9,10]:
+              q={'geometry':'-89.102640,37.117789','geometryType':'esriGeometryPoint','inSR':4326,'spatialRel':'esriSpatialRelIntersects','outFields':'Unit_Nm,Loc_Nm,Mang_Name,Mang_Type,Own_Name,Own_Type,Des_Tp,Category,State_Nm,GIS_Acres,Pub_Access','returnGeometry':'false','f':'json'}
+              j=g(f'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/{lid}/query?'+urllib.parse.urlencode(q))
+              print(f"::notice title=PAD-US layer {lid}::{json.dumps([f['attributes'] for f in j.get('features',[])])[:1500]} {j.get('err','')}{str(j.get('error',''))[:200]}")
+          PY
