@@ -88,7 +88,14 @@ html.kpm-fix main{background:transparent!important}@media print{html.kpm-fix bod
       if (el.closest('header,footer') || el.matches('.kb-hero,.hero,#kpc-cx,#kzFx,.kzfx')) return;
       const cs = getComputedStyle(el); if (/sticky|fixed/.test(cs.position)) return;
       const c = cs.backgroundColor, m = c.match(/rgba?\(([^)]+)\)/); if (!m) return;
-      const v = m[1].split(/[ ,/]+/).map(Number); if (v.length > 3 && v[3] < .3) return;
+      const v = m[1].split(/[ ,/]+/).map(Number);
+      if (v.length > 3 && v[3] < .3) {
+        /* see-through section: dark words would sit right on the dark picture, so give it a light veil (Oct 18 fix) */
+        const t = (cs.color.match(/[\d.]+/g) || []).map(Number), lum = (.299 * t[0] + .587 * t[1] + .114 * t[2]) / 255;
+        if (lum < .5) el.style.setProperty('background-color', 'rgba(248,244,235,.9)', 'important');
+        else el.style.removeProperty('background-color');
+        return;
+      }
       el.style.setProperty('background-color', `rgba(${v[0]},${v[1]},${v[2]},.9)`, 'important');
     });
     see(); setTimeout(see, 900); new MutationObserver(() => setTimeout(see, 700)).observe(H, { attributes: true, attributeFilter: ['data-theme'] });
