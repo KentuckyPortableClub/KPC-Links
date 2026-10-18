@@ -1,0 +1,22 @@
+name: zz check water edge (temporary)
+on: workflow_dispatch
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python3 - <<'PY'
+          import json,urllib.request,urllib.parse
+          def g(u):
+              try: return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=90).read())
+              except Exception as e: return {'err':str(e)[:150]}
+          S='https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer'
+          r=g(S+'?f=json'); print('::notice title=layers::'+', '.join(f"{l['id']}:{l['name']}" for l in r.get('layers',[])))
+          for lid in [9,12,4,5,6]:
+              for d in [15,30,60,120,250]:
+                  q={'geometry':'-89.068913,37.169117','geometryType':'esriGeometryPoint','inSR':4326,'distance':d,'units':'esriSRUnit_Meter','spatialRel':'esriSpatialRelIntersects','outFields':'gnis_name,ftype,fcode','returnGeometry':'false','f':'json'}
+                  j=g(f'{S}/{lid}/query?'+urllib.parse.urlencode(q))
+                  fs=j.get('features',[])
+                  if fs or 'err' in j or 'error' in j:
+                      print(f"::notice title=layer {lid} within {d} m::{[f['attributes'] for f in fs][:3]} {j.get('err','')}{j.get('error','')}"); break
+          PY
