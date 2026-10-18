@@ -1,6 +1,6 @@
 # AL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **89 of 155** parks joined to official land (same name + same kind of place). **34** to check by hand, **32** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **92 of 155** parks joined to official land (same name + same kind of place). **32** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -22,16 +22,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **89 of 155** parks joined 
 - **US-13311** TVA Upper Bear Creek Dam Resource Management Area (Resource Management Area) → Upper Bear Creek Reservoir Retained Land (~3,216 ac, the POTA pin is inside it (different name))
 - **US-3678** Roland Cooper State Park (State Park) → Millers Ferry Lock Recreation Area (~15,105 ac, the POTA pin is inside it (different name))
 - **US-3681** Blowing Springs Cave Preserve State Conservation Area (State Conservation Area) → Blowing Springs Cave Tract (~60 ac, similar name)
-- **US-3682** Cheaha Wilderness Area (Wilderness Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
+- **US-3682** Cheaha Wilderness Area (Wilderness Area) → Cheaha Wilderness (~7,400 ac, similar name); Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
 - **US-3683** Choccolocco Wildlife Management Area (Wildlife Management Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
 - **US-3684** Coon Creek Preserve State Conservation Area (State Conservation Area) → Coon Creek Nature Preserve (~316 ac, similar name)
-- **US-3687** Dugger Mountain Wilderness National Forest (National Forest) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
 - **US-3691** Grand Bay Savanna Complex Wildlife Management Area (Wildlife Management Area) → Grand Bay Savanna Community Hunting Area (~2,791 ac, similar name); Grand Bay Savanna Community Hunting Area (~1,662 ac, similar name); Grand Bay Savanna Community Hunting Area (~649 ac, similar name); Grand Bay Savanna Community Hunting Area (~131 ac, similar name)
 - **US-3692** Heron Bay and Portersville Bay State Fish and Wildlife Area (State Fish and Wildlife Area) → The Heron Bay Wetlands Tract (~463 ac, similar name)
 - **US-3693** Hollins Wildlife Management Area (Wildlife Management Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
 - **US-3702** Red Hills Wildlife Management Area (Wildlife Management Area) → Red Hills Complex (~2,624 ac, similar name)
 - **US-3703** Ruffner Mountain Preserve State Conservation Area (State Conservation Area) → Ruffner Mountain Nature Center (~226 ac, similar name)
-- **US-3706** Sipsey Wilderness Wilderness Area (Wilderness Area) → William B. Bankhead National Forest (~182,015 ac, the POTA pin is inside it (different name))
 - **US-3711** Weeks Bay Reserve National Conservation Area (National Conservation Area) → Weeks Bay National Estuarine Research Reserve (~933 ac, similar name); Weeks Bay National Estuarine Research Reserve (~470 ac, similar name); Weeks Bay National Estuarine Research Reserve (~123 ac, similar name); Weeks Bay National Estuarine Research Reserve (~113 ac, similar name)
 - **US-9875** Raccoon Creek Management Area (Management Area) → Jackson County Waterfowl Area And Refuge (~16,198 ac, the POTA pin is inside it (different name))
 - **US-9876** Crow Creek Management Area (Management Area) → Jackson County Waterfowl Area And Refuge (~16,198 ac, the POTA pin is inside it (different name))
@@ -55,7 +53,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **89 of 155** parks joined 
 - US-12740 Hinds Road Outcrop Forever Wild Tract State Conservation Area (State Conservation Area)
 - US-12962 TVA Veterans Park Regional Park (Regional Park)
 - US-12970 Madison County Public State Fishing Lake (State Fishing Lake)
-- US-12996 Fowl River Access Site BLM Recreation Management Area (BLM Recreation Management Area)
 - US-13081 Fort Toulouse Forever Wild Tract State Wildlife Area (State Wildlife Area)
 - US-13083 TVA Wheeler Dam Public Park National Recreation Area (National Recreation Area)
 - US-13473 Old Cahawba Archaeological Park State Historical Park (State Historical Park)
@@ -84,6 +81,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **89 of 155** parks joined 
 - Millers Ferry Lock Recreation Area · REC · Mobile · ~15,105 ac
 - State-owned Submerged Lands · SRMA · SDNR · ~9,783 ac
 - Pickwick Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~8,930 ac
+- Cheaha Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,400 ac
 - Claiborne Recreation Area · REC · Mobile · ~6,816 ac
 - Solon Dixon Forestry Education Center · SCA · State Land Board · ~5,399 ac
 - Riverton Community Hunting Area · SCA · Alabama Department of Conservation and Natural Resources · ~5,282 ac
@@ -115,7 +113,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **89 of 155** parks joined 
 - M. Barnett Lawley Forever Wild Field Trial Area · SREC · ADCNR, State Lands Division · ~1,000 ac
 - Weeks Bay National Estuarine Research Reserve · SCA · ADCNR, State Lands Division · ~933 ac
 - Raccoon Creek Wildlife Management Area · SCA · SDNR · ~903 ac
-- Fowl River · MIT · Alabama Department of Transportation · ~792 ac
 - Weeks Bay National Estuarine Research Reserve · SCA · Alabama Department of Conservation and Natural Resources · ~694 ac
 - W. L. Holland Wildlife Management Area · SCA · ADCNR, State Lands Division · ~671 ac
 - Grand Bay Savanna Community Hunting Area · SCA · Alabama Department of Conservation and Natural Resources · ~649 ac
