@@ -1,0 +1,22 @@
+name: zz KY new parks check (temporary)
+on: workflow_dispatch
+jobs:
+  look:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: |
+          python3 - <<'PY'
+          import json,urllib.request
+          def g(u):
+              return json.load(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=60))
+          have={p['c'] for p in json.load(open('kpc-ky-data.json'))['parks']}
+          L=g('https://api.pota.app/location/parks/US-KY')
+          print('::notice title=POTA KY count::%d (we have %d)'%(len(L),len(have)))
+          for p in L:
+              if p['reference'] not in have:
+                  d=g('https://api.pota.app/park/'+p['reference'])
+                  print('::notice title=NEW %s::%s'%(p['reference'],json.dumps({k:d.get(k) for k in ['name','latitude','longitude','grid6','parktypeDesc','website','locationDesc','county','active']})))
+          gone=have-{p['reference'] for p in L}
+          if gone: print('::notice title=NOT IN POTA LIST::%s'%sorted(gone))
+          PY
