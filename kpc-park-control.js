@@ -51,7 +51,16 @@
     count(); chips();
     const lb = $('pcPad'); if (lb) { if (!PAD) lb.hidden = true; else { const sync = () => { const on = map.hasLayer(PAD.layer); lb.classList.toggle('on', on); lb.setAttribute('aria-pressed', on); };
       lb.onclick = () => { const on = !map.hasLayer(PAD.layer); if (on) PAD.layer.addTo(map); else map.removeLayer(PAD.layer); put('kpcPcPad', on ? 1 : 0); sync(); };
-      map.on('overlayadd overlayremove layeradd layerremove', sync); map.whenReady(() => setTimeout(sync, 50)); } }
+      map.on('overlayadd overlayremove layeradd layerremove', sync); map.whenReady(() => setTimeout(sync, 50));
+      /* Oct 17 (Brandon: 'all state parks next to CoE land … same color as around US-1271'): the PAD-US pictures colour land by who RUNS it, so Corps
+         land run by Kentucky (lake WMAs, some park land) looked like state land. ky-usace.geojson = land the Corps OWNS: always the same orange outline. */
+      let CO = null, coP = null; const coSync = () => { const on = map.hasLayer(PAD.layer);
+        if (on && !CO && !coP) coP = fetch('ky-usace.geojson').then(r => r.ok ? r.json() : null).then(j => { if (!j) return; map.createPane('pcCorps').style.zIndex = 395;
+          CO = L.geoJSON(j, { pane: 'pcCorps', renderer: L.svg({ pane: 'pcCorps' }), style: () => ({ color: '#ff8c38', weight: 2.6, opacity: 1, fill: true, fillOpacity: 0 }),
+            onEachFeature: (f, l) => { const p = f.properties || {}; l.bindTooltip(`<b>Army Corps of Engineers land</b><br>${esc(p.NAME || '')}${p.MANAGER ? '<br>Run by: ' + esc(p.MANAGER) : ''}` + (/Dewey Lake|Fishtrap Lake|Yatesville Lake/i.test(p.NAME||'')?'<br><b>This one IS a POTA park</b> (one of the few Corps lakes run by Kentucky that POTA added).':'<br><small>Usually NOT part of a POTA park unless a state agency runs it.</small>'), { sticky: true }); } });
+          coSync(); }).catch(() => {}).finally(() => { coP = null; });
+        if (CO) { if (on && !map.hasLayer(CO)) CO.addTo(map); if (!on && map.hasLayer(CO)) map.removeLayer(CO); } };
+      map.on('layeradd layerremove', e => { if (e.layer === PAD.layer) coSync(); }); map.whenReady(() => setTimeout(coSync, 80)); } }
   }
   function count() { const n = ALL.filter(x => SHOW[kindOf(x)]).length; $('pcCount').textContent = n + ' on the map' + (SHOW.trails ? ' + ' + new Set(TR.map(t => t.ref)).size + ' trails' : ''); }
   /* lines: keep only the stretches inside Kentucky */
@@ -91,7 +100,7 @@
         /* Oct 17 (Brandon: Taylorsville Lake 'hard to tell what is what'): each piece in its own colour, by whose land it is */
         outline = L.geoJSON({ type: 'FeatureCollection', features: F }, { style: f => Object.assign({ weight: 3, fill: false }, PIECE(f)), interactive: false }).addTo(map);
         const seen = {}, key = F.map(f => { const P = PIECE(f), nm = (f.properties || {}).NAME || (f._L && f._L.name) || ''; if (seen[nm]) return ''; seen[nm] = 1; return `<li><i style="display:inline-block;width:22px;height:0;border-top:3px ${P.dashArray ? 'dashed' : 'solid'} ${P.color};vertical-align:middle;margin-right:6px"></i>${esc(nm)} <span class="pc-tag">${esc(P.who)}</span></li>`; }).join('');
-        PCS.ref = x.c; PCS.html = `<div class="pc-k" style="margin-top:8px">🗺 THE OUTLINE ON THE MAP</div><ul class="pc-list">${key}</ul>${PAD ? '<p class="pc-note">Orange outline = Army Corps of Engineers land, from the official boundaries layer (usually NOT part of a POTA park unless a state agency runs it). Turn it off or on with the 🗺 LAND OWNERS chip.</p>' : ''}`; const box = document.getElementById('pcPieces'); if (box) box.innerHTML = PCS.html;
+        PCS.ref = x.c; PCS.html = `<div class="pc-k" style="margin-top:8px">🗺 THE OUTLINE ON THE MAP</div><ul class="pc-list">${key}</ul>${PAD ? '<p class="pc-note">Orange outline = land the Army Corps of Engineers OWNS (USGS PAD-US), even where Kentucky runs it (usually NOT part of a POTA park unless a state agency runs it). Turn it off or on with the 🗺 LAND OWNERS chip.</p>' : ''}`; const box = document.getElementById('pcPieces'); if (box) box.innerHTML = PCS.html;
         if (fly !== false) { const b = outline.getBounds(); if (b.isValid()) map.fitBounds(b.pad(.1), { maxZoom: 14 }); } } catch (e) {} }
   }
   function info(x) {
