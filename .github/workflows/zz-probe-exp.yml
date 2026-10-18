@@ -1,0 +1,29 @@
+name: zz probe roads (temporary)
+on: workflow_dispatch
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python3 - <<'PY'
+          import json,urllib.request,urllib.parse
+          def g(u):
+              try: return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=90).read())
+              except Exception as e: return {'err':str(e)[:100]}
+          def n(t,m): print('::notice title=%s::%s'%(t,str(m).replace('\n','%0A')[:3800]))
+          w=g('https://www.arcgis.com/sharing/rest/content/items/72afc8e76b8d46c2917182c11218d9de/data?f=json')
+          out=[]
+          def walk(ls,d=0):
+              for l in ls or []:
+                  out.append('  '*d+str(l.get('title'))+' | '+str(l.get('url') or l.get('itemId') or ''))
+                  walk(l.get('layers'),d+1)
+          walk(w.get('operationalLayers')); n('webmap layers','\n'.join(out))
+          r=g('https://services5.arcgis.com/RMHPuOW5MJ6iyTV6/arcgis/rest/services?f=json')
+          n('kdfwr services',', '.join(s['name'] for s in r.get('services',[])))
+          s=g('https://www.arcgis.com/sharing/rest/search?'+urllib.parse.urlencode({'q':'owner:kdfwr@1kfwis','num':100,'f':'json'}))
+          n('kdfwr items','\n'.join(f"{x['type']} | {x['title']} | {x.get('url')}" for x in s.get('results',[])))
+          for f in ['WGS84WM_Services','Transportation','Basemaps']:
+              r=g(f'https://kygisserver.ky.gov/arcgis/rest/services/{f}?f=json')
+              n('kygis '+f,', '.join(x['name'] for x in r.get('services',[])) or str(r)[:200])
+          r=g('https://kygisserver.ky.gov/arcgis/rest/services?f=json'); n('kygis root',str(r.get('folders'))+' '+', '.join(x['name'] for x in r.get('services',[])))
+          PY
