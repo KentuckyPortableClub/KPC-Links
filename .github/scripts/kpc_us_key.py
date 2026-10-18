@@ -56,14 +56,15 @@ def norm(s, drop1=False):
     s = ' '.join(ABBR.get(w, w) for w in s.split())
     s = re.sub(r'\b(' + GEN + r')\b', ' ', s)
     s = re.sub(r'[^a-z0-9 ]', ' ', s)
+    s = ' '.join(ABBR.get(w, w) if w.isdigit() else w for w in s.split())   # '#4' = 'Pool 4' = 'Pool Four'
     if drop1: s = re.sub(r'\b[a-z]\b', ' ', s)              # also try without a lone middle initial ('George H. Crosby')
     return re.sub(r'\s+', ' ', s).strip()
 
 
 KINDS = [('wma', r'wildlife management area|\bwma\b|wildlife area|game lands?|game areas?|game management area|hunting area|fish and wildlife area|public hunting|fishery area|(?<!recreation )(?<!herd )(?<!conservation )management area'),
-         ('wsr', r'wild (and|&) scenic river|recreational river'), ('fl', r'fishing lake|public fishing area'),
+         ('wsr', r'wild (and|&) scenic river|recreational river'),
          ('ca', r'conservation area|\baccess$'),          # Missouri: 'Kings Prairie Access' = Kings Prairie Access State Conservation Area
-         ('snp', r'nature preserve|natural area|\bsnp\b|\bsna\b|natural heritage'),
+         ('snp', r'nature preserve|natural area|\bsnp\b|\bsna\b|natural heritage|\bpreserve\b'),
          ('hist', r'historic(al)? (site|park|area)|\bshs\b'),
          ('sp', r'state (resort )?park|\bsrp\b|recreation(al)? area|state beach|state seashore'),
          ('nf', r'national forest|national grassland'), ('sf', r'state forest'),
@@ -81,11 +82,12 @@ def variants(s):
     # other ways of writing the same name: no middle initial, bracket words left out ('Reifsnider (Frank)'), no leading 'Mount'
     v = {norm(s), norm(s, True), norm(re.sub(r'\(.*?\)', ' ', str(s or '')))}
     v |= {re.sub(r'^mount ', '', x) for x in v}
-    v |= {re.sub(r' (park|forest)$', '', x) for x in v}         # 'Fort Revere Park' = Fort Revere, 'Coulee Experimental Forest'
+    v |= {re.sub(r' (park|forest|pond|ponds|lake|reservoir|complex|trail)$', '', x) for x in v}         # 'Fort Revere Park' = Fort Revere, 'Coulee Experimental Forest'
     return {x for x in v if x}
 
 
 def same_name(a, b):
+    if str(a or '').strip().lower() == str(b or '').strip().lower(): return True
     a1, b1 = norm(a), norm(b)
     if _same(a1, b1) or any(_same(x, y) for x in variants(a) for y in variants(b)): return True
     sa, sb = _sing(a1), _sing(b1)                          # McCloskey's = McCloskey, Glades = Glade
@@ -93,9 +95,17 @@ def same_name(a, b):
     return len(sa) >= 8 and len(sb) >= 8 and not re.search(r'\d', sa + sb) and _ed1(sa, sb)   # one-letter typos in PAD-US ('Horshoe', 'Morraine')
 
 
+SOFT = {'preserve', 'reserve', 'beach', 'complex', 'game', 'mua', 'fwma', 'ca', 'pas', 'tract', 'tracts', 'addition', 'unit', 'area', 'lake', 'pond', 'ponds', 'reservoir',
+        'park', 'forest', 'trail', 'center', 'centre', 'site', 'lands', 'land'}
+def _soft(x): return ' '.join(w for w in x.split() if w not in SOFT and not re.fullmatch(r'(19|20)\d\d', w))
+
+
 def exact_name(a, b):
-    # no 'starts with' allowance: used when only one of the two names says what kind of place it is
+    # no 'starts with' allowance: used when only one of the two names says what kind of place it is.
+    # Only 'soft' words may differ (Torrey Pines Reserve = Torrey Pines State Reserve, Big Bend = Big Bend - 2015)
+    if str(a or '').strip().lower() == str(b or '').strip().lower(): return True
     va, vb = variants(a), variants(b)
+    va |= {_soft(x) for x in va if _soft(x)}; vb |= {_soft(x) for x in vb if _soft(x)}
     if va & vb or {_sing(x) for x in va} & {_sing(x) for x in vb}: return True
     return any(len(x) >= 8 and len(y) >= 8 and not re.search(r'\d', x + y) and _ed1(x, y) for x in va for y in vb)   # one-letter typo ('Pishkin' / 'Pishkun')
 
@@ -127,7 +137,9 @@ def same_words(a, b, ka, kb):
     w1, w2 = wset(a), wset(b)
     s, l = (w1, w2) if len(w1) <= len(w2) else (w2, w1)
     big = [w for w in s if len(w) > 2]
-    return (len(big) >= 2 or (len(big) == 1 and len(big[0]) >= 6 and ka == kb)) and s <= l and len(l - s) <= 2
+    if len(big) == 1:   # one long word only when the other name just adds a filler word ('Keyhole' = 'Keyhole Reservoir'; not 'Legion' = 'Legion Lake')
+        return len(big[0]) >= 6 and ka == kb and s <= l and (l - s) <= {'reservoir', 'mountain', 'memorial', 'station', 'bottoms', 'island'} and len(l - s) == 1
+    return len(big) >= 2 and s <= l and len(l - s) <= 2
 
 
 def _same(a, b):
