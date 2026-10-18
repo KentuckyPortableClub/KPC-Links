@@ -82,7 +82,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **213 of 277** parks joined
 - Old Hickory Recreation Area · REC · Nashville · ~29,862 ac
 - Cordell Hull Recreation Area · REC · Nashville · ~29,264 ac
 - Barkley Recreation Area · REC · Nashville · ~17,136 ac
+- Big Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,001 ac
 - Meeman-Shelby Forest Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~9,433 ac
+- Wapanocca National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,464 ac
 - Kentucky Reservoir · ND · Tennessee Valley Authority (TVA) · ~8,201 ac
 - North Chickamauga Creek Gorge Designated State Natural Area · SCA · SDC · ~7,107 ac
 - Cheatham Lock And Dam Recreation Area · REC · Nashville · ~6,915 ac
@@ -132,5 +134,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **213 of 277** parks joined
 - Walker Branch Hills Designated State Natural Area · SCA · Unknown · ~281 ac
 - Tellico Lake - Chota Unit · NCA · Tennessee Valley Authority (TVA) · ~262 ac
 - Henderson Island Refuge · SCA · Tennessee Wildlife Resources Agency · ~243 ac
-- Humboldt Hatchery · SOTH · Tennessee Wildlife Resources Agency · ~240 ac
-- Phipps Bend Wildlife Refuge · SCA · Tennessee Wildlife Resources Agency · ~233 ac
