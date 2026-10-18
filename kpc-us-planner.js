@@ -89,13 +89,32 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  /* drop mode wins over dots: with big phone tap areas most taps land on a dot, so drop the pin there too */
  let dropBusy=0;const dropAt=ll=>{if(!dropMode||dropBusy)return;dropBusy=1;map.closePopup();setTimeout(()=>{dropBusy=0;const nm=prompt('Name this pin (campsite, gas stop, lookout…):','My pin');if(nm===null)return;
   addStop({p:'PIN',c:'PIN-'+Date.now().toString(36),n:(nm.trim()||'My pin').slice(0,60),la:fix(ll.lat),lo:fix(ll.lng)});setDrop(false)},30)};
- map.on('click',e=>dropAt(e.latlng));dots.on('click',e=>{if(dropMode){L.DomEvent.stop(e);dropAt(e.latlng)}});
+ map.on('click',e=>dropAt(e.latlng));
+ /* WHAT LAND IS HERE? (Oct 18, Brandon: 'review the US data… see what you can do with it'): zoomed in to county level, a tap on land
+    (not on a dot or trail line) asks USGS PAD-US what official land is right there, and the answer key says which park it is */
+ let hereL=null,dotTap=0;dots.on('click',()=>{dotTap=Date.now()});map.on('click',e=>landHere(e));
+ async function landHere(e){if(dropMode||!window.KPCB||!KPCB.usLandAt||map.getZoom()<10||Date.now()-dotTap<500)return;const t=e.originalEvent&&e.originalEvent.target;
+  if(t&&t.closest&&(t.closest('.leaflet-interactive')||t.closest('.leaflet-popup')||t.closest('.leaflet-control')))return;
+  const ll=e.latlng,E=x=>String(x==null?'':x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let A=[];try{if(KPCB.inKY&&KPCB.inKY(ll.lat,ll.lng)&&KPCB.landAt){A=(await KPCB.landAt(ll.lat,ll.lng)).slice(0,5).map(a=>({name:a.name,by:a.props.MANAGER||'',kind:a.layer||'',access:'',acres:0,parks:a.own.map(r=>({ref:r.ref,n:r.name})),f:a.f}))}
+   else A=await KPCB.usLandAt(ll.lat,ll.lng,statesNear(ll.lat,ll.lng,1))}catch(x){return}
+  if(hereL){map.removeLayer(hereL);hereL=null}
+  if(!A.length)return;
+  A.sort((a,b)=>(b.parks.length>0)-(a.parks.length>0));
+  hereL=L.geoJSON({type:'FeatureCollection',features:A.filter(a=>a.f).map(a=>a.f)},{interactive:false,style:f=>{const a=A.find(x=>x.f===f);return a&&a.parks.length?{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.1}:{color:'#9fd3ff',weight:2,dashArray:'4 4',fill:false}}}).addTo(map);
+  const pk=a=>a.parks.map(r=>`<a href="#" data-here="${E(r.ref)}" style="color:#7a5410;font-weight:800">${E(r.ref)}</a> ${E(r.n)}`).join('<br>');
+  const top=A[0],line=`<b>${E(top.name)}</b>${top.parks.length?' · <span style="color:#1f6b3a;font-weight:800">'+E(top.parks.map(r=>r.ref).join(', '))+'</span>':(top.by?' · '+E(top.by):'')}${A.length>1?' · +'+(A.length-1)+' more here':''}`;
+  const full=()=>'<div style="font:900 11px Arial;letter-spacing:1.4px;color:#7a5410">WHAT LAND IS HERE?</div>'+A.map(a=>`<div style="margin:7px 0 0;font:700 14px/1.25 Georgia,serif">${E(a.name)}</div><div style="font-size:12px;color:#5b5243">${[a.by&&'Run by '+a.by,a.access,a.acres?a.acres.toLocaleString()+' acres':''].filter(Boolean).map(E).join(' · ')}</div>${a.parks.length?'<div style="font-size:12.5px;margin-top:3px">🌲 '+pk(a)+'</div>':''}`).join('<hr style="border:0;border-top:1px dashed #e2d6bb;margin:7px 0 0">')+'<p style="font-size:11.5px;color:#6b6252;margin:8px 0 0">Official land from USGS PAD-US. Outlines are guides: the official map decides.</p>';
+  const pop=L.popup({maxWidth:300,maxHeight:300}).setLatLng(ll).setContent(`<div style="font:13px/1.35 Arial">${line} <a href="#" data-more="1" style="font-weight:800;color:#7a5410;white-space:nowrap">more ›</a></div>`).openOn(map);
+  const wire=()=>{const el=pop.getElement();if(!el)return;const mo=el.querySelector('[data-more]');if(mo)mo.onclick=ev=>{ev.preventDefault();ev.stopPropagation();setTimeout(()=>{pop.setContent(full());wire()},0)};
+   el.querySelectorAll('[data-here]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const s2=BYREF[b.dataset.here.toUpperCase()];map.closePopup();if(!s2)return;let hit=0;dots.eachLayer(l=>{if(l.getPopup&&l.getPopup()&&l.getPopup()._kpc===s2)hit=1});hit?openSpot(s2):Promise.resolve(go(s2.la,s2.lo,s2.n)).then(()=>openSpot(s2))})};
+  wire();map.once('popupclose',()=>{if(hereL){map.removeLayer(hereL);hereL=null}})}dots.on('click',e=>{if(dropMode){L.DomEvent.stop(e);dropAt(e.latlng)}});
  map.on('popupopen',e=>{if(dropMode)setTimeout(()=>map.closePopup(),0)});
  map.on('popupopen',e=>{const el=e.popup.getElement();if(!el)return;const s=e.popup._kpc;if(!s)return;
   {const bb=el.querySelector('[data-a="bound"]');if(bb)bb.textContent=bound&&boundRef===s.c?'HIDE OUTLINE':'SHOW THIS PARK\u2019S OUTLINE'}
   el.querySelectorAll('[data-a]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const a=b.dataset.a;if(a==='add'){inTrip(s.c)?removeStop(s.c):addStop(s);map.closePopup()}else if(a==='bound')showBoundary(s,b)});
   if(s.p==='POTA')livePota(s,el.querySelector('.live'));if(s.p!=='PIN')parkInfo(s,el.querySelector('.pinfo'))})}
-function setDrop(on){dropMode=on;if(on&&map)map.closePopup();$('us-drop').setAttribute('aria-pressed',on);$('usmap').classList.toggle('dropping',on);$('us-maphint').textContent=on?'Tap the map where you want your pin.':'Tap a dot to add it to your trip, see Street View or show its boundary. Zoom in to county level to see official federal and state boundaries; the layers button switches maps (Satellite + Streets + Official Boundaries) or turns the boundaries off.'}
+function setDrop(on){dropMode=on;if(on&&map)map.closePopup();$('us-drop').setAttribute('aria-pressed',on);$('usmap').classList.toggle('dropping',on);$('us-maphint').textContent=on?'Tap the map where you want your pin.':'Tap a dot to add it to your trip, see Street View or show its boundary. Zoom in to county level to see official federal and state boundaries, and tap the land to see what it is; the layers button switches maps (Satellite + Streets + Official Boundaries) or turns the boundaries off.'}
 function links(s){const sv=`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${s.la},${s.lo}`;
  const page=s.p==='POTA'?KPC.links.pota(s.c):s.p==='SOTA'?(s.url||KPC.links.sota(s.c)):s.p==='WWFF'?KPC.links.kff(s.c):'';
  return{sv,dir:KPC.links.dir(s.la,s.lo),page}}
