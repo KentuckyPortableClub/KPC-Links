@@ -18,7 +18,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **344 of 410** parks joined
 - **US-11580** Red Hills BLM Recreation Management Area (BLM Recreation Management Area) → Mother Lode Field Office (~230,415 ac, the POTA pin is inside it (different name))
 - **US-11582** Griswold Hills BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Central Coast Field Office (~288,263 ac, the POTA pin is inside it (different name))
 - **US-11583** Tumey Hills BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Central Coast Field Office (~288,263 ac, the POTA pin is inside it (different name))
-- **US-11584** Panoche Hills BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Central Coast Field Office (~288,263 ac, the POTA pin is inside it (different name))
+- **US-11584** Panoche Hills BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Panoche Hills North Wilderness Study Area (~0 ac, same name, different kind of place); Central Coast Field Office (~288,263 ac, the POTA pin is inside it (different name))
 - **US-12115** Sáttítla Highlands Natural Monument (Natural Monument) → Modoc National Forest (~1,679,076 ac, the POTA pin is inside it (different name))
 - **US-12957** Stoddard Valley BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Barstow Field Office (~2,723,972 ac, the POTA pin is inside it (different name))
 - **US-13581** Clear Creek BLM Recreation Management Area (BLM Recreation Management Area) → Central Coast Field Office (~288,263 ac, the POTA pin is inside it (different name))
