@@ -9,4 +9,4 @@ jobs:
       - run: python3 .claude/build/ap/maplinks.py || true
       - run: |
           git config user.name kpc-bot; git config user.email bot@users.noreply.github.com
-          git add .claude/build/ap/maplinks.json && git commit -m "temp: map link probe" && git pull --rebase && git push || true
+          git add .claude/build/ap/maplinks2.json && git commit -m "temp: map link probe" && git pull --rebase && git push || true
