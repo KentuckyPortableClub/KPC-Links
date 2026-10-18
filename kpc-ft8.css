@@ -172,3 +172,7 @@ html.f8-open,html.f8-open body{overflow:hidden}
 .f8 .f8-tunr small{flex-basis:100%;color:#9fb8a8;font-size:11px}
 .f8 .f8-in0{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px;font:800 11px system-ui;letter-spacing:1px}
 .f8 .f8-in0 select{max-width:100%;font-size:14px;padding:4px}
+/* Oct 18: band jump chips */
+.f8 .f8-bandr{display:flex;gap:5px;overflow-x:auto;margin:6px 0 0;padding-bottom:2px;scrollbar-width:thin}
+.f8 .f8-bandr button{flex:0 0 auto;font:800 12px system-ui;letter-spacing:.5px;padding:5px 10px;border-radius:999px;border:1px solid #2c5a3e;background:#06110b;color:#cfe9d8;cursor:pointer}
+.f8 .f8-bandr button.on{background:linear-gradient(#f6d58a,#d5a63a);color:#2a1a05;border-color:#f0c96b}

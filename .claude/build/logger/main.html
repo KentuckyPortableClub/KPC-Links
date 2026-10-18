@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-logger.css?v=20261018z"><link rel="stylesheet" href="kpc-ft8.css?v=20261018r">
+<link rel="stylesheet" href="kpc-logger.css?v=20261018z"><link rel="stylesheet" href="kpc-ft8.css?v=20261018s">
 <link rel="manifest" href="kpc-logger.webmanifest?v=2">
 <meta name="theme-color" content="#050b0f">
 <link rel="apple-touch-icon" href="kpc-icon-180.png">
@@ -170,16 +170,7 @@
 </div>
 </div>
 
-<section class="lg-card" id="cFiles" data-tabp="more"><h2>Download &amp; files</h2>
-<div class="lg-row lg-exp">
- <button type="button" class="lg-btn gold" id="xPota">⬇ FILES FOR THIS ACTIVATION (POTA · WWFF · SOTA)</button>
- <button type="button" class="lg-btn line" id="xMail">✉️ EMAIL MY FILES</button>
- <button type="button" class="lg-btn line" id="xAll">⬇ EVERYTHING (ADIF)</button>
- <button type="button" class="lg-btn line" id="xCsv">⬇ CSV</button>
- <label class="lg-btn line" for="xLoad">⬆ RESTORE FROM FILE<input type="file" id="xLoad" accept=".adi,.adif,.txt" hidden></label>
- <button type="button" class="lg-btn line" id="xNew">🏁 START A NEW ACTIVATION</button>
-</div>
-<div data-kpc-drive="logger"></div>
+<section class="lg-card" id="cFiles" data-tabp="more"><h2>💾 SAVE MY LOG (ADIF) · ☁ QRZ</h2>
 <div class="lg-qz" id="xQz">
  <h3>☁ SEND TO MY QRZ LOGBOOK</h3>
  <p class="lg-mu">When you're done, send your contacts straight to your QRZ logbook (works on phones too). It needs the <b>logbook API key</b> of the QRZ logbook for the call you were on (qrz.com → Logbook → that book → Settings → API key; QRZ's logbook API is part of a QRZ subscription). The key is kept only on this device.</p>
@@ -189,6 +180,15 @@
  <div class="lg-row"><button type="button" class="lg-btn gold" id="xQzAct">☁ SEND THIS ACTIVATION TO QRZ</button><button type="button" class="lg-btn line" id="xQzNew">☁ SEND ALL NOT SENT YET</button><button type="button" class="lg-btn line" id="xQzSee">🔎 SEE QRZ'S ANSWER</button></div>
  <p class="lg-msg" id="xQzMsg"></p>
 </div>
+<div class="lg-row lg-exp">
+ <button type="button" class="lg-btn gold" id="xPota">⬇ FILES FOR THIS ACTIVATION (POTA · WWFF · SOTA)</button>
+ <button type="button" class="lg-btn line" id="xMail">✉️ EMAIL MY FILES</button>
+ <button type="button" class="lg-btn line" id="xAll">⬇ EVERYTHING (ADIF)</button>
+ <button type="button" class="lg-btn line" id="xCsv">⬇ CSV</button>
+ <label class="lg-btn line" for="xLoad">⬆ RESTORE FROM FILE<input type="file" id="xLoad" accept=".adi,.adif,.txt" hidden></label>
+ <button type="button" class="lg-btn line" id="xNew">🏁 START A NEW ACTIVATION</button>
+</div>
+<div data-kpc-drive="logger"></div>
 <p class="lg-safe" id="lSafe"></p>
 <p class="lg-mu">POTA wants one file per park (CALL@PARK-DATE.adi): upload at <a href="https://pota.app/#/user/logs" target="_blank" rel="noopener">pota.app → My Logs</a>. WWFF / KFF gets one ADIF file (CALL@KFF-0000 DATE.adi) for your WWFF log manager. SOTA gets the sotadata CSV: upload at <a href="https://www.sotadata.org.uk" target="_blank" rel="noopener">sotadata.org.uk</a>.</p>
 </section>
@@ -214,4 +214,4 @@
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="kpc-fx.js?v=20261017a"></script>
-<script src="kpc-cat.js?v=20261018m"></script><script src="kpc-logger.js?v=20261018n"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261018r"></script><script src="kpc-digi.js?v=20261018h"></script><script src="kpc-digi-ui.js?v=20261018h"></script><script src="kpc-voicekeyer.js?v=20261018a"></script><script src="kpc-gdrive.js?v=20261018a"></script>
+<script src="kpc-cat.js?v=20261018m"></script><script src="kpc-logger.js?v=20261018s"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261018s"></script><script src="kpc-digi.js?v=20261018h"></script><script src="kpc-digi-ui.js?v=20261018h"></script><script src="kpc-voicekeyer.js?v=20261018a"></script><script src="kpc-gdrive.js?v=20261018a"></script>
