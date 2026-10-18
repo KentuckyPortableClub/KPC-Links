@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-17T10:59:43Z",
+ "updated": "2026-10-18T10:59:42Z",
  "stations": [
   {
    "title": "CACTUS",
@@ -60,23 +60,6 @@
    "note": ", Lancaster, SC. STEM Amateur Radio Club. 145.350MHz. QSL. Vicki Carnes/ AD3i, 1093 Outlaw Avenue, Lancaster, SC 29720."
   },
   {
-   "title": "Willie and Martin Handcart Rescue",
-   "start": "2026-10-16",
-   "end": "2026-10-17",
-   "times": "2000Z-2200Z",
-   "call": "W7M",
-   "calls": [
-    "W7M"
-   ],
-   "where": "Alcova, WY",
-   "st": "WY",
-   "by": "",
-   "freqs": "7.056 7.256 14.056 14.256",
-   "qsl": "QSL",
-   "url": "https://handcartspecialevent.org",
-   "note": ", Alcova, WY. N/A. 7.056 7.256 14.056 14.256. QSL. Handcart Special Event, PO Box 100, Hyrum, UT 84319."
-  },
-  {
    "title": "Chuck Berry 100th Birthday Special Event",
    "start": "2026-10-17",
    "end": "2026-10-18",
@@ -109,74 +92,6 @@
    "qsl": "Certificate",
    "url": "",
    "note": ", Plover, WI. Central Sands Amateur Radio. 14.320MHz 40m depending upon band cond. 15M band conditions . Certificate. Phil Schobert, 300 Polk St, Stevens Point, WI 54481."
-  },
-  {
-   "title": "Skyview Founders Day",
-   "start": "2026-10-17",
-   "end": "2026-10-17",
-   "times": "1400Z-2000Z",
-   "call": "K3MJW",
-   "calls": [
-    "K3MJW"
-   ],
-   "where": "New Kensington, PA",
-   "st": "PA",
-   "by": "Skyview Radio Society",
-   "freqs": "7.260 14.260",
-   "qsl": "QSL",
-   "url": "http://www.skyviewradio.net",
-   "note": ", New Kensington, PA. Skyview Radio Society. 7.260 14.260. QSL. Skyview Radio Society, 2335 Turkey Ridge Rd, New Kensington, PA 15068. Celebrating the founding members of Skyview Radio Society in 1960"
-  },
-  {
-   "title": "Town of Redington Beach Florida Safety Day",
-   "start": "2026-10-17",
-   "end": "2026-10-17",
-   "times": "1500Z-1700Z",
-   "call": "NE2CC",
-   "calls": [
-    "NE2CC"
-   ],
-   "where": "Saint Petersburg, FL",
-   "st": "FL",
-   "by": "Gulf Coast Contest Club",
-   "freqs": "14.175 21.395 28.340",
-   "qsl": "Certificate",
-   "url": "https://gulfcoastcontestclub.org",
-   "note": ", Saint Petersburg, FL. Gulf Coast Contest Club. 14.175 21.395 28.340 . Certificate. Gulf Coast Contest Club, 16001 2nd St E, Saint Petersburg, FL 33708."
-  },
-  {
-   "title": "USS Wisconsin BB-64 supporting Jamboree on the Air",
-   "start": "2026-10-17",
-   "end": "2026-10-17",
-   "times": "1400Z-2000Z",
-   "call": "N4WIS",
-   "calls": [
-    "N4WIS"
-   ],
-   "where": "Norfolk, VA",
-   "st": "VA",
-   "by": "USS Wisconsin Radio Club",
-   "freqs": "14.264, 14.064 7.264, 7.064 21.264, 21.064 28.364, 28.064",
-   "qsl": "QSL",
-   "url": "http://n4wis.org",
-   "note": ", Norfolk, VA. USS Wisconsin Radio Club. 14.264, 14.064 7.264, 7.064 21.264, 21.064 28.364, 28.064. QSL. USS Wisconsin Radio Club (N4WIS) c/o Nauticus, One Waterside Drive, Norfolk, VA 23510."
-  },
-  {
-   "title": "Yorktown Special Event",
-   "start": "2026-10-17",
-   "end": "2026-10-17",
-   "times": "1400Z-2000Z",
-   "call": "K4RC",
-   "calls": [
-    "K4RC"
-   ],
-   "where": "Williamsburg, VA",
-   "st": "VA",
-   "by": "Williamsburg Area Amateur Radio Club",
-   "freqs": "7.265 14.265",
-   "qsl": "Certificate",
-   "url": "http://www.k4rc.net",
-   "note": ", Williamsburg, VA. Williamsburg Area Amateur Radio Club. 7.265 14.265. Certificate. Williamsburg Area Amateur Radio Club, P.O. Box 1470, Williamsburg, VA 23187."
   },
   {
    "title": "USS Wisconsin BB-64 supporting Jamboree on the Air",
@@ -890,6 +805,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (48)"
+  "ARRL": "ok (43)"
  }
 }

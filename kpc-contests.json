@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-17T10:59:53Z",
+ "updated": "2026-10-18T10:59:51Z",
  "week": [
   {
    "name": "JARL WW RTTY Contest",
@@ -15,22 +15,6 @@
     "DIGITAL"
    ],
    "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "New York QSO Party",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003b1uhl",
-   "when": "1400Z, Oct 17 to 0200Z, Oct 18",
-   "segs": [
-    [
-     "2026-10-17T14:00Z",
-     "2026-10-18T02:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [
-    "QSOPARTY"
-   ],
    "src": "WA7BNM"
   },
   {
@@ -58,50 +42,6 @@
     ]
    ],
    "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Feld Hell Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fbb5g",
-   "when": "2000Z-2359Z, Oct 17",
-   "segs": [
-    [
-     "2026-10-17T20:00Z",
-     "2026-10-17T23:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Argentina National 7 MHz Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fh3my",
-   "when": "2130Z-2330Z, Oct 17",
-   "segs": [
-    [
-     "2026-10-17T21:30Z",
-     "2026-10-17T23:30Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Asia-Pacific Fall Sprint, CW",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fhipg",
-   "when": "0000Z-0200Z, Oct 18",
-   "segs": [
-    [
-     "2026-10-18T00:00Z",
-     "2026-10-18T02:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
    "kinds": [],
    "src": "WA7BNM"
   },
@@ -508,6 +448,22 @@
    "modes": [],
    "kinds": [],
    "src": "WA7BNM"
+  },
+  {
+   "name": "CQ Worldwide DX Contest, SSB",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fidks",
+   "when": "0000Z, Oct 24 to 2359Z, Oct 25",
+   "segs": [
+    [
+     "2026-10-24T00:00Z",
+     "2026-10-25T23:59Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
   }
  ],
  "month": [
@@ -528,50 +484,6 @@
    "src": "CORRAL",
    "bands": "3.5-28",
    "exch": "RST, avg age or \"01\""
-  },
-  {
-   "name": "902 MHz and Up Fall Sprint",
-   "url": "https://packratvhf.com",
-   "when": "",
-   "segs": [
-    [
-     "2026-10-17T08:00Z",
-     "2026-10-17T14:01Z"
-    ]
-   ],
-   "modes": [
-    "CW",
-    "PHONE",
-    "DIGITAL"
-   ],
-   "kinds": [
-    "VHF"
-   ],
-   "src": "CORRAL",
-   "bands": "902 and above",
-   "exch": "6-char grid"
-  },
-  {
-   "name": "New York QSO Party",
-   "url": "https://www.nyqp.org",
-   "when": "",
-   "segs": [
-    [
-     "2026-10-17T14:00Z",
-     "2026-10-18T02:01Z"
-    ]
-   ],
-   "modes": [
-    "CW",
-    "PHONE",
-    "DIGITAL"
-   ],
-   "kinds": [
-    "QSOPARTY"
-   ],
-   "src": "CORRAL",
-   "bands": "No WARC",
-   "exch": "RS(T), NY county or SPC"
   },
   {
    "name": "Worked All Germany Contest",
@@ -609,42 +521,6 @@
    "src": "CORRAL",
    "bands": "1.8",
    "exch": "4-char grid"
-  },
-  {
-   "name": "Feld Hell Sprint",
-   "url": "https://sites.google.com/site/feldhellclub",
-   "when": "",
-   "segs": [
-    [
-     "2026-10-17T20:00Z",
-     "2026-10-18T00:00Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8-28,50",
-   "exch": "See rules"
-  },
-  {
-   "name": "Argentina National 7 MHz Contest",
-   "url": "https://www.lu4aa.org/wp",
-   "when": "",
-   "segs": [
-    [
-     "2026-10-17T21:30Z",
-     "2026-10-17T23:31Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "7",
-   "exch": "RS, 2-digit year irst licensed"
   },
   {
    "name": "Illinois QSO Party",
@@ -1316,7 +1192,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (34)",
-  "CORRAL": "ok (18)"
+  "WA7BNM": "ok (31)",
+  "CORRAL": "ok (14)"
  }
 }
