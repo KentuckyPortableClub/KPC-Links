@@ -19,7 +19,9 @@ jobs:
       - name: Build
         env:
           COUNTRIES: ${{ inputs.countries }}
-        run: python3 .github/scripts/kpc_world_key.py
+        run: |
+          pip install --quiet --break-system-packages pykakasi || pip install --quiet pykakasi || true
+          python3 .github/scripts/kpc_world_key.py
       - name: Save
         if: always()
         run: |

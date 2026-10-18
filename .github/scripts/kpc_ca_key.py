@@ -44,11 +44,12 @@ ABBR = {'st': 'saint', 'ste': 'sainte', 'mt': 'mount', 'pt': 'point', 'lk': 'lak
 def norm(s):
     s = flat(s).replace('&', ' and ')
     s = re.sub(r'\(.*?\)', ' ', s)
+    s = re.sub(r"\b([dlj]|qu)[’'`]", r'\1 ', s)   # French d'/l' must not glue onto the next word (d'Anticosti → d anticosti)
     s = re.sub(r"[’'`.]", '', s)
     s = re.sub(r'[-/]', ' ', s)
     s = ' '.join(ABBR.get(w, w) for w in re.sub(r'[^a-z0-9 ]', ' ', s).split())
     s = re.sub(r'\b(' + GEN + r')\b', ' ', s)
-    s = re.sub(r'\b(d|l)\b', ' ', s)
+    s = re.sub(r'\b(d|l|j|qu|en|au|aux|a)\b', ' ', s)
     return re.sub(r'\s+', ' ', s).strip()
 
 
