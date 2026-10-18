@@ -35,7 +35,7 @@ def get(params, tries=5):
 
 
 # ---------------- names + kinds (same idea as kpc-bounds.js, with other states' words) ----------------
-GEN = (r"blm herd management area|herd management area|herd area|blm special recreation management area|special recreation management area|extensive recreation management area|blm recreation management area|recreation management area|wilderness study area|hma|srma|erma|blm|fishing access site|access site|state game lands? number|designated state natural area|designated|public hunting area|hunting area|state fishing lake|fishing lake|state wilderness area|wilderness area|natural state conservation area|waterfowl refuge|wildlife refuge|refuge|state natural area|natural area preserve|state nature preserve|nature preserve|natural area|fish and wildlife area|state wildlife area|"
+GEN = (r"blm herd management area|herd management area|herd area|blm special recreation management area|special recreation management area|extensive recreation management area|blm recreation management area|recreation management area|wilderness study area|wsa|hma|srma|erma|blm|fishing access site|access site|state game lands? number|designated state natural area|designated|public hunting area|hunting area|state fishing lake|fishing lake|state wilderness area|wilderness area|natural state conservation area|waterfowl refuge|wildlife refuge|refuge|state natural area|natural area preserve|state nature preserve|nature preserve|natural area|fish and wildlife area|state wildlife area|"
        r"wildlife management area|wildlife area|state game lands?|game lands?|game areas?|game management area|conservation area|state conservation area|"
        r"state resort park|state historic site|state historical park|state historic park|historic site|state recreation area|recreation area|"
        r"state beach|state seashore|national wildlife refuge|national recreation area|national historical park|national historic site|"
@@ -230,17 +230,44 @@ XS = [  # prefix, query url, name field, acres field, kinds
     ('rma', 'https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9/query', 'FET_NAME', 'GIS_ACRES', {'rma'}, 'BLM recreation areas'),
     ('rst', 'https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query', 'FET_NAME', 'GIS_ACRES', {'rma'}, 'BLM recreation sites'),
     ('nca', 'https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query', 'NCA_NAME', '', set(), 'BLM national monuments / conservation areas'),
+    # Oct 18: layer id + name field looked up at run time ('?' = find it); found by probe 2
+    ('wsa', 'svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study', '?', '?', {'wsa'}, 'BLM wilderness study areas'),
+    ('odw', 'svc:https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer|.', '?', '?', {'wma'}, 'Oklahoma Dept. of Wildlife Conservation WMA map', 'STAT', {'OK'}),
 ]
+RESOLVED = {}
+def resolve(pre, url, nf, af):
+    # 'svc:<service>|<layer name regex>' → (query url, name field, acres field, object id field)
+    if not url.startswith('svc:'): return url, nf, af, ('objectid' if pre == 'wld' else 'OBJECTID')
+    if pre in RESOLVED: return RESOLVED[pre]
+    svc, rx = url[4:].split('|', 1)
+    rq = lambda u: json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), timeout=120).read().decode('utf-8', 'replace'))
+    lays = rq(svc + '?f=json').get('layers') or []
+    pick = [l for l in lays if re.search(rx, l.get('name', ''), re.I) and not l.get('subLayerIds')] or [l for l in lays if not l.get('subLayerIds')]
+    lid = pick[0]['id']
+    L = rq(f'{svc}/{lid}?f=json'); flds = L.get('fields') or []
+    strs = [f['name'] for f in flds if f.get('type') == 'esriFieldTypeString']
+    name = next((f for f in strs if re.search(r'(^|_)(NAME|NM)(_|$)|NAME', f, re.I) and not re.search(r'admin|state|county|office|agency|own|mgr|manag|type|desig|file', f, re.I)), strs[0] if strs else '')
+    acres = next((f['name'] for f in flds if re.search(r'acre', f['name'], re.I)), '')
+    oid = L.get('objectIdField') or next((f['name'] for f in flds if f.get('type') == 'esriFieldTypeOID'), 'OBJECTID')
+    RESOLVED[pre] = (f'{svc}/{lid}/query', name, acres, oid)
+    notice('US key layer found', f'{pre}: {svc}/{lid} [{pick[0].get("name")}] name={name} acres={acres} oid={oid}')
+    return RESOLVED[pre]
 XCOUNT = {}
 def extra_state(st, have):
     box = st_box(st)
     if not box: return []
     out = []
-    for pre, url, nf, af, kk, label in XS:
+    for x in XS:
+        pre, url, nf, af, kk, label = x[:6]
+        own = x[6] if len(x) > 6 else 'FED'
+        if len(x) > 7 and st not in x[7]: continue
+        try: url, nf, af, oidf = resolve(pre, url, nf, af)
+        except Exception as e:  # noqa: BLE001
+            notice(f'US key {st}', f'{label} layer not found ({e})'); continue
         off, n = 0, 0
         while True:
             q = {'where': '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-                 'outFields': ','.join(x for x in ('OBJECTID' if pre != 'wld' else 'objectid', nf, af) if x), 'returnGeometry': 'true', 'outSR': 4326,
+                 'outFields': ','.join(q for q in (oidf, nf, af) if q), 'returnGeometry': 'true', 'outSR': 4326,
                  'maxAllowableOffset': 0.01, 'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 500}
             try:
                 req = urllib.request.Request(url + '?' + urllib.parse.urlencode(q), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
@@ -256,7 +283,7 @@ def extra_state(st, have):
                 k = kinds(nm) | kk
                 if (norm(nm), frozenset(k)) in have: continue
                 g = f.get('geometry') or {}
-                out.append({'OBJECTID': pre + str(a.get('objectid')), 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': 'FED', 'Mang_Type': 'FED', 'Mang_Name': pre.upper(),
+                out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),
                             'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': (a.get(af.lower()) if af else 0) or 0, 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k})
                 n += 1
             if not fs or (not j.get('exceededTransferLimit') and len(fs) < 500): break
