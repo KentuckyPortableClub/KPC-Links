@@ -69,7 +69,7 @@ def build(stats, updated, parks):
     return {
         'updated': updated,
         'source': 'POTA public park statistics (api.pota.app), Kentucky parks from kpc-ky-data.json',
-        'parks': len(rows),
+        'parks': len(parks),  # every KY POTA park (brand-new parks may not be in POTA's stats list yet)
         'qsos': ranked(lambda r: (r['q'], r['a'], num(r['c']))),
         'acts': ranked(lambda r: (r['a'], r['q'], num(r['c']))),
         # every ranked park as [ref, activations, QSOs], so the page can build a full 25 when a
