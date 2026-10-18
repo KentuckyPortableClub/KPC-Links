@@ -1,0 +1,8 @@
+name: zz probe (temporary)
+on: workflow_dispatch
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: python3 .github/scripts/zz_probe_ca.py || true
