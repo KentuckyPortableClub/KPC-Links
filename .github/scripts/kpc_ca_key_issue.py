@@ -1,5 +1,5 @@
-"""One review issue for the US answer key (label us-answer-key): a table of every state, the ones needing the most checking first,
-each linking to its review page data/us-key/review/US-XX.md."""
+"""One review issue for the Canada answer key (label ca-answer-key): a table of every province, the ones needing the most checking first,
+each linking to its review page data/ca-key/review/CA-XX.md."""
 import json, subprocess
 LABEL = 'ca-answer-key'
 idx = json.load(open('data/ca-key/index.json'))['provinces']
@@ -21,4 +21,4 @@ f = json.loads(gh('issue', 'list', '--label', LABEL, '--state', 'open', '--json'
 t = 'Canada boundary answer key: review list (CPCAD)'
 if f: n = str(f[0]['number']); gh('issue', 'edit', n, '--title', t, '--body-file', '-', inp=body)
 else: n = gh('issue', 'create', '--title', t, '--label', LABEL, '--body-file', '-', inp=body).strip().rsplit('/', 1)[-1]
-print(f'::notice title=US answer key issue::#{n}')
+print(f'::notice title=Canada answer key issue::#{n}')
