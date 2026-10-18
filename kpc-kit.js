@@ -180,7 +180,7 @@
     if (!window.L) { $('kitMap').innerHTML = '<p class="kit-msg">Map unavailable.</p>'; return; }
     map = L.map('kitMap').setView([P.la, P.lo], P.prog === 'SOTA' ? 15 : 13);
     if (window.KPCLayers) KPCLayers(map); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
-    if (window.KPCPin) KPCPin(map);
+    if (window.KPCPin) KPCPin(map, { on: 'contextmenu' }); if (window.KPCHere) KPCHere(map, { onRef: r => { location.href = 'kpc-kit.html?ref=' + encodeURIComponent(r); } });
     if (window.KPCLocate) KPCLocate(map);
     if (window.KPCFull) KPCFull(map);
     L.marker([P.la, P.lo]).addTo(map).bindPopup(esc(P.c + ' ' + P.n) + '<br>' + esc(P.prog) + (P.prog === 'SOTA' ? ' summit' : ' pin'));
