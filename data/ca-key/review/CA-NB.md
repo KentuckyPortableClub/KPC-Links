@@ -1,15 +1,13 @@
 # Canada NB: POTA parks vs official land (CPCAD)
 
-Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **255 of 562** joined (same name + same kind). **46** to check, **260** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **261 of 562** joined (same name + same kind). **40** to check, **260** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
 - **CA-0778** Ile-Aux-Foins (Hay Island) Recreation Park (Recreation Park) → Miramichi Bay Closure (~362,854 ac, the POTA pin is inside it (different name))
 - **CA-0789** Murray Beach Provincial Park (Provincial Park) → Scallop Buffer Zone (SFA 22) (~704,937 ac, the POTA pin is inside it (different name))
 - **CA-1227** Caughey-Taylor Nature Reserve (Nature Reserve) → Caughey-Taylor, Private Land Component (~455 ac, similar name); Caughey-Taylor, Private Land Component (~9 ac, similar name); Caughey-Taylor, Crown Land Component (~7 ac, similar name); Caughey-Taylor, Crown Land Component (~0 ac, similar name); Caughey-Taylor, Private Land Component (~0 ac, similar name); Caughey-Taylor, Crown Land Component (~0 ac, similar name)
-- **CA-1241** Irving Nature Nature Conservation Reserve (Nature Conservation Reserve) → Irving Nature Park (~557 ac, same name, different kind of place); Irving Nature Park (~228 ac, same name, different kind of place); Irving Nature Park (~46 ac, same name, different kind of place); Irving Nature Park (~5 ac, same name, different kind of place)
 - **CA-1250** Pokeshaw Protected Landscape Area (Protected Landscape Area) → Pokeshaw (~1 ac, similar name); Pokeshaw (~0 ac, similar name); Scallop Buffer Zone (SFA 21) (~117,886 ac, the POTA pin is inside it (different name))
-- **CA-4419** Johnson's Mills Shorebird Protected Area (Protected Area) → Johnson's Mills (~362 ac, similar name); Johnson's Mills (~3 ac, similar name); Johnson's Mills (~0 ac, similar name)
 - **CA-4438** Martial Brook Protected Area (Protected Area) → Magaguadavic River (~5,213 ac, the POTA pin is inside it (different name)); Magaguadavic River (~0 ac, the POTA pin is inside it (different name))
 - **CA-4526** Tabusintac Lagoon and River Estuary Ramsar Site (Ramsar Site) → Miramichi Bay Closure (~362,854 ac, the POTA pin is inside it (different name))
 - **CA-4530** Wilson's Point (Enclosure) Park Historic Site (Historic Site) → Wilson's Point Wildlife Refuge (~0 ac, same name, different kind of place)
@@ -17,17 +15,14 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **255 of 562** joined (same
 - **CA-4809** Boishebert Refuge National Historic Site (National Historic Site) → Wilson's Point Wildlife Refuge (~0 ac, the POTA pin is inside it (different name))
 - **CA-5138** Odell Park and Odell Arboretum Recreation Park (Recreation Park) → O'dell Wildlife Refuge (~0 ac, similar name)
 - **CA-5154** Cape Jourimain Lighthouse National Heritage Site (National Heritage Site) → Cape Jourimain National Wildlife Area (~690 ac, similar name); Cape Jourimain National Wildlife Area (~530 ac, similar name); Cape Jourimain (~19 ac, similar name); Scallop Buffer Zone (SFA 22) (~704,937 ac, the POTA pin is inside it (different name))
-- **CA-5161** Connors Bros. Preserve Nature Reserve (Nature Reserve) → Connors Bros. Nature Preserve at Pea Point (~76 ac, similar name); Connors Bros. Nature Preserve at Pea Point (~11 ac, similar name)
 - **CA-5162** Coronation Park Recreation Park (Recreation Park) → Scallop Buffer Zone (SFA 21) (~117,886 ac, the POTA pin is inside it (different name))
 - **CA-5173** Fredericton Military National Historic Site (National Historic Site) → Fredericton Wildlife Refuge (~0 ac, similar name)
 - **CA-5174** Fredericton Railway Bridge (Bill Thorpe Walking Bridge) Recreation Site (Recreation Site) → Fredericton Wildlife Refuge (~0 ac, similar name)
 - **CA-5192** Machias Seal Island Lighthouse National Historic Site (National Historic Site) → Machias Seal Island Migratory Bird Sanctuary (~2,559 ac, same name, different kind of place); Machias Seal Island Migratory Bird Sanctuary (~27 ac, same name, different kind of place)
-- **CA-5196** Margeret (Coburn) Cameron Woods Protected Area (Protected Area) → Margaret (Colburn) Cameron Woods (~11 ac, similar name); Margaret (Colburn) Cameron Woods (~5 ac, similar name)
 - **CA-5201** Ministers Island National Historic Site (National Historic Site) → Minister's Island Wildlife Management Area (~0 ac, same name, different kind of place)
 - **CA-5202** Ministers Island Pre-contact Sites National Historic Site (National Historic Site) → Minister's Island Wildlife Management Area (~0 ac, similar name)
 - **CA-5203** Miscou Island Lighthouse National Historic Site (National Historic Site) → Miscou Island (~0 ac, similar name)
 - **CA-5207** New River Island Protected Area (Protected Area) → New River Beach Provincial Park (~730 ac, similar name); New River Island Nature Preserve - A Stewart Family Preserve (~43 ac, similar name); New River (~0 ac, similar name)
-- **CA-5208** Noloqonokek Nature Reserve (Nature Reserve) → Nələkwənəkek / Noloqonokek (~36 ac, similar name); Nələkwənəkek / Noloqonokek (~28 ac, similar name); Nələkwənəkek / Noloqonokek (~26 ac, similar name); Nələkwənəkek / Noloqonokek Nature Preserve (~26 ac, similar name); Nələkwənəkek / Noloqonokek (~15 ac, similar name); Nələkwənəkek / Noloqonokek (~14 ac, similar name)
 - **CA-5244** Fredericton City Hall National Historic Site (National Historic Site) → Fredericton Wildlife Refuge (~0 ac, similar name)
 - **CA-5259** Kings Landing Historic Settlement Historic Site (Historic Site) → Kings Landing Wildlife Management Area (~0 ac, similar name)
 - **CA-6161** Upper Restigouche (Listuguj) River National Heritage Area (National Heritage Area) → Restigouche Wilderness Waterway - Kedgwick River (~0 ac, similar name); Restigouche Wilderness Waterway - Restigouche River South (~0 ac, similar name)
@@ -42,7 +37,6 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **255 of 562** joined (same
 - **CA-6488** Walker Trading Establishment Historic Site (Historic Site) → Scallop Buffer Zone (SFA 21) (~117,886 ac, the POTA pin is inside it (different name))
 - **CA-6504** New Brunswick #19 Wildlife Management Area (Wildlife Management Area) → Scallop Buffer Zone (SFA 22) (~704,937 ac, the POTA pin is inside it (different name))
 - **CA-6522** Stickney Area Veterans National Memorial (National Memorial) → Stickney (~213 ac, similar name); Stickney (~0 ac, similar name)
-- **CA-6534** Cape Enrage Provincial Park (Provincial Park) → Cape Enrage (~32 ac, same name, different kind of place); Cape Enrage (~26 ac, same name, different kind of place); Cape Enrage (~5 ac, same name, different kind of place); Cape Enrage (~3 ac, same name, different kind of place); Cape Enrage (~3 ac, same name, different kind of place)
 - **CA-6536** New Brunswick #20 Wilderness Area (Wilderness Area) → Lepreau River Wildlife Management Area (~0 ac, the POTA pin is inside it (different name))
 - **CA-6539** New Brunswick #17 Wildlife Management Area (Wildlife Management Area) → Little River (~0 ac, the POTA pin is inside it (different name))
 - **CA-6541** New Brunswick #11 Wildlife Management Area (Wildlife Management Area) → Plaster Rock-Renous Wildlife Management Area (~0 ac, the POTA pin is inside it (different name))

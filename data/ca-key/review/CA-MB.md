@@ -1,6 +1,6 @@
 # Canada MB: POTA parks vs official land (CPCAD)
 
-Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **202 of 308** joined (same name + same kind). **29** to check, **77** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **210 of 308** joined (same name + same kind). **21** to check, **77** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -8,25 +8,17 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **202 of 308** joined (same
 - **CA-0572** Whittier Recreation Park (Recreation Park) → Whittier Park Riparian Forest (~16 ac, similar name)
 - **CA-1048** Assiniboine Park (Park) → Assiniboine Forest (~707 ac, same name, different kind of place)
 - **CA-1050** Grassy Narrows Marsh Wildlife Reserve (Wildlife Reserve) → Hecla/Grindstone Provincial Park (~98,966 ac, the POTA pin is inside it (different name)); Hecla/Grindstone Provincial Park (~0 ac, the POTA pin is inside it (different name))
-- **CA-1052** Hyland Recreation Park (Recreation Park) → Hyland Provincial Park (~0 ac, same name, different kind of place)
-- **CA-1073** Seton Recreation Park (Recreation Park) → Seton Provincial Park (~0 ac, same name, different kind of place)
-- **CA-1081** Upper Fort Garry Historic Site (Historic Site) → Upper Fort Garry Heritage Provincial Park (~0 ac, same name, different kind of place)
 - **CA-2371** A. Enns  Refuge Wildlife Management Area (Wildlife Management Area) → A. Enns (~0 ac, similar name)
 - **CA-2373** Primrose Wayside Recreation Park (Recreation Park) → Primrose Provincial Park (~0 ac, similar name)
 - **CA-2375** Asatiwisipe Aki (Poplar/Nanowin Rivers) Wildlife Management Area (Wildlife Management Area) → Asatiwisipe Aki Traditional Use Planning Area (~1,946,323 ac, similar name); Asatiwisipe Aki Traditional Use Planning Area (~49,384 ac, similar name)
-- **CA-2379** Bell and Steeprock Canyons Wildlife Management Area (Wildlife Management Area) → Bell and Steeprock Canyons Protected Area (~11,639 ac, same name, different kind of place)
 - **CA-2390** Cape Tatnam Wildlife Management Area (Wildlife Management Area) → Kaskatamagan Wildlife Management Area (~621,009 ac, the POTA pin is inside it (different name)); Kaskatamagan Wildlife Management Area (~0 ac, the POTA pin is inside it (different name))
-- **CA-2403** Douglas Marsh Wildlife Management Area (Wildlife Management Area) → Douglas Marsh Protected Area (~20,757 ac, same name, different kind of place)
 - **CA-2410** Ethelbert (Duck Mountain) Wildlife Management Area (Wildlife Management Area) → Duck Mountain (~0 ac, the POTA pin is inside it (different name))
-- **CA-2449** Little George Island Ecological Reserve (Ecological Reserve) → Little George Island Ecological Reserve / Asatiwisipe Aki Traditional Use Planning Area (~37 ac, similar name)
 - **CA-2450** Little Grand Rapids First Nation Traditional Use Wildlife Management Area (Wildlife Management Area) → Little Grand Rapids First Nation Traditional Use Planning Area (~211,374 ac, same name, different kind of place)
 - **CA-2454** Manitoba - Ontario Interprovincial Wildlife Management Area (Wildlife Management Area) → Nopiming Provincial Park (~0 ac, the POTA pin is inside it (different name))
 - **CA-2464** Narcisse Provincial Park (Provincial Park) → Narcisse Wildlife Management Area (~19,488 ac, same name, different kind of place); Narcisse Wildlife Management Area (~320 ac, same name, different kind of place); Narcisse Wildlife Management Area (~0 ac, same name, different kind of place)
-- **CA-2474** Palsa Hazel Ecological Reserve (Ecological Reserve) → Palsa Hazel Ecological Reserve / Grass River Provincial Park (~4,072 ac, similar name); Grass River Provincial Park (~0 ac, the POTA pin is inside it (different name))
 - **CA-2491** Asatiwisipe Aki (Poplar River) Wildlife Management Area (Wildlife Management Area) → Asatiwisipe Aki Traditional Use Planning Area (~1,946,323 ac, similar name); Asatiwisipe Aki Traditional Use Planning Area (~49,384 ac, similar name)
 - **CA-2527** Vimy Ridge Memorial Park Recreation Park (Recreation Park) → Memorial Provincial Park (~0 ac, similar name)
 - **CA-4803** Riding Mountain Park East Gate Registration Complex National Historic Site (National Historic Site) → Riding Mountain National Park Of Canada (~733,334 ac, similar name)
-- **CA-5119** Assiniboine Forest Forest Reserve (Forest Reserve) → Assiniboine Forest (~707 ac, same name, different kind of place)
 - **CA-5464** Netley-Libau Marsh Bird Sanctuary (Bird Sanctuary) → Netley Marsh (~0 ac, similar name)
 - **CA-5465** Tall Grass Prairie Preserve Natural Area (Natural Area) → Loewen - MHHC (~335 ac, the POTA pin is inside it (different name))
 - **CA-5967** Churchill Rocket Research Range National Heritage Site (National Heritage Site) → Churchill Wildlife Management Area (~0 ac, similar name)

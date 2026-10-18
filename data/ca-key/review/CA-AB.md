@@ -1,16 +1,14 @@
 # Canada AB: POTA parks vs official land (CPCAD)
 
-Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **385 of 459** joined (same name + same kind). **27** to check, **44** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **389 of 459** joined (same name + same kind). **23** to check, **44** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
 - **CA-0011** CFB Suffield National Wildlife Area (National Wildlife Area) → Canadian Forces Base Suffield National Wildlife Area (~113,264 ac, the POTA pin is inside it (different name))
 - **CA-0663** Peace-Athabasca Delta Natural Area (Natural Area) → Wood Buffalo National Park Of Canada (~8,807,344 ac, the POTA pin is inside it (different name)); Wood Buffalo (~0 ac, the POTA pin is inside it (different name))
-- **CA-2876** Waiparous Creek Group Provincial Recreation Area (Provincial Recreation Area) → Waiparous Creek Group Camp (~0 ac, same name, different kind of place); Waiparous Creek (~0 ac, same name, different kind of place)
 - **CA-2938** Big Elbow Provincial Recreation Area (Provincial Recreation Area) → Don Getty Wildland Provincial Park (~154,882 ac, the POTA pin is inside it (different name)); Don Getty Wildland (~0 ac, the POTA pin is inside it (different name))
 - **CA-2969** Castle Falls Natural Area (Natural Area) → Castle Provincial Park (~55,296 ac, similar name); Castle Provincial Park (~7,816 ac, similar name); Castle (~0 ac, similar name)
 - **CA-3026** Gipsy Lake Wildland Provincial Park (Provincial Park) → Gipsy-Gordon Wildland Provincial Park (~459,367 ac, similar name); Gipsy-Gordon Wildland (~0 ac, similar name)
-- **CA-3055** Killarney-Reflex Lakes Heritage Rangeland Natural Area (Natural Area) → Killarney-Reflex Lakes Heritage Rgeland Natural Area (~4,744 ac, similar name); Killarney-Reflex Lakes Heritage Rgeland Natural Area (~2,018 ac, similar name); Killarney-Reflex Lakes Heritage Rgeland (~0 ac, similar name)
 - **CA-3076** McLean Pond Natural Area (Natural Area) → McLean Creek (~0 ac, the POTA pin is inside it (different name))
 - **CA-3157** Waterton-Glacier International Peace Park (Park) → Waterton Lakes National Park Of Canada (~124,788 ac, the POTA pin is inside it (different name)); Waterton Lakes (~0 ac, the POTA pin is inside it (different name))
 - **CA-4771** Abbot Pass Refuge Cabin National Historic Site (National Historic Site) → Banff National Park Of Canada (~1,641,024 ac, the POTA pin is inside it (different name)); Banff (~0 ac, the POTA pin is inside it (different name))
@@ -29,8 +27,6 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **385 of 459** joined (same
 - **CA-6112** Kananaskis Country Provincial Park (Provincial Park) → Spray Valley Provincial Park (~63,169 ac, the POTA pin is inside it (different name)); Spray Valley (~0 ac, the POTA pin is inside it (different name))
 - **CA-6116** Athabasca River National Heritage River National Heritage Area (National Heritage Area) → Jasper National Park Of Canada (~2,688,008 ac, the POTA pin is inside it (different name)); Jasper (~0 ac, the POTA pin is inside it (different name))
 - **CA-6117** North Saskatchewan River National Heritage River National Heritage Area (National Heritage Area) → Banff National Park Of Canada (~1,641,024 ac, the POTA pin is inside it (different name)); Banff (~0 ac, the POTA pin is inside it (different name))
-- **CA-6587** Lusk Creek PRA Recreation Site (Recreation Site) → Lusk Creek (~0 ac, same name, different kind of place)
-- **CA-6589** Snow Creek PRA Recreation Site (Recreation Site) → Snow Creek (~0 ac, same name, different kind of place)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 

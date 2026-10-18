@@ -1,6 +1,6 @@
 # Canada NS: POTA parks vs official land (CPCAD)
 
-Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **255 of 489** joined (same name + same kind). **24** to check, **208** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **256 of 489** joined (same name + same kind). **23** to check, **208** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -14,7 +14,6 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **255 of 489** joined (same
 - **CA-1851** Shut-in Island Nature Reserve (Nature Reserve) → St. Margarets Bay Islands Nature Reserve (~137 ac, the POTA pin is inside it (different name)); St. Margarets Bay Islands Nature Reserve (~0 ac, the POTA pin is inside it (different name))
 - **CA-1876** Irish Cove Provincial Park (Provincial Park) → Irish Cove Nature Reserve (~395 ac, same name, different kind of place); Irish Cove Nature Reserve (~0 ac, same name, different kind of place)
 - **CA-1882** Ten Mile Lake Provincial Park (Provincial Park) → Ten Mile Lake Wilderness Area (~1,668 ac, same name, different kind of place)
-- **CA-1901** Tusket River Ecological Area Wilderness Area (Wilderness Area) → Tusket River Wilderness Area (~4,110 ac, similar name); Tusket River Wilderness Area (~206 ac, similar name); Tusket River Wilderness Area (~70 ac, similar name); Tusket River Nature Reserve (~40 ac, similar name); Tusket River Wilderness Area (~0 ac, similar name); Tusket River Nature Reserve (~0 ac, similar name)
 - **CA-4834** Fort Lawrence National Historic Site (National Historic Site) → Fort Lawrence Conservation Lands (~0 ac, similar name); Fort Lawrence Conservation Lands (~0 ac, similar name)
 - **CA-5426** Cole Harbour-Lawrencetown Coastal Heritage Park Nature Park (Nature Park) → Cole Harbour - Lawrencetown Provincial Park (~1,835 ac, similar name)
 - **CA-5441** Lake-O-Law Provincial Park (Provincial Park) → Middle River Wilderness Area (~1,633 ac, the POTA pin is inside it (different name)); Middle River Wilderness Area (~0 ac, the POTA pin is inside it (different name))
