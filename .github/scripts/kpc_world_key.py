@@ -19,7 +19,8 @@ SRC = {
     'DE': [('BfN ' + t, 'wfs', 'https://geodienste.bfn.de/ogc/wfs/schutzgebiet', 'schutzgebiet:' + t) for t in
            ('Nationalparke', 'Naturparke', 'Naturschutzgebiete', 'Biosphaerenreservate', 'Nationale_Naturmonumente', 'Fauna_Flora_Habitat_Gebiete', 'Vogelschutzgebiete', 'Landschaftsschutzgebiete')],
     'GB': [('Natural England ' + n, 'arcgis', f'https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/{s}/FeatureServer/0') for n, s in
-           (('NNR', 'National_Nature_Reserves_England'), ('LNR', 'Local_Nature_Reserves_England'), ('Country Parks', 'Country_Parks_England'), ('SSSI', 'SSSI_England'))]
+           (('NNR', 'National_Nature_Reserves_England'), ('LNR', 'Local_Nature_Reserves_England'), ('Country Parks', 'Country_Parks_England'), ('SSSI', 'SSSI_England'),
+            ('National Parks', 'National_Parks_England'), ('National Landscapes', 'Areas_of_Outstanding_Natural_Beauty_England'))]
           + [('NatureScot ' + t, 'wfs', 'https://ogc.nature.scot/geoserver/protectedareas/wfs', 'protectedareas:' + t) for t in ('cpk', 'nnr', 'lnr', 'sssi', 'npk', 'rp')],
     'JP': [('Ministry of the Environment national parks (Esri Japan)', 'arcgis', 'https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/nps_all/FeatureServer/0')],
 }
@@ -50,7 +51,7 @@ GEN = {
           r"vogelschutzgebiet|europaisches vogelschutzgebiet|fauna flora habitat gebiet|schutzgebiet|gebiet|nsg|lsg|ffh|spa|und|im|am|an|der|die|das|des|von|bei|zum|zur|"
           r"national park|nature park|nature reserve|biosphere reserve|landscape protection area|flora and fauna reserve|flora fauna reserve|recreation park|natura 2000|"
           r"special protection area|bird sanctuary|national natural monument|protected area|reserve|park|area",
-    'GB': r"national nature reserve|local nature reserve|site of special scientific interest|sssi|nnr|lnr|country park|national park|regional park|nature reserve|"
+    'GB': r"national nature reserve|local nature reserve|site of special scientific interest|site of significant scientific interest|sssi|nnr|lnr|country park|national park|regional park|nature reserve|"
           r"area of outstanding natural beauty|national landscape|aonb|conservation reserve|protected area|natural area|special area of conservation|"
           r"special protection area|sac|spa|ramsar|rspb|inc|reserve|park|area",
     'JP': r"quasi national park|national park|prefectural natural park|natural park|kokuritsu koen|kokutei koen|park",
@@ -63,7 +64,7 @@ KINDS = {
            ('ffh', r'\bffh\b|fauna flora habitat|flora and fauna|natura 2000'), ('spa', r'vogelschutz|special protection area|bird sanctuary|natura 2000'),
            ('nnm', r'naturmonument|natural monument')],
     'GB': [('nnr', r'national nature reserve|\bnnr\b'), ('lnr', r'local nature reserve|\blnr\b'), ('cp', r'country park'), ('sssi', r'scientific interest|\bsssi\b'),
-           ('np', r'national park'), ('rp', r'regional park')],
+           ('np', r'national park'), ('rp', r'regional park'), ('aonb', r'national landscape|outstanding natural beauty|\baonb\b')],
     'JP': [('np', r'(?<!quasi )national park|国立公園'), ('qnp', r'quasi national park|国定公園'), ('pnp', r'prefectural|県立')],
 }
 
