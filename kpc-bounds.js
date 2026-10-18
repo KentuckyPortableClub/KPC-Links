@@ -144,13 +144,13 @@
     odw: ['https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1/query', 'WMANAME', 'Oklahoma Dept. of Wildlife Conservation'] };
   const keyCache = {};
   async function usKey(ref, states) {
-    let hit = null, known = false;
+    let hit = null, known = false, site = null;
     for (const st of states || []) {
       if (!(st in keyCache)) keyCache[st] = fetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
       const k = await keyCache[st]; const p = k && k.parks && k.parks[ref];
-      if (p) { known = true; if (p.m && p.m.length) { hit = hit || { n: p.n, m: [] }; hit.m.push(...p.m); } }
+      if (p) { known = true; if (p.m && p.m.length) { hit = hit || { n: p.n, m: [] }; hit.m.push(...p.m); } if (p.a && p.a.length) site = p.a; }
     }
-    if (!hit) return known ? { state: 'none' } : null;
+    if (!hit) return known ? { state: 'none', site } : null;
     const seen = new Set(), m = hit.m.filter(x => !seen.has(String(x[0])) && seen.add(String(x[0])));
     const off = a => a < 20000 ? 0.00004 : a < 200000 ? 0.00015 : a < 1000000 ? 0.0003 : 0.0008;
     const groups = {};

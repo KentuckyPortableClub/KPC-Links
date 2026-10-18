@@ -331,9 +331,9 @@ async function showBoundary(s,btn){
  /* Oct 18 (Brandon: 'yes for sure'): every other US park uses the bot's checked list (data/us-key, same name AND same kind
     of place, every tract); parks the key doesn't know fall back to the PAD-US name search. Nothing official = no outline,
     but a separate 'SHOW UNOFFICIAL OUTLINE' button (OpenStreetMap) as a last resort. */
- if(window.KPCB&&s.p!=='SOTA'&&/^(US|KFF)-/.test(s.c)){let fs=null,src='USGS PAD-US',none=false;
+ if(window.KPCB&&s.p!=='SOTA'&&/^(US|KFF)-/.test(s.c)){let fs=null,src='USGS PAD-US',none=false,site=null;
   try{const sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);const k=KPCB.usKey?await KPCB.usKey(s.c,sts):null;
-   if(k&&k.state==='ok'){fs=k.fs;const u=[...new Set(fs.map(f=>f._src))];src=u.join(' + ')}else if(k&&k.state==='none')none=true}catch(e){}
+   if(k&&k.state==='ok'){fs=k.fs;const u=[...new Set(fs.map(f=>f._src))];src=u.join(' + ')}else if(k&&k.state==='none'){none=true;site=k.site}}catch(e){}
   if(!fs&&!none){try{const g=await KPCB.padusByName(s.n,s.la,s.lo);if(g&&g.length)fs=g}catch(e){}}
   if(fs&&fs.length){
    bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.15}}).addTo(map);
@@ -342,6 +342,7 @@ async function showBoundary(s,btn){
    status(`Official boundary shown: <b>${esc(nm)}</b>${fs.length>1?` (${fs.length} pieces)`:''} (${esc(src)}). POTA goes by the official boundary; check the park's own map too.`);return}
   btn.textContent='NO OFFICIAL OUTLINE ON FILE';btn.disabled=false;boundRef='';
   const pop=btn.closest('.us-pop')||btn.parentNode;if(pop&&!pop.querySelector('[data-a="osm"]')){const o=document.createElement('button');o.type='button';o.dataset.a='osm';o.textContent='SHOW UNOFFICIAL OUTLINE';o.title='Last resort: OpenStreetMap, a volunteer map';o.onclick=ev=>{ev.preventDefault();osmBoundary(s,o)};btn.after(o)}
+  if(site&&site.length){status(`This park is a site with no outline of its own. It sits on <b>${esc(site[0][1])}</b>${site[0][2]?' (about '+Number(site[0][2]).toLocaleString()+' acres)':''}. Check the park’s own page for where to set up.`);return}
   status('No official boundary on file for this park yet. Check the park’s own map, or tap <b>SHOW UNOFFICIAL OUTLINE</b> (OpenStreetMap, a volunteer map: can be off).');return}
  return osmBoundary(s,btn)}
 async function osmBoundary(s,btn){
