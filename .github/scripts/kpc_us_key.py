@@ -36,7 +36,7 @@ def get(params, tries=5):
 
 # ---------------- names + kinds (same idea as kpc-bounds.js, with other states' words) ----------------
 GEN = (r"fishing access site|access site|state game lands? number|designated state natural area|designated|public hunting area|hunting area|state fishing lake|fishing lake|state wilderness area|wilderness area|natural state conservation area|waterfowl refuge|wildlife refuge|refuge|state natural area|natural area preserve|state nature preserve|nature preserve|natural area|fish and wildlife area|state wildlife area|"
-       r"wildlife management area|wildlife area|state game lands?|game lands?|game management area|conservation area|state conservation area|"
+       r"wildlife management area|wildlife area|state game lands?|game lands?|game areas?|game management area|conservation area|state conservation area|"
        r"state resort park|state historic site|state historical park|state historic park|historic site|state recreation area|recreation area|"
        r"state beach|state seashore|national wildlife refuge|national recreation area|national historical park|national historic site|"
        r"national park|national forest|national grassland|national monument|national seashore|national lakeshore|national battlefield|"
@@ -50,6 +50,7 @@ def norm(s, drop1=False):
     s = re.sub(r"[’'`]", '', s)                           # Chimney's = Chimneys
     s = re.sub(r'\.', ' ', s)
     s = re.sub(r'\b([a-z])\b(?:\s+(?=[a-z]\b))', r'\1', s)  # initials: 'm t s u' = 'mtsu', 'c r' = 'cr'
+    s = re.sub(r'^[a-z]{2} (\d)', r'\1', s)                # 'PA 332 State Game Land' = 'State Game Land 332'
     s = re.sub(r'\b0+(\d)', r'\1', s)                     # 'Game Land 013' = 'Game Lands 13'
     s = re.sub(r'\b(unit|tract|parcel)\s+[0-9ivx]+\b', ' ', s)
     s = ' '.join(ABBR.get(w, w) for w in s.split())
@@ -59,7 +60,7 @@ def norm(s, drop1=False):
     return re.sub(r'\s+', ' ', s).strip()
 
 
-KINDS = [('wma', r'wildlife management area|\bwma\b|wildlife area|game lands?|game management area|hunting area|fish and wildlife area|public hunting'),
+KINDS = [('wma', r'wildlife management area|\bwma\b|wildlife area|game lands?|game areas?|game management area|hunting area|fish and wildlife area|public hunting'),
          ('ca', r'conservation area'),
          ('snp', r'nature preserve|natural area|\bsnp\b|\bsna\b|natural heritage'),
          ('hist', r'historic site|historical park|historic park|historic area|\bshs\b'),
