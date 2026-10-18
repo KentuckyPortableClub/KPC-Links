@@ -1,0 +1,19 @@
+name: KPC world sources probe
+# One-off / manual: which official protected-area map services answer for the next POTA countries (JP DE GB PL AU).
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - run: python3 .github/scripts/kpc_world_probe.py
+      - name: Save
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/world-probe.json
+          if ! git diff --cached --quiet; then git commit -m 'World sources probe'; for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done; fi

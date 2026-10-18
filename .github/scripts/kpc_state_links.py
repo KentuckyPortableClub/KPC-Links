@@ -5,7 +5,7 @@ Writes data/parkinfo/US-XX.json  {state, updated, stateSite, parks:{ref:[name, w
 Automatic, NOT checked by KPC (Kentucky stays hand-checked in kpc-ky-data.json / kpc-campgrounds.json).
 Park details are fetched once and reused; RECHECK=1 fetches them all again. STATES='TN IN ...' picks states."""
 import json, os, re, time, urllib.request, urllib.parse, datetime, collections
-STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL AL GA NC MS AR MD DC PA MI WI IA NE KS OK AK AZ CA CO CT DE FL HI ID LA ME MA MN MT NV NH NJ NM NY ND OR RI SD TX UT VT WA WY').split()
+STATES = [] if (os.environ.get('STATES') or '').strip().upper() == 'NONE' else (os.environ.get('STATES') or 'TN IN OH WV VA MO IL AL GA NC MS AR MD DC PA MI WI IA NE KS OK AK AZ CA CO CT DE FL HI ID LA ME MA MN MT NV NH NJ NM NY ND OR RI SD TX UT VT WA WY').split()  # STATES=NONE = only the PROGS programs
 UA = {'User-Agent': 'KPC park links (kentuckyportableclub.github.io)'}
 OUT = 'data/parkinfo'; os.makedirs(OUT, exist_ok=True)
 def get(u):
@@ -64,7 +64,7 @@ for st in STATES:
 # a manual run with only 'states' filled skips them; PROGS='CA MX' picks programs.
 OKSITE = re.compile(r'(park|parc|parque|\.gov(\.|$)|\.gob\.|\.go\.[a-z]{2}$|\.gc\.ca$|gouv\.qc\.ca$|gov\.[a-z]{2}\.ca$|^gov\.mb\.ca$|sepaq\.com$|^bnt\.bs$|^bvinpt\.org$)')
 NA_PROGS = 'CA MX GT BZ SV HN NI CR PA CU JM HT DO BS BB TT AG DM GD KN LC VC AI AW CW SX BQ MF BL GP MQ KY TC VG MS BM GL PM'.split()
-PROGS = (os.environ.get('PROGS') or ('' if os.environ.get('STATES') else ' '.join(NA_PROGS))).split()
+PROGS = (os.environ.get('PROGS') or ('' if os.environ.get('STATES') else ' '.join(NA_PROGS))).split()  # also any POTA program outside NA, e.g. JP DE GB PL AU
 if PROGS:
     try: LOCS = get('https://api.pota.app/locations')
     except Exception as e: LOCS = []; note('POTA locations FAILED', e)
