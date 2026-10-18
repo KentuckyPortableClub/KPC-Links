@@ -175,7 +175,7 @@ feed = load(OUT, {'items': []})
 items = [i for i in feed.get('items', []) if i.get('found', '') >= (NOW.date() - datetime.timedelta(days=KEEP_DAYS - 1)).isoformat()]
 have = {(i['prog'], i['ref']) for i in items}
 changed, summary = False, []
-for prog, fn, floor in (('pota', pota, 10000), ('kff', kff, 4000), ('sota', sota, 30000)):
+for prog, fn, floor in (('pota', pota, 10000), ('kff', kff, 4000), ('sota', sota, 25000)):
     try: cur = fn()
     except Exception as e:  # noqa: BLE001
         notice(f'New references: {prog.upper()}', f'Could not read today ({e}); skipped.'); continue
