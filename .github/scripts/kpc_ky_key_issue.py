@@ -10,7 +10,7 @@ def gh(*a, inp=None):
     if r.returncode: print('gh error:', r.stderr.strip())
     return r.stdout
 NM = {'bstate': 'State Parks file', 'bwma': 'WMA file', 'bsnp': 'Nature Preserves file', 'bsna': 'Natural Areas file', 'bdbnf': 'DBNF line',
-      'bnps': 'NPS file', 'bwild': 'Wild Rivers file', 'bwilder': 'Wilderness file', 'bfws': 'USFWS file', 'bkpc': 'KPC-drawn'}
+      'bnps': 'NPS file', 'bwild': 'Wild Rivers file', 'bwilder': 'Wilderness file', 'bfws': 'USFWS file', 'bpad': 'PAD-US file', 'bkpc': 'KPC-drawn'}
 pieces = lambda p: sum(t[4] if len(t) > 4 else 1 for t in p['tracts'])
 L = [f"Built {d['updated']} by `.github/scripts/kpc_ky_key.js` from the Kentucky outline files, using the same matching rules as the map tools. "
      "Full list: `data/ky-answer-key.json`. Updated every Monday and whenever an outline file or kpc-ky-data.json changes.", '',
