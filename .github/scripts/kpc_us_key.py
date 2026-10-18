@@ -35,12 +35,12 @@ def get(params, tries=5):
 
 
 # ---------------- names + kinds (same idea as kpc-bounds.js, with other states' words) ----------------
-GEN = (r"national wild and scenic river|wild and scenic river|national recreational river|state vehicle recreation area|vehicle recreation area|state reservation|reservation|state reserve|national reserve|national fish hatchery|state fish hatchery|fish hatchery|hatchery|fh|fishery area|state fishery area|blm herd management area|herd management area|herd area|blm special recreation management area|special recreation management area|extensive recreation management area|blm recreation management area|recreation management area|wilderness study area|wsa|hma|srma|erma|blm|fishing access site|access site|state game lands? number|designated state natural area|designated|public hunting area|hunting area|state fishing lake|fishing lake|state wilderness area|wilderness area|natural state conservation area|waterfowl refuge|wildlife refuge|refuge|state natural area|natural area preserve|state nature preserve|nature preserve|natural area|fish and wildlife area|state wildlife area|"
+GEN = (r"blm national conservation area|national conservation area|wildlife management area (and|&) public fishing area|public fishing area|fishing area|national wild and scenic river|wild and scenic river|national recreational river|state vehicle recreation area|vehicle recreation area|state reservation|reservation|state reserve|national reserve|national fish hatchery|state fish hatchery|fish hatchery|hatchery|fh|fishery area|state fishery area|blm herd management area|herd management area|herd area|blm special recreation management area|special recreation management area|extensive recreation management area|blm recreation management area|recreation management area|wilderness study area|wsa|hma|srma|erma|blm|fishing access site|access site|state game lands? number|designated state natural area|designated|public hunting area|hunting area|state fishing lake|fishing lake|state wilderness area|wilderness area|natural state conservation area|waterfowl refuge|wildlife refuge|refuge|state natural area|natural area preserve|state nature preserve|nature preserve|natural area|fish and wildlife area|state wildlife area|"
        r"wildlife management area|wildlife area|state game lands?|game lands?|game areas?|game management area|conservation area|state conservation area|"
        r"state resort park|state historic site|state historical park|state historic park|historic site|state recreation area|recreation area|"
        r"state beach|state seashore|national wildlife refuge|national recreation area|national historical park|national historic site|"
        r"national park|national forest|national grassland|national monument|national seashore|national lakeshore|national battlefield|"
-       r"national military park|national preserve|national river|state park|state forest|management area|wma|nwr|nra|sp|sf|sgl|state|number|no|the|of|and")
+       r"national military park|national preserve|national river|state park|state forest|management area|wma|nwr|nra|nca|na|wa|sp|sf|sgl|state|number|no|the|of|and")
 ABBR = {'sulphur': 'sulfur', 'vehicular': 'vehicle', 'recreational': 'recreation', '1': 'one', '2': 'two', '3': 'three', '4': 'four', '5': 'five', '6': 'six', '7': 'seven', '8': 'eight', '9': 'nine', '10': 'ten', '11': 'eleven', '12': 'twelve', 'col': 'colonel', 'sgt': 'sergeant', 'mt': 'mount', 'ft': 'fort', 'st': 'saint', 'pt': 'point', 'lk': 'lake', 'cr': 'creek', 'mtn': 'mountain'}
 def norm(s, drop1=False):
     s = str(s or '')
@@ -61,7 +61,7 @@ def norm(s, drop1=False):
 
 
 KINDS = [('wma', r'wildlife management area|\bwma\b|wildlife area|game lands?|game areas?|game management area|hunting area|fish and wildlife area|public hunting|fishery area|(?<!recreation )(?<!herd )(?<!conservation )management area'),
-         ('wsr', r'wild (and|&) scenic river|recreational river'),
+         ('wsr', r'wild (and|&) scenic river|recreational river'), ('fl', r'fishing lake|public fishing area'),
          ('ca', r'conservation area|\baccess$'),          # Missouri: 'Kings Prairie Access' = Kings Prairie Access State Conservation Area
          ('snp', r'nature preserve|natural area|\bsnp\b|\bsna\b|natural heritage'),
          ('hist', r'historic(al)? (site|park|area)|\bshs\b'),
@@ -81,6 +81,7 @@ def variants(s):
     # other ways of writing the same name: no middle initial, bracket words left out ('Reifsnider (Frank)'), no leading 'Mount'
     v = {norm(s), norm(s, True), norm(re.sub(r'\(.*?\)', ' ', str(s or '')))}
     v |= {re.sub(r'^mount ', '', x) for x in v}
+    v |= {re.sub(r' (park|forest)$', '', x) for x in v}         # 'Fort Revere Park' = Fort Revere, 'Coulee Experimental Forest'
     return {x for x in v if x}
 
 
@@ -95,7 +96,8 @@ def same_name(a, b):
 def exact_name(a, b):
     # no 'starts with' allowance: used when only one of the two names says what kind of place it is
     va, vb = variants(a), variants(b)
-    return bool(va & vb) or bool({_sing(x) for x in va} & {_sing(x) for x in vb})
+    if va & vb or {_sing(x) for x in va} & {_sing(x) for x in vb}: return True
+    return any(len(x) >= 8 and len(y) >= 8 and not re.search(r'\d', x + y) and _ed1(x, y) for x in va for y in vb)   # one-letter typo ('Pishkin' / 'Pishkun')
 
 
 def name_ok(a, b, ka, kb):
@@ -124,7 +126,8 @@ def same_words(a, b, ka, kb):
     if not (ka and kb and ka & kb): return False
     w1, w2 = wset(a), wset(b)
     s, l = (w1, w2) if len(w1) <= len(w2) else (w2, w1)
-    return len([w for w in s if len(w) > 2]) >= 2 and s <= l and len(l - s) <= 2
+    big = [w for w in s if len(w) > 2]
+    return (len(big) >= 2 or (len(big) == 1 and len(big[0]) >= 6 and ka == kb)) and s <= l and len(l - s) <= 2
 
 
 def _same(a, b):

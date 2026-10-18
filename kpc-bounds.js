@@ -138,7 +138,10 @@
     hma: ['https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/0/query', 'HMA_NAME', 'Bureau of Land Management'],
     rma: ['https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9/query', 'FET_NAME', 'Bureau of Land Management'],
     rst: ['https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query', 'FET_NAME', 'Bureau of Land Management'],
-    nca: ['https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query', 'NCA_NAME', 'Bureau of Land Management'] };
+    nca: ['https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query', 'NCA_NAME', 'Bureau of Land Management'],
+    wsa: ['https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer/1/query', 'NLCS_NAME', 'Bureau of Land Management'],
+    wbl: ['https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer/0/query', 'NLCS_NAME', 'Bureau of Land Management'],
+    odw: ['https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1/query', 'WMANAME', 'Oklahoma Dept. of Wildlife Conservation'] };
   const keyCache = {};
   async function usKey(ref, states) {
     let hit = null, known = false;
@@ -160,6 +163,28 @@
     if (!fs.length) return { state: 'error', n: hit.n, m };
     fs.forEach(f => { const p = f.properties || {}; f._nm = p.Unit_Nm || p.ORGNAME || hit.n; f._bb = bbox(f.geometry); });
     return { state: 'ok', n: hit.n, m, fs };
+  }
+  /* Oct 18 (Brandon: review the US data… tappable land): what official land is at a spot, and which POTA parks the answer key joined to it */
+  const revCache = {};
+  async function keyRev(st) {
+    if (!(st in revCache)) revCache[st] = (keyCache[st] = keyCache[st] || fetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null))
+      .then(k => { const m = {}; Object.entries((k && k.parks) || {}).forEach(([ref, p]) => (p.m || []).forEach(x => (m[String(x[0])] = m[String(x[0])] || []).push({ ref, n: p.n }))); return m; });
+    return revCache[st];
+  }
+  const ACC = { OA: 'open to the public', RA: 'restricted access', XA: 'closed to the public', UK: 'access unknown' };
+  async function usLandAt(la, lo, states) {
+    const pt = { geometry: `${lo},${la}`, geometryType: 'esriGeometryPoint' };
+    const meta = await padus(Object.assign({ returnGeometry: false }, pt)).catch(() => ({ features: [] }));
+    let fs = (meta.features || []).map(f => f.properties || {}).filter(p => p.Category !== 'Proclamation');
+    const seen = new Set(); fs = fs.filter(p => { const k = (p.Unit_Nm || '') + '|' + (p.Loc_Mang || p.Mang_Name || ''); if (seen.has(k)) return false; seen.add(k); return true; })
+      .sort((a, b) => (+a.GIS_Acres || 0) - (+b.GIS_Acres || 0)).slice(0, 5);
+    if (!fs.length) return [];
+    const rev = Object.assign({}, ...(await Promise.all((states || []).map(keyRev))));
+    const geo = await padus({ objectIds: fs.map(p => p.OBJECTID).join(','), returnGeometry: true, geometryPrecision: 5, maxAllowableOffset: 0.0002,
+      geometry: `${lo - 0.15},${la - 0.15},${lo + 0.15},${la + 0.15}`, geometryType: 'esriGeometryEnvelope' }).catch(() => ({ features: [] }));
+    const G = {}; (geo.features || []).forEach(f => { G[(f.properties || {}).OBJECTID] = f; });
+    return fs.map(p => ({ id: p.OBJECTID, name: p.Unit_Nm || p.Loc_Nm || 'Public land', by: p.Loc_Mang || p.Mang_Name || '', kind: p.Des_Tp || '',
+      access: ACC[p.Pub_Access] || '', acres: Math.round(+p.GIS_Acres || 0), parks: rev[String(p.OBJECTID)] || [], f: G[p.OBJECTID] || null }));
   }
   const words = n => String(n || '').replace(/\b(state|national|park|parks|forest|wildlife|management|area|recreation|recreational|nature|preserve|refuge|historic|historical|site|reserve|natural|lake|wma|nwr|the|of|and)\b/gi, ' ').replace(/[^A-Za-z0-9' ]/g, ' ').trim().split(/\s+/).filter(w => w.length > 2);
   async function padusByName(name, la, lo) {
@@ -298,5 +323,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, euro, canada, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usLandAt, euro, canada, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();
