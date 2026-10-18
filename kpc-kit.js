@@ -206,7 +206,7 @@
       if (!proc) try { map.fitBounds(lay.getBounds(), { padding: [16, 16], maxZoom: 15 }); } catch (e) {}
       $('kitBnd').innerHTML = (kpc ? '<b>Approximate outline drawn by KPC</b> from OpenStreetMap (this park has no official map file). OpenStreetMap is drawn by volunteers, so it can be off; check the park\'s own map.' : proc ? 'Daniel Boone National Forest outer line (it includes private land).' : (wsrc ? '<b>' + esc(feats[0]._nm) + '</b>' + (feats[0]._info ? ' · ' + esc(feats[0]._info) : '') + '. Official outline from ' + esc(wsrc) + (/^EEA/.test(wsrc) ? ' (matched by name at the POTA pin)' : '') + '.' : 'Official boundary' + (feats[0]._L ? ' from ' + [...new Set(feats.map(f => f._L.agency))].map(esc).join(' and ') : ' (USGS PAD-US)') + '.')) + (ap.length ? ` Green dots: ${ap.length} parking / trailhead / entrance point${ap.length > 1 ? 's' : ''} (tap for directions).` : '');
       files(fc);
-    } else $('kitBnd').innerHTML = 'No boundary file found. Use the official map.' + (ap.length ? ' Green dots: parking / trailhead points.' : '');
+    } else $('kitBnd').innerHTML = (P.park && P.park.nob ? esc(P.park.nob) : 'No boundary file found. Use the official map.') + (ap.length ? ' Green dots: parking / trailhead points.' : '');
   }
 
   /* ---------- weather (Open-Meteo + NWS alerts) ---------- */

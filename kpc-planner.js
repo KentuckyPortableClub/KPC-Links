@@ -301,7 +301,7 @@ function infoHtml(x){const P=new Map(D.parks.map(q=>[q.c,q])),p=x.k==='pota'?P.g
  const tot={},cnt={};aps.forEach(a=>{const k=String(a[2]||'Access point');tot[k]=(tot[k]||0)+1});const nm=a=>{const k=String(a[2]||'Access point');if(tot[k]>1){cnt[k]=(cnt[k]||0)+1;return k+' #'+cnt[k]}return k};
  const names=aps.map(nm);
  if(aps.length>1)h+=`<div class="pi-m"><b>Other entrances and parking:</b> ${aps.slice(1,8).map((a,i)=>`<a href="${gdir(a[0],a[1])}" target="_blank" rel="noopener">${esc(names[i+1])}</a>`).join(' · ')}${aps.length>8?` · +${aps.length-8} more`:''}</div>`;
- if(p){const info=[TYPEN[p.t]||p.t];if(p.acc)info.push(p.acc+' access point'+(p.acc>1?'s':'')+' on record');if(p.camp)info.push('Camping available');h+=`<div class="pi-m"><b>KPC guide:</b> ${esc(info.filter(Boolean).join(' · '))}</div>`}
+ if(p){const info=[TYPEN[p.t]||p.t];if(p.acc)info.push(p.acc+' access point'+(p.acc>1?'s':'')+' on record');if(p.camp)info.push('Camping available');h+=`<div class="pi-m"><b>KPC guide:</b> ${esc(info.filter(Boolean).join(' · '))}</div>`;if(p.nob)h+=`<div class="pi-m">🗺 ${esc(p.nob)}</div>`}
  if(x.k==='pota')L2('Program details',KPC.links.pota(x.ref));else if(x.k==='sota')L2('SOTLAS summit page',KPC.links.sota(x.ref));else L2('WWFF directory',KPC.links.kff(x.ref));
  if(aps.length)L2('Directions: '+names[0],gdir(aps[0][0],aps[0][1]));else L2('Directions',gdir(x.la,x.lo));
  if(p&&p.web)L2(hostL(p.web),p.web);if(p&&p.camp&&p.camp!==p.web)L2('Campground page',p.camp);if(p&&p.off&&p.off!==p.web)L2(/\.pdf(\?|$)/i.test(p.off)?'Official map (PDF)':'Official map / info',p.off);
