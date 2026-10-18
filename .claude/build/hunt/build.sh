@@ -7,7 +7,7 @@ python3 .claude/build/assemble.py .claude/build/hunt/main.html kpc-hunt.html "VI
 python3 - <<'P'
 s=open('kpc-hunt.html').read()
 if 'noindex' not in s: s=s.replace('<meta charset="UTF-8">','<meta charset="UTF-8">\n<meta name="robots" content="noindex,nofollow">',1)
-if 'kpc-vip.js' not in s: s=s.replace('<meta name="robots" content="noindex,nofollow">','<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018c"></script>',1)
+if 'kpc-vip.js' not in s: s=s.replace('<meta name="robots" content="noindex,nofollow">','<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018d"></script>',1)
 open('kpc-hunt.html','w').write(s)
 P
 sed 's/<main id="hl" data-keep-light data-theme="lodge">/<main id="hl" data-keep-light data-theme="lodge" data-public="1">/' .claude/build/hunt/main.html > /tmp/kpc-hunters-main.html
@@ -21,7 +21,7 @@ python3 - <<'P'
 for f in ('kpc-hunt-need.html',):
     s=open(f).read()
     if 'noindex' not in s: s=s.replace('<meta charset="UTF-8">','<meta charset="UTF-8">\n<meta name="robots" content="noindex,nofollow">',1)
-    if 'kpc-vip.js' not in s: s=s.replace('<meta name="robots" content="noindex,nofollow">','<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018c"></script>',1)
+    if 'kpc-vip.js' not in s: s=s.replace('<meta name="robots" content="noindex,nofollow">','<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018d"></script>',1)
     open(f,'w').write(s)
 s=open('kpc-hunters.html').read()
 # members only since Oct 17 (kpc-gate.js locks it; keep it out of search engines)
@@ -34,6 +34,25 @@ python3 .claude/build/assemble.py .claude/build/hunt-cat/main.html kpc-hunt-cat.
 python3 - <<'P'
 s=open('kpc-hunt-cat.html').read()
 if 'noindex' not in s: s=s.replace('<meta charset="UTF-8">','<meta charset="UTF-8">\n<meta name="robots" content="noindex,nofollow">',1)
-if 'kpc-vip.js' not in s: s=s.replace('<meta name="robots" content="noindex,nofollow">','<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018c"></script>',1)
+if 'kpc-vip.js' not in s: s=s.replace('<meta name="robots" content="noindex,nofollow">','<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018d"></script>',1)
 open('kpc-hunt-cat.html','w').write(s)
+P
+# BETA TEST ROOM (Brandon Oct 18: 'beta test room with no way out with hunters lounge vip'): the VIP Lounge pages for testers,
+# own password (kpc-vip.js data-lock="room"; only its hash is in that file), kpc-room.js hides the menu/footer and blocks links out.
+sed 's/<main id="hl" data-keep-light data-theme="lodge">/<main id="hl" data-keep-light data-theme="lodge" data-room="1">/' .claude/build/hunt/main.html > /tmp/kpc-room-main.html
+sed 's/<main id="hl" data-keep-light data-theme="lodge">/<main id="hl" data-keep-light data-theme="lodge" data-page="need" data-room="1">/' .claude/build/hunt/main.html > /tmp/kpc-room-need.html
+sed 's/<main id="hl" data-keep-light data-theme="lodge" data-page="cat">/<main id="hl" data-keep-light data-theme="lodge" data-page="cat" data-room="1">/' .claude/build/hunt-cat/main.html > /tmp/kpc-room-cat.html
+grep -q 'data-room' /tmp/kpc-room-main.html; grep -q 'data-room' /tmp/kpc-room-need.html; grep -q 'data-room' /tmp/kpc-room-cat.html
+python3 .claude/build/assemble.py /tmp/kpc-room-main.html kpc-beta-room.html "KPC Beta Test Room | KPC" "KPC beta test room: the VIP Hunters Lounge for testers."
+python3 .claude/build/assemble.py /tmp/kpc-room-need.html kpc-beta-need.html "KPC Beta Test Room · Parks I Need | KPC" "KPC beta test room: Parks I Need."
+python3 .claude/build/assemble.py /tmp/kpc-room-cat.html kpc-beta-cat.html "KPC Beta Test Room · CAT & QRZ | KPC" "KPC beta test room: radio control and QRZ."
+python3 - <<'P'
+import re
+for f in ('kpc-beta-room.html', 'kpc-beta-need.html', 'kpc-beta-cat.html'):
+    s = open(f).read()
+    if 'noindex' not in s: s = s.replace('<meta charset="UTF-8">', '<meta charset="UTF-8">\n<meta name="robots" content="noindex,nofollow">', 1)
+    if 'kpc-room.js' not in s: s = s.replace('<meta name="robots" content="noindex,nofollow">', '<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018d" data-lock="room"></script>\n<script src="kpc-room.js?v=20261018a"></script>', 1)
+    for a, b in (('kpc-hunt-need.html', 'kpc-beta-need.html'), ('kpc-hunt-cat.html', 'kpc-beta-cat.html'), ('kpc-hunters.html', 'kpc-beta-room.html'), ('kpc-hunt.html', 'kpc-beta-room.html')):
+        s = re.sub(r'(href=")' + re.escape(a), r'\1' + b, s)
+    open(f, 'w').write(s)
 P

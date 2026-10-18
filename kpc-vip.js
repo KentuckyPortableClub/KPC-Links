@@ -6,10 +6,12 @@
    BETA mode (Brandon Oct 17: 'lock the public hunters lounge till I beta it'): <script src="kpc-vip.js" data-lock="beta"> on kpc-hunters.html
    uses its own password (SHA-256 of 'kpc-beta:' + password) and localStorage kpcBetaOK. A VIP unlock also opens the beta page. */
 (function () {
-  var BETA = !!(document.currentScript && document.currentScript.getAttribute('data-lock') === 'beta');
+  var LOCK = document.currentScript && document.currentScript.getAttribute('data-lock'), BETA = LOCK === 'beta', ROOM = LOCK === 'room';
+  /* ROOM (Brandon Oct 18: 'beta test room with no way out with hunters lounge vip'): kpc-beta-room / -need / -cat pages, own password
+     (SHA-256 of 'kpc-room:' + password, localStorage kpcRoomOK); a VIP or member unlock opens it too. */
   var VIPH = '2053c7c0ae91be40fd2816d87b55adca15e478c076973648e9e0bb42ffedf8b2', MEMH = '2925a56a5048f6d5dabbe552f8abb71e7c8b4dfc8b42b29cd76f9083c226a540'; /* Oct 17: one member password for every lock */
-  var HASH = BETA ? '754c4f28bd19b9a46d2e23ee7126a19d08f13054ef7b03e78f48ac4373d6e121' : VIPH, KEY = BETA ? 'kpcBetaOK' : 'kpcVipOK', SALT = BETA ? 'kpc-beta:' : 'kpc-vip:';
-  var ok = false; try { ok = localStorage.getItem(KEY) === HASH || (BETA && localStorage.getItem('kpcVipOK') === VIPH) || localStorage.getItem('kpcMember') === MEMH; } catch (e) {}
+  var HASH = ROOM ? 'bfc24f12653003854862bb45bc42afc2e0c1ad2ef30ab42011e3d8e37682c4b7' : BETA ? '754c4f28bd19b9a46d2e23ee7126a19d08f13054ef7b03e78f48ac4373d6e121' : VIPH, KEY = ROOM ? 'kpcRoomOK' : BETA ? 'kpcBetaOK' : 'kpcVipOK', SALT = ROOM ? 'kpc-room:' : BETA ? 'kpc-beta:' : 'kpc-vip:';
+  var ok = false; try { ok = localStorage.getItem(KEY) === HASH || ((BETA || ROOM) && localStorage.getItem('kpcVipOK') === VIPH) || localStorage.getItem('kpcMember') === MEMH; } catch (e) {}
   var done; var ready = new Promise(function (r) { done = r; });
   window.KPCVIP = { ready: ready, ok: function () { return ok; } };
   if (ok) { done(); return; }
@@ -26,7 +28,8 @@
   var sha = function (t) { return crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)).then(function (b) { return Array.prototype.map.call(new Uint8Array(b), function (x) { return x.toString(16).padStart(2, '0'); }).join(''); }); };
   function show() {
     var box = document.createElement('div'); box.id = 'vipLock'; box.setAttribute('data-keep-light', '');
-    box.innerHTML = (BETA ? '<span class="v">🧪 BETA</span><h1>Hunters Lounge</h1><p>The Hunters Lounge is being tested and opens to everyone soon. Testers: type the beta password to come in. You only need it once on this device.</p>'
+    box.innerHTML = ROOM ? '<span class="v">🧪 BETA TEST ROOM</span><h1>VIP Hunters Lounge</h1><p>Welcome, tester! Type the beta room password to come in. You only need it once on this device.</p>' +
+      '<form><input type="password" autocomplete="off" placeholder="PASSWORD" aria-label="Password"><button type="submit">🔓 COME IN</button><div class="bad" aria-live="polite"></div></form>' : (BETA ? '<span class="v">🧪 BETA</span><h1>Hunters Lounge</h1><p>The Hunters Lounge is being tested and opens to everyone soon. Testers: type the beta password to come in. You only need it once on this device.</p>'
       : '<span class="v">⭐ VIP</span><h1>VIP Hunters Lounge</h1><p>This part of the Lounge is for KPC members. Type the VIP password to come in. You only need it once on this device.</p>') +
       '<form><input type="password" ' + (BETA ? '' : 'inputmode="numeric" ') + 'autocomplete="off" placeholder="PASSWORD" aria-label="Password"><button type="submit">🔓 COME IN</button><div class="bad" aria-live="polite"></div></form>' +
       (BETA ? '<p style="margin-top:16px;font-size:13px">Want live spots now? <a href="kpc-live.html">Happening Now</a> is open to everyone.</p>'
