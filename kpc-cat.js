@@ -72,6 +72,94 @@
     }
   };
 
+
+  /* ---- Oct 18 (Brandon's tablet + FT-710: Chrome on Android listed NO serial ports): Android's Web Serial only sees some USB chips,
+     so on Android we also talk to the radio's USB chip straight over WebUSB with our own small drivers:
+     Silicon Labs CP210x (Yaesu FT-710/891/991, FTDX10/101, Icom, most CAT cables; dual chips = 2 ports: 1st = CAT, 2nd = PTT/keying lines),
+     FTDI, and standard USB serial (CDC-ACM: QMX, QDX, truSDX, Arduino-type radios). Each one looks like a Web Serial port to the code below. */
+  const USBF = [{ vendorId: 0x10C4 }, { vendorId: 0x0403 }, { vendorId: 0x0483 }, { vendorId: 0x2E8A }, { vendorId: 0x2341 }, { vendorId: 0x239A }, { vendorId: 0x1FC9 }, { vendorId: 0x04D8 }, { classCode: 2 }];
+  const ANDROID = /Android/i.test(navigator.userAgent || '');
+  const useUsb = () => !!navigator.usb && (ANDROID || !('serial' in navigator));
+  function UsbPort(dev, ifc, n) { this.dev = dev; this.ifc = ifc; this.n = n; this.readable = null; this.writable = null; this.isUsb = true; }
+  UsbPort.prototype.getInfo = function () { return { usbVendorId: this.dev.vendorId, usbProductId: this.dev.productId, usbInterface: this.n }; };
+  UsbPort.prototype._ctl = function (setup, data) { return this.dev.controlTransferOut(Object.assign({ index: this.ifc.interfaceNumber }, setup), data); };
+  UsbPort.prototype.open = async function (o) {
+    const d = this.dev, v = d.vendorId, alt = this.ifc.alternates[0], baud = +o.baudRate || 38400, stop2 = o.stopBits === 2;
+    if (!d.opened) await d.open();
+    if (!d.configuration) await d.selectConfiguration(1);
+    let dataIfc = this.ifc;
+    if (v === 0x10C4) { // CP210x: enable, baud, 8 data bits + stop bits, no parity
+      await d.claimInterface(this.ifc.interfaceNumber);
+      await this._ctl({ requestType: 'vendor', recipient: 'interface', request: 0x00, value: 0x0001 });
+      const b = new ArrayBuffer(4); new DataView(b).setUint32(0, baud, true);
+      await this._ctl({ requestType: 'vendor', recipient: 'interface', request: 0x1E, value: 0 }, b);
+      await this._ctl({ requestType: 'vendor', recipient: 'interface', request: 0x03, value: 0x0800 | (stop2 ? 2 : 0) });
+      this.kind = 'cp';
+    } else if (v === 0x0403) { // FTDI: reset, baud divisor (3 MHz base, 1/8 steps), 8N1 / 8N2
+      await d.claimInterface(this.ifc.interfaceNumber);
+      const ix = d.configuration.interfaces.length > 1 ? this.ifc.interfaceNumber + 1 : 0;
+      await d.controlTransferOut({ requestType: 'vendor', recipient: 'device', request: 0, value: 0, index: ix });
+      const div = 3000000 / baud, i = Math.floor(div), f = Math.round((div - i) * 8) & 7, FR = [0, 3, 2, 4, 1, 5, 6, 7], c = FR[f];
+      await d.controlTransferOut({ requestType: 'vendor', recipient: 'device', request: 3, value: (i & 0x3FFF) | ((c & 3) << 14), index: (c >> 2) | (ix << 8) });
+      await d.controlTransferOut({ requestType: 'vendor', recipient: 'device', request: 4, value: 8 | (stop2 ? 0x1000 : 0), index: ix });
+      this.kind = 'ftdi'; this.fix = ix;
+    } else { // CDC-ACM: comm interface gets the line settings, data interface carries the bytes
+      const all = d.configuration.interfaces;
+      const comm = all.find(x => x.alternates[0].interfaceClass === 2) || this.ifc;
+      dataIfc = all.find(x => x.alternates[0].interfaceClass === 10) || this.ifc;
+      for (const x of new Set([comm, dataIfc])) { try { await d.claimInterface(x.interfaceNumber); } catch (e) { if (x === dataIfc) throw e; } }
+      const lc = new ArrayBuffer(7), dv = new DataView(lc); dv.setUint32(0, baud, true); dv.setUint8(4, stop2 ? 2 : 0); dv.setUint8(5, 0); dv.setUint8(6, 8);
+      try { await d.controlTransferOut({ requestType: 'class', recipient: 'interface', request: 0x20, value: 0, index: comm.interfaceNumber }, lc); } catch (e) {}
+      this.kind = 'cdc'; this.comm = comm;
+    }
+    const eps = dataIfc.alternates[0].endpoints, inEp = eps.find(e => e.direction === 'in' && e.type === 'bulk'), outEp = eps.find(e => e.direction === 'out' && e.type === 'bulk');
+    if (!inEp || !outEp) throw new Error('this USB device has no data line');
+    const me = this, size = inEp.packetSize || 64; me.alive = true;
+    this.readable = new ReadableStream({ async pull(ctl) {
+      for (;;) {
+        if (!me.alive) { ctl.close(); return; }
+        let r; try { r = await d.transferIn(inEp.endpointNumber, size * 4); } catch (e) { ctl.error(e); return; }
+        let u = r.data ? new Uint8Array(r.data.buffer, r.data.byteOffset, r.data.byteLength) : new Uint8Array(0);
+        if (me.kind === 'ftdi') { const o = []; for (let k = 0; k < u.length; k += size) o.push(...u.slice(k + 2, k + size)); u = new Uint8Array(o); } // FTDI: 2 status bytes per packet
+        if (u.length) { ctl.enqueue(u); return; }
+        await sleep(20);
+      } } });
+    this.writable = new WritableStream({ async write(ch) { await d.transferOut(outEp.endpointNumber, ch); } });
+  };
+  UsbPort.prototype.setSignals = async function (o) {
+    this.sig = Object.assign({ dataTerminalReady: false, requestToSend: false }, this.sig || {}, o || {});
+    const dtr = this.sig.dataTerminalReady ? 1 : 0, rts = this.sig.requestToSend ? 1 : 0, d = this.dev;
+    if (!d.opened) { await d.open(); if (!d.configuration) await d.selectConfiguration(1); try { await d.claimInterface(this.ifc.interfaceNumber); } catch (e) {} }
+    if (this.kind === 'ftdi') {
+      await d.controlTransferOut({ requestType: 'vendor', recipient: 'device', request: 1, value: 0x0100 | dtr, index: this.fix || 0 });
+      await d.controlTransferOut({ requestType: 'vendor', recipient: 'device', request: 1, value: 0x0200 | (rts << 1), index: this.fix || 0 });
+    } else if (this.kind === 'cdc') {
+      await d.controlTransferOut({ requestType: 'class', recipient: 'interface', request: 0x22, value: dtr | (rts << 1), index: this.comm.interfaceNumber });
+    } else { // CP210x (also a 2nd CP2105 port used only for PTT / keying)
+      try { await d.claimInterface(this.ifc.interfaceNumber); } catch (e) {}
+      try { await this._ctl({ requestType: 'vendor', recipient: 'interface', request: 0x00, value: 0x0001 }); } catch (e) {}
+      await this._ctl({ requestType: 'vendor', recipient: 'interface', request: 0x07, value: dtr | (rts << 1) | 0x0300 });
+    }
+  };
+  UsbPort.prototype.close = async function () { this.alive = false; try { await this.dev.releaseInterface(this.ifc.interfaceNumber); } catch (e) {} if (!USBP.some(p => p !== this && p.dev === this.dev && p.alive)) { try { await this.dev.close(); } catch (e) {} } };
+  let USBP = [];
+  async function usbPorts() {
+    if (!navigator.usb) return [];
+    const ds = await navigator.usb.getDevices(), out = [];
+    for (const d of ds) {
+      let cfg = d.configuration; try { if (!cfg) { await d.open(); await d.selectConfiguration(1); cfg = d.configuration; } } catch (e) {}
+      const ifs = cfg ? cfg.interfaces : [];
+      let list = d.vendorId === 0x10C4 || d.vendorId === 0x0403 ? ifs.filter(x => x.alternates[0].interfaceClass === 255) : ifs.filter(x => x.alternates[0].interfaceClass === 2).slice(0, 1);
+      if (!list.length && ifs.length) list = [ifs[0]];
+      list.forEach((x, n) => { const old = USBP.find(p => p.dev === d && p.ifc.interfaceNumber === x.interfaceNumber); out.push(old || new UsbPort(d, x, n)); });
+    }
+    USBP = out; return out;
+  }
+  async function allPorts() { const a = []; if ('serial' in navigator && !useUsb()) a.push(...await navigator.serial.getPorts()); if (useUsb()) a.push(...await usbPorts()); return a; }
+  async function askPort() {
+    if (useUsb()) { const d = await navigator.usb.requestDevice({ filters: USBF }); const ps = await usbPorts(); return ps.find(p => p.dev === d) || ps[0]; }
+    return navigator.serial.requestPort(PICK);
+  }
   async function openPort(p) {
     port = p; await port.open({ baudRate: +S.baud || 38400, dataBits: 8, stopBits: S.proto === 'yaesuold' ? 2 : 1, parity: 'none', flowControl: 'none' });
     try { await port.setSignals({ dataTerminalReady: !!S.dtr, requestToSend: !!S.rts }); } catch (e) {}
@@ -83,14 +171,17 @@
     catch (e) {} finally { try { reader.releaseLock(); } catch (e) {} }
   }
   async function connect(ask) {
-    if (!('serial' in navigator)) { say('This browser can\'t talk to a radio. Use Chrome or Edge on a computer, or Chrome on an Android phone (newer versions, with a USB-C cable). iPhones can\'t do this yet.', false); return false; }
+    if (!('serial' in navigator) && !navigator.usb) { say('This browser can\'t talk to a radio. Use Chrome or Edge on a computer, or Chrome on an Android phone or tablet (with a USB-C cable). iPhones can\'t do this yet.', false); return false; }
     if (port && writer) return true;
     try {
-      const ps = await navigator.serial.getPorts(); // a radio this browser was allowed before (no question asked)
+      const ps = await allPorts(); // a radio this browser was allowed before (no question asked)
       if (ps.length) return await openPort(ps[Math.min(+S.portIx || 0, ps.length - 1)]);
       if (!ask) return false;
-      return await openPort(await navigator.serial.requestPort(PICK));
-    } catch (e) { port = null; writer = null; say('Could not open the radio: ' + (e.message || e) + '. Close other radio programs (WSJT-X, flrig, the radio\'s own app) and try again.', false); return false; }
+      return await openPort(await askPort());
+    } catch (e) { port = null; writer = null;
+      const none = /no (port|device) selected|NotFoundError/i.test(String(e && (e.name + ' ' + e.message)));
+      say(none ? (ANDROID ? 'No radio picked. Plug the radio into the tablet/phone with a USB cable (a data cable, not charge-only), turn the radio on, then press CONNECT and pick it in the list. If Android asks to allow access to the USB device, say yes.' : 'No port picked. Plug in the radio, turn it on and press CONNECT again.')
+        : 'Could not open the radio: ' + (e.message || e) + '. Close other radio programs (WSJT-X, flrig, the radio\'s own app) and try again.', false); return false; }
   }
   async function disconnect() { try { if (reader) await reader.cancel(); } catch (e) {} try { if (writer) writer.releaseLock(); } catch (e) {} try { if (port) await port.close(); } catch (e) {} port = writer = reader = null; say('Radio disconnected.', false); }
   async function write(bytes) { await writer.write(bytes); await sleep(S.proto === 'yaesuold' ? 80 : 40); }
@@ -178,27 +269,26 @@
   /* change the port (Brandon Oct 17: 'a menu to change port if someone selects the wrong one') */
   const VEND = { 0x10C4: 'Silicon Labs CP210x (Icom, Yaesu, Xiegu, Elecraft cables)', 0x0403: 'FTDI (many CAT cables)', 0x067B: 'Prolific (older CAT cables)', 0x1A86: 'CH340 (QRP Labs, truSDX, cheap cables)', 0x0483: 'STMicro (QMX/QDX)', 0x2341: 'Arduino', 0x239A: 'Adafruit', 0x2E8A: 'Raspberry Pi Pico', 0x1FC9: 'NXP', 0x04D8: 'Microchip' };
   async function ports() {
-    if (!('serial' in navigator)) return [];
-    const ps = await navigator.serial.getPorts();
+    const ps = await allPorts();
     return ps.map((p, i) => { const f = (p.getInfo && p.getInfo()) || {}, v = f.usbVendorId;
-      return { i, now: p === port, label: (v != null ? (VEND[v] || 'USB maker ' + v.toString(16).toUpperCase().padStart(4, '0')) : 'Serial port') + (f.usbProductId != null ? ' · product ' + f.usbProductId.toString(16).toUpperCase().padStart(4, '0') : '') }; });
+      return { i, now: p === port, label: (v != null ? (VEND[v] || 'USB maker ' + v.toString(16).toUpperCase().padStart(4, '0')) : 'Serial port') + (f.usbProductId != null ? ' · product ' + f.usbProductId.toString(16).toUpperCase().padStart(4, '0') : '') + (f.usbInterface != null ? (f.usbInterface === 0 ? ' · port 1 (CAT)' : ' · port ' + (f.usbInterface + 1) + ' (PTT / keying)') : '') }; });
   }
   async function usePort(i) { await disconnect(); S.portIx = i; SV('kpcCat', S); return connect(false); }
   async function pickNew() {
-    if (!('serial' in navigator)) return false;
-    let p; try { p = await navigator.serial.requestPort(PICK); } catch (e) { say('No port picked.', false); return false; }
-    await disconnect(); const ps = await navigator.serial.getPorts(); S.portIx = Math.max(0, ps.indexOf(p)); SV('kpcCat', S);
+    if (!('serial' in navigator) && !navigator.usb) return false;
+    let p; try { p = await askPort(); } catch (e) { say('No port picked.', false); return false; }
+    await disconnect(); const ps = await allPorts(); S.portIx = Math.max(0, ps.indexOf(p)); SV('kpcCat', S);
     try { return await openPort(p); } catch (e) { port = writer = null; say('Could not open that port: ' + (e.message || e) + '. Close other radio programs and try again.', false); return false; }
   }
   async function forget(i) {
-    const ps = await navigator.serial.getPorts(), p = ps[i]; if (!p) return;
+    const ps = await allPorts(), p = ps[i]; if (!p) return;
     if (p === port) await disconnect();
-    try { if (p.forget) await p.forget(); } catch (e) {}
+    try { if (p.isUsb) { if (p.dev.forget) await p.dev.forget(); } else if (p.forget) await p.forget(); } catch (e) {}
     S.portIx = 0; SV('kpcCat', S); say(p.forget ? 'Port forgotten. Press PICK A DIFFERENT PORT to choose the right one.' : 'This browser can\'t forget ports: pick the right one with PICK A DIFFERENT PORT.', null);
   }
   window.KPCCat = {
     get: () => Object.assign({}, S), set(o) { S = Object.assign({}, S, o || {}); SV('kpcCat', S); },
-    supported: () => 'serial' in navigator, connect, disconnect, ports, usePort, pickNew, forget, connected: () => !!(port && writer), tune, read, follow, ptt,
+    supported: () => 'serial' in navigator || !!navigator.usb, connect, disconnect, ports, usePort, pickNew, forget, connected: () => !!(port && writer), tune, read, follow, ptt,
     onStatus(fn) { subs.push(fn); }, kind, PROTOS: Object.keys(PROTOS), RADIOS, RADIO, fillSelect, pickRadio, cw, cwCan, cwStop, keyLine
   };
 

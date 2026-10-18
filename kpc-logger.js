@@ -1064,3 +1064,5 @@
   }
   start();
 })();
+/* Oct 18 (Brandon's tablet: 'once you're in it I can not get out of it'): in the installed app, links to the rest of the site open in the browser */
+(function () { try { if (matchMedia('(display-mode: standalone)').matches || navigator.standalone) document.querySelectorAll('a.lg-home').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; }); } catch (e) {} })();
