@@ -359,6 +359,8 @@ def run(st):
             nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
             close = la is None or near(la, lo, a['_bb'], .6)
             if not close: continue
+            if bool(kp) != bool(a['_k']) and la is not None and not near(la, lo, a['_bb'], .1): close = False   # one name has no kind word: must be close by
+            if not close: continue
             if name_ok(name, nm, kp, a['_k']) or (a.get('Loc_Nm') and name_ok(name, a['Loc_Nm'], kp, a['_k'])):
                 m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'name'])
             elif near(la, lo, a['_bb'], .1) if la is not None else False:

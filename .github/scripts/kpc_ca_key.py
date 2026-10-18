@@ -31,11 +31,11 @@ def flat(s): return ''.join(c for c in unicodedata.normalize('NFKD', str(s or ''
 
 
 GEN = (r"natural area under private stewardship|under private stewardship|parc nature|campground|national historic site of canada|national historic site|lieu historique national du canada|lieu historique national|historic site|lieu historique|"
-       r"national wildlife area|reserve nationale de faune|migratory bird sanctuary|refuge d oiseaux migrateurs|bird sanctuary|wildlife management area|"
+       r"national marine park of canada|national marine park|national wildlife area|reserve nationale de faune|migratory bird sanctuary|refuge d oiseaux migrateurs|bird sanctuary|wildlife management area|"
        r"wildlife refuge|wildlife area|reserve faunique|refuge faunique|national park reserve|national park of canada|parc national du canada|national park|parc national|"
        r"national marine conservation area|marine park|provincial park|parc provincial|territorial park|parc territorial|regional park|parc regional|"
        r"provincial recreation area|recreation area|recreation site|recreation park|conservation reserve|conservation area|aire de conservation|"
-       r"ecological reserve|reserve ecologique|nature reserve|reserve naturelle|natural area|protected natural area|protected area|aire protegee|"
+       r"ecological reserve|reserve ecologique|nature reserve|nature preserve|conservancy|reserve naturelle|natural area|protected natural area|protected area|aire protegee|"
        r"wilderness area|wilderness park|heritage rivers?|heritage area|heritage site|biosphere reserve|reserve de la biosphere|provincial forest|"
        r"provincial|national|park|parc|reserve|area|site|de la|des|du|de|la|le|les|the|of|and|et")
 ABBR = {'st': 'saint', 'ste': 'sainte', 'mt': 'mount', 'pt': 'point', 'lk': 'lake', 'cr': 'creek', 'is': 'island', 'isl': 'island'}
@@ -54,10 +54,10 @@ def norm(s):
 
 
 KINDS = [('pp', r'provincial park|parc provincial|territorial park|parc territorial|parc national(?! du canada)'),
-         ('np', r'national park|parc national du canada|national park reserve|parc national(?! [a-z])'),
+         ('np', r'national park|national marine park|parc national du canada|national park reserve|parc national(?! [a-z])'),
          ('hist', r'historic|historique|heritage site'),
          ('wma', r'wildlife|faune|faunique|bird sanctuary|oiseaux migrateurs|game'),
-         ('ca', r'conservation (area|reserve)|aire de conservation'),
+         ('ca', r'conservation (area|reserve)|aire de conservation|conservancy'),
          ('eco', r'ecological reserve|reserve ecologique|nature reserve|reserve naturelle|natural area|protected natural area|nature preserve'),
          ('rec', r'recreation|loisirs'), ('rp', r'regional park|parc regional'), ('mp', r'marine park|marine conservation'),
          ('wild', r'wilderness'), ('pf', r'provincial forest|foret')]
@@ -65,12 +65,28 @@ def kinds(s):
     s = flat(s); return {k for k, r in KINDS if re.search(r, s)}
 
 
-def same_name(a, b):
-    a, b = norm(a), norm(b)
-    if not a or not b: return False
+def _sing(s): return ' '.join(w[:-1] if len(w) > 3 and w.endswith('s') else w for w in s.split())
+
+
+def variants(s):
+    # Oct 18 review: plurals ('Munroes' = 'Munroe'), 'and' between two names, a leading Ile/Isle ('Ile d'Anticosti' = 'Anticosti')
+    v = {norm(s)}
+    v |= {_sing(x) for x in v} | {re.sub(r'\b(and|et)\b', ' ', x) for x in v}
+    v |= {re.sub(r'^(iles?|isles?|islands?) ', '', x) for x in v}
+    return {re.sub(r'\s+', ' ', x).strip() for x in v if x.strip()}
+
+
+def _pre(a, b):
     if a == b: return True
     sh, lo = (a, b) if len(a) < len(b) else (b, a)
     return len(sh) > 5 and lo.startswith(sh) and len(sh) / len(lo) >= 0.6
+
+
+def same_name(a, b, exact=False):
+    va, vb = variants(a), variants(b)
+    if not va or not vb: return False
+    if va & vb: return True
+    return not exact and any(_pre(x, y) for x in va for y in vb)
 
 
 def same_kind(ka, kb): return not ka or not kb or bool(ka & kb)
@@ -126,7 +142,7 @@ if len(recs) < 3000: raise SystemExit('Too few CPCAD areas read; keeping the old
 _src = open('.github/scripts/kpc_canada_bounds.py', encoding='utf-8').read()
 _ns = {'re': re}; exec(_src[_src.index('CA = ('):_src.index('BCWFS =')], _ns)
 NAMEY = re.compile(r'(name|nom|toponym|title)', re.I)
-HINT = [('Ontario Parks', {'pp'}), ('conservation reserves', {'ca'}), ('ecological reserves', {'eco'}), ('wildlife', {'wma'})]
+HINT = [('regional parks', {'rp'}), ('recreation sites', {'rec'}), ('nature reserves', {'eco'}), ('Ontario Parks', {'pp'}), ('conservation reserves', {'ca'}), ('ecological reserves', {'eco'}), ('wildlife', {'wma'})]
 
 
 def arc_pull(label, url, nf):
@@ -167,6 +183,19 @@ for e in _ns['EXTRA']:
     if e[1] != 'arcgis': continue
     try: g = arc_pull(e[0], e[2], e[3]); recs += g; extra += len(g); print(f'{e[0]}: {len(g)}', flush=True)
     except Exception as ex: notice('Canada extra', f'{e[0]} FAILED: {ex}')  # noqa: BLE001
+# Oct 18 review: more official layers found by a probe from GitHub (POTA Québec 'Nature Reserve' parks are the province's
+# recognized nature reserves, which CPCAD files as private stewardship; the government register has them by name)
+MORE = [('Québec recognized nature reserves (MELCCFP)', 'https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/12', ['TOPONYME', 'DESIGNOM']),
+        ('Québec recreation territories (MRNF)', 'https://servicescarto.mern.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer', None),
+        ('Saskatchewan regional parks (Government of Saskatchewan)', 'https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/6', None),
+        ('Yukon parks and protected areas (Government of Yukon)', 'https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/3', None),
+        ('Yukon campgrounds and parks (Government of Yukon)', 'https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/0', None),
+        ('Ontario federal protected areas (Land Information Ontario)', 'https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/10', None),
+        ('Ontario municipal parks (Land Information Ontario)', 'https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/3', None),
+        ('BC recreation sites (BC Ministry of Forests)', 'https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/5', None)]
+for e in MORE:
+    try: g = arc_pull(e[0], e[1], e[2]); recs += g; extra += len(g); notice('Canada more layers', f'{e[0]}: {len(g)}')
+    except Exception as ex: notice('Canada more layers', f'{e[0]} FAILED: {ex}')  # noqa: BLE001
 notice('Canada extra layers', f'{extra} areas from the provincial + Parks Canada maps')
 PRIV = re.compile(r'private|privately|stewardship|ncc \d|nature conservancy', re.I)
 
@@ -174,6 +203,10 @@ PRIV = re.compile(r'private|privately|stewardship|ncc \d|nature conservancy', re
 def acres(r): return round((r['ha'] or 0) * 2.47105)
 
 
+# Oct 18 review: sites (lighthouse, bridge, trail, campground…) have no outline of their own; reviewed parks in data/ca-key/overrides.json
+SITE = re.compile(r'lighthouse|phare|bridge|pont|trail|sentier|campground|camping|day use|boat launch|wharf|quai|canal|hotel|station|building|house|maison|church|eglise|fort |monument|recreation site', re.I)
+try: OVR = json.load(open(OUT / 'overrides.json')).get('parks', {})
+except Exception: OVR = {}  # noqa: BLE001
 P = json.load(open('data/parkinfo/CA.json'))['parks']
 by = {}
 for ref, x in P.items(): by.setdefault((x[10] if len(x) > 10 else '') or 'XX', {})[ref] = x
@@ -187,8 +220,19 @@ for pv, parks_in in sorted(by.items()):
         for r in recs:
             if la is not None and not near(la, lo, r['_bb'], .6): continue
             if PRIV.search(r['n'] + ' ' + str(r['ow'])): continue      # private stewardship land is never joined (only listed to check)
-            if (same_name(name, r['n']) or (r['nf'] and same_name(name, r['nf']))) and same_kind(kp, r['_k']):
+            ex = bool(kp) != bool(r['_k'])      # only one name says what kind of place it is: the names must match exactly
+            if ex and la is not None and not near(la, lo, r['_bb'], .1): continue   # and be close by (many lakes share a name)
+            if (same_name(name, r['n'], ex) or (r['nf'] and same_name(name, r['nf'], ex))) and same_kind(kp, r['_k']):
                 m.append([r['oid'], r['n'] or r['nf'], acres(r), 'name' if not r.get('src') else 'name · ' + r['src']])
+        ov = OVR.get(ref) or {}
+        if ov:
+            no = {str(q) for q in ov.get('no', [])}
+            m = [q for q in m if str(q[0]) not in no and q[1] not in no]
+            for want in ov.get('join', []):
+                for r in recs:
+                    if (str(r['oid']) == str(want) or r['n'] == want or r['nf'] == want) and (la is None or near(la, lo, r['_bb'], .6)) and not any(str(q[0]) == str(r['oid']) for q in m):
+                        m.append([r['oid'], r['n'] or r['nf'], acres(r), 'reviewed'])
+        site = []
         if not m and la is not None:
             for r in recs:
                 if not near(la, lo, r['_bb'], .03): continue
@@ -201,10 +245,13 @@ for pv, parks_in in sorted(by.items()):
                 else: continue
                 c.append([r['oid'], nm, acres(r), why])
             c.sort(key=lambda q: (q[3] != 'similar name', q[3] != 'same name, different kind of place', -q[2])); c = c[:6]
+            if c and (SITE.search(name + ' ' + typ) or ov.get('site')) and all(q[3].startswith('the POTA pin is inside') for q in c):
+                site = sorted((q for q in c if not re.search(r'buffer zone|closure|\bsfa\b|marine refuge|fishing area|fishery', q[1], re.I)), key=lambda q: q[2])[:2]; c = []
         used.update(q[0] for q in m)
         parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda q: -q[2]), 'c': c}
+        if site: parks[ref]['a'] = site
     cnt = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
-           'none': sum(1 for p in parks.values() if not p['m'] and not p['c'])}
+           'none': sum(1 for p in parks.values() if not p['m'] and not p['c'] and not p.get('a')), 'site': sum(1 for p in parks.values() if p.get('a'))}
     out = {'updated': time.strftime('%Y-%m-%d'), 'prov': pv, 'source': 'CPCAD (Environment and Climate Change Canada) + provincial and Parks Canada maps, Open Government Licence',
            'note': 'm = joined (same name + same kind), c = check by hand (NOT joined).', 'counts': cnt, 'parks': parks}
     (OUT / f'CA-{pv}.json').write_text(json.dumps(out, separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
@@ -212,10 +259,11 @@ for pv, parks_in in sorted(by.items()):
     L = [f'# Canada {pv}: POTA parks vs official land (CPCAD)', '', f"Built {time.strftime('%Y-%m-%d')} by `.github/scripts/kpc_ca_key.py`. **{cnt['matched']} of {cnt['parks']}** joined (same name + same kind). "
          f"**{cnt['check']}** to check, **{cnt['none']}** nothing found in CPCAD (provincial maps come next). Nothing below is joined.", '', '## To check (not joined)', '']
     L += [f"- **{r}** {p['n']} ({p['t']}) → " + '; '.join(f"{q[1]} (~{q[2]:,} ac, {q[3]})" for q in p['c']) for r, p in parks.items() if not p['m'] and p['c']]
-    L += ['', '## Nothing found in CPCAD', ''] + [f"- {r} {p['n']} ({p['t']})" for r, p in parks.items() if not p['m'] and not p['c']]
+    L += ['', '## Sites on bigger land (no outline of their own; the land around the pin)', ''] + [f"- {r} {p['n']} ({p['t']}) → on " + '; '.join(f"{q[1]} (~{q[2]:,} ac)" for q in p['a']) for r, p in parks.items() if p.get('a')]
+    L += ['', '## Nothing found in CPCAD', ''] + [f"- {r} {p['n']} ({p['t']})" for r, p in parks.items() if not p['m'] and not p['c'] and not p.get('a')]
     (R / f'CA-{pv}.md').write_text('\n'.join(L) + '\n', encoding='utf-8')
     idx[pv] = cnt
     print(f"{pv}: {cnt['parks']} parks, {cnt['matched']} joined, {cnt['check']} check, {cnt['none']} none", flush=True)
 json.dump({'updated': time.strftime('%Y-%m-%d'), 'provinces': idx}, open(OUT / 'index.json', 'w'), separators=(',', ':'))
-t = {k: sum(v[k] for v in idx.values()) for k in ('parks', 'matched', 'check', 'none')}
-notice('Canada answer key', f"{t['parks']} parks: {t['matched']} joined, {t['check']} to check, {t['none']} nothing found · " + ' '.join(f"{k} {v['matched']}/{v['parks']}" for k, v in sorted(idx.items())))
+t = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none', 'site')}
+notice('Canada answer key', f"{t['parks']} parks: {t['matched']} joined, {t['check']} to check, {t['site']} sites on bigger land, {t['none']} nothing found · " + ' '.join(f"{k} {v['matched']}/{v['parks']}" for k, v in sorted(idx.items())))
