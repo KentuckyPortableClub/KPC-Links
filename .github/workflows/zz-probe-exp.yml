@@ -1,0 +1,20 @@
+name: zz state parks layers (temporary)
+on: workflow_dispatch
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python3 - <<'PY'
+          import json,urllib.request,urllib.parse,collections
+          def g(u):
+              try: return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=90).read())
+              except Exception as e: return {'err':str(e)[:150]}
+          B='https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer'
+          r=g(B+'?f=json'); print('::notice title=layers::'+', '.join(f"{l['id']}:{l['name']}" for l in r.get('layers',[])))
+          for l in r.get('layers',[]):
+              i=g(f"{B}/{l['id']}?f=json"); f=[x['name'] for x in i.get('fields',[])]
+              rows=[x['attributes'] for x in g(f"{B}/{l['id']}/query?"+urllib.parse.urlencode({'where':'1=1','outFields':'*','returnGeometry':'false','resultRecordCount':2000,'f':'json'})).get('features',[])]
+              tf=[k for k in f if any(w in k.upper() for w in ('TYPE','NAME','CLASS','DESC','USE','CATEG'))][:5]
+              print(f"::notice title={l['id']} {l['name']} n={len(rows)} {i.get('geometryType')}::"+json.dumps({k:collections.Counter(str(x.get(k)) for x in rows).most_common(12) for k in tf})[:2500])
+          PY
