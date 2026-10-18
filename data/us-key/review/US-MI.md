@@ -159,16 +159,23 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **246 of 388** parks joined
 - Cadillac State Forest Area · SCA · MIDNR Forest Resources Division · ~221,994 ac
 - Baraga State Forest Area · SCA · MIDNR Forest Resources Division · ~120,323 ac
 - Pigeon River Country State Forest Area · SCA · MIDNR Forest Resources Division · ~103,170 ac
+- Upper Mississippi River National Wildlife And Fish Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~64,584 ac
+- Necedah Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~54,219 ac
+- Necedah National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~44,040 ac
+- Horicon National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~21,973 ac
 - Kirtland Warbler Unit Clear Lake · SCA · MIDNR Forest Resources Division · ~19,202 ac
+- Upper Mississippi River National Wildlife And Fish Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~17,259 ac
 - Beaver Islands State Wildlife Research Area · SCA · MIDNR Wildlife Division · ~17,058 ac
 - Bullock Ranch State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~13,392 ac
 - Houghton Lake State Wildlife Research Area · SCA · MIDNR Wildlife Division · ~11,988 ac
+- Upper Mississippi River National Wildlife And Fish Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,691 ac
 - Natural Area Dead Stream Swamp · SCA · MIDNR Forest Resources Division · ~11,547 ac
 - Muskegon County Wastewater System Management Area · SCA · MIDNR Wildlife Division · ~11,189 ac
 - University of Michigan Biological Station · SCA · University of Michigan · ~9,973 ac
 - Kirtland Warbler Unit Lovells · SCA · MIDNR Forest Resources Division · ~9,902 ac
 - Kirtland Warbler Unit Manistee · SCA · MIDNR Forest Resources Division · ~6,930 ac
 - Camp Grayling Military Reservation · SOTH · U.S. Department of Defense · ~6,834 ac
+- Upper Mississippi River National Wildlife And Fish Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,504 ac
 - Groveland Mine Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~6,238 ac
 - Hardwood State Forest Wilderness Area · SCA · MIDNR Parks and Recreation Division · ~5,188 ac
 - Gladwin Game Unit and Field Trial Area of State Forest · SREC · MIDNR Wildlife Division · ~4,754 ac
@@ -179,7 +186,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **246 of 388** parks joined
 - Natural Area South Branch AuSable River · SCA · MIDNR Forest Resources Division · ~2,640 ac
 - MNRTF Parcel · SCA · Michigan Department of Natural Resources · ~2,627 ac
 - Kirtland Warbler Unit N Branch · SCA · MIDNR Forest Resources Division · ~2,598 ac
+- Cedar Point National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,593 ac
+- Green Island Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~2,580 ac
 - Little Fox River / Stanley Lake Flooding State Willdlife Management Area · SCA · MIDNR Wildlife Division · ~2,551 ac
+- Winnebago County Waterfowl Production Area Of Wi ·  · U.S. Fish & Wildlife Service (own map) · ~2,436 ac
 - Natural Area Hog Island · SCA · MIDNR Wildlife Division · ~2,264 ac
 - Beaver Islands State Wildlife Research Area · SCA · MIDNR Forest Resources Division · ~2,155 ac
 - University of Michigan Property · SCA · University of Michigan · ~1,970 ac
@@ -199,16 +209,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **246 of 388** parks joined
 - Edwin S. George Biological Station · SCA · University of Michigan · ~1,295 ac
 - Lux Arbor Reserve · SCA · Michigan State University · ~1,236 ac
 - State Forest · PCON · Michigan College of Mining and Technology · ~1,216 ac
+- Hackmatack National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,169 ac
 - Natural Area McMahon Lake Strangmoor · SCA · MIDNR Forest Resources Division · ~1,091 ac
 - Conners Marsh Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~1,052 ac
-- Lake DuBonnet Flooding State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~1,037 ac
-- University of Michigan · PREC · University of Michigan · ~995 ac
-- Mixed Forest Natural Area, Bois Blanc · SCA · MIDNR Forest Resources Division · ~993 ac
-- Lake-36 Floodings State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~987 ac
-- River Bend Township Park · SP · State Department of Natural Resources · ~977 ac
-- MNRTF Parcel · SCA · Michigan Department of Natural Resources · ~974 ac
-- MNRTF Parcel · SCA · Michigan Department of Natural Resources · ~870 ac
-- Fayette State Park · SP · Michigan Department of Natural Resources · ~838 ac
-- Michigan Islands National Wildlife Refuge · NWR · MICHIGAN ISLANDS NATIONAL WILDLIFE REFUGE · ~834 ac
-- Michigan Islands National Wildlife Refuge · NWR · Michigan Islands National Wildlife Refuge · ~834 ac
-- Michigan State University State Farm · PREC · Michigan State University · ~819 ac

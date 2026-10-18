@@ -59,6 +59,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **111 of 157** parks joined
 - Appalachian National Scenic Trail · NT · NPS · ~5,541 ac
 - Mohawk State Forest · SRMA ·   · ~3,251 ac
 - Housatonic State Forest · SRMA ·   · ~2,887 ac
+- Wertheim National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,671 ac
 - Housatonic State Forest · SRMA ·   · ~2,601 ac
 - Roraback Wildlife Area · SCA ·   · ~2,088 ac
 - Unknown · SOTH ·   · ~1,919 ac
@@ -115,4 +116,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **111 of 157** parks joined
 - Unknown · SOTH ·   · ~284 ac
 - State Park · SP ·   · ~277 ac
 - Unknown · SOTH ·   · ~268 ac
-- Housatonic State Forest · SRMA ·   · ~267 ac

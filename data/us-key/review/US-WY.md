@@ -266,6 +266,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **68 of 298** parks joined 
 - McGuire Ranch - Pasture · SOTH · Unknown · ~5,584 ac
 - Laramie Research & Extension Center · SOTH · Unknown · ~3,834 ac
 - Bull Lake · RMA · Wind River Reservation · ~3,822 ac
+- Wyoming Toad Conservation Area ·  · U.S. Fish & Wildlife Service (own map) · ~3,549 ac
 - Alcova Reservoir · RMA · Unknown · ~2,835 ac
 - James C. Hageman Sustainable Agriculture Research and Extension Center (SAREC) Research & Extension Center · SOTH · Unknown · ~2,817 ac
 - Mortenson Lake National Wildlife Refuge · NWR · MORTENSON LAKE NATIONAL WILDLIFE REFUGE · ~2,561 ac
@@ -299,4 +300,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **68 of 298** parks joined 
 - Fort Phil Kearny · SP · Wyoming State Parks, Historic Sites & Trails · ~697 ac
 - State Lands 1111117046 · SRMA · Unknown · ~696 ac
 - State Lands 1111120398 · SRMA · Unknown · ~696 ac
-- State Lands 1111117557 · SRMA · Unknown · ~694 ac

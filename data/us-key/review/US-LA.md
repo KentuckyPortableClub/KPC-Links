@@ -43,21 +43,29 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 123** parks joined 
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Felsenthal National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~77,617 ac
+- Mcfaddin National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~59,859 ac
 - Dow Donation · SOTH · Unknown · ~50,072 ac
 - Red River Wildlife Management Area · SCA · Unknown · ~45,140 ac
+- Panther Swamp National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~34,139 ac
 - Three Rivers Wildlife Management Area · SCA · Unknown · ~30,086 ac
+- St. Catherine Creek National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~24,283 ac
 - Northwest Louisiana Game And Fish Preserve/clear Lake · SCA · Unknown · ~23,235 ac
 - Wlf - Lake Anacoco / Lake Vernon · SREC · Unknown · ~22,731 ac
 - Lsu Research Station · REA · Unknown · ~19,236 ac
 - Division Of State Lands · SRMA · Unknown · ~15,672 ac
+- Hillside National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,948 ac
 - State Wildlife Refuge · SCA · Unknown · ~14,813 ac
 - Camp Beauregard Wildlife Management Area · SCA · Unknown · ~12,606 ac
 - State Lands · SOTH · Unknown · ~11,466 ac
 - Ouachita Wildlife Management Area · SCA · Unknown · ~10,403 ac
 - Calcasieu River · SCA · Unknown · ~9,174 ac
+- Texas Point National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,336 ac
 - State Lands · SOTH · Unknown · ~7,733 ac
 - Sicily Island Hills Wildlife Management Area · SCA · Unknown · ~7,489 ac
+- Panther Swamp National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,008 ac
 - Chicot State Park District II · SP · Unknown · ~6,315 ac
+- Theodore Roosevelt National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,252 ac
 - Farm Service Agency Interest Of La · NWR · Farm Service Agency Interest Of La · ~6,039 ac
 - Atchafalaya Land Exchange · SOTH · Unknown · ~4,843 ac
 - Tchefuncte River And Its Tributaries · SCA · Unknown · ~3,355 ac
@@ -94,12 +102,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **90 of 123** parks joined 
 - Raccourci Island Batture Lands · SOTH · Unknown · ~723 ac
 - Lsu Research Station · REA · Unknown · ~719 ac
 - Department Of Transportation Area · SREC · Unknown · ~711 ac
-- Tunica Hills State Preservation Area · SCA · Unknown · ~591 ac
-- Lsu Research Station · REA · Unknown · ~574 ac
-- Chandeleur Sound Islands · SOTH · Unknown · ~574 ac
-- C. Bickham Dickson Park - In Bossier Ph. · SP · Unknown · ~566 ac
-- Amite River · SCA · Unknown · ~547 ac
-- Division Of State Lands · SRMA · Unknown · ~533 ac
-- Lsu Research Station · REA · Unknown · ~526 ac
-- Tickfaw River · SCA · Unknown · ~504 ac
-- Saint Bernrd State Park District 1 · SP · Unknown · ~484 ac
+- Panther Swamp National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~643 ac

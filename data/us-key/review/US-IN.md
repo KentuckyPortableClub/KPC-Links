@@ -1,6 +1,6 @@
 # IN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **154 of 229** parks joined to official land (same name + same kind of place). **45** to check by hand, **30** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **155 of 229** parks joined to official land (same name + same kind of place). **45** to check by hand, **29** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -52,7 +52,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **154 of 229** parks joined
 
 ## Nothing found in PAD-US
 
-- US-0288 Big Oaks National Wildlife Refuge (National Wildlife Refuge)
 - US-10230 Bell-Croft Woods State Nature Preserve (State Nature Preserve)
 - US-10232 White Oak Cemetery State Nature Preserve (State Nature Preserve)
 - US-10256 JD Marshall State Nature Preserve (State Nature Preserve)
@@ -93,6 +92,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **154 of 229** parks joined
 - 10 O'clock Line Nature Preserve · SCA · Indiana DNR, State Parks and Reservoirs Division · ~3,341 ac
 - Gibson Lake Recreation Area · SREC · Unknown State · ~2,908 ac
 - Bradford Woods · SRMA · Indiana University · ~2,375 ac
+- Green River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,197 ac
 - Brush Creek Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~1,869 ac
 - Whitewater State Park · SP · Indiana DNR, State Parks and Reservoirs Division · ~1,436 ac
 - Reynold's Creek Gamebird Habitat Area · SCA · Indiana DNR, Fish and Wildlife Division · ~1,254 ac
@@ -144,4 +144,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **154 of 229** parks joined
 - Wabash Healthy Rivers Initiative · SCA · Indiana DNR, Fish and Wildlife Division · ~189 ac
 - The Pfau Course at Indiana University  · LREC · Indiana University · ~186 ac
 - Lincoln Boyhood National Memorial · HCA · NPS · ~184 ac
-- Big Spring Farm Forest Legacy Area · SRMA · Indiana DNR, Forestry Division · ~184 ac

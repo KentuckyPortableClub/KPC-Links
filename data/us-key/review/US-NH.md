@@ -89,6 +89,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 205** parks joined
 - Umbagog National Wildlife Refuge · NWR · UMBAGOG NATIONAL WILDLIFE REFUGE · ~21,882 ac
 - Umbagog National Wildlife Refuge · NWR · Umbagog National Wildlife Refuge · ~21,882 ac
 - Appalachian National Scenic Trail · NT · NPS · ~14,264 ac
+- Missisquoi National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,342 ac
+- Parker River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~4,572 ac
 - Enfield Wildlife Management Area · SCA ·   · ~3,025 ac
 - Murphy Dam / Lake Francis · SOTH ·   · ~2,801 ac
 - Sunapee State Park · SP ·   · ~2,362 ac
@@ -117,6 +119,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 205** parks joined
 - Forest Peters Wildlife Management Area · SCA ·   · ~458 ac
 - Ossipee Lake Natural Area · SCA ·   · ~444 ac
 - UNH - Manchester (Hackett Hill) · SOTH ·   · ~430 ac
+- Great Thicket National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~420 ac
 - Pontook Reservoir · SOTH ·   · ~411 ac
 - Brown Lot Wildlife Management Area - Tract I · SCA ·   · ~407 ac
 - Ellis R. Hatch Jr. Wildlife Management Area · SCA ·   · ~403 ac
@@ -143,6 +146,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **129 of 205** parks joined
 - Horne Brook Wildlife Management Area · SCA ·   · ~275 ac
 - UNH - Saddleback Mountain · REA ·   · ~265 ac
 - Sculptured Rocks Geologic Site · SOTH ·   · ~264 ac
-- Beaver Brook Wildlife Management Area · SCA ·   · ~258 ac
-- Umbagog State Park · SP ·   · ~257 ac
-- Long Mountain · SCA ·   · ~249 ac

@@ -108,6 +108,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **159 of 253** parks joined
 - Camp Lejeune · MIL · UNK · ~126,459 ac
 - Blue Ridge Parkway · SDA · NPS · ~52,757 ac
 - Dare County Air Force Range · MIL · UNK · ~46,244 ac
+- Carolina Sandhills National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~45,912 ac
 - B. Everett Jordan Dam and Lake · UNK · UNK · ~45,366 ac
 - Emily and Richardson Preyer Buckridge Coastal Reserve · SOTH · UNK · ~28,772 ac
 - Kerr Reservoir · UNK · UNK · ~25,497 ac
@@ -163,4 +164,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **159 of 253** parks joined
 - Goodwin State Forest · SRMA · UNK · ~1,245 ac
 - Mount Jefferson State Natural Area · SP · UNK · ~1,176 ac
 - Odom Correctional Institution · SOTH · UNK · ~1,108 ac
-- Lower Haw River State Natural Area · SP · UNK · ~1,105 ac

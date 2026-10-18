@@ -90,12 +90,15 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 410** parks joined
 - Barstow Field Office · PUB · BLM · ~2,723,972 ac
 - Ridgecrest Field Office · PUB · BLM · ~1,797,315 ac
 - Palm Springs/S. Coast Field Office · PUB · BLM · ~1,694,214 ac
+- Desert National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,512,970 ac
 - Mojave National Preserve · NCA · NPS · ~1,497,876 ac
 - El Centro Field Office · PUB · BLM · ~1,338,851 ac
 - Bishop Field Office · PUB · BLM · ~751,921 ac
 - Eagle Lake Field Office · PUB · BLM · ~700,622 ac
 - Applegate Field Office · PUB · BLM · ~684,641 ac
+- Kofa National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~664,663 ac
 - Bakersfield Field Office · PUB · BLM · ~618,467 ac
+- Sheldon National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~576,480 ac
 - Central Coast Field Office · PUB · BLM · ~288,263 ac
 - Ukiah Field Office · PUB · BLM · ~267,019 ac
 - California State Lands Commission · SRMA · California State Lands Commission · ~265,889 ac
@@ -103,6 +106,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 410** parks joined
 - Mother Lode Field Office · PUB · BLM · ~230,415 ac
 - Arcata Field Office · PUB · BLM · ~203,580 ac
 - California State Lands Commission · SRMA · California State Lands Commission · ~191,868 ac
+- Desert National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~115,175 ac
+- Stillwater National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~82,991 ac
 - Salton Sea - Bureau of Rec · FOTH · United States Bureau of Reclamation · ~66,409 ac
 - Santa Rosa Wildlife Area · SCA · California Department of Fish and Wildlife · ~66,126 ac
 - Ocotillo Wells State Vehicular Recreation Area · SREC · California Department of Parks and Recreation · ~53,215 ac
@@ -112,9 +117,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 410** parks joined
 - Tehama Wildlife Area · SCA · California Department of Fish and Wildlife · ~43,680 ac
 - Lake Havasu Field Office · PUB · BLM · ~42,218 ac
 - Yuma Field Office · PUB · BLM · ~40,231 ac
+- Ruby Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~40,079 ac
 - Carrizo Plains Ecological Reserve · SCA · California Department of Fish and Wildlife · ~39,106 ac
 - Gray Davis Dye Creek Preserve · SCA · The Nature Conservancy · ~37,917 ac
 - United States Bureau of Reclamation · FOTH · United States Bureau of Reclamation · ~32,270 ac
+- Ash Meadows National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~24,347 ac
 - Lake Berryessa · RMA · United States Bureau of Reclamation · ~24,314 ac
 - New Melones · RMA · United States Bureau of Reclamation · ~23,621 ac
 - Santa Rosa Wildlife Area · SCA · California Department of Fish and Wildlife · ~23,546 ac
@@ -125,6 +132,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 410** parks joined
 - Lake Berryessa · REC · Unknown · ~18,964 ac
 - West Mojave Desert Ecological Reserve · SCA · California Department of Fish and Wildlife · ~18,333 ac
 - San Jacinto Wildlife Area · SCA · California Department of Fish and Wildlife · ~18,331 ac
+- Fallon National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~18,075 ac
 - Unnamed site - Coachella Valley Mountains Conservancy · SOTH · Coachella Valley Mountains Conservancy · ~17,993 ac
 - San Felipe Valley Wildlife Area · SCA · California Department of Fish and Wildlife · ~17,761 ac
 - Semitropic Ecological Reserve · SCA · California Department of Fish and Wildlife · ~16,685 ac
@@ -138,11 +146,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **334 of 410** parks joined
 - Clear Lake National Wildlife Refuge · NWR · Clear Lake National Wildlife Refuge · ~13,022 ac
 - Mendota Wildlife Area · SCA · California Department of Fish and Wildlife · ~11,392 ac
 - San Pablo Bay Wildlife Area · SCA · California Department of Fish and Wildlife · ~10,545 ac
-- Doyle Wildlife Area · SCA · California Department of Fish and Wildlife · ~10,529 ac
-- Upper Butte Basin Wildlife Area · SCA · California Department of Fish and Wildlife · ~10,031 ac
-- Cachuma Lake Recreation Area · LREC · Santa Barbara, County of · ~9,563 ac
-- Sherman Island · SOTH · California Department of Water Resources · ~9,209 ac
-- Clear Lake National Wildlife Refuge · NWR · United States Bureau of Reclamation · ~9,158 ac
-- Clear Lake · RMA · Unknown · ~9,127 ac
-- California Valley · SRMA · California Department of Fish and Wildlife · ~8,391 ac
-- Imperial Wildlife Area · SCA · California Department of Fish and Wildlife · ~7,865 ac

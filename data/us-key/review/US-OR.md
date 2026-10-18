@@ -5,7 +5,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **182 of 440** parks joined
 ## To check (not joined)
 
 - **US-0219** H.B. VanDuzer Scenic Corridor State Forest (State Forest) → H.B. Van Duzer Forest State Scenic Corridor (~1,639 ac, similar name)
-- **US-0582** Julia Butler Hansen National Wildlife Refuge (National Wildlife Refuge) → Julia Butler Hansen Refuge For The Columbian White-Tailed Deer (~3,109 ac, similar name); Julia Butler Hansen Refuge For The Columbian White-Tailed Deer (~3,109 ac, similar name)
+- **US-0582** Julia Butler Hansen National Wildlife Refuge (National Wildlife Refuge) → Julia Butler Hansen Refuge For The Columbian White Tail Deer (~5,968 ac, similar name); Julia Butler Hansen Refuge For The Columbian White-Tailed Deer (~3,109 ac, similar name); Julia Butler Hansen Refuge For The Columbian White-Tailed Deer (~3,109 ac, similar name)
 - **US-10010** Fishermen's Bend BLM Recreation Management Area (BLM Recreation Management Area) → Nw Oregon Cascades Field Office (~172,607 ac, the POTA pin is inside it (different name))
 - **US-10017** Quartzville Creek BLM Wild and Scenic River (BLM Wild and Scenic River) → Nw Oregon Cascades Field Office (~172,607 ac, the POTA pin is inside it (different name))
 - **US-10018** Silver Creek BLM Recreation Management Area (BLM Recreation Management Area) → Silver Creek Park (~1 ac, similar name)
@@ -301,9 +301,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **182 of 440** parks joined
 - Forest · SRMA · Unknown · ~8,160 ac
 - Board Of Forestry/County Land Use Resolution · SRMA · Oregon Department of Forestry · ~7,693 ac
 - State Trust Land · SRMA · Oregon State Land Board · ~6,729 ac
+- Conboy Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,508 ac
+- Julia Butler Hansen Refuge For The Columbian White Tail Deer ·  · U.S. Fish & Wildlife Service (own map) · ~5,968 ac
 - SPC Stewardship · SRMA · Unknown · ~5,940 ac
 - Industrial/Commercial/Residential · SRMA · Unknown · ~5,912 ac
 - Agriculture · SRMA · Unknown · ~5,083 ac
+- Ridgefield National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~4,991 ac
 - Bear Valley National Wildlife Refuge · NWR · BEAR VALLEY NATIONAL WILDLIFE REFUGE · ~4,223 ac
 - Bear Valley National Wildlife Refuge · NWR · Bear Valley National Wildlife Refuge · ~4,220 ac
 - Warm Springs Reservoir · RMA · Unknown · ~3,633 ac
@@ -318,13 +321,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **182 of 440** parks joined
 - Rangeland · SRMA · Unknown · ~2,154 ac
 - Blue Mountain Forest State Scenic Corridor · SREC · Oregon Parks and Recreation Department · ~2,132 ac
 - Denman Wildlife Area · SCA · Oregon Department of Fish and Wildlife · ~2,088 ac
+- Toppenish National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,998 ac
 - SPC Stewardship · SOTH · State Land Board · ~1,908 ac
 - State Trust Land · SRMA · Oregon State Land Board · ~1,823 ac
 - County Park Management · LP · Oregon Department of Forestry · ~1,743 ac
 - Longview Fibre Exchange · SRMA · Oregon Department of Forestry · ~1,711 ac
 - H.B. Van Duzer Forest State Scenic Corridor · SREC · Oregon Parks and Recreation Department · ~1,639 ac
 - Chaney Deed · SRMA · Oregon Department of Forestry · ~1,518 ac
-- Elmer Feldenheimer State Natural Area · SCA · Oregon Parks and Recreation Department · ~1,466 ac
-- Warrenton/Camp Rilea · MIL · National Guard · ~1,292 ac
-- State Trust Land · SRMA · Oregon State Land Board · ~1,266 ac
-- Mcnary National Wildlife Refuge · NWR · MCNARY NATIONAL WILDLIFE REFUGE · ~1,192 ac

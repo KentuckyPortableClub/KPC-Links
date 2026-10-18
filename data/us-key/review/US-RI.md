@@ -78,6 +78,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **23 of 61** parks joined t
 - Stillwater Reservoir · WPA ·   · ~245 ac
 - Wickaboxet Management Area · SRMA ·   · ~239 ac
 - Nf 35 · LREC · Town of Middletown · ~236 ac
+- Great Thicket National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~230 ac
+- North Attleboro National Fish Hatchery ·  · U.S. Fish & Wildlife Service (own map) · ~228 ac
 - Black Farm Management Area · SRMA ·   · ~219 ac
 - Great Swamp Management Area · SRMA ·   · ~215 ac
 - Sprague Hill · SRMA ·   · ~212 ac
@@ -106,5 +108,3 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **23 of 61** parks joined t
 - Great Swamp Management Area · SRMA ·   · ~127 ac
 - Ferolbink - Peckham · SCA ·   · ~126 ac
 - Thompson Trail · SCA · Rhode Island Water Resources Board · ~125 ac
-- Ponaganset River/HMP · SRMA ·   · ~120 ac
-- Tiverton Rod & Gun Club · SCA ·   · ~120 ac

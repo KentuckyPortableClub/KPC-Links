@@ -1,6 +1,6 @@
 # GA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **198 of 237** parks joined to official land (same name + same kind of place). **23** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **199 of 237** parks joined to official land (same name + same kind of place). **23** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -30,7 +30,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **198 of 237** parks joined
 
 ## Nothing found in PAD-US
 
-- US-0139 Eufaula National Wildlife Refuge (National Wildlife Refuge)
 - US-10397 Southern Nantahala Wilderness Area (Wilderness Area)
 - US-12419 Tallapoosa River Wildlife Management Area (Wildlife Management Area)
 - US-12420 Treat Mountain Wildlife Management Area (Wildlife Management Area)
@@ -105,7 +104,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **198 of 237** parks joined
 - Old Rope Mill Park & Blankets Creek Mountain Bike Trail · LP · Cherokee County · ~690 ac
 - Gordonia-Alatamaha State Park · SP · Georgia Department of Natural Resources · ~684 ac
 - Bobby Brown Outdoor Recreation Area · SREC · Georgia Department of Natural Resources · ~681 ac
+- Tybee National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~678 ac
 - Jerico River Tract · SCA · Georgia Department of Natural Resources · ~632 ac
 - 014-001 · SREC · Department of Transportation · ~628 ac
 - Uga Dairy Farm · REA · Georgia Board of Regents · ~602 ac
-- 080-002 · SREC · Department of Transportation · ~599 ac

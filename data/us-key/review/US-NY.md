@@ -123,8 +123,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **792 of 850** parks joined
 - Kaaterskill Wild Forest · SCA · NYS Department of Environmental Conservation · ~8,104 ac
 - Appalachian National Scenic Trail · NT · NPS · ~8,085 ac
 - Jay Mountain Wilderness · SW · NYS Department of Environmental Conservation · ~7,868 ac
+- Great Swamp National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,853 ac
 - Phoenicia - Mt. Tobias Wild Forest · SCA · NYS Department of Environmental Conservation · ~7,826 ac
+- Missisquoi National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,342 ac
 - Essex Chain Lakes Primitive Area · SCA · NYS Department of Environmental Conservation · ~6,964 ac
 - Finch Pruyn · SCA · NY Department of Environmental Conservation · ~6,177 ac
-- Shandaken Wild Forest · SCA · NYS Department of Environmental Conservation · ~6,110 ac
-- Madawaska Flow - Quebec Brook Primitive Area · SCA · NYS Department of Environmental Conservation · ~6,043 ac
