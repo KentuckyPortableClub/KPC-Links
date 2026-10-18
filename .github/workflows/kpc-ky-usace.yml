@@ -1,0 +1,29 @@
+name: KPC Kentucky Army Corps land
+# Monthly (12th): USGS PAD-US land OWNED by the Army Corps of Engineers in Kentucky -> ky-usace.geojson (drawn orange on Park Control,
+# Park Commander and the KY Trip Planner, whoever runs the land).
+on:
+  schedule:
+    - cron: '23 7 12 * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kpc-ky-usace
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - name: Get Corps land
+        run: python3 .github/scripts/kpc_ky_usace.py
+      - name: Save
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ky-usace.geojson
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update Kentucky Army Corps land'
+            for i in 1 2 3; do git pull --rebase -X theirs --autostash && git push && break; git rebase --abort 2>/dev/null || true; sleep 10; done
+          fi
