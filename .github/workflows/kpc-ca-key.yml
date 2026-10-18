@@ -1,0 +1,34 @@
+name: KPC Canada answer key
+# Canada: CA- POTA parks joined to CPCAD land only when name + kind match; the rest goes on review lists (issue label ca-answer-key).
+on:
+  schedule:
+    - cron: '43 10 2 * *'   # monthly
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: kpc-ca-key
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build the Canada answer key
+        run: python3 .github/scripts/kpc_ca_key.py
+      - name: Review issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/kpc_ca_key_issue.py
+      - name: Save
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ca-key
+          if ! git diff --cached --quiet; then
+            git commit -m 'Canada answer key'
+            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
+          fi
