@@ -32,7 +32,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **77 of 122** parks joined 
 - **US-8617** Perea Nature National Recreation Trail (National Recreation Trail) → Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name))
 - **US-8619** San Ysidro Trials Area BLM Recreation Management Area (BLM Recreation Management Area) → San Ysidro Trails Area (~4,439 ac, similar name); Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name))
 - **US-8620** Ojito Wilderness Area (Wilderness Area) → Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name))
-- **US-8621** Cabezon Wilderness Area (Wilderness Area) → Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name)); Boca del Oso (~14,531 ac, the POTA pin is inside it (different name))
+- **US-8621** Cabezon Wilderness Area (Wilderness Area) → Cabezon (~0 ac, same name, different kind of place); Rio Puerco Field Office (~992,719 ac, the POTA pin is inside it (different name)); Boca del Oso (~14,531 ac, the POTA pin is inside it (different name))
 - **US-9679** Pecos Canyon State Park (State Park) → Santa Fe National Forest (~1,545,017 ac, the POTA pin is inside it (different name))
 
 ## Nothing found in PAD-US
