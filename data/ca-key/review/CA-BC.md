@@ -1,6 +1,6 @@
 # Canada BC: POTA parks vs official land (CPCAD)
 
-Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **1000 of 1254** joined (same name + same kind). **117** to check, **137** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **998 of 1254** joined (same name + same kind). **119** to check, **137** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -76,6 +76,7 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **1000 of 1254** joined (sa
 - **CA-3877** Namu Corridor Conservation Area (Conservation Area) → NAMU CORRIDOR CONSERVANCY (~205 ac, similar name); NAMU CONSERVANCY (~25,481 ac, the POTA pin is inside it (different name))
 - **CA-3879** Nang Xaldangaas Heritage Site Conservation Area (Conservation Area) → NANG XALDANGAAS CONSERVANCY (~24,211 ac, similar name); NANG XALDANGAAS CONSERVANCY (~17,043 ac, similar name)
 - **CA-3884** Ne'ah' Conservation Area (Conservation Area) → Ne'āh' CONSERVANCY (~576,506 ac, similar name)
+- **CA-3887** Nechako River Migratory Bird Sanctuary (Bird Sanctuary) → Nechako River Migratory Bird Sanctuary (~453 ac, same name, different kind of place)
 - **CA-3889** Nenikekh / Nanika-Kidprice Provincial Park (Provincial Park) → NENEIKEKH/NANIKA-KIDPRICE PARK (~42,023 ac, similar name)
 - **CA-3941** Palamin / Estero Basin Conservancy Protected Area (Protected Area) → Pałəmin / ESTERO BASIN CONSERVANCY (~5,758 ac, similar name); Pałəmin / ESTERO BASIN CONSERVANCY (~1,601 ac, similar name)
 - **CA-3956** Phillips Estuary Conservancy Protected Area (Protected Area) → PHILLIPS ESTUARY / ᕈNacinuxᵂ CONSERVANCY (~3,415 ac, similar name); PHILLIPS ESTUARY / ᕈNacinuxᵂ CONSERVANCY (~195 ac, similar name)
@@ -103,6 +104,7 @@ Built 2026-10-18 by `.github/scripts/kpc_ca_key.py`. **1000 of 1254** joined (sa
 - **CA-4201** Thurston Bay Marine Provincial Park (Provincial Park) → CETAN/THURSTON BAY CONSERVANCY (~568 ac, similar name); THURSTON BAY MARINE PARK (~791 ac, same name, different kind of place); THURSTON BAY MARINE PARK (~521 ac, same name, different kind of place)
 - **CA-4203** Tlall Heritage Site Conservation Area (Conservation Area) → TLALL CONSERVANCY (~40,053 ac, similar name); TLALL CONSERVANCY (~54 ac, similar name)
 - **CA-4231** Tweedsmuir - North and Corridor Protected Area (Protected Area) → TWEEDSMUIR PARK (~2,445,633 ac, similar name); TWEEDSMUIR CORRIDOR PROTECTED AREA (~37 ac, similar name)
+- **CA-4258** Victoria Harbour Migratory Bird Sanctuary (Bird Sanctuary) → Victoria Harbour Migratory Bird Sanctuary (~4,597 ac, same name, different kind of place); Victoria Harbour Migratory Bird Sanctuary (~77 ac, same name, different kind of place)
 - **CA-4264** Wales Harbour Conservation Area (Conservation Area) → WALES HARBOUR CONSERVANCY (~853 ac, similar name); WALES HARBOUR CONSERVANCY (~793 ac, similar name)
 - **CA-4301** Winter Inlet Conservation Area (Conservation Area) → WINTER INLET CONSERVANCY (~47 ac, similar name); WINTER INLET CONSERVANCY (~27 ac, similar name)
 - **CA-4306** Woodworth Lake Conservation Area (Conservation Area) → WOODWORTH LAKE CONSERVANCY (~10,962 ac, similar name)
