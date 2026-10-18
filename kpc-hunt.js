@@ -1439,9 +1439,9 @@
   document.addEventListener('click', e => { const b = e.target.closest('[data-theme-pick]'); if (!b) return; THEME = b.dataset.themePick; put('kpcHuntTheme', THEME); theme(); });
   /* campfire crackle (+ crickets after dark) for the Cabin Lodge look (Brandon Oct 17); off until tapped */
   /* Oct 18 (Brandon: 'on mobile the scrolling new parks is hidden by the filters… need a hide feature'): on phones the bar's buttons fold
-     behind one ⚙ button at the right end, so the scrolling parks get the whole bar; ✕ folds them again. Remembered (kpcHuntTkOpen). */
+     behind one ☰ button at the right end, so the scrolling parks get the whole bar; ✕ folds them again. Remembered (kpcHuntTkOpen). */
   try { const tk = $('hlTick'); if (tk && !$('hlTkMore')) { const b = document.createElement('button'); b.type = 'button'; b.id = 'hlTkMore'; b.className = 'hl-tkmore';
-    const set = o => { tk.classList.toggle('tk-open', o); b.textContent = o ? '✕' : '⚙'; b.title = o ? 'Hide the bar buttons' : 'Show the bar buttons (flames, alert, filters…)'; b.setAttribute('aria-expanded', o); };
+    const set = o => { tk.classList.toggle('tk-open', o); b.textContent = o ? '✕' : '☰'; b.title = o ? 'Hide the bar buttons' : 'Show the bar buttons (flames, alert, filters…)'; b.setAttribute('aria-expanded', o); };
     let open = false; try { open = localStorage.getItem('kpcHuntTkOpen') === '1'; } catch (e) {}
     b.onclick = () => { open = !open; set(open); try { localStorage.setItem('kpcHuntTkOpen', open ? '1' : '0'); } catch (e) {} };
     tk.appendChild(b); set(open); } } catch (e) {}
