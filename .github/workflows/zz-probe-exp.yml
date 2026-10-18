@@ -1,4 +1,4 @@
-name: zz pull KY access points (temporary)
+name: zz pull KY roads near parks (temporary)
 on: workflow_dispatch
 permissions: {contents: write}
 jobs:
@@ -8,39 +8,28 @@ jobs:
       - uses: actions/checkout@v5
       - run: |
           python3 - <<'PY'
-          import json,urllib.request,urllib.parse,re
+          import json,urllib.request,urllib.parse
+          BB=json.loads('{"US-1264": [-84.05994000000001, 37.0668, -84.02427999999999, 37.10953], "US-3787": [-84.35797000000001, 37.82784, -84.34684999999999, 37.838], "US-3789": [-84.55791, 37.458850000000005, -84.53792, 37.476389999999995], "US-3790": [-88.07758000000001, 36.46126, -87.8235, 36.515899999999995], "US-3802": [-84.86819, 38.124810000000004, -84.84527, 38.151509999999995], "US-4526": [-82.75358, 37.078210000000006, -82.52678999999999, 37.217819999999996], "US-10098": [-87.58222, 37.86775, -87.40737, 37.912389999999995], "US-10107": [-84.61393000000001, 36.59456, -84.52122, 36.67849], "US-12971": [-83.13877000000001, 38.37147, -83.12204, 38.38894], "US-12972": [-83.11850000000001, 38.35138, -83.10413, 38.36288]}')
           def g(u):
               try: return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC'}),timeout=120).read())
-              except Exception as e: return {'err':str(e)[:100]}
-          def n(t,m): print('::notice title=%s::%s'%(t,str(m).replace('\n','%0A')[:3800]))
-          K='https://services5.arcgis.com/RMHPuOW5MJ6iyTV6/arcgis/rest/services/'
-          G='https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/'
-          SRC={'fishing':K+'Fishing_Access_Sites/FeatureServer','wmapts':K+'WMA_Map_Points/FeatureServer','elkwma':K+'Elk_WMA_Access_Points/FeatureServer','elkreg':K+'Elk_Regulated_Access_Points/FeatureServer','trail':K+'Trail_Workgroup_Public_View/FeatureServer','fedth':G+'Ky_Federal_Trailheads_WGS84WM/MapServer','bridge':G+'Ky_Bridge_Points_WGS84WM/MapServer','other':K+'KDFWR_Other_properties/FeatureServer'}
-          KEEP=re.compile(r'name|type|desc|label|feat|road|route|stream|cross|site|area|wma|park|access|class|facil|ramp|park',re.I)
-          DROP=re.compile(r'globalid|date|shape|objectid|creat|edit|user',re.I)
+              except Exception as e: return {'err':str(e)[:150]}
+          def n(t,m): print('::notice title=%s::%s'%(t,str(m)[:3000]))
+          S='https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_911_Road_Centerlines_WGS84WM/MapServer'
+          root=g(S+'?f=json'); L=[l['id'] for l in root.get('layers',[])]
+          lid=None
+          for i in L:
+              x=g(f'{S}/{i}?f=json')
+              if x.get('geometryType')=='esriGeometryPolyline': lid=i; flds=[f['name'] for f in x.get('fields',[])]; break
+          n('layer',f'{lid} {flds}')
           out={}
-          for k,B in SRC.items():
-              root=g(B+'?f=json')
-              if 'err' in root or 'error' in root: n('fail '+k,str(root)[:300]); continue
-              for l in root.get('layers',[]):
-                  i=g(f"{B}/{l['id']}?f=json")
-                  if i.get('geometryType')!='esriGeometryPoint': continue
-                  fl=[f['name'] for f in i.get('fields',[])]
-                  rows=[];off=0
-                  while True:
-                      r=g(f"{B}/{l['id']}/query?"+urllib.parse.urlencode({'where':'1=1','outFields':'*','returnGeometry':'true','outSR':4326,'resultOffset':off,'resultRecordCount':1000,'f':'json'}))
-                      fs=r.get('features',[])
-                      for f in fs:
-                          ge=f.get('geometry') or {}
-                          if 'x' not in ge or ge['x'] is None: continue
-                          a={kk:v for kk,v in f['attributes'].items() if v not in (None,'',' ') and KEEP.search(kk) and not DROP.search(kk)}
-                          rows.append([round(ge['y'],5),round(ge['x'],5),a])
-                      if len(fs)<1000 or not r.get('exceededTransferLimit',len(fs)==1000): break
-                      off+=1000
-                  out[f"{k}/{l['id']} {l['name']}"]=rows
-                  n(f"{k}/{l['id']} {l['name']} n={len(rows)}",'fields='+','.join(fl[:40])+' | sample '+json.dumps(rows[:2])[:1500])
-          json.dump({'source':SRC,'layers':out},open('data/ky-access-extra.json','w'),separators=(',',':'))
+          for r,b in BB.items():
+              q={'geometry':','.join(map(str,b)),'geometryType':'esriGeometryEnvelope','inSR':4326,'spatialRel':'esriSpatialRelIntersects','outFields':'*','returnGeometry':'true','outSR':4326,'f':'json','resultRecordCount':2000}
+              j=g(f'{S}/{lid}/query?'+urllib.parse.urlencode(q))
+              fs=j.get('features',[])
+              out[r]=[[{k:v for k,v in f['attributes'].items() if v not in (None,'',' ') and not k.lower().startswith(('shape','globalid','objectid'))},f['geometry'].get('paths')] for f in fs if f.get('geometry')]
+              n(r,f"{len(fs)} roads {j.get('err','')} {json.dumps(out[r][0][0])[:400] if out[r] else ''}")
+          import os; os.makedirs('.claude/build/ap',exist_ok=True)
+          json.dump(out,open('.claude/build/ap/roads.json','w'),separators=(',',':'))
           PY
-          ls -la data/ky-access-extra.json
           git config user.name kpc-bot; git config user.email kpc-bot@users.noreply.github.com
-          git add data/ky-access-extra.json; git commit -qm "KY official access points (KDFWR + KY GIS)"; git pull -q --rebase; git push -q
+          git add .claude/build/ap/roads.json; git commit -qm "KY 911 road centerlines near parks (for access pins)"; git pull -q --rebase; git push -q
