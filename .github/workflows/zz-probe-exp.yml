@@ -1,25 +1,30 @@
-name: zz probe ky parks layers
+name: zz pull ky park structures
 on: workflow_dispatch
+permissions: { contents: write }
 jobs:
   p:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - run: |
           python3 - <<'P'
           import urllib.request,urllib.parse,json
           H={'User-Agent':'Mozilla/5.0'}
-          def j(u): return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers=H),timeout=90).read())
           B='https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer'
-          from collections import Counter
-          def q(l,box,fields='*',geo='false'):
-            return j(f"{B}/{l}/query?"+urllib.parse.urlencode({'where':'1=1','geometry':box,'geometryType':'esriGeometryEnvelope','inSR':4326,'spatialRel':'esriSpatialRelIntersects','outFields':fields,'returnGeometry':geo,'outSR':4326,'f':'json'})).get('features',[])
-          T='-85.36,37.98,-85.20,38.08'
-          for l in (5,6,7):
-            f=q(l,T); a=[x['attributes'] for x in f]
-            keys=list(a[0].keys()) if a else []
-            print(f"::notice title=L{l} n={len(a)}::keys {keys[:30]} sample {json.dumps(a[:3])[:900]}")
-          f=q(7,T); c=Counter(str({k:v for k,v in x['attributes'].items() if k.upper() in ('TYPE','USE_DESCR','STRUCTURE','STRUC_TYPE','BL_NAME','DESCRIPTION','NAME')}) for x in f)
-          print('::notice title=L7 types::'+json.dumps(c.most_common(40))[:3500])
-          G='-85.40,37.20,-85.25,37.33'
-          f=q(8,G,'*','true'); print('::notice title=L8 GreenRiver::'+json.dumps([(x['attributes'], sum(len(r) for r in x['geometry'].get('rings',[]))) for x in f])[:1500])
+          out={}
+          for l,nm in ((7,'structures'),(6,'campgrounds')):
+            rows=[];off=0
+            while True:
+              u=f"{B}/{l}/query?"+urllib.parse.urlencode({'where':'1=1','outFields':'*','returnGeometry':'true','outSR':4326,'f':'json','resultOffset':off,'resultRecordCount':1000})
+              f=json.loads(urllib.request.urlopen(urllib.request.Request(u,headers=H),timeout=90).read()).get('features',[])
+              for x in f:
+                g=x.get('geometry') or {}; a=x['attributes']
+                if 'y' in g: rows.append([round(g['y'],6),round(g['x'],6),{k:v for k,v in a.items() if k in ('PARK_NAME','BL_NAME','USE_DESCR','facilityNa','link')}])
+              if len(f)<1000: break
+              off+=1000
+            out[nm]=rows
+            print(f"::notice title={nm}::{len(rows)}")
+          json.dump({'source':B,'layers':out},open('data/ky-park-structures.json','w'),separators=(',',':'))
           P
+          git config user.email bot@kpc; git config user.name kpc-bot
+          git add data/ky-park-structures.json && git commit -qm "KY State Parks public structures + campgrounds (state GIS)" && git pull -q --rebase && git push -q
