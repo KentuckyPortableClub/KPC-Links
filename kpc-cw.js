@@ -443,7 +443,7 @@ function start() {
     else if (MODE === 'sprint') sprintLoop(gen).catch(e => console.error(e));
     bandStart(gen);
   };
-  if (S.welcome && !welcomed) { welcomed = true; welcome(gen).then(go); } else go();
+  go();   /* Oct 17 (Brandon): Zach's keyed welcome removed */
 }
 /* Zach's welcome, keyed once per visit on the first START (turn it off under the settings) */
 const WELCOME = 'HELLO ES WELCOME TO K4ZSR CW ROOM I AM ZACH';

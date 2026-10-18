@@ -23,8 +23,8 @@
     + '@media(max-width:600px){.cwh{padding:6px 12px 6px 6px;gap:9px}.cwh-t{font-size:12.5px;letter-spacing:1px}.cwh-s{display:none}}';
   document.head.appendChild(st);
   const box = document.createElement('div'); box.className = 'cwh'; box.setAttribute('role', 'button'); box.tabIndex = 0;
-  box.title = 'A welcome in Morse code. Tap to hear it.'; box.setAttribute('aria-label', 'Welcome in Morse code: ' + MSG + '. Tap to hear it.');
-  box.innerHTML = '<span class="cwh-l" aria-hidden="true"></span><span class="cwh-t" aria-hidden="true"></span><span class="cwh-s">🔊 tap to hear it</span>';
+  box.title = 'A welcome in Morse code. Tap to see it again.'; box.setAttribute('aria-label', 'Welcome in Morse code: ' + MSG + '. Tap to see it again.');
+  box.innerHTML = '<span class="cwh-l" aria-hidden="true"></span><span class="cwh-t" aria-hidden="true"></span>';
   hero.appendChild(box);
   const lamp = box.querySelector('.cwh-l'), txt = box.querySelector('.cwh-t');
   const showText = n => { txt.innerHTML = MSG.slice(0, n).replace(/&/g, '&amp;') + '<i>' + MSG.slice(n).replace(/[A-Z0-9]/g, '·') + '</i>'; };
@@ -46,16 +46,7 @@
     })();
   }
   setTimeout(() => blink(false), 900);   /* silent on open */
-  const KEY = 'kpcCwHello';
-  let played = false; try { played = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
-  function first(e) {
-    if (played) return;
-    played = true; try { sessionStorage.setItem(KEY, '1'); } catch (er) {}
-    const b = e.target.closest && e.target.closest('button'); if (b && /\bSTART\b/i.test(b.textContent) && !box.contains(b)) return;   /* Zach's welcome plays on START */
-    if (box.contains(e.target)) return;   /* the lamp handles its own tap */
-    blink(true);
-  }
-  document.addEventListener('pointerdown', first, true);
-  const play = () => { played = true; try { sessionStorage.setItem(KEY, '1'); } catch (er) {} blink(true); };
+  /* Oct 17 (Brandon): the lamp only flashes now, no sound; tap it to see it again */
+  const play = () => blink(false);
   box.addEventListener('click', play); box.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); } });
 })();
