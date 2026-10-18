@@ -27,8 +27,9 @@ jobs:
             w=2*EXT/n; x0=-EXT+x*w; y1=EXT-y*w
             u=f"{B}/export?bbox={x0},{y1-w},{x0+w},{y1}&bboxSR=3857&imageSR=3857&size=512,512&dpi=192&format=png32&transparent=true&f=image&dynamicLayers="+urllib.parse.quote(json.dumps(dl,separators=(',',':')))
             try:
-              s,h,d=get(u); open(f'd{z}.png','wb').write(d); print(f"::notice title=dyn z{z}::{s} {h.get('Content-Type')} {len(d)} cors={h.get('Access-Control-Allow-Origin')} urllen={len(u)}")
-            except Exception as e: print(f"::notice title=dyn z{z} ERR::{e} urllen={len(u)}")
+              base,q=u.split('?',1)
+              r=urllib.request.urlopen(urllib.request.Request(base,data=q.encode(),headers=dict(H,**{'Content-Type':'application/x-www-form-urlencoded'})),timeout=60); s,h,d=r.status,dict(r.headers),r.read(); open(f'd{z}.png','wb').write(d); print(f"::notice title=dyn z{z}::{s} {h.get('Content-Type')} {len(d)} cors={h.get('Access-Control-Allow-Origin')} urllen={len(u)}")
+            except Exception as e: print(f"::notice title=dyn z{z} ERR::{e} {getattr(e,'read',lambda:b'')()[:200]}")
           P
           git init -q; git config user.email a@b; git config user.name bot
           git add . && git commit -qm t && git push -qf https://x-access-token:${{ github.token }}@github.com/${{ github.repository }} HEAD:zz-padus
