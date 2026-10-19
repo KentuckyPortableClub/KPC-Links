@@ -329,6 +329,22 @@ def pull_a10(label, page):
         if len(nn) == 1:
             r['n'] = r['nj'] = next(iter(nn)); r['ty'] = r['ty'] or r['n']; r['_k0'] = jkind(r['n']) | jkind(r['ty']); fill += 1
         elif nn: amb += 1
+    # AREA_CD turned out not to be a park code (Oct 19 run: 0 filled). Second try by place: a blank zone row that sits inside the box of
+    # named rows of ONE park only (same prefecture) takes that name; two parks around it = left blank.
+    byp = {}
+    for r in recs:
+        if r['n'] and r['_bb']: byp.setdefault(str(r['_a'].get('PREFEC_CD')), []).append(r)
+    sp = 0
+    for r in recs:
+        if r['n'] or not r['_bb']: continue
+        b = r['_bb']; e = .002
+        nn = {q['n'] for q in byp.get(str(r['_a'].get('PREFEC_CD')), []) if q['_bb'][0] - e <= b[0] and q['_bb'][1] - e <= b[1] and q['_bb'][2] + e >= b[2] and q['_bb'][3] + e >= b[3]}
+        if len(nn) == 1:
+            r['n'] = r['nj'] = next(iter(nn)); r['ty'] = r['ty'] or r['n']; r['_k0'] = jkind(r['n']) | jkind(r['ty']); sp += 1
+    lay = {}
+    for r in recs: lay.setdefault(str(r['_a'].get('LAYER_NO')), [0, 0])[0 if r['n'] else 1] += 1
+    rem = [f"{r['_a'].get('LAYER_NO')}:{r['_a'].get('REMARK_STR')}" for r in recs if not r['n'] and str(r['_a'].get('REMARK_STR') or '').strip()][:8]
+    notice(label, f'blank names filled by place: {sp}; by LAYER_NO [named, blank]: {lay}; REMARK_STR on blank rows: {rem}')
     th = {}
     for r in recs: th.setdefault(str(r['_a'].get('THEMA_NO')), [0, 0])[0 if r['n'] else 1] += 1
     notice(label, f'blank names filled from the same park code: {fill}; two names for one code (left blank): {amb}; by THEMA_NO [named, blank]: {th}')
