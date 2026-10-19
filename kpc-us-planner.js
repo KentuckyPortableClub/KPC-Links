@@ -38,9 +38,10 @@ function statesNear(la,lo,mi){const dLa=mi/69,dLo=mi/(69*Math.cos(la*Math.PI/180
    1-degree tiles near the spot you picked: POTA data/pota/t (monthly job), WWFF data/wwff/t + SOTA data/sota/t (Sundays) */
 if(window.KPCPlace)KPCPlace.world=true;   /* suggestions + search reach outside the US too */
 const WTILE={},inNA=(la,lo)=>la>=5&&la<=84&&lo>=-180&&lo<=-10;
-async function addWorld(la,lo,mi){const dLa=mi/69,dLo=mi/(69*Math.max(.15,Math.cos(la*Math.PI/180)));let keys=[];
- for(let y=Math.floor(la-dLa);y<=Math.floor(la+dLa);y++)for(let x=Math.floor(lo-dLo);x<=Math.floor(lo+dLo);x++){const xx=((x+180)%360+360)%360-180;if(!inNA(y+.5,xx+.5))keys.push([y,xx,Math.hypot(y+.5-la,(xx+.5-lo)*Math.cos(la*Math.PI/180))])}
- if(!keys.length)return 0;keys.sort((a,b)=>a[2]-b[2]);keys=keys.slice(0,120);let added=0;
+async function addWorld(la,lo,mi){const dLa=mi/69,dLo=mi/(69*Math.max(.15,Math.cos(la*Math.PI/180)));return addTiles(la-dLa,lo-dLo,la+dLa,lo+dLo,la,lo,120)}
+async function addTiles(s0,w0,n0,e0,la,lo,cap){let keys=[];
+ for(let y=Math.floor(Math.max(-90,s0));y<=Math.floor(Math.min(89.99,n0));y++)for(let x=Math.floor(w0);x<=Math.floor(e0);x++){const xx=((x+180)%360+360)%360-180;if(!inNA(y+.5,xx+.5))keys.push([y,xx,Math.hypot(y+.5-la,(xx+.5-lo)*Math.cos(la*Math.PI/180))])}
+ if(!keys.length)return 0;keys.sort((a,b)=>a[2]-b[2]);keys=keys.slice(0,cap);let added=0;
  const P={POTA:['data/pota/t/',r=>({c:r[0],n:r[1],la:r[2],lo:r[3],url:'https://pota.app/#/park/'+r[0]})],WWFF:['data/wwff/t/',r=>({c:r[0],n:r[1],la:r[2],lo:r[3],url:'https://wwff.co/directory/?showRef='+r[0]})],
   SOTA:['data/sota/t/',r=>({c:r[0],n:r[1]&&r[1]!==r[0]?r[1]:`Unnamed summit, ${(+r[3]||0).toLocaleString()} m`,la:r[4],lo:r[5],url:'https://sotl.as/summits/'+r[0],m:+r[3]||0,pts:+r[6]||0})]};
  await Promise.all(Object.keys(P).filter(p=>progs.includes(p)).flatMap(p=>keys.map(async([y,x])=>{const u=P[p][0]+y+'_'+x+'.json';
@@ -86,13 +87,22 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  map.on('overlayadd',e=>{if(e.layer===trails)store.set('kpcUsTrails',true)});map.on('overlayremove',e=>{if(e.layer===trails)store.set('kpcUsTrails',false)});
  L.control.layers(base,over,{position:'topright',collapsed:true}).addTo(map);map.on('baselayerchange',e=>store.set('kpcUsBase',e.name));
  dots=L.featureGroup().addTo(map);
- /* SHOW SPOTS HERE (Oct 18, Brandon: 'looked around the world and didnt see any'): dots only load around the place you searched,
-    so panning somewhere new showed nothing. When the middle of the map is outside the circle, a button loads that area. */
- {const hb=document.createElement('button');hb.type='button';hb.className='us-here';hb.textContent='🔎 SHOW SPOTS HERE';hb.hidden=true;
-  hb.style.cssText='position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:1000;background:linear-gradient(#f6d58a,#d5a63a);color:#2a1a05;border:1px solid #8a6a1f;border-radius:999px;padding:8px 14px;font:800 13px system-ui,sans-serif;letter-spacing:.04em;box-shadow:0 2px 10px rgba(0,0,0,.45);cursor:pointer';
-  map.getContainer().appendChild(hb);L.DomEvent.disableClickPropagation(hb);window.__usMap=map;
-  const chk=()=>{const c=map.getCenter(),r=+$('usr').value||50;hb.hidden=map.getZoom()<3||(center&&KPC.miles(center[0],center[1],c.lat,c.lng)<r*.7)};
-  map.on('moveend zoomend',chk);hb.onclick=()=>{const c=map.getCenter();hb.hidden=true;go(c.lat,c.lng,'the middle of the map')}}
+ /* SPOTS FOLLOW THE MAP (Oct 19, Brandon: no SHOW SPOTS HERE button; 'search bar clear, all the pins on'): zoomed in to about
+    state size (VZ), the dots for whatever is on screen load by themselves as the map moves (North America from ALL, the rest of
+    the world from the 1-degree tiles), up to VCAP closest to the middle; zoomed out = a 'zoom in' note. A search still adds its circle. */
+ {const nt=document.createElement('div');nt.className='us-zoomnote';nt.hidden=true;
+  nt.style.cssText='position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:1000;background:rgba(10,10,10,.82);color:#f6d58a;border:1px solid rgba(240,201,107,.6);border-radius:999px;padding:6px 12px;font:800 12px system-ui,sans-serif;letter-spacing:.04em;pointer-events:none;white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis';
+  map.getContainer().appendChild(nt);window.__usMap=map;let tm=0,seq=0;
+  const upd=async()=>{const q=++seq,z=map.getZoom();
+   if(RT){VIEW=[];nt.hidden=true;drawDots();return}
+   if(z<VZ){const had=VIEW.length;VIEW=[];nt.textContent=center?'🔎 Zoom in to see every spot on the map':'🔎 Zoom in to see spots on the map';nt.hidden=false;if(had)drawDots();return}
+   const b=map.getBounds().pad(.15),c=map.getCenter();
+   try{await addTiles(b.getSouth(),b.getWest(),b.getNorth(),b.getEast(),c.lat,c.lng,60)}catch(e){}
+   if(q!==seq)return;
+   let v=ALL.filter(s=>progs.includes(s.p)&&b.contains([s.la,s.lo]));if(KM&&KM.filtering())v=v.filter(s=>KM.show(s.c));
+   const many=v.length>VCAP;if(many)v=v.map(s=>({s,d:(s.la-c.lat)**2+((s.lo-c.lng)*Math.cos(c.lat*Math.PI/180))**2})).sort((a,b)=>a.d-b.d).slice(0,VCAP).map(x=>x.s);
+   VIEW=v;nt.textContent=many?`Showing the ${VCAP.toLocaleString()} spots closest to the middle: zoom in for the rest`:'';nt.hidden=!many;drawDots()};
+  window.__usView=()=>{clearTimeout(tm);tm=setTimeout(upd,250)};map.on('moveend zoomend',window.__usView);setTimeout(upd,600)}
  /* drop mode wins over dots: with big phone tap areas most taps land on a dot, so drop the pin there too */
  let dropBusy=0;const dropAt=ll=>{if(!dropMode||dropBusy)return;dropBusy=1;map.closePopup();setTimeout(()=>{dropBusy=0;const nm=prompt('Name this pin (campsite, gas stop, lookout…):','My pin');if(nm===null)return;
   addStop({p:'PIN',c:'PIN-'+Date.now().toString(36),n:(nm.trim()||'My pin').slice(0,60),la:fix(ll.lat),lo:fix(ll.lng)});setDrop(false)},30)};
@@ -213,10 +223,11 @@ async function livePota(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;e
   if(!a.length){el.textContent='No activations yet: a new one for POTA!';return}
   const last=a.map(x=>String(x.qso_date||'')).sort().pop();const good=a.filter(x=>+x.totalQSOs>=10).length;
   el.textContent=`${a.length} activation attempt${a.length===1?'':'s'} (${good} with 10+ QSOs) • last ${KPC.fmtDate(last)}`}catch(e){el.textContent=''}}
+let VIEW=[];const VZ=7,VCAP=2500;
 function drawDots(){if(!map)return;dots.clearLayers();
- const show=center?vis():[];
+ const show=center?vis().slice():[];if(VIEW.length){const had=new Set(show);VIEW.forEach(s=>{if(!had.has(s))show.push(s)})}
  show.forEach(s=>{const inT=inTrip(s.c),km=KM?KM.mark(s.c):{};const mk=L.circleMarker([s.la,s.lo],{radius:BIG?(inT?9:s.p==='SOTA'?6:7)+(TAP?2:0):(inT?6:s.p==='SOTA'?3.5:4.5)+(TAP?1:0),weight:inT||km.atno||km.rare?3:2,color:inT?'#f0c96b':km.atno?'#c2410c':km.rare?'#e08a2c':'#ffffff',fillColor:COL[s.p],fillOpacity:km.done&&!inT?.35:.95}); /* white ring shows on satellite */
-  const pp=L.popup({maxWidth:300}).setContent(popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)});
+  const pp=L.popup({maxWidth:300}).setContent(()=>popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)});
  trip.filter(s=>s.p==='PIN').forEach(s=>{const mk=L.marker([s.la,s.lo],{icon:L.divIcon({className:'',html:'<div class="pin-us"></div>',iconSize:[16,16],iconAnchor:[8,16]})});const pp=L.popup({maxWidth:300}).setContent(popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)})}
 
 /* ---------- search ---------- */
@@ -419,7 +430,7 @@ if(window.KPCPlace){
 $('usr').onchange=()=>{if(center)go(center[0],center[1],(store.get('kpcUsLast',{})||{}).label)};
 {const bb=$('us-big');if(bb){bb.setAttribute('aria-pressed',String(BIG));bb.onclick=()=>{BIG=!BIG;store.set('kpcUsBig',BIG);bb.setAttribute('aria-pressed',String(BIG));drawDots()}}}   /* bigger dots chip (small = default, Brandon Oct 16) */
 $('us-progs').onclick=e=>{const b=e.target.closest('button[data-p]');if(!b)return;const p=b.dataset.p;progs=progs.includes(p)?progs.filter(x=>x!==p):progs.concat(p);if(!progs.length)progs=[p];store.set('kpcUsProgs',progs);
- [...$('us-progs').querySelectorAll('[data-p]')].forEach(x=>x.setAttribute('aria-pressed',progs.includes(x.dataset.p)));if(RT){const C=corridor(RT.pts,RT.w);RT.info=C.info;NEAR=C.list;drawDots();drawNear();status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${RT.w} miles of your route.`)}else if(center)go(center[0],center[1],(store.get('kpcUsLast',{})||{}).label)};
+ [...$('us-progs').querySelectorAll('[data-p]')].forEach(x=>x.setAttribute('aria-pressed',progs.includes(x.dataset.p)));if(RT){const C=corridor(RT.pts,RT.w);RT.info=C.info;NEAR=C.list;drawDots();drawNear();status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${RT.w} miles of your route.`)}else if(center)go(center[0],center[1],(store.get('kpcUsLast',{})||{}).label);if(window.__usView)window.__usView()};
 $('us-me').onclick=()=>{if(!navigator.geolocation){status('This browser can’t share your location.');return}status('Finding you…');
  navigator.geolocation.getCurrentPosition(p=>go(fix(p.coords.latitude),fix(p.coords.longitude),'you'),()=>status('Location was blocked or unavailable. Type a town or ZIP instead.'),{timeout:15000,maximumAge:300000})};
 $('us-drop').onclick=()=>setDrop(!dropMode);
@@ -446,9 +457,9 @@ $('t-clear').onclick=()=>{if(confirm('Clear all stops from this trip?')){trip=[]
 initMap();
 /* new checker answers: the list redraws at once; map dots wait until an open popup is closed so it doesn't vanish */
 if(KM){KM.bar($('km-bar'));let pend=false;
- window.addEventListener('kpcmine',()=>{if(!center)return;drawNear();if(map&&map._popup&&map.hasLayer(map._popup)){pend=true;return}drawDots()});
+ window.addEventListener('kpcmine',()=>{if(!center){if(VIEW.length&&window.__usView)window.__usView();return}drawNear();if(map&&map._popup&&map.hasLayer(map._popup)){pend=true;return}drawDots()});
  if(map)map.on('popupclose',()=>{if(pend){pend=false;setTimeout(drawDots,0)}})}
-loadAll().then(()=>{const shared=loadShared();drawTrip();
+loadAll().then(()=>{const shared=loadShared();drawTrip();if(window.__usView)window.__usView();
  /* ?q=… (sent by the KY Trip Planner for an out-of-state place): search it straight away */
  const qp=new URLSearchParams(location.search).get('q');if(qp&&!shared){$('usq').value=qp;search(qp);return}
  const last=store.get('kpcUsLast',null);if(last&&isFinite(last.la)){$('usr').value=String(last.r||25);go(last.la,last.lo,last.label)}
