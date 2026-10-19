@@ -259,7 +259,7 @@
   ],
   [
    "US-9778",
-   "Devil\u2019s River State Trail",
+   "Devil’s River State Trail",
    "WI",
    "Wisconsin Department of Natural Resources, Bureau of Parks and Recreation. Managed by Joe Warren and Dave Winston | Wi_DNR",
    23,
@@ -413,7 +413,7 @@
    "US-2350",
    "Prairie Spirit Trail State Trail",
    "KS",
-   "Larry Ross, Sunflower Rails to Trails, Wichita, KS; Clark Coan, Kansa Rails to Trails, Lawrence, KS; Jeffrey Bender, Kansas Department of Wildlife, Parks, & Tourism; Kathy Pruitt, Kansas Department of Wildlife, Parks, & Tourism; Trent Mc Cown, Kansas Department of Wildlife, Parks, & Tourism; Doug Walker, Kansa Rails to Trails Conservancey; John Rosacker, Kansas Department of Transportation; Ed Lincoln, Kansas Coordinator, American Discovery Trail, Wichita, KS; Dale Crawford, KanBikeWalk, Olathe, KS; Becky Pepper, Kansas Department of Transportation; Linda Craghead, Kansas Department of Wildlife, Parks, & Tourism; Steve O\u2019Neil, Marshall County Connections, Marysville, KS; Mary Hanson, Rivers, Trails and Conservation Assistance, National Park Service | KanDOT",
+   "Larry Ross, Sunflower Rails to Trails, Wichita, KS; Clark Coan, Kansa Rails to Trails, Lawrence, KS; Jeffrey Bender, Kansas Department of Wildlife, Parks, & Tourism; Kathy Pruitt, Kansas Department of Wildlife, Parks, & Tourism; Trent Mc Cown, Kansas Department of Wildlife, Parks, & Tourism; Doug Walker, Kansa Rails to Trails Conservancey; John Rosacker, Kansas Department of Transportation; Ed Lincoln, Kansas Coordinator, American Discovery Trail, Wichita, KS; Dale Crawford, KanBikeWalk, Olathe, KS; Becky Pepper, Kansas Department of Transportation; Linda Craghead, Kansas Department of Wildlife, Parks, & Tourism; Steve O’Neil, Marshall County Connections, Marysville, KS; Mary Hanson, Rivers, Trails and Conservation Assistance, National Park Service | KanDOT",
    83,
    0.0
   ],
@@ -421,7 +421,7 @@
    "US-5718",
    "Flint Hills Trail State Park",
    "KS",
-   "Larry Ross, Sunflower Rails to Trails, Wichita, KS; Clark Coan, Kansa Rails to Trails, Lawrence, KS; Jeffrey Bender, Kansas Department of Wildlife, Parks, & Tourism; Kathy Pruitt, Kansas Department of Wildlife, Parks, & Tourism; Trent Mc Cown, Kansas Department of Wildlife, Parks, & Tourism; Doug Walker, Kansa Rails to Trails Conservancey; John Rosacker, Kansas Department of Transportation; Ed Lincoln, Kansas Coordinator, American Discovery Trail, Wichita, KS; Dale Crawford, KanBikeWalk, Olathe, KS; Becky Pepper, Kansas Department of Transportation; Linda Craghead, Kansas Department of Wildlife, Parks, & Tourism; Steve O\u2019Neil, Marshall County Connections, Marysville, KS; Mary Hanson, Rivers, Trails and Conservation Assistance, National Park Service | KanDOT",
+   "Larry Ross, Sunflower Rails to Trails, Wichita, KS; Clark Coan, Kansa Rails to Trails, Lawrence, KS; Jeffrey Bender, Kansas Department of Wildlife, Parks, & Tourism; Kathy Pruitt, Kansas Department of Wildlife, Parks, & Tourism; Trent Mc Cown, Kansas Department of Wildlife, Parks, & Tourism; Doug Walker, Kansa Rails to Trails Conservancey; John Rosacker, Kansas Department of Transportation; Ed Lincoln, Kansas Coordinator, American Discovery Trail, Wichita, KS; Dale Crawford, KanBikeWalk, Olathe, KS; Becky Pepper, Kansas Department of Transportation; Linda Craghead, Kansas Department of Wildlife, Parks, & Tourism; Steve O’Neil, Marshall County Connections, Marysville, KS; Mary Hanson, Rivers, Trails and Conservation Assistance, National Park Service | KanDOT",
    107,
    0.1
   ],
@@ -1283,7 +1283,7 @@
   ],
   [
    "US-10914",
-   "Ka\u2018ena Point State Trail",
+   "Ka‘ena Point State Trail",
    "HI",
    "OpenStreetMap (not official)",
    3,
@@ -1299,7 +1299,7 @@
   ],
   [
    "US-10917",
-   "\u02bbAiea Loop State Trail",
+   "ʻAiea Loop State Trail",
    "HI",
    "OpenStreetMap (not official)",
    6,
@@ -1307,7 +1307,7 @@
   ],
   [
    "US-10918",
-   "Wa\u02bbahila Ridge State Trail",
+   "Waʻahila Ridge State Trail",
    "HI",
    "OpenStreetMap (not official)",
    2,
@@ -1458,14 +1458,6 @@
    0.0
   ],
   [
-   "CA-1301",
-   "Barron Canyon National Geologic Trail",
-   "CA-ON",
-   "Ontario Ministry of Natural Resources and Forestry | https://www.ontario.ca/page/open-government-licence-ontario | OntarioProvincialMapping",
-   0,
-   0.0
-  ],
-  [
    "CA-5628",
    "Bruce Trail National Recreation Trail",
    "CA-ON",
@@ -1579,7 +1571,7 @@
   ],
   [
    "US-2216",
-   "Makapu\u02bbu  Point Wayside State Trail",
+   "Makapuʻu  Point Wayside State Trail",
    "HI",
    "no line found"
   ],
@@ -1591,7 +1583,7 @@
   ],
   [
    "US-10916",
-   "Kapa\u02bbele\u02bbele State Trail",
+   "Kapaʻeleʻele State Trail",
    "HI",
    "no line found"
   ],
@@ -1687,7 +1679,7 @@
   ],
   [
    "CA-6530",
-   "Sentier Nepisiguit Mi\u2019gmaq Trail Recreation Site",
+   "Sentier Nepisiguit Mi’gmaq Trail Recreation Site",
    "CA-NB",
    "no line found"
   ],
@@ -1846,6 +1838,12 @@
    "Spruce Beetle Trail Recreation Site",
    "CA-YT",
    "no line found"
+  ],
+  [
+   "CA-1301",
+   "Barron Canyon National Geologic Trail",
+   "CA-ON",
+   "only a tiny piece found"
   ]
  ],
  "noline": [
@@ -2035,7 +2033,7 @@
    "Narrows Peninsula Trail National Recreation Trail",
    "skip (not state/federal)",
    "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
   ],
   [
    "Narrows Peninsula Trail National Recreation Trail",
@@ -2172,7 +2170,7 @@
   [
    "Kingsmere River Trail National Recreation Trail",
    "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
+   "© Trans Canada Trail | alanablock_Selkirk",
    "Trans Canada Trail _ Explore the Map"
   ],
   [
@@ -2233,7 +2231,7 @@
    "Kingsmere River Trail National Recreation Trail",
    "skip (not state/federal)",
    "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
   ],
   [
    "Kingsmere River Trail National Recreation Trail",
@@ -2370,7 +2368,7 @@
   [
    "Boundary Bog Trail National Geologic Trail",
    "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
+   "© Trans Canada Trail | alanablock_Selkirk",
    "Trans Canada Trail _ Explore the Map"
   ],
   [
@@ -2431,7 +2429,7 @@
    "Boundary Bog Trail National Geologic Trail",
    "skip (not state/federal)",
    "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
   ],
   [
    "Boundary Bog Trail National Geologic Trail",
@@ -2568,7 +2566,7 @@
   [
    "Red Deer Trail National Recreation Trail",
    "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
+   "© Trans Canada Trail | alanablock_Selkirk",
    "Trans Canada Trail _ Explore the Map"
   ],
   [
@@ -2629,7 +2627,7 @@
    "Red Deer Trail National Recreation Trail",
    "skip (not state/federal)",
    "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
   ],
   [
    "Red Deer Trail National Recreation Trail",
@@ -2766,7 +2764,7 @@
   [
    "Fisher Trail National Recreation Trail",
    "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
+   "© Trans Canada Trail | alanablock_Selkirk",
    "Trans Canada Trail _ Explore the Map"
   ],
   [
@@ -2827,7 +2825,7 @@
    "Fisher Trail National Recreation Trail",
    "skip (not state/federal)",
    "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
   ],
   [
    "Fisher Trail National Recreation Trail",
@@ -2964,7 +2962,7 @@
   [
    "Battleford-Swift Current Trail National Recreation Trail",
    "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
+   "© Trans Canada Trail | alanablock_Selkirk",
    "Trans Canada Trail _ Explore the Map"
   ],
   [
@@ -3025,7 +3023,7 @@
    "Battleford-Swift Current Trail National Recreation Trail",
    "skip (not state/federal)",
    "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
   ],
   [
    "Battleford-Swift Current Trail National Recreation Trail",
@@ -3162,7 +3160,7 @@
   [
    "Cochin Green Lake Trail National Historic Trail",
    "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
+   "© Trans Canada Trail | alanablock_Selkirk",
    "Trans Canada Trail _ Explore the Map"
   ],
   [
@@ -3223,7 +3221,7 @@
    "Cochin Green Lake Trail National Historic Trail",
    "skip (not state/federal)",
    "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
   ],
   [
    "Cochin Green Lake Trail National Historic Trail",
@@ -3360,7 +3358,7 @@
   [
    "Meadow lake Battleford Trail National Historic Trail",
    "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
+   "© Trans Canada Trail | alanablock_Selkirk",
    "Trans Canada Trail _ Explore the Map"
   ],
   [
@@ -3421,7 +3419,7 @@
    "Meadow lake Battleford Trail National Historic Trail",
    "skip (not state/federal)",
    "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
   ],
   [
    "Meadow lake Battleford Trail National Historic Trail",
@@ -3558,7 +3556,7 @@
   [
    "Fort Carlton- Touchwood Trail National Historic Trail",
    "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
+   "© Trans Canada Trail | alanablock_Selkirk",
    "Trans Canada Trail _ Explore the Map"
   ],
   [
@@ -3619,7 +3617,7 @@
    "Fort Carlton- Touchwood Trail National Historic Trail",
    "skip (not state/federal)",
    "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
   ],
   [
    "Fort Carlton- Touchwood Trail National Historic Trail",
@@ -3756,7 +3754,7 @@
   [
    "Troy-Prince Albert National Historic Trail",
    "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
+   "© Trans Canada Trail | alanablock_Selkirk",
    "Trans Canada Trail _ Explore the Map"
   ],
   [
@@ -3817,7 +3815,7 @@
    "Troy-Prince Albert National Historic Trail",
    "skip (not state/federal)",
    "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
   ],
   [
    "Troy-Prince Albert National Historic Trail",
@@ -3954,7 +3952,7 @@
   [
    "River Ridge Trails National Historic Trail",
    "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
+   "© Trans Canada Trail | alanablock_Selkirk",
    "Trans Canada Trail _ Explore the Map"
   ],
   [
@@ -4015,7 +4013,7 @@
    "River Ridge Trails National Historic Trail",
    "skip (not state/federal)",
    "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
   ],
   [
    "River Ridge Trails National Historic Trail",
@@ -4152,7 +4150,7 @@
   [
    "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
    "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
+   "© Trans Canada Trail | alanablock_Selkirk",
    "Trans Canada Trail _ Explore the Map"
   ],
   [
@@ -4213,7 +4211,7 @@
    "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
    "skip (not state/federal)",
    "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
   ],
   [
    "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
