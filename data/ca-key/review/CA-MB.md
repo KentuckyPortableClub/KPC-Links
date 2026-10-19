@@ -1,6 +1,6 @@
 # Canada MB: POTA parks vs official land (CPCAD)
 
-Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **210 of 308** joined (same name + same kind). **21** to check, **77** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **211 of 308** joined (same name + same kind). **20** to check, **77** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -8,7 +8,6 @@ Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **210 of 308** joined (same
 - **CA-0572** Whittier Recreation Park (Recreation Park) → Whittier Park Riparian Forest (~16 ac, similar name)
 - **CA-1048** Assiniboine Park (Park) → Assiniboine Forest (~707 ac, same name, different kind of place)
 - **CA-1050** Grassy Narrows Marsh Wildlife Reserve (Wildlife Reserve) → Hecla/Grindstone Provincial Park (~98,966 ac, the POTA pin is inside it (different name)); Hecla/Grindstone Provincial Park (~0 ac, the POTA pin is inside it (different name))
-- **CA-2371** A. Enns  Refuge Wildlife Management Area (Wildlife Management Area) → A. Enns (~0 ac, similar name)
 - **CA-2373** Primrose Wayside Recreation Park (Recreation Park) → Primrose Provincial Park (~0 ac, similar name)
 - **CA-2375** Asatiwisipe Aki (Poplar/Nanowin Rivers) Wildlife Management Area (Wildlife Management Area) → Asatiwisipe Aki Traditional Use Planning Area (~1,946,323 ac, similar name); Asatiwisipe Aki Traditional Use Planning Area (~49,384 ac, similar name)
 - **CA-2390** Cape Tatnam Wildlife Management Area (Wildlife Management Area) → Kaskatamagan Wildlife Management Area (~621,009 ac, the POTA pin is inside it (different name)); Kaskatamagan Wildlife Management Area (~0 ac, the POTA pin is inside it (different name))

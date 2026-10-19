@@ -1,12 +1,11 @@
 # Canada NS: POTA parks vs official land (CPCAD)
 
-Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **256 of 489** joined (same name + same kind). **23** to check, **208** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **258 of 489** joined (same name + same kind). **21** to check, **208** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
 - **CA-0043** Kejimkujik Seaside Adjunct National Park (National Park) → Kejimkujik National Park And National Historic Site Of Canada (~5,162 ac, similar name); Kejimkujik National Park And National Historic Site Of Canada (~0 ac, similar name)
 - **CA-0465** Lawrencetown Beach Provincial Park (Provincial Park) → Cole Harbour - Lawrencetown Provincial Park (~1,835 ac, the POTA pin is inside it (different name))
-- **CA-0467** Mavillette Beach Provincial Park (Provincial Park) → Mavilette Beach Provincial Park (~106 ac, the POTA pin is inside it (different name))
 - **CA-0485** Trout Brook Provincial Park (Provincial Park) → Trout Brook Wilderness Area Addition (~0 ac, similar name); Trout Brook Wilderness Area (~459 ac, same name, different kind of place); Trout Brook Wilderness Area (~105 ac, same name, different kind of place); Trout Brook Wilderness Area (~0 ac, same name, different kind of place)
 - **CA-1736** Calvary River Nature Reserve (Nature Reserve) → Calvary River Wilderness Area (~2,902 ac, same name, different kind of place); Calvary River Wilderness Area (~0 ac, same name, different kind of place)
 - **CA-1810** Northport Beach Provincial Park (Provincial Park) → Scallop Buffer Zone (SFA 22) (~704,937 ac, the POTA pin is inside it (different name))
@@ -15,7 +14,6 @@ Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **256 of 489** joined (same
 - **CA-1876** Irish Cove Provincial Park (Provincial Park) → Irish Cove Nature Reserve (~395 ac, same name, different kind of place); Irish Cove Nature Reserve (~0 ac, same name, different kind of place)
 - **CA-1882** Ten Mile Lake Provincial Park (Provincial Park) → Ten Mile Lake Wilderness Area (~1,668 ac, same name, different kind of place)
 - **CA-4834** Fort Lawrence National Historic Site (National Historic Site) → Fort Lawrence Conservation Lands (~0 ac, similar name); Fort Lawrence Conservation Lands (~0 ac, similar name)
-- **CA-5426** Cole Harbour-Lawrencetown Coastal Heritage Park Nature Park (Nature Park) → Cole Harbour - Lawrencetown Provincial Park (~1,835 ac, similar name)
 - **CA-5441** Lake-O-Law Provincial Park (Provincial Park) → Middle River Wilderness Area (~1,633 ac, the POTA pin is inside it (different name)); Middle River Wilderness Area (~0 ac, the POTA pin is inside it (different name))
 - **CA-5448** Thinkers Lodge National Historic Site (National Historic Site) → Scallop Buffer Zone (SFA 24) (~517,674 ac, the POTA pin is inside it (different name))
 - **CA-5810** Five Islands Lighthouse Park National Heritage Area (National Heritage Area) → Five Islands Provincial Park (~873 ac, similar name); Five Islands Provincial Park (~389 ac, similar name); Five Islands Provincial Park (~0 ac, similar name); Five Islands Provincial Park (~0 ac, similar name)

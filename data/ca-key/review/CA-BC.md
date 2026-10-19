@@ -1,31 +1,18 @@
 # Canada BC: POTA parks vs official land (CPCAD)
 
-Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **1088 of 1254** joined (same name + same kind). **33** to check, **131** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **1101 of 1254** joined (same name + same kind). **20** to check, **131** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
-- **CA-0743** Ts'yl-os Provincial Park (Provincial Park) → TS'IL?OS PARK (~576,348 ac, the POTA pin is inside it (different name))
-- **CA-3198** Banks Nii Luutiksm Conservation Area (Conservation Area) → BANKS NII ŁUUTIKSM CONSERVANCY (~38,511 ac, similar name); BANKS NII ŁUUTIKSM CONSERVANCY (~8,738 ac, similar name)
 - **CA-3211** Becher's Prairie Provincial Park (Provincial Park) → Old Growth Management Areas (Mapped Legal) (~3,560,536 ac, the POTA pin is inside it (different name))
-- **CA-3222** Big Bunsby Marine Provincial Park (Provincial Park) → BIG BUNSBY MARINE PARK (~870 ac, similar name); BIG BUNSBY MARINE PARK (~660 ac, similar name)
 - **CA-3282** Delta Nature Reserve (Nature Reserve) → Burns Bog Ecological Conservancy Area (~5,833 ac, the POTA pin is inside it (different name))
 - **CA-3297** Queen Charlotte Sound Glass Sponge Reefs Marine Protected Area (Marine Protected Area) → Hecate Strait and Queen Charlotte Sound Glass Sponge Reefs Marine Protected Areas (~371,243 ac, similar name); Hecate Strait and Queen Charlotte Sound Glass Sponge Reefs Marine Protected Areas (~224,265 ac, similar name)
 - **CA-3334** Chukachida Protected Area (Protected Area) → CHU CHUA COTTONWOOD PARK (~267 ac, the POTA pin is inside it (different name))
 - **CA-3358** Colony Farm Community Gardens at ƛ̓éxətəm Regional Park (Regional Park) → 4F - Community Park (~46 ac, similar name)
-- **CA-3458** Ecstall Spokskuut Conservation Area (Conservation Area) → ECSTALL-SPOKSUUT CONSERVANCY (~23,962 ac, the POTA pin is inside it (different name))
 - **CA-3476** Endeavour Hydrothermal Vents Marine Protected Area (Marine Protected Area) → Tang.ɢ̲wan — ḥačxʷiqak — Tsig̱is Marine Protected Area (~31,089,960 ac, the POTA pin is inside it (different name))
 - **CA-3508** Fleetwood Meadows Park (Park) → Fleetwood Park (~98 ac, similar name)
-- **CA-3536** Garden Bay Marine Provincial Park (Provincial Park) → GARDEN BAY MARINE PARK (~390 ac, similar name); GARDEN BAY MARINE PARK (~12 ac, similar name)
 - **CA-3591** Hawthorne Park (Park) → Hawthorne Rotary Park (~50 ac, similar name)
 - **CA-3596** Hecate Strait Glass Sponge Reefs Marine Protected Area (Marine Protected Area) → Hecate Strait and Queen Charlotte Sound Glass Sponge Reefs Marine Protected Areas (~371,243 ac, similar name); Hecate Strait and Queen Charlotte Sound Glass Sponge Reefs Marine Protected Areas (~224,265 ac, similar name)
-- **CA-3700** Klewnugget Conservation Area (Conservation Area) → KLEWNUGGIT CONSERVANCY (~16,766 ac, the POTA pin is inside it (different name))
-- **CA-3701** Klewnugget Inlet Marine Park (Marine Park) → KLEWNUGGIT INLET MARINE PARK (~3,726 ac, the POTA pin is inside it (different name))
-- **CA-3714** Ksi X'anmaas Conservation Area (Conservation Area) → KSI X' ANMAAS CONSERVANCY (~82,489 ac, the POTA pin is inside it (different name))
-- **CA-3816** Monckton Nii Luutiksm Conservation Area (Conservation Area) → MONCKTON NII ŁUUTIKSM CONSERVANCY (~54,983 ac, similar name); MONCKTON NII ŁUUTIKSM CONSERVANCY (~6,237 ac, similar name)
-- **CA-3833** Mount Elliot Ecological Reserve (Ecological Reserve) → MOUNT ELLIOTT ECOLOGICAL RESERVE (~801 ac, the POTA pin is inside it (different name))
-- **CA-3992** Puntzi Island Provincial Park (Provincial Park) → PUNTI ISLAND PARK (~30 ac, the POTA pin is inside it (different name))
-- **CA-4074** Sgaan Kinghlas-Bowie Seamount Marine Protected Area (Marine Protected Area) → SG̲áan K̲ínghlas-Bowie Marine Protected Area (~1,507,990 ac, similar name)
-- **CA-4179** Takla Lake Marine Provincial Park (Provincial Park) → TAKLA LAKE MARINE PARK (~1,359 ac, similar name)
 - **CA-4231** Tweedsmuir - North and Corridor Protected Area (Protected Area) → TWEEDSMUIR PARK (~2,445,633 ac, similar name); TWEEDSMUIR CORRIDOR PROTECTED AREA (~37 ac, similar name)
 - **CA-4233** Tweedsmuir South Provincial Park (Provincial Park) → TWEEDSMUIR PARK (~2,445,633 ac, same name, different kind of place)
 - **CA-4793** Kicking Horse Pass National Historic Site (National Historic Site) → Yoho National Park Of Canada (~324,474 ac, the POTA pin is inside it (different name))
