@@ -706,126 +706,6 @@
    5.5
   ],
   [
-   "US-1301",
-   "High Bridge Trail State Park",
-   "VA",
-   "Department of Rail and Public Transportation | Virginia Department of Rail and Public Transportation (DRPT) | GISAdmin@DRPT",
-   50,
-   0.0
-  ],
-  [
-   "US-1310",
-   "New River Trail State Park",
-   "VA",
-   "Department of Rail and Public Transportation | Virginia Department of Rail and Public Transportation (DRPT) | GISAdmin@DRPT",
-   88,
-   0.0
-  ],
-  [
-   "US-9904",
-   "Apple Orchard Falls National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   5,
-   0.0
-  ],
-  [
-   "US-9905",
-   "Cascades National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   6,
-   0.0
-  ],
-  [
-   "US-9906",
-   "Cornelius Creek National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   6,
-   0.0
-  ],
-  [
-   "US-9907",
-   "First Landing National Recreation Trail",
-   "VA",
-   "OpenStreetMap (not official)",
-   0,
-   0.7
-  ],
-  [
-   "US-9908",
-   "Hoop Hole National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   14,
-   2.1
-  ],
-  [
-   "US-9909",
-   "Little Stony Creek National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   5,
-   0.0
-  ],
-  [
-   "US-9910",
-   "Massanutten National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   141,
-   0.1
-  ],
-  [
-   "US-9920",
-   "Mount Rogers National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   8,
-   0.0
-  ],
-  [
-   "US-9922",
-   "The Lion's Tale National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   1,
-   0.0
-  ],
-  [
-   "US-9923",
-   "Virginia Creeper National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   27,
-   9.6
-  ],
-  [
-   "US-9925",
-   "Wild Oak National Recreation Trail",
-   "VA",
-   "US Forest Service",
-   43,
-   0.0
-  ],
-  [
-   "US-9934",
-   "James River Heritage State Trail",
-   "VA",
-   "Department of Rail and Public Transportation | Virginia Department of Rail and Public Transportation (DRPT) | GISAdmin@DRPT",
-   11,
-   0.0
-  ],
-  [
-   "US-10507",
-   "Rock Castle Gorge National Recreation Trail",
-   "VA",
-   "Original text, data, and maps produced by Dr. Erin Krutko Devlin (UMW), Dr. Jacqueline Gallagher (UMW), Dr. Stephen Hanna (UMW), and UMW students Josie Allamby and Elisa Luckabaugh. Text, data, and map revisions performed by NPS staff Joanne Blacoe, Taylor Brookins, Shaun Eyring, Laurel Racine, and Colleen Truskey. | ctruskey@nps.gov_nps",
-   0,
-   2.4
-  ],
-  [
    "US-7759",
    "David Dill Arrowhead State Trail",
    "MN",
@@ -1040,6 +920,358 @@
    "US Forest Service",
    0,
    4.6
+  ],
+  [
+   "US-8396",
+   "Nashua River Rail Trail State Trail",
+   "NH",
+   "OpenStreetMap (not official)",
+   41,
+   0.3
+  ],
+  [
+   "US-13595",
+   "Northern Recreational State Trail",
+   "NH",
+   "OpenStreetMap (not official)",
+   94,
+   0.0
+  ],
+  [
+   "US-1766",
+   "Katy Trail State Park",
+   "MO",
+   "Missouri Department of Natural Resources | MSDISMizzou",
+   385,
+   0.2
+  ],
+  [
+   "US-7836",
+   "Ozark State Trail",
+   "MO",
+   "Missouri Department of Conservation, Community and Private Lands Engagement Branch | MSDISMizzou",
+   72,
+   22.4
+  ],
+  [
+   "US-9753",
+   "Katy Trail Rock Island Spur State Park",
+   "MO",
+   "Missouri Department of Natural Resources | MSDISMizzou",
+   74,
+   0.7
+  ],
+  [
+   "US-8098",
+   "Empire State Trail",
+   "NY",
+   "OpenStreetMap (not official)",
+   66,
+   0.0
+  ],
+  [
+   "US-10076",
+   "Black River State Trail",
+   "NY",
+   "OpenStreetMap (not official)",
+   170,
+   0.0
+  ],
+  [
+   "US-12375",
+   "Catharine Valley State Trail",
+   "NY",
+   "OpenStreetMap (not official)",
+   22,
+   0.0
+  ],
+  [
+   "US-12382",
+   "WAG State Trail",
+   "NY",
+   "OpenStreetMap (not official)",
+   16,
+   0.0
+  ],
+  [
+   "US-9877",
+   "Junction and Breakwater National Recreation Trail",
+   "DE",
+   "OpenStreetMap (not official)",
+   12,
+   0.0
+  ],
+  [
+   "US-9878",
+   "Northern Delaware Greenway National Recreation Trail",
+   "DE",
+   "State of Delaware | Delaware State Parks | FirstMap@De",
+   11,
+   0.2
+  ],
+  [
+   "US-9879",
+   "Pinelands Nature National Recreation Trail",
+   "DE",
+   "State of Delaware | Delaware State Parks | FirstMap@De",
+   0,
+   0.6
+  ],
+  [
+   "US-9881",
+   "Pomeroy and Newark National Recreation Trail",
+   "DE",
+   "OpenStreetMap (not official)",
+   7,
+   0.2
+  ],
+  [
+   "US-13195",
+   "Jumbo Grade Trailhead BLM Historic Trail",
+   "NV",
+   "OpenStreetMap (not official)",
+   8,
+   0.1
+  ],
+  [
+   "US-9893",
+   "Tunnel Hill State Trail",
+   "IL",
+   "Illinois Department of Transportation (IDOT) | IDOTAdmin",
+   150,
+   0.0
+  ],
+  [
+   "US-10093",
+   "Rock Island Trail State Park",
+   "IL",
+   "Illinois Department of Transportation (IDOT) | IDOTAdmin",
+   45,
+   0.0
+  ],
+  [
+   "US-10660",
+   "Illinois and Michigan Canal State Trail",
+   "IL",
+   "OpenStreetMap (not official)",
+   138,
+   0.0
+  ],
+  [
+   "US-3171",
+   "Spokane River Centennial State Trail",
+   "WA",
+   "OpenStreetMap (not official)",
+   64,
+   0.2
+  ],
+  [
+   "US-3203",
+   "Palouse to Cascades State Park State Trail",
+   "WA",
+   "Washington State Parks and Recreation | Washington State Parks and Recreation Commission (WSPRC) GIS Department | Neil.Lasley@parks.wa.gov_wa_stateparks",
+   12,
+   28.5
+  ],
+  [
+   "US-10407",
+   "Columbia Plateau State Park Trail State Trail",
+   "WA",
+   "OpenStreetMap (not official)",
+   196,
+   0.0
+  ],
+  [
+   "US-10411",
+   "Willapa Hills State Park Trail State Trail",
+   "WA",
+   "OpenStreetMap (not official)",
+   92,
+   0.0
+  ],
+  [
+   "US-10706",
+   "Klickitat State Park State Trail",
+   "WA",
+   "OpenStreetMap (not official)",
+   59,
+   0.0
+  ],
+  [
+   "US-8321",
+   "Talimena Scenic Byway State Trail",
+   "AR",
+   "Darin Mitchell, GISP Senior GIS Analyst - Arkansas State Parks Michael Conway GIS/Database Analyst Arkansas Natural Heritage Commission | andrew.feltmann",
+   243,
+   3.0
+  ],
+  [
+   "US-8323",
+   "Ozark Highlands Scenic Byway State Trail",
+   "AR",
+   "OpenStreetMap (not official)",
+   357,
+   24.2
+  ],
+  [
+   "US-10258",
+   "Ouachita National National Recreation Trail",
+   "AR",
+   "US Forest Service",
+   219,
+   0.1
+  ],
+  [
+   "US-11393",
+   "Sylamore Scenic Byway State Trail",
+   "AR",
+   "OpenStreetMap (not official)",
+   35,
+   1.8
+  ],
+  [
+   "US-8321",
+   "Talimena Scenic Byway State Trail",
+   "OK",
+   "OpenStreetMap (not official)",
+   84,
+   0.0
+  ],
+  [
+   "US-10258",
+   "Ouachita National National Recreation Trail",
+   "OK",
+   "US Forest Service",
+   219,
+   0.1
+  ],
+  [
+   "US-11305",
+   "Wapsipinicon River Water State Trail",
+   "IA",
+   "OpenStreetMap (not official)",
+   163,
+   0.1
+  ],
+  [
+   "US-1301",
+   "High Bridge Trail State Park",
+   "VA",
+   "Department of Rail and Public Transportation | Virginia Department of Rail and Public Transportation (DRPT) | GISAdmin@DRPT",
+   50,
+   0.0
+  ],
+  [
+   "US-1310",
+   "New River Trail State Park",
+   "VA",
+   "Department of Rail and Public Transportation | Virginia Department of Rail and Public Transportation (DRPT) | GISAdmin@DRPT",
+   88,
+   0.0
+  ],
+  [
+   "US-9904",
+   "Apple Orchard Falls National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   5,
+   0.0
+  ],
+  [
+   "US-9905",
+   "Cascades National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   6,
+   0.0
+  ],
+  [
+   "US-9906",
+   "Cornelius Creek National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   6,
+   0.0
+  ],
+  [
+   "US-9907",
+   "First Landing National Recreation Trail",
+   "VA",
+   "OpenStreetMap (not official)",
+   0,
+   0.7
+  ],
+  [
+   "US-9908",
+   "Hoop Hole National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   14,
+   2.1
+  ],
+  [
+   "US-9909",
+   "Little Stony Creek National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   5,
+   0.0
+  ],
+  [
+   "US-9910",
+   "Massanutten National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   141,
+   0.1
+  ],
+  [
+   "US-9920",
+   "Mount Rogers National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   8,
+   0.0
+  ],
+  [
+   "US-9922",
+   "The Lion's Tale National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   1,
+   0.0
+  ],
+  [
+   "US-9923",
+   "Virginia Creeper National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   27,
+   9.6
+  ],
+  [
+   "US-9925",
+   "Wild Oak National Recreation Trail",
+   "VA",
+   "US Forest Service",
+   43,
+   0.0
+  ],
+  [
+   "US-9934",
+   "James River Heritage State Trail",
+   "VA",
+   "Department of Rail and Public Transportation | Virginia Department of Rail and Public Transportation (DRPT) | GISAdmin@DRPT",
+   11,
+   0.0
+  ],
+  [
+   "US-10507",
+   "Rock Castle Gorge National Recreation Trail",
+   "VA",
+   "Original text, data, and maps produced by Dr. Erin Krutko Devlin (UMW), Dr. Jacqueline Gallagher (UMW), Dr. Stephen Hanna (UMW), and UMW students Josie Allamby and Elisa Luckabaugh. Text, data, and map revisions performed by NPS staff Joanne Blacoe, Taylor Brookins, Shaun Eyring, Laurel Racine, and Colleen Truskey. | ctruskey@nps.gov_nps",
+   0,
+   2.4
   ],
   [
    "US-5788",
@@ -1274,110 +1506,6 @@
    0.0
   ],
   [
-   "US-8396",
-   "Nashua River Rail Trail State Trail",
-   "NH",
-   "OpenStreetMap (not official)",
-   41,
-   0.3
-  ],
-  [
-   "US-13595",
-   "Northern Recreational State Trail",
-   "NH",
-   "OpenStreetMap (not official)",
-   94,
-   0.0
-  ],
-  [
-   "US-1766",
-   "Katy Trail State Park",
-   "MO",
-   "Missouri Department of Natural Resources | MSDISMizzou",
-   385,
-   0.2
-  ],
-  [
-   "US-7836",
-   "Ozark State Trail",
-   "MO",
-   "Missouri Department of Conservation, Community and Private Lands Engagement Branch | MSDISMizzou",
-   72,
-   22.4
-  ],
-  [
-   "US-9753",
-   "Katy Trail Rock Island Spur State Park",
-   "MO",
-   "Missouri Department of Natural Resources | MSDISMizzou",
-   74,
-   0.7
-  ],
-  [
-   "US-8098",
-   "Empire State Trail",
-   "NY",
-   "OpenStreetMap (not official)",
-   66,
-   0.0
-  ],
-  [
-   "US-10076",
-   "Black River State Trail",
-   "NY",
-   "OpenStreetMap (not official)",
-   170,
-   0.0
-  ],
-  [
-   "US-12375",
-   "Catharine Valley State Trail",
-   "NY",
-   "OpenStreetMap (not official)",
-   22,
-   0.0
-  ],
-  [
-   "US-12382",
-   "WAG State Trail",
-   "NY",
-   "OpenStreetMap (not official)",
-   16,
-   0.0
-  ],
-  [
-   "US-9877",
-   "Junction and Breakwater National Recreation Trail",
-   "DE",
-   "OpenStreetMap (not official)",
-   12,
-   0.0
-  ],
-  [
-   "US-9878",
-   "Northern Delaware Greenway National Recreation Trail",
-   "DE",
-   "State of Delaware | Delaware State Parks | FirstMap@De",
-   11,
-   0.2
-  ],
-  [
-   "US-9879",
-   "Pinelands Nature National Recreation Trail",
-   "DE",
-   "State of Delaware | Delaware State Parks | FirstMap@De",
-   0,
-   0.6
-  ],
-  [
-   "US-9881",
-   "Pomeroy and Newark National Recreation Trail",
-   "DE",
-   "OpenStreetMap (not official)",
-   7,
-   0.2
-  ],
-  [
    "US-2955",
    "Wilson Cumberland Trail State Park",
    "TN",
@@ -1402,126 +1530,6 @@
    0.0
   ],
   [
-   "US-13195",
-   "Jumbo Grade Trailhead BLM Historic Trail",
-   "NV",
-   "OpenStreetMap (not official)",
-   8,
-   0.1
-  ],
-  [
-   "US-9893",
-   "Tunnel Hill State Trail",
-   "IL",
-   "Illinois Department of Transportation (IDOT) | IDOTAdmin",
-   150,
-   0.0
-  ],
-  [
-   "US-10093",
-   "Rock Island Trail State Park",
-   "IL",
-   "Illinois Department of Transportation (IDOT) | IDOTAdmin",
-   45,
-   0.0
-  ],
-  [
-   "US-10660",
-   "Illinois and Michigan Canal State Trail",
-   "IL",
-   "OpenStreetMap (not official)",
-   138,
-   0.0
-  ],
-  [
-   "US-3171",
-   "Spokane River Centennial State Trail",
-   "WA",
-   "OpenStreetMap (not official)",
-   64,
-   0.2
-  ],
-  [
-   "US-3203",
-   "Palouse to Cascades State Park State Trail",
-   "WA",
-   "Washington State Parks and Recreation | Washington State Parks and Recreation Commission (WSPRC) GIS Department | Neil.Lasley@parks.wa.gov_wa_stateparks",
-   12,
-   28.5
-  ],
-  [
-   "US-10407",
-   "Columbia Plateau State Park Trail State Trail",
-   "WA",
-   "OpenStreetMap (not official)",
-   196,
-   0.0
-  ],
-  [
-   "US-10411",
-   "Willapa Hills State Park Trail State Trail",
-   "WA",
-   "OpenStreetMap (not official)",
-   92,
-   0.0
-  ],
-  [
-   "US-10706",
-   "Klickitat State Park State Trail",
-   "WA",
-   "OpenStreetMap (not official)",
-   59,
-   0.0
-  ],
-  [
-   "US-8321",
-   "Talimena Scenic Byway State Trail",
-   "AR",
-   "Darin Mitchell, GISP Senior GIS Analyst - Arkansas State Parks Michael Conway GIS/Database Analyst Arkansas Natural Heritage Commission | andrew.feltmann",
-   243,
-   3.0
-  ],
-  [
-   "US-8323",
-   "Ozark Highlands Scenic Byway State Trail",
-   "AR",
-   "OpenStreetMap (not official)",
-   357,
-   24.2
-  ],
-  [
-   "US-10258",
-   "Ouachita National National Recreation Trail",
-   "AR",
-   "US Forest Service",
-   219,
-   0.1
-  ],
-  [
-   "US-11393",
-   "Sylamore Scenic Byway State Trail",
-   "AR",
-   "OpenStreetMap (not official)",
-   35,
-   1.8
-  ],
-  [
-   "US-8321",
-   "Talimena Scenic Byway State Trail",
-   "OK",
-   "OpenStreetMap (not official)",
-   84,
-   0.0
-  ],
-  [
-   "US-10258",
-   "Ouachita National National Recreation Trail",
-   "OK",
-   "US Forest Service",
-   219,
-   0.1
-  ],
-  [
    "US-4584",
    "Ashton-Tetonia Trail State Park",
    "ID",
@@ -1536,14 +1544,6 @@
    "Idaho Department of Parks and Recreation | State_of_Idaho",
    2015,
    0.0
-  ],
-  [
-   "US-11305",
-   "Wapsipinicon River Water State Trail",
-   "IA",
-   "OpenStreetMap (not official)",
-   163,
-   0.1
   ]
  ],
  "missing": [
@@ -1856,30 +1856,6 @@
  ],
  "noline": [
   [
-   "US-9935",
-   "Virginia Bird & Wildlife State Trail",
-   "VA",
-   "a driving route, area or water trail: no single line to draw"
-  ],
-  [
-   "US-3424",
-   "Ice Age Floods National Geologic Trail",
-   "OR",
-   "a driving route, area or water trail: no single line to draw"
-  ],
-  [
-   "US-9980",
-   "Willamette River Greenway and Water State Trail",
-   "OR",
-   "a driving route, area or water trail: no single line to draw"
-  ],
-  [
-   "US-10919",
-   "Na Ala Hele State Trail",
-   "HI",
-   "a driving route, area or water trail: no single line to draw"
-  ],
-  [
    "US-2152",
    "Trail View State Park",
    "NY",
@@ -2002,12 +1978,6 @@
   [
    "US-3424",
    "Ice Age Floods National Geologic Trail",
-   "ID",
-   "a driving route, area or water trail: no single line to draw"
-  ],
-  [
-   "US-3424",
-   "Ice Age Floods National Geologic Trail",
    "MT",
    "a driving route, area or water trail: no single line to draw"
   ],
@@ -2016,1724 +1986,2298 @@
    "New Jersey Coastal State Trail",
    "NJ",
    "a driving route, area or water trail: no single line to draw"
+  ],
+  [
+   "US-9935",
+   "Virginia Bird & Wildlife State Trail",
+   "VA",
+   "a driving route, area or water trail: no single line to draw"
+  ],
+  [
+   "US-3424",
+   "Ice Age Floods National Geologic Trail",
+   "OR",
+   "a driving route, area or water trail: no single line to draw"
+  ],
+  [
+   "US-9980",
+   "Willamette River Greenway and Water State Trail",
+   "OR",
+   "a driving route, area or water trail: no single line to draw"
+  ],
+  [
+   "US-10919",
+   "Na Ala Hele State Trail",
+   "HI",
+   "a driving route, area or water trail: no single line to draw"
+  ],
+  [
+   "US-3424",
+   "Ice Age Floods National Geologic Trail",
+   "ID",
+   "a driving route, area or water trail: no single line to draw"
   ]
  ],
  "agency": [
   [
-   "True Grit State Trail",
+   "Waahila Ridge",
    "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
+   "tquarles_Jaxstate",
+   "Hawaii_land_cover"
   ],
   [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "JPWalden@GarverUSA.com_Garver",
-   "Pulaski_Co_Trails_UNINCORP_ONLY"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Popups"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Equity Index 2021"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "wlgardnerjr",
-   "Magazine Trails and Waypoints_WFL1"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails HCH StoryMap"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailSystems"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | swindmiller_camsys",
-   "Trail_shp"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Selected_Segments_gdb"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Projects VIEW"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Land Records"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "City of Pueblo, Colorado, Department of Information Technolo",
-   "Multi-Use Trails"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "rtcderek",
-   "ArkansasRiverTrailLine"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments 2025"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments view 2025"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailBuildPts"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Off_Street_Trails_Downtown"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Future Trails (Mature Support)"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Segments_for_Short-Term_Counts.gdb"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "rculpepp_UAGEOS",
-   "NWA AADB Final view"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "SP 1 View"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 3 View"
-  ],
-  [
-   "True Grit State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 2 View"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "University of Arkansas, Center for Advanced Spatial Technolo",
-   "dataVIEW of NW Arkansas Trails 2026"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Parks and Trails"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
-   "Fayetteville Trails"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "isaac.sims_craftontull",
-   "South Arkansas Trails_WFL1"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "gogeographics",
-   "Arkansas_Trails_Collected"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "Northwest Arkansas Regional Planning Commission |  | cscarla",
-   "Heritage_Trails_Lines"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails Connecting Bentonville"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "cscarlat04",
-   "NWA_CPRG_Proj_Plans_Trails"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Regional Equity Index"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "JPWalden@GarverUSA.com_Garver",
-   "Pulaski_Co_Trails_UNINCORP_ONLY"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Popups"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Equity Index 2021"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "wlgardnerjr",
-   "Magazine Trails and Waypoints_WFL1"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails HCH StoryMap"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailSystems"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | swindmiller_camsys",
-   "Trail_shp"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Selected_Segments_gdb"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Projects VIEW"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Land Records"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "City of Pueblo, Colorado, Department of Information Technolo",
-   "Multi-Use Trails"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "rtcderek",
-   "ArkansasRiverTrailLine"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments 2025"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments view 2025"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailBuildPts"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Off_Street_Trails_Downtown"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Future Trails (Mature Support)"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Segments_for_Short-Term_Counts.gdb"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "rculpepp_UAGEOS",
-   "NWA AADB Final view"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "SP 1 View"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 3 View"
-  ],
-  [
-   "Arkansas Rocks! Mining & Mineral State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 2 View"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "University of Arkansas, Center for Advanced Spatial Technolo",
-   "dataVIEW of NW Arkansas Trails 2026"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Parks and Trails"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
-   "Fayetteville Trails"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "isaac.sims_craftontull",
-   "South Arkansas Trails_WFL1"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "gogeographics",
-   "Arkansas_Trails_Collected"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Northwest Arkansas Regional Planning Commission |  | cscarla",
-   "Heritage_Trails_Lines"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails Connecting Bentonville"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "cscarlat04",
-   "NWA_CPRG_Proj_Plans_Trails"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Regional Equity Index"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "JPWalden@GarverUSA.com_Garver",
-   "Pulaski_Co_Trails_UNINCORP_ONLY"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Popups"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Equity Index 2021"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "wlgardnerjr",
-   "Magazine Trails and Waypoints_WFL1"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails HCH StoryMap"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailSystems"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | swindmiller_camsys",
-   "Trail_shp"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Selected_Segments_gdb"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Projects VIEW"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Land Records"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "City of Pueblo, Colorado, Department of Information Technolo",
-   "Multi-Use Trails"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "rtcderek",
-   "ArkansasRiverTrailLine"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments 2025"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments view 2025"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailBuildPts"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Off_Street_Trails_Downtown"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Future Trails (Mature Support)"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Segments_for_Short-Term_Counts.gdb"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "rculpepp_UAGEOS",
-   "NWA AADB Final view"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "SP 1 View"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 3 View"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 2 View"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Maryland Department of Transportation (MDOT), Maryland Depar",
-   "MDOT SHA Scenic Byways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Kentucky Transportation Cabinet | Kentucky Transportation Ca",
-   "Scenic Byways in Kentucky"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Originator: WisDOT Bureau of Planning and Economic Developme",
-   "Scenic Byways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Maryland Department of Transportation (MDOT), Maryland Depar",
-   "MDOT SHA Scenic Byways (Branch)"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Iowa Department of Transportation | Iowa Department of Trans",
-   "Scenic Byway"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "National Trust for Historic Preservation | Scenic America | ",
-   "HMR66: Route 66 Scenic Byways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "UDOT - GIS | UDOT_Admin",
-   "Utah Scenic Byways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "CDOT ArcGIS Online |  | ColoradoDOT_GIS",
-   "Scenic Byways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Originator: WisDOT Bureau of Planning and Economic Developme",
-   "Scenic Byways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "macay004_UMN",
-   "Scenic_Byways_MN"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "This data layer was produced by the Virginia Department of T",
-   "VDOT_Virginia_Scenic_Byways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Minnesota Department of Transportation | MnDOT_GIS",
-   "Scenic Byways in Minnesota"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Massachusetts geoDOT |  | massDOT_GIS",
-   "Scenic Byways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "State of Maine |  | MaineDOT_OpenData",
-   "MaineDOT Scenic Byways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Scott Davis, PW Transportation Manager\nBecca Pilcher, Exec. ",
-   "Thurston Bountiful Byways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "JFERRELL_TXDOT",
-   "Proposed Scenic Byways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Monmouth County Division of Planning | nearyb_AGO",
-   "2020 Upper Freehold Historic Farmland Byway Route "
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Florida Department of Transportation | FDOT Transportation D",
-   "Scenic_Highways_TDA"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Minnesota Department of Transportation | MnDOT_GIS",
-   "Scenic Byways in Minnesota"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "North Carolina Department of Information Technology -Transpo",
-   "NCDOT_ScenicByways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "WCG Scenic Byways administered by the Wisconsin Department o",
-   "WCG Scenic Byways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Monmouth County Division of Planning | nearyb_AGO",
-   "Cultural and Heritage Byway POI in SFHA"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Bureau of Transportation Planning, Kansas Department of Tran",
-   "Scenic_Byways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "WSDOT Online Map Center | Washington State Department of Tra",
-   "WSDOT - Scenic Byways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "akrouse",
-   "Warren Heritage Scenic Byway Map_WFL1"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Carteret County Information Technology Department- GIS Divis",
-   "Outer_banks_scenic_byway_Carteret"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "FDOT Transportation Statistics Office, FDOT Surveying and Ma",
-   "Florida_Scenic_Highways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "WVDOT | WVDOT_Publisher",
-   "Scenic Byway Points Of Interests"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "awyattsmith0615",
-   "America_s Scenic Highways and Byways_WFL1"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "WVDOT_Publisher",
-   "Byways and Backways 2019"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "State of North Dakota | Original data obtained from the Nati",
-   "NDGISHUB Scenic Byway Roads"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "christa.curtiss_cdot",
-   "Scenic_Byways_2025_11"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "AKDOT_GIS",
-   "Scenic Byway"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Rob.Balmes_MarionCountyFL",
-   "scenic_highways"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "The Arizona Department of Transportation | SThompson@azdot.g",
-   "Historic and Scenic Routes"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "NMDOT, Planning, Tourism, FHWA | alma.pacheco_NMDOT",
-   "NM Scenic Byways-Updated 2025"
-  ],
-  [
-   "Sylamore Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Monmouth County Division of Planning | nearyb_AGO",
-   "CulturalHerita_ExportFeature"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "University of Arkansas, Center for Advanced Spatial Technolo",
-   "dataVIEW of NW Arkansas Trails 2026"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Parks and Trails"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | info@beaverwatershedalliance.org",
-   "Fayetteville Trails"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "isaac.sims_craftontull",
-   "South Arkansas Trails_WFL1"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "gogeographics",
-   "Arkansas_Trails_Collected"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "Northwest Arkansas Regional Planning Commission |  | cscarla",
-   "Heritage_Trails_Lines"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails Connecting Bentonville"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "cscarlat04",
-   "NWA_CPRG_Proj_Plans_Trails"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Regional Equity Index"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "gogeographics",
-   "NW_Arkansas_Mountain_Bike_Polygons_30_Feet"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "JPWalden@GarverUSA.com_Garver",
-   "Pulaski_Co_Trails_UNINCORP_ONLY"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Popups"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Equity Index 2021"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "wlgardnerjr",
-   "Magazine Trails and Waypoints_WFL1"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Proposed Trails HCH StoryMap"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailSystems"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | swindmiller_camsys",
-   "Trail_shp"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Selected_Segments_gdb"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Active Transportation Infrastructure Projects VIEW"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "City of Fayetteville, AR | FayettevilleAR",
-   "Land Records"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "City of Pueblo, Colorado, Department of Information Technolo",
-   "Multi-Use Trails"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "rtcderek",
-   "ArkansasRiverTrailLine"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments 2025"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Join Features to Adopted Trail Segments view 2025"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "TrailBuildPts"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Off_Street_Trails_Downtown"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "sfrank_TB",
-   "Future Trails (Mature Support)"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "mvann_UNC",
-   "Segments_for_Short-Term_Counts.gdb"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "rculpepp_UAGEOS",
-   "NWA AADB Final view"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "SP 1 View"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 3 View"
-  ],
-  [
-   "Upper Illinois River Water Trail State Trail",
-   "skip (not state/federal)",
-   "vgurel_TB",
-   "Down 2 View"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Association of Central Oklahoma Governments, Oklahoma City C",
-   "Tree Canopy by Trails"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "ODWC_GIS",
-   "Great Plains Trail of Oklahoma _v2_1_ PVL"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "ODWC_GIS",
-   "Great Plains Trail of Oklahoma _v2_1_ Webmap of 2021_WFL1"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "Chisholm Trail Metropolitan Planning Area"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "clarkj24_utoronto",
-   "tl_2022_us_aiannh"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "okdot_gis_statewide",
-   "OSU Stillwater Lake Carl Blackwell (OSU)"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Association of Central Oklahoma Governments | jmsebesta",
-   "Trails"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "ODOT GIS Management Branch. | OKDOT_GIS",
-   "Cattle_Trails"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "archiveDRP",
-   "Detailed_Tornado_Path_Polygon"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "archiveDRP",
-   "Tornado_Path_from_Heli_Video"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "archiveDRP",
-   "Tornado Path Polygon from Heli Video"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "chadjclark1992",
-   "Oklahoma1924"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO Census Food Desert Tracts"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO DOT Disadvantaged Tracts"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "levikeely",
-   "RSU_CONSERVATION_EDUCATION_RESERVE_MAIN_TRAILS"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO ACS Census Language Tracts"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO Census Incorporated Places"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO Census Persistent Poverty RAISE Grant Tracts"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO Census Persistent Poverty Tracts"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO Aviation Facilities"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "jmsebesta",
-   "ACOG Planned Bike Network January 2025"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO TAZ Boundaries"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "okdot_gis_statewide",
-   "Great Plains Trail of Oklahoma (ODWC)"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
+   "Waahila Ridge",
    "skip (not state/federal)",
    "ryant@CHW",
    "RailwayBridge_Clip_Point"
   ],
   [
-   "Talimena Scenic Byway State Trail",
+   "Waahila Ridge",
    "skip (not state/federal)",
-   "levikeely",
-   "RSU_CONSERVATION_EDUCATION_RESERVE_MAIN_TRAILS_AND_SERVICE_R"
+   "kniv4704_ui_uidaho",
+   "Hawaii_Volcanoes_NP_FIRE_407_WFL1"
   ],
   [
-   "Talimena Scenic Byway State Trail",
+   "Waahila Ridge",
    "skip (not state/federal)",
-   "OKDOT_GIS",
-   "Oklahoma Bike Routes"
+   "ldf5129_pennstate",
+   "nps_boundary"
   ],
   [
-   "Talimena Scenic Byway State Trail",
+   "Waahila Ridge",
    "skip (not state/federal)",
-   "levikeely",
-   "RSU_CONSERVATION_EDUCATION_RESERVE_FENCE_AND_TRAIL_DAMAGE"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "levikeely",
-   "RSU_CONSERVATION_EDUCATION_RESERVE_MOWED_TRAILS_SERVICE_ROAD"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "archiveDRP",
-   "Tornado_Path_from_Heli_Video"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "EHAMIL16_depaul_edu",
-   "trails files"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "chadjclark1992",
-   "TrailsDemo1_WFL1"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "chadjclark1992",
-   "TrailsDemo1_WTL1"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "OKHouse1",
-   "Oklahoma Golf Trail"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "OKHouse1",
-   "Oklahoma Fishing Trail"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "OSDH, CHS | lauren.wilkerson_osdh",
-   "Bicycle Routes"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "jfranco33",
-   "Parks_Recreation_Data"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "chadjclark1992",
-   "Trails4_WFL1"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "IndianaMap",
-   "General Manufacturing Facilities 2009"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "centrors_HC",
-   "General_Manufacturing_Facilities_PR_2021"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Maryland Department of Transportation (MDOT), Maryland Depar",
-   "MDOT SHA Scenic Byways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Kentucky Transportation Cabinet | Kentucky Transportation Ca",
-   "Scenic Byways in Kentucky"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Originator: WisDOT Bureau of Planning and Economic Developme",
-   "Scenic Byways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Maryland Department of Transportation (MDOT), Maryland Depar",
-   "MDOT SHA Scenic Byways (Branch)"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Iowa Department of Transportation | Iowa Department of Trans",
-   "Scenic Byway"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "National Trust for Historic Preservation | Scenic America | ",
-   "HMR66: Route 66 Scenic Byways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "UDOT - GIS | UDOT_Admin",
-   "Utah Scenic Byways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "CDOT ArcGIS Online |  | ColoradoDOT_GIS",
-   "Scenic Byways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Originator: WisDOT Bureau of Planning and Economic Developme",
-   "Scenic Byways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "macay004_UMN",
-   "Scenic_Byways_MN"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "This data layer was produced by the Virginia Department of T",
-   "VDOT_Virginia_Scenic_Byways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Minnesota Department of Transportation | MnDOT_GIS",
-   "Scenic Byways in Minnesota"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Massachusetts geoDOT |  | massDOT_GIS",
-   "Scenic Byways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "State of Maine |  | MaineDOT_OpenData",
-   "MaineDOT Scenic Byways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Scott Davis, PW Transportation Manager\nBecca Pilcher, Exec. ",
-   "Thurston Bountiful Byways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "JFERRELL_TXDOT",
-   "Proposed Scenic Byways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Monmouth County Division of Planning | nearyb_AGO",
-   "2020 Upper Freehold Historic Farmland Byway Route "
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Florida Department of Transportation | FDOT Transportation D",
-   "Scenic_Highways_TDA"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Minnesota Department of Transportation | MnDOT_GIS",
-   "Scenic Byways in Minnesota"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "North Carolina Department of Information Technology -Transpo",
-   "NCDOT_ScenicByways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "WCG Scenic Byways administered by the Wisconsin Department o",
-   "WCG Scenic Byways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Monmouth County Division of Planning | nearyb_AGO",
-   "Cultural and Heritage Byway POI in SFHA"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Bureau of Transportation Planning, Kansas Department of Tran",
-   "Scenic_Byways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "WSDOT Online Map Center | Washington State Department of Tra",
-   "WSDOT - Scenic Byways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "akrouse",
-   "Warren Heritage Scenic Byway Map_WFL1"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Carteret County Information Technology Department- GIS Divis",
-   "Outer_banks_scenic_byway_Carteret"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "FDOT Transportation Statistics Office, FDOT Surveying and Ma",
-   "Florida_Scenic_Highways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "WVDOT | WVDOT_Publisher",
-   "Scenic Byway Points Of Interests"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "awyattsmith0615",
-   "America_s Scenic Highways and Byways_WFL1"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "WVDOT_Publisher",
-   "Byways and Backways 2019"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "State of North Dakota | Original data obtained from the Nati",
-   "NDGISHUB Scenic Byway Roads"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "christa.curtiss_cdot",
-   "Scenic_Byways_2025_11"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "AKDOT_GIS",
-   "Scenic Byway"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Rob.Balmes_MarionCountyFL",
-   "scenic_highways"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "The Arizona Department of Transportation | SThompson@azdot.g",
-   "Historic and Scenic Routes"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "NMDOT, Planning, Tourism, FHWA | alma.pacheco_NMDOT",
-   "NM Scenic Byways-Updated 2025"
-  ],
-  [
-   "Talimena Scenic Byway State Trail",
-   "skip (not state/federal)",
-   "Monmouth County Division of Planning | nearyb_AGO",
-   "CulturalHerita_ExportFeature"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "Association of Central Oklahoma Governments, Oklahoma City C",
-   "Tree Canopy by Trails"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "ODWC_GIS",
-   "Great Plains Trail of Oklahoma _v2_1_ PVL"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "ODWC_GIS",
-   "Great Plains Trail of Oklahoma _v2_1_ Webmap of 2021_WFL1"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "Chisholm Trail Metropolitan Planning Area"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "clarkj24_utoronto",
-   "tl_2022_us_aiannh"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "okdot_gis_statewide",
-   "OSU Stillwater Lake Carl Blackwell (OSU)"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "Association of Central Oklahoma Governments | jmsebesta",
+   "tyler.sheppard.2",
    "Trails"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila Ridge",
    "skip (not state/federal)",
-   "ODOT GIS Management Branch. | OKDOT_GIS",
-   "Cattle_Trails"
+   "dlnr_jbauer",
+   "Kalopa_TrailReroutes view"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila Ridge",
    "skip (not state/federal)",
-   "archiveDRP",
-   "Detailed_Tornado_Path_Polygon"
+   "Seth_Hart",
+   "SH_Oregon_Trail_WFL1"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila Ridge",
    "skip (not state/federal)",
-   "archiveDRP",
-   "Tornado_Path_from_Heli_Video"
+   "Division of Forestry and Wildlife | dlnr_dmatsuwaki",
+   "DOFAWManagedLands"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila Ridge",
    "skip (not state/federal)",
-   "archiveDRP",
-   "Tornado Path Polygon from Heli Video"
+   "Division of Forestry and Wildlife | dlnr_dmatsuwaki",
+   "DOFAWManagedLandsV2"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila Ridge",
    "skip (not state/federal)",
-   "chadjclark1992",
-   "Oklahoma1924"
+   "campbell10_uagis",
+   "Na_Ala_Hele_Trails"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila Ridge",
    "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO Census Food Desert Tracts"
+   "cmalyshk@uvm.edu_UVM",
+   "Winter Fun Near Ludlow_ VT_WTL1"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO DOT Disadvantaged Tracts"
+   "tommyphammy",
+   "Waahila Ridge"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "levikeely",
-   "RSU_CONSERVATION_EDUCATION_RESERVE_MAIN_TRAILS"
+   "tommyphammy",
+   "WaahilaRidgeTrailHead"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO ACS Census Language Tracts"
+   "State Department of Land and Natural Resources, DOFAW, Na Al",
+   "Na Ala Hele Trails"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO Census Incorporated Places"
+   "State Department of Land and Natural Resources, DOFAW, Na Al",
+   "Na Ala Hele Trails"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO Census Persistent Poverty RAISE Grant Tracts"
+   "State Department of Land and Natural Resources, Division of ",
+   "Na Ala Hele Trails 2019"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO Census Persistent Poverty Tracts"
+   "State Department of Land and Natural Resources, DOFAW, Na Al",
+   "Na Ala Hele Trails 2020"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO Aviation Facilities"
+   "State Department of Land and Natural Resources, DOFAW, Na Al",
+   "MoanaluaTrails"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "jmsebesta",
-   "ACOG Planned Bike Network January 2025"
+   "adwight@wm.edu_wm_gis",
+   "Buffer_of_Na_Ala_Hele_Trails_on_Hawaii1"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "jeremy_ctmpo",
-   "CTMPO TAZ Boundaries"
+   "Created and curated by the Division of State Parks. Referenc",
+   "State Park Boundaries"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "okdot_gis_statewide",
-   "Great Plains Trail of Oklahoma (ODWC)"
+   "adwight@wm.edu_wm_gis",
+   "Buffer_of_Na_Ala_Hele_Trails_on_Hawaii"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila",
+   "skip (not state/federal)",
+   "County of Hawaii GIS | County of Hawai\u02bbi Planning Department",
+   "Hawaii County Zoning"
+  ],
+  [
+   "Waahila",
+   "skip (not state/federal)",
+   "State Department of Land and Natural Resources, DOFAW, Na Al",
+   "HawaiiTrails"
+  ],
+  [
+   "Waahila",
+   "skip (not state/federal)",
+   "dlnr_dmatsuwaki",
+   "Public Use Na Ala Hele Trails"
+  ],
+  [
+   "Waahila",
+   "skip (not state/federal)",
+   "dlnr_researcher_bninomoto",
+   "NAH HI Outreach Volunteer Work Log QC"
+  ],
+  [
+   "Waahila",
+   "skip (not state/federal)",
+   "tquarles_Jaxstate",
+   "Hawaii_land_cover"
+  ],
+  [
+   "Waahila",
    "skip (not state/federal)",
    "ryant@CHW",
    "RailwayBridge_Clip_Point"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "levikeely",
-   "RSU_CONSERVATION_EDUCATION_RESERVE_MAIN_TRAILS_AND_SERVICE_R"
+   "kniv4704_ui_uidaho",
+   "Hawaii_Volcanoes_NP_FIRE_407_WFL1"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "OKDOT_GIS",
-   "Oklahoma Bike Routes"
+   "ldf5129_pennstate",
+   "nps_boundary"
   ],
   [
-   "Osage National Heritage State Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "levikeely",
-   "RSU_CONSERVATION_EDUCATION_RESERVE_FENCE_AND_TRAIL_DAMAGE"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "levikeely",
-   "RSU_CONSERVATION_EDUCATION_RESERVE_MOWED_TRAILS_SERVICE_ROAD"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "archiveDRP",
-   "Tornado_Path_from_Heli_Video"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "EHAMIL16_depaul_edu",
-   "trails files"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "chadjclark1992",
-   "TrailsDemo1_WFL1"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "chadjclark1992",
-   "TrailsDemo1_WTL1"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "OKHouse1",
-   "Oklahoma Golf Trail"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "OKHouse1",
-   "Oklahoma Fishing Trail"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "OSDH, CHS | lauren.wilkerson_osdh",
-   "Bicycle Routes"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "jfranco33",
-   "Parks_Recreation_Data"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "chadjclark1992",
-   "Trails4_WFL1"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "IndianaMap",
-   "General Manufacturing Facilities 2009"
-  ],
-  [
-   "Osage National Heritage State Trail",
-   "skip (not state/federal)",
-   "centrors_HC",
-   "General_Manufacturing_Facilities_PR_2021"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "Yosemite National Park GIS | YOSE_GIS",
-   "Yosemite National Park - Trails - Open Data"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "City of Shasta Lake |  | dhedemark_shastalake",
-   "Regional Trails Network (Public View)"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "Mariposa County GIS | MariposaCounty",
-   "Canyon Creek Trail"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "Trinity County Resource Conservation District, Weaver Basin ",
-   "WBTS_Trails"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "rtcderek",
-   "Bay Area Trails Collaborative (BATC) Regional Trail Network"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "lindseygordon",
-   "Nevada County Trails PUBLIC VL"
-  ],
-  [
-   "Trona Pinnacles National Geologic Trail",
-   "skip (not state/federal)",
-   "County of Nevada, California | Nevada County GIS | CountyofN",
+   "tyler.sheppard.2",
    "Trails"
   ],
   [
-   "Trona Pinnacles National Geologic Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "Sustainability & Resilience and Parks and Recreation, City o",
-   "Lower Mission Creek Loop v1_WFL2"
+   "dlnr_jbauer",
+   "Kalopa_TrailReroutes view"
   ],
   [
-   "Trona Pinnacles National Geologic Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "Nathanial.Wigington",
-   "North Grove Trail Markers"
+   "Seth_Hart",
+   "SH_Oregon_Trail_WFL1"
   ],
   [
-   "Trona Pinnacles National Geologic Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "Coastwalk California | CCTA | ben_CCTA",
-   "California Coastal Trail"
+   "Division of Forestry and Wildlife | dlnr_dmatsuwaki",
+   "DOFAWManagedLands"
   ],
   [
-   "Trona Pinnacles National Geologic Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "South Yuba River Citizens League | CountyofNevada",
-   "SYRCL Trail Markers"
+   "Division of Forestry and Wildlife | dlnr_dmatsuwaki",
+   "DOFAWManagedLandsV2"
   ],
   [
-   "Trona Pinnacles National Geologic Trail",
+   "Waahila",
    "skip (not state/federal)",
-   "DTSC_Admin",
-   "PCT_Trail"
+   "campbell10_uagis",
+   "Na_Ala_Hele_Trails"
+  ],
+  [
+   "Waahila",
+   "skip (not state/federal)",
+   "cmalyshk@uvm.edu_UVM",
+   "Winter Fun Near Ludlow_ VT_WTL1"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "State Department of Land and Natural Resources, DOFAW, Na Al",
+   "Na Ala Hele Trails"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "State Department of Land and Natural Resources, DOFAW, Na Al",
+   "Na Ala Hele Trails"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "State Department of Land and Natural Resources, Division of ",
+   "Na Ala Hele Trails 2019"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "State Department of Land and Natural Resources, DOFAW, Na Al",
+   "Na Ala Hele Trails 2020"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "State Department of Land and Natural Resources, DOFAW, Na Al",
+   "MoanaluaTrails"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "adwight@wm.edu_wm_gis",
+   "Buffer_of_Na_Ala_Hele_Trails_on_Hawaii1"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "Created and curated by the Division of State Parks. Referenc",
+   "State Park Boundaries"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "adwight@wm.edu_wm_gis",
+   "Buffer_of_Na_Ala_Hele_Trails_on_Hawaii"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "County of Hawaii GIS | County of Hawai\u02bbi Planning Department",
+   "Hawaii County Zoning"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "State Department of Land and Natural Resources, DOFAW, Na Al",
+   "HawaiiTrails"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "dlnr_dmatsuwaki",
+   "Public Use Na Ala Hele Trails"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "dlnr_researcher_bninomoto",
+   "NAH HI Outreach Volunteer Work Log QC"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "tquarles_Jaxstate",
+   "Hawaii_land_cover"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "ryant@CHW",
+   "RailwayBridge_Clip_Point"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "kniv4704_ui_uidaho",
+   "Hawaii_Volcanoes_NP_FIRE_407_WFL1"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "ldf5129_pennstate",
+   "nps_boundary"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "tyler.sheppard.2",
+   "Trails"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "dlnr_jbauer",
+   "Kalopa_TrailReroutes view"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "Seth_Hart",
+   "SH_Oregon_Trail_WFL1"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "Division of Forestry and Wildlife | dlnr_dmatsuwaki",
+   "DOFAWManagedLands"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "Division of Forestry and Wildlife | dlnr_dmatsuwaki",
+   "DOFAWManagedLandsV2"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "campbell10_uagis",
+   "Na_Ala_Hele_Trails"
+  ],
+  [
+   "Na Ala Hele State Trail",
+   "skip (not state/federal)",
+   "cmalyshk@uvm.edu_UVM",
+   "Winter Fun Near Ludlow_ VT_WTL1"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "kbrown_MiltonFl",
+   "City of Milton Interactive Online Map"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "Florida Greenways and Trails System - Existing Trails"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "cakee",
+   "Trails of Florida's Capital Region"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "Geospatial Services manages and maintains geospatial product",
+   "SFWMD Managed Land Trails"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "curtisma_tlcgis",
+   "Florida Seminole War Heritage Trail Heat Web Layer"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "Tallahassee -  Leon County GIS, Leon County Parks and Rec, C",
+   "Trails of Tallahassee & Leon County, FL - Public View"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "marioncounty_existing_trails_oct23"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "Tallahassee - Leon County GIS, Leon County Parks and Recreat",
+   "Regional Trail Inventory - Public View"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_oct23"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "CollierCountyAGOL",
+   "Collier County Conservation Preserves Trails and Boundaries"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_jan25"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "ExistingTrailsATP"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "bcgisdata_BCGIS",
+   "Florida Parks, Trails, Counties, and Library Locations"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "TLCGIS | cakee",
+   "Trail-A-Hassee Overlay"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "EXISTING_TRAILS"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "error URL can't contain control characters. '/soy9dtLUh5hYXg8U/arcgis/rest/services/FN",
+   "Florida Trail Association | USDA, US Forest Service, Region ",
+   "tps://services9.arcgis.com/soy9dtLUh5hYXg8U/arcgis/rest/services/FNST Master/FeatureServer"
+  ],
+  [
+   "Blackwater Heritage State Trail",
+   "1 lines 0 km from pin",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/OGT/MapServer/2 SEGMENT_NAME",
+   {
+    "Blackwater Heritage Trail Corridor": [
+     13,
+     "CORRIDOR=Blackwater Heritage Trail Corridor"
+    ]
+   }
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "Florida Greenways and Trails System - Existing Trails"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "skip (not state/federal)",
+   "cakee",
+   "Trails of Florida's Capital Region"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "skip (not state/federal)",
+   "Geospatial Services manages and maintains geospatial product",
+   "SFWMD Managed Land Trails"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "skip (not state/federal)",
+   "curtisma_tlcgis",
+   "Florida Seminole War Heritage Trail Heat Web Layer"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "skip (not state/federal)",
+   "Tallahassee -  Leon County GIS, Leon County Parks and Rec, C",
+   "Trails of Tallahassee & Leon County, FL - Public View"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "marioncounty_existing_trails_oct23"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "skip (not state/federal)",
+   "Tallahassee - Leon County GIS, Leon County Parks and Recreat",
+   "Regional Trail Inventory - Public View"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_oct23"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "skip (not state/federal)",
+   "CollierCountyAGOL",
+   "Collier County Conservation Preserves Trails and Boundaries"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_jan25"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "ExistingTrailsATP"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "skip (not state/federal)",
+   "bcgisdata_BCGIS",
+   "Florida Parks, Trails, Counties, and Library Locations"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "skip (not state/federal)",
+   "TLCGIS | cakee",
+   "Trail-A-Hassee Overlay"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "EXISTING_TRAILS"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "error URL can't contain control characters. '/soy9dtLUh5hYXg8U/arcgis/rest/services/FN",
+   "Florida Trail Association | USDA, US Forest Service, Region ",
+   "tps://services9.arcgis.com/soy9dtLUh5hYXg8U/arcgis/rest/services/FNST Master/FeatureServer"
+  ],
+  [
+   "Florida Keys Overseas Heritage Trail State Park",
+   "30 lines 1 km from pin",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/8 SITE_NAME",
+   {
+    "Florida Keys Overseas Heritage Trail": [
+     100,
+     "UNIT_ID=S00263 NAME=Florida Keys Overseas Heritage Trail USE=Hiking/Biking SURFACE=Paved ACCESSIBILITY=No"
+    ]
+   }
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "Florida Greenways and Trails System - Existing Trails"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "skip (not state/federal)",
+   "cakee",
+   "Trails of Florida's Capital Region"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "skip (not state/federal)",
+   "Geospatial Services manages and maintains geospatial product",
+   "SFWMD Managed Land Trails"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "skip (not state/federal)",
+   "curtisma_tlcgis",
+   "Florida Seminole War Heritage Trail Heat Web Layer"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "skip (not state/federal)",
+   "Tallahassee -  Leon County GIS, Leon County Parks and Rec, C",
+   "Trails of Tallahassee & Leon County, FL - Public View"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "marioncounty_existing_trails_oct23"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "skip (not state/federal)",
+   "Tallahassee - Leon County GIS, Leon County Parks and Recreat",
+   "Regional Trail Inventory - Public View"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_oct23"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "skip (not state/federal)",
+   "CollierCountyAGOL",
+   "Collier County Conservation Preserves Trails and Boundaries"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_jan25"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "ExistingTrailsATP"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "skip (not state/federal)",
+   "bcgisdata_BCGIS",
+   "Florida Parks, Trails, Counties, and Library Locations"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "skip (not state/federal)",
+   "TLCGIS | cakee",
+   "Trail-A-Hassee Overlay"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "EXISTING_TRAILS"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "error URL can't contain control characters. '/soy9dtLUh5hYXg8U/arcgis/rest/services/FN",
+   "Florida Trail Association | USDA, US Forest Service, Region ",
+   "tps://services9.arcgis.com/soy9dtLUh5hYXg8U/arcgis/rest/services/FNST Master/FeatureServer"
+  ],
+  [
+   "Gainesville-Hawthorne State Trail",
+   "14 lines 0 km from pin",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/8 SITE_NAME",
+   {
+    "Gainesville-to-Hawthorne State Trail": [
+     26,
+     "UNIT_ID=S00271 NAME=Hawthorne Trail USE=Hiking/Biking/Equestrian SURFACE=Asphalt ACCESSIBILITY=No WATER=None"
+    ]
+   }
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "Florida Greenways and Trails System - Existing Trails"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "skip (not state/federal)",
+   "cakee",
+   "Trails of Florida's Capital Region"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "skip (not state/federal)",
+   "Geospatial Services manages and maintains geospatial product",
+   "SFWMD Managed Land Trails"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "skip (not state/federal)",
+   "curtisma_tlcgis",
+   "Florida Seminole War Heritage Trail Heat Web Layer"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "skip (not state/federal)",
+   "Tallahassee -  Leon County GIS, Leon County Parks and Rec, C",
+   "Trails of Tallahassee & Leon County, FL - Public View"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "marioncounty_existing_trails_oct23"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "skip (not state/federal)",
+   "Tallahassee - Leon County GIS, Leon County Parks and Recreat",
+   "Regional Trail Inventory - Public View"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_oct23"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "skip (not state/federal)",
+   "CollierCountyAGOL",
+   "Collier County Conservation Preserves Trails and Boundaries"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_jan25"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "ExistingTrailsATP"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "skip (not state/federal)",
+   "bcgisdata_BCGIS",
+   "Florida Parks, Trails, Counties, and Library Locations"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "skip (not state/federal)",
+   "TLCGIS | cakee",
+   "Trail-A-Hassee Overlay"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "EXISTING_TRAILS"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "error URL can't contain control characters. '/soy9dtLUh5hYXg8U/arcgis/rest/services/FN",
+   "Florida Trail Association | USDA, US Forest Service, Region ",
+   "tps://services9.arcgis.com/soy9dtLUh5hYXg8U/arcgis/rest/services/FNST Master/FeatureServer"
+  ],
+  [
+   "General James A. Van Fleet State Trail",
+   "1 lines 0 km from pin",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/8 SITE_NAME",
+   {
+    "General James A. Van Fleet State Trail": [
+     47,
+     "UNIT_ID=S00225 NAME=General James A Van Fleet State Trail USE=Hiking/Biking SURFACE=Paved ACCESSIBILITY=No"
+    ]
+   }
+  ],
+  [
+   "Nature Coast State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "Florida Greenways and Trails System - Existing Trails"
+  ],
+  [
+   "Nature Coast State Trail",
+   "skip (not state/federal)",
+   "cakee",
+   "Trails of Florida's Capital Region"
+  ],
+  [
+   "Nature Coast State Trail",
+   "skip (not state/federal)",
+   "Geospatial Services manages and maintains geospatial product",
+   "SFWMD Managed Land Trails"
+  ],
+  [
+   "Nature Coast State Trail",
+   "skip (not state/federal)",
+   "curtisma_tlcgis",
+   "Florida Seminole War Heritage Trail Heat Web Layer"
+  ],
+  [
+   "Nature Coast State Trail",
+   "skip (not state/federal)",
+   "Tallahassee -  Leon County GIS, Leon County Parks and Rec, C",
+   "Trails of Tallahassee & Leon County, FL - Public View"
+  ],
+  [
+   "Nature Coast State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "marioncounty_existing_trails_oct23"
+  ],
+  [
+   "Nature Coast State Trail",
+   "skip (not state/federal)",
+   "Tallahassee - Leon County GIS, Leon County Parks and Recreat",
+   "Regional Trail Inventory - Public View"
+  ],
+  [
+   "Nature Coast State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_oct23"
+  ],
+  [
+   "Nature Coast State Trail",
+   "skip (not state/federal)",
+   "CollierCountyAGOL",
+   "Collier County Conservation Preserves Trails and Boundaries"
+  ],
+  [
+   "Nature Coast State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_jan25"
+  ],
+  [
+   "Nature Coast State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "ExistingTrailsATP"
+  ],
+  [
+   "Nature Coast State Trail",
+   "skip (not state/federal)",
+   "bcgisdata_BCGIS",
+   "Florida Parks, Trails, Counties, and Library Locations"
+  ],
+  [
+   "Nature Coast State Trail",
+   "skip (not state/federal)",
+   "TLCGIS | cakee",
+   "Trail-A-Hassee Overlay"
+  ],
+  [
+   "Nature Coast State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "EXISTING_TRAILS"
+  ],
+  [
+   "Nature Coast State Trail",
+   "error URL can't contain control characters. '/soy9dtLUh5hYXg8U/arcgis/rest/services/FN",
+   "Florida Trail Association | USDA, US Forest Service, Region ",
+   "tps://services9.arcgis.com/soy9dtLUh5hYXg8U/arcgis/rest/services/FNST Master/FeatureServer"
+  ],
+  [
+   "Nature Coast State Trail",
+   "12 lines 0 km from pin",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/OGT/MapServer/2 SEGMENT_NAME",
+   {
+    "Nature Coast Regional Connector Trail": [
+     65,
+     "CORRIDOR=Nature Coast Regional Connector Trail"
+    ],
+    "Nature Coast Trail Corridor": [
+     74,
+     "CORRIDOR=Nature Coast Trail Corridor"
+    ],
+    "Nature Coast Trail": [
+     6,
+     "CORRIDOR=Nature Coast Trail Corridor"
+    ]
+   }
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "Florida Greenways and Trails System - Existing Trails"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "skip (not state/federal)",
+   "cakee",
+   "Trails of Florida's Capital Region"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "skip (not state/federal)",
+   "Geospatial Services manages and maintains geospatial product",
+   "SFWMD Managed Land Trails"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "skip (not state/federal)",
+   "curtisma_tlcgis",
+   "Florida Seminole War Heritage Trail Heat Web Layer"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "skip (not state/federal)",
+   "Tallahassee -  Leon County GIS, Leon County Parks and Rec, C",
+   "Trails of Tallahassee & Leon County, FL - Public View"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "marioncounty_existing_trails_oct23"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "skip (not state/federal)",
+   "Tallahassee - Leon County GIS, Leon County Parks and Recreat",
+   "Regional Trail Inventory - Public View"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_oct23"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "skip (not state/federal)",
+   "CollierCountyAGOL",
+   "Collier County Conservation Preserves Trails and Boundaries"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_jan25"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "ExistingTrailsATP"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "skip (not state/federal)",
+   "bcgisdata_BCGIS",
+   "Florida Parks, Trails, Counties, and Library Locations"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "skip (not state/federal)",
+   "TLCGIS | cakee",
+   "Trail-A-Hassee Overlay"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "EXISTING_TRAILS"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "error URL can't contain control characters. '/soy9dtLUh5hYXg8U/arcgis/rest/services/FN",
+   "Florida Trail Association | USDA, US Forest Service, Region ",
+   "tps://services9.arcgis.com/soy9dtLUh5hYXg8U/arcgis/rest/services/FNST Master/FeatureServer"
+  ],
+  [
+   "Palatka-St. Augustine State Trail",
+   "21 lines 0 km from pin",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/8 SITE_NAME",
+   {
+    "Palatka-to-St. Augustine State Trail": [
+     30,
+     "UNIT_ID=S00283 NAME=Palatka To St. Augustine State Trail USE=Hiking/Biking SURFACE=Paved ACCESSIBILITY=No"
+    ]
+   }
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "Florida Greenways and Trails System - Existing Trails"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "skip (not state/federal)",
+   "cakee",
+   "Trails of Florida's Capital Region"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "skip (not state/federal)",
+   "Geospatial Services manages and maintains geospatial product",
+   "SFWMD Managed Land Trails"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "skip (not state/federal)",
+   "curtisma_tlcgis",
+   "Florida Seminole War Heritage Trail Heat Web Layer"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "skip (not state/federal)",
+   "Tallahassee -  Leon County GIS, Leon County Parks and Rec, C",
+   "Trails of Tallahassee & Leon County, FL - Public View"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "marioncounty_existing_trails_oct23"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "skip (not state/federal)",
+   "Tallahassee - Leon County GIS, Leon County Parks and Recreat",
+   "Regional Trail Inventory - Public View"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_oct23"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "skip (not state/federal)",
+   "CollierCountyAGOL",
+   "Collier County Conservation Preserves Trails and Boundaries"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_jan25"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "ExistingTrailsATP"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "skip (not state/federal)",
+   "bcgisdata_BCGIS",
+   "Florida Parks, Trails, Counties, and Library Locations"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "skip (not state/federal)",
+   "TLCGIS | cakee",
+   "Trail-A-Hassee Overlay"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "EXISTING_TRAILS"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "error URL can't contain control characters. '/soy9dtLUh5hYXg8U/arcgis/rest/services/FN",
+   "Florida Trail Association | USDA, US Forest Service, Region ",
+   "tps://services9.arcgis.com/soy9dtLUh5hYXg8U/arcgis/rest/services/FNST Master/FeatureServer"
+  ],
+  [
+   "Palatka-to-Lake Butler State Trail",
+   "4 lines 0 km from pin",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/OGT/MapServer/2 SEGMENT_NAME",
+   {
+    "Palatka-to-Lake Butler State Trail": [
+     70,
+     "CORRIDOR=Palatka to Lake City Corridor"
+    ],
+    "Palatka to Lake Butler State Trail": [
+     9,
+     "CORRIDOR=Palatka to Lake City Corridor"
+    ]
+   }
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "Florida Greenways and Trails System - Existing Trails"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "skip (not state/federal)",
+   "cakee",
+   "Trails of Florida's Capital Region"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "skip (not state/federal)",
+   "Geospatial Services manages and maintains geospatial product",
+   "SFWMD Managed Land Trails"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "skip (not state/federal)",
+   "curtisma_tlcgis",
+   "Florida Seminole War Heritage Trail Heat Web Layer"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "skip (not state/federal)",
+   "Tallahassee -  Leon County GIS, Leon County Parks and Rec, C",
+   "Trails of Tallahassee & Leon County, FL - Public View"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "marioncounty_existing_trails_oct23"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "skip (not state/federal)",
+   "Tallahassee - Leon County GIS, Leon County Parks and Recreat",
+   "Regional Trail Inventory - Public View"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_oct23"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "skip (not state/federal)",
+   "CollierCountyAGOL",
+   "Collier County Conservation Preserves Trails and Boundaries"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_jan25"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "ExistingTrailsATP"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "skip (not state/federal)",
+   "bcgisdata_BCGIS",
+   "Florida Parks, Trails, Counties, and Library Locations"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "skip (not state/federal)",
+   "TLCGIS | cakee",
+   "Trail-A-Hassee Overlay"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "EXISTING_TRAILS"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "error URL can't contain control characters. '/soy9dtLUh5hYXg8U/arcgis/rest/services/FN",
+   "Florida Trail Association | USDA, US Forest Service, Region ",
+   "tps://services9.arcgis.com/soy9dtLUh5hYXg8U/arcgis/rest/services/FNST Master/FeatureServer"
+  ],
+  [
+   "Suwannee River Wilderness State Trail",
+   "2 lines 56 km from pin",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/8 SITE_NAME",
+   {
+    "Suwannee River Wilderness Trail": [
+     0,
+     "UNIT_ID=S00269 NAME=Orange Trail USE=Hiking SURFACE=Natural ACCESSIBILITY=No WATER=None"
+    ]
+   }
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "Florida Greenways and Trails System - Existing Trails"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "skip (not state/federal)",
+   "cakee",
+   "Trails of Florida's Capital Region"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "skip (not state/federal)",
+   "Geospatial Services manages and maintains geospatial product",
+   "SFWMD Managed Land Trails"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "skip (not state/federal)",
+   "curtisma_tlcgis",
+   "Florida Seminole War Heritage Trail Heat Web Layer"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "skip (not state/federal)",
+   "Tallahassee -  Leon County GIS, Leon County Parks and Rec, C",
+   "Trails of Tallahassee & Leon County, FL - Public View"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "marioncounty_existing_trails_oct23"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "skip (not state/federal)",
+   "Tallahassee - Leon County GIS, Leon County Parks and Recreat",
+   "Regional Trail Inventory - Public View"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_oct23"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "skip (not state/federal)",
+   "CollierCountyAGOL",
+   "Collier County Conservation Preserves Trails and Boundaries"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_jan25"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "ExistingTrailsATP"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "skip (not state/federal)",
+   "bcgisdata_BCGIS",
+   "Florida Parks, Trails, Counties, and Library Locations"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "skip (not state/federal)",
+   "TLCGIS | cakee",
+   "Trail-A-Hassee Overlay"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "EXISTING_TRAILS"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "error URL can't contain control characters. '/soy9dtLUh5hYXg8U/arcgis/rest/services/FN",
+   "Florida Trail Association | USDA, US Forest Service, Region ",
+   "tps://services9.arcgis.com/soy9dtLUh5hYXg8U/arcgis/rest/services/FNST Master/FeatureServer"
+  ],
+  [
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "3 lines 6 km from pin",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/OGT/MapServer/2 SEGMENT_NAME",
+   {
+    "Tallahassee to St . Marks Historic Railroad State Trail": [
+     4,
+     "CORRIDOR=Capital Cascades Corridor"
+    ],
+    "Tallahassee-St Marks Historic Railroad State Trail": [
+     4,
+     "CORRIDOR=FNST Corridor"
+    ]
+   }
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "Hernando County Central GIS, Data  maintained by: \nHernando ",
+   "Trails"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection | Florida Dep",
+   "Florida Greenways and Trails System - Existing Trails"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "cakee",
+   "Trails of Florida's Capital Region"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "Geospatial Services manages and maintains geospatial product",
+   "SFWMD Managed Land Trails"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "curtisma_tlcgis",
+   "Florida Seminole War Heritage Trail Heat Web Layer"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "Tallahassee -  Leon County GIS, Leon County Parks and Rec, C",
+   "Trails of Tallahassee & Leon County, FL - Public View"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "marioncounty_existing_trails_oct23"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "Tallahassee - Leon County GIS, Leon County Parks and Recreat",
+   "Regional Trail Inventory - Public View"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_oct23"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "CollierCountyAGOL",
+   "Collier County Conservation Preserves Trails and Boundaries"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "existing_trails_jan25"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "ExistingTrailsATP"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "bcgisdata_BCGIS",
+   "Florida Parks, Trails, Counties, and Library Locations"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "TLCGIS | cakee",
+   "Trail-A-Hassee Overlay"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "skip (not state/federal)",
+   "Florida Department of Environmental Protection, Office of Gr",
+   "EXISTING_TRAILS"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "error URL can't contain control characters. '/soy9dtLUh5hYXg8U/arcgis/rest/services/FN",
+   "Florida Trail Association | USDA, US Forest Service, Region ",
+   "tps://services9.arcgis.com/soy9dtLUh5hYXg8U/arcgis/rest/services/FNST Master/FeatureServer"
+  ],
+  [
+   "Withlacoochee State Trail",
+   "1 lines 25 km from pin",
+   "Florida Department of Environmental Protection, Division of ",
+   "m/nRHtyn3uE1kyzoYc/arcgis/rest/services/2023_Coast_to_Coast_Trail_Map_WFL1/FeatureServer/3 SEG_NAME",
+   {
+    "Withlacoochee State Trail Corridor": [
+     8,
+     "CORRIDOR=Withlacoochee State Trail Corridor SEG_DSCRPT=  FGTS_RANK=PRIORITY FNST_RANK=NA STATUS=EXISTING PAVED County=HERNANDO ACQ_FY=  DESIGN_FY=  PDE_FY=  CON"
+    ]
+   }
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "The Nature Conservancy |  | link.elmore@tnc.org_TNC",
+   "Ataya TN Trails TWRA public view"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "Shelby County 911 | Shelby County 911 | shelbycounty911",
+   "911 Trail Markers"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "NTM718_IGTLab",
+   "TREC Tennessee Statewide Trails and Greenways SCTDD"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "jace.swain-crowley",
+   "Greenways and Trails"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "Jon Zetterberg | Jzett33",
+   "Mile Markers"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "NHunt73",
+   "Chattanooga Regional Trails"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "FontaineMaury",
+   "Scrum Branch"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "Derived from the 2016 USGS 3DEP LiDAR Collection. | WashCoTN",
+   "Five-Foot Contours of Washington County, Tennessee"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "FontaineMaury",
+   "Sams Branch"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "afrisbie_ATConservancy",
+   "Appalachian Trail Visitor Use Management"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "ppurgiel_ucdd",
+   "Bigbee River Trail"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "NCCC | geoace67",
+   "NChick_web1"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "Collierville GIS | ColliervilleGIS",
+   "GreenbeltTrails"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "monroeco",
+   "Trail Spots"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "FontaineMaury",
+   "SavageGulfHikingEasy"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "skip (not state/federal)",
+   "bensmith252",
+   "Buffalo Mountain Hiking Trails 2_WFL1"
+  ],
+  [
+   "Wilson Cumberland Trail State Park",
+   "292 lines 0 km from pin",
+   "TDEC_Bureau_of_Conservation",
+   "arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Trails_(view)/FeatureServer/0 Park_Name",
+   {
+    "Justin P. Wilson Cumberland Trail State Park": [
+     470,
+     "Trail_UID=TSP-0071_Falling Water Falls Trail_ Park_ID=TSP-0071 Trail_Name=Falling Water Falls Trail Segment_Type=Main_Trail GlobalID=a1e3df23-8626-4044-beb7-986"
+    ]
+   }
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "The Nature Conservancy |  | link.elmore@tnc.org_TNC",
+   "Ataya TN Trails TWRA public view"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "Shelby County 911 | Shelby County 911 | shelbycounty911",
+   "911 Trail Markers"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "NTM718_IGTLab",
+   "TREC Tennessee Statewide Trails and Greenways SCTDD"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "jace.swain-crowley",
+   "Greenways and Trails"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "Jon Zetterberg | Jzett33",
+   "Mile Markers"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "NHunt73",
+   "Chattanooga Regional Trails"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "FontaineMaury",
+   "Scrum Branch"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "Derived from the 2016 USGS 3DEP LiDAR Collection. | WashCoTN",
+   "Five-Foot Contours of Washington County, Tennessee"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "FontaineMaury",
+   "Sams Branch"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "afrisbie_ATConservancy",
+   "Appalachian Trail Visitor Use Management"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "ppurgiel_ucdd",
+   "Bigbee River Trail"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "NCCC | geoace67",
+   "NChick_web1"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "Collierville GIS | ColliervilleGIS",
+   "GreenbeltTrails"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "monroeco",
+   "Trail Spots"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "FontaineMaury",
+   "SavageGulfHikingEasy"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "skip (not state/federal)",
+   "bensmith252",
+   "Buffalo Mountain Hiking Trails 2_WFL1"
+  ],
+  [
+   "Mountains to Sea State Trail",
+   "error URL can't contain control characters. '/Gypl21NmiWS1cM7h/arcgis/rest/services/TD",
+   "Tennessee Department of Transportation, Bureau of Environmen",
+   "arcgis.com/Gypl21NmiWS1cM7h/arcgis/rest/services/TDOT Roads Knoxville Region/FeatureServer"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "Friends of Mountain to Sea Trail version March 2021.  Used w",
+   "Mountains_to_Sea_Trail"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "glocascio",
+   "Mountains to Sea Trail"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "TWSAdmin",
+   "Mountains to Sea Trail"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "glocascio",
+   "MST_18Segments"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "Jackson County GIS Department | jackson_admin",
+   "Mountains-To-Sea Trail"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "tayton.mahone@g.austincc.edu",
+   "From the Mountains to the Sea_WFL1"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "ijohnson_nemac",
+   "Mountains to Sea Trail"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "EAU.NCDOT.GOV",
+   "NCDOT_KBPCommunityFeatures"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "glocascio",
+   "NC Mountain to Sea Trial"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "North Carolina Department of Transportation, Integrated Mobi",
+   "NCDOT Statewide Bicycle Routes"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "arcgis_dev0",
+   "Mountains to Sea Challenge ROUTE"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "tayton.mahone@g.austincc.edu",
+   "From Mountains to the Sea_WFL1"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "Auckland Council: Healthy Waters | AC_owner",
+   "FreshwaterManagementToolGradingLayerConsultationVersion"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "Charlotte_Office",
+   "NC_Mountain_to_Sea_Trial"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "Wairarapa Catchment Collective | GWRC_Admin",
+   "Wairarapa Catchment Groups 2025"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "Carteret County GIS Department, Carteret County Parks and Re",
+   "Trails"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "jackson_admin",
+   "Jackson County Trails Public"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "jackson_admin",
+   "Trails and Trail Heads"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "mwcaslin_NCSU",
+   "Blue_Jay_Point_Ash_Tree_Locations_and_Infestation_8_02_2020"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "ijohnson_nemac",
+   "Land of Sky Regional Council Trails"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "ijohnson_nemac",
+   "Mountainstoseatrail_halfbuff"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "ijohnson_nemac",
+   "High Country Regional Council Trails"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "RHANKS@clemson.edu_Clemson",
+   "Mountains2Sea_WFL1"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "gareth.haddon@inglewoodhs.school.nz_inglewoodhs",
+   "RESEARCH DATA - Group A_fieldworker"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "gareth.haddon@inglewoodhs.school.nz_inglewoodhs",
+   "RESEARCH DATA - Group B_fieldworker"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "The Nature Conservancy |  | link.elmore@tnc.org_TNC",
+   "Ataya TN Trails TWRA public view"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "Shelby County 911 | Shelby County 911 | shelbycounty911",
+   "911 Trail Markers"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "NTM718_IGTLab",
+   "TREC Tennessee Statewide Trails and Greenways SCTDD"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "jace.swain-crowley",
+   "Greenways and Trails"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "Jon Zetterberg | Jzett33",
+   "Mile Markers"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "NHunt73",
+   "Chattanooga Regional Trails"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "FontaineMaury",
+   "Scrum Branch"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "Derived from the 2016 USGS 3DEP LiDAR Collection. | WashCoTN",
+   "Five-Foot Contours of Washington County, Tennessee"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "FontaineMaury",
+   "Sams Branch"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "afrisbie_ATConservancy",
+   "Appalachian Trail Visitor Use Management"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "ppurgiel_ucdd",
+   "Bigbee River Trail"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "NCCC | geoace67",
+   "NChick_web1"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "Collierville GIS | ColliervilleGIS",
+   "GreenbeltTrails"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "monroeco",
+   "Trail Spots"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "FontaineMaury",
+   "SavageGulfHikingEasy"
+  ],
+  [
+   "Mountains to Sea",
+   "skip (not state/federal)",
+   "bensmith252",
+   "Buffalo Mountain Hiking Trails 2_WFL1"
+  ],
+  [
+   "Mountains to Sea",
+   "error URL can't contain control characters. '/Gypl21NmiWS1cM7h/arcgis/rest/services/TD",
+   "Tennessee Department of Transportation, Bureau of Environmen",
+   "arcgis.com/Gypl21NmiWS1cM7h/arcgis/rest/services/TDOT Roads Knoxville Region/FeatureServer"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "El Camino Real de Tierra Adentro National Historic Trail"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe Watershed Trails"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe Trails Bus Stop Locations"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
+   "Multi Use Path Trails"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Las Campanas Sunset Golf Course Cart Trail"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Marty Sanchez Links de Santa Fe Cart Trail"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe Country Club Cart Trail"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Marty Sanchez Links de Santa Fe Great 28 Cart Trail"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
+   "Trails"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "US Forest Service Trails East"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "nmdot",
+   "Trails"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
+   "Trail Systems"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "NWS.EPZ_noaa",
+   "New Mexico Search and Rescue Boundaries"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Bureau of Land Management Trails"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "US Forest Service Trails"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe National Historic Trail"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Old Spanish National Historic Trail 2018"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe National Forest Trails"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Nature Conservation Trail Points"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe Trails Bus Route Time Points"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Trail System Tunnels"
+  ],
+  [
+   "Perea Nature National Recreation Trail",
+   "skip (not state/federal)",
+   "EMcRae_NMCDC",
+   "Continental Divide Trail in New Mexico"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "El Camino Real de Tierra Adentro National Historic Trail"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe Watershed Trails"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe Trails Bus Stop Locations"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
+   "Multi Use Path Trails"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Las Campanas Sunset Golf Course Cart Trail"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Marty Sanchez Links de Santa Fe Cart Trail"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe Country Club Cart Trail"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Marty Sanchez Links de Santa Fe Great 28 Cart Trail"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
+   "Trails"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "US Forest Service Trails East"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "nmdot",
+   "Trails"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
+   "Trail Systems"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "NWS.EPZ_noaa",
+   "New Mexico Search and Rescue Boundaries"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Bureau of Land Management Trails"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "US Forest Service Trails"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe National Historic Trail"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Old Spanish National Historic Trail 2018"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe National Forest Trails"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Nature Conservation Trail Points"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe Trails Bus Route Time Points"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Trail System Tunnels"
+  ],
+  [
+   "White Ridge National Recreation Trail",
+   "skip (not state/federal)",
+   "EMcRae_NMCDC",
+   "Continental Divide Trail in New Mexico"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "El Camino Real de Tierra Adentro National Historic Trail"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe Watershed Trails"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe Trails Bus Stop Locations"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
+   "Multi Use Path Trails"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Las Campanas Sunset Golf Course Cart Trail"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Marty Sanchez Links de Santa Fe Cart Trail"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe Country Club Cart Trail"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Marty Sanchez Links de Santa Fe Great 28 Cart Trail"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
+   "Trails"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "US Forest Service Trails East"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "nmdot",
+   "Trails"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
+   "Trail Systems"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "NWS.EPZ_noaa",
+   "New Mexico Search and Rescue Boundaries"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Bureau of Land Management Trails"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "US Forest Service Trails"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe National Historic Trail"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Old Spanish National Historic Trail 2018"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe National Forest Trails"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Nature Conservation Trail Points"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Santa Fe Trails Bus Route Time Points"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "Jay.puckett_wsp5",
+   "Trail System Tunnels"
+  ],
+  [
+   "White Ridge",
+   "skip (not state/federal)",
+   "EMcRae_NMCDC",
+   "Continental Divide Trail in New Mexico"
   ],
   [
    "Ice Age Floods National Geologic Trail",
@@ -3976,468 +4520,6 @@
      ""
     ]
    }
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Washington Geological Suvey | OpenData_WGS_wadnr",
-   "Ice_Age_Floods_National_Geologic_Trail_and_Sites"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "hbonawitz_ewu_eagles",
-   "Ice Age Floors National Geologic Trail_WFL1"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "C_Mertens_EWU",
-   "Carter Mertens Ice age Trails_WFL1"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Phillip Pearson: phillippearsonboz@gmail.com Nick Pombo: npo",
-   "Bridger Ridge Trail Online Map"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Thank you to MSL, MDT, County Govts, Federal, Tribal | DPHHS",
-   "Montana Transportation Framework"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Glacier National Park GIS Program | CN0401@mt.gov_MTDNRC",
-   "Glacier National Park Trails"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Phillip Pearson: phillippearsonboz@gmail.com Nick Pombo: npo",
-   "Final Bridger Ridge Trail Service Learning"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "james.langehough.ctr_flh",
-   "Nez Perce Trail_WFL1"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "dwallace_Lake_County_MT",
-   "Railroads_Adjacent_Counties"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Colesworthy",
-   "Teton_Bridges"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Colesworthy",
-   "Teton_Co_Railroads"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "cody_sifford_SKC",
-   "RoadsFlathead"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Stillwater_DES",
-   "Bridges"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Stillwater_DES",
-   "Major Hwy "
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Stillwater_DES",
-   "Primary Route"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Stillwater_DES",
-   "Interstate Hwy"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Stillwater_DES",
-   "Secondary Route"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Hyalite_Eng",
-   "PJA Roads"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "skip (not state/federal)",
-   "Hyalite_Eng",
-   "PJA_Roads_PairwiseErase"
-  ],
-  [
-   "Ice Age Floods National Geologic Trail",
-   "error URL can't contain control characters. '/yhIfgvwxY3mhZjvt/arcgis/rest/services/Ye",
-   "National Park Service, Intermountain Region, Yellowstone Nat",
-   "gis.com/yhIfgvwxY3mhZjvt/arcgis/rest/services/Yellowstone Trails Geodatabase/FeatureServer"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "City of Waterloo, Iowa |  | ben.wagner@waterloo-ia.org",
-   "Sidewalk and Trails"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "Ryan_SIMPCO",
-   "Siouxland Trails_WFL1"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "billwhittaker_worldmap",
-   "Northern Iowa Public Roads that May Be GLO Trails (1830s-186"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "Pottawattamie County GIS, Pottawattamie County Conservation ",
-   "Trails (Pottawattamie County, IA)"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "Pottawattamie County GIS, Pottawattamie County Conservation ",
-   "Park Trail System Map Image Layer Update 10"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "HarrCo",
-   "fgdb_Trails"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "ooriakhi_INRCOG",
-   "Great American Rail Trail"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "ooriakhi_INRCOG",
-   "American Discovery Trail"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "dfox000",
-   "Asbury Parks and Trails_WFL1"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "City of Waterloo, Iowa |  | ben.wagner@waterloo-ia.org",
-   "Parks"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "Vernon County | cfandel_carleton",
-   "Trails Driftless Area"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "Bi-State Regional Commission (2023) | kkeeney-mcgurk",
-   "Quad Cities Regional Trails"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "bbakker_cojia77",
-   "Johnston Trails Closures and Detours 2026"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "Franklin County, Iowa GIS Department | tgerrish15",
-   "Trail_Heads_View"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "srsetu_inrcog",
-   "Cedar Valley Trails (2025 Update)"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "cfandel_carleton",
-   "IA state water trails"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "Pottawattamie County GIS, Pottawattamie County Conservation ",
-   "Trails (Pottawattamie County, IA)"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "eklimowski",
-   "Norwalk Trails"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "Bi-State Regional Comission (2021) | kkeeney-mcgurk",
-   "IL Quad Cities Trails"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "fhauss_RDG",
-   "Trails"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "SethBrooks_GH",
-   "SWIPCO Trails"
-  ],
-  [
-   "Wapsipinicon River Water State Trail",
-   "skip (not state/federal)",
-   "trey.rouse_BMI",
-   "ICON Water Trails Map_WFL1"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS |  | NJDEPBGIS",
-   "Statewide Trails in New Jersey"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS | NJDEP Green Acres | NJDEPBGIS",
-   "State Park Service Generalized Trails of New Jersey"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "Pathoag",
-   "Statewide_Trails_in_New_Jersey"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS |  | NJDEPBGIS",
-   "NJDEP Big and Heritage Trees in New Jersey"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "mdickinson_UMass_Amherst",
-   "Statewide_Trails_in_New_Jersey__3633605627389423600"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS | NJDEP | NJDEPBGIS",
-   "Parks and Forests Trail System for New Jersey State Park Ser"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "so482_rutgers",
-   "Statewide_Trails_in_New_Jersey_1104241873501091539"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "phlbikeco",
-   "Shared Use Paths in New Jersey and Pennsylvania"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS | Joanne McCarthy, NJDEP Green Acres | N",
-   "State Park Service Points of Interest for New Jersey"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "mdickinson_UMass_Amherst",
-   "NJ_Trails_3"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "Pathoag",
-   "state_trails_data_Warren"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "akrouse",
-   "Warren Highlands Trail "
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS | NJDEP | NJDEPBGIS",
-   "State Protected Open Space (Generalized) and Recreation Area"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS |  | NJDEPBGIS",
-   "Public Access Point Locations in New Jersey"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS | NJDEP | NJDEPBGIS",
-   "State Protected Open Space Agency Locations in New Jersey"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "Warren County, New Jersey |  | rconklin_warrencountynj",
-   "Statewide Trails in Warren County, NJ - 2023 (NJDEP)"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS | Joanne McCarthy, NJDEP Green Acres | N",
-   "State Park Service Points of Interest for New Jersey"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "Middlesex County Department of Infrastructure Management, Of",
-   "County Trails in Middlesex County, NJ"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "Joanne McCarthy, NJDEP Green Acres | NJDEPBGIS",
-   "NJ State Open Space Place of Interest (3k)"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "Joanne McCarthy, NJDEP Green Acres | NJDEPBGIS",
-   "NJ State Open Space Place of Interest (10k)"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "Joanne McCarthy, NJDEP Green Acres | NJDEPBGIS",
-   "NJ State Open Space Place of Interest (100k)"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "NJDEP Bureau of GIS |  | NJDEPBGIS",
-   "Wildlife Management Area Roads in New Jersey"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "dkunz",
-   "Sussex County Open Space"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "Devin.Bassi_CCDPW",
-   "NJ Passenger Rail Lines"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "Alfonso_CLUS",
-   "ATC_Demographics_Scope"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "mel269_rutgers",
-   "Find_Locations_in_Statewide_Trails_in_New_Jersey"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "jordanjn",
-   "BergenArches"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "Middlesex County Department of Infrastructure Management, Of",
-   "County Walking Paths in Middlesex County, NJ"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "Samantha Alpert | mmuldrow",
-   "Benches Located in Palmyra Cove Nature Park New Jersey"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "Somerset County GIS | Somerset County Office of GIS Services",
-   "Somerset County Parks"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "Alfonso_CLUS",
-   "ATC_Counties_Projections"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "merrilee",
-   "Parks_All_Parcels_gdb"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "Warren County, New Jersey |  | akrouse",
-   "Federal Owned Property"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "tthorsen2",
-   "Ocean County Trails Composite"
-  ],
-  [
-   "New Jersey Coastal State Trail",
-   "skip (not state/federal)",
-   "afrisbie_ATConservancy",
-   "Appalachian Trail Visitor Use Management"
   ]
  ]
 }
