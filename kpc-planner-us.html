@@ -193,7 +193,7 @@ body.usp .usp-about .kpc-disclaim{max-width:none!important;margin:14px 0 0!impor
 .us-mapbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:16px 0 8px}
 .us-mapbar .chip{min-height:40px}
 .us-mapbar .chip[aria-pressed=true]{background:#b5452b;color:#fff;border-color:#b5452b}
-#usmap{height:560px}
+#usmap{height:min(560px,calc(100vh - 120px));min-height:380px}
 #usmap.dropping{cursor:crosshair}
 .us-pop b{font-size:15px}.us-pop .meta{color:#68635a;font-size:12px;margin:3px 0 6px}
 .us-pop .acts{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
@@ -294,7 +294,7 @@ body.usp .usp-about .kpc-disclaim{max-width:none!important;margin:14px 0 0!impor
 </section>
 </div>
 <script src="kpc-my-parks.js?v=20261019g"></script>
-<script src="kpc-bounds.js?v=20261018y"></script><script src="kpc-padus-layer.js?v=20261019g"></script><script src="kpc-place-suggest.js?v=20261019g"></script><script src="kpc-trails-layer.js?v=20261019g"></script><script src="kpc-trip-offline.js?v=20261016a"></script><script src="kpc-us-planner.js?v=20261019g"></script>
+<script src="kpc-bounds.js?v=20261018y"></script><script src="kpc-padus-layer.js?v=20261019g"></script><script src="kpc-place-suggest.js?v=20261019g"></script><script src="kpc-trails-layer.js?v=20261019g"></script><script src="kpc-trip-offline.js?v=20261016a"></script><script src="kpc-us-planner.js?v=20261019h"></script>
 <div id="kpc-rules"></div><script src="kpc-rules-card.js?v=20261018a"></script>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
