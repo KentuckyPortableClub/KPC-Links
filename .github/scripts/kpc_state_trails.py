@@ -83,9 +83,12 @@ STN = {'AL':'Alabama','AR':'Arkansas','AZ':'Arizona','CA':'California','CO':'Col
        'IN':'Indiana','KS':'Kansas','KY':'Kentucky','LA':'Louisiana','MA':'Massachusetts','MD':'Maryland','ME':'Maine','MI':'Michigan','MN':'Minnesota','MO':'Missouri','MS':'Mississippi','MT':'Montana',
        'NC':'North Carolina','ND':'North Dakota','NE':'Nebraska','NH':'New Hampshire','NJ':'New Jersey','NM':'New Mexico','NV':'Nevada','NY':'New York','OH':'Ohio','OK':'Oklahoma','OR':'Oregon',
        'PA':'Pennsylvania','RI':'Rhode Island','SC':'South Carolina','SD':'South Dakota','TN':'Tennessee','TX':'Texas','UT':'Utah','VA':'Virginia','VT':'Vermont','WA':'Washington','WI':'Wisconsin',
-       'WV':'West Virginia','WY':'Wyoming','AK':'Alaska','HI':'Hawaii','DC':'District of Columbia'}
-FED = r'forest service|usda|national park service|\bnps\b|fish (and|&) wildlife|bureau of land|army corps|federal highway|department of the interior'
-AGW = r'department|dept|division|office|commission|conservation|natural resources|\bdnr\b|\bdcr\b|parks|forestry|transportation|\bdot\b|wildlife|environment|gis|geographic|state of|commonwealth'
+       'WV':'West Virginia','WY':'Wyoming','AK':'Alaska','HI':'Hawaii','DC':'District of Columbia',
+       # Oct 19 (Canada step 2): provinces, so provincial agency layers count as official
+       'CA-ON':'Ontario','CA-QC':'Québec','CA-BC':'British Columbia','CA-AB':'Alberta','CA-SK':'Saskatchewan','CA-MB':'Manitoba','CA-NB':'New Brunswick',
+       'CA-NS':'Nova Scotia','CA-PE':'Prince Edward Island','CA-NL':'Newfoundland and Labrador','CA-YT':'Yukon','CA-NT':'Northwest Territories','CA-NU':'Nunavut'}
+FED = r'forest service|usda|national park service|\bnps\b|fish (and|&) wildlife|bureau of land|army corps|federal highway|department of the interior|parks canada|parcs canada|natural resources canada|environment and climate change canada'
+AGW = r'ministry|minist[eè]re|government of|gouvernement|department|dept|division|office|commission|conservation|natural resources|\bdnr\b|\bdcr\b|parks|forestry|transportation|\bdot\b|wildlife|environment|gis|geographic|state of|commonwealth'
 ORG = {}
 STS = {}
 NAMES = {}
@@ -98,7 +101,10 @@ def org_name(oid):
 ABBR = {'MO': r'modnr|\bmdc\b|_mdc_|modot|mostateparks|mo_?dnr', 'TN': r'tdec|tdot|tnstateparks|tn_?state', 'VA': r'vdcr|\bdcr\b|vdot|vdof|vadcr|virginiadcr',
         'WV': r'wvdnr|wvdep|wvgis|wv_?gis|wvstateparks|wvdot', 'IL': r'\bidnr|il_?dnr|ildnr|idot', 'IN': r'indnr|in_?dnr|indot', 'OH': r'odnr|odot|ohiodnr',
         'NC': r'ncdnr|ncdpr|ncparks|ncdot|ncdeq', 'GA': r'gadnr|gdot|ga_?dnr', 'AL': r'aldcnr|adcnr|aldot', 'MI': r'midnr|mi_?dnr|mdot', 'PA': r'padcnr|dcnr|penndot',
-        'MS': r'mdwfp|msdot', 'AR': r'arkansasstateparks|ardot|agfc', 'MD': r'mddnr|md_?dnr|mdot', 'WI': r'widnr|wi_?dnr|wisdot', 'MN': r'mndnr|mn_?dnr|mndot', 'IA': r'iadnr|iowadnr|iowadot'}
+        'MS': r'mdwfp|msdot', 'AR': r'arkansasstateparks|ardot|agfc', 'MD': r'mddnr|md_?dnr|mdot', 'WI': r'widnr|wi_?dnr|wisdot', 'MN': r'mndnr|mn_?dnr|mndot', 'IA': r'iadnr|iowadnr|iowadot',
+        'CA-ON': r'\bmnrf\b|\bmndmnrf\b|ontario parks|\blio\b|geohub|govontario', 'CA-BC': r'gov\.bc\.ca|bc parks|govbc|databc', 'CA-AB': r'gov\.ab\.ca|alberta parks|goa_',
+        'CA-QC': r'\bmrnf\b|\bmffp\b|\bmelcc|s[eé]paq|donn[eé]es qu[eé]bec', 'CA-NS': r'novascotia\.ca|ns_?gov', 'CA-NB': r'gnb\.ca|gnb_', 'CA-MB': r'gov\.mb\.ca|mbgov',
+        'CA-SK': r'gov\.sk\.ca|sk_?gov', 'CA-YT': r'gov\.yk\.ca|geoyukon'}
 FEDO = r'\bnps\b|nps_|_nps|usfs|usda_?fs|\bfws\b|usfws|\bblm\b|usace'
 def official_org(org, st):
     o = org.lower()
@@ -262,7 +268,7 @@ for st, cand in jobs():
         for nm in [name] + ALIAS.get(ref, []):   # Oct 18: also the other names the maps use
             if 'National Recreation' in typ:
                 lines = forest(nm, la, lo); by, off = ('US Forest Service', True) if lines else ('', False)
-            if not lines and iso.startswith('US-'):
+            if not lines and (iso.startswith('US-') or iso[3:5].isalpha()):   # Oct 19: Canada too (provincial + Parks Canada layers)
                 lines, org = agency(nm, stc, la, lo, lim)
                 if lines: by, off = org, True
                 # Oct 17: an agency layer that only has a tiny piece (Empire State Trail 4 km) loses to a much longer OpenStreetMap line
