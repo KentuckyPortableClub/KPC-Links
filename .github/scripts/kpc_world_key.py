@@ -277,14 +277,18 @@ def pull_a10(label, page):
     except Exception:  # noqa: BLE001
         import subprocess, sys; subprocess.run([sys.executable, '-m', 'pip', 'install', '--quiet', 'pyshp'], check=False); import shapefile
     with urllib.request.urlopen(urllib.request.Request(page, headers=UA), timeout=120) as r: html = r.read().decode('utf-8', 'replace')
-    links = sorted(set(re.findall(r"[\w./-]*A10-15_\d\d_GML\.zip", html)))
+    # Oct 19: the page names each file more than once (different paths, some 404): one download per prefecture, try each path
+    grp = {}
+    for ln in re.findall(r"[\w./-]*A10-15_\d\d_GML\.zip", html): grp.setdefault(ln.split('/')[-1], []).append(ln)
+    links = sorted(grp)
     recs, told = [], False
     for ln in links:
-        u = urllib.parse.urljoin(page, ln)
-        try:
-            with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=300) as r: z = zipfile.ZipFile(io.BytesIO(r.read()))
-        except Exception as e:  # noqa: BLE001
-            notice(label, f'{ln} FAILED: {e}'); continue
+        z, err = None, None
+        for v in sorted(set(grp[ln]), key=lambda q: -len(q)):
+            try:
+                with urllib.request.urlopen(urllib.request.Request(urllib.parse.urljoin(page, v), headers=UA), timeout=300) as r: z = zipfile.ZipFile(io.BytesIO(r.read())); break
+            except Exception as e: err = e  # noqa: BLE001
+        if not z: notice(label, f'{ln} FAILED: {err}'); continue
         for sp in [n for n in z.namelist() if n.lower().endswith('.shp')]:
             b = sp[:-4]
             try: rd = shapefile.Reader(shp=io.BytesIO(z.read(sp)), dbf=io.BytesIO(z.read(b + '.dbf')), shx=io.BytesIO(z.read(b + '.shx')), encoding='cp932')
@@ -293,7 +297,9 @@ def pull_a10(label, page):
             for i, (shp, rec) in enumerate(zip(rd.shapes(), rd.records())):
                 a = dict(zip(fn, list(rec)))
                 jv = [str(v) for v in a.values() if isinstance(v, str) and re.search(r'[぀-ヿ一-鿿]', v)]
-                nm = next((v for v in jv if re.search(r'公園', v)), '') or next((v for v in jv if not re.search(r'地域|地区|特別|普通|区分', v)), '')
+                # Oct 19: OBJ_NAME = the park's name (CTV_NAME = towns it covers; using it joined city names like 鈴鹿市 to parks)
+                on = str(a.get('OBJ_NAME') or '').strip()
+                nm = on if re.search(r'[぀-ヿ一-鿿]', on) else next((v for v in jv if re.search(r'公園', v)), '')
                 ty = next((v for v in jv if re.search(r'国立公園|国定公園|自然公園', v) and v != nm), '') or nm
                 pts, parts = shp.points, list(shp.parts) + [len(shp.points)]
                 rs = [[list(p) for p in pts[parts[k]:parts[k + 1]]] for k in range(len(parts) - 1)]
@@ -304,6 +310,14 @@ def pull_a10(label, page):
         time.sleep(.4)
     notice(label, f'{len(links)} prefecture files, {len(recs)} areas, {len({r["n"] for r in recs})} park names')
     return recs
+
+
+def chpart(s):
+    t = str(s or '').lower(); o = set()
+    for k, ws in (('n', ('nördlich', 'nord')), ('s', ('südlich', 'sud ', 'sud)')), ('w', ('westlich', 'ouest')), ('e', ('östlich', ' est)', ' est,', 'partie est'))):
+        if any(w in t for w in ws): o.add(k)
+    if 'teilraum' in t: o.add('t')
+    return o
 
 
 def lv95(e, n):
@@ -429,6 +443,15 @@ for cc in COUNTRIES:
                 m.append([r['id'], r['n'], r['src'], 'name']); mr.append(r)
         pref = [q for q in m if q[2] in CHPREF.get(typ, [])] if cc == 'CH' else []
         if pref: m = pref                                                          # the federal inventory of that kind decides
+        if cc == 'CH' and m:                                                       # Oct 19: '(südlicher Teil)', '(Teilraum 2)': parts of one BLN area
+            pp, keep = chpart(name), []
+            for q in m:
+                qp = chpart(q[1])
+                if qp - {'t'} and pp - {'t'} and (qp - {'t'}) != (pp - {'t'}): continue   # north part never joins the south part
+                keep.append(q)
+            m = keep
+            if 't' in pp and m and not any('t' in chpart(q[1]) for q in m):
+                c = [[q[0], q[1], q[2], 'the park is one part (Teilraum) of this area; the map has the whole area'] for q in m][:6]; m = []
         elif cc in EU and len({r2['dc'] for r2 in mr if r2['src'] == 'EEA nationally designated areas'}) > 1:
             c = [[q[0], q[1], q[2], 'same name, more than one kind of area'] for q in m]; m = []   # e.g. a reserve and a landscape park with one name
         if c: parks[ref] = {'n': name, 't': typ, 'm': [], 'c': c[:6]}; continue
