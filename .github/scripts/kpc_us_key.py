@@ -215,7 +215,8 @@ def pad_state(st):
         for f in fs:
             a = f.get('attributes') or {}
             if (a.get('Category') or '') not in ('Fee', 'Designation'): continue   # Designation = wilderness, NCA… overlays (BLM wilderness has no fee record of its own)
-            if (a.get('Own_Type') or '') not in ('FED', 'STAT') and (a.get('Mang_Type') or '') not in ('FED', 'STAT'): continue
+            # Oct 18: + DIST (regional special districts: Florida's water management districts own the 'State Conservation Areas' POTA lists)
+            if (a.get('Own_Type') or '') not in ('FED', 'STAT', 'DIST') and (a.get('Mang_Type') or '') not in ('FED', 'STAT', 'DIST'): continue
             g = f.get('geometry') or {}
             a['_bb'] = bbox(g); a['_g'] = g
             a['_k'] = kinds(a.get('Unit_Nm')) | kinds(a.get('Loc_Nm')) | ({DES[a['Des_Tp']]} if a.get('Des_Tp') in DES else set())
