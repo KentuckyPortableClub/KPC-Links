@@ -27,7 +27,14 @@ SRC = {
               ('National Landscapes', 'inspire-nrw:NRW_AONB'), ('Country Parks', 'geonode:country_parks'), ('SAC', 'inspire-nrw:NRW_SAC'), ('SPA', 'inspire-nrw:NRW_SPA'))],
     'JP': [('Ministry of the Environment national parks (Esri Japan)', 'arcgis', 'https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/nps_all/FeatureServer/0')],
 }
-COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP').upper().split()
+# Oct 18 (Brandon: 'go ahead'): PL ES FR CH AT from the European Environment Agency (official EU inventory, one place for all five):
+# Natura 2000 sites + Nationally designated areas (ex-CDDA; Switzerland reports there too, it has no Natura 2000).
+EEA = 'https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/'
+EU = ('PL', 'ES', 'FR', 'CH', 'AT')
+for _c in EU:
+    SRC[_c] = [('EEA Natura 2000', 'arcgis', EEA + 'Natura2000Sites/MapServer/2', [f"MS='{_c}'", f"SITECODE LIKE '{_c}%'"]),
+               ('EEA nationally designated areas', 'arcgis', EEA + 'CDDA_Dyna_WM/MapServer/4', [f"countryCode='{_c}'", f"countryCode LIKE '{_c}%'"])]
+COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT').upper().split()
 
 
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')[:3500]), flush=True)
@@ -59,6 +66,21 @@ GEN = {
           r"special protection area|sac|spa|ramsar|rspb|inc|reserve|park|area",
     'JP': r"quasi national park|national park|prefectural natural park|natural park|kokuritsu koen|kokutei koen|park",
 }
+_EN = (r"natura 2000|protected landscape area|nature and landscape complex|landscape park|ecological site|national park|natural monument|wetland reserve|"
+       r"nature park|national recreation trail|biosphere reserve|world heritage site|protected landscape|state trail|biological reserve|marine conservation area|"
+       r"conservation area|recreation park|conservation park|national nature reserve|regional park|forest reserve|ramsar site|game reserve|mire landscapes?|"
+       r"landscape reserve|protected area|national reserve|nature conservation reserve|historic site|bird sanctuary|recreation site|nature reserve|park|reserve|area")
+_LOC = {'PL': r"park narodowy|park krajobrazowy|rezerwat przyrody|rezerwat|obszar chronionego krajobrazu|zespol przyrodniczo krajobrazowy|uzytek ekologiczny|"
+              r"pomnik przyrody|stanowisko dokumentacyjne|ostoja|obszar|plb\d*|plh\d*|i|w|na|nad|pod|im",
+        'ES': r"parque nacional|parque natural|parque regional|parque rural|reserva natural|reserva natural parcial|paraje natural|monumento natural|paisaje protegido|"
+              r"espacio natural protegido|espacio natural|zona especial de conservacion|zec|lic|zepa|humedal|de|del|la|las|los|el|y|en",
+        'FR': r"parc national|parc naturel regional|parc naturel|reserve naturelle nationale|reserve naturelle regionale|reserve naturelle|reserve biologique integrale|"
+              r"reserve biologique dirigee|reserve biologique|site classe|zps|zsc|sic|de|du|des|la|le|les|et|d|l|en|sur|aux|au",
+        'CH': r"naturschutzgebiet|naturpark|regionaler naturpark|nationalpark|naturdenkmal|moorlandschaft|auengebiet|reserve naturelle|parc naturel|parco naturale|"
+              r"riserva naturale|parco|monumento naturale|zona|und|im|am|an|der|die|das|des|von|bei|de|du|des|la|le|les|et|d|l|e|di|del|della|dei|e dintorni",
+        'AT': r"naturschutzgebiet|landschaftsschutzgebiet|europaschutzgebiet|naturpark|nationalpark|naturdenkmal|geschutzter landschaftsteil|ramsar|"
+              r"und|im|am|an|der|die|das|des|von|bei|zum|zur"}
+for _c in EU: GEN[_c] = _LOC[_c] + r'|parc|parco|parque|krajobrazowy|naturalny|nacional|regional|' + _EN   # local (longer) words first
 KINDS = {
     'AU': [('np', r'national park'), ('cp', r'conservation park|conservation reserve|conservation area|n\.\s?c\.\s?r|\bc\.\s?a\.'), ('nr', r'nature reserve|flora reserve|game reserve|\bn\.\s?r\.|f\.\s?f\.\s?r'),
            ('sf', r'state forest|forest reserve'), ('rp', r'regional park|recreation'), ('hist', r'historic'), ('mp', r'marine')],
@@ -70,6 +92,7 @@ KINDS = {
            ('np', r'national park'), ('rp', r'regional park'), ('aonb', r'national landscape|outstanding natural beauty|\baonb\b'), ('sac', r'special area of conservation|\bsac\b'), ('spa', r'special protection area|\bspa\b')],
     'JP': [('np', r'(?<!quasi )national park|国立公園'), ('qnp', r'quasi national park|国定公園'), ('pnp', r'prefectural|県立')],
 }
+for _c in EU: KINDS[_c] = [('n2k', r'natura 2000|\bzps\b|\bzsc\b|\bzepa\b|\bzec\b')]
 
 
 ABBR = [(r'\bn\.\s?c\.\s?r\b\.?', ' nature conservation reserve '), (r'\bf\.\s?f\.\s?r\b\.?', ' flora fauna reserve '),
@@ -83,8 +106,13 @@ def norm(cc, s):
         for a, b in ABBR: s = re.sub(a, b, s)
         s = re.sub(r'\bmt\b\.?', 'mount', s); s = re.sub(r'\bst\b\.?', 'saint', s)
         s = re.sub(r'\b[a-z]\d{1,4}\b', ' ', s)   # map codes like 'H57' (Victoria bushland reserves)
-    if cc == 'DE':
+    if cc in ('DE', 'AT', 'CH'):
         for a, b in (('ae', 'a'), ('oe', 'o'), ('ue', 'u')): s = s.replace(a, b)   # Schwaebisch = Schwäbisch
+    if cc in EU:
+        s = re.sub(r"\b[a-z]{2}\d{6,8}\b", ' ', s)              # Natura codes inside POTA names (FR4100198)
+        s = re.sub(r"\b(l|d|s|qu)['’]", ' ', s)                 # l'Etang, d'Arc
+        s = re.sub(r'\bste?\b\.?', lambda m: 'sainte' if m.group(0).startswith('ste') else 'saint', s)
+        s = s.replace('ł', 'l')
     s = re.sub(r'\(.*?\)', ' ', s); s = re.sub(r"[’'`.]", '', s); s = re.sub(r'[-/,]', ' ', s)
     s = re.sub(r'[^a-z0-9 ]', ' ', s)
     s = re.sub(r'\b(' + GEN[cc] + r'|the|of|and)\b', ' ', s)
@@ -164,18 +192,28 @@ def pick_name(a):
     return ''
 
 
-def pull_arcgis(label, url):
+def pull_arcgis(label, url, wheres=None):
+    for w in (wheres or ['1=1']):
+        got = pull_arcgis1(label, url, w)
+        if got: return got
+    return []
+
+
+def pull_arcgis1(label, url, where):
     info = fetch(url + '?f=json'); mx = int(info.get('maxRecordCount') or 1000); oidf = info.get('objectIdField') or 'OBJECTID'
+    if not oidf or oidf == 'OBJECTID': oidf = next((f['name'] for f in info.get('fields', []) if f.get('type') == 'esriFieldTypeOID'), oidf)
     fnames = [f['name'] for f in info.get('fields', [])]
     notice(f'{label} fields', ', '.join(fnames)[:900])
     recs, off = [], 0
     while True:
-        j = fetch(url + '/query?' + urllib.parse.urlencode({'where': '1=1', 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01,
+        j = fetch(url + '/query?' + urllib.parse.urlencode({'where': where, 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01,
                                                              'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000), 'orderByFields': oidf}))
         fs = j.get('features', [])
         for f in fs:
             a = f.get('attributes') or {}; rs = rings_of(f.get('geometry'))
-            recs.append({'id': a.get(oidf), 'n': pick_name(a), 'ty': pick(a, TYPEF), 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': a})
+            recs.append({'id': a.get(oidf), 'n': pick_name(a), 'ty': pick(a, TYPEF), 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': a,
+                         'code': str(a.get('SITECODE') or a.get('nationalId') or ''), 'dc': str(a.get('designationTypeCode') or a.get('SITETYPE') or '')})
+        if j.get('error'): notice(f'{label} query error', j.get('error')); break
         if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
         off += len(fs); time.sleep(.5)
     return recs
@@ -219,7 +257,7 @@ for cc in COUNTRIES:
     recs = []
     for s in SRC.get(cc, []):
         try:
-            got = pull_arcgis(s[0], s[2]) if s[1] == 'arcgis' else pull_wfs(s[0], s[2], s[3])
+            got = pull_arcgis(s[0], s[2], s[3] if len(s) > 3 else None) if s[1] == 'arcgis' else pull_wfs(s[0], s[2], s[3])
             recs += got; print(f'{cc} {s[0]}: {len(got)}', flush=True)
         except Exception as e:  # noqa: BLE001
             notice(f'World key {cc}', f'{s[0]} FAILED: {e}')
@@ -230,18 +268,36 @@ for cc in COUNTRIES:
             if r['n']: r['nj'], r['n'] = r['n'], romaji(r['n'])
         notice('World key JP sample', '; '.join(f"{r.get('nj')} → {r['n']} [{r['ty']}]" for r in recs[:12]) + ' | fields: ' + ', '.join(list(recs[0]['_a'].keys())[:30]))
     for r in recs: r['_k'] = kinds(cc, r['n']) | kinds(cc, r['ty']) | kinds(cc, r['src']) | r.get('_k0', set())
+    # 1-degree grid so big countries (FR: 14k parks x 15k areas) stay quick
+    GRID = {}
+    for i, r in enumerate(recs):
+        b = r['_bb']
+        if not b: continue
+        for gx in range(int((b[0] - .6) // 1), int((b[2] + .6) // 1) + 1):
+            for gy in range(int((b[1] - .6) // 1), int((b[3] + .6) // 1) + 1): GRID.setdefault((gx, gy), []).append(i)
+    def nearby(la, lo): return [recs[i] for i in GRID.get((int(lo // 1), int(la // 1)), [])] if la is not None else recs
+    BYCODE = {r['code'].upper(): r for r in recs if r['code']}
     parks = {}
     for ref, x in sorted(P.items()):
         name, typ, la, lo = x[0], x[2], x[5], x[6]
         kp = kinds(cc, name) | kinds(cc, typ)
         m, c = [], []
         cand = [name] + ([q for q in re.split(r'\s+-\s+', name) if q.strip()] if cc == 'GB' and ' - ' in name else [])
-        for r in recs:
+        mr = []
+        if cc in EU:
+            for code in re.findall(r'\b[A-Z]{2}[0-9A-Z]\d{4,6}\b', name):           # a Natura code in the POTA name = that exact site
+                r = BYCODE.get(code)
+                if r: m.append([r['id'], r['n'], r['src'], 'site code ' + code])
+        for r in ([] if m else nearby(la, lo)):
             if la is not None and not near(la, lo, r['_bb'], .6): continue
+            if cc in EU and (('n2k' in kp) != ('n2k' in r['_k'])): continue          # Natura 2000 parks only join Natura 2000 sites, and the other way round
             if r['n'] and any(same_name(cc, q, r['n']) for q in cand) and (not kp or (kp & r['_k']) or (not r['_k'] and not (cc == 'AU' and r.get('ty')))):
-                m.append([r['id'], r['n'], r['src'], 'name'])
+                m.append([r['id'], r['n'], r['src'], 'name']); mr.append(r)
+        if cc in EU and len({r2['dc'] for r2 in mr if r2['src'] == 'EEA nationally designated areas'}) > 1:
+            c = [[q[0], q[1], q[2], 'same name, more than one kind of area'] for q in m]; m = []   # e.g. a reserve and a landscape park with one name
+        if c: parks[ref] = {'n': name, 't': typ, 'm': [], 'c': c[:6]}; continue
         if not m and la is not None:
-            for r in recs:
+            for r in nearby(la, lo):
                 if not near(la, lo, r['_bb'], .03) or not r['n']: continue
                 w1, w2 = words(cc, name), words(cc, r['n'])
                 share = len(w1 & w2) / max(1, min(len(w1), len(w2))) if w1 and w2 else 0
