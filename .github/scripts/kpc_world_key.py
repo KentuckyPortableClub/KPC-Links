@@ -25,7 +25,10 @@ SRC = {
           + [('NRW Wales ' + n, 'wfs', 'https://datamap.gov.wales/geoserver/ows', t) for n, t in
              (('SSSI', 'inspire-nrw:NRW_SSSI'), ('NNR', 'inspire-nrw:NRW_NNR'), ('LNR', 'inspire-nrw:NRW_LNR'), ('National Parks', 'inspire-nrw:NRW_NATIONAL_PARK'),
               ('National Landscapes', 'inspire-nrw:NRW_AONB'), ('Country Parks', 'geonode:country_parks'), ('SAC', 'inspire-nrw:NRW_SAC'), ('SPA', 'inspire-nrw:NRW_SPA'))],
-    'JP': [('Ministry of the Environment national parks (Esri Japan)', 'arcgis', 'https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/nps_all/FeatureServer/0')],
+    'JP': [('Ministry of the Environment national parks (Esri Japan)', 'arcgis', 'https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/nps_all/FeatureServer/0'),
+           # Oct 18 (probe 2): nps_all has only the 34 national parks; MLIT's National Land Numerical Information A10 'natural park areas'
+           # (all national, quasi-national and prefectural natural parks, one zip per prefecture, shapefiles) covers the rest
+           ('MLIT natural park areas (A10)', 'a10', 'https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v3_1.html')],
 }
 # Oct 18 (Brandon: 'go ahead'): PL ES FR CH AT from the European Environment Agency (official EU inventory, one place for all five):
 # Natura 2000 sites + Nationally designated areas (ex-CDDA; Switzerland reports there too, it has no Natura 2000).
@@ -34,6 +37,19 @@ EU = ('PL', 'ES', 'FR', 'CH', 'AT')
 for _c in EU:
     SRC[_c] = [('EEA Natura 2000', 'arcgis', EEA + 'Natura2000Sites/MapServer/2', [f"MS='{_c}'", f"SITECODE LIKE '{_c}%'"]),
                ('EEA nationally designated areas', 'arcgis', EEA + 'CDDA_Dyna_WM/MapServer/4', [f"countryCode='{_c}'", f"countryCode LIKE '{_c}%'"])]
+# Oct 18 (probe 2): Switzerland's own federal inventories (BAFU, data.geo.admin.ch STAC, shapefiles in Swiss LV95): POTA's 151 CH
+# 'Natural Monument' parks are BLN objects, which the EEA list files under several designation codes at once.
+CHB = [('BAFU landscapes and natural monuments (BLN)', 'ch.bafu.bundesinventare-bln'), ('BAFU hunting reserves', 'ch.bafu.bundesinventare-jagdbanngebiete'),
+       ('BAFU water and migratory bird reserves', 'ch.bafu.bundesinventare-vogelreservate'), ('BAFU mire landscapes', 'ch.bafu.bundesinventare-moorlandschaften'),
+       ('BAFU floodplains', 'ch.bafu.bundesinventare-auen'), ('BAFU raised bogs', 'ch.bafu.bundesinventare-hochmoore'), ('BAFU fens', 'ch.bafu.bundesinventare-flachmoore'),
+       ('BAFU Ramsar sites', 'ch.bafu.schutzgebiete-ramsar'), ('BAFU parks of national importance', 'ch.bafu.schutzgebiete-paerke_nationaler_bedeutung_perimeter'),
+       ('BAFU Emerald sites', 'ch.bafu.schutzgebiete-smaragd')]
+SRC['CH'] = SRC['CH'] + [(a, 'chshp', b) for a, b in CHB]
+CHPREF = {'Natural Monument': ['BAFU landscapes and natural monuments (BLN)'], 'Game Reserve': ['BAFU hunting reserves'],
+          'Wildlife Reserve': ['BAFU water and migratory bird reserves', 'BAFU hunting reserves'], 'Wildlife Refuge': ['BAFU water and migratory bird reserves'],
+          'Wetland Reserve': ['BAFU water and migratory bird reserves', 'BAFU mire landscapes', 'BAFU floodplains', 'BAFU raised bogs', 'BAFU fens'],
+          'Ramsar Site': ['BAFU Ramsar sites'], 'Nature Park': ['BAFU parks of national importance'], 'Wilderness Park': ['BAFU parks of national importance'],
+          'National Park': ['BAFU parks of national importance'], 'Landscape Park': ['BAFU parks of national importance', 'BAFU landscapes and natural monuments (BLN)']}
 COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT').upper().split()
 
 
@@ -90,7 +106,7 @@ KINDS = {
            ('nnm', r'naturmonument|natural monument')],
     'GB': [('nnr', r'national nature reserve|\bnnr\b'), ('lnr', r'local nature reserve|\blnr\b'), ('cp', r'country park'), ('sssi', r'scientific interest|\bsssi\b'),
            ('np', r'national park'), ('rp', r'regional park'), ('aonb', r'national landscape|outstanding natural beauty|\baonb\b'), ('sac', r'special area of conservation|\bsac\b'), ('spa', r'special protection area|\bspa\b')],
-    'JP': [('np', r'(?<!quasi )national park|国立公園'), ('qnp', r'quasi national park|国定公園'), ('pnp', r'prefectural|県立')],
+    'JP': [('np', r'(?<!quasi.)national park|国立公園'), ('qnp', r'quasi.?national park|国定公園'), ('pnp', r'prefectural|県立')],
 }
 for _c in EU: KINDS[_c] = [('n2k', r'natura 2000|\bzps\b|\bzsc\b|\bzepa\b|\bzec\b')]
 
@@ -248,6 +264,120 @@ def pull_wfs(label, url, typ):
     return recs
 
 
+JSUF = r'(国立公園|国定公園|(都|道|府|県)立自然公園|自然公園|県立公園|公園)$'
+def jstrip(t): return re.sub(r'\s', '', re.sub(JSUF, '', str(t or '').strip()))
+def jkind(t):
+    t = str(t or '')
+    return {'np'} if '国立公園' in t else {'qnp'} if '国定公園' in t else {'pnp'} if re.search(r'(都|道|府|県)立|自然公園', t) else set()
+
+
+def pull_a10(label, page):
+    import io, zipfile
+    try: import shapefile
+    except Exception:  # noqa: BLE001
+        import subprocess, sys; subprocess.run([sys.executable, '-m', 'pip', 'install', '--quiet', 'pyshp'], check=False); import shapefile
+    with urllib.request.urlopen(urllib.request.Request(page, headers=UA), timeout=120) as r: html = r.read().decode('utf-8', 'replace')
+    links = sorted(set(re.findall(r"[\w./-]*A10-15_\d\d_GML\.zip", html)))
+    recs, told = [], False
+    for ln in links:
+        u = urllib.parse.urljoin(page, ln)
+        try:
+            with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=300) as r: z = zipfile.ZipFile(io.BytesIO(r.read()))
+        except Exception as e:  # noqa: BLE001
+            notice(label, f'{ln} FAILED: {e}'); continue
+        for sp in [n for n in z.namelist() if n.lower().endswith('.shp')]:
+            b = sp[:-4]
+            try: rd = shapefile.Reader(shp=io.BytesIO(z.read(sp)), dbf=io.BytesIO(z.read(b + '.dbf')), shx=io.BytesIO(z.read(b + '.shx')), encoding='cp932')
+            except Exception as e: notice(label, f'{sp}: {e}'); continue  # noqa: BLE001
+            fn = [f[0] for f in rd.fields[1:]]
+            for i, (shp, rec) in enumerate(zip(rd.shapes(), rd.records())):
+                a = dict(zip(fn, list(rec)))
+                jv = [str(v) for v in a.values() if isinstance(v, str) and re.search(r'[぀-ヿ一-鿿]', v)]
+                nm = next((v for v in jv if re.search(r'公園', v)), '') or next((v for v in jv if not re.search(r'地域|地区|特別|普通|区分', v)), '')
+                ty = next((v for v in jv if re.search(r'国立公園|国定公園|自然公園', v) and v != nm), '') or nm
+                pts, parts = shp.points, list(shp.parts) + [len(shp.points)]
+                rs = [[list(p) for p in pts[parts[k]:parts[k + 1]]] for k in range(len(parts) - 1)]
+                recs.append({'id': f'a10:{ln[-10:-8]}:{b.split("/")[-1]}:{i}', 'n': nm, 'nj': nm, 'ty': ty, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': a,
+                             'code': '', 'dc': '', '_k0': jkind(nm) | jkind(ty)})
+            if not told:
+                told = True; notice(f'{label} fields', f'{sp}: ' + ', '.join(fn) + ' | sample: ' + ' / '.join(f"{r['n']} [{r['ty']}]" for r in recs[-3:]))
+        time.sleep(.4)
+    notice(label, f'{len(links)} prefecture files, {len(recs)} areas, {len({r["n"] for r in recs})} park names')
+    return recs
+
+
+def lv95(e, n):
+    # swisstopo's approximate LV95 → WGS84 formulas (about 1 m)
+    y, x = (e - 2600000) / 1e6, (n - 1200000) / 1e6
+    lo = 2.6779094 + 4.728982 * y + 0.791484 * y * x + 0.1306 * y * x * x - 0.0436 * y ** 3
+    la = 16.9023892 + 3.238272 * x - 0.270978 * y * y - 0.002528 * x * x - 0.0447 * y * y * x - 0.0140 * x ** 3
+    return [round(lo * 100 / 36, 6), round(la * 100 / 36, 6)]
+
+
+def pull_chshp(label, col):
+    import io, zipfile
+    try: import shapefile
+    except Exception:  # noqa: BLE001
+        import subprocess, sys; subprocess.run([sys.executable, '-m', 'pip', 'install', '--quiet', 'pyshp'], check=False); import shapefile
+    j = fetch(f'https://data.geo.admin.ch/api/stac/v0.9/collections/{col}/items?limit=20')
+    hrefs = [a['href'] for it in j.get('features', []) for a in it.get('assets', {}).values() if re.search(r'_2056\.shp\.zip$', a.get('href', ''))]
+    if not hrefs: notice(label, f'{col}: no shapefile asset'); return []
+    with urllib.request.urlopen(urllib.request.Request(hrefs[0], headers=UA), timeout=300) as r: z = zipfile.ZipFile(io.BytesIO(r.read()))
+    recs = []
+    for sp in [n for n in z.namelist() if n.lower().endswith('.shp')]:
+        b = sp[:-4]
+        if not all(b + x in z.namelist() for x in ('.dbf', '.shx')): continue
+        for enc in ('utf-8', 'cp1252'):
+            try:
+                rd = shapefile.Reader(shp=io.BytesIO(z.read(sp)), dbf=io.BytesIO(z.read(b + '.dbf')), shx=io.BytesIO(z.read(b + '.shx')), encoding=enc); rows = rd.records(); break
+            except Exception: rd = None  # noqa: BLE001
+        if not rd or rd.shapeType not in (5, 15, 25): continue
+        fn = [f[0] for f in rd.fields[1:]]
+        nf = next((f for f in fn if re.search(r'name', f, re.I) and not re.search(r'sub|teil|_fr$|_it$|_en$', f, re.I)), None) or next((f for f in fn if re.search(r'name', f, re.I)), None)
+        if not nf: notice(label, f'{sp}: no name field in {fn}'); continue
+        for i, (shp, rec) in enumerate(zip(rd.shapes(), rows)):
+            a = dict(zip(fn, list(rec)))
+            pts, parts = shp.points, list(shp.parts) + [len(shp.points)]
+            rs = [[lv95(p[0], p[1]) for p in pts[parts[k]:parts[k + 1]][::max(1, (parts[k + 1] - parts[k]) // 400)]] for k in range(len(parts) - 1)]
+            recs.append({'id': f'{col.split(".")[-1]}:{i}', 'n': str(a.get(nf) or ''), 'ty': label, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': {nf: a.get(nf)}, 'code': '', 'dc': ''})
+        notice(f'{label} fields', f'{sp}: name={nf} | ' + ', '.join(fn[:20]) + f' | {len(recs)} areas, e.g. ' + ' / '.join(r['n'] for r in recs[:4]))
+    return recs
+
+
+def wd_ja(P):
+    """Japanese name of each POTA park from Wikidata (English label search, item in Japan): bridges POTA's English names to the
+    Japanese map names (romaji guesses miss readings like 大山 = Daisen). Cached in data/world-key/jp-wikidata.json."""
+    cf = OUT / 'jp-wikidata.json'
+    try: C = json.load(open(cf))
+    except Exception: C = {}  # noqa: BLE001
+    n = 0
+    for ref, x in sorted(P.items()):
+        if ref in C: continue
+        name = re.sub(r'\s+', ' ', x[0]).strip(); got = []
+        for q in dict.fromkeys([name, re.sub(r'\s*(Prefectural (Nature |Natural )?Park|Quasi-National Park|National Park|National Government Park|Prefectural Forest)$', '', name)]):
+            try:
+                r = fetch('https://www.wikidata.org/w/api.php?' + urllib.parse.urlencode({'action': 'wbsearchentities', 'search': q, 'language': 'en', 'limit': 4, 'format': 'json'}), tries=2, timeout=40)
+                ids = [h['id'] for h in r.get('search', [])]
+                if ids:
+                    e = fetch('https://www.wikidata.org/w/api.php?' + urllib.parse.urlencode({'action': 'wbgetentities', 'ids': '|'.join(ids), 'props': 'labels|claims', 'languages': 'ja|en', 'format': 'json'}), tries=2, timeout=40)
+                    for qid, v in (e.get('entities') or {}).items():
+                        cl = v.get('claims', {})
+                        if not any((c['mainsnak'].get('datavalue') or {}).get('value', {}).get('id') == 'Q17' for c in cl.get('P17', [])): continue
+                        ja = (v.get('labels', {}).get('ja') or {}).get('value')
+                        co = next(((c['mainsnak'].get('datavalue') or {}).get('value') for c in cl.get('P625', [])), None)
+                        if co and x[5] and (abs(co['latitude'] - x[5]) > .6 or abs(co['longitude'] - x[6]) > .6): continue   # same name far away
+                        if ja: got.append([qid, ja])
+            except Exception: pass  # noqa: BLE001
+            if got: break
+            time.sleep(.25)
+        C[ref] = got[:3]; n += 1
+        if n % 100 == 0: json.dump(C, open(cf, 'w'), ensure_ascii=False, separators=(',', ':'))
+        time.sleep(.25)
+    json.dump(C, open(cf, 'w'), ensure_ascii=False, separators=(',', ':'))
+    notice('World key JP Wikidata', f'{sum(1 for v in C.values() if v)} of {len(C)} parks have a Japanese name from Wikidata ({n} looked up this run)')
+    return {r: {jstrip(j) for _, j in v} for r, v in C.items()}
+
+
 idx = {}
 try: idx = json.load(open(OUT / 'index.json')).get('countries', {})
 except Exception: pass  # noqa: BLE001
@@ -257,15 +387,17 @@ for cc in COUNTRIES:
     recs = []
     for s in SRC.get(cc, []):
         try:
-            got = pull_arcgis(s[0], s[2], s[3] if len(s) > 3 else None) if s[1] == 'arcgis' else pull_wfs(s[0], s[2], s[3])
+            got = pull_arcgis(s[0], s[2], s[3] if len(s) > 3 else None) if s[1] == 'arcgis' else pull_a10(s[0], s[2]) if s[1] == 'a10' else pull_chshp(s[0], s[2]) if s[1] == 'chshp' else pull_wfs(s[0], s[2], s[3])
             recs += got; print(f'{cc} {s[0]}: {len(got)}', flush=True)
         except Exception as e:  # noqa: BLE001
             notice(f'World key {cc}', f'{s[0]} FAILED: {e}')
     if not recs: continue
     if cc == 'JP':
         for r in recs:
-            r['_k0'] = kinds(cc, r['n']) | kinds(cc, r['ty'])
-            if r['n']: r['nj'], r['n'] = r['n'], romaji(r['n'])
+            r['_k0'] = r.get('_k0') or (kinds(cc, r['n']) | kinds(cc, r['ty']))
+            if r.get('src', '').startswith('Ministry'): r['_k0'] = {'np'}          # nps_all = national parks only
+            if r['n']: r['nj'], r['n'] = r.get('nj') or r['n'], romaji(re.sub(JSUF, '', r['n']))
+        JA = wd_ja(P)
         notice('World key JP sample', '; '.join(f"{r.get('nj')} → {r['n']} [{r['ty']}]" for r in recs[:12]) + ' | fields: ' + ', '.join(list(recs[0]['_a'].keys())[:30]))
     for r in recs: r['_k'] = kinds(cc, r['n']) | kinds(cc, r['ty']) | kinds(cc, r['src']) | r.get('_k0', set())
     # 1-degree grid so big countries (FR: 14k parks x 15k areas) stay quick
@@ -292,9 +424,12 @@ for cc in COUNTRIES:
         for r in ([] if m else nearby(la, lo)):
             if la is not None and not near(la, lo, r['_bb'], .6): continue
             if cc in EU and (('n2k' in kp) != ('n2k' in r['_k'])): continue          # Natura 2000 parks only join Natura 2000 sites, and the other way round
-            if r['n'] and any(same_name(cc, q, r['n']) for q in cand) and (not kp or (kp & r['_k']) or (not r['_k'] and not (cc == 'AU' and r.get('ty')))):
+            jam = cc == 'JP' and r.get('nj') and jstrip(r['nj']) in (JA.get(ref) or set())
+            if r['n'] and (jam or any(same_name(cc, q, r['n']) for q in cand)) and (not kp or (kp & r['_k']) or (not r['_k'] and not (cc == 'AU' and r.get('ty')))):
                 m.append([r['id'], r['n'], r['src'], 'name']); mr.append(r)
-        if cc in EU and len({r2['dc'] for r2 in mr if r2['src'] == 'EEA nationally designated areas'}) > 1:
+        pref = [q for q in m if q[2] in CHPREF.get(typ, [])] if cc == 'CH' else []
+        if pref: m = pref                                                          # the federal inventory of that kind decides
+        elif cc in EU and len({r2['dc'] for r2 in mr if r2['src'] == 'EEA nationally designated areas'}) > 1:
             c = [[q[0], q[1], q[2], 'same name, more than one kind of area'] for q in m]; m = []   # e.g. a reserve and a landscape park with one name
         if c: parks[ref] = {'n': name, 't': typ, 'm': [], 'c': c[:6]}; continue
         if not m and la is not None:
