@@ -1,6 +1,6 @@
 # CH: POTA parks vs official land
 
-Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **87 of 319** joined (same name + same kind), **99** to check, **133** nothing found. Nothing below is joined.
+Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **88 of 319** joined (same name + same kind), **99** to check, **132** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -92,7 +92,7 @@ Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **CH-0277** Dénériaz-Tempêteries-Noirvaux Forest Reserve (Forest Reserve) → La Dénériaz (EEA nationally designated areas, similar name); Noirvaux (EEA nationally designated areas, similar name); Réserve forestière Dénériaz-Tempêteries-Noirvaux (EEA nationally designated areas, similar name)
 - **CH-0278** Lengwiler Weiher Wetland Reserve (Wetland Reserve) → Lengwiler Weiher (EEA nationally designated areas, same name, more than one kind of area); Lengwiler Weiher (EEA nationally designated areas, same name, more than one kind of area)
 - **CH-0279** Bomer Weiher Wetland Reserve (Wetland Reserve) → Bommer Weiher (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **CH-0280** Justistal Wildlife Reserve (Wildlife Reserve) → Grünenbergpass (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **CH-0280** Justistal Wildlife Reserve (Wildlife Reserve) → Waldreservat Justistal (EEA nationally designated areas, similar name); Grünenbergpass (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **CH-0281** Le Niremont Wetland Reserve (Wetland Reserve) → Niremont, Arête ouest (EEA nationally designated areas, similar name); Marais au nord du Petit Niremont (EEA nationally designated areas, similar name); Petit Niremont (EEA nationally designated areas, similar name); Niremont, Arête nord (EEA nationally designated areas, similar name); Niremont, arête nord (EEA nationally designated areas, similar name); Gros Niremont (EEA nationally designated areas, similar name)
 - **CH-0287** Bois des Mouilles Nature Reserve (Nature Reserve) → Bois des Mouilles (EEA nationally designated areas, same name, more than one kind of area); Bois des Mouilles (EEA nationally designated areas, same name, more than one kind of area)
 - **CH-0290** Seeburg Amphibian Spawning Site Regional Reserve (Regional Reserve) → Seeburg (EEA nationally designated areas, similar name)
@@ -111,7 +111,6 @@ Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - CH-0006 Diemtigtal Nature Park (Nature Park)
 - CH-0007 Doubs Nature Park (Nature Park)
 - CH-0009 Entlebuch Biosphere Reserve (Biosphere Reserve)
-- CH-0010 Gantrisch Nature Park (Nature Park)
 - CH-0011 Gruyère Pays-d'Enhaut Nature Park (Nature Park)
 - CH-0012 Jura Vaudois Nature Park (Nature Park)
 - CH-0014 Thal Nature Park (Nature Park)
