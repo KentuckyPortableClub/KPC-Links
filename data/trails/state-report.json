@@ -1173,7 +1173,7 @@
    "US-9904",
    "Apple Orchard Falls National Recreation Trail",
    "VA",
-   "US Forest Service",
+   "OpenStreetMap (not official)",
    5,
    0.0
   ],
@@ -1181,7 +1181,7 @@
    "US-9905",
    "Cascades National Recreation Trail",
    "VA",
-   "US Forest Service",
+   "OpenStreetMap (not official)",
    6,
    0.0
   ],
@@ -1189,7 +1189,7 @@
    "US-9906",
    "Cornelius Creek National Recreation Trail",
    "VA",
-   "US Forest Service",
+   "OpenStreetMap (not official)",
    6,
    0.0
   ],
@@ -1205,15 +1205,15 @@
    "US-9908",
    "Hoop Hole National Recreation Trail",
    "VA",
-   "US Forest Service",
-   14,
+   "OpenStreetMap (not official)",
+   9,
    2.1
   ],
   [
    "US-9909",
    "Little Stony Creek National Recreation Trail",
    "VA",
-   "US Forest Service",
+   "Cassandra.Patterson@vdot.virginia.gov_VDOT",
    5,
    0.0
   ],
@@ -1221,7 +1221,7 @@
    "US-9910",
    "Massanutten National Recreation Trail",
    "VA",
-   "US Forest Service",
+   "OpenStreetMap (not official)",
    141,
    0.1
   ],
@@ -1512,6 +1512,14 @@
    "TDEC_Bureau_of_Conservation",
    418,
    0.1
+  ],
+  [
+   "US-11181",
+   "Sheltowee Trace National Recreation Trail",
+   "TN",
+   "US Forest Service",
+   346,
+   0.5
   ],
   [
    "US-8617",
@@ -1834,12 +1842,6 @@
    "no line found"
   ],
   [
-   "US-11181",
-   "Sheltowee Trace National Recreation Trail",
-   "TN",
-   "no line found"
-  ],
-  [
    "US-8618",
    "White Ridge National Recreation Trail",
    "NM",
@@ -2017,6 +2019,108 @@
   ]
  ],
  "agency": [
+  [
+   "Waahila Ridge",
+   "skip (not state/federal)",
+   "tquarles_Jaxstate",
+   "Hawaii_land_cover"
+  ],
+  [
+   "Waahila Ridge",
+   "skip (not state/federal)",
+   "ryant@CHW",
+   "RailwayBridge_Clip_Point"
+  ],
+  [
+   "Waahila Ridge",
+   "skip (not state/federal)",
+   "kniv4704_ui_uidaho",
+   "Hawaii_Volcanoes_NP_FIRE_407_WFL1"
+  ],
+  [
+   "Waahila Ridge",
+   "skip (not state/federal)",
+   "ldf5129_pennstate",
+   "nps_boundary"
+  ],
+  [
+   "Waahila Ridge",
+   "skip (not state/federal)",
+   "tyler.sheppard.2",
+   "Trails"
+  ],
+  [
+   "Waahila Ridge",
+   "skip (not state/federal)",
+   "dlnr_jbauer",
+   "Kalopa_TrailReroutes view"
+  ],
+  [
+   "Waahila Ridge",
+   "skip (not state/federal)",
+   "Seth_Hart",
+   "SH_Oregon_Trail_WFL1"
+  ],
+  [
+   "Waahila Ridge",
+   "skip (not state/federal)",
+   "Division of Forestry and Wildlife | dlnr_dmatsuwaki",
+   "DOFAWManagedLands"
+  ],
+  [
+   "Waahila Ridge",
+   "skip (not state/federal)",
+   "Division of Forestry and Wildlife | dlnr_dmatsuwaki",
+   "DOFAWManagedLandsV2"
+  ],
+  [
+   "Waahila Ridge",
+   "skip (not state/federal)",
+   "campbell10_uagis",
+   "Na_Ala_Hele_Trails"
+  ],
+  [
+   "Waahila Ridge",
+   "skip (not state/federal)",
+   "cmalyshk@uvm.edu_UVM",
+   "Winter Fun Near Ludlow_ VT_WTL1"
+  ],
+  [
+   "Waahila",
+   "skip (not state/federal)",
+   "tommyphammy",
+   "Waahila Ridge"
+  ],
+  [
+   "Waahila",
+   "skip (not state/federal)",
+   "tommyphammy",
+   "WaahilaRidgeTrailHead"
+  ],
+  [
+   "Waahila",
+   "skip (not state/federal)",
+   "State Department of Land and Natural Resources, DOFAW, Na Al",
+   "Na Ala Hele Trails"
+  ],
+  [
+   "Waahila",
+   "skip (not state/federal)",
+   "State Department of Land and Natural Resources, DOFAW, Na Al",
+   "Na Ala Hele Trails"
+  ],
+  [
+   "Waahila",
+   "skip (not state/federal)",
+   "State Department of Land and Natural Resources, Division of ",
+   "Na Ala Hele Trails 2019"
+  ],
+  [
+   "Waahila",
+   "skip (not state/federal)",
+   "State Department of Land and Natural Resources, DOFAW, Na Al",
+   "Na Ala Hele Trails 2020"
+  ],
   [
    "Waahila",
    "skip (not state/federal)",
@@ -3590,14 +3694,14 @@
   [
    "Mountains to Sea",
    "skip (not state/federal)",
-   "arcgis_dev0",
-   "Mountains to Sea Challenge ROUTE"
+   "tayton.mahone@g.austincc.edu",
+   "From Mountains to the Sea_WFL1"
   ],
   [
    "Mountains to Sea",
    "skip (not state/federal)",
-   "tayton.mahone@g.austincc.edu",
-   "From Mountains to the Sea_WFL1"
+   "arcgis_dev0",
+   "Mountains to Sea Challenge ROUTE"
   ],
   [
    "Mountains to Sea",
@@ -3638,14 +3742,14 @@
   [
    "Mountains to Sea",
    "skip (not state/federal)",
-   "ijohnson_nemac",
-   "Land of Sky Regional Council Trails"
+   "mwcaslin_NCSU",
+   "Blue_Jay_Point_Ash_Tree_Locations_and_Infestation_8_02_2020"
   ],
   [
    "Mountains to Sea",
    "skip (not state/federal)",
-   "mwcaslin_NCSU",
-   "Blue_Jay_Point_Ash_Tree_Locations_and_Infestation_8_02_2020"
+   "ijohnson_nemac",
+   "Land of Sky Regional Council Trails"
   ],
   [
    "Mountains to Sea",
@@ -3780,108 +3884,6 @@
    "arcgis.com/Gypl21NmiWS1cM7h/arcgis/rest/services/TDOT Roads Knoxville Region/FeatureServer"
   ],
   [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "The Nature Conservancy |  | link.elmore@tnc.org_TNC",
-   "Ataya TN Trails TWRA public view"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "Shelby County 911 | Shelby County 911 | shelbycounty911",
-   "911 Trail Markers"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "NTM718_IGTLab",
-   "TREC Tennessee Statewide Trails and Greenways SCTDD"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "jace.swain-crowley",
-   "Greenways and Trails"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "Jon Zetterberg | Jzett33",
-   "Mile Markers"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "NHunt73",
-   "Chattanooga Regional Trails"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "FontaineMaury",
-   "Scrum Branch"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "Derived from the 2016 USGS 3DEP LiDAR Collection. | WashCoTN",
-   "Five-Foot Contours of Washington County, Tennessee"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "FontaineMaury",
-   "Sams Branch"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "afrisbie_ATConservancy",
-   "Appalachian Trail Visitor Use Management"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "ppurgiel_ucdd",
-   "Bigbee River Trail"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "NCCC | geoace67",
-   "NChick_web1"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "Collierville GIS | ColliervilleGIS",
-   "GreenbeltTrails"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "monroeco",
-   "Trail Spots"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "FontaineMaury",
-   "SavageGulfHikingEasy"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "skip (not state/federal)",
-   "bensmith252",
-   "Buffalo Mountain Hiking Trails 2_WFL1"
-  ],
-  [
-   "Sheltowee Trace National Recreation Trail",
-   "error URL can't contain control characters. '/Gypl21NmiWS1cM7h/arcgis/rest/services/TD",
-   "Tennessee Department of Transportation, Bureau of Environmen",
-   "arcgis.com/Gypl21NmiWS1cM7h/arcgis/rest/services/TDOT Roads Knoxville Region/FeatureServer"
-  ],
-  [
    "Perea Nature National Recreation Trail",
    "skip (not state/federal)",
    "Jay.puckett_wsp5",
@@ -3896,14 +3898,14 @@
   [
    "Perea Nature National Recreation Trail",
    "skip (not state/federal)",
-   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
-   "Multi Use Path Trails"
+   "Jay.puckett_wsp5",
+   "Santa Fe Trails Bus Stop Locations"
   ],
   [
    "Perea Nature National Recreation Trail",
    "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe Trails Bus Stop Locations"
+   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
+   "Multi Use Path Trails"
   ],
   [
    "Perea Nature National Recreation Trail",
@@ -4028,14 +4030,14 @@
   [
    "White Ridge National Recreation Trail",
    "skip (not state/federal)",
-   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
-   "Multi Use Path Trails"
+   "Jay.puckett_wsp5",
+   "Santa Fe Trails Bus Stop Locations"
   ],
   [
    "White Ridge National Recreation Trail",
    "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe Trails Bus Stop Locations"
+   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
+   "Multi Use Path Trails"
   ],
   [
    "White Ridge National Recreation Trail",
@@ -4160,14 +4162,14 @@
   [
    "White Ridge",
    "skip (not state/federal)",
-   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
-   "Multi Use Path Trails"
+   "Jay.puckett_wsp5",
+   "Santa Fe Trails Bus Stop Locations"
   ],
   [
    "White Ridge",
    "skip (not state/federal)",
-   "Jay.puckett_wsp5",
-   "Santa Fe Trails Bus Stop Locations"
+   "City of Santa Fe GIS Division, Metropolitan Planning Organiz",
+   "Multi Use Path Trails"
   ],
   [
    "White Ridge",
