@@ -191,6 +191,55 @@ OWNK = [('np', r'national park|nationaal park|nationalpark|narodni park|parco na
 def ownk(s): f = flat(s); return {k for k, r in OWNK if re.search(r'\b(' + r + r')\b', f)}
 
 
+# Oct 19: what each EEA national designation code means (official Eionet vocabulary 'Designation type code',
+# dd.eionet.europa.eu/vocabulary/cdda/designationTypeCodeValue). One park in the CDDA list is often filed under several codes
+# with no kind word in its name; the code's own label ('Nature Reserve', 'Nationalpark'…) says which one is which.
+DKIND = [('np', r'national park|nationaal park|nationalpark|nasjonalpark|park narodowy|parque nacional|parc national|parco nazionale|narodni park|parcul national|parque natural nacional'),
+         ('nnr', r'national nature reserve|narodni prirodni rezervace|reserve naturelle nationale|riserva naturale statale|national reserve'),
+         ('nr', r'nature reserve|naturreservat|natuurreservaat|naturschutzgebiet|rezerwat|reserva natural|riserva naturale|rezervatia|rezervatie|prirodni rezervace|naravni rezervat|reserve naturelle|nature conservation reserve|natural reserve|state reserve|regional reserve'),
+         ('lp', r'landscape park|protected landscape|landscape protection|landscape reserve|park krajobrazowy|chronionego krajobrazu|landschaftsschutz|chranena krajinna oblast|landskapsvern|paisagem protegida|paisaje protegido|krajinski park|regijski park|nature and landscape complex|zespol przyrodniczo'),
+         ('nat', r'nature park|naturpark|parque natural|parc naturel|parco naturale|parco regionale|prirodni park|parcul natural|regional park|provincial park|natuurpark'),
+         ('nm', r'natural monument|nature monument|pomnik przyrody|prirodni pamatka|naturminne|naturdenkmal|monumento natural|monumento naturale|monument naturel|naravni spomenik|monument al naturii|national monument')]
+def dkinds(s):
+    f = flat(s); k = {k for k, r in DKIND if re.search(r'\b(' + r + r')\b', f)}
+    if 'nnr' in k: k.discard('nr')   # a national nature reserve is not the plain one
+    return k
+DT = None
+def eea_dt():
+    """{code: label} from the Eionet vocabulary (CSV, then JSON, then the page view); cached in data/world-key/eea-designations.json."""
+    global DT
+    if DT is not None: return DT
+    cf = OUT / 'eea-designations.json'; DT = {}
+    try: DT = json.load(open(cf))
+    except Exception: pass  # noqa: BLE001
+    if len(DT) > 300: return DT
+    base = 'https://dd.eionet.europa.eu/vocabulary/cdda/designationTypeCodeValue'
+    def raw(u):
+        with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=90) as r: return r.read().decode('utf-8', 'replace')
+    got = {}
+    try:
+        import csv, io
+        rows = list(csv.reader(io.StringIO(raw(base + '/csv'))))
+        h = [x.lower() for x in rows[0]]
+        li = next(i for i, x in enumerate(h) if x.startswith('label')); ni = next(i for i, x in enumerate(h) if x.startswith('notation'))
+        got = {r[ni].strip(): r[li].strip() for r in rows[1:] if len(r) > max(li, ni) and r[ni].strip()}
+    except Exception as e: notice('EEA designation types', f'CSV not read: {e}')  # noqa: BLE001
+    if len(got) < 300:
+        for pg in range(1, 80):
+            try: t = raw(base + f'/view?page={pg}')
+            except Exception: break  # noqa: BLE001
+            n0 = len(got)
+            for tr in re.findall(r'<tr[^>]*>(.*?)</tr>', t, re.S):
+                cells = [re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', c)).strip() for c in re.findall(r'<td[^>]*>(.*?)</td>', tr, re.S)]
+                nt = next((c for c in cells if re.fullmatch(r'[A-Z]{2}[0-9A-Z]{2,3}', c)), None)
+                if nt and len(cells) > 1: got[nt] = cells[1]
+            if len(got) == n0: break
+            time.sleep(.4)
+    if len(got) > len(DT): DT = got; json.dump(DT, open(cf, 'w'), ensure_ascii=False, indent=0, sort_keys=True)
+    notice('EEA designation types', f'{len(DT)} codes known; sample: ' + '; '.join(f'{k}={v}' for k, v in list(sorted(DT.items()))[:6]))
+    return DT
+
+
 def words(cc, s): return set(w for w in norm(cc, s).split() if len(w) > 2)
 
 
@@ -533,6 +582,11 @@ for cc in COUNTRIES:
         elif cc in EU and len({r2['dc'] for r2 in mr if r2['src'] == 'EEA nationally designated areas'}) > 1 and (lambda kk: kk and [q for q, r2 in zip(m, mr) if ownk(r2['n']) & kk] and
                 len({r2['dc'] for r2 in mr if ownk(r2['n']) & kk and r2['src'] == 'EEA nationally designated areas'}) == 1)(ownk(name)):
             kk = ownk(name); m = [[q[0], q[1], q[2], 'name + kind in its own name'] for q, r2 in zip(m, mr) if ownk(r2['n']) & kk]   # Oct 19: 'Krajinski park Goričko' is the landscape park
+        elif cc in EU and len({r2['dc'] for r2 in mr if r2['src'] == 'EEA nationally designated areas'}) > 1 and (lambda kt: kt and (lambda keep:
+                keep and len({r2['dc'] for r2 in keep}) == 1)([r2 for r2 in mr if r2['src'] == 'EEA nationally designated areas' and dkinds(eea_dt().get(r2['dc'], '')) & kt]))(dkinds(typ) | ownk(name)):
+            kt = dkinds(typ) | ownk(name)   # Oct 19: the designation code's own label says which piece is the park's kind (unknown code = never joined)
+            m = [[q[0], q[1], q[2], 'name + designation type ' + r2['dc'] + ' (' + eea_dt().get(r2['dc'], '')[:40] + ')'] for q, r2 in zip(m, mr)
+                 if r2['src'] == 'EEA nationally designated areas' and dkinds(eea_dt().get(r2['dc'], '')) & kt]
         elif cc in EU and len({r2['dc'] for r2 in mr if r2['src'] == 'EEA nationally designated areas'}) > 1:
             c = [[q[0], q[1], q[2], 'same name, more than one kind of area'] for q in m]; m = []   # e.g. a reserve and a landscape park with one name
         if c: parks[ref] = {'n': name, 't': typ, 'm': [], 'c': c[:6]}; continue
