@@ -1,6 +1,6 @@
 # TX: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **189 of 222** parks joined to official land (same name + same kind of place). **13** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **193 of 222** parks joined to official land (same name + same kind of place). **8** to check by hand, **20** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,14 +8,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **189 of 222** parks joined
 - **US-2984** Atlanta State Park (State Park) → Wright Patman Recreation Area (~81,011 ac, the POTA pin is inside it (different name))
 - **US-3032** Lake Whitney State Park (State Park) → Whitney Point Recreation Area (~45,028 ac, the POTA pin is inside it (different name))
 - **US-3044** Old Tunnel State Park (State Park) → Old Tunnel Wildlife Management Area (~17 ac, same name, different kind of place)
-- **US-3502** Goliad State Historic Site (State Historic Site) → Goliad State Park (~275 ac, same name, different kind of place)
-- **US-4370** Caddo National Grasslands Wildlife Management Area (Wildlife Management Area) → Caddo National Grassland (~17,722 ac, similar name)
 - **US-4419** I.D. Farichild State Forest (State Forest) → I.D. FairChild State Forest (~1,727 ac, the POTA pin is inside it (different name))
-- **US-4514** Cibola National Forest (National Forest) → Sandia Mountain Wilderness (~37,690 ac, the POTA pin is inside it (different name))
 - **US-6538** Barrington Plantation State Historic Site (State Historic Site) → Washington-on-the-Brazos State Historic Site (~295 ac, the POTA pin is inside it (different name))
-- **US-6572** Las Palomas , Lower Rio Grande Valley Units Wildlife Management Area (Wildlife Management Area) → Lower Rio Grande Valley National Wildlife Refuge (~89,898 ac, similar name); Lower Rio Grande Valley National Wildlife Refuge (~88,266 ac, similar name); Las Palomas Wildlife Management Area (~601 ac, similar name); Las Palomas Wildlife Management Area (~220 ac, similar name); Las Palomas Wildlife Management Area (~122 ac, similar name)
 - **US-6580** Matagorda Island Wildlife Management Area (Wildlife Management Area) → Aransas National Wildlife Refuge (~90,764 ac, the POTA pin is inside it (different name)); Aransas National Wildlife Refuge (~90,764 ac, the POTA pin is inside it (different name))
-- **US-6581** McClellan Creek National Nature Reserve (National Nature Reserve) → McClellan Creek National Grassland (~1,402 ac, similar name)
 - **US-6608** W.A. Pat Murphy Unit Wildlife Management Area (Wildlife Management Area) → Gene Howe Wildlife Management Area (~890 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -34,6 +29,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **189 of 222** parks joined
 - US-13588 Post Oak Ridge State Park (State Park)
 - US-3061 Walter Umphrey State Park (State Park)
 - US-4423 Spring Creek Forest State Preserve (State Preserve)
+- US-4514 Cibola National Forest (National Forest)
 - US-4568 El Camino Real de los Tejas National Historic Trail (National Historic Trail)
 - US-4569 El Camino Real de Tierra Adentro National Historic Trail (National Historic Trail)
 - US-6560 French Legation State Historic Site (State Historic Site)
@@ -49,7 +45,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **189 of 222** parks joined
 - Roswell Field Office ERMA ·  · BLM recreation sites · ~1,441,359 ac
 - Permanent University Fund · SRMA · Texas General Land Office - School Land Board · ~1,324,218 ac
 - Sevilleta National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~227,850 ac
-- Pecos Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~221,835 ac
 - Taos Plateau ·  · BLM recreation sites · ~186,840 ac
 - Sabine National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~123,814 ac
 - Sam Rayburn Recreation Area · REC · Forth Worth · ~116,718 ac
@@ -62,18 +57,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **189 of 222** parks joined
 - Hackberry Lake OHV ·  · BLM recreation sites · ~57,605 ac
 - San Andres National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~57,331 ac
 - Palacio Arroyos ·  · BLM recreation sites · ~56,345 ac
-- White Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~47,267 ac
-- Chama River Canyon Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~47,034 ac
 - Lewisville Recreation Area · REC · Forth Worth · ~46,194 ac
 - Whitney Point Recreation Area · REC · Forth Worth · ~45,028 ac
 - Anahuac National Wildlife Refuge · NWR · Anahuac National Wildlife Refuge · ~37,735 ac
-- Sandia Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~37,690 ac
 - Lavon Recreation Area · REC · Forth Worth · ~37,671 ac
 - Chinati Mountains · SCA · Unknown · ~37,245 ac
-- Manzano Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~37,083 ac
 - Organ Mountains ·  · BLM recreation sites · ~36,667 ac
 - Anahuac National Wildlife Refuge · NWR · ANAHUAC NATIONAL WILDLIFE REFUGE · ~36,190 ac
-- Capitan Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~36,074 ac
 - Indio Ranch · REA · University of Texas at El Paso · ~34,445 ac
 - Red Sands OHV ·  · BLM recreation areas · ~33,872 ac
 - Red Sands OHV ·  · BLM recreation sites · ~33,872 ac
@@ -91,7 +81,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **189 of 222** parks joined
 - Rio Grande Rim/Copper Hill ·  · BLM recreation sites · ~19,870 ac
 - Sabinoso Primitive Area ·  · BLM recreation sites · ~19,798 ac
 - O.C. Fisher Recreation Area · REC · Forth Worth · ~17,940 ac
-- Caddo National Grassland · NG · Forest Service Region 08 Southern · ~17,722 ac
 - Rio Grande Gorge Recreation Area ·  · BLM recreation sites · ~16,948 ac
 - Sombrillo ·  · BLM recreation sites · ~16,898 ac
 - Bordo Atravesado ·  · BLM herd management areas · ~16,492 ac
@@ -102,7 +91,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **189 of 222** parks joined
 - Waco Recreation Area · REC · Forth Worth · ~15,427 ac
 - Joe Pool Recreation Area · REC · Forth Worth · ~15,286 ac
 - Stillhouse Recreation Area · REC · Forth Worth · ~15,217 ac
-- Caney Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~14,262 ac
 - Little River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,236 ac
 - Rio Embudo ·  · BLM recreation sites · ~13,894 ac
 - Lake Texana · REC · Unknown · ~13,738 ac
+- Granger Recreation Area · REC · Forth Worth · ~13,609 ac
+- Oklahoma Field Office · PUB · BLM · ~12,029 ac
+- Canyon Recreation Area · REC · Forth Worth · ~11,547 ac
+- Navarro Mills Recreation Area · REC · Forth Worth · ~11,023 ac
+- Sierra Diablo Wildlife Management Area · SCA · Unknown · ~10,914 ac
+- Twin Buttes Reservoir · RMA · Unknown · ~10,672 ac
+- Deep Fork National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~10,556 ac
+- Cullen Park (Lease) · LP · City of Houston · ~10,491 ac

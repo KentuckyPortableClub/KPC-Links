@@ -1,20 +1,14 @@
 # PA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **468 of 494** parks joined to official land (same name + same kind of place). **11** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **474 of 494** parks joined to official land (same name + same kind of place). **5** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0681** Upper Delaware National Wild and Scenic River (National Wild and Scenic River) → Delaware State Forest (~75,148 ac, similar name); Delaware State Forest (~74,077 ac, similar name)
 - **US-0898** White Clay Creek National Wild and Scenic River (National Wild and Scenic River) → White Clay Creek Preserve (~3,277 ac, same name, different kind of place); White Clay Creek Preserve (~1,382 ac, same name, different kind of place); White Clay Creek Preserve (~1,366 ac, same name, different kind of place); White Clay Creek State Park (~0 ac, same name, different kind of place); White Clay Creek State Park (~0 ac, same name, different kind of place)
-- **US-12234** Allegheny National Wild & Scenic River (National Wild & Scenic River) → Allegheny Islands Wilderness (~372 ac, similar name); Allegheny National Forest (~514,091 ac, same name, different kind of place)
+- **US-12234** Allegheny National Wild & Scenic River (National Wild & Scenic River) → Allegheny National Forest (~514,091 ac, same name, different kind of place)
 - **US-12235** Clarion National Wild and Scenic River (National Wild and Scenic River) → Clear Creek State Park (~1,798 ac, the POTA pin is inside it (different name))
 - **US-12664** Pine Creek Rail Trail State Trail (State Trail) → Pine Creek Gorge (~11,578 ac, similar name)
 - **US-1413** Ricketts Glen State Park (State Park) → Ricketts Glenn State Park (~12,995 ac, the POTA pin is inside it (different name))
-- **US-1416** S B Elliott State Park (State Park) → Simon B. Elliott State Park (~329 ac, similar name)
-- **US-4356** Boyd Big Tree State Preserve (State Preserve) → Boyd Big Tree Conservation Area (~1,044 ac, similar name)
-- **US-4358** Jacobsburg Environmental State Park (State Park) → Jacobsburg Environmental Education Center (~1,165 ac, similar name); Jacobsburg Environmental Education Center (~1,164 ac, similar name)
-- **US-4359** Jennings Environmental State Park (State Park) → Jennings Environmental Education Center (~299 ac, similar name)
-- **US-4362** Nolde Forest Environmental State Park (State Park) → Nolde Forest Environmental Education Center (~697 ac, same name, different kind of place); Nolde Forest Environmental Education Center (~640 ac, same name, different kind of place)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -53,7 +47,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **468 of 494** parks joined
 - Martin Hill Wild Area · SW · Bureau of Forestry · ~11,673 ac
 - Pine Creek Gorge · SCA · Bureau of Forestry · ~11,578 ac
 - Elk State Forest - Bucktail State Park Natural Area · SRMA ·   · ~9,131 ac
-- Hickory Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,633 ac
 - Montage Tract · SRMA · Bureau of Forestry · ~7,554 ac
 - Wolf Run Wild Area · SW · Bureau of Forestry · ~7,526 ac
 - Loyalsock State Forest - Mcintyre Wild Area · SRMA ·   · ~7,227 ac
@@ -99,3 +92,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **468 of 494** parks joined
 - Delaware State Forest - Stillwater Natural Area · SRMA ·   · ~1,837 ac
 - Stillwater Natural Area · SCA · Bureau of Forestry · ~1,837 ac
 - Trough Creek Wild Area · SW · Bureau of Forestry · ~1,744 ac
+- Forrest H. Dutlinger Natural Area · SCA · Bureau of Forestry · ~1,654 ac

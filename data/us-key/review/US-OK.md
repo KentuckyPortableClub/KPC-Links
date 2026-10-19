@@ -1,10 +1,9 @@
 # OK: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 205** parks joined to official land (same name + same kind of place). **22** to check by hand, **47** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **138 of 205** parks joined to official land (same name + same kind of place). **18** to check by hand, **47** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-10305** Lake Carl Etling Conservation Area (Conservation Area) → Lake Carl Etling (~714 ac, same name, different kind of place)
 - **US-10658** Lake Carl Blackwell Wildlife Management Area (Wildlife Management Area) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
 - **US-10951** Cherokee Strip Regional Heritage Center Historic Site (Historic Site) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
 - **US-11321** Winding Stair Mountain National Recreation Area (National Recreation Area) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name)); Ouachita Wildlife Management Area - Leflore (~223,822 ac, the POTA pin is inside it (different name))
@@ -12,7 +11,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 205** parks joined
 - **US-11669** Cedar Lake National Recreation Area (National Recreation Area) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name)); Ouachita Wildlife Management Area - Leflore (~223,822 ac, the POTA pin is inside it (different name))
 - **US-11671** Black Kettle Recreation Site (Recreation Site) → Black Kettle National Grassland (~30,688 ac, similar name); Black Kettle Wildlife Management Area (~30,288 ac, similar name)
 - **US-11715** Lower Illinois River Game Preserve (Game Preserve) → Lower Illinois Public Fishing and Hunting Area (~324 ac, the POTA pin is inside it (different name))
-- **US-12085** Pawnee Bill Ranch State Historic Site (State Historic Site) → Pawnee Bill Museum State Park (~269 ac, similar name)
 - **US-12684** Indian Nations National Wildlife Area (National Wildlife Area) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name)); Ouachita Wildlife Management Area - Leflore (~223,822 ac, the POTA pin is inside it (different name))
 - **US-13105** Field Station State Fishing Lake (State Fishing Lake) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
 - **US-2774** Boiling Springs State Park (State Park) → Boiling State Parkrings State Park (~775 ac, the POTA pin is inside it (different name))
@@ -20,8 +18,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 205** parks joined
 - **US-2805** Spavinaw State Park (State Park) → Spavinaw Wildlife Management Area (~13,508 ac, same name, different kind of place)
 - **US-2806** Talimena State Park (State Park) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name))
 - **US-6365** Osage Wildlife Management Area (Wildlife Management Area) → Osage Wildlife Management Area - Rock Creek (~3,729 ac, similar name)
-- **US-7684** Blue River State Fishing Lake (State Fishing Lake) → Blue River Public Fishing & Hunting Area (~3,341 ac, similar name)
-- **US-7689** Arcadia Conservation Reserve (Conservation Reserve) → Arcadia Conservation Education Area (~568 ac, similar name); Arcadia Conservation Education Area (~568 ac, similar name)
 - **US-8119** Doc Hollis State Fishing Lake (State Fishing Lake) → Sandy Sanders Wildlife Management Area (~36,669 ac, the POTA pin is inside it (different name))
 - **US-8128** Lloyd Vincent State Fishing Lake (State Fishing Lake) → Ellis County Wildlife Management Area (~4,740 ac, the POTA pin is inside it (different name))
 - **US-8143** Boggy Depot National Historical Site (National Historical Site) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
@@ -87,9 +83,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 205** parks joined
 - CLO Lands · SRMA · The Commissioners of the Land Office · ~3,238,968 ac
 - Ouachita National Forest · NF · Forest Service Region 08 Southern · ~353,440 ac
 - Herron Family Wildlife Management Area ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~17,233 ac
-- Black Fork Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,466 ac
 - Hagerman National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,298 ac
-- Upper Kiamichi River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,799 ac
 - Cross Bar Recreation Area ·  · BLM recreation sites · ~9,856 ac
 - Buffalo Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,718 ac
 - Honobia Creek Wildlife Management Area - Campbell ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~7,327 ac
@@ -103,7 +97,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 205** parks joined
 - Osage Wildlife Management Area - Rock Creek ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~3,729 ac
 - Okmulgee Public Hunting Areaa · SCA · Department of Wildlife Conservation · ~3,497 ac
 - Tishomingo Wildlife Management Unit ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~3,446 ac
-- Blue River Public Fishing & Hunting Area ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~3,341 ac
 - Hochatown State Park · SP · Unknown · ~3,325 ac
 - Western Hills Guest Ranch/sequoya Sp State Resort · SP · Unknown · ~2,822 ac
 - Tenkiller Wildlife Management Area ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~2,366 ac
@@ -113,10 +106,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 205** parks joined
 - Farm Service Agency Interest Of Tx ·  · U.S. Fish & Wildlife Service (own map) · ~822 ac
 - Boiling State Parkrings State Park · SP · Unknown · ~775 ac
 - Twin Points Recreation Area · PUB · US Army Corps of Engineers · ~760 ac
-- Lake Carl Etling ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~714 ac
 - Dog Iron Ranch & Will Rogers Birthplace · SP · Unknown · ~574 ac
-- Arcadia Conservation Education Area · SCA · Department of Wildlife Conservation · ~568 ac
-- Arcadia Conservation Education Area ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~568 ac
 - Sparrowhawk Wildlife Management Area ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~561 ac
 - Glass Mountains State Park · SP · Unknown · ~559 ac
 - Okmulgee/dripping State Park · SP · Unknown · ~523 ac
@@ -124,7 +114,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 205** parks joined
 - Hugo Wildlife Management Area - Sawyer ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~350 ac
 - Selman Cave System · SCA · Unknown · ~327 ac
 - Lower Illinois Public Fishing and Hunting Area ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~324 ac
-- Pawnee Bill Museum State Park · SP · Unknown · ~269 ac
 - Ozark Plateau National Wildlife Refuge · NWR · OZARK PLATEAU NATIONAL WILDLIFE REFUGE · ~258 ac
 - Ozark Plateau National Wildlife Refuge · NWR · Ozark Plateau National Wildlife Refuge · ~258 ac
 - Crowder Lake State Park · SP · Unknown · ~253 ac
@@ -134,13 +123,20 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **134 of 205** parks joined
 - Griffin Memorial · SP · Dept of Mental Health and Substance & Abuse Serv · ~153 ac
 - Lake Vincent ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~132 ac
 - Edmond Park · PUB · Tulsa District Corps of Engineers · ~131 ac
+- Union High School Freshman Academy · LP · INDEPENDENT SCHOOL DIST NO 9 · ~79 ac
 - Oliver's Woods · SCA · Unknown · ~78 ac
+- Jenks East Elementary/Intermediate Schools · LP · INDEPENDENT SCHOOL DIST NO 5 · ~76 ac
 - Lake Raymond Gary ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~62 ac
 - Unknown Park · PUB · United States of America · ~56 ac
 - Black Dog Park · PUB · US Army Corps of Engineers · ~56 ac
 - Rogers Landing Public Use Area · PUB · US Government · ~49 ac
+- Jenks Middle School · LP · INDEPENDENT SCHOOL DIST NO 5 · ~49 ac
 - Boswell State Park · SP · Unknown · ~49 ac
+- Jenks West Elenentary School · LOTH · UNK · ~40 ac
+- Rosa Parks Elementary School · LP · INDEPENDENT SCHOOL DIST NO 9 · ~40 ac
 - Snowdale State Park · SP · Unknown · ~39 ac
+- MacArthur Elementary School · LP · INDEPENDENT SCHOOL DIST NO 1 · ~38 ac
 - Murrel Home Park · SHCA · OKLAHOMA HISTORICAL SOCIETY & (MURRELL HOME) · ~37 ac
 - Community Center Park · LP · City of Mannford · ~34 ac
+- Ochoa Elementary School · LP · INDEPENDENT SCHOOL DIST · ~33 ac
 - Comanche National Grassland · NG · Forest Service Region 02 Rocky Mountain · ~31 ac

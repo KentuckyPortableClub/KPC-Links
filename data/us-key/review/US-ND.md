@@ -1,6 +1,6 @@
 # ND: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **84 of 155** parks joined to official land (same name + same kind of place). **13** to check by hand, **58** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **86 of 155** parks joined to official land (same name + same kind of place). **11** to check by hand, **58** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -13,9 +13,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **84 of 155** parks joined 
 - **US-7707** Maclean Bottoms Wildlife Management Area (Wildlife Management Area) → Oaha Recreation Area (~90,626 ac, the POTA pin is inside it (different name)); Oahe Wildlife Management Area (~16,734 ac, the POTA pin is inside it (different name))
 - **US-8563** Apple Creek Bottoms Wildlife Management Area (Wildlife Management Area) → Oahe Wildlife Management Area (~16,734 ac, the POTA pin is inside it (different name))
 - **US-8576** Deepwater Creek Wildlife Management Area (Wildlife Management Area) → Deepwater (~2,344 ac, same name, different kind of place); Sakakawea Recreation Area (~478,564 ac, the POTA pin is inside it (different name))
-- **US-8578** Erie Dam/Brewer Lake Wildlife Management Area (Wildlife Management Area) → Erie Dam (~1,018 ac, similar name)
 - **US-8589** Kimball Bottoms Wildlife Management Area (Wildlife Management Area) → Oaha Recreation Area (~90,626 ac, the POTA pin is inside it (different name)); Oahe Wildlife Management Area (~16,734 ac, the POTA pin is inside it (different name))
-- **US-8596** Ochs Point Wildlife Management Area (Wildlife Management Area) → Ochs (~971 ac, similar name)
 - **US-8607** Sweet Briar Lake Wildlife Management Area (Wildlife Management Area) → Sweetbriar Lake (~875 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)

@@ -1,6 +1,6 @@
 # VT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **82 of 109** parks joined to official land (same name + same kind of place). **14** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **85 of 109** parks joined to official land (same name + same kind of place). **11** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -14,9 +14,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **82 of 109** parks joined 
 - **US-3142** Seyon Lodge State Park (State Park) → Groton State Forest (~3,215 ac, the POTA pin is inside it (different name))
 - **US-3147** Thetford Hill State Park (State Park) → Thetford Hill State Forest (~259 ac, same name, different kind of place)
 - **US-3149** Underhill State Park (State Park) → Mt. Mansfield State Forest (~369 ac, the POTA pin is inside it (different name))
-- **US-5530** Dorand State Forest (State Forest) → J.J. Dorand SF (~512 ac, similar name)
-- **US-5531** William C. Putnam State Forest (State Forest) → W.C. Putnam State Forest (~148 ac, similar name)
-- **US-5551** Jones State Forest (State Forest) → L.R. Jones State Forest (~346 ac, similar name); L.R. Jones State Forest (~97 ac, similar name); L.R. Jones State Forest (~84 ac, similar name); L.R. Jones State Forest (~48 ac, similar name); L.R. Jones State Forest (~45 ac, similar name); L.R. Jones State Forest (~18 ac, similar name)
 - **US-5564** Essex Nursery State Forest (State Forest) → State Tree Nursery (~10 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -40,21 +37,11 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **82 of 109** parks joined 
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- Pemigewasset Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~45,809 ac
-- Sandwich Range Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~35,299 ac
-- Breadloaf Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,985 ac
-- Glastenbury Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~22,330 ac
-- Lye Brook Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,122 ac
-- Joseph Battell Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,336 ac
 - Steam Mill Brook Wildlife Management Area · SCA ·   · ~9,925 ac
 - Appalachian National Scenic Trail · NT · NPS · ~9,867 ac
-- Peru Peak Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,796 ac
 - Arthur Davis Wildlife Management Area · SCA ·   · ~7,562 ac
-- Big Branch Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,625 ac
 - Bill Sladyk Wildlife Management Area · SCA ·   · ~6,337 ac
 - Les Newell Wildlife Management Area · SCA ·   · ~5,987 ac
-- George D. Aiken Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,800 ac
-- Bristol Cliffs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,750 ac
 - Dead Creek Wildlife Management Area · SCA · VT Department of Fish and Wildlife · ~2,796 ac
 - Bill Sladyk Wildlife Management Area · SCA ·   · ~2,703 ac
 - Victory Basin Wildlife Management Area · SCA ·   · ~2,617 ac
@@ -95,8 +82,18 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **82 of 109** parks joined 
 - Roaring Brook Wildlife Management Area · SCA · VT Department of Fish and Wildlife · ~565 ac
 - Coolidge State Forest · SRMA ·   · ~564 ac
 - West Mountain Wildlife Management Area · SCA ·   · ~536 ac
-- J.J. Dorand SF · SRMA ·   · ~512 ac
 - Coolidge State Forest · SRMA ·   · ~510 ac
 - Clover Hill Wildlife Management Area · SCA ·   · ~499 ac
 - Tinmouth Channel Wildlife Management Area · SCA ·   · ~499 ac
 - Lower Otter Creek Wildlife Management Area · SCA ·   · ~498 ac
+- Tiny Pond Wildlife Management Area · SCA ·   · ~496 ac
+- Pond Woods Wildlife Management Area · SCA ·   · ~493 ac
+- Victory Basin Wildlife Management Area · SCA ·   · ~493 ac
+- Cornwall Swamp Wildlife Management Area · SCA ·   · ~460 ac
+- Whipple Hollow Wildlife Management Area · SCA ·   · ~434 ac
+- Dead Creek Wildlife Management Area · SCA ·   · ~411 ac
+- Wild Branch Wildlife Management Area · SCA ·   · ~408 ac
+- President Calvin Coolidge State Historic Site · SRMA ·   · ~405 ac
+- East Creek Wildlife Management Area · SCA ·   · ~398 ac
+- Little Ascutney Wildlife Management Area · SCA ·   · ~392 ac
+- Riley Bostwick Wildlife Management Area · SCA ·   · ~386 ac

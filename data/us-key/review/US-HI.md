@@ -1,10 +1,9 @@
 # HI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **68 of 102** parks joined to official land (same name + same kind of place). **17** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **75 of 102** parks joined to official land (same name + same kind of place). **10** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-10908** Pupukea Forest Reserve (Forest Reserve) → Pupukea-paumalu Forest Reserve (~848 ac, similar name)
 - **US-10913** Diamond Head Summit State Trail (State Trail) → Diamond Head State Monument (~503 ac, similar name)
 - **US-10914** Ka‘ena Point State Trail (State Trail) → Kaena Point State Park (~1,138 ac, same name, different kind of place)
 - **US-10915** Nakoa State Trail (State Trail) → Ahupuaa O Kahana State Park (~5,195 ac, the POTA pin is inside it (different name))
@@ -12,15 +11,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **68 of 102** parks joined 
 - **US-10917** ʻAiea Loop State Trail (State Trail) → Keaiwa Heiau State Recreation Area (~385 ac, the POTA pin is inside it (different name))
 - **US-10918** Waʻahila Ridge State Trail (State Trail) → Waahila Ridge State Recreation Area (~72 ac, same name, different kind of place)
 - **US-10925** HI State Game Reserve (Game Reserve) → Mokuleia Forest Reserve (~2,960 ac, the POTA pin is inside it (different name)); Kaala Natural Area Reserve (~1,087 ac, the POTA pin is inside it (different name))
-- **US-2216** Makapuʻu  Point Wayside State Trail (State Trail) → Makapuu Point State Wayside (~39 ac, similar name)
-- **US-6402** Lava Tree State Park (State Park) → Lava Tree State Monument (~18 ac, similar name)
 - **US-6420** Kiholo  Reserve State Reserve (State Reserve) → Pu'u Wa'awa'a Cooperative Game Management Area (~50,795 ac, the POTA pin is inside it (different name))
-- **US-6421** Kohala Historical Sites State Preserve (State Preserve) → Kohala Historical Sites State Monument (~7 ac, similar name)
 - **US-6424** Pāʻulaʻula State Historic Site (State Historic Site) → Russian Fort Elizabeth State Historical Park (~19 ac, the POTA pin is inside it (different name))
-- **US-6425** Diamond Head State Preserve (State Preserve) → Diamond Head State Monument (~503 ac, similar name)
-- **US-6427** Kaiwi State Scenic Site (Scenic Site) → Kaiwi State Scenic Shoreline (~324 ac, similar name)
 - **US-6430** Queen Emma Summer Palace State Park (State Park) → State Department of Land State Resource Management Area (~249,706 ac, the POTA pin is inside it (different name))
-- **US-7691** Kalepa Forest Reserve (Forest Reserve) → Kalepa Mountain Forest Reserve (~709 ac, similar name); State Department of Land State Resource Management Area (~249,706 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 

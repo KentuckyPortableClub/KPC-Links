@@ -1,24 +1,24 @@
 # AL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **103 of 155** parks joined to official land (same name + same kind of place). **18** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **104 of 155** parks joined to official land (same name + same kind of place). **18** to check by hand, **30** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-10396** Black Warrior Wildlife Management Area (Wildlife Management Area) → William B. Bankhead National Forest (~182,015 ac, the POTA pin is inside it (different name))
-- **US-1040** Lake Jackson RV Park at Florala State Park (State Park) → Florala State Park (~65 ac, similar name)
 - **US-10428** Walls of Jericho State Natural Area (State Natural Area) → James D. Martin - Skyline Wildlife Management Area (~24,451 ac, the POTA pin is inside it (different name))
-- **US-11376** USS Alabama Battleship Park (Park) → Battleship Memorial Park (~81 ac, similar name)
 - **US-12405** TVA Guntersville Dam 5(1)(g) Reserve (5(1)(g) Reserve) → Wheeler Reservoir Retained Land (~16,536 ac, the POTA pin is inside it (different name))
 - **US-12410** TVA Flint Creek Access National Park (National Park) → Wheeler Reservoir Retained Land (~16,536 ac, the POTA pin is inside it (different name))
 - **US-12411** TVA Second Creek Access Area National Park (National Park) → Joe Wheeler State Park (~2,144 ac, the POTA pin is inside it (different name))
 - **US-12412** TVA Rockpile Recreation Area National Park (National Park) → Pickwick Reservoir Retained Land (~8,930 ac, the POTA pin is inside it (different name))
 - **US-13311** TVA Upper Bear Creek Dam Resource Management Area (Resource Management Area) → Upper Bear Creek Reservoir Retained Land (~3,216 ac, the POTA pin is inside it (different name))
 - **US-3678** Roland Cooper State Park (State Park) → Millers Ferry Lock Recreation Area (~15,105 ac, the POTA pin is inside it (different name))
+- **US-3682** Cheaha Wilderness Area (Wilderness Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
 - **US-3683** Choccolocco Wildlife Management Area (Wildlife Management Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
+- **US-3687** Dugger Mountain Wilderness National Forest (National Forest) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
 - **US-3692** Heron Bay and Portersville Bay State Fish and Wildlife Area (State Fish and Wildlife Area) → The Heron Bay Wetlands Tract (~463 ac, similar name)
 - **US-3693** Hollins Wildlife Management Area (Wildlife Management Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
 - **US-3703** Ruffner Mountain Preserve State Conservation Area (State Conservation Area) → Ruffner Mountain Nature Center (~226 ac, similar name)
-- **US-3711** Weeks Bay Reserve National Conservation Area (National Conservation Area) → Weeks Bay National Estuarine Research Reserve (~933 ac, similar name); Weeks Bay National Estuarine Research Reserve (~470 ac, similar name); Weeks Bay National Estuarine Research Reserve (~123 ac, similar name); Weeks Bay National Estuarine Research Reserve (~113 ac, similar name); Weeks Bay Harris And Worcester Tracts (~84 ac, similar name)
+- **US-3706** Sipsey Wilderness Wilderness Area (Wilderness Area) → William B. Bankhead National Forest (~182,015 ac, the POTA pin is inside it (different name))
 - **US-9911** Boggy Hollow Wildlife Management Area (Wildlife Management Area) → Conecuh National Forest (~84,808 ac, the POTA pin is inside it (different name))
 - **US-9912** Blue Spring Wildlife Management Area (Wildlife Management Area) → Conecuh National Forest (~84,808 ac, the POTA pin is inside it (different name))
 - **US-9924** Oakmulgee Wildlife Management Area (Wildlife Management Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
@@ -33,7 +33,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **103 of 155** parks joined
 
 - US-0025 Fort Morgan National Historic Site (National Historic Site)
 - US-0042 Fort Gaines National Historic Site (National Historic Site)
-- US-0642 Natchez Trace Parkway National Parkway (National Parkway)
 - US-1039 De Soto State Park (State Park)
 - US-11025 Uchee Creek Conservation Area (Conservation Area)
 - US-11027 Big Canoe Creek Nature Reserve (Nature Reserve)
@@ -76,7 +75,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **103 of 155** parks joined
 - Claiborne Recreation Area · REC · Mobile · ~6,816 ac
 - Solon Dixon Forestry Education Center · SCA · State Land Board · ~5,399 ac
 - Riverton Community Hunting Area · SCA · Alabama Department of Conservation and Natural Resources · ~5,282 ac
-- Natchez Trace Parkway · SDA · NPS · ~4,118 ac
 - Coldwater Mountain · SREC · Alabama Department of Conservation and Natural Resources · ~3,816 ac
 - W. L. Holland Wildlife Management Area · SCA · Alabama Department of Conservation and Natural Resources · ~3,537 ac
 - Upper Bear Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~3,216 ac
@@ -95,8 +93,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **103 of 155** parks joined
 - Little Bear Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~1,138 ac
 - DeSoto State Park · SP · SPR · ~1,059 ac
 - M. Barnett Lawley Forever Wild Field Trial Area · SREC · ADCNR, State Lands Division · ~1,000 ac
-- Weeks Bay National Estuarine Research Reserve · SCA · ADCNR, State Lands Division · ~933 ac
-- Weeks Bay National Estuarine Research Reserve · SCA · Alabama Department of Conservation and Natural Resources · ~694 ac
 - W. L. Holland Wildlife Management Area · SCA · ADCNR, State Lands Division · ~671 ac
 - Lillian · MIT · Alabama Department of Transportation · ~643 ac
 - Lillian Swamp Wetlands · SCA · Alabama Department of Conservation and Natural Resources · ~639 ac
@@ -105,7 +101,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **103 of 155** parks joined
 - Pea River · MIT · Alabama Department of Transportation · ~595 ac
 - Town Creek · MIT · Alabama Department of Transportation · ~570 ac
 - Dozier · MIT · Alabama Department of Transportation · ~518 ac
-- Weeks Bay National Estuarine Research Reserve · SCA · ADCNR, State Lands Division · ~470 ac
 - The Heron Bay Wetlands Tract · SCA · Alabama Department of Conservation and Natural Resources · ~463 ac
 - Cahaba River - Shelby County Park · LREC · Alabama Department of Conservation and Natural Resources · ~463 ac
 - Portersville Bay Wetlands Tract · SCA · Alabama Department of Conservation and Natural Resources · ~441 ac
@@ -125,3 +120,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **103 of 155** parks joined
 - Big Prairie Creek (prop) · MIT · Alabama Department of Transportation · ~235 ac
 - Ruffner Mountain Nature Center · REA · Alabama Department of Conservation and Natural Resources · ~226 ac
 - Stauffer Seed Orchard · SOTH · Alabama Forestry Commission · ~214 ac
+- Southeastern States District Office · PUB · BLM · ~202 ac
+- Macon State Forest · SRMA · Alabama Forestry Commission · ~200 ac
+- Miller Nursery · SOTH · Alabama Forestry Commission · ~197 ac
+- Alabama State Port Authority Exchange Tract · SCA · ADCNR, State Lands Division · ~190 ac

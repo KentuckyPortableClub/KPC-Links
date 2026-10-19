@@ -1,13 +1,12 @@
 # CT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **116 of 157** parks joined to official land (same name + same kind of place). **12** to check by hand, **29** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **117 of 157** parks joined to official land (same name + same kind of place). **11** to check by hand, **29** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0882** Farmington National Wild and Scenic River (National Wild and Scenic River) → Farmington River Water Access (~138 ac, similar name); Farmington River Water Access (~8 ac, similar name); Farmington River Water Access (~2 ac, similar name); Farmington River Water Access (~1 ac, similar name); Farmington River Water Access (~0 ac, similar name)
 - **US-11712** Cromwell Meadows WMA Wildlife Management Area (Wildlife Management Area) → Unknown (~517 ac, the POTA pin is inside it (different name))
 - **US-12460** Suffield Wildlife Management Area (Wildlife Management Area) → Unspecified (~195 ac, the POTA pin is inside it (different name)); Wildlife Area (~195 ac, the POTA pin is inside it (different name))
-- **US-12620** Old New-Gate Prison & Copper Mine Historical Reserve (Historical Reserve) → Old Newgate Prison and Copper Mine (~26 ac, similar name); Old Newgate Prison and Copper Mine (~19 ac, similar name)
 - **US-1694** Mansfield Hollow State Park (State Park) → Mansfield Hollow Wildlife Management Area (~2,387 ac, same name, different kind of place)
 - **US-1699** Mohawk Mountain State Park (State Park) → Mohawk State Forest (~3,251 ac, similar name); Mohawk State Forest (~252 ac, similar name); State Forest (~3,742 ac, the POTA pin is inside it (different name))
 - **US-1728** Wharton Brook State Park (State Park) → Wharton Brook Natural Area Preserve (~24 ac, same name, different kind of place)

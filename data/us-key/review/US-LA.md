@@ -1,18 +1,15 @@
 # LA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **91 of 123** parks joined to official land (same name + same kind of place). **9** to check by hand, **22** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **108 of 123** parks joined to official land (same name + same kind of place). **6** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-10448** Centenary State Historic Site (State Historic Site) → Centenary And Jackson State Historic Sites (~3 ac, similar name)
 - **US-10456** Esler Field Wildlife Management Area (Wildlife Management Area) → Camp Beauregard Wildlife Management Area (~12,606 ac, the POTA pin is inside it (different name))
-- **US-10563** Fort Johnson-Vernon Wildlife Management Area (Wildlife Management Area) → Kisatchie National Forest (~607,492 ac, the POTA pin is inside it (different name))
+- **US-10563** Fort Johnson-Vernon Wildlife Management Area (Wildlife Management Area) → Kisatchie National Forest (~607,492 ac, the POTA pin is inside it (different name)); Fort Polk WMA (~105,885 ac, the POTA pin is inside it (different name))
 - **US-12489** Bogue Chitto Wildlife Management Area (Wildlife Management Area) → Bogue Chitto State Scenic River (~1,109 ac, similar name)
 - **US-2365** Jimmie Davis State Park (State Park) → Caney Creek Lake State Park (~312 ac, the POTA pin is inside it (different name))
 - **US-2373** Poverty Point Reservoir State Park (State Park) → State Lands (~7,733 ac, the POTA pin is inside it (different name))
-- **US-4061** J. C. 'Sonny' Gilbert Wildlife Management Area (Wildlife Management Area) → Sicily Island Hills Wildlife Management Area (~7,489 ac, the POTA pin is inside it (different name))
-- **US-4075** Richard K. Yancey Wildlife Management Area (Wildlife Management Area) → Red River Wildlife Management Area (~45,140 ac, the POTA pin is inside it (different name))
-- **US-6445** St. Tammany Wildlife Refuge (Wildlife Refuge) → Big Branch Marsh National Wildlife Refuge (~18,319 ac, the POTA pin is inside it (different name)); Big Branch Marsh National Wildlife Refuge (~18,316 ac, the POTA pin is inside it (different name))
+- **US-4072** Fort Johnson North Wildlife Management Area (Wildlife Management Area) → Peason Ridge WMA (~75,464 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -21,31 +18,19 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **91 of 123** parks joined 
 ## Nothing found in PAD-US
 
 - US-0958 Poverty Point National Monument (National Monument)
-- US-10097 Queen Bess Island Wildlife Refuge (Wildlife Refuge)
 - US-10354 Forts Randolph & Buhlow State Historic Site (State Historic Site)
 - US-10447 Audubon State Historic Site (State Historic Site)
 - US-12490 Flatwoods Savanna Wildlife Management Area (Wildlife Management Area)
 - US-13090 John Franks Wildlife Management Area (Wildlife Management Area)
 - US-2360 Cypremort Point State Park (State Park)
 - US-2374 Saint Bernard State Park (State Park)
-- US-4047 Ben Lilly Conservation Area (Conservation Area)
-- US-4050 Biloxi Wildlife Management Area (Wildlife Management Area)
-- US-4051 Bodcau Wildlife Management Area (Wildlife Management Area)
-- US-4055 Clear Creek Wildlife Management Area (Wildlife Management Area)
-- US-4072 Fort Johnson North Wildlife Management Area (Wildlife Management Area)
-- US-4078 Sabine Wildlife Management Area (Wildlife Management Area)
-- US-4080 Timken Wildlife Management Area (Wildlife Management Area)
-- US-4082 Sherburne Wildlife Management Area (Wildlife Management Area)
-- US-4083 Soda Lake Wildlife Management Area (Wildlife Management Area)
-- US-4085 Tangipahoa Parish School Board Wildlife Management Area (Wildlife Management Area)
-- US-4086 Thistlethwaite Wildlife Management Area (Wildlife Management Area)
-- US-4089 West Bay Wildlife Management Area (Wildlife Management Area)
 - US-9760 Bussey Brake Wildlife Management Area (Wildlife Management Area)
-- US-9761 Elmer's Island Wildlife Refuge (Wildlife Refuge)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Fort Polk WMA ·  · Louisiana Dept. of Wildlife and Fisheries WMAs and refuges · ~105,885 ac
 - Felsenthal National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~77,617 ac
+- Peason Ridge WMA ·  · Louisiana Dept. of Wildlife and Fisheries WMAs and refuges · ~75,464 ac
 - Mcfaddin National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~59,859 ac
 - Dow Donation · SOTH · Unknown · ~50,072 ac
 - Red River Wildlife Management Area · SCA · Unknown · ~45,140 ac
@@ -60,11 +45,9 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **91 of 123** parks joined 
 - Division Of State Lands · SRMA · Unknown · ~15,672 ac
 - Hillside National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,948 ac
 - Camp Beauregard Wildlife Management Area · SCA · Unknown · ~12,606 ac
-- Indian Mounds Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,224 ac
 - State Lands · SOTH · Unknown · ~11,466 ac
 - Ouachita Wildlife Management Area · SCA · Unknown · ~10,403 ac
 - Calcasieu River · SCA · Unknown · ~9,174 ac
-- Kisatchie Hills Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,701 ac
 - Texas Point National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,336 ac
 - State Lands · SOTH · Unknown · ~7,733 ac
 - Maurepas Swamp - Parcel 2, Octavia · SOTH · Lousiana Department of Wildlife and Fisheries · ~7,546 ac
@@ -72,7 +55,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **91 of 123** parks joined 
 - Panther Swamp National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,008 ac
 - Theodore Roosevelt National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,252 ac
 - Farm Service Agency Interest Of La · NWR · Farm Service Agency Interest Of La · ~6,039 ac
-- Black Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,084 ac
 - Atchafalaya Land Exchange · SOTH · Unknown · ~4,843 ac
 - Tchefuncte River And Its Tributaries · SCA · Unknown · ~3,355 ac
 - Farm Service Agency Interest Of La · NWR · FARM SERVICE AGENCY INTEREST OF LA · ~3,298 ac
@@ -105,3 +87,4 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **91 of 123** parks joined 
 - Southeastern States District Office · PUB · BLM · ~762 ac
 - Lsu Research Station · REA · Unknown · ~755 ac
 - Blind River · SCA · Unknown · ~740 ac
+- Black Lake Bayou · SREC · Unknown · ~726 ac
