@@ -1,6 +1,6 @@
 # MN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **215 of 294** parks joined to official land (same name + same kind of place). **24** to check by hand, **55** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **223 of 294** parks joined to official land (same name + same kind of place). **16** to check by hand, **55** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,23 +9,15 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **215 of 294** parks joined
 - **US-0365** Minnesota Valley Wetland Management District (Wetland Management District) → Meeker County Waterfowl Production Area (~5,166 ac, the POTA pin is inside it (different name))
 - **US-0366** Morris Wetland Management District (Wetland Management District) → Stevens County Waterfowl Production Area (~9,785 ac, the POTA pin is inside it (different name)); Stevens County Waterfowl Production Area (~9,785 ac, the POTA pin is inside it (different name))
 - **US-0373** Windom Wetland Management District (Wetland Management District) → Cottonwood County Waterfowl Production Area (~3,744 ac, the POTA pin is inside it (different name)); Cottonwood County Waterfowl Production Area (~3,454 ac, the POTA pin is inside it (different name))
-- **US-0673** Saint Croix National Wild and Scenic River (National Wild and Scenic River) → Saint Croix National Scenic Riverway (~3,345 ac, similar name)
-- **US-10278** Inspiration Peak State Wayside State Natural Site (State Natural Site) → Inspiration Peak State Wayside (~82 ac, similar name)
-- **US-10721** Brown's Creek AMA Aquatic Reserve (Aquatic Reserve) → Brown's Creek State Aquatic Management Area (Washington) (~22 ac, similar name)
 - **US-11153** Matthew Lourey State Trail (State Trail) → Chengwatana State Forest (~17,023 ac, the POTA pin is inside it (different name))
-- **US-11788** Toad River AMA State Conservation Area (State Conservation Area) → Toad River State Aquatic Management Area (Becker/Otter Tail) (~46 ac, similar name)
 - **US-11872** Lost 40 SNA State Natural Area (State Natural Area) → Big Fork State Forest (~45,218 ac, the POTA pin is inside it (different name))
 - **US-12395** St. Croix Boom Site Unique Area (Unique Area) → Saint Croix Islands (~12 ac, similar name)
 - **US-13548** Knife River Marine Protected Area (Marine Protected Area) → Knife River State Aquatic Management Area (Lake/St. Louis) (~345 ac, similar name)
-- **US-2506** Lake Vermilion State Park (State Park) → Lake Vermilion-Soudan Underground Mine State Park (~4,094 ac, similar name)
 - **US-2517** St. Croix State Park (State Park) → Saint Croix National Scenic Riverway (~3,345 ac, similar name)
-- **US-4236** Upper Mississippi River National Wildlife Refuge (National Wildlife Refuge) → Upper Mississippi River National Wildlife And Fish Refuge (~19,819 ac, similar name); Upper Mississippi River National Wildlife And Fish Refuge (~19,679 ac, similar name)
 - **US-4783** Beltrami Island State Forest (State Forest) → Beltrami Wildlife Management Area (~86,982 ac, similar name); Beltrami Wildlife Management Area (~86,741 ac, similar name)
 - **US-4786** Blackduck State Forest (State Forest) → Chippewa National Forest (~672,038 ac, the POTA pin is inside it (different name))
-- **US-4822** Richard J. Dorer Memorial Hardwood State Forest (State Forest) → R J D Memorial Hardwood State Forest (~48,804 ac, similar name)
 - **US-4824** St. Croix State Forest (State Forest) → Saint Croix National Scenic Riverway (~3,345 ac, similar name)
 - **US-7145** Minnesota Valley State Recreation Area (State Recreation Area) → Minnesota Valley National Wildlife Refuge (~10,329 ac, same name, different kind of place); Minnesota Valley National Wildlife Refuge (~10,063 ac, same name, different kind of place)
-- **US-7148** Lake Vermilion Soudan Iron Mine State Park (State Park) → Lake Vermilion-Soudan Underground Mine State Park (~4,094 ac, similar name); Miscellaneous (~737,854 ac, the POTA pin is inside it (different name))
 - **US-9384** Minnesota Valley State Trail (State Trail) → Minnesota Valley National Wildlife Refuge (~10,329 ac, same name, different kind of place); Minnesota Valley National Wildlife Refuge (~10,063 ac, same name, different kind of place)
 - **US-9386** Browns Creek State Trail (State Trail) → Brown's Creek State Aquatic Management Area (Washington) (~22 ac, similar name)
 
@@ -92,7 +84,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **215 of 294** parks joined
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- Boundary Waters Canoe Area Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~1,097,112 ac
 - Miscellaneous · SRMA · DNR Forestry · ~737,854 ac
 - Beltrami Wildlife Management Area · NCA · Beltrami Wildlife Management Area · ~86,982 ac
 - Beltrami Wildlife Management Area · NCA · BELTRAMI WILDLIFE MANAGEMENT AREA · ~86,741 ac
@@ -101,7 +92,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **215 of 294** parks joined
 - Kabetogama Purchase Unit · NF · Forest Service Region 09 Eastern · ~68,258 ac
 - Thief Lake State Wildlife Management Area · SCA · DNR Wildlife · ~54,940 ac
 - Necedah Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~54,219 ac
-- R J D Memorial Hardwood State Forest · SRMA · DNR Forestry · ~48,804 ac
 - Necedah National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~44,040 ac
 - Wapiti State Wildlife Management Area · SCA · DNR Wildlife · ~31,757 ac
 - Beaches Lake State Wildlife Management Area · SCA · DNR Wildlife · ~30,598 ac
@@ -109,8 +99,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **215 of 294** parks joined
 - Otter Tail County Waterfowl Production Area · RMA · OTTER TAIL COUNTY WATERFOWL PRODUCTION AREA · ~24,120 ac
 - Myrtle Lake Peatland State Scientific and Natural Area · SCA · DNR Ecologic and Water Resources · ~22,998 ac
 - Moose River State Wildlife Management Area · SCA · DNR Wildlife · ~21,272 ac
-- Upper Mississippi River National Wildlife And Fish Refuge · NWR · Upper Mississippi River National Wildlife And Fish Refuge · ~19,819 ac
-- Upper Mississippi River National Wildlife And Fish Refuge · NWR · UPPER MISSISSIPPI RIVER NATIONAL WILDLIFE AND FISH REFUGE · ~19,679 ac
 - Elm Lake State Wildlife Management Area · SCA · DNR Wildlife · ~15,744 ac
 - Palmville State Wildlife Management Area · SCA · DNR Wildlife · ~14,886 ac
 - Kandiyohi County Waterfowl Production Area · RMA · KANDIYOHI COUNTY WATERFOWL PRODUCTION AREA · ~14,498 ac
@@ -145,10 +133,14 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **215 of 294** parks joined
 - North Black River Peatland · SCA · Bureau of Land Management · ~8,541 ac
 - Swift County Waterfowl Production Area · RMA · SWIFT COUNTY WATERFOWL PRODUCTION AREA · ~8,317 ac
 - Skull Lake State Wildlife Management Area · SCA · DNR Wildlife · ~7,444 ac
-- Rainbow Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,175 ac
 - Trempealeau National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,929 ac
 - Mahnomen County Waterfowl Production Area · RMA · Mahnomen County Waterfowl Production Area · ~6,789 ac
 - Mahnomen County Waterfowl Production Area · RMA · MAHNOMEN COUNTY WATERFOWL PRODUCTION AREA · ~6,734 ac
 - Huntly State Wildlife Management Area · SCA · DNR Wildlife · ~6,502 ac
 - Eckvoll State Wildlife Management Area · SCA · DNR Wildlife · ~6,497 ac
 - South Black River Peatland State Scientific and Natural Area · SCA · DNR Ecologic and Water Resources · ~5,877 ac
+- Meadow Brook State Wildlife Management Area · SCA · DNR Wildlife · ~5,774 ac
+- Northeastern States District Office · PUB · BLM · ~5,555 ac
+- Mulligan Lake Peatland State Scientific and Natural Area · SCA · DNR Ecologic and Water Resources · ~5,478 ac
+- Meeker County Waterfowl Production Area · RMA · Meeker County Waterfowl Production Area · ~5,354 ac
+- Jackson County Waterfowl Production Area Of Mn · RMA · Jackson County Waterfowl Production Area Of Mn · ~5,271 ac

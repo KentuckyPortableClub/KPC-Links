@@ -1,6 +1,6 @@
 # MD: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 186** parks joined to official land (same name + same kind of place). **20** to check by hand, **27** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 186** parks joined to official land (same name + same kind of place). **19** to check by hand, **27** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -18,7 +18,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 186** parks joined
 - **US-10780** Allens Fresh Natural Area (Natural Area) → ZEKIAH SWAMP NEA - Zekiah Swamp Wildland (~434 ac, the POTA pin is inside it (different name))
 - **US-11231** Sideling Hill Creek State Park (State Park) → Sideling Hill Wma (~3,384 ac, same name, different kind of place); Sideling Hill Wma (~60 ac, same name, different kind of place)
 - **US-1567** Dans Mountain State Park (State Park) → Dans Mountain Wma (~9,847 ac, same name, different kind of place)
-- **US-6391** Merkle Wildlife Sanctuary State Natural Area (State Natural Area) → Merkle Nrma (~1,677 ac, similar name)
 - **US-6395** Sassafras Natural Resources Management Area State Natural Area (State Natural Area) → Sassafrass Nrma (~971 ac, the POTA pin is inside it (different name))
 - **US-7769** Heaters Island Wildlife Management Area (Wildlife Management Area) → ISLANDS OF THE POTOMAC Wildlife Management Area - Islands of the Potomac Wildland (~322 ac, the POTA pin is inside it (different name))
 - **US-7776** Oxon Cove Park & Farm National Historical Park (National Historical Park) → George Washington Memorial Parkway (~2,364 ac, the POTA pin is inside it (different name))
@@ -62,24 +61,20 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 186** parks joined
 
 - Chesapeake Forest Lands · SRMA ·   · ~58,595 ac
 - Canaan Valley National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~18,957 ac
-- Dolly Sods Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~17,777 ac
 - Bombay Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~15,346 ac
 - Jennings Randolph Recreation Area · REC · Baltimore · ~11,973 ac
-- Saint Mary's Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,826 ac
 - Prime Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~9,238 ac
-- Roaring Plains West Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,794 ac
-- Ramseys Draft Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,577 ac
 - Rock Creek Stream Valley Park · SOTH ·   · ~4,925 ac
 - Chesapeake Forest Lands · SRMA · MD Department of Natural Resources · ~4,780 ac
 - Supawna Meadows National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,445 ac
 - Patuxent River Park · SOTH ·   · ~3,398 ac
 - Litttle Bennett Regional Park · SOTH ·   · ~2,935 ac
 - Northwest Branch Park · SOTH ·   · ~2,827 ac
+- Open Space · LOTH ·   · ~2,268 ac
 - SAVAGE RIVER SF - Middle Fork Wildland · SRMA ·   · ~1,920 ac
 - Rappahannock River Valley National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,833 ac
 - Doncaster Demonstration Sf · SRMA ·   · ~1,793 ac
 - Piscataway Creek Stream Valley Park · SOTH ·   · ~1,779 ac
-- Merkle Nrma · SP ·   · ~1,677 ac
 - Patuxent River Park (Jug Bay) · SOTH ·   · ~1,616 ac
 - Freedom Forest · LOTH ·   · ~1,568 ac
 - Appalachian National Scenic Trail · NT · NPS · ~1,565 ac
@@ -93,6 +88,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 186** parks joined
 - GREEN RIDGE SF - Potomac Bends Wildland · SRMA ·   · ~1,186 ac
 - Rappahannock River Valley National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,123 ac
 - Paint Branch Park · SOTH ·   · ~1,115 ac
+- Hoyles Mill Cp · LCA · M-NCPPC · ~1,039 ac
 - Chesapeake Forest Lands · SRMA · MD Department of Natural Resources · ~1,022 ac
 - Elms Property · SOTH ·   · ~1,016 ac
 - Chesapeake Forest Lands · SRMA · MD Department of Natural Resources · ~980 ac
@@ -116,7 +112,10 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **139 of 186** parks joined
 - Unknown Park · PUB · USA · ~574 ac
 - Lower Potomac River230 · NCA · Bureau of Land Management · ~550 ac
 - Indian Creek Stream Valley Park · SOTH ·   · ~540 ac
+- Open Space · LOTH ·   · ~532 ac
 - Fred W Besley Demonstration Forest · SRMA ·   · ~530 ac
 - Belt Woods Heritage Conservation · SCA · MD Department of Natural Resources · ~511 ac
 - Fred W Besley Demonstration Forest · SRMA ·   · ~510 ac
 - Boys Village - Cheltenham · SOTH ·   · ~501 ac
+- Aaron Straus Heritage Conservation · SCA · MD Department of Natural Resources · ~495 ac
+- Fairland Recreational Park · SOTH ·   · ~486 ac

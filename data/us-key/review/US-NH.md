@@ -1,16 +1,15 @@
 # NH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 205** parks joined to official land (same name + same kind of place). **7** to check by hand, **67** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **132 of 205** parks joined to official land (same name + same kind of place). **6** to check by hand, **66** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-11849** Wantastiquet Mt Natural Area State Natural Site (State Natural Site) → Wantastiquet Mountain Natural Area (~913 ac, the POTA pin is inside it (different name))
 - **US-13486** Bellamy River Wildlife Management Area - East Wildlife Management Area (Wildlife Management Area) → Bellamy River Wildlife Management Area - West - Lot 2 (~34 ac, similar name); Bellamy River Access (~34 ac, similar name)
 - **US-13541** Magalloway Mountain Fire Tower State Preserve (State Preserve) → Magalloway Mountain (~2 ac, similar name)
+- **US-4922** Litchfield State Forest (State Forest) → Litchfield School Conservation Area (~59 ac, similar name)
 - **US-4926** Lovewell Mountain State Forest (State Forest) → Pillsbury State Park (~5,398 ac, the POTA pin is inside it (different name))
-- **US-4979** West Iron Works Road State Forest (State Forest) → West Iron Works Read State Forest (~46 ac, similar name)
 - **US-8021** Gov. Wentworth State Historic Site (State Historic Site) → Wentworth State Park (~52 ac, similar name)
-- **US-8029** Sculptured Rocks State Natural Area (State Natural Area) → Sculptured Rocks Geologic Site (~264 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -58,7 +57,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 205** parks joined
 - US-4913 Hodgman State Forest (State Forest)
 - US-4915 Hubbard Hill State Forest (State Forest)
 - US-4918 Kearsarge Mountain State Forest (State Forest)
-- US-4922 Litchfield State Forest (State Forest)
 - US-4927 Low State Forest (State Forest)
 - US-4930 Mast Yard State Forest (State Forest)
 - US-4931 Max Israel State Forest (State Forest)
@@ -88,14 +86,8 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 205** parks joined
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- Pemigewasset Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~45,809 ac
-- Sandwich Range Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~35,299 ac
-- Presidential Range-Dry River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~27,645 ac
-- Wild River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,032 ac
 - Appalachian National Scenic Trail · NT · NPS · ~14,264 ac
-- Caribou-Speckled Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,250 ac
 - Missisquoi National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,342 ac
-- Great Gulf Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,658 ac
 - Parker River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~4,572 ac
 - Enfield Wildlife Management Area · SCA ·   · ~3,025 ac
 - Murphy Dam / Lake Francis · SOTH ·   · ~2,801 ac
@@ -103,6 +95,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 205** parks joined
 - William B. Ruger Wildlife Management Area - South · SCA ·   · ~1,905 ac
 - Surry Mountain Recreation Area · REC · New England · ~1,683 ac
 - Ellis R. Hatch Jr. Wildlife Management Area · SCA ·   · ~1,517 ac
+- Hanover Water Works Co. Land · WPA ·   · ~1,472 ac
 - Heath Pond Bog Natural Area · SCA ·   · ~1,369 ac
 - Mt Kelsey Wildlife Management Area · SCA ·   · ~1,281 ac
 - William B. Ruger Wildlife Management Area - North · SCA ·   · ~1,272 ac
@@ -122,6 +115,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 205** parks joined
 - Otter Brook Recreation Area · REC · New England · ~459 ac
 - Forest Peters Wildlife Management Area · SCA ·   · ~458 ac
 - Ossipee Lake Natural Area · SCA ·   · ~444 ac
+- Pennichuck Water Works · WPA ·   · ~436 ac
 - UNH - Manchester (Hackett Hill) · SOTH ·   · ~430 ac
 - Great Thicket National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~420 ac
 - Pontook Reservoir · SOTH ·   · ~411 ac
@@ -143,8 +137,12 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **130 of 205** parks joined
 - Mount Kearsarge State Forest · SRMA ·   · ~310 ac
 - Twitchell Environmental Study Area · REA ·   · ~309 ac
 - Merrymeeting Marsh Wildlife Management Area · SCA ·   · ~297 ac
+- Pillsbury Lake District - Hunting Preserve · LOTH ·   · ~293 ac
 - Upper Merrimack Oxbow Project · SREC · NH Fish & Game · ~292 ac
 - Carpenters Marsh Wildlife Management Area · SCA ·   · ~291 ac
 - Perkins Pond Wildlife Management Area · SCA ·   · ~291 ac
 - Fort Hill Wildlife Management Area · SCA ·   · ~276 ac
 - Horne Brook Wildlife Management Area · SCA ·   · ~275 ac
+- UNH - Saddleback Mountain · REA ·   · ~265 ac
+- Beaver Brook Wildlife Management Area · SCA ·   · ~258 ac
+- Long Mountain · SCA ·   · ~249 ac

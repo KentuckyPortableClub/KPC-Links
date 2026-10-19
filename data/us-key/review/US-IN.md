@@ -1,15 +1,12 @@
 # IN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **188 of 229** parks joined to official land (same name + same kind of place). **34** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **191 of 229** parks joined to official land (same name + same kind of place). **31** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-10179** Ten O' Clock Line State Nature Preserve (State Nature Preserve) → 10 O'clock Line Nature Preserve (~3,341 ac, similar name); Brown County State Park (~12,705 ac, the POTA pin is inside it (different name))
 - **US-10248** Warbler Woods State Nature Preserve (State Nature Preserve) → Fort Benjamin Harrison State Park (~981 ac, the POTA pin is inside it (different name)); Fort Harrison State Park (~980 ac, the POTA pin is inside it (different name))
 - **US-10561** Indiana War Memorial Plaza National Historical Site (National Historical Site) → Indiana War Memorial (~5 ac, similar name); Veteran's Memorial Plaza (~5 ac, similar name)
-- **US-12013** Kramer Original Woods State Nature Preserve (State Nature Preserve) → Kramer Woods (~221 ac, similar name); Kramer Woods (~4 ac, similar name)
 - **US-12020** Prophetstown Fen State Nature Preserve (State Nature Preserve) → Prophetstown State Park (~2,204 ac, same name, different kind of place)
-- **US-13102** Deniston State Natural Area (State Natural Area) → Deniston Natural Resource Area (~298 ac, similar name)
 - **US-4168** Frances Slocum on Mississinewa Lake State Recreation Area (State Recreation Area) → Mississinewa Recreation Area (~15,067 ac, similar name); Mississinewa Lake (~13,064 ac, similar name); Mississinewa Lake (~797 ac, similar name); Mississinewa Lake (~173 ac, similar name)
 - **US-4169** Miami on Mississinewa Lake State Recreation Area (State Recreation Area) → Mississinewa Recreation Area (~15,067 ac, similar name); Mississinewa Lake (~13,064 ac, similar name); Mississinewa Lake (~797 ac, similar name); Mississinewa Lake (~173 ac, similar name); Mississinewa Lake (~25 ac, similar name); Mississinewa Lake (~4 ac, similar name)
 - **US-4170** Hardin Ridge on Monroe Lake State Recreation Area (State Recreation Area) → Monroe Recreation Area (~25,720 ac, similar name); Monroe Lake (~18,310 ac, similar name); Monroe Lake (~3,142 ac, similar name); Monroe Lake (~290 ac, similar name); Hoosier National Forest (~204,291 ac, the POTA pin is inside it (different name))
@@ -62,11 +59,9 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **188 of 229** parks joined
 - Brookville Lake ·  · Indiana DNR properties · ~13,201 ac
 - Mississinewa Lake ·  · Indiana DNR properties · ~13,064 ac
 - Minnehana Fish and Wildlife Area · SCA · Indiana Department of Natural Resources Fish and Wildlife · ~12,889 ac
-- Charles C. Deam Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,538 ac
 - Salamonie Lake ·  · Indiana DNR properties · ~10,768 ac
 - J. Edward Roush Recreation Area · REC · Louisville · ~8,533 ac
 - J. Edward Roush Fish and Wildlife Area ·  · Indiana DNR properties · ~8,235 ac
-- 10 O'clock Line Nature Preserve · SCA · Indiana DNR, State Parks and Reservoirs Division · ~3,341 ac
 - Monroe Lake ·  · Indiana DNR properties · ~3,142 ac
 - Gibson Lake Recreation Area · SREC · Unknown State · ~2,908 ac
 - Brookville Lake ·  · Indiana DNR properties · ~2,734 ac
@@ -114,3 +109,5 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **188 of 229** parks joined
 - Brock - Sampson Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~387 ac
 - Gray Estate Cypress Slough (Gray Woods) · SCA · Indiana DNR, Fish and Wildlife Division · ~386 ac
 - Place Trail Marsh Gamebird Habitat Area ·  · Indiana DNR properties · ~375 ac
+- Moriane Natural Area · SCA · Indiana DNR, Nature Preserve Division · ~365 ac
+- Buffalo Pond Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~358 ac

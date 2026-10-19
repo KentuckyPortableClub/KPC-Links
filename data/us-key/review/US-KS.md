@@ -1,17 +1,14 @@
 # KS: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **94 of 145** parks joined to official land (same name + same kind of place). **16** to check by hand, **35** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **97 of 145** parks joined to official land (same name + same kind of place). **13** to check by hand, **35** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-12398** Olathe Prairie Center State Preserve (State Preserve) → Prairie Center (~302 ac, similar name)
 - **US-2334** Cross Timbers State Park (State Park) → Toronto State Park (~1,292 ac, the POTA pin is inside it (different name))
 - **US-2335** Eisenhower State Park (State Park) → Melvern Recreation Area (~23,490 ac, the POTA pin is inside it (different name))
-- **US-2352** Historic Lake Scott State Park (State Park) → Scott State Park (~1,088 ac, similar name); Scott Wildlife Area (~160 ac, similar name)
 - **US-7393** Milford State Fish Hatchery (State Fish Hatchery) → Milford Recreation Area (~45,289 ac, same name, different kind of place)
 - **US-7399** Tuttle Creek Willow State Fishing Lake (State Fishing Lake) → Tuttle Creek State Parks (~1,082 ac, similar name); Tuttle Creek Recreation Area (~34,548 ac, same name, different kind of place)
 - **US-7405** Melvern River State Fishing Lake (State Fishing Lake) → Melvern Recreation Area (~23,490 ac, similar name)
-- **US-7428** Ford County State Fishing Lake (State Fishing Lake) → Ford State Fishing Lake and Wildlife Area (~314 ac, similar name)
 - **US-7925** El Dorado State Wildlife Area (State Wildlife Area) → El Dorado State Park (~4,133 ac, same name, different kind of place)
 - **US-7929** Hillsdale State Wildlife Area (State Wildlife Area) → Hillsdale Recreation Area (~13,176 ac, same name, different kind of place)
 - **US-7932** Kansas Veterans State Wildlife Area (State Wildlife Area) → Sherman State Fishing Lake And Wildlife Area (~1,542 ac, the POTA pin is inside it (different name))
@@ -92,9 +89,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **94 of 145** parks joined 
 - Woodson Diversion Wildlife Area · SCA · Kansas Department of Wildlife, Parks, and Tourism (KDWPT) · ~335 ac
 - Hamilton State Fishing Lake And Wildlife Area · SREC · State Fish and Wildlife · ~326 ac
 - Garton Wildlife Area · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~320 ac
-- Ford State Fishing Lake and Wildlife Area · SCA · Ford County Public Works · ~314 ac
 - Michael Brzon Wildlife Area · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~309 ac
-- Prairie Center · SCA · State Fish and Wildlife · ~302 ac
 - Elwood Bottoms · SOTH · KDWP · ~272 ac
 - Neosho Wildlife Area - South Unit · SCA · Kansas Department of Wildlife, Parks, and Tourism (KDWPT) · ~267 ac
 - Duck Creek Wildlife Area · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~246 ac
@@ -123,4 +118,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **94 of 145** parks joined 
 - Rutlander Wildlife Area · SCA · State Fish and Wildlife · ~59 ac
 - Barber State Fishing Lake-south Pool · SREC · State Park & Recreation · ~45 ac
 - Lane Wildlife Area · SCA · Kansas Department of Wildlife, Parks and Tourism (KDWPT) · ~45 ac
+- Stanley Nature Park · LP · UNIFIED SCHOOL DIST #229 · ~38 ac
 - Karlyle Woods · SCA · Washburn University · ~37 ac
+- Roy and Eleanor Wall Woods · SCA · University of Kansas · ~33 ac

@@ -1,11 +1,10 @@
 # DC: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **23 of 34** parks joined to official land (same name + same kind of place). **2** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **24 of 34** parks joined to official land (same name + same kind of place). **1** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0657** President's Park (White House) Park (Park) → National Capital Parks (~3,908 ac, the POTA pin is inside it (different name))
-- **US-13543** US National Arboretum Botanical Gardens (Botanical Gardens) → National Arboretum (~380 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -24,7 +23,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **23 of 34** parks joined t
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- National Arboretum · FOTH · US Department of Agriculture · ~380 ac
 - Chesapeake and Ohio Canal National Historical Park · HCA · NPS · ~323 ac
 - Captial Grounds · LP · Architect of the Capital · ~94 ac
 - Delaclaria Reservoir Grounds · FOTH · US Federal · ~75 ac
@@ -84,3 +82,4 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **23 of 34** parks joined t
 - Triangle Alabama Ave.,Burns St.,Bowen Rd.,Se · FOTH · US Federal · ~0 ac
 - Triangle Argyle Terrace,18Th St.,Allison St.,Nw · FOTH · US Federal · ~0 ac
 - Triangle Banks Place,63Rd St.,Southern Ave.,Ne · FOTH · US Federal · ~0 ac
+- Triangle Bladensburg Rd.,30Th St.,Evart St.,Ne · FOTH · US Federal · ~0 ac

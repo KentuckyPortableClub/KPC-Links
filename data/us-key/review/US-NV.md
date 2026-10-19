@@ -1,24 +1,17 @@
 # NV: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **193 of 367** parks joined to official land (same name + same kind of place). **33** to check by hand, **79** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **200 of 367** parks joined to official land (same name + same kind of place). **25** to check by hand, **79** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-10345** Carson Lake and Pasture Wildlife Management Area (Wildlife Management Area) → Usbr (~139,499 ac, the POTA pin is inside it (different name))
-- **US-10833** Hickison Summit Burro Range BLM Herd Management Area (BLM Herd Management Area) → Hickison (~57,634 ac, similar name); Mount Lewis Field Office (~4,383,120 ac, the POTA pin is inside it (different name))
 - **US-10851** East Pershing Complex BLM Herd Management Area (BLM Herd Management Area) → Stillwater Field Office (~3,582,451 ac, the POTA pin is inside it (different name))
 - **US-11050** Ice Age Fossils State Park (State Park) → Tule Springs Archaeology Site (~324 ac, the POTA pin is inside it (different name))
 - **US-13010** Dry Valley BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Dry Valley Rim Wilderness Study Area (~0 ac, same name, different kind of place); Twin Peaks (~635,356 ac, the POTA pin is inside it (different name)); Eagle Lake Field Office (~310,176 ac, the POTA pin is inside it (different name))
 - **US-13020** Smoke Creek BLM National Conservation Area (BLM National Conservation Area) → Black Rock Field Office (~2,358,385 ac, the POTA pin is inside it (different name)); Buffalo Hills (~133,437 ac, the POTA pin is inside it (different name)); Poodle Mountain (~0 ac, the POTA pin is inside it (different name)); Poodle Mountain Wilderness Study Area (~0 ac, the POTA pin is inside it (different name))
-- **US-13136** Marietta Wild Burro Range BLM Herd Management Area (BLM Herd Management Area) → Marietta (~66,694 ac, similar name); Stillwater Field Office (~3,582,451 ac, the POTA pin is inside it (different name))
-- **US-13177** Rhyolite Historic Area-Nevada BLM Historic Area (BLM Historic Area) → Rhyolite Historic Townsite (~342 ac, similar name); Bullfrog (~158,185 ac, the POTA pin is inside it (different name))
 - **US-13178** Mt. Irish Archaeological Site Archeological Reserve (Archeological Reserve) → Mount Irish (~0 ac, similar name); Basin And Range Nm Field Office (~703,784 ac, the POTA pin is inside it (different name)); Basin and Range (~0 ac, the POTA pin is inside it (different name))
 - **US-13183** Walking Box Ranch Historic Site (Historic Site) → Southern Nevada (~2,494,377 ac, the POTA pin is inside it (different name)); Las Vegas Field Office (~2,378,020 ac, the POTA pin is inside it (different name)); Avi Kwa Ame (~0 ac, the POTA pin is inside it (different name))
-- **US-13192** Chief Mountain West National Recreation Area (National Recreation Area) → Chief Mtn. West (~1 ac, same name, different kind of place); Chief Mtn. West (~1 ac, same name, different kind of place); Caliente Field Office (~5,063,883 ac, the POTA pin is inside it (different name))
-- **US-13199** Bloody Shins Trail System BLM Recreation Management Area (BLM Recreation Management Area) → Bloody Shins RMZ (~13,084 ac, similar name)
-- **US-13200** Lunar Crater Back Country Byway National Landscape (National Landscape) → Lunar Crater (~25,254 ac, similar name); Tonopah Field Office (~6,073,247 ac, the POTA pin is inside it (different name)); Sand Springs West (~152,927 ac, the POTA pin is inside it (different name))
 - **US-13209** Goldfield Trail BLM Historic Area (BLM Historic Area) → Goldfield (~62,821 ac, similar name); Tonopah Field Office (~6,073,247 ac, the POTA pin is inside it (different name)); Montezuma Peak (~78,479 ac, the POTA pin is inside it (different name))
-- **US-13211** Lahontan Cutthroat Natural Area BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Lahontan Cutthroat Trout ISA (~0 ac, same name, different kind of place); Lahontan Cutthroat Trout ISA (~0 ac, same name, different kind of place); Lahontan Cutthroat Trout ISA (~0 ac, same name, different kind of place); Lahontan Cutthroat Trout ISA (~0 ac, same name, different kind of place); Black Rock Field Office (~2,358,385 ac, the POTA pin is inside it (different name)); Black Rock SRMA (~1,222,806 ac, the POTA pin is inside it (different name))
 - **US-13239** Mason Valley Hatchery Outponds State Fish Hatchery (State Fish Hatchery) → Mason Valley Wildlife Management Area (~16,717 ac, same name, different kind of place)
 - **US-13241** Lake Mead Fish Hatchery State Fish Hatchery (State Fish Hatchery) → Lake Mead National Recreation Area (~581,651 ac, same name, different kind of place)
 - **US-13248** Fort Ruby National Historic Site (National Historic Site) → Ruby Lake National Wildlife Refuge (~40,070 ac, the POTA pin is inside it (different name)); Ruby Lake National Wildlife Refuge (~39,950 ac, the POTA pin is inside it (different name))
@@ -27,16 +20,15 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **193 of 367** parks joined
 - **US-13279** Dayton State Historical Monument (State Historical Monument) → Dayton State Park (~128 ac, similar name)
 - **US-13284** Carson City National Historic District (National Historic District) → Capitol Complex (~5 ac, the POTA pin is inside it (different name))
 - **US-13289** The Humboldt Canal State Historical Monument (State Historical Monument) → Humboldt National Forest (~2,400,994 ac, similar name)
+- **US-13307** Mount Rose Wilderness National Forest (National Forest) → Toiyabe National Forest (~3,206,430 ac, the POTA pin is inside it (different name))
 - **US-13414** Button Point State Historic Site (State Historic Site) → Humboldt River Field Office (~6,081,514 ac, the POTA pin is inside it (different name))
 - **US-13415** Nevada Test Site State Historical Monument (State Historical Monument) → Nevada Test Site (~530,691 ac, similar name); Johnnie (~179,800 ac, the POTA pin is inside it (different name))
 - **US-13453** Original Homesite of a Las Vegas Pioneer “Pop” Squires 1865-1958 State Historical Monument (State Historical Monument) → Las Vegas Valley (~89,327 ac, similar name)
-- **US-13475** Mount Rose Weather Observatory State Historical Monument (State Historical Monument) → Mt. Rose Wilderness (~31,311 ac, similar name); Toiyabe National Forest (~3,206,430 ac, the POTA pin is inside it (different name))
 - **US-2626** Berlin-Ichthyosaur State Park (State Park) → Toiyabe National Forest (~3,206,430 ac, the POTA pin is inside it (different name))
 - **US-4438** Buckland Station State Park (State Park) → Fort Churchill State Historic Park (~3,468 ac, the POTA pin is inside it (different name))
-- **US-9238** Big Rocks BLM National Conservation Area (National Conservation Area) → Big Rocks (~0 ac, same name, different kind of place); Caliente Field Office (~5,063,883 ac, the POTA pin is inside it (different name))
-- **US-9239** Black Rock Desert - High Rock Canyon Emigrant Trails National Conservation Area (National Conservation Area) → Black Rock SRMA (~1,222,806 ac, similar name); Black Rock Desert / High Rock Canyon (~0 ac, same name, different kind of place); Black Rock Field Office (~2,358,385 ac, the POTA pin is inside it (different name)); Front Country Zone (~119,553 ac, the POTA pin is inside it (different name)); Black Rock OHV Open Area (~104,545 ac, the POTA pin is inside it (different name)); Black Rock OHV Open Area (~104,545 ac, the POTA pin is inside it (different name))
-- **US-9288** Wee Thump Joshua Tree BLM National Conservation Area (National Conservation Area) → Wee Thump Joshua Tree (~0 ac, same name, different kind of place); Southern Nevada (~2,494,377 ac, the POTA pin is inside it (different name)); Las Vegas Field Office (~2,378,020 ac, the POTA pin is inside it (different name)); Avi Kwa Ame (~0 ac, the POTA pin is inside it (different name))
-- **US-9291** White Rock Range BLM National Conservation Area (National Conservation Area) → White Rock Range (~0 ac, same name, different kind of place); Caliente Field Office (~5,063,883 ac, the POTA pin is inside it (different name)); Eagle (~660,700 ac, the POTA pin is inside it (different name))
+- **US-9236** Bald Mountain Wilderness Area (Wilderness Area) → Humboldt National Forest (~2,400,994 ac, the POTA pin is inside it (different name))
+- **US-9244** Currant Mountain Wilderness Area (Wilderness Area) → Humboldt National Forest (~2,400,994 ac, the POTA pin is inside it (different name))
+- **US-9286** Table Mountain Wilderness Area (Wilderness Area) → Toiyabe National Forest (~3,206,430 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -80,6 +72,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **193 of 367** parks joined
 - US-13463 Wonder, Nevada BLM Historic Preservation Site (BLM Historic Preservation Site) → on Clan Alpine (~304,763 ac); Stillwater Field Office (~3,582,451 ac)
 - US-13465 Jackrabbit Nevada BLM Historic Area (BLM Historic Area) → on Silver King (~576,458 ac); Caliente Field Office (~5,063,883 ac)
 - US-13467 Hiko Nevada State Historical Monument (State Historical Monument) → on Caliente Field Office (~5,063,883 ac)
+- US-13475 Mount Rose Weather Observatory State Historical Monument (State Historical Monument) → on Toiyabe National Forest (~3,206,430 ac)
 - US-13476 Stonehouse Nevada State Historical Monument (State Historical Monument) → on Humboldt River Field Office (~6,081,514 ac)
 - US-13480 The Eureka Mining District Producing Ore Since 1864 State Historical Monument (State Historical Monument) → on Mount Lewis Field Office (~4,383,120 ac)
 - US-13482 Galena Creek Fish Hatchery State Historical Monument (State Historical Monument) → on Toiyabe National Forest (~3,206,430 ac)
@@ -210,7 +203,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **193 of 367** parks joined
 - Nightingale Zone 5 RMZ ·  · BLM recreation sites · ~773,972 ac
 - Pahrump Field Office · PUB · BLM · ~740,861 ac
 - Basin And Range Nm Field Office · PUB · BLM · ~703,784 ac
-- John Muir Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~653,633 ac
 - Twin Peaks ·  · BLM herd management areas · ~635,356 ac
 - Black Mountain ·  · BLM herd management areas · ~567,084 ac
 - Nevada Test Site · FOTH · Department of Energy (DOE) · ~530,691 ac
@@ -219,31 +211,32 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **193 of 367** parks joined
 - Rustic Zone ·  · BLM recreation sites · ~331,560 ac
 - Antelope ·  · BLM herd management areas · ~327,747 ac
 - Eagle Lake Field Office · PUB · BLM · ~310,176 ac
-- Golden Trout Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~305,395 ac
 - Chicago Valley ·  · BLM herd management areas · ~258,867 ac
 - Red Rock/Sloan Field Office · PUB · BLM · ~245,885 ac
-- Ansel Adams Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~231,586 ac
-- White Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~230,672 ac
 - Sulpher ·  · BLM herd management areas · ~230,177 ac
 - Jarbidge Foothills ERMA ·  · BLM recreation sites · ~190,944 ac
 - Canyonlands ERMA ·  · BLM recreation sites · ~183,254 ac
 - North Stillwater ·  · BLM herd management areas · ~180,445 ac
 - NA ·  · BLM recreation sites · ~179,286 ac
 - Jawbone ·  · BLM recreation sites · ~167,204 ac
-- Carson-Iceberg Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~159,070 ac
 - NA ·  · BLM recreation sites · ~151,643 ac
 - Usbr · FOTH · Unknown · ~139,499 ac
 - Black Mountains ACEC ·  · BLM recreation areas · ~134,533 ac
 - Black Mountains ACEC ·  · BLM recreation sites · ~134,533 ac
 - Muddy Mountains ·  · BLM recreation sites · ~128,292 ac
-- Hoover Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~128,105 ac
-- High Schells Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~121,456 ac
 - Fox Hog ·  · BLM herd management areas · ~121,086 ac
-- Arc Dome Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~120,280 ac
 - Front Country Zone ·  · BLM recreation sites · ~119,553 ac
 - Snowstorm Mountains ·  · BLM herd management areas · ~117,835 ac
 - Ash Meadows ·  · BLM herd management areas · ~115,783 ac
 - Inyo National Forest · NF · Forest Service Region 05 Pacific Southwest · ~113,755 ac
-- Emigrant Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~112,782 ac
-- Jarbidge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~110,513 ac
 - Black Rock OHV Open Area ·  · BLM recreation areas · ~104,545 ac
+- Black Rock OHV Open Area ·  · BLM recreation sites · ~104,545 ac
+- El Dorado Mountains ·  · BLM herd management areas · ~96,224 ac
+- Pueblo Mountains ·  · BLM recreation sites · ~94,928 ac
+- High Rock ·  · BLM herd management areas · ~94,612 ac
+- Trout Creek/Oregon Canyon ·  · BLM recreation sites · ~92,977 ac
+- Sonoma Range RMZ ·  · BLM recreation sites · ~91,156 ac
+- Las Vegas Valley ·  · BLM recreation sites · ~89,327 ac
+- Piper Mountain ·  · BLM herd management areas · ~87,909 ac
+- Nelson - Eldorado ·  · BLM recreation sites · ~72,772 ac
+- Lee Flat ·  · BLM herd management areas · ~71,964 ac

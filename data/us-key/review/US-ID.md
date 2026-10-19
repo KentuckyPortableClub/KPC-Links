@@ -1,24 +1,23 @@
 # ID: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 361** parks joined to official land (same name + same kind of place). **55** to check by hand, **75** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **143 of 361** parks joined to official land (same name + same kind of place). **50** to check by hand, **77** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0890** Salmon National Wild and Scenic River (National Wild and Scenic River) → Frank Church-River of No Return Wilderness (~2,365,708 ac, the POTA pin is inside it (different name)); Nezperce National Forest (~2,109,873 ac, the POTA pin is inside it (different name))
+- **US-0890** Salmon National Wild and Scenic River (National Wild and Scenic River) → Nezperce National Forest (~2,109,873 ac, the POTA pin is inside it (different name))
 - **US-10006** Idaho Centennial Trail State Trail (State Trail) → Jarbidge Field Office (~1,321,755 ac, the POTA pin is inside it (different name)); Jarbidge Foothills ERMA (~190,944 ac, the POTA pin is inside it (different name))
 - **US-10070** Menan Buttes (BLM) Natural Monument (Natural Monument) → Upper Snake Field Office (~1,813,172 ac, the POTA pin is inside it (different name)); Snake River (~128,533 ac, the POTA pin is inside it (different name))
-- **US-10071** Hell's Half Acre (BLM) Natural Monument (Natural Monument) → Hell's Half Acre (~0 ac, similar name); Upper Snake Field Office (~1,813,172 ac, the POTA pin is inside it (different name))
 - **US-10072** Big Southern Butte (BLM) Natural Monument (Natural Monument) → Upper Snake Field Office (~1,813,172 ac, the POTA pin is inside it (different name))
 - **US-10304** Experimental Breeder Reactor-1 (DOE) National Historic Site (National Historic Site) → Department of Energy (~567,306 ac, the POTA pin is inside it (different name))
 - **US-10343** Hard Trigger HMA BLM Herd Management Area (BLM Herd Management Area) → Owyhee Field Office (~1,259,662 ac, the POTA pin is inside it (different name)); Owyhee Front Trails - North Zone (~69,635 ac, the POTA pin is inside it (different name)); Hardtrigger (~69,397 ac, the POTA pin is inside it (different name))
+- **US-10381** Frank Church-River of No Return Wilderness Area (Wilderness Area) → Challis National Forest (~2,197,868 ac, the POTA pin is inside it (different name))
+- **US-10382** Gospel Hump Wilderness Wilderness Area (Wilderness Area) → Nezperce National Forest (~2,109,873 ac, the POTA pin is inside it (different name))
 - **US-10423** Pend Oreille National Scenic Byway National Parkway (National Parkway) → Pend Oreille Wildlife Management Area (~534 ac, similar name); Pend Oreille Wildlife Management Area (~354 ac, similar name); Kaniksu National Forest (~898,213 ac, the POTA pin is inside it (different name))
-- **US-10429** Middle Fork Clearwater River National Wild & Scenic River (National Wild & Scenic River) → Nezperce National Forest (~2,109,873 ac, the POTA pin is inside it (different name)); Selway-Bitterroot Wilderness (~1,348,689 ac, the POTA pin is inside it (different name))
+- **US-10429** Middle Fork Clearwater River National Wild & Scenic River (National Wild & Scenic River) → Nezperce National Forest (~2,109,873 ac, the POTA pin is inside it (different name))
 - **US-10430** St Joe River National Wild and Scenic River (National Wild and Scenic River) → St. Joe National Forest (~724,439 ac, same name, different kind of place)
 - **US-10433** Eagle State Fish Hatchery (State Fish Hatchery) → Eagle Island State Park (~512 ac, similar name); Eagle Island State Park (~7 ac, similar name); Eagle Island State Park (~7 ac, similar name); Eagle Island State Park (~5 ac, similar name); Eagle Fish Health Laboratory (~1 ac, similar name); Eagle Fish Health Laboratory (~1 ac, similar name)
-- **US-10536** Roswell Marsh Wildlife Habitat Area Habitat Protection Area (Habitat Protection Area) → Roswell Marsh Wildlife Habitat Area (~556 ac, similar name); Roswell Marsh Wildlife Habitat Area (~151 ac, similar name)
 - **US-10657** Milner Historic Recreation Area BLM Historic Area (BLM Historic Area) → Milner (~2,069 ac, similar name); Burley Field Office (~834,935 ac, the POTA pin is inside it (different name))
 - **US-11089** Ted Trueblood Wildlife Habitat Area State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Four Rivers Field Office (~1,255,575 ac, the POTA pin is inside it (different name)); MORLEY NELSON SNAKE RIVER BIRDS OF PREY NATIONAL CONSERVATION AREA (~0 ac, the POTA pin is inside it (different name))
-- **US-11239** Chilly Slough Wetland Conservation Area BLM Interpretive Site (BLM Interpretive Site) → Chilly Slough Wildlife Habitat Area (~304 ac, similar name); Challis Field Office (~792,074 ac, the POTA pin is inside it (different name))
 - **US-11249** Salmon Falls Creek Reservoir State Fishing Lake (State Fishing Lake) → Salmon Falls Reservoir (~37,887 ac, same name, different kind of place); Salmon Falls Creek Canyon (~7,586 ac, same name, different kind of place); Salmon Falls Reservoir (~1,426 ac, same name, different kind of place); Burley Field Office (~834,935 ac, the POTA pin is inside it (different name))
 - **US-11252** GrasmereReservoir State Fishing Lake (State Fishing Lake) → Bruneau Field Office (~1,448,603 ac, the POTA pin is inside it (different name))
 - **US-11260** North Fork Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → North Fork Canyon (~476 ac, similar name); North Fork Owyhee Wilderness (~0 ac, similar name); Owyhee Field Office (~1,259,662 ac, the POTA pin is inside it (different name))
@@ -35,13 +34,12 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 361** parks joined
 - **US-11464** Blacks Creek Reservoir State Fishing Lake (State Fishing Lake) → Blacks Creek Rifle Range (~61 ac, similar name); Four Rivers Field Office (~1,255,575 ac, the POTA pin is inside it (different name))
 - **US-11517** American Falls Reservoir State Fishing Lake (State Fishing Lake) → American Falls Hatchery (~102 ac, same name, different kind of place); American Falls Hatchery (~6 ac, same name, different kind of place)
 - **US-11528** Tripod Reservoir State Fishing Lake (State Fishing Lake) → Idaho Department of Lands (~1,982,653 ac, the POTA pin is inside it (different name))
-- **US-11530** Hells Canyon Reservoir State Fishing Lake (State Fishing Lake) → Hells Canyon Wilderness (~218,097 ac, same name, different kind of place); Payette National Forest (~2,287,258 ac, the POTA pin is inside it (different name))
+- **US-11530** Hells Canyon Reservoir State Fishing Lake (State Fishing Lake) → Payette National Forest (~2,287,258 ac, the POTA pin is inside it (different name))
 - **US-11538** Moose Creek Reservoir State Fishing Lake (State Fishing Lake) → Idaho Department of Lands (~58,529 ac, the POTA pin is inside it (different name))
 - **US-11539** Mosquito Flat Reservoir State Fishing Lake (State Fishing Lake) → Challis National Forest (~2,197,868 ac, the POTA pin is inside it (different name))
 - **US-11541** Sheep Creek Reservoir State Fishing Lake (State Fishing Lake) → Idaho Department of Lands (~1,982,653 ac, the POTA pin is inside it (different name))
 - **US-11948** Hornet Reservoir State Fishing Lake (State Fishing Lake) → Payette National Forest (~2,287,258 ac, the POTA pin is inside it (different name))
 - **US-12112** Little Payette Lake State Fishing Lake (State Fishing Lake) → Payette National Forest (~2,287,258 ac, similar name)
-- **US-12180** Owyhee Front BLM Recreation Management Area (BLM Recreation Management Area) → Owyhee Front Trails - South Zone (~213,700 ac, similar name); Owyhee Front Trails - North Zone (~69,635 ac, similar name); Owyhee Field Office (~1,259,662 ac, the POTA pin is inside it (different name)); Black Mountain (~50,922 ac, the POTA pin is inside it (different name))
 - **US-12210** Jump Creek Falls BLM Scenic Site (Scenic Site) → Jump Creek (~8,711 ac, similar name); Owyhee Field Office (~1,259,662 ac, the POTA pin is inside it (different name))
 - **US-12212** Black Magic Canyon BLM Scenic Site (Scenic Site) → Shoshone Field Office (~1,723,598 ac, the POTA pin is inside it (different name)); Magic Reservoir (~21,285 ac, the POTA pin is inside it (different name))
 - **US-12226** Bruneau Arm Reservoir State Fishing Lake (State Fishing Lake) → C J Strike (~31,737 ac, the POTA pin is inside it (different name)); MORLEY NELSON SNAKE RIVER BIRDS OF PREY NATIONAL CONSERVATION AREA (~0 ac, the POTA pin is inside it (different name))
@@ -54,18 +52,15 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 361** parks joined
 - **US-4665** Floodwood State Forest (State Forest) → Idaho Department of Lands (~1,982,653 ac, the POTA pin is inside it (different name))
 - **US-4666** Priest Lake State Forest (State Forest) → Idaho Department of Lands (~1,982,653 ac, the POTA pin is inside it (different name))
 - **US-5617** St. Maries Wildlife Management Area (Wildlife Management Area) → Idaho Department of Lands (~53,342 ac, the POTA pin is inside it (different name))
-- **US-7361** Hells Canyon National Recreation Area (National Recreation Area) → Hells Canyon Wilderness (~218,097 ac, same name, different kind of place)
-- **US-7362** Sawtooth National Recreation Area (National Recreation Area) → Sawtooth Wilderness (~217,511 ac, same name, different kind of place)
-- **US-7365** St. Anthony Sand Dunes National Recreation Area (National Recreation Area) → St Anthony Sand Dunes (~49,115 ac, same name, different kind of place); Upper Snake Field Office (~1,813,172 ac, the POTA pin is inside it (different name)); Sand Mountain (~0 ac, the POTA pin is inside it (different name))
-- **US-7366** Trail of the Coeur d'Alene's State Trail (State Trail) → Trail of the Coeur d' Alenes (~787 ac, similar name)
 - **US-7821** Magic Reservoir Airstrip State Recreation Area (State Recreation Area) → Magic Reservoir (~21,285 ac, same name, different kind of place)
+- **US-7994** Selway-Bitterroot Wilderness Area (Wilderness Area) → Bitterroot National Forest (~467,678 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-10268 Hoodoo Meadows Airstrip State Recreation Area (State Recreation Area) → on Salmon National Forest (~1,774,122 ac)
 - US-10418 Western Heritage National Scenic Byway National Parkway (National Parkway) → on MORLEY NELSON SNAKE RIVER BIRDS OF PREY NATIONAL CONSERVATION AREA (~0 ac); Four Rivers Field Office (~1,255,575 ac)
 - US-10422 Northwest Passage National Scenic Byway National Parkway (National Parkway) → on Clearwater National Forest (~1,682,090 ac)
-- US-10427 Thomas Creek Airstrip State Recreation Area (State Recreation Area) → on Boise National Forest (~336,671 ac); Frank Church-River of No Return Wilderness (~2,365,708 ac)
+- US-10427 Thomas Creek Airstrip State Recreation Area (State Recreation Area) → on Boise National Forest (~336,671 ac)
 - US-11157 Lava Hot Springs State Recreation Site (State Recreation Site) → on State of Idaho (~517 ac)
 - US-11183 Joe T. Fallini Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Challis Field Office (~792,074 ac)
 - US-11250 Thorn Creek Reservoir BLM Recreation Management Area (BLM Recreation Management Area) → on Shoshone Field Office (~1,723,598 ac)
@@ -221,6 +216,8 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 361** parks joined
 - US-4576 Oregon National Historic Trail (National Historic Trail)
 - US-4584 Ashton-Tetonia Trail State Park (State Park)
 - US-6227 Snake River National Wild & Scenic River (National Wild & Scenic River)
+- US-7361 Hells Canyon National Recreation Area (National Recreation Area)
+- US-7362 Sawtooth National Recreation Area (National Recreation Area)
 - US-7805 Antelope Valley Airstrip State Recreation Area (State Recreation Area)
 - US-7809 Big Southern Butte Airstrip State Recreation Area (State Recreation Area)
 - US-7811 Cavanaugh Bay Airstrip State Recreation Area (State Recreation Area)
@@ -243,7 +240,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 361** parks joined
 - Kemmerer Field Office ERMA ·  · BLM recreation sites · ~1,290,770 ac
 - Owyhee Field Office · PUB · BLM · ~1,259,662 ac
 - Four Rivers Field Office · PUB · BLM · ~1,255,575 ac
-- Bob Marshall Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~1,064,092 ac
 - Burley Field Office · PUB · BLM · ~834,935 ac
 - Challis Field Office · PUB · BLM · ~792,074 ac
 - Coeur d'Alene National Forest · NF · Forest Service Region 01 Northern · ~727,061 ac
@@ -253,20 +249,12 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 361** parks joined
 - Salmon Field Office · PUB · BLM · ~493,795 ac
 - Little Owyhee ·  · BLM herd management areas · ~463,133 ac
 - NA ·  · BLM recreation sites · ~453,327 ac
-- Eagle Cap Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~356,310 ac
 - Owyhee ·  · BLM herd management areas · ~340,969 ac
-- Great Bear Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~287,012 ac
 - NA ·  · BLM recreation sites · ~262,178 ac
-- Scapegoat Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~259,785 ac
 - NA ·  · BLM recreation sites · ~259,036 ac
-- Lee Metcalf Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~237,774 ac
-- Hells Canyon Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~218,097 ac
-- Sawtooth Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~217,511 ac
-- Owyhee Front Trails - South Zone ·  · BLM recreation sites · ~213,700 ac
 - Jarbidge Foothills ERMA ·  · BLM recreation sites · ~190,944 ac
 - Canyonlands ERMA ·  · BLM recreation sites · ~183,254 ac
 - NA ·  · BLM recreation sites · ~168,754 ac
-- Anaconda Pintler Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~158,754 ac
 - Bennett Hills BCA ·  · BLM recreation sites · ~158,211 ac
 - NA ·  · BLM recreation sites · ~151,643 ac
 - St. Joe National Forest · NF · Forest Service Region 01 Northern · ~143,489 ac
@@ -275,17 +263,12 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 361** parks joined
 - Boise Front ·  · BLM recreation sites · ~126,220 ac
 - Pocatello ·  · BLM recreation sites · ~115,154 ac
 - Coeur D'Alene Field Office · PUB · BLM · ~99,793 ac
-- Cabinet Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~93,766 ac
-- Cecil D. Andrus-White Clouds Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~90,247 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~89,675 ac
 - Uppermost Missouri River ·  · BLM recreation sites · ~82,354 ac
-- Mission Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~76,145 ac
 - Rochat Divide/Pine Creek ·  · BLM recreation sites · ~75,080 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~74,992 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~72,714 ac
-- Owyhee Front Trails - North Zone ·  · BLM recreation sites · ~69,635 ac
 - Hardtrigger ·  · BLM herd management areas · ~69,397 ac
-- Hemingway-Boulders Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~67,909 ac
 - NA ·  · BLM recreation sites · ~64,586 ac
 - Coeur d'Alene Lake ·  · BLM recreation sites · ~64,584 ac
 - Three Fingers ·  · BLM herd management areas · ~62,770 ac
@@ -294,3 +277,17 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 361** parks joined
 - Upper Big Hole River ·  · BLM recreation sites · ~56,847 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~53,342 ac
 - Silver Valley ·  · BLM recreation sites · ~53,188 ac
+- Red Rock Lakes National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~50,502 ac
+- Cotterell Mounain ·  · BLM recreation sites · ~46,927 ac
+- Oxbow Brownlee ·  · BLM recreation sites · ~46,343 ac
+- Clearwater River ·  · BLM recreation sites · ~44,818 ac
+- Salmon Falls Reservoir ·  · BLM recreation sites · ~37,887 ac
+- Owyhee River Canyon ·  · BLM recreation sites · ~37,509 ac
+- Raft River Crossing ·  · BLM recreation sites · ~36,500 ac
+- Rocky Hills ·  · BLM recreation sites · ~35,863 ac
+- NA ·  · BLM recreation sites · ~34,167 ac
+- NA ·  · BLM recreation sites · ~33,942 ac
+- Idaho Department of Lands · SRMA · Idaho Department of Lands · ~33,427 ac
+- Lewis-Clark Nat Hist Trail ·  · BLM recreation sites · ~32,612 ac
+- Centennial Mountains ·  · BLM recreation sites · ~31,880 ac
+- Idaho Department of Lands · SRMA · Idaho Department of Lands · ~31,168 ac

@@ -1,6 +1,6 @@
 # TN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **232 of 277** parks joined to official land (same name + same kind of place). **10** to check by hand, **35** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **234 of 277** parks joined to official land (same name + same kind of place). **8** to check by hand, **35** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,9 +8,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **232 of 277** parks joined
 - **US-12064** Henderson Swamp State Wilderness Area (State Wilderness Area) → Henderson Swamp Public Hunting Area (~24 ac, same name, different kind of place)
 - **US-12369** Lake Graham State Fishing Lake (State Fishing Lake) → Tennessee Wildlife Resources Ageny Region 1 Office (~157 ac, the POTA pin is inside it (different name))
 - **US-13364** Cherokee Trail of Tears State Park (State Park) → Hiwassee Refuge (~8,192 ac, the POTA pin is inside it (different name))
-- **US-3949** Kyker Bottoms Wildlife Refuge (Wildlife Refuge) → Kyker Bottoms Wildlife Management Area (~579 ac, same name, different kind of place)
 - **US-3950** Lauderdale Waterfowl Wildlife Management Area (Wildlife Management Area) → Lake Lauderdale Refuge (~652 ac, the POTA pin is inside it (different name))
-- **US-3961** South Fork Waterfowl State Wildlife Area (State Wildlife Area) → South Fork Waterfowl Refuge (~776 ac, similar name)
 - **US-6237** Mr. and Mrs. Harry Lee Carter State Natural Area (State Natural Area) → Sherwood Forest State Natural Area (~4,061 ac, the POTA pin is inside it (different name)); Head of the Crow State Park (~3,100 ac, the POTA pin is inside it (different name))
 - **US-6248** Honey Creek State Natural Area (State Natural Area) → Big South Fork National River and Recreation Area (~83,326 ac, the POTA pin is inside it (different name))
 - **US-6272** Twin Arches State Natural Area (State Natural Area) → Big South Fork National River and Recreation Area (~83,326 ac, the POTA pin is inside it (different name))
@@ -62,40 +60,23 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **232 of 277** parks joined
 - Tackett Creek Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~45,542 ac
 - Dale Hollow Recreation Area · REC · Nashville · ~44,125 ac
 - Center Hill Recreation Area · REC · Nashville · ~40,398 ac
-- Cohutta Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~37,039 ac
 - J. Percy Priest Recreation Area · REC · Nashville · ~33,737 ac
 - Old Hickory Recreation Area · REC · Nashville · ~29,862 ac
 - Cordell Hull Recreation Area · REC · Nashville · ~29,264 ac
-- Southern Nantahala Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~23,604 ac
-- Joyce Kilmer-Slickrock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~19,247 ac
-- Shining Rock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,478 ac
 - Barkley Recreation Area · REC · Nashville · ~17,136 ac
-- Citico Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,213 ac
-- Linville Gorge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,948 ac
 - Natchez Trace Parkway · SDA · NPS · ~11,301 ac
 - Big Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,001 ac
-- Sampson Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,896 ac
-- Big Laurel Branch Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,764 ac
 - Meeman-Shelby Forest Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~9,433 ac
-- Upper Bald River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,037 ac
-- Big Frog Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,502 ac
 - Wapanocca National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,464 ac
-- Ellicott Rock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,300 ac
 - Kentucky Reservoir · ND · Tennessee Valley Authority (TVA) · ~8,201 ac
-- Middle Prong Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,482 ac
 - North Chickamauga Creek Gorge Designated State Natural Area · SCA · SDC · ~7,107 ac
-- Pond Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,930 ac
 - Cheatham Lock And Dam Recreation Area · REC · Nashville · ~6,915 ac
 - Beaver Dam Creek Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~6,615 ac
-- Little Frog Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,635 ac
 - South Cumberland · SP · OTHS · ~5,047 ac
-- Unaka Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,463 ac
 - Dry Creek Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~4,055 ac
 - Enterprise South Park Wildlife Management Area · SCA · SFW · ~3,845 ac
-- Bald River Gorge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,791 ac
 - Black Oak Ridge Registered State Natural Area ·  · TDEC public access lands · ~3,698 ac
 - Three Bend Scenic & Wildlife Refuge · SCA · Tennessee Wildlife Resources Agency · ~3,204 ac
-- Gee Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~2,580 ac
 - Justin P. Wilson Cumberland Trail State Park ·  · TDEC public access lands · ~2,320 ac
 - Dry Branch Designated State Natural Area · SCA · Unknown · ~2,174 ac
 - Dry Branch State Park ·  · TDEC public access lands · ~2,174 ac
@@ -116,5 +97,22 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **232 of 277** parks joined
 - The Hermitage · SHCA · Tennessee Department of Environment and Conservation · ~787 ac
 - Justin P. Wilson Cumberland Trail State Park ·  · TDEC public access lands · ~778 ac
 - Cumberland Trail · SP · Tennessee Department of Environment and Conservation · ~776 ac
-- South Fork Waterfowl Refuge · SCA · Tennessee Wildlife Resources Agency · ~776 ac
 - Hiwassee Refuge - Rivers Meet · FOTH · Tennessee Valley Authority (TVA) · ~758 ac
+- Dog Cove State Natural Area · SCA · OTHS · ~680 ac
+- Lake Lauderdale Refuge · SCA · Tennessee Wildlife Resources Agency · ~652 ac
+- Kingston Refuge Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~556 ac
+- Cardwell · FOTH · Cherokee NF · ~534 ac
+- Charlotte Anne Finnell Neal Wildlife Management Area · SCA · SFW · ~496 ac
+- Tfb · SOTH · TDEC · ~481 ac
+- Joachim Bible Refuge · SCA · Tennessee Wildlife Resources Agency · ~472 ac
+- Tennessee River Blueway ·  · TDEC public access lands · ~446 ac
+- Williams Island · SHCA · OTHS · ~445 ac
+- Dyson Ditch Refuge · SCA · Tennessee Wildlife Resources Agency · ~421 ac
+- Middle Fork Forked Deer Refuge · SCA · Tennessee Wildlife Resources Agency · ~416 ac
+- Mckinley Branch · SCA · SFW · ~413 ac
+- Mcgee Carson Peninsula State Historic Park · HCA · Tennessee Valley Authority (TVA) · ~411 ac
+- Glen Springs Lake State Forest · SRMA · Tennessee Wildlife Resources Agency · ~358 ac
+- Parker's Crossroads Battlefield ·  · TDEC public access lands · ~345 ac
+- Hicks Gap Designated State Natural Area · SCA · OTHS · ~343 ac
+- Parkers Crossroads · SHCA · Tennessee Department of Environment and Conservation · ~341 ac
+- Duck River Complex State Natural Area ·  · TDEC public access lands · ~335 ac

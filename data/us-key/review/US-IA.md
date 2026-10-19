@@ -1,6 +1,6 @@
 # IA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **165 of 181** parks joined to official land (same name + same kind of place). **5** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **166 of 181** parks joined to official land (same name + same kind of place). **5** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -21,7 +21,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **165 of 181** parks joined
 - US-12623 Nicholson Ford Wildlife Area (Wildlife Area)
 - US-2282 Blackhawk State Park (State Park)
 - US-2329 Wild Cat Den State Park (State Park)
-- US-4236 Upper Mississippi River National Wildlife Refuge (National Wildlife Refuge)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-4573 Mormon Pioneer National Historic Trail (National Historic Trail)
 - US-8283 Glenwood Archaeological State Historic Site (State Historic Site)
@@ -35,8 +34,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **165 of 181** parks joined
 - Rathbun Recreation Area · REC · Kansas City · ~32,752 ac
 - Red Rock Wildlife Management Area · SCA · DNR - Wildlife · ~29,477 ac
 - Saylorville Recreation Area · REC · Rock Island · ~28,368 ac
-- Upper Mississippi River National Wildlife And Fish Refuge · NWR · Upper Mississippi River National Wildlife And Fish Refuge · ~21,280 ac
-- Upper Mississippi River National Wildlife And Fish Refuge · NWR · UPPER MISSISSIPPI RIVER NATIONAL WILDLIFE AND FISH REFUGE · ~21,244 ac
 - Rathbun Wildlife Management Area · SCA · DNR - Wildlife · ~15,819 ac
 - Saylorville Wildlife Management Area · SCA · DNR - Wildlife · ~10,626 ac
 - Lake Red Rock · REC · Army Corps of Engineers · ~9,166 ac
@@ -89,3 +86,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **165 of 181** parks joined
 - Winnebago County Waterfowl Production Area · RMA · WINNEBAGO COUNTY WATERFOWL PRODUCTION AREA · ~1,470 ac
 - Hawk Valley Wildlife Management Area · SCA · DNR - Wildlife · ~1,450 ac
 - Auldon Bar Wildlife Management Area · SCA · DNR - Wildlife · ~1,369 ac
+- Aldo Leopold Wildlife Management Area · SCA · DNR - Wildlife · ~1,357 ac
+- Millrace Flats Wildlife Management Area · SCA · DNR - Wildlife · ~1,346 ac

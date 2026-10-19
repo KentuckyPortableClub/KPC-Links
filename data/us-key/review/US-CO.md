@@ -1,32 +1,23 @@
 # CO: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **213 of 276** parks joined to official land (same name + same kind of place). **30** to check by hand, **30** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **221 of 276** parks joined to official land (same name + same kind of place). **21** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0183** Penrose Commons National Recreation Area (National Recreation Area) → Penrose Commons SRMA (~2,344 ac, same name, different kind of place)
 - **US-0195** Ogden-Treat State Wildlife Area (State Wildlife Area) → Royal Gorge Field Office (~670,237 ac, the POTA pin is inside it (different name))
-- **US-10539** Rifle Falls State Fish Hatchery (State Fish Hatchery) → Rifle Falls SFU (~547 ac, same name, different kind of place); Rifle Falls State Park (~52 ac, same name, different kind of place); Rifle Falls State Park (~48 ac, same name, different kind of place)
 - **US-11888** Horsethief Canyon State Wildlife Area (State Wildlife Area) → MCNCA - Urban/Wilderness Interface (~2,010 ac, the POTA pin is inside it (different name)); MCNCA - Urban/Wilderness Interface (~2,010 ac, the POTA pin is inside it (different name)); MCNCA - Urban/Wilderness Interface (~2,010 ac, the POTA pin is inside it (different name))
 - **US-11902** Camp Hale National Monument (National Monument) → White River National Forest (~2,289,410 ac, the POTA pin is inside it (different name))
-- **US-11909** Canyon Pintado BLM Historic Area (BLM Historic Area) → Canyon Pintado National Historic District (~16,031 ac, similar name); Canyon Pintado National Historic District (~16,031 ac, similar name); White River Field Office (~1,450,231 ac, the POTA pin is inside it (different name))
 - **US-11911** Damaree BLM Wilderness Area (BLM Wilderness Area) → Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
 - **US-1208** Arkansas River Headwaters Recreation Park (Recreation Park) → Arkansas River SRMA (~4,165 ac, similar name); Arkansas Headwaters (~1,286 ac, similar name)
 - **US-12106** Brainard Lake Recreation Area National Forest (National Forest) → Roosevelt National Forest (~814,009 ac, the POTA pin is inside it (different name))
 - **US-12138** Charlie Meyers State Wildlife Area (State Wildlife Area) → Spinney Mountain State Wildlife Area (~1,086 ac, the POTA pin is inside it (different name))
 - **US-12177** Almont Triangle State Wildlife Area (State Wildlife Area) → Gunnison National Forest (~1,666,811 ac, the POTA pin is inside it (different name))
 - **US-12189** Buena Vista State Wildlife Area (State Wildlife Area) → Buena Vista Hay Barn (~162 ac, similar name); Royal Gorge Field Office (~670,237 ac, the POTA pin is inside it (different name)); Fourmile SRMA (~7,340 ac, the POTA pin is inside it (different name)); Midland Hills RMZ (~6,033 ac, the POTA pin is inside it (different name))
-- **US-12353** Roaring Judy State Fish Hatchery (State Fish Hatchery) → Roaring Judy SFU (~789 ac, same name, different kind of place)
-- **US-12455** Mt. Shavano State Fish Hatchery (State Fish Hatchery) → Mount Shavano State Wildlife Area (~84 ac, same name, different kind of place); Mount Shavano SFU (~48 ac, same name, different kind of place)
 - **US-12758** La Jara Creek State Wildlife Area (State Wildlife Area) → La Jara State Wildlife Area (~3,088 ac, similar name)
 - **US-13573** Shriver-Wright State Wildlife Area (State Wildlife Area) → Rio Grande State Wildlife Area (~11 ac, the POTA pin is inside it (different name))
 - **US-4413** Chimney Rock National Monument (National Monument) → San Juan National Forest (~1,865,751 ac, the POTA pin is inside it (different name))
-- **US-9590** Leadville National Fish Hatchery National Wildlife Management Area (National Wildlife Management Area) → Leadville National Fish Hatchery (~3,071 ac, similar name); Leadville National Fish Hatchery (~3,071 ac, similar name)
-- **US-9596** North Sand Hills BLM National Recreation Area (National Recreation Area) → North Sand Hills Campground (~9 ac, similar name); North Sand Hills Campground (~9 ac, similar name); North Sand Hills SRMA (~1,256 ac, same name, different kind of place); Kremmling Field Office (~377,575 ac, the POTA pin is inside it (different name))
 - **US-9597** Kremmling BLM National Recreation Area (National Recreation Area) → Kremmling Field Office (~377,575 ac, similar name)
 - **US-9598** Hardscrabble-East Eagle BLM National Recreation Area (National Recreation Area) → Colorado River Valley Field Office (~570,728 ac, the POTA pin is inside it (different name)); Hardscrabble Zone 2 Motorized SRMA (~11,388 ac, the POTA pin is inside it (different name))
-- **US-9599** Wolford Mountain and Dam Site BLM National Recreation Area (National Recreation Area) → Wolford SRMA (~15,297 ac, similar name); Wolford SRMA (~7,318 ac, similar name); Wolford SRMA (~2,939 ac, similar name); Kremmling Field Office (~377,575 ac, the POTA pin is inside it (different name))
-- **US-9601** 63 Ranch State Wildlife Area (State Wildlife Area) → Antero Lease-63 Ranch (~881 ac, similar name)
 - **US-9606** Andrews Lake State Wildlife Area (State Wildlife Area) → San Juan National Forest (~1,865,751 ac, the POTA pin is inside it (different name))
 - **US-9614** Big Meadows Reservoir State Wildlife Area (State Wildlife Area) → Rio Grande National Forest (~1,838,796 ac, the POTA pin is inside it (different name))
 - **US-9630** Clear Creek Reservoir State Wildlife Area (State Wildlife Area) → Royal Gorge Field Office (~670,237 ac, the POTA pin is inside it (different name)); Arkansas River SRMA (~4,165 ac, the POTA pin is inside it (different name))
@@ -63,6 +54,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **213 of 276** parks joined
 - US-4579 Santa Fe National Historic Trail (National Historic Trail)
 - US-5749 Kokopelli's Trail National Recreation Area (National Recreation Area)
 - US-7845 Fisher's Peak State Park (State Park)
+- US-9591 Indian Peaks Wilderness National Conservation Area (National Conservation Area)
 - US-9603 Adobe Creek State Wildlife Area (State Wildlife Area)
 - US-9613 Bergen Peak State Wildlife Area (State Wildlife Area)
 - US-9621 Boedecker Reservoir State Wildlife Area (State Wildlife Area)
@@ -89,44 +81,22 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **213 of 276** parks joined
 - Tres Rios Field Office · PUB · BLM · ~632,194 ac
 - Colorado River Valley Field Office · PUB · BLM · ~570,728 ac
 - San Luis Valley Field Office · PUB · BLM · ~500,459 ac
-- Weminuche Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~500,310 ac
 - Adobe Town ·  · BLM herd management areas · ~444,244 ac
 - Kremmling Field Office · PUB · BLM · ~377,575 ac
-- Flat Tops Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~231,063 ac
 - Taos Plateau ·  · BLM recreation sites · ~186,840 ac
-- Maroon Bells-Snowmass Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~182,964 ac
-- Sangre de Cristo Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~179,340 ac
-- West Elk Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~176,431 ac
-- Collegiate Peaks Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~166,226 ac
-- South San Juan Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~161,010 ac
-- Mount Zirkel Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~160,505 ac
 - Piceance-East Douglas ·  · BLM herd management areas · ~158,332 ac
 - Sand Wash ·  · BLM herd management areas · ~151,435 ac
 - Alpine Triangle Recreation Area ·  · BLM recreation sites · ~146,661 ac
-- Eagles Nest Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~135,204 ac
-- La Garita Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~126,480 ac
 - MCNCA SRMA ·  · BLM recreation sites · ~123,593 ac
-- Holy Cross Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~122,946 ac
-- Lost Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~115,203 ac
-- Uncompahgre Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~98,876 ac
 - Mockingbird Mesa ·  · BLM recreation sites · ~98,200 ac
 - Colorado State Land Board State Land Board · SRMA · Colorado State Land Board · ~84,810 ac
-- Hunter-Fryingpan Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~82,553 ac
-- Rawah Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~74,457 ac
-- Mount Evans Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~73,418 ac
-- Comanche Peak Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~68,025 ac
-- Raggeds Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~64,346 ac
 - Chico Basin · SRMA · Colorado State Land Board · ~59,852 ac
 - MCNCA - Blcak Ridge Canyons West ·  · BLM recreation sites · ~52,986 ac
 - Chancellor Ranch · SRMA · Colorado State Land Board · ~51,436 ac
 - Paradox Valley ·  · BLM recreation sites · ~44,719 ac
-- Sarvis Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~44,345 ac
 - Gateway ·  · BLM recreation sites · ~42,959 ac
 - Blue Mountain ·  · BLM recreation sites · ~42,729 ac
-- Lizard Head Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~41,586 ac
-- Buffalo Peaks Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~41,281 ac
 - Sawmill Mesa/Wagon Park ERMA ·  · BLM recreation sites · ~40,794 ac
-- Hermosa Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~37,344 ac
 - 'Unnamed' Cross Canyons ·  · BLM recreation sites · ~37,090 ac
 - Dominguez Canyon Wilderness Zone 2 ·  · BLM recreation areas · ~35,823 ac
 - Dominguez Canyon Wilderness Zone 2 ·  · BLM recreation sites · ~35,823 ac
@@ -134,5 +104,27 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **213 of 276** parks joined
 - Gateway ·  · BLM recreation sites · ~35,084 ac
 - Gold Belt SRMA ·  · BLM recreation sites · ~34,159 ac
 - Bangs - Zone 4 ·  · BLM recreation sites · ~32,195 ac
-- Fossil Ridge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~32,192 ac
 - Dry Creek, Zone 3 ·  · BLM recreation sites · ~30,858 ac
+- Bohart-Chico Basin · SRMA · Colorado State Land Board · ~29,268 ac
+- Two Rivers ·  · BLM recreation sites · ~28,787 ac
+- Dominguez Canyon Wilderness Zone 3 ·  · BLM recreation areas · ~28,784 ac
+- Dominguez Canyon Wilderness Zone 3 ·  · BLM recreation sites · ~28,784 ac
+- Chama ·  · BLM recreation sites · ~27,533 ac
+- Cactus Park SRMA ·  · BLM recreation sites · ~27,407 ac
+- Manti-La Sal National Forest · NF · Forest Service Region 04 Intermountain · ~27,051 ac
+- Brett Gray Ranch · SRMA · Colorado State Land Board · ~26,262 ac
+- Barrel Springs ·  · BLM recreation sites · ~24,691 ac
+- Hunting Ground ERMA ·  · BLM recreation sites · ~23,132 ac
+- Red Canyon RMZ ·  · BLM recreation sites · ~22,645 ac
+- Lowry S. of Quincy · SRMA · Colorado State Land Board · ~21,725 ac
+- Spring Creek Basin ·  · BLM herd management areas · ~21,043 ac
+- Rincon ·  · BLM recreation sites · ~21,017 ac
+- John Martin Reservoir State Wildlife Area · SCA · Colorado Parks & Wildlife · ~19,313 ac
+- Gypsum Hills ERMA ·  · BLM recreation sites · ~18,845 ac
+- San Miguel River, Zone 1 ·  · BLM recreation sites · ~18,547 ac
+- Browns Park ·  · BLM recreation sites · ~18,490 ac
+- Gunnison Gorge Wilderness ·  · BLM recreation areas · ~17,823 ac
+- Gunnison Gorge Wilderness ·  · BLM recreation sites · ~17,823 ac
+- Ute Mountain ·  · BLM recreation sites · ~17,770 ac
+- Sugar Creek BCA ·  · BLM recreation sites · ~17,296 ac
+- Rio Grande Gorge Recreation Area ·  · BLM recreation sites · ~16,948 ac

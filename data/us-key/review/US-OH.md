@@ -1,23 +1,16 @@
 # OH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **235 of 276** parks joined to official land (same name + same kind of place). **16** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **242 of 276** parks joined to official land (same name + same kind of place). **9** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-12057** Lawrence Woods State Wildlife Area (State Wildlife Area) → Lawrence Woods Dedicated Nature Preserve (~1,036 ac, similar name)
-- **US-13539** Fernald National Preserve (National Preserve) → Fernald Preserve (~1,045 ac, similar name)
 - **US-1972** Little Miami State Park (State Park) → Little Miami Corwin Mill SR (~3 ac, similar name)
 - **US-1997** Tinkers Creek State Park (State Park) → Tinkers Creek Dedicated Nature Preserve (~63 ac, similar name); Tinkers Creek Nature Preserve (~8 ac, same name, different kind of place)
 - **US-7850** Caesar Creek Lake State Wildlife Area (State Wildlife Area) → Caesar Creek Gorge Dedicated Nature Preserve (~501 ac, similar name); Caesar Creek Recreation Area (~10,632 ac, same name, different kind of place)
 - **US-8637** Deer Creek State Wildlife Area (State Wildlife Area) → Deer Creek Recreation Area (~7,631 ac, same name, different kind of place)
-- **US-9395** Boord State Nature Preserve (State Nature Preserve) → Boord Dedicated Nature Preserve (~124 ac, similar name)
-- **US-9401** Cooperrider-Kent Bog State Nature Preserve (State Nature Preserve) → Kent Bog (~44 ac, similar name)
-- **US-9408** Gallagher Fen State Nature Preserve (State Nature Preserve) → Gallagher / Springfield Fen (~212 ac, similar name)
-- **US-9411** Halls Creek Woods State Nature Preserve (State Nature Preserve) → Halls Creek Dedicated Nature Preserve (~273 ac, similar name)
 - **US-9427** Rhododendron Cove State Nature Preserve (State Nature Preserve) → Wahkeena Nature Preserve (~184 ac, the POTA pin is inside it (different name))
 - **US-9442** Acadia Cliffs State Wildlife Area (State Wildlife Area) → Acadia Cliffs Dedicated Nature Preserve (~271 ac, similar name); Acadia Cliffs Dedicated Nature Preserve (~4 ac, similar name)
-- **US-9451** Charles O. Trump State Wildlife Area (State Wildlife Area) → The Trump Wildlife Area (~129 ac, similar name)
-- **US-9457** Della Gates & Edward Charles Bott State Wildlife Area (State Wildlife Area) → Bott Wildlife Area (~167 ac, similar name); Bott Wildlife Area (~1 ac, similar name)
 - **US-9458** Dillon State Wildlife Area (State Wildlife Area) → Dillon Recreation Area (~16,547 ac, same name, different kind of place)
 - **US-9522** Zepernick State Wildlife Area (State Wildlife Area) → Zeppernick Lake Wildlife Area (~527 ac, the POTA pin is inside it (different name))
 
@@ -55,62 +48,62 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **235 of 276** parks joined
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Clarence J. Brown Recreation Area · REC · Louisville · ~4,146 ac
+- Batelle-Darby Creek Metropark · LP · Columbus and Franklin County Metro Parks (Metro Parks) · ~3,852 ac
 - Vinton Furnace Wildlife Area · SCA · Ohio Department of Natural Resources · ~3,533 ac
+- Slate Run Metropark · LP · Columbus and Franklin County Metro Parks (Metro Parks) · ~1,670 ac
+- Three Creeks Metropark · LP · Columbus and Franklin County Metro Parks · ~1,342 ac
+- Pickerington Ponds Metropark · LP · Columbus and Franklin County Metro Parks (Metro Parks) · ~1,335 ac
 - Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,284 ac
+- Prairie Oaks Metropark · LP · Columbus and Franklin County Metro Parks (Metro Parks) · ~1,218 ac
 - Fort Hill State Memorial · SHCA · Arc of Appalachia Preserve System, Ohio History Connection · ~1,165 ac
-- Fernald Preserve · PUB · USA · ~1,045 ac
+- Rocky Fork · LP · Columbus and Franklin County Metro Parks · ~998 ac
+- Highbanks Metropark · LP · Columbus and Franklin County Metro Parks (Metro Parks) · ~973 ac
+- Glacier Ridge Metropark · LP · Columbus and Franklin County Metro Parks (Metro Parks) · ~934 ac
 - Mosquito Creek State Park · SP · Ohio Department of Natural Resources · ~802 ac
 - Knox Lake Wildlife Area · SCA · Ohio Department of Natural Resources · ~762 ac
+- Sharon Woods Metropark · LP · Columbus and Franklin County Metro Parks (Metro Parks) · ~748 ac
 - Berlin Lake Wildlife Area · SCA · Ohio Department of Natural Resources · ~716 ac
 - Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~645 ac
+- Blendon Woods Metropark · LP · Columbus and Franklin County Metro Parks (Metro Parks) · ~627 ac
 - Berlin Lake Wildlife Area · SCA · Ohio Department of Natural Resources · ~568 ac
 - Zeppernick Lake Wildlife Area · SCA · Ohio Department of Natural Resources · ~527 ac
+- Chestnut Ridge Metropark · LP · Columbus and Franklin County Metro Parks (Metro Parks) · ~473 ac
+- West Creek Reservation · LP · Cleveland MetroParks · ~472 ac
 - Dysart Woods · PHCA · Ohio University · ~471 ac
+- Furnace-Run Metro Parks · LP · AKR METRO PK DIST BD · ~438 ac
+- Walnut Woods 7 · LCA · Columbus and Franklin County Metro Parks · ~375 ac
 - Ohio Department Of Natural Resources Sf · SRMA · Ohio Department Of Natural Resources · ~365 ac
+- Unknown Park · LP · MIAMI CONSERVANCY DISTRICT · ~363 ac
+- Shiloh Woods Conservation Area · LCA · FIVE RIVERS METROPARKS · ~312 ac
 - Missionary Island Wildlife Area · SCA · Ohio Department of Natural Resources · ~297 ac
+- Frohring Meadows · LP · Geauga Park District · ~293 ac
 - Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~286 ac
-- Halls Creek Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~273 ac
+- Martin Marietta-Kilby Tract · LCA · HAMILTON COUNTY PARK DISTRICT · ~279 ac
 - Acadia Cliffs Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~271 ac
 - Adena State Memorial · SP · State of Ohio · ~271 ac
 - Mentor Marsh Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~270 ac
 - Jay D Proctor Wildlife Education Center · SOTH · Ohio Department of Natural Resources · ~265 ac
 - Little Rocky Hollow Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~255 ac
 - East Reservoir State Park · SP · Ohio Department of Natural Resources · ~255 ac
+- Bill Yeck Park · LP · Centerville-Washington Park District · ~250 ac
+- Lorain County Metro Parks · LP · Metro Parks Lorian County · ~243 ac
 - Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~242 ac
 - Hebron Fish Hatchery · SOTH · Ohio Department of Natural Resources · ~235 ac
 - Kroger Hills State Reserve · SCA · State of Ohio · ~225 ac
 - Pymatuning Creek Wetlands Nature Preserve · SCA · Ohio Department of Natural Resources · ~224 ac
+- Oakton · LCA · GEAUGA PARK DISTRICT · ~224 ac
 - Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~224 ac
 - Kendrick Woods Nature Preserve · SCA · Ohio Department of Natural Resources · ~217 ac
 - Kincaid Springs State Fish Hatchery · SOTH · Ohio Department of Natural Resources · ~213 ac
-- Gallagher / Springfield Fen · SREC · STATE OF OHIO DEPARTMENT OF NATURAL · ~212 ac
 - Sandusky - Heck Bridge SR · SREC · Ohio Department of Natural Resources · ~210 ac
 - Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~210 ac
 - Turkeyfoot Lake State Park · SP · Ohio Department of Natural Resources · ~206 ac
 - Buffalo Fork Wildlife Area · SCA · Ohio Department of Natural Resources · ~199 ac
+- Shawnee Prairie Nature Preserve/Greenvill · LCA · Darke County Park District · ~198 ac
 - Zanesville State Forest · SOTH · Ohio Department of Natural Resources · ~197 ac
+- Grant Park · LP · Centerville-Washington Park District · ~196 ac
 - North Branch Kokosing Rv Recreation Area · REC · Huntington · ~195 ac
 - Big Darby Cr SR · SREC · Ohio Department of Natural Resources · ~192 ac
+- Gully Brook Park · LREC · Lake Metroparks · ~190 ac
 - Wahkeena Nature Preserve · SCA · The Ohio Historical Society · ~184 ac
 - Forest I&D OH. Lab. Experimental Area · NF · Forest Service Region 09 Eastern · ~181 ac
-- Little Miami The Narrows Access · SREC · Ohio Department Of Natural Resources · ~174 ac
-- Bott Wildlife Area · SCA · Ohio Department of Natural Resources · ~167 ac
-- Scott Park · LP · University of Toledo · ~166 ac
-- Sheick Hollow Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~159 ac
-- St Marys State Fish Hatchery · SOTH · Ohio Department of Natural Resources · ~159 ac
-- Island 18 · NCA · US Army Corp of Engineers · ~156 ac
-- Dover Dam Recreation Area · REC · Huntington · ~155 ac
-- Long Lake State Park · SP · Ohio Department of Natural Resources · ~146 ac
-- Meldahl Pool Recreation Area · REC · Huntington · ~145 ac
-- North Reservoir State Park · SP · Ohio Department of Natural Resources · ~143 ac
-- Fox's Marsh Wildlife Area · SCA · Ohio Department of Natural Resources · ~133 ac
-- Little Miami Deerfield Gorge · ACC · Ohio Department Of Natural Resources · ~133 ac
-- Siebenthaler Wetlands #1 · SCA · STATE OF OHIO DEPT OF NATURAL RESOURCES · ~132 ac
-- The Trump Wildlife Area · SCA · Ohio Department of Natural Resources · ~129 ac
-- Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~126 ac
-- Boord Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~124 ac
-- Green Springs State Forest · SCA · Ohio Department of Natural Resources · ~120 ac
-- Wildlife Production Area 1 · SCA · Ohio Department of Natural Resources · ~119 ac
-- State of Ohio Land · SCA · State of Ohio · ~118 ac
-- Dupont Marsh Dedicated Nature Preserve · SCA · Ohio Department of Natural Resources · ~117 ac
-- Castalia Fish Hatchery · SOTH · Ohio Department of Natural Resources · ~117 ac

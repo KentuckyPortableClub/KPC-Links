@@ -1,6 +1,6 @@
 # NJ: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 134** parks joined to official land (same name + same kind of place). **6** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **120 of 134** parks joined to official land (same name + same kind of place). **5** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,7 +9,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 134** parks joined
 - **US-11992** Whiting State Conservation Area (State Conservation Area) → Whiting Wildlife Management Area (~1,188 ac, same name, different kind of place)
 - **US-6544** New Jersey Coastal State Trail (State Trail) → Gateway National Recreation Area (~1,810 ac, the POTA pin is inside it (different name))
 - **US-6609** Pinelands Preserve National Conservation Area (National Conservation Area) → Wharton State Forest (~72,322 ac, the POTA pin is inside it (different name)); Wharton State Forest (~2,845 ac, the POTA pin is inside it (different name))
-- **US-8039** Forked River Mt Wildlife Management Area (Wildlife Management Area) → Forked River Mountain Wildlife Management Area (~274 ac, similar name); Forked River Mountain Wildlife Management Area (~232 ac, similar name); Forked River Mountain Wildlife Management Area (~231 ac, similar name); Forked River Mountain Wildlife Management Area (~126 ac, similar name); Forked River Mountain Wildlife Management Area (~46 ac, similar name); Forked River Mountain Wildlife Management Area (~25 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -34,6 +33,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 134** parks joined
 - Cherry Valley National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~5,803 ac
 - Maple Lake Wildlife Management Area · SCA · Division of Fish and Wildlife · ~2,904 ac
 - Six Mile Run Reservoir Site · SP · Division of Parks and Forestry · ~2,294 ac
+- Palisades Park · LREC · Palisades Interstate Park Commission · ~2,218 ac
 - Fortescue Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,983 ac
 - Whittingham Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,948 ac
 - Trout Brook Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,947 ac
@@ -63,6 +63,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 134** parks joined
 - Manahawkin Wildlife Management Area · SCA · Division of Fish and Wildlife · ~918 ac
 - Baldpate Mountain · LCA · Mercer County · ~914 ac
 - Great Piece Meadows Preserve · SCA · New Jersey Natural Lands Trust · ~912 ac
+- Manasquan Reservoir · LREC · Monmouth County · ~904 ac
 - Prospertown Lake Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~888 ac
 - Buck Mountain · SP · Division of Parks and Forestry · ~880 ac
 - Weldon Brook Wildlife Management Area · SCA · Division of Fish and Wildlife · ~829 ac
@@ -75,11 +76,9 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **119 of 134** parks joined
 - Weldon Brook Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~744 ac
 - Crossley Preserve · SCA · New Jersey Natural Lands Trust · ~714 ac
 - Retreat Preserve · SCA · New Jersey Natural Lands Trust · ~710 ac
-- Forked River Mountain Wildlife Management Area · SCA · Division of Fish and Wildlife · ~665 ac
 - Fortescue Wildlife Management Area · SCA · Division of Fish and Wildlife · ~638 ac
 - Buckhorn Creek Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~635 ac
 - Raritan River Confluence State Park · SP · Division of Parks and Forestry · ~633 ac
-- Forked River Mountain Wildlife Management Area · SCA · Division of Fish and Wildlife · ~632 ac
 - Trout Brook Wildlife Management Area · SCA · Division of Fish and Wildlife · ~622 ac
 - Great Egg Harbor River Wildlife Management Area · SCA · Division of Fish and Wildlife · ~621 ac
 - Maskells Mills Pond Wildlife Management Area · SCA · Division of Fish and Wildlife · ~605 ac
