@@ -1,18 +1,6 @@
 {
- "updated": "2026-10-13T13:56:11Z",
+ "updated": "2026-10-19T11:43:02Z",
  "recurring": [
-  {
-   "name": "POTA Support Your Parks Weekend",
-   "tags": [
-    "POTA"
-   ],
-   "start": "2026-10-17",
-   "end": "2026-10-18",
-   "where": "Any Kentucky park. Get out and activate!",
-   "by": "Parks on the Air",
-   "url": "https://pota.app/",
-   "rule": "Third full weekend of Jan, Apr, Jul and Oct"
-  },
   {
    "name": "POTA Support Your Parks Weekend",
    "tags": [
@@ -119,6 +107,7 @@
  ],
  "status": {
   "ARRL": "ok (2)",
-  "SOTA": "ok (0)"
+  "SOTA": "ok (0)",
+  "MEMBER": "ok (0)"
  }
 }
