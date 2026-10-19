@@ -86,6 +86,13 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  map.on('overlayadd',e=>{if(e.layer===trails)store.set('kpcUsTrails',true)});map.on('overlayremove',e=>{if(e.layer===trails)store.set('kpcUsTrails',false)});
  L.control.layers(base,over,{position:'topright',collapsed:true}).addTo(map);map.on('baselayerchange',e=>store.set('kpcUsBase',e.name));
  dots=L.featureGroup().addTo(map);
+ /* SHOW SPOTS HERE (Oct 18, Brandon: 'looked around the world and didnt see any'): dots only load around the place you searched,
+    so panning somewhere new showed nothing. When the middle of the map is outside the circle, a button loads that area. */
+ {const hb=document.createElement('button');hb.type='button';hb.className='us-here';hb.textContent='🔎 SHOW SPOTS HERE';hb.hidden=true;
+  hb.style.cssText='position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:1000;background:linear-gradient(#f6d58a,#d5a63a);color:#2a1a05;border:1px solid #8a6a1f;border-radius:999px;padding:8px 14px;font:800 13px system-ui,sans-serif;letter-spacing:.04em;box-shadow:0 2px 10px rgba(0,0,0,.45);cursor:pointer';
+  map.getContainer().appendChild(hb);L.DomEvent.disableClickPropagation(hb);window.__usMap=map;
+  const chk=()=>{const c=map.getCenter(),r=+$('usr').value||50;hb.hidden=map.getZoom()<3||(center&&KPC.miles(center[0],center[1],c.lat,c.lng)<r*.7)};
+  map.on('moveend zoomend',chk);hb.onclick=()=>{const c=map.getCenter();hb.hidden=true;go(c.lat,c.lng,'the middle of the map')}}
  /* drop mode wins over dots: with big phone tap areas most taps land on a dot, so drop the pin there too */
  let dropBusy=0;const dropAt=ll=>{if(!dropMode||dropBusy)return;dropBusy=1;map.closePopup();setTimeout(()=>{dropBusy=0;const nm=prompt('Name this pin (campsite, gas stop, lookout…):','My pin');if(nm===null)return;
   addStop({p:'PIN',c:'PIN-'+Date.now().toString(36),n:(nm.trim()||'My pin').slice(0,60),la:fix(ll.lat),lo:fix(ll.lng)});setDrop(false)},30)};
