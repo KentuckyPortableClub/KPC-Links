@@ -306,6 +306,8 @@ def pull_a10(label, page):
                 recs.append({'id': f'a10:{ln[-10:-8]}:{b.split("/")[-1]}:{i}', 'n': nm, 'nj': nm, 'ty': ty, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': a,
                              'code': '', 'dc': '', '_k0': jkind(nm) | jkind(ty)})
             if not told:
+                blank = next((r['_a'] for r in recs if not r['n']), None)
+                if blank: notice(f'{label} blank-name row', '; '.join(f'{k}={v}' for k, v in blank.items())[:900])
                 told = True; notice(f'{label} fields', f'{sp}: ' + ', '.join(fn) + ' | sample: ' + ' / '.join(f"{r['n']} [{r['ty']}]" for r in recs[-3:]))
         time.sleep(.4)
     notice(label, f'{len(links)} prefecture files, {len(recs)} areas, {len({r["n"] for r in recs})} park names')
@@ -353,8 +355,11 @@ def pull_chshp(label, col):
             a = dict(zip(fn, list(rec)))
             pts, parts = shp.points, list(shp.parts) + [len(shp.points)]
             rs = [[lv95(p[0], p[1]) for p in pts[parts[k]:parts[k + 1]][::max(1, (parts[k + 1] - parts[k]) // 400)]] for k in range(len(parts) - 1)]
-            recs.append({'id': f'{col.split(".")[-1]}:{i}', 'n': str(a.get(nf) or ''), 'ty': label, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': {nf: a.get(nf)}, 'code': '', 'dc': ''})
+            recs.append({'id': f'{col.split(".")[-1]}:{i}', 'n': str(a.get(nf) or ''), 'ty': label, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': {nf: a.get(nf)}, 'code': '', 'dc': '',
+                         'tp': str(a.get('TeilObjNum') or ''), 'tpn': str(a.get('TeilObjNam') or '')})   # Oct 19: BLN part number / part name
         notice(f'{label} fields', f'{sp}: name={nf} | ' + ', '.join(fn[:20]) + f' | {len(recs)} areas, e.g. ' + ' / '.join(r['n'] for r in recs[:4]))
+        tps = [f"{r['n'][:30]} #{r['tp']} {r['tpn'][:30]}" for r in recs if r.get('tp') and re.search(r'Säntis|Vierwald|Speer', r['n'])]
+        if tps: notice(f'{label} parts', ' / '.join(tps[:14]))
     return recs
 
 
@@ -450,6 +455,12 @@ for cc in COUNTRIES:
                 if qp - {'t'} and pp - {'t'} and (qp - {'t'}) != (pp - {'t'}): continue   # north part never joins the south part
                 keep.append(q)
             m = keep
+            tn = re.search(r'teilraum\s*(\d+)', name, re.I)
+            if tn and m:                                                           # BLN keeps its own part numbers (TeilObjNum like 1601.1?)
+                RID = {r['id']: r for r in recs}
+                hit = [q for q in m if re.search(r'(^|\D)0*' + tn.group(1) + r'$', RID.get(q[0], {}).get('tp', '')) or
+                       re.search(r'teilraum\s*0*' + tn.group(1) + r'\b', RID.get(q[0], {}).get('tpn', ''), re.I)]
+                if hit: m = [[q[0], q[1], q[2], 'name + part ' + tn.group(1)] for q in hit]; pp = pp - {'t'}
             if 't' in pp and m and not any('t' in chpart(q[1]) for q in m):
                 c = [[q[0], q[1], q[2], 'the park is one part (Teilraum) of this area; the map has the whole area'] for q in m][:6]; m = []
         elif cc in EU and len({r2['dc'] for r2 in mr if r2['src'] == 'EEA nationally designated areas'}) > 1:
