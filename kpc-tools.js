@@ -89,7 +89,7 @@ return{MEMBERS,liveKY,esc,base,isMember,miles,grid,data,counties,countyOf,histor
 (function(){if(!window.L||!L.Map||window.__kpcPopFit)return;window.__kpcPopFit=true;
  /* Keep every map inside its own layer so the site menu always opens on top of it, and while a card is open
     let the card sit above the map buttons (zoom, map type, Street View) so it is never hidden behind them. */
- try{const st=document.createElement('style');st.textContent='.leaflet-container{isolation:isolate}.kx-popopen .leaflet-control-container .leaflet-top,.kx-popopen .leaflet-control-container .leaflet-bottom{z-index:350!important}';document.head.appendChild(st)}catch(e){}
+ try{const st=document.createElement('style');st.textContent='.leaflet-container{isolation:isolate}.kx-popopen .leaflet-control-container .leaflet-top,.kx-popopen .leaflet-control-container .leaflet-bottom{z-index:660!important}';document.head.appendChild(st)}catch(e){}
  function navBottom(){const n=document.querySelector('.site-nav');if(!n)return 0;const cs=getComputedStyle(n);if(!/sticky|fixed/.test(cs.position))return 0;return n.getBoundingClientRect().bottom}
  function fit(p){const m=p&&p._map,c=p&&p._container;if(!m||!c||!c.isConnected)return;
   const mr=m.getContainer().getBoundingClientRect(),cr=c.getBoundingClientRect();
