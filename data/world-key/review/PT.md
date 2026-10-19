@@ -1,6 +1,6 @@
 # PT: POTA parks vs official land
 
-Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **163 of 410** joined (same name + same kind), **165** to check, **82** nothing found. Nothing below is joined.
+Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **164 of 410** joined (same name + same kind), **164** to check, **82** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -69,7 +69,6 @@ Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **PT-0229** Area Protegida de Gestao de Recursos da Costa Sudeste Protected Area (Protected Area) → Costa Sudeste (Ilha Graciosa) (EEA nationally designated areas, similar name)
 - **PT-0230** Area Protegida de Gestao de Recursos da Costa Noroeste Protected Area (Protected Area) → Costa Noroeste (Ilha Graciosa) (EEA nationally designated areas, similar name)
 - **PT-0232** Parque Natural do Pico Nature Park (Nature Park) → Montanha do Pico, Prainha e Caveiro - Ilha do Pico (EEA Natura 2000, similar name); Zona Central do Pico - Ilha do Pico (EEA Natura 2000, similar name); Zona Central (Ilha do Pico) (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **PT-0236** Reserva Natural das Furnas de Santo Antonio Nature Reserve (Nature Reserve) → Furnas de Santo Antonio (EEA nationally designated areas, same name, more than one kind of area); Furnas de Santo Antonio (EEA nationally designated areas, same name, more than one kind of area)
 - **PT-0238** Area Protegida para a Gestao de Habitats ou Especies da Lagoa do Caiado Protected Area (Protected Area) → Lagoa do Caiado (EEA nationally designated areas, similar name); Montanha do Pico, Prainha e Caveiro - Ilha do Pico (EEA Natura 2000, the POTA pin is inside it (different name)); Zona Central do Pico - Ilha do Pico (EEA Natura 2000, the POTA pin is inside it (different name))
 - **PT-0239** Area Protegida para a Gestao de Habitats ou Especies das Lajes do Pico Protected Area (Protected Area) → Lajes do Pico - Ilha do Pico (EEA Natura 2000, similar name); Lajes do Pico - Ilha do Pico (EEA Natura 2000, similar name); Lajes do Pico (EEA nationally designated areas, similar name)
 - **PT-0240** Area Protegida para a Gestao de Habitats ou Especies das Furnas de Santo Antonio Protected Area (Protected Area) → Furnas / Santo António - Ilha do Pico (EEA Natura 2000, similar name); Furnas de Santo Antonio (EEA nationally designated areas, similar name); Furnas de Santo Antonio (EEA nationally designated areas, similar name)

@@ -1,6 +1,6 @@
 # IT: POTA parks vs official land
 
-Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **1828 of 2167** joined (same name + same kind), **228** to check, **111** nothing found. Nothing below is joined.
+Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **1829 of 2167** joined (same name + same kind), **227** to check, **111** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -231,7 +231,6 @@ Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **IT-1921** Prati dell'Armentara Natura 2000 (Natura 2000) → Prati Armentara (EEA Natura 2000, the POTA pin is inside it (different name))
 - **IT-2083** Biotopo Bigleidermoos Natura 2000 (Natura 2000) → Biotopo Pigleidermoos (EEA Natura 2000, the POTA pin is inside it (different name))
 - **IT-2176** San Cataldo State Reserve (State Reserve) → RISERVA NATURALE BIOGENETICA SAN CATALDO (EEA nationally designated areas, similar name)
-- **IT-2177** Torre Guaceto State Reserve (State Reserve) → Torre Guaceto (EEA nationally designated areas, same name, more than one kind of area); Riserva naturale statale Torre Guaceto (EEA nationally designated areas, same name, more than one kind of area)
 
 ## Nothing found
 
