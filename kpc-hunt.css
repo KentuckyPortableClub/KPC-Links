@@ -497,7 +497,8 @@ main#hl[data-theme=lodge] .hl-copy,main#hl[data-theme=dark] .hl-copy{text-shadow
 /* public copy (kpc-hunters.html, main#hl[data-public=1]): no POTA bookmark, no hunting log, no Top 50 */
 main#hl:not([data-public="1"]) .pub-only{display:none!important}
 /* Oct 17 (Brandon): the public Lounge = the VIP one minus the ⭐ POTA pull, QRZ and radio control (CAT) */
-main#hl[data-public="1"] .mem-only,main#hl[data-public="1"] #hPota,main#hl[data-public="1"] [data-qmode],main#hl[data-public="1"] #dkCat,main#hl[data-public="1"] .hl-qz{display:none!important}
+main#hl[data-public="1"] .mem-only,main#hl[data-public="1"] #hPota,main#hl[data-public="1"] #dkCat,main#hl[data-public="1"] #hlNeed,main#hl[data-public="1"] [data-need],main#hl[data-public="1"] [data-ft8open],main#hl[data-public="1"] #cFt8,main#hl[data-public="1"] .hl-vipb{display:none!important}
+main#hl .hl-qzk{display:inline-flex;flex-wrap:wrap;gap:8px;align-items:center}
 main#hl[data-public="1"] #hlSpots .hs{cursor:default}
 main#hl .hs-a .hc{color:#cfc6b4}
 

@@ -13,11 +13,10 @@
   var PUBLIC = ['index.html', 'campout.html', 'events.html', 'news.html', 'photos.html', 'kpc-guestbook.html', 'join.html', 'about.html',
     'contact.html', 'contact-card.html', 'kpc-privacy.html', 'kentucky-parks.html', 'kpc-park-control.html', 'kpc-guide-pota.html',
     'kpc-guide-wwff.html', 'kpc-guide-sota.html', 'kpc-park-notes.html', 'kpc-park-notes-us.html', 'kpc-campgrounds.html',
-    'kpc-community.html', 'kpc-spots.html', '404.html',
+    'kpc-community.html', 'kpc-spots.html', '404.html', 'kpc-planner-us.html', 'kpc-hunters.html',
     'kpc-beta-room.html', 'kpc-beta-need.html', 'kpc-beta-cat.html'];   /* beta test room: its own password (kpc-vip.js data-lock="room") */
-  var SWAP = { 'parks.html': 'kentucky-parks.html', 'finder.html': 'kpc-park-control.html', 'kpc-planner.html': 'kpc-park-control.html',
-    'kpc-planner-us.html': 'kpc-park-control.html', 'kpc-map-room.html': 'kpc-park-control.html', 'kpc-live.html': 'kpc-spots.html' };
-  var LABEL = { 'kpc-map-room.html': 'Kentucky Park Control' }; /* menu wording for guests when the target is swapped */
+  var SWAP = { 'parks.html': 'kentucky-parks.html', 'finder.html': 'kpc-park-control.html', 'kpc-planner.html': 'kpc-park-control.html',  'kpc-map-room.html': 'kpc-park-control.html', 'kpc-live.html': 'kpc-spots.html' };
+  var LABEL = { 'kpc-map-room.html': 'Kentucky Park Control', 'kpc-planner.html': 'Kentucky Park Control' }; /* menu wording for guests when the target is swapped */
   var de = document.documentElement, page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   if (!/\.html?$/.test(page)) page = 'index.html';
   var ok = false; try { ok = localStorage.getItem(KEY) === MH; } catch (e) {}

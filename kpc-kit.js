@@ -125,7 +125,7 @@
     window.scrollTo({ top: $('kitOut').offsetTop - 70, behavior: 'smooth' });
   }
   /* Other states (Oct 16): park type / how to activate / state parks site from data/parkinfo, tips from
-     kpc-park-notes-us.json, federal campgrounds + picnic shelters within 10 mi from data/campfed (same data as the US Trip Planner) */
+     kpc-park-notes-us.json, federal campgrounds + picnic shelters within 10 mi from data/campfed (same data as the KPC Trip Planner) */
   const jcache = {};
   const jload = u => jcache[u] || (jcache[u] = fetch(u).then(r => r.ok ? r.json() : null).catch(() => null));
   async function usExtras(P) {

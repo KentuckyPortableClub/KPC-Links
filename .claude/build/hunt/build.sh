@@ -1,7 +1,7 @@
 #!/bin/sh
 # Builds BOTH Hunters Lounge pages from main.html (run from the repo root):
 #  kpc-hunt.html    = members room copy (noindex; POTA bookmark + hunting log)
-#  kpc-hunters.html = public copy (data-public="1": no bookmark, no log, no Top 50)
+#  kpc-hunters.html = public copy (data-public="1": no POTA bookmark/badges, no VIP mention, no Parks I Need, no DIGI tab, no CAT; log + QRZ mode kept)
 set -e
 python3 .claude/build/assemble.py .claude/build/hunt/main.html kpc-hunt.html "VIP Hunters Lounge | KPC" "Live POTA, WWFF, SOTA, DX and special-event spots for hunters: load your log, hide parks you've worked, new-to-you parks roll across the screen, and log contacts for QRZ."
 python3 - <<'P'
@@ -24,8 +24,7 @@ for f in ('kpc-hunt-need.html',):
     if 'kpc-vip.js' not in s: s=s.replace('<meta name="robots" content="noindex,nofollow">','<meta name="robots" content="noindex,nofollow">\n<script src="kpc-vip.js?v=20261018d"></script>',1)
     open(f,'w').write(s)
 s=open('kpc-hunters.html').read()
-# members only since Oct 17 (kpc-gate.js locks it; keep it out of search engines)
-if 'noindex' not in s: s=s.replace('<meta charset="UTF-8">','<meta charset="UTF-8">\n<meta name="robots" content="noindex,nofollow">',1)
+# PUBLIC since Oct 19 2026 (Brandon: 'release'): no noindex on kpc-hunters.html
 if 'href="kpc-hunters.html" aria-current' not in s: s=s.replace('href="kpc-hunters.html"','href="kpc-hunters.html" aria-current="page"',1)
 open('kpc-hunters.html','w').write(s)
 P

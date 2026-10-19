@@ -1,4 +1,4 @@
-/* KPC "My Parks" checker — shared by the US Trip Planner, KY Trip Planner and KY Park Commander.
+/* KPC "My Parks" checker — shared by the KPC Trip Planner, KY Trip Planner and KY Park Commander.
    Works for POTA parks and SOTA summits (WWFF is left out on purpose).
    - Your callsign is remembered on this device (key kpcMyCall) and shared by all three tools.
    - "Activated by you": POTA's public activation list for each park (10+ QSOs counts) and SOTA's public activation
@@ -54,7 +54,7 @@ function states(){if(!STATES)STATES=fetch('kpc-us-states.json').then(r=>r.json()
 function ringIn(x,y,r){let s=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const[xi,yi]=r[i],[xj,yj]=r[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi+1e-15)+xi)s=!s}return s}
 function stateOf(S,la,lo){let near=null;for(const s of S){const[x0,x1,y0,y1]=s.bb;if(lo<x0-.3||lo>x1+.3||la<y0-.3||la>y1+.3)continue;near=near||s.a;
  if(s.p.some(pl=>ringIn(lo,la,pl[0])&&!pl.slice(1).some(h=>ringIn(lo,la,h))))return s.a}return near}  /* near: parks on a shoreline just outside the border */
-/* The US Trip Planner already downloads POTA's state lists: it hands them over here so they aren't fetched twice. */
+/* The KPC Trip Planner already downloads POTA's state lists: it hands them over here so they aren't fetched twice. */
 function takePotaList(st,j){if(!Array.isArray(j))return;j.forEach(x=>{const r=String(x.reference||'').toUpperCase();if(r&&x.activations!=null)cnt.d[r]=+x.activations||0});cnt.g['P:'+st]=Date.now();saveCnt()}
 async function loadCounts(spots){const want=new Set();
  const pota=spots.filter(s=>s.k==='pota'&&cnt.d[s.ref]==null&&isFinite(s.la)&&isFinite(s.lo));

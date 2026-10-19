@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261018zaa"><link rel="stylesheet" href="kpc-ft8.css?v=20261018s">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261019a"><link rel="stylesheet" href="kpc-ft8.css?v=20261018s">
 @@HEADER@@
 <main id="hl" data-keep-light data-theme="lodge">
 <nav class="hl-ptabs mem-only" aria-label="Hunters Lounge pages"><a href="kpc-hunt.html" data-pt="lounge">🎯 SPOTS &amp; LOG</a><a href="kpc-hunt-need.html" data-pt="need">📋 PARKS I NEED</a><a href="kpc-top50.html" data-pt="top50">🏆 TOP 50</a><a href="kpc-hunt-cat.html" data-pt="cat">📻 CAT &amp; QRZ</a></nav>
@@ -16,7 +16,7 @@
  <div class="clk"><b id="hsUtc">--:--</b><span id="hsUtcL">UTC</span></div>
  <div><b id="hsAge">–</b><span>NEXT CHECK</span></div>
 </div>
-<div class="hl-acts"><span class="hl-vipb mem-only" title="KPC members VIP Lounge">⭐ VIP</span><a class="hl-btn gold pub-only" href="kpc-hunt.html" title="KPC members: the full Lounge with your POTA parks, award badges, logger, CAT and QRZ (password)">⭐ VIP HUNTERS LOUNGE ›</a><a class="hl-btn gold mem-only" href="#hPota">⭐ GET MY PARKS FROM POTA</a><a class="hl-btn gold pub-only" href="#hlSetup">📄 LOAD MY WORKED PARKS</a><a class="hl-btn ghost mem-only" href="kpc-hunt-need.html">🎯 PARKS I NEED</a><a class="hl-btn ghost pub-only" href="#hlNeed">🎯 PARKS I NEED</a><a class="hl-btn ghost mem-only" href="kpc-top50.html">🏆 TOP 50 BY STATE</a></div>
+<div class="hl-acts"><span class="hl-vipb mem-only" title="KPC members VIP Lounge">⭐ VIP</span><a class="hl-btn gold mem-only" href="#hPota">⭐ GET MY PARKS FROM POTA</a><a class="hl-btn gold pub-only" href="#hlSetup">📄 LOAD MY WORKED PARKS</a><a class="hl-btn ghost mem-only" href="kpc-hunt-need.html">🎯 PARKS I NEED</a><a class="hl-btn ghost mem-only" href="kpc-top50.html">🏆 TOP 50 BY STATE</a></div>
 <div class="hl-theme" role="group" aria-label="Look">LOOK: <button type="button" class="hl-chip" data-theme-pick="lodge">🔥 CABIN LODGE</button><button type="button" class="hl-chip" data-theme-pick="night">🌌 NIGHT SKY</button><button type="button" class="hl-chip" data-theme-pick="dark">🌑 DARK + GHOST FLAMES</button></div>
 </div></section>
 
@@ -71,7 +71,7 @@
 <div class="hl-row" id="chList"></div></details>
 <div id="hlChase"></div>
 <a class="hl-nolog mem-only" id="hlNoLog" href="#hPota" hidden>⭐ <b>Load your hunted parks from POTA</b> so the new-to-you ones light up. Tap here ›</a><a class="hl-nolog pub-only" id="hlNoLogP" href="#hlSetup" hidden>📄 <b>Load the parks you've worked</b> (your logbook as an ADIF file) so the new-to-you ones light up. Tap here ›</a>
-<div class="hl-row hl-viewbar"><span class="hl-count" id="hlCount"></span><button type="button" class="hl-chip mem-only hl-logtog-m" data-qmode>☁ QRZ MODE</button><a href="#awModal" class="hl-chip hl-awq mem-only" title="What the badges on the spots mean">🏅 BADGES?</a><button type="button" class="hl-chip hl-f8m" data-ft8open>📡 FT8 · CW</button><span class="hl-vt" role="group" aria-label="View"><button type="button" class="hl-chip" data-view="cards">▦ CARDS</button><button type="button" class="hl-chip" data-view="table">☰ TABLE</button></span></div>
+<div class="hl-row hl-viewbar"><span class="hl-count" id="hlCount"></span><button type="button" class="hl-chip hl-logtog-m" data-qmode>☁ QRZ MODE</button><a href="#awModal" class="hl-chip hl-awq mem-only" title="What the badges on the spots mean">🏅 BADGES?</a><button type="button" class="hl-chip hl-f8m" data-ft8open>📡 FT8 · CW</button><span class="hl-vt" role="group" aria-label="View"><button type="button" class="hl-chip" data-view="cards">▦ CARDS</button><button type="button" class="hl-chip" data-view="table">☰ TABLE</button></span></div>
 <div class="hl-grid" id="hlSpots"><div class="hl-empty">Loading spots…</div></div>
 <p class="hl-src" id="hlSrc"></p>
 </div></section>
@@ -96,7 +96,7 @@
 <div class="hl-safe" id="lgSafe"></div>
 <div data-kpc-drive="hunt"></div>
 <div class="hl-row"><button type="button" class="hl-btn gold sm" id="lgAdif">⬇ DOWNLOAD FOR QRZ (ADIF)</button><button type="button" class="hl-btn line sm" id="lgNew">⬇ ONLY THE NEW ONES</button><button type="button" class="hl-btn line sm" id="lgCsv">⬇ CSV</button><button type="button" class="hl-btn line sm" id="lgFile">💾 KEEP A BACKUP FILE</button><label class="hl-btn line sm" style="position:relative">↥ RESTORE FROM A FILE<input type="file" id="lgLoad" accept=".adi,.adif,.txt" style="position:absolute;inset:0;opacity:0;cursor:pointer"></label><button type="button" class="hl-btn line sm" id="lgAdd">＋ ADD ONE BY HAND</button></div>
-<div class="hl-qz mem-only"><b>☁ QRZ</b><span id="lgQzN"></span><button type="button" class="hl-btn gold sm" id="lgQzSend">☁ SEND THE ONES NOT IN QRZ YET</button><button type="button" class="hl-btn line sm" id="lgQzSee" title="Sends your newest contact again and opens QRZ's own answer in a new tab">🔎 SEE QRZ'S ANSWER</button><a class="hl-btn line sm" href="kpc-hunt-cat.html#ctQrz">🔑 MY QRZ KEY</a><p class="hl-src" id="lgQzMsg"></p></div>
+<div class="hl-qz"><b>☁ QRZ</b><span id="lgQzN"></span><button type="button" class="hl-btn gold sm" id="lgQzSend">☁ SEND THE ONES NOT IN QRZ YET</button><button type="button" class="hl-btn line sm" id="lgQzSee" title="Sends your newest contact again and opens QRZ's own answer in a new tab">🔎 SEE QRZ'S ANSWER</button><a class="hl-btn line sm mem-only" href="kpc-hunt-cat.html#ctQrz">🔑 MY QRZ KEY</a><span class="hl-qzk pub-only"><label class="hl-lab">🔑 My QRZ logbook key <input id="lgQzKey" type="password" autocomplete="off" placeholder="XXXX-XXXX-XXXX-XXXX" style="width:210px"></label><button type="button" class="hl-btn line sm" id="lgQzKeyS">SAVE KEY</button><a class="hl-src" href="https://logbook.qrz.com/logbook" target="_blank" rel="noopener">Where is my key? (QRZ Logbook → Settings, needs a QRZ subscription)</a></span><p class="hl-src" id="lgQzMsg"></p></div>
 <div class="hl-row"><label class="hl-lab">My call <input id="lgMy" autocomplete="off" autocapitalize="characters" placeholder="Your call" style="width:130px"></label><label class="hl-lab">My grid <input id="lgGrid" autocomplete="off" maxlength="6" placeholder="EM77" style="width:100px"></label><input type="search" id="lgQ" placeholder="Search my log…" aria-label="Search my log"></div>
 <div class="hl-logwrap"><div id="lgList"><div class="hl-empty">No contacts logged on this device yet.</div></div></div>
 <p class="hl-src"><b>Putting it in QRZ:</b> tap DOWNLOAD FOR QRZ, then open your <a href="https://logbook.qrz.com" target="_blank" rel="noopener">QRZ Logbook</a> and use its ADIF import to add the file. The same file works in LoTW (through TQSL) and most logging programs. Hunters don't upload to POTA: your credit comes from the activator's log. <b>•</b> = not downloaded yet.</p>
@@ -208,4 +208,4 @@
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="kpc-ambient.js?v=20261017a"></script><script src="kpc-cat.js?v=20261018n"></script>
-<script src="kpc-hunt.js?v=20261018k"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261019f"></script><script src="kpc-digi.js?v=20261018h"></script><script src="kpc-digi-ui.js?v=20261018h"></script><script src="kpc-voicekeyer.js?v=20261018a"></script><script src="kpc-gdrive.js?v=20261018a"></script>
+<script src="kpc-hunt.js?v=20261019b"></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261019f"></script><script src="kpc-digi.js?v=20261018h"></script><script src="kpc-digi-ui.js?v=20261018h"></script><script src="kpc-voicekeyer.js?v=20261018a"></script><script src="kpc-gdrive.js?v=20261018a"></script>

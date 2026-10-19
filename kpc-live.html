@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex,nofollow">
-<script src="kpc-theme.js?v=20261017p"></script><script src="kpc-gate.js?v=20261018b"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="kpc-theme.js?v=20261017p"></script><script src="kpc-gate.js?v=20261019g"></script><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Live: Happening Now | KPC</title>
 <!-- KPC icons & share preview -->
 <link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <link rel="stylesheet" href="kpc-tools.css">
-<script src="kpc-tools.js?v=20261017w"></script>
+<script src="kpc-tools.js?v=20261019g"></script>
 <link rel="stylesheet" href="kpc-band-maps.css">
 <style>
 .lv-hero{position:relative;overflow:hidden;min-height:420px;background-image:url('kpc-live.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;color:#fff;padding:34px 24px 26px;border-bottom:1px solid rgba(213,166,58,.45);display:flex;align-items:center}.lv-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,4,4,.82) 0%,rgba(4,4,4,.60) 45%,rgba(4,4,4,.28) 75%,rgba(4,4,4,.14) 100%);pointer-events:none}.lv-hero>.lv-w{position:relative;z-index:1}
@@ -170,6 +170,7 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
           <div class="nav-drop-section">
             <div class="nav-drop-label">Parks &amp; Activations</div>
             <a href="kpc-map-room.html" role="menuitem"><span class="ni">&#128506;</span>Map Room (every map tool)</a>
+            <a href="kpc-planner-us.html" role="menuitem"><span class="ni">&#128663;</span>KPC Trip Planner (beta, any state)</a>
             <a href="find.html" role="menuitem"><span class="ni">&#128269;</span>Find It</a>
             <a href="kpc-spot-me.html" role="menuitem"><span class="ni">&#128227;</span>Spot Me (post your spot)</a>
             <a href="kpc-kit.html" role="menuitem"><span class="ni">&#127890;</span>Activation Kit (all the info in one tap)</a>
@@ -373,7 +374,7 @@ setInterval(function(){kySun();moon()},60000);
 setInterval(loadNOAA,15*60000);
 })();
 </script>
-<script src="kpc-search.js?v=20261017x" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261018a" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script src="kpc-looks.js?v=20261017p" defer></script><script src="kpc-cx.js?v=20261017c" defer></script><script src="kpc-band-maps.js?v=20261014a" defer></script><script src="kpc-live.js?v=20261012t" defer></script><script src="kpc-radio.js?v=20261015c" defer></script><script src="kpc-radar-plus.js?v=20261012t" defer></script><script>
+<script src="kpc-search.js?v=20261019g" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261018a" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script src="kpc-looks.js?v=20261017p" defer></script><script src="kpc-cx.js?v=20261017c" defer></script><script src="kpc-band-maps.js?v=20261014a" defer></script><script src="kpc-live.js?v=20261012t" defer></script><script src="kpc-radio.js?v=20261015c" defer></script><script src="kpc-radar-plus.js?v=20261012t" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

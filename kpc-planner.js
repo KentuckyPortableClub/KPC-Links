@@ -335,7 +335,7 @@ function pinCard(x){const inTrip=trip.some(s=>s.ref===x.ref),P=PROG[x.k]||PROG.p
 /* ---------------- along a route (start + finish + distance) ----------------
    Ends: a Kentucky town/park/number from the list, GPS ("37.57, -84.29"), or any US place via OpenStreetMap search.
    Drive from the public OSRM server (straight line if busy). Every spot within the distance of the route is listed
-   in the order you reach it. Kentucky data only: the US Trip Planner covers other states. */
+   in the order you reach it. Kentucky data only: the KPC Trip Planner covers other states. */
 function parseLL(q){const m=String(q).trim().match(/^([NS])?\s*(-?\d{1,2}(?:\.\d+)?)\s*°?\s*([NS])?\s*[,;\s]\s*([EW])?\s*(-?\d{1,3}(?:\.\d+)?)\s*°?\s*([EW])?$/i);if(!m)return null;
  let la=+m[2],lo=+m[5];const ns=(m[1]||m[3]||'').toUpperCase(),ew=(m[4]||m[6]||'').toUpperCase();if(ns==='S')la=-Math.abs(la);if(ew==='W')lo=-Math.abs(lo);
  if(!ew&&lo>60&&la>15&&la<72)lo=-lo;if(Math.abs(la)>90||Math.abs(lo)>180)return null;return{la,lo,n:la.toFixed(4)+', '+lo.toFixed(4)}}
@@ -362,7 +362,7 @@ async function findRoute(){const fv=$('rtFrom').value,tv=$('rtTo').value,w=+$('r
 function runRoute(fit){const w=RT.w=+$('rtW').value;
  res=kmPick(ALL.filter(x=>on[x.k]&&(!on.two||x.ov)).map(x=>{const r=offRoute(x);return r.off<=w?{...x,d:r.at,off:r.off}:null}).filter(Boolean).sort((a,b)=>a.d-b.d));
  const c={pota:0,sota:0,kff:0};res.forEach(x=>c[x.k]++);const h=RT.hrs?`, about ${Math.floor(RT.hrs)} h ${Math.round(RT.hrs%1*60)} min`:'';
- $('where').innerHTML=`Along your ${Math.round(RT.road?RT.mi:RT.total)}-mile ${RT.road?'drive'+h:'route (straight line: the road-route server was busy)'} from <b>${esc(RT.A.n)}</b> to <b>${esc(RT.B.n)}</b>, within ${w} miles: <b>${c.pota}</b> POTA parks • <b>${c.sota}</b> summits • <b>${c.kff}</b> KFF-only references${kmNote()}. In the order you reach them. Kentucky spots only: for other states use the <a href="kpc-planner-us.html">US Trip Planner</a>.`;
+ $('where').innerHTML=`Along your ${Math.round(RT.road?RT.mi:RT.total)}-mile ${RT.road?'drive'+h:'route (straight line: the road-route server was busy)'} from <b>${esc(RT.A.n)}</b> to <b>${esc(RT.B.n)}</b>, within ${w} miles: <b>${c.pota}</b> POTA parks • <b>${c.sota}</b> summits • <b>${c.kff}</b> KFF-only references${kmNote()}. In the order you reach them. Kentucky spots only: for other states use the <a href="kpc-planner-us.html">KPC Trip Planner</a>.`;
  layer.clearLayers();const end=(p,t)=>L.marker([p.la,p.lo],{interactive:false,icon:L.divIcon({className:'',html:`<div class="rt-end">${t}</div>`,iconSize:[26,26],iconAnchor:[13,13]})});
  L.polyline(RT.pts,{color:'#171717',weight:8,opacity:.5,interactive:false}).addTo(layer);L.polyline(RT.pts,{color:'#d5a63a',weight:4,interactive:false,dashArray:RT.road?null:'8 8'}).addTo(layer);end(RT.A,'A').addTo(layer);end(RT.B,'B').addTo(layer);
  res.forEach(x=>{const two=x.two&&x.two.length;
@@ -447,7 +447,7 @@ async function farPick(inp,h){let la=h.la,lo=h.lo,name=h.v;inp._seq=(inp._seq||0
  if(inp.id!=='town'){inp.value=la.toFixed(5)+', '+lo.toFixed(5);if(inp.id==='rtFrom'&&!$('rtTo').value.trim())$('rtTo').focus();else if($('rtFrom').value.trim()&&$('rtTo').value.trim())findRoute();return}
  RT=null;origin=[la,lo,name];save();run();map.setView([la,lo],Math.max(map.getZoom(),10));
  const q=h.ref||name;setTimeout(()=>{$('where').innerHTML=`<b>${esc(name)}</b> is outside Kentucky. This planner lists Kentucky parks, summits and KFF references only. `+
-  `<a href="kpc-planner-us.html?q=${encodeURIComponent(q)}" style="font-weight:800">See every park around it in the US Trip Planner ›</a>`},400)}
+  `<a href="kpc-planner-us.html?q=${encodeURIComponent(q)}" style="font-weight:800">See every park around it in the KPC Trip Planner ›</a>`},400)}
 suggest($('town'),$('townSug'),()=>pickTown());
 suggest($('rtFrom'),$('routeSug'),()=>$('rtTo').value.trim()?null:$('rtTo').focus());
 suggest($('rtTo'),$('routeSug'),()=>{if($('rtFrom').value.trim())findRoute()});

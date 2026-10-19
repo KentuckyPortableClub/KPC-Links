@@ -1,4 +1,4 @@
-/* KPC place suggestions from anywhere in the US (KY Trip Planner + US Trip Planner type-ahead).
+/* KPC place suggestions from anywhere in the US (KY Trip Planner + KPC Trip Planner type-ahead).
    KPCPlace.towns(q)   -> [{v:'Asheville, NC', k:'Town · NC', la, lo, st}]   Open-Meteo geocoding (free, no key, CORS ok;
                           also takes ZIP codes). "Asheville NC" / "Asheville, North Carolina" keep only that state.
    KPCPlace.parks(q)   -> [{v:'Great Smoky Mountains National Park', k:'POTA park · US-0003', ref}]  api.pota.app/lookup
@@ -27,7 +27,7 @@
     const j = await jget('https://geocoding-api.open-meteo.com/v1/search?count=10&language=en&format=json&countryCode=US&name=' + encodeURIComponent(name));
     const out = ((j && j.results) || []).map(r => ({ v: r.name + ', ' + (ST[r.admin1] || r.admin1 || ''), k: 'Town · ' + (ST[r.admin1] || r.admin1 || 'US') + (r.admin2 ? ' · ' + r.admin2.replace(/ County$/, '') + ' Co.' : ''), la: r.latitude, lo: r.longitude, st: ST[r.admin1] || '', town: 1 }))
       .filter(r => !st || r.st === st);
-    /* KPCPlace.world (US Trip Planner): add towns outside the US when the US has few matches and no state was typed */
+    /* KPCPlace.world (KPC Trip Planner): add towns outside the US when the US has few matches and no state was typed */
     if (P.world && !st && out.length < 4) {
       const w = await jget('https://geocoding-api.open-meteo.com/v1/search?count=8&language=en&format=json&name=' + encodeURIComponent(name));
       ((w && w.results) || []).filter(r => r.country_code !== 'US').slice(0, 6 - out.length).forEach(r => out.push({ v: r.name + ', ' + (r.country || ''), k: 'Town · ' + [r.admin1, r.country].filter(Boolean).join(', '), la: r.latitude, lo: r.longitude, st: '', town: 1 }));
