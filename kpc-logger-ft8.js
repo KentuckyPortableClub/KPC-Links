@@ -167,6 +167,7 @@
 
   /* ---------------- audio ---------------- */
   let AC = null, SRC = null, RXG = null, NODE = null, AN = null, STREAM = null, RUN = false;
+  let OUTFIRST = false;   /* Oct 19: the sound output was opened before the mic (Android call-mode fix) */
   const R12 = 12000, RING = R12 * 40; const ring = new Float32Array(RING); let n12 = 0, t0 = 0, peak = 0;
   /* resampler: windowed-sinc low-pass (5 kHz) + fractional step to 12 kHz */
   let rs = null; const dgb = new Float32Array(16384); let dgn = 0, DGON = false;
@@ -196,13 +197,20 @@
     try {
       await engine();
     } catch (e) { note('⚠️ Could not load the FT8 engine: ' + (e.message || e) + '. Reload with signal once.', 6000); return false; }
+    /* Oct 19 (Fable; Brandon's tablet + FT-710: mic never opened = full power, mic open = 1-10 W, mic stopped mid-send = 0 W):
+       Chrome on Android puts the phone in CALL mode the moment any page opens the mic, and every sound OUTPUT it opens
+       while in call mode is a phone-call stream (call volume, call processing, and it goes dead when call mode ends).
+       A sound output opened BEFORE the mic stays a normal media stream. So: open our sound output first, then the mic. */
+    if (!AC) { AC = new (window.AudioContext || window.webkitAudioContext)({ latencyHint: 'interactive' }); OUTFIRST = true; }
+    await AC.resume();
+    try { const z = AC.createBuffer(1, Math.round(AC.sampleRate * 0.25), AC.sampleRate), q = AC.createBufferSource(); q.buffer = z; q.connect(AC.destination); q.start(); } catch (e) {}
+    if (ANDR && OUTFIRST && !STREAM) await new Promise(r => setTimeout(r, 300));   /* let the output stream open before the mic does */
     try {
       STREAM = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: S.inDev ? { exact: S.inDev } : undefined, echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1 } });
     } catch (e) {
       if (S.inDev) { S.inDev = ''; saveS(); return startAudio(); }
       note('⚠️ No audio: ' + (e.message || e) + '. Allow the microphone (that is how the radio audio comes in).', 7000); return false;
     }
-    AC = AC || new (window.AudioContext || window.webkitAudioContext)({ latencyHint: 'interactive' }); await AC.resume();
     if (S.outDev && AC.setSinkId) { try { await AC.setSinkId(S.outDev); } catch (e) {} }
     rs = mkRs(AC.sampleRate); n12 = 0; t0 = 0;
     SRC = AC.createMediaStreamSource(STREAM);
@@ -217,6 +225,7 @@
       const mute = AC.createGain(); mute.gain.value = 0; RXG.connect(NODE); NODE.connect(mute); mute.connect(AC.destination);
     }
     fftFit(); RUN = true; $('f8StartBox').hidden = true; root.classList.add('run'); stat(); slotSep(true); wfLoop(); tabDot();
+    if (ANDR && OUTFIRST) { OUTFIRST = false; note('🔊 Sound out opened before the mic (Android fix v7). Try TUNE now.', 4000); }
     /* Oct 18 (Brandon's tablet + FT-710: 'in and out are default'): names only show after the first allow, so list again now and pick the radio's USB sound by itself */
     const L = await devices(); if (!S.inDev && !S.mic && L) { const u = L.find(x => x.kind === 'audioinput' && USBRE.test(x.label)); if (u && !TXING) { S.inDev = u.deviceId; saveS(); note('🎧 Using ' + u.label + ' (change it in ⚙ settings).', 4000); stopAudio(); return startAudio(); } }
     clearTimeout(quietT); quietT = setTimeout(() => { if (RUN && peak < 0.0008) note('⚠️ No sound coming in from the radio. Pick the radio under RADIO AUDIO IN (⚙ settings), and check the radio sends audio out its USB (Yaesu menu: USB OUT LEVEL / DATA OUT LEVEL about 50).', 9000); }, 6000);
@@ -655,7 +664,7 @@
   }
   /* Oct 18 (Brandon: YouTube through the same cord = 50 W, our page = 1-10 W): on Android, send the sound the way a video plays it
      (a media player, like FT8CN's 'media' sound) instead of the live sound mixer. S.txOut = 'webaudio' goes back to the old way. */
-  function mediaOut() { return ANDR && S.txOut !== 'webaudio'; }
+  function mediaOut() { return ANDR && S.txOut === 'media'; }   /* Oct 19: off by default again; the output-before-mic order (startAudio) is the fix being tried */
   function wavBlob(x, rate) { const n = x.length, b = new ArrayBuffer(44 + n * 2), v = new DataView(b), w = (o, t) => { for (let i = 0; i < t.length; i++) v.setUint8(o + i, t.charCodeAt(i)); };
     w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVE'); w(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, rate, true); v.setUint32(28, rate * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 2, true);
     for (let i = 0; i < n; i++) v.setInt16(44 + i * 2, Math.max(-1, Math.min(1, x[i])) * 32767, true); return new Blob([b], { type: 'audio/wav' }); }
