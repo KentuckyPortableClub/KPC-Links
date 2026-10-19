@@ -144,6 +144,7 @@ def norm(cc, s):
         for a, b in (('ae', 'a'), ('oe', 'o'), ('ue', 'u')): s = s.replace(a, b)   # Schwaebisch = Schwäbisch
     if cc in EU:
         s = re.sub(r"\b[a-z]{2}\d{6,8}\b", ' ', s)              # Natura codes inside POTA names (FR4100198)
+        s = re.sub(r'^\s*\d{5,8}\s+', ' ', s)                   # Oct 19: Swedish register numbers in front ('2001220 Padjelanta')
         s = re.sub(r"\b(l|d|s|qu)['’]", ' ', s)                 # l'Etang, d'Arc
         s = re.sub(r'\bste?\b\.?', lambda m: 'sainte' if m.group(0).startswith('ste') else 'saint', s)
         s = s.replace('ł', 'l').replace('ø', 'o').replace('æ', 'ae').replace('đ', 'd')
@@ -183,6 +184,13 @@ def same_name(cc, a, b):
     if a == b: return True
     sh, lo = (a, b) if len(a) < len(b) else (b, a)
     return len(sh) > 4 and lo.startswith(sh) and len(sh) / len(lo) >= 0.6
+OWNK = [('np', r'national park|nationaal park|nationalpark|narodni park|parco nazionale|parque nacional|parcul national|nasjonalpark|park narodowy|parc national'),
+        ('lp', r'landscape park|krajinski park|regijski park|regional park|park krajobrazowy|landschaftspark'),
+        ('nat', r'nature park|parco naturale|parque natural|parcul natural|parc naturel|naturpark|prirodni park'),
+        ('nr', r'nature reserve|naturreservat|naravni rezervat|rezervatia naturala|rezervatie naturala|riserva naturale|natuurreservaat|reserva natural|prirodni rezervace|rezerwat')]
+def ownk(s): f = flat(s); return {k for k, r in OWNK if re.search(r'\b(' + r + r')\b', f)}
+
+
 def words(cc, s): return set(w for w in norm(cc, s).split() if len(w) > 2)
 
 
@@ -492,6 +500,8 @@ for cc in COUNTRIES:
         kp = kinds(cc, name) | kinds(cc, typ)
         m, c = [], []
         cand = [name] + ([q for q in re.split(r'\s+-\s+', name) if q.strip()] if cc == 'GB' and ' - ' in name else [])
+        if cc in EU and re.search(r'\w/\w', name):   # Oct 19: 'Padjelanta/Badjelánnda National Park' = either name (+ the kind words)
+            cand += [q.strip() for q in name.split('/') if q.strip()]
         mr = []
         if cc in EU:
             for code in re.findall(r'\b[A-Z]{2}[0-9A-Z]\d{4,6}\b', name):           # a Natura code in the POTA name = that exact site
@@ -520,6 +530,9 @@ for cc in COUNTRIES:
                 if hit: m = [[q[0], q[1], q[2], 'name + part ' + tn.group(1)] for q in hit]; pp = pp - {'t'}
             if 't' in pp and m and not any('t' in chpart(q[1]) for q in m):
                 c = [[q[0], q[1], q[2], 'the park is one part (Teilraum) of this area; the map has the whole area'] for q in m][:6]; m = []
+        elif cc in EU and len({r2['dc'] for r2 in mr if r2['src'] == 'EEA nationally designated areas'}) > 1 and (lambda kk: kk and [q for q, r2 in zip(m, mr) if ownk(r2['n']) & kk] and
+                len({r2['dc'] for r2 in mr if ownk(r2['n']) & kk and r2['src'] == 'EEA nationally designated areas'}) == 1)(ownk(name)):
+            kk = ownk(name); m = [[q[0], q[1], q[2], 'name + kind in its own name'] for q, r2 in zip(m, mr) if ownk(r2['n']) & kk]   # Oct 19: 'Krajinski park Goričko' is the landscape park
         elif cc in EU and len({r2['dc'] for r2 in mr if r2['src'] == 'EEA nationally designated areas'}) > 1:
             c = [[q[0], q[1], q[2], 'same name, more than one kind of area'] for q in m]; m = []   # e.g. a reserve and a landscape park with one name
         if c: parks[ref] = {'n': name, 't': typ, 'm': [], 'c': c[:6]}; continue
