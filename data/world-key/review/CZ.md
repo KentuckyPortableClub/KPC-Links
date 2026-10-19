@@ -1,20 +1,16 @@
 # CZ: POTA parks vs official land
 
-Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **151 of 232** joined (same name + same kind), **64** to check, **17** nothing found. Nothing below is joined.
+Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **158 of 232** joined (same name + same kind), **57** to check, **17** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
-- **CZ-0001** Šumava National Park (National Park) → Šumava (EEA nationally designated areas, same name, more than one kind of area); Šumava (EEA nationally designated areas, same name, more than one kind of area)
 - **CZ-0002** Krkonoše National Park (National Park) → Krkonoše (EEA Natura 2000, same name, different kind of place); Krkonoše (EEA Natura 2000, same name, different kind of place); Krkonošský národní park (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **CZ-0027** Šumava Protected Landscape Area (Protected Landscape Area) → Šumava (EEA nationally designated areas, same name, more than one kind of area); Šumava (EEA nationally designated areas, same name, more than one kind of area)
 - **CZ-0037** Doubí Nature Monument (Nature Monument) → Doubí (EEA nationally designated areas, similar name)
 - **CZ-0038** Hromnické jezírko Nature Monument (Nature Monument) → Hromnické jezírko (EEA nationally designated areas, similar name)
 - **CZ-0039** Kaňon Střely Conservation Area (Conservation Area) → Kaňon Střely (EEA Natura 2000, same name, different kind of place)
 - **CZ-0041** Rohatiny Nature Park (Nature Park) → Štola Rohatiny I (EEA Natura 2000, similar name)
 - **CZ-0045** Svatošské skály Nature Monument (Nature Monument) → Svatošské skály (EEA nationally designated areas, similar name); Slavkovský les (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **CZ-0046** Novohradské hory Nature Park (Nature Park) → Novohradské hory (EEA Natura 2000, same name, different kind of place)
-- **CZ-0049** Kuchyňka Nature Reserve (Nature Reserve) → Kuchyňka (EEA nationally designated areas, same name, more than one kind of area); Kuchyňka (EEA nationally designated areas, same name, more than one kind of area)
-- **CZ-0051** Andělské schody Natural Monument (Natural Monument) → Andělské schody (EEA nationally designated areas, same name, more than one kind of area); Andělské schody (EEA nationally designated areas, same name, more than one kind of area)
 - **CZ-0055** Homolka – Vojířov Nature Park (Nature Park) → Třeboňsko (EEA Natura 2000, the POTA pin is inside it (different name))
 - **CZ-0057** Chrašická stráň Nature Monument (Nature Monument) → Chrašická stráň (EEA nationally designated areas, similar name)
 - **CZ-0059** Podskala Nature Monument (Nature Monument) → Podskala (EEA nationally designated areas, similar name)
@@ -28,7 +24,6 @@ Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **CZ-0085** Šafránová stráň Nature Monument (Nature Monument) → Šafránová stráň (EEA nationally designated areas, similar name); Broumovsko (EEA Natura 2000, the POTA pin is inside it (different name)); Broumovsko (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **CZ-0086** Kočičí skály Nature Monument (Nature Monument) → Kočičí skály (EEA nationally designated areas, similar name); Broumovsko (EEA Natura 2000, the POTA pin is inside it (different name)); Broumovsko (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **CZ-0087** Pískovcové sloupky Nature Monument (Nature Monument) → Pískovcové sloupky (EEA nationally designated areas, similar name); Broumovsko (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **CZ-0088** Novy rybnik Nature Reserve (Nature Reserve) → Nový rybník (EEA nationally designated areas, same name, more than one kind of area); Nový rybník u Lnář (EEA nationally designated areas, same name, more than one kind of area)
 - **CZ-0090** Bonetice Nature Monument (Nature Monument) → Bonětice (EEA Natura 2000, similar name); Bonětice (EEA nationally designated areas, similar name)
 - **CZ-0094** Kopeckeho pramen Nature Monument (Nature Monument) → Kopeckého pramen (EEA nationally designated areas, similar name)
 - **CZ-0095** Malesicka skala Nature Monument (Nature Monument) → Malesická skála (EEA nationally designated areas, similar name)
@@ -39,7 +34,6 @@ Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **CZ-0105** Zaltman Nature Monument (Nature Monument) → Žaltman (EEA Natura 2000, similar name); Žaltman (EEA nationally designated areas, similar name)
 - **CZ-0106** Sklenarovicke udoli Nature Monument (Nature Monument) → Sklenářovické údolí (EEA nationally designated areas, similar name); Krkonoše (EEA Natura 2000, the POTA pin is inside it (different name)); Krkonoše (EEA Natura 2000, the POTA pin is inside it (different name)); Krkonošský národní park (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **CZ-0107** Slunecna stran Nature Monument (Nature Monument) → Slunečná stráň (EEA nationally designated areas, similar name); Krkonoše (EEA Natura 2000, the POTA pin is inside it (different name)); Krkonoše (EEA Natura 2000, the POTA pin is inside it (different name))
-- **CZ-0108** Hadce u Zelivky Natural Monument (Natural Monument) → Hadce u Želivky II (EEA nationally designated areas, same name, more than one kind of area); Hadce u Želivky (EEA nationally designated areas, same name, more than one kind of area)
 - **CZ-0112** Xaverovsky haj Nature Monument (Nature Monument) → Blatov a Xaverovský háj (EEA Natura 2000, similar name); Xaverovský háj (EEA nationally designated areas, similar name)
 - **CZ-0113** Obora v Uhrinevsi Nature Monument (Nature Monument) → Obora v Uhříněvsi (EEA nationally designated areas, similar name)
 - **CZ-0116** Stramberk Nature Monument (Nature Monument) → Štramberk (EEA Natura 2000, similar name); Štramberk (EEA nationally designated areas, similar name)
@@ -49,7 +43,6 @@ Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **CZ-0136** Zdar u Chodskeho Ujezda Nature Monument (Nature Monument) → Žďár u Chodského Újezda (EEA nationally designated areas, similar name)
 - **CZ-0137** Blovice Conservation Area (Conservation Area) → Blovice (EEA Natura 2000, same name, different kind of place)
 - **CZ-0141** Dalejský profil National Monument (National Monument) → Dalejský profil (EEA nationally designated areas, similar name)
-- **CZ-0142** Soutok Protected Landscape Area (Protected Landscape Area) → Soutok (EEA nationally designated areas, same name, more than one kind of area); Soutok (EEA nationally designated areas, same name, more than one kind of area)
 - **CZ-0143** Americká zahrada National Monument (National Monument) → Americká zahrada (EEA nationally designated areas, similar name)
 - **CZ-0144** Barrandovské skály National Monument (National Monument) → Barrandovské skály (EEA nationally designated areas, similar name)
 - **CZ-0146** U Nového mlýna National Monument (National Monument) → U Nového mlýna (EEA nationally designated areas, similar name)
