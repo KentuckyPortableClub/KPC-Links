@@ -584,7 +584,10 @@
   $('f8DxG').oninput = e => { e.target.value = e.target.value.toUpperCase(); };
   $('f8Rpt').onchange = () => { QS.rs = $('f8Rpt').value.trim(); gen(); };
   function halt(why) { TXON = false; NOWTX = false; if (TXING) stopTx(); chk(); stat(); if (why) note(why, 2500); }
-  $('f8Tune').onclick = async () => { if (TXING && TUNE) { stopTx(); return; } if (!RUN && !(await startAudio())) return; startTone(); };
+  $('f8Tune').onclick = async () => { if (TXING && TUNE) { stopTx(); return; }
+    /* Android: TUNE without START = the mic is never opened (same as playing a video). Test for low power (Brandon Oct 18) */
+    if (!RUN && mediaOut()) { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); try { await AC.resume(); } catch (e) {} startTone(); note('TUNE with the mic closed (not listening).', 3000); return; }
+    if (!RUN && !(await startAudio())) return; startTone(); };
 
   /* the sequencer: read what came in this slot and pick the next message (WSJT-X auto sequence) */
   function seq(sl, D) {
