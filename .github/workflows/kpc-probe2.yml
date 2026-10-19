@@ -1,0 +1,21 @@
+name: KPC temp probe 2
+# TEMPORARY (Oct 18 2026): source fields for Japan / Louisiana / Switzerland. Never fails. Delete after use.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v5
+      - run: python3 .github/scripts/kpc_probe2.py || true
+      - name: Save
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/probe2.json || true
+          if ! git diff --cached --quiet; then git commit -m 'Temp probe 2'; for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done; fi
+          true
