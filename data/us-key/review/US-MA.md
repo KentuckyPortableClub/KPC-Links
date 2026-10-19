@@ -1,14 +1,11 @@
 # MA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **368 of 421** parks joined to official land (same name + same kind of place). **10** to check by hand, **43** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **391 of 421** parks joined to official land (same name + same kind of place). **7** to check by hand, **23** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0802** Boston African American National Historic Site (National Historic Site) → Boston National Historical Park (~38 ac, similar name)
-- **US-11430** Karner Brook Wildlife Management Area (Wildlife Management Area) → Jug End Fen Wildlife Management Area (~21 ac, the POTA pin is inside it (different name))
-- **US-11589** Delaney Wildlife Management Area (Wildlife Management Area) → Delaney Flood Control Site (~317 ac, similar name); Delaney Flood Control Site (~166 ac, similar name); Delaney Flood Control Site (~125 ac, similar name); Delaney Flood Control Site (~49 ac, similar name)
-- **US-11638** Marconi Wildlife Management Area (Wildlife Management Area) → Cape Cod National Seashore (~27,298 ac, the POTA pin is inside it (different name))
-- **US-11683** Pickerel Cove Wildlife Management Area (Wildlife Management Area) → Wakeby Pond (~17 ac, the POTA pin is inside it (different name))
+- **US-13236** Rockdale Heights Wildlife Management Area (Wildlife Management Area) → Rockdale Highlands WMA (~0 ac, the POTA pin is inside it (different name))
 - **US-4723** Ashmere Lake State Forest (State Forest) → Ashmere Lake State Park (~198 ac, same name, different kind of place); Ashmere Lake State Park (~7 ac, same name, different kind of place)
 - **US-4749** Lowell-Dracut-Tyngsboro State Forest (State Forest) → Lowell-Dracut-Tyngsborough State Forest (~393 ac, similar name); Lowell-Dracut-Tyngsborough State Forest (~317 ac, similar name); Lowell National Historical Park (~189 ac, similar name); Lowell-Dracut-Tyngsborough State Forest (~169 ac, similar name); Lowell-Dracut-Tyngsborough State Forest (~46 ac, similar name); Lowell-Dracut-Tyngsborough State Forest (~45 ac, similar name)
 - **US-7971** Blackstone River Valley National Historical Park (National Historical Park) → Blackstone River and Canal Heritage State Park (~61 ac, similar name); Blackstone River and Canal Heritage State Park (~25 ac, similar name); Blackstone River and Canal Heritage State Park (~8 ac, similar name); Blackstone River and Canal Heritage State Park (~0 ac, similar name); Blackstone River and Canal Heritage State Park (~0 ac, similar name)
@@ -23,26 +20,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **368 of 421** parks joined
 - US-0329 Silvio O Conte National Wildlife Refuge (National Wildlife Refuge)
 - US-0891 Taunton National Wild and Scenic River (National Wild and Scenic River)
 - US-0897 Westfield National Wild and Scenic River (National Wild and Scenic River)
-- US-11399 Bullock Ledge Wildlife Management Area (Wildlife Management Area)
-- US-11486 Sunderland Islands Wildlife Management Area (Wildlife Management Area)
-- US-11497 Bennett Wildlife Management Area (Wildlife Management Area)
-- US-11502 Clinton Bluff Wildlife Management Area (Wildlife Management Area)
-- US-11570 Thayer Pond Wildlife Management Area (Wildlife Management Area)
-- US-11591 Eagle Island Wildlife Management Area (Wildlife Management Area)
-- US-11594 Flagg Swamp Wildlife Management Area (Wildlife Management Area)
-- US-11598 King Phillip Woods Wildlife Management Area (Wildlife Management Area)
-- US-11615 Camp Cachalot Wildlife Management Area (Wildlife Management Area)
-- US-11616 Canoe River Wildlife Management Area (Wildlife Management Area)
-- US-11619 Clapps Pond Wildlife Management Area (Wildlife Management Area)
-- US-11677 Meetinghouse Swamp Wildlife Management Area (Wildlife Management Area)
-- US-11681 Olivers Pond Wildlife Management Area (Wildlife Management Area)
-- US-13231 Flynt Mountain Wildlife Management Area (Wildlife Management Area)
-- US-13232 Rattlesnake Mountain Wildlife Management Area (Wildlife Management Area)
-- US-13233 Puddingstone Wildlife Management Area (Wildlife Management Area)
-- US-13234 Bungy Mountain Wildlife Management Area (Wildlife Management Area)
-- US-13235 Hog Mountain Wildlife Management Area (Wildlife Management Area)
-- US-13236 Rockdale Heights Wildlife Management Area (Wildlife Management Area)
-- US-13237 Shaker Mill Brook Wildlife Management Area (Wildlife Management Area)
 - US-2426 Clarksburg State Park (State Park)
 - US-2431 Dunn State Park (State Park)
 - US-2436 Greycourt State Park (State Park)
@@ -81,9 +58,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **368 of 421** parks joined
 - DCR  Division of Water Supply Protection 1 · WPA · DCR  Division of Water Supply Protection · ~2,772 ac
 - Ware River Watershed · WPA ·   · ~2,605 ac
 - Cookson State Forest · SRMA ·   · ~2,295 ac
+- Farmington River West Branch Watershed · WPA ·   · ~2,134 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~2,101 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~2,044 ac
 - Ware River Watershed · WPA ·   · ~1,823 ac
+- Farmington River Watershed · WPA ·   · ~1,795 ac
 - Wapack National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,648 ac
 - Silvio O. Conte National Fish And Wildlife Refuge · NWR · Silvio O. Conte National Fish And Wildlife Refuge · ~1,565 ac
 - Ware River Watershed · WPA ·   · ~1,545 ac
@@ -105,11 +84,13 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **368 of 421** parks joined
 - Arthur Wharton Swann State Forest · SRMA ·   · ~850 ac
 - DOC Land Use Change Area · SOTH ·   · ~804 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~769 ac
+- Farmington River Watershed · WPA ·   · ~741 ac
 - Wachusett Reservoir Watershed · WPA ·   · ~734 ac
 - Bridgewater Correctional Complex · SOTH ·   · ~729 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~717 ac
 - Ware River Watershed · WPA ·   · ~706 ac
 - Cedar Mountain/Jug End (Jug End Corp.) · SRMA · MA Department of Environmental Management/DFWELE · ~665 ac
+- Farmington River Watershed · WPA ·   · ~646 ac
 - Nomans Land Island National Wildlife Refuge · NWR · NOMANS LAND ISLAND NATIONAL WILDLIFE REFUGE · ~618 ac
 - Nomans Land Island National Wildlife Refuge · NWR · Nomans Land Island National Wildlife Refuge · ~618 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~617 ac
@@ -119,10 +100,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **368 of 421** parks joined
 - Wequaquet Lake · SRMA · Commonwealth of Massachusetts · ~594 ac
 - Lake Cochichewick · SRMA · Commonwealth of Massachusetts · ~585 ac
 - Orange State Forest · SRMA ·   · ~580 ac
+- Farmington River Watershed · WPA ·   · ~579 ac
 - Wachusett Reservoir Watershed · WPA ·   · ~568 ac
 - Freetown Swamp Wma · SCA · Department of Fish and Game · ~563 ac
-- Quabbin Reservoir Watershed · WPA ·   · ~560 ac
-- Taconic Trail State Park · SP ·   · ~559 ac
-- Appalachian Trail Corridor · SCA ·   · ~547 ac
-- Ware River Watershed · WPA ·   · ~534 ac
-- Wachusett Reservoir Watershed · WPA ·   · ~524 ac
