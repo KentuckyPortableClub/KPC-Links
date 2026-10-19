@@ -236,6 +236,16 @@
   async function txMicOn() { if (!micOff) return; micOff = false; if (!RUN || !AC) return;
     try { STREAM = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: S.inDev ? { exact: S.inDev } : undefined, echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1 } });
       SRC = AC.createMediaStreamSource(STREAM); SRC.connect(RXG); } catch (e) { note('⚠️ Could not take the radio audio back after sending: ' + (e.message || e) + '. Press START again.', 6000); stopAudio(); } }
+  /* Oct 18 PM (Brandon's test: TUNE with the mic never opened = full power; qFT8 listening + YouTube = no power):
+     Android sends weak sound while ANY app is listening. So on Android we stop listening completely while sending
+     (mic off, sound engine closed, short wait for Android to switch back), play like a video, then start listening again.
+     FT8 can't hear while it sends anyway. S.txMic = 'keep' turns this off. */
+  let rel = false;
+  function relOn() { return mediaOut() && S.txMic !== 'keep' && S.txMic !== 'free'; }
+  async function rxRelease() { if (!relOn() || !RUN || rel) return; rel = true; RUN = false;
+    try { STREAM && STREAM.getTracks().forEach(t => t.stop()); } catch (e) {} try { NODE && NODE.disconnect(); SRC && SRC.disconnect(); RXG && RXG.disconnect(); } catch (e) {}
+    STREAM = SRC = NODE = null; const a = AC; AC = null; try { a && await a.close(); } catch (e) {} await new Promise(r => setTimeout(r, +S.relMs || 350)); }
+  async function rxBack() { if (!rel) return; rel = false; const ok = await startAudio(); if (!ok) note('⚠️ Could not start listening again after sending. Press START.', 6000); }
   const USBRE = /usb|codec|digirig|cm1\d\d|pcm29|ft-?\d|ftdx|ic-?\d|yaesu|icom|kenwood|elecraft|signalink|rigblaster|qdx|qmx|trusdx|xiegu/i;
   let quietT = 0;
   async function devices() {
@@ -652,7 +662,7 @@
   /* looks like an AudioBufferSourceNode: start(at, offset), stop(), onended */
   function mediaSrc(x, rate) { const url = URL.createObjectURL(wavBlob(x, rate)), el = new Audio(url), o = { onended: null, el };
     el.preload = 'auto'; el.volume = Math.min(1, S.lvl); el.onended = () => { URL.revokeObjectURL(url); if (o.onended) o.onended(); };
-    o.start = (at, off) => { const d = Math.max(0, (at - AC.currentTime) * 1000 - 60); setTimeout(() => { if (o.dead) return; try { if (off) el.currentTime = off; } catch (e) {} el.play().catch(e => note('⚠️ The tablet would not play the sound: ' + (e.message || e), 6000)); }, d); };
+    o.start = (at, off) => { const d = Math.max(0, (at - (AC ? AC.currentTime : 0)) * 1000 - 60); setTimeout(() => { if (o.dead) return; try { if (off) el.currentTime = off; } catch (e) {} el.play().catch(e => note('⚠️ The tablet would not play the sound: ' + (e.message || e), 6000)); }, d); };
     o.stop = () => { o.dead = true; try { el.pause(); } catch (e) {} URL.revokeObjectURL(url); }; return o; }
   async function sendTones(tones, sl, wait, m, n) {
     TXING = true; stat(); txSlots.add(S.mode + sl); psk();
@@ -663,11 +673,12 @@
     if (mediaOut()) { src = mediaSrc(au, rate); TXSRC = src; }
     else { const b = AC.createBuffer(1, au.length, rate); b.copyToChannel(au, 0);
       const g = AC.createGain(); g.gain.value = S.lvl; (window.__kpcTxG = (window.__kpcTxG || []).filter(x => x.context === g.context).slice(-6)).push(g); src = AC.createBufferSource(); src.buffer = b; src.connect(g); g.connect(AC.destination); TXSRC = src; }
-    txMicOff(); await ptt(true);
-    const at = AC.currentTime + Math.max(0.05, wait);
-    src.start(at, skip / rate);
+    let at, sk = skip / rate;
+    if (relOn() && RUN) { const tgt = nowS() + wait; await rxRelease(); const late = nowS() - tgt; at = Math.max(0.05, -late); if (late > 0) sk += late; await ptt(true); }
+    else { txMicOff(); await ptt(true); at = AC.currentTime + Math.max(0.05, wait); }
+    src.start(at, sk);
     MYQ.push({ t: sl * slotLen(), tx: 1, hz: S.txHz, text: m }); if (MYQ.length > 40) MYQ.shift(); drawRx();
-    const dur = au.length / rate - skip / rate;
+    const dur = au.length / rate - sk;
     src.onended = () => { if (TXSRC === src) stopTx(); };
     clearTimeout(txStopT); txStopT = setTimeout(() => { if (TXSRC === src) stopTx(); }, (dur + wait + 0.4) * 1000);
     /* RR73 / 73 sent: WSJT-X logs here when I'm the one who called CQ */
@@ -675,12 +686,12 @@
     if (n === 5) { if (!QS.logged && QS.rr) logIt(); setTimeout(afterQso, 300); }
     if (n === 1 || n === 6) QS.tries++;
   }
-  function stopTx() { try { TXSRC && TXSRC.stop(); } catch (e) {} TXSRC = null; TUNE = null; TXING = false; clearTimeout(txStopT); setTimeout(async () => { await ptt(false); txMicOn(); }, 80); stat(); }
+  function stopTx() { try { TXSRC && TXSRC.stop(); } catch (e) {} TXSRC = null; TUNE = null; TXING = false; clearTimeout(txStopT); setTimeout(async () => { await ptt(false); txMicOn(); rxBack(); }, 80); stat(); }
   async function startTone() {
-    if (!AC) return; TXING = true; let o;
-    if (mediaOut()) { const r = AC.sampleRate, x = new Float32Array(r * 10); for (let i = 0; i < x.length; i++) x[i] = Math.sin(2 * Math.PI * S.txHz * i / r) * Math.min(1, i / 240, (x.length - i) / 240); o = mediaSrc(x, r); }
+    if (!AC && !mediaOut()) return; TXING = true; let o;
+    if (mediaOut()) { const r = AC ? AC.sampleRate : 48000, x = new Float32Array(r * 10); for (let i = 0; i < x.length; i++) x[i] = Math.sin(2 * Math.PI * S.txHz * i / r) * Math.min(1, i / 240, (x.length - i) / 240); o = mediaSrc(x, r); }
     else { o = AC.createOscillator(); const g = AC.createGain(); o.frequency.value = S.txHz; g.gain.value = S.lvl; (window.__kpcTxG = (window.__kpcTxG || []).filter(x => x.context === g.context).slice(-6)).push(g); o.connect(g); g.connect(AC.destination); }
-    txMicOff(); await ptt(true); if (o.el) o.start(AC.currentTime); else o.start(); TUNE = o; TXSRC = o; stat(); clearTimeout(txStopT); txStopT = setTimeout(() => { if (TXSRC === o) stopTx(); }, 10000); note('TUNE: a steady tone for 10 s. Tap TUNE again to stop.', 2500);
+    if (o.el) { await rxRelease(); await ptt(true); o.start(AC ? AC.currentTime : 0); } else { txMicOff(); await ptt(true); o.start(); } TUNE = o; TXSRC = o; stat(); clearTimeout(txStopT); txStopT = setTimeout(() => { if (TXSRC === o) stopTx(); }, 10000); note('TUNE: a steady tone for 10 s. Tap TUNE again to stop.', 2500);
   }
 
   /* ---------------- boxes, settings ---------------- */
