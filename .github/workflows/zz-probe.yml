@@ -1,5 +1,7 @@
 name: zz probe (temporary)
 on: workflow_dispatch
+permissions:
+  contents: write
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -7,6 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: python3 .github/scripts/zz_probe.py || true
-      - uses: actions/upload-artifact@v4
-        with: { name: probe, path: probe.json }
-        continue-on-error: true
+      - run: |
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git checkout -B zz-probe && git add -f probe.json && git commit -qm probe && git push -f origin zz-probe || true
