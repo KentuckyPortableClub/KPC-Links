@@ -1,0 +1,12 @@
+name: zz probe (temporary)
+on: workflow_dispatch
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v5
+      - run: python3 .github/scripts/zz_probe.py || true
+      - uses: actions/upload-artifact@v4
+        with: { name: probe, path: probe.json }
+        continue-on-error: true
