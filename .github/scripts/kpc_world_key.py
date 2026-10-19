@@ -280,6 +280,7 @@ for cc in COUNTRIES:
     parks = {}
     for ref, x in sorted(P.items()):
         name, typ, la, lo = x[0], x[2], x[5], x[6]
+        if not la and not lo: la = lo = None   # Oct 18: POTA has no pin for ~200 Canadian parks (0,0): match by name in the province only
         kp = kinds(cc, name) | kinds(cc, typ)
         m, c = [], []
         cand = [name] + ([q for q in re.split(r'\s+-\s+', name) if q.strip()] if cc == 'GB' and ' - ' in name else [])
