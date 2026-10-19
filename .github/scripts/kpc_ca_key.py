@@ -206,6 +206,8 @@ def acres(r): return round((r['ha'] or 0) * 2.47105)
 
 # Oct 18 review: sites (lighthouse, bridge, trail, campground…) have no outline of their own; reviewed parks in data/ca-key/overrides.json
 SITE = re.compile(r'lighthouse|phare|bridge|pont|trail|sentier|campground|camping|day use|boat launch|wharf|quai|canal|hotel|station|building|house|maison|church|eglise|fort |monument|recreation site', re.I)
+def _nf(t):   # hand decisions match names whatever way the accents are stored (Oct 18: SG̲áan K̲ínghlas-Bowie never matched)
+    import unicodedata; return unicodedata.normalize('NFC', str(t or '')).strip().casefold()
 try: OVR = json.load(open(OUT / 'overrides.json')).get('parks', {})
 except Exception: OVR = {}  # noqa: BLE001
 P = json.load(open('data/parkinfo/CA.json'))['parks']
@@ -233,10 +235,10 @@ for pv, parks_in in sorted(by.items()):
         ov = OVR.get(ref) or {}
         if ov:
             no = {str(q) for q in ov.get('no', [])}
-            m = [q for q in m if str(q[0]) not in no and q[1] not in no]
+            m = [q for q in m if str(q[0]) not in no and _nf(q[1]) not in {_nf(x) for x in no}]
             for want in ov.get('join', []):
                 for r in recs:
-                    if (str(r['oid']) == str(want) or r['n'] == want or r['nf'] == want) and (la is None or near(la, lo, r['_bb'], .6)) and not any(str(q[0]) == str(r['oid']) for q in m):
+                    if (str(r['oid']) == str(want) or _nf(r['n']) == _nf(want) or _nf(r['nf']) == _nf(want)) and (la is None or near(la, lo, r['_bb'], .6)) and not any(str(q[0]) == str(r['oid']) for q in m):
                         m.append([r['oid'], r['n'] or r['nf'], acres(r), 'reviewed'])
         site = []
         if not m and la is not None:

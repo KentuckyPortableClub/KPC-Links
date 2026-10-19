@@ -282,7 +282,8 @@ XS = [  # prefix, query url, name field, acres field, kinds
     ('ncg', 'svc:https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer|.', '?', '?', {'wma'}, 'NC Wildlife Resources Commission game lands', 'STAT', {'NC'}),
     ('wdw', 'svc:https://geodataservices.wdfw.wa.gov/arcgis/rest/services/MapServices/WildlifeAreas/MapServer|wildlife', '?', '?', {'wma'}, 'WDFW wildlife areas', 'STAT', {'WA'}),
     ('idw', 'svc:https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer|.', '?', '?', {'wma'}, 'Idaho Fish and Game WMAs', 'STAT', {'ID'}),
-    ('law', 'svc:https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA/FeatureServer|.', '?', '?', {'wma'}, 'Louisiana Dept. of Wildlife and Fisheries WMAs', 'STAT', {'LA'}),
+    ('law', 'svc:https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer|.', '?', '?', set(), 'Louisiana Dept. of Wildlife and Fisheries WMAs and refuges', 'STAT', {'LA'}),   # Oct 18: LDWF_WMA moved (empty); probe 2 found these on LDWF's own account
+    ('lar', 'svc:https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WildlifeRefuge/FeatureServer|.', '?', '?', set(), 'Louisiana Dept. of Wildlife and Fisheries wildlife refuges', 'STAT', {'LA'}),
     ('maw', 'svc:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/MassWildlifeLands/FeatureServer|.', '?', '?', {'wma'}, 'MassWildlife lands', 'STAT', {'MA'}),
     ('utw', 'svc:https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ULTRA_Properties_2_view/FeatureServer|.', '?', '?', {'wma'}, 'Utah DWR public access properties', 'STAT', {'UT'}),
     ('ctd', 'svc:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_DEEP_Property/FeatureServer|.', '?', '?', set(), 'Connecticut DEEP property', 'STAT', {'CT'}),
@@ -361,6 +362,8 @@ SITE = re.compile(r'airstrip|interpretive site|historic preservation site|trail 
 
 # Reviewed by hand (Oct 18 on): data/us-key/overrides.json {ref: {join: [objectid or exact name], no: [objectid or exact name], why: '...'}}.
 # 'join' adds that official land (it must be within ~0.6° of the pin), 'no' keeps a piece out; the bot follows it on every rerun.
+def _nf(t):   # hand decisions match names whatever way the accents are stored (Oct 18: SG̲áan K̲ínghlas-Bowie never matched)
+    import unicodedata; return unicodedata.normalize('NFC', str(t or '')).strip().casefold()
 try: OVR = json.load(open(OUT / 'overrides.json')).get('parks', {})
 except Exception: OVR = {}  # noqa: BLE001
 def _oid(a): return str(a['OBJECTID'])
@@ -411,11 +414,11 @@ def run(st):
         ov = OVR.get(ref) or {}
         if ov:
             no = {str(x) for x in ov.get('no', [])}
-            m = [x for x in m if str(x[0]) not in no and x[1] not in no]
+            m = [x for x in m if str(x[0]) not in no and _nf(x[1]) not in {_nf(y) for y in no}]
             for want in ov.get('join', []):
                 for a in recs:
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
-                    if (_oid(a) == str(want) or nm == want) and (la is None or near(la, lo, a['_bb'], .6)) and not any(str(x[0]) == _oid(a) for x in m):
+                    if (_oid(a) == str(want) or _nf(nm) == _nf(want)) and (la is None or near(la, lo, a['_bb'], .6)) and not any(str(x[0]) == _oid(a) for x in m):
                         m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'reviewed'])
         site = []
         if not m and la is not None:
