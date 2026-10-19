@@ -226,6 +226,16 @@
     RUN = false; try { STREAM && STREAM.getTracks().forEach(t => t.stop()); } catch (e) {} try { NODE && NODE.disconnect(); SRC && SRC.disconnect(); RXG && RXG.disconnect(); } catch (e) {}
     STREAM = SRC = NODE = null; $('f8StartBox').hidden = false; root.classList.remove('run'); stat(); tabDot();
   }
+  /* Oct 18 (Brandon: FT-710 gets 1-10 W from the tablet, full power from the laptop): while the mic is open, Android puts the
+     whole phone in 'call' mode, so sound out goes through the phone-call path (call volume, call processing).
+     On Android we let go of the mic while sending and take it back right after. */
+  const ANDR = /Android/i.test(navigator.userAgent);
+  let micOff = false;
+  function txMicOff() { if (!ANDR || S.txMic === 'keep' || !STREAM || micOff) return; micOff = true;
+    try { SRC && SRC.disconnect(); } catch (e) {} try { STREAM.getTracks().forEach(t => t.stop()); } catch (e) {} SRC = null; STREAM = null; }
+  async function txMicOn() { if (!micOff) return; micOff = false; if (!RUN || !AC) return;
+    try { STREAM = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: S.inDev ? { exact: S.inDev } : undefined, echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1 } });
+      SRC = AC.createMediaStreamSource(STREAM); SRC.connect(RXG); } catch (e) { note('⚠️ Could not take the radio audio back after sending: ' + (e.message || e) + '. Press START again.', 6000); stopAudio(); } }
   const USBRE = /usb|codec|digirig|cm1\d\d|pcm29|ft-?\d|ftdx|ic-?\d|yaesu|icom|kenwood|elecraft|signalink|rigblaster|qdx|qmx|trusdx|xiegu/i;
   let quietT = 0;
   async function devices() {
@@ -649,10 +659,10 @@
     if (n === 5) { if (!QS.logged && QS.rr) logIt(); setTimeout(afterQso, 300); }
     if (n === 1 || n === 6) QS.tries++;
   }
-  function stopTx() { try { TXSRC && TXSRC.stop(); } catch (e) {} TXSRC = null; TUNE = null; TXING = false; clearTimeout(txStopT); setTimeout(() => ptt(false), 80); stat(); }
+  function stopTx() { try { TXSRC && TXSRC.stop(); } catch (e) {} TXSRC = null; TUNE = null; TXING = false; clearTimeout(txStopT); setTimeout(async () => { await ptt(false); txMicOn(); }, 80); stat(); }
   async function startTone() {
     if (!AC) return; TXING = true; const o = AC.createOscillator(), g = AC.createGain(); o.frequency.value = S.txHz; g.gain.value = S.lvl; (window.__kpcTxG = (window.__kpcTxG || []).filter(x => x.context === g.context).slice(-6)).push(g); o.connect(g); g.connect(AC.destination);
-    await ptt(true); o.start(); TUNE = o; TXSRC = o; stat(); clearTimeout(txStopT); txStopT = setTimeout(() => { if (TXSRC === o) stopTx(); }, 10000); note('TUNE: a steady tone for 10 s. Tap TUNE again to stop.', 2500);
+    txMicOff(); await ptt(true); o.start(); TUNE = o; TXSRC = o; stat(); clearTimeout(txStopT); txStopT = setTimeout(() => { if (TXSRC === o) stopTx(); }, 10000); note('TUNE: a steady tone for 10 s. Tap TUNE again to stop.', 2500);
   }
 
   /* ---------------- boxes, settings ---------------- */
