@@ -1004,3 +1004,6 @@ main#hl .hl-tkmore{display:none}
  main#hl #hlBellF::after,main#hl #hlBanF::after{font:900 8.5px Arial,sans-serif;letter-spacing:.06em}
  main#hl #hlBellF::after{content:"ALERT"} main#hl #hlBanF::after{content:"BAR"}
 }
+
+/* Oct 19: default desk layout on wide screens: extra list | log/map | main spots | extra list */
+@media(min-width:1800px){main#hl[data-desk="1"][data-lay3="1"] .hl-split{width:100%;max-width:none;padding-left:330px;padding-right:12px;grid-template-columns:580px minmax(0,1fr)}}
