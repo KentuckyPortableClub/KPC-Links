@@ -1,6 +1,6 @@
 # VT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **82 of 109** parks joined to official land (same name + same kind of place). **14** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **82 of 109** parks joined to official land (same name + same kind of place). **14** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 

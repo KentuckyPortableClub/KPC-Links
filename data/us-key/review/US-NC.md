@@ -1,6 +1,6 @@
 # NC: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **176 of 253** parks joined to official land (same name + same kind of place). **35** to check by hand, **39** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **203 of 253** parks joined to official land (same name + same kind of place). **22** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,7 +8,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **176 of 253** parks joined
 - **US-10399** Apalachia Reservoir Recreation Park (Recreation Park) → Tennessee Valley Authority - Hiwassee Dam (~424 ac, the POTA pin is inside it (different name))
 - **US-10511** Jessups Mill Pond State Game Land (State Game Land) → Suggs Mill Pond Game Land (~11,001 ac, similar name)
 - **US-12119** Moses H. Cone National Park (National Park) → Blue Ridge Parkway (~52,757 ac, the POTA pin is inside it (different name))
-- **US-12175** Vance State Game Land (State Game Land) → Kerr Reservoir (~25,497 ac, the POTA pin is inside it (different name))
+- **US-12320** Yadkin River State Trail (State Trail) → Yadkin River (~11,636 ac, same name, different kind of place)
 - **US-12371** Julian Price National Park (National Park) → Blue Ridge Parkway (~52,757 ac, the POTA pin is inside it (different name))
 - **US-12662** Harmon Den Wildlife Management Area (Wildlife Management Area) → Pisgah National Forest (~509,978 ac, the POTA pin is inside it (different name))
 - **US-3378** Blue Ridge National Parkway (National Parkway) → Blue Ridge Parkway (~52,757 ac, similar name)
@@ -17,24 +17,11 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **176 of 253** parks joined
 - **US-3866** Ward State Nature Preserve (State Nature Preserve) → Selma Cornelison Ward Nature Preserve (~324 ac, similar name); North Carolina Zoological Park (~2,143 ac, the POTA pin is inside it (different name))
 - **US-4856** Holmes Educational State Forest (State Forest) → Holmes State Forest (~263 ac, similar name)
 - **US-4859** Rendezvous Mountain State Park (State Park) → Rendezvous Mountain Educational State Forest (~1,902 ac, same name, different kind of place)
-- **US-4860** Turnbull Creek Educational State Forest (State Forest) → Bladen Lakes State Forest (~33,153 ac, the POTA pin is inside it (different name))
+- **US-4860** Turnbull Creek Educational State Forest (State Forest) → Bladen Lakes State Forest (~33,672 ac, the POTA pin is inside it (different name)); Bladen Lakes State Forest (~33,153 ac, the POTA pin is inside it (different name))
 - **US-6845** Horne Creek Living Historical Farm State Historic Site (State Historic Site) → Horne Creek State Historic Site (~111 ac, similar name)
 - **US-6848** President James K. Polk State Historic Site (State Historic Site) → Polk Memorial State Historic Site (~20 ac, the POTA pin is inside it (different name))
-- **US-6882** Bladen Lakes State Game Land (State Game Land) → Bladen Lakes State Forest (~33,153 ac, same name, different kind of place)
-- **US-6885** Buckridge State Game Land (State Game Land) → Emily and Richardson Preyer Buckridge Coastal Reserve (~28,772 ac, similar name)
-- **US-6888** Butner-Falls of the Neuse State Game Land (State Game Land) → Falls Lake (~37,454 ac, the POTA pin is inside it (different name))
-- **US-6900** Dare State Game Land (State Game Land) → Dare County Air Force Range (~46,244 ac, similar name)
-- **US-6902** Dupont State Game Land (State Game Land) → Dupont State Forest (~11,803 ac, same name, different kind of place)
-- **US-6903** Elk Knob State Game Land (State Game Land) → Elk Knob State Park (~4,437 ac, same name, different kind of place)
-- **US-6910** Headwaters State Game Land (State Game Land) → Headwaters State Forest (~6,195 ac, same name, different kind of place); Headwaters State Forest (~5,089 ac, same name, different kind of place)
-- **US-6918** Kerr Scott State Game Land (State Game Land) → W. Kerr Scott Reservoir (~4,533 ac, similar name)
-- **US-6924** Lower Roanoke River State Game Land (State Game Land) → Roanoke River National Wildlife Refuge (~21,305 ac, similar name); Roanoke River National Wildlife Refuge (~21,303 ac, similar name); Roanoke River Wetlands Game Land (~20,543 ac, similar name); Roanoke River Delta Islands (~3,988 ac, similar name)
 - **US-6927** Nantahala State Game Land (State Game Land) → Nantahala National Forest (~532,808 ac, same name, different kind of place)
 - **US-6936** Pisgah State Game Land (State Game Land) → Pisgah National Forest (~509,978 ac, same name, different kind of place)
-- **US-6944** Rockfish Creek State Game Land (State Game Land) → NC Department of Transportation Mitigation Site (~24,566 ac, the POTA pin is inside it (different name))
-- **US-6945** Rocky Run State Game Land (State Game Land) → Stones Creek Game Land (~4,543 ac, the POTA pin is inside it (different name))
-- **US-6957** Texas Plantation State Game Land (State Game Land) → Alligator River Game Land (~15,734 ac, the POTA pin is inside it (different name))
-- **US-6961** Upper Roanoke River State Game Land (State Game Land) → Roanoke River Wetlands Game Land (~20,543 ac, similar name)
 - **US-6963** Nutbush Wildlife Management Area (Wildlife Management Area) → Kerr Reservoir (~25,497 ac, the POTA pin is inside it (different name))
 - **US-8006** Rachel Carson State Reserve (State Reserve) → Rachel Carson Component of the North Carolina National Estuarine Research Reserve (~2,315 ac, similar name)
 - **US-8226** Upchurch Lake State Fishing Lake (State Fishing Lake) → Nicholson Creek Game Land (~1,021 ac, the POTA pin is inside it (different name))
@@ -53,7 +40,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **176 of 253** parks joined
 - US-10389 Hiwassee Dam Recreation Park (Recreation Park)
 - US-10398 Chatuge Dam Trail Recreation Park (Recreation Park)
 - US-10406 Lake Rim Fishing & Boating Multiple Use Area (Multiple Use Area)
-- US-12320 Yadkin River State Trail (State Trail)
 - US-12414 Doughton Recreation Park (Recreation Park)
 - US-12717 Deep River State Trail (State Trail)
 - US-13002 Dan River State Trail (State Trail)
@@ -72,19 +58,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **176 of 253** parks joined
 - US-6837 CSS Neuse Civil War Interpretive Center State Historic Site (State Historic Site)
 - US-6847 NC Transportation Museum State Historic Site (State Historic Site)
 - US-6852 State Capitol State Historic Site (State Historic Site)
-- US-6877 Yadkin River State Game Land (State Game Land)
-- US-6880 Bachelor Bay State Game Land (State Game Land)
-- US-6884 Buckhorn State Game Land (State Game Land)
-- US-6892 Chatham State Game Land (State Game Land)
-- US-6901 Dover Bay State Game Land (State Game Land)
-- US-6909 Harris State Game Land (State Game Land)
-- US-6913 Hyco State Game Land (State Game Land)
-- US-6920 Lee State Game Land (State Game Land)
-- US-6925 Mayo State Game Land (State Game Land)
-- US-6935 Perkins State Game Land (State Game Land)
-- US-6941 Little Fork Forest State Game Land (State Game Land)
-- US-6946 Sampson State Game Land (State Game Land)
-- US-6955 Sutton Lake State Game Land (State Game Land)
 - US-8005 Fontana TVA Dam National Recreation Area (National Recreation Area)
 - US-9758 Chattooga National Wild and Scenic River (National Wild and Scenic River)
 
@@ -121,6 +94,7 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **176 of 253** parks joined
 - Pond Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,930 ac
 - Caledonia Correctional Institution · SOTH · UNK · ~6,847 ac
 - Boiling Spring Lakes Plant Conservation Preserve · SOTH · UNK · ~6,829 ac
+- Randleman Lake · LOTH · UNK · ~6,393 ac
 - Bear Garden Tract · SCA · NC Wildlife Resources Commission · ~6,278 ac
 - Bushy Lake State Natural Area · SP · UNK · ~6,180 ac
 - NC Submerged Lands · SOTH · UNK · ~6,064 ac
@@ -147,6 +121,5 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **176 of 253** parks joined
 - Voice of America Site B · UNK · UNK · ~2,715 ac
 - Hill Demonstration Forest · SOTH · UNK · ~2,428 ac
 - North Carolina State University Agricultural Research Land · SOTH · UNK · ~2,378 ac
+- Kings Creek ·  · NC Wildlife Resources Commission game lands · ~2,361 ac
 - Rachel Carson Component of the North Carolina National Estuarine Research Reserve · SOTH · UNK · ~2,315 ac
-- Cherry Research Farm · SOTH · UNK · ~2,185 ac
-- McCain Tract Forest Management Area · SOTH · UNK · ~2,161 ac

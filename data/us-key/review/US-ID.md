@@ -1,6 +1,6 @@
 # ID: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **137 of 361** parks joined to official land (same name + same kind of place). **57** to check by hand, **76** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 361** parks joined to official land (same name + same kind of place). **55** to check by hand, **75** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -53,8 +53,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **137 of 361** parks joined
 - **US-2232** Dworshak State Park (State Park) → St. Joe National Forest (~143,489 ac, the POTA pin is inside it (different name))
 - **US-4665** Floodwood State Forest (State Forest) → Idaho Department of Lands (~1,982,653 ac, the POTA pin is inside it (different name))
 - **US-4666** Priest Lake State Forest (State Forest) → Idaho Department of Lands (~1,982,653 ac, the POTA pin is inside it (different name))
-- **US-5597** Cartier Slough Wildlife Management Area (Wildlife Management Area) → Snake River (~128,533 ac, the POTA pin is inside it (different name))
-- **US-5602** Deer Parks Wildlife Management Area (Wildlife Management Area) → Upper Snake Field Office (~1,813,172 ac, the POTA pin is inside it (different name)); Snake River (~128,533 ac, the POTA pin is inside it (different name))
 - **US-5617** St. Maries Wildlife Management Area (Wildlife Management Area) → Idaho Department of Lands (~53,342 ac, the POTA pin is inside it (different name))
 - **US-7361** Hells Canyon National Recreation Area (National Recreation Area) → Hells Canyon Wilderness (~218,097 ac, same name, different kind of place)
 - **US-7362** Sawtooth National Recreation Area (National Recreation Area) → Sawtooth Wilderness (~217,511 ac, same name, different kind of place)
@@ -222,7 +220,6 @@ Built 2026-10-18 by `.github/scripts/kpc_us_key.py`. **137 of 361** parks joined
 - US-4574 Nez Perce National Historic Trail (National Historic Trail)
 - US-4576 Oregon National Historic Trail (National Historic Trail)
 - US-4584 Ashton-Tetonia Trail State Park (State Park)
-- US-5609 Montour Wildlife Management Area (Wildlife Management Area)
 - US-6227 Snake River National Wild & Scenic River (National Wild & Scenic River)
 - US-7805 Antelope Valley Airstrip State Recreation Area (State Recreation Area)
 - US-7809 Big Southern Butte Airstrip State Recreation Area (State Recreation Area)
