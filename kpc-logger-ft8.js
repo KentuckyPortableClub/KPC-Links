@@ -129,7 +129,14 @@
   function showDial() { const k = dialK(); $('f8Dial').textContent = (k / 1000).toFixed(6).replace(/(\.\d{3})(\d{3})$/, '$1 $2'); $('f8Dial').classList.toggle('ov', !!(S.ov && S.ov[ovKey()])); if (document.activeElement !== $('f8Khz')) $('f8Khz').value = (+k.toFixed(3)).toString(); $('f8Std').hidden = !(S.ov && S.ov[ovKey()]); document.querySelectorAll('#f8BandR [data-f8b]').forEach(b => b.classList.toggle('on', b.dataset.f8b === S.band)); document.querySelectorAll('[data-f8m]').forEach(b => { b.classList.toggle('on', b.dataset.f8m === S.mode); if (b.dataset.f8m === S.mode && b.parentElement.scrollWidth > b.parentElement.clientWidth) b.parentElement.scrollLeft = b.offsetLeft - b.parentElement.clientWidth / 2 + b.offsetWidth / 2; }); }
   const radioMode = () => S.mode === 'CW' ? 'CW' : S.mode === 'SSTV' ? (S.band === '2m (ISS)' ? 'FM' : dialK() < 10000 ? 'LSB' : 'USB') : 'DATA';
   let tunedAt = 0;
-  function radioTune() { if (window.KPCCat && KPCCat.get().on) { tunedAt = Date.now(); KPCCat.tune(dialK(), radioMode()); } }
+  /* Oct 18 (Brandon: '40m preset does not put me on the right frequency'): after tuning, ask the radio where it is; try once more, then say what the radio shows */
+  let tuneN = 0;
+  function radioTune() { if (!(window.KPCCat && KPCCat.get().on)) return; tunedAt = Date.now(); const want = dialK(), md = radioMode(), my = ++tuneN;
+    KPCCat.tune(want, md).then(async ok => { if (!ok || my !== tuneN) return;
+      for (let i = 0; i < 2; i++) { await new Promise(r => setTimeout(r, 1300)); if (my !== tuneN) return; tunedAt = Date.now();
+        const r = await KPCCat.read(); if (!r || !r.khz) return;
+        if (Math.abs(r.khz - want) <= 0.05) { if (md === 'DATA' && /yaesu/.test(KPCCat.get().proto) && r.mode && r.mode !== 'DATA') note(`Radio is in ${r.mode}, not DATA mode: some radios then take the sound from the mic jack (low power). Set FT8 & digital modes to DATA mode under ⚙ Station → Radio control (or the CAT & QRZ tab).`); return; }
+        if (i === 0) { tunedAt = Date.now(); await KPCCat.tune(want, md); } else note(`Radio shows ${(r.khz / 1000).toFixed(4)} MHz, not ${(want / 1000).toFixed(4)}. Check the radio's VFO A and that it is not locked or split.`); } }); }
   /* set my own dial (kHz); a frequency on another band switches the band when this mode has it */
   function setDial(k, fromRadio) {
     k = +k; if (!isFinite(k) || k <= 0) return; if (k < 1000) k *= 1000; k = Math.round(k * 1000) / 1000;

@@ -987,9 +987,10 @@
     if (!window.KPCCat) { $('myCat').hidden = true; return; }
     KPCCat.fillSelect($('catRadio')); const C = KPCCat.get(); $('catRadio').value = C.radio || '';
     $('catTune').checked = SET.catT !== false; $('catFollow').checked = SET.catF !== false;
+    $('catData').value = C.data === 'usb' ? 'usb' : 'data'; $('catData').onchange = () => KPCCat.set({ data: $('catData').value });
     $('catTune').onchange = () => { SET.catT = $('catTune').checked; saveSet(); };
     $('catFollow').onchange = () => { SET.catF = $('catFollow').checked; saveSet(); KPCCat.set({ follow: SET.catF }); };
-    $('catRadio').onchange = () => { const r = KPCCat.pickRadio($('catRadio').value); if (!r) { $('catMsg').textContent = 'Set the speed and radio type on the VIP Lounge CAT & QRZ tab.'; return; }
+    $('catRadio').onchange = () => { const r = KPCCat.pickRadio($('catRadio').value); $('catData').value = KPCCat.get().data === 'usb' ? 'usb' : 'data'; if (!r) { $('catMsg').textContent = 'Set the speed and radio type on the VIP Lounge CAT & QRZ tab.'; return; }
       $('catMsg').textContent = 'Settings filled in for your ' + r.label + '. Now press CONNECT MY RADIO.' + (/yaesu/.test(r.proto) ? ' Set the radio\'s CAT RATE menu to ' + r.baud + '.' : r.proto === 'icom' ? ' The radio\'s CI-V address should be ' + r.civ + ' (CI-V USB echo off).' : ''); };
     if (!KPCCat.supported()) { $('catGo').disabled = true; $('catMsg').textContent = 'This browser can\'t talk to a radio. Use Chrome or Edge on a computer, or Chrome on an Android phone (newer versions, with a USB-C cable). iPhones can\'t do this yet.'; }
     $('catGo').onclick = async () => {
