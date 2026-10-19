@@ -1,0 +1,1477 @@
+{
+ "Arkansas Game and Fish Commission Wildlife Management Areas": [
+  [
+   "VUEWorks",
+   "VueWorks_AGFC",
+   "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/VUEWorks/FeatureServer",
+   "public",
+   "Map server in support of VUEWorks UAT (No longer used in VW). DO NOT DELETE USING FOR OTHER PROJECTS. Data will be updat"
+  ],
+  [
+   "Wildlife and Habitat Risk Map for Wind Energy Projects in Arkansas",
+   "blair_tirpak@fws.gov_fws",
+   "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/Wildlife_and_Habitat_Risk_Map_for_AR_Wind_Energy_Projects/FeatureServer",
+   "public",
+   "This map depicts potential environmental risk to wildlife and habitats from proposed wind energy projects in Arkansas."
+  ],
+  [
+   "Wildlife Management Areas",
+   "leif_kindberg",
+   "https://services3.arcgis.com/E0jzW6yplmtrRw7o/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer",
+   "public",
+   "Arkansas Wildlife Management Areas from the Arkansas Game and Fish Commission (AGFC)"
+  ],
+  [
+   "NPS Illinois River Watershed Model Input Layers",
+   "hhaper_biohabitats",
+   "https://services5.arcgis.com/PADY1WtQSQ4Ijq5k/arcgis/rest/services/NPS_Illinois_River_Watershed_Model_Input_Layers/FeatureServer",
+   "public",
+   "Input layers for the Ecological Sensitivity Index model for the NPS Illinois River Watershed analysis 2024"
+  ],
+  [
+   "EPA_Ecoreg2004_UTM15N",
+   "mconnolly0",
+   "https://services6.arcgis.com/FrMXGnrs7J0gRe2w/arcgis/rest/services/EPA_Ecoreg2004_UTM15N/FeatureServer",
+   "public",
+   "Assist managers of aquatic and terrestrial resources in understanding the regional patterns of the realistically attaina"
+  ],
+  [
+   "Ecoregions Level III and IV (polygon)",
+   "andrew.feltmann",
+   "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Environment/FeatureServer/8",
+   "public",
+   "Ecoregions denote areas of general similarity in ecosystems and in the type, quality, and quantity of environmental reso"
+  ],
+  [
+   "Arkansas_GFC_WMAs",
+   "bneece@clemson.edu_Clemson",
+   "https://services1.arcgis.com/x5wCko8UnSi4h0CB/arcgis/rest/services/Arkansas_GFC_WMAs/FeatureServer",
+   "public",
+   "Arkansas Game and Fish Commission Wildlife Management Areas. Last updated 2022."
+  ],
+  [
+   "ARGF WMA Boundaries",
+   "pranavpr",
+   "https://services5.arcgis.com/j3zjI85whGYUH0pL/arcgis/rest/services/ARGF_WMA_Boundaries/FeatureServer",
+   "public",
+   "REQUIRED: A summary of the intentions with which the data set was developed."
+  ]
+ ],
+ "Michigan DNR state game areas boundaries": [
+  [
+   "Michigan Forest Inventory - Compartments",
+   "MichiganDNR",
+   "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer/5",
+   "public",
+   "Compartments are boundaries used for forest inventory. Lands include state forests, state parks, and state wildlife mana"
+  ],
+  [
+   "Michigan DNR Public Forest Inventory Data",
+   "MichiganDNR",
+   "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer",
+   "public",
+   "The Michigan DNR Public Forest Inventory Data contains GIS Inventory data from the Michigan Forest Inventory System."
+  ],
+  [
+   "Voluntary Wetland Restoration Sites",
+   "EgleAdmin",
+   "https://services1.arcgis.com/FNjlrOFR0aGJ71Tg/arcgis/rest/services/Voluntary_Wetland_Restoration/FeatureServer",
+   "public",
+   "This data shows voluntary wetland restoration project sites that were permitted through the Voluntary Wetland Restoratio"
+  ],
+  [
+   "Michigan DNR Administered Timber Sales",
+   "MichiganDNR",
+   "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/MichiganDNRAdministeredTimberSales/FeatureServer",
+   "public",
+   "These polygons represent the geographic boundaries of timber sale proposals approved and prepared by the Michigan DNR.  "
+  ],
+  [
+   "Keep the UP Wild_WFL1",
+   "phatami_elpc",
+   "https://services6.arcgis.com/evjvf6OwzhM4vIyx/arcgis/rest/services/Keep_the_UP_Wild_WFL1/FeatureServer",
+   "public",
+   "The map showcases various management areas (MAs) under the North Victoria Vegetation Management Project (NVVMP), along w"
+  ],
+  [
+   "Michigan PRU Wells with State and Federal Lands_WFL1",
+   "kroberts_edfmaps",
+   "https://services6.arcgis.com/HJzJQeO8rbTv2jiF/arcgis/rest/services/Michigan_PRU_Wells_with_State_and_Federal_Lands_WFL1/FeatureServer",
+   "public",
+   "PRU wells matched with 2024 EGLE production by PRU. Indicates both whether the PRU had reported production in 2024 and t"
+  ],
+  [
+   "Michigan_DNR_Public_Forest",
+   "schmott1_msugis",
+   "https://services.arcgis.com/uHAHKfH1Z5ye1Oe0/arcgis/rest/services/Michigan_DNR_Public_Forest/FeatureServer",
+   "public",
+   "Compartments are boundaries used for forest inventory. Lands include state forests, state parks, state wildlife manageme"
+  ],
+  [
+   "Michigan_DNR_Public_Forest_Inventory_Data_lab6",
+   "voylesnathan21@gmail.com_msugis",
+   "https://services.arcgis.com/uHAHKfH1Z5ye1Oe0/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data_lab6/FeatureServer",
+   "public",
+   "Compartments are boundaries used for forest inventory. Lands include state forests, state parks, state wildlife manageme"
+  ]
+ ],
+ "NCWRC game lands boundaries": [
+  [
+   "NCWRC Game Lands - detail",
+   "ncwildlife.gov",
+   "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_detail/FeatureServer",
+   "public",
+   "NCWRC Game Land detailed information."
+  ],
+  [
+   "NCWRC Game Lands - general",
+   "ncwildlife.gov",
+   "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer",
+   "public",
+   "NCWRC Game Land general boundaries."
+  ],
+  [
+   "NCWRC Game Land Centroids",
+   "anna.stefanowicz@ncwildlife.gov",
+   "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/GL_points/FeatureServer",
+   "public",
+   "NC WRC Game Land Centroids Indicate general locations of each North Carolina Wildlife Resources Commission game land on "
+  ],
+  [
+   "Game Lands in Chatham County",
+   "savannah.thomson",
+   "https://services3.arcgis.com/YgrExeJfxG5F4At7/arcgis/rest/services/Game_Lands_in_Chatham_County/FeatureServer",
+   "public",
+   "NCWRC Game Lands in Chatham County"
+  ],
+  [
+   "CTP Highway Changes 2025_WFL1",
+   "GCLMPO",
+   "https://services3.arcgis.com/u6Nvh8zpOQRNNRJi/arcgis/rest/services/CTP_Highway_Changes_2025_WFL1/FeatureServer",
+   "public",
+   "CTP Highway Changes 2025"
+  ],
+  [
+   "NC_Landfill_Restriction_Analysis",
+   "jason_smithgardner",
+   "https://services1.arcgis.com/KBUj0hFRM9v7XluE/arcgis/rest/services/NC_Landfill_Restriction_Analysis/FeatureServer",
+   "public",
+   "Analysis layers for the statewide landfill restriction review (5/10/2022)"
+  ],
+  [
+   "CTP Highway Changes_Labels",
+   "GCLMPO",
+   "https://services3.arcgis.com/u6Nvh8zpOQRNNRJi/arcgis/rest/services/CTP_Highway_Changes_Labels/FeatureServer",
+   "public",
+   "CTP Highway Changes"
+  ],
+  [
+   "eanastas final part I",
+   "eanastas_NCSU",
+   "https://services1.arcgis.com/aT1T0pU1ZdpuDk1t/arcgis/rest/services/eanastas_final_part_I/FeatureServer",
+   "public",
+   "This map depicts 45 survey stations at the Voice of America Game Lands used for detecting Henslow's Sparrows, and the lo"
+  ]
+ ],
+ "Colorado Parks and Wildlife State Wildlife Areas": [
+  [
+   "CPWSpeciesData",
+   "rsaccoCPW",
+   "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSpeciesData/FeatureServer",
+   "public",
+   "Colorado Parks and Wildlife information on wildlife distributions provided to public and private agencies and individual"
+  ],
+  [
+   "National Wildland Explorer ",
+   "TWSAdmin",
+   "https://services1.arcgis.com/IAQQkLXctKHrf8Av/arcgis/rest/services/National_Wildland_Explorer_updates_2025_WFL1/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "CPWAdminData",
+   "rsaccoCPW",
+   "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer",
+   "public",
+   "CPW Administrative Boundary AGOL hosted web service data to provide public access to CPW data including CPW Facilities, "
+  ],
+  [
+   "CPWHPHTerrestrialData",
+   "rsaccoCPW",
+   "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWHPHTerrestrialData/FeatureServer",
+   "public",
+   "CPW High Priority Habitat (HPH) data. This data was compiled for the Colorado Energy & Carbon Management Commission in r"
+  ],
+  [
+   "CPW All Species Activity Mapping Data Web Services",
+   "rsaccoCPW",
+   "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSpeciesData/FeatureServer",
+   "public",
+   "This is part of the Species Activity Mapping (SAM), which provides information on wildlife distributions to public and p"
+  ],
+  [
+   "All Colorado Wildlife Movement Data",
+   "NMatthews_retail",
+   "https://services.arcgis.com/PMTtzuTB6WiPuNSv/arcgis/rest/services/CPW_Wildlife_Movement_Data/FeatureServer",
+   "public",
+   "CPW wildlife habitat areas and migration patterns"
+  ],
+  [
+   "SAM Data 2023",
+   "bhoeppner_rpgres",
+   "https://services7.arcgis.com/hM64JlcTb9I6RENl/arcgis/rest/services/SAM_Data_2023/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "Public_Access_Program_MASTER_VIEW",
+   "martinwi",
+   "https://services5.arcgis.com/rqsYvPKZmvSrSWbw/arcgis/rest/services/Public_Access_Program_MASTER_VIEW/FeatureServer",
+   "public",
+   "The purpose of this dataset is to show Public Access Property boundaries for use by SLB staff. This dataset is created f"
+  ]
+ ],
+ "WDFW wildlife areas boundaries": [
+  [
+   "Wildlife Areas",
+   "WDFWAdministrator",
+   "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/MapServices/WildlifeAreas/MapServer/0",
+   "public",
+   "The purpose of this feature class is to provide an attribute based approach for identifying lands where 1) hunting oppor"
+  ],
+  [
+   "Primarily Natural Resources",
+   "sarah.idczak_DEQ",
+   "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer",
+   "public",
+   "Primarily natural resources in Oregon that could be impacted by spills of oil and hazardous materials."
+  ],
+  [
+   "Grande Ronde _ Imnaha Basin Habitat Data_WFL1",
+   "alex@grmw.org0",
+   "https://services3.arcgis.com/OXQOnvnrZqcEnhNx/arcgis/rest/services/Grande_Ronde___Imnaha_Basin_Habitat_Data_WFL1/FeatureServer",
+   "public",
+   "Various data pertaining to watershed health and fish habitat"
+  ],
+  [
+   "Federally Protected Species - Designated Critical Habitat",
+   "idahofishandgame",
+   "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/FedCriticalHabitatANDEssentialFishHabitat/FeatureServer",
+   "public",
+   "Idaho's Final and Proposed Federally Designated Critical Habitat and Essential Fish Habitat."
+  ],
+  [
+   "High Resolution Change Detection",
+   "WDFWAdministrator",
+   "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/MapServices/WDFWGeospatialOpenDataCollection/MapServer/1",
+   "public",
+   "The data is intended to help monitor and assess trends in land cover change over time.  The polygons represent areas whi"
+  ],
+  [
+   "ECY",
+   "WAECY_Geoservices",
+   "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/ECY/FeatureServer",
+   "public",
+   "This map represents the collection of authoritative GIS datasets produced and distributed by the Washington State Depart"
+  ],
+  [
+   "Conservation Assessment for the Dabob Bay Natural Area_ 2025 v2_WFL1",
+   "NWI3407",
+   "https://services3.arcgis.com/ojHXEqtO3LYLuF9P/arcgis/rest/services/Conservation_Assessment_for_the_Dabob_Bay_Natural_Area__2025_v2_WFL1/FeatureServer",
+   "public",
+   "Conservation Assessment for the Dabob Bay Natural Area, 2025 v2"
+  ],
+  [
+   "SWIFD Categories",
+   "WhatcomGIS",
+   "https://services1.arcgis.com/6jEyBm2OMIBxuM1E/arcgis/rest/services/SWIFD_Categories_Public/FeatureServer",
+   "public",
+   "SWIFD is the Statewide Washington Integrated Fish Distribution, presented as a linear featureclass based on WA single st"
+  ]
+ ],
+ "WDFW water access sites": [
+  [
+   "WFC watertyping survey data - public",
+   "andrew_wfc",
+   "https://services1.arcgis.com/yIQYYlo4oilLcDsy/arcgis/rest/services/watertyping_survey_data_PUBLIC/FeatureServer",
+   "public",
+   "Data from Wild Fish Conservancy's wateryping surveys"
+  ],
+  [
+   "Critical_Areas",
+   "NP_GIS",
+   "https://services7.arcgis.com/5d703jjhemO6FlIW/arcgis/rest/services/Critical_Areas/FeatureServer",
+   "public",
+   "Critical Areas City of Normandy Park"
+  ],
+  [
+   "Grande Ronde _ Imnaha Basin Habitat Data_WFL1",
+   "alex@grmw.org0",
+   "https://services3.arcgis.com/OXQOnvnrZqcEnhNx/arcgis/rest/services/Grande_Ronde___Imnaha_Basin_Habitat_Data_WFL1/FeatureServer",
+   "public",
+   "Various data pertaining to watershed health and fish habitat"
+  ],
+  [
+   "ECY",
+   "WAECY_Geoservices",
+   "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/ECY/FeatureServer",
+   "public",
+   "This map represents the collection of authoritative GIS datasets produced and distributed by the Washington State Depart"
+  ],
+  [
+   "BL_Public_Portal_WFL1",
+   "adamkwaken",
+   "https://services8.arcgis.com/zzJ2UPY3tNkBWkep/arcgis/rest/services/BL_Public_Portal_WFL1/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "Friends of the San Juans' Shoreline Ecosystem Habitat Map",
+   "Fr1end3",
+   "https://services9.arcgis.com/AXFsXjicw0JApvnd/arcgis/rest/services/Shoreline_map_2_WFL1/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "Tulalip Fish Passage Coordination Tool 2.0",
+   "ncoumou_Tulalip",
+   "https://services5.arcgis.com/qHNTICvY6eAZFykW/arcgis/rest/services/Tulalip_Fish_Passage_Coordination_Tool_2_0_WFL1/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "SIQ_Animals",
+   "NWStraits_Commission",
+   "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/SIQ_Animals/FeatureServer",
+   "public",
+   "SoundIQ animals from NWStraits Marine Resource Committees (MRC) forage fish egg surveys, salmon probability,  WDFW forag"
+  ]
+ ],
+ "IDFG access areas": [
+  [
+   "Game Management Units",
+   "idahofishandgame",
+   "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/GameManagementUnits/FeatureServer",
+   "public",
+   "Idaho Fish and Game's Game Management Units"
+  ],
+  [
+   "Primarily Natural Resources",
+   "sarah.idczak_DEQ",
+   "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer",
+   "public",
+   "Primarily natural resources in Oregon that could be impacted by spills of oil and hazardous materials."
+  ],
+  [
+   "Idaho Conservation Planner Administrative Boundaries",
+   "idahofishandgame",
+   "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IdahoConservationPlannerAdministrativeBoundaries/FeatureServer",
+   "public",
+   "Various administrative boundary layers from IDFG and other governmental organizations in Idaho."
+  ],
+  [
+   "Wildlife Management Areas",
+   "idahofishandgame",
+   "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer",
+   "public",
+   "This dataset was created as a continuation of the Idaho Fish and Game (IDFG) land ownership/management mapping project. "
+  ],
+  [
+   "Grande Ronde _ Imnaha Basin Habitat Data_WFL1",
+   "alex@grmw.org0",
+   "https://services3.arcgis.com/OXQOnvnrZqcEnhNx/arcgis/rest/services/Grande_Ronde___Imnaha_Basin_Habitat_Data_WFL1/FeatureServer",
+   "public",
+   "Various data pertaining to watershed health and fish habitat"
+  ],
+  [
+   "Federally Protected Species - Designated Critical Habitat",
+   "idahofishandgame",
+   "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/FedCriticalHabitatANDEssentialFishHabitat/FeatureServer",
+   "public",
+   "Idaho's Final and Proposed Federally Designated Critical Habitat and Essential Fish Habitat."
+  ],
+  [
+   "FWS R1 FA Columbia River Fisheries Program Office Dams on Lamprey Distribution",
+   "todd_gilmore@fws.gov_fws",
+   "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWS_R1_FA_Columbia_River_Fisheries_Program_Office_Dams_on_Lamprey_Distribution/FeatureServer",
+   "public",
+   "Selection of dams that fall on pacific lamprey distribution from overall Streamnet Dam database."
+  ],
+  [
+   "BLM_Natl_Solar_Mapper",
+   "cherbertson@blm.gov_BLM_EGIS",
+   "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Solar_Mapper/FeatureServer",
+   "public",
+   "BLM National Solar Mapper for the Solar PEIS "
+  ]
+ ],
+ "Missouri Department of Conservation conservation areas": [
+  [
+   "StLouis_CenterPoints",
+   "MDC_Fisheries",
+   "https://services1.arcgis.com/BEFhRGD6ppzvv08z/arcgis/rest/services/StLouis_CenterPoints/FeatureServer",
+   "public",
+   "The Water Body Details layer provides more specific information about each water body including name, size (length for r"
+  ],
+  [
+   "KansasCity_CenterPoints",
+   "MDC_Fisheries",
+   "https://services1.arcgis.com/BEFhRGD6ppzvv08z/arcgis/rest/services/KansasCity_CenterPoints/FeatureServer",
+   "public",
+   "The Water Body Details layer provides more specific information about each water body including name, size (length for r"
+  ],
+  [
+   "Caroline_Conservation_Easements",
+   "jamie_cvg",
+   "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
+   "public",
+   "The PAD-US geodatabase was originally developed to organize and assess the management status (i.e., apply 'GAP Status Co"
+  ],
+  [
+   "Land Ownership",
+   "Geothermal0",
+   "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
+   "public",
+   "The PAD-US geodatabase was originally developed to organize and assess the management status (i.e. apply 'GAP Status Cod"
+  ],
+  [
+   "Protected area with sustainable use of natural resources (PADUS)",
+   "sviars@americanrivers.org_Amrivers",
+   "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer",
+   "public",
+   "The PAD-US geodatabase was originally developed to organize and assess the management status (i.e. apply 'GAP Status Cod"
+  ],
+  [
+   "Protected Areas Database of the United States (PAD-US)",
+   "lindsjor@oregonstate.edu_OSUGISci",
+   "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/HVRA_Source_Data_PADUS2_0Combined_DOD_Fee_Designation_Easement_OR/FeatureServer",
+   "public",
+   "The PAD-US geodatabase was originally developed to organize and assess the management status (i.e. apply 'GAP Status Cod"
+  ],
+  [
+   "BLM_Lands",
+   "bhanceCLLC",
+   "https://services5.arcgis.com/XhZs5lLsWDmZpTlD/arcgis/rest/services/BLM_Lands/FeatureServer",
+   "public",
+   "The PAD-US geodatabase was originally developed to organize and assess the management status (i.e. apply 'GAP Status Cod"
+  ],
+  [
+   "National park (PADUS)",
+   "sviars@americanrivers.org_Amrivers",
+   "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/National_park_(PADUS)/FeatureServer",
+   "public",
+   "The PAD-US geodatabase was originally developed to organize and assess the management status (i.e. apply 'GAP Status Cod"
+  ]
+ ],
+ "Nebraska Game and Parks Commission public access areas": [
+  [
+   "Boating App Web Layers",
+   "Zach.Horstman",
+   "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Boating_App_Web_Layers/FeatureServer",
+   "public",
+   "Boating Web Layers"
+  ],
+  [
+   "Rainwater Basin Wetland Complex Watershed Restorations_WFL1",
+   "roger_grosse@fws.gov_fws",
+   "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/Rainwater_Basin_Wetland_Complex_Watershed_Restorations_WFL1/FeatureServer",
+   "public",
+   "Rainwater Basin wetland restorations that include irrigation re-use or concentration pit fills.  Watershed restorations "
+  ],
+  [
+   "Public Boating Sites (Restrictions Apply)",
+   "Zach.Horstman",
+   "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Public_Boating_Sites_OPEN_DATA_PORTAL/FeatureServer",
+   "public",
+   "Boating Web Layers"
+  ],
+  [
+   "Easement_NCED_FL_08282020",
+   "jane_cooke@fws.gov_fws",
+   "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/Easement_NCED_FL_08282020/FeatureServer",
+   "public",
+   "The National Conservation Easement Database (NCED) is a collaborative venture to compile easement records from land trus"
+  ],
+  [
+   "Platte River Expo Layers with restrooms and Roads Layers_WFL1",
+   "NGPC.GISAdmin",
+   "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Platte_River_Expo_Layers_WFL1/FeatureServer",
+   "public",
+   "platte"
+  ],
+  [
+   "Nebraska Biologically Unique Landscapes 2011",
+   "jdcermak",
+   "https://services3.arcgis.com/EbocRUnjE7nGM2SS/arcgis/rest/services/Nebraska_Biologically_Unique_Landscapes_2011/FeatureServer",
+   "public",
+   "The purpose of the data set is to provide the public with information about areas in Nebraska which offer some of the be"
+  ],
+  [
+   "Trail Collector Test",
+   "tanner.hurst",
+   "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Trail_Collector_Test/FeatureServer",
+   "public",
+   "Trail Collector Test"
+  ],
+  [
+   "Weigand Marina Expansion Map_WFL1",
+   "tanner.hurst",
+   "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Weigand_Marina_Expansion_Map_WFL1/FeatureServer",
+   "public",
+   "Made to provide a visual aid for marina survey"
+  ]
+ ],
+ "New Hampshire conservation public lands GRANIT": [
+  [
+   "NH Conservation and Public Lands view",
+   "kcallahan",
+   "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NH_Conservation_and_Public_Lands_view/FeatureServer",
+   "public",
+   "Conservation and Public Lands data from NH GRANIT with NH Fish and Game Department updates March 2025"
+  ],
+  [
+   "New Hampshire Conservation/Public Lands",
+   "NHGRANIT",
+   "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/6",
+   "public",
+   "The conservation/public lands layer provides information on land ownership patterns in the state. The boundaries are app"
+  ],
+  [
+   "Harts Location Upper Saco StoryMap Map_WFL1",
+   "FBE-Field",
+   "https://services7.arcgis.com/8jJivE2icUo1q3XR/arcgis/rest/services/Harts_Location_Upper_Saco_StoryMap_Map_WFL1/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "NRPC Open Data - All Communities",
+   "skustron",
+   "https://services6.arcgis.com/2ZriDy2NFXltCIFR/arcgis/rest/services/NRPCOpenData/FeatureServer",
+   "public",
+   "NRPC Open Data, a project of the Nashua Regional Planning Commission GIS Group"
+  ],
+  [
+   "Manageable Acreage Map_WFL1",
+   "NHDFL_GIS_Admin",
+   "https://services8.arcgis.com/mwZAU6m1MPEVxdIO/arcgis/rest/services/Manageable_Acreage_Map_WFL1/FeatureServer",
+   "public",
+   "Manageable acreage map for dashboard"
+  ],
+  [
+   "NRPC Open Data - Merrimack",
+   "skustron",
+   "https://services6.arcgis.com/2ZriDy2NFXltCIFR/arcgis/rest/services/NRPC_Open_Data_Merrimack_v2/FeatureServer",
+   "public",
+   "NRPC Open Data, a project of the Nashua Regional Planning Commission GIS Group"
+  ],
+  [
+   "New Hampshire Conservation and Public Lands",
+   "db1_wellesley",
+   "https://services1.arcgis.com/rYdMz5wrhDgWXPFk/arcgis/rest/services/New_Hampshire_Conservation_and_Public_Lands/FeatureServer",
+   "public",
+   "Conservation/Public Lands data layer contains a digital record of parcels of land of two or more acres that are mostly u"
+  ],
+  [
+   "NRPC Open Data - Lyndeborough",
+   "skustron",
+   "https://services6.arcgis.com/2ZriDy2NFXltCIFR/arcgis/rest/services/NRPC_Open_Data_Lyndeborough_v2/FeatureServer",
+   "public",
+   "NRPC Open Data, a project of the Nashua Regional Planning Commission GIS Group"
+  ]
+ ],
+ "MDWFP wildlife management areas": [
+  [
+   "WFL2_Basemap_Items",
+   "Rachel_CCE",
+   "https://services6.arcgis.com/8EipYlXFYbtSN973/arcgis/rest/services/WFL2_Basemap_Items/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "State Wildlife Action Plan Conservation Priority Areas",
+   "Christopher_Tracey_NatureServe",
+   "https://services.arcgis.com/EVsTT4nNRCwmHNyb/arcgis/rest/services/SWAP_Mapping/FeatureServer",
+   "public",
+   "Comprehensive collection of conservation priority area maps from various U.S. states, showing focus areas for wildlife a"
+  ]
+ ],
+ "LDWF wildlife management areas": [
+  [
+   "LDWF_WMA",
+   "LDWF_ArcGIS1",
+   "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA/FeatureServer",
+   "public",
+   "The LDWF manages over 1.6 million acres of Wildlife Management Areas (WMAs), Refuges and Conservation Areas throughout t"
+  ],
+  [
+   "LDWF_WildlifeRefuge",
+   "LDWF_ArcGIS1",
+   "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WildlifeRefuge/FeatureServer",
+   "public",
+   "The LDWF manages about 1.56 million acres of Wildlife Management Areas (WMAs), Refuges and Conservation Areas throughout"
+  ],
+  [
+   "WhiteLake",
+   "LDWF_ArcGIS1",
+   "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/WhiteLake/FeatureServer",
+   "public",
+   "The LDWF manages about 1.56 million acres of Wildlife Management Areas (WMAs), Refuges and Conservation Areas throughout"
+  ],
+  [
+   "Grand Isle Coastal Permits and Jurisdictions _ Draft 4_WFL1",
+   "FEMA_HQ_Recovery_GDAC",
+   "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Grand_Isle_Coastal_Permits_and_Jurisdictions___Draft_4_WFL1/FeatureServer",
+   "public",
+   "This web map displays coastal permits, boundaries, and jurisdictions around Grand Isle."
+  ],
+  [
+   "Fidelis",
+   "brooks.andrews_CSRS_GIS",
+   "https://services6.arcgis.com/1fGAZVgZnPx4zcNH/arcgis/rest/services/Fidelis/FeatureServer",
+   "public",
+   "Fidelis"
+  ],
+  [
+   "LDWF_WMA_Refuge",
+   "LDWF_ArcGIS1",
+   "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer",
+   "public",
+   "The LDWF manages over 1.6 million acres of Wildlife Management Areas (WMAs), Refuges and Conservation Areas throughout t"
+  ],
+  [
+   "WMA_2021",
+   "LDWF_ArcGIS1",
+   "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/WMA_2021/FeatureServer",
+   "public",
+   "The LDWF manages over 1.6 million acres of Wildlife Management Areas (WMAs), Refuges and Conservation Areas throughout t"
+  ],
+  [
+   "Fidelis",
+   "BRAndrews_westwood",
+   "https://services.arcgis.com/FqQ2BQIKVGpUWqAa/arcgis/rest/services/Fidelis/FeatureServer",
+   "public",
+   "Fidelis"
+  ]
+ ],
+ "MassWildlife wildlife management areas": [
+  [
+   "MassWildlifeLands",
+   "kevinr",
+   "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/MassWildlifeLands/FeatureServer",
+   "public",
+   "Department of Fish and Game acquisitions for map display, planning and analysis.  Source: DFG"
+  ],
+  [
+   "MA Stream Temperature and Thermal Habitat - Baseline (By thermal class)",
+   "michael.lachance",
+   "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/MASTATH_Flowlines/FeatureServer",
+   "public",
+   "Baseline stream temperature and thermal habitat (i.e., cold water fish habitat) classification in streams across the sta"
+  ],
+  [
+   "Wildlife Management Area (WMA) Boundaries within Ware River Watershed",
+   "DWSP_erica.tefft",
+   "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/WMA_Boundary_PUBLIC_VIEW/FeatureServer",
+   "public",
+   "Interior Wildlife Management Areas (WMAs) on Department of Conservation and Recreation, Division of Water Supply Protect"
+  ],
+  [
+   "MassWildlifeLands_View",
+   "kevinr",
+   "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Test_DCR_view/FeatureServer",
+   "public",
+   "DFG OpenSpace view for the DCR field maps.  Differences from typical OpenSpace changes: Attributes and Geometry.  This l"
+  ],
+  [
+   "Blackstone_Basemap_V2_WFL1",
+   "cmclaren3",
+   "https://services7.arcgis.com/9cUrrtJo3LxdX7Vr/arcgis/rest/services/Blackstone_Basemap_V2_WFL1/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "Vegetation Communities of Marthas Vineyard",
+   "mvdukes",
+   "https://services1.arcgis.com/FNsEJ848HT5uDOHD/arcgis/rest/services/Vegetation_Communities_of_Marthas_Vineyard/FeatureServer",
+   "public",
+   "Minor revision date: 2/14/2025.  This dataset is the vegetation natural community mapping for the island of Martha's Vin"
+  ],
+  [
+   "Blackstone Watershed Collaborative Basemap V1_WFL1",
+   "cmclaren3",
+   "https://services7.arcgis.com/9cUrrtJo3LxdX7Vr/arcgis/rest/services/Blackstone_Watershed_Collaborative_Basemap_V1_WFL1/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "Wildlife Management Areas",
+   "PepperellAdmin",
+   "https://services5.arcgis.com/ul2HkPnjmlM1iEE4/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer",
+   "public",
+   "MassWildlife owns and manages over 220,000 acres of land. All WMAs and WCEs are open to hunting, fishing, trapping, and "
+  ]
+ ],
+ "Utah DWR wildlife management areas": [
+  [
+   "Manti_La Sal Draft EIS Forest Plan Revision_WFL1",
+   "USFSRegion04_MLNF",
+   "https://services1.arcgis.com/gGHDlz6USftL5Pau/arcgis/rest/services/Manti_La_Sal_Draft_EIS_Forest_Plan_Revision_WFL1/FeatureServer",
+   "public",
+   "Manti-La Sal Draft Environmental Impact Statement Forest Plan Revision"
+  ],
+  [
+   "USR_IRWM",
+   "SNAlliance",
+   "https://services6.arcgis.com/MtSzpOZ2FMytnchL/arcgis/rest/services/USR_IRWM/FeatureServer",
+   "public",
+   "Feature service created for the Upper Sacramento River IRWM for the creation of their IRWM Project Data Management Syste"
+  ],
+  [
+   "CABY_POLYGONS",
+   "SNAlliance",
+   "https://services6.arcgis.com/MtSzpOZ2FMytnchL/arcgis/rest/services/CABY_POLYGONS/FeatureServer",
+   "public",
+   "Feature service created for the CABY IRWM for the creation of their IRWM Project Data Management System."
+  ],
+  [
+   "Public Access Properties (WMAs)",
+   "dwr.timmons",
+   "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ULTRA_Properties_2_view/FeatureServer",
+   "public",
+   "DWR Wildlife Management Areas (WMA) and other public access properties and related attributes."
+  ],
+  [
+   "YM_USGS_USFS",
+   "SNAlliance",
+   "https://services6.arcgis.com/MtSzpOZ2FMytnchL/arcgis/rest/services/YM_USGS_USFS/FeatureServer",
+   "public",
+   "Data layers to support the Yosemite-Mariposa IRWM Project Data Management Application."
+  ],
+  [
+   "BLM_Natl_Solar_Mapper",
+   "cherbertson@blm.gov_BLM_EGIS",
+   "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Solar_Mapper/FeatureServer",
+   "public",
+   "BLM National Solar Mapper for the Solar PEIS "
+  ],
+  [
+   "Utah Beaver Restoration Assessment",
+   "UtahAGRC",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Utah_Beaver_Restoration_Assessment/FeatureServer",
+   "public",
+   "The Utah statewide Beaver Restoration Assessment Tool (BRAT) is a decision support and planning tool for beaver manageme"
+  ],
+  [
+   "2026 Elk Bull General Season Any Bull",
+   "dwrdata",
+   "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/2026ElkBullGeneralSeasonAnyBull2/FeatureServer",
+   "public",
+   "2026 General Season Any Bull Elk hunt boundaries"
+  ]
+ ],
+ "Connecticut DEEP state parks forests boundaries": [
+  [
+   "DEEP Property",
+   "deepgis",
+   "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_DEEP_Property/FeatureServer",
+   "public",
+   "DEEP Property contains property that comprises DEEP facilities such as state forests, parks, and wildlife management are"
+  ],
+  [
+   "2011 Protected Open Space Mapping Set",
+   "deepgis",
+   "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2011_Protected_Open_Space_Mapping/FeatureServer",
+   "public",
+   "Use these layers to show protected open space as defined in the Protected Open Space Mapping and Protected Open Space Ma"
+  ],
+  [
+   "Connecticut_Open_for_Hunting_New Schema",
+   "karenz",
+   "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_Open_for_Hunting_New_Schema/FeatureServer",
+   "public",
+   "Areas on state managed and leased lands open to hunting within the state of Connecticut. "
+  ],
+  [
+   "State Wildlife Action Plan Conservation Opportunity Areas Set",
+   "deepgis",
+   "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer",
+   "public",
+   "State Wildlife Action Plan Conservation Opportunity Areas Set"
+  ],
+  [
+   "HiddenValleyExpansion",
+   "SteepRockAssoc",
+   "https://services8.arcgis.com/NVhzfyOHRQEbSqki/arcgis/rest/services/HiddenValleyExpansion/FeatureServer",
+   "public",
+   "Hidden Valley Expansion and Protected Land Context"
+  ],
+  [
+   "CT_Outdoor_Recreation_20160209",
+   "deepgis",
+   "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer",
+   "public",
+   "Locations to access DEEP managed parks and forests."
+  ],
+  [
+   "localmodel_generalizedprj",
+   "MBurns_RiverCOG",
+   "https://services7.arcgis.com/uH7GnAlGDzMooG4B/arcgis/rest/services/localmodel_generalizedprj/FeatureServer",
+   "public",
+   "Project Description\n\nThe unique and  globally significant  lower Connecticut River region , features beautiful coastal l"
+  ],
+  [
+   "regional_model_final_3_just_lna_rank",
+   "MBurns_RiverCOG",
+   "https://services7.arcgis.com/uH7GnAlGDzMooG4B/arcgis/rest/services/regional_model_final_3_just_lna_rank/FeatureServer",
+   "public",
+   " Conservation Planning Tool for the Lower Connecticut River and Coastal Region\n 2025 Update\nLower Connecticut River Land"
+  ]
+ ],
+ "Indiana DNR properties": [
+  [
+   "Indiana Trails Inventory Open Trails",
+   "dnrgis_indnr",
+   "https://gisdata.in.gov/server/rest/services/Hosted/Trails_AGOL_RO/FeatureServer",
+   "public",
+   "Public, off-road recreation and transportation trails in Indiana that are included in the Indiana Trails Inventory and a"
+  ],
+  [
+   "DRZCorridors2019publicparcels",
+   "MBenavidezWestrich@dnr.IN.gov_indnr",
+   "https://services.arcgis.com/2Mcx1M1MORKfBNPM/arcgis/rest/services/DRZCorridors2019publicparcels/FeatureServer",
+   "public",
+   "Public lands included in the 2019 Deer Reduction Zone Corridors."
+  ],
+  [
+   "DRZCorridors2019allparcels",
+   "MBenavidezWestrich@dnr.IN.gov_indnr",
+   "https://services.arcgis.com/2Mcx1M1MORKfBNPM/arcgis/rest/services/DRZCorridors2019allparcels/FeatureServer",
+   "public",
+   "Land parcels included in the 2019 Deer Reduction Zone Corridors."
+  ],
+  [
+   "IN DNR Properties",
+   "dnrgis_indnr",
+   "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer",
+   "public",
+   "Approximate boundaries of conservation lands managed by the Indiana Department of Natural Resources that are open to the"
+  ],
+  [
+   "Dixon West_ LLC_WFL1",
+   "brook.price_ibvenergy",
+   "https://services7.arcgis.com/FKurys6L1rsymCO4/arcgis/rest/services/Dixon_West__LLC_WFL1/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "Properties with Public Hunting, features",
+   "dnrgis_indnr",
+   "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_Live_HUNT/FeatureServer",
+   "public",
+   "Properties with public hunting areas have been compiled by the Indiana Department of Natural Resources; point features."
+  ],
+  [
+   "Public Properties CWD Surveillance 2026 Public",
+   "EMccallen@dnr.IN.gov_indnr",
+   "https://services.arcgis.com/2Mcx1M1MORKfBNPM/arcgis/rest/services/Public_Properties_CWD_Surveillance_2024_Public/FeatureServer",
+   "public",
+   "Public view of public government locations collecting CWD samples during the 2026-2027 deer season."
+  ],
+  [
+   "Private Properties CWD Surveillance 2026 Public",
+   "EMccallen@dnr.IN.gov_indnr",
+   "https://services.arcgis.com/2Mcx1M1MORKfBNPM/arcgis/rest/services/Private_Properties_CWD_Surveillance_2024_Public/FeatureServer",
+   "public",
+   "Public view of layer of private business locations collecting CWD samples during the 2026-2027 deer season."
+  ]
+ ],
+ "Alaska state park units boundaries": [
+  [
+   "USA National Park Service Lands",
+   "esri_landscape2",
+   "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_National_Park_Service_Lands_20170930/FeatureServer",
+   "public",
+   "This layer displays the administrative boundaries of lands managed by the U.S. National Park Service. (Retiring)"
+  ],
+  [
+   "Transportation (Roads and Railroads)",
+   "Esri_US_Federal_Data",
+   "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Transportation_v1/FeatureServer",
+   "public",
+   "This feature layer, utilizing National Geospatial Data Asset (NGDA) data from the U.S. Census Bureau, displays primary r"
+  ],
+  [
+   "Wilderness Areas in the United States",
+   "wildernesswebmaster99",
+   "https://services1.arcgis.com/ERdCHt0sNM6dENSD/arcgis/rest/services/Wilderness_Areas_in_the_United_States/FeatureServer",
+   "public",
+   "The National Wilderness Preservation System includes wilderness areas in the United States designated by the Wilderness "
+  ],
+  [
+   "(EGP) USA Wilderness",
+   "egp_admin",
+   "https://services1.arcgis.com/ERdCHt0sNM6dENSD/arcgis/rest/services/Wilderness_Areas_in_the_United_States/FeatureServer",
+   "public",
+   "This layer shows all wilderness areas and non-federal lands within wilderness areas in the United States, categorized by"
+  ],
+  [
+   "National Wildland Explorer ",
+   "TWSAdmin",
+   "https://services1.arcgis.com/IAQQkLXctKHrf8Av/arcgis/rest/services/National_Wildland_Explorer_updates_2025_WFL1/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "FWS_R7_Realty_Conservation_System_Units_feature_layer",
+   "scott_mcgee@fws.gov_fws",
+   "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWS_R7_Realty_Conservation_System_Units_feature_layer/FeatureServer",
+   "public",
+   "This feature service displays the Conservation System Units (CSU) within the State of Alaska."
+  ],
+  [
+   "County Subdivisions",
+   "Esri_US_Federal_Data",
+   "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/County_Subdivisions_v1/FeatureServer",
+   "public",
+   "This feature layer, utilizing National Geospatial Data Asset (NGDA) data from the U.S. Census Bureau, displays the bound"
+  ],
+  [
+   "Idaho_Fire_Restrictions_v2",
+   "bweihausen_nifc",
+   "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/Idaho_Fire_Restrictions_v2/FeatureServer",
+   "public",
+   "Idaho fire Restriction Zones and Zones by Agency for a better more restricted Stage levels"
+  ]
+ ],
+ "Wisconsin DNR managed lands": [
+  [
+   "FL: Leased Hunting Lands (VPA/THAP)",
+   "Wi_DNR",
+   "https://utility.arcgis.com/usrsvcs/servers/28c93ee7ed534094a6fbb9523db427d2/rest/services/WM_VPA/WM_VPA_HUNT_LEASE_LAND_WTM/MapServer/0",
+   "public",
+   "Secured map service displaying the spatial representation of the Voluntary Public Access & Habitat Incentive Program and"
+  ],
+  [
+   "Web Feature Layer: Wisconsin Shoreline Inventory and Oblique Photo Viewer",
+   "gisjason_FloodScience",
+   "https://services3.arcgis.com/PwSEIra0zgvwmApz/arcgis/rest/services/Wisconsin_Shoreline_Inventory_and_Oblique_Photo_Viewer__WCMP__WFL1/FeatureServer",
+   "public",
+   "Hosted Web Feature Layer for the Wisconsin Shoreline Inventory and Oblique Photo Viewer. See the Web Mapping Application"
+  ],
+  [
+   "State Trail Segments",
+   "Wi_DNR_Data",
+   "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0",
+   "public",
+   "This layer provides information on state trails in Wisconsin, segmenting trails when specific attributes change along th"
+  ],
+  [
+   "DNR Managed Properties",
+   "Wi_DNR_Data",
+   "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/0",
+   "public",
+   "This layer is derived from the DNR Managed Lands dataset, dissolved on PROP_CODE. This layer contains fee simple (DNR ow"
+  ],
+  [
+   "Wisconsin County Forests",
+   "Wi_DNR_Data",
+   "https://services5.arcgis.com/Ul9AyFFeFTjf08DW/arcgis/rest/services/County_Forests/FeatureServer",
+   "public",
+   "County Forests layer dissolved by county from a stand (or forest management) layer used in the WI Forest Inventory & Rep"
+  ],
+  [
+   "DNR Managed Land Parcels",
+   "Wi_DNR_Data",
+   "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/1",
+   "public",
+   "This dataset contains DNR Managed Lands as parcels with local property names, and GIS and deed acreages.  Parcels are sy"
+  ],
+  [
+   "Wisconsin Tax Law Points",
+   "Wi_DNR_Data",
+   "https://services5.arcgis.com/Ul9AyFFeFTjf08DW/arcgis/rest/services/X13661_FR_GIS_TAXLAW_PT_SV/FeatureServer",
+   "public",
+   "Generalized point representations of lands enrolled in Managed Forest and Forest Crop Law Programs. Be aware: points do "
+  ],
+  [
+   "County and Local Roads",
+   "Wi_DNR_Data",
+   "https://dnrmaps.wi.gov/arcgis/rest/services/DW_Map_Dynamic/EN_Basic_Basemap_WTM_Ext_Dynamic_L16/MapServer/2",
+   "public",
+   "Wisconsin County and Local roads, derived from OpenStreetMap reprojected to WTM 83/91 and edited by Wisconsin Department"
+  ]
+ ],
+ "ODNR wildlife areas": [
+  [
+   "Appalachian Ohio Asset Data",
+   "taeil",
+   "https://services5.arcgis.com/t4xYDjfDFWC8eyBj/arcgis/rest/services/Appalachian_Ohio_Asset_Data/FeatureServer",
+   "public",
+   "The Appalachian Ohio Asset Map was produced through a collaborative effort between the Ohio Governor's Office of Appalac"
+  ],
+  [
+   "Appalachian Ohio Asset Map",
+   "taeil",
+   "https://services5.arcgis.com/t4xYDjfDFWC8eyBj/arcgis/rest/services/Appalachia_Ohio_Asset_Map/FeatureServer",
+   "public",
+   "The Appalachian Ohio Asset Map was produced through a collaborative effort between the Ohio Governor's Office of Appalac"
+  ],
+  [
+   "Extra Trails and ODNR",
+   "jgillow@pickaway.org",
+   "https://services6.arcgis.com/FhJ42byMw3LmPYCN/arcgis/rest/services/Extra_Trails_and_ODNR/FeatureServer",
+   "public",
+   "Pickaway County additional trails and ODNR Information"
+  ],
+  [
+   "HydroVIEW_2_2024_WFL1",
+   "Water_OHIOU",
+   "https://services5.arcgis.com/t4xYDjfDFWC8eyBj/arcgis/rest/services/HydroVIEW_2_2024_WFL1/FeatureServer",
+   "public",
+   "Hydrologically Visualize Impacted and Exceptional Watersheds (HydroVIEW)"
+  ],
+  [
+   "Controlled Hunt Survey",
+   "amosinsk_USCSSI",
+   "https://services1.arcgis.com/ZIL9uO234SBBPGL7/arcgis/rest/services/service_81ae32f657c04642b4829fcad8a32706/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "ODNR Points of Interest - Pickaway County",
+   "jgillow@pickaway.org",
+   "https://services6.arcgis.com/FhJ42byMw3LmPYCN/arcgis/rest/services/ODNR_Points_of_Interest/FeatureServer",
+   "public",
+   "This dataset is used to depict various features and locations on small format maps for generalized navigation purposes a"
+  ],
+  [
+   "MyMapService",
+   "dsexton_envdesigngroup",
+   "https://services8.arcgis.com/OWx5hehlR3kVShgl/arcgis/rest/services/MyMapService/FeatureServer",
+   "public",
+   "Watershed Protected Areas"
+  ],
+  [
+   "Marinas",
+   "ldslattery_OEMA",
+   "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_POI/MapServer/0",
+   "public",
+   "Marinas inventoried for the Ohio Department of Natural Resources. "
+  ]
+ ],
+ "Kansas KDWP public lands": [
+  [
+   "KDWP Spatial Directory_WFL1",
+   "jjones_KDWPT",
+   "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWP_Spatial_Directory_WFL1/FeatureServer",
+   "public",
+   "A spatial summary of KDWP offices and managed areas. "
+  ]
+ ],
+ "Tennessee state natural areas TDEC": [
+  [
+   "TDEC Public Access Lands",
+   "andrew.mcdonagh",
+   "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Access_Lands/FeatureServer",
+   "public",
+   "Polygon feature class representing the boundaries of all public access land under the Tennessee Department of Environmen"
+  ],
+  [
+   "ArcGISOnline_WebMap_WFL1",
+   "akalyanapu_tntech",
+   "https://services8.arcgis.com/qJpn8feEWHB40aWm/arcgis/rest/services/ArcGISOnline_WebMap_WFL1/FeatureServer",
+   "public",
+   "ArcGIS Pro File for Falling Water River Watershed Project"
+  ],
+  [
+   "TN State Scenic Rivers",
+   "NHunt73",
+   "https://services.arcgis.com/UnTXoPXBYERF0OH6/arcgis/rest/services/TN_ScenicRivers/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "FallingWaterRiverWatershed_gdb",
+   "egwhite44_tntech",
+   "https://services8.arcgis.com/qJpn8feEWHB40aWm/arcgis/rest/services/CORRECTED_Geodatabase_V3/FeatureServer",
+   "public",
+   "This file geodatabase contains vector data representing various geographic features within the Falling Water River Water"
+  ],
+  [
+   "Tennessee State Scenic Rivers",
+   "andrew.mcdonagh",
+   "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Tennessee_State_Scenic_Rivers/FeatureServer",
+   "public",
+   "Line feature class representing designated Tennessee State Scenic Rivers."
+  ],
+  [
+   "Tennessee Public Lands- TWRA",
+   "link.elmore@tnc.org_TNC",
+   "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/TN_Public_Lands/FeatureServer",
+   "public",
+   "External service from TWRA. Collection of state public lands for Tennessee, not including Federal land."
+  ],
+  [
+   "TN State Natural Area Points",
+   "andrew.mcdonagh",
+   "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Natural_Area_Points/FeatureServer",
+   "public",
+   "Point feature class representing the centroids within Tennessee State Natural Areas boundaries."
+  ],
+  [
+   "TN Scenic Rivers Lines",
+   "BG14033@tn.gov_TDEC",
+   "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Scenic_Rivers_line_view/FeatureServer",
+   "public",
+   "Line feature class representing rivers or river segments designated as Tennessee Scenic Rivers."
+  ]
+ ],
+ "Oregon state parks boundaries": [
+  [
+   "15_arcgis_online_huntmap",
+   "harneycounty",
+   "https://services3.arcgis.com/e3KSI9Py4B7m3xu6/arcgis/rest/services/15_arcgis_online_huntmap/FeatureServer",
+   "public",
+   "Harney County 2016"
+  ],
+  [
+   "OtherlayersforWatershed",
+   "SalemGIS",
+   "https://services.arcgis.com/kIA6yS9KDGqZL7U3/arcgis/rest/services/OtherlayersforWatershed/FeatureServer",
+   "public",
+   "Features within the North Santiam Watershed boundary or within Marion County. Inlcudes  the main highway, secondary stre"
+  ],
+  [
+   "National IA Frequency Zones Federal Public",
+   "DMP_Authoritative",
+   "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/DMP_National_IA_Frequency_Zones_Federal_Public/FeatureServer",
+   "public",
+   "Polygons delineate initial attack federal frequency zones in which FAA (Federal Aviation Administration) specified Air-t"
+  ],
+  [
+   "Park District Annexations",
+   "OregonMetro.RLIS",
+   "https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/Park_District_Annexations/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "Oregon State Parks",
+   "orstateparks",
+   "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer/0",
+   "public",
+   "Oregon State Park Boundaries"
+  ],
+  [
+   "Priority Wildlife Connectivity Areas",
+   "rachel.wheat_ODFW",
+   "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Priority_Wildlife_Connectivity_Areas/FeatureServer",
+   "public",
+   "This layer highlights ODFW Priority Wildlife Connectivity Areas. Priority Wildlife Connectivity Areas (PWCAs) represent "
+  ],
+  [
+   "Section 4_ Exercise 1_ Finding the Best Locations_ Cougar Habitat_2_WFL1",
+   "EsriTrainingSvc",
+   "https://services.arcgis.com/ue9rwulIoeLEI9bj/arcgis/rest/services/Section_4__Exercise_1__Finding_the_Best_Locations_and_Paths__Cougar_Habitat_2_WFL1/FeatureServer",
+   "public",
+   "Feature layer for the \u201cFinding the Best Locations: Cougar Habitat\u201d exercise in the Going Places with Spatial Analysis MO"
+  ],
+  [
+   "Strategic_Freight_Planning_Map_Viewer",
+   "OSFP.GIS",
+   "https://services1.arcgis.com/8CpMUd3fdw6aXef7/arcgis/rest/services/Strategic_Freight_Planning_Map_Viewer/FeatureServer",
+   "public",
+   "Strategic Freight Planning Map Viewer"
+  ]
+ ],
+ "Vermont state lands ANR": [
+  [
+   "ANR Lands Dataset (Parcel)",
+   "vtanrgis",
+   "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/39",
+   "public",
+   "Identify legal interest in lands (fee and non-fee) held by the three departments within the Vermont Agency of Natural Re"
+  ],
+  [
+   "Calais_Base_Map",
+   "CentralVTRPC",
+   "https://services2.arcgis.com/934qKLCgD0ZN6Uo0/arcgis/rest/services/Calais_Base_Map/FeatureServer",
+   "public",
+   "Data for the Town of Calais, VT web map"
+  ],
+  [
+   "ANR Land Dataset (Unit)",
+   "vtanrgis",
+   "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
+   "public",
+   "Identify legal interest in lands (fee and non-fee) held by the three departments within the Vermont Agency of Natural Re"
+  ],
+  [
+   "Roads (ANR Travel Routes)",
+   "vtanrgis",
+   "https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/10",
+   "public",
+   "Enterprise road data for ANR Lands."
+  ],
+  [
+   "Conserved Land Inventory",
+   "vtanrgis",
+   "https://services5.arcgis.com/Uzks6LSde6r23wwG/arcgis/rest/services/Conserved_Land_Inventory_Public_View/FeatureServer",
+   "public",
+   "The initial Vermont, Conserved Lands Inventory, responding to \u00a7 2803 (2) of Act 59, The Community Resilience and Biodive"
+  ],
+  [
+   "VTANR River Corridors",
+   "vtanrgis",
+   "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_WATER_SP_NOCACHE_v2/MapServer/176",
+   "public",
+   "River corridors are delineated to provide for the least erosive meandering and floodplain geometry toward which a river "
+  ],
+  [
+   "Use Value Appraisal Parcels",
+   "vtanrgis",
+   "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/41",
+   "public",
+   "UVA Forestland Parcels\nState of Vermont Parcels dataset joined to the Property Valuation Review database and the Use Val"
+  ],
+  [
+   "Conserved Lands - Other",
+   "vltgis",
+   "https://services1.arcgis.com/BkFxaEFNwHqX3tAw/arcgis/rest/services/FS_VCGI_OPENDATA_Cadastral_PROTECTEDLND_poly_SP_v2/FeatureServer/0",
+   "public",
+   ""
+  ]
+ ],
+ "Florida water management district lands": [
+  [
+   "Live Stream Gauges",
+   "esri_livefeeds2",
+   "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/Live_Stream_Gauges_v1/FeatureServer",
+   "public",
+   "Stream gauge observations of stage height and discharge contributed by the global GIS community."
+  ],
+  [
+   "MiamiGardens_Energov",
+   "tlattibeaudiere",
+   "https://services1.arcgis.com/nvgO38kfurKbA7B9/arcgis/rest/services/MiamiGardens_Energov/FeatureServer",
+   "public",
+   "Miami Gardens GIS Layers for implementation of Energov."
+  ],
+  [
+   "EVER_BND_CERPprojectlocations",
+   "Cpreston@nps.gov_nps",
+   "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/EVER_BND_CERPprojectlocations/FeatureServer",
+   "public",
+   "Comprehensive Everglades Restoration Plan (CERP) project location areas."
+  ],
+  [
+   "Elevations Contours and Depression",
+   "FDEPOpenDataPortal",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/LAND_SURFACE_ELEV/MapServer/0",
+   "public",
+   "This dataset was created to represent the land surface elevation at 1:24,000 scale for Florida."
+  ],
+  [
+   "Natural, Cultural, and Historical Resources",
+   "Jeohusua.Lugo@FloridaDEP.gov_FDEP",
+   "https://services1.arcgis.com/nRHtyn3uE1kyzoYc/arcgis/rest/services/Natural__Cultural__and_Historical_Resources_2/FeatureServer",
+   "public",
+   "A group layer containing the layer themes from the Natural, Cultural, and Historical Resources developed by Balmoral and"
+  ],
+  [
+   "Mitigation Bank Service Areas",
+   "FDEPOpenDataPortal",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/MITIGATION_BANKS/MapServer/1",
+   "public",
+   "The purpose of this layer is to aggregate service area spatial information associated with mitigation bank permits issue"
+  ],
+  [
+   "22_213 Pasco County FL Orange Belt Trail Study_WFL1",
+   "alta_organization",
+   "https://services2.arcgis.com/8uN5i97bMkq2Mzrt/arcgis/rest/services/22_213_Pasco_County_FL_Orange_Belt_Trail_Study_WFL1/FeatureServer",
+   "public",
+   "Map for the OBT trail Study in Pasco County FL"
+  ],
+  [
+   "Northern Turnpike Connector Layers",
+   "William.Isaacs@dot.state.fl.us_fdot",
+   "https://services1.arcgis.com/O1JpcwDW8sjYuddV/arcgis/rest/services/Northern_Turnpike_Connecter/FeatureServer",
+   "public",
+   "The mission of the Northern Turnpike Connector Task Force is to evaluate the Northern Turnpike Connector corridor, which"
+  ]
+ ],
+ "Illinois DNR sites boundaries": [
+  [
+   "FracTrackerNationalWells_Part1_012022",
+   "maps_ft",
+   "https://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/FracTrackerNationalWells_Part1_012022/FeatureServer",
+   "public",
+   "Wells for the following states: K (n=3,086); AL (n=7,374); AR (n=16,512); AZ (n=1,050); CA (n=64,390); CO (n=50,501); FL"
+  ],
+  [
+   "Trail_Project_Maps_2023_AGOL",
+   "AndrewShaw",
+   "https://services7.arcgis.com/iHDvaqpFKhNXOUCq/arcgis/rest/services/Trail_Project_Maps_2023_AGOL/FeatureServer",
+   "public",
+   "Updated BHRC Trails for 2023"
+  ],
+  [
+   "2023 Fires_WFL1",
+   "f59c141_sscmsu",
+   "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2023_Fires_WFL1/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "2021 Fires_WFL1",
+   "f59c141_sscmsu",
+   "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2021_Fires_WFL1/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "2021 Fixed_WFL1",
+   "f59c141_sscmsu",
+   "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2021_Fixed_WFL1/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "IDARNG Fire Prevention Plan 2024_WFL1",
+   "jacob.t.mendiola.nfg_IDARNG",
+   "https://services5.arcgis.com/FeaGMhyvOuOWv03n/arcgis/rest/services/IDARNG_Fire_Prevention_Plan_2024_WFL1/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "Aspect 2021_2023_WFL1",
+   "f59c141_sscmsu",
+   "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Aspect_2021_2023_WFL1/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "Colorado Dispatch Boundaries Merged",
+   "emy.keeling_CO_DFPC",
+   "https://services7.arcgis.com/KaDI8JW2y384fmrZ/arcgis/rest/services/Colorado_Dispatch_Boundaries_Merged/FeatureServer",
+   "public",
+   ""
+  ]
+ ],
+ "Mississippi state parks boundaries": [
+  [
+   "PAULIE",
+   "CityofSaintPaul",
+   "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/PAULIE/FeatureServer",
+   "public",
+   ""
+  ],
+  [
+   "TylerEPL",
+   "CityofSaintPaul",
+   "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/TylerEPL/FeatureServer",
+   "public",
+   "Feature service (test) to support Tyler EPL deployment"
+  ],
+  [
+   "Caroline_Conservation_Easements",
+   "jamie_cvg",
+   "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
+   "public",
+   "The PAD-US geodatabase was originally developed to organize and assess the management status (i.e., apply 'GAP Status Co"
+  ],
+  [
+   "Mississippi River Corridor Critical Area Overlay Zoning",
+   "CityofSaintPaul",
+   "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/Mississippi_River_Corridor_Critical_Area_Overlay_Zoning/FeatureServer",
+   "public",
+   "This is the official zoning layer showing the Mississippi River Corridor Critical Area zoning districts in effect in Sai"
+  ],
+  [
+   "Future Mississippi River Corridor Critical Area Overlay Zoning",
+   "CityofSaintPaul",
+   "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/Future_Mississippi_River_Corridor_Critical_Area_Overlay_Zoning/FeatureServer",
+   "public",
+   "This is the official zoning layer showing the future Mississippi River Corridor Critical Area zoning districts that will"
+  ],
+  [
+   "Land Ownership",
+   "Geothermal0",
+   "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
+   "public",
+   "The PAD-US geodatabase was originally developed to organize and assess the management status (i.e. apply 'GAP Status Cod"
+  ],
+  [
+   "Protected area with sustainable use of natural resources (PADUS)",
+   "sviars@americanrivers.org_Amrivers",
+   "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer",
+   "public",
+   "The PAD-US geodatabase was originally developed to organize and assess the management status (i.e. apply 'GAP Status Cod"
+  ],
+  [
+   "mississippi_headwaters_priority_areas_12_1_23",
+   "brinks31",
+   "https://services7.arcgis.com/26j4Vi9jWPFXTsxU/arcgis/rest/services/Lake_wshd_priorities_base_12_1_23/FeatureServer",
+   "public",
+   "Priority Lakes and Watersheds in Upper Mississippi Basin (from 1w1p, et. al)"
+  ]
+ ],
+ "Wyoming Game and Fish wildlife habitat management areas": [
+  [
+   "CPWHPHTerrestrialData",
+   "rsaccoCPW",
+   "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWHPHTerrestrialData/FeatureServer",
+   "public",
+   "CPW High Priority Habitat (HPH) data. This data was compiled for the Colorado Energy & Carbon Management Commission in r"
+  ],
+  [
+   "Greater Sage Grouse Habitat",
+   "USFSMapsandApps",
+   "https://services1.arcgis.com/gGHDlz6USftL5Pau/arcgis/rest/services/GSTC_GRSGHabitat_01/FeatureServer",
+   "public",
+   "This feature service contains all Greater Sage-grouse habitat representing formal GRSG Records of Decision"
+  ],
+  [
+   "CPWSB181TerrestrialData",
+   "rsaccoCPW",
+   "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSB181TerrestrialData/FeatureServer",
+   "public",
+   "CPW High Priority Habitat (HPH) data. This data was compiled for the Colorado Energy & Carbon Management Commission (ECM"
+  ],
+  [
+   "Elk_Crucial_Range",
+   "WyomingGameAndFish@wgfd",
+   "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Elk_Crucial_Range/FeatureServer",
+   "public",
+   "This data set was developed for statewide and regional use. By understanding the spatial and temporal patterns of land/h"
+  ],
+  [
+   "EV2020_Restrictions_HS_20191024",
+   "Yuying.Li@hdrinc.com_HDR",
+   "https://services.arcgis.com/04HiymDgLlsbhaV4/arcgis/rest/services/EV2020_Restrictions_HS_20191024/FeatureServer",
+   "public",
+   "EV2020 Restrictions"
+  ],
+  [
+   "Antelope_Crucial_Range",
+   "WyomingGameAndFish@wgfd",
+   "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Antelope_Crucial_Range/FeatureServer",
+   "public",
+   "This data set was developed for statewide and regional use. By understanding the spatial and temporal patterns of land/h"
+  ],
+  [
+   "MuleDeerCrucialRange",
+   "WyomingGameAndFish@wgfd",
+   "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/MuleDeerCrucialRange/FeatureServer",
+   "public",
+   "This data set was developed for statewide and regional use. By understanding the spatial and temporal patterns of land/h"
+  ],
+  [
+   "BLM_Natl_Solar_Mapper",
+   "cherbertson@blm.gov_BLM_EGIS",
+   "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Solar_Mapper/FeatureServer",
+   "public",
+   "BLM National Solar Mapper for the Solar PEIS "
+  ]
+ ]
+}
