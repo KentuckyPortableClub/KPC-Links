@@ -1,6 +1,6 @@
 # RO: POTA parks vs official land
 
-Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **197 of 1334** joined (same name + same kind), **470** to check, **667** nothing found. Nothing below is joined.
+Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **200 of 1334** joined (same name + same kind), **467** to check, **667** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -76,7 +76,6 @@ Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **RO-0260** Munții Măcinului National Landscape (National Landscape) → Munții Măcinului (EEA Natura 2000, similar name); Parcul Național Munții Macinului (EEA nationally designated areas, similar name); Măcin - Niculițel (EEA Natura 2000, the POTA pin is inside it (different name))
 - **RO-0261** Măcin - Niculițel National Landscape (National Landscape) → Măcin - Niculițel (EEA Natura 2000, similar name); Podișul Nord Dobrogean (EEA Natura 2000, the POTA pin is inside it (different name))
 - **RO-0262** Iezerul Călimanului National Nature Reserve (National Nature Reserve) → Călimani - Gurghiu (EEA Natura 2000, the POTA pin is inside it (different name)); Munții Călimani (EEA Natura 2000, the POTA pin is inside it (different name)); Rezervația Lacul Iezer din Călimani (EEA nationally designated areas, the POTA pin is inside it (different name)); Parcul Național Călimani (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **RO-0263** Cheile Bicazului - Hășmaș National Park (National Park) → Cheile Bicazului (EEA nationally designated areas, same name, more than one kind of area); Parcul Național Cheile Bicazului - Hășmaș (EEA nationally designated areas, same name, more than one kind of area)
 - **RO-0264** Castelul Mikó / Parcul Castelului Mikó Historic Site (Historic Site) → Munții Ciucului (EEA Natura 2000, the POTA pin is inside it (different name))
 - **RO-0265** Mausoleul de la Gura Secului National Battlefield (National Battlefield) → Toplița - Scaunul Rotund Borsec (EEA Natura 2000, the POTA pin is inside it (different name))
 - **RO-0268** Poiana Zânelor Borsec National Park (National Park) → Toplița - Scaunul Rotund Borsec (EEA Natura 2000, the POTA pin is inside it (different name))
@@ -316,7 +315,6 @@ Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **RO-0970** Allah Blair-Capidava National Park (National Park) → Allah Bair - Capidava (EEA Natura 2000, similar name)
 - **RO-0971** Iazurile Miheşu de Câmpie, Șăulia, Zau de Câmpie Natura 2000 (Natura 2000) → Iazurile Miheșu de Câmpie - Tăureni (EEA Natura 2000, similar name)
 - **RO-0972** Iazurile Tăureni Natura 2000 (Natura 2000) → Iazurile Miheșu de Câmpie - Tăureni (EEA Natura 2000, similar name)
-- **RO-0974** Piatra Craiului National Park (National Park) → Piatra Craiului (EEA nationally designated areas, same name, more than one kind of area); Parcul Național Piatra Craiului (EEA nationally designated areas, same name, more than one kind of area)
 - **RO-0982** Lacul Vidraru Area of Outstanding Natural Beauty (Area of Outstanding Natural Beauty) → Munții Făgăraș (EEA Natura 2000, the POTA pin is inside it (different name))
 - **RO-0983** Lacul Zigoneni Area of Outstanding Natural Beauty (Area of Outstanding Natural Beauty) → Lacurile de acumulare de pe Argeș (EEA Natura 2000, the POTA pin is inside it (different name))
 - **RO-0984** Lacul Vâlcele National Park (National Park) → Lacurile de acumulare de pe Argeș (EEA Natura 2000, the POTA pin is inside it (different name))
@@ -353,7 +351,6 @@ Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **RO-1082** Munții Metaliferi Natural Area (Natural Area) → Munții Metaliferi (EEA Natura 2000, same name, different kind of place)
 - **RO-1085** Munții Semenic Nature Recreation Area (Nature Recreation Area) → Semenic - Cheile Carașului (EEA Natura 2000, the POTA pin is inside it (different name)); Munții Semenic - Cheile Carașului (EEA Natura 2000, the POTA pin is inside it (different name)); Parcul Național Semenic - Cheile Carașului (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **RO-1086** Munții Almăjului-Locvei Natural Area (Natural Area) → Munții Almăjului - Locvei (EEA Natura 2000, same name, different kind of place); Porțile de Fier (EEA Natura 2000, the POTA pin is inside it (different name)); Parcul Natural Porțile de Fier (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **RO-1087** Cheile Nerei - Beușnița National Park (National Park) → Parcul Național Cheile Nerei - Beușnița (EEA nationally designated areas, same name, more than one kind of area); Rezervația Cheile Nerei - Beușnița (EEA nationally designated areas, same name, more than one kind of area)
 - **RO-1090** Dealul Haitău Belvedere Area of Outstanding Natural Beauty (Area of Outstanding Natural Beauty) → Munții Metaliferi (EEA Natura 2000, the POTA pin is inside it (different name))
 - **RO-1095** Poiana lui Mihai Vodă Historic Site (Historic Site) → Nordul Gorjului de Vest (EEA Natura 2000, the POTA pin is inside it (different name))
 - **RO-1096** Nordul Gorjului de Vest Biological Reserve (Biological Reserve) → Nordul Gorjului de Vest (EEA Natura 2000, same name, different kind of place)
