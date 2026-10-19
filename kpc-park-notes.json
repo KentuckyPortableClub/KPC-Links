@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-14",
+ "updated": "2026-10-19",
  "notes": [
   {
    "id": "417a19b8a22b",
@@ -11,6 +11,29 @@
    "date": "Oct 2026",
    "photos": [
     "photos/notes/417a19b8a22b-1.jpg"
+   ]
+  },
+  {
+   "id": "e00af0d5a4be",
+   "ref": "US-13598",
+   "call": "K4ZSR",
+   "type": "Where to set up",
+   "gps": "37°58'36.20\"N 85°00'32.18\"W",
+   "text": "**NOTE: you must be on the water, or on a KDFWR owned access point to activate this park.\n\nSmall parking lot, not very flat. Recommend small footprint activation, unless the parking lot is empty. Mobile activation would be great here. Entrance road is very curvy. Porta Jon was on site. Some RF noise (boats/houses nearby) but manageable. ALMOST NO cell service (T-Mobile network)",
+   "date": "Oct 2026",
+   "photos": []
+  },
+  {
+   "id": "1b29186736e8",
+   "ref": "US-13601",
+   "call": "K4ZSR",
+   "type": "Where to set up",
+   "gps": "38°13'04.09\"N 85°08'57.46\"W",
+   "text": "**NOTE: you must be on the water, or on a KDFWR owned access point to activate this park.\n\nNice bank fishing area and parking lot. Plenty of room to park, with open areas. Porta Jon was on site. Some RF noise (boats/houses nearby) but manageable. Good cell service (T-Mobile network)",
+   "date": "Oct 2026",
+   "photos": [
+    "photos/notes/1b29186736e8-1.jpg",
+    "photos/notes/1b29186736e8-2.jpg"
    ]
   }
  ]
