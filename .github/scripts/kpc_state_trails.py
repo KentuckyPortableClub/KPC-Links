@@ -270,6 +270,7 @@ for st, cand in jobs():
                 lines = forest(nm, la, lo); by, off = ('US Forest Service', True) if lines else ('', False)
             if not lines and (iso.startswith('US-') or iso[3:5].isalpha()):   # Oct 19: Canada too (provincial + Parks Canada layers)
                 lines, org = agency(nm, stc, la, lo, lim)
+                if lines and sum(seglen(l) for l in lines) < 0.3: lines = None   # Oct 19: a ~100 m scrap (Barron Canyon, Ontario) is not the trail
                 if lines: by, off = org, True
                 # Oct 17: an agency layer that only has a tiny piece (Empire State Trail 4 km) loses to a much longer OpenStreetMap line
                 if lines and sum(seglen(l) for l in lines) < 8:
