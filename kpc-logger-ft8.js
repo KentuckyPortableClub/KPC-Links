@@ -231,7 +231,7 @@
      On Android we let go of the mic while sending and take it back right after. */
   const ANDR = /Android/i.test(navigator.userAgent);
   let micOff = false;
-  function txMicOff() { if (!ANDR || S.txMic === 'keep' || !STREAM || micOff) return; micOff = true;
+  function txMicOff() { if (!ANDR || S.txMic !== 'free' || !STREAM || micOff) return; micOff = true; /* Oct 18: made things worse on Brandon's tablet (0 W), so it is off unless S.txMic = 'free' */
     try { SRC && SRC.disconnect(); } catch (e) {} try { STREAM.getTracks().forEach(t => t.stop()); } catch (e) {} SRC = null; STREAM = null; }
   async function txMicOn() { if (!micOff) return; micOff = false; if (!RUN || !AC) return;
     try { STREAM = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: S.inDev ? { exact: S.inDev } : undefined, echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1 } });
