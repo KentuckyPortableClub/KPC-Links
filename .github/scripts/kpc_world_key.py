@@ -99,7 +99,7 @@ _LOC = {'PL': r"park narodowy|park krajobrazowy|rezerwat przyrody|rezerwat|obsza
               r"und|im|am|an|der|die|das|des|von|bei|zum|zur"}
 for _c in EU: GEN[_c] = _LOC[_c] + r'|parc|parco|parque|krajobrazowy|naturalny|nacional|regional|' + _EN   # local (longer) words first
 KINDS = {
-    'AU': [('np', r'national park'), ('cp', r'conservation park|conservation reserve|conservation area|n\.\s?c\.\s?r|\bc\.\s?a\.'), ('nr', r'nature reserve|flora reserve|game reserve|\bn\.\s?r\.|f\.\s?f\.\s?r'),
+    'AU': [('np', r'national park'), ('cp', r'conservation park|conservation reserve|conservation area|n\.\s?c\.\s?r|\bc\.\s?a\.'), ('nr', r'nature reserve|flora reserve|game reserve|\bn\.\s?r\.|f\.\s?f\.\s?r|\bf\.\s?r\b'),
            ('sf', r'state forest|forest reserve'), ('rp', r'regional park|recreation'), ('hist', r'historic'), ('mp', r'marine')],
     'DE': [('np', r'nationalpark|national park'), ('nat', r'naturpark|nature park'), ('nsg', r'naturschutzgebiet|\bnsg\b|nature reserve'),
            ('lsg', r'landschaftsschutzgebiet|\blsg\b|landscape protection'), ('br', r'biospharen|biosphere'),
@@ -113,7 +113,7 @@ for _c in EU: KINDS[_c] = [('n2k', r'natura 2000|\bzps\b|\bzsc\b|\bzepa\b|\bzec\
 
 
 ABBR = [(r'\bn\.\s?c\.\s?r\b\.?', ' nature conservation reserve '), (r'\bf\.\s?f\.\s?r\b\.?', ' flora fauna reserve '),
-        (r'\bn\.\s?r\b\.?', ' nature reserve '), (r'\bc\.\s?a\b\.', ' conservation area '), (r'\bs\.\s?f\b\.', ' state forest '),
+        (r'\bn\.\s?r\b\.?', ' nature reserve '), (r'\bf\.\s?r\b\.?', ' flora reserve '), (r'\bc\.\s?a\b\.', ' conservation area '), (r'\bs\.\s?f\b\.', ' state forest '),
         (r'\bb\.\s?r\b\.', ' bushland reserve '), (r'\bh\.\s?r\b\.', ' historic reserve ')]
 
 
