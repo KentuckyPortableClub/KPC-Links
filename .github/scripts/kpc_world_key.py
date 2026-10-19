@@ -80,7 +80,8 @@ GEN = {
     'GB': r"national nature reserve|local nature reserve|site of special scientific interest|site of significant scientific interest|sssi|nnr|lnr|country park|national park|regional park|nature reserve|"
           r"area of outstanding natural beauty|national landscape|aonb|conservation reserve|protected area|natural area|special area of conservation|"
           r"special protection area|sac|spa|ramsar|rspb|inc|reserve|park|area",
-    'JP': r"quasi national park|national park|prefectural natural park|natural park|kokuritsu koen|kokutei koen|park",
+    'JP': r"quasi national park|national park|prefectural natural park|prefectural nature park|prefectural park|prefectural forest|prefectural|natural park|nature park|"
+          r"kokuritsu koen|kokutei koen|kenritsu|touritsu|douritsu|furitsu|shizenkouen|kokuteikouen|kokuritsu|kokutei|kouen|chiiki|park",   # Oct 19: 'Prefectural Nature Park' left 'prefectural nature' in every name
 }
 _EN = (r"natura 2000|protected landscape area|nature and landscape complex|landscape park|ecological site|national park|natural monument|wetland reserve|"
        r"nature park|national recreation trail|biosphere reserve|world heritage site|protected landscape|state trail|biological reserve|marine conservation area|"
@@ -265,7 +266,12 @@ def pull_wfs(label, url, typ):
 
 
 JSUF = r'(国立公園|国定公園|(都|道|府|県)立自然公園|自然公園|県立公園|公園)$'
-def jstrip(t): return re.sub(r'\s', '', re.sub(JSUF, '', str(t or '').strip()))
+def jclean(t):
+    # Oct 19: A10 names end in 地域 ('石鎚国定公園地域') and some start with the kind ('県立自然公園船形連峰'), so the old end-only strip missed them
+    t = re.sub(r'(地域|区域|地区)$', '', str(t or '').strip())
+    return re.sub(r'(国立|国定|都立|道立|府立|県立)?(自然)?公園', '', t).strip()
+def jparts(t): return [q for q in (jclean(x) for x in re.split(r'[・、,\u3000]|\s{2,}', str(t or ''))) if q]   # one area can carry several park names
+def jstrip(t): return re.sub(r'\s', '', jclean(t))
 def jkind(t):
     t = str(t or '')
     return {'np'} if '国立公園' in t else {'qnp'} if '国定公園' in t else {'pnp'} if re.search(r'(都|道|府|県)立|自然公園', t) else set()
@@ -310,6 +316,22 @@ def pull_a10(label, page):
                 if blank: notice(f'{label} blank-name row', '; '.join(f'{k}={v}' for k, v in blank.items())[:900])
                 told = True; notice(f'{label} fields', f'{sp}: ' + ', '.join(fn) + ' | sample: ' + ' / '.join(f"{r['n']} [{r['ty']}]" for r in recs[-3:]))
         time.sleep(.4)
+    # Oct 19: most zone rows (special zones etc.) have a blank OBJ_NAME; they share PREFEC_CD + THEMA_NO + AREA_CD with the named row
+    # of the same park. Fill a blank row ONLY when exactly one name is known for that key (never a guess between two parks).
+    def key(r): a = r['_a']; return (str(a.get('PREFEC_CD')), str(a.get('THEMA_NO')), str(a.get('AREA_CD')))
+    names = {}
+    for r in recs:
+        if r['n']: names.setdefault(key(r), set()).add(r['n'])
+    fill = amb = 0
+    for r in recs:
+        if r['n']: continue
+        nn = names.get(key(r)) or set()
+        if len(nn) == 1:
+            r['n'] = r['nj'] = next(iter(nn)); r['ty'] = r['ty'] or r['n']; r['_k0'] = jkind(r['n']) | jkind(r['ty']); fill += 1
+        elif nn: amb += 1
+    th = {}
+    for r in recs: th.setdefault(str(r['_a'].get('THEMA_NO')), [0, 0])[0 if r['n'] else 1] += 1
+    notice(label, f'blank names filled from the same park code: {fill}; two names for one code (left blank): {amb}; by THEMA_NO [named, blank]: {th}')
     notice(label, f'{len(links)} prefecture files, {len(recs)} areas, {len({r["n"] for r in recs})} park names')
     return recs
 
@@ -415,7 +437,9 @@ for cc in COUNTRIES:
         for r in recs:
             r['_k0'] = r.get('_k0') or (kinds(cc, r['n']) | kinds(cc, r['ty']))
             if r.get('src', '').startswith('Ministry'): r['_k0'] = {'np'}          # nps_all = national parks only
-            if r['n']: r['nj'], r['n'] = r.get('nj') or r['n'], romaji(re.sub(JSUF, '', r['n']))
+            if r['n']:
+                r['nj'] = r.get('nj') or r['n']; r['jp'] = jparts(r['nj'])
+                r['parts'] = [romaji(q) for q in r['jp']] or [romaji(jclean(r['nj']))]; r['n'] = '   '.join(r['parts'])
         JA = wd_ja(P)
         notice('World key JP sample', '; '.join(f"{r.get('nj')} → {r['n']} [{r['ty']}]" for r in recs[:12]) + ' | fields: ' + ', '.join(list(recs[0]['_a'].keys())[:30]))
     for r in recs: r['_k'] = kinds(cc, r['n']) | kinds(cc, r['ty']) | kinds(cc, r['src']) | r.get('_k0', set())
@@ -443,8 +467,8 @@ for cc in COUNTRIES:
         for r in ([] if m else nearby(la, lo)):
             if la is not None and not near(la, lo, r['_bb'], .6): continue
             if cc in EU and (('n2k' in kp) != ('n2k' in r['_k'])): continue          # Natura 2000 parks only join Natura 2000 sites, and the other way round
-            jam = cc == 'JP' and r.get('nj') and jstrip(r['nj']) in (JA.get(ref) or set())
-            if r['n'] and (jam or any(same_name(cc, q, r['n']) for q in cand)) and (not kp or (kp & r['_k']) or (not r['_k'] and not (cc == 'AU' and r.get('ty')))):
+            jam = cc == 'JP' and r.get('nj') and bool({re.sub(r'\s', '', q) for q in r.get('jp') or [jclean(r['nj'])]} & (JA.get(ref) or set()))
+            if r['n'] and (jam or any(same_name(cc, q, rn) for q in cand for rn in (r.get('parts') or [r['n']]))) and (not kp or (kp & r['_k']) or (not r['_k'] and not (cc == 'AU' and r.get('ty')))):
                 m.append([r['id'], r['n'], r['src'], 'name']); mr.append(r)
         pref = [q for q in m if q[2] in CHPREF.get(typ, [])] if cc == 'CH' else []
         if pref: m = pref                                                          # the federal inventory of that kind decides
