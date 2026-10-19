@@ -355,20 +355,28 @@
   }
   /* ☁ QRZ MODE (each contact goes to QRZ as you log it) / 💾 ADIF MODE (kept on this device; send or download at the end) */
   function qmode() {
-    if (PUB) return; const on = !!(window.KPCQrz && KPCQrz.get().on), key = !!(window.KPCQrz && KPCQrz.get().key);
+    const on = !!(window.KPCQrz && KPCQrz.get().on), key = !!(window.KPCQrz && KPCQrz.get().key);
     document.querySelectorAll('[data-qmode]').forEach(b => { b.setAttribute('aria-pressed', on); b.innerHTML = on ? '☁ QRZ MODE' : '💾 ADIF MODE';
-      b.title = on ? 'QRZ mode: every contact goes to your QRZ logbook as you log it. Tap for ADIF mode (keep them here, send or download at the end).' : 'ADIF mode: contacts stay on this device; send them to QRZ or download an ADIF file from MY LOG FILES. Tap for QRZ mode.' + (key ? '' : ' (QRZ mode needs your QRZ key: 📻 CAT & QRZ tab)'); });
+      b.title = on ? 'QRZ mode: every contact goes to your QRZ logbook as you log it. Tap for ADIF mode (keep them here, send or download at the end).' : 'ADIF mode: contacts stay on this device; send them to QRZ or download an ADIF file from MY LOG FILES. Tap for QRZ mode.' + (key ? '' : ' (QRZ mode needs your QRZ key: ' + (PUB ? 'MY LOG FILES' : '📻 CAT & QRZ tab') + ')'); });
     const lb = document.getElementById('dkLog'); if (lb) { lb.innerHTML = on ? '⬆ LOG + QRZ' : '⬆ LOG'; lb.title = on ? 'Log it and send it to your QRZ logbook (Enter does the same)' : 'Log it on this device (Enter does the same)'; }
     qzCount();
   }
   document.addEventListener('click', e => { const b = e.target.closest('[data-qmode]'); if (!b || !window.KPCQrz) return;
-    const Z = KPCQrz.get(); if (!Z.on && !Z.key) { toast('QRZ mode needs your QRZ logbook key: save it on the 📻 CAT & QRZ tab first.'); setTimeout(() => { location.href = (window.KPCRoom ? KPCRoom.map : x => x)('kpc-hunt-cat.html#ctQrz'); }, 1600); return; }
+    const Z = KPCQrz.get(); if (!Z.on && !Z.key && PUB) { qzKeyAsk(); return; }
+    if (!Z.on && !Z.key) { toast('QRZ mode needs your QRZ logbook key: save it on the 📻 CAT & QRZ tab first.'); setTimeout(() => { location.href = (window.KPCRoom ? KPCRoom.map : x => x)('kpc-hunt-cat.html#ctQrz'); }, 1600); return; }
     KPCQrz.set({ on: !Z.on }); qmode(); toast(!Z.on ? '☁ QRZ mode: each contact goes to QRZ as you log it.' : '💾 ADIF mode: contacts stay here. Send them to QRZ or download them from MY LOG FILES when you are done.'); });
   setTimeout(qmode, 0);
   /* MY LOG FILES: send everything not yet in QRZ, one at a time (works on phones too) */
-  function qzCount() { const n = $('lgQzN'); if (!n || PUB) return; const k = Q.q.filter(q => !q.qz).length; n.textContent = k ? ` · ${k} not sent yet` : ' · all sent'; }
+  /* public Lounge (Oct 19 release, Brandon: 'just the log and qrz mode'): the QRZ key is typed in MY LOG FILES, kept only in this browser */
+  function qzKeyAsk() { openModal('lgModal'); const k = $('lgQzKey'); if (k) { k.value = (window.KPCQrz && KPCQrz.get().key) || ''; setTimeout(() => k.focus(), 60); }
+    if ($('lgQzMsg')) $('lgQzMsg').innerHTML = 'Type your <b>QRZ logbook key</b> and tap SAVE KEY. It stays only in this browser and goes only to QRZ.'; }
+  if ($('lgQzKeyS')) { $('lgQzKey').value = (window.KPCQrz && KPCQrz.get().key) || '';
+    $('lgQzKeyS').onclick = () => { const v = $('lgQzKey').value.trim().toUpperCase(); if (!window.KPCQrz) return; KPCQrz.set({ key: v, on: !!v }); qmode();
+      $('lgQzMsg').innerHTML = v ? '✓ Key saved. ☁ QRZ MODE is on: each contact goes to your QRZ logbook as you log it.' : 'Key removed. Contacts stay on this device (💾 ADIF MODE).'; }; }
+  const QKHERE = () => PUB ? 'type your QRZ logbook key in the box above first.' : 'Save your QRZ logbook key on the <a href="kpc-hunt-cat.html#ctQrz">📻 CAT &amp; QRZ tab</a> first.';
+  function qzCount() { const n = $('lgQzN'); if (!n) return; const k = Q.q.filter(q => !q.qz).length; n.textContent = k ? ` · ${k} not sent yet` : ' · all sent'; }
   async function qzSendAll() {
-    if (!window.KPCQrz || !KPCQrz.get().key) { $('lgQzMsg').innerHTML = 'Save your QRZ logbook key on the <a href="kpc-hunt-cat.html#ctQrz">📻 CAT &amp; QRZ tab</a> first.'; return; }
+    if (!window.KPCQrz || !KPCQrz.get().key) { $('lgQzMsg').innerHTML = QKHERE(); return; }
     const L = Q.q.filter(q => !q.qz).sort((a, b) => (a.d + a.tm).localeCompare(b.d + b.tm)); if (!L.length) { $('lgQzMsg').textContent = 'Everything in your log has been sent to QRZ already.'; return; }
     let ok = 0, bad = 0, last = ''; const btn = $('lgQzSend'); btn.disabled = true;
     for (let i = 0; i < L.length; i++) { $('lgQzMsg').textContent = `Sending ${i + 1} of ${L.length}…`; const a = adif([L[i]]), one = a.slice(a.indexOf('<EOH>') + 5).trim();
@@ -377,7 +385,7 @@
     $('lgQzMsg').innerHTML = `☁ Sent ${ok} contact${ok === 1 ? '' : 's'} to QRZ${bad ? ` · ${bad} did not go (${esc(last)})` : ''}.` + (await KPCQrz.relay() ? '' : ' QRZ doesn\'t let a web page see its reply, so tap <b>🔎 SEE QRZ\'S ANSWER</b> once (it should say OK or duplicate) or check your QRZ logbook.');
   }
   if ($('lgQzSend')) { $('lgQzSend').onclick = qzSendAll;
-    $('lgQzSee').onclick = () => { if (!window.KPCQrz || !KPCQrz.get().key) { $('lgQzMsg').innerHTML = 'Save your QRZ key on the <a href="kpc-hunt-cat.html#ctQrz">📻 CAT &amp; QRZ tab</a> first.'; return; }
+    $('lgQzSee').onclick = () => { if (!window.KPCQrz || !KPCQrz.get().key) { $('lgQzMsg').innerHTML = QKHERE() + ''; return; }
       const x = Q.q.slice().sort((a, b) => (b.d + b.tm).localeCompare(a.d + a.tm))[0]; if (!x) { $('lgQzMsg').textContent = 'No contacts yet.'; return; }
       const a = adif([x]); KPCQrz.showAnswer('INSERT', a.slice(a.indexOf('<EOH>') + 5).trim()); $('lgQzMsg').innerHTML = `A new tab opened with QRZ's answer for <b>${esc(x.call)}</b>: <b>OK</b> = it's in, <b>duplicate</b> = it was already there, <b>FAIL</b> = the REASON says why.`; }; }
   document.addEventListener('click', e => { const b = e.target.closest('[data-logtog]'); if (!b) return; NOLOG = !NOLOG; put('kpcHuntNoLog', NOLOG); logTog(); if (!NOLOG && DESKON()) rtab('log');
@@ -566,10 +574,14 @@
   const WDEF = [
     { on: true, name: 'CW SPOTS', p: ['POTA', 'WWFF', 'SOTA'], bands: [], modes: ['CW'], where: 'all', st: '', q: '', nw: false, hide: false, qrt: true, bell: false },
     { on: true, name: 'SOTA + WWFF', p: ['SOTA', 'WWFF'], bands: [], modes: [], where: 'all', st: '', q: '', nw: false, hide: false, qrt: true, bell: false }];
-  let WIN = get('kpcHuntWin', null);
+  if (PUB) WDEF.splice(0, 2,
+    { on: true, name: 'DX', p: ['DX', 'DXPED'], bands: [], modes: [], where: 'all', st: '', q: '', nw: false, hide: false, qrt: true, bell: false },
+    { on: true, name: 'SPECIAL EVENTS', p: ['EVENT'], bands: [], modes: [], where: 'all', st: '', q: '', nw: false, hide: false, qrt: true, bell: false });
+  const WKEY = PUB ? 'kpcHuntWinP' : 'kpcHuntWin';
+  let WIN = get(WKEY, null);
   if (!Array.isArray(WIN) || WIN.length !== 2) WIN = WDEF.map(w => Object.assign({}, w));
   WIN.forEach((w, i) => { for (const k in WDEF[i]) if (!(k in w)) w[k] = WDEF[i][k]; });
-  const winSave = () => put('kpcHuntWin', WIN);
+  const winSave = () => put(WKEY, WIN);
   const WSEEN = [null, null];
   const winOn = () => DESKON() && !!document.querySelector('.hl-split');
   const WSORT = { new: (a, b) => (b.t || 0) - (a.t || 0), old: (a, b) => (a.t || 0) - (b.t || 0), freq: (a, b) => a.khz - b.khz, freqd: (a, b) => b.khz - a.khz, mode: (a, b) => modeOf(a.mode).localeCompare(modeOf(b.mode)) || a.khz - b.khz, call: (a, b) => a.call.localeCompare(b.call), park: (a, b) => String(a.ref || '~').localeCompare(String(b.ref || '~')) };
@@ -644,9 +656,10 @@
   function winPlace(el, i) {
     const w = WIN[i], dk = $('hlDk'); if (!dk) return;
     if (w.auto || (w.fl ? w.x == null : w.px == null)) {   /* until you drag it: side by side under the log box */
-      const d = dk.getBoundingClientRect(), m = mainR(), half = Math.floor((d.width - 12) / 2);
-      if (!w.mw) { w.w = half; w.h = w.fl ? Math.max(220, innerHeight - ((parseFloat(getComputedStyle(dk).top) || 150) + dk.offsetHeight + 12) - 16) : 460; }
+      const d = dk.getBoundingClientRect(), m = mainR(), half = Math.floor((d.width - 12) / 2), stack = !w.fl && half < 400;   /* narrow screens (Oct 19): one under the other, full width */
+      if (!w.mw) { w.w = stack ? Math.round(d.width) : half; w.h = w.fl ? Math.max(220, innerHeight - ((parseFloat(getComputedStyle(dk).top) || 150) + dk.offsetHeight + 12) - 16) : stack ? 380 : 460; }
       if (w.fl) { w.x = Math.round(d.left + i * (half + 12)); w.y = Math.round((parseFloat(getComputedStyle(dk).top) || 150) + dk.offsetHeight + 12); }
+      else if (stack) { w.px = Math.round(d.left - m.left); w.py = Math.round(d.bottom - m.top + 14 + i * ((w.mw ? WIN[0].h : 380) + 14)); }
       else { w.px = Math.round(d.left - m.left + i * (half + 12)); w.py = Math.round(d.bottom - m.top + 14); }
       w.auto = true;
     }
@@ -852,7 +865,7 @@
       b.p.forEach(pl => pl[0].forEach(([x, y]) => { x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }));
       setHome(+((y0 + y1) / 2).toFixed(3), +((x0 + x1) / 2).toFixed(3), 'middle of ' + ST[a]);
     } catch (e) { $('hHome').textContent = 'Couldn’t load the state map. Try your grid square.'; }
-    if (!$('nSt').dataset.set) { $('nSt').value = a; $('tSt').value = a; needLoad(); topDraw(); }
+    if (!$('nSt').dataset.set) { $('nSt').value = a; $('tSt').value = a; if (!PUB) needLoad(); topDraw(); }
   };
   $('hGrid').onchange = () => { const g = grid($('hGrid').value); if (g) setHome(+g[0].toFixed(3), +g[1].toFixed(3), 'grid ' + $('hGrid').value.toUpperCase()); else $('hHome').textContent = 'That grid doesn’t look right (like EM77 or EM77ab).'; };
   document.addEventListener('click', e => { const b = e.target.closest('[data-rg]'); if (!b) return; RANGE = +b.dataset.rg; put('kpcHuntRange', RANGE); homeInfo(); ticker(false); draw(); });
@@ -1615,9 +1628,9 @@
     Q.q.push(rec); await qSave();
     ref.split(/[ ,]+/).filter(Boolean).forEach(r => { if (!WK.has(r)) { WK.add(r); MAN.add(r); } }); saveLog(); logInfo();
     qList(); ticker(false); draw(); needDraw(); try { lmDraw(); } catch (e) {} try { qzCount(); } catch (e) {}
-    toast(`✓ ${call} logged${ref ? ' at ' + ref : ''}.${!KPCQrzOn() && rec.qs ? ' (QRZ upload is off: turn it on in the CAT & QRZ tab.)' : ''}`, () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); draw(); try { lmDraw(); } catch (e) {} });
-    if (opt.qrz && window.KPCQrz && !KPCQrz.get().key) toast('✓ Logged. To send to QRZ, save your QRZ key on the 📻 CAT & QRZ tab.');
-    if (!PUB && (KPCQrzOn() || (opt.qrz && window.KPCQrz && KPCQrz.get().key))) { const a = adif([rec]); const one = a.slice(a.indexOf('<EOH>') + 5).trim();
+    toast(`✓ ${call} logged${ref ? ' at ' + ref : ''}.${!KPCQrzOn() && rec.qs ? (PUB ? ' (QRZ is off: tap 💾 ADIF MODE to switch to QRZ mode.)' : ' (QRZ upload is off: turn it on in the CAT & QRZ tab.)') : ''}`, () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); draw(); try { lmDraw(); } catch (e) {} });
+    if (opt.qrz && window.KPCQrz && !KPCQrz.get().key) toast(PUB ? '✓ Logged. To send to QRZ, add your QRZ key in MY LOG FILES.' : '✓ Logged. To send to QRZ, save your QRZ key on the 📻 CAT & QRZ tab.');
+    if ((KPCQrzOn() || (opt.qrz && window.KPCQrz && KPCQrz.get().key))) { const a = adif([rec]); const one = a.slice(a.indexOf('<EOH>') + 5).trim();
       KPCQrz.send(one).then(r => { if (r.ok) { rec.qz = r.sure ? 2 : 1; qSave(); try { qzCount(); } catch (e) {} } else toast('⚠ QRZ: ' + r.msg); }); }  /* no note when it went OK (Brandon Oct 17): only a problem shows */
     /* the effect flares only every 50 contacts or for DX outside North America (Brandon Oct 17) */
     const NAPRE = /^(A[A-L]|[KNW]|V[A-GOY]|C[F-KYZ]|X[A-O]|4[A-C]|6[D-J]|C[LMO]|T[GI]|H[O-RI]|YN|YS|V[23P]|J[3678]|8P|6Y|ZF|C6|FG|FM|FS|PJ|P4|HH|OX|XP|TO|FP|ZB)/;

@@ -2,7 +2,7 @@
    CARTO now answers 'API KEY REQUIRED' (Brandon's iPhone screenshot). Same labels on every device. */
 window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z)o.zIndex=z;
  return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',o)};
-/* KPC KPC US Trip Planner.
+/* KPC KPC Trip Planner.
    Spots: locations.json (rows [prog,ref,name,lat,lon,url,...]) for POTA, SOTA and WWFF, plus POTA parks loaded live
    from api.pota.app/location/parks/US-XX for the states near the search (adds parks newer than the file).
    Place search: OpenStreetMap Nominatim (only when someone presses Search). Boundaries: OpenStreetMap via Overpass,

@@ -1,5 +1,5 @@
 /* KPC trails layer: national trails + (Oct 16) state trails, National Recreation Trails and rail-trail parks from data/trails/index-state.json.
-   Was: KPC national trails layer (US Trip Planner + Park Commander). National Scenic / Historic Trails that are POTA parks,
+   Was: KPC national trails layer (KPC Trip Planner + Park Commander). National Scenic / Historic Trails that are POTA parks,
    official routes from data/trails (refreshed monthly by .github/workflows/kpc-us-trails.yml). Only trails crossing the
    map view are loaded. Own SVG pane under the park dots so a tap on a dot still opens the dot.
    KPCTrails(map, {skipKY:true}) leaves out the parts inside Kentucky (Park Commander has Kentucky's own trail layers). */

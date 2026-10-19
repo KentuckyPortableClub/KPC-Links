@@ -128,7 +128,7 @@ window.kpcGeocode=window.kpcGeocode||(function(){let lastNom=0,seq=0;
  return async function(q,opts){q=String(q||'').trim();if(!q)return[];opts=opts||{};const addr=/^\d+[A-Za-z]?\s+\S+/.test(q),c=strip(q);
   const steps=addr?[()=>census(c),()=>nominatim(c,opts.ky),()=>photon(c)]:[()=>nominatim(q,opts.ky),()=>photon(q)];
   for(const st of steps){const r=await st();if(r&&r.length)return r}
-  /* opts.world (US Trip Planner, Brandon Oct 17 world pins): nothing in the US, so look anywhere */
+  /* opts.world (KPC Trip Planner, Brandon Oct 17 world pins): nothing in the US, so look anywhere */
   if(opts.world){for(const st of [()=>nominatim(q,false,true),()=>photon(q,true)]){const r=await st();if(r&&r.length)return r}}return[]}})();
 /* "Show where I am" map button (shared by both trip planners): live blue dot + accuracy ring. First tap finds you and
    centers the map; tap again to re-center when you have panned away, or to turn it off when you are in view. */

@@ -2,7 +2,7 @@
    CARTO now answers 'API KEY REQUIRED' (Brandon's iPhone screenshot). Same labels on every device. */
 window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z)o.zIndex=z;
  return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',o)};
-/* KPC official public-land layer for Leaflet maps (US Trip Planner).
+/* KPC official public-land layer for Leaflet maps (KPC Trip Planner).
    Source: USGS PAD-US (Protected Areas Database of the US), The National Map map service, no key.
    The service draws every owner as a solid colour block, which would hide a satellite picture, so each tile is
    repainted here: federal and state land become a bright outline with a light tint, everything else is removed
