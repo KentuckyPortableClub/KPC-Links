@@ -214,12 +214,17 @@ for ref, x in P.items(): by.setdefault((x[10] if len(x) > 10 else '') or 'XX', {
 idx = {}
 for pv, parks_in in sorted(by.items()):
     parks, used = {}, set()
+    _pins = [(x[5], x[6]) for x in parks_in.values() if x[5] or x[6]]
+    PVB = [min(q[1] for q in _pins) - 1, min(q[0] for q in _pins) - 1, max(q[1] for q in _pins) + 1, max(q[0] for q in _pins) + 1] if _pins else None
+    def in_pv(b): return not PVB or (b and b[0] <= PVB[2] and b[2] >= PVB[0] and b[1] <= PVB[3] and b[3] >= PVB[1])
     for ref, x in sorted(parks_in.items()):
         name, typ, la, lo = x[0], x[2], x[5], x[6]
+        if not la and not lo: la = lo = None   # Oct 18: POTA has no pin for ~200 Canadian parks (0,0): match by name in the province only
         kp = kinds(name) | kinds(typ)
         m, c = [], []
         for r in recs:
             if la is not None and not near(la, lo, r['_bb'], .6): continue
+            if la is None and not in_pv(r['_bb']): continue              # no pin: stay inside this province's area
             if PRIV.search(r['n'] + ' ' + str(r['ow'])): continue      # private stewardship land is never joined (only listed to check)
             ex = bool(kp) != bool(r['_k'])      # only one name says what kind of place it is: the names must match exactly
             if ex and la is not None and not near(la, lo, r['_bb'], .1): continue   # and be close by (many lakes share a name)
