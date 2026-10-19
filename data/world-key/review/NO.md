@@ -1,6 +1,6 @@
 # NO: POTA parks vs official land
 
-Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **2864 of 3337** joined (same name + same kind), **237** to check, **236** nothing found. Nothing below is joined.
+Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **2863 of 3337** joined (same name + same kind), **238** to check, **236** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -180,6 +180,7 @@ Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **NO-2968** Gåseskjæra National Wildlife Area (National Wildlife Area) → Gåseskjæra (EEA nationally designated areas, similar name)
 - **NO-2969** Skomakerskjæra National Wildlife Area (National Wildlife Area) → Skomakerskjæra (EEA nationally designated areas, similar name)
 - **NO-2971** Vorma National Wildlife Area (National Wildlife Area) → Vorma (EEA nationally designated areas, similar name)
+- **NO-2977** Hjerkinn/Kongsvoll/Drivdalen Landscape Reserve (Landscape Reserve) → Hjerkinn (EEA nationally designated areas, same name, more than one kind of area); Hjerkinnholen (EEA nationally designated areas, same name, more than one kind of area); Hjerkinn/Kongsvoll/Drivdalen (EEA nationally designated areas, same name, more than one kind of area)
 - **NO-2983** Lågendeltaet Nature Reserve (Nature Reserve) → Lågendeltaet (EEA nationally designated areas, same name, more than one kind of area); Lågendeltaet (EEA nationally designated areas, same name, more than one kind of area)
 - **NO-2985** Trettenstryka National Wildlife Area (National Wildlife Area) → Trettenstryka (EEA nationally designated areas, similar name)
 - **NO-2986** Hjerkinn Landscape Reserve (Landscape Reserve) → Hjerkinn (EEA nationally designated areas, same name, more than one kind of area); Hjerkinnholen (EEA nationally designated areas, same name, more than one kind of area)
