@@ -33,7 +33,7 @@ SRC = {
 # Oct 18 (Brandon: 'go ahead'): PL ES FR CH AT from the European Environment Agency (official EU inventory, one place for all five):
 # Natura 2000 sites + Nationally designated areas (ex-CDDA; Switzerland reports there too, it has no Natura 2000).
 EEA = 'https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/'
-EU = ('PL', 'ES', 'FR', 'CH', 'AT')
+EU = ('PL', 'ES', 'FR', 'CH', 'AT', 'NL', 'PT', 'SE', 'CZ', 'SI', 'NO', 'RO', 'IT')   # Oct 19: the next 8 busiest POTA programs (NO has no Natura 2000, CDDA only)
 for _c in EU:
     SRC[_c] = [('EEA Natura 2000', 'arcgis', EEA + 'Natura2000Sites/MapServer/2', [f"MS='{_c}'", f"SITECODE LIKE '{_c}%'"]),
                ('EEA nationally designated areas', 'arcgis', EEA + 'CDDA_Dyna_WM/MapServer/4', [f"countryCode='{_c}'", f"countryCode LIKE '{_c}%'"])]
@@ -50,7 +50,7 @@ CHPREF = {'Natural Monument': ['BAFU landscapes and natural monuments (BLN)'], '
           'Wetland Reserve': ['BAFU water and migratory bird reserves', 'BAFU mire landscapes', 'BAFU floodplains', 'BAFU raised bogs', 'BAFU fens'],
           'Ramsar Site': ['BAFU Ramsar sites'], 'Nature Park': ['BAFU parks of national importance'], 'Wilderness Park': ['BAFU parks of national importance'],
           'National Park': ['BAFU parks of national importance'], 'Landscape Park': ['BAFU parks of national importance', 'BAFU landscapes and natural monuments (BLN)']}
-COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT').upper().split()
+COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT').upper().split()
 
 
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')[:3500]), flush=True)
@@ -96,7 +96,24 @@ _LOC = {'PL': r"park narodowy|park krajobrazowy|rezerwat przyrody|rezerwat|obsza
         'CH': r"naturschutzgebiete|naturschutzgebiet|nsg|wasser und zugvogelreservat|zugvogelreservat|jagdbanngebiet|waldreservat|naturpark|regionaler naturpark|nationalpark|naturdenkmal|moorlandschaft|auengebiet|reserve naturelle|parc naturel|parco naturale|"
               r"riserva naturale|parco|monumento naturale|zona|und|im|am|an|der|die|das|des|von|bei|de|du|des|la|le|les|et|d|l|e|di|del|della|dei|e dintorni",
         'AT': r"naturschutzgebiete|landschaftsschutzgebiete|europaschutzgebiete|vogelschutzgebiet|naturschutzgebiet|landschaftsschutzgebiet|europaschutzgebiet|nsg|lsg|esg|naturpark|nationalpark|naturdenkmal|geschutzter landschaftsteil|ramsar|"
-              r"und|im|am|an|der|die|das|des|von|bei|zum|zur"}
+              r"und|im|am|an|der|die|das|des|von|bei|zum|zur",
+        # Oct 19: next 8 busiest programs (official words in each language; longer phrases first)
+        'NL': r"nationaal park|natuurgebied|natuurreservaat|natuurmonument|beschermd natuurmonument|staatsnatuurmonument|landgoed|bos|boswachterij|duinen|"
+              r"vogelrichtlijngebied|habitatrichtlijngebied|natura 2000 gebied|gebied|park|het|de|en|van|der|den|op|aan|bij|in",
+        'PT': r"parque nacional|parque natural|reserva natural|paisagem protegida|monumento natural|area protegida|area de paisagem protegida|sitio de interesse comunitario|"
+              r"zona especial de conservacao|zona de protecao especial|zec|zpe|sic|ptcon\d*|ptzpe\d*|mata nacional|perimetro florestal|de|da|do|das|dos|e|em",
+        'SE': r"nationalpark|naturreservat|naturvardsomrade|kulturreservat|djurskyddsomrade|fagelskyddsomrade|biotopskyddsomrade|naturminne|"
+              r"vattenskyddsomrade|ekopark|reservat|omradet|omrade|och|i|vid|pa",
+        'CZ': r"narodni park|chranena krajinna oblast|narodni prirodni rezervace|prirodni rezervace|narodni prirodni pamatka|prirodni pamatka|prirodni park|"
+              r"ptaci oblast|evropsky vyznamna lokalita|evl|chko|nprp|nprr|pr|pp|np|a|v|na|u|pod|nad",
+        'SI': r"narodni park|krajinski park|regijski park|naravni rezervat|strogi naravni rezervat|naravni spomenik|zavarovano obmocje|obmocje|pri|in|na|v|pod|nad",
+        'NO': r"nasjonalpark|naturreservat|landskapsvernomrade|landskapsvernomradet|naturvernomrade|naturminne|biotopvernomrade|dyrelivsfredning|plantelivsfredning|"
+              r"fuglefredningsomrade|marint verneomrade|verneomrade|omradet|og|i|pa|ved",
+        'RO': r"parcul national|parc national|parcul natural|parc natural|rezervatia naturala|rezervatie naturala|rezervatia|rezervatie|monument al naturii|"
+              r"sit de importanta comunitara|arie de protectie speciala avifaunistica|arie naturala protejata|rosci\d*|rospa\d*|sci|spa|parcul|lacul|de|din|si|la|al",
+        'IT': r"parco nazionale|parco naturale regionale|parco naturale|parco regionale|riserva naturale statale|riserva naturale regionale|riserva naturale orientata|"
+              r"riserva naturale|oasi|monumento naturale|area marina protetta|area naturale protetta|zona speciale di conservazione|zona di protezione speciale|"
+              r"sito di importanza comunitaria|zsc|zps|sic|di|del|della|dei|delle|degli|dello|e|ed|in|al|alla|sul|lago|monte|valle"}
 for _c in EU: GEN[_c] = _LOC[_c] + r'|parc|parco|parque|krajobrazowy|naturalny|nacional|regional|' + _EN   # local (longer) words first
 KINDS = {
     'AU': [('np', r'national park'), ('cp', r'conservation park|conservation reserve|conservation area|n\.\s?c\.\s?r|\bc\.\s?a\.'), ('nr', r'nature reserve|flora reserve|game reserve|\bn\.\s?r\.|f\.\s?f\.\s?r|\bf\.\s?r\b'),
@@ -129,7 +146,7 @@ def norm(cc, s):
         s = re.sub(r"\b[a-z]{2}\d{6,8}\b", ' ', s)              # Natura codes inside POTA names (FR4100198)
         s = re.sub(r"\b(l|d|s|qu)['’]", ' ', s)                 # l'Etang, d'Arc
         s = re.sub(r'\bste?\b\.?', lambda m: 'sainte' if m.group(0).startswith('ste') else 'saint', s)
-        s = s.replace('ł', 'l')
+        s = s.replace('ł', 'l').replace('ø', 'o').replace('æ', 'ae').replace('đ', 'd')
     s = re.sub(r'\(.*?\)', ' ', s); s = re.sub(r"[’'`.]", '', s); s = re.sub(r'[-/,]', ' ', s)
     s = re.sub(r'[^a-z0-9 ]', ' ', s)
     s = re.sub(r'\b(' + GEN[cc] + r'|the|of|and)\b', ' ', s)
