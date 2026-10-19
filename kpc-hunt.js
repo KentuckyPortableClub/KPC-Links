@@ -310,9 +310,12 @@
   /* tap a table heading to sort by it (tap again to flip) */
   document.addEventListener('click', e => { const h = e.target.closest('th[data-srt]'); if (!h) return; F.sort = h.dataset.srt; saveF(); if ($('fSort').querySelector(`option[value="${F.sort}"]`)) $('fSort').value = F.sort; draw(); });
   /* ⧉ POP OUT: the main spots list as a window you can drag and size (Brandon Oct 17); the space it leaves stays put */
-  let POP = get('kpcHuntPop', null);
+  let POP = get('kpcHuntPop2', null) || { on: true, auto: true };   /* Oct 19 (Brandon's picture): main list popped out by default, the 2 extra lists beside it */
+  const PKEY = 'kpcHuntPop2';
   function popSet() {
     const sec = $('hlSpSec'), b = $('hlPop'); if (!sec || !b) return; const on = !!(POP && POP.on) && DESKON();
+    /* wide screens (1800 px+): room for a list left of the log box too (Oct 19) */
+    const l3 = on && innerWidth >= 1800 && (popAuto() || POP.l3); if (l3) POP.l3 = true; if (!on) POP && (POP.l3 = false); $('hl').dataset.lay3 = l3 ? '1' : '';
     let ph = $('hlPopPh');
     if (on && !ph) {   /* first pop: it starts exactly where it was, then you drag it */
       const r0 = sec.getBoundingClientRect(), m = mainR();
@@ -324,15 +327,16 @@
     sec.classList.toggle('hl-popped', on); b.setAttribute('aria-pressed', on); b.textContent = on ? '⤓ PUT BACK' : '⧉ POP OUT';
     let h = $('hlPopH');
     if (on && !h) { h = document.createElement('header'); h.id = 'hlPopH'; h.className = 'hw-h'; h.title = 'Drag me anywhere'; h.innerHTML = '<span class="hw-grip">⠿</span><b class="hw-n">📡 MAIN SPOTS</b><i class="hw-c" id="hlPopN"></i><button type="button" class="hw-b" data-plock>📌</button><button type="button" class="hw-b" data-popback title="Put it back">⤓</button>'; sec.prepend(h);
-      const rs = document.createElement('span'); rs.className = 'hw-rs'; rs.id = 'hlPopR'; rs.textContent = '◢'; sec.appendChild(rs); wmDrag(sec, h, rs, POP, () => put('kpcHuntPop', POP)); }
+      const rs = document.createElement('span'); rs.className = 'hw-rs'; rs.id = 'hlPopR'; rs.textContent = '◢'; sec.appendChild(rs); wmDrag(sec, h, rs, POP, () => put(PKEY, POP)); }
     if (!on && h) { h.remove(); const r = $('hlPopR'); if (r) r.remove(); sec.removeAttribute('style'); sec.classList.remove('fl'); }
     wmFree();
+    if (on && popAuto()) { const L = deskLay(); if (L) Object.assign(POP, L.pop); }
     if (on && POP.h < 300) POP.h = Math.max(500, innerHeight - 220);   /* too short to use (it was popped before the spots loaded) */
     if (on) { if (POP.fl && POP.x == null) { POP.w = POP.w || Math.min(760, innerWidth - 60); POP.h = POP.h || innerHeight - 200; POP.x = innerWidth - POP.w - 24; POP.y = winTop(); } wmApply(sec, POP); const lb = h.querySelector('[data-plock]'); if (lb) { lb.textContent = POP.fl ? '🪟' : '📌'; } }
-    wmRoom(); winAway();
+    wmRoom(); winAway(); if (on && popAuto()) try { winDraw(); } catch (e) {}
   }
-  document.addEventListener('click', e => { if (e.target.closest('[data-plock]')) { wmLock($('hlSpSec'), POP, () => put('kpcHuntPop', POP)); const lb = e.target.closest('[data-plock]'); lb.textContent = POP.fl ? '🪟' : '📌'; } });
-  document.addEventListener('click', e => { if (e.target.closest('#hlPop') || e.target.closest('[data-popback]')) { POP = Object.assign(POP || {}, { on: !(POP && POP.on) }); put('kpcHuntPop', POP); popSet(); } });
+  document.addEventListener('click', e => { if (e.target.closest('[data-plock]')) { wmLock($('hlSpSec'), POP, () => put(PKEY, POP)); const lb = e.target.closest('[data-plock]'); lb.textContent = POP.fl ? '🪟' : '📌'; } });
+  document.addEventListener('click', e => { if (e.target.closest('#hlPop') || e.target.closest('[data-popback]')) { POP = Object.assign(POP || {}, { on: !(POP && POP.on) }); put(PKEY, POP); popSet(); } });
   addEventListener('resize', () => setTimeout(popSet, 250));
   setTimeout(popSet, 0);
   /* the spot you picked stays lit up (gold), and with CAT on the spot your radio's dial is on glows too (Brandon Oct 17) */
@@ -577,7 +581,7 @@
   if (PUB) WDEF.splice(0, 2,
     { on: true, name: 'DX', p: ['DX', 'DXPED'], bands: [], modes: [], where: 'all', st: '', q: '', nw: false, hide: false, qrt: true, bell: false },
     { on: true, name: 'SPECIAL EVENTS', p: ['EVENT'], bands: [], modes: [], where: 'all', st: '', q: '', nw: false, hide: false, qrt: true, bell: false });
-  const WKEY = PUB ? 'kpcHuntWinP' : 'kpcHuntWin';
+  const WKEY = PUB ? 'kpcHuntWinP2' : 'kpcHuntWin2';
   let WIN = get(WKEY, null);
   if (!Array.isArray(WIN) || WIN.length !== 2) WIN = WDEF.map(w => Object.assign({}, w));
   WIN.forEach((w, i) => { for (const k in WDEF[i]) if (!(k in w)) w[k] = WDEF[i][k]; });
@@ -653,8 +657,25 @@
     };
     h.addEventListener('pointerdown', e => go(e, 'move')); rs.addEventListener('pointerdown', e => go(e, 'size'));
   }
+  /* the starting layout (Oct 19, Brandon's picture): main list popped out in the spots column with one extra list
+     beside it; the other extra list in the empty space left of the log box, or under the log box when there is none */
+  const popAuto = () => !!(POP && POP.on && POP.auto && !POP.fl && !POP.mw);
+  function deskLay() {
+    const dk = $('hlDk'), sec = $('hlSpSec'), ref = $('hlPopPh') || sec; if (!dk || !ref) return null;
+    const m = mainR(), d = dk.getBoundingClientRect(), r = ref.getBoundingClientRect(), H = Math.max(520, innerHeight - winTop() - 16);
+    const rt = $('hlRtabs'), tb = rt ? rt.getBoundingClientRect().bottom - m.top + 10 : 0, top = Math.round(Math.max(r.top - m.top, tb)), left = Math.round(r.left - m.left), avail = Math.round(m.right - r.left - 8), lm = Math.round(d.left - m.left) - 16;
+    const L = {}, side = avail >= 900 ? Math.max(340, Math.min(440, Math.round(avail * .38))) : 0;
+    L.pop = { px: left, py: top, w: side ? avail - side - 12 : avail, h: H };
+    const right = side ? { px: left + avail - side, py: top, w: side, h: H } : null;
+    const under = k => ({ px: Math.round(d.left - m.left), py: Math.round(d.bottom - m.top + 14 + k * 394), w: Math.round(d.width), h: 380 });
+    const leftM = lm >= 280 ? { px: 8, py: top, w: lm, h: H } : null;
+    /* window 1 (special events on the public page) goes left, window 0 (DX) right, like the picture */
+    L.w1 = leftM || under(0); L.w0 = right || (leftM ? under(0) : under(1));
+    return L;
+  }
   function winPlace(el, i) {
     const w = WIN[i], dk = $('hlDk'); if (!dk) return;
+    if (popAuto() && !w.fl && (w.auto || w.px == null) && !w.mw) { const L = deskLay(); if (L) { Object.assign(w, L['w' + i], { auto: true }); wmApply(el, w); return; } }
     if (w.auto || (w.fl ? w.x == null : w.px == null)) {   /* until you drag it: side by side under the log box */
       const d = dk.getBoundingClientRect(), m = mainR(), half = Math.floor((d.width - 12) / 2), stack = !w.fl && half < 400;   /* narrow screens (Oct 19): one under the other, full width */
       if (!w.mw) { w.w = stack ? Math.round(d.width) : half; w.h = w.fl ? Math.max(220, innerHeight - ((parseFloat(getComputedStyle(dk).top) || 150) + dk.offsetHeight + 12) - 16) : stack ? 380 : 460; }
@@ -1491,9 +1512,9 @@
     if (on) { rtab(RT); dkList(); } else { const f = $('hlFilters'); if (f) f.classList.remove('desk-pop'); }
     mapOn();
   }
-  let RT = get('kpcHuntRt', 'log'); if (RT !== 'map') RT = 'log';   /* left pane: my log OR the live map (Brandon Oct 17); spots always on the right */
+  let RT = get('kpcHuntRt2', 'map'); if (RT !== 'log') RT = 'map';   /* Oct 19: live map shows by default */   /* left pane: my log OR the live map (Brandon Oct 17); spots always on the right */
   function rtab(v) {
-    RT = v; put('kpcHuntRt', v); $('hl').dataset.rt = v;
+    RT = v; put('kpcHuntRt2', v); $('hl').dataset.rt = v;
     document.querySelectorAll('#hlLtabs [data-rt]').forEach(b => b.setAttribute('aria-pressed', b.dataset.rt === v));
     if (v === 'map') { lmInit(); setTimeout(() => { if (LM) { LM.invalidateSize(); lmZoom(LMV); } draw(); }, 60); }
   }
