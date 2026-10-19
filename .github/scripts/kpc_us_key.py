@@ -278,6 +278,19 @@ XS = [  # prefix, query url, name field, acres field, kinds
     ('wsa', 'svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study', '?', '?', {'wsa'}, 'BLM wilderness study areas'),
     ('wbl', 'svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|^(?!.*study).*wilderness', '?', '?', {'wild'}, 'BLM wilderness'),
     ('odw', 'svc:https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer|.', '?', '?', {'wma'}, 'Oklahoma Dept. of Wildlife Conservation WMA map', 'STAT', {'OK'}),
+    # Oct 18 (Brandon: 'go ahead'): state agencies' own land maps (found on ArcGIS Online, owner = the agency) for states with many unmatched parks
+    ('ncg', 'svc:https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer|.', '?', '?', {'wma'}, 'NC Wildlife Resources Commission game lands', 'STAT', {'NC'}),
+    ('wdw', 'svc:https://geodataservices.wdfw.wa.gov/arcgis/rest/services/MapServices/WildlifeAreas/MapServer|wildlife', '?', '?', {'wma'}, 'WDFW wildlife areas', 'STAT', {'WA'}),
+    ('idw', 'svc:https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer|.', '?', '?', {'wma'}, 'Idaho Fish and Game WMAs', 'STAT', {'ID'}),
+    ('law', 'svc:https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA/FeatureServer|.', '?', '?', {'wma'}, 'Louisiana Dept. of Wildlife and Fisheries WMAs', 'STAT', {'LA'}),
+    ('maw', 'svc:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/MassWildlifeLands/FeatureServer|.', '?', '?', {'wma'}, 'MassWildlife lands', 'STAT', {'MA'}),
+    ('utw', 'svc:https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ULTRA_Properties_2_view/FeatureServer|.', '?', '?', {'wma'}, 'Utah DWR public access properties', 'STAT', {'UT'}),
+    ('ctd', 'svc:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_DEEP_Property/FeatureServer|.', '?', '?', set(), 'Connecticut DEEP property', 'STAT', {'CT'}),
+    ('ind', 'svc:https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer|.', '?', '?', set(), 'Indiana DNR properties', 'STAT', {'IN'}),
+    ('wid', 'svc:https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer|propert', '?', '?', set(), 'Wisconsin DNR managed properties', 'STAT', {'WI'}),
+    ('tnd', 'svc:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Access_Lands/FeatureServer|.', '?', '?', set(), 'TDEC public access lands', 'STAT', {'TN'}),
+    ('osp', 'svc:https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer|.', '?', '?', set(), 'Oregon State Parks', 'STAT', {'OR'}),
+    ('vta', 'svc:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer|unit', '?', '?', set(), 'Vermont ANR lands', 'STAT', {'VT'}),
 ]
 RESOLVED = {}
 def resolve(pre, url, nf, af):
@@ -459,6 +472,13 @@ for st in STATES:
         idx[st] = c; done.append(st)
         print(f"{st}: {c['parks']} parks, {c['matched']} joined, {c['check']} to check, {c['none']} nothing found, {c['nonum']} places with no POTA park", flush=True)
     json.dump({'updated': time.strftime('%Y-%m-%d'), 'states': idx}, open(OUT / 'index.json', 'w'), separators=(',', ':'))
+    # the map pages draw joined pieces live: tell them each layer's query url + name field (layers found at run time too)
+    try: LJ = json.load(open(OUT / 'layers.json'))
+    except Exception: LJ = {}  # noqa: BLE001
+    for x in XS:
+        if x[0] in RESOLVED: LJ[x[0]] = [RESOLVED[x[0]][0], RESOLVED[x[0]][1], x[5]]
+        elif not x[1].startswith('svc:'): LJ[x[0]] = [x[1], x[2], x[5]]
+    json.dump(LJ, open(OUT / 'layers.json', 'w'), separators=(',', ':'))
 tot = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none', 'site')}
 notice('US key extra maps', ', '.join(f'{k}: {v}' for k, v in XCOUNT.items()))
 notice('US answer key', f"{len(done)} states this run ({' '.join(done)}). All states so far: {tot['parks']} parks, {tot['matched']} joined, {tot['check']} to check, {tot['site']} sites on bigger land, {tot['none']} nothing found")

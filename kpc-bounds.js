@@ -143,7 +143,12 @@
     wbl: ['https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer/0/query', 'NLCS_NAME', 'Bureau of Land Management'],
     odw: ['https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1/query', 'WMANAME', 'Oklahoma Dept. of Wildlife Conservation'] };
   const keyCache = {};
+  /* Oct 18: state agency layers the bot found at run time (data/us-key/layers.json = {prefix: [query url, name field, label]}) */
+  let LAYP = null;
+  const layers = () => LAYP || (LAYP = fetch('data/us-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({}))
+    .then(L => { Object.entries(L || {}).forEach(([k, v]) => { if (!XMAP[k] && Array.isArray(v) && v[0]) XMAP[k] = v; }); return XMAP; }));
   async function usKey(ref, states) {
+    await layers();
     let hit = null, known = false, site = null;
     for (const st of states || []) {
       if (!(st in keyCache)) keyCache[st] = fetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
