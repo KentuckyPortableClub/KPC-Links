@@ -640,14 +640,27 @@
     const tones = ENG.tones(m, S.mode === 'FT4'); if (!tones) { note('⚠️ That message can\'t be sent in ' + S.mode + ': ' + m, 5000); halt(); return; }
     sendTones(tones, sl, Math.max(0, 0.5 - into), m, n);
   }
+  /* Oct 18 (Brandon: YouTube through the same cord = 50 W, our page = 1-10 W): on Android, send the sound the way a video plays it
+     (a media player, like FT8CN's 'media' sound) instead of the live sound mixer. S.txOut = 'webaudio' goes back to the old way. */
+  function mediaOut() { return ANDR && S.txOut !== 'webaudio'; }
+  function wavBlob(x, rate) { const n = x.length, b = new ArrayBuffer(44 + n * 2), v = new DataView(b), w = (o, t) => { for (let i = 0; i < t.length; i++) v.setUint8(o + i, t.charCodeAt(i)); };
+    w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVE'); w(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, rate, true); v.setUint32(28, rate * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 2, true);
+    for (let i = 0; i < n; i++) v.setInt16(44 + i * 2, Math.max(-1, Math.min(1, x[i])) * 32767, true); return new Blob([b], { type: 'audio/wav' }); }
+  /* looks like an AudioBufferSourceNode: start(at, offset), stop(), onended */
+  function mediaSrc(x, rate) { const url = URL.createObjectURL(wavBlob(x, rate)), el = new Audio(url), o = { onended: null, el };
+    el.preload = 'auto'; el.volume = Math.min(1, S.lvl); el.onended = () => { URL.revokeObjectURL(url); if (o.onended) o.onended(); };
+    o.start = (at, off) => { const d = Math.max(0, (at - AC.currentTime) * 1000 - 60); setTimeout(() => { if (o.dead) return; try { if (off) el.currentTime = off; } catch (e) {} el.play().catch(e => note('⚠️ The tablet would not play the sound: ' + (e.message || e), 6000)); }, d); };
+    o.stop = () => { o.dead = true; try { el.pause(); } catch (e) {} URL.revokeObjectURL(url); }; return o; }
   async function sendTones(tones, sl, wait, m, n) {
     TXING = true; stat(); txSlots.add(S.mode + sl); psk();
     const rate = AC.sampleRate, au = KPCFT8.synth(tones, S.txHz, rate, S.mode === 'FT4');
     const into0 = nowS() - sl * slotLen(); /* started late = skip the part already gone, like WSJT-X */
     const skip = Math.max(0, Math.round((into0 - 0.5 + wait) * rate));
-    const b = AC.createBuffer(1, au.length, rate); b.copyToChannel(au, 0);
-    const g = AC.createGain(); g.gain.value = S.lvl; (window.__kpcTxG = (window.__kpcTxG || []).filter(x => x.context === g.context).slice(-6)).push(g); const src = AC.createBufferSource(); src.buffer = b; src.connect(g); g.connect(AC.destination); TXSRC = src;
-    await ptt(true);
+    let src;
+    if (mediaOut()) { src = mediaSrc(au, rate); TXSRC = src; }
+    else { const b = AC.createBuffer(1, au.length, rate); b.copyToChannel(au, 0);
+      const g = AC.createGain(); g.gain.value = S.lvl; (window.__kpcTxG = (window.__kpcTxG || []).filter(x => x.context === g.context).slice(-6)).push(g); src = AC.createBufferSource(); src.buffer = b; src.connect(g); g.connect(AC.destination); TXSRC = src; }
+    txMicOff(); await ptt(true);
     const at = AC.currentTime + Math.max(0.05, wait);
     src.start(at, skip / rate);
     MYQ.push({ t: sl * slotLen(), tx: 1, hz: S.txHz, text: m }); if (MYQ.length > 40) MYQ.shift(); drawRx();
@@ -661,8 +674,10 @@
   }
   function stopTx() { try { TXSRC && TXSRC.stop(); } catch (e) {} TXSRC = null; TUNE = null; TXING = false; clearTimeout(txStopT); setTimeout(async () => { await ptt(false); txMicOn(); }, 80); stat(); }
   async function startTone() {
-    if (!AC) return; TXING = true; const o = AC.createOscillator(), g = AC.createGain(); o.frequency.value = S.txHz; g.gain.value = S.lvl; (window.__kpcTxG = (window.__kpcTxG || []).filter(x => x.context === g.context).slice(-6)).push(g); o.connect(g); g.connect(AC.destination);
-    txMicOff(); await ptt(true); o.start(); TUNE = o; TXSRC = o; stat(); clearTimeout(txStopT); txStopT = setTimeout(() => { if (TXSRC === o) stopTx(); }, 10000); note('TUNE: a steady tone for 10 s. Tap TUNE again to stop.', 2500);
+    if (!AC) return; TXING = true; let o;
+    if (mediaOut()) { const r = AC.sampleRate, x = new Float32Array(r * 10); for (let i = 0; i < x.length; i++) x[i] = Math.sin(2 * Math.PI * S.txHz * i / r) * Math.min(1, i / 240, (x.length - i) / 240); o = mediaSrc(x, r); }
+    else { o = AC.createOscillator(); const g = AC.createGain(); o.frequency.value = S.txHz; g.gain.value = S.lvl; (window.__kpcTxG = (window.__kpcTxG || []).filter(x => x.context === g.context).slice(-6)).push(g); o.connect(g); g.connect(AC.destination); }
+    txMicOff(); await ptt(true); if (o.el) o.start(AC.currentTime); else o.start(); TUNE = o; TXSRC = o; stat(); clearTimeout(txStopT); txStopT = setTimeout(() => { if (TXSRC === o) stopTx(); }, 10000); note('TUNE: a steady tone for 10 s. Tap TUNE again to stop.', 2500);
   }
 
   /* ---------------- boxes, settings ---------------- */
@@ -674,7 +689,7 @@
   /* TX level in dB, 0.5 dB steps, applied LIVE to whatever is playing (TUNE, FT8, CW tone, RTTY/PSK/SSTV/WSPR) so the ALC can be set while tuning */
   const lvlDb = () => Math.round(20 * Math.log10(Math.max(0.01, S.lvl)) * 2) / 2;
   function setLvl(db) { db = Math.max(-40, Math.min(0, Math.round(db * 2) / 2)); S.lvl = Math.pow(10, db / 20); saveS(); $('f8Pwr').value = db; $('f8PwrT').textContent = (db > 0 ? '+' : '') + db.toFixed(1) + ' dB';
-    (window.__kpcTxG || []).forEach(g => { try { g.gain.setTargetAtTime(S.lvl, g.context.currentTime, 0.02); } catch (e) {} }); }
+    (window.__kpcTxG || []).forEach(g => { try { g.gain.setTargetAtTime(S.lvl, g.context.currentTime, 0.02); } catch (e) {} }); if (TXSRC && TXSRC.el) TXSRC.el.volume = Math.min(1, S.lvl); }
   function setRxg(db) { db = Math.max(-30, Math.min(20, Math.round(db))); S.rxg = db; saveS(); $('f8Rxg').value = db; $('f8RxgT').textContent = (db > 0 ? '+' : '') + db + ' dB';
     if (RXG) try { RXG.gain.setTargetAtTime(Math.pow(10, db / 20), RXG.context.currentTime, 0.05); } catch (e) {} }
   setRxg(+S.rxg || 0); $('f8Rxg').oninput = () => setRxg(+$('f8Rxg').value); $('f8RxgD').onclick = () => setRxg((+S.rxg || 0) - 2); $('f8RxgU').onclick = () => setRxg((+S.rxg || 0) + 2);
