@@ -1,10 +1,9 @@
 # Canada SK: POTA parks vs official land (CPCAD)
 
-Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **290 of 411** joined (same name + same kind). **13** to check, **81** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **291 of 411** joined (same name + same kind). **12** to check, **81** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
-- **CA-1119** Leroy Leisureland Regional Park (Regional Park) → LeRoy Leisure Land Regional Park (~0 ac, the POTA pin is inside it (different name))
 - **CA-2720** Little Armit River Recreation Site (Recreation Site) → Upper Armit River (~2,395 ac, similar name); North Armit River (~236 ac, similar name); Lower Armit River (~161 ac, similar name); Armit River Recreation Site (~145 ac, similar name)
 - **CA-2727** Lower Armit River Recreation Site (Recreation Site) → Upper Armit River (~2,395 ac, similar name); North Armit River (~236 ac, similar name); Armit River Recreation Site (~145 ac, similar name); Lower Armit River (~161 ac, same name, different kind of place)
 - **CA-2779** North Armit River Recreation Site (Recreation Site) → Upper Armit River (~2,395 ac, similar name); Lower Armit River (~161 ac, similar name); Armit River Recreation Site (~145 ac, similar name); North Armit River (~236 ac, same name, different kind of place)

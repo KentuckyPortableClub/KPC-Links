@@ -1,14 +1,12 @@
 # Canada AB: POTA parks vs official land (CPCAD)
 
-Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **389 of 459** joined (same name + same kind). **23** to check, **44** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **391 of 459** joined (same name + same kind). **21** to check, **44** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
-- **CA-0011** CFB Suffield National Wildlife Area (National Wildlife Area) → Canadian Forces Base Suffield National Wildlife Area (~113,264 ac, the POTA pin is inside it (different name))
 - **CA-0663** Peace-Athabasca Delta Natural Area (Natural Area) → Wood Buffalo National Park Of Canada (~8,807,344 ac, the POTA pin is inside it (different name)); Wood Buffalo (~0 ac, the POTA pin is inside it (different name))
 - **CA-2938** Big Elbow Provincial Recreation Area (Provincial Recreation Area) → Don Getty Wildland Provincial Park (~154,882 ac, the POTA pin is inside it (different name)); Don Getty Wildland (~0 ac, the POTA pin is inside it (different name))
 - **CA-2969** Castle Falls Natural Area (Natural Area) → Castle Provincial Park (~55,296 ac, similar name); Castle Provincial Park (~7,816 ac, similar name); Castle (~0 ac, similar name)
-- **CA-3026** Gipsy Lake Wildland Provincial Park (Provincial Park) → Gipsy-Gordon Wildland Provincial Park (~459,367 ac, similar name); Gipsy-Gordon Wildland (~0 ac, similar name)
 - **CA-3076** McLean Pond Natural Area (Natural Area) → McLean Creek (~0 ac, the POTA pin is inside it (different name))
 - **CA-3157** Waterton-Glacier International Peace Park (Park) → Waterton Lakes National Park Of Canada (~124,788 ac, the POTA pin is inside it (different name)); Waterton Lakes (~0 ac, the POTA pin is inside it (different name))
 - **CA-4771** Abbot Pass Refuge Cabin National Historic Site (National Historic Site) → Banff National Park Of Canada (~1,641,024 ac, the POTA pin is inside it (different name)); Banff (~0 ac, the POTA pin is inside it (different name))

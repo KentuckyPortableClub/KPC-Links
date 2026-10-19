@@ -1,6 +1,6 @@
 # Canada NB: POTA parks vs official land (CPCAD)
 
-Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **261 of 562** joined (same name + same kind). **40** to check, **260** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **262 of 562** joined (same name + same kind). **39** to check, **260** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -11,7 +11,6 @@ Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **261 of 562** joined (same
 - **CA-4438** Martial Brook Protected Area (Protected Area) → Magaguadavic River (~5,213 ac, the POTA pin is inside it (different name)); Magaguadavic River (~0 ac, the POTA pin is inside it (different name))
 - **CA-4526** Tabusintac Lagoon and River Estuary Ramsar Site (Ramsar Site) → Miramichi Bay Closure (~362,854 ac, the POTA pin is inside it (different name))
 - **CA-4530** Wilson's Point (Enclosure) Park Historic Site (Historic Site) → Wilson's Point Wildlife Refuge (~0 ac, same name, different kind of place)
-- **CA-4808** Beaubears Island Shipbuilding National Historic Site (National Historic Site) → Beaubears Island - Site of Boishébert and Beaubears Island Shipbuilding National Historic Sites of Canada (~178 ac, similar name)
 - **CA-4809** Boishebert Refuge National Historic Site (National Historic Site) → Wilson's Point Wildlife Refuge (~0 ac, the POTA pin is inside it (different name))
 - **CA-5138** Odell Park and Odell Arboretum Recreation Park (Recreation Park) → O'dell Wildlife Refuge (~0 ac, similar name)
 - **CA-5154** Cape Jourimain Lighthouse National Heritage Site (National Heritage Site) → Cape Jourimain National Wildlife Area (~690 ac, similar name); Cape Jourimain National Wildlife Area (~530 ac, similar name); Cape Jourimain (~19 ac, similar name); Scallop Buffer Zone (SFA 22) (~704,937 ac, the POTA pin is inside it (different name))

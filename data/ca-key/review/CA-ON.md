@@ -1,6 +1,6 @@
 # Canada ON: POTA parks vs official land (CPCAD)
 
-Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **780 of 1157** joined (same name + same kind). **37** to check, **331** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **783 of 1157** joined (same name + same kind). **34** to check, **331** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -10,14 +10,11 @@ Built 2026-10-19 by `.github/scripts/kpc_ca_key.py`. **780 of 1157** joined (sam
 - **CA-1300** Barron Canyon Conservation Reserve (Conservation Reserve) → Algonquin Provincial Park (Natural Environment Class) (~654,023 ac, the POTA pin is inside it (different name)); ALGONQUIN PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS) (~0 ac, the POTA pin is inside it (different name))
 - **CA-1305** Bat Cave Wilderness Area (Wilderness Area) → Cavern Lake Provincial Park (Nature Reserve Class) (~467 ac, the POTA pin is inside it (different name))
 - **CA-1340** Cape Henrietta-Maria Conservation Reserve (Conservation Reserve) → Polar Bear Provincial Park (~5,819,817 ac, the POTA pin is inside it (different name)); POLAR BEAR PROVINCIAL PARK (~0 ac, the POTA pin is inside it (different name))
-- **CA-1344** Cat Lake-Slate Falls Conservation Reserve (Conservation Reserve) → Cat Lake-Slate Falls Dedicated Protected Area (~1,225,228 ac, same name, different kind of place)
 - **CA-1394** Fairy Point Wilderness Area (Wilderness Area) → Missinaibi Provincial Park (Waterway Class) (~286,914 ac, the POTA pin is inside it (different name)); MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS) (~0 ac, the POTA pin is inside it (different name))
 - **CA-1439** Hilliardton Marsh Conservation Reserve (Conservation Reserve) → Blanche River Conservation Reserve (~13,742 ac, the POTA pin is inside it (different name))
 - **CA-1467** Kishkebus Lake Wilderness Area (Wilderness Area) → Bon Echo Provincial Park (Natural Environment Class) (~20,495 ac, the POTA pin is inside it (different name)); BON ECHO PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS) (~0 ac, the POTA pin is inside it (different name))
-- **CA-1475** Lake Country  (Weeskayjahk Ohtahzhoganiing) Conservation Reserve (Conservation Reserve) → Weeskayjahk Ohtahzhoganeeng (~440,974 ac, the POTA pin is inside it (different name)); WEESKAYJAHK OHTAHZHOGANEENG (~0 ac, the POTA pin is inside it (different name))
 - **CA-1519** Milne Dam Conservation Park (Conservation Park) → Potential Rouge Park North of Steeles (~0 ac, the POTA pin is inside it (different name))
 - **CA-1566** Outer Barn Island Wilderness Area (Wilderness Area) → LAKE NIPIGON CONSERVATION RESERVE (~0 ac, the POTA pin is inside it (different name))
-- **CA-1577** Pikangikum Cultural Landscape Waterways Protected Area (Protected Area) → Beekahncheekahmeeng Deebahncheekayweehn Eenahohnahnuhn (~246,057 ac, the POTA pin is inside it (different name)); BEEKAHNCHEEKAHMEENG DEEBAHNCHEEKAYWEEHN EENAHOHNAHNUHN (~0 ac, the POTA pin is inside it (different name))
 - **CA-1586** Presqu'ile Island Wilderness Area (Wilderness Area) → Presqu'Ile Provincial Park (Natural Environment Class) (~2,427 ac, similar name); PRESQU'ILE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS) (~0 ac, similar name)
 - **CA-1596** Hog's Back Conservation Reserve (Conservation Reserve) → Rideau River, Hog's Back (~173 ac, similar name); Rideau Canal National Historic Site (~49,352 ac, the POTA pin is inside it (different name))
 - **CA-1627** Sleeping Giant Wilderness Area (Wilderness Area) → Sleeping Giant Provincial Park (Natural Environment Class) (~60,294 ac, same name, different kind of place); SLEEPING GIANT PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS) (~0 ac, same name, different kind of place)
