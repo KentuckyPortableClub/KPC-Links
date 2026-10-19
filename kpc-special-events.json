@@ -1,23 +1,6 @@
 {
- "updated": "2026-10-18T10:59:42Z",
+ "updated": "2026-10-19T11:08:27Z",
  "stations": [
-  {
-   "title": "CACTUS",
-   "start": "2026-10-09",
-   "end": "2026-10-18",
-   "times": "1200Z-2359Z",
-   "call": "K7RST",
-   "calls": [
-    "K7RST"
-   ],
-   "where": "Tucson, AZ",
-   "st": "AZ",
-   "by": "Radio Society of Tucson",
-   "freqs": "14.287",
-   "qsl": "Certificate & QSL",
-   "url": "http://cactus.k7rst.net",
-   "note": ", Tucson, AZ. Radio Society of Tucson. 14.287. Certificate & QSL. RST Attn: CACTUS Certificate Request Manager, PO Box 13603, Tucson, AZ 85732-3603."
-  },
   {
    "title": "3rd Annual National Sasquatch Awareness Day",
    "start": "2026-10-12",
@@ -58,57 +41,6 @@
    "qsl": "QSL",
    "url": "https://www.stemarc.org",
    "note": ", Lancaster, SC. STEM Amateur Radio Club. 145.350MHz. QSL. Vicki Carnes/ AD3i, 1093 Outlaw Avenue, Lancaster, SC 29720."
-  },
-  {
-   "title": "Chuck Berry 100th Birthday Special Event",
-   "start": "2026-10-17",
-   "end": "2026-10-18",
-   "times": "0000Z-2359Z",
-   "call": "W0B",
-   "calls": [
-    "W0B"
-   ],
-   "where": "St. Louis, MO",
-   "st": "MO",
-   "by": "St. Louis and Suburban Radio Club",
-   "freqs": "7.180 14.250 28.350",
-   "qsl": "Certificate & QSL",
-   "url": "",
-   "note": ", St. Louis, MO. St. Louis and Suburban Radio Club. 7.180 14.250 28.350. Certificate & QSL. Special Event W0B, c/o Jim Briggs, 19429 Quarry Road, Warrenton, MO 63383."
-  },
-  {
-   "title": "National Mashed Potato Day",
-   "start": "2026-10-17",
-   "end": "2026-10-18",
-   "times": "0917Z-1207Z",
-   "call": "W9P",
-   "calls": [
-    "W9P"
-   ],
-   "where": "Plover, WI",
-   "st": "WI",
-   "by": "Central Sands Amateur Radio",
-   "freqs": "14.320MHz 40m depending upon band cond",
-   "qsl": "Certificate",
-   "url": "",
-   "note": ", Plover, WI. Central Sands Amateur Radio. 14.320MHz 40m depending upon band cond. 15M band conditions . Certificate. Phil Schobert, 300 Polk St, Stevens Point, WI 54481."
-  },
-  {
-   "title": "USS Wisconsin BB-64 supporting Jamboree on the Air",
-   "start": "2026-10-18",
-   "end": "2026-10-18",
-   "times": "1400Z-2000Z",
-   "call": "N4WIS",
-   "calls": [
-    "N4WIS"
-   ],
-   "where": "Norfolk, VA",
-   "st": "VA",
-   "by": "USS Wisconsin Radio Club",
-   "freqs": "14.264, 14.064 7.264, 7.064 21.264, 21.064 28.364, 28.064",
-   "qsl": "QSL",
-   "url": "http://n4wis.org",
-   "note": ", Norfolk, VA. USS Wisconsin Radio Club. 14.264, 14.064 7.264, 7.064 21.264, 21.064 28.364, 28.064. QSL. USS Wisconsin Radio Club (N4WIS) c/o Nauticus, One Waterside Drive, Norfolk, VA 23510."
   },
   {
    "title": "United States Coast Guard Auxiliary 87 Birthday",
@@ -737,18 +669,26 @@
    "qsl": "QSL",
    "url": "http://WWW.PENNWIRELESS.ORG",
    "note": ", Levittown, PA. PENN WIRELESS ASSOCIATION. 7.200 14.250 18.135 146.79 -0.6 131.8PL. QSL. PENN WIRELESS ASSOCIATION, PO 925, Levittown, PA 19058. The industrial engine behind Levittown's growth. U.S. Steel's Fairless Works began steel production on December 11, 1952; the plant (named for executive Benjamin Franklin Fairless) drew thousands of workers who needed nearby housing — the direct economic"
+  },
+  {
+   "title": "21st Annual Straight Key Month. K3Y/0 thru 9 plus KH6, KL7, KP4 and DX member stations in six WAC areas operating straight key, bug and cootie keys. QSL card confirms one QSO per area, up to 19 for all-area sweep. See URL for op sched/map, stats, etc.",
+   "start": "2027-01-02",
+   "end": "2027-01-31",
+   "times": "0000Z-2359Z",
+   "call": "K3Y",
+   "calls": [
+    "K3Y"
+   ],
+   "where": "Ellicot City",
+   "st": "",
+   "by": "SKCC - Straight Key Century Club",
+   "freqs": "3.550 7.055 14.050 21.050",
+   "qsl": "Certificate & QSL",
+   "url": "https://www.skccgroup.com/k3y",
+   "note": ", Ellicot City. SKCC - Straight Key Century Club. 3.550 7.055 14.050 21.050. Certificate & QSL. SKCC c/o Bill Hunt KJ7GNB, PO Box 731, Shelby, MT 59474."
   }
  ],
  "yearly": [
-  {
-   "title": "Jamboree on the Air (JOTA)",
-   "start": "2026-10-17",
-   "end": "2026-10-18",
-   "times": "",
-   "about": "Third full weekend of October. Scouts on the air around the world; be kind and slow down for them.",
-   "calls": "K2BSA and Scout stations everywhere",
-   "url": "https://en.wikipedia.org/wiki/Jamboree_on_the_Air"
-  },
   {
    "title": "Straight Key Night",
    "start": "2027-01-01",
@@ -805,6 +745,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (43)"
+  "ARRL": "ok (40)"
  }
 }
