@@ -93,15 +93,19 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  {const nt=document.createElement('div');nt.className='us-zoomnote';nt.hidden=true;
   nt.style.cssText='position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:1000;background:rgba(10,10,10,.82);color:#f6d58a;border:1px solid rgba(240,201,107,.6);border-radius:999px;padding:6px 12px;font:800 12px system-ui,sans-serif;letter-spacing:.04em;pointer-events:none;white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis';
   map.getContainer().appendChild(nt);window.__usMap=map;let tm=0,seq=0;
+  /* Oct 19 (Brandon: park card / zoom trouble after clicking a park): opening a card pans the map, which used to redraw every dot
+     and throw away the open card; now the dots wait until the card is closed */
+  let vPend=false;const redraw=()=>{if(map._popup&&map.hasLayer(map._popup)&&map._popup._kpc){vPend=true;return}drawDots()};
+  map.on('popupclose',()=>{if(vPend){vPend=false;setTimeout(redraw,60)}});
   const upd=async()=>{const q=++seq,z=map.getZoom();
-   if(RT){VIEW=[];nt.hidden=true;drawDots();return}
-   if(z<VZ){const had=VIEW.length;VIEW=[];nt.textContent=center?'🔎 Zoom in to see every spot on the map':'🔎 Zoom in to see spots on the map';nt.hidden=false;if(had)drawDots();return}
+   if(RT){VIEW=[];nt.hidden=true;redraw();return}
+   if(z<VZ){const had=VIEW.length;VIEW=[];nt.textContent=center?'🔎 Zoom in to see every spot on the map':'🔎 Zoom in to see spots on the map';nt.hidden=false;if(had)redraw();return}
    const b=map.getBounds().pad(.15),c=map.getCenter();
    try{await addTiles(b.getSouth(),b.getWest(),b.getNorth(),b.getEast(),c.lat,c.lng,60)}catch(e){}
    if(q!==seq)return;
    let v=ALL.filter(s=>progs.includes(s.p)&&b.contains([s.la,s.lo]));if(KM&&KM.filtering())v=v.filter(s=>KM.show(s.c));
    const many=v.length>VCAP;if(many)v=v.map(s=>({s,d:(s.la-c.lat)**2+((s.lo-c.lng)*Math.cos(c.lat*Math.PI/180))**2})).sort((a,b)=>a.d-b.d).slice(0,VCAP).map(x=>x.s);
-   VIEW=v;nt.textContent=many?`Showing the ${VCAP.toLocaleString()} spots closest to the middle: zoom in for the rest`:'';nt.hidden=!many;drawDots()};
+   VIEW=v;nt.textContent=many?`Showing the ${VCAP.toLocaleString()} spots closest to the middle: zoom in for the rest`:'';nt.hidden=!many;redraw()};
   window.__usView=()=>{clearTimeout(tm);tm=setTimeout(upd,250)};map.on('moveend zoomend',window.__usView);setTimeout(upd,600)}
  /* drop mode wins over dots: with big phone tap areas most taps land on a dot, so drop the pin there too */
  let dropBusy=0;const dropAt=ll=>{if(!dropMode||dropBusy)return;dropBusy=1;map.closePopup();setTimeout(()=>{dropBusy=0;const nm=prompt('Name this pin (campsite, gas stop, lookout…):','My pin');if(nm===null)return;
@@ -244,7 +248,11 @@ async function search(q){q=q.trim();if(!q)return;$('us-hits').style.display='non
  status('Pick one:');const h=$('us-hits');h.style.display='block';
  h.innerHTML=items.map((i,k)=>i.t==='place'?`<button type="button" data-k="${k}">&#128205; ${esc(i.n.split(',').slice(0,3).join(','))}<small>Place</small></button>`:`<button type="button" data-k="${k}"><span class="dot" style="background:${COL[i.s.p]}"></span>${esc(i.s.n)}<small>${i.s.p} ${esc(i.s.c)}</small></button>`).join('');
  h.onclick=async e=>{const b=e.target.closest('button');if(!b)return;const i=items[+b.dataset.k];h.style.display='none';if(i.t==='place')go(i.la,i.lo,i.n.split(',').slice(0,2).join(','));else{await go(i.s.la,i.s.lo,i.s.n);openSpot(i.s)}}}
-function openSpot(s){if(!map)return;let hit=null;dots.eachLayer(l=>{if(l.getPopup&&l.getPopup()&&l.getPopup()._kpc===s)hit=l});if(hit)hit.openPopup()}
+/* Oct 19 (Brandon: 'after I clicked a park my zoom option disappeared on the desktop'): scrolling the map to the middle of the screen
+   put its top (zoom buttons) under the sticky site header on shorter screens; now the map's top lands just under the header */
+function toMap(){const m=$('usmap');if(!m)return;const h=document.querySelector('header.site-nav,.site-nav'),hb=h?h.getBoundingClientRect().bottom:0,r=m.getBoundingClientRect();
+ scrollTo({top:Math.max(0,scrollY+r.top-Math.max(0,hb)-10),behavior:'smooth'})}
+function openSpot(s,n){if(!map)return;let hit=null;dots.eachLayer(l=>{const k=l.getPopup&&l.getPopup()&&l.getPopup()._kpc;if(k&&(k===s||(k.c===s.c&&k.p===s.p)))hit=l});if(hit)hit.openPopup();else if((n||0)<4)setTimeout(()=>openSpot(s,(n||0)+1),400)}
 async function go(la,lo,label){clearRoute();center=[la,lo];radius=+$('usr').value;store.set('kpcUsLast',{la,lo,label,r:radius});
  status(`Loading spots near ${esc(label||'there')}…`);
  const added=await addLive(la,lo,radius);try{await addWorld(la,lo,radius)}catch(e){}
@@ -440,7 +448,7 @@ $('urw').onchange=()=>{if(RT){const C=corridor(RT.pts,+$('urw').value);RT.w=+$('
 {const r=store.get('kpcUsRoute',null);if(r){$('urf').value=r.f||'';$('urt').value=r.t||'';if(r.w)$('urw').value=String(r.w)}setSearchMode(store.get('kpcUsMode','place'))}
 $('near-body').onclick=e=>{const a=e.target.closest('[data-i]'),o=e.target.closest('[data-o]');
  if(a){const s=LIST[+a.dataset.i];inTrip(s.c)?removeStop(s.c):addStop(s)}
- if(o){e.preventDefault();const s=LIST[+o.dataset.o];map&&map.setView([s.la,s.lo],Math.max(map.getZoom(),11));setTimeout(()=>openSpot(s),300);$('usmap').scrollIntoView({behavior:'smooth',block:'center'})}};
+ if(o){e.preventDefault();const s=LIST[+o.dataset.o];map&&map.setView([s.la,s.lo],Math.max(map.getZoom(),11));setTimeout(()=>openSpot(s),600);toMap()}};
 $('trip-list').onclick=e=>{const b=e.target.closest('button');if(!b)return;const i=+(b.dataset.u??b.dataset.d??b.dataset.x);
  if(b.dataset.x!=null)return removeStop(trip[i].c);const j=b.dataset.u!=null?i-1:i+1;if(j<0||j>=trip.length)return;[trip[i],trip[j]]=[trip[j],trip[i]];saveTrip();drawTrip()};
 $('t-order').onclick=bestOrder;
@@ -458,7 +466,7 @@ initMap();
 /* new checker answers: the list redraws at once; map dots wait until an open popup is closed so it doesn't vanish */
 if(KM){KM.bar($('km-bar'));let pend=false;
  window.addEventListener('kpcmine',()=>{if(!center){if(VIEW.length&&window.__usView)window.__usView();return}drawNear();if(map&&map._popup&&map.hasLayer(map._popup)){pend=true;return}drawDots()});
- if(map)map.on('popupclose',()=>{if(pend){pend=false;setTimeout(drawDots,0)}})}
+ if(map)map.on('popupclose',()=>{if(pend){pend=false;setTimeout(()=>{if(map._popup&&map.hasLayer(map._popup))pend=true;else drawDots()},60)}})}
 loadAll().then(()=>{const shared=loadShared();drawTrip();if(window.__usView)window.__usView();
  /* ?q=… (sent by the KY Trip Planner for an out-of-state place): search it straight away */
  const qp=new URLSearchParams(location.search).get('q');if(qp&&!shared){$('usq').value=qp;search(qp);return}
