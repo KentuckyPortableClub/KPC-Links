@@ -199,8 +199,14 @@ MORE.append(('Nova Scotia parks and protected areas', 'https://services1.arcgis.
 MORE.append(('Manitoba wildlife lands (Government of Manitoba)', 'https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0', None))
 # Oct 20 (probe 6): Québec MRNF recreation territories (TRQ): ZEC (POTA files many as 'Nature Reserve') + réserves fauniques; outfitters (pourvoiries) are leases, left out
 try:
-    _q = 'https://serviceswebcarto.mern.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer'
-    _ql = [l for l in (get(_q, {'f': 'json'}).get('layers') or []) if re.search(r'zec|zone d|faunique|parc', l.get('name', ''), re.I) and not re.search(r'pourvoir', l.get('name', ''), re.I) and not l.get('subLayerIds')]
+    # Oct 20: the old mern host closed the connection; the ministry moved it to servicescarto.mrnf.gouv.qc.ca (Données Québec record)
+    _ql0 = None
+    for _q in ['https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer',
+               'https://serviceswebcarto.mern.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer']:
+        try: _ql0 = get(_q, {'f': 'json'}).get('layers') or []; break
+        except Exception as _e: notice('Canada more layers', f'Québec TRQ host {_q.split("/")[2]} failed: {_e}')  # noqa: BLE001
+    if _ql0 is None: raise RuntimeError('no Québec TRQ host answered')
+    _ql = [l for l in _ql0 if re.search(r'zec|zone d|faunique|parc', l.get('name', ''), re.I) and not re.search(r'pourvoir', l.get('name', ''), re.I) and not l.get('subLayerIds')]
     notice('Canada more layers', 'Québec TRQ layers: ' + ', '.join(f"{l['id']}:{l['name']}" for l in _ql))
     MORE += [(f"Québec {l['name']} (MRNF)", f"{_q}/{l['id']}", None) for l in _ql]
 except Exception as ex: notice('Canada more layers', f'Québec TRQ list FAILED: {ex}')  # noqa: BLE001
