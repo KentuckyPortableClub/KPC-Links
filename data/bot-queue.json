@@ -3,11 +3,6 @@
  "until": "2026-10-22T06:01:00Z",
  "jobs": [
   {
-   "wf": "kpc-ca-key.yml",
-   "inputs": {},
-   "why": "Québec zec + réserves fauniques (new mrnf map host)"
-  },
-  {
    "wf": "kpc-us-key.yml",
    "inputs": {
     "states": "CO AR NH MI ND VT MD MO"
