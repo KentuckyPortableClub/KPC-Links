@@ -20,18 +20,16 @@ def fetch(u, raw=False, timeout=60):
     except Exception as e: return 0, str(e)[:120]  # noqa: BLE001
 
 
-DIRECT = {   # Oct 20 round: the biggest missing groups (France's 10k small reserves, Australia's state forests, Canada's provinces)
-    'FR': ['https://data.geopf.fr/wfs/ows?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0',
-           'https://ws.carmencarto.fr/WFS/119/fxx_inpn?SERVICE=WFS&REQUEST=GetCapabilities'],
-    'AU': ['https://mapprod3.environment.nsw.gov.au/arcgis/rest/services?f=json',
-           'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries?f=json',
-           'https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?SERVICE=WFS&REQUEST=GetCapabilities'],
-    'CA': ['https://servicesmatriciels.mern.gouv.qc.ca/erdas-iws/ogc/wms?SERVICE=WMS&REQUEST=GetCapabilities'],
+DIRECT = {   # Oct 20 round 2: the US states with the biggest groups still unjoined
+    'US': ['https://services.arcgis.com/9Jk4Zl9KofTtvg3x/arcgis/rest/services?f=json'],
+    'AUV': ['https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services?f=json'],
 }
 SEARCH = {
-    'FR': ['ZNIEFF type 1', 'Zones naturelles d interet ecologique faunistique et floristique', 'reserves biologiques ONF'],
-    'AU': ['NSW State Forests', 'Forestry Corporation NSW state forest', 'Queensland State Forests', 'Victoria state forest', 'Western Australia state forest DBCA', 'DBCA legislated lands and waters'],
-    'CA': ['Ontario conservation areas conservation authority', 'Parcs regionaux Quebec', 'Lieux historiques nationaux du Canada', 'Nova Scotia provincial parks', 'New Brunswick provincial parks', 'Quebec reserves naturelles'],
+    'US': ['Florida Managed Areas FNAI', 'Florida Conservation Lands', 'WDFW lands', 'WDFW water access sites', 'Idaho Fish and Game access areas',
+           'Arkansas Game and Fish wildlife management areas', 'Colorado Parks and Wildlife State Wildlife Areas', 'Missouri Department of Conservation conservation areas',
+           'Michigan DNR state game areas', 'New Hampshire conservation land state forest', 'Nebraska state recreation areas', 'Indiana DNR state recreation areas',
+           'Mississippi wildlife management areas MDWFP', 'Wisconsin state natural areas', 'Connecticut DEEP state parks forests'],
+    'AUV': ['Victoria state forest public land management', 'DBCA legislated lands and waters', 'Western Australia state forest'],
 }
 for cc in DIRECT:
     rows = []
@@ -49,7 +47,7 @@ for cc in DIRECT:
         time.sleep(1)
     hits = []
     for q in SEARCH[cc]:
-        st, t = fetch('https://www.arcgis.com/sharing/rest/search?' + urllib.parse.urlencode({'q': f'{q} type:("Feature Service" OR "Map Service")', 'num': 8, 'f': 'json', 'sortField': 'numviews', 'sortOrder': 'desc'}))
+        st, t = fetch('https://www.arcgis.com/sharing/rest/search?' + urllib.parse.urlencode({'q': f'{q} type:("Feature Service" OR "Map Service")', 'num': 6, 'f': 'json', 'sortField': 'numviews', 'sortOrder': 'desc'}))
         try:
             for r in json.loads(t).get('results', []):
                 hits.append({'q': q, 'title': r.get('title'), 'owner': r.get('owner'), 'url': r.get('url'), 'views': r.get('numViews')})
