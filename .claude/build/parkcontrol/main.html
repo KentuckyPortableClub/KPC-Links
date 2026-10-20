@@ -31,6 +31,15 @@ main#pc .pc-tag{display:inline-block;padding:2px 8px;border-radius:999px;font:90
 @media(max-width:900px){main#pc .pc-grid{grid-template-columns:1fr}main#pc #pcMap{height:62vh}}
 html[data-theme=dark] main#pc .pc-card,html[data-theme=dark] main#pc .pc-search input,html[data-theme=dark] main#pc .pc-sug,html[data-theme=dark] main#pc .pc-chip:not(.on){background:#17130c!important;color:#f3e6c8!important;border-color:#5a4a2a!important}
 html[data-theme=dark] main#pc .pc-acts a:not(.gold),html[data-theme=dark] main#pc .pc-acts button:not(.gold),html[data-theme=dark] main#pc .pc-sug button{background:#221b10!important;color:#f3e6c8!important}
+html[data-theme=dark]:has(main#pc),html[data-theme=dark] body:has(main#pc),html[data-theme=dark] main#pc{background:#0d0b07!important}
+html[data-theme=dark] main#pc{color:#e9dfc8}
+html[data-theme=dark] main#pc>section:not(.kb-hero),html[data-theme=dark] main#pc .pc-wrap{background:transparent!important}
+html[data-theme=dark] main#pc .pc-hint,html[data-theme=dark] main#pc .pc-count,html[data-theme=dark] main#pc .pc-foot,html[data-theme=dark] main#pc>p,html[data-theme=dark] main#pc .pc-note{color:#c9bea4!important}
+html[data-theme=dark] main#pc .km-bar{background:#17130c!important;color:#f3e6c8!important;border-color:#5a4a2a!important}
+html[data-theme=dark] main#pc .km-call,html[data-theme=dark] main#pc .km-key,html[data-theme=dark] main#pc .km-st{color:#d8cdb3!important}
+html[data-theme=dark] main#pc .km-call input{background:#221b10!important;color:#f3e6c8!important;border-color:#6b5a35!important}
+html[data-theme=dark] main#pc .km-chip:not([aria-pressed=true]){background:#221b10!important;color:#f3e6c8!important;border-color:#6b5a35!important}
+@media(max-width:700px){main#pc .pc-list a{display:inline-block;padding:9px 2px;min-height:38px}}
 </style>
 @@HEADER@@
 <main class="kb" id="pc" data-keep-light>
@@ -38,7 +47,7 @@ html[data-theme=dark] main#pc .pc-acts a:not(.gold),html[data-theme=dark] main#p
 <p class="kb-eyebrow">KENTUCKY PORTABLE CLUB • POTA • KFF • SOTA</p>
 <h1>KENTUCKY <span>PARK CONTROL</span></h1>
 <p class="kb-copy">Every Kentucky POTA park, KFF (WWFF) reference and W4K SOTA summit on one map. Search by name, number or town, tap a dot for directions, official links, parking and park tips, and put a trip together.</p>
-<div class="kb-chips"><span>🌲 195 POTA parks</span><span>🌳 KFF references</span><span>⛰ 216 SOTA summits</span><span>🧭 Trip list</span></div>
+<div class="kb-chips"><span>🌲 195 POTA parks</span><span>🌳 142 KFF references</span><span>⛰ 216 SOTA summits</span><span>🧭 Trip list</span></div>
 </div></section>
 <section class="kb-sec"><div class="pc-wrap">
 <div class="pc-bar">
@@ -79,6 +88,6 @@ html[data-theme=dark] main#pc .pc-acts a:not(.gold),html[data-theme=dark] main#p
 <style id="pc-mine-css">main#pc .pc-mineb{margin:2px 0 4px}main#pc .pc-mine .km-bar{margin:0;padding:0;background:none;border:0;box-shadow:none}main#pc .pc-more{margin-top:6px;border:1px solid #c9a24a;border-radius:999px;padding:5px 12px;background:#fff6dd;font:800 11px Arial;cursor:pointer}</style>
 <style id="pc-rules-css">main#pc .pc-rules summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer}main#pc .pc-rules summary::-webkit-details-marker{display:none}main#pc .pc-rtog{font:800 11px Arial;letter-spacing:.06em;border:1px solid #c9a24a;border-radius:999px;padding:3px 10px;background:linear-gradient(#f6d58a,#d5a63a);color:#2a1a05;white-space:nowrap}main#pc .pc-rules[open] .pc-rtog::before{content:"CLOSE ▴"}main#pc .pc-rules[open] .pc-rtog{font-size:0}main#pc .pc-rules[open] .pc-rtog::before{font-size:11px}main#pc .pc-r{margin-top:10px;font-size:.88rem;line-height:1.45}main#pc .pc-r ul{margin:4px 0 0;padding-left:18px}main#pc .pc-r li{margin:2px 0}</style>
 <style id="pc-apmore">.pc-more{margin:6px 0 2px;font:inherit;font-size:.78rem;font-weight:800;letter-spacing:.06em;border:1px solid #c9a24a;border-radius:999px;padding:5px 12px;background:#fff6dc;color:#2a1a05;cursor:pointer}</style>
-<script src="kpc-my-parks.js?v=20261019g" defer></script>
-<script src="kpc-park-control.js?v=20261018v" defer></script>
+<script src="kpc-my-parks.js?v=20261019o" defer></script>
+<script src="kpc-park-control.js?v=20261019o" defer></script>
 @@FOOTER@@

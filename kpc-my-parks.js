@@ -13,7 +13,7 @@
 'use strict';
 const POTA='https://api.pota.app',SOTA='https://api2.sota.org.uk/api';
 const K_CALL='kpcMyCall',K_OPT='kpcMineOpt',K_MINE='kpcMine_v1',K_CNT='kpcAtno_v1';
-const MINE_HRS=12,CNT_HRS=24,MAX_LOOKUPS=400;
+const MINE_HRS=12,CNT_HRS=24,MAX_LOOKUPS=450;   /* Oct 19: Park Control sends every KY park + summit (411) */
 const get=(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}};
 const put=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -149,7 +149,7 @@ function css(){if(document.getElementById('km-css'))return;const st=document.cre
 @media(max-width:600px){.km-row>button{flex:1 1 auto}.km-call{flex-basis:100%}}`;document.head.appendChild(st)}
 function bar(el,o){if(!el)return;css();o=o||{};
  el.classList.add('km-bar');
- el.innerHTML=`<div class="km-row"><label class="km-call">MY CALLSIGN (FOR NEW TO ME)<input type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. KZ4CP" value="${esc(call)}"></label>
+ el.innerHTML=`<div class="km-row"><label class="km-call">MY CALLSIGN (FOR NEW TO ME)<input type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. K4TEST" value="${esc(call)}"></label>
 <button type="button" class="km-go">CHECK</button>
 <button type="button" class="km-chip" data-o="nw" aria-pressed="${!!opt.nw}">NEW TO ME</button>
 <button type="button" class="km-chip" data-o="atno" aria-pressed="${!!opt.atno}">ATNO</button>

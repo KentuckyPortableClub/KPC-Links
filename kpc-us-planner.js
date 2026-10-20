@@ -95,7 +95,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
   map.getContainer().appendChild(nt);window.__usMap=map;let tm=0,seq=0;
   /* Oct 19 (Brandon: park card / zoom trouble after clicking a park): opening a card pans the map, which used to redraw every dot
      and throw away the open card; now the dots wait until the card is closed */
-  let vPend=false;const redraw=()=>{if(map._popup&&map.hasLayer(map._popup)&&map._popup._kpc){vPend=true;return}drawDots()};
+  let vPend=false;const redraw=()=>drawDots();   /* drawDots keeps an open card now */
   map.on('popupclose',()=>{if(vPend){vPend=false;setTimeout(redraw,60)}});
   const upd=async()=>{const q=++seq,z=map.getZoom();
    if(RT){VIEW=[];nt.hidden=true;redraw();return}
@@ -114,7 +114,8 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  /* WHAT LAND IS HERE? (Oct 18, Brandon: 'review the US data… see what you can do with it'): zoomed in to county level, a tap on land
     (not on a dot or trail line) asks USGS PAD-US what official land is right there, and the answer key says which park it is */
  let hereL=null,dotTap=0;dots.on('click',()=>{dotTap=Date.now()});map.on('click',e=>landHere(e));
- async function landHere(e){if(dropMode||!window.KPCB||!KPCB.usLandAt||map.getZoom()<10||Date.now()-dotTap<500)return;const t=e.originalEvent&&e.originalEvent.target;
+ async function landHere(e){if(dropMode||!window.KPCB||!KPCB.usLandAt||map.getZoom()<10||Date.now()-dotTap<500)return;
+  {let near=false;const cp=e.containerPoint;if(cp)dots.eachLayer(l=>{if(!near&&l.getLatLng){const q=map.latLngToContainerPoint(l.getLatLng());if(Math.abs(q.x-cp.x)<12&&Math.abs(q.y-cp.y)<12)near=true}});if(near)return}   /* a tap on (or right next to) a dot is for the dot's card */const t=e.originalEvent&&e.originalEvent.target;
   if(t&&t.closest&&(t.closest('.leaflet-interactive')||t.closest('.leaflet-popup')||t.closest('.leaflet-control')))return;
   const ll=e.latlng,E=x=>String(x==null?'':x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   let A=[];try{if(KPCB.inKY&&KPCB.inKY(ll.lat,ll.lng)&&KPCB.landAt){A=(await KPCB.landAt(ll.lat,ll.lng)).slice(0,5).map(a=>({name:a.name,by:a.props.MANAGER||'',kind:a.layer||'',access:'',acres:0,parks:a.own.map(r=>({ref:r.ref,n:r.name})),f:a.f}))}
@@ -133,7 +134,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  map.on('popupopen',e=>{if(dropMode)setTimeout(()=>map.closePopup(),0)});
  map.on('popupopen',e=>{const el=e.popup.getElement();if(!el)return;const s=e.popup._kpc;if(!s)return;
   {const bb=el.querySelector('[data-a="bound"]');if(bb)bb.textContent=bound&&boundRef===s.c?'HIDE OUTLINE':'SHOW THIS PARK\u2019S OUTLINE'}
-  el.querySelectorAll('[data-a]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const a=b.dataset.a;if(a==='add'){inTrip(s.c)?removeStop(s.c):addStop(s);map.closePopup()}else if(a==='bound')showBoundary(s,b)});
+  el.querySelectorAll('[data-a]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const a=b.dataset.a;if(a==='add'){inTrip(s.c)?removeStop(s.c):addStop(s);if(s.p==='PIN'&&!inTrip(s.c))map.closePopup();else b.innerHTML=inTrip(s.c)?'&#10003; IN TRIP (REMOVE)':'+ ADD TO TRIP'}   /* Oct 19: the card stays open */else if(a==='bound')showBoundary(s,b)});
   if(s.p==='POTA')livePota(s,el.querySelector('.live'));if(s.p!=='PIN')parkInfo(s,el.querySelector('.pinfo'))})}
 function setDrop(on){dropMode=on;if(on&&map)map.closePopup();$('us-drop').setAttribute('aria-pressed',on);$('usmap').classList.toggle('dropping',on);$('us-maphint').textContent=on?'Tap the map where you want your pin.':'Tap a dot to add it to your trip, see Street View or show its boundary. Zoom in to county level to see official federal and state boundaries, and tap the land to see what it is; the layers button switches maps (Satellite + Streets + Official Boundaries) or turns the boundaries off.'}
 function links(s){const sv=`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${s.la},${s.lo}`;
@@ -228,11 +229,22 @@ async function livePota(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;e
   const last=a.map(x=>String(x.qso_date||'')).sort().pop();const good=a.filter(x=>+x.totalQSOs>=10).length;
   el.textContent=`${a.length} activation attempt${a.length===1?'':'s'} (${good} with 10+ QSOs) • last ${KPC.fmtDate(last)}`}catch(e){el.textContent=''}}
 let VIEW=[];const VZ=7,VCAP=2500;
-function drawDots(){if(!map)return;dots.clearLayers();
+/* Oct 19 (map check): an OPEN card survives a redraw (adding to the trip, new dots while panning): its dot is kept, the rest redrawn;
+   POTA dots are drawn last so they sit on top of a KFF / SOTA dot on the same pin (Taylorsville US-1271 / KFF-1271) */
+const dotSty=s=>{const inT=inTrip(s.c),km=KM?KM.mark(s.c):{};return {radius:BIG?(inT?9:s.p==='SOTA'?6:7)+(TAP?2:0):(inT?6:s.p==='SOTA'?3.5:4.5)+(TAP?1:0),weight:inT||km.atno||km.rare?3:2,color:inT?'#f0c96b':km.atno?'#c2410c':km.rare?'#e08a2c':'#ffffff',fillColor:COL[s.p],fillOpacity:km.done&&!inT?.35:.95}};
+const PORD={SOTA:0,WWFF:1,KFF:1,POTA:2};
+/* phones: the card opens BELOW the top map buttons (zoom, layers) and above the bottom ones, full width; computers: beside them */
+const popOpts=()=>innerWidth<520?{maxWidth:Math.min(280,innerWidth-110),kpcClear:true,autoPanPaddingTopLeft:L.point(10,74),autoPanPaddingBottomRight:L.point(10,110)}:{maxWidth:300,autoPanPaddingTopLeft:L.point(56,12),autoPanPaddingBottomRight:L.point(56,12)};
+function drawDots(){if(!map)return;
+ const op=map._popup&&map.hasLayer(map._popup)&&map._popup._kpc?map._popup:null;let keep=null;
+ dots.eachLayer(l=>{if(op&&l.getPopup&&l.getPopup()===op)keep=l;else dots.removeLayer(l)});
+ const ks=keep?op._kpc:null,same=s=>ks&&(s===ks||(s.c===ks.c&&s.p===ks.p));if(keep&&keep.setStyle&&ks.p!=='PIN')keep.setStyle(dotSty(ks));
  const show=center?vis().slice():[];if(VIEW.length){const had=new Set(show);VIEW.forEach(s=>{if(!had.has(s))show.push(s)})}
- show.forEach(s=>{const inT=inTrip(s.c),km=KM?KM.mark(s.c):{};const mk=L.circleMarker([s.la,s.lo],{radius:BIG?(inT?9:s.p==='SOTA'?6:7)+(TAP?2:0):(inT?6:s.p==='SOTA'?3.5:4.5)+(TAP?1:0),weight:inT||km.atno||km.rare?3:2,color:inT?'#f0c96b':km.atno?'#c2410c':km.rare?'#e08a2c':'#ffffff',fillColor:COL[s.p],fillOpacity:km.done&&!inT?.35:.95}); /* white ring shows on satellite */
-  const pp=L.popup({maxWidth:300}).setContent(()=>popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)});
- trip.filter(s=>s.p==='PIN').forEach(s=>{const mk=L.marker([s.la,s.lo],{icon:L.divIcon({className:'',html:'<div class="pin-us"></div>',iconSize:[16,16],iconAnchor:[8,16]})});const pp=L.popup({maxWidth:300}).setContent(popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)})}
+ show.sort((a,b)=>(PORD[a.p]??1)-(PORD[b.p]??1));
+ show.forEach(s=>{if(same(s))return;const mk=L.circleMarker([s.la,s.lo],dotSty(s)); /* white ring shows on satellite */
+  const pp=L.popup(popOpts()).setContent(()=>popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)});
+ if(keep&&keep.bringToFront)keep.bringToFront();
+ trip.filter(s=>s.p==='PIN'&&!same(s)).forEach(s=>{const mk=L.marker([s.la,s.lo],{icon:L.divIcon({className:'',html:'<div class="pin-us"></div>',iconSize:[16,16],iconAnchor:[8,16]})});const pp=L.popup({maxWidth:300}).setContent(popup(s));pp._kpc=s;mk.bindPopup(pp);mk.addTo(dots)})}
 
 /* ---------- search ---------- */
 function normRef(q){q=q.trim().toUpperCase().replace(/\s+/g,'');if(/^K-\d{4,5}$/.test(q))q='US-'+q.slice(2);return q}
@@ -465,7 +477,7 @@ $('t-clear').onclick=()=>{if(confirm('Clear all stops from this trip?')){trip=[]
 initMap();
 /* new checker answers: the list redraws at once; map dots wait until an open popup is closed so it doesn't vanish */
 if(KM){KM.bar($('km-bar'));let pend=false;
- window.addEventListener('kpcmine',()=>{if(!center){if(VIEW.length&&window.__usView)window.__usView();return}drawNear();if(map&&map._popup&&map.hasLayer(map._popup)){pend=true;return}drawDots()});
+ window.addEventListener('kpcmine',()=>{if(!center){if(VIEW.length&&window.__usView)window.__usView();return}drawNear();drawDots()});
  if(map)map.on('popupclose',()=>{if(pend){pend=false;setTimeout(()=>{if(map._popup&&map.hasLayer(map._popup))pend=true;else drawDots()},60)}})}
 loadAll().then(()=>{const shared=loadShared();drawTrip();if(window.__usView)window.__usView();
  /* ?q=… (sent by the KY Trip Planner for an out-of-state place): search it straight away */
