@@ -1,6 +1,6 @@
 # MD: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 186** parks joined to official land (same name + same kind of place). **19** to check by hand, **27** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **148 of 186** parks joined to official land (same name + same kind of place). **20** to check by hand, **18** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -13,15 +13,16 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 186** parks joined
 - **US-10767** Lostland Run Natural Area (Natural Area) → Potomac Sf (~8,558 ac, the POTA pin is inside it (different name))
 - **US-10769** Monroe Run Natural Area (Natural Area) → Savage River Sf (~37,021 ac, the POTA pin is inside it (different name))
 - **US-10770** Bear Pen Run Natural Area (Natural Area) → Savage River Sf (~37,021 ac, the POTA pin is inside it (different name))
-- **US-10773** Masemore Hemlock Ravines Natural Area (Natural Area) → Gunpowder Falls Sp (~9,518 ac, the POTA pin is inside it (different name))
-- **US-10775** Black Marsh Natural Area (Natural Area) → North Point State Park (~1,272 ac, the POTA pin is inside it (different name))
-- **US-10780** Allens Fresh Natural Area (Natural Area) → ZEKIAH SWAMP NEA - Zekiah Swamp Wildland (~434 ac, the POTA pin is inside it (different name))
+- **US-10771** Cat Rock and Bob's Hill Natural Area (Natural Area) → CUNNINGHAM FALLS SP (~0 ac, the POTA pin is inside it (different name))
+- **US-10773** Masemore Hemlock Ravines Natural Area (Natural Area) → Gunpowder Falls Sp (~9,518 ac, the POTA pin is inside it (different name)); GUNPOWDER FALLS SP (~0 ac, the POTA pin is inside it (different name))
+- **US-10775** Black Marsh Natural Area (Natural Area) → North Point State Park (~1,272 ac, the POTA pin is inside it (different name)); NORTH POINT SP (~0 ac, the POTA pin is inside it (different name))
+- **US-10780** Allens Fresh Natural Area (Natural Area) → ZEKIAH SWAMP NEA - Zekiah Swamp Wildland (~434 ac, the POTA pin is inside it (different name)); ZEKIAH SWAMP NEA (~0 ac, the POTA pin is inside it (different name))
 - **US-11231** Sideling Hill Creek State Park (State Park) → Sideling Hill Wma (~3,384 ac, same name, different kind of place); Sideling Hill Wma (~60 ac, same name, different kind of place)
-- **US-1567** Dans Mountain State Park (State Park) → Dans Mountain Wma (~9,847 ac, same name, different kind of place)
-- **US-6395** Sassafras Natural Resources Management Area State Natural Area (State Natural Area) → Sassafrass Nrma (~971 ac, the POTA pin is inside it (different name))
+- **US-13377** Freedman's State Park (State Park) → PATUXENT RIVER SP (~0 ac, the POTA pin is inside it (different name))
+- **US-6392** Monocacy River Natural Resources Management Area State Natural Area (State Natural Area) → MONOCACY NRMA (~0 ac, similar name)
+- **US-6395** Sassafras Natural Resources Management Area State Natural Area (State Natural Area) → Sassafrass Nrma (~971 ac, the POTA pin is inside it (different name)); SASSAFRASS NRMA (~0 ac, the POTA pin is inside it (different name))
 - **US-7769** Heaters Island Wildlife Management Area (Wildlife Management Area) → ISLANDS OF THE POTOMAC Wildlife Management Area - Islands of the Potomac Wildland (~322 ac, the POTA pin is inside it (different name))
 - **US-7776** Oxon Cove Park & Farm National Historical Park (National Historical Park) → George Washington Memorial Parkway (~2,364 ac, the POTA pin is inside it (different name))
-- **US-7777** Dierssen Wildlife Management Area (Wildlife Management Area) → Chesapeake and Ohio Canal National Historical Park (~13,211 ac, the POTA pin is inside it (different name))
 - **US-7782** Ben Doane Parcel of Nanjemoy Wildlife Management Area (Wildlife Management Area) → Nanjemoy Wma (~1,370 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -33,12 +34,8 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 186** parks joined
 - US-10756 Skimmer Island Natural Area (Natural Area)
 - US-10764 Andover Flatwoods Natural Area (Natural Area)
 - US-10768 South Savage Mountain Natural Area (Natural Area)
-- US-10771 Cat Rock and Bob's Hill Natural Area (Natural Area)
 - US-10774 Plum Creek Natural Area (Natural Area)
-- US-13377 Freedman's State Park (State Park)
 - US-13564 Savage Highlands State Park (State Park)
-- US-1572 Franklin Point State Park (State Park)
-- US-1582 Martinak State Park (State Park)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4564 Potomac Heritage Trail National Scenic Trail (National Scenic Trail)
 - US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail)
@@ -46,12 +43,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 186** parks joined
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
 - US-6388 Helen Avalynne Tawes Garden State Park (State Park)
 - US-6389 Jefferson Patterson Park and Museum State Park (State Park)
-- US-6392 Monocacy River Natural Resources Management Area State Natural Area (State Natural Area)
-- US-7725 Browns Branch Wildlife Management Area (Wildlife Management Area)
-- US-7733 Strider Wildlife Management Area (Wildlife Management Area)
-- US-7762 Popes Creek Wildlife Management Area (Wildlife Management Area)
 - US-7768 Frederick City Watershed Cooperative Wildlife Management Area (Wildlife Management Area)
-- US-7773 Ridenour Swamp Wildlife Management Area (Wildlife Management Area)
 - US-7973 Baltimore-Washington National Parkway (National Parkway)
 - US-7974 Harmony Hall National Heritage Site (National Heritage Site)
 - US-7975 Glen Echo National Heritage Site (National Heritage Site)
@@ -61,9 +53,13 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 186** parks joined
 
 - Chesapeake Forest Lands · SRMA ·   · ~58,595 ac
 - Canaan Valley National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~18,957 ac
+- Dolly Sods Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~17,777 ac
 - Bombay Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~15,346 ac
 - Jennings Randolph Recreation Area · REC · Baltimore · ~11,973 ac
+- Saint Mary's Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,826 ac
 - Prime Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~9,238 ac
+- Roaring Plains West Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,794 ac
+- Ramseys Draft Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,577 ac
 - Rock Creek Stream Valley Park · SOTH ·   · ~4,925 ac
 - Chesapeake Forest Lands · SRMA · MD Department of Natural Resources · ~4,780 ac
 - Supawna Meadows National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,445 ac
@@ -115,7 +111,3 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **140 of 186** parks joined
 - Open Space · LOTH ·   · ~532 ac
 - Fred W Besley Demonstration Forest · SRMA ·   · ~530 ac
 - Belt Woods Heritage Conservation · SCA · MD Department of Natural Resources · ~511 ac
-- Fred W Besley Demonstration Forest · SRMA ·   · ~510 ac
-- Boys Village - Cheltenham · SOTH ·   · ~501 ac
-- Aaron Straus Heritage Conservation · SCA · MD Department of Natural Resources · ~495 ac
-- Fairland Recreational Park · SOTH ·   · ~486 ac
