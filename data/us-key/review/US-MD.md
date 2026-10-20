@@ -1,6 +1,6 @@
 # MD: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **148 of 186** parks joined to official land (same name + same kind of place). **20** to check by hand, **18** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **148 of 186** parks joined to official land (same name + same kind of place). **21** to check by hand, **17** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -11,6 +11,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **148 of 186** parks joined
 - **US-10763** Fishing Bay Marshes Natural Area (Natural Area) → Fishing Bay Wma (~28,873 ac, same name, different kind of place); Fishing Bay Wildlife Management Area (~5,588 ac, same name, different kind of place); Fishing Bay Wma (~239 ac, same name, different kind of place); Fishing Bay Wma (~50 ac, same name, different kind of place)
 - **US-10765** Millington Natural Area (Natural Area) → Millington Wma (~3,759 ac, same name, different kind of place); Millington Wildlife Management Area (~132 ac, same name, different kind of place)
 - **US-10767** Lostland Run Natural Area (Natural Area) → Potomac Sf (~8,558 ac, the POTA pin is inside it (different name))
+- **US-10768** South Savage Mountain Natural Area (Natural Area) → Savage River Sf (~37,021 ac, the POTA pin is inside it (different name))
 - **US-10769** Monroe Run Natural Area (Natural Area) → Savage River Sf (~37,021 ac, the POTA pin is inside it (different name))
 - **US-10770** Bear Pen Run Natural Area (Natural Area) → Savage River Sf (~37,021 ac, the POTA pin is inside it (different name))
 - **US-10771** Cat Rock and Bob's Hill Natural Area (Natural Area) → CUNNINGHAM FALLS SP (~0 ac, the POTA pin is inside it (different name))
@@ -33,7 +34,6 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **148 of 186** parks joined
 - US-10732 Hickory Point Cypress Swamp Natural Area (Natural Area)
 - US-10756 Skimmer Island Natural Area (Natural Area)
 - US-10764 Andover Flatwoods Natural Area (Natural Area)
-- US-10768 South Savage Mountain Natural Area (Natural Area)
 - US-10774 Plum Creek Natural Area (Natural Area)
 - US-13564 Savage Highlands State Park (State Park)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
