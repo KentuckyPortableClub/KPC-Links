@@ -632,6 +632,21 @@ for cc in COUNTRIES:
         elif cc in EU and len({r2['dc'] for r2 in mr if r2['src'] == 'EEA nationally designated areas'}) > 1:
             c = [[q[0], q[1], q[2], 'same name, more than one kind of area'] for q in m]; m = []   # e.g. a reserve and a landscape park with one name
         if c: parks[ref] = {'n': name, 't': typ, 'm': [], 'c': c[:6]}; continue
+        if not m and la is not None and cc in ('DE', 'AT'):
+            # Oct 20 DE review: (1) the BfN name is a part of the POTA name (or the other way round), same kind of place,
+            # and the POTA pin is inside it ('Bayerischer Spessart Nature Park' = Naturpark 'Spessart' around the pin);
+            # (2) POTA's German type labels are often wrong ('Kendlmuehlfilzen National Park' is a Naturschutzgebiet):
+            # an EXACT name with only one official area of that name nearby joins whatever the label says (not biosphere/UNESCO labels).
+            near_r = [r for r in nearby(la, lo) if r['n'] and near(la, lo, r['_bb'], .1)]
+            for r in near_r:
+                w1, w2 = words(cc, name), words(cc, r['n'])
+                if kp and (kp & r['_k']) and w1 and w2 and (w1 <= w2 or w2 <= w1) and inside(la, lo, r['_r']):
+                    m.append([r['id'], r['n'], r['src'], 'name part + same kind + pin inside'])
+            if not m and not re.search(r'biosph|unesco|geopark|natura 2000', name + ' ' + typ, re.I):
+                ex = [r for r in near_r if norm(cc, r['n']) == norm(cc, name)]
+                if len(ex) == 1 or (ex and len({r['src'] for r in ex}) == 1):
+                    m += [[r['id'], r['n'], r['src'], 'exact name (POTA type label differs)'] for r in ex]
+            if m: parks[ref] = {'n': name, 't': typ, 'm': m, 'c': []}; continue
         if not m and la is not None:
             for r in nearby(la, lo):
                 if not near(la, lo, r['_bb'], .03) or not r['n']: continue
