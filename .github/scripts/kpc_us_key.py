@@ -291,6 +291,10 @@ XS = [  # prefix, query url, name field, acres field, kinds
     ('wid', 'svc:https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer|propert', '?', '?', set(), 'Wisconsin DNR managed properties', 'STAT', {'WI'}),
     ('tnd', 'svc:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Access_Lands/FeatureServer|.', '?', '?', set(), 'TDEC public access lands', 'STAT', {'TN'}),
     ('osp', 'svc:https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer|.', '?', '?', set(), 'Oregon State Parks', 'STAT', {'OR'}),
+    # Oct 20 (Brandon: 'keep working on the boundaries'): probe round 2, owner = the agency itself
+    ('fnl', 'svc:https://services.arcgis.com/9Jk4Zl9KofTtvg3x/arcgis/rest/services/FL_Conservation_Lands_web/FeatureServer|.', '?', '?', set(), 'Florida Natural Areas Inventory conservation lands', 'STAT', {'FL'}),
+    ('cow', 'svc:https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer|wildlife area|swa|state park|property', '?', '?', set(), 'Colorado Parks and Wildlife properties', 'STAT', {'CO'}),
+    ('nep', 'svc:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer|.', '?', '?', set(), 'Nebraska Game and Parks areas', 'STAT', {'NE'}),
     ('vta', 'svc:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer|unit', '?', '?', set(), 'Vermont ANR lands', 'STAT', {'VT'}),
 ]
 RESOLVED = {}
