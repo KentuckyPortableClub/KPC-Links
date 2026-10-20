@@ -1,430 +1,667 @@
 {
- "FR": {
+ "US": {
   "direct": [
    {
-    "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+    "url": "https://services.arcgis.com/9Jk4Zl9KofTtvg3x/arcgis/rest/services?f=json",
     "status": 200,
-    "info": "types: IGNF_GEODESIE:site-rbf, BDCARTO_ETAT-MAJOR.NIVEAU4:c_2_2_batiment_hors_zone_urbaine, BDCARTO_ETAT-MAJOR.NIVEAU4:c_3_zone_urbaine, BDCARTO_ETAT-MAJOR.NIVEAU3:c_2_2_batiment_hors_zone_urbaine, BDCARTO_ETAT-MAJOR.NIVEAU3:c_3_zone_urbaine, BDCARTO_V5:parc_ou_reserve, LANDCOVER.FORESTINVENTORY.V1:resu_bdv1_shape, LANDCOVER.FORESTINVENTORY.V2:formation_vegetale, BDPARCELLAIRE-VECTEUR_WLD_BDD_WGS84G:arrondissement, BDPARCELLAIRE-VECTEUR_WLD_BDD_WGS84G:batiment, BDPARCELLAIRE-VECTEUR_WLD_BDD_WGS84G:commune, BDPARCELLAIRE-VECTEUR_WLD_BDD_WGS84G:divcad, BDPARCELLAIRE-VECTEUR_WLD_BDD_WGS84G:localisant, BDPARCELLAIRE-VECTEUR_WLD_BDD_WGS84G:parcelle, BDTOPO_V3:parc_ou_reserve, charbo_gpkg_30-10-2025_wfs:detections_charbonnieres, CONSERVATOIRE_LITTORAL.PARCELLES:parcelles_protegees, ELEVATION.CONTOUR.LINE:courbe, wfs_du:doc_urba, wfs_du:doc_urba_com, wfs_scot:doc_urba, wfs_scot:doc_urba_com, CADASTRALPARCELS.HEATMAP:parcelle_wld, AOC-VITICOLES:aire_parcellaire, charbo_gpkg_30-10-2025_wfs:detections_ldo_fours, CADASTRALPARCELS.GRAPHE:graphe, igngpf_4902_20260309_tables_sans_tirets:parcs_photovoltaiques, NAVIFOREST_PUBLIC:itineraires-bois-ronds, CADASTRALPARCELS.PARCELLAIRE_EXPRESS:arrondissement, CADASTRALPARCELS.PARCELLAIRE_EXPRESS:borne_limite_propriete, CADASTRALPARCELS.PARCELLAIRE_EXPRESS:batiment, CADASTRALPARCELS.PARCELLAIRE_EXPRESS:commune, CADASTRALPARCELS.PARCELLAIRE_EXPRESS:feuille, CADASTRALPARCELS.PARCELLAIRE_EXPRESS:borne_parcelle, CADASTRALPARCELS.PARCELLAIRE_EXPRESS:localisant, CADASTRALPARCELS.PARCELLAIRE_EXPRESS:parcelle, CADASTRALPARCELS.PARCELLAIRE_EXPRESS:subdivision_fiscale, n_parcelle_doc_cadre_s_034_gpkg_24-09-2026_wfs:n_parcelle_doc_cadre_s_034, IGNF_RPG_PARCELLES-ELIGIBLES-IAE:parcelles_eligibles_iae_2024, zzz_test_nl_pn:parc_national"
-   },
-   {
-    "url": "https://ws.carmencarto.fr/WFS/119/fxx_inpn?SERVICE=WFS&REQUEST=GetCapabilities",
-    "status": 0,
-    "info": ""
+    "info": "layers: "
    }
   ],
   "search": [
    {
-    "q": "ZNIEFF type 1",
-    "title": "ZNIEFF 2021",
-    "owner": "Esri_France_Content",
-    "url": "https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer",
-    "views": 170693
+    "q": "Florida Managed Areas FNAI",
+    "title": "Managed Conservation Areas",
+    "owner": "FloridaTrailAssociation",
+    "url": "https://services9.arcgis.com/soy9dtLUh5hYXg8U/arcgis/rest/services/Managed_Conservation_Areas/FeatureServer",
+    "views": 505260
    },
    {
-    "q": "ZNIEFF type 1",
-    "title": "ZNIEFF type I",
-    "owner": "admtoursmetropole",
-    "url": "https://services8.arcgis.com/enkMZ7Ek7MAnLs9b/arcgis/rest/services/ZNIEFF1_G2/FeatureServer",
-    "views": 107983
+    "q": "Florida Managed Areas FNAI",
+    "title": "Natural, Cultural, and Historical Resources",
+    "owner": "Jeohusua.Lugo@FloridaDEP.gov_FDEP",
+    "url": "https://services1.arcgis.com/nRHtyn3uE1kyzoYc/arcgis/rest/services/Natural__Cultural__and_Historical_Resources_2/FeatureServer",
+    "views": 435968
    },
    {
-    "q": "ZNIEFF type 1",
-    "title": "ZNIEFF France métropolitaine [actuel]",
-    "owner": "Esri_France_Content",
-    "url": "https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2019/FeatureServer",
-    "views": 105706
+    "q": "Florida Managed Areas FNAI",
+    "title": "22_213 Pasco County FL Orange Belt Trail Study_WFL1",
+    "owner": "alta_organization",
+    "url": "https://services2.arcgis.com/8uN5i97bMkq2Mzrt/arcgis/rest/services/22_213_Pasco_County_FL_Orange_Belt_Trail_Study_WFL1/FeatureServer",
+    "views": 279089
    },
    {
-    "q": "ZNIEFF type 1",
-    "title": "Espaces naturels protégés",
-    "owner": "g.hirlemann",
-    "url": "https://services2.arcgis.com/1qIh9Y8mOWaPqQtl/arcgis/rest/services/Espaces_naturels_protégés/FeatureServer",
-    "views": 79885
+    "q": "Florida Managed Areas FNAI",
+    "title": "FL_Conservation_Lands_web",
+    "owner": "FNAI_GIS_Web_Admin",
+    "url": "https://services.arcgis.com/9Jk4Zl9KofTtvg3x/arcgis/rest/services/FL_Conservation_Lands_web/FeatureServer",
+    "views": 190843
    },
    {
-    "q": "ZNIEFF type 1",
-    "title": "ZNIEFF 2020",
-    "owner": "Esri_France_Content",
-    "url": "https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2020/FeatureServer",
-    "views": 74165
+    "q": "Florida Managed Areas FNAI",
+    "title": "Northern Turnpike - Avoidance and Enhancement Layers",
+    "owner": "William.Isaacs@dot.state.fl.us_fdot",
+    "url": "https://services1.arcgis.com/O1JpcwDW8sjYuddV/arcgis/rest/services/Northern_Turnpike_Avoidance_Enhancement_Layers/FeatureServer",
+    "views": 144548
    },
    {
-    "q": "ZNIEFF type 1",
-    "title": "SRCE de la Région Centre-Val de Loire",
-    "owner": "admincvl",
-    "url": "https://services-eu1.arcgis.com/S4QF9iP4HAx3czBl/arcgis/rest/services/srce_data/FeatureServer",
-    "views": 50860
+    "q": "Florida Managed Areas FNAI",
+    "title": "Longleaf Ecological Condition",
+    "owner": "aknight_cosspp",
+    "url": "https://services.arcgis.com/9Jk4Zl9KofTtvg3x/arcgis/rest/services/Longleaf_Ecological_Condition/FeatureServer",
+    "views": 81316
    },
    {
-    "q": "ZNIEFF type 1",
-    "title": "Service_Fenschcartoweb",
-    "owner": "SIGVALDEFENSCH",
-    "url": "https://services7.arcgis.com/mtniC6TFbNZzjHbd/arcgis/rest/services/Service_Fenschcartoweb/FeatureServer",
-    "views": 43478
+    "q": "Florida Conservation Lands",
+    "title": "Statewide Basin Management Action Plan (BMAP) General Areas",
+    "owner": "FDEPOpenDataPortal",
+    "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATEWIDE_BMAP/MapServer/0",
+    "views": 1355363
    },
    {
-    "q": "ZNIEFF type 1",
-    "title": "Portraits2021 Patrimoine Naturel_WFL1",
-    "owner": "antoine.lemesle_eure",
-    "url": "https://services2.arcgis.com/QKAxplMJYjFVb8zL/arcgis/rest/services/Portraits2021_Patrimoine_Naturel_WFL1/FeatureServer",
-    "views": 38968
+    "q": "Florida Conservation Lands",
+    "title": "Biomes",
+    "owner": "mm.atlas",
+    "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/Resolve_Ecoregions/FeatureServer",
+    "views": 1248029
    },
    {
-    "q": "Zones naturelles d interet ecologique faunistique et floristique",
-    "title": "Espaces naturels",
-    "owner": "g.hirlemann",
-    "url": "https://services2.arcgis.com/1qIh9Y8mOWaPqQtl/arcgis/rest/services/Espaces_naturels/FeatureServer",
-    "views": 2748
+    "q": "Florida Conservation Lands",
+    "title": "Special Development Zones",
+    "owner": "TLCGIS_FL",
+    "url": "https://interraster.leoncountyfl.gov/interraster/rest/services/MapServices/TLC_OverlaySpecDevZones_C_WM/MapServer",
+    "views": 1042136
    },
    {
-    "q": "Zones naturelles d interet ecologique faunistique et floristique",
-    "title": "MOVE Project Reuion",
-    "owner": "wmcclin",
-    "url": "https://services1.arcgis.com/4TXrdeWh0RyCqPgB/arcgis/rest/services/MOVE_Reunion_Vectors/FeatureServer",
-    "views": 1090
+    "q": "Florida Conservation Lands",
+    "title": "Canopy Road Tree Protection Zone",
+    "owner": "cakee",
+    "url": "https://intervector.leoncountyfl.gov/intervector/rest/services/MapServices/TLC_OverlayCanopyRoads_WM_D/MapServer/1",
+    "views": 750752
    },
    {
-    "q": "Zones naturelles d interet ecologique faunistique et floristique",
-    "title": "zones_naturelles_d_interet_ecologique_faunistique_et_floristique_de_type_1",
-    "owner": "PAULY_M1OTG",
-    "url": "https://services3.arcgis.com/Jt57y69af30KhGer/arcgis/rest/services/zones_naturelles_d_interet_ecologique_faunistique_et_floristique_de_type_1/FeatureServer",
-    "views": 41
+    "q": "Florida Conservation Lands",
+    "title": "EVER_BND_CERPprojectlocations",
+    "owner": "Cpreston@nps.gov_nps",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/EVER_BND_CERPprojectlocations/FeatureServer",
+    "views": 627955
    },
    {
-    "q": "Zones naturelles d interet ecologique faunistique et floristique",
-    "title": "zones_naturelles_d_interet_ecologique_faunistique_et_floristique_de_type_2",
-    "owner": "PAULY_M1OTG",
-    "url": "https://services3.arcgis.com/Jt57y69af30KhGer/arcgis/rest/services/zones_naturelles_d_interet_ecologique_faunistique_et_floristique_de_type_2/FeatureServer",
-    "views": 41
+    "q": "Florida Conservation Lands",
+    "title": "Easements",
+    "owner": "cakee",
+    "url": "https://intervector.leoncountyfl.gov/intervector/rest/services/MapServices/TLC_OverlayEasement_Feature_WM_D/MapServer/0",
+    "views": 467080
    },
    {
-    "q": "reserves biologiques ONF",
-    "title": "Protection_reglementaires",
-    "owner": "ZoeAgam",
-    "url": "https://services3.arcgis.com/mSUgQUyIZleFfLa1/arcgis/rest/services/Protection_reglementaires/FeatureServer",
-    "views": 4318
+    "q": "WDFW lands",
+    "title": "20155 Washougal SMAP Web Layers",
+    "owner": "Trista.Kobluskie_Otak",
+    "url": "https://services2.arcgis.com/yhIfgvwxY3mhZjvt/arcgis/rest/services/20155_Washougal_SMAP_Web_Layers/FeatureServer",
+    "views": 156174
    },
    {
-    "q": "reserves biologiques ONF",
-    "title": "Agglo - Réserves naturelles protégées",
-    "owner": "sitg",
-    "url": "https://vector.sitg.ge.ch/arcgis/rest/services/AGGLO_NAT_PERI_PRO_RESERVES/FeatureServer",
-    "views": 462
+    "q": "WDFW lands",
+    "title": "Wildlife Areas",
+    "owner": "WDFWAdministrator",
+    "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/MapServices/WildlifeAreas/MapServer/0",
+    "views": 134325
    },
    {
-    "q": "reserves biologiques ONF",
-    "title": "Environnement",
-    "owner": "jouve_Corse",
-    "url": "http://lisa-sig.univ-corse.fr/locusweb/rest/services/Maps/Environnement/MapServer",
-    "views": 254
+    "q": "WDFW lands",
+    "title": "Primarily Natural Resources",
+    "owner": "sarah.idczak_DEQ",
+    "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer",
+    "views": 117167
    },
    {
-    "q": "reserves biologiques ONF",
-    "title": "Agglo - Réserves naturelles protégées",
-    "owner": "sitg",
-    "url": "https://vector.sitg.ge.ch/arcgis/rest/services/AGGLO_NAT_PERI_PRO_RESERVES/MapServer",
-    "views": 212
+    "q": "WDFW lands",
+    "title": "WildObs_Incidental_Public_DesensTownship_WolfOnly_PublicView",
+    "owner": "wildlife.maps@dfw.wa.gov",
+    "url": "https://services.arcgis.com/rcya3vExsaVBGUDp/arcgis/rest/services/WildObs_Incidental_Public__DesensTownship_PublicView_WolfOnly/FeatureServer",
+    "views": 95043
+   },
+   {
+    "q": "WDFW lands",
+    "title": "WildObs_Wolf_Public_ArchivedPre2019_DesensTownship_2018Only_PublicView",
+    "owner": "wildlife.maps@dfw.wa.gov",
+    "url": "https://services.arcgis.com/rcya3vExsaVBGUDp/arcgis/rest/services/WildObs_Wolf_Public_ArchivedPre2019_DesensTownship_2018Only_PublicView/FeatureServer",
+    "views": 85580
+   },
+   {
+    "q": "WDFW lands",
+    "title": "WildObs_Wolf_Public_ArchivedPre2019_DesensTownship_PublicView",
+    "owner": "wildlife.maps@dfw.wa.gov",
+    "url": "https://services.arcgis.com/rcya3vExsaVBGUDp/arcgis/rest/services/WildObs_Wolf_Public_ArchivedPre2019_DesensTownship_PublicView/FeatureServer",
+    "views": 85544
+   },
+   {
+    "q": "WDFW water access sites",
+    "title": "WFC watertyping survey data - public",
+    "owner": "andrew_wfc",
+    "url": "https://services1.arcgis.com/yIQYYlo4oilLcDsy/arcgis/rest/services/watertyping_survey_data_PUBLIC/FeatureServer",
+    "views": 63871
+   },
+   {
+    "q": "WDFW water access sites",
+    "title": "Critical_Areas",
+    "owner": "NP_GIS",
+    "url": "https://services7.arcgis.com/5d703jjhemO6FlIW/arcgis/rest/services/Critical_Areas/FeatureServer",
+    "views": 58318
+   },
+   {
+    "q": "WDFW water access sites",
+    "title": "Grande Ronde _ Imnaha Basin Habitat Data_WFL1",
+    "owner": "alex@grmw.org0",
+    "url": "https://services3.arcgis.com/OXQOnvnrZqcEnhNx/arcgis/rest/services/Grande_Ronde___Imnaha_Basin_Habitat_Data_WFL1/FeatureServer",
+    "views": 42405
+   },
+   {
+    "q": "WDFW water access sites",
+    "title": "ECY",
+    "owner": "WAECY_Geoservices",
+    "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/ECY/FeatureServer",
+    "views": 27906
+   },
+   {
+    "q": "WDFW water access sites",
+    "title": "BL_Public_Portal_WFL1",
+    "owner": "adamkwaken",
+    "url": "https://services8.arcgis.com/zzJ2UPY3tNkBWkep/arcgis/rest/services/BL_Public_Portal_WFL1/FeatureServer",
+    "views": 17725
+   },
+   {
+    "q": "WDFW water access sites",
+    "title": "Friends of the San Juans' Shoreline Ecosystem Habitat Map",
+    "owner": "Fr1end3",
+    "url": "https://services9.arcgis.com/AXFsXjicw0JApvnd/arcgis/rest/services/Shoreline_map_2_WFL1/FeatureServer",
+    "views": 13568
+   },
+   {
+    "q": "Idaho Fish and Game access areas",
+    "title": "Game Management Units",
+    "owner": "idahofishandgame",
+    "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/GameManagementUnits/FeatureServer",
+    "views": 4702180
+   },
+   {
+    "q": "Idaho Fish and Game access areas",
+    "title": "National Wildland Explorer ",
+    "owner": "TWSAdmin",
+    "url": "https://services1.arcgis.com/IAQQkLXctKHrf8Av/arcgis/rest/services/National_Wildland_Explorer_updates_2025_WFL1/FeatureServer",
+    "views": 2912662
+   },
+   {
+    "q": "Idaho Fish and Game access areas",
+    "title": "Idaho Recreation Trails",
+    "owner": "aernst_idpr",
+    "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer",
+    "views": 457971
+   },
+   {
+    "q": "Idaho Fish and Game access areas",
+    "title": "BLM Natl EXPLORE Recreational Shooting Points",
+    "owner": "lwilliams@blm.gov_BLM_EGIS",
+    "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Qualified_Shooting/FeatureServer",
+    "views": 168128
+   },
+   {
+    "q": "Idaho Fish and Game access areas",
+    "title": "Greater Sage Grouse Habitat",
+    "owner": "USFSMapsandApps",
+    "url": "https://services1.arcgis.com/gGHDlz6USftL5Pau/arcgis/rest/services/GSTC_GRSGHabitat_01/FeatureServer",
+    "views": 132145
+   },
+   {
+    "q": "Idaho Fish and Game access areas",
+    "title": "BLM ID Surface Management Agency",
+    "owner": "ggoodwin@blm.gov_BLM_EGIS",
+    "url": "https://gis.blm.gov/idarcgis/rest/services/realty/BLM_ID_Surface_Management_Agency/FeatureServer",
+    "views": 97858
+   },
+   {
+    "q": "Arkansas Game and Fish wildlife management areas",
+    "title": "VUEWorks",
+    "owner": "VueWorks_AGFC",
+    "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/VUEWorks/FeatureServer",
+    "views": 11186
+   },
+   {
+    "q": "Arkansas Game and Fish wildlife management areas",
+    "title": "Wildlife and Habitat Risk Map for Wind Energy Projects in Arkansas",
+    "owner": "blair_tirpak@fws.gov_fws",
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/Wildlife_and_Habitat_Risk_Map_for_AR_Wind_Energy_Projects/FeatureServer",
+    "views": 7509
+   },
+   {
+    "q": "Arkansas Game and Fish wildlife management areas",
+    "title": "WGCPO State Managed Lands (WMAs)",
+    "owner": "blaine_elliott@fws.gov_fws",
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/WGCPO_STATE_WILDLIFE_MANAGEMENT_AREAS_2015/FeatureServer",
+    "views": 3512
+   },
+   {
+    "q": "Arkansas Game and Fish wildlife management areas",
+    "title": "Wildlife Management Areas",
+    "owner": "leif_kindberg",
+    "url": "https://services3.arcgis.com/E0jzW6yplmtrRw7o/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer",
+    "views": 3026
+   },
+   {
+    "q": "Arkansas Game and Fish wildlife management areas",
+    "title": "NPS Illinois River Watershed Model Input Layers",
+    "owner": "hhaper_biohabitats",
+    "url": "https://services5.arcgis.com/PADY1WtQSQ4Ijq5k/arcgis/rest/services/NPS_Illinois_River_Watershed_Model_Input_Layers/FeatureServer",
+    "views": 2388
+   },
+   {
+    "q": "Arkansas Game and Fish wildlife management areas",
+    "title": "LonokeCountyProposedValves_Morlock",
+    "owner": "tmorlock_ColumbusState",
+    "url": "https://services.arcgis.com/Kky1VmxJleu73HxO/arcgis/rest/services/LonokeCountyProposedValves_Morlock/FeatureServer",
+    "views": 1060
+   },
+   {
+    "q": "Colorado Parks and Wildlife State Wildlife Areas",
+    "title": "CPWSpeciesData",
+    "owner": "rsaccoCPW",
+    "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSpeciesData/FeatureServer",
+    "views": 12816276
+   },
+   {
+    "q": "Colorado Parks and Wildlife State Wildlife Areas",
+    "title": "National Wildland Explorer ",
+    "owner": "TWSAdmin",
+    "url": "https://services1.arcgis.com/IAQQkLXctKHrf8Av/arcgis/rest/services/National_Wildland_Explorer_updates_2025_WFL1/FeatureServer",
+    "views": 2912662
+   },
+   {
+    "q": "Colorado Parks and Wildlife State Wildlife Areas",
+    "title": "CPWAdminData",
+    "owner": "rsaccoCPW",
+    "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer",
+    "views": 1098392
+   },
+   {
+    "q": "Colorado Parks and Wildlife State Wildlife Areas",
+    "title": "CPWHPHTerrestrialData",
+    "owner": "rsaccoCPW",
+    "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWHPHTerrestrialData/FeatureServer",
+    "views": 908477
+   },
+   {
+    "q": "Colorado Parks and Wildlife State Wildlife Areas",
+    "title": "CPW All Species Activity Mapping Data Web Services",
+    "owner": "rsaccoCPW",
+    "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSpeciesData/FeatureServer",
+    "views": 464530
+   },
+   {
+    "q": "Colorado Parks and Wildlife State Wildlife Areas",
+    "title": "All Colorado Wildlife Movement Data",
+    "owner": "NMatthews_retail",
+    "url": "https://services.arcgis.com/PMTtzuTB6WiPuNSv/arcgis/rest/services/CPW_Wildlife_Movement_Data/FeatureServer",
+    "views": 335316
+   },
+   {
+    "q": "Missouri Department of Conservation conservation areas",
+    "title": "StLouis_CenterPoints",
+    "owner": "MDC_Fisheries",
+    "url": "https://services1.arcgis.com/BEFhRGD6ppzvv08z/arcgis/rest/services/StLouis_CenterPoints/FeatureServer",
+    "views": 102967
+   },
+   {
+    "q": "Missouri Department of Conservation conservation areas",
+    "title": "KansasCity_CenterPoints",
+    "owner": "MDC_Fisheries",
+    "url": "https://services1.arcgis.com/BEFhRGD6ppzvv08z/arcgis/rest/services/KansasCity_CenterPoints/FeatureServer",
+    "views": 96047
+   },
+   {
+    "q": "Missouri Department of Conservation conservation areas",
+    "title": "Caroline_Conservation_Easements",
+    "owner": "jamie_cvg",
+    "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
+    "views": 92319
+   },
+   {
+    "q": "Missouri Department of Conservation conservation areas",
+    "title": "Land Ownership",
+    "owner": "Geothermal0",
+    "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
+    "views": 68686
+   },
+   {
+    "q": "Missouri Department of Conservation conservation areas",
+    "title": "Protected area with sustainable use of natural resources (PADUS)",
+    "owner": "sviars@americanrivers.org_Amrivers",
+    "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer",
+    "views": 67533
+   },
+   {
+    "q": "Missouri Department of Conservation conservation areas",
+    "title": "Protected Areas Database of the United States (PAD-US)",
+    "owner": "lindsjor@oregonstate.edu_OSUGISci",
+    "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/HVRA_Source_Data_PADUS2_0Combined_DOD_Fee_Designation_Easement_OR/FeatureServer",
+    "views": 45722
+   },
+   {
+    "q": "Michigan DNR state game areas",
+    "title": "Michigan Forest Inventory - Compartments",
+    "owner": "MichiganDNR",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer/5",
+    "views": 405831
+   },
+   {
+    "q": "Michigan DNR state game areas",
+    "title": "Michigan DNR Public Forest Inventory Data",
+    "owner": "MichiganDNR",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer",
+    "views": 5445
+   },
+   {
+    "q": "Michigan DNR state game areas",
+    "title": "Voluntary Wetland Restoration Sites",
+    "owner": "EgleAdmin",
+    "url": "https://services1.arcgis.com/FNjlrOFR0aGJ71Tg/arcgis/rest/services/Voluntary_Wetland_Restoration/FeatureServer",
+    "views": 3762
+   },
+   {
+    "q": "Michigan DNR state game areas",
+    "title": "Michigan DNR Administered Timber Sales",
+    "owner": "MichiganDNR",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/MichiganDNRAdministeredTimberSales/FeatureServer",
+    "views": 3173
+   },
+   {
+    "q": "Michigan DNR state game areas",
+    "title": "Keep the UP Wild_WFL1",
+    "owner": "phatami_elpc",
+    "url": "https://services6.arcgis.com/evjvf6OwzhM4vIyx/arcgis/rest/services/Keep_the_UP_Wild_WFL1/FeatureServer",
+    "views": 1715
+   },
+   {
+    "q": "Michigan DNR state game areas",
+    "title": "Michigan PRU Wells with State and Federal Lands_WFL1",
+    "owner": "kroberts_edfmaps",
+    "url": "https://services6.arcgis.com/HJzJQeO8rbTv2jiF/arcgis/rest/services/Michigan_PRU_Wells_with_State_and_Federal_Lands_WFL1/FeatureServer",
+    "views": 421
+   },
+   {
+    "q": "New Hampshire conservation land state forest",
+    "title": "BwH Bangor - Habitat Data",
+    "owner": "BangorGIS",
+    "url": "https://services1.arcgis.com/yIxdYDwtUG29jfAN/arcgis/rest/services/BwH_Bangor/FeatureServer",
+    "views": 755804
+   },
+   {
+    "q": "New Hampshire conservation land state forest",
+    "title": "Harts Location Upper Saco StoryMap Map_WFL1",
+    "owner": "FBE-Field",
+    "url": "https://services7.arcgis.com/8jJivE2icUo1q3XR/arcgis/rest/services/Harts_Location_Upper_Saco_StoryMap_Map_WFL1/FeatureServer",
+    "views": 135131
+   },
+   {
+    "q": "New Hampshire conservation land state forest",
+    "title": "AuburnSMtest_WFL1",
+    "owner": "dante.c_berrydunn",
+    "url": "https://services5.arcgis.com/2jwcjMWXJROJe17F/arcgis/rest/services/AuburnSMtest_WFL1/FeatureServer",
+    "views": 120149
+   },
+   {
+    "q": "New Hampshire conservation land state forest",
+    "title": "Caroline_Conservation_Easements",
+    "owner": "jamie_cvg",
+    "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
+    "views": 92319
+   },
+   {
+    "q": "New Hampshire conservation land state forest",
+    "title": "NRPC Open Data - All Communities",
+    "owner": "skustron",
+    "url": "https://services6.arcgis.com/2ZriDy2NFXltCIFR/arcgis/rest/services/NRPCOpenData/FeatureServer",
+    "views": 77386
+   },
+   {
+    "q": "New Hampshire conservation land state forest",
+    "title": "Land Ownership",
+    "owner": "Geothermal0",
+    "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
+    "views": 68686
+   },
+   {
+    "q": "Nebraska state recreation areas",
+    "title": "TrailsNewmap",
+    "owner": "NGPC.GISAdmin",
+    "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/TrailsNewmap/FeatureServer",
+    "views": 253971
+   },
+   {
+    "q": "Nebraska state recreation areas",
+    "title": "Parks_Locations",
+    "owner": "NGPC.GISAdmin",
+    "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Parks_Locations/FeatureServer",
+    "views": 98639
+   },
+   {
+    "q": "Nebraska state recreation areas",
+    "title": "Park_Areas",
+    "owner": "NGPC.GISAdmin",
+    "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer",
+    "views": 96253
+   },
+   {
+    "q": "Nebraska state recreation areas",
+    "title": "Caroline_Conservation_Easements",
+    "owner": "jamie_cvg",
+    "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
+    "views": 92319
+   },
+   {
+    "q": "Nebraska state recreation areas",
+    "title": "Land Ownership",
+    "owner": "Geothermal0",
+    "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
+    "views": 68686
+   },
+   {
+    "q": "Nebraska state recreation areas",
+    "title": "Protected area with sustainable use of natural resources (PADUS)",
+    "owner": "sviars@americanrivers.org_Amrivers",
+    "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer",
+    "views": 67533
+   },
+   {
+    "q": "Indiana DNR state recreation areas",
+    "title": "DNR Recreation Sites, features",
+    "owner": "dnrgis_indnr",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/DNR_Recreation_Sites_RO/FeatureServer/8",
+    "views": 601074
+   },
+   {
+    "q": "Indiana DNR state recreation areas",
+    "title": "DRZCorridors2019publicparcels",
+    "owner": "MBenavidezWestrich@dnr.IN.gov_indnr",
+    "url": "https://services.arcgis.com/2Mcx1M1MORKfBNPM/arcgis/rest/services/DRZCorridors2019publicparcels/FeatureServer",
+    "views": 89830
+   },
+   {
+    "q": "Indiana DNR state recreation areas",
+    "title": "IN DNR Properties",
+    "owner": "dnrgis_indnr",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer",
+    "views": 73140
+   },
+   {
+    "q": "Indiana DNR state recreation areas",
+    "title": "Secured Areas",
+    "owner": "melissa_clark_TNC",
+    "url": "https://cumulus.tnc.org/arcgis/rest/services/easterndiv/RL_dynamicGrids_Apr22/MapServer/8",
+    "views": 3501
+   },
+   {
+    "q": "Indiana DNR state recreation areas",
+    "title": "2026 Rx Burn Location Map_WFL1",
+    "owner": "zacharyr",
+    "url": "https://services8.arcgis.com/Ic8hxYVibWcYoEV2/arcgis/rest/services/2026_Rx_Burn_Location_Map_WFL1/FeatureServer",
+    "views": 2510
+   },
+   {
+    "q": "Indiana DNR state recreation areas",
+    "title": "ManagedAreas_Public",
+    "owner": "kirsten.lewis@tnc.org_TNC",
+    "url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/ManagedAreas_Public/FeatureServer",
+    "views": 1888
+   },
+   {
+    "q": "Mississippi wildlife management areas MDWFP",
+    "title": "WFL2_Basemap_Items",
+    "owner": "Rachel_CCE",
+    "url": "https://services6.arcgis.com/8EipYlXFYbtSN973/arcgis/rest/services/WFL2_Basemap_Items/FeatureServer",
+    "views": 5205
+   },
+   {
+    "q": "Mississippi wildlife management areas MDWFP",
+    "title": "State Wildlife Action Plan Conservation Priority Areas",
+    "owner": "Christopher_Tracey_NatureServe",
+    "url": "https://services.arcgis.com/EVsTT4nNRCwmHNyb/arcgis/rest/services/SWAP_Mapping/FeatureServer",
+    "views": 4837
+   },
+   {
+    "q": "Wisconsin state natural areas",
+    "title": "Incorporated Places",
+    "owner": "layermanager",
+    "url": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/TIGERweb_Incorporated_Places_v1/FeatureServer",
+    "views": 1267901
+   },
+   {
+    "q": "Wisconsin state natural areas",
+    "title": "Lands",
+    "owner": "adamg.vilas",
+    "url": "https://maps.vilascountywi.gov/vilasgis/rest/services/CachedMaps/Lands/MapServer",
+    "views": 1055675
+   },
+   {
+    "q": "Wisconsin state natural areas",
+    "title": "Rustic Roads ",
+    "owner": "WisDOTAdmin",
+    "url": "https://dotmaps.wi.gov/arcgis/rest/services/agohub/RUSTIC_ROAD/MapServer/0",
+    "views": 809876
+   },
+   {
+    "q": "Wisconsin state natural areas",
+    "title": "Private Forest Lands Open for Public Recreation",
+    "owner": "laura.waddle_wi_dnr",
+    "url": "https://utility.arcgis.com/usrsvcs/servers/2f102ded56aa4e65a66a05ee2b0aa2cf/rest/services/FR_TAX/FR_TAX_WTM_EXT/MapServer",
+    "views": 449331
+   },
+   {
+    "q": "Wisconsin state natural areas",
+    "title": "Class 1 Areas under the Clean Air Act, US EPA, OAR, OAQPS",
+    "owner": "hcakir_EPA",
+    "url": "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/Mandatory_Class1_Federal_Areas/FeatureServer",
+    "views": 314934
+   },
+   {
+    "q": "Wisconsin state natural areas",
+    "title": "Wisconsin SSURGO Soils: Partially Hydric to Hydric - Partially Hydric to Hydric, Rock County, Wisconsin",
+    "owner": "RockCountyGIS",
+    "url": "https://dnrmaps.wi.gov/arcgis2/rest/services/DW_Map_Dynamic/EN_SSURGO_Soil_Survey_WTM_Ext/MapServer/6",
+    "views": 249109
+   },
+   {
+    "q": "Connecticut DEEP state parks forests",
+    "title": "DEEP Property",
+    "owner": "deepgis",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_DEEP_Property/FeatureServer",
+    "views": 199587
+   },
+   {
+    "q": "Connecticut DEEP state parks forests",
+    "title": "DEEP Property Access Locations",
+    "owner": "deepgis",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_Property_Access_Locations/FeatureServer",
+    "views": 185749
+   },
+   {
+    "q": "Connecticut DEEP state parks forests",
+    "title": "2011 Protected Open Space Mapping Set",
+    "owner": "deepgis",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2011_Protected_Open_Space_Mapping/FeatureServer",
+    "views": 101590
+   },
+   {
+    "q": "Connecticut DEEP state parks forests",
+    "title": "DEEP Trails Set",
+    "owner": "deepgis",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_Trails_Set/FeatureServer",
+    "views": 81073
+   },
+   {
+    "q": "Connecticut DEEP state parks forests",
+    "title": "Connecticut_Open_for_Hunting_New Schema",
+    "owner": "karenz",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_Open_for_Hunting_New_Schema/FeatureServer",
+    "views": 50284
+   },
+   {
+    "q": "Connecticut DEEP state parks forests",
+    "title": "State Wildlife Action Plan Conservation Opportunity Areas Set",
+    "owner": "deepgis",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer",
+    "views": 24666
    }
   ]
  },
- "AU": {
+ "AUV": {
   "direct": [
    {
-    "url": "https://mapprod3.environment.nsw.gov.au/arcgis/rest/services?f=json",
+    "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services?f=json",
     "status": 200,
     "info": "layers: "
-   },
-   {
-    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries?f=json",
-    "status": 200,
-    "info": "layers: "
-   },
-   {
-    "url": "https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?SERVICE=WFS&REQUEST=GetCapabilities",
-    "status": 0,
-    "info": ""
    }
   ],
   "search": [
    {
-    "q": "NSW State Forests",
-    "title": "Environmental Layers",
-    "owner": "ras_byron",
-    "url": "https://services7.arcgis.com/SqbRuGmmUbhRpdi1/arcgis/rest/services/Environmental_Layers/FeatureServer",
-    "views": 1213114
-   },
-   {
-    "q": "NSW State Forests",
-    "title": "LicencedHunterHunting",
-    "owner": "Todd.Walmsley",
-    "url": "https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/LicencedHunterHunting/FeatureServer",
-    "views": 132775
-   },
-   {
-    "q": "NSW State Forests",
-    "title": "NSW_Dedicated_State_Forests",
-    "owner": "GisTaskUser",
-    "url": "https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/NSW_Dedicated_State_Forests/FeatureServer",
-    "views": 94963
-   },
-   {
-    "q": "NSW State Forests",
-    "title": "GPT Stormwater Infrastructure and Hydrology Public",
-    "owner": "Harley_TL",
-    "url": "https://services6.arcgis.com/6cWkEIAYsIBPrRMb/arcgis/rest/services/GPT_Stormwater_Infrastructure_and_Hydrology_Public/FeatureServer",
-    "views": 73972
-   },
-   {
-    "q": "NSW State Forests",
-    "title": "ACTGOV Vegetation Map (Current)",
-    "owner": "environment_ACTGOV",
-    "url": "https://services1.arcgis.com/E5n4f1VY84i0xSjy/arcgis/rest/services/ACTGOV_Vegetation_Map_(Current)/FeatureServer",
-    "views": 56648
-   },
-   {
-    "q": "NSW State Forests",
-    "title": "FCNSW Big Picture Storymap data_WFL1",
-    "owner": "GisTaskUser",
-    "url": "https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/FCNSW_Big_Picture_Storymap_data_WFL1/FeatureServer",
-    "views": 37749
-   },
-   {
-    "q": "NSW State Forests",
-    "title": "Collaborative Australian Protected Areas Database (CAPAD) 2024",
-    "owner": "DCCEEW_Geospatial",
-    "url": "https://services1.arcgis.com/gtRkYQyUQLMTM1uS/arcgis/rest/services/CAPAD2024_terrestrial_ExcSensitive_incGAZ_YEAR_20250117/FeatureServer",
-    "views": 34163
-   },
-   {
-    "q": "NSW State Forests",
-    "title": "CT_BaseMap",
-    "owner": "LLS_Trade_AGOL",
-    "url": "https://services.arcgis.com/xDL0LTy98rbQTFbo/arcgis/rest/services/CT_BaseMap/FeatureServer",
-    "views": 29089
-   },
-   {
-    "q": "Forestry Corporation NSW state forest",
-    "title": "LicencedHunterHunting",
-    "owner": "Todd.Walmsley",
-    "url": "https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/LicencedHunterHunting/FeatureServer",
-    "views": 132775
-   },
-   {
-    "q": "Forestry Corporation NSW state forest",
-    "title": "Collaborative Australian Protected Areas Database (CAPAD) 2024",
-    "owner": "DCCEEW_Geospatial",
-    "url": "https://services1.arcgis.com/gtRkYQyUQLMTM1uS/arcgis/rest/services/CAPAD2024_terrestrial_ExcSensitive_incGAZ_YEAR_20250117/FeatureServer",
-    "views": 34163
-   },
-   {
-    "q": "Forestry Corporation NSW state forest",
-    "title": "RTBC_Story_Map",
-    "owner": "pkoch_sagov",
-    "url": "https://services5.arcgis.com/ULv86JkyrywnrlnW/arcgis/rest/services/RTBC_Story_Map/FeatureServer",
-    "views": 17967
-   },
-   {
-    "q": "Forestry Corporation NSW state forest",
-    "title": "FCNSW_HarvestPlan_20240424",
-    "owner": "bkenny@ncc",
-    "url": "https://services8.arcgis.com/zLgciVhqWtnwUpU8/arcgis/rest/services/FCNSW_HarvestPlan_20240424/FeatureServer",
-    "views": 14747
-   },
-   {
-    "q": "Forestry Corporation NSW state forest",
-    "title": "CAPAD2018_Koala",
-    "owner": "uqdlopez_UQmaps",
-    "url": "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/CAPAD2018_Koala/FeatureServer",
-    "views": 11333
-   },
-   {
-    "q": "Forestry Corporation NSW state forest",
-    "title": "Erosivity and regolith",
-    "owner": "RobKirwood",
-    "url": "https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/Erosivity_and_regolith/FeatureServer",
-    "views": 5568
-   },
-   {
-    "q": "Forestry Corporation NSW state forest",
-    "title": "Protected areas (CAPAD2018)",
-    "owner": "uqdlopez_UQmaps",
-    "url": "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/Protected_areas_(CAPAD2018)/FeatureServer",
-    "views": 5323
-   },
-   {
-    "q": "Forestry Corporation NSW state forest",
-    "title": "pilbara_values_2021_WFL1",
-    "owner": "uqmdave5_UQmaps",
-    "url": "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/pilbara_values_2021_WFL1/FeatureServer",
-    "views": 4781
-   },
-   {
-    "q": "Queensland State Forests",
-    "title": "Land Parcel Property Framework - Service",
-    "owner": "QueenslandGovernment",
-    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandParcelPropertyFramework/MapServer",
-    "views": 449555
-   },
-   {
-    "q": "Queensland State Forests",
-    "title": "Burrum and Kolan upload 1",
-    "owner": "wetlands_qgsp",
-    "url": "https://services1.arcgis.com/HrMiNYsSqqPpLTDE/arcgis/rest/services/Burrum_and_Kolan_upload_1/FeatureServer",
-    "views": 296018
-   },
-   {
-    "q": "Queensland State Forests",
-    "title": "QSpatial DNRME Land Use",
-    "owner": "PublicSafetyQld_Data",
-    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandUse/MapServer",
-    "views": 242778
-   },
-   {
-    "q": "Queensland State Forests",
-    "title": "Open Space",
-    "owner": "opendata_goldcoast",
-    "url": "https://services.arcgis.com/3vStCH7NDoBOZ5zn/arcgis/rest/services/Open_Space/FeatureServer",
-    "views": 227288
-   },
-   {
-    "q": "Queensland State Forests",
-    "title": "QSCF Land Parcel Property Framework",
-    "owner": "QUU_GIS_Admin",
-    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/QSCF_LandParcelPropertyFramework/MapServer",
-    "views": 112766
-   },
-   {
-    "q": "Queensland State Forests",
-    "title": "Queensland foundation data",
-    "owner": "RilipoAGOL",
-    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Basemaps/FoundationData/FeatureServer",
-    "views": 100207
-   },
-   {
-    "q": "Queensland State Forests",
-    "title": "Administrative Boundaries",
-    "owner": "sharleneb",
-    "url": "https://services3.arcgis.com/EksqEpNbvM07IZjR/arcgis/rest/services/TerrainNRM_Administrative/FeatureServer",
-    "views": 97457
-   },
-   {
-    "q": "Queensland State Forests",
-    "title": "Historical Bushfire Boundaries – Version 2.0",
-    "owner": "aus_digitalatlas",
-    "url": "https://services-ap1.arcgis.com/ypkPEy1AmwPKGNNv/arcgis/rest/services/Bushfire_Boundaries_Historic_Dec_view/FeatureServer",
-    "views": 87750
-   },
-   {
-    "q": "Victoria state forest",
+    "q": "Victoria state forest public land management",
     "title": "Washington State Tribal Lands and Gold Mines_WFL1",
     "owner": "dorigoa_wwu",
     "url": "https://services.arcgis.com/qboYD3ru0louQq4F/arcgis/rest/services/Washington_State_Tribal_Lands_and_Gold_Mines_WFL1/FeatureServer",
     "views": 46189
    },
    {
-    "q": "Victoria state forest",
+    "q": "Victoria state forest public land management",
     "title": "Collaborative Australian Protected Areas Database (CAPAD) 2024",
     "owner": "DCCEEW_Geospatial",
     "url": "https://services1.arcgis.com/gtRkYQyUQLMTM1uS/arcgis/rest/services/CAPAD2024_terrestrial_ExcSensitive_incGAZ_YEAR_20250117/FeatureServer",
     "views": 34163
    },
    {
-    "q": "Victoria state forest",
-    "title": "Corridors",
-    "owner": "sharleneb",
-    "url": "https://services3.arcgis.com/EksqEpNbvM07IZjR/arcgis/rest/services/TerrainNRM_Corridors/FeatureServer",
-    "views": 32582
-   },
-   {
-    "q": "Victoria state forest",
-    "title": "Vicmap Lite",
-    "owner": "Vicmap_Prod",
-    "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Lite/FeatureServer",
-    "views": 32326
-   },
-   {
-    "q": "Victoria state forest",
-    "title": "AkisqnukVectorData",
-    "owner": "CMelliship_BGCINC",
-    "url": "https://services5.arcgis.com/yAunc8xKkyHrvhFi/arcgis/rest/services/AkisqnukVectorData/FeatureServer",
-    "views": 26988
-   },
-   {
-    "q": "Victoria state forest",
+    "q": "Victoria state forest public land management",
     "title": "RTBC_Story_Map",
     "owner": "pkoch_sagov",
     "url": "https://services5.arcgis.com/ULv86JkyrywnrlnW/arcgis/rest/services/RTBC_Story_Map/FeatureServer",
     "views": 17967
    },
    {
-    "q": "Victoria state forest",
+    "q": "Victoria state forest public land management",
     "title": "CAPAD2018_Koala",
     "owner": "uqdlopez_UQmaps",
     "url": "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/CAPAD2018_Koala/FeatureServer",
     "views": 11333
    },
    {
-    "q": "Victoria state forest",
+    "q": "Victoria state forest public land management",
     "title": "GPT Biodiversity Public",
     "owner": "Harley_TL",
     "url": "https://services6.arcgis.com/6cWkEIAYsIBPrRMb/arcgis/rest/services/GPT_Biodiversity_Public/FeatureServer",
     "views": 11131
    },
    {
-    "q": "Western Australia state forest DBCA",
-    "title": "GPT Stormwater Infrastructure and Hydrology Public",
-    "owner": "Harley_TL",
-    "url": "https://services6.arcgis.com/6cWkEIAYsIBPrRMb/arcgis/rest/services/GPT_Stormwater_Infrastructure_and_Hydrology_Public/FeatureServer",
-    "views": 73972
-   },
-   {
-    "q": "Western Australia state forest DBCA",
-    "title": "Collaborative Australian Protected Areas Database (CAPAD) 2024",
-    "owner": "DCCEEW_Geospatial",
-    "url": "https://services1.arcgis.com/gtRkYQyUQLMTM1uS/arcgis/rest/services/CAPAD2024_terrestrial_ExcSensitive_incGAZ_YEAR_20250117/FeatureServer",
-    "views": 34163
-   },
-   {
-    "q": "Western Australia state forest DBCA",
-    "title": "RTBC_Story_Map",
-    "owner": "pkoch_sagov",
-    "url": "https://services5.arcgis.com/ULv86JkyrywnrlnW/arcgis/rest/services/RTBC_Story_Map/FeatureServer",
-    "views": 17967
-   },
-   {
-    "q": "Western Australia state forest DBCA",
-    "title": "CAPAD2018_Koala",
-    "owner": "uqdlopez_UQmaps",
-    "url": "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/CAPAD2018_Koala/FeatureServer",
-    "views": 11333
-   },
-   {
-    "q": "Western Australia state forest DBCA",
-    "title": "GPT Biodiversity Public",
-    "owner": "Harley_TL",
-    "url": "https://services6.arcgis.com/6cWkEIAYsIBPrRMb/arcgis/rest/services/GPT_Biodiversity_Public/FeatureServer",
-    "views": 11131
-   },
-   {
-    "q": "Western Australia state forest DBCA",
-    "title": "Protected areas (CAPAD2018)",
-    "owner": "uqdlopez_UQmaps",
-    "url": "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/Protected_areas_(CAPAD2018)/FeatureServer",
-    "views": 5323
-   },
-   {
-    "q": "Western Australia state forest DBCA",
-    "title": "pilbara_values_2021_WFL1",
-    "owner": "uqmdave5_UQmaps",
-    "url": "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/pilbara_values_2021_WFL1/FeatureServer",
-    "views": 4781
-   },
-   {
-    "q": "Western Australia state forest DBCA",
-    "title": "Kakadu Park Boundary",
-    "owner": "bcapuano23@COAGIS",
-    "url": "https://services1.arcgis.com/0EOqWPtpCmgQr2ay/arcgis/rest/services/Kakadu_Park_Boundary/FeatureServer",
-    "views": 4165
+    "q": "Victoria state forest public land management",
+    "title": "Active Projects",
+    "owner": "arsc_uagis",
+    "url": "https://services1.arcgis.com/Ezk9fcjSUkeadg6u/arcgis/rest/services/Active_Projects/FeatureServer",
+    "views": 7752
    },
    {
     "q": "DBCA legislated lands and waters",
@@ -469,274 +706,46 @@
     "views": 7736
    },
    {
-    "q": "DBCA legislated lands and waters",
-    "title": "Protected areas (CAPAD2018)",
-    "owner": "uqdlopez_UQmaps",
-    "url": "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/Protected_areas_(CAPAD2018)/FeatureServer",
-    "views": 5323
+    "q": "Western Australia state forest",
+    "title": "Historical Bushfire Boundaries – Version 2.0",
+    "owner": "aus_digitalatlas",
+    "url": "https://services-ap1.arcgis.com/ypkPEy1AmwPKGNNv/arcgis/rest/services/Bushfire_Boundaries_Historic_Dec_view/FeatureServer",
+    "views": 87750
    },
    {
-    "q": "DBCA legislated lands and waters",
-    "title": "Australian Marine Parks - Other Management",
-    "owner": "KiraPage",
-    "url": "https://services2.arcgis.com/3THQHWc29EM54DFH/arcgis/rest/services/OtherRes/FeatureServer",
-    "views": 5073
-   }
-  ]
- },
- "CA": {
-  "direct": [
-   {
-    "url": "https://servicesmatriciels.mern.gouv.qc.ca/erdas-iws/ogc/wms?SERVICE=WMS&REQUEST=GetCapabilities",
-    "status": 200,
-    "info": "types: WMS"
-   }
-  ],
-  "search": [
-   {
-    "q": "Ontario conservation areas conservation authority",
-    "title": "Conservation Authority Boundaries",
-    "owner": "CO_OpenData",
-    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ConservationAuthoritiesInformation/FeatureServer",
-    "views": 566054
+    "q": "Western Australia state forest",
+    "title": "GPT Stormwater Infrastructure and Hydrology Public",
+    "owner": "Harley_TL",
+    "url": "https://services6.arcgis.com/6cWkEIAYsIBPrRMb/arcgis/rest/services/GPT_Stormwater_Infrastructure_and_Hydrology_Public/FeatureServer",
+    "views": 73972
    },
    {
-    "q": "Ontario conservation areas conservation authority",
-    "title": "Conservation Authority Boundaries",
-    "owner": "CO_OpenData",
-    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/CA Boundary (2021)/FeatureServer",
-    "views": 364803
+    "q": "Western Australia state forest",
+    "title": "Oconnell_upload",
+    "owner": "wetlands_qgsp",
+    "url": "https://services1.arcgis.com/HrMiNYsSqqPpLTDE/arcgis/rest/services/Oconnell_upload/FeatureServer",
+    "views": 37252
    },
    {
-    "q": "Ontario conservation areas conservation authority",
-    "title": "Conservation Authority Boundaries (2023)",
-    "owner": "CO_OpenData",
-    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/CA_Boundaries_Update_2023/FeatureServer",
-    "views": 210256
+    "q": "Western Australia state forest",
+    "title": "Collaborative Australian Protected Areas Database (CAPAD) 2024",
+    "owner": "DCCEEW_Geospatial",
+    "url": "https://services1.arcgis.com/gtRkYQyUQLMTM1uS/arcgis/rest/services/CAPAD2024_terrestrial_ExcSensitive_incGAZ_YEAR_20250117/FeatureServer",
+    "views": 34163
    },
    {
-    "q": "Ontario conservation areas conservation authority",
-    "title": "NPCA APPROXIMATE REGULATION LANDS",
-    "owner": "npca.dmccullagh",
-    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/NPCA_APPROXIMATE_REGULATION_LANDS/FeatureServer",
-    "views": 129109
+    "q": "Western Australia state forest",
+    "title": "Corridors",
+    "owner": "sharleneb",
+    "url": "https://services3.arcgis.com/EksqEpNbvM07IZjR/arcgis/rest/services/TerrainNRM_Corridors/FeatureServer",
+    "views": 32582
    },
    {
-    "q": "Ontario conservation areas conservation authority",
-    "title": "Conservation Areas NPCA",
-    "owner": "npca.dmccullagh",
-    "url": "https://utility.arcgis.com/usrsvcs/servers/39db3b32033c4ce4a75462fc4bc60e32/rest/services/Conservation_Lands_Grouping/MapServer/0",
-    "views": 115221
-   },
-   {
-    "q": "Ontario conservation areas conservation authority",
-    "title": "Wetland Allowance NPCA",
-    "owner": "npca.dmccullagh",
-    "url": "https://utility.arcgis.com/usrsvcs/servers/bf5cafc93e934fafb645c7424232b679/rest/services/Generic_Regulations_Grouping/MapServer/22",
-    "views": 110996
-   },
-   {
-    "q": "Ontario conservation areas conservation authority",
-    "title": "RegulationsExternalMapping",
-    "owner": "ch.R.Bunting",
-    "url": "https://utility.arcgis.com/usrsvcs/servers/5636ac6a5ca0416aa7e5680b3db18578/rest/services/ms-oper/RegulationsExternalMapping/MapServer",
-    "views": 110839
-   },
-   {
-    "q": "Ontario conservation areas conservation authority",
-    "title": "Regulated Shoreline Extent NPCA",
-    "owner": "npca.dmccullagh",
-    "url": "https://utility.arcgis.com/usrsvcs/servers/078e7e72ee944f7492c763698a2e22f7/rest/services/Generic_Regulations_Grouping/MapServer/11",
-    "views": 109290
-   },
-   {
-    "q": "Lieux historiques nationaux du Canada",
-    "title": "Routes_APCA_Roads_NonNRN",
-    "owner": "jackie_pc",
-    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Routes_APCA_Roads_NonNRN/FeatureServer",
-    "views": 6774
-   },
-   {
-    "q": "Lieux historiques nationaux du Canada",
-    "title": "MRG Roads",
-    "owner": "marieke.maas_APCA",
-    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/MRG_Roads/FeatureServer",
-    "views": 1662
-   },
-   {
-    "q": "Lieux historiques nationaux du Canada",
-    "title": "Routes_APCA_Roads_NonNRN_PNLM",
-    "owner": "catherine.baltazar_APCA",
-    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Routes_APCA_Roads_NonNRN_PNLM/FeatureServer",
-    "views": 1654
-   },
-   {
-    "q": "Lieux historiques nationaux du Canada",
-    "title": "Trails_Sentiers_APCA_Temporary_Temporaire_APCA_OpenOuvert",
-    "owner": "AGOL_Service_APCA",
-    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_APCA_Temporary_Temporaire_APCA_OpenOuvert/FeatureServer",
-    "views": 1461
-   },
-   {
-    "q": "Lieux historiques nationaux du Canada",
-    "title": "The Canadian Geographical Names Database - La base de données toponymiques du Canada",
-    "owner": "EsriCanadaContent",
-    "url": "https://services.arcgis.com/wjcPoefzjpzCgffS/arcgis/rest/services/CanadianGeographicalNames_gdb/FeatureServer",
-    "views": 1184
-   },
-   {
-    "q": "Lieux historiques nationaux du Canada",
-    "title": "Place_Names_Noms_Lieux_APCA_OpenOuvert",
-    "owner": "AGOL_Service_APCA",
-    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Place_Names_Noms_Lieux_APCA_OpenOuvert/FeatureServer",
-    "views": 876
-   },
-   {
-    "q": "Lieux historiques nationaux du Canada",
-    "title": "Access_Points_Draft",
-    "owner": "Brandon.Gregg_APCA",
-    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Access_Points_Draft/FeatureServer",
-    "views": 652
-   },
-   {
-    "q": "Lieux historiques nationaux du Canada",
-    "title": "Routes_APCA_Roads_NonNRN_view",
-    "owner": "jackie_pc",
-    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Routes_APCA_Roads_NonNRN_view/FeatureServer",
-    "views": 556
-   },
-   {
-    "q": "Nova Scotia provincial parks",
-    "title": "NS Crown Land & Provincial Parks",
-    "owner": "Chuck_Sangster",
-    "url": "https://nsgiwa.novascotia.ca/arcgis/rest/services/PLAN/PLANCrownLandsWM84V1/MapServer",
-    "views": 282769
-   },
-   {
-    "q": "Nova Scotia provincial parks",
-    "title": "Nova Scotia Parks and Protected Areas System v1",
-    "owner": "Chuck_Sangster",
-    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer",
-    "views": 176437
-   },
-   {
-    "q": "Nova Scotia provincial parks",
-    "title": "(7.5M) Major Cities - The Atlas of Canada Base Maps of BC",
-    "owner": "Province.Of.British.Columbia",
-    "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/90",
-    "views": 87539
-   },
-   {
-    "q": "Nova Scotia provincial parks",
-    "title": "Map Service for Public Atlas",
-    "owner": "lcomeau_kings",
-    "url": "https://services8.arcgis.com/EKgs6jOgtqEQoqHR/arcgis/rest/services/Map_Service_for_Public_Atlas/FeatureServer",
-    "views": 87164
-   },
-   {
-    "q": "Nova Scotia provincial parks",
-    "title": "Lands in the Parks and Protected Areas Plan (2013)",
-    "owner": "Chuck_Sangster",
-    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/PaPA_Plan_2013/FeatureServer",
-    "views": 71409
-   },
-   {
-    "q": "Nova Scotia provincial parks",
-    "title": "Other Contextual Information (WebMap)",
-    "owner": "dominic_NSNT",
-    "url": "https://services6.arcgis.com/cU3ioSm7E1EuXfAs/arcgis/rest/services/Other_Contextual_Information__WebMap_/FeatureServer",
-    "views": 24423
-   },
-   {
-    "q": "Nova Scotia provincial parks",
-    "title": "(7.5M) Provinces and States - The Atlas of Canada Base Maps for BC",
-    "owner": "Province.Of.British.Columbia",
-    "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/101",
-    "views": 12958
-   },
-   {
-    "q": "Nova Scotia provincial parks",
-    "title": "Canadian Protected and Conserved Areas Database (CPCAD)",
-    "owner": "Chuck_Sangster",
-    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
-    "views": 12711
-   },
-   {
-    "q": "New Brunswick provincial parks",
-    "title": "(7.5M) Major Cities - The Atlas of Canada Base Maps of BC",
-    "owner": "Province.Of.British.Columbia",
-    "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/90",
-    "views": 87539
-   },
-   {
-    "q": "New Brunswick provincial parks",
-    "title": "(7.5M) Provinces and States - The Atlas of Canada Base Maps for BC",
-    "owner": "Province.Of.British.Columbia",
-    "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/101",
-    "views": 12958
-   },
-   {
-    "q": "New Brunswick provincial parks",
-    "title": "Parks_WFL1",
-    "owner": "Lauren_Atlantic",
-    "url": "https://services8.arcgis.com/7I24XR2o9eMXFXvI/arcgis/rest/services/Parks_WFL1/FeatureServer",
-    "views": 7009
-   },
-   {
-    "q": "New Brunswick provincial parks",
-    "title": "Tile Layer of Federal Reserve (Managed Forest Code 31)",
-    "owner": "Manitoba_Government",
-    "url": "https://tiles.arcgis.com/tiles/mMUesHYPkXjaFGfS/arcgis/rest/services/CCFM_ManagedForests_Feb2019_AGOL_31/MapServer",
-    "views": 5056
-   },
-   {
-    "q": "New Brunswick provincial parks",
-    "title": "Lower Wolastoq Flooding _ Assets_WFL1",
-    "owner": "lshaw5",
-    "url": "https://services1.arcgis.com/56dETZIzFXStwLka/arcgis/rest/services/Lower_Wolastoq_Flooding___Assets_WFL1/FeatureServer",
-    "views": 4932
-   },
-   {
-    "q": "New Brunswick provincial parks",
-    "title": "Voices Map_WFL1",
-    "owner": "Wpnoke44",
-    "url": "https://services1.arcgis.com/56dETZIzFXStwLka/arcgis/rest/services/Voices_Map_WFL1/FeatureServer",
-    "views": 2896
-   },
-   {
-    "q": "New Brunswick provincial parks",
-    "title": "GGE3423ProjectMap_WFL1",
-    "owner": "JWANG381",
-    "url": "https://services1.arcgis.com/56dETZIzFXStwLka/arcgis/rest/services/GGE3423ProjectMap_WFL1/FeatureServer",
-    "views": 837
-   },
-   {
-    "q": "New Brunswick provincial parks",
-    "title": "NB Parks Asset Inv_WFL1",
-    "owner": "JoshTompkins",
-    "url": "https://services3.arcgis.com/cad8jHNOhWwbUlHP/arcgis/rest/services/NB_Parks_Asset_Inv_WFL1/FeatureServer",
-    "views": 589
-   },
-   {
-    "q": "Quebec reserves naturelles",
-    "title": "Aires protégées autres",
-    "owner": "rihab.saadouni_cpnie",
-    "url": "https://services3.arcgis.com/nQ813Wc14IRR9k4K/arcgis/rest/services/Aires_protégées_autres/FeatureServer",
-    "views": 7113
-   },
-   {
-    "q": "Quebec reserves naturelles",
-    "title": "Les parc urbains de la Ville de Québec et leurs infrastructures_WFL1",
-    "owner": "Temporaire_climoilou",
-    "url": "https://services6.arcgis.com/pG4MNR4EC4WmfCRT/arcgis/rest/services/Les_parc_urbains_de_la_Ville_de_Québec_et_leurs_infrastructures_WFL1/FeatureServer",
-    "views": 5989
-   },
-   {
-    "q": "Quebec reserves naturelles",
-    "title": "AP_nit",
-    "owner": "kgoulet_CPNIE",
-    "url": "https://services3.arcgis.com/nQ813Wc14IRR9k4K/arcgis/rest/services/AP_nit/FeatureServer",
-    "views": 600
+    "q": "Western Australia state forest",
+    "title": "NAR_LGAs",
+    "owner": "NACC_Admin",
+    "url": "https://services1.arcgis.com/mUAz725hB6g8FqK5/arcgis/rest/services/NAR_LGAs/FeatureServer",
+    "views": 19049
    }
   ]
  }
