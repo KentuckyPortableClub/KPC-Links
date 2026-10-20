@@ -20,17 +20,8 @@ def fetch(u, raw=False, timeout=60):
     except Exception as e: return 0, str(e)[:120]  # noqa: BLE001
 
 
-DIRECT = {   # Oct 20 round 5: layer lists of agency servers we already trust, to find the missing groups
-    'WA': ['https://geodataservices.wdfw.wa.gov/arcgis/rest/services/MapServices?f=json', 'https://geodataservices.wdfw.wa.gov/arcgis/rest/services/MapServices/WildlifeAreas/MapServer?f=json'],
-    'ID': ['https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services?f=json'],
-    'MO': ['https://gisblue.mdc.mo.gov/arcgis/rest/services?f=json', 'https://gis.mdc.mo.gov/arcgis/rest/services?f=json'],
-    'QC': ['https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer?f=json'],
-    'ON': ['https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer?f=json', 'https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open01/MapServer?f=json'],
-}
-SEARCH = {'WA': ['WDFW water access areas'], 'ID': [], 'MO': ['Missouri Department of Conservation areas MDC lands'], 'QC': ['parcs regionaux du Quebec'],
-          'ON': ['Ontario conservation authority properties conservation lands'],
-          'MS': ['MDWFP wildlife management areas'], 'KS': ['KDWP public lands wildlife areas Kansas']}
-for _k in SEARCH: DIRECT.setdefault(_k, [])
+DIRECT = {'QC': ['https://servicescarto.mern.gouv.qc.ca/pes/rest/services/Territoire?f=json', 'https://geo.environnement.gouv.qc.ca/donnees/rest/services?f=json']}   # Oct 20 round 6: Québec ZEC + réserves fauniques
+SEARCH = {'QC': ['territoires fauniques structures', 'zones d exploitation controlee ZEC', 'reserves fauniques Quebec', 'pourvoiries droits exclusifs']}
 for cc in DIRECT:
     rows = []
     for u in DIRECT[cc]:

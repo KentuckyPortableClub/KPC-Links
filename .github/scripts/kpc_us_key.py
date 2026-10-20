@@ -301,6 +301,7 @@ XS = [  # prefix, query url, name field, acres field, kinds
     ('mid', 'svc:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRLOTSParcelsOPENDATA/FeatureServer|project boundar', '?', '?', set(), 'Michigan DNR project boundaries', 'STAT', {'MI'}),
     ('ndw', 'svc:https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Wildlife_Management_Areas/FeatureServer|.', '?', '?', {'wma'}, 'North Dakota Game and Fish WMAs', 'STAT', {'ND'}),
     ('vta', 'svc:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer|unit', '?', '?', set(), 'Vermont ANR lands', 'STAT', {'VT'}),
+    ('mol', 'svc:https://services2.arcgis.com/kNS2ppBA4rwAQQZy/arcgis/rest/services/MO_Missouri_Department_of_Conservation_Lands/FeatureServer|.', '?', '?', set(), 'Missouri Dept. of Conservation lands (MSDIS)', 'STAT', {'MO'}),
     ('mdd', 'svc:https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer|dnr owned', '?', '?', set(), 'Maryland DNR lands', 'STAT', {'MD'}),
     ('vta', 'svc:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer|unit', '?', '?', set(), 'Vermont ANR lands', 'STAT', {'VT'}),
 ]
