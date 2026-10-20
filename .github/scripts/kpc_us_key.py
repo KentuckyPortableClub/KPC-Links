@@ -295,6 +295,13 @@ XS = [  # prefix, query url, name field, acres field, kinds
     ('fnl', 'svc:https://services.arcgis.com/9Jk4Zl9KofTtvg3x/arcgis/rest/services/FL_Conservation_Lands_web/FeatureServer|.', '?', '?', set(), 'Florida Natural Areas Inventory conservation lands', 'STAT', {'FL'}),
     ('cow', 'svc:https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer|managed propert', '?', '?', set(), 'Colorado Parks and Wildlife properties', 'STAT', {'CO'}),
     ('nep', 'svc:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer|.', '?', '?', set(), 'Nebraska Game and Parks areas', 'STAT', {'NE'}),
+    # Oct 20 probe round 4 (owner = the state agency / state GIS office)
+    ('arw', 'svc:https://gisec2.agfc.com/arcgis/rest/services/APP_AGFC/MapServer|wma boundar', '?', '?', {'wma'}, 'Arkansas Game and Fish Commission WMAs', 'STAT', {'AR'}),
+    ('nhc', 'svc:https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer|conservation|public', '?', '?', set(), 'NH GRANIT conservation and public lands', 'STAT', {'NH'}),
+    ('mid', 'svc:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRLOTSParcelsOPENDATA/FeatureServer|project boundar', '?', '?', set(), 'Michigan DNR project boundaries', 'STAT', {'MI'}),
+    ('ndw', 'svc:https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Wildlife_Management_Areas/FeatureServer|.', '?', '?', {'wma'}, 'North Dakota Game and Fish WMAs', 'STAT', {'ND'}),
+    ('vta', 'svc:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer|unit', '?', '?', set(), 'Vermont ANR lands', 'STAT', {'VT'}),
+    ('mdd', 'svc:https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer|dnr owned', '?', '?', set(), 'Maryland DNR lands', 'STAT', {'MD'}),
     ('vta', 'svc:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer|unit', '?', '?', set(), 'Vermont ANR lands', 'STAT', {'VT'}),
 ]
 RESOLVED = {}

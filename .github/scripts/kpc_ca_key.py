@@ -196,6 +196,7 @@ MORE = [('Québec recognized nature reserves (MELCCFP)', 'https://geo.environnem
         ('BC recreation sites (BC Ministry of Forests)', 'https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/5', None)]
 # Oct 20 (probe 3): Nova Scotia Parks and Protected Areas System, layer 1 = parks + protected areas (layer 0 = only proposed)
 MORE.append(('Nova Scotia parks and protected areas', 'https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/1', None))
+MORE.append(('Manitoba wildlife lands (Government of Manitoba)', 'https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0', None))
 for e in MORE:
     try: g = arc_pull(e[0], e[1], e[2]); recs += g; extra += len(g); notice('Canada more layers', f'{e[0]}: {len(g)}')
     except Exception as ex: notice('Canada more layers', f'{e[0]} FAILED: {ex}')  # noqa: BLE001
