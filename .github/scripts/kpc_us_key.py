@@ -61,7 +61,7 @@ def norm(s, drop1=False):
     return re.sub(r'\s+', ' ', s).strip()
 
 
-KINDS = [('wma', r'wildlife management area|\bwma\b|wildlife area|game lands?|game areas?|game management area|hunting area|fish and wildlife area|public hunting|fishery area|fishing access|habitat area|wildlife and environmental area|(?<!recreation )(?<!herd )(?<!conservation )management area'),
+KINDS = [('wma', r'wildlife management area|\bwma\b|\bswa\b|wildlife area|game lands?|game areas?|game management area|hunting area|fish and wildlife area|public hunting|fishery area|fishing access|habitat area|wildlife and environmental area|(?<!recreation )(?<!herd )(?<!conservation )management area'),
          ('wsr', r'wild (and|&) scenic river|recreational river'),
          ('ca', r'conservation area|conservation reserve|\baccess$'),          # Missouri: 'Kings Prairie Access' = Kings Prairie Access State Conservation Area
          ('snp', r'nature preserve|natural area|\bsnp\b|\bsna\b|natural heritage|\bpreserve\b|natural state conservation|natural reserve|scientific and natural|natural environment area|\bnea\b|\bnrma\b'),
@@ -350,6 +350,7 @@ def extra_state(st, have):
                 a = {k.lower(): v for k, v in (f.get('attributes') or {}).items()}
                 nm = (a.get(nf.lower()) or '').strip()
                 if not nm: continue
+                if re.search(r'easement', nm, re.I): continue   # Oct 20: CPW 'SWA (Fishing Easement)' = private land with an easement, never the park
                 k = kinds(nm) | kk
                 if (norm(nm), frozenset(k)) in have: continue
                 g = f.get('geometry') or {}
