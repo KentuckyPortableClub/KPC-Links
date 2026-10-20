@@ -10,7 +10,7 @@ SCOPE: FT8 + FT4 (+ FT2) app WITH the KPC Logger and the other DIGI modes (CW, R
   - Android: ubuntu runner, JDK 17 + Android SDK, Capacitor (WebView app) + Gradle → signed .apk (later .aab for Play Store).
   - Windows: windows runner, Electron (or Tauri) → .exe installer.
   - Releases: each tagged build attaches the .apk + .exe to a GitHub Release; Brandon downloads from there (repo is private, so he signs in to GitHub; or we post the file link in the members room).
-- Signing: Claude creates the Android keystore on a runner/sandbox, stores it as repo secrets (ANDROID_KEYSTORE_B64, ANDROID_KEYSTORE_PASS, ANDROID_KEY_ALIAS, ANDROID_KEY_PASS). NEVER in the repo or chat. Losing it = updates can't install over the old app, so tell Brandon to keep a copy (he downloads it once from a private place, not chat).
+- Signing (changed Oct 20, Fable: Claude's sessions can't set GitHub secrets): Brandon adds ONE secret ANDROID_KEY_PASSWORD in the KPC-App repo (Settings → Secrets and variables → Actions → New repository secret; any password 8+ chars he keeps), then runs Actions → 'Make signing key' once: it makes the key and commits it encrypted (signing/kpc-release.jks.enc). build.yml then signs release APKs (versionCode = run number, so each build installs over the last). First signed install: uninstall the debug test app once. Losing the password = new key = everyone reinstalls once.
 - Email rule still applies: builds that fail email Brandon, so test locally first, keep build runs few.
 
 ## Who does what
