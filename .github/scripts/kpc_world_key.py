@@ -54,7 +54,7 @@ CHPREF = {'Natural Monument': ['BAFU landscapes and natural monuments (BLN)'], '
 # France's ZNIEFF wildlife zones (MNHN / INPN inventory). IGN Géoplateforme first; the Esri France copy of the same INPN data only
 # when the Géoplateforme answers nothing. Australia: CAPAD leaves state forests out, so each state's own forestry map.
 SRC['FR'] = SRC['FR'] + [('IGN Géoplateforme ZNIEFF ' + n, 'wfs', 'https://data.geopf.fr/wfs/ows', t) for n, t in
-                         (('type I', 'PROTECTEDAREAS.ZNIEFF1:znieff1'), ('type II', 'PROTECTEDAREAS.ZNIEFF2:znieff2'), ('biological reserves', 'PROTECTEDAREAS.RB:rb'))] \
+                         (('type I', 'patrinat_znieff1:znieff1'), ('type II', 'patrinat_znieff2:znieff2'), ('type I sea', 'patrinat_znieff1_mer:znieff1_mer'))] \
                       + [('ZNIEFF (INPN data, Esri France) layer ' + str(i), 'arcgis_alt', 'https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/' + str(i)) for i in (0, 1)]
 SRC['AU'] = SRC['AU'] + [('NSW State Forest (Forestry Corporation NSW)', 'arcgis', 'https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/NSW_Dedicated_State_Forests/FeatureServer/0'),
                          ('QLD State Forest (Queensland Government)', 'arcgisfind', 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandParcelPropertyFramework/MapServer', r'state forest|timber reserve')]

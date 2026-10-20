@@ -194,13 +194,8 @@ MORE = [('Québec recognized nature reserves (MELCCFP)', 'https://geo.environnem
         ('Ontario federal protected areas (Land Information Ontario)', 'https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/10', None),
         ('Ontario municipal parks (Land Information Ontario)', 'https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/3', None),
         ('BC recreation sites (BC Ministry of Forests)', 'https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/5', None)]
-# Oct 20: Nova Scotia's own Crown land + provincial parks map (nsgiwa.novascotia.ca): take every layer whose name says park / protected / reserve
-try:
-    _ns = 'https://nsgiwa.novascotia.ca/arcgis/rest/services/PLAN/PLANCrownLandsWM84V1/MapServer'
-    _nl = [l for l in (get(_ns, {'f': 'json'}).get('layers') or []) if re.search(r'park|protected|wilderness|reserve|beach|heritage', l.get('name', ''), re.I) and not l.get('subLayerIds')]
-    notice('Canada more layers', 'Nova Scotia layers: ' + ', '.join(f"{l['id']}:{l['name']}" for l in _nl))
-    MORE += [(f"Nova Scotia {l['name']} (Province of Nova Scotia)", f"{_ns}/{l['id']}", None) for l in _nl]
-except Exception as ex: notice('Canada more layers', f'Nova Scotia list FAILED: {ex}')  # noqa: BLE001
+# Oct 20 (probe 3): Nova Scotia Parks and Protected Areas System, layer 1 = parks + protected areas (layer 0 = only proposed)
+MORE.append(('Nova Scotia parks and protected areas', 'https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/1', None))
 for e in MORE:
     try: g = arc_pull(e[0], e[1], e[2]); recs += g; extra += len(g); notice('Canada more layers', f'{e[0]}: {len(g)}')
     except Exception as ex: notice('Canada more layers', f'{e[0]} FAILED: {ex}')  # noqa: BLE001
