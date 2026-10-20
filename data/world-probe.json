@@ -1,47 +1,698 @@
 {
- "FR": {
-  "direct": [
+ "US": {
+  "direct": [],
+  "search": [
    {
-    "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
-    "status": 200,
-    "info": "types: patrinat_znieff1:znieff1, patrinat_znieff1_mer:znieff1_mer, patrinat_znieff2:znieff2, patrinat_znieff2_mer:znieff2_mer, PROTECTEDAREAS.PRSF:prsf"
+    "q": "WDFW Water Access Sites",
+    "title": "WFC watertyping survey data - public",
+    "owner": "andrew_wfc",
+    "url": "https://services1.arcgis.com/yIQYYlo4oilLcDsy/arcgis/rest/services/watertyping_survey_data_PUBLIC/FeatureServer",
+    "views": 63871
    },
    {
-    "url": "https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer?f=json",
-    "status": 200,
-    "info": "layers: "
+    "q": "WDFW Water Access Sites",
+    "title": "Critical_Areas",
+    "owner": "NP_GIS",
+    "url": "https://services7.arcgis.com/5d703jjhemO6FlIW/arcgis/rest/services/Critical_Areas/FeatureServer",
+    "views": 58318
    },
    {
-    "url": "https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/0?f=json",
-    "status": 200,
-    "info": "layers: "
+    "q": "WDFW Water Access Sites",
+    "title": "Grande Ronde _ Imnaha Basin Habitat Data_WFL1",
+    "owner": "alex@grmw.org0",
+    "url": "https://services3.arcgis.com/OXQOnvnrZqcEnhNx/arcgis/rest/services/Grande_Ronde___Imnaha_Basin_Habitat_Data_WFL1/FeatureServer",
+    "views": 42405
+   },
+   {
+    "q": "WDFW Water Access Sites",
+    "title": "ECY",
+    "owner": "WAECY_Geoservices",
+    "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/ECY/FeatureServer",
+    "views": 27906
+   },
+   {
+    "q": "WDFW Water Access Sites",
+    "title": "BL_Public_Portal_WFL1",
+    "owner": "adamkwaken",
+    "url": "https://services8.arcgis.com/zzJ2UPY3tNkBWkep/arcgis/rest/services/BL_Public_Portal_WFL1/FeatureServer",
+    "views": 17725
+   },
+   {
+    "q": "WDFW Water Access Sites",
+    "title": "Friends of the San Juans' Shoreline Ecosystem Habitat Map",
+    "owner": "Fr1end3",
+    "url": "https://services9.arcgis.com/AXFsXjicw0JApvnd/arcgis/rest/services/Shoreline_map_2_WFL1/FeatureServer",
+    "views": 13568
+   },
+   {
+    "q": "Idaho Fish and Game Access Yes",
+    "title": "23715 Storymap Features",
+    "owner": "Kaylee.Schellenberg_IPLAN",
+    "url": "https://services1.arcgis.com/Qqv4dYPC8Vv8e3c3/arcgis/rest/services/23715_Storymap_Features/FeatureServer",
+    "views": 1137
+   },
+   {
+    "q": "Idaho Fish and Game Access Yes",
+    "title": "Heaps_Public_Land",
+    "owner": "heapkile4",
+    "url": "https://services1.arcgis.com/z5tlnpYHokW9isdE/arcgis/rest/services/service_71f0f68eadb24bea952fa7e605ce593c/FeatureServer",
+    "views": 97
+   },
+   {
+    "q": "AGFC Wildlife Management Areas",
+    "title": "VUEWorks",
+    "owner": "VueWorks_AGFC",
+    "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/VUEWorks/FeatureServer",
+    "views": 11186
+   },
+   {
+    "q": "AGFC Wildlife Management Areas",
+    "title": "AGFC_WMAs_Selected",
+    "owner": "SPWray@GarverUSA.com_Garver",
+    "url": "https://services6.arcgis.com/eNPJk90aMrXNOKF8/arcgis/rest/services/AGFC_WMAs_Selected/FeatureServer",
+    "views": 7135
+   },
+   {
+    "q": "AGFC Wildlife Management Areas",
+    "title": "South Arkansas Trails_WFL1",
+    "owner": "isaac.sims_craftontull",
+    "url": "https://services6.arcgis.com/6TZ2wV0tqNiq5bdQ/arcgis/rest/services/South_Arkansas_Trails_WFL1/FeatureServer",
+    "views": 4798
+   },
+   {
+    "q": "AGFC Wildlife Management Areas",
+    "title": "Wildlife Management Areas",
+    "owner": "leif_kindberg",
+    "url": "https://services3.arcgis.com/E0jzW6yplmtrRw7o/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer",
+    "views": 3026
+   },
+   {
+    "q": "AGFC Wildlife Management Areas",
+    "title": "AR Public Land Boundaries",
+    "owner": "leif_kindberg",
+    "url": "https://services3.arcgis.com/E0jzW6yplmtrRw7o/arcgis/rest/services/AR_Public_Land_Boundaries/FeatureServer",
+    "views": 2904
+   },
+   {
+    "q": "AGFC Wildlife Management Areas",
+    "title": "WMA Boundaries",
+    "owner": "josh.nilz@agfc.ar.gov_AGFC",
+    "url": "https://gisec2.agfc.com/arcgis/rest/services/APP_AGFC/MapServer/10",
+    "views": 2756
+   },
+   {
+    "q": "MDC Conservation Areas Missouri",
+    "title": "Meramec Data Viewer_WFL1",
+    "owner": "dharlan@tnc.org_TNC",
+    "url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/Meramec_Data_Viewer_WFL1/FeatureServer",
+    "views": 239402
+   },
+   {
+    "q": "MDC Conservation Areas Missouri",
+    "title": "Meramec Data Viewer_alt_WFL1",
+    "owner": "dharlan@tnc.org_TNC",
+    "url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/Meramec_Data_Viewer_alt_WFL1/FeatureServer",
+    "views": 224155
+   },
+   {
+    "q": "MDC Conservation Areas Missouri",
+    "title": "StLouis_CenterPoints",
+    "owner": "MDC_Fisheries",
+    "url": "https://services1.arcgis.com/BEFhRGD6ppzvv08z/arcgis/rest/services/StLouis_CenterPoints/FeatureServer",
+    "views": 102967
+   },
+   {
+    "q": "MDC Conservation Areas Missouri",
+    "title": "KansasCity_CenterPoints",
+    "owner": "MDC_Fisheries",
+    "url": "https://services1.arcgis.com/BEFhRGD6ppzvv08z/arcgis/rest/services/KansasCity_CenterPoints/FeatureServer",
+    "views": 96047
+   },
+   {
+    "q": "MDC Conservation Areas Missouri",
+    "title": "MO_Missouri_Department_of_Conservation_Boat_Ramps",
+    "owner": "MSDISMizzou",
+    "url": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/arcgis/rest/services/MO_Missouri_Department_of_Conservation_Boat_Ramps/FeatureServer",
+    "views": 33652
+   },
+   {
+    "q": "MDC Conservation Areas Missouri",
+    "title": "Shannon County_WFL1",
+    "owner": "rlangell@uvm.edu_UVM",
+    "url": "https://services1.arcgis.com/YiULsZbgRKmBtdZN/arcgis/rest/services/Shannon_County_WFL1/FeatureServer",
+    "views": 4853
+   },
+   {
+    "q": "Missouri conservation areas boundaries",
+    "title": "National Wetlands Inventory - Wetlands (Map Service)",
+    "owner": "FDEPOpenDataPortal",
+    "url": "https://fwspublicservices.wim.usgs.gov/wetlandsmapservice/rest/services/Wetlands/MapServer/",
+    "views": 340775
+   },
+   {
+    "q": "Missouri conservation areas boundaries",
+    "title": "Meramec Data Viewer_WFL1",
+    "owner": "dharlan@tnc.org_TNC",
+    "url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/Meramec_Data_Viewer_WFL1/FeatureServer",
+    "views": 239402
+   },
+   {
+    "q": "Missouri conservation areas boundaries",
+    "title": "Meramec Data Viewer_alt_WFL1",
+    "owner": "dharlan@tnc.org_TNC",
+    "url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/Meramec_Data_Viewer_alt_WFL1/FeatureServer",
+    "views": 224155
+   },
+   {
+    "q": "Missouri conservation areas boundaries",
+    "title": "NWI",
+    "owner": "jamie_cvg",
+    "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/NWI/FeatureServer",
+    "views": 171355
+   },
+   {
+    "q": "Missouri conservation areas boundaries",
+    "title": "Caroline_Conservation_Easements",
+    "owner": "jamie_cvg",
+    "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
+    "views": 92319
+   },
+   {
+    "q": "Missouri conservation areas boundaries",
+    "title": "Wetlands_DinwiddieCoVA_READONLY",
+    "owner": "SChristmas@dinwiddieva.us",
+    "url": "https://services.arcgis.com/pXJ1hE8HkwpsRwne/arcgis/rest/services/Wetlands_DinwiddieCoVA_view/FeatureServer",
+    "views": 80884
+   },
+   {
+    "q": "GRANIT conservation public lands New Hampshire",
+    "title": "NH Conservation and Public Lands view",
+    "owner": "kcallahan",
+    "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NH_Conservation_and_Public_Lands_view/FeatureServer",
+    "views": 362064
+   },
+   {
+    "q": "GRANIT conservation public lands New Hampshire",
+    "title": "New Hampshire Conservation/Public Lands",
+    "owner": "NHGRANIT",
+    "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/6",
+    "views": 353056
+   },
+   {
+    "q": "GRANIT conservation public lands New Hampshire",
+    "title": "Harts Location Upper Saco StoryMap Map_WFL1",
+    "owner": "FBE-Field",
+    "url": "https://services7.arcgis.com/8jJivE2icUo1q3XR/arcgis/rest/services/Harts_Location_Upper_Saco_StoryMap_Map_WFL1/FeatureServer",
+    "views": 135131
+   },
+   {
+    "q": "GRANIT conservation public lands New Hampshire",
+    "title": "NRPC Open Data - All Communities",
+    "owner": "skustron",
+    "url": "https://services6.arcgis.com/2ZriDy2NFXltCIFR/arcgis/rest/services/NRPCOpenData/FeatureServer",
+    "views": 77386
+   },
+   {
+    "q": "GRANIT conservation public lands New Hampshire",
+    "title": "Manageable Acreage Map_WFL1",
+    "owner": "NHDFL_GIS_Admin",
+    "url": "https://services8.arcgis.com/mwZAU6m1MPEVxdIO/arcgis/rest/services/Manageable_Acreage_Map_WFL1/FeatureServer",
+    "views": 14608
+   },
+   {
+    "q": "GRANIT conservation public lands New Hampshire",
+    "title": "NRPC Open Data - Merrimack",
+    "owner": "skustron",
+    "url": "https://services6.arcgis.com/2ZriDy2NFXltCIFR/arcgis/rest/services/NRPC_Open_Data_Merrimack_v2/FeatureServer",
+    "views": 10307
+   },
+   {
+    "q": "Michigan DNR state game areas boundaries",
+    "title": "Michigan Forest Inventory - Compartments",
+    "owner": "MichiganDNR",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer/5",
+    "views": 405831
+   },
+   {
+    "q": "Michigan DNR state game areas boundaries",
+    "title": "Michigan DNR Public Forest Inventory Data",
+    "owner": "MichiganDNR",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer",
+    "views": 5445
+   },
+   {
+    "q": "Michigan DNR state game areas boundaries",
+    "title": "Voluntary Wetland Restoration Sites",
+    "owner": "EgleAdmin",
+    "url": "https://services1.arcgis.com/FNjlrOFR0aGJ71Tg/arcgis/rest/services/Voluntary_Wetland_Restoration/FeatureServer",
+    "views": 3762
+   },
+   {
+    "q": "Michigan DNR state game areas boundaries",
+    "title": "Michigan DNR Administered Timber Sales",
+    "owner": "MichiganDNR",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/MichiganDNRAdministeredTimberSales/FeatureServer",
+    "views": 3173
+   },
+   {
+    "q": "Michigan DNR state game areas boundaries",
+    "title": "Keep the UP Wild_WFL1",
+    "owner": "phatami_elpc",
+    "url": "https://services6.arcgis.com/evjvf6OwzhM4vIyx/arcgis/rest/services/Keep_the_UP_Wild_WFL1/FeatureServer",
+    "views": 1715
+   },
+   {
+    "q": "Michigan DNR state game areas boundaries",
+    "title": "Michigan PRU Wells with State and Federal Lands_WFL1",
+    "owner": "kroberts_edfmaps",
+    "url": "https://services6.arcgis.com/HJzJQeO8rbTv2jiF/arcgis/rest/services/Michigan_PRU_Wells_with_State_and_Federal_Lands_WFL1/FeatureServer",
+    "views": 421
+   },
+   {
+    "q": "Michigan DNR Managed Public Land",
+    "title": "State Trail Segments",
+    "owner": "Wi_DNR_Data",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0",
+    "views": 392233
+   },
+   {
+    "q": "Michigan DNR Managed Public Land",
+    "title": "Michigan DNR Land Parcel Current Rights",
+    "owner": "MichiganDNR",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRLOTSParcelsOPENDATA/FeatureServer/4",
+    "views": 81317
+   },
+   {
+    "q": "Michigan DNR Managed Public Land",
+    "title": "Michigan DNR Management All Lands ",
+    "owner": "MichiganDNR",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRLOTSParcelsOPENDATA/FeatureServer/2",
+    "views": 68001
+   },
+   {
+    "q": "Michigan DNR Managed Public Land",
+    "title": "Michigan DNR Project Boundaries",
+    "owner": "MichiganDNR",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRLOTSParcelsOPENDATA/FeatureServer/13",
+    "views": 64866
+   },
+   {
+    "q": "Michigan DNR Managed Public Land",
+    "title": "DNR ORV Scramble Areas",
+    "owner": "MichiganDNR",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNR_ORV_Scramble_Areas/FeatureServer",
+    "views": 38981
+   },
+   {
+    "q": "Michigan DNR Managed Public Land",
+    "title": "MichiganDNRFuelwoodCollection",
+    "owner": "tonellom1_dnr",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/MichiganDNRFuelwoodCollection/FeatureServer",
+    "views": 36049
+   },
+   {
+    "q": "North Dakota Game and Fish wildlife management areas",
+    "title": "NDGISHUB Wildlife Management Areas",
+    "owner": "NDGISHDP-GNF",
+    "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Wildlife_Management_Areas/FeatureServer",
+    "views": 258071
+   },
+   {
+    "q": "North Dakota Game and Fish wildlife management areas",
+    "title": "Government_Land_Burleigh_County_ND",
+    "owner": "BurleighCounty",
+    "url": "https://services2.arcgis.com/8r0lsT7QHelkANsD/arcgis/rest/services/Government_Land_Burleigh_County_ND/FeatureServer",
+    "views": 30724
+   },
+   {
+    "q": "North Dakota Game and Fish wildlife management areas",
+    "title": "Parks_Burleigh_County_ND view",
+    "owner": "BurleighCounty",
+    "url": "https://services2.arcgis.com/8r0lsT7QHelkANsD/arcgis/rest/services/Parks_Burleigh_County_ND_view/FeatureServer",
+    "views": 22721
+   },
+   {
+    "q": "North Dakota Game and Fish wildlife management areas",
+    "title": "BLM Natl WesternUS GRSG Biologically Significant Units October 2017 Update",
+    "owner": "blm_arcgis_hub_natl",
+    "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_WesternUS_GRSG_Biologically_Significant_Units_October_2017_Update/FeatureServer",
+    "views": 19477
+   },
+   {
+    "q": "North Dakota Game and Fish wildlife management areas",
+    "title": "DU NGPJV File Geodatabase",
+    "owner": "kerdman@ducks.org_duinc",
+    "url": "https://services2.arcgis.com/5I7u4SJE1vUr79JC/arcgis/rest/services/DU_NGPJV_File_Geodatabase/FeatureServer",
+    "views": 14389
+   },
+   {
+    "q": "North Dakota Game and Fish wildlife management areas",
+    "title": "GRSG_GB_RM_Bndys",
+    "owner": "USFSMapsandApps",
+    "url": "https://services1.arcgis.com/gGHDlz6USftL5Pau/arcgis/rest/services/GRSG_GB_RM_Bndys/FeatureServer",
+    "views": 4683
+   },
+   {
+    "q": "Vermont state lands ANR",
+    "title": "ANR Lands Dataset (Parcel)",
+    "owner": "vtanrgis",
+    "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/39",
+    "views": 337560
+   },
+   {
+    "q": "Vermont state lands ANR",
+    "title": "Calais_Base_Map",
+    "owner": "CentralVTRPC",
+    "url": "https://services2.arcgis.com/934qKLCgD0ZN6Uo0/arcgis/rest/services/Calais_Base_Map/FeatureServer",
+    "views": 293704
+   },
+   {
+    "q": "Vermont state lands ANR",
+    "title": "ANR Land Dataset (Unit)",
+    "owner": "vtanrgis",
+    "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
+    "views": 59961
+   },
+   {
+    "q": "Vermont state lands ANR",
+    "title": "Roads (ANR Travel Routes)",
+    "owner": "vtanrgis",
+    "url": "https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/10",
+    "views": 39622
+   },
+   {
+    "q": "Vermont state lands ANR",
+    "title": "Conserved Land Inventory",
+    "owner": "vtanrgis",
+    "url": "https://services5.arcgis.com/Uzks6LSde6r23wwG/arcgis/rest/services/Conserved_Land_Inventory_Public_View/FeatureServer",
+    "views": 36321
+   },
+   {
+    "q": "Vermont state lands ANR",
+    "title": "VTANR River Corridors",
+    "owner": "vtanrgis",
+    "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_WATER_SP_NOCACHE_v2/MapServer/176",
+    "views": 23361
+   },
+   {
+    "q": "Maryland DNR lands",
+    "title": "Agricultural Easements",
+    "owner": "cgmcgove",
+    "url": "https://montgomeryplans.org/arcgis4/rest/services/Overlays/ar_easements/MapServer",
+    "views": 480744
+   },
+   {
+    "q": "Maryland DNR lands",
+    "title": "Maryland Coast Smart - Climate Ready Action Boundary (CRAB) Inundated Zones",
+    "owner": "john.lloyd",
+    "url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_CoastSmartCRAB/MapServer",
+    "views": 166652
+   },
+   {
+    "q": "Maryland DNR lands",
+    "title": "BikePed_StoryMap_Data_WFL1",
+    "owner": "BaltimoreCountyGIS",
+    "url": "https://services2.arcgis.com/Ynpzre7M7vSGY7dh/arcgis/rest/services/BikePed_StoryMap_Data_WFL1/FeatureServer",
+    "views": 135796
+   },
+   {
+    "q": "Maryland DNR lands",
+    "title": "Maryland Critical Areas - Critical Area Counties",
+    "owner": "mdimapdatacatalog",
+    "url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_CriticalAreas/MapServer/1",
+    "views": 130777
+   },
+   {
+    "q": "Maryland DNR lands",
+    "title": "PPRP_DIST_MIL_DATA",
+    "owner": "shannon.long@erm.com_ERM",
+    "url": "https://services1.arcgis.com/Sh1QwLSVKYk2AYjx/arcgis/rest/services/PPRP_DIST_MIL_DATA_v2/FeatureServer",
+    "views": 102748
+   },
+   {
+    "q": "Maryland DNR lands",
+    "title": "Maryland Protected Lands - DNR Owned Properties and Conservation Easements",
+    "owner": "mdimapdatacatalog",
+    "url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/0",
+    "views": 55923
    }
-  ],
-  "search": []
+  ]
  },
- "CO": {
-  "direct": [
+ "CA": {
+  "direct": [],
+  "search": [
    {
-    "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer?f=json",
-    "status": 200,
-    "info": "layers: 28:CPW Offices, 0:CPW Facilities, 1:CPW State Park Roads - Public, 2:CPW Trail Segments, 3:CPW Gold Medal Streams, 4:CPW Gold Medal Lakes, 5:CPW Managed Properties (public access only), 6:CPW GMU Boundary (Big Game), 7:CPW GMU Boundary (Bighorn Sheep), 8:CPW GMU Boundary (Mtn Goat), 9:CPW District Boundary, 10:CPW Area Boundary, 11:CPW Region Boundary, 12:CPW Walk In Access Program, 13:CPW All Properties Centroid, 14:COTREX Trailheads, 15:COTREX Trails, 16:CPW Aquatic Native Species Conservation Waters, 17:CPW Aquatic Sportfish Management Waters, 18:CPW Aquatic Cutthroat Trout Designated Crucial Habitat, 19:CPW Aquatic Gold Medal Waters, 20:DAU Boundary (Bear), 21:DAU Boundary (Bighorn Sheep), 22:DAU Boundary (Deer), 23:DAU Boundary (Elk), 24:DAU Boundary (Lion), 25:DAU Boundary (Moose), 26:DAU Boundary (Mtn Goat), 27:DAU Boundary (Pronghorn), 29:CPW Fee Title Parcels"
-   }
-  ],
-  "search": []
- },
- "NS": {
-  "direct": [
-   {
-    "url": "https://nsgiwa.novascotia.ca/arcgis/rest/services/PLAN/PLANCrownLandsWM84V1/MapServer?f=json",
-    "status": 200,
-    "info": "layers: 0:Department of Natural Resources"
+    "q": "Ontario conservation authority owned lands",
+    "title": "SNAP_Mississauga_26Nov2021_WFL1",
+    "owner": "trca.S.Ling",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/SNAP_Mississauga_26Nov2021_WFL1/FeatureServer",
+    "views": 43859
    },
    {
-    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer?f=json",
-    "status": 200,
-    "info": "layers: 0:NS_Lands_Proposed_or_Pending_Protection, 1:NS_Parks_and_Protected_Areas"
+    "q": "Ontario conservation authority owned lands",
+    "title": "SNAP_Mississauga_15Dec2021_WFL1",
+    "owner": "trca.S.Ling",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/SNAP_Mississauga_15Dec2021_WFL1/FeatureServer",
+    "views": 42759
+   },
+   {
+    "q": "Ontario conservation authority owned lands",
+    "title": "SNAP_Mississauga_22Nov2021_WFL1",
+    "owner": "trca.S.Ling",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/SNAP_Mississauga_22Nov2021_WFL1/FeatureServer",
+    "views": 24532
+   },
+   {
+    "q": "Ontario conservation authority owned lands",
+    "title": "SNAP_Mississauga_2Dec2021_WFL1",
+    "owner": "trca.S.Ling",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/SNAP_Mississauga_2Dec2021_WFL1/FeatureServer",
+    "views": 17460
+   },
+   {
+    "q": "Ontario conservation authority owned lands",
+    "title": "SNAP_Mississauga_15Nov2021_WFL1",
+    "owner": "trca.S.Ling",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/SNAP_Mississauga_15Nov2021_WFL1/FeatureServer",
+    "views": 11101
+   },
+   {
+    "q": "Ontario conservation authority owned lands",
+    "title": "NewZoningBylaw_Option1",
+    "owner": "GISCOB",
+    "url": "https://services1.arcgis.com/xbWF6o8qyXoMFa8L/arcgis/rest/services/NewZoningBylaw_Option1/FeatureServer",
+    "views": 10396
+   },
+   {
+    "q": "conservation areas Grand River Conservation Authority",
+    "title": "Calais_Base_Map",
+    "owner": "CentralVTRPC",
+    "url": "https://services2.arcgis.com/934qKLCgD0ZN6Uo0/arcgis/rest/services/Calais_Base_Map/FeatureServer",
+    "views": 293704
+   },
+   {
+    "q": "conservation areas Grand River Conservation Authority",
+    "title": "S7CA_v2_WebApp_Data_Package_20191030",
+    "owner": "talya.tenbrink_noaa",
+    "url": "https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/S7CA_v2_WebApp_Data_Package_20191030/FeatureServer",
+    "views": 171866
+   },
+   {
+    "q": "conservation areas Grand River Conservation Authority",
+    "title": "Glasgow CDP2 _ Draft Policy and Proposals_V3",
+    "owner": "stewartg2",
+    "url": "https://services2.arcgis.com/Ne8d9gKn5SJ3eAaw/arcgis/rest/services/Glasgow_CDP2___Draft_Policy_and_Proposals_V3/FeatureServer",
+    "views": 149267
+   },
+   {
+    "q": "conservation areas Grand River Conservation Authority",
+    "title": "Glasgow CDP2 _ Policy and Proposals",
+    "owner": "Chris.Honeyman",
+    "url": "https://services2.arcgis.com/Ne8d9gKn5SJ3eAaw/arcgis/rest/services/Glasgow_CDP2___Policy_and_Proposals/FeatureServer",
+    "views": 91500
+   },
+   {
+    "q": "conservation areas Grand River Conservation Authority",
+    "title": "BLCMP_GIS_Viewer_FFSL",
+    "owner": "rjohnson_swca",
+    "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BLCMP_GIS_Viewer_FFSL/FeatureServer",
+    "views": 58351
+   },
+   {
+    "q": "conservation areas Grand River Conservation Authority",
+    "title": "MS4 Map",
+    "owner": "rmullin_NRS",
+    "url": "https://services6.arcgis.com/NiLPE6S5bwjCDk9X/arcgis/rest/services/MS4_Map/FeatureServer",
+    "views": 56311
+   },
+   {
+    "q": "New Brunswick protected natural areas",
+    "title": "BwH Bangor - Habitat Data",
+    "owner": "BangorGIS",
+    "url": "https://services1.arcgis.com/yIxdYDwtUG29jfAN/arcgis/rest/services/BwH_Bangor/FeatureServer",
+    "views": 755804
+   },
+   {
+    "q": "New Brunswick protected natural areas",
+    "title": "Rockport Ecological Vulnerability Assessment_WFL1",
+    "owner": "FBE-Field",
+    "url": "https://services7.arcgis.com/8jJivE2icUo1q3XR/arcgis/rest/services/Rockport_Ecological_Vulnerability_Assessment_WFL1/FeatureServer",
+    "views": 126132
+   },
+   {
+    "q": "New Brunswick protected natural areas",
+    "title": "AuburnSMtest_WFL1",
+    "owner": "dante.c_berrydunn",
+    "url": "https://services5.arcgis.com/2jwcjMWXJROJe17F/arcgis/rest/services/AuburnSMtest_WFL1/FeatureServer",
+    "views": 120149
+   },
+   {
+    "q": "New Brunswick protected natural areas",
+    "title": "BOEM Task 1 Desktop Study_WFL1",
+    "owner": "heather.vollmer",
+    "url": "https://services2.arcgis.com/UZV34z5ThV88pF5T/arcgis/rest/services/BOEM_Task_1_Desktop_Study_WFL1/FeatureServer",
+    "views": 39643
+   },
+   {
+    "q": "New Brunswick protected natural areas",
+    "title": "2016 Census Ward Boundary 2018_2022",
+    "owner": "shahir.alam@peelregion.ca_RegionofPeel",
+    "url": "https://services6.arcgis.com/ONZht79c8QWuX759/arcgis/rest/services/2016_Census_Ward_Boundary_2018_2022/FeatureServer",
+    "views": 34798
+   },
+   {
+    "q": "New Brunswick protected natural areas",
+    "title": "IFW_BWH_2021",
+    "owner": "gregcopeland",
+    "url": "https://services5.arcgis.com/QWn8PC1cSwbsBBh6/arcgis/rest/services/IFW_BWH_2021/FeatureServer",
+    "views": 32621
+   },
+   {
+    "q": "Nova Scotia nature reserves wilderness areas",
+    "title": "Nova Scotia Parks and Protected Areas System v1",
+    "owner": "Chuck_Sangster",
+    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer",
+    "views": 176437
+   },
+   {
+    "q": "Nova Scotia nature reserves wilderness areas",
+    "title": "Tobeatic_Wilderness_Area",
+    "owner": "NSAtlasDev",
+    "url": "https://services.arcgis.com/9PtzeAadJyclx9t7/arcgis/rest/services/Tobeatic_Wilderness_Area/FeatureServer",
+    "views": 9515
+   },
+   {
+    "q": "Nova Scotia nature reserves wilderness areas",
+    "title": "Protected Areas Announced on 2026-05-27",
+    "owner": "Chuck_Sangster",
+    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Protected_Areas_Announced_20260527/FeatureServer",
+    "views": 7173
+   },
+   {
+    "q": "Nova Scotia nature reserves wilderness areas",
+    "title": "Old-Growth Forest Policy",
+    "owner": "NSDNRF_peterb",
+    "url": "https://services5.arcgis.com/nzAeWJfcnU83PHsG/arcgis/rest/services/For_OldGrowthForestPolicy_A_UT83_shp/FeatureServer",
+    "views": 5679
+   },
+   {
+    "q": "Nova Scotia nature reserves wilderness areas",
+    "title": "Consultation_ProposedProtectedAreas_20260202",
+    "owner": "Danielle.Horne_NSE",
+    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Consultation_ProposedProtectedAreas_20260202/FeatureServer",
+    "views": 5024
+   },
+   {
+    "q": "Nova Scotia nature reserves wilderness areas",
+    "title": "Tobeatic Wilderness Area",
+    "owner": "NSAtlasDev",
+    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/PAPA_Existing_and_Contributing_PAs/FeatureServer",
+    "views": 4281
+   },
+   {
+    "q": "Manitoba wildlife management areas",
+    "title": "Manitoba Wildlife Lands Boundaries",
+    "owner": "Manitoba_Government",
+    "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer",
+    "views": 569436
+   },
+   {
+    "q": "Manitoba wildlife management areas",
+    "title": "Manitoba Wildlife Management Areas Official Trails and Points of Interest",
+    "owner": "Manitoba_Government",
+    "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Management_Areas_Official_Trails_and_Points_of_Interest/FeatureServer",
+    "views": 185315
+   },
+   {
+    "q": "Manitoba wildlife management areas",
+    "title": "Manitoba_Waterbody_Data",
+    "owner": "Manitoba_Government",
+    "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Waterbody_Data/FeatureServer",
+    "views": 168714
+   },
+   {
+    "q": "Manitoba wildlife management areas",
+    "title": "Manitoba Managed Hunting Areas",
+    "owner": "Manitoba_Government",
+    "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Managed_Hunting_Areas/FeatureServer",
+    "views": 125508
+   },
+   {
+    "q": "Manitoba wildlife management areas",
+    "title": "bdy_wildlife_mgmt_areas_py_shp",
+    "owner": "Manitoba_Government",
+    "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/bdy_wildlife_mgmt_areas_py_shp/FeatureServer",
+    "views": 16708
+   },
+   {
+    "q": "Manitoba wildlife management areas",
+    "title": "CPCAD_FC",
+    "owner": "cicadacreative",
+    "url": "https://services7.arcgis.com/4jWQy4GXJHZDSUrS/arcgis/rest/services/CPCAD_FC/FeatureServer",
+    "views": 7242
+   },
+   {
+    "q": "Saskatchewan wildlife habitat protection act lands",
+    "title": "SOTB_GDB",
+    "owner": "BeaverHillsBiosphere_Admin",
+    "url": "https://services6.arcgis.com/abFPHwx7aKqKURgi/arcgis/rest/services/SOTB_GDB/FeatureServer",
+    "views": 355612
+   },
+   {
+    "q": "Saskatchewan wildlife habitat protection act lands",
+    "title": "Crown Conservation Easement",
+    "owner": "Saskatchewan.Government",
+    "url": "https://services3.arcgis.com/zcv98lgAl8xQ04cW/arcgis/rest/services/CrownCEs/FeatureServer",
+    "views": 19521
+   },
+   {
+    "q": "Saskatchewan wildlife habitat protection act lands",
+    "title": "Wildlife Habitat Protection Act",
+    "owner": "Saskatchewan.Government",
+    "url": "https://services3.arcgis.com/zcv98lgAl8xQ04cW/arcgis/rest/services/Wildlife_Habitat_Protection_Act3/FeatureServer",
+    "views": 17605
+   },
+   {
+    "q": "Saskatchewan wildlife habitat protection act lands",
+    "title": "Ecological_Guidance_WFL1",
+    "owner": "Michael.Desilets@stantec.com_stantec",
+    "url": "https://services.arcgis.com/DN2fPfpggEPlLhP6/arcgis/rest/services/Ecological_Guidance_WFL1/FeatureServer",
+    "views": 5006
+   },
+   {
+    "q": "Saskatchewan wildlife habitat protection act lands",
+    "title": "Ecological_Guidance_dp_202405028_WFL1",
+    "owner": "Derek.Piitz@stantec.com_stantec",
+    "url": "https://services.arcgis.com/DN2fPfpggEPlLhP6/arcgis/rest/services/Ecological_Guidance_dp_202405028_WFL1/FeatureServer",
+    "views": 4429
+   },
+   {
+    "q": "Saskatchewan wildlife habitat protection act lands",
+    "title": "North_Saskatchewan_Central_WFL1",
+    "owner": "Derek.Piitz@stantec.com_stantec",
+    "url": "https://services.arcgis.com/DN2fPfpggEPlLhP6/arcgis/rest/services/North_Saskatchewan_Central_WFL1/FeatureServer",
+    "views": 2555
    }
-  ],
-  "search": []
+  ]
  }
 }
