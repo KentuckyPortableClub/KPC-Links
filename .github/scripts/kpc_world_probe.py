@@ -20,17 +20,15 @@ def fetch(u, raw=False, timeout=60):
     except Exception as e: return 0, str(e)[:120]  # noqa: BLE001
 
 
-DIRECT = {   # Oct 20 round 2: the US states with the biggest groups still unjoined
-    'US': ['https://services.arcgis.com/9Jk4Zl9KofTtvg3x/arcgis/rest/services?f=json'],
-    'AUV': ['https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services?f=json'],
+DIRECT = {   # Oct 20 round 3: exact layer names for the sources that answered nothing
+    'FR': ['https://data.geopf.fr/wfs/ows?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0',
+           'https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer?f=json',
+           'https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/0?f=json'],
+    'CO': ['https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer?f=json'],
+    'NS': ['https://nsgiwa.novascotia.ca/arcgis/rest/services/PLAN/PLANCrownLandsWM84V1/MapServer?f=json',
+           'https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer?f=json'],
 }
-SEARCH = {
-    'US': ['Florida Managed Areas FNAI', 'Florida Conservation Lands', 'WDFW lands', 'WDFW water access sites', 'Idaho Fish and Game access areas',
-           'Arkansas Game and Fish wildlife management areas', 'Colorado Parks and Wildlife State Wildlife Areas', 'Missouri Department of Conservation conservation areas',
-           'Michigan DNR state game areas', 'New Hampshire conservation land state forest', 'Nebraska state recreation areas', 'Indiana DNR state recreation areas',
-           'Mississippi wildlife management areas MDWFP', 'Wisconsin state natural areas', 'Connecticut DEEP state parks forests'],
-    'AUV': ['Victoria state forest public land management', 'DBCA legislated lands and waters', 'Western Australia state forest'],
-}
+SEARCH = {'FR': [], 'CO': [], 'NS': []}
 for cc in DIRECT:
     rows = []
     for u in DIRECT[cc]:
@@ -38,10 +36,10 @@ for cc in DIRECT:
         info = ''
         if st == 200 and t.lstrip().startswith('{'):
             try:
-                j = json.loads(t); info = 'layers: ' + ', '.join(f"{l.get('id')}:{l.get('name')}" for l in (j.get('layers') or [])[:25]) or ('services: ' + ', '.join(s.get('name', '') for s in (j.get('services') or [])[:40]))
+                j = json.loads(t); info = ('name: ' + str(j.get('name')) + ' fields: ' + ', '.join(f.get('name','') for f in (j.get('fields') or [])[:30]) + ' | ' if j.get('fields') else '') + 'layers: ' + ', '.join(f"{l.get('id')}:{l.get('name')}" for l in (j.get('layers') or [])[:60]) or ('services: ' + ', '.join(s.get('name', '') for s in (j.get('services') or [])[:40]))
             except Exception: info = 'json?'  # noqa: BLE001
         elif st == 200:
-            names = re.findall(r'<(?:wfs:)?Name>([^<]{2,80})</(?:wfs:)?Name>', t); names = ([n for n in names if re.search(r'PROTECT|ZNIEFF|znieff|RB|forest|parc', n, re.I)] or names)[:40]
+            names = re.findall(r'<(?:wfs:)?Name>([^<]{2,80})</(?:wfs:)?Name>', t); names = ([n for n in names if re.search(r'ZNIEFF|PROTECTEDAREAS', n, re.I)] or names)[:60]
             info = ('types: ' + ', '.join(names)) if names else re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', t))[:200]
         rows.append({'url': u, 'status': st, 'info': info})
         time.sleep(1)
