@@ -1,12 +1,51 @@
 {
-  "note": "Boundary bot queue (Brandon Oct 20: 'set the bots up on a schedule to finish and start another run'). kpc-bot-queue.yml starts the first job when no boundary bot is running, then removes it. Stops after 'until'.",
-  "until": "2026-10-22T06:01:00Z",
-  "jobs": [
-    {"wf": "kpc-us-key.yml", "inputs": {"states": "CO AR NH MI ND VT MD"}, "why": "SWA rule + six new state maps"},
-    {"wf": "kpc-ca-key.yml", "inputs": {}, "why": "Nova Scotia + Manitoba layers"},
-    {"wf": "kpc-world-key.yml", "inputs": {"countries": "AU GB JP PL ES CH"}, "why": "top 10 refresh with tonight's rules"},
-    {"wf": "kpc-us-key.yml", "inputs": {"states": ""}, "why": "every US state with all new rules and maps"},
-    {"wf": "kpc-state-trails.yml", "inputs": {"states": "CANADA"}, "why": "Canadian trail parks with the province agency step"},
-    {"wf": "kpc-canada-bounds.yml", "inputs": {}, "why": "retry Canadian outline misses"}
-  ]
+ "note": "Boundary bot queue (Brandon Oct 20: 'set the bots up on a schedule to finish and start another run'). kpc-bot-queue.yml starts the first job when no boundary bot is running, then removes it. Stops after 'until'.",
+ "until": "2026-10-22T06:01:00Z",
+ "jobs": [
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "CO AR NH MI ND VT MD"
+   },
+   "why": "SWA rule + six new state maps"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "FR DE"
+   },
+   "why": "France ZNIEFF names + German rules (after the crash fix)"
+  },
+  {
+   "wf": "kpc-ca-key.yml",
+   "inputs": {},
+   "why": "Nova Scotia + Manitoba layers"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "AU GB JP PL ES CH"
+   },
+   "why": "top 10 refresh with tonight's rules"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": ""
+   },
+   "why": "every US state with all new rules and maps"
+  },
+  {
+   "wf": "kpc-state-trails.yml",
+   "inputs": {
+    "states": "CANADA"
+   },
+   "why": "Canadian trail parks with the province agency step"
+  },
+  {
+   "wf": "kpc-canada-bounds.yml",
+   "inputs": {},
+   "why": "retry Canadian outline misses"
+  }
+ ]
 }
