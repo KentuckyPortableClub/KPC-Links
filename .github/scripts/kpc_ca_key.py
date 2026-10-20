@@ -147,6 +147,7 @@ NAMEY = re.compile(r'(name|nom|toponym|title)', re.I)
 HINT = [('regional parks', {'rp'}), ('recreation sites', {'rec'}), ('nature reserves', {'eco'}), ('Ontario Parks', {'pp'}), ('conservation reserves', {'ca'}), ('ecological reserves', {'eco'}), ('wildlife', {'wma'})]
 
 
+_ERR = []
 def arc_pull(label, url, nf):
     lays = []
     if re.search(r'/(MapServer|FeatureServer)/\d+$', url): lays = [url]
@@ -157,7 +158,7 @@ def arc_pull(label, url, nf):
     got = []
     for lu in lays:
         try: li = get(lu, {'f': 'json'})
-        except Exception as e: notice('Canada extra', f'{label} {lu}: {e}'); continue  # noqa: BLE001
+        except Exception as e: print(f'{label} {lu}: {e}', flush=True); _ERR.append(f'{label[:30]} layer: {str(e)[:80]}'); continue  # noqa: BLE001
         if 'Polygon' not in str(li.get('geometryType', '')): continue
         fl = [f['name'] for f in li.get('fields', [])]
         names = [n for n in (nf or []) if n in fl] or [f for f in fl if NAMEY.search(f) and not re.search(r'(file|url|link|code|id$)', f, re.I)][:3]
@@ -166,7 +167,7 @@ def arc_pull(label, url, nf):
             try:
                 j = get(f'{lu}/query', {'where': '1=1', 'outFields': ','.join([oidf] + names), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.02,
                                         'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000), 'orderByFields': oidf}, tries=3)
-            except Exception as e: notice('Canada extra', f'{label}: {e}'); break  # noqa: BLE001
+            except Exception as e: print(f'{label}: {e}', flush=True); _ERR.append(f'{label[:30]} query: {str(e)[:80]}'); break  # noqa: BLE001
             fs = j.get('features', [])
             for f in fs:
                 a = f.get('attributes') or {}; g = f.get('geometry') or {}
@@ -210,10 +211,12 @@ try:
     notice('Canada more layers', 'Québec TRQ layers: ' + ', '.join(f"{l['id']}:{l['name']}" for l in _ql))
     MORE += [(f"Québec {l['name']} (MRNF)", f"{_q}/{l['id']}", None) for l in _ql]
 except Exception as ex: notice('Canada more layers', f'Québec TRQ list FAILED: {ex}')  # noqa: BLE001
+_mores = []   # Oct 20: GitHub shows only 10 notices per step, so all layer counts go in ONE notice
 for e in MORE:
-    try: g = arc_pull(e[0], e[1], e[2]); recs += g; extra += len(g); notice('Canada more layers', f'{e[0]}: {len(g)}')
-    except Exception as ex: notice('Canada more layers', f'{e[0]} FAILED: {ex}')  # noqa: BLE001
-notice('Canada extra layers', f'{extra} areas from the provincial + Parks Canada maps')
+    try: g = arc_pull(e[0], e[1], e[2]); recs += g; extra += len(g); _mores.append(f'{e[0]}: {len(g)}')
+    except Exception as ex: _mores.append(f'{e[0]} FAILED: {ex}')  # noqa: BLE001
+notice('Canada more layers (all)', ' | '.join(_mores))
+notice('Canada extra layers', f'{extra} areas from the provincial + Parks Canada maps' + (' · errors: ' + ' | '.join(_ERR[:12]) if _ERR else ''))
 PRIV = re.compile(r'private|privately|stewardship|ncc \d|nature conservancy', re.I)
 
 
