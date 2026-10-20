@@ -100,7 +100,7 @@ PAGES = [  # name, url, label, title line 1, line 2, detail, max scroll (px of s
     ('index', '', 'START HERE', 'Get outside.', 'Get on the air.', 'Who we are, what we do and how to join in.', 700),
     ('campoutHOLD', 'campout.html', '2027 KYPOTA CAMPOUT', 'Everything for', 'the campout', 'Countdown, group tent sites, local guides and the flyer.', 900),
     ('eventsHOLD', 'events.html', 'EVENTS', 'Mark your', 'calendar', 'Club events, Support Your Parks weekends and Kentucky contests.', 900),
-    ('kentucky-parks', 'kentucky-parks.html', 'KENTUCKY PARKS', 'Every park,', 'one place', 'Parks, forests and wildlife areas, with maps and park resources.', 800),
+    ('kentucky-parks', 'kentucky-parks.html', 'KENTUCKY PARKS', 'Kentucky parks,', 'one place', 'Parks, forests and wildlife areas, with maps and park resources.', 800),
     ('kpc-community', 'kpc-community.html', 'COMMUNITY', 'Share your', 'setup', 'Station setups, antenna builds, field tips and activation stories.', 500),
     ('kpc-park-notes', 'kpc-park-notes.html', 'PARK NOTES', 'Tips from folks', 'who’ve been there', 'Parking, where to set up, noise, cell signal. Share yours.', 700),
     ('kpc-campgrounds', 'kpc-campgrounds.html', 'CAMPGROUNDS & CABINS', 'Stay the', 'whole weekend', 'Campgrounds, cabins and lodges inside Kentucky parks.', 700),
