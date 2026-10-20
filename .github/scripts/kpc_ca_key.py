@@ -163,12 +163,23 @@ def arc_pull(label, url, nf):
         fl = [f['name'] for f in li.get('fields', [])]
         names = [n for n in (nf or []) if n in fl] or [f for f in fl if NAMEY.search(f) and not re.search(r'(file|url|link|code|id$)', f, re.I)][:3]
         oidf = li.get('objectIdField') or 'OBJECTID'; mx = int(li.get('maxRecordCount') or 1000); off = 0
+        ids = None   # Oct 20: Québec's MRNF MapServer answers 400 to paged queries (no pagination): fall back to asking by object ids
         while True:
             try:
-                j = get(f'{lu}/query', {'where': '1=1', 'outFields': ','.join([oidf] + names), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.02,
-                                        'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000), 'orderByFields': oidf}, tries=3)
-            except Exception as e: print(f'{label}: {e}', flush=True); _ERR.append(f'{label[:30]} query: {str(e)[:80]}'); break  # noqa: BLE001
+                if ids is None:
+                    j = get(f'{lu}/query', {'where': '1=1', 'outFields': ','.join([oidf] + names), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.02,
+                                            'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000), 'orderByFields': oidf}, tries=3)
+                else:
+                    if off >= len(ids): break
+                    j = get(f'{lu}/query', {'objectIds': ','.join(str(x) for x in ids[off:off + 100]), 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.02, 'f': 'json'}, tries=3)
+            except Exception as e:
+                if ids is None and off == 0:
+                    try: ids = sorted(get(f'{lu}/query', {'where': '1=1', 'returnIdsOnly': 'true', 'f': 'json'}, tries=3).get('objectIds') or []); print(f'{label}: paging by {len(ids)} ids', flush=True); continue
+                    except Exception as e2: e = e2  # noqa: BLE001
+                print(f'{label}: {e}', flush=True); _ERR.append(f'{label[:30]} query: {str(e)[:80]}'); break  # noqa: BLE001
             fs = j.get('features', [])
+            if ids is not None and fs and not any((f.get('attributes') or {}).get(n) for f in fs[:5] for n in names):
+                at = fs[0].get('attributes') or {}; names = [k for k in at if NAMEY.search(k) and not re.search(r'(file|url|link|code|id$)', k, re.I)][:3] or names
             for f in fs:
                 a = f.get('attributes') or {}; g = f.get('geometry') or {}
                 nm = next((str(a[n]) for n in names if a.get(n)), '')
@@ -176,6 +187,7 @@ def arc_pull(label, url, nf):
                 r = {'oid': f'{label[:12]}:{a.get(oidf)}', 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
                 r['_k'] = kinds(nm) | next((k for h, k in HINT if h.lower() in label.lower()), set())
                 got.append(r)
+            if ids is not None: off += 100; time.sleep(.4); continue
             if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
             off += len(fs); time.sleep(.4)
     return got
