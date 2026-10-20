@@ -1,75 +1,55 @@
 # AR: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **152 of 304** parks joined to official land (same name + same kind of place). **47** to check by hand, **101** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **212 of 304** parks joined to official land (same name + same kind of place). **31** to check by hand, **59** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-10236** Lake Sylvia State Park (State Park) → Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name))
-- **US-10258** Ouachita National National Recreation Trail (National Recreation Trail) → Ouachita National Forest (~1,430,575 ac, similar name)
+- **US-10236** Lake Sylvia State Park (State Park) → Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name)); Winona WMA (~0 ac, the POTA pin is inside it (different name))
+- **US-10258** Ouachita National National Recreation Trail (National Recreation Trail) → Ouachita National Forest (~1,430,575 ac, similar name); Winona WMA (~0 ac, the POTA pin is inside it (different name))
 - **US-10508** Ozark Highlands Trail (OHT) National Historic Trail (National Historic Trail) → Ozark National Forest (~1,132,752 ac, similar name)
-- **US-1104** Mount Magazine State Park (State Park) → Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
-- **US-11088** Frierson Wildlife Management Area (Wildlife Management Area) → Lake Frierson State Park (~114 ac, similar name)
+- **US-1080** DeGray Lake Resort State Park (State Park) → DeGray Lake WMA (~0 ac, same name, different kind of place)
+- **US-1104** Mount Magazine State Park (State Park) → Mount Magazine WMA (~0 ac, same name, different kind of place); Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
 - **US-1112** Powhatan State Park (State Park) → Powhatan Courthouse State Park (~4 ac, similar name)
-- **US-11155** White Rock Mountain State Recreation Area (State Recreation Area) → Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
+- **US-11155** White Rock Mountain State Recreation Area (State Recreation Area) → White Rock WMA (~0 ac, similar name); Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
 - **US-1116** Plumb Bayou Mounds Archeological State Park (State Park) → Toltec Mounds Archeological State Park (~176 ac, similar name)
 - **US-11165** Chalk Bluff Battlefield Park Recreation Park (Recreation Park) → Chalk Bluff Natural Area (~55 ac, similar name)
-- **US-11294** Caney Creek Wilderness Area Wilderness Zone (Wilderness Zone) → Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name))
-- **US-11353** Kirk Dupps Beaver Lake Wildlife Management Area (Wildlife Management Area) → Beaver Recreation Area (~38,135 ac, similar name)
 - **US-11354** Fred Berry Crooked Creek Nature Center State Natural Site (State Natural Site) → Kelly's Slab (~378 ac, the POTA pin is inside it (different name))
 - **US-11355** Cook’s Lake Nature Center Nature Recreation Area (Nature Recreation Area) → Dale Bumpers White River National Wildlife Refuge (~156,927 ac, the POTA pin is inside it (different name)); Dale Bumpers White River National Wildlife Refuge (~156,769 ac, the POTA pin is inside it (different name))
+- **US-11393** Sylamore Scenic Byway State Trail (State Trail) → Sylamore WMA (~0 ac, similar name); Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
 - **US-11951** J.B. and Johnelle Hunt Family Ozark Highlands Nature Center State Natural Reserve (State Natural Reserve) → Ozark National Forest (~1,132,752 ac, similar name)
 - **US-11953** St. Francis Scenic Byway National Scenic Trail (National Scenic Trail) → St. Francis National Forest (~21,307 ac, similar name)
 - **US-12765** Logoly State Natural Area (State Natural Area) → Logoly State Park (~140 ac, same name, different kind of place)
-- **US-13461** Upper Illinois River Water Trail State Trail (State Trail) → Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
-- **US-7164** Devil's Eyebrow State Natural Area (State Natural Area) → Devil's Eyebrow 4 (Mckenzie) (~58 ac, same name, different kind of place)
-- **US-7186** Seven Devils Swamp State Natural Area (State Natural Area) → Seven Devils (~2,901 ac, same name, different kind of place)
-- **US-7261** Bayou Des Arc Wildlife Management Area (Wildlife Management Area) → Bayou Desarc (~948 ac, the POTA pin is inside it (different name))
-- **US-7266** Blue Mountain Wildlife Management Area (Wildlife Management Area) → Blue Mountain Recreation Area (~17,282 ac, same name, different kind of place)
-- **US-7271** Camp Robinson Wildlife Management Area (Wildlife Management Area) → Camp Robinson Wildlife Demonstration Area (~4,211 ac, similar name)
-- **US-7272** Caney Creek Wildlife Management Area (Wildlife Management Area) → Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name))
-- **US-7274** Cedar Creek Wildlife Management Area (Wildlife Management Area) → Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name))
-- **US-7275** Cedar Mountain Wildlife Management Area (Wildlife Management Area) → Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name))
-- **US-7280** Dardanelle Wildlife Management Area (Wildlife Management Area) → Dardanelle Recreation Area (~57,103 ac, same name, different kind of place)
-- **US-7283** DeQueen Lake Wildlife Management Area (Wildlife Management Area) → Dequeen Recreation Area (~7,432 ac, same name, different kind of place)
-- **US-7289** Greers Ferry Wildlife Management Area (Wildlife Management Area) → Greers Ferry Recreation Area (~41,234 ac, same name, different kind of place)
-- **US-7306** Mount Magazine Wildlife Management Area (Wildlife Management Area) → Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
-- **US-7307** Muddy Creek Wildlife Management Area (Wildlife Management Area) → Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name))
-- **US-7309** Nimrod Lloyd Millwood Wildlife Management Area (Wildlife Management Area) → Nimrod Recreation Area (~25,542 ac, similar name)
-- **US-7314** Petit Jean River Wildlife Management Area (Wildlife Management Area) → Petit Jean (~15,155 ac, same name, different kind of place)
-- **US-7335** Winona Wildlife Management Area (Wildlife Management Area) → Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name))
-- **US-7336** Bearcat Hollow Wildlife Management Area (Wildlife Management Area) → Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
-- **US-7340** Frog Bayou Wildlife Management Area (Wildlife Management Area) → Ozark Recreation Area (~17,698 ac, the POTA pin is inside it (different name))
-- **US-7343** J Perry Mikles Blue Mountain Wildlife Management Area (Wildlife Management Area) → Blue Mountain Recreation Area (~17,282 ac, similar name)
-- **US-7345** Lee Creek Wildlife Management Area (Wildlife Management Area) → Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
-- **US-7349** Ozark Lake Wildlife Management Area (Wildlife Management Area) → Ozark National Forest (~1,132,752 ac, same name, different kind of place); Ozark Recreation Area (~17,698 ac, same name, different kind of place)
-- **US-7357** Sylamore Wildlife Management Area (Wildlife Management Area) → Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
+- **US-13461** Upper Illinois River Water Trail State Trail (State Trail) → Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name)); Wedington WMA (~0 ac, the POTA pin is inside it (different name))
+- **US-7163** Cutoff Creek State Natural Area (State Natural Area) → Casey Jones WMA (~0 ac, the POTA pin is inside it (different name))
+- **US-7169** Rock Creek State Natural Area (State Natural Area) → Harold E. Alexander Spring River WMA (~0 ac, the POTA pin is inside it (different name))
+- **US-7186** Seven Devils Swamp State Natural Area (State Natural Area) → Seven Devils (~2,901 ac, same name, different kind of place); Seven Devils WMA (~0 ac, same name, different kind of place)
 - **US-7441** Gulpha Gorge National Recreation Area (National Recreation Area) → Hot Springs National Park (~4,919 ac, the POTA pin is inside it (different name))
-- **US-7442** Blanchard Springs State Recreation Area (State Recreation Area) → Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
-- **US-7445** Cove Lake State Recreation Area (State Recreation Area) → Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
+- **US-7442** Blanchard Springs State Recreation Area (State Recreation Area) → Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name)); Sylamore WMA (~0 ac, the POTA pin is inside it (different name))
+- **US-7443** DeGray Lower Lake State Recreation Area (State Recreation Area) → DeGray Lake WMA (~0 ac, similar name)
+- **US-7445** Cove Lake State Recreation Area (State Recreation Area) → Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name)); Mount Magazine WMA (~0 ac, the POTA pin is inside it (different name))
+- **US-7522** Cherokee State Recreation Area (State Recreation Area) → Cherokee WMA (~0 ac, same name, different kind of place)
 - **US-7524** Lake Greeson National Recreation Area (National Recreation Area) → Lake Greeson Wildlife Management Area (~31,626 ac, same name, different kind of place)
-- **US-7712** Dardanelle Rock Natural Area (Natural Area) → Dardanelle Recreation Area (~57,103 ac, same name, different kind of place)
-- **US-8323** Ozark Highlands Scenic Byway State Trail (State Trail) → Ozark National Forest (~1,132,752 ac, similar name); Buffalo National River (~89,040 ac, the POTA pin is inside it (different name))
-- **US-9161** Butterfield State Trail (State Trail) → Dardanelle Recreation Area (~57,103 ac, the POTA pin is inside it (different name))
+- **US-7712** Dardanelle Rock Natural Area (Natural Area) → Dardanelle Recreation Area (~57,103 ac, same name, different kind of place); Dardanelle WMA (~0 ac, same name, different kind of place)
+- **US-8322** Mount Magazine Scenic Byway State Trail (State Trail) → Mount Magazine WMA (~0 ac, similar name); Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
+- **US-8323** Ozark Highlands Scenic Byway State Trail (State Trail) → Ozark National Forest (~1,132,752 ac, similar name); Buffalo National River (~89,040 ac, the POTA pin is inside it (different name)); Buffalo National River WMA (~0 ac, the POTA pin is inside it (different name))
+- **US-9161** Butterfield State Trail (State Trail) → Dardanelle Recreation Area (~57,103 ac, the POTA pin is inside it (different name)); Dardanelle WMA (~0 ac, the POTA pin is inside it (different name))
+- **US-9164** Lake Conway State Recreation Area (State Recreation Area) → Lake Conway WMA (~0 ac, same name, different kind of place); Bell Slough WMA (~0 ac, the POTA pin is inside it (different name))
 - **US-9167** Lake Hinkle State Recreation Area (State Recreation Area) → Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-11393 Sylamore Scenic Byway State Trail (State Trail) → on Ozark National Forest (~1,132,752 ac)
-- US-12078 Peppers Pond State Recreation Site (State Recreation Site) → on Camp Robinson Wildlife Demonstration Area (~4,211 ac)
-- US-8321 Talimena Scenic Byway State Trail (State Trail) → on Ouachita National Forest (~1,430,575 ac)
-- US-8322 Mount Magazine Scenic Byway State Trail (State Trail) → on Ozark National Forest (~1,132,752 ac)
+- US-12078 Peppers Pond State Recreation Site (State Recreation Site) → on Lake Conway WMA (~0 ac); Camp Robinson Wildlife Demonstration Area (~4,211 ac)
+- US-8321 Talimena Scenic Byway State Trail (State Trail) → on Queen Wilhelmina State Park WMA (~0 ac); Ouachita National Forest (~1,430,575 ac)
 
 ## Nothing found in PAD-US
 
 - US-0637 Mills Park State Conservation Area (State Conservation Area)
 - US-10303 Pig Trail Scenic Byway State Trail (State Trail)
 - US-10332 Plantation Agriculture Museum State Historical Park (State Historical Park)
-- US-10425 Goat's Beard Bluff State Natural Area (State Natural Area)
 - US-10426 West-Northwest State Trail (State Trail)
 - US-1070 Arkansas Museam of Natural Resources State Park (State Park)
 - US-10715 True Grit State Trail (State Trail)
 - US-1074 Conway Cemetery State Park (State Park)
-- US-1080 DeGray Lake Resort State Park (State Park)
 - US-1081 Delta Heritage Trails State Park (State Park)
 - US-1097 Louisiana Purchase State Park (State Park)
 - US-1102 Mississippi River State Park (State Park)
@@ -105,56 +85,16 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **152 of 304** parks joined
 - US-7154 Louisiana Purchase State Natural Area (State Natural Area)
 - US-7156 Baker Prairie State Natural Area (State Natural Area)
 - US-7161 Chesney Prairie State Natural Area (State Natural Area)
-- US-7163 Cutoff Creek State Natural Area (State Natural Area)
 - US-7166 Holloway State Natural Area (State Natural Area)
-- US-7169 Rock Creek State Natural Area (State Natural Area)
-- US-7175 Foushee Cave State Natural Area (State Natural Area)
-- US-7176 Garrett Hollow State Natural Area (State Natural Area)
-- US-7179 Hall Creek State Natural Area (State Natural Area)
-- US-7182 Kingsland Prairie State Natural Area (State Natural Area)
-- US-7183 Longview Saline State Natural Area (State Natural Area)
-- US-7184 Moro Big Pine State Natural Area (State Natural Area)
-- US-7264 Beryl Anthony Lower Ouachita Wildlife Management Area (Wildlife Management Area)
-- US-7268 Brewer Lake Wildlife Management Area (Wildlife Management Area)
-- US-7273 Casey Jones Wildlife Management Area (Wildlife Management Area)
-- US-7276 Cherokee Wildlife Management Area (Wildlife Management Area)
-- US-7286 Fort Chaffee Wildlife Management Area (Wildlife Management Area)
-- US-7290 Gum Flats Wildlife Management Area (Wildlife Management Area)
-- US-7297 Jack Mountain Wildlife Management Area (Wildlife Management Area)
-- US-7299 Jim Kress Wildlife Management Area (Wildlife Management Area)
-- US-7302 Lake Overcup Wildlife Management Area (Wildlife Management Area)
-- US-7303 Maumelle River Wildlife Management Area (Wildlife Management Area)
-- US-7305 Mike Freeze Wattensaw Wildlife Management Area (Wildlife Management Area)
-- US-7310 Norfolk Lake Wildlife Management Area (Wildlife Management Area)
-- US-7313 Palmetto Flats Wildlife Management Area (Wildlife Management Area)
-- US-7315 Piney Creeks Wildlife Management Area (Wildlife Management Area)
-- US-7317 Provo Wildlife Management Area (Wildlife Management Area)
-- US-7318 Rainey Wildlife Management Area (Wildlife Management Area)
-- US-7327 Stone Prarie Wildlife Management Area (Wildlife Management Area)
-- US-7332 Wedington Wildlife Management Area (Wildlife Management Area)
-- US-7333 White Rock Wildlife Management Area (Wildlife Management Area)
-- US-7334 Whitehall Wildlife Management Area (Wildlife Management Area)
-- US-7348 Longview Saline Wildlife Management Area (Wildlife Management Area)
-- US-7352 Roth Prairie Wildlife Management Area (Wildlife Management Area)
-- US-7353 Sandhills Natural Area Wildlife Management Area (Wildlife Management Area)
-- US-7354 Spring Bank Wildlife Management Area (Wildlife Management Area)
-- US-7358 Trusten Holder Wildlife Management Area (Wildlife Management Area)
-- US-7359 Two Bayou Creek Wildlife Management Area (Wildlife Management Area)
 - US-7435 Civil War Trail State Trail (State Trail)
 - US-7436 Southwest Trail State Trail (State Trail)
 - US-7437 Little Missouri River Access State Recreation Area (State Recreation Area)
 - US-7438 Gurdon Lake State Recreation Area (State Recreation Area)
-- US-7440 Big Timber Wildlife Management Area (Wildlife Management Area)
-- US-7443 DeGray Lower Lake State Recreation Area (State Recreation Area)
 - US-7444 Nimrood Lake River Road State Recreation Area (State Recreation Area)
-- US-7522 Cherokee State Recreation Area (State Recreation Area)
-- US-7523 DeGray Wildlife Management Area (Wildlife Management Area)
 - US-7525 Mike Huckabee Delta Rivers Nature Park (Nature Park)
 - US-7526 Forest Wood Nature Park (Nature Park)
 - US-8316 Scenic 7 Byway State Trail (State Trail)
-- US-8317 Village Creek Wildlife Management Area (Wildlife Management Area)
 - US-9163 Saracen State Trail (State Trail)
-- US-9164 Lake Conway State Recreation Area (State Recreation Area)
 - US-9165 Cox Creek Lake State Recreation Area (State Recreation Area)
 - US-9166 Lake Elmdale State Recreation Area (State Recreation Area)
 - US-9168 Lake Jack Nolen State Recreation Area (State Recreation Area)
@@ -171,16 +111,26 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **152 of 304** parks joined
 - Nimrod Recreation Area · REC · Little Rock · ~25,542 ac
 - Chickasaw National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~21,528 ac
 - Ozark Recreation Area · REC · Little Rock · ~17,698 ac
+- Leatherwood Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,791 ac
+- Hurricane Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~15,333 ac
 - Petit Jean · SCA · Unknown · ~15,155 ac
 - Hillside National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,948 ac
 - Little River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,236 ac
+- Black Fork Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,466 ac
 - Yazoo National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~13,042 ac
 - Lower Hatchie National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~12,272 ac
+- Upper Buffalo Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,057 ac
+- Richland Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,674 ac
+- Poteau Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,141 ac
 - Wilbur D. Mills Pool Recreation Area · REC · Little Rock · ~11,133 ac
+- Upper Kiamichi River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,799 ac
+- East Fork Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,585 ac
+- Flatside Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,142 ac
 - Dahomey National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~9,537 ac
 - Gillham Recreation Area · REC · Little Rock · ~8,514 ac
 - Morgan Brake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,569 ac
 - Dequeen Recreation Area · REC · Little Rock · ~7,432 ac
+- Dry Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,301 ac
 - Theodore Roosevelt National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,252 ac
 - Murray Pool Recreation Area · REC · Little Rock · ~5,685 ac
 - Chickasaw National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~5,369 ac
@@ -215,13 +165,3 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **152 of 304** parks joined
 - Farm Service Agency Interest Of Ms ·  · U.S. Fish & Wildlife Service (own map) · ~672 ac
 - Farm Service Agency Interest Of Ar · NWR · FARM SERVICE AGENCY INTEREST OF AR · ~663 ac
 - Farm Service Agency Interest Of Ar · NWR · Farm Service Agency Interest Of Ar · ~663 ac
-- Holland Bottoms Willow Oak Forest Preserve · SCA · Unknown · ~638 ac
-- Little River · SCA · Unknown · ~565 ac
-- Spring Bank · SCA · Unknown · ~563 ac
-- Hillside National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~529 ac
-- National Center For Toxicological Research · REA · Unknown · ~493 ac
-- Terry Pool (Ark. Rv) Recreation Area · REC · Little Rock · ~484 ac
-- Smoke Hole Natural Area · SCA · Unknown · ~455 ac
-- Kelly's Slab · SCA · Unknown · ~378 ac
-- Bona Dea Trails And Sanctuary · NCA · USA · ~293 ac
-- Big Creek Wildlife Management Area · SCA · Unknown · ~284 ac

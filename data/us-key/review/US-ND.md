@@ -1,6 +1,6 @@
 # ND: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **86 of 155** parks joined to official land (same name + same kind of place). **11** to check by hand, **58** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **98 of 155** parks joined to official land (same name + same kind of place). **6** to check by hand, **51** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,12 +9,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **86 of 155** parks joined 
 - **US-4239** North Country Trail National Scenic Trail (National Scenic Trail) → Sakakawea Recreation Area (~478,564 ac, the POTA pin is inside it (different name)); Lake Sakakawea State Park (~733 ac, the POTA pin is inside it (different name))
 - **US-5741** Turtle Mountain State Forest (State Forest) → North Dakota State Forest Service Land (~14,517 ac, the POTA pin is inside it (different name))
 - **US-5742** Homen State Forest (State Forest) → North Dakota State Forest Service Land (~14,517 ac, the POTA pin is inside it (different name))
-- **US-7702** Lone Tree Wildlife Management Area (Wildlife Management Area) → Lonetree (~32,248 ac, the POTA pin is inside it (different name))
-- **US-7707** Maclean Bottoms Wildlife Management Area (Wildlife Management Area) → Oaha Recreation Area (~90,626 ac, the POTA pin is inside it (different name)); Oahe Wildlife Management Area (~16,734 ac, the POTA pin is inside it (different name))
-- **US-8563** Apple Creek Bottoms Wildlife Management Area (Wildlife Management Area) → Oahe Wildlife Management Area (~16,734 ac, the POTA pin is inside it (different name))
-- **US-8576** Deepwater Creek Wildlife Management Area (Wildlife Management Area) → Deepwater (~2,344 ac, same name, different kind of place); Sakakawea Recreation Area (~478,564 ac, the POTA pin is inside it (different name))
-- **US-8589** Kimball Bottoms Wildlife Management Area (Wildlife Management Area) → Oaha Recreation Area (~90,626 ac, the POTA pin is inside it (different name)); Oahe Wildlife Management Area (~16,734 ac, the POTA pin is inside it (different name))
-- **US-8607** Sweet Briar Lake Wildlife Management Area (Wildlife Management Area) → Sweetbriar Lake (~875 ac, the POTA pin is inside it (different name))
+- **US-7702** Lone Tree Wildlife Management Area (Wildlife Management Area) → Lonetree (~32,248 ac, the POTA pin is inside it (different name)); Lonetree (~19,798 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -72,13 +67,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **86 of 155** parks joined 
 - US-8559 Welk Homestead State Historic Site (State Historic Site)
 - US-8560 Whitestone Hill State Historic Site (State Historic Site)
 - US-8561 Missouri River State Natural Area (State Natural Area)
-- US-8562 Adam and Teresa Raab Wildlife Management Area (Wildlife Management Area)
-- US-8567 Barron Wildlife Management Area (Wildlife Management Area)
-- US-8568 Big Oxbow Wildlife Management Area (Wildlife Management Area)
-- US-8569 Blacktail Dam Wildlife Management Area (Wildlife Management Area)
-- US-8573 Coal Lake Wildlife Management Area (Wildlife Management Area)
-- US-8597 Olson Wildlife Management Area (Wildlife Management Area)
-- US-8611 Van Hook Wildlife Management Area (Wildlife Management Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
@@ -90,6 +78,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **86 of 155** parks joined 
 - Lonetree · SCA · Unknown · ~32,248 ac
 - Stutsman County Waterfowl Production Area · RMA · STUTSMAN COUNTY WATERFOWL PRODUCTION AREA · ~27,734 ac
 - Stutsman County Waterfowl Production Area · RMA · Stutsman County Waterfowl Production Area · ~27,730 ac
+- Lonetree ·  · North Dakota Game and Fish WMAs · ~19,798 ac
 - Mcintosh County Waterfowl Production Area · RMA · MCINTOSH COUNTY WATERFOWL PRODUCTION AREA · ~17,391 ac
 - Mcintosh County Waterfowl Production Area · RMA · Mcintosh County Waterfowl Production Area · ~17,391 ac
 - Oahe Wildlife Management Area · SCA · Unknown · ~16,734 ac
@@ -99,6 +88,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **86 of 155** parks joined 
 - Cavalier County Waterfowl Production Area · RMA · Cavalier County Waterfowl Production Area · ~12,278 ac
 - Mclean County Waterfowl Production Area · RMA · MCLEAN COUNTY WATERFOWL PRODUCTION AREA · ~12,161 ac
 - Mclean County Waterfowl Production Area · RMA · Mclean County Waterfowl Production Area · ~12,161 ac
+- Lonetree ·  · North Dakota Game and Fish WMAs · ~12,080 ac
 - Logan County Waterfowl Production Area · RMA · LOGAN COUNTY WATERFOWL PRODUCTION AREA · ~12,070 ac
 - Logan County Waterfowl Production Area · RMA · Logan County Waterfowl Production Area · ~12,069 ac
 - Burleigh County Waterfowl Production Area · RMA · BURLEIGH COUNTY WATERFOWL PRODUCTION AREA · ~11,923 ac
@@ -138,7 +128,5 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **86 of 155** parks joined 
 - Mchenry County Waterfowl Production Area · RMA · MCHENRY COUNTY WATERFOWL PRODUCTION AREA · ~5,882 ac
 - Mchenry County Waterfowl Production Area · RMA · Mchenry County Waterfowl Production Area · ~5,882 ac
 - Rolette County Waterfowl Production Area · RMA · Rolette County Waterfowl Production Area · ~5,870 ac
+- Wakopa ·  · North Dakota Game and Fish WMAs · ~5,587 ac
 - Lamoure County Waterfowl Production Area · RMA · LAMOURE COUNTY WATERFOWL PRODUCTION AREA · ~5,466 ac
-- Lamoure County Waterfowl Production Area · RMA · Lamoure County Waterfowl Production Area · ~5,466 ac
-- Pembina Hills · SCA · Unknown · ~5,292 ac
-- Sargent County Waterfowl Production Area · RMA · SARGENT COUNTY WATERFOWL PRODUCTION AREA · ~4,856 ac

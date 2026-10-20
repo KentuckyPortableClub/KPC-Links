@@ -1,93 +1,49 @@
 # NH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **132 of 205** parks joined to official land (same name + same kind of place). **6** to check by hand, **66** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **182 of 205** parks joined to official land (same name + same kind of place). **12** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0885** Lamprey National Wild and Scenic River (National Wild and Scenic River) → Lamprey River Shorebank Access (~0 ac, similar name); Lamprey River Preserve (~0 ac, similar name); Heron Point Sanctuary (~0 ac, the POTA pin is inside it (different name))
 - **US-11849** Wantastiquet Mt Natural Area State Natural Site (State Natural Site) → Wantastiquet Mountain Natural Area (~913 ac, the POTA pin is inside it (different name))
-- **US-13486** Bellamy River Wildlife Management Area - East Wildlife Management Area (Wildlife Management Area) → Bellamy River Wildlife Management Area - West - Lot 2 (~34 ac, similar name); Bellamy River Access (~34 ac, similar name)
-- **US-13541** Magalloway Mountain Fire Tower State Preserve (State Preserve) → Magalloway Mountain (~2 ac, similar name)
-- **US-4922** Litchfield State Forest (State Forest) → Litchfield School Conservation Area (~59 ac, similar name)
-- **US-4926** Lovewell Mountain State Forest (State Forest) → Pillsbury State Park (~5,398 ac, the POTA pin is inside it (different name))
+- **US-13486** Bellamy River Wildlife Management Area - East Wildlife Management Area (Wildlife Management Area) → Bellamy River Wildlife Management Area - West - Lot 2 (~34 ac, similar name); Bellamy River Access (~34 ac, similar name); Bellamy River Wildlife Sanctuary (~0 ac, similar name); Bellamy River WMA - West - Lot 1 (~0 ac, similar name)
+- **US-2644** Cardigan Mountain State Park (State Park) → Cardigan Mountain State Forest (~0 ac, same name, different kind of place); Cardigan Mtn Road (~0 ac, same name, different kind of place)
+- **US-2650** Eisenhower Memorial Wayside State Park (State Park) → Eisenhower Memorial Area (~0 ac, similar name); White Mountain Purchase Unit (~29,310 ac, the POTA pin is inside it (different name))
+- **US-2685** Winslow State Park (State Park) → Kearsarge Mt State Forest (~0 ac, the POTA pin is inside it (different name))
+- **US-4918** Kearsarge Mountain State Forest (State Forest) → Kearsarge Mt State Forest (~0 ac, the POTA pin is inside it (different name))
+- **US-8015** Wildcat National Wild and Scenic River (National Wild and Scenic River) → Nichols/Wildcat River Trust (~0 ac, similar name)
+- **US-8019** Fort Stark State Historic Site (State Historic Site) → Fort Stark Hist. Site (~0 ac, similar name)
 - **US-8021** Gov. Wentworth State Historic Site (State Historic Site) → Wentworth State Park (~52 ac, similar name)
+- **US-8023** Robert Frost Farm State Historic Site (State Historic Site) → Frost Farm Historical Site (~0 ac, similar name); Frost Farm Historical Site (~0 ac, similar name); Frost Farm Historical Site (~0 ac, similar name)
+- **US-8024** Taylor Saw Mill State Historic Site (State Historic Site) → Ballard State Forest (~0 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-2650 Eisenhower Memorial Wayside State Park (State Park) → on White Mountain Purchase Unit (~29,310 ac)
+- US-2654 Gardner Memorial Wayside State Park (State Park) → on Gile State Forest (~0 ac)
 
 ## Nothing found in PAD-US
 
-- US-0885 Lamprey National Wild and Scenic River (National Wild and Scenic River)
-- US-12636 Jenness State Beach (State Beach)
-- US-12637 Wallis Sands State Park (State Park)
-- US-13517 Richard Sargent Wildlife Management Area (Wildlife Management Area)
 - US-13529 Currier Wildlife Management Area (Wildlife Management Area)
 - US-13532 Deer Hill Wildlife Management Area (Wildlife Management Area)
 - US-13585 Theodore W. Walski State Wildlife Area (State Wildlife Area)
 - US-13595 Northern Recreational State Trail (State Trail)
-- US-2641 Ahern State Park (State Park)
 - US-2642 Androscoggin Wayside State Park (State Park)
-- US-2643 Bear Brook State Park (State Park)
-- US-2644 Cardigan Mountain State Park (State Park)
-- US-2645 Clough State Park (State Park)
-- US-2654 Gardner Memorial Wayside State Park (State Park)
-- US-2658 Kingston State Park (State Park)
-- US-2662 Miller State Park (State Park)
-- US-2663 Mollidgewock State Park (State Park)
-- US-2664 Monadnock State Park (State Park)
-- US-2665 Moose Brook State Park (State Park)
-- US-2668 Nansen Wayside State Park (State Park)
-- US-2669 North Hampton State Park (State Park)
-- US-2671 Odiorne Point State Park (State Park)
-- US-2672 Pawtuckaway State Park (State Park)
-- US-2677 Rye Harbor State Park (State Park)
-- US-2678 Silver Lake State Park (State Park)
-- US-2680 Wadleigh State Park (State Park)
-- US-2685 Winslow State Park (State Park)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
-- US-4862 Abbott State Forest (State Forest)
-- US-4872 Ballard State Forest (State Forest)
-- US-4874 Belknap Mountain State Forest (State Forest)
-- US-4880 Bowditch-Runnells State Forest (State Forest)
-- US-4885 Cilley State Forest (State Forest)
-- US-4887 Connecticut River State Forest (State Forest)
-- US-4899 Fall Mountain State Forest (State Forest)
-- US-4903 Fox State Forest (State Forest)
-- US-4905 Gile State Forest (State Forest)
-- US-4913 Hodgman State Forest (State Forest)
-- US-4915 Hubbard Hill State Forest (State Forest)
-- US-4918 Kearsarge Mountain State Forest (State Forest)
-- US-4927 Low State Forest (State Forest)
-- US-4930 Mast Yard State Forest (State Forest)
 - US-4931 Max Israel State Forest (State Forest)
 - US-4936 Nash Stream Forest State Forest (State Forest)
-- US-4939 Opechee Bay State Forest (State Forest)
-- US-4941 Page's Corner State Forest (State Forest)
-- US-4946 Powwow River State Forest (State Forest)
-- US-4950 Reed's Ferry State Forest (State Forest)
-- US-4951 Rock Rimmon State Forest (State Forest)
-- US-4954 Russell-Shea State Forest (State Forest)
-- US-4955 Saltmarsh Pond State Forest (State Forest)
-- US-4960 Shadow Hill State Forest (State Forest)
-- US-4967 Strawberry Hill State Forest (State Forest)
-- US-4973 Urban Forestry Center State Forest (State Forest)
-- US-4976 Wade State Forest (State Forest)
-- US-4977 Walker State Forest (State Forest)
 - US-4980 White Farm State Forest (State Forest)
 - US-8014 Nashua, Squannacook, and Nissitissit National Wild and Scenic River (National Wild and Scenic River)
-- US-8015 Wildcat National Wild and Scenic River (National Wild and Scenic River)
-- US-8016 Bedell Bridge State Historic Site (State Historic Site)
-- US-8018 Fort Constitution State Historic Site (State Historic Site)
-- US-8019 Fort Stark State Historic Site (State Historic Site)
-- US-8022 Hannah Duston State Historic Site (State Historic Site)
-- US-8023 Robert Frost Farm State Historic Site (State Historic Site)
-- US-8024 Taylor Saw Mill State Historic Site (State Historic Site)
-- US-8027 Chesterfield Gorge State Natural Area (State Natural Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Pemigewasset Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~45,809 ac
+- Sandwich Range Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~35,299 ac
+- Presidential Range-Dry River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~27,645 ac
+- Wild River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,032 ac
 - Appalachian National Scenic Trail · NT · NPS · ~14,264 ac
+- Caribou-Speckled Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,250 ac
 - Missisquoi National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,342 ac
+- Great Gulf Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,658 ac
 - Parker River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~4,572 ac
 - Enfield Wildlife Management Area · SCA ·   · ~3,025 ac
 - Murphy Dam / Lake Francis · SOTH ·   · ~2,801 ac
@@ -140,9 +96,3 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **132 of 205** parks joined
 - Pillsbury Lake District - Hunting Preserve · LOTH ·   · ~293 ac
 - Upper Merrimack Oxbow Project · SREC · NH Fish & Game · ~292 ac
 - Carpenters Marsh Wildlife Management Area · SCA ·   · ~291 ac
-- Perkins Pond Wildlife Management Area · SCA ·   · ~291 ac
-- Fort Hill Wildlife Management Area · SCA ·   · ~276 ac
-- Horne Brook Wildlife Management Area · SCA ·   · ~275 ac
-- UNH - Saddleback Mountain · REA ·   · ~265 ac
-- Beaver Brook Wildlife Management Area · SCA ·   · ~258 ac
-- Long Mountain · SCA ·   · ~249 ac
