@@ -1,0 +1,45 @@
+# LT: POTA parks vs official land
+
+Built 2026-10-20 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **2 of 38** joined (same name + same kind), **35** to check, **1** nothing found. Nothing below is joined.
+
+## To check (not joined)
+
+- **LT-0001** Aukštaitija National Park (National Park) → Aukštaitijos nacionalinis parkas (EEA Natura 2000, the POTA pin is inside it (different name)); Vakarinė Aukštaitijos nacionalinio parko dalis (EEA Natura 2000, the POTA pin is inside it (different name)); Aukštaitijos nacionalinis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0002** Dzūkija National Park (National Park) → Dainavos giria (EEA Natura 2000, the POTA pin is inside it (different name)); Dainavos giria (EEA Natura 2000, the POTA pin is inside it (different name)); Dzūkijos nacionalinis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0003** Curonian Spit National Park (National Park) → Kuršių nerijos nacionalinis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0004** Žemaitija National Park (National Park) → Žemaitijos nacionalinis parkas (EEA Natura 2000, the POTA pin is inside it (different name)); Žemaitijos nacionalinis parkas (EEA Natura 2000, the POTA pin is inside it (different name)); Žemaitijos nacionalinis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0005** The Trakai Historical National Park (National Park) → Trakų istorinis nacionalinis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0006** Nemuno delta Regional Park (Regional Park) → Nemuno delta (EEA Natura 2000, same name, different kind of place); Nemuno delta (EEA Natura 2000, same name, different kind of place); Nemuno deltos regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0007** Pajuris Regional Park (Regional Park) → Baltijos jūros priekrantė (EEA Natura 2000, the POTA pin is inside it (different name)); Baltijos jūros priekrantė (EEA Natura 2000, the POTA pin is inside it (different name)); Pajūrio regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0008** Rambynas Regional Park (Regional Park) → Šereitlaukio miškas (EEA Natura 2000, the POTA pin is inside it (different name)); Rambyno regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0009** Salantai Regional Park (Regional Park) → Salantų regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0010** Kurtuvenai Regional Park (Regional Park) → Kurtuvėnų regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0011** Tytuvėnai Regional Park (Regional Park) → Tytuvėnų regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0012** Varniai Regional Park (Regional Park) → Varnių regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0013** Venta Regional Park (Regional Park) → Ventos regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0015** Biržai Regional Park (Regional Park) → Biržų regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0016** Krekenava Regional Park (Regional Park) → Nevėžio vidurupio slėnis (EEA Natura 2000, the POTA pin is inside it (different name)); Krekenavos regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0017** Sartai Regional Park (Regional Park) → Sartų regioninis parkas (EEA Natura 2000, the POTA pin is inside it (different name)); Sartų regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0018** Anykščiai Regional Park (Regional Park) → Anykščių regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0019** Asveja Regional Park (Regional Park) → Asvejos ežerynas (EEA Natura 2000, the POTA pin is inside it (different name)); Asvejos ežerynas (EEA Natura 2000, the POTA pin is inside it (different name)); Asvejos regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0021** Pagramantis Regional Park (Regional Park) → Pagramančio regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0022** Panemuniai Regional Park (Regional Park) → Panemunių regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0023** Dubysa Regional Park (Regional Park) → Dubysos regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0024** Kauno marios Regional Park (Regional Park) → Kauno marios (EEA Natura 2000, same name, different kind of place); Kauno marios (EEA Natura 2000, same name, different kind of place); Kauno marių regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0025** Nemuno kilpos Regional Park (Regional Park) → Nemuno kilpos (EEA Natura 2000, same name, different kind of place); Nemuno kilpų regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0026** Dieveniškės Historical Regional Park (Regional Park) → Dieveniškių istorinis regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0027** Labanoras Regional Park (Regional Park) → Labanoro giria (EEA Natura 2000, the POTA pin is inside it (different name)); Labanoro giria (EEA Natura 2000, the POTA pin is inside it (different name)); Labanoro regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0028** Neris Regional Park (Regional Park) → Neries kilpų apylinkės (EEA Natura 2000, the POTA pin is inside it (different name)); Neries regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0029** Pavilniai Regional Park (Regional Park) → Pavilnių regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0030** Sirveta Regional Park (Regional Park) → Sirvėtos apylinkės (EEA Natura 2000, the POTA pin is inside it (different name)); Sirvėtos regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0031** Verkiai Regional Park (Regional Park) → Kryžiokų miškas (EEA Natura 2000, the POTA pin is inside it (different name)); Verkių regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0032** Vištytis Regional Park (Regional Park) → Vištyčio regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0033** Meteliai Regional Park (Regional Park) → Metelių, Dusios ir Obelijos ežerai (EEA Natura 2000, the POTA pin is inside it (different name)); Metelių regioninis parkas (EEA Natura 2000, the POTA pin is inside it (different name)); Metelių regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0034** Veisiejai Regional Park (Regional Park) → Veisiejų apylinkės (EEA Natura 2000, the POTA pin is inside it (different name)); Veisiejų regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0036** Viešvile Strict Nature Reserve (Nature Reserve) → Viešvilės aukštupio pelkynas (EEA Natura 2000, the POTA pin is inside it (different name)); Viešvilės valstybinis gamtinis rezervatas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0037** Zuvintas UNESCO Biosphere Reserve (UNESCO Biosphere Reserve) → Žuvinto ežeras ir Buktos miškas (EEA Natura 2000, the POTA pin is inside it (different name)); Žuvinto, Žaltyčio ir Amalvo pelkės (EEA Natura 2000, the POTA pin is inside it (different name)); Žuvinto biosferos rezervatas (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **LT-0038** Aukštadvaris Regional Park (Regional Park) → Aukštadvario regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
+
+## Nothing found
+
+- LT-0035 Kamanos Strict Nature Reserve (Nature Reserve)
