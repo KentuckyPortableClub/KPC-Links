@@ -1,1 +1,73 @@
-{"updated":"","start":"2026-10-21T22:00:00+00:00","days":7,"items":[]}
+{
+ "updated": "2026-10-20T13:22:38+00:00",
+ "start": "2026-10-21T22:00:00+00:00",
+ "days": 7,
+ "items": [
+  {
+   "ref": "US-13613",
+   "prog": "pota",
+   "name": "Ballards Marsh Wildlife Management Area",
+   "st": [
+    "NE"
+   ],
+   "la": 42.5957,
+   "lo": -100.539,
+   "found": "2026-10-20"
+  },
+  {
+   "ref": "US-13612",
+   "prog": "pota",
+   "name": "Darr Strip Wildlife Management Area",
+   "st": [
+    "NE"
+   ],
+   "la": 40.825,
+   "lo": -99.9382,
+   "found": "2026-10-20"
+  },
+  {
+   "ref": "US-13611",
+   "prog": "pota",
+   "name": "Darr Wildlife Management Area",
+   "st": [
+    "NE"
+   ],
+   "la": 40.7853,
+   "lo": -99.8493,
+   "found": "2026-10-20"
+  },
+  {
+   "ref": "US-13610",
+   "prog": "pota",
+   "name": "Arrowhead Wildlife Management Area",
+   "st": [
+    "NE"
+   ],
+   "la": 40.0979,
+   "lo": -96.8669,
+   "found": "2026-10-20"
+  },
+  {
+   "ref": "US-13609",
+   "prog": "pota",
+   "name": "Anderson Bridge Wildlife Management Area",
+   "st": [
+    "NE"
+   ],
+   "la": 42.7861,
+   "lo": -100.925,
+   "found": "2026-10-20"
+  },
+  {
+   "ref": "US-13608",
+   "prog": "pota",
+   "name": "American Game Marsh Wildlife Management Area",
+   "st": [
+    "NE"
+   ],
+   "la": 42.312,
+   "lo": -100.061,
+   "found": "2026-10-20"
+  }
+ ]
+}
