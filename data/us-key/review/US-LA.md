@@ -1,6 +1,6 @@
 # LA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **108 of 123** parks joined to official land (same name + same kind of place). **6** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **108 of 123** parks joined to official land (same name + same kind of place). **6** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -45,9 +45,11 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **108 of 123** parks joined
 - Division Of State Lands · SRMA · Unknown · ~15,672 ac
 - Hillside National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,948 ac
 - Camp Beauregard Wildlife Management Area · SCA · Unknown · ~12,606 ac
+- Indian Mounds Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,224 ac
 - State Lands · SOTH · Unknown · ~11,466 ac
 - Ouachita Wildlife Management Area · SCA · Unknown · ~10,403 ac
 - Calcasieu River · SCA · Unknown · ~9,174 ac
+- Kisatchie Hills Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,701 ac
 - Texas Point National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,336 ac
 - State Lands · SOTH · Unknown · ~7,733 ac
 - Maurepas Swamp - Parcel 2, Octavia · SOTH · Lousiana Department of Wildlife and Fisheries · ~7,546 ac
@@ -55,6 +57,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **108 of 123** parks joined
 - Panther Swamp National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,008 ac
 - Theodore Roosevelt National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,252 ac
 - Farm Service Agency Interest Of La · NWR · Farm Service Agency Interest Of La · ~6,039 ac
+- Black Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,084 ac
 - Atchafalaya Land Exchange · SOTH · Unknown · ~4,843 ac
 - Tchefuncte River And Its Tributaries · SCA · Unknown · ~3,355 ac
 - Farm Service Agency Interest Of La · NWR · FARM SERVICE AGENCY INTEREST OF LA · ~3,298 ac
@@ -85,6 +88,3 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **108 of 123** parks joined
 - Saline Bayou · SCA · Unknown · ~815 ac
 - E.a. Maier Family Donation · SOTH · Unknown · ~804 ac
 - Southeastern States District Office · PUB · BLM · ~762 ac
-- Lsu Research Station · REA · Unknown · ~755 ac
-- Blind River · SCA · Unknown · ~740 ac
-- Black Lake Bayou · SREC · Unknown · ~726 ac

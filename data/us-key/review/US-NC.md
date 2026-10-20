@@ -1,17 +1,13 @@
 # NC: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **203 of 253** parks joined to official land (same name + same kind of place). **21** to check by hand, **26** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **209 of 253** parks joined to official land (same name + same kind of place). **17** to check by hand, **24** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-10262** Linville Gorge Wilderness Area (Wilderness Area) → Pisgah National Forest (~509,978 ac, the POTA pin is inside it (different name))
 - **US-10263** Bonner House Historic Site (Historic Site) → Historic Bath State Historic Site (~9 ac, the POTA pin is inside it (different name))
-- **US-10397** Southern Nantahala Wilderness Area (Wilderness Area) → Nantahala National Forest (~532,808 ac, similar name)
+- **US-10388** Palmer Marsh House Historic Site (Historic Site) → Historic Bath State Historic Site (~9 ac, the POTA pin is inside it (different name))
 - **US-10399** Apalachia Reservoir Recreation Park (Recreation Park) → Tennessee Valley Authority - Hiwassee Dam (~424 ac, the POTA pin is inside it (different name))
 - **US-10511** Jessups Mill Pond State Game Land (State Game Land) → Suggs Mill Pond Game Land (~11,001 ac, similar name)
-- **US-11019** Shining Rock Wilderness Area (Wilderness Area) → Pisgah National Forest (~509,978 ac, the POTA pin is inside it (different name))
-- **US-11020** Middle Prong Wilderness Area (Wilderness Area) → Pisgah National Forest (~509,978 ac, the POTA pin is inside it (different name))
-- **US-11271** Joyce Kilmer-Slickrock Wilderness Area (Wilderness Area) → Nantahala National Forest (~532,808 ac, the POTA pin is inside it (different name))
 - **US-12119** Moses H. Cone National Park (National Park) → Blue Ridge Parkway (~52,757 ac, the POTA pin is inside it (different name))
 - **US-12320** Yadkin River State Trail (State Trail) → Yadkin River (~11,636 ac, same name, different kind of place)
 - **US-12371** Julian Price National Park (National Park) → Blue Ridge Parkway (~52,757 ac, the POTA pin is inside it (different name))
@@ -35,8 +31,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **203 of 253** parks joined
 ## Nothing found in PAD-US
 
 - US-10259 NC Vietnam Veteran's Memorial Historic Site (Historic Site)
-- US-10260 Birkhead Mountains Wilderness Area (Wilderness Area)
-- US-10388 Palmer Marsh House Historic Site (Historic Site)
 - US-10389 Hiwassee Dam Recreation Park (Recreation Park)
 - US-10398 Chatuge Dam Trail Recreation Park (Recreation Park)
 - US-10406 Lake Rim Fishing & Boating Multiple Use Area (Multiple Use Area)
@@ -70,12 +64,27 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **203 of 253** parks joined
 - B. Everett Jordan Dam and Lake · UNK · UNK · ~45,366 ac
 - NC Department of Transportation Mitigation Site · SOTH · UNK · ~24,566 ac
 - Roanoke River Wetlands Game Land · SCA · UNK · ~20,543 ac
+- Mark Trail Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,618 ac
+- Citico Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,213 ac
 - Lake Phelps State Lake · SP · UNK · ~15,917 ac
 - NC Department of Transportation Mitigation Site · SOTH · UNK · ~13,953 ac
+- Brasstown Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,925 ac
 - Marine Corps Air Station Cherry Point - Piney Island · MIL · UNK · ~11,989 ac
+- Pocosin Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,802 ac
 - Marine Corps Air Station Cherry Point - Main Air Station · MIL · UNK · ~11,288 ac
+- Sampson Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,896 ac
 - Military Ocean Terminal Sunny Point · MIL · UNK · ~10,885 ac
+- Rich Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,791 ac
+- Big Laurel Branch Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,764 ac
+- Tray Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,343 ac
+- Sheep Ridge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,315 ac
+- Raven Cliffs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,240 ac
+- Upper Bald River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,037 ac
+- Catfish Lake South Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,490 ac
+- Ellicott Rock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,300 ac
 - Camp Mackall Military Reservation · MIL · UNK · ~7,940 ac
+- Blood Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,742 ac
+- Pond Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,930 ac
 - Caledonia Correctional Institution · SOTH · UNK · ~6,847 ac
 - Boiling Spring Lakes Plant Conservation Preserve · SOTH · UNK · ~6,829 ac
 - Randleman Lake · LOTH · UNK · ~6,393 ac
@@ -90,9 +99,11 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **203 of 253** parks joined
 - Masonboro Island Component of the North Carolina National Estuarine Research Reserve · SOTH · UNK · ~4,740 ac
 - Great Coharie Creek Tract · SOTH · UNK · ~4,705 ac
 - W. Kerr Scott Reservoir · UNK · UNK · ~4,533 ac
+- Unaka Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,463 ac
 - Croatan Mitigation Site · SOTH · UNK · ~4,199 ac
 - Roanoke River Delta Islands · PCON · The Nature Conservancy · ~3,988 ac
 - Yellow Mountain State Natural Area · SP · UNK · ~3,805 ac
+- Bald River Gorge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,791 ac
 - Bobs Creek State Natural Area · SP · UNK · ~3,706 ac
 - NCDA Forest Research Station · SOTH · UNK · ~3,291 ac
 - Beef Cattle Field Laboratory · SOTH · UNK · ~3,171 ac
@@ -106,20 +117,3 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **203 of 253** parks joined
 - Kings Creek ·  · NC Wildlife Resources Commission game lands · ~2,361 ac
 - Cherry Research Farm · SOTH · UNK · ~2,185 ac
 - McCain Tract Forest Management Area · SOTH · UNK · ~2,161 ac
-- North Carolina Zoological Park · SOTH · UNK · ~2,143 ac
-- Pondberry Bay Plant Conservation Preserve · SOTH · UNK · ~2,105 ac
-- Rendezvous Mountain Educational State Forest · SRMA · UNK · ~1,902 ac
-- Deep River State Trail · SP · UNK · ~1,646 ac
-- Tidewater Research Station · SOTH · UNK · ~1,621 ac
-- Tater Hill Plant Conservation Preserve · SOTH · UNK · ~1,588 ac
-- Haw River State Park · SP · UNK · ~1,481 ac
-- Zekes Island Component of the North Carolina National Estuarine Research Reserve · SOTH · UNK · ~1,471 ac
-- Marine Corps Air Station Cherry Point - Atlantic Airfield · MIL · UNK · ~1,454 ac
-- Eagles Island Dredge Disposal Area · UNK · UNK · ~1,418 ac
-- Salmon Creek State Natural Area · SP · UNK · ~1,305 ac
-- Goodwin State Forest · SRMA · UNK · ~1,245 ac
-- North Bend ·  · NC Wildlife Resources Commission game lands · ~1,244 ac
-- Odom Correctional Institution · SOTH · UNK · ~1,108 ac
-- Lower Haw River State Natural Area · SP · UNK · ~1,105 ac
-- Tennessee Valley Authority - Apalachia Lake · UNK · UNK · ~1,086 ac
-- White Lake State Lake · SP · UNK · ~1,042 ac

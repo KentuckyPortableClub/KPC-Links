@@ -1,6 +1,6 @@
 # MT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **217 of 254** parks joined to official land (same name + same kind of place). **18** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **219 of 254** parks joined to official land (same name + same kind of place). **16** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -18,8 +18,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **217 of 254** parks joined
 - **US-12827** Brownes Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Lower Big Hole River (~3,329 ac, the POTA pin is inside it (different name)); Brownes Bridge Fishing Access Site (~10 ac, the POTA pin is inside it (different name))
 - **US-12925** Thoreau State Beach (State Beach) → Missoula Field Office (~175,579 ac, the POTA pin is inside it (different name))
 - **US-12941** Judith Landing State Park (State Park) → Upper Missouri River Breaks National Monument (~0 ac, the POTA pin is inside it (different name))
-- **US-6209** Absaroka-Beartooth Wilderness Area (Wilderness Area) → Gallatin National Forest (~1,850,408 ac, the POTA pin is inside it (different name))
-- **US-7994** Selway-Bitterroot Wilderness Area (Wilderness Area) → Bitterroot National Forest (~1,127,056 ac, similar name); Bitterroot National Forest (~45 ac, similar name)
 - **US-8002** Ninepipe National Wildlife Refuge (National Wildlife Refuge) → Ninepipe Wildlife Management Area (~4,152 ac, same name, different kind of place)
 - **US-8003** Pablo National Wildlife Refuge (National Wildlife Refuge) → Pablo Wildlife Management Area (~195 ac, same name, different kind of place)
 
@@ -52,27 +50,38 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **217 of 254** parks joined
 
 - Montana State Trust Lands · SRMA · UNK · ~5,186,683 ac
 - Miles City Field Office · PUB · BLM · ~2,757,930 ac
+- Frank Church-River of No Return Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~2,365,708 ac
 - Gallatin National Forest · NF · Forest Service Region 01 Northern · ~1,850,408 ac
+- Bob Marshall Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~1,064,092 ac
 - Malta Field Office · PUB · BLM · ~1,029,455 ac
 - Glasgow Field Office · PUB · BLM · ~1,013,226 ac
 - Dillon Field Office · PUB · BLM · ~905,631 ac
+- Washakie Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~693,934 ac
 - Lewistown Field Office · PUB · BLM · ~641,345 ac
 - Fort Peck Recreation Area · REC · Omaha · ~623,432 ac
 - Billings Field Office · PUB · BLM · ~429,680 ac
 - Havre Field Office · PUB · BLM · ~395,379 ac
+- North Absaroka Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~346,320 ac
 - Butte Field Office · PUB · BLM · ~323,091 ac
+- Great Bear Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~287,012 ac
 - Newcastle Field Office ERMA ·  · BLM recreation sites · ~273,309 ac
+- Scapegoat Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~259,785 ac
 - Lewis and Clark Trail ·  · BLM recreation sites · ~240,750 ac
 - Powder River Basin ERMA ·  · BLM recreation sites · ~224,080 ac
 - Badlands SRMA ·  · BLM recreation sites · ~211,695 ac
+- Gospel-Hump Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~205,657 ac
+- Cloud Peak Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~191,914 ac
 - West Slope SRMA ·  · BLM recreation sites · ~190,622 ac
 - Challis ·  · BLM herd management areas · ~177,813 ac
 - Missoula Field Office · PUB · BLM · ~175,579 ac
 - McCullough Peaks SRMA ·  · BLM recreation sites · ~159,811 ac
+- Anaconda Pintler Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~158,754 ac
 - West Slope SRMA ·  · BLM recreation sites · ~129,768 ac
 - McCullough Peaks ·  · BLM herd management areas · ~114,304 ac
 - Upper Salmon River ·  · BLM recreation sites · ~108,152 ac
+- Cabinet Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~93,766 ac
 - Uppermost Missouri River ·  · BLM recreation sites · ~82,354 ac
+- Mission Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~76,145 ac
 - Mount Haggin Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 3 · ~58,853 ac
 - Upper Big Hole River ·  · BLM recreation sites · ~56,847 ac
 - Silver Valley ·  · BLM recreation sites · ~53,188 ac
@@ -80,12 +89,15 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **217 of 254** parks joined
 - Clearwater River ·  · BLM recreation sites · ~44,818 ac
 - Spotted Dog Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 2 · ~37,774 ac
 - Rocky Hills ·  · BLM recreation sites · ~35,863 ac
+- Rattlesnake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~34,313 ac
 - Lewis-Clark Nat Hist Trail ·  · BLM recreation sites · ~32,612 ac
 - Deer Lodge State Prison Ranch · SCA · Montana Correctional Enterprises · ~32,459 ac
 - Centennial Mountains ·  · BLM recreation sites · ~31,880 ac
 - Sleeping Giant ·  · BLM recreation sites · ~30,921 ac
 - Lolo National Forest · NF · Forest Service Region 01 Northern · ~30,299 ac
+- Gates of the Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~28,460 ac
 - Kaniksu National Forest · NF · Forest Service Region 01 Northern · ~28,249 ac
+- Welcome Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~28,247 ac
 - Robb-Ledford Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 3 · ~28,234 ac
 - Ruby Mountains ·  · BLM recreation sites · ~26,195 ac
 - Lower Salmon Recreational ·  · BLM recreation sites · ~25,701 ac
@@ -96,17 +108,3 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **217 of 254** parks joined
 - Lubrecht State Experimental Forest · SCA · University of Montana, College of Forestry and Conservation · ~20,393 ac
 - Lolo Creek ·  · BLM recreation sites · ~19,283 ac
 - South Pioneers ·  · BLM recreation sites · ~18,966 ac
-- Lake Elwell · REC · Unknown · ~18,831 ac
-- Burnt Hollow SRMA ·  · BLM recreation sites · ~18,033 ac
-- Blacktail Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 3 · ~17,961 ac
-- Widow Mountain ·  · BLM recreation sites · ~17,836 ac
-- Hauser Lake ·  · BLM recreation sites · ~16,467 ac
-- Judith Mountains ·  · BLM recreation sites · ~14,389 ac
-- Horsethief Recreation Area ·  · BLM recreation sites · ~12,282 ac
-- Montana University System · ND · Unknown · ~11,418 ac
-- Pipestone ·  · BLM recreation sites · ~11,181 ac
-- Sheridan County Waterfowl Production Area Of Mt · RMA · Sheridan County Waterfowl Production Area Of Mt · ~10,750 ac
-- Sheridan County Waterfowl Production Area Of Mt · RMA · SHERIDAN COUNTY WATERFOWL PRODUCTION AREA OF MT · ~10,749 ac
-- Garrity Mountain Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 2 · ~10,116 ac
-- Judith River ·  · BLM recreation sites · ~10,079 ac
-- Judith River Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 4 · ~9,409 ac

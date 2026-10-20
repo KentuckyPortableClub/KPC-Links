@@ -1,6 +1,6 @@
 # SD: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **104 of 120** parks joined to official land (same name + same kind of place). **7** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **104 of 120** parks joined to official land (same name + same kind of place). **7** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -45,11 +45,13 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **104 of 120** parks joined
 - Fort Niobrara National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~19,093 ac
 - Stateline SRMA ·  · BLM recreation sites · ~15,870 ac
 - Belle Fourche Reservoir · RMA · Unknown · ~14,167 ac
+- Black Elk Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,534 ac
 - Big Stone National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,657 ac
 - Marshall County Waterfowl Production Area · RMA · Marshall County Waterfowl Production Area · ~11,269 ac
 - Marshall County Waterfowl Production Area · RMA · MARSHALL COUNTY WATERFOWL PRODUCTION AREA · ~11,268 ac
 - Edmunds County Waterfowl Production Area · RMA · EDMUNDS COUNTY WATERFOWL PRODUCTION AREA · ~9,246 ac
 - Edmunds County Waterfowl Production Area · RMA · Edmunds County Waterfowl Production Area · ~9,246 ac
+- Soldier Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,833 ac
 - Beadle County Waterfowl Production Area · RMA · BEADLE COUNTY WATERFOWL PRODUCTION AREA · ~7,777 ac
 - Beadle County Waterfowl Production Area · RMA · Beadle County Waterfowl Production Area · ~7,535 ac
 - Day County Waterfowl Production Area · RMA · DAY COUNTY WATERFOWL PRODUCTION AREA · ~7,318 ac
@@ -87,5 +89,3 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **104 of 120** parks joined
 - Hand County Waterfowl Production Area · RMA · Hand County Waterfowl Production Area · ~4,034 ac
 - Pactola Reservoir · RMA · Unknown · ~3,528 ac
 - Mccook County Waterfowl Production Area · RMA · MCCOOK COUNTY WATERFOWL PRODUCTION AREA · ~3,490 ac
-- Mccook County Waterfowl Production Area · RMA · Mccook County Waterfowl Production Area · ~3,490 ac
-- Hamlin County Waterfowl Production Area · RMA · HAMLIN COUNTY WATERFOWL PRODUCTION AREA · ~3,400 ac

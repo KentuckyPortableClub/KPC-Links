@@ -1,6 +1,6 @@
 # NY: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **818 of 850** parks joined to official land (same name + same kind of place). **10** to check by hand, **22** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **818 of 850** parks joined to official land (same name + same kind of place). **10** to check by hand, **22** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -74,13 +74,16 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **818 of 850** parks joined
 - Aldrich Pond Wild Forest · SCA · NYS Department of Environmental Conservation · ~26,465 ac
 - Cranberry Lake Wild Forest · SCA · NYS Department of Environmental Conservation · ~25,992 ac
 - Ha-De-Ron-Dah Wilderness · SW · NYS Department of Environmental Conservation · ~25,653 ac
+- Breadloaf Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,985 ac
 - Hunter-West Kill Wilderness · SW · NYS Department of Environmental Conservation · ~24,625 ac
 - Hudson Gorge Wilderness · SW · NYS Department of Environmental Conservation · ~24,526 ac
 - Pepperbox Wilderness · SW · NYS Department of Environmental Conservation · ~24,336 ac
 - Sentinel Range Wilderness · SW · NYS Department of Environmental Conservation · ~23,879 ac
 - Giant Mountain Wilderness · SW · NYS Department of Environmental Conservation · ~23,680 ac
+- Glastenbury Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~22,330 ac
 - William C. Whitney Wilderness · SW · NYS Department of Environmental Conservation · ~20,362 ac
 - Saint Regis Canoe Area · SCA · NYS Department of Environmental Conservation · ~18,979 ac
+- Lye Brook Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,122 ac
 - Indian Head Wilderness · SW · NYS Department of Environmental Conservation · ~17,365 ac
 - Horseshoe Lake Wild Forest · SCA · NYS Department of Environmental Conservation · ~17,197 ac
 - Windham-Blackhead Range Wilderness · SW · NYS Department of Environmental Conservation · ~17,046 ac
@@ -90,18 +93,15 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **818 of 850** parks joined
 - Watson'S East Triangle Wild Forest · SCA · NYS Department of Environmental Conservation · ~13,472 ac
 - Grass River Wild Forest · SCA · NYS Department of Environmental Conservation · ~13,243 ac
 - Raquette-Jordan Boreal Primitive Area · SCA · NYS Department of Environmental Conservation · ~12,380 ac
+- Joseph Battell Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,336 ac
 - Little Moose Wilderness · SW · NYS Department of Environmental Conservation · ~12,293 ac
 - Willowemoc Wild Forest · SREC · NYS Department of Environmental Conservation · ~11,487 ac
 - Round Lake Wilderness · SW · NYS Department of Environmental Conservation · ~11,415 ac
 - White Hill Wild Forest · SCA · NYS Department of Environmental Conservation · ~9,719 ac
 - Dry Brook Ridge Wild Forest · SCA · NYS Department of Environmental Conservation · ~9,425 ac
+- Hickory Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,633 ac
 - Kaaterskill Wild Forest · SCA · NYS Department of Environmental Conservation · ~8,104 ac
 - Appalachian National Scenic Trail · NT · NPS · ~8,085 ac
 - Littlejohn Wma · SRMA · NYS Department of Environmental Conservation · ~7,926 ac
 - Jay Mountain Wilderness · SW · NYS Department of Environmental Conservation · ~7,868 ac
 - Great Swamp National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,853 ac
-- Phoenicia - Mt. Tobias Wild Forest · SCA · NYS Department of Environmental Conservation · ~7,826 ac
-- Missisquoi National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,342 ac
-- Essex Chain Lakes Primitive Area · SCA · NYS Department of Environmental Conservation · ~6,964 ac
-- Albany Water Board Land · LOTH · Albany Water Board · ~6,610 ac
-- Finch Pruyn · SCA · NY Department of Environmental Conservation · ~6,177 ac

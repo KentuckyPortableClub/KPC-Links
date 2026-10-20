@@ -1,11 +1,12 @@
 # CA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **367 of 410** parks joined to official land (same name + same kind of place). **19** to check by hand, **18** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **367 of 410** parks joined to official land (same name + same kind of place). **20** to check by hand, **17** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0197** Kern National Wild and Scenic River (National Wild and Scenic River) → Sequoia National Forest (~1,114,950 ac, the POTA pin is inside it (different name))
 - **US-0201** Merced National Wild and Scenic River (National Wild and Scenic River) → Mother Lode Field Office (~230,415 ac, the POTA pin is inside it (different name))
+- **US-0884** Kings River National Wild and Scenic River (National Wild and Scenic River) → Monarch Wilderness (~44,223 ac, the POTA pin is inside it (different name))
 - **US-0894** Tuolumne National Wild and Scenic River (National Wild and Scenic River) → Stanislaus National Forest (~899,802 ac, the POTA pin is inside it (different name))
 - **US-10400** Trona Pinnacles National Geologic Trail (National Geologic Trail) → Ridgecrest Field Office (~1,797,315 ac, the POTA pin is inside it (different name))
 - **US-11336** Rainbow Basin Natural Area (Natural Area) → Barstow Field Office (~2,723,972 ac, the POTA pin is inside it (different name))
@@ -37,7 +38,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **367 of 410** parks joined
 
 - US-0198 Kesterson National Wildlife Refuge (National Wildlife Refuge)
 - US-0754 Rosie the Riveter WWII Home Front National Historical Park (National Historical Park)
-- US-0884 Kings River National Wild and Scenic River (National Wild and Scenic River)
 - US-0915 Cesar E. Chavez National Monument (National Monument)
 - US-12616 Black Butte Lake Park (Park)
 - US-13334 Sacramento River Bend BLM Recreation Management Area (BLM Recreation Management Area)
@@ -75,11 +75,13 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **367 of 410** parks joined
 - Applegate Field Office · PUB · BLM · ~684,641 ac
 - Kofa National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~664,663 ac
 - Eagle ·  · BLM herd management areas · ~660,700 ac
+- John Muir Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~653,633 ac
 - Twin Peaks ·  · BLM herd management areas · ~635,356 ac
 - Bakersfield Field Office · PUB · BLM · ~618,467 ac
 - Sheldon National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~576,480 ac
 - Silver King ·  · BLM herd management areas · ~576,458 ac
 - Black Mountain ·  · BLM herd management areas · ~567,084 ac
+- Trinity Alps Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~540,080 ac
 - Antelope Valley ·  · BLM herd management areas · ~505,108 ac
 - Pilot Mountain ·  · BLM herd management areas · ~481,392 ac
 - Little Owyhee ·  · BLM herd management areas · ~463,133 ac
@@ -90,6 +92,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **367 of 410** parks joined
 - Rustic Zone ·  · BLM recreation sites · ~331,560 ac
 - Antelope ·  · BLM herd management areas · ~327,747 ac
 - Maverick-Medicine ·  · BLM herd management areas · ~324,317 ac
+- Golden Trout Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~305,395 ac
 - Clan Alpine ·  · BLM herd management areas · ~304,763 ac
 - Central Coast Field Office · PUB · BLM · ~288,263 ac
 - New Pass-Ravenswood ·  · BLM herd management areas · ~287,948 ac
@@ -104,15 +107,12 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **367 of 410** parks joined
 - Redding Field Office · PUB · BLM · ~252,406 ac
 - Silver Peak ·  · BLM herd management areas · ~244,614 ac
 - Spruce-Pequop ·  · BLM herd management areas · ~241,119 ac
+- Ventana Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~236,192 ac
 - Lava Beds ·  · BLM herd management areas · ~235,481 ac
+- Ansel Adams Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~231,586 ac
+- White Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~230,672 ac
 - Mother Lode Field Office · PUB · BLM · ~230,415 ac
+- Marble Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~225,301 ac
+- Sespe Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~219,548 ac
 - Jean - Roach Dry Lake ·  · BLM recreation sites · ~210,855 ac
 - Arcata Field Office · PUB · BLM · ~203,580 ac
-- Tobin Range ·  · BLM herd management areas · ~199,723 ac
-- Chocolate-Mule Mountains ·  · BLM herd management areas · ~192,220 ac
-- California State Lands Commission · SRMA · California State Lands Commission · ~191,868 ac
-- Jarbidge Foothills ERMA ·  · BLM recreation sites · ~190,944 ac
-- Muddy Mountains ·  · BLM herd management areas · ~187,798 ac
-- Black Rock Range ·  · BLM herd management areas · ~183,524 ac
-- Canyonlands ERMA ·  · BLM recreation sites · ~183,254 ac
-- North Stillwater ·  · BLM herd management areas · ~180,445 ac

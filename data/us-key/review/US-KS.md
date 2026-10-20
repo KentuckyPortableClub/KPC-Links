@@ -1,10 +1,9 @@
 # KS: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **97 of 145** parks joined to official land (same name + same kind of place). **13** to check by hand, **35** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **97 of 145** parks joined to official land (same name + same kind of place). **12** to check by hand, **36** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-2334** Cross Timbers State Park (State Park) → Toronto State Park (~1,292 ac, the POTA pin is inside it (different name))
 - **US-2335** Eisenhower State Park (State Park) → Melvern Recreation Area (~23,490 ac, the POTA pin is inside it (different name))
 - **US-7393** Milford State Fish Hatchery (State Fish Hatchery) → Milford Recreation Area (~45,289 ac, same name, different kind of place)
 - **US-7399** Tuttle Creek Willow State Fishing Lake (State Fishing Lake) → Tuttle Creek State Parks (~1,082 ac, similar name); Tuttle Creek Recreation Area (~34,548 ac, same name, different kind of place)
@@ -24,6 +23,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **97 of 145** parks joined 
 ## Nothing found in PAD-US
 
 - US-13456 Pratt Fish Hatchery State Fish Hatchery (State Fish Hatchery)
+- US-2334 Cross Timbers State Park (State Park)
 - US-2350 Prairie Spirit Trail State Trail (State Trail)
 - US-4566 California National Historic Trail (National Historic Trail)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)

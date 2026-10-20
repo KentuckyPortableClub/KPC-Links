@@ -108,14 +108,11 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **379 of 460** parks joined
 - Babcock Ranch Preserve · PCON · Babcock Ranch Management, LLC · ~73,239 ac
 - Camp Blanding Military Reservation · MIL · FL Dept. of Military Affairs · ~71,599 ac
 - Choctawhatchee River Water Management Area · WPA · Northwest Florida Water Management District · ~62,693 ac
-- Weyerhaeuser Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~61,525 ac
 - Everglades Agricultural Area · WPA · South Florida Water Management District · ~51,975 ac
 - Stormwater Treatment Areas · WPA · South Florida Water Management District · ~47,574 ac
 - Miccosukee Indian Water Conservation Area ·  · Florida Natural Areas Inventory conservation lands · ~46,200 ac
-- Fisheating Creek/Lykes Brothers Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~41,596 ac
 - Guana Tolomato Matanzas National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~41,218 ac
 - Southern Glades · WPA · South Florida Water Management District · ~32,453 ac
-- Forest Systems Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~32,137 ac
 - Bright Hour Watershed ·  · Florida Natural Areas Inventory conservation lands · ~31,989 ac
 - Tyndall Air Force Base ·  · Florida Natural Areas Inventory conservation lands · ~29,946 ac
 - Kissimmee Chain of Lakes ·  · Florida Natural Areas Inventory conservation lands · ~29,709 ac
@@ -131,26 +128,29 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **379 of 460** parks joined
 - Bradwell Bay Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,222 ac
 - Upper Steinhatchee Conservation Area · LCA · Suwannee River Water Management District · ~23,368 ac
 - Duette Preserve ·  · Florida Natural Areas Inventory conservation lands · ~21,907 ac
-- NATC Gulf Hammock Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~21,205 ac
-- M. C. Davis - Seven Runs Creek Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~20,800 ac
 - Lake Apopka Restoration Area · LCA · St. Johns River Water Management District · ~20,024 ac
 - Lake Apopka North Shore Restoration Area ·  · Florida Natural Areas Inventory conservation lands · ~19,964 ac
 - East Coast Buffer ·  · Florida Natural Areas Inventory conservation lands · ~19,269 ac
 - Lyme Timber II - Block 4 ·  · Florida Natural Areas Inventory conservation lands · ~19,252 ac
-- Nokuse Plantation Conservation Easements ·  · Florida Natural Areas Inventory conservation lands · ~18,880 ac
-- Relay Tract Conservation Easements ·  · Florida Natural Areas Inventory conservation lands · ~18,554 ac
 - Open Space · LOTH · SOUTHWEST FLORIDA WATER MANAGEMENT DISTRICT · ~18,062 ac
 - Raiford Wildlife Management Area · PCON · PRIDE Enterprises, Inc. · ~17,793 ac
 - Seminole Recreation Area · REC · Mobile · ~17,724 ac
 - Model Lands Basin · WPA · South Florida Water Management District · ~17,187 ac
 - Kissimmee River ·  · Florida Natural Areas Inventory conservation lands · ~16,863 ac
-- Bailey Brothers Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~16,652 ac
-- Georgia Pacific-Lochloosa Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~16,651 ac
 - Lower Hillsborough Flood Detention Area · LRMA · Southwest Florida Water Management District · ~16,099 ac
 - Lower Hillsborough Wilderness Preserve ·  · Florida Natural Areas Inventory conservation lands · ~16,047 ac
 - Cape Canaveral Space Force Station ·  · Florida Natural Areas Inventory conservation lands · ~15,438 ac
 - Yucca Pens Unit · SCA · FL Fish and Wildlife Conservation Commission · ~15,044 ac
-- Blackbottom Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~14,648 ac
 - Timucuan Preserve Federally Managed Lands ·  · Florida Natural Areas Inventory conservation lands · ~14,532 ac
 - Juniper Prairie Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~14,298 ac
 - Big Gum Swamp Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,835 ac
+- Corkscrew Swamp Sanctuary ·  · Florida Natural Areas Inventory conservation lands · ~13,166 ac
+- Everglades Mitigation Bank ·  · Florida Natural Areas Inventory conservation lands · ~13,151 ac
+- Upper Lakes Basin Watershed · WPA · South Florida Water Management District · ~12,997 ac
+- Loxahatchee Slough Natural Area ·  · Florida Natural Areas Inventory conservation lands · ~12,975 ac
+- Lower Green Swamp Nature Preserve ·  · Florida Natural Areas Inventory conservation lands · ~12,823 ac
+- Grassy Waters Preserve ·  · Florida Natural Areas Inventory conservation lands · ~12,800 ac
+- Telogia Creek Wildlife Management Area ·  · Florida Natural Areas Inventory conservation lands · ~12,384 ac
+- Sandy Creek State Forest ·  · Florida Natural Areas Inventory conservation lands · ~12,173 ac
+- C-44 Stormwater Treatment Area · WPA · South Florida Water Management District · ~12,167 ac
+- Longleaf Pine Preserve ·  · Florida Natural Areas Inventory conservation lands · ~12,050 ac

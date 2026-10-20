@@ -1,6 +1,6 @@
 # IL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **158 of 219** parks joined to official land (same name + same kind of place). **12** to check by hand, **49** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **158 of 219** parks joined to official land (same name + same kind of place). **12** to check by hand, **49** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -11,9 +11,9 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **158 of 219** parks joined
 - **US-10787** Weinberg-King Scripps Unit State Park (State Park) → Weinberg-King State Fish and Wildlife Area (~1,529 ac, similar name)
 - **US-10788** Ray Norbut East Hannibal Unit State Fish and Wildlife Area (State Fish and Wildlife Area) → Miscellaneous Property (~104 ac, the POTA pin is inside it (different name))
 - **US-11351** Weinberg-King Spunky Bottoms Unit State Park (State Park) → Weinberg-King State Fish and Wildlife Area (~862 ac, similar name)
+- **US-11844** Lusk Creek Canyon State Nature Preserve (State Nature Preserve) → Lusk Creek Wilderness (~6,636 ac, similar name)
 - **US-12368** Hooper Branch Savanna State Nature Preserve (State Nature Preserve) → Iroquois County State Fish and Wildlife Area (~2,842 ac, the POTA pin is inside it (different name))
 - **US-4094** Eagle Creek State Park (State Park) → Recreation Area (~2,294 ac, the POTA pin is inside it (different name))
-- **US-4104** Stephen A. Forbes State Recreation Area (State Recreation Area) → Stephen A. Forbest State Recreation Area (~3,116 ac, the POTA pin is inside it (different name))
 - **US-4105** Washington County State Recreation Area (State Recreation Area) → Washington County State Natural Area (~1,465 ac, same name, different kind of place)
 - **US-7871** Martin T Snyder Memorial State Nature Preserve (State Nature Preserve) → Hanging Rock Sandstone Cliff State Natural Area (~94 ac, the POTA pin is inside it (different name))
 
@@ -39,7 +39,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **158 of 219** parks joined
 - US-11043 Burning Star State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-11144 Jarrot Mansion State Historic Site (State Historic Site)
 - US-11236 Carl Sandburg State Historic Site (State Historic Site)
-- US-11844 Lusk Creek Canyon State Nature Preserve (State Nature Preserve)
 - US-11959 Metamora Courthouse Historic Site (Historic Site)
 - US-12080 Kaskaskia Bell Memonial State Historic Site (State Historic Site)
 - US-12617 Postville Courthouse State Historic Site (State Historic Site)
@@ -48,6 +47,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **158 of 219** parks joined
 - US-13298 North Point Marina State Recreation Area (State Recreation Area)
 - US-3791 Trail of Tears National Historic Trail (National Historic Trail)
 - US-4096 Golconda Marina State Recreation Area (State Recreation Area)
+- US-4104 Stephen A. Forbes State Recreation Area (State Recreation Area)
 - US-4107 William W. Powers State Recreation Area (State Recreation Area)
 - US-4109 Big Bend State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-4111 Bohm Woods State Nature Preserve (State Nature Preserve)
@@ -79,16 +79,24 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **158 of 219** parks joined
 - Upper Mississippi River National Wildlife And Fish Refuge · NWR · Upper Mississippi River National Wildlife And Fish Refuge · ~12,512 ac
 - Upper Mississippi River National Wildlife And Fish Refuge · NWR · UPPER MISSISSIPPI RIVER NATIONAL WILDLIFE AND FISH REFUGE · ~12,471 ac
 - Clarks River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,857 ac
+- Bell Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,183 ac
+- Lusk Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,636 ac
+- Bald Knob Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,817 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~5,279 ac
 - Chain O'Lakes State Park · SP · Illinois Department of Conservation · ~5,124 ac
+- Clear Springs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,667 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~4,580 ac
+- Rockpile Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,281 ac
 - Unnamed Property · UNK · Rend Lake Conservancy District · ~4,179 ac
+- Garden of the Gods Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,896 ac
 - Middle Mississippi Purchase Unit · NF · Forest Service Region 09 Eastern · ~3,877 ac
+- Burden Falls Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~3,740 ac
 - Horshoe Lake State Park · SP · Dept of Natural Resources State of Illinois · ~3,339 ac
 - Lake Odessa Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~3,171 ac
 - Stephen A. Forbest State Recreation Area · SREC · Illinois Department of Natural Resources · ~3,116 ac
 - Pool No. 26 - Stump Lake · SP · Illinois Department of Natural Resources · ~2,972 ac
 - Sugar River · SCA · Winnebago County Forest Preserve District · ~2,771 ac
+- Bay Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~2,760 ac
 - Waterfall Glen · LCA · Forest Preserve District of DuPage County · ~2,728 ac
 - Prairie Ridge-Jasper State Natural Area · SCA · Illinois Department of Natural Resources · ~2,666 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~2,599 ac
@@ -123,14 +131,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **158 of 219** parks joined
 - Pratt's Wayne Woods 10 · LOTH · DuPage County Forest Preserve District · ~1,070 ac
 - Cypress Pond State Natural Area · SCA · Illinois Department of Natural Resources · ~1,056 ac
 - Red Wing Slough · SCA · State of Illinois · ~1,001 ac
+- Panther Den Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~988 ac
 - Van Patten Woods Forest Preserve · LCA · LAKE COUNTY FOREST PRESERVE DISTRICT · ~967 ac
 - Piasa Island Wildlife Management Area · SCA · Illinois Department of Natural Resources · ~912 ac
-- Gabaret Island Open Space · SOTH · State of Illinois Dept of Natural Resources · ~863 ac
-- Pine Dunes Forest Preserve · LCA · Forest Preserve District of Lake County · ~861 ac
-- Mosenthein Island · SREC · State of Illinois Dept of Natural Resources · ~860 ac
-- Hanover Bluff State Natural Area · SCA · Illinois Department of Natural Resources · ~802 ac
-- Muirhead Springs · UNK · Forest Preserve District of Kane County · ~797 ac
-- Sedge Meadow Forest Preserve · LCA · LAKE COUNTY FOREST PRESERVE DISTRICT · ~793 ac
-- Cuba Marsh Forest Preserve · LCA · LAKE COUNTY FOREST PRESERVE DISTRICT · ~779 ac
-- Sand Creek Open Space Reservation · LREC · Macon County Conservation District · ~777 ac
-- Herrick Lake Forest Preserve · SCA · Forest Preserve District of DuPage County · ~772 ac

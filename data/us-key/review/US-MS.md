@@ -1,6 +1,6 @@
 # MS: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **86 of 155** parks joined to official land (same name + same kind of place). **25** to check by hand, **43** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **86 of 155** parks joined to official land (same name + same kind of place). **26** to check by hand, **42** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -23,6 +23,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **86 of 155** parks joined 
 - **US-7116** Caney Creek Wildlife Management Area (Wildlife Management Area) → Bienville National Forest (~180,227 ac, the POTA pin is inside it (different name))
 - **US-7119** Natchez Wildlife Management Area (Wildlife Management Area) → Natchez Trace Parkway (~31,527 ac, similar name); Natchez State Park (~3,428 ac, same name, different kind of place); Natchez State Park (~3,425 ac, same name, different kind of place)
 - **US-7121** Sandy Creek Wildlife Management Area (Wildlife Management Area) → Homochitto National Forest (~191,846 ac, the POTA pin is inside it (different name))
+- **US-7130** Aberdeen Lake State Recreation Area (State Recreation Area) → Canal Section Wma (~29,203 ac, the POTA pin is inside it (different name))
 - **US-7134** Holcut Memorial State Recreation Area (State Recreation Area) → Divide Section (~16,145 ac, the POTA pin is inside it (different name))
 - **US-7629** Davis Lake State Recreation Area (State Recreation Area) → Tombigbee National Forest (~67,449 ac, the POTA pin is inside it (different name))
 - **US-7630** Chewalla Lake State Recreation Area (State Recreation Area) → Holly Springs National Forest (~156,210 ac, the POTA pin is inside it (different name))
@@ -65,7 +66,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **86 of 155** parks joined 
 - US-7126 Grenada Lake State Recreation Area (State Recreation Area)
 - US-7128 Sardis Lake State Recreation Area (State Recreation Area)
 - US-7129 Columbus Lake State Recreation Area (State Recreation Area)
-- US-7130 Aberdeen Lake State Recreation Area (State Recreation Area)
 - US-7131 Bay Springs Lake State Recreation Area (State Recreation Area)
 - US-7132 Jamie Whitten Historical Center State Recreation Area (State Recreation Area)
 - US-7133 Amory Recreation Area State Recreation Area (State Recreation Area)
@@ -100,6 +100,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **86 of 155** parks joined 
 - Bon Secour National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,849 ac
 - Theodore Roosevelt National Wildlife Refuge · NWR · Theodore Roosevelt National Wildlife Refuge · ~6,277 ac
 - Theodore Roosevelt National Wildlife Refuge · NWR · THEODORE ROOSEVELT NATIONAL WILDLIFE REFUGE · ~6,178 ac
+- Black Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,084 ac
 - Jourdan River Coastal Reserve · SCA · Unknown · ~4,311 ac
 - Choctaw National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,975 ac
 - Biloxi River Coastal Reserve · SCA · Unknown · ~2,479 ac
@@ -118,6 +119,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **86 of 155** parks joined 
 - Big Branch Marsh National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,045 ac
 - Red Creek Purchase Unit · NF · Forest Service Region 08 Southern · ~1,035 ac
 - Indianola Wildlife Management Area · SCA · Unknown · ~1,019 ac
+- Leaf Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~993 ac
 - Farm Service Agency Interest Of La ·  · U.S. Fish & Wildlife Service (own map) · ~982 ac
 - Bayou Portage Coastal Reserve · SCA · Unknown · ~764 ac
 - Refuge · SCA · Unknown · ~764 ac
@@ -140,5 +142,3 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **86 of 155** parks joined 
 - Wolf River Marshes (Feb 2008) · SCA · Mississippi Department of Marine Resources · ~105 ac
 - Lakeshore Recreation Area · LREC · Pearl River Valley and Water Supply District · ~103 ac
 - Pascagoula River Marshes (Sept 2002) · SCA · MS DEPARTMENT OF MARINE RESOURCES · ~79 ac
-- Burnside Park · LREC · Philadelphia-Neshoba County Park Commission · ~76 ac
-- Homochitto Purchase Unit · NF · Forest Service Region 08 Southern · ~66 ac

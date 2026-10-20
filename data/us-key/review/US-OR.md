@@ -1,6 +1,6 @@
 # OR: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **307 of 440** parks joined to official land (same name + same kind of place). **44** to check by hand, **66** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **336 of 440** parks joined to official land (same name + same kind of place). **44** to check by hand, **38** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -17,33 +17,33 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **307 of 440** parks joined
 - **US-10486** Warner Wetland Reserve (Wetland Reserve) → Lakeview District Lakeview Field Office (~3,203,414 ac, the POTA pin is inside it (different name))
 - **US-10487** Lake Abert and Abert Rim BLM Wilderness Area (Wilderness Area) → Lake Abert Watchable Wildlife Site (~0 ac, similar name); Lake Abert Watchable Wildlife Site (~0 ac, similar name); Abert Rim WSA (~0 ac, similar name); Lakeview District Lakeview Field Office (~3,203,414 ac, the POTA pin is inside it (different name))
 - **US-10761** Rogue River Ranch BLM Historic Preservation Site (BLM Historic Preservation Site) → Rogue Wild and Scenic River (~6,603 ac, similar name); Rogue Wild and Scenic River (~201 ac, similar name); Rogue River Ranch National Historic Site (~56 ac, similar name); Rogue River Ranch National Historic Site (~56 ac, similar name)
+- **US-11243** Cape Sebastian Corridor State Recreation Area (State Recreation Area) → Cape Sebastian (~1,531 ac, same name, different kind of place)
 - **US-12348** Wallowa BLM Wild and Scenic River (BLM Wild and Scenic River) → Wallowa National Forest (~995,134 ac, same name, different kind of place)
 - **US-12471** Lone Rock BLM Recreation Management Area (BLM Recreation Management Area) → Lone Rock Drift Boat Launch (~1 ac, similar name)
 - **US-12475** Wolf Creek BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Wolf Creek Falls Trail (~16 ac, similar name)
 - **US-12510** South Slough Reserve State Park Preserve (State Park Preserve) → SPC Stewardship (~5,940 ac, the POTA pin is inside it (different name))
+- **US-12749** Conde McCullough Memorial Wayside State Park (State Park) → Conde B. McCullough (~25 ac, similar name)
 - **US-12978** Willamette State Fish Hatchery (State Fish Hatchery) → Nw Oregon Upper Willamette Field Office (~152,817 ac, similar name); Willamette National Forest (~1,681,108 ac, same name, different kind of place)
-- **US-12979** Bonneville State Fish Hatchery (State Fish Hatchery) → Bonneville State Scenic Corridor (~46 ac, similar name)
+- **US-12979** Bonneville State Fish Hatchery (State Fish Hatchery) → Bonneville State Scenic Corridor (~46 ac, similar name); Bonneville (~46 ac, same name, different kind of place)
 - **US-12981** Oak Springs State Fish Hatchery (State Fish Hatchery) → Oak Springs Day Use Area (~2 ac, similar name); Oak Springs Day Use Area (~2 ac, similar name)
 - **US-12987** Klamath State Fish Hatchery (State Fish Hatchery) → Upper Klamath National Wildlife Refuge (~25,121 ac, similar name)
 - **US-12992** Bandon State Fish Hatchery (State Fish Hatchery) → Bandon Marsh National Wildlife Refuge (~907 ac, similar name); Bandon Marsh National Wildlife Refuge (~905 ac, similar name)
-- **US-13074** Canyon Creek State Forest (State Forest) → Canyon Creek Forest State Natural Area (~76 ac, same name, different kind of place)
 - **US-13075** Bear Gulch BLM Wilderness Area (BLM Wilderness Area) → Roseburg District South River Field Office (~185,021 ac, the POTA pin is inside it (different name))
-- **US-13085** Heceta Head Lighthouse State Park (State Park) → Siuslaw National Forest (~630,552 ac, the POTA pin is inside it (different name))
-- **US-2815** Brian Booth State Park (State Park) → Ona Beach State Park (~238 ac, the POTA pin is inside it (different name))
-- **US-2857** The Cove Palisades State Park (State Park) → Crooked River National Grassland (~112,057 ac, the POTA pin is inside it (different name))
+- **US-13080** Booth State Recreation Site (State Recreation Site) → Booth (~325 ac, similar name)
+- **US-13098** Neptune South Wayside State Recreation Site (State Recreation Site) → Neptune (~361 ac, similar name); Siuslaw National Forest (~630,552 ac, the POTA pin is inside it (different name))
+- **US-13099** Neptune North Wayside State Recreation Site (State Recreation Site) → Neptune (~361 ac, similar name); Siuslaw National Forest (~630,552 ac, the POTA pin is inside it (different name))
 - **US-4390** Newberry Crater Volcanic National Monument (National Monument) → Deschutes National Forest (~1,612,322 ac, the POTA pin is inside it (different name))
 - **US-5456** Clatsop State Forest (State Forest) → Forest Development Fund (Board Of Forestry) (~627,317 ac, the POTA pin is inside it (different name))
 - **US-5457** Elliott State Forest (State Forest) → Forest Development Fund (Board Of Forestry) (~627,317 ac, the POTA pin is inside it (different name))
 - **US-5459** Santiam State Forest (State Forest) → Forest Development Fund (Board Of Forestry) (~627,317 ac, the POTA pin is inside it (different name))
 - **US-5460** Sun Pass State Forest (State Forest) → Forest Development Fund (Board Of Forestry) (~627,317 ac, the POTA pin is inside it (different name))
-- **US-7361** Hells Canyon National Recreation Area (National Recreation Area) → Wallowa National Forest (~995,134 ac, the POTA pin is inside it (different name))
-- **US-9143** Detroit Lake State Recreation Area (State Recreation Area) → Willamette National Forest (~1,681,108 ac, the POTA pin is inside it (different name))
-- **US-9150** Saddle Mt State Natural Area (State Natural Area) → Saddle Mountain State Natural Area (~3,190 ac, the POTA pin is inside it (different name))
+- **US-7361** Hells Canyon National Recreation Area (National Recreation Area) → Hells Canyon Wilderness (~218,097 ac, same name, different kind of place); Wallowa National Forest (~995,134 ac, the POTA pin is inside it (different name))
+- **US-9150** Saddle Mt State Natural Area (State Natural Area) → Saddle Mountain (~3,226 ac, the POTA pin is inside it (different name)); Saddle Mountain State Natural Area (~3,190 ac, the POTA pin is inside it (different name))
 - **US-9156** Crooked River National Wild and Scenic River (National Wild and Scenic River) → Prineville Deschutes Field Office (~744,205 ac, the POTA pin is inside it (different name)); High Desert (~56,717 ac, the POTA pin is inside it (different name))
 - **US-9157** Donner und Blitzen National Wild and Scenic River (National Wild and Scenic River) → Malheur National Wildlife Refuge (~188,071 ac, the POTA pin is inside it (different name)); Malheur National Wildlife Refuge (~188,071 ac, the POTA pin is inside it (different name))
 - **US-9158** John Day National Wild and Scenic River (National Wild and Scenic River) → John Day Fossil Beds National Monument (~7,033 ac, similar name); Lower John Day SRMA (~79 ac, similar name); Lower John Day SRMA (~78 ac, similar name); Lower John Day SRMA (~40 ac, similar name)
 - **US-9159** Lower Deschutes National Wild and Scenic River (National Wild and Scenic River) → Prineville Deschutes Field Office (~744,205 ac, the POTA pin is inside it (different name))
-- **US-9565** Mongold State Park (State Park) → Willamette National Forest (~1,681,108 ac, the POTA pin is inside it (different name))
+- **US-9565** Mongold State Park (State Park) → Detroit Lake- Mongold (~29 ac, similar name); Willamette National Forest (~1,681,108 ac, the POTA pin is inside it (different name))
 - **US-9981** Molalla River Corridor BLM Recreation Management Area (BLM Recreation Management Area) → Table Rock Fork-Molalla River (~17,769 ac, similar name); Nw Oregon Cascades Field Office (~172,607 ac, the POTA pin is inside it (different name))
 - **US-9983** Valley of the Giants Outstanding Natural Area (Natural Area) → Nw Oregon Marys Peak Field Office (~128,244 ac, the POTA pin is inside it (different name))
 - **US-9985** Whychus Creek National Wild and Scenic River (National Wild and Scenic River) → Deschutes National Forest (~1,612,322 ac, the POTA pin is inside it (different name))
@@ -71,8 +71,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **307 of 440** parks joined
 - US-13065 Leslie Gulch BLM Recreation Management Area (BLM Recreation Management Area) → on Slocum Creek WSA (~0 ac); NA (~168,754 ac)
 - US-13070 Owyhee State Airstrip State Recreation Site (State Recreation Site) → on Owyhee Reservoir (~10,732 ac)
 - US-13078 Cascade State Fish Hatchery (State Fish Hatchery) → on Mt. Hood National Forest (~45,405 ac)
-- US-13098 Neptune South Wayside State Recreation Site (State Recreation Site) → on Siuslaw National Forest (~630,552 ac)
-- US-13099 Neptune North Wayside State Recreation Site (State Recreation Site) → on Siuslaw National Forest (~630,552 ac)
+- US-13097 Strawberry Hill Wayside State Recreation Site (State Recreation Site) → on Neptune (~361 ac)
 - US-9990 Mayfield Pond BLM Recreation Management Area (BLM Recreation Management Area) → on High Desert (~26,191 ac); Prineville Deschutes Field Office (~744,205 ac)
 
 ## Nothing found in PAD-US
@@ -85,13 +84,9 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **307 of 440** parks joined
 - US-10471 Maupin Section Foreman House BLM Historic Area (BLM Historic Area)
 - US-10610 South Santiam State Fish Hatchery (State Fish Hatchery)
 - US-10613 Cole M. Rivers State Fish Hatchery (State Fish Hatchery)
-- US-11243 Cape Sebastian Corridor State Recreation Area (State Recreation Area)
 - US-12082 Roaring River State Fish Hatchery (State Fish Hatchery)
-- US-12335 Pistol River State Park (State Park)
 - US-12347 Grande Ronde National Wild and Scenic River (National Wild and Scenic River)
-- US-12465 Face Rock State Park (State Park)
 - US-12470 Emerald Waters BLM Recreation Management Area (BLM Recreation Management Area)
-- US-12749 Conde McCullough Memorial Wayside State Park (State Park)
 - US-12945 Coquille Valley State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-12959 Quartzville BC Byway Kiosk BLM Special Recreation Management Area (BLM Special Recreation Management Area)
 - US-12977 Salmon River State Fish Hatchery (State Fish Hatchery)
@@ -104,18 +99,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **307 of 440** parks joined
 - US-12993 Elk River State Fish Hatchery (State Fish Hatchery)
 - US-12994 Klaskanine State Fish Hatchery (State Fish Hatchery)
 - US-12995 Leaburg State Fish Hatchery (State Fish Hatchery)
-- US-13080 Booth State Recreation Site (State Recreation Site)
 - US-13096 Bob Creek Wayside State Recreation Site (State Recreation Site)
-- US-13097 Strawberry Hill Wayside State Recreation Site (State Recreation Site)
-- US-2817 Cape Arago State Park (State Park)
-- US-2818 Cape Blanco State Park (State Park)
-- US-2826 Ecola State Park (State Park)
-- US-2831 Harris Beach State Park (State Park)
-- US-2835 Humbug Mountain State Park (State Park)
-- US-2847 Oswald West State Park (State Park)
-- US-2848 Port Orford Heads State Park (State Park)
-- US-2851 Shore Acres State Park (State Park)
-- US-2856 Sunset Bay State Park (State Park)
 - US-3424 Ice Age Floods National Geologic Trail (National Geologic Trail)
 - US-4562 Pacific Crest Trail National Scenic Trail (National Scenic Trail)
 - US-4566 California National Historic Trail (National Historic Trail)
@@ -126,21 +110,8 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **307 of 440** parks joined
 - US-6227 Snake River National Wild & Scenic River (National Wild & Scenic River)
 - US-9152 TouVelle State Park State Recreation Area (State Recreation Area)
 - US-9524 Angel's Rest State Trail (State Trail)
-- US-9526 Arizona Beach State Recreation Area (State Recreation Area)
-- US-9532 Cape Kiwanda State Natural Area (State Natural Area)
 - US-9540 Devil's Punchbowl State Natural Area (State Natural Area)
-- US-9554 Hug Point State Recreation Area (State Recreation Area)
-- US-9563 McVay Rock State Recreation Area (State Recreation Area)
 - US-9568 Ocean Shore State Recreation Area (State Recreation Area)
-- US-9570 Otter Point State Recreation Area (State Recreation Area)
-- US-9575 Sitka Sedge State Natural Area (State Natural Area)
-- US-9576 Smelt Sands State Recreation Area (State Recreation Area)
-- US-9577 Stonefield Beach State Recreation Area (State Recreation Area)
-- US-9579 Sunset Beach State Recreation Area (State Recreation Area)
-- US-9580 Tokatee Klootchman State Natural Area (State Natural Area)
-- US-9586 Yachats State Recreation Area (State Recreation Area)
-- US-9587 Yachats Ocean Road State Natural Area (State Natural Area)
-- US-9977 Floras Lake State Natural Area (State Natural Area)
 - US-9980 Willamette River Greenway and Water State Trail (State Trail)
 - US-9984 Tualatin River Water National Scenic Trail (National Scenic Trail)
 
@@ -160,17 +131,22 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **307 of 440** parks joined
 - NA ·  · BLM recreation sites · ~453,327 ac
 - Vale Baker Field Office · PUB · BLM · ~426,273 ac
 - Medford Grants Pass Field Office · PUB · BLM · ~425,791 ac
+- Eagle Cap Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~356,310 ac
 - Owyhee ·  · BLM herd management areas · ~340,969 ac
+- Three Sisters Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~283,818 ac
 - NA ·  · BLM recreation sites · ~262,178 ac
 - NA ·  · BLM recreation sites · ~259,036 ac
 - Medford Ashland Field Office · PUB · BLM · ~248,190 ac
 - Roseburg District Swiftwater Field Office · PUB · BLM · ~223,710 ac
+- Hells Canyon Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~218,097 ac
 - Lakeview Klamath Falls Field Office · PUB · BLM · ~216,032 ac
 - Owyhee Front Trails - South Zone ·  · BLM recreation sites · ~213,700 ac
 - Medford Butte Falls Field Office · PUB · BLM · ~202,060 ac
 - Coos Bay Umpqua Field Office · PUB · BLM · ~188,796 ac
 - Roseburg District South River Field Office · PUB · BLM · ~185,021 ac
+- Kalmiopsis Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~180,025 ac
 - NA ·  · BLM recreation sites · ~179,286 ac
+- Wenaha-Tucannon Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~176,785 ac
 - Nw Oregon Cascades Field Office · PUB · BLM · ~172,607 ac
 - NA ·  · BLM recreation sites · ~168,754 ac
 - Nw Oregon Siuslaw Field Office · PUB · BLM · ~157,518 ac
@@ -180,29 +156,24 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **307 of 440** parks joined
 - Boise Front ·  · BLM recreation sites · ~126,220 ac
 - Coos Bay Myrtlewood Field Office · PUB · BLM · ~123,224 ac
 - Federal Railroad Administration (Common School Lands) · SOTH · Oregon Department of Forestry · ~121,000 ac
+- North Fork John Day Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~120,977 ac
+- Sky Lakes Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~113,571 ac
+- Mount Jefferson Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~109,098 ac
 - Nw Oregon Tillamook Field Office · PUB · BLM · ~104,132 ac
 - Pueblo Mountains ·  · BLM recreation sites · ~94,928 ac
 - Trout Creek/Oregon Canyon ·  · BLM recreation sites · ~92,977 ac
 - NA ·  · BLM recreation sites · ~80,305 ac
 - Lower John Day SRMA ·  · BLM recreation sites · ~76,021 ac
 - Owyhee Front Trails - North Zone ·  · BLM recreation sites · ~69,635 ac
+- Strawberry Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~69,423 ac
 - Hardtrigger ·  · BLM herd management areas · ~69,397 ac
+- Mark O. Hatfield Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~65,434 ac
+- Mount Hood Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~64,742 ac
 - NA ·  · BLM recreation sites · ~64,586 ac
+- Salmon-Huckleberry Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~62,213 ac
 - Bridge Creek SRMA ·  · BLM recreation sites · ~60,988 ac
 - NA ·  · BLM recreation sites · ~59,769 ac
 - NA ·  · BLM recreation sites · ~58,209 ac
 - North Fork Owyhee Backcountry ·  · BLM recreation sites · ~57,830 ac
 - High Desert ·  · BLM recreation sites · ~56,717 ac
-- High Desert ·  · BLM recreation sites · ~53,050 ac
-- Black Mountain ·  · BLM herd management areas · ~50,922 ac
-- North Fork John Day River SRMA ·  · BLM recreation sites · ~49,506 ac
-- Oxbow Brownlee ·  · BLM recreation sites · ~46,343 ac
-- High Desert ·  · BLM recreation sites · ~40,464 ac
-- Owyhee River Canyon ·  · BLM recreation sites · ~37,509 ac
-- Gerber ·  · BLM recreation sites · ~36,421 ac
-- NA ·  · BLM recreation sites · ~34,167 ac
-- NA ·  · BLM recreation sites · ~33,942 ac
-- High Desert ·  · BLM recreation sites · ~31,576 ac
-- NA ·  · BLM recreation sites · ~30,985 ac
-- High Desert ·  · BLM recreation sites · ~30,684 ac
-- Canyon ·  · BLM recreation sites · ~29,093 ac
+- Mount Thielsen Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~55,127 ac
