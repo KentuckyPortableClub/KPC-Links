@@ -72,7 +72,7 @@
         if (on && !CO && !coP) coP = fetch('ky-usace.geojson').then(r => r.ok ? r.json() : null).then(j => { if (!j) return; map.createPane('pcCorps').style.zIndex = 395;
           CO = L.geoJSON(j, { pane: 'pcCorps', renderer: L.svg({ pane: 'pcCorps' }), style: () => ({ color: '#ff8c38', weight: 2.6, opacity: 1, fill: true, fillOpacity: 0 }),
             onEachFeature: (f, l) => { const p = f.properties || {}; l.bindTooltip(`<b>Army Corps of Engineers land</b><br>${esc(p.NAME || '')}${p.MANAGER ? '<br>Run by: ' + esc(p.MANAGER) : ''}`, { sticky: true }); } });
-          coSync(); }).catch(() => {}).finally(() => { coP = null; });
+          window.__pcCO = CO; coSync(); }).catch(() => {}).finally(() => { coP = null; });
         if (CO) { if (on && !map.hasLayer(CO)) CO.addTo(map); if (!on && map.hasLayer(CO)) map.removeLayer(CO); } };
       map.on('layeradd layerremove', e => { if (e.layer === PAD.layer) coSync(); }); map.whenReady(() => setTimeout(coSync, 80)); } }
   }
@@ -143,7 +143,7 @@
         /* Oct 17 (Brandon: Taylorsville Lake 'hard to tell what is what'): each piece in its own colour, by whose land it is */
         outline = L.geoJSON({ type: 'FeatureCollection', features: F }, { style: f => Object.assign({ weight: 3, fill: false }, PIECE(f)), interactive: false }).addTo(map);
         const seen = {}, key = F.map(f => { const P = PIECE(f), nm = (f.properties || {}).NAME || (f._L && f._L.name) || ''; if (seen[nm]) return ''; seen[nm] = 1; return `<li><i style="display:inline-block;width:22px;height:0;border-top:3px ${P.dashArray ? 'dashed' : 'solid'} ${P.color};vertical-align:middle;margin-right:6px"></i>${esc(nm)} <span class="pc-tag">${esc(P.who)}</span></li>`; }).join('');
-        PCS.ref = x.c; PCS.html = `<div class="pc-k" style="margin-top:8px">🗺 THE OUTLINE ON THE MAP</div><ul class="pc-list">${key}</ul>${PAD ? '<p class="pc-note">Orange outline = Army Corps land.</p>' : ''}`; const box = document.getElementById('pcPieces'); if (box) box.innerHTML = PCS.html;
+        PCS.ref = x.c; PCS.html = `<div class="pc-k" style="margin-top:8px">🗺 THE OUTLINE ON THE MAP</div><ul class="pc-list">${key}</ul>${(() => { const CO = window.__pcCO, ob = outline.getBounds(); let n = false; if (CO && ob.isValid()) CO.eachLayer(l => { if (!n && l.getBounds && l.getBounds().intersects(ob)) n = true; }); return n ? '<p class="pc-note">Orange outline = Army Corps land.</p>' : ''; })()}`; const box = document.getElementById('pcPieces'); if (box) box.innerHTML = PCS.html;
         if (fly !== false) { const b = outline.getBounds(); if (b.isValid()) map.fitBounds(b.pad(.1), { maxZoom: 14 }); } } catch (e) {} }
   }
   /* Oct 18 (Brandon: 'add the parking spots you gathered tonight in Park Control'): the park's `ap` points as map markers */
@@ -168,7 +168,7 @@
     const park = k === 'pota' ? x : k === 'kff' && x.p ? byRef(x.p) : null;
     const tipsRef = x.c, tips = NOTES[tipsRef] || 0, cg = park && CG[park.c];
     const also = [];
-    if (k === 'pota') { if (GUEST) x = Object.assign({}, x, { tf: [] }); (x.kff || []).forEach(r => { const y = byRef(r); also.push([r, y ? y.n : '', 'Also KFF']); }); (x.sota || []).forEach(r => { const y = byRef(r); also.push([r, y ? y.n : '', 'SOTA summit inside (only counts on top)']); }); (x.tf || []).forEach(r => { const y = byRef(typeof r === 'string' ? r : r.c || r[0]); const rr = typeof r === 'string' ? r : r.c || r[0]; also.push([rr, y ? y.n : '', 'Overlapping boundaries (2-fer)']); }); }
+    let gSoon = false; if (k === 'pota') { if (GUEST) { gSoon = !!(x.tf || []).length || Object.values(TP).some(v => (v.parks || []).some(p => (p.refs || []).includes(x.c))); x = Object.assign({}, x, { tf: [] }); } (x.kff || []).forEach(r => { const y = byRef(r); also.push([r, y ? y.n : '', 'Also KFF']); }); (x.sota || []).forEach(r => { const y = byRef(r); also.push([r, y ? y.n : '', 'SOTA summit inside (only counts on top)']); }); (x.tf || []).forEach(r => { const y = byRef(typeof r === 'string' ? r : r.c || r[0]); const rr = typeof r === 'string' ? r : r.c || r[0]; also.push([rr, y ? y.n : '', 'Overlapping boundaries (2-fer)']); }); }
     if (k === 'kff' && park) also.push([park.c, park.n, 'Same place: POTA park']);
     if (k === 'pota' && !GUEST) Object.values(TP).forEach(v => { if ((v.parks || []).some(p => (p.refs || []).includes(x.c)) && !also.some(a => a[0] === v.ref)) also.push([v.ref, v.name, 'Trail passes through (possible 2-fer: stand on the trail inside the park)']); });
     const tp = TP[x.c], tline = TL[x.c];
@@ -176,12 +176,12 @@
       (GUEST ? `<p class="pc-note">${SOON}</p>` : '') + (!GUEST && tp && tp.parks && tp.parks.length ? `<div class="pc-k" style="margin-top:8px">THE TRAIL PASSES THROUGH (POSSIBLE 2-FER / 3-FER: VERIFY)</div><ul class="pc-list">${tp.parks.map(p => `<li>${(p.refs || []).map((r, i) => `<a href="?ref=${encodeURIComponent(r)}" data-ref="${esc(r)}">${esc(r)}</a> ${esc((p.names || [])[i] || '')}`).join(' + ')} <span class="pc-tag">${esc(p.type || '2-fer')}${p.how ? ' · ' + esc(p.how) : ''}</span></li>`).join('')}</ul><p class="pc-note">Stand on the trail inside the other park. Check both maps.</p>` : '') : '';
     const ap = (park && park.ap) || [];
     $('pcInfo').innerHTML = `<div class="pc-k">${lab}</div><h3>${esc(x.n)}</h3>
-      ${window.KPCMine && k !== 'kff' ? `<div class="pc-mineb">${KPCMine.badge(x.c)}</div>` : ''}<div class="pc-meta"><span class="pc-ref">${esc(x.c)}</span>${x.co ? ' · ' + esc(x.co) + ' County' : ''}${x.t ? ' · ' + esc(x.t) : ''}${x.ft ? ' · ' + Number(x.ft).toLocaleString() + ' ft' + (x.pts ? ' · ' + x.pts + ' pts' : '') : ''}</div>
+      ${window.KPCMine && k !== 'kff' ? `<div class="pc-mineb">${KPCMine.badge(x.c)}</div>` : ''}<div class="pc-meta"><span class="pc-ref">${esc(x.c)}</span>${x.co ? ' · ' + (/^multiple$/i.test(x.co) ? 'Several counties' : esc(x.co) + (/\//.test(x.co) ? ' Counties' : ' County')) : ''}${x.t ? ' · ' + esc(x.t) : ''}${x.ft ? ' · ' + Number(x.ft).toLocaleString() + ' ft' + (x.pts ? ' · ' + x.pts + ' pts' : '') : ''}</div>
       <div class="pc-acts"><a class="gold" href="${dirUrl(x.la, x.lo)}" target="_blank" rel="noopener">🚗 DIRECTIONS</a><button type="button" id="pcAdd">${TRIP.some(t => t.c === x.c) ? '✓ ON MY TRIP' : '+ ADD TO MY TRIP'}</button>
       ${park && park.web ? `<a href="${esc(park.web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>` : ''}${park && park.off ? `<a href="${esc(park.off)}" target="_blank" rel="noopener">OFFICIAL MAP ↗</a>` : ''}${park && park.camp ? `<a href="${esc(park.camp)}" target="_blank" rel="noopener">CAMPING ↗</a>` : ''}
       <a href="${page}" target="_blank" rel="noopener">${k === 'pota' ? 'POTA' : k === 'kff' ? 'WWFF' : 'SOTLAS'} PAGE ↗</a>
       <a href="kpc-park-notes.html#${encodeURIComponent(tipsRef)}">📝 PARK TIPS${tips ? ' (' + tips + ')' : ''}</a>${cg ? `<a href="kpc-campgrounds.html#park-${esc(park.c)}">⛺ PLACES TO STAY</a>` : ''}</div>
-      ${also.length ? `<div class="pc-k" style="margin-top:8px">ALSO HERE</div><ul class="pc-list">${also.map(a => `<li><a href="?ref=${encodeURIComponent(a[0])}" data-ref="${esc(a[0])}">${esc(a[0])}</a> ${esc(a[1])} <span class="pc-tag">${esc(a[2])}</span></li>`).join('')}</ul>` : ''}
+      ${also.length ? `<div class="pc-k" style="margin-top:8px">ALSO HERE</div><ul class="pc-list">${also.map(a => `<li><a href="?ref=${encodeURIComponent(a[0])}" data-ref="${esc(a[0])}">${esc(a[0])}</a> ${esc(a[1])} <span class="pc-tag">${esc(a[2])}</span></li>`).join('')}</ul>` : ''}${gSoon && !tline ? `${also.length ? '' : '<div class="pc-k" style="margin-top:8px">ALSO HERE</div>'}<p class="pc-note">${SOON}</p>` : ''}
       <div id="pcPieces">${PCS.ref === x.c ? PCS.html : ''}</div>
       ${trailBox}
       ${ap.length ? `<div class="pc-k" style="margin-top:8px">🅿 PARKING &amp; ACCESS POINTS </div><ul class="pc-list">${ap.map((p, i) => `<li${i >= 8 ? ' class="pc-apx" hidden' : ''}><a href="#" data-ap="${i}">📍 ${esc(p[2] || 'Access point')}</a> · <a href="${dirUrl(p[0], p[1])}" target="_blank" rel="noopener">DIRECTIONS</a></li>`).join('')}</ul>${ap.length > 8 ? `<button type="button" class="pc-more" id="pcApMore">SHOW ALL ${ap.length} ▾</button>` : ''}<p class="pc-note">✅ gold = KPC field check · blue = official maps (P parking, ⛵ boat launch, 🚧 gate, 🧺 shelter, ⛺ campground). 🅿 PARKING shows them on the map.</p>` : ''}

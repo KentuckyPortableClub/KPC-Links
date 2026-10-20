@@ -93,12 +93,16 @@ return{MEMBERS,liveKY,esc,base,isMember,miles,grid,data,counties,countyOf,histor
  function navBottom(){const n=document.querySelector('.site-nav');if(!n)return 0;const cs=getComputedStyle(n);if(!/sticky|fixed/.test(cs.position))return 0;return n.getBoundingClientRect().bottom}
  function fit(p){const m=p&&p._map,c=p&&p._container;if(!m||!c||!c.isConnected)return;
   const mr=m.getContainer().getBoundingClientRect(),cr=c.getBoundingClientRect();
-  const top=Math.max(mr.top,navBottom())+12,left=mr.left+10,right=mr.right-10,bottom=mr.bottom-10;
+  const cl=clear(p),pa=p.options.autoPanPaddingTopLeft,pb=p.options.autoPanPaddingBottomRight,top=Math.max(mr.top,navBottom())+(cl?cl.t:pa?Math.max(12,pa.y):12),left=mr.left+(cl?10:pa?Math.max(10,pa.x):10),right=mr.right-(cl?10:pb?Math.max(10,pb.x):10),bottom=mr.bottom-(cl?cl.b:pb?Math.max(10,pb.y):10);   /* Oct 19: a card can ask to stay clear of the map buttons */
   let dx=0,dy=0;if(cr.top<top)dy=cr.top-top;else if(cr.bottom>bottom&&cr.top-(cr.bottom-bottom)>=top)dy=cr.bottom-bottom;
   if(cr.left<left)dx=cr.left-left;else if(cr.right>right)dx=cr.right-right;
   if(Math.abs(dx)>2||Math.abs(dy)>2)m.panBy([Math.round(dx),Math.round(dy)],{animate:true,duration:.25})}
+ /* kpcClear cards (phones): stay between the top map buttons and the bottom ones, measured each time */
+ function clear(p){if(!p.options.kpcClear||!p._map)return null;const c=p._map.getContainer(),mr=c.getBoundingClientRect();let t=12,b=10;
+  c.querySelectorAll('.leaflet-top .leaflet-control').forEach(e=>{const r=e.getBoundingClientRect();if(r.height)t=Math.max(t,r.bottom-mr.top+8)});
+  c.querySelectorAll('.leaflet-bottom .leaflet-control:not(.leaflet-control-attribution)').forEach(e=>{const r=e.getBoundingClientRect();if(r.height)b=Math.max(b,mr.bottom-r.top+8)});return {t,b}}
  function cap(p){const m=p._map,c=p._container;if(!m||!c)return;const w=c.querySelector('.leaflet-popup-content-wrapper'),body=c.querySelector('.leaflet-popup-content');if(!w||!body)return;
-  const mr=m.getContainer().getBoundingClientRect(),room=Math.max(140,mr.bottom-Math.max(mr.top,navBottom())-70);
+  const mr=m.getContainer().getBoundingClientRect(),cl=clear(p),room=Math.max(140,cl?mr.height-cl.t-cl.b-30:mr.bottom-Math.max(mr.top,navBottom())-70);
   body.style.maxHeight=room+'px';body.style.overflowY='auto'}
  L.Map.addInitHook(function(){const map=this;
   /* Hover cards (Park Commander, KY planner) set autoPan:false on purpose so the map holds still under the mouse;
