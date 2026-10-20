@@ -21,7 +21,9 @@ jobs:
           COUNTRIES: ${{ inputs.countries }}
         run: |
           pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || true
-          python3 .github/scripts/kpc_world_key.py
+          # Oct 20: one country at a time, so a problem in one country never stops the others or fails the run
+          ALL="${COUNTRIES:-AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU}"
+          for c in $ALL; do COUNTRIES=$c python3 .github/scripts/kpc_world_key.py || echo "::notice title=World key $c::stopped with an error (see the traceback above)"; done
       - name: Save
         if: always()
         run: |
