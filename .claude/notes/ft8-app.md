@@ -1,10 +1,10 @@
 # KPC FT8 APP: build plan (Brandon Oct 20 2026 3:57 AM: 'Private, make notes on what you need to do, Fable, GitHub and maybe even Sonnet')
 
-START: Thursday Oct 22 2026 1:15 AM CDT. Nothing before that (boundary work until Thu 1:01 AM).
+START: moved up by Brandon Oct 20 6:27 AM ('I am going give fable a run at it'): Fable starts now on step 2; boundary bots keep running by themselves.
 SCOPE: FT8 + FT4 (+ FT2) app WITH the KPC Logger and the other DIGI modes (CW, RTTY, PSK31, SSTV, WSPR, HELL). Highly polished, professional layout. Windows PC + Android phone + Android tablet (Brandon's Samsung tablet + FT-710 = main test rig). Technical must-haves: ideas.md 'FT8 APP BUILD NOTES' (1-8) + 'KPC FT8 ANDROID APP'. App look: logger-lounge-digi.md 'KPC APP LOOK'.
 
 ## GitHub (decided: PRIVATE repo)
-- New PRIVATE repo, e.g. KentuckyPortableClub/kpc-ft8-app (create with gh under Brandon's account on Thursday; confirm the name with him). Own short CLAUDE.md in that repo (rules + where things are); do NOT pile app notes into the website notes.
+- PRIVATE repo = KentuckyPortableClub/KPC-App (made by Brandon Oct 20; attach with add_repo owner KentuckyPortableClub repo kpc-app, clone to /home/claude/kpc-app). Own short CLAUDE.md in that repo (rules + where things are); do NOT pile app notes into the website notes.
 - Code shared with the website: copy kpc-ft8.js / kpc-ft8.wasm / kpc-logger-ft8.js / kpc-digi.js / kpc-digi-ui.js / kpc-cat.js / logger parts into the app repo (record which website commit they came from); later fixes go both ways by hand.
 - Builds on GitHub Actions (private repo: 2,000 free minutes/month; ~5-10 min per Android build, Windows a bit more):
   - Android: ubuntu runner, JDK 17 + Android SDK, Capacitor (WebView app) + Gradle → signed .apk (later .aab for Play Store).
@@ -20,7 +20,7 @@ SCOPE: FT8 + FT4 (+ FT2) app WITH the KPC Logger and the other DIGI modes (CW, R
 - Switch with /model. Hand-off between models = this file + the app repo's CLAUDE.md + a short 'where I stopped' line at the bottom of the app repo notes after every session.
 
 ## Order of work
-1. (Fable) Repo + build pipeline green (empty app installs on Android + Windows).
+1. DONE Oct 20 (Opus): repo + build pipeline green; Brandon installed the test .apk on his tablet: 'It works'.
 2. (Fable) Native audio + USB; FT8 receive + full-power TUNE / TX on the FT-710 → Brandon confirms watts + ALC.
 3. (Fable/Opus) A full FT8 + FT4 contact logged on the tablet.
 4. (Opus) Logger + spots + offline park list + GPS grid.
@@ -49,3 +49,6 @@ SCOPE: FT8 + FT4 (+ FT2) app WITH the KPC Logger and the other DIGI modes (CW, R
 - **NEXT PARK (Oct 20, Brandon: 'finished an activation and want to go next park have it show me whats nearby and links to kpc trip planner for driving direction or would it better built in?'):** plan = built-in 'Next park' list after WRAP UP (GPS, offline park list, distance + direction, NEW to you, 2-fer/overlap flag, outline from the answer keys); DIRECTIONS hands off to the phone's maps app (Google/Apple, to the park's access point when we have one); 'Plan a trip' opens the KPC Trip Planner for multi-park days. No built-in turn-by-turn.
 - **APP LINKS (Oct 20, Brandon: 'add link to park notes'; then 'cw room, access finder is hidden, hunters lounge, on the air now, kit list maybe not useful… link to our homepage and contact be nice'):** park card + Next Park: Park Notes (kpc-park-notes / -us), Am I in the Park + outline (kpc-park-control), Campgrounds, KPC Trip Planner, the program's own park page. Menu → 'KPC links': Homepage (index), Contact, Activation Board, Rules you should know, POTA/WWFF/SOTA guides, Safety guide, Community. NOT linked: CW room, Access Finder (hidden), Hunters Lounge, On The Air Now, Kit list.
 - **REPO + TEST BUILD DONE (Oct 20 5 AM):** private repo KentuckyPortableClub/KPC-App (clone /home/claude/kpc-app, add_repo kpc-app). build.yml on push to main: Android debug .apk (Capacitor 7, Java 21, android/ made fresh each build, gitignored for now) + Windows NSIS installer (Electron 33 / electron-builder 25, unsigned) → 'test-build' pre-release (KPC-test.apk, KPC-Setup-0.0.1.exe). First run passed. Placeholder www/index.html only.
+
+## WHERE WE STOPPED (update after every session)
+- Oct 20 6:30 AM (Opus): step 1 done. NEXT = step 2 for Fable: commit the android/ project (stop making it fresh in build.yml), add the native audio plugin (AudioTrack USAGE_MEDIA out, AudioRecord in, output first) + USB serial plugin, copy kpc-ft8.js/.wasm + kpc-cat.js from the website, a bare test screen (START RX level meter, TUNE button, radio connect) so Brandon can check watts + ALC on the FT-710.
