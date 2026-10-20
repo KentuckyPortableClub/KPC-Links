@@ -20,15 +20,14 @@ def fetch(u, raw=False, timeout=60):
     except Exception as e: return 0, str(e)[:120]  # noqa: BLE001
 
 
-DIRECT = {   # Oct 20 round 3: exact layer names for the sources that answered nothing
-    'FR': ['https://data.geopf.fr/wfs/ows?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0',
-           'https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer?f=json',
-           'https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/0?f=json'],
-    'CO': ['https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer?f=json'],
-    'NS': ['https://nsgiwa.novascotia.ca/arcgis/rest/services/PLAN/PLANCrownLandsWM84V1/MapServer?f=json',
-           'https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer?f=json'],
+DIRECT = {'US': [], 'CA': []}   # Oct 20 round 4: next US + Canada groups
+SEARCH = {
+    'US': ['WDFW Water Access Sites', 'Idaho Fish and Game Access Yes', 'AGFC Wildlife Management Areas', 'MDC Conservation Areas Missouri', 'Missouri conservation areas boundaries',
+           'GRANIT conservation public lands New Hampshire', 'Michigan DNR state game areas boundaries', 'Michigan DNR Managed Public Land', 'North Dakota Game and Fish wildlife management areas',
+           'Mississippi WMA MDWFP boundaries', 'Kansas wildlife areas KDWP', 'Vermont state lands ANR', 'Maryland DNR lands'],
+    'CA': ['parcs regionaux Quebec MAMH', 'Ontario conservation authority owned lands', 'conservation areas Grand River Conservation Authority', 'New Brunswick protected natural areas',
+           'Nova Scotia nature reserves wilderness areas', 'Manitoba wildlife management areas', 'Saskatchewan wildlife habitat protection act lands'],
 }
-SEARCH = {'FR': [], 'CO': [], 'NS': []}
 for cc in DIRECT:
     rows = []
     for u in DIRECT[cc]:
