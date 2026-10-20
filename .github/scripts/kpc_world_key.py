@@ -199,6 +199,13 @@ def same_name(cc, a, b):
     a, b = norm(cc, a), norm(cc, b)
     if not a or not b: return False
     if a == b: return True
+    if cc in ('LT', 'LV', 'EE'):   # Oct 20: Baltic names change their endings ('Aukstaitija' = 'Aukstaitijos'): word by word, same stem
+        wa, wb = a.split(), b.split()
+        def st(x, y):
+            n = 0
+            while n < min(len(x), len(y)) and x[n] == y[n]: n += 1
+            return n >= 5 and n >= min(len(x), len(y)) - 3
+        if len(wa) == len(wb) and all(st(x, y) for x, y in zip(wa, wb)): return True
     sh, lo = (a, b) if len(a) < len(b) else (b, a)
     return len(sh) > 4 and lo.startswith(sh) and len(sh) / len(lo) >= 0.6
 OWNK = [('np', r'national park|nationaal park|nationalpark|narodni park|parco nazionale|parque nacional|parcul national|nasjonalpark|park narodowy|parc national'),
