@@ -13,7 +13,8 @@
   /* Oct 18 (Brandon's FT-710: 1-10 W out, ALC high): plain USB makes Yaesu / Icom take the sound from the MIC jack, so FT8 now uses the radio's DATA mode (DATA-U / USB-D) on those radios, like WSJT-X 'Data/Pkt' */
   const DATAOK = r => /^(yaesu|yaesu8|icom)$/.test(r.proto) && r.model !== 'xiegu';
   /* Oct 19 (Brandon): DATA mode stays; the low power was the radio's DATA MOD SOURCE menu (set it to USB), not the mode */
-  if (S.dv !== 3) { S.data = DATAOK(S) ? 'data' : 'usb'; S.dv = 3; SV('kpcCat', S); }
+  /* Oct 19 7:37 PM: back to no power after DATA mode came back, so Brandon's menu fix is on the plain USB side: plain USB again for everyone */
+  if (S.dv !== 4) { S.data = 'usb'; S.dv = 4; SV('kpcCat', S); }
   let port = null, writer = null, reader = null, rbuf = [], busy = Promise.resolve(), subs = [], fol = null;
   const say = (t, ok) => subs.forEach(f => { try { f(t, ok); } catch (e) {} });
   const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -264,7 +265,7 @@
   /* fill a <select> with every radio; pick(id) sets the right settings */
   function fillSelect(sel) { if (!sel) return; const cur = S.radio || '';
     sel.innerHTML = '<option value="">Pick your radio…</option>' + RADIOS.map(([g, L]) => `<optgroup label="${g}">` + L.map(r => `<option value="${r[0]}"${r[0] === cur ? ' selected' : ''}>${(g === 'QRP Labs & kits' || g === 'Others') ? '' : g.split(' ')[0] + ' '}${r[1]}</option>`).join('') + '</optgroup>').join('') + '<option value="other">Something else (pick the settings by hand)</option>'; }
-  function pickRadio(id) { const r = RADIO[id]; if (!r) { S.radio = id; SV('kpcCat', S); return null; } S = Object.assign({}, S, { radio: id, proto: r.proto, baud: r.baud, civ: r.civ || S.civ || '94', model: r.model, data: DATAOK(r) ? 'data' : 'usb' }); SV('kpcCat', S); return r; }
+  function pickRadio(id) { const r = RADIO[id]; if (!r) { S.radio = id; SV('kpcCat', S); return null; } S = Object.assign({}, S, { radio: id, proto: r.proto, baud: r.baud, civ: r.civ || S.civ || '94', model: r.model, data: 'usb' }); SV('kpcCat', S); return r; }
 
   function follow(fn) {
     if (fol) clearInterval(fol); fol = null; if (!fn) return; let last = '';
