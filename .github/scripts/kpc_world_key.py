@@ -61,6 +61,11 @@ SRC['AU'] = SRC['AU'] + [('NSW State Forest (Forestry Corporation NSW)', 'arcgis
 COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU').upper().split()
 
 
+def _hook(t, v, tb):
+    import traceback; notice('World key error', ''.join(traceback.format_exception(t, v, tb))[-3000:])
+import sys; sys.excepthook = _hook
+
+
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')[:3500]), flush=True)
 
 
@@ -297,7 +302,7 @@ def inside(la, lo, rs): return sum(1 for r in rs if in_ring(lo, la, r)) % 2 == 1
 def near(la, lo, b, pad): return b and b[0] - pad <= lo <= b[2] + pad and b[1] - pad <= la <= b[3] + pad
 
 
-NAMEF = ['NAME', 'Name', 'name', 'NNR_NAME', 'LNR_NAME', 'CP_NAME', 'SSSI_NAME', 'PA_NAME', 'NAME_E', 'NAME_EN', 'SITE_NAME', 'sitename', 'NAMEX', '名称', '公園名']
+NAMEF = ['nom_site', 'NAME', 'Name', 'name', 'NNR_NAME', 'LNR_NAME', 'CP_NAME', 'SSSI_NAME', 'PA_NAME', 'NAME_E', 'NAME_EN', 'SITE_NAME', 'sitename', 'NAMEX', '名称', '公園名']
 TYPEF = ['TYPE', 'Type', 'type', 'PA_TYPE', 'DESIGNATION', 'desig', 'GAZ_TYPE', 'KIND', '種別', 'TYPE_E']
 
 
@@ -642,7 +647,7 @@ for cc in COUNTRIES:
                 w1, w2 = words(cc, name), words(cc, r['n'])
                 if kp and (kp & r['_k']) and w1 and w2 and (w1 <= w2 or w2 <= w1) and inside(la, lo, r['_r']):
                     m.append([r['id'], r['n'], r['src'], 'name part + same kind + pin inside'])
-            if not m and not re.search(r'biosph|unesco|geopark|natura 2000', name + ' ' + typ, re.I):
+            if not m and not re.search(r'biosph|unesco|geopark|natura 2000', (name or '') + ' ' + (typ or ''), re.I):
                 ex = [r for r in near_r if norm(cc, r['n']) == norm(cc, name)]
                 if len(ex) == 1 or (ex and len({r['src'] for r in ex}) == 1):
                     m += [[r['id'], r['n'], r['src'], 'exact name (POTA type label differs)'] for r in ex]
