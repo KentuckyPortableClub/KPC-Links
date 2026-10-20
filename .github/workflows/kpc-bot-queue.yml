@@ -1,0 +1,50 @@
+name: KPC boundary bot queue
+# Oct 20 (Brandon: 'set the bots up on a schedule to finish and start another run'): every hour, when no boundary bot is
+# running, start the next job in data/bot-queue.json and take it off the list. Never fails (no emails); stops after 'until'.
+on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: kpc-bot-queue
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - name: Next job
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          python3 - <<'PY' || true
+          import json, os, subprocess, datetime
+          q = json.load(open('data/bot-queue.json'))
+          now = datetime.datetime.now(datetime.timezone.utc).isoformat()
+          if not q['jobs'] or now > q['until']: print('::notice title=Bot queue::nothing to do'); raise SystemExit
+          busy = []
+          for w in ('kpc-us-key.yml', 'kpc-ca-key.yml', 'kpc-world-key.yml', 'kpc-state-trails.yml', 'kpc-canada-bounds.yml'):
+              for st in ('queued', 'in_progress'):
+                  out = subprocess.run(['gh', 'api', f"repos/{os.environ['REPO']}/actions/workflows/{w}/runs?status={st}&per_page=1", '-q', '.total_count'], capture_output=True, text=True).stdout.strip()
+                  if out not in ('', '0'): busy.append(w)
+          if busy: print('::notice title=Bot queue::waiting, running: ' + ', '.join(sorted(set(busy)))); raise SystemExit
+          j = q['jobs'][0]
+          cmd = ['gh', 'api', '-X', 'POST', f"repos/{os.environ['REPO']}/actions/workflows/{j['wf']}/dispatches", '-f', 'ref=main']
+          for k, v in j['inputs'].items(): cmd += ['-f', f'inputs[{k}]={v}']
+          r = subprocess.run(cmd, capture_output=True, text=True)
+          if r.returncode: print('::notice title=Bot queue::start failed ' + r.stderr[:300]); raise SystemExit
+          q['jobs'].pop(0); json.dump(q, open('data/bot-queue.json', 'w'), indent=1)
+          print(f"::notice title=Bot queue::started {j['wf']} {j['inputs']} ({j['why']}); {len(q['jobs'])} left")
+          PY
+      - name: Save
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/bot-queue.json
+          if ! git diff --cached --quiet; then git commit -m 'Bot queue: started next job'; for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done; fi
