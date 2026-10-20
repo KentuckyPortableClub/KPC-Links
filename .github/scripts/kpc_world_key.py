@@ -33,7 +33,7 @@ SRC = {
 # Oct 18 (Brandon: 'go ahead'): PL ES FR CH AT from the European Environment Agency (official EU inventory, one place for all five):
 # Natura 2000 sites + Nationally designated areas (ex-CDDA; Switzerland reports there too, it has no Natura 2000).
 EEA = 'https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/'
-EU = ('PL', 'ES', 'FR', 'CH', 'AT', 'NL', 'PT', 'SE', 'CZ', 'SI', 'NO', 'RO', 'IT')   # Oct 19: the next 8 busiest POTA programs (NO has no Natura 2000, CDDA only)
+EU = ('PL', 'ES', 'FR', 'CH', 'AT', 'NL', 'PT', 'SE', 'CZ', 'SI', 'NO', 'RO', 'IT', 'BE', 'DK', 'FI', 'HU', 'SK', 'HR', 'IE', 'LT', 'LV', 'EE', 'LU')   # Oct 19 PM: + the other Latin-alphabet EEA countries   # Oct 19: the next 8 busiest POTA programs (NO has no Natura 2000, CDDA only)
 for _c in EU:
     SRC[_c] = [('EEA Natura 2000', 'arcgis', EEA + 'Natura2000Sites/MapServer/2', [f"MS='{_c}'", f"SITECODE LIKE '{_c}%'"]),
                ('EEA nationally designated areas', 'arcgis', EEA + 'CDDA_Dyna_WM/MapServer/4', [f"countryCode='{_c}'", f"countryCode LIKE '{_c}%'"])]
@@ -50,7 +50,7 @@ CHPREF = {'Natural Monument': ['BAFU landscapes and natural monuments (BLN)'], '
           'Wetland Reserve': ['BAFU water and migratory bird reserves', 'BAFU mire landscapes', 'BAFU floodplains', 'BAFU raised bogs', 'BAFU fens'],
           'Ramsar Site': ['BAFU Ramsar sites'], 'Nature Park': ['BAFU parks of national importance'], 'Wilderness Park': ['BAFU parks of national importance'],
           'National Park': ['BAFU parks of national importance'], 'Landscape Park': ['BAFU parks of national importance', 'BAFU landscapes and natural monuments (BLN)']}
-COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT').upper().split()
+COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU').upper().split()
 
 
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')[:3500]), flush=True)
@@ -113,7 +113,24 @@ _LOC = {'PL': r"park narodowy|park krajobrazowy|rezerwat przyrody|rezerwat|obsza
               r"sit de importanta comunitara|arie de protectie speciala avifaunistica|arie naturala protejata|rosci\d*|rospa\d*|sci|spa|parcul|lacul|de|din|si|la|al",
         'IT': r"parco nazionale|parco naturale regionale|parco naturale|parco regionale|riserva naturale statale|riserva naturale regionale|riserva naturale orientata|"
               r"riserva naturale|oasi|monumento naturale|area marina protetta|area naturale protetta|zona speciale di conservazione|zona di protezione speciale|"
-              r"sito di importanza comunitaria|zsc|zps|sic|di|del|della|dei|delle|degli|dello|e|ed|in|al|alla|sul|lago|monte|valle"}
+              r"sito di importanza comunitaria|zsc|zps|sic|di|del|della|dei|delle|degli|dello|e|ed|in|al|alla|sul|lago|monte|valle",
+        # Oct 19 PM (Brandon: 'give them something to do'): the rest of the EEA countries that use the Latin alphabet
+        'BE': r"nationaal park|natuurreservaat|erkend natuurreservaat|vlaams natuurreservaat|bosreservaat|natuurpark|parc naturel|reserve naturelle domaniale|reserve naturelle agreee|reserve naturelle|"
+              r"reserve forestiere|zone humide d interet biologique|site de grand interet biologique|habitatrichtlijngebied|vogelrichtlijngebied|het|de|en|van|der|du|des|la|le|les|et|d|l",
+        'DK': r"nationalpark|naturpark|naturreservat|vildtreservat|fredning|fredet omrade|habitatomrade|fuglebeskyttelsesomrade|natura 2000 omrade|omrade|og|ved|i|pa",
+        'FI': r"kansallispuisto|luonnonpuisto|luonnonsuojelualue|yksityinen luonnonsuojelualue|soidensuojelualue|lehtojensuojelualue|vanhojen metsien suojelualue|"
+              r"harjujensuojelualue|lintuvesiensuojelualue|kansallinen kaupunkipuisto|retkeilyalue|eramaa alue|eramaa|natura alue|suojelualue|alue|ja",
+        'HU': r"nemzeti park|tajvedelmi korzet|termeszetvedelmi terulet|termeszeti emlek|kiemelt jelentosegu termeszetmegorzesi terulet|kulonleges madarvedelmi terulet|"
+              r"kulonleges termeszetmegorzesi terulet|natura 2000 terulet|terulet|es",
+        'SK': r"narodny park|chranena krajinna oblast|narodna prirodna rezervacia|prirodna rezervacia|narodna prirodna pamiatka|prirodna pamiatka|chraneny areal|"
+              r"chranene vtacie uzemie|uzemie europskeho vyznamu|chku|npr|pr|pp|np|a|v|na|pod|nad|pri",
+        'HR': r"nacionalni park|park prirode|strogi rezervat|posebni rezervat|park suma|znacajni krajobraz|spomenik prirode|spomenik parkovne arhitekture|"
+              r"podrucje ocuvanja znacajno za ptice|podrucje ocuvanja znacajno za vrste i stanisne tipove|i|na|u|kod",
+        'IE': r"special area of conservation|special protection area|natural heritage area|proposed natural heritage area|statutory nature reserve|sac|spa|nha|pnha",
+        'LT': r"nacionalinis parkas|regioninis parkas|valstybinis rezervatas|gamtinis rezervatas|biosferos poligonas|draustinis|rezervatas|ir|prie",
+        'LV': r"nacionalais parks|dabas parks|dabas liegums|dabas rezervats|aizsargajamo ainavu apvidus|dabas piemineklis|biosferas rezervats|mikroliegums|un",
+        'EE': r"rahvuspark|looduskaitseala|maastikukaitseala|hoiuala|kaitseala|looduspark|loodusala|linnuala|ja",
+        'LU': r"zone protegee d interet national|zone protegee|reserve naturelle|reserve forestiere|naturschutzgebiet|naturpark|parc naturel|zone habitat|zone oiseaux|de|du|des|la|le|les|et|d|l|an|der|vum|am"}
 for _c in EU: GEN[_c] = _LOC[_c] + r'|parc|parco|parque|krajobrazowy|naturalny|nacional|regional|' + _EN   # local (longer) words first
 KINDS = {
     'AU': [('np', r'national park'), ('cp', r'conservation park|conservation reserve|conservation area|n\.\s?c\.\s?r|\bc\.\s?a\.'), ('nr', r'nature reserve|flora reserve|game reserve|\bn\.\s?r\.|f\.\s?f\.\s?r|\bf\.\s?r\b'),
@@ -194,11 +211,11 @@ def ownk(s): f = flat(s); return {k for k, r in OWNK if re.search(r'\b(' + r + r
 # Oct 19: what each EEA national designation code means (official Eionet vocabulary 'Designation type code',
 # dd.eionet.europa.eu/vocabulary/cdda/designationTypeCodeValue). One park in the CDDA list is often filed under several codes
 # with no kind word in its name; the code's own label ('Nature Reserve', 'Nationalpark'…) says which one is which.
-DKIND = [('np', r'national park|nationaal park|nationalpark|nasjonalpark|park narodowy|parque nacional|parc national|parco nazionale|narodni park|parcul national|parque natural nacional'),
+DKIND = [('np', r'national park|nationaal park|nationalpark|nasjonalpark|park narodowy|parque nacional|parc national|parco nazionale|narodni park|parcul national|parque natural nacional|kansallispuisto|nemzeti park|narodny park|nacionalni park|nacionalinis parkas|nacionalais parks|rahvuspark'),
          ('nnr', r'national nature reserve|narodni prirodni rezervace|reserve naturelle nationale|riserva naturale statale|national reserve'),
-         ('nr', r'nature reserve|naturreservat|natuurreservaat|naturschutzgebiet|rezerwat|reserva natural|riserva naturale|rezervatia|rezervatie|prirodni rezervace|naravni rezervat|reserve naturelle|nature conservation reserve|natural reserve|state reserve|regional reserve'),
-         ('lp', r'landscape park|protected landscape|landscape protection|landscape reserve|park krajobrazowy|chronionego krajobrazu|landschaftsschutz|chranena krajinna oblast|landskapsvern|paisagem protegida|paisaje protegido|krajinski park|regijski park|nature and landscape complex|zespol przyrodniczo'),
-         ('nat', r'nature park|naturpark|parque natural|parc naturel|parco naturale|parco regionale|prirodni park|parcul natural|regional park|provincial park|natuurpark'),
+         ('nr', r'nature reserve|naturreservat|natuurreservaat|naturschutzgebiet|rezerwat|reserva natural|riserva naturale|rezervatia|rezervatie|prirodni rezervace|naravni rezervat|reserve naturelle|nature conservation reserve|natural reserve|state reserve|regional reserve|luonnonpuisto|luonnonsuojelualue|termeszetvedelmi terulet|prirodna rezervacia|posebni rezervat|strogi rezervat|gamtinis rezervatas|valstybinis rezervatas|draustinis|dabas rezervats|dabas liegums|looduskaitseala|vildtreservat'),
+         ('lp', r'landscape park|protected landscape|landscape protection|landscape reserve|park krajobrazowy|chronionego krajobrazu|landschaftsschutz|chranena krajinna oblast|landskapsvern|paisagem protegida|paisaje protegido|krajinski park|regijski park|nature and landscape complex|zespol przyrodniczo|tajvedelmi korzet|znacajni krajobraz|aizsargajamo ainavu apvidus|maastikukaitseala'),
+         ('nat', r'nature park|naturpark|parque natural|parc naturel|parco naturale|parco regionale|prirodni park|parcul natural|regional park|provincial park|natuurpark|park prirode|dabas parks|looduspark|regioninis parkas'),
          ('nm', r'natural monument|nature monument|pomnik przyrody|prirodni pamatka|naturminne|naturdenkmal|monumento natural|monumento naturale|monument naturel|naravni spomenik|monument al naturii|national monument')]
 def dkinds(s):
     f = flat(s); k = {k for k, r in DKIND if re.search(r'\b(' + r + r')\b', f)}
