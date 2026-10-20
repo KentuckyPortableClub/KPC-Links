@@ -1,6 +1,6 @@
 # CO: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **221 of 276** parks joined to official land (same name + same kind of place). **21** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **222 of 276** parks joined to official land (same name + same kind of place). **21** to check by hand, **30** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -54,7 +54,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **221 of 276** parks joined
 - US-4579 Santa Fe National Historic Trail (National Historic Trail)
 - US-5749 Kokopelli's Trail National Recreation Area (National Recreation Area)
 - US-7845 Fisher's Peak State Park (State Park)
-- US-9591 Indian Peaks Wilderness National Conservation Area (National Conservation Area)
 - US-9603 Adobe Creek State Wildlife Area (State Wildlife Area)
 - US-9613 Bergen Peak State Wildlife Area (State Wildlife Area)
 - US-9621 Boedecker Reservoir State Wildlife Area (State Wildlife Area)
@@ -81,22 +80,43 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **221 of 276** parks joined
 - Tres Rios Field Office · PUB · BLM · ~632,194 ac
 - Colorado River Valley Field Office · PUB · BLM · ~570,728 ac
 - San Luis Valley Field Office · PUB · BLM · ~500,459 ac
+- Weminuche Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~500,310 ac
 - Adobe Town ·  · BLM herd management areas · ~444,244 ac
 - Kremmling Field Office · PUB · BLM · ~377,575 ac
+- Flat Tops Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~231,063 ac
 - Taos Plateau ·  · BLM recreation sites · ~186,840 ac
+- Maroon Bells-Snowmass Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~182,964 ac
+- Sangre de Cristo Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~179,340 ac
+- West Elk Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~176,431 ac
+- Collegiate Peaks Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~166,226 ac
+- South San Juan Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~161,010 ac
+- Mount Zirkel Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~160,505 ac
 - Piceance-East Douglas ·  · BLM herd management areas · ~158,332 ac
 - Sand Wash ·  · BLM herd management areas · ~151,435 ac
 - Alpine Triangle Recreation Area ·  · BLM recreation sites · ~146,661 ac
+- Eagles Nest Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~135,204 ac
+- La Garita Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~126,480 ac
 - MCNCA SRMA ·  · BLM recreation sites · ~123,593 ac
+- Holy Cross Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~122,946 ac
+- Uncompahgre Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~98,876 ac
 - Mockingbird Mesa ·  · BLM recreation sites · ~98,200 ac
 - Colorado State Land Board State Land Board · SRMA · Colorado State Land Board · ~84,810 ac
+- Hunter-Fryingpan Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~82,553 ac
+- Rawah Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~74,457 ac
+- Mount Evans Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~73,418 ac
+- Comanche Peak Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~68,025 ac
+- Raggeds Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~64,346 ac
 - Chico Basin · SRMA · Colorado State Land Board · ~59,852 ac
 - MCNCA - Blcak Ridge Canyons West ·  · BLM recreation sites · ~52,986 ac
 - Chancellor Ranch · SRMA · Colorado State Land Board · ~51,436 ac
 - Paradox Valley ·  · BLM recreation sites · ~44,719 ac
+- Sarvis Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~44,345 ac
 - Gateway ·  · BLM recreation sites · ~42,959 ac
 - Blue Mountain ·  · BLM recreation sites · ~42,729 ac
+- Lizard Head Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~41,586 ac
+- Buffalo Peaks Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~41,281 ac
 - Sawmill Mesa/Wagon Park ERMA ·  · BLM recreation sites · ~40,794 ac
+- Hermosa Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~37,344 ac
 - 'Unnamed' Cross Canyons ·  · BLM recreation sites · ~37,090 ac
 - Dominguez Canyon Wilderness Zone 2 ·  · BLM recreation areas · ~35,823 ac
 - Dominguez Canyon Wilderness Zone 2 ·  · BLM recreation sites · ~35,823 ac
@@ -104,27 +124,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **221 of 276** parks joined
 - Gateway ·  · BLM recreation sites · ~35,084 ac
 - Gold Belt SRMA ·  · BLM recreation sites · ~34,159 ac
 - Bangs - Zone 4 ·  · BLM recreation sites · ~32,195 ac
+- Fossil Ridge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~32,192 ac
 - Dry Creek, Zone 3 ·  · BLM recreation sites · ~30,858 ac
 - Bohart-Chico Basin · SRMA · Colorado State Land Board · ~29,268 ac
-- Two Rivers ·  · BLM recreation sites · ~28,787 ac
-- Dominguez Canyon Wilderness Zone 3 ·  · BLM recreation areas · ~28,784 ac
-- Dominguez Canyon Wilderness Zone 3 ·  · BLM recreation sites · ~28,784 ac
-- Chama ·  · BLM recreation sites · ~27,533 ac
-- Cactus Park SRMA ·  · BLM recreation sites · ~27,407 ac
-- Manti-La Sal National Forest · NF · Forest Service Region 04 Intermountain · ~27,051 ac
-- Brett Gray Ranch · SRMA · Colorado State Land Board · ~26,262 ac
-- Barrel Springs ·  · BLM recreation sites · ~24,691 ac
-- Hunting Ground ERMA ·  · BLM recreation sites · ~23,132 ac
-- Red Canyon RMZ ·  · BLM recreation sites · ~22,645 ac
-- Lowry S. of Quincy · SRMA · Colorado State Land Board · ~21,725 ac
-- Spring Creek Basin ·  · BLM herd management areas · ~21,043 ac
-- Rincon ·  · BLM recreation sites · ~21,017 ac
-- John Martin Reservoir State Wildlife Area · SCA · Colorado Parks & Wildlife · ~19,313 ac
-- Gypsum Hills ERMA ·  · BLM recreation sites · ~18,845 ac
-- San Miguel River, Zone 1 ·  · BLM recreation sites · ~18,547 ac
-- Browns Park ·  · BLM recreation sites · ~18,490 ac
-- Gunnison Gorge Wilderness ·  · BLM recreation areas · ~17,823 ac
-- Gunnison Gorge Wilderness ·  · BLM recreation sites · ~17,823 ac
-- Ute Mountain ·  · BLM recreation sites · ~17,770 ac
-- Sugar Creek BCA ·  · BLM recreation sites · ~17,296 ac
-- Rio Grande Gorge Recreation Area ·  · BLM recreation sites · ~16,948 ac

@@ -1,6 +1,6 @@
 # FL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **360 of 460** parks joined to official land (same name + same kind of place). **44** to check by hand, **56** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **379 of 460** parks joined to official land (same name + same kind of place). **38** to check by hand, **43** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -15,26 +15,20 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **360 of 460** parks joined
 - **US-10614** Roline State Conservation Area (State Conservation Area) → Cypress Creek Conservation Area (~1,339 ac, the POTA pin is inside it (different name))
 - **US-10618** Wolf Creek State Conservation Area (State Conservation Area) → Upper Aucilla Conservation Area (~2,818 ac, the POTA pin is inside it (different name))
 - **US-10619** Little River Wildlife Management Area (Wildlife Management Area) → Little River Conservation Area (~3,267 ac, same name, different kind of place)
+- **US-12121** Lower Reedy Creek: Rough Island North and South, and Johnson Island State Conservation Area (State Conservation Area) → Kissimmee Chain of Lakes (~29,709 ac, the POTA pin is inside it (different name))
 - **US-12124** Harold A. Campbell Public Use and STA 3/4 State Conservation Area (State Conservation Area) → Stormwater Treatment Areas (~47,574 ac, the POTA pin is inside it (different name))
 - **US-12126** Stormwater Treatment Area 5/6 State Conservation Area (State Conservation Area) → Stormwater Treatment Areas (~47,574 ac, same name, different kind of place)
 - **US-12127** Stormwater Treatment Area 1 West State Conservation Area (State Conservation Area) → Stormwater Treatment Areas (~47,574 ac, same name, different kind of place)
 - **US-12128** Stormwater Treatment Area 1 East State Conservation Area (State Conservation Area) → Stormwater Treatment Areas (~47,574 ac, same name, different kind of place)
-- **US-1858** Dr. Von D. Mizell-Eula Johnson State Park (State Park) → John U. Lloyd Beach State Park (~311 ac, the POTA pin is inside it (different name))
-- **US-1863** Egmont Key State Park (State Park) → Egmont Key National Wildlife Refuge (~331 ac, same name, different kind of place); Egmont Key National Wildlife Refuge (~331 ac, same name, different kind of place)
-- **US-1915** Silver Springs State Park (State Park) → Silver Springs Conservation Area (~331 ac, same name, different kind of place)
-- **US-1922** Three Rivers State Park (State Park) → Seminole Recreation Area (~17,724 ac, the POTA pin is inside it (different name))
-- **US-3607** Beker-Wingate Creek State Park (State Park) → Beker (~1,743 ac, similar name)
+- **US-12132** Chandler Slough State Conservation Area (State Conservation Area) → Kissimmee River Public Use Area (~24,820 ac, the POTA pin is inside it (different name))
+- **US-12135** Myakka River — Flatford Swamp State Conservation Area (State Conservation Area) → Upper Myakka River Watershed - Flatford Swamp (~2,357 ac, similar name)
+- **US-12136** Deep Creek Preserve Desoto County State Conservation Area (State Conservation Area) → Deep Creek Preserve (SWFWMD) (~2,029 ac, similar name)
 - **US-3621** Fort Foster State Historic Site (State Historic Site) → Open Space (~18,062 ac, the POTA pin is inside it (different name)); Hillsborough River State Park (~3,319 ac, the POTA pin is inside it (different name))
-- **US-3624** Gainesville-Hawthorne State Trail (State Trail) → Paynes Prairie Preserve State Park (~21,659 ac, the POTA pin is inside it (different name))
-- **US-3642** Olustee Battlefield State Park (State Park) → Osceola National Forest (~160,054 ac, the POTA pin is inside it (different name))
-- **US-3656** Beker - South Fork State Park (State Park) → Beker (~1,743 ac, similar name)
+- **US-3624** Gainesville-Hawthorne State Trail (State Trail) → Gainesville-to-Hawthorne State Trail (~140 ac, similar name); Paynes Prairie Preserve State Park (~21,659 ac, the POTA pin is inside it (different name))
+- **US-3637** Marjorie Harris Carr Cross State Park (State Park) → Marjorie Harris Carr Cross Florida Greenway State Recreation and Conservation Area (~74,705 ac, similar name)
 - **US-3658** Ney Landrum State Park (State Park) → St. Marks River Preserve State Park (~2,590 ac, the POTA pin is inside it (different name))
-- **US-3660** Suwannee River Wilderness State Trail (State Trail) → Suwannee River Greenway at Branford (~77 ac, similar name)
-- **US-6281** Loxahatchee River National Wild and Scenic River (National Wild and Scenic River) → Jonathan Dickinson State Park (~11,466 ac, the POTA pin is inside it (different name))
-- **US-6287** Apalachee Wildlife Management Area (Wildlife Management Area) → Seminole Recreation Area (~17,724 ac, the POTA pin is inside it (different name))
 - **US-7879** Citrus Wildlife Management Area (Wildlife Management Area) → Withlacoochee State Forest (~165,562 ac, the POTA pin is inside it (different name))
-- **US-8353** Lake Apopka North Shore State Conservation Area (State Conservation Area) → Lake Apopka Restoration Area (~20,024 ac, the POTA pin is inside it (different name))
-- **US-8679** Devil's Hammock State Conservation Area (State Conservation Area) → Upper Waccasassa Conservation Area (~4,335 ac, the POTA pin is inside it (different name))
+- **US-8353** Lake Apopka North Shore State Conservation Area (State Conservation Area) → Lake Apopka North Shore Restoration Area (~19,964 ac, similar name); Lake Apopka Restoration Area (~20,024 ac, the POTA pin is inside it (different name))
 - **US-8682** Allardt State Conservation Area (State Conservation Area) → Fort Union Conservation Area (~702 ac, the POTA pin is inside it (different name))
 - **US-8688** Lindsey State Conservation Area (State Conservation Area) → Wannee Conservation Area (~3,396 ac, the POTA pin is inside it (different name))
 - **US-8691** Mattair Springs State Conservation Area (State Conservation Area) → Woods Ferry Conservation Area (~2,852 ac, the POTA pin is inside it (different name))
@@ -44,10 +38,10 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **360 of 460** parks joined
 - **US-8699** Sandlin Bay State Conservation Area (State Conservation Area) → Pinhook Purchase Unit (~89,284 ac, the POTA pin is inside it (different name))
 - **US-8701** Shelly, Duck Pond, Hartsfield State Conservation Area (State Conservation Area) → Upper Aucilla Conservation Area (~2,818 ac, the POTA pin is inside it (different name))
 - **US-8703** Steinhatchee Falls State Conservation Area (State Conservation Area) → Lower Steinhatchee Conservation Area (~5,378 ac, the POTA pin is inside it (different name))
-- **US-8705** Stephen Foster State Conservation Area (State Conservation Area) → Stephen Foster Folk Culture Center State Park (~909 ac, similar name); Suwannee Valley Conservation Area (~1,697 ac, the POTA pin is inside it (different name))
+- **US-8705** Stephen Foster State Conservation Area (State Conservation Area) → Stephen Foster Folk Culture Center State Park (~909 ac, similar name); Stephen Foster Folk Culture Center State Park (~904 ac, similar name); Suwannee Valley Conservation Area (~1,697 ac, the POTA pin is inside it (different name))
 - **US-8713** Withlacoochee Hills State Conservation Area (State Conservation Area) → Withlacoochee East Conservation Area (~142 ac, the POTA pin is inside it (different name))
 - **US-8715** Seven Bridges State Conservation Area (State Conservation Area) → Upper Aucilla Conservation Area (~2,818 ac, the POTA pin is inside it (different name))
-- **US-8719** Horse Creek State Conservation Area (State Conservation Area) → Upper Lake Marion Creek Watershed (~290 ac, the POTA pin is inside it (different name))
+- **US-8719** Horse Creek State Conservation Area (State Conservation Area) → Upper Lake Marion Creek Watershed (~290 ac, the POTA pin is inside it (different name)); Lake Marion Creek Horseshoe Scrub Tract (~290 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -67,27 +61,14 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **360 of 460** parks joined
 - US-10616 Tyree State Conservation Area (State Conservation Area)
 - US-10617 Alapaha Bluffs State Conservation Area (State Conservation Area)
 - US-10620 Jerry Branch State Conservation Area (State Conservation Area)
-- US-11223 Ruth B. Kirby Gilchrist Blue Springs State Park (State Park)
 - US-12097 Hickory Hammock Wildlife Management Area (Wildlife Management Area)
-- US-12121 Lower Reedy Creek: Rough Island North and South, and Johnson Island State Conservation Area (State Conservation Area)
 - US-12123 Oak Creek, No Name Slough and Starvation Slough State Conservation Area (State Conservation Area)
 - US-12125 Seaboard Marsh, Telex Marsh and Yates Marsh State Conservation Area (State Conservation Area)
 - US-12130 Nubbin Slough Stormwater Treatment Area State Conservation Area (State Conservation Area)
-- US-12132 Chandler Slough State Conservation Area (State Conservation Area)
 - US-12134 A-1 Flow Equalization Basin State Conservation Area (State Conservation Area)
-- US-12135 Myakka River — Flatford Swamp State Conservation Area (State Conservation Area)
-- US-12136 Deep Creek Preserve Desoto County State Conservation Area (State Conservation Area)
-- US-13011 Shoal River Headwaters State Park (State Park)
-- US-1847 Collier-Seminole State Park (State Park)
-- US-1852 Dagny Johnson Key Largo Hammock Botanical State Park (State Park)
-- US-3612 Charlotte Harbor Preserve State Park (State Park)
-- US-3637 Marjorie Harris Carr Cross State Park (State Park)
 - US-4559 Florida Trail National Scenic Trail (National Scenic Trail)
-- US-5524 Chito Branch Reserve State Conservation Area (State Conservation Area)
-- US-6283 Plank Road State Forest (State Forest)
 - US-7374 Wysong Park State Conservation Area (State Conservation Area)
 - US-8329 Choctawhatchee & Holmes Creek State Conservation Area (State Conservation Area)
-- US-8345 Econlockhatchee Sandhills State Conservation Area (State Conservation Area)
 - US-8360 Micco Water Management Area State Conservation Area (State Conservation Area)
 - US-8674 47 Bridge State Conservation Area (State Conservation Area)
 - US-8675 Alapahoochee State Conservation Area (State Conservation Area)
@@ -114,62 +95,62 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **360 of 460** parks joined
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Water ConservationArea 3A · LRMA · UNK · ~528,969 ac
+- Eglin Air Force Base ·  · Florida Natural Areas Inventory conservation lands · ~463,448 ac
 - Tortugas Ecological Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~116,088 ac
 - Apalachicola National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~114,616 ac
+- Avon Park Air Force Range ·  · Florida Natural Areas Inventory conservation lands · ~106,074 ac
 - Water ConservationArea 2A · LRMA · UNK · ~104,661 ac
+- Lake Okeechobee Marsh ·  · Florida Natural Areas Inventory conservation lands · ~101,984 ac
 - Water Conservation Area 3B · SRMA · UNK · ~101,526 ac
 - Pinhook Purchase Unit · NF · Forest Service Region 08 Southern · ~89,284 ac
 - Rookery Bay National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~87,948 ac
+- Marjorie Harris Carr Cross Florida Greenway State Recreation and Conservation Area ·  · Florida Natural Areas Inventory conservation lands · ~74,705 ac
 - Babcock Ranch Preserve · PCON · Babcock Ranch Management, LLC · ~73,239 ac
 - Camp Blanding Military Reservation · MIL · FL Dept. of Military Affairs · ~71,599 ac
 - Choctawhatchee River Water Management Area · WPA · Northwest Florida Water Management District · ~62,693 ac
+- Weyerhaeuser Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~61,525 ac
 - Everglades Agricultural Area · WPA · South Florida Water Management District · ~51,975 ac
 - Stormwater Treatment Areas · WPA · South Florida Water Management District · ~47,574 ac
+- Miccosukee Indian Water Conservation Area ·  · Florida Natural Areas Inventory conservation lands · ~46,200 ac
+- Fisheating Creek/Lykes Brothers Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~41,596 ac
 - Guana Tolomato Matanzas National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~41,218 ac
 - Southern Glades · WPA · South Florida Water Management District · ~32,453 ac
+- Forest Systems Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~32,137 ac
+- Bright Hour Watershed ·  · Florida Natural Areas Inventory conservation lands · ~31,989 ac
+- Tyndall Air Force Base ·  · Florida Natural Areas Inventory conservation lands · ~29,946 ac
+- Kissimmee Chain of Lakes ·  · Florida Natural Areas Inventory conservation lands · ~29,709 ac
+- Green Swamp Land Authority Land Protection Agreements ·  · Florida Natural Areas Inventory conservation lands · ~29,149 ac
 - Water ConservationArea 2B · LRMA · UNK · ~28,292 ac
 - Corkscrew Regional Ecosystem Watershed · WPA · South Florida Water Management District · ~27,534 ac
+- DeLuca Preserve ·  · Florida Natural Areas Inventory conservation lands · ~27,072 ac
 - River of Grass · WPA · South Florida Water Management District · ~26,671 ac
 - Lake Okeechobee Sanctuaries · PCON · National Audubon Society, Inc. · ~26,290 ac
+- Kissimmee River Public Use Area ·  · Florida Natural Areas Inventory conservation lands · ~24,820 ac
+- T. Mabry Carlton, Jr. Memorial Reserve ·  · Florida Natural Areas Inventory conservation lands · ~24,565 ac
+- Farmton Mitigation Bank ·  · Florida Natural Areas Inventory conservation lands · ~24,323 ac
+- Bradwell Bay Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,222 ac
 - Upper Steinhatchee Conservation Area · LCA · Suwannee River Water Management District · ~23,368 ac
+- Duette Preserve ·  · Florida Natural Areas Inventory conservation lands · ~21,907 ac
+- NATC Gulf Hammock Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~21,205 ac
+- M. C. Davis - Seven Runs Creek Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~20,800 ac
 - Lake Apopka Restoration Area · LCA · St. Johns River Water Management District · ~20,024 ac
+- Lake Apopka North Shore Restoration Area ·  · Florida Natural Areas Inventory conservation lands · ~19,964 ac
+- East Coast Buffer ·  · Florida Natural Areas Inventory conservation lands · ~19,269 ac
+- Lyme Timber II - Block 4 ·  · Florida Natural Areas Inventory conservation lands · ~19,252 ac
+- Nokuse Plantation Conservation Easements ·  · Florida Natural Areas Inventory conservation lands · ~18,880 ac
+- Relay Tract Conservation Easements ·  · Florida Natural Areas Inventory conservation lands · ~18,554 ac
 - Open Space · LOTH · SOUTHWEST FLORIDA WATER MANAGEMENT DISTRICT · ~18,062 ac
 - Raiford Wildlife Management Area · PCON · PRIDE Enterprises, Inc. · ~17,793 ac
 - Seminole Recreation Area · REC · Mobile · ~17,724 ac
 - Model Lands Basin · WPA · South Florida Water Management District · ~17,187 ac
+- Kissimmee River ·  · Florida Natural Areas Inventory conservation lands · ~16,863 ac
+- Bailey Brothers Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~16,652 ac
+- Georgia Pacific-Lochloosa Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~16,651 ac
 - Lower Hillsborough Flood Detention Area · LRMA · Southwest Florida Water Management District · ~16,099 ac
+- Lower Hillsborough Wilderness Preserve ·  · Florida Natural Areas Inventory conservation lands · ~16,047 ac
+- Cape Canaveral Space Force Station ·  · Florida Natural Areas Inventory conservation lands · ~15,438 ac
 - Yucca Pens Unit · SCA · FL Fish and Wildlife Conservation Commission · ~15,044 ac
-- Upper Lakes Basin Watershed · WPA · South Florida Water Management District · ~12,997 ac
-- C-44 Stormwater Treatment Area · WPA · South Florida Water Management District · ~12,167 ac
-- Snipe Island Unit · SCA · FL Fish and Wildlife Conservation Commission · ~11,751 ac
-- Weekiwachee Preserve · LCA · Southwest Florida Water Management District · ~11,199 ac
-- Alafia River Corridor · LCA · Hillsborough County · ~9,877 ac
-- Ordway-Swisher Biological Station · SCA · University of Florida · ~9,141 ac
-- Middle Aucilla Conservation Area · LCA · Suwannee River Water Management District · ~9,125 ac
-- Hal Scott Regional Preserve and Park · LCA · St. Johns River Water Management District · ~8,457 ac
-- Econfina Conservation Area · LCA · Suwannee River Water Management District · ~8,418 ac
-- Newnans Lake Conservation Area · LCA · St. Johns River Water Management District · ~7,575 ac
-- Caloosahatchee Basin Water Storage Reservoir · LREC · South Florida Water Management District · ~7,133 ac
-- Everglades Headwaters National Wildlife Refuge And Conservation Area · NWR · Everglades Headwaters National Wildlife Refuge And Conservation Area · ~7,031 ac
-- Caravelle Ranch Conservation Area · LCA · St. Johns River Water Management District · ~6,596 ac
-- St. Johns National Wildlife Refuge · NWR · ST. JOHNS NATIONAL WILDLIFE REFUGE · ~6,431 ac
-- St. Johns National Wildlife Refuge · NWR · St. Johns National Wildlife Refuge · ~6,431 ac
-- Deer Prairie Creek Preserve · LCA · Southwest Florida Water Management District · ~6,136 ac
-- Osprey Unit · SCA · FL Fish and Wildlife Conservation Commission · ~6,103 ac
-- Lake Hancock · WPA · Southwest Florida Water Management District · ~6,008 ac
-- St. Joseph Bay State Buffer Preserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~5,589 ac
-- Lake Jesup Conservation Area · LCA · St. Johns River Water Management District · ~5,576 ac
-- Balm-Boyette Scrub · LOTH · Hillsborough County · ~5,439 ac
-- Lower Steinhatchee Conservation Area · LCA · Suwannee River Water Management District · ~5,378 ac
-- C-43 Basin Storage Reservoir - Part 1 · LREC · South Florida Water Management District · ~5,304 ac
-- C-23/C-24 South Reservoir · LREC · South Florida Water Management District · ~4,836 ac
-- Carlton Ranch, Inc. · LCA · Southwest Florida Water Management District · ~4,747 ac
-- North of Lake Okeechobee Storage Reservoir · LREC · South Florida Water Management District · ~4,701 ac
-- Silver River State Park · SP · FL Dept. of Environmental Protection, Div. of Recreation and Parks · ~4,419 ac
-- Upper Waccasassa Conservation Area · LCA · Suwannee River Water Management District · ~4,335 ac
-- Myakka River · WPA · Southwest Florida Water Management District · ~3,994 ac
-- Little Manatee River Corridor · LCA · Hillsborough County · ~3,937 ac
-- Everglades Headwaters National Wildlife Refuge And Conservation Area · NWR · EVERGLADES HEADWATERS NATIONAL WILDLIFE REFUGE AND CONSERVATION AREA · ~3,855 ac
-- Okefenokee National Wildlife Refuge · NWR · OKEFENOKEE NATIONAL WILDLIFE REFUGE · ~3,533 ac
-- Okefenokee National Wildlife Refuge · NWR · Okefenokee National Wildlife Refuge · ~3,526 ac
-- Crooked Lake West - Stuart Tract · LREC · Polk County · ~3,509 ac
+- Blackbottom Conservation Easement ·  · Florida Natural Areas Inventory conservation lands · ~14,648 ac
+- Timucuan Preserve Federally Managed Lands ·  · Florida Natural Areas Inventory conservation lands · ~14,532 ac
+- Juniper Prairie Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~14,298 ac
+- Big Gum Swamp Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,835 ac
