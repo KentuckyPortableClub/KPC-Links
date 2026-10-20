@@ -5,13 +5,6 @@
   {
    "wf": "kpc-world-key.yml",
    "inputs": {
-    "countries": "FR DE"
-   },
-   "why": "France ZNIEFF names + German rules (after the crash fix)"
-  },
-  {
-   "wf": "kpc-world-key.yml",
-   "inputs": {
     "countries": "AU GB JP PL ES CH"
    },
    "why": "top 10 refresh with tonight's rules"
