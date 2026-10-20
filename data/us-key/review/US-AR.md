@@ -33,7 +33,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **212 of 304** parks joined
 - **US-8322** Mount Magazine Scenic Byway State Trail (State Trail) → Mount Magazine WMA (~0 ac, similar name); Ozark National Forest (~1,132,752 ac, the POTA pin is inside it (different name))
 - **US-8323** Ozark Highlands Scenic Byway State Trail (State Trail) → Ozark National Forest (~1,132,752 ac, similar name); Buffalo National River (~89,040 ac, the POTA pin is inside it (different name)); Buffalo National River WMA (~0 ac, the POTA pin is inside it (different name))
 - **US-9161** Butterfield State Trail (State Trail) → Dardanelle Recreation Area (~57,103 ac, the POTA pin is inside it (different name)); Dardanelle WMA (~0 ac, the POTA pin is inside it (different name))
-- **US-9164** Lake Conway State Recreation Area (State Recreation Area) → Lake Conway WMA (~0 ac, same name, different kind of place); Bell Slough WMA (~0 ac, the POTA pin is inside it (different name))
+- **US-9164** Lake Conway State Recreation Area (State Recreation Area) → Lake Conway WMA (~0 ac, same name, different kind of place); Bell Slough (~2,350 ac, the POTA pin is inside it (different name)); Bell Slough WMA (~0 ac, the POTA pin is inside it (different name))
 - **US-9167** Lake Hinkle State Recreation Area (State Recreation Area) → Ouachita National Forest (~1,430,575 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)

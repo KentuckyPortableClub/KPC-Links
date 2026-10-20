@@ -1,6 +1,6 @@
 # MI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **279 of 388** parks joined to official land (same name + same kind of place). **64** to check by hand, **45** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **279 of 388** parks joined to official land (same name + same kind of place). **63** to check by hand, **46** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -55,17 +55,16 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **279 of 388** parks joined
 - **US-6734** Melstrand State Game Land (State Game Land) → Shingleton State Foreset Area (~368,105 ac, the POTA pin is inside it (different name))
 - **US-6745** Net River Flooding Wildlife Management Area (Wildlife Management Area) → Net River (~485 ac, similar name)
 - **US-6747** Old Fur Farm Flooding Wildlife Management Area (Wildlife Management Area) → Gladwin Forest Management Unit (~54,731 ac, the POTA pin is inside it (different name))
-- **US-6750** O'Neal Lake Flooding Wildlife Management Area (Wildlife Management Area) → Hardwood State Forest Wilderness Area (~5,188 ac, the POTA pin is inside it (different name)); Gaylord Forest Management Unit (~1,000 ac, the POTA pin is inside it (different name))
+- **US-6750** O'Neal Lake Flooding Wildlife Management Area (Wildlife Management Area) → Hardwood State Forest Wilderness Area (~5,188 ac, the POTA pin is inside it (different name))
 - **US-6756** Peterson Pond Flooding Wildlife Management Area (Wildlife Management Area) → Escanaba Forest Management Unit (~73,270 ac, the POTA pin is inside it (different name))
 - **US-6767** Rainy River Flooding Wildlife Management Area (Wildlife Management Area) → Atlanta State Forest Area (~261,158 ac, the POTA pin is inside it (different name)); Atlanta Forest Management Unit (~143,149 ac, the POTA pin is inside it (different name))
-- **US-6768** Ralph State Game Land (State Game Land) → Crystal Falls State Forest Area (~300,717 ac, the POTA pin is inside it (different name))
 - **US-6775** Sand River/Jeske Flooding Wildlife Management Area (Wildlife Management Area) → Gwinn Forest Management Unit (~17,405 ac, the POTA pin is inside it (different name))
 - **US-6779** Schlee Waterfowl National Wildlife Management Area (National Wildlife Management Area) → Jackson County Waterfowl Production Area Of Mi (~298 ac, the POTA pin is inside it (different name))
 - **US-6797** Tomahawk Creek Flooding Wildlife Management Area (Wildlife Management Area) → Atlanta Forest Management Unit (~143,149 ac, the POTA pin is inside it (different name)); Kirtland Warbler Unit Clear Lake (~19,202 ac, the POTA pin is inside it (different name))
 - **US-6808** Cedar River State Harbor (State Harbor) → Escanaba Forest Management Unit (~73,270 ac, the POTA pin is inside it (different name))
 - **US-6816** Lime Island State Harbor (State Harbor) → Lime Island State Recreation Area (~916 ac, same name, different kind of place)
 - **US-6818** Mackinac Island State Harbor (State Harbor) → Mackinac State Park (~1,840 ac, similar name)
-- **US-6823** William G. Milliken State Harbor (State Harbor) → Milliken State Park and Harbor (~36 ac, similar name); Tricentennial State Park And Harbor (~27 ac, the POTA pin is inside it (different name))
+- **US-6823** William G. Milliken State Harbor (State Harbor) → Milliken State Park and Harbor (~36 ac, similar name)
 - **US-7854** Molasses River Flooding No 2 Wildlife Management Area (Wildlife Management Area) → Molasses River Flooding No.1 State Wildlife Management Area (~3,153 ac, similar name); Gladwin Forest Management Unit (~115,904 ac, the POTA pin is inside it (different name))
 - **US-7855** Molasses River Flooding No 3 Wildlife Management Area (Wildlife Management Area) → Gladwin Forest Management Unit (~115,904 ac, the POTA pin is inside it (different name))
 
@@ -103,6 +102,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **279 of 388** parks joined
 - US-6732 Marsh Creek / Beaver Lake Flooding Wildlife Management Area (Wildlife Management Area)
 - US-6738 Mosinee State Game Land (State Game Land)
 - US-6765 Potagannissing Flooding Wildlife Management Area (Wildlife Management Area)
+- US-6768 Ralph State Game Land (State Game Land)
 - US-6780 Schoonover Waterfowl National Wildlife Management Area (National Wildlife Management Area)
 - US-6792 Strickler State Game Land (State Game Land)
 - US-6796 Tobico Marsh Wildlife Management Area (Wildlife Management Area)
