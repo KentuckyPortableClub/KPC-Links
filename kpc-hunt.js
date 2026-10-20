@@ -1793,7 +1793,7 @@
       const k = +o.khz, band = bandOf(k); if (band === 'OTHER') return { msg: 'The frequency is not on a ham band.' };
       const n = utc(new Date()), mode = String(o.mode || 'FT8').toUpperCase();
       const rec = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: n.d, tm: n.t, f: (k / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, ''), band, mode, ref: String(o.ref || '').toUpperCase(),
-        name: '', st: '', rs: o.rs || '', rr: o.rr || '', note: '', my: CALL, grid: Q.grid, x: 0, t: Date.now(), tg: String(o.g || '').toUpperCase(), ft: 1 };
+        name: '', st: '', rs: o.rs || '', rr: o.rr || '', note: '', my: /^[A-Z0-9\/]{3,12}$/.test(String(o.my || '').toUpperCase()) ? String(o.my).toUpperCase() : CALL, grid: Q.grid, x: 0, t: Date.now(), tg: String(o.g || '').toUpperCase(), ft: 1 };
       whoFill(rec, LKC[call] || null).catch(() => {}).then(() => afterLog(rec));
       return { ok: true, q: rec, n: Q.q.filter(q => q.d === n.d).length + 1 };
     },
