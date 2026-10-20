@@ -3,13 +3,6 @@
  "until": "2026-10-22T06:01:00Z",
  "jobs": [
   {
-   "wf": "kpc-state-trails.yml",
-   "inputs": {
-    "states": "CANADA"
-   },
-   "why": "Canadian trail parks with the province agency step"
-  },
-  {
    "wf": "kpc-canada-bounds.yml",
    "inputs": {},
    "why": "retry Canadian outline misses"
