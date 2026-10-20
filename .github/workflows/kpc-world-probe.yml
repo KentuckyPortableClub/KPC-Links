@@ -10,7 +10,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v5
-      - run: python3 .github/scripts/kpc_world_probe.py
+      - run: python3 .github/scripts/kpc_world_probe.py || true
       - name: Save
         run: |
           git config user.name 'github-actions[bot]'
