@@ -100,7 +100,7 @@
     <label class="hz">TX <input id="f8TxHz" inputmode="numeric" maxlength="4"> Hz</label>
     <label class="hz">RX <input id="f8RxHzIn" inputmode="numeric" maxlength="4"> Hz</label>
   </div>
-  <div class="f8-as"><label>SEND AS <select id="f8As"></select></label><label class="ck"><input type="checkbox" id="f8NoG"> Skip grid (reports only)</label></div>
+  <div class="f8-as"><label>SEND AS <select id="f8As"></select></label><label class="ck" title="Sends your report first (no grid). When both reports are in, it sends RR73 and logs: the shortest contact."><input type="checkbox" id="f8NoG"> ⚡ Fast QSO (skip grid)</label></div>
   <div class="f8-txm" id="f8Txm"></div>
   <details class="f8-set" id="f8Set"><summary>⚙ AUDIO, PTT &amp; SETTINGS</summary>
     <div class="f8-sg">
@@ -630,6 +630,9 @@
     QS.since = nowS(); if (!QS.rs) QS.rs = fmtDb(mine.db);
     S.even = mine.par === 1;
     if (isGrid(last) || tk.length === 2) { if (isGrid(last)) QS.grid = last; gen(); nextTx(2); QS.state = 'sentrpt'; }
+    /* Oct 20 (Brandon: 'if we both got signal reports we skip RR… make the skip grid the fastest qso it can be'): my report already went out, so
+       their report = both have reports: answer RR73 (got yours + 73 in one) and log, instead of R-report → RR73 → 73 */
+    else if (isRpt(last) && S.noGrid && (QS.state === 'sentrpt' || QS.next === 2)) { QS.rr = last; gen(); nextTx(4); QS.state = 'rr73'; }
     else if (isRpt(last)) { QS.rr = last; gen(); nextTx(3); QS.state = 'sentrrpt'; }
     else if (isRRpt(last)) { QS.rr = last.slice(1); gen(); nextTx(4); QS.state = 'rr73'; /* logged when RR73 goes out */ }
     else if (last === 'RR73' || last === 'RRR') { if (!QS.logged) logIt(); nextTx(5); QS.state = 'send73'; }
@@ -776,7 +779,7 @@
       const k = +o.khz; let best = null; for (const [b, f] of Object.entries(DIAL[S.mode])) { const off = (k - f) * 1000; if (off > -500 && off < 4000 && (!best || Math.abs(off - 1500) < Math.abs(best[1] - 1500))) best = [b, off]; }
       if (best) { S.band = best[0]; $('f8Band').value = S.band; if (best[1] >= 200 && best[1] <= 3000) { S.rxHz = Math.round(best[1]); } }
       saveS(); showDial(); radioTune(); hzBoxes(); drawScale();
-      QS.dx = o.call; QS.grid = ''; QS.rr = ''; QS.logged = false; QS.state = 'call'; QS.cq = false; QS.ref = o.ref || ''; QS.since = nowS(); $('f8Dx').value = o.call; $('f8DxG').value = ''; gen(); nextTx(S.noGrid ? 2 : 1);
+      QS.dx = o.call; QS.grid = ''; QS.rs = ''; QS.rr = ''; QS.logged = false; QS.state = 'call'; QS.cq = false; QS.ref = o.ref || ''; QS.since = nowS(); $('f8Dx').value = o.call; $('f8DxG').value = ''; gen(); nextTx(S.noGrid ? 2 : 1);
       note(`Listening for ${o.call}${o.ref ? ' at ' + o.ref : ''}. When they show up, tap their line to call them${RUN ? '' : ' (press START LISTENING first)'}.`, 6000);
       drawRx();
     }
