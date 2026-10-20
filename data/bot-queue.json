@@ -3,6 +3,18 @@
  "until": "2026-10-22T06:01:00Z",
  "jobs": [
   {
+   "wf": "kpc-ca-key.yml",
+   "inputs": {},
+   "why": "Québec zec + réserves fauniques: see all layer counts in one notice"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "DE"
+   },
+   "why": "Germany again after the KeyError 'code' fix"
+  },
+  {
    "wf": "kpc-state-trails.yml",
    "inputs": {
     "states": "CANADA"

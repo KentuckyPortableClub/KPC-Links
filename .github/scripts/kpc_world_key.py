@@ -588,7 +588,7 @@ for cc in COUNTRIES:
         for gx in range(int((b[0] - .6) // 1), int((b[2] + .6) // 1) + 1):
             for gy in range(int((b[1] - .6) // 1), int((b[3] + .6) // 1) + 1): GRID.setdefault((gx, gy), []).append(i)
     def nearby(la, lo): return [recs[i] for i in GRID.get((int(lo // 1), int(la // 1)), [])] if la is not None else recs
-    BYCODE = {r['code'].upper(): r for r in recs if r['code']}
+    BYCODE = {str(r['code']).upper(): r for r in recs if r.get('code')}   # Oct 20: DE crashed on records without a code
     parks = {}
     for ref, x in sorted(P.items()):
         name, typ, la, lo = x[0], x[2], x[5], x[6]
