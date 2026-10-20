@@ -1,6 +1,6 @@
 # FR: POTA parks vs official land
 
-Built 2026-10-19 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **2939 of 14367** joined (same name + same kind), **5861** to check, **5567** nothing found. Nothing below is joined.
+Built 2026-10-20 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas, IGN Géoplateforme ZNIEFF type I, IGN Géoplateforme ZNIEFF type II, IGN Géoplateforme ZNIEFF biological reserves, ZNIEFF (INPN data, Esri France) layer 0, ZNIEFF (INPN data, Esri France) layer 1. **2939 of 14367** joined (same name + same kind), **5861** to check, **5567** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
