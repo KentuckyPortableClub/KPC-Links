@@ -1290,14 +1290,6 @@
    0.0
   ],
   [
-   "US-5906",
-   "Burr Trail Scenic Byway BLM Historic Trail",
-   "UT",
-   "OpenStreetMap (not official)",
-   108,
-   0.0
-  ],
-  [
    "US-5913",
    "Historic Union Pacific Rail Trail State Park",
    "UT",
@@ -1343,6 +1335,14 @@
    "OR",
    "OpenStreetMap (not official)",
    1090,
+   0.0
+  ],
+  [
+   "US-10009",
+   "Row River National Recreation Trail",
+   "OR",
+   "OpenStreetMap (not official)",
+   54,
    0.0
   ],
   [
@@ -1402,6 +1402,14 @@
    1.6
   ],
   [
+   "US-10917",
+   "\u02bbAiea Loop State Trail",
+   "HI",
+   "OpenStreetMap (not official)",
+   6,
+   0.4
+  ],
+  [
    "US-10918",
    "Wa\u02bbahila Ridge State Trail",
    "HI",
@@ -1413,7 +1421,7 @@
    "US-3608",
    "Blackwater Heritage State Trail",
    "FL",
-   "Florida Department of Environmental Protection | Florida Department of Environmental Protection, Division of Recreation and Parks, Bureau of Natural and Cultural Resources | FDEPOpenDataPortal",
+   "Florida Department of Environmental Protection | Florida Department of Environmental Protection Office of Greenways & Trails | FDEPOpenDataPortal",
    13,
    0.0
   ],
@@ -1445,9 +1453,9 @@
    "US-3640",
    "Nature Coast State Trail",
    "FL",
-   "Florida Department of Environmental Protection | Florida Department of Environmental Protection, Division of Recreation and Parks, Bureau of Natural and Cultural Resources | FDEPOpenDataPortal",
-   67,
-   0.1
+   "Florida Department of Environmental Protection | Florida Department of Environmental Protection Office of Greenways & Trails | FDEPOpenDataPortal",
+   145,
+   0.0
   ],
   [
    "US-3644",
@@ -1461,7 +1469,7 @@
    "US-3645",
    "Palatka-to-Lake Butler State Trail",
    "FL",
-   "Florida Department of Environmental Protection | Florida Department of Environmental Protection, Division of Recreation and Parks, Bureau of Natural and Cultural Resources | FDEPOpenDataPortal",
+   "Florida Department of Environmental Protection | Florida Department of Environmental Protection Office of Greenways & Trails | FDEPOpenDataPortal",
    79,
    0.0
   ],
@@ -1469,9 +1477,9 @@
    "US-3661",
    "Tallahassee-St. Marks Historic Railroad State Trail",
    "FL",
-   "Florida Department of Environmental Protection | Florida Department of Environmental Protection, Division of Recreation and Parks, Bureau of Natural and Cultural Resources | FDEPOpenDataPortal",
-   27,
-   0.2
+   "Florida Department of Environmental Protection | Florida Department of Environmental Protection Office of Greenways & Trails | FDEPOpenDataPortal",
+   8,
+   6.4
   ],
   [
    "US-3667",
@@ -1776,12 +1784,6 @@
    "no line found"
   ],
   [
-   "US-10009",
-   "Row River National Recreation Trail",
-   "OR",
-   "no line found"
-  ],
-  [
    "US-10733",
    "Bolt Mountain BLM Historic Trail",
    "OR",
@@ -1808,12 +1810,6 @@
   [
    "US-10916",
    "Kapa\u02bbele\u02bbele State Trail",
-   "HI",
-   "no line found"
-  ],
-  [
-   "US-10917",
-   "\u02bbAiea Loop State Trail",
    "HI",
    "no line found"
   ],
@@ -1985,6 +1981,12 @@
    "US-9935",
    "Virginia Bird & Wildlife State Trail",
    "VA",
+   "a driving route, area or water trail: no single line to draw"
+  ],
+  [
+   "US-5906",
+   "Burr Trail Scenic Byway BLM Historic Trail",
+   "UT",
    "a driving route, area or water trail: no single line to draw"
   ],
   [
@@ -2467,11 +2469,11 @@
    "Blackwater Heritage State Trail",
    "1 lines 0 km from pin",
    "Florida Department of Environmental Protection | Florida Dep",
-   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/8 SITE_NAME",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/OGT/MapServer/2 SEGMENT_NAME",
    {
-    "Blackwater Heritage State Trail": [
+    "Blackwater Heritage Trail Corridor": [
      13,
-     "UNIT_ID=S00231 NAME=Blackwater Heritage State Trail (Military Heritage Trail) USE=Hiking/Biking SURFACE=Paved ACCESSIBILITY=No"
+     "CORRIDOR=Blackwater Heritage Trail Corridor"
     ]
    }
   ],
@@ -2873,13 +2875,21 @@
   ],
   [
    "Nature Coast State Trail",
-   "5 lines 0 km from pin",
+   "12 lines 0 km from pin",
    "Florida Department of Environmental Protection | Florida Dep",
-   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/8 SITE_NAME",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/OGT/MapServer/2 SEGMENT_NAME",
    {
-    "Nature Coast State Trail": [
-     67,
-     "UNIT_ID=S00253 NAME=Nature Coast State Trail USE=Hiking/Biking SURFACE=Concrete ACCESSIBILITY=No"
+    "Nature Coast Regional Connector Trail": [
+     65,
+     "CORRIDOR=Nature Coast Regional Connector Trail"
+    ],
+    "Nature Coast Trail Corridor": [
+     74,
+     "CORRIDOR=Nature Coast Trail Corridor"
+    ],
+    "Nature Coast Trail": [
+     6,
+     "CORRIDOR=Nature Coast Trail Corridor"
     ]
    }
   ],
@@ -3077,13 +3087,17 @@
   ],
   [
    "Palatka-to-Lake Butler State Trail",
-   "8 lines 0 km from pin",
+   "4 lines 0 km from pin",
    "Florida Department of Environmental Protection | Florida Dep",
-   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/8 SITE_NAME",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/OGT/MapServer/2 SEGMENT_NAME",
    {
     "Palatka-to-Lake Butler State Trail": [
-     80,
-     "UNIT_ID=S00266 NAME=Palatka-Lake Butler State Trail USE=Hiking/Biking SURFACE=Asphalt ACCESSIBILITY=ADA"
+     70,
+     "CORRIDOR=Palatka to Lake City Corridor"
+    ],
+    "Palatka to Lake Butler State Trail": [
+     9,
+     "CORRIDOR=Palatka to Lake City Corridor"
     ]
    }
   ],
@@ -3281,13 +3295,17 @@
   ],
   [
    "Tallahassee-St. Marks Historic Railroad State Trail",
-   "7 lines 0 km from pin",
+   "3 lines 6 km from pin",
    "Florida Department of Environmental Protection | Florida Dep",
-   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/8 SITE_NAME",
+   "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/OGT/MapServer/2 SEGMENT_NAME",
    {
-    "Tallahassee-St. Marks Historic Railroad State Trail": [
-     27,
-     "UNIT_ID=S00207 NAME=Tallahassee Saint Marks Historic Railroad State Trail USE=Hiking/Biking SURFACE=Paved ACCESSIBILITY=No"
+    "Tallahassee to St . Marks Historic Railroad State Trail": [
+     4,
+     "CORRIDOR=Capital Cascades Corridor"
+    ],
+    "Tallahassee-St Marks Historic Railroad State Trail": [
+     4,
+     "CORRIDOR=FNST Corridor"
     ]
    }
   ],
@@ -3949,13 +3967,13 @@
    "Perea Nature National Recreation Trail",
    "skip (not state/federal)",
    "Jay.puckett_wsp5",
-   "Santa Fe National Historic Trail"
+   "US Forest Service Trails"
   ],
   [
    "Perea Nature National Recreation Trail",
    "skip (not state/federal)",
    "Jay.puckett_wsp5",
-   "US Forest Service Trails"
+   "Santa Fe National Historic Trail"
   ],
   [
    "Perea Nature National Recreation Trail",
@@ -4081,13 +4099,13 @@
    "White Ridge National Recreation Trail",
    "skip (not state/federal)",
    "Jay.puckett_wsp5",
-   "Santa Fe National Historic Trail"
+   "US Forest Service Trails"
   ],
   [
    "White Ridge National Recreation Trail",
    "skip (not state/federal)",
    "Jay.puckett_wsp5",
-   "US Forest Service Trails"
+   "Santa Fe National Historic Trail"
   ],
   [
    "White Ridge National Recreation Trail",
@@ -4213,13 +4231,13 @@
    "White Ridge",
    "skip (not state/federal)",
    "Jay.puckett_wsp5",
-   "Santa Fe National Historic Trail"
+   "US Forest Service Trails"
   ],
   [
    "White Ridge",
    "skip (not state/federal)",
    "Jay.puckett_wsp5",
-   "US Forest Service Trails"
+   "Santa Fe National Historic Trail"
   ],
   [
    "White Ridge",
