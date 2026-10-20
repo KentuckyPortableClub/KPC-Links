@@ -3,13 +3,6 @@
  "until": "2026-10-22T06:01:00Z",
  "jobs": [
   {
-   "wf": "kpc-us-key.yml",
-   "inputs": {
-    "states": "CO AR NH MI ND VT MD MO"
-   },
-   "why": "SWA rule + six new state maps"
-  },
-  {
    "wf": "kpc-world-key.yml",
    "inputs": {
     "countries": "FR DE"
