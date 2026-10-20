@@ -197,6 +197,13 @@ MORE = [('Québec recognized nature reserves (MELCCFP)', 'https://geo.environnem
 # Oct 20 (probe 3): Nova Scotia Parks and Protected Areas System, layer 1 = parks + protected areas (layer 0 = only proposed)
 MORE.append(('Nova Scotia parks and protected areas', 'https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/1', None))
 MORE.append(('Manitoba wildlife lands (Government of Manitoba)', 'https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0', None))
+# Oct 20 (probe 6): Québec MRNF recreation territories (TRQ): ZEC (POTA files many as 'Nature Reserve') + réserves fauniques; outfitters (pourvoiries) are leases, left out
+try:
+    _q = 'https://serviceswebcarto.mern.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer'
+    _ql = [l for l in (get(_q, {'f': 'json'}).get('layers') or []) if re.search(r'zec|zone d|faunique|parc', l.get('name', ''), re.I) and not re.search(r'pourvoir', l.get('name', ''), re.I) and not l.get('subLayerIds')]
+    notice('Canada more layers', 'Québec TRQ layers: ' + ', '.join(f"{l['id']}:{l['name']}" for l in _ql))
+    MORE += [(f"Québec {l['name']} (MRNF)", f"{_q}/{l['id']}", None) for l in _ql]
+except Exception as ex: notice('Canada more layers', f'Québec TRQ list FAILED: {ex}')  # noqa: BLE001
 for e in MORE:
     try: g = arc_pull(e[0], e[1], e[2]); recs += g; extra += len(g); notice('Canada more layers', f'{e[0]}: {len(g)}')
     except Exception as ex: notice('Canada more layers', f'{e[0]} FAILED: {ex}')  # noqa: BLE001

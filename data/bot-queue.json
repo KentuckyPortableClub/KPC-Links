@@ -3,9 +3,14 @@
  "until": "2026-10-22T06:01:00Z",
  "jobs": [
   {
+   "wf": "kpc-ca-key.yml",
+   "inputs": {},
+   "why": "Qu\u00e9bec ZEC + wildlife reserves (MRNF)"
+  },
+  {
    "wf": "kpc-us-key.yml",
    "inputs": {
-    "states": "CO AR NH MI ND VT MD"
+    "states": "CO AR NH MI ND VT MD MO"
    },
    "why": "SWA rule + six new state maps"
   },
