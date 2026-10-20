@@ -1,219 +1,123 @@
 {
- "WA": {
-  "direct": [
-   {
-    "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/MapServices?f=json",
-    "status": 200,
-    "info": "layers: "
-   },
-   {
-    "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/MapServices/WildlifeAreas/MapServer?f=json",
-    "status": 200,
-    "info": "layers: 0:Wildlife Areas"
-   }
-  ],
-  "search": [
-   {
-    "q": "WDFW water access areas",
-    "title": "20155 Washougal SMAP Web Layers",
-    "owner": "Trista.Kobluskie_Otak",
-    "url": "https://services2.arcgis.com/yhIfgvwxY3mhZjvt/arcgis/rest/services/20155_Washougal_SMAP_Web_Layers/FeatureServer",
-    "views": 156175
-   },
-   {
-    "q": "WDFW water access areas",
-    "title": "Significant Natural Resources - Sum_SNR",
-    "owner": "brian.hall@parks.wa.gov_wa_stateparks",
-    "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/SignificantNaturalResources_Sum_SNR/FeatureServer",
-    "views": 72708
-   },
-   {
-    "q": "WDFW water access areas",
-    "title": "Significant Natural Resources - Importance",
-    "owner": "brian.hall@parks.wa.gov_wa_stateparks",
-    "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/SignificantNaturalResources_Importance/FeatureServer",
-    "views": 68547
-   },
-   {
-    "q": "WDFW water access areas",
-    "title": "Mapped Chinook Distribution in King County",
-    "owner": "KingCounty",
-    "url": "https://services.arcgis.com/Ej0PsM5Aw677QF1W/arcgis/rest/services/CHINBUFF_AREA_219/FeatureServer",
-    "views": 68131
-   },
-   {
-    "q": "WDFW water access areas",
-    "title": "Critical_Areas",
-    "owner": "NP_GIS",
-    "url": "https://services7.arcgis.com/5d703jjhemO6FlIW/arcgis/rest/services/Critical_Areas/FeatureServer",
-    "views": 58318
-   },
-   {
-    "q": "WDFW water access areas",
-    "title": "River Miles - USGS & WDFW",
-    "owner": "WAECY_Geoservices",
-    "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/ECY/FeatureServer/9",
-    "views": 42884
-   }
-  ]
- },
- "ID": {
-  "direct": [
-   {
-    "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services?f=json",
-    "status": 200,
-    "info": "layers: "
-   }
-  ],
-  "search": []
- },
- "MO": {
-  "direct": [
-   {
-    "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services?f=json",
-    "status": 200,
-    "info": "layers: "
-   },
-   {
-    "url": "https://gis.mdc.mo.gov/arcgis/rest/services?f=json",
-    "status": 0,
-    "info": ""
-   }
-  ],
-  "search": [
-   {
-    "q": "Missouri Department of Conservation areas MDC lands",
-    "title": "MO_Missouri_Department_of_Conservation_Boat_Ramps",
-    "owner": "MSDISMizzou",
-    "url": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/arcgis/rest/services/MO_Missouri_Department_of_Conservation_Boat_Ramps/FeatureServer",
-    "views": 33652
-   },
-   {
-    "q": "Missouri Department of Conservation areas MDC lands",
-    "title": "Shannon County_WFL1",
-    "owner": "rlangell@uvm.edu_UVM",
-    "url": "https://services1.arcgis.com/YiULsZbgRKmBtdZN/arcgis/rest/services/Shannon_County_WFL1/FeatureServer",
-    "views": 4853
-   },
-   {
-    "q": "Missouri Department of Conservation areas MDC lands",
-    "title": "MO_Missouri_Department_of_Conservation_Lands",
-    "owner": "MSDISMizzou",
-    "url": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/arcgis/rest/services/MO_Missouri_Department_of_Conservation_Lands/FeatureServer",
-    "views": 3360
-   },
-   {
-    "q": "Missouri Department of Conservation areas MDC lands",
-    "title": "Habitat Conservation Plan - Stands and Compartments Layers",
-    "owner": "MDC_Wildlife",
-    "url": "https://services1.arcgis.com/BEFhRGD6ppzvv08z/arcgis/rest/services/HCP_ForestryReff_gdb/FeatureServer",
-    "views": 2254
-   },
-   {
-    "q": "Missouri Department of Conservation areas MDC lands",
-    "title": "MDC_Lands selection_Hwy13corridor",
-    "owner": "AcmeTours",
-    "url": "https://services8.arcgis.com/hLMweKWkvQ55oFSO/arcgis/rest/services/MDC_Lands_selection_Hwy13corridor/FeatureServer",
-    "views": 191
-   },
-   {
-    "q": "Missouri Department of Conservation areas MDC lands",
-    "title": "MO_MDC_Trails",
-    "owner": "MSDISMizzou",
-    "url": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/arcgis/rest/services/MO_MDC_Trails/FeatureServer",
-    "views": 134
-   }
-  ]
- },
  "QC": {
   "direct": [
    {
-    "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer?f=json",
+    "url": "https://servicescarto.mern.gouv.qc.ca/pes/rest/services/Territoire?f=json",
     "status": 200,
-    "info": "layers: 23:Ensemble des aires protégées et autres mesures de conservation efficaces, 24:Territoires d’importance pour la conservation, 0:Aires protégées du MELCCFP, 1:AP - Habitats espèces floristiques men. ou vuln. - MELCCFP, 2:AP - Habitats fauniques - MELCCFP Faune, 3:AP - Parc marin du Saguenay–Saint-Laurent - MELCCFP Parcs, 4:AP - Parcs nationaux du Québec - MELCCFP Parcs, 5:AP - Paysages humanisés - MELCCFP, 6:AP - Refuges fauniques - MELCCFP Faune, 7:AP - Réserves aquatiques - MELCCFP, 8:AP - Réserves de biodiversité - MELCCFP, 9:AP - Réserves de territoire aux fins d’aire protégée - MELCCFP, 10:AP - Réserves écologiques - MELCCFP, 11:AP - Réserves marines - MELCCFP, 12:AP - Réserves naturelles reconnues - MELCCFP, 13:AP - Territoires mis en réserve - MELCCFP, 14:Aires protégées du MRNF Forêts, 15:AP - Écosystèmes forestiers exceptionnels - MRNF Forêts, 16:AP - Refuges biologiques - MRNF Forêts, 17:Aires protégées fédérales, 18:AP - Parcs fédéraux, 19:AP - Refuges d’oiseaux migrateurs - Fédéral, 20:AP - Réserves nationales de faune - Fédéral, 21:Autres aires protégées, 22:AP - Autres aires protégées, 25:AMCE - Autres mesures de conservation efficaces"
-   }
-  ],
-  "search": []
- },
- "ON": {
-  "direct": [
-   {
-    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer?f=json",
-    "status": 200,
-    "info": "layers: 2:Conservation Reserve Regulated, 11:Conservation Authority Admin Area, 15:Ecodistrict, 16:Ecoregion, 17:Ecozone, 10:Federal Protected Area, 12:Indian Reserve, 1:Landform Conservation Area, 6:MNR District, 7:MNR Region, 3:Municipal Park, 14:Municipal Bnd Lower And Single, 13:Municipal Bnd Upper And Dist, 9:National Wildlife Area, 8:OPS Region, 5:Provincial Park Admin Zone, 4:Provincial Park Regulated, 0:Province, 18:Site District, 19:Site Region"
+    "info": "layers: "
    },
    {
-    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open01/MapServer?f=json",
+    "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services?f=json",
     "status": 200,
-    "info": "layers: 33:Building As Symbol, 28:Spot Height, 27:Bathymetry Point, 6:OHN Hydrographic Point, 30:Bathymetry Line, 29:Contour, 9:OHN Hydrographic Line, 7:Constructed Drain, 14:OHN Shoreline, 26:OHN Watercourse, 35:Built Up Area, 34:Building To Scale, 31:Bathymetry Index, 10:OHN Hydrographic Poly, 11:Tile Drainage Area, 15:Wetland With Significance, 25:OHN Waterbody"
+    "info": "layers: "
    }
   ],
   "search": [
    {
-    "q": "Ontario conservation authority properties conservation lands",
-    "title": "Schedule A - Floodplain Overlay: Kingston Zoning By-Law (2022-62)",
-    "owner": "PlanningGISAdmin",
-    "url": "https://utility.arcgis.com/usrsvcs/servers/8c60472eb22e42a09f319d83d8f918e4/rest/services/Parks/ScheduleA_FloodplainOverlay/FeatureServer",
-    "views": 92642
+    "q": "territoires fauniques structures",
+    "title": "Territoire faunique structure_2017",
+    "owner": "MRNreg02",
+    "url": "https://tiles.arcgis.com/tiles/QUMtIjQGQHkd83b0/arcgis/rest/services/Territoire_faunique_structure_2017/MapServer",
+    "views": 54783
    },
    {
-    "q": "Ontario conservation authority properties conservation lands",
-    "title": "AGOL_OP_2024",
-    "owner": "cop.blee",
-    "url": "https://services3.arcgis.com/FkQ7EeWcZFoXIXH7/arcgis/rest/services/AGOL_OP_2024/FeatureServer",
-    "views": 60912
+    "q": "territoires fauniques structures",
+    "title": "Territoires_structurés",
+    "owner": "rihab.saadouni_cpnie",
+    "url": "https://services3.arcgis.com/nQ813Wc14IRR9k4K/arcgis/rest/services/Territoires_structurés/FeatureServer",
+    "views": 25807
    },
    {
-    "q": "Ontario conservation authority properties conservation lands",
-    "title": "Moccasin Identifier Web Map_WFL1",
-    "owner": "marnie.benson",
-    "url": "https://services7.arcgis.com/A844wbkH3NekT4hR/arcgis/rest/services/Moccasin_Identifier_Web_Map_WFL1/FeatureServer",
-    "views": 28691
+    "q": "territoires fauniques structures",
+    "title": "Territoires_Fauniques_Structures_gasp",
+    "owner": "CREGaspesie1",
+    "url": "https://services6.arcgis.com/w3liE2atSBJo4rbN/arcgis/rest/services/Territoires_Fauniques_Structures_gasp/FeatureServer",
+    "views": 1616
    },
    {
-    "q": "Ontario conservation authority properties conservation lands",
-    "title": "ELC_trca",
-    "owner": "trca_d.macleod",
-    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ELC/FeatureServer",
-    "views": 12713
+    "q": "territoires fauniques structures",
+    "title": "Territoires fauniques récréatifs",
+    "owner": "Region_de_la_biosphere_de_Charlevoix",
+    "url": "https://services5.arcgis.com/8vJdxIDFeGpPiHt7/arcgis/rest/services/Territoires_fauniques_récréatifs/FeatureServer",
+    "views": 1007
    },
    {
-    "q": "Ontario conservation authority properties conservation lands",
-    "title": "NewZoningBylaw_Option1",
-    "owner": "GISCOB",
-    "url": "https://services1.arcgis.com/xbWF6o8qyXoMFa8L/arcgis/rest/services/NewZoningBylaw_Option1/FeatureServer",
-    "views": 10396
+    "q": "territoires fauniques structures",
+    "title": "Projet_MN",
+    "owner": "amlapointe777",
+    "url": "https://services7.arcgis.com/51FKJeyw4LHSTQeV/arcgis/rest/services/Projet_MN/FeatureServer",
+    "views": 760
    },
    {
-    "q": "Ontario conservation authority properties conservation lands",
-    "title": "SWQ_ShiningHill",
-    "owner": "tferus",
-    "url": "https://services3.arcgis.com/tSwsWwbYRimLwcCZ/arcgis/rest/services/SWQ_ShiningHill/FeatureServer",
-    "views": 9544
+    "q": "territoires fauniques structures",
+    "title": "Territoires_Fauniques_Structures_SHP",
+    "owner": "GestRQ04",
+    "url": "https://services5.arcgis.com/UEVVe2rnDgA8yO8d/arcgis/rest/services/Territoires_Fauniques_Structures_SHP/FeatureServer",
+    "views": 47
+   },
+   {
+    "q": "reserves fauniques Quebec",
+    "title": "Aires protégées autres",
+    "owner": "rihab.saadouni_cpnie",
+    "url": "https://services3.arcgis.com/nQ813Wc14IRR9k4K/arcgis/rest/services/Aires_protégées_autres/FeatureServer",
+    "views": 7113
+   },
+   {
+    "q": "reserves fauniques Quebec",
+    "title": "TRQ_100k_gdb",
+    "owner": "KZA_NRWO",
+    "url": "https://services7.arcgis.com/3b88yRqnApAazx5a/arcgis/rest/services/TRQ_100k_gdb/FeatureServer",
+    "views": 915
+   },
+   {
+    "q": "reserves fauniques Quebec",
+    "title": "AP_nit",
+    "owner": "kgoulet_CPNIE",
+    "url": "https://services3.arcgis.com/nQ813Wc14IRR9k4K/arcgis/rest/services/AP_nit/FeatureServer",
+    "views": 600
+   },
+   {
+    "q": "pourvoiries droits exclusifs",
+    "title": "Territoire récréatifs et protégés",
+    "owner": "Nathalie4205",
+    "url": "https://services8.arcgis.com/yvy06yJ2ktvgwNxC/arcgis/rest/services/Territoire_récréatifs_et_protégés/FeatureServer",
+    "views": 283576
+   },
+   {
+    "q": "pourvoiries droits exclusifs",
+    "title": "Pourv_excl",
+    "owner": "nthibeault_MRC_DDR",
+    "url": "https://services.arcgis.com/u17rFbPcC1ozsiJ0/arcgis/rest/services/Pourv_excl/FeatureServer",
+    "views": 43149
+   },
+   {
+    "q": "pourvoiries droits exclusifs",
+    "title": "Pourvoiries à droits exclusifs",
+    "owner": "TLGIRT_Admin_04",
+    "url": "https://services3.arcgis.com/xTkG7yfC1MB1TZDs/arcgis/rest/services/pourvoiries_a_droits_exclusifs_03_04/FeatureServer",
+    "views": 11024
+   },
+   {
+    "q": "pourvoiries droits exclusifs",
+    "title": "POURVOIRIE_600m",
+    "owner": "FredMinelli",
+    "url": "https://services5.arcgis.com/UEVVe2rnDgA8yO8d/arcgis/rest/services/POURVOIRIE_600m/FeatureServer",
+    "views": 3638
+   },
+   {
+    "q": "pourvoiries droits exclusifs",
+    "title": "Pourvoirie à droits exclusifs",
+    "owner": "pierre.tremblay_dgr09",
+    "url": "https://serviceswebcarto.mern.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/8",
+    "views": 2814
+   },
+   {
+    "q": "pourvoiries droits exclusifs",
+    "title": "Unités territoriales",
+    "owner": "phuart",
+    "url": "https://services3.arcgis.com/xTkG7yfC1MB1TZDs/arcgis/rest/services/Unités_territoriales/FeatureServer",
+    "views": 2643
    }
   ]
- },
- "MS": {
-  "direct": [],
-  "search": [
-   {
-    "q": "MDWFP wildlife management areas",
-    "title": "WFL2_Basemap_Items",
-    "owner": "Rachel_CCE",
-    "url": "https://services6.arcgis.com/8EipYlXFYbtSN973/arcgis/rest/services/WFL2_Basemap_Items/FeatureServer",
-    "views": 5205
-   },
-   {
-    "q": "MDWFP wildlife management areas",
-    "title": "State Wildlife Action Plan Conservation Priority Areas",
-    "owner": "Christopher_Tracey_NatureServe",
-    "url": "https://services.arcgis.com/EVsTT4nNRCwmHNyb/arcgis/rest/services/SWAP_Mapping/FeatureServer",
-    "views": 4837
-   }
-  ]
- },
- "KS": {
-  "direct": [],
-  "search": []
  }
 }
