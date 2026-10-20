@@ -3,13 +3,6 @@
  "until": "2026-10-22T06:01:00Z",
  "jobs": [
   {
-   "wf": "kpc-us-key.yml",
-   "inputs": {
-    "states": ""
-   },
-   "why": "every US state with all new rules and maps"
-  },
-  {
    "wf": "kpc-state-trails.yml",
    "inputs": {
     "states": "CANADA"
