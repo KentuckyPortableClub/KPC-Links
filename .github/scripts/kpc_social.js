@@ -322,6 +322,7 @@ tasks.bandalert = async () => {
 
 // Member activation recap: a member finished a valid activation (10+ contacts) at a Kentucky park.
 // One post per call per UTC day (every park that day in one post, counted as activations), with a map picture. Only the last 3 days.
+const STN = { AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California', CO: 'Colorado', CT: 'Connecticut', DE: 'Delaware', DC: 'D.C.', FL: 'Florida', GA: 'Georgia', HI: 'Hawaii', ID: 'Idaho', IL: 'Illinois', IN: 'Indiana', IA: 'Iowa', KS: 'Kansas', KY: 'Kentucky', LA: 'Louisiana', ME: 'Maine', MD: 'Maryland', MA: 'Massachusetts', MI: 'Michigan', MN: 'Minnesota', MS: 'Mississippi', MO: 'Missouri', MT: 'Montana', NE: 'Nebraska', NV: 'Nevada', NH: 'New Hampshire', NJ: 'New Jersey', NM: 'New Mexico', NY: 'New York', NC: 'North Carolina', ND: 'North Dakota', OH: 'Ohio', OK: 'Oklahoma', OR: 'Oregon', PA: 'Pennsylvania', RI: 'Rhode Island', SC: 'South Carolina', SD: 'South Dakota', TN: 'Tennessee', TX: 'Texas', UT: 'Utah', VT: 'Vermont', VA: 'Virginia', WA: 'Washington', WV: 'West Virginia', WI: 'Wisconsin', WY: 'Wyoming' };
 tasks.recaps = async () => {
   const h = await history(), calls = new Set(members());
   const park = Object.fromEntries(KY.parks.map(p => [p.c, p]));
@@ -330,6 +331,19 @@ tasks.recaps = async () => {
     const d = String(d0).replace(/\D/g, '').slice(0, 8);
     if (!calls.has(c) || q < 10 || !/^\d{8}$/.test(d)) continue;
     (groups[c + '|' + d] = groups[c + '|' + d] || { call: c, date: d, parks: [], qsos: 0 }).parks.push({ ref, q });
+  }
+  /* Oct 20 (Brandon: 'Yes members yes'): members' activations OUTSIDE Kentucky too, from each member's POTA profile (recent activity) */
+  for (const c of calls) {
+    let pr; try { pr = await getJSON(`${API}/profile/${c}`); } catch (e) { notice(`Recaps: no POTA profile for ${c} (${e.message})`); continue; }
+    for (const a of ((pr.recent_activity || {}).activations || [])) {
+      const ref = String(a.reference || '').toUpperCase(), d = String(a.date || '').replace(/\D/g, '').slice(0, 8), q = +a.total || 0;
+      if (!ref || park[ref] || q < 10 || !/^\d{8}$/.test(d)) continue;   // Kentucky parks come from the park history above
+      const g = (groups[c + '|' + d] = groups[c + '|' + d] || { call: c, date: d, parks: [], qsos: 0 });
+      if (g.parks.some(x => x.ref === ref)) continue;
+      const loc = String(a.location || ''), st = /^US-([A-Z]{2})/.exec(loc);
+      g.parks.push({ ref, q, name: a.park || ref, st: st ? (STN[st[1]] || st[1]) : (loc || '') });
+    }
+    await sleep(400);
   }
   const iso = d => `${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6, 8)}`;
   const keys = Object.keys(groups).sort();
@@ -352,7 +366,11 @@ tasks.recaps = async () => {
     const g = groups[k];
     const dt0 = new Date(iso(g.date) + 'T12:00:00Z');
     const day = `${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dt0.getUTCDay()]}, ${MN[dt0.getUTCMonth()]} ${dt0.getUTCDate()}`;
-    const ps = g.parks.map(p => ({ q: p.q, ref: p.ref, name: (park[p.ref] || {}).n || p.ref, la: (park[p.ref] || {}).la, lo: (park[p.ref] || {}).lo, co: (park[p.ref] || {}).co }));
+    const ps = g.parks.map(p => ({ q: p.q, ref: p.ref, name: (park[p.ref] || {}).n || p.name || p.ref, la: (park[p.ref] || {}).la, lo: (park[p.ref] || {}).lo, co: (park[p.ref] || {}).co, st: p.st || '' }));
+    for (const p of ps) if (p.la == null && !park[p.ref]) {   // outside Kentucky: ask POTA where the park is (for the map pin)
+      try { const j = await getJSON(`${API}/park/${p.ref}`); if (j && isFinite(+j.latitude)) { p.la = +j.latitude; p.lo = +j.longitude; } } catch (e) { /* no pin */ }
+      await sleep(300);
+    }
     // no '2-fer' wording (Brandon Oct 17: 'just number of activations'); overlapping parks share the same contacts, so don't add them twice
     const over = ps.length > 1 && ps.every((p, i) => ps.every((q, k) => i === k || ((park[p.ref] || {}).tf || []).includes(q.ref)));
     g.qsos = over ? Math.max(...ps.map(p => p.q)) : ps.reduce((a, p) => a + p.q, 0);
@@ -376,9 +394,9 @@ tasks.recaps = async () => {
     const CLOSE = [`${g.call} was happy to hear so many of you. Hope to catch you next time.`, 'Thanks to every hunter who called in. See you down the log!',
       'If you got them, thanks for the call. If you didn\'t, there\'s always next time.', 'Great signals and great company. Thanks, everyone!', 'Keep an eye on the spots, there\'s more where that came from.'];
     const text = pick(OPEN, 1) + pick(MID, 2) + '\n\n' +
-      ps.map(p => `🌲 ${p.ref} · ${p.name}${p.co ? ` (${p.co} County)` : ''} · ${p.q} contacts`).join('\n') +
+      ps.map(p => `🌲 ${p.ref} · ${p.name}${p.co ? ` (${p.co} County)` : p.st ? ` (${p.st})` : ''} · ${p.q} contacts`).join('\n') +
       '\n\n' + pick(CLOSE, 3) + '\n\n73,\nKPC';
-    await post({ title, text, link: `${SITE}kpc-park-notes.html#${ps[0].ref}`, file: pic || undefined });
+    await post({ title, text, link: `${SITE}${park[ps[0].ref] ? 'kpc-park-notes.html' : 'kpc-park-notes-us.html'}#${ps[0].ref}`, file: pic || undefined });
     state.recaps.push(k); if (g.also) state.recaps.push(g.also); state.recaps = state.recaps.slice(-2000); save();
     await sleep(2000);
   }

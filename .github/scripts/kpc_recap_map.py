@@ -14,6 +14,10 @@ W, H = 1200, 630
 info = json.load(sys.stdin)
 out = sys.argv[1]
 counties = json.load(open('kpc-ky-counties-hd.json'))
+# Oct 20 (Brandon: members' activations outside Kentucky too): pins outside Kentucky = a map of the states around them instead
+pins0 = [p for p in info.get('parks', []) if p.get('la') and p.get('lo')]
+KYBOX = (-89.6, -81.9, 36.45, 39.2)
+inky = all(KYBOX[0] <= p['lo'] <= KYBOX[1] and KYBOX[2] <= p['la'] <= KYBOX[3] for p in pins0)
 
 
 def font(size, bold=True, mono=False):
@@ -36,8 +40,13 @@ for y in range(H):
 
 # map area on the right
 mx0, my0, mx1, my1 = 430, 120, 1170, 560
-lon0, lon1, lat0, lat1 = -89.6, -81.9, 36.45, 39.2
-kx = math.cos(math.radians(37.8))
+lon0, lon1, lat0, lat1 = KYBOX
+if not inky:
+    los = [p['lo'] for p in pins0] + [-84.3]; las = [p['la'] for p in pins0] + [37.8]   # keep Kentucky in view: home base
+    lon0, lon1, lat0, lat1 = min(los) - 2.5, max(los) + 2.5, min(las) - 2, max(las) + 2
+    if lon1 - lon0 < 9: c = (lon0 + lon1) / 2; lon0, lon1 = c - 4.5, c + 4.5
+    if lat1 - lat0 < 5: c = (lat0 + lat1) / 2; lat0, lat1 = c - 2.5, c + 2.5
+kx = math.cos(math.radians((lat0 + lat1) / 2))
 sx = (mx1 - mx0) / ((lon1 - lon0) * kx)
 sy = (my1 - my0) / (lat1 - lat0)
 s = min(sx, sy)
@@ -51,16 +60,33 @@ def pt(lo, la):
 
 layer = Image.new('RGBA', (W, H), (0, 0, 0, 0))
 d = ImageDraw.Draw(layer)
-for c in counties:
-    for ring in c.get('r', []):
-        if len(ring) > 2:
-            d.polygon([pt(x, y) for x, y in ring], fill=(40, 52, 40, 255), outline=(240, 201, 107, 110))
+if inky:
+    for c in counties:
+        for ring in c.get('r', []):
+            if len(ring) > 2:
+                d.polygon([pt(x, y) for x, y in ring], fill=(40, 52, 40, 255), outline=(240, 201, 107, 110))
+else:
+    def inside(ring, x, y):
+        n = False
+        for i in range(len(ring)):
+            x1, y1 = ring[i]; x2, y2 = ring[i - 1]
+            if (y1 > y) != (y2 > y) and x < (x2 - x1) * (y - y1) / ((y2 - y1) or 1e-12) + x1: n = not n
+        return n
+    for stt in json.load(open('kpc-us-states.json')):
+        polys = stt.get('p', [])
+        hot = any(inside(poly[0], p['lo'], p['la']) for poly in polys for p in pins0 if poly)
+        for poly in polys:
+            for ring in poly[:1]:
+                if len(ring) > 2:
+                    d.polygon([pt(x, y) for x, y in ring], fill=(58, 76, 52, 255) if hot else ((48, 40, 26, 255) if stt.get('a') == 'KY' else (34, 42, 34, 255)), outline=(240, 201, 107, 150 if hot else 80))
+    mask = Image.new('L', (W, H), 0); ImageDraw.Draw(mask).rectangle([mx0 - 20, my0 - 20, mx1 + 20, my1 + 20], fill=255)
+    layer = Image.composite(layer, Image.new('RGBA', (W, H), (0, 0, 0, 0)), mask)
 img.paste(layer, (0, 0), layer)
 
 # glowing pins
 glow = Image.new('RGBA', (W, H), (0, 0, 0, 0))
 g = ImageDraw.Draw(glow)
-pins = [p for p in info.get('parks', []) if p.get('la') and p.get('lo')]
+pins = pins0
 for p in pins:
     x, y = pt(p['lo'], p['la'])
     g.ellipse([x - 34, y - 34, x + 34, y + 34], fill=(246, 213, 138, 150))
