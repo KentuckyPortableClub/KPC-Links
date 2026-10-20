@@ -1,0 +1,39 @@
+name: zz probe coon creek
+on: push
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - run: |
+          python3 - <<'PY' || true
+          import json,urllib.request,urllib.parse,math
+          U='https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query'
+          def q(p):
+            p['f']='json'
+            r=urllib.request.urlopen(urllib.request.Request(U+'?'+urllib.parse.urlencode(p),headers={'User-Agent':'Mozilla/5.0'}),timeout=60)
+            return json.load(r)
+          la,lo=32.6023424,-85.8822285
+          d=q({'objectIds':'166091','outFields':'Unit_Nm,Own_Name,Mang_Name,Pub_Access,GIS_Acres,Des_Tp,Src_Date,Date_Est','returnGeometry':'true','outSR':'4326'})
+          f=d['features'][0];print('::notice title=attrs::'+json.dumps(f['attributes']))
+          rings=f['geometry']['rings']
+          def inside(x,y,r):
+            c=False
+            for i in range(len(r)):
+              x1,y1=r[i];x2,y2=r[i-1]
+              if (y1>y)!=(y2>y) and x<(x2-x1)*(y-y1)/(y2-y1)+x1: c=not c
+            return c
+          ins=sum(inside(lo,la,r) for r in rings)%2==1
+          kx=111320*math.cos(math.radians(la));ky=110540
+          best=1e9
+          for r in rings:
+            for i in range(len(r)):
+              x1,y1=r[i-1];x2,y2=r[i]
+              ax,ay=(x1-lo)*kx,(y1-la)*ky;bx,by=(x2-lo)*kx,(y2-la)*ky
+              dx,dy=bx-ax,by-ay;t=max(0,min(1,-(ax*dx+ay*dy)/((dx*dx+dy*dy) or 1)))
+              best=min(best,math.hypot(ax+t*dx,ay+t*dy))
+          xs=[p[0] for r in rings for p in r];ys=[p[1] for r in rings for p in r]
+          print(f'::notice title=sign spot::inside={ins} distance_to_line_m={best:.0f} rings={len(rings)} bbox={min(ys):.5f},{min(xs):.5f},{max(ys):.5f},{max(xs):.5f}')
+          a=q({'geometry':f'{lo},{la}','geometryType':'esriGeometryPoint','inSR':'4326','spatialRel':'esriSpatialRelIntersects','outFields':'OBJECTID,Unit_Nm,Own_Name,Mang_Name,GIS_Acres','returnGeometry':'false'})
+          print('::notice title=land at sign::'+json.dumps([x['attributes'] for x in a.get('features',[])]))
+          PY
