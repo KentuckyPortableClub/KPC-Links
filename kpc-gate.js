@@ -21,7 +21,7 @@
   if (!/\.html?$/.test(page)) page = 'index.html';
   var ok = false; try { ok = localStorage.getItem(KEY) === MH; } catch (e) {}
   if (navigator.webdriver) ok = true; /* the guide PDF printer */
-  var isPub = PUBLIC.indexOf(page) >= 0;
+  var isPub = PUBLIC.indexOf(page) >= 0 || de.hasAttribute("data-kpc-public");   /* 404.html carries it: GitHub shows it at the missing address */
   window.KPCGate = { member: function () { return ok; }, isPublic: function (f) { return PUBLIC.indexOf(String(f).toLowerCase()) >= 0; }, PUBLIC: PUBLIC };
   window.kpcLogout = function () { try { localStorage.removeItem(KEY); } catch (e) {} location.href = 'index.html'; };
   var css = 'html.kpc-door body>*:not(#kpcDoor){visibility:hidden!important}html.kpc-door{overflow:hidden}' +

@@ -67,7 +67,7 @@
     var prog = '<a class="p-pota" href="https://next.pota.app/park/' + p.c + '" target="_blank" rel="noopener">POTA ' + p.c + '</a>' +
       (p.kff || []).map(function (k) { return '<a class="p-kff" href="https://logsearch.wwff.co/directory/' + k + '" target="_blank" rel="noopener">WWFF ' + k + '</a>'; }).join('') +
       (p.sota || []).map(function (s) { var c = typeof s === 'string' ? s : (s.c || s[0]); return '<a class="p-sota" href="https://sotl.as/summits/' + c + '" target="_blank" rel="noopener">SOTA ' + esc(c) + '</a>'; }).join('') +
-      (p.tf || []).map(function (t) { return '<a class="p-2fer" href="kpc-guide-pota.html#s-' + t + '">2-FER ' + t + '</a>'; }).join('');
+      (window.KPCGate && !window.KPCGate.member() ? [] : (p.tf || [])).map(function (t) { return '<a class="p-2fer" href="kpc-guide-pota.html#s-' + t + '">2-FER ' + t + '</a>'; }).join('');
     var co = String(p.co || ''), coL = /^multiple/i.test(co) ? 'Multiple counties' : /see official/i.test(co) ? co : co + (co.indexOf('/') >= 0 ? ' Counties' : ' County');
     var x = r.x, camp = x.campgrounds || [], lodge = x.lodging || [];
     var links = x.lodging_links || {};

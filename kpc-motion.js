@@ -85,7 +85,7 @@ html.kpm-fix body::before{content:"";position:fixed;inset:0;z-index:-1;backgroun
 html.kpm-fix main{background:transparent!important}@media print{html.kpm-fix body::before{display:none}}`;
     document.head.appendChild(st); H.classList.add('kpm-fix');
     const see = () => document.querySelectorAll('main > section, main > div, body > section').forEach(el => {
-      if (el.closest('header,footer') || el.matches('.kb-hero,.hero,#kpc-cx,#kzFx,.kzfx')) return;
+      if (el.closest('header,footer') || el.matches('.kb-hero,.hero,#kpc-cx,#kzFx,.kzfx,#kpc-looks,.kpl')) return;
       const cs = getComputedStyle(el); if (/sticky|fixed/.test(cs.position)) return;
       const c = cs.backgroundColor, m = c.match(/rgba?\(([^)]+)\)/); if (!m) return;
       const v = m[1].split(/[ ,/]+/).map(Number);

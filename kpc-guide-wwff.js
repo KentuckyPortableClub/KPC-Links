@@ -215,7 +215,7 @@
           if (key === 'ALSO') return also.length ? '<p class="g-line"><b>ALSO</b> ' + also.join(' | ') + '</p>' : '';
           var n = notes[key];
           /* Oct 17 (Brandon): guests see '2-fer information coming soon!' instead of 2-fer notes; members + the PDF printer see them */
-          if (n && /\b\d-fers?\b/i.test(n.t) && window.KPCGate && !window.KPCGate.member()) return '<p class="g-line"><b>' + esc(key) + '</b> 2-fer information coming soon!</p>';
+          if (n && /\b\d-fers?\b/i.test(n.t) && window.KPCGate && !window.KPCGate.member()) return '<p class="g-line">2-fer information coming soon!</p>';
           return n ? '<p class="g-line"><b>' + esc(key) + '</b> ' + linkify(n.t, n.links) + '</p>' : '';
         }).join('');
         var q = [k.c, k.n, co + ' county', type, k.p || '', potaName, k._reg].concat(nearS.map(function (o) { return o.s.c; }), inside).join(' ').toLowerCase();
