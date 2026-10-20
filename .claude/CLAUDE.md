@@ -7,6 +7,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - `.claude/notes/mapping.md`: boundaries + answer keys (KY/US/Canada/world), trip planners, Park Control/Commander, Am I in the Park, Kit, Info Finder, Map Rep/Suggest, 2-fers, KY park data + access points, trails, boundary bots.
 - `.claude/notes/logger-lounge-digi.md`: KPC Logger, Hunters Lounge (public, VIP, beta room), DIGI tab + FT8 Android-audio history, CAT, QRZ, the KPC APP LOOK recipe, FT8 app build notes are in ideas.md.
 - `.claude/notes/website.md`: every other page, forms + approvals, Discord relay/email, social/Facebook bots, CW room, kids room, looks/themes/dark mode, guides/PDFs.
+- `.claude/notes/ft8-app.md`: the FT8 + Logger + digi APP build plan (private repo, GitHub builds, signing, who does what: Fable / Opus / Sonnet). Start Thu Oct 22 1:15 AM CDT.
 - `.claude/notes/ideas.md`: Brandon's later/to-do list (FT8 app build notes, release plans, N4KPC sparkle…).
 When you add a note, put it in the right topic file (one short bullet, dated, Brandon's words); keep this main file short.
 
