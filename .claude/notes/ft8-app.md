@@ -33,3 +33,13 @@ SCOPE: FT8 + FT4 (+ FT2) app WITH the KPC Logger and the other DIGI modes (CW, R
 - Thursday: say the repo name; keep the tablet + FT-710 + USB cable handy for step 2.
 - Test builds when asked (watts, ALC, decodes), send screenshots for layout rounds.
 - Keep a private copy of the signing key file when asked.
+
+## MOST RADIOS, not just the FT-710 (Brandon Oct 20 4:00 AM: 'I want it to work and most radios not just 710')
+- Every radio in KPCCat.RADIOS (59 now: Icom 18, Yaesu 16, Kenwood 6, Elecraft 6, Xiegu 5, QRP Labs/kits 4, Lab599, Flex) must work; the FT-710 is only the first test rig. Add any popular one missing (check the list against what POTA activators run: IC-705/7300/7100/9700, FT-891/991A/710/818/817/857/897/FTDX10/101, TS-590/890/480, KX2/KX3/K3/K4, X6100/G90/X5105, QMX/QDX/(tr)uSDX, Discovery TX-500, Flex 6000 via its own network API).
+- CAT protocols (already in kpc-cat.js): Icom CI-V (+ USB-D data mode, address per model), Yaesu new 9-digit + 8-digit + old 5-byte (FT-817/857/897), Kenwood/Elecraft text, Xiegu (CI-V without data command), QRP Labs. Plus PTT by CAT, RTS or DTR, and VOX for radios with no CAT.
+- USB-serial chips on Android (native driver, usb-serial-for-android): Silicon Labs CP210x (Yaesu, Icom), FTDI, CH340 / CH9102 (many Xiegu + cheap cables), Prolific PL2303 (old cables), CDC-ACM (QMX, QDX, truSDX, some newer radios). Windows uses the normal COM port.
+- Bluetooth: IC-705 Bluetooth CAT + audio where Android allows; BT serial CAT dongles.
+- Sound interfaces, not only built-in USB sound cards: Digirig, SignaLink, homebrew cables; pick the sound device by name, remember it per radio profile.
+- RADIO PROFILES: user picks the radio once → baud, address, protocol, PTT method, data mode, sound device saved; several profiles (home rig, field rig).
+- SETUP HELPER per brand (plain words + the menu name on that radio): Yaesu DATA MOD SOURCE = USB (+ USB MOD GAIN), Icom DATA MOD = USB/USB-D, Kenwood USB AUDIO/DATA VOX, Elecraft LINE IN, Xiegu audio levels; a 'radio check' button that reads the dial, mode and confirms data mode before the first TX.
+- TEST MATRIX before calling it done: at least one radio of each family (Yaesu new, Yaesu old, Icom, Kenwood/Elecraft, Xiegu, QRP Labs) on Android AND Windows; ask club members (MEMBERS list) to lend time on their rigs and report watts, ALC and CAT.
