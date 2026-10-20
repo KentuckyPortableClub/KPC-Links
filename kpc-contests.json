@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-19T11:08:54Z",
+ "updated": "2026-10-20T11:08:16Z",
  "week": [
   {
    "name": "ARRL School Club Roundup",
@@ -9,76 +9,6 @@
     [
      "2026-10-19T13:00Z",
      "2026-10-23T23:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ICWC Medium Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ftyo0",
-   "when": "1300Z-1400Z, Oct 19",
-   "segs": [
-    [
-     "2026-10-19T13:00Z",
-     "2026-10-19T14:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "OK1WC Memorial (MWC)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fwj8b",
-   "when": "1630Z-1729Z, Oct 19",
-   "segs": [
-    [
-     "2026-10-19T16:30Z",
-     "2026-10-19T17:29Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ICWC Medium Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003futj4",
-   "when": "1900Z-2000Z, Oct 19",
-   "segs": [
-    [
-     "2026-10-19T19:00Z",
-     "2026-10-19T20:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Worldwide Sideband Activity Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fxe34",
-   "when": "0100Z-0159Z, Oct 20",
-   "segs": [
-    [
-     "2026-10-20T01:00Z",
-     "2026-10-20T01:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ICWC Medium Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fvoe8",
-   "when": "0300Z-0400Z, Oct 20",
-   "segs": [
-    [
-     "2026-10-20T03:00Z",
-     "2026-10-20T04:00Z"
     ]
    ],
    "modes": [],
@@ -355,6 +285,106 @@
    ],
    "modes": [
     "PHONE"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "K1USN Slow Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fs8wp",
+   "when": "0000Z-0100Z, Oct 26",
+   "segs": [
+    [
+     "2026-10-26T00:00Z",
+     "2026-10-26T01:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "QCX Challenge",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fctbo",
+   "when": "1300Z-1400Z, Oct 26",
+   "segs": [
+    [
+     "2026-10-26T13:00Z",
+     "2026-10-26T14:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ICWC Medium Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fu6ds",
+   "when": "1300Z-1400Z, Oct 26",
+   "segs": [
+    [
+     "2026-10-26T13:00Z",
+     "2026-10-26T14:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "OK1WC Memorial (MWC)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fwqy3",
+   "when": "1630Z-1729Z, Oct 26",
+   "segs": [
+    [
+     "2026-10-26T16:30Z",
+     "2026-10-26T17:29Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "QCX Challenge",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fd11g",
+   "when": "1900Z-2000Z, Oct 26",
+   "segs": [
+    [
+     "2026-10-26T19:00Z",
+     "2026-10-26T20:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ICWC Medium Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fv18w",
+   "when": "1900Z-2000Z, Oct 26",
+   "segs": [
+    [
+     "2026-10-26T19:00Z",
+     "2026-10-26T20:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "RSGB FT4 Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fe3ml",
+   "when": "2000Z-2200Z, Oct 26",
+   "segs": [
+    [
+     "2026-10-26T20:00Z",
+     "2026-10-26T22:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
    ],
    "kinds": [],
    "src": "WA7BNM"
@@ -989,7 +1019,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (24)",
+  "WA7BNM": "ok (26)",
   "CORRAL": "ok (9)"
  }
 }
