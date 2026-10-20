@@ -17,11 +17,6 @@
    "why": "France ZNIEFF names + German rules (after the crash fix)"
   },
   {
-   "wf": "kpc-ca-key.yml",
-   "inputs": {},
-   "why": "Nova Scotia + Manitoba layers"
-  },
-  {
    "wf": "kpc-world-key.yml",
    "inputs": {
     "countries": "AU GB JP PL ES CH"
