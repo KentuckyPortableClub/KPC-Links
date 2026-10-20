@@ -50,6 +50,14 @@ CHPREF = {'Natural Monument': ['BAFU landscapes and natural monuments (BLN)'], '
           'Wetland Reserve': ['BAFU water and migratory bird reserves', 'BAFU mire landscapes', 'BAFU floodplains', 'BAFU raised bogs', 'BAFU fens'],
           'Ramsar Site': ['BAFU Ramsar sites'], 'Nature Park': ['BAFU parks of national importance'], 'Wilderness Park': ['BAFU parks of national importance'],
           'National Park': ['BAFU parks of national importance'], 'Landscape Park': ['BAFU parks of national importance', 'BAFU landscapes and natural monuments (BLN)']}
+# Oct 20 (Brandon: 'keep working on building the database for boundaries'): POTA's 10,400 French 'Biological Reserve' parks are
+# France's ZNIEFF wildlife zones (MNHN / INPN inventory). IGN Géoplateforme first; the Esri France copy of the same INPN data only
+# when the Géoplateforme answers nothing. Australia: CAPAD leaves state forests out, so each state's own forestry map.
+SRC['FR'] = SRC['FR'] + [('IGN Géoplateforme ZNIEFF ' + n, 'wfs', 'https://data.geopf.fr/wfs/ows', t) for n, t in
+                         (('type I', 'PROTECTEDAREAS.ZNIEFF1:znieff1'), ('type II', 'PROTECTEDAREAS.ZNIEFF2:znieff2'), ('biological reserves', 'PROTECTEDAREAS.RB:rb'))] \
+                      + [('ZNIEFF (INPN data, Esri France) layer ' + str(i), 'arcgis_alt', 'https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/' + str(i)) for i in (0, 1)]
+SRC['AU'] = SRC['AU'] + [('NSW State Forest (Forestry Corporation NSW)', 'arcgis', 'https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/NSW_Dedicated_State_Forests/FeatureServer/0'),
+                         ('QLD State Forest (Queensland Government)', 'arcgisfind', 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandParcelPropertyFramework/MapServer', r'state forest|timber reserve')]
 COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU').upper().split()
 
 
@@ -334,6 +342,15 @@ def pull_arcgis1(label, url, where):
     return recs
 
 
+def pull_find(label, url, rx):
+    # a map service with many layers: take the ones whose NAME matches (e.g. Queensland 'State forest'), all of them
+    info = fetch(url + '?f=json'); got = []
+    lays = [l for l in (info.get('layers') or []) if re.search(rx, l.get('name', ''), re.I) and not l.get('subLayerIds')]
+    notice(f'{label} layers', ', '.join(f"{l['id']}:{l['name']}" for l in lays) or 'none matched: ' + ', '.join(l.get('name', '') for l in (info.get('layers') or [])[:40]))
+    for l in lays: got += pull_arcgis(label, url + '/' + str(l['id']))
+    return got
+
+
 FMT, TOLD = {}, set()
 def pull_wfs(label, url, typ):
     recs, start, step = [], 0, 1000
@@ -542,7 +559,8 @@ for cc in COUNTRIES:
     recs = []
     for s in SRC.get(cc, []):
         try:
-            got = pull_arcgis(s[0], s[2], s[3] if len(s) > 3 else None) if s[1] == 'arcgis' else pull_a10(s[0], s[2]) if s[1] == 'a10' else pull_chshp(s[0], s[2]) if s[1] == 'chshp' else pull_wfs(s[0], s[2], s[3])
+            if s[1] == 'arcgis_alt' and any(r['src'].startswith('IGN Géoplateforme ZNIEFF') for r in recs): continue   # the same zones already came from IGN
+            got = pull_arcgis(s[0], s[2], s[3] if len(s) > 3 and s[1] != 'arcgisfind' else None) if s[1] in ('arcgis', 'arcgis_alt') else pull_find(s[0], s[2], s[3]) if s[1] == 'arcgisfind' else pull_a10(s[0], s[2]) if s[1] == 'a10' else pull_chshp(s[0], s[2]) if s[1] == 'chshp' else pull_wfs(s[0], s[2], s[3])
             recs += got; print(f'{cc} {s[0]}: {len(got)}', flush=True)
         except Exception as e:  # noqa: BLE001
             notice(f'World key {cc}', f'{s[0]} FAILED: {e}')
