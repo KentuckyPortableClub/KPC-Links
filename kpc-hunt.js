@@ -637,6 +637,8 @@
     let b = 0; const add = (on, st) => { if (on && !st.fl && st.py != null) b = Math.max(b, st.py + st.h + 30); };
     if (winOn()) { WIN.forEach(w => add(w.on, w)); if (POP) add(POP.on, POP); }
     $('hl').style.minHeight = b ? b + 'px' : '';
+    /* Oct 19: lists stacked under the log box must not sit on the bars below the spots: push those bars down */
+    const sp = document.querySelector('.hl-split'); if (sp) { sp.style.marginBottom = ''; if (b) { const sb = sp.getBoundingClientRect().bottom - mainR().top, need = b - 30 + 16 - sb; if (need > 0) sp.style.marginBottom = Math.ceil(need) + 'px'; } }
   }
   function wmLock(el, st, save) {
     const r = el.getBoundingClientRect(), m = mainR();
@@ -1670,7 +1672,7 @@
     el.innerHTML = L.length ? L.slice(0, 300).map(x => {
       const day = x.d !== last ? `<div class="dk-day">${x.d === today ? 'TODAY' : fmtD(x.d)}</div>` : ''; last = x.d;
       return `${day}<div class="dk-q${x.x ? '' : ' nx'}"><span class="t">${fmtT(x.tm)}</span><b class="c">${esc(x.call)}${x.on ? ` <small class="on">${esc(x.on.split(' ')[0])}</small>` : ''}</b><span class="m">${esc(x.band)} ${esc(x.mode)}</span><span class="r">${esc(x.ref || '')}${x.st ? ' <i>' + esc(x.st) + '</i>' : ''}</span><span class="s">${esc(x.rs || '')}/${esc(x.rr || '')}</span><span class="a"><button type="button" data-qe="${x.id}" title="Edit">✏</button><button type="button" data-qd="${x.id}" title="Delete">🗑</button></span></div>`;
-    }).join('') : `<div class="hl-empty">${Q.q.length ? 'None match.' : 'No contacts yet. Click a spot on the right and it fills in down below.'}</div>`;
+    }).join('') : `<div class="hl-empty">${Q.q.length ? 'None match.' : (DESKON() ? 'No contacts yet. Click a spot on the right and it fills in down below.' : 'No contacts yet. Tap a spot above and it fills in down below.')}</div>`;
   }
   document.addEventListener('click', e => {
     const c = e.target.closest('#hlBigSvg [data-dk]'); if (!c) return;

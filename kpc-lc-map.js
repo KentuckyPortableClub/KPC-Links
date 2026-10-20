@@ -27,11 +27,12 @@ async function start(){if(started)return;started=true;const st=document.getEleme
  // visitor centers and spots
  fetch('ky-lecl-map.json',{cache:'no-cache'}).then(r=>r.json()).then(d=>{
   d.vc.forEach(v=>L.marker([v.la,v.lo],{icon:L.divIcon({className:'',html:'<span class="lcm-vc">★</span>',iconSize:[22,22],iconAnchor:[11,11]}),title:v.n}).bindPopup(`<b>${esc(v.n)}</b><br>NPS Lewis &amp; Clark visitor center${v.pota?`<br>POTA <a href="${pota(v.pota)}" target="_blank" rel="noopener">${v.pota}</a> + <a href="${pota('US-4572')}" target="_blank" rel="noopener">US-4572</a>`:'<br>Not a POTA park'}<br><a href="${esc(v.url)}" target="_blank" rel="noopener">NPS page ↗</a> · <a href="${dir(v.la,v.lo)}" target="_blank" rel="noopener">Directions ↗</a>`).addTo(lay.vc));
-  d.spots.forEach(s=>{const c=s.type==='3-fer'?'#d5a63a':'#1d5a3a';
+  const GUEST=window.KPCGate&&!window.KPCGate.member(); /* Oct 19: guests don't get 2-fer spots yet */
+  (GUEST?[]:d.spots).forEach(s=>{const c=s.type==='3-fer'?'#d5a63a':'#1d5a3a';
    L.circleMarker([s.la,s.lo],{radius:7,color:'#fff',weight:2,fillColor:c,fillOpacity:1}).bindPopup(`<b>Possible ${esc(s.type)}</b> (do your own research)<br>${s.refs.map((r,i)=>`<a href="${pota(r)}" target="_blank" rel="noopener">${r}</a> ${esc(s.names[i])}`).join('<br>')}<br><i>${esc(s.what)}</i><br>GPS pins are guides only.<br><a href="${gm(s.la,s.lo)}" target="_blank" rel="noopener">Map ↗</a> · <a href="${dir(s.la,s.lo)}" target="_blank" rel="noopener">Directions ↗</a>`).addTo(lay.spots)})
  }).catch(()=>{msg.push('spots did not load');show()});
  function show(){if(st)st.textContent=msg.length?msg.join(' · ')+'. Use the links below.':''}
- L.control.layers(null,{'Trail route (Ohio River, NPS)':lay.route,'Auto tour route (signed roads)':lay.auto,'NPS visitor centers':lay.vc,'Possible 2-fers & 3-fers':lay.spots},{collapsed:true}).addTo(map);
+ L.control.layers(null,{'Trail route (Ohio River, NPS)':lay.route,'Auto tour route (signed roads)':lay.auto,'NPS visitor centers':lay.vc,...(window.KPCGate&&!window.KPCGate.member()?{}:{'Possible 2-fers & 3-fers':lay.spots})},{collapsed:true}).addTo(map);
  map.on('focus',()=>map.scrollWheelZoom.enable());map.on('blur',()=>map.scrollWheelZoom.disable());
  setTimeout(()=>map.invalidateSize(),200);if(st)st.textContent='';
 }
