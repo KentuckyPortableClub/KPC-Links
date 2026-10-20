@@ -43,3 +43,4 @@ SCOPE: FT8 + FT4 (+ FT2) app WITH the KPC Logger and the other DIGI modes (CW, R
 - RADIO PROFILES: user picks the radio once → baud, address, protocol, PTT method, data mode, sound device saved; several profiles (home rig, field rig).
 - SETUP HELPER per brand (plain words + the menu name on that radio): Yaesu DATA MOD SOURCE = USB (+ USB MOD GAIN), Icom DATA MOD = USB/USB-D, Kenwood USB AUDIO/DATA VOX, Elecraft LINE IN, Xiegu audio levels; a 'radio check' button that reads the dial, mode and confirms data mode before the first TX.
 - TEST MATRIX before calling it done: at least one radio of each family (Yaesu new, Yaesu old, Icom, Kenwood/Elecraft, Xiegu, QRP Labs) on Android AND Windows; ask club members (MEMBERS list) to lend time on their rigs and report watts, ALC and CAT.
+- App must keep (Oct 20): generated read-only Tx messages, SEND AS call switch (my/club/operator, used for log too), Skip grid box (call starts at the report).

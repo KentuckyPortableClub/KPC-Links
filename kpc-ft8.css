@@ -42,9 +42,10 @@ html.f8-open,html.f8-open body{overflow:hidden}
 .f8-chks label{display:inline-flex;gap:5px;align-items:center}.f8-chks .hz input{width:62px}
 .f8-txm{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;margin-top:10px}
 .f8-tm{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:5px;align-items:center}
-.f8-tm input{width:100%;text-transform:uppercase}
+.f8-tm .tm{display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:7px 9px;border:1px solid #485262;border-radius:7px;background:#0f1318;color:#e8edf3;font:600 13px/1.2 Menlo,Consolas,monospace;user-select:none}.f8-tm .tm.skip{opacity:.45;text-decoration:line-through}
+.f8-as{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:6px 0;font:700 11px system-ui,sans-serif;color:#cfd6df}.f8-as select{margin-left:4px;max-width:200px;padding:5px 6px;border-radius:7px;border:1px solid #485262;background:#1c222b;color:#f0c96b;font:700 13px monospace}.f8-as .ck{display:flex;gap:5px;align-items:center;font:500 13px system-ui,sans-serif}
 .f8-tm .nx,.f8-tm .nw{padding:6px 8px;border-radius:7px;border:1px solid #485262;background:#1c222b;color:#cfd6df;font:700 11px monospace}
-.f8-tm.on .nx{background:#f0c96b;color:#2a1a05;border-color:#f0c96b}.f8-tm.on input{border-color:#f0c96b}
+.f8-tm.on .nx{background:#f0c96b;color:#2a1a05;border-color:#f0c96b}.f8-tm.on .tm{border-color:#f0c96b}
 .f8-set{margin-top:12px;border:1px solid #2a313b;border-radius:10px;background:#11151a;padding:0 10px}
 .f8-set summary{padding:10px 2px;cursor:pointer;font:900 12px Arial;letter-spacing:1px;color:#f6d58a}
 .f8-sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;padding-bottom:10px}
@@ -70,7 +71,7 @@ html.f8-open,html.f8-open body{overflow:hidden}
 :is(#lg,#hl) .f8 input[type=range]{width:100%;accent-color:#f0c96b}
 :is(#lg,#hl) .f8 #f8Dx{width:120px}:is(#lg,#hl) .f8 #f8DxG{width:80px}:is(#lg,#hl) .f8 #f8Rpt{width:60px}
 :is(#lg,#hl) .f8 .f8-chks .hz input{width:64px}
-:is(#lg,#hl) .f8 .f8-tm input{width:100%}
+:is(#lg,#hl) .f8 .f8-tm .tm{width:100%}
 :is(#lg,#hl) .f8 .f8-sg select{width:100%}
 :is(#lg,#hl) .f8 label{margin:0}
 @media(max-width:760px){:is(#lg,#hl) .f8 select,:is(#lg,#hl) .f8 input:not([type=checkbox]):not([type=range]){font-size:16px}:is(#lg,#hl) .f8 #f8Dx{width:112px}}

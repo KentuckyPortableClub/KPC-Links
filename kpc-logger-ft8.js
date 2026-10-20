@@ -29,7 +29,7 @@
   const isFT = () => S.mode === 'FT8' || S.mode === 'FT4';
   const isDG = () => /^(RTTY|PSK31|HELL|SSTV|WSPR)$/.test(S.mode);
   const DG = () => window.KPCDigiUI || null;
-  const S = Object.assign({ mode: 'FT8', band: '20m', inDev: '', outDev: '', ptt: 'vox', txHz: 1500, rxHz: 1500, hold: true, auto: true, first: true, even: true, keepCq: false, cqw: 'POTA', lvl: 0.3, deep: false, wd: 2, cwHz: 600, cwWpm: 20, cwVia: 'cat', cwBw: 'auto', cwMac: null, aPark: true, aState: false, aGrid: false, watch: '', mm: 'hear' }, get('kpcFt8', {}));
+  const S = Object.assign({ mode: 'FT8', band: '20m', inDev: '', outDev: '', ptt: 'vox', txHz: 1500, rxHz: 1500, hold: true, auto: true, first: true, even: true, keepCq: false, cqw: 'POTA', lvl: 0.3, deep: false, wd: 2, cwHz: 600, cwWpm: 20, cwVia: 'cat', cwBw: 'auto', cwMac: null, aPark: true, aState: false, aGrid: false, watch: '', mm: 'hear', as: '', asList: '', noGrid: false }, get('kpcFt8', {}));
   const saveS = () => put('kpcFt8', S);
   const slotLen = () => S.mode === 'FT4' ? 7.5 : 15;
   const stdK = () => (DIAL[S.mode] || DIAL.FT8)[S.band] || DIAL.FT8['20m'];
@@ -100,6 +100,7 @@
     <label class="hz">TX <input id="f8TxHz" inputmode="numeric" maxlength="4"> Hz</label>
     <label class="hz">RX <input id="f8RxHzIn" inputmode="numeric" maxlength="4"> Hz</label>
   </div>
+  <div class="f8-as"><label>SEND AS <select id="f8As"></select></label><label class="ck"><input type="checkbox" id="f8NoG"> Skip grid (reports only)</label></div>
   <div class="f8-txm" id="f8Txm"></div>
   <details class="f8-set" id="f8Set"><summary>⚙ AUDIO, PTT &amp; SETTINGS</summary>
     <div class="f8-sg">
@@ -513,7 +514,7 @@
     $('f8Dx').value = QS.dx; $('f8DxG').value = QS.grid; $('f8Rpt').value = QS.rs;
     gen();
     /* answering them: if they're already calling me, jump ahead like WSJT-X */
-    let n = 1; if (x.me) { const tk = x.text.split(/\s+/), last = tk[tk.length - 1]; if (isRpt(last)) { QS.rr = last; n = 3; } else if (isRRpt(last)) { QS.rr = last.slice(1); n = 4; } else if (last === 'RR73' || last === 'RRR') n = 5; else n = 2; }
+    let n = S.noGrid ? 2 : 1; if (x.me) { const tk = x.text.split(/\s+/), last = tk[tk.length - 1]; if (isRpt(last)) { QS.rr = last; n = 3; } else if (isRRpt(last)) { QS.rr = last.slice(1); n = 4; } else if (last === 'RR73' || last === 'RRR') n = 5; else n = 2; }
     QS.cq = false; nextTx(n); txOn(true); hzBoxes(); drawScale(); drawRx(); chk(); note('📞 Calling ' + other + ' (Tx' + n + ')', 2000);
   }
   ['f8Band1', 'f8Rx'].forEach(i => $(i).addEventListener('click', e => { const r = e.target.closest('[data-l]'); if (r) pick(byId[r.dataset.l]); }));
@@ -569,7 +570,13 @@
 
   /* ---------------- messages + sequencer ---------------- */
   const QS = { dx: '', grid: '', rs: '-10', rr: '', state: 'idle', next: 6, logged: false, tries: 0, since: 0, ref: '', cq: false };
-  function myCall() { const L = LG(); return L ? String(L.me().station || L.me().call || '').toUpperCase() : ''; }
+  function homeCall() { const L = LG(); return L ? String(L.me().station || L.me().call || '').toUpperCase() : ''; }
+  /* Oct 20 (Brandon: 'an option somewhere to switch users say i want to go from my call to club call'): SEND AS picks the call the messages + log use */
+  function myCall() { return S.as || homeCall(); }
+  function asOpts() { const h = homeCall(), L = LG(), ops = L && L.ops ? L.ops() : [], ex = String(S.asList || '').split(/[\s,]+/).filter(Boolean);
+    const all = [...new Set([h, ...ops, ...ex, S.as].filter(Boolean))];
+    $('f8As').innerHTML = all.map(c => `<option value="${c === h ? '' : esc(c)}">${esc(c)}${c === h ? ' (my call)' : ''}</option>`).join('') + (h ? '' : '<option value="">(put your call in ⚙ STATION)</option>') + '<option value="+">+ Another call…</option>';
+    $('f8As').value = S.as && all.includes(S.as) ? S.as : ''; }
   /* Oct 17 (Brandon: 'it does not enter my grid square… like it should, auto location'): station grid, else the park's pin, else this device's GPS */
   let GPSG = get('kpcFt8Gps', null), gpsAsk = 0;
   const ll2g = (la, lo) => { const x = lo + 180, y = la + 90; return String.fromCharCode(65 + Math.floor(x / 20), 65 + Math.floor(y / 10)) + Math.floor((x % 20) / 2) + Math.floor(y % 10); };
@@ -581,11 +588,11 @@
   function cqWord() { const L = LG(), me = L ? L.me() : {}; if (S.cqw === 'POTA' && me.hunt) return ''; return S.cqw; }
   function gen() {
     const me = myCall() || 'K4TEST', g = myGrid(), dx = (QS.dx || 'DXCALL'), r = QS.rs || '-10', rr = QS.rr ? QS.rr : r;
-    const M = [`${dx} ${me}${g ? ' ' + g : ''}`, `${dx} ${me} ${r}`, `${dx} ${me} R${r}`, `${dx} ${me} RR73`, `${dx} ${me} 73`, `CQ ${cqWord() ? cqWord() + ' ' : ''}${me}${g ? ' ' + g : ''}`];
-    $('f8Txm').innerHTML = M.map((m, i) => `<div class="f8-tm${QS.next === i + 1 ? ' on' : ''}"><button type="button" class="nx" data-nx="${i + 1}" title="Send this one next">Tx${i + 1}</button><input data-tm="${i + 1}" value="${esc(m)}" spellcheck="false" autocapitalize="characters"><button type="button" class="nw" data-now="${i + 1}" title="Send this one now">NOW</button></div>`).join('');
+    asOpts(); const M = [`${dx} ${me}${g ? ' ' + g : ''}`, `${dx} ${me} ${r}`, `${dx} ${me} R${r}`, `${dx} ${me} RR73`, `${dx} ${me} 73`, `CQ ${cqWord() ? cqWord() + ' ' : ''}${me}${g ? ' ' + g : ''}`];
+    $('f8Txm').innerHTML = M.map((m, i) => `<div class="f8-tm${QS.next === i + 1 ? ' on' : ''}"><button type="button" class="nx" data-nx="${i + 1}" title="Send this one next">Tx${i + 1}</button><span class="tm${i === 0 && S.noGrid ? ' skip' : ''}" data-tm="${i + 1}" data-nx="${i + 1}" title="Made for you from the calls: tap to send this one next">${esc(m)}</span><button type="button" class="nw" data-now="${i + 1}" title="Send this one now">NOW</button></div>`).join('');
     void rr;
   }
-  const msgOf = n => { const i = document.querySelector(`[data-tm="${n}"]`); return i ? i.value.toUpperCase().trim() : ''; };
+  const msgOf = n => { const i = document.querySelector(`[data-tm="${n}"]`); return i ? i.textContent.toUpperCase().trim() : ''; };
   function nextTx(n) { QS.next = n; document.querySelectorAll('.f8-tm').forEach((d, i) => d.classList.toggle('on', i + 1 === n)); }
   $('f8Txm').addEventListener('click', e => { const a = e.target.closest('[data-nx]'), b = e.target.closest('[data-now]');
     if (a) nextTx(+a.dataset.nx); if (b) { nextTx(+b.dataset.now); txOn(true); NOWTX = true; } });
@@ -640,7 +647,7 @@
     const L = LG(); if (!L || !QS.dx) return; QS.logged = true;
     /* the same contact again (they missed my RR73 and sent R-report again): don't log it twice */
     const k = QS.dx + '|' + S.band + '|' + S.mode; if (LAST.k === k && nowS() - LAST.t < 900) return; LAST = { k, t: nowS() };
-    const r = L.add({ call: QS.dx, khz: dialK(), mode: S.mode, rs: QS.rs, rr: QS.rr, g: QS.grid, ref: QS.ref });
+    const r = L.add({ my: S.as || '', call: QS.dx, khz: dialK(), mode: S.mode, rs: QS.rs, rr: QS.rr, g: QS.grid, ref: QS.ref });
     if (r && r.ok) note(`✅ ${QS.dx} logged · ${S.band} ${S.mode} · sent ${QS.rs} rcvd ${QS.rr || '?'}${r.n ? ' · ' + r.n + (L.me().hunt ? ' today' : ' this activation') : ''}`, 3000, 'log');
     else note('⚠️ Not logged: ' + ((r && r.msg) || 'the logger did not answer'), 5000);
   }
@@ -725,6 +732,10 @@
   /* no interface: the phone's own mic + speaker held next to the radio (Brandon Oct 17) */
   $('f8Mic').onclick = async () => { S.inDev = ''; S.outDev = ''; S.mic = true; S.ptt = 'vox'; S.lvl = Math.max(S.lvl, 0.8); saveS(); $('f8Ptt').value = 'vox'; setLvl(lvlDb()); $('f8MicT').hidden = false;
     if (RUN) { stopAudio(); } await startAudio(); devices(); note('🎤 Using this phone\'s mic and speaker. Radio VOX on, phone next to the radio.', 4000); };
+  $('f8As').onchange = () => { let v = $('f8As').value;
+    if (v === '+') { v = clean(prompt('Call sign to send as (club call, another operator):') || '').replace(/\s+/g, ''); if (v && !/^[A-Z0-9\/]{3,12}$/.test(v)) { note('That call sign does not look right.'); v = S.as; } if (v) S.asList = [...new Set(String(S.asList || '').split(/[\s,]+/).concat(v).filter(Boolean))].join(','); }
+    S.as = v && v !== homeCall() ? v : ''; saveS(); gen(); LAST = { k: '', t: 0 }; note('📡 Sending and logging as ' + (myCall() || '?') + '.', 2500); };
+  $('f8NoG').checked = !!S.noGrid; $('f8NoG').onchange = () => { S.noGrid = $('f8NoG').checked; saveS(); gen(); if (QS.next === 1 && S.noGrid) nextTx(2); };
   $('f8Cqw').value = S.cqw; $('f8Cqw').onchange = () => { S.cqw = $('f8Cqw').value; saveS(); gen(); };
   $('f8Cat').onclick = async () => { if (!window.KPCCat || !KPCCat.supported()) { $('f8CatT').textContent = 'Radio control needs Chrome or Edge on a computer, or Chrome on a newer Android phone with a USB-C cable. On iPhone use VOX.'; return; }
     KPCCat.set({ on: true }); const ok = await KPCCat.connect(true); $('f8CatT').textContent = ok ? '✓ Radio connected. Pick the radio type on the Lounge CAT & QRZ tab if it doesn\'t follow.' : 'Not connected.'; if (ok) radioTune(); };
@@ -765,7 +776,7 @@
       const k = +o.khz; let best = null; for (const [b, f] of Object.entries(DIAL[S.mode])) { const off = (k - f) * 1000; if (off > -500 && off < 4000 && (!best || Math.abs(off - 1500) < Math.abs(best[1] - 1500))) best = [b, off]; }
       if (best) { S.band = best[0]; $('f8Band').value = S.band; if (best[1] >= 200 && best[1] <= 3000) { S.rxHz = Math.round(best[1]); } }
       saveS(); showDial(); radioTune(); hzBoxes(); drawScale();
-      QS.dx = o.call; QS.grid = ''; QS.rr = ''; QS.logged = false; QS.state = 'call'; QS.cq = false; QS.ref = o.ref || ''; QS.since = nowS(); $('f8Dx').value = o.call; $('f8DxG').value = ''; gen(); nextTx(1);
+      QS.dx = o.call; QS.grid = ''; QS.rr = ''; QS.logged = false; QS.state = 'call'; QS.cq = false; QS.ref = o.ref || ''; QS.since = nowS(); $('f8Dx').value = o.call; $('f8DxG').value = ''; gen(); nextTx(S.noGrid ? 2 : 1);
       note(`Listening for ${o.call}${o.ref ? ' at ' + o.ref : ''}. When they show up, tap their line to call them${RUN ? '' : ' (press START LISTENING first)'}.`, 6000);
       drawRx();
     }

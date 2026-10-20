@@ -1034,7 +1034,7 @@
     const when = new Date(), ll = fromGrid(o.g || '');
     const q = { id: 'q' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: ymd(when), tm: iso(when).slice(11, 16).replace(':', ''), t: Date.now(),
       f: mhz(k), band, mode: o.mode || 'FT8', rs: o.rs || '', rr: o.rr || '', ref: anyRefs(o.ref || '').join(','), name: '', st: '', qth: '', g: String(o.g || '').toUpperCase(), la: ll ? ll[0] : null, lo: ll ? ll[1] : null,
-      note: '', cn: SET.carry || SET.prev ? notesTxt() : '', role: isHunt() ? 'hunt' : 'act', my: stationCall(), op: curOp(), pk: isHunt() ? '' : myParks().join(','), wf: myWwff(), so: mySota(), mg: SET.grid, pw: SET.pwr, x: 0, ft: 1 };
+      note: '', cn: SET.carry || SET.prev ? notesTxt() : '', role: isHunt() ? 'hunt' : 'act', my: okCall(String(o.my || '').toUpperCase()) ? String(o.my).toUpperCase() : stationCall(), op: curOp(), pk: isHunt() ? '' : myParks().join(','), wf: myWwff(), so: mySota(), mg: SET.grid, pw: SET.pwr, x: 0, ft: 1 };
     L.q.push(q); qzLater(q); NEWID = q.id; save(); drawAll(); try { radioTxt(); } catch (e) {}
     look(call).then(x => { if (!x) return; const z = L.q.find(y => y.id === q.id); if (!z) return;
       if (!z.name) z.name = (x.name || '').split(' ')[0]; if (!z.st && x.st) z.st = String(x.st).toUpperCase(); if (!z.qth) z.qth = x.qth || ''; if (!z.g) z.g = x.g || '';
@@ -1043,6 +1043,7 @@
   }
   window.KPCLog = {
     me: () => ({ call: myCall(), station: stationCall(), grid: String(SET.grid || '').toUpperCase(), pgrid: (() => { const p = myParks()[0], pi = p && SET.pinfo[p]; return pi ? String(pi.g || (isFinite(pi.la) ? toGrid(pi.la, pi.lo) : '')).toUpperCase() : ''; })(), hunt: isHunt(), pota: myParks(), wwff: myWwff(), sota: mySota() }),
+    ops: () => opsList(),
     add: quickLog, band: bandOf, toast,
     dupe: (call, band, mode) => dupeOf(call, band, mode, '').length > 0,
     worked: call => { const b = base(call); return L.q.some(q => base(q.call) === b); },
