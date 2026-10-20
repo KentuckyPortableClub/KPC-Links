@@ -1,12 +1,13 @@
 # IA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **166 of 181** parks joined to official land (same name + same kind of place). **5** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **166 of 181** parks joined to official land (same name + same kind of place). **6** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0270** Iowa Wetland Management District (Wetland Management District) → Union Slough National Wildlife Refuge (~2,834 ac, the POTA pin is inside it (different name)); Union Slough National Wildlife Refuge (~2,834 ac, the POTA pin is inside it (different name))
 - **US-11305** Wapsipinicon River Water State Trail (State Trail) → Gambril Access (~5 ac, the POTA pin is inside it (different name))
 - **US-11877** La Soya Wildlife Area (Wildlife Area) → Lasoya Wildlife Management Area (~78 ac, the POTA pin is inside it (different name))
+- **US-2329** Wild Cat Den State Park (State Park) → Wildcat Den State Park (~432 ac, the POTA pin is inside it (different name))
 - **US-5730** Blood Run State Historic Site (State Historic Site) → Blood Run/Rock Island National Landmark (~167 ac, similar name); Blood Run National Historic Landmark Area Tcf Tract (~7 ac, similar name)
 - **US-9312** Rosenow Timber Wildlife Management Area (Wildlife Management Area) → Rosenow Timber County Park (~123 ac, same name, different kind of place)
 
@@ -20,7 +21,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **166 of 181** parks joined
 - US-12376 Blackburn Wildlife Management Area (Wildlife Management Area)
 - US-12623 Nicholson Ford Wildlife Area (Wildlife Area)
 - US-2282 Blackhawk State Park (State Park)
-- US-2329 Wild Cat Den State Park (State Park)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-4573 Mormon Pioneer National Historic Trail (National Historic Trail)
 - US-8283 Glenwood Archaeological State Historic Site (State Historic Site)

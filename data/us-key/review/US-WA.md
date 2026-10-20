@@ -1,6 +1,6 @@
 # WA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **356 of 536** parks joined to official land (same name + same kind of place). **59** to check by hand, **111** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **356 of 536** parks joined to official land (same name + same kind of place). **59** to check by hand, **111** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -194,29 +194,54 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **356 of 536** parks joined
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Washington State Department of Natural Resources (WADNR) State Resource Management Area · SRMA · Unknown · ~2,562,869 ac
+- Glacier Peak Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~566,328 ac
+- Pasayten Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~531,325 ac
 - Snoqualmie National Forest · NF · Forest Service Region 06 Pacific Northwest · ~530,399 ac
+- Alpine Lakes Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~415,203 ac
 - Okanogan National Forest · NF · Forest Service Region 06 Pacific Northwest · ~383,032 ac
 - Umatilla National Forest · NF · Forest Service Region 06 Pacific Northwest · ~311,020 ac
 - Washington State Department of Natural Resources (WADNR) State Resource Management Area · SRMA · Unknown · ~268,553 ac
 - Spokane Wenatchee Field Office · PUB · BLM · ~254,416 ac
 - Hanford Site · FOTH · Department of Energy (DOE) · ~211,071 ac
+- Wenaha-Tucannon Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~176,785 ac
+- William O. Douglas Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~168,954 ac
 - Spokane Border Field Office · PUB · BLM · ~168,544 ac
+- Lake Chelan-Sawtooth Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~153,153 ac
+- Mount Baker Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~120,271 ac
 - Kaniksu National Forest · NF · Forest Service Region 01 Northern · ~119,756 ac
+- Goat Rocks Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~108,196 ac
+- Wild Sky Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~107,094 ac
+- Henry M. Jackson Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~103,240 ac
 - Washington State Department of Fish & Wildlife Trust Land · SRMA · Washington State Department of Fish & Wildlife · ~91,115 ac
 - Snoqualmie National Forest · NF · Forest Service Region 06 Pacific Northwest · ~82,394 ac
+- Mark O. Hatfield Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~65,434 ac
 - Coeur d'Alene Lake ·  · BLM recreation sites · ~64,584 ac
+- Norse Peak Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~52,297 ac
+- Boulder River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~49,249 ac
+- Mount Adams Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~47,123 ac
 - Clearwater River ·  · BLM recreation sites · ~44,818 ac
+- Buckhorn Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~44,270 ac
+- Salmo-Priest Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~41,307 ac
 - Morning Star Natural Resources Conservation Area · SCA · Unknown · ~33,700 ac
 - Loomis Natural Resources Conservation Area · SCA · Unknown · ~24,721 ac
+- Indian Heaven Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~20,784 ac
+- North Fork Umatilla Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~20,213 ac
 - Olympic-Willapa Hills-South Puget Sound Wildlife Area Complex · SCA · Unknown · ~16,950 ac
+- The Brothers Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,297 ac
+- Tatoosh Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~15,776 ac
 - Skagit-Snoqualmie Wildlife Area Complex · SCA · Unknown · ~15,194 ac
+- Clearwater Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~14,616 ac
+- Noisy-Diobsud Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~14,266 ac
 - Vale Baker Field Office · PUB · BLM · ~14,204 ac
 - Klickitat Wildlife Area Complex · SCA · Unknown · ~13,679 ac
+- Mount Skokomish Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,278 ac
 - Lewis And Clark National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~13,080 ac
+- Colonel Bob Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,854 ac
 - Chief Joseph · SCA · Washington Department of Fish & Wildlife · ~11,467 ac
 - Mount Saint Helens-Shillapoo Wildlife Area Complex · SCA · Unknown · ~10,476 ac
 - Lenore Game Range · NCA · LENORE GAME RANGE · ~6,170 ac
 - Lenore Game Range · NCA · Lenore Game Range · ~6,170 ac
+- Trapper Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,963 ac
 - Billy Frank Jr. Nisqually National Wildlife Refuge · NWR · Billy Frank Jr. Nisqually National Wildlife Refuge · ~5,558 ac
 - Billy Frank Jr. Nisqually National Wildlife Refuge · NWR · BILLY FRANK JR. NISQUALLY NATIONAL WILDLIFE REFUGE · ~5,534 ac
 - Colockum Game Range · NCA · COLOCKUM GAME RANGE · ~4,927 ac
@@ -228,28 +253,3 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **356 of 536** parks joined
 - West Tiger Mountain Natural Resources Conservation Area · SCA · Unknown · ~3,880 ac
 - Hoffstadt · SCA · Washington Department of Fish & Wildlife · ~3,721 ac
 - Lt Murray · SCA · Washington Department of Fish and Wildlife · ~3,495 ac
-- Methow Winter Range And Wildlife Refuge · NCA · METHOW WINTER RANGE AND WILDLIFE REFUGE · ~3,029 ac
-- Methow Winter Range And Wildlife Refuge · NCA · Methow Winter Range And Wildlife Refuge · ~3,029 ac
-- Mudflow · SCA · Washington Department of Fish & Wildlife · ~2,861 ac
-- Table Mountain/Greenleaf Peak Natural Resources Conservation Area · SCA · Unknown · ~2,856 ac
-- Sinlahekin Deer Winter Range And Wildlife Refuge · NCA · SINLAHEKIN DEER WINTER RANGE AND WILDLIFE REFUGE · ~2,828 ac
-- Sinlahekin Deer Winter Range And Wildlife Refuge · NCA · Sinlahekin Deer Winter Range And Wildlife Refuge · ~2,828 ac
-- Chopaka Mountain Natural Area Preserve · SCA · Unknown · ~2,757 ac
-- Bone River Natural Area Preserve · SCA · Unknown · ~2,729 ac
-- NA ·  · BLM recreation sites · ~2,718 ac
-- Cypress Island Natural Resources Conservation Area · SCA · Unknown · ~2,716 ac
-- Cold Springs National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,685 ac
-- Cle Elum Lake · RMA · Unknown · ~2,680 ac
-- Oak Creek 2014 - 2588.27 Acre Parcel · SCA · Washington Department of Fish and Wildlife · ~2,589 ac
-- South Nemah Natural Resources Conservation Area · SCA · Unknown · ~2,427 ac
-- Riffe Buffer · SCA · Washington Department of Fish & Wildlife · ~2,351 ac
-- Stavis Creek Natural Resources Conservation Area · SCA · Unknown · ~2,341 ac
-- Iron Horse · SP · Unknown · ~2,334 ac
-- Rimrock Lake · RMA · Unknown · ~2,250 ac
-- NA ·  · BLM recreation sites · ~2,177 ac
-- NA ·  · BLM recreation sites · ~2,143 ac
-- NA ·  · BLM recreation sites · ~2,140 ac
-- Cadman · SCA · STATE FOREST BOARD · ~2,085 ac
-- Charley Creek Natural Area Preserve · SCA · Unknown · ~2,023 ac
-- Entiat Slopes Natural Area Preserve · SCA · Unknown · ~1,964 ac
-- NA ·  · BLM recreation sites · ~1,961 ac

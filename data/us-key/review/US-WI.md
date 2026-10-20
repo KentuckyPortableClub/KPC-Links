@@ -1,17 +1,14 @@
 # WI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **301 of 348** parks joined to official land (same name + same kind of place). **29** to check by hand, **18** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **301 of 348** parks joined to official land (same name + same kind of place). **26** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0604** St. Croix Wetland Management District (Wetland Management District) → St. Croix County Waterfowl Production Area (~6,418 ac, the POTA pin is inside it (different name)); St. Croix County Waterfowl Production Area (~6,140 ac, the POTA pin is inside it (different name))
-- **US-10184** Johnson State Wildlife Area (State Wildlife Area) → Western Prairie Habitat Restoration (~938 ac, the POTA pin is inside it (different name)); Deer Park SHA-WPRA (~213 ac, the POTA pin is inside it (different name)); Deer Park State Habitat Area-Western Prairie Habitat Restoration Area (~210 ac, the POTA pin is inside it (different name))
-- **US-10192** Pleasant Valley State Fish and Wildlife Area (State Fish and Wildlife Area) → Kinnickinnic River Fishery Area (~1,210 ac, the POTA pin is inside it (different name))
-- **US-10194** Schmit State Wildlife Area (State Wildlife Area) → Western Prairie Habitat Restoration (~938 ac, the POTA pin is inside it (different name)); Erin Prairie State Habitat Area-Western Prairie Habitat Restoration Area (~148 ac, the POTA pin is inside it (different name)); Erin Prairie SHA-WPRA (~148 ac, the POTA pin is inside it (different name))
+- **US-10644** Love and Strutt Creeks State Fish and Wildlife Area (State Fish and Wildlife Area) → Rem-Love Creek (~578 ac, the POTA pin is inside it (different name)); Rem-Love Creek (~578 ac, the POTA pin is inside it (different name))
 - **US-10650** Nevin Springs State Fish and Wildlife Area (State Fish and Wildlife Area) → Nevin Hatchery (~331 ac, similar name); Nevin Hatchery (~331 ac, similar name)
 - **US-11230** Hallie Marsh State Wildlife Area (State Wildlife Area) → Statewide Wildlife Habitat - Wd (~1,573 ac, the POTA pin is inside it (different name))
 - **US-12358** Pinnacle Rock State Fish and Wildlife Area (State Fish and Wildlife Area) → Pinnacle Rock Rearing Station (~55 ac, similar name); Pinnacle Rock Rearing Station (~55 ac, similar name)
-- **US-1458** Kohler-Andrae State Park (State Park) → John Michael Kohler State Park (~751 ac, the POTA pin is inside it (different name))
 - **US-4238** Ice Age National Scenic Trail (National Scenic Trail) → Ice Age Trail (~5,793 ac, similar name); Ice Age Trail - Wd (~2,453 ac, similar name); State Ice Age Trail Area (SIATA) (~1,377 ac, similar name); State Ice Age Trail Area (SIATA) (~1,020 ac, similar name); Ice Age Trail - Lm (~974 ac, similar name)
 - **US-4244** Big Bay Sand Spit and Bog State Natural Area (State Natural Area) → Big Bay State Park (~2,514 ac, similar name); Big Bay State Park 4 (~40 ac, similar name)
 - **US-4245** Two Creeks Buried Forest State Natural Area (State Natural Area) → Two Creeks State Park-Iansr (~29 ac, similar name); Two Creeks State Park (~29 ac, similar name)
@@ -40,10 +37,13 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **301 of 348** parks joined
 ## Nothing found in PAD-US
 
 - US-0602 Leopold Wetland Management District (Wetland Management District)
+- US-10184 Johnson State Wildlife Area (State Wildlife Area)
+- US-10192 Pleasant Valley State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-10194 Schmit State Wildlife Area (State Wildlife Area)
 - US-10195 Sette State Wildlife Area (State Wildlife Area)
 - US-10198 Swinging Gate State Fish and Wildlife Area (State Fish and Wildlife Area)
-- US-10644 Love and Strutt Creeks State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-11955 Genoa National Fish Hatchery (National Fish Hatchery)
+- US-1458 Kohler-Andrae State Park (State Park)
 - US-4239 North Country Trail National Scenic Trail (National Scenic Trail)
 - US-4242 Fenley State Recreation Area (State Recreation Area)
 - US-8205 Kangaroo Lake State Natural Area (State Natural Area)
@@ -62,27 +62,23 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **301 of 348** parks joined
 
 - Nicolet National Forest · NF · Forest Service Region 09 Eastern · ~662,660 ac
 - Brule St Croix Legacy Forest ·  · Wisconsin DNR managed properties · ~74,398 ac
-- Pelican River Forest Conservation Easement ·  · Wisconsin DNR managed properties · ~67,334 ac
 - Necedah Wildlife Management Area · NCA · NECEDAH WILDLIFE MANAGEMENT AREA · ~54,211 ac
 - Necedah Wildlife Management Area · NCA · Necedah Wildlife Management Area · ~54,211 ac
-- Wild Rivers/Pine Popple Conservation Easement ·  · Wisconsin DNR managed properties · ~44,258 ac
 - Forest Legacy Program ·  · Wisconsin DNR managed properties · ~33,036 ac
 - Kettle Moraine State Forest-Northern Unit-Iansr · SRMA · Wisconsin Department of Natural Resources · ~30,180 ac
+- Headwaters Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~22,080 ac
 - Kettle Moraine State Forest-Southern Unit · SRMA · Wisconsin Department of Natural Resources · ~21,492 ac
-- Lake of the Pines Conservation Easement ·  · Wisconsin DNR managed properties · ~20,813 ac
-- Wabikon Waters Conservation Easement ·  · Wisconsin DNR managed properties · ~18,219 ac
-- Chippewa Flowage Conservation Easement ·  · Wisconsin DNR managed properties · ~17,885 ac
-- Tomahawk Timberlands Conservation Easement (New Wood Trct) ·  · Wisconsin DNR managed properties · ~16,923 ac
-- Wild Rivers/Pine Popple Conservation Easement ·  · Wisconsin DNR managed properties · ~14,570 ac
-- Great Northern Conservation Easement ·  · Wisconsin DNR managed properties · ~13,994 ac
-- Twin Lakes Conservation Easement ·  · Wisconsin DNR managed properties · ~13,991 ac
+- Sylvania Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,440 ac
+- McCormick Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~17,184 ac
+- Sturgeon River Gorge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,725 ac
 - Pine-Popple Wild Rivers · SP · Wisconsin Department of Natural Resources · ~11,409 ac
 - Horicon Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~11,169 ac
 - Glacial Habitat Restoration · SCA · Unknown · ~9,591 ac
 - Glacial Habitat Restoration Area ·  · Wisconsin DNR managed properties · ~9,514 ac
 - Glacial Habitat Restoration - Lm · SREC · Wisconsin Department of Natural Resources · ~9,349 ac
-- Central Sands Pines Forest Legacy Easement ·  · Wisconsin DNR managed properties · ~9,111 ac
 - Scattered Forest Lands · SRMA · Unknown · ~7,832 ac
+- Whisker Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,434 ac
+- Rainbow Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,175 ac
 - Natural Area - Dedication ·  · Wisconsin DNR managed properties · ~6,993 ac
 - St Louis River Streambank Protection Area ·  · Wisconsin DNR managed properties · ~6,695 ac
 - St Louis River Streambank Protection Area · SREC · Wisconsin Department of Natural Resources · ~6,676 ac
@@ -93,10 +89,12 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **301 of 348** parks joined
 - South Shore Lake Superior Fish · SCA · Unknown · ~6,177 ac
 - St. Croix County Waterfowl Production Area · RMA · ST. CROIX COUNTY WATERFOWL PRODUCTION AREA · ~6,140 ac
 - Ms Rv Pools 11-22 Recreation Area · REC · Rock Island · ~6,084 ac
+- Blackjack Springs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,917 ac
 - Ice Age Trail · SREC · Unknown · ~5,793 ac
 - Spread Eagle Barrens Natural Area · SCA · Unknown · ~5,549 ac
 - Stream Bank Protection Fee Program · SCA · Unknown · ~5,131 ac
 - Pike Wild River · SCA · Wisconsin Department of Natural Resources · ~4,736 ac
+- Porcupine Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,306 ac
 - Scattered Forest Land - Nw · SREC · Wisconsin Department of Natural Resources · ~4,189 ac
 - Mc Millan Wildlife Area · SCA · Unknown · ~4,138 ac
 - Columbia County Waterfowl Production Area · RMA · Columbia County Waterfowl Production Area · ~3,893 ac
@@ -109,7 +107,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **301 of 348** parks joined
 - Kickapoo Wildlife Area-Wauzeka Unit ·  · Wisconsin DNR managed properties · ~3,184 ac
 - Gift Lands · UNK · Unknown · ~3,152 ac
 - Extensive WL Habitat ·  · Wisconsin DNR managed properties · ~3,099 ac
-- Tomahawk Timberlands Conservation Easement (Moose Lake Trct) ·  · Wisconsin DNR managed properties · ~3,014 ac
 - Scattered Forest Land ·  · Wisconsin DNR managed properties · ~2,830 ac
 - Statewide Wildlife Habitat · SCA · Unknown · ~2,774 ac
 - Rush Creek Natural Area · SCA · Wisconsin Department of Natural Resources · ~2,698 ac
@@ -120,3 +117,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **301 of 348** parks joined
 - Clam River Fishery Area · SREC · Wisconsin Department of Natural Resources · ~2,554 ac
 - Totogatic Wild River · SCA · Wisconsin Department of Natural Resources · ~2,489 ac
 - Jackson Marsh Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~2,472 ac
+- Lower Saint Croix National Scenic Riverway · WSR · NPS · ~2,470 ac
+- Winnebago County Waterfowl Production Area Of Wi · RMA · Winnebago County Waterfowl Production Area Of Wi · ~2,462 ac
+- Ice Age Trail - Wd · SP · Wisconsin Department of Natural Resources · ~2,453 ac

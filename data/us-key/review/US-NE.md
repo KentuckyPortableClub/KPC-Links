@@ -1,10 +1,9 @@
 # NE: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **134 of 190** parks joined to official land (same name + same kind of place). **21** to check by hand, **35** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **141 of 196** parks joined to official land (same name + same kind of place). **21** to check by hand, **34** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-13329** Plum Creek State Recreation Area (State Recreation Area) → Plum Creek Wildlife Management Area (~4 ac, same name, different kind of place)
 - **US-2611** Bowring Ranch State Historical Park (State Historical Park) → Bowring Ranch SHP (~435 ac, same name, different kind of place)
 - **US-3483** Atlanta National Waterfowl Production Area (National Waterfowl Production Area) → Phelps County Waterfowl Production Area (~4,677 ac, similar name); Phelps County Waterfowl Production Area (~4,677 ac, similar name)
 - **US-3484** Peterson National Waterfowl Production Area (National Waterfowl Production Area) → Gosper County Waterfowl Production Area (~1,451 ac, similar name); Gosper County Waterfowl Production Area (~1,451 ac, similar name)
@@ -12,6 +11,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **134 of 190** parks joined
 - **US-3486** Moger National Waterfowl Production Area (National Waterfowl Production Area) → Clay County Waterfowl Production Area Of Ne (~7,011 ac, similar name); Clay County Waterfowl Production Area Of Ne (~6,943 ac, similar name)
 - **US-3489** Massie National Waterfowl Production Area (National Waterfowl Production Area) → Clay County Waterfowl Production Area Of Ne (~7,011 ac, similar name); Clay County Waterfowl Production Area Of Ne (~6,943 ac, similar name)
 - **US-3490** Smith Lagoon National Waterfowl Production Area (National Waterfowl Production Area) → Clay County Waterfowl Production Area Of Ne (~7,011 ac, similar name); Clay County Waterfowl Production Area Of Ne (~6,943 ac, similar name)
+- **US-4011** Chalco Hills State Recreation Area (State Recreation Area) → Wehrspann Recreation Area (~1,196 ac, the POTA pin is inside it (different name))
 - **US-4017** Lincoln Saline Wetland State Park (State Park) → Lincoln Saline Wetlands Nature Center (~93 ac, same name, different kind of place)
 - **US-4032** Clatonia State Recreation Area (State Recreation Area) → Clatonia Public Area (~155 ac, similar name)
 - **US-4037** Willard L. Meyer State Recreation Area (State Recreation Area) → Swan Lake (~289 ac, the POTA pin is inside it (different name))
@@ -50,7 +50,6 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **134 of 190** parks joined
 - US-3492 Willa Cather Memorial Prairie State Historic Site (State Historic Site)
 - US-3493 Nine Mile Prairie National Historical Park (National Historical Park)
 - US-4010 Heron Haven State Park (State Park)
-- US-4011 Chalco Hills State Recreation Area (State Recreation Area)
 - US-4012 Elkhorn Crossing State Park (State Park)
 - US-4013 Prairie View State Recreation Area (State Recreation Area)
 - US-4018 Wildwood Lake Wildlife Management Area (Wildlife Management Area)
@@ -111,7 +110,6 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **134 of 190** parks joined
 - Harry Strunk Lake · RMA · Unknown · ~1,745 ac
 - Willow Creek SRA ·  · Nebraska Game and Parks areas · ~1,650 ac
 - Jack Sinn Memorial Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,631 ac
-- Ballards Marsh Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,589 ac
 - Hugh Butler Lake · RMA · Unknown · ~1,565 ac
 - Glenn Cunningham Recreation Area · REC · Omaha · ~1,543 ac
 - Gilbert-baker Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,507 ac
@@ -129,3 +127,4 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **134 of 190** parks joined
 - Wehrspann Recreation Area · REC · Omaha · ~1,196 ac
 - Calamus Reservoir SRA ·  · Nebraska Game and Parks areas · ~1,188 ac
 - Thomas Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,138 ac
+- Buffalo Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,124 ac

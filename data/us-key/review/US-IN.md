@@ -1,6 +1,6 @@
 # IN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **191 of 229** parks joined to official land (same name + same kind of place). **31** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **191 of 229** parks joined to official land (same name + same kind of place). **32** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -20,15 +20,16 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **191 of 229** parks joined
 - **US-4179** Mt Etna on Salamonie Lake State Recreation Area (State Recreation Area) → Salamonie Lake (~10,768 ac, similar name); Salamonie Lake (~73 ac, similar name)
 - **US-4180** Mt Hope on Salamonie Lake State Recreation Area (State Recreation Area) → Salamonie Lake (~10,768 ac, similar name); Salamonie State Forest (~956 ac, similar name)
 - **US-4186** Big Walnut - Tall Timbers Trail State Nature Preserve (State Nature Preserve) → Big Walnut Addition Nature Preserve (~739 ac, similar name); Big Walnut Natural Area (~389 ac, similar name); Big Walnut Nature Preserve - Tract 1 (~286 ac, similar name)
+- **US-4188** Bryan Woods State Nature Preserve (State Nature Preserve) → Bryan (Eunice Hamilton) Nature Preserve (~30 ac, the POTA pin is inside it (different name))
 - **US-4208** J. E. Roush Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → J. Edward Roush Recreation Area (~8,533 ac, the POTA pin is inside it (different name)); J. Edward Roush Fish and Wildlife Area (~8,235 ac, the POTA pin is inside it (different name))
 - **US-5680** Indian-Celina State Recreation Area (State Recreation Area) → Hoosier National Forest (~204,291 ac, the POTA pin is inside it (different name))
 - **US-5681** Little Turtle State Recreation Area (State Recreation Area) → J. Edward Roush Recreation Area (~8,533 ac, the POTA pin is inside it (different name)); J. Edward Roush Fish and Wildlife Area (~8,235 ac, the POTA pin is inside it (different name))
 - **US-5682** Moores Creek State Recreation Area (State Recreation Area) → Monroe Recreation Area (~25,720 ac, the POTA pin is inside it (different name))
 - **US-5683** Kil-So-Quah State Recreation Area (State Recreation Area) → J. Edward Roush Recreation Area (~8,533 ac, the POTA pin is inside it (different name)); J. Edward Roush Fish and Wildlife Area (~8,235 ac, the POTA pin is inside it (different name))
-- **US-5684** Allens Creek State Recreation Area (State Recreation Area) → Monroe Recreation Area (~25,720 ac, the POTA pin is inside it (different name)); Monroe Lake (~18,310 ac, the POTA pin is inside it (different name))
+- **US-5684** Allens Creek State Recreation Area (State Recreation Area) → Monroe Recreation Area (~25,720 ac, the POTA pin is inside it (different name))
 - **US-5685** Lieber State Recreation Area (State Recreation Area) → Owen-Putnam State Forest (~6,594 ac, the POTA pin is inside it (different name))
 - **US-5686** Fairfax State Recreation Area (State Recreation Area) → Monroe Recreation Area (~25,720 ac, the POTA pin is inside it (different name))
-- **US-5688** Salt Creek State Recreation Area (State Recreation Area) → Monroe Recreation Area (~25,720 ac, the POTA pin is inside it (different name)); Monroe Lake (~18,310 ac, the POTA pin is inside it (different name))
+- **US-5688** Salt Creek State Recreation Area (State Recreation Area) → Monroe Recreation Area (~25,720 ac, the POTA pin is inside it (different name)); Monroe Lake (~18,310 ac, the POTA pin is inside it (different name)); Monroe Lake (~313 ac, the POTA pin is inside it (different name))
 - **US-5689** Pine Grove State Recreation Area (State Recreation Area) → Monroe Recreation Area (~25,720 ac, the POTA pin is inside it (different name))
 - **US-5690** Crooked Creek State Recreation Area (State Recreation Area) → Monroe Recreation Area (~25,720 ac, the POTA pin is inside it (different name)); Monroe Lake (~18,310 ac, the POTA pin is inside it (different name))
 - **US-5692** Cartop State Recreation Area (State Recreation Area) → Monroe Recreation Area (~25,720 ac, the POTA pin is inside it (different name)); Monroe Lake (~18,310 ac, the POTA pin is inside it (different name))
@@ -43,7 +44,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **191 of 229** parks joined
 
 - US-10180 Fourteenmile Creek State Nature Preserve (State Nature Preserve)
 - US-13101 Westercamp Wildlife Management Area (Wildlife Management Area)
-- US-4188 Bryan Woods State Nature Preserve (State Nature Preserve)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-4667 Spencer County State Forest (State Forest)
 - US-6973 Lanier Mansion State Historic Site (State Historic Site)
@@ -59,6 +59,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **191 of 229** parks joined
 - Brookville Lake ·  · Indiana DNR properties · ~13,201 ac
 - Mississinewa Lake ·  · Indiana DNR properties · ~13,064 ac
 - Minnehana Fish and Wildlife Area · SCA · Indiana Department of Natural Resources Fish and Wildlife · ~12,889 ac
+- Charles C. Deam Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,538 ac
 - Salamonie Lake ·  · Indiana DNR properties · ~10,768 ac
 - J. Edward Roush Recreation Area · REC · Louisville · ~8,533 ac
 - J. Edward Roush Fish and Wildlife Area ·  · Indiana DNR properties · ~8,235 ac
@@ -110,4 +111,3 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **191 of 229** parks joined
 - Gray Estate Cypress Slough (Gray Woods) · SCA · Indiana DNR, Fish and Wildlife Division · ~386 ac
 - Place Trail Marsh Gamebird Habitat Area ·  · Indiana DNR properties · ~375 ac
 - Moriane Natural Area · SCA · Indiana DNR, Nature Preserve Division · ~365 ac
-- Buffalo Pond Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~358 ac

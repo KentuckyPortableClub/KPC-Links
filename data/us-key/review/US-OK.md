@@ -1,6 +1,6 @@
 # OK: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **138 of 205** parks joined to official land (same name + same kind of place). **18** to check by hand, **47** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **138 of 205** parks joined to official land (same name + same kind of place). **18** to check by hand, **47** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -16,7 +16,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **138 of 205** parks joined
 - **US-2774** Boiling Springs State Park (State Park) → Boiling State Parkrings State Park (~775 ac, the POTA pin is inside it (different name))
 - **US-2781** Gloss Mountain State Park (State Park) → Glass Mountains State Park (~559 ac, the POTA pin is inside it (different name))
 - **US-2805** Spavinaw State Park (State Park) → Spavinaw Wildlife Management Area (~13,508 ac, same name, different kind of place)
-- **US-2806** Talimena State Park (State Park) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name))
+- **US-2806** Talimena State Park (State Park) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name)); Ouachita Wildlife Management Area - Leflore (~223,822 ac, the POTA pin is inside it (different name))
 - **US-6365** Osage Wildlife Management Area (Wildlife Management Area) → Osage Wildlife Management Area - Rock Creek (~3,729 ac, similar name)
 - **US-8119** Doc Hollis State Fishing Lake (State Fishing Lake) → Sandy Sanders Wildlife Management Area (~36,669 ac, the POTA pin is inside it (different name))
 - **US-8128** Lloyd Vincent State Fishing Lake (State Fishing Lake) → Ellis County Wildlife Management Area (~4,740 ac, the POTA pin is inside it (different name))
@@ -83,7 +83,9 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **138 of 205** parks joined
 - CLO Lands · SRMA · The Commissioners of the Land Office · ~3,238,968 ac
 - Ouachita National Forest · NF · Forest Service Region 08 Southern · ~353,440 ac
 - Herron Family Wildlife Management Area ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~17,233 ac
+- Black Fork Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,466 ac
 - Hagerman National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,298 ac
+- Upper Kiamichi River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,799 ac
 - Cross Bar Recreation Area ·  · BLM recreation sites · ~9,856 ac
 - Buffalo Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,718 ac
 - Honobia Creek Wildlife Management Area - Campbell ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~7,327 ac
@@ -138,5 +140,3 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **138 of 205** parks joined
 - MacArthur Elementary School · LP · INDEPENDENT SCHOOL DIST NO 1 · ~38 ac
 - Murrel Home Park · SHCA · OKLAHOMA HISTORICAL SOCIETY & (MURRELL HOME) · ~37 ac
 - Community Center Park · LP · City of Mannford · ~34 ac
-- Ochoa Elementary School · LP · INDEPENDENT SCHOOL DIST · ~33 ac
-- Comanche National Grassland · NG · Forest Service Region 02 Rocky Mountain · ~31 ac

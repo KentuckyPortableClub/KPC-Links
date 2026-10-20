@@ -1,6 +1,6 @@
 # AL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **104 of 155** parks joined to official land (same name + same kind of place). **18** to check by hand, **30** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **107 of 155** parks joined to official land (same name + same kind of place). **14** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -11,14 +11,10 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **104 of 155** parks joined
 - **US-12411** TVA Second Creek Access Area National Park (National Park) → Joe Wheeler State Park (~2,144 ac, the POTA pin is inside it (different name))
 - **US-12412** TVA Rockpile Recreation Area National Park (National Park) → Pickwick Reservoir Retained Land (~8,930 ac, the POTA pin is inside it (different name))
 - **US-13311** TVA Upper Bear Creek Dam Resource Management Area (Resource Management Area) → Upper Bear Creek Reservoir Retained Land (~3,216 ac, the POTA pin is inside it (different name))
-- **US-3678** Roland Cooper State Park (State Park) → Millers Ferry Lock Recreation Area (~15,105 ac, the POTA pin is inside it (different name))
-- **US-3682** Cheaha Wilderness Area (Wilderness Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
 - **US-3683** Choccolocco Wildlife Management Area (Wildlife Management Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
-- **US-3687** Dugger Mountain Wilderness National Forest (National Forest) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
 - **US-3692** Heron Bay and Portersville Bay State Fish and Wildlife Area (State Fish and Wildlife Area) → The Heron Bay Wetlands Tract (~463 ac, similar name)
 - **US-3693** Hollins Wildlife Management Area (Wildlife Management Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
 - **US-3703** Ruffner Mountain Preserve State Conservation Area (State Conservation Area) → Ruffner Mountain Nature Center (~226 ac, similar name)
-- **US-3706** Sipsey Wilderness Wilderness Area (Wilderness Area) → William B. Bankhead National Forest (~182,015 ac, the POTA pin is inside it (different name))
 - **US-9911** Boggy Hollow Wildlife Management Area (Wildlife Management Area) → Conecuh National Forest (~84,808 ac, the POTA pin is inside it (different name))
 - **US-9912** Blue Spring Wildlife Management Area (Wildlife Management Area) → Conecuh National Forest (~84,808 ac, the POTA pin is inside it (different name))
 - **US-9924** Oakmulgee Wildlife Management Area (Wildlife Management Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
@@ -49,6 +45,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **104 of 155** parks joined
 - US-13473 Old Cahawba Archaeological Park State Historical Park (State Historical Park)
 - US-13533 Brierfield Ironworks Historial State Park State Historical Park (State Historical Park)
 - US-13558 St. Stephens State Historical Park (State Historical Park)
+- US-3678 Roland Cooper State Park (State Park)
 - US-3679 Charles D. Kelley Wildlife Management Area (Wildlife Management Area)
 - US-3686 David K. Nelson Wildlife Management Area (Wildlife Management Area)
 - US-3704 Sam R Murphy Wildlife Management Area (Wildlife Management Area)

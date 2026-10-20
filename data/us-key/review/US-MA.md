@@ -1,6 +1,6 @@
 # MA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **392 of 421** parks joined to official land (same name + same kind of place). **6** to check by hand, **23** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **392 of 421** parks joined to official land (same name + same kind of place). **6** to check by hand, **23** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -42,6 +42,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **392 of 421** parks joined
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Glastenbury Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~22,330 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~11,522 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~8,856 ac
 - Camp Edwards Wildlife Management Area · SCA ·   · ~8,715 ac
@@ -49,6 +50,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **392 of 421** parks joined
 - Camp Edwards Wildlife Management Area · SCA ·   · ~5,617 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~5,331 ac
 - Appalachian National Scenic Trail · NT · NPS · ~5,294 ac
+- George D. Aiken Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,800 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~4,135 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~3,694 ac
 - Quabbin Reservoir Watershed · WPA ·   · ~3,206 ac
@@ -100,5 +102,3 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **392 of 421** parks joined
 - Farmington River Watershed · WPA ·   · ~579 ac
 - Wachusett Reservoir Watershed · WPA ·   · ~568 ac
 - Freetown Swamp Wma · SCA · Department of Fish and Game · ~563 ac
-- Quabbin Reservoir Watershed · WPA ·   · ~560 ac
-- Taconic Trail State Park · SP ·   · ~559 ac

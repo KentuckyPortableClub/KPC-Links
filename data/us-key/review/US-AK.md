@@ -1,6 +1,6 @@
 # AK: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **75 of 179** parks joined to official land (same name + same kind of place). **19** to check by hand, **55** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **76 of 179** parks joined to official land (same name + same kind of place). **19** to check by hand, **54** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -15,7 +15,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **75 of 179** parks joined 
 - **US-12381** Delta BLM Wild and Scenic River (BLM Wild and Scenic River) → Delta River SRMA (~43,744 ac, similar name); Glennallen Field Office (~36,210 ac, the POTA pin is inside it (different name))
 - **US-12678** Little Nelchina State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
 - **US-12708** Kenai River State Conservation Area (State Conservation Area) → Kenai National Wildlife Refuge (~1,939,526 ac, similar name); Kenai National Wildlife Refuge (~1,938,670 ac, similar name); Kenai River Special Management Area (~1,404 ac, similar name)
-- **US-4537** Admiralty Island National Monument (National Monument) → Tongass National Forest (~16,739,631 ac, the POTA pin is inside it (different name))
+- **US-4537** Admiralty Island National Monument (National Monument) → Tongass National Forest (~16,739,631 ac, the POTA pin is inside it (different name)); Kootznoowoo Wilderness (~999,979 ac, the POTA pin is inside it (different name))
 - **US-4593** Southeast State Forest (State Forest) → State Tentatively Approved (ta) (~42,740 ac, the POTA pin is inside it (different name))
 - **US-6332** Hatcher Pass State Natural Area (State Natural Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
 - **US-7195** Clam Gulch State Recreation Area (State Recreation Area) → Clam Gulch Critical Habitat Area (~3,853 ac, similar name)
@@ -74,7 +74,6 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **75 of 179** parks joined 
 - US-12751 Mineral Creek State Recreation Site (State Recreation Site)
 - US-1639 Afognak Island State Park (State Park)
 - US-3382 John National Wild and Scenic River (National Wild and Scenic River)
-- US-4538 Misty Fjords National Monument (National Monument)
 - US-4570 Iditarod National Historic Trail (National Historic Trail)
 - US-7191 Anchor River State Recreation Area (State Recreation Area)
 - US-7196 Crooked Creek State Recreation Site (State Recreation Site)
@@ -131,6 +130,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **75 of 179** parks joined 
 - Denali National Preserve · NCA · NPS · ~1,311,169 ac
 - State Land Disposals - Other Than Municipal · SOTH · Unknown · ~1,165,571 ac
 - Bristol Bay Fisheries Reserve · SCA · Unknown · ~1,114,445 ac
+- Kootznoowoo Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~999,979 ac
 - Tiekel SRMA ·  · BLM recreation sites · ~847,741 ac
 - Bering Glacier RNA ·  · BLM recreation areas · ~824,147 ac
 - Bering Glacier RNA ·  · BLM recreation sites · ~824,147 ac
@@ -138,13 +138,18 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **75 of 179** parks joined 
 - Squirrel River SRMA ·  · BLM recreation sites · ~726,379 ac
 - Steese SRMA ·  · BLM recreation sites · ~707,907 ac
 - State Land Disposals - Municipal Purposes · SOTH · Unknown · ~676,504 ac
+- Tracy Arm-Fords Terror Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~647,358 ac
 - Denali Highway SRMA ·  · BLM recreation sites · ~557,672 ac
 - Copper River Delta Critical Habitat Area · SCA · Unknown · ~543,173 ac
 - Steese SRMA ·  · BLM recreation sites · ~539,040 ac
 - Alaska Maritime National Wildlife Refuge · NWR · ALASKA MARITIME NATIONAL WILDLIFE REFUGE · ~478,341 ac
 - Alaska Maritime National Wildlife Refuge · NWR · ALASKA MARITIME NATIONAL WILDLIFE REFUGE · ~464,348 ac
+- Stikine-LeConte Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~440,197 ac
 - Alaska Maritime National Wildlife Refuge · NWR · ALASKA MARITIME NATIONAL WILDLIFE REFUGE · ~391,378 ac
+- Russell Fjord Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~350,158 ac
+- South Baranof Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~315,851 ac
 - Delta Range SRMA ·  · BLM recreation sites · ~276,621 ac
+- West Chichagof-Yakobi Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~272,004 ac
 - Haines ERMA ·  · BLM recreation sites · ~252,129 ac
 - Salmon Lake-Kigluaik SRMA ·  · BLM recreation sites · ~249,962 ac
 - Fortymile SRMA ·  · BLM recreation sites · ~247,230 ac
@@ -160,20 +165,14 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **75 of 179** parks joined 
 - Tiekel SRMA ·  · BLM recreation sites · ~112,246 ac
 - Matanuska Valley Moose Range · SRMA · Unknown · ~110,813 ac
 - State Patented · SOTH · Unknown · ~102,494 ac
+- Endicott River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~98,396 ac
 - Gulkana River SRMA ·  · BLM recreation sites · ~94,513 ac
+- South Prince of Wales Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~87,034 ac
 - Delta Junction Bison Range Area · SRMA · Unknown · ~86,914 ac
+- South Etolin Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~83,430 ac
 - Yakataga State Game Refuge · SCA · Unknown · ~80,615 ac
 - Knik SRMA ·  · BLM recreation sites · ~79,498 ac
 - Toolik Lake RNA ·  · BLM recreation areas · ~78,034 ac
 - Toolik Lake RNA ·  · BLM recreation sites · ~78,034 ac
 - Port Moller Critical Habitat Area · SCA · Unknown · ~77,681 ac
-- Kroto And Moose Creek Recreation River · SREC · Unknown · ~71,275 ac
-- Tiekel SRMA ·  · BLM recreation sites · ~68,468 ac
-- Iditarod NHT ·  · BLM recreation sites · ~67,333 ac
-- Eastern Interior Field Office · PUB · BLM · ~66,593 ac
-- Haines - Chilkat Mountains SRMA ·  · BLM recreation sites · ~65,569 ac
-- Kachemak Bay Oil And Gas Closure · SOTH · Unknown · ~62,659 ac
-- Lake Creek Recreation River · SREC · Unknown · ~58,227 ac
-- Delta Range SRMA ·  · BLM recreation sites · ~56,683 ac
-- Talachulitna Recreation River · SREC · Unknown · ~51,517 ac
-- Port Heiden Critical Habitat Area · SCA · Unknown · ~46,680 ac
+- Chuck River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~75,393 ac

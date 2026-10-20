@@ -1,6 +1,6 @@
 # ME: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **136 of 148** parks joined to official land (same name + same kind of place). **4** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **136 of 148** parks joined to official land (same name + same kind of place). **4** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -29,6 +29,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **136 of 148** parks joined
 - Appalachian National Scenic Trail · NT · NPS · ~32,624 ac
 - Nahmakanta Unit · SRMA · Maine Bureau of Parks and Lands · ~32,502 ac
 - Baxter State Park Scientific Management Area · SP · Baxter State Park Authority · ~24,639 ac
+- Wild River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,032 ac
 - Round Pond · LOTH · Maine Bureau of Parks and Lands · ~20,810 ac
 - Eagle Lake · LOTH · Maine Bureau of Parks and Lands · ~19,424 ac
 - Nahmakanta · LOTH · Maine Bureau of Parks and Lands · ~19,025 ac
@@ -38,6 +39,7 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **136 of 148** parks joined
 - Unknown · LOTH · Maine Minor Civil Division · ~13,202 ac
 - Nahmakanta · LOTH · Maine Bureau of Parks and Lands · ~13,029 ac
 - Duck Lake · SOTH ·   · ~11,848 ac
+- Caribou-Speckled Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,250 ac
 - Nahmakanta Unit Ecological Reserve · SCA · Maine Bureau of Parks and Lands · ~11,122 ac
 - Scraggly Lake · LOTH · Maine Bureau of Parks and Lands · ~9,846 ac
 - Richardson Lake · LOTH · Maine Bureau of Parks and Lands · ~9,614 ac
@@ -83,5 +85,3 @@ Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **136 of 148** parks joined
 - Dead River · LOTH · Maine Bureau of Parks and Lands · ~3,958 ac
 - Donnell Pond Ecological Reserve · SCA ·   · ~3,945 ac
 - Upper St John River Watershed Ecological Reserve · SCA · Maine Bureau of Parks and Lands · ~3,884 ac
-- Seboeis Unit · LOTH · Maine Bureau of Parks and Lands · ~3,839 ac
-- Crocker Mountain · LOTH · Maine Bureau of Parks and Lands · ~3,810 ac

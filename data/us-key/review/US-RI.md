@@ -1,6 +1,6 @@
 # RI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-19 by `.github/scripts/kpc_us_key.py`. **38 of 61** parks joined to official land (same name + same kind of place). **4** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **38 of 61** parks joined to official land (same name + same kind of place). **4** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
