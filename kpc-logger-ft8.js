@@ -135,7 +135,7 @@
     KPCCat.tune(want, md).then(async ok => { if (!ok || my !== tuneN) return;
       for (let i = 0; i < 2; i++) { await new Promise(r => setTimeout(r, 1300)); if (my !== tuneN) return; tunedAt = Date.now();
         const r = await KPCCat.read(); if (!r || !r.khz) return;
-        if (Math.abs(r.khz - want) <= 0.05) { if (md === 'DATA' && /yaesu/.test(KPCCat.get().proto) && r.mode && r.mode !== 'DATA') note(`Radio is in ${r.mode}, not DATA mode: set FT8 & digital modes to DATA mode under ⚙ Station → Radio control, and set the radio's DATA MOD SOURCE menu to USB.`); return; }
+        if (Math.abs(r.khz - want) <= 0.05) { return; }
         if (i === 0) { tunedAt = Date.now(); await KPCCat.tune(want, md); } else note(`Radio shows ${(r.khz / 1000).toFixed(4)} MHz, not ${(want / 1000).toFixed(4)}. Check the radio's VFO A and that it is not locked or split.`); } }); }
   /* set my own dial (kHz); a frequency on another band switches the band when this mode has it */
   function setDial(k, fromRadio) {
