@@ -337,7 +337,8 @@ tasks.recaps = async () => {
   state.recaps = state.recaps || [];
   const done = new Set(state.recaps);
   if (first) { state.recaps = keys.slice(-2000); save(); return notice(`First run: remembered ${keys.length} past member activations. Recaps post from now on.`); }
-  const fresh = keys.filter(k => !done.has(k) && dayDiff(localDate(), iso(groups[k].date)) <= 3);
+  /* Oct 20 (Brandon: 'missed K4ZSR and KQ4HZK'): activators often upload their log days later, so look back 10 days, not 3 */
+  const fresh = keys.filter(k => !done.has(k) && dayDiff(localDate(), iso(groups[k].date)) <= 10);
   if (!fresh.length) { notice('No new member activations.'); return; }
   /* an evening activation runs past 0000 UTC, so POTA splits it into two days (Brandon Oct 17, N4BDW): when the same call has
      the next UTC day waiting too, post them together as one recap */
