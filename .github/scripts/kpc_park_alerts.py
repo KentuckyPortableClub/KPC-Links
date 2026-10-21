@@ -132,11 +132,16 @@ def nps_alerts():
         aid = str(a.get('id') or '')
         if not aid:
             continue
+        cat = clean(a.get('category'), 40).lower()
         out['nps-' + aid] = {'who': clean(a.get('parkCode'), 20).upper() or 'National Park Service',
                              'title': clean(a.get('title'), 160),
                              'text': clean(a.get('description')),
                              'link': clean(a.get('url'), 300) or 'https://www.nps.gov/',
-                             'cat': clean(a.get('category'), 40)}
+                             # the park says what kind it is: only Closure/Danger/Caution is 'before you drive out'
+                             # news. 'Information' is standing advice (drones, bears, firewood, opening hours) and
+                             # must not be dressed up as a heads-up (Brandon saw a list of those on Oct 21).
+                             'routine': cat in ('information', '') or not cat,
+                             'cat': cat}
     return out
 
 
