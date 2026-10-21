@@ -91,7 +91,7 @@ def ky_state_parks():
     """Kentucky State Parks' own alert list."""
     out = {}
     try:
-        j = json.loads(fetch('https://parks.ky.gov/api/default/alerts?$top=200'))
+        j = json.loads(fetch('https://parks.ky.gov/api/default/alerts?$top=100'))
     except Exception as e:  # noqa: BLE001
         notice('Park alerts', f'Kentucky State Parks did not answer: {str(e)[:200]}')
         return None
