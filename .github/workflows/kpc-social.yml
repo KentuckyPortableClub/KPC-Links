@@ -26,6 +26,13 @@ on:
         description: 'Dry run (show the post, do not send)'
         type: boolean
         default: true
+      facebook_only:
+        description: 'Send to Facebook only (use when a post reached Discord but Facebook failed)'
+        type: boolean
+        default: false
+      redo:
+        description: 'Post this again even if it was already sent, e.g. KQ4HZK|20261020'
+        default: ''
 permissions:
   contents: write
 concurrency:
@@ -52,6 +59,8 @@ jobs:
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
           SCHED: ${{ github.event.schedule }}
           TASK: ${{ inputs.task }}
+          FACEBOOK_ONLY: ${{ inputs.facebook_only && '1' || '' }}
+          REDO: ${{ inputs.redo }}
         run: |
           case "$SCHED" in
             '7 13 * * *')  TASKS='countdown milestones recaps birthdays photos pages' ;;

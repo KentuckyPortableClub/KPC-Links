@@ -27,7 +27,11 @@ const STATE_FILE = 'kpc-social-state.json';
 const ROOM = { countdown: 'ANNOUNCE', rarepark: 'PARKS' };
 const pick = t => (process.env[(ROOM[t] || 'GENERAL') + '_WEBHOOK_URL'] || '').trim()
   || (process.env.DISCORD_WEBHOOK_URL || '').trim();
-const DISCORD = pick(task).split(/\s+/)[0];
+// FACEBOOK_ONLY: for putting right a post that reached Discord but was refused by Facebook (Oct 21: the
+// recap that landed while the Page token was being replaced). Leaves Discord alone so there is no repeat.
+const DISCORD = process.env.FACEBOOK_ONLY ? '' : pick(task).split(/\s+/)[0];
+// REDO: one state key (e.g. 'KQ4HZK|20261020') to send again even though it is recorded as done.
+const REDO = (process.env.REDO || '').trim();
 const FB_ID = (process.env.FB_PAGE_ID || '').trim();
 const FB_TOKEN = (process.env.FB_PAGE_TOKEN || '').trim();
 const PAGES_START = '2026-10-22'; // the first announcement is sent by the go-live job (Oct 21, 5 PM Central) right after the HOLD pages go live
@@ -358,7 +362,7 @@ tasks.recaps = async () => {
   const done = new Set(state.recaps);
   if (first) { state.recaps = keys.slice(-2000); save(); return notice(`First run: remembered ${keys.length} past member activations. Recaps post from now on.`); }
   /* Oct 20 (Brandon: 'missed K4ZSR and KQ4HZK'): activators often upload their log days later, so look back 10 days, not 3 */
-  const fresh = keys.filter(k => !done.has(k) && dayDiff(localDate(), iso(groups[k].date)) <= 10);
+  const fresh = keys.filter(k => (k === REDO || !done.has(k)) && dayDiff(localDate(), iso(groups[k].date)) <= 10);
   if (!fresh.length) { notice('No new member activations.'); return; }
   /* an evening activation runs past 0000 UTC, so POTA splits it into two days (Brandon Oct 17, N4BDW): when the same call has
      the next UTC day waiting too, post them together as one recap */
