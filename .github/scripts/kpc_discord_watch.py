@@ -123,12 +123,14 @@ def main():
         global HOOK
         want = (os.environ.get('TARGET') or '').strip().lower()
         ROOMS = {'parks': 'KPC_PARKS_WEBHOOK', 'general': 'KPC_GENERAL_WEBHOOK',
-                 'announce': 'KPC_ANNOUNCE_WEBHOOK', 'spots': 'KPC_DISCORD_WEBHOOK'}
+                 'announce': 'KPC_ANNOUNCE_WEBHOOK', 'spots': 'KPC_DISCORD_WEBHOOK',
+                 'campout': 'KPC_CAMPOUT_WEBHOOK'}
         if want in ROOMS:
             HOOK = ((os.environ.get(ROOMS[want]) or HOOK).strip().split() or [''])[0]
         what = {'parks': 'park closures and reopenings, the Rare Park of the Week and new park references',
                 'general': 'activation recaps, milestones, events, new videos and anything new on the website',
-                'announce': 'the campout countdown',
+                'announce': 'club announcements',
+                'campout': 'the campout countdown and any campout news',
                 }.get(want, 'anything that needs a person: Facebook comments, posts waiting for approval, '
                             'and questions nobody has answered')
         code = say('Hello from the KPC bots',
