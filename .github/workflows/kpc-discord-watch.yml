@@ -1,0 +1,49 @@
+name: KPC Discord watch
+# Nudges the staff room when somebody asked something in a club room and nobody replied.
+# Hourly. Run it by hand with mode 'list' to see which rooms the bot can see. Never fails, never emails.
+on:
+  schedule:
+    - cron: '48 * * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'list = show the rooms the bot can see; watch = the normal job'
+        type: choice
+        options: [list, watch]
+        default: list
+      dry_run:
+        description: 'Practice run: print instead of posting'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: kpc-discord-watch
+  cancel-in-progress: false
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+      - name: Look at the rooms
+        continue-on-error: true
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          KPC_ADMIN_WEBHOOK: ${{ secrets.KPC_ADMIN_WEBHOOK }}
+          KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          MODE: ${{ inputs.mode || 'watch' }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+        run: python3 .github/scripts/kpc_discord_watch.py || true
+      - name: Remember what was flagged
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/discord-watch-state.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Discord watch: what has been flagged'
+            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
+          fi
