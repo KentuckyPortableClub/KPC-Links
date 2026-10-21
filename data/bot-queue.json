@@ -3,13 +3,6 @@
  "until": "2026-10-22T06:01:00Z",
  "jobs": [
   {
-   "wf": "kpc-world-key.yml",
-   "inputs": {
-    "countries": "FR"
-   },
-   "why": "top 10: biggest gap anywhere (11428)"
-  },
-  {
    "wf": "kpc-us-key.yml",
    "inputs": {
     "states": "AR FL"
