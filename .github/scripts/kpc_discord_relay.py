@@ -595,6 +595,15 @@ def sync(m, first):
     # email (only the first time; an edit before it goes out updates the waiting email)
     if first:
         lst_now = p['list_now']
+        # Oct 21: a post asked for Groups.io and nothing happened, because the address simply was not set and the
+        # relay said nothing. Never skip a place the poster asked for in silence.
+        if 'gio' in p['dest'] and not GIO_TO:
+            notice(f'Post {mid} asked for Groups.io, but the GROUPSIO_TO secret is empty, so no email was sent. '
+                   'Everything else went out as normal.')
+            react(mid, '⚠️')
+        if 'list' in p['dest'] and not (MAIL_URL and MAIL_KEY) and not SMTP_PASS:
+            notice(f'Post {mid} asked for the email list, but the mailer is not set up (RELAY_MAIL_URL + '
+                   'RELAY_MAIL_KEY), so no email was sent.')
         if ('gio' in p['dest'] and GIO_TO) or lst_now:
             # right-away email: 'Everything' people, plus 'Campout only' people for campout posts (roundup-only people wait for Sunday)
             queue_mail(mid, subject_for(p), body_for(p, plain), 'gio' in p['dest'], lst_now, p['now'], 'post ' + mid,
