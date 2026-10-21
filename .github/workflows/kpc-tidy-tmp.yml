@@ -18,5 +18,7 @@ jobs:
           HOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
           MID: ${{ inputs.message_id }}
         run: |
-          code=$(curl -s -o /tmp/out -w '%{http_code}' -X DELETE "${HOOK}/messages/${MID}") || true
-          echo "::notice title=Tidy::Discord replied HTTP ${code} $(head -c 200 /tmp/out)"
+          H="${HOOK%/}"
+          echo "::notice title=Tidy::webhook set: $([ -n "$H" ] && echo yes || echo NO) · length ${#H} · starts https: $(case "$H" in https://discord*) echo yes;; *) echo no;; esac)"
+          code=$(curl -sS -o /tmp/out -w '%{http_code}' -X DELETE "${H}/messages/${MID}" 2>/tmp/err) || true
+          echo "::notice title=Tidy::HTTP ${code:-none} · body $(head -c 160 /tmp/out) · error $(head -c 160 /tmp/err | sed 's#https://[^ ]*#<url>#g')"
