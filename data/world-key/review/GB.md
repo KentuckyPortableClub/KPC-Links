@@ -1,6 +1,6 @@
 # GB: POTA parks vs official land
 
-Built 2026-10-18 by `.github/scripts/kpc_world_key.py` from: Natural England NNR, Natural England LNR, Natural England Country Parks, Natural England SSSI, Natural England National Parks, Natural England National Landscapes, NatureScot cpk, NatureScot nnr, NatureScot lnr, NatureScot sssi, NatureScot rp, NatureScot sac, NatureScot spa, NRW Wales SSSI, NRW Wales NNR, NRW Wales LNR, NRW Wales National Parks, NRW Wales National Landscapes, NRW Wales Country Parks, NRW Wales SAC, NRW Wales SPA. **3017 of 7074** joined (same name + same kind), **1265** to check, **2792** nothing found. Nothing below is joined.
+Built 2026-10-21 by `.github/scripts/kpc_world_key.py` from: Natural England NNR, Natural England LNR, Natural England Country Parks, Natural England SSSI, Natural England National Parks, Natural England National Landscapes, NatureScot cpk, NatureScot nnr, NatureScot lnr, NatureScot sssi, NatureScot rp, NatureScot sac, NatureScot spa, NRW Wales SSSI, NRW Wales NNR, NRW Wales LNR, NRW Wales National Parks, NRW Wales National Landscapes, NRW Wales Country Parks, NRW Wales SAC, NRW Wales SPA. **3017 of 7074** joined (same name + same kind), **1265** to check, **2792** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
