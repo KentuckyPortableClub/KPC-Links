@@ -1,0 +1,6 @@
+{
+ "note": "Settings for the club bot's moderator side (.github/scripts/kpc_discord_mod.py). On its own the bot only ever deletes obvious spam and mutes the poster for an hour, and only when that poster has NO role in the server - in this club the members have roles, so it cannot touch one of us. It never kicks and never bans by itself. Kicking and banning happen from the 'KPC Discord mod' workflow page: mode 'who' lists everybody who has posted lately with their id, then mode 'do' with the id, the action and the confirm box ticked.",
+ "guild": "1555384491650842664",
+ "never_touch": [],
+ "never_touch_note": "Discord user ids the bot must leave alone whatever happens, in any mode. Nobody needs to be listed for the members to be safe (the no-role rule already covers that), but put an id here for a belt-and-braces lock - run the workflow with mode 'who' to find ids."
+}

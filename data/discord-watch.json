@@ -2,6 +2,9 @@
  "note": "Rooms the club bot watches for a question nobody answered. Only a message that READS LIKE SOMEBODY ASKING FOR SOMETHING is ever flagged (Brandon Oct 21: 'only notify if it is something we need to reply too not every comment'), and only when nobody has replied and it is older than quiet_minutes. One nudge per message, ever. Run the workflow with mode 'list' to see room ids. Left out on purpose: the members' own rooms (kq4hzk, k4zsr, n4bdw), the bot rooms (kpc-pota-spots, website-email-io-facebook-post, staff-room) and the read-only ones (welcome-and-rules, announcements, resources, kpc27-updates).",
  "guild": "1555384491650842664",
  "quiet_minutes": 60,
+ "greet": true,
+ "greet_rooms": [],
+ "greet_note": "Where the bot says hello to somebody who has just joined (Brandon Oct 21: 'will it greet people?'). Discord puts its own 'joined the server' message in the server's system channel; the bot greets wherever it finds one, so this list only needs filling in if that channel is not one of the rooms above. Run the 'KPC Discord mod' workflow with mode 'who' and it reports which room joins are announced in. Set greet to false to stop the welcomes.",
  "rooms": [
   {
    "id": "1555384495115477117",
