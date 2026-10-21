@@ -191,9 +191,10 @@ for rowno, r in enumerate(rows[1:]):
         ev.update({'source': 'MEMBER', 'member': True, 'id': rid(r, 'event', name)})
         events.append(ev)
 
-# ---------- items posted from Discord by the relay (ids start with dc-) are kept as they are
+# ---------- items from the other bots are kept as they are: dc- = posted from Discord by the relay,
+# pa- = the park alert watcher (kpc_park_alerts.py)
 def _dc(path, key):
-    try: return [x for x in json.load(open(path, encoding='utf-8')).get(key, []) if str(x.get('id', '')).startswith('dc-')]
+    try: return [x for x in json.load(open(path, encoding='utf-8')).get(key, []) if str(x.get('id', '')).startswith(('dc-', 'pa-'))]
     except Exception: return []
 conds += _dc('kpc-conditions.json', 'items')
 events += _dc('kpc-events-submitted.json', 'events')

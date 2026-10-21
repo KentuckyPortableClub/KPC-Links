@@ -1,0 +1,46 @@
+name: KPC park alerts
+# Watches Kentucky's official park alert lists and tells the club when a park closes or looks open again.
+# Every 3 hours through the day (6 AM, 9 AM, 12, 3 PM, 6 PM, 9 PM Central; an hour earlier in winter, since
+# GitHub only understands UTC). The script itself refuses to post between 9 PM and 6 AM Kentucky time and
+# holds anything it found until the morning. A quiet check posts nothing anywhere. Never fails, never emails.
+on:
+  schedule:
+    - cron: '5 11,14,17,20,23,2 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Practice run: print what it would say, change nothing'
+        type: boolean
+        default: true
+permissions:
+  contents: write
+concurrency:
+  group: kpc-park-alerts
+  cancel-in-progress: false
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+      - name: Check the park alerts
+        continue-on-error: true
+        env:
+          KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          NPS_API_KEY: ${{ secrets.NPS_API_KEY }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+        run: python3 .github/scripts/kpc_park_alerts.py || true
+      - name: Save what it saw
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/park-alerts-state.json kpc-conditions.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Park alerts: what the parks are saying'
+            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
+          fi
