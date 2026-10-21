@@ -1,5 +1,54 @@
 {
  "note": "Boundary bot queue (Brandon Oct 20: 'set the bots up on a schedule to finish and start another run'). kpc-bot-queue.yml starts the first job when no boundary bot is running, then removes it. Stops after 'until'.",
  "until": "2026-10-22T06:01:00Z",
- "jobs": []
+ "jobs": [
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "GB",
+    "pin_join": "GB"
+   },
+   "why": "Britain: 1265 waiting on a human, try pin-inside"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "AU",
+    "pin_join": "AU"
+   },
+   "why": "Australia: 1233 waiting on a human"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "RO SI",
+    "pin_join": "RO,SI"
+   },
+   "why": "Romania + Slovenia: barely matched at all"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "BE",
+    "pin_join": "BE"
+   },
+   "why": "Belgium: 107 of 593"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "ES DE",
+    "pin_join": "ES,DE"
+   },
+   "why": "Spain + Germany: the rest of the gap"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "FI NO PL",
+    "pin_join": "FI,NO,PL"
+   },
+   "why": "Finland, Norway, Poland: the tail"
+  }
+ ]
 }
