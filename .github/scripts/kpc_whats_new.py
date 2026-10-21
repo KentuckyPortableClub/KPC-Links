@@ -29,7 +29,7 @@ SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 F = pathlib.Path('data/kpc-whats-new.json')
 UA = {'User-Agent': 'KPC club bot (kentuckyportableclub.github.io)'}
 DRY = os.environ.get('DRY_RUN') == '1'
-DISCORD = (os.environ.get('KPC_DISCORD_WEBHOOK') or '').strip()
+DISCORD = ((os.environ.get('KPC_GENERAL_WEBHOOK') or os.environ.get('KPC_DISCORD_WEBHOOK') or '').strip().split() or [''])[0]
 FB_ID = (os.environ.get('FB_PAGE_ID') or '').strip()
 FB_TOKEN = (os.environ.get('FB_PAGE_TOKEN') or '').strip()
 MAX_AT_ONCE = 4          # more than a handful at once reads like a changelog, not news

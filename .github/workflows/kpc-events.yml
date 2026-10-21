@@ -47,6 +47,7 @@ jobs:
         if: github.event_name == 'schedule' || inputs.post_discord
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          GENERAL_WEBHOOK_URL: ${{ secrets.KPC_GENERAL_WEBHOOK }}
         run: |
           git pull --rebase --autostash || true
           node .github/scripts/kpc_discord_events.js

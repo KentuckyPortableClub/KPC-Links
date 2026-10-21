@@ -21,6 +21,9 @@ jobs:
       - name: Check NOAA alerts
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          GENERAL_WEBHOOK_URL: ${{ secrets.KPC_GENERAL_WEBHOOK }}
+          ANNOUNCE_WEBHOOK_URL: ${{ secrets.KPC_ANNOUNCE_WEBHOOK }}
+          PARKS_WEBHOOK_URL: ${{ secrets.KPC_PARKS_WEBHOOK }}
         run: node .github/scripts/kpc_social.js bandalert
       - name: Remember alerts
         if: always()

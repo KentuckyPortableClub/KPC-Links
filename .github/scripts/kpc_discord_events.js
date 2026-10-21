@@ -5,7 +5,7 @@ const path = require('path');
 const K = require(path.resolve('kpc-events.js'));
 
 const DAYS_AHEAD = Number(process.env.DAYS_AHEAD || 35);
-const webhook = (process.env.DISCORD_WEBHOOK_URL || '').trim();
+const webhook = ((process.env.GENERAL_WEBHOOK_URL || '').trim() || (process.env.DISCORD_WEBHOOK_URL || '').trim()).split(/\s+/)[0];
 const PAGE = 'https://kentuckyportableclub.github.io/KPC-Links/events.html';
 
 let auto = null;

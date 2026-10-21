@@ -21,11 +21,13 @@ const task = process.argv[2];
 const DRY = process.argv.includes('--dry') || process.env.DRY_RUN === 'true';
 const SITE = 'https://kentuckyportableclub.github.io/KPC-Links/';
 const STATE_FILE = 'kpc-social-state.json';
-// Park news goes to the club's park room when there is one (Brandon Oct 21: the Rare Park of the Week belongs
-// with the park updates, not in with the spots). Everything else stays in the usual room.
-const PARK_TASKS = new Set(['rarepark']);
-const DISCORD = ((PARK_TASKS.has(task) ? (process.env.PARKS_WEBHOOK_URL || '') : '')
-  || process.env.DISCORD_WEBHOOK_URL || '').trim().split(/\s+/)[0];
+// Which room each kind of post goes to (Brandon Oct 21: 'campout goes to announcements, milestones and recaps
+// to general, new references parks... everything else general'). Falls back to the usual room when a webhook
+// for that room has not been set up yet, so nothing ever goes missing.
+const ROOM = { countdown: 'ANNOUNCE', rarepark: 'PARKS' };
+const pick = t => (process.env[(ROOM[t] || 'GENERAL') + '_WEBHOOK_URL'] || '').trim()
+  || (process.env.DISCORD_WEBHOOK_URL || '').trim();
+const DISCORD = pick(task).split(/\s+/)[0];
 const FB_ID = (process.env.FB_PAGE_ID || '').trim();
 const FB_TOKEN = (process.env.FB_PAGE_TOKEN || '').trim();
 const PAGES_START = '2026-10-22'; // the first announcement is sent by the go-live job (Oct 21, 5 PM Central) right after the HOLD pages go live

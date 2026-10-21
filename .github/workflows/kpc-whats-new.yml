@@ -28,6 +28,7 @@ jobs:
         continue-on-error: true
         env:
           KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          KPC_GENERAL_WEBHOOK: ${{ secrets.KPC_GENERAL_WEBHOOK }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
