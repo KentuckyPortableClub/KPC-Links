@@ -3,13 +3,6 @@
  "until": "2026-10-22T06:01:00Z",
  "jobs": [
   {
-   "wf": "kpc-world-key.yml",
-   "inputs": {
-    "countries": "GB"
-   },
-   "why": "top 10: 4057 missing"
-  },
-  {
    "wf": "kpc-us-key.yml",
    "inputs": {
     "states": "OR AK"
