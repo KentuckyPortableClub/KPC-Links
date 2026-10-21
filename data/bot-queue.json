@@ -1,5 +1,100 @@
 {
  "note": "Boundary bot queue (Brandon Oct 20: 'set the bots up on a schedule to finish and start another run'). kpc-bot-queue.yml starts the first job when no boundary bot is running, then removes it. Stops after 'until'.",
  "until": "2026-10-22T06:01:00Z",
- "jobs": []
+ "jobs": [
+  {
+   "wf": "kpc-ca-key.yml",
+   "inputs": {},
+   "why": "Canada: Quebec ids fix landed, 3891/5897"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "UT ID"
+   },
+   "why": "US: the two biggest gaps (581 parks)"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "WA NV"
+   },
+   "why": "US: next biggest gaps (343)"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "DE"
+   },
+   "why": "Germany: first run since the KeyError fix"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "WY MI"
+   },
+   "why": "US: 242 missing"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "GB"
+   },
+   "why": "top 10: 4057 missing"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "OR AK"
+   },
+   "why": "US: 207 missing"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "FR"
+   },
+   "why": "top 10: biggest gap anywhere (11428)"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "AR FL"
+   },
+   "why": "US: 173 missing"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "AU"
+   },
+   "why": "top 10: 3832 missing"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "MN MS AL"
+   },
+   "why": "US: 200 missing"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "ES"
+   },
+   "why": "top 10: 802 missing"
+  },
+  {
+   "wf": "kpc-ca-key.yml",
+   "inputs": {},
+   "why": "Canada: second pass"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "JP"
+   },
+   "why": "top 10: only 102 of 1217 so far"
+  }
+ ]
 }
