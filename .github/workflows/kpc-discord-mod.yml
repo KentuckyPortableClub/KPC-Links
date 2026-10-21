@@ -2,6 +2,7 @@ name: KPC Discord mod
 # BY HAND ONLY - no timer, so this never runs unless somebody asks for it here.
 #   who  = list everybody who has posted lately, with the id to paste below
 #   do   = mute / unmute / kick / ban one person. Kick and ban also need the confirm box ticked.
+# Day to day none of this is needed: say 'help' in the staff room and the bot answers there instead.
 # The automatic side (delete obvious spam + a one-hour mute, nothing else) rides on the Discord relay job.
 on:
   workflow_dispatch:
@@ -9,7 +10,7 @@ on:
       mode:
         description: 'who = list people and their ids; do = act on one person'
         type: choice
-        options: [who, do]
+        options: [who, do, commands]
         default: who
       user_id:
         description: 'For "do": the person''s Discord id (get it from mode "who")'

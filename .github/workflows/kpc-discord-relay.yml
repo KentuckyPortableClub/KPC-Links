@@ -59,6 +59,15 @@ jobs:
           MODE: watch
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
         run: python3 .github/scripts/kpc_discord_mod.py || true
+      - name: Do anything asked for in the staff room
+        continue-on-error: true
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          KPC_ADMIN_WEBHOOK: ${{ secrets.KPC_ADMIN_WEBHOOK }}
+          KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          MODE: commands
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
+        run: python3 .github/scripts/kpc_discord_mod.py || true
       - name: Save
         run: |
           git config user.name 'github-actions[bot]'
