@@ -1,0 +1,137 @@
+name: KPC temp probe (delete after use)
+# One-off: finds out (1) what the saved Facebook Page token is allowed to do, (2) how Kentucky State Parks
+# and the National Park Service publish park alerts, so the closure watcher can be written against the real pages.
+# Writes its findings to the 'probe' branch (NOT main, so the site is not rebuilt). Never fails, never emails.
+# NOTHING PRIVATE IS WRITTEN: permission names and yes/no only, never comment text, names or the token itself.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kpc-probe-tmp
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - name: Look around
+        continue-on-error: true
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: |
+          mkdir -p probe-out
+          python3 - <<'PY' || true
+          import json, os, re, pathlib, urllib.parse, urllib.request
+          OUT = pathlib.Path('probe-out'); OUT.mkdir(exist_ok=True)
+          UA = {'User-Agent': 'KPC club bot (kentuckyportableclub.github.io)'}
+          L = []
+          def say(s): L.append(str(s)); print(s, flush=True)
+
+          def get(u, timeout=60, headers=UA):
+              req = urllib.request.Request(u, headers=headers)
+              with urllib.request.urlopen(req, timeout=timeout) as r:
+                  return r.status, r.read().decode('utf-8', 'replace')
+
+          # ---------- 1. Facebook: what is this token allowed to do? ----------
+          say('== FACEBOOK ==')
+          PID, TOK = (os.environ.get('FB_PAGE_ID') or '').strip(), (os.environ.get('FB_PAGE_TOKEN') or '').strip()
+          say(f'page id set: {bool(PID)} · token set: {bool(TOK)}')
+          G = 'https://graph.facebook.com/v21.0/'
+          def fb(path, **q):
+              q['access_token'] = TOK
+              try:
+                  st, body = get(G + path + '?' + urllib.parse.urlencode(q))
+                  return json.loads(body)
+              except urllib.error.HTTPError as e:
+                  try: return json.loads(e.read().decode('utf-8', 'replace'))
+                  except Exception: return {'error': {'message': f'HTTP {e.code}'}}
+              except Exception as e:
+                  return {'error': {'message': str(e)[:150]}}
+          if TOK:
+              j = fb('me/permissions')
+              if 'data' in j:
+                  granted = sorted(d['permission'] for d in j['data'] if d.get('status') == 'granted')
+                  say('granted permissions: ' + (', '.join(granted) or '(none listed)'))
+              else:
+                  say('permissions list: ' + str(j.get('error', {}).get('message'))[:160])
+              j = fb('debug_token', input_token=TOK)
+              d = (j.get('data') or {})
+              if d:
+                  say(f"token type: {d.get('type')} · expires: {d.get('expires_at')} (0 = never) · scopes: {', '.join(sorted(d.get('scopes') or []))}")
+              else:
+                  say('debug_token: ' + str(j.get('error', {}).get('message'))[:160])
+              # can it read the Page's own posts, and their comments?
+              j = fb(f'{PID}/posts', fields='id,created_time', limit='3')
+              posts = j.get('data') or []
+              say(f'read own posts: {"YES, " + str(len(posts)) + " found" if posts else "NO - " + str(j.get("error", {}).get("message"))[:140]}')
+              if posts:
+                  pid = posts[0]['id']
+                  j = fb(f'{pid}/comments', fields='id,created_time', limit='3', filter='stream', order='reverse_chronological')
+                  if 'data' in j:
+                      say(f'READ COMMENTS: YES (newest post has {len(j["data"])} comment(s) visible)')
+                  else:
+                      e = j.get('error', {})
+                      say(f'READ COMMENTS: NO - code {e.get("code")} sub {e.get("error_subcode")}: {str(e.get("message"))[:160]}')
+
+          # ---------- 2. Kentucky State Parks: where do alerts live? ----------
+          say('')
+          say('== KENTUCKY STATE PARKS ==')
+          for u in ['https://parks.ky.gov/', 'https://parks.ky.gov/alerts', 'https://parks.ky.gov/park-alerts',
+                    'https://parks.ky.gov/taylorsville/parks/historic/parks/taylorsville-lake-state-park',
+                    'https://parks.ky.gov/parks']:
+              try:
+                  st, body = get(u)
+                  say(f'{u} -> HTTP {st}, {len(body)} bytes')
+                  (OUT / ('ky-' + re.sub(r'[^a-z0-9]+', '-', u.split('parks.ky.gov')[-1].lower()).strip('-') + '.html')).write_text(body[:400000], encoding='utf-8')
+                  hits = re.findall(r'(?i)[^<>]{0,70}(alert|closed|closure|advisory|notice)[^<>]{0,70}', body)
+                  say('  words seen: ' + ' | '.join(sorted({h.strip()[:60] for h in [' '.join(x) if isinstance(x, tuple) else x for x in hits]})[:6]))
+              except Exception as e:
+                  say(f'{u} -> FAILED {str(e)[:120]}')
+
+          # ---------- 3. National Park Service ----------
+          say('')
+          say('== NATIONAL PARK SERVICE ==')
+          try:
+              st, body = get('https://developer.nps.gov/api/v1/alerts?stateCode=KY&limit=50')
+              say(f'NPS API without a key -> HTTP {st}, {len(body)} bytes')
+              (OUT / 'nps-api-nokey.json').write_text(body[:200000], encoding='utf-8')
+          except Exception as e:
+              say('NPS API without a key -> ' + str(e)[:140] + '  (a free key would be needed)')
+          for u in ['https://www.nps.gov/maca/planyourvisit/conditions.htm',
+                    'https://www.nps.gov/cuga/planyourvisit/conditions.htm',
+                    'https://www.nps.gov/maca/index.htm']:
+              try:
+                  st, body = get(u)
+                  say(f'{u} -> HTTP {st}, {len(body)} bytes')
+                  (OUT / ('nps-' + re.sub(r'[^a-z0-9]+', '-', u.split('nps.gov')[-1].lower()).strip('-') + '.html')).write_text(body[:300000], encoding='utf-8')
+              except Exception as e:
+                  say(f'{u} -> FAILED {str(e)[:120]}')
+
+          # ---------- 4. US Forest Service (Daniel Boone) + Corps, just to see ----------
+          say('')
+          say('== OTHERS ==')
+          for u in ['https://www.fs.usda.gov/alerts/dbnf/alerts-notices',
+                    'https://www.fs.usda.gov/dbnf']:
+              try:
+                  st, body = get(u)
+                  say(f'{u} -> HTTP {st}, {len(body)} bytes')
+                  (OUT / ('fs-' + re.sub(r'[^a-z0-9]+', '-', u.split('fs.usda.gov')[-1].lower()).strip('-') + '.html')).write_text(body[:200000], encoding='utf-8')
+              except Exception as e:
+                  say(f'{u} -> FAILED {str(e)[:120]}')
+
+          (OUT / 'report.txt').write_text('\n'.join(L) + '\n', encoding='utf-8')
+          print('::notice title=Probe::' + ' // '.join(x for x in L if 'READ COMMENTS' in x or 'granted permissions' in x)[:900])
+          PY
+      - name: Save to the probe branch
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git checkout --orphan probe
+          git rm -rq --cached . || true
+          find . -maxdepth 1 ! -name . ! -name .git ! -name probe-out -exec rm -rf {} + || true
+          git add -f probe-out
+          git commit -qm 'Probe findings' || true
+          git push -f origin probe || true
