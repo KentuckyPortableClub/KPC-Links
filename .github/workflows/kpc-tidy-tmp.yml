@@ -42,7 +42,7 @@ jobs:
               msg=(p.get('message') or '')[:70].replace('\n',' / ')
               try: age=(now-datetime.datetime.fromisoformat(p['created_time'].replace('+0000','+00:00'))).total_seconds()/60
               except Exception: age=9999
-              mine='Heads up before you drive out' in (p.get('message') or '') or 'looks open again' in (p.get('message') or '')
+              mine='Kentucky park alert' in (p.get('message') or '')
               print(f"::notice title=Tidy::{int(age)} min ago · mine={mine} · {msg}")
               if mine and age < 90 and os.environ.get('REALLY'):
                   r=call(p['id'], method='DELETE')
