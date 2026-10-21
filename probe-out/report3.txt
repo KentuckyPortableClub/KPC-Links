@@ -1,0 +1,21 @@
+== what collections does the parks API have? ==
+https://parks.ky.gov/api/default/$metadata -> HTTP 200, 1014955 bytes
+entity sets (47): albums, alerts, authors, blogposts, blogs, calendars, contentitems, copyrightdisclaimerversions, deals, documentlibraries, documents, events, eventvenues, extendedvideos, flat-taxa, folders, form-drafts, forms, hierarchy-taxa, images, itineraries, kb-settings, knowledgeboxes, listicles, listicleslides, listings, listitems, lists, mindtripsnippets, newsitems, notifications, notifications1, pages, parks, pipe-settings, redirects, regions, searchindexes, servicehooks, sites, staffs, taxonomies, templates, termlyexceptions, videolibraries, videos, widgetpresets
+looking at: alerts, newsitems, parks, sites
+https://parks.ky.gov/api/default/alerts?$top=3 -> HTTP 200, 1206 bytes
+   alerts: 2 row(s); fields: CtaLink, DateCreated, ExcludeHomepage, Id, IncludeInSitemap, ItemDefaultUrl, LastModified, Provider, PublicationDate, PublishDate, SystemSourceKey, Text, Title, UnpublishDate, UrlName
+https://parks.ky.gov/api/default/newsitems?$top=3 -> HTTP 200, 84 bytes
+   newsitems: empty
+https://parks.ky.gov/api/default/parks?$top=3 -> HTTP 200, 80 bytes
+   parks: empty
+https://parks.ky.gov/api/default/sites?$top=3 -> HTTP 200, 80 bytes
+   sites: empty
+
+== all alerts, with everything on them ==
+https://parks.ky.gov/api/default/alerts?$count=true&$top=100 -> HTTP 200, 1223 bytes
+
+== sitemap (park page urls) ==
+https://parks.ky.gov/sitemap/sitemap-index.xml -> HTTP 200, 254 bytes
+https://parks.ky.gov/sitemap/sitemap.gz -> HTTP 200, 6323 bytes
+urls in sitemaps: 0
+park pages: 0; e.g. 
