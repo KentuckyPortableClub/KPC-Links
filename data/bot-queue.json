@@ -3,11 +3,6 @@
  "until": "2026-10-22T06:01:00Z",
  "jobs": [
   {
-   "wf": "kpc-ca-key.yml",
-   "inputs": {},
-   "why": "Canada: Quebec ids fix landed, 3891/5897"
-  },
-  {
    "wf": "kpc-us-key.yml",
    "inputs": {
     "states": "UT ID"
