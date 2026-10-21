@@ -3,13 +3,6 @@
  "until": "2026-10-22T06:01:00Z",
  "jobs": [
   {
-   "wf": "kpc-world-key.yml",
-   "inputs": {
-    "countries": "DE"
-   },
-   "why": "Germany: first run since the KeyError fix"
-  },
-  {
    "wf": "kpc-us-key.yml",
    "inputs": {
     "states": "WY MI"
