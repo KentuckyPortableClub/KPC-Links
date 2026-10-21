@@ -124,8 +124,11 @@ def main():
         want = (os.environ.get('TARGET') or '').strip().lower()
         if want == 'parks':
             HOOK = ((os.environ.get('KPC_PARKS_WEBHOOK') or HOOK).strip().split() or [''])[0]
+        what = ('park closures and reopenings' if want == 'parks'
+                else 'anything that needs a person: Facebook comments, posts waiting for approval, '
+                     'and questions nobody has answered')
         code = say('Hello from the KPC bots',
-                   'If you can read this, the staff room is set up and the bots will post here from now on.')
+                   f'If you can read this, the room is set up. From now on {what} will be posted here.')
         notice(f'Test post: Discord replied {code or "nothing"} · webhook length {len(HOOK)} · '
                f'starts https: {HOOK.startswith("https://")}')
         return
