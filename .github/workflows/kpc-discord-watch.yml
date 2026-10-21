@@ -9,8 +9,11 @@ on:
       mode:
         description: 'list = show the rooms the bot can see; watch = the normal job'
         type: choice
-        options: [test, list, watch]
+        options: [test, list, watch, delete]
         default: list
+      message_id:
+        description: 'For mode delete: the last number in the message link'
+        default: ''
       dry_run:
         description: 'Practice run: print instead of posting'
         type: boolean
@@ -34,6 +37,8 @@ jobs:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           KPC_ADMIN_WEBHOOK: ${{ secrets.KPC_ADMIN_WEBHOOK }}
           KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          KPC_YOUTUBE_WEBHOOK: ${{ secrets.KPC_YOUTUBE_WEBHOOK }}
+          MSG_ID: ${{ inputs.message_id }}
           MODE: ${{ inputs.mode || 'watch' }}
           DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
         run: |
