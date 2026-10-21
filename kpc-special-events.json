@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-19T11:08:27Z",
+ "updated": "2026-10-21T11:10:01Z",
  "stations": [
   {
    "title": "3rd Annual National Sasquatch Awareness Day",
@@ -671,6 +671,23 @@
    "note": ", Levittown, PA. PENN WIRELESS ASSOCIATION. 7.200 14.250 18.135 146.79 -0.6 131.8PL. QSL. PENN WIRELESS ASSOCIATION, PO 925, Levittown, PA 19058. The industrial engine behind Levittown's growth. U.S. Steel's Fairless Works began steel production on December 11, 1952; the plant (named for executive Benjamin Franklin Fairless) drew thousands of workers who needed nearby housing — the direct economic"
   },
   {
+   "title": "Green Valley Amateur Radio Club Christmas Event",
+   "start": "2026-12-27",
+   "end": "2026-12-27",
+   "times": "1700Z-2100Z",
+   "call": "WE7GV",
+   "calls": [
+    "WE7GV"
+   ],
+   "where": "Sahuarita, AZ",
+   "st": "AZ",
+   "by": "GREEN VALLEY AMATEUR RADIO CLUB",
+   "freqs": "14.242 14.245 14.247",
+   "qsl": "Certificate & QSL",
+   "url": "",
+   "note": ", Sahuarita, AZ. GREEN VALLEY AMATEUR RADIO CLUB. 14.242 14.245 14.247. Certificate & QSL. TOM LANG, 1085 W. EL TORO RD., Sahuarita, AZ 85629."
+  },
+  {
    "title": "21st Annual Straight Key Month. K3Y/0 thru 9 plus KH6, KL7, KP4 and DX member stations in six WAC areas operating straight key, bug and cootie keys. QSL card confirms one QSO per area, up to 19 for all-area sweep. See URL for op sched/map, stats, etc.",
    "start": "2027-01-02",
    "end": "2027-01-31",
@@ -745,6 +762,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (40)"
+  "ARRL": "ok (41)"
  }
 }
