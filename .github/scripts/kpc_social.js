@@ -24,7 +24,7 @@ const STATE_FILE = 'kpc-social-state.json';
 // Which room each kind of post goes to (Brandon Oct 21: 'campout goes to announcements, milestones and recaps
 // to general, new references parks... everything else general'). Falls back to the usual room when a webhook
 // for that room has not been set up yet, so nothing ever goes missing.
-const ROOM = { countdown: 'ANNOUNCE', rarepark: 'PARKS' };
+const ROOM = { countdown: 'CAMPOUT', rarepark: 'PARKS' };   // campout things go to the campout room (Brandon Oct 21)
 const pick = t => (process.env[(ROOM[t] || 'GENERAL') + '_WEBHOOK_URL'] || '').trim()
   || (process.env.DISCORD_WEBHOOK_URL || '').trim();
 // FACEBOOK_ONLY: for putting right a post that reached Discord but was refused by Facebook (Oct 21: the

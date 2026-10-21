@@ -21,6 +21,7 @@ Poster names are never shown. Reactions: ✅ done, ⏰ waiting for its time, ⏳
 
 Secrets (GitHub -> Settings -> Secrets and variables -> Actions; never in the site or chat):
   DISCORD_BOT_TOKEN, KPC_RELAY_CHANNEL, FB_PAGE_ID, FB_PAGE_TOKEN, GROUPSIO_TO, SUBSCRIBE_SHEET_CSV,
+  KPC_CAMPOUT_WEBHOOK (the club's own campout room: campout posts are copied there too),
   RELAY_MAIL_URL + RELAY_MAIL_KEY (Apps Script mailer in kpcwebhost@gmail.com), RELAY_DISCORD_WEBHOOKS (one or more
   webhook links of channels in other servers, separated by spaces or new lines). RELAY_SMTP_USER/PASS = old SMTP way.
 DRY_RUN=1 prints what would happen and changes nothing.
@@ -42,6 +43,7 @@ SUB_CSV = ENV('SUBSCRIBE_SHEET_CSV')
 # Change it without code: repo Settings > Secrets and variables > Actions > Variables > GROUPSIO_SUBJECT.
 GIO_SUBJECT = ENV('GROUPSIO_SUBJECT') or '2027 Kentucky POTA Campout'
 MAIL_URL, MAIL_KEY = ENV('RELAY_MAIL_URL'), ENV('RELAY_MAIL_KEY')
+CAMP_HOOK = ([u for u in re.split(r'\s+', ENV('KPC_CAMPOUT_WEBHOOK')) if u.startswith('https://')] or [''])[0]
 HOOKS = [u for u in re.split(r'\s+', ENV('RELAY_DISCORD_WEBHOOKS')) if re.match(r'https://(?:\w+\.)?discord(?:app)?\.com/api/webhooks/\d+/[\w-]+(\?\S*)?$', u)]
 DRY = ENV('DRY_RUN').lower() in ('1', 'true', 'yes')
 CAP = int(ENV('RELAY_DAILY_CAP') or 90)
@@ -569,14 +571,18 @@ def sync(m, first):
         # other Discord server(s)
         hooks_text = plain + ('\n\n' + SITE + PAGE_URL[p['pages'][0]] if 'web' in p['dest'] else '')
         have = dict((i, h) for i, h in rec.get('dc', []))
-        if 'dc' in p['dest'] and HOOKS:
-            for i, url in enumerate(HOOKS):
+        # Anything about the campout also goes to the club's own campout room (Brandon Oct 21). The posting
+        # channel is staff-only, so without this the members never see a campout announcement in their rooms.
+        rooms = list(HOOKS) + ([CAMP_HOOK] if (CAMP_HOOK and 'campout' in p['pages']) else [])
+        if 'dc' in p['dest'] and rooms:
+            for i, url in enumerate(rooms):
                 try: have[i] = hook_send(url, hooks_text, files, have.get(i))
-                except Exception as e: problems.append('other Discord: ' + str(e)[:150])
-            res['other Discord'] = f'{len(HOOKS)} server(s)'
+                except Exception as e: problems.append('Discord room: ' + str(e)[:150])
+            res['other Discord'] = f'{len(HOOKS)} server(s)' + (' + the campout room' if len(rooms) > len(HOOKS) else '')
         elif have:
+            allr = list(HOOKS) + ([CAMP_HOOK] if CAMP_HOOK else [])
             for i, h in have.items():
-                if i < len(HOOKS): hook_delete(HOOKS[i], h)
+                if i < len(allr): hook_delete(allr[i], h)
             have = {}
         rec['dc'] = sorted(have.items())
     # calendar + park warnings

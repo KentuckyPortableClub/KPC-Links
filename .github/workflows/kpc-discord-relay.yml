@@ -39,6 +39,7 @@ jobs:
           RELAY_MAIL_URL: ${{ secrets.RELAY_MAIL_URL }}
           RELAY_MAIL_KEY: ${{ secrets.RELAY_MAIL_KEY }}
           RELAY_DISCORD_WEBHOOKS: ${{ secrets.RELAY_DISCORD_WEBHOOKS }}
+          KPC_CAMPOUT_WEBHOOK: ${{ secrets.KPC_CAMPOUT_WEBHOOK }}
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
         run: python3 .github/scripts/kpc_discord_relay.py
       - name: Save
