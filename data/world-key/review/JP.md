@@ -1,6 +1,6 @@
 # JP: POTA parks vs official land
 
-Built 2026-10-20 by `.github/scripts/kpc_world_key.py` from: Ministry of the Environment national parks (Esri Japan), MLIT natural park areas (A10). **102 of 1217** joined (same name + same kind), **82** to check, **1033** nothing found. Nothing below is joined.
+Built 2026-10-21 by `.github/scripts/kpc_world_key.py` from: Ministry of the Environment national parks (Esri Japan), MLIT natural park areas (A10). **102 of 1217** joined (same name + same kind), **82** to check, **1033** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
