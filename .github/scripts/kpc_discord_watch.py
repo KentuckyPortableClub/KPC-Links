@@ -122,11 +122,15 @@ def main():
     if MODE == 'test':
         global HOOK
         want = (os.environ.get('TARGET') or '').strip().lower()
-        if want == 'parks':
-            HOOK = ((os.environ.get('KPC_PARKS_WEBHOOK') or HOOK).strip().split() or [''])[0]
-        what = ('park closures and reopenings' if want == 'parks'
-                else 'anything that needs a person: Facebook comments, posts waiting for approval, '
-                     'and questions nobody has answered')
+        ROOMS = {'parks': 'KPC_PARKS_WEBHOOK', 'general': 'KPC_GENERAL_WEBHOOK',
+                 'announce': 'KPC_ANNOUNCE_WEBHOOK', 'spots': 'KPC_DISCORD_WEBHOOK'}
+        if want in ROOMS:
+            HOOK = ((os.environ.get(ROOMS[want]) or HOOK).strip().split() or [''])[0]
+        what = {'parks': 'park closures and reopenings, the Rare Park of the Week and new park references',
+                'general': 'activation recaps, milestones, events, new videos and anything new on the website',
+                'announce': 'the campout countdown',
+                }.get(want, 'anything that needs a person: Facebook comments, posts waiting for approval, '
+                            'and questions nobody has answered')
         code = say('Hello from the KPC bots',
                    f'If you can read this, the room is set up. From now on {what} will be posted here.')
         notice(f'Test post: Discord replied {code or "nothing"} · webhook length {len(HOOK)} · '
