@@ -103,7 +103,7 @@ def main():
         if not mid:
             notice('No message id given.')
             return
-        for name in ('KPC_DISCORD_WEBHOOK', 'KPC_ADMIN_WEBHOOK', 'KPC_YOUTUBE_WEBHOOK'):
+        for name in ('KPC_DISCORD_WEBHOOK', 'KPC_PARKS_WEBHOOK', 'KPC_ADMIN_WEBHOOK', 'KPC_YOUTUBE_WEBHOOK'):
             hook = ((os.environ.get(name) or '').strip().split() or [''])[0].rstrip('/')
             if not hook.startswith('https://'):
                 continue
