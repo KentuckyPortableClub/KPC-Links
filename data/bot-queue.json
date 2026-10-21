@@ -5,13 +5,6 @@
   {
    "wf": "kpc-us-key.yml",
    "inputs": {
-    "states": "UT ID"
-   },
-   "why": "US: the two biggest gaps (581 parks)"
-  },
-  {
-   "wf": "kpc-us-key.yml",
-   "inputs": {
     "states": "WA NV"
    },
    "why": "US: next biggest gaps (343)"
