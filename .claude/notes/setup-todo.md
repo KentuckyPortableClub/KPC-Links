@@ -12,7 +12,17 @@ but not READ what people write underneath.
 WHAT TO DO: make a new Page token that also has **pages_read_user_content**, then update the GitHub secret
 `FB_PAGE_TOKEN` (GitHub → Settings → Secrets and variables → Actions). Nothing else changes; posting carries
 on either way. Claude can walk through it step by step.
-STATUS: waiting.
+STATUS: **DONE Oct 21 08:46.** Token now: right Page (KPC), type PAGE, scopes pages_manage_posts +
+pages_read_engagement + pages_read_user_content + pages_show_list, **expires never**, and comments read fine.
+WHAT WENT WRONG ON THE WAY, so nobody repeats it: (1) the permission has to be picked from the 'Add a Permission'
+list in the Explorer's right-hand column, not typed; (2) 'Generate Access Token' gives a USER token, which cannot
+post as the Page — switch to a Page token, or run `me/accounts` in the Explorer and take the token from the list;
+(3) `me/accounts` lists EVERY page the account runs, and the first block was KZ4CP, not the club — match on
+"name": "Kentucky Portable Club" / "id": "1342190728983628" and take the access_token from that same block;
+(4) a page token only lives as long as the user token behind it, so it must be run through
+developers.facebook.com/tools/debug/accesstoken → Extend Access Token, or it dies within the hour.
+A posts-only token cannot read comments, and a wrong-page token will happily post to the wrong page, so the
+check in kpc_fb_comments.py now prints the page name, the token type, the scopes and the expiry every run.
 
 ## 2. National Park Service key — adds the national parks to the closure watcher  (Oct 21)
 WHY: kpc-park-alerts.yml already watches Kentucky State Parks. The NPS part is written and skipped until there
