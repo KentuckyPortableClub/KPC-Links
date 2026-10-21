@@ -8,6 +8,7 @@ name: KPC YouTube Feed
 on:
   schedule:
     - cron: '23 */2 * * *'
+    - cron: '55 21 21 10 *'   # one extra check at 4:55 PM Central today (Brandon Oct 21), when the videos go public
   workflow_dispatch:
 permissions:
   contents: write
@@ -108,6 +109,11 @@ jobs:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
         run: |
+          # Brandon Oct 21: nothing goes out about today's videos before 4:55 PM Central. Self-expiring:
+          # after that moment this check always passes, so the bot is back to normal from tomorrow.
+          if [ "$(date -u +%s)" -lt "$(date -u -d '2026-10-21 21:55' +%s)" ]; then
+            echo "::notice title=Videos::Holding video posts until 4:55 PM Central today."; exit 0
+          fi
           git pull --rebase --autostash || true
           node .github/scripts/kpc_facebook.js videos
           if [ -f kpc-fb-posted.json ]; then
@@ -124,6 +130,11 @@ jobs:
           KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
           KPC_YOUTUBE_WEBHOOK: ${{ secrets.KPC_YOUTUBE_WEBHOOK }}
         run: |
+          # Brandon Oct 21: nothing goes out about today's videos before 4:55 PM Central. Self-expiring:
+          # after that moment this check always passes, so the bot is back to normal from tomorrow.
+          if [ "$(date -u +%s)" -lt "$(date -u -d '2026-10-21 21:55' +%s)" ]; then
+            echo "::notice title=Videos::Holding video posts until 4:55 PM Central today."; exit 0
+          fi
           git pull --rebase --autostash || true
           node .github/scripts/kpc_discord_videos.js
           if [ -f kpc-discord-videos.json ]; then
