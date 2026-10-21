@@ -657,7 +657,14 @@
 
   /* ---------------- transmit ---------------- */
   let TXSRC = null, txStopT = null, lastTxSlot = -1;
-  async function ptt(on) { if (S.ptt === 'vox' || !window.KPCCat) return; try { await KPCCat.ptt(on, S.ptt); } catch (e) {} }
+  /* Key the radio, then LET GO of its USB control port before any sound goes out: on Android, holding that port
+     garbles the sound the tablet sends to the radio's USB sound card (Brandon Oct 20: 1-10 W held, full power let go).
+     An RTS/DTR PTT line has to stay held, so on Android use CAT PTT or VOX. */
+  async function ptt(on) {
+    if (S.ptt === 'vox' || !window.KPCCat) return;
+    try { await KPCCat.ptt(on, S.ptt); } catch (e) {}
+    if (on && KPCCat.letGo) { try { await KPCCat.letGo(); } catch (e) {} }
+  }
   function txTick(t, sl, into) {
     if (!RUN || TXING || !TXON || !ENG) return;
     const par = sl % 2, wantPar = S.even ? 0 : 1; if (par !== wantPar) return;
