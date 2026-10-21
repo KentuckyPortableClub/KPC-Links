@@ -45,6 +45,13 @@ FB_ID = (os.environ.get('FB_PAGE_ID') or '').strip()
 FB_TOKEN = (os.environ.get('FB_PAGE_TOKEN') or '').strip()
 NPS_KEY = (os.environ.get('NPS_API_KEY') or '').strip()
 QUIET_FROM, QUIET_TO = 21, 6          # no posting between 9 PM and 6 AM Kentucky time
+# Routine stuff the forests list constantly (Brandon Oct 21: 'they a lot of control burns so I dont want to
+# flood page with control burns'). These never go to Facebook, only reach Discord when they name one of our
+# own parks, show on the park page as their own kind, and clear themselves sooner. They are also never
+# announced as 'open again': a burn ending is not news.
+ROUTINE = re.compile(r'(?i)prescribed burn|controlled burn|pile burn|burn unit|burning operation|'
+                     r'smoke (may|is|could)|hazard tree|timber (sale|harvest)|routine maintenance')
+ROUTINE_DAYS = 14
 CONFIRM = 2                            # a change must be seen this many checks in a row
 
 
@@ -255,6 +262,7 @@ def main():
         rec['missing'] = 0
         if not rec.get('refs'):
             rec['refs'] = match_parks(a, parks)
+        rec['routine'] = bool(ROUTINE.search(a['title'] + ' ' + a['text']))
         if not rec.get('announced') and rec['runs'] >= CONFIRM:
             rec['announced'] = True
             closed.append((aid, rec))
@@ -268,18 +276,20 @@ def main():
             continue            # that source answered, so 'gone' is real; otherwise leave it alone
         rec['missing'] = int(rec.get('missing', 0)) + 1
         if rec['missing'] >= CONFIRM:
-            if rec.get('announced'):
-                opened.append((aid, rec))
+            if rec.get('announced') and not rec.get('routine'):
+                opened.append((aid, rec))      # a burn finishing is not news
             seen.pop(aid, None)
 
     # 3. the red warnings on our own park pages
     if closed or opened:
         cond = load(COND_F, {'updated': today, 'items': []})
         items = [c for c in cond.get('items', []) if not str(c.get('id', '')).startswith('pa-')]
-        exp = (now + datetime.timedelta(days=30)).strftime('%Y-%m-%d')
         for aid, rec in seen.items():
+            days = ROUTINE_DAYS if rec.get('routine') else 30
+            exp = (now + datetime.timedelta(days=days)).strftime('%Y-%m-%d')
+            kind = 'Burn or forest work' if rec.get('routine') else 'Park alert'
             for ref in rec.get('refs') or []:
-                items.append({'id': f'pa-{aid}-{ref}', 'ref': ref, 'kind': 'Park alert',
+                items.append({'id': f'pa-{aid}-{ref}', 'ref': ref, 'kind': kind,
                               'details': (rec['title'] + ' — ' + rec['text'])[:400].strip(' —'),
                               'seen': rec.get('first', today), 'call': 'KPC BOT', 'expires': exp})
         items.sort(key=lambda c: (c['seen'], c['id']), reverse=True)
@@ -289,15 +299,20 @@ def main():
 
     # 4. say something, unless it is the middle of the night
     for aid, rec in closed:
+        # routine forest work only reaches the club when it is about one of OUR parks, and never Facebook
+        if rec.get('routine') and not (rec.get('refs') or []):
+            continue
         pending.append({'kind': 'closed', 'who': rec.get('who', ''), 'title': rec.get('title', ''),
-                        'text': rec.get('text', ''), 'link': rec.get('link', ''), 'refs': rec.get('refs') or []})
+                        'text': rec.get('text', ''), 'link': rec.get('link', ''),
+                        'refs': rec.get('refs') or [], 'routine': bool(rec.get('routine'))})
     for aid, rec in opened:
         pending.append({'kind': 'open', 'who': rec.get('who', ''), 'title': rec.get('title', ''),
                         'refs': rec.get('refs') or []})
 
     quiet = now.hour >= QUIET_FROM or now.hour < QUIET_TO
     if pending and not quiet:
-        shut = [p for p in pending if p['kind'] == 'closed']
+        shut = [p for p in pending if p['kind'] == 'closed' and not p.get('routine')]
+        burns = [p for p in pending if p['kind'] == 'closed' and p.get('routine')]
         back = [p for p in pending if p['kind'] == 'open']
         L = []
         if shut:
@@ -305,6 +320,16 @@ def main():
             for p in shut:
                 where = ', '.join(p['refs']) + ' · ' if p['refs'] else ''
                 L.append(f"• {where}**{p['title']}** ({p['who']})\n  {p['text']}" + (f"\n  {p['link']}" if p['link'] else ''))
+        if burns:
+            if L:
+                L.append('')
+            if len(burns) > 2:
+                L.append(f'🔥 **{len(burns)} prescribed burns or forest jobs** listed at: '
+                         + ', '.join(sorted({r for p in burns for r in p['refs']})))
+            else:
+                L.append('🔥 **Burning or forest work**')
+                for p in burns:
+                    L.append(f"• {', '.join(p['refs'])} · {p['title']} — {p['text'][:180]}")
         if back:
             if L:
                 L.append('')
@@ -317,12 +342,24 @@ def main():
         L.append(f'Park notes and conditions: {SITE}kpc-park-notes.html')
         title = 'Kentucky park alert' + ('s' if len(pending) > 1 else '')
         text = '\n'.join(L)
+        # Facebook gets the real news only: closures and reopenings. Burning and forest work are a club
+        # detail, not something to put in front of the public every week.
+        fb = []
+        for p in shut:
+            where = ', '.join(p['refs']) + ' · ' if p['refs'] else ''
+            fb.append(f"- {where}{p['title']} ({p['who']})\n  {p['text']}" + (f"\n  {p['link']}" if p['link'] else ''))
+        for p in back:
+            where = ', '.join(p['refs']) + ' · ' if p['refs'] else ''
+            fb.append(f"- {where}{p['title']} ({p['who']}) looks open again: the closure notice has been taken "
+                      f"down. Worth a quick check before you set off.")
         if DRY:
-            print('WOULD POST:\n' + title + '\n' + text)
+            print('WOULD POST (Discord):\n' + title + '\n' + text)
+            print('WOULD POST (Facebook):\n' + ('\n'.join(fb) if fb else '(nothing: routine work only)'))
         else:
             post_discord(title, text)
-            post_facebook(title, re.sub(r'\*\*|•', lambda m: '' if m.group() == '**' else '-', text))
-        notice('Park alerts', f'posted {len(shut)} closed, {len(back)} reopened')
+            if fb:
+                post_facebook(title, '\n'.join(fb) + f'\n\nPark notes and conditions: {SITE}kpc-park-notes.html')
+        notice('Park alerts', f'posted {len(shut)} closed, {len(burns)} routine, {len(back)} reopened')
         pending = []
     elif pending:
         notice('Park alerts', f'{len(pending)} change(s) waiting for the morning (it is {now:%H:%M} in Kentucky)')
