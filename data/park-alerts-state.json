@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21 06:34",
+ "updated": "2026-10-21 09:29",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -8,10 +8,11 @@
    "text": "Please avoid the Breathitt County section and beware of rough spots between the Jane Beshear Trailhead to Tip Top.",
    "link": "https://parks.ky.gov/",
    "first": "2026-10-21",
-   "runs": 3,
+   "runs": 4,
    "missing": 0,
    "announced": true,
-   "refs": []
+   "refs": [],
+   "routine": false
   },
   "ky-976ad384-e2d4-41ab-bd17-685c33b092e7": {
    "who": "Kentucky State Parks",
@@ -19,10 +20,137 @@
    "text": "The Kentucky State Parks system is currently undergoing renovations at select park locations to enhance facilities and visitor experiences.",
    "link": "https://parks.ky.gov/improvements",
    "first": "2026-10-21",
-   "runs": 3,
+   "runs": 4,
    "missing": 0,
    "announced": true,
+   "refs": [],
+   "routine": false
+  },
+  "nps-92DFEDDC-9091-44BA-9C49-4240D319B8C4": {
+   "who": "FODO",
+   "title": "Fort Donelson NB Park Fall Hours",
+   "text": "Visitor Access to Fort Donelson NB Park Lands: Pedestrian Access is from sunrise to sunset. Automobile Access to Fort Donelson NB Park Roads 8:00 am – 6:00 p.m. daily.",
+   "link": "https://www.nps.gov/",
+   "cat": "Information",
+   "first": "2026-10-21",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
+   "refs": []
+  },
+  "nps-B489F041-FD1B-40F2-992D-9D36C841B7E5": {
+   "who": "MACA",
+   "title": "Green River Ferry Temporarily Out of Service",
+   "text": "The Green River Ferry has temporarily suspended operation due to low water levels. Ferry service will resume once water levels rise and conditions are safe. A river forecast is available at: water.noaa.gov/gauges/03309000",
+   "link": "https://www.nps.gov/",
+   "cat": "Park Closure",
+   "first": "2026-10-21",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
+   "refs": [
+    "US-1259",
+    "US-7951"
+   ]
+  },
+  "nps-8E5C80A8-445B-4B70-8262-A7522F1C293E": {
+   "who": "CUGA",
+   "title": "Trail Maintenance Underway Near Sand Cave",
+   "text": "Crews are using Ridge Trail from Hensley to Sand Cave Trail to complete trail work. Trails remain open; some sections may be muddy or messy.",
+   "link": "https://www.nps.gov/",
+   "cat": "Information",
+   "first": "2026-10-21",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
+   "refs": []
+  },
+  "nps-F322E0B6-54E5-4887-A604-7F59C4F08765": {
+   "who": "MACA",
+   "title": "Elevator for Accessible Tour Out of Service",
+   "text": "Due to mechanical issues with the cave elevator, the Accessible Tour is currently unavailable. Please check back for updates or call the visitor center at (270) 758-2180.",
+   "link": "https://www.nps.gov/",
+   "cat": "Park Closure",
+   "first": "2026-10-21",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
+   "refs": []
+  },
+  "nps-41955910-CBC1-4A0A-B3B6-6749C6D6FF39": {
+   "who": "BISO",
+   "title": "The Use of Drones is Prohibited at Big South Fork National River & Recreation Area",
+   "text": "Currently, the use of drones is prohibited at Big South Fork and all National Parks. Detailed information about the policy is available...",
+   "link": "https://www.nps.gov/subjects/sound/uas.htm",
+   "cat": "Information",
+   "first": "2026-10-21",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
+   "refs": []
+  },
+  "nps-442E4F2B-C87C-4984-8315-DA2B02F729F3": {
+   "who": "BISO",
+   "title": "Big South Fork Announces Temporary Closure of Blue Heron Tipple Bridge",
+   "text": "Big South Fork NRRA has announced the temporary closure of the historic Blue Heron Tipple Bridge, effective immediately in the interest of visitor safety. A recent bridge safety inspection conducted by the Federal Highway Administration identified structural issues specific to the pier’s bridge decking which is now leaning beyond acceptable standards.",
+   "link": "https://www.nps.gov/biso/learn/news/big-south-fork-announces-temporary-closure-of-blue-heron-tipple-bridge.htm",
+   "cat": "Information",
+   "first": "2026-10-21",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
+   "refs": []
+  },
+  "nps-C2602670-C157-4F9E-9A64-5B177A2E4344": {
+   "who": "MACA",
+   "title": "Temporary Closure of Select Trails for Rehabilitation Project",
+   "text": "The Old Guides Trail, Heritage Trail, Sunset Point Trail and areas of the Sinkhole Trail are currently closed due to a trail rehabilitation project.",
+   "link": "https://www.nps.gov/",
+   "cat": "Information",
+   "first": "2026-10-21",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
+   "refs": []
+  },
+  "nps-3FDA6968-C4B7-4A28-8169-B0E4B1272765": {
+   "who": "MACA",
+   "title": "Tickets are required to enter Mammoth Cave",
+   "text": "Reservations are strongly recommended. Reservations are the only way to ensure a spot is available for your party. Please plan accordingly by visiting Recreation.gov to secure your tickets in advance. Availability of walk-up tickets is not guaranteed.",
+   "link": "https://www.nps.gov/maca/planyourvisit/cave-tours.htm",
+   "cat": "Information",
+   "first": "2026-10-21",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
+   "refs": [
+    "US-0050"
+   ]
+  },
+  "nps-6B262C5A-387C-4AAE-B3A4-31461DB05D04": {
+   "who": "BISO",
+   "title": "Firewood ban is in effect for the park.",
+   "text": "Firewood ban is in effect for the park. Only firewood from the surrounding counties of Scott, Morgan, Pickett, and Fentress, in Tennessee, and McCreary in Kentucky, can be brought into the park. Firewood is for sale or you may use dead and down wood.",
+   "link": "https://www.nps.gov/biso/planyourvisit/firewood-quarantine.htm",
+   "cat": "Information",
+   "first": "2026-10-21",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
+   "refs": []
+  },
+  "nps-2F92DCC9-55CD-440F-A35C-8B08AA1558B5": {
+   "who": "BISO",
+   "title": "Black Bears at Big South Fork",
+   "text": "Black bears call Big South Fork NRRA home. Help keep them healthy and safe by storing all food, cooking items, feed, cosmetics and coolers properly stored when at campgrounds or in the backcountry.",
+   "link": "https://www.nps.gov/biso/learn/nature/blackbear.htm",
+   "cat": "Information",
+   "first": "2026-10-21",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
    "refs": []
   }
- }
+ },
+ "burn_queue": []
 }
