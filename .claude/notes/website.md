@@ -20,7 +20,7 @@
 - **kpc-youtube.yml**: shares new club videos to Facebook (kpc-fb-posted.json) and Discord (kpc_discord_videos.js, kpc-discord-videos.json): to the room(s) in secret KPC_YOUTUBE_WEBHOOK (Brandon Oct 15: 'post youtube to another discord room'; space-separated webhooks, any server) or, when that's empty, KPC_DISCORD_WEBHOOK. Oct 15 both channels' feeds listed 0 videos.
 - **Video sharing fix (Oct 20, before Brandon's 5 videos):** Facebook + Discord share up to 3 new videos per run, OLDEST first; the rest post on the next run (2 h later). Before, a 4th/5th new video in one run was marked seen and never shared.
 - **kpc-link-check.yml**, Sundays, and **kpc-ref-check.yml**, monthly: both open GitHub issues.
-- **kpc-go-live.yml** (one time): Oct 21 2026, 5 PM Central. Swaps campoutHOLD/eventsHOLD/resourcesHOLD.html into campout/events/resources.html and posts the new-page roundup. Until then, edits to events/resources/campout must also go into the HOLD copies.
+- **kpc-go-live.yml** (one time): Oct 21 2026, 4:30 PM Central (Brandon moved it from 5 PM so the pages are live before the 5 PM campout posts; GitHub's timed runs can start 10-30 min late). Swaps campoutHOLD/eventsHOLD/resourcesHOLD.html into campout/events/resources.html and posts the new-page roundup. Until then, edits to events/resources/campout must also go into the HOLD copies.
 - **Videos page public at go-live (Oct 20, Brandon: 'Add it at 5pm tomorrow'):** kpc_golive_videos.py (run by kpc-go-live.yml) adds videos.html to PUBLIC, drops its noindex, bumps kpc-gate.js?v= on every page. No Videos menu link (still waits for N4KPC).
 - All workflows use actions/checkout@v5.
 
