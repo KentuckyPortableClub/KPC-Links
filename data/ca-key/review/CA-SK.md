@@ -1,6 +1,6 @@
 # Canada SK: POTA parks vs official land (CPCAD)
 
-Built 2026-10-20 by `.github/scripts/kpc_ca_key.py`. **291 of 411** joined (same name + same kind). **12** to check, **81** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-21 by `.github/scripts/kpc_ca_key.py`. **291 of 411** joined (same name + same kind). **12** to check, **81** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
