@@ -1,6 +1,6 @@
 # ES: POTA parks vs official land
 
-Built 2026-10-20 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **1695 of 2497** joined (same name + same kind), **457** to check, **345** nothing found. Nothing below is joined.
+Built 2026-10-21 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **1695 of 2497** joined (same name + same kind), **457** to check, **345** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
