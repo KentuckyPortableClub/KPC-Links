@@ -52,6 +52,7 @@ QUIET_FROM, QUIET_TO = 21, 6          # no posting between 9 PM and 6 AM Kentuck
 ROUTINE = re.compile(r'(?i)prescribed burn|controlled burn|pile burn|burn unit|burning operation|'
                      r'smoke (may|is|could)|hazard tree|timber (sale|harvest)|routine maintenance')
 ROUTINE_DAYS = 14
+BURN_DIGEST_HOUR = 17     # burns reach Facebook once a day, in the late-afternoon check, all in one post
 CONFIRM = 2                            # a change must be seen this many checks in a row
 
 
@@ -222,6 +223,7 @@ def main():
     state = load(STATE_F, {})
     seen = state.get('seen') or {}
     pending = state.get('pending') or []
+    burn_q = state.get('burn_queue') or []      # burns waiting for their once-a-day Facebook post
 
     live = {}
     broke = False
@@ -352,6 +354,7 @@ def main():
             where = ', '.join(p['refs']) + ' · ' if p['refs'] else ''
             fb.append(f"- {where}{p['title']} ({p['who']}) looks open again: the closure notice has been taken "
                       f"down. Worth a quick check before you set off.")
+        burn_q += [{'refs': p['refs'], 'title': p['title'], 'text': p['text']} for p in burns]
         if DRY:
             print('WOULD POST (Discord):\n' + title + '\n' + text)
             print('WOULD POST (Facebook):\n' + ('\n'.join(fb) if fb else '(nothing: routine work only)'))
@@ -364,11 +367,33 @@ def main():
     elif pending:
         notice('Park alerts', f'{len(pending)} change(s) waiting for the morning (it is {now:%H:%M} in Kentucky)')
 
-    state.update({'updated': now.strftime('%Y-%m-%d %H:%M'), 'seen': seen, 'pending': pending})
+    # Burns on Facebook: once a day, all together (Brandon Oct 21: 'the burns can go to fb but maybe once a
+    # day notices grouped together'). Still only burns that name one of our own parks, so it stays worth reading.
+    if burn_q and not quiet and now.hour >= BURN_DIGEST_HOUR and state.get('burns_posted_on') != today:
+        byref = {}
+        for b in burn_q:
+            for r in (b['refs'] or ['Kentucky parks']):
+                byref.setdefault(r, []).append(b['title'])
+        L = ['Burning and forest work going on at Kentucky parks. Smoke, closed roads and crews can all be part '
+             'of it, so it is worth a look before you head out.', '']
+        for r in sorted(byref):
+            L.append(f'- {r}: ' + '; '.join(sorted(set(byref[r]))[:3]))
+        L += ['', f'Park notes and conditions: {SITE}kpc-park-notes.html']
+        msg = '\n'.join(L)
+        if DRY:
+            print('WOULD POST (Facebook, daily burn list):\n' + msg)
+        else:
+            post_facebook('Burning and forest work at Kentucky parks', msg)
+            state['burns_posted_on'] = today
+        notice('Park alerts', f'daily burn list posted to Facebook ({len(burn_q)} item(s))')
+        burn_q = []
+
+    state.update({'updated': now.strftime('%Y-%m-%d %H:%M'), 'seen': seen, 'pending': pending,
+                  'burn_queue': burn_q[-40:]})
     if not DRY:
         STATE_F.parent.mkdir(parents=True, exist_ok=True)
         STATE_F.write_text(json.dumps(state, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
-    if not closed and not opened and not pending:
+    if not closed and not opened and not pending and not burn_q:
         notice('Park alerts', f'{len(live)} alert(s) up, nothing changed')
 
 
