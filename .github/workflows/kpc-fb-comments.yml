@@ -1,0 +1,44 @@
+name: KPC Facebook comments
+# Sends new comments on the club's Facebook posts to Discord, with a link to reply and a suggested answer
+# for the questions we get asked a lot. It never replies on Facebook itself - a person does that.
+# Hourly. Never fails, never emails. Nothing a visitor wrote is ever saved in this repo.
+on:
+  schedule:
+    - cron: '35 * * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Practice run: print what it would send, change nothing'
+        type: boolean
+        default: true
+permissions:
+  contents: write
+concurrency:
+  group: kpc-fb-comments
+  cancel-in-progress: false
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+      - name: Look for new comments
+        continue-on-error: true
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+        run: python3 .github/scripts/kpc_fb_comments.py || true
+      - name: Remember what was sent
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fb-comments-state.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Facebook comments: what has been passed on'
+            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
+          fi
