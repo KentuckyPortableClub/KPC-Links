@@ -205,6 +205,24 @@ NEXTW = ('lake', 'park', 'parks', 'wma', 'forest', 'trail', 'trails', 'campgroun
 TOOCOMMON = {'kentucky', 'general', 'national', 'federal', 'county', 'state', 'western', 'eastern', 'northern', 'southern'}
 MAXREFS = 4          # an alert that seems to be about half the state is general news, not one park
 
+# Place words. If one of these follows the bit of name we matched, and it is NOT part of our park's own name,
+# then the text is talking about a different place that happens to start the same way (Oct 21: the Green River
+# Ferry notice at Mammoth Cave landed on Green River State Forest AND Green River Lake State Park, and
+# 'Beaver Creek Wilderness' in the Daniel Boone forest landed on Beaver Lake up in Anderson County).
+PLACEN = ('ferry', 'lake', 'river', 'creek', 'fork', 'branch', 'run', 'falls', 'forest', 'park', 'wilderness',
+          'wma', 'bridge', 'trail', 'trails', 'campground', 'preserve', 'mountain', 'gorge', 'ridge', 'hollow',
+          'cave', 'dam', 'reservoir', 'island', 'spring', 'springs', 'bend', 'knob', 'valley', 'county')
+
+
+def _really_ours(phrase, hay, full):
+    """True if 'phrase' appears in the text as our park, not as the start of some other place's name."""
+    for m in re.finditer(r' ' + re.escape(phrase) + r' ([a-z0-9]+)', hay):
+        nxt = m.group(1)
+        if nxt not in PLACEN or re.search(r'\b' + re.escape(nxt) + r'\b', full):
+            return True
+    # the phrase at the very end of the text, with nothing following it, still counts
+    return bool(re.search(r' ' + re.escape(phrase) + r' *$', hay))
+
 
 def match_parks(alert, parks):
     """Which of our parks does this alert talk about? Name match only, and only when it is unmistakable."""
@@ -219,9 +237,10 @@ def match_parks(alert, parks):
         if not sh or sh in TOOCOMMON or len(sh) < 6:
             continue
         if ' ' in sh:                                     # two words or more: specific enough on its own
-            if f' {sh} ' in hay:
+            if f' {sh} ' in hay and _really_ours(sh, hay, full):
                 hits.append(ref)
-        elif re.search(r' ' + re.escape(sh) + r' (?:' + '|'.join(NEXTW) + r') ', hay):
+        elif (re.search(r' ' + re.escape(sh) + r' (?:' + '|'.join(NEXTW) + r') ', hay)
+                and _really_ours(sh, hay, full)):
             hits.append(ref)
     hits = sorted(set(hits))
     return hits if len(hits) <= MAXREFS else []
