@@ -149,6 +149,99 @@ def mute(gid, uid, minutes, why):
                 {'communication_disabled_until': until, 'reason': why[:400]})
 
 
+HELP = ("**What I can do from this room**\n"
+        "```\n"
+        "who                     who has posted lately, with their id\n"
+        "mute <id> [mins] [why]  stop them talking (default 60 minutes)\n"
+        "unmute <id>             let them talk again\n"
+        "kick <id> confirm       remove them; they can return on a new invite\n"
+        "ban <id> confirm        remove them for good\n"
+        "help                    this list\n"
+        "```\n"
+        "Kick and ban need the word **confirm** in the same line, so a slip of the thumb cannot throw "
+        "somebody out. I check this room every 15 minutes, so give me a moment.\n\n"
+        "For something urgent, Discord is quicker than I am: hold your finger on the person's name, "
+        "then Kick or Timeout. I am better for keeping the record and for when you are not in the app.")
+
+CMD = re.compile(r'^\s*(who|help|mute|unmute|kick|ban)\b(.*)$', re.I)
+
+
+def do_command(gid, conf, line):
+    """One line typed in the staff room. Returns what to say back."""
+    m = CMD.match(line or '')
+    if not m:
+        return None
+    what, rest = m.group(1).lower(), (m.group(2) or '').strip()
+    if what == 'help':
+        return HELP
+    if what == 'who':
+        return 'who'                                  # handled by the caller, which can list the rooms
+    uid = (re.search(r'\b(\d{15,22})\b', rest) or [None, ''])[1] if re.search(r'\b\d{15,22}\b', rest) else ''
+    if not uid:
+        return (f"I need the person's id for `{what}`. Say `who` and I will list everybody with their id, "
+                f"or in Discord hold their name → Copy User ID (Settings → Advanced → Developer Mode turns "
+                f"that on).")
+    if str(uid) in {str(x) for x in (conf.get('never_touch') or [])}:
+        return f"`{uid}` is on the never-touch list in data/discord-mod.json, so I left them alone."
+    mem = member_of(gid, uid)
+    name = ((mem.get('user') or {}).get('global_name') or (mem.get('user') or {}).get('username')
+            or uid) if isinstance(mem, dict) else uid
+    if isinstance(mem, dict) and mem.get('_error'):
+        return f"I cannot find `{uid}` in the server ({mem['_error']}). Check the id with `who`."
+    why = re.sub(r'\b\d{15,22}\b|\bconfirm\b|^\s*\d+\s*', '', rest, flags=re.I).strip(' .,-') or 'No reason given'
+
+    if what in ('kick', 'ban') and not re.search(r'\bconfirm\b', rest, re.I):
+        return (f"That would **{what} {name}**. Say it again with the word `confirm` on the end if you mean it:\n"
+                f"`{what} {uid} confirm`")
+    if what == 'mute':
+        mins = int((re.search(r'\b(\d{1,5})\b(?!\d)', re.sub(r'\b\d{15,22}\b', '', rest)) or [0, 60])[1] or 60)
+        mins = max(1, min(mins, 40320))
+        r = mute(gid, uid, mins, why)
+        good = f"Muted **{name}** for {mins} minute(s). Reason: {why}. Say `unmute {uid}` to lift it early."
+    elif what == 'unmute':
+        r = call(f'guilds/{gid}/members/{uid}', 'PATCH', {'communication_disabled_until': None})
+        good = f"**{name}** can talk again."
+    elif what == 'kick':
+        r = call(f'guilds/{gid}/members/{uid}', 'DELETE')
+        good = f"Removed **{name}** from the server. Reason: {why}. They can come back on a new invite."
+    else:
+        r = call(f'guilds/{gid}/bans/{uid}', 'PUT', {'delete_message_seconds': 0})
+        good = f"Banned **{name}**. Reason: {why}. Lift it in Server Settings → Bans."
+    if isinstance(r, dict) and r.get('_error'):
+        return (f"I tried to {what} **{name}** and Discord said: `{r['_error']}`\n\n"
+                f"That is usually my role missing the permission, or my role sitting below theirs. "
+                f"Server Settings → Roles.")
+    return good
+
+
+def who_list(gid, watch):
+    """Everybody who has posted in the club rooms lately, with the id to paste into a command."""
+    seen = {}
+    for room in (watch.get('rooms') or []):
+        rid = str(room.get('id') if isinstance(room, dict) else room)
+        name = (room.get('name') if isinstance(room, dict) else '') or rid
+        msgs = call(f'channels/{rid}/messages?limit=50')
+        if isinstance(msgs, dict):
+            continue
+        for m in msgs:
+            a = m.get('author') or {}
+            if a.get('bot') or not a.get('id'):
+                continue
+            seen.setdefault(a['id'], {'who': a.get('global_name') or a.get('username'), 'rooms': set()})
+            seen[a['id']]['rooms'].add(name)
+    if not seen:
+        return 'Nobody has posted in the watched rooms lately.'
+    L = ['**Who has posted lately**', '']
+    for uid, v in sorted(seen.items(), key=lambda kv: (kv[1]['who'] or '').lower()):
+        mem = member_of(gid, uid)
+        roles = len(mem.get('roles') or []) if isinstance(mem, dict) else 0
+        L.append(f"• **{v['who']}** · `{uid}` · {'has a role' if roles else 'no role'} · "
+                 f"in #{', #'.join(sorted(v['rooms']))}")
+    L.append('')
+    L.append('Copy an id and say e.g. `mute <id> 60 spam` — or `help` for the whole list.')
+    return '\n'.join(L)
+
+
 def main():
     if not TOKEN:
         notice('No Discord bot token; nothing to do.')
@@ -160,31 +253,57 @@ def main():
         notice('No server id; nothing to do.')
         return
 
+    # ------------------------------------------------------------ commands typed in the staff room
+    if MODE == 'commands':
+        croom = str(conf.get('command_room') or '').strip()
+        if not croom:
+            notice('No command_room set in data/discord-mod.json; nothing to read.')
+            return
+        state = load(STATE_F, {})
+        ran = set(state.get('commands') or [])
+        first = not state.get('commands_from')
+        msgs = call(f'channels/{croom}/messages?limit=25')
+        if isinstance(msgs, dict):
+            notice(f'Cannot read the command room: {msgs.get("_error")}')
+            return
+        did = 0
+        for m in sorted(msgs, key=lambda x: x.get('timestamp', '')):
+            if (m.get('author') or {}).get('bot'):
+                continue
+            fp = fingerprint('cmd' + str(m.get('id')))
+            if fp in ran:
+                continue
+            ran.add(fp)
+            if first or did >= 3:
+                continue
+            line = (m.get('content') or '').strip()
+            if not CMD.match(line):
+                continue
+            out = do_command(gid, conf, line)
+            if out == 'who':
+                out = who_list(gid, watch)
+            if not out:
+                continue
+            if DRY:
+                print(f'--- would answer "{line}" ---\n{out}\n')
+            else:
+                call(f'channels/{croom}/messages', 'POST',
+                     {'content': out[:1900], 'message_reference': {'message_id': m['id']},
+                      'allowed_mentions': {'parse': []}})
+            did += 1
+        state['commands'] = sorted(ran)[-2000:]
+        state['commands_from'] = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M')
+        if not DRY:
+            STATE_F.parent.mkdir(parents=True, exist_ok=True)
+            STATE_F.write_text(json.dumps(state, indent=1) + '\n', encoding='utf-8')
+        notice('First look at the command room; nothing run. Commands work from here on.' if first
+               else (f'Ran {did} command(s).' if did else 'No commands waiting.'))
+        return
+
     # ------------------------------------------------------------ who has posted lately
     if MODE == 'who':
-        seen = {}
-        for room in (watch.get('rooms') or []):
-            rid = str(room.get('id') if isinstance(room, dict) else room)
-            name = (room.get('name') if isinstance(room, dict) else '') or rid
-            msgs = call(f'channels/{rid}/messages?limit=50')
-            if isinstance(msgs, dict):
-                continue
-            for m in msgs:
-                a = m.get('author') or {}
-                if a.get('bot') or not a.get('id'):
-                    continue
-                seen.setdefault(a['id'], {'who': a.get('global_name') or a.get('username'), 'rooms': set()})
-                seen[a['id']]['rooms'].add(name)
-        L = ['Everybody who has posted in the watched rooms lately. To mute, kick or ban one of them, run this',
-             'workflow again with mode **do**, paste the id, and pick the action.', '']
-        for uid, v in sorted(seen.items(), key=lambda kv: (kv[1]['who'] or '').lower()):
-            mem = member_of(gid, uid)
-            roles = len(mem.get('roles') or []) if isinstance(mem, dict) else 0
-            L.append(f"• **{v['who']}** · `{uid}` · {'has a role' if roles else 'no role'} · "
-                     f"in #{', #'.join(sorted(v['rooms']))}")
-        text = '\n'.join(L)
-        print(text) if DRY else say(f'Who has posted lately ({len(seen)})', text, 0x5865F2)
-        notice(f'Listed {len(seen)} person/people.')
+        text = who_list(gid, watch)
+        print(text) if DRY else say('Who has posted lately', text, 0x5865F2)
         # Also report where Discord drops its "somebody joined" message, so the welcome lands in the right room.
         g = call(f'guilds/{gid}')
         sysid = g.get('system_channel_id') if isinstance(g, dict) else None
@@ -192,8 +311,7 @@ def main():
         if isinstance(chans, list):
             byid = {c.get('id'): c.get('name') for c in chans}
             notice(f'Joins are announced in: #{byid.get(sysid, "nowhere - the setting is off")} ({sysid})')
-            notice('all rooms: ' + ' | '.join(f"{c.get('name')}={c.get('id')}"
-                                              for c in chans if c.get('type') in (0, 5, 15))[:700])
+        notice('Listed who has posted lately.')
         return
 
     # ------------------------------------------------------------ Brandon picks somebody
