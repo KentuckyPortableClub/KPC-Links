@@ -1,0 +1,28 @@
+{
+ "updated": "2026-10-21 06:05",
+ "pending": [],
+ "seen": {
+  "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
+   "who": "Kentucky State Parks",
+   "title": "DLRT - Trailhead Caution",
+   "text": "Please avoid the Breathitt County section and beware of rough spots between the Jane Beshear Trailhead to Tip Top.",
+   "link": "https://parks.ky.gov/",
+   "first": "2026-10-21",
+   "runs": 2,
+   "missing": 0,
+   "announced": true,
+   "refs": []
+  },
+  "ky-976ad384-e2d4-41ab-bd17-685c33b092e7": {
+   "who": "Kentucky State Parks",
+   "title": "Improvements",
+   "text": "The Kentucky State Parks system is currently undergoing renovations at select park locations to enhance facilities and visitor experiences.",
+   "link": "https://parks.ky.gov/improvements",
+   "first": "2026-10-21",
+   "runs": 2,
+   "missing": 0,
+   "announced": true,
+   "refs": []
+  }
+ }
+}
