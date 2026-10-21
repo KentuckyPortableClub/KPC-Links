@@ -129,6 +129,7 @@ jobs:
         env:
           KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
           KPC_YOUTUBE_WEBHOOK: ${{ secrets.KPC_YOUTUBE_WEBHOOK }}
+          KPC_GENERAL_WEBHOOK: ${{ secrets.KPC_GENERAL_WEBHOOK }}
         run: |
           # Brandon Oct 21: nothing goes out about today's videos before 4:55 PM Central. Self-expiring:
           # after that moment this check always passes, so the bot is back to normal from tomorrow.

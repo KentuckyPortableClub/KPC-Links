@@ -1,13 +1,16 @@
 // Shares new videos from the club YouTube channels (kpc-youtube.json) in the KPC Discord.
 // Goes to the room(s) in the GitHub secret KPC_YOUTUBE_WEBHOOK (one or more Discord webhook links, separated by
-// spaces or new lines; can be rooms in other servers too). If that secret is empty it uses KPC_DISCORD_WEBHOOK.
+// spaces or new lines; can be rooms in other servers too). Empty = #general (KPC_GENERAL_WEBHOOK), then the usual room.
 // Remembers what it shared in kpc-discord-videos.json. The first run only marks the videos already
 // there, so Discord isn't flooded with old ones; at most 3 new videos post per run.
 const fs = require('fs');
 const SITE = 'https://kentuckyportableclub.github.io/KPC-Links/';
 const POSTED = 'kpc-discord-videos.json';
 const HOOKRX = /^https:\/\/(?:\w+\.)?(discord|discordapp)\.com\/api\/webhooks\/\d+\/[\w-]+(\?\S*)?$/;
-const hooks = ((process.env.KPC_YOUTUBE_WEBHOOK || '').trim() || (process.env.KPC_DISCORD_WEBHOOK || '').trim()).split(/\s+/).filter(u => HOOKRX.test(u));
+// Brandon Oct 21: there is no video room, so new videos go to #general. KPC_YOUTUBE_WEBHOOK still wins if it is
+// ever set (it can hold several rooms, even in other servers).
+const hooks = ((process.env.KPC_YOUTUBE_WEBHOOK || '').trim() || (process.env.KPC_GENERAL_WEBHOOK || '').trim()
+  || (process.env.KPC_DISCORD_WEBHOOK || '').trim()).split(/\s+/).filter(u => HOOKRX.test(u));
 const notice = m => console.log('::notice title=Discord videos::' + String(m).replace(/%/g, '%25').replace(/\n/g, '%0A'));
 
 (async () => {
