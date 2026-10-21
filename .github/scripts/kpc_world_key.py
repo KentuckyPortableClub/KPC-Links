@@ -34,6 +34,9 @@ SRC = {
 # Natura 2000 sites + Nationally designated areas (ex-CDDA; Switzerland reports there too, it has no Natura 2000).
 EEA = 'https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/'
 EU = ('PL', 'ES', 'FR', 'CH', 'AT', 'NL', 'PT', 'SE', 'CZ', 'SI', 'NO', 'RO', 'IT', 'BE', 'DK', 'FI', 'HU', 'SK', 'HR', 'IE', 'LT', 'LV', 'EE', 'LU')   # Oct 19 PM: + the other Latin-alphabet EEA countries   # Oct 19: the next 8 busiest POTA programs (NO has no Natura 2000, CDDA only)
+# Countries where the official names are written differently from POTA's, so a pin inside one area is the join
+# (Oct 21: Japan had 30,420 areas loaded and only 102 parks joined because the names never matched).
+PIN_JOIN = {x.strip().upper() for x in (os.environ.get('PIN_JOIN') or 'JP').split(',') if x.strip()}
 for _c in EU:
     SRC[_c] = [('EEA Natura 2000', 'arcgis', EEA + 'Natura2000Sites/MapServer/2', [f"MS='{_c}'", f"SITECODE LIKE '{_c}%'"]),
                ('EEA nationally designated areas', 'arcgis', EEA + 'CDDA_Dyna_WM/MapServer/4', [f"countryCode='{_c}'", f"countryCode LIKE '{_c}%'"])]
@@ -652,6 +655,21 @@ for cc in COUNTRIES:
                 if len(ex) == 1 or (ex and len({r['src'] for r in ex}) == 1):
                     m += [[r['id'], r['n'], r['src'], 'exact name (POTA type label differs)'] for r in ex]
             if m: parks[ref] = {'n': name, 't': typ, 'm': m, 'c': []}; continue
+        # Where POTA's names and the country's own names are written differently (Japan writes its parks in
+        # Japanese, POTA romanises them), matching on names finds almost nothing. So: when the POTA pin sits
+        # inside exactly ONE official area, that IS the park. Only one, and only of a kind that fits, so a pin
+        # inside both a national park and a small reserve inside it is still left for a person to look at.
+        if not m and la is not None and cc in PIN_JOIN:
+            holds = [r for r in nearby(la, lo) if r['n'] and inside(la, lo, r['_r'])]
+            if kp:
+                fit = [r for r in holds if kp & r['_k']]
+                if fit: holds = fit
+            same = len({(r['src'], norm(cc, r['n'])) for r in holds}) == 1
+            if len(holds) == 1 or (holds and same):
+                m = [[r['id'], r['n'], r['src'], 'the POTA pin is inside it (names are written differently here)']
+                     for r in holds[:1]]
+                parks[ref] = {'n': name, 't': typ, 'm': m, 'c': []}
+                continue
         if not m and la is not None:
             for r in nearby(la, lo):
                 if not near(la, lo, r['_bb'], .03) or not r['n']: continue

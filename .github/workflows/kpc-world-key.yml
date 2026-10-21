@@ -5,6 +5,9 @@ on:
     - cron: '17 11 3 * *'   # monthly
   workflow_dispatch:
     inputs:
+      pin_join:
+        description: "Countries where a pin inside one official area counts as a match (default JP)"
+        default: 'JP'
       countries:
         description: 'Countries, e.g. AU DE (blank = AU DE GB JP PL ES FR CH AT)'
         default: ''
@@ -19,6 +22,7 @@ jobs:
       - name: Build
         env:
           COUNTRIES: ${{ inputs.countries }}
+          PIN_JOIN: ${{ inputs.pin_join }}
         run: |
           pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || true
           # Oct 20: one country at a time, so a problem in one country never stops the others or fails the run
