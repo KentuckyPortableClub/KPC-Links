@@ -1,6 +1,6 @@
 # AU: POTA parks vs official land
 
-Built 2026-10-20 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW), NSW State Forest (Forestry Corporation NSW), QLD State Forest (Queensland Government). **6440 of 10272** joined (same name + same kind), **1233** to check, **2599** nothing found. Nothing below is joined.
+Built 2026-10-21 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW), NSW State Forest (Forestry Corporation NSW), QLD State Forest (Queensland Government). **6440 of 10272** joined (same name + same kind), **1233** to check, **2599** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
