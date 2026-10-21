@@ -203,7 +203,8 @@ body = '\n'.join(lines)
 # Discord too (Brandon Oct 21: 'can discord also notify us if someone needs something from us?'). Same list,
 # in the room he is already in. Names and what people wrote stay out of the public repo either way.
 def to_discord():
-    hook = (os.environ.get('KPC_DISCORD_WEBHOOK') or '').strip()
+    # a staff room if there is one (KPC_ADMIN_WEBHOOK), otherwise the usual bot room
+    hook = (os.environ.get('KPC_ADMIN_WEBHOOK') or os.environ.get('KPC_DISCORD_WEBHOOK') or '').strip()
     if not hook.startswith('https://'):
         N('No Discord webhook set; nothing sent to Discord.'); return
     L = [f"**{total} post{'s' if total != 1 else ''} waiting for a YES or NO.**", '']

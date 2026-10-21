@@ -30,7 +30,9 @@ UA = {'User-Agent': 'KPC club bot (kentuckyportableclub.github.io)'}
 DRY = os.environ.get('DRY_RUN') == '1'
 FB_ID = (os.environ.get('FB_PAGE_ID') or '').strip()
 FB_TOKEN = (os.environ.get('FB_PAGE_TOKEN') or '').strip()
-DISCORD = (os.environ.get('KPC_DISCORD_WEBHOOK') or '').strip()
+# Posts here are for whoever looks after the club, not general chat, so they go to KPC_ADMIN_WEBHOOK when
+# there is one (make a webhook for a staff room and save it under that name); otherwise the usual room.
+DISCORD = ((os.environ.get('KPC_ADMIN_WEBHOOK') or os.environ.get('KPC_DISCORD_WEBHOOK') or '')).strip()
 LOOK_BACK_DAYS = 21          # only watch posts from the last few weeks
 MAX_PER_RUN = 10             # if something goes viral, don't flood the channel
 
@@ -162,10 +164,12 @@ def main():
             state['told_blocked'] = True
             if not DRY:
                 discord('Facebook comments: one permission short',
-                        "I can post to the Page but I'm not allowed to read what people write underneath.\n\n"
-                        "The Page token needs **pages_read_user_content** adding. Once Brandon makes a new token "
-                        "with it and updates the `FB_PAGE_TOKEN` secret, comments will start appearing here.\n\n"
-                        "Nothing else is affected: posting carries on as normal.")
+                        "I can post to the Page, but Facebook won't let me read what people write underneath, so "
+                        "comments can't be passed on yet.\n\n"
+                        "The Page token needs **pages_read_user_content** added, then the `FB_PAGE_TOKEN` secret "
+                        "updated in GitHub. After that, new comments will show up here.\n\n"
+                        "Nothing else is affected: posting to Facebook carries on as normal. "
+                        "This message is only sent once.")
         notice('Cannot read comments yet: ' + blocked)
     elif first_time:
         notice(f'First run: noted {len(fresh)} existing comment(s). New ones from now on will go to Discord.')

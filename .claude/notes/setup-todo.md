@@ -21,11 +21,16 @@ WHAT TO DO: get a free key at developer.nps.gov (name + email, arrives by email 
 secret `NPS_API_KEY`. No other change needed; the bot picks it up on its next run.
 STATUS: waiting.
 
-## 3. A quieter room for 'somebody is waiting on us' posts  (Oct 21, optional)
-WHY: every bot post (park alerts, approvals, what's new, Facebook comments) goes to `KPC_DISCORD_WEBHOOK`,
-the same room as recaps and milestones. Brandon may want the ones that need a person in their own room.
-WHAT TO DO (only if he wants it): make a webhook for that room, save it as a new secret, tell Claude the name.
-STATUS: not decided.
+## 3. A room for the 'somebody is waiting on us' posts  (Oct 21 — NEEDED, not optional)
+WHY: KPC_DISCORD_WEBHOOK turns out to point at **#kpc-pota-spots**, the spots room. On Oct 21 the Facebook
+comment bot's 'one permission short' note landed there in front of everyone. Admin posts do not belong there.
+DONE ALREADY (Claude, Oct 21): kpc_fb_comments.py and kpc_approvals.py now use **KPC_ADMIN_WEBHOOK** when it
+exists and fall back to KPC_DISCORD_WEBHOOK when it does not. Park alerts and 'what's new' stay in the normal
+room on purpose: they are news for members, not admin.
+WHAT TO DO: pick or make a staff room in Discord, make a webhook for it (room → Edit Channel → Integrations →
+Webhooks → New Webhook → Copy URL), save it as the secret `KPC_ADMIN_WEBHOOK`. Until then those two bots keep
+posting to the spots room.
+STATUS: waiting on Brandon.
 
 ## 4. Watching the Discord rooms for questions nobody answered  (Oct 21, Brandon asked for this)
 WHY: 'can discord also notify us if someone needs something from us' — he meant the club's own Discord rooms:
