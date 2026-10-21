@@ -20,47 +20,55 @@ jobs:
         run: |
           mkdir -p probe-out
           python3 - <<'PY' || true
-          import json, pathlib, re, urllib.error, urllib.request
+          import json, pathlib, re, urllib.parse, urllib.request
           OUT = pathlib.Path('probe-out'); OUT.mkdir(exist_ok=True)
           UA = {'User-Agent': 'KPC club bot (kentuckyportableclub.github.io)'}
           L = []
           def say(s): L.append(str(s)); print(s, flush=True)
-          def get(u, t=60):
+          def get(u, t=90):
               with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=t) as r:
                   return r.status, r.read().decode('utf-8', 'replace')
-          def try_get(u, name, cap=300000):
+          def grab(u, name, cap=400000):
               try:
                   st, body = get(u); say(f'{u} -> HTTP {st}, {len(body)} bytes')
                   (OUT / name).write_text(body[:cap], encoding='utf-8'); return body
               except Exception as e:
                   say(f'{u} -> FAILED {str(e)[:110]}'); return None
 
-          say('== KY PARKS: find the park pages ==')
-          sm = try_get('https://parks.ky.gov/sitemap.xml', 'ky-sitemap.xml', 900000)
-          urls = []
-          if sm:
-              urls = re.findall(r'<loc>\s*([^<\s]+)\s*</loc>', sm)
-              say(f'sitemap entries: {len(urls)}')
-              say('first few: ' + ' | '.join(urls[:5]))
-              if urls and urls[0].endswith('.xml') and len(urls) < 60:
-                  for sub in urls[:12]:
-                      b = try_get(sub, 'ky-sub-' + re.sub(r'[^a-z0-9]+', '-', sub.lower())[-40:] + '.xml', 900000)
-                      if b: urls += re.findall(r'<loc>\s*([^<\s]+)\s*</loc>', b)
-                  say(f'after sub-sitemaps: {len(urls)} urls')
-          parky = [u for u in urls if re.search(r'(?i)state-(park|resort)|/parks?/', u)][:400]
-          say(f'park-looking urls: {len(parky)}')
-          (OUT / 'ky-park-urls.txt').write_text('\n'.join(sorted(set(parky))) + '\n', encoding='utf-8')
-          for u in sorted(set(parky))[:3]:
-              try_get(u, 'ky-park-' + re.sub(r'[^a-z0-9]+', '-', u.split('ky.gov')[-1].lower()).strip('-')[:50] + '.html')
+          API = 'https://parks.ky.gov/api/default/'
+          say('== what collections does the parks API have? ==')
+          meta = grab(API + '$metadata', 'ky-metadata.xml', 600000)
+          sets = sorted(set(re.findall(r'<EntitySet Name="([^"]+)"', meta or '')))
+          say(f'entity sets ({len(sets)}): ' + ', '.join(sets[:60]))
+          # every set whose name hints at parks / alerts / closures, first page only
+          want = [x for x in sets if re.search(r'(?i)park|alert|close|closure|notice|location|site|hour', x)][:14]
+          say('looking at: ' + ', '.join(want))
+          for x in want:
+              b = grab(API + x + '?$top=3', 'ky-set-' + re.sub(r'[^A-Za-z0-9]', '', x)[:40] + '.json', 60000)
+              if b:
+                  try:
+                      v = json.loads(b).get('value') or []
+                      say(f'   {x}: {len(v)} row(s); fields: ' + ', '.join(sorted(v[0].keys()))[:400] if v else f'   {x}: empty')
+                  except Exception as e: say(f'   {x}: not json ({str(e)[:60]})')
           say('')
-          say('== KY: Sitefinity API guesses ==')
-          for u in ['https://parks.ky.gov/restapi/search/suggestions?q=taylorsville',
-                    'https://parks.ky.gov/api/default/parks',
-                    'https://parks.ky.gov/api/default/alerts',
-                    'https://parks.ky.gov/robots.txt']:
-              try_get(u, 'ky-api-' + re.sub(r'[^a-z0-9]+', '-', u.split('ky.gov/')[-1].lower())[:40] + '.txt', 120000)
-          (OUT / 'report2.txt').write_text('\n'.join(L) + '\n', encoding='utf-8')
-          print('::notice title=Probe2::' + ' // '.join(L[-6:])[:900])
+          say('== all alerts, with everything on them ==')
+          grab(API + 'alerts?$count=true&$top=100', 'ky-alerts-all.json', 400000)
+          say('')
+          say('== sitemap (park page urls) ==')
+          sm = grab('https://parks.ky.gov/sitemap/sitemap-index.xml', 'ky-sitemap-index.xml', 200000)
+          subs = re.findall(r'<loc>\s*([^<\s]+)\s*</loc>', sm or '')[:15]
+          urls = []
+          for u in subs:
+              b = grab(u, 'ky-sm-' + re.sub(r'[^a-z0-9]+', '-', u.lower())[-36:] + '.xml', 900000)
+              if b: urls += re.findall(r'<loc>\s*([^<\s]+)\s*</loc>', b)
+          say(f'urls in sitemaps: {len(urls)}')
+          (OUT / 'ky-all-urls.txt').write_text('\n'.join(sorted(set(urls))) + '\n', encoding='utf-8')
+          parky = sorted({u for u in urls if re.search(r'(?i)state-(park|resort)|state-historic', u)})
+          say(f'park pages: {len(parky)}; e.g. ' + ' | '.join(parky[:4]))
+          for u in parky[:2]:
+              grab(u, 'ky-park-' + re.sub(r'[^a-z0-9]+', '-', u.split('ky.gov')[-1].lower()).strip('-')[:46] + '.html')
+          (OUT / 'report3.txt').write_text('\n'.join(L) + '\n', encoding='utf-8')
+          print('::notice title=Probe3::' + (' // '.join(L[:4]))[:900])
           PY
       - name: Save to the probe branch
         continue-on-error: true
