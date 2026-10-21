@@ -1,13 +1,5 @@
 {
  "note": "Boundary bot queue (Brandon Oct 20: 'set the bots up on a schedule to finish and start another run'). kpc-bot-queue.yml starts the first job when no boundary bot is running, then removes it. Stops after 'until'.",
  "until": "2026-10-22T06:01:00Z",
- "jobs": [
-  {
-   "wf": "kpc-world-key.yml",
-   "inputs": {
-    "countries": "JP"
-   },
-   "why": "top 10: only 102 of 1217 so far"
-  }
- ]
+ "jobs": []
 }
