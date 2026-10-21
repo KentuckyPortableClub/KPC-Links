@@ -12,7 +12,7 @@ on:
         options: [test, list, watch, delete]
         default: list
       target:
-        description: 'For mode test: which room (admin or parks)'
+        description: 'For mode test: which room (admin, parks, general, announce)'
         default: 'admin'
       message_id:
         description: 'For mode delete: the last number in the message link'
@@ -44,6 +44,8 @@ jobs:
           MSG_ID: ${{ inputs.message_id }}
           TARGET: ${{ inputs.target }}
           KPC_PARKS_WEBHOOK: ${{ secrets.KPC_PARKS_WEBHOOK }}
+          KPC_GENERAL_WEBHOOK: ${{ secrets.KPC_GENERAL_WEBHOOK }}
+          KPC_ANNOUNCE_WEBHOOK: ${{ secrets.KPC_ANNOUNCE_WEBHOOK }}
           MODE: ${{ inputs.mode || 'watch' }}
           DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
         run: |
