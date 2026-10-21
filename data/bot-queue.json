@@ -3,13 +3,6 @@
  "until": "2026-10-22T06:01:00Z",
  "jobs": [
   {
-   "wf": "kpc-us-key.yml",
-   "inputs": {
-    "states": "WA NV"
-   },
-   "why": "US: next biggest gaps (343)"
-  },
-  {
    "wf": "kpc-world-key.yml",
    "inputs": {
     "countries": "DE"
