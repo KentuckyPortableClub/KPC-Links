@@ -168,9 +168,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/national-visitor-use-monitoring-oct-2026-sept-2027",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": [
     "US-4484"
    ]
@@ -182,9 +182,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/low-water-levels-laurel-river-lake-0",
    "routine": false,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-scott-creek-boat-ramp-briefly-inaccessible-july-30": {
@@ -194,9 +194,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/scott-creek-boat-ramp-briefly-inaccessible-july-30",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-no-phone-service-pass-sales-redbird-office-big-creek-ky": {
@@ -206,9 +206,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/no-phone-service-pass-sales-redbird-office-big-creek-ky",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": [
     "US-4484"
    ]
@@ -220,9 +220,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/active-logging-operations-near-redbird-crest-trail-sections-17-19",
    "routine": false,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-tornado-damaged-area-closure-london-pulaski-counties": {
@@ -232,9 +232,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/tornado-damaged-area-closure-london-pulaski-counties",
    "routine": false,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": [
     "US-11181"
    ]
@@ -246,9 +246,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/no-visitor-services-supervisors-office-winchester-ky",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": [
     "US-4484"
    ]
@@ -260,9 +260,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/cliffside-trail-519-closure",
    "routine": false,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-dog-slaughter-falls-trail-closure-bridge-removed": {
@@ -272,9 +272,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/dog-slaughter-falls-trail-closure-bridge-removed",
    "routine": false,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-hawk-creek-sinking-creek-trail-bridges-impassable": {
@@ -284,9 +284,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/hawk-creek-sinking-creek-trail-bridges-impassable",
    "routine": false,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": [
     "US-11181"
    ]
@@ -298,9 +298,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/red-river-gorge-suspension-bridge-impassable",
    "routine": false,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": [
     "US-11181"
    ]
@@ -312,9 +312,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/climbing-and-rappelling-prohibitions-0",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-climbing-and-rappelling-prohibitions-1": {
@@ -324,9 +324,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/climbing-and-rappelling-prohibitions-1",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-non-motorized-fishing-area-restrictions": {
@@ -336,9 +336,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/non-motorized-fishing-area-restrictions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": [
     "US-12974"
    ]
@@ -350,9 +350,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/climbing-and-rappelling-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-wildcat-branch-closure": {
@@ -362,9 +362,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/wildcat-branch-closure",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-trail-prohibitions": {
@@ -374,9 +374,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/trail-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-prohibited-entry-special-areas": {
@@ -386,9 +386,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/prohibited-entry-special-areas",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-metal-detecting-prohibitions-0": {
@@ -398,9 +398,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/metal-detecting-prohibitions-0",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-commercial-hauling-prohibitions": {
@@ -410,9 +410,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/commercial-hauling-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-cave-run-lake-trails-restrictions": {
@@ -422,9 +422,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/cave-run-lake-trails-restrictions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-cave-run-lake-highway-801-huntingshooting-prohibitions": {
@@ -434,9 +434,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/cave-run-lake-highway-801-huntingshooting-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-shallow-flats-wildlife-viewing-area-closure": {
@@ -446,9 +446,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/shallow-flats-wildlife-viewing-area-closure",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-pioneer-weapons-wildlife-management-area-camping-prohibition": {
@@ -458,9 +458,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/pioneer-weapons-wildlife-management-area-camping-prohibition",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": [
     "US-10158"
    ]
@@ -472,9 +472,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/white-sulphur-ohv-trail-system",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-beaver-creek-wilderness-prohibitions": {
@@ -484,9 +484,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/beaver-creek-wilderness-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": [
     "US-13598",
     "US-3794"
@@ -499,9 +499,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/jellico-rock-creek-camping-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-bee-rock-camping-prohibitions": {
@@ -511,9 +511,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/bee-rock-camping-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-laurel-river-lake-and-lake-cumberland-camping-prohibitions": {
@@ -523,9 +523,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/laurel-river-lake-and-lake-cumberland-camping-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": [
     "US-11181"
    ]
@@ -537,9 +537,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/cave-run-lake-camping-restrictions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-general-forest-prohibitions": {
@@ -549,9 +549,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/general-forest-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": [
     "US-4484"
    ]
@@ -563,9 +563,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/general-lake-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-shooting-range-prohibitions": {
@@ -575,9 +575,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/shooting-range-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-wilderness-prohibitions": {
@@ -587,9 +587,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/wilderness-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": [
     "US-13598",
     "US-3794"
@@ -602,9 +602,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/camping-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-saddle-and-pack-animal-prohibitions": {
@@ -614,9 +614,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/saddle-and-pack-animal-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-cave-run-lake-prohibitions": {
@@ -626,9 +626,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/cave-run-lake-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": [
     "US-10158"
    ]
@@ -640,9 +640,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/tater-knob-fire-tower-closure",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-red-river-gorge-camping-restrictions": {
@@ -652,9 +652,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/red-river-gorge-camping-restrictions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-stearns-district-prohibitions": {
@@ -664,9 +664,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/stearns-district-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "fs-developed-recreation-area-prohibitions": {
@@ -676,9 +676,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/developed-recreation-area-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   }
  },

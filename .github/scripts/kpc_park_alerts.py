@@ -277,7 +277,9 @@ def main():
     opened, closed = [], []
     # A source being read for the first time (a new one added, or the NPS key finally set) arrives with everything
     # it has ever posted still live. Note those quietly: only what changes AFTER today is news.
-    known = set(state.get('sources') or [])
+    # when 'sources' has not been written yet, work out what we already knew from the alerts we are tracking,
+    # otherwise the guard does nothing on the very run that needs it (Oct 21: 10 NPS notices went out that way)
+    known = set(state.get('sources') or []) or {aid.split('-')[0] for aid in seen}
     fresh_src = {aid.split('-')[0] for aid in live} - known
     if fresh_src and known:
         for aid, a in live.items():
