@@ -40,7 +40,9 @@ room on purpose: they are news for members, not admin.
 WHAT TO DO: pick or make a staff room in Discord, make a webhook for it (room → Edit Channel → Integrations →
 Webhooks → New Webhook → Copy URL), save it as the secret `KPC_ADMIN_WEBHOOK`. Until then those two bots keep
 posting to the spots room.
-STATUS: waiting on Brandon.
+STATUS: **DONE Oct 21 09:05.** KPC_ADMIN_WEBHOOK is set and tested (Discord replied 204). Note for next time:
+**Discord webhooks cannot be made from the phone app** — Server Settings → Integrations → Webhooks → New Webhook
+on a computer.
 
 ## 4. Watching the Discord rooms for questions nobody answered  (Oct 21, Brandon asked for this)
 WHY: 'can discord also notify us if someone needs something from us' — he meant the club's own Discord rooms:
@@ -49,7 +51,10 @@ WHAT TO DO: (a) Brandon says WHICH rooms to watch; (b) the relay bot account nee
 Read Message History in those rooms (it already has the Message Content intent for the posting channel).
 No new secret: it reuses DISCORD_BOT_TOKEN.
 THEN CLAUDE BUILDS: a job that flags a message that looks like a question with no reply after about an hour.
-STATUS: waiting on the room list.
+STATUS: half done. BUILT Oct 21: kpc-discord-watch.yml + .github/scripts/kpc_discord_watch.py (hourly;
+mode 'test' posts a hello, mode 'list' posts every room the bot can see, mode 'watch' is the job). Still needed:
+Brandon picks the rooms, then they go in data/discord-watch.json "rooms". A room missing from the list means the
+bot has no View Channel / Read Message History there.
 
 ## 5. APPROVAL_EMAIL — where the daily 'waiting for approval' email lands  (Oct 21, optional)
 WHY: kpc_approvals.py sends to the secret `APPROVAL_EMAIL`. If it is empty the email goes to the club mailer's
