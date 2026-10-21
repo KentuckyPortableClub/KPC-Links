@@ -92,7 +92,10 @@
      claim the port only for the moment of a command and let go IDLE_MS after the last byte. A keyed RTS/DTR line has
      to stay claimed (it drops when the port closes), so that kind of PTT and clean sound can't both work on Android:
      use CAT PTT or VOX there. Computers (Web Serial) are not touched by any of this. */
-  const TNG = ANDROID, IDLE_MS = 300;
+  /* OFF by default (Brandon Oct 20 8:38 PM: with it on, the radio was slow to key and still low power on his tablet,
+     so the site is back to the old way for everyone). Turn it on to try again: ?tng=1 in the address, or kpcCat.tng = true. */
+  const TNG = () => ANDROID && (S.tng === true || /[?&]tng=1/.test(location.search || ''));
+  const IDLE_MS = 300;
   function UsbPort(dev, ifc, n) { this.dev = dev; this.ifc = ifc; this.n = n; this.readable = null; this.writable = null; this.isUsb = true; this.held = false; this.hold = false; }
   /* claim the port for a moment (no-op when it is already claimed) */
   UsbPort.prototype._grab = async function () {
@@ -115,7 +118,7 @@
   };
   UsbPort.prototype._touch = function () {
     if (this._t) { clearTimeout(this._t); this._t = null; }
-    if (!TNG || this.hold || !this.alive) return;
+    if (!TNG() || this.hold || !this.alive) return;
     const me = this; this._t = setTimeout(() => { me._t = null; me._letGo().catch(() => {}); }, IDLE_MS);
   };
   UsbPort.prototype.getInfo = function () { return { usbVendorId: this.dev.vendorId, usbProductId: this.dev.productId, usbInterface: this.n }; };
@@ -129,7 +132,8 @@
     if (v === 0x10C4) { // CP210x: enable, baud, 8 data bits + stop bits, no parity
       this.kind = 'cp';
       this._cfg = async () => {
-        await d.claimInterface(me.ifc.interfaceNumber);
+        try { await d.claimInterface(me.ifc.interfaceNumber); } catch (e) { if (!me.held0) throw e; }
+        me.held0 = true;
         await me._ctl({ requestType: 'vendor', recipient: 'interface', request: 0x00, value: 0x0001 });
         const b = new ArrayBuffer(4); new DataView(b).setUint32(0, baud, true);
         await me._ctl({ requestType: 'vendor', recipient: 'interface', request: 0x1E, value: 0 }, b);
@@ -139,7 +143,8 @@
       const ix = d.configuration.interfaces.length > 1 ? this.ifc.interfaceNumber + 1 : 0;
       this.kind = 'ftdi'; this.fix = ix;
       this._cfg = async () => {
-        await d.claimInterface(me.ifc.interfaceNumber);
+        try { await d.claimInterface(me.ifc.interfaceNumber); } catch (e) { if (!me.held0) throw e; }
+        me.held0 = true;
         await d.controlTransferOut({ requestType: 'vendor', recipient: 'device', request: 0, value: 0, index: ix });
         const div = 3000000 / baud, i = Math.floor(div), f = Math.round((div - i) * 8) & 7, FR = [0, 3, 2, 4, 1, 5, 6, 7], c = FR[f];
         await d.controlTransferOut({ requestType: 'vendor', recipient: 'device', request: 3, value: (i & 0x3FFF) | ((c & 3) << 14), index: (c >> 2) | (ix << 8) });
@@ -166,7 +171,7 @@
         if (!me.alive) { ctl.close(); return; }
         if (!me.held) { await sleep(30); continue; }          // let go of the port: nothing to read until the next command
         let r; try { r = await d.transferIn(inEp.endpointNumber, size * 4); }
-        catch (e) { if (!me.alive) { ctl.close(); return; } if (me.held && !TNG) { ctl.error(e); return; } await sleep(30); continue; }
+        catch (e) { if (!me.alive) { ctl.close(); return; } if (me.held && !TNG()) { ctl.error(e); return; } await sleep(30); continue; }
         let u = r.data ? new Uint8Array(r.data.buffer, r.data.byteOffset, r.data.byteLength) : new Uint8Array(0);
         if (me.kind === 'ftdi') { const o = []; for (let k = 0; k < u.length; k += size) o.push(...u.slice(k + 2, k + size)); u = new Uint8Array(o); } // FTDI: 2 status bytes per packet
         if (u.length) { me._touch(); ctl.enqueue(u); return; }   // still answering: keep the port a moment longer
@@ -188,7 +193,7 @@
   };
   UsbPort.prototype.setSignals = async function (o) {
     this.sig = Object.assign({ dataTerminalReady: false, requestToSend: false }, this.sig || {}, o || {});
-    this.hold = TNG && !!(this.sig.dataTerminalReady || this.sig.requestToSend);  // a keyed line drops if we let go
+    this.hold = !TNG() || !!(this.sig.dataTerminalReady || this.sig.requestToSend);  // a keyed line drops if we let go
     if (!this._cfg) { this._cfg = async () => { try { await this.dev.claimInterface(this.ifc.interfaceNumber); } catch (e) {} }; }
     await this._grab();
     await this._lines();
@@ -208,7 +213,7 @@
     for (const d of ds) {
       let cfg = d.configuration, weOpened = false;
       try { if (!cfg) { await d.open(); weOpened = true; await d.selectConfiguration(1); cfg = d.configuration; } } catch (e) {}
-      if (weOpened && TNG && !USBP.some(p => p.dev === d && p.alive)) { try { await d.close(); } catch (e) {} }
+      if (weOpened && TNG() && !USBP.some(p => p.dev === d && p.alive)) { try { await d.close(); } catch (e) {} }
       const ifs = cfg ? cfg.interfaces : [];
       let list = d.vendorId === 0x10C4 || d.vendorId === 0x0403 ? ifs.filter(x => x.alternates[0].interfaceClass === 255) : ifs.filter(x => x.alternates[0].interfaceClass === 2).slice(0, 1);
       if (!list.length && ifs.length) list = [ifs[0]];
