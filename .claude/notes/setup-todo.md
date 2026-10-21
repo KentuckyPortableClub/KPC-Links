@@ -36,6 +36,14 @@ No new secret: it reuses DISCORD_BOT_TOKEN.
 THEN CLAUDE BUILDS: a job that flags a message that looks like a question with no reply after about an hour.
 STATUS: waiting on the room list.
 
+## 5. APPROVAL_EMAIL — where the daily 'waiting for approval' email lands  (Oct 21, optional)
+WHY: kpc_approvals.py sends to the secret `APPROVAL_EMAIL`. If it is empty the email goes to the club mailer's
+own Gmail inbox (kpcwebhost), which Brandon does not read. Nothing has been waiting lately, so no email has gone
+out to prove it either way.
+WHAT TO DO: check the secret exists and holds Brandon's address; set it if not. Less urgent now the same list
+also goes to Discord (Oct 21).
+STATUS: unconfirmed.
+
 ## Already done (do not redo)
 - ANDROID_KEY_PASSWORD (app signing), FB_PAGE_ID + FB_PAGE_TOKEN (posting), KPC_DISCORD_WEBHOOK,
   KPC_YOUTUBE_WEBHOOK, RELAY_DISCORD_WEBHOOKS, DISCORD_BOT_TOKEN + KPC_RELAY_CHANNEL,
