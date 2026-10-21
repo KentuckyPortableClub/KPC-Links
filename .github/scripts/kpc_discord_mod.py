@@ -311,6 +311,29 @@ def main():
         if isinstance(chans, list):
             byid = {c.get('id'): c.get('name') for c in chans}
             notice(f'Joins are announced in: #{byid.get(sysid, "nowhere - the setting is off")} ({sysid})')
+        # Which role is OUR role, where does it sit, and what can it already do? This is what says whether
+        # anything needs setting up by hand at all (Brandon Oct 21: 'which bot or all them').
+        me = call('users/@me')
+        roles = call(f'guilds/{gid}/roles')
+        if isinstance(roles, list):
+            NEED = {'send messages': 1 << 11, 'manage messages': 1 << 13, 'timeout members': 1 << 40,
+                    'kick members': 1 << 1, 'ban members': 1 << 2, 'administrator': 1 << 3}
+            bots = [r for r in roles if r.get('tags', {}).get('bot_id')]
+            notice('bot roles in the server: ' + (', '.join(
+                f"{r['name']} (position {r.get('position')}"
+                + (', OURS' if str(r.get('tags', {}).get('bot_id')) == str(me.get('id')) else '') + ')'
+                for r in bots) or 'none')[:700])
+            people = [r for r in roles if not r.get('tags', {}).get('bot_id') and r.get('name') != '@everyone']
+            notice('people roles: ' + (', '.join(f"{r['name']} (position {r.get('position')})"
+                                                 for r in sorted(people, key=lambda r: -(r.get('position') or 0)))
+                                       or 'none')[:500])
+            ours = [r for r in bots if str(r.get('tags', {}).get('bot_id')) == str(me.get('id'))]
+            for r in ours:
+                p = int(r.get('permissions') or 0)
+                has = [k for k, v in NEED.items() if p & v]
+                miss = [k for k, v in NEED.items() if not p & v and k != 'administrator']
+                notice(f"our role '{r['name']}' HAS: {', '.join(has) or 'none of them'}"
+                       + (f" | STILL NEEDS: {', '.join(miss)}" if miss and 'administrator' not in has else ''))
         notice('Listed who has posted lately.')
         return
 
