@@ -35,6 +35,7 @@ jobs:
           KPC_ACTIVATIONS_CSV: ${{ secrets.KPC_ACTIVATIONS_CSV }}
           KPC_GUESTBOOK_CSV: ${{ secrets.KPC_GUESTBOOK_CSV }}
           KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          KPC_ADMIN_WEBHOOK: ${{ secrets.KPC_ADMIN_WEBHOOK }}
           KPC_CWBOARD_CSV: ${{ secrets.KPC_CWBOARD_CSV }}
         run: python3 .github/scripts/kpc_approvals.py
       - name: Save the license-lookup cache
