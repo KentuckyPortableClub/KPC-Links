@@ -3,13 +3,6 @@
  "until": "2026-10-22T06:01:00Z",
  "jobs": [
   {
-   "wf": "kpc-world-key.yml",
-   "inputs": {
-    "countries": "ES"
-   },
-   "why": "top 10: 802 missing"
-  },
-  {
    "wf": "kpc-ca-key.yml",
    "inputs": {},
    "why": "Canada: second pass"
