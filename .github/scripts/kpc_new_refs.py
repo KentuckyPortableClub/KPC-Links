@@ -22,7 +22,8 @@ NOW = datetime.datetime.now(datetime.timezone.utc)
 TODAY = NOW.date().isoformat()
 KEEP_DAYS = 7
 SEEN, OUT, ANN = pathlib.Path('data/new-refs/seen.json'), pathlib.Path('kpc-new-refs.json'), pathlib.Path('kpc-announcements.json')
-DISCORD = (os.environ.get('DISCORD_WEBHOOK_URL') or '').strip()
+# New parks and references belong with the park news (Brandon Oct 21)
+DISCORD = ((os.environ.get('KPC_PARKS_WEBHOOK') or os.environ.get('DISCORD_WEBHOOK_URL') or os.environ.get('KPC_DISCORD_WEBHOOK') or '').strip().split() or [''])[0]
 FB_ID, FB_TOKEN = (os.environ.get('FB_PAGE_ID') or '').strip(), (os.environ.get('FB_PAGE_TOKEN') or '').strip()
 
 

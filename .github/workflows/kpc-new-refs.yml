@@ -26,6 +26,7 @@ jobs:
       - name: Look for new references
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          KPC_PARKS_WEBHOOK: ${{ secrets.KPC_PARKS_WEBHOOK }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           GH_TOKEN: ${{ github.token }}
