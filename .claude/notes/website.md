@@ -18,6 +18,7 @@
 - **kpc-pota-discord.yml**: member POTA spots to Discord and Facebook. Facebook posts on band changes are limited to once per 30 minutes per operator and point people to kpc-spots.html.
 - **kpc-band-alerts.yml**, every 30 min: band-alert posts to Discord only.
 - **kpc-youtube.yml**: shares new club videos to Facebook (kpc-fb-posted.json) and Discord (kpc_discord_videos.js, kpc-discord-videos.json): to the room(s) in secret KPC_YOUTUBE_WEBHOOK (Brandon Oct 15: 'post youtube to another discord room'; space-separated webhooks, any server) or, when that's empty, KPC_DISCORD_WEBHOOK. Oct 15 both channels' feeds listed 0 videos.
+- **Video sharing fix (Oct 20, before Brandon's 5 videos):** Facebook + Discord share up to 3 new videos per run, OLDEST first; the rest post on the next run (2 h later). Before, a 4th/5th new video in one run was marked seen and never shared.
 - **kpc-link-check.yml**, Sundays, and **kpc-ref-check.yml**, monthly: both open GitHub issues.
 - **kpc-go-live.yml** (one time): Oct 21 2026, 5 PM Central. Swaps campoutHOLD/eventsHOLD/resourcesHOLD.html into campout/events/resources.html and posts the new-page roundup. Until then, edits to events/resources/campout must also go into the HOLD copies.
 - All workflows use actions/checkout@v5.

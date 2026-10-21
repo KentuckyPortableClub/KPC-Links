@@ -24,7 +24,7 @@ const notice = m => console.log('::notice title=Discord videos::' + String(m).re
     return;
   }
   const seen = new Set(done.videos || []);
-  const fresh = all.filter(v => !seen.has(v.id)).sort((a, b) => String(a.published).localeCompare(String(b.published))).slice(-3);
+  const fresh = all.filter(v => !seen.has(v.id)).sort((a, b) => String(a.published).localeCompare(String(b.published))).slice(0, 3); // oldest first, 3 per run; the rest wait for the next run (2 h)
   for (const v of fresh) {
     const url = v.short ? `https://www.youtube.com/shorts/${v.id}` : `https://www.youtube.com/watch?v=${v.id}`;
     const title = String(v.title || '').replace(/[*_`~|>@]/g, '');
@@ -43,6 +43,5 @@ const notice = m => console.log('::notice title=Discord videos::' + String(m).re
   }
   if (!fresh.length) notice('No new videos.');
   // Only mark everything as seen when every new video went out; otherwise retry next run.
-  if (fresh.every(v => seen.has(v.id))) all.forEach(v => seen.add(v.id));
   fs.writeFileSync(POSTED, JSON.stringify({ videos: [...seen] }, null, 1) + '\n');
 })().catch(e => { notice('Error: ' + e.message); process.exit(1); });
