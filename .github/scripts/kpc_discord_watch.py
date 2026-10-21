@@ -58,17 +58,22 @@ def call(path, token=True):
 
 def say(title, text):
     if not HOOK.startswith('https://'):
-        notice('No staff webhook set; nothing posted.')
+        notice(f'No staff webhook set (length {len(HOOK)}); nothing posted.')
         print(title + '\n' + text)
-        return
+        return 0
     body = json.dumps({'username': 'KPC', 'allowed_mentions': {'parse': []},
                        'embeds': [{'title': title[:250], 'color': 0x5865F2, 'description': text[:4000]}]}).encode()
     try:
         req = urllib.request.Request(HOOK, body, headers={**UA, 'Content-Type': 'application/json'}, method='POST')
         with urllib.request.urlopen(req, timeout=60) as r:
             r.read()
+            return r.status
+    except urllib.error.HTTPError as e:
+        notice(f'Discord refused it: HTTP {e.code} {e.read().decode("utf-8", "replace")[:160]}')
+        return e.code
     except Exception as e:  # noqa: BLE001
         notice(f'Could not post: {str(e)[:200]}')
+        return 0
 
 
 def fingerprint(s):
@@ -89,6 +94,13 @@ def main():
         conf = json.loads(CONF_F.read_text(encoding='utf-8'))
     except Exception:  # noqa: BLE001
         pass
+
+    if MODE == 'test':
+        code = say('Hello from the KPC bots',
+                   'If you can read this, the staff room is set up and the bots will post here from now on.')
+        notice(f'Test post: Discord replied {code or "nothing"} · webhook length {len(HOOK)} · '
+               f'starts https: {HOOK.startswith("https://")}')
+        return
 
     if MODE == 'list':
         gid = str(conf.get('guild') or os.environ.get('GUILD_ID') or '').strip()

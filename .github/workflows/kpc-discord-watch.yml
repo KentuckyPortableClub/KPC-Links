@@ -9,7 +9,7 @@ on:
       mode:
         description: 'list = show the rooms the bot can see; watch = the normal job'
         type: choice
-        options: [list, watch]
+        options: [test, list, watch]
         default: list
       dry_run:
         description: 'Practice run: print instead of posting'
@@ -36,7 +36,9 @@ jobs:
           KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
           MODE: ${{ inputs.mode || 'watch' }}
           DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
-        run: python3 .github/scripts/kpc_discord_watch.py || true
+        run: |
+          echo "::notice title=Watch::step started, mode=$MODE"
+          python3 .github/scripts/kpc_discord_watch.py || true
       - name: Remember what was flagged
         continue-on-error: true
         run: |
