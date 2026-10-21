@@ -1,6 +1,6 @@
 # DE: POTA parks vs official land
 
-Built 2026-10-20 by `.github/scripts/kpc_world_key.py` from: BfN Nationalparke, BfN Naturparke, BfN Naturschutzgebiete, BfN Biosphaerenreservate, BfN Nationale_Naturmonumente, BfN Fauna_Flora_Habitat_Gebiete, BfN Vogelschutzgebiete, BfN Landschaftsschutzgebiete. **636 of 1265** joined (same name + same kind), **343** to check, **286** nothing found. Nothing below is joined.
+Built 2026-10-21 by `.github/scripts/kpc_world_key.py` from: BfN Nationalparke, BfN Naturparke, BfN Naturschutzgebiete, BfN Biosphaerenreservate, BfN Nationale_Naturmonumente, BfN Fauna_Flora_Habitat_Gebiete, BfN Vogelschutzgebiete, BfN Landschaftsschutzgebiete. **636 of 1265** joined (same name + same kind), **343** to check, **286** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
