@@ -128,6 +128,17 @@ def main():
     done = set(state.get('sent') or [])
     first_time = not state.get('updated')
 
+    # say plainly what this token can do, so a swapped token can be checked in one run
+    c, j = graph('debug_token', input_token=FB_TOKEN)
+    d = (j.get('data') or {})
+    sc = sorted(d.get('scopes') or [])
+    if sc:
+        need = [x for x in ('pages_manage_posts', 'pages_read_engagement', 'pages_read_user_content') if x not in sc]
+        notice('Token can: ' + ', '.join(sc) + ('. MISSING: ' + ', '.join(need) if need else '. Everything needed is there.')
+               + f" Expires: {d.get('expires_at') or 'never'}.")
+    else:
+        notice('Could not read the token details: ' + str(j.get('error', {}).get('message'))[:160])
+
     since = int((datetime.datetime.now(datetime.timezone.utc)
                  - datetime.timedelta(days=LOOK_BACK_DAYS)).timestamp())
     c, j = graph(f'{FB_ID}/posts', fields='id,created_time,permalink_url', limit='25', since=str(since))
