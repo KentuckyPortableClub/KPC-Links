@@ -120,6 +120,10 @@ def main():
         return
 
     if MODE == 'test':
+        global HOOK
+        want = (os.environ.get('TARGET') or '').strip().lower()
+        if want == 'parks':
+            HOOK = ((os.environ.get('KPC_PARKS_WEBHOOK') or HOOK).strip().split() or [''])[0]
         code = say('Hello from the KPC bots',
                    'If you can read this, the staff room is set up and the bots will post here from now on.')
         notice(f'Test post: Discord replied {code or "nothing"} · webhook length {len(HOOK)} · '
