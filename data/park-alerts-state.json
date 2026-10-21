@@ -37,7 +37,7 @@
    "missing": 0,
    "announced": true,
    "refs": [],
-   "routine": false
+   "routine": true
   },
   "nps-B489F041-FD1B-40F2-992D-9D36C841B7E5": {
    "who": "MACA",
@@ -92,7 +92,7 @@
    "missing": 0,
    "announced": true,
    "refs": [],
-   "routine": false
+   "routine": true
   },
   "nps-442E4F2B-C87C-4984-8315-DA2B02F729F3": {
    "who": "BISO",
@@ -133,7 +133,7 @@
    "refs": [
     "US-0050"
    ],
-   "routine": false
+   "routine": true
   },
   "nps-6B262C5A-387C-4AAE-B3A4-31461DB05D04": {
    "who": "BISO",
@@ -146,7 +146,7 @@
    "missing": 0,
    "announced": true,
    "refs": [],
-   "routine": false
+   "routine": true
   },
   "nps-2F92DCC9-55CD-440F-A35C-8B08AA1558B5": {
    "who": "BISO",
@@ -159,7 +159,7 @@
    "missing": 0,
    "announced": true,
    "refs": [],
-   "routine": false
+   "routine": true
   },
   "fs-national-visitor-use-monitoring-oct-2026-sept-2027": {
    "who": "Daniel Boone National Forest",
