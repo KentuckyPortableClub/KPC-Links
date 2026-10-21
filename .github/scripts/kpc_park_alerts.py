@@ -20,11 +20,13 @@ SOURCES
   1. Kentucky State Parks: https://parks.ky.gov/api/default/alerts  (official, structured, no key needed)
   2. National Park Service: https://developer.nps.gov/api/v1/alerts?stateCode=KY  (needs the free key NPS_API_KEY;
      skipped quietly when there is no key, so adding the key later is the only thing needed to turn it on)
+  3. US Forest Service: https://www.fs.usda.gov/alerts/dbnf/alerts-notices  (plain HTML, no key)
 
 STATE: data/park-alerts-state.json. Secrets: KPC_DISCORD_WEBHOOK, FB_PAGE_ID, FB_PAGE_TOKEN, NPS_API_KEY (optional).
 Run with DRY_RUN=1 to see what it would say and change nothing.
 """
 import datetime
+import html as _html
 import json
 import os
 import pathlib
@@ -88,7 +90,7 @@ def load(path, default):
 
 
 def clean(s, cap=400):
-    s = re.sub(r'<[^>]+>', ' ', str(s or ''))
+    s = _html.unescape(re.sub(r'<[^>]+>', ' ', str(s or '')))
     s = re.sub(r'&nbsp;?', ' ', s)
     s = re.sub(r'\s+', ' ', s).strip()
     return s[:cap]
@@ -136,6 +138,40 @@ def nps_alerts():
                              'link': clean(a.get('url'), 300) or 'https://www.nps.gov/',
                              'cat': clean(a.get('category'), 40)}
     return out
+
+
+def forest_alerts():
+    """US Forest Service alerts for Kentucky's national forests. Their alerts page is plain HTML: each alert is a
+    <li class="usa-card … wfs-alert-flag LEVEL"> with the title in an <h3><a><span> and the text in usa-card__body.
+    Levels: critical, caution (real problems) and information, fire-restriction (routine, grouped)."""
+    FORESTS = [('dbnf', 'Daniel Boone National Forest')]
+    out, ok = {}, False
+    for code, who in FORESTS:
+        try:
+            html = fetch(f'https://www.fs.usda.gov/alerts/{code}/alerts-notices', timeout=90)
+        except Exception as e:  # noqa: BLE001
+            notice('Park alerts', f'{who} did not answer: {str(e)[:160]}')
+            continue
+        ok = True
+        n = 0
+        for m in re.finditer(r'<li class="usa-card[^"]*wfs-alert-flag ([a-z\-]+)">(.*?)</li>', html, re.S):
+            level, block = m.group(1), m.group(2)
+            head = re.search(r'<h3[^>]*>\s*<a href="([^"]+)"[^>]*>\s*<span>(.*?)</span>', block, re.S)
+            body = re.search(r'<div class="usa-card__body">(.*?)</div>', block, re.S)
+            if not head:
+                continue
+            path = head.group(1)
+            out['fs-' + re.sub(r'[^a-z0-9\-]+', '', path.rstrip('/').split('/')[-1].lower())[:60]] = {
+                'who': who,
+                'title': clean(head.group(2), 160),
+                'text': clean(body.group(1) if body else ''),
+                'link': 'https://www.fs.usda.gov' + path,
+                # 'information' and fire restrictions are standing notices, not news: treat them like forest work
+                'routine': level in ('information', 'fire-restriction'),
+            }
+            n += 1
+        notice('Park alerts', f'{who}: {n} alert(s) listed')
+    return out if ok else None
 
 
 # ---------------------------------------------------------------- our parks
@@ -227,7 +263,7 @@ def main():
 
     live = {}
     broke = False
-    for src in (ky_state_parks, nps_alerts):
+    for src in (ky_state_parks, nps_alerts, forest_alerts):
         got = src()
         if got is None:          # the source itself failed: do not treat its alerts as 'gone'
             broke = True
@@ -239,12 +275,27 @@ def main():
 
     parks = ky_parks()
     opened, closed = [], []
+    # A source being read for the first time (a new one added, or the NPS key finally set) arrives with everything
+    # it has ever posted still live. Note those quietly: only what changes AFTER today is news.
+    known = set(state.get('sources') or [])
+    fresh_src = {aid.split('-')[0] for aid in live} - known
+    if fresh_src and known:
+        for aid, a in live.items():
+            if aid.split('-')[0] in fresh_src and aid not in seen:
+                seen[aid] = {**a, 'first': today, 'runs': CONFIRM, 'missing': 0, 'announced': True,
+                             'routine': bool(a.get('routine')) or bool(ROUTINE.search(a['title'] + ' ' + a['text'])),
+                             'refs': match_parks(a, parks)}
+        notice('Park alerts', 'New source(s) ' + ', '.join(sorted(fresh_src))
+               + ': noted what is already up, nothing posted. Changes from now on will be.')
+    state['sources'] = sorted(known | {aid.split('-')[0] for aid in live})
 
     # First ever run: just remember what is already up. Otherwise the club's first message from this bot would
     # be a list of notices that have been sitting on parks.ky.gov for months (the other KPC bots do the same).
     if not seen and not state.get('updated'):
         state.update({'updated': now.strftime('%Y-%m-%d %H:%M'), 'pending': [],
+                      'sources': sorted({aid.split('-')[0] for aid in live}),
                       'seen': {aid: {**a, 'first': today, 'runs': CONFIRM, 'missing': 0, 'announced': True,
+                                     'routine': bool(a.get('routine')),
                                      'refs': match_parks(a, parks)} for aid, a in live.items()}})
         if not DRY:
             STATE_F.parent.mkdir(parents=True, exist_ok=True)
@@ -257,6 +308,7 @@ def main():
         rec = seen.get(aid)
         if not rec:
             seen[aid] = {**a, 'first': today, 'runs': 1, 'missing': 0, 'announced': False,
+                         'routine': bool(a.get('routine')) or bool(ROUTINE.search(a['title'] + ' ' + a['text'])),
                          'refs': match_parks(a, parks)}
             continue
         rec.update({k: a[k] for k in ('title', 'text', 'link', 'who') if k in a})
@@ -264,7 +316,7 @@ def main():
         rec['missing'] = 0
         if not rec.get('refs'):
             rec['refs'] = match_parks(a, parks)
-        rec['routine'] = bool(ROUTINE.search(a['title'] + ' ' + a['text']))
+        rec['routine'] = bool(a.get('routine')) or bool(ROUTINE.search(a['title'] + ' ' + a['text']))
         if not rec.get('announced') and rec['runs'] >= CONFIRM:
             rec['announced'] = True
             closed.append((aid, rec))
