@@ -1,0 +1,22 @@
+name: KPC tidy (delete after use)
+# One-off: removes a message this club's webhook posted in the wrong room. Deleted straight after.
+on:
+  workflow_dispatch:
+    inputs:
+      message_id:
+        description: 'The message id from its Discord link (the last number)'
+        required: true
+permissions: {}
+jobs:
+  tidy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Delete the message
+        continue-on-error: true
+        env:
+          HOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          MID: ${{ inputs.message_id }}
+        run: |
+          code=$(curl -s -o /tmp/out -w '%{http_code}' -X DELETE "${HOOK}/messages/${MID}") || true
+          echo "::notice title=Tidy::Discord replied HTTP ${code} $(head -c 200 /tmp/out)"
