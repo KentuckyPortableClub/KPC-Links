@@ -138,6 +138,14 @@ def main():
                + f" Expires: {d.get('expires_at') or 'never'}.")
     else:
         notice('Could not read the token details: ' + str(j.get('error', {}).get('message'))[:160])
+    # whose token is it? a Page token answers /me with the Page's own name
+    c, who = graph('me', fields='id,name')
+    if who.get('id'):
+        same = str(who['id']) == str(FB_ID)
+        notice(f"Token belongs to: {who.get('name')} (id {who['id']}) · type {d.get('type') or '?'} · "
+               + ('this IS the Page we post to.' if same else f'NOT our Page id {FB_ID} - posting would go to the wrong place.'))
+    else:
+        notice('Could not see who the token belongs to: ' + str(who.get('error', {}).get('message'))[:160])
 
     since = int((datetime.datetime.now(datetime.timezone.utc)
                  - datetime.timedelta(days=LOOK_BACK_DAYS)).timestamp())
