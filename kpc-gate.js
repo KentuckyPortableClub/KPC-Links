@@ -10,7 +10,7 @@
    - The PDF printer (Playwright on GitHub Actions) passes through so the guide PDFs keep printing. */
 (function () {
   var MH = '2925a56a5048f6d5dabbe552f8abb71e7c8b4dfc8b42b29cd76f9083c226a540', KEY = 'kpcMember';
-  var PUBLIC = ['index.html', 'campout.html', 'events.html', 'news.html', 'photos.html', 'kpc-guestbook.html', 'join.html', 'about.html',
+  var PUBLIC = ['index.html', 'videos.html', 'campout.html', 'events.html', 'news.html', 'photos.html', 'kpc-guestbook.html', 'join.html', 'about.html',
     'contact.html', 'contact-card.html', 'kpc-privacy.html', 'kentucky-parks.html', 'kpc-park-control.html', 'kpc-guide-pota.html',
     'kpc-guide-wwff.html', 'kpc-guide-sota.html', 'kpc-park-notes.html', 'kpc-park-notes-us.html', 'kpc-campgrounds.html',
     'kpc-community.html', 'kpc-spots.html', '404.html', 'kpc-planner-us.html', 'kpc-hunters.html',
