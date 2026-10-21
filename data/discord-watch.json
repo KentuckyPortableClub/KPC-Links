@@ -1,0 +1,6 @@
+{
+ "note": "Rooms the club bot watches for a question nobody answered. Add rooms to \"rooms\" as {\"id\": \"...\", \"name\": \"...\"} - run the workflow with mode 'list' to see the ids. quiet_minutes = how long a message waits before it counts as unanswered.",
+ "guild": "1555384491650842664",
+ "quiet_minutes": 60,
+ "rooms": []
+}
