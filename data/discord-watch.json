@@ -1,6 +1,19 @@
 {
- "note": "Rooms the club bot watches for a question nobody answered. Add rooms to \"rooms\" as {\"id\": \"...\", \"name\": \"...\"} - run the workflow with mode 'list' to see the ids. quiet_minutes = how long a message waits before it counts as unanswered.",
+ "note": "Rooms the club bot watches for a question nobody answered. Only a message that READS LIKE SOMEBODY ASKING FOR SOMETHING is ever flagged (Brandon Oct 21: 'only notify if it is something we need to reply too not every comment'), and only when nobody has replied and it is older than quiet_minutes. One nudge per message, ever. Run the workflow with mode 'list' to see room ids. Left out on purpose: the members' own rooms (kq4hzk, k4zsr, n4bdw), the bot rooms (kpc-pota-spots, website-email-io-facebook-post, staff-room) and the read-only ones (welcome-and-rules, announcements, resources, kpc27-updates).",
  "guild": "1555384491650842664",
  "quiet_minutes": 60,
- "rooms": []
+ "rooms": [
+  {
+   "id": "1555384495115477117",
+   "name": "general"
+  },
+  {
+   "id": "1555386721892302939",
+   "name": "portable-ops"
+  },
+  {
+   "id": "1555386801508585533",
+   "name": "annual-kpc-campout"
+  }
+ ]
 }
