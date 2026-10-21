@@ -21,6 +21,7 @@
 - **Video sharing fix (Oct 20, before Brandon's 5 videos):** Facebook + Discord share up to 3 new videos per run, OLDEST first; the rest post on the next run (2 h later). Before, a 4th/5th new video in one run was marked seen and never shared.
 - **kpc-link-check.yml**, Sundays, and **kpc-ref-check.yml**, monthly: both open GitHub issues.
 - **kpc-go-live.yml** (one time): Oct 21 2026, 5 PM Central. Swaps campoutHOLD/eventsHOLD/resourcesHOLD.html into campout/events/resources.html and posts the new-page roundup. Until then, edits to events/resources/campout must also go into the HOLD copies.
+- **Videos page public at go-live (Oct 20, Brandon: 'Add it at 5pm tomorrow'):** kpc_golive_videos.py (run by kpc-go-live.yml) adds videos.html to PUBLIC, drops its noindex, bumps kpc-gate.js?v= on every page. No Videos menu link (still waits for N4KPC).
 - All workflows use actions/checkout@v5.
 
 
