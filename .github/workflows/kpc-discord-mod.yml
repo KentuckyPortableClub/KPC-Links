@@ -1,0 +1,62 @@
+name: KPC Discord mod
+# BY HAND ONLY - no timer, so this never runs unless somebody asks for it here.
+#   who  = list everybody who has posted lately, with the id to paste below
+#   do   = mute / unmute / kick / ban one person. Kick and ban also need the confirm box ticked.
+# The automatic side (delete obvious spam + a one-hour mute, nothing else) rides on the Discord relay job.
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'who = list people and their ids; do = act on one person'
+        type: choice
+        options: [who, do]
+        default: who
+      user_id:
+        description: 'For "do": the person''s Discord id (get it from mode "who")'
+        default: ''
+      action:
+        description: 'For "do": what to do'
+        type: choice
+        options: [mute, unmute, kick, ban]
+        default: mute
+      minutes:
+        description: 'For mute: how many minutes (max 40320 = 28 days)'
+        default: '60'
+      why:
+        description: 'Reason, for our own record and Discord''s audit log'
+        default: ''
+      confirm:
+        description: 'Tick this to really kick or ban. Mute and unmute do not need it.'
+        type: boolean
+        default: false
+      dry_run:
+        description: 'Practice run: say what would happen, change nothing'
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: kpc-discord-mod
+  cancel-in-progress: false
+jobs:
+  mod:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+      - name: Do it
+        continue-on-error: true
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          KPC_ADMIN_WEBHOOK: ${{ secrets.KPC_ADMIN_WEBHOOK }}
+          KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          MODE: ${{ inputs.mode }}
+          USER_ID: ${{ inputs.user_id }}
+          ACTION: ${{ inputs.action }}
+          MINUTES: ${{ inputs.minutes }}
+          WHY: ${{ inputs.why }}
+          CONFIRM: ${{ inputs.confirm && 'yes' || 'no' }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+        run: |
+          echo "::notice title=Mod::started, mode=$MODE action=$ACTION"
+          python3 .github/scripts/kpc_discord_mod.py || true

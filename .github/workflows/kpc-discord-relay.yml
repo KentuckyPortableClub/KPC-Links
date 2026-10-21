@@ -42,11 +42,28 @@ jobs:
           KPC_CAMPOUT_WEBHOOK: ${{ secrets.KPC_CAMPOUT_WEBHOOK }}
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
         run: python3 .github/scripts/kpc_discord_relay.py
+      # Both of these ride along here rather than on a timer of their own: it is the only job that already runs
+      # every 15 minutes, so answers are quick and no new scheduled workflow lands in anybody's email.
+      - name: Answer what we can in the club rooms
+        continue-on-error: true
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
+        run: python3 .github/scripts/kpc_discord_ask.py || true
+      - name: Keep an eye on the rooms
+        continue-on-error: true
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          KPC_ADMIN_WEBHOOK: ${{ secrets.KPC_ADMIN_WEBHOOK }}
+          KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          MODE: watch
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
+        run: python3 .github/scripts/kpc_discord_mod.py || true
       - name: Save
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          for f in kpc-announcements.json kpc-relay-state.json kpc-conditions.json kpc-events-submitted.json kpc-events-auto.json; do if [ -e "$f" ]; then git add "$f"; fi; done
+          for f in kpc-announcements.json kpc-relay-state.json kpc-conditions.json kpc-events-submitted.json kpc-events-auto.json data/discord-ask-state.json data/discord-mod-state.json; do if [ -e "$f" ]; then git add "$f"; fi; done
           git add -A photos/announce 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m 'Club post from Discord'
