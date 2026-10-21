@@ -199,6 +199,36 @@ lines += ['HOW TO APPROVE: open the sheet (Google Drive → search the sheet nam
           'YES shows it on the website within about 20 minutes to 2 hours. NO keeps it off for good. Either one takes it off this list.',
           '', 'This list only comes by email, and only on days something is waiting.', '— KPC website robot']
 body = '\n'.join(lines)
+
+# Discord too (Brandon Oct 21: 'can discord also notify us if someone needs something from us?'). Same list,
+# in the room he is already in. Names and what people wrote stay out of the public repo either way.
+def to_discord():
+    hook = (os.environ.get('KPC_DISCORD_WEBHOOK') or '').strip()
+    if not hook.startswith('https://'):
+        N('No Discord webhook set; nothing sent to Discord.'); return
+    L = [f"**{total} post{'s' if total != 1 else ''} waiting for a YES or NO.**", '']
+    for title, sheet, items in SECTIONS:
+        L.append(f'**{title}** ({len(items)})')
+        for d, who, what, why in items[:6]:
+            L.append(f'• {d} · {who or "(no call)"} · {what}')
+        if len(items) > 6:
+            L.append(f'• …and {len(items) - 6} more')
+        L.append('')
+    L.append('Open the form\'s sheet in Google Drive, find the row and pick YES or NO in the Approved column. '
+             'YES puts it on the website within a couple of hours.')
+    d = json.dumps({'username': 'KPC', 'allowed_mentions': {'parse': []},
+                    'embeds': [{'title': 'Somebody is waiting on us', 'color': 0xd5a63a,
+                                'description': '\n'.join(L)[:4000]}]}).encode()
+    try:
+        rq = urllib.request.Request(hook, d, headers={'Content-Type': 'application/json'}, method='POST')
+        with urllib.request.urlopen(rq, timeout=60) as f: f.read()
+        N('Posted the waiting list to Discord.')
+    except Exception as e:  # noqa: BLE001
+        N(f'Discord failed: {str(e)[:160]}')
+
+if os.environ.get('DRY', '').lower() not in ('true', '1', 'yes'):
+    to_discord()
+
 url, key = os.environ.get('RELAY_MAIL_URL', ''), os.environ.get('RELAY_MAIL_KEY', '')
 if os.environ.get('DRY', '').lower() in ('true', '1', 'yes') or not (url and key):
     N(f'{total} post(s) waiting' + ('' if url and key else ' (mailer secrets missing, so no email)') + '. Practice run: email not sent.')

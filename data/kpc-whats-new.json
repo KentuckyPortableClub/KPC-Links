@@ -1,0 +1,5 @@
+{
+ "note": "Big things worth telling people about. ONE LINE PER THING, and only real additions: a new page, a new tool, a big new feature. Never typos, tweaks or tidying. kpc_whats_new.py posts anything with no \"posted\": true, once, to Discord and the Facebook Page, then marks it posted. Nothing waiting = no post. Add an entry by hand (or ask Claude to) whenever something lands that members would want to know about.",
+ "example": {"id": "short-unique-name", "title": "What it is, in a few words", "text": "One or two plain sentences about why someone would care.", "link": "https://kentuckyportableclub.github.io/KPC-Links/the-page.html", "added": "2026-10-21"},
+ "items": []
+}

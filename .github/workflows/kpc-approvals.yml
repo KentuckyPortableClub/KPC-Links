@@ -1,5 +1,5 @@
 name: KPC Approvals email
-# Every day at 4 PM Kentucky time: one email listing every form post that is waiting for YES/NO in its sheet.
+# Every day at 4 PM Kentucky time: one email AND one Discord post listing every form post waiting for YES/NO in its sheet.
 # Two times are listed because of daylight saving; the script only sends when it is 4 PM in Kentucky.
 on:
   schedule:
@@ -34,6 +34,7 @@ jobs:
           KPC_REPORTS_CSV: ${{ secrets.KPC_REPORTS_CSV }}
           KPC_ACTIVATIONS_CSV: ${{ secrets.KPC_ACTIVATIONS_CSV }}
           KPC_GUESTBOOK_CSV: ${{ secrets.KPC_GUESTBOOK_CSV }}
+          KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
           KPC_CWBOARD_CSV: ${{ secrets.KPC_CWBOARD_CSV }}
         run: python3 .github/scripts/kpc_approvals.py
       - name: Save the license-lookup cache
