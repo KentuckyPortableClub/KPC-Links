@@ -42,8 +42,11 @@ COND_F = pathlib.Path('kpc-conditions.json')
 KY_F = pathlib.Path('kpc-ky-data.json')
 UA = {'User-Agent': 'KPC club bot (kentuckyportableclub.github.io)'}
 DRY = os.environ.get('DRY_RUN') == '1'
-# Brandon Oct 21: not in the spots room. The staff room (KPC_ADMIN_WEBHOOK) when there is one.
-DISCORD = ((os.environ.get('KPC_ADMIN_WEBHOOK') or os.environ.get('KPC_DISCORD_WEBHOOK') or '').strip().split() or [''])[0]
+# Where park news goes (Brandon Oct 21: not the spots room, and not the staff room either - somewhere the
+# members can see it). Make a webhook for that room and save it as KPC_PARKS_WEBHOOK; until then it falls
+# back to the staff room, then to the usual bot room.
+DISCORD = ((os.environ.get('KPC_PARKS_WEBHOOK') or os.environ.get('KPC_ADMIN_WEBHOOK')
+           or os.environ.get('KPC_DISCORD_WEBHOOK') or '').strip().split() or [''])[0]
 FB_ID = (os.environ.get('FB_PAGE_ID') or '').strip()
 FB_TOKEN = (os.environ.get('FB_PAGE_TOKEN') or '').strip()
 NPS_KEY = (os.environ.get('NPS_API_KEY') or '').strip()
