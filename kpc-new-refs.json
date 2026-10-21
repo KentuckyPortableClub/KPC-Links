@@ -1,8 +1,30 @@
 {
- "updated": "2026-10-20T13:22:38+00:00",
+ "updated": "2026-10-21T13:23:16+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
+  {
+   "ref": "US-13615",
+   "prog": "pota",
+   "name": "Kirkpatrick Basin South Wildlife Management Area",
+   "st": [
+    "NE"
+   ],
+   "la": 40.8003,
+   "lo": -97.7403,
+   "found": "2026-10-21"
+  },
+  {
+   "ref": "US-13614",
+   "prog": "pota",
+   "name": "Kirkpatrick Basin North Wildlife Management Area",
+   "st": [
+    "NE"
+   ],
+   "la": 40.829,
+   "lo": -97.6552,
+   "found": "2026-10-21"
+  },
   {
    "ref": "US-13613",
    "prog": "pota",
