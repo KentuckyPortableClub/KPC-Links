@@ -80,9 +80,11 @@ def fingerprint(s):
     return hashlib.sha256(('kpc-dc:' + str(s)).encode()).hexdigest()[:16]
 
 
-ASKS = re.compile(r'\?|(?i)\b(how do i|how can i|can (someone|somebody|anyone)|does anyone|anybody know|'
+# NOTE: keep the flag in flags=, never as an inline (?i) partway through the pattern - Python refuses that
+# at import time and the whole script dies before it prints anything (cost an hour on Oct 21).
+ASKS = re.compile(r'\?|\b(how do i|how can i|can (someone|somebody|anyone)|does anyone|anybody know|'
                   r'help|stuck|not working|won\'t work|any idea|question|where (is|do|can)|when (is|do)|'
-                  r'what (is|are|do)|is there a?\s*way|need (help|a hand|advice))\b')
+                  r'what (is|are|do)|is there a?\s*way|need (help|a hand|advice))\b', re.I)
 
 
 def main():
