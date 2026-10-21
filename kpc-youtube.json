@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21T07:13:20Z",
+ "updated": "2026-10-21T20:55:37Z",
  "channels": [
   {
    "key": "kpc",
@@ -7,7 +7,16 @@
    "handle": "@KPC-KR4PIY",
    "name": "Kentucky Portable Club",
    "ok": true,
-   "videos": []
+   "videos": [
+    {
+     "id": "SWHkJ6R12hA",
+     "title": "KPC Website NOW OPEN",
+     "published": "2026-10-21T20:45:09+00:00",
+     "views": 0,
+     "short": false,
+     "desc": "Our website is now open to everyone! Whether you chase parks, KFF references or summits, there's something for you: events, Kentucky parks, park notes, campgrounds and guides for POTA, WWFF and SOTA, all built to work on your phone right from the picnic table or the summit.\n🔗 Take a look: https://kentuckyportableclub.github.io/KPC-Links/\n\n🎵 Music: \"Get Outside, Get On The Air\" — made with Suno (suno.com). Used non-commercially."
+    }
+   ]
   },
   {
    "key": "campout",
@@ -15,7 +24,16 @@
    "handle": "@KY.POTA.Campout",
    "name": "KY POTA Campout",
    "ok": true,
-   "videos": []
+   "videos": [
+    {
+     "id": "qDbxYnQoLl4",
+     "title": "KPC 2027",
+     "published": "2026-10-21T20:30:18+00:00",
+     "views": 11,
+     "short": false,
+     "desc": "Join us for the 2nd Annual KY POTA Campout!\n\nWe had a such a great time this year, and next year will be even better. \n\n🗓️ Save the date: *24-26 SEP 2027*\n🏕️ Location: *Taylorsville Lake SP (US-1271)*\n\n*Find all the information on our website* https://kentuckyportableclub.github.io/KPC-Links/campout.html\n\nTell your friends - Share the flyer!  https://kentuckyportableclub.github.io/KPC-Links/KPC_2027_KYPOTA_Campout_Flyer.pdf\n\n73, \nKY POTA Campout Committee\n\n\n🎵 Music: \"Get Outside, Get On The Air\" — made with Suno (suno.com). Used non-commercially."
+    }
+   ]
   }
  ]
 }
