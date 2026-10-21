@@ -1,6 +1,6 @@
 # ID: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **146 of 361** parks joined to official land (same name + same kind of place). **49** to check by hand, **75** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-21 by `.github/scripts/kpc_us_key.py`. **146 of 361** parks joined to official land (same name + same kind of place). **49** to check by hand, **75** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
