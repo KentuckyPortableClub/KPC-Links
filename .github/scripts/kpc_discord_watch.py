@@ -97,6 +97,28 @@ def main():
     except Exception:  # noqa: BLE001
         pass
 
+    if MODE == 'delete':
+        # tidy up a message one of our webhooks posted (the id is the last number in its Discord link)
+        mid = (os.environ.get('MSG_ID') or '').strip()
+        if not mid:
+            notice('No message id given.')
+            return
+        for name in ('KPC_DISCORD_WEBHOOK', 'KPC_ADMIN_WEBHOOK', 'KPC_YOUTUBE_WEBHOOK'):
+            hook = ((os.environ.get(name) or '').strip().split() or [''])[0].rstrip('/')
+            if not hook.startswith('https://'):
+                continue
+            req = urllib.request.Request(f'{hook}/messages/{mid}', headers=UA, method='DELETE')
+            try:
+                with urllib.request.urlopen(req, timeout=60) as r:
+                    notice(f'Deleted the message using {name} (HTTP {r.status}).')
+                    return
+            except urllib.error.HTTPError as e:
+                notice(f'{name}: HTTP {e.code}')
+            except Exception as e:  # noqa: BLE001
+                notice(f'{name}: {str(e)[:120]}')
+        notice('Could not delete it with any of our webhooks.')
+        return
+
     if MODE == 'test':
         code = say('Hello from the KPC bots',
                    'If you can read this, the staff room is set up and the bots will post here from now on.')
