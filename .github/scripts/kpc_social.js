@@ -21,7 +21,11 @@ const task = process.argv[2];
 const DRY = process.argv.includes('--dry') || process.env.DRY_RUN === 'true';
 const SITE = 'https://kentuckyportableclub.github.io/KPC-Links/';
 const STATE_FILE = 'kpc-social-state.json';
-const DISCORD = (process.env.DISCORD_WEBHOOK_URL || '').trim();
+// Park news goes to the club's park room when there is one (Brandon Oct 21: the Rare Park of the Week belongs
+// with the park updates, not in with the spots). Everything else stays in the usual room.
+const PARK_TASKS = new Set(['rarepark']);
+const DISCORD = ((PARK_TASKS.has(task) ? (process.env.PARKS_WEBHOOK_URL || '') : '')
+  || process.env.DISCORD_WEBHOOK_URL || '').trim().split(/\s+/)[0];
 const FB_ID = (process.env.FB_PAGE_ID || '').trim();
 const FB_TOKEN = (process.env.FB_PAGE_TOKEN || '').trim();
 const PAGES_START = '2026-10-22'; // the first announcement is sent by the go-live job (Oct 21, 5 PM Central) right after the HOLD pages go live
