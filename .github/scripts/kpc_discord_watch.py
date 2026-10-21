@@ -127,6 +127,7 @@ def main():
         else:
             say(f'Discord rooms I can see ({len(rooms)})', text)
         notice(f'Listed {len(rooms)} room(s).')
+        notice('rooms: ' + ' | '.join(f"{c.get('name')}={c.get('id')}" for c in rooms)[:700])
         return
 
     rooms = conf.get('rooms') or []
