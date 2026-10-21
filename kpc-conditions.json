@@ -1,4 +1,167 @@
 {
- "updated": "2026-10-14",
- "items": []
+ "updated": "2026-10-21",
+ "items": [
+  {
+   "id": "pa-nps-B489F041-FD1B-40F2-992D-9D36C841B7E5-US-7951",
+   "ref": "US-7951",
+   "kind": "Park alert",
+   "details": "Green River Ferry Temporarily Out of Service — The Green River Ferry has temporarily suspended operation due to low water levels. Ferry service will resume once water levels rise and conditions are safe. A river forecast is available at: water.noaa.gov/gauges/03309000",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-20"
+  },
+  {
+   "id": "pa-nps-B489F041-FD1B-40F2-992D-9D36C841B7E5-US-1259",
+   "ref": "US-1259",
+   "kind": "Park alert",
+   "details": "Green River Ferry Temporarily Out of Service — The Green River Ferry has temporarily suspended operation due to low water levels. Ferry service will resume once water levels rise and conditions are safe. A river forecast is available at: water.noaa.gov/gauges/03309000",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-20"
+  },
+  {
+   "id": "pa-nps-3FDA6968-C4B7-4A28-8169-B0E4B1272765-US-0050",
+   "ref": "US-0050",
+   "kind": "Park alert",
+   "details": "Tickets are required to enter Mammoth Cave — Reservations are strongly recommended. Reservations are the only way to ensure a spot is available for your party. Please plan accordingly by visiting Recreation.gov to secure your tickets in advance. Availability of walk-up tickets is not guaranteed.",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-20"
+  },
+  {
+   "id": "pa-fs-wilderness-prohibitions-US-3794",
+   "ref": "US-3794",
+   "kind": "Burn or forest work",
+   "details": "Wilderness Prohibitions — Entering or being part of a group of more than ten people and/or possessing or using a wagon, cart, bicycle or other vehicle are prohibited in Clifty Wilderness and Beaver Creek Wilderness.",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-04"
+  },
+  {
+   "id": "pa-fs-wilderness-prohibitions-US-13598",
+   "ref": "US-13598",
+   "kind": "Burn or forest work",
+   "details": "Wilderness Prohibitions — Entering or being part of a group of more than ten people and/or possessing or using a wagon, cart, bicycle or other vehicle are prohibited in Clifty Wilderness and Beaver Creek Wilderness.",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-04"
+  },
+  {
+   "id": "pa-fs-tornado-damaged-area-closure-london-pulaski-counties-US-11181",
+   "ref": "US-11181",
+   "kind": "Park alert",
+   "details": "Tornado Damaged Area Closure in London, Pulaski counties — Entering or occupying any portion of the tornado-damaged National Forest System lands in Pulaski and Laurel Counties is prohibited. This closure includes a portion of the Sheltowee Trace National Recreation Trail from the intersection of Rockcastle Narrows Trail north to Sinking Creek. See images…",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-20"
+  },
+  {
+   "id": "pa-fs-red-river-gorge-suspension-bridge-impassable-US-11181",
+   "ref": "US-11181",
+   "kind": "Park alert",
+   "details": "Red River Gorge Suspension Bridge Impassable — The suspension footbridge near KY 715 in the Red River Gorge that connects the Sheltowee Trace National Recreation Trail across the Red River has been damaged by a falling tree. Visitors should not attempt to use the bridge and should plan their recreation activities accordingly.Area(s): Sheltowee…",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-20"
+  },
+  {
+   "id": "pa-fs-pioneer-weapons-wildlife-management-area-camping-prohibition-US-10158",
+   "ref": "US-10158",
+   "kind": "Burn or forest work",
+   "details": "Pioneer Weapons Wildlife Management Area Camping Prohibition — Except for designated sites, camping within 300 feet of National Forest System Road 918 in the Pioneer Weapons Wildlife Management Area is prohibited.",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-04"
+  },
+  {
+   "id": "pa-fs-non-motorized-fishing-area-restrictions-US-12974",
+   "ref": "US-12974",
+   "kind": "Burn or forest work",
+   "details": "Non-Motorized Fishing Area Restrictions — The use of use of gasoline or diesel-powered motorcraft in non-motorized fishing areas of Cave Run Lake, Carrington Lake, Rebel Trace Lake, Clear Creek Lake, and specified portions of Ramey Creek and Scott Creek is prohibited.",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-04"
+  },
+  {
+   "id": "pa-fs-no-visitor-services-supervisors-office-winchester-ky-US-4484",
+   "ref": "US-4484",
+   "kind": "Burn or forest work",
+   "details": "No visitor services at Supervisor's Office in Winchester, KY — Until further notice, visitor services at the USDA Forest Service office front desk in Winchester, KY, are unavailable. All other Daniel Boone National Forest offices remain open and will continue to provide visitor services during their standard hours. Find the closest Daniel Boone National Forest…",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-04"
+  },
+  {
+   "id": "pa-fs-no-phone-service-pass-sales-redbird-office-big-creek-ky-US-4484",
+   "ref": "US-4484",
+   "kind": "Burn or forest work",
+   "details": "No phone service, pass sales at Redbird Office in Big Creek, KY — The Redbird Ranger District Office in Big Creek, KY does not have phone or internet service at this time and is unable to process map or pass sales. For visitor information, contact the Daniel Boone National Forest Supervisor's Office or stop by the Redbird Ranger District Office Monday through…",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-04"
+  },
+  {
+   "id": "pa-fs-national-visitor-use-monitoring-oct-2026-sept-2027-US-4484",
+   "ref": "US-4484",
+   "kind": "Burn or forest work",
+   "details": "National Visitor Use Monitoring, Oct 2026-Sept 2027 — From October 2026 through September 2027, survey interviewers will be conducting National Visitor Use Monitoring surveys of Daniel Boone National Forest visitors around the Forest. Surveys are voluntary and all responses are confidential. Surveys take roughly 15 minutes to complete. Survey sites…",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-04"
+  },
+  {
+   "id": "pa-fs-laurel-river-lake-and-lake-cumberland-camping-prohibitions-US-11181",
+   "ref": "US-11181",
+   "kind": "Burn or forest work",
+   "details": "Laurel River Lake and Lake Cumberland Camping Prohibitions — 1) Camping within 300 feet of the high water line of the portion of Upper Lake Cumberland, from the Mouth of Laurel Boat Ramp upstream on the Laurel River, and from the Sheltowee Trace National Recreation Trail to the administrative boundary between National Forest System and U.S. Army Corps of…",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-04"
+  },
+  {
+   "id": "pa-fs-hawk-creek-sinking-creek-trail-bridges-impassable-US-11181",
+   "ref": "US-11181",
+   "kind": "Park alert",
+   "details": "Hawk Creek, Sinking Creek trail bridges impassable — The Hawk Creek and Sinking Creek suspension bridges, which connect portions of the Sheltowee Trace National Recreation Trail near London, KY, are impassable due to storm damage. Hikers will need to wade through the creeks to continue along the trail. As a safety precaution, please do not try to…",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-20"
+  },
+  {
+   "id": "pa-fs-general-forest-prohibitions-US-4484",
+   "ref": "US-4484",
+   "kind": "Burn or forest work",
+   "details": "General Forest Prohibitions — The following acts are prohibited in all areas of the Daniel Boone National Forest:Building, maintaining, attending or using a fire, campfire or stove within 100 feet of the base of any cliff, or the back of a rock shelter unless at a designated site;Possession of a controlled substance unless said…",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-04"
+  },
+  {
+   "id": "pa-fs-cave-run-lake-prohibitions-US-10158",
+   "ref": "US-10158",
+   "kind": "Burn or forest work",
+   "details": "Cave Run Lake Prohibitions — The following acts are prohibited:Motorized use of the White Sulphur OHV Trail from sunset to sunrise from May 1 to November 30;Non-motorized use of the White Sulphur OHV Trail from May 1 to November 30;Camping within 300 feet of NFSR 918 in the Pioneer Weapons Wildlife Management Area. Camping at…",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-04"
+  },
+  {
+   "id": "pa-fs-beaver-creek-wilderness-prohibitions-US-3794",
+   "ref": "US-3794",
+   "kind": "Burn or forest work",
+   "details": "Beaver Creek Wilderness Prohibitions — Within Beaver Creek Wilderness, possessing horses or other livestock except on trails designated for such use or as specifically permitted through a special use permit is prohibited.",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-04"
+  },
+  {
+   "id": "pa-fs-beaver-creek-wilderness-prohibitions-US-13598",
+   "ref": "US-13598",
+   "kind": "Burn or forest work",
+   "details": "Beaver Creek Wilderness Prohibitions — Within Beaver Creek Wilderness, possessing horses or other livestock except on trails designated for such use or as specifically permitted through a special use permit is prohibited.",
+   "seen": "2026-10-21",
+   "call": "KPC BOT",
+   "expires": "2026-11-04"
+  }
+ ]
 }
