@@ -230,6 +230,37 @@ tick();setInterval(tick,1000);
 
 
 
+<section class="section" id="campout-video" aria-label="Campout video">
+  <div class="section-inner">
+    <p class="eyebrow-dark">WATCH</p>
+    <h2>A Look At The Campout</h2>
+    <p class="lead">A quick look at what the weekend is about: parks, radios, a campfire and good company.</p>
+    <div class="cv-wrap"><div class="cv-box" id="cvBox"></div></div>
+    <p class="cv-sub">Trouble playing it? <a href="https://www.youtube.com/watch?v=qDbxYnQoLl4" target="_blank" rel="noopener">Watch it on YouTube</a>.</p>
+  </div>
+</section>
+<style>
+#campout-video .cv-wrap{max-width:860px;margin:18px auto 0}
+#campout-video .cv-box{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#120d06;border:1px solid #3a2d14}
+#campout-video .cv-box iframe,#campout-video .cv-box button{position:absolute;inset:0;width:100%;height:100%;border:0}
+#campout-video .cv-box button{display:grid;place-items:center;cursor:pointer;background:#120d06 center/cover no-repeat;padding:0}
+#campout-video .cv-play{width:74px;height:74px;border-radius:50%;background:rgba(10,8,4,.62);border:2px solid #f0c96b;display:grid;place-items:center;transition:transform .15s,background .15s}
+#campout-video .cv-play::after{content:"";margin-left:5px;border-style:solid;border-width:15px 0 15px 25px;border-color:transparent transparent transparent #f0c96b}
+#campout-video .cv-box button:hover .cv-play,#campout-video .cv-box button:focus-visible .cv-play{transform:scale(1.07);background:rgba(10,8,4,.8)}
+#campout-video .cv-sub{text-align:center;font-size:14px;margin:10px 0 0}
+@media (prefers-reduced-motion:reduce){#campout-video .cv-play{transition:none}}
+</style>
+<script>
+/* Click to play: YouTube is only loaded once someone asks for it (keeps the page quick and private). */
+(function(){
+  var ID='qDbxYnQoLl4',box=document.getElementById('cvBox');
+  if(!box)return;
+  box.innerHTML='<button type="button" aria-label="Play the campout video" style="background-image:url(\'https://i.ytimg.com/vi/'+ID+'/hqdefault.jpg\')"><span class="cv-play"></span></button>';
+  box.querySelector('button').addEventListener('click',function(){
+    box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+ID+'?autoplay=1&rel=0&modestbranding=1" title="2027 KYPOTA Campout" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+  });
+})();
+</script>
 <section class="section resources-callout" id="campout-resources">
   <div class="section-inner">
     <p class="eyebrow-dark">2027 CAMPOUT INFORMATION</p>
