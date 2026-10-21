@@ -1,5 +1,5 @@
 name: KPC Go-Live (Oct 21, 2026)
-# One-time job: at 4:30 PM Central on Wednesday, October 21, 2026, this
+# One-time job: at 4:30 PM Eastern (3:30 PM Central) on Wednesday, October 21, 2026, this
 #   1. puts the new pages live: campoutHOLD.html -> campout.html, eventsHOLD.html -> events.html,
 #      resourcesHOLD.html -> resources.html (the old versions stay in the git history),
 #      and unhides kpc-campgrounds.html (menu, search, Find It, Tool Box) with .github/scripts/kpc_golive_campgrounds.py
@@ -9,7 +9,7 @@ name: KPC Go-Live (Oct 21, 2026)
 # To go live early, run it from the Actions tab and tick "go live now".
 on:
   schedule:
-    - cron: '30 21 21 10 *'    # 21:30 UTC = 4:30 PM CDT (Brandon Oct 21: half an hour before the 5 PM posts, so the pages are up first)
+    - cron: '30 20 21 10 *'    # 20:30 UTC = 4:30 PM EASTERN / 3:30 PM Central (Brandon Oct 21: Zach is on Eastern, so go live on HIS clock to be safe)
   workflow_dispatch:
     inputs:
       now:
