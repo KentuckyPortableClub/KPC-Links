@@ -56,6 +56,7 @@
     <span class="f8-clk"><b id="f8Utc">--:--:--</b><i class="f8-slot"><i id="f8SlotBar"></i></i></span>
     <span class="f8-st" id="f8St">OFF</span>
   </div>
+  <div class="f8-rxonly" id="f8RxOnly" hidden><span><b>On a phone or tablet this tab can listen, not send.</b> Decodes, the waterfall, spots and logging all work. The browser can't send clean sound to a radio on Android or iPhone, so transmitting here gives only a few watts — use the KPC app for that.</span><button type="button" id="f8RxOk" aria-label="Hide this note">✕</button></div>
   <div class="f8-bandr" id="f8BandR" role="group" aria-label="Jump to a band"></div>
   <div class="f8-tunr" id="f8TuneR"><span>MY DIAL</span><button type="button" class="f8-b" data-f8st="-1">−1</button><button type="button" class="f8-b" data-f8st="-0.1">−.1</button><input id="f8Khz" inputmode="decimal" aria-label="Dial frequency in kHz" placeholder="kHz"><b>kHz</b><button type="button" class="f8-b" data-f8st="0.1">+.1</button><button type="button" class="f8-b" data-f8st="1">+1</button><button type="button" class="f8-b" id="f8Std" title="Back to the usual frequency for this mode and band">↺ USUAL</button><small id="f8TuneT">Type a frequency, or turn the radio's knob (CAT connected) and it follows.</small></div>
   <div class="f8-startbox" id="f8StartBox"><button type="button" class="f8-go" id="f8Start">🎧 START LISTENING</button><span>Plug your radio's audio into this phone or computer (USB sound card / Digirig / the radio's USB), then press START. The browser asks to use the "microphone": that is how the radio's audio comes in.<label class="f8-in0">RADIO AUDIO IN <select id="f8In0"><option value="">Default input</option></select></label></span></div>
@@ -240,6 +241,15 @@
      whole phone in 'call' mode, so sound out goes through the phone-call path (call volume, call processing).
      On Android we let go of the mic while sending and take it back right after. */
   const ANDR = /Android/i.test(navigator.userAgent);
+  /* Phones and tablets can only receive here (Brandon Oct 20: the browser's sound to the radio is squashed by Android's
+     call mode, so TX is a few watts however the USB port is handled; the KPC app uses its own sound and transmits properly). */
+  try {
+    const MOB = ANDR || /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && !('serial' in navigator));
+    if (MOB && $('f8RxOnly') && !get('kpcF8RxOnly', 0)) {
+      $('f8RxOnly').hidden = false;
+      $('f8RxOk').onclick = () => { $('f8RxOnly').hidden = true; put('kpcF8RxOnly', 1); };
+    }
+  } catch (e) {}
   let micOff = false;
   function txMicOff() { if (!ANDR || S.txMic !== 'free' || !STREAM || micOff) return; micOff = true; /* Oct 18: made things worse on Brandon's tablet (0 W), so it is off unless S.txMic = 'free' */
     try { SRC && SRC.disconnect(); } catch (e) {} try { STREAM.getTracks().forEach(t => t.stop()); } catch (e) {} SRC = null; STREAM = null; }
