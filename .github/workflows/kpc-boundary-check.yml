@@ -45,7 +45,9 @@ jobs:
                       d = json.loads(f.read_text(encoding='utf-8'))
                   except Exception:
                       continue
-                  if 'pin_outside' not in (d.get('counts') or {}):
+                  # redo anything not yet built from the ~110 m saved outlines ('detail' is only written by
+                  # builds that know about it; anything older used the ~1.1 km ones)
+                  if ((d.get('counts') or {}).get('detail') or 1) >= 0.01:
                       todo.append((d.get('st') or f.stem).replace('US-', ''))
               want = todo[:14]         # ~11 min a state, 300 min limit: all 50 states in four nights
           print('states=' + ' '.join(want))
@@ -53,14 +55,36 @@ jobs:
           PY
         env:
           WANT: ${{ inputs.states }}
+      - name: Fetch the saved outlines
+        if: ${{ !inputs.report_only && steps.pick.outputs.states != '' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p cache/us
+          gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || true
       - name: Rebuild those keys with the check
         if: ${{ !inputs.report_only && steps.pick.outputs.states != '' }}
         continue-on-error: true
         env:
+          # Oct 22: the states MUST go in the STATES setting. Passing them as words after the script name (as the
+          # first version did) is ignored, so it quietly worked through every state in alphabetical order.
           STATES: ${{ steps.pick.outputs.states }}
+          GEO_CACHE_MODE: use          # saved outline if there is one, else fetch it once at ~110 m and save it
+          GEO_DETAIL: '0.001'
+          GEO_PAGE: '200'
         run: |
           echo "::notice title=Boundary check::rebuilding $STATES"
-          python3 .github/scripts/kpc_us_key.py $STATES || true
+          python3 .github/scripts/kpc_us_key.py || true
+      - name: Keep any newly saved outlines
+        if: ${{ !inputs.report_only && steps.pick.outputs.states != '' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view boundary-cache -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
+            gh release create boundary-cache -R "$GITHUB_REPOSITORY" --prerelease --title 'Saved park outlines' --notes 'Saved outlines for the boundary answer keys.' || true
+          ls cache/us/*.json.gz >/dev/null 2>&1 && gh release upload boundary-cache cache/us/*.json.gz -R "$GITHUB_REPOSITORY" --clobber || true
       - name: Write up what it found
         continue-on-error: true
         env:

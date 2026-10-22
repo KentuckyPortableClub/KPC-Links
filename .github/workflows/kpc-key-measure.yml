@@ -1,0 +1,80 @@
+name: KPC key measure
+# THE FAST RULE TEST. Rebuilds every state's answer key from the SAVED outlines (no network at all) and says
+# what changed against the keys in the repo: joins gained, joins lost, pins outside. Run it after changing a
+# matching rule, BEFORE letting the rule loose. Fable's review: 'measure-before-enable is the best practice in
+# the brief — formalise it'. Commits nothing unless asked. Never fails.
+on:
+  workflow_dispatch:
+    inputs:
+      states:
+        description: 'Only these states (blank = every state that has saved outlines)'
+        default: ''
+      commit:
+        description: 'Keep the rebuilt keys (commit them)'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: kpc-us-key          # shares the answer-key lock: the two must never write keys at once
+  cancel-in-progress: false
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+      - name: Fetch the saved outlines
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p cache/us
+          gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || true
+          echo "::notice title=Measure::$(ls cache/us 2>/dev/null | wc -l) saved state(s) available"
+      - name: Keep the keys as they are now, to compare against
+        run: rm -rf /tmp/before && cp -r data/us-key /tmp/before
+      - name: Rebuild from the saved outlines only
+        continue-on-error: true
+        env:
+          STATES: ${{ inputs.states }}
+          GEO_CACHE_MODE: only
+        run: python3 .github/scripts/kpc_us_key.py || true
+      - name: What changed
+        continue-on-error: true
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          b, a = pathlib.Path('/tmp/before'), pathlib.Path('data/us-key')
+          rows, T = [], {'gained': 0, 'lost': 0, 'out_before': 0, 'out_after': 0}
+          for f in sorted(a.glob('US-*.json')):
+              try: new = json.loads(f.read_text()); old = json.loads((b / f.name).read_text())
+              except Exception: continue
+              if new.get('updated') == old.get('updated') and new.get('counts') == old.get('counts'): continue
+              jn = {r for r, v in new['parks'].items() if v.get('m')}; jo = {r for r, v in old['parks'].items() if v.get('m')}
+              g, l = len(jn - jo), len(jo - jn)
+              ob, oa = (old.get('counts') or {}).get('pin_outside', 0) or 0, (new.get('counts') or {}).get('pin_outside', 0) or 0
+              T['gained'] += g; T['lost'] += l; T['out_before'] += ob; T['out_after'] += oa
+              rows.append(f"| {new.get('st')} | {len(jo)} → {len(jn)} | +{g} / −{l} | {ob} → {oa} |")
+              lost = sorted(jo - jn)[:5]
+              if lost: rows.append(f"| | lost: {', '.join(lost)} | | |")
+          L = ['## Answer keys rebuilt from the saved outlines', '',
+               f"**Joins gained {T['gained']}, lost {T['lost']}.** Pins outside their land: {T['out_before']} → {T['out_after']}.", '',
+               '| State | joined before → after | change | pins outside |', '|---|---|---|---|'] + rows
+          s = '\n'.join(L)
+          open(__import__('os').environ['GITHUB_STEP_SUMMARY'], 'a').write(s + '\n')
+          print(f"::notice title=Measure::joins +{T['gained']} / -{T['lost']}; pins outside {T['out_before']} -> {T['out_after']} (full table in the run summary)")
+          PY
+      - name: Keep them (only if asked)
+        if: ${{ inputs.commit }}
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/us-key
+          if ! git diff --cached --quiet; then
+            git commit -m 'US key: rebuilt from the saved outlines'
+            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
+          fi

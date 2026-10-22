@@ -1,0 +1,75 @@
+name: KPC saved shapes
+# Downloads every state's official land outlines ONCE, at ~110 m detail instead of the ~1.1 km every live run
+# has used, and keeps them as files on the 'boundary-cache' release (not in the repo). After that the answer
+# keys can be rebuilt, and new matching rules tested, from the saved copy in minutes instead of hours.
+# Fable's review, Oct 22: 'nearly all the time is re-downloading the same geometry'.
+# Monthly, plus by hand. Six states at a time so the government servers are not hammered. Never fails.
+on:
+  schedule:
+    - cron: '17 9 3 * *'          # the 3rd of each month, 4.17am Central
+  workflow_dispatch:
+    inputs:
+      states:
+        description: 'Only these states (blank = all of them)'
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: kpc-geo-cache
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      groups: ${{ steps.g.outputs.groups }}
+    steps:
+      - name: Make sure the release exists
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view boundary-cache -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
+          gh release create boundary-cache -R "$GITHUB_REPOSITORY" --prerelease --title 'Saved park outlines' \
+            --notes 'Official land outlines saved by the KPC saved shapes workflow, for the boundary answer keys. Not a release of anything.' || true
+      - name: Split the states into groups
+        id: g
+        env:
+          WANT: ${{ inputs.states }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          ALL = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split()
+          want = (os.environ.get('WANT') or '').upper().replace(',', ' ').split() or ALL
+          groups = [' '.join(want[i:i + 5]) for i in range(0, len(want), 5)]
+          print('groups=' + json.dumps(groups))
+          PY
+  fetch:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        states: ${{ fromJSON(needs.prepare.outputs.groups) }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Download and save these states
+        continue-on-error: true
+        env:
+          STATES: ${{ matrix.states }}
+          GEO_CACHE_MODE: refresh
+          GEO_DETAIL: '0.001'
+          GEO_PAGE: '200'
+          MINUTES: '320'
+        run: |
+          echo "::notice title=Saved shapes::fetching $STATES"
+          python3 .github/scripts/kpc_us_key.py || true
+      - name: Put them on the release
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ls -la cache/us/ 2>/dev/null || { echo "::notice title=Saved shapes::nothing saved for ${{ matrix.states }}"; exit 0; }
+          gh release upload boundary-cache cache/us/*.json.gz -R "$GITHUB_REPOSITORY" --clobber || true
+          echo "::notice title=Saved shapes::uploaded $(ls cache/us/*.json.gz | wc -l) file(s) for ${{ matrix.states }}"

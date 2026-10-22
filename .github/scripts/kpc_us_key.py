@@ -15,6 +15,22 @@ ALL = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS M
 STATES = (os.environ.get('STATES') or '').upper().replace(',', ' ').split() or ALL
 OUT = pathlib.Path('data/us-key'); OUT.mkdir(parents=True, exist_ok=True)
 T0 = time.time(); LIMIT = float(os.environ.get('MINUTES') or 300) * 60
+import gzip
+# SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review: 'nearly all the time is re-downloading the same geometry').
+# Every live run has fetched outlines simplified to 0.01 degrees (~1.1 km) because they were fetched fresh each
+# time and finer ones are slow. That is coarser than many of the parks: a 40-acre wildlife area is narrower than
+# a kilometre, and a pin within a kilometre of the real line can fall outside the smoothed one. A SAVED copy is
+# fetched once, so it can afford ~110 m. GEO_CACHE_MODE:
+#   off      (default) exactly as before: fetch live, save nothing
+#   use      load the saved copy if there is one, else fetch and save it
+#   refresh  always fetch, and save
+#   only     never touch the network: saved copies only, states without one are skipped (the fast rule test)
+DETAIL = float(os.environ.get('GEO_DETAIL') or 0.01)
+PREC = 3 if DETAIL >= 0.01 else 5
+PAGE = int(os.environ.get('GEO_PAGE') or 500)
+CACHE = pathlib.Path(os.environ.get('GEO_CACHE') or 'cache/us')
+CMODE = (os.environ.get('GEO_CACHE_MODE') or 'off').strip().lower()
+CACHE_USED, CACHE_SAVED = [], []
 
 
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
@@ -205,12 +221,13 @@ def fields():
     return FIELDS
 
 
-GEO = [{'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01, 'geometryPrecision': 3},
+GEO = ([{'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL, 'geometryPrecision': PREC}] if DETAIL < 0.01 else []) + \
+      [{'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01, 'geometryPrecision': 3},
        {'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01}, {'returnGeometry': 'true', 'outSR': 4326}]
 GI = [0]
 def page(st, off):
     while True:
-        q = {'where': "State_Nm='%s'" % st, 'outFields': fields(), 'f': 'json', 'resultOffset': off, 'resultRecordCount': 500, 'orderByFields': 'OBJECTID'}
+        q = {'where': "State_Nm='%s'" % st, 'outFields': fields(), 'f': 'json', 'resultOffset': off, 'resultRecordCount': PAGE, 'orderByFields': 'OBJECTID'}
         q.update(GEO[GI[0]])
         try: return get(q, tries=3)
         except Exception as e:  # noqa: BLE001
@@ -232,9 +249,26 @@ def pad_state(st):
             a['_bb'] = bbox(g); a['_g'] = g
             a['_k'] = kinds(a.get('Unit_Nm')) | kinds(a.get('Loc_Nm')) | ({DES[a['Des_Tp']]} if a.get('Des_Tp') in DES else set())
             recs.append(a)
-        if not fs or (not j.get('exceededTransferLimit') and len(fs) < 500): break
+        if not fs or (not j.get('exceededTransferLimit') and len(fs) < PAGE): break
         off += len(fs); time.sleep(.6)
     return recs, off + len(fs)
+
+
+def fetch_geo(url, q, timeout=180):
+    """Ask for the finer outline first when one was asked for; if the server refuses or times out, fall back to
+    the 0.01-degree outline every run has always used, rather than losing the layer for that state."""
+    tries = ([(DETAIL, PREC)] if DETAIL < 0.01 else []) + [(0.01, 3)]
+    last = None
+    for det, pr in tries:
+        q = dict(q, maxAllowableOffset=det, geometryPrecision=pr, resultRecordCount=PAGE if det < 0.01 else 500)
+        try:
+            req = urllib.request.Request(url + '?' + urllib.parse.urlencode(q), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
+            j = json.loads(urllib.request.urlopen(req, timeout=timeout).read().decode('utf-8', 'replace'))
+            if j.get('error'): raise RuntimeError(str(j['error'])[:150])
+            return j, q['resultRecordCount']
+        except Exception as e:  # noqa: BLE001
+            last = e
+    raise last
 
 
 FWS = 'https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer/0/query'
@@ -257,11 +291,9 @@ def fws_state(st, have):
     out, off = [], 0
     while True:
         q = {'where': "INTTYPE1<>'E'", 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-             'outFields': 'OBJECTID,ORGNAME,RSL_TYPE,SUM_GISACRES', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01, 'geometryPrecision': 3,
-             'f': 'json', 'resultOffset': off, 'resultRecordCount': 500}
+             'outFields': 'OBJECTID,ORGNAME,RSL_TYPE,SUM_GISACRES', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off}
         try:
-            req = urllib.request.Request(FWS + '?' + urllib.parse.urlencode(q), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
-            j = json.loads(urllib.request.urlopen(req, timeout=180).read().decode('utf-8', 'replace'))
+            j, pg = fetch_geo(FWS, q)
         except Exception as e:  # noqa: BLE001
             notice(f'US key {st}', f'USFWS land not read ({e})'); return out
         fs = j.get('features', [])
@@ -272,7 +304,7 @@ def fws_state(st, have):
             out.append({'OBJECTID': 'fws' + str(a.get('OBJECTID')), 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': 'FED', 'Mang_Type': 'FED', 'Mang_Name': 'FWS',
                         'Loc_Mang': 'U.S. Fish & Wildlife Service (own map)', 'Des_Tp': '', 'GIS_Acres': a.get('SUM_GISACRES') or 0, 'Category': 'Fee',
                         '_bb': bbox(g), '_g': g, '_k': kinds(nm) | kinds(a.get('RSL_TYPE')) | {'nwr'}})
-        if not fs or (not j.get('exceededTransferLimit') and len(fs) < 500): break
+        if not fs or (not j.get('exceededTransferLimit') and len(fs) < pg): break
         off += len(fs); time.sleep(.5)
     return out
 
@@ -349,12 +381,9 @@ def extra_state(st, have):
         off, n = 0, 0
         while True:
             q = {'where': '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-                 'outFields': ','.join(q for q in (oidf, nf, af) if q), 'returnGeometry': 'true', 'outSR': 4326,
-                 'maxAllowableOffset': 0.01, 'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 500}
+                 'outFields': ','.join(q for q in (oidf, nf, af) if q), 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off}
             try:
-                req = urllib.request.Request(url + '?' + urllib.parse.urlencode(q), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
-                j = json.loads(urllib.request.urlopen(req, timeout=180).read().decode('utf-8', 'replace'))
-                if j.get('error'): raise RuntimeError(str(j['error'])[:150])
+                j, pg = fetch_geo(url, q)
             except Exception as e:  # noqa: BLE001
                 notice(f'US key {st}', f'{label} not read ({e})'); break
             fs = j.get('features', [])
@@ -369,10 +398,45 @@ def extra_state(st, have):
                 out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),
                             'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': (a.get(af.lower()) if af else 0) or 0, 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k})
                 n += 1
-            if not fs or (not j.get('exceededTransferLimit') and len(fs) < 500): break
+            if not fs or (not j.get('exceededTransferLimit') and len(fs) < pg): break
             off += len(fs); time.sleep(.5)
         XCOUNT[pre] = XCOUNT.get(pre, 0) + n
     return out
+
+
+def cache_file(st): return CACHE / f'US-{st}.json.gz'
+
+
+def save_cache(st, recs, seen):
+    """Everything the matcher needs, so a rule can be tested without the network. Outlines to ~1 m."""
+    CACHE.mkdir(parents=True, exist_ok=True)
+    rows = []
+    for a in recs:
+        r = {k: v for k, v in a.items() if not k.startswith('_')}
+        r['_r'] = [[[round(pt[0], 5), round(pt[1], 5)] for pt in ring if len(pt) >= 2] for ring in rings(a.get('_g'))]
+        r['_k'] = sorted(a.get('_k') or [])
+        rows.append(r)
+    blob = {'st': st, 'saved': time.strftime('%Y-%m-%d'), 'detail': DETAIL, 'seen': seen, 'recs': rows}
+    with gzip.open(cache_file(st), 'wt', encoding='utf-8') as f:
+        json.dump(blob, f, separators=(',', ':'))
+    CACHE_SAVED.append(st)
+
+
+def load_cache(st):
+    p = cache_file(st)
+    if not p.exists(): return None
+    try:
+        with gzip.open(p, 'rt', encoding='utf-8') as f: blob = json.load(f)
+    except Exception as e:  # noqa: BLE001
+        notice(f'US key {st}', f'saved shapes unreadable ({e}); fetching'); return None
+    recs = []
+    for r in blob.get('recs') or []:
+        a = {k: v for k, v in r.items() if k not in ('_r', '_k')}
+        a['_g'] = {'rings': r.get('_r') or []}
+        a['_bb'] = bbox(a['_g'])
+        a['_k'] = set(r.get('_k') or [])
+        recs.append(a)
+    return recs, blob.get('seen', len(recs)), blob.get('detail')
 
 
 def out_date(): return time.strftime('%Y-%m-%d')
@@ -411,9 +475,17 @@ def pins():
 def run(st):
     try: P = json.load(open(f'data/parkinfo/US-{st}.json'))['parks']
     except Exception: notice(f'US key {st}', 'no park file, skipped'); return None  # noqa: BLE001
-    recs, seen = pad_state(st)
-    recs += fws_state(st, {norm(a.get('Unit_Nm') or '') for a in recs if a.get('Mang_Name') == 'FWS'})
-    recs += extra_state(st, {(norm(a.get('Unit_Nm') or ''), frozenset(a['_k'])) for a in recs})
+    got = load_cache(st) if CMODE in ('use', 'only') else None
+    if got is None and CMODE == 'only':
+        notice(f'US key {st}', 'no saved shapes yet; skipped (saved-copy-only run)'); return None
+    if got is not None:
+        recs, seen, used_detail = got; CACHE_USED.append(st)
+    else:
+        recs, seen = pad_state(st)
+        recs += fws_state(st, {norm(a.get('Unit_Nm') or '') for a in recs if a.get('Mang_Name') == 'FWS'})
+        recs += extra_state(st, {(norm(a.get('Unit_Nm') or ''), frozenset(a['_k'])) for a in recs})
+        used_detail = DETAIL
+        if CMODE in ('use', 'refresh'): save_cache(st, recs, seen)
     parks, used = {}, set()
     for ref, r in sorted(P.items()):
         name, typ, la, lo = r[0], r[2] if len(r) > 2 else '', r[5] if len(r) > 5 else None, r[6] if len(r) > 6 else None
@@ -498,6 +570,7 @@ def run(st):
               'none': sum(1 for p in parks.values() if not p['m'] and not p['c'] and not p.get('a')), 'site': sum(1 for p in parks.values() if p.get('a')), 'nonum': len(nonum), 'padus': len(recs), 'read': seen,
               'pin_outside': sum(1 for p in parks.values() if p.get('far')),
               'pin_well_outside': sum(1 for p in parks.values() if p.get('far') == 'well outside'),
+              'detail': used_detail,
               'pin_no_shape': sum(1 for p in parks.values() if p.get('far') == 'no shape to check against'),
               'pin_swap': sum(1 for p in parks.values() if p.get('swap'))}
     out = {'updated': time.strftime('%Y-%m-%d'), 'st': st, 'note': 'Built by .github/scripts/kpc_us_key.py from USGS PAD-US (fed + state fee land) and POTA. m = joined (same name + same kind), c = check by hand (NOT joined).',
@@ -540,6 +613,9 @@ for st in STATES:
     json.dump(LJ, open(OUT / 'layers.json', 'w'), separators=(',', ':'))
 tot = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none', 'site')}
 notice('US key extra maps', ', '.join(f'{k}: {v}' for k, v in XCOUNT.items()))
+if CMODE != 'off':
+    notice('US key saved shapes', f"mode {CMODE}, detail {DETAIL}: loaded {len(CACHE_USED)} ({' '.join(CACHE_USED)}), "
+                                  f"saved {len(CACHE_SAVED)} ({' '.join(CACHE_SAVED)})")
 notice('US answer key', f"{len(done)} states this run ({' '.join(done)}). All states so far: {tot['parks']} parks, {tot['matched']} joined, {tot['check']} to check, {tot['site']} sites on bigger land, {tot['none']} nothing found")
 # How many joins put the park's pin outside the land it was joined to? A big number here means the match
 # count has been flattering us. Printed per run so it can be watched rather than discovered later.

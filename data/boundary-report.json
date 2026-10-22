@@ -16,6 +16,7 @@
    "out": 6,
    "swap": 0,
    "stale": false,
+   "detail": "~1.1 km",
    "edge": 22
   },
   {
@@ -26,6 +27,7 @@
    "out": 9,
    "swap": 0,
    "stale": false,
+   "detail": "~1.1 km",
    "edge": 46
   },
   {
@@ -36,6 +38,7 @@
    "out": 4,
    "swap": 0,
    "stale": false,
+   "detail": "~1.1 km",
    "edge": 99
   },
   {
@@ -46,6 +49,7 @@
    "out": 3,
    "swap": 0,
    "stale": false,
+   "detail": "~1.1 km",
    "edge": 30
   },
   {
@@ -56,6 +60,7 @@
    "out": 3,
    "swap": 0,
    "stale": false,
+   "detail": "~1.1 km",
    "edge": 155
   },
   {
@@ -66,6 +71,7 @@
    "out": 16,
    "swap": 0,
    "stale": false,
+   "detail": "~1.1 km",
    "edge": 133
   },
   {
@@ -76,6 +82,7 @@
    "out": 10,
    "swap": 0,
    "stale": true,
+   "detail": "~1.1 km",
    "edge": 59
   },
   {
@@ -86,6 +93,7 @@
    "out": 22,
    "swap": 0,
    "stale": true,
+   "detail": "~1.1 km",
    "edge": 65
   },
   {
@@ -96,6 +104,7 @@
    "out": 19,
    "swap": 0,
    "stale": true,
+   "detail": "~1.1 km",
    "edge": 79
   },
   {
@@ -106,6 +115,7 @@
    "out": 14,
    "swap": 0,
    "stale": true,
+   "detail": "~1.1 km",
    "edge": 46
   }
  ],
