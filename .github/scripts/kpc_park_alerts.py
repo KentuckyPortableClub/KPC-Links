@@ -293,6 +293,14 @@ def lbl_alerts():
     # Nothing matched. Say enough about what the page actually looks like to fix the reader without
     # guessing, but keep it to one line and never print the page itself.
     if os.environ.get('LBL_LOOK') == '1':
+        # The alerts ARE in this page (Brandon confirmed by eye, 21 Oct). Show the markup around a known one
+        # so the reader can be written against what is really there rather than guessed at.
+        for probe in ('Energy Lake Road', 'Fort Henry Trail', 'temporarily closed'):
+            i = html.find(probe)
+            if i > 0:
+                notice('Park alerts', f'LBL around "{probe}": '
+                       + re.sub(r'\s+', ' ', html[max(0, i - 420):i + 160])[-620:])
+                break
         heads = [clean(re.sub(r'<[^>]+>', ' ', m.group(1)), 90)
                  for m in re.finditer(r'<h[12][^>]*>(.*?)</h[12]>', html, re.S)]
         heads = [h for h in heads if h]
