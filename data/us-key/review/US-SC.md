@@ -1,10 +1,12 @@
 # SC: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **148 of 167** parks joined to official land (same name + same kind of place). **4** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **148 of 167** parks joined to official land (same name + same kind of place). **6** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-2887** Calhoun Falls State Park (State Park) → Calhoun Falls Wildlife Management Area (~426 ac, same name, different kind of place)
+- **US-3874** H. Cooper Black Jr. Memorial State Recreation Area (State Recreation Area) → Sand Hills State Forest (~358 ac, the POTA pin is inside it (different name))
+- **US-8145** McCalla Wildlife Management Area (Wildlife Management Area) → Richard B. Russell Recreation Area (~27,763 ac, the POTA pin is inside it (different name))
 - **US-9203** Palmetto State Trail (State Trail) → Francis Marion National Forest (~262,712 ac, the POTA pin is inside it (different name))
 - **US-9218** Liberty Hill Wildlife Management Area (Wildlife Management Area) → Catawba-Pee Dee Region - Liberty Hill (~1,630 ac, similar name)
 - **US-9759** May Forest State Park (State Park) → Fort Johnson Marine Resources Center (~98 ac, the POTA pin is inside it (different name))
@@ -21,9 +23,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **148 of 167** parks joined
 - US-13257 Coosawhatchie Heritage Preserve (Heritage Preserve)
 - US-2892 Devil's Fork State Park (State Park)
 - US-3872 Charles Towne Landing State Historic Site (State Historic Site)
-- US-3874 H. Cooper Black Jr. Memorial State Recreation Area (State Recreation Area)
 - US-4577 Overmountain Victory National Historic Trail (National Historic Trail)
-- US-8145 McCalla Wildlife Management Area (Wildlife Management Area)
 - US-8148 Lighthouse Inlet Heritage Preserve (Heritage Preserve)
 - US-9212 Tall Pines Wildlife Management Area (Wildlife Management Area)
 - US-9227 Nine Times Wildlife Management Area (Wildlife Management Area)
