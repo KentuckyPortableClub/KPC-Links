@@ -133,7 +133,8 @@ Brandon: "lay out is not bad… pretty plain but I know we going make it look be
 - O9. **SPOTS: the real sources** (POTA, SOTA, WWFF, DX cluster, RBN) + filter by TIME (age) and FREQUENCY range. (Step 4, already Opus's.)
 - O10. **APRS: satellite-style map** (aerial tiles when online; plain offline map stays).
 - O11. **APRS BEACON TYPES:** fixed every N min, plus AUTO 'smart beaconing' when mobile (by speed + turns).
-- O12. 'BACKUP' wording: Brandon didn't get 'back up a station' — call it **'Save my settings + log to a file'** with a one-line help.
+- O12. 'BACKUP': Brandon 'not sure if log + setting is useful?' → keep it but move it to the BOTTOM of STATION as **'Save my settings + log to a file'** ('for a new phone, or a safety copy; phone and PC already share the log').
+- O8 (Brandon 6:09 PM): on the PC the pack SAVED but there is nowhere to open it → a PARKS map screen. O3 confirmed: spots to the RIGHT of the log on tablet + PC.
 Answers given: HF APRS = 30 m 10.1476 MHz 300 bd (a little on 20 m 14.105; nearly all HF APRS is 30 m). Look polish at the end.
 
 ## WHERE WE STOPPED (update after every session)
