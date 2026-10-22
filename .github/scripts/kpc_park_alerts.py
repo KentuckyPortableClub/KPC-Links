@@ -247,17 +247,23 @@ def lbl_alerts():
         page = ''
     for m in re.finditer(r'jet-listing-dynamic-field__content"?\s*>\s*<p>(.*?)</p>', page, re.S):
         txt = clean(re.sub(r'<[^>]+>', ' ', m.group(1)), 600)
+        # Most carry their date up front; some do not, so those are taken on the words instead - but only
+        # when they actually read like a closure, to keep the page's other text out.
         d = re.match(r'(\d{1,2}/\d{1,2}/\d{4})\s*[-\u2013]\s*(.+)', txt)
-        if not d:
+        if d:
+            when, what = d.group(1), d.group(2).strip()
+        elif re.search(r'\b(clos|reopen|restrict|detour|damag|impass|out of service|unavailable)', txt, re.I):
+            when, what = '', txt.strip()
+        else:
             continue
-        when, what = d.group(1), d.group(2).strip()
-        if len(what) < 20:
+        if len(what) < 25:
             continue
-        key = re.sub(r'[^a-z0-9]+', '-', (when + '-' + what[:40]).lower()).strip('-')[:60]
+        key = re.sub(r'[^a-z0-9]+', '-', ((when or 'x') + '-' + what[:40]).lower()).strip('-')[:60]
         # a notice asking for comment or announcing a plan is not a closure
         routine = bool(re.search(r'public notice|seeking|comment period|readiness training|proposal',
                                  what, re.I))
-        add(key, what[:150], f'{when} — {what}', 'https://www.landbetweenthelakes.us/alerts/')
+        add(key, what[:150], (f'{when} — {what}' if when else what),
+            'https://www.landbetweenthelakes.us/alerts/')
         if routine:
             out['lbl-' + re.sub(r'[^a-z0-9\-]+', '', key)[:60]]['routine'] = True
     if out:
