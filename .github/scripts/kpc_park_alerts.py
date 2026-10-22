@@ -197,6 +197,36 @@ def lbl_alerts():
     """
     out = {}
 
+    # The Forest Service runs LBL, so it has a unit page on fs.usda.gov in the same shape as the Daniel Boone
+    # one we already read. That is the route to prefer: it is server-rendered and we know the markup. The
+    # landbetweenthelakes.us site is kept below as a fallback, but its own alerts list is loaded by a script
+    # and is not in the page source, so it finds nothing (checked 21 Oct 2026).
+    for code in ('lbl', 'landbetweenthelakes'):
+        try:
+            fshtml = fetch(f'https://www.fs.usda.gov/alerts/{code}/alerts-notices', timeout=90)
+        except Exception:  # noqa: BLE001
+            continue
+        n = 0
+        for m in re.finditer(r'<li class="usa-card[^"]*wfs-alert-flag ([a-z\-]+)">(.*?)</li>', fshtml, re.S):
+            level, block = m.group(1), m.group(2)
+            head = re.search(r'<h3[^>]*>\s*<a href="([^"]+)"[^>]*>\s*<span>(.*?)</span>', block, re.S)
+            body = re.search(r'<div class="usa-card__body">(.*?)</div>', block, re.S)
+            if not head:
+                continue
+            path = head.group(1)
+            out['lbl-' + re.sub(r'[^a-z0-9\-]+', '', path.rstrip('/').split('/')[-1].lower())[:60]] = {
+                'who': 'Land Between the Lakes',
+                'title': clean(head.group(2), 160),
+                'text': clean(body.group(1) if body else ''),
+                'link': 'https://www.fs.usda.gov' + path,
+                'routine': level in ('information', 'fire-restriction'),
+                'refs': ['US-3792'],
+            }
+            n += 1
+        if n:
+            notice('Park alerts', f'Land Between the Lakes: {n} alert(s) from the Forest Service page')
+            return out
+
     def add(key, title, text, link):
         title = clean(title, 160)
         if not title:
