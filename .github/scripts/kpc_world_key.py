@@ -36,6 +36,7 @@ EEA = 'https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/'
 EU = ('PL', 'ES', 'FR', 'CH', 'AT', 'NL', 'PT', 'SE', 'CZ', 'SI', 'NO', 'RO', 'IT', 'BE', 'DK', 'FI', 'HU', 'SK', 'HR', 'IE', 'LT', 'LV', 'EE', 'LU')   # Oct 19 PM: + the other Latin-alphabet EEA countries   # Oct 19: the next 8 busiest POTA programs (NO has no Natura 2000, CDDA only)
 # Countries where the official names are written differently from POTA's, so a pin inside one area is the join
 # (Oct 21: Japan had 30,420 areas loaded and only 102 parks joined because the names never matched).
+NAME_JOIN = (os.environ.get('NAME_JOIN') or '1') != '0'
 PIN_JOIN = {x.strip().upper() for x in (os.environ.get('PIN_JOIN') or 'JP').split(',') if x.strip()}
 for _c in EU:
     SRC[_c] = [('EEA Natura 2000', 'arcgis', EEA + 'Natura2000Sites/MapServer/2', [f"MS='{_c}'", f"SITECODE LIKE '{_c}%'"]),
@@ -681,6 +682,17 @@ for cc in COUNTRIES:
                 else: continue
                 c.append([r['id'], r['n'], r['src'], why])
             c = sorted(c, key=lambda q: (q[3] != 'similar name', q[3] != 'same name, different kind of place'))[:6]
+        # NAME_JOIN (Oct 21): POTA often writes the kind onto the end of the official name - 'Nemuno delta
+        # Regional Park' for an area simply called 'Nemuno delta'. norm() already strips the generic words, so
+        # these names DO agree; the only thing keeping them out of the join is that the KIND did not match.
+        # Take them when every same-name candidate points at one and the same official area; where two
+        # different places share a name, leave it for a person. Measured across the saved keys before turning
+        # it on: 600 of 6,850 joined, 44 left alone as ambiguous.
+        if not m and c and NAME_JOIN:
+            sn = [x for x in c if x[3] == 'same name, different kind of place']
+            if sn and len({str(x[1]).strip().lower() for x in sn}) == 1:
+                m = [[x[0], x[1], x[2], 'same name (POTA writes the kind into the name)'] for x in sn]
+                c = [x for x in c if x not in sn]
         parks[ref] = {'n': name, 't': typ, 'm': m, 'c': c}
     cnt = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
            'none': sum(1 for p in parks.values() if not p['m'] and not p['c']), 'areas': len(recs)}
