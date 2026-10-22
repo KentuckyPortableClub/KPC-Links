@@ -57,9 +57,18 @@ GEN = (r"state habitat area|habitat area|mitigation park wildlife and environmen
        r"state beach|state seashore|national wildlife refuge|national recreation area|national historical park|national historic site|"
        r"national park|national forest|national grassland|national monument|national seashore|national lakeshore|national battlefield|"
        r"national military park|national preserve|national river|state park|state forest|management area|wma|nwr|nra|nca|na|wa|sp|sf|sgl|state|number|no|the|of|and")
-ABBR = {'sulphur': 'sulfur', 'vehicular': 'vehicle', 'recreational': 'recreation', '1': 'one', '2': 'two', '3': 'three', '4': 'four', '5': 'five', '6': 'six', '7': 'seven', '8': 'eight', '9': 'nine', '10': 'ten', '11': 'eleven', '12': 'twelve', 'col': 'colonel', 'sgt': 'sergeant', 'mt': 'mount', 'ft': 'fort', 'st': 'saint', 'pt': 'point', 'lk': 'lake', 'cr': 'creek', 'mtn': 'mountain'}
+ABBR = {'sulphur': 'sulfur', 'vehicular': 'vehicle', 'recreational': 'recreation', '1': 'one', '2': 'two', '3': 'three', '4': 'four', '5': 'five', '6': 'six', '7': 'seven', '8': 'eight', '9': 'nine', '10': 'ten', '11': 'eleven', '12': 'twelve', 'col': 'colonel', 'sgt': 'sergeant', 'mt': 'mount', 'ft': 'fort', 'st': 'saint', 'pt': 'point', 'lk': 'lake', 'cr': 'creek', 'mtn': 'mountain',
+        # Oct 22: agency short forms, expanded so the generic-word strip removes them. Colorado Parks & Wildlife writes
+        # 'Flagler Reservoir SWA' for PAD-US's 'Flagler Reservoir State Wildlife Area'; unexpanded, the two read as two places
+        'swa': 'state wildlife area', 'sra': 'state recreation area', 'nca': 'national conservation area',
+        'nwr': 'national wildlife refuge', 'srma': 'special recreation management area', 'sna': 'state natural area',
+        'sfu': 'state fish hatchery', 'historical': 'historic'}   # Colorado Parks & Wildlife 'Rifle Falls SFU' = Rifle Falls State Fish Hatchery
 def norm(s, drop1=False):
     s = str(s or '')
+    # Oct 22: a named piece of one area is still that area - 'Cherokee SWA - Lone Pine Unit', 'Roaring Fork SWA -
+    # Wheeler Parcel', 'Dolores River Canyon, Zone 3'. Drop the piece's own name after the dash or comma. Done FIRST,
+    # while the dash is still a dash (it becomes a space a few lines down).
+    s = re.sub(r'\s+[-–,]\s+[\w .\']*?\b(unit|parcel|tract|zone|addition|annex)\b.*$', ' ', s, flags=re.I)
     s = re.sub(r'^([A-Za-z-]+) \(([^)]+)\)', r'\2 \1', s)   # 'Busch (August A.) Memorial' = 'August A. Busch Memorial'
     s = re.sub(r'&', ' and ', s.lower()).replace('-', ' ')
     s = re.sub(r'\(.*?\)', ' ', s)                       # '(2021 Addition)'
@@ -68,7 +77,7 @@ def norm(s, drop1=False):
     s = re.sub(r'\b([a-z])\b(?:\s+(?=[a-z]\b))', r'\1', s)  # initials: 'm t s u' = 'mtsu', 'c r' = 'cr'
     s = re.sub(r'^[a-z]{2} (\d)', r'\1', s)                # 'PA 332 State Game Land' = 'State Game Land 332'
     s = re.sub(r'\b0+(\d)', r'\1', s)                     # 'Game Land 013' = 'Game Lands 13'
-    s = re.sub(r'\b(unit|tract|parcel)\s+[0-9ivx]+\b', ' ', s)
+    s = re.sub(r'\b(unit|tract|parcel|zone)\s+[0-9ivx]+\b', ' ', s)
     s = ' '.join(ABBR.get(w, w) for w in s.split())
     _first = s.split()[0] if s.split() else ''
     s = re.sub(r'\b(' + GEN + r')\b', ' ', s)
@@ -114,7 +123,7 @@ def same_name(a, b):
     return len(sa) >= 8 and len(sb) >= 8 and not re.search(r'\d', sa + sb) and _ed1(sa, sb)   # one-letter typos in PAD-US ('Horshoe', 'Morraine')
 
 
-SOFT = {'preserve', 'reserve', 'beach', 'complex', 'game', 'mua', 'fwma', 'ca', 'pas', 'tract', 'tracts', 'addition', 'unit', 'area', 'lake', 'pond', 'ponds', 'reservoir',
+SOFT = {'preserve', 'reserve', 'beach', 'complex', 'game', 'mua', 'fwma', 'ca', 'pas', 'tract', 'tracts', 'addition', 'unit', 'area', 'lake', 'lakes', 'pond', 'ponds', 'reservoir',
         'park', 'forest', 'center', 'centre', 'site', 'lands', 'land'}
 def _soft(x): return ' '.join(w for w in x.split() if w not in SOFT and not re.fullmatch(r'(19|20)\d\d', w))
 
@@ -425,6 +434,82 @@ def extra_state(st, have):
     return out
 
 
+# ------------------------------------------------------------------------------------------------ the shared scoring
+# Oct 22 (Fable's review): one weighing of the evidence for every country, in kpc_match.py. This is the US side of it:
+# it READS the names the US way and hands kpc_match plain facts. It runs in SHADOW next to the matcher above - its
+# verdict is recorded wherever it disagrees, nothing it says changes a join - until the disagreements have been read.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import kpc_match as KM  # noqa: E402
+
+
+def _apart(b1, b2, pad=0.1):
+    return b1[2] + pad < b2[0] or b2[2] + pad < b1[0] or b1[3] + pad < b2[1] or b2[3] + pad < b1[1]
+
+
+def name_clusters(recs):
+    """How many separate PLACES carry each name in this state. A long area in many parcels (Curecanti NRA runs
+    sixty-odd km of river) is one place if its parcels link up; two Beaver Creeks a county apart are two."""
+    byname = {}
+    for a in recs:
+        a['_nn'] = norm(a.get('Unit_Nm') or a.get('Loc_Nm') or '')
+        byname.setdefault(a['_nn'], []).append(a)
+    out = {}
+    for nn, rs in byname.items():
+        par = list(range(len(rs)))
+        def f(i):
+            while par[i] != i: par[i] = par[par[i]]; i = par[i]
+            return i
+        for i in range(len(rs)):
+            for j in range(i + 1, len(rs)):
+                if not _apart(rs[i]['_bb'], rs[j]['_bb']): par[f(i)] = f(j)
+        out[nn] = len({f(i) for i in range(len(rs))})
+    return out
+
+
+def score_park(name, typ, la, lo, recs, clusters):
+    """The shared module's verdict for one park: ('join'|'check'|'none', best_group, runner_group)."""
+    kp = kinds(name) | kinds(typ)
+    cands = []
+    for a in recs:
+        if la is not None and not near(la, lo, a['_bb'], .6): continue
+        nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
+        if KM.is_admin(nm) or KM.is_admin(a.get('Loc_Nm')): continue          # an office boundary is never a park
+        ak = a['_k'] if kinds(nm) else set()         # a kind that came only from a designation code says nothing
+        kind_ok = same_kind(kp, ak) and ('nfh' in kp) == ('nfh' in ak) and \
+            bool(re.search(r'\btrail\b', name, re.I)) == bool(re.search(r'\btrail\b', nm, re.I))
+        # the SAME name reads identically; one that only STARTS the same way is similar words ('Colorado River' /
+        # 'Colorado River Island', 'Dallas County' / 'Dallas County Public Fishing Lake')
+        def same(x): return bool(x) and (norm(name) == norm(x) or exact_name(name, x))
+        ex = same(nm) or same(a.get('Loc_Nm'))
+        wd = (not ex) and bool(same_words(name, nm, kp, ak) or same_name(name, nm)
+                               or (a.get('Loc_Nm') and same_name(name, a['Loc_Nm'])))
+        holds = la is not None and near(la, lo, a['_bb'], 0) and KM.inside(la, lo, a['_g'])
+        if not (ex or wd or holds): continue
+        cands.append({'a': a, 'kind_ok': kind_ok, 'side_ok': _side(name) == _side(nm), 'name_exact': ex,
+                      'name_unique': clusters.get(a.get('_nn'), 1) == 1, 'name_words': wd,
+                      'pin': (la, lo) if la is not None else None, 'g': a['_g'], 'acres': a.get('GIS_Acres') or 0})
+        # PIN_JOIN stays off in the US: the names CAN be read here, and a pin alone mostly finds the forest around
+        # the park (Brainard Lake Recreation Area -> all of Roosevelt National Forest, Oct 22)
+    for c in cands:
+        c['pts'], c['why'] = KM.score(c)
+    par = list(range(len(cands)))
+    def f(i):
+        while par[i] != i: par[i] = par[par[i]]; i = par[i]
+        return i
+    for i in range(len(cands)):
+        for j in range(i + 1, len(cands)):
+            a1, a2 = cands[i]['a'], cands[j]['a']
+            named = (cands[i]['name_exact'] or cands[i]['name_words']) and (cands[j]['name_exact'] or cands[j]['name_words'])
+            # one PLACE: the same name and linked, or overlapping on the ground and both matching the park's name
+            # (PAD-US's 'Flagler Reservoir State Wildlife Area' and Colorado's own 'Flagler Reservoir SWA')
+            if (a1.get('_nn') == a2.get('_nn') and not _apart(a1['_bb'], a2['_bb'])) or (named and not _apart(a1['_bb'], a2['_bb'], .05)):
+                par[f(i)] = f(j)
+    byg = {}
+    for i, c in enumerate(cands): byg.setdefault(f(i), []).append(c)
+    G = [(max(x['pts'] for x in g), max(g, key=lambda x: x['pts'])['why'], g) for g in byg.values()]
+    return KM.decide(G)
+
+
 def cache_file(st): return CACHE / f'US-{st}.json.gz'
 
 
@@ -508,6 +593,7 @@ def run(st):
         used_detail = DETAIL
         if CMODE in ('use', 'refresh'): save_cache(st, recs, seen)
     parks, used = {}, set()
+    clusters = name_clusters(recs)
     for ref, r in sorted(P.items()):
         name, typ, la, lo = r[0], r[2] if len(r) > 2 else '', r[5] if len(r) > 5 else None, r[6] if len(r) > 6 else None
         if la is None and ref in pins(): la, lo = pins()[ref]
@@ -549,6 +635,19 @@ def run(st):
                 site = sorted(c, key=lambda x: x[2])[:2]; c = []
             if ov.get('site'): site, c = sorted(c, key=lambda x: x[2])[:2] or site, []
         for x in m: used.add(x[0])
+        # SHADOW: what the shared scoring says, recorded only where it disagrees with the join above
+        shadow = None
+        if not (ov.get('join') or any(x[3] == 'reviewed' for x in m)):        # a person's decision is never second-guessed
+            try:
+                v, best, runner = score_park(name, typ, la, lo, recs, clusters)
+                ids_now = {str(x[0]) for x in m}
+                ids_new = {_oid(c['a']) for c in best[2]} if (best and v == 'join') else set()
+                if bool(ids_now) != (v == 'join') or (ids_now and ids_new and not ids_now & ids_new):
+                    shadow = {'v': v, 'pts': best[0] if best else None, 'why': best[1] if best else [],
+                              'to': (best[2][0]['a'].get('Unit_Nm') or best[2][0]['a'].get('Loc_Nm')) if best else None,
+                              'vs': ((runner[2][0]['a'].get('Unit_Nm') or '') + f' ({runner[0]})') if runner else None}
+            except Exception as e:  # noqa: BLE001
+                shadow = {'v': 'error', 'why': [str(e)[:120]]}
         # IS THE BOUNDARY WHERE IT SHOULD BE? (Brandon Oct 21: 'check see if the boundaries are where they
         # supposed to be'.) A name can match confidently and still be the wrong place, and until now nothing
         # tested that - a joined park was simply counted as a success. So: does the park's own pin actually
@@ -564,6 +663,7 @@ def run(st):
                 why = ('no shape to check against' if not shaped else
                        'edge' if any(near(la, lo, a['_bb'], .02) for a in shaped) else 'well outside')
                 parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda x: -x[2]), 'c': c, 'far': why}
+                if shadow: parks[ref]['shadow'] = shadow
                 # THE ONE THAT CAN BE FIXED AUTOMATICALLY: is there another area with the SAME NAME that
                 # does contain the pin? Then we joined the wrong one of two places sharing a name, and the
                 # right one is right here. Recorded, not acted on, until a person has looked at a few.
@@ -578,6 +678,7 @@ def run(st):
                 if site: parks[ref]['a'] = site
                 continue
         parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda x: -x[2]), 'c': c}
+        if shadow: parks[ref]['shadow'] = shadow
         if site: parks[ref]['a'] = site
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
@@ -587,7 +688,11 @@ def run(st):
               'pin_well_outside': sum(1 for p in parks.values() if p.get('far') == 'well outside'),
               'detail': used_detail,
               'pin_no_shape': sum(1 for p in parks.values() if p.get('far') == 'no shape to check against'),
-              'pin_swap': sum(1 for p in parks.values() if p.get('swap'))}
+              'pin_swap': sum(1 for p in parks.values() if p.get('swap')),
+              # the shared scoring, in shadow: how often it would have decided differently
+              'shadow_demote': sum(1 for p in parks.values() if p.get('m') and (p.get('shadow') or {}).get('v') in ('check', 'none')),
+              'shadow_add': sum(1 for p in parks.values() if not p.get('m') and (p.get('shadow') or {}).get('v') == 'join'),
+              'shadow_other_place': sum(1 for p in parks.values() if p.get('m') and (p.get('shadow') or {}).get('v') == 'join')}
     out = {'updated': time.strftime('%Y-%m-%d'), 'st': st, 'note': 'Built by .github/scripts/kpc_us_key.py from USGS PAD-US (fed + state fee land) and POTA. m = joined (same name + same kind), c = check by hand (NOT joined).',
            'counts': counts, 'parks': parks, 'nonum': nonum[:300]}
     # plain-words review page for this state (GitHub shows .md files nicely)

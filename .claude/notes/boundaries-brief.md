@@ -315,3 +315,51 @@ do not hold:
 4. In it: PIN_JOIN everywhere with smallest-fitting-kind, many-to-one demotion, size-normalised distance,
    name uniqueness, the strong-token test, and the broadened swap.
 5. County only if 4 still leaves a gap that geometry cannot close.
+
+---
+
+## What got built (Opus, 22 Oct, morning) — the agreed order, steps 1–3
+
+**1. Saved outlines + fetch split from match.** `kpc_us_key.py` has `GEO_CACHE_MODE` (`off` default = exactly as
+before; `use`; `refresh`; `only` = never touch the network). Outlines are saved at **~110 m** (`GEO_DETAIL=0.001`)
+as gzip files on the **`boundary-cache` release** (all 50 states ≈ 35 MB), never in the repo (`cache/` is
+git-ignored). `kpc-geo-cache.yml` refreshes them monthly, six states at a time — the first full fetch took about
+an hour and a quarter. `kpc-key-measure.yml` rebuilds every key from the saved outlines with **no network: Colorado
++ Alabama in 20 seconds** against ~22 minutes live, and reports joins gained/lost — measure before enabling.
+Saved outlines can be pulled into a Claude session with `gh api -H 'Accept: application/octet-stream'
+repos/…/releases/assets/<id>` (the `gh release download` route is blocked by the session proxy).
+- FOUND while building it: every live run had fetched outlines simplified to **0.01° ≈ 1.1 km** — wider than many
+  of the parks. Finer outlines cut "pin outside" by about a fifth (CO 149→123, AL 55→42), NOT most of it as first
+  claimed. The rest is POTA's pins: of Colorado's 123 outside, 41 are within 100 m (car parks, gates) and the
+  furthest are right by name (Vega State Park's pin is 7.9 km off; Pike National Forest's 18.8 km, at the office).
+- FOUND: `kpc-boundary-check.yml` had passed its states as words after the script name, which the script ignores —
+  it was quietly working through every state alphabetically. Fixed (they go in `STATES`).
+
+**2. Golden cases.** `tests/match_cases.json` (each a real place, with its story) + `tests/run_match_tests.py`, no
+network. **`kpc_us_key.py` runs them on start-up and writes NO keys if any is wrong.** Every rule was broken on
+purpose to prove a case catches it — which showed the 22 Oct Upper/Lower White Oak Lake fix had gone into the WRONG
+function: the join really came through `same_words` ('white oak lake' fits inside 'upper white oak lake'). Fixed
+there, and the whole yes/no decision now lives in ONE function, **`join_how()`**, called by `run()` and by the tests,
+so a test can never again check a path the matcher does not take.
+
+**3. `kpc_match.py` — one weighing of the evidence**, in SHADOW. Each key script still reads names its own way and
+hands over facts; the module weighs them. Tuned against measurement on CO + AL (not guessed):
+- pin **inside** +3; pin **at the edge** (≤250 m or half the area's width) +2; same name +2; **only place with
+  that name** (its parcels link up into one cluster) +2; similar words +1; **pin far away costs nothing** unless it
+  is absurd (>10 widths and >20 km, −3) — because POTA's pins can be kilometres wrong
+- join at **4**, and **2 clear of the next place that also matches by name** (a place that merely holds the pin is
+  not a rival — Fort Lyon SWA kept losing to the reservoir around it)
+- a BLM **field office / ranger district** is never a candidate (the Alaska Beaver Creek → 'Eastern Interior Field
+  Office' mistake); Upper/Lower/North/South mismatch goes to a person, never joined
+- **PIN_JOIN stays OFF in the US** — the names can be read here, and a pin alone mostly found the forest around a
+  park (Brainard Lake Recreation Area → all of Roosevelt National Forest). It is for unreadable names abroad.
+- "starts the same way" is similar words, not the same name ('Colorado River' / 'Colorado River Island';
+  'Dallas County WMA' would otherwise have joined 'Dallas County Public Fishing Lake')
+Reading fixes it needed, all in the US script and all passed the golden cases: agency short forms expanded (SWA,
+SRA, NCA, NWR, SRMA, SNA, SFU), 'Historical' = 'Historic', 'Lakes' soft like 'Lake', and a named piece of an area
+('– Lone Pine Unit', '– Wheeler Parcel', ', Zone 3') is that area.
+**Result on the tuning states:** Colorado 252 of 253 joins agree; Alabama 104 of 106 — and Alabama's two are the
+shadow being RIGHT: **Mobile-Tensaw Delta WMA is currently joined to Upper Delta WMA, a different place**, and
+Yates Lake vs Yates Lake **West** is worth a person's look.
+Shadow verdicts are written into each key as `shadow` ONLY where they disagree, with `counts.shadow_demote /
+shadow_add / shadow_other_place`. **Nothing the shadow says changes a join.**
