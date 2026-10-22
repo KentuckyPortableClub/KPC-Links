@@ -231,7 +231,7 @@ def who_list(gid, watch):
             seen[a['id']]['rooms'].add(name)
     if not seen:
         return 'Nobody has posted in the watched rooms lately.'
-    L = ['**Who has posted lately**', '']
+    L = []
     for uid, v in sorted(seen.items(), key=lambda kv: (kv[1]['who'] or '').lower()):
         mem = member_of(gid, uid)
         roles = len(mem.get('roles') or []) if isinstance(mem, dict) else 0
@@ -301,9 +301,12 @@ def main():
         return
 
     # ------------------------------------------------------------ who has posted lately
-    if MODE == 'who':
-        text = who_list(gid, watch)
-        print(text) if DRY else say('Who has posted lately', text, 0x5865F2)
+    if MODE in ('who', 'check'):
+        if MODE == 'check':
+            notice('Check only: nothing posted to any room.')
+        else:
+            text = who_list(gid, watch)
+            print(text) if DRY else say('Who has posted lately', text, 0x5865F2)
         # Also report where Discord drops its "somebody joined" message, so the welcome lands in the right room.
         g = call(f'guilds/{gid}')
         sysid = g.get('system_channel_id') if isinstance(g, dict) else None
