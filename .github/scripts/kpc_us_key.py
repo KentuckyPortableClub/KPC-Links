@@ -325,7 +325,7 @@ def fws_state(st, have):
         try:
             j, pg = fetch_geo(FWS, q)
         except Exception as e:  # noqa: BLE001
-            notice(f'US key {st}', f'USFWS land not read ({e})'); return out
+            notice(f'US key {st}', f'USFWS land not read ({e})'); FAILED_READ.add(st); return out
         fs = j.get('features', [])
         for f in fs:
             a = f.get('attributes') or {}; nm = (a.get('ORGNAME') or '').title()
@@ -397,6 +397,12 @@ def resolve(pre, url, nf, af):
     notice('US key layer found', f'{pre}: {svc}/{lid} [{pick[0].get("name")}] name={name} acres={acres} oid={oid}')
     return RESOLVED[pre]
 XCOUNT = {}
+# Oct 22 (Brandon: 'keep the last good outlines'): a state whose maps did not all answer this run (a time-out, a server
+# down for the night) must not lose the parks that map would have given it. Such a state uses its saved copy instead,
+# and the half-read copy is never saved over the good one.
+FAILED_READ = set()
+
+
 def extra_state(st, have):
     box = st_box(st)
     if not box: return []
@@ -415,7 +421,7 @@ def extra_state(st, have):
             try:
                 j, pg = fetch_geo(url, q)
             except Exception as e:  # noqa: BLE001
-                notice(f'US key {st}', f'{label} not read ({e})'); break
+                notice(f'US key {st}', f'{label} not read ({e})'); FAILED_READ.add(st); break
             fs = j.get('features', [])
             for f in fs:
                 a = {k.lower(): v for k, v in (f.get('attributes') or {}).items()}
@@ -582,7 +588,13 @@ def run(st):
         recs += fws_state(st, {norm(a.get('Unit_Nm') or '') for a in recs if a.get('Mang_Name') == 'FWS'})
         recs += extra_state(st, {(norm(a.get('Unit_Nm') or ''), frozenset(a['_k'])) for a in recs})
         used_detail = DETAIL
-        if CMODE in ('use', 'refresh'): save_cache(st, recs, seen)
+        old = load_cache(st) if st in FAILED_READ else None
+        # only when this read actually came back SHORT (a source that fails every time is already missing from the
+        # saved copy too, and must not freeze the state on an old copy forever)
+        if old is not None and len(recs) < .97 * len(old[0]):
+            notice(f'US key {st}', f'a map did not answer ({len(recs)} areas read, {len(old[0])} saved), so the saved copy was used (nothing dropped)')
+            recs, seen, used_detail = old; CACHE_USED.append(st)
+        elif CMODE in ('use', 'refresh') and not (st in FAILED_READ and old is None and cache_file(st).exists()): save_cache(st, recs, seen)
     parks, used = {}, set()
     clusters = name_clusters(recs)
     for ref, r in sorted(P.items()):
