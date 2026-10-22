@@ -831,12 +831,17 @@ for cc in COUNTRIES:
                 for r in byn.get((x[2], x[1]), []):
                     if la and lo and r.get('_bb') and not near(la, lo, r['_bb'], .6): continue
                     for ring in (r.get('_r') or []):
-                        k = max(1, len(ring) // 150)
-                        pts = [[round(q[0], 4), round(q[1], 4)] for q in ring[::k]]
-                        if len(pts) >= 3: polys.append(pts + [pts[0]])
+                        if len(ring) >= 3: polys.append(ring)
             if polys:
+                # light enough for a phone: the 12 biggest pieces, 50 points each (a guide outline, labelled as saved by KPC)
+                def _area(rg):
+                    xs, ys = [q[0] for q in rg], [q[1] for q in rg]; return (max(xs) - min(xs)) * (max(ys) - min(ys))
+                keep = []
+                for rg in sorted(polys, key=_area, reverse=True)[:12]:
+                    k = max(1, len(rg) // 50); pts = [[round(q[0], 4), round(q[1], 4)] for q in rg[::k]]
+                    if len(pts) >= 3: keep.append(pts + [pts[0]])
                 num = int(re.sub(r'\D', '', ref.split('-', 1)[1]) or 0)
-                shards.setdefault(num // 100, {})[ref] = {'n': mm[0][1], 's': mm[0][2], 'r': polys[:60]}
+                if keep: shards.setdefault(num // 100, {})[ref] = {'n': mm[0][1], 's': mm[0][2], 'r': keep}
         if BD.exists():
             for old_f in BD.glob('*.json'): old_f.unlink()
         if shards:
