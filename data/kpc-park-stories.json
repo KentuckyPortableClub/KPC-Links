@@ -1,0 +1,69 @@
+{
+ "note": "Short, checkable notes about why a park is worth seeing, for the Park of the Week post (Brandon Oct 21: 'park of the week but leave out the bands that work there ...maybe tell a brief history if it has it or why it is a place to see'). NO BANDS, NO ANTENNA ADVICE - the post is about the place. A park is only ever featured if it has an entry here, so the bot can never invent a history. Keep each to two or three plain sentences about things a visitor could check for themselves, and let the park's own page carry the detail. References were resolved against kpc-ky-data.json on 21 Oct 2026, not typed from memory.",
+ "parks": [
+  {
+   "ref": "US-0050",
+   "story": "The longest cave system known anywhere in the world, with well over 400 miles mapped and more found most years. People have been guided through it since the early 1800s, and saltpetre was mined here for gunpowder during the War of 1812. It is a UNESCO World Heritage Site."
+  },
+  {
+   "ref": "US-1277",
+   "story": "The falls throw a moonbow - a rainbow made by moonlight - on clear nights around the full moon. There are only a handful of places in the world where that happens predictably, and this is the best known of them. Worth checking the moon phase before you plan a trip."
+  },
+  {
+   "ref": "US-3792",
+   "story": "A long peninsula of public land between Kentucky Lake and Lake Barkley, left over when the dams went in and the Tennessee and Cumberland were impounded. Families who farmed the land were moved out to create it, which is still remembered locally. There is an elk and bison prairie and a good deal of quiet backcountry."
+  },
+  {
+   "ref": "US-3779",
+   "story": "Ice Age animals - mammoths, mastodons, ground sloths and bison - came to the salt springs here and many died in the soft ground. Bones collected in the 1700s ended up with scientists on both sides of the Atlantic, which is why this is often called the birthplace of American vertebrate paleontology. There is a small bison herd on site today."
+  },
+  {
+   "ref": "US-1256",
+   "story": "The site of the fort Daniel Boone's party built in 1775, one of the first settlements west of the mountains, and of the siege that followed in 1778. The working reconstruction has people doing period crafts through the season."
+  },
+  {
+   "ref": "US-0019",
+   "story": "The natural pass through the Appalachians - used by animals, then by Native peoples, then by a few hundred thousand settlers heading west after the Wilderness Road was cut in 1775. You can stand at the Pinnacle and see Kentucky, Virginia and Tennessee at once."
+  },
+  {
+   "ref": "US-1286",
+   "story": "A sandstone arch about 65 feet high and 78 feet across, in the Red River Gorge country. It has been a state park since the 1920s and there is a skylift if the climb is not appealing."
+  },
+  {
+   "ref": "US-1260",
+   "story": "John James Audubon lived and worked in Henderson for most of the 1810s, and the museum here holds one of the larger collections of his original work anywhere. The woods he walked are still the park's woods, and the bird life is the reason to bring binoculars."
+  },
+  {
+   "ref": "US-3785",
+   "story": "The largest Civil War battle fought in Kentucky, on 8 October 1862. Much of the ground has never been built on, which makes it one of the better preserved battlefields in the country - you can walk the fields where the lines actually stood."
+  },
+  {
+   "ref": "US-1267",
+   "story": "Federal Hill, the house tied to Stephen Foster's song that became the state song. The house tour is the draw, and the grounds are easy walking."
+  },
+  {
+   "ref": "US-1276",
+   "story": "Limestone caves and natural bridges in the same park, with guided tours through X Cave and Cascade Cave. It is also important bat country, so cave tours sometimes close seasonally to protect them - worth checking before you drive."
+  },
+  {
+   "ref": "US-3787",
+   "story": "The home of Cassius Marcellus Clay, who published an anti-slavery paper in Kentucky when that was a dangerous thing to do, and later served as ambassador to Russia. The house is a striking piece of architecture in its own right."
+  },
+  {
+   "ref": "US-1271",
+   "story": "The lake was made when the Corps of Engineers dammed the Salt River in the early 1980s, and the park wraps around it. Quiet, wooded and easy to get to from Louisville or Lexington - which is why the club picked it for the campout."
+  },
+  {
+   "ref": "US-3781",
+   "story": "A five-mile gorge cut through Pine Mountain by the Russell Fork, sometimes called the Grand Canyon of the South. It is one of only a couple of interstate parks in the country, run jointly with Virginia."
+  },
+  {
+   "ref": "US-1264",
+   "story": "Where Boone's Wilderness Road met the Skaggs Trace, so a great many of the settlers who came into Kentucky passed through this ground. There is a working grist mill and a pioneer museum."
+  },
+  {
+   "ref": "US-1288",
+   "story": "Kentucky's first state park, set aside in 1924, on the ridge above Pineville. The chained rock above the town is the local landmark, and the laurel is the reason people come in late spring."
+  }
+ ]
+}
