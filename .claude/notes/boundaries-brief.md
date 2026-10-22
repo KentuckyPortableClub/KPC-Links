@@ -263,3 +263,26 @@ answered at join time. Keep the nightly report for the humans; stop maintaining 
 3. The **golden test file**, before any further rule changes.
 
 Everything else follows from the single scoring module, which is the real fix and a few days' work.
+
+### Speed — Fable, 22 Oct (Brandon: 'Any suggestions on how to speed up the process')
+
+Nearly all the time is **re-downloading the same official geometry every run**. ~11 min a state is PAD-US
+paging; the matching is seconds. In order of effect:
+
+1. **Fetch once, cache, match locally.** Pull each state/country layer one time, simplify (~0.0005°), store
+   compressed as **GitHub release assets** (not in the repo), refresh monthly. A full 50-state rebuild then
+   takes minutes. Everything below depends on this.
+2. **Split fetch from match.** One script does both today, so measuring a rule change costs a 5-hour run —
+   and geometry rules (PIN_JOIN, distance, swap) cannot be measured offline at all because the saved keys
+   keep no shapes. With a cache, a rule is measured in two minutes. This is what makes the single scoring
+   module practical.
+3. **Matrix.** 10 parallel jobs × 5 states, each uploads its key as an artifact, one final job commits.
+   All 50 in one run. (Mostly moot once 1 is done; fixes the four-night crawl now.)
+4. **Skip unchanged states.** Hash the POTA list + source metadata; rebuild only on change. The nightly
+   audit becomes near-free.
+5. **Pull less.** PAD-US `where`: fee land only, plausible designation types only, GIS_Acres ≥ 1. Fewer pages
+   before anything else.
+6. **World: batch Wikidata.** SPARQL `VALUES` with 50 ids per query, cache answers. Already identified as
+   the slow part in the Oct 19 trigger notes.
+
+Do 1 and 2 together; they are the same refactor. 3–6 are each an hour.
