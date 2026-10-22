@@ -8,6 +8,10 @@ on:
     - cron: '5 11,14,17,20,23,2 * * *'
   workflow_dispatch:
     inputs:
+      lbl_look:
+        description: 'Say what the Land Between the Lakes page looks like (for fixing the reader)'
+        type: boolean
+        default: false
       dry_run:
         description: 'Practice run: print what it would say, change nothing'
         type: boolean
@@ -33,6 +37,7 @@ jobs:
           KPC_ADMIN_WEBHOOK: ${{ secrets.KPC_ADMIN_WEBHOOK }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          LBL_LOOK: ${{ inputs.lbl_look && '1' || '' }}
           NPS_API_KEY: ${{ secrets.NPS_API_KEY }}
           DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
         run: python3 .github/scripts/kpc_park_alerts.py || true
