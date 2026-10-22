@@ -5,14 +5,6 @@
   {
    "wf": "kpc-world-key.yml",
    "inputs": {
-    "countries": "BE",
-    "pin_join": "BE"
-   },
-   "why": "Belgium: 107 of 593"
-  },
-  {
-   "wf": "kpc-world-key.yml",
-   "inputs": {
     "countries": "ES DE",
     "pin_join": "ES,DE"
    },
