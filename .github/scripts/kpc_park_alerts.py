@@ -212,7 +212,9 @@ def lbl_alerts():
                 'https://landbetweenthelakes.us/wp-json/wp/v2/posts?per_page=20&search=alert'):
         try:
             rows = json.loads(fetch(url, timeout=60))
-        except Exception:  # noqa: BLE001
+        except Exception as e:  # noqa: BLE001
+            if os.environ.get('LBL_LOOK') == '1':
+                notice('Park alerts', f'LBL api {url.split("?")[0][-28:]}: {str(e)[:90]}')
             continue
         if isinstance(rows, list) and rows:
             for p in rows:
@@ -227,7 +229,9 @@ def lbl_alerts():
     for url in ('https://landbetweenthelakes.us/alerts/feed/', 'https://landbetweenthelakes.us/feed/'):
         try:
             xml = fetch(url, timeout=60)
-        except Exception:  # noqa: BLE001
+        except Exception as e:  # noqa: BLE001
+            if os.environ.get('LBL_LOOK') == '1':
+                notice('Park alerts', f'LBL feed {url[-16:]}: {str(e)[:90]}')
             continue
         items = re.findall(r'<item>(.*?)</item>', xml, re.S)
         if items:
@@ -253,8 +257,19 @@ def lbl_alerts():
         if len(clean(title, 160)) < 12 or '/alerts' not in link and 'landbetweenthelakes' not in link:
             continue
         add(link.rstrip('/').split('/')[-1], title, '', link)
-    notice('Park alerts', f'Land Between the Lakes: {len(out)} alert(s) from the page'
-           if out else 'Land Between the Lakes: the page answered but nothing looked like an alert')
+    if out:
+        notice('Park alerts', f'Land Between the Lakes: {len(out)} alert(s) from the page')
+        return out
+    # Nothing matched. Say enough about what the page actually looks like to fix the reader without
+    # guessing, but keep it to one line and never print the page itself.
+    if os.environ.get('LBL_LOOK') == '1':
+        tags = re.findall(r'<(article|h1|h2|h3|h4)[^>]*class="([^"]{0,70})"', html)
+        notice('Park alerts', f'LBL page {len(html)} chars; headings/articles: '
+               + '; '.join(f'{t}.{c}' for t, c in tags[:12])[:600])
+        links = re.findall(r'href="(https://[^"]*landbetweenthelakes[^"]*/20\d\d/[^"]*)"', html)
+        notice('Park alerts', 'LBL post links: ' + ('; '.join(links[:6])[:500] or 'none found'))
+    notice('Park alerts', 'Land Between the Lakes: the page answered but nothing looked like an alert '
+                          '(may simply be that nothing is closed right now)')
     return out
 
 
