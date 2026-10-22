@@ -166,3 +166,100 @@ releases. Checked, confirmed, written off — those gaps are not for want of loo
 - The audit's "well outside" flag is mostly noise (scattered areas, abbreviations). Is there a better test
   for "this join is wrong" than whether the pin is inside?
 - Anything in the above that looks like it will break at scale, or that you would not have built this way.
+
+---
+
+## Review — Fable, 22 Oct 2026, for Opus
+
+Read quickly at Brandon's request. Same session that wrote the brief, so treat this as a hard second look,
+not an outside one. The recommendations are concrete and each can be measured against the saved keys
+before being switched on, the way NAME_JOIN was.
+
+### The one structural answer to question 1: invert it. Geometry leads, names tie-break.
+
+The brief says name-first was arrived at by accident. It shows. Every confident-wrong-answer in the
+"difficult" list — Refuge Cove, Green River Ferry, Beaver Creek → Beaver Lake, Upper/Lower White Oak — is a
+name match that geometry would have refused in one line. Meanwhile the single rule that *does* lead with
+geometry, PIN_JOIN, produced the best result anywhere (Japan 102→182, check pile 82→2) and is switched on
+for **one country**. That is the finding of the whole brief and it is stated as item 3 of a to-do list.
+
+Replace the pile of special-case rules with **one score per candidate**:
+
+- pin **inside** the candidate: strong
+- pin within a distance scaled by the candidate's size (see below): medium
+- normalised name **exact**: medium — and only strong when that name is **unique** in the country
+- name fuzzy: weak
+- kind mismatch: gate (reject), as now
+- POTA's **state and county** disagree with the candidate's: gate (reject)
+
+Join when the top score clears a threshold **and the runner-up is well behind**. Everything else to the
+check pile with the scores shown. One function, one threshold to tune, measured once.
+
+### Question 2 — the leading-type-word problem: stop guessing by position.
+
+The 22 Oct fix is a positional hack and the brief rightly says it breaks outside English. Drop it for this:
+
+**A match must share at least one STRONG token** — a word that is (a) not in the country's generic list,
+(b) not a bare geographic noun (cove, creek, lake, river, bay, point, mountain, hollow, fork…), and (c) at
+least four letters. "Refuge Cove" vs "Settler's Cove" share only *cove*, which is a geographic noun → reject.
+"Kodiak NWR" vs "Kodiak NWR" share *kodiak* → accept. "Parc national de la Vanoise" vs "Vanoise" share
+*vanoise* → accept, whatever order the words come in. The geographic-noun list is short (~50 words a
+language), stable, and far safer than reasoning about word order. It also kills the Beaver Creek → Beaver
+Lake class outright, because *beaver* alone would pass but *creek* ≠ *lake* is a weak-token mismatch when
+it is the only other thing they share.
+
+### Question 3 — cheap signals being ignored. All of these are already in the data.
+
+1. **County.** POTA's API carries the state and county of every reference. The alerts matcher and the keys
+   ignore it. Beaver Creek Wilderness (Daniel Boone) → Beaver Lake (Anderson County, 150 miles off) dies the
+   instant county is a gate. This is the cheapest, highest-value fix in the whole document.
+2. **Area.** `acres` is stored for every candidate and never used. A "State Park" of 2 acres or 2 million is
+   wrong. Use the kind to set a plausible range and reject outside it.
+3. **Distance normalised by size.** "Edge" is currently a flat ~1 mile. A mile outside a 500,000-acre refuge
+   is nothing; a mile outside a 40-acre SWA is a different place. Use distance ÷ √area.
+4. **Name uniqueness.** Pre-count how many official areas in the country share each normalised name. A name
+   match against a unique name is near-certain; against one of twelve "Beaver Creek"s it is near-worthless.
+   One pass, then it is a number on every candidate.
+5. **Many-to-one.** Two POTA references joined to one polygon (the White Oak Lake case) is a red flag with
+   no false positives worth worrying about. Detect it and demote both. General, trivial, not yet done.
+6. **Nested candidates.** PIN_JOIN gives up when the pin sits inside more than one area. It should prefer
+   the **smallest** candidate of a fitting kind — a pin inside forest > wilderness > trail is the trail.
+
+### Question 4 — a better "this join is wrong" test than pin-inside.
+
+Pin-inside is one-sided: inside means almost certainly right; outside means *unknown*, which is why
+"well outside" is mostly noise. The discriminating question is **"does a different candidate fit better?"**
+— which is the swap test, correctly conceived but too narrow. Extend it from *same name* to *any candidate
+of a fitting kind that contains the pin when the joined one does not*. That catches Beaver Creek Wild and
+Scenic River → "Eastern Interior Field Office" (the river polygon almost certainly contains the pin; the
+office boundary does not). With county and size-normalised distance added, the audit stops needing a human
+to read 41 rows to find 4.
+
+### Question 5 — what breaks at scale.
+
+**Three scripts, three divergent matchers** is the structural fault. NAME_JOIN is world-only; PIN_JOIN is
+Japan-only; Upper/Lower is US-only; the leading-word rule is English-only. Every rule has to be ported by
+hand to the other two, and each port is a chance to get it subtly different. Put the scoring function in
+**one module** (`kpc_match.py`) that all three import; per-country configuration is a generic-word list, a
+geographic-noun list and the source list. Then a rule written once applies everywhere and is measured once.
+
+**No regression test.** Rules are checked by hand in a REPL against whatever cases someone remembers. Keep
+a **golden file** of the known cases — Refuge Cove / Settler's Cove, Kodiak, Upper/Lower White Oak, Green
+River Ferry, Nemuno delta, Camp Robinson WMA, Beaver Creek → Beaver Lake, Lake Mead — with the required
+verdict, and run it on every push. The next rule change will break something old otherwise; it is only a
+matter of which one.
+
+**Measure-before-enable is the best practice in the brief.** Formalise it: a `--dry` flag that reports
+joins gained / demoted per rule against the saved keys. It is already how the good decisions got made.
+
+**The audit should not be a separate pass.** Once pin distance is in the score, "is the join right" is
+answered at join time. Keep the nightly report for the humans; stop maintaining two notions of correct.
+
+### If only three things get done
+
+1. Gate on **county** everywhere. One afternoon, kills a whole class of error.
+2. Turn **PIN_JOIN on everywhere** with the smallest-of-fitting-kind rule, measured first. Biggest lever on
+   the 13,587 "nothing found".
+3. The **golden test file**, before any further rule changes.
+
+Everything else follows from the single scoring module, which is the real fix and a few days' work.
