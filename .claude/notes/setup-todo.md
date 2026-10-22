@@ -72,3 +72,11 @@ STATUS: unconfirmed.
   KPC_ACTIVATIONS_CSV, KPC_GUESTBOOK_CSV, KPC_CWBOARD_CSV, RIDB_API_KEY,
   kpc-gdrive.json clientId (Google Drive backup).
 - GitHub → Settings → Notifications → Actions → 'Only notify for failed workflows' (asked Oct 18; confirm it is ticked).
+
+## Done the evening of Oct 21 2026 (do not redo)
+- **Discord bot permissions**: KPC Website Relay has Send Messages, Manage Messages, Timeout/Kick/Ban Members, and its role sits at position 2 — above KPC Guest, below KPC Member. It was also given View Channel + Read Message History + Send Messages on **#staff-room** (channel permissions are separate from role permissions; `help` failed until that was done).
+- **AutoMod, all four rules**: Block Mention Spam (limit 5, block + alert + 1 h timeout, no exemptions), a custom "Invite links" rule, a custom "Scams" rule, and the two built-ins. The two broad rules exempt **KPC Founder, KPC Member and KPC Website Relay** — the bot's own role is on that list because its welcome message and park cards are link-heavy and the spam filter would eat them. Webhook posts have no role to exempt, so bot rooms are exempted by channel instead.
+- **Moderation page**: verification level Medium, sensitive content filter on for ALL members.
+- **Community server turned on**: rules channel #welcome-and-rules, updates + safety notices to a new #moderator-only, onboarding with a welcome sign and four to-dos, default channels set. The server is **public**.
+- **2FA on Brandon's account**; `APPROVAL_EMAIL` set; GitHub → Settings → Notifications → Actions → 'Only notify for failed workflows' **confirmed ticked**.
+- STILL OPEN: **KPC Founder carries Administrator and Zach, Aaron and Brent all hold it** on a public server. Brandon is deciding between (a) keeping them Founders and requiring 2FA for moderator actions, or (b) a smaller "KPC Mod" role with just Manage Messages + Timeout Members. Note that Administrator also makes them exempt from every AutoMod rule above.
