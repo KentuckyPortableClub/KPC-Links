@@ -183,6 +183,81 @@ def forest_alerts():
     return out if ok else None
 
 
+def lbl_alerts():
+    """Land Between the Lakes (Brandon Oct 21: 'Land Between the Lakes was one put it on the list').
+
+    It is Forest Service ground but it keeps its own website, not the fs.usda.gov alerts page, so it needs its
+    own reader. The site runs on WordPress, which gives three ways in; we try them in order and stop at the
+    first that answers, because a site redesign usually breaks one and not all three:
+      1. the WordPress JSON API, filtered to the alerts category
+      2. the alerts RSS feed
+      3. the alerts page as plain HTML
+    Everything found is pinned to US-3792, the whole recreation area, since that is the reference people
+    activate there. Nothing here is treated as routine: LBL posts alerts sparingly, not a standing list.
+    """
+    out = {}
+
+    def add(key, title, text, link):
+        title = clean(title, 160)
+        if not title:
+            return
+        out['lbl-' + re.sub(r'[^a-z0-9\-]+', '', str(key).lower())[:60]] = {
+            'who': 'Land Between the Lakes', 'title': title, 'text': clean(text),
+            'link': link or 'https://landbetweenthelakes.us/alerts/', 'routine': False,
+            'refs': ['US-3792'],
+        }
+
+    # 1. the WordPress JSON API
+    for url in ('https://landbetweenthelakes.us/wp-json/wp/v2/posts?per_page=20&categories_slug=alerts',
+                'https://landbetweenthelakes.us/wp-json/wp/v2/posts?per_page=20&search=alert'):
+        try:
+            rows = json.loads(fetch(url, timeout=60))
+        except Exception:  # noqa: BLE001
+            continue
+        if isinstance(rows, list) and rows:
+            for p in rows:
+                add(p.get('slug') or p.get('id'),
+                    re.sub(r'<[^>]+>', ' ', str((p.get('title') or {}).get('rendered', ''))),
+                    re.sub(r'<[^>]+>', ' ', str((p.get('excerpt') or p.get('content') or {}).get('rendered', ''))),
+                    p.get('link'))
+            notice('Park alerts', f'Land Between the Lakes: {len(out)} alert(s) from the site API')
+            return out
+
+    # 2. the RSS feed
+    for url in ('https://landbetweenthelakes.us/alerts/feed/', 'https://landbetweenthelakes.us/feed/'):
+        try:
+            xml = fetch(url, timeout=60)
+        except Exception:  # noqa: BLE001
+            continue
+        items = re.findall(r'<item>(.*?)</item>', xml, re.S)
+        if items:
+            for it in items[:20]:
+                t = re.search(r'<title>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?</title>', it, re.S)
+                d = re.search(r'<description>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?</description>', it, re.S)
+                lk = re.search(r'<link>(.*?)</link>', it, re.S)
+                if t:
+                    add(re.sub(r'\W+', '-', t.group(1).lower())[:50], t.group(1),
+                        re.sub(r'<[^>]+>', ' ', d.group(1) if d else ''), lk.group(1).strip() if lk else None)
+            if out:
+                notice('Park alerts', f'Land Between the Lakes: {len(out)} alert(s) from the feed')
+                return out
+
+    # 3. the page itself
+    try:
+        html = fetch('https://landbetweenthelakes.us/alerts/', timeout=90)
+    except Exception as e:  # noqa: BLE001
+        notice('Park alerts', f'Land Between the Lakes did not answer: {str(e)[:160]}')
+        return None
+    for m in re.finditer(r'<h\d[^>]*>\s*<a[^>]*href="([^"]+)"[^>]*>(.*?)</a>', html, re.S):
+        link, title = m.group(1), re.sub(r'<[^>]+>', ' ', m.group(2))
+        if len(clean(title, 160)) < 12 or '/alerts' not in link and 'landbetweenthelakes' not in link:
+            continue
+        add(link.rstrip('/').split('/')[-1], title, '', link)
+    notice('Park alerts', f'Land Between the Lakes: {len(out)} alert(s) from the page'
+           if out else 'Land Between the Lakes: the page answered but nothing looked like an alert')
+    return out
+
+
 # ---------------------------------------------------------------- our parks
 def ky_parks():
     """[(ref, name, short)] for every Kentucky POTA park, so an alert can be pinned to the right park."""
@@ -225,7 +300,10 @@ def _really_ours(phrase, hay, full):
 
 
 def match_parks(alert, parks):
-    """Which of our parks does this alert talk about? Name match only, and only when it is unmistakable."""
+    """Which of our parks does this alert talk about? Name match only, and only when it is unmistakable.
+    A source that already knows (Land Between the Lakes is always US-3792) can pin its own 'refs'."""
+    if alert.get('refs'):
+        return list(alert['refs'])
     hay = ' ' + re.sub(r'\s+', ' ', re.sub(r'[^a-z0-9 ]+', ' ', (alert['title'] + ' ' + alert['text']).lower())) + ' '
     hits = []
     for ref, name, short in parks:
@@ -291,7 +369,7 @@ def main():
 
     live = {}
     broke = False
-    for src in (ky_state_parks, nps_alerts, forest_alerts):
+    for src in (ky_state_parks, nps_alerts, forest_alerts, lbl_alerts):
         got = src()
         if got is None:          # the source itself failed: do not treat its alerts as 'gone'
             broke = True
