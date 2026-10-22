@@ -5,14 +5,6 @@
   {
    "wf": "kpc-world-key.yml",
    "inputs": {
-    "countries": "ES DE",
-    "pin_join": "ES,DE"
-   },
-   "why": "Spain + Germany: the rest of the gap"
-  },
-  {
-   "wf": "kpc-world-key.yml",
-   "inputs": {
     "countries": "FI NO PL",
     "pin_join": "FI,NO,PL"
    },
