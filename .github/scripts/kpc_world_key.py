@@ -624,15 +624,20 @@ for cc in COUNTRIES:
     if recs is None and CMODE == 'only':
         print(f'{cc}: no saved outlines yet; skipped (saved-copy-only run)', flush=True); continue
     if recs is None:
-        recs = []
+        recs, failed = [], False
         for s in SRC.get(cc, []):
             try:
                 if s[1] == 'arcgis_alt' and any(r['src'].startswith('IGN Géoplateforme ZNIEFF') for r in recs): continue   # the same zones already came from IGN
                 got = pull_arcgis(s[0], s[2], s[3] if len(s) > 3 and s[1] != 'arcgisfind' else None) if s[1] in ('arcgis', 'arcgis_alt') else pull_find(s[0], s[2], s[3]) if s[1] == 'arcgisfind' else pull_a10(s[0], s[2]) if s[1] == 'a10' else pull_chshp(s[0], s[2]) if s[1] == 'chshp' else pull_wfs(s[0], s[2], s[3])
                 recs += got; print(f'{cc} {s[0]}: {len(got)}', flush=True)
             except Exception as e:  # noqa: BLE001
-                notice(f'World key {cc}', f'{s[0]} FAILED: {e}')
-        if recs and CMODE in ('use', 'refresh'): wsave(cc, recs)
+                notice(f'World key {cc}', f'{s[0]} FAILED: {e}'); failed = True
+        # Oct 22: a source that did not answer must not cost the country its parks: use the last saved copy instead,
+        # and never save a half-read copy over a good one
+        old = wload(cc) if failed else None
+        if old and len(recs) < .97 * len(old):   # only when the read came back SHORT (see the US key)
+            notice(f'World key {cc}', f'a source did not answer ({len(recs)} areas read, {len(old)} saved), so the saved copy was used (nothing dropped)'); recs = old
+        elif recs and CMODE in ('use', 'refresh'): wsave(cc, recs)
     if not recs: continue
     if cc == 'JP':
         for r in recs:

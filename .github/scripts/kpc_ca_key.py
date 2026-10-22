@@ -276,7 +276,12 @@ if recs is None:
         except Exception as ex: _mores.append(f'{e[0]} FAILED: {ex}')  # noqa: BLE001
     notice('Canada more layers (all)', ' | '.join(_mores))
     notice('Canada extra layers', f'{extra} areas from the provincial + Parks Canada maps' + (' · errors: ' + ' | '.join(_ERR[:12]) if _ERR else ''))
-    if CMODE in ('use', 'refresh'): csave(recs)
+    # Oct 22: a provincial map that did not answer must not cost Canada its parks: use the last saved copy instead,
+    # and never save a half-read copy over a good one
+    old = cload() if (_ERR or any('FAILED' in x for x in _mores)) else None
+    if old is not None and len(recs) < .97 * len(old):   # only when the read came back SHORT (Québec fails most runs)
+        notice('Canada key', f'a map did not answer ({len(recs)} areas read, {len(old)} saved), so the saved copy was used (nothing dropped)'); recs = old
+    elif CMODE in ('use', 'refresh'): csave(recs)
 PRIV = re.compile(r'private|privately|stewardship|ncc \d|nature conservancy', re.I)
 
 
