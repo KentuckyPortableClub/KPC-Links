@@ -451,12 +451,27 @@ def run(st):
                 site = sorted(c, key=lambda x: x[2])[:2]; c = []
             if ov.get('site'): site, c = sorted(c, key=lambda x: x[2])[:2] or site, []
         for x in m: used.add(x[0])
+        # IS THE BOUNDARY WHERE IT SHOULD BE? (Brandon Oct 21: 'check see if the boundaries are where they
+        # supposed to be'.) A name can match confidently and still be the wrong place, and until now nothing
+        # tested that - a joined park was simply counted as a success. So: does the park's own pin actually
+        # fall inside the land we joined it to? 'far' = it does not, and that join wants looking at.
+        if m and la is not None:
+            gs = {_oid(a): a for a in recs}
+            hit = any(inside(la, lo, gs[str(x[0])]['_g']) for x in m if str(x[0]) in gs)
+            if not hit:
+                near_any = any(near(la, lo, gs[str(x[0])]['_bb'], .02) for x in m if str(x[0]) in gs)
+                parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda x: -x[2]), 'c': c,
+                              'far': 'edge' if near_any else 'well outside'}
+                if site: parks[ref]['a'] = site
+                continue
         parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda x: -x[2]), 'c': c}
         if site: parks[ref]['a'] = site
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
-              'none': sum(1 for p in parks.values() if not p['m'] and not p['c'] and not p.get('a')), 'site': sum(1 for p in parks.values() if p.get('a')), 'nonum': len(nonum), 'padus': len(recs), 'read': seen}
+              'none': sum(1 for p in parks.values() if not p['m'] and not p['c'] and not p.get('a')), 'site': sum(1 for p in parks.values() if p.get('a')), 'nonum': len(nonum), 'padus': len(recs), 'read': seen,
+              'pin_outside': sum(1 for p in parks.values() if p.get('far')),
+              'pin_well_outside': sum(1 for p in parks.values() if p.get('far') == 'well outside')}
     out = {'updated': time.strftime('%Y-%m-%d'), 'st': st, 'note': 'Built by .github/scripts/kpc_us_key.py from USGS PAD-US (fed + state fee land) and POTA. m = joined (same name + same kind), c = check by hand (NOT joined).',
            'counts': counts, 'parks': parks, 'nonum': nonum[:300]}
     # plain-words review page for this state (GitHub shows .md files nicely)
@@ -498,3 +513,22 @@ for st in STATES:
 tot = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none', 'site')}
 notice('US key extra maps', ', '.join(f'{k}: {v}' for k, v in XCOUNT.items()))
 notice('US answer key', f"{len(done)} states this run ({' '.join(done)}). All states so far: {tot['parks']} parks, {tot['matched']} joined, {tot['check']} to check, {tot['site']} sites on bigger land, {tot['none']} nothing found")
+# How many joins put the park's pin outside the land it was joined to? A big number here means the match
+# count has been flattering us. Printed per run so it can be watched rather than discovered later.
+try:
+    import glob as _g
+    bad = tot_j = 0
+    worst = []
+    for _f in _g.glob(str(OUT / '*.json')):
+        if _f.endswith('index.json'): continue
+        _d = json.loads(pathlib.Path(_f).read_text(encoding='utf-8'))
+        _c = _d.get('counts') or {}
+        b, j = _c.get('pin_outside', 0) or 0, _c.get('matched', 0) or 0
+        bad += b; tot_j += j
+        if b: worst.append((b, _d.get('st'), j))
+    if tot_j:
+        notice('Boundary check', f'{bad} of {tot_j} joined parks have their pin OUTSIDE the land they were '
+                                 f'joined to ({100 * bad / tot_j:.1f}%). Worst: '
+                                 + ', '.join(f'{st} {b}/{j}' for b, st, j in sorted(worst, reverse=True)[:8]))
+except Exception as _e:
+    notice('Boundary check', f'could not total it up: {_e}')
