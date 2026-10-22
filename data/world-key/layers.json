@@ -1,0 +1,15 @@
+{
+ "CAPAD (DCCEEW)": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/MapServer/0",
+ "NSW State Forest (Forestry Corporation NSW)": "https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/NSW_Dedicated_State_Forests/FeatureServer/0",
+ "Natural England NNR": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/National_Nature_Reserves_England/FeatureServer/0",
+ "Natural England LNR": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Local_Nature_Reserves_England/FeatureServer/0",
+ "Natural England Country Parks": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Country_Parks_England/FeatureServer/0",
+ "Natural England SSSI": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/SSSI_England/FeatureServer/0",
+ "Natural England National Parks": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/National_Parks_England/FeatureServer/0",
+ "Natural England National Landscapes": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Areas_of_Outstanding_Natural_Beauty_England/FeatureServer/0",
+ "Ministry of the Environment national parks (Esri Japan)": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/nps_all/FeatureServer/0",
+ "EEA Natura 2000": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+ "EEA nationally designated areas": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+ "ZNIEFF (INPN data, Esri France) layer 0": "https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/0",
+ "ZNIEFF (INPN data, Esri France) layer 1": "https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/1"
+}

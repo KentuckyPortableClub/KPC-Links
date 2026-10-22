@@ -200,7 +200,7 @@
       else if (ks) T = { prog: 'SOTA', ref: q, name: ks.n, la: ks.la, lo: ks.lo, ft: ks.ft, feats: [] };
       if (!T || (!T.feats.length && T.prog !== 'SOTA')) {
         const o = await B.lookup(q);
-        if (o) { T = { prog: o.prog, ref: o.ref, name: o.name, la: o.la, lo: o.lo, ft: o.ft, feats: [] }; if (o.prog === 'POTA' && o.us && !o.ky && B.usOutline) { const u = await B.usOutline(o.ref, o.short || o.name, o.la, o.lo, [o.st].filter(Boolean)).catch(() => ({ fs: [] })); T.feats = u.fs || []; T.approx = u.label === 'approx'; T.why = u.why || ''; } else if (o.prog !== 'SOTA' && o.us) T.feats = await B.padusByName(o.short || o.name, o.la, o.lo).catch(() => []); else if (o.prog !== 'SOTA' && B.worldByName) T.feats = await B.worldByName(o.ref, o.short || o.name, o.la, o.lo, { type: o.type }).catch(() => []); }
+        if (o) { T = { prog: o.prog, ref: o.ref, name: o.name, la: o.la, lo: o.lo, ft: o.ft, feats: [] }; if (o.prog === 'POTA' && o.us && !o.ky && B.usOutline) { const u = await B.usOutline(o.ref, o.short || o.name, o.la, o.lo, [o.st].filter(Boolean)).catch(() => ({ fs: [] })); T.feats = u.fs || []; T.approx = u.label === 'approx'; T.why = u.why || ''; } else if (o.prog !== 'SOTA' && o.us) T.feats = await B.padusByName(o.short || o.name, o.la, o.lo).catch(() => []); else if (o.prog !== 'SOTA' && B.worldByName) { T.feats = await B.worldByName(o.ref, o.short || o.name, o.la, o.lo, { type: o.type }).catch(() => []); if (T.feats[0] && T.feats[0]._approx) { T.approx = true; T.why = T.feats[0]._why; } } }
       }
       if (T && T.prog === 'SOTA' && !T.ft) { const o = await B.lookup(q).catch(() => null); if (o) T.ft = o.ft; }
     } catch (e) {}

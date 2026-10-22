@@ -270,8 +270,36 @@
     const fs = (j.type === 'FeatureCollection' ? j.features : [j]).filter(f => f && f.geometry);
     return fs.map(f => { const p = f.properties || {}; f._nm = p.cpcad || p.name || ref; f._bb = bbox(f.geometry); f._src = p.srcShort || 'CPCAD (Environment and Climate Change Canada)'; f._info = [p.type, p.manager].filter(Boolean).join(' · '); return f; });
   }
-  /* any non-US official outline we know how to get: Canada file, then Europe */
-  async function worldByName(ref, name, la, lo, o) { const c = await canada(ref); if (c.length) return c; return euro(name, la, lo, o); }
+  /* Oct 22 (Brandon's schedule: 'hook the world key into KPCB like usKey'): data/world-key/XX.json lists, per park, the
+     official areas the checking bot joined (by name, or by the pin when names are written differently). The outline comes
+     straight from that agency's map by id. A join made on the pin alone is labelled approximate. */
+  const wkCache = {}; let WLAY = null;
+  const wlayers = () => WLAY || (WLAY = fetch('data/world-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({})));
+  async function worldKey(ref) {
+    const cc = String(ref || '').split('-')[0]; if (!/^[A-Z]{2}$/.test(cc) || cc === 'US' || cc === 'CA') return null;
+    if (!(cc in wkCache)) wkCache[cc] = fetch('data/world-key/' + cc + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
+    const k = await wkCache[cc], p = k && k.parks && k.parks[ref]; if (!p) return null;
+    const m = (p.m || []).filter(x => x[0] !== null && x[0] !== undefined); if (!(p.m || []).length) return { state: 'none' };
+    const L = await wlayers(), by = {};
+    m.forEach(x => { if (L[x[2]]) (by[x[2]] = by[x[2]] || []).push(x[0]); });
+    const fs = (await Promise.all(Object.entries(by).map(([src, ids]) => jget(L[src] + '/query?' + new URLSearchParams({ objectIds: ids.slice(0, 40).join(','), outFields: '*', returnGeometry: true, outSR: 4326, maxAllowableOffset: 0.0002, geometryPrecision: 5, f: 'geojson' }), null, 30000)
+      .then(j => (j.features || []).map(f => (f._src = src, f))).catch(() => [])))).flat().filter(f => f.geometry);
+    if (!fs.length) return { state: 'error' };
+    const nm = (m.find(x => L[x[2]]) || m[0])[1], how = m.map(x => String(x[3] || ''));
+    const approx = !how.some(h => /^(name|same name|exact name)/.test(h)), why = approx ? 'the official name is written differently, so this was matched by where the park\u2019s pin sits' : '';
+    fs.forEach(f => { f._nm = f._nm || nm; f._bb = bbox(f.geometry); f._approx = approx; f._why = why; f._info = f._info || ''; f.properties = Object.assign(f.properties || {}, { NAME: f._nm, SOURCE: f._src }); });
+    return { state: 'ok', fs, approx, why };
+  }
+  /* any non-US official outline we know how to get: Canada file, then the checked world list, then a live Europe guess
+     (labelled approximate when the checked list knows the park but found nothing sure) */
+  async function worldByName(ref, name, la, lo, o) {
+    const c = await canada(ref); if (c.length) return c;
+    let k = null; try { k = await worldKey(ref); } catch (e) {}
+    if (k && k.state === 'ok') return k.fs;
+    const e = await euro(name, la, lo, o);
+    if (k && k.state === 'none') e.forEach(f => { f._approx = true; f._why = 'our checking bot did not find a sure match; this is a live guess by name'; });
+    return e;
+  }
   /* POTA parks near a point */
   async function potaNear(la, lo, d) {
     const j = await jget(`https://api.pota.app/park/grids/${(la - d).toFixed(3)}/${(lo - d).toFixed(3)}/${(la + d).toFixed(3)}/${(lo + d).toFixed(3)}/0`, null, 15000);
@@ -345,5 +373,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, euro, canada, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, euro, canada, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();
