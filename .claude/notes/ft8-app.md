@@ -68,6 +68,15 @@ SCOPE: FT8 + FT4 (+ FT2) app WITH the KPC Logger and the other DIGI modes (CW, R
 1. **One mode frame for every digital mode** (`kpc-digi.js` today is FT8/FT4 only): a mode = {sound in → decoder, its list/waterfall view, sound out for TX, its settings sheet, how a contact logs}. FT8/FT4 move onto it unchanged. The remote tab uses the same frame, so each new mode works remote for free. CW/RTTY/PSK31/SSTV/WSPR/HELL/JS8 come later on it (step 5; Brandon's wishes in 'step-5 wishes' above).
 2. **APRS as the first new mode on that frame** (plan in ideas.md 'APRS ON THE DIGI TAB'): 1200 bd AFSK (VHF 144.390) + 300 bd (HF 30 m) modem, AX.25/KISS, position beacon from the GPS grid with the park number in the comment, received stations in a list + on a map, messages; iGate (send heard packets to APRS-IS) only when online. Also KISS over USB/Bluetooth for radios with a built-in TNC. Needs a licensed call: no TX with K4TEST.
 3. **One spot frame** (Opus fills the sources in step 4): every source (POTA, SOTA, WWFF, cluster, RBN, PSKReporter, own decodes) feeds one list = {call, freq, mode, ref(s), time, source}; de-duplicated; filters band/mode/distance/age/'still need'/license class; watchlist alert; tap = tune (CAT) + pre-fill the log. 
+4. **AFTER 1-3, more frames (Brandon Oct 22 7:51 AM: 'anything else he should add… future things we talked about or may decide to add'):**
+   - **Radio frame:** one driver shape per radio family (Yaesu FT-710/891, Icom CI-V incl. IC-705 over WiFi, Kenwood/Elecraft/QMX, Flex later), plus Hamlib/rigctld, flrig and OmniRig on Windows, so 'add a radio' = one small file. POTACAT covers 300+ radios this way.
+   - **Upload queue:** QRZ, POTA, LoTW, eQSL, Wavelog/Log4OM/N3FJP forwarding; uploads wait in a queue and go when signal comes back (a park with no service), the per-record `up` flags from the log decision.
+   - **Offline park pack:** download one state's (or country's) parks, outlines, access points and notes to the phone for no-signal parks; 'Am I in the park' runs on GPS + the saved outline with the Approximate/Official label. Our big edge over POTACAT.
+   - **Alerts frame:** one place for notifications: watchlist friend on the air, spots for a park I still need, the club bots' park closure warnings, 'hunters are out'.
+   - **Headless station mode:** the Windows/Linux build running with no screen as the remote base station, e.g. on a Raspberry Pi (Brandon owns a DigiPi, ideas.md). POTACAT has this.
+   - **iPhone-ready:** keep all sound/USB/serial behind KPCNative so an iOS plugin can be added later (ideas.md 'iPHONE VERSION').
+   - **Backup + update:** settings and log backup to a file/cloud folder; the app tells you when a newer test build is out.
+   NOT now: guest pass, panadapter markers, rotator, contest checklists (after spots work).
 Keep: builds green, Q-prefix calls in tests, tested at 390 px phone + 1024 px, WHERE WE STOPPED entry after each push.
 
 ## FABLE: START HERE (Brandon Oct 22 6:40 AM: 'make a note for fable ill open him in another window')
