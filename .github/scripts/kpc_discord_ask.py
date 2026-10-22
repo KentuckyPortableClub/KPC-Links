@@ -231,7 +231,9 @@ def near_a_town(text):
 def rare_parks():
     """'what needs activating?' -> the ones hardly anybody has done. Straight from the POTA figures we keep."""
     d = load('kpc-top25.json', {})
-    rows = d.get('acts') or []
+    held = {str(h.get('ref')).upper() for h in (load('data/kpc-post-holds.json', {}).get('hold') or [])
+            if h.get('ref')}
+    rows = [r for r in (d.get('acts') or []) if str(r.get('c', '')).upper() not in held]
     if not rows:
         return None
     L = ["**Kentucky parks hardly anybody has activated**"]
