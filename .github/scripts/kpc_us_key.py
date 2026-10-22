@@ -447,6 +447,26 @@ def name_clusters(recs):
     return KM.name_clusters([(a['_nn'], a['_bb']) for a in recs])
 
 
+# Oct 22 review (162 of 202 'check' cases were the SAME land the key already used): words that change between two
+# agencies' names for one place - 'Christmas Rocks State / DEDICATED Nature Preserve', 'Chandler Wayside State Park' /
+# 'Chandler State Wayside', 'Big Muddy National (Fish and) Wildlife Refuge', Madira Bickel Mound State HISTORIC /
+# ARCHAEOLOGICAL Site, BLM 'Baldy Mountain' / 'Baldy Mountain Facility Area'. Shadow only, measured before it counts.
+FILL = re.compile(r"\b(blm|special recreation management area|extensive recreation management area|recreation management area|dedicated|heritage|historic|historical|archaeological|archeological|fish and|state|national|"
+                  r"facility area|recreation site|campground|campsites?( \d+)?|trailhead|wayside|park|parks|site|"
+                  r"educational|wildlife refuge|nature preserve|natural area|recreation area|wildlife area|"
+                  r"wildlife management area|wma|sra|shp|sp)\b")
+def _fill(x):
+    t = re.sub(r"[’'`ʻʼ‘]", '', str(x or '').lower().replace('&', ' and '))
+    t = ' '.join(ABBR.get(w, w) for w in re.sub(r'[^a-z0-9 ]', ' ', t).split())
+    t = re.sub(r'\s+', ' ', FILL.sub(' ', t)).strip()
+    return t if len(t) >= 4 else ''
+TAGS = [('memorial', r'national memorial'), ('refuge', r'wildlife refuge|\bnwr\b'), ('wilderness', r'wilderness(?! study)'),
+        ('water', r'reservoir|fishing lake'), ('beach', r'\bbeach\b'), ('access', r'fishing access|access site'),
+        ('wildforest', r'wild forest'), ('stateforest', r'state forest'), ('hatchery', r'hatchery')]
+def _tags(x):
+    x = str(x or '').lower(); return {k for k, r in TAGS if re.search(r, x)}
+
+
 def score_park(name, typ, la, lo, recs, clusters):
     """The shared module's verdict for one park: ('join'|'check'|'none', best_group, runner_group)."""
     kp = kinds(name) | kinds(typ)
@@ -460,13 +480,20 @@ def score_park(name, typ, la, lo, recs, clusters):
             bool(re.search(r'\btrail\b', name, re.I)) == bool(re.search(r'\btrail\b', nm, re.I))
         # the SAME name reads identically; one that only STARTS the same way is similar words ('Colorado River' /
         # 'Colorado River Island', 'Dallas County' / 'Dallas County Public Fishing Lake')
-        def same(x): return bool(x) and (norm(name) == norm(x) or exact_name(name, x))
+        def same(x): return bool(x) and (norm(name) == norm(x) or exact_name(name, x) or (_fill(name) and _fill(name) == _fill(x)))
         ex = same(nm) or same(a.get('Loc_Nm'))
+        # Oct 22 review: two names that each say a DIFFERENT kind of place (Pearl Harbor National Memorial / Pearl Harbor
+        # National Wildlife Refuge, Hells Canyon Reservoir / Hells Canyon Wilderness, Crystal Lake State Forest / Crystal
+        # Lake WILD Forest) are not joined by name: refused outright when the pin is not inside, a person's look when it is
+        tp, ta = _tags(name), _tags(nm)
+        clash = bool(tp and ta and not (tp & ta))
+        if clash and not (la is not None and near(la, lo, a['_bb'], 0) and KM.inside(la, lo, a['_g'])):
+            kind_ok = False
         wd = (not ex) and bool(same_words(name, nm, kp, ak) or same_name(name, nm)
                                or (a.get('Loc_Nm') and same_name(name, a['Loc_Nm'])))
         holds = la is not None and near(la, lo, a['_bb'], 0) and KM.inside(la, lo, a['_g'])
         if not (ex or wd or holds): continue
-        cands.append({'a': a, 'nn': a.get('_nn'), 'bb': a['_bb'], 'kind_ok': kind_ok, 'side_ok': _side(name) == _side(nm), 'name_exact': ex,
+        cands.append({'a': a, 'nn': a.get('_nn'), 'bb': a['_bb'], 'kind_ok': kind_ok, 'kind_clash': clash, 'side_ok': _side(name) == _side(nm), 'name_exact': ex,
                       'name_unique': clusters.get(a.get('_nn'), 1) == 1, 'name_words': wd,
                       'pin': (la, lo) if la is not None else None, 'g': a['_g'], 'acres': a.get('GIS_Acres') or 0})
         # PIN_JOIN stays off in the US: the names CAN be read here, and a pin alone mostly finds the forest around

@@ -40,6 +40,15 @@ def failures(verbose=False, groups=('us_names', 'alerts', 'world_names')):
         say(('ok   ' if ok else 'FAIL ') + f"US   {a!r} vs {b!r}: {'same' if got else 'different'}")
         if not ok: out.append(f"US names: {a!r} vs {b!r} should be {'same' if c['same'] else 'different'} — {c['why']}")
 
+    # Oct 22: the new check's extra name reading (shadow only): same place under two agencies' words, and kind clashes
+    for c in (CASES.get('shadow_names', []) if us else []):
+        a, b = c['a'], c['b']
+        same = bool(us._fill(a)) and us._fill(a) == us._fill(b) and us._side(a) == us._side(b)
+        clash = bool(us._tags(a) and us._tags(b) and not (us._tags(a) & us._tags(b)))
+        ok = same == c['same'] and clash == bool(c.get('clash'))
+        say(('ok   ' if ok else 'FAIL ') + f"SHDW {a!r} vs {b!r}: {'same' if same else 'different'}{' (kinds clash)' if clash else ''}")
+        if not ok: out.append(f"Shadow names: {a!r} vs {b!r} — {c['why']}")
+
     al = _load('kpc_park_alerts.py', "\nif __name__ == '__main__':") if 'alerts' in groups else None
     parks = al.ky_parks() if al else []
     for c in (CASES.get('alerts', []) if al else []):
@@ -71,7 +80,7 @@ def failures(verbose=False, groups=('us_names', 'alerts', 'world_names')):
 
 if __name__ == '__main__':
     bad = failures(verbose=True)
-    n = sum(len(CASES.get(k, [])) for k in ('us_names', 'alerts', 'world_names'))
+    n = sum(len(CASES.get(k, [])) for k in ('us_names', 'shadow_names', 'alerts', 'world_names'))
     print(f"\n{n - len(bad)} of {n} golden cases right.")
     for b in bad:
         print('  ✗ ' + b)

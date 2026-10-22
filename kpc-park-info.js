@@ -134,6 +134,23 @@
       BB.querySelectorAll('[data-f]').forEach(b => b.onclick = e => { e.preventDefault(); saveGeo(b.dataset.f, o, b); });
     };
     try {
+      /* Oct 22: a POTA park outside Kentucky uses the checked US list; one we are not sure of says Approximate */
+      if (o.us && o.prog === 'POTA' && !o.ky && window.KPCB && KPCB.usOutline) {
+        const u = await KPCB.usOutline(o.ref, o.short || o.name, o.la, o.lo, [o.st].filter(Boolean));
+        if (u.fs.length) {
+          const fc = { type: 'FeatureCollection', features: u.fs.map(f => ({ type: 'Feature', properties: Object.assign({}, f.properties, { Unit_Nm: f._nm }), geometry: f.geometry })) }, ap = u.label === 'approx';
+          show(fc, '#ffb000', ap ? '10 6' : null, ap ? .06 : .12); dl(); B.className = 'pi-bnd ' + (ap ? 'osm' : 'ok');
+          const names = [...new Set(u.fs.map(f => f._nm))].slice(0, 3).map(esc).join('; ');
+          B.innerHTML = ap ? `<b>Approximate outline, not official:</b> ${names} (${esc(u.src)}). We are not sure this is the park: ${esc(u.why)}. Check the park's own map.`
+            : `<b>${names}</b>. Official boundary from ${esc(u.src)}. Check the park's own map for closed areas.`;
+          return;
+        }
+        if (u.label === 'none') {
+          const os = await osm(o.la, o.lo);
+          if (os) { show(os.fc, '#ff4fd8', '8 6', 0); dl(); B.className = 'pi-bnd osm'; B.innerHTML = `No official outline on file for this park. <b>${esc(os.name)}</b>: outline from OpenStreetMap, <b>not official</b>, just a guide. Use the park's own map to be sure.`; return; }
+          B.className = 'pi-bnd none'; B.innerHTML = 'No official outline on file for this park yet. Use the park\'s own map.'; return;
+        }
+      }
       if (o.us) {
         const fc = await padus(o.prog === 'SOTA' ? '' : (o.short || o.name), o.la, o.lo, o.prog === 'SOTA');
         if (fc && fc.features.length) {
@@ -166,7 +183,7 @@
     let p; try { p = await jget('https://api.pota.app/park/' + encodeURIComponent(ref)); } catch (e) { return msg('POTA could not be reached. Try again in a minute.'); }
     if (!p || !p.reference) return msg(`No POTA park ${esc(ref)}. Check the number.`);
     const ky = /^US-KY/.test(p.locationDesc || '');
-    card({ ref: p.reference, prog: 'POTA', name: p.name + (p.parktypeDesc && !new RegExp(p.parktypeDesc, 'i').test(p.name) ? ' ' + p.parktypeDesc : ''), short: p.name, type: p.parktypeDesc, where: p.locationName || p.locationDesc, la: +p.latitude, lo: +p.longitude, website: p.website, us: /^US-/.test(p.locationDesc || ''),
+    card({ ref: p.reference, prog: 'POTA', name: p.name + (p.parktypeDesc && !new RegExp(p.parktypeDesc, 'i').test(p.name) ? ' ' + p.parktypeDesc : ''), short: p.name, type: p.parktypeDesc, where: p.locationName || p.locationDesc, la: +p.latitude, lo: +p.longitude, website: p.website, us: /^US-/.test(p.locationDesc || ''), st: String(p.locationDesc || '').split(',')[0].replace(/^US-/, ''), ky,
       links: [['POTA PAGE', 'https://pota.app/#/park/' + p.reference]].concat(ky ? [['KPC PARK NOTES', 'kpc-park-notes.html?ref=' + p.reference], ['KPC PARK COMMANDER', 'finder.html']] : []),
       note: ky ? 'Kentucky park: the KPC Park Commander has its official boundary, entrances, parking and any overlapping parks.' : '' });
   }

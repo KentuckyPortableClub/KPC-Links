@@ -195,16 +195,20 @@
     let feats = [];
     if (P.park) { try { feats = await B.kyFor(P.park.c); } catch (e) {} }
     const kpc = feats.length && feats.every(f => f._L.kpc), proc = feats.some(f => f._L && f._L.proc);
-    if (!feats.length && (P.us || P.ky)) { try { feats = await B.padusByName(P.short || (P.park ? P.park.n : P.n), P.la, P.lo); } catch (e) {} }
+    let us = null;   /* Oct 22: the checked US list, with an Approximate label when we are not sure */
+    if (!feats.length && P.ky) { try { feats = await B.padusByName(P.short || (P.park ? P.park.n : P.n), P.la, P.lo); } catch (e) {} }
+    else if (!feats.length && P.us && P.prog === 'POTA' && B.usOutline) { try { us = await B.usOutline(P.c, P.short || P.n, P.la, P.lo, [P.st].filter(Boolean)); feats = us.fs || []; } catch (e) {} }
+    else if (!feats.length && P.us) { try { feats = await B.padusByName(P.short || (P.park ? P.park.n : P.n), P.la, P.lo); } catch (e) {} }
     let wsrc = '';
     if (!feats.length && !P.us && !P.ky && B.worldByName) { try { feats = await B.worldByName(P.ref || P.c || '', P.prog === 'SOTA' ? '' : (P.short || P.n || ''), P.la, P.lo, { small: P.prog === 'SOTA', type: P.t }); wsrc = feats.length ? feats[0]._src : ''; } catch (e) {} }
     if (cur !== P) return;
     const fc = { type: 'FeatureCollection', features: feats.map(f => ({ type: 'Feature', properties: { NAME: f._nm }, geometry: f.geometry })) };
     geo = feats.length ? fc : null;
     if (feats.length) {
-      const lay = L.geoJSON(fc, { style: kpc ? { color: '#ffd400', weight: 3, dashArray: '12 5 2 5', fillOpacity: 0 } : { color: '#ffb000', weight: 3, fillColor: '#ffb000', fillOpacity: 0 } }).addTo(map);
+      const ap2 = us && us.label === 'approx';
+      const lay = L.geoJSON(fc, { style: kpc ? { color: '#ffd400', weight: 3, dashArray: '12 5 2 5', fillOpacity: 0 } : { color: '#ffb000', weight: 3, dashArray: ap2 ? '10 6' : null, fillColor: '#ffb000', fillOpacity: 0 } }).addTo(map);
       if (!proc) try { map.fitBounds(lay.getBounds(), { padding: [16, 16], maxZoom: 15 }); } catch (e) {}
-      $('kitBnd').innerHTML = (kpc ? '<b>Approximate outline drawn by KPC</b> from OpenStreetMap (this park has no official map file). OpenStreetMap is drawn by volunteers, so it can be off; check the park\'s own map.' : proc ? 'Daniel Boone National Forest outer line (it includes private land).' : (wsrc ? '<b>' + esc(feats[0]._nm) + '</b>' + (feats[0]._info ? ' · ' + esc(feats[0]._info) : '') + '. Official outline from ' + esc(wsrc) + (/^EEA/.test(wsrc) ? ' (matched by name at the POTA pin)' : '') + '.' : 'Official boundary' + (feats[0]._L ? ' from ' + [...new Set(feats.map(f => f._L.agency))].map(esc).join(' and ') : ' (USGS PAD-US)') + '.')) + (ap.length ? ` Green dots: ${ap.length} parking / trailhead / entrance point${ap.length > 1 ? 's' : ''} (tap for directions).` : '');
+      $('kitBnd').innerHTML = ap2 ? '<b>Approximate outline, not official:</b> ' + esc(feats[0]._nm || '') + '. We are not sure this is the park: ' + esc(us.why) + '. Check the park\'s own map.' + (ap.length ? ` Green dots: ${ap.length} parking / trailhead / entrance point${ap.length > 1 ? 's' : ''} (tap for directions).` : '') : (kpc ? '<b>Approximate outline drawn by KPC</b> from OpenStreetMap (this park has no official map file). OpenStreetMap is drawn by volunteers, so it can be off; check the park\'s own map.' : proc ? 'Daniel Boone National Forest outer line (it includes private land).' : (wsrc ? '<b>' + esc(feats[0]._nm) + '</b>' + (feats[0]._info ? ' · ' + esc(feats[0]._info) : '') + '. Official outline from ' + esc(wsrc) + (/^EEA/.test(wsrc) ? ' (matched by name at the POTA pin)' : '') + '.' : 'Official boundary' + (feats[0]._L ? ' from ' + [...new Set(feats.map(f => f._L.agency))].map(esc).join(' and ') : ' (USGS PAD-US)') + '.')) + (ap.length ? ` Green dots: ${ap.length} parking / trailhead / entrance point${ap.length > 1 ? 's' : ''} (tap for directions).` : '');
       files(fc);
     } else $('kitBnd').innerHTML = 'No boundary file found. Use the official map.' + (ap.length ? ' Green dots: parking / trailhead points.' : '');
   }
