@@ -3,14 +3,6 @@
  "until": "2026-10-23T06:00:00Z",
  "jobs": [
   {
-   "wf": "kpc-world-key.yml",
-   "inputs": {
-    "countries": "EE",
-    "pin_join": "EE"
-   },
-   "why": "Estonia: the tail"
-  },
-  {
    "wf": "kpc-ca-key.yml",
    "inputs": {},
    "why": "Canada: another pass"
