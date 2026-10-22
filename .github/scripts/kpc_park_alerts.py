@@ -237,7 +237,34 @@ def lbl_alerts():
             'refs': ['US-3792'],
         }
 
-    # 1. the WordPress JSON API
+    # 1. the page itself. Each alert is a JetEngine listing field whose content is a single paragraph
+    #    beginning with its date: <div class="jet-listing-dynamic-field__content"><p>10/20/2026 - ...</p></div>
+    #    (confirmed against the live page 21 Oct 2026, after Brandon pointed out the alerts really are there).
+    try:
+        page = fetch('https://www.landbetweenthelakes.us/alerts/', timeout=90)
+    except Exception as e:  # noqa: BLE001
+        notice('Park alerts', f'Land Between the Lakes did not answer: {str(e)[:160]}')
+        page = ''
+    for m in re.finditer(r'jet-listing-dynamic-field__content"?\s*>\s*<p>(.*?)</p>', page, re.S):
+        txt = clean(re.sub(r'<[^>]+>', ' ', m.group(1)), 600)
+        d = re.match(r'(\d{1,2}/\d{1,2}/\d{4})\s*[-\u2013]\s*(.+)', txt)
+        if not d:
+            continue
+        when, what = d.group(1), d.group(2).strip()
+        if len(what) < 20:
+            continue
+        key = re.sub(r'[^a-z0-9]+', '-', (when + '-' + what[:40]).lower()).strip('-')[:60]
+        # a notice asking for comment or announcing a plan is not a closure
+        routine = bool(re.search(r'(?i)public notice|seeking|comment period|readiness training|proposal')
+                       and re.search(r'(?i)public notice|seeking|comment|proposal|readiness training', what))
+        add(key, what[:150], f'{when} — {what}', 'https://www.landbetweenthelakes.us/alerts/')
+        if routine:
+            out['lbl-' + re.sub(r'[^a-z0-9\-]+', '', key)[:60]]['routine'] = True
+    if out:
+        notice('Park alerts', f'Land Between the Lakes: {len(out)} alert(s) from the alerts page')
+        return out
+
+    # 2. the WordPress JSON API
     for url in ('https://landbetweenthelakes.us/wp-json/wp/v2/posts?per_page=20&categories_slug=alerts',
                 'https://landbetweenthelakes.us/wp-json/wp/v2/posts?per_page=20&search=alert'):
         try:
@@ -255,7 +282,7 @@ def lbl_alerts():
             notice('Park alerts', f'Land Between the Lakes: {len(out)} alert(s) from the site API')
             return out
 
-    # 2. the RSS feed
+    # 3. the RSS feed
     for url in ('https://landbetweenthelakes.us/alerts/feed/', 'https://landbetweenthelakes.us/feed/'):
         try:
             xml = fetch(url, timeout=60)
@@ -276,7 +303,7 @@ def lbl_alerts():
                 notice('Park alerts', f'Land Between the Lakes: {len(out)} alert(s) from the feed')
                 return out
 
-    # 3. the page itself
+    # 4. the page again, looking for headings (kept only as a last resort)
     try:
         html = fetch('https://landbetweenthelakes.us/alerts/', timeout=90)
     except Exception as e:  # noqa: BLE001
