@@ -1,20 +1,18 @@
 # MO: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **527 of 561** parks joined to official land (same name + same kind of place). **12** to check by hand, **22** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **528 of 561** parks joined to official land (same name + same kind of place). **10** to check by hand, **23** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-10143** Lake City Range State Recreation Site (State Recreation Site) → Lake City Shooting Range and Outdoor Education Center (~0 ac, similar name)
-- **US-10218** The Lewis Family, Dean, Anna Mae and David D. Lewis State Conservation Area (State Conservation Area) → Lewis (The) Family, Dean, Anna Mae and David D. Lewis Mem CA (~0 ac, same name, different kind of place)
 - **US-10958** Tywappity Community Lake State Conservation Area (State Conservation Area) → Tywappity CL (~0 ac, similar name); Tywappity Conservation Land (~119 ac, the POTA pin is inside it (different name))
-- **US-12671** Caldwell Memorial State Wildlife Area (State Wildlife Area) → Caldwell Mem WA (~0 ac, same name, different kind of place)
 - **US-1761** Ha Ha Tonka State Park (State Park) → Ha Ha Tonka Savanna Natural Area (~931 ac, similar name); Ha Ha Tonka Karst Natural Area (~50 ac, same name, different kind of place)
-- **US-3340** Battle of Pilot Knob State Historic Site (State Historic Site) → Pilot Knob National Wildlife Refuge (~96 ac, similar name); Pilot Knob National Wildlife Refuge (~96 ac, similar name)
+- **US-3340** Battle of Pilot Knob State Historic Site (State Historic Site) → Pilot Knob National Wildlife Refuge (~96 ac, similar name); Pilot Knob National Wildlife Refuge (~96 ac, similar name); Fort Davidson State Historic Site (~48 ac, the POTA pin is inside it (different name))
 - **US-5707** Lost Valley State Fish and Wildlife Area (State Fish and Wildlife Area) → Lost Valley Fish Hatchery (~938 ac, same name, different kind of place)
-- **US-5713** Jay Nixon State Park (State Park) → Saint Francois Mountains Natural Area (~1,453 ac, the POTA pin is inside it (different name)); Ketcherside Mountain CA (~0 ac, the POTA pin is inside it (different name))
 - **US-6472** Anita B Gorman Discovery Center State Conservation Area (State Conservation Area) → Gorman (The Anita B) Conservation Discovery Center (~0 ac, similar name)
 - **US-6529** Truman Reservoir Management Lands State Park (State Park) → Truman Reservoir ML (Deepwater Creek) (~0 ac, similar name); Harry Truman Recreation Area (~165,658 ac, the POTA pin is inside it (different name))
 - **US-7189** Beaver Creek State Recreation Area (State Recreation Area) → USACE (Bull Shoals Lake, Beaver Creek PA) (~0 ac, similar name); Bull Shoals Recreation Area (~37,464 ac, the POTA pin is inside it (different name)); Bull Shoals Lake ML (~0 ac, the POTA pin is inside it (different name))
+- **US-7984** St Genevieve (Beauvais House) National Historical Park (National Historical Park) → Ste. Genevieve National Historical Park (~12 ac, similar name)
 - **US-9753** Katy Trail Rock Island Spur State Park (State Park) → Katy Trail (~191 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -25,6 +23,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **527 of 561** parks joined
 - US-10152 Perry Tower Site State Conservation Area (State Conservation Area)
 - US-10575 Walnut Woods State Conservation Area (State Conservation Area)
 - US-10576 Rush Creek State Conservation Area (State Conservation Area)
+- US-12084 Weldon Springs National Historical Park (National Historical Park)
 - US-1755 Don Robinson State Park (State Park)
 - US-1756 Echo Bluff State Park (State Park)
 - US-3338 Battle of Island Mound State Historic Site (State Historic Site)
@@ -38,11 +37,11 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **527 of 561** parks joined
 - US-4578 Pony Express National Historic Trail (National Historic Trail)
 - US-4579 Santa Fe National Historic Trail (National Historic Trail)
 - US-4591 World War I Museum National Memorial (National Memorial)
+- US-5713 Jay Nixon State Park (State Park)
 - US-5714 Shepherd of the Hills State Park (State Park)
 - US-5715 Roger Pryor Pioneer Backcountry State Park (State Park)
 - US-5716 Bruce R. Watkins Cultural Heritage Center State Park (State Park)
 - US-7836 Ozark State Trail (State Trail)
-- US-7984 St Genevieve (Beauvais House) National Historical Park (National Historical Park)
 - US-9757 Butterfield Overland National Historic Trail (National Historic Trail)
 
 ## Biggest federal / state places with no POTA park joined (first 60)

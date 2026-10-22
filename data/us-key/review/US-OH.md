@@ -1,6 +1,6 @@
 # OH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **242 of 276** parks joined to official land (same name + same kind of place). **9** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **243 of 276** parks joined to official land (same name + same kind of place). **8** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,10 +9,9 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **242 of 276** parks joined
 - **US-1997** Tinkers Creek State Park (State Park) → Tinkers Creek Dedicated Nature Preserve (~63 ac, similar name); Tinkers Creek Nature Preserve (~8 ac, same name, different kind of place)
 - **US-7850** Caesar Creek Lake State Wildlife Area (State Wildlife Area) → Caesar Creek Gorge Dedicated Nature Preserve (~501 ac, similar name); Caesar Creek Recreation Area (~10,632 ac, same name, different kind of place)
 - **US-8637** Deer Creek State Wildlife Area (State Wildlife Area) → Deer Creek Recreation Area (~7,631 ac, same name, different kind of place)
-- **US-9427** Rhododendron Cove State Nature Preserve (State Nature Preserve) → Wahkeena Nature Preserve (~184 ac, the POTA pin is inside it (different name))
+- **US-9412** Headlands Dunes State Nature Preserve (State Nature Preserve) → Headlands Beach State Park (~163 ac, the POTA pin is inside it (different name))
 - **US-9442** Acadia Cliffs State Wildlife Area (State Wildlife Area) → Acadia Cliffs Dedicated Nature Preserve (~271 ac, similar name); Acadia Cliffs Dedicated Nature Preserve (~4 ac, similar name)
 - **US-9458** Dillon State Wildlife Area (State Wildlife Area) → Dillon Recreation Area (~16,547 ac, same name, different kind of place)
-- **US-9522** Zepernick State Wildlife Area (State Wildlife Area) → Zeppernick Lake Wildlife Area (~527 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -31,9 +30,9 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **242 of 276** parks joined
 - US-8104 Willow Grove State Forest (State Forest)
 - US-8109 Big Island State Wildlife Area (State Wildlife Area)
 - US-8112 Appalachian Hills State Wildlife Area (State Wildlife Area)
-- US-9412 Headlands Dunes State Nature Preserve (State Nature Preserve)
 - US-9415 Jackson Bog State Nature Preserve (State Nature Preserve)
 - US-9423 Miller Nature Sanctuary State Nature Preserve (State Nature Preserve)
+- US-9427 Rhododendron Cove State Nature Preserve (State Nature Preserve)
 - US-9439 Triangle Lake Bog State Nature Preserve (State Nature Preserve)
 - US-9444 Andreoff State Wildlife Area (State Wildlife Area)
 - US-9446 Beaver Creek State Wildlife Area (State Wildlife Area)
@@ -66,7 +65,6 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **242 of 276** parks joined
 - Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~645 ac
 - Blendon Woods Metropark · LP · Columbus and Franklin County Metro Parks (Metro Parks) · ~627 ac
 - Berlin Lake Wildlife Area · SCA · Ohio Department of Natural Resources · ~568 ac
-- Zeppernick Lake Wildlife Area · SCA · Ohio Department of Natural Resources · ~527 ac
 - Chestnut Ridge Metropark · LP · Columbus and Franklin County Metro Parks (Metro Parks) · ~473 ac
 - West Creek Reservation · LP · Cleveland MetroParks · ~472 ac
 - Dysart Woods · PHCA · Ohio University · ~471 ac
@@ -107,3 +105,4 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **242 of 276** parks joined
 - Gully Brook Park · LREC · Lake Metroparks · ~190 ac
 - Wahkeena Nature Preserve · SCA · The Ohio Historical Society · ~184 ac
 - Forest I&D OH. Lab. Experimental Area · NF · Forest Service Region 09 Eastern · ~181 ac
+- Edgewater Park · LP · Hamilton County Park District · ~176 ac

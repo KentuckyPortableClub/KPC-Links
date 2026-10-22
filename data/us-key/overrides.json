@@ -2143,6 +2143,135 @@
     "Tunnel Hill"
    ],
    "why": "Oct 18 review: same place, official name written differently"
+  },
+  "US-11804": {
+   "no": [
+    "Glennallen Field Office"
+   ],
+   "why": "a whole BLM field office, not the river (hand review Oct 22 (shadow check))"
+  },
+  "US-11828": {
+   "no": [
+    "Eastern Interior Field Office"
+   ],
+   "why": "a whole BLM field office, not the river (hand review Oct 22 (shadow check))"
+  },
+  "US-11852": {
+   "no": [
+    "Eastern Interior Field Office"
+   ],
+   "why": "a whole BLM field office, not the river (hand review Oct 22 (shadow check))"
+  },
+  "US-3699": {
+   "no": [
+    "Upper Delta Wildlife Management Area"
+   ],
+   "why": "a different WMA, pin well outside (hand review Oct 22 (shadow check))"
+  },
+  "US-4015": {
+   "no": [
+    "Platte River State Park"
+   ],
+   "why": "Platte River Landing is its own park; the State Park is 39 km off (hand review Oct 22 (shadow check))"
+  },
+  "US-9356": {
+   "no": [
+    "Willow Lake B.C. Wildlife Management Area"
+   ],
+   "why": "another Willow Lake 52 km away (hand review Oct 22 (shadow check))"
+  },
+  "US-9254": {
+   "join": [
+    "High Rock Canyon"
+   ],
+   "no": [
+    "High Rock Canyon Camping Areas"
+   ],
+   "why": "the whole recreation area, not just its camp sites (hand review Oct 22 (shadow check))"
+  },
+  "US-1052": {
+   "join": [
+    "Alamo"
+   ],
+   "why": "Alamo Lake State Park, pin inside (hand review Oct 22 (shadow check))"
+  },
+  "US-0986": {
+   "join": [
+    "Chain O'Lakes State Park"
+   ],
+   "why": "same park, spelling (hand review Oct 22 (shadow check))"
+  },
+  "US-4104": {
+   "join": [
+    "Stephen A. Forbest State Recreation Area"
+   ],
+   "why": "same park, typo in the map data (hand review Oct 22 (shadow check))"
+  },
+  "US-6816": {
+   "join": [
+    "Lime Island State Recreation Area"
+   ],
+   "why": "the harbor is the island park (hand review Oct 22 (shadow check))"
+  },
+  "US-10218": {
+   "join": [
+    "Lewis (The) Family, Dean, Anna Mae and David D. Lewis Mem CA"
+   ],
+   "why": "same area, abbreviated (hand review Oct 22 (shadow check))"
+  },
+  "US-12671": {
+   "join": [
+    "Caldwell Mem WA"
+   ],
+   "why": "same area, abbreviated (hand review Oct 22 (shadow check))"
+  },
+  "US-12717": {
+   "join": [
+    "Deep River State Trail"
+   ],
+   "why": "same trail (hand review Oct 22 (shadow check))"
+  },
+  "US-2611": {
+   "join": [
+    "Bowring Ranch SHP"
+   ],
+   "why": "same park, abbreviated (hand review Oct 22 (shadow check))"
+  },
+  "US-5338": {
+   "join": [
+    "Tibbitts State Forest"
+   ],
+   "why": "same forest, spelling (hand review Oct 22 (shadow check))"
+  },
+  "US-9522": {
+   "join": [
+    "Zeppernick Lake Wildlife Area"
+   ],
+   "why": "same area, spelling (hand review Oct 22 (shadow check))"
+  },
+  "US-11243": {
+   "join": [
+    "Cape Sebastian"
+   ],
+   "why": "Cape Sebastian corridor, pin inside (hand review Oct 22 (shadow check))"
+  },
+  "US-10972": {
+   "join": [
+    "Beartrap Canyon"
+   ],
+   "why": "same river (hand review Oct 22 (shadow check))"
+  },
+  "US-11115": {
+   "join": [
+    "North Fork Virgin River"
+   ],
+   "why": "same river (hand review Oct 22 (shadow check))"
+  },
+  "US-2846": {
+   "join": [
+    "State Capitol State Park"
+   ],
+   "why": "same park, the map drops 'Oregon' (hand review Oct 22)"
   }
  }
 }

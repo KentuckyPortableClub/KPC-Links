@@ -1,16 +1,16 @@
 # NC: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **209 of 253** parks joined to official land (same name + same kind of place). **17** to check by hand, **24** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **210 of 253** parks joined to official land (same name + same kind of place). **16** to check by hand, **23** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-10263** Bonner House Historic Site (Historic Site) → Historic Bath State Historic Site (~9 ac, the POTA pin is inside it (different name))
-- **US-10388** Palmer Marsh House Historic Site (Historic Site) → Historic Bath State Historic Site (~9 ac, the POTA pin is inside it (different name))
 - **US-10399** Apalachia Reservoir Recreation Park (Recreation Park) → Tennessee Valley Authority - Hiwassee Dam (~424 ac, the POTA pin is inside it (different name))
 - **US-10511** Jessups Mill Pond State Game Land (State Game Land) → Suggs Mill Pond Game Land (~11,001 ac, similar name)
 - **US-12119** Moses H. Cone National Park (National Park) → Blue Ridge Parkway (~52,757 ac, the POTA pin is inside it (different name))
 - **US-12320** Yadkin River State Trail (State Trail) → Yadkin River (~11,636 ac, same name, different kind of place)
 - **US-12371** Julian Price National Park (National Park) → Blue Ridge Parkway (~52,757 ac, the POTA pin is inside it (different name))
+- **US-12414** Doughton Recreation Park (Recreation Park) → Blue Ridge Parkway (~52,757 ac, the POTA pin is inside it (different name))
 - **US-12662** Harmon Den Wildlife Management Area (Wildlife Management Area) → Pisgah National Forest (~509,978 ac, the POTA pin is inside it (different name))
 - **US-3843** Haw River at Iron Ore Access Belt State Park (State Park) → Haw River State Park (~1,481 ac, similar name)
 - **US-3863** Palmetto-Peartree State Preserve (State Preserve) → NC Department of Transportation Mitigation Site (~24,566 ac, the POTA pin is inside it (different name))
@@ -19,11 +19,11 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **209 of 253** parks joined
 - **US-6848** President James K. Polk State Historic Site (State Historic Site) → Polk Memorial State Historic Site (~20 ac, the POTA pin is inside it (different name))
 - **US-6927** Nantahala State Game Land (State Game Land) → Nantahala National Forest (~532,808 ac, same name, different kind of place)
 - **US-6936** Pisgah State Game Land (State Game Land) → Pisgah National Forest (~509,978 ac, same name, different kind of place)
-- **US-6963** Nutbush Wildlife Management Area (Wildlife Management Area) → Kerr Reservoir (~25,497 ac, the POTA pin is inside it (different name))
 - **US-8226** Upchurch Lake State Fishing Lake (State Fishing Lake) → Nicholson Creek Game Land (~1,021 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-10406 Lake Rim Fishing & Boating Multiple Use Area (Multiple Use Area) → on Fayetteville Fish Hatchery (~233 ac)
 - US-11238 Micken's Branch Multiple Use Area (Multiple Use Area) → on Tennessee Valley Authority - Hiwassee Dam (~424 ac)
 - US-8010 McKinney Lake State Fish Hatchery (State Fish Hatchery) → on Sandhills Game Land (~65,144 ac)
 - US-8011 Bobby N. Setzer State Fish Hatchery (State Fish Hatchery) → on Pisgah National Forest (~509,978 ac)
@@ -31,11 +31,9 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **209 of 253** parks joined
 ## Nothing found in PAD-US
 
 - US-10259 NC Vietnam Veteran's Memorial Historic Site (Historic Site)
+- US-10388 Palmer Marsh House Historic Site (Historic Site)
 - US-10389 Hiwassee Dam Recreation Park (Recreation Park)
 - US-10398 Chatuge Dam Trail Recreation Park (Recreation Park)
-- US-10406 Lake Rim Fishing & Boating Multiple Use Area (Multiple Use Area)
-- US-12414 Doughton Recreation Park (Recreation Park)
-- US-12717 Deep River State Trail (State Trail)
 - US-13002 Dan River State Trail (State Trail)
 - US-3791 Trail of Tears National Historic Trail (National Historic Trail)
 - US-3851 Brumley Forest State Nature Preserve (State Nature Preserve)
@@ -52,6 +50,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **209 of 253** parks joined
 - US-6837 CSS Neuse Civil War Interpretive Center State Historic Site (State Historic Site)
 - US-6847 NC Transportation Museum State Historic Site (State Historic Site)
 - US-6852 State Capitol State Historic Site (State Historic Site)
+- US-6963 Nutbush Wildlife Management Area (Wildlife Management Area)
 - US-8005 Fontana TVA Dam National Recreation Area (National Recreation Area)
 - US-9758 Chattooga National Wild and Scenic River (National Wild and Scenic River)
 

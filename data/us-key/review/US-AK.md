@@ -1,6 +1,6 @@
 # AK: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **76 of 179** parks joined to official land (same name + same kind of place). **19** to check by hand, **54** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **72 of 179** parks joined to official land (same name + same kind of place). **23** to check by hand, **52** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -11,7 +11,9 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **76 of 179** parks joined 
 - **US-0893** Tlikakila National Wild and Scenic River (National Wild and Scenic River) → Lake Clark National Park (~2,487,856 ac, the POTA pin is inside it (different name))
 - **US-11244** Knik River Public Use Area State Recreation Area (State Recreation Area) → Knik SRMA (~79,498 ac, similar name); State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
 - **US-11798** Tangle Lakes Archeological Reserve (Archeological Reserve) → Glennallen Field Office (~4,244,135 ac, the POTA pin is inside it (different name)); Denali Highway SRMA (~557,672 ac, the POTA pin is inside it (different name))
-- **US-11854** Pinnell Mountain National Recreation Trail (National Recreation Trail) → State Tentatively Approved (tad) (~43,045,454 ac, the POTA pin is inside it (different name))
+- **US-11804** Gulkana BLM Wild and Scenic River (BLM Wild and Scenic River) → Gulkana River SRMA (~94,513 ac, similar name)
+- **US-11828** Fortymile BLM Wild and Scenic River (BLM Wild and Scenic River) → Fortymile SRMA (~247,230 ac, same name, different kind of place); Eastern Interior Field Office (~241,991 ac, the POTA pin is inside it (different name))
+- **US-11854** Pinnell Mountain National Recreation Trail (National Recreation Trail) → State Tentatively Approved (tad) (~43,045,454 ac, the POTA pin is inside it (different name)); Eastern Interior Field Office (~3,811,553 ac, the POTA pin is inside it (different name))
 - **US-12381** Delta BLM Wild and Scenic River (BLM Wild and Scenic River) → Delta River SRMA (~43,744 ac, similar name); Glennallen Field Office (~36,210 ac, the POTA pin is inside it (different name))
 - **US-12678** Little Nelchina State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
 - **US-12708** Kenai River State Conservation Area (State Conservation Area) → Kenai National Wildlife Refuge (~1,939,526 ac, similar name); Kenai National Wildlife Refuge (~1,938,670 ac, similar name); Kenai River Special Management Area (~1,404 ac, similar name)
@@ -22,40 +24,44 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **76 of 179** parks joined 
 - **US-7216** Lake Louise State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
 - **US-7235** Lower Chatanika State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
 - **US-7237** Quartz Lake State Recreation Area (State Recreation Area) → State Patented (~34,779,418 ac, the POTA pin is inside it (different name))
+- **US-7243** Eagle Beach State Recreation Area (State Recreation Area) → State Land Disposals - Other Than Municipal (~26,625 ac, the POTA pin is inside it (different name))
+- **US-7251** Fort Rousseau Causeway State Historical Park (State Historical Park) → Glennallen Field Office (~4,244,135 ac, the POTA pin is inside it (different name)); State Patented (~114,229 ac, the POTA pin is inside it (different name))
 - **US-7884** Kenai Mountains-Turnagain Arm National Heritage Area (National Heritage Area) → State Land Disposals - Municipal Purposes (~676,504 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-11799 Tangle Lakes Recreation Site (Recreation Site) → on Glennallen Field Office (~36,210 ac); Delta River SRMA (~43,744 ac)
-- US-11800 Delta Wild and Scenic River Wayside Recreation Site (Recreation Site) → on Glennallen Field Office (~36,210 ac); Delta River SRMA (~43,744 ac)
+- US-11800 Delta Wild and Scenic River Wayside Recreation Site (Recreation Site) → on Delta River SRMA (~43,744 ac)
 - US-11801 Clearwater Creek Wayside Recreation Site (Recreation Site) → on Denali Highway SRMA (~557,672 ac)
 - US-11802 Brushkana Creek Campground Recreation Site (Recreation Site) → on Denali Highway SRMA (~557,672 ac); Glennallen Field Office (~4,244,135 ac)
 - US-11803 Paxson Lake Campground Recreation Site (Recreation Site) → on Glennallen Field Office (~4,244,135 ac)
 - US-11805 Sourdough Creek Campground Recreation Site (Recreation Site) → on Glennallen Field Office (~4,244,135 ac)
 - US-11825 Eagle Campground BLM Recreation Management Area (BLM Recreation Management Area) → on Fortymile SRMA (~839 ac); Eastern Interior Field Office (~3,811,553 ac)
 - US-11826 Walker Fork Campground BLM Recreation Management Area (BLM Recreation Management Area) → on Eastern Interior Field Office (~241,991 ac); Fortymile SRMA (~247,230 ac)
-- US-11827 West Fork Campground BLM Recreation Management Area (BLM Recreation Management Area) → on Fortymile SRMA (~247,230 ac)
+- US-11827 West Fork Campground BLM Recreation Management Area (BLM Recreation Management Area) → on Eastern Interior Field Office (~241,991 ac); Fortymile SRMA (~247,230 ac)
 - US-11830 Five Mile Campground BLM Recreation Management Area (BLM Recreation Management Area) → on Dalton Highway SRMA (~809,499 ac); James Dalton Highway Corridor (~2,252,606 ac)
 - US-11831 Arctic Circle Campground BLM Recreation Management Area (BLM Recreation Management Area) → on Dalton Highway SRMA (~809,499 ac); James Dalton Highway Corridor (~2,252,606 ac)
 - US-11832 Marion Creek Campground BLM Recreation Management Area (BLM Recreation Management Area) → on James Dalton Highway Corridor (~2,252,606 ac)
 - US-11833 Galbraith Lake Campground BLM Recreation Management Area (BLM Recreation Management Area) → on Dalton Highway SRMA (~809,499 ac); Central Yukon Field Office (~12,497,870 ac)
 - US-11835 Little Susitna Public Use Facility State Recreation Site (State Recreation Site) → on Susitna Flats State Game Refuge (~296,685 ac)
 - US-11836 Fred Blixt Cabin BLM Recreation Management Area (BLM Recreation Management Area) → on State Tentatively Approved (tad) (~43,045,454 ac)
+- US-11846 Bing's Landing Campground and Day Use Area State Recreation Site (State Recreation Site) → on Kenai River Special Management Area (~1,404 ac)
 - US-11850 Mount Prindle Campground BLM Recreation Management Area (BLM Recreation Management Area) → on Eastern Interior Field Office (~932,728 ac); White Mountains SRMA (~1,016,251 ac)
 - US-11851 Ophir Creek Campground BLM Recreation Management Area (BLM Recreation Management Area) → on Eastern Interior Field Office (~932,728 ac); White Mountains SRMA (~1,016,251 ac)
-- US-11853 Cripple Creek Campground BLM Recreation Management Area (BLM Recreation Management Area) → on White Mountains SRMA (~240 ac); State Patented (~34,779,418 ac)
-- US-12679 Fort Egbert BLM Historic Area (BLM Historic Area) → on Fortymile SRMA (~839 ac); Eastern Interior Field Office (~3,811,553 ac)
-- US-13462 Sportsman's Angler Access State Recreation Site (State Recreation Site) → on Chugach National Forest (~5,401,397 ac)
+- US-11853 Cripple Creek Campground BLM Recreation Management Area (BLM Recreation Management Area) → on White Mountains SRMA (~240 ac); Eastern Interior Field Office (~3,811,553 ac)
+- US-12679 Fort Egbert BLM Historic Area (BLM Historic Area) → on Fortymile SRMA (~839 ac)
 - US-7192 Blueberry Lake State Recreation Site (State Recreation Site) → on State Patented (~34,779,418 ac)
 - US-7204 Worthington Glacier State Recreation Site (State Recreation Site) → on State Patented (~34,779,418 ac)
 - US-7210 Dry Creek State Recreation Site (State Recreation Site) → on State Patented (~34,779,418 ac)
-- US-7221 Porcupine Creek State Recreation Site (State Recreation Site) → on Glennallen Field Office (~4,244,135 ac); State Patented (~34,779,418 ac)
+- US-7221 Porcupine Creek State Recreation Site (State Recreation Site) → on State Patented (~34,779,418 ac)
+- US-7222 Rocky Lake State Recreation Site (State Recreation Site) → on State Land Disposals - Municipal Purposes (~676,504 ac)
 - US-7224 Summit Lake State Recreation Site (State Recreation Site) → on State Patented (~34,779,418 ac)
 - US-7227 Birch Lake State Recreation Site (State Recreation Site) → on State Land Disposals - Municipal Purposes (~676,504 ac)
 - US-7232 Eagle Trail State Recreation Site (State Recreation Site) → on Tanana Valley State Forest (~1,754,914 ac)
 - US-7234 Harding Lake State Recreation Site (State Recreation Site) → on State Land Disposals - Other Than Municipal (~1,165,571 ac)
 - US-7241 Chilkoot Lake State Recreation Site (State Recreation Site) → on Haines State Forest Resource Management Area (~304,424 ac)
 - US-7242 Portage Cove State Recreation Site (State Recreation Site) → on State Land Disposals - Other Than Municipal (~1,165,571 ac)
+- US-7248 Settler's Cove State Recreation Site (State Recreation Site) → on State Land Disposals - Other Than Municipal (~26,625 ac)
 
 ## Nothing found in PAD-US
 
@@ -66,12 +72,13 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **76 of 179** parks joined 
 - US-11829 Upper Chatanika River State Recreation Site (State Recreation Site)
 - US-11834 Susitna Landing (Kashwitna) State Recreation Site (State Recreation Site)
 - US-11839 Chena Pump Wayside State Recreation Site (State Recreation Site)
-- US-11846 Bing's Landing Campground and Day Use Area State Recreation Site (State Recreation Site)
+- US-11852 Beaver Creek BLM Wild and Scenic River (BLM Wild and Scenic River)
 - US-11862 Juneau Channel Islands State Park (State Park)
 - US-12709 Funny River Campground State Recreation Site (State Recreation Site)
 - US-12710 Izaak Walton Campground State Recreation Site (State Recreation Site)
 - US-12711 Morgan’s Landing Campground State Recreation Site (State Recreation Site)
 - US-12751 Mineral Creek State Recreation Site (State Recreation Site)
+- US-13462 Sportsman's Angler Access State Recreation Site (State Recreation Site)
 - US-1639 Afognak Island State Park (State Park)
 - US-3382 John National Wild and Scenic River (National Wild and Scenic River)
 - US-4570 Iditarod National Historic Trail (National Historic Trail)
@@ -94,7 +101,6 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **76 of 179** parks joined 
 - US-7217 Matanuska Glacier State Recreation Site (State Recreation Site)
 - US-7218 Matanuska Lakes State Recreation Area (State Recreation Area)
 - US-7219 Montana Creek State Recreation Site (State Recreation Site)
-- US-7222 Rocky Lake State Recreation Site (State Recreation Site)
 - US-7223 Squirrel Creek State Recreation Site (State Recreation Site)
 - US-7226 Big Delta State Historical Park (State Historical Park)
 - US-7229 Clearwater State Recreation Site (State Recreation Site)
@@ -104,11 +110,9 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **76 of 179** parks joined 
 - US-7236 Moon Lake State Recreation Site (State Recreation Site)
 - US-7238 Salcha River State Recreation Area (State Recreation Area)
 - US-7239 Tok River State Recreation Area (State Recreation Area)
-- US-7243 Eagle Beach State Recreation Area (State Recreation Area)
 - US-7244 Ernest Gruening State Historical Park (State Historical Park)
 - US-7245 Juneau State Trail (State Trail)
 - US-7246 Wickersham State Historic Site (State Historic Site)
-- US-7251 Fort Rousseau Causeway State Historical Park (State Historical Park)
 - US-7254 Petroglyph Beach State Historic Site (State Historic Site)
 - US-7255 Lake Aleknagik State Recreation Site (State Recreation Site)
 - US-7862 Aleutian Islands WW2 National Historic Site (National Historic Site)
@@ -153,6 +157,7 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **76 of 179** parks joined 
 - Haines ERMA ·  · BLM recreation sites · ~252,129 ac
 - Salmon Lake-Kigluaik SRMA ·  · BLM recreation sites · ~249,962 ac
 - Fortymile SRMA ·  · BLM recreation sites · ~247,230 ac
+- Eastern Interior Field Office · PUB · BLM · ~241,991 ac
 - Iditarod NHT ·  · BLM recreation sites · ~241,512 ac
 - Redoubt Bay Critical Habitat Area · SCA · Unknown · ~170,861 ac
 - Trading Bay State Game Refuge · SCA · Unknown · ~161,885 ac
@@ -167,6 +172,7 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **76 of 179** parks joined 
 - State Patented · SOTH · Unknown · ~102,494 ac
 - Endicott River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~98,396 ac
 - Gulkana River SRMA ·  · BLM recreation sites · ~94,513 ac
+- Glennallen Field Office · PUB · BLM · ~89,450 ac
 - South Prince of Wales Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~87,034 ac
 - Delta Junction Bison Range Area · SRMA · Unknown · ~86,914 ac
 - South Etolin Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~83,430 ac
@@ -174,5 +180,3 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **76 of 179** parks joined 
 - Knik SRMA ·  · BLM recreation sites · ~79,498 ac
 - Toolik Lake RNA ·  · BLM recreation areas · ~78,034 ac
 - Toolik Lake RNA ·  · BLM recreation sites · ~78,034 ac
-- Port Moller Critical Habitat Area · SCA · Unknown · ~77,681 ac
-- Chuck River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~75,393 ac
