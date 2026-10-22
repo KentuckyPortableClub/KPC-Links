@@ -323,10 +323,12 @@ def main():
                 f"{r['name']} (position {r.get('position')}"
                 + (', OURS' if str(r.get('tags', {}).get('bot_id')) == str(me.get('id')) else '') + ')'
                 for r in bots) or 'none')[:700])
-            people = [r for r in roles if not r.get('tags', {}).get('bot_id') and r.get('name') != '@everyone']
-            notice('people roles: ' + (', '.join(f"{r['name']} (position {r.get('position')})"
-                                                 for r in sorted(people, key=lambda r: -(r.get('position') or 0)))
-                                       or 'none')[:500])
+            people = [r for r in roles if not r.get('tags', {}).get('bot_id')]
+            for r in sorted(people, key=lambda r: -(r.get('position') or 0)):
+                p_ = int(r.get('permissions') or 0)
+                big = [k for k, v in NEED.items() if p_ & v]
+                notice(f"role '{r['name']}' (position {r.get('position')}) has: "
+                       + (', '.join(big) if big else 'none of the moderator permissions'))
             ours = [r for r in bots if str(r.get('tags', {}).get('bot_id')) == str(me.get('id'))]
             for r in ours:
                 p = int(r.get('permissions') or 0)
