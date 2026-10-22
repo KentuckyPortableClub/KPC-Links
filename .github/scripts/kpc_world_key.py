@@ -613,6 +613,10 @@ def wd_ja(P):
 idx = {}
 try: idx = json.load(open(OUT / 'index.json')).get('countries', {})
 except Exception: pass  # noqa: BLE001
+# Oct 22: the website draws a park's outline straight from the key (KPCB.worldKey), so it needs each ArcGIS source's address
+try:
+    json.dump({x[0]: x[2] for v in SRC.values() for x in v if x[1] in ('arcgis', 'arcgis_alt')}, open(OUT / 'layers.json', 'w'), indent=1, ensure_ascii=False)
+except Exception as e: notice('World key layers', e)  # noqa: BLE001
 for cc in COUNTRIES:
     try: P = json.load(open(f'data/parkinfo/{cc}.json'))['parks']
     except Exception: notice(f'World key {cc}', 'no park list yet (data/parkinfo); skipped'); continue  # noqa: BLE001
