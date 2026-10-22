@@ -362,6 +362,195 @@ def call_parks(text, who=''):
     return '\n'.join(L)
 
 
+# ---------------------------------------------------------------- Oct 22 (Brandon: '1,2,3,4,5,7,8')
+def web(url, timeout=20):
+    try:
+        with urllib.request.urlopen(urllib.request.Request(url, headers={**UA, 'Accept': 'application/json'}), timeout=timeout) as r:
+            return json.loads(r.read().decode('utf-8', 'replace'))
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def refs_in(text):
+    out = []
+    for m in REF.finditer(text or ''):
+        if m.group(1): out.append('US-' + m.group(1).zfill(4))
+        elif m.group(2): out.append('KFF-' + m.group(2).split('-')[1].zfill(4))
+        elif m.group(3): out.append(m.group(3).upper())
+    return list(dict.fromkeys(out))
+
+
+def place(ref):
+    """Name and spot of a reference: the club's own file for Kentucky, POTA for anywhere else."""
+    ky = load('kpc-ky-data.json', {})
+    for x in (ky.get('parks') or []) + (ky.get('kff') or []) + (ky.get('summits') or []):
+        if str(x.get('c', '')).upper() == ref and x.get('la') is not None:
+            return {'n': x.get('n'), 'la': float(x['la']), 'lo': float(x['lo'])}
+    if ref.startswith('US-'):
+        j = web('https://api.pota.app/park/' + ref)
+        if j and j.get('latitude') is not None:
+            return {'n': j.get('name'), 'la': float(j['latitude']), 'lo': float(j['longitude'])}
+    return None
+
+
+def on_air():
+    """1. 'who's on the air in Kentucky right now?' - POTA's live activator spots for Kentucky parks."""
+    sp = web('https://api.pota.app/spot/activator')
+    if sp is None:
+        return f"POTA's spot list did not answer just now. Live spots: {SITE}kpc-spots.html"
+    ky = [x for x in sp if 'US-KY' in str(x.get('locationDesc') or '')]
+    seen, rows = set(), []
+    for x in sorted(ky, key=lambda x: str(x.get('spotTime') or ''), reverse=True):
+        k = (str(x.get('activator') or '').upper(), x.get('reference'))
+        if k in seen: continue
+        seen.add(k); rows.append(x)
+    if not rows:
+        return f"Nobody is spotted at a Kentucky park right now. Be the first: {SITE}kpc-park-control.html"
+    L = ["**On the air in Kentucky right now**"]
+    for x in rows[:10]:
+        f = str(x.get('frequency') or '')
+        try: f = f"{float(f) / 1000:.3f}"
+        except ValueError: pass
+        L.append(f"• **{x.get('activator')}** at **{x.get('reference')}** {str(x.get('name') or '')[:40]} — {f} {x.get('mode') or ''}".rstrip())
+    L.append(f"Live list: {SITE}kpc-spots.html")
+    return '\n'.join(L)
+
+
+def last_activation(ref):
+    """2. 'when was US-1271 last activated?' / 'has it been done this year?'"""
+    a = web(f'https://api.pota.app/park/activations/{ref}?count=all')
+    if a is None:
+        return None
+    ok = sorted([x for x in a if int(x.get('totalQSOs') or 0) >= 10], key=lambda x: str(x.get('qso_date') or ''), reverse=True)
+    pl = place(ref) or {}
+    nm = f"**{ref}** {pl.get('n') or ''}".strip()
+    if not ok:
+        return f"{nm} has **never been activated** in POTA's records (10 contacts makes it count). You could be the first."
+    y = str(datetime.date.today().year)
+    last, yr = ok[0], [x for x in ok if str(x.get('qso_date') or '').startswith(y)]
+    d = str(last.get('qso_date') or '')
+    d = f"{d[4:6]}/{d[6:8]}/{d[:4]}" if len(d) >= 8 else d
+    return (f"{nm} was last activated on **{d}** by **{last.get('activeCallsign')}** ({last.get('totalQSOs')} contacts).\n"
+            + (f"{len(yr)} activation{'s' if len(yr) != 1 else ''} so far in {y}; {len(ok):,} in all."
+               if yr else f"Not yet in {y} — {len(ok):,} activations in all."))
+
+
+def open_and_weather(ref):
+    """3. 'is US-xxxx open?' - any closure the park-alert bot has found, then the National Weather Service forecast."""
+    pl = place(ref)
+    L = [f"**{ref} {(pl or {}).get('n') or ''}**".strip()]
+    c = [x for x in (load('kpc-conditions.json', {}).get('items') or []) if x.get('ref') == ref]
+    if c:
+        for x in c[:2]:
+            L.append(f"⚠️ **{x.get('kind', 'Heads up')}** — {str(x.get('details'))[:260]}")
+    else:
+        L.append("No closures or alerts we know of. Gates and hours can still change, so check the park's own page before a long drive.")
+    if pl:
+        pt = web(f"https://api.weather.gov/points/{pl['la']:.4f},{pl['lo']:.4f}")
+        fc = web(pt['properties']['forecast']) if pt and (pt.get('properties') or {}).get('forecast') else None
+        per = ((fc or {}).get('properties') or {}).get('periods') or []
+        if per:
+            L.append('🌤 ' + ' · '.join(f"**{x.get('name')}**: {x.get('shortForecast')}, {x.get('temperature')}°{x.get('temperatureUnit')}" for x in per[:3]))
+        al = web(f"https://api.weather.gov/alerts/active?point={pl['la']:.4f},{pl['lo']:.4f}")
+        for f in ((al or {}).get('features') or [])[:2]:
+            L.append(f"🚨 {(f.get('properties') or {}).get('headline')}")
+    L.append(f"[Activation kit with the full forecast]({SITE}kpc-kit.html?ref={ref})")
+    return '\n'.join(L)
+
+
+def bands():
+    """4. 'how are the bands?' - NOAA's planetary K index and today's solar flux, in plain words."""
+    k = web('https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json')
+    f = web('https://services.swpc.noaa.gov/products/summary/10cm-flux.json')
+    kv = sfi = None
+    try: kv = float((k[-1].get('Kp') if isinstance(k[-1], dict) else k[-1][1]))
+    except Exception: pass  # noqa: BLE001
+    try: sfi = int(float((f or {}).get('Flux')))
+    except Exception: pass  # noqa: BLE001
+    if kv is None and sfi is None:
+        return None
+    L = ["**Band conditions right now**"]
+    if sfi is not None:
+        L.append(f"☀️ Solar flux **{sfi}** — " + ('the high bands (15–10 m) should be open in daylight' if sfi >= 150
+                 else 'fair: 20 m in the day, 40 m any time, the higher bands now and then' if sfi >= 100
+                 else 'low: stick to 40 m and 20 m, the higher bands will be quiet'))
+    if kv is not None:
+        L.append(f"🧲 K index **{kv:g}** — " + ('quiet, good for the low bands' if kv <= 2 else 'unsettled, a bit noisy'
+                 if kv <= 4 else 'a geomagnetic storm: noisy, and the high bands may fade out'))
+    L.append("From NOAA's Space Weather Prediction Center. Best times by band are in the Friday post.")
+    return '\n'.join(L)
+
+
+def next_events():
+    """5. 'when's the next event?' - the club's events, members' submitted events and the recurring ones."""
+    t = datetime.date.today().isoformat()
+    ev = list(load('data/kpc-club-events.json', {}).get('events') or [])
+    ev += list(load('kpc-events-submitted.json', {}).get('events') or [])
+    a = load('kpc-events-auto.json', {})
+    ev += list(a.get('recurring') or []) + list(a.get('found') or [])
+    ev = sorted([e for e in ev if str(e.get('end') or e.get('start') or '') >= t and e.get('name')], key=lambda e: str(e.get('start')))
+    if not ev:
+        return f"Nothing on the calendar yet: {SITE}events.html"
+    seen, L = set(), ["**Coming up**"]
+    for e in ev:
+        k = (e['name'], e.get('start'))
+        if k in seen: continue
+        seen.add(k)
+        d1 = datetime.date.fromisoformat(str(e['start'])[:10])
+        d = d1.strftime('%b %d, %Y').replace(' 0', ' ')
+        if e.get('end') and str(e['end'])[:10] != str(e['start'])[:10]:
+            d += ' – ' + datetime.date.fromisoformat(str(e['end'])[:10]).strftime('%b %d').replace(' 0', ' ')
+        L.append(f"• **{e['name']}** — {d}" + (f" · {e['where']}" if e.get('where') and len(str(e['where'])) < 60 else ''))
+        if len(L) > 5: break
+    L.append(f"The whole calendar: {SITE}events.html")
+    return '\n'.join(L)
+
+
+def grid(la, lo):
+    lo, la = lo + 180, la + 90
+    A = 'ABCDEFGHIJKLMNOPQRSTUVWX'
+    return (A[int(lo // 20)] + A[int(la // 10)] + str(int(lo % 20 // 2)) + str(int(la % 10))
+            + A[int(lo % 2 * 12)].lower() + A[int(la % 1 * 24)].lower())
+
+
+def grid_of(ref):
+    """7. 'what grid is US-xxxx in?'"""
+    pl = place(ref)
+    if not pl:
+        return None
+    return f"**{ref} {pl.get('n') or ''}** is in grid **{grid(pl['la'], pl['lo'])}** (from the park's map pin; a big park can cross into the next square)."
+
+
+FT8 = {'160': '1.840', '80': '3.573', '60': '5.357', '40': '7.074', '30': '10.136', '20': '14.074', '17': '18.100',
+       '15': '21.074', '12': '24.915', '10': '28.074', '6': '50.313', '2': '144.174'}
+FT4 = {'80': '3.575', '40': '7.0475', '30': '10.140', '20': '14.080', '17': '18.104', '15': '21.140', '12': '24.919', '10': '28.180', '6': '50.318'}
+QCODES = {'73': 'best regards — the usual sign-off', '88': 'love and kisses (friendly sign-off)', 'qrt': 'stopping, going off the air',
+          'qrp': 'low power (5 W or less on CW/digital, 10 W SSB)', 'qsy': 'change frequency', 'qsl': 'I confirm / a confirmation card',
+          'qth': 'my location', 'qrz': 'who is calling me?', 'qrm': 'interference from other stations', 'qrn': 'static, natural noise',
+          'qso': 'a contact', 'cq': 'calling anyone', 'p2p': 'park to park: both stations are activating a park',
+          'dx': 'a distant station', 'qrq': 'send faster', 'qrs': 'send slower', 'qrl': 'is this frequency in use?'}
+
+
+def quick(text):
+    """8. Quick ham answers: FT8/FT4 frequencies, Q-codes and lingo, how many contacts each program needs."""
+    t = text or ''
+    m = re.search(r'(?i)\b(ft8|ft4)\b', t)
+    if m and re.search(r"(?i)\b(freq\w*|where|dial|what)\b", t):
+        tab = FT8 if m.group(1).lower() == 'ft8' else FT4
+        b = re.search(r'\b(160|80|60|40|30|20|17|15|12|10|6|2)\s*(m|meters?)\b', t, re.I)
+        if b and b.group(1) in tab:
+            return f"{m.group(1).upper()} on {b.group(1)} m: **{tab[b.group(1)]} MHz** (USB dial)."
+        return f"**{m.group(1).upper()} dial frequencies (USB):** " + ' · '.join(f"{k} m {v}" for k, v in tab.items())
+    if re.search(r'(?i)\bhow many (contacts|qsos)\b|\bcontacts? (do i need|to count)\b|\bvalid activation\b|\bto count\b', t):
+        return ("**Contacts needed:**\n• **POTA**: 10 in one UTC day (park-to-park counts like any other)\n"
+                "• **WWFF/KFF**: 44 for the activation to count worldwide (can be added up over visits); fewer still count for the hunters\n"
+                "• **SOTA**: 4 to get the summit's points, 1 to log it")
+    m = re.search(r'(?i)\bwhat (does|is|do) (a |an )?["\']?(73|88|qr[a-z]|qs[a-z]|qth|cq|p2p|dx)["\']?\b', t)
+    if m and m.group(3).lower() in QCODES:
+        return f"**{m.group(3).upper()}** = {QCODES[m.group(3).lower()]}."
+    return None
+
+
 def answer_for(text, who=''):
     """What to say, or None to stay quiet."""
     if not ASKING.search(text or ''):
@@ -369,6 +558,30 @@ def answer_for(text, who=''):
     cp = call_parks(text, who)
     if cp:
         return cp
+    t = text or ''
+    q = quick(t)
+    if q:
+        return q
+    if re.search(r"(?i)\bwho.?s on\b|\bwho is on\b|\bon the air (now|right now|in kentucky)\b|\bany ?(one|body) (on|out|activating)\b|\bspots?\b.{0,20}\b(now|kentucky|right now)\b", t):
+        return on_air()
+    if re.search(r'(?i)\b(band conditions|how are the bands|bands? (good|bad|open|today)|solar|sfi|k.?index|propagation|conditions today)\b', t):
+        b = bands()
+        if b:
+            return b
+    rs = refs_in(t)
+    if rs:
+        if re.search(r'(?i)\b(grid|maidenhead|locator)\b', t):
+            g = grid_of(rs[0])
+            if g:
+                return g
+        if re.search(r'(?i)\b(last activat|last time|been activated|activated (this|last) year|recent(ly)? activ|when was)\b', t):
+            la = last_activation(rs[0])
+            if la:
+                return la
+        if re.search(r'(?i)\b(open|closed|closure|alerts?|weather|forecast|rain|storm|flood)\b', t):
+            return open_and_weather(rs[0])
+    if not re.search(r'(?i)\bcamp ?out\b', t) and re.search(r"(?i)\b(next|upcoming|coming up)\b.{0,20}\b(event|events|meet|weekend|activation day)\b|\bwhat.?s (coming up|on the calendar)\b|\bany events\b", t):
+        return next_events()
     if re.search(r'(?i)\b(utc|zulu|z time|what time)\b', text or ''):
         return utc_now()
     if re.search(r'(?i)\b(most activated|most popular|busiest|most active|top park|activated the most|'
