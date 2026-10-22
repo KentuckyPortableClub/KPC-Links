@@ -1,34 +1,22 @@
 # SK: POTA parks vs official land
 
-Built 2026-10-20 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **81 of 352** joined (same name + same kind), **25** to check, **246** nothing found. Nothing below is joined.
+Built 2026-10-22 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **93 of 352** joined (same name + same kind), **13** to check, **246** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
 - **SK-0001** Tatra National Park (National Park) → Tatry (EEA Natura 2000, the POTA pin is inside it (different name)); Tatry (EEA Natura 2000, the POTA pin is inside it (different name)); TANAP (EEA nationally designated areas, the POTA pin is inside it (different name)); Kôprová dolina (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **SK-0002** Nízke Tatry National Park (National Park) → Nízke Tatry (EEA nationally designated areas, same name, more than one kind of area); Nízke Tatry- OP (EEA nationally designated areas, same name, more than one kind of area)
 - **SK-0003** Slovenský raj National Park (National Park) → Slovenský raj- OP (EEA nationally designated areas, same name, more than one kind of area); Slovenský raj (EEA nationally designated areas, same name, more than one kind of area)
-- **SK-0004** Pieniny National Park (National Park) → Pieniny (EEA Natura 2000, same name, different kind of place); PIENAP (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **SK-0005** Malá Fatra National Park (National Park) → Malá Fatra (EEA nationally designated areas, same name, more than one kind of area); Malá Fatra- OP (EEA nationally designated areas, same name, more than one kind of area)
 - **SK-0006** Veľká Fatra National Park (National Park) → Veľká Fatra- OP (EEA nationally designated areas, same name, more than one kind of area); Veľká Fatra (EEA nationally designated areas, same name, more than one kind of area)
 - **SK-0007** Muránska planina National Park (National Park) → Muránska planina (EEA nationally designated areas, same name, more than one kind of area); Muránska planina- OP (EEA nationally designated areas, same name, more than one kind of area)
 - **SK-0008** Slovenský kras National Park (National Park) → Slovenský kras- OP (EEA nationally designated areas, same name, more than one kind of area); Slovenský kras (EEA nationally designated areas, same name, more than one kind of area)
 - **SK-0009** Poloniny National Park (National Park) → Poloniny (EEA nationally designated areas, same name, more than one kind of area); Poloniny- OP (EEA nationally designated areas, same name, more than one kind of area)
 - **SK-0038** Bábsky park - Protected Area (Protected Area) → Bábsky park (EEA nationally designated areas, same name, more than one kind of area); Bábsky les (EEA nationally designated areas, same name, more than one kind of area)
-- **SK-0060** Košúty - Protected Area (Protected Area) → Park pri ihrisku (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **SK-0071** Tomášikovský park - Protected Area (Protected Area) → Tomášikovský presyp (EEA nationally designated areas, same name, more than one kind of area); Tomášikovský park (EEA nationally designated areas, same name, more than one kind of area)
 - **SK-0076** Žitavský park - Protected Area (Protected Area) → Žitavský park (EEA nationally designated areas, same name, more than one kind of area); Žitavský luh (EEA nationally designated areas, same name, more than one kind of area)
-- **SK-0087** Park Kúpele Štós - National Monument (National Monument) → Volovské vrchy (EEA Natura 2000, the POTA pin is inside it (different name))
 - **SK-0090** Park Kaštieľ Oponice - National Monument (National Monument) → Tribeč (EEA Natura 2000, the POTA pin is inside it (different name)); Ponitrie (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **SK-0118** Park Kaštieľ Lehnice - National Monument (National Monument) → Lehnice (EEA Natura 2000, similar name)
-- **SK-0134** Park Kaštieľ Cífer - National Monument (National Monument) → Úľanská mokraď (EEA Natura 2000, the POTA pin is inside it (different name))
-- **SK-0166** Park Kaštieľ Nitrianska Streda - National Monument (National Monument) → Tribeč (EEA Natura 2000, the POTA pin is inside it (different name))
-- **SK-0194** Zámocký park Kunerad - National Monument (National Monument) → Malá Fatra (EEA Natura 2000, the POTA pin is inside it (different name))
-- **SK-0223** Park Kaštieľ Batizovce - National Monument (National Monument) → TANAP- OP (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **SK-0252** Alpinka - Park (Park) → Volovské vrchy (EEA Natura 2000, the POTA pin is inside it (different name))
-- **SK-0256** Jankov Park (Park) → Košická kotlina (EEA Natura 2000, the POTA pin is inside it (different name))
-- **SK-0257** Anglický park Markušovce - National Monument (National Monument) → Stredný tok Hornádu (EEA Natura 2000, the POTA pin is inside it (different name))
 - **SK-0276** Park Suchá Vydrica - Park (Park) → Vydrica (EEA Natura 2000, similar name); Vydrica (EEA nationally designated areas, similar name)
-- **SK-0282** Vodárenský Park (Park) → Bratislavské luhy (EEA Natura 2000, the POTA pin is inside it (different name))
 
 ## Nothing found
 
