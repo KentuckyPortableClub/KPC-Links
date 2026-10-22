@@ -442,28 +442,9 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_match as KM  # noqa: E402
 
 
-def _apart(b1, b2, pad=0.1):
-    return b1[2] + pad < b2[0] or b2[2] + pad < b1[0] or b1[3] + pad < b2[1] or b2[3] + pad < b1[1]
-
-
 def name_clusters(recs):
-    """How many separate PLACES carry each name in this state. A long area in many parcels (Curecanti NRA runs
-    sixty-odd km of river) is one place if its parcels link up; two Beaver Creeks a county apart are two."""
-    byname = {}
-    for a in recs:
-        a['_nn'] = norm(a.get('Unit_Nm') or a.get('Loc_Nm') or '')
-        byname.setdefault(a['_nn'], []).append(a)
-    out = {}
-    for nn, rs in byname.items():
-        par = list(range(len(rs)))
-        def f(i):
-            while par[i] != i: par[i] = par[par[i]]; i = par[i]
-            return i
-        for i in range(len(rs)):
-            for j in range(i + 1, len(rs)):
-                if not _apart(rs[i]['_bb'], rs[j]['_bb']): par[f(i)] = f(j)
-        out[nn] = len({f(i) for i in range(len(rs))})
-    return out
+    for a in recs: a['_nn'] = norm(a.get('Unit_Nm') or a.get('Loc_Nm') or '')
+    return KM.name_clusters([(a['_nn'], a['_bb']) for a in recs])
 
 
 def score_park(name, typ, la, lo, recs, clusters):
@@ -485,29 +466,12 @@ def score_park(name, typ, la, lo, recs, clusters):
                                or (a.get('Loc_Nm') and same_name(name, a['Loc_Nm'])))
         holds = la is not None and near(la, lo, a['_bb'], 0) and KM.inside(la, lo, a['_g'])
         if not (ex or wd or holds): continue
-        cands.append({'a': a, 'kind_ok': kind_ok, 'side_ok': _side(name) == _side(nm), 'name_exact': ex,
+        cands.append({'a': a, 'nn': a.get('_nn'), 'bb': a['_bb'], 'kind_ok': kind_ok, 'side_ok': _side(name) == _side(nm), 'name_exact': ex,
                       'name_unique': clusters.get(a.get('_nn'), 1) == 1, 'name_words': wd,
                       'pin': (la, lo) if la is not None else None, 'g': a['_g'], 'acres': a.get('GIS_Acres') or 0})
         # PIN_JOIN stays off in the US: the names CAN be read here, and a pin alone mostly finds the forest around
         # the park (Brainard Lake Recreation Area -> all of Roosevelt National Forest, Oct 22)
-    for c in cands:
-        c['pts'], c['why'] = KM.score(c)
-    par = list(range(len(cands)))
-    def f(i):
-        while par[i] != i: par[i] = par[par[i]]; i = par[i]
-        return i
-    for i in range(len(cands)):
-        for j in range(i + 1, len(cands)):
-            a1, a2 = cands[i]['a'], cands[j]['a']
-            named = (cands[i]['name_exact'] or cands[i]['name_words']) and (cands[j]['name_exact'] or cands[j]['name_words'])
-            # one PLACE: the same name and linked, or overlapping on the ground and both matching the park's name
-            # (PAD-US's 'Flagler Reservoir State Wildlife Area' and Colorado's own 'Flagler Reservoir SWA')
-            if (a1.get('_nn') == a2.get('_nn') and not _apart(a1['_bb'], a2['_bb'])) or (named and not _apart(a1['_bb'], a2['_bb'], .05)):
-                par[f(i)] = f(j)
-    byg = {}
-    for i, c in enumerate(cands): byg.setdefault(f(i), []).append(c)
-    G = [(max(x['pts'] for x in g), max(g, key=lambda x: x['pts'])['why'], g) for g in byg.values()]
-    return KM.decide(G)
+    return KM.choose(cands)
 
 
 def cache_file(st): return CACHE / f'US-{st}.json.gz'

@@ -56,6 +56,16 @@ def failures(verbose=False, groups=('us_names', 'alerts', 'world_names')):
         ok = got == c['same']
         say(('ok   ' if ok else 'FAIL ') + f"{c['cc']:4s} {c['a']!r} vs {c['b']!r}: {'same' if got else 'different'}")
         if not ok: out.append(f"{c['cc']} names: {c['a']!r} vs {c['b']!r} should be {'same' if c['same'] else 'different'} — {c['why']}")
+    # the shared module must read BOTH ways an outline is kept: an ArcGIS geometry (US, Canada) and a bare list of
+    # rings (world). Oct 22: reading only the first silently switched the world's shadow scoring off for every country
+    if 'us_names' in groups:
+        sys.path.insert(0, str(ROOT / '.github' / 'scripts'))
+        import kpc_match as KM
+        sq = [[[0, 0], [2, 0], [2, 2], [0, 2], [0, 0]]]
+        for label, g in (('ArcGIS geometry', {'rings': sq}), ('bare list of rings', sq)):
+            ok = KM.inside(1, 1, g) and not KM.inside(5, 5, g) and KM.km_to(1, 1, g) == 0
+            say(('ok   ' if ok else 'FAIL ') + f'GEO  outline kept as {label}')
+            if not ok: out.append(f'kpc_match cannot read an outline kept as a {label}')
     return out
 
 
