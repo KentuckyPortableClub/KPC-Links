@@ -263,11 +263,18 @@ def lbl_alerts():
     # Nothing matched. Say enough about what the page actually looks like to fix the reader without
     # guessing, but keep it to one line and never print the page itself.
     if os.environ.get('LBL_LOOK') == '1':
-        tags = re.findall(r'<(article|h1|h2|h3|h4)[^>]*class="([^"]{0,70})"', html)
-        notice('Park alerts', f'LBL page {len(html)} chars; headings/articles: '
-               + '; '.join(f'{t}.{c}' for t, c in tags[:12])[:600])
-        links = re.findall(r'href="(https://[^"]*landbetweenthelakes[^"]*/20\d\d/[^"]*)"', html)
-        notice('Park alerts', 'LBL post links: ' + ('; '.join(links[:6])[:500] or 'none found'))
+        heads = [clean(re.sub(r'<[^>]+>', ' ', m.group(1)), 90)
+                 for m in re.finditer(r'<h[12][^>]*>(.*?)</h[12]>', html, re.S)]
+        heads = [h for h in heads if h]
+        notice('Park alerts', f'LBL page {len(html)} chars; first headings: '
+               + ' | '.join(heads[:14])[:650])
+        for u in ('https://landbetweenthelakes.us/alerts/feed/', 'https://landbetweenthelakes.us/feed/'):
+            try:
+                x = fetch(u, timeout=45)
+                notice('Park alerts', f'LBL feed {u[-14:]} -> {len(x)} chars, starts: '
+                       + re.sub(r'\s+', ' ', x[:120]))
+            except Exception as e:  # noqa: BLE001
+                notice('Park alerts', f'LBL feed {u[-14:]} -> {str(e)[:70]}')
     notice('Park alerts', 'Land Between the Lakes: the page answered but nothing looked like an alert '
                           '(may simply be that nothing is closed right now)')
     return out
