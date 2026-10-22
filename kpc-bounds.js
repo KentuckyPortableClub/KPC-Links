@@ -153,7 +153,7 @@
     for (const st of states || []) {
       if (!(st in keyCache)) keyCache[st] = fetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
       const k = await keyCache[st]; const p = k && k.parks && k.parks[ref];
-      if (p) { known = true; if (p.m && p.m.length) { hit = hit || { n: p.n, m: [] }; hit.m.push(...p.m); } if (p.a && p.a.length) site = p.a; }
+      if (p) { known = true; if (p.m && p.m.length) { hit = hit || { n: p.n, m: [] }; hit.m.push(...p.m); hit.far = hit.far || p.far; } if (p.a && p.a.length) site = p.a; }
     }
     if (!hit) return known ? { state: 'none', site } : null;
     const seen = new Set(), m = hit.m.filter(x => !seen.has(String(x[0])) && seen.add(String(x[0])));
@@ -167,7 +167,14 @@
     const fs = (await Promise.all(jobs)).flat().filter(f => f.geometry);
     if (!fs.length) return { state: 'error', n: hit.n, m };
     fs.forEach(f => { const p = f.properties || {}; f._nm = p.Unit_Nm || p.ORGNAME || hit.n; f._bb = bbox(f.geometry); });
-    return { state: 'ok', n: hit.n, m, fs };
+    /* Oct 22 (Brandon: 'note boundaries that we dont know for sure so they clearly know this is not offical'): an outline is
+       APPROXIMATE when the names only partly match AND the park's map pin is outside the land. A pin alone is not enough:
+       POTA's pins can be miles off (Kodiak Refuge, Vega State Park) while the name is exact. A person's review
+       (overrides.json) always counts as sure. */
+    const how = new Set(m.map(x => String(x[3] || ''))), reviewed = how.has('reviewed'), named = [...how].some(h => h.startsWith('name'));
+    const approx = !reviewed && !named && !!hit.far;
+    const why = approx ? 'the names only partly match and the park\u2019s map pin is ' + (hit.far === 'well outside' ? 'well outside this land' : 'just outside this land') : '';
+    return { state: 'ok', n: hit.n, m, fs, approx, why };
   }
   /* Oct 18 (Brandon: review the US data… tappable land): what official land is at a spot, and which POTA parks the answer key joined to it */
   const revCache = {};
