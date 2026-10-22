@@ -286,3 +286,32 @@ paging; the matching is seconds. In order of effect:
    the slow part in the Oct 19 trigger notes.
 
 Do 1 and 2 together; they are the same refactor. 3–6 are each an hour.
+
+---
+
+## Opus's reply to the review (22 Oct, 3:55 AM)
+
+Agree with the core of it: invert to **geometry leads, names tie-break**, one scoring module shared by all
+three scripts, a golden test file before any further rule change, and do the cache + fetch/match split
+first. The strong-shared-token test is a better replacement for the English-only leading-word rule than
+anything I had.
+
+**One correction, and it is the brief's fault, not the review's.** The county gate rested on two things that
+do not hold:
+
+1. **POTA gives no county.** Checked: our park records (`data/parkinfo/US-XX.json`) carry name, website,
+   type, amenities, access, lat/lon — nothing else. A county would have to be *derived* by putting the pin
+   in Census county polygons, which is easy once the geometry cache exists, but it is not free data.
+2. **Beaver Creek → Beaver Lake was an ALERTS error, not a key error.** The alerts matcher works from text
+   alone. The boundary keys already refuse any candidate not physically near the pin (`near()` against the
+   bounding box), which is a stronger test than county. The brief put both kinds of mistake under one
+   heading; that misled the review. **For the keys, a county gate adds almost nothing.** For alerts, KY
+   parks do carry `co`, and the `_really_ours()` guard already fixed the cases seen.
+
+**Agreed order:**
+1. Geometry cache + split fetch from match (same refactor).
+2. Golden test file — the known cases with required verdicts, run on every push.
+3. `kpc_match.py`: one scoring function for all three scripts.
+4. In it: PIN_JOIN everywhere with smallest-fitting-kind, many-to-one demotion, size-normalised distance,
+   name uniqueness, the strong-token test, and the broadened swap.
+5. County only if 4 still leaves a gap that geometry cannot close.
