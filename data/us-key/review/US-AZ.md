@@ -1,15 +1,20 @@
 # AZ: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **88 of 123** parks joined to official land (same name + same kind of place). **16** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **81 of 123** parks joined to official land (same name + same kind of place). **23** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-10510** Dos Cabezas Mountains Wilderness Area (Wilderness Area) → Safford Field Office (~1,397,557 ac, the POTA pin is inside it (different name))
 - **US-1052** Alamo Lake State Park (State Park) → Alamo (~189,084 ac, same name, different kind of place); Lake Havasu Field Office (~1,268,987 ac, the POTA pin is inside it (different name))
 - **US-1055** Catalina State Park (State Park) → Coronado National Forest (~1,652,117 ac, the POTA pin is inside it (different name))
 - **US-1061** Lost Dutchman State Park (State Park) → Lower Sonoran Field Office (~1,404,336 ac, the POTA pin is inside it (different name))
 - **US-1069** Tonto Natural Bridge State Park (State Park) → Tonto National Forest (~2,866,817 ac, similar name)
+- **US-11046** Eagletail Mountains Wilderness Area (Wilderness Area) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name))
+- **US-11047** Trigo Mountain Wilderness Area (Wilderness Area) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name)); Cibola-Trigo (~152,337 ac, the POTA pin is inside it (different name))
+- **US-11049** New Water Mountains Wilderness Area (Wilderness Area) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name))
 - **US-11122** General Crook National Recreation Trail (National Recreation Trail) → Sitgreaves National Forest (~820,490 ac, the POTA pin is inside it (different name))
 - **US-11123** Highline National Recreation Trail (National Recreation Trail) → Tonto National Forest (~2,866,817 ac, the POTA pin is inside it (different name))
+- **US-11942** Wabayuma Peak BLM Wilderness Area (BLM Wilderness Area) → Kingman Field Office (~2,476,668 ac, the POTA pin is inside it (different name))
 - **US-11944** Dankworth Pond State Park (State Park) → Roper Lake State Park (~81 ac, the POTA pin is inside it (different name))
 - **US-11979** Allen Severson State Wildlife Area (State Wildlife Area) → Sitgreaves National Forest (~820,490 ac, the POTA pin is inside it (different name))
 - **US-11987** White Mountain State Wildlife Area (State Wildlife Area) → State Trust Land (~7,977,759 ac, the POTA pin is inside it (different name))
@@ -18,7 +23,9 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **88 of 123** parks joined 
 - **US-13594** Black Canyon National Recreation Trail (National Recreation Trail) → Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name))
 - **US-3672** Fool Hollow Lake State Recreation Area (State Recreation Area) → Sitgreaves National Forest (~820,490 ac, the POTA pin is inside it (different name))
 - **US-4557** Arizona Trail National Scenic Trail (National Scenic Trail) → Coronado National Forest (~1,652,117 ac, the POTA pin is inside it (different name))
+- **US-6090** Beaver Dam Mountain Wilderness Area (Wilderness Area) → Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name))
 - **US-7383** Tonto State Fish Hatchery (State Fish Hatchery) → Tonto National Forest (~2,866,817 ac, same name, different kind of place)
+- **US-8297** Muggins Mountain Wilderness Area (Wilderness Area) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name))
 - **US-8298** Mittry Lake Wildlife Area (Wildlife Area) → Cibola-Trigo (~152,337 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
