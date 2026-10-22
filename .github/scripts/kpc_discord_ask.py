@@ -323,10 +323,52 @@ def utc_now():
             f"and {(n - datetime.timedelta(hours=4)).strftime('%I:%M %p').lstrip('0')} Eastern.")
 
 
-def answer_for(text):
+CALL = re.compile(r'\b([A-Z]{1,2}[0-9][A-Z]{1,4})(?:/[A-Z0-9]+)?\b')
+MINE = re.compile(r"(?i)\b(do i|have i|i have|i need|i still|my parks|i've|ive)\b")
+
+
+def call_parks(text, who=''):
+    """'how many parks does K4XYZ need to activate all of Kentucky?' (Brandon Oct 22: 'teach it to look up peoples
+    calls'). From POTA's public activation lists, which data/leaders/KY-calls.json adds up every day. 'Do I need' uses
+    the call in the asker's Discord name. An activation counts at 10+ contacts, POTA's rule."""
+    if not re.search(r'(?i)\b(activat|need|parks? (has|have|did)|how many)', text or ''):
+        return None
+    calls = [c for c in CALL.findall((text or '').upper()) if not re.match(r'^(US|KFF|KY)\d', c)]
+    if not calls and MINE.search(text or ''):
+        calls = CALL.findall(str(who or '').upper())
+    if not calls:
+        return None
+    c = calls[0]
+    d = load('data/leaders/KY-calls.json', {})
+    if not d.get('calls'):
+        return None
+    live = {p['c']: p for p in (load('kpc-ky-data.json', {}).get('parks') or [])}
+    held = {str(h.get('ref')).upper() for h in (load('data/kpc-post-holds.json', {}).get('hold') or []) if h.get('ref')}
+    done = [r for r in d['calls'].get(c, []) if r in live]
+    need = [r for r in sorted(live) if r not in done and r not in held]
+    tot = len(live)
+    if not done:
+        L = [f"**{c}** has no Kentucky park activations in POTA's records yet (an activation counts at 10 contacts). "
+             f"That leaves all {tot} to go — plenty of choice: {SITE}kpc-park-control.html"]
+    elif not need:
+        L = [f"**{c}** has activated **every one** of Kentucky's {tot} POTA parks. 🎉"]
+    else:
+        L = [f"**{c}** has activated **{len(done)} of {tot}** Kentucky POTA parks — **{len(need)} to go**."]
+        quiet = {r.get('c'): (r.get('a') or 0) for r in (load('kpc-top25.json', {}).get('acts') or [])}
+        pick = sorted(need, key=lambda r: (quiet.get(r, 999), r))[:5]
+        L.append('A few still to do: ' + ', '.join(f"**{r}** {live[r]['n']}" for r in pick))
+        L.append(f"Map of every park: {SITE}kpc-park-control.html")
+    L.append(f"_From POTA's activation lists, updated {str(d.get('updated'))[:10]}. Activations only: POTA does not share who hunted each park._")
+    return '\n'.join(L)
+
+
+def answer_for(text, who=''):
     """What to say, or None to stay quiet."""
     if not ASKING.search(text or ''):
         return None
+    cp = call_parks(text, who)
+    if cp:
+        return cp
     if re.search(r'(?i)\b(utc|zulu|z time|what time)\b', text or ''):
         return utc_now()
     if re.search(r'(?i)\b(most activated|most popular|busiest|most active|top park|activated the most|'
@@ -430,7 +472,7 @@ def main():
                 ans = welcome(who)
                 greeted += 1
             else:
-                ans = answer_for(m.get('content') or '')
+                ans = answer_for(m.get('content') or '', ' '.join(str((m.get('author') or {}).get(k) or '') for k in ('global_name', 'username')))
             if not ans:
                 continue
             if rid not in said_hello and m.get('type') != 7:

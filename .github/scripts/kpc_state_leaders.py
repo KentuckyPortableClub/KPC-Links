@@ -53,13 +53,14 @@ for st in ST:
     try: L = get(f'https://api.pota.app/location/parks/US-{st}')
     except Exception as e: note(f'US-{st}', f'park list failed: {str(e)[:100]}'); continue
     P = [(p['reference'], int(p.get('activations') or 0)) for p in L if p.get('reference')]
-    tot, hun, fetched, bad = {}, {}, 0, 0
+    tot, hun, fetched, bad, calls = {}, {}, 0, 0, {}
     with CF.ThreadPoolExecutor(4) as ex:
         fut = {ex.submit(park, r, n): r for r, n in P if n > 0}
         for f in CF.as_completed(fut):
             try: a, h, new = f.result()
             except Exception: bad += 1; continue
             fetched += new
+            for c in a: calls.setdefault(c, []).append(fut[f])
             for c, (k, q, d1, d2, yy) in a.items():
                 v = tot.setdefault(c, [0, 0, 0, '', '', 0, 0, 0]); v[0] += k; v[1] += 1; v[2] += q
                 if d1 and (not v[3] or d1 < v[3]): v[3] = d1
@@ -84,6 +85,11 @@ for st in ST:
     json.dump({'v': 2, 'updated': today, 'year': YEAR, 'st': st, 'parks': len(P), 'activated': len(fut), 'activators': len(rows), 'yactivators': sum(1 for r in rows if r[6]),
                'acts': acts, 'uniq': uniq, 'qsos': qsos, 'yacts': yacts, 'yuniq': yuniq, 'yqsos': yqsos, 'hunt': hunt, 'huntp': huntp},
               open(f'{OUT}/US-{st}.json', 'w'), separators=(',', ':'))
+    if st == 'KY':
+        # Oct 22 (Brandon: 'teach it to look up peoples calls'): which Kentucky parks each call has activated (10+ QSOs),
+        # so the Discord helper can answer 'how many parks does K4XYZ still need'. POTA's own public activation lists.
+        json.dump({'updated': today, 'parks': [r for r, n in P], 'calls': {c: sorted(set(v)) for c, v in sorted(calls.items())}},
+                  open(f'{OUT}/KY-calls.json', 'w'), separators=(',', ':'))
     IDX[st] = [today, len(P)]; done.append(st)
     note(f'US-{st}', f'{len(P)} parks, {len(rows)} activators; {fetched} parks re-read; top: {acts[0][0] if acts else "-"}')
 json.dump(IDX, open(f'{OUT}/index.json', 'w'), separators=(',', ':'), sort_keys=True)

@@ -3,6 +3,7 @@ name: KPC state leaders
 on:
   schedule:
     - cron: '23 6 * * 3'
+    - cron: '41 9 * * *'     # Oct 22: Kentucky alone every day (fast: only changed parks are re-read) for the Discord helper's call look-ups
   workflow_dispatch:
     inputs:
       states:
@@ -27,7 +28,7 @@ jobs:
           restore-keys: kpc-leaders-
       - run: python3 .github/scripts/kpc_state_leaders.py
         env:
-          STATES: ${{ inputs.states }}
+          STATES: ${{ github.event.schedule == '41 9 * * *' && 'KY' || inputs.states }}
           BUDGET_MIN: '300'
       - uses: actions/cache/save@v4
         if: always()
@@ -39,4 +40,8 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/leaders
-          if ! git diff --cached --quiet; then git commit -m 'State leaders'; git pull --rebase --autostash || true; git push; fi
+          if ! git diff --cached --quiet; then
+            git commit -m 'State leaders'
+            for i in 1 2 3 4 5 6; do if git pull --rebase --autostash && git push; then exit 0; fi; git rebase --abort 2>/dev/null || true; sleep $((i * 8 + RANDOM % 7)); done
+            echo "::notice title=State leaders save::the repo was busy; the next run saves it"
+          fi
