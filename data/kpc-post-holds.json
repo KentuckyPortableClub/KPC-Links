@@ -1,7 +1,7 @@
 {
  "note": "References to leave OUT of the club's suggestion posts (Brandon Oct 21: 'remove 13604 and 13605 from that post for now....they might be coming off pota??'). Used by the weekly 'quiet ones' post and by the bot's 'what needs activating?' answer, so neither one sends somebody driving to a park that may be about to be delisted. It does NOT hide a park anywhere else: Park Control, the park card and a direct question about the reference all still work normally. Take a line out when the park is settled and it comes straight back.",
- "hold": [
-  {"ref": "US-13604", "why": "may be coming off POTA", "since": "2026-10-21"},
-  {"ref": "US-13605", "why": "may be coming off POTA", "since": "2026-10-21"}
+ "hold": [],
+ "history": [
+  "US-13604, US-13605 and US-13607 were held on 21 Oct 2026 and then confirmed retired by the reference check on 22 Oct; they were taken out of kpc-ky-data.json instead."
  ]
 }

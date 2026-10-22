@@ -178,7 +178,12 @@ def lonely_parks(state):
         notice('No POTA figures yet; nothing to post.')
         return False
     held = on_hold()
-    rows = [r for r in rows if str(r.get('c', '')).upper() not in held]
+    live = {x['c'] for x in (load('kpc-ky-data.json', {}).get('parks') or [])}
+    gone = [r['c'] for r in rows if r.get('c') not in live]
+    if gone:
+        notice('Left out, no longer on the official list: ' + ', '.join(gone[:6]))
+    rows = [r for r in rows
+            if str(r.get('c', '')).upper() not in held and r.get('c') in live]
     if held:
         notice(f'Left out {len(held)} reference(s) on hold: ' + ', '.join(sorted(held)))
     if not rows:
