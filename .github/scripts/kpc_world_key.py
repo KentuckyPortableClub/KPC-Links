@@ -14,6 +14,49 @@ import json, os, re, time, unicodedata, urllib.parse, urllib.request, pathlib
 
 UA = {'User-Agent': 'KPC (kentuckyportableclub.github.io)'}
 OUT = pathlib.Path('data/world-key'); (OUT / 'review').mkdir(parents=True, exist_ok=True)
+import gzip
+# SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review; the same scheme as kpc_us_key.py). Live runs have always fetched
+# outlines at 0.01 degrees (~1.1 km) and then THINNED every ring to about 60 points - a whole national park in 60
+# dots - which is what 'pin inside' and PIN_JOIN were judged against. A saved copy is fetched once, so it can afford
+# more. GEO_CACHE_MODE: off (default, exactly as before) | use | refresh | only (no network: the fast rule test).
+DETAIL = float(os.environ.get('GEO_DETAIL') or 0.01)
+PREC = 3 if DETAIL >= 0.01 else 5
+THIN_N = int(os.environ.get('GEO_THIN') or 60)
+WCACHE = pathlib.Path(os.environ.get('GEO_CACHE') or 'cache/world')
+CMODE = (os.environ.get('GEO_CACHE_MODE') or 'off').strip().lower()
+WUSED, WSAVED, WMETA = [], [], {}
+
+
+def wcache_file(cc): return WCACHE / f'W-{cc}.json.gz'
+
+
+def wsave(cc, recs):
+    WCACHE.mkdir(parents=True, exist_ok=True)
+    rows = []
+    for r in recs:
+        o = {k: v for k, v in r.items() if k != '_k'}
+        o['_r'] = [[[round(pt[0], 5), round(pt[1], 5)] for pt in ring if len(pt) >= 2] for ring in (r.get('_r') or [])]
+        rows.append(o)
+    with gzip.open(wcache_file(cc), 'wt', encoding='utf-8') as f:
+        json.dump({'cc': cc, 'saved': time.strftime('%Y-%m-%d'), 'detail': DETAIL, 'thin': THIN_N, 'recs': rows}, f,
+                  separators=(',', ':'), default=lambda o: sorted(o) if isinstance(o, (set, frozenset)) else str(o))
+    WSAVED.append(cc)
+
+
+def wload(cc):
+    f = wcache_file(cc)
+    if not f.exists(): return None
+    try:
+        with gzip.open(f, 'rt', encoding='utf-8') as fh: blob = json.load(fh)
+    except Exception as e:  # noqa: BLE001
+        print(f'{cc}: saved outlines unreadable ({e}); fetching', flush=True); return None
+    recs = blob.get('recs') or []
+    WMETA[cc] = (blob.get('detail'), blob.get('thin'))
+    for r in recs:
+        if '_k0' in r and not isinstance(r['_k0'], set): r['_k0'] = set(r['_k0'] or [])
+        if r.get('_bb') is not None: r['_bb'] = list(r['_bb'])
+    WUSED.append(cc)
+    return recs
 SRC = {
     'AU': [('CAPAD (DCCEEW)', 'arcgis', 'https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/MapServer/0')],
     'DE': [('BfN ' + t, 'wfs', 'https://geodienste.bfn.de/ogc/wfs/schutzgebiet', 'schutzgebiet:' + t) for t in
@@ -294,7 +337,7 @@ def rings_of(g):
 def bbox(rs):
     xs = [p[0] for r in rs for p in r]; ys = [p[1] for r in rs for p in r]
     return [min(xs), min(ys), max(xs), max(ys)] if xs else None
-def thin(rs, n=60): return [r[::max(1, len(r) // n)] for r in rs]   # keep it light: only used for 'pin inside'
+def thin(rs, n=None): n = n or THIN_N; return [r[::max(1, len(r) // n)] for r in rs]   # keep it light: only used for 'pin inside'
 def in_ring(x, y, r):
     ins = False; j = len(r) - 1
     for i in range(len(r)):
@@ -338,8 +381,14 @@ def pull_arcgis1(label, url, where):
     notice(f'{label} fields', ', '.join(fnames)[:900])
     recs, off = [], 0
     while True:
-        j = fetch(url + '/query?' + urllib.parse.urlencode({'where': where, 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01,
-                                                             'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000), 'orderByFields': oidf}))
+        qq = {'where': where, 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL,
+              'geometryPrecision': PREC, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000), 'orderByFields': oidf}
+        try:
+            j = fetch(url + '/query?' + urllib.parse.urlencode(qq))
+        except Exception:  # noqa: BLE001
+            if DETAIL >= 0.01: raise
+            qq.update(maxAllowableOffset=0.01, geometryPrecision=3)      # the server refused the finer outline: today's one
+            j = fetch(url + '/query?' + urllib.parse.urlencode(qq))
         fs = j.get('features', [])
         for f in fs:
             a = f.get('attributes') or {}; rs = rings_of(f.get('geometry'))
@@ -565,14 +614,19 @@ except Exception: pass  # noqa: BLE001
 for cc in COUNTRIES:
     try: P = json.load(open(f'data/parkinfo/{cc}.json'))['parks']
     except Exception: notice(f'World key {cc}', 'no park list yet (data/parkinfo); skipped'); continue  # noqa: BLE001
-    recs = []
-    for s in SRC.get(cc, []):
-        try:
-            if s[1] == 'arcgis_alt' and any(r['src'].startswith('IGN Géoplateforme ZNIEFF') for r in recs): continue   # the same zones already came from IGN
-            got = pull_arcgis(s[0], s[2], s[3] if len(s) > 3 and s[1] != 'arcgisfind' else None) if s[1] in ('arcgis', 'arcgis_alt') else pull_find(s[0], s[2], s[3]) if s[1] == 'arcgisfind' else pull_a10(s[0], s[2]) if s[1] == 'a10' else pull_chshp(s[0], s[2]) if s[1] == 'chshp' else pull_wfs(s[0], s[2], s[3])
-            recs += got; print(f'{cc} {s[0]}: {len(got)}', flush=True)
-        except Exception as e:  # noqa: BLE001
-            notice(f'World key {cc}', f'{s[0]} FAILED: {e}')
+    recs = wload(cc) if CMODE in ('use', 'only') else None
+    if recs is None and CMODE == 'only':
+        print(f'{cc}: no saved outlines yet; skipped (saved-copy-only run)', flush=True); continue
+    if recs is None:
+        recs = []
+        for s in SRC.get(cc, []):
+            try:
+                if s[1] == 'arcgis_alt' and any(r['src'].startswith('IGN Géoplateforme ZNIEFF') for r in recs): continue   # the same zones already came from IGN
+                got = pull_arcgis(s[0], s[2], s[3] if len(s) > 3 and s[1] != 'arcgisfind' else None) if s[1] in ('arcgis', 'arcgis_alt') else pull_find(s[0], s[2], s[3]) if s[1] == 'arcgisfind' else pull_a10(s[0], s[2]) if s[1] == 'a10' else pull_chshp(s[0], s[2]) if s[1] == 'chshp' else pull_wfs(s[0], s[2], s[3])
+                recs += got; print(f'{cc} {s[0]}: {len(got)}', flush=True)
+            except Exception as e:  # noqa: BLE001
+                notice(f'World key {cc}', f'{s[0]} FAILED: {e}')
+        if recs and CMODE in ('use', 'refresh'): wsave(cc, recs)
     if not recs: continue
     if cc == 'JP':
         for r in recs:
@@ -695,7 +749,8 @@ for cc in COUNTRIES:
                 c = [x for x in c if x not in sn]
         parks[ref] = {'n': name, 't': typ, 'm': m, 'c': c}
     cnt = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
-           'none': sum(1 for p in parks.values() if not p['m'] and not p['c']), 'areas': len(recs)}
+           'none': sum(1 for p in parks.values() if not p['m'] and not p['c']), 'areas': len(recs),
+           'detail': (WMETA.get(cc) or (DETAIL, THIN_N))[0], 'thin': (WMETA.get(cc) or (DETAIL, THIN_N))[1]}
     (OUT / f'{cc}.json').write_text(json.dumps({'updated': time.strftime('%Y-%m-%d'), 'cc': cc, 'sources': [s[0] for s in SRC[cc]], 'counts': cnt, 'parks': parks},
                                                separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
     L = [f'# {cc}: POTA parks vs official land', '', f"Built {time.strftime('%Y-%m-%d')} by `.github/scripts/kpc_world_key.py` from: {', '.join(s[0] for s in SRC[cc])}. "
@@ -706,3 +761,5 @@ for cc in COUNTRIES:
     idx[cc] = cnt
     notice(f'World key {cc}', f"{cnt['matched']} of {cnt['parks']} joined, {cnt['check']} to check, {cnt['none']} nothing found ({cnt['areas']} official areas read)")
     json.dump({'updated': time.strftime('%Y-%m-%d'), 'countries': idx}, open(OUT / 'index.json', 'w'), separators=(',', ':'))
+if CMODE != 'off':
+    notice('World key saved outlines', f"mode {CMODE}, detail {DETAIL}, thin {THIN_N}: loaded {len(WUSED)} ({' '.join(WUSED)}), saved {len(WSAVED)} ({' '.join(WSAVED)})")

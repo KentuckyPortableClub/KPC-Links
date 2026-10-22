@@ -1,0 +1,79 @@
+name: KPC saved shapes (world + Canada)
+# The world and Canada half of 'KPC saved shapes': downloads each country's official outlines ONCE, finer than the
+# live runs ever have (~220 m instead of ~1.1 km, and 250 points a ring instead of 60; Canada ~220 m instead of
+# ~2.2 km), and keeps them as files on the 'boundary-cache' release - never in the repo.
+# Brandon Oct 22: 'keep 19 busy' -> 12 at a time, leaving room for the relay, park alerts and app builds that share
+# the club's 20 GitHub slots. Each country is its own government server, so the width hurts nobody, and no job here
+# pushes to the repo, so the jobs cannot collide with each other or with the other bots. Never fails.
+on:
+  schedule:
+    - cron: '47 9 4 * *'          # the 4th of each month (the US one runs on the 3rd)
+  workflow_dispatch:
+    inputs:
+      countries:
+        description: 'Only these (blank = every country + CA). CA = all of Canada.'
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: kpc-world-cache
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      list: ${{ steps.l.outputs.list }}
+    steps:
+      - name: Make sure the release exists
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view boundary-cache -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
+          gh release create boundary-cache -R "$GITHUB_REPOSITORY" --prerelease --title 'Saved park outlines' \
+            --notes 'Official land outlines saved for the boundary answer keys. Not a release of anything.' || true
+      - name: The list
+        id: l
+        env:
+          WANT: ${{ inputs.countries }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          ALL = 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CA'.split()
+          want = (os.environ.get('WANT') or '').upper().replace(',', ' ').split() or ALL
+          print('list=' + json.dumps(want))
+          PY
+  fetch:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix:
+        cc: ${{ fromJSON(needs.prepare.outputs.list) }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Download and save ${{ matrix.cc }}
+        continue-on-error: true
+        env:
+          GEO_CACHE_MODE: refresh
+          GEO_DETAIL: '0.002'
+          GEO_THIN: '250'
+          CC: ${{ matrix.cc }}
+        run: |
+          pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || true
+          if [ "$CC" = "CA" ]; then
+            python3 .github/scripts/kpc_ca_key.py || echo "::notice title=Saved shapes CA::stopped with an error"
+          else
+            COUNTRIES=$CC python3 .github/scripts/kpc_world_key.py || echo "::notice title=Saved shapes $CC::stopped with an error"
+          fi
+      - name: Put it on the release
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          f=$(ls cache/world/W-${{ matrix.cc }}.json.gz cache/ca/CA-ALL.json.gz 2>/dev/null | head -1)
+          [ -n "$f" ] || { echo "::notice title=Saved shapes ${{ matrix.cc }}::nothing saved"; exit 0; }
+          gh release upload boundary-cache "$f" -R "$GITHUB_REPOSITORY" --clobber || true
+          echo "::notice title=Saved shapes ${{ matrix.cc }}::uploaded $(basename $f) ($(du -h $f | cut -f1))"
