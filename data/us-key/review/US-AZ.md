@@ -1,31 +1,22 @@
 # AZ: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **81 of 123** parks joined to official land (same name + same kind of place). **23** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **89 of 123** parks joined to official land (same name + same kind of place). **14** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-10510** Dos Cabezas Mountains Wilderness Area (Wilderness Area) → Safford Field Office (~1,397,557 ac, the POTA pin is inside it (different name))
-- **US-1052** Alamo Lake State Park (State Park) → Alamo (~189,084 ac, same name, different kind of place); Lake Havasu Field Office (~1,268,987 ac, the POTA pin is inside it (different name))
 - **US-1055** Catalina State Park (State Park) → Coronado National Forest (~1,652,117 ac, the POTA pin is inside it (different name))
-- **US-1061** Lost Dutchman State Park (State Park) → Lower Sonoran Field Office (~1,404,336 ac, the POTA pin is inside it (different name))
 - **US-1069** Tonto Natural Bridge State Park (State Park) → Tonto National Forest (~2,866,817 ac, similar name)
-- **US-11046** Eagletail Mountains Wilderness Area (Wilderness Area) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name))
-- **US-11047** Trigo Mountain Wilderness Area (Wilderness Area) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name)); Cibola-Trigo (~152,337 ac, the POTA pin is inside it (different name))
-- **US-11049** New Water Mountains Wilderness Area (Wilderness Area) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name))
 - **US-11122** General Crook National Recreation Trail (National Recreation Trail) → Sitgreaves National Forest (~820,490 ac, the POTA pin is inside it (different name))
 - **US-11123** Highline National Recreation Trail (National Recreation Trail) → Tonto National Forest (~2,866,817 ac, the POTA pin is inside it (different name))
-- **US-11942** Wabayuma Peak BLM Wilderness Area (BLM Wilderness Area) → Kingman Field Office (~2,476,668 ac, the POTA pin is inside it (different name))
 - **US-11944** Dankworth Pond State Park (State Park) → Roper Lake State Park (~81 ac, the POTA pin is inside it (different name))
 - **US-11979** Allen Severson State Wildlife Area (State Wildlife Area) → Sitgreaves National Forest (~820,490 ac, the POTA pin is inside it (different name))
-- **US-11987** White Mountain State Wildlife Area (State Wildlife Area) → State Trust Land (~7,977,759 ac, the POTA pin is inside it (different name))
-- **US-12142** Dominguez-Escalante Site National Historic Site (National Historic Site) → Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name)); Baaj Nwaavjo I'tah Kukveni - Ancestral Footprints of the Grand Canyon (~0 ac, the POTA pin is inside it (different name))
+- **US-11987** White Mountain State Wildlife Area (State Wildlife Area) → Grasslands Wildlife Area (~2,867 ac, the POTA pin is inside it (different name))
+- **US-12142** Dominguez-Escalante Site National Historic Site (National Historic Site) → Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name)); Vermilion Cliffs (~0 ac, the POTA pin is inside it (different name))
 - **US-13337** Church Camp Road BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Church Camp Facility Area (~16 ac, similar name); Church Camp Facility Area (~16 ac, similar name); Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name)); Lake Pleasant (~60,836 ac, the POTA pin is inside it (different name))
 - **US-13594** Black Canyon National Recreation Trail (National Recreation Trail) → Hassayampa Field Office (~970,921 ac, the POTA pin is inside it (different name))
 - **US-3672** Fool Hollow Lake State Recreation Area (State Recreation Area) → Sitgreaves National Forest (~820,490 ac, the POTA pin is inside it (different name))
-- **US-4557** Arizona Trail National Scenic Trail (National Scenic Trail) → Coronado National Forest (~1,652,117 ac, the POTA pin is inside it (different name))
-- **US-6090** Beaver Dam Mountain Wilderness Area (Wilderness Area) → Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name))
+- **US-4557** Arizona Trail National Scenic Trail (National Scenic Trail) → Coronado National Memorial (~4,810 ac, the POTA pin is inside it (different name))
 - **US-7383** Tonto State Fish Hatchery (State Fish Hatchery) → Tonto National Forest (~2,866,817 ac, same name, different kind of place)
-- **US-8297** Muggins Mountain Wilderness Area (Wilderness Area) → Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name))
 - **US-8298** Mittry Lake Wildlife Area (Wildlife Area) → Cibola-Trigo (~152,337 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -45,6 +36,7 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **81 of 123** parks joined 
 - US-10513 Granite Mountain Hotshots State Park (State Park)
 - US-1053 Boyce Thompson Arboretum State Park (State Park)
 - US-1054 Buckskin Mountain State Park (State Park)
+- US-1061 Lost Dutchman State Park (State Park)
 - US-11124 Rockin' River Ranch State Park (State Park)
 - US-3390 River Island State Park (State Park)
 - US-4571 Juan Bautista de Anza National Historic Trail (National Historic Trail)
@@ -73,7 +65,6 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **81 of 123** parks joined 
 - Mazatzal Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~250,813 ac
 - Big Sandy ·  · BLM herd management areas · ~193,367 ac
 - Chocolate-Mule Mountains ·  · BLM herd management areas · ~192,220 ac
-- Alamo ·  · BLM herd management areas · ~189,084 ac
 - Muddy Mountains ·  · BLM herd management areas · ~187,798 ac
 - Gold Butte ·  · BLM herd management areas · ~178,990 ac
 - Superstition Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~160,169 ac
@@ -115,3 +106,4 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **81 of 123** parks joined 
 - Hellsgate Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~37,457 ac
 - Rincon Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~36,949 ac
 - White - Margined Penstemon ACEC ·  · BLM recreation areas · ~35,596 ac
+- White - Margined Penstemon ACEC ·  · BLM recreation sites · ~35,596 ac
