@@ -105,6 +105,12 @@ def to_facebook(message, link=None):
     return True
 
 
+def on_hold():
+    """References to keep out of 'go and activate this' suggestions (data/kpc-post-holds.json)."""
+    return {str(h.get('ref')).upper() for h in (load('data/kpc-post-holds.json', {}).get('hold') or [])
+            if h.get('ref')}
+
+
 def park_by_ref():
     ky = load('kpc-ky-data.json', {})
     return {p['c']: p for p in (ky.get('parks') or [])}
@@ -170,6 +176,13 @@ def lonely_parks(state):
     rows = (load('kpc-top25.json', {}).get('acts') or [])
     if not rows:
         notice('No POTA figures yet; nothing to post.')
+        return False
+    held = on_hold()
+    rows = [r for r in rows if str(r.get('c', '')).upper() not in held]
+    if held:
+        notice(f'Left out {len(held)} reference(s) on hold: ' + ', '.join(sorted(held)))
+    if not rows:
+        notice('Everything quiet is on hold; no post.')
         return False
     parks = park_by_ref()
     L = ["Nobody has to go to any of these. They are just sitting there, and somebody has to be first.", '']
