@@ -1,13 +1,73 @@
 {
  "totals": {
-  "matched": 0,
-  "far": 0,
+  "matched": 1095,
+  "far": 526,
   "noshape": 0,
-  "edge": 0,
-  "out": 0,
+  "edge": 485,
+  "out": 41,
   "swap": 0
  },
  "states": [
+  {
+   "st": "AK",
+   "matched": 76,
+   "far": 28,
+   "noshape": 0,
+   "out": 6,
+   "swap": 0,
+   "stale": false,
+   "edge": 22
+  },
+  {
+   "st": "AL",
+   "matched": 107,
+   "far": 55,
+   "noshape": 0,
+   "out": 9,
+   "swap": 0,
+   "stale": false,
+   "edge": 46
+  },
+  {
+   "st": "AR",
+   "matched": 212,
+   "far": 103,
+   "noshape": 0,
+   "out": 4,
+   "swap": 0,
+   "stale": false,
+   "edge": 99
+  },
+  {
+   "st": "AZ",
+   "matched": 81,
+   "far": 33,
+   "noshape": 0,
+   "out": 3,
+   "swap": 0,
+   "stale": false,
+   "edge": 30
+  },
+  {
+   "st": "CA",
+   "matched": 367,
+   "far": 158,
+   "noshape": 0,
+   "out": 3,
+   "swap": 0,
+   "stale": false,
+   "edge": 155
+  },
+  {
+   "st": "CO",
+   "matched": 252,
+   "far": 149,
+   "noshape": 0,
+   "out": 16,
+   "swap": 0,
+   "stale": false,
+   "edge": 133
+  },
   {
    "st": "ID",
    "matched": 146,
@@ -50,5 +110,252 @@
   }
  ],
  "swaps": [],
- "well_outside": []
+ "well_outside": [
+  [
+   "AK",
+   "US-0150",
+   "Kodiak National Wildlife Refuge",
+   "Kodiak National Wildlife Refuge"
+  ],
+  [
+   "AK",
+   "US-0909",
+   "Cape Krusenstern National Monument",
+   "Cape Krusenstern National Monument"
+  ],
+  [
+   "AK",
+   "US-10281",
+   "White Mountains National Recreation Area BLM Recreation Management Area",
+   "White Mountains SRMA"
+  ],
+  [
+   "AK",
+   "US-11852",
+   "Beaver Creek BLM Wild and Scenic River",
+   "Eastern Interior Field Office"
+  ],
+  [
+   "AK",
+   "US-7193",
+   "Caines Head State Recreation Area",
+   "Caines Head State Recreation Area"
+  ],
+  [
+   "AK",
+   "US-7248",
+   "Settler's Cove State Recreation Site",
+   "Refuge Cove State Recreation Site"
+  ],
+  [
+   "AL",
+   "US-0384",
+   "Grand Bay National Wildlife Refuge",
+   "Grand Bay National Wildlife Refuge"
+  ],
+  [
+   "AL",
+   "US-0642",
+   "Natchez Trace Parkway National Parkway",
+   "Natchez Trace Parkway"
+  ],
+  [
+   "AL",
+   "US-12996",
+   "Fowl River Access Site BLM Recreation Management Area",
+   "Fowl River"
+  ],
+  [
+   "AL",
+   "US-3690",
+   "Geneva State Forest Wildlife Management Area",
+   "Geneva State Forest"
+  ],
+  [
+   "AL",
+   "US-3699",
+   "Mobile-Tensaw Delta Wildlife Management Area",
+   "Upper Delta Wildlife Management Area"
+  ],
+  [
+   "AL",
+   "US-3701",
+   "Pike County Pocosin Complex State Fish and Wildlife Area",
+   "Pike County Pocosin Complex"
+  ],
+  [
+   "AL",
+   "US-9874",
+   "Mud Creek Management Area",
+   "Mud Creek Management Area"
+  ],
+  [
+   "AL",
+   "US-9875",
+   "Raccoon Creek Management Area",
+   "Raccoon Creek Wildlife Management Area"
+  ],
+  [
+   "AL",
+   "US-9876",
+   "Crow Creek Management Area",
+   "Crow Creek"
+  ],
+  [
+   "AR",
+   "US-10424",
+   "Upper White Oak Lake Recreation Area State Fishing Lake",
+   "White Oak Lake State Park"
+  ],
+  [
+   "AR",
+   "US-7271",
+   "Camp Robinson Wildlife Management Area",
+   "Camp Robinson WMA"
+  ],
+  [
+   "AR",
+   "US-7274",
+   "Cedar Creek Wildlife Management Area",
+   "Cedar Creek WMA"
+  ],
+  [
+   "AR",
+   "US-9162",
+   "Lower White Oak Lake State Recreation Area",
+   "White Oak Lake State Park"
+  ],
+  [
+   "AZ",
+   "US-0176",
+   "Imperial National Wildlife Refuge",
+   "Imperial National Wildlife Refuge"
+  ],
+  [
+   "AZ",
+   "US-0676",
+   "Lake Mead National Recreation Area",
+   "Lake Mead National Recreation Area"
+  ],
+  [
+   "AZ",
+   "US-11943",
+   "Sonoita Creek State Natural Area",
+   "Sonoita Creek Natural Area"
+  ],
+  [
+   "CA",
+   "US-0203",
+   "North Central Valley Wildlife Management Area",
+   "North Central Valley Wildlife Management Area"
+  ],
+  [
+   "CA",
+   "US-0211",
+   "San Luis National Wildlife Refuge",
+   "San Luis National Wildlife Refuge"
+  ],
+  [
+   "CA",
+   "US-3523",
+   "Oceano Dunes State Recreation Area",
+   "Oceano Dunes State Vehicular Recreation Area"
+  ],
+  [
+   "CO",
+   "US-0185",
+   "Hugo State Wildlife Area",
+   "Hugo State Wildlife Area"
+  ],
+  [
+   "CO",
+   "US-0191",
+   "Brush Hollow State Wildlife Area",
+   "Brush Hollow SWA"
+  ],
+  [
+   "CO",
+   "US-0652",
+   "Curecanti National Recreation Area",
+   "Curecanti National Recreation Area"
+  ],
+  [
+   "CO",
+   "US-0943",
+   "Hovenweep National Monument",
+   "Hovenweep National Monument"
+  ],
+  [
+   "CO",
+   "US-12185",
+   "Grand Junction: West Lake State Wildlife Area",
+   "West Lake State Wildlife Area"
+  ],
+  [
+   "CO",
+   "US-1249",
+   "Vega State Park",
+   "Vega State Park"
+  ],
+  [
+   "CO",
+   "US-9594",
+   "Gunnison Gorge BLM National Conservation Area",
+   "Gunnison Gorge National Conservation Area"
+  ],
+  [
+   "CO",
+   "US-9605",
+   "Alma State Wildlife Area",
+   "Alma State Wildlife Area"
+  ],
+  [
+   "CO",
+   "US-9620",
+   "Bodo State Wildlife Area",
+   "Bodo State Wildlife Area"
+  ],
+  [
+   "CO",
+   "US-9622",
+   "Bosque Del Oso State Wildlife Area",
+   "Bosque del Oso SWA"
+  ],
+  [
+   "CO",
+   "US-9629",
+   "Cherokee State Wildlife Area",
+   "Cherokee State Wildlife Area - Lower Unit"
+  ],
+  [
+   "CO",
+   "US-9631",
+   "Coalbed Canyon State Wildlife Area",
+   "Coalbed Canyon SWA"
+  ],
+  [
+   "CO",
+   "US-9632",
+   "Cochetopa State Wildlife Area",
+   "Cochetopa SWA"
+  ],
+  [
+   "CO",
+   "US-9635",
+   "Colorow Mountain State Wildlife Area",
+   "Colorow Mountain SWA"
+  ],
+  [
+   "CO",
+   "US-9638",
+   "Dan Noble State Wildlife Area",
+   "Dan Noble SWA"
+  ],
+  [
+   "CO",
+   "US-9639",
+   "Deadman State Wildlife Area",
+   "Deadman SWA"
+  ]
+ ]
 }
