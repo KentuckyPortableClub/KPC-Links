@@ -134,6 +134,8 @@ def park_card(num_refs):
     ky = load('kpc-ky-data.json', {})
     conds = {c['ref']: c for c in (load('kpc-conditions.json', {}).get('items') or [])}
     camps = load('kpc-campgrounds.json', {})
+    stats = {r[0]: (r[1], r[2]) for r in (load('kpc-top25.json', {}).get('all') or [])
+             if isinstance(r, list) and len(r) >= 3}
     camp_by = {}
     for p in (camps.get('parks') or []):
         cg = [c for c in (p.get('campgrounds') or []) if c.get('name')]
@@ -156,6 +158,12 @@ def park_card(num_refs):
             L.append(f"⚠️ **{c.get('kind', 'Heads up')}** — {str(c.get('details'))[:220]}")
         if p.get('ft'):
             L.append(f"{p['ft']} ft · {p.get('pts')} point(s)")
+        n = stats.get(ref)
+        if n:
+            acts, qs = n
+            L.append("📻 " + ('**Never been activated** — you could be the first' if not acts
+                              else f"{acts:,} activation{'s' if acts != 1 else ''}, {qs:,} contacts"
+                                   + (' — a quiet one' if acts <= 3 else '')))
         cg = camp_by.get(ref) or []
         if cg:
             names = ', '.join(c['name'] for c in cg[:2]) + (' and more' if len(cg) > 2 else '')
