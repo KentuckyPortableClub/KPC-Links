@@ -1,0 +1,39 @@
+{
+ "note": "THE GOLDEN CASES. Every one is a real place that went wrong or right for a reason worth remembering. A matching rule that breaks any of these does not get to write answer keys (kpc_us_key.py checks on start-up) and must not be pushed (run python3 tests/run_match_tests.py first). Add a case whenever a wrong join or a wrong alert is found and fixed - with the story in 'why' - so it can never come back. Fable's review, Oct 22: 'keep a golden file of the known cases ... the next rule change will break something old otherwise; it is only a matter of which one.'",
+ "us_names": [
+  {"a": "Settler's Cove State Recreation Site", "b": "Refuge Cove State Recreation Site", "same": false,
+   "why": "Oct 22. 'refuge' was stripped from the front of Refuge Cove as if it were the kind of place, and the two coves collided."},
+  {"a": "Kodiak National Wildlife Refuge", "b": "Kodiak National Wildlife Refuge", "same": true,
+   "why": "The type word at the END is the kind of place; must still strip normally."},
+  {"a": "Upper White Oak Lake Recreation Area", "b": "White Oak Lake State Park", "same": false,
+   "why": "Oct 22. Upper and Lower White Oak Lake had BOTH joined the one White Oak Lake State Park."},
+  {"a": "Lower White Oak Lake State Recreation Area", "b": "White Oak Lake State Park", "same": false,
+   "why": "Oct 22, the other half of the same mistake."},
+  {"a": "Lake Mead National Recreation Area", "b": "Lake Mead National Recreation Area", "same": true,
+   "why": "Leading 'Lake' is part of the name and must survive."},
+  {"a": "Camp Robinson Wildlife Management Area", "b": "Camp Robinson WMA", "same": true,
+   "why": "Abbreviated kind word."},
+  {"a": "Gunnison Gorge BLM National Conservation Area", "b": "Gunnison Gorge National Conservation Area", "same": true,
+   "why": "'BLM' is noise."},
+  {"a": "Beaver Creek Wildlife Management Area", "b": "Beaver Lake", "same": false,
+   "why": "Oct 21. A Beaver Creek notice from the Daniel Boone forest landed on Beaver Lake, 150 miles away. Sharing 'Beaver' is not enough."},
+  {"a": "Taylorsville Lake State Park", "b": "Taylorsville Lake", "same": true,
+   "why": "The club's campout park; the plainest case there is."}
+ ],
+ "alerts": [
+  {"title": "Green River Ferry Temporarily Out of Service", "text": "The Green River Ferry has temporarily suspended operation due to low water levels.", "refs": [],
+   "why": "Oct 21. The Mammoth Cave ferry notice was attached to Green River State Forest AND Green River Lake State Park."},
+  {"title": "Beaver Creek Wilderness Prohibitions", "text": "Within Beaver Creek Wilderness, the following acts are prohibited.", "refs_exclude": ["US-13598"],
+   "why": "Oct 21. Daniel Boone's Beaver Creek Wilderness was attached to Beaver Lake (US-13598) in Anderson County."},
+  {"title": "Taylorsville Lake campground closed", "text": "The campground at Taylorsville Lake State Park is closed for the season.", "refs": ["US-1271"],
+   "why": "A real closure must still reach the right park."},
+  {"title": "Carter Caves closed", "text": "Carter Caves State Resort Park is closed Monday.", "refs": ["US-1276"],
+   "why": "Same, with 'Resort' in the official name."}
+ ],
+ "world_names": [
+  {"cc": "LT", "a": "Nemuno delta Regional Park", "b": "Nemuno delta", "same": true,
+   "why": "Oct 21 NAME_JOIN: POTA writes the kind onto the official name."},
+  {"cc": "DE", "a": "Mecklenburgisches Elbetal UNESCO Biosphere Reserve", "b": "Mecklenburgisches Elbetal", "same": true,
+   "why": "Same, German."}
+ ]
+}

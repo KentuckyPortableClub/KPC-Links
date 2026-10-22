@@ -168,6 +168,9 @@ def wset(s):
 def same_words(a, b, ka, kb):
     # all words of the shorter name are in the longer one, at most 2 extra words, and BOTH names say the same kind of place
     if not (ka and kb and ka & kb): return False
+    # Oct 22: THIS is where Upper and Lower White Oak Lake both joined White Oak Lake State Park - 'white oak lake' sits
+    # inside 'upper white oak lake' with one word to spare. A side word in one name and not the other is a different place.
+    if _side(a) != _side(b): return False
     if ('nfh' in ka) != ('nfh' in kb) or bool(re.search(r'\btrail\b', str(a), re.I)) != bool(re.search(r'\btrail\b', str(b), re.I)): return False
     w1, w2 = wset(a), wset(b)
     s, l = (w1, w2) if len(w1) <= len(w2) else (w2, w1)
@@ -189,6 +192,24 @@ def same_kind(ka, kb): return not ka or not kb or bool(ka & kb) or any(ka & c an
 
 
 def words(s): return set(w for w in norm(s).split() if len(w) > 2)
+
+
+def join_how(name, kp, a, close):
+    """How - if at all - the POTA park called `name` (kinds `kp`) joins official record `a`. `close` = within
+    about 0.1 degree of the park's pin. This is the ONLY place the decision is made: run() calls it and so do the
+    golden tests, so a test can never again check a different path from the one the matcher really takes (Oct 22:
+    the first Upper/Lower fix went into exact_name, which was never the path White Oak Lake actually joined by)."""
+    nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
+    loc = a.get('Loc_Nm')
+    if name_ok(name, nm, kp, a['_k']) or (loc and name_ok(name, loc, kp, a['_k'])):
+        return 'name'
+    if isinstance(a.get('OBJECTID'), int) and not kinds(nm) and exact_name(name, nm) and name_ok(name, nm, kp, set()):
+        # Oct 18 review: a bare PAD-US name ('Fort Fetterman', 'Trail End') whose only 'kind' came from its designation code,
+        # and the whole name matches: the designation code is often off, so the name decides
+        return 'name (designation code ignored)'
+    if close and (same_words(name, nm, kp, a['_k']) or (loc and same_words(name, loc, kp, a['_k']))):
+        return 'words'
+    return None
 
 
 # ---------------- geometry helpers (coarse) ----------------
@@ -498,15 +519,9 @@ def run(st):
             if not close: continue
             if bool(kp) != bool(a['_k']) and la is not None and not near(la, lo, a['_bb'], .1): close = False   # one name has no kind word: must be close by
             if not close: continue
-            if name_ok(name, nm, kp, a['_k']) or (a.get('Loc_Nm') and name_ok(name, a['Loc_Nm'], kp, a['_k'])):
-                m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'name'])
-            elif isinstance(a['OBJECTID'], int) and not kinds(nm) and exact_name(name, nm) and name_ok(name, nm, kp, set()):
-                # Oct 18 review: a bare PAD-US name ('Fort Fetterman', 'Trail End') whose only 'kind' came from its designation code,
-                # and the whole name matches: the designation code is often off, so the name decides
-                m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'name (designation code ignored)'])
-            elif near(la, lo, a['_bb'], .1) if la is not None else False:
-                if same_words(name, nm, kp, a['_k']) or (a.get('Loc_Nm') and same_words(name, a['Loc_Nm'], kp, a['_k'])):
-                    m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'words'])
+            how = join_how(name, kp, a, near(la, lo, a['_bb'], .1) if la is not None else False)
+            if how:
+                m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), how])
         ov = OVR.get(ref) or {}
         if ov:
             no = {str(x) for x in ov.get('no', [])}
@@ -592,6 +607,17 @@ def run(st):
 idx = {}
 try: idx = json.load(open(OUT / 'index.json')).get('states', {})
 except Exception: pass  # noqa: BLE001
+# GOLDEN CASES FIRST (Oct 22). If any known case comes out wrong, a matching rule is broken: write NO keys rather
+# than spread the mistake across fifty states. Says which case and why, and exits cleanly (a failed run emails Brandon).
+try:
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent.parent / 'tests'))
+    import run_match_tests
+    _bad = run_match_tests.failures(groups=('us_names',))
+except Exception as _e:  # noqa: BLE001
+    _bad = []; notice('US key', f'golden cases could not be run ({_e}); carrying on')
+if _bad:
+    notice('US key STOPPED', f'{len(_bad)} golden case(s) wrong, so NO keys were written: ' + ' | '.join(_bad)[:700])
+    sys.exit(0)
 done = []
 for st in STATES:
     if st == 'KY': continue
