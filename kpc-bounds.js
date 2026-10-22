@@ -176,6 +176,16 @@
     const why = approx ? 'the names only partly match and the park\u2019s map pin is ' + (hit.far === 'well outside' ? 'well outside this land' : 'just outside this land') : '';
     return { state: 'ok', n: hit.n, m, fs, approx, why };
   }
+  /* Oct 22 (Brandon: 'note boundaries that we dont know for sure'): ONE answer for every tool that draws a US park.
+     {fs, label: 'official' | 'approx' | 'none', why, src, site}. Checked list first; a park it doesn't know falls back to a
+     live name search, which is labelled approximate because nobody has checked it. */
+  async function usOutline(ref, name, la, lo, states) {
+    let k = null; try { k = await usKey(ref, states); } catch (e) {}
+    if (k && k.state === 'ok') return { fs: k.fs, label: k.approx ? 'approx' : 'official', why: k.why || '', src: [...new Set(k.fs.map(f => f._src))].join(' + ') };
+    if (k && k.state === 'none') return { fs: [], label: 'none', why: '', src: '', site: k.site };
+    let fs = []; try { fs = await padusByName(name, la, lo); } catch (e) {}
+    return fs.length ? { fs, label: 'approx', why: 'found by a name search that our checking bot has not reviewed yet', src: 'USGS PAD-US' } : { fs: [], label: 'none', why: '', src: '' };
+  }
   /* Oct 18 (Brandon: review the US data… tappable land): what official land is at a spot, and which POTA parks the answer key joined to it */
   const revCache = {};
   async function keyRev(st) {
@@ -335,5 +345,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usLandAt, euro, canada, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, euro, canada, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();
