@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-22 15:24",
+ "updated": "2026-10-22 18:23",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -8,7 +8,7 @@
    "text": "Please avoid the Breathitt County section and beware of rough spots between the Jane Beshear Trailhead to Tip Top.",
    "link": "https://parks.ky.gov/",
    "first": "2026-10-21",
-   "runs": 13,
+   "runs": 14,
    "missing": 0,
    "announced": true,
    "refs": [],
@@ -20,7 +20,7 @@
    "text": "The Kentucky State Parks system is currently undergoing renovations at select park locations to enhance facilities and visitor experiences.",
    "link": "https://parks.ky.gov/improvements",
    "first": "2026-10-21",
-   "runs": 13,
+   "runs": 14,
    "missing": 0,
    "announced": true,
    "refs": [],
@@ -33,7 +33,7 @@
    "link": "https://www.nps.gov/",
    "cat": "Information",
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [],
@@ -46,7 +46,7 @@
    "link": "https://www.nps.gov/",
    "cat": "Park Closure",
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -62,7 +62,7 @@
    "link": "https://www.nps.gov/",
    "cat": "Park Closure",
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [],
@@ -75,7 +75,7 @@
    "link": "https://www.nps.gov/subjects/sound/uas.htm",
    "cat": "Information",
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [],
@@ -88,7 +88,7 @@
    "link": "https://www.nps.gov/biso/learn/news/big-south-fork-announces-temporary-closure-of-blue-heron-tipple-bridge.htm",
    "cat": "Information",
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [],
@@ -101,7 +101,7 @@
    "link": "https://www.nps.gov/",
    "cat": "Information",
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [],
@@ -114,7 +114,7 @@
    "link": "https://www.nps.gov/maca/planyourvisit/cave-tours.htm",
    "cat": "Information",
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -129,7 +129,7 @@
    "link": "https://www.nps.gov/biso/planyourvisit/firewood-quarantine.htm",
    "cat": "Information",
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [],
@@ -142,7 +142,7 @@
    "link": "https://www.nps.gov/biso/learn/nature/blackbear.htm",
    "cat": "Information",
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [],
@@ -155,7 +155,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/national-visitor-use-monitoring-oct-2026-sept-2027",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -169,7 +169,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/low-water-levels-laurel-river-lake-0",
    "routine": false,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -181,7 +181,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/scott-creek-boat-ramp-briefly-inaccessible-july-30",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -193,7 +193,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/no-phone-service-pass-sales-redbird-office-big-creek-ky",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -207,7 +207,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/active-logging-operations-near-redbird-crest-trail-sections-17-19",
    "routine": false,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -219,7 +219,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/tornado-damaged-area-closure-london-pulaski-counties",
    "routine": false,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -233,7 +233,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/no-visitor-services-supervisors-office-winchester-ky",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -247,7 +247,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/cliffside-trail-519-closure",
    "routine": false,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -259,7 +259,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/dog-slaughter-falls-trail-closure-bridge-removed",
    "routine": false,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -271,7 +271,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/hawk-creek-sinking-creek-trail-bridges-impassable",
    "routine": false,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -285,7 +285,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/red-river-gorge-suspension-bridge-impassable",
    "routine": false,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -299,7 +299,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/climbing-and-rappelling-prohibitions-0",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -311,7 +311,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/climbing-and-rappelling-prohibitions-1",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -323,7 +323,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/non-motorized-fishing-area-restrictions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -337,7 +337,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/climbing-and-rappelling-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -349,7 +349,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/wildcat-branch-closure",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -361,7 +361,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/trail-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -373,7 +373,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/prohibited-entry-special-areas",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -385,7 +385,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/metal-detecting-prohibitions-0",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -397,7 +397,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/commercial-hauling-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -409,7 +409,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/cave-run-lake-trails-restrictions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -421,7 +421,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/cave-run-lake-highway-801-huntingshooting-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -433,7 +433,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/shallow-flats-wildlife-viewing-area-closure",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -445,7 +445,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/pioneer-weapons-wildlife-management-area-camping-prohibition",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -459,7 +459,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/white-sulphur-ohv-trail-system",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -471,7 +471,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/beaver-creek-wilderness-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -486,7 +486,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/jellico-rock-creek-camping-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -498,7 +498,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/bee-rock-camping-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -510,7 +510,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/laurel-river-lake-and-lake-cumberland-camping-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -524,7 +524,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/cave-run-lake-camping-restrictions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -536,7 +536,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/general-forest-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -550,7 +550,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/general-lake-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -562,7 +562,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/shooting-range-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -574,7 +574,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/wilderness-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -589,7 +589,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/camping-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -601,7 +601,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/saddle-and-pack-animal-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -613,7 +613,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/cave-run-lake-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -627,7 +627,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/tater-knob-fire-tower-closure",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -639,7 +639,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/red-river-gorge-camping-restrictions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -651,7 +651,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/stearns-district-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -663,7 +663,7 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/developed-recreation-area-prohibitions",
    "routine": true,
    "first": "2026-10-21",
-   "runs": 10,
+   "runs": 11,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -678,7 +678,7 @@
     "US-3792"
    ],
    "first": "2026-10-21",
-   "runs": 7,
+   "runs": 8,
    "missing": 0,
    "announced": true
   },
@@ -692,7 +692,7 @@
     "US-3792"
    ],
    "first": "2026-10-21",
-   "runs": 7,
+   "runs": 8,
    "missing": 0,
    "announced": true
   },
@@ -703,7 +703,7 @@
    "link": "https://fw.ky.gov/Alerts/Pages/Kentucky-Fish-and-Wildlife-public-hunting-areas-affected-by-storms.aspx",
    "routine": false,
    "first": "2026-10-22",
-   "runs": 6,
+   "runs": 7,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -715,7 +715,7 @@
    "link": "https://fw.ky.gov/Alerts/Pages/Buckhorn-Lake-Dam-Ramp-Access-closed-until-Feb-2027.aspx",
    "routine": false,
    "first": "2026-10-22",
-   "runs": 6,
+   "runs": 7,
    "missing": 0,
    "announced": true,
    "refs": [
@@ -729,7 +729,7 @@
    "link": "https://fw.ky.gov/Alerts/Pages/Sympson-Lake-will-be-closed-to-all-boating-activity-in-2026.aspx",
    "routine": false,
    "first": "2026-10-22",
-   "runs": 6,
+   "runs": 7,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -741,7 +741,7 @@
    "link": "https://fw.ky.gov/Alerts/Pages/AJ-Jolly-Lake-is-closed-for-2026-due-to-repairs-for-all-recreational-activities-.aspx",
    "routine": false,
    "first": "2026-10-22",
-   "runs": 6,
+   "runs": 7,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -753,7 +753,7 @@
    "link": "https://fw.ky.gov/Alerts/Pages/WestPointBoatRampClosure.aspx",
    "routine": false,
    "first": "2026-10-22",
-   "runs": 6,
+   "runs": 7,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -765,7 +765,7 @@
    "link": "https://fw.ky.gov/Alerts/Pages/Laurel-Bridge-Boat-Ramp-on-Laurel-River-Lake-Temporarily-Closed.aspx",
    "routine": false,
    "first": "2026-10-22",
-   "runs": 6,
+   "runs": 7,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -777,7 +777,7 @@
    "link": "https://fw.ky.gov/Pages/Administrative-Regulations.aspx",
    "routine": true,
    "first": "2026-10-22",
-   "runs": 6,
+   "runs": 7,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -789,7 +789,7 @@
    "link": "https://fw.ky.gov/Alerts/Pages/Bridge-construction-crossing-Cumberland-River-downstream-of-Wolf-Creek-Dam.aspx",
    "routine": false,
    "first": "2026-10-22",
-   "runs": 6,
+   "runs": 7,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -801,7 +801,7 @@
    "link": "https://fw.ky.gov/Wildlife/Pages/Nongame-Wildlife.aspx",
    "routine": false,
    "first": "2026-10-22",
-   "runs": 6,
+   "runs": 7,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -813,7 +813,7 @@
    "link": "https://fw.ky.gov/Wildlife/Pages/Landowner-Services.aspx",
    "routine": false,
    "first": "2026-10-22",
-   "runs": 6,
+   "runs": 7,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -825,7 +825,7 @@
    "link": "https://fw.ky.gov/Education/Pages/default.aspx",
    "routine": false,
    "first": "2026-10-22",
-   "runs": 6,
+   "runs": 7,
    "missing": 0,
    "announced": true,
    "refs": []
@@ -837,7 +837,7 @@
    "link": "https://fw.ky.gov/More/Pages/Open-Records-Procedures.aspx",
    "routine": false,
    "first": "2026-10-22",
-   "runs": 6,
+   "runs": 7,
    "missing": 0,
    "announced": true,
    "refs": []
