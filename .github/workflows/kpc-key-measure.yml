@@ -6,8 +6,13 @@ name: KPC key measure
 on:
   workflow_dispatch:
     inputs:
+      scope:
+        description: 'Which keys: us, world or ca'
+        type: choice
+        options: [us, world, ca]
+        default: us
       states:
-        description: 'Only these states (blank = every state that has saved outlines)'
+        description: 'Only these states / countries (blank = every one that has saved outlines)'
         default: ''
       commit:
         description: 'Keep the rebuilt keys (commit them)'
@@ -31,36 +36,53 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          mkdir -p cache/us
-          gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || true
-          echo "::notice title=Measure::$(ls cache/us 2>/dev/null | wc -l) saved state(s) available"
+          mkdir -p cache/us cache/world cache/ca
+          case "${{ inputs.scope }}" in
+            world) gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'W-*.json.gz' -D cache/world --clobber || true ;;
+            ca)    gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || true ;;
+            *)     gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || true ;;
+          esac
+          echo "::notice title=Measure::$(ls cache/us cache/world cache/ca 2>/dev/null | grep -c gz) saved file(s) available for ${{ inputs.scope }}"
       - name: Keep the keys as they are now, to compare against
-        run: rm -rf /tmp/before && cp -r data/us-key /tmp/before
+        run: |
+          case "${{ inputs.scope }}" in world) d=data/world-key ;; ca) d=data/ca-key ;; *) d=data/us-key ;; esac
+          echo "KEYDIR=$d" >> "$GITHUB_ENV"
+          rm -rf /tmp/before && cp -r "$d" /tmp/before
       - name: Rebuild from the saved outlines only
         continue-on-error: true
         env:
           STATES: ${{ inputs.states }}
           GEO_CACHE_MODE: only
-        run: python3 .github/scripts/kpc_us_key.py || true
+        run: |
+          pip install --quiet --break-system-packages pykakasi pyshp || true
+          case "${{ inputs.scope }}" in
+            world)
+              ALL="${STATES:-$(ls cache/world | sed -n 's/^W-\(..\)\.json\.gz$/\1/p' | tr '\n' ' ')}"
+              for c in $ALL; do COUNTRIES=$c python3 .github/scripts/kpc_world_key.py || true; done ;;
+            ca) python3 .github/scripts/kpc_ca_key.py || true ;;
+            *)  python3 .github/scripts/kpc_us_key.py || true ;;
+          esac
       - name: What changed
         continue-on-error: true
         run: |
           python3 - <<'PY'
           import json, pathlib
-          b, a = pathlib.Path('/tmp/before'), pathlib.Path('data/us-key')
+          import os
+          b, a = pathlib.Path('/tmp/before'), pathlib.Path(os.environ['KEYDIR'])
           rows, T = [], {'gained': 0, 'lost': 0, 'out_before': 0, 'out_after': 0}
-          for f in sorted(a.glob('US-*.json')):
+          for f in sorted(a.glob('*.json')):
               try: new = json.loads(f.read_text()); old = json.loads((b / f.name).read_text())
               except Exception: continue
+              if 'parks' not in new or 'parks' not in old: continue        # index, caches of lookups and the like
               if new.get('updated') == old.get('updated') and new.get('counts') == old.get('counts'): continue
               jn = {r for r, v in new['parks'].items() if v.get('m')}; jo = {r for r, v in old['parks'].items() if v.get('m')}
               g, l = len(jn - jo), len(jo - jn)
               ob, oa = (old.get('counts') or {}).get('pin_outside', 0) or 0, (new.get('counts') or {}).get('pin_outside', 0) or 0
               T['gained'] += g; T['lost'] += l; T['out_before'] += ob; T['out_after'] += oa
-              rows.append(f"| {new.get('st')} | {len(jo)} → {len(jn)} | +{g} / −{l} | {ob} → {oa} |")
+              rows.append(f"| {new.get('st') or new.get('cc') or f.stem} | {len(jo)} → {len(jn)} | +{g} / −{l} | {ob} → {oa} |")
               lost = sorted(jo - jn)[:5]
               if lost: rows.append(f"| | lost: {', '.join(lost)} | | |")
-          L = ['## Answer keys rebuilt from the saved outlines', '',
+          L = [f"## Answer keys rebuilt from the saved outlines ({os.environ['KEYDIR']})", '',
                f"**Joins gained {T['gained']}, lost {T['lost']}.** Pins outside their land: {T['out_before']} → {T['out_after']}.", '',
                '| State | joined before → after | change | pins outside |', '|---|---|---|---|'] + rows
           s = '\n'.join(L)
@@ -73,8 +95,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/us-key
+          git add "$KEYDIR"
           if ! git diff --cached --quiet; then
-            git commit -m 'US key: rebuilt from the saved outlines'
+            git commit -m "Answer keys (${{ inputs.scope }}): rebuilt from the saved outlines"
             for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
           fi
