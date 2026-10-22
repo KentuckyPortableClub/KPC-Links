@@ -6,7 +6,7 @@
 //   rarepark   rare park of the week (fewest valid activations in KY)       Discord + Facebook
 //   milestones member milestones (parks, counties, activations)            Discord + Facebook
 //   photos     new photo album on the site                                  Discord + Facebook
-//   pages      new guide or tool page on the site (starts with the Oct 21, 2026 go-live)     Discord + Facebook
+//   pages      new PUBLIC page on the site (kpc-gate.js PUBLIC list only; never a members page)  Discord + Facebook
 //   bandalert  NOAA radio blackout / geomagnetic storm alerts                Discord only
 //   recaps     member activation recap (Kentucky parks, 10+ contacts) with a little map picture   Discord + Facebook
 //   birthdays  'KPC is N years old' + members' license anniversaries (opt-in list kpc-birthdays.json)  Discord + Facebook
@@ -247,44 +247,15 @@ tasks.pages = async () => {
     return { f, title, desc };
   };
   const all = fs.readdirSync('.').filter(f => f.endsWith('.html') && !skip.test(f));
-  if (!state.pages) {
-    // Kickoff (go-live day): one hand-written roundup of what's new, then each new page gets its own post.
-    state.pages = all;
-    const U = f => SITE + f;
-    const text = [
-      '**Antennas & building**',
-      `• Ununs, baluns & chokes: ${U('kpc-transformers.html')}`,
-      `• Ladder line, doublets & the G5RV: ${U('kpc-doublets.html')}`,
-      `• Loops & delta loops: ${U('kpc-loops.html')}`,
-      `• VHF/UHF: J-pole, Slim Jim, yagi: ${U('kpc-vhf-uhf.html')}`,
-      `• Receive-only antennas (Loop on Ground): ${U('kpc-receive-antennas.html')}`,
-      `• Radial calculator: ${U('kpc-radials.html')}`,
-      '',
-      '**Learn & practice**',
-      `• New to SOTA? ${U('kpc-new-to-sota.html')}`,
-      `• New to WWFF? ${U('kpc-new-to-wwff.html')}`,
-      `• CW practice (hunt & activate in Morse): ${U('kpc-cw.html')}`,
-      `• Digital modes: ${U('kpc-digital.html')}`,
-      `• Fox hunting: ${U('kpc-foxhunt.html')}`,
-      `• Get your license: ${U('kpc-license.html')}`,
-      '',
-      '**Tools**',
-      `• Power, dB & S-units: ${U('kpc-power-db.html')}`,
-      `• Ham calculators: ${U('kpc-calc.html')}`,
-      `• SOTA activation zone check: ${U('kpc-sota-az.html')}`,
-      `• RF exposure check: ${U('kpc-rf-exposure.html')}`,
-      `• Printable quick reference card: ${U('kpc-reference.html')}`,
-      `• Club videos: ${U('videos.html')}`,
-      '',
-      '**Stay & activate**',
-      `• Campgrounds & cabins inside Kentucky POTA parks (POTA, WWFF & SOTA on one card, maps, booking links, reviews): ${U('kpc-campgrounds.html')}`,
-      '',
-      'Plus a new events calendar, campout page and resources page. All free, all built for Kentucky portable operators.',
-    ].join('\n');
-    await post({ title: '🆕 New on the KPC website', text, link: SITE + 'toolbox.html' });
-    save(); return;
-  }
-  const fresh = all.filter(f => !state.pages.includes(f)).map(info).filter(Boolean);
+  /* Oct 22 (Brandon: 'sent out a bunch of stuff that is not public'): the go-live roundup was written on Oct 17, before
+     the site went members-only, and listed members pages. It is gone. Only pages in the PUBLIC list of kpc-gate.js are
+     ever announced; a members page is never posted, even once it is finished. The first run just remembers every page. */
+  const gate = fs.existsSync('kpc-gate.js') ? fs.readFileSync('kpc-gate.js', 'utf8') : '';
+  const pubM = gate.match(/var PUBLIC\s*=\s*\[([\s\S]*?)\]/);
+  const PUB = new Set(pubM ? (pubM[1].match(/'([^']+\.html)'/g) || []).map(x => x.slice(1, -1)) : []);
+  if (!PUB.size) return notice('New pages: could not read the public page list in kpc-gate.js, so nothing was posted.');
+  if (!state.pages) { state.pages = all; save(); return notice('New pages: remembered ' + all.length + ' pages; nothing posted.'); }
+  const fresh = all.filter(f => !state.pages.includes(f) && PUB.has(f)).map(info).filter(Boolean);
   if (!fresh.length) return notice('No new pages.');
   for (const i of fresh.slice(0, 3)) {
     await post({ title: `🆕 New on the KPC site: ${i.title}`, text: i.desc, link: SITE + i.f });
