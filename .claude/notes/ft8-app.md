@@ -137,6 +137,8 @@ Brandon: "lay out is not bad… pretty plain but I know we going make it look be
 - O8 (Brandon 6:09 PM): on the PC the pack SAVED but there is nowhere to open it → a PARKS map screen. O3 confirmed: spots to the RIGHT of the log on tablet + PC.
 Answers given: HF APRS = 30 m 10.1476 MHz 300 bd (a little on 20 m 14.105; nearly all HF APRS is 30 m). Look polish at the end.
 
+- **SPOTS FILTERS LIKE THE HUNTERS LOUNGE (Brandon Oct 22 6:38 PM: 'the filter by frequency and time was more like the hunters lounge spots… we fix that later after I test'):** redo the app SPOTS filters/sort the Lounge way (kpc-links kpc-hunt.js: program chips, band chips, sort by time or frequency on tap) AFTER his 0.6.2 test.
+
 ## LATER WISHES (Brandon Oct 22 6:34 PM: 'did not see voice memory or hot key… maybe eventually add fox and hound see wsjtx… also look at wsjtx-improved what do they do better')
 - **VOICE MEMORY (voice keyer):** record your own CQ / exchange / 'QRZ?' in the app (phone or PC mic), play it out to the radio with PTT, one tap each, auto-repeat CQ every N s until someone answers. Works remote too (0.4 remote already pipes audio + PTT). Same idea as CW MEMORIES (step 5 CW).
 - **HOT KEYS (PC):** WSJT-X style F1-F6 = Tx1-Tx6, Esc = HALT, F4/Alt-N = enable TX, F6 = log; CW/voice memories on F-keys; on Android a Bluetooth foot switch / keyboard and the volume buttons as PTT (optional).
