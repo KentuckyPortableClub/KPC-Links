@@ -36,7 +36,9 @@ def is_admin(name):
 
 
 def rings_of(g):
-    return (g or {}).get('rings') or (g if isinstance(g, list) else [])
+    # the US and Canada keep an ArcGIS geometry ({'rings': [...]}); the world keeps the bare list of rings
+    if isinstance(g, list): return g
+    return (g or {}).get('rings') or []
 
 
 def inside(la, lo, g):
@@ -95,6 +97,8 @@ W = {
                             # kilometres off (Vega State Park 7.9 km, Pike National Forest 18.8 km, both right)
     'pin_very_far': -3,     # more than 10 widths AND more than 20 km away
     'only_fit_holding_pin': 1,   # the smallest area of a fitting kind that the pin is inside (PIN_JOIN, generalised)
+    'kind_clash': -1,       # both names say what kind of place they are, and the kinds differ ('Bayerischer Wald'
+                            # National Park against the Bayerischer Wald Nature Park): a person should look
 }
 JOIN_AT = 4      # enough evidence to join without a person
 MARGIN = 2       # and clearly better than the next-best place, or a person decides
@@ -117,6 +121,8 @@ def score(f):
         named = f.get('name_exact') or f.get('name_words')
         return (1 if named else -99), ['one name says Upper/Lower/North/South/East/West and the other does not']
     pts, why = 0, []
+    if f.get('kind_clash'):
+        pts += W['kind_clash']; why.append('the names say different kinds of place')
     if f.get('name_exact'):
         pts += W['name_exact']; why.append('same name')
         if f.get('name_unique'):
@@ -165,3 +171,50 @@ def decide(groups):
     if best[0] >= 1:
         return 'check', best, runner
     return 'none', best, runner
+
+
+# ------------------------------------------------------------------------------------------------ choosing
+def _apart(b1, b2, pad=0.1):
+    return b1[2] + pad < b2[0] or b2[2] + pad < b1[0] or b1[3] + pad < b2[1] or b2[3] + pad < b1[1]
+
+
+def name_clusters(items):
+    """items = [(name_as_read, bbox)]. How many separate PLACES carry each name: parcels that link up are one place
+    (Curecanti NRA runs sixty-odd km of river), two Beaver Creeks a county apart are two."""
+    byname = {}
+    for nn, bb in items:
+        if bb: byname.setdefault(nn, []).append(bb)
+    out = {}
+    for nn, bbs in byname.items():
+        par = list(range(len(bbs)))
+        def f(i):
+            while par[i] != i: par[i] = par[par[i]]; i = par[i]
+            return i
+        for i in range(len(bbs)):
+            for j in range(i + 1, len(bbs)):
+                if not _apart(bbs[i], bbs[j]): par[f(i)] = f(j)
+        out[nn] = len({f(i) for i in range(len(bbs))})
+    return out
+
+
+def choose(cands):
+    """cands = facts for every candidate area of ONE park, each also carrying 'nn' (its name as read) and 'bb' (its
+    bounding box). Scores them, puts the pieces of one place together - the same name and linked, or overlapping and
+    both matching the park's name (PAD-US 'Flagler Reservoir State Wildlife Area' and Colorado's own 'Flagler
+    Reservoir SWA' are one place) - and decides. Returns decide()'s answer."""
+    for c in cands:
+        c['pts'], c['why'] = score(c)
+    par = list(range(len(cands)))
+    def f(i):
+        while par[i] != i: par[i] = par[par[i]]; i = par[i]
+        return i
+    for i in range(len(cands)):
+        for j in range(i + 1, len(cands)):
+            c1, c2 = cands[i], cands[j]
+            named = (c1.get('name_exact') or c1.get('name_words')) and (c2.get('name_exact') or c2.get('name_words'))
+            if c1.get('bb') and c2.get('bb') and ((c1.get('nn') == c2.get('nn') and not _apart(c1['bb'], c2['bb']))
+                                                  or (named and not _apart(c1['bb'], c2['bb'], .05))):
+                par[f(i)] = f(j)
+    byg = {}
+    for i, c in enumerate(cands): byg.setdefault(f(i), []).append(c)
+    return decide([(max(x['pts'] for x in g), max(g, key=lambda x: x['pts'])['why'], g) for g in byg.values()])

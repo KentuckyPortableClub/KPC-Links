@@ -10,11 +10,13 @@ Sources (official agencies only):
   GB  Natural England open data (NNR, LNR, Country Parks, SSSI) ArcGIS + NatureScot WFS (cpk, nnr, lnr, …)
   JP  Ministry of the Environment national park areas via Esri Japan's 国立公園区域等 (nps_all) ArcGIS
   PL  GDOŚ refuses GitHub (403): Poland uses the EEA layers live in the tools; skipped here."""
-import json, os, re, time, unicodedata, urllib.parse, urllib.request, pathlib
+import json, sys, os, re, time, unicodedata, urllib.parse, urllib.request, pathlib
 
 UA = {'User-Agent': 'KPC (kentuckyportableclub.github.io)'}
 OUT = pathlib.Path('data/world-key'); (OUT / 'review').mkdir(parents=True, exist_ok=True)
 import gzip
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import kpc_match as KM  # noqa: E402
 # SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review; the same scheme as kpc_us_key.py). Live runs have always fetched
 # outlines at 0.01 degrees (~1.1 km) and then THINNED every ring to about 60 points - a whole national park in 60
 # dots - which is what 'pin inside' and PIN_JOIN were judged against. A saved copy is fetched once, so it can afford
@@ -748,9 +750,55 @@ for cc in COUNTRIES:
                 m = [[x[0], x[1], x[2], 'same name (POTA writes the kind into the name)'] for x in sn]
                 c = [x for x in c if x not in sn]
         parks[ref] = {'n': name, 't': typ, 'm': m, 'c': c}
+    # SHADOW (Oct 22): the shared scoring's verdict for each park, written down ONLY where it disagrees with the join
+    # above. Nothing it says changes a join. Names are read this script's way (each country's generic words, Baltic
+    # endings, Japanese via romaji and the Wikidata bridge); kpc_match weighs the facts as it does for the US. PIN_JOIN
+    # is ON here: across languages a name often cannot be compared, and the pin inside one area of a fitting kind is
+    # then the best evidence there is (Japan 102 -> 182 joined that way).
+    try:
+        WCL = KM.name_clusters([(norm(cc, r['n']), r['_bb']) for r in recs if r['n']])
+        for ref, x in sorted(P.items()):
+            name, typ, la, lo = x[0], x[2], x[5], x[6]
+            if not la and not lo: la = lo = None
+            kp = kinds(cc, name) | kinds(cc, typ)
+            cn = [name] + ([q for q in re.split(r'\s+-\s+', name) if q.strip()] if cc == 'GB' and ' - ' in name else [])
+            if cc in EU and re.search(r'\w/\w', name): cn += [q.strip() for q in name.split('/') if q.strip()]
+            cands = []
+            for r in nearby(la, lo):
+                if not r['n'] or (la is not None and not near(la, lo, r['_bb'], .6)): continue
+                if cc in EU and (('n2k' in kp) != ('n2k' in r['_k'])): continue      # Natura 2000 only with Natura 2000
+                rparts = r.get('parts') or [r['n']]
+                jam = cc == 'JP' and r.get('nj') and bool({re.sub(r'\s', '', q) for q in r.get('jp') or [jclean(r['nj'])]} & (JA.get(ref) or set()))
+                ex = bool(jam) or any(same_name(cc, q, rn) and not (norm(cc, q) != norm(cc, rn) and (norm(cc, q).startswith(norm(cc, rn)) or norm(cc, rn).startswith(norm(cc, q))))
+                                      for q in cn for rn in rparts)
+                wd = (not ex) and any(same_name(cc, q, rn) or (words(cc, q) and words(cc, rn) and (words(cc, q) <= words(cc, rn) or words(cc, rn) <= words(cc, q)))
+                                      for q in cn for rn in rparts)
+                holds = la is not None and near(la, lo, r['_bb'], 0) and KM.inside(la, lo, r['_r'])
+                if not (ex or wd or holds): continue
+                cands.append({'a': r, 'nn': norm(cc, r['n']), 'bb': r['_bb'], 'kind_ok': True, 'side_ok': True,
+                              'kind_clash': bool(kp and r['_k'] and not (kp & r['_k'])),
+                              'name_exact': ex, 'name_words': wd, 'name_unique': WCL.get(norm(cc, r['n']), 1) == 1,
+                              'pin': (la, lo) if la is not None else None, 'g': r['_r'], 'acres': 0, 'holds': holds})
+            fit = [c for c in cands if c['holds'] and kp and (kp & c['a']['_k'])]
+            if fit:
+                bba = lambda b: (b[2] - b[0]) * (b[3] - b[1]) if b else 1e9
+                min(fit, key=lambda c: bba(c['bb']))['smallest_fit'] = True
+            v, best, runner = KM.choose(cands)
+            cur = parks.get(ref) or {}
+            ids_now = {str(q[0]) for q in cur.get('m') or []}
+            ids_new = {str(c['a']['id']) for c in best[2]} if (best and v == 'join') else set()
+            if bool(ids_now) != (v == 'join') or (ids_now and ids_new and not ids_now & ids_new):
+                cur['shadow'] = {'v': v, 'pts': best[0] if best else None, 'why': best[1] if best else [],
+                                 'to': best[2][0]['a']['n'] if best else None,
+                                 'vs': (runner[2][0]['a']['n'] + f' ({runner[0]})') if runner else None}
+    except Exception as e:  # noqa: BLE001
+        notice(f'World key {cc}', f'shadow scoring stopped: {type(e).__name__}: {str(e)[:200]}')
     cnt = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
            'none': sum(1 for p in parks.values() if not p['m'] and not p['c']), 'areas': len(recs),
-           'detail': (WMETA.get(cc) or (DETAIL, THIN_N))[0], 'thin': (WMETA.get(cc) or (DETAIL, THIN_N))[1]}
+           'detail': (WMETA.get(cc) or (DETAIL, THIN_N))[0], 'thin': (WMETA.get(cc) or (DETAIL, THIN_N))[1],
+           'shadow_demote': sum(1 for p in parks.values() if p['m'] and (p.get('shadow') or {}).get('v') in ('check', 'none')),
+           'shadow_add': sum(1 for p in parks.values() if not p['m'] and (p.get('shadow') or {}).get('v') == 'join'),
+           'shadow_other_place': sum(1 for p in parks.values() if p['m'] and (p.get('shadow') or {}).get('v') == 'join')}
     (OUT / f'{cc}.json').write_text(json.dumps({'updated': time.strftime('%Y-%m-%d'), 'cc': cc, 'sources': [s[0] for s in SRC[cc]], 'counts': cnt, 'parks': parks},
                                                separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
     L = [f'# {cc}: POTA parks vs official land', '', f"Built {time.strftime('%Y-%m-%d')} by `.github/scripts/kpc_world_key.py` from: {', '.join(s[0] for s in SRC[cc])}. "
