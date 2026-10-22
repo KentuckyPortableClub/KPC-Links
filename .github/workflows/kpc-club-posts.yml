@@ -1,0 +1,55 @@
+name: KPC club posts
+# Three small club posts in ONE job, so there is only one scheduled workflow for the lot:
+#   Park of the Week (Thursdays), the quiet ones (Mondays), and the weather before a KPC event.
+# Runs once a day. Never fails, never emails. Run it by hand with 'only' to test one of them.
+on:
+  schedule:
+    - cron: '41 14 * * *'        # 9.41am Central, 10.41 in summer
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Test just one of them (leave blank for the normal daily job)'
+        type: choice
+        options: ['', park, lonely, weather]
+        default: ''
+      dry_run:
+        description: 'Practice run: print it instead of posting'
+        type: boolean
+        default: true
+permissions:
+  contents: write
+concurrency:
+  group: kpc-club-posts
+  cancel-in-progress: false
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+      - name: Write the posts
+        continue-on-error: true
+        env:
+          KPC_PARKS_WEBHOOK: ${{ secrets.KPC_PARKS_WEBHOOK }}
+          KPC_GENERAL_WEBHOOK: ${{ secrets.KPC_GENERAL_WEBHOOK }}
+          KPC_CAMPOUT_WEBHOOK: ${{ secrets.KPC_CAMPOUT_WEBHOOK }}
+          KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          ONLY: ${{ inputs.only }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
+        run: |
+          echo "::notice title=Club posts::started"
+          python3 .github/scripts/kpc_club_posts.py || true
+      - name: Remember what went out
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/kpc-club-posts-state.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Club posts: what has gone out'
+            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
+          fi

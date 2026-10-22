@@ -1,0 +1,14 @@
+{
+ "note": "The club's OWN events, and only those (Brandon Oct 21: 'event weather just for kpc events'). The weather bot posts a forecast for anything in here that starts within the next few days and never for anybody else's hamfest or a POTA weekend. Add an event by adding a line: ref ties it to a park so the forecast comes from the right spot, or give lat/lon instead.",
+ "events": [
+  {
+   "id": "campout-2027",
+   "name": "2nd Annual KY POTA Campout",
+   "start": "2027-09-24",
+   "end": "2027-09-26",
+   "ref": "US-1271",
+   "where": "Taylorsville Lake State Park",
+   "url": "https://kentuckyportableclub.github.io/KPC-Links/campout.html"
+  }
+ ]
+}
