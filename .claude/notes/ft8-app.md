@@ -25,6 +25,7 @@ SCOPE: FT8 + FT4 (+ FT2) app WITH the KPC Logger and the other DIGI modes (CW, R
 3. (Fable/Opus) A full FT8 + FT4 contact logged on the tablet.
 4. (Opus) Logger + spots + offline park list + GPS grid.
 5. (Opus) CW, RTTY, PSK31, SSTV, WSPR, HELL moved over.
+   - STEP 5 WISHES (Brandon Oct 22): **CW** = auto match the other station's speed; straight key AND paddle options. **RTTY + other digi modes** = auto detect the speed/baud by default (with a manual pick). **SSTV** = upload a picture, edit it, and add a message / text on it before sending.
 6. (Opus, then Sonnet) Layouts: tablet side by side (waterfall + band activity + log), phone tabs, PC window; Night mode; polish rounds from screenshots.
 7. Field test at a park (Brandon): screen-off 2-hour decode soak, battery, no-signal start, POTA log upload opens.
 8. Optional: Google Play ($25 developer account in Brandon's name; review a few days).
