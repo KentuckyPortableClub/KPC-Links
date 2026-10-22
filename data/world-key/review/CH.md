@@ -1,6 +1,6 @@
 # CH: POTA parks vs official land
 
-Built 2026-10-20 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas, BAFU landscapes and natural monuments (BLN), BAFU hunting reserves, BAFU water and migratory bird reserves, BAFU mire landscapes, BAFU floodplains, BAFU raised bogs, BAFU fens, BAFU Ramsar sites, BAFU parks of national importance, BAFU Emerald sites. **249 of 319** joined (same name + same kind), **34** to check, **36** nothing found. Nothing below is joined.
+Built 2026-10-22 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas, BAFU landscapes and natural monuments (BLN), BAFU hunting reserves, BAFU water and migratory bird reserves, BAFU mire landscapes, BAFU floodplains, BAFU raised bogs, BAFU fens, BAFU Ramsar sites, BAFU parks of national importance, BAFU Emerald sites. **249 of 319** joined (same name + same kind), **34** to check, **36** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
