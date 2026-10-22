@@ -72,7 +72,8 @@ def main():
         stale = 'pin_no_shape' not in c
         row = {'st': st, 'matched': c.get('matched', 0), 'far': c.get('pin_outside', 0),
                'noshape': c.get('pin_no_shape', 0), 'out': c.get('pin_well_outside', 0),
-               'swap': c.get('pin_swap', 0), 'stale': stale}
+               'swap': c.get('pin_swap', 0), 'stale': stale,
+               'detail': '~110 m' if (c.get('detail') or 1) < 0.01 else '~1.1 km'}
         row['edge'] = row['far'] - row['noshape'] - row['out']
         if stale:
             states.append(row)
@@ -129,10 +130,16 @@ def main():
         L.append(f"So the part that looks genuinely wrong is **{tot['swap']} certain + up to {tot['out'] - tot['swap']} "
                  f"to look at**, out of {judged} checkable joins ({100 * tot['out'] / judged:.1f}% at the very worst).")
         L.append('')
-    L.append('| State | joined | not checkable | just outside | well outside | same-name swap |')
-    L.append('|---|---|---|---|---|---|')
+    coarse = [r['st'] for r in fresh if r.get('detail') == '~1.1 km']
+    if coarse:
+        L.append(f"_Outline detail matters: {', '.join(coarse)} were checked against outlines smoothed to about "
+                 f"**1.1 km**, so many of their 'just outside' pins are the smoothing, not the join. They are being "
+                 f"redone from ~110 m outlines._")
+        L.append('')
+    L.append('| State | outline detail | joined | not checkable | just outside | well outside | same-name swap |')
+    L.append('|---|---|---|---|---|---|---|')
     for r in sorted(fresh, key=lambda r: -r['out']):
-        L.append(f"| {r['st']} | {r['matched']} | {r['noshape']} | {r['edge']} | {r['out']} | {r['swap']} |")
+        L.append(f"| {r['st']} | {r.get('detail')} | {r['matched']} | {r['noshape']} | {r['edge']} | {r['out']} | {r['swap']} |")
     if swaps:
         L.append('')
         L.append(f'### Wrong land, right name — {len(swaps)} found')
