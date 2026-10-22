@@ -200,12 +200,12 @@
       else if (ks) T = { prog: 'SOTA', ref: q, name: ks.n, la: ks.la, lo: ks.lo, ft: ks.ft, feats: [] };
       if (!T || (!T.feats.length && T.prog !== 'SOTA')) {
         const o = await B.lookup(q);
-        if (o) { T = { prog: o.prog, ref: o.ref, name: o.name, la: o.la, lo: o.lo, ft: o.ft, feats: [] }; if (o.prog !== 'SOTA' && o.us) T.feats = await B.padusByName(o.short || o.name, o.la, o.lo).catch(() => []); else if (o.prog !== 'SOTA' && B.worldByName) T.feats = await B.worldByName(o.ref, o.short || o.name, o.la, o.lo, { type: o.type }).catch(() => []); }
+        if (o) { T = { prog: o.prog, ref: o.ref, name: o.name, la: o.la, lo: o.lo, ft: o.ft, feats: [] }; if (o.prog === 'POTA' && o.us && !o.ky && B.usOutline) { const u = await B.usOutline(o.ref, o.short || o.name, o.la, o.lo, [o.st].filter(Boolean)).catch(() => ({ fs: [] })); T.feats = u.fs || []; T.approx = u.label === 'approx'; T.why = u.why || ''; } else if (o.prog !== 'SOTA' && o.us) T.feats = await B.padusByName(o.short || o.name, o.la, o.lo).catch(() => []); else if (o.prog !== 'SOTA' && B.worldByName) T.feats = await B.worldByName(o.ref, o.short || o.name, o.la, o.lo, { type: o.type }).catch(() => []); }
       }
       if (T && T.prog === 'SOTA' && !T.ft) { const o = await B.lookup(q).catch(() => null); if (o) T.ft = o.ft; }
     } catch (e) {}
     if (!T) { $('ipTgt').innerHTML = '<p class="ip-small">Could not find ' + esc(ref) + '. Check the number (and your signal).</p>'; return; }
-    st.target = T; $('ipTgt').innerHTML = `<p class="ip-small">Checking against <b>${esc(T.ref)} ${esc(T.name)}</b> (${esc(T.prog)})${T.prog === 'SOTA' ? ' · summit ' + (T.ft ? T.ft.toLocaleString() + ' ft' : '') : T.feats.length ? '' : ' (no boundary file found)'} · <a href="#" id="ipClr">check any reference instead</a></p>`;
+    st.target = T; $('ipTgt').innerHTML = `<p class="ip-small">Checking against <b>${esc(T.ref)} ${esc(T.name)}</b> (${esc(T.prog)})${T.prog === 'SOTA' ? ' · summit ' + (T.ft ? T.ft.toLocaleString() + ' ft' : '') : T.feats.length ? (T.approx ? ` · <b>approximate outline, not official</b> (${esc(T.why)}): check the park's own map` : '') : ' (no boundary file found)'} · <a href="#" id="ipClr">check any reference instead</a></p>`;
     $('ipClr').onclick = e => { e.preventDefault(); $('ipRef').value = ''; setTarget(''); };
     initMap(T.la, T.lo, 13);
     if (T.feats.length) { const g = L.geoJSON({ type: 'FeatureCollection', features: T.feats.map(f => ({ type: 'Feature', properties: {}, geometry: f.geometry })) }); if (!st.here) { map.fitBounds(g.getBounds(), { padding: [20, 20], maxZoom: 15 }); g.setStyle({ color: '#ffb000', weight: 3, fillOpacity: .1 }).addTo(map); st.tgLay = g; } }
