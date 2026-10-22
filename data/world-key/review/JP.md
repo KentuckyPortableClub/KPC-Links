@@ -1,10 +1,9 @@
 # JP: POTA parks vs official land
 
-Built 2026-10-21 by `.github/scripts/kpc_world_key.py` from: Ministry of the Environment national parks (Esri Japan), MLIT natural park areas (A10). **182 of 1217** joined (same name + same kind), **2** to check, **1033** nothing found. Nothing below is joined.
+Built 2026-10-22 by `.github/scripts/kpc_world_key.py` from: Ministry of the Environment national parks (Esri Japan), MLIT natural park areas (A10). **183 of 1217** joined (same name + same kind), **1** to check, **1033** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
-- **JP-0119** Sado-Yahiko-Yoneyama Quasi-National Park (Quasi-National Park) → sado yahiko yoneyama (MLIT natural park areas (A10), same name, different kind of place); sado yahiko yoneyama (MLIT natural park areas (A10), same name, different kind of place); sado yahiko yoneyama (MLIT natural park areas (A10), same name, different kind of place); sado yahiko yoneyama (MLIT natural park areas (A10), same name, different kind of place); sado yahiko yoneyama (MLIT natural park areas (A10), same name, different kind of place); sado yahiko yoneyama (MLIT natural park areas (A10), same name, different kind of place)
 - **JP-1727** Hyakkadai Prefectural Park (Prefectural Park) → unzen amakusa (Ministry of the Environment national parks (Esri Japan), the POTA pin is inside it (different name)); unzen amakusa (MLIT natural park areas (A10), the POTA pin is inside it (different name))
 
 ## Nothing found
