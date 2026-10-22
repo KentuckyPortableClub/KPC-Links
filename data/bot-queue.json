@@ -5,14 +5,6 @@
   {
    "wf": "kpc-world-key.yml",
    "inputs": {
-    "countries": "IT SE AT",
-    "pin_join": "IT,SE,AT"
-   },
-   "why": "Italy, Sweden, Austria: the last of the big ones"
-  },
-  {
-   "wf": "kpc-world-key.yml",
-   "inputs": {
     "countries": "EE",
     "pin_join": "EE"
    },
