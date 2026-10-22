@@ -56,6 +56,12 @@ SCOPE: FT8 + FT4 (+ FT2) app WITH the KPC Logger and the other DIGI modes (CW, R
 
 - **HIDE WHAT CAN'T WORK YET (Brandon Oct 21 4:16 AM: 'like the cq hotkey can we hide features like that for example when cat control not on cause it dont work till cat control'):** a general rule for every screen — a button or hot key that cannot do anything in the current setup is hidden (or dimmed with one short line saying what to turn on), not left there to fail silently. Examples: anything that keys the radio when nothing can key it; CAT-only buttons (READ DIAL, SET DIAL, radio PTT) with no radio connected; TX buttons with no call sign set; SPOT ME with no signal. ONE NUANCE to get right: the voice keyer / CQ button also works on VOX, so the test is 'can anything key the radio' (CAT connected OR PTT = VOX), not 'is CAT on'. When something is hidden, the place to turn it on should be one tap away.
 
+## PHONE LAYOUT — BRANDON'S RULES (Oct 21 9:50 PM, decide nothing else on top of these)
+- "**mobile nice clean layout with stuff grouped together by category**" — group by what a thing IS, not by when it is used.
+- "**don't want to hunt all over the place for cat when it should been in setting for example**" — radio control, audio device, callsign, grid and the like ALL live in Settings, one place, never scattered across the screen they happen to affect. If a control is configuration, it is in Settings; if it is something done during a contact, it is on the operating screen.
+- "**tabs be nice on phone**" — a tab bar on phones, not a drawer or a long scroll.
+- Everything else about the look follows the KPC App Look canvas (link above) and the recipe in notes/logger-lounge-digi.md.
+
 ## WHERE WE STOPPED (update after every session)
 - Oct 20 8:10 PM (Opus): WEB VERSION given the same touch-and-go (kpc-cat.js + kpc-logger-ft8.js on the site, Android only; details in notes/logger-lounge-digi.md). Not yet tested on the tablet. App itself still at step 2 done / step 3 (real screens) next.
 - Oct 20 6:30 AM (Opus): step 1 done. NEXT = step 2 for Fable: commit the android/ project (stop making it fresh in build.yml), add the native audio plugin (AudioTrack USAGE_MEDIA out, AudioRecord in, output first) + USB serial plugin, copy kpc-ft8.js/.wasm + kpc-cat.js from the website, a bare test screen (START RX level meter, TUNE button, radio connect) so Brandon can check watts + ALC on the FT-710.
